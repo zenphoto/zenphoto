@@ -87,11 +87,11 @@ echo "\n</head>";
 		}
 		?>
 		<div id="content">
+			<?php zp_apply_filter('admin_note', 'logs', $subtab); ?>
 			<h1><?php echo ucfirst($logname); ?></h1>
 
 			<div id="container">
 				<?php
-				zp_apply_filter('admin_note', 'logs', $subtab);
 				if ($subtab) {
 					$logfiletext = str_replace('_', ' ', $subtab);
 					$logfiletext = strtoupper(substr($logfiletext, 0, 1)) . substr($logfiletext, 1);

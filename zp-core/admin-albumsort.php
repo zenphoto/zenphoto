@@ -109,6 +109,8 @@ echo "\n</head>";
 				$link = '';
 			}
 			$alb = removeParentAlbumNames($album);
+
+			zp_apply_filter('admin_note', 'albums', 'sort');
 			?>
 			<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'), $link, $alb); ?></h1>
 			<?php
@@ -125,9 +127,6 @@ echo "\n</head>";
 			<div id="container">
 
 				<div class="tabbox">
-					<?php
-					zp_apply_filter('admin_note', 'albums', 'sort');
-					?>
 					<?php
 					if (isset($_GET['saved'])) {
 						if (sanitize_numeric($_GET['saved'])) {

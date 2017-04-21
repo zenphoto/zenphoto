@@ -228,6 +228,8 @@ if (!zp_loggedin()) {
 			<?php
 			/*			 * * HOME ************************************************************************** */
 			/*			 * ********************************************************************************* */
+			zp_apply_filter('admin_note', 'overview', '');
+
 			if (!empty($msg)) {
 				?>
 				<div class="<?php echo html_encode($class); ?> fade-message">
@@ -235,7 +237,6 @@ if (!zp_loggedin()) {
 				</div>
 				<?php
 			}
-			zp_apply_filter('admin_note', 'overview', '');
 			$buttonlist = array();
 
 			$curdir = getcwd();
@@ -541,7 +542,7 @@ if (!zp_loggedin()) {
 							$c = count($plugins);
 							?>
 							<h3><a onclick="toggle('plugins_hide');
-									toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+											toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -589,7 +590,7 @@ if (!zp_loggedin()) {
 							$c = count($filters);
 							?>
 							<h3><a onclick="toggle('filters_hide');
-									toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+											toggle('filters_show');" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php

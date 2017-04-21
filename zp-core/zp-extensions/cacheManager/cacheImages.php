@@ -165,7 +165,7 @@ if (isset($_GET['select'])) {
 	$enabled = false;
 }
 
-printAdminHeader('overview', 'images');
+printAdminHeader('admin', 'images');
 echo "\n</head>";
 echo "\n<body>";
 

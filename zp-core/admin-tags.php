@@ -106,7 +106,7 @@ if (count($_POST) > 0) {
 	} // rename
 }
 
-printAdminHeader('tags');
+printAdminHeader('admin');
 ?>
 </head>
 <body>
@@ -127,9 +127,9 @@ printAdminHeader('tags');
 				<?php
 			}
 
+			zp_apply_filter('admin_note', 'tags', '');
 
 			echo "<h1>" . gettext("Tag Management") . "</h1>";
-			zp_apply_filter('admin_note', 'tags', '');
 			?>
 			<?php echo gettext('Order by'); ?>
 

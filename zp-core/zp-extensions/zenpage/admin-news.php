@@ -95,14 +95,13 @@ updatePublished('news');
 		printTabs();
 		?>
 		<div id="content">
+			<?php zp_apply_filter('admin_note', 'news', $subtab); ?>
 			<h1>
 				<?php echo gettext('Articles'); ?>
 			</h1>
 			<div id = "container">
 				<div class="tabbox">
 					<?php
-					zp_apply_filter('admin_note', 'news', $subtab);
-
 					if ($reports) {
 						$show = array();
 						preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports), $matches);
@@ -228,43 +227,42 @@ updatePublished('news');
 						<span class="buttons floatright">
 							<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
 						</span>
-						<br class="clearall" /><br />
+						<br class="clearall" />
 
+						<div class="centered">
+							<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>
+						</div>
+
+						<div class="headline">
+							<?php echo gettext('Edit this article'); ?>
+
+							<span class="floatright padded">
+								<?php
+								$checkarray = array(
+										gettext('*Bulk actions*') => 'noaction',
+										gettext('Delete') => 'deleteall',
+										gettext('Set to published') => 'showall',
+										gettext('Set to unpublished') => 'hideall',
+										gettext('Disable comments') => 'commentsoff',
+										gettext('Enable comments') => 'commentson',
+										gettext('Add categories') => array('name' => 'addcats', 'action' => 'mass_cats_data'),
+										gettext('Clear categories') => 'clearcats'
+								);
+								if (extensionEnabled('hitcounter')) {
+									$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
+								}
+								$checkarray = zp_apply_filter('bulk_article_actions', $checkarray);
+								printBulkActions($checkarray);
+								?>
+							</span>
+						</div>
 						<table class="bordered">
+
 							<tr>
-								<th colspan="100%" id="imagenav">
-									<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>
-								</th>
-							</tr>
-							<tr>
-								<th colspan=100%>
-									<?php echo gettext('Edit this article'); ?>
-									<span class="floatright">
-										<?php
-										$checkarray = array(
-												gettext('*Bulk actions*') => 'noaction',
-												gettext('Delete') => 'deleteall',
-												gettext('Set to published') => 'showall',
-												gettext('Set to unpublished') => 'hideall',
-												gettext('Disable comments') => 'commentsoff',
-												gettext('Enable comments') => 'commentson',
-												gettext('Add categories') => array('name' => 'addcats', 'action' => 'mass_cats_data'),
-												gettext('Clear categories') => 'clearcats'
-										);
-										if (extensionEnabled('hitcounter')) {
-											$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
-										}
-										$checkarray = zp_apply_filter('bulk_article_actions', $checkarray);
-										printBulkActions($checkarray);
-										?>
-									</span>
-								</th>
-							</tr>
-							<tr>
-								<th><!--title--></th>
-								<th><?php echo gettext('Categories'); ?></th>
-								<th><?php echo gettext('Author'); ?></th>
-								<th>
+								<td><!--title--></td>
+								<td><?php echo gettext('Categories'); ?></td>
+								<td><?php echo gettext('Author'); ?></td>
+								<td>
 									<?php
 									if ($sortorder == 'date') {
 										echo gettext('Created');
@@ -272,13 +270,13 @@ updatePublished('news');
 										echo gettext('Last changed');
 									}
 									?>
-								</th>
-								<th><?php echo gettext('Published'); ?></th>
-								<th><?php echo gettext('Expires'); ?></th>
-								<th class="subhead" colspan="100%">
+								</td>
+								<td><?php echo gettext('Published'); ?></td>
+								<td><?php echo gettext('Expires'); ?></td>
+								<td class="subhead" colspan="100%">
 									<label class="floatright"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 									</label>
-								</th>
+								</td>
 							</tr>
 							<?php
 							foreach ($result as $article) {
@@ -437,11 +435,9 @@ updatePublished('news');
 								<?php
 							}
 							?>
-							<tr>
-								<td id="imagenavb" colspan="100%"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>	</td>
-							</tr>
-						</table>
 
+						</table>
+						<p class="centered"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>	</p>
 						<p class="buttons"><button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button></p>
 					</form>
 					<?php printZenpageIconLegend(); ?>

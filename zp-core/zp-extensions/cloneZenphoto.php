@@ -40,18 +40,25 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
 if ($plugin_disable) {
 	enableExtension('cloneZenphoto', 0);
 } else {
-	zp_register_filter('admin_tabs', 'cloneZenphoto::tabs');
+	zp_register_filter('admin_tabs', 'cloneZenphoto::tabs', -312);
 
 	class cloneZenphoto {
 
 		static function tabs($tabs) {
-			if (zp_loggedin(ADMIN_RIGHTS)) {
-				$tabs['clone'] = array('text' => gettext("clone"),
-						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php',
-						'rights' => ADMIN_RIGHTS,
-						'subtabs' => NULL);
+			global $_zp_current_admin_obj;
+			if ((zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID())) {
+				if (isset($tabs['admin']['subtabs'])) {
+					$subtabs = $tabs['admin']['subtabs'];
+				} else {
+					$subtabs = array(
+							gettext('users') => 'admin-users.php?page=admin&tab=users'
+					);
+				}
+				$subtabs[gettext("clone")] = PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php?page=admin&tab=clone';
+				$tabs['admin']['text'] = gettext("admin");
+				$tabs['admin']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users';
+				$tabs['admin']['subtabs'] = $subtabs;
 			}
-
 			return $tabs;
 		}
 

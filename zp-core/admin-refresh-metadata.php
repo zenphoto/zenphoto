@@ -58,7 +58,7 @@ if (isset($_GET['tab']) && $_GET['tab'] == 'prune') {
 if (isset($_REQUEST['album'])) {
 	$tab = 'edit';
 } else {
-	$tab = 'overview';
+	$tab = 'admin';
 }
 $albumparm = $folder = $albumwhere = $imagewhere = $id = $r = '';
 $ret = '';

@@ -85,12 +85,12 @@ if (isset($_GET['action'])) {
 				}
 			}
 		}
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=users&tab=groups&applied=' . $msg);
+		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=admin&tab=groups&applied=' . $msg);
 		exitZP();
 	}
 }
 
-printAdminHeader('users');
+printAdminHeader('admin');
 echo '</head>' . "\n";
 ?>
 
@@ -113,11 +113,11 @@ echo '</head>' . "\n";
 				}
 			}
 			$subtab = getCurrentTab();
+			zp_apply_filter('admin_note', 'admin', $subtab);
 			echo '<h1>' . gettext('User expiry') . '</h1>';
 			?>
 			<div id="tab_users" class="tabbox">
 				<?php
-				zp_apply_filter('admin_note', 'users', $subtab);
 				$groups = array();
 				?>
 				<p>

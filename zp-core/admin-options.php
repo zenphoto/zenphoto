@@ -95,6 +95,7 @@ Zenphoto_Authority::printPasswordFormJS();
 			/* Page code */
 			$subtab = getCurrentTab();
 			$name = getTabName('options', $subtab);
+			zp_apply_filter('admin_note', 'options', $subtab);
 			?>
 			<h1>
 				<?php

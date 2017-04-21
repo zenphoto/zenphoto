@@ -34,8 +34,9 @@ echo "\n</head>";
 		<div id="content">
 			<div id="container">
 				<?php
-				zp_apply_filter('admin_note', 'development', '');
 				$subtab = getCurrentTab();
+				zp_apply_filter('admin_note', 'development', $subtab);
+
 				switch ($subtab) {
 					case 'phpinfo':
 						?>
@@ -86,7 +87,6 @@ echo "\n</head>";
 				?>
 				<div class="tabbox">
 					<?php
-					zp_apply_filter('admin_note', 'development', '');
 					$subtab = getCurrentTab();
 					switch ($subtab) {
 						case 'phpinfo':

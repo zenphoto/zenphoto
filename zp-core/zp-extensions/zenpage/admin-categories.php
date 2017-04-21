@@ -104,6 +104,7 @@ zenpageJSCSS();
 		<div id="content">
 			<?php
 			$subtab = getCurrentTab();
+			zp_apply_filter('admin_note', 'categories', $subtab);
 			?>
 			<h1>
 				<?php echo gettext('Categories'); ?>
@@ -111,7 +112,6 @@ zenpageJSCSS();
 
 			<div class="tabbox">
 				<?php
-				zp_apply_filter('admin_note', 'categories', $subtab);
 				if ($reports) {
 					$show = array();
 					preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports), $matches);
@@ -142,27 +142,30 @@ zenpageJSCSS();
 						?>
 					</p>
 					<br class="clearall" /><br />
+					<div class="headline">
+						<?php
+						echo gettext('Edit this Category');
+						$checkarray = array(
+								gettext('Set to published') => 'showall',
+								gettext('Set to unpublished') => 'hideall',
+								gettext('*Bulk actions*') => 'noaction',
+								gettext('Delete') => 'deleteall',
+						);
+						if (extensionEnabled('hitcounter')) {
+							$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
+						}
+						$checkarray = zp_apply_filter('bulk_category_actions', $checkarray);
+						printBulkActions($checkarray);
+						?>
+					</div>
 					<div class="bordered">
-						<div class="headline"><?php echo gettext('Edit this Category'); ?>
-							<?php
-							$checkarray = array(
-									gettext('Set to published') => 'showall',
-									gettext('Set to unpublished') => 'hideall',
-									gettext('*Bulk actions*') => 'noaction',
-									gettext('Delete') => 'deleteall',
-							);
-							if (extensionEnabled('hitcounter')) {
-								$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
-							}
-							$checkarray = zp_apply_filter('bulk_category_actions', $checkarray);
-							printBulkActions($checkarray);
-							?>
-						</div>
-						<div class="subhead" >
-							<label style="float: right"><?php echo gettext("Check All"); ?>
+
+						<div class="subhead">
+							<label style="float: right;"><?php echo gettext("Check All"); ?>
 								<input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 							</label>
 						</div>
+
 						<ul class="page-list">
 							<?php $toodeep = printNestedItemsList('cats-sortablelist', '', ''); ?>
 						</ul>

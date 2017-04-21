@@ -61,9 +61,8 @@ function getOptionContent() {
 	if (zp_loggedin(OPTIONS_RIGHTS)) {
 		?>
 		<div id="tab_search" class="tabbox">
-			<?php zp_apply_filter('admin_note', 'options', 'search'); ?>
 			<form class="dirtylistening" onReset="toggle_passwords('', false);
-					setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+							setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 						<?php XSRFToken('saveoptions'); ?>
 				<input	type="hidden" name="saveoptions" value="search" />
 				<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -129,7 +128,7 @@ function getOptionContent() {
 												 name="disclose_password"
 												 id="disclose_password"
 												 onclick="passwordClear('');
-														 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																	 togglePassword('');" /><?php echo gettext('Show password'); ?>
 								</label>
 							</td>
 							<td class="option_desc">

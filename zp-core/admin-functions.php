@@ -341,98 +341,100 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$bottom = count($zenphoto_tabs);
 				$loc = -1;
 				foreach ($zenphoto_tabs as $key => $atab) {
-					if (array_key_exists('alert', $zenphoto_tabs[$key])) {
-						$alert = $zenphoto_tabs[$key]['alert'];
-					} else {
-						$alert = array();
-					}
-					$class = '';
-					$activeTab = $_zp_admin_tab == $key;
-					if ($activeTab) {
-						$class = ' class="active"';
-					} else {
-						if (!empty($alert))
-							$class = ' class="alert"';
-					}
-					$subtabs = $zenphoto_tabs[$key]['subtabs'];
-					$hasSubtabs = is_array($subtabs);
-					$loc++;
-					?>
-					<li<?php if ($hasSubtabs) echo ' class="has-sub"'; ?>>
-						<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encode(ucfirst($atab['text'])); ?></a>
-						<?php
-						if ($hasSubtabs) { // don't print <ul> if there is nothing
-							if (!(isset($atab['ordered']) && $atab['ordered'])) {
-								ksort($subtabs, SORT_NATURAL);
-							}
-							$high = count($subtabs);
-							if ($high > 2) {
-								$_top = $loc - floor(0.5 * $high);
-								$_bottom = $loc + ceil(0.5 * $high);
-								if ($_top >= 0 && $_bottom <= $bottom) { //	fits within the bounds
-									$position = floor(0.5 * $high);
-								} else {
-									if ($_bottom > $bottom) { //	overflows at bottom
-										if ($loc - $high > 0) { //	won't overflow at top
-											$position = $high - 1; //	align to the bottom
-										} else {
-											$position = $loc; //	align to top and let the bottom overflow
-										}
-									} else { //	overflows at the top only
-										$position = $loc; //	align to the top
-									}
+					if (is_array($atab) && isset($atab['link'])) {
+						if (array_key_exists('alert', $zenphoto_tabs[$key])) {
+							$alert = $zenphoto_tabs[$key]['alert'];
+						} else {
+							$alert = array();
+						}
+						$class = '';
+						$activeTab = $_zp_admin_tab == $key;
+						if ($activeTab) {
+							$class = ' class="active"';
+						} else {
+							if (!empty($alert))
+								$class = ' class="alert"';
+						}
+						$subtabs = $zenphoto_tabs[$key]['subtabs'];
+						$hasSubtabs = is_array($subtabs);
+						$loc++;
+						?>
+						<li<?php if ($hasSubtabs) echo ' class="has-sub"'; ?>>
+							<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encode(ucfirst($atab['text'])); ?></a>
+							<?php
+							if ($hasSubtabs) { // don't print <ul> if there is nothing
+								if (!(isset($atab['ordered']) && $atab['ordered'])) {
+									ksort($subtabs, SORT_NATURAL);
 								}
-							} else {
-								$position = 0; //	align to self
-							}
-							?>
-							<ul<?php if ($position) echo ' style="margin-top: -' . ($position * 32) . 'px;"' ?>>
-								<?php
-								if ($activeTab) {
-									if (isset($_GET['tab'])) {
-										$subtab = sanitize($_GET['tab']);
+								$high = count($subtabs);
+								if ($high > 2) {
+									$_top = $loc - floor(0.5 * $high);
+									$_bottom = $loc + ceil(0.5 * $high);
+									if ($_top >= 0 && $_bottom <= $bottom) { //	fits within the bounds
+										$position = floor(0.5 * $high);
 									} else {
-										if (isset($zenphoto_tabs[$key]['default'])) {
-											$subtab = $zenphoto_tabs[$key]['default'];
-										} else {
-											$subtab = NULL;
+										if ($_bottom > $bottom) { //	overflows at bottom
+											if ($loc - $high + 1 > 0) { //	won't overflow at top
+												$position = $high - 1; //	align to the bottom
+											} else {
+												$position = $loc; //	align to top and let the bottom overflow
+											}
+										} else { //	overflows at the top only
+											$position = $loc; //	align to the top
 										}
 									}
+								} else {
+									$position = 0; //	align to self
 								}
-
-								foreach ($subtabs as $subkey => $link) {
-									$subclass = '';
+								?>
+								<ul<?php if ($position) echo ' style="margin-top: -' . ($position * 32) . 'px;"' ?>>
+									<?php
 									if ($activeTab) {
-										preg_match('~tab=(.*?)(&|$)~', $link, $matches);
-										if (isset($matches[1])) {
-											if ($matches[1] == $subtab) {
-												$subclass = 'active ';
+										if (isset($_GET['tab'])) {
+											$subtab = sanitize($_GET['tab']);
+										} else {
+											if (isset($zenphoto_tabs[$key]['default'])) {
+												$subtab = $zenphoto_tabs[$key]['default'];
+											} else {
+												$subtab = NULL;
 											}
 										}
 									}
-									if (strpos($link, '/') !== 0) { // zp_core relative
-										$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-									} else {
-										$link = WEBPATH . $link;
-									}
-									if (in_array($subkey, $alert)) {
-										$subclass = ' class="' . $subclass . 'alert"';
-									} else if ($subclass) {
-										$subclass = ' class="' . trim($subclass) . '"';
-									}
+
+									foreach ($subtabs as $subkey => $link) {
+										$subclass = '';
+										if ($activeTab) {
+											preg_match('~tab=(.*?)(&|$)~', $link, $matches);
+											if (isset($matches[1])) {
+												if ($matches[1] == $subtab) {
+													$subclass = 'active ';
+												}
+											}
+										}
+										if (strpos($link, '/') !== 0) { // zp_core relative
+											$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
+										} else {
+											$link = WEBPATH . $link;
+										}
+										if (in_array($subkey, $alert)) {
+											$subclass = ' class="' . $subclass . 'alert"';
+										} else if ($subclass) {
+											$subclass = ' class="' . trim($subclass) . '"';
+										}
+										?>
+										<li>
+											<a href="<?php echo html_encode($link); ?>"<?php echo $subclass; ?>><?php echo html_encode(ucfirst($subkey)); ?></a>
+										</li>
+										<?php
+									} // foreach end
 									?>
-									<li>
-										<a href="<?php echo html_encode($link); ?>"<?php echo $subclass; ?>><?php echo html_encode(ucfirst($subkey)); ?></a>
-									</li>
-									<?php
-								} // foreach end
-								?>
-							</ul>
-							<?php
-						} // subtabs
-						?>
-					</li>
-					<?php
+								</ul>
+								<?php
+							} // subtabs
+							?>
+						</li>
+						<?php
+					}
 				}
 				?>
 			</ul>
@@ -3428,15 +3430,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					} else {
 						?>
-						<input type="hidden" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>"<?php
+						<!-- name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>"<?php
 						if ($rights & $right['value'])
 							echo ' checked="checked"';
-						?> />
-									 <?php
-								 }
-							 }
-						 }
-						 ?>
+						?> -->
+						<?php
+					}
+				}
+			}
+			?>
 		</fieldset>
 	</div>
 	<?php
@@ -5106,7 +5108,6 @@ function processCredentials($object, $suffix = '') {
 }
 
 function consolidatedEditMessages($subtab) {
-	zp_apply_filter('admin_note', 'albums', $subtab);
 	global $messagebox, $errorbox, $notebox;
 	if (isset($_GET['ndeleted'])) {
 		$ntdel = sanitize_numeric($_GET['ndeleted']);
@@ -5345,5 +5346,30 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php
+}
+
+function tags_subtab($tabs) {
+	if (zp_loggedin(TAGS_RIGHTS)) {
+		$tabs['admin']['subtabs'][gettext('tags')] = 'admin-tags.php?page=admin&tab=tags';
+	}
+	return $tabs;
+}
+
+function backup_subtab($tabs) {
+	$tabs['admin']['subtabs'][gettext('Backup')] = "/" . ZENFOLDER . '/utilities/backup_restore.php?tab=backup';
+	return $tabs;
+}
+
+function refresh_subtabs($tabs) {
+	global $_zp_loggedin;
+	if ($_zp_loggedin & ADMIN_RIGHTS) {
+		$tabs['admin']['subtabs'][gettext('Refresh database')] = '/' . ZENFOLDER . '/admin-refresh-metadata.php?tab=prune&XSRFToken=' . getXSRFToken('refresh');
+	}
+
+	if ($_zp_loggedin & MANAGE_ALL_ALBUM_RIGHTS) {
+		$tabs['admin']['subtabs'][gettext('Refresh metadata')] = '/' . ZENFOLDER . '/admin-refresh-metadata.php?tab=refresh&XSRFToken=' . getXSRFToken('refresh');
+		$tabs['admin']['subtabs'][gettext('Reset album thumbs')] = "/" . ZENFOLDER . '/utilities/reset_albumthumbs.php?tab=resetthumbs';
+	}
+	return $tabs;
 }
 ?>

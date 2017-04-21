@@ -45,7 +45,7 @@ if (isset($_GET['subpage'])) {
 }
 
 if (!isset($_GET['page'])) {
-	$_GET['page'] = 'users';
+	$_GET['page'] = 'admin';
 }
 $_current_tab = sanitize($_GET['page'], 3);
 
@@ -68,7 +68,7 @@ if (isset($_GET['action'])) {
 			} else {
 				$notify = '&migration_error';
 			}
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&subpage=" . $subpage . $notify);
+			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=admin&subpage=" . $subpage . $notify);
 			exitZP();
 			break;
 		case 'deleteadmin':
@@ -76,7 +76,7 @@ if (isset($_GET['action'])) {
 			$adminobj = Zenphoto_Authority::newAdministrator(sanitize($_GET['adminuser']), 1);
 			zp_apply_filter('save_user', '', $adminobj, 'delete');
 			$adminobj->remove();
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&subpage=" . $subpage);
+			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=admin&deleted&subpage=" . $subpage);
 			exitZP();
 			break;
 		case 'saveoptions':
@@ -289,6 +289,7 @@ echo $refresh;
 				echo "<h2>" . gettext("Password reset request.") . "</h2>";
 				echo "</div>";
 			}
+			zp_apply_filter('admin_note', 'admin', 'users');
 
 			echo '<h1>' . gettext('Users') . '</h1>';
 			?>
@@ -316,8 +317,6 @@ echo $refresh;
 				?>
 				<div id="tab_admin" class="tabbox">
 					<?php
-					zp_apply_filter('admin_note', 'users', 'users');
-
 					$pages = 0;
 					$clearPass = false;
 					if (!$_zp_current_admin_obj->getID() && $_zp_current_admin_obj->reset) {
@@ -568,7 +567,7 @@ echo $refresh;
 								if ($background) {
 									$background = "";
 								} else {
-									$background = "background-color:#ECF1F2;";
+									$background = "background-color:#f0f4f5;";
 								}
 								if ($_zp_current_admin_obj->reset) {
 									$custom_row = NULL;

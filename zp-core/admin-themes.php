@@ -153,6 +153,7 @@ if (count($themelist) == 0) {
 	echo "<h2>" . gettext("There are no themes for which you have rights to administer.") . "</h2>";
 	echo '</div>';
 } else {
+	zp_apply_filter('admin_note', 'themes', '');
 
 	echo "<h1>" . sprintf(gettext('Current theme for <code><strong>%1$s</strong></code>: <em>%2$s</em>'), $albumtitle, $themenamedisplay);
 	if (!empty($alb) && !empty($themename)) {
@@ -166,7 +167,6 @@ if (count($themelist) == 0) {
 	echo "</h1>\n";
 	if (count($themelist) > 1) {
 		echo '<form action="#" method="post">';
-		zp_apply_filter('admin_note', 'themes', '');
 		echo gettext("Show theme for: ");
 		echo '<select id="themealbum" class="ignoredirty" name="themealbum" onchange="this.form.submit()">';
 		generateListFromArray(array(pathurlencode($alb)), $themelist, false, true);

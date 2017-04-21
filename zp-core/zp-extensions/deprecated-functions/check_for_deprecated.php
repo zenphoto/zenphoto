@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
 	$report = array();
 	$selected = sanitize_numeric($_POST['target']);
 }
-printAdminHeader('overview', 'deprecated');
+printAdminHeader('admin', 'deprecated');
 ?>
 <?php
 echo '</head>' . "\n";

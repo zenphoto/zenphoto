@@ -87,18 +87,10 @@ function macro_admin_tabs($tabs) {
 	if (zp_loggedin(ADMIN_RIGHTS)) {
 		if (!isset($tabs['development'])) {
 			$tabs['development'] = array('text' => gettext("development"),
+					'link' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=development&tab=macros',
 					'subtabs' => NULL);
 		}
 		$tabs['development']['subtabs'][gettext("macros")] = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=development&tab=macros';
-		$named = array_flip($tabs['development']['subtabs']);
-		natcasesort($named);
-		$tabs['development']['subtabs'] = $named = array_flip($named);
-		$link = array_shift($named);
-		if (strpos($link, '/') !== 0) { // zp_core relative
-			$tabs['development']['link'] = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-		} else {
-			$tabs['development']['link'] = WEBPATH . $link;
-		}
 	}
 	return $tabs;
 }

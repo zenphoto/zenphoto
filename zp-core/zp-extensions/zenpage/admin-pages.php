@@ -144,24 +144,25 @@ updatePublished('pages');
 					</p>
 
 					<br class="clearall" /><br class="clearall" />
+					<div class="headline"><?php echo gettext('Edit this page'); ?>
+						<?php
+						$checkarray = array(
+								gettext('*Bulk actions*') => 'noaction',
+								gettext('Delete') => 'deleteall',
+								gettext('Set to published') => 'showall',
+								gettext('Set to unpublished') => 'hideall',
+								gettext('Disable comments') => 'commentsoff',
+								gettext('Enable comments') => 'commentson'
+						);
+						if (extensionEnabled('hitcounter')) {
+							$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
+						}
+						$checkarray = zp_apply_filter('bulk_page_actions', $checkarray);
+						printBulkActions($checkarray);
+						?>
+					</div>
 					<div class="bordered">
-						<div class="headline"><?php echo gettext('Edit this page'); ?>
-							<?php
-							$checkarray = array(
-									gettext('*Bulk actions*') => 'noaction',
-									gettext('Delete') => 'deleteall',
-									gettext('Set to published') => 'showall',
-									gettext('Set to unpublished') => 'hideall',
-									gettext('Disable comments') => 'commentsoff',
-									gettext('Enable comments') => 'commentson'
-							);
-							if (extensionEnabled('hitcounter')) {
-								$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
-							}
-							$checkarray = zp_apply_filter('bulk_page_actions', $checkarray);
-							printBulkActions($checkarray);
-							?>
-						</div>
+
 						<div class="subhead">
 							<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 							</label>

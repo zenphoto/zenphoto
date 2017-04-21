@@ -165,8 +165,6 @@ function getOptionContent() {
 		?>
 		<div id="tab_theme" class="tabbox">
 			<?php
-			zp_apply_filter('admin_note', 'options', 'theme');
-
 			if ($optionHandler) {
 				$supportedOptions = $optionHandler->getOptionsSupported();
 				if (method_exists($optionHandler, 'getOptionsDisabled')) {

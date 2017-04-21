@@ -14,7 +14,9 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'user_mailing_list';
 
-zp_register_filter('admin_tabs', 'user_mailing_list::admin_tabs');
+if (zp_loggedin(ADMIN_RIGHTS)) {
+	zp_register_filter('admin_tabs', 'user_mailing_list::admin_tabs', -1300);
+}
 
 class user_mailing_list {
 
@@ -36,7 +38,7 @@ class user_mailing_list {
 	}
 
 	static function admin_tabs($tabs) {
-		$tabs['overview']['subtabs'][gettext('Mailing list')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list/user_mailing_listTab.php?tab=mailinglist';
+		$tabs['admin']['subtabs'][gettext('Mailing list')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list/user_mailing_listTab.php?tab=mailinglist';
 		return $tabs;
 	}
 

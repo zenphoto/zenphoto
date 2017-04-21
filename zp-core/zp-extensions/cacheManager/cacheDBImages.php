@@ -16,7 +16,7 @@ admin_securityChecks(NULL, $return = currentRelativeURL());
 XSRFdefender('cacheDBImages');
 
 
-printAdminHeader('overview', 'DB');
+printAdminHeader('admin', 'DB');
 echo "\n</head>";
 echo "\n<body>";
 

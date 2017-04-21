@@ -68,7 +68,6 @@ function getOptionContent() {
 		$plugins = array_slice($plugins, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
 		?>
 		<div id="tab_plugin" class="tabbox">
-			<?php zp_apply_filter('admin_note', 'options', 'plugin'); ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				var optionholder = new Array();

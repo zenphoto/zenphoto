@@ -27,6 +27,7 @@ $option_interface = 'sitemap';
 
 zp_register_filter('admin_tabs', 'sitemap::admin_tabs');
 
+
 $sitemapfolder = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/sitemap';
 if (!file_exists($sitemapfolder)) {
 	if (!mkdir_recursive($sitemapfolder, FOLDER_MOD)) {
@@ -195,7 +196,9 @@ class sitemap {
 	}
 
 	static function admin_tabs($tabs) {
-		$tabs['overview']['subtabs'][gettext('Sitemap')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php?tab=sitemap';
+		if (zp_loggedin(OVERVIEW_RIGHTS)) {
+			$tabs['overview']['subtabs'][gettext('Sitemap')] = '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php?tab=sitemap';
+		}
 		return $tabs;
 	}
 
