@@ -187,7 +187,7 @@ if (@$_zp_loggedin) {
 		}
 	}
 
-	if (count($zenphoto_tabs['admin']['subtabs']) == 1) {
+	if (isset($zenphoto_tabs['admin']['subtabs']) && count($zenphoto_tabs['admin']['subtabs']) == 1) {
 		$zenphoto_tabs['admin']['subtabs'] = NULL;
 	}
 
