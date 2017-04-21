@@ -110,10 +110,12 @@ if (@$_zp_loggedin) {
 	}
 
 	if ($_zp_loggedin & USER_RIGHTS) {
-		$zenphoto_tabs['admin'] = array('text' => gettext("admin"),
-				'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin',
+		$zenphoto_tabs['admin'] = array(
+				'text' => gettext("admin"),
+				'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users',
 				'ordered' => true,
-				'subtabs' => NULL);
+				'subtabs' => array(gettext('users') => 'admin-users.php?page=admin&tab=users')
+		);
 	}
 
 	$subtabs = array();
@@ -174,9 +176,7 @@ if (@$_zp_loggedin) {
 	if (!$_zp_current_admin_obj->getID()) {
 		$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
 		if (count($filelist) > 0) {
-			$zenphoto_tabs['restore'] = array('text' => gettext("Restore"),
-					'link' => "/" . ZENFOLDER . '/utilities/backup_restore.php?page=backup',
-					'subtabs' => NULL);
+			$zenphoto_tabs['admin']['subtabs']['restore'] = 'utilities/backup_restore.php?tab=backup';
 		}
 	}
 
@@ -186,6 +186,11 @@ if (@$_zp_loggedin) {
 			unset($zenphoto_tabs[$tab]);
 		}
 	}
+
+	if (count($zenphoto_tabs['admin']['subtabs']) == 1) {
+		$zenphoto_tabs['admin']['subtabs'] = NULL;
+	}
+
 	//	so as to make it generally available as we make much use of it
 	if (OFFSET_PATH != 2) {
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/colorbox_js.php');

@@ -242,17 +242,9 @@ class user_groups {
 	static function admin_tabs($tabs) {
 		global $_zp_current_admin_obj;
 		if ((zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID())) {
-			if (isset($tabs['admin']['subtabs'])) {
-				$subtabs = $tabs['admin']['subtabs'];
-			} else {
-				$subtabs = array(
-						gettext('users') => 'admin-users.php?page=admin&tab=users'
-				);
-			}
+			$subtabs = $tabs['admin']['subtabs'];
 			$subtabs[gettext('groups')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=admin&tab=groups';
 			$subtabs[gettext('assignments')] = PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=admin&tab=assignments';
-			$tabs['admin']['text'] = gettext("admin");
-			$tabs['admin']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users';
 			$tabs['admin']['subtabs'] = $subtabs;
 		}
 		return $tabs;

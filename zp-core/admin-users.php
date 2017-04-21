@@ -192,14 +192,15 @@ if (isset($_GET['action'])) {
 									}
 								}
 								$oldrights = $rights;
-								if ($rights != $oldrights) {
-									$userobj->setRights($rights | NO_RIGHTS);
-									markUpdated($user);
-								}
+
 								$oldobjects = sortMultiArray($oldobjects, 'data', true, false, false, false);
 								$objects = sortMultiArray(processManagedObjects($i, $rights), 'data', true, false, false, false);
 								if ($objects != $oldobjects) {
 									$userobj->setObjects($objects);
+									markUpdated($user);
+								}
+								if ($rights != $oldrights) {
+									$userobj->setRights($rights | NO_RIGHTS);
 									markUpdated($user);
 								}
 							} else {

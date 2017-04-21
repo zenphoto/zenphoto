@@ -102,17 +102,16 @@ class user_expiry {
 							'subtabs' => NULL));
 		} else {
 			if (zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID()) {
-				if (isset($tabs['admin']['subtabs'])) {
-					$subtabs = $tabs['admin']['subtabs'];
-				} else {
-					$subtabs = array(
-							gettext('users') => 'admin-users.php?page=admin&tab=users'
-					);
+				$subtabs = $tabs['admin']['subtabs'];
+				$c = 0;
+				foreach ($subtabs as $key => $link) {
+					if (!in_array($key, array('users', 'groups', 'assignments'))) {
+						break;
+					}
+					$c++;
 				}
-				$subtabs[gettext('expiry')] = PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=admin&tab=expiry';
-				$tabs['admin']['text'] = gettext("admin");
-				$tabs['admin']['link'] = WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users';
-				$tabs['admin']['subtabs'] = $subtabs;
+				$first_array = array_splice($subtabs, 0, $c);
+				$tabs['admin']['subtabs'] = array_merge($first_array, array(gettext('expiry') => PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=admin&tab=expiry'), $subtabs);
 			}
 		}
 		return $tabs;
