@@ -3429,16 +3429,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 						</label>
 						<?php
 					} else {
-						?>
-						<input type="hidden" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>"<?php
-						if ($rights & $right['value'])
-							echo ' checked="checked"';
-						?>/>
-									 <?php
-								 }
-							 }
-						 }
-						 ?>
+						if ($rights & $right['value']) {
+							?>
+							<input type="hidden" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>" />
+							<?php
+						}
+					}
+				}
+			}
+			?>
 		</fieldset>
 	</div>
 	<?php
