@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Hide the output of user rights and other info if a user does <b>NOT</b> have <var>ADMIN_RIGHTS</var>.
  *
@@ -20,25 +21,22 @@ zp_register_filter('plugin_tabs', 'showNoUserRights::tab');
 class showNoUserRights {
 
 	static function customDisplayRights() {
-		global $_zp_admin_tab;
-		if (!zp_loggedin(ADMIN_RIGHTS) && $_zp_admin_tab == 'users') {
+		global $_zp_admin_tab, $_zp_admin_subtab;
+		if (!zp_loggedin(ADMIN_RIGHTS) && $_zp_admin_tab == 'admin' && $_zp_admin_subtab == 'users') {
 			?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				$(document).ready(function() {
+				$(document).ready(function () {
 					$('select[name="showgroup"]').parent("th").remove(); 	// the "Show" dropdownn menu
 					$('.box-rights').remove(); 								// Rights. (the part with all the checkboxes).
 					$('.box-albums-unpadded').remove(); 					// Albums, Pages, and Categories.
-					$('.notebox').remove();									// All Noteboxes
 					$('label[for="admin_language_0"], ul.flags').remove(); 	// Languages
-					$('td:contains("<?php echo gettext("Quota"); ?>")').parent("tr.userextrainfo").remove(); // Display of assigned quota (if the "quota_manager" plugin is enabled).
-					$('tr.userextrainfo td:contains("<?php echo gettext("User group membership"); ?>")').next().andSelf().remove(); // "User group membership" information (if the user_groups plugin is enabled).
-					$('tr.userextrainfo td:contains("<?php echo gettext("Street"); ?>")').parent("tr.userextrainfo").remove(); // Address information.
 				});
 				// ]]> -->
 			</script>
 
 			<?php
+
 		}
 	}
 

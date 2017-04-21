@@ -13,7 +13,7 @@ define('OFFSET_PATH', 1);
 function markUpdated($user) {
 	global $updated;
 	$updated = true;
-	//for finding out who did it!	debugLogBacktrace('updated');
+//for finding out who did it!	debugLogBacktrace('updated');
 }
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
@@ -192,14 +192,15 @@ if (isset($_GET['action'])) {
 									}
 								}
 								$oldrights = $rights;
-								if ($rights != $oldrights) {
-									$userobj->setRights($rights | NO_RIGHTS);
-									markUpdated($user);
-								}
+
 								$oldobjects = sortMultiArray($oldobjects, 'data', true, false, false, false);
 								$objects = sortMultiArray(processManagedObjects($i, $rights), 'data', true, false, false, false);
 								if ($objects != $oldobjects) {
 									$userobj->setObjects($objects);
+									markUpdated($user);
+								}
+								if ($rights != $oldrights) {
+									$userobj->setRights($rights | NO_RIGHTS);
 									markUpdated($user);
 								}
 							} else {
@@ -235,7 +236,7 @@ if (isset($_GET['action'])) {
 			}
 			break;
 	}
-	$returntab .= "&page=users";
+	$returntab .= "&page=admin&tab=users";
 	if (!empty($newuser)) {
 		$returntab .= '&show[]=' . $newuser;
 	}
@@ -472,20 +473,21 @@ echo $refresh;
 							<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 						</p>
 						<br class="clearall" /><br />
-						<table class="bordered"> <!-- main table -->
+						<table class="unbordered"> <!-- main table -->
 
-							<tr>
-								<?php
-								if ($subpage || count($userlist) > 1) {
-									?>
-									<th>
+
+							<?php
+							if ($subpage || count($userlist) > 1) {
+								?>
+								<tr>
+									<td>
 										<span style="font-weight: normal">
 											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
 											|
 											<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
-									</th>
-									<th>
+									</td>
+									<td>
 										<?php echo gettext('show'); ?>
 										<select name="showgroup" id="showgroup" class="ignoredirty" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-users.php', ['showgroup=' + $('#showgroup').val()]);" >
 											<option value=""<?php if (!$showgroup) echo ' selected="selected"'; ?>><?php echo gettext('all'); ?></option>
@@ -506,18 +508,17 @@ echo $refresh;
 											}
 											?>
 										</select>
-									</th>
-									<th>
-										<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
-									</th>
-									<?php
-								} else {
-									?>
-									<th colspan="100%">&nbsp;</th>
-									<?php
-								}
-								?>
-							</tr>
+									</td>
+									<td>
+										<span class="floatright padded">
+											<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+										</span>
+									</td>
+								</tr>
+								<?php
+							}
+							?>
+
 							<?php
 							$id = 0;
 							$albumlist = array();
@@ -531,13 +532,11 @@ echo $refresh;
 							if (!empty($newuser)) {
 								$userlist[-1] = $newuser;
 							}
-
 							foreach ($userlist as $key => $user) {
 								$ismaster = false;
 								$local_alterrights = $alterrights;
 								$userid = $user['user'];
 								$current = in_array($userid, $showset);
-
 								if ($userid == $_zp_current_admin_obj->getuser()) {
 									$userobj = $_zp_current_admin_obj;
 								} else {
@@ -584,8 +583,8 @@ echo $refresh;
 								?>
 								<!-- finished with filters -->
 								<tr>
-									<td colspan="100%" style="margin: 0pt; padding: 0pt;border-top: 4px solid #D1DBDF;<?php echo $background; ?>">
-										<table class="bordered" style="border: 0" id='user-<?php echo $id; ?>'>
+									<td colspan="100%" style="margin: 0pt; padding: 0pt;<?php echo $background; ?>">
+										<table class="unbordered" id='user-<?php echo $id; ?>'>
 											<tr>
 												<td style="margin-top: 0px; width:20em;<?php echo $background; ?>" valign="top">
 													<?php
@@ -670,7 +669,6 @@ echo $refresh;
 											<?php
 											$no_change = array();
 											if (!zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset) {
-												$no_change = $userobj->getCredentials();
 												?>
 												<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
 													<td <?php if (!empty($background)) echo " style=\"$background\""; ?> colspan="100%">
@@ -683,10 +681,7 @@ echo $refresh;
 											}
 											?>
 											<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
-
-
 												<td <?php if (!empty($background)) echo " style=\"$background\""; ?> valign="top" colspan="100%">
-
 													<div class="user_left">
 														<p>
 															<?php
@@ -843,14 +838,18 @@ echo $refresh;
 								<?php
 								$id++;
 							}
+							if ($subpage || count($userlist) > 1) {
+								?>
+								<tr>
+									<td colspan="100%">
+										<span class="floatright padded">
+											<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+										</span>
+									</td>
+								</tr>
+								<?php
+							}
 							?>
-							<tr>
-								<th></th>
-								<th></th>
-								<th>
-									<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
-								</th>
-							</tr>
 						</table> <!-- main admin table end -->
 
 						<input type="hidden" name="totaladmins" value="<?php echo $id; ?>" />
