@@ -562,8 +562,7 @@ table.bordered tr td {
 
 table.bordered tr.alt1 td {
 	background-color: #f0f4f5;
-	border-bottom: 2px solid #dddddd;
-	background-image: url(images/admin-headerback.jpg);
+	border-bottom: 1px solid #dddddd;
 	background-repeat: repeat-x;
 }
 
@@ -593,7 +592,7 @@ table.options {
 table.options th {
 	font-weight: bold;
 	padding: 8px 0px 4px 10px;
-	border-bottom: 2px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
 	background: #f0f4f5;
 	background-repeat: repeat-x;
 }
@@ -620,7 +619,7 @@ table.options tr td {
 .option_shaded {
 	font-weight: bold;
 	padding: 8px 0px 4px 10px;
-	border-bottom: 2px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
 	background: #f0f4f5;
 	background-repeat: repeat-x;
 }
