@@ -63,7 +63,7 @@ if (isset($_POST['purge'])) {
 	if (!empty($purgedActive)) {
 		requestSetup('purgeOptions');
 	}
-	header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/purgeOptions/purgeOptions_tab.php');
+	header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/purgeOptions/purgeOptions_tab.php?tab=purge');
 	exitZP();
 }
 
