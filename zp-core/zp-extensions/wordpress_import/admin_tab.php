@@ -482,7 +482,7 @@ if (!empty($metaURL) && $postcount < $posttotalcount) {
 						</li>
 					</ul>
 					<?php if ($posttotalcount == $postcount) { ?>
-						<p class="buttons"><a href="wordpress_import.php"><?php echo gettext('New import'); ?></a></p>
+						<p class="buttons"><a href="admin_tab.php"><?php echo gettext('New import'); ?></a></p>
 						<br style="clear:both" />
 						<?php
 					}
