@@ -53,7 +53,7 @@ function wp_prefix($tablename, $wp_prefix) {
 }
 
 function wpimport_TryAgainError($message) {
-	return '<p class="import-error">' . $message . '<br /><a href="wordpress_import.php">' . gettext('Please try again') . '</a>
+	return '<p class="import-error">' . $message . '<br /><a href="admin_tab.php">' . gettext('Please try again') . '</a>
 		</p>';
 }
 
