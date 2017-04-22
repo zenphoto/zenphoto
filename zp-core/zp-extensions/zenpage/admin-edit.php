@@ -13,9 +13,27 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tag_suggest.
 
 if (is_AdminEditPage('page')) {
 	$rights = ZENPAGE_PAGES_RIGHTS;
-} else {
+	$page = $tab = 'pages';
+	$tab = NULL;
+	$new = 'newPage';
+	$update = 'updatePage';
+	$returnpage = 'page';
+} else if (is_AdminEditPage('newsarticle')) {
 	$rights = ZENPAGE_NEWS_RIGHTS;
+	$page = 'news';
+	$_GET['tab'] = $tab = 'articles';
+	$new = 'newArticle';
+	$update = 'updateArticle';
+	$returnpage = 'newsarticle';
+} else if (is_AdminEditPage('newscategory')) {
+	$rights = ZENPAGE_NEWS_RIGHTS;
+	$page = 'news';
+	$_GET['tab'] = $tab = 'categories';
+	$new = 'newCategory';
+	$update = 'updateCategory';
+	$returnpage = 'newscategory';
 }
+
 admin_securityChecks($rights, currentRelativeURL());
 updatePublished('news');
 updatePublished('pages');
@@ -23,23 +41,7 @@ updatePublished('pages');
 $saveitem = '';
 $reports = array();
 
-if (is_AdminEditPage('page')) {
-	$_GET['tab'] = $tab = 'pages';
-	$new = 'newPage';
-	$update = 'updatePage';
-	$returnpage = 'page';
-} else if (is_AdminEditPage('newsarticle')) {
-	$_GET['tab'] = $tab = 'news';
-	$new = 'newArticle';
-	$update = 'updateArticle';
-	$returnpage = 'newsarticle';
-} else if (is_AdminEditPage('newscategory')) {
-	$tab = 'news';
-	$_GET['tab'] = 'categories';
-	$new = 'newCategory';
-	$update = 'updateCategory';
-	$returnpage = 'newscategory';
-}
+
 
 
 $redirect = false;
@@ -102,7 +104,7 @@ if ($redirect) {
  */
 $_zp_CMS = new CMS();
 
-printAdminHeader($tab, ($result->transient) ? gettext('add') : gettext('edit'));
+printAdminHeader($page, $tab);
 zp_apply_filter('texteditor_config', 'zenpage');
 zenpageJSCSS();
 datepickerJS();
@@ -499,9 +501,9 @@ $tagsort = getTagOrder();
 																 id="show"
 																 value="1" <?php checkIfChecked($result->getShow()); ?>
 																 onclick="$('#pubdate').val('');
-																			 $('#expiredate').val('');
-																			 $('#pubdate').css('color', 'black');
-																			 $('.expire').html('');"
+																		 $('#expiredate').val('');
+																		 $('#pubdate').css('color', 'black');
+																		 $('.expire').html('');"
 																 />
 													<label for="show"><?php echo gettext("Published"); ?></label>
 												</p>
@@ -603,7 +605,7 @@ $tagsort = getTagOrder();
 																			 name="disclose_password"
 																			 id="disclose_password"
 																			 onclick="passwordClear('');
-																								 togglePassword('');"><?php echo gettext('Show password'); ?>
+																					 togglePassword('');"><?php echo gettext('Show password'); ?>
 															</label>
 															<br />
 															<span class="password_field_">
@@ -630,13 +632,13 @@ $tagsort = getTagOrder();
 													<label class="checkboxlabel">
 														<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																	 onclick="$('#copyfield').show();
-																					 $('#deletemsg').hide();" />
+																			 $('#deletemsg').hide();" />
 																	 <?php echo gettext("Copy"); ?>
 													</label>
 													<label class="checkboxlabel">
 														<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																	 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																					 $('#copyfield').hide();" />
+																			 $('#copyfield').hide();" />
 																	 <?php echo gettext('delete'); ?>
 													</label>
 													<br class="clearall" />

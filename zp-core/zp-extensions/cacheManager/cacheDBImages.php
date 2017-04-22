@@ -42,7 +42,7 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 			'pages' => array('content', 'extracontent'),
 			'news' => array('content', 'extracontent'));
 	?>
-	<form name="size_selections" action="?select" method="post">
+	<form name="size_selections" action="?tab=DB&select" method="post">
 		<?php
 		$refresh = $imageprocessor = $found = $fixed = $fixedFolder = 0;
 		XSRFToken('cacheDBImages');
@@ -188,11 +188,7 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 			}
 			?>
 		</p>
-		<p class="buttons">
-			<a title="<?php echo gettext('Back to the overview'); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php'; ?>"> <img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" />
-				<strong><?php echo gettext("Back"); ?> </strong>
-			</a>
-		</p>
+
 		<?php
 		if ($button) {
 			?>

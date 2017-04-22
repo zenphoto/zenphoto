@@ -17,23 +17,35 @@ if (extensionEnabled('zenpage')) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-functions.php');
 }
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 if (isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['dbpass']) || isset($_REQUEST['dbhost'])) {
 	XSRFdefender('wordpress');
 }
 
+function wp_query($sql) {
+	global $wpdbconnection;
+	if ($wpdbconnection) { //	kludge because the importer code never checks if there was a successful connection!!!
+		return mysqli_query($wpdbconnection, $sql);
+	}
+	return false;
+}
+
 // some extra functions
-function wp_query_full_array($sql, $wpconnection) {
-	$result = mysqli_query($wpconnection, $sql) or die(gettext("Query failed : ") . mysqli_error($wpconnection));
+function wp_query_full_array($sql) {
+	global $wpdbconnection;
+	$result = wp_query($sql);
 	if ($result) {
 		$allrows = array();
 		while ($row = mysqli_fetch_assoc($result))
 			$allrows[] = $row;
 		return $allrows;
 	} else {
-		return false;
+		if ($wpdbconnection) {
+			die(gettext("Query failed : ") . mysqli_error($wpdbconnection));
+		}
 	}
+	return false;
 }
 
 function wp_prefix($tablename, $wp_prefix) {
@@ -41,7 +53,7 @@ function wp_prefix($tablename, $wp_prefix) {
 }
 
 function wpimport_TryAgainError($message) {
-	return '<p class="import-error">' . $message . '<br /><a href="wordpress_import.php">' . gettext('Please try again') . '</a>
+	return '<p class="import-error">' . $message . '<br /><a href="admin_tab.php">' . gettext('Please try again') . '</a>
 		</p>';
 }
 
@@ -74,28 +86,34 @@ if (isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST[
 				<li>' . gettext('Database user') . ': <strong>' . $wp_dbbuser . '</strong></li>
 				<li>' . gettext('Database password') . ': <strong>' . $wp_dbpassword . '</strong></li>
 				<li>' . gettext('Database host') . ': <strong>' . $wp_dbhost . '</strong></li>
-				<li>' . gettext('Database table prefix') . '>: <strong>' . $wp_prefix . '</strong></li>
+				<li>' . gettext('Database table prefix') . ': <strong>' . $wp_prefix . '</strong></li>
 			</ul>
 			';
 	if (empty($wp_dbname) || empty($wp_dbbuser) || empty($wp_dbpassword) || empty($wp_dbhost)) {
 		$dbinfo_incomplete = wpimport_TryAgainError($message);
 	}
 	$wpdbconnection = @mysqli_connect($wp_dbhost, $wp_dbbuser, $wp_dbpassword, $wp_dbname); // open 2nd connection to Wordpress additionally to the existing Zenphoto connection
-	mysqli_query($wpdbconnection, "SET NAMES 'utf8'");
-	@mysqli_query($wpdbconnection, 'SET SESSION sql_mode="";');
-	if (!$wpdbconnection) {
-		$db_noconnection = wpimport_TryAgainError(gettext('<strong>ERROR:</strong> Could not connect to the Wordpress database - Query failed : ') . mysqli_error($wpdbconnection));
+
+	if ($wpdbconnection) {
+		mysqli_query($wpdbconnection, "SET NAMES 'utf8'");
+		@mysqli_query($wpdbconnection, 'SET SESSION sql_mode="";');
+		if (!@mysqli_select_db($wpdbconnection, $wp_dbname)) {
+			$db_notselected = wpimport_TryAgainError(gettext('<strong>ERROR:</strong> Wordpress database could not be selected - Query failed : ') . mysqli_error($wpdbconnection));
+		}
+	} else {
+		$db_noconnection = wpimport_TryAgainError(gettext('<strong>ERROR:</strong> Could not connect to the Wordpress database.'));
+		$wpdbconnection = false;
 	}
-	if (!@mysqli_select_db($wpdbconnection, $wp_dbname)) {
-		$db_notselected = wpimport_TryAgainError(gettext('<strong>ERROR:</strong> Wordpress database could not be selected - Query failed : ') . mysqli_error($wpdbconnection));
-	}
+
+
+
 
 	/*	 * *********************************
 	 * getting all Wordpress categories
 	 * ********************************** */
 	$catinfo = '';
 	if (!isset($_GET['refresh'])) {
-		$cats = wp_query_full_array("SELECT * FROM " . wp_prefix('terms', $wp_prefix) . " as terms, " . wp_prefix('term_taxonomy', $wp_prefix) . " as tax WHERE tax.taxonomy = 'category' AND terms.term_id = tax.term_id", $wpdbconnection);
+		$cats = wp_query_full_array("SELECT * FROM " . wp_prefix('terms', $wp_prefix) . " as terms, " . wp_prefix('term_taxonomy', $wp_prefix) . " as tax WHERE tax.taxonomy = 'category' AND terms.term_id = tax.term_id");
 		//echo "<li><strong>Categories</strong>: <pre>"; print_r($cats); echo "</pre></li>"; // for debugging
 		debugLogVar('Wordpress import - All Categories', $cats);
 
@@ -123,7 +141,7 @@ if (isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST[
 		 * getting all Wordpress tags
 		 * ********************************** */
 		$taginfo = '';
-		$tags = wp_query_full_array("SELECT * FROM " . wp_prefix('terms', $wp_prefix) . " as terms, " . wp_prefix('term_taxonomy', $wp_prefix) . " as tax WHERE tax.taxonomy = 'post_tag' AND terms.term_id = tax.term_id", $wpdbconnection);
+		$tags = wp_query_full_array("SELECT * FROM " . wp_prefix('terms', $wp_prefix) . " as terms, " . wp_prefix('term_taxonomy', $wp_prefix) . " as tax WHERE tax.taxonomy = 'post_tag' AND terms.term_id = tax.term_id");
 		//echo "<li><strong>Tags</strong>: <pre>"; print_r($tags); echo "</pre></li>"; // for debugging
 		debugLogVar('Wordpress import - Tags import', $tags);
 
@@ -152,7 +170,7 @@ if (isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST[
 	/*	 * *********************************
 	 * get wp posts and pages
 	 * ********************************** */
-	$posttotal = mysqli_query($wpdbconnection, "
+	$posttotal = wp_query("
 			SELECT COUNT(*)
 			FROM " . wp_prefix('posts', $wp_prefix) . "
 			WHERE (post_type = 'post' OR post_type = 'page') AND (post_status = 'publish' OR post_status = 'draft')
@@ -172,7 +190,7 @@ if (isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST[
 		post_type as type
 		FROM " . wp_prefix('posts', $wp_prefix) . "
 		WHERE (post_type = 'post' OR post_type = 'page') AND (post_status = 'publish' OR post_status = 'draft')
-		ORDER BY post_date DESC" . $limit, $wpdbconnection);
+		ORDER BY post_date DESC" . $limit);
 	if ($posts) {
 		//echo "Posts<br /><pre>"; print_r($posts); echo "</pre>"; // for debugging
 		foreach ($posts as $post) {
@@ -211,7 +229,7 @@ if (isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST[
 							" . wp_prefix('terms', $wp_prefix) . " as terms
 							WHERE tax.term_taxonomy_id = rel.term_taxonomy_id
 							AND tax.term_id = terms.term_id
-							AND rel.object_id = '" . $post['id'] . "'", $wpdbconnection);
+							AND rel.object_id = '" . $post['id'] . "'");
 					//echo "<br /><strong>Categories:</strong><pre>"; print_r($termrelations); echo "</pre>"; // for debugging
 					$postinfo .= "<ul>";
 					if ($termrelations) {
@@ -280,7 +298,7 @@ if (isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST[
 			$comments = wp_query_full_array("
 							SELECT comment_post_ID, comment_author, comment_author_email, comment_author_url,comment_date, comment_content, comment_approved
 							FROM " . wp_prefix('comments', $wp_prefix) . "
-							WHERE comment_approved = 1 AND comment_post_ID = " . $post['id'], $wpdbconnection);
+							WHERE comment_approved = 1 AND comment_post_ID = " . $post['id']);
 			$commentcount = '';
 			$commentexists_count = '';
 			if ($comments) {
@@ -331,6 +349,7 @@ if (isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST[
 	}
 } // if db data set
 printAdminHeader('development', 'wordpress');
+
 if (!empty($metaURL) && $postcount < $posttotalcount) {
 	?>
 	<meta http-equiv="refresh" content="1; url=<?php echo $metaURL; ?>" />
@@ -369,9 +388,15 @@ if (!empty($metaURL) && $postcount < $posttotalcount) {
 						<li><?php echo gettext("<strong>Post tags => zenphoto tags including assignment to their article</strong>"); ?></li>
 						<li><?php echo gettext("<strong>Post and page comments => zenphoto comments including assignment to their article</strong>"); ?></li>
 					</ul>
-					<p class="notebox">
-						<?php echo gettext("<strong>IMPORTANT: </strong>MySQLi must be selected as the database handler on the Zenphoto options (generally the default)."); ?>
-					</p
+					<?php
+					if (!$mysqli = extension_loaded('mysqli')) {
+						?>
+						<p class="errorbox">
+							<?php echo gettext("<strong>IMPORTANT: </strong>the PHP MySQLi extension must be loaded!"); ?>
+						</p>
+						<?php
+					}
+					?>
 					<p class="notebox">
 						<?php echo gettext("<strong>IMPORTANT: </strong>If you are not using an fresh zenphoto install it is <strong>strongly recommended to backup your database</strong> before running this importer. Make also sure that both databases use the same encoding so you do not get messed up character display."); ?>
 					</p>
@@ -386,7 +411,6 @@ if (!empty($metaURL) && $postcount < $posttotalcount) {
 						die();
 					}
 					?>
-
 					<h2><?php echo gettext('Please enter your Wordpress database details:'); ?></h2>
 					<form action="" method="post" name="wordpress">
 						<?php XSRFToken('wordpress'); ?>
@@ -402,7 +426,6 @@ if (!empty($metaURL) && $postcount < $posttotalcount) {
 					</form>
 					<?php
 				}
-
 				if (isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['dbpass']) || isset($_REQUEST['dbhost'])) {
 					// Wordpres DB connection check output
 					if ($dbinfo_incomplete) {
@@ -448,7 +471,7 @@ if (!empty($metaURL) && $postcount < $posttotalcount) {
 						<li><strong><?php echo gettext('Pages and Articles'); ?></strong>
 							<?php
 							if (isset($_GET['refresh'])) {
-								$startlist = ' start="' . $refresh . '"';
+								$startlist = ' start = "' . $refresh . '"';
 							} else {
 								$startlist = '';
 							}
@@ -459,7 +482,7 @@ if (!empty($metaURL) && $postcount < $posttotalcount) {
 						</li>
 					</ul>
 					<?php if ($posttotalcount == $postcount) { ?>
-						<p class="buttons"><a href="wordpress_import.php"><?php echo gettext('New import'); ?></a></p>
+						<p class="buttons"><a href="admin_tab.php"><?php echo gettext('New import'); ?></a></p>
 						<br style="clear:both" />
 						<?php
 					}

@@ -433,8 +433,8 @@ if (isset($_REQUEST['backup'])) {
 	} else {
 		$messages = '
 			<script type="text/javascript">
-				window.addEventListener(\'load\',  = function() {
-					window.location = "' . FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php?compression=' . $compression_handler . '";
+				window.addEventListener(\'load\',  function() {
+					window.location = "' . FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php?tab=backup&compression=' . $compression_handler . '";
 				}, false);
 			</script>
 		';
@@ -477,6 +477,7 @@ if (isset($_GET['compression'])) {
 }
 ?>
 
+
 <body>
 	<?php printLogoAndLinks(); ?>
 	<div id="main">
@@ -507,8 +508,9 @@ if (isset($_GET['compression'])) {
 				<?php
 				if (!$_zp_current_admin_obj->reset) {
 					?>
-					<form name="backup_gallery" action="">
+					<form name="backup_gallery" action="?tab=backup">
 						<?php XSRFToken('backup'); ?>
+						<input type="hidden" name="tab" value="backup" />
 						<input type="hidden" name="backup" value="true" />
 						<div class="buttons pad_button" id="dbbackup">
 							<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
@@ -545,7 +547,8 @@ if (isset($_GET['compression'])) {
 					}
 					chdir($curdir);
 					?>
-					<form name="restore_gallery" action="">
+					<form name="restore_gallery" action="?tab=backup">
+						<input type="hidden" name="tab" value="backup" />
 						<?php XSRFToken('backup'); ?>
 						<?php echo gettext('Select the database restore file:'); ?>
 						<br />

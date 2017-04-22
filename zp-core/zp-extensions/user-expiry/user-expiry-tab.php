@@ -85,7 +85,7 @@ if (isset($_GET['action'])) {
 				}
 			}
 		}
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=admin&tab=groups&applied=' . $msg);
+		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=admin&tab=expiry&applied=' . $msg);
 		exitZP();
 	}
 }
@@ -123,7 +123,7 @@ echo '</head>' . "\n";
 				<p>
 					<?php echo gettext("Manage user expiry."); ?>
 				</p>
-				<form action="?action=expiry" class="dirtylistening" onReset="setClean('userExpiry_form');" id="userExpiry_form" method="post" autocomplete="off" >
+				<form action="?action=expiry&tab=expiry" class="dirtylistening" onReset="setClean('userExpiry_form');" id="userExpiry_form" method="post" autocomplete="off" >
 					<?php XSRFToken('expiry'); ?>
 					<span class="buttons">
 						<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>

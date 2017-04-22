@@ -16,7 +16,7 @@ printAdminHeader('admin');
 <script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
 <script type="text/javascript">
 	function reloadCloneTab() {
-		this.document.location.href = '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cloneZenphoto/cloneTab.php';
+		this.document.location.href = '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cloneZenphoto/cloneTab.php?tab=clone';
 	}
 
 </script>
@@ -54,7 +54,7 @@ printAdminHeader('admin');
 					if ($invalid) {
 						?>
 						<p>
-							<span class="buttons"><a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cloneZenphoto/clone.php?purge&XSRFToken=<?php echo getXSRFToken('cloneZenphoto'); ?>">
+							<span class="buttons"><a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cloneZenphoto/clone.php?tab=clone&purge&XSRFToken=<?php echo getXSRFToken('cloneZenphoto'); ?>">
 									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /> <?php echo gettext("Remove invalid clones."); ?>
 								</a>
 						</p>
@@ -162,7 +162,7 @@ printAdminHeader('admin');
 							window.addEventListener('load', folderChange, false);
 							// ]]> -->
 						</script>
-						<form name="changeDir" id="changeDir" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php'; ?>" method="post">
+						<form name="changeDir" id="changeDir" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php?tab=clone'; ?>" method="post">
 							<input type="hidden" name="path" id="newDir" value = "" />
 							<?php
 							if (empty($folderlist)) {
@@ -192,6 +192,7 @@ printAdminHeader('admin');
 						</form>
 						<br class="clearall" />
 						<form name="cloneZenphoto" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/clone.php'; ?>">
+							<input type="hidden" name="tab" value="clone" />
 							<?php XSRFToken('cloneZenphoto'); ?>
 							<input type="hidden" name="clone" value="true" />
 							<input type="hidden" name="clonePath" id="clonePath" value="" />

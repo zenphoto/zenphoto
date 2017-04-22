@@ -9,7 +9,6 @@ define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rewriteRules/functions.php');
 admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
-
 $list = rulesList();
 printAdminHeader('development', gettext('rewrite'));
 echo "\n</head>";
@@ -36,11 +35,11 @@ echo "\n</head>";
 						foreach ($list as $key => $rule) {
 							$c++;
 							?>
-							<dt<?php if ($c & 1) echo ' class=" bar"'; ?>>
+							<dt<?php if ($c & 1) echo ' class="bar"'; ?>>
 								<code><?php echo $rule[0], ' ' . $rule[1]; ?></code>
 							</dt>
-							<dd<?php if ($c & 1) echo ' class=" bar"'; ?>>
-								<code><?php echo $rule[2]; ?></code>
+							<dd<?php if ($c & 1) echo ' class="bar"'; ?>>
+								<code><?php echo $rule[2] . '&nbsp;'; ?></code>
 							</dd>
 							<?php
 						}
