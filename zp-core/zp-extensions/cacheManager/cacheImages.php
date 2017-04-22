@@ -216,7 +216,7 @@ if ($alb) {
 		}
 		//]]> -->
 	</script>
-	<form class="dirtylistening" onReset="setClean('size_selections');" id="size_selections" name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
+	<form class="dirtylistening" onReset="setClean('size_selections');" id="size_selections" name="size_selections" action="?tab=images&select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
 		<?php XSRFToken('cacheImages') ?>
 		<ol class="no_bullets">
 			<?php
@@ -380,11 +380,7 @@ if ($alb) {
 			$button = array('text' => gettext("Cache the images"), 'title' => gettext('Executes the caching of the selected image sizes.'));
 		}
 		?>
-		<p class="buttons">
-			<a title="<?php echo gettext('Back to the overview'); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER . $r; ?>"> <img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" />
-				<strong><?php echo gettext("Back"); ?> </strong>
-			</a>
-		</p>
+
 		<?php
 		if ($button) {
 			?>

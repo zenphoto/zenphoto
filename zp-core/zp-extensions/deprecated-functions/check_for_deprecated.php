@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
 	$report = array();
 	$selected = sanitize_numeric($_POST['target']);
 }
-printAdminHeader('admin', 'deprecated');
+printAdminHeader('development', 'deprecated');
 ?>
 <?php
 echo '</head>' . "\n";
@@ -44,7 +44,7 @@ echo '</head>' . "\n";
 			<?php zp_apply_filter('admin_note', 'development', ''); ?>
 			<h1><?php echo gettext("Locate calls on deprecated functions."); ?></h1>
 			<div id="tab_deprecated" class="tabbox">
-				<form action="?action=search" method="post">
+				<form action="?action=search&tab=checkdeprecated" method="post">
 					<?php XSRFToken('deprecated'); ?>
 					<select name="target">
 						<option value=1<?php if ($selected <= 1) echo ' selected="selected"'; ?>>

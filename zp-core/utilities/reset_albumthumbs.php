@@ -73,6 +73,7 @@ echo '</head>';
 				}
 				?>
 				<form name="set_random" action="">
+					<input type="hidden" name="tab" value="resetthumbs">
 					<?php XSRFToken('reset_thumbs') ?>
 					<div class="buttons pad_button" id="set_all">
 						<button class="fixedwidth" type="submit"

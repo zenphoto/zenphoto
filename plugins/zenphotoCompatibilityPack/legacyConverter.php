@@ -151,7 +151,7 @@ echo "\n" . '<div id="container">';
 		}
 	}
 	?>
-	<form class="dirtylistening" id="form_convert" action="?action=process" method="post" >
+	<form class="dirtylistening" id="form_convert" action="?page=development&tab=legacyConverter&action=process" method="post" >
 		<ul class="page-list">
 			<?php
 			XSRFToken('saveoptions');
