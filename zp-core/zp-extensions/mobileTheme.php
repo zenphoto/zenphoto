@@ -9,11 +9,10 @@
  * Test mode allows you to run your standard desktop client but simulate being either a <i>phone</i> or
  * a <i>tablet</i>.
  *
- * You may place a call on <var>mobileTheme::controlLink();</var> in your theme(s) to allow the client viewer
- * to override the switch and view your standard gallery theme. If the same call is placed in your gallery
- * theme he will be able to switch back as well.
- * <b>NOTE:</b> This link is present only when the browsing client
- * is a mobile device!
+ * You may place a call on <var>mobileTheme::controlLink();</var> in your theme(s) to allow the
+ * client viewer to override the switch and view your standard gallery theme. If the same call is
+ * placed in your gallery theme he will be able to switch back as well.
+ * <b>NOTE:</b> This link is present only when the browsing client is a mobile device!
  *
  * Class <var>mobile</var> methods you can use in your theme:
  * <ul>
@@ -221,7 +220,7 @@ class mobile extends Mobile_Detect {
 	 * @see Mobile_Detect::isMobile()
 	 */
 	function isMobile($userAgent = NULL, $httpHeaders = NULL) {
-		if (getOption('mobileTheme_test')) {
+		if (getOption('mobileTheme_test') || isset($_GET['mobile'])) {
 			return true;
 		}
 		return parent::isMobile();
@@ -232,7 +231,7 @@ class mobile extends Mobile_Detect {
 	 * @see Mobile_Detect::isTablet()
 	 */
 	function isTablet($userAgent = NULL, $httpHeaders = NULL) {
-		if (getOption('mobileTheme_test') == 'tablet') {
+		if (getOption('mobileTheme_test') == 'tablet' || isset($_GET['mobile']) && $_GET['mobile'] == 'tablet') {
 			return true;
 		}
 		return parent::isTablet();
@@ -240,9 +239,9 @@ class mobile extends Mobile_Detect {
 
 }
 
-if (isset($_GET['mobileTheme'])) {
-	switch ($_GET['mobileTheme']) {
-		case 'on':
+if (isset($_GET['mobile'])) {
+	switch ($_GET['mobile']) {
+		default:
 			zp_setCookie('mobileTheme_disable', 0);
 			break;
 		case 'off':

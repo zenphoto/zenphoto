@@ -69,8 +69,8 @@ function query($sql, $errorstop = true) {
 				while ($row = $result->fetch_assoc()) {
 					$explaination[] = $row;
 				}
+				debugLogVar("EXPLAIN $sql", $explaination);
 			}
-			debugLogVar("EXPLAIN $sql", $explaination);
 		}
 		if ($result = @$_zp_DB_connection->query($sql)) {
 			return $result;
