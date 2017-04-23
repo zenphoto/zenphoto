@@ -334,10 +334,15 @@ class Gallery {
 
 	/**
 	 * Sets the current theme
-	 * @param string the name of the current theme
+	 * @param string $theme the name of the current theme
+	 * @param bool $transient Set to true if this state is not to be saved
+	 *
 	 */
-	function setCurrentTheme($theme) {
-		$this->set('current_theme', $this->theme = $theme);
+	function setCurrentTheme($theme, $transient = NULL) {
+		$this->theme = $theme;
+		if (!$transient) {
+			$this->set('current_theme', $this->theme);
+		}
 	}
 
 	/**

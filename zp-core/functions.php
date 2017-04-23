@@ -1057,7 +1057,7 @@ function setupTheme($album = NULL) {
 		}
 	}
 	$theme = zp_apply_filter('setupTheme', $theme);
-	$_zp_gallery->setCurrentTheme($theme);
+	$_zp_gallery->setCurrentTheme($theme, true); //	don't make it permanant if someone saves the gallery
 	$themeindex = getPlugin('index.php', $theme);
 	if (empty($theme) || empty($themeindex)) {
 		header('Last-Modified: ' . ZP_LAST_MODIFIED);
