@@ -221,7 +221,7 @@ class mobile extends Mobile_Detect {
 	 * @see Mobile_Detect::isMobile()
 	 */
 	function isMobile($userAgent = NULL, $httpHeaders = NULL) {
-		if (getOption('mobileTheme_test')) {
+		if (getOption('mobileTheme_test') || isset($_GET['mobile'])) {
 			return true;
 		}
 		return parent::isMobile();
@@ -232,7 +232,7 @@ class mobile extends Mobile_Detect {
 	 * @see Mobile_Detect::isTablet()
 	 */
 	function isTablet($userAgent = NULL, $httpHeaders = NULL) {
-		if (getOption('mobileTheme_test') == 'tablet') {
+		if (getOption('mobileTheme_test') == 'tablet' || isset($_GET['mobile']) && $_GET['mobile'] == 'tablet') {
 			return true;
 		}
 		return parent::isTablet();
