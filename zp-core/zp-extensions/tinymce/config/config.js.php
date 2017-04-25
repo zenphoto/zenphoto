@@ -62,7 +62,6 @@ if (OFFSET_PATH) {
 ?>
 <script type="text/javascript">
 // <!-- <![CDATA[
-	var firstLoad = true;
 	tinymce.init({
 	entity_encoding : "raw",
 					selector: "<?php echo $MCEselector; ?>",
@@ -131,12 +130,9 @@ if ($MCEmenubar) {
 					}
 					});
 					editor.on('postRender', function(e) {
-					if (firstLoad) {
 					//	clear the form from any tinyMCE dirtying once it has loaded
-					firstLoad = false;
 					form = $(editor.getContainer()).closest('form');
 					$(form).trigger("reset");
-					}
 					});
 					}
 
