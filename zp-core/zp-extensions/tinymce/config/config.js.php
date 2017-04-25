@@ -129,6 +129,11 @@ if ($MCEmenubar) {
 					$(form).removeClass('tinyDirty');
 					}
 					});
+					editor.on('postRender', function(e) {
+					//	clear the form from any tinyMCE dirtying once it has loaded
+					form = $(editor.getContainer()).closest('form');
+					$(form).trigger("reset");
+					});
 					}
 
 

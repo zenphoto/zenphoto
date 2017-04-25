@@ -224,11 +224,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 		?>
 				$.DirtyForms.ignoreClass = 'ignoredirty';
 				$('form.dirtylistening').dirtyForms({debug: true});
-
-				// brute force kludge to make the form clean after the load
-				var timeoutID = window.setTimeout(function () {
-					$('form.dirtylistening').trigger("reset");
-				}, 100);
 		<?php
 	}
 	?>
