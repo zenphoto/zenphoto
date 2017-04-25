@@ -84,7 +84,7 @@ function saveOptions() {
 
 	setOption('site_email_name', process_language_string_save('site_email_name', 3));
 	setOption('users_per_page', sanitize_numeric($_POST['users_per_page']));
-	setOption('dirtyform_enable', isset($_POST['dirtyform_enable']));
+	setOption('dirtyform_enable', sanitize_numeric($_POST['dirtyform_enable']));
 	setOption('plugins_per_page', sanitize_numeric($_POST['plugins_per_page']));
 	if (isset($_POST['articles_per_page'])) {
 		setOption('articles_per_page', sanitize_numeric($_POST['articles_per_page']));
@@ -620,8 +620,16 @@ function getOptionContent() {
 						</td>
 						<td class="option_value">
 							<label>
-								<input type="checkbox" name="dirtyform_enable" id="dirtyform_enable" value="1"<?php checked('1', getOption('dirtyform_enable')); ?> />
-								<?php echo gettext("detect unsaved forms"); ?>
+								<input type="radio" name="dirtyform_enable" value="0"<?php checked('0', getOption('dirtyform_enable')); ?> />
+								<?php echo gettext("ignore"); ?>
+							</label>
+							<label>
+								<input type="radio" name="dirtyform_enable" value="1"<?php checked('1', getOption('dirtyform_enable')); ?> />
+								<?php echo gettext("exclude tinyMCE"); ?>
+							</label>
+							<label>
+								<input type="radio" name="dirtyform_enable" value="2"<?php checked('2', getOption('dirtyform_enable')); ?> />
+								<?php echo gettext("detect all changes"); ?>
 							</label>
 						</td>
 						<td class="option_desc">
