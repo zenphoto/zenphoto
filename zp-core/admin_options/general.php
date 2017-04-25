@@ -370,7 +370,7 @@ function getOptionContent() {
 								?>
 							</ul>
 							<?php echo '<span class="floatright" style="font-size:xx-small;">' . gettext('Percent mechanically translated in red.'); ?></span>
-							<br class="clearall" />
+							<br class="clearall">
 							<label class="checkboxlabel">
 								<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('multi-lingual'); ?>
 							</label>

@@ -869,13 +869,13 @@ echo "\n</head>";
 					<div id="tab_albuminfo" class="tabbox">
 						<?php consolidatedEditMessages('albuminfo'); ?>
 						<form class="dirtylistening" onReset="toggle_passwords('', false);
-										setClean('form_albumedit');" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
+								setClean('form_albumedit');" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
 									<?php XSRFToken('albumedit'); ?>
 							<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 							<input type="hidden"	name="savealbuminfo" value="1" />
 							<?php printAlbumEditForm(0, $album); ?>
 						</form>
-						<br class="clearall" />
+						<br class="clearall">
 
 					</div>
 					<?php
@@ -934,7 +934,7 @@ echo "\n</head>";
 							</form>
 							<br clear="all">
 							<form class="dirtylistening" onReset="setClean('sortableListForm');
-												$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
+									$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
 										<?php XSRFToken('savealbumorder'); ?>
 								<p class="notebox">
 									<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
@@ -979,7 +979,7 @@ echo "\n</head>";
 									}
 									?>
 								</span>
-								<br class="clearall" /><br />
+								<br class="clearall"><br />
 
 								<div class="headline" style="text-align: left;"><?php echo gettext("Edit this album"); ?>
 									<?php
@@ -1012,7 +1012,6 @@ echo "\n</head>";
 									</ul>
 
 								</div>
-								<br class="clearall" /><br class="clearall" />
 								<?php printAlbumLegend(); ?>
 								<span id="serializeOutput"></span>
 								<input name="update" type="hidden" value="Save Order" />
@@ -1043,7 +1042,7 @@ echo "\n</head>";
 									</div>
 								</span>
 							</form>
-							<br class="clearall" />
+							<br class="clearall">
 						</div><!-- subalbum -->
 						<?php
 					}
@@ -1333,9 +1332,9 @@ echo "\n</head>";
 																	 name="<?php echo $currentimage; ?>-Visible"
 																	 value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?>
 																	 onclick="$('#publishdate-<?php echo $currentimage; ?>').val('');
-																							 $('#expirationdate-<?php echo $currentimage; ?>').val('');
-																							 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
-																							 $('.expire-<?php echo $currentimage; ?>').html('');"
+																			 $('#expirationdate-<?php echo $currentimage; ?>').val('');
+																			 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
+																			 $('.expire-<?php echo $currentimage; ?>').html('');"
 																	 />
 																	 <?php echo gettext("Published"); ?>
 													</label>
@@ -1421,7 +1420,7 @@ echo "\n</head>";
 														});
 														// ]]> -->
 													</script>
-													<br class="clearall" />
+													<br class="clearall">
 													<hr />
 													<p>
 														<label for="publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
@@ -1447,19 +1446,19 @@ echo "\n</head>";
 													<label class="checkboxlabel">
 														<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
 																	 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																											 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+																							 , 'copy');"  /> <?php echo gettext("Copy"); ?>
 													</label>
 													<label class="checkboxlabel">
 														<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 																	 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																											 'rename');"  /> <?php echo gettext("Rename File"); ?>
+																							 'rename');"  /> <?php echo gettext("Rename File"); ?>
 													</label>
 													<label class="checkboxlabel">
 														<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 																	 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																							 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																			 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 													</label>
-													<br class="clearall" />
+													<br class="clearall">
 													<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
 														<?php echo gettext("to"); ?>:
 														<select id="albumselectmenu-<?php echo $currentimage; ?>"
@@ -1542,13 +1541,13 @@ echo "\n</head>";
 														<?php
 													}
 													?>
-													<br class="clearall" />
+													<br class="clearall">
 													<hr />
 													<div class="button buttons tooltip" title="<?php printf(gettext('Refresh %s metadata'), $image->filename); ?>">
 														<a href="admin-edit.php?action=refresh&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
 															<img src="images/cache.png" alt="" /><?php echo gettext("Refresh Metadata"); ?>
 														</a>
-														<br class="clearall" />
+														<br class="clearall">
 													</div>
 													<?php
 													if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
@@ -1557,7 +1556,7 @@ echo "\n</head>";
 															<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
 																<img src="images/shape_handles.png" alt="" /><?php echo gettext("Crop thumbnail"); ?>
 															</a>
-															<br class="clearall" />
+															<br class="clearall">
 														</div>
 														<?php
 													}
@@ -1672,7 +1671,8 @@ echo "\n</head>";
 								<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 							</button>
 						</span>
-						<br class="clearall" /><br />
+						<br class="clearall">
+						<br />
 						<div class="outerbox">
 							<?php
 							$currentalbum = 1;
@@ -1680,7 +1680,11 @@ echo "\n</head>";
 								$album = newAlbum($folder);
 								echo "\n<!-- " . $album->name . " -->\n";
 								?>
-								<div class="innerbox<?php if ($currentalbum % 2) echo '_dark'; ?>" style="padding: 15px;">
+								<div class="innerbox<?php if (!($currentalbum % 2)) echo '_dark'; ?>" style="padding-left: 15px;padding-right: 15px;">
+
+									<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&album=<?php echo urlencode($album->name); ?>&tab=albuminfo">
+										<em><strong><?php echo urlencode($album->name); ?></strong></em></a>
+									<br /><br />
 									<?php
 									printAlbumEditForm($currentalbum, $album, false);
 									$currentalbum++;
@@ -1690,7 +1694,7 @@ echo "\n</head>";
 							}
 							?>
 						</div>
-						<br class="clearall" /><br />
+						<br />
 						<span class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit">
 								<img	src="images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
@@ -1702,6 +1706,8 @@ echo "\n</head>";
 								<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 							</button>
 						</span>
+						<br class="clearall">
+
 					</form>
 				</div>
 				<?php
@@ -1770,7 +1776,7 @@ echo "\n</head>";
 						</p>
 
 						<form class="dirtylistening" onReset="setClean('sortableListForm');
-										$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
+								$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
 									<?php XSRFToken('savealbumorder'); ?>
 							<span class="buttons">
 								<?php
@@ -1792,7 +1798,8 @@ echo "\n</head>";
 								}
 								?>
 							</span>
-							<br class="clearall" /><br />
+							<br class="clearall">
+							<br />
 
 							<div class="headline"><?php echo gettext("Edit this album"); ?>
 								<?php printBulkActions($checkarray_albums); ?>
@@ -1846,7 +1853,7 @@ echo "\n</head>";
 								</dib>
 
 						</form>
-						<br class="clearall" />
+						<br class="clearall">
 					</div>
 
 					<?php

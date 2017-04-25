@@ -526,8 +526,8 @@ if (isset($_GET['compression'])) {
 								?>
 							</select> <?php echo gettext('Compression level'); ?>
 						</div>
-						<br class="clearall" />
-						<br class="clearall" />
+						<br class="clearall">
+						<br class="clearall">
 					</form>
 					<br />
 					<br />
@@ -562,8 +562,8 @@ if (isset($_GET['compression'])) {
 								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" /> <?php echo gettext("Restore the Database"); ?>
 							</button>
 						</div>
-						<br class="clearall" />
-						<br class="clearall" />
+						<br class="clearall">
+						<br class="clearall">
 					</form>
 					<?php
 				}

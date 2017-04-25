@@ -143,7 +143,7 @@ updatePublished('pages');
 						?>
 					</p>
 
-					<br class="clearall" /><br class="clearall" />
+					<br class="clearall">
 					<div class="headline"><?php echo gettext('Edit this page'); ?>
 						<?php
 						$checkarray = array(

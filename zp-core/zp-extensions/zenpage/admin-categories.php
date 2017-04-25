@@ -141,7 +141,8 @@ zenpageJSCSS();
 						}
 						?>
 					</p>
-					<br class="clearall" /><br />
+					<br class="clearall">
+					<br />
 					<div class="headline">
 						<?php
 						echo gettext('Edit this Category');

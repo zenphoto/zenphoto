@@ -472,7 +472,7 @@ echo $refresh;
 							<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 							<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 						</p>
-						<br class="clearall" /><br />
+						<br class="clearall"><br />
 						<table class="unbordered"> <!-- main table -->
 
 
@@ -778,7 +778,7 @@ echo $refresh;
 																<?php
 																$c++;
 																if (($c % 7) == 0)
-																	echo '<br class="clearall" />';
+																	echo '<br class="clearall">';
 															}
 															?>
 														</ul>
@@ -870,29 +870,29 @@ echo $refresh;
 					if (zp_loggedin(ADMIN_RIGHTS)) {
 						if (Zenphoto_Authority::getVersion() < Zenphoto_Authority::$supports_version) {
 							?>
-							<br class="clearall" />
+							<br class="clearall">
 							<p class="notebox">
 								<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'), Zenphoto_Authority::getVersion(), Zenphoto_Authority::$supports_version); ?>
-								<br class="clearall" />
+								<br class="clearall">
 								<span class="buttons">
 									<a onclick="launchScript('', ['action=migrate_rights', 'XSRFToken=<?php echo getXSRFToken('migrate_rights') ?>']);"><?php echo gettext('Migrate rights'); ?></a>
 								</span>
-								<br class="clearall" />
+								<br class="clearall">
 							</p>
-							<br class="clearall" />
+							<br class="clearall">
 							<?php
 						} else if (Zenphoto_Authority::getVersion() > Zenphoto_Authority::$preferred_version) {
 							?>
-							<br class="clearall" />
+							<br class="clearall">
 							<p class="notebox">
 								<?php printf(gettext('You may wish to revert the <em>Zenphoto_Authority</em> user rights to version %s for backwards compatibility with prior releases.'), Zenphoto_Authority::getVersion() - 1); ?>
-								<br class="clearall" />
+								<br class="clearall">
 								<span class="buttons">
 									<a onclick="launchScript('', ['action=migrate_rights', 'revert=true', 'XSRFToken=<?php echo getXSRFToken('migrate_rights') ?>']);"><?php echo gettext('Revert rights'); ?></a>
 								</span>
-								<br class="clearall" />
+								<br class="clearall">
 							</p>
-							<br class="clearall" />
+							<br class="clearall">
 							<?php
 						}
 					}
@@ -920,8 +920,8 @@ echo $refresh;
 						// ]]> -->
 					</script>
 
-					<br class="clearall" />
-					<br />
+					<br class="clearall">
+
 				</div><!-- end of tab_admin div -->
 
 			</div><!-- end of container -->

@@ -149,7 +149,7 @@ class imagegallery {
 				</div>
 				<div class="clearage"></div>
 			</div><!-- images -->
-			<br class="clearall" />
+			<br class="clearall">
 			<?php
 		}
 	}

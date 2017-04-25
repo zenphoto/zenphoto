@@ -77,7 +77,7 @@ class ga_colorbox {
 			}
 			?>
 		</div>
-		<br class="clearall" />
+		<br class="clearall">
 		<?php
 		@call_user_func('printSlideShowLink');
 	}

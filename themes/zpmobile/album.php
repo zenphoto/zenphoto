@@ -69,7 +69,7 @@ if (!defined('WEBPATH'))
 							</a>
 <?php endwhile; ?>
 					</div>
-					<br class="clearall" />
+					<br class="clearall">
 					<?php
 					if (hasPrevPage() || hasNextPage())
 						printPageListWithNav(gettext("prev"), gettext("next"), false, true, 'pagelist', NULL, true, 7);

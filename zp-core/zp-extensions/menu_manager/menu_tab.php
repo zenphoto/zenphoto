@@ -167,7 +167,8 @@ printSortableHead();
 							</a>
 						</div>
 					</span>
-					<br class="clearall" /><br />
+					<br class="clearall">
+					<br />
 
 					<div class="bordered">
 						<?php
@@ -204,7 +205,7 @@ printSortableHead();
 									</select>
 								</span>
 							</div>
-							<br class="clearall" />
+							<br class="clearall">
 							<div class="subhead">
 								<label style="float: right">
 									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
@@ -227,7 +228,7 @@ printSortableHead();
 							<div class="headline-plain">
 								<strong><?php echo gettext("No menus exist"); ?></strong>
 							</div>
-							<br class="clearall" />
+							<br class="clearall">
 							<?php
 						}
 						?>

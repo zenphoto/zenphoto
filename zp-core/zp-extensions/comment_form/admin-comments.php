@@ -228,14 +228,14 @@ printLogoAndLinks();
 									}
 									?>
 									<p><?php echo $status_moderation; ?>. <div class="buttons"><a href="<?php echo $url_moderation; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update') ?>" title="<?php echo $title_moderation; ?>" ><img src="<?php echo $linkimage; ?>" alt="" /><?php echo $link_moderation; ?></a></div></p>
-									<br class="clearall" />
+									<br class="clearall">
 									<hr />
 									<p><?php echo $status_private; ?></p>
 									<p><?php echo $status_anon; ?></p>
 								</div><!-- div box-edit-unpadded end -->
 							</div>
 						</form>
-						<br class="clearall" />
+						<br class="clearall">
 					</div> <!-- div box end -->
 					<?php
 					// end of $page == "editcomment"
@@ -346,7 +346,7 @@ printLogoAndLinks();
 								echo "&amp;subpage=$pagenum";
 							?>"><img src="<?php echo $img; ?>" alt = "" /> <?php echo $msg; ?></a>
 						</p>
-						<br class="clearall" /><br />
+						<br class="clearall"><br />
 						<table class="bordered">
 							<tr>
 								<th colspan="100%"><?php echo gettext("Edit this comment"); ?>

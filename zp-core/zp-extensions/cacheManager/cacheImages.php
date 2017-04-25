@@ -393,7 +393,7 @@ if ($alb) {
 			<?php
 		}
 		?>
-		<br class="clearall" />
+		<br class="clearall">
 	</form>
 
 	<?php

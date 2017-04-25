@@ -124,7 +124,7 @@ $map = function_exists('printGoogleMap');
 								printGoogleMap(NULL, NULL, NULL, 'album_page', 'gMapOptionsAlbum');
 								?>
 							</div>
-							<br class="clearall" />
+							<br class="clearall">
 							<?php
 						}
 						?>

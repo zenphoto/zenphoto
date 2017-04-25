@@ -98,14 +98,14 @@ if (class_exists('CMS')) {
 								}
 								if (getPrevNewsURL() || getNextNewsURL()) {
 									?>
-									<br class="clearall" />
+									<br class="clearall">
 									<?php
 								}
 								$cat = getNewsCategories();
 								if (!empty($cat)) {
 									printNewsCategories(", ", gettext("Categories: "), "newscategories");
 									?>
-									<br class="clearall" />
+									<br class="clearall">
 									<?php
 								}
 								printTags('links', gettext('Tags: '), NULL, '');

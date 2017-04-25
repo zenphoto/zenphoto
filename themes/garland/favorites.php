@@ -83,7 +83,7 @@ if (class_exists('favorites')) {
 											}
 											?>
 										</div>
-										<br class="clearall" />
+										<br class="clearall">
 										<?php @call_user_func('printSlideShowLink'); ?>
 										<?php
 										if ((getNumAlbums() != 0) || !$_oneImagePage) {

@@ -641,7 +641,7 @@ $tagsort = getTagOrder();
 																			 $('#copyfield').hide();" />
 																	 <?php echo gettext('delete'); ?>
 													</label>
-													<br class="clearall" />
+													<br class="clearall">
 													<div class="copydelete" id="copyfield" style="display:none" >
 														<?php printf(gettext('copy as: %s'), '<input type="text" name="copy_object_as" value = "" />'); ?>
 													</div>
@@ -856,7 +856,7 @@ $tagsort = getTagOrder();
 											?>
 										</div>
 									</span>
-									<br style="clear: both" />
+									<br class="clearall">
 								</div>
 						</form>
 						<?php

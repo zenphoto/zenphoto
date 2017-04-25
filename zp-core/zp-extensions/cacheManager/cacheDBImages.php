@@ -201,7 +201,7 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 			<?php
 		}
 		?>
-		<br class="clearall" />
+		<br class="clearall">
 	</form>
 
 	<?php

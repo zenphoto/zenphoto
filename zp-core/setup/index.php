@@ -816,7 +816,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											$msg2 = '<p>' . sprintf(gettext('If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems with these objects.'), $charset_defined) . '</p>' .
 															'<form action="#"><input type="hidden" name="xsrfToken" value="' . setupXSRFToken() . '" /><input type="hidden" name="charset_attempts" value="' . $tries . '" /><p>' .
 															gettext('Change the filesystem character set define to %1$s') .
-															'</p></form><br class="clearall" />';
+															'</p></form><br class="clearall">';
 
 											if (isset($_zp_conf_vars['FILESYSTEM_CHARSET'])) {
 												$selectedset = $_zp_conf_vars['FILESYSTEM_CHARSET'];
@@ -1371,7 +1371,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											}
 										} else {
 											checkMark(-1, '', gettext('ZenPhoto20 core folders [Some unknown files were found]'), gettext('You should remove the following files: ') . '<br /><code>' . $_zp_UTF8->convert(implode('<br />', $systemlist), FILESYSTEM_CHARSET, 'UTF-8') .
-															'</code><p class="buttons"><a href="?delete_extra' . ($debug ? '&amp;debug' : '') . '">' . gettext("Delete extra files") . '</a></p><br class="clearall" /><br class="clearall" />');
+															'</code><p class="buttons"><a href="?delete_extra' . ($debug ? '&amp;debug' : '') . '">' . gettext("Delete extra files") . '</a></p><br class="clearall"><br />');
 										}
 									}
 									checkMark($permissions, gettext("ZenPhoto20 core file permissions"), gettext("ZenPhoto20 core file permissions [not correct]"), gettext('Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually.'));
@@ -1595,329 +1595,331 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt=""/> <?php echo gettext("Refresh"); ?>
 									</a>
 								</p>
-								<br class="clearall" /><br class="clearall" />
-								<?php
-							} else {
+								<br class="clearall">
+									<br />
+									<?php
+								} else {
+									?>
+									<div class="error">
+										<?php
+										if (zp_loggedin()) {
+											echo gettext("You need <em>USER ADMIN</em> rights to run setup.");
+										} else {
+											echo gettext('You must be logged in to run setup.');
+										}
+										?>
+									</div>
+									<?php
+									$_zp_authority->printLoginForm('', false);
+								}
+								if ($noxlate > 0) {
+									setupLanguageSelector();
+								}
 								?>
-								<div class="error">
+								<br class="clearall">
 									<?php
-									if (zp_loggedin()) {
-										echo gettext("You need <em>USER ADMIN</em> rights to run setup.");
-									} else {
-										echo gettext('You must be logged in to run setup.');
-									}
-									?>
-								</div>
-								<?php
-								$_zp_authority->printLoginForm('', false);
-							}
-							if ($noxlate > 0) {
-								setupLanguageSelector();
-							}
-							?>
-							<br class="clearall" />
-							<?php
-							echo "\n</div><!-- content -->";
-							echo "\n</div><!-- main -->";
-							printSetupFooter();
-							echo "</body>";
-							echo "</html>";
-							exit();
-						}
-					} else {
-						$dbmsg = gettext("database connected");
-					} // system check
-					if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-
-						require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-						$task = '';
-						if (isset($_GET['create'])) {
-							$task = 'create';
-							$create = array_flip(explode(',', sanitize($_REQUEST['create'])));
-						}
-						if (isset($_REQUEST['update'])) {
-							$task = 'update';
-						}
-						if (db_connect($_zp_conf_vars, false) && empty($task)) {
-							$result = db_show('tables');
-							$tables = array();
-							$prefix = $_zp_conf_vars['mysql_prefix'];
-							$prefixLC = strtolower($prefix);
-							$prefixUC = strtoupper($prefixLC);
-							if ($result) {
-								while ($row = db_fetch_row($result)) {
-									$key = $row[0];
-									$key = str_replace(array($prefixLC, $prefixUC), $_zp_conf_vars['mysql_prefix'], $key);
-									$tables[$key] = 'update';
-								}
-								db_free_result($result);
-							}
-							$expected_tables = array($_zp_conf_vars['mysql_prefix'] . 'options', $_zp_conf_vars['mysql_prefix'] . 'albums',
-									$_zp_conf_vars['mysql_prefix'] . 'images', $_zp_conf_vars['mysql_prefix'] . 'comments',
-									$_zp_conf_vars['mysql_prefix'] . 'administrators', $_zp_conf_vars['mysql_prefix'] . 'admin_to_object',
-									$_zp_conf_vars['mysql_prefix'] . 'tags', $_zp_conf_vars['mysql_prefix'] . 'obj_to_tag',
-									$_zp_conf_vars['mysql_prefix'] . 'captcha',
-									$_zp_conf_vars['mysql_prefix'] . 'pages', $_zp_conf_vars['mysql_prefix'] . 'news2cat',
-									$_zp_conf_vars['mysql_prefix'] . 'news_categories', $_zp_conf_vars['mysql_prefix'] . 'news',
-									$_zp_conf_vars['mysql_prefix'] . 'menu', $_zp_conf_vars['mysql_prefix'] . 'plugin_storage',
-									$_zp_conf_vars['mysql_prefix'] . 'search_cache'
-							);
-
-							foreach ($expected_tables as $needed) {
-								if (!isset($tables[$needed])) {
-									$tables[$needed] = 'create';
-								}
-							}
-						}
-						// Prefix the table names. These already have `backticks` around them!
-						$tbl_albums = prefix('albums');
-						$tbl_comments = prefix('comments');
-						$tbl_images = prefix('images');
-						$tbl_options = prefix('options');
-						$tbl_administrators = prefix('administrators');
-						$tbl_admin_to_object = prefix('admin_to_object');
-						$tbl_tags = prefix('tags');
-						$tbl_obj_to_tag = prefix('obj_to_tag');
-						$tbl_captcha = prefix('captcha');
-						$tbl_news = prefix('news');
-						$tbl_pages = prefix('pages');
-						$tbl_news_categories = prefix('news_categories');
-						$tbl_news2cat = prefix('news2cat');
-						$tbl_menu_manager = prefix('menu');
-						$tbl_plugin_storage = prefix('plugin_storage');
-						$tbl_searches = prefix('search_cache');
-						$updateErrors = false;
-						if (isset($_GET['create']) || isset($_REQUEST['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars, false)) {
-							if (!isset($_GET['protect_files'])) {
-
-								echo "<h3>" . gettext("About to update tables") . "....</h3>";
-								setupLog(gettext("Begin database creation and update"), true);
-
-								require_once(SERVERPATH . '/' . ZENFOLDER . '/setup/database.php');
-
-								echo "<h3>";
-								if ($updateErrors) {
-									$autorun = false;
-									echo gettext('Done with table update with errors. See the <code>setup</code> log for details.');
-								} else {
-									echo gettext('Done with table update.');
-								}
-								echo "</h3>";
-
-								checkUnique($tbl_administrators, array('valid' => 0, 'user' => 0));
-								checkUnique($tbl_albums, array('folder' => 0));
-								checkUnique($tbl_images, array('albumid' => 0, 'filename' => 0));
-								checkUnique($tbl_options, array('name' => 0, 'ownerid' => 0, 'theme' => 0));
-								checkUnique($tbl_news_categories, array('titlelink' => 0));
-								checkUnique($tbl_news, array('titlelink' => 0));
-								checkUnique($tbl_pages, array('titlelink' => 0));
-								checkUnique($tbl_tags, array('name' => 0));
-
-								setupLog(gettext("Done with database creation and update"), true);
-
-								// set defaults on any options that need it
-								require(dirname(__FILE__) . '/setup-option-defaults.php');
-
-								if ($debug == 'albumids') {
-									// fixes 1.2 move/copy albums with wrong ids
-									$albums = $_zp_gallery->getAlbums();
-									foreach ($albums as $album) {
-										checkAlbumParentid($album, NULL, 'setuplog');
-									}
-								}
-							}
-
-
-							zp_apply_filter('log_setup', $updateErrors, 'install', gettext('Completed'));
-							$clones = array();
-
-							if ($_zp_loggedin == ADMIN_RIGHTS) {
-								$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
-								if (count($filelist) > 0) {
-									$link = sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin', WEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php');
-									$autorun = false;
-								} else {
-									$link = sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin');
-									if ($autorun == 'admin' || $autorun == 'gallery') {
-										$autorun = WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin';
-									}
+									echo "\n</div><!-- content -->";
+									echo "\n</div><!-- main -->";
+									printSetupFooter();
+									echo "</body>";
+									echo "</html>";
+									exit();
 								}
 							} else {
-								if (extensionEnabled('cloneZenphoto')) {
-									require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
-									if (class_exists('cloneZenphoto'))
-										$clones = cloneZenphoto::clones();
+								$dbmsg = gettext("database connected");
+							} // system check
+							if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+
+								require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+								$task = '';
+								if (isset($_GET['create'])) {
+									$task = 'create';
+									$create = array_flip(explode(',', sanitize($_REQUEST['create'])));
 								}
-								$autorun = false;
-								foreach ($clones as $clone => $data) {
-									$url = $data['url'];
+								if (isset($_REQUEST['update'])) {
+									$task = 'update';
+								}
+								if (db_connect($_zp_conf_vars, false) && empty($task)) {
+									$result = db_show('tables');
+									$tables = array();
+									$prefix = $_zp_conf_vars['mysql_prefix'];
+									$prefixLC = strtolower($prefix);
+									$prefixUC = strtoupper($prefixLC);
+									if ($result) {
+										while ($row = db_fetch_row($result)) {
+											$key = $row[0];
+											$key = str_replace(array($prefixLC, $prefixUC), $_zp_conf_vars['mysql_prefix'], $key);
+											$tables[$key] = 'update';
+										}
+										db_free_result($result);
+									}
+									$expected_tables = array($_zp_conf_vars['mysql_prefix'] . 'options', $_zp_conf_vars['mysql_prefix'] . 'albums',
+											$_zp_conf_vars['mysql_prefix'] . 'images', $_zp_conf_vars['mysql_prefix'] . 'comments',
+											$_zp_conf_vars['mysql_prefix'] . 'administrators', $_zp_conf_vars['mysql_prefix'] . 'admin_to_object',
+											$_zp_conf_vars['mysql_prefix'] . 'tags', $_zp_conf_vars['mysql_prefix'] . 'obj_to_tag',
+											$_zp_conf_vars['mysql_prefix'] . 'captcha',
+											$_zp_conf_vars['mysql_prefix'] . 'pages', $_zp_conf_vars['mysql_prefix'] . 'news2cat',
+											$_zp_conf_vars['mysql_prefix'] . 'news_categories', $_zp_conf_vars['mysql_prefix'] . 'news',
+											$_zp_conf_vars['mysql_prefix'] . 'menu', $_zp_conf_vars['mysql_prefix'] . 'plugin_storage',
+											$_zp_conf_vars['mysql_prefix'] . 'search_cache'
+									);
+
+									foreach ($expected_tables as $needed) {
+										if (!isset($tables[$needed])) {
+											$tables[$needed] = 'create';
+										}
+									}
+								}
+								// Prefix the table names. These already have `backticks` around them!
+								$tbl_albums = prefix('albums');
+								$tbl_comments = prefix('comments');
+								$tbl_images = prefix('images');
+								$tbl_options = prefix('options');
+								$tbl_administrators = prefix('administrators');
+								$tbl_admin_to_object = prefix('admin_to_object');
+								$tbl_tags = prefix('tags');
+								$tbl_obj_to_tag = prefix('obj_to_tag');
+								$tbl_captcha = prefix('captcha');
+								$tbl_news = prefix('news');
+								$tbl_pages = prefix('pages');
+								$tbl_news_categories = prefix('news_categories');
+								$tbl_news2cat = prefix('news2cat');
+								$tbl_menu_manager = prefix('menu');
+								$tbl_plugin_storage = prefix('plugin_storage');
+								$tbl_searches = prefix('search_cache');
+								$updateErrors = false;
+								if (isset($_GET['create']) || isset($_REQUEST['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars, false)) {
+									if (!isset($_GET['protect_files'])) {
+
+										echo "<h3>" . gettext("About to update tables") . "....</h3>";
+										setupLog(gettext("Begin database creation and update"), true);
+
+										require_once(SERVERPATH . '/' . ZENFOLDER . '/setup/database.php');
+
+										echo "<h3>";
+										if ($updateErrors) {
+											$autorun = false;
+											echo gettext('Done with table update with errors. See the <code>setup</code> log for details.');
+										} else {
+											echo gettext('Done with table update.');
+										}
+										echo "</h3>";
+
+										checkUnique($tbl_administrators, array('valid' => 0, 'user' => 0));
+										checkUnique($tbl_albums, array('folder' => 0));
+										checkUnique($tbl_images, array('albumid' => 0, 'filename' => 0));
+										checkUnique($tbl_options, array('name' => 0, 'ownerid' => 0, 'theme' => 0));
+										checkUnique($tbl_news_categories, array('titlelink' => 0));
+										checkUnique($tbl_news, array('titlelink' => 0));
+										checkUnique($tbl_pages, array('titlelink' => 0));
+										checkUnique($tbl_tags, array('name' => 0));
+
+										setupLog(gettext("Done with database creation and update"), true);
+
+										// set defaults on any options that need it
+										require(dirname(__FILE__) . '/setup-option-defaults.php');
+
+										if ($debug == 'albumids') {
+											// fixes 1.2 move/copy albums with wrong ids
+											$albums = $_zp_gallery->getAlbums();
+											foreach ($albums as $album) {
+												checkAlbumParentid($album, NULL, 'setuplog');
+											}
+										}
+									}
+
+
+									zp_apply_filter('log_setup', $updateErrors, 'install', gettext('Completed'));
+									$clones = array();
+
+									if ($_zp_loggedin == ADMIN_RIGHTS) {
+										$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
+										if (count($filelist) > 0) {
+											$link = sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin', WEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php');
+											$autorun = false;
+										} else {
+											$link = sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin');
+											if ($autorun == 'admin' || $autorun == 'gallery') {
+												$autorun = WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin';
+											}
+										}
+									} else {
+										if (extensionEnabled('cloneZenphoto')) {
+											require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto.php');
+											if (class_exists('cloneZenphoto'))
+												$clones = cloneZenphoto::clones();
+										}
+										$autorun = false;
+										foreach ($clones as $clone => $data) {
+											$url = $data['url'];
+											?>
+											<p class = "delayshow" style = "display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $data['url'] . ZENFOLDER . '/setup/index.php?autorun', $clone);
+											?></p>
+											<?php
+										}
+									}
+									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 									?>
-									<p class = "delayshow" style = "display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $data['url'] . ZENFOLDER . '/setup/index.php?autorun', $clone);
-									?></p>
+									<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 									<?php
-								}
-							}
-							$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
-							?>
-							<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
-							<?php
-							switch ($autorun) {
-								case false:
-									break;
-								case 'gallery':
-								case 'admin':
-									$autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
-									break;
-								default:
-									break;
-							}
-							?>
-							<script type="text/javascript">
-								function launchAdmin() {
-									window.location = '<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php'; ?>';
-								}
-								window.onload = function () {
-									$('.delayshow').show();
+									switch ($autorun) {
+										case false:
+											break;
+										case 'gallery':
+										case 'admin':
+											$autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
+											break;
+										default:
+											break;
+									}
+									?>
+									<script type="text/javascript">
+										function launchAdmin() {
+											window.location = '<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php'; ?>';
+										}
+										window.onload = function () {
+											$('.delayshow').show();
 		<?php
 		if ($autorun) {
 			?>
-										if (!imageErr) {
-											$('#golink').hide();
-											launchAdmin();
-										}
+												if (!imageErr) {
+													$('#golink').hide();
+													launchAdmin();
+												}
 			<?php
 		}
 		?>
-								}
-							</script>
-							<?php
-						} else if (db_connect($_zp_conf_vars, false)) {
-							$task = '';
-							if (setupUserAuthorized() || $blindInstall) {
-								if (!empty($dbmsg)) {
-									?>
-									<h2><?php echo $dbmsg; ?></h2>
+										}
+									</script>
 									<?php
-								}
-								$task = "update";
-								if ($debug) {
-									$task .= '&debug=' . $debug;
-								}
-								if ($copyaccess) {
-									$task .= '&copyhtaccess';
-								}
-							}
-
-							if (isset($tables[$_zp_conf_vars['mysql_prefix'] . 'zenpage_news'])) {
-								$hideGoButton = ' style="display:none"';
-								$autorun = false;
-								?>
-								<div class="warning" id="dbrestructure">
-									<p><?php echo gettext('<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding.'); ?></p>
-									<form>
-										<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
-										<p>
-											<?php printf(gettext('%s I acknowledge that proceeding will restructure my database.'), '<input type="checkbox" id="agree" value="0" onclick="$(\'#setup\').show();$(\'#agree\').attr(\'checked\',\'checked\')" />') ?>
-										</p>
-									</form>
-								</div>
-								<?php
-							} else {
-								$hideGoButton = '';
-							}
-							if ($warn) {
-								$img = 'warn.png';
-							} else {
-								$img = 'pass.png';
-							}
-							if ($autorun) {
-								$task .= '&autorun=' . $autorun;
-							}
-							if ($blindInstall) {
-								ob_end_clean();
-								$blindInstall = false;
-								$stop = !$autorun;
-							} else {
-								$stop = !setupUserAuthorized();
-							}
-							if ($stop) {
-								?>
-								<div class="error">
-									<?php
-									if (zp_loggedin()) {
-										echo gettext("You need <em>USER ADMIN</em> rights to run setup.");
-									} else {
-										echo gettext('You must be logged in to run setup.');
+								} else if (db_connect($_zp_conf_vars, false)) {
+									$task = '';
+									if (setupUserAuthorized() || $blindInstall) {
+										if (!empty($dbmsg)) {
+											?>
+											<h2><?php echo $dbmsg; ?></h2>
+											<?php
+										}
+										$task = "update";
+										if ($debug) {
+											$task .= '&debug=' . $debug;
+										}
+										if ($copyaccess) {
+											$task .= '&copyhtaccess';
+										}
 									}
-									?>
-								</div>
-								<?php
-								$_zp_authority->printLoginForm('', false);
-							} else {
-								if (!empty($task) && substr($task, 0, 1) != '&') {
-									$task = '&' . $task;
-								}
-								$task = html_encode($task);
-								?>
-								<form id="setup" action="<?php echo WEBPATH . '/' . ZENFOLDER, '/setup/index.php?checked' . $task . $mod; ?>" method="post"<?php echo $hideGoButton; ?> >
-									<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="internal" />
-									<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
-									<?php
-									if ($autorun) {
+
+									if (isset($tables[$_zp_conf_vars['mysql_prefix'] . 'zenpage_news'])) {
+										$hideGoButton = ' style="display:none"';
+										$autorun = false;
 										?>
-										<input type="hidden" id="autorun" name="autorun" value="<?php echo html_encode($autorun); ?>" />
+										<div class="warning" id="dbrestructure">
+											<p><?php echo gettext('<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding.'); ?></p>
+											<form>
+												<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
+												<p>
+													<?php printf(gettext('%s I acknowledge that proceeding will restructure my database.'), '<input type="checkbox" id="agree" value="0" onclick="$(\'#setup\').show();$(\'#agree\').attr(\'checked\',\'checked\')" />') ?>
+												</p>
+											</form>
+										</div>
+										<?php
+									} else {
+										$hideGoButton = '';
+									}
+									if ($warn) {
+										$img = 'warn.png';
+									} else {
+										$img = 'pass.png';
+									}
+									if ($autorun) {
+										$task .= '&autorun=' . $autorun;
+									}
+									if ($blindInstall) {
+										ob_end_clean();
+										$blindInstall = false;
+										$stop = !$autorun;
+									} else {
+										$stop = !setupUserAuthorized();
+									}
+									if ($stop) {
+										?>
+										<div class="error">
+											<?php
+											if (zp_loggedin()) {
+												echo gettext("You need <em>USER ADMIN</em> rights to run setup.");
+											} else {
+												echo gettext('You must be logged in to run setup.');
+											}
+											?>
+										</div>
+										<?php
+										$_zp_authority->printLoginForm('', false);
+									} else {
+										if (!empty($task) && substr($task, 0, 1) != '&') {
+											$task = '&' . $task;
+										}
+										$task = html_encode($task);
+										?>
+										<form id="setup" action="<?php echo WEBPATH . '/' . ZENFOLDER, '/setup/index.php?checked' . $task . $mod; ?>" method="post"<?php echo $hideGoButton; ?> >
+											<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="internal" />
+											<input type="hidden" name="xsrfToken" value="<?php echo setupXSRFToken(); ?>" />
+											<?php
+											if ($autorun) {
+												?>
+												<input type="hidden" id="autorun" name="autorun" value="<?php echo html_encode($autorun); ?>" />
+												<?php
+											}
+											?>
+											<p class="buttons"><button class="submitbutton" id="submitbutton" type="submit"	title="<?php echo gettext('run setup'); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/<?php echo $img; ?>" alt="" /><?php echo gettext("Go"); ?></button></p>
+											<br class="clearall">
+												<br />
+										</form>
 										<?php
 									}
+									if ($autorun) {
+										?>
+										<script type="text/javascript">
+											$('#submitbutton').hide();
+											$('#setup').submit();
+										</script>
+										<?php
+									}
+								} else {
 									?>
-									<p class="buttons"><button class="submitbutton" id="submitbutton" type="submit"	title="<?php echo gettext('run setup'); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/<?php echo $img; ?>" alt="" /><?php echo gettext("Go"); ?></button></p>
-									<br class="clearall" /><br class="clearall" />
-								</form>
-								<?php
-							}
-							if ($autorun) {
+									<div class="error">
+										<h3><?php echo gettext("database did not connect"); ?></h3>
+										<p>
+											<?php echo gettext("If you have not created the database yet, now would be a good time."); ?>
+										</p>
+									</div>
+									<?php
+								}
+							} else {
+								// The config file hasn't been created yet. Show the steps.
 								?>
-								<script type="text/javascript">
-									$('#submitbutton').hide();
-									$('#setup').submit();
-								</script>
+								<div class="error">
+									<?php echo sprintf(gettext('The %1$s file does not exist.'), CONFIGFILE); ?>
+								</div>
 								<?php
 							}
-						} else {
-							?>
-							<div class="error">
-								<h3><?php echo gettext("database did not connect"); ?></h3>
-								<p>
-									<?php echo gettext("If you have not created the database yet, now would be a good time."); ?>
-								</p>
-							</div>
-							<?php
-						}
-					} else {
-						// The config file hasn't been created yet. Show the steps.
-						?>
-						<div class="error">
-							<?php echo sprintf(gettext('The %1$s file does not exist.'), CONFIGFILE); ?>
-						</div>
-						<?php
-					}
 
-					if ($blindInstall) {
-						ob_end_clean();
-					}
-					?>
-					<?php
-					if ($noxlate > 0 && !isset($_GET['checked'])) {
-						setupLanguageSelector();
-					}
-					?>
-					<br class="clearall" />
-			</div><!-- content -->
-		</div><!-- main -->
-		<?php
-		printSetupFooter();
-		?>
-	</body>
-</html>
-<?php
-$setupMutex->unlock();
-?>
+							if ($blindInstall) {
+								ob_end_clean();
+							}
+							?>
+							<?php
+							if ($noxlate > 0 && !isset($_GET['checked'])) {
+								setupLanguageSelector();
+							}
+							?>
+							<br class="clearall">
+								</div><!-- content -->
+								</div><!-- main -->
+								<?php
+								printSetupFooter();
+								?>
+								</body>
+								</html>
+								<?php
+								$setupMutex->unlock();
+								?>

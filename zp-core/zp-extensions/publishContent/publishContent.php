@@ -232,19 +232,19 @@ echo '</head>';
 								<label><input type="checkbox" name="album_default"	value="1"<?php if ($albpublish) echo ' checked="checked"'; ?> /> <?php echo gettext("Publish albums by default"); ?></label>
 								&nbsp;&nbsp;&nbsp;
 								<label><input type="checkbox" name="image_default"	value="1"<?php if ($imgpublish) echo ' checked="checked"'; ?> /> <?php echo gettext("Publish images by default"); ?></label>
-								<br class="clearall" />
-								<br class="clearall" />
+								<br class="clearall">
+								<br class="clearall">
 								<div class="buttons pad_button" id="setdefaults">
 									<button class="tooltip" type="submit" title="<?php echo gettext("Set defaults for album publishing and image visibility."); ?>">
 										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/burst.png" alt="" /> <?php echo gettext("Apply"); ?>
 									</button>
 								</div>
 							</form>
-							<br class="clearall" />
+							<br class="clearall">
 						</div>
 					</fieldset>
-					<br class="clearall" />
-					<br class="clearall" />
+					<br class="clearall">
+					<br class="clearall">
 					<?php
 				}
 				?>
@@ -312,15 +312,15 @@ echo '</head>';
 									}
 									?>
 								</ul>
-								<br class="clearall" />
-								<br class="clearall" />
+								<br class="clearall">
+								<br class="clearall">
 
 								<div class="buttons pad_button" id="publishalbums">
 									<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting albums."); ?>">
 										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish albums"); ?>
 									</button>
 								</div>
-								<br class="clearall" />
+								<br class="clearall">
 							</form>
 							<p class="buttons tooltip">
 								<a href="?propagate_unpublished" title="<?php echo gettext('Set all subalbums of an un-published album to un-published.'); ?>">
@@ -328,7 +328,7 @@ echo '</head>';
 									<?php echo gettext('Propagate un-published state'); ?>
 								</a>
 							</p>
-							<br class="clearall" />
+							<br class="clearall">
 							<?php
 						}
 						?>
@@ -339,7 +339,7 @@ echo '</head>';
 					}
 					?>
 				</fieldset>
-				<br class="clearall" />
+				<br class="clearall">
 
 				<script type="text/javascript">
 					//<!-- <![CDATA[
@@ -368,8 +368,8 @@ echo '</head>';
 						<form name="review" action="?tab=content" method="post">
 							<?php XSRFToken('publishContent'); ?>
 							<?php printf(gettext('Review images older than: %s'), '<input type="text" size="20" id="publish_date" name="publish_date" value="' . $requestdate . '" />'); ?>
-							<br class="clearall" />
-							<br class="clearall" />
+							<br class="clearall">
+							<br class="clearall">
 							<input type="hidden" name="review" value="true" />
 							<div class="buttons pad_button" id="reviewobjects">
 								<button class="tooltip" type="submit" title="<?php echo gettext("Review un-published images."); ?>">
@@ -377,8 +377,8 @@ echo '</head>';
 								</button>
 							</div>
 						</form>
-						<br class="clearall" />
-						<br class="clearall" />
+						<br class="clearall">
+						<br class="clearall">
 						<?php
 						if ($report == 'images') {
 							?>
@@ -495,7 +495,7 @@ echo '</head>';
 										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Process changes"); ?>
 									</button>
 								</div>
-								<br class="clearall" />
+								<br class="clearall">
 							</form>
 							<?php
 						}
@@ -527,7 +527,7 @@ echo '</head>';
 						}
 					}
 					?>
-					<br class="clearall" />
+					<br class="clearall">
 					<fieldset class="smallbox">
 						<legend><?php
 							if ($c > 0)
@@ -558,13 +558,13 @@ echo '</head>';
 									<ul class="schedulealbumchecklist">
 										<?php echo $output; ?>
 									</ul>
-									<br class="clearall" />
+									<br class="clearall">
 									<div class="buttons pad_button">
 										<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting categories."); ?>">
 											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish categories"); ?>
 										</button>
 									</div>
-									<br class="clearall" />
+									<br class="clearall">
 								</form>
 							</div>
 							<?php
@@ -573,7 +573,7 @@ echo '</head>';
 						}
 						?>
 					</fieldset>
-					<br class="clearall" />
+					<br class="clearall">
 					<?php
 					$visible = $report == 'news';
 					$items = $_zp_CMS->getArticles(0, false);
@@ -621,13 +621,13 @@ echo '</head>';
 									<ul class="schedulealbumchecklist">
 										<?php echo $output; ?>
 									</ul>
-									<br class="clearall" />
+									<br class="clearall">
 									<div class="buttons pad_button">
 										<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting articles."); ?>">
 											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish articles"); ?>
 										</button>
 									</div>
-									<br class="clearall" />
+									<br class="clearall">
 							</div>
 							<?php
 						} else {
@@ -652,7 +652,7 @@ echo '</head>';
 						}
 					}
 					?>
-					<br class="clearall" />
+					<br class="clearall">
 					<fieldset class="smallbox">
 						<legend><?php
 							if ($c > 0)
@@ -681,7 +681,7 @@ echo '</head>';
 									<ul class="schedulealbumchecklist">
 										<?php echo $output; ?>
 									</ul>
-									<br class="clearall" />
+									<br class="clearall">
 									<div class="buttons pad_button">
 										<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting pages."); ?>">
 											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish pages"); ?>
@@ -693,7 +693,7 @@ echo '</head>';
 							echo gettext('No unpublished pages');
 						}
 						?>
-						<br class="clearall" />
+						<br class="clearall">
 					</fieldset>
 					<?php
 				}

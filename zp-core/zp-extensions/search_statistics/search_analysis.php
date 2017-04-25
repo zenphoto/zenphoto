@@ -264,15 +264,13 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 						<p class="buttons">
 							<a href="?reset&amp;XSRFToken=<?php echo getXSRFToken('search_statistics'); ?>"><?php echo gettext('reset'); ?></a>
 						</p>
-						<br class="clearall" />
+						<br class="clearall">
 						<p>
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/admin-options.php?tab=plugin&amp;single=search_statistics#search_statistics" ><?php echo gettext('Change <em>Threshold</em> values') ?></a>
 						</p>
-						<br class="clearall" />
 						<?php
 					} else {
 						?>
-						<br class="clearall" />
 						<?php
 					}
 				}

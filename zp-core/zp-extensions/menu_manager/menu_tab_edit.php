@@ -230,7 +230,7 @@ if (is_array($result)) {
 						<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
 					</span>
 				</p>
-				<br class="clearall" /><br />
+				<br class="clearall"><br />
 				<div style="padding:15px; margin-top: 10px">
 					<?php
 					$action = $type = $id = $link = '';
@@ -390,7 +390,7 @@ if (is_array($result)) {
 							<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 							<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 						</p>
-						<br class="clearall" /><br />
+						<br class="clearall"><br />
 					</form>
 				</div>
 			</div>

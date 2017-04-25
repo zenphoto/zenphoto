@@ -60,7 +60,7 @@ if (!defined('WEBPATH'))
 						}
 						?>
 					</div>
-					<br class="clearall" />
+					<br class="clearall">
 					<br />
 					<?php if (function_exists('next_news')) { ?>
 						<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
