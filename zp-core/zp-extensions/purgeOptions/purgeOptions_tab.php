@@ -174,7 +174,7 @@ $orphaned = array();
 							?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass_2.png" alt="" /> <strong><?php echo gettext("Apply"); ?> </strong></button >
 								<button type="reset" value="<?php echo gettext('reset') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /> <strong><?php echo gettext("Reset"); ?> </strong></button>
 							</p>
-							<br class="clearall" />
+							<br class="clearall">
 
 							<p>
 								<?php
@@ -287,12 +287,12 @@ $orphaned = array();
 								<?php
 							}
 							?>
-							<br class="clearall" />
+							<br class="clearall">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass_2.png" alt = "" /> <strong><?php echo gettext("Apply"); ?> </strong></button>
 								<button type="reset" value="<?php echo gettext('reset') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /> <strong><?php echo gettext("Reset"); ?> </strong></button>
 							</p>
-							<br class="clearall" />
+							<br class="clearall">
 						</form>
 						<?php
 					}

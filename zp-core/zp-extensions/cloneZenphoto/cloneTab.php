@@ -58,7 +58,7 @@ printAdminHeader('admin');
 									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /> <?php echo gettext("Remove invalid clones."); ?>
 								</a>
 						</p>
-						<br class="clearall" />
+						<br class="clearall">
 						<?php
 					}
 					?>
@@ -190,7 +190,7 @@ printAdminHeader('admin');
 								</a>
 							</span>
 						</form>
-						<br class="clearall" />
+						<br class="clearall">
 						<form name="cloneZenphoto" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/clone.php'; ?>">
 							<input type="hidden" name="tab" value="clone" />
 							<?php XSRFToken('cloneZenphoto'); ?>
@@ -206,7 +206,7 @@ printAdminHeader('admin');
 									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/folder.png" alt="" /> <?php echo gettext("Clone installation"); ?>
 								</button>
 							</div>
-							<br class="clearall" />
+							<br class="clearall">
 						</form>
 						<?php
 					}

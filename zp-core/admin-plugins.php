@@ -165,7 +165,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 		<p class="buttons">
 			<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 			<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-		</p><br class="clearall" /><br /><br />
+		</p><br class="clearall"><br /><br />
 		<table>
 			<tr>
 				<th class="centered" colspan="100%">

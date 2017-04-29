@@ -61,7 +61,7 @@ class crop_image {
 							'<a href="' . WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/crop_image.php?a=' . pathurlencode($albumname) . "\n" .
 							'&amp;i=' . urlencode($imagename) . '&amp;performcrop=backend&amp;subpage=' . $subpage . $singleimage . '&amp;tagsort=' . html_encode($tagsort) . '">' . "\n" .
 							'<img src="images/shape_handles.png" alt="" />' . gettext("Crop image") . '</a>' . "\n" .
-							'<br class="clearall" />' .
+							'<br class="clearall">' .
 							'</div>' . "\n";
 		}
 		return $output;
@@ -491,7 +491,7 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 						</form>
 					</div>
 
-					<br style="clear: both" />
+					<br class="clearall">
 				</div><!-- block -->
 			</div><!-- content -->
 		</div><!-- main -->

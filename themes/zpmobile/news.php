@@ -40,7 +40,7 @@ if (class_exists('CMS')) {
 							printNewsContent();
 							printCodeblock(1);
 							?>
-							<br class="clearall" /><br />
+							<br class="clearall"><br />
 							<?php printNewsCategories(', ', gettext('Categories: '), 'catlist'); ?>
 							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'catlist', ', '); ?>
 							<?php
@@ -48,7 +48,7 @@ if (class_exists('CMS')) {
 								printCommentForm();
 							}
 							?>
-							<br class="clearall" />
+							<br class="clearall">
 							<?php
 							if (getPrevNewsURL()) {
 								$prevnews = getPrevNewsURL();

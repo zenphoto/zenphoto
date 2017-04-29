@@ -134,7 +134,7 @@ echo "\n</head>";
 							}
 							?>
 						</form>
-						<br class="clearall" />
+						<br class="clearall">
 						<br />
 						<blockquote class="logtext">
 							<?php

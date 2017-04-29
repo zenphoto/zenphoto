@@ -324,7 +324,7 @@ printAdminHeader('edit', 'thumbcrop');
 						});
 						// ]]> -->
 					</script>
-					<br style="clear: both" />
+					<br class="clearall">
 				</div><!-- block -->
 			</div>
 		</div><!-- content -->

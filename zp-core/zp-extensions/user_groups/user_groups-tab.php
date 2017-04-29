@@ -198,7 +198,8 @@ echo '</head>' . "\n";
 								<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
-							<br class="clearall" /><br />
+							<br class="clearall">
+							<br />
 							<input type="hidden" name="savegroups" value="yes" />
 							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 
@@ -446,7 +447,7 @@ echo '</head>' . "\n";
 							}
 							// ]]> -->
 						</script>
-						<br class="clearall" />
+						<br class="clearall">
 						<?php
 						break;
 					case 'assignments':
@@ -468,7 +469,8 @@ echo '</head>' . "\n";
 								<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
-							<br class="clearall" /><br /><br />
+							<br class="clearall">
+							<br />
 							<div class="notebox">
 								<?php echo gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!'); ?>
 							</div>
@@ -504,7 +506,7 @@ echo '</head>' . "\n";
 							<input type="hidden" name="totalusers" value="<?php echo $id; ?>" />
 							<input type="hidden" name="checkForPostTruncation" value="1" />
 						</form>
-						<br class="clearall" /><br />
+						<br class="clearall">
 						<?php
 						break;
 				}

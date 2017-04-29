@@ -54,7 +54,7 @@ $MCEplugins = preg_replace('|\stinyzenpage|', '', $MCEplugins);
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce/jquery.tinymce.min.js"></script>
 <?php
-if (OFFSET_PATH) {
+if (OFFSET_PATH && getOption('dirtyform_enable') > 1) {
 	?>
 	<script src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.helpers.tinymce.min.js" type="text/javascript"></script>
 	<?php
@@ -129,6 +129,17 @@ if ($MCEmenubar) {
 					$(form).removeClass('tinyDirty');
 					}
 					});
+<?php
+if (getOption('dirtyform_enable') > 1) {
+	?>
+						editor.on('postRender', function(e) {
+						//	clear the form from any tinyMCE dirtying once it has loaded
+						form = $(editor.getContainer()).closest('form');
+						$(form).trigger("reset");
+						});
+	<?php
+}
+?>
 					}
 
 

@@ -373,7 +373,7 @@ if (!defined('OFFSET_PATH')) {
 										}
 										?>
 									</div>
-									<br class="clearall" />
+									<br class="clearall">
 									<?php
 								}
 								if ($albumbuttons) {
@@ -383,7 +383,7 @@ if (!defined('OFFSET_PATH')) {
 									<div class="box-edit">
 										<?php echo $albumbuttons; ?>
 									</div>
-									<br class="clearall" />
+									<br class="clearall">
 									<?php
 								}
 								if ($imagebuttons) {
@@ -393,7 +393,7 @@ if (!defined('OFFSET_PATH')) {
 									<div class="box-edit">
 										<?php echo $imagebuttons; ?>
 									</div>
-									<br class="clearall" />
+									<br class="clearall">
 									<?php
 								}
 								if (!empty($content_macros)) {
@@ -403,7 +403,7 @@ if (!defined('OFFSET_PATH')) {
 										macroList_show($macro, $detail);
 									}
 									?>
-									<br class="clearall" />
+									<br class="clearall">
 									<?php
 								}
 								?>

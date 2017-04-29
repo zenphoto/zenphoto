@@ -109,7 +109,7 @@ if (!empty($messages)) {
 		<strong><?php echo gettext("Back"); ?></strong>
 	</a>
 </p>
-<br class="clearall" />
+<br class="clearall">
 <div id="theme-editor">
 
 	<div id="files">
@@ -157,7 +157,7 @@ if (!empty($messages)) {
 						<button type="submit" value="<?php echo gettext('Update File') ?>" title="<?php echo gettext("Update File"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Update File"); ?></strong></button>
 						<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 					</p>
-					<br class="clearall" />
+					<br class="clearall">
 				</form>
 				<?php
 			}

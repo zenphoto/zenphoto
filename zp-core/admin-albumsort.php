@@ -204,7 +204,7 @@ echo "\n</head>";
 								<strong><?php echo gettext('View Album'); ?></strong>
 							</a>
 						</p>
-						<br class="clearall" /><br />
+						<br class="clearall">
 						<p><?php echo gettext("Set the image order by dragging them to the positions you desire."); ?></p>
 
 						<ul id="images">
@@ -242,7 +242,7 @@ echo "\n</head>";
 								</label>
 							</li>
 						</ul>
-						<br class="clearall" />
+						<br class="clearall">
 
 						<div>
 							<input type="hidden" id="sortableList" name="sortableList" value="" />
@@ -266,10 +266,8 @@ echo "\n</head>";
 							</p>
 						</div>
 					</form>
-					<br class="clearall" />
-
+					<br class="clearall">
 				</div>
-
 			</div>
 		</div>
 	</div>

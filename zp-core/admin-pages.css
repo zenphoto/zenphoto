@@ -731,17 +731,11 @@ div.outerbox {
 }
 
 .innerbox {
-	background: none;
-	border: 0px solid #BAC9CF;
-	border-bottom-width: 0px;
 }
 
 .innerbox_dark {
 	background-color: #FAFAFA;
-	border: 0px solid #BAC9CF;
-	border-bottom-width: 0px;
 }
-
 
 .imagethumb {
 	margin: 1px;

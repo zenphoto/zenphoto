@@ -56,7 +56,7 @@ if (class_exists('favorites')) {
 								</li>
 	<?php endwhile; ?>
 						</ul>
-						<br class="clearall" />
+						<br class="clearall">
 						<?php if (hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"), false, true, 'pagelist', NULL, true, 7); ?>
 						<?php
 						if (function_exists('printCommentForm')) {

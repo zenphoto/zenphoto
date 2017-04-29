@@ -161,7 +161,7 @@ if (isset($_GET['purge'])) {
 			}
 			$_SESSION['admin']['db_admin_fields'] = $adminTable;
 			$_SESSION['admin'][$cloneid] = serialize($_zp_current_admin_obj);
-			$msg[] = '<p><span class="buttons"><a href="' . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab" onclick="reloadCloneTab();">' . gettext('setup the new install') . '</a></span><br class="clearall" /></p>' . "\n";
+			$msg[] = '<p><span class="buttons"><a href="' . $newinstall . ZENFOLDER . '/setup/index.php?autorun" target=_newtab" onclick="reloadCloneTab();">' . gettext('setup the new install') . '</a></span><br class="clearall"></p>' . "\n";
 		} else {
 			$reinstall = '<p>' . sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s to this installation:'), $newinstall, ZENPHOTO_VERSION) .
 							"\n" . '<ul>' . "\n";

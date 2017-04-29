@@ -87,9 +87,7 @@ echo '</head>';
 							?>
 						</select>
 					</div>
-					<br class="clearall" /> <br />
 				</form>
-				<br class="clearall" /> <br />
 			</div>
 		</div>
 	</div><!-- content -->

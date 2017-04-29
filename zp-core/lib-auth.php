@@ -1008,7 +1008,7 @@ class _Authority {
 								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=challenge', 'ref=' + $('#user').val(), 'cycle=<?php echo $cycle; ?>']);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val(), 'cycle=<?php echo $cycle; ?>']);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 							</div>
-							<br class="clearall" />
+							<br class="clearall">
 						</fieldset>
 						<br />
 						<?php
@@ -1085,7 +1085,7 @@ class _Authority {
 								<button type="submit" value="<?php echo gettext("Log in"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Log in"); ?></button>
 								<button type="reset" value="<?php echo gettext("Reset"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset"); ?></button>
 							</div>
-							<br class="clearall" />
+							<br class="clearall">
 						</fieldset>
 					</form>
 
@@ -1153,7 +1153,7 @@ class _Authority {
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 							</div>
-							<br class="clearall" />
+							<br class="clearall">
 						</fieldset>
 					</form>
 					<?php

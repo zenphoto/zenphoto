@@ -134,8 +134,8 @@ echo '</head>' . "\n";
 							</a>
 						</div>
 					</span>
-					<br class="clearall" />
-					<br /><br />
+					<br class="clearall">
+					<br />
 					<ul class="fullchecklist">
 						<?php
 						foreach ($adminordered as $user) {
@@ -224,11 +224,9 @@ echo '</head>' . "\n";
 						<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 						<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 					</p>
-					<br class="clearall" /><br /><br />
+					<br class="clearall">
 				</form>
-				<br class="clearall" /><br />
 			</div>
-
 		</div>
 	</div>
 	<?php printAdminFooter(); ?>

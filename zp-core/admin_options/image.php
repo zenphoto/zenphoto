@@ -583,7 +583,7 @@ function getOptionContent() {
 							<?php
 							if (GALLERY_SECURITY == 'public') {
 								?>
-								<br class="clearall" />
+								<br class="clearall">
 								<table class="compact">
 									<tr class="passwordextrashow">
 										<td style="margin:0; padding:0">

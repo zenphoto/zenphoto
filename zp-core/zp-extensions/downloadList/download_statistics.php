@@ -129,8 +129,9 @@ echo '</head>';
 				} else {
 					?>
 					<p class="buttons"><a href="?removeoutdateddownloads&amp;XSRFToken=<?php echo getXSRFToken('removeoutdateddownloads') ?>"><?php echo gettext('Clear outdated downloads from database'); ?></a></p>
-					<p class="buttons"><a href="?removealldownloads&amp;XSRFToken=<?php echo getXSRFToken('removealldownloads') ?>"><?php echo gettext('Clear all downloads from database'); ?></a></p><br class="clearall" />
-					<br class="clearall" /><br />
+					<p class="buttons"><a href="?removealldownloads&amp;XSRFToken=<?php echo getXSRFToken('removealldownloads') ?>"><?php echo gettext('Clear all downloads from database'); ?></a></p><br class="clearall">
+					<br class="clearall">
+					<br />
 					<?php
 					printBarGraph();
 				}

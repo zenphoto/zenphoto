@@ -439,7 +439,7 @@ function printFooter($admin = true) {
 		?>
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<?php @call_user_func('printLanguageSelector'); ?>
-		<br class="clearall" />
+		<br class="clearall">
 	</div>
 	<!-- Administration Toolbox -->
 	<?php
@@ -478,7 +478,7 @@ function commonNewsLoop($paged) {
 			<?php printCodeblock(1); ?>
 			<?php printNewsContent(); ?>
 			<?php printCodeblock(2); ?>
-			<br class="clearall" />
+			<br class="clearall">
 		</div>
 		<?php
 	}
