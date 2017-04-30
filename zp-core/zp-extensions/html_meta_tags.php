@@ -171,7 +171,7 @@ class htmlmetatags {
 		$_zp_current_zenpage_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites,
 		$htmlmetatags_need_cache, $_zp_page;
 		zp_register_filter('image_processor_uri', 'htmlmetatags::ipURI');
-		$host = sanitize("http://" . $_SERVER['HTTP_HOST']);
+		$host = sanitize(PROTOCOL . "://" . $_SERVER['HTTP_HOST']);
 		$url = $host . getRequestURI();
 
 		// Convert locale shorttag to allowed html meta format
