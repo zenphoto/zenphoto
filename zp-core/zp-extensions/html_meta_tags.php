@@ -163,7 +163,7 @@ class htmlmetatags {
 		global $_zp_gallery, $_zp_page, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_current_article,
 		$_zp_current_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites;
 
-		$host = sanitize("http://" . $_SERVER['HTTP_HOST']);
+		$host = sanitize(PROTOCOL . $_SERVER['HTTP_HOST']);
 		$url = $host . getRequestURI();
 
 		// Convert locale shorttag to allowed html meta format
