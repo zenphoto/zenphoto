@@ -274,7 +274,7 @@ class Image extends MediaObject {
 		$this->filemtime = @filemtime($this->localpath);
 		$this->imagetype = strtolower(get_class($this)) . 's';
 		$date = $this->get('date');
-		if (empty($date)) {
+		if (!$date || $date == '0000-00-00 00:00:00') {
 			$this->set('date', strftime('%Y-%m-%d %H:%M:%S', $this->filemtime));
 		}
 		return true;

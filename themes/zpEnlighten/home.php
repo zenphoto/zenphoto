@@ -38,7 +38,10 @@ if (!defined('WEBPATH'))
 								<?php
 								$thumb = $i->getCustomImage(NULL, 255, 75, 255, 75, NULL, NULL, false, false);
 								$link = $i->getLink();
-								$date = strftime("%d %B %Y", strtotime($i->get('date')));
+								$date = $i->getDateTime();
+								if ($date) {
+									$date = strftime("%d %B %Y", $date);
+								}
 								echo "<a href='$link'><img src='$thumb' width='255' height='75'/></a>";
 								?>
 							</div>
