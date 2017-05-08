@@ -1319,7 +1319,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-								 togglePassword('<?php echo $id; ?>');">
+										 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
@@ -1445,7 +1445,11 @@ class _Administrator extends PersistentObject {
 	 * @return date
 	 */
 	function getDateTime() {
-		return $this->get('date');
+		$d = $this->get('date');
+		if ($d && $d != '0000-00-00 00:00:00') {
+			return $d;
+		}
+		return false;
 	}
 
 	/**
