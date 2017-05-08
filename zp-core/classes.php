@@ -619,10 +619,14 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns the unformatted date
 	 *
-	 * @return int
+	 * @return date
 	 */
 	function getDateTime() {
-		return $this->get('date');
+		$d = $this->get('date');
+		if ($d && $d != '0000-00-00 00:00:00') {
+			return $d;
+		}
+		return false;
 	}
 
 	/**
