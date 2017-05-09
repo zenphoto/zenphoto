@@ -483,7 +483,11 @@ function getOptionContent() {
 					<tr>
 						<td class="option_name"><?php echo gettext("Allowed tags"); ?></td>
 						<td class="option_value">
-							<p><textarea name="allowed_tags" id="allowed_tags" style="width: 340px" rows="10" cols="35"><?php echo html_encode(getOption('allowed_tags')); ?></textarea></p>
+							<p><textarea name="allowed_tags" id="allowed_tags" style="width: 340px" rows="10" cols="35"><?php echo html_encode(getOption('allowed_tags')); ?></textarea>
+								<span class="buttons">
+									<a onclick="resetallowedtags()" ><?php echo gettext('reset to default'); ?></a>
+								</span>
+							</p>
 						</td>
 						<td class="option_desc">
 							<script type="text/javascript">
@@ -517,9 +521,6 @@ function getOptionContent() {
 								<?php if (EDITOR_SANITIZE_LEVEL == 4) { ?>
 									<p class="notebox"><?php echo gettext('<strong>Note:</strong> visual editing is enabled so the editor overrides these settings on tags where it is active.'); ?></p>
 								<?php } ?>
-								<p class="buttons">
-									<a onclick="resetallowedtags()" ><?php echo gettext('reset to default'); ?></a>
-								</p>
 							</div>
 						</td>
 					</tr>
