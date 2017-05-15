@@ -59,7 +59,7 @@ class rss_options {
 				gettext('Album image size') => array('key' => 'RSS_imagesize_albums', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 4,
 						'desc' => gettext('Size of RSS album feed images :')),
-				gettext('Image feed sort order:') => array('key' => 'RSS_sortorder', 'type' => OPTION_TYPE_NUMBER,
+				gettext('Image feed sort order:') => array('key' => 'RSS_sortorder', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 6,
 						'selections' => array(gettext('latest by id') => 'latest',
 								gettext('latest by date') => 'latest-date',
