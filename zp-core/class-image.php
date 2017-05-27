@@ -42,6 +42,7 @@ function newImage($album, $filename = NULL, $quiet = false) {
 		$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'), $filename);
 	} else {
 		if ($object = Gallery::imageObjectClass($filename)) {
+			$filename = sanitize_path($filename);
 			$image = New $object($xalbum, $filename, $quiet);
 			if ($album && is_subclass_of($album, 'AlbumBase') && $dyn) {
 				$image->albumname = $album->name;
