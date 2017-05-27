@@ -20,6 +20,7 @@ Gallery::addAlbumHandler('alb', 'dynamicAlbum');
  */
 function newAlbum($folder8, $cache = true, $quiet = false) {
 	global $_zp_albumHandlers;
+	$folder8 = sanitize_path($folder8);
 	$suffix = getSuffix($folder8);
 	if (!$suffix || !array_key_exists($suffix, $_zp_albumHandlers) || is_dir(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder8))) {
 		return new Album($folder8, $cache, $quiet);
