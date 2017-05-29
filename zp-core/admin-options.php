@@ -131,6 +131,7 @@ if (isset($_GET['action'])) {
 					setOption($matches[1] . '_log_mail', (int) isset($_POST['log_mail_' . $matches[1]]));
 				}
 			}
+			setOption('anonymize_ip', (int) isset($_POST['anonymize_ip']));
 		}
 
 		/*		 * * Gallery options ** */
@@ -1052,6 +1053,20 @@ Zenphoto_Authority::printPasswordFormJS();
 										?>
 									</td>
 									<td><?php echo gettext('Logs will be "rolled" over when they exceed the specified size. If checked, the administrator will be e-mailed when this occurs.') ?></td>
+								</tr>
+								<tr>
+									<td width="175">
+										<p><?php echo gettext('Anonym IP'); ?></p>
+									</td>
+									<td width="350">
+										<label>
+											<input type="checkbox" size="5" id="anonymize_ip" name="anonymize_ip"  value="1" <?php checked('1', getOption('anonymize_ip')); ?> />
+											<?php echo gettext("Anonymize IP"); ?>
+										</label>
+									</td>
+									<td width="175">
+										<p><?php echo gettext('Zenphoto stores the IP address of visitors on several occasions (e.g. rating, spam filtering). In some countries\'s laws (e.g. EU countries) the IP address is considered private information and therefore it is require to not store the full address. Enable this so the last part of the IP address is replacd by 0.'); ?></p>
+									</td>
 								</tr>
 								<?php zp_apply_filter('admin_general_data'); ?>
 								<tr>
