@@ -358,9 +358,10 @@ function prepareCustomPage() {
 	global $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_script, $_zp_current_search;
 	$searchalbums = handleSearchParms('page', $_zp_current_album, $_zp_current_image);
 	$album = NULL;
-	$page = str_replace(array('/', '\\', '.'), '', sanitize($_GET['p']));
+	$replace = array('/', '\\', '.');
+	$page = str_replace($replace, '', sanitize($_GET['p']));
 	if (isset($_GET['z'])) { // system page
-		if ($subfolder = sanitize($_GET['z'])) {
+		if ($subfolder = str_replace($replace, '', sanitize($_GET['z']))) {
 			$subfolder .= '/';
 		}
 		$_zp_gallery_page = $page . '.php';
