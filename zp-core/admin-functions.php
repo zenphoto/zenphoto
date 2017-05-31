@@ -1135,11 +1135,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				if (count($tags) > 0) {
 					generateUnorderedListFromArray($tags, $tags, $postit, false, !$mostused, $showCounts, $class);
-					?>
-					<li><hr /></li>
-					<?php
 				}
-				generateUnorderedListFromArray(array(), $displaylist, $postit, false, !$mostused, $showCounts, $class);
 				?>
 			</ul>
 		</div>
@@ -2492,6 +2488,21 @@ function printAdminHeader($tab, $subtab = NULL) {
         Gallery::clearCache(SERVERCACHE . '/' . $album->name);
       }
     }
+
+	$tagsprefix = 'tags_' . $index . '-';
+	$tags = array();
+	$l = strlen($tagsprefix);
+	foreach ($_POST as $key => $value) {
+		$key = postIndexDecode($key);
+		if (substr($key, 0, $l) == $tagsprefix) {
+			if ($value) {
+				$tags[] = sanitize(substr($key, $l));
+			}
+		}
+	}
+	$tags = array_unique($tags);
+	$image->setTags($tags);
+
 	if (!$massedit) {
 		$image->setLocation(process_language_string_save("$index-location", 3));
 		$image->setCity(process_language_string_save("$index-city", 3));
@@ -2499,19 +2510,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$image->setCountry(process_language_string_save("$index-country", 3));
 		$image->setCredit(process_language_string_save("$index-credit", 1));
 		$image->setCopyright(process_language_string_save("$index-copyright", 1));
-		$tagsprefix = 'tags_' . $index . '-';
-		$tags = array();
-		$l = strlen($tagsprefix);
-		foreach ($_POST as $key => $value) {
-			$key = postIndexDecode($key);
-			if (substr($key, 0, $l) == $tagsprefix) {
-				if ($value) {
-					$tags[] = sanitize(substr($key, $l));
-				}
-			}
-		}
-		$tags = array_unique($tags);
-		$image->setTags($tags);
 		if (zp_loggedin(CODEBLOCK_RIGHTS)) {
 			$image->setCodeblock(processCodeblockSave($index));
 		}
