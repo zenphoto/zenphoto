@@ -446,7 +446,7 @@ function prepareCustomPage() {
 	$album = NULL;
 	$page = str_replace(array('/', '\\', '.'), '', sanitize($_GET['p']));
 	if (isset($_GET['z'])) { // system page
-		if ($subfolder = sanitize($_GET['z'])) {
+		if ($subfolder = sanitize_path($_GET['z'])) {
 			$subfolder .= '/';
 		}
 		$_zp_gallery_page = $page . '.php';
