@@ -2,6 +2,7 @@
 /*
  * Guts of the plugin options tab
  */
+$optionRights = ADMIN_RIGHTS;
 
 function saveOptions() {
 	global $_zp_gallery;
