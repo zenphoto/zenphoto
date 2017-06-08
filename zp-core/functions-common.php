@@ -114,27 +114,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 
 
 	$msg = sprintf(gettext('%1$s: "%2$s" in %3$s on line %4$s'), $err, $errstr, $errfile, $errline);
-	if (array_key_exists('REQUEST_URI', $_SERVER)) {
-		$uri = sanitize($_SERVER['REQUEST_URI']);
-		preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $uri, $matches);
-		$uri = $matches[2];
-		if (!empty($matches[1])) {
-			$uri = '/' . $uri;
-		}
-	} else {
-		$uri = sanitize(@$_SERVER['SCRIPT_NAME']);
-	}
-	if ($uri) {
-		$uri = "\n URI:" . urldecode(str_replace('\\', '/', $uri));
-	}
-	$uri .= "\n IP `" . getUserIP() . '`';
-	if (is_object($_zp_current_admin_obj)) {
-		$uri .= "\n " . gettext('user') . ':' . $_zp_current_admin_obj->getUser();
-	}
-	if ($_index_theme) {
-		$uri .= "\n " . gettext('theme') . ':' . $_index_theme;
-	}
-	debugLogBacktrace($msg . $uri, 1);
+	debugLogBacktrace($msg, 1);
 
 	if (!ini_get('display_errors') && ($errno == E_ERROR || $errno = E_USER_ERROR)) {
 		// out of curtesy show the error message on the WEB page since there will likely be a blank page otherwise
@@ -533,7 +513,29 @@ function debugLog($message, $reset = false, $log = 'debug') {
  * @param string $log alternative log file
  */
 function debugLogBacktrace($message, $omit = 0, $log = 'debug') {
+	global $_zp_current_admin_obj, $_index_theme;
 	$output = trim($message) . "\n";
+	if (array_key_exists('REQUEST_URI', $_SERVER)) {
+		$uri = sanitize($_SERVER['REQUEST_URI']);
+		preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $uri, $matches);
+		$uri = $matches[2];
+		if (!empty($matches[1])) {
+			$uri = '/' . $uri;
+		}
+	} else {
+		$uri = sanitize(@$_SERVER['SCRIPT_NAME']);
+	}
+	if ($uri) {
+		$uri = "\n URI:" . urldecode(str_replace('\\', '/', $uri));
+	}
+	$uri .= "\n IP `" . getUserIP() . '`';
+	if (is_object($_zp_current_admin_obj)) {
+		$uri .= "\n " . gettext('user') . ':' . $_zp_current_admin_obj->getUser();
+	}
+	if ($_index_theme) {
+		$uri .= "\n " . gettext('theme') . ':' . $_index_theme;
+	}
+	$output .= $uri . "\n";
 	// Get a backtrace.
 	$bt = debug_backtrace();
 	while ($omit >= 0) {
