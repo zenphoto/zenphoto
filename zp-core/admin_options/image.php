@@ -3,6 +3,9 @@
  * Guts of the image options tab
  */
 
+require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-Imagick.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-GD.php');
+
 function saveOptions() {
 	global $_zp_gallery, $_zp_images_classes, $_zp_exifvars;
 
@@ -163,8 +166,6 @@ function getOptionContent() {
 	global $_zp_gallery, $_zp_images_classes, $_zp_exifvars, $_zp_graphics_optionhandlers, $_zp_sortby, $_zp_cachefileSuffix, $_zp_conf_vars, $_zp_UTF8;
 
 	if (zp_loggedin(OPTIONS_RIGHTS)) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-Imagick.php');
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-GD.php');
 		?>
 
 		<script type="text/javascript">

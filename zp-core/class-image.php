@@ -115,10 +115,10 @@ class Image extends MediaObject {
 		// $album is an Album object; it should already be created.
 		$msg = false;
 		if (!is_object($album) || !$album->exists) {
-			$msg = gettext('Invalid image instantiation: Album does not exist');
+			$msg = gettext('Invalid image instantiation: Album does not exist') . ' (' . $album . ')';
 		} else {
 			if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
-				$msg = gettext('Invalid image instantiation: file does not exist');
+				$msg = gettext('Invalid image instantiation: file does not exist') . ' (' . $album . '/' . $filename . ')';
 			}
 		}
 		if ($msg) {
