@@ -883,10 +883,15 @@ function printAdminHeader($tab, $subtab = NULL) {
   }
   foreach ($customHandlers as $custom) {
     if ($extension = $custom['extension']) {
-      require_once(getPlugin($extension . '.php'));
+			$getplugin = getPlugin($extension . '.php');
+			if($getplugin) {
+				require_once($getplugin);
+			}
     }
-    $whom = new $custom['whom']();
-    $returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
+		if(class_exists($custom['whom'])) {
+			$whom = new $custom['whom']();
+			$returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
+		}
   }
   return $returntab;
 }

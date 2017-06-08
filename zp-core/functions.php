@@ -621,6 +621,7 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
  */
 function getPlugin($plugin, $inTheme = false, $webpath = false) {
 	global $_zp_gallery;
+	$plugin = ltrim($plugin,'./\\');
 	$pluginFile = NULL;
 	if ($inTheme === true) {
 		$inTheme = $_zp_gallery->getCurrentTheme();
