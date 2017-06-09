@@ -567,17 +567,16 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Full image protection"); ?></td>
 					<td class="option_value" style="margin:0">
-						<p>
-							<label>
-								<input type="checkbox" name="hotlink_protection" value="1" <?php checked('1', getOption('hotlink_protection')); ?> />
-								<?php echo gettext('disable hotlinking'); ?>
-							</label>
-							<br />
-							<label>
-								<input type="checkbox" name="cache_full_image" value="1" <?php checked('1', getOption('cache_full_image')); ?> />
-								<?php echo gettext('cache the full image'); ?>
-							</label>
-						</p>
+						<label>
+							<input type="checkbox" name="hotlink_protection" value="1" <?php checked('1', getOption('hotlink_protection')); ?> />
+							<?php echo gettext('disable hotlinking'); ?>
+						</label>
+						<br />
+						<label>
+							<input type="checkbox" name="cache_full_image" value="1" <?php checked('1', getOption('cache_full_image')); ?> />
+							<?php echo gettext('cache the full image'); ?>
+						</label>
+						<<br />
 
 						<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 						<?php
@@ -625,7 +624,7 @@ function getOptionContent() {
 														 name="disclose_password"
 														 id="disclose_password"
 														 onclick="passwordClear('');
-																 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																		 togglePassword('');" /><?php echo gettext('Show password'); ?>
 										</label>
 									</td>
 								</tr>

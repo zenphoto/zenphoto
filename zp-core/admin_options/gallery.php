@@ -55,7 +55,7 @@ function getOptionContent() {
 	?>
 	<div id="tab_gallery" class="tabbox">
 		<form class="dirtylistening" onReset="toggle_passwords('', false);
-				setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+					setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 					<?php XSRFToken('saveoptions'); ?>
 			<input	type="hidden" name="saveoptions" value="gallery" />
 			<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -159,7 +159,7 @@ function getOptionContent() {
 											 name="disclose_password"
 											 id="disclose_password"
 											 onclick="passwordClear('');
-													 togglePassword('');" /><?php echo gettext('Show password'); ?>
+															 togglePassword('');" /><?php echo gettext('Show password'); ?>
 							</label>
 						</td>
 						<td class="option_desc">
@@ -374,39 +374,33 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Gallery behavior"); ?></td>
 					<td class="option_value">
-						<p>
-							<label>
-								<input type="checkbox" name="album_default"	value="1"<?php if ($_zp_gallery->getAlbumPublish()) echo ' checked="checked"'; ?> />
-								<?php echo gettext("publish albums by default"); ?>
-							</label>
-						</p>
-						<p>
-							<label>
-								<input type="checkbox" name="image_default"	value="1"<?php if ($_zp_gallery->getImagePublish()) echo ' checked="checked"'; ?> />
-								<?php echo gettext("publish images by default"); ?>
-							</label>
-						</p>
-						<p>
-							<label>
-								<input type="checkbox" name="album_use_new_image_date" id="album_use_new_image_date"
-											 value="1" <?php checked('1', $_zp_gallery->getAlbumUseImagedate()); ?> />
-											 <?php echo gettext("use latest image date as album date"); ?>
-							</label>
-						</p>
-						<p>
-							<label>
-								<input type="checkbox" name="thumb_select_images" id="thumb_select_images"
-											 value="1" <?php checked('1', $_zp_gallery->getThumbSelectImages()); ?> />
-											 <?php echo gettext("visual thumb selection"); ?>
-							</label>
-						</p>
-						<p>
-							<label>
-								<input type="checkbox" name="multilevel_thumb_select_images" id="thumb_select_images"
-											 value="1" <?php checked('1', $_zp_gallery->getSecondLevelThumbs()); ?> />
-											 <?php echo gettext("show subalbum thumbs"); ?>
-							</label>
-						</p>
+						<label>
+							<input type="checkbox" name="album_default"	value="1"<?php if ($_zp_gallery->getAlbumPublish()) echo ' checked="checked"'; ?> />
+							<?php echo gettext("publish albums by default"); ?>
+						</label>
+						<br />
+						<label>
+							<input type="checkbox" name="image_default"	value="1"<?php if ($_zp_gallery->getImagePublish()) echo ' checked="checked"'; ?> />
+							<?php echo gettext("publish images by default"); ?>
+						</label>
+						<br />
+						<label>
+							<input type="checkbox" name="album_use_new_image_date" id="album_use_new_image_date"
+										 value="1" <?php checked('1', $_zp_gallery->getAlbumUseImagedate()); ?> />
+										 <?php echo gettext("use latest image date as album date"); ?>
+						</label>
+						<br />
+						<label>
+							<input type="checkbox" name="thumb_select_images" id="thumb_select_images"
+										 value="1" <?php checked('1', $_zp_gallery->getThumbSelectImages()); ?> />
+										 <?php echo gettext("visual thumb selection"); ?>
+						</label>
+						<br />
+						<label>
+							<input type="checkbox" name="multilevel_thumb_select_images" id="thumb_select_images"
+										 value="1" <?php checked('1', $_zp_gallery->getSecondLevelThumbs()); ?> />
+										 <?php echo gettext("show subalbum thumbs"); ?>
+						</label>
 					</td>
 					<td class="option_desc">
 						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>

@@ -584,15 +584,17 @@ function getOptionContent() {
 				</tr>
 				<tr>
 					<td class="option_name">
-						<p><?php echo gettext("Users per page"); ?></p>
-						<p><?php echo gettext("Plugins per page"); ?></p>
-						<?php
-						if (extensionEnabled('zenpage')) {
-							?>
-							<p><?php echo gettext("Articles per page"); ?></p>
+						<span style="line-height:190%">
+							<?php echo gettext("Users per page"); ?><br />
+							<?php echo gettext("Plugins per page"); ?><br />
 							<?php
-						}
-						?>
+							if (extensionEnabled('zenpage')) {
+								?>
+								<?php echo gettext("Articles per page"); ?><br />
+								<?php
+							}
+							?>
+						</span>
 					</td>
 					<td class="option_value">
 						<input type="text" size="5" id="users_per_page" name="users_per_page"  value="<?php echo getOption('users_per_page'); ?>" />
