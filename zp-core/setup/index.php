@@ -8,7 +8,7 @@
  */
 // force UTF-8 Ø
 Define('PHP_MIN_VERSION', '5.2');
-Define('PHP_DESIRED_VERSION', '5.4');
+Define('PHP_DESIRED_VERSION', '5.6');
 define('HTACCESS_VERSION', '1.4.5'); // be sure to change this to the one in .htaccess when the .htaccess file is updated.
 define('OFFSET_PATH', 2);
 

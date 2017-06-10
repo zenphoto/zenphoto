@@ -28,7 +28,7 @@
  *
  * See also the Janrain Readme.txt file.
  *
- * ZenPhoto20 provides handlers for <var>Google</var>, <var>Yahoo</var>, <var>Verisign</var>, and <var>MyOpenid</var>.
+ * ZenPhoto20 provides a handler for <var>MyOpenid</var>.
  * Other handlers can be created and placed in the <var>plugins/federated_logon</var> folder.
  * Integration with zenphoto is fairly simple. The logon handler script should be
  * named ending in <var>_logon.php</var>. The plugin will use the name up to that point as the

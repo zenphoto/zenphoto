@@ -1858,8 +1858,6 @@ zp-core/zp-extensions/favoritesHandler/favoritesClass.php
 zp-core/zp-extensions/federated_logon
 zp-core/zp-extensions/federated_logon/federated_logon.css
 zp-core/zp-extensions/federated_logon/federated_logon_buttons.css
-zp-core/zp-extensions/federated_logon/Google.png
-zp-core/zp-extensions/federated_logon/Google_logon.php
 zp-core/zp-extensions/federated_logon/MyOpenID.png
 zp-core/zp-extensions/federated_logon/MyOpenID_logon.php
 zp-core/zp-extensions/federated_logon/OpenID.png
@@ -1867,10 +1865,6 @@ zp-core/zp-extensions/federated_logon/OpenID_common.php
 zp-core/zp-extensions/federated_logon/OpenID_finish_auth.php
 zp-core/zp-extensions/federated_logon/OpenID_logon.php
 zp-core/zp-extensions/federated_logon/OpenID_try_auth.php
-zp-core/zp-extensions/federated_logon/Verisign.png
-zp-core/zp-extensions/federated_logon/Verisign_logon.php
-zp-core/zp-extensions/federated_logon/Yahoo.png
-zp-core/zp-extensions/federated_logon/Yahoo_logon.php
 zp-core/zp-extensions/federated_logon/Auth
 zp-core/zp-extensions/federated_logon/Auth/Janrain Readme.txt
 zp-core/zp-extensions/federated_logon/Auth/OpenID.php
@@ -1898,6 +1892,7 @@ zp-core/zp-extensions/federated_logon/Auth/OpenID/Nonce.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/PAPE.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/Parse.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/PostgreSQLStore.php
+zp-core/zp-extensions/federated_logon/Auth/OpenID/PredisStore.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/Server.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/ServerRequest.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/SQLiteStore.php
@@ -2467,4 +2462,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2469
+2464
