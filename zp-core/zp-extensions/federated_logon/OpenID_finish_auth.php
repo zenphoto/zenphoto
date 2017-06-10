@@ -5,7 +5,7 @@ require_once(dirname(__FILE__) . '/Auth/OpenID/AX.php');
 if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-functions.php');
-session_start();
+zp_session_start();
 
 function escape($thing) {
 	return htmlentities($thing);

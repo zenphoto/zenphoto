@@ -8,7 +8,7 @@
  */
 require_once('OpenID_common.php');
 if (session_id() == '')
-	session_start();
+	zp_session_start();
 
 if (isset($_REQUEST['redirect'])) {
 	$redirect = sanitizeRedirect($_REQUEST['redirect']);
@@ -44,15 +44,15 @@ if (isset($_GET['user']) && $_GET['user']) {
 			print "<div class=\"error\">$error</div>";
 		}
 		?>
-<?php
-if (isset($success)) {
-	print "<div class=\"success\">$success</div>";
-}
-?>
+		<?php
+		if (isset($success)) {
+			print "<div class=\"success\">$success</div>";
+		}
+		?>
 
     <div id="verify-form">
       <form method="get" action="OpenID_try_auth.php">
-			<?php echo gettext('Identity URL:'); ?>
+				<?php echo gettext('Identity URL:'); ?>
         <input type="hidden" name="action" value="verify" />
         <input type="text" size="60" name="openid_identifier" value="" />
 
@@ -65,9 +65,9 @@ if (isset($success)) {
 				<p>
 					<a href="<?php echo $redirect; ?>" title="<?php echo gettext('Return to ZenPhoto20'); ?>" ><?php echo gettext('Return to ZenPhoto20'); ?></a>
 				</p>
-	<?php
-}
-?>
+				<?php
+			}
+			?>
     </div>
   </body>
 </html>

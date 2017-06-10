@@ -8,7 +8,11 @@ require_once 'Auth/Yadis/XRDS.php';
 require_once 'Auth/Yadis/XRI.php';
 
 class Auth_Yadis_ProxyResolver {
-    function Auth_Yadis_ProxyResolver($fetcher, $proxy_url = null)
+
+    /** @var Auth_Yadis_HTTPFetcher */
+    protected $fetcher;
+
+    function __construct($fetcher, $proxy_url = null)
     {
         $this->fetcher = $fetcher;
         $this->proxy_url = $proxy_url;
@@ -60,7 +64,8 @@ class Auth_Yadis_ProxyResolver {
 
             $some_services = $xrds->services($filters);
             $services = array_merge($services, $some_services);
-             //  * If we do get hits for multiple service_types, we're
+            // TODO:
+            //  * If we do get hits for multiple service_types, we're
             //    almost certainly going to have duplicated service
             //    entries and broken priority ordering.
         }

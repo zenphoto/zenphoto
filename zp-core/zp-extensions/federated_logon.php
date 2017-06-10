@@ -171,7 +171,7 @@ class federated_logon {
 		foreach ($files as $key => $link) {
 			$option = getOption('federated_logon_handler' . $key);
 			if ($option || is_null($option)) {
-				$link = replaceScriptPath($link, WEBPATH);
+				$link = replaceScriptPath($link, FULLWEBPATH);
 				$name = str_replace('_', ' ', substr(basename($link), 0, -10));
 				$handler_list[$name] = array('script' => $link, 'params' => array());
 			}

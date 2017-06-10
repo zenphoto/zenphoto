@@ -18,9 +18,7 @@ configuration changes necessary to run the library.
 INSTALLATION
 ============
 
-You will need PHP 4.3.0 or greater to use this library.  We have
-tested the library Linux on PHP 4.3.0, 4.4.1, 5.0.5, and 5.1.1.  We
-have tested the library on Windows XP on PHP 4.4.4.
+You will need PHP 5.6.0 or greater to use this library.
 
 Follow these steps:
 
@@ -33,10 +31,10 @@ Follow these steps:
    - Enable the CURL extension.
 
    - If you plan to use SQLite, PostgreSQL, or MySQL to store OpenID
-     data, you'll need PEAR DB.  You can install this by running this
+     data, you'll need PEAR MDB2.  You can install this by running this
      as root:
 
-     # pear install DB
+     # pear install MDB2
 
      You'll also need to install and enable the appropriate PHP
      database extension.  Alternatively, you can store OpenID data on

@@ -1,10 +1,12 @@
 <?php
 
 require_once("OpenID_common.php");
-require_once(dirname(__FILE__).'/Auth/OpenID/AX.php');
-if (!defined('OFFSET_PATH')) define('OFFSET_PATH',4);
-require_once(dirname(dirname(dirname(__FILE__))).'/admin-functions.php');
-if (session_id() == '') session_start();
+require_once(dirname(__FILE__) . '/Auth/OpenID/AX.php');
+if (!defined('OFFSET_PATH'))
+	define('OFFSET_PATH', 4);
+require_once(dirname(dirname(dirname(__FILE__))) . '/admin-functions.php');
+if (session_id() == '')
+	zp_session_start();
 
 function getOpenIDURL() {
 	// Render a default page if we got a submission without an openid
@@ -34,16 +36,16 @@ function run() {
 	// Create an authentication request to the OpenID provider$auth = $consumer->begin($oid_identifier);
 	// Create attribute request object// See http://code.google.com/apis/accounts/docs/OpenID.html#Parameters for parameters
 	// Usage: make($type_uri, $count=1, $required=false, $alias=null)
-	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/contact/email',2,1, 'email');
+	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/contact/email', 2, 1, 'email');
 	$sreg_attribute[] = 'email';
 
-	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson',1,1, 'name');
-	$ax_attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/first',1,1,'firstname');
-	$ax_attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/middle',1,1,'middlename');
-	$ax_attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/last',1,1,'lastname');
+	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson', 1, 1, 'name');
+	$ax_attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/first', 1, 1, 'firstname');
+	$ax_attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/middle', 1, 1, 'middlename');
+	$ax_attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/last', 1, 1, 'lastname');
 	$sreg_attribute[] = 'fullname';
 
-	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/friendly',1,1, 'nicknamename');
+	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/friendly', 1, 1, 'nicknamename');
 	$sreg_attribute[] = 'nickname';
 
 	// Create AX fetch request
@@ -53,7 +55,7 @@ function run() {
 	}
 	$ax = new Auth_OpenID_AX_FetchRequest;
 	// Add attributes to AX fetch request
-	foreach($attribute as $attr){
+	foreach ($attribute as $attr) {
 		$ax->add($attr);
 	}
 	// Add AX fetch request to authentication request
@@ -62,7 +64,6 @@ function run() {
 	// Redirect the user to the OpenID server for authentication.
 	// Store the token for this authentication so we can verify the
 	// response.
-
 	// For OpenID 1, send a redirect.  For OpenID 2, use a Javascript
 	// form to send a POST request to the server.
 	if ($auth_request->shouldSendRedirect()) {
@@ -73,13 +74,12 @@ function run() {
 			return sprintf(gettext("Could not redirect to server: %s"), $redirect_url->message);
 		} else {
 			// Send redirect.
-			header("Location: ".$redirect_url);
+			header("Location: " . $redirect_url);
 		}
 	} else {
 		// Generate form markup and render it.
 		$form_id = 'openid_message';
-		$form_html = $auth_request->htmlMarkup(getTrustRoot(), getReturnTo(),
-									false, array('id' => $form_id));
+		$form_html = $auth_request->htmlMarkup(getTrustRoot(), getReturnTo(), false, array('id' => $form_id));
 
 		// Display an error if the form markup couldn't be generated;
 		// otherwise, render the HTML.
@@ -94,8 +94,7 @@ function run() {
 
 $error = run();
 if ($error) {
-	header('Location: '.FULLWEBPATH.'/'.ZENFOLDER.'/admin.php?_zp_login_error='.sprintf(gettext('Federated logon error:<br />%s'), $error));
+	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?_zp_login_error=' . sprintf(gettext('Federated logon error:<br />%s'), $error));
 	exitZP();
 }
-
 ?>

@@ -10,7 +10,7 @@
  * @subpackage users
  */
 require_once("OpenID_common.php");
-session_start();
+zp_session_start();
 
 if (isset($_REQUEST['redirect'])) {
 	$redirect = sanitizeRedirect($_REQUEST['redirect']);

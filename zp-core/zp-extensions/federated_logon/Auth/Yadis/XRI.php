@@ -155,7 +155,7 @@ function Auth_Yadis_rootAuthority($xri)
     $authority = $authority[0];
     if ($authority[0] == '(') {
         // Cross-reference.
-        // 	This is incorrect if someone nests cross-references so
+        // XXX: This is incorrect if someone nests cross-references so
         //   there is another close-paren in there.  Hopefully nobody
         //   does that before we have a real xriparse function.
         //   Hopefully nobody does that *ever*.
@@ -184,6 +184,11 @@ function Auth_Yadis_XRI($xri)
     return $xri;
 }
 
+/**
+ * @param string $iname
+ * @param Auth_Yadis_XRDS $xrds
+ * @return bool|string
+ */
 function Auth_Yadis_getCanonicalID($iname, $xrds)
 {
     // Returns false or a canonical ID value.

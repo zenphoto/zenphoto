@@ -12,6 +12,7 @@
  * @copyright 2005-2008 Janrain, Inc.
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
+
 /**
  * Interface import
  */
@@ -27,198 +28,264 @@ require_once "Auth/OpenID.php";
  */
 class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
 
-	function __construct() {
-		$this->reset();
-	}
+    private $headers = array();
+    private $data = '';
 
-	function reset() {
-		$this->headers = array();
-		$this->data = "";
-	}
+    function __construct()
+    {
+        $this->reset();
+    }
 
-	/**
-	 * @access private
-	 */
-	function _writeHeader($ch, $header) {
-		array_push($this->headers, rtrim($header));
-		return strlen($header);
-	}
+    function reset()
+    {
+        $this->headers = array();
+        $this->data = "";
+    }
 
-	/**
-	 * @access private
-	 */
-	function _writeData($ch, $data) {
-		if (strlen($this->data) > 1024 * Auth_OpenID_FETCHER_MAX_RESPONSE_KB) {
-			return 0;
-		} else {
-			$this->data .= $data;
-			return strlen($data);
-		}
-	}
+    /**
+     * @access private
+     * @param string $ch
+     * @param string $header
+     * @return int
+     */
+    function _writeHeader($ch, $header)
+    {
+        array_push($this->headers, rtrim($header));
+        return strlen($header);
+    }
 
-	/**
-	 * Does this fetcher support SSL URLs?
-	 */
-	function supportsSSL() {
-		$v = curl_version();
-		if (is_array($v)) {
-			return in_array('https', $v['protocols']);
-		} elseif (is_string($v)) {
-			return preg_match('/OpenSSL/i', $v);
-		} else {
-			return 0;
-		}
-	}
+    /**
+     * @access private
+     * @param string $ch
+     * @param string $data
+     * @return int
+     */
+    function _writeData($ch, $data)
+    {
+        if (strlen($this->data) > 1024*Auth_OpenID_FETCHER_MAX_RESPONSE_KB) {
+            return 0;
+        } else {
+            $this->data .= $data;
+            return strlen($data);
+        }
+    }
 
-	function get($url, $extra_headers = null) {
-		if (!$this->canFetchURL($url)) {
-			return null;
-		}
+    /**
+     * Does this fetcher support SSL URLs?
+     */
+    function supportsSSL()
+    {
+        $v = curl_version();
+        if(is_array($v)) {
+            return in_array('https', $v['protocols']);
+        } elseif (is_string($v)) {
+            return preg_match('/OpenSSL/i', $v);
+        } else {
+            return 0;
+        }
+    }
 
-		$stop = time() + $this->timeout;
-		$off = $this->timeout;
+    /**
+     * @param string $url
+     * @param array|null $extra_headers
+     * @return Auth_Yadis_HTTPResponse|null
+     */
+    function get($url, $extra_headers = null)
+    {
+        if (!$this->canFetchURL($url)) {
+            return null;
+        }
 
-		$redir = true;
+        $stop = time() + $this->timeout;
+        $off = $this->timeout;
 
-		while ($redir && ($off > 0)) {
-			$this->reset();
+        $redir = true;
 
-			$c = curl_init();
+        while ($redir && ($off > 0)) {
+            $this->reset();
 
-			if ($c === false) {
-				Auth_OpenID::log(
-								"curl_init returned false; could not " .
-								"initialize for URL '%s'", $url);
-				return null;
-			}
+            $c = curl_init();
+            if (defined('Auth_OpenID_DISABLE_SSL_VERIFYPEER')
+                    && Auth_OpenID_DISABLE_SSL_VERIFYPEER === true) {
+                trigger_error(
+                    'You have disabled SSL verifcation, this is a TERRIBLE ' .
+                    'idea in almost all cases. Set Auth_OpenID_DISABLE_SSL_' .
+                    'VERIFYPEER to false if you want to be safe again',
+                    E_USER_WARNING);
+                curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+            }
 
-			if (defined('CURLOPT_NOSIGNAL')) {
-				curl_setopt($c, CURLOPT_NOSIGNAL, true);
-			}
+            if ($c === false) {
+                Auth_OpenID::log(
+                    "curl_init returned false; could not " .
+                    "initialize for URL '%s'", $url);
+                return null;
+            }
 
-			if (!$this->allowedURL($url)) {
-				Auth_OpenID::log("Fetching URL not allowed: %s", $url);
-				return null;
-			}
+            if (defined('CURLOPT_NOSIGNAL')) {
+                curl_setopt($c, CURLOPT_NOSIGNAL, true);
+            }
 
-			curl_setopt($c, CURLOPT_WRITEFUNCTION, array($this, "_writeData"));
-			curl_setopt($c, CURLOPT_HEADERFUNCTION, array($this, "_writeHeader"));
+            if (!$this->allowedURL($url)) {
+                Auth_OpenID::log("Fetching URL not allowed: %s",
+                                 $url);
+                return null;
+            }
 
-			if ($extra_headers) {
-				curl_setopt($c, CURLOPT_HTTPHEADER, $extra_headers);
-			}
+            curl_setopt($c, CURLOPT_WRITEFUNCTION,
+                        array($this, "_writeData"));
+            curl_setopt($c, CURLOPT_HEADERFUNCTION,
+                        array($this, "_writeHeader"));
 
-			$cv = curl_version();
-			if (is_array($cv)) {
-				$curl_user_agent = 'curl/' . $cv['version'];
-			} else {
-				$curl_user_agent = $cv;
-			}
-			curl_setopt($c, CURLOPT_USERAGENT, Auth_OpenID_USER_AGENT . ' ' . $curl_user_agent);
-			curl_setopt($c, CURLOPT_TIMEOUT, $off);
-			curl_setopt($c, CURLOPT_URL, $url);
+            if ($extra_headers) {
+                curl_setopt($c, CURLOPT_HTTPHEADER, $extra_headers);
+            }
 
-			if (defined('Auth_OpenID_VERIFY_HOST')) {
-				curl_setopt($c, CURLOPT_SSL_VERIFYPEER, true);
-				curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 2);
-			}
-			curl_exec($c);
+            $cv = curl_version();
+            if(is_array($cv)) {
+              $curl_user_agent = 'curl/'.$cv['version'];
+            } else {
+              $curl_user_agent = $cv;
+            }
+            curl_setopt($c, CURLOPT_USERAGENT,
+                        Auth_OpenID_USER_AGENT.' '.$curl_user_agent);
+            curl_setopt($c, CURLOPT_TIMEOUT, $off);
+            curl_setopt($c, CURLOPT_URL, $url);
 
-			$code = curl_getinfo($c, CURLINFO_HTTP_CODE);
-			$body = $this->data;
-			$headers = $this->headers;
+            if (defined('Auth_OpenID_VERIFY_HOST')) {
+                // set SSL verification options only if Auth_OpenID_VERIFY_HOST
+                // is explicitly set, otherwise use system default.
+                if (Auth_OpenID_VERIFY_HOST) {
+                    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, true);
+                    curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 2);
+                    if (defined('Auth_OpenID_CAINFO')) {
+                        curl_setopt($c, CURLOPT_CAINFO, Auth_OpenID_CAINFO);
+                    }
+                } else {
+                    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+                }
+            }
+            if (defined('Auth_OpenID_HTTP_PROXY')) {
+                curl_setopt($c, CURLOPT_PROXY, Auth_OpenID_HTTP_PROXY);
+            }
 
-			if (!$code) {
-				Auth_OpenID::log("Got no response code when fetching %s", $url);
-				Auth_OpenID::log("CURL error (%s): %s", curl_errno($c), curl_error($c));
-				return null;
-			}
+            curl_exec($c);
 
-			if (in_array($code, array(301, 302, 303, 307))) {
-				$url = $this->_findRedirect($headers, $url);
-				$redir = true;
-			} else {
-				$redir = false;
-				curl_close($c);
+            $code = curl_getinfo($c, CURLINFO_HTTP_CODE);
+            $body = $this->data;
+            $headers = $this->headers;
 
-				if (defined('Auth_OpenID_VERIFY_HOST') &&
-								$this->isHTTPS($url)) {
-//                    Auth_OpenID::log('OpenID: Verified SSL host %s using '.'curl/get', $url);
-				}
-				$new_headers = array();
+            if (!$code) {
+                Auth_OpenID::log("Got no response code when fetching %s", $url);
+                Auth_OpenID::log("CURL error (%s): %s",
+                                 curl_errno($c), curl_error($c));
+                return null;
+            }
 
-				foreach ($headers as $header) {
-					if (strpos($header, ': ')) {
-						list($name, $value) = explode(': ', $header, 2);
-						$new_headers[$name] = $value;
-					}
-				}
+            if (in_array($code, array(301, 302, 303, 307))) {
+                $url = $this->_findRedirect($headers, $url);
+                $redir = true;
+            } else {
+                $redir = false;
+                curl_close($c);
 
-//                Auth_OpenID::log("Successfully fetched '%s': GET response code %s",$url, $code);
+                if (defined('Auth_OpenID_VERIFY_HOST') &&
+                    Auth_OpenID_VERIFY_HOST == true &&
+                    $this->isHTTPS($url)) {
+                    Auth_OpenID::log('OpenID: Verified SSL host %s using '.
+                                     'curl/get', $url);
+                }
+                $new_headers = array();
 
-				return new Auth_Yadis_HTTPResponse($url, $code, $new_headers, $body);
-			}
+                foreach ($headers as $header) {
+                    if (strpos($header, ': ')) {
+                        list($name, $value) = explode(': ', $header, 2);
+                        $new_headers[$name] = $value;
+                    }
+                }
 
-			$off = $stop - time();
-		}
+                return new Auth_Yadis_HTTPResponse($url, $code,
+                                                    $new_headers, $body);
+            }
 
-		return null;
-	}
+            $off = $stop - time();
+        }
 
-	function post($url, $body, $extra_headers = null) {
-		if (!$this->canFetchURL($url)) {
-			return null;
-		}
+        return null;
+    }
 
-		$this->reset();
+    function post($url, $body, $extra_headers = null)
+    {
+        if (!$this->canFetchURL($url)) {
+            return null;
+        }
 
-		$c = curl_init();
+        $this->reset();
 
-		if (defined('CURLOPT_NOSIGNAL')) {
-			curl_setopt($c, CURLOPT_NOSIGNAL, true);
-		}
+        $c = curl_init();
 
-		curl_setopt($c, CURLOPT_POST, true);
-		curl_setopt($c, CURLOPT_POSTFIELDS, $body);
-		curl_setopt($c, CURLOPT_TIMEOUT, $this->timeout);
-		curl_setopt($c, CURLOPT_URL, $url);
-		curl_setopt($c, CURLOPT_WRITEFUNCTION, array($this, "_writeData"));
+        if (defined('CURLOPT_NOSIGNAL')) {
+            curl_setopt($c, CURLOPT_NOSIGNAL, true);
+        }
 
-		if (defined('Auth_OpenID_VERIFY_HOST')) {
-			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, true);
-			curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 2);
-		}
+        if (defined('Auth_OpenID_HTTP_PROXY')) {
+            curl_setopt($c, CURLOPT_PROXY, Auth_OpenID_HTTP_PROXY);
+        }
 
-		curl_exec($c);
+        curl_setopt($c, CURLOPT_POST, true);
+        curl_setopt($c, CURLOPT_POSTFIELDS, $body);
+        curl_setopt($c, CURLOPT_TIMEOUT, $this->timeout);
+        curl_setopt($c, CURLOPT_URL, $url);
+        curl_setopt($c, CURLOPT_WRITEFUNCTION,
+                    array($this, "_writeData"));
 
-		$code = curl_getinfo($c, CURLINFO_HTTP_CODE);
+        if (defined('Auth_OpenID_VERIFY_HOST')) {
+            // set SSL verification options only if Auth_OpenID_VERIFY_HOST
+            // is explicitly set, otherwise use system default.
+            if (Auth_OpenID_VERIFY_HOST) {
+                curl_setopt($c, CURLOPT_SSL_VERIFYPEER, true);
+                curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 2);
+                if (defined('Auth_OpenID_CAINFO')) {
+                    curl_setopt($c, CURLOPT_CAINFO, Auth_OpenID_CAINFO);
+                }
+            } else {
+                curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+            }
+        }
 
-		if (!$code) {
-			Auth_OpenID::log("Got no response code when fetching %s", $url);
-			Auth_OpenID::log("CURL error (%s): %s", curl_errno($c), curl_error($c));
-			return null;
-		}
+        curl_exec($c);
 
-		if (defined('Auth_OpenID_VERIFY_HOST') && $this->isHTTPS($url)) {
-			Auth_OpenID::log('OpenID: Verified SSL host %s using ' .
-							'curl/post', $url);
-		}
-		$body = $this->data;
+        $code = curl_getinfo($c, CURLINFO_HTTP_CODE);
 
-		curl_close($c);
+        if (!$code) {
+            Auth_OpenID::log("Got no response code when fetching %s", $url);
+            Auth_OpenID::log("CURL error (%s): %s",
+                             curl_errno($c), curl_error($c));
+            return null;
+        }
 
-		$new_headers = $extra_headers;
+        if (defined('Auth_OpenID_VERIFY_HOST') &&
+            Auth_OpenID_VERIFY_HOST == true &&
+            $this->isHTTPS($url)) {
+            Auth_OpenID::log('OpenID: Verified SSL host %s using '.
+                             'curl/post', $url);
+        }
+        $body = $this->data;
 
-		foreach ($this->headers as $header) {
-			if (strpos($header, ': ')) {
-				list($name, $value) = explode(': ', $header, 2);
-				$new_headers[$name] = $value;
-			}
-		}
+        curl_close($c);
 
-		Auth_OpenID::log("Successfully fetched '%s': POST response code %s", $url, $code);
+        $new_headers = $extra_headers;
 
-		return new Auth_Yadis_HTTPResponse($url, $code, $new_headers, $body);
-	}
+        foreach ($this->headers as $header) {
+            if (strpos($header, ': ')) {
+                list($name, $value) = explode(': ', $header, 2);
+                $new_headers[$name] = $value;
+            }
 
+        }
+
+        return new Auth_Yadis_HTTPResponse($url, $code,
+                                           $new_headers, $body);
+    }
 }
+

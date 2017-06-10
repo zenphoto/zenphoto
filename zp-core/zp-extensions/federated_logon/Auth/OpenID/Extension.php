@@ -22,14 +22,17 @@ class Auth_OpenID_Extension {
      * ns_uri: The namespace to which to add the arguments for this
      * extension
      */
-    var $ns_uri = null;
-    var $ns_alias = null;
+    public $ns_uri = null;
+    public $ns_alias = null;
 
     /**
      * Get the string arguments that should be added to an OpenID
      * message for this extension.
+     *
+     * @param Auth_OpenID_Request|null $request
+     * @return null
      */
-    function getExtensionArgs()
+    function getExtensionArgs($request = null)
     {
         return null;
     }
@@ -38,8 +41,12 @@ class Auth_OpenID_Extension {
      * Add the arguments from this extension to the provided message.
      *
      * Returns the message with the extension arguments added.
+     *
+     * @param Auth_OpenID_Message $message
+     * @param Auth_OpenID_Request $request
+     * @return null
      */
-    function toMessage($message)
+    function toMessage($message, $request = null)
     {
         $implicit = $message->isOpenID1();
         $added = $message->namespaces->addAlias($this->ns_uri,
@@ -53,8 +60,13 @@ class Auth_OpenID_Extension {
             }
         }
 
-        $message->updateArgs($this->ns_uri,
-                             $this->getExtensionArgs());
+        if ($request !== null) {
+            $message->updateArgs($this->ns_uri,
+                                 $this->getExtensionArgs($request));
+        } else {
+            $message->updateArgs($this->ns_uri,
+                                 $this->getExtensionArgs());
+        }
         return $message;
     }
 }
