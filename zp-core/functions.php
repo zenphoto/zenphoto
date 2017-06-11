@@ -618,6 +618,7 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
  */
 function getPlugin($plugin, $inTheme = false, $webpath = false) {
 	global $_zp_gallery;
+	$plugin = ltrim($plugin,'./\\');
 	$pluginFile = NULL;
 	$sources = array('/' . USER_PLUGIN_FOLDER . '/' . internalToFilesystem($plugin), '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . internalToFilesystem($plugin));
 	if ($inTheme === true) {
