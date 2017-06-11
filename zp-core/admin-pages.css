@@ -653,6 +653,7 @@ table.options tr td {
 	position: absolute;
 	z-index: 1000;
 	margin-left: -400px;
+	margin-top: -15px;
 	width: 400px;
 	visibility: hidden;
 	background: white !important;
