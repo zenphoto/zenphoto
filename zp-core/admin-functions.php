@@ -1110,7 +1110,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 						break;
 					case 'save':
-						$customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$posted]));
+						$customHandlers[] = array('whom' => $key, 'extension' => sanitize_path($_POST[$posted]));
 						continue 2;
 					default:
 						if (isset($_POST[$postkey])) {
@@ -1138,11 +1138,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 		foreach ($customHandlers as $custom) {
-			if ($extension = $custom['extension']) {
-				require_once(getPlugin($extension . '.php'));
+			if ($extension = $custom['extension'] . '.php' != '.php') {
+				if ($extension = getPlugin($extension)) {
+					require_once($extension);
+				}
+				if (class_exists($custom['whom'])) {
+					$whom = new $custom['whom']();
+					$returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
+				}
 			}
-			$whom = new $custom['whom']();
-			$returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
 		}
 
 		return $returntab;
