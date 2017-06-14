@@ -118,6 +118,13 @@ $zptime = filemtime($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFI
 @copy(dirname(dirname(__FILE__)) . '/dataaccess', SERVERPATH . '/' . DATA_FOLDER . '/.htaccess');
 @chmod(SERVERPATH . '/' . DATA_FOLDER . '/.htaccess', 0444);
 
+if (!file_exists(SERVERPATH . '/' . BACKUPFOLDER)) {
+	@mkdir(SERVERPATH . '/' . BACKUPFOLDER, $chmod | 0311);
+	@chmod(SERVERPATH . '/' . BACKUPFOLDER . '/.htaccess', FOLDER_MOD);
+}
+@copy(dirname(dirname(__FILE__)) . '/dataaccess', SERVERPATH . '/' . BACKUPFOLDER . '/.htaccess');
+
+
 if (isset($_GET['mod_rewrite'])) {
 	$mod = '&mod_rewrite=' . $_GET['mod_rewrite'];
 } else {
