@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Interface to federated login handlers
  *
@@ -56,7 +57,6 @@ if ($plugin_disable) {
 	enableExtension('federated_logon', 0);
 } else {
 	$option_interface = 'federated_logon';
-	zp_register_filter('theme_head', 'federated_logon::css');
 	zp_register_filter('alt_login_handler', 'federated_logon::alt_login_handler');
 	zp_register_filter('save_admin_custom_data', 'federated_logon::save_custom');
 	zp_register_filter('edit_admin_custom_data', 'federated_logon::edit_admin');
@@ -91,7 +91,7 @@ class federated_logon {
 	 * Provides option list
 	 */
 	function getOptionsSupported() {
-		global $_zp_authority, $_common_notify_handler;
+		global $_zp_authority;
 		$admins = $_zp_authority->getAdministrators('groups');
 		$ordered = array();
 		foreach ($admins as $key => $admin) {
@@ -112,7 +112,6 @@ class federated_logon {
 						'order' => 1,
 						'desc' => gettext('Un-check any handler you do not want to support.')),
 				gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
-						'disabled' => $_common_notify_handler,
 						'order' => 7,
 						'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. (Verification is required only if the Federated Logon provider does not supply an e-mail address.)'))
 		);
@@ -123,17 +122,12 @@ class federated_logon {
 			$options[gettext('Notify*')]['disabled'] = true;
 			$options[gettext('Notify*')]['desc'] .= ' ' . gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
 		}
-		if ($_common_notify_handler) {
-			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
-					'order' => 8,
-					'desc' => '<p class="notebox">' . $_common_notify_handler . '</p>');
-		} else {
-			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'federated_logon\');"><em>register_user</em></a> plugin options.');
-			$options['note'] = array('key' => 'menu_truncate_note',
-					'type' => OPTION_TYPE_NOTE,
-					'order' => 8,
-					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
-		}
+
+		$options['note'] = array('key' => 'menu_truncate_note',
+				'type' => OPTION_TYPE_NOTE,
+				'order' => 8,
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> This option is shared amoung <em>federated_logon</em>, <em>googleLogin</em> and <em>register_user</em>.</p>'));
+
 		return $options;
 	}
 
@@ -144,22 +138,6 @@ class federated_logon {
 	 */
 	function handleOption($option, $currentValue) {
 
-	}
-
-	/**
-	 * Load the CSS for the logon buttons
-	 */
-	static function css() {
-		global $_zp_gallery;
-		if (OFFSET_PATH) {
-			$inTheme = false;
-		} else {
-			$inTheme = $_zp_gallery->getCurrentTheme();
-		}
-		$css = getPlugin('federated_logon/federated_logon_buttons.css', $inTheme, true);
-		?>
-		<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
-		<?php
 	}
 
 	/**
@@ -249,6 +227,9 @@ class federated_logon {
 				$userobj->save();
 			} else {
 				$more = sprintf(gettext('Group %s does not exist.'), $groupname);
+			}
+			if (!$more && getOption('register_user_notify')) {
+				$_notify = zp_mail(gettext('ZenPhoto20 Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 			}
 		}
 		if (!$more) {
@@ -359,59 +340,6 @@ class federated_logon {
 		return $script;
 	}
 
-	/**
-	 * Creates a list of logon buttons for federated logon handlers.
-	 * Note that it will use an image if one exists. The name of the image
-	 * should be cononical to the name of the logon handler, but without the "_logon'.
-	 * The image must be a PNG file.
-	 *
-	 * The styling of the buttons is done by the "federated_logon_buttons.css". If you do not like the
-	 * one provided place an alternate version in your theme folder or the plugins/federated_logon
-	 * folder.
-	 */
-	static function buttons($redirect = NULL) {
-		$alt_handlers = federated_logon::alt_login_handler('');
-		?>
-		<ul class="logon_buttons">
-			<?php
-			foreach ($alt_handlers as $handler => $details) {
-				$script = $details['script'];
-				$authority = str_replace('_logon', '', stripSuffix(basename($script)));
-				if (is_null($redirect)) {
-					$details['params'][] = 'redirect=/' . ZENFOLDER . '/admin.php';
-				} else {
-					if (!empty($redirect)) {
-						$details['params'][] = 'redirect=' . $redirect;
-					}
-				}
-				If (count($details['params'])) {
-					$params = "'" . implode("','", $details['params']) . "'";
-				} else {
-					$params = '';
-				}
-				?>
-				<li>
-					<span class="fed_buttons">
-						<a href="javascript:launchScript('<?php echo $script; ?>',[<?php echo $params; ?>]);" title="<?php echo $authority; ?>" >
-							<?php
-							$logo = ltrim(str_replace(WEBPATH, '', dirname($script)) . '/' . $authority . '.png', '/');
-							if (file_exists(SERVERPATH . '/' . $logo)) {
-								?>
-								<img src="<?php echo WEBPATH . '/' . $logo; ?>" alt="<?php echo $authority; ?>" title="<?php printf(gettext('Login using %s'), $authority); ?>" />
-								<?php
-							} else {
-								echo $authority;
-							}
-							?>
-						</a>
-					</span>
-				</li>
-				<?php
-			}
-			?>
-		</ul>
-		<?php
-	}
-
 }
+
 ?>

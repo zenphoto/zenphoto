@@ -53,28 +53,21 @@ class menu_manager {
 	}
 
 	function getOptionsSupported() {
-		global $_common_truncate_handler;
 
 		$options = array(
 				gettext('Truncate indicator*') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 2,
-						'disabled' => $_common_truncate_handler,
 						'desc' => gettext('Append this string to truncated titles.')),
 				gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 1,
 						'desc' => gettext('Limit titles to this many characters. Zero means no limit.'))
 		);
-		if ($_common_truncate_handler) {
-			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
-					'order' => 8,
-					'desc' => '<p class="notebox">' . $_common_truncate_handler . '</p>');
-		} else {
-			$_common_truncate_handler = gettext('* These options may be set via the <a onclick="gotoName(\'menu_manager\');"><em>menu_manager</em></a> plugin options.');
-			$options['note'] = array('key' => 'menu_truncate_note',
-					'type' => OPTION_TYPE_NOTE,
-					'order' => 8,
-					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
-		}
+
+		$options['note'] = array('key' => 'menu_truncate_note',
+				'type' => OPTION_TYPE_NOTE,
+				'order' => 8,
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> These options are shared amoung <em>menu_manager</em>, <em>print_album_menu</em>, and <em>zenpage</em>.</p>'));
+
 		return $options;
 	}
 

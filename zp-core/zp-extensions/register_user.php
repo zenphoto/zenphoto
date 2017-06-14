@@ -63,7 +63,7 @@ class register_user {
 	}
 
 	function getOptionsSupported() {
-		global $_zp_authority, $_common_notify_handler, $_zp_captcha;
+		global $_zp_authority, $_zp_captcha;
 		$options = array(
 				gettext('Link text') => array('key' => 'register_user_page_link', 'type' => OPTION_TYPE_TEXTAREA,
 						'order' => 1,
@@ -93,17 +93,12 @@ class register_user {
 					'buttons' => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
 					'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.'));
 		}
-		if ($_common_notify_handler) {
-			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
-					'order' => 8,
-					'desc' => '<p class="notebox">' . $_common_notify_handler . '</p>');
-		} else {
-			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'register_user\');"><em>register_user</em></a> plugin options.');
-			$options['note'] = array('key' => 'menu_truncate_note',
-					'type' => OPTION_TYPE_NOTE,
-					'order' => 8,
-					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
-		}
+
+		$options['note'] = array('key' => 'menu_truncate_note',
+				'type' => OPTION_TYPE_NOTE,
+				'order' => 8,
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> This option is shared amoung <em>federated_logon</em>, <em>googleLogin</em> and <em>register_user</em>.</p>'));
+
 		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 		if (count($mailinglist) == 0) { //	no one to send the notice to!
 			$options[gettext('Notify*')]['disabled'] = true;

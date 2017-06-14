@@ -77,8 +77,6 @@ class sitemap {
 			array_shift($matches);
 			$host = implode('.', $matches);
 		}
-		$localdesc = '<p>' . sprintf(gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.%1$s</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.'), $host) . '</p>';
-		$localdesc .= '<p>' . sprintf(gettext('This requires that you have created the appropriate subdomains pointing to your installation. That is <code>fr.%1$s</code> must point to the same location as <code>%1$s</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)'), $host . WEBPATH) . '</p>';
 
 		$options = array(
 				gettext('Gallery index page') => array('key' => 'sitemap_galleryindex', 'type' => OPTION_TYPE_TEXTBOX,
@@ -177,16 +175,8 @@ class sitemap {
 						'desc' => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: ' . FULLWEBPATH . '/license.html')),
 				gettext('Sitemap processing chunk') => array('key' => 'sitemap_processing_chunk', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 13,
-						'desc' => gettext('The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files.')),
-				gettext('Use subdomains') . '*' => array('key' => 'dynamic_locale_subdomain', 'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 14,
-						'desc' => $localdesc)
+						'desc' => gettext('The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files.'))
 		);
-
-		$options['note'] = array('key' => 'sitemap_locale_type',
-				'type' => OPTION_TYPE_NOTE,
-				'order' => 99,
-				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
 
 		return $options;
 	}

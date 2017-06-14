@@ -50,50 +50,48 @@ class user_logout_options {
 if (in_context(ZP_INDEX)) {
 	if (isset($_GET['userlog'])) { // process the logout.
 		if ($_GET['userlog'] == 0) {
-			if (!$location = Zenphoto_Authority::handleLogout()) {
-				$__redirect = array();
-				if (in_context(ZP_ALBUM)) {
-					$__redirect['album'] = $_zp_current_album->name;
-				}
-				if (in_context(ZP_IMAGE)) {
-					$__redirect['image'] = $_zp_current_image->filename;
-				}
-				if (in_context(ZP_ZENPAGE_PAGE)) {
-					$__redirect['title'] = $_zp_current_page->getTitlelink();
-				}
-				if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-					$__redirect['title'] = $_zp_current_article->getTitlelink();
-				}
-				if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-					$__redirect['category'] = $_zp_current_category->getTitlelink();
-				}
-				if (isset($_GET['p'])) {
-					$__redirect['p'] = sanitize($_GET['p']);
-				}
-				if (isset($_GET['searchfields'])) {
-					$__redirect['searchfields'] = sanitize($_GET['searchfields']);
-				}
-				if (isset($_GET['words'])) {
-					$__redirect['words'] = sanitize($_GET['words']);
-				}
-				if (isset($_GET['date'])) {
-					$__redirect['date'] = sanitize($_GET['date']);
-				}
-				if (isset($_GET['title'])) {
-					$__redirect['title'] = sanitize($_GET['title']);
-				}
-				if (isset($_GET['page'])) {
-					$__redirect['page'] = sanitize($_GET['page']);
-				}
-
-				$params = '';
-				if (!empty($__redirect)) {
-					foreach ($__redirect as $param => $value) {
-						$params .= '&' . $param . '=' . $value;
-					}
-				}
-				$location = FULLWEBPATH . '/index.php?fromlogout' . $params;
+			$__redirect = array();
+			if (in_context(ZP_ALBUM)) {
+				$__redirect['album'] = $_zp_current_album->name;
 			}
+			if (in_context(ZP_IMAGE)) {
+				$__redirect['image'] = $_zp_current_image->filename;
+			}
+			if (in_context(ZP_ZENPAGE_PAGE)) {
+				$__redirect['title'] = $_zp_current_page->getTitlelink();
+			}
+			if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+				$__redirect['title'] = $_zp_current_article->getTitlelink();
+			}
+			if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+				$__redirect['category'] = $_zp_current_category->getTitlelink();
+			}
+			if (isset($_GET['p'])) {
+				$__redirect['p'] = sanitize($_GET['p']);
+			}
+			if (isset($_GET['searchfields'])) {
+				$__redirect['searchfields'] = sanitize($_GET['searchfields']);
+			}
+			if (isset($_GET['words'])) {
+				$__redirect['words'] = sanitize($_GET['words']);
+			}
+			if (isset($_GET['date'])) {
+				$__redirect['date'] = sanitize($_GET['date']);
+			}
+			if (isset($_GET['title'])) {
+				$__redirect['title'] = sanitize($_GET['title']);
+			}
+			if (isset($_GET['page'])) {
+				$__redirect['page'] = sanitize($_GET['page']);
+			}
+
+			$params = '';
+			if (!empty($__redirect)) {
+				foreach ($__redirect as $param => $value) {
+					$params .= '&' . $param . '=' . $value;
+				}
+			}
+			$location = Zenphoto_Authority::handleLogout(FULLWEBPATH . '/index.php?fromlogout' . $params);
 			header("Location: " . $location);
 			exitZP();
 		}

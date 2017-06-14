@@ -826,14 +826,15 @@ class _Authority {
 	 * Cleans up on logout
 	 *
 	 */
-	static function handleLogout() {
+	static function handleLogout($location) {
 		global $_zp_loggedin, $_zp_pre_authorization, $_zp_current_admin_obj;
+		$location = zp_apply_filter('zp_logout', $location, $_zp_current_admin_obj);
 		foreach (self::getAuthCookies() as $cookie => $value) {
 			zp_clearCookie($cookie);
 		}
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
-		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);
+		return $location;
 	}
 
 	/**
@@ -881,6 +882,7 @@ class _Authority {
 			}
 		}
 		$alt_handlers = zp_apply_filter('alt_login_handler', array());
+
 		$star = false;
 		$mails = array();
 		$info = array('challenge' => '', 'response' => '');
@@ -1319,7 +1321,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-								 togglePassword('<?php echo $id; ?>');">
+										 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

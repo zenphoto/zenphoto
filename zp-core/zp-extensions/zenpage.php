@@ -113,7 +113,6 @@ class cmsFilters {
 	}
 
 	function getOptionsSupported() {
-		global $_common_truncate_handler;
 
 		$options = array(
 				gettext('Enabled CMS items') => array(
@@ -140,25 +139,17 @@ class cmsFilters {
 						'order' => 3,
 						'desc' => gettext("The text for the link to the full article.")),
 				gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_NUMBER,
-						'disabled' => $_common_truncate_handler,
 						'order' => 23,
 						'desc' => gettext('Limit titles to this many characters. Zero means no limit.')),
 				gettext('Truncate indicator*') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
-						'disabled' => $_common_truncate_handler,
 						'order' => 24,
 						'desc' => gettext('Append this string to truncated titles.'))
 		);
-		if ($_common_truncate_handler) {
-			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
-					'order' => 25,
-					'desc' => '<p class="notebox">' . $_common_truncate_handler . '</p>');
-		} else {
-			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'zenpage\');"><em>Zenpage</em></a> plugin options.');
-			$options['note'] = array('key' => 'menu_truncate_note',
-					'type' => OPTION_TYPE_NOTE,
-					'order' => 25,
-					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
-		}
+
+		$options['note'] = array('key' => 'menu_truncate_note',
+				'type' => OPTION_TYPE_NOTE,
+				'order' => 25,
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> These options are shared amoung <em>menu_manager</em>, <em>print_album_menu</em>, and <em>zenpage</em>.</p>'));
 		return $options;
 	}
 
