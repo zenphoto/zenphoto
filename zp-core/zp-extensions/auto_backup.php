@@ -3,6 +3,8 @@
 /**
  * This plugin provides a facility to periodically run the Zenphoto backup utility. Use it to
  * insure that database backups are done on a regular basis.
+ * 
+ * The backups are stored within the /backup folder in the root of your install.
  *
  * <b>NOTE:</b> The website must be visited and live pages must be served for this
  * plugin to be able to check if it is time to run.
@@ -49,17 +51,25 @@ class auto_backup {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		$options = array(gettext('Run interval')		 => array('key'		 => 'backup_interval', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('The run interval (in days) for auto backup.')),
-						gettext('Backups to keep') => array('key'		 => 'backups_to_keep', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 0,
-										'desc'	 => gettext('Auto backup will keep only this many backup sets. Older sets will be removed.'))
+		$options = array(
+				gettext('Run interval') => array(
+						'key' => 'backup_interval',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext('The run interval (in days) for auto backup.')),
+				gettext('Backups to keep') => array(
+						'key' => 'backups_to_keep',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 0,
+						'desc' => gettext('Auto backup will keep only this many backup sets. Older sets will be removed.'))
 		);
 		if ($d = getOption('last_backup_run')) {
-			$options[gettext('Last backup')] = array('key'		 => 'last_backup_run', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 2,
-							'desc'	 => '<p class="notebox">' . sprintf(gettext('Auto Backup last ran %s.'), date('Y-m-d H:i:s', $d)) . '</p>');
+			$options[
+							gettext('Last backup')] = array(
+					'key' => 'last_backup_run',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 2,
+					'desc' => '<p class="notebox">' . sprintf(gettext('Auto Backup last ran %s.'), date('Y-m-d H:i:s', $d)) . '</p>');
 		}
 		return $options;
 	}
