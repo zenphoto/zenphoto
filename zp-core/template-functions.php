@@ -2562,7 +2562,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 		$refa = '</a>';
 		$style = ' style="display:none"';
 	} else if ($toggle) {
-		$refh = '<a href="javascript:toggle(\'' . $dataid . '\');" title="' . $title . '">';
+		$refh = '<a class="metadata_toggle" href="#" title="' . $title . '">';
 		$refa = '</a>';
 		$style = ' style="display:none"';
 	}
@@ -2570,6 +2570,14 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 	<span id="<?php echo $span; ?>" class="metadata_title">
 		<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
 	</span>
+	<?php if($toggle) { ?>
+		<script>
+			$(".metadata_toggle").click(function(event) {
+				event.preventDefault();
+				$("#<?php echo $dataid; ?>").toggle();
+			});
+		</script>
+	<?php } ?>
 	<div id="<?php echo $dataid; ?>"<?php echo $style; ?>>
 		<div<?php echo $id . $class; ?>>
 			<table>
@@ -4007,7 +4015,13 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 					<input type="text" name="words" value="" id="search_input" size="10" />
 				</span>
 				<?php if (count($fields) > 1 || $searchwords) { ?>
-					<a href="javascript:toggle('searchextrashow');" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
+					<a class="toggle_searchextrashow" href="#"><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
+					<script>
+						$(".toggle_searchextrashow").click(function(event) {
+							event.preventDefault();
+							$("#searchextrashow").toggle();
+						});
+					</script>
 				<?php } ?>
 				<input type="<?php echo $type; ?>" <?php echo $button; ?> class="button buttons" id="search_submit" <?php echo $buttonSource; ?> data-role="none" />
 				<?php
