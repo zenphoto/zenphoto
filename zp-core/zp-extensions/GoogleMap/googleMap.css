@@ -9,10 +9,7 @@ Author: Vincent3569
 }
 
 .hidden_map {
-	position: absolute;
-	left: -50000px;
-	width: 600px;
-	height: 400px;
+	display: none;
 }
 
 .map_img {
