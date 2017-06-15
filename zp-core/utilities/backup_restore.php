@@ -521,13 +521,19 @@ if (isset($_GET['compression'])) {
 					<?php printf(gettext("Database name <strong>%s</strong>"), db_name()); ?><br />
 					<?php printf(gettext("Tables prefix <strong>%s</strong>"), trim(prefix(), '`')); ?>
 				</p>
-				<br />
-				<br />
 				<?php
 				if (!$_zp_current_admin_obj->reset) {
+					echo '<p>';
+					echo gettext('The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. ' .
+											'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
+					echo '</p>';
+				}
+				if (!$_zp_current_admin_obj->reset) {
 					?>
+				 <hr>
 					<form name="backup_gallery" action="">
 						<?php XSRFToken('backup'); ?>
+						<h2><?php echo gettext('Create backup'); ?></h2>
 						<input type="hidden" name="backup" value="true" />
 						<div class="buttons pad_button" id="dbbackup">
 							<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
@@ -543,10 +549,8 @@ if (isset($_GET['compression'])) {
 								?>
 							</select> <?php echo gettext('Compression level'); ?>
 						</div>
-						<br class="clearall" />
-						<br class="clearall" />
+			
 					</form>
-					<br />
 					<br />
 					<?php
 				}
@@ -555,8 +559,18 @@ if (isset($_GET['compression'])) {
 					echo gettext('You have not yet created a backup set.');
 				} else {
 					?>
+					<hr>
+					<h2><?php echo gettext('Backup restore'); ?></h2>
+					<?php
+						echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
+						echo '</p><p class="warningbox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
+						echo '</p><p class="notebox">';
+						echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
+						echo '</p>';
+						?>
 					<form name="restore_gallery" action="">
 						<?php XSRFToken('backup'); ?>
+						
 						<?php echo gettext('Select the database restore file:'); ?>
 						<br />
 						<select id="backupfile" name="backupfile">
@@ -583,17 +597,6 @@ if (isset($_GET['compression'])) {
 					<?php
 				}
 
-				echo '<p>';
-				if (!$_zp_current_admin_obj->reset) {
-					echo gettext('The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. ' .
-									'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
-					echo '</p><p>';
-				}
-				echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
-				echo '</p><p class="notebox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
-				echo '</p><p>';
-				echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
-				echo '</p>'
 				?>
 			</div>
 		</div><!-- content -->
