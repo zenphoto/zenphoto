@@ -3601,7 +3601,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 	?>
 	<div class="box-albums-unpadded">
 		<h2 class="h2_bordered_albums">
-			<a onclick="toggle('<?php echo $prefix ?>');" title="<?php echo html_encode($hint); ?>" ><?php echo $text . $itemcount; ?></a>
+			<a onclick="$('#<?php echo $prefix ?>').toggle();" title="<?php echo html_encode($hint); ?>" ><?php echo $text . $itemcount; ?></a>
 		</h2>
 		<div id="<?php echo $prefix ?>" style="display:none;">
 			<ul class="albumchecklist">

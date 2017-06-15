@@ -1,6 +1,7 @@
 // JS support for general use
 
 function toggle(x) {
+	alert('zenphoto.js toggle() function is deprecated');
 	jQuery('#' + x).toggle();
 }
 

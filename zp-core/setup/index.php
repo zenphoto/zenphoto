@@ -922,7 +922,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									if ($engine['enabled']) {
 										if (isset($enabled['experimental'])) {
 											?>
-											<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle(\'show\')" >experimental</a>)'), $handler); ?>
+											<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle()" >experimental</a>)'), $handler); ?>
 											</li>
 											<p class="warning" id="<?php echo $handler; ?>"
 												 style="display: none;">

@@ -88,7 +88,7 @@ function adminToolbox() {
 		?>
 		<div id="<?php echo $id; ?>">
 			<h3>
-				<a onclick="toggle('<?php echo $dataid; ?>');" title="<?php echo gettext('Admin') . ' ' . $name; ?>">
+				<a onclick="$('#<?php echo $dataid; ?>').toggle();" title="<?php echo gettext('Admin') . ' ' . $name; ?>">
 					<img src="<?php echo $icon; ?>" />
 				</a>
 			</h3>
@@ -2428,7 +2428,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 		$refa = '</a>';
 		$style = ' style="display:none"';
 	} else if ($toggle) {
-		$refh = '<a onclick="toggle(\'' . $dataid . '\');" title="' . $title . '">';
+		$refh = '<a onclick="$(\'#' . $dataid . '\').toggle();" title="' . $title . '">';
 		$refa = '</a>';
 		$style = ' style="display:none"';
 	}
@@ -3793,39 +3793,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-					// <!-- <![CDATA[
-					var within = <?php echo (int) $within; ?>;
-					function search_(way) {
-						within = way;
-						if (way) {
-							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+				// <!-- <![CDATA[
+				var within = <?php echo (int) $within; ?>;
+				function search_(way) {
+					within = way;
+					if (way) {
+						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+					} else {
+						lastsearch = '';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+					}
+					$('#search_input').val('');
+				}
+				$('#search_form').submit(function () {
+					if (within) {
+						var newsearch = $.trim($('#search_input').val());
+						if (newsearch.substring(newsearch.length - 1) == ',') {
+							newsearch = newsearch.substr(0, newsearch.length - 1);
+						}
+						if (newsearch.length > 0) {
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 						} else {
-							lastsearch = '';
-							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+							$('#search_input').val('<?php echo $searchwords; ?>');
 						}
-						$('#search_input').val('');
 					}
-					$('#search_form').submit(function () {
-						if (within) {
-							var newsearch = $.trim($('#search_input').val());
-							if (newsearch.substring(newsearch.length - 1) == ',') {
-								newsearch = newsearch.substr(0, newsearch.length - 1);
-							}
-							if (newsearch.length > 0) {
-								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-							} else {
-								$('#search_input').val('<?php echo $searchwords; ?>');
-							}
-						}
-						return true;
-					});
-					function search_all() {
-						//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-						var check = $('#SEARCH_checkall').prop('checked');
-						$('.SEARCH_checkall').prop('checked', check);
-					}
+					return true;
+				});
+				function search_all() {
+					//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+					var check = $('#SEARCH_checkall').prop('checked');
+					$('.SEARCH_checkall').prop('checked', check);
+				}
 
-					// ]]> -->
+				// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
@@ -3834,7 +3834,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 					<input type="text" name="words" value="" id="search_input" size="10" />
 				</span>
 				<?php if (count($fields) > 1 || $searchwords) { ?>
-					<a onclick="toggle('searchextrashow');" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
+					<a onclick="$('#searchextrashow').toggle();" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
 				<?php } ?>
 				<input type="<?php echo $type; ?>" <?php echo $button; ?> class="button buttons" id="search_submit" <?php echo $buttonSource; ?> data-role="none" />
 				<?php
