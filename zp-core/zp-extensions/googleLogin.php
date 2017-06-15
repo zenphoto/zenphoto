@@ -65,7 +65,7 @@ class googleLogin {
 		$admins = $_zp_authority->getAdministrators('groups');
 		$ordered = array();
 		foreach ($admins as $key => $admin) {
-			if ($admin['rights'] && !($admin['rights'] & ADMIN_RIGHTS)) {
+			if ($admin['name'] == 'group' && $admin['rights'] && !($admin['rights'] & ADMIN_RIGHTS)) {
 				$ordered[$admin['user']] = $admin['user'];
 			}
 		}
@@ -138,6 +138,7 @@ class googleLogin {
 	 */
 	static function credentials($user, $email, $name, $redirect) {
 		global $_zp_authority;
+
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 		$more = false;
 		if ($userobj) { //	update if changed
@@ -149,6 +150,13 @@ class googleLogin {
 			if (!empty($name) && $name != $userobj->getName()) {
 				$save = true;
 				$userobj->setName($name);
+			}
+			$credentials = array('auth' => 'googleOAuth', 'user' => 'user', 'email' => 'email');
+			if ($name)
+				$credentials['name'] = 'name';
+			if ($credentials != $userobj->getCredentials()) {
+				$save = true;
+				$userobj->setCredentials($credentials);
 			}
 			if ($save) {
 				$userobj->save();
@@ -164,9 +172,9 @@ class googleLogin {
 				$userobj = Zenphoto_Authority::newAdministrator('');
 				$userobj->transient = false;
 				$userobj->setUser($user);
-				$credentials = array('googleOAuth', 'user', 'email');
+				$credentials = array('auth' => 'googleOAuth', 'user' => 'user', 'email' => 'email');
 				if ($name) {
-					$credentials[] = 'name';
+					$credentials['name'] = 'name';
 				}
 				$userobj->setCredentials($credentials);
 
@@ -195,9 +203,9 @@ class googleLogin {
 		}
 
 		if ($more) {
-			zp_error($more);
+			die($more);
 		}
-		zp_apply_filter('federated_login_attempt', true, $user); //	we will mascerade as federated logon for this filter
+		zp_apply_filter('federated_login_attempt', true, $user, 'googleOAuth'); //	we will mascerade as federated logon for this filter
 		Zenphoto_Authority::logUser($userobj);
 		session_unset(); //	need to cleanse out google stuff or subsequent logins will fail[sic]
 		if ($redirect) {

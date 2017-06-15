@@ -95,7 +95,7 @@ class federated_logon {
 		$admins = $_zp_authority->getAdministrators('groups');
 		$ordered = array();
 		foreach ($admins as $key => $admin) {
-			if ($admin['rights'] && !($admin['rights'] & ADMIN_RIGHTS)) {
+			if ($admin['name'] == 'group' && $admin['rights'] && !($admin['rights'] & ADMIN_RIGHTS)) {
 				$ordered[$admin['user']] = $admin['user'];
 			}
 		}
@@ -173,6 +173,11 @@ class federated_logon {
 		global $_zp_authority;
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 		$more = false;
+		if (isset($_SESSION['provider'])) {
+			$auth = $_SESSION['provider'];
+		} else {
+			$auth = 'federated_logon';
+		}
 		if ($userobj) { //	update if changed
 			$save = false;
 			if (!empty($email) && $email != $userobj->getEmail()) {
@@ -182,6 +187,13 @@ class federated_logon {
 			if (!empty($name) && $name != $userobj->getName()) {
 				$save = true;
 				$userobj->setName($name);
+			}
+			$credentials = array('auth' => $auth, 'user' => 'user', 'email' => 'email');
+			if ($name)
+				$credentials['name'] = 'name';
+			if ($credentials != $userobj->getCredentials()) {
+				$save = true;
+				$userobj->setCredentials($credentials);
 			}
 			if ($save) {
 				$userobj->save();
@@ -197,9 +209,9 @@ class federated_logon {
 				$userobj = Zenphoto_Authority::newAdministrator('');
 				$userobj->transient = false;
 				$userobj->setUser($user);
-				$credentials = array('federated', 'user', 'email');
+				$credentials = array('auth' => $auth, 'user' => 'user', 'email' => 'email');
 				if ($name)
-					$credentials[] = 'name';
+					$credentials['name'] = 'name';
 				$userobj->setCredentials($credentials);
 				$userobj->setName($name);
 				$userobj->setPass($user . HASH_SEED . gmdate('d M Y H:i:s'));
@@ -233,7 +245,8 @@ class federated_logon {
 			}
 		}
 		if (!$more) {
-			zp_apply_filter('federated_login_attempt', true, $user);
+
+			zp_apply_filter('federated_login_attempt', true, $user, $auth);
 			Zenphoto_Authority::logUser($userobj);
 			if ($redirect) {
 				header("Location: " . $redirect);

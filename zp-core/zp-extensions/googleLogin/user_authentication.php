@@ -7,7 +7,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-functions.php');
 zp_session_start();
 
 //Google API PHP Library includes
-require_once 'D:/test_sites/google_login/googleOAuth2/autoload.php';
+require_once 'googleOAuth2/autoload.php';
 // Fill CLIENT ID, CLIENT SECRET ID, REDIRECT URI from Google Developer Console
 $client_id = getOption('googleLogin_ClientID');
 $client_secret = getOption('googleLogin_ClientSecret');
