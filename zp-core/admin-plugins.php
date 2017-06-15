@@ -102,11 +102,6 @@ $filelist = array_slice($pluginlist, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PA
 ?>
 <script type="text/javascript">
 	<!--
-	function toggleDetails(plugin) {
-		toggle(plugin + '_show');
-		toggle(plugin + '_hide');
-	}
-
 	var pluginsToPage = ['<?php echo implode("','", $pluginlist); ?>'];
 	function gotoPlugin(plugin) {
 		i = Math.floor(jQuery.inArray(plugin, pluginsToPage) / <?php echo PLUGINS_PER_PAGE; ?>);
@@ -320,7 +315,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 							if ($plugin_disable) {
 								?>
 								<span class="icons" id="<?php echo $extension; ?>_checkbox">
-									<a onclick="toggle('showdisable_<?php echo $extension; ?>');" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>" >
+									<a onclick="$('#showdisable_<?php echo $extension; ?>').toggle();" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>" >
 										<img src="images/action.png" alt="" class="zp_logoicon" />
 									</a>
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
@@ -346,12 +341,12 @@ zp_apply_filter('admin_note', 'plugins', '');
 					</td>
 					<td width="60">
 						<span class="icons"><a onclick="$.colorbox({
-										close: '<?php echo gettext("close"); ?>',
-										maxHeight: '80%',
-										maxWidth: '80%',
-										innerWidth: '560px',
-										href: '<?php echo $plugin_URL; ?>'
-									});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
+									close: '<?php echo gettext("close"); ?>',
+									maxHeight: '80%',
+									maxWidth: '80%',
+									innerWidth: '560px',
+									href: '<?php echo $plugin_URL; ?>'
+								});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
 																	 <?php
 																	 if ($optionlink) {
 																		 ?>
@@ -364,7 +359,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 						}
 						if ($plugin_notice) {
 							?>
-							<span class="icons"><a onclick="toggle('show_<?php echo $extension; ?>');" title ="<?php echo gettext('Plugin warnings'); ?>" ><img class="icon-position-top3" src="images/warn.png" alt="" /></a></span>
+							<span class="icons"><a onclick="$('#show_<?php echo $extension; ?>').toggle();" title ="<?php echo gettext('Plugin warnings'); ?>" ><img class="icon-position-top3" src="images/warn.png" alt="" /></a></span>
 							<?php
 						}
 						?>

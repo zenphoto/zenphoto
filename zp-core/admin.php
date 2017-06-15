@@ -541,6 +541,7 @@ if (!zp_loggedin()) {
 							$filters = $_zp_filters;
 							$c = count($plugins);
 							?>
+							<h3><a onclick="$('#plugins_hide').toggle();
 									$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
