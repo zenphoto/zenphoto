@@ -107,6 +107,7 @@ if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE))
 
 $zptime = filemtime($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 @copy(dirname(dirname(__FILE__)) . '/dataaccess', $serverpath . '/' . DATA_FOLDER . '/.htaccess');
+@copy(dirname(dirname(__FILE__)) . '/dataaccess', $serverpath . '/' . BACKUPFOLDER . '/.htaccess'); 
 @chmod($serverpath . '/' . DATA_FOLDER . '/.htaccess', 0444);
 
 if (session_id() == '') {

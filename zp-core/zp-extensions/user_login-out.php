@@ -177,7 +177,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 		if ($before) { echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>'; }
 		$logoutlink = "javascript:launchScript('" . FULLWEBPATH . "/',[" . implode(',', $params) . "]);";
 		?>
-		<a href="<?php echo $logoutlink; ?>" title="<?php echo $logouttext; ?>"><?php echo $logouttext; ?></a>
+		<a class="logoutlink" href="<?php echo $logoutlink; ?>" title="<?php echo $logouttext; ?>"><?php echo $logouttext; ?></a>
 		<?php if ($after) { echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>'; }
 	}
 }
