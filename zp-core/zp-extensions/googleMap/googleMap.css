@@ -9,8 +9,8 @@ Author: Vincent3569
 }
 
 .hidden_map {
+	display: none;
 	position: absolute;
-	left: -50000px;
 	width: 600px;
 	height: 400px;
 }
@@ -33,7 +33,7 @@ Author: Vincent3569
 	margin: 10px 0 0;
 }
 img, a img {
-    border: medium none;
+	border: medium none;
 }
 .errorbox {
 	padding: 5px;

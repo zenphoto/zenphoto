@@ -469,6 +469,12 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				function toggle_<?php echo $id_data; ?>() {
 					if ($('#<?php echo $id_data; ?>').hasClass('hidden_map')) {
 						$('#<?php echo $id_data; ?>').removeClass('hidden_map');
+						//re-render the map because drawing it when hidden is problematic
+						//and drawing it "off screen" presumes the size of the screen[sic]
+						var center = map.getCenter();
+						google.maps.event.trigger(map, "resize");
+						map.setCenter(center);
+						fitMapToBounds();
 					} else {
 						$('#<?php echo $id_data; ?>').addClass('hidden_map');
 					}
