@@ -503,8 +503,8 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 					$(document).ready(function() {
 						$(".google_map").colorbox({
 							iframe: true,
-							innerWidth: $(window).width() * 0.8,
-							innerHeight: $(window).height() * 0.7,
+							width: $(window).width() * 0.8,
+							weight: $(window).height() * 0.7,
 							close: '<?php echo gettext("close"); ?>',
 							onComplete: function() {
 								parent.resizeColorBoxMap();$(window).resize(resizeColorBoxMap);
