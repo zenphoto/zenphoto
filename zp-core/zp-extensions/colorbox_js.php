@@ -124,7 +124,7 @@ class colorbox {
 							$.colorbox.resize({innerWidth: mapw, innerHeight: maph});
 							$('#cboxLoadedContent iframe').contents().find('#map_canvas').css('width', '100%').css('height', maph-20);
 						}
-					}, 300)
+					}, 500)
 			}
 			// Resize Colorbox when changing mobile device orientation
 			window.addEventListener("orientationchange", function(){resizeColorBoxImage();parent.resizeColorBoxMap()}, false);
