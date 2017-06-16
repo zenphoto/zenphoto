@@ -168,7 +168,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 				default:
 					if ($loginlink = zp_apply_filter('login_link',getCustomPageURL('password'))) {
 						if ($before) { echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>'; } ?>
-						<a href="<?php echo $loginlink; ?>" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
+						<a href="<?php echo $loginlink; ?>" class="logonlink" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
 						<?php if ($after) { echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>'; }
 					}
 			}
