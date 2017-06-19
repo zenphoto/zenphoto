@@ -909,8 +909,8 @@ class Zenphoto_Authority {
 								<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
 							</fieldset>
 							<?php
-							if ($requestor && $admin) {
-								if (!empty($info['challenge'])) {
+							if ($requestor && $admin) {	
+							if (!empty($info['challenge'])) {
 								?>
 								<p class="logon_form_text"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?>
 								<?php if ( $admin->getEmail() ) { echo gettext('<br />You may also use the link below to request a reset by e-mail.'); } ?>
@@ -944,8 +944,8 @@ class Zenphoto_Authority {
 							?>
 							<div class="buttons">
 								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?></button>
-								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=challenge', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
-								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
+								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="window.location ='<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref='+$('#user').val();" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
+								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location ='<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref='+$('#user').val();" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 							</div>
 							<br class="clearall" />
 						</fieldset>
@@ -954,9 +954,9 @@ class Zenphoto_Authority {
 						if ( $star && (!empty($requestor) && $username_is_valid && $admin->getEmail()) ) {
 							?>
 							<p class="logon_link">
-								<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
+								<button onclick="window.location ='<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=captcha&amp;ref='+$('#user').val();" >
 									<?php echo gettext('Request reset by e-mail'); ?>
-								</a>
+								</button>
 							</p>
 							<?php
 						}
@@ -993,7 +993,7 @@ class Zenphoto_Authority {
 							function changeHandler(handler) {
 								handler.push('user=' + $('#user').val());
 								var script = handler.shift();
-								launchScript(script, handler);
+								window.location = script+'?'+handler.join('&');
 							}
 							// ]]> -->
 						</script>
@@ -1034,9 +1034,9 @@ class Zenphoto_Authority {
 					if ($showUserField && OFFSET_PATH != 2) {
 						?>
 						<p class="logon_link">
-							<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" >
+							<button onclick="window.location ='<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref='+$('#user').val();">
 								<?php echo gettext('I forgot my <strong>User ID</strong>/<strong>Password</strong>'); ?>
-							</a>
+							</button>
 						</p>
 						<?php
 					}
@@ -1066,7 +1066,7 @@ class Zenphoto_Authority {
 							<br />
 							<div class="buttons">
 								<button type="submit" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>
-								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
+								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location ='<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref='+$('#user').val();" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 							</div>
 							<br class="clearall" />
 						</fieldset>

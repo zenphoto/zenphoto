@@ -102,18 +102,26 @@ class federated_logon {
 		foreach ($files as $key => $link) {
 			$list[str_replace('_logon', '', $key)] = 'federated_logon_handler' . $key;
 		}
-		$options = array(gettext('Assign user to')	 => array('key'				 => 'federated_login_group', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 0,
-										'selections' => $ordered,
-										'desc'			 => gettext('The user group to which to map the federated login.')),
-						gettext('Handlers')				 => array('key'				 => 'federated_logon_handler', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'checkboxes' => $list,
-										'order'			 => 1,
-										'desc'			 => gettext('Un-check any handler you do not want to support.')),
-						gettext('Notify*')				 => array('key'			 => 'register_user_notify', 'type'		 => OPTION_TYPE_CHECKBOX,
-										'disabled' => $_common_notify_handler,
-										'order'		 => 7,
-										'desc'		 => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. (Verification is required only if the Federated Logon provider does not supply an e-mail address.)'))
+		$options = array(
+				gettext('Assign user to') => array(
+						'key' => 'federated_login_group',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $ordered,
+						'desc' => gettext('The user group to which to map the federated login.')),
+				gettext('Handlers') => array(
+						'key' => 'federated_logon_handler',
+						'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'checkboxes' => $list,
+						'order' => 1,
+						'desc' => gettext('Un-check any handler you do not want to support.')),
+				gettext('Notify*') => array(
+						'key' => 'register_user_notify',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'disabled' => $_common_notify_handler,
+						'order' => 7,
+						'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. (Verification is required only if the Federated Logon provider does not supply an e-mail address.)')
+				)
 		);
 		$files = getPluginFiles('*_logon.php', 'federated_logon');
 
@@ -123,15 +131,18 @@ class federated_logon {
 			$options[gettext('Notify*')]['desc'] .= ' ' . gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
 		}
 		if ($_common_notify_handler) {
-			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => '<p class="notebox">' . $_common_notify_handler . '</p>');
+			$options['note'] = array(
+					'key' => 'menu_truncate_note', 
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 8,
+					'desc' => '<p class="notebox">' . $_common_notify_handler . '</p>');
 		} else {
 			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'federated_logon\');"><em>register_user</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'menu_truncate_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
+			$options['note'] = array(
+					'key' => 'menu_truncate_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 8,
+					'desc' => getMessageBox('info', gettext('*<strong>Note:</strong> The setting of this option is shared with other plugins.'), false));
 		}
 		return $options;
 	}
@@ -387,14 +398,14 @@ class federated_logon {
 					}
 				}
 				If (count($details['params'])) {
-					$params = "'" . implode("','", $details['params']) . "'";
+					$params = implode("&amp;", $details['params']);
 				} else {
 					$params = '';
 				}
 				?>
 				<li>
 					<span class="fed_buttons">
-						<a href="javascript:launchScript('<?php echo $script; ?>',[<?php echo $params; ?>]);" title="<?php echo $authority; ?>" >
+						<button type="button" onclick="window.location ='<?php echo $script; ?>?<?php echo $params; ?>" title="<?php echo $authority; ?>">
 							<?php
 							$logo = ltrim(str_replace(WEBPATH, '', dirname($script)) . '/' . $authority . '.png', '/');
 							if (file_exists(SERVERPATH . '/' . $logo)) {
@@ -405,7 +416,7 @@ class federated_logon {
 								echo $authority;
 							}
 							?>
-						</a>
+						</button>
 					</span>
 				</li>
 				<?php
