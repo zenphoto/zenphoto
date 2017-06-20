@@ -142,7 +142,7 @@ function printLanguageSelector($flags = NULL) {
 					$flag = getLanguageFlag($lang);
 					if ($lang != $localeOption) {
 						?>
-						<a onclick="launchScript('<?php echo $path; ?>', []);" >
+						<a href="<?php echo $path; ?>" >
 							<?php
 						}
 						?>

@@ -116,10 +116,10 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 	$logintext = gettext('Login');
 	if (is_null($logouttext))
 		$logouttext = gettext("Logout");
-	$params = array("'userlog=0'");
+	$params = array("userlog=0");
 	if (!empty($__redirect)) {
 		foreach ($__redirect as $param => $value) {
-			$params[] .= "'" . $param . '=' . urlencode($value) . "'";
+			$params[] .= $param . '=' . urlencode($value);
 		}
 	}
 	if (is_null($showLoginForm)) {
@@ -196,9 +196,9 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 		if ($before) {
 			echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
 		}
-		$logoutlink = "javascript:launchScript('" . FULLWEBPATH . "/',[" . implode(',', $params) . "]);";
+		$logoutlink = FULLWEBPATH . '?' . implode('&', $params);
 		?>
-		<a href="<?php echo $logoutlink; ?>" title="<?php echo $logouttext; ?>"><?php echo $logouttext; ?></a>
+		<a href="<?php echo html_encode($logoutlink); ?>" title="<?php echo $logouttext; ?>"><?php echo $logouttext; ?></a>
 		<?php
 		if ($after) {
 			echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>';
