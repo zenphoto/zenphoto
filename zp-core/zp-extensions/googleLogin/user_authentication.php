@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Adapted from Google documentation at {@link https://developers.google.com/api-client-library/php/auth/web-app}
+ * by Stephen Billard (sbillard)
+ *
+ * @author Stephen Billard (sbillard)
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ *
+ * @package plugins
+ * @subpackage users
+ */
 if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-functions.php');

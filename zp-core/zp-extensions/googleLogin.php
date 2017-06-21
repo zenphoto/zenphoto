@@ -20,6 +20,7 @@
  * the site administrator informing him of the new user.
  *
  * @author Stephen Billard (sbillard)
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins
  * @subpackage users
