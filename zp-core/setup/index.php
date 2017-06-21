@@ -477,7 +477,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-pages.css" type="text/css" />
 
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 		<script type="text/javascript">
 			var imageErr = false;
 			function toggle_visibility(id) {

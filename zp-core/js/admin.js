@@ -117,8 +117,7 @@ function triggerAllBox(form, arr, allbox) {
 					return;
 				}
 			}
-		}
-		catch (e) {
+		} catch (e) {
 		}
 	}
 	allbox.checked = true;
@@ -325,6 +324,7 @@ function clearOldTags(id) {
 	$('#tag_restore_link_' + id).show();
 	$('#additive_' + id).val('0');
 }
+
 function restoreOldTags(id) {
 	$('#existing_' + id).css('text-decoration', 'none');
 	$('#tag_clear_link_' + id).show();
@@ -348,4 +348,28 @@ function addNewTag(id) {
 			$('#list_' + id).height('120');
 		}
 	}
+}
+
+
+function confirmDeleteAlbum(url) {
+	if (confirm(deleteAlbum1)) {
+		if (confirm(deleteAlbum2)) {
+			window.location = url;
+		}
+	}
+}
+
+function confirmDelete(url, msg) {
+	if (confirm(msg)) {
+		window.location = url;
+	}
+}
+
+function launchScript(script, params) {
+	if (params.length == 0) {
+		params = '';
+	} else {
+		params = '?' + params.join('&');
+	}
+	window.location = script + params;
 }

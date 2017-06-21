@@ -133,7 +133,7 @@ printAdminHeader('admin');
 			?>
 			<?php echo gettext('Order by'); ?>
 
-			<select name="tagsort" id="tagsort_selector" class="ignoredirty" onchange="launchScript('', ['tagsort=' + $('#tagsort_selector').val()]);">
+			<select name="tagsort" id="tagsort_selector" class="ignoredirty" onchange="window.location = '?tagsort=' + $('#tagsort_selector').val();">
 				<option value="alpha" <?php if ($tagsort == 'alpha') echo ' selected="selected"'; ?>><?php echo gettext('Alphabetic'); ?></option>
 				<option value="mostused" <?php if ($tagsort == 'mostused') echo ' selected="selected"'; ?>><?php echo gettext('Most used'); ?></option>
 				<option value="language" <?php if ($tagsort == 'language') echo ' selected="selected"'; ?>><?php echo gettext('Language'); ?></option>

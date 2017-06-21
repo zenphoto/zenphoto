@@ -206,7 +206,7 @@
 						}
 					}
 					if (result) {
-						tag = '"' + addslashes(tag) + '"';
+						tag = '"' + (tag + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0') + '"';
 					}
 				}
 				workingTags[i] = tag;
