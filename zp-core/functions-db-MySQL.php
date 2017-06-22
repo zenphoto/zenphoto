@@ -14,7 +14,7 @@
 
 define('DATABASE_SOFTWARE', 'MySQL');
 Define('DATABASE_MIN_VERSION', '5.0.7');
-Define('DATABASE_DESIRED_VERSION', '5.5.0');
+Define('DATABASE_DESIRED_VERSION', '5.6.0');
 
 /**
  * Connect to the database server and select the database.
