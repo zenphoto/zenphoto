@@ -1761,7 +1761,6 @@ zp-core/zp-extensions/common/googleAPI/firebase/php-jwt/composer.lock
 zp-core/zp-extensions/common/googleAPI/firebase/php-jwt/LICENSE
 zp-core/zp-extensions/common/googleAPI/firebase/php-jwt/package.xml
 zp-core/zp-extensions/common/googleAPI/firebase/php-jwt/phpunit.xml.dist
-zp-core/zp-extensions/common/googleAPI/firebase/php-jwt/run-tests.sh
 zp-core/zp-extensions/common/googleAPI/firebase/php-jwt/src
 zp-core/zp-extensions/common/googleAPI/firebase/php-jwt/src/BeforeValidException.php
 zp-core/zp-extensions/common/googleAPI/firebase/php-jwt/src/ExpiredException.php
@@ -8163,4 +8162,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-8165
+8164
