@@ -179,7 +179,7 @@ class facebookLogin {
 				$userobj = Zenphoto_Authority::newAdministrator('');
 				$userobj->transient = false;
 				$userobj->setUser($user);
-				$credentials = array('auth' => 'facebookAuth', 'user' => 'user', 'email' => 'email');
+				$credentials = array('auth' => 'facebookOAuth', 'user' => 'user', 'email' => 'email');
 				if ($name) {
 					$credentials['name'] = 'name';
 				}
@@ -210,7 +210,7 @@ class facebookLogin {
 			header('Location: ' . WEBPATH . '/' . ZENFOLDER . '/admin.php?_zp_login_error=' . html_encode($more));
 			exitZP();
 		}
-		zp_apply_filter('federated_login_attempt', true, $user, 'facebookAuth'); //	we will mascerade as federated logon for this filter
+		zp_apply_filter('federated_login_attempt', true, $user, 'facebookOAuth'); //	we will mascerade as federated logon for this filter
 		Zenphoto_Authority::logUser($userobj);
 		if ($redirect) {
 			header("Location: " . $redirect);
