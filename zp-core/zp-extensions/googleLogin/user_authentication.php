@@ -17,7 +17,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-functions.php');
 zp_session_start();
 
 //Google API PHP Library includes
-require_once 'googleOAuth2/autoload.php';
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/googleAPI/autoload.php');
 // Fill CLIENT ID, CLIENT SECRET ID, REDIRECT URI from Google Developer Console
 $client_id = getOption('googleLogin_ClientID');
 $client_secret = getOption('googleLogin_ClientSecret');
@@ -26,10 +26,12 @@ $simple_api_key = getOption('gmap_map_api_key');
 
 //Create Client Request to access Google API
 $client = new Google_Client();
-if ($_SERVER['SERVER_ADDR'] == '127.0.0.1' || $_SERVER['SERVER_ADDR'] == '::1') {
-	//for testing when certificate verification fails locally
-	$http = new GuzzleHttp\Client(['verify' => false]);
-	$client->setHttpClient($http);
+if (isset($_SERVER['SERVER_ADDR'])) {
+	if ($_SERVER['SERVER_ADDR'] == '127.0.0.1' || $_SERVER['SERVER_ADDR'] == '::1') {
+		//for testing when certificate verification fails locally
+		$http = new GuzzleHttp\Client(['verify' => false]);
+		$client->setHttpClient($http);
+	}
 }
 $client->setApplicationName("ZenPhoto20 Google OAuth Login");
 $client->setClientId($client_id);

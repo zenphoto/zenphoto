@@ -4,6 +4,7 @@
  *
  * The plugin provides login to ZenPhoto20 via Google OAuth2 protocol.
  *
+ *
  * You must configure the plugin with your Google Developer credentials. You will
  * need an <b><i>API key</i></b> as well as an OAuth2 <b><i>Client ID</i></b> and <b><i>Client Secret</i></b>.
  * (The <b><i>API key</i></b> is shared with the <var>googleMap</var> plugin, so you may already have one.)
@@ -28,12 +29,17 @@
 $plugin_is_filter = 900 | CLASS_PLUGIN;
 $plugin_description = gettext("Handles logon via the user's <em>Google</em> account.");
 $plugin_author = "Stephen Billard (sbillard)";
-
+$plugin_notice = sprintf(gettext('The PHP <var>curl</var> module is required for this plugin.'));
+$plugin_disable = (extension_loaded('curl')) ? false : gettext('The PHP Curl is required.');
 
 $option_interface = 'googleLogin';
-zp_register_filter('alt_login_handler', 'googleLogin::alt_login_handler');
-zp_register_filter('edit_admin_custom_data', 'googleLogin::edit_admin');
 
+if ($plugin_disable) {
+	enableExtension('google_login', 0);
+} else {
+	zp_register_filter('alt_login_handler', 'googleLogin::alt_login_handler');
+	zp_register_filter('edit_admin_custom_data', 'googleLogin::edit_admin');
+}
 zp_session_start();
 
 /**
