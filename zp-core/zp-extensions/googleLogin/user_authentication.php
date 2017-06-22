@@ -2,7 +2,7 @@
 
 /**
  * Adapted from Google documentation at {@link https://developers.google.com/api-client-library/php/auth/web-app}
- * by Stephen Billard (sbillard)
+ * by Stephen Billard
  *
  * @author Stephen Billard (sbillard)
  * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
@@ -68,14 +68,14 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 if ($client->getAccessToken()) {
 	$userData = $objOAuthService->userinfo->get();
 	if (!empty($userData)) {
-		$email = $user = $userData->email;
+		$email = $userData->email;
 		$name = $userData->name;
 		$googleid = $userData->id;
 		//don't need the Google access anymore as we will be using the zenphoto user mechanism
 		$accessToken = $client->getAccessToken();
 		$client->revokeToken($accessToken);
 
-		googleLogin::credentials($user, $email, $name, $_SESSION['redirect']);
+		googleLogin::credentials($googleid, $email, $name, $_SESSION['redirect']);
 	}
 	$_SESSION['access_token'] = $client->getAccessToken();
 } else {

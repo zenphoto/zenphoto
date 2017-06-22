@@ -2,21 +2,20 @@
 
 /**
  *
- * The plugin provides login to ZenPhoto20 via Google OAuth2 protocol.
+ * The plugin provides login to ZenPhoto20 via a Facebook OAuth protocol.
  *
  *
- * You must configure the plugin with your Google Developer credentials. You will
- * need an <b><i>API key</i></b> as well as an OAuth2 <b><i>Client ID</i></b> and <b><i>Client Secret</i></b>.
- * (The <b><i>API key</i></b> is shared with the <var>googleMap</var> plugin, so you may already have one.)
- * You can obtain these from the
- * {@link https://console.developers.google.com/apis/dashboard Google Developers Console}
+ * You must configure the plugin with your Facebook Developer credentials. You will
+ * need an <b><i>App ID</i></b> as well as an <b><i>App Secret</i></b>.
+ * You can obtain these from
+ * {@link https://developers.facebook.com/apps/ Facebook for developers}
  *
- * Your <i>OAuth2 client ID</i> will need an <i>Authorized redirect URI</i> that
- * points to <var>%FULLWEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/googleLogin/user_authentication.php</var>
+ * Your <i>APP Client OAuth Settings</i> will need a <i>Valid OAuth redirect URI</i> that
+ * points to <var>%FULLWEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/facebookLogin/fbconfig.php</var>
  *
- * The gmail address supplied by Google OAuth2 will become the user's <i>user ID</i>
+ * The e-mail address supplied by Facebook OAuth will become the user's <i>user ID</i>
  * if present. If no e-mail address is supplied with the login, a user ID will be created
- * from the user's Google ID. If this <i>user ID</i> does not exist as a ZenPhoto20 user,
+ * from the user's Facebook ID. If this <i>user ID</i> does not exist as a ZenPhoto20 user,
  * a new user will be created. The user will be assigned to the group indicated by
  * the plugin's options. If <var>Notify</var> option is checked an e-mail will be sent to
  * the site administrator informing him of the new user.
@@ -28,18 +27,18 @@
  * @subpackage users
  */
 $plugin_is_filter = 900 | CLASS_PLUGIN;
-$plugin_description = gettext("Handles logon via the user's <em>Google</em> account.");
+$plugin_description = gettext("Handles logon via the user's <em>Facebook</em> account.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_notice = sprintf(gettext('The PHP <var>curl</var> module is required for this plugin.'));
 $plugin_disable = (extension_loaded('curl')) ? false : gettext('The PHP Curl is required.');
 
-$option_interface = 'googleLogin';
+$option_interface = 'facebookLogin';
 
 if ($plugin_disable) {
-	enableExtension('googleLogin', 0);
+	enableExtension('facebookLogin', 0);
 } else {
-	zp_register_filter('alt_login_handler', 'googleLogin::alt_login_handler');
-	zp_register_filter('edit_admin_custom_data', 'googleLogin::edit_admin');
+	zp_register_filter('alt_login_handler', 'facebookLogin::alt_login_handler');
+	zp_register_filter('edit_admin_custom_data', 'facebookLogin::edit_admin');
 }
 zp_session_start();
 
@@ -47,18 +46,17 @@ zp_session_start();
  * Option class
  *
  */
-class googleLogin {
+class facebookLogin {
 
 	/**
 	 * Option instantiation
 	 */
 	function __construct() {
 		global $_zp_authority;
-		setOptionDefault('googleLogin_group', 'viewers');
-		setOptionDefault('googleLogin_ClientID', '');
-		setOptionDefault('googleLogin_ClientSecret', '');
+		setOptionDefault('facebookLogin_group', 'viewers');
+		setOptionDefault('facebookLogin_APPID', '');
+		setOptionDefault('facebookLogin_APPSecret', '');
 		setOptionDefault('register_user_notify', '');
-		setOptionDefault('gmap_map_api_key', '');
 
 		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 		if (count($mailinglist) == 0) { //	no one to send the notice to!
@@ -81,19 +79,16 @@ class googleLogin {
 			}
 		}
 
-		$options = array(gettext('Assign user to') => array('key' => 'googleLogin_group', 'type' => OPTION_TYPE_SELECTOR,
+		$options = array(gettext('Assign user to') => array('key' => 'facebookLogin_group', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 0,
 						'selections' => $ordered,
 						'desc' => gettext('The user group to which to map the user.')),
-				gettext('OAuth Client ID') => array('key' => 'googleLogin_ClientID', 'type' => OPTION_TYPE_TEXTBOX,
+				gettext('App ID') => array('key' => 'facebookLogin_APPID', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 1,
-						'desc' => gettext('This is your Google OAuth Client ID.')),
-				gettext('OAuth Client Secret') => array('key' => 'googleLogin_ClientSecret', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('This is your Facebook App ID.')),
+				gettext('App Secret') => array('key' => 'facebookLogin_APPSecret', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 2,
-						'desc' => gettext('This is your Google OAuth Client Secret.')),
-				gettext('API key') . '&dagger;' => array('key' => 'gmap_map_api_key', 'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 3,
-						'desc' => gettext('This is your Google Developer API key.')),
+						'desc' => gettext('This is your Facebook App Secret.')),
 				gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 7,
 						'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. '))
@@ -108,11 +103,7 @@ class googleLogin {
 		$options['note'] = array('key' => 'menu_truncate_note',
 				'type' => OPTION_TYPE_NOTE,
 				'order' => 9,
-				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> This option is shared amoung <em>federated_logon</em>, <em>googleLogin</em>, <em>facebookLogin</em>, and <em>register_user</em>.</p>'));
-		$options['note2'] = array('key' => 'menu_truncate_note',
-				'type' => OPTION_TYPE_NOTE,
-				'order' => 8,
-				'desc' => gettext('<p class="notebox">&dagger;<strong>Note:</strong> This option is shared with <em>googleMap</em>.</p>'));
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> This option is shared amoung <em>federated_logon</em>, <em>facebookLogin</em>, <em>googleLogin</em>, and <em>register_user</em>.</p>'));
 		return $options;
 	}
 
@@ -130,8 +121,8 @@ class googleLogin {
 	 * @param $handler_list
 	 */
 	static function alt_login_handler($handler_list) {
-		$link = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleLogin/user_authentication.php';
-		$handler_list['Google'] = array('script' => $link, 'params' => array());
+		$link = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/facebookLogin/fbconfig.php';
+		$handler_list['Facebook'] = array('script' => $link, 'params' => array());
 		return $handler_list;
 	}
 
@@ -152,7 +143,7 @@ class googleLogin {
 		if (is_valid_email_zp($email)) { // prefer email as user id
 			$user = $email;
 		} else {
-			$user = 'GoogleUser' . $user;
+			$user = 'FacebookUser' . $user;
 		}
 
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
@@ -167,7 +158,7 @@ class googleLogin {
 				$save = true;
 				$userobj->setName($name);
 			}
-			$credentials = array('auth' => 'googleOAuth', 'user' => 'user', 'email' => 'email');
+			$credentials = array('auth' => 'facebookOAuth', 'user' => 'user', 'email' => 'email');
 			if ($name)
 				$credentials['name'] = 'name';
 			if ($credentials != $userobj->getCredentials()) {
@@ -178,7 +169,7 @@ class googleLogin {
 				$userobj->save();
 			}
 		} else { //	User does not exist, create him
-			$groupname = getOption('googleLogin_group');
+			$groupname = getOption('facebookLogin_group');
 			$groupobj = $_zp_authority->getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
 			if ($groupobj) {
 				$group = NULL;
@@ -188,7 +179,7 @@ class googleLogin {
 				$userobj = Zenphoto_Authority::newAdministrator('');
 				$userobj->transient = false;
 				$userobj->setUser($user);
-				$credentials = array('auth' => 'googleOAuth', 'user' => 'user', 'email' => 'email');
+				$credentials = array('auth' => 'facebookAuth', 'user' => 'user', 'email' => 'email');
 				if ($name) {
 					$credentials['name'] = 'name';
 				}
@@ -199,6 +190,7 @@ class googleLogin {
 				$userobj->setObjects(NULL);
 				$userobj->setLanguage(getUserLocale());
 				$userobj->setObjects($groupobj->getObjects());
+
 				$userobj->setEmail($email);
 				if (getOption('register_user_create_album')) {
 					$userobj->createPrimealbum();
@@ -207,18 +199,18 @@ class googleLogin {
 				$userobj->setGroup($group);
 				$userobj->save();
 			} else {
-				$more = sprintf(gettext('Configuration error, googleLogin group %s does not exist.'), $groupname);
+				$more = sprintf(gettext('Configuration error, facebookLogin group %s does not exist.'), $groupname);
 			}
 			if (!$more && getOption('register_user_notify')) {
 				$_notify = zp_mail(gettext('ZenPhoto20 Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 			}
 		}
-		session_unset(); //	need to cleanse out google stuff or subsequent logins will fail[sic]
+		session_unset(); //	need to cleanse out Facebook stuff or subsequent logins will fail[sic]
 		if ($more) {
 			header('Location: ' . WEBPATH . '/' . ZENFOLDER . '/admin.php?_zp_login_error=' . html_encode($more));
 			exitZP();
 		}
-		zp_apply_filter('federated_login_attempt', true, $user, 'googleOAuth'); //	we will mascerade as federated logon for this filter
+		zp_apply_filter('federated_login_attempt', true, $user, 'facebookAuth'); //	we will mascerade as federated logon for this filter
 		Zenphoto_Authority::logUser($userobj);
 		if ($redirect) {
 			header("Location: " . $redirect);
@@ -242,12 +234,12 @@ class googleLogin {
 		if (empty($_zp_current_admin_obj) || !$userobj->getValid())
 			return $html;
 		$federated = $userobj->getCredentials(); //	came from federated logon, disable the e-mail field
-		if (!in_array('googleOAuth', $federated)) {
+		if (!in_array('facebookOAuth', $federated)) {
 			$federated = false;
 		}
 
 		if ($userobj->getID() != $_zp_current_admin_obj->getID() && $federated) { //	The current logged on user
-			$msg = gettext("<strong>NOTE:</strong> This user was created by a Google Account logon.");
+			$msg = gettext("<strong>NOTE:</strong> This user was created by a Facebook Account logon.");
 			$myhtml = '<div class="user_left">' . "\n"
 							. '<p class="notebox">' . $msg . '</p>' . "\n"
 							. '</div>' . "\n"
