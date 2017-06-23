@@ -107,7 +107,7 @@ function saveOptions() {
 }
 
 function getOptionContent() {
-	global $_zp_gallery, $_zp_server_timezone, $_zp_UTF8;
+	global $_zp_gallery, $_zp_server_timezone, $_zp_UTF8, $_zp_authority;
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -581,6 +581,31 @@ function getOptionContent() {
 							<?php echo gettext("This email name and address will be used as the <em>From</em> address for all mails sent by the gallery."); ?>
 						</div>
 					</td>
+				</tr>
+				<tr>
+					<td class="option_name">
+						<p><?php echo gettext('Registration'); ?></p>
+						<p><?php echo gettext('Text'); ?></p>
+					</td>
+					<td class="option_value">
+						<?php
+						$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
+						?>
+						<p><input type="checkbox" size="48" id="site_email" name="register_user_notify"  value="1" <?php checked('1', getOption('register_user_notify')); ?> <?php if (!$mailinglist) echo ' disabled="disabled"'; ?> /><?php echo gettext('notify'); ?></p>
+						<p>
+							<textarea name="register_user_text" cols="<?php echo TEXTAREA_COLUMNS; ?>" rows="6" ><?php echo get_language_string(getOption('register_user_text')); ?></textarea>
+						</p>
+					</td>
+					<td class="option_desc">
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<div class="option_desc_hidden">
+							<?php
+							echo gettext('If checked, an e-mail will be sent to the gallery admin when a new user has registered on the site.');
+							if (count($mailinglist) == 0) { //	no one to send the notice to!
+								echo ' ' . gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
+							}
+							?>
+						</div>
 				</tr>
 				<tr>
 					<td class="option_name">

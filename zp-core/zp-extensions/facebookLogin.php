@@ -56,14 +56,6 @@ class facebookLogin {
 		setOptionDefault('facebookLogin_group', 'viewers');
 		setOptionDefault('facebookLogin_APPID', '');
 		setOptionDefault('facebookLogin_APPSecret', '');
-		setOptionDefault('register_user_notify', '');
-
-		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
-		if (count($mailinglist) == 0) { //	no one to send the notice to!
-			setOption('register_user_notify', 0);
-		} else {
-			setOptionDefault('register_user_notify', 1);
-		}
 	}
 
 	/**
@@ -88,22 +80,8 @@ class facebookLogin {
 						'desc' => gettext('This is your Facebook App ID.')),
 				gettext('App Secret') => array('key' => 'facebookLogin_APPSecret', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 2,
-						'desc' => gettext('This is your Facebook App Secret.')),
-				gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 7,
-						'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. '))
+						'desc' => gettext('This is your Facebook App Secret.'))
 		);
-
-		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
-		if (count($mailinglist) == 0) { //	no one to send the notice to!
-			$options[gettext('Notify*')]['disabled'] = true;
-			$options[gettext('Notify*')]['desc'] .= ' ' . gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
-		}
-
-		$options['note'] = array('key' => 'menu_truncate_note',
-				'type' => OPTION_TYPE_NOTE,
-				'order' => 9,
-				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> This option is shared amoung <em>federated_logon</em>, <em>facebookLogin</em>, <em>googleLogin</em>, and <em>register_user</em>.</p>'));
 		return $options;
 	}
 

@@ -57,15 +57,7 @@ class googleLogin {
 		setOptionDefault('googleLogin_group', 'viewers');
 		setOptionDefault('googleLogin_ClientID', '');
 		setOptionDefault('googleLogin_ClientSecret', '');
-		setOptionDefault('register_user_notify', '');
 		setOptionDefault('gmap_map_api_key', '');
-
-		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
-		if (count($mailinglist) == 0) { //	no one to send the notice to!
-			setOption('register_user_notify', 0);
-		} else {
-			setOptionDefault('register_user_notify', 1);
-		}
 	}
 
 	/**
@@ -93,22 +85,9 @@ class googleLogin {
 						'desc' => gettext('This is your Google OAuth Client Secret.')),
 				gettext('API key') . '&dagger;' => array('key' => 'gmap_map_api_key', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 3,
-						'desc' => gettext('This is your Google Developer API key.')),
-				gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 7,
-						'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. '))
+						'desc' => gettext('This is your Google Developer API key.'))
 		);
 
-		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
-		if (count($mailinglist) == 0) { //	no one to send the notice to!
-			$options[gettext('Notify*')]['disabled'] = true;
-			$options[gettext('Notify*')]['desc'] .= ' ' . gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
-		}
-
-		$options['note'] = array('key' => 'menu_truncate_note',
-				'type' => OPTION_TYPE_NOTE,
-				'order' => 9,
-				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> This option is shared amoung <em>federated_logon</em>, <em>googleLogin</em>, <em>facebookLogin</em>, and <em>register_user</em>.</p>'));
 		$options['note2'] = array('key' => 'menu_truncate_note',
 				'type' => OPTION_TYPE_NOTE,
 				'order' => 8,
