@@ -37,7 +37,7 @@ if ($plugin_disable) {
 	zp_register_filter('save_article_custom_data', 'tweet::tweeterZenpageExecute');
 	zp_register_filter('save_page_custom_data', 'tweet::tweeterZenpageExecute');
 
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/common/OAuth/twitteroauth.php");
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/common/oAuth/twitteroauth.php");
 }
 
 /**

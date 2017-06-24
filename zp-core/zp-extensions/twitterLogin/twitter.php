@@ -31,7 +31,7 @@ if (isset($_REQUEST['redirect'])) {
 
 
 // Include twitter PHP Library
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/common/OAuth/twitteroauth.php");
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/common/oAuth/twitteroauth.php");
 $error = '';
 
 if (isset($_GET['request'])) {

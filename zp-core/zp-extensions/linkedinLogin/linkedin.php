@@ -17,8 +17,8 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-functions.php');
 zp_session_start();
 
 $callbackURL = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/linkedinLogin/linkedin.php';
-$linkedinApiKey = getOption('LinkedinLogin_ClientID');
-$linkedinApiSecret = getOption('LinkedinLogin_ClientSecret');
+$linkedinApiKey = getOption('linkedinLogin_ClientID');
+$linkedinApiSecret = getOption('linkedinLogin_ClientSecret');
 $linkedinScope = 'r_basicprofile r_emailaddress';
 
 if (isset($_REQUEST['redirect'])) {
@@ -29,8 +29,8 @@ if (isset($_REQUEST['redirect'])) {
 	}
 }
 
-include_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/common/OAuth/http.php");
-include_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/common/OAuth/oauth_client.php");
+include_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/common/oAuth/http.php");
+include_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/common/oAuth/oauth_client.php");
 
 $client = new oauth_client_class;
 
