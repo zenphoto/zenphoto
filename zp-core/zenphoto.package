@@ -7180,8 +7180,6 @@ zp-core/zp-extensions/common/googleAPI/guzzlehttp
 zp-core/zp-extensions/common/googleAPI/guzzlehttp/guzzle
 zp-core/zp-extensions/common/googleAPI/guzzlehttp/guzzle/composer.json
 zp-core/zp-extensions/common/googleAPI/guzzlehttp/guzzle/LICENSE
-zp-core/zp-extensions/common/googleAPI/guzzlehttp/guzzle/build
-zp-core/zp-extensions/common/googleAPI/guzzlehttp/guzzle/docs
 zp-core/zp-extensions/common/googleAPI/guzzlehttp/guzzle/src
 zp-core/zp-extensions/common/googleAPI/guzzlehttp/guzzle/src/Client.php
 zp-core/zp-extensions/common/googleAPI/guzzlehttp/guzzle/src/ClientInterface.php
@@ -8159,4 +8157,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-8161
+8159
