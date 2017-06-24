@@ -1534,6 +1534,7 @@ zp-core/zp-extensions/ipBlocker.php
 zp-core/zp-extensions/jcarousel_thumb_nav.php
 zp-core/zp-extensions/jplayer.php
 zp-core/zp-extensions/LDAP_auth.php
+zp-core/zp-extensions/linkedinLogin.php
 zp-core/zp-extensions/macroList.php
 zp-core/zp-extensions/menu_manager.php
 zp-core/zp-extensions/mergedRSS.php
@@ -7445,7 +7446,9 @@ zp-core/zp-extensions/common/googleAPI/psr/log/Psr/Log/NullLogger.php
 zp-core/zp-extensions/common/jsMin
 zp-core/zp-extensions/common/jsMin/JSMin.php
 zp-core/zp-extensions/common/oAuth
+zp-core/zp-extensions/common/oAuth/http.php
 zp-core/zp-extensions/common/oAuth/OAuth.php
+zp-core/zp-extensions/common/oAuth/oauth_client.php
 zp-core/zp-extensions/contact_form
 zp-core/zp-extensions/contact_form/form.php
 zp-core/zp-extensions/crop_image
@@ -7705,6 +7708,8 @@ zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.seeking.gif
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphotolight.css
 zp-core/zp-extensions/LDAP_auth
 zp-core/zp-extensions/LDAP_auth/LDAP auth.php
+zp-core/zp-extensions/linkedinLogin
+zp-core/zp-extensions/linkedinLogin/linkedin.php
 zp-core/zp-extensions/macroList
 zp-core/zp-extensions/macroList/macroList_tab.php
 zp-core/zp-extensions/menu_manager
@@ -8147,4 +8152,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-8149
+8154
