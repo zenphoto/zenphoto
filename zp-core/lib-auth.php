@@ -882,6 +882,7 @@ class _Authority {
 			}
 		}
 		$alt_handlers = zp_apply_filter('alt_login_handler', array());
+		ksort($alt_handlers);
 
 		$star = false;
 		$mails = array();
@@ -1042,7 +1043,7 @@ class _Authority {
 							var handlers = [];
 					<?php
 					$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">' .
-									'<option value="0">' . html_encode(get_language_string($_zp_gallery->getTitle())) . '</option>';
+									'<option value="0">' . html_encode(get_language_string($_zp_gallery->getTitle())) . "</option>\n";
 					$c = 0;
 					foreach ($alt_handlers as $handler => $details) {
 						$c++;
@@ -1050,9 +1051,9 @@ class _Authority {
 						if (!empty($requestor)) {
 							$details['params'][] = 'requestor=' . $requestor;
 						}
-						echo "handlers[" . $c . "]=['" . $details['script'] . "','" . implode("','", $details['params']) . "'];";
+						echo "handlers[" . $c . "]=['" . $details['script'] . "','" . implode("','", $details['params']) . "'];\n";
 
-						$list .= '<option value="' . $c . '">' . $handler . '</option>';
+						$list .= '<option value="' . $c . '">' . $handler . "</option>\n";
 					}
 					$list .= '</select>';
 					$legend = sprintf(gettext('Logon using:%s'), $list);
@@ -1328,7 +1329,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-										 togglePassword('<?php echo $id; ?>');">
+								 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

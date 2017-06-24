@@ -1,5 +1,4 @@
 <?php
-
 /**
  *
  * The plugin provides login to ZenPhoto20 via Google OAuth2 protocol.
@@ -20,6 +19,8 @@
  * a new user will be created. The user will be assigned to the group indicated by
  * the plugin's options. If <var>Notify</var> option is checked an e-mail will be sent to
  * the site administrator informing him of the new user.
+ *
+ * You can place a login button on your webpage by calling the function <var>googleLogin::loginButton();</var>
  *
  * @author Stephen Billard (sbillard)
  * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
@@ -236,6 +237,17 @@ class googleLogin {
 		return $html;
 	}
 
-}
+	static function loginButton() {
+		if (!zp_loggedin()) {
+			?>
+			<span class="button">
+				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/googleLogin/user_authentication.php?request=google&ampredirect=/dev/index.php?userlog=1">
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/googleLogin/login_button.png" alt="login">
+				</a>
+			</span>
+			<?php
+		}
+	}
 
+}
 ?>

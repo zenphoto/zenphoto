@@ -1,25 +1,29 @@
 <?php
 /**
  *
- * The plugin provides login to ZenPhoto20 via a Linkedin OAuth protocol.
+ * The plugin provides login to ZenPhoto20 via a Twitter OAuth protocol.
  *
  *
- * You must configure the plugin with your Linkedin Developer credentials. You will
+ * You must configure the plugin with your Twitter Developer credentials. You will
  * need an <b><i>Client ID</i></b> as well as an <b><i>Client Secret</i></b>.
  * You can obtain these from
- * {@link https://www.linkedin.com/developer/apps/ Linkedin for developers}
+ * {@link https://apps.twitter.com/ Twitter Application Management}
  *
- * You will need to set an <i>Authorized Redirect URL</i> that
- * points to <var>%FULLWEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/linkedinLogin/linkedin.php</var>
+ * You will need to set a <i>Callback URL</i> that
+ * points to <var>%FULLWEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/twitterLogin/twitter.php</var>
  *
- * The e-mail address supplied by Linkedin OAuth will become the user's <i>user ID</i>
+ * For Twitter to return the user's e-mail address you will need to go to the permissions tab
+ * for the app you defined above and check <i>Request email addresses from users</i> under
+ * <b>Additional Permissions</b>. Note that your site must have a <i>Terms and Conditions</i> and a <i>Privacy Statement</i>
+ * and you will need to provide those URL to Twitter.
+ * The e-mail address supplied by Twitter OAuth will become the user's <i>user ID</i>
  * if present. If no e-mail address is supplied with the login, a user ID will be created
- * from the user's Linkedin ID. If this <i>user ID</i> does not exist as a ZenPhoto20 user,
+ * from the user's Twitter ID. If this <i>user ID</i> does not exist as a ZenPhoto20 user,
  * a new user will be created. The user will be assigned to the group indicated by
  * the plugin's options. If <var>Notify</var> option is checked an e-mail will be sent to
  * the site administrator informing him of the new user.
  *
- * You can place a login button on your webpage by calling the function <var>flinkedinLogin::loginButton();</var>
+ * You can place a login button on your webpage by calling the function <var>twitterLogin::loginButton();</var>
  *
  * @author Stephen Billard (sbillard)
  * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
@@ -28,18 +32,18 @@
  * @subpackage users
  */
 $plugin_is_filter = 900 | CLASS_PLUGIN;
-$plugin_description = gettext("Handles logon via the user's <em>Linkedin</em> account.");
+$plugin_description = gettext("Handles logon via the user's <em>Twitter</em> account.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_notice = sprintf(gettext('The PHP <var>curl</var> module is required for this plugin.'));
 $plugin_disable = (extension_loaded('curl')) ? false : gettext('The PHP Curl is required.');
 
-$option_interface = 'linkedinLogin';
+$option_interface = 'twitterLogin';
 
 if ($plugin_disable) {
-	enableExtension('linkedinLogin', 0);
+	enableExtension('twitterLogin', 0);
 } else {
-	zp_register_filter('alt_login_handler', 'linkedinLogin::alt_login_handler');
-	zp_register_filter('edit_admin_custom_data', 'linkedinLogin::edit_admin');
+	zp_register_filter('alt_login_handler', 'twitterLogin::alt_login_handler');
+	zp_register_filter('edit_admin_custom_data', 'twitterLogin::edit_admin');
 }
 zp_session_start();
 
@@ -47,16 +51,16 @@ zp_session_start();
  * Option class
  *
  */
-class linkedinLogin {
+class twitterLogin {
 
 	/**
 	 * Option instantiation
 	 */
 	function __construct() {
 		global $_zp_authority;
-		setOptionDefault('linkedinLogin_group', 'viewers');
-		setOptionDefault('linkedinLogin_ClientID', '');
-		setOptionDefault('linkedinLogin_ClientSecret', '');
+		setOptionDefault('twitterLogin_group', 'viewers');
+		setOptionDefault('tweet_news_consumer', NULL);
+		setOptionDefault('tweet_news_consumer_secret', NULL);
 	}
 
 	/**
@@ -72,16 +76,16 @@ class linkedinLogin {
 			}
 		}
 
-		$options = array(gettext('Assign user to') => array('key' => 'linkedinLogin_group', 'type' => OPTION_TYPE_SELECTOR,
+		$options = array(gettext('Assign user to') => array('key' => 'twitterLogin_group', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 0,
 						'selections' => $ordered,
 						'desc' => gettext('The user group to which to map the user.')),
-				gettext('App ID') => array('key' => 'linkedinLogin_ClientID', 'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 1,
-						'desc' => gettext('This is your Linkedin Client ID.')),
-				gettext('App Secret') => array('key' => 'linkedinLogin_ClientSecret', 'type' => OPTION_TYPE_TEXTBOX,
+				gettext('Consumer key') => array('key' => 'tweet_news_consumer', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 2,
-						'desc' => gettext('This is your Linkedin Client Secret.'))
+						'desc' => gettext('This <code>tweet_news</code> app for this site needs a <em>consumer key</em>, a <em>consumer key secret</em>, an <em>access token</em>, and an <em>access token secret</em>.') . '<p class="notebox">' . gettext('Get these from <a href="http://dev.twitter.com/">Twitter developers</a>') . '</p>'),
+				gettext('Secret') => array('key' => 'tweet_news_consumer_secret', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 3,
+						'desc' => gettext('The <em>secret</em> associated with your <em>consumer key</em>.'))
 		);
 		return $options;
 	}
@@ -100,8 +104,8 @@ class linkedinLogin {
 	 * @param $handler_list
 	 */
 	static function alt_login_handler($handler_list) {
-		$link = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/linkedinLogin/linkedin.php';
-		$handler_list['Linkedin'] = array('script' => $link, 'params' => array());
+		$link = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/twitterLogin/twitter.php';
+		$handler_list['Twitter'] = array('script' => $link, 'params' => array('request=twitter'));
 		return $handler_list;
 	}
 
@@ -122,7 +126,7 @@ class linkedinLogin {
 		if (is_valid_email_zp($email)) { // prefer email as user id
 			$user = $email;
 		} else {
-			$user = 'LinkedinUser' . $user;
+			$user = 'TwitterUser' . $user;
 		}
 
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
@@ -137,7 +141,7 @@ class linkedinLogin {
 				$save = true;
 				$userobj->setName($name);
 			}
-			$credentials = array('auth' => 'linkedinOAuth', 'user' => 'user', 'email' => 'email');
+			$credentials = array('auth' => 'twitterOAuth', 'user' => 'user', 'email' => 'email');
 			if ($name)
 				$credentials['name'] = 'name';
 			if ($credentials != $userobj->getCredentials()) {
@@ -148,7 +152,7 @@ class linkedinLogin {
 				$userobj->save();
 			}
 		} else { //	User does not exist, create him
-			$groupname = getOption('linkedinLogin_group');
+			$groupname = getOption('twitterLogin_group');
 			$groupobj = $_zp_authority->getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
 			if ($groupobj) {
 				$group = NULL;
@@ -158,7 +162,7 @@ class linkedinLogin {
 				$userobj = Zenphoto_Authority::newAdministrator('');
 				$userobj->transient = false;
 				$userobj->setUser($user);
-				$credentials = array('auth' => 'linkedinOAuth', 'user' => 'user', 'email' => 'email');
+				$credentials = array('auth' => 'twitterOAuth', 'user' => 'user', 'email' => 'email');
 				if ($name) {
 					$credentials['name'] = 'name';
 				}
@@ -178,18 +182,18 @@ class linkedinLogin {
 				$userobj->setGroup($group);
 				$userobj->save();
 			} else {
-				$more = sprintf(gettext('Configuration error, linkedinLogin group %s does not exist.'), $groupname);
+				$more = sprintf(gettext('Configuration error, twitterLogin group %s does not exist.'), $groupname);
 			}
 			if (!$more && getOption('register_user_notify')) {
 				$_notify = zp_mail(gettext('ZenPhoto20 Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 			}
 		}
-		session_unset(); //	need to cleanse out Linkedin stuff or subsequent logins will fail[sic]
+		session_unset(); //	need to cleanse out Twitter stuff or subsequent logins will fail[sic]
 		if ($more) {
 			header('Location: ' . WEBPATH . '/' . ZENFOLDER . '/admin.php?_zp_login_error=' . html_encode($more));
 			exitZP();
 		}
-		zp_apply_filter('federated_login_attempt', true, $user, 'linkedinOAuth'); //	we will mascerade as federated logon for this filter
+		zp_apply_filter('federated_login_attempt', true, $user, 'twitterOAuth'); //	we will mascerade as federated logon for this filter
 		Zenphoto_Authority::logUser($userobj);
 		if ($redirect) {
 			header("Location: " . $redirect);
@@ -213,12 +217,12 @@ class linkedinLogin {
 		if (empty($_zp_current_admin_obj) || !$userobj->getValid())
 			return $html;
 		$federated = $userobj->getCredentials(); //	came from federated logon, disable the e-mail field
-		if (!in_array('linkedinOAuth', $federated)) {
+		if (!in_array('twitterOAuth', $federated)) {
 			$federated = false;
 		}
 
 		if ($userobj->getID() != $_zp_current_admin_obj->getID() && $federated) { //	The current logged on user
-			$msg = gettext("<strong>NOTE:</strong> This user was created by a Linkedin Account logon.");
+			$msg = gettext("<strong>NOTE:</strong> This user was created by a Twitter Account logon.");
 			$myhtml = '<div class="user_left">' . "\n"
 							. '<p class="notebox">' . $msg . '</p>' . "\n"
 							. '</div>' . "\n"
@@ -232,8 +236,8 @@ class linkedinLogin {
 		if (!zp_loggedin()) {
 			?>
 			<span class="button">
-				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/linkedinLogin/linkedin.php?request=linkrdin&ampredirect=/dev/index.php?userlog=1">
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/linkedinLogin/login_button.png" alt="login">
+				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/twitterLogin/twitter.php?request=twitter&ampredirect=/dev/index.php?userlog=1">
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/twitterLogin/login_button.png" alt="login">
 				</a>
 			</span>
 			<?php

@@ -1578,6 +1578,7 @@ zp-core/zp-extensions/tinyURL.php
 zp-core/zp-extensions/touchPunch.php
 zp-core/zp-extensions/trivialSpam.php
 zp-core/zp-extensions/tweet_news.php
+zp-core/zp-extensions/twitterLogin.php
 zp-core/zp-extensions/uploader_http.php
 zp-core/zp-extensions/uploader_jQuery.php
 zp-core/zp-extensions/user-expiry.php
@@ -7449,6 +7450,7 @@ zp-core/zp-extensions/common/oAuth
 zp-core/zp-extensions/common/oAuth/http.php
 zp-core/zp-extensions/common/oAuth/OAuth.php
 zp-core/zp-extensions/common/oAuth/oauth_client.php
+zp-core/zp-extensions/common/oAuth/twitteroauth.php
 zp-core/zp-extensions/contact_form
 zp-core/zp-extensions/contact_form/form.php
 zp-core/zp-extensions/crop_image
@@ -7557,6 +7559,7 @@ zp-core/zp-extensions/elFinder/php/plugins/Watermark/plugin.php
 zp-core/zp-extensions/facebookLogin
 zp-core/zp-extensions/facebookLogin/autoload.php
 zp-core/zp-extensions/facebookLogin/fbconfig.php
+zp-core/zp-extensions/facebookLogin/login_button.png
 zp-core/zp-extensions/facebookLogin/src
 zp-core/zp-extensions/facebookLogin/src/Facebook
 zp-core/zp-extensions/facebookLogin/src/Facebook/FacebookAuthorizationException.php
@@ -7606,6 +7609,7 @@ zp-core/zp-extensions/flag_thumbnail/new.png
 zp-core/zp-extensions/galleryArticles
 zp-core/zp-extensions/galleryArticles/combiNews.php
 zp-core/zp-extensions/googleLogin
+zp-core/zp-extensions/googleLogin/login_button.png
 zp-core/zp-extensions/googleLogin/user_authentication.php
 zp-core/zp-extensions/googleMap
 zp-core/zp-extensions/googleMap/googleMap.css
@@ -7710,6 +7714,7 @@ zp-core/zp-extensions/LDAP_auth
 zp-core/zp-extensions/LDAP_auth/LDAP auth.php
 zp-core/zp-extensions/linkedinLogin
 zp-core/zp-extensions/linkedinLogin/linkedin.php
+zp-core/zp-extensions/linkedinLogin/login_button.png
 zp-core/zp-extensions/macroList
 zp-core/zp-extensions/macroList/macroList_tab.php
 zp-core/zp-extensions/menu_manager
@@ -8095,7 +8100,9 @@ zp-core/zp-extensions/tinymce/themes/modern
 zp-core/zp-extensions/tinymce/themes/modern/theme.min.js
 zp-core/zp-extensions/tweet_news
 zp-core/zp-extensions/tweet_news/twitter_newbird_blue.png
-zp-core/zp-extensions/tweet_news/twitteroauth.php
+zp-core/zp-extensions/twitterLogin
+zp-core/zp-extensions/twitterLogin/login_button.png
+zp-core/zp-extensions/twitterLogin/twitter.php
 zp-core/zp-extensions/uploader_http
 zp-core/zp-extensions/uploader_http/httpupload.css
 zp-core/zp-extensions/uploader_http/httpupload.js
@@ -8152,4 +8159,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-8154
+8161
