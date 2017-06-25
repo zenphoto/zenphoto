@@ -591,7 +591,14 @@ function debugLogVar($message) {
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message) . "\r" . html_decode(getBare($str)), false, $log);
+
+	$formatting = array('<[/]*font(.*?)>', "<[/]*pre(.*?)>", '<[/]*i>', '<[/]*b>', '<[/]*small>');
+	foreach ($formatting as $pattern) {
+		$str = preg_replace('~' . $pattern . '~', '', $str);
+	}
+	$str = getBare($str);
+
+	debugLog(trim($message) . "\r" . html_decode($str), false, $log);
 }
 
 /**
