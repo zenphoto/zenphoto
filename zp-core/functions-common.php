@@ -626,10 +626,8 @@ function zp_session_start() {
 			mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
 			session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
 		}
-		$CookieInfo = session_get_cookie_params();
 //	session_set_cookie_params($lifetime,               $path,               $domain,               $secure,        $httponly)
-		session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], secureServer(), true);
-
+		session_set_cookie_params(getOption('cookie_persistence'), getOption('zenphoto_cookie_path'), $_SERVER['HTTP_HOST'], secureServer(), true);
 		return session_start();
 	}
 	return NULL;
