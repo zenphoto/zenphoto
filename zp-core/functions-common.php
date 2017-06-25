@@ -619,12 +619,10 @@ function zp_session_start() {
 			mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
 			session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
 		}
+		$CookieInfo = session_get_cookie_params();
+//	session_set_cookie_params($lifetime,               $path,               $domain,               $secure,        $httponly)
+		session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], secureServer(), true);
 
-		if (secureServer()) {
-			// force session cookie to be secure when in https
-			$CookieInfo = session_get_cookie_params();
-			session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
-		}
 		return session_start();
 	}
 	return NULL;
