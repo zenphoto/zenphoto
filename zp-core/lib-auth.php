@@ -1174,6 +1174,18 @@ class _Authority {
 		<?php
 	}
 
+	static function loginButton() {
+		if (!zp_loggedin()) {
+			?>
+			<span class="button">
+				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/zenphotoLogin.php?request=zenphoto&amp;redirect=/dev/index.php?userlog=1">
+					<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/images/login_button.png" alt="login">
+				</a>
+			</span>
+			<?php
+		}
+	}
+
 	/**
 	 *
 	 * Javascript for password change input handling
@@ -1329,7 +1341,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-								 togglePassword('<?php echo $id; ?>');">
+										 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

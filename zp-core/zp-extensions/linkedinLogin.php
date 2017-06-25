@@ -232,7 +232,7 @@ class linkedinLogin {
 		if (!zp_loggedin()) {
 			?>
 			<span class="button">
-				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/linkedinLogin/linkedin.php?request=linkrdin&ampredirect=/dev/index.php?userlog=1">
+				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/linkedinLogin/linkedin.php?request=linkrdin&amp;redirect=/dev/index.php?userlog=1">
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/linkedinLogin/login_button.png" alt="login">
 				</a>
 			</span>

@@ -232,7 +232,7 @@ class facebookLogin {
 		if (!zp_loggedin()) {
 			?>
 			<span class="button">
-				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/facebookLogin/fbconfig.php?request=facebook&ampredirect=/dev/index.php?userlog=1">
+				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/facebookLogin/fbconfig.php?request=facebook&amp;redirect=/dev/index.php?userlog=1">
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/facebookLogin/login_button.png" alt="login">
 				</a>
 			</span>

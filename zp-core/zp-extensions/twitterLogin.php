@@ -236,7 +236,7 @@ class twitterLogin {
 		if (!zp_loggedin()) {
 			?>
 			<span class="button">
-				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/twitterLogin/twitter.php?request=twitter&ampredirect=/dev/index.php?userlog=1">
+				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/twitterLogin/twitter.php?request=twitter&amp;redirect=/dev/index.php?userlog=1">
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/twitterLogin/login_button.png" alt="login">
 				</a>
 			</span>
