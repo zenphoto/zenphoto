@@ -84,15 +84,11 @@ class googleLogin {
 				gettext('OAuth Client Secret') => array('key' => 'googleLogin_ClientSecret', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 2,
 						'desc' => gettext('This is your Google OAuth Client Secret.')),
-				gettext('API key') . '&dagger;' => array('key' => 'gmap_map_api_key', 'type' => OPTION_TYPE_TEXTBOX,
+				gettext('API key') => array('key' => 'gmap_map_api_key', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 3,
 						'desc' => gettext('This is your Google Developer API key.'))
 		);
 
-		$options['note2'] = array('key' => 'menu_truncate_note',
-				'type' => OPTION_TYPE_NOTE,
-				'order' => 8,
-				'desc' => gettext('<p class="notebox">&dagger;<strong>Note:</strong> This option is shared with <em>googleMap</em>.</p>'));
 		return $options;
 	}
 

@@ -110,15 +110,10 @@ class GoogleMap {
 				gettext('Map sessions') => array('key' => 'gmap_sessions', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 9,
 						'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.')),
-				gettext('API key*') => array('key' => 'gmap_map_api_key', 'type' => OPTION_TYPE_TEXTBOX,
+				gettext('API key') => array('key' => 'gmap_map_api_key', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 10,
 						'desc' => gettext('As of June 22, 2016 Google Maps no longer support keyless access (any request that doesn\'t include an API key). You may need to obtain an API key from <a href="https://console.developers.google.com/project">Google</a>.'))
 		);
-
-		$options['note'] = array('key' => 'menu_truncate_note',
-				'type' => OPTION_TYPE_NOTE,
-				'order' => 20,
-				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> This option is shared with other <em>GoogleLogin</em>.</p>'));
 
 		return $options;
 	}
