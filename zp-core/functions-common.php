@@ -607,7 +607,7 @@ function debugLogVar($message) {
  * @return bool
  */
 function secureServer() {
-	return isset($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']), 'on') === 0;
+	return isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']), 'off') === false;
 }
 
 /**
@@ -683,7 +683,10 @@ function zp_cookieEncode($value) {
  * @param string $path The path on the server in which the cookie will be available on
  * @param bool $secure true if secure cookie
  */
-function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = false) {
+function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = NULL) {
+	if (is_null($secure)) {
+		$secure = secureServer();
+	}
 	if (empty($value)) {
 		$cookiev = '';
 	} else {
