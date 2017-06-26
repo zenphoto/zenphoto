@@ -1,5 +1,4 @@
 *Admin.Comment:=
-*Admin.Media:=
 *Miscellaneous:=
 *Admin.Zenpage:=
 *Admin.CMS:=
@@ -9,9 +8,10 @@
 *Upload:=
 *Object.Search:=
 *Miscellaneous.Miscellaneous:=
+*Admin.Media:=
+$hook:=*dummy
 zp_event:=*dummy
 zp_hook:=*dummy
-$hook:=*dummy
 image_filter:=Allow a plugin to remove files from the list of images found in an album so that they are not treated as images.
 album_page_subtabs:=Allow adding subtabs to the admin album tab.
 bulk_article_actions:=Allow filtering of the "article" tab bulk action items.

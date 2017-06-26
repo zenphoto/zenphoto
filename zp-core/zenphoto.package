@@ -1017,6 +1017,7 @@ plugins/filterDoc/filter descriptions.txt
 plugins/filterDoc/filter list.html
 plugins/filterDoc/filter list_index.html
 plugins/filterDoc/intro.html
+plugins/filterDoc/process.php
 plugins/filterDoc.php
 plugins/galleryToken.php
 plugins/headConsolidator.php
@@ -8159,4 +8160,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-8161
+8162

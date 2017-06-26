@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the "files" upload tab
+ * This is the "filters" tab
  *
  * @package plugins
  * @subpackage development

@@ -28,7 +28,7 @@ if (isset($_REQUEST['pluginsEnable'])) {
 		case 4:
 			setOption('pluginEnabler_currentset ', serialize(array_keys(getEnabledPlugins())));
 			$report = gettext('Current enabled plugins remembered');
-			break 1;
+			break;
 	}
 
 	if ($setting <= 3) {
