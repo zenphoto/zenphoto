@@ -626,8 +626,8 @@ function zp_session_start() {
 			mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
 			session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
 		}
-//	session_set_cookie_params($lifetime,               $path,               $domain,               $secure,        $httponly)
-		session_set_cookie_params(getOption('cookie_persistence'), getOption('zenphoto_cookie_path'), $_SERVER['HTTP_HOST'], secureServer(), true);
+		$sessionCookie = session_get_cookie_params();
+		session_set_cookie_params($sessionCookie['lifetime'], $sessionCookie['path'], $_SERVER['HTTP_HOST'], secureServer(), true);
 		return session_start();
 	}
 	return NULL;
@@ -690,16 +690,17 @@ function zp_setCookie($name, $value, $time = NULL) {
 	if (is_null($time)) {
 		$time = COOKIE_PESISTENCE;
 	}
-	$path = getOption('zenphoto_cookie_path');
-	if (empty($path)) {
-		$path = WEBPATH;
-	}
-	if (substr($path, -1, 1) != '/')
-		$path .= '/';
 	if (DEBUG_LOGIN) {
 		debugLog("zp_setCookie($name, $value, $time)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
 	}
 	if (($time < 0) || !GALLERY_SESSION) {
+		$path = getOption('zenphoto_cookie_path');
+		if (empty($path)) {
+			$path = WEBPATH;
+		}
+		if (substr($path, -1, 1) != '/') {
+			$path .= '/';
+		}
 		setcookie($name, $cookiev, time() + $time, $path, "", secureServer(), true);
 	}
 	if ($time < 0) {
@@ -722,6 +723,9 @@ function zp_clearCookie($name) {
 	$path = getOption('zenphoto_cookie_path');
 	if (empty($path)) {
 		$path = WEBPATH;
+	}
+	if (substr($path, -1, 1) != '/') {
+		$path .= '/';
 	}
 	zp_setCookie($name, '', -368000, $path);
 }
