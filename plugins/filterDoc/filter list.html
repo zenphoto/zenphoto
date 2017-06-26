@@ -1231,7 +1231,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>alt_login_handler</strong></span>(<em>string</em>)</p>
 					<!-- description(User_management.Miscellaneous)-alt_login_handler --><p>Allows filters to provide links to alternate logon handlers. This list is presented as a selection list on the logon form as alternates to the provided process.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/federated_logon.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zenphotologin.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/lib-auth.php</li>
@@ -1266,13 +1266,15 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>federated_login_attempt</strong></span>(<em>bool, user</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>federated_login_attempt</strong></span>(<em>bool, user, string</em>)</p>
 					<!-- description(User_management.Miscellaneous)-federated_login_attempt --><p>Invoked when a user logs on via a federated_Logon plugin. (As opposed to logging on through the normal authentication mechanism)</p><!--e-->
 					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/federated_logon.php</li>
+						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/facebooklogin.php</li>
 						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/googlelogin.php</li>
+						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/linkedinlogin.php</li>
+						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -1315,7 +1317,6 @@
 					<!-- description(User_management.Miscellaneous)-register_user_verified --><p>Invoked when a new user is verified.</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/federated_logon.php</li>
 						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/register_user.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -1331,7 +1332,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_admin_custom_data</strong></span>(<em>updated, userobj, i, alter</em>)</p>
 					<!-- description(User_management.Miscellaneous)-save_admin_custom_data --><p>Allows a plugin to manage custom data for users. This invocation is for when the user object is saved.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/federated_logon.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/common/fieldextender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-users.php</li>

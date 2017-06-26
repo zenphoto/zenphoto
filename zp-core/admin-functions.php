@@ -405,11 +405,22 @@ function printAdminHeader($tab, $subtab = NULL) {
 												}
 											}
 										}
-										if (strpos($link, '/') !== 0) { // zp_core relative
-											$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-										} else {
-											$link = WEBPATH . $link;
+										switch ($link[0]) {
+											case'/':
+												$link = WEBPATH . $link;
+												break;
+											case '?':
+												$request = parse_url(getRequestURI());
+												if (isset($request['query'])) {
+													$link .= '&' . $request['query'];
+												}
+												$link = $request['path'] . $link;
+												break;
+											default:
+												$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
+												break;
 										}
+
 										if (in_array($subkey, $alert)) {
 											$subclass = ' class="' . $subclass . 'alert"';
 										} else if ($subclass) {

@@ -576,7 +576,7 @@ function getOptionContent() {
 							<input type="checkbox" name="cache_full_image" value="1" <?php checked('1', getOption('cache_full_image')); ?> />
 							<?php echo gettext('cache the full image'); ?>
 						</label>
-						<<br />
+						<br />
 
 						<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 						<?php
