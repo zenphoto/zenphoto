@@ -688,7 +688,9 @@ function zp_setCookie($name, $value, $time = NULL) {
 		$cookiev = zp_cookieEncode($value);
 	}
 	if (is_null($time)) {
-		$time = COOKIE_PESISTENCE;
+		$time = time() + COOKIE_PESISTENCE;
+	} else {
+		$time = time() + $time;
 	}
 	if (DEBUG_LOGIN) {
 		debugLog("zp_setCookie($name, $value, $time)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
@@ -701,7 +703,7 @@ function zp_setCookie($name, $value, $time = NULL) {
 		if (substr($path, -1, 1) != '/') {
 			$path .= '/';
 		}
-		setcookie($name, $cookiev, time() + $time, $path, "", secureServer(), true);
+		setcookie($name, $cookiev, (int) $time, $path, "", secureServer(), true);
 	}
 	if ($time < 0) {
 		if (isset($_SESSION))

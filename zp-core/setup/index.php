@@ -406,7 +406,7 @@ if ($setup_checked) {
 		}
 		if ($setup_cookie == ZENPHOTO_VERSION) {
 			setupLog(gettext('Setup cookie test successful'));
-			setcookie('setup_test_cookie', '', time() - 368000, '/');
+			zp_clearCookie('setup_test_cookie');
 		} else {
 			setupLog(gettext('Setup cookie test unsuccessful'), true);
 		}
@@ -452,7 +452,7 @@ if ($setup_checked) {
 			setupLog(sprintf(gettext("Query error: %s"), $connectDBErr), true);
 		}
 	}
-	setcookie('setup_test_cookie', ZENPHOTO_VERSION, time() + 3600, '/');
+	zp_setCookie('setup_test_cookie', ZENPHOTO_VERSION, 3600);
 }
 
 if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_result)) {
