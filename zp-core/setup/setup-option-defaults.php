@@ -283,6 +283,7 @@ setOptionDefault('image_quality', 85);
 setOptionDefault('thumb_quality', 75);
 setOptionDefault('last_garbage_collect', time());
 setOptionDefault('cookie_persistence', 5184000);
+setOptionDefault('zenphoto_cookie_path', WEBPATH);
 
 setOptionDefault('search_password', '');
 setOptionDefault('search_hint', NULL);

@@ -680,13 +680,8 @@ function zp_cookieEncode($value) {
  * @param string $name The 'cookie' name
  * @param string $value The value to be stored
  * @param timestamp $time The time delta until the cookie expires
- * @param string $path The path on the server in which the cookie will be available on
- * @param bool $secure true if secure cookie
  */
-function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = NULL) {
-	if (is_null($secure)) {
-		$secure = secureServer();
-	}
+function zp_setCookie($name, $value, $time = NULL) {
 	if (empty($value)) {
 		$cookiev = '';
 	} else {
@@ -695,16 +690,17 @@ function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = NULL)
 	if (is_null($time)) {
 		$time = COOKIE_PESISTENCE;
 	}
-	if (is_null($path)) {
+	$path = getOption('zenphoto_cookie_path');
+	if (empty($path)) {
 		$path = WEBPATH;
 	}
 	if (substr($path, -1, 1) != '/')
 		$path .= '/';
 	if (DEBUG_LOGIN) {
-		debugLog("zp_setCookie($name, $value, $time, $path)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
+		debugLog("zp_setCookie($name, $value, $time)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
 	}
 	if (($time < 0) || !GALLERY_SESSION) {
-		setcookie($name, $cookiev, time() + $time, $path, "", $secure);
+		setcookie($name, $cookiev, time() + $time, $path, "", secureServer(), true);
 	}
 	if ($time < 0) {
 		if (isset($_SESSION))
@@ -721,11 +717,13 @@ function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = NULL)
  *
  * Clears a cookie
  * @param string $name
- * @param string $path
- * @param bool $secure true if secure cookie
  */
-function zp_clearCookie($name, $path = NULl, $secure = false) {
-	zp_setCookie($name, '', -368000, $path, $secure);
+function zp_clearCookie($name) {
+	$path = getOption('zenphoto_cookie_path');
+	if (empty($path)) {
+		$path = WEBPATH;
+	}
+	zp_setCookie($name, '', -368000, $path);
 }
 
 /**
