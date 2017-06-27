@@ -75,7 +75,7 @@ function saveOptions() {
 			}
 			//	save a cookie to see if change works
 			$returntab .= '&cookiepath';
-			zp_setCookie('zenphoto_cookie_path', $p, NULL, $p);
+			zp_setCookie('zenphoto_cookie_path', $p, 600);
 		}
 		setOption('zenphoto_cookie_path', $p);
 		if (isset($_POST['cookie_persistence'])) {
