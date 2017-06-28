@@ -174,7 +174,7 @@ if (@$_zp_loggedin) {
 	}
 
 	if (!$_zp_current_admin_obj->getID()) {
-		$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
+		$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . "/" . BACKUPFOLDER . '/*.zdb');
 		if (count($filelist) > 0) {
 			$zenphoto_tabs['admin']['subtabs']['restore'] = 'utilities/backup_restore.php?tab=backup';
 		}

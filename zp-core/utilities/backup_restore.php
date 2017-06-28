@@ -156,7 +156,7 @@ if (isset($_REQUEST['backup'])) {
 	}
 
 	if (!empty($tables)) {
-		$folder = SERVERPATH . "/" . BACKUPFOLDER;
+		$folder = SERVERPATH . "/" . DATA_FOLDER . "/" . BACKUPFOLDER;
 		$filename = $folder . '/backup-' . date('Y_m_d-H_i_s') . '.zdb';
 		if (!is_dir($folder)) {
 			mkdir($folder, FOLDER_MOD);
@@ -243,7 +243,7 @@ if (isset($_REQUEST['backup'])) {
 	if (isset($_REQUEST['backupfile'])) {
 		$file_version = 0;
 		$compression_handler = 'gzip';
-		$folder = SERVERPATH . '/' . BACKUPFOLDER . '/';
+		$folder = SERVERPATH . "/" . DATA_FOLDER . "/" . BACKUPFOLDER . '/';
 		$filename = $folder . internalToFilesystem(sanitize($_REQUEST['backupfile'], 3)) . '.zdb';
 		if (file_exists($filename)) {
 			$handle = fopen($filename, 'r');
@@ -537,12 +537,12 @@ if (isset($_GET['compression'])) {
 					<br />
 					<?php
 				}
-				$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
+				$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . "/" . BACKUPFOLDER . '/*.zdb');
 				if (count($filelist) <= 0) {
 					echo gettext('You have not yet created a backup set.');
 				} else {
 					$curdir = getcwd();
-					chdir(SERVERPATH . "/" . BACKUPFOLDER);
+					chdir(SERVERPATH . "/" . DATA_FOLDER . "/" . BACKUPFOLDER);
 					$filelist = safe_glob('*.zdb');
 					$list = array('' => NULL);
 					foreach ($filelist as $file) {

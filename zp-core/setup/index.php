@@ -118,11 +118,18 @@ $zptime = filemtime($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFI
 @copy(dirname(dirname(__FILE__)) . '/dataaccess', SERVERPATH . '/' . DATA_FOLDER . '/.htaccess');
 @chmod(SERVERPATH . '/' . DATA_FOLDER . '/.htaccess', 0444);
 
-if (!file_exists(SERVERPATH . '/' . BACKUPFOLDER)) {
-	@mkdir(SERVERPATH . '/' . BACKUPFOLDER, $chmod | 0311);
-	@chmod(SERVERPATH . '/' . BACKUPFOLDER . '/.htaccess', FOLDER_MOD);
+if (file_exists(SERVERPATH . '/' . BACKUPFOLDER)) {
+	/* move the files */
+	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER, 0777);
+	@rename(SERVERPATH . '/' . BACKUPFOLDER, SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER);
+	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER, $chmod | 0311);
 }
-@copy(dirname(dirname(__FILE__)) . '/dataaccess', SERVERPATH . '/' . BACKUPFOLDER . '/.htaccess');
+if (!file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER)) {
+	@mkdir(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER, $chmod | 0311);
+}
+@copy(dirname(dirname(__FILE__)) . '/dataaccess', SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER . '/.htaccess');
+@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER . '/.htaccess', 0444);
+
 
 
 if (isset($_GET['mod_rewrite'])) {
@@ -1739,7 +1746,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$clones = array();
 
 									if ($_zp_loggedin == ADMIN_RIGHTS) {
-										$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
+										$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . "/" . BACKUPFOLDER . '/*.zdb');
 										if (count($filelist) > 0) {
 											$link = sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin', WEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php');
 											$autorun = false;
