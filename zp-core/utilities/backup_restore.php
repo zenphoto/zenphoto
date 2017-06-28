@@ -133,6 +133,15 @@ $messages = '';
 $prefix = trim(prefix(), '`');
 $prefixLen = strlen($prefix);
 
+$tables = array();
+$result = db_show('tables');
+if ($result) {
+	while ($row = db_fetch_assoc($result)) {
+		$tables[] = $row;
+	}
+	db_free_result($result);
+}
+
 if (isset($_REQUEST['backup'])) {
 	$compression_level = sanitize($_REQUEST['compress'], 3);
 	setOption('backup_compression', $compression_level);
@@ -145,14 +154,7 @@ if (isset($_REQUEST['backup'])) {
 	} else {
 		$compression_handler = 'no';
 	}
-	$tables = array();
-	$result = db_show('tables');
-	if ($result) {
-		while ($row = db_fetch_assoc($result)) {
-			$tables[] = $row;
-		}
-		db_free_result($result);
-	}
+
 	if (!empty($tables)) {
 		$folder = SERVERPATH . "/" . BACKUPFOLDER;
 		$filename = $folder . '/backup-' . date('Y_m_d-H_i_s') . '.zdb';
@@ -307,65 +309,67 @@ if (isset($_REQUEST['backup'])) {
 					extendExecution();
 					$sep = strpos($string, TABLE_SEPARATOR);
 					$table = substr($string, 0, $sep);
-					if (array_key_exists($prefix . $table, $tables)) {
-						if (!$table_cleared[$prefix . $table]) {
-							if (!db_truncate_table($table)) {
-								$errors[] = gettext('Truncate table<br />') . db_error();
-							}
-							$table_cleared[$prefix . $table] = true;
-						}
-						$row = substr($string, $sep + strlen(TABLE_SEPARATOR));
-						$row = decompressRow($row);
-						$row = unserialize($row);
-
-
-						foreach ($row as $key => $element) {
-							if ($compression_handler == 'bzip2' || $compression_handler == 'gzip') {
-								if (!empty($element)) {
-									$element = decompressField($element);
+					if (isset($_REQUEST['restore_' . $table])) {
+						if (array_key_exists($prefix . $table, $tables)) {
+							if (!$table_cleared[$prefix . $table]) {
+								if (!db_truncate_table($table)) {
+									$errors[] = gettext('Truncate table<br />') . db_error();
 								}
+								$table_cleared[$prefix . $table] = true;
 							}
-							if (array_search($key, $tables[$prefix . $table]) === false) {
-								//	Flag it if data will be lost
-								$missing_element[] = $table . '->' . $key;
-								unset($row[$key]);
-							} else {
-								if (is_null($element)) {
-									$row[$key] = 'NULL';
+							$row = substr($string, $sep + strlen(TABLE_SEPARATOR));
+							$row = decompressRow($row);
+							$row = unserialize($row);
+
+							foreach ($row as $key => $element) {
+								if ($compression_handler == 'bzip2' || $compression_handler == 'gzip') {
+									if (!empty($element)) {
+										$element = decompressField($element);
+									}
+								}
+								if (array_search($key, $tables[$prefix . $table]) === false) {
+									//	Flag it if data will be lost
+									$missing_element[] = $table . '->' . $key;
+									unset($row[$key]);
 								} else {
-									$row[$key] = db_quote($element);
+									if (is_null($element)) {
+										$row[$key] = 'NULL';
+									} else {
+										$row[$key] = db_quote($element);
+									}
 								}
 							}
+							if (!empty($row)) {
+								if ($table == 'options') {
+									if ($row['name'] == 'zenphoto_install') {
+										break;
+									}
+									if ($row['theme'] == 'NULL') {
+										$row['theme'] = db_quote('');
+									}
+								}
+								$sql = 'INSERT INTO ' . prefix($table) . ' (`' . implode('`,`', array_keys($row)) . '`) VALUES (' . implode(',', $row) . ')';
+								foreach ($unique[$prefix . $table] as $exclude) {
+									unset($row[$exclude]);
+								}
+								if (count($row) > 0) {
+									$sqlu = ' ON DUPLICATE KEY UPDATE ';
+									foreach ($row as $key => $value) {
+										$sqlu .= '`' . $key . '`=' . $value . ',';
+									}
+									$sqlu = substr($sqlu, 0, -1);
+								} else {
+									$sqlu = '';
+								}
+								if (!query($sql . $sqlu, false)) {
+									$errors[] = $sql . $sqlu . '<br />' . db_error();
+								}
+							}
+						} else {
+							$missing_table[] = $table;
 						}
-						if (!empty($row)) {
-							if ($table == 'options') {
-								if ($row['name'] == 'zenphoto_install') {
-									break;
-								}
-								if ($row['theme'] == 'NULL') {
-									$row['theme'] = db_quote('');
-								}
-							}
-							$sql = 'INSERT INTO ' . prefix($table) . ' (`' . implode('`,`', array_keys($row)) . '`) VALUES (' . implode(',', $row) . ')';
-							foreach ($unique[$prefix . $table] as $exclude) {
-								unset($row[$exclude]);
-							}
-							if (count($row) > 0) {
-								$sqlu = ' ON DUPLICATE KEY UPDATE ';
-								foreach ($row as $key => $value) {
-									$sqlu .= '`' . $key . '`=' . $value . ',';
-								}
-								$sqlu = substr($sqlu, 0, -1);
-							} else {
-								$sqlu = '';
-							}
-							if (!query($sql . $sqlu, false)) {
-								$errors[] = $sql . $sqlu . '<br />' . db_error();
-							}
-						}
-					} else {
-						$missing_table[] = $table;
 					}
+
 					$counter++;
 					if ($counter >= RESPOND_COUNTER) {
 						echo ' ';
@@ -557,6 +561,27 @@ if (isset($_GET['compression'])) {
 							?>
 						</select>
 						<input type="hidden" name="restore" value="true" />
+						<br />
+						<?php
+						echo gettext('Select the tables to restore.');
+						?>
+						<span class="nowrap">
+							<input type="checkbox" name="all" id="checkAllAuto" value="1" checked="checked" onclick="$('.checkAuto').prop('checked', $('#checkAllAuto').prop('checked'));" /><?php echo gettext('all'); ?>
+						</span>
+						<br />
+						<?php
+						foreach ($tables as $row) {
+							$table = preg_replace('~^' . $prefix . '~', '', array_shift($row));
+							?>
+							<span class="nowrap">
+								<input type="checkbox" class="checkAuto" name="restore_<?php echo $table; ?>" value="1" checked="checked" /><?php echo $table; ?>
+							</span>
+							<?php
+						}
+						?>
+
+
+						<br class="clearall">
 						<div class="buttons pad_button" id="dbrestore">
 							<button id="restore_button" class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Restore the tables in your database from a previous backup."); ?>" disabled="disabled">
 								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" /> <?php echo gettext("Restore the Database"); ?>
