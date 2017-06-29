@@ -681,8 +681,10 @@ function zp_cookieEncode($value) {
  * @param string $name The 'cookie' name
  * @param string $value The value to be stored
  * @param timestamp $time The time delta until the cookie expires
+ * @param bool $security set to false to make the cookie send for any kind of connection
  */
-function zp_setCookie($name, $value, $time = NULL) {
+function zp_setCookie($name, $value, $time = NULL, $security = true) {
+	$secure = $security && secureServer();
 	if (empty($value)) {
 		$cookiev = '';
 	} else {
@@ -693,18 +695,18 @@ function zp_setCookie($name, $value, $time = NULL) {
 	} else {
 		$time = time() + $time;
 	}
+	$path = getOption('zenphoto_cookie_path');
+	if (empty($path)) {
+		$path = WEBPATH;
+	}
+	if (substr($path, -1, 1) != '/') {
+		$path .= '/';
+	}
 	if (DEBUG_LOGIN) {
-		debugLog("zp_setCookie($name, $value, $time)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
+		debugLog("zp_setCookie($name, $value, $time)::path=" . $path . "; secure=" . sprintf('%u', $secure) . "; album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
 	}
 	if (($time < 0) || !GALLERY_SESSION) {
-		$path = getOption('zenphoto_cookie_path');
-		if (empty($path)) {
-			$path = WEBPATH;
-		}
-		if (substr($path, -1, 1) != '/') {
-			$path .= '/';
-		}
-		setcookie($name, $cookiev, (int) $time, $path, "", secureServer(), true);
+		setcookie($name, $cookiev, (int) $time, $path, "", $secure, true);
 	}
 	if ($time < 0) {
 		if (isset($_SESSION))
@@ -723,14 +725,7 @@ function zp_setCookie($name, $value, $time = NULL) {
  * @param string $name
  */
 function zp_clearCookie($name) {
-	$path = getOption('zenphoto_cookie_path');
-	if (empty($path)) {
-		$path = WEBPATH;
-	}
-	if (substr($path, -1, 1) != '/') {
-		$path .= '/';
-	}
-	zp_setCookie($name, '', -368000, $path);
+	zp_setCookie($name, '', -368000, false);
 }
 
 /**

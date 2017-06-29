@@ -684,7 +684,7 @@ class _Authority {
 		$user->set('lastloggedin', $user->get('loggedin'));
 		$user->set('loggedin', date('Y-m-d H:i:s'));
 		$user->save();
-		zp_setCookie("zp_user_auth", $user->getPass() . '.' . $user->getID(), NULL, NULL, secureServer());
+		zp_setCookie("zp_user_auth", $user->getPass() . '.' . $user->getID());
 	}
 
 	/**

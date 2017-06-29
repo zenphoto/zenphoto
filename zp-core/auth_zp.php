@@ -54,7 +54,7 @@ if (zp_getCookie('zenphoto_ssl') && !secureServer()) {
 if (isset($_POST['login'])) { //	Handle the login form.
 	if (secureServer()) {
 		// https: set the 'zenphoto_ssl' marker for redirection
-		zp_setCookie("zenphoto_ssl", "needed");
+		zp_setCookie("zenphoto_ssl", "needed", NULL, false);
 	}
 	$_zp_loggedin = $_zp_authority->handleLogon();
 	if ($_zp_loggedin) {
