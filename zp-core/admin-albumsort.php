@@ -236,11 +236,11 @@ echo "\n</head>";
 											linkPickerIcon($image);
 											?>
 										</p>
-										<?php
-									}
-									?>
-								</label>
-							</li>
+									</label>
+								</li>
+								<?php
+							}
+							?>
 						</ul>
 						<br class="clearall">
 

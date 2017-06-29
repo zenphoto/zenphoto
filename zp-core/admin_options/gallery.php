@@ -74,7 +74,7 @@ function getOptionContent() {
 						<?php print_language_string_list($_zp_gallery->getTitle('all'), 'gallery_title', false, null, '', '100%'); ?>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo gettext("What you want to call your site."); ?>
 						</div>
@@ -86,7 +86,7 @@ function getOptionContent() {
 						<?php print_language_string_list($_zp_gallery->getDesc('all'), 'Gallery_description', true, NULL, 'texteditor', '100%'); ?>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?>
 						</div>
@@ -99,7 +99,7 @@ function getOptionContent() {
 						<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY != 'public') echo 'checked="checked"' ?> onclick="$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo gettext('Private galleries are viewable only by registered users.'); ?>
 						</div>
@@ -132,7 +132,7 @@ function getOptionContent() {
 							?>
 						</td>
 						<td class="option_desc" style="background-color: #f0f4f5;">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 							<div class="option_desc_hidden">
 								<p>
 									<?php echo gettext("Master password for the gallery. Click on <em>Gallery password</em> to change."); ?>
@@ -163,7 +163,7 @@ function getOptionContent() {
 							</label>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 							<div class="option_desc_hidden">
 								<?php echo gettext("User ID for the gallery guest user") ?>
 							</div>
@@ -199,7 +199,7 @@ function getOptionContent() {
 							</span>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 							<div class="option_desc_hidden">
 								<?php echo gettext("Master password for the gallery. If this is set, visitors must know this password to view the gallery."); ?>
 							</div>
@@ -213,7 +213,7 @@ function getOptionContent() {
 							<?php print_language_string_list($_zp_gallery->getPasswordHint('all'), 'hint', false, NULL, 'hint'); ?>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 							<div class="option_desc_hidden">
 								<?php echo gettext("A reminder hint for the password."); ?>
 							</div>
@@ -253,7 +253,7 @@ function getOptionContent() {
 						</ul>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo gettext('Place a checkmark on any page scripts which should not be protected by the gallery password.'); ?>
 						</div>
@@ -265,7 +265,7 @@ function getOptionContent() {
 						<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title', false, null, '', '100%'); ?>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo gettext("Your web site title."); ?>
 						</div>
@@ -276,7 +276,7 @@ function getOptionContent() {
 					<td class="option_value"><input type="text" name="website_url" style="width:100%;"
 																					value="<?php echo html_encode($_zp_gallery->getWebsiteURL()); ?>" /></td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo gettext("This is used to link back to your main site, but your theme must support it."); ?>
 						</div>
@@ -298,7 +298,7 @@ function getOptionContent() {
 						</select>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo gettext("Default thumbnail selection for albums."); ?>
 						</div>
@@ -363,7 +363,7 @@ function getOptionContent() {
 						</table>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php
 							echo gettext('Sort order for the albums on the index of the gallery. Custom sort values must be database field names. You can have multiple fields separated by commas. This option is also the default sort for albums and subalbums.');
@@ -403,7 +403,7 @@ function getOptionContent() {
 						</label>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 
 							<p><?php echo gettext("<em>publish albums by default</em> sets the default behavior for when an album is discovered. If checked, the album will be published, if unchecked it will be unpublished.") ?></p>

@@ -609,10 +609,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 */
 	function putSlider($text, $postkey, $min, $max, $v) {
 		?>
-		<span id="slider_display-<?php echo $postkey; ?>">
+		<span id="slider_display-<?php echo $postkey; ?>" class="nowrap">
 			<?php echo $text; ?>
 			<input type="text" id="<?php echo $postkey; ?>" name="<?php echo $postkey; ?>" size="2" value="<?php echo $v; ?>" onchange="$('#slider-<?php echo $postkey; ?>').slider('value', $('#<?php echo $postkey; ?>').val());"/>
 		</span>
+
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(function () {
@@ -629,7 +630,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			});
 			// ]]> -->
 		</script>
-		<div id="slider-<?php echo $postkey; ?>"></div>		<?php
+		<div id="slider-<?php echo $postkey; ?>"></div>
+		<br />
+		<?php
 	}
 
 	define('CUSTOM_OPTION_PREFIX', '_ZP_CUSTOM_');
@@ -705,11 +708,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$options = array_keys($supportedOptions);
 				natcasesort($options);
 			}
-			if (method_exists($optionHandler, 'handleOptionSave')) {
-				?>
-				<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $extension; ?>" />
-				<?php
-			}
+			$save = method_exists($optionHandler, 'handleOptionSave');
+
 			foreach ($options as $option) {
 				$descending = NULL;
 				$row = $supportedOptions[$option];
@@ -821,6 +821,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<td class="option_value">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . $clear . 'text-' . $postkey; ?>" value="1" />
 								<?php
+								if ($save) {
+									?>
+									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $extension; ?>" />
+									<?php
+									$save = false;
+								}
 								if ($multilingual) {
 									print_language_string_list($v, $postkey, $type, NULL, $editor, '100%');
 								} else {
@@ -993,7 +999,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_CHECKBOX_ULLIST:
 							?>
 							<td class="option_value">
-								<input class="" type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
 								<?php
 								$setOptions = getSerializedArray($v);
 								$all = empty($setOptions);
@@ -1064,7 +1070,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					if ($desc && $type != OPTION_TYPE_NOTE) {
 						?>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 							<div class="option_desc_hidden">
 								<?php echo $desc; ?>
 							</div>
@@ -1664,7 +1670,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 name="disclose_password<?php echo $suffix; ?>"
 													 id="disclose_password<?php echo $suffix; ?>"
 													 onclick="passwordClear('<?php echo $suffix; ?>');
-																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
+															 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
 									</label>
 								</td>
 								<td>
@@ -2022,9 +2028,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-													 $('#<?php echo $prefix; ?>expirationdate').val('');
-													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-													 $('.<?php echo $prefix; ?>expire').html('');"
+												 $('#<?php echo $prefix; ?>expirationdate').val('');
+												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+												 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2157,7 +2163,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4100,30 +4106,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-				var sel = obj.options[obj.selectedIndex].value;
-				var mark;
-				switch (sel) {
+			var sel = obj.options[obj.selectedIndex].value;
+							var mark;
+							switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-					case '<?php echo $key; ?>':
-									mark = '<?php echo $mark; ?>';
-									break;
+				case '<?php echo $key; ?>':
+								mark = '<?php echo $mark; ?>';
+								break;
 			<?php
 		}
 		?>
-				default:
-								mark = false;
-								break;
+			default:
+							mark = false;
+							break;
 			}
 			if (mark) {
-				$.colorbox({
-					href: '#' + mark,
-					inline: true,
-					open: true,
-					close: '<?php echo gettext("ok"); ?>'
-				});
-				}
+			$.colorbox({
+			href: '#' + mark,
+							inline: true,
+							open: true,
+							close: '<?php echo gettext("ok"); ?>'
+			});
+			}
 			}
 			// ]]> -->
 		</script>
@@ -4515,27 +4521,27 @@ function stripTableRows($custom) {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-		// <!-- <![CDATA[
-		$(function () {
-			var tabContainers = $('div.tabs > div');
-			$('.first').addClass('selected');
-		});
-		function cbclick(num, id) {
-			$('.cbx-' + id).hide();
-			$('#cb' + num + '-' + id).show();
-			$('.cbt-' + id).removeClass('selected');
-			$('#cbt' + num + '-' + id).addClass('selected');
-		}
+						// <!-- <![CDATA[
+						$(function () {
+						var tabContainers = $('div.tabs > div');
+										$('.first').addClass('selected');
+						});
+						function cbclick(num, id) {
+						$('.cbx-' + id).hide();
+										$('#cb' + num + '-' + id).show();
+										$('.cbt-' + id).removeClass('selected');
+										$('#cbt' + num + '-' + id).addClass('selected');
+						}
 
 		function cbadd(id, offset) {
-			var num = $('#cbu-' + id + ' li').size() - offset;
-			$('li:last', $('#cbu-' + id)).remove();
-			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-							'</div>');
-			cbclick(num, id);
+		var num = $('#cbu-' + id + ' li').size() - offset;
+						$('li:last', $('#cbu-' + id)).remove();
+						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+						'</div>');
+						cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -5354,7 +5360,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" id="<?php echo $iconid; ?>">
 	</a>
 	<?php

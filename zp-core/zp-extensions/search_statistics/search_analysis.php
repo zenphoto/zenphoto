@@ -19,6 +19,9 @@ if (isset($_GET['reset'])) {
 	exitZP();
 }
 printAdminHeader('overview', 'analysis');
+?>
+<link rel="stylesheet" href="../../admin-statistics.css" type="text/css" media="screen" />
+<?php
 echo '</head>';
 
 $sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="search_statistics"';
@@ -113,7 +116,6 @@ asort($results_f);
 arsort($results_f);
 $results_f = array_slice($results_f, 0, $limit_f, true);
 ?>
-<link rel="stylesheet" href="../../admin-statistics.css" type="text/css" media="screen" />
 <body>
 	<?php printLogoAndLinks(); ?>
 	<div id="main">

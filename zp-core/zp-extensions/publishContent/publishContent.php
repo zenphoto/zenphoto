@@ -23,12 +23,12 @@ function unpublishSubalbums($album) {
  */
 function reveal($content, $visible = false) {
 	?>
-	<span id="<?php echo $content; ?>_reveal"<?php if ($visible) echo 'style="display:none;"'; ?> class="icons">
+	<span id="<?php echo $content; ?>_reveal"<?php if ($visible) echo ' style="display:none;"'; ?> class="icons">
 		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
 			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_down.png" alt="" class="icon-position-top4" />
 		</a>
 	</span>
-	<span id="<?php echo $content; ?>_hide"<?php if (!$visible) echo 'style="display:none;"'; ?> class="icons">
+	<span id="<?php echo $content; ?>_hide"<?php if (!$visible) echo ' style="display:none;"'; ?> class="icons">
 		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
 			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_up.png" alt="" class="icon-position-top4" />
 		</a>
@@ -135,7 +135,7 @@ datepickerJS();
 </script>
 <link rel="stylesheet" href="publishContent.css" type="text/css" media="screen" />
 <?php
-echo '</head>';
+echo "</head>\n";
 ?>
 <body>
 	<?php printLogoAndLinks(); ?>
@@ -628,6 +628,7 @@ echo '</head>';
 										</button>
 									</div>
 									<br class="clearall">
+								</form>
 							</div>
 							<?php
 						} else {
@@ -687,6 +688,7 @@ echo '</head>';
 											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish pages"); ?>
 										</button>
 									</div>
+								</form>
 							</div>
 							<?php
 						} else {
@@ -698,9 +700,10 @@ echo '</head>';
 					<?php
 				}
 				?>
-			</div><!-- content -->
-		</div><!-- main -->
-		<?php printAdminFooter(); ?>
+			</div>
+		</div><!-- content -->
+	</div><!-- main -->
+	<?php printAdminFooter(); ?>
 </body>
 <?php
 echo "</html>";

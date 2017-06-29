@@ -76,10 +76,9 @@ echo '</head>';
 					</div>
 				</form>
 			</div>
-		</div>
-	</div><!-- content -->
-</div><!-- main -->
-<?php printAdminFooter(); ?>
+		</div><!-- content -->
+	</div><!-- main -->
+	<?php printAdminFooter(); ?>
 </body>
 <?php echo "</html>"; ?>
 

@@ -271,7 +271,7 @@ function getOptionContent() {
 
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 
 							<p><?php echo gettext("Default sort order for images."); ?></p>
@@ -285,7 +285,7 @@ function getOptionContent() {
 						<input type="textbox" name="image_max_size" value="<?php echo getOption('image_max_size'); ?>" />
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 
 							<?php echo gettext('The limit on how large an image may be resized. Too large and your server will spend all its time sizing images.'); ?>
@@ -295,18 +295,12 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Image quality"); ?></td>
 					<td class="option_value">
-						<p class="nowrap">
-							<?php putSlider(gettext('normal image'), 'imagequality', 0, 100, getOption('image_quality')); ?>
-						</p>
-						<p class="nowrap">
-							<?php putSlider(gettext('<em>full</em> Image'), 'fullimagequality', 0, 100, getOption('full_image_quality')); ?>
-						</p>
-						<p class="nowrap">
-							<?php putSlider(gettext('thumbnail'), 'thumbquality', 0, 100, getOption('thumb_quality')); ?>
-						</p>
+						<?php putSlider(gettext('normal image'), 'imagequality', 0, 100, getOption('image_quality')); ?>
+						<?php putSlider(gettext('<em>full</em> Image'), 'fullimagequality', 0, 100, getOption('full_image_quality')); ?>
+						<?php putSlider(gettext('thumbnail'), 'thumbquality', 0, 100, getOption('thumb_quality')); ?>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 
 							<p><?php echo gettext("Compression quality for generated images and thumbnails generated."); ?></p>
@@ -318,7 +312,7 @@ function getOptionContent() {
 					<td class="option_name"><?php echo gettext("Interlace"); ?></td>
 					<td class="option_value"><input type="checkbox" name="image_interlace" value="1" <?php checked('1', getOption('image_interlace')); ?> /></td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo gettext("If checked, resized images will be created <em>interlaced</em> (if the format permits)."); ?>
 						</div>
@@ -336,7 +330,7 @@ function getOptionContent() {
 					?>
 					<td class="option_value"><input type="checkbox" name="use_embedded_thumb" value="1" <?php checked('1', getOption('use_embedded_thumb')); ?><?php echo $disabled; ?> /></td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<p><?php echo gettext('If set, thumbnail imbedded in the image will be used when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image.'); ?></p>
 							<?php
@@ -353,7 +347,7 @@ function getOptionContent() {
 					<td class="option_name"><?php echo gettext("Allow upscale"); ?></td>
 					<td class="option_value"><input type="checkbox" name="image_allow_upscale" value="1" <?php checked('1', getOption('image_allow_upscale')); ?> /></td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo gettext("Allow images to be scaled up to the requested size. This could result in loss of quality, so it is off by default."); ?>
 						</div>
@@ -372,9 +366,7 @@ function getOptionContent() {
 								<?php echo gettext('thumbs'); ?>
 							</label>
 						</p>
-						<p class="nowrap">
-							<?php putSlider(gettext('amount'), 'sharpen_amount', 0, 100, getOption('sharpen_amount')); ?>
-						</p>
+						<?php putSlider(gettext('amount'), 'sharpen_amount', 0, 100, getOption('sharpen_amount')); ?>
 
 						<table>
 							<tr>
@@ -388,7 +380,7 @@ function getOptionContent() {
 						</table>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<p><?php echo gettext("Add an unsharp mask to images and/or thumbnails.") . "</p><p class='notebox'>" . gettext("<strong>WARNING</strong>: can overload slow servers."); ?></p>
 							<p><?php echo gettext("<em>Amount</em>: the strength of the sharpening effect. Values are between 0 (least sharpening) and 100 (most sharpening)."); ?></p>
@@ -480,7 +472,7 @@ function getOptionContent() {
 						</p>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<p><?php echo gettext("The watermark image is scaled by to cover <em>cover percentage</em> of the image and placed relative to the upper left corner of the image."); ?></p>
 							<p><?php echo gettext("It is offset from there (moved toward the lower right corner) by the <em>offset</em> percentages of the height and width difference between the image and the watermark."); ?></p>
@@ -503,7 +495,7 @@ function getOptionContent() {
 							<?php putSlider(gettext('limit'), 'imageProcessorConcurrency', 1, 60, getOption('imageProcessorConcurrency')); ?>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php
 							echo gettext('Cache processing worker limit.') . '<p class="notebox">' . gettext('More workers will get the job done faster so long as your server does not get swamped or run out of memory.') . '</p>';
@@ -526,7 +518,7 @@ function getOptionContent() {
 						?>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo gettext("Select a type for the images stored in the image cache. Select <em>Original</em> to preserve the original image’s type."); ?>
 						</div>
@@ -539,7 +531,7 @@ function getOptionContent() {
 									 <?php checked('1', getOption('protected_image_cache')); ?> />
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php
 							echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
@@ -555,7 +547,7 @@ function getOptionContent() {
 									 <?php checked('1', getOption('secure_image_processor')); ?> />
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php
 							echo gettext('When enabled, the image processor will check album access credentials.') .
@@ -624,7 +616,7 @@ function getOptionContent() {
 														 name="disclose_password"
 														 id="disclose_password"
 														 onclick="passwordClear('');
-																		 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																 togglePassword('');" /><?php echo gettext('Show password'); ?>
 										</label>
 									</td>
 								</tr>
@@ -684,7 +676,7 @@ function getOptionContent() {
 						</p>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<p><?php echo gettext("Disabling hotlinking prevents linking to the full image from other domains. If enabled, external links are redirect to the image page. If you are having problems with full images being displayed, try disabling this setting. Hotlinking is not prevented if <em>Full&nbsp;image&nbsp;protection</em> is <em>Unprotected</em> or if the image is cached."); ?></p>
 							<p><?php echo gettext("If <em>Cache the full image</em> is checked the full image will be loaded to the cache and served from there after the first reference. <em>Full&nbsp;image&nbsp;protection</em> must be set to <em>Protected&nbsp;view</em> for the image to be cached. However, once cached, no protections are applied to the image."); ?></p>
@@ -700,7 +692,7 @@ function getOptionContent() {
 									 <?php checked('1', getOption('use_lock_image')); ?> />
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?>
 						</div>
@@ -765,7 +757,7 @@ function getOptionContent() {
 						</p>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<p>
 								<?php echo gettext("Select how image metadata fields are handled."); ?>
@@ -798,7 +790,7 @@ function getOptionContent() {
 							</select>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 							<div class="option_desc_hidden">
 								<?php echo gettext("The default character encoding of image IPTC metadata."); ?>
 							</div>
@@ -821,7 +813,7 @@ function getOptionContent() {
 						<p><input type="textbox" name="default_copyright" value="<?php echo getOption('default_copyright'); ?>" size="50" /></p>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<?php echo $desc; ?>
 							<p class="notebox">

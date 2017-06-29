@@ -670,7 +670,6 @@ table.options tr td {
 	min-height: 40px;
 }
 
-
 .formlayout {
 	width: 100%;
 }
@@ -2299,6 +2298,10 @@ div.tabs>div h2 {
 
 .nopadding {
 	padding: 0 !important;
+}
+
+.no_bullets {
+	list-style: none;
 }
 
 .icon-position-top1 {

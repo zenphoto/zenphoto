@@ -1850,7 +1850,7 @@ echo "\n</head>";
 									<?php
 								}
 								?>
-								</dib>
+							</div>
 
 						</form>
 						<br class="clearall">

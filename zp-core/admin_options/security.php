@@ -40,7 +40,7 @@ function getOptionContent() {
 	?>
 	<div id="tab_security" class="tabbox">
 		<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
-	<?php XSRFToken('saveoptions'); ?>
+			<?php XSRFToken('saveoptions'); ?>
 			<input type="hidden" name="saveoptions" value="security" />
 			<table>
 				<tr>
@@ -61,16 +61,16 @@ function getOptionContent() {
 						</select>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
 							<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
 							<p class="notebox"><?php
-	echo gettext("<strong>Note:</strong>" .
-					"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-					"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-					"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-					'Your only possibility then is to change the option named <span class = "inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
-	?>
+								echo gettext("<strong>Note:</strong>" .
+												"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
+												"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
+												"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
+												'Your only possibility then is to change the option named <span class = "inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+								?>
 							</p>
 						</div>
 					</td>
@@ -81,19 +81,19 @@ function getOptionContent() {
 						<label><input type="checkbox" name="IP_tied_cookies" value="1" <?php checked(1, getOption('IP_tied_cookies')); ?> /></label>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
-	<?php echo gettext('Tie cookies to the IP address of the browser.'); ?>
+							<?php echo gettext('Tie cookies to the IP address of the browser.'); ?>
 							<p class="notebox">
-							<?php
-							if (!getOption('IP_tied_cookies')) {
-								echo ' ' . gettext('<strong>Note</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled.') . ' ';
-							}
-							echo gettext(' You <strong>WILL</strong> have to login after changing this option.');
-							if (!getOption('IP_tied_cookies')) {
-								echo ' ' . gettext('If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first.');
-							}
-							?>
+								<?php
+								if (!getOption('IP_tied_cookies')) {
+									echo ' ' . gettext('<strong>Note</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled.') . ' ';
+								}
+								echo gettext(' You <strong>WILL</strong> have to login after changing this option.');
+								if (!getOption('IP_tied_cookies')) {
+									echo ' ' . gettext('If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first.');
+								}
+								?>
 							</p>
 						</div>
 					</td>
@@ -104,9 +104,9 @@ function getOptionContent() {
 						<label><input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php checked(1, getOption('obfuscate_cache')); ?> /></label>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
-	<?php echo gettext('Cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?>
+							<?php echo gettext('Cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?>
 						</div>
 					</td>
 				</tr>
@@ -116,53 +116,51 @@ function getOptionContent() {
 						<label><input type="checkbox" name="image_processor_flooding_protection" value="1" <?php checked(1, getOption('image_processor_flooding_protection')); ?> /></label>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
+						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
 						<div class="option_desc_hidden">
-	<?php echo gettext('Add a security parameter to image processor URIs to prevent denial of service attacks requesting arbitrary sized images.'); ?>
+							<?php echo gettext('Add a security parameter to image processor URIs to prevent denial of service attacks requesting arbitrary sized images.'); ?>
 						</div>
 					</td>
 				</tr>
-	<?php
-	if (GALLERY_SECURITY == 'public') {
-		$disable = $_zp_gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
-		?>
-					<div class="public_gallery">
-						<tr>
-							<td class="option_name"><?php echo gettext('User name'); ?></td>
-							<td class="option_value">
-								<label>
-		<?php
-		if ($disable) {
-			?>
-										<input type="hidden" name="login_user_field" value="1" />
-										<input type="checkbox" name="login_user_field_disabled" id="login_user_field"
-													 value="1" checked="checked" disabled="disabled" />
-			<?php
-		} else {
-			?>
-										<input type="checkbox" name="login_user_field" id="login_user_field"
-													 value="1" <?php checked('1', $_zp_gallery->getUserLogonField()); ?> />
-			<?php
-		}
-		?>
-								</label>
-							</td>
-							<td class="option_desc">
-								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
-								<div class="option_desc_hidden">
-		<?php
-		echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows users to logon from the form.');
-		if ($disable) {
-			echo '<p class = "notebox">' . gettext('<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated.') . '</p>';
-		}
-		?>
-								</div>
-							</td>
-						</tr>
-					</div>
-		<?php
-	} else {
-		?>
+				<?php
+				if (GALLERY_SECURITY == 'public') {
+					$disable = $_zp_gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
+					?>
+					<tr class="public_gallery">
+						<td class="option_name"><?php echo gettext('User name'); ?></td>
+						<td class="option_value">
+							<label>
+								<?php
+								if ($disable) {
+									?>
+									<input type="hidden" name="login_user_field" value="1" />
+									<input type="checkbox" name="login_user_field_disabled" id="login_user_field"
+												 value="1" checked="checked" disabled="disabled" />
+												 <?php
+											 } else {
+												 ?>
+									<input type="checkbox" name="login_user_field" id="login_user_field"
+												 value="1" <?php checked('1', $_zp_gallery->getUserLogonField()); ?> />
+												 <?php
+											 }
+											 ?>
+							</label>
+						</td>
+						<td class="option_desc">
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"></span>
+							<div class="option_desc_hidden">
+								<?php
+								echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows users to logon from the form.');
+								if ($disable) {
+									echo '<p class = "notebox">' . gettext('<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated.') . '</p>';
+								}
+								?>
+							</div>
+						</td>
+					</tr>
+					<?php
+				} else {
+					?>
 					<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $_zp_gallery->getUserLogonField(); ?>" />
 					<?php
 				}
@@ -173,17 +171,17 @@ function getOptionContent() {
 					<tr>
 						<td colspan="100%"><?php printf(gettext('Authentication authority: <strong>%s</strong>'), stripSuffix($file)); ?></td>
 					</tr>
-		<?php
-	}
-	$supportedOptions = $_zp_authority->getOptionsSupported();
-	if (count($supportedOptions) > 0) {
-		?>
-					<tr>
-					<?php customOptions($_zp_authority, ''); ?>
-					</tr>
-						<?php
-					}
+					<?php
+				}
+				$supportedOptions = $_zp_authority->getOptionsSupported();
+				if (count($supportedOptions) > 0) {
 					?>
+					<tr>
+						<?php customOptions($_zp_authority, ''); ?>
+					</tr>
+					<?php
+				}
+				?>
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
