@@ -85,6 +85,13 @@ if (isset($_POST['login'])) { //	Handle the login form.
 		unset($cloneid);
 	}
 	if ($_zp_loggedin) {
+		if (secureServer()) {
+			// https: set the 'zenphoto_ssl' marker for redirection
+			zp_setCookie("zenphoto_ssl", "needed", NULL, false);
+		} else {
+			zp_clearCookie('zenphoto_ssl');
+		}
+
 		$locale = $_zp_current_admin_obj->getLanguage();
 		if (!empty($locale)) { //	set his prefered language
 			setupCurrentLocale($locale);
@@ -92,15 +99,12 @@ if (isset($_POST['login'])) { //	Handle the login form.
 	}
 }
 if (!$_zp_loggedin) { //	Clear the ssl cookie
-	zp_clearCookie("zenphoto_ssl");
 	if (class_exists('ipBlocker')) {
 		ipBlocker::load();
 	}
 }
 // Handle a logout action.
 if (isset($_REQUEST['logout'])) {
-
-	zp_clearCookie("zenphoto_ssl");
 
 	$redirect = '?fromlogout';
 	if (isset($_GET['p'])) {
