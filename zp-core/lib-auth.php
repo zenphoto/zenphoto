@@ -641,7 +641,7 @@ class Zenphoto_Authority {
 		$user->set('lastloggedin', $user->get('loggedin'));
 		$user->set('loggedin', date('Y-m-d H:i:s'));
 		$user->save();
-		zp_setCookie("zp_user_auth", $user->getPass() . '.' . $user->getID(), NULL, NULL, secureServer());
+		zp_setCookie('zp_user_auth', $user->getPass() . '.' . $user->getID(), NULL, NULL, secureServer(), true);
 	}
 
 	/**
@@ -665,7 +665,7 @@ class Zenphoto_Authority {
 						self::logUser($user);
 						$_zp_current_admin_obj = $user;
 					} else {
-						zp_clearCookie("zp_user_auth"); // Clear the cookie, just in case
+						zp_clearCookie('zp_user_auth', null, secureServer(), true ); // Clear the cookie, just in case
 						$_zp_login_error = 1;
 					}
 					break;
@@ -782,10 +782,11 @@ class Zenphoto_Authority {
 	static function handleLogout() {
 		global $_zp_loggedin, $_zp_pre_authorization, $_zp_current_admin_obj;
 		foreach (self::getAuthCookies() as $cookie => $value) {
-			zp_clearCookie($cookie);
+			zp_clearCookie($cookie, null, secureServer(), true);
 		}
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
+		zp_session_destroy();
 		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);
 	}
 
@@ -799,7 +800,7 @@ class Zenphoto_Authority {
 		if ($loggedin) {
 			return $loggedin;
 		} else {
-			zp_clearCookie("zp_user_auth");
+			zp_clearCookie('zp_user_auth', null, secureServer(), true);
 			return NULL;
 		}
 	}

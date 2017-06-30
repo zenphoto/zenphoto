@@ -477,8 +477,9 @@ function zp_cookieEncode($value) {
  * @param timestamp $time The time delta until the cookie expires
  * @param string $path The path on the server in which the cookie will be available on
  * @param bool $secure true if secure cookie
+ * @param bool $httponly true if access to this cookie should only be allowed via http (e.g. no access to JS etc.). Requires browser support though.
  */
-function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = false) {
+function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = false, $httponly = false) {
   if (empty($value)) {
     $cookiev = '';
   } else {
@@ -496,7 +497,7 @@ function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = false
     debugLog("zp_setCookie($name, $value, $time, $path)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
   }
   if (($time < 0) || !GALLERY_SESSION) {
-    setcookie($name, $cookiev, time() + $time, $path, "", $secure);
+    setcookie($name, $cookiev, time() + $time, $path, '', $secure, $httponly);
   }
   if ($time < 0) {
     if (isset($_SESSION))
@@ -510,14 +511,14 @@ function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = false
 }
 
 /**
- *
  * Clears a cookie
- * @param string $name
- * @param string $path
+ * @param string $name The 'cookie' name
+ * @param string $path The path on the server in which the cookie will be available on
  * @param bool $secure true if secure cookie
+ * @param bool $httponly true if access to this cookie should only be allowed via http (e.g. no access to JS etc.). Requires browser support though.
  */
-function zp_clearCookie($name, $path = NULl, $secure = false) {
-	zp_setCookie($name, '', -368000, $path, $secure);
+function zp_clearCookie($name, $path = NULl, $secure = false, $httponly = false) {
+	zp_setCookie($name, '', -368000, $path, $secure, $httponly);
 }
 
 /**

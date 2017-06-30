@@ -1558,11 +1558,22 @@ function installSignature() {
 function zp_session_start() {
 	if (session_id() == '') {
 		// force session cookie to be secure when in https
-		if (secureServer()) {
-			$CookieInfo = session_get_cookie_params();
-			session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
-		}
+		$CookieInfo = session_get_cookie_params();
+		// force session cookie to be secure when in https
+		session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], secureServer(), true);
 		session_start();
+	}
+}
+
+/**
+ * Ends a zenphoto session if there is one and clear the session cookie
+ */
+function zp_session_destroy() {
+	$CookieInfo = session_get_cookie_params();
+	zp_setCookie(session_name(), '', time() - 42000, $CookieInfo['path'], secureServer(), true);
+	if (session_id() != '') {
+		$_SESSION = array();
+		session_destroy();
 	}
 }
 
