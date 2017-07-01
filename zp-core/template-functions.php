@@ -4294,6 +4294,9 @@ function checkAccess(&$hint = NULL, &$show = NULL) {
 function getPageRedirect() {
   global $_zp_login_error, $_zp_password_form_printed, $_zp_current_search, $_zp_gallery_page,
   $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news;
+	if($_zp_login_error !== 2) {
+		return false;
+	}
   switch ($_zp_gallery_page) {
     case 'index.php':
       $action = '/index.php';
@@ -4318,7 +4321,7 @@ function getPageRedirect() {
       if ($action == '/' . _PAGE_ . '/password' || $action == '/index.php?p=password') {
         $action = '/index.php';
       }
-      break;
+      break; 
     default:
       if (in_context(ZP_SEARCH)) {
         $action = '/index.php?userlog=1&p=search' . $_zp_current_search->getSearchParams();
