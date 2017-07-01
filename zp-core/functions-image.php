@@ -522,9 +522,11 @@ function getImageRotation($imgfile) {
 	$result = query_single_row('SELECT EXIFOrientation FROM ' . prefix('images') . ' AS i JOIN ' . prefix('albums') . ' as a ON i.albumid = a.id WHERE ' . db_quote($imgfile_db) . ' = CONCAT(a.folder,"/",i.filename)');
 	if (is_null($result)) {
 		//try the file directly as this might be an image not in the database
-		$result = exif_read_data($imgfile);
-		if (is_array($result) && array_key_exists('Orientation', $result)) {
-			$rotation = $result['Orientation'];
+		if (in_array(getSuffix($imgfile), array('jpg', 'jpeg', 'tif', 'tiff'))) {
+			$result = exif_read_data($imgfile);
+			if (is_array($result) && array_key_exists('Orientation', $result)) {
+				$rotation = $result['Orientation'];
+			}
 		}
 	} else if (is_array($result) && array_key_exists('EXIFOrientation', $result)) {
 		$splits = preg_split('/!([(0-9)])/', $result['EXIFOrientation']);
