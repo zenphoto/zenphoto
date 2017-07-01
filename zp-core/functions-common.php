@@ -617,6 +617,7 @@ function secureServer() {
 function zp_session_start() {
 	global $_zp_conf_vars;
 	if (session_id() == '') {
+		@ini_set('session.use_strict_mode', 1);
 		//	insure that the session data has a place to be saved
 		if (isset($_zp_conf_vars['session_save_path'])) {
 			session_save_path($_zp_conf_vars['session_save_path']);

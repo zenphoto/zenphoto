@@ -94,7 +94,7 @@ if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE))
 	}
 	$newconfig = false;
 } else if (file_exists($oldconfig = dirname(dirname(dirname(__FILE__))) . '/' . ZENFOLDER . '/zp-config.php')) {
-	//migrate old root configuration file.
+//migrate old root configuration file.
 	$zpconfig = file_get_contents($oldconfig);
 	$i = strpos($zpconfig, '/** Do not edit above this line. **/');
 	$zpconfig = "<?php\nglobal \$_zp_conf_vars;\n\$conf = array()\n" . substr($zpconfig, $i);
@@ -304,7 +304,7 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			require_once(dirname(dirname(__FILE__)) . '/functions-db-NULL.php');
 		}
 	} else {
-		// There is a problem with the configuration file
+// There is a problem with the configuration file
 		?>
 		<div style="background-color: red;font-size: xx-large;">
 			<p>
@@ -339,7 +339,7 @@ if ($selected_database) {
 		if ($result) {
 			if (db_num_rows($result) > 0) {
 				$upgrade = gettext("upgrade");
-				// apply some critical updates to the database for migration issues
+// apply some critical updates to the database for migration issues
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `valid` int(1) default 1', false);
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' CHANGE `password` `pass` varchar(64)', false);
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `loggedin` datetime', false);
@@ -568,6 +568,14 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 							$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 							checkmark($session && session_id() && $_initial_session_path !== false, gettext('PHP <code>Sessions</code>.'), gettext('PHP <code>Sessions</code> [appear to not be working].'), sprintf(gettext('PHP Sessions are required for administrative functions. Check your <code>session.save_path</code> (<code>%1$s</code>) and the PHP configuration <code>[session]</code> settings'), session_save_path()), true);
+
+							@ini_set('session.use_strict_mode', 1);
+							if (preg_match('#(1|ON)#i', @ini_get('session.use_strict_mode'))) {
+								$strictSession = 1;
+							} else {
+								$strictSession = -1;
+							}
+							$good = checkMark($strictSession, gettext('PHP <code>session.use_strict_mode</code>'), gettext('PHP <code>session.use_strict_mode</code> [is not set]'), gettext('Enabling <code>session.use_strict_mode</code> is mandatory for general session security. Change your PHP.ini settings to <code>session.use_strict_mode = on</code>.')) && $good;
 
 							if (preg_match('#(1|ON)#i', @ini_get('register_globals'))) {
 								if ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) & ACK_REGISTER_GLOBALS) {
