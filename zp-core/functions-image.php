@@ -448,8 +448,8 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 				global $_zp_images_classes; //	because we are doing the require in a function!
 				require_once(dirname(__FILE__) . '/functions.php'); //	it is ok to increase memory footprint now since the image processing is complete
 				$iptc = array(
-								'1#090'	 => chr(0x1b) . chr(0x25) . chr(0x47), //	character set is UTF-8
-								'2#115'	 => $_zp_gallery->getTitle() //	source
+						'1#090' => chr(0x1b) . chr(0x25) . chr(0x47), //	character set is UTF-8
+						'2#115' => $_zp_gallery->getTitle() //	source
 				);
 				$iptc_data = zp_imageIPTC($imgfile);
 				if ($iptc_data) {
@@ -524,6 +524,7 @@ function getImageRotation($img) {
 	if (is_object($img)) {
 		$rotation = $img->get('rotation');
 	} else {
+		$result = NULL;
 		$rotation = 0;
 		$imgfile = substr(filesystemToInternal($img), strlen(ALBUM_FOLDER_SERVERPATH));
 		$album = trim(dirname($imgfile), '/');
@@ -531,10 +532,17 @@ function getImageRotation($img) {
 		$a = query_single_row($sql = 'SELECT `id` FROM ' . prefix('albums') . ' WHERE `folder`=' . db_quote($album));
 		if ($a) {
 			$result = query_single_row($sql = 'SELECT rotation FROM ' . prefix('images') . '  WHERE `albumid`=' . $a['id'] . ' AND `filename`=' . db_quote($image));
-
-			if (is_array($result)) {
-				if (array_key_exists('rotation', $result)) {
-					$rotation = $result['rotation'];
+		}
+		if (is_array($result)) {
+			if (array_key_exists('rotation', $result)) {
+				$rotation = $result['rotation'];
+			}
+		} else {
+			//try the file directly as this might be an image not in the database
+			if (in_array(getSuffix($imgfile), array('jpg', 'jpeg', 'tif', 'tiff'))) {
+				$result = exif_read_data($imgfile);
+				if (is_array($result) && array_key_exists('Orientation', $result)) {
+					$rotation = $result['Orientation'];
 				}
 			}
 		}
