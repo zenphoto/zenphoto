@@ -227,9 +227,9 @@ function getOptionContent() {
 					if ($single) {
 						?>
 						<p class="padded">
-							<a href="?page=options&tab=plugin&single=<?php echo urlencode($prev); ?>"><?php echo $prev; ?></a>
+							<a href="?page=options&amp;tab=plugin&amp;single=<?php echo urlencode($prev); ?>"><?php echo $prev; ?></a>
 							<span class="floatright" >
-								<a href="?page=options&tab=plugin&single=<?php echo urlencode($next); ?>"><?php echo $next; ?></a>
+								<a href="?page=options&amp;tab=plugin&amp;single=<?php echo urlencode($next); ?>"><?php echo $next; ?></a>
 							</span>
 						</p>
 						<?php
