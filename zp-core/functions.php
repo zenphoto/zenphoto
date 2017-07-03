@@ -2066,7 +2066,12 @@ function seoFriendlyJS() {
  */
 function getXSRFToken($action, $modifier = NULL) {
 	global $_zp_current_admin_obj;
-	$token = sha1($action . $modifier . serialize($_zp_current_admin_obj->getData()) . session_id());
+	if (is_object($_zp_current_admin_obj)) {
+		$modifier .= serialize($_zp_current_admin_obj->getData());
+	} else {
+		$modifier = microtime();
+	}
+	$token = sha1($action . $modifier . session_id());
 	return $token;
 }
 
