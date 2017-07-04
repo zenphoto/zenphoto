@@ -29,7 +29,6 @@ class SearchEngine {
 	var $pattern;
 	var $tagPattern;
 	var $language;
-	private $exact = false;
 	protected $dynalbumname = NULL;
 	protected $album = NULL;
 	protected $words;
@@ -223,6 +222,15 @@ class SearchEngine {
 	static function encode($words) {
 		$words = bin2hex($words);
 		return strlen($words) . '.' . $words;
+	}
+
+	/**
+	 *
+	 * "Magic" function to return a string identifying the object when it is treated as a string
+	 * @return string
+	 */
+	public function __toString() {
+		return 'search object';
 	}
 
 	/**

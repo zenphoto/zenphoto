@@ -147,6 +147,15 @@ class Image extends MediaObject {
 	}
 
 	/**
+	 *
+	 * "Magic" function to return a string identifying the object when it is treated as a string
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->filename;
+	}
+
+	/**
 	 * returns the database fields used by the object
 	 * @return array
 	 *
