@@ -26,7 +26,11 @@ printAdminHeader('admin');
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php zp_apply_filter('admin_note', 'clone', ''); ?>
+			<?php
+			printSetupWarning();
+			zp_apply_filter('admin_note', 'clone', '');
+			?>
+
 			<h1><?php echo gettext('Site clones'); ?></h1>
 			<div id="container">
 				<div class="tabbox">
