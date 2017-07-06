@@ -109,7 +109,7 @@
 										echo htmlspecialchars(getUnprotectedImageURL());
 									}
 									?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/search.png" alt="Zoom Image" /></a><?php } ?>
-									 <?php if ((getCommentCount()) > 0) { ?>
+									 <?php if (function_exists('getCommentCount') && (getCommentCount()) > 0) { ?>
 									<a class="album-tool" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getCommentCount(); ?> Comments"><img src="<?php echo $_zp_themeroot; ?>/images/shout.png" alt="Comments" /></a>
 								<?php } ?>
 							</div>
@@ -126,7 +126,7 @@
 										echo htmlspecialchars(getUnprotectedImageURL());
 									}
 									?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/search.png" alt="Zoom Image" /></a><?php } ?>
-									 <?php if ((getCommentCount()) > 0) { ?>
+									 <?php if (function_exists('getCommentCount') && (getCommentCount()) > 0) { ?>
 									<a class="album-tool" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getCommentCount(); ?> Comments"><img src="<?php echo $_zp_themeroot; ?>/images/shout.png" alt="Comments" /></a>
 								<?php } ?>
 							</div>
