@@ -43,7 +43,7 @@ function printThemeHeadItems() {
 
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
 	<?php
-	if (zp_loggedin()) {
+	if (zp_loggedin(ALBUM_RIGHTS | UPLOAD_RIGHTS)) {
 		?>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/toolbox.css" type="text/css" />
 
