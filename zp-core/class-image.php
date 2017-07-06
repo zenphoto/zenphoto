@@ -112,14 +112,7 @@ class Image extends MediaObject {
 	function __construct($album, $filename, $quiet = false) {
 		global $_zp_current_admin_obj;
 		// $album is an Album object; it should already be created.
-		$msg = false;
-		if (!is_object($album) || !$album->exists) {
-			$msg = gettext('Invalid image instantiation: Album does not exist') . ' (' . $album->name . ')';
-		} else {
-			if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
-				$msg = gettext('Invalid image instantiation: file does not exist') . ' (' . $album->name . '/' . $filename . ')';
-			}
-		}
+		$msg = $this->invalid($album, $filename);
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
@@ -152,6 +145,23 @@ class Image extends MediaObject {
 	 */
 	public function __toString() {
 		return $this->filename;
+	}
+
+	/**
+	 * Comon validity check function
+	 *
+	 * @param type $album
+	 * @param type $filename
+	 * @return string
+	 */
+	function invalid($album, $filename) {
+		$msg = false;
+		if (!is_object($album) || !$album->exists) {
+			$msg = sprintf(gettext('Invalid %s instantiation: Album does not exist'), get_class($this)) . ' (' . $album . ')';
+		} else if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
+			$msg = sprintf(gettext('Invalid %s instantiation: file does not exist'), get_class($this)) . ' (' . $album . '/' . $filename . ')';
+		}
+		return $msg;
 	}
 
 	/**
