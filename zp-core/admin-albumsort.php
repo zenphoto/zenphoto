@@ -206,39 +206,42 @@ echo "\n</head>";
 						</p>
 						<br class="clearall">
 						<p><?php echo gettext("Set the image order by dragging them to the positions you desire."); ?></p>
-
 						<ul id="images">
 							<?php
 							$images = $album->getImages();
 							foreach ($images as $imagename) {
 								$image = newImage($album, $imagename);
-								?>
-								<li id="id_<?php echo $image->getID(); ?>">
-									<label>
-										<img class="imagethumb"
-												 src="<?php echo getAdminThumb($image, 'large'); ?>"
-												 alt="<?php echo html_encode($image->getTitle()); ?>"
-												 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
-												 width="<?php echo ADMIN_THUMB_LARGE; ?>" height="<?php echo ADMIN_THUMB_LARGE; ?>"  />
-										<p>
-											<input type="checkbox" name="ids[]" value="<?php echo $image->filename; ?>">
-											<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>">
-												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt="">
-											</a>
-											<?php
-											if (isImagePhoto($image)) {
-												?>
-												<a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox" title="zoom">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/magnify.png" alt="">
+								if ($image->exists) {
+									?>
+									<li id="id_<?php echo $image->getID(); ?>">
+										<label>
+											<img class="imagethumb"
+													 src="<?php echo getAdminThumb($image, 'large'); ?>"
+													 alt="<?php echo html_encode($image->getTitle()); ?>"
+													 title="<?php
+													 echo html_encode($image->getTitle()) . ' (' . html_encode($album->name) . ')';
+													 ?>"
+													 width="<?php echo ADMIN_THUMB_LARGE; ?>" height="<?php echo ADMIN_THUMB_LARGE; ?>"  />
+											<p>
+												<input type="checkbox" name="ids[]" value="<?php echo $imagename; ?>">
+												<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>">
+													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt="">
 												</a>
 												<?php
-											}
-											linkPickerIcon($image);
-											?>
-										</p>
-									</label>
-								</li>
-								<?php
+												if (isImagePhoto($image)) {
+													?>
+													<a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox" title="zoom">
+														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/magnify.png" alt="">
+													</a>
+													<?php
+												}
+												linkPickerIcon($image);
+												?>
+											</p>
+										</label>
+									</li>
+									<?php
+								}
 							}
 							?>
 						</ul>
