@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * The plugin provides login to ZenPhoto20 via Google OAuth2 protocol.
@@ -34,6 +35,8 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_notice = sprintf(gettext('The PHP <var>curl</var> module is required for this plugin.'));
 $plugin_disable = (extension_loaded('curl')) ? false : gettext('The PHP Curl is required.');
 
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/oAuthLogin.php');
+
 $option_interface = 'googleLogin';
 
 if ($plugin_disable) {
@@ -48,7 +51,10 @@ zp_session_start();
  * Option class
  *
  */
-class googleLogin {
+class googleLogin extends oAuthLogin {
+
+	protected $link = 'user_authentication.php';
+	protected $authority = 'Google';
 
 	/**
 	 * Option instantiation
@@ -106,9 +112,7 @@ class googleLogin {
 	 * @param $handler_list
 	 */
 	static function alt_login_handler($handler_list) {
-		$link = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleLogin/user_authentication.php';
-		$handler_list['Google'] = array('script' => $link, 'params' => array());
-		return $handler_list;
+		return self::_alt_login_handler($handler_list, 'googleLogin', 'user_authentication.php');
 	}
 
 	/**
@@ -124,84 +128,7 @@ class googleLogin {
 	 * @param $redirect
 	 */
 	static function credentials($user, $email, $name, $redirect) {
-		global $_zp_authority;
-		if (is_valid_email_zp($email)) { // prefer email as user id
-			$user = $email;
-		} else {
-			$user = 'GoogleUser' . $user;
-		}
-
-		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
-		$more = false;
-		if ($userobj) { //	update if changed
-			$save = false;
-			if (!empty($email) && $email != $userobj->getEmail()) {
-				$save = true;
-				$userobj->setEmail($email);
-			}
-			if (!empty($name) && $name != $userobj->getName()) {
-				$save = true;
-				$userobj->setName($name);
-			}
-			$credentials = array('auth' => 'googleOAuth', 'user' => 'user', 'email' => 'email');
-			if ($name)
-				$credentials['name'] = 'name';
-			if ($credentials != $userobj->getCredentials()) {
-				$save = true;
-				$userobj->setCredentials($credentials);
-			}
-			if ($save) {
-				$userobj->save();
-			}
-		} else { //	User does not exist, create him
-			$groupname = getOption('googleLogin_group');
-			$groupobj = $_zp_authority->getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
-			if ($groupobj) {
-				$group = NULL;
-				if ($groupobj->getName() != 'template') {
-					$group = $groupname;
-				}
-				$userobj = Zenphoto_Authority::newAdministrator('');
-				$userobj->transient = false;
-				$userobj->setUser($user);
-				$credentials = array('auth' => 'googleOAuth', 'user' => 'user', 'email' => 'email');
-				if ($name) {
-					$credentials['name'] = 'name';
-				}
-				$userobj->setCredentials($credentials);
-
-				$userobj->setName($name);
-				$userobj->setPass($user . HASH_SEED . gmdate('d M Y H:i:s'));
-				$userobj->setObjects(NULL);
-				$userobj->setLanguage(getUserLocale());
-				$userobj->setObjects($groupobj->getObjects());
-				$userobj->setEmail($email);
-				if (getOption('register_user_create_album')) {
-					$userobj->createPrimealbum();
-				}
-				$userobj->setRights($groupobj->getRights());
-				$userobj->setGroup($group);
-				$userobj->save();
-			} else {
-				$more = sprintf(gettext('Configuration error, googleLogin group %s does not exist.'), $groupname);
-			}
-			if (!$more && getOption('register_user_notify')) {
-				$_notify = zp_mail(gettext('ZenPhoto20 Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
-			}
-		}
-		session_unset(); //	need to cleanse out google stuff or subsequent logins will fail[sic]
-		if ($more) {
-			header('Location: ' . WEBPATH . '/' . ZENFOLDER . '/admin.php?_zp_login_error=' . html_encode($more));
-			exitZP();
-		}
-		zp_apply_filter('federated_login_attempt', true, $user, 'googleOAuth'); //	we will mascerade as federated logon for this filter
-		Zenphoto_Authority::logUser($userobj);
-		if ($redirect) {
-			header("Location: " . $redirect);
-		} else {
-			header('Location: ' . FULLWEBPATH);
-		}
-		exitZP();
+		self::_credentials($user, $email, $name, $redirect, 'googleLogin');
 	}
 
 	/**
@@ -214,35 +141,14 @@ class googleLogin {
 	 * @param $local_alterrights
 	 */
 	static function edit_admin($html, $userobj, $i, $background, $current, $local_alterrights) {
-		global $_zp_current_admin_obj;
-		if (empty($_zp_current_admin_obj) || !$userobj->getValid())
-			return $html;
-		$federated = $userobj->getCredentials(); //	came from federated logon, disable the e-mail field
-		if (!in_array('googleOAuth', $federated)) {
-			$federated = false;
-		}
-
-		if ($userobj->getID() != $_zp_current_admin_obj->getID() && $federated) { //	The current logged on user
-			$msg = gettext("<strong>NOTE:</strong> This user was created by a Google Account logon.");
-			$myhtml = '<div class="user_left">' . "\n"
-							. '<p class="notebox">' . $msg . '</p>' . "\n"
-							. '</div>' . "\n"
-							. '<br class="clearall">' . "\n";
-			$html = $myhtml . $html;
-		}
-		return $html;
+		self::_edit_admin($html, $userobj, $i, $background, $current, $local_alterrights, 'googleLogin');
 	}
 
+	/**
+	 * provides a login button for theme pages
+	 */
 	static function loginButton() {
-		if (!zp_loggedin()) {
-			?>
-			<span class="button">
-				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/googleLogin/user_authentication.php?request=google&amp;redirect=/dev/index.php?userlog=1">
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/googleLogin/login_button.png" alt="login">
-				</a>
-			</span>
-			<?php
-		}
+		self::_loginButton('user_authentication.php', 'googleLogin');
 	}
 
 }
