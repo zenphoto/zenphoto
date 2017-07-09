@@ -526,12 +526,14 @@ function getImageRotation($img) {
 	} else {
 		$result = NULL;
 		$rotation = 0;
-		$imgfile = substr(filesystemToInternal($img), strlen(ALBUM_FOLDER_SERVERPATH));
-		$album = trim(dirname($imgfile), '/');
-		$image = basename($imgfile);
-		$a = query_single_row($sql = 'SELECT `id` FROM ' . prefix('albums') . ' WHERE `folder`=' . db_quote($album));
-		if ($a) {
-			$result = query_single_row($sql = 'SELECT rotation FROM ' . prefix('images') . '  WHERE `albumid`=' . $a['id'] . ' AND `filename`=' . db_quote($image));
+		if (strpos($imgfile, ALBUM_FOLDER_SERVERPATH) === 0) { // then we have possible image object
+			$imgfile = substr(filesystemToInternal($img), strlen(ALBUM_FOLDER_SERVERPATH));
+			$album = trim(dirname($imgfile), '/');
+			$image = basename($imgfile);
+			$a = query_single_row($sql = 'SELECT `id` FROM ' . prefix('albums') . ' WHERE `folder`=' . db_quote($album));
+			if ($a) {
+				$result = query_single_row($sql = 'SELECT rotation FROM ' . prefix('images') . '  WHERE `albumid`=' . $a['id'] . ' AND `filename`=' . db_quote($image));
+			}
 		}
 		if (is_array($result)) {
 			if (array_key_exists('rotation', $result)) {
@@ -539,7 +541,7 @@ function getImageRotation($img) {
 			}
 		} else {
 			//try the file directly as this might be an image not in the database
-			if (in_array(getSuffix($imgfile), array('jpg', 'jpeg', 'tif', 'tiff'))) {
+			if (in_array(getSuffix($img), array('jpg', 'jpeg', 'tif', 'tiff'))) {
 				$result = exif_read_data($img);
 				if (is_array($result) && array_key_exists('Orientation', $result)) {
 					$rotation = $result['Orientation'];
