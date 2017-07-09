@@ -85,13 +85,6 @@ if (isset($_POST['login'])) { //	Handle the login form.
 		unset($cloneid);
 	}
 	if ($_zp_loggedin) {
-		if (secureServer()) {
-			// https: set the 'zenphoto_ssl' marker for redirection
-			zp_setCookie("zenphoto_ssl", "needed", NULL, false);
-		} else {
-			zp_clearCookie('zenphoto_ssl');
-		}
-
 		$locale = $_zp_current_admin_obj->getLanguage();
 		if (!empty($locale)) { //	set his prefered language
 			setupCurrentLocale($locale);
@@ -133,7 +126,7 @@ if (isset($_REQUEST['logout'])) {
 	}
 	if (!empty($redirect))
 		$redirect = '?' . substr($redirect, 1);
-	if ($_GET['logout']) {
+	if ($_REQUEST['logout']) {
 		$rd_protocol = 'https';
 	} else {
 		$rd_protocol = 'http';

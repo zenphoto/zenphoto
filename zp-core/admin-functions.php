@@ -4688,8 +4688,8 @@ function admin_securityChecks($rights, $return) {
  * Checks if protocol not https and redirects if https required
  */
 function httpsRedirect() {
-	if (defined('SERVER_PROTOCOL') && SERVER_PROTOCOL == 'https_admin') {
-// force https login
+	if (defined('SERVER_PROTOCOL') && SERVER_PROTOCOL !== 'http') {
+		// force https login
 		if (!isset($_SERVER["HTTPS"])) {
 			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
 			header("Location:$redirect");

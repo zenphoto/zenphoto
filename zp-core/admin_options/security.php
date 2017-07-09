@@ -9,17 +9,23 @@ function saveOptions() {
 
 	$notify = $returntab = NULL;
 	$protocol = sanitize($_POST['server_protocol'], 3);
-	if ($protocol != SERVER_PROTOCOL) {
-		// force https if required to be sure it works, otherwise the "save" will be the last thing we do
-		httpsRedirect();
-	}
 	if (getOption('server_protocol') != $protocol) {
-		setOption('server_protocol', $protocol);
-		$_configMutex->lock();
-		$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-		$zp_cfg = updateConfigItem('server_protocol', $protocol, $zp_cfg);
-		storeConfig($zp_cfg);
-		$_configMutex->unlock();
+		switch ($protocol) {
+			case'https_admin':
+			case'https':
+				if (!secureServer()) {
+					//don't do it if we are not running secure!
+					break;
+				}
+			case'http':
+				setOption('server_protocol', $protocol);
+				$_configMutex->lock();
+				$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+				$zp_cfg = updateConfigItem('server_protocol', $protocol, $zp_cfg);
+				storeConfig($zp_cfg);
+				$_configMutex->unlock();
+				break;
+		}
 	}
 
 	$_zp_gallery->setUserLogonField(isset($_POST['login_user_field']));
@@ -55,21 +61,34 @@ function getOptionContent() {
 					<td class="option_name"><?php echo gettext("Server protocol"); ?></td>
 					<td class="option_value">
 						<select id="server_protocol" name="server_protocol">
-							<option value="http" <?php if (SERVER_PROTOCOL == 'http') echo 'selected = "selected"'; ?>>http</option>
-							<option value="https" <?php if (SERVER_PROTOCOL == 'https') echo 'selected = "selected"'; ?>>https</option>
-							<option value="https_admin" <?php if (SERVER_PROTOCOL == 'https_admin') echo 'selected = "selected"'; ?>><?php echo gettext('secure admin'); ?></option>
+							<option value="http"<?php if (SERVER_PROTOCOL == 'http') echo 'selected = "selected"'; ?>>http</option>
+							<option value="https"<?php
+							if (secureServer()) {
+								if (SERVER_PROTOCOL == 'https')
+									echo ' selected="selected"';
+							} else {
+								echo ' disabled="disabled"';
+							}
+							?>>https</option>
+							<option value="https_admin"<?php
+							if (secureServer()) {
+								if (SERVER_PROTOCOL == 'https_admin')
+									echo ' selected="selected"';
+							} else {
+								echo ' disabled="disabled"';
+							}
+							?>><?php echo gettext('secure admin'); ?></option>
 						</select>
 					</td>
 					<td class="option_desc">
 						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
 							<div class="option_desc_hidden">
-								<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
+								<p><?php printf(gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>%s</em> if you need only to insure secure access to <code>admin</code> pages."), gettext('secure admin')); ?></p>
 								<p class="notebox"><?php
-									echo gettext("<strong>Note:</strong>" .
-													"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-													"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-													"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-													'Your only possibility then is to change the option named <span class = "inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+									printf(gettext("<strong>Note:</strong>" .
+																	"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
+																	"<br /><br /><em>https</em> and <em>%s</em> are disabled unless you have used a secure link to the administrative pages. " .
+																	'This is to insure that the site supports secure protocols. Otherwise if one of these options were set you could be locked out of your site.'), gettext('secure admin'));
 									?>
 								</p>
 							</div>

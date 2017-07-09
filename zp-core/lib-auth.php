@@ -708,7 +708,8 @@ class _Authority {
 						if ($_zp_loggedin) {
 							self::logUser($user);
 							$_zp_current_admin_obj = $user;
-							session_regenerate_id(true);
+							zp_session_destroy();
+							zp_session_start();
 						} else {
 							zp_clearCookie("zp_user_auth"); // Clear the cookie, just in case
 							$_zp_login_error = 1;
@@ -832,11 +833,10 @@ class _Authority {
 		foreach (self::getAuthCookies() as $cookie => $value) {
 			zp_clearCookie($cookie);
 		}
+		zp_clearCookie('zenphoto_ssl');
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
-		if (session_id()) {
-			session_destroy();
-		}
+		zp_session_destroy();
 		return $location;
 	}
 
