@@ -34,7 +34,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_notice = sprintf(gettext('The PHP <var>curl</var> module is required for this plugin.'));
 $plugin_disable = (extension_loaded('curl')) ? false : gettext('The PHP Curl is required.');
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/oAuthLogin.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/oAuth/oAuthLogin.php');
 
 $option_interface = 'facebookLogin';
 
@@ -143,4 +143,5 @@ class facebookLogin extends oAuthLogin {
 	}
 
 }
+
 ?>

@@ -1734,7 +1734,6 @@ zp-core/zp-extensions/comment_form/comment_form.php
 zp-core/zp-extensions/comment_form/functions.php
 zp-core/zp-extensions/common
 zp-core/zp-extensions/common/fieldExtender.php
-zp-core/zp-extensions/common/oAuthLogin.php
 zp-core/zp-extensions/common/rsslib.php
 zp-core/zp-extensions/common/adGallery
 zp-core/zp-extensions/common/adGallery/ad_next.png
@@ -7452,6 +7451,7 @@ zp-core/zp-extensions/common/oAuth
 zp-core/zp-extensions/common/oAuth/http.php
 zp-core/zp-extensions/common/oAuth/OAuth.php
 zp-core/zp-extensions/common/oAuth/oauth_client.php
+zp-core/zp-extensions/common/oAuth/oAuthLogin.php
 zp-core/zp-extensions/common/oAuth/twitteroauth.php
 zp-core/zp-extensions/contact_form
 zp-core/zp-extensions/contact_form/form.php

@@ -108,7 +108,7 @@ class oAuthLogin {
 			header('Location: ' . WEBPATH . '/' . ZENFOLDER . '/admin.php?_zp_login_error=' . html_encode($more));
 			exitZP();
 		}
-		zp_apply_filter('federated_login_attempt', true, $user, $oAuthAuthority . 'OAuth'); //	we will mascerade as federated logon for this filter
+		zp_apply_filter('federated_login_attempt', true, $user, $oAuthAuthority . 'oAuth'); //	we will mascerade as federated logon for this filter
 		Zenphoto_Authority::logUser($userobj);
 		if ($redirect) {
 			header("Location: " . $redirect);
