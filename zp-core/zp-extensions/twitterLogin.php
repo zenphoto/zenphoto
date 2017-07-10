@@ -143,7 +143,7 @@ class twitterLogin extends oAuthLogin {
 	 * provides a login button for theme pages
 	 */
 	static function loginButton() {
-		self::_loginButton('user_authentication.php', 'twitterLogin');
+		self::_loginButton('twitter.php', 'twitterLogin');
 	}
 
 }

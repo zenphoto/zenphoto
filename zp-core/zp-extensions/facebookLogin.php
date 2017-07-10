@@ -139,7 +139,7 @@ class facebookLogin extends oAuthLogin {
 	 * provides a login button for theme pages
 	 */
 	static function loginButton() {
-		self::_loginButton('user_authentication.php', 'facebookLogin');
+		self::_loginButton('fbconfig.php', 'facebookLogin');
 	}
 
 }

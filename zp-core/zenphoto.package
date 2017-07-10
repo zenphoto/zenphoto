@@ -1533,6 +1533,7 @@ zp-core/zp-extensions/html_meta_tags.php
 zp-core/zp-extensions/http_auth.php
 zp-core/zp-extensions/image_album_statistics.php
 zp-core/zp-extensions/image_effects.php
+zp-core/zp-extensions/instagramLogin.php
 zp-core/zp-extensions/ipBlocker.php
 zp-core/zp-extensions/jcarousel_thumb_nav.php
 zp-core/zp-extensions/jplayer.php
@@ -7661,6 +7662,11 @@ zp-core/zp-extensions/images/gear-white.png
 zp-core/zp-extensions/images/gear.png
 zp-core/zp-extensions/images/zen-logo-light.png
 zp-core/zp-extensions/images/zen-logo.png
+zp-core/zp-extensions/instagramLogin
+zp-core/zp-extensions/instagramLogin/instagram-auth.php
+zp-core/zp-extensions/instagramLogin/instagram-login-api.php
+zp-core/zp-extensions/instagramLogin/instagram.php
+zp-core/zp-extensions/instagramLogin/loginButton.png
 zp-core/zp-extensions/jcarousel_thumb_nav
 zp-core/zp-extensions/jcarousel_thumb_nav/jcarousel.css
 zp-core/zp-extensions/jcarousel_thumb_nav/jcarousel.js
@@ -8161,4 +8167,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-8163
+8169

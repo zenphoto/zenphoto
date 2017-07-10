@@ -42,7 +42,7 @@ class oAuthLogin {
 		if (is_valid_email_zp($email)) { // prefer email as user id
 			$user = $email;
 		} else {
-			$user = $oAuthAuthority . 'User' . $user;
+			$user = $oAuthAuthority . '_User_' . $user;
 		}
 
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
@@ -152,7 +152,7 @@ class oAuthLogin {
 		if (!zp_loggedin()) {
 			?>
 			<span class="button">
-				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $class . '/' . $link; ?>/user_authentication.php?request='<?php echo $class; ?>.&amp;redirect=/dev/index.php?userlog=1">
+				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $class . '/' . $link; ?>?request=<?php echo $class; ?>&amp;redirect=/dev/index.php?userlog=1">
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $class; ?>/login_button.png" alt="login">
 				</a>
 			</span>
