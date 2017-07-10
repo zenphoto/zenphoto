@@ -2,6 +2,12 @@
 /**
  * Use to tweet new objects as they are published.
  *
+ * You will need to setup application credentials on the
+ * {@link http://dev.twitter.com/ Twitter Developer's Console.} for use by this
+ * Plugin. You will need a <i>Consumer Key</i>, <i>Consumer Secret</i>, <i>oAuth Token</i>,
+ * and <i>oAuth Secret</i>. The first two of these are the same credentials used
+ * by the <var>twitterLogin</var> plugin.
+ *
  * @author Stephen Billard (sbillard)
  *
  * @package plugins
@@ -70,18 +76,19 @@ class tweet {
 	 */
 	function getOptionsSupported() {
 		global $_zp_CMS;
-		$options = array(gettext('Consumer key') => array('key' => 'tweet_news_consumer', 'type' => OPTION_TYPE_TEXTBOX,
+		$options = array(
+				gettext('Consumer Key') => array('key' => 'tweet_news_consumer', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext('This your Twitter <em>Consumer Key</em>.')),
+				gettext('Consumer Secret') => array('key' => 'tweet_news_consumer_secret', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 2,
-						'desc' => gettext('This <code>tweet_news</code> app for this site needs a <em>consumer key</em>, a <em>consumer key secret</em>, an <em>access token</em>, and an <em>access token secret</em>.') . '<p class="notebox">' . gettext('Get these from <a href="http://dev.twitter.com/">Twitter developers</a>') . '</p>'),
-				gettext('Secret') => array('key' => 'tweet_news_consumer_secret', 'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 3,
-						'desc' => gettext('The <em>secret</em> associated with your <em>consumer key</em>.')),
-				gettext('Access token') => array('key' => 'tweet_news_oauth_token', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('This is your <em>Consumer Secret</em>.')),
+				gettext('Access Token') => array('key' => 'tweet_news_oauth_token', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 4,
-						'desc' => gettext('The application <em>oauth_token</em> token.')),
-				gettext('Access token secret') => array('key' => 'tweet_news_oauth_token_secret', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('The application <em>oAuth Token</em>.')),
+				gettext('Access Token Secret') => array('key' => 'tweet_news_oauth_token_secret', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 5,
-						'desc' => gettext('The application <em>oauth_token</em> secret.')),
+						'desc' => gettext('The application <em>oAuth Token Secret</em>.')),
 				gettext('Protected objects') => array('key' => 'tweet_news_protected', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 7,
 						'desc' => gettext('If checked, protected items will be tweeted. <strong>Note:</strong> followers will need the password to visit the tweeted link.'))
