@@ -68,10 +68,10 @@ class instagramLogin extends oAuthLogin {
 		$options = array(
 				gettext('Client ID') => array('key' => 'instagramClientID', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 11,
-						'desc' => gettext('This is your Facebook Client ID.')),
+						'desc' => gettext('This is your Instagram <em>Client ID</em>.')),
 				gettext('Client Secret') => array('key' => 'instagramClientSecret', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 12,
-						'desc' => gettext('This is your Facebook Client Secret.'))
+						'desc' => gettext('This is your Instagram <em>Client Secret</em>.'))
 		);
 		$options = array_merge($options, parent::getOptionsSupported());
 		return $options;

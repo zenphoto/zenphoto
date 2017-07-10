@@ -70,13 +70,13 @@ class googleLogin extends oAuthLogin {
 		$options = array(
 				gettext('OAuth Client ID') => array('key' => 'googleLogin_ClientID', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 11,
-						'desc' => gettext('This is your Google OAuth Client ID.')),
+						'desc' => gettext('This is your Google <em>OAuth Client ID</em>.')),
 				gettext('OAuth Client Secret') => array('key' => 'googleLogin_ClientSecret', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 12,
-						'desc' => gettext('This is your Google OAuth Client Secret.')),
+						'desc' => gettext('This is your Google <em>OAuth Client Secret</em>.')),
 				gettext('API key') => array('key' => 'gmap_map_api_key', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 13,
-						'desc' => gettext('This is your Google Developer API key.'))
+						'desc' => gettext('This is your Google <em>Developer API key</em>.'))
 		);
 		$options = array_merge($options, parent::getOptionsSupported());
 		return $options;

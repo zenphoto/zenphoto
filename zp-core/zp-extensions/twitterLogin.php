@@ -72,10 +72,10 @@ class twitterLogin extends oAuthLogin {
 		$options = array(
 				gettext('Consumer key') => array('key' => 'tweet_news_consumer', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 11,
-						'desc' => gettext('This <code>tweet_news</code> app for this site needs a <em>consumer key</em>, a <em>consumer key secret</em>, an <em>access token</em>, and an <em>access token secret</em>.') . '<p class="notebox">' . gettext('Get these from <a href="http://dev.twitter.com/">Twitter developers</a>') . '</p>'),
+						'desc' => gettext('This your Twitter <em>Consumer Key</em>.')),
 				gettext('Secret') => array('key' => 'tweet_news_consumer_secret', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 12,
-						'desc' => gettext('The <em>secret</em> associated with your <em>consumer key</em>.'))
+						'desc' => gettext('This is your <em>Consumer Secret</em>.'))
 		);
 		$options = array_merge($options, parent::getOptionsSupported());
 		return $options;

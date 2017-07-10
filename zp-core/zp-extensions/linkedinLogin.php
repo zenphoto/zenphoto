@@ -68,10 +68,10 @@ class linkedinLogin extends oAuthLogin {
 		$options = array(
 				gettext('App ID') => array('key' => 'linkedinLogin_ClientID', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 11,
-						'desc' => gettext('This is your Linkedin Client ID.')),
+						'desc' => gettext('This is your Linkedin <em>Client ID</em>.')),
 				gettext('App Secret') => array('key' => 'linkedinLogin_ClientSecret', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 12,
-						'desc' => gettext('This is your Linkedin Client Secret.'))
+						'desc' => gettext('This is your Linkedin <em>Client Secret</em>.'))
 		);
 		$options = array_merge($options, parent::getOptionsSupported());
 		return $options;

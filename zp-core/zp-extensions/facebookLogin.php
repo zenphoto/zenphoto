@@ -68,10 +68,10 @@ class facebookLogin extends oAuthLogin {
 		$options = array(
 				gettext('App ID') => array('key' => 'facebookLogin_APPID', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 11,
-						'desc' => gettext('This is your Facebook App ID.')),
+						'desc' => gettext('This is your Facebook <em>App ID</em>.')),
 				gettext('App Secret') => array('key' => 'facebookLogin_APPSecret', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 12,
-						'desc' => gettext('This is your Facebook App Secret.'))
+						'desc' => gettext('This is your Facebook <em>App Secret</em>.'))
 		);
 		$options = array_merge($options, parent::getOptionsSupported());
 		return $options;
