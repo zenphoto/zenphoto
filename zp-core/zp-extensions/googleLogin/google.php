@@ -21,7 +21,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/googl
 // Fill CLIENT ID, CLIENT SECRET ID, REDIRECT URI from Google Developer Console
 $client_id = getOption('googleLogin_ClientID');
 $client_secret = getOption('googleLogin_ClientSecret');
-$redirect_uri = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleLogin/user_authentication.php';
+$redirect_uri = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleLogin/google.php';
 $simple_api_key = getOption('gmap_map_api_key');
 
 //Create Client Request to access Google API

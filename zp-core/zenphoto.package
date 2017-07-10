@@ -7561,7 +7561,7 @@ zp-core/zp-extensions/elFinder/php/plugins/Watermark/logo.png
 zp-core/zp-extensions/elFinder/php/plugins/Watermark/plugin.php
 zp-core/zp-extensions/facebookLogin
 zp-core/zp-extensions/facebookLogin/autoload.php
-zp-core/zp-extensions/facebookLogin/fbconfig.php
+zp-core/zp-extensions/facebookLogin/facebook.php
 zp-core/zp-extensions/facebookLogin/login_button.png
 zp-core/zp-extensions/facebookLogin/src
 zp-core/zp-extensions/facebookLogin/src/Facebook
@@ -7612,8 +7612,8 @@ zp-core/zp-extensions/flag_thumbnail/new.png
 zp-core/zp-extensions/galleryArticles
 zp-core/zp-extensions/galleryArticles/combiNews.php
 zp-core/zp-extensions/googleLogin
+zp-core/zp-extensions/googleLogin/google.php
 zp-core/zp-extensions/googleLogin/login_button.png
-zp-core/zp-extensions/googleLogin/user_authentication.php
 zp-core/zp-extensions/googleMap
 zp-core/zp-extensions/googleMap/googleMap.css
 zp-core/zp-extensions/googleMap/map.php
@@ -7666,7 +7666,7 @@ zp-core/zp-extensions/instagramLogin
 zp-core/zp-extensions/instagramLogin/instagram-auth.php
 zp-core/zp-extensions/instagramLogin/instagram-login-api.php
 zp-core/zp-extensions/instagramLogin/instagram.php
-zp-core/zp-extensions/instagramLogin/loginButton.png
+zp-core/zp-extensions/instagramLogin/login_button.png
 zp-core/zp-extensions/jcarousel_thumb_nav
 zp-core/zp-extensions/jcarousel_thumb_nav/jcarousel.css
 zp-core/zp-extensions/jcarousel_thumb_nav/jcarousel.js

@@ -12,7 +12,7 @@
  * {@link https://console.developers.google.com/apis/dashboard Google Developers Console}
  *
  * Your <i>OAuth2 client ID</i> will need an <i>Authorized redirect URI</i> that
- * points to <var>%FULLWEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/googleLogin/user_authentication.php</var>
+ * points to <var>%FULLWEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/googleLogin/google.php</var>
  *
  * The gmail address supplied by Google OAuth2 will become the user's <i>user ID</i>
  * if present. If no e-mail address is supplied with the login, a user ID will be created
@@ -53,15 +53,11 @@ zp_session_start();
  */
 class googleLogin extends oAuthLogin {
 
-	protected $link = 'user_authentication.php';
-	protected $authority = 'Google';
-
 	/**
 	 * Option instantiation
 	 */
 	function __construct() {
-		global $_zp_authority;
-		setOptionDefault('googleLogin_group', 'viewers');
+		parent::__construct();
 		setOptionDefault('googleLogin_ClientID', '');
 		setOptionDefault('googleLogin_ClientSecret', '');
 		setOptionDefault('gmap_map_api_key', '');
@@ -71,30 +67,18 @@ class googleLogin extends oAuthLogin {
 	 * Provides option list
 	 */
 	function getOptionsSupported() {
-		global $_zp_authority;
-		$admins = $_zp_authority->getAdministrators('groups');
-		$ordered = array();
-		foreach ($admins as $key => $admin) {
-			if ($admin['name'] == 'group' && $admin['rights'] && !($admin['rights'] & ADMIN_RIGHTS)) {
-				$ordered[$admin['user']] = $admin['user'];
-			}
-		}
-
-		$options = array(gettext('Assign user to') => array('key' => 'googleLogin_group', 'type' => OPTION_TYPE_SELECTOR,
-						'order' => 0,
-						'selections' => $ordered,
-						'desc' => gettext('The user group to which to map the user.')),
+		$options = array(
 				gettext('OAuth Client ID') => array('key' => 'googleLogin_ClientID', 'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 1,
+						'order' => 11,
 						'desc' => gettext('This is your Google OAuth Client ID.')),
 				gettext('OAuth Client Secret') => array('key' => 'googleLogin_ClientSecret', 'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 2,
+						'order' => 12,
 						'desc' => gettext('This is your Google OAuth Client Secret.')),
 				gettext('API key') => array('key' => 'gmap_map_api_key', 'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 3,
+						'order' => 13,
 						'desc' => gettext('This is your Google Developer API key.'))
 		);
-
+		$options = array_merge($options, parent::getOptionsSupported());
 		return $options;
 	}
 
@@ -105,50 +89,6 @@ class googleLogin extends oAuthLogin {
 	 */
 	function handleOption($option, $currentValue) {
 
-	}
-
-	/**
-	 * Provides a list of alternate handlers for logon
-	 * @param $handler_list
-	 */
-	static function alt_login_handler($handler_list) {
-		return self::_alt_login_handler($handler_list, 'googleLogin', 'user_authentication.php');
-	}
-
-	/**
-	 * Common logon handler.
-	 * Will log the user on if he exists. Otherwise it will create a user accoung and log
-	 * on that account.
-	 *
-	 * Redirects into zenphoto on success presuming there is a redirect link.
-	 *
-	 * @param $user
-	 * @param $email
-	 * @param $name
-	 * @param $redirect
-	 */
-	static function credentials($user, $email, $name, $redirect) {
-		self::_credentials($user, $email, $name, $redirect, 'googleLogin');
-	}
-
-	/**
-	 * Enter Admin user tab handler
-	 * @param $html
-	 * @param $userobj
-	 * @param $i
-	 * @param $background
-	 * @param $current
-	 * @param $local_alterrights
-	 */
-	static function edit_admin($html, $userobj, $i, $background, $current, $local_alterrights) {
-		self::_edit_admin($html, $userobj, $i, $background, $current, $local_alterrights, 'googleLogin');
-	}
-
-	/**
-	 * provides a login button for theme pages
-	 */
-	static function loginButton() {
-		self::_loginButton('user_authentication.php', 'googleLogin');
 	}
 
 }
