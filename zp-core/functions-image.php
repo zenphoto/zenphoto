@@ -526,7 +526,7 @@ function getImageRotation($img) {
 	} else {
 		$result = NULL;
 		$rotation = 0;
-		if (strpos($imgfile, ALBUM_FOLDER_SERVERPATH) === 0) { // then we have possible image object
+		if (strpos($img, ALBUM_FOLDER_SERVERPATH) === 0) { // then we have possible image object
 			$imgfile = substr(filesystemToInternal($img), strlen(ALBUM_FOLDER_SERVERPATH));
 			$album = trim(dirname($imgfile), '/');
 			$image = basename($imgfile);

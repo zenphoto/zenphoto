@@ -43,28 +43,32 @@ function printThemeHeadItems() {
 
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
 	<?php
-	if (zp_loggedin(ALBUM_RIGHTS | UPLOAD_RIGHTS)) {
+	if (zp_loggedin()) {
 		?>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/toolbox.css" type="text/css" />
-
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
-			var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
-			var deleteImage = "<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>";
-			var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
-			var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
-
-
-			function newAlbum(folder, albumtab) {
-				var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
-				if (album) {
-					launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
-				}
-			}
-			// ]]> -->
-		</script>
 		<?php
+		if (zp_loggedin(ALBUM_RIGHTS | UPLOAD_RIGHTS)) {
+			?>
+			<script type="text/javascript">
+				// <!-- <![CDATA[
+				var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
+				var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
+				var deleteImage = "<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>";
+				var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
+				var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
+
+
+				function newAlbum(folder, albumtab) {
+					var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
+					if (album) {
+						launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+					}
+				}
+
+				// ]]> -->
+			</script>
+			<?php
+		}
 	}
 }
 
@@ -80,14 +84,13 @@ function adminToolbox() {
 		$dataid = 'admin_data';
 		$page = getCurrentPage();
 		$icon = zp_apply_filter('iconColor', getPlugin('images/gear.png', true, true));
-		ob_start();
 		if (!$name = $_zp_current_admin_obj->getName()) {
 			$name = $_zp_current_admin_obj->getUser();
 		}
 		?>
 		<div id="<?php echo $id; ?>">
 			<h3>
-				<a onclick="$('#<?php echo $dataid; ?>').toggle();" title="<?php echo gettext('Admin') . ' ' . $name; ?>">
+				<a onclick="$('#<?php echo $dataid; ?>').toggle();" title="<?php echo gettext('Logged in as') . ' ' . $name; ?>">
 					<img src="<?php echo $icon; ?>" />
 				</a>
 			</h3>
@@ -95,10 +98,6 @@ function adminToolbox() {
 		<div id="<?php echo $dataid; ?>" style="display: none;">
 			<ul style="list-style-type: none;" >
 				<?php
-				$outputA = ob_get_contents();
-				ob_end_clean();
-				ob_start();
-
 				if (zp_loggedin(OVERVIEW_RIGHTS)) {
 					?>
 					<li>
@@ -318,13 +317,6 @@ function adminToolbox() {
 					<li>
 						<a href="<?php echo $link; ?>"><?php echo gettext("Logout"); ?> </a>
 					</li>
-					<?php
-				}
-				$outputB = ob_get_contents();
-				ob_end_clean();
-				if ($outputB) {
-					echo $outputA . $outputB;
-					?>
 				</ul>
 			</div>
 			<?php
