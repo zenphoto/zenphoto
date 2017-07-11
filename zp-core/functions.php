@@ -163,56 +163,46 @@ function cleanHTML($html) {
  * @param string $shortenindicator
  * @param bool $forceindicator set to true to include the indicator no matter what
  * @return string
+ *
+ * Algorithm copyright by Stephen Billard for use in ZenPhoto20 implementations
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator = false) {
-	global $_user_tags;
-	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
-		$allowed_tags = getAllowedTags('allowed_tags');
-//remove script to be replaced later
-		$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
-//remove HTML comments
-		$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
-		$articlecontent = html_decode($articlecontent);
-		$short = mb_substr($articlecontent, 0, $shorten);
-		$short2 = kses($short . '</p>', $allowed_tags);
+	//remove scripts
+	$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
+	//remove HTML comments
+	$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
+	//Remove disallowed tags
+	$articlecontent = kses($articlecontent, getAllowedTags('allowed_tags'));
+	//make html entities into characters so they count properly
+	$articlecontent = html_decode($articlecontent);
+	//we now have a clean string
 
-		if (($l2 = mb_strlen($short2)) < $shorten) {
-			$c = 0;
-			$l1 = $shorten;
-			$delta = $shorten - $l2;
-			while ($l2 < $shorten && $c++ < 5) {
-				$open = mb_strrpos($short, '<');
-				if ($open > mb_strrpos($short, '>')) {
-					$l1 = mb_strpos($articlecontent, '>', $l1 + 1) + $delta;
-				} else {
-					$l1 = $l1 + $delta;
-				}
-				$short = mb_substr($articlecontent, 0, $l1);
-				preg_match_all('/(<p>)/', $short, $open);
-				preg_match_all('/(<\/p>)/', $short, $close);
-				if (count($open) > count($close))
-					$short .= '</p>';
-				$short2 = kses($short, $allowed_tags);
-				$l2 = mb_strlen($short2);
+	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
+		//too long, shorten the content
+		$short = '';
+		$count = 0;
+
+		preg_match_all('#(<[^>]*>)#iU', $articlecontent, $markup);
+		$parts = preg_split('#(<[^>]*>)#iU', $articlecontent);
+		foreach ($parts as $key => $part) {
+			$add = mb_strlen($part);
+			if ($count + $add > $shorten) {
+				$short .= mb_substr($part, 0, min($add, $shorten - $count)) . $shortenindicator . $markup[0][$key];
+				break;
 			}
-			$shorten = $l1;
+			$short .= $part . $markup[0][$key];
+			$count = $count + $add;
 		}
-		$short = truncate_string($articlecontent, $shorten, '');
-		if ($short != $articlecontent) { //	we actually did remove some stuff
-// drop open tag strings
-			$open = mb_strrpos($short, '<');
-			if ($open > mb_strrpos($short, '>')) {
-				$short = mb_substr($short, 0, $open);
-			}
-			if (class_exists('tidy')) {
-				$tidy = new tidy();
-				$tidy->parseString($short . $shortenindicator, array('show-body-only' => true), 'utf8');
-				$tidy->cleanRepair();
-				$short = trim($tidy);
-			} else {
-				$short = trim(cleanHTML($short . $shortenindicator));
-			}
+		//tidy up the html--probably dropped a few closing tags!
+		if (class_exists('tidy')) {
+			$tidy = new tidy();
+			$tidy->parseString($short, array('show-body-only' => true), 'utf8');
+			$tidy->cleanRepair();
+			$short = trim($tidy);
+		} else {
+			$short = trim(cleanHTML($short));
 		}
+		//re-encode the html entities
 		$articlecontent = html_encodeTagged($short);
 	}
 
