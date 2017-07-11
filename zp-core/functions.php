@@ -161,36 +161,50 @@ function cleanHTML($html) {
  * @param string $articlecontent the source string
  * @param int $shorten new size
  * @param string $shortenindicator
- * @param bool $forceindicator set to true to include the indicator no matter what
  * @return string
  *
  * Algorithm copyright by Stephen Billard for use in ZenPhoto20 implementations
  */
-function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator = false) {
-	//remove scripts
-	$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
-	//remove HTML comments
-	$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
-	//Remove disallowed tags
-	$articlecontent = kses($articlecontent, getAllowedTags('allowed_tags'));
+function shortenContent($articlecontent, $shorten, $shortenindicator) {
+	//remove HTML comments (except for page break indicators)
+	$content = preg_replace('~<!--^[ pagebreak ]-->~is', '', $articlecontent);
 	//make html entities into characters so they count properly
-	$articlecontent = html_decode($articlecontent);
+	$content = html_decode($content);
 	//we now have a clean string
+	//conservatve check if the string is too long.
+	if ($shorten && (mb_strlen($content) > $shorten)) {
+		//remove scripts to be added back later
+		preg_match_all('~<script.*?/script>~is', $content, $scripts);
+		$content = preg_replace('~<script.*?/script>~is', '', $articlecontent);
 
-	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
-		//too long, shorten the content
-		$short = '';
-		$count = 0;
+		$html = $short = '';
+		$pagebreak = $count = 0;
 
-		preg_match_all('#(<[^>]*>)#iU', $articlecontent, $markup);
-		$parts = preg_split('#(<[^>]*>)#iU', $articlecontent);
+		preg_match_all('#(<[^>]*>)#iU', $content, $markup);
+		$parts = preg_split('#(<[^>]*>)#iU', $content);
 		foreach ($parts as $key => $part) {
+			if (array_key_exists($key, $markup[0])) {
+				$html = $markup[0][$key];
+			} else {
+				$html = '';
+			}
 			$add = mb_strlen($part);
 			if ($count + $add > $shorten) {
-				$short .= mb_substr($part, 0, min($add, $shorten - $count)) . $shortenindicator . $markup[0][$key];
+				if ($pagebreak) {
+					//back up to prior page break if it exitst
+					$short = $pagebreak . $shortenindicator;
+				} else {
+					//truncate to fit count
+					$short .= mb_substr($part, 0, $shorten - $count) . $shortenindicator . $html;
+				}
+				$forceindicator = false;
 				break;
 			}
-			$short .= $part . $markup[0][$key];
+			if (strtolower($html) == '<!-- pagebreak -->') {
+				$pagebreak = $short . $part;
+				$html = '';
+			}
+			$short .= $part . $html;
 			$count = $count + $add;
 		}
 		//tidy up the html--probably dropped a few closing tags!
@@ -204,6 +218,10 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		}
 		//re-encode the html entities
 		$articlecontent = html_encodeTagged($short);
+		if (isset($scripts[0])) {
+			//put back thje scripts
+			$articlecontent = implode(' ', $scripts[0]) . $articlecontent;
+		}
 	}
 
 	return $articlecontent;

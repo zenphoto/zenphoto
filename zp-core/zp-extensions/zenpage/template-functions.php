@@ -428,27 +428,9 @@ function getContentShorten($text, $shorten, $shortenindicator = NULL, $readmore 
 	if (!$shorten && !is_NewsArticle()) {
 		$shorten = ZP_SHORTEN_LENGTH;
 	}
-	$contentlenght = mb_strlen($text);
-	if (!empty($shorten) && ($contentlenght > (int) $shorten)) {
-		if (stristr($text, '<!-- pagebreak -->')) {
-			$array = explode('<!-- pagebreak -->', $text);
-			$newtext = array_shift($array);
-			while (!empty($array) && (mb_strlen($newtext) + mb_strlen($array[0])) < $shorten) { //	find the last break within shorten
-				$newtext .= array_shift($array);
-			}
-			if ($shortenindicator && empty($array) || ($array[0] == '</p>' || trim($array[0]) == '')) { //	page break was at end of article
-				$text = shortenContent($newtext, $shorten, '') . $readmorelink;
-			} else {
-				$text = shortenContent($newtext, $shorten, $shortenindicator, true) . $readmorelink;
-			}
-		} else {
-			if (!is_bool($shorten)) {
-				$newtext = shortenContent($text, $shorten, $shortenindicator);
-				if ($newtext != $text) {
-					$text = $newtext . $readmorelink;
-				}
-			}
-		}
+
+	if (!empty($shorten)) {
+		$text = shortenContent($text, $shorten, $shortenindicator . $readmorelink);
 	}
 	return $text;
 }
