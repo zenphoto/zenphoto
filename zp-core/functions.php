@@ -172,6 +172,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
 //remove HTML comments
 		$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
+		$articlecontent = html_decode($articlecontent);
 		$short = mb_substr($articlecontent, 0, $shorten);
 		$short2 = kses($short . '</p>', $allowed_tags);
 
@@ -212,7 +213,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 				$short = trim(cleanHTML($short . $shortenindicator));
 			}
 		}
-		$articlecontent = $short;
+		$articlecontent = html_encodeTagged($short);
 	}
 
 	return $articlecontent;
