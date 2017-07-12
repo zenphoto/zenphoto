@@ -175,7 +175,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator) {
 	if ($shorten && (mb_strlen($content) > $shorten)) {
 		//remove scripts to be added back later
 		preg_match_all('~<script.*?/script>~is', $content, $scripts);
-		$content = preg_replace('~<script.*?/script>~is', '', $articlecontent);
+		$content = preg_replace('~<script.*?/script>~is', '<script>', $articlecontent);
 
 		$html = $short = '';
 		$pagebreak = $count = 0;
@@ -185,6 +185,9 @@ function shortenContent($articlecontent, $shorten, $shortenindicator) {
 		foreach ($parts as $key => $part) {
 			if (array_key_exists($key, $markup[0])) {
 				$html = $markup[0][$key];
+				if ($html == '<script>') {
+					$html = array_shift($scripts[0]);
+				}
 			} else {
 				$html = '';
 			}
@@ -218,10 +221,6 @@ function shortenContent($articlecontent, $shorten, $shortenindicator) {
 		}
 		//re-encode the html entities
 		$articlecontent = html_encodeTagged($short);
-		if (isset($scripts[0])) {
-			//put back thje scripts
-			$articlecontent = implode(' ', $scripts[0]) . $articlecontent;
-		}
 	}
 
 	return $articlecontent;
