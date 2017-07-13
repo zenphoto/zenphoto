@@ -523,7 +523,7 @@ class RSS extends feed {
 				return;
 
 			default: // an unknown request
-				self:feed404();
+				self::feed404();
 				break;
 		}
 		$this->feeditems = $this->getitems();
