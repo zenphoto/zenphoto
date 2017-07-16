@@ -13,6 +13,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tag_suggest.
 
 if (is_AdminEditPage('page')) {
 	$rights = ZENPAGE_PAGES_RIGHTS;
+	$script = 'admin-pages.php?tab=pages';
 	$page = $tab = 'pages';
 	$tab = NULL;
 	$new = 'newPage';
@@ -20,6 +21,7 @@ if (is_AdminEditPage('page')) {
 	$returnpage = 'page';
 } else if (is_AdminEditPage('newsarticle')) {
 	$rights = ZENPAGE_NEWS_RIGHTS;
+	$script = 'admin-news.php?tab=articles';
 	$page = 'news';
 	$_GET['tab'] = $tab = 'articles';
 	$new = 'newArticle';
@@ -27,6 +29,7 @@ if (is_AdminEditPage('page')) {
 	$returnpage = 'newsarticle';
 } else if (is_AdminEditPage('newscategory')) {
 	$rights = ZENPAGE_NEWS_RIGHTS;
+	$script = 'admin-categories.php?tab=categories';
 	$page = 'news';
 	$_GET['tab'] = $tab = 'categories';
 	$new = 'newCategory';
@@ -41,15 +44,13 @@ updatePublished('pages');
 $saveitem = '';
 $reports = array();
 
-
-
-
 $redirect = false;
 if (isset($_GET['titlelink'])) {
 	$result = $new(urldecode(sanitize($_GET['titlelink'])));
 } else if (isset($_GET['update'])) {
 	XSRFdefender('update');
 	$result = $update($reports);
+
 	if (getCheckboxState('copy_delete_object')) {
 		switch (sanitize($_POST['copy_delete_object'])) {
 			case 'copy':
@@ -63,7 +64,7 @@ if (isset($_GET['titlelink'])) {
 				$_GET['titlelink'] = $as;
 				break;
 			case 'delete':
-				$reports[] = deleteZenpageObj($result, 'admin-' . $_GET['tab'] . '.php');
+				$reports[] = deleteZenpageObj($result, $script);
 				unset($_POST['subpage']);
 				break;
 		}

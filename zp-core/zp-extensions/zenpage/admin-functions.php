@@ -169,7 +169,12 @@ function deleteZenpageObj($obj, $redirect = false) {
 	$result = $obj->remove();
 	if ($result) {
 		if ($redirect) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/' . $redirect . '?deleted');
+			if (strpos($redirect, '?' > 0)) {
+				$redirect .= '&deleted';
+			} else {
+				$redirect .= '?deleted';
+			}
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/' . $redirect);
 			exitZP();
 		}
 		switch ($obj->table) {
