@@ -279,8 +279,12 @@ if (!zp_loggedin()) {
 					$api = new Github\Api;
 					$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', ['owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20']);
 					$fullRepoData = $api->decode($fullRepoResponse);
+					$assets = $fullRepoData->assets;
+					if (!empty($assets)) {
+						$item = array_pop($assets);
+						setOption('getUpdates_latest', str_replace('setup-', '', stripSuffix(basename($item->browser_download_url))));
+					}
 
-					setOption('getUpdates_latest', str_replace('ZenPhoto20-', '', $fullRepoData->tag_name));
 					setOption('getUpdates_lastCheck', time());
 				}
 				$newestVersion = getOption('getUpdates_latest');
