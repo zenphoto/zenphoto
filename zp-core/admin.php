@@ -282,12 +282,14 @@ if (!zp_loggedin()) {
 					$assets = $fullRepoData->assets;
 					if (!empty($assets)) {
 						$item = array_pop($assets);
-						setOption('getUpdates_latest', str_replace('setup-', '', stripSuffix(basename($item->browser_download_url))));
+						setOption('getUpdates_latest', $item->browser_download_url);
 					}
 
 					setOption('getUpdates_lastCheck', time());
 				}
-				$newestVersion = getOption('getUpdates_latest');
+				$newestVersionURI = getOption('getUpdates_latest');
+				$newestVersion = str_replace('setup-', '', stripSuffix(basename($newestVersionURI)));
+
 				$zenphoto_version = explode('-', ZENPHOTO_VERSION);
 				$zenphoto_version = array_shift($zenphoto_version);
 
@@ -297,7 +299,7 @@ if (!zp_loggedin()) {
 							'enable' => 2,
 							'button_text' => gettext('ZenPhoto20 ' . $newestVersion),
 							'formname' => 'getUpdates_button',
-							'action' => 'https://github.com/ZenPhoto20/ZenPhoto20/releases/download/ZenPhoto20-' . $newestVersion . '/setup-' . $newestVersion . '.zip',
+							'action' => $newestVersionURI,
 							'icon' => 'images/arrow_down.png',
 							'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
 							'alt' => '',
@@ -576,7 +578,7 @@ if (!zp_loggedin()) {
 							$c = count($plugins);
 							?>
 							<h3><a onclick="$('#plugins_hide').toggle();
-											$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+									$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -624,7 +626,7 @@ if (!zp_loggedin()) {
 							$c = count($filters);
 							?>
 							<h3><a onclick="$('#filters_hide').toggle();
-											$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+									$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php
