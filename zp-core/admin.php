@@ -280,29 +280,29 @@ if (!zp_loggedin()) {
 					$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', ['owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20']);
 					$fullRepoData = $api->decode($fullRepoResponse);
 
-					$newestVersion = $fullRepoData->tag_name;
-
-					$newestVersion = str_replace('ZenPhoto20-', '', $newestVersion);
-					$zenphoto_version = explode('-', ZENPHOTO_VERSION);
-					$zenphoto_version = array_shift($zenphoto_version);
-
-					if (version_compare($newestVersion, $zenphoto_version, '>')) {
-						$buttonlist[] = array(
-								'category' => gettext('Admin'),
-								'enable' => 2,
-								'button_text' => gettext('ZenPhoto20 ' . $newestVersion),
-								'formname' => 'getUpdates_button',
-								'action' => 'https://github.com/ZenPhoto20/ZenPhoto20/releases/download/ZenPhoto20-' . $newestVersion . '/setup-' . $newestVersion . '.zip',
-								'icon' => 'images/arrow_down.png',
-								'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
-								'alt' => '',
-								'hidden' => '',
-								'rights' => ADMIN_RIGHTS
-						);
-					}
-
+					setOption('getUpdates_latest', str_replace('ZenPhoto20-', '', $fullRepoData->tag_name));
 					setOption('getUpdates_lastCheck', time());
 				}
+				$newestVersion = getOption('getUpdates_latest');
+				$zenphoto_version = explode('-', ZENPHOTO_VERSION);
+				$zenphoto_version = array_shift($zenphoto_version);
+
+				if (version_compare($newestVersion, $zenphoto_version, '>')) {
+					$buttonlist[] = array(
+							'category' => gettext('Admin'),
+							'enable' => 2,
+							'button_text' => gettext('ZenPhoto20 ' . $newestVersion),
+							'formname' => 'getUpdates_button',
+							'action' => 'https://github.com/ZenPhoto20/ZenPhoto20/releases/download/ZenPhoto20-' . $newestVersion . '/setup-' . $newestVersion . '.zip',
+							'icon' => 'images/arrow_down.png',
+							'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
+							'alt' => '',
+							'hidden' => '',
+							'rights' => ADMIN_RIGHTS
+					);
+				}
+
+
 				//	button to restore setup files if needed
 				switch ($setupUnprotected) {
 					case 2:
@@ -572,7 +572,7 @@ if (!zp_loggedin()) {
 							$c = count($plugins);
 							?>
 							<h3><a onclick="$('#plugins_hide').toggle();
-									$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+											$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -620,7 +620,7 @@ if (!zp_loggedin()) {
 							$c = count($filters);
 							?>
 							<h3><a onclick="$('#filters_hide').toggle();
-									$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+											$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php
