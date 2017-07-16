@@ -14,6 +14,10 @@ define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
 
+require_once( SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/gitHubAPI/github-api.php');
+
+use Milo\Github;
+
 if (isset($_GET['_zp_login_error'])) {
 	$_zp_login_error = sanitize($_GET['_zp_login_error']);
 }
@@ -267,6 +271,38 @@ if (!zp_loggedin()) {
 				}
 			}
 			if (zp_loggedin(ADMIN_RIGHTS) && zpFunctions::hasPrimaryScripts()) {
+				/*
+				 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20
+				 */
+				if (getOption('getUpdates_lastCheck') + 8640 < time()) {
+
+					$api = new Github\Api;
+					$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', ['owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20']);
+					$fullRepoData = $api->decode($fullRepoResponse);
+
+					$newestVersion = $fullRepoData->tag_name;
+
+					$newestVersion = str_replace('ZenPhoto20-', '', $newestVersion);
+					$zenphoto_version = explode('-', ZENPHOTO_VERSION);
+					$zenphoto_version = array_shift($zenphoto_version);
+
+					if (version_compare($newestVersion, $zenphoto_version, '>')) {
+						$buttonlist[] = array(
+								'category' => gettext('Admin'),
+								'enable' => 2,
+								'button_text' => gettext('ZenPhoto20 ' . $newestVersion),
+								'formname' => 'getUpdates_button',
+								'action' => 'https://github.com/ZenPhoto20/ZenPhoto20/releases/download/ZenPhoto20-' . $newestVersion . '/setup-' . $newestVersion . '.zip',
+								'icon' => 'images/arrow_down.png',
+								'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
+								'alt' => '',
+								'hidden' => '',
+								'rights' => ADMIN_RIGHTS
+						);
+					}
+
+					setOption('getUpdates_lastCheck', time());
+				}
 				//	button to restore setup files if needed
 				switch ($setupUnprotected) {
 					case 2:
@@ -286,7 +322,7 @@ if (!zp_loggedin()) {
 							$buttonlist[] = array(
 									'XSRFTag' => 'protect_setup',
 									'category' => gettext('Admin'),
-									'enable' => 2,
+									'enable' => 3,
 									'button_text' => gettext('Setup » protect scripts'),
 									'formname' => 'restore_setup',
 									'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
@@ -633,13 +669,18 @@ if (!zp_loggedin()) {
 							foreach ($buttonlist as $button) {
 								$button_category = $button['category'];
 								$button_icon = $button['icon'];
-								if ($button['enable']) {
-									if ((int) $button['enable'] == 2) {
+
+								$color = $disable = '';
+								switch ((int) $button['enable']) {
+									case 0:
+										$disable = ' disabled="disabled"';
+										break;
+									case 2:
+										$color = ' style="color:orange"';
+										break;
+									case 3:
 										$color = ' style="color:red"';
-									}
-									$disable = '';
-								} else {
-									$disable = ' disabled="disabled"';
+										break;
 								}
 								if ($category != $button_category) {
 									if ($category) {
@@ -657,7 +698,6 @@ if (!zp_loggedin()) {
 										<?php
 										if (isset($button['XSRFTag']) && $button['XSRFTag'])
 											XSRFToken($button['XSRFTag']);
-										$color = '';
 										echo $button['hidden'];
 										if (isset($button['onclick'])) {
 											$type = 'type="button" onclick="' . $button['onclick'] . '"';
