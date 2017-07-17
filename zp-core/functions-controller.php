@@ -394,7 +394,7 @@ function zp_load_request() {
  */
 function prepareIndexPage() {
 	global $_zp_gallery_page, $_zp_script, $_zp_page;
-	zp_setCookie('index_page_paged', $_zp_page);
+	zp_setCookie('index_page_paged', $_zp_page, false);
 	handleSearchParms('index');
 	$theme = setupTheme();
 	$_zp_gallery_page = basename($_zp_script = THEMEFOLDER . "/$theme/index.php");

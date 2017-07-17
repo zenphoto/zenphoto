@@ -638,13 +638,15 @@ function zp_session_start() {
 }
 
 function zp_session_destroy() {
-	$_SESSION = array();
-	if (ini_get("session.use_cookies")) {
-		$params = session_get_cookie_params();
-		setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
-		);
+	if (session_id()) {
+		$_SESSION = array();
+		if (ini_get("session.use_cookies")) {
+			$params = session_get_cookie_params();
+			setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
+			);
+		}
+		session_destroy();
 	}
-	session_destroy();
 }
 
 /**
@@ -693,7 +695,8 @@ function zp_cookieEncode($value) {
  *
  * @param string $name The 'cookie' name
  * @param string $value The value to be stored
- * @param timestamp $time The time delta until the cookie expires
+ * @param int $time The time delta until the cookie expires. Set negative to clear cookie,
+ * 									set to FALSE to expire at end of session
  * @param bool $security set to false to make the cookie send for any kind of connection
  */
 function zp_setCookie($name, $value, $time = NULL, $security = true) {
@@ -703,8 +706,16 @@ function zp_setCookie($name, $value, $time = NULL, $security = true) {
 	} else {
 		$cookiev = zp_cookieEncode($value);
 	}
-	if (is_null($time)) {
-		$time = COOKIE_PESISTENCE;
+	if (is_null($t = $time)) {
+		$t = time() + COOKIE_PESISTENCE;
+		$tString = COOKIE_PESISTENCE;
+	} else {
+		if ($time === false) {
+			$tString = 'FALSE';
+		} else {
+			$t = time() + $time;
+			$tString = (int) $time;
+		}
 	}
 	$path = getOption('zenphoto_cookie_path');
 	if (empty($path)) {
@@ -713,11 +724,11 @@ function zp_setCookie($name, $value, $time = NULL, $security = true) {
 	if (substr($path, -1, 1) != '/') {
 		$path .= '/';
 	}
-	if (DEBUG_LOGIN) {
-		debugLog("zp_setCookie($name, $value, $time)::path=" . $path . "; secure=" . sprintf('%u', $secure) . "; album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
+	if (true || DEBUG_LOGIN) {
+		debugLog("zp_setCookie($name, $value, $tString)::path=" . $path . "; secure=" . sprintf('%u', $secure) . "; album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
 	}
 	if (($time < 0) || !GALLERY_SESSION) {
-		setcookie($name, $cookiev, time() + (int) $time, $path, "", $secure, true);
+		setcookie($name, $cookiev, (int) $t, $path, "", $secure, true);
 	}
 	if ($time < 0) {
 		if (session_id()) {
