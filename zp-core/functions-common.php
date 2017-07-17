@@ -628,7 +628,8 @@ function zp_session_start() {
 			session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
 		}
 		$sessionCookie = session_get_cookie_params();
-		session_set_cookie_params($sessionCookie['lifetime'], WEBPATH, $_SERVER['HTTP_HOST'], secureServer(), true);
+
+		session_set_cookie_params($sessionCookie['lifetime'], WEBPATH . '/', $_SERVER['HTTP_HOST'], secureServer(), true);
 		$result = session_start();
 		return $result;
 	}
