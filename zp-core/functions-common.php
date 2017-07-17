@@ -724,7 +724,7 @@ function zp_setCookie($name, $value, $time = NULL, $security = true) {
 	if (substr($path, -1, 1) != '/') {
 		$path .= '/';
 	}
-	if (true || DEBUG_LOGIN) {
+	if (DEBUG_LOGIN) {
 		debugLog("zp_setCookie($name, $value, $tString)::path=" . $path . "; secure=" . sprintf('%u', $secure) . "; album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
 	}
 	if (($time < 0) || !GALLERY_SESSION) {
