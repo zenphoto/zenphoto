@@ -44,7 +44,6 @@ if ($plugin_disable) {
 	zp_register_filter('alt_login_handler', 'facebookLogin::alt_login_handler');
 	zp_register_filter('edit_admin_custom_data', 'facebookLogin::edit_admin');
 }
-zp_session_start();
 
 /**
  * Option class

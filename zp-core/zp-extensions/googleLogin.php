@@ -45,7 +45,6 @@ if ($plugin_disable) {
 	zp_register_filter('alt_login_handler', 'googleLogin::alt_login_handler');
 	zp_register_filter('edit_admin_custom_data', 'googleLogin::edit_admin');
 }
-zp_session_start();
 
 /**
  * Option class
