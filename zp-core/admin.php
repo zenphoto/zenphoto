@@ -277,7 +277,7 @@ if (!zp_loggedin()) {
 				if (getOption('getUpdates_lastCheck') + 8640 < time()) {
 
 					$api = new Github\Api;
-					$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', ['owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20']);
+					$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20'));
 					$fullRepoData = $api->decode($fullRepoResponse);
 					$assets = $fullRepoData->assets;
 					if (!empty($assets)) {
