@@ -242,10 +242,10 @@ class mobile extends Mobile_Detect {
 if (isset($_GET['mobile'])) {
 	switch ($_GET['mobile']) {
 		default:
-			zp_setCookie('mobileTheme_disable', 0);
+			zp_setCookie('mobileTheme_disable', 0, false);
 			break;
 		case 'off':
-			zp_setCookie('mobileTheme_disable', 1);
+			zp_setCookie('mobileTheme_disable', 1, false);
 			break;
 	}
 }

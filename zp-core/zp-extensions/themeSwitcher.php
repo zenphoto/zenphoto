@@ -32,7 +32,6 @@ class themeSwitcher {
 
 		if (OFFSET_PATH == 2) {
 			$themelist = array();
-			purgeOption('themeSwitcher_default_color');
 			$virgin = is_null(getOption('themeSwitcher_list'));
 			$themes = $_zp_gallery->getThemes();
 			foreach ($themes as $key => $theme) {
@@ -46,7 +45,6 @@ class themeSwitcher {
 			query($sql);
 
 			setOptionDefault('themeSwitcher_list', serialize($themelist));
-			setOptionDefault('themeSwitcher_timeout', 60 * 2);
 			setOptionDefault('themeSwitcher_adminOnly', 1);
 		}
 	}
@@ -65,9 +63,7 @@ class themeSwitcher {
 				$unknown[$key] = $theme['name'];
 			}
 		}
-		$options = array(gettext('Cookie duration') => array('key' => 'themeSwitcher_timeout', 'type' => OPTION_TYPE_NUMBER,
-						'order' => 1,
-						'desc' => gettext('The time in minutes that the theme switcher cookie lasts.')),
+		$options = array(
 				gettext('Private') => array('key' => 'themeSwitcher_adminOnly', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 2,
 						'desc' => gettext('Only users with <em>Themes</em> rights will see the selector if this is checked.')),
@@ -205,7 +201,7 @@ unset($__theme);
 
 
 if (isset($_GET['themeSwitcher'])) {
-	zp_setCookie('themeSwitcher_theme', sanitize($_GET['themeSwitcher']), getOption('themeSwitcher_timeout') * 60);
+	zp_setCookie('themeSwitcher_theme', sanitize($_GET['themeSwitcher']), false);
 }
 
 if (zp_getCookie('themeSwitcher_theme')) {

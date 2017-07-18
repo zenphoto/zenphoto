@@ -258,7 +258,7 @@ class register_user {
 								$userobj->msg .= ' ' . gettext('You must supply the postal code field.');
 							}
 						}
-						zp_setCookie('reister_user_form_addresses', $_comment_form_save_post);
+						zp_setCookie('reister_user_form_addresses', $_comment_form_save_post, false);
 						userAddressFields::setCustomDataset($userobj, $userinfo);
 					}
 
