@@ -45,11 +45,9 @@ $plugin_disable = (extensionEnabled('slideshow2')) ? sprintf(gettext('Only one s
 $option_interface = 'slideshow';
 
 global $_zp_gallery, $_zp_gallery_page;
-
-if ($_zp_gallery_page == 'slideshow.php' || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
-	zp_register_filter('theme_head', 'slideshow::header_js');
+if ($plugin_disable) {
+	enableExtension('slideshow', 0);
 }
-zp_register_filter('content_macro', 'slideshow::macro');
 
 /**
  * slideshow
@@ -536,10 +534,12 @@ class slideshow {
 
 }
 
-if ($plugin_disable) {
-	enableExtension('slideshow', 0);
-}
 if (extensionEnabled('slideshow')) {
+	if ($_zp_gallery_page == 'slideshow.php' || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
+		zp_register_filter('theme_head', 'slideshow::header_js');
+	}
+	zp_register_filter('content_macro', 'slideshow::macro');
+
 	$slideshow_instance = 0;
 
 	/**
