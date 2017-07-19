@@ -480,7 +480,6 @@ class Video extends Image {
 
 class pseudoPlayer {
 
-	public $name = '';
 	private $width = 480;
 	private $height = 360;
 
