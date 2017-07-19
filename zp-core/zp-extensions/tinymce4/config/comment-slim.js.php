@@ -6,13 +6,13 @@
  */
 global $_zp_RTL_css;
 ?>
-
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
 <script type="text/javascript">
 // <!-- <![CDATA[
 	tinymce.init({
 		selector: "textarea.textarea_inputbox,textarea.texteditor_comments",
 		language: "<?php echo $locale; ?>",
+		entity_encoding: 'raw',
 		directionality: "<?php echo $_zp_RTL_css ? 'rtl' : 'ltr'; ?>",
 		menubar: false,
 		relative_urls: false,
