@@ -295,10 +295,16 @@ class cmsFilters {
 
 	static function admin_toolbox_news($redirect, $zf) {
 		global $_zp_CMS, $_zp_current_category, $_zp_current_article;
+		if (!empty($_zp_current_category)) {
+			$cat = '&amp;category=' . $_zp_current_category->getTitlelink();
+		} else {
+			$cat = '';
+		}
+
 		if (is_NewsArticle()) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS && $_zp_CMS->news_enabled) {
 				// page is a NewsArticle--provide zenpage edit, delete, and Add links
-				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_article->getTitleLink()) . "&amp;subpage=object\">" . gettext("Edit Article") . "</a></li>";
+				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_article->getTitleLink()) . $cat . "&amp;subpage=object\">" . gettext("Edit Article") . "</a></li>";
 				if (GALLERY_SESSION) {
 					// XSRF defense requires sessions
 					?>
@@ -312,10 +318,7 @@ class cmsFilters {
 			}
 			$redirect .= '&amp;title=' . urlencode($_zp_current_article->getTitlelink());
 		} else {
-
-			if (!empty($_zp_current_category)) {
-				$redirect .= '&amp;category=' . $_zp_current_category->getTitlelink();
-			}
+			$redirect .= $cat;
 		}
 		return $redirect;
 	}

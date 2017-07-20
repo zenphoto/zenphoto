@@ -74,7 +74,13 @@ if (isset($_GET['titlelink'])) {
 		}
 	}
 	if (isset($_POST['subpage']) && $_POST['subpage'] == 'object' && count($reports) <= 1) {
-		header('Location: ' . $result->getLink());
+		if (isset($_POST['category'])) {
+			$_zp_current_category = newCategory(sanitize($_POST['category']), false);
+			$cat = $_zp_current_category->exists;
+		} else {
+			$cat = NULL;
+		}
+		header('Location: ' . $result->getLink($cat));
 	} else {
 		$redirect = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?' . $returnpage . '&titlelink=' . html_encode($result->getTitlelink());
 	}
@@ -325,10 +331,15 @@ $tagsort = getTagOrder();
 							if (isset($_GET['subpage'])) {
 								?>
 								<input type="hidden" name="subpage" id="subpage" value="<?php echo html_encode(sanitize($_GET['subpage'])); ?>" />
-
+								<?php
+							}
+							if (isset($_GET['category'])) {
+								?>
+								<input type="hidden" name="category" id="subpage" value="<?php echo html_encode(sanitize($_GET['category'])); ?>" />
 								<?php
 							}
 							?>
+
 							<input type="hidden" name="id" value="<?php echo $result->getID(); ?>" />
 							<input type="hidden" name="titlelink-old" id="titlelink-old" value="<?php echo html_encode($result->getTitlelink()); ?>" />
 							<input type="hidden" name="lastchange" id="lastchange" value="<?php echo date('Y-m-d H:i:s'); ?>" />
@@ -506,9 +517,9 @@ $tagsort = getTagOrder();
 																 id="show"
 																 value="1" <?php checkIfChecked($result->getShow()); ?>
 																 onclick="$('#pubdate').val('');
-																			 $('#expiredate').val('');
-																			 $('#pubdate').css('color', 'black');
-																			 $('.expire').html('');"
+																		 $('#expiredate').val('');
+																		 $('#pubdate').css('color', 'black');
+																		 $('.expire').html('');"
 																 />
 													<label for="show"><?php echo gettext("Published"); ?></label>
 												</p>
@@ -610,7 +621,7 @@ $tagsort = getTagOrder();
 																			 name="disclose_password"
 																			 id="disclose_password"
 																			 onclick="passwordClear('');
-																								 togglePassword('');"><?php echo gettext('Show password'); ?>
+																					 togglePassword('');"><?php echo gettext('Show password'); ?>
 															</label>
 															<br />
 															<span class="password_field_">
@@ -637,13 +648,13 @@ $tagsort = getTagOrder();
 													<label class="checkboxlabel">
 														<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																	 onclick="$('#copyfield').show();
-																					 $('#deletemsg').hide();" />
+																			 $('#deletemsg').hide();" />
 																	 <?php echo gettext("Copy"); ?>
 													</label>
 													<label class="checkboxlabel">
 														<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																	 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																					 $('#copyfield').hide();" />
+																			 $('#copyfield').hide();" />
 																	 <?php echo gettext('delete'); ?>
 													</label>
 													<br class="clearall">

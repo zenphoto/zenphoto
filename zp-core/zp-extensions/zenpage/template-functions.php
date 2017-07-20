@@ -330,13 +330,14 @@ function printBareNewsTitle() {
  */
 function getNewsURL($titlelink = NULL) {
 	global $_zp_current_article;
+
 	if (empty($titlelink)) {
 		$obj = $_zp_current_article;
 	} else {
 		$obj = newArticle($titlelink);
 	}
 	if (!is_null($obj))
-		return $obj->getLink();
+		return $obj->getLink(true);
 }
 
 /**
@@ -995,7 +996,7 @@ function getNextNewsURL() {
 	if (is_object($_zp_current_article)) {
 		$article = $_zp_current_article->getNextArticle();
 		if ($article)
-			return array("link" => $article->getLink(), "title" => $article->getTitle());
+			return array("link" => $article->getLink(true), "title" => $article->getTitle());
 	}
 	return false;
 }
@@ -1013,7 +1014,7 @@ function getPrevNewsURL() {
 	if (is_object($_zp_current_article)) {
 		$article = $_zp_current_article->getPrevArticle();
 		if ($article)
-			return array("link" => $article->getLink(), "title" => $article->getTitle());
+			return array("link" => $article->getLink(true), "title" => $article->getTitle());
 	}return false;
 }
 

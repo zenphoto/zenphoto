@@ -25,7 +25,7 @@ class Article extends CMSItems {
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
 	var $access_rights = ALL_NEWS_RIGHTS;
 	var $categories = NULL;
-	var $index = NULL;
+	protected $index = array();
 
 	function __construct($titlelink, $allowCreate = NULL) {
 		if (is_array($titlelink)) {
@@ -373,11 +373,19 @@ class Article extends CMSItems {
 	/**
 	 * Returns the url to a news article
 	 *
-	 *
+	 * @param bool $in_context set true for within context
 	 * @return string
 	 */
-	function getLink() {
-		return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $this->getTitlelink(), '/index.php?p=news&title=' . $this->getTitlelink()), $this, NULL);
+	function getLink($in_context = false) {
+		global$_zp_current_category;
+		$context = $contextR = '';
+
+		if ($in_context && in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+			$context = 'category=' . $_zp_current_category->getTitlelink();
+			$contextR = '?' . $context;
+			$context = '&' . $context;
+		}
+		return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $this->getTitlelink() . $contextR, '/index.php?p=news&title=' . $this->getTitlelink() . $context), $this, NULL);
 	}
 
 	/**
@@ -386,18 +394,25 @@ class Article extends CMSItems {
 	 * @return int
 	 */
 	function getIndex() {
-		global $_zp_CMS;
-		if ($this->index == NULL) {
-			$articles = $_zp_CMS->getArticles(0, NULL, true);
+		global $_zp_CMS, $_zp_current_category;
+		if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+			$cat = $_zp_current_category;
+			$catI = $_zp_current_category->getID();
+		} else {
+			$cat = NULL;
+			$catI = 0;
+		}
+		if (!isset($this->index[$catI])) {
+			$articles = $_zp_CMS->getArticles(0, NULL, true, NULL, NULL, NULL, $cat);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
 				if ($this->getTitlelink() == $article['titlelink']) {
-					$this->index = $i;
+					$this->index[$catI] = $i;
 					break;
 				}
 			}
 		}
-		return $this->index;
+		return $this->index[$catI];
 	}
 
 	/**
