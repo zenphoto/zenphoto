@@ -39,16 +39,16 @@ function printItemsListTable($item, $flag) {
 	if ($array['valid']) {
 		switch ($item['type']) {
 			case "album":
-				$link = '<a href="../../admin-edit.php?page=edit&amp;album=' . html_encode($item['link']) . '">' . html_encodeTagged(truncate_string($item['link'], 40, '...')) . '</a>';
+				$link = '<a href="../../admin-edit.php?page=edit&amp;album=' . html_encode($item['link']) . '">' . html_encodeTagged(shortenCOntent($item['link'], 40, '...')) . '</a>';
 				break;
 			case "page":
-				$link = '<a href="../zenpage/admin-edit.php?page&amp;titlelink=' . html_encode($item['link']) . '">' . html_encodeTagged(truncate_string($item['link'], 40, '...')) . '</a>';
+				$link = '<a href="../zenpage/admin-edit.php?page&amp;titlelink=' . html_encode($item['link']) . '">' . html_encodeTagged(shortenCOntent($item['link'], 40, '...')) . '</a>';
 				break;
 			case "category":
-				$link = '<a href="../zenpage/admin-edit.php?newscategory&amp;titlelink=' . html_encode($item['link']) . '">' . html_encodeTagged(truncate_string($item['link'], 40, '...')) . '</a>';
+				$link = '<a href="../zenpage/admin-edit.php?newscategory&amp;titlelink=' . html_encode($item['link']) . '">' . html_encodeTagged(shortenCOntent($item['link'], 40, '...')) . '</a>';
 				break;
 			case 'customlink':
-				$link = '<a href="' . html_encode($item['link']) . '">' . html_encodeTagged(truncate_string($item['link'], 40, '...')) . '</a>';
+				$link = '<a href="' . html_encode($item['link']) . '">' . html_encodeTagged(shortenCOntent($item['link'], 40, '...')) . '</a>';
 				break;
 			case 'menulabel':
 				$link = '';
@@ -57,7 +57,7 @@ function printItemsListTable($item, $flag) {
 				$link = html_encode(truncate_string($item['link'], 40, '...'));
 				break;
 			default:
-				$link = html_encodeTagged(truncate_string($item['link'], 40, '...'));
+				$link = html_encodeTagged(shortenCOntent($item['link'], 40, '...'));
 				break;
 		}
 	} else {

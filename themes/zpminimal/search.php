@@ -37,7 +37,7 @@ if (!empty($searchdate)) {
 			while (next_album()): $c++;
 				?>
 				<div class="album-maxspace">
-					<a class="thumb-link" href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo strip_tags(shortenContent(getBareAlbumDesc(), 300, '...')); ?>">
+					<a class="thumb-link" href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo truncate_string(getBareAlbumDesc(), 300, '...'); ?>">
 						<?php
 						if ($zpmin_thumb_crop) {
 							printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, $zpmin_album_thumb_size, $zpmin_album_thumb_size, $zpmin_album_thumb_size, $zpmin_album_thumb_size);
@@ -45,30 +45,30 @@ if (!empty($searchdate)) {
 							printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), $zpmin_album_thumb_size);
 						}
 						?>
-						<span class="album-title"><?php echo html_encodeTagged(shortenContent(getBareAlbumTitle(), 25, '...')); ?></span>
+						<span class="album-title"><?php echo html_encodeTagged(shortenContent(getAlbumTitle(), 25, '...')); ?></span>
 					</a>
 				</div>
-<?php endwhile; ?>
+			<?php endwhile; ?>
 		</div>
 		<div id="thumbs-wrap">
-<?php while (next_image()): $c++; ?>
+			<?php while (next_image()): $c++; ?>
 				<div class="thumb-maxspace">
 					<a class="thumb-link" href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
-	<?php if (($zpmin_colorbox) && ($cbscript) && (!isImageVideo())) { ?>
+					<?php if (($zpmin_colorbox) && ($cbscript) && (!isImageVideo())) { ?>
 						<div class="cblinks">
 							<a class="thickbox" href="<?php echo html_encode(getUnprotectedImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/zoom.png" /></a>
 							<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/details.png" /></a>
 						</div>
-				<?php } ?>
+					<?php } ?>
 				</div>
-		<?php endwhile; ?>
+			<?php endwhile; ?>
 		</div>
-			<?php if ((hasPrevPage()) || (hasNextPage())) { ?>
+		<?php if ((hasPrevPage()) || (hasNextPage())) { ?>
 			<div id="pagination">
-			<?php printPageListWithNav("← " . gettext("prev"), gettext("next") . " →"); ?>
+				<?php printPageListWithNav("← " . gettext("prev"), gettext("next") . " →"); ?>
 			</div>
 		<?php } ?>
-<?php if (function_exists('printGoogleMap')) { ?><div class="section">
+		<?php if (function_exists('printGoogleMap')) { ?><div class="section">
 				?></div><?php } ?>
 
 		<?php
@@ -81,7 +81,7 @@ if (!empty($searchdate)) {
 					?>
 					<div class="news-truncate">
 						<h2><?php printPageTitlelink(); ?></h2>
-						<p><?php echo html_encodeTagged(shortenContent(strip_tags(getPageContent()), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
+						<p><?php echo html_encodeTagged(shortenContent(getPageContent(), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
 					</div>
 					<?php
 				}
@@ -97,7 +97,7 @@ if (!empty($searchdate)) {
 						<div class="newsarticlecredit">
 							<span><?php printNewsDate(); ?> &sdot; <?php printNewsCategories(", ", gettext("Categories: "), "taglist"); ?><?php if (function_exists('printCommentForm')) { ?> &sdot; <?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?> <?php } ?></span>
 						</div>
-						<p><?php echo html_encodeTagged(shortenContent(strip_tags(getNewsContent()), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
+						<p><?php echo html_encodeTagged(shortenContent(getNewsContent(), 200, getOption("zenpage_textshorten_indicator"))); ?></p>
 					</div>
 					<?php
 				}
@@ -113,9 +113,9 @@ if (!empty($searchdate)) {
 	<div id="sidebar"<?php if ($zpmin_switch) echo ' class="switch"'; ?>>
 		<div class="sidebar-divide">
 			<?php printGalleryDesc(true); ?>
-		<?php if (($c > 0) && (function_exists('printSlideShowLink'))) { ?><div class="sidebar-section"><div class="slideshow-link"><?php printSlideShowLink(gettext('View Slideshow')); ?></div></div><?php } ?>
+			<?php if (($c > 0) && (function_exists('printSlideShowLink'))) { ?><div class="sidebar-section"><div class="slideshow-link"><?php printSlideShowLink(gettext('View Slideshow')); ?></div></div><?php } ?>
 		</div>
-<?php include ("inc-sidemenu.php"); ?>
+		<?php include ("inc-sidemenu.php"); ?>
 	</div>
 </div>
 

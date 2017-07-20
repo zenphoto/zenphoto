@@ -61,16 +61,16 @@
 				break;
 			case 'pages.php':
 				$zpmas_metatitle = getBarePageTitle() . ' | ' . getBareGalleryTitle();
-				$zpmas_metadesc = strip_tags(truncate_string(getPageContent(), 150, '...'));
+				$zpmas_metadesc = truncate_string(getBare(getPageContent(), 150, '...'));
 				break;
 			case 'news.php':
 				setOption('zenpage_combinews', 0, false);
 				if (is_NewsArticle()) {
 					$zpmas_metatitle = gettext('News') . ' | ' . getBareNewsTitle() . ' | ' . getBareGalleryTitle();
-					$zpmas_metadesc = strip_tags(truncate_string(getNewsContent(), 150, '...'));
+					$zpmas_metadesc = truncate_string(getBare(getNewsContent(), 150, '...'));
 				} else if ($_zp_current_category) {
 					$zpmas_metatitle = gettext('News') . ' | ' . $_zp_current_category->getTitle() . ' | ' . getBareGalleryTitle();
-					$zpmas_metadesc = strip_tags(truncate_string(getNewsCategoryDesc(), 150, '...'));
+					$zpmas_metadesc = truncate_string(getBare(getNewsCategoryDesc(), 150, '...'));
 				} else if (getCurrentNewsArchive()) {
 					$zpmas_metatitle = gettext('News') . ' | ' . getCurrentNewsArchive() . ' | ' . getBareGalleryTitle();
 					$zpmas_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');

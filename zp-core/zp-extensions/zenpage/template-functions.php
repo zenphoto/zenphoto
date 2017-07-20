@@ -1227,7 +1227,7 @@ function printZenpageStatistic($number = 10, $option = "all", $mode = "popular",
 			echo "<p>" . zpFormattedDate(DATE_FORMAT, strtotime($item['date'])) . "</p>";
 		}
 		if ($showcontent && $item['type'] != 'Category') {
-			echo '<p>' . truncate_string($item['content'], $contentlength) . '</p>';
+			echo '<p>' . truncate_string(getBare($item['content']), $contentlength) . '</p>';
 		}
 		echo '</li>';
 	}

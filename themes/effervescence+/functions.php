@@ -488,7 +488,7 @@ function commonNewsLoop($paged) {
 }
 
 function exerpt($content, $length) {
-	return shortenContent(getBare($content), $length, getOption("zenpage_textshorten_indicator"));
+	return shortenContent($content, $length, getOption("zenpage_textshorten_indicator"));
 }
 
 function commonComment() {

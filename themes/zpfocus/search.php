@@ -57,7 +57,7 @@
 					?>
 					<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 						<h4><?php printPageTitlelink(); ?></h4>
-						<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(strip_tags(getPageContent()), 250, getOption("zenpage_textshorten_indicator"))); ?></p>
+						<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getPageContent(), 250, getOption("zenpage_textshorten_indicator"))); ?></p>
 					</li>
 					<?php
 				}
@@ -77,7 +77,7 @@
 					?>
 					<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 						<h4><?php printNewsURL(); ?></h4>
-						<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(strip_tags(getNewsContent()), 250, getOption("zenpage_textshorten_indicator"))); ?></p>
+						<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getNewsContent(), 250, getOption("zenpage_textshorten_indicator"))); ?></p>
 					</li>
 					<?php
 				}
@@ -102,7 +102,7 @@
 					}
 					?>
 					<li class="<?php echo $css; ?>">
-						<h4><a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View Album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php echo html_encodeTagged(truncate_string(getBareAlbumTitle(), 25, '...')); ?></a></h4>
+						<h4><a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View Album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php echo html_encodeTagged(shortenContent(getAlbumTitle(), 25, '...')); ?></a></h4>
 						<a class="thumb" href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View Album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>">
 							<?php
 							if (isLandscape()) {
@@ -114,7 +114,7 @@
 						</a>
 						<span class="front-date"><?php printAlbumDate(); ?></span>
 						<p class="front-desc">
-							<?php echo html_encodeTagged(truncate_string(getAlbumDesc(), 175)); ?>
+							<?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 175)); ?>
 							<a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>">&raquo;</a>
 						</p>
 					</li>

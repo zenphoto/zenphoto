@@ -44,7 +44,7 @@
 	</div>
 
 	<?php
-	if (getOption('search_no_albums')) {	//test of images search
+	if (getOption('search_no_albums')) { //test of images search
 		if ($numimages > 0) {
 			echo '<ul class="nav search-item"><li><h4>';
 			printf(gettext('Images (%s)'), $numimages);
@@ -58,7 +58,7 @@
 				echo '</h4></li></ul>';
 			}
 		} else {
-			if ($total1 > 0) {		 //test of albums and images search
+			if ($total1 > 0) {	 //test of albums and images search
 				echo '<ul class="nav search-item"><li><h4>';
 				printf(gettext('Albums (%1$s) &amp; Images (%2$s)'), $numalbums, $numimages);
 				echo '</h4></li></ul>';
@@ -70,7 +70,7 @@
 		?>
 		<ul class="pager hidden-phone pull-right"> <!--hidden-phone -->
 			<li>
-		<?php printSlideShowLink(gettext('Slideshow')); ?>
+				<?php printSlideShowLink(gettext('Slideshow')); ?>
 			</li>
 		</ul>
 		<?php
@@ -95,7 +95,7 @@
 				<div class="news-truncate clearfix">
 					<h3 class="search-title"><?php printNewsURL(); ?></h3>
 					<div class="search-content clearfix">
-				<?php echo html_encodeTagged(shortenContent(strip_tags(getNewsContent()), 120, getOption("zenpage_textshorten_indicator"))); ?>
+						<?php echo html_encodeTagged(shortenContent(getNewsContent(), 120, getOption("zenpage_textshorten_indicator"))); ?>
 					</div>
 				</div>
 				<?php
@@ -110,14 +110,14 @@
 				<div class="news-truncate clearfix">
 					<h3 class="search-title"><?php printPageTitlelink(); ?></h3>
 					<div class="search-content clearfix">
-				<?php echo html_encodeTagged(shortenContent(strip_tags(getPageContent()), 120, getOption("zenpage_textshorten_indicator"))); ?>
+						<?php echo html_encodeTagged(shortenContent(getPageContent(), 120, getOption("zenpage_textshorten_indicator"))); ?>
 					</div>
 				</div>
-			<?php
+				<?php
+			}
 		}
 	}
-}
-?>
+	?>
 </div> <!-- /search-wrap -->
 
 <?php include('inc_footer.php'); ?>

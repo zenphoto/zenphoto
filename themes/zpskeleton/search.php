@@ -61,12 +61,12 @@
 							?>
 							<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 								<h6><?php printPageTitlelink(); ?></h6>
-								<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(strip_tags(getPageContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
+								<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getPageContent(), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 							</li>
-		<?php } ?>
+						<?php } ?>
 					</ul>
 					<hr />
-	<?php } ?>
+				<?php } ?>
 			</div>
 			<div class="eight columns">
 				<?php
@@ -82,14 +82,14 @@
 							?>
 							<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 								<h6><?php printNewsURL(); ?></h6>
-								<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(strip_tags(getNewsContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
+								<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getNewsContent(), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 							</li>
-					<?php } ?>
+						<?php } ?>
 					</ul>
 					<hr />
-			<?php } ?>
-			</div>
 				<?php } ?>
+			</div>
+		<?php } ?>
 		<div class="sixteen columns">
 			<h5>
 				<?php
@@ -110,13 +110,14 @@
 			</h5>
 		</div>
 		<?php if (getNumAlbums() != 0) { ?>
-	<?php $c = 0;
-	while (next_album()):
-		?>
+			<?php
+			$c = 0;
+			while (next_album()):
+				?>
 				<div class="one-third column album">
 					<h6><?php echo html_encode(getBareAlbumTitle()); ?></h6>
 					<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>">
-		<?php printCustomAlbumThumbImage(getBareAlbumTitle(), null, 420, 200, 420, 200, null, null, 'remove-attributes'); ?>
+						<?php printCustomAlbumThumbImage(getBareAlbumTitle(), null, 420, 200, 420, 200, null, null, 'remove-attributes'); ?>
 					</a>
 					<div class="album-meta">
 						<ul class="taglist">
@@ -129,13 +130,13 @@
 									$divider = '';
 								}
 								?>
-		<?php if (getNumAlbums() > 0) echo getNumAlbums() . ' ' . gettext("subalbums"); ?>
-		<?php echo $divider; ?>
-		<?php if (getNumImages() > 0) echo getNumImages() . ' ' . gettext("images"); ?>
+								<?php if (getNumAlbums() > 0) echo getNumAlbums() . ' ' . gettext("subalbums"); ?>
+								<?php echo $divider; ?>
+								<?php if (getNumImages() > 0) echo getNumImages() . ' ' . gettext("images"); ?>
 							</li>
 						</ul>
 					</div>
-					<p class="albumdesc"><?php echo strip_tags(truncate_string(getAlbumDesc(), 80, '...')); ?></p>
+					<p class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 80, '...'); ?></p>
 					<hr />
 				</div>
 				<?php
@@ -164,30 +165,30 @@
 				?>
 				<div class="<?php echo $colclass; ?> columns image imagegrid">
 					<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>">
-				<?php
-				if ($thumbcrop) {
-					printCustomSizedImage(getBareImageTitle(), null, $imagesize, $imagesize, $imagesize, $imagesize, null, null, 'remove-attributes', null, true);
-				} else {
-					printCustomSizedImage(getBareImageTitle(), $imagesize, null, null, null, null, null, null, 'remove-attributes', null, true);
-				}
-				?>
+						<?php
+						if ($thumbcrop) {
+							printCustomSizedImage(getBareImageTitle(), null, $imagesize, $imagesize, $imagesize, $imagesize, null, null, 'remove-attributes', null, true);
+						} else {
+							printCustomSizedImage(getBareImageTitle(), $imagesize, null, null, null, null, null, null, 'remove-attributes', null, true);
+						}
+						?>
 					</a>
 				</div>
-		<?php
-		$c++;
-		$mobilebreak = $c % 2;
-		if ($c == $breakcount) {
-			echo '<br class="clear clearforboth" />';
-			$c = 0;
-		} else if ($mobilebreak == 0) {
-			echo '<br class="clear clearformobile" />';
-		} endwhile;
-	?>
-<?php } ?>
+				<?php
+				$c++;
+				$mobilebreak = $c % 2;
+				if ($c == $breakcount) {
+					echo '<br class="clear clearforboth" />';
+					$c = 0;
+				} else if ($mobilebreak == 0) {
+					echo '<br class="clear clearformobile" />';
+				} endwhile;
+			?>
+		<?php } ?>
 
 		<div class="sixteen columns">
-<?php if ((hasNextPage()) || (hasPrevPage())) printPageListWithNav('«', '»', false, true, 'pagination', null, true, 5); ?>
-<?php if ($numimages > 0) printPPSlideShowLink(gettext('Slideshow')); ?>
+			<?php if ((hasNextPage()) || (hasPrevPage())) printPageListWithNav('«', '»', false, true, 'pagination', null, true, 5); ?>
+			<?php if ($numimages > 0) printPPSlideShowLink(gettext('Slideshow')); ?>
 		</div>
 	</div>
 </div>

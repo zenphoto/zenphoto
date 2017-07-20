@@ -86,7 +86,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 										<h4><?php printPageURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getBare(getPageContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getPageContent(), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -106,7 +106,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 										<h4><?php printNewsURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getBare(getNewsContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getNewsContent(), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -138,7 +138,8 @@ if (!defined('WEBPATH'))
 							<?php while (next_album()): ?>
 								<li>
 									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:');
-						printAnnotatedAlbumTitle(); ?>">
+						printAnnotatedAlbumTitle();
+								?>">
 		<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL, NULL); ?>
 										<h3><?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small></h3>
 										<div class="albumdesc"><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 100, '(...)', false)); ?></div>
