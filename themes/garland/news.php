@@ -88,7 +88,7 @@ if (class_exists('CMS')) {
 							if (is_NewsArticle()) {
 								if (getPrevNewsURL()) {
 									?>
-									<div class="singlenews_prev"><?php printPrevNewsLink(); ?></div>
+									<div class="singlenews_prev"><?php printPrevNewsLink(); ?>&nbsp;&nbsp; </div>
 									<?php
 								}
 								if (getNextNewsURL()) {

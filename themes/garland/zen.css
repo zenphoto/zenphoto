@@ -195,12 +195,16 @@ body > #wrapper #container .sidebar {
 	position: relative;
 }
 
-#rightsidebar, #leftsidebar{
+#rightsidebar, #leftsidebar {
 	float: left;
 	margin: 60px 0px 0px 20px;
 }
 
-#rightsidebar h2{
+#rightsidebar {
+	min-width: 160px
+}
+
+#rightsidebar h2 {
 	margin-bottom: 10px;
 }
 #rightsidebar img{
