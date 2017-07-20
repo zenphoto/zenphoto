@@ -43,7 +43,7 @@ function printZDSearchShowMoreLink($option, $number_to_show) {
 	}
 	if ($num > $number_to_show) {
 		?>
-		<a class="<?php echo $option; ?>_showmore"href="javascript:toggleExtraElements('<?php echo $option; ?>',true);"><?php echo gettext('Show more results'); ?></a>
+		<a class="<?php echo $option; ?>_showmore" href="javascript:toggleExtraElements('<?php echo $option; ?>',true);"><?php echo gettext('Show more results'); ?></a>
 		<a class="<?php echo $option; ?>_showless" style="display: none;"	href="javascript:toggleExtraElements('<?php echo $option; ?>',false);"><?php echo gettext('Show fewer results'); ?></a>
 		<?php
 	}
