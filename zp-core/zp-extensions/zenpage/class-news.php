@@ -408,9 +408,10 @@ class Article extends CMSItems {
 				$article = $articles[$i];
 				if ($this->getTitlelink() == $article['titlelink']) {
 					$this->index[$catI] = $i;
-					break;
+					return $i;
 				}
 			}
+			$this->index[$catI] = NULL;
 		}
 		return $this->index[$catI];
 	}
