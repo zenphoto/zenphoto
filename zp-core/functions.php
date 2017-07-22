@@ -166,47 +166,64 @@ function cleanHTML($html) {
  * Algorithm copyright by Stephen Billard for use in ZenPhoto20 implementations
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator) {
-	//remove HTML comments (except for page break indicators)
-	$content = preg_replace('~<!--^[ pagebreak ]-->~is', '', $articlecontent);
-	//make html entities into characters so they count properly
-	$content = html_decode($content);
-	//we now have a clean string
 	//conservatve check if the string is too long.
-	if ($shorten && (mb_strlen($content) > $shorten)) {
+	if ($shorten && (mb_strlen($articlecontent) > $shorten)) {
+		//remove HTML comments (except for page break indicators)
+		$content = preg_replace('~<!--^[ pagebreak ]-->~is', '', $articlecontent);
+		$content = preg_replace('~<!-- pagebreak -->~is', '<_PageBreak_>', $content);
+
 		//remove scripts to be added back later
 		preg_match_all('~<script.*?/script>~is', $content, $scripts);
-		$content = preg_replace('~<script.*?/script>~is', '<script>', $content);
+		$content = preg_replace('~<script.*?/script>~is', '<_Script_>', $content);
 
-		$html = $short = '';
-		$pagebreak = $count = 0;
+		$pagebreak = $html = $short = '';
+		$count = 0;
 
-		preg_match_all('#(<[^>]*>)#iU', $content, $markup);
-		$parts = preg_split('#(<[^>]*>)#iU', $content);
+		//separate out the HTML
+		preg_match_all("~</?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)/?>~i", $content, $markup);
+		$parts = preg_split("~</?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)/?>~i", $content);
+
 		foreach ($parts as $key => $part) {
 			if (array_key_exists($key, $markup[0])) {
 				$html = $markup[0][$key];
-				if ($html == '<script>') {
+				if ($html == '<_Script_>') {
 					$html = array_shift($scripts[0]);
 				}
 			} else {
 				$html = '';
 			}
-			$add = mb_strlen($part);
-			if ($count + $add > $shorten) {
+
+			//make html entities into characters so they count properly
+			$cleanPart = html_decode($part);
+			$add = mb_strlen($cleanPart);
+			if ($count + $add >= $shorten) {
 				if ($pagebreak) {
 					//back up to prior page break if it exitst
 					$short = $pagebreak . $shortenindicator;
 				} else {
 					//truncate to fit count
-					$short .= mb_substr($part, 0, $shorten - $count) . $shortenindicator . $html;
+					$short .= htmlentities(mb_substr($cleanPart, 0, $shorten - $count), ENT_FLAGS, LOCAL_CHARSET);
+					if (strpos($html, '</') === 0) {
+						switch (strtolower($html)) {
+							case '</p>':
+							case '</div>':
+								break;
+							default:
+								//close the tag
+								$short .= $html;
+								$html = '';
+						}
+					}
+					$short .= $shortenindicator . $html;
 				}
 				break;
 			}
-			if (strtolower($html) == '<!-- pagebreak -->') {
-				$pagebreak = $short . $part;
-				$html = '';
+			$short .= $part;
+			if ($html == '<_PageBreak_>') {
+				$pagebreak = $short;
+			} else {
+				$short .= $html;
 			}
-			$short .= $part . $html;
 			$count = $count + $add;
 		}
 		//tidy up the html--probably dropped a few closing tags!
@@ -218,8 +235,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator) {
 		} else {
 			$short = trim(cleanHTML($short));
 		}
-		//re-encode the html entities
-		$articlecontent = html_encodeTagged($short);
+		$articlecontent = $short;
 	}
 
 	return $articlecontent;
