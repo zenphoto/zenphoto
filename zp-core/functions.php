@@ -175,7 +175,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator) {
 	if ($shorten && (mb_strlen($content) > $shorten)) {
 		//remove scripts to be added back later
 		preg_match_all('~<script.*?/script>~is', $content, $scripts);
-		$content = preg_replace('~<script.*?/script>~is', '<script>', $articlecontent);
+		$content = preg_replace('~<script.*?/script>~is', '<script>', $content);
 
 		$html = $short = '';
 		$pagebreak = $count = 0;
@@ -200,7 +200,6 @@ function shortenContent($articlecontent, $shorten, $shortenindicator) {
 					//truncate to fit count
 					$short .= mb_substr($part, 0, $shorten - $count) . $shortenindicator . $html;
 				}
-				$forceindicator = false;
 				break;
 			}
 			if (strtolower($html) == '<!-- pagebreak -->') {
@@ -2079,6 +2078,7 @@ function getXSRFToken($action, $modifier = NULL) {
 	} else {
 		$modifier = microtime();
 	}
+
 	$token = sha1($action . $modifier . session_id());
 	return $token;
 }
