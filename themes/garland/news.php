@@ -62,6 +62,8 @@ if (class_exists('CMS')) {
 													}
 													?>
 												</span>
+												<br />
+
 												<?php printCodeblock(1); ?>
 												<?php printNewsContent(); ?>
 												<?php printCodeblock(2); ?>
