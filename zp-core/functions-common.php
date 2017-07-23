@@ -211,7 +211,7 @@ function sanitize_numeric($num) {
  * @return string
  */
 function sanitize_script($text) {
-	return preg_replace('!<script.*>.*</script>!ixs', '', $text);
+	return preg_replace('!<script.*>.*</script>!ixsU', '', $text);
 }
 
 /** Make strings generally clean.  Takes an input string and cleans out
@@ -249,9 +249,9 @@ function ksesProcess($input_string, $allowed_tags) {
 	if (function_exists('kses')) {
 		return kses($input_string, $allowed_tags);
 	} else {
-		$input_string = preg_replace('~<script.*?/script>~is', '', $input_string);
-		$input_string = preg_replace('~<style.*?/style>~is', '', $input_string);
-		$input_string = preg_replace('~<!--.*?-->~is', '', $input_string);
+		$input_string = preg_replace('~<script.*>.*</script>~isU', '', $input_string);
+		$input_string = preg_replace('~<style.*>.*</style>~isU', '', $input_string);
+		$input_string = preg_replace('~<!--.*-->~isU', '', $input_string);
 		$content = strip_tags($input_string);
 		$input_string = str_replace('&nbsp;', ' ', $input_string);
 		$input_string = html_decode($input_string);
@@ -409,7 +409,7 @@ function html_encodeTagged($original, $allowScript = true) {
 	$str = $original;
 	//javascript
 	if ($allowScript) {
-		preg_match_all('!<script.*>.*</script>!ixs', $str, $matches);
+		preg_match_all('~<script.*>.*</script>~isU', $str, $matches);
 		foreach (array_unique($matches[0]) as $key => $tag) {
 			$tags[2]['%' . $key . '$j'] = $tag;
 			$str = str_replace($tag, '%' . $key . '$j', $str);
