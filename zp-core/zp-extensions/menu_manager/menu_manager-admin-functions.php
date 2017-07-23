@@ -75,8 +75,9 @@ function printItemsListTable($item, $flag) {
 			?>
 		</div>
 		<div class="page-list_extra">
-			<em><?php echo $item['type']; ?></em>
+			<em><?php echo $item['type']; ?></em>&nbsp;
 		</div>
+
 		<div class="page-list_extra">
 			<?php echo $link; ?>
 		</div>
