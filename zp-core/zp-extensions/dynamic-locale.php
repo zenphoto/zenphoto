@@ -120,20 +120,21 @@ function printLanguageSelector($flags = NULL) {
 					$separator = '&';
 				}
 			}
-			$uri = @$request['path'];
+			$uri = pathurlencode(@$request['path']);
 			if (isset($request['query'])) {
 				$uri .= '?' . $request['query'];
 			}
+
 			foreach ($languages as $text => $lang) {
 				?>
 				<li<?php if ($lang == $localeOption) echo ' class="currentLanguage"'; ?>>
 					<?php
 					switch (LOCALE_TYPE) {
 						case 2:
-							$path = dynamic_locale::fullHostPath($lang) . html_encode($uri);
+							$path = dynamic_locale::fullHostPath($lang) . $uri;
 							break;
 						case 1:
-							$path = seo_locale::localePath(false, $lang) . str_replace(WEBPATH, '', html_encode($uri));
+							$path = seo_locale::localePath(false, $lang) . str_replace(WEBPATH, '', $uri);
 							break;
 						default:
 							$path = $uri . $separator . 'locale=' . $lang;
@@ -142,7 +143,7 @@ function printLanguageSelector($flags = NULL) {
 					$flag = getLanguageFlag($lang);
 					if ($lang != $localeOption) {
 						?>
-						<a href="<?php echo $path; ?>" >
+						<a href="<?php echo html_encode($path); ?>" >
 							<?php
 						}
 						?>
