@@ -211,7 +211,7 @@ function sanitize_numeric($num) {
  * @return string
  */
 function sanitize_script($text) {
-	return preg_replace('!<script.*>.*</script>!ixsU', '', $text);
+	return preg_replace('~<script.*>.*</script>~isU', '', $text);
 }
 
 /** Make strings generally clean.  Takes an input string and cleans out
