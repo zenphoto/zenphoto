@@ -167,14 +167,14 @@ function cleanHTML($html) {
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator) {
 	//conservatve check if the string is too long.
-	if ($shorten && (mb_strlen($articlecontent) > $shorten)) {
+	if ($shorten && (mb_strlen(strip_tags($articlecontent)) > $shorten)) {
 		//remove HTML comments (except for page break indicators)
-		$content = preg_replace('~<!--^[ pagebreak ]-->~is', '', $articlecontent);
-		$content = preg_replace('~<!-- pagebreak -->~is', '<_PageBreak_>', $content);
+		$content = preg_replace('~<!-- pagebreak -->~isU', '<_PageBreak_>', $articlecontent);
+		$content = preg_replace('~<!--.*-->~isU', '', $content);
 
 		//remove scripts to be added back later
-		preg_match_all('~<script.*?/script>~is', $content, $scripts);
-		$content = preg_replace('~<script.*?/script>~is', '<_Script_>', $content);
+		preg_match_all('~<script.*>.*</script>~isU', $content, $scripts);
+		$content = preg_replace('~<script.*>.*</script>~isU', '<_Script_>', $content);
 
 		$pagebreak = $html = $short = '';
 		$count = 0;
@@ -226,6 +226,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator) {
 			}
 			$count = $count + $add;
 		}
+
 		//tidy up the html--probably dropped a few closing tags!
 		if (class_exists('tidy')) {
 			$tidy = new tidy();
