@@ -277,6 +277,7 @@ function getItemTitleAndURL($item) {
 			}
 			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => false, 'theme' => $themename);
 			break;
+		case "dynamiclink":
 		case "customlink":
 			$array = array("title" => get_language_string($item['title']), "url" => $item['link'], "name" => $item['link'], 'protected' => false, 'theme' => $themename);
 			break;
@@ -889,6 +890,7 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title or link.'), $key));
 					}
 					break;
+				case 'dynamiclink':
 				case 'customlink':
 					if (empty($result['title'])) {
 						$success = -1;
@@ -1038,7 +1040,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 	foreach ($items as $item) {
 		$itemarray = getItemTitleAndURL($item);
 		$itemURL = $itemarray['url'];
-		$itemtitle = $itemarray['title'];
+		$itemtitle = get_language_string($itemarray['title']);
 		$level = max(1, count(explode('-', $item['sort_order'])));
 		$process = (($level <= $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
 						|| ($option == 'list' || $option == 'list-top') && $level == 1 // show the top level
@@ -1151,6 +1153,10 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 						break;
 					case 'menulabel':
 						echo $itemtitle;
+						break;
+					case'dynamiclink':
+						eval('$itemURL=' . $itemURL . ';');
+						echo '<a href="' . $itemURL . '" title="' . html_encode(getBare($itemtitle)) . '">' . $itemtitle . '</a>' . $itemcounter;
 						break;
 					default:
 						if (empty($itemURL)) {

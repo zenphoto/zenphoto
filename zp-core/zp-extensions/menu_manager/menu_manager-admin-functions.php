@@ -47,8 +47,9 @@ function printItemsListTable($item, $flag) {
 			case "category":
 				$link = '<a href="../zenpage/admin-edit.php?newscategory&amp;titlelink=' . html_encode($item['link']) . '">' . html_encodeTagged(shortenCOntent($item['link'], 40, '...')) . '</a>';
 				break;
+			case 'dynamiclink':
 			case 'customlink':
-				$link = '<a href="' . html_encode($item['link']) . '">' . html_encodeTagged(shortenCOntent($item['link'], 40, '...')) . '</a>';
+				$link = '<a href="' . html_encode($item['link']) . '">' . html_encodeTagged(shortenContent($item['link'], 40, '...')) . '</a>';
 				break;
 			case 'menulabel':
 				$link = '';
@@ -530,6 +531,7 @@ function addItem(&$reports) {
 			}
 			$successmsg = sprintf(gettext("Custom page menu item <em>%s</em> added"), $result['link']);
 			break;
+		case 'dynamiclink':
 		case 'customlink':
 			$result['title'] = process_language_string_save("title", 2);
 			if (empty($result['title'])) {
@@ -673,6 +675,7 @@ function updateMenuItem(&$reports) {
 				return $result;
 			}
 			break;
+		case 'dynamiclink':
 		case 'customlink':
 			$result['title'] = process_language_string_save("title", 2);
 			if (empty($result['title'])) {
