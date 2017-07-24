@@ -104,8 +104,7 @@ class cmsFilters {
 			setOptionDefault('zenpage_articles_per_page', '10');
 			setOptionDefault('zenpage_text_length', '500');
 			setOptionDefault('zenpage_textshorten_indicator', ' (...)');
-			gettext($str = 'Read more');
-			setOptionDefault('zenpage_read_more', getAllTranslations($str));
+			setOptionDefault('zenpage_read_more', getAllTranslations('Read more'));
 			setOptionDefault('menu_truncate_string', 0);
 			setOptionDefault('menu_truncate_indicator', '');
 			setOptionDefault('zenpage_enabled_items', 3);

@@ -45,10 +45,8 @@ class register_user {
 		global $_zp_authority;
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('register_user_link', '_PAGE_/register');
-			gettext($str = 'Click here to register for this site.');
-			setOptionDefault('register_user_page_tip', getAllTranslations($str));
-			gettext($str = 'Register');
-			setOptionDefault('register_user_page_link', getAllTranslations($str));
+			setOptionDefault('register_user_page_tip', getAllTranslations('Click here to register for this site.'));
+			setOptionDefault('register_user_page_link', getAllTranslations('Register'));
 			setOptionDefault('register_user_captcha', 0);
 			setOptionDefault('register_user_email_is_id', 1);
 			setOptionDefault('register_user_create_album', 0);

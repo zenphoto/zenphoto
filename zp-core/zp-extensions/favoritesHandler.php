@@ -58,15 +58,11 @@ class favoritesHandler {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('favorites_multi', 0);
 			setOptionDefault('favorites_link', '_PAGE_/favorites');
-			gettext($str = 'My favorites');
-			setOptionDefault('favorites_title', getAllTranslations($str));
-			setOptionDefault('favorites_linktext', getAllTranslations($str));
-			gettext($str = 'The albums and images selected as favorites.');
-			setOptionDefault('favorites_desc', getAllTranslations($str));
-			gettext($str = 'Add favorite');
-			setOptionDefault('favorites_add_button', getAllTranslations($str));
-			gettext($str = 'Remove favorite');
-			setOptionDefault('favorites_remove_button', getAllTranslations($str));
+			setOptionDefault('favorites_title', getAllTranslations('My favorites'));
+			setOptionDefault('favorites_linktext', getAllTranslations('My favorites'));
+			setOptionDefault('favorites_desc', getAllTranslations('The albums and images selected as favorites.'));
+			setOptionDefault('favorites_add_button', getAllTranslations('Add favorite'));
+			setOptionDefault('favorites_remove_button', getAllTranslations('Remove favorite'));
 			setOptionDefault('favorites_album_sort_type', 'title');
 			setOptionDefault('favorites_image_sort_type', 'title');
 			setOptionDefault('favorites_album_sort_direction', '');
