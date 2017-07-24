@@ -73,7 +73,7 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.4.1.32</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.4.1.33</h2>
 <p> </p>
 <h2>General</h2>
 <p>Several security fixes have been applied.</p>
@@ -91,7 +91,10 @@
 <p>As part of this implementation features have been organized by kind of function. The utilities buttons on the overview page are now limited to "single action" functions, e.g. <em>Reset Ratings</em>. So you will find <em>OVERVIEW</em> sub-menus all provide "statistics" about the site, <em>ADMIN </em>sub-menus provide the general management of the site, etc.</p>
 <h2>News articles</h2>
 <p>The Previous and Next article links on theme news pages will now honor the category of the article. If you view a list of articles in a news category and click on the link to a specific article the previous and next article links for the article will show only articles within the originating category.</p>
+<h2> </h2>
 <h2>plugins</h2>
+<p><em>menu_manager</em></p>
+<p>A new menu item type has been added so that menu html can be generated dynamically. This allows links to use constructs that need to be evaluated when the page is being viewed like, for instance, language dependencies. Menu type <em>dynamiclink</em> allows you so specify PHP code for the link. This code is evaluated when the link is generated. The result of the evaluation should be a well formed URI.</p>
 <p><em>rating</em></p>
 <p>Rating now has an option to use a binary like/dislike system. If this option is chosen, visitors may vote "like" which will give a rating vote of one or "dislike" which will give a rating vote of zero. Needless to say, if you switch to this rating system you should first reset your previous ratings if you used more than one star.</p>
 <p>You may also choose between small, medium, and large voting icons.</p>
@@ -101,6 +104,11 @@
 <p>The problem whereby page and news forms were deemed dirty if <em>tinyMCE </em>was enabled has been mitigated. The fix requires that the form be "Reset" after <em>tinyMCE </em>is done rendering the the text. This may take some time and the form will look dirty until the rendering is complete. So if you try to leave the form too quickly after it is rendered you will still get the warning. If this is still too sensitive you can exclude <em>tinyMCE</em> from Dirty Forms check via an option on the General Options page.</p>
 <p><em>federated_logon</em></p>
 <p>This plugin has been removed and replaced by individual login plugins. <em>federated_logon</em> was implemented using a version of OAuth that is no longer supported by the major players. It is now available in the ZenPhoto20 development repository for anyone who still wishes to use it. Place the files in the user plugin folder as with other example plugins.</p>
+<h2>Themes</h2>
+<p><em>effervescence+, garland, zenpage, and zpEnlighten</em></p>
+<p>Themes that created custom menus did not provide for language translations of the <em>title</em> of the links.</p>
+<p>In addition, he <em>effervescence+</em> default custom menu generated static RSS links. This was inappropriate for visitors viewing the site in a language different from the site default language. This have been corrected by using the new <strong>menu manager</strong> <em>dynamiclink</em> items.</p>
+<p>These fixes will not be automatically applied in case you have made modifications to the custom menu. If you have made no modifications, you can simply delete the <em>theme</em> menu and view the theme's option page which will cause the custom menu to be regenerated. If you have modified the or duplicated the menu and use RSS feed links you will need to make the appropriate changes to your custom menu.</p>
 <hr />
 <h2>Version 1.4.0</h2>
 <p> </p>
