@@ -272,7 +272,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 			break;
 	}
 	if (is_array($link)) {
-		switch (LOCALE_TYPE) {
+		switch (defined('LOCALE_TYPE') ? LOCALE_TYPE : 0) {
 			case 2:
 			case 1:
 				break;
