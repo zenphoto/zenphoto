@@ -3073,14 +3073,15 @@ function printSizedImageURL($size, $text, $title, $class = NULL, $id = NULL) {
 }
 
 /**
- *
- * performs a query and then filters out "illegal" images returning the first "good" image
- * used by the random image functions.
+ * performs a query and then filters out "illegal" images
  *
  * @param object $result query result
  * @param string $source album object if this is search within the album
+ *
+ * @return array
  */
-function filterImageQuery($result, $source) {
+function filterImageQueryList($result, $source) {
+	$list = array();
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
 			$image = newImage($row, NULL, true);
@@ -3089,13 +3090,29 @@ function filterImageQuery($result, $source) {
 				if ($album->name == $source || $album->checkAccess()) {
 					if (isImagePhoto($image)) {
 						if ($image->checkAccess()) {
-							return $image;
+							$list[] = $image;
 						}
 					}
 				}
 			}
 		}
 		db_free_result($result);
+	}
+	return $list;
+}
+
+/**
+ *
+ * performs a query and then filters out "illegal" images returning the first "good" image
+ * used by the random image functions.
+ *
+ * @param object $result query result
+ * @param string $source album object if this is search within the album
+ */
+function filterImageQuery($result, $source) {
+	$list = filterImageQueryList($result, $source);
+	if (!empty($list)) {
+		return array_shift($list);
 	}
 	return NULL;
 }
@@ -3104,10 +3121,15 @@ function filterImageQuery($result, $source) {
  * Returns a randomly selected image from the gallery. (May be NULL if none exists)
  * @param bool $daily set to true and the picture changes only once a day.
  *
+ * Note for any given instantiation, multiple calls will not return a previously selected
+ * image.
+ *
+ * (May return NULL if no images remain)
+ *
  * @return object
  */
 function getRandomImages($daily = false) {
-	global $_zp_gallery;
+	global $_zp_gallery, $_random_image_list;
 	if ($daily && ($potd = getOption('picture_of_the_day'))) {
 		$potd = getSerializedArray($potd);
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
@@ -3120,18 +3142,20 @@ function getRandomImages($daily = false) {
 			}
 		}
 	}
-	if (zp_loggedin()) {
-		$imageWhere = '';
-	} else {
-		$imageWhere = " AND " . prefix('images') . ".show=1";
+	if (is_null($_random_image_list)) {
+		if (zp_loggedin()) {
+			$imageWhere = '';
+		} else {
+			$imageWhere = " AND " . prefix('images') . ".show=1";
+		}
+		$sql = 'SELECT `folder`, `filename` ' .
+						' FROM ' . prefix('images') . ', ' . prefix('albums') .
+						' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
+						prefix('albums') . '.id ' . $imageWhere . ' ORDER BY RAND()';
+		$result = query($sql);
+		$_random_image_list = filterImageQueryList($result, NULL);
 	}
-	$sql = 'SELECT `folder`, `filename` ' .
-					' FROM ' . prefix('images') . ', ' . prefix('albums') .
-					' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
-					prefix('albums') . '.id ' . $imageWhere . ' ORDER BY RAND()';
-	$result = query($sql);
-
-	$image = filterImageQuery($result, NULL);
+	$image = array_shift($_random_image_list);
 	if ($image) {
 		if ($daily) {
 			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
@@ -3145,7 +3169,11 @@ function getRandomImages($daily = false) {
 /**
  * Returns  a randomly selected image from the album or one of its subalbums
  * if the album has no images.
- * (May return NULL if no images found)
+ *
+ * Note for any given instantiation, multiple calls will not return a previously selected
+ * image.
+ *
+ * (May return NULL if no images remain)
  *
  * @param mixed $rootAlbum optional album object/folder from which to get the image.
  * @param bool $daily set to true to change picture only once a day.
@@ -3153,7 +3181,7 @@ function getRandomImages($daily = false) {
  * @return object
  */
 function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
-	global $_zp_current_album, $_zp_gallery, $_zp_current_search;
+	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_random_images_album;
 	if (empty($rootAlbum)) {
 		$album = $_zp_current_album;
 	} else {
@@ -3173,9 +3201,15 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 			}
 		}
 	}
-	$album->setSortType('random');
-	$image = $album->getImage(0);
+	if (!isset($_random_images_album[$album->name])) {
+		$_random_images_album[$album->name] = array();
+		$album->setSortType('random');
+		foreach ($album->getImages(0) as $imagename) {
+			$_random_images_album[$album->name][] = newImage($album, $imagename);
+		}
+	}
 
+	$image = array_shift($_random_images_album[$album->name]);
 	if (!$image) {
 		$album->setSortType('random', 'album');
 		foreach ($album->getAlbums() as $subalbum) {
@@ -3183,6 +3217,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 				break;
 		}
 	}
+
 	if ($image && $image->exists) {
 		if ($daily) {
 			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
