@@ -3077,10 +3077,11 @@ function printSizedImageURL($size, $text, $title, $class = NULL, $id = NULL) {
  *
  * @param object $result query result
  * @param string $source album object if this is search within the album
+ * @param int $limit How many images to fetch
  *
  * @return array
  */
-function filterImageQueryList($result, $source) {
+function filterImageQueryList($result, $source, $limit) {
 	$list = array();
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
@@ -3091,6 +3092,9 @@ function filterImageQueryList($result, $source) {
 					if (isImagePhoto($image)) {
 						if ($image->checkAccess()) {
 							$list[] = $image;
+							if ($limit-- == 0) {
+								break;
+							}
 						}
 					}
 				}
@@ -3108,11 +3112,12 @@ function filterImageQueryList($result, $source) {
  *
  * @param object $result query result
  * @param string $source album object if this is search within the album
+ * @param int $limit How many images to fetch
  *
  * @return object the image (if it exists)
  */
-function filterImageQuery($result, $source) {
-	$list = filterImageQueryList($result, $source);
+function filterImageQuery($result, $source, $limit = 1) {
+	$list = filterImageQueryList($result, $source, $limit);
 	if (!empty($list)) {
 		return array_shift($list);
 	}
@@ -3122,6 +3127,7 @@ function filterImageQuery($result, $source) {
 /**
  * Returns a randomly selected image from the gallery. (May be NULL if none exists)
  * @param bool $daily set to true and the picture changes only once a day.
+ * @param int $limit How many images to cache.
  *
  * Note for any given instantiation, multiple calls will not return a previously selected
  * image.
@@ -3130,7 +3136,7 @@ function filterImageQuery($result, $source) {
  *
  * @return object
  */
-function getRandomImages($daily = false) {
+function getRandomImages($daily = false, $limit = 1) {
 	global $_zp_gallery, $_random_image_list;
 	if ($daily && ($potd = getOption('picture_of_the_day'))) {
 		$potd = getSerializedArray($potd);
@@ -3155,7 +3161,7 @@ function getRandomImages($daily = false) {
 						' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
 						prefix('albums') . '.id ' . $imageWhere . ' ORDER BY RAND()';
 		$result = query($sql);
-		$_random_image_list = filterImageQueryList($result, NULL);
+		$_random_image_list = filterImageQueryList($result, NULL, $limit);
 	}
 	$image = array_shift($_random_image_list);
 	if ($image) {
@@ -3264,7 +3270,7 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 	for ($i = 1; $i <= $number; $i++) {
 		switch ($option) {
 			case "all":
-				$randomImage = getRandomImages();
+				$randomImage = getRandomImages(false, $number);
 				break;
 			case "album":
 				$randomImage = getRandomImagesAlbum($rootAlbum);
