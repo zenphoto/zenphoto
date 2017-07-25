@@ -129,18 +129,8 @@ function printLanguageSelector($flags = NULL) {
 				?>
 				<li<?php if ($lang == $localeOption) echo ' class="currentLanguage"'; ?>>
 					<?php
-					switch (LOCALE_TYPE) {
-						case 2:
-							$path = dynamic_locale::fullHostPath($lang) . $uri;
-							break;
-						case 1:
-							$path = seo_locale::localePath(false, $lang) . str_replace(WEBPATH, '', $uri);
-							break;
-						default:
-							$path = $uri . $separator . 'locale=' . $lang;
-							break;
-					}
 					$flag = getLanguageFlag($lang);
+					$path = dynamic_locale::localLink($uri, $lang);
 					if ($lang != $localeOption) {
 						?>
 						<a href="<?php echo html_encode($path); ?>" >
@@ -163,39 +153,25 @@ function printLanguageSelector($flags = NULL) {
 		<?php
 	} else {
 		?>
-		<script type="text/javascript">
-			function switch_language() {
-				window.location = $('#dynamic-locale').val();
-			}
-		</script>
-
-		<form id="language_change" action="#" method="post">
-			<input type="hidden" name="oldlocale" value="<?php echo getOption('locale'); ?>" />
-			<select id="dynamic-locale" class="languageselect" name="locale" onchange="switch_language();">
-				<?php
-				foreach ($languages as $text => $lang) {
-					$flag = getLanguageFlag($lang);
-					switch (LOCALE_TYPE) {
-						case 2:
-							$path = dynamic_locale::fullHostPath($lang) . $uri;
-							break;
-						case 1:
-							$path = seo_locale::localePath(false, $lang) . str_replace(WEBPATH, '', $uri);
-							break;
-						default:
-							$path = $uri . $separator . 'locale=' . $lang;
-							break;
+		<div class="languageSelect">
+			<form id="language_change" action="#" method="post">
+				<select id="dynamic-locale" class="languageSelector" name="locale" onchange="switch_language();">
+					<?php
+					foreach ($languages as $text => $lang) {
+						$path = dynamic_locale::localLink($uri, $lang);
+						?>
+						<option value="<?php echo html_encode(html_encode($path)); ?>"<?php if ($lang == $localeOption) echo ' selected="selected"'; ?>>
+						<span class="locale_name">
+							<?php echo html_encode($text); ?>
+						</span>
+						</option>
+						?>
+						<?php
 					}
 					?>
-					<option class="languageoption" data-image="<?php echo $flag; ?>" value="<?php echo html_encode(html_encode($path)); ?>"<?php if ($lang == $localeOption) echo ' selected="selected"'; ?>>
-						<?php echo html_encode($text); ?>
-					</option>
-					?>
-					<?php
-				}
-				?>
-			</select>
-		</form>
+				</select>
+			</form>
+		</div>
 		<?php
 	}
 }
@@ -270,6 +246,21 @@ class dynamic_locale {
 			$host = 'http://' . $host;
 		}
 		return $host;
+	}
+
+	static function localLink($uri, $lang) {
+		switch (LOCALE_TYPE) {
+			case 2:
+				$path = dynamic_locale::fullHostPath($lang) . $uri;
+				break;
+			case 1:
+				$path = seo_locale::localePath(false, $lang) . str_replace(WEBPATH, '', $uri);
+				break;
+			default:
+				$path = $uri . $separator . 'locale=' . $lang;
+				break;
+		}
+		return $path;
 	}
 
 }

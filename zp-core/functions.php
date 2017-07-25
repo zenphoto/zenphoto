@@ -165,7 +165,7 @@ function cleanHTML($html) {
  *
  * Algorithm copyright by Stephen Billard for use in ZenPhoto20 implementations
  */
-function shortenContent($articlecontent, $shorten, $shortenindicator) {
+function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 	//conservatve check if the string is too long.
 	if ($shorten && (mb_strlen(strip_tags($articlecontent)) > $shorten)) {
 		//remove HTML comments (except for page break indicators)

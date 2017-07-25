@@ -2951,12 +2951,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$editHidden = '';
 			?>
 			<div id="ls_<?php echo ++$_lsInstance; ?>">
-				<select class="languageSelector ignoredirty" onchange="lsclick(this.value,<?php echo $_lsInstance; ?>);"<?php if ($key == $locale) echo ' selected="selected"' ?>>
+				<select class="languageSelector ignoredirty" onchange="lsclick(this.value,<?php echo $_lsInstance; ?>);">
 					<?php
 					foreach ($emptylang as $key => $lang) {
 						$flag = getLanguageFlag($key);
 						?>
-						<option value="<?php echo $key; ?>" data-image="<?php echo $flag; ?>" alt="<?php echo $key; ?>">
+						<option value="<?php echo $key; ?>" data-image="<?php echo $flag; ?>" alt="<?php echo $key; ?>"<?php if ($key == $locale) echo ' selected="selected"' ?>>
 							<?php echo $lang; ?>
 						</option>
 						<?php
