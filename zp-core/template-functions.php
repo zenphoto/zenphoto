@@ -3108,6 +3108,8 @@ function filterImageQueryList($result, $source) {
  *
  * @param object $result query result
  * @param string $source album object if this is search within the album
+ *
+ * @return object the image (if it exists)
  */
 function filterImageQuery($result, $source) {
 	$list = filterImageQueryList($result, $source);
@@ -3205,12 +3207,14 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 		$_random_images_album[$album->name] = array();
 		$album->setSortType('random');
 		foreach ($album->getImages(0) as $imagename) {
-			$_random_images_album[$album->name][] = newImage($album, $imagename);
+			$_random_images_album[$album->name][] = $imagename;
 		}
 	}
 
 	$image = array_shift($_random_images_album[$album->name]);
-	if (!$image) {
+	if ($image) {
+		$image = newImage($album, $image);
+	} else {
 		$album->setSortType('random', 'album');
 		foreach ($album->getAlbums() as $subalbum) {
 			if ($image = getRandomImagesAlbum($subalbum))
