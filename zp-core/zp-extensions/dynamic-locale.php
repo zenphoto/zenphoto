@@ -78,6 +78,7 @@ if (OFFSET_PATH != 2) {
  *
  */
 function printLanguageSelector($flags = NULL) {
+	global $_locale_Subdomains;
 	$localeOption = getOption('locale');
 	$languages = generateLanguageList();
 	if (isset($_REQUEST['locale'])) {
@@ -98,33 +99,32 @@ function printLanguageSelector($flags = NULL) {
 	if (is_null($flags)) {
 		$flags = getOption('dynamic_locale_visual');
 	}
+	$request = parse_url(getRequestURI());
+	$separator = '?';
+	if (isset($request['query'])) {
+		$query = explode('&', $request['query']);
+		$uri['query'] = '';
+		foreach ($query as $key => $str) {
+			if (preg_match('/^locale\s*=/', $str)) {
+				unset($query[$key]);
+			}
+		}
+		if (empty($query)) {
+			unset($request['query']);
+		} else {
+			$request['query'] = implode('&', $query);
+			$separator = '&';
+		}
+	}
+	$uri = pathurlencode(@$request['path']);
+	if (isset($request['query'])) {
+		$uri .= '?' . $request['query'];
+	}
 	if ($flags) {
 		asort($languages);
 		?>
 		<ul class="flags">
 			<?php
-			$request = parse_url(getRequestURI());
-			$separator = '?';
-			if (isset($request['query'])) {
-				$query = explode('&', $request['query']);
-				$uri['query'] = '';
-				foreach ($query as $key => $str) {
-					if (preg_match('/^locale\s*=/', $str)) {
-						unset($query[$key]);
-					}
-				}
-				if (empty($query)) {
-					unset($request['query']);
-				} else {
-					$request['query'] = implode('&', $query);
-					$separator = '&';
-				}
-			}
-			$uri = pathurlencode(@$request['path']);
-			if (isset($request['query'])) {
-				$uri .= '?' . $request['query'];
-			}
-
 			foreach ($languages as $text => $lang) {
 				?>
 				<li<?php if ($lang == $localeOption) echo ' class="currentLanguage"'; ?>>
@@ -163,14 +163,31 @@ function printLanguageSelector($flags = NULL) {
 		<?php
 	} else {
 		?>
-		<form action="#" method="post">
+		<script type="text/javascript">
+			function switch_language() {
+				window.location = $('#dynamic-locale').val();
+			}
+		</script>
+
+		<form id="language_change" action="#" method="post">
 			<input type="hidden" name="oldlocale" value="<?php echo getOption('locale'); ?>" />
-			<select id="dynamic-locale" class="languageselect" name="locale" onchange="this.form.submit()">
+			<select id="dynamic-locale" class="languageselect" name="locale" onchange="switch_language();">
 				<?php
 				foreach ($languages as $text => $lang) {
 					$flag = getLanguageFlag($lang);
+					switch (LOCALE_TYPE) {
+						case 2:
+							$path = dynamic_locale::fullHostPath($lang) . $uri;
+							break;
+						case 1:
+							$path = seo_locale::localePath(false, $lang) . str_replace(WEBPATH, '', $uri);
+							break;
+						default:
+							$path = $uri . $separator . 'locale=' . $lang;
+							break;
+					}
 					?>
-					<option class="languageoption" data-image="<?php echo $flag; ?>" value="<?php echo html_encode($lang); ?>"<?php if ($lang == $localeOption) echo ' selected="selected"'; ?>>
+					<option class="languageoption" data-image="<?php echo $flag; ?>" value="<?php echo html_encode(html_encode($path)); ?>"<?php if ($lang == $localeOption) echo ' selected="selected"'; ?>>
 						<?php echo html_encode($text); ?>
 					</option>
 					?>
