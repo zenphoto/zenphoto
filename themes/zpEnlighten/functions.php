@@ -14,19 +14,8 @@ class Utils {
 		$query = "SELECT i.filename, i.title, a.folder FROM $t_images i " .
 						"LEFT JOIN $t_albums a ON i.albumid=a.id " .
 						"ORDER BY i.date DESC LIMIT $limit";
-		$result = query_full_array($query);
-		return self::createImages($result);
-	}
-
-	static function createImages($rows) {
-		global $_zp_gallery;
-		$images = array();
-		$g = empty($_zp_gallery) ? new Gallery() : $_zp_gallery;
-		foreach ($rows as $r) {
-			$image = newImage(newAlbum($r['folder']), $r['filename']);
-			$images[] = $image;
-		}
-		return $images;
+		$result = query($query);
+		return filterImageQueryList($result, NULL, $limit, false);
 	}
 
 }
@@ -74,7 +63,7 @@ function printZDSearchShowMoreLink($option, $number_to_show) {
 	}
 	if ($num > $number_to_show) {
 		?>
-		<a class="<?php echo $option; ?>_showmore"href="javascript:toggleExtraElements('<?php echo $option; ?>',true);"><?php echo gettext('Show more results'); ?></a>
+		<a class="<?php echo $option; ?>_showmore" href="javascript:toggleExtraElements('<?php echo $option; ?>',true);"><?php echo gettext('Show more results'); ?></a>
 		<a class="<?php echo $option; ?>_showless" style="display: none;"	href="javascript:toggleExtraElements('<?php echo $option; ?>',false);"><?php echo gettext('Show fewer results'); ?></a>
 		<?php
 	}

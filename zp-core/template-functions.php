@@ -3077,11 +3077,12 @@ function printSizedImageURL($size, $text, $title, $class = NULL, $id = NULL) {
  *
  * @param object $result query result
  * @param string $source album object if this is search within the album
- * @param int $limit How many images to fetch
+ * @param int $limit How many images to fetch (0 will fetch all)
+ * @param bool $photos set true to return only imagePhotos
  *
  * @return array
  */
-function filterImageQueryList($result, $source, $limit) {
+function filterImageQueryList($result, $source, $limit, $photo = true) {
 	$list = array();
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
@@ -3089,7 +3090,7 @@ function filterImageQueryList($result, $source, $limit) {
 			if ($image->exists) {
 				$album = $image->album;
 				if ($album->name == $source || $album->checkAccess()) {
-					if (isImagePhoto($image)) {
+					if (!$photo || isImagePhoto($image)) {
 						if ($image->checkAccess()) {
 							$list[] = $image;
 							if ($limit-- == 0) {

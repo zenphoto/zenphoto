@@ -40,7 +40,7 @@ if (!defined('WEBPATH'))
 								$link = $i->getLink();
 								$date = $i->getDateTime();
 								if ($date) {
-									$date = strftime("%d %B %Y", $date);
+									$date = strftime("%d %B %Y", strtotime($date));
 								}
 								echo "<a href='$link'><img src='$thumb' width='255' height='75'/></a>";
 								?>
