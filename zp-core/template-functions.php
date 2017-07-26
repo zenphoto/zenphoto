@@ -3113,12 +3113,13 @@ function filterImageQueryList($result, $source, $limit, $photo = true) {
  *
  * @param object $result query result
  * @param string $source album object if this is search within the album
- * @param int $limit How many images to fetch
+ * @param int $limit How many images to cache (0 will fetch all)
+ * @param bool $photos set true to return only imagePhotos
  *
  * @return object the image (if it exists)
  */
-function filterImageQuery($result, $source, $limit = 1) {
-	$list = filterImageQueryList($result, $source, $limit);
+function filterImageQuery($result, $source, $limit = 1, $photo = true) {
+	$list = filterImageQueryList($result, $source, $limit, $photo);
 	if (!empty($list)) {
 		return array_shift($list);
 	}
