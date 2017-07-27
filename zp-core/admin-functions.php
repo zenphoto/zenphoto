@@ -143,7 +143,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				?>
 				$('form.dirty-check').dirtyForms({ 
-					message: '<?php echo addslashes(gettext('You have unsaved changes!')); ?>' 
+					message: '<?php echo addslashes(gettext('You have unsaved changes!')); ?>',
+					ignoreSelector: '.dirtyignore'
 				});
 				});
 				$(function() {
@@ -1308,6 +1309,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<td>
 									<p>
 										<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+												 class="dirtyignore"  
 												 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 												 value="<?php echo $album->getUser(); ?>" />
@@ -1332,11 +1334,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 										// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
 										?>
 										<input class="dirtyignore" type="password" name="pass" style="display:none;" />
-										<input type="password"
+										<input type="password" 
+													 class="dirtyignore" 
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
 													 onkeydown="passwordClearZ('<?php echo $suffix; ?>');"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
-													 value="<?php echo $x; ?>" />
+													 value="<?php echo $x; ?>" autocomplete="off" />
 										<label><input class="dirtyignore" type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');

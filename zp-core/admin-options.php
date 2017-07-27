@@ -1170,6 +1170,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<td>
 											<p>
 											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														 class="dirtyignore" 
 														 onkeydown="passwordClear('');"
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
@@ -1198,6 +1199,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 											<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														 class="dirtyignore" 
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
 														 onkeyup="passwordStrength('');"
@@ -1205,6 +1207,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<br />
 											<span class="password_field_">
 												<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															 class="dirtyignore" 
 															 id="pass_r" name="pass_r" disabled="disabled"
 															 onkeydown="passwordClear('');"
 															 onkeyup="passwordMatch('');"
@@ -1504,6 +1507,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										</td>
 										<td>
 											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														 class="dirtyignore" 
 														 onkeydown="passwordClear('');"
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode(getOption('search_user')); ?>" />
@@ -1532,6 +1536,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 											<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														 class="dirtyignore" 
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
 														 onkeyup="passwordStrength('');"
@@ -1539,6 +1544,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<br />
 											<span class="password_field_">
 												<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															 class="dirtyignore" 
 															 id="pass_r" name="pass_r" disabled="disabled"
 															 onkeydown="passwordClear('');"
 															 onkeyup="passwordMatch('');"
@@ -2264,6 +2270,7 @@ Zenphoto_Authority::printPasswordFormJS();
 													</td>
 													<td style="margin:0; padding:0">
 														<input type="text" size="30"
+																	 class="dirtyignore" 
 																	 onkeydown="passwordClear('');"
 																	 id="user_name"  name="user"
 																	 value="<?php echo html_encode(getOption('protected_image_user')); ?>" />
@@ -2288,6 +2295,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														?>
 														<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 														<input type="password" size="30"
+																	 class="dirtyignore" 
 																	 id="pass" name="pass"
 																	 onkeydown="passwordClear('');"
 																	 onkeyup="passwordStrength('');"
@@ -2295,6 +2303,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														<br />
 														<span class="password_field_">
 															<input type="password" size="30"
+																		 class="dirtyignore" 
 																		 id="pass_r" name="pass_r" disabled="disabled"
 																		 onkeydown="passwordClear('');"
 																		 onkeyup="passwordMatch('');"
