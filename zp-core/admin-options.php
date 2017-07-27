@@ -1203,7 +1203,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
 														 onkeyup="passwordStrength('');"
-														 value="<?php echo $x; ?>" />
+														 value="<?php echo $x; ?>" autocomplete="off" />
 											<br />
 											<span class="password_field_">
 												<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1211,7 +1211,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 id="pass_r" name="pass_r" disabled="disabled"
 															 onkeydown="passwordClear('');"
 															 onkeyup="passwordMatch('');"
-															 value="<?php echo $x; ?>" />
+															 value="<?php echo $x; ?>" autocomplete="off" />
 											</span>
 											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 
@@ -1510,7 +1510,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														 class="dirtyignore" 
 														 onkeydown="passwordClear('');"
 														 id="user_name"  name="user"
-														 value="<?php echo html_encode(getOption('search_user')); ?>" />
+														 value="<?php echo html_encode(getOption('search_user')); ?>" autocomplete="off" />
 											<br />
 
 										</td>
@@ -1540,7 +1540,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
 														 onkeyup="passwordStrength('');"
-														 value="<?php echo $x; ?>" />
+														 value="<?php echo $x; ?>" autocomplete="off" />
 											<br />
 											<span class="password_field_">
 												<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -1548,7 +1548,7 @@ Zenphoto_Authority::printPasswordFormJS();
 															 id="pass_r" name="pass_r" disabled="disabled"
 															 onkeydown="passwordClear('');"
 															 onkeyup="passwordMatch('');"
-															 value="<?php echo $x; ?>" />
+															 value="<?php echo $x; ?>" autocomplete="off" />
 											</span>
 											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 										</td>
@@ -2273,7 +2273,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																	 class="dirtyignore" 
 																	 onkeydown="passwordClear('');"
 																	 id="user_name"  name="user"
-																	 value="<?php echo html_encode(getOption('protected_image_user')); ?>" />
+																	 value="<?php echo html_encode(getOption('protected_image_user')); ?>" autocomplete="off" />
 
 													</td>
 												</tr>
@@ -2299,7 +2299,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																	 id="pass" name="pass"
 																	 onkeydown="passwordClear('');"
 																	 onkeyup="passwordStrength('');"
-																	 value="<?php echo $x; ?>" />
+																	 value="<?php echo $x; ?>" autocomplete="off" />
 														<br />
 														<span class="password_field_">
 															<input type="password" size="30"
@@ -2307,7 +2307,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																		 id="pass_r" name="pass_r" disabled="disabled"
 																		 onkeydown="passwordClear('');"
 																		 onkeyup="passwordMatch('');"
-																		 value="<?php echo $x; ?>" />
+																		 value="<?php echo $x; ?>" autocomplete="off" />
 														</span>
 														<br />
 														<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>

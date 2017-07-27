@@ -1312,7 +1312,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 												 class="dirtyignore"  
 												 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
-												 value="<?php echo $album->getUser(); ?>" />
+												 value="<?php echo $album->getUser(); ?>" autocomplete="off" />
 									</p>
 								</td>
 							</tr>
@@ -1350,7 +1350,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 														 id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
 														 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 														 onkeyup="passwordMatch('<?php echo $suffix; ?>');"
-														 value="<?php echo $x; ?>" />
+														 value="<?php echo $x; ?>" autocomplete="off" />
 										</span>
 									</p>
 								</td>
