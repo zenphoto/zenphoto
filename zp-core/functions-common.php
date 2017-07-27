@@ -58,6 +58,22 @@ function getUserIP() {
 }
 
 /**
+ * Returns true if we are running on a Windows server
+ *
+ * @return bool
+ */
+function isWin() {
+	return (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN');
+}
+
+/**
+ * Returns true if we are running on a Macintosh
+ */
+function isMac() {
+	return strtoupper(PHP_OS) == 'DARWIN';
+}
+
+/**
  * triggers an error
  *
  * @param string $message
@@ -120,7 +136,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		// out of curtesy show the error message on the WEB page since there will likely be a blank page otherwise
 		?>
 		<div style="padding: 10px 15px 10px 15px;	background-color: #FDD;	border-width: 1px 1px 2px 1px;	border-style: solid;	border-color: #FAA;	margin-bottom: 10px;	font-size: 100%;">
-			<?php echo html_encode($msg); ?>
+		<?php echo html_encode($msg); ?>
 		</div>
 		<?php
 	}

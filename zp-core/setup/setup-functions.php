@@ -478,22 +478,6 @@ function setupXSRFToken() {
 	}
 }
 
-/**
- * Returns true if we are running on a Windows server
- *
- * @return bool
- */
-function isWin() {
-	return (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN');
-}
-
-/**
- * Returns true if we are running on a Macintosh
- */
-function isMac() {
-	return strtoupper(PHP_OS) == 'DARWIN';
-}
-
 function checkPermissions($actual, $expected) {
 	if (isWin()) {
 		return ($actual & 0700) == ($expected & 0700); //	with windows owner==group==public
