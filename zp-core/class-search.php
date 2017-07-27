@@ -145,22 +145,28 @@ class SearchEngine {
 		}
 		$this->fieldList = $this->parseQueryFields();
 		if (isset($_REQUEST['inalbums'])) {
-			$list = trim(sanitize($_REQUEST['inalbums'], 3));
-			if (strlen($list) > 0) {
-				switch ($list) {
-					case "0":
-						$this->search_no_albums = true;
-						setOption('search_no_albums', 1, false);
-						break;
-					case "1":
-						$this->search_no_albums = false;
-						setOption('search_no_albums', 0, false);
-						break;
-					default:
-						$this->album_list = explode(',', $list);
-						break;
-				}
+			$v = trim(sanitize($_REQUEST['inalbums'], 3));
+			$list = explode(':', $v);
+			if (isset($list[1])) {
+				$v = $list[0];
+				$list = explode(',', $list[1]);
+			} else {
+				$list = array();
 			}
+			switch ($v) {
+				case "0":
+					$this->search_no_albums = true;
+					setOption('search_no_albums', 1, false);
+					break;
+				case "1":
+					$this->search_no_albums = false;
+					setOption('search_no_albums', 0, false);
+					break;
+				default:
+					$list = array($v);
+					break;
+			}
+			$this->album_list = $list;
 		}
 		if (isset($_REQUEST['inimages'])) {
 			$list = trim(sanitize($_REQUEST['inimages'], 3));
@@ -346,7 +352,7 @@ class SearchEngine {
 					$r .= '&inalbums=0';
 				}
 			} else {
-				$r .= '&inalbums=' . implode(',', array_map("urlencode", $this->album_list));
+				$r .= '&inalbums=' . (int) !$this->search_no_albums . ':' . implode(',', array_map("urlencode", $this->album_list));
 			}
 			if ($this->search_no_images) {
 				$r .= '&inimages=0';
@@ -501,6 +507,13 @@ class SearchEngine {
 					break;
 				case 'inalbums':
 					if (strlen($v) > 0) {
+						$list = explode(':', $v);
+						if (isset($list[1])) {
+							$v = $list[0];
+							$list = explode(',', $list[1]);
+						} else {
+							$list = array();
+						}
 						switch ($v) {
 							case "0":
 								$this->search_no_albums = true;
@@ -511,9 +524,10 @@ class SearchEngine {
 								setOption('search_no_albums', 0, false);
 								break;
 							default:
-								$this->album_list = explode(',', $v);
+								$list = array($v);
 								break;
 						}
+						$this->album_list = $list;
 					}
 					break;
 				case 'unpublished':
