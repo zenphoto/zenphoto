@@ -99,8 +99,6 @@ if (isset($_POST['savealbum'])) {
 			$constraints = "\nCONSTRAINTS=" . 'inalbums=' . $inalbums . '&inimages=' . ((int) (isset($_POST['return_images']))) . '&unpublished=' . ((int) (isset($_POST['return_unpublished'])));
 			$redirect = $album . '/' . $albumname . '.alb';
 
-			var_dump($_POST, $album . $albumname, $constraints);
-
 			if (!empty($albumname)) {
 				$f = fopen(internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $redirect), 'w');
 				if ($f !== false) {

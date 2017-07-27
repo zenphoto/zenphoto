@@ -148,23 +148,16 @@ class SearchEngine {
 			$v = trim(sanitize($_REQUEST['inalbums'], 3));
 			$list = explode(':', $v);
 			if (isset($list[1])) {
-				$v = $list[0];
+				$v = (int) $list[0];
 				$list = explode(',', $list[1]);
 			} else {
 				$list = array();
 			}
-			switch ($v) {
-				case "0":
-					$this->search_no_albums = true;
-					setOption('search_no_albums', 1, false);
-					break;
-				case "1":
-					$this->search_no_albums = false;
-					setOption('search_no_albums', 0, false);
-					break;
-				default:
-					$list = array($v);
-					break;
+			if (is_numeric($v)) {
+				$this->search_no_albums = $v == 0;
+				setOption('search_no_albums', (int) $this->search_no_albums, false);
+			} else {
+				$list = array($v);
 			}
 			$this->album_list = $list;
 		}
@@ -509,23 +502,16 @@ class SearchEngine {
 					if (strlen($v) > 0) {
 						$list = explode(':', $v);
 						if (isset($list[1])) {
-							$v = $list[0];
+							$v = (int) $list[0];
 							$list = explode(',', $list[1]);
 						} else {
 							$list = array();
 						}
-						switch ($v) {
-							case "0":
-								$this->search_no_albums = true;
-								setOption('search_no_albums', 1, false);
-								break;
-							case "1":
-								$this->search_no_albums = false;
-								setOption('search_no_albums', 0, false);
-								break;
-							default:
-								$list = array($v);
-								break;
+						if (is_numeric($v)) {
+							$this->search_no_albums = $v == 0;
+							setOption('search_no_albums', (int) $this->search_no_albums, false);
+						} else {
+							$list = array($v);
 						}
 						$this->album_list = $list;
 					}
