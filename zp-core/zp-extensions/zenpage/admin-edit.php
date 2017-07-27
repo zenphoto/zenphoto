@@ -515,6 +515,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																?>
 																<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 																<input type="password" size="27"
+																			 class="dirtyignore"
 																			 id="pass" name="pass"
 																			 onkeydown="passwordClear('');"
 																			 onkeyup="passwordStrength('');"
@@ -524,6 +525,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
 																	<br />
 																	<input type="password" size="27"
+																				 class="dirtyignore"
 																				 id="pass_r" name="pass_r" disabled="disabled"
 																				 onkeydown="passwordClear('');"
 																				 onkeyup="passwordMatch('');"
