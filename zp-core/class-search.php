@@ -905,9 +905,6 @@ class SearchEngine {
 		asort($idlist);
 		$clause = '';
 
-		$clause .= '`id` IN (' . implode(',', $idlist) . ')';
-		return($clause);
-
 		$orphans = array();
 		$build = array($last = (int) array_shift($idlist));
 		while (!empty($idlist)) {
