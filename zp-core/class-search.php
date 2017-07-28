@@ -1968,18 +1968,18 @@ class SearchEngine {
 		if (!empty($authCookies)) { // some sort of password exists, play it safe and make the tag unique
 			$user = getUserIP();
 		}
-		$criteria = array(
-				'item' => $table,
-				'fieldlist' => implode(',', $this->fieldList),
-				'albums' => implode(',', $this->album_list),
-				'newsdate' => $this->whichdates,
-				'categories' => implode(',', $this->category_list),
-				'extraparams' => implode(',', $this->extraparams),
-				'search' => $search,
-				'sort' => $sort,
-				'user' => $user,
-				'excluded' => (int) $this->search_no_albums . (int) $this->search_no_images . (int) $this->search_no_news . (int) $this->search_no_pages
-		);
+
+		$criteria = 'item:' . $table . ';' .
+						'fieldlist:' . implode(',', $this->fieldList) . ';' .
+						'albums:' . implode(',', $this->album_list) . ';' .
+						'newsdate:' . $this->whichdates . ';' .
+						'categories:' . implode(',', $this->category_list) . ';' .
+						'extraparams:' . implode(',', $this->extraparams) . ';' .
+						'search:' . $search . ';' .
+						'sort:' . $sort . ';' .
+						'user:' . $user . ';' .
+						'excluded:' . (int) $this->search_no_albums . (int) $this->search_no_images . (int) $this->search_no_news . (int) $this->search_no_pages;
+
 		return $criteria;
 	}
 
@@ -2011,7 +2011,7 @@ class SearchEngine {
 	 */
 	private function getCachedSearch($criteria) {
 		if (SEARCH_CACHE_DURATION) {
-			$sql = 'SELECT `id`, `date`, `data` FROM ' . prefix('search_cache') . ' WHERE `criteria` = ' . db_quote(serialize($criteria));
+			$sql = 'SELECT `id`, `date`, `data` FROM ' . prefix('search_cache') . ' WHERE `criteria` = ' . db_quote($criteria);
 			$result = query_single_row($sql);
 			if ($result) {
 				if ((time() - strtotime($result['date'])) > SEARCH_CACHE_DURATION * 60) {
