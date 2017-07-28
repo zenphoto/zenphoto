@@ -33,7 +33,6 @@ class SearchEngine {
 	protected $album = NULL;
 	protected $words;
 	protected $dates;
-	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
 	protected $search_no_albums = false; // omit albums
 	protected $search_no_images = false; // omit images
 	protected $search_no_pages = false; // omit pages
@@ -41,11 +40,12 @@ class SearchEngine {
 	protected $search_unpublished = false; // will override the loggedin checks with respect to unpublished items
 	protected $search_structure; // relates translatable names to search fields
 	protected $iteration = 0; // used by apply_filter('search_statistics') to indicate sequential searches of different objects
-	protected $processed_search = NULL;
-	protected $album_list = NULL; // list of albums to search
-	protected $category_list = NULL; // list of categories for a news search
+	protected $processed_search = NULL; //remembers search string
 	protected $searches = NULL; // remember the criteria for past searches
+	protected $album_list = array(); // list of albums to search
+	protected $category_list = array(); // list of categories for a news search
 	protected $extraparams = array(); // allow plugins to add to search parameters
+	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
 	// mimic album object
 	var $loaded = false;
 	var $table = 'albums';
@@ -904,6 +904,10 @@ class SearchEngine {
 		$idlist = array_unique($idlist);
 		asort($idlist);
 		$clause = '';
+
+		$clause .= '`id` IN (' . implode(',', $idlist) . ')';
+		return($clause);
+
 		$orphans = array();
 		$build = array($last = (int) array_shift($idlist));
 		while (!empty($idlist)) {
@@ -1639,6 +1643,7 @@ class SearchEngine {
 			return array(); // nothing to find
 		}
 		$criteria = $this->getCacheTag('images', serialize($searchstring) . '_' . $searchdate, $sortkey . '_' . $sortdirection . '_' . (int) $mine);
+
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
 		}
@@ -1966,7 +1971,19 @@ class SearchEngine {
 		if (!empty($authCookies)) { // some sort of password exists, play it safe and make the tag unique
 			$user = getUserIP();
 		}
-		return array('item' => $table, 'fields' => implode(', ', $this->fieldList), 'search' => $search, 'sort' => $sort, 'user' => $user);
+		$criteria = array(
+				'item' => $table,
+				'fieldlist' => implode(',', $this->fieldList),
+				'albums' => implode(',', $this->album_list),
+				'newsdate' => $this->whichdates,
+				'categories' => implode(',', $this->category_list),
+				'extraparams' => implode(',', $this->extraparams),
+				'search' => $search,
+				'sort' => $sort,
+				'user' => $user,
+				'excluded' => (int) $this->search_no_albums . (int) $this->search_no_images . (int) $this->search_no_news . (int) $this->search_no_pages
+		);
+		return $criteria;
 	}
 
 	/**
