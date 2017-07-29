@@ -130,7 +130,7 @@ function printLanguageSelector($flags = NULL) {
 				<li<?php if ($lang == $localeOption) echo ' class="currentLanguage"'; ?>>
 					<?php
 					$flag = getLanguageFlag($lang);
-					$path = dynamic_locale::localLink($uri, $lang);
+					$path = dynamic_locale::localLink($uri, $separator, $lang);
 					if ($lang != $localeOption) {
 						?>
 						<a href="<?php echo html_encode($path); ?>" >
@@ -248,7 +248,7 @@ class dynamic_locale {
 		return $host;
 	}
 
-	static function localLink($uri, $lang) {
+	static function localLink($uri, $separator, $lang) {
 		switch (LOCALE_TYPE) {
 			case 2:
 				$path = dynamic_locale::fullHostPath($lang) . $uri;
