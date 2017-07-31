@@ -14,7 +14,9 @@ define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
 
-require_once( SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/gitHubAPI/github-api.php');
+if (version_compare(PHP_VERSION, '5.5.0', '>=')) {
+	require_once( SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/gitHubAPI/github-api.php');
+}
 
 use Milo\Github;
 
@@ -177,7 +179,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 $from = NULL;
 if (zp_loggedin() && !empty($zenphoto_tabs)) {
 	if (!$_zp_current_admin_obj->getID() || empty($msg) && !zp_loggedin(OVERVIEW_RIGHTS)) {
-		// admin access without overview rights, redirect to first tab
+// admin access without overview rights, redirect to first tab
 		$tab = array_shift($zenphoto_tabs);
 		$link = $tab['link'];
 		header('location:' . $link);
@@ -271,44 +273,44 @@ if (!zp_loggedin()) {
 				}
 			}
 			if (zp_loggedin(ADMIN_RIGHTS) && zpFunctions::hasPrimaryScripts()) {
-				/*
-				 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20
-				 */
-				if (getOption('getUpdates_lastCheck') + 8640 < time()) {
+				if (class_exists('Milo\Github\Api')) {
+					/*
+					 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20
+					 */
+					if (getOption('getUpdates_lastCheck') + 8640 < time()) {
 
-					$api = new Github\Api;
-					$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20'));
-					$fullRepoData = $api->decode($fullRepoResponse);
-					$assets = $fullRepoData->assets;
-					if (!empty($assets)) {
-						$item = array_pop($assets);
-						setOption('getUpdates_latest', $item->browser_download_url);
+						$api = new Github\Api;
+						$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20'));
+						$fullRepoData = $api->decode($fullRepoResponse);
+						$assets = $fullRepoData->assets;
+						if (!empty($assets)) {
+							$item = array_pop($assets);
+							setOption('getUpdates_latest', $item->browser_download_url);
+						}
+
+						setOption('getUpdates_lastCheck', time());
 					}
+					$newestVersionURI = getOption('getUpdates_latest');
+					$newestVersion = str_replace('setup-', '', stripSuffix(basename($newestVersionURI)));
 
-					setOption('getUpdates_lastCheck', time());
+					$zenphoto_version = explode('-', ZENPHOTO_VERSION);
+					$zenphoto_version = array_shift($zenphoto_version);
+
+					if (version_compare($newestVersion, $zenphoto_version, '>')) {
+						$buttonlist[] = array(
+								'category' => gettext('Admin'),
+								'enable' => 2,
+								'button_text' => gettext('ZenPhoto20 ' . $newestVersion),
+								'formname' => 'getUpdates_button',
+								'action' => $newestVersionURI,
+								'icon' => 'images/arrow_down.png',
+								'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
+								'alt' => '',
+								'hidden' => '',
+								'rights' => ADMIN_RIGHTS
+						);
+					}
 				}
-				$newestVersionURI = getOption('getUpdates_latest');
-				$newestVersion = str_replace('setup-', '', stripSuffix(basename($newestVersionURI)));
-
-				$zenphoto_version = explode('-', ZENPHOTO_VERSION);
-				$zenphoto_version = array_shift($zenphoto_version);
-
-				if (version_compare($newestVersion, $zenphoto_version, '>')) {
-					$buttonlist[] = array(
-							'category' => gettext('Admin'),
-							'enable' => 2,
-							'button_text' => gettext('ZenPhoto20 ' . $newestVersion),
-							'formname' => 'getUpdates_button',
-							'action' => $newestVersionURI,
-							'icon' => 'images/arrow_down.png',
-							'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
-							'alt' => '',
-							'hidden' => '',
-							'rights' => ADMIN_RIGHTS
-					);
-				}
-
-
 				//	button to restore setup files if needed
 				switch ($setupUnprotected) {
 					case 2:
