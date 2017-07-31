@@ -73,12 +73,12 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.4.1.35</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.4.1.36</h2>
 <p> </p>
 <h2>General</h2>
 <p>Several security fixes have been applied.</p>
 <p>ZenPhoto20 development testing is now limited to PHP version 7. While PHP version 5.2 is still supported, version level compatibility issues may find their way into the source. Zend Technologies support for PHP version 5.6 will terminate at the end of 2018. All earlier versions are already past their support life. (PHP version 6 was never released.) You are strongly urged to move your site to PHP version 7 as soon as practical. We reserve the right to deprecate support for PHP version 5 whenever supporting it becomes unmanageable.</p>
-<p>ZenPhoto20 will now check for new releases on GitHub. If a release is found that is newer than the one installed, a download button will appear in the Admin utilities functionss button area.</p>
+<p>ZenPhoto20 will now check for new releases on GitHub. If a release is found that is newer than the one installed, a download button will appear in the Admin utilities functionss button area. <strong>Note:</strong> this feature requires that you are using PHP version 5.5 or later.</p>
 <p>The register user notify option has been move to the general options page. This option is used by multiple plugins so a global setting is more appropriate.</p>
 <p>The <em>backup</em> folder has been relocated to within the <em>data</em> folder.</p>
 <p>The <code>shortenContent()</code> function has been rewritten. It will now count only text characters in shortening the string. Before HTML tags were counted as part of the allowed total. Page break handling is now incorporated in the function. Truncation will prefer to happen at a page break indication (<code>&lt;-- pagebreak --&gt;.</code>) This allows for simplification of <code>getContentShorten()</code> which had been including HTML tags in its character count when deciding what page break to select. The <code>$forceindicator</code> parameter has been removed. It really made no sense and was used only by <code>getContentShorten()</code> when it rolled back to a page break. It was also not applied if no shortening was done even though that was the promise in the comment block.</p>
