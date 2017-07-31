@@ -910,7 +910,7 @@ class Zenphoto_Authority {
 								<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
 							</fieldset>
 							<?php
-							if ($requestor && $admin) {	
+							if ($requestor && $admin) {
 							if (!empty($info['challenge'])) {
 								?>
 								<p class="logon_form_text"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?>
@@ -1083,12 +1083,12 @@ class Zenphoto_Authority {
 						<?php
 					}
 					break;
-				
+
 			}
 			Zenphoto_Authority::printPasswordFormJS()
 			?>
 		</div>
-				
+
 		<?php
 	}
 
@@ -1158,7 +1158,7 @@ class Zenphoto_Authority {
 						$(displays).html('<?php echo gettext('password strength too weak'); ?>');
 					} else {
       $(inputb).parent().removeClass('ui-state-disabled');
-      $(inputb).prop('disabled',false);  
+      $(inputb).prop('disabled',false);
 						passwordMatch(id);
 					}
 					var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
@@ -1211,7 +1211,7 @@ class Zenphoto_Authority {
 					$('.password_field_' + id).show();
 				}
 			}
-			
+
 			var logonsteps = {
 				'logonstep_challenge_js' : $('#logonstep_challenge_js').attr('href'),
 				'logonstep_captcha_js' : $('#logonstep_captcha_js').attr('href'),
@@ -1220,8 +1220,8 @@ class Zenphoto_Authority {
 			setLogonStepURL(logonsteps)
 			$( "#user" ).keyup(function() {
 				setLogonStepURL(logonsteps);
-			}); 
-		
+			});
+
 			function setLogonStepURL(logonsteps) {
 				var user = $('#user').val();
 				$.each( logonsteps, function( key, value ) {
@@ -1297,10 +1297,10 @@ class Zenphoto_Authority {
 		# Return derived key of correct length
 		return substr($dk, 0, $kl);
 	}
-	
+
 	/**
 	 * Checks if the email address being set is already used by another user
-	 * 
+	 *
 	 * @param string $email_to_check email address to check
 	 * @param type $current_user user id of the user trying to set this email address
 	 * @return boolean
@@ -1726,6 +1726,7 @@ class Zenphoto_Administrator extends PersistentObject {
 			if ($title = $this->getName()) {
 				$album->setTitle($title);
 			}
+			$album->setOwner($this->getUser());
 			$album->save();
 			$this->setAlbum($album);
 			$this->setRights($this->getRights() | ALBUM_RIGHTS);
@@ -1763,7 +1764,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	function getLastLogon() {
 		return $this->get('lastloggedin');
 	}
-	
+
 	/**
 	 * Preserves the user's prime album as managed album even if he is in a group the album is actually set as managed
 	 */
