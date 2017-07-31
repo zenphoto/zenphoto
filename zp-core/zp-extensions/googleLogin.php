@@ -32,8 +32,7 @@
 $plugin_is_filter = 900 | CLASS_PLUGIN;
 $plugin_description = gettext("Handles logon via the user's <em>Google</em> account.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_notice = sprintf(gettext('The PHP <var>curl</var> module is required for this plugin.'));
-$plugin_disable = (extension_loaded('curl')) ? false : gettext('The PHP Curl is required.');
+$plugin_disable = zpFunctions::pluginDisable(array(array(version_compare(PHP_VERSION, '5.6.0', '<'), gettext('PHP version 5.4 or greater is required.')), array(!extension_loaded('curl'), gettext('The PHP Curl is required.'))));
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/oAuth/oAuthLogin.php');
 
