@@ -179,10 +179,10 @@ $count = 0;
 
 if ($alb) {
 	$r = '/admin-edit.php?page = edit&album = ' . $alb;
-	echo "\n<h1>" . $clear . "</h2>";
+	echo "\n<h1>" . $clear . "</h1>";
 } else {
 	$r = '/admin.php';
-	echo "\n<h1>" . $clear . "</h2>";
+	echo "\n<h1>" . $clear . "</h1>";
 }
 ?>
 <div class="tabbox">
@@ -290,6 +290,7 @@ if ($alb) {
 						if ($last) {
 							?>
 						</ol>
+						</span>
 						</li>
 						<?php
 					}
@@ -305,7 +306,7 @@ if ($alb) {
 							<input type="checkbox" name="<?php echo $theme; ?>" id="<?php echo $theme; ?>" value="" onclick="checkTheme('<?php echo $theme; ?>');"<?php echo $checked; ?> /><?php printf(gettext('all sizes for <i>%1$s</i>'), $themeid); ?>
 						</label>
 						<span id="<?php echo $theme; ?>_list" style="display:none">
-							<ol class="no_bullets">
+							<ol class="no_bullets"><!-- <?php echo $last; ?> -->
 								<?php
 							}
 							$show = true;
@@ -318,7 +319,7 @@ if ($alb) {
 							}
 							if ($show) {
 								?>
-								<li>
+								<li class="no_bullets">
 									<?php
 									if (is_array($enabled)) {
 										?>
@@ -404,5 +405,4 @@ if ($alb) {
 	printAdminFooter();
 
 	echo "\n</body>";
-	echo "\n</head>";
 	?>

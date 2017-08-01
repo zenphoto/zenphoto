@@ -653,6 +653,7 @@ table.options tr td {
 	position: absolute;
 	z-index: 1000;
 	margin-left: -400px;
+	margin-top: -15px;
 	width: 400px;
 	visibility: hidden;
 	background: white !important;
@@ -668,7 +669,6 @@ table.options tr td {
 	overflow-y: visible;
 	min-height: 40px;
 }
-
 
 .formlayout {
 	width: 100%;
@@ -1110,8 +1110,7 @@ label:hover {
 	background-position: center left;
 }
 
-/* language selector
--------------------------------------*/ /* Option Tabs
+/* Option Tabs
 -------------------------------------*/
 .space {
 	margin-top: 40px;
@@ -2298,6 +2297,10 @@ div.tabs>div h2 {
 
 .nopadding {
 	padding: 0 !important;
+}
+
+.no_bullets {
+	list-style: none;
 }
 
 .icon-position-top1 {

@@ -54,7 +54,7 @@ if (zp_getCookie('zenphoto_ssl') && !secureServer()) {
 if (isset($_POST['login'])) { //	Handle the login form.
 	if (secureServer()) {
 		// https: set the 'zenphoto_ssl' marker for redirection
-		zp_setCookie("zenphoto_ssl", "needed");
+		zp_setCookie("zenphoto_ssl", "needed", NULL, false);
 	}
 	$_zp_loggedin = $_zp_authority->handleLogon();
 	if ($_zp_loggedin) {
@@ -92,50 +92,47 @@ if (isset($_POST['login'])) { //	Handle the login form.
 	}
 }
 if (!$_zp_loggedin) { //	Clear the ssl cookie
-	zp_clearCookie("zenphoto_ssl");
 	if (class_exists('ipBlocker')) {
 		ipBlocker::load();
 	}
 }
 // Handle a logout action.
 if (isset($_REQUEST['logout'])) {
-	$location = Zenphoto_Authority::handleLogout();
-	zp_clearCookie("zenphoto_ssl");
-	if (empty($location)) {
-		$redirect = '?fromlogout';
-		if (isset($_GET['p'])) {
-			$redirect .= "&p=" . sanitize($_GET['p']);
-		}
-		if (isset($_GET['searchfields'])) {
-			$redirect .= "&searchfields=" . sanitize($_GET['searchfields']);
-		}
-		if (isset($_GET['words'])) {
-			$redirect .= "&words=" . sanitize($_GET['words']);
-		}
-		if (isset($_GET['date'])) {
-			$redirect .= "&date=" . sanitize($_GET['date']);
-		}
-		if (isset($_GET['album'])) {
-			$redirect .= "&album=" . sanitize($_GET['album']);
-		}
-		if (isset($_GET['image'])) {
-			$redirect .= "&image=" . sanitize($_GET['image']);
-		}
-		if (isset($_GET['title'])) {
-			$redirect .= "&title=" . sanitize($_GET['title']);
-		}
-		if (isset($_GET['page'])) {
-			$redirect .= "&page=" . sanitize($_GET['page']);
-		}
-		if (!empty($redirect))
-			$redirect = '?' . substr($redirect, 1);
-		if ($_GET['logout']) {
-			$rd_protocol = 'https';
-		} else {
-			$rd_protocol = 'http';
-		}
-		$location = $rd_protocol . "://" . $_SERVER['HTTP_HOST'] . WEBPATH . '/index.php' . $redirect;
+
+	$redirect = '?fromlogout';
+	if (isset($_GET['p'])) {
+		$redirect .= "&p=" . sanitize($_GET['p']);
 	}
+	if (isset($_GET['searchfields'])) {
+		$redirect .= "&searchfields=" . sanitize($_GET['searchfields']);
+	}
+	if (isset($_GET['words'])) {
+		$redirect .= "&words=" . sanitize($_GET['words']);
+	}
+	if (isset($_GET['date'])) {
+		$redirect .= "&date=" . sanitize($_GET['date']);
+	}
+	if (isset($_GET['album'])) {
+		$redirect .= "&album=" . sanitize($_GET['album']);
+	}
+	if (isset($_GET['image'])) {
+		$redirect .= "&image=" . sanitize($_GET['image']);
+	}
+	if (isset($_GET['title'])) {
+		$redirect .= "&title=" . sanitize($_GET['title']);
+	}
+	if (isset($_GET['page'])) {
+		$redirect .= "&page=" . sanitize($_GET['page']);
+	}
+	if (!empty($redirect))
+		$redirect = '?' . substr($redirect, 1);
+	if ($_REQUEST['logout']) {
+		$rd_protocol = 'https';
+	} else {
+		$rd_protocol = 'http';
+	}
+	$location = $rd_protocol . "://" . $_SERVER['HTTP_HOST'] . WEBPATH . '/index.php' . $redirect;
+	$location = Zenphoto_Authority::handleLogout($location);
 	header("Location: " . $location);
 	exitZP();
 }

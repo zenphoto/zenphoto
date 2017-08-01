@@ -18,11 +18,13 @@ if (isset($_GET['tab'])) {
 } else {
 	if (isset($_POST['saveoptions'])) {
 		$_zp_admin_subtab = sanitize($_POST['saveoptions'], 3);
+	} else {
+		$_zp_admin_subtab = 'general';
 	}
 }
 require_once(SERVERPATH . '/' . ZENFOLDER . '/admin_options/' . $_zp_admin_subtab . '.php');
 
-admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
+admin_securityChecks($optionRights, currentRelativeURL());
 define('PLUGINS_PER_PAGE', max(1, getOption('plugins_per_page')));
 
 /* handle posts */

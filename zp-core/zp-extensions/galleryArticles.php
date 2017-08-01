@@ -37,10 +37,8 @@ class galleryArticles {
 			setOptionDefault('galleryArticles_albums', NULL);
 			setOptionDefault('galleryArticles_category', NULL);
 			setOptionDefault('galleryArticles_albumCategory', 0);
-			$text = gettext('New album: %1$s');
-			setOptionDefault('galleryArticles_album_text', getAllTranslations($text));
-			$text = gettext('New image: [%2$s]%1$s');
-			setOptionDefault('galleryArticles_image_text', getAllTranslations($text));
+			setOptionDefault('galleryArticles_album_text', getAllTranslations('New album: %1$s'));
+			setOptionDefault('galleryArticles_image_text', getAllTranslations('New image: [%2$s]%1$s'));
 			setOptionDefault('galleryArticles_size', 80);
 			setOptionDefault('galleryArticles_protected', 0);
 			if (class_exists('cacheManager')) {

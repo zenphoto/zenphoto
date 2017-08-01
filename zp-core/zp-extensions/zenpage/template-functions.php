@@ -330,13 +330,14 @@ function printBareNewsTitle() {
  */
 function getNewsURL($titlelink = NULL) {
 	global $_zp_current_article;
+
 	if (empty($titlelink)) {
 		$obj = $_zp_current_article;
 	} else {
 		$obj = newArticle($titlelink);
 	}
 	if (!is_null($obj))
-		return $obj->getLink();
+		return $obj->getLink(true);
 }
 
 /**
@@ -428,27 +429,9 @@ function getContentShorten($text, $shorten, $shortenindicator = NULL, $readmore 
 	if (!$shorten && !is_NewsArticle()) {
 		$shorten = ZP_SHORTEN_LENGTH;
 	}
-	$contentlenght = mb_strlen($text);
-	if (!empty($shorten) && ($contentlenght > (int) $shorten)) {
-		if (stristr($text, '<!-- pagebreak -->')) {
-			$array = explode('<!-- pagebreak -->', $text);
-			$newtext = array_shift($array);
-			while (!empty($array) && (mb_strlen($newtext) + mb_strlen($array[0])) < $shorten) { //	find the last break within shorten
-				$newtext .= array_shift($array);
-			}
-			if ($shortenindicator && empty($array) || ($array[0] == '</p>' || trim($array[0]) == '')) { //	page break was at end of article
-				$text = shortenContent($newtext, $shorten, '') . $readmorelink;
-			} else {
-				$text = shortenContent($newtext, $shorten, $shortenindicator, true) . $readmorelink;
-			}
-		} else {
-			if (!is_bool($shorten)) {
-				$newtext = shortenContent($text, $shorten, $shortenindicator);
-				if ($newtext != $text) {
-					$text = $newtext . $readmorelink;
-				}
-			}
-		}
+
+	if (!empty($shorten)) {
+		$text = shortenContent($text, $shorten, $shortenindicator . $readmorelink);
 	}
 	return $text;
 }
@@ -1013,7 +996,7 @@ function getNextNewsURL() {
 	if (is_object($_zp_current_article)) {
 		$article = $_zp_current_article->getNextArticle();
 		if ($article)
-			return array("link" => $article->getLink(), "title" => $article->getTitle());
+			return array("link" => $article->getLink(true), "title" => $article->getTitle());
 	}
 	return false;
 }
@@ -1031,7 +1014,7 @@ function getPrevNewsURL() {
 	if (is_object($_zp_current_article)) {
 		$article = $_zp_current_article->getPrevArticle();
 		if ($article)
-			return array("link" => $article->getLink(), "title" => $article->getTitle());
+			return array("link" => $article->getLink(true), "title" => $article->getTitle());
 	}return false;
 }
 
@@ -1244,7 +1227,7 @@ function printZenpageStatistic($number = 10, $option = "all", $mode = "popular",
 			echo "<p>" . zpFormattedDate(DATE_FORMAT, strtotime($item['date'])) . "</p>";
 		}
 		if ($showcontent && $item['type'] != 'Category') {
-			echo '<p>' . truncate_string($item['content'], $contentlength) . '</p>';
+			echo '<p>' . truncate_string(getBare($item['content']), $contentlength) . '</p>';
 		}
 		echo '</li>';
 	}

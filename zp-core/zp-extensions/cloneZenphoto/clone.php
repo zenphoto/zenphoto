@@ -25,7 +25,6 @@ if (isset($_GET['purge'])) {
 	$msg = array();
 	$folder = sanitize($_GET['clonePath']);
 	$newinstall = trim(sanitize($_GET['cloneWebPath']), '/') . '/';
-
 	if (trim($folder, '/') == SERVERPATH) {
 		$msg[] = gettext('You attempted to clone to the master install.');
 		$success = false;
@@ -136,6 +135,8 @@ if (isset($_GET['purge'])) {
 			$rslt = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cloneZenphoto" AND `aux`=' . db_quote(rtrim($folder, '/')));
 			if (empty($rslt)) {
 				query('INSERT INTO ' . prefix('plugin_storage') . '(`type`,`aux`,`data`) VALUES("cloneZenphoto",' . db_quote(rtrim($folder, '/')) . ',' . db_quote(trim($newinstall, '/')) . ')');
+			} else {
+				query('UPDATE ' . prefix('plugin_storage') . 'SET `data`=' . db_quote(trim($newinstall, '/')) . ' WHERE `id`=' . $rslt['id']);
 			}
 			$cloneid = bin2hex(rtrim($newinstall, '/'));
 			$_SESSION['clone'][$cloneid] = array(

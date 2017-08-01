@@ -212,5 +212,4 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 	printAdminFooter();
 
 	echo "\n</body>";
-	echo "\n</head>";
 	?>

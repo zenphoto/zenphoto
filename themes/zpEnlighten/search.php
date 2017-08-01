@@ -69,7 +69,7 @@ if (!defined('WEBPATH'))
 								?>
 								<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 									<h4><?php printPageTitlelink(); ?></h4>
-									<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(strip_tags(getPageContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
+									<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getPageContent(), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 								</li>
 								<?php
 							}
@@ -94,7 +94,7 @@ if (!defined('WEBPATH'))
 								?>
 								<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 									<h4><?php printNewsURL(); ?></h4>
-									<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(strip_tags(getNewsContent()), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
+									<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getNewsContent(), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 								</li>
 								<?php
 							}
@@ -137,7 +137,7 @@ if (!defined('WEBPATH'))
 								<div class="albumdesc">
 									<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php printAlbumTitle(); ?></a></h3>
 									<h3 class="date"><?php printAlbumDate(""); ?></h3>
-								<!-- p><?php echo html_encodeTagged(truncate_string(getAlbumDesc(), 45)); ?></p --></h3>
+								<!-- p><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 45)); ?></p --></h3>
 								</div>
 								<p style="clear: both; "></p>
 							</div>

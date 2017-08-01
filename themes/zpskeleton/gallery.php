@@ -40,7 +40,7 @@
 						</li>
 					</ul>
 				</div>
-				<p class="albumdesc"><?php echo strip_tags(truncate_string(getAlbumDesc(), 80, '...')); ?></p>
+				<p class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 80, '...'); ?></p>
 				<hr />
 			</div>
 			<?php

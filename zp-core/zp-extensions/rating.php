@@ -32,7 +32,7 @@ if (!defined('OFFSET_PATH')) {
 				$CookieInfo = session_get_cookie_params();
 				session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
 			}
-			session_start();
+			zp_session_start();
 		}
 		XSRFdefender('clear_rating');
 		query('UPDATE ' . prefix('images') . ' SET total_value=0, total_votes=0, rating=0, used_ips="" ');

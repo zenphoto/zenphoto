@@ -83,7 +83,7 @@ $orphaned = array();
 				<div class="tabbox">
 					<?php
 					$owners = array(ZENFOLDER . '/' . PLUGIN_FOLDER => array(), USER_PLUGIN_FOLDER => array(), THEMEFOLDER => array());
-					$sql = 'SELECT `name` FROM ' . prefix('options') . ' WHERE `name` LIKE "zp_plugin_%"';
+					$sql = 'SELECT `name` FROM ' . prefix('options') . ' WHERE `name` LIKE "zp\_plugin\_%"';
 					$result = query_full_array($sql);
 					foreach ($result as $row) {
 						$plugin = str_replace('zp_plugin_', '', $row['name']);

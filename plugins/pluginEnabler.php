@@ -25,12 +25,17 @@ zp_register_filter('admin_utilities_buttons', 'pluginEnabler::buttons');
 class pluginEnabler {
 
 	static function buttons($buttons) {
+		if (isset($_REQUEST['pluginsEnable'])) {
+			admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
+			XSRFdefender('pluginEnabler');
+			include(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/pluginEnabler/handler.php');
+		}
 		$buttons[] = array(
 				'category' => gettext('Development'),
 				'enable' => true,
 				'button_text' => gettext('Plugins » standard'),
 				'formname' => 'enablebutton',
-				'action' => FULLWEBPATH . '/plugins/pluginEnabler/handler.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php',
 				'icon' => 'images/zp.png',
 				'title' => gettext('Enables all standard plugins (except <em>show_not_logged-in</em>!) Third party plugins are disabled.'),
 				'alt' => '',
@@ -43,7 +48,7 @@ class pluginEnabler {
 				'enable' => true,
 				'button_text' => gettext('Plugins » all'),
 				'formname' => 'enablebutton',
-				'action' => FULLWEBPATH . '/plugins/pluginEnabler/handler.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php',
 				'icon' => 'images/pass.png',
 				'title' => gettext('Enables all plugins.'),
 				'alt' => '',
@@ -56,7 +61,7 @@ class pluginEnabler {
 				'enable' => true,
 				'button_text' => gettext('Plugins » remembered'),
 				'formname' => 'enablebutton',
-				'action' => FULLWEBPATH . '/plugins/pluginEnabler/handler.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php',
 				'icon' => 'images/redo.png',
 				'title' => gettext('Restores the plugin states to what was remembered.'),
 				'alt' => '',
@@ -69,11 +74,11 @@ class pluginEnabler {
 				'enable' => true,
 				'button_text' => gettext('Plugins ¤ current'),
 				'formname' => 'enablebutton',
-				'action' => FULLWEBPATH . '/plugins/pluginEnabler/handler.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php',
 				'icon' => 'images/arrow_down.png',
 				'title' => gettext('Remembers current plugin states.'),
 				'alt' => '',
-				'hidden' => '<input type="hidden" name="pluginsRemember" value="1" />',
+				'hidden' => '<input type="hidden" name="pluginsEnable" value="4" />',
 				'rights' => ADMIN_RIGHTS,
 				'XSRFTag' => 'pluginEnabler'
 		);
@@ -82,7 +87,7 @@ class pluginEnabler {
 				'enable' => true,
 				'button_text' => gettext('Plugins × all'),
 				'formname' => 'disablebutton',
-				'action' => FULLWEBPATH . '/plugins/pluginEnabler/handler.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php',
 				'icon' => 'images/reset.png',
 				'title' => gettext('Disables all plugins except pluginEnabler.'),
 				'alt' => '',

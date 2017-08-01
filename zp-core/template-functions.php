@@ -42,30 +42,33 @@ function printThemeHeadItems() {
 	<title><?php echo getHeadTitle(getOption('theme_head_separator'), getOption('theme_head_listparents')); ?></title>
 
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
-	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/zenphoto.js"></script>
 	<?php
 	if (zp_loggedin()) {
 		?>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/toolbox.css" type="text/css" />
-
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
-			var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
-			var deleteImage = "<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>";
-			var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
-			var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
-
-
-			function newAlbum(folder, albumtab) {
-				var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
-				if (album) {
-					launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
-				}
-			}
-			// ]]> -->
-		</script>
 		<?php
+		if (zp_loggedin(ALBUM_RIGHTS | UPLOAD_RIGHTS)) {
+			?>
+			<script type="text/javascript">
+				// <!-- <![CDATA[
+				var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
+				var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
+				var deleteImage = "<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>";
+				var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
+				var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
+
+
+				function newAlbum(folder, albumtab) {
+					var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
+					if (album) {
+						launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+					}
+				}
+
+				// ]]> -->
+			</script>
+			<?php
+		}
 	}
 }
 
@@ -81,14 +84,13 @@ function adminToolbox() {
 		$dataid = 'admin_data';
 		$page = getCurrentPage();
 		$icon = zp_apply_filter('iconColor', getPlugin('images/gear.png', true, true));
-		ob_start();
 		if (!$name = $_zp_current_admin_obj->getName()) {
 			$name = $_zp_current_admin_obj->getUser();
 		}
 		?>
 		<div id="<?php echo $id; ?>">
 			<h3>
-				<a onclick="toggle('<?php echo $dataid; ?>');" title="<?php echo gettext('Admin') . ' ' . $name; ?>">
+				<a onclick="$('#<?php echo $dataid; ?>').toggle();" title="<?php echo gettext('Logged in as') . ' ' . $name; ?>">
 					<img src="<?php echo $icon; ?>" />
 				</a>
 			</h3>
@@ -96,10 +98,6 @@ function adminToolbox() {
 		<div id="<?php echo $dataid; ?>" style="display: none;">
 			<ul style="list-style-type: none;" >
 				<?php
-				$outputA = ob_get_contents();
-				ob_end_clean();
-				ob_start();
-
 				if (zp_loggedin(OVERVIEW_RIGHTS)) {
 					?>
 					<li>
@@ -319,13 +317,6 @@ function adminToolbox() {
 					<li>
 						<a href="<?php echo $link; ?>"><?php echo gettext("Logout"); ?> </a>
 					</li>
-					<?php
-				}
-				$outputB = ob_get_contents();
-				ob_end_clean();
-				if ($outputB) {
-					echo $outputA . $outputB;
-					?>
 				</ul>
 			</div>
 			<?php
@@ -1369,7 +1360,7 @@ function printParentBreadcrumb($before = NULL, $between = NULL, $after = NULL, $
 				$output .= $between;
 			}
 			//cleanup things in description for use as attribute tag
-			$desc = $crumb['title'];
+			$desc = getBare($crumb['title']);
 			if (!empty($desc) && $truncate) {
 				$desc = truncate_string($desc, $truncate, $elipsis);
 			}
@@ -2428,7 +2419,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 		$refa = '</a>';
 		$style = ' style="display:none"';
 	} else if ($toggle) {
-		$refh = '<a onclick="toggle(\'' . $dataid . '\');" title="' . $title . '">';
+		$refh = '<a onclick="$(\'#' . $dataid . '\').toggle();" title="' . $title . '">';
 		$refa = '</a>';
 		$style = ' style="display:none"';
 	}
@@ -3082,23 +3073,29 @@ function printSizedImageURL($size, $text, $title, $class = NULL, $id = NULL) {
 }
 
 /**
- *
- * performs a query and then filters out "illegal" images returning the first "good" image
- * used by the random image functions.
+ * performs a query and then filters out "illegal" images
  *
  * @param object $result query result
  * @param string $source album object if this is search within the album
+ * @param int $limit How many images to fetch (0 will fetch all)
+ * @param bool $photos set true to return only imagePhotos
+ *
+ * @return array
  */
-function filterImageQuery($result, $source) {
+function filterImageQueryList($result, $source, $limit, $photo = true) {
+	$list = array();
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
 			$image = newImage($row, NULL, true);
 			if ($image->exists) {
 				$album = $image->album;
 				if ($album->name == $source || $album->checkAccess()) {
-					if (isImagePhoto($image)) {
+					if (!$photo || isImagePhoto($image)) {
 						if ($image->checkAccess()) {
-							return $image;
+							$list[] = $image;
+							if ($limit-- == 0) {
+								break;
+							}
 						}
 					}
 				}
@@ -3106,17 +3103,43 @@ function filterImageQuery($result, $source) {
 		}
 		db_free_result($result);
 	}
+	return $list;
+}
+
+/**
+ *
+ * performs a query and then filters out "illegal" images returning the first "good" image
+ * used by the random image functions.
+ *
+ * @param object $result query result
+ * @param string $source album object if this is search within the album
+ * @param int $limit How many images to cache (0 will fetch all)
+ * @param bool $photos set true to return only imagePhotos
+ *
+ * @return object the image (if it exists)
+ */
+function filterImageQuery($result, $source, $limit = 1, $photo = true) {
+	$list = filterImageQueryList($result, $source, $limit, $photo);
+	if (!empty($list)) {
+		return array_shift($list);
+	}
 	return NULL;
 }
 
 /**
  * Returns a randomly selected image from the gallery. (May be NULL if none exists)
  * @param bool $daily set to true and the picture changes only once a day.
+ * @param int $limit How many images to cache.
+ *
+ * Note for any given instantiation, multiple calls will not return a previously selected
+ * image.
+ *
+ * (May return NULL if no images remain)
  *
  * @return object
  */
-function getRandomImages($daily = false) {
-	global $_zp_gallery;
+function getRandomImages($daily = false, $limit = 1) {
+	global $_zp_gallery, $_random_image_list;
 	if ($daily && ($potd = getOption('picture_of_the_day'))) {
 		$potd = getSerializedArray($potd);
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
@@ -3129,18 +3152,20 @@ function getRandomImages($daily = false) {
 			}
 		}
 	}
-	if (zp_loggedin()) {
-		$imageWhere = '';
-	} else {
-		$imageWhere = " AND " . prefix('images') . ".show=1";
+	if (is_null($_random_image_list)) {
+		if (zp_loggedin()) {
+			$imageWhere = '';
+		} else {
+			$imageWhere = " AND " . prefix('images') . ".show=1";
+		}
+		$sql = 'SELECT `folder`, `filename` ' .
+						' FROM ' . prefix('images') . ', ' . prefix('albums') .
+						' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
+						prefix('albums') . '.id ' . $imageWhere . ' ORDER BY RAND()';
+		$result = query($sql);
+		$_random_image_list = filterImageQueryList($result, NULL, $limit);
 	}
-	$sql = 'SELECT `folder`, `filename` ' .
-					' FROM ' . prefix('images') . ', ' . prefix('albums') .
-					' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
-					prefix('albums') . '.id ' . $imageWhere . ' ORDER BY RAND()';
-	$result = query($sql);
-
-	$image = filterImageQuery($result, NULL);
+	$image = array_shift($_random_image_list);
 	if ($image) {
 		if ($daily) {
 			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
@@ -3154,7 +3179,11 @@ function getRandomImages($daily = false) {
 /**
  * Returns  a randomly selected image from the album or one of its subalbums
  * if the album has no images.
- * (May return NULL if no images found)
+ *
+ * Note for any given instantiation, multiple calls will not return a previously selected
+ * image.
+ *
+ * (May return NULL if no images remain)
  *
  * @param mixed $rootAlbum optional album object/folder from which to get the image.
  * @param bool $daily set to true to change picture only once a day.
@@ -3162,7 +3191,7 @@ function getRandomImages($daily = false) {
  * @return object
  */
 function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
-	global $_zp_current_album, $_zp_gallery, $_zp_current_search;
+	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_random_images_album;
 	if (empty($rootAlbum)) {
 		$album = $_zp_current_album;
 	} else {
@@ -3182,16 +3211,25 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 			}
 		}
 	}
-	$album->setSortType('random');
-	$image = $album->getImage(0);
+	if (!isset($_random_images_album[$album->name])) {
+		$_random_images_album[$album->name] = array();
+		$album->setSortType('random');
+		foreach ($album->getImages(0) as $imagename) {
+			$_random_images_album[$album->name][] = $imagename;
+		}
+	}
 
-	if (!$image) {
+	$image = array_shift($_random_images_album[$album->name]);
+	if ($image) {
+		$image = newImage($album, $image);
+	} else {
 		$album->setSortType('random', 'album');
 		foreach ($album->getAlbums() as $subalbum) {
 			if ($image = getRandomImagesAlbum($subalbum))
 				break;
 		}
 	}
+
 	if ($image && $image->exists) {
 		if ($daily) {
 			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
@@ -3234,7 +3272,7 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 	for ($i = 1; $i <= $number; $i++) {
 		switch ($option) {
 			case "all":
-				$randomImage = getRandomImages();
+				$randomImage = getRandomImages(false, $number);
 				break;
 			case "album":
 				$randomImage = getRandomImagesAlbum($rootAlbum);
@@ -3793,39 +3831,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-					// <!-- <![CDATA[
-					var within = <?php echo (int) $within; ?>;
-					function search_(way) {
-						within = way;
-						if (way) {
-							$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+				// <!-- <![CDATA[
+				var within = <?php echo (int) $within; ?>;
+				function search_(way) {
+					within = way;
+					if (way) {
+						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+					} else {
+						lastsearch = '';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+					}
+					$('#search_input').val('');
+				}
+				$('#search_form').submit(function () {
+					if (within) {
+						var newsearch = $.trim($('#search_input').val());
+						if (newsearch.substring(newsearch.length - 1) == ',') {
+							newsearch = newsearch.substr(0, newsearch.length - 1);
+						}
+						if (newsearch.length > 0) {
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
 						} else {
-							lastsearch = '';
-							$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+							$('#search_input').val('<?php echo $searchwords; ?>');
 						}
-						$('#search_input').val('');
 					}
-					$('#search_form').submit(function () {
-						if (within) {
-							var newsearch = $.trim($('#search_input').val());
-							if (newsearch.substring(newsearch.length - 1) == ',') {
-								newsearch = newsearch.substr(0, newsearch.length - 1);
-							}
-							if (newsearch.length > 0) {
-								$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-							} else {
-								$('#search_input').val('<?php echo $searchwords; ?>');
-							}
-						}
-						return true;
-					});
-					function search_all() {
-						//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-						var check = $('#SEARCH_checkall').prop('checked');
-						$('.SEARCH_checkall').prop('checked', check);
-					}
+					return true;
+				});
+				function search_all() {
+					//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+					var check = $('#SEARCH_checkall').prop('checked');
+					$('.SEARCH_checkall').prop('checked', check);
+				}
 
-					// ]]> -->
+				// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
@@ -3834,7 +3872,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 					<input type="text" name="words" value="" id="search_input" size="10" />
 				</span>
 				<?php if (count($fields) > 1 || $searchwords) { ?>
-					<a onclick="toggle('searchextrashow');" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
+					<a onclick="$('#searchextrashow').toggle();" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
 				<?php } ?>
 				<input type="<?php echo $type; ?>" <?php echo $button; ?> class="button buttons" id="search_submit" <?php echo $buttonSource; ?> data-role="none" />
 				<?php

@@ -104,8 +104,7 @@ class cmsFilters {
 			setOptionDefault('zenpage_articles_per_page', '10');
 			setOptionDefault('zenpage_text_length', '500');
 			setOptionDefault('zenpage_textshorten_indicator', ' (...)');
-			gettext($str = 'Read more');
-			setOptionDefault('zenpage_read_more', getAllTranslations($str));
+			setOptionDefault('zenpage_read_more', getAllTranslations('Read more'));
 			setOptionDefault('menu_truncate_string', 0);
 			setOptionDefault('menu_truncate_indicator', '');
 			setOptionDefault('zenpage_enabled_items', 3);
@@ -113,7 +112,6 @@ class cmsFilters {
 	}
 
 	function getOptionsSupported() {
-		global $_common_truncate_handler;
 
 		$options = array(
 				gettext('Enabled CMS items') => array(
@@ -140,25 +138,17 @@ class cmsFilters {
 						'order' => 3,
 						'desc' => gettext("The text for the link to the full article.")),
 				gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_NUMBER,
-						'disabled' => $_common_truncate_handler,
 						'order' => 23,
 						'desc' => gettext('Limit titles to this many characters. Zero means no limit.')),
 				gettext('Truncate indicator*') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
-						'disabled' => $_common_truncate_handler,
 						'order' => 24,
 						'desc' => gettext('Append this string to truncated titles.'))
 		);
-		if ($_common_truncate_handler) {
-			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
-					'order' => 25,
-					'desc' => '<p class="notebox">' . $_common_truncate_handler . '</p>');
-		} else {
-			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'zenpage\');"><em>Zenpage</em></a> plugin options.');
-			$options['note'] = array('key' => 'menu_truncate_note',
-					'type' => OPTION_TYPE_NOTE,
-					'order' => 25,
-					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
-		}
+
+		$options['note'] = array('key' => 'menu_truncate_note',
+				'type' => OPTION_TYPE_NOTE,
+				'order' => 25,
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> These options are shared amoung <em>menu_manager</em>, <em>print_album_menu</em>, and <em>zenpage</em>.</p>'));
 		return $options;
 	}
 
@@ -304,10 +294,16 @@ class cmsFilters {
 
 	static function admin_toolbox_news($redirect, $zf) {
 		global $_zp_CMS, $_zp_current_category, $_zp_current_article;
+		if (!empty($_zp_current_category)) {
+			$cat = '&amp;category=' . $_zp_current_category->getTitlelink();
+		} else {
+			$cat = '';
+		}
+
 		if (is_NewsArticle()) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS && $_zp_CMS->news_enabled) {
 				// page is a NewsArticle--provide zenpage edit, delete, and Add links
-				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_article->getTitleLink()) . "&amp;subpage=object\">" . gettext("Edit Article") . "</a></li>";
+				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_article->getTitleLink()) . $cat . "&amp;subpage=object\">" . gettext("Edit Article") . "</a></li>";
 				if (GALLERY_SESSION) {
 					// XSRF defense requires sessions
 					?>
@@ -321,10 +317,7 @@ class cmsFilters {
 			}
 			$redirect .= '&amp;title=' . urlencode($_zp_current_article->getTitlelink());
 		} else {
-
-			if (!empty($_zp_current_category)) {
-				$redirect .= '&amp;category=' . $_zp_current_category->getTitlelink();
-			}
+			$redirect .= $cat;
 		}
 		return $redirect;
 	}

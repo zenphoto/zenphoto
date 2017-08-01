@@ -152,7 +152,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('Admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
 
@@ -319,6 +318,28 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<?php
 	}
 
+	function printSetupWarning() {
+		list($diff, $needs, $found, $present) = checkSignature(0);
+		if (zp_loggedin(ADMIN_RIGHTS) && $present && (zpFunctions::hasPrimaryScripts() || empty($needs))) {
+			//	button to restore setup files if needed
+			if (empty($needs)) {
+				?>
+				<div class="warningbox">
+					<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
+					<?php
+					if (zpFunctions::hasPrimaryScripts()) {
+						echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. <a href="' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup&XSRFToken=' . getXSRFToken('protect_setup') . '">Protect the scripts</a>. ');
+					}
+					?>
+				</div>
+				<?php
+				return 2;
+			}
+			return 1;
+		}
+		return 0;
+	}
+
 	/**
 	 * Print the nav tabs for the admin section. We determine which tab should be highlighted
 	 * from the $_GET['page']. If none is set, we default to "home".
@@ -351,7 +372,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								$class = ' class="alert"';
 						}
 						$subtabs = $zenphoto_tabs[$key]['subtabs'];
-						$hasSubtabs = is_array($subtabs);
+						$hasSubtabs = !empty($subtabs) && is_array($subtabs);
 						$loc++;
 						?>
 						<li<?php if ($hasSubtabs) echo ' class="has-sub"'; ?>>
@@ -406,11 +427,22 @@ function printAdminHeader($tab, $subtab = NULL) {
 												}
 											}
 										}
-										if (strpos($link, '/') !== 0) { // zp_core relative
-											$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-										} else {
-											$link = WEBPATH . $link;
+										switch ($link[0]) {
+											case'/':
+												$link = WEBPATH . $link;
+												break;
+											case '?':
+												$request = parse_url(getRequestURI());
+												if (isset($request['query'])) {
+													$link .= '&' . $request['query'];
+												}
+												$link = $request['path'] . $link;
+												break;
+											default:
+												$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
+												break;
 										}
+
 										if (in_array($subkey, $alert)) {
 											$subclass = ' class="' . $subclass . 'alert"';
 										} else if ($subclass) {
@@ -599,10 +631,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 */
 	function putSlider($text, $postkey, $min, $max, $v) {
 		?>
-		<span id="slider_display-<?php echo $postkey; ?>">
+		<span id="slider_display-<?php echo $postkey; ?>" class="nowrap">
 			<?php echo $text; ?>
 			<input type="text" id="<?php echo $postkey; ?>" name="<?php echo $postkey; ?>" size="2" value="<?php echo $v; ?>" onchange="$('#slider-<?php echo $postkey; ?>').slider('value', $('#<?php echo $postkey; ?>').val());"/>
 		</span>
+
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(function () {
@@ -619,7 +652,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			});
 			// ]]> -->
 		</script>
-		<div id="slider-<?php echo $postkey; ?>"></div>		<?php
+		<div id="slider-<?php echo $postkey; ?>"></div>
+		<br />
+		<?php
 	}
 
 	define('CUSTOM_OPTION_PREFIX', '_ZP_CUSTOM_');
@@ -695,11 +730,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$options = array_keys($supportedOptions);
 				natcasesort($options);
 			}
+
 			if (method_exists($optionHandler, 'handleOptionSave')) {
 				?>
-				<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $extension; ?>" />
+				<tr style="display:none">
+					<td>
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $extension; ?>" />
+					</td>
+				</tr>
 				<?php
 			}
+
+
 			foreach ($options as $option) {
 				$descending = NULL;
 				$row = $supportedOptions[$option];
@@ -924,7 +966,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										?>
 										<label class="checkboxlabel">
 											<?php if ($behind) echo($display); ?>
-											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo 'checked="checked"'; ?><?php echo $disabled; ?> />
+											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo ' checked="checked"'; ?><?php echo $disabled; ?> />
 											<?php if (!$behind) echo($display); ?>
 										</label>
 										<?php
@@ -983,7 +1025,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_CHECKBOX_ULLIST:
 							?>
 							<td class="option_value">
-								<input class="" type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
 								<?php
 								$setOptions = getSerializedArray($v);
 								$all = empty($setOptions);
@@ -997,7 +1039,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										?>
 										<li>
 											<label class="displayinline">
-												<input type="checkbox" id="__<?php echo $checkbox; ?>" class="all_<?php echo $key; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo 'checked="checked"'; ?><?php echo $disabled; ?> />
+												<input type="checkbox" id="__<?php echo $checkbox; ?>" class="all_<?php echo $key; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo ' checked="checked"'; ?><?php echo $disabled; ?> />
 												<?php echo($display); ?>
 											</label>
 										</li>
@@ -1054,10 +1096,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 					if ($desc && $type != OPTION_TYPE_NOTE) {
 						?>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png"</span>
-							<div class="option_desc_hidden">
-								<?php echo $desc; ?>
-							</div>
+							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+								<div class="option_desc_hidden">
+									<?php echo $desc; ?>
+								</div>
+							</span>
 						</td>
 						<?php
 					}
@@ -1110,7 +1153,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 						break;
 					case 'save':
-						$customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$posted]));
+						$customHandlers[] = array('whom' => $key, 'extension' => sanitize_path($_POST[$posted]));
 						continue 2;
 					default:
 						if (isset($_POST[$postkey])) {
@@ -1138,11 +1181,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 		foreach ($customHandlers as $custom) {
-			if ($extension = $custom['extension']) {
-				require_once(getPlugin($extension . '.php'));
+			if ($extension = $custom['extension'] . '.php' != '.php') {
+				if ($extension = getPlugin($extension)) {
+					require_once($extension);
+				}
+				if (class_exists($custom['whom'])) {
+					$whom = new $custom['whom']();
+					$returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
+				}
 			}
-			$whom = new $custom['whom']();
-			$returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
 		}
 
 		return $returntab;
@@ -2904,12 +2951,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$editHidden = '';
 			?>
 			<div id="ls_<?php echo ++$_lsInstance; ?>">
-				<select class="languageSelector ignoredirty" onchange="lsclick(this.value,<?php echo $_lsInstance; ?>);"<?php if ($key == $locale) echo ' selected="selected"' ?>>
+				<select class="languageSelector ignoredirty" onchange="lsclick(this.value,<?php echo $_lsInstance; ?>);">
 					<?php
 					foreach ($emptylang as $key => $lang) {
 						$flag = getLanguageFlag($key);
 						?>
-						<option value="<?php echo $key; ?>" data-image="<?php echo $flag; ?>" alt="<?php echo $key; ?>">
+						<option value="<?php echo $key; ?>" data-image="<?php echo $flag; ?>" alt="<?php echo $key; ?>"<?php if ($key == $locale) echo ' selected="selected"' ?>>
 							<?php echo $lang; ?>
 						</option>
 						<?php
@@ -3597,7 +3644,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 	?>
 	<div class="box-albums-unpadded">
 		<h2 class="h2_bordered_albums">
-			<a onclick="toggle('<?php echo $prefix ?>');" title="<?php echo html_encode($hint); ?>" ><?php echo $text . $itemcount; ?></a>
+			<a onclick="$('#<?php echo $prefix ?>').toggle();" title="<?php echo html_encode($hint); ?>" ><?php echo $text . $itemcount; ?></a>
 		</h2>
 		<div id="<?php echo $prefix ?>" style="display:none;">
 			<ul class="albumchecklist">
@@ -4641,8 +4688,8 @@ function admin_securityChecks($rights, $return) {
  * Checks if protocol not https and redirects if https required
  */
 function httpsRedirect() {
-	if (defined('SERVER_PROTOCOL') && SERVER_PROTOCOL == 'https_admin') {
-// force https login
+	if (defined('SERVER_PROTOCOL') && SERVER_PROTOCOL !== 'http') {
+		// force https login
 		if (!isset($_SERVER["HTTPS"])) {
 			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
 			header("Location:$redirect");

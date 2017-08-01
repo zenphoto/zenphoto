@@ -109,6 +109,11 @@ if ($_zp_page < 0) {
 	$zp_request = false;
 } else if ($zp_request && $_zp_page > 1) {
 	$zp_request = $_zp_page_check($zp_request, $_zp_gallery_page, $_zp_page);
+	if (!$zp_request && extensionEnabled('themeSwitcher') && isset($_GET['themeSwitcher'])) {
+		//might just be a switched-to theme that does not have the same pagination,
+		//set page to 1 and procede
+		$zp_request = $_zp_page = 1;
+	}
 }
 
 //$_zp_script_timer['theme scripts'] = microtime();

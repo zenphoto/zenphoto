@@ -1,10 +1,9 @@
 /* language selectbox effect.
 ------------------------------------- */
-.languageselect {
-}
 
-.languageoption {
-	margin-bottom: 2px;
+.languageSelector {
+	text-align: left !important;
+	white-space: nowrap;
 }
 
 .flags img {

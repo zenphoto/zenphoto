@@ -33,6 +33,7 @@ for ($i = 0; $i < 30; $i++) {
 setOptionDefault('extra_auth_hash_text', $auth_extratext);
 purgeOption('adminTagsTab', 0);
 
+
 /* fix for NULL theme name */
 Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
 
@@ -140,18 +141,12 @@ setOption('zenphoto_install', serialize(installSignature()));
 $admins = $_zp_authority->getAdministrators('all');
 setOptionDefault('gallery_data', NULL);
 
-$str = gettext("What is your father’s middle name?");
-$questions[] = getSerializedArray(getAllTranslations($str));
-$str = gettext("What street did your Grandmother live on?");
-$questions [] = getSerializedArray(getAllTranslations($str));
-$str = gettext("Who was your favorite singer?");
-$questions[] = getSerializedArray(getAllTranslations($str));
-$str = gettext("When did you first get a computer?");
-$questions[] = getSerializedArray(getAllTranslations($str));
-$str = gettext("How much wood could a woodchuck chuck if a woodchuck could chuck wood?");
-$questions[] = getSerializedArray(getAllTranslations($str));
-$str = gettext("What is the date of the Ides of March?");
-$questions[] = getSerializedArray(getAllTranslations($str));
+$questions[] = getSerializedArray(getAllTranslations("What is your father’s middle name?"));
+$questions [] = getSerializedArray(getAllTranslations("What street did your Grandmother live on?"));
+$questions[] = getSerializedArray(getAllTranslations("Who was your favorite singer?"));
+$questions[] = getSerializedArray(getAllTranslations("When did you first get a computer?"));
+$questions[] = getSerializedArray(getAllTranslations("How much wood could a woodchuck chuck if a woodchuck could chuck wood?"));
+$questions[] = getSerializedArray(getAllTranslations("What is the date of the Ides of March?"));
 setOptionDefault('challenge_foils', serialize($questions));
 setOptionDefault('strong_hash', 1);
 if (empty($admins)) { //	empty administrators table
@@ -283,6 +278,7 @@ setOptionDefault('image_quality', 85);
 setOptionDefault('thumb_quality', 75);
 setOptionDefault('last_garbage_collect', time());
 setOptionDefault('cookie_persistence', 5184000);
+setOptionDefault('zenphoto_cookie_path', WEBPATH);
 
 setOptionDefault('search_password', '');
 setOptionDefault('search_hint', NULL);
@@ -475,6 +471,10 @@ setOptionDefault('AlbumThumbSelect', 1);
 
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
 setOptionDefault('site_email_name', 'ZenPhoto20');
+
+setOptionDefault('register_user_notify', 1);
+
+setOptionDefault('register_user_text', getAllTranslations('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s.'));
 
 setOptionDefault('obfuscate_cache', 0);
 

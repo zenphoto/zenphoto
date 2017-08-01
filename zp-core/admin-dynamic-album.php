@@ -76,19 +76,27 @@ if (isset($_POST['savealbum'])) {
 					}
 				}
 			} else {
-				if (isset($_POST['SEARCH_list'])) {
-					$searchfields = sanitize($_POST['SEARCH_list']);
-				} else {
-					$searchfields = array();
+				$searchfields = array();
+				foreach ($_POST as $key => $v) {
+					if (strpos($key, 'SEARCH_') === 0) {
+						$searchfields[] = $v;
+					}
 				}
-				$words = sanitize($_POST['words']);
+				$criteria = explode('::', sanitize($_POST['words']));
+				$words = @$criteria[0];
 			}
 			if (isset($_POST['thumb'])) {
 				$thumb = sanitize($_POST['thumb']);
 			} else {
 				$thumb = '';
 			}
-			$constraints = "\nCONSTRAINTS=" . 'inalbums=' . ((int) (isset($_POST['return_albums']))) . '&inimages=' . ((int) (isset($_POST['return_images']))) . '&unpublished=' . ((int) (isset($_POST['return_unpublished'])));
+			$inalbums = (int) (isset($_POST['return_albums']));
+			$inAlbumlist = sanitize($_POST['albumlist']);
+			if ($inAlbumlist) {
+				$inalbums .= ':' . $inAlbumlist;
+			}
+
+			$constraints = "\nCONSTRAINTS=" . 'inalbums=' . $inalbums . '&inimages=' . ((int) (isset($_POST['return_images']))) . '&unpublished=' . ((int) (isset($_POST['return_unpublished'])));
 			$redirect = $album . '/' . $albumname . '.alb';
 
 			if (!empty($albumname)) {
@@ -133,6 +141,14 @@ echo "<h1>" . gettext("Create Dynamic Album") . "</h1>\n";
 	genAlbumList($albumlist);
 	$fields = $search->fieldList;
 	$words = $search->codifySearchString();
+	$inAlbumlist = $search->getAlbumList();
+
+	if (empty($inAlbumlist)) {
+		$inalbums = '';
+	} else {
+		$inalbums = implode(',', $inAlbumlist);
+	}
+
 	if (isset($_GET['name'])) {
 		$albumname = sanitize($_GET['name']);
 	} else {
@@ -237,6 +253,12 @@ echo "<h1>" . gettext("Create Dynamic Album") . "</h1>\n";
 					<label><input type="checkbox" name="return_albums" value="1"<?php if (!getOption('search_no_albums')) echo ' checked="checked"' ?> /><?php echo gettext('Return albums found') ?></label>
 					<label><input type="checkbox" name="return_images" value="1"<?php if (!getOption('search_no_images')) echo ' checked="checked"' ?> /><?php echo gettext('Return images found') ?></label>
 					<label><input type="checkbox" name="return_unpublished" value="1" /><?php echo gettext('Return unpublished items') ?></label>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<?php echo gettext('within'); ?> <input type="text" size="60" name="albumlist" value="<?php echo html_encode($inalbums); ?>" />
 				</td>
 			</tr>
 

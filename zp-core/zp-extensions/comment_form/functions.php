@@ -543,7 +543,7 @@ function comment_form_handle_comment() {
 				if (isset($_POST['remember'])) {
 					// Should always re-cookie to update info in case it's changed...
 					$_zp_comment_stored['comment'] = ''; // clear the comment itself
-					zp_setCookie('zenphoto_comment', serialize($_zp_comment_stored));
+					zp_setCookie('zenphoto_comment', serialize($_zp_comment_stored), false);
 				} else {
 					zp_clearCookie('zenphoto_comment');
 				}

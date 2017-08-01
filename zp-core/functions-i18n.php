@@ -262,6 +262,11 @@ function i18nSetLocale($locale) {
 	$try[$simple[0]] = $simple[0];
 	$try['NULL'] = NULL;
 	$rslt = setlocale(LC_ALL, $try);
+	if (isWin()) {
+		@putenv("LC_ALL=$locale");
+		@putenv("LANG=$locale"); 
+		@putenv("LANGUAGE=$locale");
+	}
 	$_zp_RTL_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
 	if (DEBUG_LOCALE) {
 		debugLog("setlocale(" . implode(',', $try) . ") returned: $rslt");
@@ -322,8 +327,6 @@ function setupCurrentLocale($override = NULL) {
 		}
 	}
 	// gettext setup
-	@putenv("LANG=$locale"); // Windows ???
-	@putenv("LANGUAGE=$locale"); // Windows ???
 	$result = i18nSetLocale($locale);
 	if (!$result) {
 		if (isset($_REQUEST['locale']) || is_null($override)) { // and it was chosen via locale
@@ -400,6 +403,7 @@ function validateLocale($userlocale, $source) {
 		debugLog("validateLocale($userlocale,$source)");
 	$userlocale = strtoupper(str_replace('-', '_', $userlocale));
 	$languageSupport = generateLanguageList();
+
 	$locale = NULL;
 	if (!empty($userlocale)) {
 		foreach ($languageSupport as $key => $value) {

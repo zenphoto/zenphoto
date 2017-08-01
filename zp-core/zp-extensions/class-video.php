@@ -87,12 +87,7 @@ class Video extends Image {
 	function __construct($album, $filename, $quiet = false) {
 		global $_zp_supported_images;
 
-		$msg = false;
-		if (!is_object($album) || !$album->exists) {
-			$msg = gettext('Invalid video instantiation: Album does not exist');
-		} else if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
-			$msg = gettext('Invalid video instantiation: file does not exist.');
-		}
+		$msg = $this->invalid($album, $filename);
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
@@ -485,7 +480,6 @@ class Video extends Image {
 
 class pseudoPlayer {
 
-	public $name = '';
 	private $width = 480;
 	private $height = 360;
 

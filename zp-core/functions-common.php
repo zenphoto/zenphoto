@@ -58,6 +58,22 @@ function getUserIP() {
 }
 
 /**
+ * Returns true if we are running on a Windows server
+ *
+ * @return bool
+ */
+function isWin() {
+	return (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN');
+}
+
+/**
+ * Returns true if we are running on a Macintosh
+ */
+function isMac() {
+	return strtoupper(PHP_OS) == 'DARWIN';
+}
+
+/**
  * triggers an error
  *
  * @param string $message
@@ -120,7 +136,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		// out of curtesy show the error message on the WEB page since there will likely be a blank page otherwise
 		?>
 		<div style="padding: 10px 15px 10px 15px;	background-color: #FDD;	border-width: 1px 1px 2px 1px;	border-style: solid;	border-color: #FAA;	margin-bottom: 10px;	font-size: 100%;">
-			<?php echo html_encode($msg); ?>
+		<?php echo html_encode($msg); ?>
 		</div>
 		<?php
 	}
@@ -211,7 +227,7 @@ function sanitize_numeric($num) {
  * @return string
  */
 function sanitize_script($text) {
-	return preg_replace('!<script.*>.*</script>!ixs', '', $text);
+	return preg_replace('~<script.*>.*</script>~isU', '', $text);
 }
 
 /** Make strings generally clean.  Takes an input string and cleans out
@@ -249,9 +265,9 @@ function ksesProcess($input_string, $allowed_tags) {
 	if (function_exists('kses')) {
 		return kses($input_string, $allowed_tags);
 	} else {
-		$input_string = preg_replace('~<script.*?/script>~is', '', $input_string);
-		$input_string = preg_replace('~<style.*?/style>~is', '', $input_string);
-		$input_string = preg_replace('~<!--.*?-->~is', '', $input_string);
+		$input_string = preg_replace('~<script.*>.*</script>~isU', '', $input_string);
+		$input_string = preg_replace('~<style.*>.*</style>~isU', '', $input_string);
+		$input_string = preg_replace('~<!--.*-->~isU', '', $input_string);
 		$content = strip_tags($input_string);
 		$input_string = str_replace('&nbsp;', ' ', $input_string);
 		$input_string = html_decode($input_string);
@@ -409,7 +425,7 @@ function html_encodeTagged($original, $allowScript = true) {
 	$str = $original;
 	//javascript
 	if ($allowScript) {
-		preg_match_all('!<script.*>.*</script>!ixs', $str, $matches);
+		preg_match_all('~<script.*>.*</script>~isU', $str, $matches);
 		foreach (array_unique($matches[0]) as $key => $tag) {
 			$tags[2]['%' . $key . '$j'] = $tag;
 			$str = str_replace($tag, '%' . $key . '$j', $str);
@@ -591,7 +607,14 @@ function debugLogVar($message) {
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message) . "\r" . html_decode(getBare($str)), false, $log);
+
+	$formatting = array('<[/]*font(.*?)>', "<[/]*pre(.*?)>", '<[/]*i>', '<[/]*b>', '<[/]*small>');
+	foreach ($formatting as $pattern) {
+		$str = preg_replace('~' . $pattern . '~', '', $str);
+	}
+	$str = getBare($str);
+
+	debugLog(trim($message) . "\r" . html_decode($str), false, $log);
 }
 
 /**
@@ -600,7 +623,7 @@ function debugLogVar($message) {
  * @return bool
  */
 function secureServer() {
-	return isset($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']), 'on') === 0;
+	return isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']), 'off') === false;
 }
 
 /**
@@ -610,24 +633,36 @@ function secureServer() {
 function zp_session_start() {
 	global $_zp_conf_vars;
 	if (session_id() == '') {
+		@ini_set('session.use_strict_mode', 1);
 		//	insure that the session data has a place to be saved
 		if (isset($_zp_conf_vars['session_save_path'])) {
 			session_save_path($_zp_conf_vars['session_save_path']);
 		}
 		$_session_path = session_save_path();
+
 		if (ini_get('session.save_handler') == 'files' && !file_exists($_session_path) || !is_writable($_session_path)) {
-			mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', FOLDER_MOD);
+			mkdir_recursive(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions', (fileperms(dirname(__FILE__)) & 0666) | 0311);
 			session_save_path(SERVERPATH . '/' . DATA_FOLDER . '/PHP_sessions');
 		}
+		$sessionCookie = session_get_cookie_params();
+		session_set_cookie_params($sessionCookie['lifetime'], WEBPATH . '/', $_SERVER['HTTP_HOST'], secureServer(), true);
 
-		if (secureServer()) {
-			// force session cookie to be secure when in https
-			$CookieInfo = session_get_cookie_params();
-			session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
-		}
-		return session_start();
+		$result = session_start();
+		return $result;
 	}
 	return NULL;
+}
+
+function zp_session_destroy() {
+	if (session_id()) {
+		$_SESSION = array();
+		if (ini_get("session.use_cookies")) {
+			$params = session_get_cookie_params();
+			setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
+			);
+		}
+		session_destroy();
+	}
 }
 
 /**
@@ -676,37 +711,52 @@ function zp_cookieEncode($value) {
  *
  * @param string $name The 'cookie' name
  * @param string $value The value to be stored
- * @param timestamp $time The time delta until the cookie expires
- * @param string $path The path on the server in which the cookie will be available on
- * @param bool $secure true if secure cookie
+ * @param int $time The time delta until the cookie expires. Set negative to clear cookie,
+ * 									set to FALSE to expire at end of session
+ * @param bool $security set to false to make the cookie send for any kind of connection
  */
-function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = false) {
+function zp_setCookie($name, $value, $time = NULL, $security = true) {
+	$secure = $security && secureServer();
 	if (empty($value)) {
 		$cookiev = '';
 	} else {
 		$cookiev = zp_cookieEncode($value);
 	}
-	if (is_null($time)) {
-		$time = COOKIE_PESISTENCE;
+	if (is_null($t = $time)) {
+		$t = time() + COOKIE_PESISTENCE;
+		$tString = COOKIE_PESISTENCE;
+	} else {
+		if ($time === false) {
+			$tString = 'FALSE';
+		} else {
+			$t = time() + $time;
+			$tString = (int) $time;
+		}
 	}
-	if (is_null($path)) {
+	$path = getOption('zenphoto_cookie_path');
+	if (empty($path)) {
 		$path = WEBPATH;
 	}
-	if (substr($path, -1, 1) != '/')
+	if (substr($path, -1, 1) != '/') {
 		$path .= '/';
+	}
 	if (DEBUG_LOGIN) {
-		debugLog("zp_setCookie($name, $value, $time, $path)::album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
+		debugLog("zp_setCookie($name, $value, $tString)::path=" . $path . "; secure=" . sprintf('%u', $secure) . "; album_session=" . GALLERY_SESSION . "; SESSION=" . session_id());
 	}
 	if (($time < 0) || !GALLERY_SESSION) {
-		setcookie($name, $cookiev, time() + $time, $path, "", $secure);
+		setcookie($name, $cookiev, (int) $t, $path, "", $secure, true);
 	}
 	if ($time < 0) {
-		if (isset($_SESSION))
+		if (session_id()) {
 			unset($_SESSION[$name]);
-		if (isset($_COOKIE))
+		}
+		if (isset($_COOKIE)) {
 			unset($_COOKIE[$name]);
+		}
 	} else {
-		$_SESSION[$name] = $value;
+		if (session_id()) {
+			$_SESSION[$name] = $value;
+		}
 		$_COOKIE[$name] = $cookiev;
 	}
 }
@@ -715,11 +765,9 @@ function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = false
  *
  * Clears a cookie
  * @param string $name
- * @param string $path
- * @param bool $secure true if secure cookie
  */
-function zp_clearCookie($name, $path = NULl, $secure = false) {
-	zp_setCookie($name, '', -368000, $path, $secure);
+function zp_clearCookie($name) {
+	zp_setCookie($name, '', -368000, false);
 }
 
 /**

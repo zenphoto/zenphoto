@@ -378,9 +378,10 @@ class PersistentObject {
 			foreach ($insert_data as $key => $value) { // copy over any changes
 				$this->data[$key] = $value;
 			}
+			$this->updates = array();
+
 			$this->data['id'] = $this->id = (int) db_insert_id(); // so 'get' will retrieve it!
 			$this->loaded = true;
-			$this->updates = array();
 		} else {
 			// Save the existing object (updates only) based on the existing id.
 			if (empty($this->updates)) {
@@ -422,6 +423,14 @@ class PersistentObject {
 		return $this->table . " (" . $this->id . ")";
 	}
 
+	/**
+	 * Magic  function to implement get/set methods for custom defined fields
+	 *
+	 * @param type $method
+	 * @param type $args
+	 * @return type
+	 * @throws Exception
+	 */
 	public function __call($method, $args) {
 		$how = strtolower(substr($method, 0, 3));
 		$what = strtolower(substr($method, 3));

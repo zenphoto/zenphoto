@@ -13,6 +13,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tag_suggest.
 
 if (is_AdminEditPage('page')) {
 	$rights = ZENPAGE_PAGES_RIGHTS;
+	$script = 'admin-pages.php?tab=pages';
 	$page = $tab = 'pages';
 	$tab = NULL;
 	$new = 'newPage';
@@ -20,6 +21,7 @@ if (is_AdminEditPage('page')) {
 	$returnpage = 'page';
 } else if (is_AdminEditPage('newsarticle')) {
 	$rights = ZENPAGE_NEWS_RIGHTS;
+	$script = 'admin-news.php?tab=articles';
 	$page = 'news';
 	$_GET['tab'] = $tab = 'articles';
 	$new = 'newArticle';
@@ -27,11 +29,16 @@ if (is_AdminEditPage('page')) {
 	$returnpage = 'newsarticle';
 } else if (is_AdminEditPage('newscategory')) {
 	$rights = ZENPAGE_NEWS_RIGHTS;
+	$script = 'admin-categories.php?tab=categories';
 	$page = 'news';
 	$_GET['tab'] = $tab = 'categories';
 	$new = 'newCategory';
 	$update = 'updateCategory';
 	$returnpage = 'newscategory';
+} else {
+	//we should not be here!
+	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
+	exitZP();
 }
 
 admin_securityChecks($rights, currentRelativeURL());
@@ -41,15 +48,13 @@ updatePublished('pages');
 $saveitem = '';
 $reports = array();
 
-
-
-
 $redirect = false;
 if (isset($_GET['titlelink'])) {
 	$result = $new(urldecode(sanitize($_GET['titlelink'])));
 } else if (isset($_GET['update'])) {
 	XSRFdefender('update');
 	$result = $update($reports);
+
 	if (getCheckboxState('copy_delete_object')) {
 		switch (sanitize($_POST['copy_delete_object'])) {
 			case 'copy':
@@ -63,13 +68,19 @@ if (isset($_GET['titlelink'])) {
 				$_GET['titlelink'] = $as;
 				break;
 			case 'delete':
-				$reports[] = deleteZenpageObj($result, 'admin-' . $_GET['tab'] . '.php');
+				$reports[] = deleteZenpageObj($result, $script);
 				unset($_POST['subpage']);
 				break;
 		}
 	}
 	if (isset($_POST['subpage']) && $_POST['subpage'] == 'object' && count($reports) <= 1) {
-		header('Location: ' . $result->getLink());
+		if (isset($_POST['category'])) {
+			$_zp_current_category = newCategory(sanitize($_POST['category']), false);
+			$cat = $_zp_current_category->exists;
+		} else {
+			$cat = NULL;
+		}
+		header('Location: ' . $result->getLink($cat));
 	} else {
 		$redirect = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?' . $returnpage . '&titlelink=' . html_encode($result->getTitlelink());
 	}
@@ -320,10 +331,15 @@ $tagsort = getTagOrder();
 							if (isset($_GET['subpage'])) {
 								?>
 								<input type="hidden" name="subpage" id="subpage" value="<?php echo html_encode(sanitize($_GET['subpage'])); ?>" />
-
+								<?php
+							}
+							if (isset($_GET['category'])) {
+								?>
+								<input type="hidden" name="category" id="subpage" value="<?php echo html_encode(sanitize($_GET['category'])); ?>" />
 								<?php
 							}
 							?>
+
 							<input type="hidden" name="id" value="<?php echo $result->getID(); ?>" />
 							<input type="hidden" name="titlelink-old" id="titlelink-old" value="<?php echo html_encode($result->getTitlelink()); ?>" />
 							<input type="hidden" name="lastchange" id="lastchange" value="<?php echo date('Y-m-d H:i:s'); ?>" />

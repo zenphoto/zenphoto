@@ -61,6 +61,7 @@ if (isset($_GET['action'])) {
 }
 
 list($logtabs, $subtab, $new) = getLogTabs();
+$logname = $subtab;
 
 printAdminHeader('logs', $subtab);
 

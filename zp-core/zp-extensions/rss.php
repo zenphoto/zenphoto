@@ -267,14 +267,25 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 				$link = array('rss' => 'comments', 'type' => 'allcomments');
 			}
 			break;
+		default:
+			$link = array('rss' => '');
+			break;
 	}
 	if (is_array($link)) {
-		$link['lang'] = $lang;
+		switch (defined('LOCALE_TYPE') ? LOCALE_TYPE : 0) {
+			case 2:
+			case 1:
+				break;
+			default:
+				$link['lang'] = $lang;
+				break;
+		}
+
 		if (zp_loggedin() && getOption('RSS_portable_link')) {
 			$link['user'] = (string) $_zp_current_admin_obj->getID();
 			$link['token'] = Zenphoto_Authority::passwordHash(serialize($link), '');
 		}
-		$uri = WEBPATH . '/index.php?' . str_replace('=&', '&', http_build_query($link));
+		$uri = WEBPATH . '/index.php?' . rtrim(str_replace('=&', '&', http_build_query($link)), '=');
 		return $uri;
 	}
 	return NULL;
@@ -300,9 +311,6 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $clas
 	}
 	if (!is_null($class)) {
 		$class = 'class="' . $class . '"';
-	}
-	if (empty($lang)) {
-		$lang = zpFunctions::getLanguageText(getOption('locale'));
 	}
 	$link = getRSSLink($option, $lang, $addl);
 	if ($link) {
@@ -523,7 +531,7 @@ class RSS extends feed {
 				return;
 
 			default: // an unknown request
-				self:feed404();
+				self::feed404();
 				break;
 		}
 		$this->feeditems = $this->getitems();

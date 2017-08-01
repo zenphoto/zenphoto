@@ -66,15 +66,15 @@ $zpskel_social = function_exists('printAddThis');
 				break;
 			case 'pages.php':
 				$zpskel_metatitle = getBarePageTitle() . ' | ' . getBareGalleryTitle();
-				$zpskel_metadesc = strip_tags(truncate_string(getPageContent(), 150, '...'));
+				$zpskel_metadesc = truncate_string(getBare(getPageContent(), 150, '...'));
 				break;
 			case 'news.php':
 				if (is_NewsArticle()) {
 					$zpskel_metatitle = gettext('News') . ' | ' . getBareNewsTitle() . ' | ' . getBareGalleryTitle();
-					$zpskel_metadesc = strip_tags(truncate_string(getNewsContent(), 150, '...'));
+					$zpskel_metadesc = truncate_string(getBare(getNewsContent(), 150, '...'));
 				} else if ($_zp_current_category) {
 					$zpskel_metatitle = gettext('News') . ' | ' . $_zp_current_category->getTitle() . ' | ' . getBareGalleryTitle();
-					$zpskel_metadesc = strip_tags(truncate_string(getNewsCategoryDesc(), 150, '...'));
+					$zpskel_metadesc = truncate_string(getBare(getNewsCategoryDesc(), 150, '...'));
 				} else if (getCurrentNewsArchive()) {
 					$zpskel_metatitle = gettext('News') . ' | ' . getCurrentNewsArchive() . ' | ' . getBareGalleryTitle();
 					$zpskel_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');

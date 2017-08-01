@@ -569,7 +569,7 @@ class _Authority {
 						'MANAGE_ALL_ALBUM_RIGHTS' => array('value' => pow(2, 24), 'name' => gettext('Manage all albums'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
 						'THEMES_RIGHTS' => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
 						'TAGS_RIGHTS' => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
-						'OPTIONS_RIGHTS' => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options tabs.')),
+						'OPTIONS_RIGHTS' => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options.')),
 						'ADMIN_RIGHTS' => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
 				break;
 			case 3:
@@ -594,7 +594,7 @@ class _Authority {
 						'MANAGE_ALL_ALBUM_RIGHTS' => array('value' => pow(2, 23), 'name' => gettext('Manage all'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
 						'THEMES_RIGHTS' => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
 						'TAGS_RIGHTS' => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
-						'OPTIONS_RIGHTS' => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options tabs.')),
+						'OPTIONS_RIGHTS' => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options.')),
 						'ADMIN_RIGHTS' => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
 				break;
 			case 4:
@@ -626,7 +626,7 @@ class _Authority {
 						'THEMES_RIGHTS' => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
 						//2*27
 						'TAGS_RIGHTS' => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
-						'OPTIONS_RIGHTS' => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options tabs.')),
+						'OPTIONS_RIGHTS' => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options.')),
 						'ADMIN_RIGHTS' => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
 				break;
 		}
@@ -684,7 +684,7 @@ class _Authority {
 		$user->set('lastloggedin', $user->get('loggedin'));
 		$user->set('loggedin', date('Y-m-d H:i:s'));
 		$user->save();
-		zp_setCookie("zp_user_auth", $user->getPass() . '.' . $user->getID(), NULL, NULL, secureServer());
+		zp_setCookie("zp_user_auth", $user->getPass() . '.' . $user->getID());
 	}
 
 	/**
@@ -708,7 +708,8 @@ class _Authority {
 						if ($_zp_loggedin) {
 							self::logUser($user);
 							$_zp_current_admin_obj = $user;
-							session_regenerate_id(true);
+							zp_session_destroy();
+							zp_session_start();
 						} else {
 							zp_clearCookie("zp_user_auth"); // Clear the cookie, just in case
 							$_zp_login_error = 1;
@@ -826,14 +827,17 @@ class _Authority {
 	 * Cleans up on logout
 	 *
 	 */
-	static function handleLogout() {
+	static function handleLogout($location) {
 		global $_zp_loggedin, $_zp_pre_authorization, $_zp_current_admin_obj;
+		$location = zp_apply_filter('zp_logout', $location, $_zp_current_admin_obj);
 		foreach (self::getAuthCookies() as $cookie => $value) {
 			zp_clearCookie($cookie);
 		}
+		zp_clearCookie('zenphoto_ssl');
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
-		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);
+		zp_session_destroy();
+		return $location;
 	}
 
 	/**
@@ -881,6 +885,8 @@ class _Authority {
 			}
 		}
 		$alt_handlers = zp_apply_filter('alt_login_handler', array());
+		ksort($alt_handlers);
+
 		$star = false;
 		$mails = array();
 		$info = array('challenge' => '', 'response' => '');
@@ -1005,8 +1011,12 @@ class _Authority {
 							?>
 							<div class="buttons">
 								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?></button>
-								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=challenge', 'ref=' + $('#user').val(), 'cycle=<?php echo $cycle; ?>']);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
-								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val(), 'cycle=<?php echo $cycle; ?>']);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
+								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=' + $('#user').val();" >
+									<?php echo gettext("Refresh"); ?>
+								</button>
+								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?>
+								</button>
 							</div>
 							<br class="clearall">
 						</fieldset>
@@ -1015,7 +1025,7 @@ class _Authority {
 						if ($star) {
 							?>
 							<p class="logon_link">
-								<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
+								<a onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=captcha&amp;ref=' + $('#user').val();" >
 									<?php echo gettext('Request reset by e-mail'); ?>
 								</a>
 							</p>
@@ -1036,7 +1046,7 @@ class _Authority {
 							var handlers = [];
 					<?php
 					$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">' .
-									'<option value="0">' . html_encode(get_language_string($_zp_gallery->getTitle())) . '</option>';
+									'<option value="0">' . html_encode(get_language_string($_zp_gallery->getTitle())) . "</option>\n";
 					$c = 0;
 					foreach ($alt_handlers as $handler => $details) {
 						$c++;
@@ -1044,9 +1054,9 @@ class _Authority {
 						if (!empty($requestor)) {
 							$details['params'][] = 'requestor=' . $requestor;
 						}
-						echo "handlers[" . $c . "]=['" . $details['script'] . "','" . implode("','", $details['params']) . "'];";
+						echo "handlers[" . $c . "]=['" . $details['script'] . "','" . implode("','", $details['params']) . "'];\n";
 
-						$list .= '<option value="' . $c . '">' . $handler . '</option>';
+						$list .= '<option value="' . $c . '">' . $handler . "</option>\n";
 					}
 					$list .= '</select>';
 					$legend = sprintf(gettext('Logon using:%s'), $list);
@@ -1054,7 +1064,7 @@ class _Authority {
 							function changeHandler(handler) {
 								handler.push('user=' + $('#user').val());
 								var script = handler.shift();
-								launchScript(script, handler);
+								window.location = script + '?' + handler.join('&');
 							}
 							// ]]> -->
 						</script>
@@ -1097,7 +1107,7 @@ class _Authority {
 						if (getOption('challenge_foil_enabled')) {
 							?>
 							<p class="logon_link">
-								<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" >
+								<a onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=' + $('#user').val();" >
 									<?php echo gettext('I forgot my <strong>User ID</strong>/<strong>Password</strong>'); ?>
 								</a>
 							</p>
@@ -1106,7 +1116,7 @@ class _Authority {
 							if ($star) {
 								?>
 								<p class="logon_link">
-									<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
+									<a onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=captcha&amp;ref=' + $('#user').val();" >
 										<?php echo gettext('I forgot my <strong>User ID</strong>/<strong>Password</strong>'); ?>
 									</a>
 								</p>
@@ -1151,7 +1161,10 @@ class _Authority {
 								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" >
 									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?>
 								</button>
-								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
+								<button type="button" value="<?php echo gettext("Return"); ?>"
+												onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?>
+								</button>
 							</div>
 							<br class="clearall">
 						</fieldset>
@@ -1162,6 +1175,18 @@ class _Authority {
 			?>
 		</div>
 		<?php
+	}
+
+	static function loginButton() {
+		if (!zp_loggedin()) {
+			?>
+			<span class="button">
+				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/zenphotoLogin.php?request=zenphoto&amp;redirect=/dev/index.php?userlog=1">
+					<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/images/login_button.png" alt="login">
+				</a>
+			</span>
+			<?php
+		}
 	}
 
 	/**
@@ -1772,6 +1797,7 @@ class _Administrator extends PersistentObject {
 			if ($title = $this->getName()) {
 				$album->setTitle($title);
 			}
+			$album->setOwner($this->getUser());
 			$album->save();
 			$this->setAlbum($album);
 			$this->setRights($this->getRights() | ALBUM_RIGHTS);

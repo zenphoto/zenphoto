@@ -8,7 +8,8 @@
  */
 // force UTF-8 Ø
 Define('PHP_MIN_VERSION', '5.2');
-Define('PHP_DESIRED_VERSION', '5.4');
+Define('PHP_MIN_SUPPORTED_VERSION', '5.6');
+Define('PHP_DESIRED_VERSION', '7.1');
 define('HTACCESS_VERSION', '1.4.5'); // be sure to change this to the one in .htaccess when the .htaccess file is updated.
 define('OFFSET_PATH', 2);
 
@@ -117,6 +118,20 @@ if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE))
 $zptime = filemtime($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 @copy(dirname(dirname(__FILE__)) . '/dataaccess', SERVERPATH . '/' . DATA_FOLDER . '/.htaccess');
 @chmod(SERVERPATH . '/' . DATA_FOLDER . '/.htaccess', 0444);
+
+if (file_exists(SERVERPATH . '/' . BACKUPFOLDER)) {
+	/* move the files */
+	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER, 0777);
+	@rename(SERVERPATH . '/' . BACKUPFOLDER, SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER);
+	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER, $chmod | 0311);
+}
+if (!file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER)) {
+	@mkdir(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER, $chmod | 0311);
+}
+@copy(dirname(dirname(__FILE__)) . '/dataaccess', SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER . '/.htaccess');
+@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER . '/.htaccess', 0444);
+
+
 
 if (isset($_GET['mod_rewrite'])) {
 	$mod = '&mod_rewrite=' . $_GET['mod_rewrite'];
@@ -399,7 +414,7 @@ if ($setup_checked) {
 		}
 		if ($setup_cookie == ZENPHOTO_VERSION) {
 			setupLog(gettext('Setup cookie test successful'));
-			setcookie('setup_test_cookie', '', time() - 368000, '/');
+			zp_clearCookie('setup_test_cookie');
 		} else {
 			setupLog(gettext('Setup cookie test unsuccessful'), true);
 		}
@@ -445,7 +460,7 @@ if ($setup_checked) {
 			setupLog(sprintf(gettext("Query error: %s"), $connectDBErr), true);
 		}
 	}
-	setcookie('setup_test_cookie', ZENPHOTO_VERSION, time() + 3600, '/');
+	zp_setCookie('setup_test_cookie', ZENPHOTO_VERSION, 3600);
 }
 
 if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_result)) {
@@ -470,7 +485,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-pages.css" type="text/css" />
 
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 		<script type="text/javascript">
 			var imageErr = false;
 			function toggle_visibility(id) {
@@ -553,8 +567,21 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							checkMark($p, sprintf(gettext('<em>%s</em> security'), DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'), DATA_FOLDER), sprintf(gettext('ZenPhoto20 suggests you make the sensitive files in the %1$s folder accessible by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$s which may allow unauthorized access.'), DATA_FOLDER, implode(', ', array_keys($wrong)), implode(', ', $wrong)));
 
 							$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
-							$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
+							if (version_compare(PHP_VERSION, PHP_MIN_SUPPORTED_VERSION, '<')) {
+								$vers = ' style="color:red;font-weight:bold;"';
+							} else {
+								$vers = '';
+							}
+							$good = checkMark($err, '<span' . $vers . '>' . sprintf(gettext("PHP version %s"), PHP_VERSION) . '</span>', "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended as ealier versions may not be <a href="http://php.net/supported-versions.php">actively supported</a>. Use earlier versions at your own risk.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 							checkmark($session && session_id() && $_initial_session_path !== false, gettext('PHP <code>Sessions</code>.'), gettext('PHP <code>Sessions</code> [appear to not be working].'), sprintf(gettext('PHP Sessions are required for administrative functions. Check your <code>session.save_path</code> (<code>%1$s</code>) and the PHP configuration <code>[session]</code> settings'), session_save_path()), true);
+
+							@ini_set('session.use_strict_mode', 1);
+							if (preg_match('#(1|ON)#i', @ini_get('session.use_strict_mode'))) {
+								$strictSession = 1;
+							} else {
+								$strictSession = -1;
+							}
+							$good = checkMark($strictSession, gettext('PHP <code>session.use_strict_mode</code>'), gettext('PHP <code>session.use_strict_mode</code> [is not set]'), gettext('Enabling <code>session.use_strict_mode</code> is mandatory for general session security. Change your PHP.ini settings to <code>session.use_strict_mode = on</code>.')) && $good;
 
 							if (preg_match('#(1|ON)#i', @ini_get('register_globals'))) {
 								if ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) & ACK_REGISTER_GLOBALS) {
@@ -915,7 +942,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									if ($engine['enabled']) {
 										if (isset($enabled['experimental'])) {
 											?>
-											<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle(\'show\')" >experimental</a>)'), $handler); ?>
+											<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle()" >experimental</a>)'), $handler); ?>
 											</li>
 											<p class="warning" id="<?php echo $handler; ?>"
 												 style="display: none;">
@@ -1733,7 +1760,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$clones = array();
 
 									if ($_zp_loggedin == ADMIN_RIGHTS) {
-										$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
+										$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . "/" . BACKUPFOLDER . '/*.zdb');
 										if (count($filelist) > 0) {
 											$link = sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin', WEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php');
 											$autorun = false;

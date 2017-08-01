@@ -49,27 +49,27 @@ class ThemeOptions {
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
-					array('type' => 'menulabel', 'title' => gettext('News Articles'), 'link' => '', 'show' => 1, 'nesting' => 0),
-					array('type' => 'menufunction', 'title' => gettext('All news'),
+					array('type' => 'menulabel', 'title' => getAllTranslations('News Articles'), 'link' => '', 'show' => 1, 'nesting' => 0),
+					array('type' => 'menufunction', 'title' => getAllTranslations('All news'),
 							'link' => 'printAllNewsCategories("All news",TRUE,"","menu-active",false,false,false,"list",false,getOption("menu_manager_truncate_string"));',
 							'show' => 1, 'include_li' => 0, 'nesting' => 1),
-					array('type' => 'html', 'title' => gettext('News Articles Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
-					array('type' => 'custompage', 'title' => gettext('Gallery'), 'link' => 'gallery', 'show' => 1, 'nesting' => 0),
-					array('type' => 'menufunction', 'title' => gettext('All Albums'), 'link' => 'printAlbumMenuList("list",NULL,"","menu-active","submenu","menu-active","",false,false,false,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1),
-					array('type' => 'html', 'title' => gettext('Gallery Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
-					array('type' => 'menulabel', 'title' => gettext('Pages'), 'link' => '', 'show' => 1, 'nesting' => 0),
-					array('type' => 'menufunction', 'title' => gettext('All pages'), 'link' => 'printPageMenu("list","","menu-active","submenu","menu-active","",0,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1, getOption("menu_manager_truncate_string")),
-					array('type' => 'html', 'title' => gettext('Pages Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
-					array('type' => 'menulabel', 'title' => gettext('Archive'), 'link' => '', 'show' => 1, 'nesting' => 0),
-					array('type' => 'custompage', 'title' => gettext('Gallery and News'), 'link' => 'archive', 'show' => 1, 'nesting' => 1),
-					array('type' => 'html', 'title' => gettext('Archive Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0)
+					array('type' => 'html', 'title' => getAllTranslations('News Articles Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array('type' => 'custompage', 'title' => getAllTranslations('Gallery'), 'link' => 'gallery', 'show' => 1, 'nesting' => 0),
+					array('type' => 'menufunction', 'title' => getAllTranslations('All Albums'), 'link' => 'printAlbumMenuList("list",NULL,"","menu-active","submenu","menu-active","",false,false,false,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1),
+					array('type' => 'html', 'title' => getAllTranslations('Gallery Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array('type' => 'menulabel', 'title' => getAllTranslations('Pages'), 'link' => '', 'show' => 1, 'nesting' => 0),
+					array('type' => 'menufunction', 'title' => getAllTranslations('All pages'), 'link' => 'printPageMenu("list","","menu-active","submenu","menu-active","",0,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1, getOption("menu_manager_truncate_string")),
+					array('type' => 'html', 'title' => getAllTranslations('Pages Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array('type' => 'menulabel', 'title' => getAllTranslations('Archive'), 'link' => '', 'show' => 1, 'nesting' => 0),
+					array('type' => 'custompage', 'title' => getAllTranslations('Gallery and News'), 'link' => 'archive', 'show' => 1, 'nesting' => 1),
+					array('type' => 'html', 'title' => getAllTranslations('Archive Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0)
 			);
 			if (extensionEnabled('rss')) {
 				$rssItems = array(
-						array('type' => 'menulabel', 'title' => gettext('RSS'), 'link' => '', 'show' => 1, 'nesting' => 0),
-						array('type' => 'customlink', 'title' => gettext('Gallery'), 'link' => WEBPATH . '/index.php?rss', 'show' => 1, 'nesting' => 1),
-						array('type' => 'customlink', 'title' => gettext('News'), 'link' => getRSSLink('news'), 'show' => 1, 'nesting' => 1),
-						array('type' => 'customlink', 'title' => gettext('News and Gallery'), 'link' => getRSSLink('news') . '&amp;withimages', 'show' => 1, 'nesting' => 1),
+						array('type' => 'menulabel', 'title' => getAllTranslations('RSS'), 'link' => '', 'show' => 1, 'nesting' => 0),
+						array('type' => 'dynamiclink', 'title' => getAllTranslations('Gallery'), 'link' => "html_encode(getRSSLink(''))", 'show' => 1, 'nesting' => 1),
+						array('type' => 'dynamiclink', 'title' => getAllTranslations('News'), 'link' => "html_encode(getRSSLink('news'))", 'show' => 1, 'nesting' => 1),
+						array('type' => 'dynamiclink', 'title' => getAllTranslations('News and Gallery'), 'link' => "html_encode(getRSSLink('news')).'&amp;withimages'", 'show' => 1, 'nesting' => 1),
 				);
 				$menuitems = array_merge($menuitems, $rssItems);
 			}

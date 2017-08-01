@@ -20,6 +20,7 @@ class Category extends CMSRoot {
 	protected $sortdirection = true;
 	protected $sortSticky = true;
 	protected $subrights = NULL; //	cache for subrights
+	protected $index;
 
 	function __construct($catlink, $create = NULL) {
 		if (is_array($catlink)) {

@@ -135,6 +135,14 @@ if (extensionEnabled('zenpage')) {
 							$('#link_label').html('<?php echo js_encode(gettext('Script page')); ?>');
 							$('#titleinput').show();
 							break;
+						case "dynamiclink":
+							$('#albumselector,#pageselector,#categoryselector,#custompageselector').hide();
+							$('#selector').html('<?php echo js_encode(gettext("Custom link")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("Creates a dynamic link. The string will be evaluated by PHP to create the link.")); ?>');
+							$('#link').removeAttr('disabled');
+							$('#link_label').html('<?php echo js_encode(gettext('URL')); ?>');
+							$('#titleinput').show();
+							break;
 						case "customlink":
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Custom link")); ?>');

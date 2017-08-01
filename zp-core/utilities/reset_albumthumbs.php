@@ -11,19 +11,6 @@ define('OFFSET_PATH', 3);
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
 
-$buttonlist[] = array(
-		'category' => gettext('Database'),
-		'enable' => true,
-		'button_text' => gettext('Reset album thumbs'),
-		'formname' => 'reset_albumthumbs.php',
-		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/utilities/reset_albumthumbs.php',
-		'icon' => 'images/reset.png',
-		'title' => gettext('Reset album thumbnails to either random or most recent'),
-		'alt' => '',
-		'hidden' => '',
-		'rights' => MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS
-);
-
 admin_securityChecks(MANAGE_ALL_ALBUM_RIGHTS, $return = currentRelativeURL());
 
 if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
@@ -89,10 +76,9 @@ echo '</head>';
 					</div>
 				</form>
 			</div>
-		</div>
-	</div><!-- content -->
-</div><!-- main -->
-<?php printAdminFooter(); ?>
+		</div><!-- content -->
+	</div><!-- main -->
+	<?php printAdminFooter(); ?>
 </body>
 <?php echo "</html>"; ?>
 

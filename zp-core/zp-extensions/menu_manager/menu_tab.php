@@ -155,9 +155,6 @@ printSortableHead();
 						<button class="serialize" type="submit">
 							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
-						<a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("Add Menu Items"); ?></strong>
-						</a>
 						<div class="floatright">
 							<a href="javascript:newMenuSet();">
 								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("New Menu"); ?></strong>
@@ -200,6 +197,9 @@ printSortableHead();
 										<?php
 									}
 									?>
+									<span class="buttons">
+										<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
+									</span>
 									<select name="checkallaction" id="checkallaction" size="1">
 										<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 									</select>

@@ -35,14 +35,10 @@ class contactformOptions {
 		global $_zp_authority;
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('contactform_rewrite', '_PAGE_/contact');
-			gettext($str = '<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
-			setOptionDefault('contactform_introtext', getAllTranslations($str));
-			gettext($str = '<p>Please confirm that you really want to send this email. Thanks.</p>');
-			setOptionDefault('contactform_confirmtext', getAllTranslations($str));
-			gettext($str = '<p>Thanks for your message.</p>');
-			setOptionDefault('contactform_thankstext', getAllTranslations($str));
-			gettext($str = 'Send another message.');
-			setOptionDefault('contactform_newmessagelink', getAllTranslations($str));
+			setOptionDefault('contactform_introtext', getAllTranslations('<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>'));
+			setOptionDefault('contactform_confirmtext', getAllTranslations('<p>Please confirm that you really want to send this email. Thanks.</p>'));
+			setOptionDefault('contactform_thankstext', getAllTranslations('<p>Thanks for your message.</p>'));
+			setOptionDefault('contactform_newmessagelink', getAllTranslations('Send another message.'));
 			setOptionDefault('contactform_title', "show");
 			setOptionDefault('contactform_name', "required");
 			setOptionDefault('contactform_company', "show");
@@ -57,8 +53,7 @@ class contactformOptions {
 			setOptionDefault('contactform_captcha', 0);
 			setOptionDefault('contactform_confirm', 1);
 			setOptionDefault('contactform_sendcopy', 0);
-			gettext($str = '<p>A copy of your e-mail will automatically be sent to the address you provided for your own records.</p>');
-			setOptionDefault('contactform_sendcopy_text', getAllTranslations($str));
+			setOptionDefault('contactform_sendcopy_text', getAllTranslations('<p>A copy of your e-mail will automatically be sent to the address you provided for your own records.</p>'));
 		}
 		$mailings = $_zp_authority->getAdminEmail();
 		$email_list = '';

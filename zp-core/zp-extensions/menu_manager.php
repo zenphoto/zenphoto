@@ -53,28 +53,21 @@ class menu_manager {
 	}
 
 	function getOptionsSupported() {
-		global $_common_truncate_handler;
 
 		$options = array(
 				gettext('Truncate indicator*') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 2,
-						'disabled' => $_common_truncate_handler,
 						'desc' => gettext('Append this string to truncated titles.')),
 				gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 1,
 						'desc' => gettext('Limit titles to this many characters. Zero means no limit.'))
 		);
-		if ($_common_truncate_handler) {
-			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
-					'order' => 8,
-					'desc' => '<p class="notebox">' . $_common_truncate_handler . '</p>');
-		} else {
-			$_common_truncate_handler = gettext('* These options may be set via the <a onclick="gotoName(\'menu_manager\');"><em>menu_manager</em></a> plugin options.');
-			$options['note'] = array('key' => 'menu_truncate_note',
-					'type' => OPTION_TYPE_NOTE,
-					'order' => 8,
-					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
-		}
+
+		$options['note'] = array('key' => 'menu_truncate_note',
+				'type' => OPTION_TYPE_NOTE,
+				'order' => 8,
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> These options are shared amoung <em>menu_manager</em>, <em>print_album_menu</em>, and <em>zenpage</em>.</p>'));
+
 		return $options;
 	}
 
@@ -284,6 +277,7 @@ function getItemTitleAndURL($item) {
 			}
 			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => false, 'theme' => $themename);
 			break;
+		case "dynamiclink":
 		case "customlink":
 			$array = array("title" => get_language_string($item['title']), "url" => $item['link'], "name" => $item['link'], 'protected' => false, 'theme' => $themename);
 			break;
@@ -896,6 +890,7 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title or link.'), $key));
 					}
 					break;
+				case 'dynamiclink':
 				case 'customlink':
 					if (empty($result['title'])) {
 						$success = -1;
@@ -1045,7 +1040,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 	foreach ($items as $item) {
 		$itemarray = getItemTitleAndURL($item);
 		$itemURL = $itemarray['url'];
-		$itemtitle = $itemarray['title'];
+		$itemtitle = get_language_string($itemarray['title']);
 		$level = max(1, count(explode('-', $item['sort_order'])));
 		$process = (($level <= $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
 						|| ($option == 'list' || $option == 'list-top') && $level == 1 // show the top level
@@ -1158,6 +1153,10 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 						break;
 					case 'menulabel':
 						echo $itemtitle;
+						break;
+					case'dynamiclink':
+						eval('$itemURL=' . $itemURL . ';');
+						echo '<a href="' . $itemURL . '" title="' . html_encode(getBare($itemtitle)) . '">' . $itemtitle . '</a>' . $itemcounter;
 						break;
 					default:
 						if (empty($itemURL)) {

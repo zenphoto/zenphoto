@@ -66,6 +66,15 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
+	 *
+	 * "Magic" function to return a string identifying the object when it is treated as a string
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->name;
+	}
+
+	/**
 	 * Sets default values for a new album
 	 *
 	 * @return bool

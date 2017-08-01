@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" lang="en">
 	<title>ZenPhoto20 release notes</title>
 	</head>
 		<style type="text/css">
@@ -46,13 +47,11 @@
 			h6 {
 				font-style: italic;
 			}
-
 			code {
 				color: #00008B;
 				font-size: 12px;
 				font-family: Arial, Helvetica, sans-serif;
 			}
-
 			 pre {
 				color: #00008B;
 				margin-left: 0px;
@@ -62,35 +61,54 @@
 				font-family: Courier, Geneva, monospace;
 				overflow: auto;
 			}
-
 			tt,
 			.inlinecode {
 				color: #00008B;
 				font-size: 13px;
 				font-weight: bold !important;
 			}
-
 			a {
 				text-decoration: none;
 				color: #6c802e;
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.5.0</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.4.1.38</h2>
 <p> </p>
+<h2>General</h2>
+<p>Several security fixes have been applied.</p>
+<p>ZenPhoto20 development testing is now limited to PHP version 7. While PHP version 5.2 is still supported, version level compatibility issues may find their way into the source. Zend Technologies support for PHP version 5.6 will terminate at the end of 2018. All earlier versions are already past their support life. (PHP version 6 was never released.) You are strongly urged to move your site to PHP version 7 as soon as practical. We reserve the right to deprecate support for PHP version 5 whenever supporting it becomes unmanageable.</p>
+<p>ZenPhoto20 will now check for new releases on GitHub. If a release is found that is newer than the one installed, a download button will appear in the Admin utilities functionss button area. <strong>Note:</strong> this feature requires that you are using PHP version 5.5 or later.</p>
+<p>The register user notify option has been move to the general options page. This option is used by multiple plugins so a global setting is more appropriate.</p>
+<p>The <em>backup</em> folder has been relocated to within the <em>data</em> folder.</p>
+<p>The <code>shortenContent()</code> function has been rewritten. It will now count only text characters in shortening the string. Before HTML tags were counted as part of the allowed total. Page break handling is now incorporated in the function. Truncation will prefer to happen at a page break indication (<code>&lt;-- pagebreak --&gt;.</code>) This allows for simplification of <code>getContentShorten()</code> which had been including HTML tags in its character count when deciding what page break to select. The <code>$forceindicator</code> parameter has been removed. It really made no sense and was used only by <code>getContentShorten()</code> when it rolled back to a page break. It was also not applied if no shortening was done even though that was the promise in the comment block.</p>
+<h2>Social Media Login</h2>
+<p>Plugins have been added to allow login via <em>Facebook</em>, <em>Google</em>, Instagram, <em>Linkedin</em>, and <em>Twitter</em>. These a drop-down selector on the login form will take you to the respective authorization pages. Alternatively, there are functions for each that will place a login button on your web page wherever you like. E.g. <code>facebookLogin::loginButton();</code> will place a button on your page that allows the user to login via Facebook. (You can place a button for the normal ZenPhoto20 login via <code>Zenphoto_Authority::loginButton();</code>)</p>
 <h2>Language translations</h2>
 <p>We have updated to <em>Poedit</em> version 2 for translating the <em>gettext()</em> strings. This version has a "pre-translate" feature which provides automated translation of strings that have not been manually translated. We have applied these <em>pre-translations</em> to the language files, so more strings will be translated. However the since the translations are mechanical they may not be as appropriate as ones translated by native speakers. As always we encourage native speakers to provide proper translations. </p>
 <h2>Admin pages</h2>
 <p>The tab based menu system has been replaced by a vertical menu bar with pop-out sub menus. <strong>NOTE:</strong> the name of the back-end css file has been changed to <em>admin‑pages.css</em>. This is because many servers cache css pages, sometimes for days. It would be really hard to use the new back-end menu system with with the old css file. Changing the name insures you get the proper menu system. </p>
 <p>As part of this implementation features have been organized by kind of function. The utilities buttons on the overview page are now limited to "single action" functions, e.g. <em>Reset Ratings</em>. So you will find <em>OVERVIEW</em> sub-menus all provide "statistics" about the site, <em>ADMIN </em>sub-menus provide the general management of the site, etc.</p>
-<p> </p>
+<h2>News articles</h2>
+<p>The Previous and Next article links on theme news pages will now honor the category of the article. If you view a list of articles in a news category and click on the link to a specific article the previous and next article links for the article will show only articles within the originating category.</p>
+<h2> </h2>
 <h2>plugins</h2>
+<p><em>menu_manager</em></p>
+<p>A new menu item type has been added so that menu html can be generated dynamically. This allows links to use constructs that need to be evaluated when the page is being viewed like, for instance, language dependencies. Menu type <em>dynamiclink</em> allows you so specify PHP code for the link. This code is evaluated when the link is generated. The result of the evaluation should be a well formed URI.</p>
 <p><em>rating</em></p>
 <p>Rating now has an option to use a binary like/dislike system. If this option is chosen, visitors may vote "like" which will give a rating vote of one or "dislike" which will give a rating vote of zero. Needless to say, if you switch to this rating system you should first reset your previous ratings if you used more than one star.</p>
 <p>You may also choose between small, medium, and large voting icons.</p>
 <p><em>elFinder</em></p>
 <p>elFinder will now properly deal with case sensitivity. Image suffixes are case insensitive and for case insensitive files systems so are file/folder names. File and folder visiblity issues have been fixed for users who do not have ADMIN or FILE rights.</p>
-<p> </p>
+<p><em>tinyMCE</em></p>
+<p>The problem whereby page and news forms were deemed dirty if <em>tinyMCE </em>was enabled has been mitigated. The fix requires that the form be "Reset" after <em>tinyMCE </em>is done rendering the the text. This may take some time and the form will look dirty until the rendering is complete. So if you try to leave the form too quickly after it is rendered you will still get the warning. If this is still too sensitive you can exclude <em>tinyMCE</em> from Dirty Forms check via an option on the General Options page.</p>
+<p><em>federated_logon</em></p>
+<p>This plugin has been removed and replaced by individual login plugins. <em>federated_logon</em> was implemented using a version of OAuth that is no longer supported by the major players. It is now available in the ZenPhoto20 development repository for anyone who still wishes to use it. Place the files in the user plugin folder as with other example plugins.</p>
+<h2>Themes</h2>
+<p><em>effervescence+, garland, zenpage, and zpEnlighten</em></p>
+<p>Themes that created custom menus did not provide for language translations of the <em>title</em> of the links.</p>
+<p>In addition, he <em>effervescence+</em> default custom menu generated static RSS links. This was inappropriate for visitors viewing the site in a language different from the site default language. This have been corrected by using the new <strong>menu manager</strong> <em>dynamiclink</em> items.</p>
+<p>These fixes will not be automatically applied in case you have made modifications to the custom menu. If you have made no modifications, you can simply delete the <em>theme</em> menu and view the theme's option page which will cause the custom menu to be regenerated. If you have modified the or duplicated the menu and use RSS feed links you will need to make the appropriate changes to your custom menu.</p>
 <hr />
 <h2>Version 1.4.0</h2>
 <p> </p>
@@ -330,5 +348,6 @@
 <li><em>favoritesAlbums</em>: see above.</li>
 <li><em>themeEditor</em>: This is the legacy theme editor which may be used instead of elFinder.</li>
 <li><em>zenphotoCompatibilityPack</em>: A plugin that provides a bridge to Zenphoto.org's 1.4.6 release compatible plugins and themes.</li>
-</ul>	</body>
+</ul>
+	</body>
 </html>

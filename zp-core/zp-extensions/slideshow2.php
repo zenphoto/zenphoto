@@ -40,10 +40,10 @@ $plugin_disable = (extensionEnabled('slideshow')) ? sprintf(gettext('Only one sl
 $option_interface = 'cycle';
 
 global $_zp_gallery, $_zp_gallery_page;
-if ($_zp_gallery_page == 'slideshow.php' || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
-	zp_register_filter('theme_head', 'cycle::cycleJS');
+
+if ($plugin_disable) {
+	enableExtension('slideshow2', 0);
 }
-zp_register_filter('content_macro', 'cycle::macro');
 
 /**
  * Plugin option handling class
@@ -536,11 +536,11 @@ class cycle {
 }
 
 // cycle class end
-
-if ($plugin_disable) {
-	enableExtension('slideshow2', 0);
-}
 if (extensionEnabled('slideshow2')) {
+	if ($_zp_gallery_page == 'slideshow.php' || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
+		zp_register_filter('theme_head', 'cycle::cycleJS');
+	}
+	zp_register_filter('content_macro', 'cycle::macro');
 
 	/**
 	 * Prints a link to call the slideshow (not shown if there are no images in the album)

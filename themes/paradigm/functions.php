@@ -47,7 +47,7 @@ function printTags_zb($option = 'links', $preText = NULL, $class = NULL, $separa
 				$separator = "";
 			}
 			if ($option === "links") {
-				$links1 = "<a href=\"" . html_encode(getSearchURL(($atag),'', 'tags', 0, array('albums' => $albumlist))) . "\" title=\"" . html_encode($atag) . "\" >";
+				$links1 = "<a href=\"" . html_encode(getSearchURL(($atag), '', 'tags', 0, array('albums' => $albumlist))) . "\" title=\"" . html_encode($atag) . "\" >";
 				$links2 = "</a>";
 			} else {
 				$links1 = $links2 = '';
@@ -75,59 +75,60 @@ function printTags_zb($option = 'links', $preText = NULL, $class = NULL, $separa
  * @param int $minfontsize minimum font size the cloud should display
  * @since 1.1
  */
-function printAllTagsAs_zb ($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE,$maxfontsize=2,$maxcount=50,$mincount=15, $limit=NULL,$minfontsize=0.8) {
+function printAllTagsAs_zb($option, $class = '', $sort = 'abc', $counter = FALSE, $links = TRUE, $maxfontsize = 2, $maxcount = 50, $mincount = 15, $limit = NULL, $minfontsize = 0.8) {
 	global $_zp_current_search;
 	$option = strtolower($option);
 	if ($class != "") {
-		$class = "class=\"".$class."\"";
+		$class = "class=\"" . $class . "\"";
 	}
 	$tagcount = getAllTagsUnique(NULL, 1, true);
-	if (!is_array($tagcount)) { return false; }
+	if (!is_array($tagcount)) {
+		return false;
+	}
 	if ($sort == "results") {
-			arsort($tagcount);
+		arsort($tagcount);
 	}
 	if (!is_null($limit)) {
 		$tagcount = array_slice($tagcount, 0, $limit);
 	}
 	$list = '';
-	echo "<ul ".$class.">\n";
-	foreach ($tagcount as $key=>$val) {
-		if(!$counter) {
+	echo "<ul " . $class . ">\n";
+	foreach ($tagcount as $key => $val) {
+		if (!$counter) {
 			$counter = "";
 		} else {
-			$counter = " (".$val.") ";
+			$counter = " (" . $val . ") ";
 		}
 		if ($option == "cloud") { // calculate font sizes, formula from wikipedia
 			if ($val <= $mincount) {
 				$size = $minfontsize;
 			} else {
-				$size = min(max(round(($maxfontsize*($val-$mincount))/($maxcount-$mincount), 2), $minfontsize), $maxfontsize);
+				$size = min(max(round(($maxfontsize * ($val - $mincount)) / ($maxcount - $mincount), 2), $minfontsize), $maxfontsize);
 			}
-			$size = str_replace(',','.', $size);
-			$size = " style=\"font-size:".$size."em;\"";
+			$size = str_replace(',', '.', $size);
+			$size = " style=\"font-size:" . $size . "em;\"";
 		} else {
 			$size = '';
 		}
 		if ($val >= $mincount) {
-			if($links) {
+			if ($links) {
 				if (is_object($_zp_current_search)) {
 					$albumlist = $_zp_current_search->getAlbumList();
 				} else {
 					$albumlist = NULL;
 				}
-				$list .= "\t<li><a href=\"".
-									html_encode(getSearchURL($key, '', 'tags', 0, array('albums'=>$albumlist)))."\"$size >".
-									$key.$counter."</a></li>\n";
+				$list .= "\t<li><a href=\"" .
+								html_encode(getSearchURL($key, '', 'tags', 0, array('albums' => $albumlist))) . "\"$size >" .
+								$key . $counter . "</a></li>\n";
 			} else {
-				$list .= "\t<li$size>".$key.$counter."</li>\n";
+				$list .= "\t<li$size>" . $key . $counter . "</li>\n";
 			}
 		}
-
 	} // while end
 	if ($list) {
 		echo $list;
 	} else {
-		echo '<li>'.gettext('No popular tags')."</li>\n";
+		echo '<li>' . gettext('No popular tags') . "</li>\n";
 	}
 	echo "</ul>\n";
 }
@@ -167,14 +168,13 @@ function printParentBreadcrumb_zb() {
  */
 function printAlbumBreadcrumb_zb() {
 	if ($breadcrumb = getAlbumBreadcrumb()) {
-			$output = '';
+		$output = '';
 		$output .= '<li><a href="' . html_encode($breadcrumb['link']) . '">';
 		$output .= html_encode($breadcrumb['text']);
 		$output .= '</a></li>';
 		echo $output;
 	}
 }
-
 
 /**
  * Prints the parent items breadcrumb navigation for pages or categories
@@ -262,7 +262,7 @@ function printRandomImages_zb($number = 12, $class = null, $option = 'all', $roo
 				break;
 		}
 		if (is_object($randomImage) && $randomImage->exists) {
-			echo '<div class="col-lg-3 col-md-4 col-sm-6" style="height:' . html_encode(getOption("thumb_size")+55) . 'px;" ><div class="thumbnail" itemtype="http://schema.org/image" itemscope>';
+			echo '<div class="col-lg-3 col-md-4 col-sm-6" style="height:' . html_encode(getOption("thumb_size") + 55) . 'px;" ><div class="thumbnail" itemtype="http://schema.org/image" itemscope>';
 			if ($fullimagelink) {
 				$randomImageURL = $randomImage->getFullimageURL();
 			} else {
@@ -272,7 +272,7 @@ function printRandomImages_zb($number = 12, $class = null, $option = 'all', $roo
 			if ($fullimagelink) {
 				echo 'rel="lightbox-random"';
 			}
-			echo '>';	
+			echo '>';
 			switch ($crop) {
 				case 0:
 					$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $randomImage);
@@ -301,7 +301,6 @@ function printRandomImages_zb($number = 12, $class = null, $option = 'all', $roo
 	echo "</div>";
 }
 
-
 /**
  * Prints the Metadata data of the current image
  * Simpler version of the classic printImageMetadata
@@ -320,26 +319,25 @@ function printImageMetadata_zb() {
 	<h2>
 		<?php echo (gettext('Image Info')); ?>
 	</h2>
-			<table class="table table-striped itemprop="exifData"">
-				<?php
-				foreach ($exif as $field => $value) {
-					$label = $_zp_exifvars[$field][2];
-					echo "<tr><th>$label:</th><td>";
-					switch ($_zp_exifvars[$field][6]) {
-						case 'time':
-							echo zpFormattedDate(DATE_FORMAT, strtotime($value));
-							break;
-						default:
-							echo html_encode($value);
-							break;
-					}
-					echo "</td></tr>\n";
-				}
-				?>
-			</table>
+	<table class="table table-striped itemprop="exifData"">
+	<?php
+	foreach ($exif as $field => $value) {
+		$label = $_zp_exifvars[$field][2];
+		echo "<tr><th>$label:</th><td>";
+		switch ($_zp_exifvars[$field][6]) {
+			case 'time':
+				echo zpFormattedDate(DATE_FORMAT, strtotime($value));
+				break;
+			default:
+				echo html_encode($value);
+				break;
+		}
+		echo "</td></tr>\n";
+	}
+	?>
+	</table>
 	<?php
 }
-
 
 /**
  * Prints jQuery JS to enable the toggling of search results of Zenpage  items
@@ -383,7 +381,7 @@ function printZDSearchShowMoreLink($option, $number_to_show) {
 	}
 	if ($num > $number_to_show) {
 		?>
-		<a class="<?php echo $option; ?>_showmore"href="javascript:toggleExtraElements('<?php echo $option; ?>',true);"><?php echo gettext('Show more results'); ?></a>
+		<a class="<?php echo $option; ?>_showmore" href="javascript:toggleExtraElements('<?php echo $option; ?>',true);"><?php echo gettext('Show more results'); ?></a>
 		<a class="<?php echo $option; ?>_showless" style="display: none;"	href="javascript:toggleExtraElements('<?php echo $option; ?>',false);"><?php echo gettext('Show fewer results'); ?></a>
 		<?php
 	}
@@ -516,7 +514,7 @@ function printImageStatistic_zb($number, $option, $albumfolder = '', $showtitle 
 		} else {
 			$imagelink = $image->getLink();
 		}
-		echo '<div class="col-lg-3 col-md-4 col-sm-6" style="height:' . html_encode(getOption("thumb_size")+55) . 'px;" ><div class="thumbnail" itemtype="http://schema.org/image" itemscope><a href="' . html_encode($imagelink) . '" title="' . html_encode($image->getTitle()) . '" ';  
+		echo '<div class="col-lg-3 col-md-4 col-sm-6" style="height:' . html_encode(getOption("thumb_size") + 55) . 'px;" ><div class="thumbnail" itemtype="http://schema.org/image" itemscope><a href="' . html_encode($imagelink) . '" title="' . html_encode($image->getTitle()) . '" ';
 		if ($fullimagelink) {
 			echo 'rel="lightbox-latest"';
 		}
@@ -562,14 +560,10 @@ function printImageStatistic_zb($number, $option, $albumfolder = '', $showtitle 
 		if ($showdesc) {
 			echo shortenContent($image->getDesc(), $desclength, ' (...)');
 		}
-	echo '</div></div>';
+		echo '</div></div>';
 	}
 	echo '</div>';
 }
-
-
-
-
 
 /**
  * Prints the latest images by ID (the order zenphoto recognized the images on the filesystem)
@@ -593,5 +587,4 @@ function printImageStatistic_zb($number, $option, $albumfolder = '', $showtitle 
 function printLatestImages_zb($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false) {
 	printImageStatistic_zb($number, "latest", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink);
 }
-
 ?>

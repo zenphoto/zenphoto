@@ -42,7 +42,6 @@ function newImage($album, $filename = NULL, $quiet = false) {
 		$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'), $filename);
 	} else {
 		if ($object = Gallery::imageObjectClass($filename)) {
-			$filename = sanitize_path($filename);
 			$image = New $object($xalbum, $filename, $quiet);
 			if ($album && is_subclass_of($album, 'AlbumBase') && $dyn) {
 				$image->albumname = $album->name;
@@ -113,14 +112,7 @@ class Image extends MediaObject {
 	function __construct($album, $filename, $quiet = false) {
 		global $_zp_current_admin_obj;
 		// $album is an Album object; it should already be created.
-		$msg = false;
-		if (!is_object($album) || !$album->exists) {
-			$msg = gettext('Invalid image instantiation: Album does not exist') . ' (' . $album . ')';
-		} else {
-			if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
-				$msg = gettext('Invalid image instantiation: file does not exist') . ' (' . $album . '/' . $filename . ')';
-			}
-		}
+		$msg = $this->invalid($album, $filename);
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
@@ -144,6 +136,32 @@ class Image extends MediaObject {
 			if ($new)
 				zp_apply_filter('new_image', $this);
 		}
+	}
+
+	/**
+	 *
+	 * "Magic" function to return a string identifying the object when it is treated as a string
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->filename;
+	}
+
+	/**
+	 * Comon validity check function
+	 *
+	 * @param type $album
+	 * @param type $filename
+	 * @return string
+	 */
+	function invalid($album, $filename) {
+		$msg = false;
+		if (!is_object($album) || !$album->exists) {
+			$msg = sprintf(gettext('Invalid %s instantiation: Album does not exist'), get_class($this)) . ' (' . $album . ')';
+		} else if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
+			$msg = sprintf(gettext('Invalid %s instantiation: file does not exist'), get_class($this)) . ' (' . $album . '/' . $filename . ')';
+		}
+		return $msg;
 	}
 
 	/**

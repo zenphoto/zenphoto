@@ -76,11 +76,15 @@ if ($plugin_disable) {
 			if ($result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cloneZenphoto"')) {
 				while ($row = db_fetch_assoc($result)) {
 					if (SYMLINK) {
-						$link = str_replace('\\', '/', @readlink($row['aux'] . '/' . ZENFOLDER));
-						$valid = !(empty($link) || $link != SERVERPATH . '/' . ZENFOLDER);
+						$path = str_replace('\\', '/', @readlink($row['aux'] . '/' . ZENFOLDER));
+						$valid = !(empty($path) || $path != SERVERPATH . '/' . ZENFOLDER);
 					} else { //	best guess if the clone has been changed
 						$clonesig = @file_get_contents($row['aux'] . '/' . ZENFOLDER . '/version.php');
 						$valid = $sig == $clonesig;
+					}
+					$link = parse_url($row['data']);
+					if ($link['host'] != $_SERVER['HTTP_HOST']) {
+						$valid = false;
 					}
 					if ($valid || !$only_valid) {
 						$clones[$row['aux']] = array('url' => $row['data'] . '/', 'valid' => $valid);

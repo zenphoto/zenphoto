@@ -193,6 +193,7 @@ class CMS {
 	 * @return array
 	 */
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL) {
+
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
 		if (empty($published)) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_UNPUBLISHED_NEWS_RIGHTS)) {
@@ -204,8 +205,10 @@ class CMS {
 		$now = date('Y-m-d H:i:s');
 		if ($category && $category->exists) {
 			$sortObj = $category;
+			$cat = $category->getTitlelink();
 		} else {
 			$sortObj = $this;
+			$cat = '*';
 		}
 		if (is_null($sticky)) {
 			$sticky = $sortObj->getSortSticky();
@@ -220,10 +223,7 @@ class CMS {
 				$sortorder = 'date';
 			}
 		}
-		$newsCacheIndex = "$sortorder-$sortdirection-$published-" . (int) $sticky;
-		if ($category && $category->exists) {
-			$newsCacheIndex .= '-' . $category->getTitlelink();
-		}
+		$newsCacheIndex = "$sortorder-$sortdirection-$published-$cat-" . (int) $sticky;
 
 		if (isset($_zp_newsCache[$newsCacheIndex])) {
 			$result = $_zp_newsCache[$newsCacheIndex];
@@ -417,7 +417,13 @@ class CMS {
 	 * @return int
 	 */
 	function getArticle($index, $published = NULL, $sortorder = NULL, $sortdirection = NULL, $sticky = true) {
-		$articles = $this->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
+		global $_zp_current_category;
+		if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+			$category = $_zp_current_category;
+		} else {
+			$category = NULL;
+		}
+		$articles = $this->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky, $category);
 		if ($index >= 0 && $index < count($articles)) {
 			$article = $articles[$index];
 			$obj = newArticle($articles[$index]['titlelink']);

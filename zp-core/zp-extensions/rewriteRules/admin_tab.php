@@ -49,8 +49,7 @@ echo "\n</head>";
 			</div>
 		</div>
 	</div>
-</div>
-<?php printAdminFooter(); ?>
+	<?php printAdminFooter(); ?>
 
 </body>
 </html>

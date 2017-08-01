@@ -124,7 +124,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>edit_album_utilities</strong></span>(<em>string, album, prefix</em>)</p>
 					<!-- description(Admin.Media)-edit_album_utilities --><p>Allows a plugin to place items in the <em>utilities</em> area for albums. This invocation is for when the album is presented for editing.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/rating.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/tweet_news.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-functions.php</li>
@@ -153,7 +153,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>edit_image_utilities</strong></span>(<em>string, image, currentimage, pagenum, tagsort, singleimage</em>)</p>
 					<!-- description(Admin.Media)-edit_image_utilities --><p>Allows a plugin to place items in the <em>utilities</em> area for images. This invocation is for when the image is presented for editing.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/rating.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/tweet_news.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-edit.php</li>
@@ -171,7 +171,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_album_utilities_data</strong></span>(<em>album, prefix</em>)</p>
 					<!-- description(Admin.Media)-save_album_utilities_data --><p>Allows a plugin to process saves of items in the album <em>Utilities</em> area.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/rating.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/tweet_news.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-functions.php</li>
@@ -188,7 +188,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_image_utilities_data</strong></span>(<em>image, i</em>)</p>
 					<!-- description(Admin.Media)-save_image_utilities_data --><p>Allows a plugin to place items in the <em>utilities</em> area for images. This invocation is for when the image is saved.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/rating.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/tweet_news.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-edit.php</li>
@@ -221,7 +221,7 @@
 					<!-- description(Admin.Miscellaneous)-admin_general_data --><p>Allows plugins to insert items onto the &lt;general%gt; tab.</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">d:/test_sites/dev/zp-core/admin-options.php</li>
+						<li class="call_list">d:/test_sites/dev/zp-core/admin_options/general.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -254,12 +254,12 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_note</strong></span>(<em>string, string</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_note --><p>This filter is invoked at the head of each admin page to allow a filter to place a note there.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/user-expiry.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/site_upgrade.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-albumsort.php</li>
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-dynamic-album.php</li>
-						<li class="call_list">d:/test_sites/dev/zp-core/admin-functions.php</li>
+						<li class="call_list">d:/test_sites/dev/zp-core/admin-edit.php (3)</li>
 						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -275,7 +275,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_tabs</strong></span>(<em>zenphoto_tabs</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_tabs --><p>Allows plugins to add <em>Tabs</em> to the administrative pages.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/user_groups.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/wordpress_import.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-globals.php</li>
@@ -292,7 +292,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_utilities_buttons</strong></span>(<em>buttonlist</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_utilities_buttons --><p>Allows plugins to add buttons to the admin utilities box on the <em>overview</em> page.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/site_upgrade.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/hitcounter.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin.php</li>
@@ -598,7 +598,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>load_theme_script</strong></span>(<em>_zp_script, zp_request</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-load_theme_script --><p>Allows for overriding the script loaded for a particular theme page</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/user-expiry.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/hitcounter.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/index.php</li>
@@ -626,12 +626,12 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>sendmail</strong></span>(<em>string, email_list, subject, message, from_mail, from_name, cc_addresses, replyTo</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>sendmail</strong></span>(<em>result, email_list, subject, message, from_mail, from_name, cc_addresses, bcc_addresses, replyTo</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-sendmail --><p>Invoked when attempting to send an e-mail. The plugin is presumed to handle the mailing.</p><!--e-->
 					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/zenphoto_sendmail.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">d:/test_sites/dev/zp-core/functions.php (2)</li>
+						<li class="call_list">d:/test_sites/dev/zp-core/functions.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -646,7 +646,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>setupTheme</strong></span>(<em>theme</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-setupTheme --><p>Allows a plugin to override the <em>theme</em> that will be used to display WEB pages.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/themeswitcher.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/mobiletheme.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/functions.php</li>
@@ -667,7 +667,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>themeSwitcher_Controllink</strong></span>(<em>theme</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-themeSwitcher_Controllink --><p>Invoked by themeSwitcher's theme_body_open filter. Allows themes to add to the selectors for theme related choices such as personality or color scheme.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/themes/effervescence+/functions.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/zenpage.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/themeswitcher.php</li>
@@ -676,7 +676,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>themeSwitcher_head</strong></span>(<em>_themeSwitcherThemelist</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-themeSwitcher_head --><p>Invoded by themeSwitcher's theme_head filter. Allows themes to add to the HTML placed in the theme head when themeSwitcher is active. The parameter passed is a array of theme=>enabled values. If enabled is false the theme will not be included in the selector. Filters can change this value to control if specific themes may be chosen.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/themes/effervescence+/functions.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/zenpage.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/themeswitcher.php</li>
@@ -1020,14 +1020,14 @@
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/themes/effervescence+/functions.php</li>
 						<li class="call_list">d:/test_sites/dev/themes/libratus/index.php</li>
-						<li class="call_list">d:/test_sites/dev/themes/zpardoise/functions.php</li>
+						<li class="call_list">d:/test_sites/dev/themes/paradigm/functions.php</li>
 						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>iconColor</strong></span>(<em>string, bool, bool</em>)</p>
 					<!-- description(Template.Miscellaneous)-iconColor --><p>Use this filter to customize the menu and gear icons used by adminToolbox and the themeSwitcher theme.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/themes/zpgalleriffic/functions.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/themes/effervescence+/functions.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/template-functions.php</li>
@@ -1176,6 +1176,7 @@
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-upload.php</li>
+						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/elfinder/php/connector_zp.php</li>
 						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/uploader_jquery/uploader.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -1230,7 +1231,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>alt_login_handler</strong></span>(<em>string</em>)</p>
 					<!-- description(User_management.Miscellaneous)-alt_login_handler --><p>Allows filters to provide links to alternate logon handlers. This list is presented as a selection list on the logon form as alternates to the provided process.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/federated_logon.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zenphotologin.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/lib-auth.php</li>
@@ -1257,7 +1258,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>edit_admin_custom_data</strong></span>(<em>string, userobj, id, background, current, local_alterrights</em>)</p>
 					<!-- description(User_management.Miscellaneous)-edit_admin_custom_data --><p>Allows a plugin to manage custom data for users. This invocation is for when the user object is presented for editing.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/user_groups.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-users.php</li>
@@ -1265,18 +1266,21 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>federated_login_attempt</strong></span>(<em>bool, user</em>)</p>
-					<!-- description(User_management.Miscellaneous)-federated_login_attempt --><p>Invoked when a user logs on via the Federated_Logon plugin. (As opposed to logging on through the normal authentication mechanism)</p><!--e-->
+					<p class="filterdef"><span class="inlinecode"><strong>federated_login_attempt</strong></span>(<em>bool, user, string</em>)</p>
+					<!-- description(User_management.Miscellaneous)-federated_login_attempt --><p>Invoked when a user logs on via a federated_Logon plugin. (As opposed to logging on through the normal authentication mechanism)</p><!--e-->
 					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/federated_logon.php</li>
+						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/facebooklogin.php</li>
+						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/googlelogin.php</li>
+						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/linkedinlogin.php</li>
+						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>guest_login_attempt</strong></span>(<em>success, post_user, post_pass, authType</em>)</p>
 					<!-- description(User_management.Miscellaneous)-guest_login_attempt --><p>Invoked when a visitor logs on with a guest password.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/ipblocker.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/security-logger.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/functions.php</li>
@@ -1313,7 +1317,6 @@
 					<!-- description(User_management.Miscellaneous)-register_user_verified --><p>Invoked when a new user is verified.</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/federated_logon.php</li>
 						<li class="call_list">d:/test_sites/dev/zp-core/zp-extensions/register_user.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -1329,7 +1332,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_admin_custom_data</strong></span>(<em>updated, userobj, i, alter</em>)</p>
 					<!-- description(User_management.Miscellaneous)-save_admin_custom_data --><p>Allows a plugin to manage custom data for users. This invocation is for when the user object is saved.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/user_groups.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/common/fieldextender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-users.php</li>
@@ -1346,7 +1349,7 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>zp_logout</strong></span>(<em>string, _zp_current_admin_obj</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>zp_logout</strong></span>(<em>location, _zp_current_admin_obj</em>)</p>
 					<!-- description(User_management.Miscellaneous)-zp_logout --><p>Provides a link to an external logout handler</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->

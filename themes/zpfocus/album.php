@@ -37,7 +37,7 @@
 					}
 					?>
 					<li class="<?php echo $css; ?>">
-						<h4><a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View SubAlbum:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php echo html_encodeTagged(truncate_string(getBareAlbumTitle(), 20, '...')); ?></a></h4>
+						<h4><a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View SubAlbum:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php echo html_encodeTagged(shortenContent(getAlbumTitle(), 20, '...')); ?></a></h4>
 						<a class="thumb" href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View SubAlbum:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>">
 							<?php
 							if (isLandscape()) {
@@ -49,7 +49,7 @@
 						</a>
 						<span class="front-date"><?php printAlbumDate(); ?></span>
 						<p class="front-desc">
-							<?php echo html_encodeTagged(truncate_string(getAlbumDesc(), 175)); ?>
+							<?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 175)); ?>
 							<a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View SubAlbum:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>">&raquo;</a>
 						</p>
 					</li>
@@ -109,7 +109,7 @@
 										echo htmlspecialchars(getUnprotectedImageURL());
 									}
 									?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/search.png" alt="Zoom Image" /></a><?php } ?>
-									 <?php if ((getCommentCount()) > 0) { ?>
+									 <?php if (function_exists('getCommentCount') && (getCommentCount()) > 0) { ?>
 									<a class="album-tool" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getCommentCount(); ?> Comments"><img src="<?php echo $_zp_themeroot; ?>/images/shout.png" alt="Comments" /></a>
 								<?php } ?>
 							</div>
@@ -126,7 +126,7 @@
 										echo htmlspecialchars(getUnprotectedImageURL());
 									}
 									?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/search.png" alt="Zoom Image" /></a><?php } ?>
-									 <?php if ((getCommentCount()) > 0) { ?>
+									 <?php if (function_exists('getCommentCount') && (getCommentCount()) > 0) { ?>
 									<a class="album-tool" href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getCommentCount(); ?> Comments"><img src="<?php echo $_zp_themeroot; ?>/images/shout.png" alt="Comments" /></a>
 								<?php } ?>
 							</div>

@@ -62,6 +62,8 @@ if (class_exists('CMS')) {
 													}
 													?>
 												</span>
+												<br />
+
 												<?php printCodeblock(1); ?>
 												<?php printNewsContent(); ?>
 												<?php printCodeblock(2); ?>
@@ -88,7 +90,7 @@ if (class_exists('CMS')) {
 							if (is_NewsArticle()) {
 								if (getPrevNewsURL()) {
 									?>
-									<div class="singlenews_prev"><?php printPrevNewsLink(); ?></div>
+									<div class="singlenews_prev"><?php printPrevNewsLink(); ?>&nbsp;&nbsp; </div>
 									<?php
 								}
 								if (getNextNewsURL()) {

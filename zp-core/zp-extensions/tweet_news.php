@@ -2,6 +2,12 @@
 /**
  * Use to tweet new objects as they are published.
  *
+ * You will need to setup application credentials on the
+ * {@link http://dev.twitter.com/ Twitter Developer's Console.} for use by this
+ * Plugin. You will need a <i>Consumer Key</i>, <i>Consumer Secret</i>, <i>oAuth Token</i>,
+ * and <i>oAuth Secret</i>. The first two of these are the same credentials used
+ * by the <var>twitterLogin</var> plugin.
+ *
  * @author Stephen Billard (sbillard)
  *
  * @package plugins
@@ -37,7 +43,7 @@ if ($plugin_disable) {
 	zp_register_filter('save_article_custom_data', 'tweet::tweeterZenpageExecute');
 	zp_register_filter('save_page_custom_data', 'tweet::tweeterZenpageExecute');
 
-	require_once(getPlugin('tweet_news/twitteroauth.php'));
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/common/oAuth/twitteroauth.php");
 }
 
 /**
@@ -70,21 +76,22 @@ class tweet {
 	 */
 	function getOptionsSupported() {
 		global $_zp_CMS;
-		$options = array(gettext('Consumer key')				 => array('key'		 => 'tweet_news_consumer', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext('This <code>tweet_news</code> app for this site needs a <em>consumer key</em>, a <em>consumer key secret</em>, an <em>access token</em>, and an <em>access token secret</em>.') . '<p class="notebox">' . gettext('Get these from <a href="http://dev.twitter.com/">Twitter developers</a>') . '</p>'),
-						gettext('Secret')							 => array('key'		 => 'tweet_news_consumer_secret', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 3,
-										'desc'	 => gettext('The <em>secret</em> associated with your <em>consumer key</em>.')),
-						gettext('Access token')				 => array('key'		 => 'tweet_news_oauth_token', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 4,
-										'desc'	 => gettext('The application <em>oauth_token</em> token.')),
-						gettext('Access token secret') => array('key'		 => 'tweet_news_oauth_token_secret', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 5,
-										'desc'	 => gettext('The application <em>oauth_token</em> secret.')),
-						gettext('Protected objects')	 => array('key'		 => 'tweet_news_protected', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 7,
-										'desc'	 => gettext('If checked, protected items will be tweeted. <strong>Note:</strong> followers will need the password to visit the tweeted link.'))
+		$options = array(
+				gettext('Consumer Key') => array('key' => 'tweet_news_consumer', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext('This your Twitter <em>Consumer Key</em>.')),
+				gettext('Consumer Secret') => array('key' => 'tweet_news_consumer_secret', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext('This is your <em>Consumer Secret</em>.')),
+				gettext('Access Token') => array('key' => 'tweet_news_oauth_token', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 4,
+						'desc' => gettext('The application <em>oAuth Token</em>.')),
+				gettext('Access Token Secret') => array('key' => 'tweet_news_oauth_token_secret', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 5,
+						'desc' => gettext('The application <em>oAuth Token Secret</em>.')),
+				gettext('Protected objects') => array('key' => 'tweet_news_protected', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 7,
+						'desc' => gettext('If checked, protected items will be tweeted. <strong>Note:</strong> followers will need the password to visit the tweeted link.'))
 		);
 		$list = array('<em>' . gettext('Albums') . '</em>' => 'tweet_news_albums', '<em>' . gettext('Images') . '</em>' => 'tweet_news_images');
 		if (extensionEnabled('zenpage')) {
@@ -94,15 +101,15 @@ class tweet {
 			setOption('tweet_news_news', 0);
 			setOption('tweet_news_pages', 0);
 		}
-		$options[gettext('Tweet')] = array('key'				 => 'tweet_news_items', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-						'order'			 => 6,
-						'checkboxes' => $list,
-						'desc'			 => gettext('If a <em>type</em> is checked, a Tweet will be made when an object of that <em>type</em> is published.'));
+		$options[gettext('Tweet')] = array('key' => 'tweet_news_items', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+				'order' => 6,
+				'checkboxes' => $list,
+				'desc' => gettext('If a <em>type</em> is checked, a Tweet will be made when an object of that <em>type</em> is published.'));
 		If (getOption('multi_lingual')) {
-			$options[gettext('Tweet Language')] = array('key'				 => 'tweet_language', 'type'			 => OPTION_TYPE_SELECTOR,
-							'order'			 => 5.5,
-							'selections' => generateLanguageList(),
-							'desc'			 => gettext('Select the language for the Tweet message.'));
+			$options[gettext('Tweet Language')] = array('key' => 'tweet_language', 'type' => OPTION_TYPE_SELECTOR,
+					'order' => 5.5,
+					'selections' => generateLanguageList(),
+					'desc' => gettext('Select the language for the Tweet message.'));
 		}
 		if (getOption('tweet_news_news') && is_object($_zp_CMS)) {
 			$catlist = getSerializedArray(getOption('tweet_news_categories'));
@@ -110,13 +117,13 @@ class tweet {
 			$catlist = array(gettext('*not categorized*') => 'tweet_news_categories_none');
 			foreach ($news_categories as $category) {
 				$option = 'tweet_news_categories_' . $category['titlelink'];
-				$catlist[$category['title']] = $option;
+				$catlist[get_language_string($category['title'])] = $option;
 				setOptionDefault($option, NULL);
 			}
-			$options[gettext('News categories')] = array('key'				 => 'tweet_news_categories', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-							'order'			 => 6.5,
-							'checkboxes' => $catlist,
-							'desc'			 => gettext('Only those <em>news categories</em> checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned.'));
+			$options[gettext('News categories')] = array('key' => 'tweet_news_categories', 'type' => OPTION_TYPE_CHECKBOX_UL,
+					'order' => 6.5,
+					'checkboxes' => $catlist,
+					'desc' => gettext('Only those <em>news categories</em> checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned.'));
 		}
 
 		return $options;

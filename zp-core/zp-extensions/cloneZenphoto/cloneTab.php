@@ -26,7 +26,11 @@ printAdminHeader('admin');
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php zp_apply_filter('admin_note', 'clone', ''); ?>
+			<?php
+			printSetupWarning();
+			zp_apply_filter('admin_note', 'clone', '');
+			?>
+
 			<h1><?php echo gettext('Site clones'); ?></h1>
 			<div id="container">
 				<div class="tabbox">
@@ -118,7 +122,7 @@ printAdminHeader('admin');
 						if (substr($uppath, -1) != '/') {
 							$uppath .= '/';
 						}
-						$zp_folders = array(ALBUMFOLDER, BACKUPFOLDER, CACHEFOLDER, STATIC_CACHE_FOLDER, USER_PLUGIN_FOLDER, THEMEFOLDER, UPLOAD_FOLDER, ZENFOLDER, DATA_FOLDER);
+						$zp_folders = array(ALBUMFOLDER, CACHEFOLDER, STATIC_CACHE_FOLDER, USER_PLUGIN_FOLDER, THEMEFOLDER, UPLOAD_FOLDER, ZENFOLDER, DATA_FOLDER);
 
 						if (($dir = opendir($path)) !== false) {
 							while (($file = readdir($dir)) !== false) {

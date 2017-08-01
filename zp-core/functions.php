@@ -161,56 +161,80 @@ function cleanHTML($html) {
  * @param string $articlecontent the source string
  * @param int $shorten new size
  * @param string $shortenindicator
- * @param bool $forceindicator set to true to include the indicator no matter what
  * @return string
+ *
+ * Algorithm copyright by Stephen Billard for use in ZenPhoto20 implementations
  */
-function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator = false) {
-	global $_user_tags;
-	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
-		$allowed_tags = getAllowedTags('allowed_tags');
-//remove script to be replaced later
-		$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
-//remove HTML comments
-		$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
-		$short = mb_substr($articlecontent, 0, $shorten);
-		$short2 = kses($short . '</p>', $allowed_tags);
+function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
+	//conservatve check if the string is too long.
+	if ($shorten && (mb_strlen(strip_tags($articlecontent)) > $shorten)) {
+		//remove HTML comments (except for page break indicators)
+		$content = preg_replace('~<!-- pagebreak -->~isU', '<_PageBreak_>', $articlecontent);
+		$content = preg_replace('~<!--.*-->~isU', '', $content);
 
-		if (($l2 = mb_strlen($short2)) < $shorten) {
-			$c = 0;
-			$l1 = $shorten;
-			$delta = $shorten - $l2;
-			while ($l2 < $shorten && $c++ < 5) {
-				$open = mb_strrpos($short, '<');
-				if ($open > mb_strrpos($short, '>')) {
-					$l1 = mb_strpos($articlecontent, '>', $l1 + 1) + $delta;
-				} else {
-					$l1 = $l1 + $delta;
+		//remove scripts to be added back later
+		preg_match_all('~<script.*>.*</script>~isU', $content, $scripts);
+		$content = preg_replace('~<script.*>.*</script>~isU', '<_Script_>', $content);
+
+		$pagebreak = $html = $short = '';
+		$count = 0;
+
+		//separate out the HTML
+		preg_match_all("~</?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)/?>~i", $content, $markup);
+		$parts = preg_split("~</?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)/?>~i", $content);
+
+		foreach ($parts as $key => $part) {
+			if (array_key_exists($key, $markup[0])) {
+				$html = $markup[0][$key];
+				if ($html == '<_Script_>') {
+					$html = array_shift($scripts[0]);
 				}
-				$short = mb_substr($articlecontent, 0, $l1);
-				preg_match_all('/(<p>)/', $short, $open);
-				preg_match_all('/(<\/p>)/', $short, $close);
-				if (count($open) > count($close))
-					$short .= '</p>';
-				$short2 = kses($short, $allowed_tags);
-				$l2 = mb_strlen($short2);
-			}
-			$shorten = $l1;
-		}
-		$short = truncate_string($articlecontent, $shorten, '');
-		if ($short != $articlecontent) { //	we actually did remove some stuff
-// drop open tag strings
-			$open = mb_strrpos($short, '<');
-			if ($open > mb_strrpos($short, '>')) {
-				$short = mb_substr($short, 0, $open);
-			}
-			if (class_exists('tidy')) {
-				$tidy = new tidy();
-				$tidy->parseString($short . $shortenindicator, array('show-body-only' => true), 'utf8');
-				$tidy->cleanRepair();
-				$short = trim($tidy);
 			} else {
-				$short = trim(cleanHTML($short . $shortenindicator));
+				$html = '';
 			}
+
+			//make html entities into characters so they count properly
+			$cleanPart = html_decode($part);
+			$add = mb_strlen($cleanPart);
+			if ($count + $add >= $shorten) {
+				if ($pagebreak) {
+					//back up to prior page break if it exitst
+					$short = $pagebreak . $shortenindicator;
+				} else {
+					//truncate to fit count
+					$short .= htmlentities(mb_substr($cleanPart, 0, $shorten - $count), ENT_FLAGS, LOCAL_CHARSET);
+					if (strpos($html, '</') === 0) {
+						switch (strtolower($html)) {
+							case '</p>':
+							case '</div>':
+								break;
+							default:
+								//close the tag
+								$short .= $html;
+								$html = '';
+						}
+					}
+					$short .= $shortenindicator . $html;
+				}
+				break;
+			}
+			$short .= $part;
+			if ($html == '<_PageBreak_>') {
+				$pagebreak = $short;
+			} else {
+				$short .= $html;
+			}
+			$count = $count + $add;
+		}
+
+		//tidy up the html--probably dropped a few closing tags!
+		if (class_exists('tidy')) {
+			$tidy = new tidy();
+			$tidy->parseString($short, array('show-body-only' => true), 'utf8');
+			$tidy->cleanRepair();
+			$short = trim($tidy);
+		} else {
+			$short = trim(cleanHTML($short));
 		}
 		$articlecontent = $short;
 	}
@@ -2066,7 +2090,13 @@ function seoFriendlyJS() {
  */
 function getXSRFToken($action, $modifier = NULL) {
 	global $_zp_current_admin_obj;
-	$token = sha1($action . $modifier . serialize($_zp_current_admin_obj->getData()) . session_id());
+	if (is_object($_zp_current_admin_obj)) {
+		$modifier .= serialize($_zp_current_admin_obj->getData());
+	} else {
+		$modifier = microtime();
+	}
+
+	$token = sha1($action . $modifier . session_id());
 	return $token;
 }
 

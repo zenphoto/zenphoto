@@ -268,8 +268,8 @@ class security_logger {
 	 * @param string $pass
 	 * @return int
 	 */
-	static function federatedLoginLogger($success, $user) {
-		return security_logger::adminLoginLogger($success, $user, 'n/a', 'federated_logon_auth');
+	static function federatedLoginLogger($success, $user, $auth) {
+		return security_logger::adminLoginLogger($success, $user, 'n/a', $auth);
 	}
 
 	/**

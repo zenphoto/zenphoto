@@ -31,7 +31,7 @@
 				$albumnav = getPrevAlbum();
 				if (!is_null($albumnav)) {
 					?>
-					<a href="<?php echo getPrevAlbumURL(); ?>" title="<?php echo html_encode($albumnav->getTitle()); ?>"><?php echo '&larr; ' . $linklabel . ': ' . truncate_string($albumnav->getTitle(), 20, '...'); ?></a>
+					<a href="<?php echo getPrevAlbumURL(); ?>" title="<?php echo html_encode($albumnav->getTitle()); ?>"><?php echo '&larr; ' . $linklabel . ': ' . truncate_string(getBare($albumnav->getTitle()), 20, '...'); ?></a>
 				<?php } ?>
 			</div>
 			<div id="album-next" class="album-nav">
@@ -39,10 +39,10 @@
 				$albumnav = getNextAlbum();
 				if (!is_null($albumnav)) {
 					?>
-					<a href="<?php echo getNextAlbumURL(); ?>" title="<?php echo html_encode($albumnav->getTitle()); ?>"><?php echo $linklabel . ': ' . truncate_string($albumnav->getTitle(), 20, '...') . ' &rarr;'; ?></a>
-	<?php } ?>
+					<a href="<?php echo getNextAlbumURL(); ?>" title="<?php echo html_encode($albumnav->getTitle()); ?>"><?php echo $linklabel . ': ' . truncate_string(getBare($albumnav->getTitle()), 20, '...') . ' &rarr;'; ?></a>
+				<?php } ?>
 			</div>
-<?php } ?>
+		<?php } ?>
 	</div>
 </div>
 <?php

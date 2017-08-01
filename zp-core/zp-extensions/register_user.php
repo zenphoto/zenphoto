@@ -45,25 +45,16 @@ class register_user {
 		global $_zp_authority;
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('register_user_link', '_PAGE_/register');
-			gettext($str = 'You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s.');
-			setOptionDefault('register_user_text', getAllTranslations($str));
-			gettext($str = 'Click here to register for this site.');
-			setOptionDefault('register_user_page_tip', getAllTranslations($str));
-			gettext($str = 'Register');
-			setOptionDefault('register_user_page_link', getAllTranslations($str));
+			setOptionDefault('register_user_page_tip', getAllTranslations('Click here to register for this site.'));
+			setOptionDefault('register_user_page_link', getAllTranslations('Register'));
 			setOptionDefault('register_user_captcha', 0);
 			setOptionDefault('register_user_email_is_id', 1);
 			setOptionDefault('register_user_create_album', 0);
-			setOptionDefault('register_user_notify', 1);
-		}
-		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
-		if (count($mailinglist) == 0) { //	no one to send the notice to!
-			setOption('register_user_notify', 0);
 		}
 	}
 
 	function getOptionsSupported() {
-		global $_zp_authority, $_common_notify_handler, $_zp_captcha;
+		global $_zp_authority, $_zp_captcha;
 		$options = array(
 				gettext('Link text') => array('key' => 'register_user_page_link', 'type' => OPTION_TYPE_TEXTAREA,
 						'order' => 1,
@@ -71,18 +62,12 @@ class register_user {
 				gettext('Hint text') => array('key' => 'register_user_page_tip', 'type' => OPTION_TYPE_TEXTAREA,
 						'order' => 2.5,
 						'desc' => gettext('Default hint text for the register user link.')),
-				gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 4,
-						'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
 				gettext('User album') => array('key' => 'register_user_create_album', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 6,
 						'desc' => gettext('If checked, an album will be created and assigned to the user.')),
 				gettext('Email ID') => array('key' => 'register_user_email_is_id', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 4,
 						'desc' => gettext('If checked, The use’s e-mail address will be used as his User ID.')),
-				gettext('Email notification text') => array('key' => 'register_user_text', 'type' => OPTION_TYPE_TEXTAREA,
-						'order' => 3,
-						'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),
 				gettext('CAPTCHA') => array('key' => 'register_user_captcha', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 5,
 						'desc' => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
@@ -93,17 +78,12 @@ class register_user {
 					'buttons' => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
 					'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.'));
 		}
-		if ($_common_notify_handler) {
-			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
-					'order' => 8,
-					'desc' => '<p class="notebox">' . $_common_notify_handler . '</p>');
-		} else {
-			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'register_user\');"><em>register_user</em></a> plugin options.');
-			$options['note'] = array('key' => 'menu_truncate_note',
-					'type' => OPTION_TYPE_NOTE,
-					'order' => 8,
-					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
-		}
+
+		$options['note'] = array('key' => 'menu_truncate_note',
+				'type' => OPTION_TYPE_NOTE,
+				'order' => 8,
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> This option is shared amoung <em>federated_logon</em>, <em>googleLogin</em>, <em>facebookLogin</em>, and <em>register_user</em>.</p>'));
+
 		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 		if (count($mailinglist) == 0) { //	no one to send the notice to!
 			$options[gettext('Notify*')]['disabled'] = true;
@@ -276,7 +256,7 @@ class register_user {
 								$userobj->msg .= ' ' . gettext('You must supply the postal code field.');
 							}
 						}
-						zp_setCookie('reister_user_form_addresses', $_comment_form_save_post);
+						zp_setCookie('reister_user_form_addresses', $_comment_form_save_post, false);
 						userAddressFields::setCustomDataset($userobj, $userinfo);
 					}
 

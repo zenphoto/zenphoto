@@ -29,13 +29,13 @@
 				}
 				?>
 				<li class="<?php echo $css; ?>">
-					<h4><a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php echo html_encodeTagged(truncate_string(getBareAlbumTitle(), 25, '...')); ?></a></h4>
+					<h4><a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>"><?php echo html_encodeTagged(shortenContent(getAlbumTitle(), 25, '...')); ?></a></h4>
 					<a class="thumb" href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>">
 						<?php printAlbumThumbImage(getBareAlbumTitle()); ?>
 					</a>
 					<span class="front-date"><?php printAlbumDate(); ?></span>
 					<p class="front-desc">
-						<?php echo html_encodeTagged(truncate_string(getAlbumDesc(), 175)); ?>
+						<?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 175)); ?>
 						<a href="<?php echo htmlspecialchars(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle()); ?>">&raquo;</a>
 					</p>
 				</li>
@@ -48,7 +48,7 @@
 	<?php if ((getPrevPageURL()) || (getNextPageURL())) { ?>
 		<?php printPageListWithNav('« ' . gettext('Prev'), gettext('Next') . ' »', false, 'true', 'page-nav', '', true, '5'); ?>
 	<?php } ?>
-<?php printCodeblock(); ?>
+	<?php printCodeblock(); ?>
 </div>
 
 <?php include("inc-footer.php"); ?>

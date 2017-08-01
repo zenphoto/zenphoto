@@ -73,7 +73,7 @@ class GoogleMap {
 			setOption('gmap_starting_map', $defaultMap);
 		}
 
-		return array(
+		$options = array(
 				gettext('Allowed maps') => array('key' => 'gmap_allowed_maps', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
 						'order' => 1,
 						'checkboxes' => array(gettext('Hybrid') => 'gmap_map_hybrid',
@@ -114,6 +114,8 @@ class GoogleMap {
 						'order' => 10,
 						'desc' => gettext('As of June 22, 2016 Google Maps no longer support keyless access (any request that doesn\'t include an API key). You may need to obtain an API key from <a href="https://console.developers.google.com/project">Google</a>.'))
 		);
+
+		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
@@ -462,6 +464,12 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				function toggle_<?php echo $id_data; ?>() {
 					if ($('#<?php echo $id_data; ?>').hasClass('hidden_map')) {
 						$('#<?php echo $id_data; ?>').removeClass('hidden_map');
+						//re-render the map because drawing it when hidden is problematic
+						//and drawing it "off screen" presumes the size of the screen[sic]
+						var center = map.getCenter();
+						google.maps.event.trigger(map, "resize");
+						map.setCenter(center);
+						fitMapToBounds();
 					} else {
 						$('#<?php echo $id_data; ?>').addClass('hidden_map');
 					}

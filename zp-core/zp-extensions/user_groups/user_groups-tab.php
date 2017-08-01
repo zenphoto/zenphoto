@@ -248,11 +248,11 @@ echo '</head>' . "\n";
 													?>
 													<em>
 														<label>
-															<input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:toggle('users<?php echo $id; ?>');
+															<input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
 																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
 														</label>
 														<label>
-															<input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:toggle('users<?php echo $id; ?>');
+															<input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
 																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
 														</label>
 													</em>

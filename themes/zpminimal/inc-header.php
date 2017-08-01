@@ -54,16 +54,16 @@ if (function_exists('printAddThis')) {
 				break;
 			case 'pages.php':
 				$zpmin_metatitle = getBarePageTitle() . ' | ';
-				$zpmin_metadesc = strip_tags(truncate_string(getPageContent(), 150, '...'));
+				$zpmin_metadesc = truncate_string(getBare(getPageContent(), 150, '...'));
 				$cbscript = true;
 				break;
 			case 'news.php':
 				if (is_NewsArticle()) {
 					$zpmin_metatitle = gettext('News') . ' | ' . getBareNewsTitle() . ' | ';
-					$zpmin_metadesc = strip_tags(truncate_string(getNewsContent(), 150, '...'));
+					$zpmin_metadesc = truncate_string(getBare(getNewsContent(), 150, '...'));
 				} else if ($_zp_current_category) {
 					$zpmin_metatitle = gettext('News') . ' | ' . $_zp_current_category->getTitle() . ' | ';
-					$zpmin_metadesc = strip_tags(truncate_string(getNewsCategoryDesc(), 150, '...'));
+					$zpmin_metadesc = truncate_string(getBare(getNewsCategoryDesc(), 150, '...'));
 				} else if (getCurrentNewsArchive()) {
 					$zpmin_metatitle = gettext('News') . ' | ' . getCurrentNewsArchive() . ' | ';
 				} else {

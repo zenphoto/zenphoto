@@ -60,15 +60,15 @@
 				break;
 			case 'pages.php':
 				$zpfocus_metatitle = getBarePageTitle() . ' | ' . getBareGalleryTitle();
-				$zpfocus_metadesc = strip_tags(truncate_string(getPageContent(), 150, '...'));
+				$zpfocus_metadesc = truncate_string(getBare(getPageContent(), 150, '...'));
 				break;
 			case 'news.php':
 				if (is_NewsArticle()) {
 					$zpfocus_metatitle = gettext('News') . ' | ' . getBareNewsTitle() . ' | ' . getBareGalleryTitle();
-					$zpfocus_metadesc = strip_tags(truncate_string(getNewsContent(), 150, '...'));
+					$zpfocus_metadesc = truncate_string(getBare(getNewsContent(), 150, '...'));
 				} else if ($_zp_current_category) {
 					$zpfocus_metatitle = gettext('News') . ' | ' . $_zp_current_category->getTitle() . ' | ' . getBareGalleryTitle();
-					$zpfocus_metadesc = strip_tags(truncate_string(getNewsCategoryDesc(), 150, '...'));
+					$zpfocus_metadesc = truncate_string(getBare(getNewsCategoryDesc(), 150, '...'));
 				} else if (getCurrentNewsArchive()) {
 					$zpfocus_metatitle = gettext('News') . ' | ' . getCurrentNewsArchive() . ' | ' . getBareGalleryTitle();
 					$zpfocus_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');
