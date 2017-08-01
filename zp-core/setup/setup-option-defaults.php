@@ -72,6 +72,15 @@ if ($result) {
 	}
 }
 
+//migrate favorites data
+$all = query_full_array('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favoritesHandler" AND `subtype` IS NULL');
+foreach ($all as $aux) {
+	$instance = getSerializedArray($aux['aux']);
+	if (isset($instance[1])) {
+		query('UPDATE ' . prefix('plugin_storage') . ' SET `subtype`="named" WHERE `id`=' . $aux['id']);
+	}
+}
+
 //migrate "publish" dates
 foreach (array('albums', 'images', 'news', 'pages') as $table) {
 	$sql = 'UPDATE ' . prefix($table) . ' SET `publishdate`=NULL WHERE `publishdate` ="0000-00-00 00:00:00"';
