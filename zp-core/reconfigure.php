@@ -74,9 +74,11 @@ function reconfigureAction($mandatory) {
 		}
 	} else if (!empty($diff)) {
 		if (function_exists('zp_register_filter') && zp_loggedin(ADMIN_RIGHTS)) {
-			//	no point in telling someone who can't do anything about it
+//	no point in telling someone who can't do anything about it
 			zp_register_filter('admin_note', 'signatureChange', 9999);
 			zp_register_filter('admin_head', 'reconfigureCS');
+			zp_register_filter('theme_head', 'reconfigureCS');
+			zp_register_filter('theme_body_open', 'signatureChange');
 		}
 	}
 }
@@ -209,20 +211,15 @@ function reconfigureCS() {
  * HTML for the configuration change notification
  */
 function reconfigurePage($diff, $needs, $mandatory) {
-	if (function_exists('getXSRFToken')) {
-		$token = getXSRFToken('setup');
-		if (isset($_GET['dismiss']) && isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == $token) {
-			setOption('zenphoto_install', serialize(installSignature()));
-			return;
-		}
-		$token = '&amp;xsrfToken=' . $token;
-	} else {
-		$token = '';
-	}
 	if (OFFSET_PATH) {
 		$where = 'admin';
 	} else {
 		$where = 'gallery';
+	}
+	if (function_exists('getXSRFToken')) {
+		$token = '&amp;xsrfToken=' . getXSRFToken('setup');
+	} else {
+		$token = '';
 	}
 	$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . $token . '">';
 	$l2 = '</a>';
@@ -279,14 +276,8 @@ function reconfigurePage($diff, $needs, $mandatory) {
 				printf(gettext('The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function.'), $l1, $l2);
 			} else {
 				printf(gettext('The change detected may not be critical but you should run %1$ssetup%2$s at your earliest convenience.'), $l1, $l2);
-				?>
-				<p class="buttons">
-					<a href="?dismiss=config_warning<?php echo $token; ?>" title="<?php echo gettext('Ignore this configuration change.'); ?>"><?php echo gettext('dismiss'); ?></a>
-				</p>
-				<br class="clearall">
-					<?php
-				}
-				?>
+			}
+			?>
 		</p>
 	</div>
 	<?php
