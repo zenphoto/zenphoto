@@ -63,7 +63,7 @@ if (OFFSET_PATH && getOption('dirtyform_enable') > 1) {
 <script type="text/javascript">
 // <!-- <![CDATA[
 	tinymce.init({
-	entity_encoding : "raw",
+	entity_encoding : "<?php echo getOption('tiny_mce_entity_encoding'); ?>",
 					selector: "<?php echo $MCEselector; ?>",
 					language: "<?php echo $MCElocale; ?>",
 					relative_urls: false,
