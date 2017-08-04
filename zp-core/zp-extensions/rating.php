@@ -111,7 +111,7 @@ class jquery_rating {
 				gettext('Icon size') => array('key' => 'rating_star_size', 'type' => OPTION_TYPE_RADIO,
 						'order' => 4.5,
 						'buttons' => array(gettext('large') => 32, gettext('medium') => 24, gettext('small') => 16),
-						'desc' => gettext('the size of the icon used for voting.')),
+						'desc' => gettext('The size of the icon used for voting.')),
 				gettext('Individual image control') => array('key' => 'rating_image_individual_control', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 2,
 						'desc' => gettext('Enable to allow voting status control on individual images.')),
@@ -201,9 +201,9 @@ class jquery_rating {
 		?>
 
 		<script type="text/javascript">
-					// <!-- <![CDATA[
-					$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: <?php echo $size; ?>};
-					// ]]> -->
+			// <!-- <![CDATA[
+			$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: <?php echo $size; ?>};
+			// ]]> -->
 		</script>
 		<?php
 	}
