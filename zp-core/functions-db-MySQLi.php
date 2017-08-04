@@ -44,9 +44,9 @@ function db_connect($config, $errorstop = true) {
 		return false;
 	}
 	$_zp_DB_details = $config;
-	if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
-		$_zp_DB_connection->set_charset("utf8");
-	}
+
+	//set character set protocol to utf8
+	$_zp_DB_connection->set_charset("utf8");
 	// set the sql_mode to relaxed (if possible)
 	@$_zp_DB_connection->query('SET SESSION sql_mode="";');
 	return $_zp_DB_connection;

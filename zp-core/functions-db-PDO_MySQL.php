@@ -26,18 +26,13 @@ function db_connect($config, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_details, $_zp_DB_last_result;
 	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 	$_zp_DB_connection = $_zp_DB_last_result = NULL;
-	if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
-		$utf8 = ';charset=utf8';
-	} else {
-		$utf8 = false;
-	}
 	try {
 		$db = $config['mysql_database'];
 		$hostname = $config['mysql_host'];
 		$username = $config['mysql_user'];
 		$password = $config['mysql_pass'];
 		if (class_exists('PDO')) {
-			$_zp_DB_connection = new PDO("mysql:host=$hostname;dbname=$db$utf8", $username, $password);
+			$_zp_DB_connection = new PDO("mysql:host=$hostname;dbname=$db;charset=utf8", $username, $password);
 		}
 	} catch (PDOException $e) {
 		$_zp_DB_last_result = $e;
@@ -48,7 +43,7 @@ function db_connect($config, $errorstop = true) {
 		return false;
 	}
 	$_zp_DB_details = $config;
-	if ($utf8 && version_compare(PHP_VERSION, '5.3.6', '<')) {
+	if (version_compare(PHP_VERSION, '5.3.6', '<')) {
 		try {
 			$_zp_DB_connection->query("SET NAMES 'utf8'");
 		} catch (PDOException $e) {

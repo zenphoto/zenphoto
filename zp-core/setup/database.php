@@ -11,7 +11,7 @@
 $dbSoftware = db_software();
 $indexComments = version_compare($dbSoftware['version'], '5.5.0') >= 0;
 
-$database = $orphans = array();
+$database = $orphans = $datefields = array();
 $collation = db_collation();
 $template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
 
@@ -25,7 +25,7 @@ if (isset($_SESSION['admin']['db_admin_fields'])) { //	we are in a clone install
 }
 
 /* rename Comment table custom_data since it is really address data */
-$sql = "ALTER TABLE " . prefix('comments') . " CHANGE `custom_data` `address_data` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT 'zp20';";
+$sql = "ALTER TABLE " . prefix('comments') . " CHANGE `custom_data` `address_data` TEXT " . $collation . " NULL DEFAULT NULL COMMENT 'zp20';";
 setupQuery($sql, false);
 
 foreach (getDBTables() as $table) {
@@ -37,6 +37,10 @@ foreach (getDBTables() as $table) {
 		unset($datum['Extra']);
 		unset($datum['Privileges']);
 		$database[$table]['fields'][$datum['Field']] = $datum;
+
+		if ($datum['Type'] == 'datetime') {
+			$datefields[] = array('table' => $table, 'field' => $datum['Field']);
+		}
 	}
 
 	$indices = array();
@@ -189,6 +193,14 @@ foreach ($metadataProviders as $source => $handler) {
 			}
 		}
 	}
+}
+
+//cleanup datetime where value = '0000-00-00 00:00:00'
+foreach ($datefields as $fix) {
+	$table = $fix['table'];
+	$field = $fix['field'];
+	$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=NULL WHERE `' . $field . '`="0000-00-00 00:00:00"';
+	setupQuery($sql, false);
 }
 
 //setup database

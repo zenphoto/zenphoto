@@ -1675,7 +1675,7 @@ function dateTimeConvert($datetime, $raw = false) {
 	$datetime = preg_replace('/(\d{4}):(\d{2}):(\d{2})/', ' \1-\2-\3', $datetime);
 	$time = strtotime($datetime);
 	if ($time == -1 || $time === false)
-		return false;
+		return NULL;
 	if ($raw)
 		return $time;
 	return date('Y-m-d H:i:s', $time);

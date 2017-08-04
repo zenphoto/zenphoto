@@ -36,7 +36,7 @@ $conf['mysql_prefix'] = ".";
 // If you are having problems with displaying some characters you may have to change
 // the following:
 $conf['charset'] = 'UTF-8';
-$conf['UTF-8'] = true;
+$conf['UTF-8'] = 'utf8';
 ////////////////////////////////////////////////////////////////////////////////
 // Required options
 ////////////////////////////////////////////////////////////////////////////////
