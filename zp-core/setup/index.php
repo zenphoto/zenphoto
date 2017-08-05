@@ -276,8 +276,11 @@ while (($engineMC = readdir($dir)) !== false) {
 ksort($engines);
 
 if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	unset($_zp_conf_vars);
-	require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	loadConfiguration();
+
+	if (!isset($_zp_conf_vars['UTF-8']) || $_zp_conf_vars['UTF-8'] === true) {
+		$_zp_conf_vars['UTF-8'] = 'utf8';
+	}
 	if (isset($_zp_conf_vars) && !isset($conf) && isset($_zp_conf_vars['special_pages'])) {
 		if (isset($_zp_conf_vars['db_software'])) {
 			$confDB = $_zp_conf_vars['db_software'];
@@ -321,6 +324,8 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	}
 	require_once(dirname(dirname(__FILE__)) . '/functions.php');
 }
+
+
 
 if ($updatezp_config) {
 	storeConfig($zp_cfg);
@@ -1656,8 +1661,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$dbmsg = gettext("database connected");
 							} // system check
 							if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+								loadConfiguration();
 
-								require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 								$task = '';
 								if (isset($_GET['create'])) {
 									$task = 'create';
@@ -1781,11 +1786,12 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											$url = $data['url'];
 											?>
 											<p class = "delayshow" style = "display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $data['url'] . ZENFOLDER . '/setup/index.php?autorun', $clone);
-											?></p>
-											<?php
+							?></p>
+												<?php
 										}
 									}
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
+									zp_session_destroy(); //	lets start fresh with the new install
 									?>
 									<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 									<?php

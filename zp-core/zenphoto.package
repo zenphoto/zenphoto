@@ -1032,6 +1032,10 @@ plugins/text_watermark/
 plugins/text_watermark/createwatermark.php
 plugins/text_watermark/text_watermark.htm
 plugins/text_watermark.php
+plugins/utf8mb4Migration/
+plugins/utf8mb4Migration/logo.png
+plugins/utf8mb4Migration/migrate.php
+plugins/utf8mb4Migration.php
 plugins/zenphotoCompatibilityPack/
 plugins/zenphotoCompatibilityPack/legacyConverter.php
 plugins/zenphotoCompatibilityPack.php
@@ -8195,4 +8199,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-8197
+8201

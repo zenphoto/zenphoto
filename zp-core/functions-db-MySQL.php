@@ -45,8 +45,14 @@ function db_connect($config, $errorstop = true) {
 	}
 	$_zp_DB_details = $config;
 
-	//set charcter protocol to utf8
-	mysql_set_charset('utf8', $_zp_DB_connection);
+	//set character set protocol
+	$software = db_software();
+	$version = $software['version'];
+	if (version_compare($version, '5.5.3', '>=')) {
+		mysql_set_charset('utf8mb4', $_zp_DB_connection);
+	} else {
+		mysql_set_charset('utf8', $_zp_DB_connection);
+	}
 	// set the sql_mode to relaxed (if possible)
 	@mysql_query('SET SESSION sql_mode="";');
 	return $_zp_DB_connection;

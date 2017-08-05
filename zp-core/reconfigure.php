@@ -240,7 +240,6 @@ function reconfigurePage($diff, $needs, $mandatory) {
 							echo '<li>' . sprintf(gettext('Your server software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						case 'DATABASE':
-							$dbs = db_software();
 							echo '<li>' . sprintf(gettext('Your database software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						case 'ZENPHOTO':

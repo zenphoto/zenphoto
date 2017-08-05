@@ -117,10 +117,13 @@ set_exception_handler("zpErrorHandler");
 $_configMutex = new zpMutex('cF');
 $_zp_mutex = new zpMutex();
 
-$_zp_conf_vars = array('db_software' => 'NULL', 'mysql_prefix' => '_', 'charset' => 'UTF-8');
+$_zp_conf_vars = array('db_software' => 'NULL', 'mysql_prefix' => '_', 'charset' => 'UTF-8', 'UTF-8' => 'utf8');
 // Including the config file more than once is OK, and avoids $conf missing.
 if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	@eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+	if (!isset($_zp_conf_vars['UTF-8']) || $_zp_conf_vars['UTF-8'] === true) {
+		$_zp_conf_vars['UTF-8'] = 'utf8';
+	}
 	define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
 } else {
 	define('DATA_MOD', 0777);
@@ -167,8 +170,15 @@ if (!isset($_zp_conf_vars['server_protocol'])) {
 if (!defined('DATABASE_SOFTWARE') && (extension_loaded(strtolower($_zp_conf_vars['db_software'])) || $_zp_conf_vars['db_software'] == 'NULL')) {
 	require_once(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php');
 	$data = db_connect(array_intersect_key($_zp_conf_vars, array('db_software' => '', 'mysql_user' => '', 'mysql_pass' => '', 'mysql_host' => '', 'mysql_database' => '', 'mysql_prefix' => '', 'UTF-8' => '')), false);
+	if ($data) {
+		$software = db_software();
+		define('MySQL_VERSION', $software['version']);
+	}
 } else {
 	$data = false;
+}
+if (!defined('MySQL_VERSION')) {
+	define('MySQL_VERSION', '0.0.0');
 }
 
 if (!$data && OFFSET_PATH != 2) {

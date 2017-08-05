@@ -10,6 +10,7 @@
  */
 $dbSoftware = db_software();
 $indexComments = version_compare($dbSoftware['version'], '5.5.0') >= 0;
+$utf8mb4 = version_compare($dbSoftware['version'], '5.5.3', '>=');
 
 $database = $orphans = $datefields = array();
 $collation = db_collation();
@@ -204,8 +205,9 @@ foreach ($datefields as $fix) {
 }
 
 //setup database
+$tablePresent = array();
 foreach ($template as $tablename => $table) {
-	$exists = array_key_exists($tablename, $database);
+	$tablePresent[$tablename] = $exists = array_key_exists($tablename, $database);
 	if (!$exists) {
 		$create = array();
 		$create[] = "CREATE TABLE IF NOT EXISTS " . prefix($tablename) . " (";
@@ -214,7 +216,11 @@ foreach ($template as $tablename => $table) {
 	$after = ' FIRST';
 	foreach ($table['fields'] as $key => $field) {
 		if ($key != 'id') {
-			$string = "ALTER TABLE " . prefix($tablename) . " %s `" . $field['Field'] . "` " . $field['Type'];
+			$dbType = strtoupper($field['Type']);
+			$string = "ALTER TABLE " . prefix($tablename) . " %s `" . $field['Field'] . "` " . $dbType;
+			if ($utf8mb4 && ($dbType == 'TEXT' || $dbType == 'LONGTEXT')) {
+				$string .= ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci';
+			}
 			if ($field['Null'] === 'NO')
 				$string .= " NOT NULL";
 			if (!empty($field['Default']) || $field['Default'] === '0' || $field['Null'] !== 'NO') {
@@ -326,7 +332,12 @@ foreach ($template as $tablename => $table) {
 		}
 	}
 }
-
+//if this is a new database, update the config file for the utf8 encoding
+if ($utf8mb4 && !array_search(true, $tablePresent)) {
+	$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	$zp_cfg = updateConfigItem('UTF-8', 'utf8mb4', $zp_cfg);
+	storeConfig($zp_cfg);
+}
 // now the database is setup we can store the options
 setOptionDefault('metadata_disabled', serialize($disable));
 setOptionDefault('metadata_displayed', serialize($display));

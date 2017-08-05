@@ -1,4 +1,5 @@
 <?php
+
 /**
  * functions common to both the core and setup's basic environment
  *
@@ -6,6 +7,13 @@
  *
  * @package core
  */
+function loadConfiguration() {
+	global $_zp_conf_vars;
+	require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	if (!isset($_zp_conf_vars['UTF-8']) || $_zp_conf_vars['UTF-8'] === true) {
+		$_zp_conf_vars['UTF-8'] = 'utf8';
+	}
+}
 
 /**
  * Common error reporting for query errors
@@ -136,7 +144,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		// out of curtesy show the error message on the WEB page since there will likely be a blank page otherwise
 		?>
 		<div style="padding: 10px 15px 10px 15px;	background-color: #FDD;	border-width: 1px 1px 2px 1px;	border-style: solid;	border-color: #FAA;	margin-bottom: 10px;	font-size: 100%;">
-		<?php echo html_encode($msg); ?>
+			<?php echo html_encode($msg); ?>
 		</div>
 		<?php
 	}

@@ -15,7 +15,8 @@ if (isset($_GET['debug'])) {
 	$debug = '';
 }
 
-require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+loadConfiguration();
+
 $testFile = SERVERPATH . '/' . DATA_FOLDER . '/' . internalToFilesystem('charset_tést');
 if (!file_exists($testFile)) {
 	file_put_contents($testFile, '');
