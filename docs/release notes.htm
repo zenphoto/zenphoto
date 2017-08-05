@@ -73,7 +73,7 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.4.2.0</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.4.2.1</h2>
 <p> </p>
 <h2>General</h2>
 <p>Several security fixes have been applied.</p>
@@ -82,6 +82,7 @@
 <p>The register user notify option has been move to the general options page. This option is used by multiple plugins so a global setting is more appropriate.</p>
 <p>The <em>backup</em> folder has been relocated to within the <em>data</em> folder.</p>
 <p>The <code>shortenContent()</code> function has been rewritten. It will now count only text characters in shortening the string. Before HTML tags were counted as part of the allowed total. Page break handling is now incorporated in the function. Truncation will prefer to happen at a page break indication (<code>&lt;-- pagebreak --&gt;.</code>) This allows for simplification of <code>getContentShorten()</code> which had been including HTML tags in its character count when deciding what page break to select. The <code>$forceindicator</code> parameter has been removed. It really made no sense and was used only by <code>getContentShorten()</code> when it rolled back to a page break. It was also not applied if no shortening was done even though that was the promise in the comment block.</p>
+<p>Warnings about configuration changes will no longer be displayed on theme pages. In addition, when the warning is displayed on an admin page a button will be included to dismiss the warning. If you are comfortable that the change does not impact your site you may dismiss it and it will no longer be shown.</p>
 <h2>Social Media Login</h2>
 <p>Plugins have been added to allow login via <em>Facebook</em>, <em>Google</em>, Instagram, <em>Linkedin</em>, and <em>Twitter</em>. These a drop-down selector on the login form will take you to the respective authorization pages. Alternatively, there are functions for each that will place a login button on your web page wherever you like. E.g. <code>facebookLogin::loginButton();</code> will place a button on your page that allows the user to login via Facebook. (You can place a button for the normal ZenPhoto20 login via <code>Zenphoto_Authority::loginButton();</code>)</p>
 <h2>Language translations</h2>
