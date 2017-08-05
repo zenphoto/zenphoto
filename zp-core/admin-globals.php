@@ -13,6 +13,12 @@ $_zp_button_actions = $zenphoto_tabs = array();
 require_once(dirname(__FILE__) . '/functions-basic.php');
 
 zp_session_start();
+if (isset($_GET['fromsetup'])) {
+	//	lets start with a clean slate
+	zp_session_destroy();
+	$session = zp_session_start();
+}
+
 require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 httpsRedirect();
 
