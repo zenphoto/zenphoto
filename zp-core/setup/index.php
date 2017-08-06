@@ -478,9 +478,13 @@ if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_resu
 
 $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"));
 ?>
+
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 	<head>
+
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<title><?php printf('ZenPhoto20 %s', $upgrade); ?></title>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-pages.css" type="text/css" />
@@ -497,9 +501,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 			}
 		</script>
 		<link rel="stylesheet" href="setup.css" type="text/css" />
+
 	</head>
+
 	<body>
+
 		<div id="main">
+
 			<h1><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png" title="<?php echo gettext('ZenPhoto20 Setup'); ?>" alt="<?php echo gettext('ZenPhoto20 Setup'); ?>" />
 				<span><?php echo $upgrade; ?></span>
 			</h1>
@@ -1778,11 +1786,12 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											$url = $data['url'];
 											?>
 											<p class = "delayshow" style = "display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $data['url'] . ZENFOLDER . '/setup/index.php?autorun', $clone);
-											?></p>
-											<?php
+							?></p>
+												<?php
 										}
 									}
-									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php?fromsetup');
+									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
+									zp_session_destroy(); //	lets start fresh with the new install
 									?>
 									<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 									<?php
@@ -1791,7 +1800,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											break;
 										case 'gallery':
 										case 'admin':
-											$autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php?fromsetup';
+											$autorun = WEBPATH . '/' . ZENFOLDER . '/admin.php';
 											break;
 										default:
 											break;
@@ -1799,7 +1808,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									?>
 									<script type="text/javascript">
 										function launchAdmin() {
-											window.location = '<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php?fromsetup'; ?>';
+											window.location = '<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php'; ?>';
 										}
 										window.onload = function () {
 											$('.delayshow').show();
