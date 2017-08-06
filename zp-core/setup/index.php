@@ -1789,7 +1789,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										}
 									}
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
-									zp_session_destroy(); //	lets start fresh with the new install
 									?>
 									<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 									<?php
