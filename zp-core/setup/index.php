@@ -8,10 +8,6 @@
  */
 // force UTF-8 Ø
 
-if (!isset($_POST)) {
-	setcookie('PHPSESSID', '', time() - 42000);
-}
-
 Define('PHP_MIN_VERSION', '5.2');
 Define('PHP_MIN_SUPPORTED_VERSION', '5.6');
 Define('PHP_DESIRED_VERSION', '7.1');
@@ -59,7 +55,12 @@ if (isset($_REQUEST['autorun'])) {
 } else {
 	$autorun = false;
 }
-
+if (!(isset($_REQUEST['xsrfToken']) || isset($_SESSION['clone']))) {
+	// clean out any old sessions to start fresh
+	setcookie('PHPSESSID', '', time() - 42000);
+	session_start();
+	zp_session_destroy();
+}
 $session = zp_session_start();
 session_cache_limiter('nocache');
 
