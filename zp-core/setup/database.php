@@ -13,7 +13,6 @@ $indexComments = version_compare($dbSoftware['version'], '5.5.0') >= 0;
 $utf8mb4 = version_compare($dbSoftware['version'], '5.5.3', '>=');
 
 $database = $orphans = $datefields = array();
-$collation = db_collation();
 $template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
 
 if (isset($_SESSION['admin']['db_admin_fields'])) { //	we are in a clone install, be srue admin fields match
@@ -26,7 +25,7 @@ if (isset($_SESSION['admin']['db_admin_fields'])) { //	we are in a clone install
 }
 
 /* rename Comment table custom_data since it is really address data */
-$sql = "ALTER TABLE " . prefix('comments') . " CHANGE `custom_data` `address_data` TEXT " . $collation . " NULL DEFAULT NULL COMMENT 'zp20';";
+$sql = "ALTER TABLE " . prefix('comments') . " CHANGE `custom_data` `address_data` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT 'zp20';";
 setupQuery($sql, false);
 
 foreach (getDBTables() as $table) {
@@ -314,7 +313,7 @@ foreach ($template as $tablename => $table) {
 	}
 	if (!$exists) {
 		$create[] = "  PRIMARY KEY (`id`)";
-		$create[] = ") $collation;";
+		$create[] = ")  CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
 		$create = implode("\n", $create);
 		setupQuery($create);
 	} else {
