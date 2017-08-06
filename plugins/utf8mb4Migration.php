@@ -2,7 +2,7 @@
 
 /*
  * This plugin is a migration tool to move <var>TEXT</var> and <var>LONGTEXT</var> database fields to
- * <i>utf8mb4</i> encoding and collation. All other fields are left as <i>utf8</i>.
+ * <i>utf8mb4</i> encoding and collation. All other <i>text</i> fields are left as <i>utf8</i>.
  *
  * <i>utf8</i> encoding supports only <i>Basic Multilingual Plane</i> (BMP) characters. Many
  * recently defined Emoji characters are coded in with <i>trans-BMP</i> codes. For MySql to
@@ -11,16 +11,13 @@
  * character will result in data truncation at that character since it is not valid
  * in <i>utf8</i>.
  *
- * New ZenPhoto20 installations will use <i>utf8mb4</i> so long as the MySql version
- * of the site supports that encoding. For existing installation that wish to migrate
- * to be able to use these Emoji it is necessary to migrate the database.
- *
  * You should always backup your database before attempting this migration. <i>utf8</i>
  * is a subset of <i>utf8mb4</i> so all data should migrate successfully. <b>HOWEVER</b>
  * it is possible that the database contains characters which are invalid in <i>utf8mb4</i>.
  * This could cause the migration to fail or to lose data.
  *
- * Your MySQL software version MUST be 5.5.3 or greater to support utf8mb4 encodings.
+ * Your MySQL software version MUST be 5.5.3 or greater to support utf8mb4 encodings. The migration
+ * tool will be disabled if your MySQL version is less than this.
  *
  * @author Stephen Billard (sbillard)
  *
