@@ -167,7 +167,7 @@ foreach ($metadataProviders as $source => $handler) {
 					if ($s < 255) {
 						$s = "varchar($s)";
 					} else {
-						$s = 'mediumtext';
+						$s = 'text';
 					}
 					break;
 				case 'number':
@@ -204,6 +204,17 @@ foreach ($datefields as $fix) {
 }
 
 //setup database
+$result = db_show('variables', 'character_set_database');
+if (is_array($result)) {
+	$row = array_shift($result);
+	$dbmigrate = $row['Value'] != 'utf8mb4';
+} else {
+	$dbmigrate = true;
+}
+if ($utf8mb4 && $dbmigrate) {
+	$sql = 'ALTER DATABASE ' . db_name() . ' CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;';
+	setupQuery($sql);
+}
 $tablePresent = array();
 foreach ($template as $tablename => $table) {
 	$tablePresent[$tablename] = $exists = array_key_exists($tablename, $database);
