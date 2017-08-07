@@ -548,12 +548,12 @@ function checkUnique($table, $unique) {
  * @author Stephen Billard
  * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
-function setupQuery($sql, $failNotify = true) {
+function setupQuery($sql, $failNotify = true, $log = true) {
 	global $updateErrors;
 	$result = db_table_update($sql);
 	if (OFFSET_PATH == 2) { //don't write to setup log if not running setup
 		if ($result) {
-			setupLog(sprintf(gettext('Query Success: %s'), $sql), true);
+			setupLog(sprintf(gettext('Query Success: %s'), $sql), $log);
 		} else {
 			if ($failNotify) {
 				$updateErrors = true;

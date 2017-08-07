@@ -200,7 +200,7 @@ foreach ($datefields as $fix) {
 	$table = $fix['table'];
 	$field = $fix['field'];
 	$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=NULL WHERE `' . $field . '`="0000-00-00 00:00:00"';
-	setupQuery($sql, false);
+	setupQuery($sql, false, FALSE);
 }
 
 //setup database
