@@ -58,7 +58,6 @@ if (isset($_REQUEST['autorun'])) {
 $session = zp_session_start();
 if (!isset($_SESSION['save_session_path'])) {
 	// clean out any old sessions to start fresh
-	setcookie('PHPSESSID', '', time() - 42000);
 	zp_session_destroy();
 	$session = zp_session_start();
 }
@@ -75,7 +74,7 @@ if (isset($_REQUEST['xsrfToken']) || isset($_REQUEST['update']) || isset($_REQUE
 		unset($_REQUEST['checked']);
 	}
 }
-$_SESSION['save_session_path'] = $_initial_session_path;
+$_SESSION['save_session_path'] = session_save_path();
 
 
 $en_US = dirname(dirname(__FILE__)) . '/locale/en_US/';
