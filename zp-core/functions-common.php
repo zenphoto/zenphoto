@@ -640,7 +640,10 @@ function secureServer() {
  */
 function zp_session_start() {
 	global $_zp_conf_vars;
-	if (session_id() == '') {
+	$result = session_id();
+	if ($result) {
+		return $result;
+	} else {
 		@ini_set('session.use_strict_mode', 1);
 		//	insure that the session data has a place to be saved
 		if (isset($_zp_conf_vars['session_save_path'])) {
@@ -658,7 +661,6 @@ function zp_session_start() {
 		$result = session_start();
 		return $result;
 	}
-	return NULL;
 }
 
 function zp_session_destroy() {
