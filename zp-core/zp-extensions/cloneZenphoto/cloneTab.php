@@ -51,7 +51,7 @@ printAdminHeader('admin');
 						}
 						?>
 						<p<?php echo $strike; ?>>
-							<a href="<?php echo $data['url']; ?>" target="_blank" title="<?php echo $title; ?>"><?php echo $clone; ?></a>
+							<a href="<?php echo $data['url'] . ZENFOLDER . '/admin.php'; ?>" target="_blank" title="<?php echo $title; ?>"><?php echo $clone; ?></a>
 						</p>
 						<?php
 					}
