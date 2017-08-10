@@ -534,3 +534,6 @@ h2{
 .themeSwitcherMenuMain {
 	top: 17px;
 }
+.adminGear, .themeSwitcherMenu{
+	color: white;
+}

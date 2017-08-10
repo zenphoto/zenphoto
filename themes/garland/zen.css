@@ -1158,3 +1158,6 @@ input.button {
 .themeSwitcherMenuMain {
 	top: 17px;
 }
+.adminGear, .themeSwitcherMenu{
+	color: white;
+}

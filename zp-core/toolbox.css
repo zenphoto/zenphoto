@@ -44,3 +44,7 @@ Default admin toolbox css
 #admin h3:hover {
 	color: #036;
 }
+
+.adminGear a:hover{
+	text-decoration: none;
+}

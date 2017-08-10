@@ -1435,3 +1435,9 @@ input.button {
 .zen-logo img {
 	vertical-align: sub;
 }
+.themeSwitcherMenuMain {
+	top: 17px;
+}
+.adminGear, .themeSwitcherMenu{
+	color: white;
+}
