@@ -221,10 +221,11 @@ function sanitize_path($filename) {
  * @return int
  */
 function sanitize_numeric($num) {
-	if (is_numeric($num)) {
-		return round($num);
+	$f = filter_var($num, FILTER_SANITIZE_NUMBER_FLOAT);
+	if ($f === false) {
+		return 0;
 	} else {
-		return false;
+		return round($f);
 	}
 }
 

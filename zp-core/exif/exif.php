@@ -895,7 +895,11 @@ function formatData($type, $tag, $intel, $data) {
 				case '9000': // ExifVersion
 				case 'a000': // FlashPixVersion
 				case '0002': // InteroperabilityVersion
-					$data = '!version!' . ' ' . $data / 100;
+					$d = filter_var($data, FILTER_SANITIZE_NUMBER_INT);
+					if ($d !== false) {
+						$data = $d / 100;
+					}
+					$data = '!version!' . ' ' . $data;
 					break;
 				case 'a300': // FileSource
 					$data = bin2hex($data);
@@ -1228,6 +1232,22 @@ function read_exif_data_raw($path, $verbose) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // add 12 to the offset to account for TIFF header
 	if ($result['ValidJpeg'] == 1) {
 		$globalOffset+=12;
@@ -1409,7 +1429,7 @@ function convertToFraction($v) {
 //================================================================================================
 function get35mmEquivFocalLength(&$result) {
 	if (isset($result['SubIFD']['ExifImageWidth'])) {
-		$width = $result['SubIFD']['ExifImageWidth'];
+		$width = filter_var($result['SubIFD']['ExifImageWidth'], FILTER_SANITIZE_NUMBER_INT);
 	} else {
 		$width = 0;
 	}
@@ -1429,17 +1449,19 @@ function get35mmEquivFocalLength(&$result) {
 		default : $unitfactor = 25.4;
 	}
 	if (isset($result['SubIFD']['FocalPlaneXResolution'])) {
-		$xres = $result['SubIFD']['FocalPlaneXResolution'];
+		$xres = filter_var($result['SubIFD']['FocalPlaneXResolution'], FILTER_SANITIZE_NUMBER_INT);
 	} else {
 		$xres = '';
 	}
 	if (isset($result['SubIFD']['FocalLength'])) {
-		$fl = $result['SubIFD']['FocalLength'];
+		$fl = filter_var($result['SubIFD']['FocalLength'], FILTER_SANITIZE_NUMBER_INT);
 	} else {
 		$fl = 0;
 	}
 
-	if (($width != 0) && !empty($units) && !empty($xres) && !empty($fl) && !empty($width)) {
+	if (!empty($units) && !empty($xres) && !empty($fl) && !empty($width)) {
+
+
 		$ccdwidth = ($width * $unitfactor) / $xres;
 		$equivfl = $fl / $ccdwidth * 36 + 0.5;
 		return $equivfl;
