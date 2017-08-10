@@ -9,19 +9,19 @@ $cwd = getcwd();
 chdir(dirname(__FILE__));
 $persona = safe_glob('*', GLOB_ONLYDIR);
 chdir($cwd);
-$persona = array_diff($persona, array('images', 'contact_form'));
 $personalities = array();
 foreach ($persona as $personality) {
-	$personalities[ucfirst(str_replace('_', ' ', $personality))] = $personality;
+	if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/garland/' . $personality . '/functions.php'))
+		$personalities[ucfirst(str_replace('_', ' ', $personality))] = $personality;
 }
 
 if (!OFFSET_PATH) {
 	if (extensionEnabled('themeSwitcher')) {
-		$personality = getThemeOption('themeSwitcher_personality');
+		$personality = zp_getCookie('themeSwitcher_personality');
 		if (isset($_GET['themePersonality'])) {
 			$new = $_GET['themePersonality'];
 			if (in_array($new, $personalities)) {
-				setThemeOption('themeSwitcher_personality', $new);
+				zp_setCookie('themeSwitcher_personality', $new, false);
 				$personality = $new;
 			}
 		}
@@ -59,7 +59,7 @@ function switcher_head($ignore) {
 
 function switcher_controllink($html) {
 	global $personalities, $_zp_gallery_page;
-	$personality = getThemeOption('themeSwitcher_personality');
+	$personality = zp_getCookie('themeSwitcher_personality');
 	if (!$personality) {
 		$personality = getOption('garland_personality');
 	}
