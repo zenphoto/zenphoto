@@ -253,4 +253,13 @@ function printZDToggleClass($option, $c, $number_to_show) {
 		echo ' class="' . $option . '_extrashow" style="display:none;"';
 	}
 }
+
+//because the theme does not check!
+if (!function_exists('getCommentCount')) {
+
+	function getCommentCount() {
+		return 0;
+	}
+
+}
 ?>
