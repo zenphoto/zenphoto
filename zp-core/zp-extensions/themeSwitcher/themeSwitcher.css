@@ -44,7 +44,7 @@
 	padding-left: 5px;
 }
 .themeSwitcherMenu {
-	font-size: x-large;
+	font-size: large;
 }
 .themeSwitcherMenu a:hover, .themeSwitcherMenuShow a:hover{
 	text-decoration: none;

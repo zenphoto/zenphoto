@@ -154,7 +154,7 @@ class themeSwitcher {
 			<div class="themeSwitcherControlLink themeSwitcherControl" style="display:none;">
 				<div class="themeSwitcherMenuShow">
 					<a onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Close'); ?>" style="text-decoration: none;" />
-					<span style="font-size: x-large;color: black !important;">
+					<span style="font-size: large;color: black !important;">
 						&#9776;
 					</span>
 					</a>

@@ -89,7 +89,7 @@ function adminToolbox() {
 		?>
 		<div id="<?php echo $id; ?>" style="margin-right: 10px;">
 			<a onclick="$('#<?php echo $dataid; ?>').toggle();" title="<?php echo gettext('Logged in as') . ' ' . $name; ?>" style="text-decoration: none;">
-				<span style="font-size: x-large;">
+				<span style="font-size: large;">
 					&#9965;
 				</span>
 			</a>
