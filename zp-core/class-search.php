@@ -1874,7 +1874,12 @@ class SearchEngine {
 		if (!empty($authCookies)) { // some sort of password exists, play it safe and make the tag unique
 			$user = getUserIP();
 		}
-		return array('item' => $table, 'fields' => implode(', ', $this->fieldList), 'search' => $search, 'sort' => $sort, 'user' => $user);
+		$array = array('item' => $table, 'fields' => implode(', ', $this->fieldList), 'search' => $search, 'sort' => $sort, 'user' => $user);
+		$dynalbum = $this->getDynamicAlbum();
+		if($dynalbum) {
+			$array['dynalbum'] = $dynalbum->name;
+		}
+		return $array;
 	}
 
 	/**

@@ -170,8 +170,10 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 	global $_user_tags;
 	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
 		$allowed_tags = getAllowedTags('allowed_tags');
+		$articlecontent = html_decode($articlecontent);
 		//remove script to be replaced later
 		$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
+		
 		//remove HTML comments
 		$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
 		$short = mb_substr($articlecontent, 0, $shorten);
