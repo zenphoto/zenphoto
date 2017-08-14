@@ -7,6 +7,7 @@
  * @package setup
  */
 // force UTF-8 Ø
+
 Define('PHP_MIN_VERSION', '5.2');
 Define('PHP_MIN_SUPPORTED_VERSION', '5.6');
 Define('PHP_DESIRED_VERSION', '7.1');
@@ -54,10 +55,13 @@ if (isset($_REQUEST['autorun'])) {
 } else {
 	$autorun = false;
 }
-
 $session = zp_session_start();
+if (!isset($_SESSION['save_session_path'])) {
+	// clean out any old sessions to start fresh
+	zp_session_destroy();
+	$session = zp_session_start();
+}
 session_cache_limiter('nocache');
-
 $setup_checked = false;
 
 if (isset($_REQUEST['xsrfToken']) || isset($_REQUEST['update']) || isset($_REQUEST['checked'])) {
@@ -69,9 +73,9 @@ if (isset($_REQUEST['xsrfToken']) || isset($_REQUEST['update']) || isset($_REQUE
 		unset($_REQUEST['update']);
 		unset($_REQUEST['checked']);
 	}
-} else {
-	$_SESSION['save_session_path'] = $_initial_session_path;
 }
+$_SESSION['save_session_path'] = session_save_path();
+
 
 $en_US = dirname(dirname(__FILE__)) . '/locale/en_US/';
 if (!file_exists($en_US)) {
@@ -276,8 +280,11 @@ while (($engineMC = readdir($dir)) !== false) {
 ksort($engines);
 
 if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	unset($_zp_conf_vars);
-	require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	loadConfiguration();
+
+	if (!isset($_zp_conf_vars['UTF-8']) || $_zp_conf_vars['UTF-8'] === true) {
+		$_zp_conf_vars['UTF-8'] = 'utf8';
+	}
 	if (isset($_zp_conf_vars) && !isset($conf) && isset($_zp_conf_vars['special_pages'])) {
 		if (isset($_zp_conf_vars['db_software'])) {
 			$confDB = $_zp_conf_vars['db_software'];
@@ -321,6 +328,8 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	}
 	require_once(dirname(dirname(__FILE__)) . '/functions.php');
 }
+
+
 
 if ($updatezp_config) {
 	storeConfig($zp_cfg);
@@ -473,13 +482,9 @@ if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_resu
 
 $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"));
 ?>
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 	<head>
-
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<title><?php printf('ZenPhoto20 %s', $upgrade); ?></title>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-pages.css" type="text/css" />
@@ -496,13 +501,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 			}
 		</script>
 		<link rel="stylesheet" href="setup.css" type="text/css" />
-
 	</head>
-
 	<body>
-
 		<div id="main">
-
 			<h1><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png" title="<?php echo gettext('ZenPhoto20 Setup'); ?>" alt="<?php echo gettext('ZenPhoto20 Setup'); ?>" />
 				<span><?php echo $upgrade; ?></span>
 			</h1>
@@ -573,6 +574,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$vers = '';
 							}
 							$good = checkMark($err, '<span' . $vers . '>' . sprintf(gettext("PHP version %s"), PHP_VERSION) . '</span>', "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended as ealier versions may not be <a href="http://php.net/supported-versions.php">actively supported</a>. Use earlier versions at your own risk.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
+
 							checkmark($session && session_id() && $_initial_session_path !== false, gettext('PHP <code>Sessions</code>.'), gettext('PHP <code>Sessions</code> [appear to not be working].'), sprintf(gettext('PHP Sessions are required for administrative functions. Check your <code>session.save_path</code> (<code>%1$s</code>) and the PHP configuration <code>[session]</code> settings'), session_save_path()), true);
 
 							@ini_set('session.use_strict_mode', 1);
@@ -1656,8 +1658,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$dbmsg = gettext("database connected");
 							} // system check
 							if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+								loadConfiguration();
 
-								require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 								$task = '';
 								if (isset($_GET['create'])) {
 									$task = 'create';

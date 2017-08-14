@@ -147,14 +147,18 @@ class themeSwitcher {
 				$reloc .= '?themeSwitcher=%t';
 			}
 			$theme = $_zp_gallery->getCurrentTheme();
-			$icon = zp_apply_filter('iconColor', getPlugin('themeSwitcher/menu.png', true, true));
 			?>
 			<div class="themeSwitcherMenuMain themeSwitcherMenu themeSwitcherControl">
-				<img src="<?php echo $icon; ?>" onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Switch themes'); ?>" />
+				<a onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Switch themes'); ?>" style="text-decoration: none;" />&#9776;</a>
 			</div>
 			<div class="themeSwitcherControlLink themeSwitcherControl" style="display:none;">
-				<div class="themeSwitcherMenu">
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/themeSwitcher/menu.png" onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Close'); ?>" />
+				<div class="themeSwitcherMenuShow">
+					<a onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Close'); ?>" style="text-decoration: none;" />
+					<span style="font-size: large;color: black !important;">
+						&#9776;
+					</span>
+					</a>
+
 				</div>
 				<?php echo $text; ?>
 				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')" title="<?php echo gettext("Themes will be disabled in this list if selecting them would result in a “not found” error."); ?>">

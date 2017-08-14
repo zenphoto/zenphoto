@@ -635,7 +635,7 @@ class ThemeObject extends PersistentObject {
 		if ($d && $d != '0000-00-00 00:00:00') {
 			return $d;
 		}
-		return false;
+		return NULL;
 	}
 
 	/**

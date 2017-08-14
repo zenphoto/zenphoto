@@ -35,6 +35,7 @@ class tinymceOptions {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('tinymce_zenphoto', 'zenphoto-ribbon.php');
 			setOptionDefault('tinymce_zenpage', 'zenpage-ribbon.php');
+			setOptionDefault('tiny_mce_entity_encoding', 'raw');
 		}
 	}
 
@@ -56,8 +57,12 @@ class tinymceOptions {
 						'selections' => $configs_zenpage,
 						'null_selection' => gettext('Disabled'),
 						'desc' => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.')),
-				gettext('Text editor text direction') => array('key' => 'tiny_mce_rtl_override', 'type' => OPTION_TYPE_CHECKBOX,
+				gettext('Entity encoding') => array('key' => 'tiny_mce_entity_encoding', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 2,
+						'selections' => array(gettext('named') => 'named', gettext('numeric') => 'numeric', gettext('raw') => 'raw'),
+						'desc' => gettext('Select the TinyMCE <em>entity_encoding</em> strategy.')),
+				gettext('Text editor text direction') => array('key' => 'tiny_mce_rtl_override', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 3,
 						'desc' => gettext('This option should be checked if your language writing direction is right-to-left')));
 		return $options;
 	}

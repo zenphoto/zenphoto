@@ -77,6 +77,8 @@ class fieldExtender {
 			$sql = 'UPDATE ' . prefix('options') . ' SET `creator`=' . db_quote(replaceScriptPath(__FILE__) . '[' . __LINE__ . ']') . ' WHERE `name`=' . db_quote($me . '_addedFields') . ' AND `creator` IS NULL;';
 			query($sql);
 		}
+		$utf8mb4 = version_compare(MySQL_VERSION, '5.5.3', '>=');
+
 		$database = array();
 		foreach (getDBTables() as $table) {
 			$tablecols = db_list_fields($table);
@@ -125,6 +127,9 @@ class fieldExtender {
 						$cmd = ' ADD COLUMN';
 					}
 					$sql = 'ALTER TABLE ' . prefix($newfield['table']) . $cmd . ' `' . $name . '` ' . $dbType;
+					if ($utf8mb4 && ($dbType == 'TEXT' || $dbType == 'LONGTEXT')) {
+						$sql .= ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci';
+					}
 					if (isset($newfield['attribute']))
 						$sql.= ' ' . $newfield['attribute'];
 					if (isset($newfield['default']))

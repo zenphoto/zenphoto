@@ -164,10 +164,6 @@ function db_getSQLmode() {
 	return false;
 }
 
-function db_collation() {
-	return false;
-}
-
 function db_create_table(&$sql) {
 	return false;
 }
