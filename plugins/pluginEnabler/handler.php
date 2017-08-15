@@ -6,6 +6,12 @@
  */
 // force UTF-8 Ø
 
+define("OFFSET_PATH", 3);
+require('../../zp-core/admin-globals.php');
+
+admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
+XSRFdefender('pluginEnabler');
+
 if (isset($_REQUEST['pluginsEnable'])) {
 
 	$paths = getPluginFiles('*.php');
