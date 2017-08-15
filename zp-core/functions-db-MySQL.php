@@ -44,7 +44,13 @@ function db_connect($config, $errorstop = true) {
 		return false;
 	}
 	$_zp_DB_details = $config;
-	if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
+
+	//set character set protocol
+	$software = db_software();
+	$version = $software['version'];
+	if (version_compare($version, '5.5.3', '>=')) {
+		mysql_set_charset('utf8mb4', $_zp_DB_connection);
+	} else {
 		mysql_set_charset('utf8', $_zp_DB_connection);
 	}
 	// set the sql_mode to relaxed (if possible)
@@ -223,7 +229,7 @@ function db_software() {
  */
 function db_create() {
 	global $_zp_DB_details;
-	$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $_zp_DB_details['mysql_database'] . '`' . db_collation();
+	$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $_zp_DB_details['mysql_database'] . '` CHARACTER SET utf8 COLLATE utf8_unicode_ci';
 	return query($sql, false);
 }
 
@@ -265,11 +271,6 @@ function db_getSQLmode() {
 		return $row[0];
 	}
 	return false;
-}
-
-function db_collation() {
-	$collation = ' CHARACTER SET utf8 COLLATE utf8_unicode_ci';
-	return $collation;
 }
 
 function db_create_table(&$sql) {

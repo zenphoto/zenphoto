@@ -10,9 +10,9 @@
  */
 $dbSoftware = db_software();
 $indexComments = version_compare($dbSoftware['version'], '5.5.0') >= 0;
+$utf8mb4 = version_compare($dbSoftware['version'], '5.5.3', '>=');
 
-$database = $orphans = array();
-$collation = db_collation();
+$database = $orphans = $datefields = array();
 $template = unserialize(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/databaseTemplate'));
 
 if (isset($_SESSION['admin']['db_admin_fields'])) { //	we are in a clone install, be srue admin fields match
@@ -37,6 +37,10 @@ foreach (getDBTables() as $table) {
 		unset($datum['Extra']);
 		unset($datum['Privileges']);
 		$database[$table]['fields'][$datum['Field']] = $datum;
+
+		if ($datum['Type'] == 'datetime') {
+			$datefields[] = array('table' => $table, 'field' => $datum['Field']);
+		}
 	}
 
 	$indices = array();
@@ -163,7 +167,7 @@ foreach ($metadataProviders as $source => $handler) {
 					if ($s < 255) {
 						$s = "varchar($s)";
 					} else {
-						$s = 'mediumtext';
+						$s = 'text';
 					}
 					break;
 				case 'number':
@@ -191,9 +195,29 @@ foreach ($metadataProviders as $source => $handler) {
 	}
 }
 
+//cleanup datetime where value = '0000-00-00 00:00:00'
+foreach ($datefields as $fix) {
+	$table = $fix['table'];
+	$field = $fix['field'];
+	$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=NULL WHERE `' . $field . '`="0000-00-00 00:00:00"';
+	setupQuery($sql, false, FALSE);
+}
+
 //setup database
+$result = db_show('variables', 'character_set_database');
+if (is_array($result)) {
+	$row = array_shift($result);
+	$dbmigrate = $row['Value'] != 'utf8mb4';
+} else {
+	$dbmigrate = true;
+}
+if ($utf8mb4 && $dbmigrate) {
+	$sql = 'ALTER DATABASE ' . db_name() . ' CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;';
+	setupQuery($sql);
+}
+$tablePresent = array();
 foreach ($template as $tablename => $table) {
-	$exists = array_key_exists($tablename, $database);
+	$tablePresent[$tablename] = $exists = array_key_exists($tablename, $database);
 	if (!$exists) {
 		$create = array();
 		$create[] = "CREATE TABLE IF NOT EXISTS " . prefix($tablename) . " (";
@@ -202,7 +226,11 @@ foreach ($template as $tablename => $table) {
 	$after = ' FIRST';
 	foreach ($table['fields'] as $key => $field) {
 		if ($key != 'id') {
-			$string = "ALTER TABLE " . prefix($tablename) . " %s `" . $field['Field'] . "` " . $field['Type'];
+			$dbType = strtoupper($field['Type']);
+			$string = "ALTER TABLE " . prefix($tablename) . " %s `" . $field['Field'] . "` " . $dbType;
+			if ($utf8mb4 && ($dbType == 'TEXT' || $dbType == 'LONGTEXT')) {
+				$string .= ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci';
+			}
 			if ($field['Null'] === 'NO')
 				$string .= " NOT NULL";
 			if (!empty($field['Default']) || $field['Default'] === '0' || $field['Null'] !== 'NO') {
@@ -296,7 +324,7 @@ foreach ($template as $tablename => $table) {
 	}
 	if (!$exists) {
 		$create[] = "  PRIMARY KEY (`id`)";
-		$create[] = ") $collation;";
+		$create[] = ")  CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
 		$create = implode("\n", $create);
 		setupQuery($create);
 	} else {
@@ -314,7 +342,12 @@ foreach ($template as $tablename => $table) {
 		}
 	}
 }
-
+//if this is a new database, update the config file for the utf8 encoding
+if ($utf8mb4 && !array_search(true, $tablePresent)) {
+	$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	$zp_cfg = updateConfigItem('UTF-8', 'utf8mb4', $zp_cfg);
+	storeConfig($zp_cfg);
+}
 // now the database is setup we can store the options
 setOptionDefault('metadata_disabled', serialize($disable));
 setOptionDefault('metadata_displayed', serialize($display));

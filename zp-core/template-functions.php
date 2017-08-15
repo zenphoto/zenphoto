@@ -83,17 +83,16 @@ function adminToolbox() {
 		$id = 'admin';
 		$dataid = 'admin_data';
 		$page = getCurrentPage();
-		$icon = zp_apply_filter('iconColor', getPlugin('images/gear.png', true, true));
 		if (!$name = $_zp_current_admin_obj->getName()) {
 			$name = $_zp_current_admin_obj->getUser();
 		}
 		?>
-		<div id="<?php echo $id; ?>">
-			<h3>
-				<a onclick="$('#<?php echo $dataid; ?>').toggle();" title="<?php echo gettext('Logged in as') . ' ' . $name; ?>">
-					<img src="<?php echo $icon; ?>" />
-				</a>
-			</h3>
+		<div id="<?php echo $id; ?>" style="margin-right: 10px;">
+			<a onclick="$('#<?php echo $dataid; ?>').toggle();" title="<?php echo gettext('Logged in as') . ' ' . $name; ?>" style="text-decoration: none;">
+				<span style="font-size: large;">
+					&#9965;
+				</span>
+			</a>
 		</div>
 		<div id="<?php echo $dataid; ?>" style="display: none;">
 			<ul style="list-style-type: none;" >

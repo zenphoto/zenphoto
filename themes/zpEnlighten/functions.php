@@ -150,6 +150,15 @@ function newsOnIndex($link, $obj, $page) {
 	return $link;
 }
 
+//because the theme does not check!
+if (!function_exists('getCommentCount')) {
+
+	function getCommentCount() {
+		return 0;
+	}
+
+}
+
 if (!OFFSET_PATH) {
 	enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
 	setOption('user_logout_login_form', 2, false);

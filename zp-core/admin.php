@@ -179,7 +179,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 $from = NULL;
 if (zp_loggedin() && !empty($zenphoto_tabs)) {
 	if (!$_zp_current_admin_obj->getID() || empty($msg) && !zp_loggedin(OVERVIEW_RIGHTS)) {
-// admin access without overview rights, redirect to first tab
+		// admin access without overview rights, redirect to first tab
 		$tab = array_shift($zenphoto_tabs);
 		$link = $tab['link'];
 		header('location:' . $link);
@@ -272,8 +272,8 @@ if (!zp_loggedin()) {
 					unset($buttonlist[$key]);
 				}
 			}
-			if (zp_loggedin(ADMIN_RIGHTS) && zpFunctions::hasPrimaryScripts()) {
-				if (class_exists('Milo\Github\Api')) {
+			if (zp_loggedin(ADMIN_RIGHTS)) {
+				if (class_exists('Milo\Github\Api') && zpFunctions::hasPrimaryScripts()) {
 					/*
 					 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20
 					 */

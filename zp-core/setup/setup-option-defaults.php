@@ -15,7 +15,8 @@ if (isset($_GET['debug'])) {
 	$debug = '';
 }
 
-require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+loadConfiguration();
+
 $testFile = SERVERPATH . '/' . DATA_FOLDER . '/' . internalToFilesystem('charset_tést');
 if (!file_exists($testFile)) {
 	file_put_contents($testFile, '');
@@ -69,6 +70,15 @@ if ($result) {
 				$sql = 'UPDATE ' . prefix('obj_to_tag') . ' SET `tagid`=' . $row['id'] . ' WHERE `tagid`=' . $oldtag;
 			}
 		}
+	}
+}
+
+//migrate favorites data
+$all = query_full_array('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favoritesHandler" AND `subtype` IS NULL');
+foreach ($all as $aux) {
+	$instance = getSerializedArray($aux['aux']);
+	if (isset($instance[1])) {
+		query('UPDATE ' . prefix('plugin_storage') . ' SET `subtype`="named" WHERE `id`=' . $aux['id']);
 	}
 }
 

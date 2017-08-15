@@ -1,4 +1,5 @@
 <?php
+
 /**
  * functions common to both the core and setup's basic environment
  *
@@ -6,6 +7,13 @@
  *
  * @package core
  */
+function loadConfiguration() {
+	global $_zp_conf_vars;
+	require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	if (!isset($_zp_conf_vars['UTF-8']) || $_zp_conf_vars['UTF-8'] === true) {
+		$_zp_conf_vars['UTF-8'] = 'utf8';
+	}
+}
 
 /**
  * Common error reporting for query errors
@@ -136,7 +144,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		// out of curtesy show the error message on the WEB page since there will likely be a blank page otherwise
 		?>
 		<div style="padding: 10px 15px 10px 15px;	background-color: #FDD;	border-width: 1px 1px 2px 1px;	border-style: solid;	border-color: #FAA;	margin-bottom: 10px;	font-size: 100%;">
-		<?php echo html_encode($msg); ?>
+			<?php echo html_encode($msg); ?>
 		</div>
 		<?php
 	}
@@ -213,10 +221,11 @@ function sanitize_path($filename) {
  * @return int
  */
 function sanitize_numeric($num) {
-	if (is_numeric($num)) {
-		return round($num);
+	$f = filter_var($num, FILTER_SANITIZE_NUMBER_FLOAT);
+	if ($f === false) {
+		return 0;
 	} else {
-		return false;
+		return round($f);
 	}
 }
 
@@ -632,7 +641,10 @@ function secureServer() {
  */
 function zp_session_start() {
 	global $_zp_conf_vars;
-	if (session_id() == '') {
+	$result = session_id();
+	if ($result) {
+		return $result;
+	} else {
 		@ini_set('session.use_strict_mode', 1);
 		//	insure that the session data has a place to be saved
 		if (isset($_zp_conf_vars['session_save_path'])) {
@@ -650,7 +662,6 @@ function zp_session_start() {
 		$result = session_start();
 		return $result;
 	}
-	return NULL;
 }
 
 function zp_session_destroy() {
@@ -661,6 +672,7 @@ function zp_session_destroy() {
 			setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
 			);
 		}
+		setcookie('PHPSESSID', '', time() - 42000);
 		session_destroy();
 	}
 }

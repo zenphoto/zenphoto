@@ -42,9 +42,8 @@ echo "\n</head>";
 					} else {
 						?>
 						<p>
-							<?php echo gettext('Functions flagged with an "*" are class methods. Ones flagged with "+" have deprecated parameters.'); ?>
-							ph1>
 							<?php
+							echo gettext('Functions flagged with an "*" are class methods. Ones flagged with "+" have deprecated parameters.');
 							foreach ($listed as $details) {
 								switch ($details['class']) {
 									case 'static':

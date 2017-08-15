@@ -85,17 +85,13 @@ class favoritesHandler {
 			$file = filesystemToInternal($file);
 			$list[$file] = str_replace('.php', '', $file);
 		}
-		$list = array_diff($list, standardScripts());
-		$all = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favoritesHandler"');
-		$disable = false;
+
 		$text = gettext('If enabled a user may have multiple (named) favorites.');
-		foreach ($all as $aux) {
-			$instance = getSerializedArray($aux['aux']);
-			if (isset($instance[1])) {
-				$disable = true;
-				$text .= '<br /><span class="warningbox">' . gettext('Named favorites are present.') . '</span>';
-				break;
-			}
+		$list = array_diff($list, standardScripts());
+		$all = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favoritesHandler" AND `subtype`>"" LIMIT 1');
+		if ($disable = !empty($all)) {
+			setOption('favorites_multi', 1);
+			$text .= '<br /><span class = "warningbox">' . gettext('Named favorites are present.') . '</span>';
 		}
 
 		$options = array(gettext('Link text') => array('key' => 'favorites_linktext', 'type' => OPTION_TYPE_TEXTBOX,
@@ -134,7 +130,7 @@ class favoritesHandler {
 					'key' => 'favorites_note',
 					'type' => OPTION_TYPE_NOTE,
 					'order' => 0,
-					'desc' => gettext('<p class="notebox">Favorites requires the <code>mod_rewrite</code> option be enabled.</p>')
+					'desc' => gettext('<p class = "notebox">Favorites requires the <code>mod_rewrite</code> option be enabled.</p>')
 			);
 		}
 
@@ -178,7 +174,7 @@ class favoritesHandler {
 						<?php echo gettext("Descending"); ?>
 						<input type="checkbox" name="album_sortdirection" value="1"<?php
 						if (getOption('favorites_album_sort_direction')) {
-							echo ' checked="checked"';
+							echo ' checked = "checked"';
 						};
 						?> />
 					</label>
@@ -211,7 +207,7 @@ class favoritesHandler {
 						<input type="checkbox" name="image_sortdirection" value="1"
 						<?php
 						if (getOption('favorites_image_sort_direction')) {
-							echo ' checked="checked"';
+							echo ' checked = "checked"';
 						}
 						?> />
 					</label>
@@ -306,7 +302,7 @@ class favoritesHandler {
 $_zp_conf_vars['special_pages']['favorites'] = array('define' => '_FAVORITES_', 'rewrite' => getOption('favorites_link'),
 		'option' => 'favorites_link', 'default' => '_PAGE_/favorites');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%FAVORITES%', 'rewrite' => '_FAVORITES_');
-$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%FAVORITES%/(.+)/([0-9]+)/*$',
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%FAVORITES%/(.+)/([0-9]+)/* $',
 		'rule' => '%REWRITE% index.php?p=favorites&instance=$1&page=$2 [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%FAVORITES%/([0-9]+)/*$',
 		'rule' => '%REWRITE% index.php?p=favorites&page=$1 [L,QSA]');
@@ -391,12 +387,12 @@ if (OFFSET_PATH) {
 					$favList = array_slice($list, 1);
 					?>
 					<script type="text/javascript">
-						// <!-- <![CDATA[
+					// <!-- <![CDATA[
 						var _favList = ['<?php echo implode("','", $favList); ?>'];
 						$(function () {
 							$('.favorite_instance').tagSuggest({tags: _favList})
 						});
-						// ]]> -->
+					// ]]> -->
 					</script>
 					<?php
 				}

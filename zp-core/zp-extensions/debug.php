@@ -94,7 +94,6 @@ class debug {
 
 	function handleOptionSave($themename, $themealbum) {
 		$version = self::version(false);
-
 		if (TEST_RELEASE && ZENPHOTO_VERSION != $version) {
 			self::updateVersion($version);
 		}
@@ -121,10 +120,7 @@ class debug {
 			$options = '';
 			$list = getSerializedArray(getOption('debug_marks'));
 			sort($list);
-			$options = implode('_', $list);
-			if ($options) {
-				$options = '-DEBUG_' . $options;
-			}
+			$options = rtrim('-DEBUG_' . implode('_', $list), '_');
 			return $originalVersion . $options;
 		}
 	}

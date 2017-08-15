@@ -65,7 +65,6 @@ function lookup_Canon_tag($tag) {
 function formatCanonData($type, $tag, $intel, $data, $exif, &$result) {
 	$place = 0;
 
-
 	if ($type == "ASCII") {
 		$result = $data = str_replace("\0", "", $data);
 	} else if ($type == "URATIONAL" || $type == "SRATIONAL") {
@@ -76,6 +75,11 @@ function formatCanonData($type, $tag, $intel, $data, $exif, &$result) {
 		}
 	} else if ($type == "USHORT" || $type == "SSHORT" || $type == "ULONG" || $type == "SLONG" || $type == "FLOAT" || $type == "DOUBLE") {
 
+
+		if (!is_array($result)) {
+			//TODO: there is a bug somewhere that lets the function be called with an empty string
+			$result = array();
+		}
 		$data = rational($data, $type, $intel);
 		$result['RAWDATA'] = $data;
 
