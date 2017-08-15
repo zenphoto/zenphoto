@@ -47,14 +47,16 @@ $upgrade = false;
 require_once(dirname(dirname(__FILE__)) . '/lib-utf8.php');
 
 if (isset($_REQUEST['autorun'])) {
+	$displayLimited = true;
 	if (!empty($_REQUEST['autorun'])) {
 		$autorun = strip_tags($_REQUEST['autorun']);
 	} else {
 		$autorun = 'admin';
 	}
 } else {
-	$autorun = false;
+	$displayLimited = $autorun = false;
 }
+
 $session = zp_session_start();
 if (!isset($_SESSION['save_session_path'])) {
 	// clean out any old sessions to start fresh
@@ -569,7 +571,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 							$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 							if (version_compare(PHP_VERSION, PHP_MIN_SUPPORTED_VERSION, '<')) {
-								$vers = ' style="color:red;font-weight:bold;"';
+								$vers = ' style="color: red;font-weight:bold;"';
 							} else {
 								$vers = '';
 							}
@@ -617,7 +619,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											$abort = true;
 											$issue = $issue | $zpUses[$func];
 											if ($zpUses[$func]) {
-												$blacklist[$key] = '<span style="color:red;">' . $func . '*</span>';
+												$blacklist[$key] = '<span style="color: red;">' . $func . '*</span>';
 											}
 										}
 									}
@@ -789,6 +791,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								checkMark($severity, $msg, $msg, '<p>' . gettext('If file permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers the software does not function correctly with tight file permissions. If permission errors occur, run setup again and select a more relaxed permission.') . '</p>' .
 												$chmodselector);
 
+								$notice = 0;
 								if (setupUserAuthorized()) {
 									if ($environ) {
 										if (isMac()) {
@@ -888,48 +891,59 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 												}
 											}
 											checkMark($notice, $msg, $msg1, sprintf($msg2, charsetSelector($trialset)));
-											// UTF-8 URI
-											if ($notice != -1) {
-												$test = copy(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', $testjpg = SERVERPATH . '/' . DATA_FOLDER . '/' . internalToFilesystem('tést.jpg'));
-												if (file_exists($testjpg)) {
-													?>
-													<li id="internal">
-														<span>
-															<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>"  onerror="imgError('internal');"/>
-															<?php echo gettext('Image URIs appear to require the <em>UTF-8</em> character set.') ?>
-														</span>
-													</li>
-													<li id="filesystem" style="display: none;">
-														<span>
-															<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode(internalToFilesystem('tést.jpg')); ?>" title="filesystem" onerror="imgError('filesystem');"/>
-															<?php echo gettext('Image URIs appear require the <em>filesystem</em> character set.'); ?>
-														</span>
-													</li>
-													<li id="unknown" style="display: none;">
-														<span>
-															<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/warn.png" />
-															<?php echo gettext('Image URIs with diacritical marks appear to fail.'); ?>
-														</span>
-													</li>
-													<script type="text/javascript">
-														var failed = 0;
-														function imgError(title) {
-															failed++;
-															$(this).attr('src', '../images/fail.png');
-															$('#' + title).hide();
-															if (failed > 1) {
-																$('#unknown').show();
-																$('#setUTF8URI').val('unknown');
-															} else {
-																if (title == 'internal') {
-																	$('#setUTF8URI').val('filesystem');
-																	$('#filesystem').show();
-																}
+										}
+										// UTF-8 URI
+										if ($notice != -1) {
+											$test = copy(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', $testjpg = SERVERPATH . '/' . DATA_FOLDER . '/' . internalToFilesystem('tést.jpg'));
+											if (file_exists($testjpg)) {
+												?>
+												<li id="internal" class="pass limited">
+													<span>
+														<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>" class="test_image"  onerror="imgError('internal');"/>
+														<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+														<?php echo gettext('Image URIs appear to require the <em>UTF-8</em> character set.') ?>
+													</span>
+												</li>
+												<li id="filesystem" class="fail limited" style="display: none;">
+													<span>
+														<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode(internalToFilesystem('tést.jpg')); ?>" title="filesystem" class="test_image" onerror="imgError('filesystem');"/>
+														<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+														<?php echo gettext('Image URIs appear require the <em>filesystem</em> character set.'); ?>
+													</span>
+												</li>
+												<li id="unknown" class="warn" style="display: none;">
+													<span>
+														<span style="color: darkorange;font-size: large;"><?php echo WARNING_SIGN; ?></span>
+														<?php echo gettext('Image URIs with diacritical marks appear to fail.'); ?>
+													</span>
+												</li>
+												<script type="text/javascript">
+													window.addEventListener('load', function () {
+														$('.test_image').hide();
+						<?php if ($displayLimited) {
+							?>
+															$('.limited').hide();
+							<?php
+						}
+						?>
+													}, false);
+
+													var failed = 0;
+													function imgError(title) {
+														failed++;
+														$('#' + title).hide();
+														if (failed > 1) {
+															$('#unknown').show();
+															$('#setUTF8URI').val('unknown');
+														} else {
+															if (title == 'internal') {
+																$('#setUTF8URI').val('filesystem');
+																$('#filesystem').show();
 															}
 														}
-													</script>
-													<?php
-												}
+													}
+												</script>
+												<?php
 											}
 										}
 									}
@@ -941,27 +955,30 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								if ($handler == $confDB && $engine['enabled']) {
 									$good = checkMark(1, sprintf(gettext('PHP <code>%s</code> support for configured Database'), $handler), '', '') && $good;
 								} else {
-									if ($engine['enabled']) {
-										if (isset($enabled['experimental'])) {
-											?>
-											<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle()" >experimental</a>)'), $handler); ?>
-											</li>
-											<p class="warning" id="<?php echo $handler; ?>"
-												 style="display: none;">
-													 <?php echo $enabled['experimental'] ?>
-											</p>
-											<?php
+									if (!$displayLimited) {
+										if ($engine['enabled']) {
+
+											if (isset($enabled['experimental'])) {
+												?>
+												<li class="note_warn"><span style="color:darkorange;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle()" >experimental</a>)'), $handler); ?>
+												</li>
+												<p class="warning" id="<?php echo $handler; ?>"
+													 style="display: none;">
+														 <?php echo $enabled['experimental'] ?>
+												</p>
+												<?php
+											} else {
+												?>
+												<li class="note_ok"><span style="color:green;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext('PHP <code>%s</code> support'), $handler); ?>
+												</li>
+												<?php
+											}
 										} else {
 											?>
-											<li class="note_ok"><?php echo sprintf(gettext('PHP <code>%s</code> support'), $handler); ?>
+											<li class="note_exception"><span style="color: red;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext('PHP <code>%s</code> support [is not installed]'), $handler); ?>
 											</li>
 											<?php
 										}
-									} else {
-										?>
-										<li class="note_exception"><?php echo sprintf(gettext('PHP <code>%s</code> support [is not installed]'), $handler); ?>
-										</li>
-										<?php
 									}
 								}
 							}
@@ -1621,7 +1638,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								</div>
 								<p class='buttons'>
 									<a href="?refresh" title="<?php echo gettext("Setup failed."); ?>" style="font-size: 15pt; font-weight: bold;">
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt=""/> <?php echo gettext("Refresh"); ?>
+										<span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext("Refresh"); ?>
 									</a>
 								</p>
 								<br class="clearall">
@@ -1856,9 +1873,9 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										$hideGoButton = '';
 									}
 									if ($warn) {
-										$img = 'warn.png';
+										$icon = '<span style="color: darkorange;">' . WARNING_SIGN . '</span>';
 									} else {
-										$img = 'pass.png';
+										$icon = '<span style="color: green;">' . WHITE_HEAVY_CHECKMARK . '</span>';
 									}
 									if ($autorun) {
 										$task .= '&autorun=' . $autorun;
@@ -1899,7 +1916,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 												<?php
 											}
 											?>
-											<p class="buttons"><button class="submitbutton" id="submitbutton" type="submit"	title="<?php echo gettext('run setup'); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/<?php echo $img; ?>" alt="" /><?php echo gettext("Go"); ?></button></p>
+											<p class="buttons"><button class="submitbutton" id="submitbutton" type="submit"	title="<?php echo gettext('run setup'); ?>" ><?php echo $icon; ?> <?php echo gettext("Go"); ?></button></p>
 											<br class="clearall">
 												<br />
 										</form>

@@ -85,8 +85,8 @@ function getOptionContent() {
 						<tr>
 							<td colspan="100%">
 								<p class="buttons">
-									<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-									<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+									<button type="submit" value="<?php echo gettext('save') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
+									<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 								</p>
 							</td>
 						</tr>
@@ -139,7 +139,7 @@ function getOptionContent() {
 									if (!$showExtension) {
 										$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
 										?>
-										<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>"><img class="icon-position-top3" src="images/options.png" alt="" />
+										<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>"><?php echo GEAR_WITHOUT_HUB; ?>
 												<?php
 											}
 											echo $extension;
@@ -150,7 +150,7 @@ function getOptionContent() {
 									}
 									if ($warn) {
 										?>
-										<img src="images/action.png" alt="<?php echo gettext('warning'); ?>" />
+										<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
 										<?php
 									}
 									?>
@@ -204,8 +204,8 @@ function getOptionContent() {
 							<tr>
 								<td colspan="100%">
 									<p class="buttons">
-										<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-										<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+										<button type="submit" value="<?php echo gettext('save') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
+										<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 									</p>
 								</td>
 							</tr>

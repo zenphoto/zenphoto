@@ -143,7 +143,7 @@ printAdminHeader('admin');
 				<button type="reset" onclick="$('#tag_action_form').trigger('reset');
 						$('#form_tagrename').trigger('reset');
 						$('#form_newtags').trigger('reset');">
-					<img src="images/fail.png" alt="" />
+					<span style="color: red;"><?php echo CROSS_MARK; ?></span>
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
 			</div>
@@ -171,7 +171,7 @@ printAdminHeader('admin');
 							<button type="submit" id='delete_tags' value="<?php echo gettext("Delete checked tags"); ?>"
 											onclick="$('#tag_action').val('delete');
 													this.form.submit();">
-								<img src="images/fail.png" alt="" />
+								<span style="color: red;"><?php echo CROSS_MARK; ?></span>
 								<?php echo gettext("Delete checked tags"); ?>
 							</button>
 						</p>
@@ -180,7 +180,7 @@ printAdminHeader('admin');
 							<button type="submit" id="assign_tags" value="<?php echo gettext("Delete checked tags"); ?>"
 											onclick="$('#tag_action').val('assign');
 													this.form.submit();">
-								<img src="images/redo.png" alt="" />
+								<span style="color:blue;font-size:large;line-height: 60%"><?php echo ARROW_RIGHT; ?></span>
 								<?php echo gettext('assign'); ?>
 							</button>
 						</p>
@@ -227,7 +227,7 @@ printAdminHeader('admin');
 						</div>
 						<p class="buttons">
 							<button type="submit" id='rename_tags' value="<?php echo gettext("Rename tags"); ?>">
-								<img src="images/pass.png" alt="" /><?php echo gettext("Rename tags"); ?>
+								<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Rename tags"); ?>
 							</button>
 						</p>
 					</form>
@@ -257,7 +257,7 @@ printAdminHeader('admin');
 						</div>
 						<p class="buttons">
 							<button type="submit" id='save_tags' value="<?php echo gettext("Add tags"); ?>">
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /><?php echo gettext("Add tags"); ?>
+								<span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span> <?php echo gettext("Add tags"); ?>
 							</button>
 						</p>
 						<select name="language" id="language" class="ignoredirty">

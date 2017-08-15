@@ -126,17 +126,19 @@ updatePublished('pages');
 					?>
 					<p class="buttons">
 						<button class="serialize" type="submit">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span>
 							<strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<?php
 						if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
 							?>
 							<span class="floatright">
-								<strong>
-									<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>">
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext('New Page'); ?></a>
-								</strong>
+								<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>">
+									<span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span>
+									<strong>
+										<?php echo gettext('New Page'); ?>
+									</strong>
+								</a>
 							</span>
 							<?php
 						}
@@ -184,7 +186,7 @@ updatePublished('pages');
 					<input name="update" type="hidden" value="Save Order" />
 					<p class="buttons">
 						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span>
 							<strong><?php echo gettext('Apply'); ?></strong>
 						</button>
 					</p>

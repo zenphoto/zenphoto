@@ -67,4 +67,36 @@ unset($_debug);
 
 define('DB_NOT_CONNECTED', serialize(array('mysql_host' => gettext('not connected'), 'mysql_database' => gettext('not connected'), 'mysql_prefix' => gettext('not connected'), 'mysql_user' => '', 'mysql_pass' => '')));
 $_zp_DB_details = unserialize(DB_NOT_CONNECTED);
+
+//icons
+define('ARROW_DOWN', '&dArr;');
+define('ARROW_LEFT', '&lArr;');
+define('ARROW_RIGHT', '&rArr;');
+define('ARROW_UP', '&uArr;');
+define('BLACK_CROSS_ON_SHIELD', '&#9960;');
+define('BULLSEYE', '&#9678;');
+define('BURST', '&#10040;');
+define('CIRCLED_WHITE_STAR', '&#10026;');
+define('CLIPBOARD', '&#128203;');
+define('CLOCKFACE', '&#128336;');
+define('CLOCKWISE_OPEN_CIRCLE_ARROW', '&#8635;');
+define('CROSS_MARK', '&#10060;');
+define('ENVELOPE', '&#128231;');
+define('EXCLAMATION', '&#10071;');
+define('FISHEYE', '&#9673;');
+define('FOUR_CLUB_STROKED_ASTERIX', '&#10021;');
+define('GEAR_WITHOUT_HUB', '&#9965;');
+define('HEAVY_BLACK_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW', '&#10150;');
+define('INFORMATION', '&#8505;');
+define('KEY', '&#128273;');
+define('MENU_ICON', '&#9776;');
+define('NO_ENTRY', '&#9940;');
+define('NORTH_WEST_CORNER_ARROW', '&#8689;');
+define('PENCIL', '&#9998;');
+define('SOUTH_EAST_CORNER_ARROW', '&#8690;');
+define('SQUARED_KEY', '&#9919;');
+define('WARNING_SIGN', '&#9888;');
+define('WASTEBASKET', '&#128465;');
+define('WHITE_FROWNING_FACE', '&#9785;');
+define('WHITE_HEAVY_CHECKMARK', '&#9989;');
 ?>

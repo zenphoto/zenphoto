@@ -75,19 +75,16 @@ cite {
 }
 
 .pass {
-	background: url(../images/pass.png) top left no-repeat;
 	padding-left: 20px;
 	line-height: 18px;
 }
 
 .fail {
-	background: url(../images/fail.png) top left no-repeat;
 	padding-left: 20px;
 	line-height: 18px;
 }
 
 .warn {
-	background: url(../images/warn.png) top left no-repeat;
 	padding-left: 20px;
 	line-height: 18px;
 }
@@ -99,31 +96,16 @@ cite {
 
 
 .note_ok {
-	background: url(../images/comments-on.png) top left no-repeat;
 	padding-left: 20px;
 	line-height: normal;
 }
 
 .note_warn {
-	background: url(../images/warn.png) top left no-repeat;
 	padding-left: 20px;
 	line-height: normal;
 }
 
 .note_exception {
-	background: url(../images/comments-off.png) top left no-repeat;
-	padding-left: 20px;
-	line-height: normal;
-}
-
-.createdb {
-	background: url(../images/add.png) top left no-repeat;
-	padding-left: 20px;
-	line-height: normal;
-}
-
-.updatedb {
-	background: url(../images/burst.png) top left no-repeat;
 	padding-left: 20px;
 	line-height: normal;
 }

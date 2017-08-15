@@ -1010,12 +1010,12 @@ class _Authority {
 							}
 							?>
 							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?></button>
+								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> ><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <?php echo gettext("Submit"); ?></button>
 								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=' + $('#user').val();" >
 									<?php echo gettext("Refresh"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?>
+									<span style="font-size:x-large;color:green;line-height: 40%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span> <?php echo gettext("Return"); ?>
 								</button>
 							</div>
 							<br class="clearall">
@@ -1092,8 +1092,8 @@ class _Authority {
 							</fieldset>
 							<br />
 							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Log in"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Log in"); ?></button>
-								<button type="reset" value="<?php echo gettext("Reset"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset"); ?></button>
+								<button type="submit" value="<?php echo gettext("Log in"); ?>" ><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <?php echo gettext("Log in"); ?></button>
+								<button type="reset" value="<?php echo gettext("Reset"); ?>" ><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("Reset"); ?></button>
 							</div>
 							<br class="clearall">
 						</fieldset>
@@ -1159,11 +1159,11 @@ class _Authority {
 							<br />
 							<div class="buttons">
 								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" >
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?>
+									<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <?php echo gettext("Request password reset"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>"
 												onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?>
+									<span style="font-size:x-large;color:green;line-height: 40%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span> <?php echo gettext("Return"); ?>
 								</button>
 							</div>
 							<br class="clearall">

@@ -202,14 +202,15 @@ if ($alb) {
 		}
 		function showTheme(theme) {
 			html = $('#' + theme + '_arrow').html();
-			if (html.match(/down/)) {
-				html = html.replace(/_down/, '_up');
-				html = html.replace(/title = "<?php echo gettext('Show'); ?>/, 'title="<?php echo gettext('Hide');
-	?>"');
+			if ($('#' + theme + '_arrow').hasClass('upArrow')) {
+				$('#' + theme + '_arrow').removeClass('upArrow');
+				html = html.replace(/⇓/, '⇑');
+				html = html.replace(/<?php echo gettext('Show'); ?>/, '<?php echo gettext('Hide'); ?>');
 				$('#' + theme + '_list').show();
 			} else {
-				html = html.replace(/_up/, '_down');
-				html = html.replace(/title="<?php echo gettext('Hide'); ?>/, 'title="<?php echo gettext('Show'); ?>"');
+				$('#' + theme + '_arrow').addClass('upArrow');
+				html = html.replace(/<?php echo ARROW_UP; ?>/, '<?php echo ARROW_DOWN; ?>');
+				html = html.replace(/<?php echo gettext('Hide'); ?>/, '<?php echo gettext('Show'); ?>');
 				$('#' + theme + '_list').hide();
 			}
 			$('#' + theme + '_arrow').html(html);
@@ -297,9 +298,9 @@ if ($alb) {
 					$last = $theme;
 					?>
 					<li>
-						<span class="icons" id="<?php echo $theme; ?>_arrow">
+						<span class="icons upArrow" id="<?php echo $theme; ?>_arrow">
 							<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
-								<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/arrow_down.png'; ?>" alt="" />
+								<span style="color:green;font-size:large;">⇓</span>
 							</a>
 						</span>
 						<label>
@@ -387,7 +388,7 @@ if ($alb) {
 			?>
 			<p class="buttons">
 				<button class="tooltip" type="submit" title="<?php echo $button['title']; ?>" >
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" />
+					<span style="color:blue;"><?php echo HEAVY_BLACK_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW; ?></span>
 					<?php echo $button['text']; ?>
 				</button>
 			</p>

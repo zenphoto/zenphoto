@@ -111,12 +111,12 @@ class DownloadList {
 			<?php
 			if (empty($x)) {
 				?>
-				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" alt="" class="icon-postiion-top8" />
+				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
 				<?php
 			} else {
 				$x = '          ';
 				?>
-				<a onclick="resetPass('_downloadList');" title="<?php echo gettext('clear password'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png"  alt="" class="icon-postiion-top8" /></a>
+				<a onclick="resetPass('_downloadList');" title="<?php echo gettext('clear password'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" /></a>
 				<?php
 			}
 			?>

@@ -99,8 +99,10 @@ function primeMark($text) {
 }
 
 function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
-	global $warn, $moreid, $primeid, $autorun;
+	global $warn, $moreid, $primeid, $autorun, $displayLimited;
 	$classes = array('fail' => gettext('Fail: '), 'warn' => gettext('Warn: '), 'pass' => gettext('Pass: '));
+
+	$display = '';
 	?>
 	<script type="text/javascript">
 		$("#prime<?php echo $primeid; ?>").remove();
@@ -112,13 +114,16 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 	if ($check > 0) {
 		$check = 1;
 	}
+
 	switch ($check) {
 		case 0:
 			$cls = "fail";
+			$ico = '<span style="color: red;">' . CROSS_MARK . '</span>';
 			break;
 		case -1:
 		case -3:
 			$cls = "warn";
+			$ico = '<span style="color: darkorange;font-size: large;">' . WARNING_SIGN . '</span>';
 			$warn = true;
 			if ($stopAutorun && $autorun) {
 				$autorun = false;
@@ -130,12 +135,18 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 			break;
 		case 1:
 		case -2:
+			if ($displayLimited) {
+				$display = ' style="display:none;"';
+			}
 			$cls = "pass";
+			$ico = '<span style="color: green;">' . WHITE_HEAVY_CHECKMARK . '</span>';
 			break;
 	}
 	if ($check <= 0) {
 		?>
-		<li class="<?php echo $cls; ?>"><?php
+		<li class="<?php echo $cls; ?>"<?php echo $display; ?>>
+			<?php
+			echo $ico . ' ';
 			if (empty($text2)) {
 				echo $text;
 				$dsp .= trim($text);
@@ -197,7 +208,9 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 	} else {
 		$dsp = $text;
 		?>
-		<li class="<?php echo $cls; ?>"><?php echo $text; ?></li>
+		<li class="<?php echo $cls; ?>"<?php echo $display; ?>>
+			<?php echo $ico . ' ' . $text; ?>
+		</li>
 		<?php
 	}
 	if ($anyway == 2) {
@@ -563,5 +576,22 @@ function setupQuery($sql, $failNotify = true, $log = true) {
 		}
 	}
 	return $result;
+}
+
+function sendImage($external) {
+	if ($external) {
+		$img = 'pass_open.png';
+	} else {
+		$img = 'pass.png';
+	}
+	$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img, 'rb');
+
+// send the right headers
+	header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+	header("Content-Type: image/png");
+	header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img));
+// dump the picture and stop the script
+	fpassthru($fp);
+	fclose($fp);
 }
 ?>

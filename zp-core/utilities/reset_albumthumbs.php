@@ -65,7 +65,7 @@ echo '</head>';
 					<div class="buttons pad_button" id="set_all">
 						<button class="fixedwidth" type="submit"
 										title="<?php echo gettext("Sets all album thumbs to the selected criteria"); ?>">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/burst.png" alt="" />
+							<span style="color: blue;"><?php echo BURST; ?></span>
 							<?php echo gettext("Set all albums to"); ?>
 						</button>
 						<select id="thumbtype" name="thumbtype">

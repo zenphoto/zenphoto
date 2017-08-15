@@ -359,34 +359,41 @@ $tagsort = getTagOrder();
 							}
 							?>
 							<span class="buttons">
-								<strong><a href="<?php echo $backurl; ?>"><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
-								<button type="submit" title="<?php echo $updateitem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php
-										if ($result->transient) {
-											echo $saveitem;
-										} else {
-											echo $updateitem;
-										}
-										?></strong></button>
+								<a href="<?php echo $backurl; ?>">
+									<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+									<strong>
+										<?php echo gettext("Back"); ?></strong>
+								</a>
+								<button type="submit" title="<?php echo $updateitem; ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php
+									if ($result->transient) {
+										echo $saveitem;
+									} else {
+										echo $updateitem;
+									}
+									?></strong></button>
 								<button type="reset" onclick="$('.copydelete').hide();" >
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
+									<span style="color: red;"><?php echo NO_ENTRY; ?></span>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 								<div class="floatright">
 									<?php
 									if ($additem) {
 										?>
-										<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
+										<a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>">
+											<span style="color:green;font-size:large;line-height: 60%;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span>
+											<strong><?php echo $additem; ?></strong>
+										</a>
 										<?php
 									}
 									?>
-									<span id="tip"><a href="#"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png" alt="" /><?php echo gettext("Usage tips"); ?></a></span>
+									<span id="tip"><a href="#"><span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span> <?php echo gettext("Usage tips"); ?></a></span>
 									<?php
 									if (!$result->transient) {
 										if (is_AdminEditPage("newscategory")) {
 											?>
-											<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+											<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("View"); ?></a>
 										<?php } else { ?>
-											<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+											<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("View"); ?></a>
 											<?php
 										}
 									}
@@ -440,7 +447,9 @@ $tagsort = getTagOrder();
 												?>
 												<tr>
 													<td>
-														<?php echo linkPickerIcon($result, 'pick_link') ?>
+														<span class="floatright">
+															<?php echo linkPickerIcon($result, 'pick_link') ?>
+														</span>
 													</td>
 													<td class="middlecolumn">
 														<?php echo linkPickerItem($result, 'pick_link'); ?>
@@ -585,12 +594,14 @@ $tagsort = getTagOrder();
 															<?php
 															if (empty($x)) {
 																?>
-																<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" alt="" class="icon-postiion-top8" />
+																<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
 																<?php
 															} else {
 																$x = '          ';
 																?>
-																<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png"  alt="" class="icon-postiion-top8" /></a>
+																<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>">
+																	<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+																</a>
 																<?php
 															}
 															?>
@@ -843,29 +854,37 @@ $tagsort = getTagOrder();
 									<br class="clearall">
 
 									<span class="buttons">
-										<strong><a href="<?php echo $backurl; ?>"><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
-										<button type="submit" title="<?php echo $updateitem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php
-												if ($result->transient) {
-													echo $saveitem;
-												} else {
-													echo $updateitem;
-												}
-												?></strong></button>
+										<a href="<?php echo $backurl; ?>">
+											<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+											<strong>
+												<?php echo gettext("Back"); ?>
+											</strong>
+										</a>
+										<button type="submit" title="<?php echo $updateitem; ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php
+											if ($result->transient) {
+												echo $saveitem;
+											} else {
+												echo $updateitem;
+											}
+											?></strong></button>
 										<button type="reset" onclick="$('.copydelete').hide();">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
+											<span style="color: red;"><?php echo NO_ENTRY; ?></span>
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 										<div class="floatright">
-											<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
+											<a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>">
+												<span style="color:green;font-size:large;line-height: 60%;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span>
+												<strong><?php echo $additem; ?></strong>
+											</a>
 											<?php
 											if (!$result->transient) {
 												if (is_AdminEditPage("newscategory")) {
 													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("View"); ?></a>
 													<?php
 												} else {
 													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("View"); ?></a>
 													<?php
 												}
 											}

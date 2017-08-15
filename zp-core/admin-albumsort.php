@@ -190,17 +190,20 @@ echo "\n</head>";
 								<?php printBulkActions($checkarray_images, true); ?>
 
 						<p class="buttons">
-							<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>"><img	src="images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong></a>
+							<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
+								<span style="color:blue;font-size:large;line-height: 80%;"><?php echo ARROW_LEFT; ?></span>
+								<strong><?php echo gettext("Back"); ?></strong>
+							</a>
 							<button type="submit" onclick="postSort(this.form);" >
-								<img	src="images/pass.png" alt="" />
+								<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset">
-								<img	src="images/reset.png" alt="" />
+								<span style="color: red;"><?php echo NO_ENTRY; ?></span>
 								<strong><?php echo gettext("Reset"); ?></strong>
 							</button>
 							<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-								<img src="images/view.png" alt="" />
+								<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
 								<strong><?php echo gettext('View Album'); ?></strong>
 							</a>
 						</p>
@@ -225,7 +228,7 @@ echo "\n</head>";
 											<p>
 												<input type="checkbox" name="ids[]" value="<?php echo $imagename; ?>">
 												<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt="">
+													<span style="color:blue;font-size: large;"><?php echo PENCIL; ?></span>
 												</a>
 												<?php
 												if (isImagePhoto($image)) {
@@ -251,19 +254,19 @@ echo "\n</head>";
 							<input type="hidden" id="sortableList" name="sortableList" value="" />
 							<p class="buttons">
 								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-									<img	src="images/arrow_left_blue_round.png" alt="" />
+									<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
 									<strong><?php echo gettext("Back"); ?></strong>
 								</a>
 								<button type="submit" onclick="postSort(this.form);" >
-									<img	src="images/pass.png" alt="" />
+									<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="reset">
-									<img	src="images/reset.png" alt="" />
+									<span style="color: red;"><?php echo NO_ENTRY; ?></span>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 								<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-									<img src="images/view.png" alt="" />
+									<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
 									<strong><?php echo gettext('View Album'); ?></strong>
 								</a>
 							</p>

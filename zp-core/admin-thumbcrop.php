@@ -294,14 +294,14 @@ printAdminHeader('edit', 'thumbcrop');
 							<br />
 							<p class="buttons">
 								<button type="button" onclick="resetBoundingBox();" >
-									<img src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
+									<span style="color: red;"><?php echo CROSS_MARK ; ?></span><strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 								<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
-									<img src="images/pass.png" alt="" />
+									<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&subpage=<?php echo html_encode($subpage) ?><?php if ($singleimage) echo '&singleimage=' . html_encode($singleimage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
-									<img src="images/arrow_left_blue_round.png" alt="" />
+									<span style="color:blue;font-size:large;line-height: 60%;">&lArr;</span>
 									<strong><?php echo gettext("Back"); ?></strong>
 								</button>
 							</p><br />

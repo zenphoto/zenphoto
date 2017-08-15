@@ -22,7 +22,7 @@
  * The definitions for folder names and paths are represented by <var>%define%</var> (e.g. <var>%WEBPATH%</var>). The
  * document processor will substitute the actual value for these tags when it renders the document.
  * Image URIs are also processed. Use the appropriate definition tokens to cause the URI to point
- * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/action.png" /></var>
+ * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/zen-logo.png" /></var>
  *
  * @author Stephen Billard (sbillard)
  *
@@ -356,9 +356,13 @@ if (!defined('OFFSET_PATH')) {
 													<div class="moc_button tip" title="<?php echo @$button['title']; ?>" >
 														<?php
 														if (!empty($button_icon)) {
-															?>
-															<img src="<?php echo $button_icon; ?>" alt="<?php echo @$button['alt']; ?>" />
-															<?php
+															if (preg_match('~\&.*?\;~', $button_icon)) {
+																echo $button_icon . ' ';
+															} else {
+																?>
+																<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
+																<?php
+															}
 														}
 														echo html_encode(@$button['button_text']);
 														?>
@@ -374,163 +378,163 @@ if (!defined('OFFSET_PATH')) {
 										?>
 									</div>
 									<br class="clearall">
-									<?php
-								}
-								if ($albumbuttons) {
-									$albumbuttons = preg_replace('|<hr(\s*)(/)>|', '', $albumbuttons);
-									?>
-									<h2 class="h2_bordered_edit">Album Utilities</h2>
-									<div class="box-edit">
-										<?php echo $albumbuttons; ?>
-									</div>
-									<br class="clearall">
-									<?php
-								}
-								if ($imagebuttons) {
-									$imagebuttons = preg_replace('|<hr(\s*)(/)>|', '', $imagebuttons);
-									?>
-									<h2 class="h2_bordered_edit">Image Utilities</h2>
-									<div class="box-edit">
-										<?php echo $imagebuttons; ?>
-									</div>
-									<br class="clearall">
-									<?php
-								}
-								if (!empty($content_macros)) {
-									echo ngettext('Macro defined:', 'Macros defined:', count($content_macros));
-									foreach ($content_macros as $macro => $detail) {
-										unset($detail['owner']);
-										macroList_show($macro, $detail);
+										<?php
 									}
-									?>
-									<br class="clearall">
-									<?php
-								}
-								?>
-						</div>
-					</div>
-				</div>
-			</body>
-			<?php
-		}
-	}
+									if ($albumbuttons) {
+										$albumbuttons = preg_replace('|<hr(\s*)(/)>|', '', $albumbuttons);
+										?>
+										<h2 class="h2_bordered_edit">Album Utilities</h2>
+										<div class="box-edit">
+											<?php echo $albumbuttons; ?>
+										</div>
+										<br class="clearall">
+											<?php
+										}
+										if ($imagebuttons) {
+											$imagebuttons = preg_replace('|<hr(\s*)(/)>|', '', $imagebuttons);
+											?>
+											<h2 class="h2_bordered_edit">Image Utilities</h2>
+											<div class="box-edit">
+												<?php echo $imagebuttons; ?>
+											</div>
+											<br class="clearall">
+												<?php
+											}
+											if (!empty($content_macros)) {
+												echo ngettext('Macro defined:', 'Macros defined:', count($content_macros));
+												foreach ($content_macros as $macro => $detail) {
+													unset($detail['owner']);
+													macroList_show($macro, $detail);
+												}
+												?>
+												<br class="clearall">
+													<?php
+												}
+												?>
+												</div>
+												</div>
+												</div>
+												</body>
+												<?php
+											}
+										}
 
-	function processCommentBlock($commentBlock) {
-		global $plugin_author, $subpackage;
-		$markup = array(
-				'&lt;i&gt;' => '<em>',
-				'&lt;/i&gt;' => '</em>',
-				'&lt;b&gt;' => '<strong>',
-				'&lt;/b&gt;' => '</strong>',
-				'&lt;code&gt;' => '<span class="inlinecode">',
-				'&lt;/code&gt;' => '</span>',
-				'&lt;hr&gt;' => '<hr />',
-				'&lt;ul&gt;' => '<ul>',
-				'&lt;/ul&gt;' => '</ul>',
-				'&lt;ol&gt;' => '<ol>',
-				'&lt;/ol&gt;' => '</ol>',
-				'&lt;li&gt;' => '<li>',
-				'&lt;/li&gt;' => '</li>',
-				'&lt;dl&gt;' => '<dl>',
-				'&lt;/dl&gt;' => '</dl>',
-				'&lt;dt&gt;' => '<dt><strong>',
-				'&lt;/dt&gt;' => '</strong></dt>',
-				'&lt;dd&gt;' => '<dd>',
-				'&lt;/dd&gt;' => '</dd>',
-				'&lt;pre&gt;' => '<pre>',
-				'&lt;/pre&gt;' => '</pre>',
-				'&lt;br&gt;' => '<br />',
-				'&lt;var&gt;' => '<span class="inlinecode">',
-				'&lt;/var&gt;' => '</span>'
-		);
-		$const_tr = array('%ZENFOLDER%' => ZENFOLDER,
-				'%PLUGIN_FOLDER%' => PLUGIN_FOLDER,
-				'%USER_PLUGIN_FOLDER%' => USER_PLUGIN_FOLDER,
-				'%ALBUMFOLDER%' => ALBUMFOLDER,
-				'%THEMEFOLDER%' => THEMEFOLDER,
-				'%BACKUPFOLDER%' => BACKUPFOLDER,
-				'%UTILITIES_FOLDER%' => UTILITIES_FOLDER,
-				'%DATA_FOLDER%' => DATA_FOLDER,
-				'%CACHEFOLDER%' => CACHEFOLDER,
-				'%UPLOAD_FOLDER%' => UPLOAD_FOLDER,
-				'%STATIC_CACHE_FOLDER%' => STATIC_CACHE_FOLDER,
-				'%FULLWEBPATH%' => FULLWEBPATH,
-				'%WEBPATH%' => WEBPATH
-		);
-		$body = $doc = '';
-		$par = false;
-		$empty = false;
-		$lines = explode("\n", strtr($commentBlock, $const_tr));
-		foreach ($lines as $line) {
-			$line = trim(preg_replace('/^\s*\*/', '', $line));
-			if (empty($line)) {
-				if (!$empty) {
-					if ($par) {
-						$doc .= '</p>';
-					}
-					$doc .= '<p>';
-					$empty = $par = true;
-				}
-			} else {
-				if (strpos($line, '@') === 0) {
-					preg_match('/@(.*?)\s/', $line, $matches);
-					if (!empty($matches)) {
-						switch ($matches[1]) {
-							case 'author':
-								$plugin_author = trim(substr($line, 8));
-								break;
-							case 'subpackage':
-								$subpackage = trim(substr($line, 11));
-								break;
-							case 'link':
-								$line = trim(substr($line, 5));
-								$l = strpos($line, ' ');
-								if ($l === false) {
-									$text = $line;
-								} else {
-									$text = substr($line, $l + 1);
-									$line = substr($line, 0, $l);
-								}
-								$links[] = array('text' => $text, 'link' => $line);
-								break;
-						}
-					}
-				} else {
-					$tags = array();
-					preg_match_all('|<img src="(.*?)"\s*/>|', $line, $matches);
-					if (!empty($matches[0])) {
-						foreach ($matches[0] as $key => $match) {
-							if (!empty($match)) {
-								$line = str_replace($match, '%' . $key . '$i', $line);
-								$tags['%' . $key . '$i'] = '<img src="' . pathurlencode($matches[1][$key]) . '" alt="" />';
-							}
-						}
-					}
-					preg_match_all('|\{@link (.*?)\}|', $line, $matches);
-					if (!empty($matches[0])) {
-						foreach ($matches[0] as $key => $match) {
-							if (!empty($match)) {
-								$line = str_replace($match, '%' . $key . '$l', $line);
-								$l = strpos($matches[1][$key], ' ');
-								if ($l === false) {
-									$link = $text = $matches[1][$key];
-								} else {
-									$text = substr($matches[1][$key], $l + 1);
-									$link = substr($matches[1][$key], 0, $l);
-								}
-								$tags['%' . $key . '$l'] = '<a href="' . html_encode($link) . '">' . strtr(html_encode($text), $markup) . '</a>';
-							}
-						}
-					}
-					$doc .= strtr(html_encode($line), array_merge($tags, $markup)) . ' ';
-					$empty = false;
-				}
-			}
-		}
-		if ($par) {
-			$doc .= '</p>';
-			$body .= $doc;
-			$doc = '';
-		}
-		return $body;
-	}
+										function processCommentBlock($commentBlock) {
+											global $plugin_author, $subpackage;
+											$markup = array(
+													'&lt;i&gt;' => '<em>',
+													'&lt;/i&gt;' => '</em>',
+													'&lt;b&gt;' => '<strong>',
+													'&lt;/b&gt;' => '</strong>',
+													'&lt;code&gt;' => '<span class="inlinecode">',
+													'&lt;/code&gt;' => '</span>',
+													'&lt;hr&gt;' => '<hr />',
+													'&lt;ul&gt;' => '<ul>',
+													'&lt;/ul&gt;' => '</ul>',
+													'&lt;ol&gt;' => '<ol>',
+													'&lt;/ol&gt;' => '</ol>',
+													'&lt;li&gt;' => '<li>',
+													'&lt;/li&gt;' => '</li>',
+													'&lt;dl&gt;' => '<dl>',
+													'&lt;/dl&gt;' => '</dl>',
+													'&lt;dt&gt;' => '<dt><strong>',
+													'&lt;/dt&gt;' => '</strong></dt>',
+													'&lt;dd&gt;' => '<dd>',
+													'&lt;/dd&gt;' => '</dd>',
+													'&lt;pre&gt;' => '<pre>',
+													'&lt;/pre&gt;' => '</pre>',
+													'&lt;br&gt;' => '<br />',
+													'&lt;var&gt;' => '<span class="inlinecode">',
+													'&lt;/var&gt;' => '</span>'
+											);
+											$const_tr = array('%ZENFOLDER%' => ZENFOLDER,
+													'%PLUGIN_FOLDER%' => PLUGIN_FOLDER,
+													'%USER_PLUGIN_FOLDER%' => USER_PLUGIN_FOLDER,
+													'%ALBUMFOLDER%' => ALBUMFOLDER,
+													'%THEMEFOLDER%' => THEMEFOLDER,
+													'%BACKUPFOLDER%' => BACKUPFOLDER,
+													'%UTILITIES_FOLDER%' => UTILITIES_FOLDER,
+													'%DATA_FOLDER%' => DATA_FOLDER,
+													'%CACHEFOLDER%' => CACHEFOLDER,
+													'%UPLOAD_FOLDER%' => UPLOAD_FOLDER,
+													'%STATIC_CACHE_FOLDER%' => STATIC_CACHE_FOLDER,
+													'%FULLWEBPATH%' => FULLWEBPATH,
+													'%WEBPATH%' => WEBPATH
+											);
+											$body = $doc = '';
+											$par = false;
+											$empty = false;
+											$lines = explode("\n", strtr($commentBlock, $const_tr));
+											foreach ($lines as $line) {
+												$line = trim(preg_replace('/^\s*\*/', '', $line));
+												if (empty($line)) {
+													if (!$empty) {
+														if ($par) {
+															$doc .= '</p>';
+														}
+														$doc .= '<p>';
+														$empty = $par = true;
+													}
+												} else {
+													if (strpos($line, '@') === 0) {
+														preg_match('/@(.*?)\s/', $line, $matches);
+														if (!empty($matches)) {
+															switch ($matches[1]) {
+																case 'author':
+																	$plugin_author = trim(substr($line, 8));
+																	break;
+																case 'subpackage':
+																	$subpackage = trim(substr($line, 11));
+																	break;
+																case 'link':
+																	$line = trim(substr($line, 5));
+																	$l = strpos($line, ' ');
+																	if ($l === false) {
+																		$text = $line;
+																	} else {
+																		$text = substr($line, $l + 1);
+																		$line = substr($line, 0, $l);
+																	}
+																	$links[] = array('text' => $text, 'link' => $line);
+																	break;
+															}
+														}
+													} else {
+														$tags = array();
+														preg_match_all('|<img src="(.*?)"\s*/>|', $line, $matches);
+														if (!empty($matches[0])) {
+															foreach ($matches[0] as $key => $match) {
+																if (!empty($match)) {
+																	$line = str_replace($match, '%' . $key . '$i', $line);
+																	$tags['%' . $key . '$i'] = '<img src="' . pathurlencode($matches[1][$key]) . '" alt="" />';
+																}
+															}
+														}
+														preg_match_all('|\{@link (.*?)\}|', $line, $matches);
+														if (!empty($matches[0])) {
+															foreach ($matches[0] as $key => $match) {
+																if (!empty($match)) {
+																	$line = str_replace($match, '%' . $key . '$l', $line);
+																	$l = strpos($matches[1][$key], ' ');
+																	if ($l === false) {
+																		$link = $text = $matches[1][$key];
+																	} else {
+																		$text = substr($matches[1][$key], $l + 1);
+																		$link = substr($matches[1][$key], 0, $l);
+																	}
+																	$tags['%' . $key . '$l'] = '<a href="' . html_encode($link) . '">' . strtr(html_encode($text), $markup) . '</a>';
+																}
+															}
+														}
+														$doc .= strtr(html_encodeTagged($line), array_merge($tags, $markup)) . ' ';
+														$empty = false;
+													}
+												}
+											}
+											if ($par) {
+												$doc .= '</p>';
+												$body .= $doc;
+												$doc = '';
+											}
+											return $body;
+										}

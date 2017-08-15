@@ -194,7 +194,7 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 			?>
 			<p class="buttons">
 				<button class="tooltip" type="submit" title="<?php echo $button['title']; ?>" >
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" />
+					<span style="color:blue;"><?php echo HEAVY_BLACK_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW; ?></span>
 					<?php echo $button['text']; ?>
 				</button>
 			</p>

@@ -63,21 +63,8 @@ if ($option_interface) {
 }
 
 $iMutex->unlock();
-if ($deprecate) {
-	$img = 'pass_2.png';
-} else {
-	$img = 'pass.png';
-}
-$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img, 'rb');
 
-
-// send the right headers
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-header("Content-Type: image/png");
-header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img));
-// dump the picture and stop the script
-fpassthru($fp);
-fclose($fp);
+sendImage($deprecate);
 
 list($usec, $sec) = explode(" ", microtime());
 $last = (float) $usec + (float) $sec;

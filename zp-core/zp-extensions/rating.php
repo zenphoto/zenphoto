@@ -201,9 +201,9 @@ class jquery_rating {
 		?>
 
 		<script type="text/javascript">
-			// <!-- <![CDATA[
-			$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: <?php echo $size; ?>};
-			// ]]> -->
+					// <!-- <![CDATA[
+					$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: <?php echo $size; ?>};
+					// ]]> -->
 		</script>
 		<?php
 	}
@@ -252,7 +252,7 @@ class jquery_rating {
 				'button_text' => gettext('Reset all ratings'),
 				'formname' => 'clearrating_button',
 				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rating.php?action=clear_rating',
-				'icon' => 'images/reset.png',
+				'icon' => '<span style="color: red;">' . NO_ENTRY . '</span>',
 				'title' => gettext('Sets all ratings to unrated.'),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="action" value="clear_rating" />',

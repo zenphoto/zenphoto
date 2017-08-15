@@ -221,7 +221,7 @@ class cacheManager {
 				}
 				?>
 				<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
-					<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/arrow_down.png'; ?>" alt="" />
+					<span style="color:green;"><?php echo ARROW_DOWN; ?></span>
 				</a>
 			</span>
 			<br />
@@ -367,7 +367,7 @@ class cacheManager {
 					'button_text' => gettext('Purge RSS cache'),
 					'formname' => 'purge_rss_cache.php',
 					'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
-					'icon' => 'images/edit-delete.png',
+					'icon' => '<span style="font-size: large;">' . WASTEBASKET . '</span>',
 					'alt' => '',
 					'title' => gettext('Delete all files from the RSS cache'),
 					'hidden' => '<input type="hidden" name="action" value="clear_rss_cache" />',
@@ -381,7 +381,7 @@ class cacheManager {
 				'button_text' => gettext('Purge Image cache'),
 				'formname' => 'purge_image_cache.php',
 				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=action=clear_cache',
-				'icon' => 'images/edit-delete.png',
+				'icon' => '<span style="font-size: large;">' . WASTEBASKET . '</span>',
 				'alt' => '',
 				'title' => gettext('Delete all files from the Image cache'),
 				'hidden' => '<input type="hidden" name="action" value="clear_cache" />',
@@ -393,7 +393,7 @@ class cacheManager {
 				'button_text' => gettext('Purge HTML cache'),
 				'formname' => 'clearcache_button',
 				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
-				'icon' => 'images/edit-delete.png',
+				'icon' => '<span style="font-size: large;">' . WASTEBASKET . '</span>',
 				'title' => gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="action" value="clear_html_cache">',
@@ -407,7 +407,7 @@ class cacheManager {
 				'button_text' => gettext('Purge search cache'),
 				'formname' => 'clearcache_button',
 				'action' => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_search_cache',
-				'icon' => 'images/edit-delete.png',
+				'icon' => '<span style="font-size: large;">' . WASTEBASKET . '</span>',
 				'title' => gettext('Clear the static search cache.'),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="action" value="clear_search_cache">',
@@ -426,7 +426,7 @@ class cacheManager {
 			$disable = ' disabled="disabled"';
 			$title = gettext("You must first set the plugin options for cached image parameters.");
 		}
-		$html .= '<div class="button buttons tooltip" title="' . $title . '"><a href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?album=' . html_encode($object->name) . '&amp;XSRFToken=' . getXSRFToken('cacheImages') . '"' . $disable . '><img src="images/cache.png" />' . gettext('Cache album images') . '</a><br class="clearall"></div>';
+		$html .= '<div class="button buttons tooltip" title="' . $title . '"><a href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?album=' . html_encode($object->name) . '&amp;XSRFToken=' . getXSRFToken('cacheImages') . '"' . $disable . '><span style="color:blue;font-size: large;line-height: 60%">' . CIRCLED_WHITE_STAR . '</span> ' . gettext('Cache album images') . '</a><br class="clearall"></div>';
 		return $html;
 	}
 

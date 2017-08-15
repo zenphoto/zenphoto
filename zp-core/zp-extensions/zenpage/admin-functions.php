@@ -208,16 +208,17 @@ function deleteZenpageObj($obj, $redirect = false) {
  * Prints the table part of a single page item for the sortable pages list
  *
  * @param object $page The array containing the single page
- * @param bool $flag set to true to flag the element as having a problem with nesting level
+ * @param bool $toodeep set to true to flag the element as having a problem with nesting level
  */
-function printPagesListTable($page, $flag) {
-	if ($flag) {
-		$img = '../../images/drag_handle_flag.png';
-	} else {
-		$img = '../../images/drag_handle.png';
+function printPagesListTable($page, $toodeep) {
+	if ($toodeep) {
+		$toodeep = 'color: red;';
 	}
 	?>
-	<div class='page-list_row'>
+	<div class="page-list_row">
+		<div class="page-list_handle">
+			<span style="color: lightsteelblue;font-size: x-large;<?php echo $toodeep; ?>"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
+		</div>
 		<div class="page-list_title">
 			<?php
 			echo "<a href='admin-edit.php?page&amp;titlelink=" . urlencode($page->getTitlelink()) . "'> ";
@@ -240,9 +241,9 @@ function printPagesListTable($page, $flag) {
 			<div class="page-list_icon">
 				<?php
 				if ($page->getPassword()) {
-					echo '<img src="../../images/lock_2.png" style="border: 0px;" alt="' . gettext('password protected') . '" title="' . gettext('password protected') . '" />';
+					echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" />';
 				} else {
-					echo '<img src="../../images/lock_open.png" style="border: 0px;" alt="' . gettext('unprotected') . '" title="' . gettext('not protected') . '" />';
+					echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" />';
 				}
 				?>
 			</div>
@@ -263,13 +264,13 @@ function printPagesListTable($page, $flag) {
 					if ($page->getCommentsAllowed()) {
 						?>
 						<a href="?commentson=0&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
+							<span style="color:green;font-size: large;"><?php echo BULLSEYE; ?></span>
 						</a>
 						<?php
 					} else {
 						?>
 						<a href="?commentson=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
+							<span style="color: red;font-size: large;"><?php echo BULLSEYE; ?></span>
 						</a>
 						<?php
 					}
@@ -279,10 +280,10 @@ function printPagesListTable($page, $flag) {
 			} else {
 				?>
 				<div class="page-list_icon">
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/placeholder.png"  style="border: 0px;" />
 				</div>
 				<div class="page-list_icon">
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/placeholder.png"  style="border: 0px;" />
 				</div>
 				<?php
 			}
@@ -290,7 +291,7 @@ function printPagesListTable($page, $flag) {
 
 			<div class="page-list_icon">
 				<a href="../../../index.php?p=pages&amp;title=<?php echo js_encode($page->getTitlelink()); ?>" title="<?php echo gettext("View page"); ?>">
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" title="<?php echo gettext("view"); ?>" />
+					<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
 				</a>
 			</div>
 
@@ -300,14 +301,16 @@ function printPagesListTable($page, $flag) {
 					?>
 					<div class="page-list_icon">
 						<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext("Reset hitcounter"); ?>">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" title="<?php echo gettext("Reset hitcounter"); ?>" /></a>
+							<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+						</a>
 					</div>
 					<?php
 				}
 				?>
 				<div class="page-list_icon">
 					<a href="javascript:confirmDelete('admin-pages.php?delete=<?php echo $page->getTitlelink(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>',deletePage)" title="<?php echo gettext("Delete page"); ?>">
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" title="<?php echo gettext("delete"); ?>" /></a>
+						<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+					</a>
 				</div>
 				<div class="page-list_icon">
 					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getTitlelink(); ?>" />
@@ -316,13 +319,13 @@ function printPagesListTable($page, $flag) {
 			} else {
 				?>
 				<div class="page-list_icon">
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+					<span style="color: lightgray;font-size: large;"><?php echo BULLSEYE; ?></span>
 				</div>
 				<div class="page-list_icon">
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+					<span style="color: lightgray;font-size: large;"><?php echo BULLSEYE; ?></span>
 				</div>
 				<div class="page-list_icon">
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+					<span style="color: lightgray;font-size: large;"><?php echo BULLSEYE; ?></span>
 				</div>
 				<div class="page-list_icon">
 					<input class="checkbox" type="checkbox" name="disable" value="1" disabled="disabled" />
@@ -934,26 +937,27 @@ function updateCategory(&$reports, $newcategory = false) {
  * Prints the list entry of a single category for the sortable list
  *
  * @param array $cat Array storing the db info of the category
- * @param string $flag If the category is protected
+ * @param string $toodeep If the category is protected
  * @return string
  */
-function printCategoryListSortableTable($cat, $flag) {
+function printCategoryListSortableTable($cat, $toodeep) {
 	global $_zp_CMS;
-	if ($flag) {
-		$img = '../../images/drag_handle_flag.png';
-	} else {
-		$img = '../../images/drag_handle.png';
+	if ($toodeep) {
+		$toodeep = 'color: red;';
 	}
 	$count = count($cat->getArticles(0, false));
 	if ($cat->getTitle()) {
 		$cattitle = $cat->getTitle();
 	} else {
-		$cattitle = "<span style='color:red; font-weight: bold'> <strong>*</strong>" . $cat->getTitlelink() . "*</span>";
+		$cattitle = "<span style='color: red; font-weight: bold'> <strong>*</strong>" . $cat->getTitlelink() . "*</span>";
 	}
 	?>
 
-	<div class='page-list_row'>
-		<div class='page-list_title' >
+	<div class="page-list_row">
+		<div class="page-list_handle">
+			<span style="color: lightsteelblue;font-size: x-large;<?php echo $toodeep; ?>"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
+		</div>
+		<div class="page-list_title">
 			<?php echo "<a href='admin-edit.php?newscategory&amp;titlelink=" . $cat->getTitlelink() . "' title='" . gettext('Edit this category') . "'>" . $cattitle . "</a>" . checkHitcounterDisplay($cat->getHitcounter()); ?>
 		</div>
 		<div class="page-list_extra">
@@ -965,9 +969,9 @@ function printCategoryListSortableTable($cat, $flag) {
 			<div class="page-list_icon"><?php
 				$password = $cat->getPassword();
 				if (empty($password)) {
-					echo '<img src="../../images/lock_open.png" style="border: 0px;" alt="' . gettext('password protected') . '" title="' . gettext('password protected') . '" />';
+					echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" />';
 				} else {
-					echo '<img src="../../images/lock_2.png" style="border: 0px;" alt="' . gettext('unprotected') . '" title="' . gettext('password protected') . '" />';
+					echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" />';
 				}
 				?>
 			</div>
@@ -982,25 +986,27 @@ function printCategoryListSortableTable($cat, $flag) {
 					$title = gettext("Un-publish");
 					?>
 					<a href="?publish=0&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="<?php gettext("scheduled for publishing"); ?>" title="<?php echo $title; ?>" /></a>
+						<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+					</a>
 					<?php
 				} else {
 					$title = gettext("Publish");
 					?>
 					<a href="?publish=1&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="<?php echo gettext("un-published"); ?>" title="<?php echo $title; ?>" /></a>
+						<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
+					</a>
 					<?php
 				}
 				?>
 			</div>
 			<div class="page-list_icon">
 				<?php if ($count == 0) { ?>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/placeholder.png"  style="border: 0px;" />
 					<?php
 				} else {
 					?>
 					<a href="../../../index.php?p=news&amp;category=<?php echo js_encode($cat->getTitlelink()); ?>" title="<?php echo gettext("view category"); ?>">
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="view" />
+						<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
 					</a>
 				<?php } ?>
 			</div>
@@ -1008,19 +1014,18 @@ function printCategoryListSortableTable($cat, $flag) {
 			if (extensionEnabled('hitcounter')) {
 				?>
 				<div class="page-list_icon"><a
-						href="?hitcounter=1&amp;id=<?php echo $cat->getID(); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>"
-						title="<?php echo gettext("Reset hitcounter"); ?>"> <img
-							src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png"
-							alt="<?php echo gettext("Reset hitcounter"); ?>" /> </a>
+						href="?hitcounter=1&amp;id=<?php echo $cat->getID(); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext("Reset hitcounter"); ?>">
+						<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+					</a>
 				</div>
 				<?php
 			}
 			?>
 			<div class="page-list_icon">
 				<a href="javascript:confirmDelete('admin-categories.php?delete=<?php echo js_encode($cat->getTitlelink()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category') ?>',deleteCategory)"
-					 title="<?php echo gettext("Delete Category"); ?>"><img
-						src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="<?php echo gettext("Delete"); ?>"
-						title="<?php echo gettext("Delete Category"); ?>" /></a>
+					 title="<?php echo gettext("Delete Category"); ?>">
+					<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+				</a>
 			</div>
 			<div class="page-list_icon">
 				<?php echo linkPickerIcon($cat, 'link_source_' . $cat->getID()); ?>
@@ -1052,9 +1057,9 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 	$catname = $cat->getTitle();
 	$catlink = $cat->getTitlelink();
 	if ($cat->getPassword()) {
-		$protected = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_2.png" alt="' . gettext('password protected') . '" />';
+		$protected = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" />';
 	} else {
-		$protected = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" alt="' . gettext('not protected') . '" />';
+		$protected = '';
 	}
 	$catid = $cat->getID();
 	echo '<label for="cat' . $catid . '"><input name="addcategories[]" class="' . $class . '" id="cat' . $catid . '" type="checkbox" value="' . $catid . '"' . $selected . ' />' . $catname . ' ' . $protected . "</label>\n";
@@ -1228,7 +1233,7 @@ function checkForEmptyTitle($titlefield, $type, $truncate = true) {
 			$title = truncate_string($title, 40);
 		}
 	} else {
-		$title = "<span style='color:red; font-weight: bold'>" . $text . "</span>";
+		$title = "<span style='color: red; font-weight: bold'>" . $text . "</span>";
 	}
 	echo $title;
 }
@@ -1352,28 +1357,30 @@ function printZenpageIconLegend() {
 			<?php
 			if (GALLERY_SECURITY == 'public') {
 				?>
-				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_2.png" alt="" />
-				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" alt="" />
+				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
+				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
 				<?php echo gettext("has/does not have password"); ?>
 				<?php
 			}
 			?>
 		</li>
-		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /><?php echo gettext("pick source"); ?></li>
+		<li><?php echo CLIPBOARD . ' ' . gettext("pick source"); ?></li>
 		<li>
-			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="" />
-			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/clock.png" alt="" /><?php echo gettext("published/not published/scheduled for publishing"); ?>
+			<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+			<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
+			<?php echo CLOCKFACE; ?>
+			<?php echo gettext("published/not published/scheduled for publishing"); ?>
 		</li>
-		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-on.png" alt="" /><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-off.png" alt="" /><?php echo gettext("comments on/off"); ?></li>
-		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("view"); ?></li>
+		<li><span style="color:green;font-size: large;"><?php echo BULLSEYE; ?></span><span style="color: red;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("comments on/off"); ?></li>
+		<li><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("view"); ?></li>
 		<?php
 		if (extensionEnabled('hitcounter')) {
 			?>
-			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("reset hitcounter"); ?></li>
+			<li><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("reset hitcounter"); ?></li>
 			<?php
 		}
 		?>
-		<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext("delete"); ?></li>
+		<li><span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext("delete"); ?></li>
 	</ul>
 	<br class="clearall">
 	<?php
@@ -1454,19 +1461,22 @@ function printPublishIconLink($object, $urladd) {
 		$title = gettext("Un-publish");
 		?>
 		<a href="?publish=0&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="<?php echo gettext("Published"); ?>" title="<?php echo $title; ?>" /></a>
+			<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+		</a>
 		<?php
 	} else {
 		if ($object->getPublishDate() > date('Y-m-d H:i:s')) {
 			//overriding scheduling
 			?>
 			<a href="?publish=2&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/clock.png" alt="<?php echo gettext("un-published"); ?>" title= "<?php echo gettext("publish (override scheduling)"); ?>" /></a>
+				<?php echo CLOCKFACE; ?>
+			</a>
 			<?php
 		} else {
 			?>
 			<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="<?php echo gettext("Un-published"); ?>" title= "<?php echo gettext("Publish"); ?>" /></a>
+				<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
+			</a>
 			<?php
 		}
 	}

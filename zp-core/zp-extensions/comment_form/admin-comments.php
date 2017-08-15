@@ -133,18 +133,18 @@ printLogoAndLinks();
 							<span class="buttons">
 								<p class="buttons">
 									<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment') ?>'; }"
-										 title="<?php echo gettext('Delete'); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" />
+										 title="<?php echo gettext('Delete'); ?>" ><span style="color: red;"><?php echo CROSS_MARK; ?></span>
 										<?php echo gettext('Delete'); ?></a>
 								</p>
 								<p class="buttons" style="margin-top: 10px">
 									<button type="submit">
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+										<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
 										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 								</p>
 								<p class="buttons" style="margin-top: 10px">
 									<button type="button" title="<?php echo gettext("Cancel"); ?>" onclick="window.location = 'admin-comments.php';">
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
+										<span style="color: red;"><?php echo NO_ENTRY; ?></span>
 										<strong><?php echo gettext("Cancel"); ?></strong>
 									</button>
 								</p>
@@ -206,13 +206,13 @@ printLogoAndLinks();
 										$link_moderation = gettext('Approve');
 										$title_moderation = gettext('Approve this comment');
 										$url_moderation = '?action=notspam&amp;id=' . $id;
-										$linkimage = WEBPATH . '/' . ZENFOLDER . '/images/pass.png';
+										$linkimage = '<span style="color: green;">' . WHITE_HEAVY_CHECKMARK . '</span>';
 									} else {
 										$status_moderation = '<span style="color: green">' . gettext('Comment is approved') . '</span>';
 										$link_moderation = gettext('Un-approve');
 										$title_moderation = gettext('Un-approve this comment');
 										$url_moderation = '?action=spam&amp;id=' . $id;
-										$linkimage = WEBPATH . '/' . ZENFOLDER . '/images/warn.png';
+										$linkimage = '<span style="color: orange;">' . NO_ENTRY . '</span>';
 									}
 
 									if ($private) {
@@ -227,7 +227,7 @@ printLogoAndLinks();
 										$status_anon = gettext('Comment is not anonymous');
 									}
 									?>
-									<p><?php echo $status_moderation; ?>. <div class="buttons"><a href="<?php echo $url_moderation; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update') ?>" title="<?php echo $title_moderation; ?>" ><img src="<?php echo $linkimage; ?>" alt="" /><?php echo $link_moderation; ?></a></div></p>
+									<p><?php echo $status_moderation; ?>. <div class="buttons"><a href="<?php echo $url_moderation; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update') ?>" title="<?php echo $title_moderation; ?>" ><?php echo $linkimage; ?> <?php echo $link_moderation; ?></a></div></p>
 									<br class="clearall">
 									<hr />
 									<p><?php echo $status_private; ?></p>
@@ -327,15 +327,15 @@ printLogoAndLinks();
 					<form class="dirtylistening" onReset="setClean('form_commentlist');"  name="comments" id="form_commentlist" action="?action=applycomments" method="post" onsubmit="return confirmAction();" autocomplete="off">
 						<?php XSRFToken('applycomments'); ?>
 						<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum) ?>" />
-						<p class="buttons"><button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
+						<p class="buttons"><button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button></p>
 						<p class="buttons">
 							<?php
 							if ($fulltext) {
 								$msg = gettext("View truncated");
-								$img = WEBPATH . '/' . ZENFOLDER . '/images/arrow_in.png';
+								$arrow = SOUTH_EAST_CORNER_ARROW;
 							} else {
 								$msg = gettext("View full text");
-								$img = WEBPATH . '/' . ZENFOLDER . '/images/arrow_out.png';
+								$arrow = NORTH_WEST_CORNER_ARROW;
 							}
 							?>
 							<a	href="admin-comments.php?fulltext=<?php
@@ -344,7 +344,7 @@ printLogoAndLinks();
 								echo '&amp;viewall';
 							if ($pagenum > 1)
 								echo "&amp;subpage=$pagenum";
-							?>"><img src="<?php echo $img; ?>" alt = "" /> <?php echo $msg; ?></a>
+							?>"><?php echo '<span style="color: green;">' . $arrow . '</span> ' . $msg; ?></a>
 						</p>
 						<br class="clearall"><br />
 						<table class="bordered">
@@ -426,7 +426,7 @@ printLogoAndLinks();
 										<?php
 										echo $website ? "<a href=\"$website\">$author</a>" : $author;
 										if ($anon) {
-											echo ' <a title="' . gettext('Anonymous posting') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/action.png" style="border: 0px;" alt="' . gettext("Anonymous posting") . '" /></a>';
+											echo ' <a title="' . gettext('Anonymous posting') . '"><span style="color: red;letter-spacing: 5px;">' . EXCLAMATION . '</span> /a>';
 										}
 										?>
 									</td>
@@ -438,7 +438,7 @@ printLogoAndLinks();
 											if ($private) {
 												echo '<div class="page-list_icon">'
 												. '<a title="' . gettext("Private message") . '">'
-												. '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/reset.png" style="border: 0px;" alt="' . gettext("Private message") . '" />'
+												. '<span style="color: red;">' . NO_ENTRY . '</span>'
 												. '</a>'
 												. '/div>';
 											}
@@ -448,19 +448,20 @@ printLogoAndLinks();
 												if ($inmoderation) {
 													?>
 													<a href="?action=notspam&amp;id= <?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update') ?>" title="<?php echo gettext('Approve this message (not SPAM)'); ?>">
-														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/warn.png" style="border: 0px;" alt="<?php echo gettext("Approve this message (not SPAM"); ?>" /></a>
+														<span style="color: darkorange;font-size:large;"><?php echo WARNING_SIGN; ?></span></a>
 													<?php
 												} else {
 													?>
 													<a href="?action=spam&amp;id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update') ?>" title="<?php echo gettext('Mark this message as SPAM'); ?>">
-														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="<?php echo gettext("Mark this message as SPAM"); ?>" /></a>
+														<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> </a>
 													<?php
 												}
 												?>
 											</div>
 											<div class="page-list_icon">
 												<a href="?page=editcomment&amp;id=<?php echo $id; ?>" title="<?php echo gettext('Edit this comment.'); ?>">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" style="border: 0px;" alt="<?php echo gettext('Edit'); ?>" /></a>
+													<span style="color:blue;"><?php echo PENCIL; ?></span>
+												</a>
 											</div>
 											<div class="page-list_icon">
 												<?php
@@ -468,12 +469,13 @@ printLogoAndLinks();
 												$str = sprintf(gettext('%1$s commented on %2$s:'), $author, $matches[1]) . '%0D%0A%0D%0A' . implode('%0D%0A', explode('\n', wordwrap(getBare($fullcomment), 75, '\n')));
 												?>
 												<a href="mailto:<?php echo $email; ?>?body=<?php echo html_encode($str); ?>" title="<?php echo gettext('Reply:') . ' ' . $email; ?>">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_mail.png" style="border: 0px;" alt="<?php echo gettext('Reply'); ?>" /></a>
+													<?php echo ENVELOPE; ?>
+												</a>
 											</div>
 											<div class="page-list_icon">
 												<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment') ?>'; }"
-													 title="<?php echo gettext('Delete this comment.'); ?>" > <img
-														src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" style="border: 0px;" alt="<?php echo gettext('Delete'); ?>" /></a>
+													 title="<?php echo gettext('Delete this comment.'); ?>" ><span style="color: red;"><?php echo CROSS_MARK; ?></span>
+												</a>
 											</div>
 										</div>
 									</td>
@@ -489,25 +491,25 @@ printLogoAndLinks();
 
 
 						</table>
-						<p class="buttons"><button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
+						<p class="buttons"><button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Apply"); ?></strong></button></p>
 						<ul class="iconlegend">
 							<li>
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Private message"); ?>
+								<span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("Private message"); ?>
 							</li>
 							<li>
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/warn.png" alt="Marked as spam" /><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="Approved" /><?php echo gettext("Marked as spam/approved"); ?>
+								<span style="color: darkorange;font-size:large;"><?php echo WARNING_SIGN; ?></span><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Marked as spam/approved"); ?>
 							</li>
 							<li>
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="Anonymous posting" /><?php echo gettext("Anonymous posting"); ?>
+								<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span> <?php echo gettext("Anonymous posting"); ?>
 							</li>
 							<li>
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt="Edit comment" /><?php echo gettext("Edit comment"); ?>
+								<span style="color:blue;"><?php echo PENCIL; ?></span> <?php echo gettext("Edit comment"); ?>
 							</li>
 							<li>
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_mail.png" alt="E-mail comment author" /><?php echo gettext("E-mail comment author"); ?>
+								<?php echo ENVELOPE . ' ' . gettext("E-mail comment author"); ?>
 							</li>
 							<li>
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="Delete" /><?php echo gettext("Delete"); ?>
+								<span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext("Delete"); ?>
 							</li>
 						</ul>
 

@@ -195,8 +195,8 @@ echo '</head>' . "\n";
 						<form class="dirtylistening" onReset="setClean('savegroups_form');" id="savegroups_form" action="?action=savegroups&amp;tab=groups" method="post" autocomplete="off" onsubmit="return checkSubmit()" >
 							<?php XSRFToken('savegroups'); ?>
 							<p class="buttons">
-								<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+								<button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <?php echo gettext("Apply"); ?></strong></button>
+								<button type="reset"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<br class="clearall">
 							<br />
@@ -249,11 +249,11 @@ echo '</head>' . "\n";
 													<em>
 														<label>
 															<input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
+																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
 														</label>
 														<label>
 															<input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
+																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
 														</label>
 													</em>
 													<br />
@@ -288,7 +288,7 @@ echo '</head>' . "\n";
 													?>
 													<a href="javascript:if(confirm(<?php echo "'" . $msg . "'"; ?>)) { launchScript('',['action=deletegroup','group=<?php echo addslashes($groupname); ?>','XSRFToken=<?php echo getXSRFToken('deletegroup') ?>']); }"
 														 title="<?php echo gettext('Delete this group.'); ?>" style="color: #c33;">
-														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" style="border: 0px;" alt="Delete" />
+														<span style="color: red;"><?php echo CROSS_MARK ; ?></span>
 													</a>
 													<?php
 												}
@@ -404,8 +404,8 @@ echo '</head>' . "\n";
 								</tr>
 							</table>
 							<p class="buttons">
-								<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+								<button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <?php echo gettext("Apply"); ?></strong></button>
+								<button type="reset"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<input type="hidden" name="totalgroups" value="<?php echo $id; ?>" />
 							<input type="hidden" name="checkForPostTruncation" value="1" />
@@ -466,8 +466,8 @@ echo '</head>' . "\n";
 						<form class="dirtylistening" onReset="setClean('saveAssignments_form');" id="saveAssignments_form" action="?action=saveauserassignments" method="post" autocomplete="off" >
 							<?php XSRFToken('saveauserassignments'); ?>
 							<p class="buttons">
-								<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+								<button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <?php echo gettext("Apply"); ?></strong></button>
+								<button type="reset"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<br class="clearall">
 							<br />
@@ -500,8 +500,8 @@ echo '</head>' . "\n";
 							</table>
 							<br />
 							<p class="buttons">
-								<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+								<button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <?php echo gettext("Apply"); ?></strong></button>
+								<button type="reset"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 							<input type="hidden" name="totalusers" value="<?php echo $id; ?>" />
 							<input type="hidden" name="checkForPostTruncation" value="1" />

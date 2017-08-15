@@ -35,7 +35,7 @@ function upload_extra($uploadlimit, $passedalbum) {
 		// <!-- <![CDATA[
 		// application
 		var upload_fail = false;
-		$(function() {
+		$(function () {
 			'use strict';
 
 			// Initialize the jQuery File Upload widget:
@@ -49,7 +49,7 @@ maxFileSize:" . $uploadlimit; ?>
 			$('#fileupload .files').delegate(
 							'a:not([target^=_blank])',
 							'click',
-							function(e) {
+							function (e) {
 								e.preventDefault();
 								$('<iframe style="display:none;"></iframe>')
 												.prop('src', this.href)
@@ -70,12 +70,12 @@ maxFileSize:" . $uploadlimit; ?>
 			 });
 			 */
 
-			$('#fileupload').bind('fileuploadfail', function(e, data) {
+			$('#fileupload').bind('fileuploadfail', function (e, data) {
 				//alert('fail');
 				upload_fail = true;
 			});
 
-			$('#fileupload').bind('fileuploadstop', function(e, data) {
+			$('#fileupload').bind('fileuploadstop', function (e, data) {
 				if (upload_fail) {
 					//alert('upload failed');
 					// clean up any globals since we are staying on the page
@@ -143,47 +143,47 @@ maxFileSize:" . $uploadlimit; ?>
 		</tr>
 	</script>
 	<script id="template-download" type="text/x-jquery-tmpl">
-		{{if error !== 'emptyResult'}}
-		<tr class="template-download{{if error}}} ui-state-error{{/if}}">
-		{{if error}}
-		<td></td>
-		<td class="name">${name}</td>
-		<td class="size">${sizef}</td>
-		<td class="error" colspan="2"><?php echo gettext('Error:'); ?>
-		{{if error === 1}}<?php echo gettext('File exceeds upload_max_filesize (php.ini directive)'); ?>
-		{{else error === 2}}<?php echo gettext('File exceeds MAX_FILE_SIZE (HTML form directive)'); ?>
-		{{else error === 3}}<?php echo gettext('File was only partially uploaded'); ?>
-		{{else error === 4}}<?php echo gettext('No File was uploaded'); ?>
-		{{else error === 5}}<?php echo gettext('Missing a temporary folder'); ?>
-		{{else error === 6}}<?php echo gettext('Failed to write file to disk'); ?>
-		{{else error === 7}}<?php echo gettext('File upload stopped by extension'); ?>
-		{{else error === 'maxFileSize'}}<?php echo gettext('File is too big'); ?>
-		{{else error === 'minFileSize'}}<?php echo gettext('File is too small'); ?>
-		{{else error === 'acceptFileTypes'}}<?php echo gettext('Filetype not allowed'); ?>
-		{{else error === 'maxNumberOfFiles'}}<?php echo gettext('Max number of files exceeded'); ?>
-		{{else error === 'uploadedBytes'}}<?php echo gettext('Uploaded bytes exceed file size'); ?>
-		{{else error === 'emptyResult'}}<?php echo gettext('Empty file upload result'); ?>
-		{{else}}${error}
-		{{/if}}
-		</td>
-		<td class="delete">
-		<button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
-		</td>
-		{{else}}
-		<td class="preview">
-		{{if thumbnail_url}}
-		<a href="${url}" target="_blank"><img src="${thumbnail_url}"></a>
-		{{/if}}
-		</td>
-		<td class="name">
-		<a href="${url}"{{if thumbnail_url}} target="_blank"{{/if}}>${name}</a>
-		</td>
-		<td class="size">${sizef}</td>
-		<td colspan="2"></td>
-		<td class="delete"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" /></td>
-		{{/if}}
-		</tr>
-		{{/if}}
+			{{if error !== 'emptyResult'}}
+			<tr class="template-download{{if error}}} ui-state-error{{/if}}">
+			{{if error}}
+			<td></td>
+			<td class="name">${name}</td>
+			<td class="size">${sizef}</td>
+			<td class="error" colspan="2"><?php echo gettext('Error:'); ?>
+			{{if error === 1}}<?php echo gettext('File exceeds upload_max_filesize (php.ini directive)'); ?>
+			{{else error === 2}}<?php echo gettext('File exceeds MAX_FILE_SIZE (HTML form directive)'); ?>
+			{{else error === 3}}<?php echo gettext('File was only partially uploaded'); ?>
+			{{else error === 4}}<?php echo gettext('No File was uploaded'); ?>
+			{{else error === 5}}<?php echo gettext('Missing a temporary folder'); ?>
+			{{else error === 6}}<?php echo gettext('Failed to write file to disk'); ?>
+			{{else error === 7}}<?php echo gettext('File upload stopped by extension'); ?>
+			{{else error === 'maxFileSize'}}<?php echo gettext('File is too big'); ?>
+			{{else error === 'minFileSize'}}<?php echo gettext('File is too small'); ?>
+			{{else error === 'acceptFileTypes'}}<?php echo gettext('Filetype not allowed'); ?>
+			{{else error === 'maxNumberOfFiles'}}<?php echo gettext('Max number of files exceeded'); ?>
+			{{else error === 'uploadedBytes'}}<?php echo gettext('Uploaded bytes exceed file size'); ?>
+			{{else error === 'emptyResult'}}<?php echo gettext('Empty file upload result'); ?>
+			{{else}}${error}
+			{{/if}}
+			</td>
+			<td class="delete">
+			<button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
+			</td>
+			{{else}}
+			<td class="preview">
+			{{if thumbnail_url}}
+			<a href="${url}" target="_blank"><img src="${thumbnail_url}"></a>
+			{{/if}}
+			</td>
+			<td class="name">
+			<a href="${url}"{{if thumbnail_url}} target="_blank"{{/if}}>${name}</a>
+			</td>
+			<td class="size">${sizef}</td>
+			<td colspan="2"></td>
+			<td class="delete"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span></td>
+			{{/if}}
+			</tr>
+			{{/if}}
 	</script>
 	<?php
 }

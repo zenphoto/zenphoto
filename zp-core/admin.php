@@ -300,10 +300,10 @@ if (!zp_loggedin()) {
 						$buttonlist[] = array(
 								'category' => gettext('Admin'),
 								'enable' => 2,
-								'button_text' => gettext('ZenPhoto20 ' . $newestVersion),
+								'button_text' => 'ZenPhoto20 ' . $newestVersion,
 								'formname' => 'getUpdates_button',
 								'action' => $newestVersionURI,
-								'icon' => 'images/arrow_down.png',
+								'icon' => '<span style="color:green;font-size: large;">' . ARROW_DOWN . '</span>',
 								'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
 								'alt' => '',
 								'hidden' => '',
@@ -334,7 +334,7 @@ if (!zp_loggedin()) {
 									'button_text' => gettext('Setup » protect scripts'),
 									'formname' => 'restore_setup',
 									'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
-									'icon' => 'images/lock_2.png',
+									'icon' => KEY,
 									'alt' => '',
 									'title' => gettext('Protects setup files so setup cannot be run.'),
 									'hidden' => '<input type="hidden" name="action" value="protect_setup" />',
@@ -350,7 +350,7 @@ if (!zp_loggedin()) {
 								'button_text' => gettext('Setup » restore scripts'),
 								'formname' => 'restore_setup',
 								'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=restore_setup',
-								'icon' => 'images/lock_open.png',
+								'icon' => 'mages/lock_open.png',
 								'alt' => '',
 								'title' => gettext('Restores setup files so setup can be run.'),
 								'hidden' => '<input type="hidden" name="action" value="restore_setup" />',
@@ -580,7 +580,7 @@ if (!zp_loggedin()) {
 							$c = count($plugins);
 							?>
 							<h3><a onclick="$('#plugins_hide').toggle();
-									$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+											$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -628,7 +628,7 @@ if (!zp_loggedin()) {
 							$c = count($filters);
 							?>
 							<h3><a onclick="$('#filters_hide').toggle();
-									$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+											$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -717,9 +717,13 @@ if (!zp_loggedin()) {
 											<button class="fixedwidth<?php if ($disable) echo ' disabled_button'; ?>" <?php echo $type . $disable; ?>>
 												<?php
 												if (!empty($button_icon)) {
-													?>
-													<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
-													<?php
+													if (preg_match('~\&.*?\;~', $button_icon)) {
+														echo $button_icon . ' ';
+													} else {
+														?>
+														<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
+														<?php
+													}
 												}
 												echo '<span' . $color . '>' . html_encode($button['button_text']) . '</span>';
 												?>

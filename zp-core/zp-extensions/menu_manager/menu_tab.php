@@ -153,14 +153,14 @@ printSortableHead();
 					?>
 					<span class="buttons">
 						<button class="serialize" type="submit">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
+							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Apply"); ?></strong>
 						</button>
 						<div class="floatright">
 							<a href="javascript:newMenuSet();">
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("New Menu"); ?></strong>
+								<span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span> <strong><?php echo gettext("New Menu"); ?></strong>
 							</a>
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;single=menu_manager#menu_manager">
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
+								<?php echo GEAR_WITHOUT_HUB; ?> <strong><?php echo gettext('Options') ?></strong>
 							</a>
 						</div>
 					</span>
@@ -189,16 +189,16 @@ printSortableHead();
 									if ($count > 0) {
 										?>
 										<span class="buttons">
-											<strong><a href="javascript:dupMenuSet();" title="<?php printf(gettext('Duplicate %s menu'), $menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/page_white_copy.png" alt="" /><?php echo gettext("Duplicate menu"); ?></a></strong>
+											<a href="javascript:dupMenuSet();" title="<?php printf(gettext('Duplicate %s menu'), $menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/page_white_copy.png" alt="" /><strong><?php echo gettext("Duplicate menu"); ?></strong></a>
 										</span>
 										<span class="buttons">
-											<strong><a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'), $menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext("Delete menu"); ?></a></strong>
+											<strong><a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'), $menuset); ?>"><span style="color: red;"><?php echo CROSS_MARK; ?></span> <strong><?php echo gettext("Delete menu"); ?></strong></a>
 										</span>
 										<?php
 									}
 									?>
 									<span class="buttons">
-										<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
+										<a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><span style="color:green"><?php echo BLACK_CROSS_ON_SHIELD; ?></span> <strong><?php echo gettext("Add Menu Items"); ?></strong></a>
 									</span>
 									<select name="checkallaction" id="checkallaction" size="1">
 										<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
@@ -237,14 +237,14 @@ printSortableHead();
 					<span id="serializeOutput"></span>
 					<input name="update" type="hidden" value="Save Order" />
 					<p class="buttons">
-						<button class="serialize" type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+						<button class="serialize" type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Apply"); ?></strong></button>
 					</p>
 				</form>
 				<ul class="iconlegend">
-					<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_2.png" alt="" /><?php echo gettext("Menu target is password protected"); ?></li>
-					<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png" alt="" /><?php echo gettext("Show/hide"); ?></li>
-					<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></li>
-					<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
+					<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" /> <?php echo gettext("Menu target is password protected"); ?></li>
+					<li><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span><span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span> <?php echo gettext("Visible/Hidden"); ?></li>
+					<li><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("View"); ?></li>
+					<li><span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext("Delete"); ?></li>
 				</ul>
 			</div>
 		</div>

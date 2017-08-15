@@ -149,13 +149,13 @@ class themeSwitcher {
 			$theme = $_zp_gallery->getCurrentTheme();
 			?>
 			<div class="themeSwitcherMenuMain themeSwitcherMenu themeSwitcherControl">
-				<a onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Switch themes'); ?>" style="text-decoration: none;" />&#9776;</a>
+				<a onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Switch themes'); ?>" style="text-decoration: none;" /><?php echo MENU_ICON; ?></a>
 			</div>
 			<div class="themeSwitcherControlLink themeSwitcherControl" style="display:none;">
 				<div class="themeSwitcherMenuShow">
 					<a onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Close'); ?>" style="text-decoration: none;" />
 					<span style="font-size: large;color: black !important;">
-						&#9776;
+						<?php echo MENU_ICON; ?>
 					</span>
 					</a>
 

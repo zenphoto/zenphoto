@@ -136,7 +136,7 @@ echo "\n</head>";
 					?>
 					<p class = "buttons">
 						<button type="submit" title="<?php echo gettext("Return to search"); ?>" >
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" />
+							<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
 							<?php echo gettext("Back");
 							?>
 						</button>
@@ -222,13 +222,13 @@ echo "\n</head>";
 					<br clear="all">
 					<p class="buttons">
 						<button type="submit"  title="<?php echo gettext("Tag the items"); ?>">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
 							<?php echo gettext("Tag the items"); ?>
 						</button>
 					</p>
 					<p class="buttons">
 						<button type="reset">
-							<img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
+							<span style="color: red;"><?php echo NO_ENTRY; ?></span>
 							<strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</p>

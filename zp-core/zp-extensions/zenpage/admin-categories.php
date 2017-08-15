@@ -129,13 +129,18 @@ zenpageJSCSS();
 					<input	type="hidden" name="action" id="action" value="update" />
 					<p class="buttons">
 						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
+							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext('Apply'); ?></strong>
 						</button>
 						<?php
 						if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 							?>
 							<span class="floatright">
-								<strong><a href="admin-edit.php?newscategory&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo gettext('New category'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext('New category'); ?></a></strong>
+								<a href="admin-edit.php?newscategory&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo gettext('New category'); ?>">
+									<span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span>
+									<strong>
+										<?php echo gettext('New category'); ?>
+									</strong>
+								</a>
 							</span>
 							<?php
 						}
@@ -182,7 +187,7 @@ zenpageJSCSS();
 					<input name="update" type="hidden" value="Save Order" />
 					<p class="buttons">
 						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
+							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext('Apply'); ?></strong>
 						</button>
 					</p>
 					<ul class="iconlegend">
@@ -193,8 +198,8 @@ zenpageJSCSS();
 								<?php
 								if (true) {
 									?>
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_2.png" alt="" />
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" alt="" />
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
 									<?php echo gettext("has/does not have password"); ?>
 									<?php
 								}
@@ -203,16 +208,16 @@ zenpageJSCSS();
 								<?php
 							}
 							?>
-						<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /><?php echo gettext("pick source"); ?></li>
-						<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext('view'); ?></li>
+						<li><?php echo CLIPBOARD . ' ' . gettext("pick source"); ?></li>
+						<li><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext('view'); ?></li>
 						<?php
 						if (extensionEnabled('hitcounter')) {
 							?>
-							<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext('reset hitcounter'); ?></li>
+							<li><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext('reset hitcounter'); ?></li>
 							<?php
 						}
 						?>
-						<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /><?php echo gettext('delete category'); ?></li>
+						<li><span style="color: red;"><?php echo CROSS_MARK; ?></span></li>
 					</ul>
 				</form>
 			</div> <!-- tab_articles -->

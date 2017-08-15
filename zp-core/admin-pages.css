@@ -2401,25 +2401,23 @@ ul.page-list {
 	border-bottom: 1px solid #F7F8F9 !important;
 }
 
+.page-list_row .page-list_handle {
+	float: left;
+	padding: 18px 10px 0px 5px;
+}
+
 .page-list_row .page-list_title {
 	float: left;
 	width: 20%;
 	height: 30px;
-	padding: 20px 0px 0px 45px;
-	background-image: url(images/drag_handle.png) !important;
-	background-repeat: no-repeat;
-	background-position: 15px 20px;
-
+	padding: 20px 0px 0px 5px;
 }
 
 .page-list_row .page-list_albumthumb {
 	float: left;
 	width: 50px;
 	height: 45px;
-	padding: 5px 0px 0px 45px;
-	background-image: url(images/drag_handle.png) !important;
-	background-repeat: no-repeat;
-	background-position: 15px 20px;
+	padding: 5px 0px 0px 5px;
 }
 
 .page-list_row .page-list_albumthumb img {
@@ -2464,9 +2462,8 @@ ul.page-list {
 .page-list_icon {
 	display: inline;
 	margin-right: 20px;
-	vertical-align: middle;
+	vertical-align: top;
 }
-
 
 .page-list_icon .checkbox {
 	display: inline;

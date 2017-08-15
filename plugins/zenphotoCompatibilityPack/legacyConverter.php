@@ -193,11 +193,11 @@ echo "\n" . '<div id="container">';
 
 		<p class="buttons">
 			<button type="submit" >
-				<img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+				<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span>
 				<strong><?php echo gettext("Apply"); ?></strong>
 			</button>
 			<button type="reset">
-				<img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
+				<span style="color: red;"><?php echo NO_ENTRY; ?></span>
 				<strong><?php echo gettext("Reset"); ?></strong>
 			</button>
 

@@ -160,7 +160,7 @@ if (count($themelist) == 0) {
 		?>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a class="reset" onclick="launchScript('', ['action=settheme', 'themealbum=<?php echo pathurlencode($album->name); ?>', 'theme=', 'XSRFToken=<?php echo getXSRFToken('admin-themes'); ?>']);" title="<?php printf(gettext('Clear theme assignment for %s'), html_encode($album->name)); ?>">
-			<img src="images/fail.png" style="border: 0px;" alt="<?php echo gettext('Clear theme assignment'); ?>" />
+			<span style="color: red;"><?php echo CROSS_MARK; ?></span>
 		</a>
 		<?php
 	}
@@ -210,19 +210,19 @@ if (count($themelist) == 0) {
 			$themeweb = WEBPATH . "/themes/$theme";
 			$path = $themedir . '/logo.png';
 			if (file_exists($path)) {
-				$ico = $themeweb . '/logo.png';
+				$ico = '<img class="zp_logoicon" src="' . $themeweb . '/logo.png" alt="' . gettext('logo') . '" title="' . $whose . '" />';
 			} else {
 				$ico = NULL;
 			}
 			if (protectedTheme($theme, true)) {
 				$whose = 'Official theme';
-				if (!$ico)
-					$ico = 'images/zp_gold.png';
+				if (!$ico) {
+					$ico = '<img class="zp_logoicon" src="images/zp_gold.png" alt="' . gettext('logo') . '" title="' . $whose . '" />';
+				}
 			} else {
 				$whose = gettext('Third party theme');
-				$path = $themedir . '/logo.png';
 				if (!$ico)
-					$ico = 'images/view.png';
+					$ico = '<span style="color:blue;font-size: large;">' . BULLSEYE . '</span>';
 			}
 			?>
 			<tr>
@@ -245,13 +245,13 @@ if (count($themelist) == 0) {
 					?>
 				</td>
 				<td <?php echo $style; ?>>
-					<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
+					<?php echo $ico; ?>
 					<strong><?php echo $themeinfo['name']; ?></strong>
 					<br />
 					<?php echo $themeinfo['author']; ?>
 					<br />
 					<?php
-					if ($ico == 'images/zp_gold.png' || $themeinfo['version'] === true) {
+					if (strpos($ico, 'images/zp_gold.png') !== false || $themeinfo['version'] === true) {
 						$version = $zenphoto_version;
 						$date = $zenphoto_date;
 					} else {
@@ -286,7 +286,7 @@ if (count($themelist) == 0) {
 							<li>
 								<p class="buttons">
 									<a onclick="launchScript('admin-themes.php', ['action=settheme', 'themealbum=<?php echo pathurlencode($alb); ?>', 'theme=<?php echo urlencode($theme); ?>', 'XSRFToken=<?php echo getXSRFToken('admin-themes') ?>']);">
-										<img src="images/pass.png" alt="" /><?php echo gettext("Activate"); ?>
+										<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Activate"); ?>
 									</a>
 								</p>
 								<br />
@@ -298,7 +298,7 @@ if (count($themelist) == 0) {
 								<li>
 									<p class="buttons">
 										<a onclick="launchScript('admin-themes.php', ['action=settheme', 'themealbum=<?php echo pathurlencode($alb); ?>', 'theme=<?php echo urlencode($theme); ?>', 'XSRFToken=<?php echo getXSRFToken('admin-themes') ?>']);">
-											<img src="images/pass.png" alt="" /><?php echo gettext("Assign"); ?>
+											<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Assign"); ?>
 										</a>
 									</p>
 								</li>
@@ -314,7 +314,7 @@ if (count($themelist) == 0) {
 							<li>
 								<p class="buttons">
 									<a onclick="<?php echo $editable; ?>;">
-										<img src="images/pencil.png" alt="" /><?php echo gettext("Edit"); ?>
+										<span style="color:blue;"><?php echo PENCIL; ?></span> <?php echo gettext("Edit"); ?>
 									</a>
 								</p><br />
 							</li>
@@ -324,7 +324,8 @@ if (count($themelist) == 0) {
 								<li>
 									<p class="buttons">
 										<a onclick="launchScript('admin-themes.php', ['action=deletetheme', 'themealbum=<?php echo pathurlencode($alb); ?>', 'theme=<?php echo urlencode($theme); ?>', 'XSRFToken=<?php echo getXSRFToken('admin-themes') ?>']);">
-											<img src="images/edit-delete.png" alt="" /><?php echo gettext("Delete"); ?>
+											<span style="font-size: large;"><?php echo WASTEBASKET; ?></span>
+											<?php echo gettext("Delete"); ?>
 										</a>
 									</p>
 								</li>

@@ -312,7 +312,7 @@ class optionalObjectFields extends fieldExtender {
 	function __construct() {
 		$protected = array('date', 'owner');
 		$fields = self::fields();
-//do not add/remove some critical DB fields
+		//do not add/remove some critical DB fields
 		foreach ($fields as $key => $field) {
 			if (in_array($field['name'], $protected))
 				unset($fields[$key]);
@@ -455,7 +455,7 @@ class optionalObjectFields extends fieldExtender {
 			}
 		} else {
 			$item = NULL;
-			if (true || $obj->isMyItem($obj->manage_some_rights)) {
+			if ($obj->isMyItem($obj->manage_some_rights)) {
 				$d = $obj->getDateTime();
 				ob_start();
 				?>
@@ -564,8 +564,9 @@ class optionalObjectFields extends fieldExtender {
 				} else {
 					?>
 					<span id = "existing_tags_<?php echo $i; ?>"><?php echo trim(implode(', ', $tags)); ?></span>
-					<a id="tag_clear_link_tags_<?php echo $i; ?>" onclick="clearOldTags('tags_<?php echo $i; ?>');"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" title="<?php echo gettext('remove tags'); ?>"></a>
-					<a id="tag_restore_link_tags_<?php echo $i; ?>" onclick="restoreOldTags('tags_<?php echo $i; ?>');" style="display:none;"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" title="<?php echo gettext('cancel'); ?>"></a>
+					<a id="tag_clear_link_tags_<?php echo $i; ?>" onclick="clearOldTags('tags_<?php echo $i; ?>');">
+						<span style="color: red;"><?php echo CROSS_MARK ; ?></span></a>
+					<a id="tag_restore_link_tags_<?php echo $i; ?>" onclick="restoreOldTags('tags_<?php echo $i; ?>');" style="display:none;"><span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span></a>
 					<?php
 				}
 				echo '<br /><br />' . gettext('Add') . '<br />';

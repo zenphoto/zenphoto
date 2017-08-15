@@ -420,8 +420,8 @@ if (!empty($metaURL) && $postcount < $posttotalcount) {
 						<input type="text" value="localhost" id="dbhost" name="dbhost" /> <label for="dbhost"><?php echo gettext("Database host"); ?></label><br />
 						<input type="text" value="wp_" name="tableprefix" id="tableprefix" /> <label for="tableprefix"><?php echo gettext("Database table prefix"); ?></label><br />
 						<input type="checkbox" value="0" name="convertlinefeeds" id="convertlinefeeds" /> <label for="convertlinefeeds"><?php echo gettext('Convert linefeeds to new lines (br)'); ?></label><br />
-						<p class="buttons"><button class="submitbutton" type="submit" title="<?php echo gettext("Import"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Import"); ?></strong></button></p>
-						<p class="buttons"><button class="submitbutton" type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button></p>
+						<p class="buttons"><button class="submitbutton" type="submit" title="<?php echo gettext("Import"); ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <?php echo gettext("Import"); ?></strong></button></p>
+						<p class="buttons"><button class="submitbutton" type="reset"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button></p>
 						<br style="clear:both" />
 					</form>
 					<?php

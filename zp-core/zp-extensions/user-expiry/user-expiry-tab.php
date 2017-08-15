@@ -126,11 +126,11 @@ echo '</head>' . "\n";
 				<form action="?action=expiry&tab=expiry" class="dirtylistening" onReset="setClean('userExpiry_form');" id="userExpiry_form" method="post" autocomplete="off" >
 					<?php XSRFToken('expiry'); ?>
 					<span class="buttons">
-						<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-						<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						<button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Apply"); ?></strong></button>
+						<button type="reset"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 						<div class="floatright">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;single=user-expiry#user-expiry">
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
+								<?php echo GEAR_WITHOUT_HUB; ?> <strong><?php echo gettext('Options') ?></strong>
 							</a>
 						</div>
 					</span>
@@ -178,21 +178,21 @@ echo '</head>' . "\n";
 								}
 							}
 							$id = postIndexEncode($user['id']);
-							$r1 = '<img src="../../images/fail.png" title="' . gettext('delete') . '" /><input type="radio" name="r_' . $id . '" value="delete"' . $checked_delete . ' />&nbsp;';
+							$r1 = '<span style="color: red;">' . CROSS_MARK . '</span><input type="radio" name="r_' . $id . '" value="delete"' . $checked_delete . ' />&nbsp;';
 							if ($user['valid'] == 2) {
-								$r2 = '<img src="../../images/lock_open.png" title="' . gettext('enable') . '" /><input type="radio" name="r_' . $id . '" value="enable"' . $checked_disable . ' />&nbsp;';
+								$r2 = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" /> <input type="radio" name="r_' . $id . '" value="enable"' . $checked_disable . ' />&nbsp;';
 							} else {
-								$r2 = '<img src="../../images/lock_2.png" title="' . gettext('disable') . '" /><input type="radio" name="r_' . $id . '" value="disable"' . $checked_disable . ' />&nbsp;';
+								$r2 = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" /> <input type="radio" name="r_' . $id . '" value="disable"' . $checked_disable . ' />&nbsp;';
 							}
 							if ($subscription) {
-								$r3 = '<img src="../../images/pass.png" title="' . gettext('renew') . '" /><input type="radio" name="r_' . $id . '" value="renew"' . $checked_renew . $checked_disable . ' />&nbsp;';
+								$r3 = '<span style="color: green;">' . WHITE_HEAVY_CHECKMARK . '</span> <input type="radio" name="r_' . $id . '" value="renew"' . $checked_renew . $checked_disable . ' />&nbsp;';
 								if (!$user['email']) {
 									$checked_disable = ' disabled="disabled"';
 								}
-								$r4 = '<img src="../../images/envelope.png" title="' . gettext('Email renewal') . '" /><input type="radio" name="r_' . $id . '" value="revalidate"' . $checked_disable . ' />&nbsp;';
+								$r4 = ENVELOPE . ' <input type="radio" name="r_' . $id . '" value="revalidate"' . $checked_disable . ' />&nbsp;';
 							}
 							if (getOption('user_expiry_password_cycle')) {
-								$r5 = '<img src="../../images/reset.png" title="' . gettext('Force password renewal') . '" /><input type="radio" name="r_' . $id . '" value="force"' . $checked_delete . ' />&nbsp;';
+								$r5 = '<span style="color: red;">' . NO_ENTRY . '</span> <input type="radio" name="r_' . $id . '" value="force"' . $checked_delete . ' />&nbsp;';
 							} else {
 								$r5 = '';
 							}
@@ -204,25 +204,25 @@ echo '</head>' . "\n";
 						}
 						?>
 					</ul>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" /> <?php echo gettext('Remove'); ?>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_2.png" /> <?php echo gettext('Disable'); ?>
+					<span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext('Remove'); ?>
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" /> <?php echo gettext('Disable'); ?>
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" /> <?php echo gettext('Enable'); ?>
 					<?php
 					if (getOption('user_expiry_password_cycle')) {
 						?>
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" /> <?php echo gettext('Force password renewal'); ?>
+						<span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext('Force password renewal'); ?>
 						<?php
 					}
 					if ($subscription) {
 						?>
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" /> <?php echo gettext('Renew'); ?>
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/envelope.png" /> <?php echo gettext('Email renewal link'); ?>
+						<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext('Renew'); ?>
+						<?php echo ENVELOPE; ?>
 						<?php
 					}
 					?>
 					<p class="buttons">
-						<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-						<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						<button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Apply"); ?></strong></button>
+						<button type="reset"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 					</p>
 					<br class="clearall">
 				</form>

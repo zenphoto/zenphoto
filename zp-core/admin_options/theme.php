@@ -231,10 +231,10 @@ function getOptionContent() {
 					<tr>
 						<td colspan="100%">
 							<p class="buttons">
-								<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+								<button type="submit" value="<?php echo gettext('Apply') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-										$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
-								<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+												$('#themeoptionsform').submit();"><span style="font-size:x-large;color:green;line-height: 40%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span> <strong><?php echo gettext("Revert to default"); ?></strong></button>
+								<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 						</td>
 					</tr>
@@ -268,7 +268,8 @@ function getOptionContent() {
 							<input type="text" size="3" name="albums_per_page" value="<?php echo getThemeOption('albums_per_page', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 								<div class="option_desc_hidden">
 									<?php
 									echo gettext('These specify the Theme <a title="Look at your album page and count the number of album thumbnails that show up in one row. This is the value you should set for the option.">CSS determined number</a> of album thumbnails that will fit in a "row" and the number of albums thumbnails you wish per page.');
@@ -309,7 +310,8 @@ function getOptionContent() {
 							<input type="text" size="3" name="images_per_page" value="<?php echo getThemeOption('images_per_page', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 								<div class="option_desc_hidden">
 									<?php
 									echo gettext('These specify the Theme <a title="Look at your album page and count the number of image thumbnails that show up in one row. This is the value you should set for the option.">CSS determined number</a> of image thumbnails that will fit in a "row" and the number of image thumbnails you wish per page.');
@@ -357,7 +359,8 @@ function getOptionContent() {
 							</span>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 								<div class="option_desc_hidden">
 									<?php echo gettext('if both album and image <em>thumbnails per row</em> are greater than 1 you can choose if album thumbnails and image thumbnails are placed together on the page that transitions from only album thumbnails to only image thumbnails.'); ?></div>
 							</span>
@@ -382,7 +385,8 @@ function getOptionContent() {
 							<input type="text" size="3" name="thumb_size" value="<?php echo $ts; ?>"<?php echo $disable; ?> />
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 								<div class="option_desc_hidden">
 									<?php printf(gettext("Standard thumbnails will be scaled to %u pixels."), $ts); ?>
 								</div>
@@ -412,7 +416,8 @@ function getOptionContent() {
 							</span>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 								<div class="option_desc_hidden">
 									<?php printf(gettext('If checked the thumbnail will be cropped %1$.1f%% in from the top and the bottom margins and %2$.1f%% in from the left and the right margins.'), $ct, $cl); ?>
 									<br />
@@ -434,7 +439,8 @@ function getOptionContent() {
 							</label>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 								<div class="option_desc_hidden">
 									<?php echo gettext("If checked, images/thumbnails will be created in gray scale."); ?>
 								</div>
@@ -481,7 +487,8 @@ function getOptionContent() {
 							</table>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 								<div class="option_desc_hidden">
 									<?php echo gettext("Default image display size."); ?> <br />
 									<?php echo gettext("The image will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."); ?>
@@ -501,7 +508,8 @@ function getOptionContent() {
 							</td>
 
 							<td class="option_desc">
-								<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+								<span class="option_info">
+									<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 									<div class="option_desc_hidden">
 										<?php echo gettext('Select if you want parent breadcrumbs and if so the separator for them.'); ?>
 									</div>
@@ -526,10 +534,10 @@ function getOptionContent() {
 					<tr>
 						<td colspan="100%">
 							<p class="buttons">
-								<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+								<button type="submit" value="<?php echo gettext('Apply') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
 								<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-										$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
-								<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+												$('#themeoptionsform').submit();"><span style="font-size:x-large;color:green;line-height: 40%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span> <strong><?php echo gettext("Revert to default"); ?></strong></button>
+								<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
 						</td>
 					</tr>

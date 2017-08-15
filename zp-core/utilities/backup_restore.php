@@ -518,7 +518,8 @@ if (isset($_GET['compression'])) {
 						<input type="hidden" name="backup" value="true" />
 						<div class="buttons pad_button" id="dbbackup">
 							<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/burst.png" alt="" /> <?php echo gettext("Backup the Database"); ?>
+								<span style="color: blue;"><?php echo BURST; ?></span>
+								<?php echo gettext("Backup the Database"); ?>
 							</button>
 							<select name="compress">
 								<?php
@@ -584,7 +585,7 @@ if (isset($_GET['compression'])) {
 						<br class="clearall">
 						<div class="buttons pad_button" id="dbrestore">
 							<button id="restore_button" class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Restore the tables in your database from a previous backup."); ?>" disabled="disabled">
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" /> <?php echo gettext("Restore the Database"); ?>
+								<span style="color:blue;"><?php echo HEAVY_BLACK_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW; ?></span> <?php echo gettext("Restore the Database"); ?>
 							</button>
 						</div>
 						<br class="clearall">

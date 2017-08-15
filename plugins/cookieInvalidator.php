@@ -29,17 +29,17 @@ class cookieInvalidator {
 	static function button($buttons) {
 		$base = getOption('cookieInvalidator_base');
 		$buttons[] = array(
-						'XSRFTag'			 => 'setInvalidateBase',
-						'category'		 => gettext('Admin'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Invalidate cookies'),
-						'formname'		 => 'cookieInvalidator',
-						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=cookieInvalidator::setBase',
-						'icon'				 => 'images/fail.png',
-						'title'				 => sprintf(gettext('Cookies prior to %s are invalid'), date('Y-m-d H:i:s', $base)),
-						'alt'					 => '',
-						'hidden'			 => '<input type="hidden" name="action" value="cookieInvalidator::setBase" />',
-						'rights'			 => ADMIN_RIGHTS,
+				'XSRFTag' => 'setInvalidateBase',
+				'category' => gettext('Admin'),
+				'enable' => true,
+				'button_text' => gettext('Invalidate cookies'),
+				'formname' => 'cookieInvalidator',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=cookieInvalidator::setBase',
+				'icon' => '<span style="color: red;">' . CROSS_MARK . '</span>',
+				'title' => sprintf(gettext('Cookies prior to %s are invalid'), date('Y-m-d H:i:s', $base)),
+				'alt' => '',
+				'hidden' => '<input type="hidden" name="action" value="cookieInvalidator::setBase" />',
+				'rights' => ADMIN_RIGHTS,
 		);
 		return $buttons;
 	}

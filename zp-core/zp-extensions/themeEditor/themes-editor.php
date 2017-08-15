@@ -105,7 +105,7 @@ if (!empty($messages)) {
 
 <p class="buttons">
 	<a title="<?php echo gettext('Back to the theme list'); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-themes.php">
-		<img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" />
+		<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
 		<strong><?php echo gettext("Back"); ?></strong>
 	</a>
 </p>
@@ -154,8 +154,8 @@ if (!empty($messages)) {
 					<p><textarea cols="70" rows="35" name="newcontent" id="newcontent"><?php echo $file_content ?></textarea></p>
 					<input type="hidden" name="action" value="edit_file"/>
 					<p class="buttons">
-						<button type="submit" value="<?php echo gettext('Update File') ?>" title="<?php echo gettext("Update File"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Update File"); ?></strong></button>
-						<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						<button type="submit" value="<?php echo gettext('Update File') ?>" title="<?php echo gettext("Update File"); ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Update File"); ?></strong></button>
+						<button type="reset" value="<?php echo gettext('Reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 					</p>
 					<br class="clearall">
 				</form>

@@ -41,7 +41,7 @@ function filterDoc_button($buttons) {
 			'button_text' => gettext('Filter Doc Gen'),
 			'formname' => 'filterDoc_button',
 			'action' => '?filterDoc=gen',
-			'icon' => 'images/add.png',
+			'icon' => '<span style="color:green;font-size:large;line-height: 60%;">' . BLACK_CROSS_ON_SHIELD . '</span>',
 			'title' => gettext('Generate filter document'),
 			'alt' => '',
 			'hidden' => '<input type="hidden" name="filterDoc" value="gen" />',

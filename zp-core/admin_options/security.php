@@ -52,8 +52,8 @@ function getOptionContent() {
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('save') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
+							<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 						</p>
 					</td>
 				</tr>
@@ -81,7 +81,8 @@ function getOptionContent() {
 						</select>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 							<div class="option_desc_hidden">
 								<p><?php printf(gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>%s</em> if you need only to insure secure access to <code>admin</code> pages."), gettext('secure admin')); ?></p>
 								<p class="notebox"><?php
@@ -101,7 +102,8 @@ function getOptionContent() {
 						<label><input type="checkbox" name="IP_tied_cookies" value="1" <?php checked(1, getOption('IP_tied_cookies')); ?> /></label>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 							<div class="option_desc_hidden">
 								<?php echo gettext('Tie cookies to the IP address of the browser.'); ?>
 								<p class="notebox">
@@ -125,7 +127,8 @@ function getOptionContent() {
 						<label><input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php checked(1, getOption('obfuscate_cache')); ?> /></label>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 							<div class="option_desc_hidden">
 								<?php echo gettext('Cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?>
 							</div>
@@ -138,7 +141,8 @@ function getOptionContent() {
 						<label><input type="checkbox" name="image_processor_flooding_protection" value="1" <?php checked(1, getOption('image_processor_flooding_protection')); ?> /></label>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 							<div class="option_desc_hidden">
 								<?php echo gettext('Add a security parameter to image processor URIs to prevent denial of service attacks requesting arbitrary sized images.'); ?>
 							</div>
@@ -170,7 +174,8 @@ function getOptionContent() {
 							</label>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
 								<div class="option_desc_hidden">
 									<?php
 									echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows users to logon from the form.');
@@ -209,8 +214,8 @@ function getOptionContent() {
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('save') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
+							<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
 						</p>
 					</td>
 				</tr>
