@@ -73,7 +73,7 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.4.2.0</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.4.3.0</h2>
 <p> </p>
 <h2>General</h2>
 <p>Several security fixes have been applied.</p>
@@ -82,6 +82,11 @@
 <p>The register user notify option has been move to the general options page. This option is used by multiple plugins so a global setting is more appropriate.</p>
 <p>The <em>backup</em> folder has been relocated to within the <em>data</em> folder.</p>
 <p>The <code>shortenContent()</code> function has been rewritten. It will now count only text characters in shortening the string. Before HTML tags were counted as part of the allowed total. Page break handling is now incorporated in the function. Truncation will prefer to happen at a page break indication (<code>&lt;-- pagebreak --&gt;.</code>) This allows for simplification of <code>getContentShorten()</code> which had been including HTML tags in its character count when deciding what page break to select. The <code>$forceindicator</code> parameter has been removed. It really made no sense and was used only by <code>getContentShorten()</code> when it rolled back to a page break. It was also not applied if no shortening was done even though that was the promise in the comment block.</p>
+<p>Warnings about configuration changes will no longer be displayed on theme pages. In addition, when the warning is displayed on an admin page a button will be included to dismiss the warning. If you are comfortable that the change does not impact your site you may dismiss it and it will no longer be shown.</p>
+<h2>Trans-BMP character</h2>
+<p>The MySQL<em> utf8</em> encoding supports only <em>Basic Multilingual Plane</em> (BMP) characters. Many recently defined Emoji characters are coded in with <em>trans-BMP</em> codes. E.g. 🌞, 🏝️, 🥑. etc. For MySql to handle these the data field character set must be set to <em>utf8mb4</em>. Existing ZenPhoto20 installations encode all text fields as <em>utf8</em> so trying to store a <em>trans-BMP</em> character will result in data truncation at that character as it is not valid in <em>utf8</em>.</p>
+<p>New ZenPhoto20 installations will use <em>utf8mb4 encoding</em> on text fields so long as the MySql version of the site supports that encoding. For existing installation that wish to be able to use these Emoji it will be necessary to migrate the database. See the <em>utf8mb4Migration</em> plugin below.</p>
+<p>MySQL software version MUST be 5.5.3 or greater is required for support of utf8mb4 encoding.</p>
 <h2>Social Media Login</h2>
 <p>Plugins have been added to allow login via <em>Facebook</em>, <em>Google</em>, Instagram, <em>Linkedin</em>, and <em>Twitter</em>. These a drop-down selector on the login form will take you to the respective authorization pages. Alternatively, there are functions for each that will place a login button on your web page wherever you like. E.g. <code>facebookLogin::loginButton();</code> will place a button on your page that allows the user to login via Facebook. (You can place a button for the normal ZenPhoto20 login via <code>Zenphoto_Authority::loginButton();</code>)</p>
 <h2>Language translations</h2>
@@ -93,6 +98,9 @@
 <p>The Previous and Next article links on theme news pages will now honor the category of the article. If you view a list of articles in a news category and click on the link to a specific article the previous and next article links for the article will show only articles within the originating category.</p>
 <h2> </h2>
 <h2>plugins</h2>
+<p><em>utf8mb4Migration</em></p>
+<p>This plugin has been provided for sites that wish to migrate to <em>utf8mb4</em> encoding on text fields such as the Description field. A button to perform migration will be placed in the <em>Development</em> area of the admin home page.</p>
+<p>You should always backup your database before attempting this migration. <em>utf8</em> is a subset of <em>utf8mb4</em> so all data should migrate successfully. <strong>HOWEVER</strong> it is possible that the database contains characters which are invalid in <em>utf8mb4</em>. This could cause the migration to fail or to lose data.</p>
 <p><em>menu_manager</em></p>
 <p>A new menu item type has been added so that menu html can be generated dynamically. This allows links to use constructs that need to be evaluated when the page is being viewed like, for instance, language dependencies. Menu type <em>dynamiclink</em> allows you so specify PHP code for the link. This code is evaluated when the link is generated. The result of the evaluation should be a well formed URI.</p>
 <p><em>rating</em></p>
