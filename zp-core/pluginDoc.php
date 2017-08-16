@@ -143,7 +143,7 @@ if (!defined('OFFSET_PATH')) {
 			<head>
 				<?php printStandardMeta(); ?>
 				<title><?php echo $pagetitle; ?></title>
-				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-pages.css" type="text/css" />
+				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 				<style>
 
 					#plugin-content {
