@@ -1010,12 +1010,17 @@ class _Authority {
 							}
 							?>
 							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> ><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <?php echo gettext("Submit"); ?></button>
+								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> >
+									<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+									<?php echo gettext("Submit"); ?>
+								</button>
 								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=' + $('#user').val();" >
+									<span style="font-size:large;color: green;line-height: 90%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span>
 									<?php echo gettext("Refresh"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
-									<span style="font-size:x-large;color:green;line-height: 40%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span> <?php echo gettext("Return"); ?>
+									<span style="font-size:large;color: blue;line-height: 90%;"><?php echo ARROW_LEFT; ?></span>
+									<?php echo gettext("Return"); ?>
 								</button>
 							</div>
 							<br class="clearall">
@@ -1092,7 +1097,7 @@ class _Authority {
 							</fieldset>
 							<br />
 							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Log in"); ?>" ><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <?php echo gettext("Log in"); ?></button>
+								<button type="submit" value="<?php echo gettext("Log in"); ?>" ><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Log in"); ?></button>
 								<button type="reset" value="<?php echo gettext("Reset"); ?>" ><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("Reset"); ?></button>
 							</div>
 							<br class="clearall">
@@ -1159,11 +1164,12 @@ class _Authority {
 							<br />
 							<div class="buttons">
 								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" >
-									<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <?php echo gettext("Request password reset"); ?>
+									<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+									<?php echo gettext("Request password reset"); ?>
 								</button>
-								<button type="button" value="<?php echo gettext("Return"); ?>"
-												onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
-									<span style="font-size:x-large;color:green;line-height: 40%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span> <?php echo gettext("Return"); ?>
+								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
+									<span style="font-size:large;color: blue;line-height: 90%;"><?php echo ARROW_LEFT; ?></span>
+									<?php echo gettext("Return"); ?>
 								</button>
 							</div>
 							<br class="clearall">
@@ -1344,7 +1350,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-										 togglePassword('<?php echo $id; ?>');">
+								 togglePassword('<?php echo $id; ?>');">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
