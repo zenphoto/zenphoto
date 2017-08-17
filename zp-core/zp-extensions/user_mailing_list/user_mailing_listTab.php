@@ -97,11 +97,17 @@ printAdminHeader('admin', 'Mailing');
 					</script>
 					<p class="buttons">
 						<button class="submitbutton" type="submit"
-										title="<?php echo gettext("Send mail"); ?>"<?php echo $disabled; ?> ><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <strong><?php echo gettext("Send mail"); ?></strong></button>
+										title="<?php echo gettext("Send mail"); ?>"<?php echo $disabled; ?> >
+							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<strong><?php echo gettext("Send mail"); ?></strong>
+						</button>
 					</p>
 					<p class="buttons">
 						<button class="submitbutton" type="reset"
-										title="<?php echo gettext("Reset"); ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+										title="<?php echo gettext("Reset"); ?>">
+											<?php echo NO_ENTRY; ?>
+							<strong><?php echo gettext("Reset"); ?></strong>
+						</button>
 					</p>
 					<br style="clear: both" />
 				</form>

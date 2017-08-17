@@ -118,12 +118,12 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 	switch ($check) {
 		case 0:
 			$cls = "fail";
-			$ico = '<span style="color: red;">' . CROSS_MARK . '</span>';
+			$ico = . CROSS_MARK_RED;
 			break;
 		case -1:
 		case -3:
 			$cls = "warn";
-			$ico = '<span style="color: darkorange;font-size: large;">' . WARNING_SIGN . '</span>';
+			$ico = WARNING_SIGN_ORANGE;
 			$warn = true;
 			if ($stopAutorun && $autorun) {
 				$autorun = false;
@@ -139,7 +139,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 				$display = ' style="display:none;"';
 			}
 			$cls = "pass";
-			$ico = '<span style="color: green;">' . WHITE_HEAVY_CHECKMARK . '</span>';
+			$ico = HEAVY_GREEN_CHECKMARK;
 			break;
 	}
 	if ($check <= 0) {

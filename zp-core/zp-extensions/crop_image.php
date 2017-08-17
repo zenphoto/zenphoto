@@ -456,34 +456,37 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 							</p>
 							<p class="buttons">
 								<button type="reset" onclick="resetButton();" >
-									<span style="color: red;"><?php echo CROSS_MARK; ?></span> <strong><?php echo gettext("Reset"); ?></strong>
+									<?php echo CROSS_MARK_RED; ?>
+									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 								<?php
 								if (!$pasteobj) {
 									?>
 									<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
-										<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong>
+										<?php echo HEAVY_GREEN_CHECKMARK; ?>
+										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<?php
 								}
 								if ($_REQUEST['performcrop'] == 'backend') {
 									?>
 									<button type="button" value="<?php echo gettext('Back') ?>" onclick="window.location = '../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo $subpage . ($singleimage) ? '&singleimage=' . html_encode($singleimage) : ''; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
-										<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span> <strong><?php echo gettext("Back"); ?></strong>
+										<?php echo ARROW_LEFT_BLUE; ?>
+										<strong><?php echo gettext("Back"); ?></strong>
 									</button>
 									<?php
 								} else if ($pasteobj) {
 									?>
-									<button type="button" value="<?php echo gettext('Back') ?>" onclick="<?php echo linkPickerPick($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')"); ?> setClean('crop');
-											window.history.back();">
-										<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span> <strong><?php echo gettext("Done");
-									?></strong>
+									<button type="button" value="<?php echo gettext('Back') ?>" onclick="<?php echo linkPickerPick($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')"); ?> setClean('crop');	window.history.back();">
+										<?php echo ARROW_LEFT_BLUE; ?>
+										<strong><?php echo gettext("Done"); ?></strong>
 									</button>
 									<?php
 								} else {
 									?>
 									<button type="button" value="<?php echo gettext('Back') ?>" onclick="window.location = '../../index.php?album=<?php echo pathurlencode($albumname); ?>&image=<?php echo urlencode($imagename); ?>'">
-										<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span> <strong><?php echo gettext("Back"); ?></strong>
+										<?php echo ARROW_LEFT_BLUE; ?>
+										<strong><?php echo gettext("Back"); ?></strong>
 									</button>
 									<?php
 								}

@@ -85,8 +85,14 @@ function getOptionContent() {
 						<tr>
 							<td colspan="100%">
 								<p class="buttons">
-									<button type="submit" value="<?php echo gettext('save') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
-									<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+									<button type="submit" value="<?php echo gettext('save') ?>">
+										<?php echo HEAVY_GREEN_CHECKMARK; ?>
+										<strong><?php echo gettext("Apply"); ?></strong>
+									</button>
+									<button type="reset" value="<?php echo gettext('reset') ?>">
+										<?php echo NO_ENTRY; ?>
+										<strong><?php echo gettext("Reset"); ?>
+										</strong></button>
 								</p>
 							</td>
 						</tr>
@@ -139,7 +145,8 @@ function getOptionContent() {
 									if (!$showExtension) {
 										$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
 										?>
-										<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>"><?php echo GEAR_WITHOUT_HUB; ?>
+										<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>">
+												<?php echo GEAR_WITHOUT_HUB; ?>
 												<?php
 											}
 											echo $extension;
@@ -150,7 +157,7 @@ function getOptionContent() {
 									}
 									if ($warn) {
 										?>
-										<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
+										<?php echo EXCLAMATION_RED; ?>
 										<?php
 									}
 									?>
@@ -204,8 +211,14 @@ function getOptionContent() {
 							<tr>
 								<td colspan="100%">
 									<p class="buttons">
-										<button type="submit" value="<?php echo gettext('save') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
-										<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+										<button type="submit" value="<?php echo gettext('save') ?>">
+											<?php echo HEAVY_GREEN_CHECKMARK; ?>
+											<strong><?php echo gettext("Apply"); ?></strong>
+										</button>
+										<button type="reset" value="<?php echo gettext('reset') ?>">
+											<?php echo NO_ENTRY; ?>
+											<strong><?php echo gettext("Reset"); ?></strong>
+										</button>
 									</p>
 								</td>
 							</tr>

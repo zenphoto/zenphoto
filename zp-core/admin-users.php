@@ -469,8 +469,14 @@ echo $refresh;
 						}
 						?>
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('Apply') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('Apply') ?>">
+								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('reset') ?>">
+								<?php echo NO_ENTRY; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
 						</p>
 						<br class="clearall"><br />
 						<table class="unbordered"> <!-- main table -->
@@ -651,7 +657,7 @@ echo $refresh;
 															<span class="floatright">
 																<a href="javascript:if(confirm(<?php echo "'" . js_encode($msg) . "'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin') ?>'; }"
 																	 title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;">
-																	<span style="color: red;"><?php echo CROSS_MARK ; ?></span>
+																		 <?php echo CROSS_MARK_RED; ?>
 																</a>
 															</span>
 															<?php
@@ -860,8 +866,12 @@ echo $refresh;
 						if (!$_zp_current_admin_obj->transient) {
 							?>
 							<p class="buttons">
-								<button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+								<button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?>
+									<strong><?php echo gettext("Apply"); ?></strong>
+								</button>
+								<button type="reset"><?php echo NO_ENTRY; ?>
+									<strong><?php echo gettext("Reset"); ?></strong>
+								</button>
 							</p>
 							<?php
 						}

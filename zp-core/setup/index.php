@@ -900,20 +900,20 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 												<li id="internal" class="pass limited">
 													<span>
 														<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>" class="test_image"  onerror="imgError('internal');"/>
-														<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+														<?php echo HEAVY_GREEN_CHECKMARK; ?>
 														<?php echo gettext('Image URIs appear to require the <em>UTF-8</em> character set.') ?>
 													</span>
 												</li>
 												<li id="filesystem" class="fail limited" style="display: none;">
 													<span>
 														<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode(internalToFilesystem('tést.jpg')); ?>" title="filesystem" class="test_image" onerror="imgError('filesystem');"/>
-														<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+														<?php echo HEAVY_GREEN_CHECKMARK; ?>
 														<?php echo gettext('Image URIs appear require the <em>filesystem</em> character set.'); ?>
 													</span>
 												</li>
 												<li id="unknown" class="warn" style="display: none;">
 													<span>
-														<span style="color: darkorange;font-size: large;"><?php echo WARNING_SIGN; ?></span>
+														<?php echo WARNING_SIGN_ORANGE; ?>
 														<?php echo gettext('Image URIs with diacritical marks appear to fail.'); ?>
 													</span>
 												</li>
@@ -960,22 +960,27 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 											if (isset($enabled['experimental'])) {
 												?>
-												<li class="note_warn"><span style="color:darkorange;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle()" >experimental</a>)'), $handler); ?>
+												<li class="note_warn">
+													<?php echo BULLSEYE_DARKORANGE; ?>
+													<?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle()" >experimental</a>)'), $handler); ?>
 												</li>
-												<p class="warning" id="<?php echo $handler; ?>"
-													 style="display: none;">
-														 <?php echo $enabled['experimental'] ?>
+												<p class="warning" id="<?php echo $handler; ?>" style="display: none;">
+													<?php echo $enabled['experimental'] ?>
 												</p>
 												<?php
 											} else {
 												?>
-												<li class="note_ok"><span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext('PHP <code>%s</code> support'), $handler); ?>
+												<li class="note_ok">
+													<?php echo BULLSEYE_GREEN; ?>
+													<?php echo sprintf(gettext('PHP <code>%s</code> support'), $handler); ?>
 												</li>
 												<?php
 											}
 										} else {
 											?>
-											<li class="note_exception"><span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext('PHP <code>%s</code> support [is not installed]'), $handler); ?>
+											<li class="note_exception">
+												<?php echo BULLSEYE_RED; ?>
+												<?php echo sprintf(gettext('PHP <code>%s</code> support [is not installed]'), $handler); ?>
 											</li>
 											<?php
 										}
@@ -1638,7 +1643,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								</div>
 								<p class='buttons'>
 									<a href="?refresh" title="<?php echo gettext("Setup failed."); ?>" style="font-size: 15pt; font-weight: bold;">
-										<span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext("Refresh"); ?>
+										<?php echo CROSS_MARK_RED; ?>
+										<?php echo gettext("Refresh"); ?>
 									</a>
 								</p>
 								<br class="clearall">
@@ -1873,12 +1879,12 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										$hideGoButton = '';
 									}
 									if ($warn) {
-										$icon = '<span style="color: darkorange;">' . WARNING_SIGN . '</span>';
+										$icon = WARNING_SIGN_ORANGE;
 									} else {
-										$icon = '<span style="color: green;">' . WHITE_HEAVY_CHECKMARK . '</span>';
+										$icon = HEAVY_GREEN_CHECKMARK;
 									}
 									if ($autorun) {
-										$task .= '&autorun=' . $autorun;
+										$task .= '&autorun = ' . $autorun;
 									}
 									if ($blindInstall) {
 										ob_end_clean();

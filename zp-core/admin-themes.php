@@ -160,7 +160,7 @@ if (count($themelist) == 0) {
 		?>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a class="reset" onclick="launchScript('', ['action=settheme', 'themealbum=<?php echo pathurlencode($album->name); ?>', 'theme=', 'XSRFToken=<?php echo getXSRFToken('admin-themes'); ?>']);" title="<?php printf(gettext('Clear theme assignment for %s'), html_encode($album->name)); ?>">
-			<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+			<?php echo CROSS_MARK_RED; ?>
 		</a>
 		<?php
 	}
@@ -222,7 +222,7 @@ if (count($themelist) == 0) {
 			} else {
 				$whose = gettext('Third party theme');
 				if (!$ico)
-					$ico = '<span style="color:blue;font-size: large;">' . BULLSEYE . '</span>';
+					$ico = BULLSEYE_BLUE;
 			}
 			?>
 			<tr>
@@ -286,7 +286,7 @@ if (count($themelist) == 0) {
 							<li>
 								<p class="buttons">
 									<a onclick="launchScript('admin-themes.php', ['action=settheme', 'themealbum=<?php echo pathurlencode($alb); ?>', 'theme=<?php echo urlencode($theme); ?>', 'XSRFToken=<?php echo getXSRFToken('admin-themes') ?>']);">
-										<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Activate"); ?>
+										<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Activate"); ?>
 									</a>
 								</p>
 								<br />
@@ -298,7 +298,7 @@ if (count($themelist) == 0) {
 								<li>
 									<p class="buttons">
 										<a onclick="launchScript('admin-themes.php', ['action=settheme', 'themealbum=<?php echo pathurlencode($alb); ?>', 'theme=<?php echo urlencode($theme); ?>', 'XSRFToken=<?php echo getXSRFToken('admin-themes') ?>']);">
-											<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Assign"); ?>
+											<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Assign"); ?>
 										</a>
 									</p>
 								</li>
@@ -314,7 +314,8 @@ if (count($themelist) == 0) {
 							<li>
 								<p class="buttons">
 									<a onclick="<?php echo $editable; ?>;">
-										<span style="color:blue;"><?php echo PENCIL; ?></span> <?php echo gettext("Edit"); ?>
+										<?php echo PENCIL_BLUE; ?>
+										<?php echo gettext("Edit"); ?>
 									</a>
 								</p><br />
 							</li>

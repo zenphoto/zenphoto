@@ -143,7 +143,7 @@ printAdminHeader('admin');
 				<button type="reset" onclick="$('#tag_action_form').trigger('reset');
 						$('#form_tagrename').trigger('reset');
 						$('#form_newtags').trigger('reset');">
-					<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+									<?php echo CROSS_MARK_RED; ?>
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
 			</div>
@@ -171,34 +171,51 @@ printAdminHeader('admin');
 							<button type="submit" id='delete_tags' value="<?php echo gettext("Delete checked tags"); ?>"
 											onclick="$('#tag_action').val('delete');
 													this.form.submit();">
-								<span style="color: red;"><?php echo CROSS_MARK; ?></span>
-								<?php echo gettext("Delete checked tags"); ?>
+												<?php echo CROSS_MARK_RED; ?>
+												<?php echo gettext("Delete checked tags"); ?>
 							</button>
 						</p>
 						<br />
-						<p class="buttons">
-							<button type="submit" id="assign_tags" value="<?php echo gettext("Delete checked tags"); ?>"
-											onclick="$('#tag_action').val('assign');
-													this.form.submit();">
-								<span style="color:blue;font-size:large;line-height: 60%"><?php echo ARROW_RIGHT; ?></span>
-								<?php echo gettext('assign'); ?>
-							</button>
-						</p>
-						<select name="language" id="language" class="ignoredirty">
-							<option value=""><?php echo gettext('Universal'); ?></option>
-							<?php
-							foreach ($_zp_active_languages as $text => $lang) {
-								?>
-								<option value="<?php echo $lang; ?>" <?php if ($_zp_current_locale == $lang) echo ' selected="selected"' ?>><?php echo html_encode($text); ?></option>
-								<?php
-							}
+						<?php
+						if (getOption('multi_lingual')) {
 							?>
-						</select>
+							<p class="buttons">
+								<button type="submit" id="assign_tags" value="<?php echo gettext("Delete checked tags"); ?>"
+												onclick="$('#tag_action').val('assign');
+														this.form.submit();">
+													<?php echo ARROW_RIGHT_BLUE; ?>
+													<?php echo gettext('assign'); ?>
+								</button>
+							</p>
+
+							<select name="language" id="language" class="ignoredirty">
+								<option value=""><?php echo gettext('Universal'); ?></option>
+								<?php
+								foreach ($_zp_active_languages as $text => $lang) {
+									?>
+									<option value="<?php echo $lang; ?>"><?php echo html_encode($text); ?></option>
+									<?php
+								}
+								?>
+							</select>
+							<?php
+						} else {
+							?>
+							<input type="hidden" name="language" value="" />
+							<?php
+						}
+						?>
 						<div class="clearall"></div>
 					</form>
 
 					<div class="tagtext">
-						<p><?php echo gettext('Place a checkmark in the box for each tag you wish to delete or to assign a language then press the appropriate button. The brackets contain the number of times the tag appears.'); ?></p>
+						<p><?php
+							if (getOption('multi_lingual')) {
+								echo gettext('Place a checkmark in the box for each tag you wish to delete or to assign a language then press the appropriate button. The brackets contain the number of times the tag appears.');
+							} else {
+								echo gettext('Place a checkmark in the box for each tag you wish to delete then press the appropriate button. The brackets contain the number of times the tag appears.');
+							}
+							?></p>
 					</div>
 				</div>
 
@@ -227,7 +244,7 @@ printAdminHeader('admin');
 						</div>
 						<p class="buttons">
 							<button type="submit" id='rename_tags' value="<?php echo gettext("Rename tags"); ?>">
-								<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Rename tags"); ?>
+								<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Rename tags"); ?>
 							</button>
 						</p>
 					</form>
@@ -257,22 +274,40 @@ printAdminHeader('admin');
 						</div>
 						<p class="buttons">
 							<button type="submit" id='save_tags' value="<?php echo gettext("Add tags"); ?>">
-								<span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span> <?php echo gettext("Add tags"); ?>
+								<?php echo GREEN_CROSS_ON_SHIELD; ?>
+								<?php echo gettext("Add tags"); ?>
 							</button>
 						</p>
-						<select name="language" id="language" class="ignoredirty">
-							<option value="" selected="language"><?php echo gettext('Universal'); ?></option>
-							<?php
-							foreach ($_zp_active_languages as $text => $lang) {
-								?>
-								<option value="<?php echo $lang; ?>" ><?php echo html_encode($text); ?></option>
-								<?php
-							}
+						<?php
+						if (getOption('multi_lingual')) {
 							?>
-						</select>
+							<select name="language" id="language" class="ignoredirty">
+								<option value="" selected="language"><?php echo gettext('Universal'); ?></option>
+								<?php
+								foreach ($_zp_active_languages as $text => $lang) {
+									?>
+									<option value="<?php echo $lang; ?>" ><?php echo html_encode($text); ?></option>
+									<?php
+								}
+								?>
+							</select>
+							<?php
+						} else {
+							?>
+							<input type="hidden" name="language" value="" />
+							<?php
+						}
+						?>
+						<div class="clearall"></div>
 					</form>
+
 					<div class="tagtext">
-						<p><?php echo gettext("Add tags to the list by entering their names in the input fields of the <em>New tags</em> list. Then press the <em>Add tags</em> button"); ?></p>
+						<p><?php
+							echo gettext("Add tags to the list by entering their names in the input fields of the <em>New tags</em> list. Then press the <em>Add tags</em> button.");
+							if (getOption('multi_lingual')) {
+								echo ' ' . gettext('You can restrict a tag to a specific language with the language selector.');
+							}
+							?></p>
 					</div>
 				</div>
 				<br class="clearall">

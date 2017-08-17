@@ -129,14 +129,14 @@ zenpageJSCSS();
 					<input	type="hidden" name="action" id="action" value="update" />
 					<p class="buttons">
 						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext('Apply'); ?></strong>
+							<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext('Apply'); ?></strong>
 						</button>
 						<?php
 						if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 							?>
 							<span class="floatright">
 								<a href="admin-edit.php?newscategory&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo gettext('New category'); ?>">
-									<span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span>
+									<?php echo GREEN_CROSS_ON_SHIELD; ?>
 									<strong>
 										<?php echo gettext('New category'); ?>
 									</strong>
@@ -187,7 +187,7 @@ zenpageJSCSS();
 					<input name="update" type="hidden" value="Save Order" />
 					<p class="buttons">
 						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext('Apply'); ?></strong>
+							<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext('Apply'); ?></strong>
 						</button>
 					</p>
 					<ul class="iconlegend">
@@ -208,16 +208,25 @@ zenpageJSCSS();
 								<?php
 							}
 							?>
-						<li><?php echo CLIPBOARD . ' ' . gettext("pick source"); ?></li>
-						<li><span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span> <?php echo gettext('view'); ?></li>
+						<li>
+							<?php echo CLIPBOARD . ' ' . gettext("pick source"); ?>
+						</li>
+						<li>
+							<?php echo BULLSEYE_BLUE; ?> <?php echo gettext('view'); ?>
+						</li>
 						<?php
 						if (extensionEnabled('hitcounter')) {
 							?>
-							<li><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext('reset hitcounter'); ?></li>
+							<li>
+								<?php echo NO_ENTRY; ?>
+								<?php echo gettext('reset hitcounter'); ?>
+							</li>
 							<?php
 						}
 						?>
-						<li><span style="color: red;"><?php echo CROSS_MARK; ?></span></li>
+						<li>
+							<?php echo CROSS_MARK_RED; ?>
+						</li>
 					</ul>
 				</form>
 			</div> <!-- tab_articles -->

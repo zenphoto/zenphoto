@@ -153,14 +153,16 @@ printSortableHead();
 					?>
 					<span class="buttons">
 						<button class="serialize" type="submit">
-							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong>
+							<?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<div class="floatright">
 							<a href="javascript:newMenuSet();">
-								<span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span> <strong><?php echo gettext("New Menu"); ?></strong>
+								<?php echo GREEN_CROSS_ON_SHIELD; ?>
+								<strong><?php echo gettext("New Menu"); ?></strong>
 							</a>
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;single=menu_manager#menu_manager">
-								<?php echo GEAR_WITHOUT_HUB; ?> <strong><?php echo gettext('Options') ?></strong>
+								<?php echo GEAR_WITHOUT_HUB; ?>
+								<strong><?php echo gettext('Options') ?></strong>
 							</a>
 						</div>
 					</span>
@@ -192,7 +194,8 @@ printSortableHead();
 											<a href="javascript:dupMenuSet();" title="<?php printf(gettext('Duplicate %s menu'), $menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/page_white_copy.png" alt="" /><strong><?php echo gettext("Duplicate menu"); ?></strong></a>
 										</span>
 										<span class="buttons">
-											<a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'), $menuset); ?>"><span style="color: red;"><?php echo CROSS_MARK; ?></span>
+											<a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'), $menuset); ?>">
+												<?php echo CROSS_MARK_RED; ?>
 												<strong><?php echo gettext("Delete menu"); ?></strong>
 											</a>
 										</span>
@@ -200,7 +203,10 @@ printSortableHead();
 									}
 									?>
 									<span class="buttons">
-										<a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><span style="color:green"><?php echo BLACK_CROSS_ON_SHIELD; ?></span> <strong><?php echo gettext("Add Menu Items"); ?></strong></a>
+										<a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>">
+											<?php echo GREEN_CROSS_ON_SHIELD; ?>
+											<strong><?php echo gettext("Add Menu Items"); ?></strong>
+										</a>
 									</span>
 									<select name="checkallaction" id="checkallaction" size="1">
 										<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
@@ -239,16 +245,21 @@ printSortableHead();
 					<span id="serializeOutput"></span>
 					<input name="update" type="hidden" value="Save Order" />
 					<p class="buttons">
-						<button class="serialize" type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Apply"); ?></strong></button>
+						<button class="serialize" type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button>
 					</p>
 				</form>
 				<ul class="iconlegend">
 					<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" /> <?php echo gettext("Menu target is password protected"); ?></li>
-					<li><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span><span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span> <?php echo gettext("Visible/Hidden"); ?></li>
+					<li><?php echo HEAVY_GREEN_CHECKMARK; ?><?php echo EXCLAMATION_RED; ?>
+						<?php echo gettext("Visible/Hidden"); ?></li>
 					<li>
-						<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
-						<?php echo gettext("View"); ?></li>
-					<li><span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext("Delete"); ?></li>
+						<?php echo BULLSEYE_BLUE; ?>
+						<?php echo gettext("View"); ?>
+					</li>
+					<li>
+						<?php echo CROSS_MARK_RED; ?>
+						<?php echo gettext("Delete"); ?>
+					</li>
 				</ul>
 			</div>
 		</div>

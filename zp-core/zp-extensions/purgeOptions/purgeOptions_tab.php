@@ -171,11 +171,11 @@ $orphaned = array();
 							<input type="hidden" name="purge" value="1" />
 							<p class = "buttons" >
 								<button type="submit" value="<?php echo gettext('Apply') ?>">
-									<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+									<?php echo HEAVY_GREEN_CHECKMARK; ?>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button >
 								<button type="reset" value="<?php echo gettext('reset') ?>">
-									<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+									<?php echo NO_ENTRY; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 							</p>
@@ -209,15 +209,15 @@ $orphaned = array();
 								<div class="purgeOptions_list">
 									<span class="purgeOptionsClass"><?php echo gettext('Orphaned options'); ?></span>
 									<label>
-										<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+										<?php echo BULLSEYE_BLUE; ?>
 										<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').removeAttr('checked');$('.orphaned').removeAttr('checked');$('#emptyOptionCheck').removeAttr('checked');">
 									</label>
 									<label>
-										<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+										<?php echo CROSS_MARK_RED; ?>
 										<input type="radio" name="orphaned" id="orphanedDelete" onclick="$('.orphanedDelete').prop('checked', $('#orphanedDelete').prop('checked'));">
 									</label>
 									<label>
-										<span style="color: green;font-size: large;"><?php echo SQUARED_KEY; ?></span>
+										<?php echo SQUARED_KEY_GREEN; ?>
 										<input type="radio" name="orphaned" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));$('#emptyOptionCheck').removeAttr('checked');">
 									</label>
 									<?php
@@ -244,15 +244,15 @@ $orphaned = array();
 													?>
 											<li<?php if ($hidden) echo ' class="hiddenOrphan"'; ?>>
 												<label class="none">
-													<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+													<?php echo BULLSEYE_BLUE; ?>
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedIgnore" value="1" onclick="$(this).removeAttr('checked');"/>
 												</label>
 												<label class="none">
-													<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+													<?php echo CROSS_MARK_RED; ?>
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedDelete<?php if (in_array('emptyOption', $classes)) echo ' deleteEmpty'; ?>" value="2" />
 												</label>
 												<label class="none">
-													<span style="color: green;font-size: large;"><?php echo SQUARED_KEY; ?></span>
+													<?php echo SQUARED_KEY_GREEN; ?>
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphaned" value="3" />
 													<?php
 													if (empty($classes)) {
@@ -267,11 +267,11 @@ $orphaned = array();
 										}
 										?>
 									</ul>
-									<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+									<?php echo BULLSEYE_BLUE; ?>
 									<?php echo gettext('no action'); ?>
-									<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+									<?php echo CROSS_MARK_RED; ?>
 									<?php echo gettext('delete'); ?>
-									<span style="color: green;font-size: large;"><?php echo SQUARED_KEY; ?></span>
+									<?php echo SQUARED_KEY_GREEN; ?>
 									<?php echo gettext('hide'); ?>
 									<br />
 									<?php
@@ -295,11 +295,11 @@ $orphaned = array();
 							<br class="clearall">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>" >
-									<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+									<?php echo HEAVY_GREEN_CHECKMARK; ?>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="reset" value="<?php echo gettext('reset') ?>" >
-									<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+									<?php echo NO_ENTRY; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 							</p>

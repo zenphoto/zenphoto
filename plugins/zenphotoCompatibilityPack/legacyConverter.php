@@ -193,11 +193,11 @@ echo "\n" . '<div id="container">';
 
 		<p class="buttons">
 			<button type="submit" >
-				<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span>
+				<?php echo HEAVY_GREEN_CHECKMARK; ?>
 				<strong><?php echo gettext("Apply"); ?></strong>
 			</button>
 			<button type="reset">
-				<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+				<?php echo NO_ENTRY; ?>
 				<strong><?php echo gettext("Reset"); ?></strong>
 			</button>
 

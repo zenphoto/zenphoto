@@ -204,12 +204,12 @@ if ($alb) {
 			html = $('#' + theme + '_arrow').html();
 			if ($('#' + theme + '_arrow').hasClass('upArrow')) {
 				$('#' + theme + '_arrow').removeClass('upArrow');
-				html = html.replace(/⇓/, '⇑');
+				html = html.replace(/<?php echo html_entity_decode(strip_tags(ARROW_DOWN_GREEN)); ?>/, '<?php echo html_entity_decode(strip_tags(ARROW_UP_GREEN)); ?>');
 				html = html.replace(/<?php echo gettext('Show'); ?>/, '<?php echo gettext('Hide'); ?>');
 				$('#' + theme + '_list').show();
 			} else {
 				$('#' + theme + '_arrow').addClass('upArrow');
-				html = html.replace(/<?php echo ARROW_UP; ?>/, '<?php echo ARROW_DOWN; ?>');
+				html = html.replace(/<?php echo html_entity_decode(strip_tags(ARROW_UP_GREEN)); ?>/, ' <?php echo html_entity_decode(strip_tags(ARROW_DOWN_GREEN)); ?>');
 				html = html.replace(/<?php echo gettext('Hide'); ?>/, '<?php echo gettext('Show'); ?>');
 				$('#' + theme + '_list').hide();
 			}
@@ -388,7 +388,7 @@ if ($alb) {
 			?>
 			<p class="buttons">
 				<button class="tooltip" type="submit" title="<?php echo $button['title']; ?>" >
-					<span style="color:blue;"><?php echo HEAVY_BLACK_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW; ?></span>
+					<?php echo HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW; ?>
 					<?php echo $button['text']; ?>
 				</button>
 			</p>

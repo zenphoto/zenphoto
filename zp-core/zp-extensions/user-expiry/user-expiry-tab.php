@@ -126,11 +126,18 @@ echo '</head>' . "\n";
 				<form action="?action=expiry&tab=expiry" class="dirtylistening" onReset="setClean('userExpiry_form');" id="userExpiry_form" method="post" autocomplete="off" >
 					<?php XSRFToken('expiry'); ?>
 					<span class="buttons">
-						<button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Apply"); ?></strong></button>
-						<button type="reset"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+						<button type="submit">
+							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<strong><?php echo gettext("Apply"); ?></strong>
+						</button>
+						<button type="reset">
+							<?php echo NO_ENTRY; ?>
+							<strong><?php echo gettext("Reset"); ?></strong>
+						</button>
 						<div class="floatright">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;single=user-expiry#user-expiry">
-								<?php echo GEAR_WITHOUT_HUB; ?> <strong><?php echo gettext('Options') ?></strong>
+								<?php echo GEAR_WITHOUT_HUB; ?>
+								<strong><?php echo gettext('Options') ?></strong>
 							</a>
 						</div>
 					</span>
@@ -178,21 +185,21 @@ echo '</head>' . "\n";
 								}
 							}
 							$id = postIndexEncode($user['id']);
-							$r1 = '<span style="color: red;">' . CROSS_MARK . '</span><input type="radio" name="r_' . $id . '" value="delete"' . $checked_delete . ' />&nbsp;';
+							$r1 = CROSS_MARK_RED . ' ' . '<input type="radio" name="r_' . $id . '" value="delete"' . $checked_delete . ' />&nbsp;';
 							if ($user['valid'] == 2) {
 								$r2 = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" /> <input type="radio" name="r_' . $id . '" value="enable"' . $checked_disable . ' />&nbsp;';
 							} else {
 								$r2 = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" /> <input type="radio" name="r_' . $id . '" value="disable"' . $checked_disable . ' />&nbsp;';
 							}
 							if ($subscription) {
-								$r3 = '<span style="color: green;">' . WHITE_HEAVY_CHECKMARK . '</span> <input type="radio" name="r_' . $id . '" value="renew"' . $checked_renew . $checked_disable . ' />&nbsp;';
+								$r3 = HEAVY_GREEN_CHECKMARK . '</span> <input type="radio" name="r_' . $id . '" value="renew"' . $checked_renew . $checked_disable . ' />&nbsp;';
 								if (!$user['email']) {
 									$checked_disable = ' disabled="disabled"';
 								}
 								$r4 = ENVELOPE . ' <input type="radio" name="r_' . $id . '" value="revalidate"' . $checked_disable . ' />&nbsp;';
 							}
 							if (getOption('user_expiry_password_cycle')) {
-								$r5 = '<span style="color: red;">' . NO_ENTRY . '</span> <input type="radio" name="r_' . $id . '" value="force"' . $checked_delete . ' />&nbsp;';
+								$r5 = NO_ENTRY . ' <input type="radio" name="r_' . $id . '" value="force"' . $checked_delete . ' />&nbsp;';
 							} else {
 								$r5 = '';
 							}
@@ -204,25 +211,32 @@ echo '</head>' . "\n";
 						}
 						?>
 					</ul>
-					<span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext('Remove'); ?>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" /> <?php echo gettext('Disable'); ?>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" /> <?php echo gettext('Enable'); ?>
+					<?php echo CROSS_MARK_RED; ?>
+					<?php echo gettext('Remove'); ?>
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
+					<?php echo gettext('Disable'); ?>
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+					<?php echo gettext('Enable'); ?>
 					<?php
 					if (getOption('user_expiry_password_cycle')) {
 						?>
-						<span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext('Force password renewal'); ?>
+						<?php echo NO_ENTRY; ?>
+						<?php echo gettext('Force password renewal'); ?>
 						<?php
 					}
 					if ($subscription) {
 						?>
-						<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext('Renew'); ?>
+						<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext('Renew'); ?>
 						<?php echo ENVELOPE; ?>
 						<?php
 					}
 					?>
 					<p class="buttons">
-						<button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Apply"); ?></strong></button>
-						<button type="reset"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+						<button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button>
+						<button type="reset">
+							<?php echo NO_ENTRY; ?>
+							<strong><?php echo gettext("Reset"); ?></strong>
+						</button>
 					</p>
 					<br class="clearall">
 				</form>

@@ -52,8 +52,14 @@ function getOptionContent() {
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('save') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('save') ?>">
+								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('reset') ?>">
+								<?php echo NO_ENTRY; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
 						</p>
 					</td>
 				</tr>
@@ -82,7 +88,7 @@ function getOptionContent() {
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
-							<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<p><?php printf(gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>%s</em> if you need only to insure secure access to <code>admin</code> pages."), gettext('secure admin')); ?></p>
 								<p class="notebox"><?php
@@ -103,7 +109,7 @@ function getOptionContent() {
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
-							<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php echo gettext('Tie cookies to the IP address of the browser.'); ?>
 								<p class="notebox">
@@ -128,7 +134,7 @@ function getOptionContent() {
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
-							<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php echo gettext('Cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?>
 							</div>
@@ -142,7 +148,7 @@ function getOptionContent() {
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
-							<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php echo gettext('Add a security parameter to image processor URIs to prevent denial of service attacks requesting arbitrary sized images.'); ?>
 							</div>
@@ -175,7 +181,7 @@ function getOptionContent() {
 						</td>
 						<td class="option_desc">
 							<span class="option_info">
-								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+								<?php echo INFORMATION_BLUE; ?>
 								<div class="option_desc_hidden">
 									<?php
 									echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows users to logon from the form.');
@@ -214,8 +220,14 @@ function getOptionContent() {
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('save') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('save') ?>">
+								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('reset') ?>">
+								<?php echo NO_ENTRY; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
 						</p>
 					</td>
 				</tr>

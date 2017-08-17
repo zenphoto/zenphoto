@@ -270,11 +270,11 @@ echo "\n</head>";
 								</table>
 								<p class="buttons">
 									<button type="submit">
-										<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span>
+										<?php echo HEAVY_GREEN_CHECKMARK; ?>
 										<strong><?php echo gettext("Delete"); ?></strong>
 									</button>
 									<button type="reset">
-										<span style="color: red;"><?php echo CROSS_MARK ; ?></span>
+										<?php echo CROSS_MARK_RED; ?>
 										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 								</p>

@@ -163,7 +163,7 @@ switch (OFFSET_PATH) {
 						'button_text' => gettext('Restore site_upgrade files'),
 						'formname' => 'refreshHTML',
 						'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php',
-						'icon' => '<span style="font-size:x-large;color:green;line-height: 40%;">' . CLOCKWISE_OPEN_CIRCLE_ARROW . '</span>',
+						'icon' => CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN,
 						'title' => gettext('Restores the files in the "plugins/site_upgrade" folder to their default state. Note: this will overwrite any custom edits you may have made.'),
 						'alt' => '',
 						'hidden' => '<input type="hidden" name="refreshHTML" value="1" />',

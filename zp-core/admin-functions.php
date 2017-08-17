@@ -1104,7 +1104,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						?>
 						<td class="option_desc">
 							<span class="option_info">
-								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+								<?php echo INFORMATION_BLUE; ?>
 								<div class="option_desc_hidden">
 									<?php echo $desc; ?>
 								</div>
@@ -1462,7 +1462,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<span class="new_tag displayinline" >
 				<a onclick="addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
-					<span style="color:green;font-size:large;line-height: 60%;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span>
+					<?php echo GREEN_CROSS_ON_SHIELD; ?>
 				</a>
 				<span class="tagSuggestContainer">
 					<input class="tagsuggest <?php echo $class; ?> " type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
@@ -1572,15 +1572,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				?>
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-					<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+					<?php echo ARROW_LEFT_BLUE; ?>
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
 				<button type="submit">
-					<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+					<?php echo HEAVY_GREEN_CHECKMARK; ?>
 					<strong><?php echo gettext("Apply"); ?></strong>
 				</button>
 				<button type="reset" onclick="$('.deletemsg').hide();" >
-					<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+					<?php echo CROSS_MARK_RED; ?>
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
 
@@ -1600,7 +1600,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					?>
 					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-						<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+						<?php echo BULLSEYE_BLUE; ?>
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
 				</div>
@@ -2212,7 +2212,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php echo gettext('Album will be deleted when changes are applied.'); ?>
 							<br class="clearall">
 							<p class="buttons">
-								<a	onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo addslashes(gettext("Cancel")); ?></a>
+								<a	onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');">
+									<?php echo NO_ENTRY; ?>
+									<?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<div id="a-<?php echo $prefix; ?>movecopydiv" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -2250,7 +2252,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<br class="clearall">
 							<br />
 							<p class="buttons">
-								<a onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo addslashes(gettext("Cancel")); ?></a>
+								<a onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');">
+									<?php echo NO_ENTRY; ?>
+									<?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<div id="a-<?php echo $prefix; ?>renamediv" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -2259,7 +2263,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<br class="clearall">
 							<br />
 							<p class="buttons">
-								<a onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo addslashes(gettext("Cancel")); ?></a>
+								<a onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');">
+									<?php echo NO_ENTRY; ?>
+									<?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<span class="clearall" ></span>
@@ -2280,15 +2286,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<span class="buttons">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-					<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+					<?php echo ARROW_LEFT_BLUE; ?>
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
 				<button type="submit">
-					<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+					<?php echo HEAVY_GREEN_CHECKMARK; ?>
 					<strong><?php echo gettext("Apply"); ?></strong>
 				</button>
 				<button type="reset" onclick="$('.deletemsg').hide();">
-					<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+					<?php echo CROSS_MARK_RED; ?>
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
 				<div class="floatright">
@@ -2309,7 +2315,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					?>
 					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-						<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+						<?php echo BULLSEYE_BLUE; ?>
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
 				</div>
@@ -2337,7 +2343,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 			</div>
 			<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
-					<span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext('Reset album hit counters'); ?></a>
+					<?php echo NO_ENTRY; ?>
+					<?php echo gettext('Reset album hit counters'); ?></a>
 				<br class="clearall">
 			</div>
 			<?php
@@ -2346,7 +2353,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<div class="button buttons tooltip" title="<?php echo gettext("Refreshes the metadata for the album."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-refresh-metadata.php?album=' . html_encode($album->name) . '&amp;return=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh'); ?>">
-					<span style="color:blue;font-size: large;line-height: 60%"><?php echo CIRCLED_WHITE_STAR; ?></span> <?php echo gettext('Refresh album metadata'); ?></a>
+					<?php echo CIRCLED_BLUE_STAR; ?>
+					<?php echo gettext('Refresh album metadata'); ?>
+				</a>
 				<br class="clearall">
 			</div>
 			<?php
@@ -2374,29 +2383,38 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<li><?php echo CLIPBOARD . ' ' . gettext("pick source"); ?></li>
 			<li>
-				<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
-				<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
+				<?php echo HEAVY_GREEN_CHECKMARK; ?>
+				<?php echo EXCLAMATION_RED; ?>
 				<?php echo CLOCKFACE; ?>
 				<?php echo gettext("published/not published/scheduled for publishing"); ?>
 			</li>
 			<li>
-				<span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
-				<span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+				<?php echo BULLSEYE_GREEN; ?>
+				<?php echo BULLSEYE_RED; ?>
 				<?php echo gettext("comments on/off"); ?>
 			</li>
-			<li><span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span> <?php echo gettext("view the album"); ?></li>
-			<li><span style="font-size:large;color:green;line-height: 60%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span> <?php echo gettext("refresh metadata"); ?></li>
+			<li>
+				<?php echo BULLSEYE_BLUE; ?>
+				<?php echo gettext("view the album"); ?>
+			</li>
+			<li>
+				<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
+				<?php echo gettext("refresh metadata"); ?>
+			</li>
 			<?php
 			if (extensionEnabled('hitcounter')) {
 				?>
 				<li>
-					<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+					<?php echo NO_ENTRY; ?>
 					<?php echo gettext("reset hit counters"); ?>
 				</li>
 				<?php
 			}
 			?>
-			<li><span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext("delete"); ?></li>
+			<li>
+				<?php echo CROSS_MARK_RED; ?>
+				<?php echo gettext("delete"); ?>
+			</li>
 		</ul>
 		<?php
 	}
@@ -2417,14 +2435,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$owner = $owner->name;
 		}
 		if ($toodeep) {
-			$handle = 'red;';
+			$handle = DRAG_HANDLE_ALERT;
 		} else {
-			$handle = 'lightsteelblue';
+			$handle = DRAG_HANDLE;
 		}
 		?>
 		<div class="page-list_row">
 			<div class="page-list_handle">
-				<span style="color: <?php echo $handle; ?>;font-size: x-large;"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
+				<?php echo $handle; ?>
 			</div>
 			<div class="page-list_albumthumb">
 				<?php
@@ -2508,7 +2526,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<?php
 							}
 							?>
-							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+							<?php echo HEAVY_GREEN_CHECKMARK; ?>
 							<?php
 							if ($enableEdit) {
 								?>
@@ -2527,7 +2545,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<?php
 							} else {
 								?>
-								<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
+								<?php echo EXCLAMATION_RED; ?>
 								<?php
 							}
 							if ($enableEdit) {
@@ -2547,7 +2565,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<?php
 							}
 							?>
-							<span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+							<?php echo BULLSEYE_GREEN; ?>
 							<?php
 							if ($enableEdit) {
 								?>
@@ -2561,7 +2579,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<?php
 							}
 							?>
-							<span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+							<?php echo BULLSEYE_RED; ?>
 							<?php
 							if ($enableEdit) {
 								?>
@@ -2573,7 +2591,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				</div>
 				<div class="page-list_icon">
 					<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo gettext("View album"); ?>">
-						<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+						<?php echo BULLSEYE_BLUE; ?>
 					</a>
 				</div>
 				<div class="page-list_icon">
@@ -2585,7 +2603,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						?>
 						<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh') ?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
-							<span style="font-size:large;color:green;line-height: 60%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span>
+							<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 						</a>
 						<?php
 					}
@@ -2603,7 +2621,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						} else {
 							?>
 							<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;subalbum=true&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
-								<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+								<?php echo NO_ENTRY; ?>
 							</a>
 							<?php
 						}
@@ -2623,7 +2641,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						?>
 						<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
-							<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+							<?php echo CROSS_MARK_RED; ?>
 						</a>
 						<?php
 					}
@@ -3528,10 +3546,10 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 	$full = $userobj->getObjects();
 
 	$legend = '';
-	$icon_edit = '<span style="font-size:large;">' . PENCIL . '</span>';
-	$icon_view = '<span style="color: red;letter-spacing: 5px;">' . EXCLAMATION . '</span> ';
-	$icon_upload = '<span style="color:green;font-size: large;">' . ARROW_UP . '</span>';
-	$icon_upload_disabled = '<span style="color:lightgray;font-size: large;">' . ARROW_UP . '</span>';
+	$icon_edit = PENCIL_BLUE;
+	$icon_view = EXCLAMATION_RED;
+	$icon_upload = ARROW_UP_GREEN;
+	$icon_upload_disabled = ARROW_UP_GRAY;
 
 	switch ($type) {
 		case 'albums':

@@ -35,9 +35,9 @@ function updateItemsSortorder() {
 function printItemsListTable($item, $toodeep) {
 	global $_zp_gallery;
 	if ($toodeep) {
-		$handle = 'red;';
+		$handle = DRAG_HANDLE_ALERT;
 	} else {
-		$handle = 'lightsteelblue';
+		$handle = DRAG_HANDLE;
 	}
 	$link = '';
 	$array = getItemTitleAndURL($item);
@@ -78,7 +78,7 @@ function printItemsListTable($item, $toodeep) {
 	?>
 	<div class="page-list_row">
 		<div class="page-list_handle">
-			<span style="color: <?php echo $handle; ?>;font-size: x-large;"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
+			<?php echo $handle; ?>
 		</div>
 		<div class="page-list_title">
 			<?php
@@ -89,7 +89,7 @@ function printItemsListTable($item, $toodeep) {
 			<em><?php echo $item['type']; ?></em>
 			<?php
 			if ($link) {
-				echo ARROW_RIGHT . '&nbsp;' . $link;
+				echo '&rArr;&nbsp;' . $link;
 			}
 			?>
 		</div>
@@ -113,13 +113,13 @@ function printItemsListTable($item, $toodeep) {
 				if ($item['show'] === '1') {
 					?>
 					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=0&amp;menuset=" . html_encode($item['menuset']); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>" title="<?php echo gettext('hide'); ?>" >
-						<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+						<?php echo HEAVY_GREEN_CHECKMARK; ?>
 					</a>
 					<?php
 				} else {
 					?>
 					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=1&amp;menuset=" . html_encode($item['menuset']) ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>"  title="<?php echo gettext('show'); ?>">
-						<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
+						<?php echo EXCLAMATION_RED; ?>
 					</a>
 					<?php
 				}
@@ -137,7 +137,7 @@ function printItemsListTable($item, $toodeep) {
 						if (!empty($viewURL)) {
 							?>
 							<a href="<?php echo $viewURL; ?>">
-								<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+								<?php echo BULLSEYE_BLUE; ?>
 							</a>
 							<?php
 							break;
@@ -154,7 +154,7 @@ function printItemsListTable($item, $toodeep) {
 			</div>
 			<div class="page-list_icon">
 				<a href="javascript:deleteMenuItem('<?php echo $item['id']; ?>','<?php printf(gettext('Ok to delete %s? This cannot be undone.'), html_encode($array['name'])); ?>');" >
-					<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+					<?php echo CROSS_MARK_RED; ?>
 				</a>
 			</div>
 			<div class="page-list_icon">

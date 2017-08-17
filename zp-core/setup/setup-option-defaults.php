@@ -256,7 +256,7 @@ if (isset($_GET['mod_rewrite'])) {
 			$('img').error(function () {
 				var link = $(this).attr('src');
 				var title = $(this).attr('title');
-				$(this).parent().html('<a href="' + link + '" target="_blank" title="' + title + '"><span style="color: red;"><?php echo CROSS_MARK ; ?></span></a>');
+				$(this).parent().html('<a href="' + link + '" target="_blank" title="' + title + '"><?php echo CROSS_MARK_RED; ?></a>');
 				imageErr = true;
 			});
 		});

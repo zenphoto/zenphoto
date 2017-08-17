@@ -69,8 +69,14 @@ function getOptionContent() {
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('Apply') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('Apply') ?>">
+								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('reset') ?>">
+								<?php echo NO_ENTRY; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
 						</p>
 					</td>
 				</tr>
@@ -104,7 +110,7 @@ function getOptionContent() {
 						</td>
 						<td class="option_desc">
 							<span class="option_info">
-								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+								<?php echo INFORMATION_BLUE; ?>
 								<div class="option_desc_hidden">
 
 									<p><?php echo gettext("Password for the search guest user. click on <em>Search password</em> to change."); ?></p>
@@ -136,7 +142,7 @@ function getOptionContent() {
 						</td>
 						<td class="option_desc">
 							<span class="option_info">
-								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+								<?php echo INFORMATION_BLUE; ?>
 								<div class="option_desc_hidden">
 									<?php echo gettext("User ID for the search guest user") ?>
 								</div>
@@ -174,7 +180,7 @@ function getOptionContent() {
 						</td>
 						<td class="option_desc">
 							<span class="option_info">
-								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+								<?php echo INFORMATION_BLUE; ?>
 								<div class="option_desc_hidden">
 
 									<?php echo gettext("Password for the search guest user. If this is set, visitors must know this password to view search results."); ?>
@@ -191,7 +197,7 @@ function getOptionContent() {
 						</td>
 						<td class="option_desc">
 							<span class="option_info">
-								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+								<?php echo INFORMATION_BLUE; ?>
 								<div class="option_desc_hidden">
 									<?php echo gettext("A reminder hint for the password."); ?>
 								</div>
@@ -308,7 +314,7 @@ function getOptionContent() {
 				</td>
 				<td class="option_desc">
 					<span class="option_info">
-						<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+						<?php echo INFORMATION_BLUE; ?>
 						<div class="option_desc_hidden">
 							<p><?php echo gettext("<em>Field list</em> is the set of fields on which searches may be performed."); ?></p>
 							<p>
@@ -336,7 +342,7 @@ function getOptionContent() {
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
-							<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
 							</div>
@@ -450,8 +456,14 @@ function getOptionContent() {
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('Apply') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('Apply') ?>">
+								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('reset') ?>">
+								<?php echo NO_ENTRY; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
 						</p>
 					</td>
 				</tr>

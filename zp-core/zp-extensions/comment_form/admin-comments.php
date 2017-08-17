@@ -133,18 +133,19 @@ printLogoAndLinks();
 							<span class="buttons">
 								<p class="buttons">
 									<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment') ?>'; }"
-										 title="<?php echo gettext('Delete'); ?>" ><span style="color: red;"><?php echo CROSS_MARK; ?></span>
+										 title="<?php echo gettext('Delete'); ?>" >
+											 <?php echo CROSS_MARK_RED; ?>
 										<?php echo gettext('Delete'); ?></a>
 								</p>
 								<p class="buttons" style="margin-top: 10px">
 									<button type="submit">
-										<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+										<?php echo HEAVY_GREEN_CHECKMARK; ?>
 										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 								</p>
 								<p class="buttons" style="margin-top: 10px">
 									<button type="button" title="<?php echo gettext("Cancel"); ?>" onclick="window.location = 'admin-comments.php';">
-										<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+										<?php echo NO_ENTRY; ?>
 										<strong><?php echo gettext("Cancel"); ?></strong>
 									</button>
 								</p>
@@ -206,13 +207,13 @@ printLogoAndLinks();
 										$link_moderation = gettext('Approve');
 										$title_moderation = gettext('Approve this comment');
 										$url_moderation = '?action=notspam&amp;id=' . $id;
-										$linkimage = '<span style="color: green;">' . WHITE_HEAVY_CHECKMARK . '</span>';
+										$linkimage = HEAVY_GREEN_CHECKMARK;
 									} else {
 										$status_moderation = '<span style="color: green">' . gettext('Comment is approved') . '</span>';
 										$link_moderation = gettext('Un-approve');
 										$title_moderation = gettext('Un-approve this comment');
 										$url_moderation = '?action=spam&amp;id=' . $id;
-										$linkimage = '<span style="color: orange;">' . NO_ENTRY . '</span>';
+										$linkimage = NO_ENTRY;
 									}
 
 									if ($private) {
@@ -327,7 +328,7 @@ printLogoAndLinks();
 					<form class="dirtylistening" onReset="setClean('form_commentlist');"  name="comments" id="form_commentlist" action="?action=applycomments" method="post" onsubmit="return confirmAction();" autocomplete="off">
 						<?php XSRFToken('applycomments'); ?>
 						<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum) ?>" />
-						<p class="buttons"><button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button></p>
+						<p class="buttons"><button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong></button></p>
 						<p class="buttons">
 							<?php
 							if ($fulltext) {
@@ -344,7 +345,10 @@ printLogoAndLinks();
 								echo '&amp;viewall';
 							if ($pagenum > 1)
 								echo "&amp;subpage=$pagenum";
-							?>"><?php echo '<span style="color: green;">' . $arrow . '</span> ' . $msg; ?></a>
+							?>">
+									 <?php echo $arrow; ?>
+									 <?php echo $msg; ?>
+							</a>
 						</p>
 						<br class="clearall"><br />
 						<table class="bordered">
@@ -426,7 +430,7 @@ printLogoAndLinks();
 										<?php
 										echo $website ? "<a href=\"$website\">$author</a>" : $author;
 										if ($anon) {
-											echo ' <a title="' . gettext('Anonymous posting') . '"><span style="color: red;letter-spacing: 5px;">' . EXCLAMATION . '</span> /a>';
+											echo ' <a title="' . gettext('Anonymous posting') . '">' . EXCLAMATION_RED . '</a>';
 										}
 										?>
 									</td>
@@ -436,9 +440,9 @@ printLogoAndLinks();
 										<div>
 											<?php
 											if ($private) {
-												echo '<div class="page-list_icon">'
-												. '<a title="' . gettext("Private message") . '">'
-												. '<span style="color: red;">' . NO_ENTRY . '</span>'
+												echo '<div class = "page-list_icon">'
+												. '<a title = "' . gettext("Private message") . '">'
+												. NO_ENTRY
 												. '</a>'
 												. '/div>';
 											}
@@ -448,19 +452,20 @@ printLogoAndLinks();
 												if ($inmoderation) {
 													?>
 													<a href="?action=notspam&amp;id= <?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update') ?>" title="<?php echo gettext('Approve this message (not SPAM)'); ?>">
-														<span style="color: darkorange;font-size:large;"><?php echo WARNING_SIGN; ?></span></a>
+														<?php echo WARNING_SIGN_ORANGE; ?>
+													</a>
 													<?php
 												} else {
 													?>
 													<a href="?action=spam&amp;id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update') ?>" title="<?php echo gettext('Mark this message as SPAM'); ?>">
-														<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> </a>
+														<?php echo HEAVY_GREEN_CHECKMARK; ?> </a>
 													<?php
 												}
 												?>
 											</div>
 											<div class="page-list_icon">
 												<a href="?page=editcomment&amp;id=<?php echo $id; ?>" title="<?php echo gettext('Edit this comment.'); ?>">
-													<span style="color:blue;"><?php echo PENCIL; ?></span>
+													<?php echo PENCIL_BLUE; ?>
 												</a>
 											</div>
 											<div class="page-list_icon">
@@ -474,7 +479,8 @@ printLogoAndLinks();
 											</div>
 											<div class="page-list_icon">
 												<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment') ?>'; }"
-													 title="<?php echo gettext('Delete this comment.'); ?>" ><span style="color: red;"><?php echo CROSS_MARK; ?></span>
+													 title="<?php echo gettext('Delete this comment.'); ?>" >
+														 <?php echo CROSS_MARK_RED; ?>
 												</a>
 											</div>
 										</div>
@@ -491,25 +497,31 @@ printLogoAndLinks();
 
 
 						</table>
-						<p class="buttons"><button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Apply"); ?></strong></button></p>
+						<p class="buttons"><button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button></p>
 						<ul class="iconlegend">
 							<li>
-								<span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("Private message"); ?>
+								<?php echo NO_ENTRY; ?> <?php echo gettext("Private message"); ?>
 							</li>
 							<li>
-								<span style="color: darkorange;font-size:large;"><?php echo WARNING_SIGN; ?></span><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Marked as spam/approved"); ?>
+								<?php echo WARNING_SIGN_ORANGE; ?>
+								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<?php echo gettext("Marked as spam/approved"); ?>
 							</li>
 							<li>
-								<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span> <?php echo gettext("Anonymous posting"); ?>
+								<?php echo EXCLAMATION_RED; ?>
+								<?php echo gettext("Anonymous posting"); ?>
 							</li>
 							<li>
-								<span style="color:blue;"><?php echo PENCIL; ?></span> <?php echo gettext("Edit comment"); ?>
+								<?php echo PENCIL_BLUE; ?>
+								<?php echo gettext("Edit comment"); ?>
 							</li>
 							<li>
-								<?php echo ENVELOPE . ' ' . gettext("E-mail comment author"); ?>
+								<?php echo ENVELOPE; ?>
+								<?php echo gettext("E-mail comment author"); ?>
 							</li>
 							<li>
-								<span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext("Delete"); ?>
+								<?php echo CROSS_MARK_RED; ?>
+								<?php echo gettext("Delete"); ?>
 							</li>
 						</ul>
 

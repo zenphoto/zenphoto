@@ -35,7 +35,7 @@ class cookieInvalidator {
 				'button_text' => gettext('Invalidate cookies'),
 				'formname' => 'cookieInvalidator',
 				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=cookieInvalidator::setBase',
-				'icon' => '<span style="color: red;">' . CROSS_MARK . '</span>',
+				'icon' => CROSS_MARK_RED,
 				'title' => sprintf(gettext('Cookies prior to %s are invalid'), date('Y-m-d H:i:s', $base)),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="action" value="cookieInvalidator::setBase" />',

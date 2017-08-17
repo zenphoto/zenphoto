@@ -949,18 +949,19 @@ echo "\n</head>";
 								?>
 								<span class="buttons">
 									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-										<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+										<?php echo ARROW_LEFT_BLUE; ?>
 										<strong><?php echo gettext("Back"); ?></strong>
 									</a>
 									<?php
 									if ($enableEdit) {
 										?>
 										<button class="serialize buttons" type="submit">
-											<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+											<?php echo HEAVY_GREEN_CHECKMARK; ?>
 											<strong><?php echo gettext("Apply"); ?></strong>
 										</button>
 										<button type="reset" value="<?php echo gettext('Reset') ?>">
-											<span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong>
+											<?php echo NO_ENTRY; ?>
+											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 										<div class="floatright">
 											<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
@@ -1017,15 +1018,16 @@ echo "\n</head>";
 								<br />
 								<span class="buttons">
 									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>&filter=<?php echo $filter; ?>">
-										<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+										<?php echo ARROW_LEFT_BLUE; ?>
 										<strong><?php echo gettext("Back"); ?></strong>
 									</a>
 									<button class="serialize buttons" type="submit">
-										<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+										<?php echo HEAVY_GREEN_CHECKMARK; ?>
 										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
-										<span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong>
+										<?php echo NO_ENTRY; ?>
+										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 									<div class="floatright">
 										<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
@@ -1155,15 +1157,15 @@ echo "\n</head>";
 								<div style="padding: 10px;">
 									<p class="buttons">
 										<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>&filter=<?php echo $filter; ?>">
-											<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+											<?php echo ARROW_LEFT_BLUE; ?>
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
 										<button type="submit">
-											<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+											<?php echo HEAVY_GREEN_CHECKMARK; ?>
 											<strong><?php echo gettext("Apply"); ?></strong>
 										</button>
 										<button type="reset">
-											<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+											<?php echo CROSS_MARK_RED; ?>
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 									</p>
@@ -1223,7 +1225,7 @@ echo "\n</head>";
 													?>
 													<p class="buttons">
 														<a href="<?php echo $image->getLink(); ?>">
-															<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+															<?php echo BULLSEYE_BLUE; ?>
 															<strong><?php echo gettext('View'); ?></strong>
 														</a>
 													</p><br style="clear: both" />
@@ -1317,7 +1319,10 @@ echo "\n</head>";
 															?>
 															<tr>
 																<td colspan="100%" style="border-bottom:none;">
-																	<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename . '&subpage=' . $pagenum; ?>&filter=<?php echo $filter; ?>"><span style="font-size:large;"><?php echo PENCIL; ?></span> <?php echo gettext('Edit all image data'); ?></a>
+																	<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename . '&subpage=' . $pagenum; ?>&filter=<?php echo $filter; ?>">
+																		<?php echo PENCIL_BLUE; ?>
+																		<?php echo gettext('Edit all image data'); ?>
+																	</a>
 																</td>
 															</tr>
 															<?php
@@ -1485,19 +1490,30 @@ echo "\n</head>";
 																				}
 																				?>
 															</select>
-															<br /><p class="buttons"><a onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("Cancel"); ?></a>
+															<br />
+															<p class="buttons"><a onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');">
+																	<?php echo NO_ENTRY; ?>
+																	<?php echo gettext("Cancel"); ?></a>
 															</p>
 														</div>
 														<div id="renamediv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
 															<?php echo gettext("to"); ?>:
 															<input name="<?php echo $currentimage; ?>-renameto" type="text" value="<?php echo $image->filename; ?>" /><br />
-															<br /><p class="buttons"><a	onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("Cancel"); ?></a>
+															<br />
+															<p class="buttons"><a	onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');">
+																	<?php echo NO_ENTRY; ?>
+																	<?php echo gettext("Cancel"); ?></a>
 															</p>
 														</div>
 														<span class="clearall" ></span>
 														<div id="deletemsg<?php echo $currentimage; ?>"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
 															<?php echo gettext('Image will be deleted when changes are applied.'); ?>
-															<p class="buttons"><a	onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("Cancel"); ?></a></p>
+															<p class="buttons">
+																<a	onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');">
+																	<?php echo NO_ENTRY; ?>
+																	<?php echo gettext("Cancel"); ?>
+																</a>
+															</p>
 														</div>
 														<span class="clearall" ></span>
 
@@ -1547,7 +1563,8 @@ echo "\n</head>";
 														<hr />
 														<div class="button buttons tooltip" title="<?php printf(gettext('Refresh %s metadata'), $image->filename); ?>">
 															<a href="admin-edit.php?action=refresh&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
-																<span style="color:blue;font-size: large;line-height: 60%"><?php echo CIRCLED_WHITE_STAR; ?></span> <?php echo gettext("Refresh Metadata"); ?>
+																<?php echo CIRCLED_BLUE_STAR; ?>
+																<?php echo gettext("Refresh Metadata"); ?>
 															</a>
 															<br class="clearall">
 														</div>
@@ -1582,15 +1599,15 @@ echo "\n</head>";
 
 									<p class="buttons">
 										<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-											<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+											<?php echo ARROW_LEFT_BLUE; ?>
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
 										<button type="submit">
-											<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+											<?php echo HEAVY_GREEN_CHECKMARK; ?>
 											<strong><?php echo gettext("Apply"); ?></strong>
 										</button>
 										<button type="reset">
-											<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+											<?php echo CROSS_MARK_RED; ?>
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 									</p>
@@ -1665,13 +1682,14 @@ echo "\n</head>";
 						<input type="hidden" name="totalalbums" value="<?php echo sizeof($albums); ?>" />
 						<span class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit">
-								<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span><strong><?php echo gettext("Back"); ?></strong>
+								<?php echo ARROW_LEFT_BLUE; ?>
+								<strong><?php echo gettext("Back"); ?></strong>
 							</a>
 							<button type="submit">
-								<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong>
+								<?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" onclick="$('.deletemsg').hide();" >
-								<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+								<?php echo CROSS_MARK_RED; ?>
 							</button>
 						</span>
 						<br class="clearall">
@@ -1700,13 +1718,14 @@ echo "\n</head>";
 						<br />
 						<span class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit">
-								<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span><strong><?php echo gettext("Back"); ?></strong>
+								<?php echo ARROW_LEFT_BLUE; ?>
+								<strong><?php echo gettext("Back"); ?></strong>
 							</a>
 							<button type="submit">
-								<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong>
+								<?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" onclick="$('.deletemsg').hide();" >
-								<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+								<?php echo CROSS_MARK_RED; ?>
 							</button>
 						</span>
 						<br class="clearall">
@@ -1785,9 +1804,10 @@ echo "\n</head>";
 								<?php
 								if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 									?>
-									<button class="serialize buttons" type="submit" ><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
+									<button class="serialize buttons" type="submit" ><?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
-										<span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong>
+										<?php echo NO_ENTRY; ?>
+										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 									<?php
 								}
@@ -1837,10 +1857,11 @@ echo "\n</head>";
 								if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 									?>
 									<button class="serialize buttons" type="submit" >
-										<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong>
+										<?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
-										<span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong>
+										<?php echo NO_ENTRY; ?>
+										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 									<?php
 								}

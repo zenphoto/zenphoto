@@ -222,11 +222,14 @@ updatePublished('news');
 					<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-news.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
 						<?php XSRFToken('checkeditems'); ?>
 						<div class="buttons">
-							<button type="submit" title="<?php echo gettext('Apply'); ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext('Apply'); ?></strong>
+							<button type="submit" title="<?php echo gettext('Apply'); ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext('Apply'); ?></strong>
 							</button>
 						</div>
 						<span class="buttons floatright">
-							<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>"><span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span> <strong><?php echo gettext("New Article"); ?></strong></a>
+							<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>">
+								<?php echo GREEN_CROSS_ON_SHIELD; ?>
+								<strong><?php echo gettext("New Article"); ?></strong>
+							</a>
 						</span>
 						<br class="clearall">
 
@@ -360,7 +363,7 @@ updatePublished('news');
 													<a href="<?php echo $option . $divider; ?>commentson=0&amp;titlelink=<?php
 													echo html_encode($article->getTitlelink());
 													?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
-														<span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+															 <?php echo BULLSEYE_GREEN; ?>
 													</a>
 													<?php
 												} else {
@@ -368,7 +371,7 @@ updatePublished('news');
 													<a href="<?php echo $option . $divider; ?>commentson=1&amp;titlelink=<?php
 													echo html_encode($article->getTitlelink());
 													?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
-														<span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+															 <?php echo BULLSEYE_RED; ?>
 													</a>
 													<?php
 												}
@@ -378,10 +381,10 @@ updatePublished('news');
 										} else {
 											?>
 											<div class="page-list_icon">
-												<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+												<?php echo BULLSEYE_LIGHTGRAY; ?>
 											</div>
 											<div class="page-list_icon">
-												<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+												<?php echo BULLSEYE_LIGHTGRAY; ?>
 											</div>
 										<?php } ?>
 
@@ -389,7 +392,7 @@ updatePublished('news');
 											<a target="_blank" href="../../../index.php?p=news&amp;title=<?php
 											echo $article->getTitlelink();
 											?>" title="<?php echo gettext('View article'); ?>">
-												<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+													 <?php echo BULLSEYE_BLUE; ?>
 											</a>
 										</div>
 
@@ -401,7 +404,7 @@ updatePublished('news');
 													<a href="<?php echo $option . $divider; ?>hitcounter=1&amp;titlelink=<?php
 													echo html_encode($article->getTitlelink());
 													?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
-														<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+															 <?php echo NO_ENTRY; ?>
 													</a>
 												</div>
 												<?php
@@ -409,17 +412,17 @@ updatePublished('news');
 											?>
 											<div class="page-list_icon">
 												<a href="javascript:confirmDelete('admin-news.php<?php echo $option . $divider; ?>delete=<?php echo $article->getTitlelink(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
-													<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+													<?php echo CROSS_MARK_RED; ?>
 												</a>
 											</div>
 											<?php
 										} else {
 											?>
 											<div class="page-list_icon">
-												<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+												<?php echo BULLSEYE_LIGHTGRAY; ?>
 											</div>
 											<div class="page-list_icon">
-												<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+												<?php echo BULLSEYE_LIGHTGRAY; ?>
 											</div>
 
 											<?php
@@ -438,8 +441,15 @@ updatePublished('news');
 							?>
 
 						</table>
-						<p class="centered"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>	</p>
-						<p class="buttons"><button type="submit" title="<?php echo gettext('Apply'); ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext('Apply'); ?></strong></button></p>
+						<p class="centered">
+							<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>
+						</p>
+						<p class="buttons">
+							<button type="submit" title="<?php echo gettext('Apply'); ?>">
+								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<strong><?php echo gettext('Apply'); ?></strong>
+							</button>
+						</p>
 					</form>
 					<?php printZenpageIconLegend(); ?>
 				</div> <!-- tab_articles -->

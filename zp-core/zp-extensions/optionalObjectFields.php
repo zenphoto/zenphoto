@@ -565,8 +565,10 @@ class optionalObjectFields extends fieldExtender {
 					?>
 					<span id = "existing_tags_<?php echo $i; ?>"><?php echo trim(implode(', ', $tags)); ?></span>
 					<a id="tag_clear_link_tags_<?php echo $i; ?>" onclick="clearOldTags('tags_<?php echo $i; ?>');">
-						<span style="color: red;"><?php echo CROSS_MARK ; ?></span></a>
-					<a id="tag_restore_link_tags_<?php echo $i; ?>" onclick="restoreOldTags('tags_<?php echo $i; ?>');" style="display:none;"><span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span></a>
+						<?php echo CROSS_MARK_RED; ?></a>
+					<a id="tag_restore_link_tags_<?php echo $i; ?>" onclick="restoreOldTags('tags_<?php echo $i; ?>');" style="display:none;">
+						<?php echo GREEN_CROSS_ON_SHIELD; ?>
+					</a>
 					<?php
 				}
 				echo '<br /><br />' . gettext('Add') . '<br />';

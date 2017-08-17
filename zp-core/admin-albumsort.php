@@ -191,19 +191,19 @@ echo "\n</head>";
 
 						<p class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-								<span style="color:blue;font-size:large;line-height: 80%;"><?php echo ARROW_LEFT; ?></span>
+								<?php echo ARROW_LEFT_BLUE; ?>
 								<strong><?php echo gettext("Back"); ?></strong>
 							</a>
 							<button type="submit" onclick="postSort(this.form);" >
-								<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+								<?php echo HEAVY_GREEN_CHECKMARK; ?>
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset">
-								<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+								<?php echo NO_ENTRY; ?>
 								<strong><?php echo gettext("Reset"); ?></strong>
 							</button>
 							<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-								<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+								<?php echo BULLSEYE_BLUE; ?>
 								<strong><?php echo gettext('View Album'); ?></strong>
 							</a>
 						</p>
@@ -228,7 +228,7 @@ echo "\n</head>";
 											<p>
 												<input type="checkbox" name="ids[]" value="<?php echo $imagename; ?>">
 												<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>">
-													<span style="color:blue;font-size: large;"><?php echo PENCIL; ?></span>
+													<?php echo PENCIL_BLUE; ?>
 												</a>
 												<?php
 												if (isImagePhoto($image)) {
@@ -254,19 +254,19 @@ echo "\n</head>";
 							<input type="hidden" id="sortableList" name="sortableList" value="" />
 							<p class="buttons">
 								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-									<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+									<?php echo ARROW_LEFT_BLUE; ?>
 									<strong><?php echo gettext("Back"); ?></strong>
 								</a>
 								<button type="submit" onclick="postSort(this.form);" >
-									<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+									<?php echo HEAVY_GREEN_CHECKMARK; ?>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="reset">
-									<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+									<?php echo NO_ENTRY; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 								<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-									<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+									<?php echo BULLSEYE_BLUE; ?>
 									<strong><?php echo gettext('View Album'); ?></strong>
 								</a>
 							</p>

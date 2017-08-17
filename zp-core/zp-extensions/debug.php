@@ -141,7 +141,7 @@ class debug {
 				'button_text' => gettext('Mark release'),
 				'formname' => 'markRelease_button',
 				'action' => '?markRelease=' . $action,
-				'icon' => $mark ? '<span style="color:green;font-size: large;line-height: 60%;">' . BULLSEYE . '</span>' : '<span style = "color: red;font-size: large;">' . BULLSEYE . '</span>',
+				'icon' => $mark ? BULLSEYE_GREEN : BULLSEYE_RED,
 				'title' => sprintf(gettext('Edits the version.php file making a “%s” install.'), $text[$action]),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="markRelease" value="' . $action . '" />',

@@ -158,8 +158,10 @@ zp_apply_filter('admin_note', 'plugins', '');
 		<input type="hidden" name="saveplugins" value="yes" />
 		<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 		<p class="buttons">
-			<button type="submit" value="<?php echo gettext('Apply') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
-			<button type="reset" value="<?php echo gettext('Reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+			<button type="submit" value="<?php echo gettext('Apply') ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
+			<button type="reset" value="<?php echo gettext('Reset') ?>">
+				<?php echo NO_ENTRY; ?>
+				<strong><?php echo gettext("Reset"); ?></strong></button>
 		</p><br class="clearall"><br /><br />
 		<table>
 			<tr>
@@ -316,7 +318,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 								?>
 								<span class="icons" id="<?php echo $extension; ?>_checkbox">
 									<a onclick="$('#showdisable_<?php echo $extension; ?>').toggle();" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>" >
-										<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
+										<?php echo EXCLAMATION_RED; ?>
 									</a>
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
 								</span>
@@ -342,19 +344,23 @@ zp_apply_filter('admin_note', 'plugins', '');
 					<td width="60">
 						<span class="icons">
 							<a onclick="$.colorbox({
-											close: '<?php echo gettext("close"); ?>',
-											maxHeight: '80%',
-											maxWidth: '80%',
-											innerWidth: '560px',
-											href: '<?php echo $plugin_URL; ?>'
-										});">
-								<span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span>
+										close: '<?php echo gettext("close"); ?>',
+										maxHeight: '80%',
+										maxWidth: '80%',
+										innerWidth: '560px',
+										href: '<?php echo $plugin_URL; ?>'
+									});">
+									 <?php echo INFORMATION_BLUE; ?>
 							</a>
 						</span>
 						<?php
 						if ($optionlink) {
 							?>
-							<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>"><?php echo GEAR_WITHOUT_HUB; ?></a></span>
+							<span class="icons">
+								<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>">
+									<?php echo GEAR_WITHOUT_HUB; ?>
+								</a>
+							</span>
 							<?php
 						} else {
 							?>
@@ -363,7 +369,10 @@ zp_apply_filter('admin_note', 'plugins', '');
 						}
 						if ($plugin_notice) {
 							?>
-							<span class="icons"><a onclick="$('#show_<?php echo $extension; ?>').toggle();" title ="<?php echo gettext('Plugin warnings'); ?>" ><span style="color: darkorange;"><?php echo WARNING_SIGN; ?></span></a></span>
+							<span class="icons"><a onclick="$('#show_<?php echo $extension; ?>').toggle();" title ="<?php echo gettext('Plugin warnings'); ?>" >
+									<?php echo WARNING_SIGN_ORANGE; ?>
+								</a>
+							</span>
 							<?php
 						}
 						?>
@@ -418,13 +427,15 @@ zp_apply_filter('admin_note', 'plugins', '');
 			<li><img src="images/folder.png" alt=""><?php echo gettext('Admin plugin'); ?></li>
 			<li><img src="images/pictures.png" alt=""><?php echo gettext('Feature plugin'); ?></li>
 			<li><img src="images/pictures_dn.png" alt=""><?php echo gettext('Theme plugin'); ?></li>
-			<li><span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span> <?php echo gettext('Usage info'); ?></li>
+			<li><?php echo INFORMATION_BLUE; ?> <?php echo gettext('Usage info'); ?></li>
 			<li><?php echo GEAR_WITHOUT_HUB . ' ' . gettext('Options'); ?></li>
-			<li><span style="color: darkorange;"><?php echo WARNING_SIGN; ?></span> <?php echo gettext('Warning note'); ?></li>
+			<li><?php echo WARNING_SIGN_ORANGE; ?> <?php echo gettext('Warning note'); ?></li>
 		</ul>
 		<p class="buttons">
-			<button type="submit" value="<?php echo gettext('Apply') ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong></button>
-			<button type="reset" value="<?php echo gettext('Reset') ?>"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+			<button type="submit" value="<?php echo gettext('Apply') ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
+			<button type="reset" value="<?php echo gettext('Reset') ?>">
+				<?php echo NO_ENTRY; ?>
+				<strong><?php echo gettext("Reset"); ?></strong></button>
 		</p><br /><br />
 		<input type="hidden" name="checkForPostTruncation" value="1" />
 	</form>

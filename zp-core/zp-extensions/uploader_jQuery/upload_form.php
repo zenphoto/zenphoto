@@ -180,7 +180,7 @@ maxFileSize:" . $uploadlimit; ?>
 			</td>
 			<td class="size">${sizef}</td>
 			<td colspan="2"></td>
-			<td class="delete"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span></td>
+			<td class="delete"><?php echo HEAVY_GREEN_CHECKMARK; ?></td>
 			{{/if}}
 			</tr>
 			{{/if}}

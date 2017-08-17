@@ -126,7 +126,7 @@ updatePublished('pages');
 					?>
 					<p class="buttons">
 						<button class="serialize" type="submit">
-							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span>
+							<?php echo HEAVY_GREEN_CHECKMARK; ?>
 							<strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<?php
@@ -134,7 +134,7 @@ updatePublished('pages');
 							?>
 							<span class="floatright">
 								<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>">
-									<span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span>
+									<?php echo GREEN_CROSS_ON_SHIELD; ?>
 									<strong>
 										<?php echo gettext('New Page'); ?>
 									</strong>
@@ -186,7 +186,7 @@ updatePublished('pages');
 					<input name="update" type="hidden" value="Save Order" />
 					<p class="buttons">
 						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span>
+							<?php echo HEAVY_GREEN_CHECKMARK; ?>
 							<strong><?php echo gettext('Apply'); ?></strong>
 						</button>
 					</p>

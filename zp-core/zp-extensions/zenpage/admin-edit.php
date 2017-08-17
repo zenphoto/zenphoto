@@ -360,19 +360,24 @@ $tagsort = getTagOrder();
 							?>
 							<span class="buttons">
 								<a href="<?php echo $backurl; ?>">
-									<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+									<?php echo ARROW_LEFT_BLUE; ?>
 									<strong>
 										<?php echo gettext("Back"); ?></strong>
 								</a>
-								<button type="submit" title="<?php echo $updateitem; ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php
-									if ($result->transient) {
-										echo $saveitem;
-									} else {
-										echo $updateitem;
-									}
-									?></strong></button>
+								<button type="submit" title="<?php echo $updateitem; ?>">
+									<?php echo HEAVY_GREEN_CHECKMARK; ?>
+									<strong>
+										<?php
+										if ($result->transient) {
+											echo $saveitem;
+										} else {
+											echo $updateitem;
+										}
+										?>
+									</strong>
+								</button>
 								<button type="reset" onclick="$('.copydelete').hide();" >
-									<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+									<?php echo NO_ENTRY; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 								<div class="floatright">
@@ -380,7 +385,7 @@ $tagsort = getTagOrder();
 									if ($additem) {
 										?>
 										<a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>">
-											<span style="color:green;font-size:large;line-height: 60%;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span>
+											<?php echo GREEN_CROSS_ON_SHIELD; ?>
 											<strong><?php echo $additem; ?></strong>
 										</a>
 										<?php
@@ -388,7 +393,7 @@ $tagsort = getTagOrder();
 									?>
 									<span id="tip">
 										<a href="#">
-											<span style="color: blue;font-size: large;line-height: 80%;"><?php echo INFORMATION; ?></span>
+											<?php echo INFORMATION_BLUE; ?>
 											<?php echo gettext("Usage tips"); ?>
 										</a>
 									</span>
@@ -401,7 +406,7 @@ $tagsort = getTagOrder();
 										}
 										?>
 										<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;<?php echo $what . $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>">
-											<span style = "color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+											<?php echo BULLSEYE_BLUE; ?>
 											<?php echo gettext("View"); ?>
 										</a>
 										<?php
@@ -535,9 +540,9 @@ $tagsort = getTagOrder();
 																 id="show"
 																 value="1" <?php checkIfChecked($result->getShow()); ?>
 																 onclick="$('#pubdate').val('');
-																		 $('#expiredate').val('');
-																		 $('#pubdate').css('color', 'black');
-																		 $('.expire').html('');"
+																			 $('#expiredate').val('');
+																			 $('#pubdate').css('color', 'black');
+																			 $('.expire').html('');"
 																 />
 													<label for="show"><?php echo gettext("Published"); ?></label>
 												</p>
@@ -641,7 +646,7 @@ $tagsort = getTagOrder();
 																			 name="disclose_password"
 																			 id="disclose_password"
 																			 onclick="passwordClear('');
-																					 togglePassword('');"><?php echo gettext('Show password'); ?>
+																								 togglePassword('');"><?php echo gettext('Show password'); ?>
 															</label>
 															<br />
 															<span class="password_field_">
@@ -668,13 +673,13 @@ $tagsort = getTagOrder();
 													<label class="checkboxlabel">
 														<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
 																	 onclick="$('#copyfield').show();
-																			 $('#deletemsg').hide();" />
+																					 $('#deletemsg').hide();" />
 																	 <?php echo gettext("Copy"); ?>
 													</label>
 													<label class="checkboxlabel">
 														<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
 																	 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																			 $('#copyfield').hide();" />
+																					 $('#copyfield').hide();" />
 																	 <?php echo gettext('delete'); ?>
 													</label>
 													<br class="clearall">
@@ -865,12 +870,12 @@ $tagsort = getTagOrder();
 
 									<span class="buttons">
 										<a href="<?php echo $backurl; ?>">
-											<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+											<?php echo ARROW_LEFT_BLUE; ?>
 											<strong>
 												<?php echo gettext("Back"); ?>
 											</strong>
 										</a>
-										<button type="submit" title="<?php echo $updateitem; ?>"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php
+										<button type="submit" title="<?php echo $updateitem; ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php
 											if ($result->transient) {
 												echo $saveitem;
 											} else {
@@ -878,12 +883,12 @@ $tagsort = getTagOrder();
 											}
 											?></strong></button>
 										<button type="reset" onclick="$('.copydelete').hide();">
-											<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+											<?php echo NO_ENTRY; ?>
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 										<div class="floatright">
 											<a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>">
-												<span style="color:green;font-size:large;line-height: 60%;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span>
+												<?php echo GREEN_CROSS_ON_SHIELD; ?>
 												<strong><?php echo $additem; ?></strong>
 											</a>
 											<?php
@@ -895,7 +900,7 @@ $tagsort = getTagOrder();
 												}
 												?>
 												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;<?php echo $what . $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>">
-													<span style = "color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+													<?php echo BULLSEYE_BLUE; ?>
 													<?php echo gettext("View"); ?>
 												</a>
 												<?php

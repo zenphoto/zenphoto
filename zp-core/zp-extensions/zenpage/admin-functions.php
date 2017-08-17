@@ -212,14 +212,14 @@ function deleteZenpageObj($obj, $redirect = false) {
  */
 function printPagesListTable($page, $toodeep) {
 	if ($toodeep) {
-		$handle = 'red;';
+		$handle = DRAG_HANDLE_ALERT;
 	} else {
-		$handle = 'lightsteelblue';
+		$handle = DRAG_HANDLE;
 	}
 	?>
 	<div class="page-list_row">
 		<div class="page-list_handle">
-			<span style="color: <?php echo $handle; ?>;font-size: x-large;"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
+			<?php echo $handle; ?>
 		</div>
 		<div class="page-list_title">
 			<?php
@@ -266,13 +266,13 @@ function printPagesListTable($page, $toodeep) {
 					if ($page->getCommentsAllowed()) {
 						?>
 						<a href="?commentson=0&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
-							<span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+							<?php echo BULLSEYE_GREEN; ?>
 						</a>
 						<?php
 					} else {
 						?>
 						<a href="?commentson=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
-							<span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+							<?php echo BULLSEYE_RED; ?>
 						</a>
 						<?php
 					}
@@ -293,7 +293,7 @@ function printPagesListTable($page, $toodeep) {
 
 			<div class="page-list_icon">
 				<a href="../../../index.php?p=pages&amp;title=<?php echo js_encode($page->getTitlelink()); ?>" title="<?php echo gettext("View page"); ?>">
-					<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+					<?php echo BULLSEYE_BLUE; ?>
 				</a>
 			</div>
 
@@ -303,7 +303,7 @@ function printPagesListTable($page, $toodeep) {
 					?>
 					<div class="page-list_icon">
 						<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext("Reset hitcounter"); ?>">
-							<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+							<?php echo NO_ENTRY; ?>
 						</a>
 					</div>
 					<?php
@@ -311,7 +311,7 @@ function printPagesListTable($page, $toodeep) {
 				?>
 				<div class="page-list_icon">
 					<a href="javascript:confirmDelete('admin-pages.php?delete=<?php echo $page->getTitlelink(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>',deletePage)" title="<?php echo gettext("Delete page"); ?>">
-						<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+						<?php echo CROSS_MARK_RED; ?>
 					</a>
 				</div>
 				<div class="page-list_icon">
@@ -321,13 +321,13 @@ function printPagesListTable($page, $toodeep) {
 			} else {
 				?>
 				<div class="page-list_icon">
-					<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+					<?php echo BULLSEYE_LIGHTGRAY; ?>
 				</div>
 				<div class="page-list_icon">
-					<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+					<?php echo BULLSEYE_LIGHTGRAY; ?>
 				</div>
 				<div class="page-list_icon">
-					<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+					<?php echo BULLSEYE_LIGHTGRAY; ?>
 				</div>
 				<div class="page-list_icon">
 					<input class="checkbox" type="checkbox" name="disable" value="1" disabled="disabled" />
@@ -945,9 +945,9 @@ function updateCategory(&$reports, $newcategory = false) {
 function printCategoryListSortableTable($cat, $toodeep) {
 	global $_zp_CMS;
 	if ($toodeep) {
-		$handle = 'red;';
+		$handle = DRAG_HANDLE_ALERT;
 	} else {
-		$handle = 'lightsteelblue';
+		$handle = DRAG_HANDLE;
 	}
 	$count = count($cat->getArticles(0, false));
 	if ($cat->getTitle()) {
@@ -959,7 +959,7 @@ function printCategoryListSortableTable($cat, $toodeep) {
 
 	<div class="page-list_row">
 		<div class="page-list_handle">
-			<span style="color: <?php echo $handle; ?>;font-size: x-large;"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
+			<?php echo $handle; ?>
 		</div>
 		<div class="page-list_title">
 			<?php echo "<a href='admin-edit.php?newscategory&amp;titlelink=" . $cat->getTitlelink() . "' title='" . gettext('Edit this category') . "'>" . $cattitle . "</a>" . checkHitcounterDisplay($cat->getHitcounter()); ?>
@@ -990,14 +990,14 @@ function printCategoryListSortableTable($cat, $toodeep) {
 					$title = gettext("Un-publish");
 					?>
 					<a href="?publish=0&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-						<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+						<?php echo HEAVY_GREEN_CHECKMARK; ?>
 					</a>
 					<?php
 				} else {
 					$title = gettext("Publish");
 					?>
 					<a href="?publish=1&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-						<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
+						<?php echo EXCLAMATION_RED; ?>
 					</a>
 					<?php
 				}
@@ -1010,7 +1010,7 @@ function printCategoryListSortableTable($cat, $toodeep) {
 				} else {
 					?>
 					<a href="../../../index.php?p=news&amp;category=<?php echo js_encode($cat->getTitlelink()); ?>" title="<?php echo gettext("view category"); ?>">
-						<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+						<?php echo BULLSEYE_BLUE; ?>
 					</a>
 				<?php } ?>
 			</div>
@@ -1019,7 +1019,7 @@ function printCategoryListSortableTable($cat, $toodeep) {
 				?>
 				<div class="page-list_icon"><a
 						href="?hitcounter=1&amp;id=<?php echo $cat->getID(); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext("Reset hitcounter"); ?>">
-						<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+							<?php echo NO_ENTRY; ?>
 					</a>
 				</div>
 				<?php
@@ -1028,7 +1028,7 @@ function printCategoryListSortableTable($cat, $toodeep) {
 			<div class="page-list_icon">
 				<a href="javascript:confirmDelete('admin-categories.php?delete=<?php echo js_encode($cat->getTitlelink()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category') ?>',deleteCategory)"
 					 title="<?php echo gettext("Delete Category"); ?>">
-					<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+						 <?php echo CROSS_MARK_RED; ?>
 				</a>
 			</div>
 			<div class="page-list_icon">
@@ -1370,30 +1370,31 @@ function printZenpageIconLegend() {
 		</li>
 		<li><?php echo CLIPBOARD . ' ' . gettext("pick source"); ?></li>
 		<li>
-			<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
-			<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
+			<?php echo HEAVY_GREEN_CHECKMARK; ?>
+			<?php echo EXCLAMATION_RED; ?>
 			<?php echo CLOCKFACE; ?>
 			<?php echo gettext("published/not published/scheduled for publishing"); ?>
 		</li>
 		<li>
-			<span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
-			<span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+			<?php echo BULLSEYE_GREEN; ?>
+			<?php echo BULLSEYE_RED; ?>
 			<?php echo gettext("comments on/off"); ?>
 		</li>
-		<li><span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+		<li><?php echo BULLSEYE_BLUE; ?>
 			<?php echo gettext("view"); ?>
 		</li>
 		<?php
 		if (extensionEnabled('hitcounter')) {
 			?>
 			<li>
-				<span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("reset hitcounter"); ?>
+				<?php echo NO_ENTRY; ?>
+				<?php echo gettext("reset hitcounter"); ?>
 			</li>
 			<?php
 		}
 		?>
 		<li>
-			<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+			<?php echo CROSS_MARK_RED; ?>
 			<?php echo gettext("delete"); ?>
 		</li>
 	</ul>
@@ -1476,7 +1477,7 @@ function printPublishIconLink($object, $urladd) {
 		$title = gettext("Un-publish");
 		?>
 		<a href="?publish=0&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-			<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+			<?php echo HEAVY_GREEN_CHECKMARK; ?>
 		</a>
 		<?php
 	} else {
@@ -1490,7 +1491,7 @@ function printPublishIconLink($object, $urladd) {
 		} else {
 			?>
 			<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-				<span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span>
+				<?php echo EXCLAMATION_RED; ?>
 			</a>
 			<?php
 		}

@@ -1011,15 +1011,15 @@ class _Authority {
 							?>
 							<div class="buttons">
 								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> >
-									<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+									<?php echo HEAVY_GREEN_CHECKMARK; ?>
 									<?php echo gettext("Submit"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=' + $('#user').val();" >
-									<span style="font-size:large;color: green;line-height: 90%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span>
+									<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 									<?php echo gettext("Refresh"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
-									<span style="font-size:large;color: blue;line-height: 90%;"><?php echo ARROW_LEFT; ?></span>
+									<?php echo ARROW_LEFT; ?>
 									<?php echo gettext("Return"); ?>
 								</button>
 							</div>
@@ -1097,8 +1097,14 @@ class _Authority {
 							</fieldset>
 							<br />
 							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Log in"); ?>" ><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Log in"); ?></button>
-								<button type="reset" value="<?php echo gettext("Reset"); ?>" ><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("Reset"); ?></button>
+								<button type="submit" value="<?php echo gettext("Log in"); ?>" >
+									<?php echo HEAVY_GREEN_CHECKMARK; ?>
+									<?php echo gettext("Log in"); ?>
+								</button>
+								<button type="reset" value="<?php echo gettext("Reset"); ?>" >
+									<?php echo NO_ENTRY; ?>
+									<?php echo gettext("Reset"); ?>
+								</button>
 							</div>
 							<br class="clearall">
 						</fieldset>
@@ -1164,11 +1170,11 @@ class _Authority {
 							<br />
 							<div class="buttons">
 								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" >
-									<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+									<?php echo HEAVY_GREEN_CHECKMARK; ?>
 									<?php echo gettext("Request password reset"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
-									<span style="font-size:large;color: blue;line-height: 90%;"><?php echo ARROW_LEFT; ?></span>
+									<?php echo ARROW_LEFT; ?>
 									<?php echo gettext("Return"); ?>
 								</button>
 							</div>

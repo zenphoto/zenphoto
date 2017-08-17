@@ -25,12 +25,12 @@ function reveal($content, $visible = false) {
 	?>
 	<span id="<?php echo $content; ?>_reveal"<?php if ($visible) echo ' style="display:none;"'; ?> class="icons">
 		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
-			<span style="color:green;font-size:large;"><?php echo ARROW_DOWN; ?></span>
+			<?php echo ARROW_DOWN_GREEN; ?>
 		</a>
 	</span>
 	<span id="<?php echo $content; ?>_hide"<?php if (!$visible) echo ' style="display:none;"'; ?> class="icons">
 		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
-			<span style="color:green;font-size:large;"><?php echo ARROW_UP; ?></span>
+			<?php echo ARROW_UP_GREEN; ?>
 		</a>
 	</span>
 	<?php
@@ -236,7 +236,7 @@ echo "</head>\n";
 								<br class="clearall">
 								<div class="buttons pad_button" id="setdefaults">
 									<button class="tooltip" type="submit" title="<?php echo gettext("Set defaults for album publishing and image visibility."); ?>">
-										<span style="color: blue;"><?php echo BURST; ?></span> <?php echo gettext("Apply"); ?>
+										<?php echo BURST_BLUE; ?> <?php echo gettext("Apply"); ?>
 									</button>
 								</div>
 							</form>
@@ -317,14 +317,14 @@ echo "</head>\n";
 
 								<div class="buttons pad_button" id="publishalbums">
 									<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting albums."); ?>">
-										<span style="color:blue;font-size: large;line-height: 60%"><?php echo CIRCLED_WHITE_STAR; ?></span> <?php echo gettext("Publish albums"); ?>
+										<?php echo CIRCLED_BLUE_STAR; ?><?php echo gettext("Publish albums"); ?>
 									</button>
 								</div>
 								<br class="clearall">
 							</form>
 							<p class="buttons tooltip">
 								<a href="?propagate_unpublished" title="<?php echo gettext('Set all subalbums of an un-published album to un-published.'); ?>">
-									<span style="color:blue;"><?php echo HEAVY_BLACK_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW; ?></span>
+									<?php echo HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW; ?>
 									<?php echo gettext('Propagate un-published state'); ?>
 								</a>
 							</p>
@@ -373,7 +373,8 @@ echo "</head>\n";
 							<input type="hidden" name="review" value="true" />
 							<div class="buttons pad_button" id="reviewobjects">
 								<button class="tooltip" type="submit" title="<?php echo gettext("Review un-published images."); ?>">
-									<span style="color: darkorange;"><?php echo WARNING_SIGN; ?></span> <?php echo gettext("Review images"); ?>
+									<?php echo WARNING_SIGN_ORANGE; ?>
+									<?php echo gettext("Review images"); ?>
 								</button>
 							</div>
 						</form>
@@ -427,13 +428,13 @@ echo "</head>\n";
 										<li>
 											<p class="scheduleimagechecklisthead">
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'p');" title="<?php echo gettext('Set all to be published'); ?>">
-													<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+													<?php echo HEAVY_GREEN_CHECKMARK; ?>
 												</a>
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
-													<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+													<?php echo NO_ENTRY; ?>
 												</a>
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'd');" title="<?php echo gettext('Set all to be deleted'); ?>">
-													<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+													<?php echo CROSS_MARK_RED; ?>
 												</a>
 												&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $key; ?></strong>
 											</p>
@@ -446,17 +447,17 @@ echo "</head>\n";
 															<tr>
 																<td>
 																	<label style="white-space:nowrap">
-																		<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+																		<?php echo HEAVY_GREEN_CHECKMARK; ?>
 																		<input id="pub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_p global_p" name="r_<?php echo $item; ?>" type="radio" value="pub_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
 																		<?php echo gettext('Publish'); ?>
 																	</label>
 																	<label style="white-space:nowrap">
-																		<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+																		<?php echo NO_ENTRY; ?>
 																		<input id="notpub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_u global_u" name="r_<?php echo $item; ?>" type="radio"	value="notpub_<?php echo $item; ?>"	checked="checked" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
 																		<?php echo gettext('Do not publish'); ?>
 																	</label>
 																	<label id="label_del_<?php echo $item; ?>" style="white-space:nowrap">
-																		<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+																		<?php echo CROSS_MARK_RED; ?>
 																		<input id="del_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_d" name="r_<?php echo $item; ?>" type="radio"	value="del_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', true)" />
 																		<?php echo gettext('Delete'); ?>
 																	</label>
@@ -482,17 +483,17 @@ echo "</head>\n";
 								</ul>
 								<p class="scheduleimagechecklisthead">
 									<a onclick="publishAll('', 'p');" title="<?php echo gettext('Set all to be published'); ?>">
-										<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+										<?php echo HEAVY_GREEN_CHECKMARK; ?>
 									</a>
 									<a onclick="publishAll('', 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
-										<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+										<?php echo NO_ENTRY; ?>
 									</a>
 									&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo gettext('all images'); ?></strong>
 								</p>
 
 								<div class="buttons pad_button" id="process">
 									<button class="tooltip" type="submit" title="<?php echo gettext("Process the above changes."); ?>">
-										<span style="color:blue;font-size: large;line-height: 60%"><?php echo CIRCLED_WHITE_STAR; ?></span> <?php echo gettext("Process changes"); ?>
+										<?php echo CIRCLED_BLUE_STAR; ?><?php echo gettext("Process changes"); ?>
 									</button>
 								</div>
 								<br class="clearall">
@@ -561,7 +562,7 @@ echo "</head>\n";
 									<br class="clearall">
 									<div class="buttons pad_button">
 										<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting categories."); ?>">
-											<span style="color:blue;font-size: large;line-height: 60%"><?php echo CIRCLED_WHITE_STAR; ?></span> <?php echo gettext("Publish categories"); ?>
+											<?php echo CIRCLED_BLUE_STAR; ?><?php echo gettext("Publish categories"); ?>
 										</button>
 									</div>
 									<br class="clearall">
@@ -624,7 +625,7 @@ echo "</head>\n";
 									<br class="clearall">
 									<div class="buttons pad_button">
 										<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting articles."); ?>">
-											<span style="color:blue;font-size: large;line-height: 60%"><?php echo CIRCLED_WHITE_STAR; ?></span> <?php echo gettext("Publish articles"); ?>
+											<?php echo CIRCLED_BLUE_STAR; ?><?php echo gettext("Publish articles"); ?>
 										</button>
 									</div>
 									<br class="clearall">
@@ -685,7 +686,7 @@ echo "</head>\n";
 									<br class="clearall">
 									<div class="buttons pad_button">
 										<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting pages."); ?>">
-											<span style="color:blue;font-size: large;line-height: 60%"><?php echo CIRCLED_WHITE_STAR; ?></span> <?php echo gettext("Publish pages"); ?>
+											<?php echo CIRCLED_BLUE_STAR; ?><?php echo gettext("Publish pages"); ?>
 										</button>
 									</div>
 								</form>

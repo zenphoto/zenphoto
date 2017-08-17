@@ -69,39 +69,43 @@ define('DB_NOT_CONNECTED', serialize(array('mysql_host' => gettext('not connecte
 $_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 
 //icons
-define('ARROW_DOWN', '&dArr;');
-define('ARROW_LEFT', '&lArr;');
-define('ARROW_RIGHT', '&rArr;');
-define('ARROW_UP', '&uArr;');
-define('BLACK_CROSS_ON_SHIELD', '&#9960;');
-define('BULLSEYE', '&#9678;');
-define('BURST', '&#10040;');
-define('CIRCLED_WHITE_STAR', '&#10026;');
+define('ARROW_DOWN_GREEN', '<span style="color: green;font-size: large;line-height: 80%">&dArr;</span>');
+define('ARROW_LEFT_BLUE', '<span style="color: blue;font-size:large;line-height: 60%;">&lArr;</span>');
+define('ARROW_RIGHT_BLUE', '<span style="color: blue;font-size:large;line-height: 60%">&rArr;</span>');
+define('ARROW_UP_GRAY', '<span style="color: lightgray;font-size: large;">&uArr;</span>');
+define('ARROW_UP_GREEN', '<span style="color: green;font-size: large;">&uArr;</span>');
+define('GREEN_CROSS_ON_SHIELD', '<span style="color: green;font-size:large;line-height: 60%;">&#9960;</span>');
+define('BULLSEYE_BLUE', '<span style="color: blue;font-size: large;line-height: 90%;">&#9678;</span>');
+define('BULLSEYE_DARKORANGE', '<span style="color: darkorange;font-size: large;line-height: 90%;">&#9678;</span>');
+define('BULLSEYE_GREEN', '<span style="color: green;font-size: large;line-height: 90%;">&#9678;</span>');
+define('BULLSEYE_LIGHTGRAY', '<span style="color: lightgray;font-size: large;line-height: 90%;">&#9678;</span>');
+define('BULLSEYE_RED', '<span style="color: red;font-size: large;line-height: 90%;">&#9678;</span>');
+define('BURST_BLUE', '<span style="color: blue;">&#10040;</span>');
+define('CIRCLED_BLUE_STAR', '<span style="color: blue;font-size: large;line-height: 60%">&#10026;</span>');
 define('CLIPBOARD', '&#128203;');
 define('CLOCKFACE', '&#128336;');
-define('CLOCKWISE_OPEN_CIRCLE_ARROW', '&#8635;');
-define('CROSS_MARK', '&#10060;');
+define('CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN', '<span style="font-size:large;color:green;line-height: 60%;">&#8635;</span>');
+define('CROSS_MARK_RED', '<span style="color: red;">&#10060;</span>');
+define('DRAG_HANDLE', '<span style="color:lightsteelblue;font-size: x-large;">&#10021;</span>');
+define('DRAG_HANDLE_ALERT', '<span style="color:red;font-size: x-large;">&#10021;</span>');
 define('ENVELOPE', '&#128231;');
-define('EXCLAMATION', '&#10071;');
-define('FISHEYE', '&#9673;');
-define('FOUR_CLUB_STROKED_ASTERIX', '&#10021;');
+define('EXCLAMATION_RED', '<span style="color: red;padding-left: 5px;padding-right: 5px;">&#10071;</span>');
 define('GEAR_WITHOUT_HUB', '&#9965;');
-define('HEAVY_BLACK_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW', '&#10150;');
-define('INFORMATION', '&#8505;');
+define('HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW', '<span style="color:blue;font-size:large;line-height: 60%;">&#10150;</span>');
+define('HEAVY_GREEN_CHECKMARK', '<span style="color: green;">&#9989;</span>');
+define('INFORMATION_BLUE', '<span style="color: blue;font-size: large;line-height: 90%;">&#8505;</span>');
 define('KEY', '&#128273;');
 define('MENU_ICON', '&#9776;');
-define('NO_ENTRY', '&#9940;');
-define('NORTH_WEST_CORNER_ARROW', '&#8689;');
-define('PENCIL', '&#9998;');
-define('SOUTH_EAST_CORNER_ARROW', '&#8690;');
-define('SQUARED_KEY', '&#9919;');
-define('WARNING_SIGN', '&#9888;');
+define('NO_ENTRY', '<span style="color: red;">&#9940;</span>');
+define('NORTH_WEST_CORNER_ARROW', '<span style="color: green;">&#8689;</span>');
+define('PENCIL_BLUE', '<span style="color:blue;font-size: large;">&#9998;</span>');
+define('SOUTH_EAST_CORNER_ARROW', '<span style="color: green;">&#8690;</span>');
+define('SQUARED_KEY_GREEN', '<span style="color: green;font-size: large;">&#9919</span>;');
+define('WARNING_SIGN_ORANGE', '<span style="color: darkorange;">&#9888;</span>');
 //Firefox has a huge wastebasket image
 if (preg_match('~firefox~i', $_SERVER['HTTP_USER_AGENT'])) {
 	define('WASTEBASKET', '&#128465;');
 } else {
 	define('WASTEBASKET', '<span style="font-size: large;line-height: 80%">&#128465;</span>');
 }
-define('WHITE_FROWNING_FACE', '&#9785;');
-define('WHITE_HEAVY_CHECKMARK', '&#9989;');
 ?>

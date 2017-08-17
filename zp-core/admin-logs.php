@@ -126,13 +126,13 @@ echo "\n</head>";
 								?>
 								<span class="button buttons">
 									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=clear_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_log', $subtab); ?>">
-										<span style="font-size:large;color:green;line-height: 60%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span>
+										<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 										<?php echo gettext('Reset'); ?>
 									</a>
 								</span>
 								<span class="button buttons">
 									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=download_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('download_log', $subtab); ?>">
-										<span style="color:green;font-size: large;line-height: 60%;"><?php echo ARROW_DOWN; ?></span>
+										<?php echo ARROW_DOWN_GREEN; ?>
 										<?php echo gettext('Download'); ?>
 									</a>
 								</span>

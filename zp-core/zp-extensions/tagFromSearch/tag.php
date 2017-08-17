@@ -136,7 +136,7 @@ echo "\n</head>";
 					?>
 					<p class = "buttons">
 						<button type="submit" title="<?php echo gettext("Return to search"); ?>" >
-							<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+							<?php echo ARROW_LEFT_BLUE; ?>
 							<?php echo gettext("Back");
 							?>
 						</button>
@@ -222,13 +222,13 @@ echo "\n</head>";
 					<br clear="all">
 					<p class="buttons">
 						<button type="submit"  title="<?php echo gettext("Tag the items"); ?>">
-							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span>
+							<?php echo HEAVY_GREEN_CHECKMARK; ?>
 							<?php echo gettext("Tag the items"); ?>
 						</button>
 					</p>
 					<p class="buttons">
 						<button type="reset">
-							<span style="color: red;"><?php echo NO_ENTRY; ?></span>
+							<?php echo NO_ENTRY; ?>
 							<strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</p>

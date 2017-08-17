@@ -221,7 +221,7 @@ class cacheManager {
 				}
 				?>
 				<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
-					<span style="color:green;"><?php echo ARROW_DOWN; ?></span>
+					<?php echo ARROW_DOWN_GREEN; ?>
 				</a>
 			</span>
 			<br />
@@ -426,7 +426,7 @@ class cacheManager {
 			$disable = ' disabled="disabled"';
 			$title = gettext("You must first set the plugin options for cached image parameters.");
 		}
-		$html .= '<div class="button buttons tooltip" title="' . $title . '"><a href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?album=' . html_encode($object->name) . '&amp;XSRFToken=' . getXSRFToken('cacheImages') . '"' . $disable . '><span style="color:blue;font-size: large;line-height: 60%">' . CIRCLED_WHITE_STAR . '</span> ' . gettext('Cache album images') . '</a><br class="clearall"></div>';
+		$html .= '<div class="button buttons tooltip" title="' . $title . '"><a href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?album=' . html_encode($object->name) . '&amp;XSRFToken=' . getXSRFToken('cacheImages') . '"' . $disable . '>' . CIRCLED_BLUE_STAR . ' ' . gettext('Cache album images') . '</a><br class="clearall"></div>';
 		return $html;
 	}
 

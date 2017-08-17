@@ -211,7 +211,7 @@ function getIPSizedImage($size, $image) {
 			<h3>
 				<span class="buttons">
 					<button type="button" title="<?php echo gettext('paste'); ?>" onclick="paste();">
-						<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK;?></span>
+						<?php echo HEAVY_GREEN_CHECKMARK; ?>
 						<?php echo gettext('paste'); ?>
 					</button>
 				</span>
@@ -322,7 +322,7 @@ function getIPSizedImage($size, $image) {
 				<?php echo gettext('No object source has been chosen.'); ?>
 			</p>
 			<p>
-				<?php printf(gettext('You can pick a ZenPhoto20 object for insertion by browsing to the object and clicking on the %s icon. This icon will be just below the <em>Title</em> of the object. You can quickly select objects from admin pages that list objects (e.g. the <em>albums</em>, <em>news</em>, <em>categories</em>, or <em>pages</em> tabs or the <em>image order</em> album subtab.) A <em>pick</em> icon is provided for each item in the list.'), '<span style="color:green;"><?php echo BLACK_CROSS_ON_SHIELD; ?></span>'); ?>
+				<?php printf(gettext('You can pick a ZenPhoto20 object for insertion by browsing to the object and clicking on the %s icon. This icon will be just below the <em>Title</em> of the object. You can quickly select objects from admin pages that list objects (e.g. the <em>albums</em>, <em>news</em>, <em>categories</em>, or <em>pages</em> tabs or the <em>image order</em> album subtab.) A <em>pick</em> icon is provided for each item in the list.'), GREEN_CROSS_ON_SHIELD); ?>
 			</p>
 			<?php
 		}

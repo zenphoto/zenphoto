@@ -234,12 +234,12 @@ if (is_array($result)) {
 				?>
 				<p class="buttons">
 					<a href="menu_tab.php?menuset=<?php echo $menuset; ?>">
-						<span style="color:blue;font-size:large;line-height: 60%;"><?php echo ARROW_LEFT; ?></span>
+						<?php echo ARROW_LEFT_BLUE; ?>
 						<strong><?php echo gettext("Back"); ?></strong>
 					</a>
 					<span class="floatright">
 						<a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>">
-							<span style="color:green"><?php echo BLACK_CROSS_ON_SHIELD; ?></span>
+							<?php echo GREEN_CROSS_ON_SHIELD; ?>
 							<strong>
 								<?php echo gettext("Add Menu Items"); ?>
 							</strong>
@@ -405,8 +405,11 @@ if (is_array($result)) {
 							?>
 						</table>
 						<p class="buttons">
-							<button type="submit"><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset"><span style="color: red;"><?php echo NO_ENTRY; ?></span> <strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button>
+							<button type="reset">
+								<?php echo NO_ENTRY; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
 						</p>
 						<br class="clearall"><br />
 					</form>
