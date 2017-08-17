@@ -35,7 +35,9 @@ function updateItemsSortorder() {
 function printItemsListTable($item, $toodeep) {
 	global $_zp_gallery;
 	if ($toodeep) {
-		$toodeep = 'color: red;';
+		$handle = 'red;';
+	} else {
+		$handle = 'lightsteelblue';
 	}
 	$link = '';
 	$array = getItemTitleAndURL($item);
@@ -76,7 +78,7 @@ function printItemsListTable($item, $toodeep) {
 	?>
 	<div class="page-list_row">
 		<div class="page-list_handle">
-			<span style="color: lightsteelblue;font-size: x-large;<?php echo $toodeep; ?>"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
+			<span style="color: <?php echo $handle; ?>;font-size: x-large;"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
 		</div>
 		<div class="page-list_title">
 			<?php
@@ -84,12 +86,14 @@ function printItemsListTable($item, $toodeep) {
 			?>
 		</div>
 		<div class="page-list_extra">
-			<em><?php echo $item['type']; ?></em>&nbsp;
+			<em><?php echo $item['type']; ?></em>
+			<?php
+			if ($link) {
+				echo ARROW_RIGHT . '&nbsp;' . $link;
+			}
+			?>
 		</div>
 
-		<div class="page-list_extra">
-			<?php echo $link; ?>
-		</div>
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon">
 				<?php
@@ -133,7 +137,7 @@ function printItemsListTable($item, $toodeep) {
 						if (!empty($viewURL)) {
 							?>
 							<a href="<?php echo $viewURL; ?>">
-								<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+								<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 							</a>
 							<?php
 							break;

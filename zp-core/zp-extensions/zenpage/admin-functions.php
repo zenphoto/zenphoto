@@ -212,12 +212,14 @@ function deleteZenpageObj($obj, $redirect = false) {
  */
 function printPagesListTable($page, $toodeep) {
 	if ($toodeep) {
-		$toodeep = 'color: red;';
+		$handle = 'red;';
+	} else {
+		$handle = 'lightsteelblue';
 	}
 	?>
 	<div class="page-list_row">
 		<div class="page-list_handle">
-			<span style="color: lightsteelblue;font-size: x-large;<?php echo $toodeep; ?>"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
+			<span style="color: <?php echo $handle; ?>;font-size: x-large;"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
 		</div>
 		<div class="page-list_title">
 			<?php
@@ -264,13 +266,13 @@ function printPagesListTable($page, $toodeep) {
 					if ($page->getCommentsAllowed()) {
 						?>
 						<a href="?commentson=0&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
-							<span style="color:green;font-size: large;"><?php echo BULLSEYE; ?></span>
+							<span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 						</a>
 						<?php
 					} else {
 						?>
 						<a href="?commentson=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
-							<span style="color: red;font-size: large;"><?php echo BULLSEYE; ?></span>
+							<span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 						</a>
 						<?php
 					}
@@ -291,7 +293,7 @@ function printPagesListTable($page, $toodeep) {
 
 			<div class="page-list_icon">
 				<a href="../../../index.php?p=pages&amp;title=<?php echo js_encode($page->getTitlelink()); ?>" title="<?php echo gettext("View page"); ?>">
-					<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+					<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 				</a>
 			</div>
 
@@ -319,13 +321,13 @@ function printPagesListTable($page, $toodeep) {
 			} else {
 				?>
 				<div class="page-list_icon">
-					<span style="color: lightgray;font-size: large;"><?php echo BULLSEYE; ?></span>
+					<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 				</div>
 				<div class="page-list_icon">
-					<span style="color: lightgray;font-size: large;"><?php echo BULLSEYE; ?></span>
+					<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 				</div>
 				<div class="page-list_icon">
-					<span style="color: lightgray;font-size: large;"><?php echo BULLSEYE; ?></span>
+					<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 				</div>
 				<div class="page-list_icon">
 					<input class="checkbox" type="checkbox" name="disable" value="1" disabled="disabled" />
@@ -943,7 +945,9 @@ function updateCategory(&$reports, $newcategory = false) {
 function printCategoryListSortableTable($cat, $toodeep) {
 	global $_zp_CMS;
 	if ($toodeep) {
-		$toodeep = 'color: red;';
+		$handle = 'red;';
+	} else {
+		$handle = 'lightsteelblue';
 	}
 	$count = count($cat->getArticles(0, false));
 	if ($cat->getTitle()) {
@@ -955,7 +959,7 @@ function printCategoryListSortableTable($cat, $toodeep) {
 
 	<div class="page-list_row">
 		<div class="page-list_handle">
-			<span style="color: lightsteelblue;font-size: x-large;<?php echo $toodeep; ?>"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
+			<span style="color: <?php echo $handle; ?>;font-size: x-large;"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
 		</div>
 		<div class="page-list_title">
 			<?php echo "<a href='admin-edit.php?newscategory&amp;titlelink=" . $cat->getTitlelink() . "' title='" . gettext('Edit this category') . "'>" . $cattitle . "</a>" . checkHitcounterDisplay($cat->getHitcounter()); ?>
@@ -1006,7 +1010,7 @@ function printCategoryListSortableTable($cat, $toodeep) {
 				} else {
 					?>
 					<a href="../../../index.php?p=news&amp;category=<?php echo js_encode($cat->getTitlelink()); ?>" title="<?php echo gettext("view category"); ?>">
-						<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+						<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 					</a>
 				<?php } ?>
 			</div>
@@ -1371,16 +1375,27 @@ function printZenpageIconLegend() {
 			<?php echo CLOCKFACE; ?>
 			<?php echo gettext("published/not published/scheduled for publishing"); ?>
 		</li>
-		<li><span style="color:green;font-size: large;"><?php echo BULLSEYE; ?></span><span style="color: red;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("comments on/off"); ?></li>
-		<li><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("view"); ?></li>
+		<li>
+			<span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+			<span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+			<?php echo gettext("comments on/off"); ?>
+		</li>
+		<li><span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+			<?php echo gettext("view"); ?>
+		</li>
 		<?php
 		if (extensionEnabled('hitcounter')) {
 			?>
-			<li><span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("reset hitcounter"); ?></li>
+			<li>
+				<span style="color: red;"><?php echo NO_ENTRY; ?></span> <?php echo gettext("reset hitcounter"); ?>
+			</li>
 			<?php
 		}
 		?>
-		<li><span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext("delete"); ?></li>
+		<li>
+			<span style="color: red;"><?php echo CROSS_MARK; ?></span>
+			<?php echo gettext("delete"); ?>
+		</li>
 	</ul>
 	<br class="clearall">
 	<?php

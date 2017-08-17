@@ -209,7 +209,7 @@ $orphaned = array();
 								<div class="purgeOptions_list">
 									<span class="purgeOptionsClass"><?php echo gettext('Orphaned options'); ?></span>
 									<label>
-										<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+										<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 										<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').removeAttr('checked');$('.orphaned').removeAttr('checked');$('#emptyOptionCheck').removeAttr('checked');">
 									</label>
 									<label>
@@ -244,7 +244,7 @@ $orphaned = array();
 													?>
 											<li<?php if ($hidden) echo ' class="hiddenOrphan"'; ?>>
 												<label class="none">
-													<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+													<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedIgnore" value="1" onclick="$(this).removeAttr('checked');"/>
 												</label>
 												<label class="none">
@@ -267,7 +267,7 @@ $orphaned = array();
 										}
 										?>
 									</ul>
-									<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+									<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 									<?php echo gettext('no action'); ?>
 									<span style="color: red;"><?php echo CROSS_MARK; ?></span>
 									<?php echo gettext('delete'); ?>

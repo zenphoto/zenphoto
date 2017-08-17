@@ -324,7 +324,7 @@ if (count($themelist) == 0) {
 								<li>
 									<p class="buttons">
 										<a onclick="launchScript('admin-themes.php', ['action=deletetheme', 'themealbum=<?php echo pathurlencode($alb); ?>', 'theme=<?php echo urlencode($theme); ?>', 'XSRFToken=<?php echo getXSRFToken('admin-themes') ?>']);">
-											<span style="font-size: large;"><?php echo WASTEBASKET; ?></span>
+											<?php echo WASTEBASKET; ?>
 											<?php echo gettext("Delete"); ?>
 										</a>
 									</p>
@@ -364,6 +364,3 @@ echo "\n" . '</div>'; //main
 echo "\n</body>";
 echo "\n</html>";
 ?>
-
-
-

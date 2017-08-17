@@ -1600,7 +1600,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					?>
 					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-						<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+						<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
 				</div>
@@ -2309,7 +2309,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					?>
 					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-						<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+						<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
 				</div>
@@ -2331,7 +2331,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the album’s cached images.")); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=clear_cache&amp;album=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_cache'); ?>">
-					<span style="font-size: large;"><?php echo WASTEBASKET; ?></span>
+					<?php echo WASTEBASKET; ?>
 					<?php echo gettext('Clear album image cache'); ?></a>
 				<br class="clearall">
 			</div>
@@ -2380,11 +2380,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php echo gettext("published/not published/scheduled for publishing"); ?>
 			</li>
 			<li>
-				<span style="color:green;"><?php echo BULLSEYE; ?></span>
-				<span style="color: red;"><?php echo BULLSEYE; ?></span>
+				<span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+				<span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 				<?php echo gettext("comments on/off"); ?>
 			</li>
-			<li><span style="color:blue;"><?php echo BULLSEYE; ?></span> <?php echo gettext("view the album"); ?></li>
+			<li><span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span> <?php echo gettext("view the album"); ?></li>
 			<li><span style="font-size:large;color:green;line-height: 60%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span> <?php echo gettext("refresh metadata"); ?></li>
 			<?php
 			if (extensionEnabled('hitcounter')) {
@@ -2417,12 +2417,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$owner = $owner->name;
 		}
 		if ($toodeep) {
-			$toodeep = 'color: red;';
+			$handle = 'red;';
+		} else {
+			$handle = 'lightsteelblue';
 		}
 		?>
 		<div class="page-list_row">
 			<div class="page-list_handle">
-				<span style="color: lightsteelblue;font-size: x-large;<?php echo $toodeep; ?>"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
+				<span style="color: <?php echo $handle; ?>;font-size: x-large;"><?php echo FOUR_CLUB_STROKED_ASTERIX; ?></span>
 			</div>
 			<div class="page-list_albumthumb">
 				<?php
@@ -2545,7 +2547,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<?php
 							}
 							?>
-							<span style="color:green;"><?php echo BULLSEYE; ?></span>
+							<span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 							<?php
 							if ($enableEdit) {
 								?>
@@ -2559,7 +2561,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<?php
 							}
 							?>
-							<span style="color: red;"><?php echo BULLSEYE; ?></span>
+							<span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 							<?php
 							if ($enableEdit) {
 								?>
@@ -2571,7 +2573,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				</div>
 				<div class="page-list_icon">
 					<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo gettext("View album"); ?>">
-						<span style="color:blue;"><?php echo BULLSEYE; ?></span>
+						<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 					</a>
 				</div>
 				<div class="page-list_icon">

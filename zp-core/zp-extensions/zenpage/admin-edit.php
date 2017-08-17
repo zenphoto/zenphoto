@@ -386,16 +386,25 @@ $tagsort = getTagOrder();
 										<?php
 									}
 									?>
-									<span id="tip"><a href="#"><span style="color: blue;font-size: large;"><?php echo INFORMATION; ?></span> <?php echo gettext("Usage tips"); ?></a></span>
+									<span id="tip">
+										<a href="#">
+											<span style="color: blue;font-size: large;line-height: 80%;"><?php echo INFORMATION; ?></span>
+											<?php echo gettext("Usage tips"); ?>
+										</a>
+									</span>
 									<?php
 									if (!$result->transient) {
 										if (is_AdminEditPage("newscategory")) {
-											?>
-											<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("View"); ?></a>
-										<?php } else { ?>
-											<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("View"); ?></a>
-											<?php
+											$what = 'category=';
+										} else {
+											$what = 'title=';
 										}
+										?>
+										<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;<?php echo $what . $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>">
+											<span style = "color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+											<?php echo gettext("View"); ?>
+										</a>
+										<?php
 									}
 									?>
 								</div>
@@ -823,7 +832,9 @@ $tagsort = getTagOrder();
 													?>
 													<?php echo zp_apply_filter('general_zenpage_utilities', '', $result); ?>
 												</div>
-												<?php if (is_AdminEditPage("newsarticle")) { ?>
+												<?php
+												if (is_AdminEditPage("newsarticle")) {
+													?>
 													<h2 class="h2_bordered_edit"><?php echo gettext("Categories"); ?></h2>
 													<div class="zenpagechecklist">
 														<?php
@@ -842,8 +853,7 @@ $tagsort = getTagOrder();
 														}
 														?>
 													</div>
-
-
+													<br />
 													<?php
 												} // if article for categories
 											} // if !category end
@@ -879,14 +889,16 @@ $tagsort = getTagOrder();
 											<?php
 											if (!$result->transient) {
 												if (is_AdminEditPage("newscategory")) {
-													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("View"); ?></a>
-													<?php
+													$what = 'category=';
 												} else {
-													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("View"); ?></a>
-													<?php
+													$what = 'title=';
 												}
+												?>
+												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;<?php echo $what . $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>">
+													<span style = "color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+													<?php echo gettext("View"); ?>
+												</a>
+												<?php
 											}
 											?>
 										</div>

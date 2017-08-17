@@ -960,7 +960,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 											if (isset($enabled['experimental'])) {
 												?>
-												<li class="note_warn"><span style="color:darkorange;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle()" >experimental</a>)'), $handler); ?>
+												<li class="note_warn"><span style="color:darkorange;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle()" >experimental</a>)'), $handler); ?>
 												</li>
 												<p class="warning" id="<?php echo $handler; ?>"
 													 style="display: none;">
@@ -969,13 +969,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 												<?php
 											} else {
 												?>
-												<li class="note_ok"><span style="color:green;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext('PHP <code>%s</code> support'), $handler); ?>
+												<li class="note_ok"><span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext('PHP <code>%s</code> support'), $handler); ?>
 												</li>
 												<?php
 											}
 										} else {
 											?>
-											<li class="note_exception"><span style="color: red;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext('PHP <code>%s</code> support [is not installed]'), $handler); ?>
+											<li class="note_exception"><span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span> <?php echo sprintf(gettext('PHP <code>%s</code> support [is not installed]'), $handler); ?>
 											</li>
 											<?php
 										}

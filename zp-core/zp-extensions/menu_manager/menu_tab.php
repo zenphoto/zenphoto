@@ -153,7 +153,7 @@ printSortableHead();
 					?>
 					<span class="buttons">
 						<button class="serialize" type="submit">
-							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <?php echo gettext("Apply"); ?></strong>
+							<span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span> <strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<div class="floatright">
 							<a href="javascript:newMenuSet();">
@@ -192,7 +192,9 @@ printSortableHead();
 											<a href="javascript:dupMenuSet();" title="<?php printf(gettext('Duplicate %s menu'), $menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/page_white_copy.png" alt="" /><strong><?php echo gettext("Duplicate menu"); ?></strong></a>
 										</span>
 										<span class="buttons">
-											<strong><a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'), $menuset); ?>"><span style="color: red;"><?php echo CROSS_MARK; ?></span> <strong><?php echo gettext("Delete menu"); ?></strong></a>
+											<a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'), $menuset); ?>"><span style="color: red;"><?php echo CROSS_MARK; ?></span>
+												<strong><?php echo gettext("Delete menu"); ?></strong>
+											</a>
 										</span>
 										<?php
 									}
@@ -243,7 +245,9 @@ printSortableHead();
 				<ul class="iconlegend">
 					<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" /> <?php echo gettext("Menu target is password protected"); ?></li>
 					<li><span style="color: green;"><?php echo WHITE_HEAVY_CHECKMARK; ?></span><span style="color: red;padding-left: 5px;padding-right: 5px;"><?php echo EXCLAMATION; ?></span> <?php echo gettext("Visible/Hidden"); ?></li>
-					<li><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext("View"); ?></li>
+					<li>
+						<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
+						<?php echo gettext("View"); ?></li>
 					<li><span style="color: red;"><?php echo CROSS_MARK; ?></span> <?php echo gettext("Delete"); ?></li>
 				</ul>
 			</div>

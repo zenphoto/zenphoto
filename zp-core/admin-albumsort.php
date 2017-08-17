@@ -203,7 +203,7 @@ echo "\n</head>";
 								<strong><?php echo gettext("Reset"); ?></strong>
 							</button>
 							<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-								<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+								<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 								<strong><?php echo gettext('View Album'); ?></strong>
 							</a>
 						</p>
@@ -266,7 +266,7 @@ echo "\n</head>";
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 								<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-									<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+									<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 									<strong><?php echo gettext('View Album'); ?></strong>
 								</a>
 							</p>

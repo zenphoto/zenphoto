@@ -360,7 +360,7 @@ updatePublished('news');
 													<a href="<?php echo $option . $divider; ?>commentson=0&amp;titlelink=<?php
 													echo html_encode($article->getTitlelink());
 													?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
-														<span style="color:green;font-size: large;"><?php echo BULLSEYE; ?></span>
+														<span style="color:green;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 													</a>
 													<?php
 												} else {
@@ -368,7 +368,7 @@ updatePublished('news');
 													<a href="<?php echo $option . $divider; ?>commentson=1&amp;titlelink=<?php
 													echo html_encode($article->getTitlelink());
 													?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
-														<span style="color: red;font-size: large;"><?php echo BULLSEYE; ?></span>
+														<span style="color: red;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 													</a>
 													<?php
 												}
@@ -378,10 +378,10 @@ updatePublished('news');
 										} else {
 											?>
 											<div class="page-list_icon">
-												<span style="color: lightgray;font-size: large;"><?php echo BULLSEYE; ?></span>
+												<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 											</div>
 											<div class="page-list_icon">
-												<span style="color: lightgray;font-size: large;"><?php echo BULLSEYE; ?></span>
+												<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 											</div>
 										<?php } ?>
 
@@ -389,7 +389,7 @@ updatePublished('news');
 											<a target="_blank" href="../../../index.php?p=news&amp;title=<?php
 											echo $article->getTitlelink();
 											?>" title="<?php echo gettext('View article'); ?>">
-												<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+												<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 											</a>
 										</div>
 
@@ -412,16 +412,14 @@ updatePublished('news');
 													<span style="color: red;"><?php echo CROSS_MARK; ?></span>
 												</a>
 											</div>
-
-
 											<?php
 										} else {
 											?>
 											<div class="page-list_icon">
-												<span style="color: lightgray;font-size: large;"><?php echo BULLSEYE; ?></span>
+												<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 											</div>
 											<div class="page-list_icon">
-												<span style="color: lightgray;font-size: large;"><?php echo BULLSEYE; ?></span>
+												<span style="color: lightgray;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 											</div>
 
 											<?php

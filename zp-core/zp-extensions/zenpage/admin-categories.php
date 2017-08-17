@@ -209,7 +209,7 @@ zenpageJSCSS();
 							}
 							?>
 						<li><?php echo CLIPBOARD . ' ' . gettext("pick source"); ?></li>
-						<li><span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span> <?php echo gettext('view'); ?></li>
+						<li><span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span> <?php echo gettext('view'); ?></li>
 						<?php
 						if (extensionEnabled('hitcounter')) {
 							?>

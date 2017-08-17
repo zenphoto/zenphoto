@@ -118,7 +118,7 @@ echo "\n</head>";
 						<form method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php'; ?>?action=change_size&amp;page=logs&amp;tab=<?php echo html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>" >
 							<span class="button buttons">
 								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=delete_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete_log', $subtab); ?>">
-									<span style="font-size: large;"><?php echo WASTEBASKET; ?></span>
+									<?php echo WASTEBASKET; ?>
 									<?php echo gettext('Delete'); ?></a>
 							</span>
 							<?php
@@ -126,7 +126,7 @@ echo "\n</head>";
 								?>
 								<span class="button buttons">
 									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=clear_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_log', $subtab); ?>">
-										<span style="font-size:x-large;color:green;line-height: 40%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span>
+										<span style="font-size:large;color:green;line-height: 60%;"><?php echo CLOCKWISE_OPEN_CIRCLE_ARROW; ?></span>
 										<?php echo gettext('Reset'); ?>
 									</a>
 								</span>

@@ -1223,7 +1223,7 @@ echo "\n</head>";
 													?>
 													<p class="buttons">
 														<a href="<?php echo $image->getLink(); ?>">
-															<span style="color:blue;font-size: large;"><?php echo BULLSEYE; ?></span>
+															<span style="color:blue;font-size: large;line-height: 80%;"><?php echo BULLSEYE; ?></span>
 															<strong><?php echo gettext('View'); ?></strong>
 														</a>
 													</p><br style="clear: both" />
