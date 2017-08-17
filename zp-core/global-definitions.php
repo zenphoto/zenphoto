@@ -96,7 +96,12 @@ define('PENCIL', '&#9998;');
 define('SOUTH_EAST_CORNER_ARROW', '&#8690;');
 define('SQUARED_KEY', '&#9919;');
 define('WARNING_SIGN', '&#9888;');
-define('WASTEBASKET', '&#128465;');
+//Firefox has a huge wastebasket image
+if (preg_match('~firefox~i', $_SERVER['HTTP_USER_AGENT'])) {
+	define('WASTEBASKET', '&#128465;');
+} else {
+	define('WASTEBASKET', '<span style="font-size: large;line-height: 80%">&#128465;</span>');
+}
 define('WHITE_FROWNING_FACE', '&#9785;');
 define('WHITE_HEAVY_CHECKMARK', '&#9989;');
 ?>
