@@ -303,7 +303,7 @@ function printPagesListTable($page, $toodeep) {
 					?>
 					<div class="page-list_icon">
 						<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext("Reset hitcounter"); ?>">
-							<?php echo NO_ENTRY; ?>
+							<?php echo BACKWARDS_ARROW_STROKE_GREEN; ?>
 						</a>
 					</div>
 					<?php
@@ -1019,7 +1019,7 @@ function printCategoryListSortableTable($cat, $toodeep) {
 				?>
 				<div class="page-list_icon"><a
 						href="?hitcounter=1&amp;id=<?php echo $cat->getID(); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext("Reset hitcounter"); ?>">
-							<?php echo NO_ENTRY; ?>
+							<?php echo BACKWARDS_ARROW_STROKE_GREEN; ?>
 					</a>
 				</div>
 				<?php
@@ -1387,7 +1387,7 @@ function printZenpageIconLegend() {
 		if (extensionEnabled('hitcounter')) {
 			?>
 			<li>
-				<?php echo NO_ENTRY; ?>
+				<?php echo BACKWARDS_ARROW_STROKE_GREEN; ?>
 				<?php echo gettext("reset hitcounter"); ?>
 			</li>
 			<?php

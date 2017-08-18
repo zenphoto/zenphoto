@@ -75,12 +75,13 @@ define('ARROW_RIGHT_BLUE', '<span style="color: blue;font-size:large;line-height
 define('ARROW_UP_GRAY', '<span style="color: lightgray;font-size: large;">&uArr;</span>');
 define('ARROW_UP_GREEN', '<span style="color: green;font-size: large;">&uArr;</span>');
 define('GREEN_CROSS_ON_SHIELD', '<span style="color: green;font-size:large;line-height: 60%;">&#9960;</span>');
-define('BULLSEYE_BLUE', '<span style="color: blue;font-size: large;line-height: 90%;">&#9678;</span>');
-define('BULLSEYE_DARKORANGE', '<span style="color: darkorange;font-size: large;line-height: 90%;">&#9678;</span>');
-define('BULLSEYE_GREEN', '<span style="color: green;font-size: large;line-height: 90%;">&#9678;</span>');
-define('BULLSEYE_LIGHTGRAY', '<span style="color: lightgray;font-size: large;line-height: 90%;">&#9678;</span>');
-define('BULLSEYE_RED', '<span style="color: red;font-size: large;line-height: 90%;">&#9678;</span>');
-define('BURST_BLUE', '<span style="color: blue;">&#10040;</span>');
+define('BACKWARDS_ARROW_STROKE_GREEN', '<span style="color: green;">&#8603;</span>');
+define('BULLSEYE_BLUE', '<span style="color: blue;font-size: large;line-height: 80%;">&#9678;</span>');
+define('BULLSEYE_DARKORANGE', '<span style="color: darkorange;font-size: large;line-height: 80%;">&#9678;</span>');
+define('BULLSEYE_GREEN', '<span style="color: green;font-size: large;line-height: 80%;">&#9678;</span>');
+define('BULLSEYE_LIGHTGRAY', '<span style="color: lightgray;font-size: large;line-height: 80%;">&#9678;</span>');
+define('BULLSEYE_RED', '<span style="color: red;font-size: large;line-height: 80%;">&#9678;</span>');
+define('BURST_BLUE', '<span style="color: blue;font-size: large;line-height: 80%;">&#10040;</span>');
 define('CIRCLED_BLUE_STAR', '<span style="color: blue;font-size: large;line-height: 60%">&#10026;</span>');
 define('CLIPBOARD', '&#128203;');
 define('CLOCKFACE', '&#128336;');
@@ -101,7 +102,7 @@ define('NORTH_WEST_CORNER_ARROW', '<span style="color: green;">&#8689;</span>');
 define('PENCIL_BLUE', '<span style="color:blue;font-size: large;">&#9998;</span>');
 define('SOUTH_EAST_CORNER_ARROW', '<span style="color: green;">&#8690;</span>');
 define('SQUARED_KEY_GREEN', '<span style="color: green;font-size: large;">&#9919</span>;');
-define('WARNING_SIGN_ORANGE', '<span style="color: darkorange;">&#9888;</span>');
+define('WARNING_SIGN_ORANGE', '<span style="color: darkorange;font-size: large;line-height: 80%">&#9888;</span>');
 //Firefox has a huge wastebasket image
 if (preg_match('~firefox~i', $_SERVER['HTTP_USER_AGENT'])) {
 	define('WASTEBASKET', '&#128465;');

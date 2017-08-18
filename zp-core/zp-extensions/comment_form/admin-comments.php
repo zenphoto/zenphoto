@@ -500,7 +500,8 @@ printLogoAndLinks();
 						<p class="buttons"><button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button></p>
 						<ul class="iconlegend">
 							<li>
-								<?php echo NO_ENTRY; ?> <?php echo gettext("Private message"); ?>
+								<?php echo NO_ENTRY; ?>
+								<?php echo gettext("Private message"); ?>
 							</li>
 							<li>
 								<?php echo WARNING_SIGN_ORANGE; ?>

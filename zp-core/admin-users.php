@@ -869,7 +869,8 @@ echo $refresh;
 								<button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
-								<button type="reset"><?php echo NO_ENTRY; ?>
+								<button type="reset">
+									<?php echo NO_ENTRY; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 							</p>

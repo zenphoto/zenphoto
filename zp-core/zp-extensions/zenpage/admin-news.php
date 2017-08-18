@@ -404,7 +404,7 @@ updatePublished('news');
 													<a href="<?php echo $option . $divider; ?>hitcounter=1&amp;titlelink=<?php
 													echo html_encode($article->getTitlelink());
 													?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
-															 <?php echo NO_ENTRY; ?>
+															 <?php echo BACKWARDS_ARROW_STROKE_GREEN; ?>
 													</a>
 												</div>
 												<?php

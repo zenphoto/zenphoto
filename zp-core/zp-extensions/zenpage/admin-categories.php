@@ -218,7 +218,7 @@ zenpageJSCSS();
 						if (extensionEnabled('hitcounter')) {
 							?>
 							<li>
-								<?php echo NO_ENTRY; ?>
+								<?php echo BACKWARDS_ARROW_STROKE_GREEN; ?>
 								<?php echo gettext('reset hitcounter'); ?>
 							</li>
 							<?php
