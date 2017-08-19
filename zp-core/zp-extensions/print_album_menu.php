@@ -65,7 +65,7 @@ class print_album_menu {
 		$options['note'] = array('key' => 'menu_truncate_note',
 				'type' => OPTION_TYPE_NOTE,
 				'order' => 8,
-				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> These options are shared amoung <em>menu_manager</em>, <em>print_album_menu</em>, and <em>zenpage</em>.</p>'));
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> These options are shared among <em>menu_manager</em>, <em>print_album_menu</em>, and <em>zenpage</em>.</p>'));
 
 		return $options;
 	}

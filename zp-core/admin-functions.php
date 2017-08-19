@@ -2486,20 +2486,22 @@ function printAdminHeader($tab, $subtab = NULL) {
 			</div>
 			<?php
 			if ($album->isDynamic()) {
-				$imgi = '<img src="images/pictures_dn.png" alt="" title="' . gettext('images') . '" />';
-				$imga = '<img src="images/folder_picture_dn.png" alt="" title="' . gettext('albums') . '" />';
+				$imgi = '<img src="images/pictures_dn.png" alt="' . gettext('images') . '" title="' . gettext('images') . '" />';
+				$imga = '<img src="images/folder_picture_dn.png" alt="' . gettext('albums') . '" title="' . gettext('albums') . '" />';
 			} else {
-				$imgi = '<img src="images/pictures.png" alt="" title="' . gettext('images') . '" />';
-				$imga = '<img src="images/folder_picture.png" alt="" title="' . gettext('albums') . '" />';
+				$imgi = '<img src="images/pictures.png" alt="' . gettext('images') . '" title="' . gettext('images') . '" />';
+				$imga = '<img src="images/folder_picture.png" alt="' . gettext('albums') . '" title="' . gettext('albums') . '" />';
 			}
 			$ci = count($album->getImages());
 			$si = sprintf('%1$s <span>(%2$u)</span>', $imgi, $ci);
 			if ($ci > 0 && !$album->isDynamic()) {
-				$si = '<a href="?page=edit&amp;album=' . html_encode(pathurlencode($album->name)) . '&amp;tab=imageinfo" title="' . gettext('Subalbum List') . '">' . $si . '</a>';
+				$si = preg_replace('~ title=".*?"~', '', $si);
+				$si = '<a href="?page=edit&amp;album=' . html_encode(pathurlencode($album->name)) . '&amp;tab=imageinfo" title="' . gettext('Images') . '">' . $si . '</a>';
 			}
 			$ca = $album->getNumAlbums();
 			$sa = sprintf('%1$s <span>(%2$u)</span>', $imga, $ca);
 			if ($ca > 0 && !$album->isDynamic()) {
+				$sa = preg_replace('~ title=".*?"~', '', $sa);
 				$sa = '<a href="?page=edit&amp;album=' . html_encode(pathurlencode($album->name)) . '&amp;tab=subalbuminfo" title="' . gettext('Subalbum List') . '">' . $sa . '</a>';
 			}
 			?>

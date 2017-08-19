@@ -107,8 +107,8 @@ if (!defined('WEBPATH'))
 
 		<?php if (($_zp_gallery_page == 'index.php') && ($isHomePage)) { ?>
 			<script type="text/javascript">
-								//<![CDATA[
-								$(window).load(function() {
+				//<![CDATA[
+				$(window).load(function() {
 				$('.flexslider').flexslider({
 				slideshowSpeed: 5000,
 								animationDuration: 500,
@@ -117,23 +117,25 @@ if (!defined('WEBPATH'))
 								pauseOnHover: true
 				});
 				});
-								//]]>
+				//]]>
 			</script>
 		<?php } ?>
 
 		<?php if (($_zp_gallery_page == 'image.php') || ($_zenpage_enabled && is_NewsArticle())) { ?>
 			<script type="text/javascript">
-								//<![CDATA[
+				//<![CDATA[
 	<?php
 	$NextURL = $PrevURL = false;
 	if ($_zp_gallery_page == 'image.php') {
 		if (hasNextImage()) {
-			?>var nextURL = "<?php echo html_encode(getNextImageURL());
+			?>var nextURL = "<?php
+			echo html_encode(getNextImageURL());
 			$NextURL = true;
 			?>";<?php
 		}
 		if (hasPrevImage()) {
-			?>var prevURL = "<?php echo html_encode(getPrevImageURL());
+			?>var prevURL = "<?php
+			echo html_encode(getPrevImageURL());
 			$PrevURL = true;
 			?>";<?php
 		}
@@ -141,13 +143,15 @@ if (!defined('WEBPATH'))
 		if ($_zenpage_enabled && is_NewsArticle()) {
 			if (getNextNewsURL()) {
 				$article_url = getNextNewsURL();
-				?>var nextURL = "<?php echo html_decode($article_url['link']);
+				?>var nextURL = "<?php
+				echo html_decode($article_url['link']);
 				$NextURL = true;
 				?>";<?php
 			}
 			if (getPrevNewsURL()) {
 				$article_url = getPrevNewsURL();
-				?>var prevURL = "<?php echo html_decode($article_url['link']);
+				?>var prevURL = "<?php
+				echo html_decode($article_url['link']);
 				$PrevURL = true;
 				?>";<?php
 			}
@@ -157,34 +161,34 @@ if (!defined('WEBPATH'))
 
 				var ColorboxActive = false; // cohabitation entre script de navigation et colorbox
 
-								function keyboardNavigation(e){
+				function keyboardNavigation(e){
 
-								if (ColorboxActive) return true; // cohabitation entre script de navigation et colorbox
+				if (ColorboxActive) return true; // cohabitation entre script de navigation et colorbox
 
-												if (!e) e = window.event;
-												if (e.altKey) return true;
-												var target = e.target || e.srcElement;
-												if (target && target.type) return true; //an input editable element
-												var keyCode = e.keyCode || e.which;
-												var docElem = document.documentElement;
-												switch (keyCode) {
-								case 63235: case 39:
-												if (e.ctrlKey || (docElem.scrollLeft == docElem.scrollWidth - docElem.clientWidth)) {
+				if (!e) e = window.event;
+				if (e.altKey) return true;
+				var target = e.target || e.srcElement;
+				if (target && target.type) return true; //an input editable element
+				var keyCode = e.keyCode || e.which;
+				var docElem = document.documentElement;
+				switch (keyCode) {
+				case 63235: case 39:
+								if (e.ctrlKey || (docElem.scrollLeft == docElem.scrollWidth - docElem.clientWidth)) {
 	<?php if ($NextURL) { ?>window.location.href = nextURL; <?php } ?>return false; }
-													break;
-																	case 63234: case 37:
-																	if (e.ctrlKey || (docElem.scrollLeft == 0)) {
+				break;
+				case 63234: case 37:
+								if (e.ctrlKey || (docElem.scrollLeft == 0)) {
 	<?php if ($PrevURL) { ?>window.location.href = prevURL; <?php } ?>return false; }
-						break;
-						}
-						return true;
-						}
+				break;
+				}
+				return true;
+				}
 
-		document.onkeydown = keyboardNavigation;
-						// cohabitation entre script de navigation et colorbox
-						$(document).bind('cbox_open', function() {ColorboxActive = true; })
-						$(document).bind('cbox_closed', function() {ColorboxActive = false; });
-						//]]>
+				document.onkeydown = keyboardNavigation;
+				// cohabitation entre script de navigation et colorbox
+				$(document).bind('cbox_open', function() {ColorboxActive = true; })
+								$(document).bind('cbox_closed', function() {ColorboxActive = false; });
+				//]]>
 			</script>
 		<?php } ?>
 
@@ -227,9 +231,9 @@ if (!defined('WEBPATH'))
 								<li<?php if ($_zp_gallery_page == 'news.php') { ?> class="active"<?php } ?>><?php printNewsIndexURL(gettext('News'), '', gettext('News')); ?></li>
 							<?php } ?>
 							<?php if ($_zenpage_enabled) { ?>
-	<?php printPageMenu('list-top', '', 'active', '', '', '', 0, false); ?>
-<?php } ?>
-<?php if ((zp_loggedin()) && (extensionEnabled('favoritesHandler'))) { ?>
+								<?php printPageMenu('list-top', '', 'active', '', '', '', 0, false); ?>
+							<?php } ?>
+							<?php if ((zp_loggedin()) && (extensionEnabled('favoritesHandler'))) { ?>
 								<li<?php if ($_zp_gallery_page == 'favorites.php') { ?> class="active"<?php } ?>> <?php printFavoritesURL(); ?></li>
 <?php } ?>
 <?php if (extensionEnabled('contact_form')) { ?>
@@ -246,7 +250,7 @@ if (!defined('WEBPATH'))
 				<div class="page-header">
 
 <?php if (extensionEnabled('dynamic-locale')) { ?>
-						<div id="flag" class="pull-right"><?php printLanguageSelector('langselector'); ?></div>
+						<div id="flag" class="pull-right"><?php printLanguageSelector(); ?></div>
 						<div class="clearfix"></div>
 <?php } ?>
 
@@ -278,9 +282,9 @@ if (!defined('WEBPATH'))
 						if ($rss) {
 							?>
 							<script type="text/javascript">
-						//<![CDATA[
-						$('.rss').prepend('<img alt="RSS Feed" src="<?php echo $_zp_themeroot; ?>/images/feed_icon.png">');
-						//]]>
+				//<![CDATA[
+				$('.rss').prepend('<img alt="RSS Feed" src="<?php echo $_zp_themeroot; ?>/images/feed_icon.png">');
+				//]]>
 							</script>
 <?php } ?>
 					</div>

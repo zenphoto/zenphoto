@@ -52,7 +52,7 @@ if (($_zp_gallery_page == 'image.php') && (function_exists('printPagedThumbsNav'
 ?>
 <?php
 if (function_exists('printLanguageSelector')) {
-	printLanguageSelector("langselector");
+	printLanguageSelector(true);
 }
 ?>
 <?php zp_apply_filter('theme_body_close'); ?>

@@ -84,7 +84,8 @@
 			}
 			printRSSLink('Gallery', '<li>', 'Gallery RSS feed', '</li>', false);
 			printRSSLink("News", "<li>", gettext("Notes RSS feed"), '</li>', false);
-		}?>
+		}
+		?>
 	</ul>
 </div>
 
@@ -151,6 +152,6 @@ if (function_exists("printUserLogin_out")) {
 ?>
 <?php
 if (function_exists('printLanguageSelector')) {
-	printLanguageSelector("langselector");
+	printLanguageSelector(true);
 }
 ?>
