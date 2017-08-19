@@ -196,6 +196,7 @@ class cacheManager {
 				echo '<br />';
 			}
 			?>
+			<span class="icons upArrow" id="<?php echo $theme; ?>_arrow">
 				<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
 					<?php echo ARROW_DOWN_GREEN; ?>
 				</a>
