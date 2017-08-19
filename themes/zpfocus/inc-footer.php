@@ -52,11 +52,11 @@
 					?>
 				</div>
 				<br />
-			<?php
+				<?php
 			}
 		}
 		if (function_exists('printLanguageSelector')) {
-			printLanguageSelector("langselector");
+			printLanguageSelector();
 		}
 		?>
 	</div>

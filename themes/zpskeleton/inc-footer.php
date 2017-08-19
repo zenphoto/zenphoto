@@ -18,19 +18,19 @@
 
 					<?php if (!zp_loggedin() && function_exists('printRegistrationForm')) { ?>
 						<li>|&nbsp;<a href="<?php echo getCustomPageURL('register'); ?>" title="<?php echo gettext('Register'); ?>"><?php echo gettext('Register'); ?></a></li>
-<?php } ?>
+					<?php } ?>
 
 				</ul>
 			</div>
 			<div class="footer-left">
 				&copy; <?php printGalleryTitle(); ?>
 
-<?php printZenphotoLink(); ?>
+				<?php printZenphotoLink(); ?>
 			</div>
 		</div>
-			<?php if (function_exists('printLanguageSelector')) { ?>
+		<?php if (function_exists('printLanguageSelector')) { ?>
 			<div class="sixteen columns">
-			<?php printLanguageSelector("langselector"); ?>
+				<?php printLanguageSelector(); ?>
 			</div>
 		<?php } ?>
 		<?php

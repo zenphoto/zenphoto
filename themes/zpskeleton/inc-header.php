@@ -66,15 +66,15 @@ $zpskel_social = function_exists('printAddThis');
 				break;
 			case 'pages.php':
 				$zpskel_metatitle = getBarePageTitle() . ' | ' . getBareGalleryTitle();
-				$zpskel_metadesc = truncate_string(getBare(getPageContent(), 150, '...'));
+				$zpskel_metadesc = truncate_string(getBare(getPageContent()), 150, '...');
 				break;
 			case 'news.php':
 				if (is_NewsArticle()) {
 					$zpskel_metatitle = gettext('News') . ' | ' . getBareNewsTitle() . ' | ' . getBareGalleryTitle();
-					$zpskel_metadesc = truncate_string(getBare(getNewsContent(), 150, '...'));
+					$zpskel_metadesc = truncate_string(getBare(getNewsContent()), 150, '...');
 				} else if ($_zp_current_category) {
 					$zpskel_metatitle = gettext('News') . ' | ' . $_zp_current_category->getTitle() . ' | ' . getBareGalleryTitle();
-					$zpskel_metadesc = truncate_string(getBare(getNewsCategoryDesc(), 150, '...'));
+					$zpskel_metadesc = truncate_string(getBare(getNewsCategoryDesc()), 150, '...');
 				} else if (getCurrentNewsArchive()) {
 					$zpskel_metatitle = gettext('News') . ' | ' . getCurrentNewsArchive() . ' | ' . getBareGalleryTitle();
 					$zpskel_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');
@@ -139,7 +139,7 @@ $zpskel_social = function_exists('printAddThis');
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
 			<script src="<?php echo $_zp_themeroot; ?>/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
 			<script type="text/javascript" charset="utf-8">
-				$(document).ready(function() {
+				$(document).ready(function () {
 					$("a[rel^='slideshow']").prettyPhoto({
 						slideshow: 5000, /* false OR interval time in ms */
 						autoplay_slideshow: true, /* true/false */
