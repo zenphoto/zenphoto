@@ -33,7 +33,7 @@
  * @subpackage theme
  */
 $plugin_is_filter = defaultExtension(99 | CLASS_PLUGIN);
-$plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto.");
+$plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with ZenPhoto20.");
 $plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> or the <em>stopdesign</em> theme.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'cmsFilters';
@@ -148,7 +148,7 @@ class cmsFilters {
 		$options['note'] = array('key' => 'menu_truncate_note',
 				'type' => OPTION_TYPE_NOTE,
 				'order' => 25,
-				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> These options are shared amoung <em>menu_manager</em>, <em>print_album_menu</em>, and <em>zenpage</em>.</p>'));
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> These options are shared among <em>menu_manager</em>, <em>print_album_menu</em>, and <em>zenpage</em>.</p>'));
 		return $options;
 	}
 

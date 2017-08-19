@@ -82,7 +82,7 @@ class register_user {
 		$options['note'] = array('key' => 'menu_truncate_note',
 				'type' => OPTION_TYPE_NOTE,
 				'order' => 8,
-				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> This option is shared amoung <em>federated_logon</em>, <em>googleLogin</em>, <em>facebookLogin</em>, and <em>register_user</em>.</p>'));
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> This option is shared among <em>federated_logon</em>, <em>googleLogin</em>, <em>facebookLogin</em>, and <em>register_user</em>.</p>'));
 
 		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 		if (count($mailinglist) == 0) { //	no one to send the notice to!
