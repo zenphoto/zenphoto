@@ -160,7 +160,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 		<p class="buttons">
 			<button type="submit" value="<?php echo gettext('Apply') ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
 			<button type="reset" value="<?php echo gettext('Reset') ?>">
-				<?php echo NO_ENTRY; ?>
+				<?php echo CROSS_MARK_RED; ?>
 				<strong><?php echo gettext("Reset"); ?></strong></button>
 		</p><br class="clearall"><br /><br />
 		<table>
@@ -434,7 +434,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 		<p class="buttons">
 			<button type="submit" value="<?php echo gettext('Apply') ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
 			<button type="reset" value="<?php echo gettext('Reset') ?>">
-				<?php echo NO_ENTRY; ?>
+				<?php echo CROSS_MARK_RED; ?>
 				<strong><?php echo gettext("Reset"); ?></strong></button>
 		</p><br /><br />
 		<input type="hidden" name="checkForPostTruncation" value="1" />

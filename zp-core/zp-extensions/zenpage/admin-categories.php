@@ -218,7 +218,7 @@ zenpageJSCSS();
 						if (extensionEnabled('hitcounter')) {
 							?>
 							<li>
-								<?php echo BACKWARDS_ARROW_STROKE_GREEN; ?>
+								<?php echo BALLOT_BOX_WITH_X_RED; ?>
 								<?php echo gettext('reset hitcounter'); ?>
 							</li>
 							<?php
@@ -226,6 +226,7 @@ zenpageJSCSS();
 						?>
 						<li>
 							<?php echo CROSS_MARK_RED; ?>
+							<?php echo gettext('Delete'); ?>
 						</li>
 					</ul>
 				</form>

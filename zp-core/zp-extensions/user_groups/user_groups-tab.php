@@ -197,7 +197,7 @@ echo '</head>' . "\n";
 							<p class="buttons">
 								<button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset">
-									<?php echo NO_ENTRY; ?>
+									<?php echo CROSS_MARK_RED; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 							</p>
@@ -409,7 +409,7 @@ echo '</head>' . "\n";
 							<p class="buttons">
 								<button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset">
-									<?php echo NO_ENTRY; ?>
+									<?php echo CROSS_MARK_RED; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 							</p>
@@ -474,7 +474,7 @@ echo '</head>' . "\n";
 							<p class="buttons">
 								<button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset">
-									<?php echo NO_ENTRY; ?>
+									<?php echo CROSS_MARK_RED; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 							</p>
@@ -511,7 +511,7 @@ echo '</head>' . "\n";
 							<p class="buttons">
 								<button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button>
 								<button type="reset">
-									<?php echo NO_ENTRY; ?>
+									<?php echo CROSS_MARK_RED; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 							</p>

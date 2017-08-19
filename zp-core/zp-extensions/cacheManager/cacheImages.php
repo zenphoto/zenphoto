@@ -194,29 +194,9 @@ if ($alb) {
 		$themes[$theme] = $data['name'];
 	}
 	$last = '';
+	cacheManager::printShowHide();
 	?>
-	<script type="text/javascript">
-		//<!-- <![CDATA[
-		function checkTheme(theme) {
-			$('.' + theme).prop('checked', $('#' + theme).prop('checked'));
-		}
-		function showTheme(theme) {
-			html = $('#' + theme + '_arrow').html();
-			if ($('#' + theme + '_arrow').hasClass('upArrow')) {
-				$('#' + theme + '_arrow').removeClass('upArrow');
-				html = html.replace(/<?php echo html_entity_decode(strip_tags(ARROW_DOWN_GREEN)); ?>/, '<?php echo html_entity_decode(strip_tags(ARROW_UP_GREEN)); ?>');
-				html = html.replace(/<?php echo gettext('Show'); ?>/, '<?php echo gettext('Hide'); ?>');
-				$('#' + theme + '_list').show();
-			} else {
-				$('#' + theme + '_arrow').addClass('upArrow');
-				html = html.replace(/<?php echo html_entity_decode(strip_tags(ARROW_UP_GREEN)); ?>/, ' <?php echo html_entity_decode(strip_tags(ARROW_DOWN_GREEN)); ?>');
-				html = html.replace(/<?php echo gettext('Hide'); ?>/, '<?php echo gettext('Show'); ?>');
-				$('#' + theme + '_list').hide();
-			}
-			$('#' + theme + '_arrow').html(html);
-		}
-		//]]> -->
-	</script>
+
 	<form class="dirtylistening" onReset="setClean('size_selections');" id="size_selections" name="size_selections" action="?tab=images&select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
 		<?php XSRFToken('cacheImages') ?>
 		<ol class="no_bullets">
@@ -300,7 +280,7 @@ if ($alb) {
 					<li>
 						<span class="icons upArrow" id="<?php echo $theme; ?>_arrow">
 							<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
-								<span style="color:green;font-size:large;">⇓</span>
+								<?php echo ARROW_DOWN_GREEN; ?>
 							</a>
 						</span>
 						<label>

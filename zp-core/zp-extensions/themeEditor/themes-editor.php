@@ -159,7 +159,7 @@ if (!empty($messages)) {
 							<strong><?php echo gettext("Update File"); ?></strong>
 						</button>
 						<button type="reset" value="<?php echo gettext('Reset') ?>">
-							<?php echo NO_ENTRY; ?>
+							<?php echo CROSS_MARK_RED; ?>
 							<strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</p>

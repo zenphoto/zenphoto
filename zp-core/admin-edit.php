@@ -960,7 +960,7 @@ echo "\n</head>";
 											<strong><?php echo gettext("Apply"); ?></strong>
 										</button>
 										<button type="reset" value="<?php echo gettext('Reset') ?>">
-											<?php echo NO_ENTRY; ?>
+											<?php echo CROSS_MARK_RED; ?>
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 										<div class="floatright">
@@ -1026,7 +1026,7 @@ echo "\n</head>";
 										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
-										<?php echo NO_ENTRY; ?>
+										<?php echo CROSS_MARK_RED; ?>
 										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 									<div class="floatright">
@@ -1804,9 +1804,12 @@ echo "\n</head>";
 								<?php
 								if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 									?>
-									<button class="serialize buttons" type="submit" ><?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
+									<button class="serialize buttons" type="submit" >
+										<?php echo HEAVY_GREEN_CHECKMARK; ?>
+										<strong><?php echo gettext("Apply"); ?></strong>
+									</button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
-										<?php echo NO_ENTRY; ?>
+										<?php echo CROSS_MARK_RED; ?>
 										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 									<?php
@@ -1860,7 +1863,7 @@ echo "\n</head>";
 										<?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
-										<?php echo NO_ENTRY; ?>
+										<?php echo CROSS_MARK_RED; ?>
 										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 									<?php

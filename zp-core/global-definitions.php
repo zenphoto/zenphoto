@@ -74,8 +74,7 @@ define('ARROW_LEFT_BLUE', '<span style="color: blue;font-size:large;line-height:
 define('ARROW_RIGHT_BLUE', '<span style="color: blue;font-size:large;line-height: 60%">&rArr;</span>');
 define('ARROW_UP_GRAY', '<span style="color: lightgray;font-size: large;">&uArr;</span>');
 define('ARROW_UP_GREEN', '<span style="color: green;font-size: large;">&uArr;</span>');
-define('GREEN_CROSS_ON_SHIELD', '<span style="color: green;font-size:large;line-height: 60%;">&#9960;</span>');
-define('BACKWARDS_ARROW_STROKE_GREEN', '<span style="color: green;">&#8603;</span>');
+define('BALLOT_BOX_WITH_X_RED', '<span style="color: red;font-size: large;line-height: 80%;">&#9746;</span>');
 define('BULLSEYE_BLUE', '<span style="color: blue;font-size: large;line-height: 80%;">&#9678;</span>');
 define('BULLSEYE_DARKORANGE', '<span style="color: darkorange;font-size: large;line-height: 80%;">&#9678;</span>');
 define('BULLSEYE_GREEN', '<span style="color: green;font-size: large;line-height: 80%;">&#9678;</span>');
@@ -92,6 +91,7 @@ define('DRAG_HANDLE_ALERT', '<span style="color:red;font-size: x-large;">&#10021
 define('ENVELOPE', '&#128231;');
 define('EXCLAMATION_RED', '<span style="color: red;padding-left: 5px;padding-right: 5px;">&#10071;</span>');
 define('GEAR_WITHOUT_HUB', '&#9965;');
+define('GREEN_CROSS_ON_SHIELD', '<span style="color: green;font-size: large;line-height: 60%;">&#9960;</span>');
 define('HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW', '<span style="color:blue;font-size:large;line-height: 60%;">&#10150;</span>');
 define('HEAVY_GREEN_CHECKMARK', '<span style="color: green;">&#9989;</span>');
 define('INFORMATION_BLUE', '<span style="color: blue;font-size: large;line-height: 90%;">&#8505;</span>');
@@ -105,8 +105,8 @@ define('SQUARED_KEY_GREEN', '<span style="color: green;font-size: large;">&#9919
 define('WARNING_SIGN_ORANGE', '<span style="color: darkorange;font-size: large;line-height: 80%">&#9888;</span>');
 //Firefox has a huge wastebasket image
 if (preg_match('~firefox~i', $_SERVER['HTTP_USER_AGENT'])) {
-	define('WASTEBASKET', '&#128465;');
+	define('WASTEBASKET', '<span style="color: brown;">&#128465;</span>');
 } else {
-	define('WASTEBASKET', '<span style="font-size: large;line-height: 80%">&#128465;</span>');
+	define('WASTEBASKET', '<span style="color: brown;font-size: large;line-height: 80%">&#128465;</span>');
 }
 ?>

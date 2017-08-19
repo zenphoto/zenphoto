@@ -116,7 +116,8 @@ class DownloadList {
 			} else {
 				$x = '          ';
 				?>
-				<a onclick="resetPass('_downloadList');" title="<?php echo gettext('clear password'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" /></a>
+				<a onclick="resetPass('_downloadList');" title="<?php echo gettext('clear password'); ?>">
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" /></a>
 				<?php
 			}
 			?>
@@ -144,7 +145,7 @@ class DownloadList {
 							 name="disclose_password_downloadList"
 							 id="disclose_password_downloadList"
 							 onclick="passwordClear('_downloadList');
-									 togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
+											 togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
 			</label>
 			<br />
 			<span class="password_field__downloadList">

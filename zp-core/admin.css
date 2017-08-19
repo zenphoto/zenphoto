@@ -645,6 +645,7 @@ table.options tr td {
 }
 
 .option_desc {
+	vertical-align: top;
 	text-align:left;
 	padding: 5px;
 }

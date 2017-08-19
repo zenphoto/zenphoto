@@ -118,7 +118,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 	switch ($check) {
 		case 0:
 			$cls = "fail";
-			$ico = . CROSS_MARK_RED;
+			$ico = CROSS_MARK_RED;
 			break;
 		case -1:
 		case -3:

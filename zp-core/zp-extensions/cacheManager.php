@@ -188,41 +188,26 @@ class cacheManager {
 		ksort($custom, SORT_LOCALE_STRING);
 		$custom[''] = array(array());
 		$c = 0;
-		?>
-		<script type="text/javascript">
-			//<!-- <![CDATA[
-			function showTheme(theme) {
-				html = $('#' + theme + '_arrow').html();
-				if (html.match(/down/)) {
-					html = html.replace(/_down/, '_up');
-					html = html.replace(/title="<?php echo gettext('Show'); ?>/, 'title="<?php echo gettext('Hide'); ?>"');
-					$('#' + theme + '_list').show();
-				} else {
-					html = html.replace(/_up/, '_down');
-					html = html.replace(/title="<?php echo gettext('Hide'); ?>/, 'title="<?php echo gettext('Show'); ?>"');
-					$('#' + theme + '_list').hide();
-				}
-				$('#' + theme + '_arrow').html(html);
-			}
-			//]]> -->
-		</script>
-		<?php
+		self::printShowHide();
+
 		foreach ($custom as $theme => $themedata) {
 			$themedata = sortMultiArray($themedata, array('thumb', 'image_size', 'image_width', 'image_height'));
+			if (!$theme) {
+				echo '<br />';
+			}
 			?>
-			<span class="icons" id="<?php echo $theme; ?>_arrow">
+				<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
+					<?php echo ARROW_DOWN_GREEN; ?>
+				</a>
 				<?php
 				if ($theme) {
 					$inputclass = 'hidden';
 					echo '<em>' . $theme . '</em> (' . count($themedata), ')';
 				} else {
 					$inputclass = 'textbox';
-					echo '<br />' . gettext('add');
+					echo gettext('add');
 				}
 				?>
-				<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
-					<?php echo ARROW_DOWN_GREEN; ?>
-				</a>
 			</span>
 			<br />
 			<div id="<?php echo $theme; ?>_list" style="display:none">
@@ -322,6 +307,36 @@ class cacheManager {
 				'crop_width' => $cw, 'crop_height' => $ch, 'crop_x' => $cx, 'crop_y' => $cy, 'thumb' => $thumb, 'wmk' => $watermark, 'gray' => $effects, 'maxspace' => $maxspace, 'valid' => 1));
 		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($theme) . ',' . db_quote($cacheSize) . ')';
 		query($sql);
+	}
+
+	/**
+	 * javascript for show and hide of individual cache sizes
+	 */
+	static function printShowHide() {
+		?>
+		<script type="text/javascript">
+		//<!-- <![CDATA[
+			function checkTheme(theme) {
+				$('.' + theme).prop('checked', $('#' + theme).prop('checked'));
+			}
+			function showTheme(theme) {
+				html = $('#' + theme + '_arrow').html();
+				if ($('#' + theme + '_arrow').hasClass('upArrow')) {
+					$('#' + theme + '_arrow').removeClass('upArrow');
+					html = html.replace(/<?php echo html_entity_decode(strip_tags(ARROW_DOWN_GREEN)); ?>/, '<?php echo html_entity_decode(strip_tags(ARROW_UP_GREEN)); ?>');
+					html = html.replace(/<?php echo gettext('Show'); ?>/, '<?php echo gettext('Hide'); ?>');
+					$('#' + theme + '_list').show();
+				} else {
+					$('#' + theme + '_arrow').addClass('upArrow');
+					html = html.replace(/<?php echo html_entity_decode(strip_tags(ARROW_UP_GREEN)); ?>/, ' <?php echo html_entity_decode(strip_tags(ARROW_DOWN_GREEN)); ?>');
+					html = html.replace(/<?php echo gettext('Hide'); ?>/, '<?php echo gettext('Show'); ?>');
+					$('#' + theme + '_list').hide();
+				}
+				$('#' + theme + '_arrow').html(html);
+			}
+		//]]> -->
+		</script>
+		<?php
 	}
 
 	/**

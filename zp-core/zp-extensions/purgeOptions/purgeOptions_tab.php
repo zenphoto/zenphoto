@@ -175,7 +175,7 @@ $orphaned = array();
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button >
 								<button type="reset" value="<?php echo gettext('reset') ?>">
-									<?php echo NO_ENTRY; ?>
+									<?php echo CROSS_MARK_RED; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 							</p>
@@ -299,7 +299,7 @@ $orphaned = array();
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="reset" value="<?php echo gettext('reset') ?>" >
-									<?php echo NO_ENTRY; ?>
+									<?php echo CROSS_MARK_RED; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 							</p>

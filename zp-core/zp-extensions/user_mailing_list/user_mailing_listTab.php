@@ -96,16 +96,14 @@ printAdminHeader('admin', 'Mailing');
 						});
 					</script>
 					<p class="buttons">
-						<button class="submitbutton" type="submit"
-										title="<?php echo gettext("Send mail"); ?>"<?php echo $disabled; ?> >
+						<button class="submitbutton" type="submit" title="<?php echo gettext("Send mail"); ?>"<?php echo $disabled; ?> >
 							<?php echo HEAVY_GREEN_CHECKMARK; ?>
 							<strong><?php echo gettext("Send mail"); ?></strong>
 						</button>
 					</p>
 					<p class="buttons">
-						<button class="submitbutton" type="reset"
-										title="<?php echo gettext("Reset"); ?>">
-											<?php echo NO_ENTRY; ?>
+						<button class="submitbutton" type="reset" title="<?php echo gettext("Reset"); ?>">
+							<?php echo CROSS_MARK_RED; ?>
 							<strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</p>
