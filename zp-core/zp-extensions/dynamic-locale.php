@@ -100,7 +100,6 @@ function printLanguageSelector($flags = NULL) {
 		$flags = getOption('dynamic_locale_visual');
 	}
 	$request = parse_url(getRequestURI());
-	$separator = '?';
 	if (isset($request['query'])) {
 		$query = explode('&', $request['query']);
 		$uri['query'] = '';
@@ -113,12 +112,13 @@ function printLanguageSelector($flags = NULL) {
 			unset($request['query']);
 		} else {
 			$request['query'] = implode('&', $query);
-			$separator = '&';
 		}
 	}
 	$uri = pathurlencode(@$request['path']);
+	$separator = '?';
 	if (isset($request['query'])) {
 		$uri .= '?' . $request['query'];
+		$separator = '&';
 	}
 	if ($flags) {
 		asort($languages);
@@ -158,7 +158,7 @@ function printLanguageSelector($flags = NULL) {
 				<select id="dynamic-locale" class="languageSelector" name="locale" onchange="switch_language();">
 					<?php
 					foreach ($languages as $text => $lang) {
-						$path = dynamic_locale::localLink($uri, $lang);
+						$path = dynamic_locale::localLink($uri, $separator, $lang);
 						?>
 						<option value="<?php echo html_encode(html_encode($path)); ?>"<?php if ($lang == $localeOption) echo ' selected="selected"'; ?>>
 						<span class="locale_name">
