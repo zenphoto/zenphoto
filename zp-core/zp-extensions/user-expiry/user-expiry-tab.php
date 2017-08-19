@@ -171,6 +171,7 @@ echo '</head>' . "\n";
 							} else {
 								$expires_display = $r3 = $r4 = '';
 							}
+							$userid = html_encode($user['user']);
 							if ($user['valid'] == 2) {
 								$hits = 0;
 								foreach ($adminordered as $tuser) {
@@ -188,6 +189,7 @@ echo '</head>' . "\n";
 							$r1 = CROSS_MARK_RED . ' ' . '<input type="radio" name="r_' . $id . '" value="delete"' . $checked_delete . ' />&nbsp;';
 							if ($user['valid'] == 2) {
 								$r2 = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" /> <input type="radio" name="r_' . $id . '" value="enable"' . $checked_disable . ' />&nbsp;';
+								$userid = '<span style="color: darkred;">' . $userid . '</span>';
 							} else {
 								$r2 = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" /> <input type="radio" name="r_' . $id . '" value="disable"' . $checked_disable . ' />&nbsp;';
 							}
@@ -205,7 +207,7 @@ echo '</head>' . "\n";
 							}
 							?>
 							<li>
-								<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)'), $r1 . $r2 . $r3 . $r4 . $r5, html_encode($user['user']), $expires_display, $loggedin); ?>
+								<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)'), $r1 . $r2 . $r3 . $r4 . $r5, $userid, $expires_display, $loggedin); ?>
 							</li>
 							<?php
 						}

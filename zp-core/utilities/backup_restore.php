@@ -563,24 +563,25 @@ if (isset($_GET['compression'])) {
 						</select>
 						<input type="hidden" name="restore" value="true" />
 						<br />
-						<?php
-						echo gettext('Select the tables to restore.');
-						?>
 						<span class="nowrap">
+							<?php
+							echo gettext('Select the tables to restore.');
+							?>
 							<input type="checkbox" name="all" id="checkAllAuto" value="1" checked="checked" onclick="$('.checkAuto').prop('checked', $('#checkAllAuto').prop('checked'));" /><?php echo gettext('all'); ?>
 						</span>
 						<br />
-						<?php
-						foreach ($tables as $row) {
-							$table = preg_replace('~^' . $prefix . '~', '', array_shift($row));
-							?>
-							<span class="nowrap">
-								<input type="checkbox" class="checkAuto" name="restore_<?php echo $table; ?>" value="1" checked="checked" /><?php echo $table; ?>
-							</span>
+						<div  style="max-width: 750px;">
 							<?php
-						}
-						?>
-
+							foreach ($tables as $row) {
+								$table = preg_replace('~^' . $prefix . '~', '', array_shift($row));
+								?>
+								<span class="nowrap">
+									<input type="checkbox" class="checkAuto" name="restore_<?php echo $table; ?>" value="1" checked="checked" /><?php echo $table; ?>
+								</span>
+								<?php
+							}
+							?>
+						</div>
 
 						<br class="clearall">
 						<div class="buttons pad_button" id="dbrestore">

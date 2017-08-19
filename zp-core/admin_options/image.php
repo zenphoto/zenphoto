@@ -643,7 +643,7 @@ function getOptionContent() {
 														 name="disclose_password"
 														 id="disclose_password"
 														 onclick="passwordClear('');
-																 togglePassword('');" /><?php echo gettext('Show password'); ?>
+																		 togglePassword('');" /><?php echo gettext('Show password'); ?>
 										</label>
 									</td>
 								</tr>
@@ -758,7 +758,7 @@ function getOptionContent() {
 										$class_hide = ' class="showMeta hideMeta"';
 									}
 									?>
-									<li>
+									<li class="nowrap">
 										<label>
 											<input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio" <?php echo $class_show . $checked_show ?> value="1" />
 											<?php echo HEAVY_GREEN_CHECKMARK; ?>

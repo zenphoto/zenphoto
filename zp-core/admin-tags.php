@@ -179,10 +179,10 @@ printAdminHeader('admin');
 						<?php
 						if (getOption('multi_lingual')) {
 							?>
-							<p class="buttons">
+							<p class="buttons" style="padding-top: 5px;padding-bottom: 25px;">
 								<button type="submit" id="assign_tags" value="<?php echo gettext("Delete checked tags"); ?>"
 												onclick="$('#tag_action').val('assign');
-														this.form.submit();">
+															this.form.submit();">
 													<?php echo ARROW_RIGHT_BLUE; ?>
 													<?php echo gettext('assign'); ?>
 								</button>
@@ -242,13 +242,12 @@ printAdminHeader('admin');
 								?>
 							</ul>
 						</div>
-						<p class="buttons">
+						<p class="buttons" style="padding-bottom: 1px;">
 							<button type="submit" id='rename_tags' value="<?php echo gettext("Rename tags"); ?>">
 								<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Rename tags"); ?>
 							</button>
 						</p>
 					</form>
-					<br />
 					<br />
 					<div class="tagtext">
 						<p><?php echo gettext('To change the value of a tag enter a new value in the text box below the tag. Then press the <em>Rename tags</em> button'); ?></p>
@@ -272,7 +271,7 @@ printAdminHeader('admin');
 								?>
 							</ul>
 						</div>
-						<p class="buttons">
+						<p class="buttons"<?php if (getOption('multi_lingual')) echo 'style="padding-bottom: 25px;"'; ?>>
 							<button type="submit" id='save_tags' value="<?php echo gettext("Add tags"); ?>">
 								<?php echo GREEN_CROSS_ON_SHIELD; ?>
 								<?php echo gettext("Add tags"); ?>
@@ -295,9 +294,11 @@ printAdminHeader('admin');
 						} else {
 							?>
 							<input type="hidden" name="language" value="" />
+							<br />
 							<?php
 						}
 						?>
+
 						<div class="clearall"></div>
 					</form>
 
