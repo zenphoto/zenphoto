@@ -215,15 +215,16 @@ if (isset($_GET['action'])) {
 								markUpdated($user);
 							}
 							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
-							if ($updated) {
-								$returntab .= '&show[]=' . $user;
-								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
-								if (!empty($msg)) {
-									$notify = '?mismatch=format&error=' . urlencode($msg);
-									$error = true;
+							if (!($error && !$_zp_current_admin_obj->getID())) { //	new install and password problems, leave with no admin
+								if ($updated) {
+									$returntab .= '&show[]=' . $user;
+									$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
+									if (!empty($msg)) {
+										$notify = '?mismatch=format&error=' . urlencode($msg);
+									}
+									$userobj->transient = false;
+									$userobj->save();
 								}
-								$userobj->transient = false;
-								$userobj->save();
 							}
 						}
 					}
