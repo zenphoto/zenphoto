@@ -195,7 +195,7 @@ printSortableHead();
 										</span>
 										<span class="buttons">
 											<a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'), $menuset); ?>">
-												<?php echo CROSS_MARK_RED; ?>
+												<?php echo WASTEBASKET; ?>
 												<strong><?php echo gettext("Delete menu"); ?></strong>
 											</a>
 										</span>
@@ -257,7 +257,7 @@ printSortableHead();
 						<?php echo gettext("View"); ?>
 					</li>
 					<li>
-						<?php echo CROSS_MARK_RED; ?>
+						<?php echo WASTEBASKET; ?>
 						<?php echo gettext("Delete"); ?>
 					</li>
 				</ul>

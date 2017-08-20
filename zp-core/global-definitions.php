@@ -107,6 +107,6 @@ define('WARNING_SIGN_ORANGE', '<span style="color: darkorange;font-size: large;l
 if (preg_match('~firefox~i', $_SERVER['HTTP_USER_AGENT'])) {
 	define('WASTEBASKET', '<span style="color: brown;">&#128465;</span>');
 } else {
-	define('WASTEBASKET', '<span style="color: brown;font-size: large;line-height: 80%">&#128465;</span>');
+	define('WASTEBASKET', '<span style="color: brown;font-weight: bold; font-size: large;line-height: 80%">&#128465;</span>');
 }
 ?>

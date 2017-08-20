@@ -225,7 +225,7 @@ zenpageJSCSS();
 						}
 						?>
 						<li>
-							<?php echo CROSS_MARK_RED; ?>
+							<?php echo WASTEBASKET; ?>
 							<?php echo gettext('Delete'); ?>
 						</li>
 					</ul>

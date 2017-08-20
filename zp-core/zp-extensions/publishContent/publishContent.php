@@ -436,7 +436,7 @@ echo "</head>\n";
 													<?php echo NO_ENTRY; ?>
 												</a>
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'd');" title="<?php echo gettext('Set all to be deleted'); ?>">
-													<?php echo CROSS_MARK_RED; ?>
+													<?php echo WASTEBASKET; ?>
 												</a>
 												&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $key; ?></strong>
 											</p>
@@ -459,7 +459,7 @@ echo "</head>\n";
 																		<?php echo gettext('Do not publish'); ?>
 																	</label>
 																	<label id="label_del_<?php echo $item; ?>" style="white-space:nowrap">
-																		<?php echo CROSS_MARK_RED; ?>
+																		<?php echo WASTEBASKET; ?>
 																		<input id="del_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_d" name="r_<?php echo $item; ?>" type="radio"	value="del_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', true)" />
 																		<?php echo gettext('Delete'); ?>
 																	</label>

@@ -131,12 +131,6 @@ printLogoAndLinks();
 							<?php XSRFToken('savecomment'); ?>
 							<input	type="hidden" name="id" value="<?php echo $id; ?>" />
 							<span class="buttons">
-								<p class="buttons">
-									<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment') ?>'; }"
-										 title="<?php echo gettext('Delete'); ?>" >
-											 <?php echo CROSS_MARK_RED; ?>
-										<?php echo gettext('Delete'); ?></a>
-								</p>
 								<p class="buttons" style="margin-top: 10px">
 									<button type="submit">
 										<?php echo HEAVY_GREEN_CHECKMARK; ?>
@@ -149,6 +143,13 @@ printLogoAndLinks();
 										<strong><?php echo gettext("Cancel"); ?></strong>
 									</button>
 								</p>
+							</span>
+							<span class="buttons floatright">
+								<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment') ?>'; }"
+									 title="<?php echo gettext('Delete'); ?>" >
+										 <?php echo WASTEBASKET; ?>
+										 <?php echo gettext('Delete'); ?>
+								</a>
 							</span>
 							<br style="clear:both" /><br />
 							<div class="commentformedit_fields">
@@ -480,7 +481,7 @@ printLogoAndLinks();
 											<div class="page-list_icon">
 												<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment') ?>'; }"
 													 title="<?php echo gettext('Delete this comment.'); ?>" >
-														 <?php echo CROSS_MARK_RED; ?>
+														 <?php echo WASTEBASKET; ?>
 												</a>
 											</div>
 										</div>
@@ -521,7 +522,7 @@ printLogoAndLinks();
 								<?php echo gettext("E-mail comment author"); ?>
 							</li>
 							<li>
-								<?php echo CROSS_MARK_RED; ?>
+								<?php echo WASTEBASKET; ?>
 								<?php echo gettext("Delete"); ?>
 							</li>
 						</ul>

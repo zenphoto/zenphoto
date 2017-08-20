@@ -171,7 +171,7 @@ printAdminHeader('admin');
 							<button type="submit" id='delete_tags' value="<?php echo gettext("Delete checked tags"); ?>"
 											onclick="$('#tag_action').val('delete');
 													this.form.submit();">
-												<?php echo CROSS_MARK_RED; ?>
+												<?php echo WASTEBASKET; ?>
 												<?php echo gettext("Delete checked tags"); ?>
 							</button>
 						</p>
@@ -182,7 +182,7 @@ printAdminHeader('admin');
 							<p class="buttons" style="padding-top: 5px;padding-bottom: 25px;">
 								<button type="submit" id="assign_tags" value="<?php echo gettext("Delete checked tags"); ?>"
 												onclick="$('#tag_action').val('assign');
-															this.form.submit();">
+														this.form.submit();">
 													<?php echo ARROW_RIGHT_BLUE; ?>
 													<?php echo gettext('assign'); ?>
 								</button>

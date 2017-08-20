@@ -186,7 +186,7 @@ echo '</head>' . "\n";
 								}
 							}
 							$id = postIndexEncode($user['id']);
-							$r1 = CROSS_MARK_RED . ' ' . '<input type="radio" name="r_' . $id . '" value="delete"' . $checked_delete . ' />&nbsp;';
+							$r1 = WASTEBASKET . ' ' . '<input type="radio" name="r_' . $id . '" value="delete"' . $checked_delete . ' />&nbsp;';
 							if ($user['valid'] == 2) {
 								$r2 = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" /> <input type="radio" name="r_' . $id . '" value="enable"' . $checked_disable . ' />&nbsp;';
 								$userid = '<span style="color: darkred;">' . $userid . '</span>';
@@ -213,7 +213,7 @@ echo '</head>' . "\n";
 						}
 						?>
 					</ul>
-					<?php echo CROSS_MARK_RED; ?>
+					<?php echo WASTEBASKET; ?>
 					<?php echo gettext('Remove'); ?>
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
 					<?php echo gettext('Disable'); ?>

@@ -270,7 +270,7 @@ echo "\n</head>";
 								</table>
 								<p class="buttons">
 									<button type="submit">
-										<?php echo HEAVY_GREEN_CHECKMARK; ?>
+										<?php echo WASTEBASKET; ?>
 										<strong><?php echo gettext("Delete"); ?></strong>
 									</button>
 									<button type="reset">

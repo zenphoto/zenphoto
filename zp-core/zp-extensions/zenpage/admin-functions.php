@@ -250,9 +250,7 @@ function printPagesListTable($page, $toodeep) {
 				?>
 			</div>
 			<div class="page-list_icon">
-				<?php
-				echo linkPickerIcon($page);
-				?>
+				<?php echo linkPickerIcon($page); ?>
 			</div>
 
 			<?php
@@ -311,7 +309,7 @@ function printPagesListTable($page, $toodeep) {
 				?>
 				<div class="page-list_icon">
 					<a href="javascript:confirmDelete('admin-pages.php?delete=<?php echo $page->getTitlelink(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>',deletePage)" title="<?php echo gettext("Delete page"); ?>">
-						<?php echo CROSS_MARK_RED; ?>
+						<?php echo WASTEBASKET; ?>
 					</a>
 				</div>
 				<div class="page-list_icon">
@@ -980,9 +978,7 @@ function printCategoryListSortableTable($cat, $toodeep) {
 				?>
 			</div>
 			<div class="page-list_icon">
-				<?php
-				echo linkPickerIcon($cat);
-				?>
+				<?php echo linkPickerIcon($cat); ?>
 			</div>
 			<div class="page-list_icon">
 				<?php
@@ -1028,11 +1024,8 @@ function printCategoryListSortableTable($cat, $toodeep) {
 			<div class="page-list_icon">
 				<a href="javascript:confirmDelete('admin-categories.php?delete=<?php echo js_encode($cat->getTitlelink()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category') ?>',deleteCategory)"
 					 title="<?php echo gettext("Delete Category"); ?>">
-						 <?php echo CROSS_MARK_RED; ?>
+						 <?php echo WASTEBASKET; ?>
 				</a>
-			</div>
-			<div class="page-list_icon">
-				<?php echo linkPickerIcon($cat, 'link_source_' . $cat->getID()); ?>
 			</div>
 			<div class="page-list_icon">
 				<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $cat->getTitlelink(); ?>" />
@@ -1394,7 +1387,7 @@ function printZenpageIconLegend() {
 		}
 		?>
 		<li>
-			<?php echo CROSS_MARK_RED; ?>
+			<?php echo WASTEBASKET; ?>
 			<?php echo gettext("delete"); ?>
 		</li>
 	</ul>

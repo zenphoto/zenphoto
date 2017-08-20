@@ -154,7 +154,7 @@ function printItemsListTable($item, $toodeep) {
 			</div>
 			<div class="page-list_icon">
 				<a href="javascript:deleteMenuItem('<?php echo $item['id']; ?>','<?php printf(gettext('Ok to delete %s? This cannot be undone.'), html_encode($array['name'])); ?>');" >
-					<?php echo CROSS_MARK_RED; ?>
+					<?php echo WASTEBASKET; ?>
 				</a>
 			</div>
 			<div class="page-list_icon">

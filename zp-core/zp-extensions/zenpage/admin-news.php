@@ -412,7 +412,7 @@ updatePublished('news');
 											?>
 											<div class="page-list_icon">
 												<a href="javascript:confirmDelete('admin-news.php<?php echo $option . $divider; ?>delete=<?php echo $article->getTitlelink(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
-													<?php echo CROSS_MARK_RED; ?>
+													<?php echo WASTEBASKET; ?>
 												</a>
 											</div>
 											<?php

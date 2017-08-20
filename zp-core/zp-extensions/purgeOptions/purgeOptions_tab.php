@@ -248,7 +248,7 @@ $orphaned = array();
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedIgnore" value="1" onclick="$(this).removeAttr('checked');"/>
 												</label>
 												<label class="none">
-													<?php echo CROSS_MARK_RED; ?>
+													<?php echo WASTEBASKET; ?>
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedDelete<?php if (in_array('emptyOption', $classes)) echo ' deleteEmpty'; ?>" value="2" />
 												</label>
 												<label class="none">
@@ -269,7 +269,7 @@ $orphaned = array();
 									</ul>
 									<?php echo BULLSEYE_BLUE; ?>
 									<?php echo gettext('no action'); ?>
-									<?php echo CROSS_MARK_RED; ?>
+									<?php echo WASTEBASKET; ?>
 									<?php echo gettext('delete'); ?>
 									<?php echo SQUARED_KEY_GREEN; ?>
 									<?php echo gettext('hide'); ?>

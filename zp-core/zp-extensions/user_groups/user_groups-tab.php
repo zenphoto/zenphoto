@@ -291,7 +291,7 @@ echo '</head>' . "\n";
 													?>
 													<a href="javascript:if(confirm(<?php echo "'" . $msg . "'"; ?>)) { launchScript('',['action=deletegroup','group=<?php echo addslashes($groupname); ?>','XSRFToken=<?php echo getXSRFToken('deletegroup') ?>']); }"
 														 title="<?php echo gettext('Delete this group.'); ?>" style="color: #c33;">
-															 <?php echo CROSS_MARK_RED; ?>
+															 <?php echo WASTEBASKET; ?>
 													</a>
 													<?php
 												}

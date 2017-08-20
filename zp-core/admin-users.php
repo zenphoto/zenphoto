@@ -665,7 +665,7 @@ echo $refresh;
 															<span class="floatright">
 																<a href="javascript:if(confirm(<?php echo "'" . js_encode($msg) . "'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin') ?>'; }"
 																	 title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;">
-																		 <?php echo CROSS_MARK_RED; ?>
+																		 <?php echo WASTEBASKET; ?>
 																</a>
 															</span>
 															<?php
