@@ -103,6 +103,7 @@ if (isset($_GET['action'])) {
 						$user = trim(sanitize($_POST['adminuser' . $i]));
 						if (empty($user) && !empty($pass)) {
 							$notify = '?mismatch=nothing';
+							$error = true;
 						}
 						if (!empty($user)) {
 							$nouser = false;
@@ -140,6 +141,8 @@ if (isset($_GET['action'])) {
 							if (empty($pass)) {
 								if ($newuser || @$_POST['passrequired' . $i]) {
 									$msg = sprintf(gettext('%s password may not be empty!'), $admin_n);
+									$notify = '?mismatch=format&error=' . urlencode($msg);
+									$error = true;
 								}
 							} else {
 								if (isset($_POST['disclose_password' . $i]) && $_POST['disclose_password' . $i] == 'on') {
