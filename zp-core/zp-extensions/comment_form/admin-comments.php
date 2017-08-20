@@ -145,7 +145,7 @@ printLogoAndLinks();
 								</p>
 								<p class="buttons" style="margin-top: 10px">
 									<button type="button" title="<?php echo gettext("Cancel"); ?>" onclick="window.location = 'admin-comments.php';">
-										<?php echo NO_ENTRY; ?>
+										<?php echo CROSS_MARK_RED; ?>
 										<strong><?php echo gettext("Cancel"); ?></strong>
 									</button>
 								</p>
