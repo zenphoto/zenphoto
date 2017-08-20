@@ -103,6 +103,7 @@ if (isset($_GET['action'])) {
 						$user = trim(sanitize($_POST['adminuser' . $i]));
 						if (empty($user) && !empty($pass)) {
 							$notify = '?mismatch=nothing';
+							$error = true;
 						}
 						if (!empty($user)) {
 							$nouser = false;
@@ -140,6 +141,8 @@ if (isset($_GET['action'])) {
 							if (empty($pass)) {
 								if ($newuser || @$_POST['passrequired' . $i]) {
 									$msg = sprintf(gettext('%s password may not be empty!'), $admin_n);
+									$notify = '?mismatch=format&error=' . urlencode($msg);
+									$error = true;
 								}
 							} else {
 								if (isset($_POST['disclose_password' . $i]) && $_POST['disclose_password' . $i] == 'on') {
@@ -215,15 +218,20 @@ if (isset($_GET['action'])) {
 								markUpdated($user);
 							}
 							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
-							if ($updated) {
-								$returntab .= '&show[]=' . $user;
-								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
-								if (!empty($msg)) {
-									$notify = '?mismatch=format&error=' . urlencode($msg);
-									$error = true;
+							if (!($error && !$_zp_current_admin_obj->getID())) { //	new install and password problems, leave with no admin
+								if ($updated) {
+									$returntab .= '&show[]=' . $user;
+									$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
+									if (!empty($msg)) {
+										$notify = '?mismatch=format&error=' . urlencode($msg);
+									}
+									$userobj->transient = false;
+									$userobj->save();
+									if (!$_zp_current_admin_obj->getID()) {
+										// avoid the logon screen for first user established
+										Zenphoto_Authority::logUser($userobj);
+									}
 								}
-								$userobj->transient = false;
-								$userobj->save();
 							}
 						}
 					}
