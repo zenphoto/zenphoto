@@ -759,15 +759,15 @@ function getOptionContent() {
 									}
 									?>
 									<li class="nowrap">
-										<label>
+										<label title="<?php echo gettext('show'); ?>">
 											<input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio" <?php echo $class_show . $checked_show ?> value="1" />
 											<?php echo HEAVY_GREEN_CHECKMARK; ?>
 										</label>
-										<label>
+										<label title="<?php echo gettext('hide'); ?>">
 											<input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio" <?php echo $class_hide . $checked_hide ?> value="0" />
 											<?php echo NO_ENTRY; ?>
 										</label>
-										<label>
+										<label title="<?php echo gettext('disable'); ?>">
 											<input id="<?php echo $key; ?>_disable" name="<?php echo $key; ?>" type="radio" class="disableMeta"<?php echo $checked_disabled ?> value="2" />
 											<?php echo CROSS_MARK_RED; ?>
 										</label>
@@ -780,13 +780,19 @@ function getOptionContent() {
 						</div>
 						<span class="floatright">
 							<?php echo gettext('all'); ?>
-							<label><input type="radio" name="all_metadata" onclick="setMetaDefaults();" /><?php echo gettext('default'); ?></label>
-							<label><input type="radio" name="all_metadata" onclick="checkMeta('showMeta');" /><?php echo HEAVY_GREEN_CHECKMARK; ?> </label>
-							<label>
+							<label title="<?php echo gettext('restore defaults'); ?>">
+								<input type="radio" name="all_metadata" onclick="setMetaDefaults();" />
+								<?php echo gettext('default'); ?>
+							</label>
+							<label title="<?php echo gettext('show'); ?>">
+								<input type="radio" name="all_metadata" onclick="checkMeta('showMeta');" />
+								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							</label>
+							<label title="<?php echo gettext('hide'); ?>">
 								<input type="radio" name="all_metadata" onclick="checkMeta('hideMeta');" />
 								<?php echo NO_ENTRY; ?>
 							</label>
-							<label>
+							<label title="<?php echo gettext('disable'); ?>">
 								<input type="radio" name="all_metadata" onclick="checkMeta('disableMeta');" />
 								<?php echo CROSS_MARK_RED; ?>
 							</label>
@@ -891,7 +897,7 @@ function getOptionContent() {
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" value="<?php echo gettext('reset') ?>">
-								<?php echo BALLOT_BOX_WITH_X_RED; ?>
+								<?php echo CROSS_MARK_RED; ?>
 								<strong><?php echo gettext("Reset"); ?>
 								</strong>
 							</button>
