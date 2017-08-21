@@ -194,7 +194,7 @@ echo '</head>' . "\n";
 								$r2 = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" /> <input type="radio" name="r_' . $id . '" value="disable"' . $checked_disable . ' />&nbsp;';
 							}
 							if ($subscription) {
-								$r3 = HEAVY_GREEN_CHECKMARK . '</span> <input type="radio" name="r_' . $id . '" value="renew"' . $checked_renew . $checked_disable . ' />&nbsp;';
+								$r3 = CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN . '</span> <input type="radio" name="r_' . $id . '" value="renew"' . $checked_renew . $checked_disable . ' />&nbsp;';
 								if (!$user['email']) {
 									$checked_disable = ' disabled="disabled"';
 								}
@@ -228,13 +228,18 @@ echo '</head>' . "\n";
 					}
 					if ($subscription) {
 						?>
-						<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext('Renew'); ?>
+						<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
+						<?php echo gettext('Renew'); ?>
 						<?php echo ENVELOPE; ?>
+						<?php echo gettext('Email renewal link'); ?>
 						<?php
 					}
 					?>
 					<p class="buttons">
-						<button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button>
+						<button type="submit">
+							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<strong><?php echo gettext("Apply"); ?></strong>
+						</button>
 						<button type="reset">
 							<?php echo CROSS_MARK_RED; ?>
 							<strong><?php echo gettext("Reset"); ?></strong>

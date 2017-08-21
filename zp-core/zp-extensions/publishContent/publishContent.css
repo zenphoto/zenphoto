@@ -55,19 +55,17 @@
 	border-bottom: 1px solid darkgray;
 }
 .scheduleimagelist table td{
-vertical-align: top;
+	vertical-align: top;
 }
 .scheduleimagechecklist label {
 	display: block;
 	padding: 0 0.2em 0 25px;
-	text-indent: -25px;
 }
 .scheduleimagechecklisthead{
 	margin-top: 5px;
 	padding-left: 2em;
 	margin-botton:0;
-	background: #777;
-	color: #fff;
+	background: lightgray;
 }
 * html .scheduleimagechecklist label {
 	height: 1%;

@@ -105,7 +105,7 @@ define('SQUARED_KEY_GREEN', '<span style="color: green;font-size: large;">&#9919
 define('WARNING_SIGN_ORANGE', '<span style="color: darkorange;font-size: large;line-height: 80%">&#9888;</span>');
 //Firefox has a huge wastebasket image
 if (preg_match('~firefox~i', $_SERVER['HTTP_USER_AGENT'])) {
-	define('WASTEBASKET', '<span style="color: brown;">&#128465;</span>');
+	define('WASTEBASKET', '<span style="color: brown;font-size: x-small;">&#128465;</span>');
 } else {
 	define('WASTEBASKET', '<span style="color: brown;font-weight: bold; font-size: large;line-height: 80%">&#128465;</span>');
 }

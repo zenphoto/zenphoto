@@ -37,8 +37,7 @@ if (isset($_GET['generatesitemaps'])) {
 		$sitemap_pages = getSitemapPages();
 	}
 	$numberAppend = '';
-	if (isset($_GET['generatesitemaps']) &&
-					(!empty($sitemap_index) || !empty($sitemap_albums) || !empty($sitemap_images) || !empty($sitemap_newsindex) || !empty($sitemap_articles) || !empty($sitemap_categories) || !empty($sitemap_pages))) {
+	if (isset($_GET['generatesitemaps']) && (!empty($sitemap_index) || !empty($sitemap_albums) || !empty($sitemap_images) || !empty($sitemap_newsindex) || !empty($sitemap_articles) || !empty($sitemap_categories) || !empty($sitemap_pages))) {
 		$numberAppend = '-' . $sitemap_number;
 		$metaURL = 'sitemap-extended-admin.php?generatesitemaps&amp;number=' . ($sitemap_number + SITEMAP_CHUNK);
 	} else {
@@ -124,9 +123,20 @@ function sitemap_printAvailableSitemaps() {
 					</ul>
 					<p><?php echo sprintf(gettext('Additionally a sitemapindex file is created that points to the separate ones above. You can reference this sitemapindex file in your robots.txt file or submit its url to services like Google via <code>%1$s/index.php?sitemap</code>'), FULLWEBPATH); ?></p>
 					<p><?php printf(gettext('The sitemap cache is cleared if you create new ones. All files are stored in the <code>/%s/sitemap/</code> folder.'), STATIC_CACHE_FOLDER); ?></p>
-					<p class="buttons"><a href="sitemap-extended-admin.php?generatesitemaps&amp;number=1"><?php echo gettext("Generate sitemaps"); ?></a></p>
-					<p class="buttons"><a href="sitemap-extended-admin.php?clearsitemapcache"><?php echo gettext("Clear sitemap cache"); ?></a></p>
-					<br style="clear: both" /><br />
+					<p class="buttons">
+						<a href="sitemap-extended-admin.php?generatesitemaps&amp;number=1">
+							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<?php echo gettext("Generate sitemaps"); ?>
+						</a>
+					</p>
+					<p class="buttons">
+						<a href="sitemap-extended-admin.php?clearsitemapcache">
+							<?php echo BALLOT_BOX_WITH_X_RED; ?>
+							<?php echo gettext("Clear sitemap cache"); ?>
+						</a>
+					</p>
+					<br style="clear: both" />
+					<br />
 					<?php
 					sitemap_printAvailableSitemaps();
 				} // isset generate sitemaps / clearsitemap cache

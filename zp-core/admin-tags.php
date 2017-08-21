@@ -167,37 +167,35 @@ printAdminHeader('admin');
 							?>
 						</div>
 
-						<p class="buttons">
-							<button type="submit" id='delete_tags' value="<?php echo gettext("Delete checked tags"); ?>"
-											onclick="$('#tag_action').val('delete');
-													this.form.submit();">
-												<?php echo WASTEBASKET; ?>
-												<?php echo gettext("Delete checked tags"); ?>
+						<p class="buttons"<?php if (getOption('multi_lingual')) echo ' style="padding-bottom: 27px;"'; ?>>
+							<button type="submit" id="delete_tags" onclick="$('#tag_action').val('delete');	this.form.submit();">
+								<?php echo WASTEBASKET; ?>
+								<?php echo gettext("Delete checked tags"); ?>
 							</button>
 						</p>
-						<br />
+
 						<?php
 						if (getOption('multi_lingual')) {
 							?>
-							<p class="buttons" style="padding-top: 5px;padding-bottom: 25px;">
-								<button type="submit" id="assign_tags" value="<?php echo gettext("Delete checked tags"); ?>"
-												onclick="$('#tag_action').val('assign');
-														this.form.submit();">
-													<?php echo ARROW_RIGHT_BLUE; ?>
-													<?php echo gettext('assign'); ?>
-								</button>
-							</p>
-
-							<select name="language" id="language" class="ignoredirty">
-								<option value=""><?php echo gettext('Universal'); ?></option>
-								<?php
-								foreach ($_zp_active_languages as $text => $lang) {
-									?>
-									<option value="<?php echo $lang; ?>"><?php echo html_encode($text); ?></option>
+							<div style="padding-bottom: 7px;">
+								<select name="language" id="language" class="ignoredirty" >
+									<option value=""><?php echo gettext('Universal'); ?></option>
 									<?php
-								}
-								?>
-							</select>
+									foreach ($_zp_active_languages as $text => $lang) {
+										?>
+										<option value="<?php echo $lang; ?>"><?php echo html_encode($text); ?></option>
+										<?php
+									}
+									?>
+								</select>
+							</div>
+
+							<span class="buttons">
+								<button type="submit" id="assign_tags" onclick="$('#tag_action').val('assign');	this.form.submit();" title="<?php echo gettext('Assign tags to selected language'); ?>">
+									<?php echo ARROW_RIGHT_BLUE; ?>
+									<?php echo gettext('assign'); ?>
+								</button>
+							</span>
 							<?php
 						} else {
 							?>
@@ -244,7 +242,8 @@ printAdminHeader('admin');
 						</div>
 						<p class="buttons" style="padding-bottom: 1px;">
 							<button type="submit" id='rename_tags' value="<?php echo gettext("Rename tags"); ?>">
-								<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Rename tags"); ?>
+								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<?php echo gettext("Rename tags"); ?>
 							</button>
 						</p>
 					</form>
@@ -271,7 +270,7 @@ printAdminHeader('admin');
 								?>
 							</ul>
 						</div>
-						<p class="buttons"<?php if (getOption('multi_lingual')) echo 'style="padding-bottom: 25px;"'; ?>>
+						<p class="buttons"<?php if (getOption('multi_lingual')) echo ' style="padding-bottom: 25px;"'; ?>>
 							<button type="submit" id='save_tags' value="<?php echo gettext("Add tags"); ?>">
 								<?php echo GREEN_CROSS_ON_SHIELD; ?>
 								<?php echo gettext("Add tags"); ?>
@@ -298,7 +297,6 @@ printAdminHeader('admin');
 							<?php
 						}
 						?>
-
 						<div class="clearall"></div>
 					</form>
 
