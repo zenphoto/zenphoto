@@ -304,7 +304,7 @@ printAdminHeader('admin');
 						<p><?php
 							echo gettext("Add tags to the list by entering their names in the input fields of the <em>New tags</em> list. Then press the <em>Add tags</em> button.");
 							if (getOption('multi_lingual')) {
-								echo ' ' . gettext('You can restrict a tag to a specific language with the language selector.');
+								echo ' ' . gettext('You can assign a language to the tags with the language selector.');
 							}
 							?></p>
 					</div>
