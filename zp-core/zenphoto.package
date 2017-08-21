@@ -1156,6 +1156,7 @@ zp-core/images/folder_picture_dn.png
 zp-core/images/imageDefault.png
 zp-core/images/lock.png
 zp-core/images/lock_open.png
+zp-core/images/lock_open_orange.png
 zp-core/images/login_button.png
 zp-core/images/magnify.png
 zp-core/images/page_white_copy.png
@@ -8145,4 +8146,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-8147
+8148
