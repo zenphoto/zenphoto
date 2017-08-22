@@ -93,7 +93,7 @@ define('EXCLAMATION_RED', '<span style="color: red;padding-left: 5px;padding-rig
 define('GEAR_WITHOUT_HUB', '&#9965;');
 define('GREEN_CROSS_ON_SHIELD', '<span style="color: green;font-size: large;line-height: 60%;">&#9960;</span>');
 define('HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW', '<span style="color:blue;font-size:large;line-height: 60%;">&#10150;</span>');
-define('HEAVY_GREEN_CHECKMARK', '<span style="color: green;">&#9989;</span>');
+define('HEAVY_GREEN_CHECKMARK', '<span style="color: green;font-size: large;line-height: 80%">&#10004;</span>');
 define('INFORMATION_BLUE', '<span style="color: blue;font-size: large;line-height: 90%;">&#8505;</span>');
 define('KEY', '&#128273;');
 define('MENU_ICON', '&#9776;');
