@@ -1347,18 +1347,24 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$msg1 = gettext("ZenPhoto20 core files [Could not update the root <em>index.php</em> file.]");
 									$msg2 = sprintf(gettext('Perhaps there is a permissions issue. You should manually copy the %s <em>root_index.php</em> file to the installation root and rename it <em>index.php</em>.'), ZENFOLDER);
 								} else {
-									if (defined('TEST_RELEASE') && TEST_RELEASE) {
-										$mark = -1;
-										$msg1 = gettext("ZenPhoto20 core files [This is a <em>debug</em> build]");
+									if (zpFunctions::hasPrimaryScripts()) {
+										if (defined('TEST_RELEASE') && TEST_RELEASE) {
+											$mark = -1;
+											$msg1 = gettext("ZenPhoto20 core files [This is a <em>debug</em> build]");
+										} else {
+											$msg1 = '';
+											$mark = 1;
+										}
 									} else {
-										$msg1 = '';
-										$mark = 1;
+										$mark = -1;
+										$msg1 = gettext("ZenPhoto20 core files [This is a <em>clone</em> installation]");
 									}
 									$msg2 = '';
 								}
 							}
 							checkMark($mark, gettext("ZenPhoto20 core files"), $msg1, $msg2, false);
-							if (setupUserAuthorized() && $connection) {
+
+							if (setupUserAuthorized() && $connection && zpFunctions::hasPrimaryScripts()) {
 								primeMark(gettext('Installation files'));
 								$systemlist = $filelist = array();
 								$phi_ini_count = $svncount = 0;
