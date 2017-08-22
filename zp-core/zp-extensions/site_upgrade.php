@@ -179,7 +179,7 @@ switch (OFFSET_PATH) {
 							'button_text' => gettext('Site » test mode'),
 							'formname' => 'site_upgrade',
 							'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/site_upgrade.php',
-							'icon' => 'images/lock_open_orange.png',
+							'icon' => 'images/lock_open.png',
 							'title' => gettext('Make the site available for viewing administrators only.'),
 							'onclick' => "$('#site_upgrade_form').dirtyForms('setClean');this.form.submit();",
 							'alt' => '',
