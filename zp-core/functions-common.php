@@ -645,6 +645,7 @@ function zp_session_start() {
 	if ($result) {
 		return $result;
 	} else {
+		session_name('Session_' . str_replace('.', '_', ZENPHOTO_VERSION));
 		@ini_set('session.use_strict_mode', 1);
 		//	insure that the session data has a place to be saved
 		if (isset($_zp_conf_vars['session_save_path'])) {
@@ -660,19 +661,23 @@ function zp_session_start() {
 		session_set_cookie_params($sessionCookie['lifetime'], WEBPATH . '/', $_SERVER['HTTP_HOST'], secureServer(), true);
 
 		$result = session_start();
+		$_SESSION['version'] = ZENPHOTO_VERSION;
 		return $result;
 	}
 }
 
 function zp_session_destroy() {
-	if (session_id()) {
+	if ($name = session_name()) {
+
+		var_dump($name);
+
 		$_SESSION = array();
 		if (ini_get("session.use_cookies")) {
 			$params = session_get_cookie_params();
-			setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
-			);
+			setcookie($name, 'null', 1, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+		} else {
+			setcookie($name, 'null', 1);
 		}
-		setcookie('PHPSESSID', '', time() - 42000);
 		session_destroy();
 	}
 }
@@ -779,7 +784,7 @@ function zp_setCookie($name, $value, $time = NULL, $security = true) {
  * @param string $name
  */
 function zp_clearCookie($name) {
-	zp_setCookie($name, '', -368000, false);
+	zp_setCookie($name, 'null', -368000, false);
 }
 
 /**
