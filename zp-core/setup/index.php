@@ -58,11 +58,6 @@ if (isset($_REQUEST['autorun'])) {
 }
 
 $session = zp_session_start();
-if (!isset($_SESSION['save_session_path'])) {
-	// clean out any old sessions to start fresh
-	zp_session_destroy();
-	$session = zp_session_start();
-}
 session_cache_limiter('nocache');
 $setup_checked = false;
 

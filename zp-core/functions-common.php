@@ -668,9 +668,6 @@ function zp_session_start() {
 
 function zp_session_destroy() {
 	if ($name = session_name()) {
-
-		var_dump($name);
-
 		$_SESSION = array();
 		if (ini_get("session.use_cookies")) {
 			$params = session_get_cookie_params();
