@@ -89,7 +89,7 @@ define('CROSS_MARK_RED', '<span style="color: red;">&#10060;</span>');
 define('DRAG_HANDLE', '<span style="color:lightsteelblue;font-size: x-large;">&#10021;</span>');
 define('DRAG_HANDLE_ALERT', '<span style="color:red;font-size: x-large;">&#10021;</span>');
 define('ENVELOPE', '&#128231;');
-define('EXCLAMATION_RED', '<span style="color: red;padding-left: 5px;padding-right: 5px;">&#10071;</span>');
+define('EXCLAMATION_RED', '<span style="color: red;font-weight: bold;font-size: large;line-height: 80%;letter-spacing: -4px;">&#65281;</span>');
 define('GEAR_WITHOUT_HUB', '&#9965;');
 define('GREEN_CROSS_ON_SHIELD', '<span style="color: green;font-size: large;line-height: 60%;">&#9960;</span>');
 define('HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW', '<span style="color:blue;font-size:large;line-height: 60%;">&#10150;</span>');
