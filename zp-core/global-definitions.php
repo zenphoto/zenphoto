@@ -83,7 +83,7 @@ define('BULLSEYE_RED', '<span style="color: red;font-size: large;line-height: 80
 define('BURST_BLUE', '<span style="color: blue;font-size: large;line-height: 80%;">&#10040;</span>');
 define('CIRCLED_BLUE_STAR', '<span style="color: blue;font-size: large;line-height: 60%">&#10026;</span>');
 define('CLIPBOARD', '&#128203;');
-define('CLOCKFACE', '&#128343;');
+define('CLOCKFACE', '<span style="letter-spacing: -4px;">&#128343;</span>');
 define('CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN', '<span style="font-size:large;color:green;line-height: 60%;">&#8635;</span>');
 define('CROSS_MARK_RED', '<span style="color: red;">&#10060;</span>');
 define('DRAG_HANDLE', '<span style="color:lightsteelblue;font-size: x-large;">&#10021;</span>');

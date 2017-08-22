@@ -2385,7 +2385,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<li>
 				<?php echo HEAVY_GREEN_CHECKMARK; ?>
 				<?php echo EXCLAMATION_RED; ?>
-				<?php echo CLOCKFACE; ?>
+				<?php echo CLOCKFACE . '&nbsp;'; ?>
 				<?php echo gettext("published/not published/scheduled for publishing"); ?>
 			</li>
 			<li>
