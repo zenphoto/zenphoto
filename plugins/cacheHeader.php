@@ -33,36 +33,28 @@ class cacheHeader_options {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('cacheHeader_store', 1);
 			setOptionDefault('cacheHeader_cache', 1);
-			setOptionDefault('cacheHeader_pre-check', 0);
-			setOptionDefault('cacheHeader_post-check', 0);
 			setOptionDefault('cacheHeader_max-age', 0);
 			setOptionDefault('cacheHeader_sides', 'all');
 		}
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Store')			 => array('key'		 => 'cacheHeader_store', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 2,
-										'desc'	 => gettext('Lets you specify that caches should not store this response.')),
-						gettext('Cache')			 => array('key'		 => 'cacheHeader_cache', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('Lets you specify that caches should revalidate this resource every time.')),
-						gettext('Pre-check')	 => array('key'		 => 'cacheHeader_pre-check', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 3,
-										'desc'	 => gettext('These two "check" options specify the window during which checking for updates is done in the background.')),
-						gettext('Post-check')	 => array('key'		 => 'cacheHeader_post-check', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 4,
-										'desc'	 => gettext('See above ')),
-						gettext('Max-age')		 => array('key'		 => 'cacheHeader_max-age', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 5,
-										'desc'	 => gettext('You may set a max-age, in seconds, which will override the expires header.')),
-						gettext('Cache')			 => array('key'			 => 'cacheHeader_sides', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('Gallery') => 'gallery', gettext('Admin') => 'admin', gettext('All') => 'all'),
-										'order'		 => 0,
-										'desc'		 => gettext('Select where to apply this header')),
-						gettext('Header')			 => array('key'		 => 'cacheHeader_example', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 6,
-										'desc'	 => gettext('The header that will be generated'))
+		return array(gettext('Store') => array('key' => 'cacheHeader_store', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 2,
+						'desc' => gettext('Lets you specify that caches should not store this response.')),
+				gettext('Cache') => array('key' => 'cacheHeader_cache', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 1,
+						'desc' => gettext('Lets you specify that caches should revalidate this resource every time.')),
+				gettext('Max-age') => array('key' => 'cacheHeader_max-age', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 5,
+						'desc' => gettext('You may set a max-age, in seconds, which will override the expires header.')),
+				gettext('Cache') => array('key' => 'cacheHeader_sides', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(gettext('Gallery') => 'gallery', gettext('Admin') => 'admin', gettext('All') => 'all'),
+						'order' => 0,
+						'desc' => gettext('Select where to apply this header')),
+				gettext('Header') => array('key' => 'cacheHeader_example', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 6,
+						'desc' => gettext('The header that will be generated'))
 		);
 	}
 
@@ -74,7 +66,7 @@ class cacheHeader_options {
 		if (getOption('cacheHeader_cache')) {
 			$head .= ' no-cache,';
 		}
-		$head .= ' must-revalidate, pre-check=' . getOption('cacheHeader_pre-check') . ', post-check=' . getOption('cacheHeader_post-check') . ', max-age=' . getOption('cacheHeader_max-age');
+		$head .= ' must-revalidate, max-age=' . getOption('cacheHeader_max-age');
 		echo 'header("' . $head . '");';
 	}
 
@@ -93,7 +85,7 @@ function cacheHeader() {
 	if (getOption('cacheHeader_cache')) {
 		$head .= ' no-cache,';
 	}
-	$head .= ' must-revalidate, pre-check=' . getOption('cacheHeader_pre-check') . ', post-check=' . getOption('cacheHeader_post-check') . ', max-age=' . getOption('cacheHeader_max-age');
+	$head .= ' must-revalidate, max-age=' . getOption('cacheHeader_max-age');
 	header($head);
 }
 
