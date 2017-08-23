@@ -867,9 +867,8 @@ echo "\n</head>";
 					<!-- Album info box -->
 					<div id="tab_albuminfo" class="tabbox">
 						<?php consolidatedEditMessages('albuminfo'); ?>
-						<form class="dirtylistening" onReset="toggle_passwords('', false);
-								setClean('form_albumedit');" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
-									<?php XSRFToken('albumedit'); ?>
+						<form class="dirtylistening" onReset="toggle_passwords('', false);setClean('form_albumedit');$('.resetHide').hide();" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
+							<?php XSRFToken('albumedit'); ?>
 							<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 							<input type="hidden"	name="savealbuminfo" value="1" />
 							<?php printAlbumEditForm(0, $album); ?>
@@ -932,9 +931,8 @@ echo "\n</head>";
 								</span>
 							</form>
 							<br clear="all">
-							<form class="dirtylistening" onReset="setClean('sortableListForm');
-									$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
-										<?php XSRFToken('savealbumorder'); ?>
+							<form class="dirtylistening" onReset="setClean('sortableListForm');$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
+								<?php XSRFToken('savealbumorder'); ?>
 								<p class="notebox">
 									<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
 								</p>
@@ -1137,7 +1135,7 @@ echo "\n</head>";
 						<?php
 						if ($allimagecount) {
 							?>
-							<form class="dirtylistening" onReset="setClean('form_imageedit');" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off" >
+							<form class="dirtylistening" onReset="setClean('form_imageedit');$('.resetHide').hide();" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off" >
 								<?php XSRFToken('albumedit'); ?>
 								<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 								<input type="hidden" name="totalimages" value="<?php echo $totalimages; ?>" />
@@ -1461,7 +1459,7 @@ echo "\n</head>";
 																	deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 														</label>
 														<br class="clearall">
-														<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; padding-bottom: .5em; display: none;">
+														<div id="movecopydiv-<?php echo $currentimage; ?>" class="resetHide" style="padding-top: .5em; padding-left: .5em; padding-bottom: .5em; display: none;">
 															<span class="nowrap">
 																<?php echo gettext("to"); ?>:
 																<select id="albumselectmenu-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-albumselect" onchange="">
@@ -1493,7 +1491,7 @@ echo "\n</head>";
 																</a>
 															</p>
 														</div>
-														<div id="renamediv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
+														<div id="renamediv-<?php echo $currentimage; ?>" class="resetHide" style="padding-top: .5em; padding-left: .5em; display: none;">
 															<span class="nowrap">
 																<?php echo gettext("to"); ?>:
 																<input name="<?php echo $currentimage; ?>-renameto" type="text" value="<?php echo $image->filename; ?>" />
@@ -1506,7 +1504,7 @@ echo "\n</head>";
 															</p>
 														</div>
 
-														<div id="deletemsg<?php echo $currentimage; ?>"	style="padding-top: .5em; padding-left: .5em; padding-bottom: .5em; color: red; display: none">
+														<div id="deletemsg<?php echo $currentimage; ?>" class="resetHide"	style="padding-top: .5em; padding-left: .5em; padding-bottom: .5em; color: red; display: none">
 															<span class="nowrap">
 																<?php echo gettext('Image will be deleted when changes are applied.'); ?>
 															</span>
@@ -1678,9 +1676,8 @@ echo "\n</head>";
 				</h1>
 				<div class="tabbox">
 					<?php consolidatedEditMessages('massedit'); ?>
-					<form class="dirtylistening" onReset="setClean('form_albumedit-multi');" ame="albumedit" id="form_albumedit-multi"
-								autocomplete="off"	action="?page=edit&amp;action=save<?php echo $albumdir ?>" method="POST" >
-									<?php XSRFToken('albumedit'); ?>
+					<form class="dirtylistening" onReset="setClean('form_albumedit-multi');" ame="albumedit" id="form_albumedit-multi" autocomplete="off"	action="?page=edit&amp;action=save<?php echo $albumdir ?>" method="POST" >
+						<?php XSRFToken('albumedit'); ?>
 						<input type="hidden" name="totalalbums" value="<?php echo sizeof($albums); ?>" />
 						<span class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit">
@@ -1802,9 +1799,8 @@ echo "\n</head>";
 							?>
 						</p>
 
-						<form class="dirtylistening" onReset="setClean('sortableListForm');
-								$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
-									<?php XSRFToken('savealbumorder'); ?>
+						<form class="dirtylistening" onReset="setClean('sortableListForm');$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
+							<?php XSRFToken('savealbumorder'); ?>
 							<span class="buttons">
 								<?php
 								if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
@@ -1843,7 +1839,7 @@ echo "\n</head>";
 								</label>
 								<label style="float: right;padding-right:20px;">
 									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-										.checked);" />
+																	.checked);" />
 								</label>
 							</div>
 							<div class="bordered">

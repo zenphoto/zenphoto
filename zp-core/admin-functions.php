@@ -2206,21 +2206,21 @@ function printAdminHeader($tab, $subtab = NULL) {
 											 <?php
 										 }
 										 ?> />
-										 <?php echo gettext("Delete album"); ?>
+	<?php echo gettext("Delete album"); ?>
 						</label>
 
 						<br class="clearall">
-						<div class="deletemsg" id="deletemsg<?php echo $prefix; ?>"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
-							<?php echo gettext('Album will be deleted when changes are applied.'); ?>
+						<div class="deletemsg" id="deletemsg<?php echo $prefix; ?>" class="resetHide"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
+	<?php echo gettext('Album will be deleted when changes are applied.'); ?>
 
 							<p class="buttons">
 								<a	onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');">
 									<?php echo CROSS_MARK_RED; ?>
-									<?php echo addslashes(gettext("Cancel")); ?></a>
+	<?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
-						<div id="a-<?php echo $prefix; ?>movecopydiv" style="padding-top: .5em; padding-left: .5em; display: none;">
-							<?php echo gettext("to:"); ?>
+						<div id="a-<?php echo $prefix; ?>movecopydiv" class="resetHide" style="padding-top: .5em; padding-left: .5em; display: none;">
+								<?php echo gettext("to:"); ?>
 							<select id="a-<?php echo $prefix; ?>albumselectmenu" name="a-<?php echo $prefix; ?>albumselect" onchange="">
 								<?php
 								$exclude = $album->name;
@@ -2255,17 +2255,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<p class="buttons">
 								<a onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');">
 									<?php echo CROSS_MARK_RED; ?>
-									<?php echo addslashes(gettext("Cancel")); ?></a>
+	<?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
-						<div id="a-<?php echo $prefix; ?>renamediv" style="padding-top: .5em; padding-left: .5em; display: none;">
-							<?php echo gettext("to:"); ?>
+						<div id="a-<?php echo $prefix; ?>renamediv" class="resetHide" style="padding-top: .5em; padding-left: .5em; display: none;">
+	<?php echo gettext("to:"); ?>
 							<input name="a-<?php echo $prefix; ?>renameto" type="text" value="<?php echo basename($album->name); ?>"/>
 
 							<p class="buttons">
 								<a onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');">
 									<?php echo CROSS_MARK_RED; ?>
-									<?php echo addslashes(gettext("Cancel")); ?></a>
+	<?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
 						<div class="clearall" ></div>
@@ -2286,15 +2286,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<span class="buttons">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-					<?php echo ARROW_LEFT_BLUE; ?>
+		<?php echo ARROW_LEFT_BLUE; ?>
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
 				<button type="submit">
-					<?php echo HEAVY_GREEN_CHECKMARK; ?>
+		<?php echo HEAVY_GREEN_CHECKMARK; ?>
 					<strong><?php echo gettext("Apply"); ?></strong>
 				</button>
 				<button type="reset" onclick="$('.deletemsg').hide();">
-					<?php echo CROSS_MARK_RED; ?>
+		<?php echo CROSS_MARK_RED; ?>
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
 				<div class="floatright">
@@ -2305,7 +2305,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
-						<?php if (!$album->isDynamic()) { ?>
+			<?php if (!$album->isDynamic()) { ?>
 							<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', true);">
 								<img src="images/folder.png" alt="" />
 								<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
@@ -2315,7 +2315,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					?>
 					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-						<?php echo BULLSEYE_BLUE; ?>
+		<?php echo BULLSEYE_BLUE; ?>
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
 				</div>
@@ -2338,13 +2338,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the album’s cached images.")); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=clear_cache&amp;album=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_cache'); ?>">
 					<?php echo WASTEBASKET; ?>
-					<?php echo gettext('Clear album image cache'); ?></a>
+		<?php echo gettext('Clear album image cache'); ?></a>
 				<br class="clearall">
 			</div>
 			<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
 					<?php echo BALLOT_BOX_WITH_X_RED; ?>
-					<?php echo gettext('Reset album hit counters'); ?></a>
+		<?php echo gettext('Reset album hit counters'); ?></a>
 				<br class="clearall">
 			</div>
 			<?php
@@ -2354,7 +2354,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<div class="button buttons tooltip" title="<?php echo gettext("Refreshes the metadata for the album."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-refresh-metadata.php?album=' . html_encode($album->name) . '&amp;return=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh'); ?>">
 					<?php echo CIRCLED_BLUE_STAR; ?>
-					<?php echo gettext('Refresh album metadata'); ?>
+		<?php echo gettext('Refresh album metadata'); ?>
 				</a>
 				<br class="clearall">
 			</div>
@@ -2377,7 +2377,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<li>
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
 					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
-					<?php echo gettext("has/does not have password"); ?></li>
+				<?php echo gettext("has/does not have password"); ?></li>
 				<?php
 			}
 			?>
@@ -2386,34 +2386,34 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php echo HEAVY_GREEN_CHECKMARK; ?>
 				<?php echo EXCLAMATION_RED; ?>
 				<?php echo CLOCKFACE . '&nbsp;'; ?>
-				<?php echo gettext("published/not published/scheduled for publishing"); ?>
+	<?php echo gettext("published/not published/scheduled for publishing"); ?>
 			</li>
 			<li>
 				<?php echo BULLSEYE_GREEN; ?>
 				<?php echo BULLSEYE_RED; ?>
-				<?php echo gettext("comments on/off"); ?>
+	<?php echo gettext("comments on/off"); ?>
 			</li>
 			<li>
 				<?php echo BULLSEYE_BLUE; ?>
-				<?php echo gettext("view the album"); ?>
+	<?php echo gettext("view the album"); ?>
 			</li>
 			<li>
 				<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
-				<?php echo gettext("refresh metadata"); ?>
+			<?php echo gettext("refresh metadata"); ?>
 			</li>
 			<?php
 			if (extensionEnabled('hitcounter')) {
 				?>
 				<li>
 					<?php echo BALLOT_BOX_WITH_X_RED; ?>
-					<?php echo gettext("reset hit counters"); ?>
+				<?php echo gettext("reset hit counters"); ?>
 				</li>
 				<?php
 			}
 			?>
 			<li>
 				<?php echo WASTEBASKET; ?>
-				<?php echo gettext("delete"); ?>
+	<?php echo gettext("delete"); ?>
 			</li>
 		</ul>
 		<?php
@@ -2442,7 +2442,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		?>
 		<div class="page-list_row">
 			<div class="page-list_handle">
-				<?php echo $handle; ?>
+	<?php echo $handle; ?>
 			</div>
 			<div class="page-list_albumthumb">
 				<?php
@@ -2593,7 +2593,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				</div>
 				<div class="page-list_icon">
 					<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo gettext("View album"); ?>">
-						<?php echo BULLSEYE_BLUE; ?>
+	<?php echo BULLSEYE_BLUE; ?>
 					</a>
 				</div>
 				<div class="page-list_icon">
@@ -2605,7 +2605,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						?>
 						<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh') ?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
-							<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
+						<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 						</a>
 						<?php
 					}
@@ -2623,7 +2623,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						} else {
 							?>
 							<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;subalbum=true&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
-								<?php echo BALLOT_BOX_WITH_X_RED; ?>
+							<?php echo BALLOT_BOX_WITH_X_RED; ?>
 							</a>
 							<?php
 						}
@@ -2643,7 +2643,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						?>
 						<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
-							<?php echo WASTEBASKET; ?>
+						<?php echo WASTEBASKET; ?>
 						</a>
 						<?php
 					}
@@ -2663,10 +2663,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 			if ($sa || $si) {
 				?>
 				<div class="page-list_extra page-list_right">
-					<?php echo $si; ?>
+		<?php echo $si; ?>
 				</div>
 				<div class="page-list_extra page-list_right">
-					<?php echo $sa; ?>
+				<?php echo $sa; ?>
 				</div>
 				<?php
 			}
@@ -2999,7 +2999,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$flag = getLanguageFlag($key);
 						?>
 						<option value="<?php echo $key; ?>" data-image="<?php echo $flag; ?>" alt="<?php echo $key; ?>"<?php if ($key == $locale) echo ' selected="selected"' ?>>
-							<?php echo $lang; ?>
+						<?php echo $lang; ?>
 						</option>
 						<?php
 					}
@@ -3020,7 +3020,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						if ($textbox) {
 							?>
 							<textarea name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?>	rows="<?php echo $rows ?>">
-								<?php echo html_encode($string); ?>
+							<?php echo html_encode($string); ?>
 							</textarea>
 							<?php
 						} else {
@@ -4207,7 +4207,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	?>
 	<span style="float:right">
 		<select class="ignoredirty" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+		<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
 		if ($checkAll) {
@@ -5308,21 +5308,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-			<?php echo implode('<br />', $errorbox); ?>
+		<?php echo implode('<br />', $errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-			<?php echo implode('<br />', $notebox); ?>
+		<?php echo implode('<br />', $notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-			<?php echo implode('<br />', $messagebox); ?>
+		<?php echo implode('<br />', $messagebox); ?>
 		</div>
 		<?php
 	}
@@ -5430,7 +5430,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
 										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
-			 <?php echo CLIPBOARD; ?>
+	<?php echo CLIPBOARD; ?>
 	</a>
 	<?php
 }

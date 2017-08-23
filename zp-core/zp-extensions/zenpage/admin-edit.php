@@ -324,7 +324,7 @@ $tagsort = getTagOrder();
 
 						<div id="tab_articles" class="tabbox">
 
-							<form class="dirtylistening" onReset="setClean('form_cmsItemEdit');" method="post" name="update" id="form_cmsItemEdit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>" autocomplete="off">
+							<form class="dirtylistening" onReset="setClean('form_cmsItemEdit');$('.resetHide').hide();" method="post" name="update" id="form_cmsItemEdit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>" autocomplete="off">
 								<?php
 								XSRFToken('update');
 							}
@@ -540,9 +540,9 @@ $tagsort = getTagOrder();
 																 id="show"
 																 value="1" <?php checkIfChecked($result->getShow()); ?>
 																 onclick="$('#pubdate').val('');
-																			 $('#expiredate').val('');
-																			 $('#pubdate').css('color', 'black');
-																			 $('.expire').html('');"
+																		 $('#expiredate').val('');
+																		 $('#pubdate').css('color', 'black');
+																		 $('.expire').html('');"
 																 />
 													<label for="show"><?php echo gettext("Published"); ?></label>
 												</p>
@@ -646,7 +646,7 @@ $tagsort = getTagOrder();
 																			 name="disclose_password"
 																			 id="disclose_password"
 																			 onclick="passwordClear('');
-																								 togglePassword('');"><?php echo gettext('Show password'); ?>
+																					 togglePassword('');"><?php echo gettext('Show password'); ?>
 															</label>
 															<br />
 															<span class="password_field_">
@@ -679,7 +679,7 @@ $tagsort = getTagOrder();
 														<?php echo gettext('delete'); ?>
 													</label>
 													<br class="clearall">
-													<div class="copydelete" id="copyfield" style="display:none" >
+													<div class="copydelete resetHide" id="copyfield" style="display:none" >
 														<?php printf(gettext('copy as: %s'), '<input type="text" name="copy_object_as" value = "" />'); ?>
 														<p class="buttons">
 															<a	onclick="$('#copy_object').removeAttr('checked');$('#copyfield').hide();">
@@ -689,7 +689,7 @@ $tagsort = getTagOrder();
 														</p>
 
 													</div>
-													<div class="copydelete" id="deletemsg"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
+													<div class="copydelete resetHide" id="deletemsg"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
 														<?php printf(gettext('%s will be deleted when changes are applied.'), $deleteitem); ?>
 														<p class="buttons">
 															<a	onclick="$('#delete_object').removeAttr('checked');$('#deletemsg').hide();">

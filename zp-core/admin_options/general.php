@@ -502,7 +502,10 @@ function getOptionContent() {
 					<td class="option_value">
 						<p><textarea name="allowed_tags" id="allowed_tags" style="width: 340px" rows="10" cols="35"><?php echo html_encode(getOption('allowed_tags')); ?></textarea>
 							<span class="buttons">
-								<a onclick="resetallowedtags()" ><?php echo gettext('reset to default'); ?></a>
+								<a onclick="resetallowedtags()" >
+									<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
+									<?php echo gettext('Reset to default'); ?>
+								</a>
 							</span>
 						</p>
 					</td>
@@ -511,16 +514,16 @@ function getOptionContent() {
 							// <!-- <![CDATA[
 							function resetallowedtags() {
 								$('#allowed_tags').val(<?php
-							$t = getOption('allowed_tags_default');
-							$tags = explode("\n", $t);
-							$c = 0;
-							foreach ($tags as $t) {
-								$t = trim($t);
-								if (!empty($t)) {
-									if ($c > 0) {
-										echo '+';
-										echo "\n";
-										?>
+								$t = getOption('allowed_tags_default');
+								$tags = explode("\n", $t);
+								$c = 0;
+								foreach ($tags as $t) {
+									$t = trim($t);
+									if (!empty($t)) {
+										if ($c > 0) {
+											echo '+';
+											echo "\n";
+											?>
 				<?php
 			}
 			$c++;
