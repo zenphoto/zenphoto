@@ -131,14 +131,6 @@ function getOptionContent() {
 										 onkeydown="passwordClear('');"
 										 id="user_name"  name="user"
 										 value="<?php echo html_encode(getOption('search_user')); ?>" />
-							<br />
-							<label>
-								<input type="checkbox"
-											 name="disclose_password"
-											 id="disclose_password"
-											 onclick="passwordClear('');
-													 togglePassword('');" /><?php echo gettext('Show password'); ?>
-							</label>
 						</td>
 						<td class="option_desc">
 							<span class="option_info">
@@ -167,6 +159,13 @@ function getOptionContent() {
 										 onkeydown="passwordClear('');"
 										 onkeyup="passwordStrength('');"
 										 value="<?php echo $x; ?>" />
+							<label>
+								<input type="checkbox"
+											 name="disclose_password"
+											 id="disclose_password"
+											 onclick="passwordClear('');
+													 togglePassword('');" /><?php echo gettext('Show'); ?>
+							</label>
 							<br />
 							<span class="password_field_">
 								<input type="password"

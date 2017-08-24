@@ -632,6 +632,14 @@ $tagsort = getTagOrder();
 																		 onkeydown="passwordClear('');"
 																		 value="<?php echo html_encode($user); ?>" />
 															<span id="strength"><?php echo gettext("Password:"); ?></span>
+															<label class="floatright" style="padding-right: 25px;">
+																<input type="checkbox"
+																			 name="disclose_password"
+																			 id="disclose_password"
+																			 onclick="passwordClear('');
+																					 togglePassword('');">
+																			 <?php echo gettext('Show'); ?>
+															</label>
 															<br />
 															<input type="password"
 																		 class="passignore ignoredirty" autocomplete="off"
@@ -640,14 +648,7 @@ $tagsort = getTagOrder();
 																		 onkeydown="passwordClear('');"
 																		 onkeyup="passwordStrength('');"
 																		 value="<?php echo $x; ?>" />
-															<br />
-															<label>
-																<input type="checkbox"
-																			 name="disclose_password"
-																			 id="disclose_password"
-																			 onclick="passwordClear('');
-																					 togglePassword('');"><?php echo gettext('Show password'); ?>
-															</label>
+
 															<br />
 															<span class="password_field_">
 																<span id="match"><?php echo gettext("(repeat)"); ?></span>
@@ -659,8 +660,9 @@ $tagsort = getTagOrder();
 																			 onkeydown="passwordClear('');"
 																			 onkeyup="passwordMatch('');"
 																			 value="<?php echo $x; ?>" />
-																<br />
 															</span>
+
+															<br />
 															<?php echo gettext("Password hint:"); ?>
 															<br />
 															<?php print_language_string_list($hint, 'hint', false, NULL, 'hint', 27); ?>

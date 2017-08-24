@@ -1091,9 +1091,12 @@ class _Authority {
 								<?php
 							}
 							?>
+							<label class="floatright" style="position:relative;top:1.5em;left:-15px;background-color: #F7F8F9;">
+								<input type="checkbox" name="disclose_password" id="disclose_password" onclick="togglePassword('');" />
+								<?php echo gettext('Show') ?>
+							</label>
 							<fieldset><legend><?php echo gettext("Password"); ?></legend>
-								<input class="textfield" name="pass" id="pass" type="password" size="35" /><br />
-								<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="togglePassword('');" /><?php echo gettext('Show password') ?></label>
+								<input class="textfield" name="pass" id="pass" type="password" size="35" />
 							</fieldset>
 							<br />
 							<div class="buttons">
@@ -1349,7 +1352,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-										 togglePassword('<?php echo $id; ?>');">
+								 togglePassword('<?php echo $id; ?>');">
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 						 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
 						 id="pass<?php echo $id; ?>"

@@ -145,7 +145,8 @@ class DownloadList {
 							 name="disclose_password_downloadList"
 							 id="disclose_password_downloadList"
 							 onclick="passwordClear('_downloadList');
-											 togglePassword('_downloadList');"><?php echo gettext('Show password'); ?>
+									 togglePassword('_downloadList');">
+							 <?php echo gettext('Show'); ?>
 			</label>
 			<br />
 			<span class="password_field__downloadList">
