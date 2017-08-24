@@ -356,6 +356,12 @@ echo '</head>' . "\n";
 												<?php
 												printManagedObjects('albums', $albumlist, '', $groupobj, $id, $kind, array());
 												if (extensionEnabled('zenpage')) {
+													$newslist = array();
+													$categories = $_zp_CMS->getAllCategories(false);
+													foreach ($categories as $category) {
+														$newslist[get_language_string($category['title'])] = $category['titlelink'];
+													}
+													printManagedObjects('news', $newslist, '', $groupobj, $id, $kind, NULL);
 													$pagelist = array();
 													$pages = $_zp_CMS->getPages(false);
 													foreach ($pages as $page) {
@@ -364,12 +370,6 @@ echo '</head>' . "\n";
 														}
 													}
 													printManagedObjects('pages', $pagelist, '', $groupobj, $id, $kind, NULL);
-													$newslist = array();
-													$categories = $_zp_CMS->getAllCategories(false);
-													foreach ($categories as $category) {
-														$newslist[get_language_string($category['title'])] = $category['titlelink'];
-													}
-													printManagedObjects('news', $newslist, '', $groupobj, $id, $kind, NULL);
 												}
 												?>
 
