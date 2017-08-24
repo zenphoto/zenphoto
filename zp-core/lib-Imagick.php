@@ -551,10 +551,10 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param ImagickPixel $color
 	 * @return bool
 	 */
-	function zp_writeString($image, $font, $x, $y, $string, $color) {
+	function zp_writeString($image, $font, $x, $y, $string, $color, $angle = 0) {
 		$font->setStrokeColor($color);
 
-		return $image->annotateImage($font, $x, $y + $image->getImageHeight() / 2, 0, $string);
+		return $image->annotateImage($font, $x, $y + $image->getImageHeight() / 2, $angle, $string);
 	}
 
 	/**

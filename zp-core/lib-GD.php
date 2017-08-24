@@ -470,7 +470,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 * @param int $color
 		 * @return bool
 		 */
-		function zp_writeString($image, $font, $x, $y, $string, $color) {
+		function zp_writeString($image, $font, $x, $y, $string, $color, $angle = 0) {
 			global $_gd_freetype_fonts;
 			if ($font > 0) {
 				return imagestring($image, $font, $x, $y, $string, $color);
@@ -481,7 +481,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 				$bbox = imagettfbbox($_gd_freetype_fonts[$font]['size'], 0, $_gd_freetype_fonts[$font]['path'], GD_FREETYPE_SAMPLE);
 				$w = (int) (($bbox[2] - $bbox[0]) / GD_FREETYPE_SAMPLE_CHARS);
 				$h = $bbox[1] - $bbox[7];
-				$rslt = imagettftext($image, $size, 0, $x + $w, $y + $h, $color, $fontfile, $string);
+				$rslt = imagettftext($image, $size, $angle, $x + $w, $y + $h, $color, $fontfile, $string);
 				return is_array($rslt);
 			}
 		}
@@ -521,7 +521,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			if (!is_array($_gd_fontlist)) {
 				$_gd_fontlist = array('system' => '');
 				$curdir = getcwd();
-				$basefile = SERVERPATH . '/' . USER_PLUGIN_FOLDER . 'gd_fonts/';
+				$basefile = SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts/';
 				if (is_dir($basefile)) {
 					chdir($basefile);
 					$filelist = safe_glob('*.gdf');
