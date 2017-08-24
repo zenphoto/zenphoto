@@ -1047,6 +1047,13 @@ acronym {
 	text-align:left;
 }
 
+#loginform .show_checkbox {
+	position:relative;
+	top:1.5em;
+	left:-15px;
+	background-color: #F7F8F9;
+}
+
 #loginform input.textfield {
 	margin: 0px;
 	width:270px;

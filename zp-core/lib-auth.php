@@ -1091,7 +1091,7 @@ class _Authority {
 								<?php
 							}
 							?>
-							<label class="floatright" style="position:relative;top:1.5em;left:-15px;background-color: #F7F8F9;">
+							<label class="floatright show_checkbox">
 								<input type="checkbox" name="disclose_password" id="disclose_password" onclick="togglePassword('');" />
 								<?php echo gettext('Show') ?>
 							</label>
