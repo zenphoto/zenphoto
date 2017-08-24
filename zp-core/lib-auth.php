@@ -1019,7 +1019,7 @@ class _Authority {
 									<?php echo gettext("Refresh"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
-									<?php echo ARROW_LEFT; ?>
+									<?php echo ARROW_LEFT_BLUE; ?>
 									<?php echo gettext("Return"); ?>
 								</button>
 							</div>
@@ -1177,7 +1177,7 @@ class _Authority {
 									<?php echo gettext("Request password reset"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
-									<?php echo ARROW_LEFT; ?>
+									<?php echo ARROW_LEFT_BLUE; ?>
 									<?php echo gettext("Return"); ?>
 								</button>
 							</div>
