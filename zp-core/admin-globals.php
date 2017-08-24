@@ -37,6 +37,12 @@ $_zp_sortby = array(
 if (@$_zp_loggedin) {
 	if ($_zp_current_admin_obj->reset) {
 		$_zp_loggedin = USER_RIGHTS;
+		$zenphoto_tabs['admin'] = array(
+				'text' => gettext("admin"),
+				'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users',
+				'ordered' => true,
+				'subtabs' => NULL
+		);
 	} else {
 		if ($_zp_loggedin & ADMIN_RIGHTS) {
 			$_zp_loggedin = ALL_RIGHTS;
@@ -54,7 +60,7 @@ if (@$_zp_loggedin) {
 				$_zp_loggedin = $_zp_loggedin | ZENPAGE_PAGES_RIGHTS;
 			}
 		}
-	}
+
 
 	//	establish the menu order
 	$zenphoto_tabs['overview'] = NULL;
@@ -195,7 +201,7 @@ if (@$_zp_loggedin) {
 	if (OFFSET_PATH != 2) {
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/colorbox_js.php');
 	}
-
+	}
 	loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
 }
 ?>

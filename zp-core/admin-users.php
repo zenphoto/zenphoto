@@ -334,6 +334,7 @@ echo $refresh;
 					$alladmins = array();
 					if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset || !$_zp_current_admin_obj->getID()) {
 						$admins = $_zp_authority->getAdministrators('allusers');
+						$manyadmins = count($admins) > 1;
 						foreach ($admins as $key => $user) {
 							$alladmins[] = $user['user'];
 							if ($user['valid'] > 1) {
@@ -380,6 +381,7 @@ echo $refresh;
 						$newuser = array('id' => -1, 'user' => '', 'pass' => '', 'name' => '', 'email' => '', 'rights' => $rights, 'custom_data' => NULL, 'valid' => 1, 'group' => $groupname);
 						$alterrights = '';
 					} else {
+						$manyadmins = false;
 						$alterrights = ' disabled="disabled"';
 						$rangeset = array();
 						if ($_zp_current_admin_obj) {
@@ -491,7 +493,7 @@ echo $refresh;
 
 
 							<?php
-							if ($subpage || count($userlist) > 1) {
+							if ($manyadmins) {
 								?>
 								<tr>
 									<td>
