@@ -80,10 +80,9 @@ if (isset($_GET['action'])) {
 							$target = 'user_' . $i . '-';
 							foreach ($_POST as $item => $username) {
 								if (strpos($item, $target) !== false) {
-									$username = postIndexDecode(substr(sanitize($item), strlen($target)));
 									//$username = substr($item, strlen($target));
 									$user = $_zp_authority->getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
-									user_groups::merge_rights($user, $hisgroups, user_groups::getPrimeObjects($user));
+									user_groups::merge_rights($user, array(1 => $groupname), user_groups::getPrimeObjects($user));
 									$user->save();
 								}
 							}
