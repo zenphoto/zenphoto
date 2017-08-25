@@ -318,7 +318,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 								?>
 								<span class="icons" id="<?php echo $extension; ?>_checkbox">
 									<a onclick="$('#showdisable_<?php echo $extension; ?>').toggle();" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>" >
-										<?php echo EXCLAMATION_RED; ?>
+										<span style="padding-left: 5px;"><?php echo EXCLAMATION_RED; ?></span>
 									</a>
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
 								</span>
@@ -344,12 +344,12 @@ zp_apply_filter('admin_note', 'plugins', '');
 					<td width="60">
 						<span class="icons">
 							<a onclick="$.colorbox({
-										close: '<?php echo gettext("close"); ?>',
-										maxHeight: '80%',
-										maxWidth: '80%',
-										innerWidth: '560px',
-										href: '<?php echo $plugin_URL; ?>'
-									});">
+											close: '<?php echo gettext("close"); ?>',
+											maxHeight: '80%',
+											maxWidth: '80%',
+											innerWidth: '560px',
+											href: '<?php echo $plugin_URL; ?>'
+										});">
 									 <?php echo INFORMATION_BLUE; ?>
 							</a>
 						</span>
