@@ -27,7 +27,7 @@ if (isset($_GET['f'])) {
 		$fontname = array_shift($fonts);
 	}
 }
-$ttf = strtoupper(getSuffix($fontname)) == 'TTF';
+
 
 if (isset($_GET['p'])) {
 	$size = sanitize_numeric($_GET['p']);
@@ -46,6 +46,14 @@ $pallet = array(
 		array('R' => 0, 'G' => 155, 'B' => 18));
 $fw = zp_imageFontWidth($font);
 $fh = zp_imageFontHeight($font);
+
+if (strtoupper(getSuffix($fontname)) == 'TTF') {
+	$leadOffset = - $fh / 4;
+	$kernOffset = $fw;
+} else {
+	$leadOffset = 0;
+	$kernOffset = 0;
+}
 $w = 0;
 $h = $fh = zp_imagefontheight($font);
 $kerning = min(4, floor($fw / 2) - 1);
@@ -53,25 +61,21 @@ $leading = $fh - 4;
 $ink = $lead = $kern = array();
 for ($i = 0; $i < $len; $i++) {
 	$lead[$i] = rand(2, $leading);
-	$h = max($h, $fh + $lead[$i] + 2);
+	$h = max($h, $fh + $lead[$i] + 5);
 	$kern[$i] = rand(2, $kerning);
 	$w = $w + $kern[$i] + $fw;
 	$p[$i] = $pallet[rand(0, 5)];
 }
+
 $w = $w + 5;
-$h = $h + $fh;
 $image = zp_createImage($w, $h);
 $background = zp_imageGet(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zpCaptcha/captcha_background.png');
 zp_copyCanvas($image, $background, 0, 0, rand(0, 9), rand(0, 9), $w, $h);
 
-$l = $kern[0];
-if ($ttf) {
-	//Truetype fonts seem offset
-	$l = $l - $fw;
-}
+$l = $kern[0] - $kernOffset;
 for ($i = 0; $i < $len; $i++) {
 	$ink = zp_colorAllocate($image, $p[$i]['R'], $p[$i]['G'], $p[$i]['B']);
-	zp_writeString($image, $font, $l, $lead[$i] + $fh / 2, $string{$i}, $ink, rand(-10, 10));
+	zp_writeString($image, $font, $l, $lead[$i] + $leadOffset, $string{$i}, $ink, rand(-10, 10));
 	$l = $l + $fw + $kern[$i];
 }
 
