@@ -56,13 +56,13 @@ if (strtoupper(getSuffix($fontname)) == 'TTF') {
 }
 $w = 0;
 $h = $fh = zp_imagefontheight($font);
-$kerning = min(4, floor($fw / 2) - 1);
-$leading = $fh - 4;
+$kerning = min(5, floor($fw / 4) - 1);
+$leading = $fh / 2 - 4;
 $ink = $lead = $kern = array();
 for ($i = 0; $i < $len; $i++) {
-	$lead[$i] = rand(2, $leading);
+	$lead[$i] = rand(0, $leading);
 	$h = max($h, $fh + $lead[$i] + 5);
-	$kern[$i] = rand(2, $kerning);
+	$kern[$i] = rand(-$kerning, $kerning);
 	$w = $w + $kern[$i] + $fw;
 	$p[$i] = $pallet[rand(0, 5)];
 }
