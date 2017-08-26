@@ -502,7 +502,7 @@ echo $refresh;
 						<br class="clearall"><br />
 						<table class="unbordered"> <!-- main table -->
 							<tr>
-								<td style="width: 20em;">
+								<td style="width: 48en;">
 									<?php
 									if (count($admins) > 1) {
 										?>
@@ -534,13 +534,10 @@ echo $refresh;
 													<option value="$"<?php if ($showgroup == '$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
 													<?php
 												}
-												$groups = $_zp_authority->getAdministrators('groups');
-												foreach ($groups as $group) {
-													if ($group['name'] != 'template' && in_array($group['user'], $seenGroups)) {
-														?>
-														<option value="<?php echo $group['user']; ?>"<?php if ($showgroup == $group['user']) echo ' selected="selected"'; ?>><?php printf('%s group', $group['user']); ?></option>
-														<?php
-													}
+												foreach ($seenGroups as $group) {
+													?>
+													<option value="<?php echo $group; ?>"<?php if ($showgroup == $group) echo ' selected="selected"'; ?>><?php printf('%s group', $group); ?></option>
+													<?php
 												}
 											}
 											?>
@@ -623,7 +620,7 @@ echo $refresh;
 									<td colspan="100%" style="margin: 0pt; padding: 0pt;<?php echo $background; ?>">
 										<table class="unbordered" id='user-<?php echo $id; ?>'>
 											<tr>
-												<td style="margin-top: 0px; width: 20em;<?php echo $background; ?>" valign="top">
+												<td style="margin-top: 0px; width: 48en;<?php echo $background; ?>" valign="top">
 													<?php
 													if (empty($userid)) {
 														$displaytitle = gettext("Show details");
@@ -634,8 +631,8 @@ echo $refresh;
 													}
 													?>
 													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-															$('#show_<?php echo $id; ?>').val(visible);
-															toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
+																$('#show_<?php echo $id; ?>').val(visible);
+																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
 															 <?php
 															 if (empty($userid)) {
 																 ?>
@@ -644,7 +641,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																				 $('#adminuser<?php echo $id; ?>').focus();" />
+																						 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
