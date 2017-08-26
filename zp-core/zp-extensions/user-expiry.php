@@ -306,7 +306,7 @@ class user_expiry {
 						$msg = gettext('You have users whose credentials are disbled.');
 					}
 					$subscription = time() - 86400 * getOption('user_expiry_interval');
-					$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`>0 AND `date`<' . db_quote(date('Y-m-d H:i:s', $subscription));
+					$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`=1 AND `date`<' . db_quote(date('Y-m-d H:i:s', $subscription));
 					$result = query_full_array($sql);
 					foreach ($result as $admin) {
 						if (!($admin['rights'] & ADMIN_RIGHTS)) {
