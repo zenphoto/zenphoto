@@ -5,7 +5,7 @@
 $optionRights = ADMIN_RIGHTS;
 
 function saveOptions() {
-	global $_zp_gallery, $zp_cfg, $_configMutex;
+	global $_zp_gallery, $_zp_authority, $zp_cfg, $_configMutex;
 
 	$notify = $returntab = NULL;
 	$protocol = sanitize($_POST['server_protocol'], 3);
@@ -26,6 +26,9 @@ function saveOptions() {
 				$_configMutex->unlock();
 				break;
 		}
+	}
+	if (method_exists($_zp_authority, 'handleOptionSave')) {
+		$_zp_authority->handleOptionSave(NULL, NULL);
 	}
 
 	$_zp_gallery->setUserLogonField(isset($_POST['login_user_field']));
@@ -66,8 +69,26 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Server protocol"); ?></td>
 					<td class="option_value">
-						<select id="server_protocol" name="server_protocol">
-							<option value="http"<?php if (SERVER_PROTOCOL == 'http') echo 'selected = "selected"'; ?>>http</option>
+						<?php
+						if (secureServer()) {
+							?>
+
+							<script type="text/javascript">
+								function warn_http(sel) {
+									if (sel.value == 'http') {
+										alert('<?php echo gettext('Chanaging to http may require clearing secured authentication cookies!'); ?>');
+									}
+
+								}
+							</script>
+							<?php
+						}
+						?>
+						<select id="server_protocol" name="server_protocol"<?php if (secureServer()) echo ' onchange="warn_http(this);"' ?>>
+							<option value="http"<?php
+							if (SERVER_PROTOCOL == 'http' && !secureServer())
+								echo 'selected = "selected"';
+							?>>http</option>
 							<option value="https"<?php
 							if (secureServer()) {
 								if (SERVER_PROTOCOL == 'https')
@@ -78,7 +99,7 @@ function getOptionContent() {
 							?>>https</option>
 							<option value="https_admin"<?php
 							if (secureServer()) {
-								if (SERVER_PROTOCOL == 'https_admin')
+								if (SERVER_PROTOCOL != 'https')
 									echo ' selected="selected"';
 							} else {
 								echo ' disabled="disabled"';
