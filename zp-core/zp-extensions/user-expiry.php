@@ -297,11 +297,29 @@ class user_expiry {
 	static function notify($tab, $subtab) {
 		global $_zp_authority;
 		if ($tab == 'admin' && $subtab = 'users') {
+			$msg = '';
 			if (user_expiry::checkPasswordRenew()) {
 				echo '<p class="errorbox">' . gettext('You must change your password.'), '</p>';
 			} else {
-				if (zp_loggedin(ADMIN_RIGHTS) && $_zp_authority->getAnAdmin(array('`valid`>' => 1))) {
-					echo '<p class="notebox">' . gettext('You have users whose credentials have expired.'), '</p>';
+				if (zp_loggedin(ADMIN_RIGHTS)) {
+					if ($_zp_authority->getAnAdmin(array('`valid`>' => 1))) {
+						$msg = gettext('You have users whose credentials are disbled.');
+					}
+					$subscription = time() - 86400 * getOption('user_expiry_interval');
+					$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`>0 AND `date`<' . db_quote(date('Y-m-d H:i:s', $subscription));
+					$result = query_full_array($sql);
+					foreach ($result as $admin) {
+						if (!($admin['rights'] & ADMIN_RIGHTS)) {
+							if ($msg) {
+								$msg .= '<br />';
+							}
+							$msg .= gettext('You have users whose credentials have expired.');
+							break;
+						}
+					}
+					if ($msg) {
+						echo '<p class="notebox">' . $msg . '</p>';
+					}
 				}
 			}
 		}
