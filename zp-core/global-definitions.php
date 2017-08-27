@@ -69,6 +69,7 @@ define('DB_NOT_CONNECTED', serialize(array('mysql_host' => gettext('not connecte
 $_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 
 //icons
+define('FIREFOX_ICONS', preg_match('~firefox~i', $_SERVER['HTTP_USER_AGENT']));
 define('ARROW_DOWN_GREEN', '<span style="color: green;font-size: large;line-height: 80%">&dArr;</span>');
 define('ARROW_LEFT_BLUE', '<span style="color: blue;font-size:large;line-height: 60%;">&lArr;</span>');
 define('ARROW_RIGHT_BLUE', '<span style="color: blue;font-size:large;line-height: 60%">&rArr;</span>');
@@ -97,15 +98,19 @@ define('HEAVY_GREEN_CHECKMARK', '<span style="color: green;font-size: large;line
 define('INFORMATION_BLUE', '<span style="color: blue;font-size: large;line-height: 90%;">&#8505;</span>');
 define('KEY', '&#128273;');
 define('MENU_ICON', '&#9776;');
-define('NO_ENTRY', '<span style="color: red;">&#9940;</span>');
+if (FIREFOX_ICONS) {
+	define('NO_ENTRY', '<span style="color: red;">&#9940;</span>');
+} else {
+	define('NO_ENTRY', '<span style="color: red;font-size: 90%;">&#9940;</span>');
+}
 define('NORTH_WEST_CORNER_ARROW', '<span style="color: green;">&#8689;</span>');
 define('PENCIL_BLUE', '<span style="color:blue;font-size: large;">&#9998;</span>');
 define('SOUTH_EAST_CORNER_ARROW', '<span style="color: green;">&#8690;</span>');
 define('SQUARED_KEY_GREEN', '<span style="color: green;font-size: large;">&#9919</span>;');
 define('WARNING_SIGN_ORANGE', '<span style="color: darkorange;font-size: large;line-height: 80%">&#9888;</span>');
 //Firefox has a huge wastebasket image
-if (preg_match('~firefox~i', $_SERVER['HTTP_USER_AGENT'])) {
-	define('WASTEBASKET', '<span style="color: brown;font-size: x-small;">&#128465;</span>');
+if (FIREFOX_ICONS) {
+	define('WASTEBASKET', '<span style="color: brown;font-weight: bold;font-size: x-small;">&#128465;</span>');
 } else {
 	define('WASTEBASKET', '<span style="color: brown;font-weight: bold; font-size: large;line-height: 80%">&#128465;</span>');
 }

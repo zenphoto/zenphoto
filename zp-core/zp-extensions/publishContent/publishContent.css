@@ -26,9 +26,7 @@
 .schedulealbumchecklist label {
 	padding: 0 0.2em 0 5px;
 }
-* html .schedulealbumchecklist label {
-	height: 1%;
-}
+
 .schedulealbumchecklist li {
 	background: none;
 	padding-left: 0;
@@ -37,7 +35,7 @@
 .scheduleimagechecklist {
 	border: 1px solid #ccc;
 	list-style: none;
-	height: 40em;
+	height: 30em;
 	overflow: auto;
 	width: 50em;
 	background-color: white;
@@ -62,11 +60,11 @@
 	padding: 0 0.2em 0 25px;
 }
 .scheduleimagechecklisthead{
-	margin-top: 5px;
-	padding-left: 2em;
-	margin-botton:0;
+	padding-top: 5px;
+	padding-botton: 3px;
 	background: lightgray;
 }
-* html .scheduleimagechecklist label {
-	height: 1%;
+.PC_image_icon {
+	display: inline-block;
+	width: 20px;
 }

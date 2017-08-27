@@ -428,7 +428,7 @@ echo "</head>\n";
 										$imagelist = array_flip($imagelist);
 										?>
 										<li>
-											<p class="scheduleimagechecklisthead">
+											<div class="scheduleimagechecklisthead">
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'p');" title="<?php echo gettext('Set all to be published'); ?>">
 													<?php echo HEAVY_GREEN_CHECKMARK; ?>
 												</a>
@@ -439,7 +439,7 @@ echo "</head>\n";
 													<?php echo WASTEBASKET; ?>
 												</a>
 												&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $key; ?></strong>
-											</p>
+											</div>
 											<ul class="scheduleimagelist">
 												<?php
 												foreach ($imagelist as $display => $item) {
@@ -449,17 +449,17 @@ echo "</head>\n";
 															<tr>
 																<td>
 																	<label style="white-space:nowrap">
-																		<span style="padding-right: 5px;"><?php echo HEAVY_GREEN_CHECKMARK; ?></span>
+																		<span class="PC_image_icon"><?php echo HEAVY_GREEN_CHECKMARK; ?></span>
 																		<input id="pub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_p global_p" name="r_<?php echo $item; ?>" type="radio" value="pub_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
 																		<?php echo gettext('Publish'); ?>
 																	</label>
 																	<label style="white-space:nowrap">
-																		<?php echo NO_ENTRY; ?>
+																		<span class="PC_image_icon"><?php echo NO_ENTRY; ?></span>
 																		<input id="notpub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_u global_u" name="r_<?php echo $item; ?>" type="radio"	value="notpub_<?php echo $item; ?>"	checked="checked" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
 																		<?php echo gettext('Do not publish'); ?>
 																	</label>
 																	<label id="label_del_<?php echo $item; ?>" style="white-space:nowrap">
-																		<span style="padding-right: 5px;"><?php echo WASTEBASKET; ?></span>
+																		<span class="PC_image_icon"><?php echo WASTEBASKET; ?></span>
 																		<input id="del_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_d" name="r_<?php echo $item; ?>" type="radio"	value="del_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', true)" />
 																		<?php echo gettext('Delete'); ?>
 																	</label>
@@ -483,7 +483,7 @@ echo "</head>\n";
 									}
 									?>
 								</ul>
-								<p class="scheduleimagechecklisthead">
+								<div class="scheduleimagechecklisthead">
 									<a onclick="publishAll('', 'p');" title="<?php echo gettext('Set all to be published'); ?>">
 										<?php echo HEAVY_GREEN_CHECKMARK; ?>
 									</a>
@@ -491,14 +491,14 @@ echo "</head>\n";
 										<?php echo NO_ENTRY; ?>
 									</a>
 									&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo gettext('all images'); ?></strong>
-								</p>
+								</div>
 
-								<div class="buttons pad_button" id="process">
+								<p class="buttons pad_button" id="process">
 									<button class="tooltip" type="submit" title="<?php echo gettext("Process the above changes."); ?>">
 										<?php echo CIRCLED_BLUE_STAR; ?>
 										<?php echo gettext("Process changes"); ?>
 									</button>
-								</div>
+								</p>
 								<br class="clearall">
 							</form>
 							<?php
