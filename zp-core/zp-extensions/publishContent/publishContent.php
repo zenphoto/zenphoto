@@ -449,17 +449,17 @@ echo "</head>\n";
 															<tr>
 																<td>
 																	<label style="white-space:nowrap">
-																		<span class="PC_image_icon"><?php echo HEAVY_GREEN_CHECKMARK; ?></span>
+																		<?php echo HEAVY_GREEN_CHECKMARK; ?>
 																		<input id="pub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_p global_p" name="r_<?php echo $item; ?>" type="radio" value="pub_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
 																		<?php echo gettext('Publish'); ?>
 																	</label>
 																	<label style="white-space:nowrap">
-																		<span class="PC_image_icon"><?php echo NO_ENTRY; ?></span>
+																		<?php echo NO_ENTRY; ?>
 																		<input id="notpub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_u global_u" name="r_<?php echo $item; ?>" type="radio"	value="notpub_<?php echo $item; ?>"	checked="checked" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
 																		<?php echo gettext('Do not publish'); ?>
 																	</label>
 																	<label id="label_del_<?php echo $item; ?>" style="white-space:nowrap">
-																		<span class="PC_image_icon"><?php echo WASTEBASKET; ?></span>
+																		<?php echo WASTEBASKET; ?>
 																		<input id="del_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_d" name="r_<?php echo $item; ?>" type="radio"	value="del_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', true)" />
 																		<?php echo gettext('Delete'); ?>
 																	</label>

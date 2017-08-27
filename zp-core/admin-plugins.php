@@ -314,11 +314,13 @@ zp_apply_filter('admin_note', 'plugins', '');
 									$attributes .= ' checked="checked"';
 								}
 							}
+							?>
+							<?php
 							if ($plugin_disable) {
 								?>
 								<span class="icons" id="<?php echo $extension; ?>_checkbox">
 									<a onclick="$('#showdisable_<?php echo $extension; ?>').toggle();" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>" >
-										<span style="padding-left: 5px;"><?php echo EXCLAMATION_RED; ?></span>
+										<span style="padding-left: 2px;"><?php echo EXCLAMATION_RED; ?></span>
 									</a>
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
 								</span>
@@ -341,7 +343,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 						}
 						?>
 					</td>
-					<td width="60">
+					<td>
 						<span class="icons">
 							<a onclick="$.colorbox({
 											close: '<?php echo gettext("close"); ?>',
@@ -421,15 +423,42 @@ zp_apply_filter('admin_note', 'plugins', '');
 		</table>
 		<br />
 		<ul class="iconlegend">
-			<li><img src="images/zp_gold.png" alt=""><?php echo gettext('Official plugin'); ?></li>
-			<li><img src="images/zp.png" alt=""><?php echo gettext('Supplemental plugin'); ?></li>
-			<li><img src="images/folder_picture.png" alt=""><?php echo gettext('Class plugin'); ?></li>
-			<li><img src="images/folder.png" alt=""><?php echo gettext('Admin plugin'); ?></li>
-			<li><img src="images/pictures.png" alt=""><?php echo gettext('Feature plugin'); ?></li>
-			<li><img src="images/pictures_dn.png" alt=""><?php echo gettext('Theme plugin'); ?></li>
-			<li><?php echo INFORMATION_BLUE; ?> <?php echo gettext('Usage info'); ?></li>
-			<li><?php echo GEAR_WITHOUT_HUB . ' ' . gettext('Options'); ?></li>
-			<li><?php echo WARNING_SIGN_ORANGE; ?> <?php echo gettext('Warning note'); ?></li>
+			<li>
+				<img src="images/zp_gold.png" alt="">
+				<?php echo gettext('Official plugin'); ?>
+			</li>
+			<li>
+				<img src="images/zp.png" alt="">
+				<?php echo gettext('Supplemental plugin'); ?>
+			</li>
+			<li>
+				<img src="images/folder_picture.png" alt="">
+				<?php echo gettext('Class plugin'); ?>
+			</li>
+			<li>
+				<img src="images/folder.png" alt="">
+				<?php echo gettext('Admin plugin'); ?>
+			</li>
+			<li>
+				<img src="images/pictures.png" alt="">
+				<?php echo gettext('Feature plugin'); ?>
+			</li>
+			<li>
+				<img src="images/pictures_dn.png" alt="">
+				<?php echo gettext('Theme plugin'); ?>
+			</li>
+			<li>
+				<?php echo INFORMATION_BLUE; ?>
+				<?php echo gettext('Usage info'); ?>
+			</li>
+			<li>
+				<?php echo GEAR_WITHOUT_HUB; ?>
+				<?php echo gettext('Options'); ?>
+			</li>
+			<li>
+				<?php echo WARNING_SIGN_ORANGE; ?>
+				<?php echo gettext('Warning note'); ?>
+			</li>
 		</ul>
 		<p class="buttons">
 			<button type="submit" value="<?php echo gettext('Apply') ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong></button>

@@ -70,48 +70,48 @@ $_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 
 //icons
 define('FIREFOX_ICONS', preg_match('~firefox~i', $_SERVER['HTTP_USER_AGENT']));
-define('ARROW_DOWN_GREEN', '<span style="color: green;font-size: large;line-height: 80%">&dArr;</span>');
-define('ARROW_LEFT_BLUE', '<span style="color: blue;font-size:large;line-height: 60%;">&lArr;</span>');
-define('ARROW_RIGHT_BLUE', '<span style="color: blue;font-size:large;line-height: 60%">&rArr;</span>');
-define('ARROW_UP_GRAY', '<span style="color: lightgray;font-size: large;">&uArr;</span>');
-define('ARROW_UP_GREEN', '<span style="color: green;font-size: large;">&uArr;</span>');
-define('BALLOT_BOX_WITH_X_RED', '<span style="color: red;font-size: large;line-height: 80%;">&#9746;</span>');
-define('BULLSEYE_BLUE', '<span style="color: blue;font-size: large;line-height: 80%;">&#9678;</span>');
-define('BULLSEYE_DARKORANGE', '<span style="color: darkorange;font-size: large;line-height: 80%;">&#9678;</span>');
-define('BULLSEYE_GREEN', '<span style="color: green;font-size: large;line-height: 80%;">&#9678;</span>');
-define('BULLSEYE_LIGHTGRAY', '<span style="color: lightgray;font-size: large;line-height: 80%;">&#9678;</span>');
-define('BULLSEYE_RED', '<span style="color: red;font-size: large;line-height: 80%;">&#9678;</span>');
-define('BURST_BLUE', '<span style="color: blue;font-size: large;line-height: 80%;">&#10040;</span>');
-define('CIRCLED_BLUE_STAR', '<span style="color: blue;font-size: large;line-height: 60%">&#10026;</span>');
-define('CLIPBOARD', '&#128203;');
-define('CLOCKFACE', '<span style="letter-spacing: -4px;">&#128343;</span>');
-define('CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN', '<span style="font-size:large;color:green;line-height: 60%;">&#8635;</span>');
-define('CROSS_MARK_RED', '<span style="color: red;">&#10060;</span>');
-define('DRAG_HANDLE', '<span style="color:lightsteelblue;font-size: x-large;">&#10021;</span>');
-define('DRAG_HANDLE_ALERT', '<span style="color:red;font-size: x-large;">&#10021;</span>');
-define('ENVELOPE', '&#128231;');
-define('EXCLAMATION_RED', '<span style="color: red;font-weight: bold;font-size: large;line-height: 80%;letter-spacing: -4px;">&#65281;</span>');
-define('GEAR_WITHOUT_HUB', '&#9965;');
-define('GREEN_CROSS_ON_SHIELD', '<span style="color: green;font-size: large;line-height: 60%;">&#9960;</span>');
-define('HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW', '<span style="color:blue;font-size:large;line-height: 60%;">&#10150;</span>');
-define('HEAVY_GREEN_CHECKMARK', '<span style="color: green;font-size: large;line-height: 80%">&#10004;</span>');
-define('INFORMATION_BLUE', '<span style="color: blue;font-size: large;line-height: 90%;">&#8505;</span>');
-define('KEY', '&#128273;');
-define('MENU_ICON', '&#9776;');
+define('ARROW_DOWN_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&dArr;</span>');
+define('ARROW_LEFT_BLUE', '<span class="font_icon" style="color: blue;font-size:large;">&lArr;</span>');
+define('ARROW_RIGHT_BLUE', '<span class="font_icon" style="color: blue;font-size:large;">&rArr;</span>');
+define('ARROW_UP_GRAY', '<span class="font_icon" style="color: lightgray;font-size: large;">&uArr;</span>');
+define('ARROW_UP_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&uArr;</span>');
+define('BALLOT_BOX_WITH_X_RED', '<span class="font_icon" style="color: red;font-size: large;">&#9746;</span>');
+define('BULLSEYE_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#9678;</span>');
+define('BULLSEYE_DARKORANGE', '<span class="font_icon" style="color: darkorange;font-size: large;;">&#9678;</span>');
+define('BULLSEYE_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&#9678;</span>');
+define('BULLSEYE_LIGHTGRAY', '<span class="font_icon" style="color: lightgray;font-size: large;">&#9678;</span>');
+define('BULLSEYE_RED', '<span class="font_icon" style="color: red;font-size: large;">&#9678;</span>');
+define('BURST_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#10040;</span>');
+define('CIRCLED_BLUE_STAR', '<span class="font_icon" style="color: blue;font-size: large;">&#10026;</span>');
+define('CLIPBOARD', '<span class="font_icon">&#128203;</span>');
+define('CLOCKFACE', '<span class="font_icon" style="letter-spacing: -4px;">&#128343;</span>');
+define('CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN', '<span class="font_icon" style="font-size:large;color:green;">&#8635;</span>');
+define('CROSS_MARK_RED', '<span class="font_icon" style="color: red;">&#10060;</span>');
+define('DRAG_HANDLE', '<span class="font_icon" style="color:lightsteelblue;font-size: x-large;">&#10021;</span>');
+define('DRAG_HANDLE_ALERT', '<span class="font_icon" style="color:red;font-size: x-large;">&#10021;</span>');
+define('ENVELOPE', '<span class="font_icon">&#128231;</span>');
+define('EXCLAMATION_RED', '<span class="font_icon" style="color: red;font-weight: bold;font-size: large;">&#65281;</span>');
+define('GEAR_WITHOUT_HUB', '<span class="font_icon">&#9965;</span>');
+define('GREEN_CROSS_ON_SHIELD', '<span class="font_icon" style="color: green;font-size: large;">&#9960;</span>');
+define('HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW', '<span class="font_icon" style="color:blue;font-size:large;">&#10150;</span>');
+define('HEAVY_GREEN_CHECKMARK', '<span class="font_icon" style="color: green;font-size: large;">&#10004;</span>');
+define('INFORMATION_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#8505;</span>');
+define('KEY', '<span class="font_icon">&#128273;</span>');
+define('MENU_ICON', '<span class="font_icon">&#9776;</span>');
 if (FIREFOX_ICONS) {
-	define('NO_ENTRY', '<span style="color: red;">&#9940;</span>');
+	define('NO_ENTRY', '<span class="font_icon" style="color: red;">&#9940;</span>');
 } else {
-	define('NO_ENTRY', '<span style="color: red;font-size: 90%;">&#9940;</span>');
+	define('NO_ENTRY', '<span class="font_icon" style="color: red;font-size: 90%;">&#9940;</span>');
 }
-define('NORTH_WEST_CORNER_ARROW', '<span style="color: green;">&#8689;</span>');
-define('PENCIL_BLUE', '<span style="color:blue;font-size: large;">&#9998;</span>');
-define('SOUTH_EAST_CORNER_ARROW', '<span style="color: green;">&#8690;</span>');
-define('SQUARED_KEY_GREEN', '<span style="color: green;font-size: large;">&#9919</span>;');
-define('WARNING_SIGN_ORANGE', '<span style="color: darkorange;font-size: large;line-height: 80%">&#9888;</span>');
+define('NORTH_WEST_CORNER_ARROW', '<span class="font_icon" style="color: green;font-weight: bold;">&#8689;</span>');
+define('PENCIL_BLUE', '<span class="font_icon" style="color:blue;font-size: large;">&#9998;</span>');
+define('SOUTH_EAST_CORNER_ARROW', '<span class="font_icon" style="color: green;font-weight: bold;">&#8690;</span>');
+define('SQUARED_KEY_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&#9919</span>;');
+define('WARNING_SIGN_ORANGE', '<span class="font_icon" style="color: darkorange;font-size: large;">&#9888;</span>');
 //Firefox has a huge wastebasket image
 if (FIREFOX_ICONS) {
-	define('WASTEBASKET', '<span style="color: brown;font-weight: bold;font-size: x-small;">&#128465;</span>');
+	define('WASTEBASKET', '<span class="font_icon" style="color: brown;font-weight: bold;font-size: x-small;">&#128465;</span>');
 } else {
-	define('WASTEBASKET', '<span style="color: brown;font-weight: bold; font-size: large;line-height: 80%">&#128465;</span>');
+	define('WASTEBASKET', '<span class="font_icon" style="color: brown;font-weight: bold; font-size: large;">&#128465;</span>');
 }
 ?>

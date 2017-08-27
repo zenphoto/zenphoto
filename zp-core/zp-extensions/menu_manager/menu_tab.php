@@ -249,9 +249,15 @@ printSortableHead();
 					</p>
 				</form>
 				<ul class="iconlegend">
-					<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" /> <?php echo gettext("Menu target is password protected"); ?></li>
-					<li><?php echo HEAVY_GREEN_CHECKMARK; ?><?php echo EXCLAMATION_RED; ?>
-						<?php echo gettext("Visible/Hidden"); ?></li>
+					<li>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
+						<?php echo gettext("Menu target is password protected"); ?>
+					</li>
+					<li>
+						<?php echo HEAVY_GREEN_CHECKMARK; ?>
+						<?php echo EXCLAMATION_RED; ?>
+						<?php echo gettext("Visible/Hidden"); ?>
+					</li>
 					<li>
 						<?php echo BULLSEYE_BLUE; ?>
 						<?php echo gettext("View"); ?>
