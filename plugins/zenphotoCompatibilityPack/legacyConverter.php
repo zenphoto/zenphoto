@@ -76,6 +76,23 @@ function getResidentFiles($folder) {
 	return array_merge($localfiles, $localfolders);
 }
 
+function checkIfProcessed($kind, $name) {
+	$file = 'none';
+	switch ($kind) {
+		case 'plugin':
+			$file = SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/' . $name . '.php';
+			break;
+		case'theme':
+			$file = SERVERPATH . '/' . THEMEFOLDER . '/' . $name . '/theme_description.php';
+			break;
+	}
+	if (file_exists($file)) {
+		$body = file_get_contents($file);
+		return (strpos($body, '/*LegacyConverter was here*/') !== false);
+	}
+	return false;
+}
+
 if (isset($_GET['action'])) {
 	$files = array();
 	if (isset($_POST['themes'])) {
@@ -94,6 +111,10 @@ if (isset($_GET['action'])) {
 	$counter = 0;
 	foreach ($files as $file) {
 		$source = $body = file_get_contents($file);
+		if (strpos($body, '/*LegacyConverter was here*/') === false) {
+			$body = preg_replace('~\<\?php~i', "<?php\n/*LegacyConverter was here*/", $body, 1);
+		}
+
 		foreach ($legacyReplacements as $match => $replace) {
 			$body = preg_replace('~' . $match . '~im', $replace, $body);
 		}
@@ -127,10 +148,13 @@ echo "\n" . '<div id="container">';
 		</div>
 		<?php
 	}
-	$themes = $plugins = array();
+	$themesP = $themes = $plugins = $pluginsP = array();
 	foreach ($_zp_gallery->getThemes() as $theme => $data) {
 		if (!protectedTheme($theme, true)) {
 			$themes[] = $theme;
+			if (checkIfProcessed('theme', $theme)) {
+				$themesP[] = $theme;
+			}
 		}
 	}
 	$paths = getPluginFiles('*.php');
@@ -146,7 +170,11 @@ echo "\n" . '<div id="container">';
 				}
 			}
 			if ($foreign) {
-				$plugins[] = stripSuffix(basename($path));
+				$name = stripSuffix(basename($path));
+				$plugins[] = $name;
+				if (checkIfProcessed('plugin', $name)) {
+					$pluginsP[] = $name;
+				}
 			}
 		}
 	}
@@ -163,7 +191,17 @@ echo "\n" . '<div id="container">';
 						echo gettext('Themes');
 						foreach ($themes as $theme) {
 							?>
-							<li><label><input type="checkbox" name="themes[]" value="<?php echo html_encode($theme); ?>" ><?php echo html_encode($theme); ?></label></li>
+							<li>
+								<label>
+									<input type="checkbox" name="themes[]" value="<?php echo html_encode($theme); ?>" >
+									<?php
+									echo html_encode($theme);
+									if (in_array($theme, $themesP)) {
+										echo gettext(' (already processed)');
+									}
+									?>
+								</label>
+							</li>
 							<?php
 						}
 						?>
@@ -172,7 +210,7 @@ echo "\n" . '<div id="container">';
 				<br />
 				<?php
 			}
-			if (!empty($plugins)) {
+			if (!empty($plugins) || !empty($pluginsP)) {
 				?>
 				<li>
 					<ul>
@@ -180,7 +218,17 @@ echo "\n" . '<div id="container">';
 						echo gettext('Plugins');
 						foreach ($plugins as $plugin) {
 							?>
-							<li><label><input type="checkbox" name="plugins[]" value="<?php echo html_encode($plugin); ?>" ><?php echo html_encode($plugin); ?></label></li>
+							<li>
+								<label>
+									<input type="checkbox" name="plugins[]" value="<?php echo html_encode($plugin); ?>" >
+									<?php
+									echo html_encode($plugin);
+									if (in_array($plugin, $pluginsP)) {
+										echo gettext(' (already processed)');
+									}
+									?>
+								</label>
+							</li>
 							<?php
 						}
 						?>
