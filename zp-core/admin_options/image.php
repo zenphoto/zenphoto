@@ -614,12 +614,14 @@ function getOptionContent() {
 										$x = getOption('protected_image_password');
 										if (empty($x)) {
 											?>
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+											<?php echo LOCK_OPEN; ?>
 											<?php
 										} else {
 											$x = '          ';
 											?>
-											<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" /></a>
+											<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>">
+												<?php echo LOCK_OPEN; ?>
+											</a>
 											<?php
 										}
 										?>
@@ -662,7 +664,7 @@ function getOptionContent() {
 														 name="disclose_password"
 														 id="disclose_password"
 														 onclick="passwordClear('');
-																 togglePassword('');" /><?php echo gettext('Show'); ?>
+																		 togglePassword('');" /><?php echo gettext('Show'); ?>
 										</label>
 
 										<br />

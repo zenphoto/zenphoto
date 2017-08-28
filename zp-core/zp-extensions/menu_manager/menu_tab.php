@@ -250,7 +250,7 @@ printSortableHead();
 				</form>
 				<ul class="iconlegend">
 					<li>
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
+						<?php echo LOCK; ?>
 						<?php echo gettext("Menu target is password protected"); ?>
 					</li>
 					<li>

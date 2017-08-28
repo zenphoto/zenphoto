@@ -32,7 +32,7 @@ class pluginEnabler {
 				'button_text' => gettext('Plugins » standard'),
 				'formname' => 'enablebutton',
 				'action' => FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/pluginEnabler/handler.php',
-				'icon' => ZP_ICON,
+				'icon' => 'images/zp.png',
 				'title' => gettext('Enables all standard plugins (except <em>show_not_logged-in</em>!) Third party plugins are disabled.'),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="pluginsEnable" value="1" />',

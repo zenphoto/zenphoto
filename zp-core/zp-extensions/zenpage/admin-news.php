@@ -335,9 +335,9 @@ updatePublished('news');
 										<div class="page-list_icon">
 											<?php
 											if ($article->inProtectedCategory()) {
-												echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" />';
+												echo LOCK;
 											} else {
-												echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" />';
+												echo LOCK_OPEN;
 											}
 											?>
 										</div>

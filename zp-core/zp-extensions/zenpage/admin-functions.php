@@ -243,9 +243,9 @@ function printPagesListTable($page, $toodeep) {
 			<div class="page-list_icon">
 				<?php
 				if ($page->getPassword()) {
-					echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" />';
+					echo LOCK;
 				} else {
-					echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" />';
+					echo LOCK_OPEN;
 				}
 				?>
 			</div>
@@ -971,9 +971,9 @@ function printCategoryListSortableTable($cat, $toodeep) {
 			<div class="page-list_icon"><?php
 				$password = $cat->getPassword();
 				if (empty($password)) {
-					echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" />';
+					echo LOCK;
 				} else {
-					echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" />';
+					echo LOCK_OPEN;
 				}
 				?>
 			</div>
@@ -1354,8 +1354,8 @@ function printZenpageIconLegend() {
 			<?php
 			if (GALLERY_SECURITY == 'public') {
 				?>
-				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
-				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+				<?php echo LOCK; ?>
+				<?php echo LOCK_OPEN; ?>
 				<?php echo gettext("has/does not have password"); ?>
 				<?php
 			}

@@ -334,7 +334,7 @@ $buttonlist = array();
 								'button_text' => gettext('Run setup'),
 								'formname' => 'run_setup',
 								'action' => FULLWEBPATH . '/' . ZENFOLDER . '/setup.php',
-								'icon' => ZP_ICON,
+								'icon' => 'images/zp_gold.png',
 								'alt' => '',
 								'title' => gettext('Run the setup script.'),
 								'hidden' => '',
@@ -594,7 +594,7 @@ $buttonlist = array();
 							$c = count($plugins);
 							?>
 							<h3><a onclick="$('#plugins_hide').toggle();
-									$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+											$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -642,7 +642,7 @@ $buttonlist = array();
 							$c = count($filters);
 							?>
 							<h3><a onclick="$('#filters_hide').toggle();
-									$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+											$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -731,7 +731,7 @@ $buttonlist = array();
 											<button class="fixedwidth<?php if ($disable) echo ' disabled_button'; ?>" <?php echo $type . $disable; ?>>
 												<?php
 												if (!empty($button_icon)) {
-													if (preg_match('~\&.*?\;~', $button_icon)) {
+													if (preg_match('~\&.*?\;~', $button_icon) || preg_Match('~\<img src~i', $button_icon)) {
 														echo $button_icon . ' ';
 													} else {
 														?>

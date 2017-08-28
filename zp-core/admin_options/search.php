@@ -95,14 +95,14 @@ function getOptionContent() {
 							if (empty($x)) {
 								?>
 								<a onclick="toggle_passwords('', true);">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+									<?php echo LOCK_OPEN; ?>
 								</a>
 								<?php
 							} else {
 								$x = '          ';
 								?>
 								<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
+									<?php echo LOCK; ?>
 								</a>
 								<?php
 							}

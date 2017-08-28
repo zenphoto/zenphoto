@@ -212,9 +212,9 @@ echo '</head>' . "\n";
 					</ul>
 					<?php echo WASTEBASKET; ?>
 					<?php echo gettext('Remove'); ?>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
+					<?php echo LOCK; ?>
 					<?php echo gettext('Disable'); ?>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+					<?php echo LOCK_OPEN; ?>
 					<?php echo gettext('Enable'); ?>
 					<?php
 					if (getOption('user_expiry_password_cycle')) {

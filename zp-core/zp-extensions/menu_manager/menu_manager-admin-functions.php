@@ -99,7 +99,7 @@ function printItemsListTable($item, $toodeep) {
 				<?php
 				if ($array['protected']) {
 					?>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
+					<?php echo LOCK; ?>
 					<?php
 				} else {
 					?>

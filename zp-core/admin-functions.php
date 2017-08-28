@@ -1682,7 +1682,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									if (empty($x)) {
 										?>
 										<a onclick="toggle_passwords('<?php echo $suffix; ?>', true);">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+											<?php echo LOCK_OPEN; ?>
 											<?php echo gettext('No album password is currently set. Click to set one.'); ?>
 										</a>
 										<?php
@@ -1690,7 +1690,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$x = '          ';
 										?>
 										<a onclick="resetPass('<?php echo $suffix; ?>');" title="<?php echo addslashes(gettext('clear password')); ?>">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+											<?php echo LOCK_OPEN; ?>
 											<?php echo gettext('An album password is currently set. Click to clear or change the password.'); ?>
 										</a>
 										<?php
@@ -2387,8 +2387,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 			if (GALLERY_SECURITY == 'public') {
 				?>
 				<li>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+					<?php echo LOCK; ?>
+					<?php echo LOCK_OPEN; ?>
 					<?php echo gettext("has/does not have password"); ?></li>
 				<?php
 			}

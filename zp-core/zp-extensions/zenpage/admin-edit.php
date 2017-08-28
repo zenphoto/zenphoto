@@ -608,13 +608,13 @@ $tagsort = getTagOrder();
 															<?php
 															if (empty($x)) {
 																?>
-																<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+																<?php echo LOCK_OPEN; ?>
 																<?php
 															} else {
 																$x = '          ';
 																?>
 																<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>">
-																	<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+																	<?php echo LOCK_OPEN; ?>
 																</a>
 																<?php
 															}

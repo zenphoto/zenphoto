@@ -55,7 +55,7 @@ function getOptionContent() {
 	?>
 	<div id="tab_gallery" class="tabbox">
 		<form class="dirtylistening" onReset="toggle_passwords('', false);
-				setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+					setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 					<?php XSRFToken('saveoptions'); ?>
 			<input	type="hidden" name="saveoptions" value="gallery" />
 			<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -128,12 +128,14 @@ function getOptionContent() {
 							$x = $_zp_gallery->getPassword();
 							if (empty($x)) {
 								?>
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+								<?php echo LOCK_OPEN; ?>
 								<?php
 							} else {
 								$x = '          ';
 								?>
-								<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" /></a>
+								<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>">
+									<?php echo LOCK_OPEN; ?>
+								</a>
 								<?php
 							}
 							?>
@@ -196,7 +198,7 @@ function getOptionContent() {
 											 name="disclose_password"
 											 id="disclose_password"
 											 onclick="passwordClear('');
-													 togglePassword('');" /><?php echo gettext('Show'); ?>
+															 togglePassword('');" /><?php echo gettext('Show'); ?>
 							</label>
 
 							<br />

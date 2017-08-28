@@ -198,8 +198,8 @@ zenpageJSCSS();
 								<?php
 								if (true) {
 									?>
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png" />
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" />
+									<?php echo LOCK; ?>
+									<?php echo LOCK_OPEN; ?>
 									<?php echo gettext("has/does not have password"); ?>
 									<?php
 								}
