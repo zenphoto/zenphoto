@@ -91,13 +91,14 @@ define('DRAG_HANDLE', '<span class="font_icon" style="color:lightsteelblue;font-
 define('DRAG_HANDLE_ALERT', '<span class="font_icon" style="color:red;font-size: x-large;">&#10021;</span>');
 define('ENVELOPE', '<span class="font_icon">&#128231;</span>');
 define('EXCLAMATION_RED', '<span class="font_icon" style="color: red;font-weight: bold;font-size: large;">&#65281;</span>');
-define('GEAR_WITHOUT_HUB', '<span class="font_icon">&#9965;</span>');
+define('GEAR_ICON', '&#9965;');
+define('GEAR_WITHOUT_HUB', '<span class="font_icon">' . GEAR_ICON . '</span>');
 define('GREEN_CROSS_ON_SHIELD', '<span class="font_icon" style="color: green;font-size: large;">&#9960;</span>');
 define('HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW', '<span class="font_icon" style="color:blue;font-size:large;">&#10150;</span>');
 define('HEAVY_GREEN_CHECKMARK', '<span class="font_icon" style="color: green;font-size: large;">&#10004;</span>');
 define('INFORMATION_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#8505;</span>');
 define('KEY', '<span class="font_icon">&#128273;</span>');
-define('MENU_ICON', '<span class="font_icon">&#9776;</span>');
+define('MENU_ICON', '&#9776;');
 if (FIREFOX_ICONS) {
 	define('NO_ENTRY', '<span class="font_icon" style="color: red;">&#9940;</span>');
 } else {

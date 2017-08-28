@@ -852,8 +852,8 @@ td.albumicons {
 
 .font_icon {
 	display: inline-block;
-	width: 18px;
-	height: 18px;
+	width: 18px !important;
+	height: 18px !important;
 	text-align: center;
 	vertical-align: top;
 }

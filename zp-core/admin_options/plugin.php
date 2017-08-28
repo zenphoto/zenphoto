@@ -145,14 +145,16 @@ function getOptionContent() {
 									if (!$showExtension) {
 										$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
 										?>
-										<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>">
+										<span class="icons">
+											<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>">
 												<?php echo GEAR_WITHOUT_HUB; ?>
 												<?php
 											}
 											echo $extension;
 											if (!$showExtension) {
 												?>
-											</a></span>
+											</a>
+										</span>
 										<?php
 									}
 									if ($warn) {
