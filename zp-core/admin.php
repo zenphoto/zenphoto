@@ -731,12 +731,13 @@ $buttonlist = array();
 											<button class="fixedwidth<?php if ($disable) echo ' disabled_button'; ?>" <?php echo $type . $disable; ?>>
 												<?php
 												if (!empty($button_icon)) {
-													if (preg_match('~\&.*?\;~', $button_icon) || preg_Match('~\<img src~i', $button_icon)) {
-														echo $button_icon . ' ';
-													} else {
+													if (strpos($button_icon, 'images/') === 0) {
+														// old style icon image
 														?>
 														<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
 														<?php
+													} else {
+														echo $button_icon . ' ';
 													}
 												}
 												echo '<span' . $color . '>' . html_encode($button['button_text']) . '</span>';

@@ -139,6 +139,7 @@ define('ZP_ZENPAGE_SINGLE', 8192);
 
 //icons
 define('FIREFOX_ICONS', preg_match('~firefox~i', $_SERVER['HTTP_USER_AGENT']));
+
 define('ARROW_DOWN_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&dArr;</span>');
 define('ARROW_LEFT_BLUE', '<span class="font_icon" style="color: blue;font-size:large;">&lArr;</span>');
 define('ARROW_RIGHT_BLUE', '<span class="font_icon" style="color: blue;font-size:large;">&rArr;</span>');
