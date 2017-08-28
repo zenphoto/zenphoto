@@ -1691,14 +1691,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<a onclick="toggle_passwords('<?php echo $suffix; ?>', false);">
 										<?php echo gettext("Album guest user"); ?>
 									</a>
-									<br />
-									<label>
-										<input type="checkbox"
-													 name="disclose_password<?php echo $suffix; ?>"
-													 id="disclose_password<?php echo $suffix; ?>"
-													 onclick="passwordClear('<?php echo $suffix; ?>');
-																	 togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?>
-									</label>
 								</td>
 								<td>
 									<input type="text"
@@ -1730,6 +1722,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 													 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 													 value="<?php echo $x; ?>" />
+										<label>
+											<input type="checkbox"
+														 name="disclose_password<?php echo $suffix; ?>"
+														 id="disclose_password<?php echo $suffix; ?>"
+														 onclick="passwordClear('<?php echo $suffix; ?>');
+																		 togglePassword('<?php echo $suffix; ?>');" />
+														 <?php echo addslashes(gettext('Show')); ?>
+										</label>
+
 										<br />
 										<span class="password_field_<?php echo $suffix; ?>">
 											<input type="password"
