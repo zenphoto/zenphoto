@@ -334,7 +334,7 @@ $buttonlist = array();
 								'button_text' => gettext('Run setup'),
 								'formname' => 'run_setup',
 								'action' => FULLWEBPATH . '/' . ZENFOLDER . '/setup.php',
-								'icon' => 'images/zp.png',
+								'icon' => ZP_ICON,
 								'alt' => '',
 								'title' => gettext('Run the setup script.'),
 								'hidden' => '',
@@ -364,7 +364,7 @@ $buttonlist = array();
 								'button_text' => gettext('Setup » restore scripts'),
 								'formname' => 'restore_setup',
 								'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=restore_setup',
-								'icon' => 'images/lock_open.png',
+								'icon' => LOCK_OPEN,
 								'alt' => '',
 								'title' => gettext('Restores setup files so setup can be run.'),
 								'hidden' => '<input type="hidden" name="action" value="restore_setup" />',
@@ -594,7 +594,7 @@ $buttonlist = array();
 							$c = count($plugins);
 							?>
 							<h3><a onclick="$('#plugins_hide').toggle();
-											$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+									$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -642,7 +642,7 @@ $buttonlist = array();
 							$c = count($filters);
 							?>
 							<h3><a onclick="$('#filters_hide').toggle();
-											$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+									$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php

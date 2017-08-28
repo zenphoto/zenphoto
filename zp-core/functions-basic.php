@@ -11,79 +11,10 @@
  *
  */
 // force UTF-8 Ø
+global $_zp_conf_vars;
 $_zp_options = array();
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/functions-common.php');
-
-/**
- * OFFSET_PATH definitions:
- * 		0		root scripts (e.g. the root index.php)
- * 		1		zp-core scripts
- * 		2		setup scripts
- * 		3		plugin scripts
- * 		4		scripts in the theme folders
- */
-global $_zp_conf_vars;
-$const_webpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-$const_serverpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME']));
-/**
- * see if we are executing out of any of the known script folders. If so we know how to adjust the paths
- * if not we presume the script is in the root of the installation. If it is not the script better have set
- * the SERVERPATH and WEBPATH defines to the correct values
- */
-if (!preg_match('~(.*)/(' . ZENFOLDER . ')~', $const_webpath, $matches)) {
-	preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . THEMEFOLDER . ')~', $const_webpath, $matches);
-}
-if ($matches) {
-	$const_webpath = $matches[1];
-	$const_serverpath = substr($const_serverpath, 0, strrpos($const_serverpath, '/' . $matches[2]));
-	if (!defined('OFFSET_PATH')) {
-		switch ($matches[2]) {
-			case ZENFOLDER:
-				define('OFFSET_PATH', 1);
-				break;
-			case USER_PLUGIN_FOLDER:
-				define('OFFSET_PATH', 3);
-				break;
-			case THEMEFOLDER:
-				define('OFFSET_PATH', 4);
-				break;
-		}
-	}
-	unset($matches);
-} else {
-	if (!defined('OFFSET_PATH')) {
-		define('OFFSET_PATH', 0);
-	}
-}
-if ($const_webpath == '/' || $const_webpath == '.') {
-	$const_webpath = '';
-}
-
-if (!defined('SERVERPATH')) {
-	define('SERVERPATH', $const_serverpath);
-}
-if (!defined('WEBPATH')) {
-	define('WEBPATH', $const_webpath);
-}
-unset($const_webpath);
-unset($const_serverpath);
-
-// Contexts (Bitwise and combinable)
-define("ZP_INDEX", 1);
-define("ZP_ALBUM", 2);
-define("ZP_IMAGE", 4);
-define("ZP_COMMENT", 8);
-define("ZP_SEARCH", 16);
-define("ZP_SEARCH_LINKED", 32);
-define("ZP_ALBUM_LINKED", 64);
-define('ZP_IMAGE_LINKED', 128);
-define('ZP_ZENPAGE_NEWS_PAGE', 256);
-define('ZP_ZENPAGE_NEWS_ARTICLE', 512);
-define('ZP_ZENPAGE_NEWS_CATEGORY', 1024);
-define('ZP_ZENPAGE_NEWS_DATE', 2048);
-define('ZP_ZENPAGE_PAGE', 4096);
-define('ZP_ZENPAGE_SINGLE', 8192);
 
 switch (PHP_MAJOR_VERSION) {
 	case 5:

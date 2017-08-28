@@ -49,7 +49,7 @@ class utf8mb4Migration {
 						'button_text' => gettext('Migrate to utf8mb4'),
 						'formname' => 'utf8button',
 						'action' => FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/utf8mb4Migration/migrate.php',
-						'icon' => 'images/zp.png',
+						'icon' => ZP_ICON,
 						'title' => gettext('A utility to migrate TEXT and LONGTEXT database fields to utf8mb4 so as to allow 4-byte unicode characters.'),
 						'alt' => '',
 						'hidden' => '',

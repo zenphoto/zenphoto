@@ -270,9 +270,9 @@ zp_apply_filter('admin_note', 'plugins', '');
 				}
 				?>
 				<tr<?php echo $selected_style; ?>>
-					<td min-width="30%">
+					<td min-width="30%"  class="nowrap">
 						<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="<?php echo $currentsetting; ?>" />
-						<label id="<?php echo $extension; ?>" class="nowrap">
+						<label id="<?php echo $extension; ?>">
 							<?php
 							if ($third_party_plugin) {
 								$path = stripSuffix($paths[$extension]) . '/logo.png';

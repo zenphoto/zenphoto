@@ -1170,6 +1170,7 @@ zp-core/images/searchfields_icon.png
 zp-core/images/shape_handles.png
 zp-core/images/stock_copy.png
 zp-core/images/thumb_standin.png
+zp-core/images/trashcan.png
 zp-core/images/zen-logo-light.png
 zp-core/images/zen-logo.png
 zp-core/images/zp.png
@@ -8145,4 +8146,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-8147
+8148
