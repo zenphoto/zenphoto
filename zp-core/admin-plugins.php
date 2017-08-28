@@ -317,10 +317,15 @@ zp_apply_filter('admin_note', 'plugins', '');
 							?>
 							<?php
 							if ($plugin_disable) {
+								if (FIREFOX_ICONS) {
+									$padding = 'padding-left: 2px;';
+								} else {
+									$padding = 'padding-left: 1px;padding-right: 1px;';
+								}
 								?>
 								<span class="icons" id="<?php echo $extension; ?>_checkbox">
 									<a onclick="$('#showdisable_<?php echo $extension; ?>').toggle();" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>" >
-										<span style="padding-left: 2px;"><?php echo EXCLAMATION_RED; ?></span>
+										<span style="<?php echo $padding; ?>"><?php echo BALLOT_BOX_WITH_X_RED; ?></span>
 									</a>
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
 								</span>

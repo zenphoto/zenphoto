@@ -851,6 +851,7 @@ td.albumicons {
 }
 
 .font_icon {
+	font-family: Arial, Helvetica, Calibri, sans-serif;
 	display: inline-block;
 	width: 18px !important;
 	height: 18px !important;
