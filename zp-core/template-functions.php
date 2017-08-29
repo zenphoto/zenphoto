@@ -41,6 +41,7 @@ function printThemeHeadItems() {
 	?>
 	<title><?php echo getHeadTitle(getOption('theme_head_separator'), getOption('theme_head_listparents')); ?></title>
 
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/loginForm.css" type="text/css" />
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
 	<?php
 	if (zp_loggedin()) {
