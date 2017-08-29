@@ -272,7 +272,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 				<tr<?php echo $selected_style; ?>>
 					<td min-width="30%"  class="nowrap">
 						<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="<?php echo $currentsetting; ?>" />
-						<label id="<?php echo $extension; ?>">
+						<label id="<?php echo $extension; ?>" class="floatleft">
 							<?php
 							if ($third_party_plugin) {
 								$path = stripSuffix($paths[$extension]) . '/logo.png';
@@ -341,10 +341,17 @@ zp_apply_filter('admin_note', 'plugins', '');
 							}
 							?>
 						</label>
+
 						<?php
 						if ($subtab == 'all') {
 							$tab = $member[$extension];
-							echo '<span class="displayrightsmall"><a href="' . html_encode($tabs[$tab]) . '"><em>' . $tab . '</em></a></span>';
+							?>
+							<span class="displayrightsmall">
+								<a href="<?php echo html_encode($tabs[$tab]); ?>">
+									<em><?php echo $tab; ?></em>
+								</a>
+							</span>
+							<?php
 						}
 						?>
 					</td>

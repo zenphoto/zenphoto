@@ -822,7 +822,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_TEXTAREA:
 						case OPTION_TYPE_RICHTEXT;
 							$clear = '';
-							$wide = '338px';
+							$wide = 'width: 100%';
 							switch ($type) {
 								case OPTION_TYPE_CLEARTEXT:
 									$clear = 'clear';
@@ -839,7 +839,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									$clear = 'numeric';
 									if (!is_numeric($v))
 										$v = 0;
-									$wide = '100px';
+									$wide = 'width: 100px';
 									if (isset($row['limits'])) {
 										$inputtype = 'number';
 										if (isset($row['limits']['min']))
@@ -870,7 +870,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<?php
 									} else {
 										?>
-										<input type="<?php echo $inputtype; ?>" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>" style="width:100%;" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
+										<input type="<?php echo $inputtype; ?>" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>" style="<?php echo $wide; ?>" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
 										<?php
 									}
 								}
@@ -1690,7 +1690,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$x = '          ';
 										?>
 										<a onclick="resetPass('<?php echo $suffix; ?>');" title="<?php echo addslashes(gettext('clear password')); ?>">
-											<?php echo LOCK_OPEN; ?>
+											<?php echo LOCK; ?>
 											<?php echo gettext('An album password is currently set. Click to clear or change the password.'); ?>
 										</a>
 										<?php
@@ -2523,9 +2523,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 					$pwd = $album->getPassword();
 					if (empty($pwd)) {
-						echo '<a title="' . gettext('un-protected') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" />';
+						?>
+						<a title="<?php echo gettext('un-protected'); ?>">
+							<?php echo LOCK_OPEN; ?>
+						</a>
+						<?php
 					} else {
-						echo '<a title="' . gettext('password protected') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" /></a>';
+						?>
+						<a title="<?php echo gettext('password protected'); ?>">
+							<?php echo LOCK; ?>
+						</a>
+						<?php
 					}
 					?>
 				</div>

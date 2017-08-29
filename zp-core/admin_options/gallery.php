@@ -134,7 +134,7 @@ function getOptionContent() {
 								$x = '          ';
 								?>
 								<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>">
-									<?php echo LOCK_OPEN; ?>
+									<?php echo LOCK; ?>
 								</a>
 								<?php
 							}

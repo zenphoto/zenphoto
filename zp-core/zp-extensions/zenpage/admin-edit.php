@@ -540,9 +540,9 @@ $tagsort = getTagOrder();
 																 id="show"
 																 value="1" <?php checkIfChecked($result->getShow()); ?>
 																 onclick="$('#pubdate').val('');
-																		 $('#expiredate').val('');
-																		 $('#pubdate').css('color', 'black');
-																		 $('.expire').html('');"
+																			 $('#expiredate').val('');
+																			 $('#pubdate').css('color', 'black');
+																			 $('.expire').html('');"
 																 />
 													<label for="show"><?php echo gettext("Published"); ?></label>
 												</p>
@@ -602,19 +602,20 @@ $tagsort = getTagOrder();
 														<?php
 														if (GALLERY_SECURITY == 'public') {
 															?>
-															<a onclick="toggle_passwords('', true);">
-																<?php echo gettext("Password:"); ?>
-															</a>
 															<?php
 															if (empty($x)) {
 																?>
-																<?php echo LOCK_OPEN; ?>
+																<a onclick="toggle_passwords('', true);">
+																	<?php echo gettext("Password:"); ?>
+																	<?php echo LOCK_OPEN; ?>
+																</a>
 																<?php
 															} else {
 																$x = '          ';
 																?>
 																<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>">
-																	<?php echo LOCK_OPEN; ?>
+																	<?php echo gettext("Password:"); ?>
+																	<?php echo LOCK; ?>
 																</a>
 																<?php
 															}
@@ -637,7 +638,7 @@ $tagsort = getTagOrder();
 																			 name="disclose_password"
 																			 id="disclose_password"
 																			 onclick="passwordClear('');
-																					 togglePassword('');">
+																								 togglePassword('');">
 																			 <?php echo gettext('Show'); ?>
 															</label>
 															<br />

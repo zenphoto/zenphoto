@@ -197,7 +197,11 @@ echo "\n" . '<div id="container">';
 									<?php
 									echo html_encode($theme);
 									if (in_array($theme, $themesP)) {
-										echo gettext(' (already processed)');
+										?>
+										<span style="color: orangered">
+											<?php echo gettext(' (already processed)'); ?>
+										</span>
+										<?php
 									}
 									?>
 								</label>
@@ -224,7 +228,11 @@ echo "\n" . '<div id="container">';
 									<?php
 									echo html_encode($plugin);
 									if (in_array($plugin, $pluginsP)) {
-										echo gettext(' (already processed)');
+										?>
+										<span style="color: orangered">
+											<?php echo gettext(' (already processed)'); ?>
+										</span>
+										<?php
 									}
 									?>
 								</label>

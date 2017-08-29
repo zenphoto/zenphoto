@@ -46,7 +46,7 @@ function getOptionContent() {
 		$_zp_plugin_count = 0;
 
 		$plugins = array();
-		$list = array_keys(getEnabledPlugins());
+		$list = array_keys(getPluginFiles('*.php'));
 		natcasesort($list);
 		foreach ($list as $extension) {
 			$option_interface = NULL;
@@ -112,6 +112,7 @@ function getOptionContent() {
 					}
 					foreach ($plugins as $extension) {
 						$option_interface = NULL;
+						$enabled = extensionEnabled($extension);
 						$path = getPlugin($extension . '.php');
 						$pluginStream = file_get_contents($path);
 						if ($str = isolate('$plugin_description', $pluginStream)) {
@@ -142,17 +143,28 @@ function getOptionContent() {
 								<td class="option_name<?php if ($showExtension) echo ' option_shaded'; ?>">
 									<span id="<?php echo $extension; ?>" ></span>
 									<?php
-									if (!$showExtension) {
+									if ($showExtension) {
+										?>
+										<span class="floatleft">
+											<?php echo $extension; ?>
+										</span>
+										<?php
+										if (!$enabled) {
+											?>
+											<a class="floatright" title="<?php echo gettext('The plugin is not enabled'); ?>">
+												<?php echo WARNING_SIGN_ORANGE; ?>
+											</a>
+											<?php
+										}
+									} else {
 										$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
 										?>
 										<span class="icons">
 											<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>">
-												<?php echo GEAR_WITHOUT_HUB; ?>
-												<?php
-											}
-											echo $extension;
-											if (!$showExtension) {
-												?>
+												<span<?php if (!$enabled) echo ' style="color: orange"'; ?>>
+													<?php echo GEAR_WITHOUT_HUB; ?>
+												</span>
+												<?php echo $extension; ?>
 											</a>
 										</span>
 										<?php

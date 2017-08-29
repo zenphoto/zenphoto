@@ -185,10 +185,10 @@ echo '</head>' . "\n";
 							$id = postIndexEncode($user['id']);
 							$r1 = WASTEBASKET . ' ' . '<input type="radio" name="r_' . $id . '" value="delete"' . $checked_delete . ' />&nbsp;';
 							if ($user['valid'] == 2) {
-								$r2 = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" /> <input type="radio" name="r_' . $id . '" value="enable"' . $checked_disable . ' />&nbsp;';
+								$r2 = LOCK_OPEN . ' <input type="radio" name="r_' . $id . '" value="enable"' . $checked_disable . ' />&nbsp;';
 								$userid = '<span style="color: darkred;">' . $userid . '</span>';
 							} else {
-								$r2 = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" /> <input type="radio" name="r_' . $id . '" value="disable"' . $checked_disable . ' />&nbsp;';
+								$r2 = LOCK . ' <input type="radio" name="r_' . $id . '" value="disable"' . $checked_disable . ' />&nbsp;';
 							}
 							if ($subscription) {
 								$r3 = CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN . '</span> <input type="radio" name="r_' . $id . '" value="renew"' . $checked_renew . $checked_disable . ' />&nbsp;';

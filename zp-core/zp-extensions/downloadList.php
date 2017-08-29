@@ -104,7 +104,7 @@ class DownloadList {
 		$hint = getOption('downloadList_hint');
 		?>
 		<input type="hidden" name="password_enabled_downloadList" id="password_enabled_downloadList" value="0" />
-		<p class="password_downloadListextrashow">
+		<span class="password_downloadListextrashow">
 			<a onclick="toggle_passwords('_downloadList', true);">
 				<?php echo gettext("Password:"); ?>
 			</a>
@@ -117,11 +117,11 @@ class DownloadList {
 				$x = '          ';
 				?>
 				<a onclick="resetPass('_downloadList');" title="<?php echo gettext('clear password'); ?>">
-					<?php echo LOCK_OPEN; ?></a>
+					<?php echo LOCK; ?></a>
 				<?php
 			}
 			?>
-		</p>
+		</span>
 		<div class="password_downloadListextrahide" style="display:none">
 			<a onclick="toggle_passwords('_downloadList', false);">
 				<?php echo gettext("Guest user:"); ?>
@@ -145,7 +145,7 @@ class DownloadList {
 							 name="disclose_password_downloadList"
 							 id="disclose_password_downloadList"
 							 onclick="passwordClear('_downloadList');
-									 togglePassword('_downloadList');">
+											 togglePassword('_downloadList');">
 							 <?php echo gettext('Show'); ?>
 			</label>
 			<br />

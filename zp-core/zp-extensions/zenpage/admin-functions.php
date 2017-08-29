@@ -970,7 +970,7 @@ function printCategoryListSortableTable($cat, $toodeep) {
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon"><?php
 				$password = $cat->getPassword();
-				if (empty($password)) {
+				if ($password) {
 					echo LOCK;
 				} else {
 					echo LOCK_OPEN;
