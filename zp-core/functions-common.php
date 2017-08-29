@@ -675,7 +675,6 @@ function zp_session_destroy() {
 		} else {
 			setcookie($name, 'null', 1);
 		}
-		session_destroy();
 	}
 }
 
