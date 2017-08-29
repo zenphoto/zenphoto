@@ -184,7 +184,9 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 							echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
 						}
 						?>
-						<a href="<?php echo $loginlink; ?>" class="logonlink" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
+						<a href="<?php echo $loginlink; ?>" class="logonlink" title="<?php echo $logintext; ?>">
+							<?php echo $logintext; ?>
+						</a>
 						<?php
 						if ($after) {
 							echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>';
@@ -198,7 +200,9 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 		}
 		$logoutlink = FULLWEBPATH . '?' . implode('&', $params);
 		?>
-		<a href="<?php echo html_encode($logoutlink); ?>" title="<?php echo $logouttext; ?>"><?php echo $logouttext; ?></a>
+		<a href="<?php echo html_encode($logoutlink); ?>" title="<?php echo $logouttext; ?>">
+			<?php echo $logouttext; ?>
+		</a>
 		<?php
 		if ($after) {
 			echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>';

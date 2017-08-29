@@ -478,3 +478,36 @@ li.sfHover > a > .sf-sub-indicator {
 .zen-logo img {
 	vertical-align: sub;
 }
+
+/* logon form */
+#loginform {
+	background-color: #F7F8F9;
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 5px solid #BAC9CF;
+}
+#loginform fieldset {
+	border: 1px solid lightgray;
+}
+
+#loginform .show_checkbox {
+	background-color: #F7F8F9;
+	top: 1.7em !important;
+}
+
+#loginform input[type="text"], #loginform input[type="password"] {
+	background-color : #F7F8F9;
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 1px solid #BAC9CF;
+}
+
+#loginform .logon_form_text {
+	background-color: #F7F8F9;
+}
+
+#loginform button[type] {
+	background-color: #F7F8F9;
+}

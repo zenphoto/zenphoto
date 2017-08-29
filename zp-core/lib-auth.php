@@ -932,6 +932,56 @@ class _Authority {
 		}
 		$whichForm = sanitize(@$_REQUEST['logon_step']);
 		?>
+		<style type="text/css">
+			#loginform {
+				text-align: left;
+				padding: 10px;
+				width: 365px;
+				margin: 25px auto;
+				margin-top: 15%;
+				font-size: medium;
+			}
+			#loginform fieldset {
+				padding:10px;
+				text-align:left;
+			}
+
+			#loginform .show_checkbox {
+				float: right;
+				position:relative;
+				top: 1.15em;
+				left:-15px;
+			}
+
+			#loginform input.textfield {
+				margin: 0px;
+				width:270px;
+				font-size: medium;
+				padding: 4px;
+			}
+
+
+			#loginform .logon_form_text {
+				padding: 4px;
+				text-align:left;
+				margin-left: 10px;
+				margin-left: 5px;
+			}
+
+			#loginform .logon_link {
+				text-align:center;
+			}
+			#loginform .button {
+				padding: 5px 10px;
+				font-size: medium;
+			}
+			#loginform button[type] {
+				text-decoration: none;
+				padding: 5px 10px 5px 7px;
+				line-height: 20px;
+			}
+		</style>
+
 		<div id="loginform">
 			<?php
 			if ($logo) {
@@ -1091,7 +1141,7 @@ class _Authority {
 								<?php
 							}
 							?>
-							<label class="floatright show_checkbox">
+							<label class="show_checkbox">
 								<input type="checkbox" name="disclose_password" id="disclose_password" onclick="togglePassword('');" />
 								<?php echo gettext('Show') ?>
 							</label>
@@ -1352,7 +1402,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-								 togglePassword('<?php echo $id; ?>');">
+										 togglePassword('<?php echo $id; ?>');">
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 						 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
 						 id="pass<?php echo $id; ?>"

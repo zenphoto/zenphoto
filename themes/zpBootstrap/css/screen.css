@@ -324,6 +324,11 @@ p.readmorelink {
 	border-bottom: none;
 	width: auto;
 }
+#loginform .show_checkbox {
+	top: 1.7em !important;
+	background-color: white !important;
+}
+
 /* search */
 .navbar-search .search-query {
 	font-size: 14px;

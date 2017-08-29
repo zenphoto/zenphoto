@@ -846,6 +846,9 @@ table#archive li.year {
 #loginform legend {
 	color: #bbb;
 }
+#loginform .show_checkbox {
+	background-color: #292929;
+}
 #loginform input.textfield {
 	width: 250px;
 }

@@ -226,40 +226,6 @@ li {
 
 /* Login
 ------------------------------ */
-#loginform {
-	text-align: left;
-	padding: 10px;
-	width: 365px;
-	margin: 25px auto;
-	margin-top: 15%;
-	margin-left: 0 auto;
-	font-size: 100%;
-	background: #F7F8F9;
-	border-top: 1px solid #BAC9CF;
-	border-left: 1px solid #BAC9CF;
-	border-right: 1px solid #BAC9CF;
-	border-bottom: 5px solid #BAC9CF;
-}
-
-#loginform fieldset {
-	border: 1px solid lightgray;
-	padding:10px;
-	text-align:left;
-}
-
-#loginform input.textfield {
-	margin: 0px;
-	width:270px;
-	font-size: 100%;
-	padding: 4px;
-}
-
-.logon_form_text {
-	padding: 4px;
-	text-align:left;
-	margin-left: 10px;
-	margin-left: 5px;
-}
 
 .logon_link {
 	text-align:center;

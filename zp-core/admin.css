@@ -1033,53 +1033,6 @@ acronym {
 	cursor: help;
 }
 
-/* Login
------------------------------- */
-#loginform {
-	text-align: left;
-	padding: 10px;
-	width: 365px;
-	margin: 25px auto;
-	margin-top: 15%;
-	font-size: 100%;
-	background: #F7F8F9;
-	border-top: 1px solid #BAC9CF;
-	border-left: 1px solid #BAC9CF;
-	border-right: 1px solid #BAC9CF;
-	border-bottom: 5px solid #BAC9CF;
-}
-
-#loginform fieldset {
-	border: 1px solid lightgray;
-	padding:10px;
-	text-align:left;
-}
-
-#loginform .show_checkbox {
-	position:relative;
-	top:1.5em;
-	left:-15px;
-	background-color: #F7F8F9;
-}
-
-#loginform input.textfield {
-	margin: 0px;
-	width:270px;
-	font-size: 100%;
-	padding: 4px;
-}
-
-.logon_form_text {
-	padding: 4px;
-	text-align:left;
-	margin-left: 10px;
-	margin-left: 5px;
-}
-
-.logon_link {
-	text-align:center;
-}
-
 label {
 	cursor: pointer;
 }
@@ -2012,6 +1965,40 @@ fieldset,
 .user_column {
 	width: 35em;
 }
+
+/* logon form */
+#loginform {
+	background-color: #F7F8F9;
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 5px solid #BAC9CF;
+}
+#loginform fieldset {
+	border: 1px solid lightgray;
+}
+
+#loginform .show_checkbox {
+	background-color: #F7F8F9;
+}
+
+#loginform input[type="text"], #loginform input[type="password"] {
+	background-color : #F7F8F9;
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 1px solid #BAC9CF;
+}
+
+#loginform .logon_form_text {
+	background-color: #F7F8F9;
+}
+
+#loginform button[type] {
+	background-color: #F7F8F9;
+}
+
+
 
 #logon_box input#user,
 #logon_box input#pass {
