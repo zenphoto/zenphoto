@@ -264,7 +264,7 @@ function i18nSetLocale($locale) {
 	$rslt = setlocale(LC_ALL, $try);
 	if (isWin()) {
 		@putenv("LC_ALL=$locale");
-		@putenv("LANG=$locale"); 
+		@putenv("LANG=$locale");
 		@putenv("LANGUAGE=$locale");
 	}
 	$_zp_RTL_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
@@ -482,7 +482,7 @@ function setMainDomain() {
 	if (empty($_zp_current_locale)) {
 		// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
 		$languageSupport = generateLanguageList();
-		if (defined('BASE_LOCALE')) {
+		if (defined('BASE_LOCALE') && BASE_LOCALE) {
 			$loc = BASE_LOCALE;
 		} else {
 			$loc = 'en_US';
