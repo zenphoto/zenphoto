@@ -85,12 +85,6 @@ class htmlmetatags {
 
 	// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
 	function getOptionsSupported() {
-		$host = $_SERVER['HTTP_HOST'];
-		$matches = explode('.', $host);
-		if (validateLocale($matches[0], 'Dynamic Locale')) {
-			array_shift($matches);
-			$host = implode('.', $matches);
-		}
 
 		$options = array(gettext('Cache control') => array('key' => 'htmlmeta_cache_control', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 0,
@@ -153,8 +147,7 @@ class htmlmetatags {
 		global $_zp_gallery, $_zp_page, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_current_article,
 		$_zp_current_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites;
 
-		$host = sanitize(PROTOCOL . $_SERVER['HTTP_HOST']);
-		$url = $host . getRequestURI();
+		$url = FULLHOSTPATH . getRequestURI();
 
 		// Convert locale shorttag to allowed html meta format
 		$locale_ = getUserLocale();
@@ -183,7 +176,7 @@ class htmlmetatags {
 		switch ($_zp_gallery_page) {
 			case 'index.php':
 				$desc = getBareGalleryDesc();
-				$canonicalurl = $host . $_zp_gallery->getLink($_zp_page);
+				$canonicalurl = FULLHOSTPATH . $_zp_gallery->getLink($_zp_page);
 				$type = 'website';
 				break;
 			case 'album.php':
@@ -191,11 +184,11 @@ class htmlmetatags {
 				$pagetitle = getBareAlbumTitle() . " - ";
 				$date = getAlbumDate();
 				$desc = getBareAlbumDesc();
-				$canonicalurl = $host . $_zp_current_album->getLink($_zp_page);
+				$canonicalurl = FULLHOSTPATH . $_zp_current_album->getLink($_zp_page);
 				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
 					getMaxSpaceContainer($ogimage_width, $ogimage_height, $thumbimg, false);
-					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
+					$thumb = FULLHOSTPATH . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
 					$twittercard_type = 'summary_large_image';
 				}
 				break;
@@ -203,9 +196,9 @@ class htmlmetatags {
 				$pagetitle = getBareImageTitle() . " (" . getBareAlbumTitle() . ") - ";
 				$date = getImageDate();
 				$desc = getBareImageDesc();
-				$canonicalurl = $host . $_zp_current_image->getLink();
+				$canonicalurl = FULLHOSTPATH . $_zp_current_image->getLink();
 				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
-					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
+					$thumb = FULLHOSTPATH . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
 					$twittercard_type = 'summary_large_image';
 				}
 				break;
@@ -215,17 +208,17 @@ class htmlmetatags {
 						$pagetitle = getBareNewsTitle() . " - ";
 						$date = getNewsDate();
 						$desc = trim(getBare(getNewsContent()));
-						$canonicalurl = $host . $_zp_current_article->getLink();
+						$canonicalurl = FULLHOSTPATH . $_zp_current_article->getLink();
 					} else if (is_NewsCategory()) {
 						$pagetitle = $_zp_current_category->getTitlelink() . " - ";
 						$date = strftime(DATE_FORMAT);
 						$desc = trim(getBare($_zp_current_category->getDesc()));
-						$canonicalurl = $host . $_zp_current_category->getLink($_zp_page);
+						$canonicalurl = FULLHOSTPATH . $_zp_current_category->getLink($_zp_page);
 						$type = 'category';
 					} else {
 						$pagetitle = gettext('News') . " - ";
 						$desc = '';
-						$canonicalurl = $host . getNewsPathNav($_zp_page);
+						$canonicalurl = FULLHOSTPATH . getNewsPathNav($_zp_page);
 						$type = 'website';
 					}
 				}
@@ -234,7 +227,7 @@ class htmlmetatags {
 				$pagetitle = getBarePageTitle() . " - ";
 				$date = getPageDate();
 				$desc = trim(getBare(getPageContent()));
-				$canonicalurl = $host . $_zp_current_page->getLink();
+				$canonicalurl = FULLHOSTPATH . $_zp_current_page->getLink();
 				break;
 			default: // for all other possible static custom pages
 				$custompage = stripSuffix($_zp_gallery_page);
@@ -248,7 +241,7 @@ class htmlmetatags {
 					$pagetitle = $custompage . " - ";
 				}
 				$desc = '';
-				$canonicalurl = $host . getCustomPageURL($custompage);
+				$canonicalurl = FULLHOSTPATH . getCustomPageURL($custompage);
 				break;
 		}
 		// shorten desc to the allowed 200 characters if necesssary.
