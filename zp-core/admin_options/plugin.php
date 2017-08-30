@@ -141,40 +141,46 @@ function getOptionContent() {
 							<!-- <?php echo $extension; ?> -->
 							<tr>
 								<td class="option_name<?php if ($showExtension) echo ' option_shaded'; ?>">
-									<span id="<?php echo $extension; ?>" ></span>
-									<?php
-									if ($showExtension) {
-										?>
-										<span class="floatleft">
-											<?php echo $extension; ?>
-										</span>
+									<span id="<?php echo $extension; ?>">
 										<?php
-										if (!$enabled) {
+										if ($showExtension) {
 											?>
-											<a class="floatright" title="<?php echo gettext('The plugin is not enabled'); ?>">
-												<?php echo WARNING_SIGN_ORANGE; ?>
-											</a>
+
+											<?php echo $extension; ?>
+
+											<?php
+											if (!$enabled) {
+												?>
+
+												<a title="<?php echo gettext('The plugin is not enabled'); ?>">
+													<?php echo WARNING_SIGN_ORANGE; ?>
+												</a>
+
+												<?php
+											}
+											?>
+
+											<?php
+										} else {
+											$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
+											?>
+											<span class="icons">
+												<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>">
+													<span<?php if (!$enabled) echo ' style="color: orange"'; ?>>
+														<?php echo GEAR_WITHOUT_HUB; ?>
+													</span>
+													<?php echo $extension; ?>
+												</a>
+											</span>
 											<?php
 										}
-									} else {
-										$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
+										if ($warn) {
+											?>
+											<?php echo EXCLAMATION_RED; ?>
+											<?php
+										}
 										?>
-										<span class="icons">
-											<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>">
-												<span<?php if (!$enabled) echo ' style="color: orange"'; ?>>
-													<?php echo GEAR_WITHOUT_HUB; ?>
-												</span>
-												<?php echo $extension; ?>
-											</a>
-										</span>
-										<?php
-									}
-									if ($warn) {
-										?>
-										<?php echo EXCLAMATION_RED; ?>
-										<?php
-									}
-									?>
+									</span>
 								</td>
 								<td class="option_value<?php if ($showExtension) echo ' option_shaded'; ?>" colspan="100%">
 									<?php echo $plugin_description; ?>
