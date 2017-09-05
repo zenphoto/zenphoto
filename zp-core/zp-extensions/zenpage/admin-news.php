@@ -227,7 +227,7 @@ updatePublished('news');
 						</div>
 						<span class="buttons floatright">
 							<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>">
-								<?php echo GREEN_CROSS_ON_SHIELD; ?>
+								<?php echo PLUS_ICON; ?>
 								<strong><?php echo gettext("New Article"); ?></strong>
 							</a>
 						</span>
@@ -404,7 +404,7 @@ updatePublished('news');
 													<a href="<?php echo $option . $divider; ?>hitcounter=1&amp;titlelink=<?php
 													echo html_encode($article->getTitlelink());
 													?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
-															 <?php echo BALLOT_BOX_WITH_X_RED; ?>
+															 <?php echo RECYCLE_ICON; ?>
 													</a>
 												</div>
 												<?php

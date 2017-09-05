@@ -360,7 +360,7 @@ $tagsort = getTagOrder();
 							?>
 							<span class="buttons">
 								<a href="<?php echo $backurl; ?>">
-									<?php echo ARROW_LEFT_BLUE; ?>
+									<?php echo BACK_ARROW_BLUE; ?>
 									<strong>
 										<?php echo gettext("Back"); ?></strong>
 								</a>
@@ -385,7 +385,7 @@ $tagsort = getTagOrder();
 									if ($additem) {
 										?>
 										<a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>">
-											<?php echo GREEN_CROSS_ON_SHIELD; ?>
+											<?php echo PLUS_ICON; ?>
 											<strong><?php echo $additem; ?></strong>
 										</a>
 										<?php
@@ -882,7 +882,7 @@ $tagsort = getTagOrder();
 
 									<span class="buttons">
 										<a href="<?php echo $backurl; ?>">
-											<?php echo ARROW_LEFT_BLUE; ?>
+											<?php echo BACK_ARROW_BLUE; ?>
 											<strong>
 												<?php echo gettext("Back"); ?>
 											</strong>
@@ -900,7 +900,7 @@ $tagsort = getTagOrder();
 										</button>
 										<div class="floatright">
 											<a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>">
-												<?php echo GREEN_CROSS_ON_SHIELD; ?>
+												<?php echo PLUS_ICON; ?>
 												<strong><?php echo $additem; ?></strong>
 											</a>
 											<?php

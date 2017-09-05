@@ -326,7 +326,7 @@ echo "</head>\n";
 							</form>
 							<p class="buttons tooltip">
 								<a href="?propagate_unpublished" title="<?php echo gettext('Set all subalbums of an un-published album to un-published.'); ?>">
-									<?php echo HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW; ?>
+									<?php echo CURVED_UPWARDS_AND_RIGHTWARDS_ARROW_BLUE; ?>
 									<?php echo gettext('Propagate un-published state'); ?>
 								</a>
 							</p>

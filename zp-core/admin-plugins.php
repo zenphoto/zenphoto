@@ -102,7 +102,7 @@ $filelist = array_slice($pluginlist, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PA
 ?>
 <script type="text/javascript">
 	<!--
-	var pluginsToPage = ['<?php echo implode("','", $pluginlist); ?>'];
+	var pluginsToPage = ['<?php echo implode("','", array_map('strtolower', $pluginlist)); ?>'];
 	function gotoPlugin(plugin) {
 		i = Math.floor(jQuery.inArray(plugin, pluginsToPage) / <?php echo PLUGINS_PER_PAGE; ?>);
 		window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-plugins.php?page=plugins&tab=<?php echo html_encode($subtab); ?>&subpage=' + i + '&show=' + plugin + '#' + plugin;
@@ -189,12 +189,12 @@ zp_apply_filter('admin_note', 'plugins', '');
 							$third_party_plugin = false;
 							$ico = 'images/zp.png';
 							$whose = gettext('Supplemental plugin');
-							$plugin_URL .= '&amp;type=supplemental';
+							$plugin_URL .= '&type=supplemental';
 						}
 					}
 					if ($third_party_plugin) {
 						$whose = gettext('Third party plugin');
-						$plugin_URL .= '&amp;type=thirdparty';
+						$plugin_URL .= '&type=thirdparty';
 					}
 				} else {
 					$whose = gettext('Official plugin');
@@ -265,14 +265,14 @@ zp_apply_filter('admin_note', 'plugins', '');
 				if ($currentsetting > THEME_PLUGIN) {
 					$selected_style = ' class="currentselection"';
 				}
-				if (isset($_GET['show']) && $_GET['show'] == $extension) {
+				if (isset($_GET['show']) && strtolower($_GET['show']) == strtolower($extension)) {
 					$selected_style = ' class="highlightselection"';
 				}
 				?>
 				<tr<?php echo $selected_style; ?>>
 					<td min-width="30%"  class="nowrap">
 						<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="<?php echo $currentsetting; ?>" />
-						<label id="<?php echo $extension; ?>" class="floatleft">
+						<label id="<?php echo strtolower($extension); ?>" class="floatleft">
 							<?php
 							if ($third_party_plugin) {
 								$path = stripSuffix($paths[$extension]) . '/logo.png';
@@ -322,11 +322,23 @@ zp_apply_filter('admin_note', 'plugins', '');
 								} else {
 									$padding = 'padding-left: 1px;padding-right: 1px;';
 								}
+								if ($plugin_disable) {
+									preg_match('/\<a href="#(.*)">/', $plugin_disable, $matches);
+									if ($matches) {
+										$plugin_disable = str_replace($matches[0], '<a onclick="gotoPlugin(\'' . strtolower($matches[1]) . '\');">', $plugin_disable);
+									}
+								}
 								?>
 								<span class="icons" id="<?php echo $extension; ?>_checkbox">
-									<a onclick="$('#showdisable_<?php echo $extension; ?>').toggle();" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>" >
+
+									<span class="plugin_disable">
 										<span style="<?php echo $padding; ?>"><?php echo BALLOT_BOX_WITH_X_RED; ?></span>
-									</a>
+										<div class="plugin_disable_hidden">
+											<?php echo $plugin_disable; ?>
+										</div>
+									</span>
+
+
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
 								</span>
 								<?php
@@ -356,23 +368,37 @@ zp_apply_filter('admin_note', 'plugins', '');
 						?>
 					</td>
 					<td>
-						<span class="icons">
-							<a onclick="$.colorbox({
+						<span class="icons" id="doc_<?php echo $extension; ?>">
+							<?php echo INFORMATION_BLUE; ?>
+						</span>
+						<script type="text/javascript">
+							var timer;
+
+							$('#doc_<?php echo $extension; ?>').on({
+								'mouseover': function () {
+									timer = setTimeout(function () {
+										$.colorbox({
 											close: '<?php echo gettext("close"); ?>',
 											maxHeight: '80%',
 											maxWidth: '80%',
 											innerWidth: '560px',
 											href: '<?php echo $plugin_URL; ?>'
-										});">
-									 <?php echo INFORMATION_BLUE; ?>
-							</a>
-						</span>
+										});
+									}, 1000);
+								},
+								'mouseout': function () {
+									clearTimeout(timer);
+								}
+							});
+
+
+						</script>
 						<?php
 						if ($optionlink) {
 							?>
 							<span class="icons">
 								<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>">
-									<?php echo GEAR_WITHOUT_HUB; ?>
+									<?php echo OPTIONS_ICON; ?>
 								</a>
 							</span>
 							<?php
@@ -383,45 +409,20 @@ zp_apply_filter('admin_note', 'plugins', '');
 						}
 						if ($plugin_notice) {
 							?>
-							<span class="icons"><a onclick="$('#show_<?php echo $extension; ?>').toggle();" title ="<?php echo gettext('Plugin warnings'); ?>" >
+							<span class="icons">
+								<span class="plugin_warning">
 									<?php echo WARNING_SIGN_ORANGE; ?>
-								</a>
+									<div class="plugin_warning_hidden">
+										<?php echo $plugin_notice; ?>
+									</div>
+								</span>
 							</span>
 							<?php
 						}
 						?>
 					</td>
 					<td colspan="100%">
-						<?php
-						echo $plugin_description;
-						if ($plugin_disable) {
-							?>
-							<div id="showdisable_<?php echo $extension; ?>" style="display: none" class="warningbox">
-								<?php
-								if ($plugin_disable) {
-									preg_match('/\<a href="#(.*)">/', $plugin_disable, $matches);
-									if ($matches) {
-										$plugin_disable = str_replace($matches[0], '<a onclick="gotoPlugin(\'' . $matches[1] . '\');">', $plugin_disable);
-									}
-									echo $plugin_disable;
-								}
-								?>
-							</div>
-
-							<?php
-						}
-						if ($plugin_notice) {
-							?>
-							<div id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
-								<?php
-								if ($plugin_notice) {
-									echo $plugin_notice;
-								}
-								?>
-							</div>
-							<?php
-						}
-						?>
+						<?php echo $plugin_description; ?>
 					</td>
 				</tr>
 				<?php
@@ -464,7 +465,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 				<?php echo gettext('Usage info'); ?>
 			</li>
 			<li>
-				<?php echo GEAR_WITHOUT_HUB; ?>
+				<?php echo OPTIONS_ICON; ?>
 				<?php echo gettext('Options'); ?>
 			</li>
 			<li>

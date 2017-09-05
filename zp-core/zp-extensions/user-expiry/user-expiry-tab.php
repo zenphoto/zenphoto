@@ -136,7 +136,7 @@ echo '</head>' . "\n";
 						</button>
 						<div class="floatright">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;single=user-expiry#user-expiry">
-								<?php echo GEAR_WITHOUT_HUB; ?>
+								<?php echo OPTIONS_ICON; ?>
 								<strong><?php echo gettext('Options') ?></strong>
 							</a>
 						</div>

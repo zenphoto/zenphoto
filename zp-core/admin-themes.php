@@ -314,7 +314,7 @@ if (count($themelist) == 0) {
 							<li>
 								<p class="buttons">
 									<a onclick="<?php echo $editable; ?>;">
-										<?php echo PENCIL_BLUE; ?>
+										<?php echo PENCIL_ICON; ?>
 										<?php echo gettext("Edit"); ?>
 									</a>
 								</p><br />

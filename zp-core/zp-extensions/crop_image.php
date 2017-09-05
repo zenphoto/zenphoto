@@ -459,21 +459,21 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 								if ($_REQUEST['performcrop'] == 'backend') {
 									?>
 									<button type="button" value="<?php echo gettext('Back') ?>" onclick="window.location = '../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo $subpage . ($singleimage) ? '&singleimage=' . html_encode($singleimage) : ''; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
-										<?php echo ARROW_LEFT_BLUE; ?>
+										<?php echo BACK_ARROW_BLUE; ?>
 										<strong><?php echo gettext("Back"); ?></strong>
 									</button>
 									<?php
 								} else if ($pasteobj) {
 									?>
 									<button type="button" value="<?php echo gettext('Back') ?>" onclick="<?php echo linkPickerPick($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')"); ?> setClean('crop');	window.history.back();">
-										<?php echo ARROW_LEFT_BLUE; ?>
+										<?php echo BACK_ARROW_BLUE; ?>
 										<strong><?php echo gettext("Done"); ?></strong>
 									</button>
 									<?php
 								} else {
 									?>
 									<button type="button" value="<?php echo gettext('Back') ?>" onclick="window.location = '../../index.php?album=<?php echo pathurlencode($albumname); ?>&image=<?php echo urlencode($imagename); ?>'">
-										<?php echo ARROW_LEFT_BLUE; ?>
+										<?php echo BACK_ARROW_BLUE; ?>
 										<strong><?php echo gettext("Back"); ?></strong>
 									</button>
 									<?php

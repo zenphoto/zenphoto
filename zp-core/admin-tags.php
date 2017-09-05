@@ -272,7 +272,7 @@ printAdminHeader('admin');
 						</div>
 						<p class="buttons"<?php if (getOption('multi_lingual')) echo ' style="padding-bottom: 25px;"'; ?>>
 							<button type="submit" id='save_tags' value="<?php echo gettext("Add tags"); ?>">
-								<?php echo GREEN_CROSS_ON_SHIELD; ?>
+								<?php echo PLUS_ICON; ?>
 								<?php echo gettext("Add tags"); ?>
 							</button>
 						</p>

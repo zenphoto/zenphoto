@@ -136,7 +136,7 @@ zenpageJSCSS();
 							?>
 							<span class="floatright">
 								<a href="admin-edit.php?newscategory&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo gettext('New category'); ?>">
-									<?php echo GREEN_CROSS_ON_SHIELD; ?>
+									<?php echo PLUS_ICON; ?>
 									<strong>
 										<?php echo gettext('New category'); ?>
 									</strong>
@@ -218,7 +218,7 @@ zenpageJSCSS();
 						if (extensionEnabled('hitcounter')) {
 							?>
 							<li>
-								<?php echo BALLOT_BOX_WITH_X_RED; ?>
+								<?php echo RECYCLE_ICON; ?>
 								<?php echo gettext('reset hitcounter'); ?>
 							</li>
 							<?php

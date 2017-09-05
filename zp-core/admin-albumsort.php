@@ -191,7 +191,7 @@ echo "\n</head>";
 
 						<p class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-								<?php echo ARROW_LEFT_BLUE; ?>
+								<?php echo BACK_ARROW_BLUE; ?>
 								<strong><?php echo gettext("Back"); ?></strong>
 							</a>
 							<button type="submit" onclick="postSort(this.form);" >
@@ -228,7 +228,7 @@ echo "\n</head>";
 											<p>
 												<input type="checkbox" name="ids[]" value="<?php echo $imagename; ?>">
 												<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>">
-													<?php echo PENCIL_BLUE; ?>
+													<?php echo PENCIL_ICON; ?>
 												</a>
 												<?php
 												if (isImagePhoto($image)) {
@@ -254,7 +254,7 @@ echo "\n</head>";
 							<input type="hidden" id="sortableList" name="sortableList" value="" />
 							<p class="buttons">
 								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-									<?php echo ARROW_LEFT_BLUE; ?>
+									<?php echo BACK_ARROW_BLUE; ?>
 									<strong><?php echo gettext("Back"); ?></strong>
 								</a>
 								<button type="submit" onclick="postSort(this.form);" >

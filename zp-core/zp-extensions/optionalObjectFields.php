@@ -568,7 +568,7 @@ class optionalObjectFields extends fieldExtender {
 						<?php echo WASTEBASKET; ?>
 					</a>
 					<a id="tag_restore_link_tags_<?php echo $i; ?>" onclick="restoreOldTags('tags_<?php echo $i; ?>');" style="display:none;">
-						<?php echo GREEN_CROSS_ON_SHIELD; ?>
+						<?php echo PLUS_ICON; ?>
 					</a>
 					<?php
 				}

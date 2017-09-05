@@ -234,12 +234,12 @@ if (is_array($result)) {
 				?>
 				<p class="buttons">
 					<a href="menu_tab.php?menuset=<?php echo $menuset; ?>">
-						<?php echo ARROW_LEFT_BLUE; ?>
+						<?php echo BACK_ARROW_BLUE; ?>
 						<strong><?php echo gettext("Back"); ?></strong>
 					</a>
 					<span class="floatright">
 						<a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>">
-							<?php echo GREEN_CROSS_ON_SHIELD; ?>
+							<?php echo PLUS_ICON; ?>
 							<strong>
 								<?php echo gettext("Add Menu Items"); ?>
 							</strong>

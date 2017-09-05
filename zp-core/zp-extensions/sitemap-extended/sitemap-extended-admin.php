@@ -131,7 +131,7 @@ function sitemap_printAvailableSitemaps() {
 					</p>
 					<p class="buttons">
 						<a href="sitemap-extended-admin.php?clearsitemapcache">
-							<?php echo BALLOT_BOX_WITH_X_RED; ?>
+							<?php echo RECYCLE_ICON; ?>
 							<?php echo gettext("Clear sitemap cache"); ?>
 						</a>
 					</p>

@@ -134,7 +134,7 @@ updatePublished('pages');
 							?>
 							<span class="floatright">
 								<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>">
-									<?php echo GREEN_CROSS_ON_SHIELD; ?>
+									<?php echo PLUS_ICON; ?>
 									<strong>
 										<?php echo gettext('New Page'); ?>
 									</strong>

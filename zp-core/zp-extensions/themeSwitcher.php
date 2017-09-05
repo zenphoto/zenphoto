@@ -150,14 +150,14 @@ class themeSwitcher {
 			?>
 			<div class="themeSwitcherMenuMain themeSwitcherMenu themeSwitcherControl">
 				<a onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Switch themes'); ?>" style="text-decoration: none;" />
-				<?php echo MENU_ICON; ?>
+				<?php echo MENU_SYMBOL; ?>
 			</a>
 			</div>
 			<div class="themeSwitcherControlLink themeSwitcherControl" style="display:none;">
 				<div class="themeSwitcherMenuShow">
 					<a onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Close'); ?>" style="text-decoration: none;" />
 					<span style="font-size: large;color: black !important;">
-						<?php echo MENU_ICON; ?>
+						<?php echo MENU_SYMBOL; ?>
 					</span>
 					</a>
 

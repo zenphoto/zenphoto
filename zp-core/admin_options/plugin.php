@@ -167,7 +167,7 @@ function getOptionContent() {
 											<span class="icons">
 												<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>">
 													<span<?php if (!$enabled) echo ' style="color: orange"'; ?>>
-														<?php echo GEAR_WITHOUT_HUB; ?>
+														<?php echo OPTIONS_ICON; ?>
 													</span>
 													<?php echo $extension; ?>
 												</a>

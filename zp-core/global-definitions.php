@@ -145,6 +145,7 @@ define('ARROW_LEFT_BLUE', '<span class="font_icon" style="color: blue;font-size:
 define('ARROW_RIGHT_BLUE', '<span class="font_icon" style="color: blue;font-size:large;">&rArr;</span>');
 define('ARROW_UP_GRAY', '<span class="font_icon" style="color: lightgray;font-size: large;">&uArr;</span>');
 define('ARROW_UP_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&uArr;</span>');
+define('BACK_ARROW_BLUE', '<span class="font_icon" style="color: blue;font-size:large;">&#10094;</span>');
 define('BALLOT_BOX_WITH_X_RED', '<span class="font_icon" style="color: red;font-size: large;">&#9746;</span>');
 define('BULLSEYE_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#9678;</span>');
 define('BULLSEYE_DARKORANGE', '<span class="font_icon" style="color: darkorange;font-size: large;;">&#9678;</span>');
@@ -157,27 +158,28 @@ define('CLIPBOARD', '<span class="font_icon">&#128203;</span>');
 define('CLOCKFACE', '<span class="font_icon" style="letter-spacing: -4px;">&#128343;</span>');
 define('CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN', '<span class="font_icon" style="font-size:large;color:green;">&#8635;</span>');
 define('CROSS_MARK_RED', '<span class="font_icon" style="color: red;">&#10060;</span>');
+define('CURVED_UPWARDS_AND_RIGHTWARDS_ARROW_BLUE', '<span class="font_icon" style="color:blue;font-size:large;">&#10150;</span>');
 define('DRAG_HANDLE', '<span class="font_icon" style="color:lightsteelblue;font-size: x-large;">&#10021;</span>');
 define('DRAG_HANDLE_ALERT', '<span class="font_icon" style="color:red;font-size: x-large;">&#10021;</span>');
 define('ENVELOPE', '<span class="font_icon">&#128231;</span>');
 define('EXCLAMATION_RED', '<span class="font_icon" style="color: red;font-weight: bold;font-size: large;">&#65281;</span>');
-define('GEAR_ICON', '&#9965;');
-define('GEAR_WITHOUT_HUB', '<span class="font_icon">' . GEAR_ICON . '</span>');
-define('GREEN_CROSS_ON_SHIELD', '<span class="font_icon" style="color: green;font-size: large;">&#9960;</span>');
-define('HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW', '<span class="font_icon" style="color:blue;font-size:large;">&#10150;</span>');
+define('GEAR_SYMBOL', '&#9881;');
 define('HEAVY_GREEN_CHECKMARK', '<span class="font_icon" style="color: green;font-size: large;">&#10004;</span>');
 define('INFORMATION_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#8505;</span>');
 define('KEY', '<span class="font_icon">&#128273;</span>');
 define('LOCK', '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" />');
 define('LOCK_OPEN', '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" />');
-define('MENU_ICON', '&#9776;');
+define('MENU_SYMBOL', '&#9776;');
 if (FIREFOX_ICONS) {
 	define('NO_ENTRY', '<span class="font_icon" style="color: red;">&#9940;</span>');
 } else {
 	define('NO_ENTRY', '<span class="font_icon" style="color: red;font-size: 90%;">&#9940;</span>');
 }
 define('NORTH_WEST_CORNER_ARROW', '<span class="font_icon" style="color: green;font-weight: bold;">&#8689;</span>');
-define('PENCIL_BLUE', '<span class="font_icon" style="color:blue;font-size: large;">&#9998;</span>');
+define('OPTIONS_ICON', '<span class="font_icon" style="font-size: large;">' . GEAR_SYMBOL . '</span>');
+define('PENCIL_ICON', '<span class="font_icon" style="color: darkgoldenrod;font-size: large;">&#9998;</span>');
+define('PLUS_ICON', '<span class="font_icon" style="color: green;font-size: x-large;font-weight: bold;">&#43;</span>');
+define('RECYCLE_ICON', '<span class="font_icon" style="color: red;font-size: large;font-weight: bold;">&#x2672;</span>');
 define('SOUTH_EAST_CORNER_ARROW', '<span class="font_icon" style="color: green;font-weight: bold;">&#8690;</span>');
 define('SQUARED_KEY_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&#9919</span>;');
 define('WARNING_SIGN_ORANGE', '<span class="font_icon" style="color: darkorange;font-size: large;">&#9888;</span>');

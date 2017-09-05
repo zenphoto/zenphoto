@@ -947,7 +947,7 @@ echo "\n</head>";
 								?>
 								<span class="buttons">
 									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-										<?php echo ARROW_LEFT_BLUE; ?>
+										<?php echo BACK_ARROW_BLUE; ?>
 										<strong><?php echo gettext("Back"); ?></strong>
 									</a>
 									<?php
@@ -1016,7 +1016,7 @@ echo "\n</head>";
 								<br />
 								<span class="buttons">
 									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>&filter=<?php echo $filter; ?>">
-										<?php echo ARROW_LEFT_BLUE; ?>
+										<?php echo BACK_ARROW_BLUE; ?>
 										<strong><?php echo gettext("Back"); ?></strong>
 									</a>
 									<button class="serialize buttons" type="submit">
@@ -1155,7 +1155,7 @@ echo "\n</head>";
 								<div style="padding: 10px;">
 									<p class="buttons">
 										<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>&filter=<?php echo $filter; ?>">
-											<?php echo ARROW_LEFT_BLUE; ?>
+											<?php echo BACK_ARROW_BLUE; ?>
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
 										<button type="submit">
@@ -1318,7 +1318,7 @@ echo "\n</head>";
 															<tr>
 																<td colspan="100%" style="border-bottom:none;">
 																	<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename . '&subpage=' . $pagenum; ?>&filter=<?php echo $filter; ?>">
-																		<?php echo PENCIL_BLUE; ?>
+																		<?php echo PENCIL_ICON; ?>
 																		<?php echo gettext('Edit all image data'); ?>
 																	</a>
 																</td>
@@ -1599,7 +1599,7 @@ echo "\n</head>";
 
 									<p class="buttons">
 										<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-											<?php echo ARROW_LEFT_BLUE; ?>
+											<?php echo BACK_ARROW_BLUE; ?>
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
 										<button type="submit">
@@ -1681,7 +1681,7 @@ echo "\n</head>";
 						<input type="hidden" name="totalalbums" value="<?php echo sizeof($albums); ?>" />
 						<span class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit">
-								<?php echo ARROW_LEFT_BLUE; ?>
+								<?php echo BACK_ARROW_BLUE; ?>
 								<strong><?php echo gettext("Back"); ?></strong>
 							</a>
 							<button type="submit">
@@ -1719,7 +1719,7 @@ echo "\n</head>";
 						<br />
 						<span class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit">
-								<?php echo ARROW_LEFT_BLUE; ?>
+								<?php echo BACK_ARROW_BLUE; ?>
 								<strong><?php echo gettext("Back"); ?></strong>
 							</a>
 							<button type="submit">

@@ -105,7 +105,7 @@ if (!empty($messages)) {
 
 <p class="buttons">
 	<a title="<?php echo gettext('Back to the theme list'); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-themes.php">
-		<?php echo ARROW_LEFT_BLUE; ?>
+		<?php echo BACK_ARROW_BLUE; ?>
 		<strong><?php echo gettext("Back"); ?></strong>
 	</a>
 </p>

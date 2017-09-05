@@ -91,7 +91,7 @@ function adminToolbox() {
 		<div id="<?php echo $id; ?>" style="margin-right: 10px;">
 			<a onclick="$('#<?php echo $dataid; ?>').toggle();" title="<?php echo gettext('Logged in as') . ' ' . $name; ?>" style="text-decoration: none;">
 				<span style="font-size: large;">
-					<?php echo GEAR_ICON; ?>
+					<?php echo GEAR_SYMBOL; ?>
 				</span>
 			</a>
 		</div>

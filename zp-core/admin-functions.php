@@ -1463,7 +1463,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<span class="new_tag displayinline" >
 				<a onclick="addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
-					<?php echo GREEN_CROSS_ON_SHIELD; ?>
+					<?php echo PLUS_ICON; ?>
 				</a>
 				<span class="tagSuggestContainer">
 					<input class="tagsuggest <?php echo $class; ?> " type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
@@ -1573,7 +1573,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				?>
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-					<?php echo ARROW_LEFT_BLUE; ?>
+					<?php echo BACK_ARROW_BLUE; ?>
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
 				<button type="submit">
@@ -2288,7 +2288,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<span class="buttons">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-					<?php echo ARROW_LEFT_BLUE; ?>
+					<?php echo BACK_ARROW_BLUE; ?>
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
 				<button type="submit">
@@ -2345,7 +2345,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			</div>
 			<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
-					<?php echo BALLOT_BOX_WITH_X_RED; ?>
+					<?php echo RECYCLE_ICON; ?>
 					<?php echo gettext('Reset album hit counters'); ?></a>
 				<br class="clearall">
 			</div>
@@ -2421,7 +2421,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			if (extensionEnabled('hitcounter')) {
 				?>
 				<li>
-					<?php echo BALLOT_BOX_WITH_X_RED; ?>
+					<?php echo RECYCLE_ICON; ?>
 					<?php echo gettext("reset hit counters"); ?>
 				</li>
 				<?php
@@ -2647,7 +2647,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						} else {
 							?>
 							<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;subalbum=true&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
-								<?php echo BALLOT_BOX_WITH_X_RED; ?>
+								<?php echo RECYCLE_ICON; ?>
 							</a>
 							<?php
 						}
@@ -3572,7 +3572,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 	$full = $userobj->getObjects();
 
 	$legend = '';
-	$icon_edit = PENCIL_BLUE;
+	$icon_edit = PENCIL_ICON;
 	$icon_view = EXCLAMATION_RED;
 	$icon_upload = ARROW_UP_GREEN;
 	$icon_upload_disabled = ARROW_UP_GRAY;

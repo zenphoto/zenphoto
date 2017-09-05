@@ -671,6 +671,52 @@ table.options tr td {
 	min-height: 40px;
 }
 
+.plugin_warning_hidden {
+	position: absolute;
+	z-index: 1000;
+	margin-left: 60px;
+	margin-top: -30px;
+	width: 400px;
+	text-align: left !important;
+	white-space: normal !important;
+	visibility: hidden;
+	background-color: #FFEFB7;
+	padding: 5px;
+	border: 1px solid #dedede;
+	height: 25px;
+}
+
+.plugin_warning:hover > div {
+	visibility: visible;
+	height: auto;
+	overflow-x: visible;
+	overflow-y: visible;
+	min-height: 40px;
+}
+
+.plugin_disable_hidden {
+	position: absolute;
+	z-index: 1000;
+	margin-left: 80px;
+	margin-top: -30px;
+	width: 400px;
+	text-align: left !important;
+	white-space: normal !important;
+	visibility: hidden;
+	background-color: #FDD;
+	padding: 5px;
+	border: 1px solid #dedede;
+	height: 25px;
+}
+
+.plugin_disable:hover > div {
+	visibility: visible;
+	height: auto;
+	overflow-x: visible;
+	overflow-y: visible;
+	min-height: 40px;
+}
+
 .formlayout {
 	width: 100%;
 }

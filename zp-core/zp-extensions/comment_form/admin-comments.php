@@ -466,7 +466,7 @@ printLogoAndLinks();
 											</div>
 											<div class="page-list_icon">
 												<a href="?page=editcomment&amp;id=<?php echo $id; ?>" title="<?php echo gettext('Edit this comment.'); ?>">
-													<?php echo PENCIL_BLUE; ?>
+													<?php echo PENCIL_ICON; ?>
 												</a>
 											</div>
 											<div class="page-list_icon">
@@ -514,7 +514,7 @@ printLogoAndLinks();
 								<?php echo gettext("Anonymous posting"); ?>
 							</li>
 							<li>
-								<?php echo PENCIL_BLUE; ?>
+								<?php echo PENCIL_ICON; ?>
 								<?php echo gettext("Edit comment"); ?>
 							</li>
 							<li>

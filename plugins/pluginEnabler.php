@@ -58,7 +58,7 @@ class pluginEnabler {
 				'button_text' => gettext('Plugins » remembered'),
 				'formname' => 'enablebutton',
 				'action' => FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/pluginEnabler/handler.php',
-				'icon' => HEAVY_BLUE_CURVED_UPWARDS_AND_RIGHTWARDS_ARROW,
+				'icon' => CURVED_UPWARDS_AND_RIGHTWARDS_ARROW_BLUE,
 				'title' => gettext('Restores the plugin states to what was remembered.'),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="pluginsEnable" value="2" />',

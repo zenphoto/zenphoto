@@ -157,11 +157,11 @@ printSortableHead();
 						</button>
 						<div class="floatright">
 							<a href="javascript:newMenuSet();">
-								<?php echo GREEN_CROSS_ON_SHIELD; ?>
+								<?php echo PLUS_ICON; ?>
 								<strong><?php echo gettext("New Menu"); ?></strong>
 							</a>
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;single=menu_manager#menu_manager">
-								<?php echo GEAR_WITHOUT_HUB; ?>
+								<?php echo OPTIONS_ICON; ?>
 								<strong><?php echo gettext('Options') ?></strong>
 							</a>
 						</div>
@@ -204,7 +204,7 @@ printSortableHead();
 									?>
 									<span class="buttons">
 										<a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>">
-											<?php echo GREEN_CROSS_ON_SHIELD; ?>
+											<?php echo PLUS_ICON; ?>
 											<strong><?php echo gettext("Add Menu Items"); ?></strong>
 										</a>
 									</span>

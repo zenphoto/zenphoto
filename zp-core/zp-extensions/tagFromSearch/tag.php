@@ -136,7 +136,7 @@ echo "\n</head>";
 					?>
 					<p class = "buttons">
 						<button type="submit" title="<?php echo gettext("Return to search"); ?>" >
-							<?php echo ARROW_LEFT_BLUE; ?>
+							<?php echo BACK_ARROW_BLUE; ?>
 							<?php echo gettext("Back");
 							?>
 						</button>
