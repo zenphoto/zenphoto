@@ -265,7 +265,7 @@ $buttonlist = array();
 							$_SESSION['new_version_available'] = $newestVersion;
 							?>
 							<div class="notebox">
-								<h2><?php echo gettext('There is a new version os ZenPhoto20 available.'); ?></h2>
+								<h2><?php echo gettext('There is a new version of ZenPhoto20 available.'); ?></h2>
 								<?php
 								printf(gettext('ZenPhoto20 version %s can be downloaded by the utility button.'), $newestVersion);
 								?>
