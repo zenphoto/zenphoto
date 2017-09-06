@@ -107,6 +107,16 @@ $filelist = array_slice($pluginlist, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PA
 		i = Math.floor(jQuery.inArray(plugin, pluginsToPage) / <?php echo PLUGINS_PER_PAGE; ?>);
 		window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-plugins.php?page=plugins&tab=<?php echo html_encode($subtab); ?>&subpage=' + i + '&show=' + plugin + '#' + plugin;
 	}
+
+	function showPluginInfo(plugin) {
+		$.colorbox({
+			close: '<?php echo gettext("close"); ?>',
+			maxHeight: '80%',
+			maxWidth: '80%',
+			innerWidth: '560px',
+			href: plugin
+		});
+	}
 -->
 </script>
 <?php
@@ -268,92 +278,105 @@ zp_apply_filter('admin_note', 'plugins', '');
 				if (isset($_GET['show']) && strtolower($_GET['show']) == strtolower($extension)) {
 					$selected_style = ' class="highlightselection"';
 				}
+				if ($third_party_plugin) {
+					$path = stripSuffix($paths[$extension]) . '/logo.png';
+					if (file_exists($path)) {
+						$ico = str_replace(SERVERPATH, WEBPATH, $path);
+					} else {
+						$ico = 'images/placeholder.png';
+					}
+				}
+				if ($plugin_is_filter & CLASS_PLUGIN) {
+					$iconA = '<img class="zp_logoicon" width="8px" src="images/placeholder.png" /><a title="' . gettext('class plugin') . '"><img class="zp_logoicon" src="images/folder_picture.png" /></a><img class="zp_logoicon" width="8px" src="images/placeholder.png" />';
+					$iconT = '';
+				} else {
+					if ($plugin_is_filter & ADMIN_PLUGIN) {
+						$iconA = '<a title="' . gettext('admin plugin') . '"><img class="zp_logoicon" src="images/folder.png" /></a>';
+					} else {
+						$iconA = '<img class="zp_logoicon" src="images/placeholder.png" />';
+					}
+					if ($plugin_is_filter & FEATURE_PLUGIN) {
+						$iconT = '<a title="' . gettext('feature plugin') . '"><img class="zp_logoicon" src="images/pictures.png" /></a>';
+					} else if ($plugin_is_filter & THEME_PLUGIN) {
+						$iconT = '<a title="' . gettext('theme plugin') . '"><img class="zp_logoicon" src="images/pictures_dn.png" /></a>';
+					} else {
+						$iconT = '<img class="zp_logoicon" src="images/placeholder.png" />';
+					}
+				}
+
+				$attributes = '';
+				if ($parserr) {
+					$optionlink = false;
+					$attributes .= ' disabled="disabled"';
+				} else {
+					if ($currentsetting > THEME_PLUGIN) {
+						$attributes .= ' checked="checked"';
+					}
+				}
+				if ($plugin_disable) {
+					preg_match('/\<a href="#(.*)">/', $plugin_disable, $matches);
+					if ($matches) {
+						$plugin_disable = str_replace($matches[0], '<a onclick="gotoPlugin(\'' . strtolower($matches[1]) . '\');">', $plugin_disable);
+					}
+					if (FIREFOX_ICONS) {
+						$padding = 'padding-left: 2px;';
+					} else {
+						$padding = 'padding-left: 1px;padding-right: 1px;';
+					}
+				}
 				?>
 				<tr<?php echo $selected_style; ?>>
 					<td min-width="30%"  class="nowrap">
 						<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="<?php echo $currentsetting; ?>" />
+
+
+
 						<label id="<?php echo strtolower($extension); ?>" class="floatleft">
-							<?php
-							if ($third_party_plugin) {
-								$path = stripSuffix($paths[$extension]) . '/logo.png';
-								if (file_exists($path)) {
-									$ico = str_replace(SERVERPATH, WEBPATH, $path);
-								} else {
-									$ico = 'images/placeholder.png';
-								}
-							}
-							?>
 							<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
 							<?php
-							if ($plugin_is_filter & CLASS_PLUGIN) {
-								$iconA = '<img class="zp_logoicon" width="8px" src="images/placeholder.png" /><a title="' . gettext('class plugin') . '"><img class="zp_logoicon" src="images/folder_picture.png" /></a><img class="zp_logoicon" width="8px" src="images/placeholder.png" />';
-								$iconT = '';
-							} else {
-								if ($plugin_is_filter & ADMIN_PLUGIN) {
-									$iconA = '<a title="' . gettext('admin plugin') . '"><img class="zp_logoicon" src="images/folder.png" /></a>';
-								} else {
-									$iconA = '<img class="zp_logoicon" src="images/placeholder.png" />';
-								}
-								if ($plugin_is_filter & FEATURE_PLUGIN) {
-									$iconT = '<a title="' . gettext('feature plugin') . '"><img class="zp_logoicon" src="images/pictures.png" /></a>';
-								} else if ($plugin_is_filter & THEME_PLUGIN) {
-									$iconT = '<a title="' . gettext('theme plugin') . '"><img class="zp_logoicon" src="images/pictures_dn.png" /></a>';
-								} else {
-									$iconT = '<img class="zp_logoicon" src="images/placeholder.png" />';
-								}
-							}
 							echo $iconT;
 							echo $iconA;
-
-							$attributes = '';
-							if ($parserr) {
-								$optionlink = false;
-								$attributes .= ' disabled="disabled"';
-							} else {
-								if ($currentsetting > THEME_PLUGIN) {
-									$attributes .= ' checked="checked"';
-								}
-							}
 							?>
 							<?php
 							if ($plugin_disable) {
-								if (FIREFOX_ICONS) {
-									$padding = 'padding-left: 2px;';
-								} else {
-									$padding = 'padding-left: 1px;padding-right: 1px;';
-								}
-								if ($plugin_disable) {
-									preg_match('/\<a href="#(.*)">/', $plugin_disable, $matches);
-									if ($matches) {
-										$plugin_disable = str_replace($matches[0], '<a onclick="gotoPlugin(\'' . strtolower($matches[1]) . '\');">', $plugin_disable);
-									}
-								}
 								?>
-								<span class="icons" id="<?php echo $extension; ?>_checkbox">
-
+								<?php
+								if ($plugin_disable) {
+									?>
 									<span class="plugin_disable">
-										<span style="<?php echo $padding; ?>"><?php echo BALLOT_BOX_WITH_X_RED; ?></span>
 										<div class="plugin_disable_hidden">
 											<?php echo $plugin_disable; ?>
 										</div>
+										<?php
+									}
+									?>
+									<span class="icons">
+										<span style="<?php echo $padding; ?>">
+											<?php echo BALLOT_BOX_WITH_X_RED; ?>
+										</span>
 									</span>
-
-
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
+
+									<?php
+								} else {
+									?>
+									<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
+									<?php
+								}
+								echo $extension;
+								if (!empty($plugin_version)) {
+									echo ' v' . $plugin_version;
+								}
+								?>
+
+								<?php
+								if ($plugin_disable) {
+									?>
 								</span>
 								<?php
-							} else {
-								?>
-								<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
-								<?php
-							}
-							echo $extension;
-							if (!empty($plugin_version)) {
-								echo ' v' . $plugin_version;
 							}
 							?>
 						</label>
-
 						<?php
 						if ($subtab == 'all') {
 							$tab = $member[$extension];
@@ -368,31 +391,11 @@ zp_apply_filter('admin_note', 'plugins', '');
 						?>
 					</td>
 					<td>
-						<span class="icons" id="doc_<?php echo $extension; ?>">
-							<?php echo INFORMATION_BLUE; ?>
+						<span class="icons plugin_info" id="doc_<?php echo $extension; ?>">
+							<a onclick="showPluginInfo('<?php echo $plugin_URL; ?>');" title="<?php echo gettext('Show plugin information.'); ?>">
+								<?php echo INFORMATION_BLUE; ?>
+							</a>
 						</span>
-						<script type="text/javascript">
-							var timer;
-
-							$('#doc_<?php echo $extension; ?>').on({
-								'mouseover': function () {
-									timer = setTimeout(function () {
-										$.colorbox({
-											close: '<?php echo gettext("close"); ?>',
-											maxHeight: '80%',
-											maxWidth: '80%',
-											innerWidth: '560px',
-											href: '<?php echo $plugin_URL; ?>'
-										});
-									}, 1000);
-								},
-								'mouseout': function () {
-									clearTimeout(timer);
-								}
-							});
-
-
-						</script>
 						<?php
 						if ($optionlink) {
 							?>

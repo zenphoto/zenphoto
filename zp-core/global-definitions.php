@@ -177,8 +177,8 @@ if (FIREFOX_ICONS) {
 }
 define('NORTH_WEST_CORNER_ARROW', '<span class="font_icon" style="color: green;font-weight: bold;">&#8689;</span>');
 define('OPTIONS_ICON', '<span class="font_icon" style="font-size: large;">' . GEAR_SYMBOL . '</span>');
-define('PENCIL_ICON', '<span class="font_icon" style="color: darkgoldenrod;font-size: large;">&#9998;</span>');
-define('PLUS_ICON', '<span class="font_icon" style="color: green;font-size: x-large;font-weight: bold;">&#43;</span>');
+define('PENCIL_ICON', '<span class="font_icon" style="color: darkgoldenrod; font-size: large;">&#x270E;</span>');
+define('PLUS_ICON', '<span class="font_icon" style="color: green;font-size: large;">&#x271A;</span>');
 define('RECYCLE_ICON', '<span class="font_icon" style="color: red;font-size: large;font-weight: bold;">&#x2672;</span>');
 define('SOUTH_EAST_CORNER_ARROW', '<span class="font_icon" style="color: green;font-weight: bold;">&#8690;</span>');
 define('SQUARED_KEY_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&#9919</span>;');

@@ -694,6 +694,11 @@ table.options tr td {
 	min-height: 40px;
 }
 
+.plugin_disable {
+	cursor: text;
+	text-decoration: none;
+}
+
 .plugin_disable_hidden {
 	position: absolute;
 	z-index: 1000;
@@ -709,12 +714,20 @@ table.options tr td {
 	height: 25px;
 }
 
+.plugin_disable_hidden a {
+	cursor: pointer;
+}
+
 .plugin_disable:hover > div {
 	visibility: visible;
 	height: auto;
 	overflow-x: visible;
 	overflow-y: visible;
 	min-height: 40px;
+}
+
+.plugin_info {
+	cursor: pointer;
 }
 
 .formlayout {
@@ -904,7 +917,6 @@ td.albumicons {
 	text-align: center;
 	vertical-align: top;
 }
-
 
 /* Forms
 ------------------------------ */
