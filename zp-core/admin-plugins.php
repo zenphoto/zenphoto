@@ -111,7 +111,7 @@ $filelist = array_slice($pluginlist, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PA
 	function showPluginInfo(plugin) {
 		$.colorbox({
 			close: '<?php echo gettext("close"); ?>',
-			maxHeight: '80%',
+			maxHeight: '90%',
 			maxWidth: '80%',
 			innerWidth: '560px',
 			href: plugin
@@ -328,18 +328,23 @@ zp_apply_filter('admin_note', 'plugins', '');
 				<tr<?php echo $selected_style; ?>>
 					<td min-width="30%"  class="nowrap">
 						<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="<?php echo $currentsetting; ?>" />
-
-
-
 						<label id="<?php echo strtolower($extension); ?>" class="floatleft">
-							<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
-							<?php
-							echo $iconT;
-							echo $iconA;
-							?>
 							<?php
 							if ($plugin_disable) {
 								?>
+								<span class="text_pointer">
+									<?php
+								}
+								?>
+								<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
+								<?php
+								echo $iconT;
+								echo $iconA;
+								?>
+								<?php
+								if ($plugin_disable) {
+									?>
+								</span>
 								<?php
 								if ($plugin_disable) {
 									?>
@@ -382,7 +387,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 							$tab = $member[$extension];
 							?>
 							<span class="displayrightsmall">
-								<a href="<?php echo html_encode($tabs[$tab]); ?>">
+								<a href="<?php echo html_encode($tabs[$tab]); ?>" title="<?php printf(gettext('Go to &quot;%s&quot; plugin page.'), $tab); ?>">
 									<em><?php echo $tab; ?></em>
 								</a>
 							</span>

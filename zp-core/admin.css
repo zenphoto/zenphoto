@@ -734,6 +734,10 @@ table.options tr td {
 	width: 100%;
 }
 
+.text_pointer {
+	cursor: text;
+}
+
 .formlayout td {
 	padding: 2px;
 	vertical-align: top;
