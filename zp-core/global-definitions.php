@@ -154,7 +154,7 @@ define('BULLSEYE_LIGHTGRAY', '<span class="font_icon" style="color: lightgray;fo
 define('BULLSEYE_RED', '<span class="font_icon" style="color: red;font-size: large;">&#9678;</span>');
 define('BURST_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#10040;</span>');
 define('CIRCLED_BLUE_STAR', '<span class="font_icon" style="color: blue;font-size: large;">&#10026;</span>');
-define('CLIPBOARD', '<span class="font_icon">&#128203;</span>');
+define('CLIPBOARD', '<span class="font_icon" style="color: goldenrod;">&#128203;</span>');
 define('CLOCKFACE', '<span class="font_icon" style="letter-spacing: -4px;">&#128343;</span>');
 define('CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN', '<span class="font_icon" style="font-size:large;color:green;">&#8635;</span>');
 define('CROSS_MARK_RED', '<span class="font_icon" style="color: red;">&#10060;</span>');
@@ -166,9 +166,9 @@ define('EXCLAMATION_RED', '<span class="font_icon" style="color: red;font-weight
 define('GEAR_SYMBOL', '&#9881;');
 define('HEAVY_GREEN_CHECKMARK', '<span class="font_icon" style="color: green;font-size: large;">&#10004;</span>');
 define('INFORMATION_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#8505;</span>');
-define('KEY', '<span class="font_icon">&#128273;</span>');
-define('LOCK', '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" />');
-define('LOCK_OPEN', '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" />');
+define('KEY_RED', '<span class="font_icon" style="color: red;">&#128273;</span>');
+define('LOCK', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" /></span>');
+define('LOCK_OPEN', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" /></span>');
 define('MENU_SYMBOL', '&#9776;');
 if (FIREFOX_ICONS) {
 	define('NO_ENTRY', '<span class="font_icon" style="color: red;">&#9940;</span>');
@@ -181,7 +181,9 @@ define('PENCIL_ICON', '<span class="font_icon" style="color: darkgoldenrod; font
 define('PLUS_ICON', '<span class="font_icon" style="color: green;font-size: large;">&#x271A;</span>');
 define('RECYCLE_ICON', '<span class="font_icon" style="color: red;font-size: large;font-weight: bold;">&#x2672;</span>');
 define('SOUTH_EAST_CORNER_ARROW', '<span class="font_icon" style="color: green;font-weight: bold;">&#8690;</span>');
-define('SQUARED_KEY_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&#9919</span>;');
+define('SQUARED_KEY_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&#9919;</span>');
 define('WARNING_SIGN_ORANGE', '<span class="font_icon" style="color: darkorange;font-size: large;">&#9888;</span>');
-define('WASTEBASKET', '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/trashcan.png" />');
+define('WASTEBASKET', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/trashcan.png" /></span>');
+define('ZP_BLUE', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zp.png" /></span>');
+define('ZP_GOLD', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zp_gold.png" /></span>');
 ?>

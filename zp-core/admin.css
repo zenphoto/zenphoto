@@ -4,6 +4,7 @@
 
 /* Basics
 ------------------------------ */
+
 * {
 	line-height: 19px;
 }
@@ -914,12 +915,12 @@ td.albumicons {
 }
 
 .font_icon {
-	font-family: Arial, Helvetica, Calibri, sans-serif;
+	font-family: Free Serif, Segoe UI Symbol, Segoe UI Emoji, Segoe UI, Cambria, Cambria Math, Everson Mono, Quivira, Unifont;
 	display: inline-block;
 	width: 18px !important;
 	height: 18px !important;
 	text-align: center;
-	vertical-align: top;
+	vertical-align: center;
 }
 
 /* Forms

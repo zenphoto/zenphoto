@@ -397,7 +397,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 					</td>
 					<td>
 						<span class="icons plugin_info" id="doc_<?php echo $extension; ?>">
-							<a onclick="showPluginInfo('<?php echo $plugin_URL; ?>');" title="<?php echo gettext('Show plugin information.'); ?>">
+							<a onclick="showPluginInfo('<?php echo $plugin_URL; ?>');" title="<?php echo gettext('Show plugin usage information.'); ?>">
 								<?php echo INFORMATION_BLUE; ?>
 							</a>
 						</span>

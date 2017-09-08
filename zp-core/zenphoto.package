@@ -1129,6 +1129,12 @@ zp-core/exif/makers/nikon.php
 zp-core/exif/makers/olympus.php
 zp-core/exif/makers/panasonic.php
 zp-core/exif/makers/sanyo.php
+zp-core/FreeSerif
+zp-core/FreeSerif/FreeSerif.eot
+zp-core/FreeSerif/FreeSerif.svg
+zp-core/FreeSerif/FreeSerif.ttf
+zp-core/FreeSerif/FreeSerif.woff
+zp-core/FreeSerif/stylesheet.css
 zp-core/gd_fonts
 zp-core/gd_fonts/addlg10.gdf
 zp-core/gd_fonts/anonymous.gdf
@@ -8146,4 +8152,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-8148
+8154
