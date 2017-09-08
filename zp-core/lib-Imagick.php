@@ -595,18 +595,18 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			@$_imagick_fontlist = Imagick::queryFonts();
 			$_imagick_fontlist = array('system' => '') + array_combine($_imagick_fontlist, $_imagick_fontlist);
 
-			$basefile = SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/imagick_fonts/';
+			$paths = array(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/imagick_fonts', SERVERPATH . '/' . ZENFOLDER . '/FreeSerif');
+			foreach ($paths as $basefile) {
+				if (is_dir($basefile)) {
+					chdir($basefile);
+					$filelist = safe_glob('*.ttf');
 
-			if (is_dir($basefile)) {
-				chdir($basefile);
-				$filelist = safe_glob('*.ttf');
-
-				foreach ($filelist as $file) {
-					$key = filesystemToInternal(str_replace('.ttf', '', $file));
-					$_imagick_fontlist[$key] = getcwd() . '/' . $file;
+					foreach ($filelist as $file) {
+						$key = filesystemToInternal(str_replace('.ttf', '', $file));
+						$_imagick_fontlist[$key] = getcwd() . '/' . $file;
+					}
 				}
 			}
-
 			chdir(dirname(__FILE__));
 		}
 
