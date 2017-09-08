@@ -1,1 +1,11 @@
-﻿/* @font-face kit by Fonts2u (http://www.fonts2u.com) */ @font-face {font-family:"Free Serif";src:url("FreeSerif.eot?") format("eot"),url("FreeSerif.woff") format("woff"),url("FreeSerif.ttf") format("truetype"),url("FreeSerif.svg#FreeSerif") format("svg");font-weight:normal;font-style:normal;}
+﻿/* @font-face kit by Fonts2u (http://www.fonts2u.com) */
+@font-face {
+	font-family:"FreeSerif";
+	src:
+		url("FreeSerif.eot?")	format("eot"),
+		url("FreeSerif.woff") format("woff"),
+		url("FreeSerif.ttf") format("truetype"),
+		url("FreeSerif.svg#FreeSerif") format("svg");
+	font-weight:normal;
+	font-style:normal;
+}
