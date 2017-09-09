@@ -1213,6 +1213,10 @@ label:hover {
 	padding: 5px 10px;
 }
 
+.buttons button {
+	height: 35px;
+}
+
 .buttons a,.buttons button {
 	display: block;
 	float: left;
