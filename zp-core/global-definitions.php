@@ -138,8 +138,6 @@ define('ZP_ZENPAGE_PAGE', 4096);
 define('ZP_ZENPAGE_SINGLE', 8192);
 
 //icons
-define('FIREFOX_ICONS', preg_match('~firefox~i', $_SERVER['HTTP_USER_AGENT']));
-
 define('ARROW_DOWN_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&dArr;</span>');
 define('ARROW_LEFT_BLUE', '<span class="font_icon" style="color: blue;font-size:large;">&lArr;</span>');
 define('ARROW_RIGHT_BLUE', '<span class="font_icon" style="color: blue;font-size:large;">&rArr;</span>');
@@ -170,11 +168,7 @@ define('KEY_RED', '<span class="font_icon" style="color: red;">&#128273;</span>'
 define('LOCK', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" /></span>');
 define('LOCK_OPEN', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" /></span>');
 define('MENU_SYMBOL', '&#9776;');
-if (FIREFOX_ICONS) {
-	define('NO_ENTRY', '<span class="font_icon" style="color: red;">&#9940;</span>');
-} else {
-	define('NO_ENTRY', '<span class="font_icon" style="color: red;font-size: 90%;">&#9940;</span>');
-}
+define('NO_ENTRY', '<span class="font_icon" style="color: red;">&#9940;</span>');
 define('NORTH_WEST_CORNER_ARROW', '<span class="font_icon" style="color: green;font-weight: bold;">&#8689;</span>');
 define('OPTIONS_ICON', '<span class="font_icon" style="font-size: large;">' . GEAR_SYMBOL . '</span>');
 define('PENCIL_ICON', '<span class="font_icon" style="color: darkgoldenrod; font-size: large;">&#x270E;</span>');

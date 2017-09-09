@@ -318,11 +318,6 @@ zp_apply_filter('admin_note', 'plugins', '');
 					if ($matches) {
 						$plugin_disable = str_replace($matches[0], '<a onclick="gotoPlugin(\'' . strtolower($matches[1]) . '\');">', $plugin_disable);
 					}
-					if (FIREFOX_ICONS) {
-						$padding = 'padding-left: 2px;';
-					} else {
-						$padding = 'padding-left: 1px;padding-right: 1px;';
-					}
 				}
 				?>
 				<tr<?php echo $selected_style; ?>>
@@ -356,7 +351,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 									}
 									?>
 									<span class="icons">
-										<span style="<?php echo $padding; ?>">
+										<span style="padding-left: 2px;">
 											<?php echo BALLOT_BOX_WITH_X_RED; ?>
 										</span>
 									</span>
