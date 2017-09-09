@@ -915,7 +915,7 @@ td.albumicons {
 }
 
 .font_icon {
-	font-family: FreeSerif;
+	font-family: FreeSerif, Segoe UI Emoji, Segoe UI Symbol;
 	display: inline-block;
 	width: 18px !important;
 	height: 18px !important;
