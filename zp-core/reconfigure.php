@@ -50,24 +50,24 @@ function reconfigureAction($mandatory) {
 			header('Content-Type: text/html; charset=UTF-8');
 			?>
 			<!DOCTYPE html>
-			<html xmlns="http://www.w3.org/1999/xhtml">
-				<head>
-					<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-					<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
-					<?php reconfigureCS(); ?>
-				</head>
-				<body>
-					<?php if ($_zp_gallery) printLogoAndLinks(); ?>
-					<div id="main">
-						<?php if ($_zp_gallery) printTabs(); ?>
-						<div id="content">
-							<h1><?php echo gettext('Setup request'); ?></h1>
-							<div class="tabbox">
-								<?php reconfigurePage($diff, $needs, $mandatory); ?>
-							</div>
+			<html xmlns="http://www.w3.org/1999/xhtml" />
+			<head>
+				<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
+				<?php reconfigureCS(); ?>
+			</head>
+			<body>
+				<?php if ($_zp_gallery) printLogoAndLinks(); ?>
+				<div id="main">
+					<?php if ($_zp_gallery) printTabs(); ?>
+					<div id="content">
+						<h1><?php echo gettext('Setup request'); ?></h1>
+						<div class="tabbox">
+							<?php reconfigurePage($diff, $needs, $mandatory); ?>
 						</div>
 					</div>
-				</body>
+				</div>
+			</body>
 			</html>
 			<?php
 			exitZP();

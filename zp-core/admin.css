@@ -1313,6 +1313,7 @@ button.positive,.buttons a.positive {
 .buttons .fixedwidth {
 	text-align: left;
 	width: 17em;
+	height: 35px;
 }
 
 /* disabled buttons */

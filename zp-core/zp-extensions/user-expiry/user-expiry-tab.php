@@ -131,7 +131,7 @@ echo '</head>' . "\n";
 							<strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset">
-							<?php echo CROSS_MARK_RED; ?>
+							<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_RED; ?>
 							<strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 						<div class="floatright">
@@ -198,13 +198,13 @@ echo '</head>' . "\n";
 								$r4 = ENVELOPE . ' <input type="radio" name="r_' . $id . '" value="revalidate"' . $checked_disable . ' />&nbsp;';
 							}
 							if (getOption('user_expiry_password_cycle')) {
-								$r5 = NO_ENTRY . ' <input type="radio" name="r_' . $id . '" value="force"' . $checked_delete . ' />&nbsp;';
+								$r5 = CLOCKWISE_OPEN_CIRCLE_ARROW_RED . ' <input type="radio" name="r_' . $id . '" value="force"' . $checked_delete . ' />&nbsp;';
 							} else {
 								$r5 = '';
 							}
 							?>
 							<li>
-								<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)'), $r1 . $r2 . $r3 . $r4 . $r5, $userid, $expires_display, $loggedin); ?>
+								<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)'), $r1 . $r2 . $r5 . $r3 . $r4, $userid, $expires_display, $loggedin); ?>
 							</li>
 							<?php
 						}
@@ -219,7 +219,7 @@ echo '</head>' . "\n";
 					<?php
 					if (getOption('user_expiry_password_cycle')) {
 						?>
-						<?php echo NO_ENTRY; ?>
+						<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_RED; ?>
 						<?php echo gettext('Force password renewal'); ?>
 						<?php
 					}
@@ -238,7 +238,7 @@ echo '</head>' . "\n";
 							<strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset">
-							<?php echo CROSS_MARK_RED; ?>
+							<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_RED; ?>
 							<strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</p>

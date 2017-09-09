@@ -767,7 +767,7 @@ function getOptionContent() {
 										</label>
 										<label title="<?php echo gettext('hide'); ?>">
 											<input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio" <?php echo $class_hide . $checked_hide ?> value="0" />
-											<?php echo NO_ENTRY; ?>
+											<?php echo HIDE_ICON; ?>
 										</label>
 										<label title="<?php echo gettext('disable'); ?>">
 											<input id="<?php echo $key; ?>_disable" name="<?php echo $key; ?>" type="radio" class="disableMeta"<?php echo $checked_disabled ?> value="2" />
@@ -792,7 +792,7 @@ function getOptionContent() {
 							</label>
 							<label title="<?php echo gettext('hide'); ?>">
 								<input type="radio" name="all_metadata" onclick="checkMeta('hideMeta');" />
-								<?php echo NO_ENTRY; ?>
+								<?php echo HIDE_ICON; ?>
 							</label>
 							<label title="<?php echo gettext('disable'); ?>">
 								<input type="radio" name="all_metadata" onclick="checkMeta('disableMeta');" />
@@ -822,7 +822,7 @@ function getOptionContent() {
 										<?php echo gettext('Show the field'); ?>
 									</li>
 									<li>
-										<?php echo NO_ENTRY; ?>
+										<?php echo HIDE_ICON; ?>
 										<?php echo gettext('Hide the field'); ?>
 									</li>
 									<li>

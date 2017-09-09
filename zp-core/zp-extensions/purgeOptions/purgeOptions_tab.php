@@ -210,22 +210,22 @@ $orphaned = array();
 								<br class="clearall">
 								<div class="purgeOptions_list">
 									<span class="purgeOptionsClass"><?php echo gettext('Orphaned options'); ?></span>
-									<label>
+									<label title="<?php echo gettext('all: no acation'); ?>">
 										<?php echo BULLSEYE_BLUE; ?>
 										<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').removeAttr('checked');$('.orphaned').removeAttr('checked');$('#emptyOptionCheck').removeAttr('checked');">
 									</label>
-									<label>
-										<?php echo CROSS_MARK_RED; ?>
+									<label title="<?php echo gettext('all: delete'); ?>">
+										<?php echo WASTEBASKET; ?>
 										<input type="radio" name="orphaned" id="orphanedDelete" onclick="$('.orphanedDelete').prop('checked', $('#orphanedDelete').prop('checked'));">
 									</label>
-									<label>
-										<?php echo SQUARED_KEY_GREEN; ?>
+									<label title="<?php echo gettext('all: hide'); ?>">
+										<?php echo HIDE_ICON; ?>
 										<input type="radio" name="orphaned" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));$('#emptyOptionCheck').removeAttr('checked');">
 									</label>
 									<?php
 									if ($empty) {
 										?>
-										<label title="<?php echo gettext('It is generally safe to remove an orphaned option whose value is empty since referencing a non-existent option will return an empty value.'); ?>" >
+										<label title="<?php echo gettext('all: delete. It is generally safe to remove an orphaned option whose value is empty since referencing a non-existent option will return an empty value.'); ?>" >
 											<?php
 											echo gettext('<span class="emptyOption">empty</span>');
 											?>
@@ -254,7 +254,7 @@ $orphaned = array();
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedDelete<?php if (in_array('emptyOption', $classes)) echo ' deleteEmpty'; ?>" value="2" />
 												</label>
 												<label class="none">
-													<?php echo SQUARED_KEY_GREEN; ?>
+													<?php echo HIDE_ICON; ?>
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphaned" value="3" <?php if ($hidden) echo ' checked="checked"'; ?>/>
 												</label>
 
@@ -284,7 +284,7 @@ $orphaned = array();
 									<?php echo gettext('no action'); ?>
 									<?php echo WASTEBASKET; ?>
 									<?php echo gettext('delete'); ?>
-									<?php echo SQUARED_KEY_GREEN; ?>
+									<?php echo HIDE_ICON; ?>
 									<?php echo gettext('hide'); ?>
 									<br />
 									<?php

@@ -1088,12 +1088,12 @@ function setupTheme($album = NULL) {
 		header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		?>
 		<!DOCTYPE html>
-		<html xmlns="http://www.w3.org/1999/xhtml">
-			<head>
-			</head>
-			<body>
-				<strong><?php printf(gettext('No theme scripts found. Please check the <em>%s</em> folder of your installation.'), THEMEFOLDER); ?></strong>
-			</body>
+		<html xmlns="http://www.w3.org/1999/xhtml" />
+		<head>
+		</head>
+		<body>
+			<strong><?php printf(gettext('No theme scripts found. Please check the <em>%s</em> folder of your installation.'), THEMEFOLDER); ?></strong>
+		</body>
 		</html>
 		<?php
 		exitZP();
@@ -1395,7 +1395,7 @@ function printStandardMeta() {
 	echo '<meta http-equiv="content-type" content="text/html; charset=' . LOCAL_CHARSET . '"';
 	if ($lang)
 		echo ' lang="' . $lang . '"';
-	echo ">\n";
+	echo " />\n";
 }
 
 /**

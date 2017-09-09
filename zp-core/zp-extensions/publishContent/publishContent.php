@@ -433,7 +433,7 @@ echo "</head>\n";
 													<?php echo HEAVY_GREEN_CHECKMARK; ?>
 												</a>
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
-													<?php echo NO_ENTRY; ?>
+													<?php echo CROSS_MARK_RED; ?>
 												</a>
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'd');" title="<?php echo gettext('Set all to be deleted'); ?>">
 													<?php echo WASTEBASKET; ?>
@@ -454,7 +454,7 @@ echo "</head>\n";
 																		<?php echo gettext('Publish'); ?>
 																	</label>
 																	<label style="white-space:nowrap">
-																		<?php echo NO_ENTRY; ?>
+																		<?php echo CROSS_MARK_RED; ?>
 																		<input id="notpub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_u global_u" name="r_<?php echo $item; ?>" type="radio"	value="notpub_<?php echo $item; ?>"	checked="checked" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
 																		<?php echo gettext('Do not publish'); ?>
 																	</label>
@@ -488,7 +488,7 @@ echo "</head>\n";
 										<?php echo HEAVY_GREEN_CHECKMARK; ?>
 									</a>
 									<a onclick="publishAll('', 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
-										<?php echo NO_ENTRY; ?>
+										<?php echo CROSS_MARK_RED; ?>
 									</a>
 									&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo gettext('all images'); ?></strong>
 								</div>

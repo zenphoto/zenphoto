@@ -84,7 +84,7 @@ class pluginEnabler {
 				'button_text' => gettext('Plugins × all'),
 				'formname' => 'disablebutton',
 				'action' => FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/pluginEnabler/handler.php',
-				'icon' => NO_ENTRY,
+				'icon' => CROSS_MARK_RED,
 				'title' => gettext('Disables all plugins except pluginEnabler.'),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="pluginsEnable" value="0" />',
