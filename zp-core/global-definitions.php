@@ -152,14 +152,14 @@ define('BULLSEYE_LIGHTGRAY', '<span class="font_icon" style="color: lightgray;fo
 define('BULLSEYE_RED', '<span class="font_icon" style="color: red;font-size: large;">&#9678;</span>');
 define('BURST_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#10040;</span>');
 define('CIRCLED_BLUE_STAR', '<span class="font_icon" style="color: blue;font-size: large;">&#10026;</span>');
-define('CLIPBOARD', '<span class="font_icon" style="color: goldenrod;">&#128203;</span>');
+define('CLIPBOARD', '<span class="font_icon" style="font-family: Sego UI Emoji; color: goldenrod;">&#128203;</span>');
 define('CLOCKFACE', '<span class="font_icon" style="letter-spacing: -4px;">&#128343;</span>');
 define('CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN', '<span class="font_icon" style="font-size:large;color:green;">&#8635;</span>');
 define('CROSS_MARK_RED', '<span class="font_icon" style="color: red;">&#10060;</span>');
 define('CURVED_UPWARDS_AND_RIGHTWARDS_ARROW_BLUE', '<span class="font_icon" style="color:blue;font-size:large;">&#10150;</span>');
 define('DRAG_HANDLE', '<span class="font_icon" style="color:lightsteelblue;font-size: x-large;">&#10021;</span>');
 define('DRAG_HANDLE_ALERT', '<span class="font_icon" style="color:red;font-size: x-large;">&#10021;</span>');
-define('ENVELOPE', '<span class="font_icon">&#128231;</span>');
+define('ENVELOPE', '<span class="font_icon" style="font-size: large;">&#9993;</span>');
 define('EXCLAMATION_RED', '<span class="font_icon" style="color: red;font-weight: bold;font-size: large;">&#65281;</span>');
 define('GEAR_SYMBOL', '&#9881;');
 define('HEAVY_GREEN_CHECKMARK', '<span class="font_icon" style="color: green;font-size: large;">&#10004;</span>');

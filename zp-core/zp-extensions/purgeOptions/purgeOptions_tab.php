@@ -47,6 +47,8 @@ if (isset($_POST['purge'])) {
 		foreach ($_POST['missingcreator'] as $key => $action) {
 			switch ($action) {
 				case 1: // take no action
+					$sql = 'UPDATE ' . prefix('options') . ' SET `creator`=NULL WHERE `id`=' . $key;
+					$result = query($sql);
 					break;
 				case 2: //	purge
 					$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `id`=' . $key;
@@ -223,11 +225,11 @@ $orphaned = array();
 									<?php
 									if ($empty) {
 										?>
-										<label>
+										<label title="<?php echo gettext('It is generally safe to remove an orphaned option whose value is empty since referencing a non-existent option will return an empty value.'); ?>" >
 											<?php
 											echo gettext('<span class="emptyOption">empty</span>');
 											?>
-											<input type = "checkbox" id = "emptyOptionCheck" title="<?php echo gettext('It is generally safe to remove an orphaned option whose value is empty since referencing a non-existent option will return an empty value.'); ?>" onclick = "$('.deleteEmpty').prop('checked', $('#emptyOptionCheck').prop('checked'));"></label>
+											<input type = "checkbox" id = "emptyOptionCheck" onclick = "$('.deleteEmpty').prop('checked', $('#emptyOptionCheck').prop('checked'));"></label>
 										<?php
 									}
 									?>
@@ -245,7 +247,7 @@ $orphaned = array();
 											<li<?php if ($hidden) echo ' class="hiddenOrphan"'; ?>>
 												<label class="none">
 													<?php echo BULLSEYE_BLUE; ?>
-													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedIgnore" value="1" onclick="$(this).removeAttr('checked');"/>
+													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedIgnore" value="1" <?php if (!$hidden) echo ' checked="checked"'; ?>/>
 												</label>
 												<label class="none">
 													<?php echo WASTEBASKET; ?>
@@ -253,15 +255,26 @@ $orphaned = array();
 												</label>
 												<label class="none">
 													<?php echo SQUARED_KEY_GREEN; ?>
-													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphaned" value="3" />
-													<?php
-													if (empty($classes)) {
-														echo $display;
-													} else {
-														echo '<span class="' . implode($classes) . '">' . $display . '</span>';
-													}
-													?>
+													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphaned" value="3" <?php if ($hidden) echo ' checked="checked"'; ?>/>
 												</label>
+
+												<?php
+												if (empty($classes)) {
+													echo $display;
+												} else {
+													$title = '';
+													if ($hidden) {
+														$title = gettext('hidden');
+													}
+													if (in_array('emptyOption', $classes)) {
+														if ($title) {
+															$title .= ', ';
+														}
+														$title .= gettext('empty');
+													}
+													echo '<label title="' . $title . '" class="' . implode(' ', $classes) . '">' . $display . '</label>';
+												}
+												?>
 											</li>
 											<?php
 										}
