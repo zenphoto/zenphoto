@@ -45,7 +45,7 @@ class pluginEnabler {
 				'button_text' => gettext('Plugins » all'),
 				'formname' => 'enablebutton',
 				'action' => FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/pluginEnabler/handler.php',
-				'icon' => HEAVY_GREEN_CHECKMARK,
+				'icon' => CHECKMARK_GREEN,
 				'title' => gettext('Enables all plugins.'),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="pluginsEnable" value="3" />',

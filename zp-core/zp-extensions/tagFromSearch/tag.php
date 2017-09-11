@@ -222,7 +222,7 @@ echo "\n</head>";
 					<br clear="all">
 					<p class="buttons">
 						<button type="submit"  title="<?php echo gettext("Tag the items"); ?>">
-							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<?php echo CHECKMARK_GREEN; ?>
 							<?php echo gettext("Tag the items"); ?>
 						</button>
 					</p>

@@ -214,7 +214,7 @@ function getOptionContent() {
 					<td colspan="100%">
 						<p class="buttons">
 							<button type="submit" value="<?php echo gettext('Apply') ?>">
-								<?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong>
+								<?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" value="<?php echo gettext('reset') ?>">
 								<?php echo CROSS_MARK_RED; ?>
@@ -763,7 +763,7 @@ function getOptionContent() {
 									<li class="nowrap">
 										<label title="<?php echo gettext('show'); ?>">
 											<input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio" <?php echo $class_show . $checked_show ?> value="1" />
-											<?php echo HEAVY_GREEN_CHECKMARK; ?>
+											<?php echo CHECKMARK_GREEN; ?>
 										</label>
 										<label title="<?php echo gettext('hide'); ?>">
 											<input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio" <?php echo $class_hide . $checked_hide ?> value="0" />
@@ -788,7 +788,7 @@ function getOptionContent() {
 							</label>
 							<label title="<?php echo gettext('show'); ?>">
 								<input type="radio" name="all_metadata" onclick="checkMeta('showMeta');" />
-								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<?php echo CHECKMARK_GREEN; ?>
 							</label>
 							<label title="<?php echo gettext('hide'); ?>">
 								<input type="radio" name="all_metadata" onclick="checkMeta('hideMeta');" />
@@ -818,7 +818,7 @@ function getOptionContent() {
 									<?php echo gettext("Select how image metadata fields are handled."); ?>
 								<ul style="list-style: none;">
 									<li>
-										<?php echo HEAVY_GREEN_CHECKMARK; ?>
+										<?php echo CHECKMARK_GREEN; ?>
 										<?php echo gettext('Show the field'); ?>
 									</li>
 									<li>
@@ -895,7 +895,7 @@ function getOptionContent() {
 					<td colspan="100%">
 						<p class="buttons">
 							<button type="submit" value="<?php echo gettext('Apply') ?>">
-								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<?php echo CHECKMARK_GREEN; ?>
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" value="<?php echo gettext('reset') ?>">

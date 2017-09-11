@@ -365,7 +365,7 @@ $tagsort = getTagOrder();
 										<?php echo gettext("Back"); ?></strong>
 								</a>
 								<button type="submit" title="<?php echo $updateitem; ?>">
-									<?php echo HEAVY_GREEN_CHECKMARK; ?>
+									<?php echo CHECKMARK_GREEN; ?>
 									<strong>
 										<?php
 										if ($result->transient) {
@@ -887,7 +887,7 @@ $tagsort = getTagOrder();
 												<?php echo gettext("Back"); ?>
 											</strong>
 										</a>
-										<button type="submit" title="<?php echo $updateitem; ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php
+										<button type="submit" title="<?php echo $updateitem; ?>"><?php echo CHECKMARK_GREEN; ?> <?php
 											if ($result->transient) {
 												echo $saveitem;
 											} else {

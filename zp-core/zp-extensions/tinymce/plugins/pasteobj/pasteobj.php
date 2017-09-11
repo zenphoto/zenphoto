@@ -211,7 +211,7 @@ function getIPSizedImage($size, $image) {
 			<h3>
 				<span class="buttons">
 					<button type="button" title="<?php echo gettext('paste'); ?>" onclick="paste();">
-						<?php echo HEAVY_GREEN_CHECKMARK; ?>
+						<?php echo CHECKMARK_GREEN; ?>
 						<?php echo gettext('paste'); ?>
 					</button>
 				</span>

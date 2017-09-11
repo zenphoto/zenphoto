@@ -129,7 +129,7 @@ zenpageJSCSS();
 					<input	type="hidden" name="action" id="action" value="update" />
 					<p class="buttons">
 						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext('Apply'); ?></strong>
+							<?php echo CHECKMARK_GREEN; ?> <?php echo gettext('Apply'); ?></strong>
 						</button>
 						<?php
 						if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
@@ -187,7 +187,7 @@ zenpageJSCSS();
 					<input name="update" type="hidden" value="Save Order" />
 					<p class="buttons">
 						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext('Apply'); ?></strong>
+							<?php echo CHECKMARK_GREEN; ?> <?php echo gettext('Apply'); ?></strong>
 						</button>
 					</p>
 					<ul class="iconlegend">

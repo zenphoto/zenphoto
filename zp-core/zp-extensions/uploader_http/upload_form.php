@@ -66,11 +66,11 @@ function upload_form($uploadlimit, $passedalbum) {
 
 	<p id="fileUploadbuttons" class="buttons" style="display: none;">
 		<button type="submit" value="<?php echo gettext('Upload'); ?>" onclick="this.form.folder.value = this.form.folderdisplay.value;" class="button">
-			<?php echo HEAVY_GREEN_CHECKMARK; ?>
+			<?php echo CHECKMARK_GREEN; ?>
 			<?php echo gettext('Upload'); ?>
 		</button>
 		<button type="button" value="<?php echo gettext('Cancel'); ?>" onclick="resetBoxes();" class="button">
-			<?php echo HEAVY_GREEN_CHECKMARK; ?>
+			<?php echo CHECKMARK_GREEN; ?>
 			<?php echo gettext('Cancel'); ?>
 		</button>
 	</p>

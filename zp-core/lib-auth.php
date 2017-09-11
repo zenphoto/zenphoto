@@ -1012,7 +1012,7 @@ class _Authority {
 							?>
 							<div class="buttons">
 								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> >
-									<?php echo HEAVY_GREEN_CHECKMARK; ?>
+									<?php echo CHECKMARK_GREEN; ?>
 									<?php echo gettext("Submit"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=' + $('#user').val();" >
@@ -1102,7 +1102,7 @@ class _Authority {
 							<br />
 							<div class="buttons">
 								<button type="submit" value="<?php echo gettext("Log in"); ?>" >
-									<?php echo HEAVY_GREEN_CHECKMARK; ?>
+									<?php echo CHECKMARK_GREEN; ?>
 									<?php echo gettext("Log in"); ?>
 								</button>
 								<button type="reset" value="<?php echo gettext("Reset"); ?>" >
@@ -1174,7 +1174,7 @@ class _Authority {
 							<br />
 							<div class="buttons">
 								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" >
-									<?php echo HEAVY_GREEN_CHECKMARK; ?>
+									<?php echo CHECKMARK_GREEN; ?>
 									<?php echo gettext("Request password reset"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >

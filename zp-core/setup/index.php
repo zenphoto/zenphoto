@@ -895,14 +895,14 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											<li id="internal" class="pass limited">
 												<span>
 													<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>" class="test_image"  onerror="imgError('internal');"/>
-													<?php echo HEAVY_GREEN_CHECKMARK; ?>
+													<?php echo CHECKMARK_GREEN; ?>
 													<?php echo gettext('Image URIs appear to require the <em>UTF-8</em> character set.') ?>
 												</span>
 											</li>
 											<li id="filesystem" class="fail limited" style="display: none;">
 												<span>
 													<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode(internalToFilesystem('tést.jpg')); ?>" title="filesystem" class="test_image" onerror="imgError('filesystem');"/>
-													<?php echo HEAVY_GREEN_CHECKMARK; ?>
+													<?php echo CHECKMARK_GREEN; ?>
 													<?php echo gettext('Image URIs appear require the <em>filesystem</em> character set.'); ?>
 												</span>
 											</li>
@@ -1882,7 +1882,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								if ($warn) {
 									$icon = WARNING_SIGN_ORANGE;
 								} else {
-									$icon = HEAVY_GREEN_CHECKMARK;
+									$icon = CHECKMARK_GREEN;
 								}
 								if ($autorun) {
 									$task .= '&autorun = ' . $autorun;

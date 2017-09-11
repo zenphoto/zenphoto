@@ -97,7 +97,7 @@ printAdminHeader('admin', 'Mailing');
 					</script>
 					<p class="buttons">
 						<button class="submitbutton" type="submit" title="<?php echo gettext("Send mail"); ?>"<?php echo $disabled; ?> >
-							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<?php echo CHECKMARK_GREEN; ?>
 							<strong><?php echo gettext("Send mail"); ?></strong>
 						</button>
 					</p>

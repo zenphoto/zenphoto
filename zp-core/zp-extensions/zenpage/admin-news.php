@@ -222,7 +222,7 @@ updatePublished('news');
 					<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-news.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
 						<?php XSRFToken('checkeditems'); ?>
 						<div class="buttons">
-							<button type="submit" title="<?php echo gettext('Apply'); ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext('Apply'); ?></strong>
+							<button type="submit" title="<?php echo gettext('Apply'); ?>"><?php echo CHECKMARK_GREEN; ?> <?php echo gettext('Apply'); ?></strong>
 							</button>
 						</div>
 						<span class="buttons floatright">
@@ -446,7 +446,7 @@ updatePublished('news');
 						</p>
 						<p class="buttons">
 							<button type="submit" title="<?php echo gettext('Apply'); ?>">
-								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<?php echo CHECKMARK_GREEN; ?>
 								<strong><?php echo gettext('Apply'); ?></strong>
 							</button>
 						</p>

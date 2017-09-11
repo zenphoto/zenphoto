@@ -195,7 +195,7 @@ echo "\n</head>";
 								<strong><?php echo gettext("Back"); ?></strong>
 							</a>
 							<button type="submit" onclick="postSort(this.form);" >
-								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<?php echo CHECKMARK_GREEN; ?>
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset">
@@ -258,7 +258,7 @@ echo "\n</head>";
 									<strong><?php echo gettext("Back"); ?></strong>
 								</a>
 								<button type="submit" onclick="postSort(this.form);" >
-									<?php echo HEAVY_GREEN_CHECKMARK; ?>
+									<?php echo CHECKMARK_GREEN; ?>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="reset">

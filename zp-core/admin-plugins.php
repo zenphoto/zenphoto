@@ -168,7 +168,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 		<input type="hidden" name="saveplugins" value="yes" />
 		<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 		<p class="buttons">
-			<button type="submit" value="<?php echo gettext('Apply') ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
+			<button type="submit" value="<?php echo gettext('Apply') ?>"><?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
 			<button type="reset" value="<?php echo gettext('Reset') ?>">
 				<?php echo CROSS_MARK_RED; ?>
 				<strong><?php echo gettext("Reset"); ?></strong></button>
@@ -352,7 +352,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 									?>
 									<span class="icons">
 										<span style="padding-left: 2px;">
-											<?php echo BALLOT_BOX_WITH_X_RED; ?>
+											<?php echo CROSS_MARK_RED; ?>
 										</span>
 									</span>
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
@@ -477,7 +477,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 			</li>
 		</ul>
 		<p class="buttons">
-			<button type="submit" value="<?php echo gettext('Apply') ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
+			<button type="submit" value="<?php echo gettext('Apply') ?>"><?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
 			<button type="reset" value="<?php echo gettext('Reset') ?>">
 				<?php echo CROSS_MARK_RED; ?>
 				<strong><?php echo gettext("Reset"); ?></strong></button>

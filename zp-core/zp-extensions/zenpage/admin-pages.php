@@ -126,7 +126,7 @@ updatePublished('pages');
 					?>
 					<p class="buttons">
 						<button class="serialize" type="submit">
-							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<?php echo CHECKMARK_GREEN; ?>
 							<strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<?php
@@ -186,7 +186,7 @@ updatePublished('pages');
 					<input name="update" type="hidden" value="Save Order" />
 					<p class="buttons">
 						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<?php echo CHECKMARK_GREEN; ?>
 							<strong><?php echo gettext('Apply'); ?></strong>
 						</button>
 					</p>

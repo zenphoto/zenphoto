@@ -405,7 +405,7 @@ if (is_array($result)) {
 							?>
 						</table>
 						<p class="buttons">
-							<button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button>
+							<button type="submit"><?php echo CHECKMARK_GREEN; ?> <?php echo gettext("Apply"); ?></strong></button>
 							<button type="reset">
 								<?php echo CROSS_MARK_RED; ?>
 								<strong><?php echo gettext("Reset"); ?></strong>

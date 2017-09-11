@@ -127,7 +127,7 @@ echo '</head>' . "\n";
 					<?php XSRFToken('expiry'); ?>
 					<span class="buttons">
 						<button type="submit">
-							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<?php echo CHECKMARK_GREEN; ?>
 							<strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset">
@@ -234,7 +234,7 @@ echo '</head>' . "\n";
 					?>
 					<p class="buttons">
 						<button type="submit">
-							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<?php echo CHECKMARK_GREEN; ?>
 							<strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<button type="reset">

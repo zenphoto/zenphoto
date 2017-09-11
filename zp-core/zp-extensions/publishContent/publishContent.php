@@ -236,7 +236,7 @@ echo "</head>\n";
 								<br class="clearall">
 								<div class="buttons pad_button" id="setdefaults">
 									<button class="tooltip" type="submit" title="<?php echo gettext("Set defaults for album publishing and image visibility."); ?>">
-										<?php echo HEAVY_GREEN_CHECKMARK; ?>
+										<?php echo CHECKMARK_GREEN; ?>
 										<?php echo gettext("Apply"); ?>
 									</button>
 								</div>
@@ -430,7 +430,7 @@ echo "</head>\n";
 										<li>
 											<div class="scheduleimagechecklisthead">
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'p');" title="<?php echo gettext('Set all to be published'); ?>">
-													<?php echo HEAVY_GREEN_CHECKMARK; ?>
+													<?php echo CHECKMARK_GREEN; ?>
 												</a>
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
 													<?php echo CROSS_MARK_RED; ?>
@@ -449,7 +449,7 @@ echo "</head>\n";
 															<tr>
 																<td>
 																	<label style="white-space:nowrap">
-																		<?php echo HEAVY_GREEN_CHECKMARK; ?>
+																		<?php echo CHECKMARK_GREEN; ?>
 																		<input id="pub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_p global_p" name="r_<?php echo $item; ?>" type="radio" value="pub_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
 																		<?php echo gettext('Publish'); ?>
 																	</label>
@@ -485,7 +485,7 @@ echo "</head>\n";
 								</ul>
 								<div class="scheduleimagechecklisthead">
 									<a onclick="publishAll('', 'p');" title="<?php echo gettext('Set all to be published'); ?>">
-										<?php echo HEAVY_GREEN_CHECKMARK; ?>
+										<?php echo CHECKMARK_GREEN; ?>
 									</a>
 									<a onclick="publishAll('', 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
 										<?php echo CROSS_MARK_RED; ?>

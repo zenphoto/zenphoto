@@ -491,7 +491,7 @@ echo $refresh;
 						?>
 						<p class="buttons">
 							<button type="submit" value="<?php echo gettext('Apply') ?>">
-								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<?php echo CHECKMARK_GREEN; ?>
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" value="<?php echo gettext('reset') ?>">
@@ -894,7 +894,7 @@ echo $refresh;
 						if (!$_zp_current_admin_obj->transient) {
 							?>
 							<p class="buttons">
-								<button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<button type="submit"><?php echo CHECKMARK_GREEN; ?>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="reset">

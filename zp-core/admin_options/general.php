@@ -151,7 +151,7 @@ function getOptionContent() {
 					<td colspan="100%">
 						<p class="buttons">
 							<button type="submit" value="<?php echo gettext('Apply') ?>">
-								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<?php echo CHECKMARK_GREEN; ?>
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" value="<?php echo gettext('reset') ?>">
@@ -739,7 +739,7 @@ function getOptionContent() {
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('save') ?>"><?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<button type="submit" value="<?php echo gettext('save') ?>"><?php echo CHECKMARK_GREEN; ?>
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" value="<?php echo gettext('reset') ?>">

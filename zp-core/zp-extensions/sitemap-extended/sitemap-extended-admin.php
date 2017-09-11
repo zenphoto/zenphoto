@@ -125,7 +125,7 @@ function sitemap_printAvailableSitemaps() {
 					<p><?php printf(gettext('The sitemap cache is cleared if you create new ones. All files are stored in the <code>/%s/sitemap/</code> folder.'), STATIC_CACHE_FOLDER); ?></p>
 					<p class="buttons">
 						<a href="sitemap-extended-admin.php?generatesitemaps&amp;number=1">
-							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<?php echo CHECKMARK_GREEN; ?>
 							<?php echo gettext("Generate sitemaps"); ?>
 						</a>
 					</p>

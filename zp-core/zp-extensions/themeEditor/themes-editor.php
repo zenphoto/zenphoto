@@ -155,7 +155,7 @@ if (!empty($messages)) {
 					<input type="hidden" name="action" value="edit_file"/>
 					<p class="buttons">
 						<button type="submit" value="<?php echo gettext('Update File') ?>" title="<?php echo gettext("Update File"); ?>">
-							<?php echo HEAVY_GREEN_CHECKMARK; ?>
+							<?php echo CHECKMARK_GREEN; ?>
 							<strong><?php echo gettext("Update File"); ?></strong>
 						</button>
 						<button type="reset" value="<?php echo gettext('Reset') ?>">

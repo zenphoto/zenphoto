@@ -294,7 +294,7 @@ printAdminHeader('edit', 'thumbcrop');
 							<br />
 							<p class="buttons">
 								<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
-									<?php echo HEAVY_GREEN_CHECKMARK; ?>
+									<?php echo CHECKMARK_GREEN; ?>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="button" onclick="resetBoundingBox();" >

@@ -113,7 +113,7 @@ function printItemsListTable($item, $toodeep) {
 				if ($item['show'] === '1') {
 					?>
 					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=0&amp;menuset=" . html_encode($item['menuset']); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>" title="<?php echo gettext('hide'); ?>" >
-						<?php echo HEAVY_GREEN_CHECKMARK; ?>
+						<?php echo CHECKMARK_GREEN; ?>
 					</a>
 					<?php
 				} else {

@@ -173,7 +173,7 @@ $orphaned = array();
 							<input type="hidden" name="purge" value="1" />
 							<p class = "buttons" >
 								<button type="submit" value="<?php echo gettext('Apply') ?>">
-									<?php echo HEAVY_GREEN_CHECKMARK; ?>
+									<?php echo CHECKMARK_GREEN; ?>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button >
 								<button type="reset" value="<?php echo gettext('reset') ?>">
@@ -308,7 +308,7 @@ $orphaned = array();
 							<br class="clearall">
 							<p class="buttons">
 								<button type="submit" value="<?php echo gettext('Apply') ?>" >
-									<?php echo HEAVY_GREEN_CHECKMARK; ?>
+									<?php echo CHECKMARK_GREEN; ?>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="reset" value="<?php echo gettext('reset') ?>" >

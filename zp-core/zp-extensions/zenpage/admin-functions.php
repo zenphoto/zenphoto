@@ -986,7 +986,7 @@ function printCategoryListSortableTable($cat, $toodeep) {
 					$title = gettext("Un-publish");
 					?>
 					<a href="?publish=0&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-						<?php echo HEAVY_GREEN_CHECKMARK; ?>
+						<?php echo CHECKMARK_GREEN; ?>
 					</a>
 					<?php
 				} else {
@@ -1363,7 +1363,7 @@ function printZenpageIconLegend() {
 		</li>
 		<li><?php echo CLIPBOARD . ' ' . gettext("pick source"); ?></li>
 		<li>
-			<?php echo HEAVY_GREEN_CHECKMARK; ?>
+			<?php echo CHECKMARK_GREEN; ?>
 			<?php echo EXCLAMATION_RED; ?>
 			<?php echo CLOCKFACE . '&nbsp;'; ?>
 			<?php echo gettext("published/not published/scheduled for publishing"); ?>
@@ -1470,7 +1470,7 @@ function printPublishIconLink($object, $urladd) {
 		$title = gettext("Un-publish");
 		?>
 		<a href="?publish=0&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-			<?php echo HEAVY_GREEN_CHECKMARK; ?>
+			<?php echo CHECKMARK_GREEN; ?>
 		</a>
 		<?php
 	} else {

@@ -242,7 +242,7 @@ printAdminHeader('admin');
 						</div>
 						<p class="buttons" style="padding-bottom: 1px;">
 							<button type="submit" id='rename_tags' value="<?php echo gettext("Rename tags"); ?>">
-								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<?php echo CHECKMARK_GREEN; ?>
 								<?php echo gettext("Rename tags"); ?>
 							</button>
 						</p>

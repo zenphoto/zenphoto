@@ -153,7 +153,7 @@ printSortableHead();
 					?>
 					<span class="buttons">
 						<button class="serialize" type="submit">
-							<?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong>
+							<?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong>
 						</button>
 						<div class="floatright">
 							<a href="javascript:newMenuSet();">
@@ -245,7 +245,7 @@ printSortableHead();
 					<span id="serializeOutput"></span>
 					<input name="update" type="hidden" value="Save Order" />
 					<p class="buttons">
-						<button class="serialize" type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button>
+						<button class="serialize" type="submit"><?php echo CHECKMARK_GREEN; ?> <?php echo gettext("Apply"); ?></strong></button>
 					</p>
 				</form>
 				<ul class="iconlegend">
@@ -254,7 +254,7 @@ printSortableHead();
 						<?php echo gettext("Menu target is password protected"); ?>
 					</li>
 					<li>
-						<?php echo HEAVY_GREEN_CHECKMARK; ?>
+						<?php echo CHECKMARK_GREEN; ?>
 						<?php echo EXCLAMATION_RED; ?>
 						<?php echo gettext("Visible/Hidden"); ?>
 					</li>

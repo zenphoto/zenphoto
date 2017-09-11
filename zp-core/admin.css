@@ -2,6 +2,18 @@
 	Zen Photo Admin
 */
 
+/* fonts for icons */
+@font-face {
+	font-family:"Free Serif";
+	src:
+		url("FreeSerif/FreeSerif.eot?") format("eot"),
+		url("FreeSerif/FreeSerif.woff") format("woff"),
+		url("FreeSerif/FreeSerif.ttf") format("truetype"),
+		url("FreeSerif/FreeSerif.svg#FreeSerif") format("svg");
+	font-weight:normal;
+	font-style:normal;
+}
+
 /* Basics
 ------------------------------ */
 
@@ -915,7 +927,7 @@ td.albumicons {
 }
 
 .font_icon {
-	font-family: FreeSerif, Segoe UI Symbol, Segoe UI Emoji;
+	font-family: Free Serif, Segoe UI Symbol, Segoe UI Emoji;
 	display: inline-block;
 	width: 18px !important;
 	height: 18px !important;
@@ -1317,7 +1329,6 @@ button.positive,.buttons a.positive {
 .buttons .fixedwidth {
 	text-align: left;
 	width: 17em;
-	height: 35px;
 }
 
 /* disabled buttons */

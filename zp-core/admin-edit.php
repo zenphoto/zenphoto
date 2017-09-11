@@ -954,7 +954,7 @@ echo "\n</head>";
 									if ($enableEdit) {
 										?>
 										<button class="serialize buttons" type="submit">
-											<?php echo HEAVY_GREEN_CHECKMARK; ?>
+											<?php echo CHECKMARK_GREEN; ?>
 											<strong><?php echo gettext("Apply"); ?></strong>
 										</button>
 										<button type="reset" value="<?php echo gettext('Reset') ?>">
@@ -1020,7 +1020,7 @@ echo "\n</head>";
 										<strong><?php echo gettext("Back"); ?></strong>
 									</a>
 									<button class="serialize buttons" type="submit">
-										<?php echo HEAVY_GREEN_CHECKMARK; ?>
+										<?php echo CHECKMARK_GREEN; ?>
 										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
@@ -1159,7 +1159,7 @@ echo "\n</head>";
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
 										<button type="submit">
-											<?php echo HEAVY_GREEN_CHECKMARK; ?>
+											<?php echo CHECKMARK_GREEN; ?>
 											<strong><?php echo gettext("Apply"); ?></strong>
 										</button>
 										<button type="reset">
@@ -1603,7 +1603,7 @@ echo "\n</head>";
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
 										<button type="submit">
-											<?php echo HEAVY_GREEN_CHECKMARK; ?>
+											<?php echo CHECKMARK_GREEN; ?>
 											<strong><?php echo gettext("Apply"); ?></strong>
 										</button>
 										<button type="reset">
@@ -1685,7 +1685,7 @@ echo "\n</head>";
 								<strong><?php echo gettext("Back"); ?></strong>
 							</a>
 							<button type="submit">
-								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<?php echo CHECKMARK_GREEN; ?>
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" onclick="$('.deletemsg').hide();" >
@@ -1723,7 +1723,7 @@ echo "\n</head>";
 								<strong><?php echo gettext("Back"); ?></strong>
 							</a>
 							<button type="submit">
-								<?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong>
+								<?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" onclick="$('.deletemsg').hide();" >
 								<?php echo WASTEBASKET; ?>
@@ -1806,7 +1806,7 @@ echo "\n</head>";
 								if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 									?>
 									<button class="serialize buttons" type="submit" >
-										<?php echo HEAVY_GREEN_CHECKMARK; ?>
+										<?php echo CHECKMARK_GREEN; ?>
 										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
@@ -1861,7 +1861,7 @@ echo "\n</head>";
 								if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 									?>
 									<button class="serialize buttons" type="submit" >
-										<?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong>
+										<?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
 										<?php echo CROSS_MARK_RED; ?>

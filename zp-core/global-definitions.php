@@ -139,18 +139,17 @@ define('ZP_ZENPAGE_SINGLE', 8192);
 
 //icons
 define('ARROW_DOWN_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&dArr;</span>');
-define('ARROW_LEFT_BLUE', '<span class="font_icon" style="color: blue;font-size:large;">&lArr;</span>');
 define('ARROW_RIGHT_BLUE', '<span class="font_icon" style="color: blue;font-size:large;">&rArr;</span>');
 define('ARROW_UP_GRAY', '<span class="font_icon" style="color: lightgray;font-size: large;">&uArr;</span>');
 define('ARROW_UP_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&uArr;</span>');
 define('BACK_ARROW_BLUE', '<span class="font_icon" style="color: blue;font-size:large;">&#10094;</span>');
-define('BALLOT_BOX_WITH_X_RED', '<span class="font_icon" style="color: red;font-size: large;">&#9746;</span>');
 define('BULLSEYE_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#9678;</span>');
 define('BULLSEYE_DARKORANGE', '<span class="font_icon" style="color: darkorange;font-size: large;;">&#9678;</span>');
 define('BULLSEYE_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&#9678;</span>');
 define('BULLSEYE_LIGHTGRAY', '<span class="font_icon" style="color: lightgray;font-size: large;">&#9678;</span>');
 define('BULLSEYE_RED', '<span class="font_icon" style="color: red;font-size: large;">&#9678;</span>');
 define('BURST_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#10040;</span>');
+define('CHECKMARK_GREEN', '<span class="font_icon" style="color: green;font-size: large;">&#10003;</span>');
 define('CIRCLED_BLUE_STAR', '<span class="font_icon" style="color: blue;font-size: large;">&#10026;</span>');
 define('CLIPBOARD', '<span class="font_icon" style="font-family: Sego UI Emoji; color: goldenrod;">&#128203;</span>');
 define('CLOCKFACE', '<span class="font_icon" style="letter-spacing: -4px;">&#128343;</span>');
@@ -161,11 +160,10 @@ define('CURVED_UPWARDS_AND_RIGHTWARDS_ARROW_BLUE', '<span class="font_icon" styl
 define('DRAG_HANDLE', '<span class="font_icon" style="color:lightsteelblue;font-size: x-large;">&#10021;</span>');
 define('DRAG_HANDLE_ALERT', '<span class="font_icon" style="color:red;font-size: x-large;">&#10021;</span>');
 define('ENVELOPE', '<span class="font_icon" style="font-size: large;">&#9993;</span>');
-define('EXCLAMATION_RED', '<span class="font_icon" style="color: red;font-weight: bold;font-size: large;">&#65281;</span>');
+define('EXCLAMATION_RED', '<span class="font_icon" style="color: red; font-family: Times New Roman; font-weight: bold;font-size: large;">&#33;</span>');
 define('GEAR_SYMBOL', '&#9881;');
-define('HEAVY_GREEN_CHECKMARK', '<span class="font_icon" style="color: green;font-size: large;">&#10004;</span>');
 define('HIDE_ICON', '<span class="font_icon" style="color: red;font-size: large;">&#8853;</span>');
-define('INFORMATION_BLUE', '<span class="font_icon" style="color: blue;font-size: large;">&#8505;</span>');
+define('INFORMATION_BLUE', '<span class="font_icon" style="color: blue; font-family: Times New Roman; font-size: large;">&#8505;</span>');
 define('KEY_RED', '<span class="font_icon" style="color: red;">&#128273;</span>');
 define('LOCK', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" /></span>');
 define('LOCK_OPEN', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock_open.png" /></span>');

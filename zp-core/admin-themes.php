@@ -286,7 +286,7 @@ if (count($themelist) == 0) {
 							<li>
 								<p class="buttons">
 									<a onclick="launchScript('admin-themes.php', ['action=settheme', 'themealbum=<?php echo pathurlencode($alb); ?>', 'theme=<?php echo urlencode($theme); ?>', 'XSRFToken=<?php echo getXSRFToken('admin-themes') ?>']);">
-										<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Activate"); ?>
+										<?php echo CHECKMARK_GREEN; ?> <?php echo gettext("Activate"); ?>
 									</a>
 								</p>
 								<br />
@@ -298,7 +298,7 @@ if (count($themelist) == 0) {
 								<li>
 									<p class="buttons">
 										<a onclick="launchScript('admin-themes.php', ['action=settheme', 'themealbum=<?php echo pathurlencode($alb); ?>', 'theme=<?php echo urlencode($theme); ?>', 'XSRFToken=<?php echo getXSRFToken('admin-themes') ?>']);">
-											<?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Assign"); ?>
+											<?php echo CHECKMARK_GREEN; ?> <?php echo gettext("Assign"); ?>
 										</a>
 									</p>
 								</li>

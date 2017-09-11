@@ -133,7 +133,7 @@ printLogoAndLinks();
 							<span class="buttons">
 								<p class="buttons" style="margin-top: 10px">
 									<button type="submit">
-										<?php echo HEAVY_GREEN_CHECKMARK; ?>
+										<?php echo CHECKMARK_GREEN; ?>
 										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 								</p>
@@ -208,7 +208,7 @@ printLogoAndLinks();
 										$link_moderation = gettext('Approve');
 										$title_moderation = gettext('Approve this comment');
 										$url_moderation = '?action=notspam&amp;id=' . $id;
-										$linkimage = HEAVY_GREEN_CHECKMARK;
+										$linkimage = CHECKMARK_GREEN;
 									} else {
 										$status_moderation = '<span style="color: green">' . gettext('Comment is approved') . '</span>';
 										$link_moderation = gettext('Un-approve');
@@ -329,7 +329,7 @@ printLogoAndLinks();
 					<form class="dirtylistening" onReset="setClean('form_commentlist');"  name="comments" id="form_commentlist" action="?action=applycomments" method="post" onsubmit="return confirmAction();" autocomplete="off">
 						<?php XSRFToken('applycomments'); ?>
 						<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum) ?>" />
-						<p class="buttons"><button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <strong><?php echo gettext("Apply"); ?></strong></button></p>
+						<p class="buttons"><button type="submit"><?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong></button></p>
 						<p class="buttons">
 							<?php
 							if ($fulltext) {
@@ -459,7 +459,7 @@ printLogoAndLinks();
 												} else {
 													?>
 													<a href="?action=spam&amp;id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update') ?>" title="<?php echo gettext('Mark this message as SPAM'); ?>">
-														<?php echo HEAVY_GREEN_CHECKMARK; ?> </a>
+														<?php echo CHECKMARK_GREEN; ?> </a>
 													<?php
 												}
 												?>
@@ -498,7 +498,7 @@ printLogoAndLinks();
 
 
 						</table>
-						<p class="buttons"><button type="submit"><?php echo HEAVY_GREEN_CHECKMARK; ?> <?php echo gettext("Apply"); ?></strong></button></p>
+						<p class="buttons"><button type="submit"><?php echo CHECKMARK_GREEN; ?> <?php echo gettext("Apply"); ?></strong></button></p>
 						<ul class="iconlegend">
 							<li>
 								<?php echo NO_ENTRY; ?>
@@ -506,7 +506,7 @@ printLogoAndLinks();
 							</li>
 							<li>
 								<?php echo WARNING_SIGN_ORANGE; ?>
-								<?php echo HEAVY_GREEN_CHECKMARK; ?>
+								<?php echo CHECKMARK_GREEN; ?>
 								<?php echo gettext("Marked as spam/approved"); ?>
 							</li>
 							<li>

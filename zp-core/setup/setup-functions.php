@@ -139,7 +139,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 				$display = ' style="display:none;"';
 			}
 			$cls = "pass";
-			$ico = HEAVY_GREEN_CHECKMARK;
+			$ico = CHECKMARK_GREEN;
 			break;
 	}
 	if ($check <= 0) {
