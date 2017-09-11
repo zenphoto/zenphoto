@@ -430,8 +430,10 @@ if ($setup_checked) {
 		setupLog(gettext("Post of Database credentials"), true);
 	} else {
 
-		if (!isset($_REQUEST['xsrfToken']))
+		if (!isset($_SESSION['SetupStarted']) || $_SESSION['SetupStarted'] != ZENPHOTO_VERSION) {
+			$_SESSION['SetupStarted'] = ZENPHOTO_VERSION;
 			zp_apply_filter('log_setup', true, 'install', gettext('Started'));
+		}
 
 		$me = realpath(dirname(dirname(dirname(str_replace('\\', '/', __FILE__)))));
 		$mine = realpath(SERVERPATH);
@@ -922,7 +924,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						}
 						?>
 												}, false);
-
 												var failed = 0;
 												function imgError(title) {
 													failed++;
@@ -1781,8 +1782,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									}
 								}
 
-
-								zp_apply_filter('log_setup', $updateErrors, 'install', gettext('Completed'));
 								$clones = array();
 
 								if ($_zp_loggedin == ADMIN_RIGHTS) {
@@ -1826,11 +1825,20 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										break;
 								}
 								?>
+								<input type="hidden" id="setupErrors" value="<?php echo (int) $updateErrors; ?>" />
 								<script type="text/javascript">
 									function launchAdmin() {
 										window.location = '<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php'; ?>';
 									}
 									window.onload = function () {
+										var errors = $('#setupErrors').val();
+
+										$.ajax({
+											type: 'POST',
+											cache: false,
+											data: 'errors=' + errors,
+											url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/setup/setupComplete.php'
+										});
 										$('.delayshow').show();
 		<?php
 		if ($autorun) {

@@ -258,6 +258,7 @@ if (isset($_GET['mod_rewrite'])) {
 				var title = $(this).attr('title');
 				$(this).parent().html('<a href="' + link + '" target="_blank" title="' + title + '"><?php echo CROSS_MARK_RED; ?></a>');
 				imageErr = true;
+				$('#setupErrors').val(1);
 			});
 		});
 	</script>
