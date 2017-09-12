@@ -93,6 +93,7 @@ function saveOptions() {
 	$disableEmpty = isset($_POST['disableEmpty']);
 
 	$oldDisabled = getSerializedArray(getOption('metadata_disabled'));
+
 	$dbChange = array();
 	$disable = array();
 	$display = array();
@@ -120,6 +121,7 @@ function saveOptions() {
 			} else {
 				$v = 2;
 			}
+
 			switch ($v) {
 				case 1: //show
 					$display[$key] = $key;
@@ -148,6 +150,7 @@ function saveOptions() {
 					break;
 			}
 		}
+
 		foreach ($_zp_exifvars as $key => $item) {
 			if ($item[EXIF_FIELD_LINKED]) {
 				$d = $_zp_exifvars[$item[EXIF_FIELD_LINKED]][EXIF_FIELD_ENABLED];
@@ -156,7 +159,7 @@ function saveOptions() {
 						$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[EXIF_SOURCE] . ' Metadata';
 					}
 				}
-				if ($d) {
+				if (!$d) {
 					$disable[$key] = $key;
 				} else {
 					unset($disable[$key]);
@@ -765,6 +768,11 @@ function getOptionContent() {
 										$checked_disabled = ' disabled="disabled"';
 										if (!$exifstuff[$item[EXIF_FIELD_LINKED]][EXIF_FIELD_ENABLED]) {
 											$checked_disabled .= ' checked="checked"';
+										}
+										if ($item[EXIF_DISPLAY]) {
+											$checked_show = ' checked="checked"';
+										} else {
+											$checked_hide = ' checked="checked"';
 										}
 									} else {
 										if (!$item[EXIF_FIELD_ENABLED]) {
