@@ -49,11 +49,18 @@ echo "\n</head>";
 						break;
 					case 'env':
 						?>
+
 						<h1>
-							<?php
-							echo gettext('Environment variable array');
-							?>
+							<?php echo gettext('Environment variable array'); ?>
 						</h1>
+
+						<span class="option_info floatright">
+							<?php echo INFORMATION_BLUE; ?>
+							<div class="option_desc_hidden">
+								<?php echo gettext('Environmental variables will not be provide unless your PHP.ini directive <code>variables_order</code> includes "E". e.g. <code>variables_order = "EGPCS"</code>'); ?>
+							</div>
+						</span>
+
 						<?php
 						break;
 					case 'server':
