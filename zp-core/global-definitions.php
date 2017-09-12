@@ -46,6 +46,8 @@ define('EXIF_DISPLAY', 3);
 define('EXIF_FIELD_SIZE', 4);
 define('EXIF_FIELD_ENABLED', 5);
 define('EXIF_FIELD_TYPE', 6);
+define('EXIF_FIELD_LINKED', 7);
+
 
 define('SYMLINK', function_exists('symlink') && strpos(@ini_get("suhosin.executor.func.blacklist"), 'symlink') === false);
 define('CASE_INSENSITIVE', file_exists(strtoupper(__FILE__)));

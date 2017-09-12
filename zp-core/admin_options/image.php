@@ -148,6 +148,21 @@ function saveOptions() {
 					break;
 			}
 		}
+		foreach ($_zp_exifvars as $key => $item) {
+			if ($item[EXIF_FIELD_LINKED]) {
+				$d = $_zp_exifvars[$item[EXIF_FIELD_LINKED]][EXIF_FIELD_ENABLED];
+				if ($item[EXIF_FIELD_SIZE]) { // item has data (size != 0)
+					if ($d == in_array($key, $oldDisabled)) {
+						$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[EXIF_SOURCE] . ' Metadata';
+					}
+				}
+				if ($d) {
+					$disable[$key] = $key;
+				} else {
+					unset($disable[$key]);
+				}
+			}
+		}
 	}
 
 	setOption('metadata_disabled', serialize($disable));
@@ -664,7 +679,7 @@ function getOptionContent() {
 														 name="disclose_password"
 														 id="disclose_password"
 														 onclick="passwordClear('');
-																		 togglePassword('');" /><?php echo gettext('Show'); ?>
+																 togglePassword('');" /><?php echo gettext('Show'); ?>
 										</label>
 
 										<br />
@@ -745,16 +760,24 @@ function getOptionContent() {
 									$checked_show = $checked_hide = $checked_disabled = '';
 									$class_show = ' class="showMeta"';
 									$class_hide = ' class="hideMeta"';
-									if (!$item[5]) {
-										$checked_disabled = ' checked="checked"';
+
+									if ($item[EXIF_FIELD_LINKED]) {
+										$checked_disabled = ' disabled="disabled"';
+										if (!$exifstuff[$item[EXIF_FIELD_LINKED]][EXIF_FIELD_ENABLED]) {
+											$checked_disabled .= ' checked="checked"';
+										}
 									} else {
-										if ($item[3]) {
-											$checked_show = ' checked="checked"';
+										if (!$item[EXIF_FIELD_ENABLED]) {
+											$checked_disabled = ' checked="checked"';
 										} else {
-											$checked_hide = ' checked="checked"';
+											if ($item[EXIF_DISPLAY]) {
+												$checked_show = ' checked="checked"';
+											} else {
+												$checked_hide = ' checked="checked"';
+											}
 										}
 									}
-									if (!$item[4]) {
+									if (!$item[EXIF_FIELD_SIZE]) {
 										$checked_show = ' disabled="disabled"';
 										$class_show = '';
 										$class_hide = ' class="showMeta hideMeta"';
@@ -763,6 +786,7 @@ function getOptionContent() {
 									<li class="nowrap">
 										<label title="<?php echo gettext('show'); ?>">
 											<input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio" <?php echo $class_show . $checked_show ?> value="1" />
+
 											<?php echo CHECKMARK_GREEN; ?>
 										</label>
 										<label title="<?php echo gettext('hide'); ?>">
