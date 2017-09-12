@@ -215,16 +215,16 @@ function reconfigurePage($diff, $needs, $mandatory) {
 			setOption('zenphoto_install', serialize(installSignature()));
 			return;
 		}
-		$token = '&amp;xsrfToken=' . $token;
+		$token = 'xsrfToken=' . $token;
 	} else {
-		$token = '';
+		$token = 'noToken';
 	}
 	if (OFFSET_PATH) {
 		$where = 'admin';
 	} else {
 		$where = 'gallery';
 	}
-	$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . $token . '">';
+	$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;' . $token . '">';
 	$l2 = '</a>';
 	?>
 	<div class="reconfigbox">
@@ -278,9 +278,17 @@ function reconfigurePage($diff, $needs, $mandatory) {
 				printf(gettext('The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function.'), $l1, $l2);
 			} else {
 				printf(gettext('The change detected may not be critical but you should run %1$ssetup%2$s at your earliest convenience.'), $l1, $l2);
+				$request = parse_url(getRequestURI());
+				if (isset($request['query'])) {
+					$query = parse_query($request['query']);
+				} else {
+					$query = array();
+				}
+				$query[] = 'dismiss=config_warning';
+				$query[] = $token;
 				?>
 				<p class="buttons">
-					<a href="?dismiss=config_warning<?php echo $token; ?>" title="<?php echo gettext('Ignore this configuration change.'); ?>"><?php echo gettext('dismiss'); ?></a>
+					<a href="?<?php echo ltrim(implode('&amp;', $query), '&amp;'); ?>" title="<?php echo gettext('Ignore this configuration change.'); ?>"><?php echo gettext('dismiss'); ?></a>
 				</p>
 				<br class="clearall">
 					<?php
