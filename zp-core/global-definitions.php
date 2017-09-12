@@ -77,7 +77,7 @@ $_zp_DB_details = unserialize(DB_NOT_CONNECTED);
  * 		4		scripts in the theme folders
  */
 $const_webpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-$const_serverpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME']));
+$const_serverpath = str_replace('\\', '/', realpath(dirname($_SERVER['SCRIPT_FILENAME'])));
 /**
  * see if we are executing out of any of the known script folders. If so we know how to adjust the paths
  * if not we presume the script is in the root of the installation. If it is not the script better have set

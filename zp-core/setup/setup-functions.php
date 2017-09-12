@@ -8,55 +8,9 @@
  */
 // force UTF-8 Ø
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
-
-$const_webpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-$const_serverpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME']));
-/**
- * see if we are executing out of any of the known script folders. If so we know how to adjust the paths
- * if not we presume the script is in the root of the installation. If it is not the script better have set
- * the SERVERPATH and WEBPATH defines to the correct values
- */
-if (!preg_match('~(.*)/(' . ZENFOLDER . ')~', $const_webpath, $matches)) {
-	preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . THEMEFOLDER . ')~', $const_webpath, $matches);
-}
-if ($matches) {
-	$const_webpath = $matches[1];
-	$const_serverpath = substr($const_serverpath, 0, strrpos($const_serverpath, '/' . $matches[2]));
-	if (!defined('OFFSET_PATH')) {
-		switch ($matches[2]) {
-			case ZENFOLDER:
-				define('OFFSET_PATH', 1);
-				break;
-			case USER_PLUGIN_FOLDER:
-				define('OFFSET_PATH', 3);
-				break;
-			case THEMEFOLDER:
-				define('OFFSET_PATH', 4);
-				break;
-		}
-	}
-	unset($matches);
-} else {
-	if (!defined('OFFSET_PATH')) {
-		define('OFFSET_PATH', 0);
-	}
-}
-if ($const_webpath == '/' || $const_webpath == '.') {
-	$const_webpath = '';
-}
-
-if (!defined('SERVERPATH')) {
-	define('SERVERPATH', $const_serverpath);
-}
-if (!defined('WEBPATH')) {
-	define('WEBPATH', $const_webpath);
-}
-unset($const_webpath);
-unset($const_serverpath);
+require_once(dirname(dirname(__FILE__)) . '/functions-config.php');
 
 define('SETUPLOG', SERVERPATH . '/' . DATA_FOLDER . '/setup.log');
-
-require_once(dirname(dirname(__FILE__)) . '/functions-config.php');
 
 /**
  *
