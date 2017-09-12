@@ -163,6 +163,8 @@ class debug {
 				$tabs['development']['subtabs'][gettext("phpinfo")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=phpinfo';
 				$tabs['development']['subtabs'][gettext("Locales")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=locale';
 				$tabs['development']['subtabs'][gettext("Session")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=session';
+				$tabs['development']['subtabs'][gettext("SERVER")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=server';
+				$tabs['development']['subtabs'][gettext("ENV")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=env';
 			} else {
 				$tabs['development']['default'] = 'cookie';
 			}

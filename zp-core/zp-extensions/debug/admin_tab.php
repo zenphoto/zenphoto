@@ -47,11 +47,29 @@ echo "\n</head>";
 						</h1>
 						<?php
 						break;
+					case 'env':
+						?>
+						<h1>
+							<?php
+							echo gettext('Environment variable array');
+							?>
+						</h1>
+						<?php
+						break;
+					case 'server':
+						?>
+						<h1>
+							<?php
+							echo gettext('SERVER array');
+							?>
+						</h1>
+						<?php
+						break;
 					case 'session':
 						?>
 						<h1>
 							<?php
-							echo gettext('_SESSION array');
+							echo gettext('SESSION array');
 							?>
 						</h1>
 						<?php
@@ -125,7 +143,19 @@ echo "\n</head>";
 							<?php
 							echo $phpinfo;
 							break;
-						case'session':
+						case 'env':
+							if (empty($_ENV)) {
+								echo gettext('There are no environmental variables passed.');
+							} else {
+								$env = preg_replace('/^Array\n/', '<pre>', print_r($_ENV, true)) . '</pre>';
+								echo $env;
+							}
+							break;
+						case 'server':
+							$server = preg_replace('/^Array\n/', '<pre>', print_r($_SERVER, true)) . '</pre>';
+							echo $server;
+							break;
+						case 'session':
 							$session = preg_replace('/^Array\n/', '<pre>', print_r($_SESSION, true)) . '</pre>';
 							echo $session;
 							break;
