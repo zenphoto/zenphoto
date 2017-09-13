@@ -1158,6 +1158,7 @@ zp-core/images/favicon.ico
 zp-core/images/folder.png
 zp-core/images/folder_picture.png
 zp-core/images/folder_picture_dn.png
+zp-core/images/hide.png
 zp-core/images/imageDefault.png
 zp-core/images/lock.png
 zp-core/images/lock_open.png
@@ -8152,4 +8153,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8154
+8155

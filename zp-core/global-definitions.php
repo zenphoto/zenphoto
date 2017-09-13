@@ -164,7 +164,7 @@ define('DRAG_HANDLE_ALERT', '<span class="font_icon" style="color:red;font-size:
 define('ENVELOPE', '<span class="font_icon" style="font-size: large;">&#9993;</span>');
 define('EXCLAMATION_RED', '<span class="font_icon" style="color: red; font-family: Times New Roman; font-weight: bold;font-size: large;">&#33;</span>');
 define('GEAR_SYMBOL', '&#9881;');
-define('HIDE_ICON', '<span class="font_icon" style="color: red;font-size: large;">&#10754;</span>');
+define('HIDE_ICON', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/hide.png" /></span>');
 define('INFORMATION_BLUE', '<span class="font_icon" style="color: blue; font-family: Times New Roman; font-size: large;">&#8505;</span>');
 define('KEY_RED', '<span class="font_icon" style="color: red;">&#128273;</span>');
 define('LOCK', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" /></span>');
