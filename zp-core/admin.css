@@ -1018,6 +1018,7 @@ input.tags {
 	white-space: nowrap;
 	padding-bottom: 5px;
 	width: 253px;
+	overflow: hidden;
 }
 
 .overview_utility_buttons button {
