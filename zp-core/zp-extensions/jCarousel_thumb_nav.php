@@ -97,7 +97,7 @@ class jcarousel {
 		if (file_exists($css)) {
 			$css = WEBPATH . '/' . THEMEFOLDER . '/' . $theme . '/jcarousel.css';
 		} else {
-			$css = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/jcarousel_thumb_nav/jcarousel.css';
+			$css = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/jCarousel_thumb_nav/jcarousel.css';
 		}
 		?>
 		<script>
@@ -114,8 +114,8 @@ class jcarousel {
 
 			})(jQuery);
 		</script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jcarousel_thumb_nav/jquery.jcarousel.pack.js"></script>
-		<link rel="stylesheet" type="text/css" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jcarousel_thumb_nav/jquery.jcarousel.css" />
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jCarousel_thumb_nav/jquery.jcarousel.pack.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jCarousel_thumb_nav/jquery.jcarousel.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo html_encode($css); ?>" />
 		<?php
 	}
