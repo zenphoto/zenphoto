@@ -34,8 +34,8 @@
  * So you might need to adjust the skin yourself to work with your theme. It is recommended that
  * you place your custom skins within the root /plugins folder like:
  *
- * plugins/jplayer/skin/<i>skin name1</i><br>
- * plugins/jplayer/skin/<i>skin name2</i> ...
+ * plugins/jPlayer/skin/<i>skin name1</i><br>
+ * plugins/jPlayer/skin/<i>skin name2</i> ...
  *
  * You can select the skin then via the plugin options. <b>NOTE:</b> A skin may have only one CSS file.
  *
@@ -71,7 +71,7 @@ $plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext("This plugin handles <code>flv</code>, <code>fla</code>, <code>mp3</code>, <code>mp4</code>, <code>m4v</code>, and <code>m4a</code> multi-media files.");
 gettext("Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian)";
-$plugin_disable = zpFunctions::pluginDisable(array(array(!extensionEnabled('class-video'), gettext('This plugin requires the <em>class-video</em> plugin')), array(class_exists('Video') && Video::multimediaExtension() != 'jPlayer' && Video::multimediaExtension() != 'pseudoPlayer', sprintf(gettext('jPlayer not enabled, <a href="#%1$s"><code>%1$s</code></a> is already instantiated.'), class_exists('Video') ? Video::multimediaExtension() : false)), array(getOption('album_folder_class') === 'external', (gettext('This player does not support <em>External Albums</em>.')))));
+$plugin_disable = zpFunctions::pluginDisable(array(array(!extensionEnabled('class-video'), gettext('This plugin requires the <em>class-video</em> plugin')), array(class_exists('Video') && Video::multimediaExtension() != 'jPlayer' && Video::multimediaExtension() != 'pseudoPlayer', sprintf(gettext('jPlayer not enabled, %s is already instantiated.'), class_exists('Video') ? Video::multimediaExtension() : false)), array(getOption('album_folder_class') === 'external', (gettext('This player does not support <em>External Albums</em>.')))));
 
 $option_interface = 'jplayer_options';
 
@@ -170,8 +170,8 @@ class jplayer_options {
 	 *
 	 */
 	static function getSkin() {
-		$default_skins_dir = SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/jplayer/skin/';
-		$user_skins_dir = SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/jplayer/skin/';
+		$default_skins_dir = SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/jPlayer/skin/';
+		$user_skins_dir = SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/jPlayer/skin/';
 		$filestoignore = array('.', '..', '.DS_Store', 'Thumbs.db', '.htaccess', '.svn');
 		$skins = array_diff(scandir($default_skins_dir), array_merge($filestoignore));
 		$default_skins = self::getSkinCSS($skins, $default_skins_dir);
@@ -259,21 +259,21 @@ class jPlayer {
 	}
 
 	static function headJS() {
-		$skin = @array_shift(getPluginFiles('*.css', 'jplayer/skin/' . getOption('jplayer_skin')));
+		$skin = @array_shift(getPluginFiles('*.css', 'jPlayer/skin/' . getOption('jplayer_skin')));
 		if (file_exists($skin)) {
 			$skin = str_replace(SERVERPATH, WEBPATH, $skin); //replace SERVERPATH as that does not work as a CSS link
 		} else {
-			$skin = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/jplayer/skin/zenphotolight/jplayer.zenphotolight.css';
+			$skin = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/jPlayer/skin/zenphotolight/jplayer.zenphotolight.css';
 		}
 		?>
 		<link href="<?php echo $skin; ?>" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js/jquery.jplayer.min.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jPlayer/js/jquery.jplayer.min.js"></script>
 		<?php
 	}
 
 	static function playlistJS() {
 		?>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js/jplayer.playlist.min.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jPlayer/js/jplayer.playlist.min.js"></script>
 		<?php
 	}
 
@@ -327,7 +327,7 @@ class jPlayer {
 						' . $videoThumb . '
 					})' . $autoplay . ';
 				},
-				swfPath: "' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/jplayer/js",
+				swfPath: "' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/jPlayer/js",
 				supplied: "' . $this->supplied . $this->supplied_counterparts . '",
 				cssSelectorAncestor: "#jp_container_' . $count . '"';
 
@@ -703,7 +703,7 @@ class jPlayer {
 // Seems the flash fallback fails here
 			?>
 				], {
-				swfPath: "<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js",
+				swfPath: "<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jPlayer/js",
 								solution: "flash,html",
 			<?php if ($option == 'playlist') { ?>
 					supplied: "m4v, mp4, m4a, mp3, fla, flv<?php echo $this->supplied_counterparts; ?>"
