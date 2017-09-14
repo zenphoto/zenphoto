@@ -203,8 +203,8 @@ printAdminHeader('overview');
 	$(function () {
 		$('#overviewboxes').masonry({
 			// options
-			itemSelector: '.overview-utility',
-			columnWidth: 520
+			itemSelector: '.overview-section',
+			columnWidth: 560
 		});
 	});
 	// ]]> -->
@@ -384,7 +384,7 @@ $buttonlist = array();
 					<?php
 					if (zp_loggedin(ADMIN_RIGHTS)) {
 						?>
-						<div class="box overview-utility overview-install-info">
+						<div class="box overview-section overview-install-info">
 							<h2 class="h2_bordered"><?php echo gettext("Installation information"); ?></h2>
 							<ul>
 								<?php
@@ -594,7 +594,7 @@ $buttonlist = array();
 							$c = count($plugins);
 							?>
 							<h3><a onclick="$('#plugins_hide').toggle();
-											$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+									$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -642,7 +642,7 @@ $buttonlist = array();
 							$c = count($filters);
 							?>
 							<h3><a onclick="$('#filters_hide').toggle();
-											$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+									$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -684,7 +684,7 @@ $buttonlist = array();
 					}
 					if (!empty($buttonlist)) {
 						?>
-						<div class="box overview-utility">
+						<div class="box overview-section overview_utilities">
 							<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
 							<?php
 							$category = '';
@@ -712,7 +712,7 @@ $buttonlist = array();
 									}
 									$category = $button_category;
 									?>
-									<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
+									<fieldset class="overview_utility_buttons_field"><legend><?php echo $category; ?></legend>
 										<?php
 									}
 									?>
@@ -753,11 +753,11 @@ $buttonlist = array();
 								<?php
 							}
 							?>
-						</div><!-- overview-utility -->
+						</div><!-- overview-section -->
 						<?php
 					}
 					?>
-					<div class="box overview-utility overiew-gallery-stats">
+					<div class="box overview-section overiew-gallery-stats">
 						<h2 class="h2_bordered"><?php echo gettext("Gallery Stats"); ?></h2>
 						<ul>
 							<li>

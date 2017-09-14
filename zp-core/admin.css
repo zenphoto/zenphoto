@@ -968,36 +968,21 @@ input.tags {
 	font-size: 100%;
 }
 
-.utility_buttons_field {
-	padding-left: 0px;
-	padding-right: 5px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin: 15px;
-	border: 1px solid #cccccc;
-	width: 460px;
-}
-
-.overview_utility_buttons {
-	padding-bottom: 5px;
-	width: 220px;
-}
-
-.overview-utility {
-	width: 500px;
+.overview-section {
+	width: 550px;
 	margin: 0 0 15px 0px;
 	padding: 0px;
 	float: left;
 }
 
-.overview-utility h3,.overview-utility h2 {
+.overview-section h3,.overview-section h2 {
 	font-weight: bold;
 	padding-left: 10px;
 	margin: 0;
 }
 
-.overview-utility ul {
-	width: 480px;
+.overview-section ul {
+	width: 525px;
 	margin-left: 10px;
 	list-style-type: none;
 	padding: 0px;
@@ -1005,7 +990,7 @@ input.tags {
 
 }
 
-.overview-utility ul li {
+.overview-section ul li {
 	margin-bottom: 0em;
 	margin-left: 0px;
 	padding: 4px 4px 3px 4px;
@@ -1016,6 +1001,29 @@ input.tags {
 	z-index: 50;
 }
 
+.overview_utilities {
+
+}
+.overview_utility_buttons_field {
+	padding-left: 0px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin: 10px;
+	border: 1px solid #cccccc;
+	width: 525px;
+}
+
+.overview_utility_buttons {
+	white-space: nowrap;
+	padding-bottom: 5px;
+	width: 253px;
+}
+
+.overview_utility_buttons button {
+	width: 253px !important;
+	white-space: nowrap;
+}
 .overiew-gallery-stats ul,
 .overview-install-info ul {
 	border-top: 1px solid #dfdfdf;
@@ -1026,29 +1034,29 @@ input.tags {
 	border-bottom: 1px solid #dfdfdf;
 }
 
-.overview-utility fieldset legend {
+.overview-section fieldset legend {
 	margin: 0 5px 0px 5px;
 	padding: 0 5px 0 5px;
 	font-weight: bold;
 }
 
-.overview-utility form {
+.overview-section form {
 	max-height: 100px;
 	float: left;
 	padding-left: 8px;
 }
 
-.overview-utility ul.filters,
-.overview-utility ul.filters li {
+.overview-section ul.filters,
+.overview-section ul.filters li {
 	border: 0px !important;
 }
 
-.overview-utility .commentmeta {
+.overview-section .commentmeta {
 	font-size: 90%;
 	color: #999;
 }
 
-.overview-utility .commentbody {
+.overview-section .commentbody {
 	font-size: 100%;
 }
 

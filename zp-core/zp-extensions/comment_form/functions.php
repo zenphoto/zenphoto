@@ -62,7 +62,7 @@ function comment_form_visualEditor() {
  */
 function comment_form_print10Most() {
 	?>
-	<div class="box overview-utility">
+	<div class="box overview-section">
 		<h2 class="h2_bordered"><?php echo gettext("10 Most Recent Comments"); ?></h2>
 		<ul>
 			<?php

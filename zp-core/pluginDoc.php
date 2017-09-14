@@ -456,7 +456,7 @@ if (!defined('OFFSET_PATH')) {
 						if (!empty($buttonlist)) {
 							$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false);
 							?>
-							<div class="box" id="overview-utility">
+							<div class="box" id="overview-section">
 								<h2 class="h2_bordered">Utility functions</h2>
 								<?php
 								$category = '';

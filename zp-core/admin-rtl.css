@@ -89,7 +89,7 @@ form td {text-align:right !important;}
 	margin: 0 10px 10px 0;
 }
 
-#overview-maint, #overview-utility {
+#overview-maint, #overview-section {
 	float: right;
 }
 
@@ -98,7 +98,7 @@ form td {text-align:right !important;}
 	float: right;
 }
 
-#overview-comments h3, #overview-gallerystats h3, #overview-utility h2, #overview-info h3 {
+#overview-comments h3, #overview-gallerystats h3, #overview-section h2, #overview-info h3 {
 	padding-right: 10px;
 }
 
