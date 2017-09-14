@@ -67,8 +67,15 @@ define('DEBUG_PLUGINS', strpos($_debug, 'PLUGINS')); // set to true to log plugi
 
 unset($_debug);
 
-define('DB_NOT_CONNECTED', serialize(array('mysql_host' => gettext('not connected'), 'mysql_database' => gettext('not connected'), 'mysql_prefix' => gettext('not connected'), 'mysql_user' => '', 'mysql_pass' => '')));
-$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
+$_zp_DB_details = array(
+		'mysql_host' => gettext('not connected'),
+		'mysql_database' => gettext('not connected'),
+		'mysql_prefix' => gettext('not connected'),
+		'mysql_user' => '',
+		'mysql_pass' => ''
+);
+define('DB_NOT_CONNECTED', serialize($_zp_DB_details));
+
 
 /**
  * OFFSET_PATH definitions:
@@ -88,6 +95,7 @@ $const_serverpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME']))
 if (!preg_match('~(.*)/(' . ZENFOLDER . ')~', $const_webpath, $matches)) {
 	preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . THEMEFOLDER . ')~', $const_webpath, $matches);
 }
+
 if ($matches) {
 	$const_webpath = $matches[1];
 	$const_serverpath = substr($const_serverpath, 0, strrpos($const_serverpath, '/' . $matches[2]));
@@ -104,12 +112,12 @@ if ($matches) {
 				break;
 		}
 	}
-	unset($matches);
 } else {
 	if (!defined('OFFSET_PATH')) {
 		define('OFFSET_PATH', 0);
 	}
 }
+
 if ($const_webpath == '/' || $const_webpath == '.') {
 	$const_webpath = '';
 }
@@ -120,6 +128,8 @@ if (!defined('SERVERPATH')) {
 if (!defined('WEBPATH')) {
 	define('WEBPATH', $const_webpath);
 }
+
+unset($matches);
 unset($const_webpath);
 unset($const_serverpath);
 
