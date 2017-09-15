@@ -45,6 +45,7 @@ if (TEST_RELEASE) {
 
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
+register_shutdown_function('zpShutDownFunction');
 $_configMutex = new zpMutex('cF');
 $_zp_mutex = new zpMutex();
 

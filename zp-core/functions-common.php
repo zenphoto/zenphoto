@@ -103,7 +103,7 @@ function zp_error($message, $fatal = E_USER_ERROR) {
 function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	global $_zp_current_admin_obj, $_index_theme;
 	// check if function has been called by an exception
-	if (func_num_args() == 5) {
+	if (func_num_args() > 1) {
 		list($errno, $errstr, $errfile, $errline) = func_get_args();
 	} else {
 		// caught exception
@@ -113,12 +113,13 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		$errfile = $exc->getFile();
 		$errline = $exc->getLine();
 	}
-
+	error_clear_last(); //	it will be handled  here, not on shutdown!
 	// if error has been supressed with an @
 	if (error_reporting() == 0 && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
 		return;
 	}
-	$errorType = array(E_ERROR => gettext('ERROR'),
+	$errorType = array(
+			E_ERROR => gettext('ERROR'),
 			E_WARNING => gettext('WARNING'),
 			E_NOTICE => gettext('NOTICE'),
 			E_USER_ERROR => gettext('USER ERROR'),
@@ -149,6 +150,16 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		<?php
 	}
 	return false;
+}
+
+/**
+ * shut-down handler, check for errors
+ */
+function zpShutDownFunction() {
+	$error = error_get_last();
+	if ($error && $error['type'] & (E_ERROR | E_COMPILE_ERROR | E_CORE_ERROR)) {
+		zpErrorHandler($error['type'], $error['message'], $error['file'], $error['line']);
+	}
 }
 
 /**

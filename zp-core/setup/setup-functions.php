@@ -548,4 +548,16 @@ function sendImage($external) {
 	fpassthru($fp);
 	fclose($fp);
 }
+
+function shutDownFunction() {
+	global $extension;
+	$error = error_get_last();
+	if ($error) {
+		$msg = sprintf(gettext('Plugin:%1$s ERROR "%2$s" in %3$s on line %4$s'), $extension, $error['message'], $error['file'], $error['line']);
+		setupLog($msg, true);
+		if ($extension) {
+			enableExtension($extension, 0);
+		}
+	}
+}
 ?>

@@ -13,6 +13,7 @@ $start = (float) $usec + (float) $sec;
 
 define('OFFSET_PATH', 2);
 require_once('setup-functions.php');
+register_shutdown_function('shutDownFunction');
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 $debug = TEST_RELEASE || isset($_GET['debug']);
