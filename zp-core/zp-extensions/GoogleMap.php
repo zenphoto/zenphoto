@@ -6,6 +6,15 @@
  * 		markerClustererPlus library 2.0.15 (http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/)
  * 		overlappingMarkerSpiderfier library 0.3 (https://github.com/jawj/OverlappingMarkerSpiderfier)
  *
+ * <b>NOTE:</b> To calculate the correct geolocation of images, this plugin needs to process certain EXIF values in pairs.
+ *
+ * This means that you have to enable the following Metadata fields in <i>Options => Image => Metadata:</i>
+ * <ul>
+ * <li>Latitude 	+	Latitude Reference</li>
+ * <li>Longitude 	+	Longitude Reference</li>
+ * <li>(and optionally Altitude 	+	Altitude Reference)</li>
+ * </ul>
+ *
  * @author Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
  * @package plugins
  *
