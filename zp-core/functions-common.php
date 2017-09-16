@@ -113,6 +113,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		$errfile = $exc->getFile();
 		$errline = $exc->getLine();
 	}
+
 	error_clear_last(); //	it will be handled  here, not on shutdown!
 	// if error has been supressed with an @
 	if (error_reporting() == 0 && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
@@ -157,8 +158,18 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
  */
 function zpShutDownFunction() {
 	$error = error_get_last();
-	if ($error && $error['type'] & (E_ERROR | E_COMPILE_ERROR | E_CORE_ERROR)) {
-		zpErrorHandler($error['type'], $error['message'], $error['file'], $error['line']);
+	if ($error) {
+		$file = str_replace('\\', '/', $error['file']);
+		preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . PLUGIN_FOLDER . ')~', $file, $matches);
+		if (isset($matches[2])) {
+			$path = trim(preg_replace('~^.*' . $matches[2] . '~i', '', $file), '/');
+			$path = explode('/', $path . '/');
+			$extension = stripSuffix($path[0]);
+			if ($extension) {
+				enableExtension($extension, 0);
+			}
+		}
+		zpErrorHandler($error['type'], $error['message'], $file, $error['line']);
 	}
 }
 

@@ -553,6 +553,7 @@ function shutDownFunction() {
 	global $extension;
 	$error = error_get_last();
 	if ($error) {
+		error_clear_last(); //	it will be handled  here, not on shutdown!
 		$msg = sprintf(gettext('Plugin:%1$s ERROR "%2$s" in %3$s on line %4$s'), $extension, $error['message'], $error['file'], $error['line']);
 		setupLog($msg, true);
 		if ($extension) {
