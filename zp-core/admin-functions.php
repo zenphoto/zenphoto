@@ -5054,6 +5054,7 @@ function getPluginTabs() {
 	} else {
 		$default = 'all';
 	}
+	$plugin_lc = array();
 	$paths = getPluginFiles('*.php');
 
 	$classXlate = array(
@@ -5076,38 +5077,40 @@ function getPluginTabs() {
 
 	$classes = $member = $thirdparty = array();
 	foreach ($paths as $plugin => $path) {
-		$p = file_get_contents($path);
-		$key = 'misc';
-		if ($str = isolate('@subpackage', $p)) {
-			preg_match('|@subpackage\s+(.*)\s|', $str, $matches);
-			if (isset($matches[1])) {
-				$key = strtolower(trim($matches[1]));
+		if (!isset($plugin_lc[strtolower($plugin)])) {
+			$plugin_lc[strtolower($plugin)] = true;
+			$p = file_get_contents($path);
+			$key = 'misc';
+			if ($str = isolate('@subpackage', $p)) {
+				preg_match('|@subpackage\s+(.*)\s|', $str, $matches);
+				if (isset($matches[1])) {
+					$key = strtolower(trim($matches[1]));
+				}
 			}
-		}
 
-		$classes[$key][] = $plugin;
-		if (extensionEnabled($plugin)) {
-			$active[$plugin] = $path;
-		}
-		if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
-			if ($str = isolate('@category', $p)) {
-				preg_match('|@category\s+(.*)\s|', $str, $matches);
-				$deprecate = !isset($matches[1]) || $matches[1] != 'package';
+			$classes[$key][] = $plugin;
+			if (extensionEnabled($plugin)) {
+				$active[$plugin] = $path;
+			}
+			if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
+				if ($str = isolate('@category', $p)) {
+					preg_match('|@category\s+(.*)\s|', $str, $matches);
+					$deprecate = !isset($matches[1]) || $matches[1] != 'package';
+				} else {
+					$deprecate = true;
+				}
+				if ($deprecate) {
+					$thirdparty[$plugin] = $path;
+				}
+			}
+			if (array_key_exists($key, $classXlate)) {
+				$local = $classXlate[$key];
 			} else {
-				$deprecate = true;
+				$local = $classXlate[$key] = $key;
 			}
-			if ($deprecate) {
-				$thirdparty[$plugin] = $path;
-			}
+			$member[$plugin] = $local;
 		}
-		if (array_key_exists($key, $classXlate)) {
-			$local = $classXlate[$key];
-		} else {
-			$local = $classXlate[$key] = $key;
-		}
-		$member[$plugin] = $local;
 	}
-
 	ksort($classes);
 	if (!empty($thirdparty))
 		$tabs[$classXlate['thirdparty']] = 'admin-plugins.php?page=plugins&tab=thirdparty';
