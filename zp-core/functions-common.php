@@ -114,7 +114,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		$errline = $exc->getLine();
 	}
 
-	error_clear_last(); //	it will be handled  here, not on shutdown!
+	error_clear_last(); //	it will be handled here, not on shutdown!
 	// if error has been supressed with an @
 	if (error_reporting() == 0 && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
 		return;

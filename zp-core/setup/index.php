@@ -84,8 +84,9 @@ $zptime = time();
 if (!file_exists(SERVERPATH . '/' . DATA_FOLDER)) {
 	@mkdir(SERVERPATH . '/' . DATA_FOLDER, $chmod | 0311);
 }
-
-@unlink(SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg.bak'); //	remove any old backup file
+if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg.bak')) {
+	unlink(SERVERPATH . '/' . DATA_FOLDER . '/zenphoto.cfg.bak'); //	remove any old backup file
+}
 
 if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	$zpconfig = file_get_contents($oldconfig);
@@ -117,6 +118,7 @@ if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE))
 }
 
 $zptime = filemtime($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+@chmod(SERVERPATH . '/' . DATA_FOLDER . '/.htaccess', 0777);
 @copy(dirname(dirname(__FILE__)) . '/dataaccess', SERVERPATH . '/' . DATA_FOLDER . '/.htaccess');
 @chmod(SERVERPATH . '/' . DATA_FOLDER . '/.htaccess', 0444);
 
@@ -129,6 +131,7 @@ if (file_exists(SERVERPATH . '/' . BACKUPFOLDER)) {
 if (!file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER)) {
 	@mkdir(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER, $chmod | 0311);
 }
+@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER . '/.htaccess', 0777);
 @copy(dirname(dirname(__FILE__)) . '/dataaccess', SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER . '/.htaccess');
 @chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . BACKUPFOLDER . '/.htaccess', 0444);
 
@@ -1983,4 +1986,5 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							</html>
 							<?php
 							$setupMutex->unlock();
+							exitZP();
 							?>
