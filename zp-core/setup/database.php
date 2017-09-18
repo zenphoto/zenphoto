@@ -124,7 +124,7 @@ foreach (array('iptc', 'exif', 'xmp', 'video') as $cat) {
 		}
 	}
 }
-setOptionDefault('metadata_display', serialize($display));
+setOptionDefault('metadata_displayed', serialize($display));
 setOptionDefault('metadata_disabled', serialize($disable));
 
 $display = getSerializedArray(getOption('metadata_displayed'));

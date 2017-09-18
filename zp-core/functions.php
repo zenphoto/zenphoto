@@ -604,6 +604,7 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
 	$list = array();
 	$curdir = getcwd();
 	$sources = array(SERVERPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $folder, SERVERPATH . "/" . USER_PLUGIN_FOLDER . '/' . $folder);
+
 	foreach ($sources as $basepath) {
 		if (is_dir($basepath)) {
 			chdir($basepath);
@@ -680,12 +681,15 @@ function getEnabledPlugins() {
 	if (is_array($_EnabledPlugins)) {
 		return $_EnabledPlugins;
 	}
-	$_EnabledPlugins = array();
+	$seenPlugins = $_EnabledPlugins = array();
 	$sortlist = getPluginFiles('*.php');
 	foreach ($sortlist as $extension => $path) {
-		$opt = 'zp_plugin_' . $extension;
-		if ($option = getOption($opt)) {
-			$_EnabledPlugins[$extension] = array('priority' => $option, 'path' => $path);
+		if (!isset($seenPlugins[strtolower($extension)])) { //	in case of filename case sensitivity
+			$seenPlugins[strtolower($extension)] = true;
+			$opt = 'zp_plugin_' . $extension;
+			if ($option = getOption($opt)) {
+				$_EnabledPlugins[$extension] = array('priority' => $option, 'path' => $path);
+			}
 		}
 	}
 	$_EnabledPlugins = sortMultiArray($_EnabledPlugins, 'priority', true, true, false, true);
@@ -1088,12 +1092,12 @@ function setupTheme($album = NULL) {
 		header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		?>
 		<!DOCTYPE html>
-		<html xmlns="http://www.w3.org/1999/xhtml">
-			<head>
-			</head>
-			<body>
-				<strong><?php printf(gettext('No theme scripts found. Please check the <em>%s</em> folder of your installation.'), THEMEFOLDER); ?></strong>
-			</body>
+		<html xmlns="http://www.w3.org/1999/xhtml" />
+		<head>
+		</head>
+		<body>
+			<strong><?php printf(gettext('No theme scripts found. Please check the <em>%s</em> folder of your installation.'), THEMEFOLDER); ?></strong>
+		</body>
 		</html>
 		<?php
 		exitZP();
@@ -1395,7 +1399,7 @@ function printStandardMeta() {
 	echo '<meta http-equiv="content-type" content="text/html; charset=' . LOCAL_CHARSET . '"';
 	if ($lang)
 		echo ' lang="' . $lang . '"';
-	echo ">\n";
+	echo " />\n";
 }
 
 /**

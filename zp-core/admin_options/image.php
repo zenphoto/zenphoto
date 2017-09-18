@@ -93,6 +93,7 @@ function saveOptions() {
 	$disableEmpty = isset($_POST['disableEmpty']);
 
 	$oldDisabled = getSerializedArray(getOption('metadata_disabled'));
+
 	$dbChange = array();
 	$disable = array();
 	$display = array();
@@ -120,6 +121,7 @@ function saveOptions() {
 			} else {
 				$v = 2;
 			}
+
 			switch ($v) {
 				case 1: //show
 					$display[$key] = $key;
@@ -146,6 +148,22 @@ function saveOptions() {
 					}
 					$disable[$key] = $key;
 					break;
+			}
+		}
+
+		foreach ($_zp_exifvars as $key => $item) {
+			if ($item[EXIF_FIELD_LINKED]) {
+				$d = $_zp_exifvars[$item[EXIF_FIELD_LINKED]][EXIF_FIELD_ENABLED];
+				if ($item[EXIF_FIELD_SIZE]) { // item has data (size != 0)
+					if ($d == in_array($key, $oldDisabled)) {
+						$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[EXIF_SOURCE] . ' Metadata';
+					}
+				}
+				if (!$d) {
+					$disable[$key] = $key;
+				} else {
+					unset($disable[$key]);
+				}
 			}
 		}
 	}
@@ -213,8 +231,12 @@ function getOptionContent() {
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('Apply') ?>">
+								<?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('reset') ?>">
+								<?php echo CROSS_MARK_RED; ?>
+								<strong><?php echo gettext("Reset"); ?></strong></button>
 						</p>
 					</td>
 				</tr>
@@ -271,9 +293,9 @@ function getOptionContent() {
 
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
-
 								<p><?php echo gettext("Default sort order for images."); ?></p>
 								<p><?php echo gettext('Custom sort values must be database field names. You can have multiple fields separated by commas.') ?></p>
 							</div>
@@ -286,7 +308,8 @@ function getOptionContent() {
 						<input type="textbox" name="image_max_size" value="<?php echo getOption('image_max_size'); ?>" />
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 
 								<?php echo gettext('The limit on how large an image may be resized. Too large and your server will spend all its time sizing images.'); ?>
@@ -302,7 +325,8 @@ function getOptionContent() {
 						<?php putSlider(gettext('thumbnail'), 'thumbquality', 0, 100, getOption('thumb_quality')); ?>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 
 								<p><?php echo gettext("Compression quality for generated images and thumbnails generated."); ?></p>
@@ -315,7 +339,8 @@ function getOptionContent() {
 					<td class="option_name"><?php echo gettext("Interlace"); ?></td>
 					<td class="option_value"><input type="checkbox" name="image_interlace" value="1" <?php checked('1', getOption('image_interlace')); ?> /></td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php echo gettext("If checked, resized images will be created <em>interlaced</em> (if the format permits)."); ?>
 							</div>
@@ -334,7 +359,8 @@ function getOptionContent() {
 					?>
 					<td class="option_value"><input type="checkbox" name="use_embedded_thumb" value="1" <?php checked('1', getOption('use_embedded_thumb')); ?><?php echo $disabled; ?> /></td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<p><?php echo gettext('If set, thumbnail imbedded in the image will be used when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image.'); ?></p>
 								<?php
@@ -352,7 +378,8 @@ function getOptionContent() {
 					<td class="option_name"><?php echo gettext("Allow upscale"); ?></td>
 					<td class="option_value"><input type="checkbox" name="image_allow_upscale" value="1" <?php checked('1', getOption('image_allow_upscale')); ?> /></td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php echo gettext("Allow images to be scaled up to the requested size. This could result in loss of quality, so it is off by default."); ?>
 							</div>
@@ -386,7 +413,8 @@ function getOptionContent() {
 						</table>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<p><?php echo gettext("Add an unsharp mask to images and/or thumbnails.") . "</p><p class='notebox'>" . gettext("<strong>WARNING</strong>: can overload slow servers."); ?></p>
 								<p><?php echo gettext("<em>Amount</em>: the strength of the sharpening effect. Values are between 0 (least sharpening) and 100 (most sharpening)."); ?></p>
@@ -479,7 +507,8 @@ function getOptionContent() {
 						</p>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<p><?php echo gettext("The watermark image is scaled by to cover <em>cover percentage</em> of the image and placed relative to the upper left corner of the image."); ?></p>
 								<p><?php echo gettext("It is offset from there (moved toward the lower right corner) by the <em>offset</em> percentages of the height and width difference between the image and the watermark."); ?></p>
@@ -503,7 +532,8 @@ function getOptionContent() {
 							<?php putSlider(gettext('limit'), 'imageProcessorConcurrency', 1, 60, getOption('imageProcessorConcurrency')); ?>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php
 								echo gettext('Cache processing worker limit.') . '<p class="notebox">' . gettext('More workers will get the job done faster so long as your server does not get swamped or run out of memory.') . '</p>';
@@ -527,7 +557,8 @@ function getOptionContent() {
 						?>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php echo gettext("Select a type for the images stored in the image cache. Select <em>Original</em> to preserve the original image’s type."); ?>
 							</div>
@@ -541,7 +572,8 @@ function getOptionContent() {
 									 <?php checked('1', getOption('protected_image_cache')); ?> />
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php
 								echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.') .
@@ -558,7 +590,8 @@ function getOptionContent() {
 									 <?php checked('1', getOption('secure_image_processor')); ?> />
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php
 								echo gettext('When enabled, the image processor will check album access credentials.') .
@@ -599,12 +632,14 @@ function getOptionContent() {
 										$x = getOption('protected_image_password');
 										if (empty($x)) {
 											?>
-											<img src="images/lock_open.png" />
+											<?php echo LOCK_OPEN; ?>
 											<?php
 										} else {
 											$x = '          ';
 											?>
-											<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
+											<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>">
+												<?php echo LOCK; ?>
+											</a>
 											<?php
 										}
 										?>
@@ -688,7 +723,8 @@ function getOptionContent() {
 						</p>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<p><?php echo gettext("Disabling hotlinking prevents linking to the full image from other domains. If enabled, external links are redirect to the image page. If you are having problems with full images being displayed, try disabling this setting. Hotlinking is not prevented if <em>Full&nbsp;image&nbsp;protection</em> is <em>Unprotected</em> or if the image is cached."); ?></p>
 								<p><?php echo gettext("If <em>Cache the full image</em> is checked the full image will be loaded to the cache and served from there after the first reference. <em>Full&nbsp;image&nbsp;protection</em> must be set to <em>Protected&nbsp;view</em> for the image to be cached. However, once cached, no protections are applied to the image."); ?></p>
@@ -705,7 +741,8 @@ function getOptionContent() {
 									 <?php checked('1', getOption('use_lock_image')); ?> />
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?>
 							</div>
@@ -726,25 +763,48 @@ function getOptionContent() {
 									$checked_show = $checked_hide = $checked_disabled = '';
 									$class_show = ' class="showMeta"';
 									$class_hide = ' class="hideMeta"';
-									if (!$item[5]) {
-										$checked_disabled = ' checked="checked"';
-									} else {
-										if ($item[3]) {
+
+									if ($item[EXIF_FIELD_LINKED]) {
+										$checked_disabled = ' disabled="disabled"';
+										if (!$exifstuff[$item[EXIF_FIELD_LINKED]][EXIF_FIELD_ENABLED]) {
+											$checked_disabled .= ' checked="checked"';
+										}
+										if ($item[EXIF_DISPLAY]) {
 											$checked_show = ' checked="checked"';
 										} else {
 											$checked_hide = ' checked="checked"';
 										}
+									} else {
+										if (!$item[EXIF_FIELD_ENABLED]) {
+											$checked_disabled = ' checked="checked"';
+										} else {
+											if ($item[EXIF_DISPLAY]) {
+												$checked_show = ' checked="checked"';
+											} else {
+												$checked_hide = ' checked="checked"';
+											}
+										}
 									}
-									if (!$item[4]) {
+									if (!$item[EXIF_FIELD_SIZE]) {
 										$checked_show = ' disabled="disabled"';
 										$class_show = '';
 										$class_hide = ' class="showMeta hideMeta"';
 									}
 									?>
-									<li>
-										<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio" <?php echo $class_show . $checked_show ?> value="1" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
-										<label><input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio" <?php echo $class_hide . $checked_hide ?> value="0" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
-										<label><input id="<?php echo $key; ?>_disable" name="<?php echo $key; ?>" type="radio" class="disableMeta"<?php echo $checked_disabled ?> value="2" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
+									<li class="nowrap">
+										<label title="<?php echo gettext('show'); ?>">
+											<input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio" <?php echo $class_show . $checked_show ?> value="1" />
+
+											<?php echo CHECKMARK_GREEN; ?>
+										</label>
+										<label title="<?php echo gettext('hide'); ?>">
+											<input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio" <?php echo $class_hide . $checked_hide ?> value="0" />
+											<?php echo HIDE_ICON; ?>
+										</label>
+										<label title="<?php echo gettext('disable'); ?>">
+											<input id="<?php echo $key; ?>_disable" name="<?php echo $key; ?>" type="radio" class="disableMeta"<?php echo $checked_disabled ?> value="2" />
+											<?php echo CROSS_MARK_RED; ?>
+										</label>
 										<?php echo $item[2] . ' {' . $item[0] . '}'; ?>
 									</li>
 									<?php
@@ -754,10 +814,22 @@ function getOptionContent() {
 						</div>
 						<span class="floatright">
 							<?php echo gettext('all'); ?>
-							<label><input type="radio" name="all_metadata" onclick="setMetaDefaults();" /><?php echo gettext('default'); ?></label>
-							<label><input type="radio" name="all_metadata" onclick="checkMeta('showMeta');" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
-							<label><input type="radio" name="all_metadata" onclick="checkMeta('hideMeta');" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
-							<label><input type="radio" name="all_metadata" onclick="checkMeta('disableMeta');" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
+							<label title="<?php echo gettext('restore defaults'); ?>">
+								<input type="radio" name="all_metadata" onclick="setMetaDefaults();" />
+								<?php echo gettext('default'); ?>
+							</label>
+							<label title="<?php echo gettext('show'); ?>">
+								<input type="radio" name="all_metadata" onclick="checkMeta('showMeta');" />
+								<?php echo CHECKMARK_GREEN; ?>
+							</label>
+							<label title="<?php echo gettext('hide'); ?>">
+								<input type="radio" name="all_metadata" onclick="checkMeta('hideMeta');" />
+								<?php echo HIDE_ICON; ?>
+							</label>
+							<label title="<?php echo gettext('disable'); ?>">
+								<input type="radio" name="all_metadata" onclick="checkMeta('disableMeta');" />
+								<?php echo CROSS_MARK_RED; ?>
+							</label>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						</span>
 
@@ -771,14 +843,24 @@ function getOptionContent() {
 						</p>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<p>
 									<?php echo gettext("Select how image metadata fields are handled."); ?>
 								<ul style="list-style: none;">
-									<li><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Show the field'); ?></li>
-									<li><img src ="images/reset.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Hide the field'); ?></li>
-									<li><img src ="images/fail.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Do not process the field'); ?></li>
+									<li>
+										<?php echo CHECKMARK_GREEN; ?>
+										<?php echo gettext('Show the field'); ?>
+									</li>
+									<li>
+										<?php echo HIDE_ICON; ?>
+										<?php echo gettext('Hide the field'); ?>
+									</li>
+									<li>
+										<?php echo CROSS_MARK_RED; ?>
+										<?php echo gettext('Do not process the field'); ?>
+									</li>
 								</ul>
 								</p>
 								<p>
@@ -805,7 +887,8 @@ function getOptionContent() {
 							</select>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<?php echo INFORMATION_BLUE; ?>
 								<div class="option_desc_hidden">
 									<?php echo gettext("The default character encoding of image IPTC metadata."); ?>
 								</div>
@@ -829,7 +912,8 @@ function getOptionContent() {
 						<p><input type="textbox" name="default_copyright" value="<?php echo getOption('default_copyright'); ?>" size="50" /></p>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php echo $desc; ?>
 								<p class="notebox">
@@ -842,8 +926,15 @@ function getOptionContent() {
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('Apply') ?>">
+								<?php echo CHECKMARK_GREEN; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('reset') ?>">
+								<?php echo CROSS_MARK_RED; ?>
+								<strong><?php echo gettext("Reset"); ?>
+								</strong>
+							</button>
 						</p>
 					</td>
 				</tr>

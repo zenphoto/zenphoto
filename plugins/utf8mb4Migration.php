@@ -32,7 +32,7 @@
 
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext("Migrate database to utf8mb4 encodings.");
-$plugin_disable = zpFunctions::pluginDisable(array(array(version_compare(MySQL_VERSION, '5.5.3', '<'), gettext('MySQL versuib 5.5.3 or greter is required to support trans-BMP character encodings..')), array($_zp_conf_vars['UTF-8'] == 'utf8mb4', gettext('<em>utf8mb4</em> is already enabled.'))));
+$plugin_disable = zpFunctions::pluginDisable(array(array(version_compare(MySQL_VERSION, '5.5.3', '<'), gettext('MySQL versuib 5.5.3 or greter is required to support trans-BMP character encodings..')), array($_zp_conf_vars['UTF-8'] == 'utf8mb4', gettext('<em>utf8mb4</em> migration is complete. '))));
 
 zp_register_filter('admin_utilities_buttons', 'utf8mb4Migration::buttons');
 
@@ -49,7 +49,7 @@ class utf8mb4Migration {
 						'button_text' => gettext('Migrate to utf8mb4'),
 						'formname' => 'utf8button',
 						'action' => FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/utf8mb4Migration/migrate.php',
-						'icon' => 'images/zp.png',
+						'icon' => ZP_BLUE,
 						'title' => gettext('A utility to migrate TEXT and LONGTEXT database fields to utf8mb4 so as to allow 4-byte unicode characters.'),
 						'alt' => '',
 						'hidden' => '',

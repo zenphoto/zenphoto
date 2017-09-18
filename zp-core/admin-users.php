@@ -227,6 +227,10 @@ if (isset($_GET['action'])) {
 									}
 									$userobj->transient = false;
 									$userobj->save();
+									if (!$_zp_current_admin_obj->getID()) {
+										// avoid the logon screen for first user established
+										Zenphoto_Authority::logUser($userobj);
+									}
 								}
 							}
 						}
@@ -328,15 +332,27 @@ echo $refresh;
 						$clearPass = true;
 					}
 					$alladmins = array();
+					$seenGroups = array();
+					$nogroup = $pending = false;
 					if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset || !$_zp_current_admin_obj->getID()) {
 						$admins = $_zp_authority->getAdministrators('allusers');
-						$manyadmins = count($admins) > 1;
 						foreach ($admins as $key => $user) {
 							$alladmins[] = $user['user'];
 							if ($user['valid'] > 1) {
 								unset($admins[$key]);
+							} else {
+								if (empty($user['group'])) {
+									$nogroup = true;
+								} else {
+									$groups = explode(',', $user['group']);
+									$seenGroups = array_merge($seenGroups, $groups);
+								}
+								if ($user['rights'] == 0) {
+									$pending = true;
+								}
 							}
 						}
+						$seenGroups = array_unique($seenGroups);
 						if (empty($admins) || !$_zp_current_admin_obj->getID()) {
 							$rights = ALL_RIGHTS;
 							$groupname = 'administrators';
@@ -377,7 +393,6 @@ echo $refresh;
 						$newuser = array('id' => -1, 'user' => '', 'pass' => '', 'name' => '', 'email' => '', 'rights' => $rights, 'custom_data' => NULL, 'valid' => 1, 'group' => $groupname);
 						$alterrights = '';
 					} else {
-						$manyadmins = false;
 						$alterrights = ' disabled="disabled"';
 						$rangeset = array();
 						if ($_zp_current_admin_obj) {
@@ -475,55 +490,68 @@ echo $refresh;
 						}
 						?>
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('Apply') ?>">
+								<?php echo CHECKMARK_GREEN; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('reset') ?>">
+								<?php echo CROSS_MARK_RED; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
 						</p>
 						<br class="clearall"><br />
 						<table class="unbordered"> <!-- main table -->
-
-
-							<?php
-							if ($manyadmins) {
-								?>
-								<tr>
-									<td>
-										<span style="font-weight: normal">
+							<tr>
+								<td style="width: 48en;">
+									<?php
+									if (count($admins) > 1) {
+										?>
+										<span class="nowrap" style="font-weight: normal;">
 											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
 											|
 											<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
-									</td>
-									<td>
-										<?php echo gettext('show'); ?>
+										<?php
+									}
+									?>
+								</td>
+								<td>
+									<?php
+									if ($pending || count($seenGroups) > 0) {
+										echo gettext('show');
+										?>
 										<select name="showgroup" id="showgroup" class="ignoredirty" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-users.php', ['showgroup=' + $('#showgroup').val()]);" >
 											<option value=""<?php if (!$showgroup) echo ' selected="selected"'; ?>><?php echo gettext('all'); ?></option>
-											<option value="*"<?php if ($showgroup == '*') echo ' selected="selected"'; ?>><?php echo gettext('pending verification'); ?></option>
 											<?php
-											if (extensionEnabled('user_groups')) {
+											if ($pending) {
 												?>
-												<option value="$"<?php if ($showgroup == '$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
+												<option value = "*"<?php if ($showgroup == '*') echo ' selected="selected"'; ?>><?php echo gettext('pending verification'); ?></option>
 												<?php
-												$groups = $_zp_authority->getAdministrators('groups');
-												foreach ($groups as $group) {
-													if ($group['name'] != 'template') {
-														?>
-														<option value="<?php echo $group['user']; ?>"<?php if ($showgroup == $group['user']) echo ' selected="selected"'; ?>><?php printf('%s group', $group['user']); ?></option>
-														<?php
-													}
+											}
+											if (!empty($seenGroups)) {
+												if ($nogroup) {
+													?>
+													<option value="$"<?php if ($showgroup == '$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
+													<?php
+												}
+												foreach ($seenGroups as $group) {
+													?>
+													<option value="<?php echo $group; ?>"<?php if ($showgroup == $group) echo ' selected="selected"'; ?>><?php printf('%s group', $group); ?></option>
+													<?php
 												}
 											}
 											?>
 										</select>
-									</td>
-									<td>
-										<span class="floatright padded">
-											<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
-										</span>
-									</td>
-								</tr>
-								<?php
-							}
-							?>
+										<?php
+									}
+									?>
+								</td>
+								<td>
+									<span class="floatright padded">
+										<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+									</span>
+								</td>
+							</tr>
 
 							<?php
 							$id = 0;
@@ -592,7 +620,7 @@ echo $refresh;
 									<td colspan="100%" style="margin: 0pt; padding: 0pt;<?php echo $background; ?>">
 										<table class="unbordered" id='user-<?php echo $id; ?>'>
 											<tr>
-												<td style="margin-top: 0px; width:20em;<?php echo $background; ?>" valign="top">
+												<td style="margin-top: 0px; width: 48en;<?php echo $background; ?>" valign="top">
 													<?php
 													if (empty($userid)) {
 														$displaytitle = gettext("Show details");
@@ -603,8 +631,8 @@ echo $refresh;
 													}
 													?>
 													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-															$('#show_<?php echo $id; ?>').val(visible);
-															toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
+																$('#show_<?php echo $id; ?>').val(visible);
+																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
 															 <?php
 															 if (empty($userid)) {
 																 ?>
@@ -613,7 +641,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																				 $('#adminuser<?php echo $id; ?>').focus();" />
+																						 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
@@ -657,7 +685,8 @@ echo $refresh;
 															<span class="floatright">
 																<a href="javascript:if(confirm(<?php echo "'" . js_encode($msg) . "'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin') ?>'; }"
 																	 title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;">
-																	<img src="images/fail.png" style="border: 0px;" alt="Delete" /></a>
+																		 <?php echo WASTEBASKET; ?>
+																</a>
 															</span>
 															<?php
 														}
@@ -865,8 +894,13 @@ echo $refresh;
 						if (!$_zp_current_admin_obj->transient) {
 							?>
 							<p class="buttons">
-								<button type="submit"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+								<button type="submit"><?php echo CHECKMARK_GREEN; ?>
+									<strong><?php echo gettext("Apply"); ?></strong>
+								</button>
+								<button type="reset">
+									<?php echo CROSS_MARK_RED; ?>
+									<strong><?php echo gettext("Reset"); ?></strong>
+								</button>
 							</p>
 							<?php
 						}

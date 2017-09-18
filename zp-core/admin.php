@@ -203,8 +203,8 @@ printAdminHeader('overview');
 	$(function () {
 		$('#overviewboxes').masonry({
 			// options
-			itemSelector: '.overview-utility',
-			columnWidth: 520
+			itemSelector: '.overview-section',
+			columnWidth: 560
 		});
 	});
 	// ]]> -->
@@ -222,6 +222,7 @@ if (!zp_loggedin()) {
 	echo "\n</html>";
 	exitZP();
 }
+$buttonlist = array();
 ?>
 <body>
 	<?php
@@ -235,6 +236,57 @@ if (!zp_loggedin()) {
 			/*			 * * HOME ************************************************************************** */
 			/*			 * ********************************************************************************* */
 			$setupUnprotected = printSetupWarning();
+			if (zp_loggedin(ADMIN_RIGHTS)) {
+				if (class_exists('Milo\Github\Api') && zpFunctions::hasPrimaryScripts()) {
+					/*
+					 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20
+					 */
+					if (getOption('getUpdates_lastCheck') + 8640 < time()) {
+
+						$api = new Github\Api;
+						$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20'));
+						$fullRepoData = $api->decode($fullRepoResponse);
+						$assets = $fullRepoData->assets;
+						if (!empty($assets)) {
+							$item = array_pop($assets);
+							setOption('getUpdates_latest', $item->browser_download_url);
+						}
+
+						setOption('getUpdates_lastCheck', time());
+					}
+					$newestVersionURI = getOption('getUpdates_latest');
+					$newestVersion = str_replace('setup-', '', stripSuffix(basename($newestVersionURI)));
+
+					$zenphoto_version = explode('-', ZENPHOTO_VERSION);
+					$zenphoto_version = array_shift($zenphoto_version);
+
+					if (version_compare($newestVersion, $zenphoto_version, '>')) {
+						if (!isset($_SESSION['new_version_available'])) {
+							$_SESSION['new_version_available'] = $newestVersion;
+							?>
+							<div class="notebox">
+								<h2><?php echo gettext('There is a new version of ZenPhoto20 available.'); ?></h2>
+								<?php
+								printf(gettext('ZenPhoto20 version %s can be downloaded by the utility button.'), $newestVersion);
+								?>
+							</div>
+							<?php
+						}
+						$buttonlist[] = array(
+								'category' => gettext('Admin'),
+								'enable' => 2,
+								'button_text' => 'ZenPhoto20 ' . $newestVersion,
+								'formname' => 'getUpdates_button',
+								'action' => $newestVersionURI,
+								'icon' => ARROW_DOWN_GREEN,
+								'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
+								'alt' => '',
+								'hidden' => '',
+								'rights' => ADMIN_RIGHTS
+						);
+					}
+				}
+			}
 			zp_apply_filter('admin_note', 'overview', '');
 
 			if (!empty($msg)) {
@@ -244,7 +296,7 @@ if (!zp_loggedin()) {
 				</div>
 				<?php
 			}
-			$buttonlist = array();
+
 
 			$curdir = getcwd();
 			chdir(SERVERPATH . "/" . ZENFOLDER . '/' . UTILITIES_FOLDER . '/');
@@ -273,44 +325,6 @@ if (!zp_loggedin()) {
 				}
 			}
 			if (zp_loggedin(ADMIN_RIGHTS)) {
-				if (class_exists('Milo\Github\Api') && zpFunctions::hasPrimaryScripts()) {
-					/*
-					 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20
-					 */
-					if (getOption('getUpdates_lastCheck') + 8640 < time()) {
-
-						$api = new Github\Api;
-						$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20'));
-						$fullRepoData = $api->decode($fullRepoResponse);
-						$assets = $fullRepoData->assets;
-						if (!empty($assets)) {
-							$item = array_pop($assets);
-							setOption('getUpdates_latest', $item->browser_download_url);
-						}
-
-						setOption('getUpdates_lastCheck', time());
-					}
-					$newestVersionURI = getOption('getUpdates_latest');
-					$newestVersion = str_replace('setup-', '', stripSuffix(basename($newestVersionURI)));
-
-					$zenphoto_version = explode('-', ZENPHOTO_VERSION);
-					$zenphoto_version = array_shift($zenphoto_version);
-
-					if (version_compare($newestVersion, $zenphoto_version, '>')) {
-						$buttonlist[] = array(
-								'category' => gettext('Admin'),
-								'enable' => 2,
-								'button_text' => gettext('ZenPhoto20 ' . $newestVersion),
-								'formname' => 'getUpdates_button',
-								'action' => $newestVersionURI,
-								'icon' => 'images/arrow_down.png',
-								'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
-								'alt' => '',
-								'hidden' => '',
-								'rights' => ADMIN_RIGHTS
-						);
-					}
-				}
 				//	button to restore setup files if needed
 				switch ($setupUnprotected) {
 					case 2:
@@ -320,7 +334,7 @@ if (!zp_loggedin()) {
 								'button_text' => gettext('Run setup'),
 								'formname' => 'run_setup',
 								'action' => FULLWEBPATH . '/' . ZENFOLDER . '/setup.php',
-								'icon' => 'images/zp.png',
+								'icon' => ZP_GOLD,
 								'alt' => '',
 								'title' => gettext('Run the setup script.'),
 								'hidden' => '',
@@ -334,7 +348,7 @@ if (!zp_loggedin()) {
 									'button_text' => gettext('Setup » protect scripts'),
 									'formname' => 'restore_setup',
 									'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
-									'icon' => 'images/lock_2.png',
+									'icon' => KEY_RED,
 									'alt' => '',
 									'title' => gettext('Protects setup files so setup cannot be run.'),
 									'hidden' => '<input type="hidden" name="action" value="protect_setup" />',
@@ -350,7 +364,7 @@ if (!zp_loggedin()) {
 								'button_text' => gettext('Setup » restore scripts'),
 								'formname' => 'restore_setup',
 								'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=restore_setup',
-								'icon' => 'images/lock_open.png',
+								'icon' => LOCK_OPEN,
 								'alt' => '',
 								'title' => gettext('Restores setup files so setup can be run.'),
 								'hidden' => '<input type="hidden" name="action" value="restore_setup" />',
@@ -370,7 +384,7 @@ if (!zp_loggedin()) {
 					<?php
 					if (zp_loggedin(ADMIN_RIGHTS)) {
 						?>
-						<div class="box overview-utility overview-install-info">
+						<div class="box overview-section overview-install-info">
 							<h2 class="h2_bordered"><?php echo gettext("Installation information"); ?></h2>
 							<ul>
 								<?php
@@ -670,7 +684,7 @@ if (!zp_loggedin()) {
 					}
 					if (!empty($buttonlist)) {
 						?>
-						<div class="box overview-utility">
+						<div class="box overview-section overview_utilities">
 							<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
 							<?php
 							$category = '';
@@ -698,7 +712,7 @@ if (!zp_loggedin()) {
 									}
 									$category = $button_category;
 									?>
-									<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
+									<fieldset class="overview_utility_buttons_field"><legend><?php echo $category; ?></legend>
 										<?php
 									}
 									?>
@@ -717,9 +731,14 @@ if (!zp_loggedin()) {
 											<button class="fixedwidth<?php if ($disable) echo ' disabled_button'; ?>" <?php echo $type . $disable; ?>>
 												<?php
 												if (!empty($button_icon)) {
-													?>
-													<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
-													<?php
+													if (strpos($button_icon, 'images/') === 0) {
+														// old style icon image
+														?>
+														<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
+														<?php
+													} else {
+														echo $button_icon . ' ';
+													}
 												}
 												echo '<span' . $color . '>' . html_encode($button['button_text']) . '</span>';
 												?>
@@ -734,11 +753,11 @@ if (!zp_loggedin()) {
 								<?php
 							}
 							?>
-						</div><!-- overview-utility -->
+						</div><!-- overview-section -->
 						<?php
 					}
 					?>
-					<div class="box overview-utility overiew-gallery-stats">
+					<div class="box overview-section overiew-gallery-stats">
 						<h2 class="h2_bordered"><?php echo gettext("Gallery Stats"); ?></h2>
 						<ul>
 							<li>

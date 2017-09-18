@@ -41,6 +41,7 @@ class elFinder_options {
 	function __construct() {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('elFinder_files', 1);
+			setOptionDefault('elFinder_themeeditor', 1);
 			setOptionDefault('elFinder_tinymce', 0);
 		}
 	}
@@ -53,6 +54,8 @@ class elFinder_options {
 	function getOptionsSupported() {
 		$options = array(gettext('Files tab') => array('key' => 'elFinder_files', 'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('Use as the upload <em>files</em> subtab.')),
+				gettext('Edit themes') => array('key' => 'elFinder_themeeditor', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Enable elFinder for editing themes.')),
 				gettext('TinyMCE plugin') => array('key' => 'elFinder_tinymce', 'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('Enable plugin for TinyMCE.'))
 		);
@@ -67,8 +70,8 @@ class elFinder_options {
 
 if (getOption('elFinder_files') && zp_loggedin(FILES_RIGHTS | UPLOAD_RIGHTS)) {
 	zp_register_filter('admin_tabs', 'elFinder_admin_tabs');
-	if (!extensionEnabled('themes-editor')) {
-		zp_register_filter('themeEditor', 'elFinderThemeEdit');
+	if (getOption('elFinder_themeeditor')) {
+		zp_register_filter('theme_editor', 'elFinderThemeEdit');
 	}
 }
 if (getOption('elFinder_tinymce')) {

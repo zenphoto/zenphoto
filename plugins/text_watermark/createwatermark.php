@@ -1,5 +1,6 @@
 <?php
 
+define("OFFSET_PATH", 3);
 require('../../zp-core/admin-functions.php');
 $string = sanitize($_GET['text_watermark_text'], 3);
 if (!empty($string)) {

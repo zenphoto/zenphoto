@@ -163,7 +163,7 @@ if (isset($_REQUEST['crop'])) {
 	$cx = round($cx * $rw);
 	$cy = round($cy * $rh);
 
-	//create a new image with the set cropping
+//create a new image with the set cropping
 	$quality = getOption('full_image_quality');
 	$rotate = false;
 	if (zp_imageCanRotate()) {
@@ -191,7 +191,7 @@ if (isset($_REQUEST['crop'])) {
 	zp_imageKill($newim);
 	zp_imageKill($timg);
 	Gallery::clearCache($albumname);
-	// update the image data
+// update the image data
 	$imageobj->set('rotation', 0);
 	$imageobj->updateDimensions();
 	$imageobj->set('thumbX', NULL);
@@ -448,45 +448,49 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 							</p>
 							<p>
 								<?php
-								if (!$pasteobj)
+								if (!$pasteobj) {
 									echo linkPickerIcon($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')");
+								}
 								echo linkPickerItem($imageobj, 'imageURI');
 								?>
 							</p>
 							<p class="buttons">
-								<button type="reset" onclick="resetButton();" >
-									<img src="../images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
-								</button>
 								<?php
-								if (!$pasteobj) {
-									?>
-									<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
-										<img src="../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
-									</button>
-									<?php
-								}
 								if ($_REQUEST['performcrop'] == 'backend') {
 									?>
 									<button type="button" value="<?php echo gettext('Back') ?>" onclick="window.location = '../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo $subpage . ($singleimage) ? '&singleimage=' . html_encode($singleimage) : ''; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
-										<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
+										<?php echo BACK_ARROW_BLUE; ?>
+										<strong><?php echo gettext("Back"); ?></strong>
 									</button>
 									<?php
 								} else if ($pasteobj) {
 									?>
-									<button type="button" value="<?php echo gettext('Back') ?>" onclick="<?php echo linkPickerPick($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')"); ?> setClean('crop');
-											window.history.back();">
-										<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Done");
-									?></strong>
+									<button type="button" value="<?php echo gettext('Back') ?>" onclick="<?php echo linkPickerPick($imageobj, 'imageURI', "+'&pick[picture]=' + $('#imageURI').val().replaceAll('&', ':')"); ?> setClean('crop');	window.history.back();">
+										<?php echo BACK_ARROW_BLUE; ?>
+										<strong><?php echo gettext("Done"); ?></strong>
 									</button>
 									<?php
 								} else {
 									?>
 									<button type="button" value="<?php echo gettext('Back') ?>" onclick="window.location = '../../index.php?album=<?php echo pathurlencode($albumname); ?>&image=<?php echo urlencode($imagename); ?>'">
-										<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
+										<?php echo BACK_ARROW_BLUE; ?>
+										<strong><?php echo gettext("Back"); ?></strong>
+									</button>
+									<?php
+								}
+								if (!$pasteobj) {
+									?>
+									<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
+										<?php echo CHECKMARK_GREEN; ?>
+										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<?php
 								}
 								?>
+								<button type="reset" onclick="resetButton();" >
+									<?php echo CROSS_MARK_RED; ?>
+									<strong><?php echo gettext("Reset"); ?></strong>
+								</button>
 							</p>
 						</form>
 					</div>

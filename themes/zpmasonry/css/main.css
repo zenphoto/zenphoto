@@ -21,7 +21,7 @@ a:hover{text-decoration:none;}
 	border-top:0;
 	background-repeat:no-repeat;
 	background-position: 6px 4px;
-	}
+}
 #mason,#page,#pagination{width:75%;clear:both;}
 #page #mason{width:90%;}
 #sidebar{position:absolute;top:0;right:52px;width:20%;margin-top:101px;}
@@ -118,7 +118,7 @@ input[type="checkbox"]{border:0;}
 	opacity:0.5;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 	filter:alpha(opacity=50);
-	}
+}
 .image-block:hover > .overlay{display:block;}
 .jcarousel-list li,.image-block,.jcarousel-item-placeholder,#cycle{background-repeat:no-repeat;background-position:center center;}
 
@@ -206,9 +206,9 @@ span.betweentext{float:none;display:inline;}
 #commentcontent .pagination span,#commentcontent .pagination a{
 	display:inline-block;margin-right:2px;
 	border:1px solid;padding:2px 5px;
-    font-size: 10px;
-    list-style: none outside none;
-    padding: 1px 5px;
+	font-size: 10px;
+	list-style: none outside none;
+	padding: 1px 5px;
 	text-decoration:none;
 	-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;}
 
@@ -243,10 +243,47 @@ ul.flags{z-index:99;text-align:center;position:fixed;bottom:10px;right:5px;width
 .jcarousel-prev-disabled-horizontal,.jcarousel-next-disabled-horizontal,
 .jcarousel-prev-disabled-horizontal:hover,
 .jcarousel-prev-disabled-horizontal:active
- {cursor:default;background-position: -96px 0;display:none;background:none;visibility:none;}
+{cursor:default;background-position: -96px 0;display:none;background:none;visibility:none;}
 
 /* A little css3 goodness */
 #breadcrumbs,#sidebar-inner,#searchextrashow,#copy,#pagination,.newsarticlecredit span
 {-moz-border-radius:0 0 3px 3px;-webkit-border-radius:0 0 3px 3px;border-radius:0 0 3px 3px;}
 #sidebar-inner.fixed,input,textarea,select,.box,#infscr-loading,#subscribeextrashow,#admin_data,#password-div,#slideshowlink a,#ss-title,#cycle li h3
 {-moz-border-radius:3px 3px 3px 3px;-webkit-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px;}
+
+/* logon form */
+#loginform {
+	background-color: #F7F8F9;
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 5px solid #BAC9CF;
+}
+#loginform fieldset {
+	border: 1px solid lightgray;
+}
+
+#loginform .show_checkbox {
+	background-color: #F7F8F9;
+}
+
+#loginform input[type="text"], #loginform input[type="password"] {
+	background-color : #F7F8F9;
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 1px solid #BAC9CF;
+}
+
+#loginform .logon_form_text {
+	background-color: #F7F8F9;
+}
+
+#loginform button[type] {
+	background-color: #F7F8F9;
+}
+
+#loginform select {
+	color: black;
+	background-color: #F7F8F9;
+}

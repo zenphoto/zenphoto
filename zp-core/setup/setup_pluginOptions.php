@@ -13,6 +13,7 @@ $start = (float) $usec + (float) $sec;
 
 define('OFFSET_PATH', 2);
 require_once('setup-functions.php');
+register_shutdown_function('shutDownFunction');
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
 $debug = TEST_RELEASE || isset($_GET['debug']);
@@ -63,21 +64,8 @@ if ($option_interface) {
 }
 
 $iMutex->unlock();
-if ($deprecate) {
-	$img = 'pass_2.png';
-} else {
-	$img = 'pass.png';
-}
-$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img, 'rb');
 
-
-// send the right headers
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-header("Content-Type: image/png");
-header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img));
-// dump the picture and stop the script
-fpassthru($fp);
-fclose($fp);
+sendImage($deprecate);
 
 list($usec, $sec) = explode(" ", microtime());
 $last = (float) $usec + (float) $sec;

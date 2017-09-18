@@ -9,6 +9,7 @@
  */
 // force UTF-8 Ø
 
+global $_zp_captcha;
 $plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext("ZenPhoto20 captcha handler.");
 $plugin_author = "Stephen Billard (sbillard)";

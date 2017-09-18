@@ -30,10 +30,15 @@ function updateItemsSortorder() {
  * Prints the table part of a single page item for the sortable pages list
  *
  * @param object $page The array containing the single page
- * @param bool $flag set to true to flag the element as having a problem with nesting level
+ * @param $toodeep $flag set to true to flag the element as having a problem with nesting level
  */
-function printItemsListTable($item, $flag) {
+function printItemsListTable($item, $toodeep) {
 	global $_zp_gallery;
+	if ($toodeep) {
+		$handle = DRAG_HANDLE_ALERT;
+	} else {
+		$handle = DRAG_HANDLE;
+	}
 	$link = '';
 	$array = getItemTitleAndURL($item);
 	if ($array['valid']) {
@@ -48,8 +53,10 @@ function printItemsListTable($item, $flag) {
 				$link = '<a href="../zenpage/admin-edit.php?newscategory&amp;titlelink=' . html_encode($item['link']) . '">' . html_encodeTagged(shortenCOntent($item['link'], 40, '...')) . '</a>';
 				break;
 			case 'dynamiclink':
+				$link = html_encodeTagged(shortenContent($item['link'], 40, '...')) . '</a>';
+				break;
 			case 'customlink':
-				$link = '<a href="' . html_encode($item['link']) . '">' . html_encodeTagged(shortenContent($item['link'], 40, '...')) . '</a>';
+				$link = html_encodeTagged(shortenContent($item['link'], 40, '...'));
 				break;
 			case 'menulabel':
 				$link = '';
@@ -70,28 +77,33 @@ function printItemsListTable($item, $flag) {
 	}
 	?>
 	<div class="page-list_row">
+		<div class="page-list_handle">
+			<?php echo $handle; ?>
+		</div>
 		<div class="page-list_title">
 			<?php
 			printItemEditLink($item);
 			?>
 		</div>
 		<div class="page-list_extra">
-			<em><?php echo $item['type']; ?></em>&nbsp;
+			<em><?php echo $item['type']; ?></em>
+			<?php
+			if ($link) {
+				echo '&rArr;&nbsp;' . $link;
+			}
+			?>
 		</div>
 
-		<div class="page-list_extra">
-			<?php echo $link; ?>
-		</div>
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon">
 				<?php
 				if ($array['protected']) {
 					?>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_2.png" alt="<?php echo gettext("The object of this menu is under password protection"); ?>" title="<?php echo gettext("The object of this menu is under password protection"); ?>" style="border: 0px;" />
+					<?php echo LOCK; ?>
 					<?php
 				} else {
 					?>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/placeholder.png" alt="<?php echo gettext("under password protection"); ?>" style="border: 0px;" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/placeholder.png"  style="border: 0px;" />
 					<?php
 				}
 				?>
@@ -101,13 +113,13 @@ function printItemsListTable($item, $flag) {
 				if ($item['show'] === '1') {
 					?>
 					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=0&amp;menuset=" . html_encode($item['menuset']); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>" title="<?php echo gettext('hide'); ?>" >
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png"	alt="<?php echo gettext('hide'); ?>" style="border: 0px;" />
+						<?php echo CHECKMARK_GREEN; ?>
 					</a>
 					<?php
 				} else {
 					?>
 					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=1&amp;menuset=" . html_encode($item['menuset']) ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>"  title="<?php echo gettext('show'); ?>">
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/action.png"	alt="<?php echo gettext('show'); ?>" style="border: 0px;" />
+						<?php echo EXCLAMATION_RED; ?>
 					</a>
 					<?php
 				}
@@ -115,12 +127,17 @@ function printItemsListTable($item, $flag) {
 			</div>
 			<div class="page-list_icon">
 				<?php
+				$viewURL = $array['url'];
 				switch ($item['type']) {
+					case 'dynamiclink':
+						if (!empty($viewURL)) {
+							eval('$viewURL = ' . $viewURL . ';');
+						}
 					default:
-						if (!empty($array['url'])) {
+						if (!empty($viewURL)) {
 							?>
-							<a href="<?php echo $array['url']; ?>">
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="<?php echo gettext('view'); ?>" title="<?php echo gettext('view'); ?>" style="border: 0px;" />
+							<a href="<?php echo $viewURL; ?>">
+								<?php echo BULLSEYE_BLUE; ?>
 							</a>
 							<?php
 							break;
@@ -129,7 +146,7 @@ function printItemsListTable($item, $flag) {
 					case 'menufunction':
 					case 'html':
 						?>
-						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" style="border: 0px;" />
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/placeholder.png" />
 						<?php
 						break;
 				}
@@ -137,7 +154,7 @@ function printItemsListTable($item, $flag) {
 			</div>
 			<div class="page-list_icon">
 				<a href="javascript:deleteMenuItem('<?php echo $item['id']; ?>','<?php printf(gettext('Ok to delete %s? This cannot be undone.'), html_encode($array['name'])); ?>');" >
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="<?php echo gettext('delete'); ?>" title="<?php echo gettext('delete'); ?>" style="border: 0px;" />
+					<?php echo WASTEBASKET; ?>
 				</a>
 			</div>
 			<div class="page-list_icon">

@@ -59,7 +59,8 @@ printAdminHeader('admin');
 						?>
 						<p>
 							<span class="buttons"><a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cloneZenphoto/clone.php?tab=clone&purge&XSRFToken=<?php echo getXSRFToken('cloneZenphoto'); ?>">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" /> <?php echo gettext("Remove invalid clones."); ?>
+									<?php echo CROSS_MARK_RED; ?>
+									<?php echo gettext("Remove invalid clones."); ?>
 								</a>
 						</p>
 						<br class="clearall">
@@ -185,12 +186,12 @@ printAdminHeader('admin');
 							?>
 							<span class="icons">
 								<a id="upbutton" href="javascript:buttonAction('<?php echo $uppath; ?>');" title="<?php echo $uptitle; ?>">
-									<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_up.png" alt="" />
+									<?php echo ARROW_UP_GREEN; ?>
 								</a>
 							</span>
 							<span class="icons"<?php if (empty($folderlist)) echo ' style="display:none;"'; ?>>
 								<a id="downbutton" href="javascript:buttonAction($('#cloneFolder').val());" title="">
-									<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_down.png" alt="" />
+									<?php echo ARROW_DOWN_GREEN; ?>
 								</a>
 							</span>
 						</form>

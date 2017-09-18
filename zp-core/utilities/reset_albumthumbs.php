@@ -63,9 +63,8 @@ echo '</head>';
 					<input type="hidden" name="tab" value="resetthumbs">
 					<?php XSRFToken('reset_thumbs') ?>
 					<div class="buttons pad_button" id="set_all">
-						<button class="fixedwidth" type="submit"
-										title="<?php echo gettext("Sets all album thumbs to the selected criteria"); ?>">
-							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/burst.png" alt="" />
+						<button class="fixedwidth" type="submit" title="<?php echo gettext("Sets all album thumbs to the selected criteria"); ?>">
+							<?php echo BURST_BLUE; ?>
 							<?php echo gettext("Set all albums to"); ?>
 						</button>
 						<select id="thumbtype" name="thumbtype">

@@ -8,55 +8,9 @@
  */
 // force UTF-8 Ø
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
-
-$const_webpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-$const_serverpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME']));
-/**
- * see if we are executing out of any of the known script folders. If so we know how to adjust the paths
- * if not we presume the script is in the root of the installation. If it is not the script better have set
- * the SERVERPATH and WEBPATH defines to the correct values
- */
-if (!preg_match('~(.*)/(' . ZENFOLDER . ')~', $const_webpath, $matches)) {
-	preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . THEMEFOLDER . ')~', $const_webpath, $matches);
-}
-if ($matches) {
-	$const_webpath = $matches[1];
-	$const_serverpath = substr($const_serverpath, 0, strrpos($const_serverpath, '/' . $matches[2]));
-	if (!defined('OFFSET_PATH')) {
-		switch ($matches[2]) {
-			case ZENFOLDER:
-				define('OFFSET_PATH', 1);
-				break;
-			case USER_PLUGIN_FOLDER:
-				define('OFFSET_PATH', 3);
-				break;
-			case THEMEFOLDER:
-				define('OFFSET_PATH', 4);
-				break;
-		}
-	}
-	unset($matches);
-} else {
-	if (!defined('OFFSET_PATH')) {
-		define('OFFSET_PATH', 0);
-	}
-}
-if ($const_webpath == '/' || $const_webpath == '.') {
-	$const_webpath = '';
-}
-
-if (!defined('SERVERPATH')) {
-	define('SERVERPATH', $const_serverpath);
-}
-if (!defined('WEBPATH')) {
-	define('WEBPATH', $const_webpath);
-}
-unset($const_webpath);
-unset($const_serverpath);
+require_once(dirname(dirname(__FILE__)) . '/functions-config.php');
 
 define('SETUPLOG', SERVERPATH . '/' . DATA_FOLDER . '/setup.log');
-
-require_once(dirname(dirname(__FILE__)) . '/functions-config.php');
 
 /**
  *
@@ -99,8 +53,10 @@ function primeMark($text) {
 }
 
 function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
-	global $warn, $moreid, $primeid, $autorun;
+	global $warn, $moreid, $primeid, $autorun, $displayLimited;
 	$classes = array('fail' => gettext('Fail: '), 'warn' => gettext('Warn: '), 'pass' => gettext('Pass: '));
+
+	$display = '';
 	?>
 	<script type="text/javascript">
 		$("#prime<?php echo $primeid; ?>").remove();
@@ -112,13 +68,16 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 	if ($check > 0) {
 		$check = 1;
 	}
+
 	switch ($check) {
 		case 0:
 			$cls = "fail";
+			$ico = CROSS_MARK_RED;
 			break;
 		case -1:
 		case -3:
 			$cls = "warn";
+			$ico = WARNING_SIGN_ORANGE;
 			$warn = true;
 			if ($stopAutorun && $autorun) {
 				$autorun = false;
@@ -130,12 +89,18 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 			break;
 		case 1:
 		case -2:
+			if ($displayLimited) {
+				$display = ' style="display:none;"';
+			}
 			$cls = "pass";
+			$ico = CHECKMARK_GREEN;
 			break;
 	}
 	if ($check <= 0) {
 		?>
-		<li class="<?php echo $cls; ?>"><?php
+		<li class="<?php echo $cls; ?>"<?php echo $display; ?>>
+			<?php
+			echo $ico . ' ';
 			if (empty($text2)) {
 				echo $text;
 				$dsp .= trim($text);
@@ -197,7 +162,9 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 	} else {
 		$dsp = $text;
 		?>
-		<li class="<?php echo $cls; ?>"><?php echo $text; ?></li>
+		<li class="<?php echo $cls; ?>"<?php echo $display; ?>>
+			<?php echo $ico . ' ' . $text; ?>
+		</li>
 		<?php
 	}
 	if ($anyway == 2) {
@@ -563,5 +530,35 @@ function setupQuery($sql, $failNotify = true, $log = true) {
 		}
 	}
 	return $result;
+}
+
+function sendImage($external) {
+	if ($external) {
+		$img = 'pass_open.png';
+	} else {
+		$img = 'pass.png';
+	}
+	$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img, 'rb');
+
+// send the right headers
+	header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+	header("Content-Type: image/png");
+	header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img));
+// dump the picture and stop the script
+	fpassthru($fp);
+	fclose($fp);
+}
+
+function shutDownFunction() {
+	global $extension;
+	$error = error_get_last();
+	if ($error) {
+		error_clear_last(); //	it will be handled  here, not on shutdown!
+		$msg = sprintf(gettext('Plugin:%1$s ERROR "%2$s" in %3$s on line %4$s'), $extension, $error['message'], $error['file'], $error['line']);
+		setupLog($msg, true);
+		if ($extension) {
+			enableExtension($extension, 0);
+		}
+	}
 }
 ?>

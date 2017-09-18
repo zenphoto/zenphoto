@@ -26,14 +26,7 @@ if (is_null($mod_rewrite)) {
 	$msg = gettext('The option “mod_rewrite” is “disabled”.');
 }
 setOption('mod_rewrite_detected', 1);
-setupLog(gettext('Notice: “Module mod_rewrite” is working.') . ' ' . $msg, true);
+setupLog(gettext('Notice: “Module mod_rewrite” is working.') . ' ' . $msg);
 
-$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', 'rb');
-// send the right headers
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-header("Content-Type: image/png");
-header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png'));
-// dump the picture and stop the script
-fpassthru($fp);
-fclose($fp);
+sendImage(false);
 ?>

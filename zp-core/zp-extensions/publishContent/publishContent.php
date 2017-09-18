@@ -25,12 +25,12 @@ function reveal($content, $visible = false) {
 	?>
 	<span id="<?php echo $content; ?>_reveal"<?php if ($visible) echo ' style="display:none;"'; ?> class="icons">
 		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
-			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_down.png" alt="" class="icon-position-top4" />
+			<?php echo ARROW_DOWN_GREEN; ?>
 		</a>
 	</span>
 	<span id="<?php echo $content; ?>_hide"<?php if (!$visible) echo ' style="display:none;"'; ?> class="icons">
 		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
-			<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_up.png" alt="" class="icon-position-top4" />
+			<?php echo ARROW_UP_GREEN; ?>
 		</a>
 	</span>
 	<?php
@@ -236,7 +236,8 @@ echo "</head>\n";
 								<br class="clearall">
 								<div class="buttons pad_button" id="setdefaults">
 									<button class="tooltip" type="submit" title="<?php echo gettext("Set defaults for album publishing and image visibility."); ?>">
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/burst.png" alt="" /> <?php echo gettext("Apply"); ?>
+										<?php echo CHECKMARK_GREEN; ?>
+										<?php echo gettext("Apply"); ?>
 									</button>
 								</div>
 							</form>
@@ -317,14 +318,15 @@ echo "</head>\n";
 
 								<div class="buttons pad_button" id="publishalbums">
 									<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting albums."); ?>">
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish albums"); ?>
+										<?php echo CIRCLED_BLUE_STAR; ?>
+										<?php echo gettext("Publish albums"); ?>
 									</button>
 								</div>
 								<br class="clearall">
 							</form>
 							<p class="buttons tooltip">
 								<a href="?propagate_unpublished" title="<?php echo gettext('Set all subalbums of an un-published album to un-published.'); ?>">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" />
+									<?php echo CURVED_UPWARDS_AND_RIGHTWARDS_ARROW_BLUE; ?>
 									<?php echo gettext('Propagate un-published state'); ?>
 								</a>
 							</p>
@@ -373,7 +375,8 @@ echo "</head>\n";
 							<input type="hidden" name="review" value="true" />
 							<div class="buttons pad_button" id="reviewobjects">
 								<button class="tooltip" type="submit" title="<?php echo gettext("Review un-published images."); ?>">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/warn.png" alt="" /> <?php echo gettext("Review images"); ?>
+									<?php echo WARNING_SIGN_ORANGE; ?>
+									<?php echo gettext("Review images"); ?>
 								</button>
 							</div>
 						</form>
@@ -425,18 +428,18 @@ echo "</head>\n";
 										$imagelist = array_flip($imagelist);
 										?>
 										<li>
-											<p class="scheduleimagechecklisthead">
+											<div class="scheduleimagechecklisthead">
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'p');" title="<?php echo gettext('Set all to be published'); ?>">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="publish all" />
+													<?php echo CHECKMARK_GREEN; ?>
 												</a>
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="unpublish all" />
+													<?php echo CROSS_MARK_RED; ?>
 												</a>
 												<a onclick="publishAll(<?php echo $albumid; ?>, 'd');" title="<?php echo gettext('Set all to be deleted'); ?>">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" style="border: 0px;" alt="delete all" />
+													<?php echo WASTEBASKET; ?>
 												</a>
 												&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $key; ?></strong>
-											</p>
+											</div>
 											<ul class="scheduleimagelist">
 												<?php
 												foreach ($imagelist as $display => $item) {
@@ -446,17 +449,17 @@ echo "</head>\n";
 															<tr>
 																<td>
 																	<label style="white-space:nowrap">
-																		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="publish" />
+																		<?php echo CHECKMARK_GREEN; ?>
 																		<input id="pub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_p global_p" name="r_<?php echo $item; ?>" type="radio" value="pub_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
 																		<?php echo gettext('Publish'); ?>
 																	</label>
 																	<label style="white-space:nowrap">
-																		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="unpublish" />
+																		<?php echo CROSS_MARK_RED; ?>
 																		<input id="notpub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_u global_u" name="r_<?php echo $item; ?>" type="radio"	value="notpub_<?php echo $item; ?>"	checked="checked" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', false)" />
 																		<?php echo gettext('Do not publish'); ?>
 																	</label>
 																	<label id="label_del_<?php echo $item; ?>" style="white-space:nowrap">
-																		<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" style="border: 0px;" alt="delete" />
+																		<span style="padding-left:1px;padding-right: 1px;"><?php echo WASTEBASKET; ?></span>
 																		<input id="del_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_d" name="r_<?php echo $item; ?>" type="radio"	value="del_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>', true)" />
 																		<?php echo gettext('Delete'); ?>
 																	</label>
@@ -480,21 +483,22 @@ echo "</head>\n";
 									}
 									?>
 								</ul>
-								<p class="scheduleimagechecklisthead">
+								<div class="scheduleimagechecklisthead">
 									<a onclick="publishAll('', 'p');" title="<?php echo gettext('Set all to be published'); ?>">
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="publish all" />
+										<?php echo CHECKMARK_GREEN; ?>
 									</a>
 									<a onclick="publishAll('', 'u');" title="<?php echo gettext('Set all to be un-published'); ?>">
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="unpublish all" />
+										<?php echo CROSS_MARK_RED; ?>
 									</a>
 									&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo gettext('all images'); ?></strong>
-								</p>
-
-								<div class="buttons pad_button" id="process">
-									<button class="tooltip" type="submit" title="<?php echo gettext("Process the above changes."); ?>">
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Process changes"); ?>
-									</button>
 								</div>
+
+								<p class="buttons pad_button" id="process">
+									<button class="tooltip" type="submit" title="<?php echo gettext("Process the above changes."); ?>">
+										<?php echo CIRCLED_BLUE_STAR; ?>
+										<?php echo gettext("Process changes"); ?>
+									</button>
+								</p>
 								<br class="clearall">
 							</form>
 							<?php
@@ -561,7 +565,8 @@ echo "</head>\n";
 									<br class="clearall">
 									<div class="buttons pad_button">
 										<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting categories."); ?>">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish categories"); ?>
+											<?php echo CIRCLED_BLUE_STAR; ?>
+											<?php echo gettext("Publish categories"); ?>
 										</button>
 									</div>
 									<br class="clearall">
@@ -624,7 +629,8 @@ echo "</head>\n";
 									<br class="clearall">
 									<div class="buttons pad_button">
 										<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting articles."); ?>">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish articles"); ?>
+											<?php echo CIRCLED_BLUE_STAR; ?>
+											<?php echo gettext("Publish articles"); ?>
 										</button>
 									</div>
 									<br class="clearall">
@@ -685,7 +691,8 @@ echo "</head>\n";
 									<br class="clearall">
 									<div class="buttons pad_button">
 										<button class="tooltip" type="submit" title="<?php echo gettext("Publish waiting pages."); ?>">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" /> <?php echo gettext("Publish pages"); ?>
+											<?php echo CIRCLED_BLUE_STAR; ?>
+											<?php echo gettext("Publish pages"); ?>
 										</button>
 									</div>
 								</form>

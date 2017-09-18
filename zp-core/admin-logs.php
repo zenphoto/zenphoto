@@ -118,18 +118,23 @@ echo "\n</head>";
 						<form method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php'; ?>?action=change_size&amp;page=logs&amp;tab=<?php echo html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>" >
 							<span class="button buttons">
 								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=delete_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete_log', $subtab); ?>">
-									<img src="images/edit-delete.png" /><?php echo gettext('Delete'); ?></a>
+									<?php echo WASTEBASKET; ?>
+									<?php echo gettext('Delete'); ?></a>
 							</span>
 							<?php
 							if (!empty($logtext)) {
 								?>
 								<span class="button buttons">
 									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=clear_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_log', $subtab); ?>">
-										<img src="images/refresh.png" /><?php echo gettext('Reset'); ?></a>
+										<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
+										<?php echo gettext('Reset'); ?>
+									</a>
 								</span>
 								<span class="button buttons">
 									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=download_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('download_log', $subtab); ?>">
-										<img src="images/arrow_down.png" /><?php echo gettext('Download'); ?></a>
+										<?php echo ARROW_DOWN_GREEN; ?>
+										<?php echo gettext('Download'); ?>
+									</a>
 								</span>
 								<?php
 							}

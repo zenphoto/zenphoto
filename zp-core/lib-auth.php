@@ -932,6 +932,7 @@ class _Authority {
 		}
 		$whichForm = sanitize(@$_REQUEST['logon_step']);
 		?>
+
 		<div id="loginform">
 			<?php
 			if ($logo) {
@@ -1010,12 +1011,17 @@ class _Authority {
 							}
 							?>
 							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?></button>
+								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> >
+									<?php echo CHECKMARK_GREEN; ?>
+									<?php echo gettext("Submit"); ?>
+								</button>
 								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=' + $('#user').val();" >
+									<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 									<?php echo gettext("Refresh"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?>
+									<?php echo BACK_ARROW_BLUE; ?>
+									<?php echo gettext("Return"); ?>
 								</button>
 							</div>
 							<br class="clearall">
@@ -1086,7 +1092,7 @@ class _Authority {
 								<?php
 							}
 							?>
-							<label class="floatright" style="position:relative;top:1.5em;left:-15px;background-color: #F7F8F9;">
+							<label class="show_checkbox">
 								<input type="checkbox" name="disclose_password" id="disclose_password" onclick="togglePassword('');" />
 								<?php echo gettext('Show') ?>
 							</label>
@@ -1095,8 +1101,14 @@ class _Authority {
 							</fieldset>
 							<br />
 							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Log in"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Log in"); ?></button>
-								<button type="reset" value="<?php echo gettext("Reset"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset"); ?></button>
+								<button type="submit" value="<?php echo gettext("Log in"); ?>" >
+									<?php echo CHECKMARK_GREEN; ?>
+									<?php echo gettext("Log in"); ?>
+								</button>
+								<button type="reset" value="<?php echo gettext("Reset"); ?>" >
+									<?php echo CROSS_MARK_RED; ?>
+									<?php echo gettext("Reset"); ?>
+								</button>
 							</div>
 							<br class="clearall">
 						</fieldset>
@@ -1162,11 +1174,12 @@ class _Authority {
 							<br />
 							<div class="buttons">
 								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" >
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?>
+									<?php echo CHECKMARK_GREEN; ?>
+									<?php echo gettext("Request password reset"); ?>
 								</button>
-								<button type="button" value="<?php echo gettext("Return"); ?>"
-												onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?>
+								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
+									<?php echo BACK_ARROW_BLUE; ?>
+									<?php echo gettext("Return"); ?>
 								</button>
 							</div>
 							<br class="clearall">
@@ -1340,7 +1353,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-								 togglePassword('<?php echo $id; ?>');">
+										 togglePassword('<?php echo $id; ?>');">
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 						 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
 						 id="pass<?php echo $id; ?>"

@@ -3,7 +3,7 @@
  * ZenPhoto20 is already the easiest gallery management system available but it does not have any normal page management
  * capability. Therefore many people use zenphoto in combination with another CMS.
  *
- * With Zenpage you can now extend the easy to use interface to manage an entire site with a news section (blog) for
+ * With Zenpage you can extend the easy to use interface to manage an entire site with a news section (blog) for
  * announcements. Considering zenphoto's image, video and audio management capabilites this is the ideal solution for
  * personal portfolio sites of artists, graphic/web designers, illustrators, musicians, multimedia/video artists,
  * photographers and many more.
@@ -34,7 +34,6 @@
  */
 $plugin_is_filter = defaultExtension(99 | CLASS_PLUGIN);
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with ZenPhoto20.");
-$plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> or the <em>stopdesign</em> theme.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'cmsFilters';
 

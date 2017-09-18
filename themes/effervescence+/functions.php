@@ -39,16 +39,18 @@ chdir($cwd);
 
 if (!OFFSET_PATH) {
 	if (extensionEnabled('themeSwitcher')) {
-		$themeColor = zp_getCookie('themeSwitcher_color');
 		if (isset($_GET['themeColor'])) {
 			$new = $_GET['themeColor'];
-			if (in_array($new, $themecolors)) {
-				zp_setCookie('themeSwitcher_color', $new, false);
-				$themeColor = $new;
-			} else {
-				$themeColor = NULL;
-			}
+		} else {
+			$new = zp_getCookie('themeSwitcher_color');
 		}
+		if (in_array($new, $themecolors)) {
+			$themeColor = $new;
+		} else {
+			$themeColor = NULL;
+		}
+		zp_setCookie('themeSwitcher_color', $themeColor, false);
+
 		if (!$themeColor) {
 			$themeColor = getOption('Theme_colors');
 		}

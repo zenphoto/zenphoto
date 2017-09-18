@@ -148,17 +148,20 @@ class themeSwitcher {
 			}
 			$theme = $_zp_gallery->getCurrentTheme();
 			?>
-			<div class="themeSwitcherMenuMain themeSwitcherMenu themeSwitcherControl">
-				<a onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Switch themes'); ?>" style="text-decoration: none;" />&#9776;</a>
+			<div class="themeSwitcherMenuMain themeSwitcherControl">
+				<a onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Switch themes'); ?>" style="text-decoration: none;" />
+				<span class="themeSwitcherMenu">
+					<?php echo MENU_SYMBOL; ?>
+				</span>
+			</a>
 			</div>
 			<div class="themeSwitcherControlLink themeSwitcherControl" style="display:none;">
-				<div class="themeSwitcherMenuShow">
+				<div>
 					<a onclick="$('.themeSwitcherControl').toggle();" title="<?php echo gettext('Close'); ?>" style="text-decoration: none;" />
-					<span style="font-size: large;color: black !important;">
-						&#9776;
+					<span class="themeSwitcherMenuShow">
+						<?php echo MENU_SYMBOL; ?>
 					</span>
 					</a>
-
 				</div>
 				<?php echo $text; ?>
 				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')" title="<?php echo gettext("Themes will be disabled in this list if selecting them would result in a “not found” error."); ?>">

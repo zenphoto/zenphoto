@@ -96,14 +96,16 @@ printAdminHeader('admin', 'Mailing');
 						});
 					</script>
 					<p class="buttons">
-						<button class="submitbutton" type="submit"
-										title="<?php echo gettext("Send mail"); ?>"<?php echo $disabled; ?> ><img
-								src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Send mail"); ?></strong></button>
+						<button class="submitbutton" type="submit" title="<?php echo gettext("Send mail"); ?>"<?php echo $disabled; ?> >
+							<?php echo CHECKMARK_GREEN; ?>
+							<strong><?php echo gettext("Send mail"); ?></strong>
+						</button>
 					</p>
 					<p class="buttons">
-						<button class="submitbutton" type="reset"
-										title="<?php echo gettext("Reset"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png"
-																												 alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						<button class="submitbutton" type="reset" title="<?php echo gettext("Reset"); ?>">
+							<?php echo CROSS_MARK_RED; ?>
+							<strong><?php echo gettext("Reset"); ?></strong>
+						</button>
 					</p>
 					<br style="clear: both" />
 				</form>

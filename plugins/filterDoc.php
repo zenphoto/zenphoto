@@ -41,7 +41,7 @@ function filterDoc_button($buttons) {
 			'button_text' => gettext('Filter Doc Gen'),
 			'formname' => 'filterDoc_button',
 			'action' => '?filterDoc=gen',
-			'icon' => 'images/add.png',
+			'icon' => PLUS_ICON,
 			'title' => gettext('Generate filter document'),
 			'alt' => '',
 			'hidden' => '<input type="hidden" name="filterDoc" value="gen" />',

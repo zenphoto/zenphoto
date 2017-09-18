@@ -224,3 +224,7 @@ ul.flags{z-index:99;background:#fff;text-align:center;position:absolute;top:25px
 .zen-logo img {
 	vertical-align: sub;
 }
+
+#loginform .show_checkbox {
+	left: -55px !important;
+}

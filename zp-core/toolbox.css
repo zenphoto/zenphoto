@@ -45,6 +45,10 @@ Default admin toolbox css
 	color: #036;
 }
 
-.adminGear a:hover{
+.adminGear {
+	font-family: Free Serif, Segoe UI Symbol;
+	font-size: 20px;
+}
+.adminGear a:hover {
 	text-decoration: none;
 }

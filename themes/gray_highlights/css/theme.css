@@ -537,3 +537,10 @@ h2{
 .adminGear, .themeSwitcherMenu{
 	color: white;
 }
+
+/* logon form */
+
+
+#loginform .show_checkbox {
+	display: none;
+}

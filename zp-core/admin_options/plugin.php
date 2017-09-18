@@ -46,7 +46,7 @@ function getOptionContent() {
 		$_zp_plugin_count = 0;
 
 		$plugins = array();
-		$list = array_keys(getEnabledPlugins());
+		$list = array_keys(getPluginFiles('*.php'));
 		natcasesort($list);
 		foreach ($list as $extension) {
 			$option_interface = NULL;
@@ -85,8 +85,14 @@ function getOptionContent() {
 						<tr>
 							<td colspan="100%">
 								<p class="buttons">
-									<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-									<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+									<button type="submit" value="<?php echo gettext('save') ?>">
+										<?php echo CHECKMARK_GREEN; ?>
+										<strong><?php echo gettext("Apply"); ?></strong>
+									</button>
+									<button type="reset" value="<?php echo gettext('reset') ?>">
+										<?php echo CROSS_MARK_RED; ?>
+										<strong><?php echo gettext("Reset"); ?>
+										</strong></button>
 								</p>
 							</td>
 						</tr>
@@ -106,6 +112,7 @@ function getOptionContent() {
 					}
 					foreach ($plugins as $extension) {
 						$option_interface = NULL;
+						$enabled = extensionEnabled($extension);
 						$path = getPlugin($extension . '.php');
 						$pluginStream = file_get_contents($path);
 						if ($str = isolate('$plugin_description', $pluginStream)) {
@@ -134,26 +141,46 @@ function getOptionContent() {
 							<!-- <?php echo $extension; ?> -->
 							<tr>
 								<td class="option_name<?php if ($showExtension) echo ' option_shaded'; ?>">
-									<span id="<?php echo $extension; ?>" ></span>
-									<?php
-									if (!$showExtension) {
-										$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
-										?>
-										<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>"><img class="icon-position-top3" src="images/options.png" alt="" />
+									<span id="<?php echo $extension; ?>">
+										<?php
+										if ($showExtension) {
+											?>
+
+											<?php echo $extension; ?>
+
+											<?php
+											if (!$enabled) {
+												?>
+
+												<a title="<?php echo gettext('The plugin is not enabled'); ?>">
+													<?php echo WARNING_SIGN_ORANGE; ?>
+												</a>
+
 												<?php
 											}
-											echo $extension;
-											if (!$showExtension) {
-												?>
-											</a></span>
-										<?php
-									}
-									if ($warn) {
+											?>
+
+											<?php
+										} else {
+											$optionlink = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&amp;tab=plugin&amp;single=' . html_encode($extension);
+											?>
+											<span class="icons">
+												<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>">
+													<span<?php if (!$enabled) echo ' style="color: orange"'; ?>>
+														<?php echo OPTIONS_ICON; ?>
+													</span>
+													<?php echo $extension; ?>
+												</a>
+											</span>
+											<?php
+										}
+										if ($warn) {
+											?>
+											<?php echo EXCLAMATION_RED; ?>
+											<?php
+										}
 										?>
-										<img src="images/action.png" alt="<?php echo gettext('warning'); ?>" />
-										<?php
-									}
-									?>
+									</span>
 								</td>
 								<td class="option_value<?php if ($showExtension) echo ' option_shaded'; ?>" colspan="100%">
 									<?php echo $plugin_description; ?>
@@ -204,8 +231,14 @@ function getOptionContent() {
 							<tr>
 								<td colspan="100%">
 									<p class="buttons">
-										<button type="submit" value="<?php echo gettext('save') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-										<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+										<button type="submit" value="<?php echo gettext('save') ?>">
+											<?php echo CHECKMARK_GREEN; ?>
+											<strong><?php echo gettext("Apply"); ?></strong>
+										</button>
+										<button type="reset" value="<?php echo gettext('reset') ?>">
+											<?php echo CROSS_MARK_RED; ?>
+											<strong><?php echo gettext("Reset"); ?></strong>
+										</button>
 									</p>
 								</td>
 							</tr>

@@ -28,53 +28,53 @@ if (isset($recentIP[$ip])) {
 }
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<?php printStandardMeta(); ?>
-		<title><? echo $ip; ?></title>
-		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-pages.css" type="text/css" />
-		<style>
-			ul, ol {
-				list-style: none;
-				padding: 0;
-			}
-			li {
-				margin-left: 1.5em;
-				padding-bottom: 0.5em;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="main">
-			<?php
-			echo $ip;
-			?>
-			<div id="content">
-				<ol>
-					<?php
-					foreach ($ipList as $ip) {
-						echo '<li>';
-						echo $ip;
-						$host = gethostbyaddr($ip);
-						if ($host && $host != $ip) {
-							echo' (' . $host . ')';
-						}
-
-						if (isset($localeList[$ip])) {
-							echo '<ol>';
-							foreach ($localeList[$ip] as $instance => $time) {
-
-								echo '<li>' . $instance . '</li>';
-							}
-							echo '</ol>';
-						}
-						echo '</li>';
+<html xmlns="http://www.w3.org/1999/xhtml" />
+<head>
+	<?php printStandardMeta(); ?>
+	<title><? echo $ip; ?></title>
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
+	<style>
+		ul, ol {
+			list-style: none;
+			padding: 0;
+		}
+		li {
+			margin-left: 1.5em;
+			padding-bottom: 0.5em;
+		}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<?php
+		echo $ip;
+		?>
+		<div id="content">
+			<ol>
+				<?php
+				foreach ($ipList as $ip) {
+					echo '<li>';
+					echo $ip;
+					$host = gethostbyaddr($ip);
+					if ($host && $host != $ip) {
+						echo' (' . $host . ')';
 					}
-					?>
-				</ol>
-			</div>
+
+					if (isset($localeList[$ip])) {
+						echo '<ol>';
+						foreach ($localeList[$ip] as $instance => $time) {
+
+							echo '<li>' . $instance . '</li>';
+						}
+						echo '</ol>';
+					}
+					echo '</li>';
+				}
+				?>
+			</ol>
 		</div>
-	</body>
+	</div>
+</body>
 
 
 

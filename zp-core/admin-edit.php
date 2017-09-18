@@ -333,7 +333,6 @@ if (isset($_GET['action'])) {
 			unset($folder);
 			$returntab = '';
 			XSRFdefender('albumedit');
-
 			/** SAVE A SINGLE ALBUM ****************************************************** */
 			if (isset($_POST['album'])) {
 				$folder = sanitize_path($_POST['album']);
@@ -868,9 +867,8 @@ echo "\n</head>";
 					<!-- Album info box -->
 					<div id="tab_albuminfo" class="tabbox">
 						<?php consolidatedEditMessages('albuminfo'); ?>
-						<form class="dirtylistening" onReset="toggle_passwords('', false);
-								setClean('form_albumedit');" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
-									<?php XSRFToken('albumedit'); ?>
+						<form class="dirtylistening" onReset="toggle_passwords('', false);setClean('form_albumedit');$('.resetHide').hide();" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" >
+							<?php XSRFToken('albumedit'); ?>
 							<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 							<input type="hidden"	name="savealbuminfo" value="1" />
 							<?php printAlbumEditForm(0, $album); ?>
@@ -933,9 +931,8 @@ echo "\n</head>";
 								</span>
 							</form>
 							<br clear="all">
-							<form class="dirtylistening" onReset="setClean('sortableListForm');
-									$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
-										<?php XSRFToken('savealbumorder'); ?>
+							<form class="dirtylistening" onReset="setClean('sortableListForm');$('#albumsort').sortable('cancel');" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
+								<?php XSRFToken('savealbumorder'); ?>
 								<p class="notebox">
 									<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
 								</p>
@@ -950,18 +947,19 @@ echo "\n</head>";
 								?>
 								<span class="buttons">
 									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-										<img	src="images/arrow_left_blue_round.png" alt="" />
+										<?php echo BACK_ARROW_BLUE; ?>
 										<strong><?php echo gettext("Back"); ?></strong>
 									</a>
 									<?php
 									if ($enableEdit) {
 										?>
 										<button class="serialize buttons" type="submit">
-											<img src="images/pass.png" alt="" />
+											<?php echo CHECKMARK_GREEN; ?>
 											<strong><?php echo gettext("Apply"); ?></strong>
 										</button>
 										<button type="reset" value="<?php echo gettext('Reset') ?>">
-											<img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
+											<?php echo CROSS_MARK_RED; ?>
+											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 										<div class="floatright">
 											<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
@@ -1018,15 +1016,16 @@ echo "\n</head>";
 								<br />
 								<span class="buttons">
 									<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>&filter=<?php echo $filter; ?>">
-										<img	src="images/arrow_left_blue_round.png" alt="" />
+										<?php echo BACK_ARROW_BLUE; ?>
 										<strong><?php echo gettext("Back"); ?></strong>
 									</a>
 									<button class="serialize buttons" type="submit">
-										<img src="images/pass.png" alt="" />
+										<?php echo CHECKMARK_GREEN; ?>
 										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
-										<img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
+										<?php echo CROSS_MARK_RED; ?>
+										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 									<div class="floatright">
 										<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
@@ -1136,7 +1135,7 @@ echo "\n</head>";
 						<?php
 						if ($allimagecount) {
 							?>
-							<form class="dirtylistening" onReset="setClean('form_imageedit');" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off" >
+							<form class="dirtylistening" onReset="setClean('form_imageedit');$('.resetHide').hide();" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off" >
 								<?php XSRFToken('albumedit'); ?>
 								<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 								<input type="hidden" name="totalimages" value="<?php echo $totalimages; ?>" />
@@ -1156,15 +1155,15 @@ echo "\n</head>";
 								<div style="padding: 10px;">
 									<p class="buttons">
 										<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>&filter=<?php echo $filter; ?>">
-											<img	src="images/arrow_left_blue_round.png" alt="" />
+											<?php echo BACK_ARROW_BLUE; ?>
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
 										<button type="submit">
-											<img src="images/pass.png" alt="" />
+											<?php echo CHECKMARK_GREEN; ?>
 											<strong><?php echo gettext("Apply"); ?></strong>
 										</button>
 										<button type="reset">
-											<img src="images/fail.png" alt="" />
+											<?php echo CROSS_MARK_RED; ?>
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 									</p>
@@ -1223,7 +1222,10 @@ echo "\n</head>";
 													}
 													?>
 													<p class="buttons">
-														<a href="<?php echo $image->getLink(); ?>"><img src="images/view.png" alt="" /><strong><?php echo gettext('View'); ?></strong></a>
+														<a href="<?php echo $image->getLink(); ?>">
+															<?php echo BULLSEYE_BLUE; ?>
+															<strong><?php echo gettext('View'); ?></strong>
+														</a>
 													</p><br style="clear: both" />
 													<p>
 														<?php echo gettext('<strong>Filename:</strong>'); ?>
@@ -1262,7 +1264,9 @@ echo "\n</head>";
 														</tr>
 														<tr>
 															<td class="leftcolumn">
-																<?php echo linkPickerIcon($image, 'image_link-' . $currentimage); ?>
+																<span class="floatright">
+																	<?php echo linkPickerIcon($image, 'image_link-' . $currentimage); ?>
+																</span>
 															<td  class="middlecolumn">
 																<?php echo linkPickerItem($image, 'image_link-' . $currentimage); ?>
 															</td>
@@ -1313,7 +1317,10 @@ echo "\n</head>";
 															?>
 															<tr>
 																<td colspan="100%" style="border-bottom:none;">
-																	<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename . '&subpage=' . $pagenum; ?>&filter=<?php echo $filter; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>
+																	<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename . '&subpage=' . $pagenum; ?>&filter=<?php echo $filter; ?>">
+																		<?php echo PENCIL_ICON; ?>
+																		<?php echo gettext('Edit all image data'); ?>
+																	</a>
 																</td>
 															</tr>
 															<?php
@@ -1442,60 +1449,73 @@ echo "\n</head>";
 															<input type="radio" id="move-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="move" onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', 'move');"  /> <?php echo gettext("Move"); ?>
 														</label>
 														<label class="checkboxlabel">
-															<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
-																		 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>'
-																								 , 'copy');"  /> <?php echo gettext("Copy"); ?>
+															<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy" onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', 'copy');"  /> <?php echo gettext("Copy"); ?>
 														</label>
 														<label class="checkboxlabel">
-															<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
-																		 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>',
-																								 'rename');"  /> <?php echo gettext("Rename File"); ?>
+															<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename" onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', 'rename');"  /> <?php echo gettext("Rename File"); ?>
 														</label>
 														<label class="checkboxlabel">
-															<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
-																		 onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																				 deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+															<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete" onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
+																	deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 														</label>
 														<br class="clearall">
-														<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
-															<?php echo gettext("to"); ?>:
-															<select id="albumselectmenu-<?php echo $currentimage; ?>"
-																			name="<?php echo $currentimage; ?>-albumselect" onchange="">
-																				<?php
-																				foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
-																					$singlefolder = $fullfolder;
-																					$saprefix = "";
-																					$salevel = 0;
-																					$selected = "";
-																					if ($album->name == $fullfolder) {
-																						$selected = " selected=\"selected\" ";
-																					}
-																					// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
-																					while (strstr($singlefolder, '/') !== false) {
-																						$singlefolder = substr(strstr($singlefolder, '/'), 1);
-																						$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
-																						$salevel++;
-																					}
-																					echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . ';"' : '')
-																					. "$selected>" . $saprefix . $singlefolder . "</option>\n";
-																				}
-																				?>
-															</select>
-															<br /><p class="buttons"><a onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel"); ?></a>
+														<div id="movecopydiv-<?php echo $currentimage; ?>" class="resetHide" style="padding-top: .5em; padding-left: .5em; padding-bottom: .5em; display: none;">
+															<span class="nowrap">
+																<?php echo gettext("to"); ?>:
+																<select id="albumselectmenu-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-albumselect" onchange="">
+																	<?php
+																	foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
+																		$singlefolder = $fullfolder;
+																		$saprefix = "";
+																		$salevel = 0;
+																		$selected = "";
+																		if ($album->name == $fullfolder) {
+																			$selected = " selected=\"selected\" ";
+																		}
+																		// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
+																		while (strstr($singlefolder, '/') !== false) {
+																			$singlefolder = substr(strstr($singlefolder, '/'), 1);
+																			$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
+																			$salevel++;
+																		}
+																		echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . ';"' : '')
+																		. "$selected>" . $saprefix . $singlefolder . "</option>\n";
+																	}
+																	?>
+																</select>
+															</span>
+															<p class="buttons">
+																<a onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');">
+																	<?php echo CROSS_MARK_RED; ?>
+																	<?php echo gettext("Cancel"); ?>
+																</a>
 															</p>
 														</div>
-														<div id="renamediv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
-															<?php echo gettext("to"); ?>:
-															<input name="<?php echo $currentimage; ?>-renameto" type="text" value="<?php echo $image->filename; ?>" /><br />
-															<br /><p class="buttons"><a	onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel"); ?></a>
+														<div id="renamediv-<?php echo $currentimage; ?>" class="resetHide" style="padding-top: .5em; padding-left: .5em; display: none;">
+															<span class="nowrap">
+																<?php echo gettext("to"); ?>:
+																<input name="<?php echo $currentimage; ?>-renameto" type="text" value="<?php echo $image->filename; ?>" />
+															</span>
+															<p class="buttons">
+																<a	onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');">
+																	<?php echo CROSS_MARK_RED; ?>
+																	<?php echo gettext("Cancel"); ?>
+																</a>
 															</p>
 														</div>
-														<span class="clearall" ></span>
-														<div id="deletemsg<?php echo $currentimage; ?>"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
-															<?php echo gettext('Image will be deleted when changes are applied.'); ?>
-															<p class="buttons"><a	onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel"); ?></a></p>
+
+														<div id="deletemsg<?php echo $currentimage; ?>" class="resetHide"	style="padding-top: .5em; padding-left: .5em; padding-bottom: .5em; color: red; display: none">
+															<span class="nowrap">
+																<?php echo gettext('Image will be deleted when changes are applied.'); ?>
+															</span>
+															<p class="buttons">
+																<a	onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');">
+																	<?php echo CROSS_MARK_RED; ?>
+																	<?php echo gettext("Cancel"); ?>
+																</a>
+															</p>
 														</div>
-														<span class="clearall" ></span>
+														<div class="clearall" ></div>
 
 														<?php
 														if (isImagePhoto($image)) {
@@ -1543,7 +1563,8 @@ echo "\n</head>";
 														<hr />
 														<div class="button buttons tooltip" title="<?php printf(gettext('Refresh %s metadata'), $image->filename); ?>">
 															<a href="admin-edit.php?action=refresh&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
-																<img src="images/cache.png" alt="" /><?php echo gettext("Refresh Metadata"); ?>
+																<?php echo CIRCLED_BLUE_STAR; ?>
+																<?php echo gettext("Refresh Metadata"); ?>
 															</a>
 															<br class="clearall">
 														</div>
@@ -1578,15 +1599,15 @@ echo "\n</head>";
 
 									<p class="buttons">
 										<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-											<img	src="images/arrow_left_blue_round.png" alt="" />
+											<?php echo BACK_ARROW_BLUE; ?>
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
 										<button type="submit">
-											<img src="images/pass.png" alt="" />
+											<?php echo CHECKMARK_GREEN; ?>
 											<strong><?php echo gettext("Apply"); ?></strong>
 										</button>
 										<button type="reset">
-											<img src="images/fail.png" alt="" />
+											<?php echo CROSS_MARK_RED; ?>
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 									</p>
@@ -1655,24 +1676,26 @@ echo "\n</head>";
 				</h1>
 				<div class="tabbox">
 					<?php consolidatedEditMessages('massedit'); ?>
-					<form class="dirtylistening" onReset="setClean('form_albumedit-multi');" ame="albumedit" id="form_albumedit-multi"
-								autocomplete="off"	action="?page=edit&amp;action=save<?php echo $albumdir ?>" method="POST" >
-									<?php XSRFToken('albumedit'); ?>
+					<form class="dirtylistening" onReset="setClean('form_albumedit-multi');" ame="albumedit" id="form_albumedit-multi" autocomplete="off"	action="?page=edit&amp;action=save<?php echo $albumdir ?>" method="POST" >
+						<?php XSRFToken('albumedit'); ?>
 						<input type="hidden" name="totalalbums" value="<?php echo sizeof($albums); ?>" />
 						<span class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit">
-								<img	src="images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
+								<?php echo BACK_ARROW_BLUE; ?>
+								<strong><?php echo gettext("Back"); ?></strong>
 							</a>
 							<button type="submit">
-								<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
+								<?php echo CHECKMARK_GREEN; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" onclick="$('.deletemsg').hide();" >
-								<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
+								<?php echo WASTEBASKET; ?>
+								<?php echo gettext('Delete'); ?>
 							</button>
 						</span>
-						<br class="clearall">
+						<br class = "clearall">
 						<br />
-						<div class="outerbox">
+						<div class = "outerbox">
 							<?php
 							$currentalbum = 1;
 							foreach ($albums as $folder) {
@@ -1696,13 +1719,15 @@ echo "\n</head>";
 						<br />
 						<span class="buttons">
 							<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit">
-								<img	src="images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
+								<?php echo BACK_ARROW_BLUE; ?>
+								<strong><?php echo gettext("Back"); ?></strong>
 							</a>
 							<button type="submit">
-								<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
+								<?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong>
 							</button>
 							<button type="reset" onclick="$('.deletemsg').hide();" >
-								<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
+								<?php echo WASTEBASKET; ?>
+								<?php echo gettext('Delete'); ?>
 							</button>
 						</span>
 						<br class="clearall">
@@ -1774,16 +1799,19 @@ echo "\n</head>";
 							?>
 						</p>
 
-						<form class="dirtylistening" onReset="setClean('sortableListForm');
-								$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
-									<?php XSRFToken('savealbumorder'); ?>
+						<form class="dirtylistening" onReset="setClean('sortableListForm');$('#albumsort').sortable('cancel');" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off" >
+							<?php XSRFToken('savealbumorder'); ?>
 							<span class="buttons">
 								<?php
 								if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 									?>
-									<button class="serialize buttons" type="submit" ><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+									<button class="serialize buttons" type="submit" >
+										<?php echo CHECKMARK_GREEN; ?>
+										<strong><?php echo gettext("Apply"); ?></strong>
+									</button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
-										<img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
+										<?php echo CROSS_MARK_RED; ?>
+										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 									<?php
 								}
@@ -1833,10 +1861,11 @@ echo "\n</head>";
 								if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 									?>
 									<button class="serialize buttons" type="submit" >
-										<img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
+										<?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong>
 									</button>
 									<button type="reset" value="<?php echo gettext('Reset') ?>">
-										<img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
+										<?php echo CROSS_MARK_RED; ?>
+										<strong><?php echo gettext("Reset"); ?></strong>
 									</button>
 									<?php
 								}

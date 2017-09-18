@@ -233,9 +233,17 @@ if (is_array($result)) {
 				}
 				?>
 				<p class="buttons">
-					<strong><a href="menu_tab.php?menuset=<?php echo $menuset; ?>"><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
+					<a href="menu_tab.php?menuset=<?php echo $menuset; ?>">
+						<?php echo BACK_ARROW_BLUE; ?>
+						<strong><?php echo gettext("Back"); ?></strong>
+					</a>
 					<span class="floatright">
-						<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
+						<a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>">
+							<?php echo PLUS_ICON; ?>
+							<strong>
+								<?php echo gettext("Add Menu Items"); ?>
+							</strong>
+						</a>
 					</span>
 				</p>
 				<br class="clearall"><br />
@@ -251,9 +259,9 @@ if (is_array($result)) {
 						$action = !empty($id);
 					}
 					if (isset($_GET['add']) && !isset($_GET['save'])) {
-						$add = '&amp;add'
+						$add = '&amp;add';
 						?>
-						<select id="typeselector" name="typeselector">
+						<select id="typeselector" name="typeselector" >
 							<option value=""><?php echo gettext("*Select the type of the menus item you wish to add*"); ?></option>
 							<option value="all_items"><?php echo gettext("All menu items"); ?></option>
 							<option value="galleryindex"><?php echo gettext("Gallery index"); ?></option>
@@ -356,12 +364,14 @@ if (is_array($result)) {
 							<tr id="span_row">
 								<td>
 									<label>
-										<input name="span" type="checkbox" id="span" value="1" <?php
-										if ($result['span_id'] || $result['span_class']) {
-											echo "checked='checked'";
-										}
-										?> style="display: inline" />
-													 <?php echo gettext("Add <em>span</em> tags"); ?>
+										<span class="nowrap">
+											<input name="span" type="checkbox" id="span" value="1" <?php
+											if ($result['span_id'] || $result['span_class']) {
+												echo "checked='checked'";
+											}
+											?> style="display: inline" />
+														 <?php echo gettext("Add <em>span</em> tags"); ?>
+										</span>
 									</label>
 								</td>
 								<td>
@@ -395,8 +405,11 @@ if (is_array($result)) {
 							?>
 						</table>
 						<p class="buttons">
-							<button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit"><?php echo CHECKMARK_GREEN; ?> <?php echo gettext("Apply"); ?></strong></button>
+							<button type="reset">
+								<?php echo CROSS_MARK_RED; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
 						</p>
 						<br class="clearall"><br />
 					</form>

@@ -143,7 +143,7 @@ printAdminHeader('admin');
 				<button type="reset" onclick="$('#tag_action_form').trigger('reset');
 						$('#form_tagrename').trigger('reset');
 						$('#form_newtags').trigger('reset');">
-					<img src="images/fail.png" alt="" />
+									<?php echo CROSS_MARK_RED; ?>
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
 			</div>
@@ -167,38 +167,53 @@ printAdminHeader('admin');
 							?>
 						</div>
 
-						<p class="buttons">
-							<button type="submit" id='delete_tags' value="<?php echo gettext("Delete checked tags"); ?>"
-											onclick="$('#tag_action').val('delete');
-													this.form.submit();">
-								<img src="images/fail.png" alt="" />
+						<p class="buttons"<?php if (getOption('multi_lingual')) echo ' style="padding-bottom: 27px;"'; ?>>
+							<button type="submit" id="delete_tags" onclick="$('#tag_action').val('delete');	this.form.submit();">
+								<?php echo WASTEBASKET; ?>
 								<?php echo gettext("Delete checked tags"); ?>
 							</button>
 						</p>
-						<br />
-						<p class="buttons">
-							<button type="submit" id="assign_tags" value="<?php echo gettext("Delete checked tags"); ?>"
-											onclick="$('#tag_action').val('assign');
-													this.form.submit();">
-								<img src="images/redo.png" alt="" />
-								<?php echo gettext('assign'); ?>
-							</button>
-						</p>
-						<select name="language" id="language" class="ignoredirty">
-							<option value=""><?php echo gettext('Universal'); ?></option>
-							<?php
-							foreach ($_zp_active_languages as $text => $lang) {
-								?>
-								<option value="<?php echo $lang; ?>" <?php if ($_zp_current_locale == $lang) echo ' selected="selected"' ?>><?php echo html_encode($text); ?></option>
-								<?php
-							}
+
+						<?php
+						if (getOption('multi_lingual')) {
 							?>
-						</select>
+							<div style="padding-bottom: 7px;">
+								<select name="language" id="language" class="ignoredirty" >
+									<option value=""><?php echo gettext('Universal'); ?></option>
+									<?php
+									foreach ($_zp_active_languages as $text => $lang) {
+										?>
+										<option value="<?php echo $lang; ?>"><?php echo html_encode($text); ?></option>
+										<?php
+									}
+									?>
+								</select>
+							</div>
+
+							<span class="buttons">
+								<button type="submit" id="assign_tags" onclick="$('#tag_action').val('assign');	this.form.submit();" title="<?php echo gettext('Assign tags to selected language'); ?>">
+									<?php echo ARROW_RIGHT_BLUE; ?>
+									<?php echo gettext('assign'); ?>
+								</button>
+							</span>
+							<?php
+						} else {
+							?>
+							<input type="hidden" name="language" value="" />
+							<?php
+						}
+						?>
 						<div class="clearall"></div>
 					</form>
 
 					<div class="tagtext">
-						<p><?php echo gettext('Place a checkmark in the box for each tag you wish to delete or to assign a language then press the appropriate button. The brackets contain the number of times the tag appears.'); ?></p>
+						<p><?php
+							if (getOption('multi_lingual')) {
+								echo gettext('Place a checkmark in the box for each tag you wish to delete or to assign a language then press the appropriate button. The brackets contain the number of times the tag appears.');
+							} else {
+								echo gettext('Place a checkmark in the box for each tag you wish to delete then press the appropriate button. The brackets contain the number of times the tag appears.');
+							}
+							?></p>
 					</div>
 				</div>
 
@@ -225,13 +240,13 @@ printAdminHeader('admin');
 								?>
 							</ul>
 						</div>
-						<p class="buttons">
+						<p class="buttons" style="padding-bottom: 1px;">
 							<button type="submit" id='rename_tags' value="<?php echo gettext("Rename tags"); ?>">
-								<img src="images/pass.png" alt="" /><?php echo gettext("Rename tags"); ?>
+								<?php echo CHECKMARK_GREEN; ?>
+								<?php echo gettext("Rename tags"); ?>
 							</button>
 						</p>
 					</form>
-					<br />
 					<br />
 					<div class="tagtext">
 						<p><?php echo gettext('To change the value of a tag enter a new value in the text box below the tag. Then press the <em>Rename tags</em> button'); ?></p>
@@ -255,24 +270,43 @@ printAdminHeader('admin');
 								?>
 							</ul>
 						</div>
-						<p class="buttons">
+						<p class="buttons"<?php if (getOption('multi_lingual')) echo ' style="padding-bottom: 25px;"'; ?>>
 							<button type="submit" id='save_tags' value="<?php echo gettext("Add tags"); ?>">
-								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /><?php echo gettext("Add tags"); ?>
+								<?php echo PLUS_ICON; ?>
+								<?php echo gettext("Add tags"); ?>
 							</button>
 						</p>
-						<select name="language" id="language" class="ignoredirty">
-							<option value="" selected="language"><?php echo gettext('Universal'); ?></option>
-							<?php
-							foreach ($_zp_active_languages as $text => $lang) {
-								?>
-								<option value="<?php echo $lang; ?>" ><?php echo html_encode($text); ?></option>
-								<?php
-							}
+						<?php
+						if (getOption('multi_lingual')) {
 							?>
-						</select>
+							<select name="language" id="language" class="ignoredirty">
+								<option value="" selected="language"><?php echo gettext('Universal'); ?></option>
+								<?php
+								foreach ($_zp_active_languages as $text => $lang) {
+									?>
+									<option value="<?php echo $lang; ?>" ><?php echo html_encode($text); ?></option>
+									<?php
+								}
+								?>
+							</select>
+							<?php
+						} else {
+							?>
+							<input type="hidden" name="language" value="" />
+							<br />
+							<?php
+						}
+						?>
+						<div class="clearall"></div>
 					</form>
+
 					<div class="tagtext">
-						<p><?php echo gettext("Add tags to the list by entering their names in the input fields of the <em>New tags</em> list. Then press the <em>Add tags</em> button"); ?></p>
+						<p><?php
+							echo gettext("Add tags to the list by entering their names in the input fields of the <em>New tags</em> list. Then press the <em>Add tags</em> button.");
+							if (getOption('multi_lingual')) {
+								echo ' ' . gettext('You can assign a language to the tags with the language selector.');
+							}
+							?></p>
 					</div>
 				</div>
 				<br class="clearall">

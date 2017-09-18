@@ -27,6 +27,8 @@
  * @subpackage admin
  */
 // force UTF-8 Ø
+
+global $_zp_captcha;
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Google reCaptcha handler.");
 $plugin_author = "Stephen Billard (sbillard)";

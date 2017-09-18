@@ -324,7 +324,7 @@ $tagsort = getTagOrder();
 
 						<div id="tab_articles" class="tabbox">
 
-							<form class="dirtylistening" onReset="setClean('form_cmsItemEdit');" method="post" name="update" id="form_cmsItemEdit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>" autocomplete="off">
+							<form class="dirtylistening" onReset="setClean('form_cmsItemEdit');$('.resetHide').hide();" method="post" name="update" id="form_cmsItemEdit" action="admin-edit.php?<?php echo $admintype; ?>&amp;update<?php echo $page; ?>" autocomplete="off">
 								<?php
 								XSRFToken('update');
 							}
@@ -359,36 +359,57 @@ $tagsort = getTagOrder();
 							}
 							?>
 							<span class="buttons">
-								<strong><a href="<?php echo $backurl; ?>"><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
-								<button type="submit" title="<?php echo $updateitem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php
+								<a href="<?php echo $backurl; ?>">
+									<?php echo BACK_ARROW_BLUE; ?>
+									<strong>
+										<?php echo gettext("Back"); ?></strong>
+								</a>
+								<button type="submit" title="<?php echo $updateitem; ?>">
+									<?php echo CHECKMARK_GREEN; ?>
+									<strong>
+										<?php
 										if ($result->transient) {
 											echo $saveitem;
 										} else {
 											echo $updateitem;
 										}
-										?></strong></button>
+										?>
+									</strong>
+								</button>
 								<button type="reset" onclick="$('.copydelete').hide();" >
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
+									<?php echo CROSS_MARK_RED; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
 								<div class="floatright">
 									<?php
 									if ($additem) {
 										?>
-										<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
+										<a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>">
+											<?php echo PLUS_ICON; ?>
+											<strong><?php echo $additem; ?></strong>
+										</a>
 										<?php
 									}
 									?>
-									<span id="tip"><a href="#"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png" alt="" /><?php echo gettext("Usage tips"); ?></a></span>
+									<span id="tip">
+										<a href="#">
+											<?php echo INFORMATION_BLUE; ?>
+											<?php echo gettext("Usage tips"); ?>
+										</a>
+									</span>
 									<?php
 									if (!$result->transient) {
 										if (is_AdminEditPage("newscategory")) {
-											?>
-											<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
-										<?php } else { ?>
-											<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
-											<?php
+											$what = 'category=';
+										} else {
+											$what = 'title=';
 										}
+										?>
+										<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;<?php echo $what . $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>">
+											<?php echo BULLSEYE_BLUE; ?>
+											<?php echo gettext("View"); ?>
+										</a>
+										<?php
 									}
 									?>
 								</div>
@@ -440,7 +461,9 @@ $tagsort = getTagOrder();
 												?>
 												<tr>
 													<td>
-														<?php echo linkPickerIcon($result, 'pick_link') ?>
+														<span class="floatright">
+															<?php echo linkPickerIcon($result, 'pick_link') ?>
+														</span>
 													</td>
 													<td class="middlecolumn">
 														<?php echo linkPickerItem($result, 'pick_link'); ?>
@@ -517,9 +540,9 @@ $tagsort = getTagOrder();
 																 id="show"
 																 value="1" <?php checkIfChecked($result->getShow()); ?>
 																 onclick="$('#pubdate').val('');
-																		 $('#expiredate').val('');
-																		 $('#pubdate').css('color', 'black');
-																		 $('.expire').html('');"
+																			 $('#expiredate').val('');
+																			 $('#pubdate').css('color', 'black');
+																			 $('.expire').html('');"
 																 />
 													<label for="show"><?php echo gettext("Published"); ?></label>
 												</p>
@@ -579,18 +602,21 @@ $tagsort = getTagOrder();
 														<?php
 														if (GALLERY_SECURITY == 'public') {
 															?>
-															<a onclick="toggle_passwords('', true);">
-																<?php echo gettext("Password:"); ?>
-															</a>
 															<?php
 															if (empty($x)) {
 																?>
-																<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock_open.png" alt="" class="icon-postiion-top8" />
+																<a onclick="toggle_passwords('', true);">
+																	<?php echo gettext("Password:"); ?>
+																	<?php echo LOCK_OPEN; ?>
+																</a>
 																<?php
 															} else {
 																$x = '          ';
 																?>
-																<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/lock.png"  alt="" class="icon-postiion-top8" /></a>
+																<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>">
+																	<?php echo gettext("Password:"); ?>
+																	<?php echo LOCK; ?>
+																</a>
 																<?php
 															}
 															?>
@@ -612,7 +638,7 @@ $tagsort = getTagOrder();
 																			 name="disclose_password"
 																			 id="disclose_password"
 																			 onclick="passwordClear('');
-																					 togglePassword('');">
+																								 togglePassword('');">
 																			 <?php echo gettext('Show'); ?>
 															</label>
 															<br />
@@ -648,23 +674,32 @@ $tagsort = getTagOrder();
 												if (!$result->transient) {
 													?>
 													<label class="checkboxlabel">
-														<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
-																	 onclick="$('#copyfield').show();
-																			 $('#deletemsg').hide();" />
-																	 <?php echo gettext("Copy"); ?>
+														<input type="radio" id="copy_object" name="copy_delete_object" value="copy" onclick="$('#copyfield').show(); $('#deletemsg').hide();" />
+														<?php echo gettext("Copy"); ?>
 													</label>
 													<label class="checkboxlabel">
-														<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
-																	 onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>');
-																			 $('#copyfield').hide();" />
-																	 <?php echo gettext('delete'); ?>
+														<input type="radio" id="delete_object" name="copy_delete_object" value="delete" onclick="deleteConfirm('delete_object', '', '<?php addslashes(printf(gettext('Are you sure you want to delete this %s?'), $deleteitem)); ?>'); $('#copyfield').hide();" />
+														<?php echo gettext('delete'); ?>
 													</label>
 													<br class="clearall">
-													<div class="copydelete" id="copyfield" style="display:none" >
+													<div class="copydelete resetHide" id="copyfield" style="display:none" >
 														<?php printf(gettext('copy as: %s'), '<input type="text" name="copy_object_as" value = "" />'); ?>
+														<p class="buttons">
+															<a	onclick="$('#copy_object').removeAttr('checked');$('#copyfield').hide();">
+																<?php echo CROSS_MARK_RED; ?>
+																<?php echo gettext("Cancel"); ?>
+															</a>
+														</p>
+
 													</div>
-													<div class="copydelete" id="deletemsg"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
+													<div class="copydelete resetHide" id="deletemsg"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
 														<?php printf(gettext('%s will be deleted when changes are applied.'), $deleteitem); ?>
+														<p class="buttons">
+															<a	onclick="$('#delete_object').removeAttr('checked');$('#deletemsg').hide();">
+																<?php echo CROSS_MARK_RED; ?>
+																<?php echo gettext("Cancel"); ?>
+															</a>
+														</p>
 													</div>
 													<?php
 												}
@@ -814,7 +849,9 @@ $tagsort = getTagOrder();
 													?>
 													<?php echo zp_apply_filter('general_zenpage_utilities', '', $result); ?>
 												</div>
-												<?php if (is_AdminEditPage("newsarticle")) { ?>
+												<?php
+												if (is_AdminEditPage("newsarticle")) {
+													?>
 													<h2 class="h2_bordered_edit"><?php echo gettext("Categories"); ?></h2>
 													<div class="zenpagechecklist">
 														<?php
@@ -833,8 +870,7 @@ $tagsort = getTagOrder();
 														}
 														?>
 													</div>
-
-
+													<br />
 													<?php
 												} // if article for categories
 											} // if !category end
@@ -845,31 +881,41 @@ $tagsort = getTagOrder();
 									<br class="clearall">
 
 									<span class="buttons">
-										<strong><a href="<?php echo $backurl; ?>"><img	src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
-										<button type="submit" title="<?php echo $updateitem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php
-												if ($result->transient) {
-													echo $saveitem;
-												} else {
-													echo $updateitem;
-												}
-												?></strong></button>
+										<a href="<?php echo $backurl; ?>">
+											<?php echo BACK_ARROW_BLUE; ?>
+											<strong>
+												<?php echo gettext("Back"); ?>
+											</strong>
+										</a>
+										<button type="submit" title="<?php echo $updateitem; ?>"><?php echo CHECKMARK_GREEN; ?> <?php
+											if ($result->transient) {
+												echo $saveitem;
+											} else {
+												echo $updateitem;
+											}
+											?></strong></button>
 										<button type="reset" onclick="$('.copydelete').hide();">
-											<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" />
+											<?php echo CROSS_MARK_RED; ?>
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 										<div class="floatright">
-											<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
+											<a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo $additem; ?>">
+												<?php echo PLUS_ICON; ?>
+												<strong><?php echo $additem; ?></strong>
+											</a>
 											<?php
 											if (!$result->transient) {
 												if (is_AdminEditPage("newscategory")) {
-													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
-													<?php
+													$what = 'category=';
 												} else {
-													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" /><?php echo gettext("View"); ?></a>
-													<?php
+													$what = 'title=';
 												}
+												?>
+												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;<?php echo $what . $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>">
+													<?php echo BULLSEYE_BLUE; ?>
+													<?php echo gettext("View"); ?>
+												</a>
+												<?php
 											}
 											?>
 										</div>

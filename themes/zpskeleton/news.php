@@ -94,7 +94,7 @@
 					if ($next_article_url && array_key_exists('link', $next_article_url) && $next_article_url['link'] != "") {
 						echo "<a class=\"button\" href=\"" . html_encode($next_article_url['link']) . "\" title=\"" . html_encode(strip_tags($next_article_url['title'])) . "\">" . $next_article_url['title'] . " &raquo;</a> ";
 					}
-					$prev_article_url = getPrevNews('date', 'desc');
+					$prev_article_url = getPrevNewsURL('date', 'desc');
 					if ($prev_article_url && array_key_exists('link', $prev_article_url) && $prev_article_url['link'] != "") {
 						echo "<a class=\"button\" href=\"" . html_encode($prev_article_url['link']) . "\" title=\"" . html_encode(strip_tags($prev_article_url['title'])) . "\">&laquo; " . $prev_article_url['title'] . "</a> ";
 					}

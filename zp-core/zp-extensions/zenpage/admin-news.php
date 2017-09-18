@@ -33,6 +33,7 @@ if (isset($_GET['delete'])) {
 		$reports[] = $msg;
 	}
 }
+
 // publish or un-publish page by click
 if (isset($_GET['publish'])) {
 	XSRFdefender('update');
@@ -221,11 +222,14 @@ updatePublished('news');
 					<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-news.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
 						<?php XSRFToken('checkeditems'); ?>
 						<div class="buttons">
-							<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
+							<button type="submit" title="<?php echo gettext('Apply'); ?>"><?php echo CHECKMARK_GREEN; ?> <?php echo gettext('Apply'); ?></strong>
 							</button>
 						</div>
 						<span class="buttons floatright">
-							<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
+							<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>">
+								<?php echo PLUS_ICON; ?>
+								<strong><?php echo gettext("New Article"); ?></strong>
+							</a>
 						</span>
 						<br class="clearall">
 
@@ -331,9 +335,9 @@ updatePublished('news');
 										<div class="page-list_icon">
 											<?php
 											if ($article->inProtectedCategory()) {
-												echo '<img src="../../images/lock_2.png" style="border: 0px;" alt="' . gettext('password protected') . '" title="' . gettext('password protected') . '" />';
+												echo LOCK;
 											} else {
-												echo '<img src="../../images/lock_open.png" style="border: 0px;" alt="' . gettext('unprotected') . '" title="' . gettext('unprotected') . '" />';
+												echo LOCK_OPEN;
 											}
 											?>
 										</div>
@@ -359,7 +363,7 @@ updatePublished('news');
 													<a href="<?php echo $option . $divider; ?>commentson=0&amp;titlelink=<?php
 													echo html_encode($article->getTitlelink());
 													?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
-														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
+															 <?php echo BULLSEYE_GREEN; ?>
 													</a>
 													<?php
 												} else {
@@ -367,7 +371,7 @@ updatePublished('news');
 													<a href="<?php echo $option . $divider; ?>commentson=1&amp;titlelink=<?php
 													echo html_encode($article->getTitlelink());
 													?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
-														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
+															 <?php echo BULLSEYE_RED; ?>
 													</a>
 													<?php
 												}
@@ -377,10 +381,10 @@ updatePublished('news');
 										} else {
 											?>
 											<div class="page-list_icon">
-												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+												<?php echo BULLSEYE_LIGHTGRAY; ?>
 											</div>
 											<div class="page-list_icon">
-												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+												<?php echo BULLSEYE_LIGHTGRAY; ?>
 											</div>
 										<?php } ?>
 
@@ -388,7 +392,7 @@ updatePublished('news');
 											<a target="_blank" href="../../../index.php?p=news&amp;title=<?php
 											echo $article->getTitlelink();
 											?>" title="<?php echo gettext('View article'); ?>">
-												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
+													 <?php echo BULLSEYE_BLUE; ?>
 											</a>
 										</div>
 
@@ -400,25 +404,25 @@ updatePublished('news');
 													<a href="<?php echo $option . $divider; ?>hitcounter=1&amp;titlelink=<?php
 													echo html_encode($article->getTitlelink());
 													?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext('Reset hitcounter'); ?>">
-														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
+															 <?php echo RECYCLE_ICON; ?>
+													</a>
 												</div>
 												<?php
 											}
 											?>
 											<div class="page-list_icon">
 												<a href="javascript:confirmDelete('admin-news.php<?php echo $option . $divider; ?>delete=<?php echo $article->getTitlelink(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
+													<?php echo WASTEBASKET; ?>
+												</a>
 											</div>
-
-
 											<?php
 										} else {
 											?>
 											<div class="page-list_icon">
-												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+												<?php echo BULLSEYE_LIGHTGRAY; ?>
 											</div>
 											<div class="page-list_icon">
-												<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
+												<?php echo BULLSEYE_LIGHTGRAY; ?>
 											</div>
 
 											<?php
@@ -437,8 +441,15 @@ updatePublished('news');
 							?>
 
 						</table>
-						<p class="centered"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>	</p>
-						<p class="buttons"><button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button></p>
+						<p class="centered">
+							<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news.php', $options); ?>
+						</p>
+						<p class="buttons">
+							<button type="submit" title="<?php echo gettext('Apply'); ?>">
+								<?php echo CHECKMARK_GREEN; ?>
+								<strong><?php echo gettext('Apply'); ?></strong>
+							</button>
+						</p>
 					</form>
 					<?php printZenpageIconLegend(); ?>
 				</div> <!-- tab_articles -->

@@ -194,28 +194,9 @@ if ($alb) {
 		$themes[$theme] = $data['name'];
 	}
 	$last = '';
+	cacheManager::printShowHide();
 	?>
-	<script type="text/javascript">
-		//<!-- <![CDATA[
-		function checkTheme(theme) {
-			$('.' + theme).prop('checked', $('#' + theme).prop('checked'));
-		}
-		function showTheme(theme) {
-			html = $('#' + theme + '_arrow').html();
-			if (html.match(/down/)) {
-				html = html.replace(/_down/, '_up');
-				html = html.replace(/title = "<?php echo gettext('Show'); ?>/, 'title="<?php echo gettext('Hide');
-	?>"');
-				$('#' + theme + '_list').show();
-			} else {
-				html = html.replace(/_up/, '_down');
-				html = html.replace(/title="<?php echo gettext('Hide'); ?>/, 'title="<?php echo gettext('Show'); ?>"');
-				$('#' + theme + '_list').hide();
-			}
-			$('#' + theme + '_arrow').html(html);
-		}
-		//]]> -->
-	</script>
+
 	<form class="dirtylistening" onReset="setClean('size_selections');" id="size_selections" name="size_selections" action="?tab=images&select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
 		<?php XSRFToken('cacheImages') ?>
 		<ol class="no_bullets">
@@ -297,9 +278,9 @@ if ($alb) {
 					$last = $theme;
 					?>
 					<li>
-						<span class="icons" id="<?php echo $theme; ?>_arrow">
+						<span class="icons upArrow" id="<?php echo $theme; ?>_arrow">
 							<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
-								<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/arrow_down.png'; ?>" alt="" />
+								<?php echo ARROW_DOWN_GREEN; ?>
 							</a>
 						</span>
 						<label>
@@ -387,7 +368,7 @@ if ($alb) {
 			?>
 			<p class="buttons">
 				<button class="tooltip" type="submit" title="<?php echo $button['title']; ?>" >
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" />
+					<?php echo CURVED_UPWARDS_AND_RIGHTWARDS_ARROW_BLUE; ?>
 					<?php echo $button['text']; ?>
 				</button>
 			</p>

@@ -188,41 +188,27 @@ class cacheManager {
 		ksort($custom, SORT_LOCALE_STRING);
 		$custom[''] = array(array());
 		$c = 0;
-		?>
-		<script type="text/javascript">
-			//<!-- <![CDATA[
-			function showTheme(theme) {
-				html = $('#' + theme + '_arrow').html();
-				if (html.match(/down/)) {
-					html = html.replace(/_down/, '_up');
-					html = html.replace(/title="<?php echo gettext('Show'); ?>/, 'title="<?php echo gettext('Hide'); ?>"');
-					$('#' + theme + '_list').show();
-				} else {
-					html = html.replace(/_up/, '_down');
-					html = html.replace(/title="<?php echo gettext('Hide'); ?>/, 'title="<?php echo gettext('Show'); ?>"');
-					$('#' + theme + '_list').hide();
-				}
-				$('#' + theme + '_arrow').html(html);
-			}
-			//]]> -->
-		</script>
-		<?php
+		self::printShowHide();
+
 		foreach ($custom as $theme => $themedata) {
 			$themedata = sortMultiArray($themedata, array('thumb', 'image_size', 'image_width', 'image_height'));
+			if (!$theme) {
+				echo '<br />';
+			}
 			?>
-			<span class="icons" id="<?php echo $theme; ?>_arrow">
+			<span class="icons upArrow" id="<?php echo $theme; ?>_arrow">
+				<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
+					<?php echo ARROW_DOWN_GREEN; ?>
+				</a>
 				<?php
 				if ($theme) {
 					$inputclass = 'hidden';
 					echo '<em>' . $theme . '</em> (' . count($themedata), ')';
 				} else {
 					$inputclass = 'textbox';
-					echo '<br />' . gettext('add');
+					echo gettext('add');
 				}
 				?>
-				<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
-					<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/arrow_down.png'; ?>" alt="" />
-				</a>
 			</span>
 			<br />
 			<div id="<?php echo $theme; ?>_list" style="display:none">
@@ -325,6 +311,36 @@ class cacheManager {
 	}
 
 	/**
+	 * javascript for show and hide of individual cache sizes
+	 */
+	static function printShowHide() {
+		?>
+		<script type="text/javascript">
+		//<!-- <![CDATA[
+			function checkTheme(theme) {
+				$('.' + theme).prop('checked', $('#' + theme).prop('checked'));
+			}
+			function showTheme(theme) {
+				html = $('#' + theme + '_arrow').html();
+				if ($('#' + theme + '_arrow').hasClass('upArrow')) {
+					$('#' + theme + '_arrow').removeClass('upArrow');
+					html = html.replace(/<?php echo html_entity_decode(strip_tags(ARROW_DOWN_GREEN)); ?>/, '<?php echo html_entity_decode(strip_tags(ARROW_UP_GREEN)); ?>');
+					html = html.replace(/<?php echo gettext('Show'); ?>/, '<?php echo gettext('Hide'); ?>');
+					$('#' + theme + '_list').show();
+				} else {
+					$('#' + theme + '_arrow').addClass('upArrow');
+					html = html.replace(/<?php echo html_entity_decode(strip_tags(ARROW_UP_GREEN)); ?>/, ' <?php echo html_entity_decode(strip_tags(ARROW_DOWN_GREEN)); ?>');
+					html = html.replace(/<?php echo gettext('Hide'); ?>/, '<?php echo gettext('Show'); ?>');
+					$('#' + theme + '_list').hide();
+				}
+				$('#' + theme + '_arrow').html(html);
+			}
+		//]]> -->
+		</script>
+		<?php
+	}
+
+	/**
 	 *
 	 * filter for the setShow() methods
 	 * @param object $obj
@@ -367,7 +383,7 @@ class cacheManager {
 					'button_text' => gettext('Purge RSS cache'),
 					'formname' => 'purge_rss_cache.php',
 					'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
-					'icon' => 'images/edit-delete.png',
+					'icon' => WASTEBASKET,
 					'alt' => '',
 					'title' => gettext('Delete all files from the RSS cache'),
 					'hidden' => '<input type="hidden" name="action" value="clear_rss_cache" />',
@@ -381,7 +397,7 @@ class cacheManager {
 				'button_text' => gettext('Purge Image cache'),
 				'formname' => 'purge_image_cache.php',
 				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=action=clear_cache',
-				'icon' => 'images/edit-delete.png',
+				'icon' => WASTEBASKET,
 				'alt' => '',
 				'title' => gettext('Delete all files from the Image cache'),
 				'hidden' => '<input type="hidden" name="action" value="clear_cache" />',
@@ -393,7 +409,7 @@ class cacheManager {
 				'button_text' => gettext('Purge HTML cache'),
 				'formname' => 'clearcache_button',
 				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
-				'icon' => 'images/edit-delete.png',
+				'icon' => WASTEBASKET,
 				'title' => gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="action" value="clear_html_cache">',
@@ -407,7 +423,7 @@ class cacheManager {
 				'button_text' => gettext('Purge search cache'),
 				'formname' => 'clearcache_button',
 				'action' => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_search_cache',
-				'icon' => 'images/edit-delete.png',
+				'icon' => WASTEBASKET,
 				'title' => gettext('Clear the static search cache.'),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="action" value="clear_search_cache">',
@@ -426,7 +442,7 @@ class cacheManager {
 			$disable = ' disabled="disabled"';
 			$title = gettext("You must first set the plugin options for cached image parameters.");
 		}
-		$html .= '<div class="button buttons tooltip" title="' . $title . '"><a href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?album=' . html_encode($object->name) . '&amp;XSRFToken=' . getXSRFToken('cacheImages') . '"' . $disable . '><img src="images/cache.png" />' . gettext('Cache album images') . '</a><br class="clearall"></div>';
+		$html .= '<div class="button buttons tooltip" title="' . $title . '"><a href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?album=' . html_encode($object->name) . '&amp;XSRFToken=' . getXSRFToken('cacheImages') . '"' . $disable . '>' . CIRCLED_BLUE_STAR . ' ' . gettext('Cache album images') . '</a><br class="clearall"></div>';
 		return $html;
 	}
 

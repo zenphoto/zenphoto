@@ -69,8 +69,14 @@ function getOptionContent() {
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('Apply') ?>">
+								<?php echo CHECKMARK_GREEN; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('reset') ?>">
+								<?php echo CROSS_MARK_RED; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
 						</p>
 					</td>
 				</tr>
@@ -79,29 +85,32 @@ function getOptionContent() {
 					?>
 					<tr class="passwordextrashow">
 						<td class="option_name">
-							<p>
-								<a onclick="toggle_passwords('', true);">
-									<?php echo gettext("Search password"); ?>
-								</a>
-							</p>
+							<a onclick="toggle_passwords('', true);">
+								<?php echo gettext("Search password"); ?>
+							</a>
 						</td>
 						<td class="option_value">
 							<?php
 							$x = getOption('search_password');
 							if (empty($x)) {
 								?>
-								<img src="images/lock_open.png" />
+								<a onclick="toggle_passwords('', true);">
+									<?php echo LOCK_OPEN; ?>
+								</a>
 								<?php
 							} else {
 								$x = '          ';
 								?>
-								<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
+								<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>">
+									<?php echo LOCK; ?>
+								</a>
 								<?php
 							}
 							?>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<?php echo INFORMATION_BLUE; ?>
 								<div class="option_desc_hidden">
 
 									<p><?php echo gettext("Password for the search guest user. click on <em>Search password</em> to change."); ?></p>
@@ -124,7 +133,8 @@ function getOptionContent() {
 										 value="<?php echo html_encode(getOption('search_user')); ?>" />
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<?php echo INFORMATION_BLUE; ?>
 								<div class="option_desc_hidden">
 									<?php echo gettext("User ID for the search guest user") ?>
 								</div>
@@ -168,7 +178,8 @@ function getOptionContent() {
 							</span>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<?php echo INFORMATION_BLUE; ?>
 								<div class="option_desc_hidden">
 
 									<?php echo gettext("Password for the search guest user. If this is set, visitors must know this password to view search results."); ?>
@@ -184,7 +195,8 @@ function getOptionContent() {
 							<?php print_language_string_list(getOption('search_hint'), 'hint', false, NULL, 'hint', '100%'); ?>
 						</td>
 						<td class="option_desc">
-							<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+							<span class="option_info">
+								<?php echo INFORMATION_BLUE; ?>
 								<div class="option_desc_hidden">
 									<?php echo gettext("A reminder hint for the password."); ?>
 								</div>
@@ -300,7 +312,8 @@ function getOptionContent() {
 					?>
 				</td>
 				<td class="option_desc">
-					<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+					<span class="option_info">
+						<?php echo INFORMATION_BLUE; ?>
 						<div class="option_desc_hidden">
 							<p><?php echo gettext("<em>Field list</em> is the set of fields on which searches may be performed."); ?></p>
 							<p>
@@ -327,7 +340,8 @@ function getOptionContent() {
 						<?php printf(gettext('redo search after %s minutes.'), '<input type="textbox" size="4" name="search_cache_duration" value="' . getOption('search_cache_duration') . '" />'); ?>
 					</td>
 					<td class="option_desc">
-						<span class="option_info"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/info.png">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
 							</div>
@@ -441,8 +455,14 @@ function getOptionContent() {
 				<tr>
 					<td colspan="100%">
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('Apply') ?>">
+								<?php echo CHECKMARK_GREEN; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('reset') ?>">
+								<?php echo CROSS_MARK_RED; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
 						</p>
 					</td>
 				</tr>

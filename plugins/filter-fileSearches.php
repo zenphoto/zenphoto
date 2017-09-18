@@ -11,7 +11,7 @@
  * @category package
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext("Filter out files from albums and image searches that we do not want shown. See the plugin options for configuration.");
+$plugin_description = gettext("Filter out files from albums and image searches that we do not want shown.");
 $option_interface = 'filter_file_searches_options';
 
 $mysetoptions = array();

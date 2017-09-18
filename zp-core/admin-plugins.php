@@ -102,10 +102,20 @@ $filelist = array_slice($pluginlist, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PA
 ?>
 <script type="text/javascript">
 	<!--
-	var pluginsToPage = ['<?php echo implode("','", $pluginlist); ?>'];
+	var pluginsToPage = ['<?php echo implode("','", array_map('strtolower', $pluginlist)); ?>'];
 	function gotoPlugin(plugin) {
 		i = Math.floor(jQuery.inArray(plugin, pluginsToPage) / <?php echo PLUGINS_PER_PAGE; ?>);
 		window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-plugins.php?page=plugins&tab=<?php echo html_encode($subtab); ?>&subpage=' + i + '&show=' + plugin + '#' + plugin;
+	}
+
+	function showPluginInfo(plugin) {
+		$.colorbox({
+			close: '<?php echo gettext("close"); ?>',
+			maxHeight: '90%',
+			maxWidth: '80%',
+			innerWidth: '560px',
+			href: plugin
+		});
 	}
 -->
 </script>
@@ -158,8 +168,10 @@ zp_apply_filter('admin_note', 'plugins', '');
 		<input type="hidden" name="saveplugins" value="yes" />
 		<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 		<p class="buttons">
-			<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-			<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+			<button type="submit" value="<?php echo gettext('Apply') ?>"><?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
+			<button type="reset" value="<?php echo gettext('Reset') ?>">
+				<?php echo CROSS_MARK_RED; ?>
+				<strong><?php echo gettext("Reset"); ?></strong></button>
 		</p><br class="clearall"><br /><br />
 		<table>
 			<tr>
@@ -187,12 +199,12 @@ zp_apply_filter('admin_note', 'plugins', '');
 							$third_party_plugin = false;
 							$ico = 'images/zp.png';
 							$whose = gettext('Supplemental plugin');
-							$plugin_URL .= '&amp;type=supplemental';
+							$plugin_URL .= '&type=supplemental';
 						}
 					}
 					if ($third_party_plugin) {
 						$whose = gettext('Third party plugin');
-						$plugin_URL .= '&amp;type=thirdparty';
+						$plugin_URL .= '&type=thirdparty';
 					}
 				} else {
 					$whose = gettext('Official plugin');
@@ -263,94 +275,135 @@ zp_apply_filter('admin_note', 'plugins', '');
 				if ($currentsetting > THEME_PLUGIN) {
 					$selected_style = ' class="currentselection"';
 				}
-				if (isset($_GET['show']) && $_GET['show'] == $extension) {
+				if (isset($_GET['show']) && strtolower($_GET['show']) == strtolower($extension)) {
 					$selected_style = ' class="highlightselection"';
+				}
+				if ($third_party_plugin) {
+					$path = stripSuffix($paths[$extension]) . '/logo.png';
+					if (file_exists($path)) {
+						$ico = str_replace(SERVERPATH, WEBPATH, $path);
+					} else {
+						$ico = 'images/placeholder.png';
+					}
+				}
+				if ($plugin_is_filter & CLASS_PLUGIN) {
+					$iconA = '<img class="zp_logoicon" width="8px" src="images/placeholder.png" /><a title="' . gettext('class plugin') . '"><img class="zp_logoicon" src="images/folder_picture.png" /></a><img class="zp_logoicon" width="8px" src="images/placeholder.png" />';
+					$iconT = '';
+				} else {
+					if ($plugin_is_filter & ADMIN_PLUGIN) {
+						$iconA = '<a title="' . gettext('admin plugin') . '"><img class="zp_logoicon" src="images/folder.png" /></a>';
+					} else {
+						$iconA = '<img class="zp_logoicon" src="images/placeholder.png" />';
+					}
+					if ($plugin_is_filter & FEATURE_PLUGIN) {
+						$iconT = '<a title="' . gettext('feature plugin') . '"><img class="zp_logoicon" src="images/pictures.png" /></a>';
+					} else if ($plugin_is_filter & THEME_PLUGIN) {
+						$iconT = '<a title="' . gettext('theme plugin') . '"><img class="zp_logoicon" src="images/pictures_dn.png" /></a>';
+					} else {
+						$iconT = '<img class="zp_logoicon" src="images/placeholder.png" />';
+					}
+				}
+
+				$attributes = '';
+				if ($parserr) {
+					$optionlink = false;
+					$attributes .= ' disabled="disabled"';
+				} else {
+					if ($currentsetting > THEME_PLUGIN) {
+						$attributes .= ' checked="checked"';
+					}
+				}
+				if ($plugin_disable) {
+					preg_match('/\<a href="#(.*)">/', $plugin_disable, $matches);
+					if ($matches) {
+						$plugin_disable = str_replace($matches[0], '<a onclick="gotoPlugin(\'' . strtolower($matches[1]) . '\');">', $plugin_disable);
+					}
 				}
 				?>
 				<tr<?php echo $selected_style; ?>>
-					<td min-width="30%">
+					<td min-width="30%"  class="nowrap">
 						<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="<?php echo $currentsetting; ?>" />
-						<label id="<?php echo $extension; ?>" class="nowrap">
+						<label id="<?php echo strtolower($extension); ?>" class="floatleft">
 							<?php
-							if ($third_party_plugin) {
-								$path = stripSuffix($paths[$extension]) . '/logo.png';
-								if (file_exists($path)) {
-									$ico = str_replace(SERVERPATH, WEBPATH, $path);
-								} else {
-									$ico = 'images/placeholder.png';
-								}
-							}
-							?>
-							<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
-							<?php
-							if ($plugin_is_filter & CLASS_PLUGIN) {
-								$iconA = '<img class="zp_logoicon" width="8px" src="images/placeholder.png" /><a title="' . gettext('class plugin') . '"><img class="zp_logoicon" src="images/folder_picture.png" /></a><img class="zp_logoicon" width="8px" src="images/placeholder.png" />';
-								$iconT = '';
-							} else {
-								if ($plugin_is_filter & ADMIN_PLUGIN) {
-									$iconA = '<a title="' . gettext('admin plugin') . '"><img class="zp_logoicon" src="images/folder.png" /></a>';
-								} else {
-									$iconA = '<img class="zp_logoicon" src="images/placeholder.png" />';
-								}
-								if ($plugin_is_filter & FEATURE_PLUGIN) {
-									$iconT = '<a title="' . gettext('feature plugin') . '"><img class="zp_logoicon" src="images/pictures.png" /></a>';
-								} else if ($plugin_is_filter & THEME_PLUGIN) {
-									$iconT = '<a title="' . gettext('theme plugin') . '"><img class="zp_logoicon" src="images/pictures_dn.png" /></a>';
-								} else {
-									$iconT = '<img class="zp_logoicon" src="images/placeholder.png" />';
-								}
-							}
-							echo $iconT;
-							echo $iconA;
-
-							$attributes = '';
-							if ($parserr) {
-								$optionlink = false;
-								$attributes .= ' disabled="disabled"';
-							} else {
-								if ($currentsetting > THEME_PLUGIN) {
-									$attributes .= ' checked="checked"';
-								}
-							}
 							if ($plugin_disable) {
 								?>
-								<span class="icons" id="<?php echo $extension; ?>_checkbox">
-									<a onclick="$('#showdisable_<?php echo $extension; ?>').toggle();" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>" >
-										<img src="images/action.png" alt="" class="zp_logoicon" />
-									</a>
-									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
+								<span class="text_pointer">
+									<?php
+								}
+								?>
+								<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
+								<?php
+								echo $iconT;
+								echo $iconA;
+								?>
+								<?php
+								if ($plugin_disable) {
+									?>
 								</span>
 								<?php
-							} else {
+								if ($plugin_disable) {
+									?>
+									<span class="plugin_disable">
+										<div class="plugin_disable_hidden">
+											<?php echo $plugin_disable; ?>
+										</div>
+										<?php
+									}
+									?>
+									<span class="icons">
+										<span style="padding-left: 2px;">
+											<?php echo CROSS_MARK_RED; ?>
+										</span>
+									</span>
+									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
+
+									<?php
+								} else {
+									?>
+									<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
+									<?php
+								}
+								echo $extension;
+								if (!empty($plugin_version)) {
+									echo ' v' . $plugin_version;
+								}
 								?>
-								<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
+
 								<?php
-							}
-							echo $extension;
-							if (!empty($plugin_version)) {
-								echo ' v' . $plugin_version;
+								if ($plugin_disable) {
+									?>
+								</span>
+								<?php
 							}
 							?>
 						</label>
 						<?php
 						if ($subtab == 'all') {
 							$tab = $member[$extension];
-							echo '<span class="displayrightsmall"><a href="' . html_encode($tabs[$tab]) . '"><em>' . $tab . '</em></a></span>';
+							?>
+							<span class="displayrightsmall">
+								<a href="<?php echo html_encode($tabs[$tab]); ?>" title="<?php printf(gettext('Go to &quot;%s&quot; plugin page.'), $tab); ?>">
+									<em><?php echo $tab; ?></em>
+								</a>
+							</span>
+							<?php
 						}
 						?>
 					</td>
-					<td width="60">
-						<span class="icons"><a onclick="$.colorbox({
-									close: '<?php echo gettext("close"); ?>',
-									maxHeight: '80%',
-									maxWidth: '80%',
-									innerWidth: '560px',
-									href: '<?php echo $plugin_URL; ?>'
-								});"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'), $extension); ?>" alt=""></a></span>
-																	 <?php
-																	 if ($optionlink) {
-																		 ?>
-							<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>"><img class="icon-position-top3" src="images/options.png" alt="" /></a></span>
+					<td>
+						<span class="icons plugin_info" id="doc_<?php echo $extension; ?>">
+							<a onclick="showPluginInfo('<?php echo $plugin_URL; ?>');" title="<?php echo gettext('Show plugin usage information.'); ?>">
+								<?php echo INFORMATION_BLUE; ?>
+							</a>
+						</span>
+						<?php
+						if ($optionlink) {
+							?>
+							<span class="icons">
+								<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>">
+									<?php echo OPTIONS_ICON; ?>
+								</a>
+							</span>
 							<?php
 						} else {
 							?>
@@ -359,42 +412,20 @@ zp_apply_filter('admin_note', 'plugins', '');
 						}
 						if ($plugin_notice) {
 							?>
-							<span class="icons"><a onclick="$('#show_<?php echo $extension; ?>').toggle();" title ="<?php echo gettext('Plugin warnings'); ?>" ><img class="icon-position-top3" src="images/warn.png" alt="" /></a></span>
+							<span class="icons">
+								<span class="plugin_warning">
+									<?php echo WARNING_SIGN_ORANGE; ?>
+									<div class="plugin_warning_hidden">
+										<?php echo $plugin_notice; ?>
+									</div>
+								</span>
+							</span>
 							<?php
 						}
 						?>
 					</td>
 					<td colspan="100%">
-						<?php
-						echo $plugin_description;
-						if ($plugin_disable) {
-							?>
-							<div id="showdisable_<?php echo $extension; ?>" style="display: none" class="warningbox">
-								<?php
-								if ($plugin_disable) {
-									preg_match('/\<a href="#(.*)">/', $plugin_disable, $matches);
-									if ($matches) {
-										$plugin_disable = str_replace($matches[0], '<a onclick="gotoPlugin(\'' . $matches[1] . '\');">', $plugin_disable);
-									}
-									echo $plugin_disable;
-								}
-								?>
-							</div>
-
-							<?php
-						}
-						if ($plugin_notice) {
-							?>
-							<div id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
-								<?php
-								if ($plugin_notice) {
-									echo $plugin_notice;
-								}
-								?>
-							</div>
-							<?php
-						}
-						?>
+						<?php echo $plugin_description; ?>
 					</td>
 				</tr>
 				<?php
@@ -408,19 +439,48 @@ zp_apply_filter('admin_note', 'plugins', '');
 		</table>
 		<br />
 		<ul class="iconlegend">
-			<li><img src="images/zp_gold.png" alt=""><?php echo gettext('Official plugin'); ?></li>
-			<li><img src="images/zp.png" alt=""><?php echo gettext('Supplemental plugin'); ?></li>
-			<li><img src="images/folder_picture.png" alt=""><?php echo gettext('Class plugin'); ?></li>
-			<li><img src="images/folder.png" alt=""><?php echo gettext('Admin plugin'); ?></li>
-			<li><img src="images/pictures.png" alt=""><?php echo gettext('Feature plugin'); ?></li>
-			<li><img src="images/pictures_dn.png" alt=""><?php echo gettext('Theme plugin'); ?></li>
-			<li><img src="images/info.png" alt=""><?php echo gettext('Usage info'); ?></li>
-			<li><img src="images/options.png" alt=""><?php echo gettext('Options'); ?></li>
-			<li><img src="images/action.png" alt=""><img src="images/warn.png" alt=""><?php echo gettext('Warning note'); ?></li>
+			<li>
+				<img src="images/zp_gold.png" alt="">
+				<?php echo gettext('Official plugin'); ?>
+			</li>
+			<li>
+				<img src="images/zp.png" alt="">
+				<?php echo gettext('Supplemental plugin'); ?>
+			</li>
+			<li>
+				<img src="images/folder_picture.png" alt="">
+				<?php echo gettext('Class plugin'); ?>
+			</li>
+			<li>
+				<img src="images/folder.png" alt="">
+				<?php echo gettext('Admin plugin'); ?>
+			</li>
+			<li>
+				<img src="images/pictures.png" alt="">
+				<?php echo gettext('Feature plugin'); ?>
+			</li>
+			<li>
+				<img src="images/pictures_dn.png" alt="">
+				<?php echo gettext('Theme plugin'); ?>
+			</li>
+			<li>
+				<?php echo INFORMATION_BLUE; ?>
+				<?php echo gettext('Usage info'); ?>
+			</li>
+			<li>
+				<?php echo OPTIONS_ICON; ?>
+				<?php echo gettext('Options'); ?>
+			</li>
+			<li>
+				<?php echo WARNING_SIGN_ORANGE; ?>
+				<?php echo gettext('Warning note'); ?>
+			</li>
 		</ul>
 		<p class="buttons">
-			<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-			<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+			<button type="submit" value="<?php echo gettext('Apply') ?>"><?php echo CHECKMARK_GREEN; ?> <strong><?php echo gettext("Apply"); ?></strong></button>
+			<button type="reset" value="<?php echo gettext('Reset') ?>">
+				<?php echo CROSS_MARK_RED; ?>
+				<strong><?php echo gettext("Reset"); ?></strong></button>
 		</p><br /><br />
 		<input type="hidden" name="checkForPostTruncation" value="1" />
 	</form>

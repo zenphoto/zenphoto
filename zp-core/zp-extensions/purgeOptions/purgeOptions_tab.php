@@ -47,6 +47,8 @@ if (isset($_POST['purge'])) {
 		foreach ($_POST['missingcreator'] as $key => $action) {
 			switch ($action) {
 				case 1: // take no action
+					$sql = 'UPDATE ' . prefix('options') . ' SET `creator`=NULL WHERE `id`=' . $key;
+					$result = query($sql);
 					break;
 				case 2: //	purge
 					$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `id`=' . $key;
@@ -170,9 +172,14 @@ $orphaned = array();
 							<?php XSRFToken('purgeOptions'); ?>
 							<input type="hidden" name="purge" value="1" />
 							<p class = "buttons" >
-								<button type="submit" value="<?php echo gettext('Apply')
-							?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass_2.png" alt="" /> <strong><?php echo gettext("Apply"); ?> </strong></button >
-								<button type="reset" value="<?php echo gettext('reset') ?>"> <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /> <strong><?php echo gettext("Reset"); ?> </strong></button>
+								<button type="submit" value="<?php echo gettext('Apply') ?>">
+									<?php echo CHECKMARK_GREEN; ?>
+									<strong><?php echo gettext("Apply"); ?></strong>
+								</button >
+								<button type="reset" value="<?php echo gettext('reset') ?>">
+									<?php echo CROSS_MARK_RED; ?>
+									<strong><?php echo gettext("Reset"); ?></strong>
+								</button>
 							</p>
 							<br class="clearall">
 
@@ -203,26 +210,26 @@ $orphaned = array();
 								<br class="clearall">
 								<div class="purgeOptions_list">
 									<span class="purgeOptionsClass"><?php echo gettext('Orphaned options'); ?></span>
-									<label>
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/view.png' ?>">
+									<label title="<?php echo gettext('all: no acation'); ?>">
+										<?php echo BULLSEYE_BLUE; ?>
 										<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').removeAttr('checked');$('.orphaned').removeAttr('checked');$('#emptyOptionCheck').removeAttr('checked');">
 									</label>
-									<label>
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/fail.png' ?>">
+									<label title="<?php echo gettext('all: delete'); ?>">
+										<?php echo WASTEBASKET; ?>
 										<input type="radio" name="orphaned" id="orphanedDelete" onclick="$('.orphanedDelete').prop('checked', $('#orphanedDelete').prop('checked'));">
 									</label>
-									<label>
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/pass_2.png' ?>">
+									<label title="<?php echo gettext('all: hide'); ?>">
+										<?php echo HIDE_ICON; ?>
 										<input type="radio" name="orphaned" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));$('#emptyOptionCheck').removeAttr('checked');">
 									</label>
 									<?php
 									if ($empty) {
 										?>
-										<label>
+										<label title="<?php echo gettext('all: delete. It is generally safe to remove an orphaned option whose value is empty since referencing a non-existent option will return an empty value.'); ?>" >
 											<?php
 											echo gettext('<span class="emptyOption">empty</span>');
 											?>
-											<input type = "checkbox" id = "emptyOptionCheck" title="<?php echo gettext('It is generally safe to remove an orphaned option whose value is empty since referencing a non-existent option will return an empty value.'); ?>" onclick = "$('.deleteEmpty').prop('checked', $('#emptyOptionCheck').prop('checked'));"></label>
+											<input type = "checkbox" id = "emptyOptionCheck" onclick = "$('.deleteEmpty').prop('checked', $('#emptyOptionCheck').prop('checked'));"></label>
 										<?php
 									}
 									?>
@@ -239,34 +246,45 @@ $orphaned = array();
 													?>
 											<li<?php if ($hidden) echo ' class="hiddenOrphan"'; ?>>
 												<label class="none">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/view.png' ?>">
-													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedIgnore" value="1" onclick="$(this).removeAttr('checked');"/>
+													<?php echo BULLSEYE_BLUE; ?>
+													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedIgnore" value="1" <?php if (!$hidden) echo ' checked="checked"'; ?>/>
 												</label>
 												<label class="none">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/fail.png' ?>">
+													<?php echo WASTEBASKET; ?>
 													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphanedDelete<?php if (in_array('emptyOption', $classes)) echo ' deleteEmpty'; ?>" value="2" />
 												</label>
 												<label class="none">
-													<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/pass_2.png' ?>">
-													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphaned" value="3" />
-													<?php
-													if (empty($classes)) {
-														echo $display;
-													} else {
-														echo '<span class="' . implode($classes) . '">' . $display . '</span>';
-													}
-													?>
+													<?php echo HIDE_ICON; ?>
+													<input type="radio" name="missingcreator[<?php echo $key; ?>]" class="orphaned" value="3" <?php if ($hidden) echo ' checked="checked"'; ?>/>
 												</label>
+
+												<?php
+												if (empty($classes)) {
+													echo $display;
+												} else {
+													$title = '';
+													if ($hidden) {
+														$title = gettext('hidden');
+													}
+													if (in_array('emptyOption', $classes)) {
+														if ($title) {
+															$title .= ', ';
+														}
+														$title .= gettext('empty');
+													}
+													echo '<label title="' . $title . '" class="' . implode(' ', $classes) . '">' . $display . '</label>';
+												}
+												?>
 											</li>
 											<?php
 										}
 										?>
 									</ul>
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/view.png' ?>">
+									<?php echo BULLSEYE_BLUE; ?>
 									<?php echo gettext('no action'); ?>
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/fail.png' ?>">
+									<?php echo WASTEBASKET; ?>
 									<?php echo gettext('delete'); ?>
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/pass_2.png' ?>">
+									<?php echo HIDE_ICON; ?>
 									<?php echo gettext('hide'); ?>
 									<br />
 									<?php
@@ -289,8 +307,14 @@ $orphaned = array();
 							?>
 							<br class="clearall">
 							<p class="buttons">
-								<button type="submit" value="<?php echo gettext('Apply') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass_2.png" alt = "" /> <strong><?php echo gettext("Apply"); ?> </strong></button>
-								<button type="reset" value="<?php echo gettext('reset') ?>" > <img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /> <strong><?php echo gettext("Reset"); ?> </strong></button>
+								<button type="submit" value="<?php echo gettext('Apply') ?>" >
+									<?php echo CHECKMARK_GREEN; ?>
+									<strong><?php echo gettext("Apply"); ?></strong>
+								</button>
+								<button type="reset" value="<?php echo gettext('reset') ?>" >
+									<?php echo CROSS_MARK_RED; ?>
+									<strong><?php echo gettext("Reset"); ?></strong>
+								</button>
 							</p>
 							<br class="clearall">
 						</form>

@@ -103,7 +103,7 @@ function zp_error($message, $fatal = E_USER_ERROR) {
 function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	global $_zp_current_admin_obj, $_index_theme;
 	// check if function has been called by an exception
-	if (func_num_args() == 5) {
+	if (func_num_args() > 1) {
 		list($errno, $errstr, $errfile, $errline) = func_get_args();
 	} else {
 		// caught exception
@@ -114,11 +114,13 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		$errline = $exc->getLine();
 	}
 
+	error_clear_last(); //	it will be handled here, not on shutdown!
 	// if error has been supressed with an @
 	if (error_reporting() == 0 && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
 		return;
 	}
-	$errorType = array(E_ERROR => gettext('ERROR'),
+	$errorType = array(
+			E_ERROR => gettext('ERROR'),
 			E_WARNING => gettext('WARNING'),
 			E_NOTICE => gettext('NOTICE'),
 			E_USER_ERROR => gettext('USER ERROR'),
@@ -149,6 +151,26 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		<?php
 	}
 	return false;
+}
+
+/**
+ * shut-down handler, check for errors
+ */
+function zpShutDownFunction() {
+	$error = error_get_last();
+	if ($error) {
+		$file = str_replace('\\', '/', $error['file']);
+		preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . PLUGIN_FOLDER . ')~', $file, $matches);
+		if (isset($matches[2])) {
+			$path = trim(preg_replace('~^.*' . $matches[2] . '~i', '', $file), '/');
+			$path = explode('/', $path . '/');
+			$extension = stripSuffix($path[0]);
+			if ($extension) {
+				enableExtension($extension, 0);
+			}
+		}
+		zpErrorHandler($error['type'], $error['message'], $file, $error['line']);
+	}
 }
 
 /**
@@ -645,6 +667,7 @@ function zp_session_start() {
 	if ($result) {
 		return $result;
 	} else {
+		session_name('Session_' . str_replace('.', '_', ZENPHOTO_VERSION));
 		@ini_set('session.use_strict_mode', 1);
 		//	insure that the session data has a place to be saved
 		if (isset($_zp_conf_vars['session_save_path'])) {
@@ -660,20 +683,20 @@ function zp_session_start() {
 		session_set_cookie_params($sessionCookie['lifetime'], WEBPATH . '/', $_SERVER['HTTP_HOST'], secureServer(), true);
 
 		$result = session_start();
+		$_SESSION['version'] = ZENPHOTO_VERSION;
 		return $result;
 	}
 }
 
 function zp_session_destroy() {
-	if (session_id()) {
+	if ($name = session_name()) {
 		$_SESSION = array();
 		if (ini_get("session.use_cookies")) {
 			$params = session_get_cookie_params();
-			setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
-			);
+			setcookie($name, 'null', 1, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+		} else {
+			setcookie($name, 'null', 1);
 		}
-		setcookie('PHPSESSID', '', time() - 42000);
-		session_destroy();
 	}
 }
 
@@ -779,7 +802,7 @@ function zp_setCookie($name, $value, $time = NULL, $security = true) {
  * @param string $name
  */
 function zp_clearCookie($name) {
-	zp_setCookie($name, '', -368000, false);
+	zp_setCookie($name, 'null', -368000, false);
 }
 
 /**

@@ -130,6 +130,9 @@ table#archive td#newsarchive {
 #loginform legend {
 	color: #333;
 }
+#loginform .show_checkbox {
+	background-color: #eee;
+}
 #comment-wrap {
 	background: url(../images/hr_light.gif) repeat-x;
 }
