@@ -73,10 +73,10 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.4.3.4</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.5.0.0</h2>
 <p> </p>
 <h2>General</h2>
-<p>Several security fixes have been applied.</p>
+<p>Several security fixes have been applied. In addition, ZenPhoto20 now traps and logs fatal PHP errors. It an error occurs during setup of a plugin, that plugin is disabled so that the error cannot prevent loading of the administrative pages.</p>
 <p>ZenPhoto20 development testing is now limited to PHP version 7. While PHP version 5.2 is still supported, version level compatibility issues may find their way into the source. Zend Technologies support for PHP version 5.6 will terminate at the end of 2018. All earlier versions are already past their support life. (PHP version 6 was never released.) You are strongly urged to move your site to PHP version 7 as soon as practical. We reserve the right to deprecate support for PHP version 5 whenever supporting it becomes unmanageable.</p>
 <p>ZenPhoto20 will now check for new releases on GitHub. If a release is found that is newer than the one installed, a download button will appear in the Admin utilities functionss button area. <strong>Note:</strong> this feature requires that you are using PHP version 5.5 or later.</p>
 <p>The register user notify option has been move to the general options page. This option is used by multiple plugins so a global setting is more appropriate.</p>
@@ -94,6 +94,7 @@
 <h2>Admin pages</h2>
 <p>The tab based menu system has been replaced by a vertical menu bar with pop-out sub menus. <strong>NOTE:</strong> the name of the back-end css file has been changed to <em>admin‑pages.css</em>. This is because many servers cache css pages, sometimes for days. It would be really hard to use the new back-end menu system with with the old css file. Changing the name insures you get the proper menu system. </p>
 <p>As part of this implementation features have been organized by kind of function. The utilities buttons on the overview page are now limited to "single action" functions, e.g. <em>Reset Ratings</em>. So you will find <em>OVERVIEW</em> sub-menus all provide "statistics" about the site, <em>ADMIN </em>sub-menus provide the general management of the site, etc.</p>
+<p>The icons used on the administrative pages have been updated to a more minimal look and feel. In most cases the prior PNG image file has been replaced by a Unicode symbol. Thus the image loads have been eliminated during page rendering. All icons have been reviewed and made internally consistent.</p>
 <h2>News articles</h2>
 <p>The Previous and Next article links on theme news pages will now honor the category of the article. If you view a list of articles in a news category and click on the link to a specific article the previous and next article links for the article will show only articles within the originating category.</p>
 <h2> </h2>
