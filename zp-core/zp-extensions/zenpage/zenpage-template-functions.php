@@ -1700,7 +1700,11 @@ function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
 		if (is_NewsArticle()) {
 			$page = $_zp_current_zenpage_news->getNewsLoopPage();
 		}
-		printNewsIndexURL(NULL, '', '', $page);
+		$archive = '';
+		if(is_NewsArchive()) {
+			$archive = null;
+		}
+		printNewsIndexURL(NULL, '', $archive, $page);
 	}
 	if (is_Pages() || is_NewsCategory()) {
 		$parentitems = array();
