@@ -68,4 +68,4 @@ if (empty($needs)) {
 	</html>
 	<?php
 }
-?>
+exitZP();

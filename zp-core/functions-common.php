@@ -92,6 +92,20 @@ function zp_error($message, $fatal = E_USER_ERROR) {
 }
 
 /**
+ * Traps exceptions for logging
+ *
+ * @param type $ex the exception
+ */
+function zpExceptionHandler($ex) {
+	$errno = $ex->getCode();
+	$errstr = $ex->getMessage();
+	$errfile = $ex->getFile();
+	$errline = $ex->getLine();
+	zpErrorHandler($errno, $errstr, $errfile, $errline);
+	die();
+}
+
+/**
  *
  * Traps errors and insures thy are logged.
  * @param int $errno
@@ -102,24 +116,9 @@ function zp_error($message, $fatal = E_USER_ERROR) {
  */
 function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	global $_zp_current_admin_obj, $_index_theme;
-	// check if function has been called by an exception
-	if (func_num_args() > 1) {
-		list($errno, $errstr, $errfile, $errline) = func_get_args();
-	} else {
-		// caught exception
-		$exc = func_get_arg(0);
-		$errno = $exc->getCode();
-		$errstr = $exc->getMessage();
-		$errfile = $exc->getFile();
-		$errline = $exc->getLine();
-	}
-
-	if (version_compare(phpversion(), '7', '>=')) {
-		error_clear_last(); //	it will be handled here, not on shutdown!
-	}
 	// if error has been supressed with an @
 	if (error_reporting() == 0 && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
-		return;
+		return false;
 	}
 	$errorType = array(
 			E_ERROR => gettext('ERROR'),
@@ -160,7 +159,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
  */
 function zpShutDownFunction() {
 	$error = error_get_last();
-	if ($error) {
+	if ($error && !in_array($error['type'], array(E_USER_ERROR, E_WARNING, E_CORE_WARNING, E_COMPILE_WARNING, E_USER_WARNING, E_NOTICE, E_USER_NOTICE))) {
 		$file = str_replace('\\', '/', $error['file']);
 		preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . PLUGIN_FOLDER . ')~', $file, $matches);
 		if (isset($matches[2])) {
@@ -173,6 +172,11 @@ function zpShutDownFunction() {
 		}
 		zpErrorHandler($error['type'], $error['message'], $file, $error['line']);
 	}
+	if (function_exists('db_close')) {
+		db_close();
+	}
+
+	exit();
 }
 
 /**

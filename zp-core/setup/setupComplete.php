@@ -20,4 +20,5 @@ if (sanitize($_POST['errors'])) {
 }
 zp_apply_filter('log_setup', true, 'install', $result);
 unset($_SESSION['SetupStarted']);
+exitZP();
 ?>
