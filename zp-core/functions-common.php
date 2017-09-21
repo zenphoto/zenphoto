@@ -114,7 +114,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		$errline = $exc->getLine();
 	}
 
-	error_clear_last(); //	it will be handled here, not on shutdown!
+	zpClearErrors(); //	it will be handled here, not on shutdown!
 	// if error has been supressed with an @
 	if (error_reporting() == 0 && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
 		return;
@@ -154,10 +154,34 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 }
 
 /**
+ * Standin for error_get_last() for php version 5
+ *
+ * @global type $__errorState
+ * @return int
+ */
+function zpGetLastError() {
+	global $__errorState;
+	if (is_null($__errorState)) {
+		return error_get_last();
+	}
+	return 0;
+}
+
+/**
+ * "clears" pending errors. Needed because php 5 is missing error_get_last()
+ *
+ * @global int $__errorState
+ */
+function zpClearErrors() {
+	global $__errorState;
+	$__errorState = 0;
+}
+
+/**
  * shut-down handler, check for errors
  */
 function zpShutDownFunction() {
-	$error = error_get_last();
+	$error = zpGetLastError();
 	if ($error) {
 		$file = str_replace('\\', '/', $error['file']);
 		preg_match('~(.*)/(' . USER_PLUGIN_FOLDER . '|' . PLUGIN_FOLDER . ')~', $file, $matches);
