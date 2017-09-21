@@ -1464,8 +1464,10 @@ function installSignature() {
  * Closes the database to be sure that we do not build up outstanding connections
  */
 function exitZP() {
-	error_clear_last();
-	IF (function_exists('db_close')) {
+	if (version_compare(phpversion(), '7', '>=')) {
+		error_clear_last(); //	it will be handled here, not on shutdown!
+	}
+	if (function_exists('db_close')) {
 		db_close();
 	}
 	exit();
