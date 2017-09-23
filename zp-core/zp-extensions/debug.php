@@ -78,7 +78,7 @@ class debug {
 				gettext('Log the <em>EXPLAIN</em> output from SQL SELECT queries.') => 'EXPLAIN_SELECTS',
 				gettext('Log filter application sequence.') => 'FILTERS',
 				gettext('Log image processing debug information.') => 'IMAGE',
-				gettext('Log language selection processing.') => 'LOCALE,',
+				gettext('Log language selection processing.') => 'LOCALE',
 				gettext('Log admin saves and login attempts.') => 'LOGIN',
 				gettext('Log plugin load sequence.') => 'PLUGINS'
 		);
