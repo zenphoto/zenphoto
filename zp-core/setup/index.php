@@ -894,21 +894,21 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									}
 									// UTF-8 URI
 									if ($notice != -1) {
-										$test = copy(SERVERPATH . '/' . ZENFOLDER . '/images/reset.png', $testjpg = SERVERPATH . '/' . DATA_FOLDER . '/' . internalToFilesystem('tést.jpg'));
+										$test = copy(SERVERPATH . '/' . ZENFOLDER . '/images/placeholder.png', $testjpg = SERVERPATH . '/' . DATA_FOLDER . '/' . internalToFilesystem('tést.jpg'));
 										if (file_exists($testjpg)) {
 											?>
 											<li id="internal" class="pass limited">
 												<span>
-													<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>" class="test_image"  onerror="imgError('internal');"/>
 													<?php echo CHECKMARK_GREEN; ?>
 													<?php echo gettext('Image URIs appear to require the <em>UTF-8</em> character set.') ?>
+													<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode('tést.jpg'); ?>" class="test_image"  onerror="imgError('internal');" />
 												</span>
 											</li>
 											<li id="filesystem" class="fail limited" style="display: none;">
 												<span>
-													<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode(internalToFilesystem('tést.jpg')); ?>" title="filesystem" class="test_image" onerror="imgError('filesystem');"/>
 													<?php echo CHECKMARK_GREEN; ?>
 													<?php echo gettext('Image URIs appear require the <em>filesystem</em> character set.'); ?>
+													<img src="<?php echo WEBPATH . '/' . DATA_FOLDER . '/' . urlencode(internalToFilesystem('tést.jpg')); ?>" title="filesystem" class="test_image" onerror="imgError('filesystem');" />
 												</span>
 											</li>
 											<li id="unknown" class="warn" style="display: none;">
@@ -918,15 +918,17 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 												</span>
 											</li>
 											<script type="text/javascript">
-												window.addEventListener('load', function () {
-													$('.test_image').hide();
-						<?php if ($displayLimited) {
+
+						<?php
+						if ($displayLimited) {
 							?>
+													window.addEventListener('load', function () {
 														$('.limited').hide();
+													}, false);
 							<?php
 						}
 						?>
-												}, false);
+
 												var failed = 0;
 												function imgError(title) {
 													failed++;
