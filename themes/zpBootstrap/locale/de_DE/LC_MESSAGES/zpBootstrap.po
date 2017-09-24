@@ -1,0 +1,99 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: zpBootstrap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-31 18:04+0200\n"
+"PO-Revision-Date: 2017-07-31 18:05+0200\n"
+"Last-Translator: Vincent Bourganel <vincent_bourganel@yahoo.fr>\n"
+"Language-Team: vincent3569 <vincent_bourganel@yahoo.fr>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: ;gettext_th\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 2.0.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: home.php:61
+msgid "Latest news"
+msgstr "Neustes"
+
+#: themeoptions.php:62
+msgid ""
+"Display a home page, with a slider of random pictures, the gallery "
+"description and the latest news."
+msgstr ""
+
+#: themeoptions.php:71
+msgid ""
+"Select the Album to use for the homepage slider (Dynamic albums may used)."
+msgstr ""
+
+#: themeoptions.php:72
+msgid "If Gallery is selected, the whole gallery will be used for the slider."
+msgstr ""
+
+#: themeoptions.php:73
+msgid "Number of random pictures to use for the homepage slider."
+msgstr ""
+
+#: themeoptions.php:80
+msgid ""
+"Use <a href=\"https://isotope.metafizzy.co/\" target=\"_blank\">isotope "
+"jQuery plugin</a> for all albums pages rather than standard albums page. "
+"This album layout allows to filter pictures based on their tags."
+msgstr ""
+
+#: themeoptions.php:81
+msgid ""
+"This album layout does not manage sub-albums (in that case, only pictures of "
+"the album are shown and you cant not access on sub-albums!)."
+msgstr ""
+
+#: themeoptions.php:82
+msgid ""
+"Rather than use isotope layout for all albums, you may also allow "
+"\"multiple_layouts\" plugin and then choice \"album_isotope\" as layout for "
+"specific albums of your gallery."
+msgstr ""
+
+#: themeoptions.php:83
+msgid "Check to show some social links."
+msgstr "Auswählen, um Social-Media-Links anzuzeigen."
+
+#: themeoptions.php:85
+msgid "Display a link to the Archive list."
+msgstr "Zeigt einen Link zum Archiv."
+
+#: themeoptions.php:86
+msgid ""
+"Check to show a tag cloud in Archive list, with all the tags of the gallery."
+msgstr ""
+"Zeigt eine Schlagwortwolke mit allen Schlagwörtern der Galerie auf der "
+"Archiv-Seite."
+
+#: themeoptions.php:87
+msgid ""
+"Show the EXIF Data on Image page. Remember you have to check EXIFs data you "
+"want to show on options>image>information EXIF."
+msgstr ""
+"Zeigt die Exif-Daten auf der Bildseite an. Denken Sie daran, dass Sie die "
+"EXIF-Daten, die Sie anzeigen möchten, unter Einstellungen > Bild > EXIF "
+"auswählen können."
+
+#~ msgid ""
+#~ "Display a home page, with a slider of 5 random picts, the gallery "
+#~ "description and the latest news."
+#~ msgstr ""
+#~ "Zeigt eine Homepage mit einer Diashow mit fünf zufälligen Bildern, die "
+#~ "Galerie-Beschreibung und die neusten Nachrichten."
+
+#~ msgid ""
+#~ "Show the EXIF Data on Image page. Remember you have to check EXIFs data "
+#~ "you want to show on admin>image>information EXIF."
+#~ msgstr ""
+#~ "Zeigt die Exif-Daten auf der Bildseite an. Denken Sie daran, dass Sie die "
+#~ "EXIF-Daten, die Sie anzeigen möchten, unter Einstellungen > Bild > EXIF "
+#~ "auswählen können."

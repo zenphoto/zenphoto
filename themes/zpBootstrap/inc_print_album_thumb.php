@@ -1,21 +1,12 @@
-			<div class="album-wrap">
-				<ul class="thumbnails">
-					<?php while (next_album()) { ?>
-					<li class="span4 album-thumb">
-						<a class="thumbnail" rel="tooltip" href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:') . '&nbsp;' . html_encode(getBareAlbumTitle())/* . '<br>' . html_encode(getBareAlbumDesc())*/; ?>">
-							<?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, getOption('personnal_thumb_width'), getOption('personnal_thumb_height'), getOption('personnal_thumb_width'), getOption('personnal_thumb_height'), NULL, NULL, 'remove-attributes'); ?>
-						</a>
-						<h4>
-							<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:') . html_encode(getBareAlbumTitle()); ?>">
-								<?php printAlbumTitle(); ?>
-							</a>
-						</h4>
-					</li>
-					<?php } ?>
-				</ul>
-				<script type="text/javascript">
-					$('.thumbnail').tooltip({
-						placement: 'bottom'
-					});
-				</script>
+		<div class="row album-wrap margin-bottom-double">
+			<?php while (next_album()) { ?>
+			<div class="col-sm-4 album-thumb">
+				<a class="thumb" href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo html_encode(getBareAlbumTitle()); ?>">
+					<?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, getOption('zpB_album_thumb_width'), getOption('zpB_album_thumb_height'), getOption('zpB_album_thumb_width'), getOption('zpB_album_thumb_height'), NULL, NULL, 'remove-attributes img-responsive'); ?>
+				</a>
+				<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo html_encode(getBareAlbumTitle()); ?>">
+					<h5><?php printBareAlbumTitle(); ?></h5>
+				</a>
 			</div>
+			<?php } ?>
+		</div>
