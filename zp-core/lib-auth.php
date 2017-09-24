@@ -1086,8 +1086,8 @@ class _Authority {
 							<?php
 							if ($showUserField) { //	requires a "user" field
 								?>
-								<fieldset><legend><?php echo gettext("User"); ?></legend>
-									<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
+								<fieldset class="login_input"><legend><?php echo gettext("User"); ?></legend>
+									<input class="textfield" name="user" id="user" type="text"  value="<?php echo html_encode($requestor); ?>" />
 								</fieldset>
 								<?php
 							}
@@ -1096,8 +1096,8 @@ class _Authority {
 								<input type="checkbox" name="disclose_password" id="disclose_password" onclick="togglePassword('');" />
 								<?php echo gettext('Show') ?>
 							</label>
-							<fieldset><legend><?php echo gettext("Password"); ?></legend>
-								<input class="textfield" name="pass" id="pass" type="password" size="35" />
+							<fieldset class="login_input"><legend><?php echo gettext("Password"); ?></legend>
+								<input class="textfield" name="pass" id="pass" type="password"  />
 							</fieldset>
 							<br />
 							<div class="buttons">
