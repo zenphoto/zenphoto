@@ -1461,11 +1461,7 @@ function installSignature() {
 /**
  *
  * Call when terminating a script.
- * Closes the database to be sure that we do not build up outstanding connections
  */
 function exitZP() {
-	if (function_exists('db_close')) {
-		db_close();
-	}
 	exit();
 }
