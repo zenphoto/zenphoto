@@ -44,7 +44,7 @@
 						for ($i = 1; $i <= $zpmas_sscount; $i++) {
 							$randomImage = getRandomImages();
 							if (is_object($randomImage) && $randomImage->exists) {
-								$imageName = $randomImage->getTitle();
+								$imageName = $randomImage->getFileName();
 								if (strpos($randomList, $imageName)) {
 									$i--;
 								} else {
