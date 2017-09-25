@@ -45,6 +45,9 @@ Default admin toolbox css
 	color: #036;
 }
 
+#admin_tb a:hover {
+	cursor: pointer;
+}
 .adminGear {
 	font-family: Free Serif, Segoe UI Symbol;
 	font-size: 20px;
