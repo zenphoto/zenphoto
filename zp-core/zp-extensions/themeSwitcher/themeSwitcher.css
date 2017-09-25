@@ -50,7 +50,8 @@
 }
 .themeSwitcherMenu a:hover, .themeSwitcherMenuShow a:hover, .themeSwitcherControl a:hover{
 	text-decoration: none;
-	cursor: pointer  !important;
+	cursor: pointer;
+	text-decoration: none;
 }
 .themeSwitcherMenuShow {
 	font-family: Free Serif, Segoe UI Symbol;
