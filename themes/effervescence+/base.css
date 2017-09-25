@@ -780,11 +780,11 @@ ul.pagelist li.next {
 /* Admin Toolbox
 ------------------------------ */
 
-#admin_data{
+#admin_tb_data{
 	border: 1px solid __A_27__;
 }
 
-#admin h3 {
+#admin_tb h3 {
 	color: __C_64__;
 }
 

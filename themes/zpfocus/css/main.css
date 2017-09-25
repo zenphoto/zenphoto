@@ -318,17 +318,17 @@ html[xmlns] .clearfix {display: block;}
 
 /* Admin Toolbox */
 
-#admin_data {
+#admin_tb_data {
 	top: 40px;
 }
-#admin h3 {
+#admin_tb h3 {
 	font-weight: normal;
 	font-size:12px;
 	margin: 0;
 	padding: 0;
 	text-align: center;
 }
-#admin h3:hover {
+#admin_tb h3:hover {
 	color: #036;}
 
 /* Alert boxes */

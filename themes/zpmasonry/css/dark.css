@@ -21,7 +21,7 @@ input[type="submit"]:hover,input[type="reset"]:hover,
 #infscr-loading,
 #breadcrumbs,
 #subscribeextrashow,
-#admin_data,
+#admin_tb_data,
 #password-div,
 input,textarea,select,
 .newsarticlecredit span
@@ -51,7 +51,7 @@ input,textarea,select,
 #infscr-loading,
 #breadcrumbs,
 #subscribeextrashow,
-#admin_data,
+#admin_tb_data,
 #password-div,
 input,textarea,select,
 .newsarticlecredit span,
@@ -94,8 +94,8 @@ a:hover{color:#7ccc0cb;}
 .tags{background-image:url(../images/tag-inv.png);}
 .counts{background-image:url(../images/star-inv.png);}
 #backtotop{background-image:url(../images/arrow-alt-up-inv.png);}
-#admin_data {top:40px;}
-#admin h3 a{background-image: url(../images/tools-inv.png);}
+#admin_tb_data {top:40px;}
+#admin_tb h3 a{background-image: url(../images/tools-inv.png);}
 .pass{background-image: url(../images/padlock-closed-inv.png);}
 
 #slideshowlink a{background-image: url(../images/cinema-inv.png);}

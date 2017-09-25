@@ -627,14 +627,14 @@ label:hover {
 
 /* Admin Toolbox
 ------------------------------ */
-#admin{
+#admin_tb{
 	top: 17px;
 }
-#admin_data{
+#admin_tb_data{
 	background-image:url(images/search_bg.png);
 }
 
-#admin_data h3 {
+#admin_tb_data h3 {
 	font: 105% Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-weight: bold;
 	color: #494949;
@@ -644,7 +644,7 @@ label:hover {
 }
 
 
-#admin_data ul  {
+#admin_tb_data ul  {
 	margin-left: -30px;
 }
 

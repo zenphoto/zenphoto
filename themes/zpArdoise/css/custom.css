@@ -14,7 +14,7 @@ div.pagination a, div.pagination span.current {border-color: #4d93e8;}
 div.pagination span.ellipsis {border-color: #4d93e8;}
 div.pagination span.current {background-color: #4d93e8;}
 div.pagination a:hover {border-color: #4d93e8;}
-#admin h3:hover {color: #4d93e8;}
+#admin_tb h3:hover {color: #4d93e8;}
 
 
 /*

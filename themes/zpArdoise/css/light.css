@@ -164,11 +164,11 @@ div#footer {
 	background: #ddd;
 	border: 1px solid #bbb;
 }
-#admin, #admin_data {
+#admin_tb, #admin_tb_data {
 	border: 1px solid #bbb;
 	background: #ddd;
 }
-#admin h3:hover {
+#admin_tb h3:hover {
 	color: #b45e2c;
 }
 #slidenav a, #slidenav a:visited {

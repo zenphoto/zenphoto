@@ -206,9 +206,9 @@ li.year{margin-bottom:7px;}
 .latest .latestnews-date{font-style:italic;}
 .latest .readmorelink{display:none;}
 
-#admin, #admin_data {z-index:101;position:absolute;top:15px;right:0;text-align:right;padding:1px 10px;background:#fff;}
-#admin_data {top:35px;}
-#admin h3{font-size:11px;}
+#admin_tb, #admin_tb_data {z-index:101;position:absolute;top:15px;right:0;text-align:right;padding:1px 10px;background:#fff;}
+#admin_tb_data {top:35px;}
+#admin_tb h3{font-size:11px;}
 
 ul.flags{z-index:99;background:#fff;text-align:center;position:absolute;top:25px;left:0;width:37px;padding:10px;border:1px solid #ccc;border-left:0;-moz-box-shadow:0 0 9px #666;-webkit-box-shadow:0 0 9px #666;box-shadow:0 0 9px #666;}
 .flags li{display:block!important;padding:5px;}

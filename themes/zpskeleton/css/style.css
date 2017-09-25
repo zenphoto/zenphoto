@@ -531,20 +531,20 @@ p.readmorelink a:hover{border-color:#aaa;}
 
 /* Admin Toolbox
 ------------------------------ */
-#admin{
+#admin_tb{
 	top: 55px;
 }
-#admin_data{
+#admin_tb_data{
 	top: 85px;
 }
-#admin h3 {
+#admin_tb h3 {
 
 	font-weight: normal;
 	font-size:12px;
 	margin: 0;
 	padding: 0;
 	text-align: center;}
-#admin h3:hover {
+#admin_tb h3:hover {
 	color: #036;}
 
 .alert-message,.errorbox,.notebox{

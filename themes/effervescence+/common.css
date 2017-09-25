@@ -344,19 +344,19 @@ input#code {
 	vertical-align: sub;
 }
 
-#admin_data{
+#admin_tb_data{
 	padding-top: 20px;
 	background-image:url(images/25percent.png);
 	border: 1px solid gray;
 }
 
-#admin, #admin_data a {
+#admin_tb, #admin_tb_data a {
 	text-decoration:none;
 }
-#admin h3 {
+#admin_tb h3 {
 	color: black;
 }
-#admin h3 a {
+#admin_tb h3 a {
 	text-decoration:none;
 }
 
