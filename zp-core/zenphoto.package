@@ -349,7 +349,6 @@ themes/zpBootstrap/news.php
 themes/zpBootstrap/pages.php
 themes/zpBootstrap/password.php
 themes/zpBootstrap/readme.htm
-themes/zpBootstrap/README.md
 themes/zpBootstrap/register.php
 themes/zpBootstrap/search.php
 themes/zpBootstrap/theme.png
@@ -8219,4 +8218,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8221
+8220
