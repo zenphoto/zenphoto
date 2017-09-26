@@ -58,7 +58,7 @@
 			</div>
 			<?php if (($_zenpage_enabled) && (getNumNews() > 0)) { ?>
 			<div class="col-sm-5">
-				<h3><?php echo gettext_th('Latest news', 'zpBootstrap'); ?></h3>
+				<h3><?php echo gettext('Latest news', 'zpBootstrap'); ?></h3>
 				<?php printLatestNews( 1, '', true, true, 200, false); ?>
 			</div>
 			<?php } ?>
