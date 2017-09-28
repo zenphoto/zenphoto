@@ -36,7 +36,6 @@ function printVersion() {
  * Print any Javascript required by zenphoto.
  */
 function printThemeHeadItems() {
-	global $_zp_current_album;
 	printStandardMeta();
 	?>
 	<title><?php echo getHeadTitle(getOption('theme_head_separator'), getOption('theme_head_listparents')); ?></title>
@@ -48,28 +47,6 @@ function printThemeHeadItems() {
 		?>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/toolbox.css" type="text/css" />
 		<?php
-		if (zp_loggedin(ALBUM_RIGHTS | UPLOAD_RIGHTS)) {
-			?>
-			<script type="text/javascript">
-				// <!-- <![CDATA[
-				var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
-				var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
-				var deleteImage = "<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>";
-				var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
-				var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
-
-
-				function newAlbum(folder, albumtab) {
-					var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
-					if (album) {
-						launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
-					}
-				}
-
-				// ]]> -->
-			</script>
-			<?php
-		}
 	}
 }
 
@@ -176,6 +153,16 @@ function adminToolbox() {
 							// admin has upload rights, provide an upload link for a new album
 							if (GALLERY_SESSION) { // XSRF defense requires sessions
 								?>
+								<script type="text/javascript">
+						// <!-- <![CDATA[
+									function newAlbum(folder, albumtab) {
+										var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
+										if (album) {
+											launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+										}
+									}
+						// ]]> -->
+								</script>
 								<li>
 									<a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a>
 								</li>
@@ -223,9 +210,19 @@ function adminToolbox() {
 							// and a delete link
 							if (GALLERY_SESSION) { // XSRF defense requires sessions
 								?>
+								<script type="text/javascript">
+									// <!-- <![CDATA[
+									function confirmAlbumDelete(url) {
+										if (confirm("<?php echo gettext("Are you sure you want to delete this entire album?"); ?>")) {
+											if (confirm("<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>")) {
+												window.location = '<?php echo $zf; ?>/admin-edit.php?page=edit&action=deletealbum&album=<?php echo urlencode(pathurlencode($albumname)) ?>&XSRFToken=<?php echo getXSRFToken('delete'); ?>';
+															}
+														}
+													}
+													// ]]> -->
+								</script>
 								<li>
-									<a href="javascript:confirmDeleteAlbum('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($albumname)) ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>');"
-										 title="<?php echo gettext('Delete the album'); ?>"><?php echo gettext('Delete album'); ?></a>
+									<a href="javascript:confirmAlbumDelete();" title="<?php echo gettext('Delete the album'); ?>"><?php echo gettext('Delete album'); ?></a>
 								</li>
 								<?php
 							}
@@ -256,9 +253,18 @@ function adminToolbox() {
 									// if admin has edit rights on this album, provide a delete link for the image.
 									if (GALLERY_SESSION) { // XSRF defense requires sessions
 										?>
+										<script type='text/javascript'>
+											function confirmImageDelete() {
+												if (confirm('<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>')) {
+													window.location = '<?php echo $zf; ?>/admin-edit.php?page=edit&action=deleteimage&album=<?php echo urlencode(pathurlencode($albumname)); ?>&image=<?php echo urlencode($imagename); ?>&XSRFToken=<?php echo getXSRFToken('delete'); ?>';
+															}
+														}
+										</script>
+
 										<li>
-											<a href="javascript:confirmDelete('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deleteimage&amp;album=<?php echo urlencode(pathurlencode($albumname)); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteImage);"
-												 title="<?php echo gettext("Delete the image"); ?>"><?php echo gettext("Delete image"); ?></a>
+											<a href="javascript:confirmImageDelete();" title="<?php echo gettext("Delete the image"); ?>">
+												<?php echo gettext("Delete image"); ?>
+											</a>
 										</li>
 										<?php
 									}
@@ -3831,39 +3837,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-				// <!-- <![CDATA[
-				var within = <?php echo (int) $within; ?>;
-				function search_(way) {
-					within = way;
-					if (way) {
-						$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-					} else {
-						lastsearch = '';
-						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-					}
-					$('#search_input').val('');
-				}
-				$('#search_form').submit(function () {
-					if (within) {
-						var newsearch = $.trim($('#search_input').val());
-						if (newsearch.substring(newsearch.length - 1) == ',') {
-							newsearch = newsearch.substr(0, newsearch.length - 1);
-						}
-						if (newsearch.length > 0) {
-							$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-						} else {
-							$('#search_input').val('<?php echo $searchwords; ?>');
-						}
-					}
-					return true;
-				});
-				function search_all() {
-					//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-					var check = $('#SEARCH_checkall').prop('checked');
-					$('.SEARCH_checkall').prop('checked', check);
-				}
+							// <!-- <![CDATA[
+							var within = <?php echo (int) $within; ?>;
+							function search_(way) {
+								within = way;
+								if (way) {
+									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+								} else {
+									lastsearch = '';
+									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+								}
+								$('#search_input').val('');
+							}
+							$('#search_form').submit(function () {
+								if (within) {
+									var newsearch = $.trim($('#search_input').val());
+									if (newsearch.substring(newsearch.length - 1) == ',') {
+										newsearch = newsearch.substr(0, newsearch.length - 1);
+									}
+									if (newsearch.length > 0) {
+										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+									} else {
+										$('#search_input').val('<?php echo $searchwords; ?>');
+									}
+								}
+								return true;
+							});
+							function search_all() {
+								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+								var check = $('#SEARCH_checkall').prop('checked');
+								$('.SEARCH_checkall').prop('checked', check);
+							}
 
-				// ]]> -->
+							// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
