@@ -558,9 +558,15 @@ switch (getOption('spam_filter')) {
 		break;
 }
 setOptionDefault('search_album_sort_type', 'title');
-setOptionDefault('search_image_sort_type', 'title');
 setOptionDefault('search_album_sort_direction', '');
+setOptionDefault('search_image_sort_type', 'title');
 setOptionDefault('search_image_sort_direction', '');
+
+setOptionDefault('search_newsarticle_sort_type', 'date');
+setOptionDefault('search_newsarticle_sort_direction', 1);
+setOptionDefault('search_page_sort_type', 'title');
+setOptionDefault('search_page_sort_direction', '');
+
 purgeOption('zp_plugin_releaseUpdater');
 
 query('UPDATE ' . prefix('administrators') . ' SET `passhash`=' . ((int) getOption('strong_hash')) . ' WHERE `valid`>=1 AND `passhash` IS NULL');

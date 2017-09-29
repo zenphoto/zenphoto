@@ -194,9 +194,11 @@ if (isset($_GET['action'])) {
 			setOption('search_no_pages', (int) isset($_POST['search_no_pages']));
 			setOption('search_no_news', (int) isset($_POST['search_no_news']));
 			setOption('search_within', (int) ($_POST['search_within'] && true));
-			$sorttype = strtolower(sanitize($_POST['sortby'], 3));
+			
+			// image default sort order + direction
+			$sorttype = strtolower(sanitize($_POST['search_image_sort_type'], 3));
 			if ($sorttype == 'custom') {
-				$sorttype = unquote(strtolower(sanitize($_POST['customimagesort'], 3)));
+				$sorttype = unquote(strtolower(sanitize($_POST['custom_image_sort'], 3)));
 			}
 			setOption('search_image_sort_type', $sorttype);
 			if ($sorttype == 'random') {
@@ -205,19 +207,46 @@ if (isset($_GET['action'])) {
 				if (empty($sorttype)) {
 					$direction = 0;
 				} else {
-					$direction = isset($_POST['image_sortdirection']);
+					$direction = isset($_POST['search_image_sort_direction']);
 				}
 				setOption('search_image_sort_direction', $direction);
 			}
-			$sorttype = strtolower(sanitize($_POST['subalbumsortby'], 3));
-			if ($sorttype == 'custom')
-				$sorttype = strtolower(sanitize($_POST['customalbumsort'], 3));
+			
+			// album default sort order + direction
+			$sorttype = strtolower(sanitize($_POST['search_album_sort_type'], 3));
+			if ($sorttype == 'custom') {
+				$sorttype = strtolower(sanitize($_POST['custom_album_sort'], 3));
+			}
 			setOption('search_album_sort_type', $sorttype);
 			if ($sorttype == 'random') {
 				setOption('search_album_sort_direction', 0);
 			} else {
-				setOption('search_album_sort_direction', isset($_POST['album_sortdirection']));
+				setOption('search_album_sort_direction', isset($_POST['search_album_sort_direction']));
 			}
+			
+			// Zenpage news articles default sort order + direction
+			$sorttype = strtolower(sanitize($_POST['search_newsarticle_sort_type'], 3));
+			if ($sorttype == 'custom') {
+				$sorttype = strtolower(sanitize($_POST['custom_newsarticle_sort'], 3));
+			}
+			setOption('search_newsarticle_sort_type', $sorttype);
+			if ($sorttype == 'random') {
+				setOption('search_newsarticle_sort_direction', 0);
+			} else {
+				setOption('search_newsarticle_sort_direction', isset($_POST['search_newsarticle_sort_direction']));
+			}
+			
+			// Zenpage pages default sort order + direction
+			$sorttype = strtolower(sanitize($_POST['search_page_sort_type'], 3));
+			if ($sorttype == 'custom')
+				$sorttype = strtolower(sanitize($_POST['custom_page_sort'], 3));
+			setOption('search_page_sort_type', $sorttype);
+			if ($sorttype == 'random') {
+				setOption('search_page_sort_direction', 0);
+			} else {
+				setOption('search_page_sort_direction', isset($_POST['search_page_sort_direction']));
+			}
+			
 			$returntab = "&tab=search";
 		}
 
@@ -1688,15 +1717,12 @@ Zenphoto_Authority::printPasswordFormJS();
 										<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
 									</td>
 								</tr>
-								<?php
-								$sort = $_zp_sortby;
-								$sort[gettext('Custom')] = 'custom';
-								?>
+								<?php $sort = $_zp_sortby; ?>
 								<tr>
 									<td class="leftcolumn"><?php echo gettext("Sort albums by"); ?> </td>
 									<td colspan="2">
 										<span class="nowrap">
-											<select id="albumsortselect" name="subalbumsortby" onchange="update_direction(this, 'album_direction_div', 'album_custom_div');">
+											<select id="album_sort_select" name="search_album_sort_type" onchange="update_direction(this, 'album_direction_div', 'album_custom_div');">
 												<?php
 												$cvt = $type = strtolower(getOption('search_album_sort_type'));
 												if ($type && !in_array($type, $sort)) {
@@ -1716,7 +1742,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 											<label id="album_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 												<?php echo gettext("Descending"); ?>
-												<input type="checkbox" name="album_sortdirection" value="1"
+												<input type="checkbox" name="search_album_sort_direction" value="1"
 												<?php
 												if (getOption('search_album_sort_direction')) {
 													echo "CHECKED";
@@ -1736,7 +1762,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<br />
 											<?php echo gettext('custom fields:') ?>
 											<span class="tagSuggestContainer">
-												<input id="customalbumsort" class="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
+												<input id="custom_album_sort" class="custom_album_sort" name="custom_album_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
 											</span>
 										</span>
 									</td>
@@ -1747,7 +1773,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td class="leftcolumn"><?php echo gettext("Sort images by"); ?> </td>
 									<td colspan="2">
 										<span class="nowrap">
-											<select id="imagesortselect" name="sortby" onchange="update_direction(this, 'image_direction_div', 'image_custom_div')">
+											<select id="image_sort_select" name="search_image_sort_type" onchange="update_direction(this, 'image_direction_div', 'image_custom_div')">
 												<?php
 												$cvt = $type = strtolower(getOption('search_image_sort_type'));
 												if ($type && !in_array($type, $sort)) {
@@ -1767,7 +1793,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 											<label id="image_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 												<?php echo gettext("Descending"); ?>
-												<input type="checkbox" name="image_sortdirection" value="1"
+												<input type="checkbox" name="search_image_sort_direction" value="1"
 												<?php
 												if (getOption('search_image_sort_direction')) {
 													echo ' checked="checked"';
@@ -1787,12 +1813,131 @@ Zenphoto_Authority::printPasswordFormJS();
 											<br />
 											<?php echo gettext('custom fields:') ?>
 											<span class="tagSuggestContainer">
-												<input id="customimagesort" class="customimagesort" name="customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
+												<input id="custom_image_sort" class="custom_image_sort" name="custom_image_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
 											</span>
 										</span>
 									</td>
 
 								</tr>
+								
+								<?php
+								$zenpage_sort = array(
+										gettext('Title') => 'title',
+										gettext('Titlelink') => 'titlelink',
+										gettext('ID') => 'id',
+										gettext('Date') => 'date',
+										gettext('Published') => 'show',
+										gettext('author') => 'author',
+										gettext('Custom') => 'custom',
+								)
+								?>
+								<tr>
+									<td class="leftcolumn"><?php echo gettext("Sort news articles by"); ?> </td>
+									<td colspan="2">
+										<span class="nowrap">
+											<select id="newsarticle_sort_select" name="search_newsarticle_sort_type" onchange="update_direction(this, 'newsarticle_direction_div', 'newsarticle_custom_div')">
+												<?php
+												$cvt = $type = strtolower(getOption('search_newsarticle_sort_type'));
+												if ($type && !in_array($type, $zenpage_sort)) {
+													$cv = array('custom');
+												} else {
+													$cv = array($type);
+												}
+												generateListFromArray($cv, $zenpage_sort, false, true);
+												?>
+											</select>
+											<?php
+											if (($type == 'random') || ($type == '')) {
+												$dsp = 'none';
+											} else {
+												$dsp = 'inline';
+											}
+											?>
+											<label id="newsarticle_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+												<?php echo gettext("Descending"); ?>
+												<input type="checkbox" name="search_newsarticle_sort_direction" value="1"
+												<?php
+												if (getOption('search_newsarticle_sort_direction')) {
+													echo ' checked="checked"';
+												}
+												?> />
+											</label>
+										</span>
+										<?php
+										$flip = array_flip($zenpage_sort);
+										if (empty($type) || isset($flip[$type])) {
+											$dsp = 'none';
+										} else {
+											$dsp = 'block';
+										}
+										?>
+										<span id="newsarticle_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+											<br />
+											<?php echo gettext('custom fields:') ?>
+											<span class="tagSuggestContainer">
+												<input id="custom_newsarticle_sort" class="custom_newsarticle_sort" name="custom_newsarticle_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
+											</span>
+										</span>
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td class="leftcolumn"><?php echo gettext("Sort pages by"); ?> </td>
+									<td colspan="2">
+										<span class="nowrap">
+											<select id="page_sort_select" name="search_page_sort_type" onchange="update_direction(this, 'page_direction_div', 'page_custom_div')">
+												<?php
+												$cvt = $type = strtolower(getOption('search_page_sort_type'));
+												if ($type && !in_array($type, $zenpage_sort)) {
+													$cv = array('custom');
+												} else {
+													$cv = array($type);
+												}
+												generateListFromArray($cv, $zenpage_sort, false, true);
+												?>
+											</select>
+											<?php
+											if (($type == 'random') || ($type == '')) {
+												$dsp = 'none';
+											} else {
+												$dsp = 'inline';
+											}
+											?>
+											<label id="page_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+												<?php echo gettext("Descending"); ?>
+												<input type="checkbox" name="search_page_sort_direction" value="1"
+												<?php
+												if (getOption('search_page_sort_direction')) {
+													echo ' checked="checked"';
+												}
+												?> />
+											</label>
+										</span>
+										<?php
+										$flip = array_flip($zenpage_sort);
+										if (empty($type) || isset($flip[$type])) {
+											$dsp = 'none';
+										} else {
+											$dsp = 'block';
+										}
+										?>
+										<span id="page_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+											<br />
+											<?php echo gettext('custom fields:') ?>
+											<span class="tagSuggestContainer">
+												<input id="custom_page_sort" class="custom_page_sort" name="custom_page_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
+											</span>
+										</span>
+									</td>
+
+								</tr>
+								
+								
+								
+								
+								
 								<tr>
 									<td colspan="3">
 										<p class="buttons">

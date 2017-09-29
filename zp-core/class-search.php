@@ -88,10 +88,10 @@ class SearchEngine {
 		$this->extraparams['albumssortdirection'] = getOption('search_album_sort_direction') ? 'DESC' : '';
 		$this->extraparams['imagessorttype'] = getOption('search_image_sort_type');
 		$this->extraparams['imagessortdirection'] = getOption('search_image_sort_direction') ? 'DESC' : '';
-		$this->extraparams['newssorttype'] = 'date';
-		$this->extraparams['newssortdirection'] = 'DESC';
-		$this->extraparams['pagesssorttype'] = 'title';
-		$this->extraparams['pagessortdirection'] = '';
+		$this->extraparams['newssorttype'] = getOption('search_newsarticle_sort_type');
+		$this->extraparams['newssortdirection'] = getOption('search_newsarticle_sort_direction') ? 'DESC' : '';
+		$this->extraparams['pagesssorttype'] = getOption('search_page_sort_type');
+		$this->extraparams['pagessortdirection'] = getOption('search_page_sort_direction') ? 'DESC' : '';
 
 //image/album fields
 		$this->search_structure['title'] = gettext('Title');
