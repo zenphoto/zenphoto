@@ -90,7 +90,7 @@ class SearchEngine {
 		$this->extraparams['imagessortdirection'] = getOption('search_image_sort_direction') ? 'DESC' : '';
 		$this->extraparams['newssorttype'] = getOption('search_newsarticle_sort_type');
 		$this->extraparams['newssortdirection'] = getOption('search_newsarticle_sort_direction') ? 'DESC' : '';
-		$this->extraparams['pagesssorttype'] = getOption('search_page_sort_type');
+		$this->extraparams['pagessorttype'] = getOption('search_page_sort_type');
 		$this->extraparams['pagessortdirection'] = getOption('search_page_sort_direction') ? 'DESC' : '';
 
 //image/album fields
@@ -932,14 +932,12 @@ class SearchEngine {
 
 		switch ($tbl) {
 			case 'news':
+			case 'pages':
 				if (empty($sorttype)) {
 					$key = '`date` DESC';
 				} else {
 					$key = trim($sorttype . ' ' . $sortdirection);
 				}
-				break;
-			case 'pages':
-				$key = '`sort_order`';
 				break;
 			case 'albums':
 				if (is_null($sorttype)) {
@@ -1291,10 +1289,14 @@ class SearchEngine {
 						$show = "`show` = 1 AND ";
 					}
 					$sql .= '`titlelink` ';
+					if (empty($sorttype)) {
+						$key = '`date` DESC';
+					} else {
+						$key = trim($sorttype . $sortdirection);
+					}
 					if ($show) {
 						$show .= '`date`<=' . db_quote(date('Y-m-d H:i:s')) . ' AND ';
 					}
-					$key = '`sort_order`';
 					break;
 				case 'albums':
 					if ($this->search_unpublished || zp_loggedin()) {
