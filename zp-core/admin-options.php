@@ -224,29 +224,32 @@ if (isset($_GET['action'])) {
 				setOption('search_album_sort_direction', isset($_POST['search_album_sort_direction']));
 			}
 			
-			// Zenpage news articles default sort order + direction
-			$sorttype = strtolower(sanitize($_POST['search_newsarticle_sort_type'], 3));
-			if ($sorttype == 'custom') {
-				$sorttype = strtolower(sanitize($_POST['custom_newsarticle_sort'], 3));
-			}
-			setOption('search_newsarticle_sort_type', $sorttype);
-			if ($sorttype == 'random') {
-				setOption('search_newsarticle_sort_direction', 0);
-			} else {
-				setOption('search_newsarticle_sort_direction', isset($_POST['search_newsarticle_sort_direction']));
-			}
-			
-			// Zenpage pages default sort order + direction
-			$sorttype = strtolower(sanitize($_POST['search_page_sort_type'], 3));
-			if ($sorttype == 'custom')
-				$sorttype = strtolower(sanitize($_POST['custom_page_sort'], 3));
-			setOption('search_page_sort_type', $sorttype);
-			if ($sorttype == 'random') {
-				setOption('search_page_sort_direction', 0);
-			} else {
-				setOption('search_page_sort_direction', isset($_POST['search_page_sort_direction']));
+			if (extensionEnabled('zenpage') && ZP_NEWS_ENABLED) {
+				// Zenpage news articles default sort order + direction
+				$sorttype = strtolower(sanitize($_POST['search_newsarticle_sort_type'], 3));
+				if ($sorttype == 'custom') {
+					$sorttype = strtolower(sanitize($_POST['custom_newsarticle_sort'], 3));
+				}
+				setOption('search_newsarticle_sort_type', $sorttype);
+				if ($sorttype == 'random') {
+					setOption('search_newsarticle_sort_direction', 0);
+				} else {
+					setOption('search_newsarticle_sort_direction', isset($_POST['search_newsarticle_sort_direction']));
+				}
 			}
 			
+			if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+				// Zenpage pages default sort order + direction
+				$sorttype = strtolower(sanitize($_POST['search_page_sort_type'], 3));
+				if ($sorttype == 'custom')
+					$sorttype = strtolower(sanitize($_POST['custom_page_sort'], 3));
+				setOption('search_page_sort_type', $sorttype);
+				if ($sorttype == 'random') {
+					setOption('search_page_sort_direction', 0);
+				} else {
+					setOption('search_page_sort_direction', isset($_POST['search_page_sort_direction']));
+				}
+			}
 			$returntab = "&tab=search";
 		}
 
@@ -1828,116 +1831,114 @@ Zenphoto_Authority::printPasswordFormJS();
 										gettext('Date') => 'date',
 										gettext('Published') => 'show',
 										gettext('author') => 'author',
-										gettext('Custom') => 'custom',
-								)
+										gettext('Custom') => 'custom'
+								);
+								if (extensionEnabled('zenpage') && ZP_NEWS_ENABLED) {
 								?>
-								<tr>
-									<td class="leftcolumn"><?php echo gettext("Sort news articles by"); ?> </td>
-									<td colspan="2">
-										<span class="nowrap">
-											<select id="newsarticle_sort_select" name="search_newsarticle_sort_type" onchange="update_direction(this, 'newsarticle_direction_div', 'newsarticle_custom_div')">
+									<tr>
+										<td class="leftcolumn"><?php echo gettext("Sort news articles by"); ?> </td>
+										<td colspan="2">
+											<span class="nowrap">
+												<select id="newsarticle_sort_select" name="search_newsarticle_sort_type" onchange="update_direction(this, 'newsarticle_direction_div', 'newsarticle_custom_div')">
+													<?php
+													$cvt = $type = strtolower(getOption('search_newsarticle_sort_type'));
+													if ($type && !in_array($type, $zenpage_sort)) {
+														$cv = array('custom');
+													} else {
+														$cv = array($type);
+													}
+													generateListFromArray($cv, $zenpage_sort, false, true);
+													?>
+												</select>
 												<?php
-												$cvt = $type = strtolower(getOption('search_newsarticle_sort_type'));
-												if ($type && !in_array($type, $zenpage_sort)) {
-													$cv = array('custom');
+												if (($type == 'random') || ($type == '')) {
+													$dsp = 'none';
 												} else {
-													$cv = array($type);
+													$dsp = 'inline';
 												}
-												generateListFromArray($cv, $zenpage_sort, false, true);
 												?>
-											</select>
+												<label id="newsarticle_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+													<?php echo gettext("Descending"); ?>
+													<input type="checkbox" name="search_newsarticle_sort_direction" value="1"
+													<?php
+													if (getOption('search_newsarticle_sort_direction')) {
+														echo ' checked="checked"';
+													}
+													?> />
+												</label>
+											</span>
 											<?php
-											if (($type == 'random') || ($type == '')) {
+											$flip = array_flip($zenpage_sort);
+											if (empty($type) || isset($flip[$type])) {
 												$dsp = 'none';
 											} else {
-												$dsp = 'inline';
+												$dsp = 'block';
 											}
 											?>
-											<label id="newsarticle_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-												<?php echo gettext("Descending"); ?>
-												<input type="checkbox" name="search_newsarticle_sort_direction" value="1"
-												<?php
-												if (getOption('search_newsarticle_sort_direction')) {
-													echo ' checked="checked"';
-												}
-												?> />
-											</label>
-										</span>
-										<?php
-										$flip = array_flip($zenpage_sort);
-										if (empty($type) || isset($flip[$type])) {
-											$dsp = 'none';
-										} else {
-											$dsp = 'block';
-										}
-										?>
-										<span id="newsarticle_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-											<br />
-											<?php echo gettext('custom fields:') ?>
-											<span class="tagSuggestContainer">
-												<input id="custom_newsarticle_sort" class="custom_newsarticle_sort" name="custom_newsarticle_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
+											<span id="newsarticle_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+												<br />
+												<?php echo gettext('custom fields:') ?>
+												<span class="tagSuggestContainer">
+													<input id="custom_newsarticle_sort" class="custom_newsarticle_sort" name="custom_newsarticle_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
+												</span>
 											</span>
-										</span>
-									</td>
-
-								</tr>
-								
-								
-								<tr>
-									<td class="leftcolumn"><?php echo gettext("Sort pages by"); ?> </td>
-									<td colspan="2">
-										<span class="nowrap">
-											<select id="page_sort_select" name="search_page_sort_type" onchange="update_direction(this, 'page_direction_div', 'page_custom_div')">
+										</td>
+									</tr>
+								<?php 
+								} 
+								if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+								?>
+									<tr>
+										<td class="leftcolumn"><?php echo gettext("Sort pages by"); ?> </td>
+										<td colspan="2">
+											<span class="nowrap">
+												<select id="page_sort_select" name="search_page_sort_type" onchange="update_direction(this, 'page_direction_div', 'page_custom_div')">
+													<?php
+													$cvt = $type = strtolower(getOption('search_page_sort_type'));
+													if ($type && !in_array($type, $zenpage_sort)) {
+														$cv = array('custom');
+													} else {
+														$cv = array($type);
+													}
+													generateListFromArray($cv, $zenpage_sort, false, true);
+													?>
+												</select>
 												<?php
-												$cvt = $type = strtolower(getOption('search_page_sort_type'));
-												if ($type && !in_array($type, $zenpage_sort)) {
-													$cv = array('custom');
+												if (($type == 'random') || ($type == '')) {
+													$dsp = 'none';
 												} else {
-													$cv = array($type);
+													$dsp = 'inline';
 												}
-												generateListFromArray($cv, $zenpage_sort, false, true);
 												?>
-											</select>
+												<label id="page_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+													<?php echo gettext("Descending"); ?>
+													<input type="checkbox" name="search_page_sort_direction" value="1"
+													<?php
+													if (getOption('search_page_sort_direction')) {
+														echo ' checked="checked"';
+													}
+													?> />
+												</label>
+											</span>
 											<?php
-											if (($type == 'random') || ($type == '')) {
+											$flip = array_flip($zenpage_sort);
+											if (empty($type) || isset($flip[$type])) {
 												$dsp = 'none';
 											} else {
-												$dsp = 'inline';
+												$dsp = 'block';
 											}
 											?>
-											<label id="page_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-												<?php echo gettext("Descending"); ?>
-												<input type="checkbox" name="search_page_sort_direction" value="1"
-												<?php
-												if (getOption('search_page_sort_direction')) {
-													echo ' checked="checked"';
-												}
-												?> />
-											</label>
-										</span>
-										<?php
-										$flip = array_flip($zenpage_sort);
-										if (empty($type) || isset($flip[$type])) {
-											$dsp = 'none';
-										} else {
-											$dsp = 'block';
-										}
-										?>
-										<span id="page_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-											<br />
-											<?php echo gettext('custom fields:') ?>
-											<span class="tagSuggestContainer">
-												<input id="custom_page_sort" class="custom_page_sort" name="custom_page_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
+											<span id="page_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+												<br />
+												<?php echo gettext('custom fields:') ?>
+												<span class="tagSuggestContainer">
+													<input id="custom_page_sort" class="custom_page_sort" name="custom_page_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
+												</span>
 											</span>
-										</span>
-									</td>
-
-								</tr>
-								
-								
-								
-								
-								
+										</td>
+									</tr>
+								<?php } ?>
+					
 								<tr>
 									<td colspan="3">
 										<p class="buttons">
