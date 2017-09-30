@@ -98,8 +98,13 @@ class SearchEngine {
 		$this->extraparams['albumssortdirection'] = getOption('search_album_sort_direction') ? 'DESC' : '';
 		$this->extraparams['imagessorttype'] = getOption('search_image_sort_type');
 		$this->extraparams['imagessortdirection'] = getOption('search_image_sort_direction') ? 'DESC' : '';
+<<<<<<< HEAD
 		$this->extraparams['newssorttype'] = getOption('search_article_sort_type');
 		$this->extraparams['newssortdirection'] = getOption('search_article_sort_direction') ? 'DESC' : '';
+=======
+		$this->extraparams['newssorttype'] = getOption('search_newsarticle_sort_type');
+		$this->extraparams['newssortdirection'] = getOption('search_newsarticle_sort_direction') ? 'DESC' : '';
+>>>>>>> 20170929171951910000420/master
 		$this->extraparams['pagessorttype'] = getOption('search_page_sort_type');
 		$this->extraparams['pagessortdirection'] = getOption('search_page_sort_direction') ? 'DESC' : '';
 
@@ -1053,7 +1058,10 @@ class SearchEngine {
 					$key = trim($sorttype . ' ' . $sortdirection);
 				}
 				break;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 20170929171951910000420/master
 			case 'albums':
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
@@ -1409,12 +1417,21 @@ class SearchEngine {
 					}
 					$sql .= '`titlelink` ';
 					if (empty($sorttype)) {
+<<<<<<< HEAD
 						$key = '`sort_order` DESC';
 					} else {
 						if ($sortdirection && strtoupper($sortdirection) != 'ASC') {
 							$sortdirection = 'DESC';
 						}
 						$key = trim($sorttype . ' ' . $sortdirection);
+=======
+						$key = '`date` DESC';
+					} else {
+						$key = trim($sorttype . $sortdirection);
+					}
+					if ($show) {
+						$show .= '`date`<=' . db_quote(date('Y-m-d H:i:s')) . ' AND ';
+>>>>>>> 20170929171951910000420/master
 					}
 					break;
 				case 'albums':
