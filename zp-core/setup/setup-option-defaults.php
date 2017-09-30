@@ -718,9 +718,14 @@ setOptionDefault('articles_per_page', 15);
 setOptionDefault('debug_log_size', 5000000);
 setOptionDefault('imageProcessorConcurrency', 15);
 setOptionDefault('search_album_sort_type', 'title');
-setOptionDefault('search_image_sort_type', 'title');
 setOptionDefault('search_album_sort_direction', '');
+setOptionDefault('search_image_sort_type', 'title');
 setOptionDefault('search_image_sort_direction', '');
+setOptionDefault('search_article_sort_type', 'date');
+setOptionDefault('search_article_sort_direction', '');
+setOptionDefault('search_page_sort_type', 'title');
+setOptionDefault('search_page_sort_direction', '');
+
 
 query('UPDATE ' . prefix('administrators') . ' SET `passhash`=' . ((int) getOption('strong_hash')) . ' WHERE `valid`>=1 AND `passhash` IS NULL');
 query('UPDATE ' . prefix('administrators') . ' SET `passupdate`=' . db_quote(date('Y-m-d H:i:s')) . ' WHERE `valid`>=1 AND `passupdate` IS NULL');

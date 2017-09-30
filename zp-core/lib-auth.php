@@ -708,8 +708,6 @@ class _Authority {
 						if ($_zp_loggedin) {
 							self::logUser($user);
 							$_zp_current_admin_obj = $user;
-							zp_session_destroy();
-							zp_session_start();
 						} else {
 							zp_clearCookie("zp_user_auth"); // Clear the cookie, just in case
 							$_zp_login_error = 1;
@@ -1086,8 +1084,8 @@ class _Authority {
 							<?php
 							if ($showUserField) { //	requires a "user" field
 								?>
-								<fieldset><legend><?php echo gettext("User"); ?></legend>
-									<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
+								<fieldset class="login_input"><legend><?php echo gettext("User"); ?></legend>
+									<input class="textfield" name="user" id="user" type="text"  value="<?php echo html_encode($requestor); ?>" />
 								</fieldset>
 								<?php
 							}
@@ -1096,8 +1094,8 @@ class _Authority {
 								<input type="checkbox" name="disclose_password" id="disclose_password" onclick="togglePassword('');" />
 								<?php echo gettext('Show') ?>
 							</label>
-							<fieldset><legend><?php echo gettext("Password"); ?></legend>
-								<input class="textfield" name="pass" id="pass" type="password" size="35" />
+							<fieldset class="login_input"><legend><?php echo gettext("Password"); ?></legend>
+								<input class="textfield" name="pass" id="pass" type="password"  />
 							</fieldset>
 							<br />
 							<div class="buttons">
@@ -1353,7 +1351,7 @@ class _Authority {
 						 class="disclose_password"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
-										 togglePassword('<?php echo $id; ?>');">
+								 togglePassword('<?php echo $id; ?>');">
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 						 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
 						 id="pass<?php echo $id; ?>"

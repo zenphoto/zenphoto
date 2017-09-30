@@ -29,4 +29,5 @@ setOption('mod_rewrite_detected', 1);
 setupLog(gettext('Notice: “Module mod_rewrite” is working.') . ' ' . $msg);
 
 sendImage(false);
+exitZP();
 ?>

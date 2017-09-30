@@ -120,7 +120,7 @@ zp_apply_filter('texteditor_config', 'zenpage');
 zenpageJSCSS();
 datepickerJS();
 codeblocktabsJS();
-$tagsort = getTagOrder();
+$tagsort = 'alpha';
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
@@ -888,12 +888,12 @@ $tagsort = getTagOrder();
 											</strong>
 										</a>
 										<button type="submit" title="<?php echo $updateitem; ?>"><?php echo CHECKMARK_GREEN; ?> <?php
-											if ($result->transient) {
-												echo $saveitem;
-											} else {
-												echo $updateitem;
-											}
-											?></strong></button>
+												if ($result->transient) {
+													echo $saveitem;
+												} else {
+													echo $updateitem;
+												}
+												?></strong></button>
 										<button type="reset" onclick="$('.copydelete').hide();">
 											<?php echo CROSS_MARK_RED; ?>
 											<strong><?php echo gettext("Reset"); ?></strong>

@@ -49,7 +49,7 @@ ul.pagelist li {
 
 }
 
-#admin_data a,
+#admin_tb_data a,
 .comment,
 ul.taglist li a,
 .catlist li a,
@@ -82,7 +82,7 @@ ul.taglist li a,
 .disabled_nav {
 	display: none;
 }
-#admin_data a:hover,
+#admin_tb_data a:hover,
 
 ul.taglist li a:hover,
 #collapsible-lists li a:hover,
@@ -95,7 +95,7 @@ a.slideshowlink:hover {
 	text-decoration: none;
 	background-color: lightgray;
 }
-#admin a:active,
+#admin_tb a:active,
 ul.taglist li a:active,
 #collapsible-lists li a:active,
 #tagcloud a:active,
@@ -355,7 +355,7 @@ li.rsslink {
 /* Admin Toolbox
 ------------------------------ */
 
-#admin h3 {
+#admin_tb h3 {
 	font-weight: normal;
 	color: #999;
 	margin: 0;
@@ -364,7 +364,7 @@ li.rsslink {
 	font-size: 13px;
 }
 
-#admin h3:hover {
+#admin_tb h3:hover {
 	color: #036;
 }
 

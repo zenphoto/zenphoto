@@ -1,4 +1,13 @@
+* 2.0
+- full rewrite with Bootstrap 3.3.7
+- uses a compiled bootstrap (see config file _boostrap_3.3.7/bootstrap-compiled/config.json)
+- uses flexSlider 2.6.3
+- uses fancyBox 3.1.20
+
+
 * 1.4.6
+- locale/
+	- update German, Spanish, French, Italian, Dutch translations
 - comment_form/comment_form.php :
 	- rewrite of file to be compliant with zenphoto 1.4.6
 - contact_form/form.php :
@@ -82,7 +91,7 @@
 	- fix an issue with 1.4.3 : missing some '' on options
 	- change request (Nikolay Vakulovich) : suppression of album description in the tooltip to avoid long description
 - inc_print_image_thumb.php :
-	- fix an issue  with 1.4.3 : code cleanup on next_image()
+	- fix an issue with 1.4.3 : code cleanup on next_image()
 - index.php :
 	- fix an issue with 1.4.3 : use only isHomePage variable to avoid warning of unknown value
 - functions.php :

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20 1.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-23 12:05+0200\n"
-"PO-Revision-Date: 2017-09-23 17:35+0200\n"
+"POT-Creation-Date: 2017-09-27 19:15-0700\n"
+"PO-Revision-Date: 2017-09-27 19:15-0700\n"
 "Last-Translator: Jakub Meisner <tangornsvk@gmail.com>\n"
 "Language-Team: Jakub Meisner <jakub@jlfoto.sk>\n"
 "Language: sk_SK\n"
@@ -65,36 +65,36 @@ msgstr ""
 #: themes/zenpage/sidebar.php:33 themes/zenpage/sidebar.php:38
 #: themes/zenpage/sidebar.php:63 themes/zenpage/sidebar.php:90
 #: themes/zpArdoise/inc_header.php:18 themes/zpArdoise/inc_header.php:42
-#: themes/zpArdoise/inc_header.php:334 themes/zpBootstrap/home.php:22
-#: themes/zpBootstrap/home.php:23 themes/zpBootstrap/inc_header.php:19
-#: themes/zpBootstrap/inc_header.php:43 themes/zpBootstrap/inc_header.php:221
-#: themes/zpBootstrap/inc_header.php:228 themes/zpEnlighten/album.php:25
-#: themes/zpEnlighten/archive.php:26 themes/zpEnlighten/contact.php:25
-#: themes/zpEnlighten/favorites.php:26 themes/zpEnlighten/gallery.php:26
-#: themes/zpEnlighten/image.php:63 themes/zpEnlighten/password.php:24
-#: themes/zpEnlighten/register.php:24 themes/zpEnlighten/search.php:36
-#: themes/zpEnlighten/sidebar.php:22 themes/zpEnlighten/sidebar.php:27
-#: themes/zpEnlighten/sidebar.php:32 themes/zpfocus/inc-header.php:212
-#: themes/zpfocus/inc-header.php:214 themes/zpmasonry/inc-menu.php:45
-#: themes/zpminimal/inc-sidemenu.php:15 themes/zpmobile/album.php:29
-#: themes/zpmobile/favorites.php:29 themes/zpmobile/functions.php:40
-#: themes/zpmobile/functions.php:71 themes/zpmobile/functions.php:181
-#: themes/zpmobile/image.php:29 themes/zpskeleton/album.php:7
-#: themes/zpskeleton/favorites.php:10 themes/zpskeleton/image.php:7
-#: themes/zpskeleton/inc-header.php:174 themes/zpskeleton/inc-header.php:176
-#: themes/zpskeleton/search.php:26 zp-core/admin-edit.php:1671
-#: zp-core/admin-themes.php:102 zp-core/admin-themes.php:103
-#: zp-core/admin_options/theme.php:10 zp-core/admin_options/theme.php:11
-#: zp-core/allTranslations.php:10 zp-core/allTranslations.php:20
-#: zp-core/allTranslations.php:28 zp-core/allTranslations.php:38
-#: zp-core/allTranslations.php:47 zp-core/lib-auth.php:558
-#: zp-core/lib-auth.php:559 zp-core/lib-auth.php:560 zp-core/lib-auth.php:561
-#: zp-core/lib-auth.php:562 zp-core/lib-auth.php:566 zp-core/lib-auth.php:570
-#: zp-core/lib-auth.php:578 zp-core/lib-auth.php:579 zp-core/lib-auth.php:585
-#: zp-core/lib-auth.php:586 zp-core/lib-auth.php:590 zp-core/lib-auth.php:595
-#: zp-core/lib-auth.php:596 zp-core/lib-auth.php:605 zp-core/lib-auth.php:606
-#: zp-core/lib-auth.php:613 zp-core/lib-auth.php:614 zp-core/lib-auth.php:619
-#: zp-core/lib-auth.php:626 zp-core/lib-auth.php:628
+#: themes/zpArdoise/inc_header.php:334 themes/zpBootstrap/home.php:34
+#: themes/zpBootstrap/home.php:35 themes/zpBootstrap/inc_header.php:23
+#: themes/zpBootstrap/inc_header.php:47 themes/zpBootstrap/inc_header.php:256
+#: themes/zpBootstrap/inc_header.php:263 themes/zpBootstrap/themeoptions.php:67
+#: themes/zpEnlighten/album.php:25 themes/zpEnlighten/archive.php:26
+#: themes/zpEnlighten/contact.php:25 themes/zpEnlighten/favorites.php:26
+#: themes/zpEnlighten/gallery.php:26 themes/zpEnlighten/image.php:63
+#: themes/zpEnlighten/password.php:24 themes/zpEnlighten/register.php:24
+#: themes/zpEnlighten/search.php:36 themes/zpEnlighten/sidebar.php:22
+#: themes/zpEnlighten/sidebar.php:27 themes/zpEnlighten/sidebar.php:32
+#: themes/zpfocus/inc-header.php:212 themes/zpfocus/inc-header.php:214
+#: themes/zpmasonry/inc-menu.php:45 themes/zpminimal/inc-sidemenu.php:15
+#: themes/zpmobile/album.php:29 themes/zpmobile/favorites.php:29
+#: themes/zpmobile/functions.php:40 themes/zpmobile/functions.php:71
+#: themes/zpmobile/functions.php:181 themes/zpmobile/image.php:29
+#: themes/zpskeleton/album.php:7 themes/zpskeleton/favorites.php:10
+#: themes/zpskeleton/image.php:7 themes/zpskeleton/inc-header.php:174
+#: themes/zpskeleton/inc-header.php:176 themes/zpskeleton/search.php:26
+#: zp-core/admin-edit.php:1671 zp-core/admin-themes.php:102
+#: zp-core/admin-themes.php:103 zp-core/admin_options/theme.php:10
+#: zp-core/admin_options/theme.php:11 zp-core/allTranslations.php:10
+#: zp-core/allTranslations.php:20 zp-core/allTranslations.php:28
+#: zp-core/allTranslations.php:38 zp-core/allTranslations.php:47
+#: zp-core/lib-auth.php:558 zp-core/lib-auth.php:559 zp-core/lib-auth.php:560
+#: zp-core/lib-auth.php:561 zp-core/lib-auth.php:562 zp-core/lib-auth.php:566
+#: zp-core/lib-auth.php:570 zp-core/lib-auth.php:578 zp-core/lib-auth.php:579
+#: zp-core/lib-auth.php:585 zp-core/lib-auth.php:586 zp-core/lib-auth.php:590
+#: zp-core/lib-auth.php:595 zp-core/lib-auth.php:596 zp-core/lib-auth.php:605
+#: zp-core/lib-auth.php:606 zp-core/lib-auth.php:613 zp-core/lib-auth.php:614
+#: zp-core/lib-auth.php:619 zp-core/lib-auth.php:626 zp-core/lib-auth.php:628
 #: zp-core/setup/setup-option-defaults.php:617
 #: zp-core/setup/setup-option-defaults.php:618
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:150
@@ -115,7 +115,7 @@ msgstr "Galéria"
 msgid "Admin"
 msgstr "Administrátor"
 
-#: plugins/cacheHeader.php:52 zp-core/template-functions.php:3925
+#: plugins/cacheHeader.php:52 zp-core/template-functions.php:3931
 #: zp-core/zp-extensions/zenpage/admin-functions.php:816
 msgid "All"
 msgstr "Všetko"
@@ -205,7 +205,7 @@ msgid "Default new users to \"allowed\""
 msgstr "Nový používatelia sa zaradia do \"povolení\""
 
 #: plugins/create_album.php:136 zp-core/admin-users.php:303
-#: zp-core/template-functions.php:134
+#: zp-core/template-functions.php:111
 msgid "Users"
 msgstr "Používatelia"
 
@@ -270,7 +270,7 @@ msgstr "Povolené custom_data"
 #: zp-core/lib-auth.php:584 zp-core/lib-auth.php:587 zp-core/lib-auth.php:591
 #: zp-core/lib-auth.php:594 zp-core/lib-auth.php:607 zp-core/lib-auth.php:610
 #: zp-core/lib-auth.php:611 zp-core/lib-auth.php:615 zp-core/lib-auth.php:620
-#: zp-core/lib-auth.php:623 zp-core/template-functions.php:118
+#: zp-core/lib-auth.php:623 zp-core/template-functions.php:95
 #: zp-core/utilities/gallery_statistics.php:69
 #: zp-core/utilities/gallery_statistics.php:580
 #: zp-core/zp-extensions/cacheManager.php:154
@@ -601,7 +601,7 @@ msgid "watermark created"
 msgstr "vodoznak bol vytvorený"
 
 #: plugins/text_watermark.php:104 plugins/text_watermark.php:106
-#: zp-core/setup/index.php:1077
+#: zp-core/setup/index.php:1079
 msgid "Create"
 msgstr "Vytvoriť"
 
@@ -662,7 +662,7 @@ msgstr[2] "%s súborov aktualizovaných"
 
 #: plugins/zenphotoCompatibilityPack/legacyConverter.php:191
 #: zp-core/lib-auth.php:550 zp-core/lib-auth.php:570 zp-core/lib-auth.php:595
-#: zp-core/lib-auth.php:626 zp-core/template-functions.php:148
+#: zp-core/lib-auth.php:626 zp-core/template-functions.php:125
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 msgid "Themes"
 msgstr "Šablóny"
@@ -673,7 +673,7 @@ msgid " (already processed)"
 msgstr " (už spracované)"
 
 #: plugins/zenphotoCompatibilityPack/legacyConverter.php:222
-#: zp-core/template-functions.php:155
+#: zp-core/template-functions.php:132
 msgid "Plugins"
 msgstr "Zásuvné moduly"
 
@@ -733,7 +733,6 @@ msgid "Apply"
 msgstr "Použiť"
 
 #: plugins/zenphotoCompatibilityPack/legacyConverter.php:257
-#: themes/zpBootstrap/contact_form/form.php:142
 #: themes/zpfocus/z_contact_form/form.php:124
 #: themes/zpskeleton/contact_form/form.php:121 zp-core/admin-albumsort.php:203
 #: zp-core/admin-albumsort.php:266 zp-core/admin-edit.php:960
@@ -754,7 +753,7 @@ msgstr "Použiť"
 #: zp-core/admin_options/search.php:78 zp-core/admin_options/search.php:464
 #: zp-core/admin_options/security.php:64 zp-core/admin_options/security.php:250
 #: zp-core/admin_options/theme.php:245 zp-core/admin_options/theme.php:557
-#: zp-core/lib-auth.php:1108 zp-core/lib-auth.php:1110
+#: zp-core/lib-auth.php:1106 zp-core/lib-auth.php:1108
 #: zp-core/zp-extensions/contact_form/form.php:136
 #: zp-core/zp-extensions/crop_image.php:492
 #: zp-core/zp-extensions/debug/admin_tab.php:315
@@ -815,8 +814,8 @@ msgstr "Index galérie"
 #: themes/paradigm/includes/_head.php:35 themes/paradigm/includes/_head.php:126
 #: themes/zenpage/404.php:28 themes/zpArdoise/404.php:6
 #: themes/zpArdoise/inc_header.php:21 themes/zpBootstrap/404.php:6
-#: themes/zpBootstrap/inc_header.php:22 themes/zpEnlighten/404.php:19
-#: themes/zpmobile/404.php:27 zp-core/template-functions.php:441
+#: themes/zpBootstrap/inc_header.php:26 themes/zpEnlighten/404.php:19
+#: themes/zpmobile/404.php:27 zp-core/template-functions.php:447
 msgid "Object not found"
 msgstr "Objekt nenájdený"
 
@@ -840,9 +839,7 @@ msgstr "hľadať"
 #: themes/effervescence+/indexpage.php:90 themes/effervescence+/news.php:50
 #: themes/effervescence+/pages.php:40 themes/effervescence+/register.php:46
 #: themes/effervescence+/search.php:108 themes/effervescence+/slideshow.php:35
-#: themes/effervescence+/slideshow.php:39 themes/zpBootstrap/album.php:14
-#: themes/zpBootstrap/favorites.php:14 themes/zpBootstrap/gallery.php:14
-#: themes/zpBootstrap/image.php:14
+#: themes/effervescence+/slideshow.php:39 themes/zpBootstrap/favorites.php:18
 msgid "Albums Index"
 msgstr "Index albumov"
 
@@ -858,20 +855,17 @@ msgstr "Index albumov"
 #: themes/zenpage/favorites.php:49 themes/zenpage/gallery.php:46
 #: themes/zenpage/gallery.php:49 themes/zenpage/search.php:147
 #: themes/zenpage/search.php:150 themes/zpArdoise/inc_print_album_thumb.php:5
-#: themes/zpArdoise/inc_print_album_thumb.php:6
-#: themes/zpBootstrap/inc_print_album_thumb.php:5
-#: themes/zpBootstrap/inc_print_album_thumb.php:9
-#: themes/zpEnlighten/album.php:43 themes/zpEnlighten/album.php:46
-#: themes/zpEnlighten/favorites.php:44 themes/zpEnlighten/favorites.php:48
-#: themes/zpEnlighten/gallery.php:38 themes/zpEnlighten/gallery.php:41
-#: themes/zpEnlighten/home.php:52 themes/zpEnlighten/search.php:135
-#: themes/zpEnlighten/search.php:138 themes/zpfocus/gallery.php:32
-#: themes/zpfocus/gallery.php:33 themes/zpfocus/gallery.php:39
-#: themes/zpfocus/search.php:118 themes/zpmobile/album.php:35
-#: themes/zpmobile/favorites.php:35 themes/zpmobile/gallery.php:33
-#: themes/zpmobile/search.php:140 themes/zpskeleton/album.php:45
-#: themes/zpskeleton/favorites.php:48 themes/zpskeleton/gallery.php:23
-#: themes/zpskeleton/search.php:119
+#: themes/zpArdoise/inc_print_album_thumb.php:6 themes/zpEnlighten/album.php:43
+#: themes/zpEnlighten/album.php:46 themes/zpEnlighten/favorites.php:44
+#: themes/zpEnlighten/favorites.php:48 themes/zpEnlighten/gallery.php:38
+#: themes/zpEnlighten/gallery.php:41 themes/zpEnlighten/home.php:52
+#: themes/zpEnlighten/search.php:135 themes/zpEnlighten/search.php:138
+#: themes/zpfocus/gallery.php:32 themes/zpfocus/gallery.php:33
+#: themes/zpfocus/gallery.php:39 themes/zpfocus/search.php:118
+#: themes/zpmobile/album.php:35 themes/zpmobile/favorites.php:35
+#: themes/zpmobile/gallery.php:33 themes/zpmobile/search.php:140
+#: themes/zpskeleton/album.php:45 themes/zpskeleton/favorites.php:48
+#: themes/zpskeleton/gallery.php:23 themes/zpskeleton/search.php:119
 msgid "View album:"
 msgstr "Prezrieť album:"
 
@@ -894,22 +888,22 @@ msgstr "Prezrieť album:"
 #: themes/zenpage/image.php:47 themes/zenpage/search.php:174
 #: themes/zpArdoise/image.php:10 themes/zpArdoise/image.php:12
 #: themes/zpArdoise/inc_header.php:158 themes/zpArdoise/inc_header.php:283
-#: themes/zpBootstrap/image.php:33 themes/zpBootstrap/image.php:35
-#: themes/zpEnlighten/album.php:78 themes/zpEnlighten/favorites.php:92
-#: themes/zpEnlighten/gallery.php:59 themes/zpEnlighten/image.php:45
-#: themes/zpEnlighten/image.php:47 themes/zpEnlighten/search.php:168
-#: themes/zpmasonry/album.php:29 themes/zpmasonry/album.php:169
-#: themes/zpmasonry/favorites.php:31 themes/zpmasonry/favorites.php:175
-#: themes/zpmasonry/image.php:24 themes/zpmasonry/index.php:112
-#: themes/zpmasonry/search.php:184 themes/zpminimal/album.php:40
-#: themes/zpminimal/favorites.php:45 themes/zpminimal/gallery.php:24
-#: themes/zpminimal/image.php:42 themes/zpminimal/search.php:68
-#: themes/zpmobile/album.php:31 themes/zpmobile/album.php:75
-#: themes/zpmobile/favorites.php:31 themes/zpmobile/favorites.php:60
-#: themes/zpmobile/gallery.php:29 themes/zpmobile/gallery.php:45
-#: themes/zpmobile/image.php:33 themes/zpmobile/news.php:55
-#: themes/zpmobile/search.php:188 themes/zpskeleton/gallery.php:55
-#: zp-core/admin-functions.php:4921
+#: themes/zpBootstrap/image.php:19 themes/zpBootstrap/image.php:21
+#: themes/zpBootstrap/inc_header.php:146 themes/zpEnlighten/album.php:78
+#: themes/zpEnlighten/favorites.php:92 themes/zpEnlighten/gallery.php:59
+#: themes/zpEnlighten/image.php:45 themes/zpEnlighten/image.php:47
+#: themes/zpEnlighten/search.php:168 themes/zpmasonry/album.php:29
+#: themes/zpmasonry/album.php:169 themes/zpmasonry/favorites.php:31
+#: themes/zpmasonry/favorites.php:175 themes/zpmasonry/image.php:24
+#: themes/zpmasonry/index.php:112 themes/zpmasonry/search.php:184
+#: themes/zpminimal/album.php:40 themes/zpminimal/favorites.php:45
+#: themes/zpminimal/gallery.php:24 themes/zpminimal/image.php:42
+#: themes/zpminimal/search.php:68 themes/zpmobile/album.php:31
+#: themes/zpmobile/album.php:75 themes/zpmobile/favorites.php:31
+#: themes/zpmobile/favorites.php:60 themes/zpmobile/gallery.php:29
+#: themes/zpmobile/gallery.php:45 themes/zpmobile/image.php:33
+#: themes/zpmobile/news.php:55 themes/zpmobile/search.php:188
+#: themes/zpskeleton/gallery.php:55 zp-core/admin-functions.php:4921
 #: zp-core/zp-extensions/comment_form/functions.php:30
 #: zp-core/zp-extensions/slideshow.php:640
 #: zp-core/zp-extensions/slideshow2.php:323
@@ -936,24 +930,25 @@ msgstr "späť"
 #: themes/zenpage/image.php:49 themes/zenpage/search.php:174
 #: themes/zpArdoise/image.php:15 themes/zpArdoise/image.php:17
 #: themes/zpArdoise/inc_header.php:159 themes/zpArdoise/inc_header.php:284
-#: themes/zpBootstrap/image.php:38 themes/zpBootstrap/image.php:40
-#: themes/zpEnlighten/album.php:78 themes/zpEnlighten/favorites.php:92
-#: themes/zpEnlighten/gallery.php:59 themes/zpEnlighten/image.php:49
-#: themes/zpEnlighten/image.php:51 themes/zpEnlighten/search.php:168
-#: themes/zpfocus/inc-header.php:161 themes/zpfocus/inc-header.php:175
-#: themes/zpmasonry/album.php:37 themes/zpmasonry/album.php:169
-#: themes/zpmasonry/favorites.php:39 themes/zpmasonry/favorites.php:175
-#: themes/zpmasonry/image.php:25 themes/zpmasonry/inc-footer.php:35
-#: themes/zpmasonry/inc-header.php:146 themes/zpmasonry/inc-header.php:161
-#: themes/zpmasonry/index.php:112 themes/zpmasonry/search.php:184
-#: themes/zpminimal/album.php:40 themes/zpminimal/favorites.php:45
-#: themes/zpminimal/gallery.php:24 themes/zpminimal/image.php:43
-#: themes/zpminimal/search.php:68 themes/zpmobile/album.php:31
-#: themes/zpmobile/album.php:75 themes/zpmobile/favorites.php:31
-#: themes/zpmobile/favorites.php:60 themes/zpmobile/gallery.php:29
-#: themes/zpmobile/gallery.php:45 themes/zpmobile/image.php:36
-#: themes/zpmobile/news.php:59 themes/zpmobile/search.php:188
-#: themes/zpskeleton/gallery.php:55 zp-core/admin-functions.php:4948
+#: themes/zpBootstrap/image.php:30 themes/zpBootstrap/image.php:32
+#: themes/zpBootstrap/inc_header.php:145 themes/zpEnlighten/album.php:78
+#: themes/zpEnlighten/favorites.php:92 themes/zpEnlighten/gallery.php:59
+#: themes/zpEnlighten/image.php:49 themes/zpEnlighten/image.php:51
+#: themes/zpEnlighten/search.php:168 themes/zpfocus/inc-header.php:161
+#: themes/zpfocus/inc-header.php:175 themes/zpmasonry/album.php:37
+#: themes/zpmasonry/album.php:169 themes/zpmasonry/favorites.php:39
+#: themes/zpmasonry/favorites.php:175 themes/zpmasonry/image.php:25
+#: themes/zpmasonry/inc-footer.php:35 themes/zpmasonry/inc-header.php:146
+#: themes/zpmasonry/inc-header.php:161 themes/zpmasonry/index.php:112
+#: themes/zpmasonry/search.php:184 themes/zpminimal/album.php:40
+#: themes/zpminimal/favorites.php:45 themes/zpminimal/gallery.php:24
+#: themes/zpminimal/image.php:43 themes/zpminimal/search.php:68
+#: themes/zpmobile/album.php:31 themes/zpmobile/album.php:75
+#: themes/zpmobile/favorites.php:31 themes/zpmobile/favorites.php:60
+#: themes/zpmobile/gallery.php:29 themes/zpmobile/gallery.php:45
+#: themes/zpmobile/image.php:36 themes/zpmobile/news.php:59
+#: themes/zpmobile/search.php:188 themes/zpskeleton/gallery.php:55
+#: zp-core/admin-functions.php:4948
 #: zp-core/zp-extensions/comment_form/functions.php:31
 #: zp-core/zp-extensions/jPlayer.php:482
 #: zp-core/zp-extensions/slideshow.php:641
@@ -992,13 +987,13 @@ msgstr "RSS albumov"
 #: themes/paradigm/includes/_header.php:52 themes/zenpage/archive.php:32
 #: themes/zpArdoise/archive.php:6 themes/zpArdoise/inc_footer.php:46
 #: themes/zpArdoise/inc_header.php:30 themes/zpArdoise/inc_header.php:347
-#: themes/zpBootstrap/archive.php:6 themes/zpBootstrap/inc_footer.php:16
-#: themes/zpBootstrap/inc_header.php:31 themes/zpBootstrap/themeoptions.php:60
-#: themes/zpEnlighten/archive.php:27 themes/zpfocus/inc-header.php:53
-#: themes/zpmasonry/archive.php:4 themes/zpmasonry/inc-header.php:54
-#: themes/zpmasonry/inc-menu.php:51 themes/zpminimal/archive.php:4
-#: themes/zpminimal/inc-header.php:47 themes/zpminimal/inc-sidemenu.php:16
-#: themes/zpskeleton/inc-header.php:59 themes/zpskeleton/inc-header.php:178
+#: themes/zpBootstrap/inc_footer.php:7 themes/zpBootstrap/inc_header.php:35
+#: themes/zpBootstrap/themeoptions.php:85 themes/zpEnlighten/archive.php:27
+#: themes/zpfocus/inc-header.php:53 themes/zpmasonry/archive.php:4
+#: themes/zpmasonry/inc-header.php:54 themes/zpmasonry/inc-menu.php:51
+#: themes/zpminimal/archive.php:4 themes/zpminimal/inc-header.php:47
+#: themes/zpminimal/inc-sidemenu.php:16 themes/zpskeleton/inc-header.php:59
+#: themes/zpskeleton/inc-header.php:178
 msgid "Archive View"
 msgstr "Archív"
 
@@ -1071,12 +1066,13 @@ msgstr "Farba šablóny"
 #: themes/garland/colorbox/functions.php:32 themes/garland/image.php:19
 #: themes/garland/image.php:29 themes/zenpage/image.php:22
 #: themes/zenpage/image.php:28 themes/zpArdoise/inc_header.php:285
-#: themes/zpArdoise/password.php:21 themes/zpEnlighten/image.php:16
-#: themes/zpEnlighten/image.php:22 themes/zpfocus/inc-header.php:162
-#: themes/zpfocus/inc-header.php:176 themes/zpmasonry/inc-footer.php:36
-#: themes/zpmasonry/inc-header.php:147 themes/zpmasonry/inc-header.php:162
-#: zp-core/admin-functions.php:217 zp-core/admin-plugins.php:113
-#: zp-core/admin.php:422 zp-core/zp-extensions/accessThreshold/admin_tab.php:94
+#: themes/zpArdoise/password.php:21 themes/zpBootstrap/inc_header.php:144
+#: themes/zpEnlighten/image.php:16 themes/zpEnlighten/image.php:22
+#: themes/zpfocus/inc-header.php:162 themes/zpfocus/inc-header.php:176
+#: themes/zpmasonry/inc-footer.php:36 themes/zpmasonry/inc-header.php:147
+#: themes/zpmasonry/inc-header.php:162 zp-core/admin-functions.php:217
+#: zp-core/admin-plugins.php:113 zp-core/admin.php:422
+#: zp-core/zp-extensions/accessThreshold/admin_tab.php:94
 #: zp-core/zp-extensions/googleMap.php:516
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:63
 #: zp-core/zp-extensions/slideshow.php:642
@@ -1087,7 +1083,7 @@ msgstr "zatvoriť"
 
 #: themes/basic/image.php:47 themes/gray_highlights/image.php:83
 #: themes/paradigm/image.php:22 themes/zenpage/image.php:47
-#: themes/zpArdoise/image.php:10 themes/zpBootstrap/image.php:33
+#: themes/zpArdoise/image.php:10 themes/zpBootstrap/image.php:19
 #: themes/zpEnlighten/image.php:45 themes/zpmasonry/image.php:24
 #: themes/zpminimal/image.php:42 themes/zpmobile/image.php:33
 #: themes/zpskeleton/image.php:47 themes/zpskeleton/image.php:65
@@ -1096,7 +1092,7 @@ msgstr "Predchádzajúci obrázok"
 
 #: themes/basic/image.php:51 themes/gray_highlights/image.php:87
 #: themes/paradigm/image.php:24 themes/zenpage/image.php:49
-#: themes/zpArdoise/image.php:15 themes/zpBootstrap/image.php:38
+#: themes/zpArdoise/image.php:15 themes/zpBootstrap/image.php:30
 #: themes/zpEnlighten/image.php:49 themes/zpmasonry/image.php:25
 #: themes/zpminimal/image.php:43 themes/zpmobile/image.php:36
 #: themes/zpskeleton/image.php:44 themes/zpskeleton/image.php:62
@@ -1124,13 +1120,13 @@ msgstr "K stánke, ktorú požadujete je potrebné heslo"
 #: themes/basic/register.php:24 themes/effervescence+/register.php:51
 #: themes/garland/register.php:41 themes/paradigm/includes/_head.php:81
 #: themes/paradigm/includes/_head.php:172 themes/zpArdoise/inc_footer.php:51
-#: themes/zpArdoise/inc_header.php:66 themes/zpBootstrap/inc_footer.php:19
-#: themes/zpBootstrap/inc_header.php:67 themes/zpfocus/inc-footer.php:24
+#: themes/zpArdoise/inc_header.php:66 themes/zpBootstrap/inc_header.php:71
+#: themes/zpBootstrap/inc_header.php:294 themes/zpfocus/inc-footer.php:24
 #: themes/zpfocus/inc-header.php:89 themes/zpfocus/register.php:5
 #: themes/zpmasonry/inc-header.php:91 themes/zpmasonry/inc-menu.php:63
 #: themes/zpminimal/inc-header.php:91 themes/zpminimal/inc-sidemenu.php:39
 #: themes/zpskeleton/inc-footer.php:20 themes/zpskeleton/inc-header.php:95
-#: zp-core/allTranslations.php:86 zp-core/template-functions.php:445
+#: zp-core/allTranslations.php:86 zp-core/template-functions.php:451
 #: zp-core/zp-extensions/html_meta_tags.php:234
 msgid "Register"
 msgstr "Registrovať"
@@ -1139,7 +1135,7 @@ msgstr "Registrovať"
 #: themes/garland/register.php:43 themes/gray_highlights/register.php:29
 #: themes/paradigm/includes/_breadcrumbs.php:54 themes/paradigm/register.php:23
 #: themes/zenpage/register.php:35 themes/zpArdoise/register.php:9
-#: themes/zpBootstrap/register.php:6 themes/zpEnlighten/register.php:29
+#: themes/zpBootstrap/register.php:9 themes/zpEnlighten/register.php:29
 #: themes/zpmasonry/register.php:4 themes/zpmasonry/register.php:16
 #: themes/zpminimal/register.php:4 themes/zpminimal/register.php:12
 #: themes/zpmobile/register.php:28 themes/zpskeleton/register.php:6
@@ -1180,7 +1176,7 @@ msgstr ""
 #: themes/basic/themeoptions.php:44 themes/effervescence+/themeoptions.php:94
 #: themes/garland/themeoptions.php:70 themes/paradigm/themeoptions.php:96
 #: themes/zenpage/themeoptions.php:61 themes/zpArdoise/themeoptions.php:70
-#: themes/zpBootstrap/themeoptions.php:59
+#: themes/zpBootstrap/themeoptions.php:84
 #: themes/zpEnlighten/themeoptions.php:35 themes/zpfocus/themeoptions.php:69
 #: themes/zpmobile/themeoptions.php:38
 msgid "Allow search"
@@ -1188,7 +1184,7 @@ msgstr "Povoliť vyhľadávanie"
 
 #: themes/basic/themeoptions.php:44 themes/effervescence+/themeoptions.php:94
 #: themes/paradigm/themeoptions.php:96 themes/zenpage/themeoptions.php:61
-#: themes/zpArdoise/themeoptions.php:70 themes/zpBootstrap/themeoptions.php:59
+#: themes/zpArdoise/themeoptions.php:70 themes/zpBootstrap/themeoptions.php:84
 #: themes/zpEnlighten/themeoptions.php:35 themes/zpfocus/themeoptions.php:69
 #: themes/zpmobile/themeoptions.php:38
 msgid "Check to enable search form."
@@ -1226,7 +1222,7 @@ msgstr "Obrázky podľa dátumu"
 
 #: themes/effervescence+/archive.php:68 themes/garland/archive.php:50
 #: themes/paradigm/archive.php:25 themes/zenpage/archive.php:43
-#: themes/zpArdoise/archive.php:18 themes/zpBootstrap/archive.php:13
+#: themes/zpArdoise/archive.php:18 themes/zpBootstrap/archive.php:20
 #: themes/zpmobile/archive.php:35
 msgid "News archive"
 msgstr "Archív článkov"
@@ -1237,15 +1233,15 @@ msgstr "Archív článkov"
 #: themes/paradigm/includes/_head.php:43 themes/paradigm/includes/_head.php:134
 #: themes/paradigm/includes/_header.php:57 themes/zpArdoise/contact.php:9
 #: themes/zpArdoise/inc_header.php:33 themes/zpArdoise/inc_header.php:350
-#: themes/zpBootstrap/contact.php:9 themes/zpBootstrap/inc_header.php:34
-#: themes/zpBootstrap/inc_header.php:240 themes/zpEnlighten/contact.php:26
+#: themes/zpBootstrap/contact.php:9 themes/zpBootstrap/inc_header.php:38
+#: themes/zpBootstrap/inc_header.php:275 themes/zpEnlighten/contact.php:26
 #: themes/zpfocus/inc-header.php:81 themes/zpfocus/inc-header.php:230
 #: themes/zpmasonry/contact.php:4 themes/zpmasonry/contact.php:16
 #: themes/zpmasonry/inc-header.php:83 themes/zpmasonry/inc-menu.php:56
 #: themes/zpminimal/contact.php:4 themes/zpminimal/inc-header.php:83
 #: themes/zpminimal/inc-sidemenu.php:37 themes/zpskeleton/inc-header.php:87
 #: themes/zpskeleton/inc-header.php:184 zp-core/class-image.php:196
-#: zp-core/template-functions.php:445
+#: zp-core/template-functions.php:451
 #: zp-core/zp-extensions/html_meta_tags.php:234
 msgid "Contact"
 msgstr "Kontakt"
@@ -1332,7 +1328,7 @@ msgstr "Effervescence %s"
 msgid "Effervescence %1$s %2$s"
 msgstr "Effervescence %1$s %2$s"
 
-#: themes/effervescence+/functions.php:348 zp-core/template-functions.php:1073
+#: themes/effervescence+/functions.php:348 zp-core/template-functions.php:1079
 msgid "The album is password protected."
 msgstr "Album je chránený heslom."
 
@@ -1393,7 +1389,7 @@ msgstr[2] "%u Obrázkov"
 
 #: themes/effervescence+/functions.php:403
 #: themes/zpArdoise/inc_print_comment.php:32
-#: themes/zpBootstrap/inc_print_comment.php:34
+#: themes/zpBootstrap/inc_print_comment.php:36
 #: zp-core/zp-extensions/comment_form.php:240
 #, php-format
 msgid "%u Comment"
@@ -1543,7 +1539,7 @@ msgstr "Hľadať v správach"
 #: themes/zpEnlighten/news.php:25 themes/zpEnlighten/news.php:30
 #: themes/zpEnlighten/pages.php:23 themes/zpEnlighten/password.php:22
 #: themes/zpEnlighten/register.php:22 themes/zpEnlighten/search.php:34
-#: zp-core/404.php:73 zp-core/setup/index.php:1078
+#: zp-core/404.php:73 zp-core/setup/index.php:1080
 msgid "Index"
 msgstr "Index"
 
@@ -1565,7 +1561,7 @@ msgstr[2] "Prehľadať kategórie: %s"
 
 #: themes/effervescence+/search.php:137 themes/garland/search.php:91
 #: themes/zenpage/search.php:76 themes/zpArdoise/search.php:31
-#: themes/zpBootstrap/search.php:40 themes/zpfocus/search.php:41
+#: themes/zpBootstrap/search.php:46 themes/zpfocus/search.php:41
 #: themes/zpmobile/search.php:70 themes/zpskeleton/search.php:40
 #, php-format
 msgid "%1$u Hit for <em>%2$s</em>"
@@ -1576,7 +1572,7 @@ msgstr[2] "%1$u návštev pre <em>%2$s</em>"
 
 #: themes/effervescence+/search.php:148 themes/garland/search.php:110
 #: themes/paradigm/search.php:59 themes/zenpage/search.php:87
-#: themes/zpArdoise/search.php:109 themes/zpBootstrap/search.php:107
+#: themes/zpArdoise/search.php:109 themes/zpBootstrap/search.php:105
 #: themes/zpEnlighten/search.php:64 themes/zpfocus/search.php:52
 #: themes/zpmobile/search.php:81 themes/zpskeleton/search.php:56
 #, php-format
@@ -1601,7 +1597,7 @@ msgstr "Zobraz menej výsledkov"
 
 #: themes/effervescence+/search.php:181 themes/garland/search.php:143
 #: themes/paradigm/search.php:79 themes/zenpage/search.php:107
-#: themes/zpArdoise/search.php:93 themes/zpBootstrap/search.php:93
+#: themes/zpArdoise/search.php:93 themes/zpBootstrap/search.php:92
 #: themes/zpfocus/search.php:72 themes/zpmobile/search.php:101
 #: themes/zpskeleton/search.php:77
 #, php-format
@@ -1610,7 +1606,7 @@ msgstr "Články (%s)"
 
 #: themes/effervescence+/search.php:217 themes/garland/search.php:180
 #: themes/paradigm/search.php:101 themes/zenpage/search.php:129
-#: themes/zpArdoise/search.php:42 themes/zpBootstrap/search.php:50
+#: themes/zpArdoise/search.php:42 themes/zpBootstrap/search.php:55
 #: themes/zpmobile/search.php:123 themes/zpskeleton/search.php:98
 #, php-format
 msgid "Images (%s)"
@@ -1618,7 +1614,7 @@ msgstr "Obrázky (%s)"
 
 #: themes/effervescence+/search.php:221 themes/garland/search.php:184
 #: themes/paradigm/search.php:106 themes/zenpage/search.php:134
-#: themes/zpArdoise/search.php:49 themes/zpBootstrap/search.php:57
+#: themes/zpArdoise/search.php:49 themes/zpBootstrap/search.php:60
 #: themes/zpmobile/search.php:128 themes/zpskeleton/search.php:103
 #, php-format
 msgid "Albums (%s)"
@@ -1626,7 +1622,7 @@ msgstr "Albumy (%s)"
 
 #: themes/effervescence+/search.php:223 themes/garland/search.php:186
 #: themes/paradigm/search.php:109 themes/zenpage/search.php:137
-#: themes/zpArdoise/search.php:55 themes/zpBootstrap/search.php:63
+#: themes/zpArdoise/search.php:55 themes/zpBootstrap/search.php:64
 #: themes/zpmobile/search.php:131 themes/zpskeleton/search.php:106
 #, php-format
 msgid "Albums (%1$s) &amp; Images (%2$s)"
@@ -1648,10 +1644,10 @@ msgstr "Galérie a správy"
 
 #: themes/effervescence+/sidebar.php:28 themes/garland/sidebar.php:73
 #: themes/zenpage/sidebar.php:16 themes/zpArdoise/news.php:26
-#: themes/zpBootstrap/news.php:43 themes/zpBootstrap/news.php:76
-#: themes/zpEnlighten/sidebar.php:11 themes/zpmobile/functions.php:174
-#: zp-core/allTranslations.php:8 zp-core/allTranslations.php:26
-#: zp-core/allTranslations.php:37 zp-core/allTranslations.php:46
+#: themes/zpBootstrap/news.php:62 themes/zpEnlighten/sidebar.php:11
+#: themes/zpmobile/functions.php:174 zp-core/allTranslations.php:8
+#: zp-core/allTranslations.php:26 zp-core/allTranslations.php:37
+#: zp-core/allTranslations.php:46
 msgid "All news"
 msgstr "Všetky správy"
 
@@ -1667,8 +1663,8 @@ msgstr "Index albumov"
 #: themes/zpfocus/inc-header.php:234 themes/zpmasonry/inc-menu.php:51
 #: themes/zpminimal/inc-sidemenu.php:16 themes/zpmobile/functions.php:84
 #: themes/zpskeleton/archive.php:6 themes/zpskeleton/inc-header.php:178
-#: zp-core/allTranslations.php:16 zp-core/template-functions.php:1237
-#: zp-core/template-functions.php:1292
+#: zp-core/allTranslations.php:16 zp-core/template-functions.php:1243
+#: zp-core/template-functions.php:1298
 #: zp-core/zp-extensions/zenpage/template-functions.php:1602
 msgid "Archive"
 msgstr "Archív"
@@ -1683,30 +1679,30 @@ msgstr "RSS"
 #: themes/paradigm/includes/_footer.php:23
 #: themes/paradigm/includes/_sidebar.php:24 themes/zenpage/sidebar.php:94
 #: themes/zpArdoise/inc_header.php:51 themes/zpArdoise/inc_header.php:57
-#: themes/zpArdoise/inc_header.php:336 themes/zpBootstrap/inc_header.php:52
-#: themes/zpBootstrap/inc_header.php:231 themes/zpBootstrap/news.php:10
-#: themes/zpEnlighten/news.php:30 themes/zpfocus/inc-footer.php:50
-#: themes/zpfocus/inc-header.php:67 themes/zpfocus/inc-header.php:70
-#: themes/zpfocus/inc-header.php:73 themes/zpfocus/inc-header.php:76
-#: themes/zpfocus/inc-header.php:224 themes/zpmasonry/inc-header.php:69
-#: themes/zpmasonry/inc-header.php:72 themes/zpmasonry/inc-header.php:75
-#: themes/zpmasonry/inc-header.php:78 themes/zpmasonry/inc-menu.php:47
-#: themes/zpminimal/inc-footer.php:15 themes/zpminimal/inc-header.php:62
-#: themes/zpminimal/inc-header.php:65 themes/zpminimal/inc-header.php:68
-#: themes/zpminimal/inc-header.php:70 themes/zpminimal/inc-sidemenu.php:19
-#: themes/zpmobile/functions.php:36 themes/zpmobile/functions.php:75
-#: themes/zpmobile/functions.php:173 themes/zpskeleton/inc-bottom.php:54
-#: themes/zpskeleton/inc-header.php:73 themes/zpskeleton/inc-header.php:76
-#: themes/zpskeleton/inc-header.php:79 themes/zpskeleton/inc-header.php:82
-#: themes/zpskeleton/inc-header.php:181 themes/zpskeleton/news.php:8
-#: themes/zpskeleton/news.php:26 themes/zpskeleton/news.php:33
-#: themes/zpskeleton/news.php:38 zp-core/admin-functions.php:3522
-#: zp-core/admin-functions.php:3663 zp-core/allTranslations.php:21
-#: zp-core/lib-auth.php:565 zp-core/lib-auth.php:568 zp-core/lib-auth.php:581
-#: zp-core/lib-auth.php:588 zp-core/lib-auth.php:592 zp-core/lib-auth.php:608
-#: zp-core/lib-auth.php:612 zp-core/lib-auth.php:617 zp-core/lib-auth.php:621
-#: zp-core/template-functions.php:416 zp-core/template-functions.php:418
-#: zp-core/template-functions.php:420
+#: themes/zpArdoise/inc_header.php:336 themes/zpBootstrap/inc_header.php:56
+#: themes/zpBootstrap/inc_header.php:266 themes/zpEnlighten/news.php:30
+#: themes/zpfocus/inc-footer.php:50 themes/zpfocus/inc-header.php:67
+#: themes/zpfocus/inc-header.php:70 themes/zpfocus/inc-header.php:73
+#: themes/zpfocus/inc-header.php:76 themes/zpfocus/inc-header.php:224
+#: themes/zpmasonry/inc-header.php:69 themes/zpmasonry/inc-header.php:72
+#: themes/zpmasonry/inc-header.php:75 themes/zpmasonry/inc-header.php:78
+#: themes/zpmasonry/inc-menu.php:47 themes/zpminimal/inc-footer.php:15
+#: themes/zpminimal/inc-header.php:62 themes/zpminimal/inc-header.php:65
+#: themes/zpminimal/inc-header.php:68 themes/zpminimal/inc-header.php:70
+#: themes/zpminimal/inc-sidemenu.php:19 themes/zpmobile/functions.php:36
+#: themes/zpmobile/functions.php:75 themes/zpmobile/functions.php:173
+#: themes/zpskeleton/inc-bottom.php:54 themes/zpskeleton/inc-header.php:73
+#: themes/zpskeleton/inc-header.php:76 themes/zpskeleton/inc-header.php:79
+#: themes/zpskeleton/inc-header.php:82 themes/zpskeleton/inc-header.php:181
+#: themes/zpskeleton/news.php:8 themes/zpskeleton/news.php:26
+#: themes/zpskeleton/news.php:33 themes/zpskeleton/news.php:38
+#: zp-core/admin-functions.php:3522 zp-core/admin-functions.php:3663
+#: zp-core/allTranslations.php:21 zp-core/lib-auth.php:565
+#: zp-core/lib-auth.php:568 zp-core/lib-auth.php:581 zp-core/lib-auth.php:588
+#: zp-core/lib-auth.php:592 zp-core/lib-auth.php:608 zp-core/lib-auth.php:612
+#: zp-core/lib-auth.php:617 zp-core/lib-auth.php:621
+#: zp-core/template-functions.php:422 zp-core/template-functions.php:424
+#: zp-core/template-functions.php:426
 #: zp-core/zp-extensions/cacheManager.php:156
 #: zp-core/zp-extensions/comment_form.php:88
 #: zp-core/zp-extensions/defaultCodeblocks.php:49
@@ -1725,7 +1721,8 @@ msgstr "Správy"
 #: themes/paradigm/includes/_head.php:176
 #: themes/paradigm/includes/_header.php:60 themes/zenpage/album.php:24
 #: themes/zpArdoise/inc_footer.php:11 themes/zpArdoise/inc_header.php:69
-#: themes/zpArdoise/search.php:4 themes/zpBootstrap/inc_header.php:70
+#: themes/zpArdoise/search.php:4 themes/zpBootstrap/archive.php:6
+#: themes/zpBootstrap/inc_header.php:74 themes/zpBootstrap/inc_header.php:278
 #: themes/zpBootstrap/search.php:6 themes/zpEnlighten/header.php:7
 #: themes/zpEnlighten/search.php:38 themes/zpfocus/inc-header.php:57
 #: themes/zpfocus/search.php:5 themes/zpmasonry/inc-header.php:59
@@ -1734,8 +1731,8 @@ msgstr "Správy"
 #: themes/zpminimal/inc-header.php:230 themes/zpminimal/search.php:29
 #: themes/zpmobile/functions.php:67 themes/zpskeleton/inc-header.php:64
 #: themes/zpskeleton/inc-search.php:1 themes/zpskeleton/search.php:28
-#: zp-core/template-functions.php:445 zp-core/template-functions.php:1254
-#: zp-core/template-functions.php:1285 zp-core/template-functions.php:3782
+#: zp-core/template-functions.php:451 zp-core/template-functions.php:1260
+#: zp-core/template-functions.php:1291 zp-core/template-functions.php:3788
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:71
 #: zp-core/zp-extensions/html_meta_tags.php:234
 #: zp-core/zp-extensions/slideshow.php:798
@@ -1829,8 +1826,8 @@ msgstr ""
 #: themes/effervescence+/themeoptions.php:95 themes/zpArdoise/album.php:11
 #: themes/zpArdoise/favorites.php:14 themes/zpArdoise/image.php:24
 #: themes/zpArdoise/inc_header.php:156 themes/zpArdoise/search.php:65
-#: themes/zpBootstrap/album.php:24 themes/zpBootstrap/favorites.php:23
-#: themes/zpBootstrap/home.php:34 themes/zpBootstrap/image.php:26
+#: themes/zpBootstrap/album_standard.php:24 themes/zpBootstrap/favorites.php:32
+#: themes/zpBootstrap/home.php:41 themes/zpBootstrap/image.php:26
 #: themes/zpBootstrap/search.php:73 themes/zpfocus/album.php:68
 #: themes/zpfocus/favorites.php:67 themes/zpfocus/image.php:33
 #: themes/zpfocus/search.php:133 themes/zpfocus/slideshow.php:19
@@ -2070,7 +2067,7 @@ msgstr "« Späť"
 #: themes/garland/password.php:40 themes/paradigm/includes/_head.php:77
 #: themes/paradigm/includes/_head.php:168 themes/zpArdoise/inc_header.php:63
 #: themes/zpArdoise/password.php:6 themes/zpBootstrap/password.php:6
-#: zp-core/password.php:6 zp-core/template-functions.php:445
+#: zp-core/password.php:6 zp-core/template-functions.php:451
 #: zp-core/zp-extensions/html_meta_tags.php:234
 msgid "Password required"
 msgstr "Požadované heslo"
@@ -2129,13 +2126,14 @@ msgid "Calendar"
 msgstr "Kalendár"
 
 #: themes/gray_highlights/functions.php:34 themes/gray_highlights/login.php:28
-#: themes/zpBootstrap/inc_footer.php:24 themes/zpEnlighten/password_form.php:10
-#: themes/zpfocus/inc-footer.php:33 themes/zpfocus/inc-header.php:85
-#: themes/zpmasonry/inc-header.php:87 themes/zpmasonry/inc-menu.php:36
-#: themes/zpminimal/inc-header.php:87 themes/zpminimal/inc-sidemenu.php:47
-#: themes/zpminimal/login.php:4 themes/zpskeleton/inc-footer.php:15
-#: themes/zpskeleton/inc-header.php:91 themes/zpskeleton/login.php:6
-#: zp-core/lib-auth.php:1047 zp-core/zp-extensions/user_login-out.php:116
+#: themes/zpBootstrap/inc_header.php:289
+#: themes/zpEnlighten/password_form.php:10 themes/zpfocus/inc-footer.php:33
+#: themes/zpfocus/inc-header.php:85 themes/zpmasonry/inc-header.php:87
+#: themes/zpmasonry/inc-menu.php:36 themes/zpminimal/inc-header.php:87
+#: themes/zpminimal/inc-sidemenu.php:47 themes/zpminimal/login.php:4
+#: themes/zpskeleton/inc-footer.php:15 themes/zpskeleton/inc-header.php:91
+#: themes/zpskeleton/login.php:6 zp-core/lib-auth.php:1045
+#: zp-core/zp-extensions/user_login-out.php:116
 msgid "Login"
 msgstr "Prihlásiť"
 
@@ -2172,10 +2170,10 @@ msgid "Total matches: %1$u"
 msgstr "Zhôd spolu: %1$u"
 
 #: themes/paradigm/album.php:31 themes/paradigm/image.php:99
-#: themes/zpBootstrap/archive.php:33 themes/zpBootstrap/themeoptions.php:61
+#: themes/zpBootstrap/archive.php:40 themes/zpBootstrap/themeoptions.php:86
 #: zp-core/admin-tags.php:154 zp-core/lib-auth.php:552 zp-core/lib-auth.php:571
 #: zp-core/lib-auth.php:596 zp-core/lib-auth.php:628
-#: zp-core/template-functions.php:127
+#: zp-core/template-functions.php:104
 #: zp-core/utilities/gallery_statistics.php:92
 #: zp-core/utilities/gallery_statistics.php:592
 #: zp-core/zp-extensions/optionalObjectFields.php:97
@@ -2200,15 +2198,13 @@ msgid "Location"
 msgstr "Miesto"
 
 #: themes/paradigm/archive.php:18 themes/zenpage/archive.php:39
-#: themes/zpArdoise/archive.php:13 themes/zpBootstrap/archive.php:11
+#: themes/zpArdoise/archive.php:13 themes/zpBootstrap/archive.php:18
 #: themes/zpmobile/archive.php:29
 msgid "Gallery archive"
 msgstr "Archív galérie"
 
 #: themes/paradigm/comment_form/comment_form.php:20
 #: themes/paradigm/contact_form/form.php:25
-#: themes/zpBootstrap/comment_form/comment_form.php:22
-#: themes/zpBootstrap/contact_form/form.php:20
 #: zp-core/zp-extensions/comment_form/comment_form.php:18
 #: zp-core/zp-extensions/contact_form/form.php:23
 #, php-format
@@ -2216,15 +2212,12 @@ msgid "Name%s"
 msgstr "Názov%s"
 
 #: themes/paradigm/comment_form/comment_form.php:29
-#: themes/zpBootstrap/comment_form/comment_form.php:25
 #: zp-core/zp-extensions/comment_form/comment_form.php:25
 msgid "<em>anonymous</em>"
 msgstr "<em>anonym</em>"
 
 #: themes/paradigm/comment_form/comment_form.php:41
 #: themes/paradigm/contact_form/form.php:103
-#: themes/zpBootstrap/comment_form/comment_form.php:39
-#: themes/zpBootstrap/contact_form/form.php:83
 #: zp-core/zp-extensions/comment_form/comment_form.php:39
 #: zp-core/zp-extensions/contact_form/form.php:85
 #, php-format
@@ -2232,7 +2225,6 @@ msgid "E-Mail%s"
 msgstr "Email%s"
 
 #: themes/paradigm/comment_form/comment_form.php:51
-#: themes/zpBootstrap/comment_form/comment_form.php:51
 #: zp-core/zp-extensions/comment_form/comment_form.php:47
 #, php-format
 msgid "Site%s"
@@ -2240,9 +2232,6 @@ msgstr "Stránka%s"
 
 #: themes/paradigm/comment_form/comment_form.php:62
 #: themes/paradigm/contact_form/form.php:53
-#: themes/zpBootstrap/comment_form/comment_form.php:63
-#: themes/zpBootstrap/contact_form/form.php:38
-#: themes/zpBootstrap/register_user/register_user_form.php:66
 #: zp-core/zp-extensions/comment_form/comment_form.php:56
 #: zp-core/zp-extensions/contact_form/form.php:45
 #: zp-core/zp-extensions/register_user/register_user_form.php:59
@@ -2252,9 +2241,6 @@ msgstr "Ulica%s"
 
 #: themes/paradigm/comment_form/comment_form.php:68
 #: themes/paradigm/contact_form/form.php:63
-#: themes/zpBootstrap/comment_form/comment_form.php:69
-#: themes/zpBootstrap/contact_form/form.php:47
-#: themes/zpBootstrap/register_user/register_user_form.php:73
 #: zp-core/zp-extensions/comment_form/comment_form.php:60
 #: zp-core/zp-extensions/contact_form/form.php:53
 #: zp-core/zp-extensions/register_user/register_user_form.php:65
@@ -2264,9 +2250,6 @@ msgstr "Mesto%s"
 
 #: themes/paradigm/comment_form/comment_form.php:74
 #: themes/paradigm/contact_form/form.php:73
-#: themes/zpBootstrap/comment_form/comment_form.php:75
-#: themes/zpBootstrap/contact_form/form.php:56
-#: themes/zpBootstrap/register_user/register_user_form.php:81
 #: zp-core/zp-extensions/comment_form/comment_form.php:64
 #: zp-core/zp-extensions/contact_form/form.php:61
 #: zp-core/zp-extensions/register_user/register_user_form.php:71
@@ -2276,9 +2259,6 @@ msgstr "Okres%s"
 
 #: themes/paradigm/comment_form/comment_form.php:80
 #: themes/paradigm/contact_form/form.php:83
-#: themes/zpBootstrap/comment_form/comment_form.php:81
-#: themes/zpBootstrap/contact_form/form.php:65
-#: themes/zpBootstrap/register_user/register_user_form.php:88
 #: zp-core/zp-extensions/comment_form/comment_form.php:68
 #: zp-core/zp-extensions/contact_form/form.php:69
 #: zp-core/zp-extensions/register_user/register_user_form.php:77
@@ -2288,9 +2268,6 @@ msgstr "Štát%s"
 
 #: themes/paradigm/comment_form/comment_form.php:86
 #: themes/paradigm/contact_form/form.php:93
-#: themes/zpBootstrap/comment_form/comment_form.php:87
-#: themes/zpBootstrap/contact_form/form.php:74
-#: themes/zpBootstrap/register_user/register_user_form.php:95
 #: zp-core/zp-extensions/comment_form/comment_form.php:72
 #: zp-core/zp-extensions/contact_form/form.php:77
 #: zp-core/zp-extensions/register_user/register_user_form.php:83
@@ -2300,9 +2277,6 @@ msgstr "PSČ%s"
 
 #: themes/paradigm/comment_form/comment_form.php:94
 #: themes/paradigm/contact_form/form.php:131
-#: themes/zpBootstrap/comment_form/comment_form.php:97
-#: themes/zpBootstrap/contact_form/form.php:110
-#: themes/zpBootstrap/register_user/register_user_form.php:108
 #: zp-core/zp-extensions/comment_form/comment_form.php:78
 #: zp-core/zp-extensions/contact_form/form.php:107
 #: zp-core/zp-extensions/register_user/register_user_form.php:92
@@ -2310,7 +2284,6 @@ msgid "Enter CAPTCHA<strong>*</strong>"
 msgstr "Vložiť CAPTCHA<strong>*</strong>"
 
 #: themes/paradigm/comment_form/comment_form.php:111
-#: themes/zpBootstrap/comment_form/comment_form.php:115
 #: zp-core/zp-extensions/comment_form/comment_form.php:95
 msgid "<strong>*</strong>Required fields"
 msgstr "<strong>*</strong>Vyžadované polia"
@@ -2326,7 +2299,6 @@ msgid "Comment"
 msgstr "Komentár"
 
 #: themes/paradigm/comment_form/comment_form.php:137
-#: themes/zpBootstrap/comment_form/comment_form.php:135
 #: themes/zpfocus/z_comment_form/comment_form.php:109
 #: themes/zpmasonry/comment_form/comment_form.php:68
 #: themes/zpminimal/z_disable_comment_form/comment_form.php:77
@@ -2336,47 +2308,40 @@ msgid "Add Comment"
 msgstr "Pridať komentár"
 
 #: themes/paradigm/contact_form/form.php:15
-#: themes/zpBootstrap/contact_form/form.php:11
 #: zp-core/zp-extensions/contact_form/form.php:15
 #, php-format
 msgid "Title%s"
 msgstr "Titul%s"
 
 #: themes/paradigm/contact_form/form.php:43
-#: themes/zpBootstrap/contact_form/form.php:29
 #: zp-core/zp-extensions/contact_form/form.php:37
 #, php-format
 msgid "Company%s"
 msgstr "Firma%s"
 
 #: themes/paradigm/contact_form/form.php:113
-#: themes/zpBootstrap/contact_form/form.php:92
 #: zp-core/zp-extensions/contact_form/form.php:93
 #, php-format
 msgid "Website%s"
 msgstr "Web stránka%s"
 
 #: themes/paradigm/contact_form/form.php:123
-#: themes/zpBootstrap/contact_form/form.php:101
 #: zp-core/zp-extensions/contact_form/form.php:101
 #, php-format
 msgid "Phone%s"
 msgstr "Telefón%s"
 
 #: themes/paradigm/contact_form/form.php:149
-#: themes/zpBootstrap/contact_form/form.php:126
 #: zp-core/zp-extensions/contact_form/form.php:123
 msgid "Subject<strong>*</strong>"
 msgstr "Predmet<strong>*</strong>"
 
 #: themes/paradigm/contact_form/form.php:155
-#: themes/zpBootstrap/contact_form/form.php:133
 #: zp-core/zp-extensions/contact_form/form.php:127
 msgid "Message<strong>*</strong>"
 msgstr "Správa<strong>*</strong>"
 
 #: themes/paradigm/contact_form/form.php:164
-#: themes/zpBootstrap/contact_form/form.php:141
 #: themes/zpfocus/z_contact_form/form.php:123
 #: themes/zpskeleton/contact_form/form.php:120
 #: zp-core/zp-extensions/contact_form/form.php:135
@@ -2406,12 +2371,12 @@ msgstr "Použitá šablóna:"
 msgid "by"
 msgstr "od"
 
-#: themes/paradigm/functions.php:131 zp-core/template-functions.php:3482
+#: themes/paradigm/functions.php:131 zp-core/template-functions.php:3488
 msgid "No popular tags"
 msgstr "Žiadne obľúbené tagy"
 
 #: themes/paradigm/functions.php:320 themes/zpEnlighten/image.php:130
-#: zp-core/template-functions.php:2404
+#: zp-core/template-functions.php:2410
 msgid "Image Info"
 msgstr "Informácie o obrázku"
 
@@ -2454,15 +2419,15 @@ msgid "About"
 msgstr "O"
 
 #: themes/paradigm/includes/_gallery.php:17 themes/zpArdoise/inc_footer.php:32
-#: themes/zpArdoise/inc_header.php:82 themes/zpBootstrap/home.php:54
-#: themes/zpBootstrap/inc_header.php:84 themes/zpmobile/index.php:67
+#: themes/zpArdoise/inc_header.php:82 themes/zpBootstrap/home.php:61
+#: themes/zpBootstrap/inc_header.php:88 themes/zpmobile/index.php:67
 msgid "Latest news"
 msgstr "Najnovšie články"
 
 #: themes/paradigm/includes/_head.php:47 themes/paradigm/includes/_head.php:138
-#: themes/zpArdoise/inc_header.php:36 themes/zpBootstrap/inc_header.php:37
+#: themes/zpArdoise/inc_header.php:36 themes/zpBootstrap/inc_header.php:41
 #: zp-core/allTranslations.php:70 zp-core/allTranslations.php:71
-#: zp-core/template-functions.php:447
+#: zp-core/template-functions.php:453
 #: zp-core/zp-extensions/downloadList.php:587
 #: zp-core/zp-extensions/html_meta_tags.php:236
 msgid "My favorites"
@@ -2480,8 +2445,8 @@ msgstr "Blog"
 #: themes/paradigm/includes/_head.php:111
 #: themes/paradigm/includes/_head.php:241 themes/zpArdoise/inc_header.php:15
 #: themes/zpArdoise/inc_header.php:314 themes/zpArdoise/inc_header.php:332
-#: themes/zpBootstrap/home.php:49 themes/zpBootstrap/inc_header.php:16
-#: themes/zpBootstrap/inc_header.php:213 themes/zpBootstrap/inc_header.php:220
+#: themes/zpBootstrap/home.php:56 themes/zpBootstrap/inc_header.php:20
+#: themes/zpBootstrap/inc_header.php:250 themes/zpBootstrap/inc_header.php:255
 #: themes/zpfocus/inc-header.php:209 themes/zpmasonry/archive.php:4
 #: themes/zpminimal/album.php:4 themes/zpminimal/archive.php:4
 #: themes/zpminimal/contact.php:4 themes/zpminimal/favorites.php:7
@@ -2490,7 +2455,7 @@ msgstr "Blog"
 #: themes/zpminimal/news.php:4 themes/zpminimal/pages.php:4
 #: themes/zpminimal/password.php:4 themes/zpminimal/register.php:4
 #: themes/zpminimal/search.php:29 themes/zpmobile/functions.php:65
-#: themes/zpskeleton/inc-header.php:173 zp-core/template-functions.php:1393
+#: themes/zpskeleton/inc-header.php:173 zp-core/template-functions.php:1399
 #: zp-core/zp-extensions/menu_manager.php:826
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:476
 msgid "Home"
@@ -2528,7 +2493,7 @@ msgid "Results for"
 msgstr "Výsledky pre"
 
 #: themes/paradigm/search.php:134 themes/zenpage/search.php:171
-#: themes/zpArdoise/search.php:33 themes/zpBootstrap/search.php:38
+#: themes/zpArdoise/search.php:33 themes/zpBootstrap/search.php:44
 #: themes/zpEnlighten/search.php:165 themes/zpmobile/search.php:185
 #: themes/zpskeleton/search.php:42
 msgid "Sorry, no matches found. Try refining your search."
@@ -2862,7 +2827,7 @@ msgstr ""
 "zobrazovala sekcia správ."
 
 #: themes/zenpage/themeoptions.php:64 themes/zpArdoise/themeoptions.php:68
-#: themes/zpBootstrap/themeoptions.php:57
+#: themes/zpBootstrap/themeoptions.php:62
 #: themes/zpEnlighten/themeoptions.php:38 themes/zpfocus/themeoptions.php:72
 #: themes/zpskeleton/themeoptions.php:72
 msgid "Homepage"
@@ -2927,24 +2892,24 @@ msgstr "Obrázok"
 msgid "You can browse with the arrows keys of your keyboard"
 msgstr "Môžete prechádzať s pomocou šipiek na klávesnici"
 
-#: themes/zpArdoise/inc_header.php:281 themes/zpfocus/inc-header.php:157
-#: themes/zpfocus/inc-header.php:171 themes/zpmasonry/inc-footer.php:31
-#: themes/zpmasonry/inc-header.php:142 themes/zpmasonry/inc-header.php:157
-#: zp-core/zp-extensions/slideshow.php:638
+#: themes/zpArdoise/inc_header.php:281 themes/zpBootstrap/inc_header.php:147
+#: themes/zpfocus/inc-header.php:157 themes/zpfocus/inc-header.php:171
+#: themes/zpmasonry/inc-footer.php:31 themes/zpmasonry/inc-header.php:142
+#: themes/zpmasonry/inc-header.php:157 zp-core/zp-extensions/slideshow.php:638
 #: zp-core/zp-extensions/slideshow2.php:639
 msgid "start slideshow"
 msgstr "spustiť prezentáciu"
 
-#: themes/zpArdoise/inc_header.php:282 themes/zpfocus/inc-header.php:158
-#: themes/zpfocus/inc-header.php:172 themes/zpmasonry/inc-footer.php:32
-#: themes/zpmasonry/inc-header.php:143 themes/zpmasonry/inc-header.php:158
-#: zp-core/zp-extensions/slideshow.php:639
+#: themes/zpArdoise/inc_header.php:282 themes/zpBootstrap/inc_header.php:148
+#: themes/zpfocus/inc-header.php:158 themes/zpfocus/inc-header.php:172
+#: themes/zpmasonry/inc-footer.php:32 themes/zpmasonry/inc-header.php:143
+#: themes/zpmasonry/inc-header.php:158 zp-core/zp-extensions/slideshow.php:639
 #: zp-core/zp-extensions/slideshow2.php:640
 msgid "stop slideshow"
 msgstr "zastaviť prezentáciu"
 
 #: themes/zpArdoise/inc_print_comment.php:30
-#: themes/zpBootstrap/inc_print_comment.php:32
+#: themes/zpBootstrap/inc_print_comment.php:34
 #: zp-core/zp-extensions/comment_form.php:236
 msgid "No Comments"
 msgstr "Žiadne komentáre"
@@ -2969,7 +2934,7 @@ msgstr "novšie"
 msgid "older"
 msgstr "staršie"
 
-#: themes/zpArdoise/news.php:29 themes/zpBootstrap/news.php:10
+#: themes/zpArdoise/news.php:29 themes/zpBootstrap/news.php:9
 #: zp-core/zp-extensions/galleryArticles.php:84
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:122
 #: zp-core/zp-extensions/zenpage/admin-edit.php:217
@@ -3130,128 +3095,131 @@ msgstr ""
 msgid "No unpublished pages available"
 msgstr "Žiadna nezverejnená stránka nie je k dispozícii"
 
-#: themes/zpBootstrap/404.php:11
-msgid "The object you are requesting cannot be found."
-msgstr "Nedá sa nájsť objekt ktorý žiadate."
-
-#: themes/zpBootstrap/404.php:13 zp-core/template-functions.php:4398
-#, php-format
-msgid "Album: %s"
-msgstr "Album: %s"
-
-#: themes/zpBootstrap/404.php:16 zp-core/template-functions.php:4400
-#, php-format
-msgid "Image: %s"
-msgstr "Obrázok: %s"
-
-#: themes/zpBootstrap/404.php:19 zp-core/template-functions.php:4403
-#, php-format
-msgid "Page: %s"
-msgstr "Strana: %s"
-
-#: themes/zpBootstrap/album.php:72 zp-core/zp-extensions/googleMap.php:479
-msgid "Display or hide the Google Map."
-msgstr "Zobraziť alebo skryť Google Map."
-
-#: themes/zpBootstrap/album.php:73 zp-core/zp-extensions/googleMap.php:334
+#: themes/zpBootstrap/album_standard.php:78
+#: zp-core/zp-extensions/googleMap.php:334
 msgid "Google Map"
 msgstr "Google Map"
 
-#: themes/zpBootstrap/comment_form/comment_form.php:124
-#: themes/zpfocus/z_comment_form/comment_form.php:101
-#: themes/zpmasonry/comment_form/comment_form.php:43
-#: themes/zpminimal/z_disable_comment_form/comment_form.php:46
-#: themes/zpskeleton/comment_form/comment_form.php:82
-msgid "Private comment (don't publish)"
-msgstr "Súkromný komentár (nezverejňovať)"
+#: themes/zpBootstrap/archive.php:54 themes/zpfocus/inc-sidebar.php:91
+#: themes/zpmasonry/news.php:16 themes/zpskeleton/news.php:105
+#: zp-core/utilities/gallery_statistics.php:85
+msgid "News Categories"
+msgstr "Nové galérie"
 
-#: themes/zpBootstrap/inc_header.php:64
+#: themes/zpBootstrap/image.php:60 zp-core/zp-extensions/themeSwitcher.php:162
+msgid "Close"
+msgstr "Zatvoriť"
+
+#: themes/zpBootstrap/inc_header.php:68
 msgid "Password Required..."
 msgstr "Požadované heslo..."
 
-#: themes/zpBootstrap/inc_header.php:81
+#: themes/zpBootstrap/inc_header.php:85
 msgid "Latest images RSS"
 msgstr "RSS najnovších obrázkov"
 
-#: themes/zpBootstrap/register_user/register_user_form.php:22
-#: zp-core/zp-extensions/register_user/register_user_form.php:22
-msgid "Email<strong>*</strong> (this will be your user id)"
-msgstr "Email<strong>*</strong> (toto bude vaše používateľské ID)"
-
-#: themes/zpBootstrap/register_user/register_user_form.php:24
-#: zp-core/zp-extensions/register_user/register_user_form.php:24
-msgid "User ID"
-msgstr "ID používateľa"
-
-#: themes/zpBootstrap/register_user/register_user_form.php:36
-#: themes/zpmasonry/comment_form/comment_form.php:18
-#: themes/zpminimal/z_disable_comment_form/comment_form.php:18
-#: zp-core/admin_options/general.php:596
-#: zp-core/zp-extensions/contact_form.php:103
-#: zp-core/zp-extensions/contact_form.php:105
-#: zp-core/zp-extensions/register_user/register_user_form.php:32
-msgid "Name"
-msgstr "Meno"
-
-#: themes/zpBootstrap/register_user/register_user_form.php:44
-#: zp-core/admin-users.php:765 zp-core/admin_options/general.php:597
-#: zp-core/zp-extensions/register_user/register_user_form.php:39
-msgid "Email"
-msgstr "Email"
-
-#: themes/zpBootstrap/register_user/register_user_form.php:124
-#: zp-core/zp-extensions/register_user/register_user_form.php:107
-msgid "<strong>*</strong>Required"
-msgstr "<strong>*</strong>Vyžadované"
-
-#: themes/zpBootstrap/register_user/register_user_form.php:127
-#: themes/zpEnlighten/password_form.php:22
-#: themes/zpskeleton/register_user/register_user_form.php:78
-#: zp-core/lib-auth.php:1014 zp-core/lib-auth.php:1016
-#: zp-core/zp-extensions/register_user/register_user_form.php:108
-msgid "Submit"
-msgstr "Odoslať"
-
-#: themes/zpBootstrap/register_user/register_user_form.php:132
-#: themes/zpskeleton/register_user/register_user_form.php:83
-#: zp-core/zp-extensions/register_user/register_user_form.php:113
-msgid "You may also register using federated credentials"
-msgstr "Môžete sa tiež zaregistrovať použitím združených údajov"
-
-#: themes/zpBootstrap/themeoptions.php:57
+#: themes/zpBootstrap/themeoptions.php:62
+#, fuzzy
+#| msgid ""
+#| "Display a home page, with a slider of 5 random picts, the gallery "
+#| "description and the latest news."
 msgid ""
-"Display a home page, with a slider of 5 random picts, the gallery "
+"Display a home page, with a slider of random pictures, the gallery "
 "description and the latest news."
 msgstr ""
 "Zobraziť domovskú stránku s 5 náhodnými obrázkami, popisom galérie a "
 "novinkami."
 
-#: themes/zpBootstrap/themeoptions.php:58
+#: themes/zpBootstrap/themeoptions.php:63
+#, fuzzy
+#| msgid "Homepage slideshow"
+msgid "Homepage slider"
+msgstr "Prezentácia domovskej stránky"
+
+#: themes/zpBootstrap/themeoptions.php:71
+#, fuzzy
+#| msgid ""
+#| "Select how the pictures will be chosen for the homepage slideshow. "
+#| "Default is 5"
+msgid ""
+"Select the Album to use for the homepage slider (Dynamic albums may used)."
+msgstr ""
+"Vyberte, ako budú vyberané obrázky pre prezentáciu na domovskej stránke. "
+"Predvolená hodnota je 5"
+
+#: themes/zpBootstrap/themeoptions.php:72
+msgid "If Gallery is selected, the whole gallery will be used for the slider."
+msgstr ""
+
+#: themes/zpBootstrap/themeoptions.php:73
+#, fuzzy
+#| msgid "Random pictures"
+msgid "Random pictures for homepage slider"
+msgstr "Náhodné obrázky"
+
+#: themes/zpBootstrap/themeoptions.php:73
+#, fuzzy
+#| msgid "Select how the pictures will be chosen for the homepage slideshow."
+msgid "Number of random pictures to use for the homepage slider."
+msgstr ""
+"Vyberte, ako budú vyberané obrázky pre prezentáciu na domovskej stránke."
+
+#: themes/zpBootstrap/themeoptions.php:74
+#, fuzzy
+#| msgid "Menu items for all albums added."
+msgid "Use isotope for all albums pages"
+msgstr "Pridané položky menu pre všetky albumy."
+
+#: themes/zpBootstrap/themeoptions.php:80
+msgid ""
+"Use <a href=\"https://isotope.metafizzy.co/\" target=\"_blank\">isotope "
+"jQuery plugin</a> for all albums pages rather than standard albums page. "
+"This album layout allows to filter pictures based on their tags."
+msgstr ""
+
+#: themes/zpBootstrap/themeoptions.php:81
+msgid ""
+"This album layout does not manage sub-albums (in that case, only pictures of "
+"the album are shown and you cant not access on sub-albums!)."
+msgstr ""
+
+#: themes/zpBootstrap/themeoptions.php:82
+msgid ""
+"Rather than use isotope layout for all albums, you may also allow "
+"\"multiple_layouts\" plugin and then choice \"album_isotope\" as layout for "
+"specific albums of your gallery."
+msgstr ""
+
+#: themes/zpBootstrap/themeoptions.php:83
 msgid "Social Links"
 msgstr "Odkazy na soc. siete"
 
-#: themes/zpBootstrap/themeoptions.php:58
+#: themes/zpBootstrap/themeoptions.php:83
 msgid "Check to show some social links."
 msgstr "Zakliknutím zobrazíte niektoré sociálne odkazy."
 
-#: themes/zpBootstrap/themeoptions.php:60
+#: themes/zpBootstrap/themeoptions.php:85
 msgid "Display a link to the Archive list."
 msgstr "Zobraziť odkaz do zoznamu archívu."
 
-#: themes/zpBootstrap/themeoptions.php:61
+#: themes/zpBootstrap/themeoptions.php:86
 msgid ""
 "Check to show a tag cloud in Archive list, with all the tags of the gallery."
 msgstr ""
 "Zakliknutím zobrazíte skupinu tagov v archíve so všetkými tagmi v galérii."
 
-#: themes/zpBootstrap/themeoptions.php:62
+#: themes/zpBootstrap/themeoptions.php:87
 msgid "Exif"
 msgstr "Exif"
 
-#: themes/zpBootstrap/themeoptions.php:62
+#: themes/zpBootstrap/themeoptions.php:87
+#, fuzzy
+#| msgid ""
+#| "Show the EXIF Data on Image page. Remember you have to check EXIFs data "
+#| "you want to show on admin>image>information EXIF."
 msgid ""
 "Show the EXIF Data on Image page. Remember you have to check EXIFs data you "
-"want to show on admin>image>information EXIF."
+"want to show on options>image>information EXIF."
 msgstr ""
 "Zobraziť EXIF dáta na stránke obrázku. Pamätajte, že musíte údaje, ktoré "
 "chcete zobraziť, skontrolovať v EXIFs admin>obrázok>informácie EXIF."
@@ -3269,10 +3237,17 @@ msgstr "Spustiť prezeranie"
 msgid "Send me a message of Love"
 msgstr "Pošlite mi správu lásky"
 
-#: themes/zpEnlighten/password_form.php:17 zp-core/lib-auth.php:1099
-#: zp-core/lib-auth.php:1258 zp-core/lib-auth.php:1347
+#: themes/zpEnlighten/password_form.php:17 zp-core/lib-auth.php:1097
+#: zp-core/lib-auth.php:1256 zp-core/lib-auth.php:1345
 msgid "Password"
 msgstr "Heslo"
+
+#: themes/zpEnlighten/password_form.php:22
+#: themes/zpskeleton/register_user/register_user_form.php:78
+#: zp-core/lib-auth.php:1012 zp-core/lib-auth.php:1014
+#: zp-core/zp-extensions/register_user/register_user_form.php:108
+msgid "Submit"
+msgstr "Odoslať"
 
 #: themes/zpEnlighten/password_form.php:28
 #, php-format
@@ -3490,11 +3465,6 @@ msgstr "Najnovšie komentáre galérie"
 #: themes/zpfocus/inc-sidebar.php:80
 msgid "Latest News Comments"
 msgstr "Najnovšie komentáre správ"
-
-#: themes/zpfocus/inc-sidebar.php:91 themes/zpmasonry/news.php:16
-#: themes/zpskeleton/news.php:105 zp-core/utilities/gallery_statistics.php:85
-msgid "News Categories"
-msgstr "Nové galérie"
 
 #: themes/zpfocus/news.php:29 themes/zpfocus/news.php:75
 #: themes/zpfocus/pages.php:19 themes/zpmobile/image.php:60
@@ -3813,6 +3783,13 @@ msgstr "%sPSČ:"
 msgid "Enter CAPTCHA:"
 msgstr "Vložiť CAPTCHA:"
 
+#: themes/zpfocus/z_comment_form/comment_form.php:101
+#: themes/zpmasonry/comment_form/comment_form.php:43
+#: themes/zpminimal/z_disable_comment_form/comment_form.php:46
+#: themes/zpskeleton/comment_form/comment_form.php:82
+msgid "Private comment (don't publish)"
+msgstr "Súkromný komentár (nezverejňovať)"
+
 #: themes/zpfocus/z_comment_form/comment_form.php:107
 #: themes/zpskeleton/comment_form/comment_form.php:66
 msgid "*Required fields"
@@ -3949,6 +3926,15 @@ msgstr "obrázky"
 msgid "Preview"
 msgstr "Náhľad"
 
+#: themes/zpmasonry/comment_form/comment_form.php:18
+#: themes/zpminimal/z_disable_comment_form/comment_form.php:18
+#: zp-core/admin_options/general.php:596
+#: zp-core/zp-extensions/contact_form.php:103
+#: zp-core/zp-extensions/contact_form.php:105
+#: zp-core/zp-extensions/register_user/register_user_form.php:32
+msgid "Name"
+msgstr "Meno"
+
 #: themes/zpmasonry/comment_form/comment_form.php:24
 #: themes/zpminimal/z_disable_comment_form/comment_form.php:24
 msgid "E-Mail"
@@ -3970,7 +3956,7 @@ msgstr "Anonym"
 
 #: themes/zpmasonry/comment_form/comment_form.php:53
 #: themes/zpminimal/z_disable_comment_form/comment_form.php:57
-#: zp-core/lib-auth.php:1168
+#: zp-core/lib-auth.php:1166
 msgid "Enter CAPTCHA"
 msgstr "Vložiť CAPTCHA"
 
@@ -4039,7 +4025,7 @@ msgstr "Vitajte"
 
 #: themes/zpmasonry/index.php:53 themes/zpmasonry/index.php:57
 #: themes/zpminimal/index.php:50 themes/zpminimal/index.php:54
-#: zp-core/template-functions.php:3288
+#: zp-core/template-functions.php:3294
 #, php-format
 msgid "View image: %s"
 msgstr "Zobraziť obrázok: %s"
@@ -4048,8 +4034,8 @@ msgstr "Zobraziť obrázok: %s"
 msgid "No Images Exist..."
 msgstr "Neexistujú žiadne obrázky..."
 
-#: themes/zpmasonry/index.php:105 zp-core/template-functions.php:813
-#: zp-core/template-functions.php:1011
+#: themes/zpmasonry/index.php:105 zp-core/template-functions.php:819
+#: zp-core/template-functions.php:1017
 #: zp-core/zp-extensions/menu_manager.php:652
 msgid "Next Page"
 msgstr "Ďalšia stránka"
@@ -4418,7 +4404,7 @@ msgstr ""
 "použite ho ako logo. Alebo ponechajte pole prázdne a použije sa textový "
 "názov galérie. Ako príklad je v adresári obrázkov logo.gif."
 
-#: themes/zpmobile/archive.php:26 zp-core/template-functions.php:445
+#: themes/zpmobile/archive.php:26 zp-core/template-functions.php:451
 #: zp-core/zp-extensions/html_meta_tags.php:234
 msgid "Archive view"
 msgstr "Prehľad archívu"
@@ -4550,6 +4536,11 @@ msgstr "Heslo:"
 msgid "Re-enter:"
 msgstr "Znova zadajte:"
 
+#: themes/zpskeleton/register_user/register_user_form.php:83
+#: zp-core/zp-extensions/register_user/register_user_form.php:113
+msgid "You may also register using federated credentials"
+msgstr "Môžete sa tiež zaregistrovať použitím združených údajov"
+
 #: themes/zpskeleton/themeoptions.php:52
 msgid "Thumb Size"
 msgstr "Veľkosť miniatúr"
@@ -4670,7 +4661,7 @@ msgstr "*Hromadné akcie*"
 #: zp-core/admin-edit.php:735 zp-core/admin-edit.php:739
 #: zp-core/admin-edit.php:1693 zp-core/admin-edit.php:1730
 #: zp-core/admin-logs.php:122 zp-core/admin-themes.php:329
-#: zp-core/setup/index.php:1078 zp-core/zp-extensions/cacheManager.php:239
+#: zp-core/setup/index.php:1080 zp-core/zp-extensions/cacheManager.php:239
 #: zp-core/zp-extensions/comment_form/admin-comments.php:149
 #: zp-core/zp-extensions/comment_form/admin-comments.php:151
 #: zp-core/zp-extensions/comment_form/admin-comments.php:361
@@ -4947,17 +4938,17 @@ msgstr ""
 msgid "Mass-edit albums"
 msgstr "Dávková úprava albumov"
 
-#: zp-core/admin-edit.php:653 zp-core/template-functions.php:55
+#: zp-core/admin-edit.php:653 zp-core/template-functions.php:216
 msgid "Are you sure you want to delete this entire album?"
 msgstr "Ste si istý, že chcete odstrániť tento album kompletne?"
 
-#: zp-core/admin-edit.php:654 zp-core/template-functions.php:56
+#: zp-core/admin-edit.php:654 zp-core/template-functions.php:217
 msgid ""
 "Are you Absolutely Positively sure you want to delete the album? THIS CANNOT "
 "BE UNDONE!"
 msgstr "Ste si istý, že chcete vymazať tento album? TOTO JE NEVRATNÁ AKCIA!"
 
-#: zp-core/admin-edit.php:656 zp-core/template-functions.php:63
+#: zp-core/admin-edit.php:656 zp-core/template-functions.php:159
 msgid "New album name?"
 msgstr "Nový názov albumu?"
 
@@ -5267,7 +5258,7 @@ msgstr "Premenovať súbor"
 msgid "Are you sure you want to select this image for deletion?"
 msgstr "Ste si istý, že chcete označit tento obrázok na vymazanie?"
 
-#: zp-core/admin-edit.php:1459 zp-core/template-functions.php:261
+#: zp-core/admin-edit.php:1459 zp-core/template-functions.php:266
 msgid "Delete image"
 msgstr "Vymazať obrázok"
 
@@ -5499,7 +5490,7 @@ msgstr "Nápoveda k heslu"
 
 #: zp-core/admin-functions.php:1744 zp-core/admin_options/gallery.php:201
 #: zp-core/admin_options/image.php:685 zp-core/admin_options/search.php:167
-#: zp-core/lib-auth.php:1097 zp-core/lib-auth.php:1349
+#: zp-core/lib-auth.php:1095 zp-core/lib-auth.php:1347
 #: zp-core/utilities/gallery_statistics.php:762
 #: zp-core/zp-extensions/cacheManager.php:200
 #: zp-core/zp-extensions/cacheManager.php:328
@@ -5594,7 +5585,7 @@ msgstr "Vynulovať hodnotenie (%u hviezd)"
 msgid "Rename Folder"
 msgstr "Premenovať zložku"
 
-#: zp-core/admin-functions.php:2211 zp-core/template-functions.php:228
+#: zp-core/admin-functions.php:2211 zp-core/template-functions.php:225
 msgid "Delete album"
 msgstr "Vymazať album"
 
@@ -5841,7 +5832,7 @@ msgstr "Označte jeden alebo viaceré %1$s pre  %2$s na správu."
 
 #: zp-core/admin-functions.php:3699 zp-core/admin-users.php:838
 #: zp-core/admin-users.php:852 zp-core/admin-users.php:853
-#: zp-core/admin_options/image.php:651 zp-core/functions-common.php:582
+#: zp-core/admin_options/image.php:651 zp-core/functions-common.php:586
 msgid "user"
 msgstr "používateľ"
 
@@ -6154,7 +6145,7 @@ msgstr "galéria"
 msgid "plugin"
 msgstr "zásuvný modul"
 
-#: zp-core/admin-globals.php:149 zp-core/functions-common.php:585
+#: zp-core/admin-globals.php:149 zp-core/functions-common.php:589
 msgid "theme"
 msgstr "šablóna"
 
@@ -6414,7 +6405,7 @@ msgstr "Informácie o použití"
 
 #: zp-core/admin-plugins.php:472 zp-core/lib-auth.php:553
 #: zp-core/lib-auth.php:572 zp-core/lib-auth.php:597 zp-core/lib-auth.php:629
-#: zp-core/template-functions.php:141
+#: zp-core/template-functions.php:118
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:165
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:140
 msgid "Options"
@@ -6858,7 +6849,7 @@ msgstr "Nahrať do:"
 msgid "Make a new Album"
 msgstr "Vytvoriť nový album"
 
-#: zp-core/admin-upload.php:275 zp-core/setup/index.php:1086
+#: zp-core/admin-upload.php:275 zp-core/setup/index.php:1088
 msgid "and"
 msgstr "a"
 
@@ -7003,6 +6994,11 @@ msgstr "Odpoveď na výzvu"
 #: zp-core/admin-users.php:760
 msgid "Full name"
 msgstr "Celé meno"
+
+#: zp-core/admin-users.php:765 zp-core/admin_options/general.php:597
+#: zp-core/zp-extensions/register_user/register_user_form.php:39
+msgid "Email"
+msgstr "Email"
 
 #: zp-core/admin-users.php:778
 msgid "create primary album"
@@ -7186,7 +7182,7 @@ msgstr "<em>Debug verzia</em>"
 msgid "Official build"
 msgstr "Oficiálna verzia"
 
-#: zp-core/admin.php:400 zp-core/functions-common.php:534
+#: zp-core/admin.php:400 zp-core/functions-common.php:538
 #: zp-core/setup/index.php:451 zp-core/setup/index.php:461
 #: zp-core/zp-extensions/cloneZenphoto.php:57
 #: zp-core/zp-extensions/security-logger.php:128
@@ -10766,35 +10762,35 @@ msgstr "Log %1$s prekročil limit veľkosti a bol premenovaný na %2$s."
 msgid "%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s"
 msgstr "%1$s chyba: ( %2$s ) neúspešné. %1$s hlási chybu %3$s"
 
-#: zp-core/functions-common.php:125
+#: zp-core/functions-common.php:124
 msgid "ERROR"
 msgstr "CHYBA"
 
-#: zp-core/functions-common.php:126
+#: zp-core/functions-common.php:125
 msgid "WARNING"
 msgstr "UPOZORNENIE"
 
-#: zp-core/functions-common.php:127
+#: zp-core/functions-common.php:126
 msgid "NOTICE"
 msgstr "POZNÁMKA"
 
-#: zp-core/functions-common.php:128
+#: zp-core/functions-common.php:127
 msgid "USER ERROR"
 msgstr "CHYBA POUŽÍVATEĽA"
 
-#: zp-core/functions-common.php:129
+#: zp-core/functions-common.php:128
 msgid "USER WARNING"
 msgstr "UPOZORNENIE POUŽÍVATEĽA"
 
-#: zp-core/functions-common.php:130
+#: zp-core/functions-common.php:129
 msgid "USER NOTICE"
 msgstr "POZNÁMKA POUŽÍVATEĽA"
 
-#: zp-core/functions-common.php:131
+#: zp-core/functions-common.php:130
 msgid "STRICT NOTICE"
 msgstr "PRÍSNA POZNÁMKA"
 
-#: zp-core/functions-common.php:144
+#: zp-core/functions-common.php:143
 #, php-format
 msgid "%1$s: \"%2$s\" in %3$s on line %4$s"
 msgstr "%1$s: \"%2$s\" v %3$s na riadku %4$s"
@@ -11828,7 +11824,7 @@ msgid "No rights"
 msgstr "Žiadne práva"
 
 #: zp-core/lib-auth.php:543 zp-core/lib-auth.php:558 zp-core/lib-auth.php:577
-#: zp-core/lib-auth.php:602 zp-core/template-functions.php:104
+#: zp-core/lib-auth.php:602 zp-core/template-functions.php:81
 msgid "Overview"
 msgstr "Prehľad"
 
@@ -11837,7 +11833,7 @@ msgid "View all"
 msgstr "Zobraziť všetko"
 
 #: zp-core/lib-auth.php:545 zp-core/lib-auth.php:560 zp-core/lib-auth.php:587
-#: zp-core/lib-auth.php:615 zp-core/template-functions.php:111
+#: zp-core/lib-auth.php:615 zp-core/template-functions.php:88
 #: zp-core/zp-extensions/uploader_http/upload_form.php:68
 #: zp-core/zp-extensions/uploader_http/upload_form.php:70
 msgid "Upload"
@@ -12047,7 +12043,7 @@ msgstr "Používatelia s týmto oprávnením vidia všetky nezverejnené položk
 msgid "Manage all"
 msgstr "Upravovať všetko"
 
-#: zp-core/lib-auth.php:603 zp-core/lib-auth.php:986 zp-core/lib-auth.php:1089
+#: zp-core/lib-auth.php:603 zp-core/lib-auth.php:984 zp-core/lib-auth.php:1087
 #: zp-core/zp-extensions/favoritesHandler.php:273
 msgid "User"
 msgstr "Používateľ"
@@ -12078,11 +12074,11 @@ msgstr "Všetky práva"
 msgid "Default rights"
 msgstr "Štandardné práva"
 
-#: zp-core/lib-auth.php:729
+#: zp-core/lib-auth.php:727
 msgid "Sorry, that is not the answer."
 msgstr "Prepáčte, toto nie je správna odpoveď."
 
-#: zp-core/lib-auth.php:736
+#: zp-core/lib-auth.php:734
 msgid ""
 "You are receiving this e-mail because of a password reset request on your "
 "ZenPhoto20 gallery."
@@ -12090,7 +12086,7 @@ msgstr ""
 "Tento mail ste dostali, pretože ste požiadali o obnovenie hesla do "
 "ZenPhoto20 galérie."
 
-#: zp-core/lib-auth.php:738
+#: zp-core/lib-auth.php:736
 #, php-format
 msgid ""
 "You are receiving this e-mail because of a password reset request on your "
@@ -12099,16 +12095,16 @@ msgstr ""
 "Tento mail ste dostali, pretože bola zadaná požiadavka na obnovenie hesla do "
 "ZenPhoto20 galérie používateľom, ktorý sa snažil prihlásiť ako %s."
 
-#: zp-core/lib-auth.php:777
+#: zp-core/lib-auth.php:775
 msgid "There was no one to which to send the reset request."
 msgstr "Nie je komu poslať správu o požiadavke na obnovenie."
 
-#: zp-core/lib-auth.php:781
+#: zp-core/lib-auth.php:779
 #, php-format
 msgid "To reset your Admin passwords visit: %s"
 msgstr "Pre obnovenie admin hesla navštívte: %s"
 
-#: zp-core/lib-auth.php:782
+#: zp-core/lib-auth.php:780
 msgid ""
 "If you do not wish to reset your passwords just ignore this message. This "
 "ticket will automatically expire in 3 days."
@@ -12116,40 +12112,40 @@ msgstr ""
 "Ak ste nepožiadali o obnovenie hesla jednoducho tento mail ignorujte. "
 "Požiadavka expiruje sama po 3 dňoch."
 
-#: zp-core/lib-auth.php:783
+#: zp-core/lib-auth.php:781
 msgid "The ZenPhoto20 information you requested"
 msgstr "Požadované informácie ZenPhoto20"
 
-#: zp-core/lib-auth.php:783
+#: zp-core/lib-auth.php:781
 #, php-format
 msgid "%1$s password reset request mail failed."
 msgstr "Mail %1$s s požiadavkou na reset hesla zlyhal."
 
-#: zp-core/lib-auth.php:788
+#: zp-core/lib-auth.php:786
 msgid "Reset request failed."
 msgstr "Požiadavka na obnovenie zlyhala."
 
-#: zp-core/lib-auth.php:792
+#: zp-core/lib-auth.php:790
 msgid "Your input did not match the captcha"
 msgstr "Captcha sa nezhoduje"
 
-#: zp-core/lib-auth.php:948
+#: zp-core/lib-auth.php:946
 msgid "There was an error logging in."
 msgstr "Pri prihlasovaní sa vyskytla chyba."
 
-#: zp-core/lib-auth.php:951
+#: zp-core/lib-auth.php:949
 msgid "Check your username and password and try again."
 msgstr "Skontroľujte prihlasovacie meno a heslo a skúste znova."
 
-#: zp-core/lib-auth.php:953
+#: zp-core/lib-auth.php:951
 msgid "Check password and try again."
 msgstr "Skontroľujte heslo a skúste znova."
 
-#: zp-core/lib-auth.php:962
+#: zp-core/lib-auth.php:960
 msgid "A reset request has been sent."
 msgstr "Požiadavka na obnovenie bola odoslaná."
 
-#: zp-core/lib-auth.php:992
+#: zp-core/lib-auth.php:990
 msgid ""
 "Supply the correct response to the question below and you will be directed "
 "to a page where you can change your password."
@@ -12157,15 +12153,15 @@ msgstr ""
 "Vpíšte správnu odpoveď na otázku hore a budete presmerovaní na stránku, kde "
 "môžete zmeniť svoje heslo."
 
-#: zp-core/lib-auth.php:993
+#: zp-core/lib-auth.php:991
 msgid "Challenge question:"
 msgstr "Kontrolná otázka:"
 
-#: zp-core/lib-auth.php:998
+#: zp-core/lib-auth.php:996
 msgid "Your response"
 msgstr "Vaša odpoveď"
 
-#: zp-core/lib-auth.php:1007
+#: zp-core/lib-auth.php:1005
 msgid ""
 "Enter your User ID and press <code>Refresh</code> to get your challenge "
 "question."
@@ -12173,72 +12169,72 @@ msgstr ""
 "Vpíšte vaše Používateľské ID, stlačte <code>Obnoviť</code> a dostanete sa k "
 "otázke výzvy."
 
-#: zp-core/lib-auth.php:1018 zp-core/lib-auth.php:1020
-#: zp-core/setup/index.php:1652
+#: zp-core/lib-auth.php:1016 zp-core/lib-auth.php:1018
+#: zp-core/setup/index.php:1654
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:167
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:351
 msgid "Refresh"
 msgstr "Obnoviť"
 
-#: zp-core/lib-auth.php:1022 zp-core/lib-auth.php:1024
-#: zp-core/lib-auth.php:1180 zp-core/lib-auth.php:1182
+#: zp-core/lib-auth.php:1020 zp-core/lib-auth.php:1022
+#: zp-core/lib-auth.php:1178 zp-core/lib-auth.php:1180
 msgid "Return"
 msgstr "Späť"
 
-#: zp-core/lib-auth.php:1035
+#: zp-core/lib-auth.php:1033
 msgid "Request reset by e-mail"
 msgstr "Požiadavka na reset e-mailom"
 
-#: zp-core/lib-auth.php:1068
+#: zp-core/lib-auth.php:1066
 #, php-format
 msgid "Logon using:%s"
 msgstr "Prihlásiť s použitím: %s"
 
-#: zp-core/lib-auth.php:1104 zp-core/lib-auth.php:1106
+#: zp-core/lib-auth.php:1102 zp-core/lib-auth.php:1104
 msgid "Log in"
 msgstr "Prihlásiť"
 
-#: zp-core/lib-auth.php:1126 zp-core/lib-auth.php:1135
+#: zp-core/lib-auth.php:1124 zp-core/lib-auth.php:1133
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr "Zabudol som <strong>Používateľské ID</strong>/<strong>Heslo</strong>"
 
-#: zp-core/lib-auth.php:1161
+#: zp-core/lib-auth.php:1159
 msgid "User name or e-mail address"
 msgstr "Meno používateľa alebo e-mailová adresa"
 
-#: zp-core/lib-auth.php:1176
+#: zp-core/lib-auth.php:1174
 msgid "Request"
 msgstr "Požiadavka"
 
-#: zp-core/lib-auth.php:1178
+#: zp-core/lib-auth.php:1176
 msgid "Request password reset"
 msgstr "Požiadavka na obnovenie hesla"
 
-#: zp-core/lib-auth.php:1263
+#: zp-core/lib-auth.php:1261
 msgid "password strength weak"
 msgstr "sila hesla je slabá"
 
-#: zp-core/lib-auth.php:1266
+#: zp-core/lib-auth.php:1264
 msgid "password strength good"
 msgstr "sila hesla je dobrá"
 
-#: zp-core/lib-auth.php:1269
+#: zp-core/lib-auth.php:1267
 msgid "password strength strong"
 msgstr "sila hesla je silná"
 
-#: zp-core/lib-auth.php:1274
+#: zp-core/lib-auth.php:1272
 msgid "password strength too weak"
 msgstr "sila hesla je slabá"
 
-#: zp-core/lib-auth.php:1294
+#: zp-core/lib-auth.php:1292
 msgid "passwords match"
 msgstr "heslo je správne"
 
-#: zp-core/lib-auth.php:1298
+#: zp-core/lib-auth.php:1296
 msgid "passwords do not match"
 msgstr "heslo nie je správne"
 
-#: zp-core/lib-auth.php:1367
+#: zp-core/lib-auth.php:1365
 msgid "Repeat password"
 msgstr "Zopakovať heslo"
 
@@ -13276,11 +13272,11 @@ msgstr ""
 "vytvorením súboru v zložke <code>%1$s</code> s menom "
 "<strong><code>charset_tést</code></strong> a zopakovať inštaláciu."
 
-#: zp-core/setup/index.php:904
+#: zp-core/setup/index.php:903
 msgid "Image URIs appear to require the <em>UTF-8</em> character set."
 msgstr "URI obrázkov asi potrebuje znakovú sadu <em>UTF-8</em>."
 
-#: zp-core/setup/index.php:911
+#: zp-core/setup/index.php:910
 msgid "Image URIs appear require the <em>filesystem</em> character set."
 msgstr "URI obrázkov asi potrebuje znakovú sadu <em>systému</em>."
 
@@ -13288,17 +13284,17 @@ msgstr "URI obrázkov asi potrebuje znakovú sadu <em>systému</em>."
 msgid "Image URIs with diacritical marks appear to fail."
 msgstr "URI obrázkov s diakritikou asi zlyhali."
 
-#: zp-core/setup/index.php:951 zp-core/zp-extensions/hitcounter.php:234
+#: zp-core/setup/index.php:953 zp-core/zp-extensions/hitcounter.php:234
 #: zp-core/zp-extensions/rating.php:250
 msgid "Database"
 msgstr "Databáza"
 
-#: zp-core/setup/index.php:955
+#: zp-core/setup/index.php:957
 #, php-format
 msgid "PHP <code>%s</code> support for configured Database"
 msgstr "PHP <code>%s</code> porpora pre konfigurovanú databázu"
 
-#: zp-core/setup/index.php:964
+#: zp-core/setup/index.php:966
 #, php-format
 msgid ""
 " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle()\" "
@@ -13307,26 +13303,26 @@ msgstr ""
 " <code>%1$s</code> podpora (<a onclick=\"$('#%1$s').toggle()\" "
 ">experimentálna</a>)"
 
-#: zp-core/setup/index.php:974
+#: zp-core/setup/index.php:976
 #, php-format
 msgid "PHP <code>%s</code> support"
 msgstr "PHP <code>%s</code> podpora"
 
-#: zp-core/setup/index.php:982
+#: zp-core/setup/index.php:984
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
 msgstr "PHP <code>%s</code> podpora [nenainštalovaná]"
 
-#: zp-core/setup/index.php:993
+#: zp-core/setup/index.php:995
 msgid "No database selected"
 msgstr "Nebola vybraná databáza"
 
-#: zp-core/setup/index.php:1005
+#: zp-core/setup/index.php:1007
 #, php-format
 msgid "%1$s version %2$s"
 msgstr "%1$s verzia %2$s"
 
-#: zp-core/setup/index.php:1005
+#: zp-core/setup/index.php:1007
 #, php-format
 msgid ""
 "%1$s Version %2$s or greater is required. Version %3$s or greater is "
@@ -13335,20 +13331,20 @@ msgstr ""
 "%1$s Je potrebná verzia %2$s alebo novšia. Preferujeme verziu %3$s. Staršie "
 "verzie používajte na vlastné riziko."
 
-#: zp-core/setup/index.php:1007
+#: zp-core/setup/index.php:1009
 msgid "Database connection"
 msgstr "Spojenie s databázou"
 
-#: zp-core/setup/index.php:1013
+#: zp-core/setup/index.php:1015
 msgid "Database credentials in configuration file"
 msgstr "Nastavenie databázy v konfiguračnom súbore"
 
-#: zp-core/setup/index.php:1013
+#: zp-core/setup/index.php:1015
 #, php-format
 msgid "<em>%1$s</em> reported: %2$s"
 msgstr "<em>%1$s</em> hlásené: %2$s"
 
-#: zp-core/setup/index.php:1020
+#: zp-core/setup/index.php:1022
 msgid ""
 "You have not correctly set your <strong>Database</strong> <code>user</code>, "
 "<code>password</code>, etc. in your configuration file and <strong>setup</"
@@ -13358,31 +13354,31 @@ msgstr ""
 "<code>heslo</code> atď vo svojom konfiguračnom súbore, takže "
 "<strong>inštalácia</strong> nemôže zapisovať do súboru."
 
-#: zp-core/setup/index.php:1022
+#: zp-core/setup/index.php:1024
 msgid "Database setup in configuration file"
 msgstr "Nastavenie databázy v konfiguračnom súbore"
 
-#: zp-core/setup/index.php:1025
+#: zp-core/setup/index.php:1027
 #, php-format
 msgid "Connect to %s"
 msgstr "Pripojiť sa k %s"
 
-#: zp-core/setup/index.php:1025
+#: zp-core/setup/index.php:1027
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
 msgstr "Pripojiť sa k databáze  [<code>Pripojenie</code> zlyhalo]"
 
-#: zp-core/setup/index.php:1032
+#: zp-core/setup/index.php:1034
 #, php-format
 msgid "Database <code>%s</code> created"
 msgstr "Databáza <code>%s</code> vytvorená"
 
-#: zp-core/setup/index.php:1040
+#: zp-core/setup/index.php:1042
 #, php-format
 msgid "Click here to attempt to create <a href=\"?Create_Database\" >%s</a>."
 msgstr ""
 "Skúste vytvoriť databázu kliknutím na <a href=\"?Create_Database\" >%s</a>."
 
-#: zp-core/setup/index.php:1045
+#: zp-core/setup/index.php:1047
 #, php-format
 msgid ""
 "Database <code>%s</code> not created [<code>CREATE DATABASE</code> query "
@@ -13391,7 +13387,7 @@ msgstr ""
 "Databáza <code>%s</code> nevytvorená [<code>Vytvorenie databázy</code> "
 "zlyhalo]"
 
-#: zp-core/setup/index.php:1051
+#: zp-core/setup/index.php:1053
 msgid ""
 "You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
 "configuration."
@@ -13399,103 +13395,103 @@ msgstr ""
 "Možno budete musieť nastaviť <code>SQL mód</code> v nastavení databázy na "
 "<em>prázdne</em>."
 
-#: zp-core/setup/index.php:1055
+#: zp-core/setup/index.php:1057
 #, php-format
 msgid "<code>SQL mode</code> [query failed]"
 msgstr "<code>SQL mód</code> [dopyt zlyhal]"
 
-#: zp-core/setup/index.php:1058
+#: zp-core/setup/index.php:1060
 #, php-format
 msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
 msgstr "<code>SQL mód</code> [<em>%s</em> zrušené]"
 
-#: zp-core/setup/index.php:1058
+#: zp-core/setup/index.php:1060
 msgid "Consider setting it <em>empty</em> in your Database configuration."
 msgstr "Zvážte nastavenie na <em>prázdne</em> v nastavení databázy."
 
-#: zp-core/setup/index.php:1065
+#: zp-core/setup/index.php:1067
 msgid "<code>SQL mode</code>"
 msgstr "<code>SQL mód</code>"
 
-#: zp-core/setup/index.php:1065
+#: zp-core/setup/index.php:1067
 #, php-format
 msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
 msgstr "<code>SQL mód</code> [je nastavený na <em>%s</em>]"
 
-#: zp-core/setup/index.php:1065
+#: zp-core/setup/index.php:1067
 msgid "Consider setting it <em>empty</em> if you get Database errors."
 msgstr ""
 "Zvážte nastavenie na <em>prázdne</em> v nastavení databázy ak sa objavia "
 "chyby."
 
-#: zp-core/setup/index.php:1069
+#: zp-core/setup/index.php:1071
 msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr "<code>SQL mód</code> [SET SESSION zlyhalo]"
 
-#: zp-core/setup/index.php:1077
+#: zp-core/setup/index.php:1079
 msgid "Select"
 msgstr "Vybrať"
 
-#: zp-core/setup/index.php:1077
+#: zp-core/setup/index.php:1079
 msgid "Drop"
 msgstr "Odhodiť"
 
-#: zp-core/setup/index.php:1077
+#: zp-core/setup/index.php:1079
 msgid "Insert"
 msgstr "Vložiť"
 
-#: zp-core/setup/index.php:1078
+#: zp-core/setup/index.php:1080
 msgid "Update"
 msgstr "Aktualizovať"
 
-#: zp-core/setup/index.php:1078
+#: zp-core/setup/index.php:1080
 msgid "Alter"
 msgstr "Zmeniť"
 
-#: zp-core/setup/index.php:1088
+#: zp-core/setup/index.php:1090
 msgid "Grants found:"
 msgstr "Nájdené granty:"
 
-#: zp-core/setup/index.php:1116
+#: zp-core/setup/index.php:1118
 msgid "The <em>SHOW GRANTS</em> query failed."
 msgstr "Požiadavka <code>SHOW GRANTS</code> zlyhala."
 
-#: zp-core/setup/index.php:1118
+#: zp-core/setup/index.php:1120
 #, php-format
 msgid "Database <code>access rights</code> for <em>%s</em>"
 msgstr "<code>Prístupové práva</code> k databáze <em>%1$s</em>"
 
-#: zp-core/setup/index.php:1118
+#: zp-core/setup/index.php:1120
 #, php-format
 msgid "Database <code>access rights</code> for <em>%1$s</em> [%2$s]"
 msgstr "<code>Prístupové práva</code> k databáze pre <em>%1$s</em> [%2$s]"
 
-#: zp-core/setup/index.php:1118
+#: zp-core/setup/index.php:1120
 #, php-format
 msgid "Your Database user must have %s rights."
 msgstr "Používateľ databázy musí mať %s práva."
 
-#: zp-core/setup/index.php:1135
+#: zp-core/setup/index.php:1137
 msgid "<em>SHOW TABLES</em> [found no tables]"
 msgstr "<em>SHOW TABLES</em> [tabuľky nenájdené]"
 
-#: zp-core/setup/index.php:1138
+#: zp-core/setup/index.php:1140
 #, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
 msgstr "<em>SHOW TABLES</em> našlo: %s"
 
-#: zp-core/setup/index.php:1141
+#: zp-core/setup/index.php:1143
 msgid "<em>SHOW TABLES</em> [Failed]"
 msgstr "<em>SHOW TABLES</em> [zlyhalo]"
 
-#: zp-core/setup/index.php:1141
+#: zp-core/setup/index.php:1143
 #, php-format
 msgid ""
 "The database did not return a list of the database tables for <code>%s</"
 "code>."
 msgstr "Databáza neposkytla zoznam databázových tabuliek pre <code>%s</code>."
 
-#: zp-core/setup/index.php:1142
+#: zp-core/setup/index.php:1144
 msgid ""
 "<strong>Setup</strong> will attempt to create all tables. This will not over "
 "write any existing tables."
@@ -13503,27 +13499,27 @@ msgstr ""
 "<strong>Inštalácia</strong> sa pokúsi vytvoriť všetky tabuľky. Žiadne "
 "existujúce tabuľky nebudú prepísané."
 
-#: zp-core/setup/index.php:1168
+#: zp-core/setup/index.php:1170
 msgid "Database <code>field collations</code> [Image table]"
 msgstr "<code>Kontrola polí</code> databázy [Tabuľka obrázkov]"
 
-#: zp-core/setup/index.php:1171
+#: zp-core/setup/index.php:1173
 msgid "Database <code>field collations</code> [Album table]"
 msgstr "<code>Kontrola pola</code> databázy [Tabuľka albumov]"
 
-#: zp-core/setup/index.php:1174
+#: zp-core/setup/index.php:1176
 msgid "Database <code>field collations</code> [Image and Album tables]"
 msgstr "<code>Kontrola pola</code> databázy [Tabuľka obrázkov a albumov]"
 
-#: zp-core/setup/index.php:1177
+#: zp-core/setup/index.php:1179
 msgid "Database <code>field collations</code> [SHOW COLUMNS query failed]"
 msgstr "<code>Kontrola pola</code> databázy [dopyt SHOW COLUMNS zlyhal]"
 
-#: zp-core/setup/index.php:1180
+#: zp-core/setup/index.php:1182
 msgid "Database <code>field collations</code>"
 msgstr "<code>Kontrola pola</code> databázy"
 
-#: zp-core/setup/index.php:1180
+#: zp-core/setup/index.php:1182
 #, php-format
 msgid ""
 "%s is not UTF-8. You should consider porting your data to UTF-8 and changing "
@@ -13541,12 +13537,12 @@ msgstr[2] ""
 "%s nie je v UTF-8. Zvážte prevod vašich dát do UTF-8 a zmeniť kontorlu "
 "databázových polí na <code>utf8_unicode_ci</code>"
 
-#: zp-core/setup/index.php:1182
+#: zp-core/setup/index.php:1184
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
 msgstr ""
 "Databáza <code>$conf[\"UTF-8\"]</code> [nie je nastavená na <em>true</em>]"
 
-#: zp-core/setup/index.php:1182
+#: zp-core/setup/index.php:1184
 msgid ""
 "You should consider porting your data to UTF-8 and changing the collation of "
 "the database fields to <code>utf8_unicode_ci</code> and setting this "
@@ -13556,15 +13552,15 @@ msgstr ""
 "<code>utf8_unicode_ci</code> a nastaviť to na <em>true</em>. ZenPhoto20 "
 "pracuje najlepšie s UTF-8 kódovaním."
 
-#: zp-core/setup/index.php:1187
+#: zp-core/setup/index.php:1189
 msgid "ZenPhoto20 files"
 msgstr "ZenPhoto20 súbory"
 
-#: zp-core/setup/index.php:1217
+#: zp-core/setup/index.php:1219
 msgid "ZenPhoto20 package [missing]"
 msgstr "ZenPhoto20 balík [chýba]"
 
-#: zp-core/setup/index.php:1217
+#: zp-core/setup/index.php:1219
 msgid ""
 "The file <code>zenphoto.package</code> is either missing, not readable, or "
 "defective. Your installation may be corrupt!"
@@ -13572,12 +13568,12 @@ msgstr ""
 "Súbor <code>zenphoto.package</code> buď chýba, nie je čitateľný alebo je "
 "chybný. Inštalácia je pravdepodobne poškodená!"
 
-#: zp-core/setup/index.php:1223
+#: zp-core/setup/index.php:1225
 #, php-format
 msgid "Setting permissions (0%o) for ZenPhoto20 package."
 msgstr "Nastavenie práv (0%o) pre balík ZenPhoto20."
 
-#: zp-core/setup/index.php:1337
+#: zp-core/setup/index.php:1339
 msgid ""
 "ZenPhoto20 core files [This is a <em>debug</em> build. Some files are "
 "missing or seem wrong]"
@@ -13585,25 +13581,25 @@ msgstr ""
 "ZenPhoto20 súbory jadra [toto je <em>debug</em> build. Niektoré súbory "
 "chýbajú alebo sú zlé]"
 
-#: zp-core/setup/index.php:1339
+#: zp-core/setup/index.php:1341
 msgid "ZenPhoto20 core files [Some files are missing or seem wrong]"
 msgstr "ZenPhoto20 súbory jadra [Niektoré súbory chýbajú alebo sú zlé]"
 
-#: zp-core/setup/index.php:1341
+#: zp-core/setup/index.php:1343
 msgid ""
 "Perhaps there was a problem with the upload. You should check the following "
 "files: "
 msgstr ""
 "Možno je to problém s nahrávaním. Mali by ste skontrolovať tieto súbory: "
 
-#: zp-core/setup/index.php:1346
+#: zp-core/setup/index.php:1348
 msgid ""
 "ZenPhoto20 core files [Could not update the root <em>index.php</em> file.]"
 msgstr ""
 "ZenPhoto20 súbory jadra [Nedá sa aktualizovať koreňový súbor <em>index.php</"
 "em>.]"
 
-#: zp-core/setup/index.php:1347
+#: zp-core/setup/index.php:1349
 #, php-format
 msgid ""
 "Perhaps there is a permissions issue. You should manually copy the %s "
@@ -13614,23 +13610,23 @@ msgstr ""
 "<em>root_index.php</em> do koreňového adresára inštalácie a premenovať na "
 "<em>index.php</em>."
 
-#: zp-core/setup/index.php:1352
+#: zp-core/setup/index.php:1354
 msgid "ZenPhoto20 core files [This is a <em>debug</em> build]"
 msgstr "ZenPhoto20 súbory jadra [toto je <em>debug</em> build]"
 
-#: zp-core/setup/index.php:1359
+#: zp-core/setup/index.php:1361
 msgid "ZenPhoto20 core files [This is a <em>clone</em> installation]"
 msgstr "ZenPhoto20 súbory jadra [to je <em>klon</em> Inštalácia]"
 
-#: zp-core/setup/index.php:1364
+#: zp-core/setup/index.php:1366
 msgid "ZenPhoto20 core files"
 msgstr "ZenPhoto20 súbory jadra"
 
-#: zp-core/setup/index.php:1367
+#: zp-core/setup/index.php:1369
 msgid "Installation files"
 msgstr "Inštalačné súbory"
 
-#: zp-core/setup/index.php:1382
+#: zp-core/setup/index.php:1384
 #, php-format
 msgid ".svn [%s instance]"
 msgid_plural ".svn [%s instances]"
@@ -13638,7 +13634,7 @@ msgstr[0] ".svn [%s príklad]"
 msgstr[1] ".svn [%s príklady]"
 msgstr[2] ".svn [%s príkladov]"
 
-#: zp-core/setup/index.php:1385
+#: zp-core/setup/index.php:1387
 #, php-format
 msgid "php.ini [%s instance]"
 msgid_plural "php.ini [%s instances]"
@@ -13646,31 +13642,31 @@ msgstr[0] "php.ini [%s príklad]"
 msgstr[1] ".svn [%s príklady]"
 msgstr[2] ".svn [%s príkladov]"
 
-#: zp-core/setup/index.php:1426 zp-core/setup/index.php:1429
+#: zp-core/setup/index.php:1428 zp-core/setup/index.php:1431
 msgid "ZenPhoto20 core folders [Some unknown files were found]"
 msgstr "Zdrojová zložka ZenPhoto20 [Nájdených niekoľko neznámych súborov]"
 
-#: zp-core/setup/index.php:1426
+#: zp-core/setup/index.php:1428
 msgid "The following files could not be deleted."
 msgstr "Tieto súbory sa nedajú vymazať."
 
-#: zp-core/setup/index.php:1429
+#: zp-core/setup/index.php:1431
 msgid "You should remove the following files: "
 msgstr "Maly by ste vymazať tieto súbory: "
 
-#: zp-core/setup/index.php:1430
+#: zp-core/setup/index.php:1432
 msgid "Delete extra files"
 msgstr "Vymazať súbory, ktoré sú navyše"
 
-#: zp-core/setup/index.php:1433
+#: zp-core/setup/index.php:1435
 msgid "ZenPhoto20 core file permissions"
 msgstr "ZenPhoto20 oprávnenia pre súbory jadra"
 
-#: zp-core/setup/index.php:1433
+#: zp-core/setup/index.php:1435
 msgid "ZenPhoto20 core file permissions [not correct]"
 msgstr "ZenPhoto20 oprávnenia pre súbory jadra [nesprávne]"
 
-#: zp-core/setup/index.php:1433
+#: zp-core/setup/index.php:1435
 msgid ""
 "Setup could not set the one or more components to the selected permissions "
 "level. You will have to set the permissions manually."
@@ -13678,15 +13674,15 @@ msgstr ""
 "Inštalátor nemohol nastaviť jeden alebo viac komponentov na vybratú úroveň "
 "oprávení. Budete musieť nastaviť oprávnenia manuálne."
 
-#: zp-core/setup/index.php:1436
+#: zp-core/setup/index.php:1438
 msgid "<em>.htaccess</em> file"
 msgstr "Súbor <em>.htaccess</em>"
 
-#: zp-core/setup/index.php:1454
+#: zp-core/setup/index.php:1456
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "Súbor <em>.htaccess</em> [je prázdny alebo neexistuje]"
 
-#: zp-core/setup/index.php:1457
+#: zp-core/setup/index.php:1459
 msgid ""
 "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
 "required the root zenphoto folder to create cruft-free URLs."
@@ -13695,7 +13691,7 @@ msgstr ""
 "existovať súbor <em>.htaccess</em> potrebný na tvorbu URL bez množstva "
 "znakov."
 
-#: zp-core/setup/index.php:1458 zp-core/setup/index.php:1466
+#: zp-core/setup/index.php:1460 zp-core/setup/index.php:1468
 msgid ""
 "You can ignore this warning if you do not intend to set the "
 "<code>mod_rewrite</code> option."
@@ -13703,7 +13699,7 @@ msgstr ""
 "Toto upozornenie môžete ignorovať, ak neplánujete používať "
 "<code>mod_rewrite</code>."
 
-#: zp-core/setup/index.php:1460
+#: zp-core/setup/index.php:1462
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</"
 "a></p><br style=\"clear:both\" /><br />"
@@ -13711,11 +13707,11 @@ msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Povoliť inštalácii vytvoriť "
 "súbor </a></p><br style=\"clear:both\" /><br />"
 
-#: zp-core/setup/index.php:1463
+#: zp-core/setup/index.php:1465
 msgid "Server seems to be <em>nginx</em>"
 msgstr "Server sa zdá byť <em>nginx</em>"
 
-#: zp-core/setup/index.php:1465
+#: zp-core/setup/index.php:1467
 msgid ""
 "If you wish to create cruft-free URLs, you will need to configuring "
 "<em>rewriting</em> for your NGINX server so that any link that does not go "
@@ -13726,7 +13722,7 @@ msgstr ""
 "em> pre váš NGINX server tak, že akýkoľvek odkaz, ktorý nejde priamo k "
 "súboru ide na <code>index.php</code> skript v koreňovom adresári inštalácie."
 
-#: zp-core/setup/index.php:1469
+#: zp-core/setup/index.php:1471
 msgid ""
 "Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, "
 "<code>mod_rewrite</code> may not be available."
@@ -13734,7 +13730,7 @@ msgstr ""
 "Server pravdepodobne nie je <em>Apache</em> alebo <em>Apache-compatible</"
 "em>, <code>mod_rewrite</code> nemusí byť dostupný."
 
-#: zp-core/setup/index.php:1500
+#: zp-core/setup/index.php:1502
 msgid ""
 "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> "
 "not required."
@@ -13742,7 +13738,7 @@ msgstr ""
 "Server je pravdepodobne Apache alebo kopatibilný s Apache, <code>.htaccess</"
 "code> nie je potrebný."
 
-#: zp-core/setup/index.php:1503
+#: zp-core/setup/index.php:1505
 #, php-format
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as "
@@ -13755,7 +13751,7 @@ msgstr ""
 "<em>.htaccess</em>, zlúčte tieto zmeny s <em>%s/htaccess</em> súborom a "
 "vytvorte nový súbor <em>.htaccess</em>."
 
-#: zp-core/setup/index.php:1505
+#: zp-core/setup/index.php:1507
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>."
 "htaccess</em> file with the current version</a></p><br style=\"clear:both\" /"
@@ -13764,26 +13760,26 @@ msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Nahradiť existujúci súbor "
 "<em>.htaccess</em> aktuálnou vezriou</a></p><br style=\"clear:both\" /><br />"
 
-#: zp-core/setup/index.php:1508
+#: zp-core/setup/index.php:1510
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "Súbor <em>.htaccess</em> [nesprávna verzia]"
 
-#: zp-core/setup/index.php:1522
+#: zp-core/setup/index.php:1524
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr ""
 "Súbor <em>.htaccess</em> (<em>RewriteEngine</em> je <strong>%s</strong>)"
 
-#: zp-core/setup/index.php:1535
+#: zp-core/setup/index.php:1537
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr "<em>.htaccess</em> RewriteBase [<em>chýba</em>]"
 
-#: zp-core/setup/index.php:1541
+#: zp-core/setup/index.php:1543
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr "<em>.htaccess</em> RewriteBase je <code>%s</code>"
 
-#: zp-core/setup/index.php:1542
+#: zp-core/setup/index.php:1544
 #, php-format
 msgid ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
@@ -13792,12 +13788,12 @@ msgstr ""
 "<em>.htaccess</em> RewriteBase je <code>%s</code> [Inštalačná zložka "
 "nesúhlasí]"
 
-#: zp-core/setup/index.php:1549
+#: zp-core/setup/index.php:1551
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr "<em>.htaccess</em> RewriteBase je <code>%s</code> (opravené)"
 
-#: zp-core/setup/index.php:1573
+#: zp-core/setup/index.php:1575
 msgid ""
 "Setup was not able to write to the file change RewriteBase match the install "
 "folder."
@@ -13805,7 +13801,7 @@ msgstr ""
 "Inštalácii sa nepodarilo prepísať súbor. Upravte RewriteBase aby sedela s "
 "vašou inštalačnou zložkou."
 
-#: zp-core/setup/index.php:1574
+#: zp-core/setup/index.php:1576
 #, php-format
 msgid ""
 "Either make the file writeable or set <code>RewriteBase</code> in your "
@@ -13814,15 +13810,15 @@ msgstr ""
 "Buď odomknite súbor alebo nastavte <code>RewriteBase</code> v súbore <code>."
 "htaccess</code> na <code>%s</code>."
 
-#: zp-core/setup/index.php:1576
+#: zp-core/setup/index.php:1578
 msgid "Rewrite rules updated"
 msgstr "Prepisovacie pravidlá aktualizované"
 
-#: zp-core/setup/index.php:1576
+#: zp-core/setup/index.php:1578
 msgid "Rewrite rules updated [not updated]"
 msgstr "Prepisovacie pravidlá aktualizované [neaktulizované]"
 
-#: zp-core/setup/index.php:1576
+#: zp-core/setup/index.php:1578
 msgid ""
 "Setup was not able to write to the file change the rewrite rules for site "
 "upgrades."
@@ -13830,35 +13826,35 @@ msgstr ""
 "Inštalácii sa nepodarilo zapísať do súboru zmenu prepisovacích pravidiel pre "
 "aktualizáciu stránky."
 
-#: zp-core/setup/index.php:1582 zp-core/setup/index.php:1585
-#: zp-core/setup/index.php:1597
+#: zp-core/setup/index.php:1584 zp-core/setup/index.php:1587
+#: zp-core/setup/index.php:1599
 msgid "<em>robots.txt</em> file"
 msgstr "Súbor <em>robots.txt</em>"
 
-#: zp-core/setup/index.php:1582 zp-core/setup/index.php:1585
-#: zp-core/setup/index.php:1597
+#: zp-core/setup/index.php:1584 zp-core/setup/index.php:1587
+#: zp-core/setup/index.php:1599
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "Súbor <em>robots.txt</em> [nebol vytvorený]"
 
-#: zp-core/setup/index.php:1582
+#: zp-core/setup/index.php:1584
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr "Inštalácia nenašla súbor <em>example_robots.txt</em>."
 
-#: zp-core/setup/index.php:1585
+#: zp-core/setup/index.php:1587
 msgid ""
 "Setup did not create a <em>robots.txt</em> file because one already exists."
 msgstr ""
 "Inštalácia nemohla vytvoriť súbor <em>robots.txt</em>, pretože už existuje."
 
-#: zp-core/setup/index.php:1597
+#: zp-core/setup/index.php:1599
 msgid "Setup could not create a <em>robots.txt</em> file."
 msgstr "Inštalácia nemohla vytvoriť súbor <em>robots.txt</em>."
 
-#: zp-core/setup/index.php:1602
+#: zp-core/setup/index.php:1604
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
 msgstr "albumy [<code>$conf['external_album_folder']</code> je zastaraný]"
 
-#: zp-core/setup/index.php:1602 zp-core/setup/index.php:1626
+#: zp-core/setup/index.php:1604 zp-core/setup/index.php:1628
 #, php-format
 msgid ""
 "You should update your configuration file to conform to the current %1$s "
@@ -13867,11 +13863,11 @@ msgstr ""
 "Mali by ste aktualizovať konfiguračný súbor v súlade s aktuálnym ukázkovým "
 "súborom %1$s."
 
-#: zp-core/setup/index.php:1626
+#: zp-core/setup/index.php:1628
 msgid "<em>albums</em> folder"
 msgstr "Zložka <em>albums</em>"
 
-#: zp-core/setup/index.php:1626
+#: zp-core/setup/index.php:1628
 msgid ""
 "<em>albums</em> folder [The line <code>\\$conf['album_folder']</code> is "
 "missing from your configuration file]"
@@ -13879,15 +13875,15 @@ msgstr ""
 "Zložka <em>albumov</em> [Riadok <code>\\$conf['album_folder']</code> vo "
 "vašom konfiguračnom súbore chýba]"
 
-#: zp-core/setup/index.php:1630
+#: zp-core/setup/index.php:1632
 msgid "<em>locale</em> folders"
 msgstr "Zložky <em>locale</em>"
 
-#: zp-core/setup/index.php:1630
+#: zp-core/setup/index.php:1632
 msgid "<em>locale</em> folders [Are not complete]"
 msgstr "Zložky <em>locale</em> [nie su kompletné]"
 
-#: zp-core/setup/index.php:1630
+#: zp-core/setup/index.php:1632
 msgid ""
 "Be sure you have uploaded the complete ZenPhoto20 package. You must have at "
 "least the <em>en_US</em> folder."
@@ -13895,19 +13891,19 @@ msgstr ""
 "Uistite sa, že ste nahrali kompletný balík ZenPhoto20. Musíte mať aspoň "
 "zložku <em>en_US</em> ."
 
-#: zp-core/setup/index.php:1631
+#: zp-core/setup/index.php:1633
 msgid "uploaded"
 msgstr "nahrané"
 
-#: zp-core/setup/index.php:1636
+#: zp-core/setup/index.php:1638
 msgid "HTML cache"
 msgstr "Vyrovnávacia pamäť HTML"
 
-#: zp-core/setup/index.php:1637
+#: zp-core/setup/index.php:1639
 msgid "Third party plugins"
 msgstr "Zásuvné moduly tretích strán"
 
-#: zp-core/setup/index.php:1647
+#: zp-core/setup/index.php:1649
 msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
@@ -13915,32 +13911,32 @@ msgstr ""
 "Musíte dať doporiadku problémy menované vyššie a potom znovu spustiť "
 "<code>inštaláciu</code>."
 
-#: zp-core/setup/index.php:1650
+#: zp-core/setup/index.php:1652
 msgid "Setup failed."
 msgstr "Inštalácia sa nepodarila."
 
-#: zp-core/setup/index.php:1663 zp-core/setup/index.php:1913
+#: zp-core/setup/index.php:1665 zp-core/setup/index.php:1915
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
 "Musíte mať<em>administrátorské práva</em>, aby ste mohli spustiť inštaláciu."
 
-#: zp-core/setup/index.php:1665 zp-core/setup/index.php:1915
+#: zp-core/setup/index.php:1667 zp-core/setup/index.php:1917
 msgid "You must be logged in to run setup."
 msgstr "Musíte byť prihlásení, aby ste mohli spustiť inštaláciu."
 
-#: zp-core/setup/index.php:1686
+#: zp-core/setup/index.php:1688
 msgid "database connected"
 msgstr "databáza pripojená"
 
-#: zp-core/setup/index.php:1751
+#: zp-core/setup/index.php:1753
 msgid "About to update tables"
 msgstr "Pripravené aktualizovať tabuľky"
 
-#: zp-core/setup/index.php:1752
+#: zp-core/setup/index.php:1754
 msgid "Begin database creation and update"
 msgstr "Spustiť vytváranie a aktualizáciu databázy"
 
-#: zp-core/setup/index.php:1759
+#: zp-core/setup/index.php:1761
 msgid ""
 "Done with table update with errors. See the <code>setup</code> log for "
 "details."
@@ -13948,15 +13944,15 @@ msgstr ""
 "Aktualizácia tabuliek ukončená s chybami. Detaily nájdete v zázname "
 "<code>setup</code>."
 
-#: zp-core/setup/index.php:1761
+#: zp-core/setup/index.php:1763
 msgid "Done with table update."
 msgstr "Aktualizácia tabuliek hotová."
 
-#: zp-core/setup/index.php:1774
+#: zp-core/setup/index.php:1776
 msgid "Done with database creation and update"
 msgstr "Vytváranie a aktualizácia databázy hotová"
 
-#: zp-core/setup/index.php:1793
+#: zp-core/setup/index.php:1795
 #, php-format
 msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
@@ -13965,22 +13961,22 @@ msgstr ""
 "Môžete použiť <a href=\"%1$s\">na nastavenie administrátorského mena a "
 "hesla</a> alebo spustiť <a href=\"%2$s\">obnovenie zo zálohy</a>"
 
-#: zp-core/setup/index.php:1796
+#: zp-core/setup/index.php:1798
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr "Musíte <a href=\"%1$s\">nastaviť administátorské meno a heslo</a>"
 
-#: zp-core/setup/index.php:1811
+#: zp-core/setup/index.php:1813
 #, php-format
 msgid "Setup <a href=\"%1$s\" target=\"_blank\">%2$s</a>"
 msgstr "Inštalácia <a href=\"%1$s\" target=\"_blank\">%2$s</a>"
 
-#: zp-core/setup/index.php:1816
+#: zp-core/setup/index.php:1818
 #, php-format
 msgid "You can now <a href=\"%1$s\">administer your gallery.</a>"
 msgstr "Teraz môžete <a href=\"%1$s\">administrovať svoju galériu.</a>"
 
-#: zp-core/setup/index.php:1881
+#: zp-core/setup/index.php:1883
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -13990,29 +13986,29 @@ msgstr ""
 "vašej databáze, ktoré sa ťažko vracajú. Urobte zálohu databázy než budete "
 "pokračovať."
 
-#: zp-core/setup/index.php:1885
+#: zp-core/setup/index.php:1887
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr ""
 "%s som oboznámený s tým, že ak budem pokračovať prebuduje sa moja databáza."
 
-#: zp-core/setup/index.php:1937
+#: zp-core/setup/index.php:1939
 msgid "run setup"
 msgstr "spustiť inštaláciu"
 
-#: zp-core/setup/index.php:1937
+#: zp-core/setup/index.php:1939
 msgid "Go"
 msgstr "Štart"
 
-#: zp-core/setup/index.php:1954
+#: zp-core/setup/index.php:1956
 msgid "database did not connect"
 msgstr "databáza sa nepripojila"
 
-#: zp-core/setup/index.php:1956
+#: zp-core/setup/index.php:1958
 msgid "If you have not created the database yet, now would be a good time."
 msgstr "Ak ste zatiaľ nevytvorili databázu, teraz je príhodná chvíľa."
 
-#: zp-core/setup/index.php:1965
+#: zp-core/setup/index.php:1967
 #, php-format
 msgid "The %1$s file does not exist."
 msgstr "Súbor %1$s neexistuje."
@@ -14195,11 +14191,16 @@ msgstr ""
 "Dopyt zlyhal: %1$s \n"
 "Chyba: %2$s"
 
-#: zp-core/setup/setup-functions.php:559
+#: zp-core/setup/setup-functions.php:557
 #, php-format
-#| msgid "%1$s: %2$s in %3$s on line %4$s"
 msgid "Plugin:%1$s ERROR \"%2$s\" in %3$s on line %4$s"
 msgstr "Zásuvný modul:%1$s CHYBA \"%2$s\" v %3$s na riadku %4$s"
+
+#: zp-core/setup/setup-functions.php:561
+#, fuzzy, php-format
+#| msgid "Plugin:%s setup started"
+msgid "Plugin:%1$s setup failed."
+msgstr "Zásuvný modul:%s inštalácia začala"
 
 #: zp-core/setup/setup-option-defaults.php:11
 msgid "Set default options"
@@ -14413,103 +14414,89 @@ msgstr "Šablóna:%s option interface instantiated"
 msgid "Theme:%s setup completed in %2$.4f seconds"
 msgstr "Šablóna:%s inštalácia hotová za %2$.4f sekúnd"
 
-#: zp-core/template-functions.php:57
-msgid "Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"
-msgstr "Ste si istý, že chcete vymazať tento obrázok? NEVRATNÁ OPERÁCIA!"
-
-#: zp-core/template-functions.php:58
-#: zp-core/zp-extensions/zenpage/admin-edit.php:127
-#: zp-core/zp-extensions/zenpage/admin-news.php:67
-#: zp-core/zp-extensions/zenpage/admin-news.php:414
-#: zp-core/zp-extensions/zenpage/admin-pages.php:79
-msgid "Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"
-msgstr "Ste si istý, že chcete vymazať tento článok? NEVRATNÁ OPERÁCIA!"
-
-#: zp-core/template-functions.php:59
-#: zp-core/zp-extensions/zenpage/admin-edit.php:128
-#: zp-core/zp-extensions/zenpage/admin-pages.php:80
-msgid "Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"
-msgstr "Ste si istý, že chcete vymazať túto stránku? NEVRATNÁ OPERÁCIA!"
-
-#: zp-core/template-functions.php:63
-msgid "new album"
-msgstr "nový album"
-
-#: zp-core/template-functions.php:92
+#: zp-core/template-functions.php:69
 msgid "Logged in as"
 msgstr "Prihlásený ako"
 
-#: zp-core/template-functions.php:158
+#: zp-core/template-functions.php:135
 msgid "Logs"
 msgstr "Protokoly"
 
-#: zp-core/template-functions.php:171
+#: zp-core/template-functions.php:148
 msgid "Sort Gallery"
 msgstr "Zoradiť galérie"
 
-#: zp-core/template-functions.php:180
+#: zp-core/template-functions.php:159
+msgid "new album"
+msgstr "nový album"
+
+#: zp-core/template-functions.php:167
 msgid "New Album"
 msgstr "Nový album"
 
-#: zp-core/template-functions.php:204
+#: zp-core/template-functions.php:191
 msgid "Edit album"
 msgstr "Upraviť album"
 
-#: zp-core/template-functions.php:211
+#: zp-core/template-functions.php:198
 msgid "Sort subalbums"
 msgstr "Zoradiť podalbumy"
 
-#: zp-core/template-functions.php:218
+#: zp-core/template-functions.php:205
 msgid "Sort images"
 msgstr "Zoradiť obrázky"
 
-#: zp-core/template-functions.php:228
+#: zp-core/template-functions.php:225
 msgid "Delete the album"
 msgstr "Vymazať album"
 
-#: zp-core/template-functions.php:237
+#: zp-core/template-functions.php:234
 msgid "Upload Here"
 msgstr "Nahrať sem"
 
-#: zp-core/template-functions.php:243
+#: zp-core/template-functions.php:240
 msgid "New Album Here"
 msgstr "Nový album sem"
 
-#: zp-core/template-functions.php:261
+#: zp-core/template-functions.php:258
+msgid "Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"
+msgstr "Ste si istý, že chcete vymazať tento obrázok? NEVRATNÁ OPERÁCIA!"
+
+#: zp-core/template-functions.php:265
 msgid "Delete the image"
 msgstr "Vymazať tento obrázok"
 
-#: zp-core/template-functions.php:268
+#: zp-core/template-functions.php:274
 msgid "Edit image"
 msgstr "Upraviť obrázok"
 
-#: zp-core/template-functions.php:293
+#: zp-core/template-functions.php:299
 msgid "Create an album from the search"
 msgstr "Vytvoriť album z vyhľadávania"
 
-#: zp-core/template-functions.php:293
+#: zp-core/template-functions.php:299
 #: zp-core/zp-extensions/favoritesAlbums.php:153
 msgid "Create Album"
 msgstr "Vytvoriť album"
 
-#: zp-core/template-functions.php:318
+#: zp-core/template-functions.php:324
 #: zp-core/zp-extensions/user_login-out.php:118
 msgid "Logout"
 msgstr "Odhlásiť"
 
-#: zp-core/template-functions.php:811 zp-core/template-functions.php:905
+#: zp-core/template-functions.php:817 zp-core/template-functions.php:911
 #: zp-core/zp-extensions/menu_manager.php:612
 msgid "Previous Page"
 msgstr "Predchádzajúca stránka"
 
-#: zp-core/template-functions.php:928
+#: zp-core/template-functions.php:934
 #: zp-core/zp-extensions/menu_manager.php:618
 msgid "Page 1"
 msgstr "Strana 1"
 
-#: zp-core/template-functions.php:943 zp-core/template-functions.php:952
-#: zp-core/template-functions.php:982 zp-core/template-functions.php:989
-#: zp-core/template-functions.php:999
+#: zp-core/template-functions.php:949 zp-core/template-functions.php:958
+#: zp-core/template-functions.php:988 zp-core/template-functions.php:995
+#: zp-core/template-functions.php:1005
 #: zp-core/zp-extensions/menu_manager.php:623
 #: zp-core/zp-extensions/menu_manager.php:641
 #: zp-core/zp-extensions/zenpage/template-functions.php:942
@@ -14521,7 +14508,7 @@ msgstr[0] "Strana %u"
 msgstr[1] "Strana %u"
 msgstr[2] "Strana %u"
 
-#: zp-core/template-functions.php:963
+#: zp-core/template-functions.php:969
 #: zp-core/zp-extensions/menu_manager.php:633
 #: zp-core/zp-extensions/zenpage/template-functions.php:951
 #, php-format
@@ -14531,64 +14518,64 @@ msgstr[0] "Strana %1$u"
 msgstr[1] "Strana %1$u"
 msgstr[2] "Strana %1$u"
 
-#: zp-core/template-functions.php:1076
+#: zp-core/template-functions.php:1082
 msgid "The album is un-published."
 msgstr "Album nie je zverejnený."
 
-#: zp-core/template-functions.php:1185
+#: zp-core/template-functions.php:1191
 msgid "Album Thumbnails"
 msgstr "Miniatúry albumu"
 
-#: zp-core/template-functions.php:1285
+#: zp-core/template-functions.php:1291
 #: zp-core/zp-extensions/tagFromSearch/tag.php:138
 #: zp-core/zp-extensions/zenpage/template-functions.php:1598
 msgid "Return to search"
 msgstr "Vrátiť sa k vyhľadávaniu"
 
-#: zp-core/template-functions.php:1292
+#: zp-core/template-functions.php:1298
 #: zp-core/zp-extensions/zenpage/template-functions.php:1601
 msgid "Return to archive"
 msgstr "Vrátiť sa archívu"
 
-#: zp-core/template-functions.php:2047
+#: zp-core/template-functions.php:2053
 msgid "The image is marked un-published."
 msgstr "Obrázok je označený ako nezverejnený."
 
-#: zp-core/template-functions.php:3793
+#: zp-core/template-functions.php:3799
 #, php-format
 msgid "%s within previous results"
 msgstr "%s v predchádzajúcich výsledkoch"
 
-#: zp-core/template-functions.php:3875
+#: zp-core/template-functions.php:3881
 msgid "search options"
 msgstr "nastavenie vyhľadávania"
 
-#: zp-core/template-functions.php:3875
+#: zp-core/template-functions.php:3881
 msgid "fields"
 msgstr "polia"
 
-#: zp-core/template-functions.php:3914
+#: zp-core/template-functions.php:3920
 msgid "Within"
 msgstr "V"
 
-#: zp-core/template-functions.php:3918
+#: zp-core/template-functions.php:3924
 #: zp-core/zp-extensions/flag_thumbnail.php:94
 msgid "New"
 msgstr "Nové"
 
-#: zp-core/template-functions.php:3977
+#: zp-core/template-functions.php:3983
 msgid "no date"
 msgstr "bez dátumu"
 
-#: zp-core/template-functions.php:4177
+#: zp-core/template-functions.php:4183
 msgid "The page you are trying to view is password protected."
 msgstr "Stránka, ktorú požadujete je chránená heslom."
 
-#: zp-core/template-functions.php:4182
+#: zp-core/template-functions.php:4188
 msgid "login"
 msgstr "prihlásenie"
 
-#: zp-core/template-functions.php:4206
+#: zp-core/template-functions.php:4212
 #, php-format
 msgid ""
 "<span class=\"zen-logo\"><a href=\"https://%1$s\" title=\"\">Powered by <img "
@@ -14597,9 +14584,24 @@ msgstr ""
 "<span class=\"zen-logo\"><a href=\"https://%1$s\" title=\"\">Beží na<img src="
 "\"%2$s\"></a></span>"
 
-#: zp-core/template-functions.php:4396
+#: zp-core/template-functions.php:4402
 msgid "Error:</strong> the requested object was not found."
 msgstr "ZenPhoto20 chyba:</strong> požadovaný objekt nenájdený."
+
+#: zp-core/template-functions.php:4404
+#, php-format
+msgid "Album: %s"
+msgstr "Album: %s"
+
+#: zp-core/template-functions.php:4406
+#, php-format
+msgid "Image: %s"
+msgstr "Obrázok: %s"
+
+#: zp-core/template-functions.php:4409
+#, php-format
+msgid "Page: %s"
+msgstr "Strana: %s"
 
 #: zp-core/utilities/backup_restore.php:167
 #, php-format
@@ -18654,6 +18656,10 @@ msgstr ""
 "žiadosť, ktorá neobsahuje API kľúč). Musíte získať API kľúč od <a href="
 "\"https://console.developers.google.com/project\">Google</a>."
 
+#: zp-core/zp-extensions/googleMap.php:479
+msgid "Display or hide the Google Map."
+msgstr "Zobraziť alebo skryť Google Map."
+
 #: zp-core/zp-extensions/googleMap/map.php:102
 msgid "Map display error"
 msgstr "Chyba zobrazovania mapy"
@@ -21207,7 +21213,7 @@ msgid "Enter your <em>reCaptcha</em> private key."
 msgstr "Zadajte svoj súkromný kľúč <em>reCaptcha</em>."
 
 #: zp-core/zp-extensions/reCaptcha.php:79
-#: zp-core/zp-extensions/themeSwitcher.php:141
+#: zp-core/zp-extensions/themeSwitcher.php:143
 msgid "Theme"
 msgstr "Šablóna"
 
@@ -21434,6 +21440,18 @@ msgstr ""
 #: zp-core/zp-extensions/register_user/register_user_form.php:15
 msgid "Username* (this will be your user username)"
 msgstr "Používateľské meno* (toto bude vaše používateľské meno)"
+
+#: zp-core/zp-extensions/register_user/register_user_form.php:22
+msgid "Email<strong>*</strong> (this will be your user id)"
+msgstr "Email<strong>*</strong> (toto bude vaše používateľské ID)"
+
+#: zp-core/zp-extensions/register_user/register_user_form.php:24
+msgid "User ID"
+msgstr "ID používateľa"
+
+#: zp-core/zp-extensions/register_user/register_user_form.php:107
+msgid "<strong>*</strong>Required"
+msgstr "<strong>*</strong>Vyžadované"
 
 #: zp-core/zp-extensions/related_items.php:9
 msgid ""
@@ -23176,39 +23194,35 @@ msgstr ""
 msgid "Allow a visitor to select the theme of the gallery."
 msgstr "Dovoľuje návštevníkom nastaviť si šablónu galérie."
 
-#: zp-core/zp-extensions/themeSwitcher.php:67
+#: zp-core/zp-extensions/themeSwitcher.php:68
 msgid "Private"
 msgstr "Súkromné"
 
-#: zp-core/zp-extensions/themeSwitcher.php:69
+#: zp-core/zp-extensions/themeSwitcher.php:70
 msgid ""
 "Only users with <em>Themes</em> rights will see the selector if this is "
 "checked."
 msgstr ""
 "Iba používatelia s právami na <em>Šablóny</em> uvidia menič ak je zapnutý."
 
-#: zp-core/zp-extensions/themeSwitcher.php:70
+#: zp-core/zp-extensions/themeSwitcher.php:71
 msgid "Theme list"
 msgstr "Zoznam šablón"
 
-#: zp-core/zp-extensions/themeSwitcher.php:73
+#: zp-core/zp-extensions/themeSwitcher.php:74
 msgid "These are the themes that may be selected among."
 msgstr "Z týchto šablón sa bude dať vyberať."
 
-#: zp-core/zp-extensions/themeSwitcher.php:78
+#: zp-core/zp-extensions/themeSwitcher.php:79
 msgid "These themes are enabled but have not got their default optons set:"
 msgstr ""
 "Tieto šablóny sú aktivované, ale ešte nemajú nastavené predvolené nastavenia:"
 
-#: zp-core/zp-extensions/themeSwitcher.php:152
+#: zp-core/zp-extensions/themeSwitcher.php:154
 msgid "Switch themes"
 msgstr "Prehodiť šablóny"
 
-#: zp-core/zp-extensions/themeSwitcher.php:160
-msgid "Close"
-msgstr "Zatvoriť"
-
-#: zp-core/zp-extensions/themeSwitcher.php:167
+#: zp-core/zp-extensions/themeSwitcher.php:169
 msgid ""
 "Themes will be disabled in this list if selecting them would result in a "
 "“not found” error."
@@ -24574,37 +24588,49 @@ msgstr "Text pre odkaz na celý článok."
 msgid "Enable Zenpage CMS plugin"
 msgstr "Povoliť zásuvný modul Zenpage CMS"
 
-#: zp-core/zp-extensions/zenpage.php:280
+#: zp-core/zp-extensions/zenpage.php:283
 msgid "Edit Page"
 msgstr "Upraviť stránku"
 
-#: zp-core/zp-extensions/zenpage.php:285
+#: zp-core/zp-extensions/zenpage.php:292
+#, fuzzy
+#| msgid "Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"
+msgid "Are you sure you want to delete the page? THIS CANNOT BE UNDONE!"
+msgstr "Ste si istý, že chcete vymazať tento obrázok? NEVRATNÁ OPERÁCIA!"
+
+#: zp-core/zp-extensions/zenpage.php:298
 #: zp-core/zp-extensions/zenpage/admin-functions.php:311
 msgid "Delete page"
 msgstr "Vymazať stránku"
 
-#: zp-core/zp-extensions/zenpage.php:285
+#: zp-core/zp-extensions/zenpage.php:298
 msgid "Delete Page"
 msgstr "Vymazať stránku"
 
-#: zp-core/zp-extensions/zenpage.php:289
+#: zp-core/zp-extensions/zenpage.php:303
 msgid "Add Page"
 msgstr "Pridať stránku"
 
-#: zp-core/zp-extensions/zenpage.php:305
+#: zp-core/zp-extensions/zenpage.php:319
 msgid "Edit Article"
 msgstr "Upraviť článok"
 
-#: zp-core/zp-extensions/zenpage.php:311
+#: zp-core/zp-extensions/zenpage.php:325
+#, fuzzy
+#| msgid "Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"
+msgid "Are you sure you want to delete the article? THIS CANNOT BE UNDONE!"
+msgstr "Ste si istý, že chcete vymazať tento článok? NEVRATNÁ OPERÁCIA!"
+
+#: zp-core/zp-extensions/zenpage.php:331
 #: zp-core/zp-extensions/zenpage/admin-news.php:414
 msgid "Delete article"
 msgstr "Vymazať článok"
 
-#: zp-core/zp-extensions/zenpage.php:311
+#: zp-core/zp-extensions/zenpage.php:331
 msgid "Delete Article"
 msgstr "Vymazať článok"
 
-#: zp-core/zp-extensions/zenpage.php:315
+#: zp-core/zp-extensions/zenpage.php:335
 msgid "Add Article"
 msgstr "Pridať článok"
 
@@ -24650,6 +24676,18 @@ msgstr "vynulovať počítadlo"
 #, php-format
 msgid "copy of %s"
 msgstr "kópia %s"
+
+#: zp-core/zp-extensions/zenpage/admin-edit.php:127
+#: zp-core/zp-extensions/zenpage/admin-news.php:67
+#: zp-core/zp-extensions/zenpage/admin-news.php:414
+#: zp-core/zp-extensions/zenpage/admin-pages.php:79
+msgid "Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"
+msgstr "Ste si istý, že chcete vymazať tento článok? NEVRATNÁ OPERÁCIA!"
+
+#: zp-core/zp-extensions/zenpage/admin-edit.php:128
+#: zp-core/zp-extensions/zenpage/admin-pages.php:80
+msgid "Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"
+msgstr "Ste si istý, že chcete vymazať túto stránku? NEVRATNÁ OPERÁCIA!"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:137
 #: zp-core/zp-extensions/zenpage/admin-edit.php:787
@@ -25422,6 +25460,9 @@ msgid ""
 msgstr ""
 "Používaná veľkosť ak je písmo zväčšovateľné (<em>TTF</em> a <em>Imagick</em> "
 "písma)."
+
+#~ msgid "The object you are requesting cannot be found."
+#~ msgstr "Nedá sa nájsť objekt ktorý žiadate."
 
 #, fuzzy
 #~ msgid "Pre-check"

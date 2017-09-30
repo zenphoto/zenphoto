@@ -5,7 +5,7 @@ Default admin toolbox css
     Created on : Jan 7, 2015, 9:11:28 AM
     Author     : Stephen
 */
-#admin{
+#admin_tb {
 	position: fixed;
 	right: 0px;
 	top: 0px;
@@ -16,7 +16,7 @@ Default admin toolbox css
 	padding-top: 5px !important;
 	padding-left: 5px !important;
 }
-#admin_data{
+#admin_tb_data{
 	position: fixed;
 	top: 0px;
 	right: 0px;
@@ -32,7 +32,7 @@ Default admin toolbox css
 	font: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-#admin h3 {
+#admin_tb h3 {
 	font-weight: normal;
 	color: #999;
 	margin: 0;
@@ -41,10 +41,14 @@ Default admin toolbox css
 	font-size: 16px;
 }
 
-#admin h3:hover {
+#admin_tb h3:hover {
 	color: #036;
 }
 
+#admin_tb a:hover {
+	cursor: pointer;
+	text-decoration: none;
+}
 .adminGear {
 	font-family: Free Serif, Segoe UI Symbol;
 	font-size: 20px;

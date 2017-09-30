@@ -48,7 +48,9 @@
 	font-size: 16px !important;
 	font-weight: normal !important;
 }
-.themeSwitcherMenu a:hover, .themeSwitcherMenuShow a:hover{
+.themeSwitcherMenu a:hover, .themeSwitcherMenuShow a:hover, .themeSwitcherControl a:hover{
+	text-decoration: none;
+	cursor: pointer;
 	text-decoration: none;
 }
 .themeSwitcherMenuShow {

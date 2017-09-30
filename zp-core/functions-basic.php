@@ -44,7 +44,7 @@ if (TEST_RELEASE) {
 }
 
 set_error_handler("zpErrorHandler");
-set_exception_handler("zpErrorHandler");
+set_exception_handler("zpExceptionHandler");
 register_shutdown_function('zpShutDownFunction');
 $_configMutex = new zpMutex('cF');
 $_zp_mutex = new zpMutex();
@@ -1461,16 +1461,7 @@ function installSignature() {
 /**
  *
  * Call when terminating a script.
- * Closes the database to be sure that we do not build up outstanding connections
  */
 function exitZP() {
-	if (version_compare(phpversion(), '7', '>=')) {
-		error_clear_last(); //	it will be handled here, not on shutdown!
-	}
-	if (function_exists('db_close')) {
-		db_close();
-	}
 	exit();
 }
-
-?>

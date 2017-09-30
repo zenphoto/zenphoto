@@ -446,14 +446,14 @@ label:hover {
 /* Admin Toolbox
 ------------------------------ */
 
-#admin h3 {
+#admin_tb h3 {
 	font-weight: normal;
 	color: #999;
 	margin:0;
 	padding:0;
 	text-align: left;
 }
-#admin h3:hover { color: #036; }
+#admin_tb h3:hover { color: #036; }
 
 /* Search Box
 ------------------------------ */

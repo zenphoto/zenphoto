@@ -36,7 +36,7 @@ class themeSwitcher {
 			$themes = $_zp_gallery->getThemes();
 			foreach ($themes as $key => $theme) {
 				if ($virgin || getOption('themeSwitcher_theme_' . $key)) {
-					$themelist[$key] = $key;
+					$themelist[$key] = $theme['name'];
 				}
 				$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name` LIKE ' . db_quote('themeSwitcher_' . $key . '%');
 				query($sql);
@@ -56,9 +56,10 @@ class themeSwitcher {
 
 		$unknown = array();
 		$themes = $_zp_gallery->getThemes();
+
 		$list = array();
 		foreach ($themes as $key => $theme) {
-			$list[$theme['name']] = $key;
+			$list[$key] = $theme['name'];
 			if (!isset($knownThemes[$key]) && in_array($key, $enabled)) {
 				$unknown[$key] = $theme['name'];
 			}
@@ -125,6 +126,7 @@ class themeSwitcher {
 	 */
 	static function controlLink($textIn = NULL) {
 		global $_zp_gallery, $_themeSwitcherThemelist, $_zp_gallery_page;
+
 		if (self::active()) {
 			$themes = array();
 			foreach ($_zp_gallery->getThemes() as $theme => $details) {
@@ -200,7 +202,7 @@ class themeSwitcher {
 $_themeSwitcherThemelist = array();
 $__enabled = getSerializedArray(getOption('themeSwitcher_list'));
 foreach ($_zp_gallery->getThemes() as $__key => $__theme) {
-	$_themeSwitcherThemelist[$__key] = in_array($__key, $__enabled);
+	$_themeSwitcherThemelist[$__key] = array_key_exists($__key, $__enabled);
 }
 unset($__enabled);
 unset($__key);

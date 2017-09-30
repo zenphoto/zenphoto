@@ -70,4 +70,5 @@ sendImage($deprecate);
 list($usec, $sec) = explode(" ", microtime());
 $last = (float) $usec + (float) $sec;
 setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start));
+exitZP();
 ?>

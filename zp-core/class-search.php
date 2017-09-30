@@ -98,10 +98,10 @@ class SearchEngine {
 		$this->extraparams['albumssortdirection'] = getOption('search_album_sort_direction') ? 'DESC' : '';
 		$this->extraparams['imagessorttype'] = getOption('search_image_sort_type');
 		$this->extraparams['imagessortdirection'] = getOption('search_image_sort_direction') ? 'DESC' : '';
-		$this->extraparams['newssorttype'] = 'date';
-		$this->extraparams['newssortdirection'] = 'DESC';
-		$this->extraparams['pagesssorttype'] = 'title';
-		$this->extraparams['pagessortdirection'] = '';
+		$this->extraparams['newssorttype'] = getOption('search_article_sort_type');
+		$this->extraparams['newssortdirection'] = getOption('search_article_sort_direction') ? 'DESC' : '';
+		$this->extraparams['pagessorttype'] = getOption('search_page_sort_type');
+		$this->extraparams['pagessortdirection'] = getOption('search_page_sort_direction') ? 'DESC' : '';
 
 		//image/album fields
 		$this->search_structure['title'] = gettext('Title');
@@ -1046,15 +1046,14 @@ class SearchEngine {
 
 		switch ($tbl) {
 			case 'news':
+			case 'pages':
 				if (empty($sorttype)) {
 					$key = '`date` DESC';
 				} else {
 					$key = trim($sorttype . ' ' . $sortdirection);
 				}
 				break;
-			case 'pages':
-				$key = 'sort_order';
-				break;
+
 			case 'albums':
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
@@ -1401,9 +1400,6 @@ class SearchEngine {
 						}
 						$key = trim($sorttype . ' ' . $sortdirection);
 					}
-					if ($show) {
-						$show .= '`date`<=' . db_quote(date('Y-m-d H:i:s')) . ' AND ';
-					}
 					break;
 				case 'pages':
 					if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
@@ -1412,10 +1408,14 @@ class SearchEngine {
 						$show = "`show` = 1 AND ";
 					}
 					$sql .= '`titlelink` ';
-					if ($show) {
-						$show .= '`date`<=' . db_quote(date('Y-m-d H:i:s')) . ' AND ';
+					if (empty($sorttype)) {
+						$key = '`sort_order` DESC';
+					} else {
+						if ($sortdirection && strtoupper($sortdirection) != 'ASC') {
+							$sortdirection = 'DESC';
+						}
+						$key = trim($sorttype . ' ' . $sortdirection);
 					}
-					$key = 'sort_order';
 					break;
 				case 'albums':
 					if ($this->search_unpublished || zp_loggedin()) {
@@ -1823,15 +1823,16 @@ class SearchEngine {
 	 * @return array
 	 */
 	private function getSearchPages($sorttype, $direction) {
-		if (!extensionEnabled('zenpage') || getOption('search_no_pages') || $this->search_no_pages)
+		if (!extensionEnabled('zenpage') || getOption('search_no_pages') || $this->search_no_pages) {
 			return array();
+		}
 		list($sortkey, $sortdirection) = $this->sortKey($sorttype, $direction, 'title', 'pages');
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('news', serialize($searchstring), $sortkey . '_' . $sortdirection);
+		$criteria = $this->getCacheTag('pages', serialize($searchstring), $sortkey . '_' . $sortdirection);
 		if ($this->pages && $criteria == $this->searches['pages']) {
 			return $this->pages;
 		}
@@ -1849,6 +1850,7 @@ class SearchEngine {
 				$search_query = $this->searchDate($searchstring, $searchdate, 'pages', NULL, NULL);
 				$search_result = query($search_query);
 			}
+
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
 					if (isset($weights)) {
@@ -1859,10 +1861,6 @@ class SearchEngine {
 				db_free_result($search_result);
 			}
 			$result = self::sortResults($sortkey, $sortdirection, $result, isset($weights));
-			if (isset($weights)) {
-				$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
-			}
-
 
 			foreach ($result as $page) {
 				$pages[] = $page['titlelink'];

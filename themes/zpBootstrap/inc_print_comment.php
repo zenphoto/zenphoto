@@ -19,27 +19,29 @@
 				default:
 					return;
 					break;
-			}
+			} ?>
 
-			if (($comments_open) && (($comments_allowed) || (getCommentCount() > 0 ))) { ?>
-				<div class="accordion" id="comment_accordion">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse" data-parent="#comment_accordion" href="#comment">
-							<i class="icon-comment"></i>
-							<?php
-							$num = getCommentCount();
-							if ($num == 0) {
-								echo gettext('No Comments');
-							} else {
-								echo sprintf(ngettext('%u Comment','%u Comments',$num), $num);
-							}
-							?>
-						</a>
-					</div>
-					<div id="comment" class="collapse">
-						<?php printCommentForm(true, NULL, true); ?>
+			<?php if (($comments_open) && (($comments_allowed) || (getCommentCount() > 0 ))) { ?>
+			<div id="comment_accordion" class="panel-group" role="tablist">
+				<div class="panel panel-default">
+					<div id="heading" class="panel-heading" role="tab">
+						<h4 class="panel-title">
+							<a role="button" data-toggle="collapse" data-parent="#comment_accordion" href="#comment_collapse">
+								<span class="glyphicon glyphicon-comment"></span>&nbsp;
+								<?php
+								$num = getCommentCount();
+								if ($num == 0) {
+									echo gettext('No Comments');
+								} else {
+									echo sprintf(ngettext('%u Comment','%u Comments',$num), $num);
+								}
+								?>
+							</a>
+						</h4>
 					</div>
 				</div>
-				<?php
-			}
-			?>
+				<div id="comment_collapse" class="collapse" role="tabpanel">
+					<?php printCommentForm(true, NULL, true); ?>
+				</div>
+			</div>
+			<?php } ?>

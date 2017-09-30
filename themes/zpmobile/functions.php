@@ -13,7 +13,7 @@ function jqm_loadScripts() {
 	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
 	<script type="text/javascript">
 		window.addEventListener('load', function () {
-			$("#admin_data a, a.downloadlist_link").attr('data-ajax', 'false');
+			$("#admin_tb_data a, a.downloadlist_link").attr('data-ajax', 'false');
 		}, false);
 	</script>
 	<?php

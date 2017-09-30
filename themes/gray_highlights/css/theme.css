@@ -489,19 +489,19 @@ h2{
 
 /* Admin Toolbox
 ------------------------------ */
-#admin{
+#admin_tb{
 	top: 17px;
 	background-color: transparent;
 }
-#admin_data{
+#admin_tb_data{
 	top: 17px;
 	background-color: lightgray;
 }
-#admin a:hover{
+#admin_tb a:hover{
 	text-shadow: none !important;
 	background-color: transparent !important;
 }
-#admin_data li a {
+#admin_tb_data li a {
 	display: block;
 	color: #333;
 	text-decoration: none;
@@ -509,17 +509,17 @@ h2{
 	height: 100%;
 }
 
-#admin_data li {
+#admin_tb_data li {
 	margin-left: 0px;
 	padding-left: 10px;
 }
 
-#admin_data li:hover ,
-#admin h3:hover {
+#admin_tb_data li:hover ,
+#admin_tb h3:hover {
 	background-color: #ECECEC;
 }
 
-#admin h3 {
+#admin_tb h3 {
 	font-weight: normal;
 	color: #999;
 	margin: 0;

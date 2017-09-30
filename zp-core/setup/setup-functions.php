@@ -551,16 +551,16 @@ function sendImage($external) {
 
 function shutDownFunction() {
 	global $extension;
+
 	$error = error_get_last();
-	if ($error) {
-		if (version_compare(phpversion(), '7', '>=')) {
-			error_clear_last(); //	it will be handled here, not on shutdown!
-		}
+	if ($error && !in_array($error['type'], array(E_USER_ERROR, E_WARNING, E_CORE_WARNING, E_COMPILE_WARNING, E_USER_WARNING, E_NOTICE, E_USER_NOTICE))) {
 		$msg = sprintf(gettext('Plugin:%1$s ERROR "%2$s" in %3$s on line %4$s'), $extension, $error['message'], $error['file'], $error['line']);
 		setupLog($msg, true);
 		if ($extension) {
 			enableExtension($extension, 0);
+			setupLog(gettext('Plugin:%1$s setup failed.'));
 		}
 	}
+	error_reporting(0); //	bypass any further error handling
 }
 ?>

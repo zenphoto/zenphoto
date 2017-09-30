@@ -826,11 +826,11 @@ label:hover {
 
 /* Admin Toolbox
 ------------------------------ */
-#admin_data{
+#admin_tb_data{
 	background-color: lightgray;
 }
 
-#admin h3 {
+#admin_tb h3 {
 	font-weight: normal;
 	color: #999;
 	margin: 0;
@@ -839,7 +839,7 @@ label:hover {
 	font-size: 15px;
 }
 
-#admin h3:hover {
+#admin_tb h3:hover {
 	color: #036;
 }
 

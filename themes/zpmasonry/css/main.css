@@ -172,12 +172,12 @@ span.betweentext{float:none;display:inline;}
 #social{text-transform:none;position:absolute;top:10px;right:50px;z-index:2000;width:180px;}
 .social{float:right;}
 .addthis_toolbox.addthis_default_style{min-width:140px;}
-.rss,#admin {width:16px;height:16px;display:block;float:right;margin-right:4px;}
+.rss,#admin_tb {width:16px;height:16px;display:block;float:right;margin-right:4px;}
 .rss {background: url(../images/rss.png) 0 0 no-repeat;z-index:2002;position:relative;}
-#admin {position: fixed;right: 5px;top: 10px;text-align: left;}
-#admin h3 a,.pass{outline:0;width:16px;height:16px;display:block;background-repeat:no-repeat;background-position:0 0;z-index:2998;position:relative;text-indent:-9999px;}
+#admin_tb {position: fixed;right: 5px;top: 10px;text-align: left;}
+#admin_tb h3 a,.pass{outline:0;width:16px;height:16px;display:block;background-repeat:no-repeat;background-position:0 0;z-index:2998;position:relative;text-indent:-9999px;}
 #subscribeextrashow{display:none;position:absolute;top:-5px;left:-197px;width:200px;padding:10px 30px 10px 10px;z-index:1999;border:1px solid;}
-#admin_data{display:none;position:absolute;top:-5px;right:5px;width:115px;padding:10px 20px 10px 10px;z-index:2997;border:1px solid;}
+#admin_tb_data{display:none;position:absolute;top:-5px;right:5px;width:115px;padding:10px 20px 10px 10px;z-index:2997;border:1px solid;}
 #password-div{display:none;position:absolute;top:-5px;left:-227px;width:220px;padding:10px 20px 10px 10px;z-index:1997;border:1px solid;}
 
 #commentcontent{margin-top:15px;padding-top:10px;}
@@ -248,7 +248,7 @@ ul.flags{z-index:99;text-align:center;position:fixed;bottom:10px;right:5px;width
 /* A little css3 goodness */
 #breadcrumbs,#sidebar-inner,#searchextrashow,#copy,#pagination,.newsarticlecredit span
 {-moz-border-radius:0 0 3px 3px;-webkit-border-radius:0 0 3px 3px;border-radius:0 0 3px 3px;}
-#sidebar-inner.fixed,input,textarea,select,.box,#infscr-loading,#subscribeextrashow,#admin_data,#password-div,#slideshowlink a,#ss-title,#cycle li h3
+#sidebar-inner.fixed,input,textarea,select,.box,#infscr-loading,#subscribeextrashow,#admin_tb_data,#password-div,#slideshowlink a,#ss-title,#cycle li h3
 {-moz-border-radius:3px 3px 3px 3px;-webkit-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px;}
 
 /* logon form */
