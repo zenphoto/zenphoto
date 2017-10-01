@@ -1265,7 +1265,7 @@ class SearchEngine {
 					} else {
 						$show = "`show` = 1 AND ";
 					}
-					$sql .= '`titlelink` ';
+					$sql .= '`title`, `titlelink` ';
 					if (is_array($this->category_list)) {
 						$news_list = $this->subsetNewsCategories();
 						$idlist = array_intersect($news_list, $idlist);
@@ -1288,7 +1288,7 @@ class SearchEngine {
 					} else {
 						$show = "`show` = 1 AND ";
 					}
-					$sql .= '`titlelink` ';
+					$sql .= '`title`, `titlelink` ';
 					if (empty($sorttype)) {
 						$key = '`date` DESC';
 					} else {
@@ -1740,7 +1740,8 @@ class SearchEngine {
 		if ($this->pages && $criteria == $this->searches['pages']) {
 			return $this->pages;
 		}
-		if (is_null($this->pages)) {
+		$pages = $this->getCachedSearch($criteria);
+		if (is_null($pages)) {
 			$pages = $result = array();
 			if (empty($searchdate)) {
 				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'pages', $sorttype, $sortdirection);
@@ -1756,7 +1757,7 @@ class SearchEngine {
 			}
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$data = array('titlelink' => $row['titlelink']);
+					$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
 					if (isset($weights)) {
 						$data['weight'] = $weights[$row['id']];
 					}
@@ -1764,16 +1765,18 @@ class SearchEngine {
 				}
 				db_free_result($search_result);
 			}
-			if (isset($weights)) {
+			if (is_null($sorttype) && isset($weights)) {
 				$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
 			}
-
-
+			if ($sorttype == '`title`') {
+				$images = sortByMultilingual($result, 'title', $sortdirection);
+			}
 			foreach ($result as $page) {
 				$pages[] = $page['titlelink'];
 			}
-			$this->pages = $pages;
+			$this->cacheSearch($criteria, $pages);
 		}
+		$this->pages = $pages;
 		$this->searches['pages'] = $criteria;
 		return $this->pages;
 	}
@@ -1790,7 +1793,6 @@ class SearchEngine {
 	 * @return array
 	 */
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sorttype = NULL, $sortdirection = NULL) {
-
 		$articles = $this->getSearchArticles($sorttype, $sortdirection);
 		if (empty($articles)) {
 			return array();
@@ -1840,7 +1842,7 @@ class SearchEngine {
 			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($search_result), false, $this->iteration++);
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$data = array('titlelink' => $row['titlelink']);
+					$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
 					if (isset($weights)) {
 						$data['weight'] = $weights[$row['id']];
 					}
@@ -1848,8 +1850,11 @@ class SearchEngine {
 				}
 				db_free_result($search_result);
 			}
-			if (isset($weights)) {
+			if (is_null($sorttype) && isset($weights)) {
 				$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
+			}
+			if ($sorttype == '`title`') {
+				$images = sortByMultilingual($result, 'title', $sortdirection);
 			}
 			$this->cacheSearch($criteria, $result);
 		}

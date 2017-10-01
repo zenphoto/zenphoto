@@ -1720,7 +1720,10 @@ Zenphoto_Authority::printPasswordFormJS();
 										<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
 									</td>
 								</tr>
-								<?php $sort = $_zp_sortby; ?>
+								<?php 
+									$sort = $_zp_sortby;
+									$sort[gettext('Custom')] = 'custom'; 
+								?>
 								<tr>
 									<td class="leftcolumn"><?php echo gettext("Sort albums by"); ?> </td>
 									<td colspan="2">
@@ -1820,9 +1823,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											</span>
 										</span>
 									</td>
-
 								</tr>
-								
 								<?php
 								$zenpage_sort = array(
 										gettext('Title') => 'title',
@@ -1830,8 +1831,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										gettext('ID') => 'id',
 										gettext('Date') => 'date',
 										gettext('Published') => 'show',
-										gettext('author') => 'author',
-										gettext('Custom') => 'custom'
+										gettext('Author') => 'author'
 								);
 								if (extensionEnabled('zenpage') && ZP_NEWS_ENABLED) {
 								?>
