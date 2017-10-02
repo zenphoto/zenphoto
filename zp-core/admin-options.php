@@ -1828,7 +1828,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								<?php
 								$zenpage_sort = array(
 										gettext('Title') => 'title',
-										gettext('Titlelink') => 'titlelink',
+										gettext('TitleLink') => 'titlelink',
 										gettext('ID') => 'id',
 										gettext('Date') => 'date',
 										gettext('Published') => 'show',
