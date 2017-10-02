@@ -1723,6 +1723,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								<?php 
 									$sort = $_zp_sortby;
 									$sort[gettext('Custom')] = 'custom'; 
+									$sort[gettext('Manual')] = 'sort_order'; 
 								?>
 								<tr>
 									<td class="leftcolumn"><?php echo gettext("Sort albums by"); ?> </td>
@@ -1887,6 +1888,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								<?php 
 								} 
 								if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+									$zenpage_sort[gettext('Manual')] = 'sort_order';
 								?>
 									<tr>
 										<td class="leftcolumn"><?php echo gettext("Sort pages by"); ?> </td>
