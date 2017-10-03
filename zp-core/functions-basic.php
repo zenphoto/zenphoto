@@ -13,6 +13,9 @@
 // force UTF-8 Ø
 global $_zp_conf_vars;
 $_zp_options = array();
+if (!function_exists('gettext')) {
+	include(dirname(__FILE__) . '/php-gettext/gettext.inc');
+}
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/functions-common.php');
 
