@@ -267,8 +267,8 @@ function i18nSetLocale($locale) {
 	@putenv("LANG=$locale");
 	@putenv("LANGUAGE=$locale");
 
-	if (function_exists('_setlocale')) { //	using php-gettext
-		_setlocale(LC_ALL, $locale);
+	if (function_exists('T_setlocale')) { //	using php-gettext
+		T_setlocale(LC_ALL, $locale);
 	}
 
 	$_zp_RTL_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
