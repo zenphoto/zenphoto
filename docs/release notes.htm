@@ -75,7 +75,10 @@
 	<body>
 <h1>ZenPhoto20 release notes</h1><h2>Version 1.5.1.0</h2>
 <h2>General</h2>
-<p>Bug fixes.</p>
+<p>This release fixes multiple bugs and security holes. For details see the change log.</p>
+<p>ZenPhoto20 now provides a fall-back translation facility for cases where a site does not have the PHP gettext module or where translations are otherwise not working. This facility is invoked when ZenPhoto20 notices that the function gettext() is not present. You can disable the gettext module by editing your PHP.ini file. Find the line which reads extension=php_gettext.dll and place a semicolon in front of the text, e.g. ;extension=php_gettext.dll. Note: the PHP module is the preferred translation facility. Using the fall-back comes with some performance loss.</p>
+<h2>Themes</h2>
+<p>zpBootstrap has been updated to version 2.0.</p>
 <hr />
 <h2>Version 1.5.0</h2>
 <h2>General</h2>
