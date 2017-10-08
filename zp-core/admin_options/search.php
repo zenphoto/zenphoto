@@ -86,7 +86,7 @@ function saveOptions() {
 }
 
 function getOptionContent() {
-	global $_zp_gallery, $_zp_sortby, $_zp_CMS;
+	global $_zp_gallery, $_zp_sortby;
 	?>
 	<div id="tab_search" class="tabbox">
 		<form class="dirtylistening" onReset="toggle_passwords('', false);
@@ -497,7 +497,7 @@ function getOptionContent() {
 				if (extensionEnabled('zenpage')) {
 					unset($sort[gettext('Filemtime')]);
 					unset($sort[gettext('Filename')]);
-					if ($_zp_CMS->news_enabled) {
+					if (getOption('zenpage_enabled_items') & 1) {
 						?>
 						<tr>
 							<td class="option_name"><?php echo gettext("Sort articles by"); ?> </td>
@@ -551,7 +551,7 @@ function getOptionContent() {
 						</tr>
 						<?php
 					}
-					if ($_zp_CMS->pages_enabled) {
+					if (getOption('zenpage_enabled_items') & 2) {
 						$sort[gettext('Page order')] = 'sort_order';
 						?>
 						<tr>
