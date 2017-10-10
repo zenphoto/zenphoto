@@ -829,7 +829,7 @@ function getNewsPathNav($page) {
  */
 function getPrevNewsPageURL() {
 	global $_zp_page;
-	if ($_zp_page > 1) {
+	if (hasPrevNewsPage()) {
 		return getNewsPathNav($_zp_page - 1);
 	} else {
 		return false;
@@ -842,6 +842,7 @@ function getPrevNewsPageURL() {
  * @return bool
  */
 function hasPrevNewsPage() {
+	global $_zp_page;
 	return $_zp_page > 1;
 }
 
