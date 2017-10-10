@@ -895,9 +895,8 @@ function formatData($type, $tag, $intel, $data) {
 				case '9000': // ExifVersion
 				case 'a000': // FlashPixVersion
 				case '0002': // InteroperabilityVersion
-					$d = filter_var($data, FILTER_SANITIZE_NUMBER_INT);
-					if ($d !== false) {
-						$data = $d / 100;
+					if (is_numeric($data) && is_int($data + 0)) {
+						$data = $data / 100;
 					}
 					$data = '!version!' . ' ' . $data;
 					break;
@@ -1223,6 +1222,10 @@ function read_exif_data_raw($path, $verbose) {
 
 	if (hexdec($offset) > 8)
 		$unknown = fread($in, hexdec($offset) - 8); // fixed this bug in 1.3
+
+
+
+
 
 
 
