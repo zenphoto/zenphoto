@@ -837,6 +837,15 @@ function getPrevNewsPageURL() {
 }
 
 /**
+ * Checks if there is a next page for news pages
+ *
+ * @return bool
+ */
+function hasPrevNewsPage() {
+	return $_zp_page > 1;
+}
+
+/**
  * Prints the link to the previous news page
  *
  * @param string $prev The linktext
@@ -859,13 +868,25 @@ function printPrevNewsPageLink($prev = '« prev', $class = 'disabledlink') {
  * @return string
  */
 function getNextNewsPageURL() {
-	global $_zp_CMS, $_zp_page;
-	$total_pages = ceil($_zp_CMS->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
-	if ($_zp_page < $total_pages) {
+	global $_zp_page;
+	if (hasNextNewsPage()) {
 		return getNewsPathNav($_zp_page + 1);
 	} else {
 		return false;
 	}
+}
+
+/**
+ * Checks if there is a next news page
+ *
+ * @global object $_zp_CMS
+ * @global int $_zp_page
+ * @return bool
+ */
+function hasNextNewsPage() {
+	global $_zp_CMS, $_zp_page;
+	$total = ceil($_zp_CMS->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+	return $_zp_page < $total;
 }
 
 /**
@@ -1015,7 +1036,8 @@ function getPrevNewsURL() {
 		$article = $_zp_current_article->getPrevArticle();
 		if ($article)
 			return array("link" => $article->getLink(true), "title" => $article->getTitle());
-	}return false;
+	}
+	return false;
 }
 
 /**
