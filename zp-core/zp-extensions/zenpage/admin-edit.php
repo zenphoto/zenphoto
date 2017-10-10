@@ -391,9 +391,9 @@ $tagsort = 'alpha';
 										<?php
 									}
 									?>
-									<span id="tip" class="icons">
+									<span id="tip">
 										<a href="#">
-											<span class="font_icon" style="color: blue; font-family: Times New Roman; font-size: x-large;">&#8505;</span>
+											<?php echo INFORMATION_BLUE; ?>
 											<?php echo gettext("Usage tips"); ?>
 										</a>
 									</span>
@@ -540,9 +540,9 @@ $tagsort = 'alpha';
 																 id="show"
 																 value="1" <?php checkIfChecked($result->getShow()); ?>
 																 onclick="$('#pubdate').val('');
-																		 $('#expiredate').val('');
-																		 $('#pubdate').css('color', 'black');
-																		 $('.expire').html('');"
+																			 $('#expiredate').val('');
+																			 $('#pubdate').css('color', 'black');
+																			 $('.expire').html('');"
 																 />
 													<label for="show"><?php echo gettext("Published"); ?></label>
 												</p>
@@ -638,7 +638,7 @@ $tagsort = 'alpha';
 																			 name="disclose_password"
 																			 id="disclose_password"
 																			 onclick="passwordClear('');
-																					 togglePassword('');">
+																								 togglePassword('');">
 																			 <?php echo gettext('Show'); ?>
 															</label>
 															<br />
