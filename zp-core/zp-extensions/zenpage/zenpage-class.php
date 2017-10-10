@@ -497,8 +497,6 @@ class Zenpage {
 
 	/**
 	 * Returns the articles count
-	 * @deprecated since version 1.4.6
-	 *
 	 */
 	function getTotalArticles() {
 		global $_zp_current_category;
@@ -513,6 +511,13 @@ class Zenpage {
 			$catobj = $_zp_current_category;
 		}
 		return count($catobj->getArticles());
+	}
+	
+	/**
+	 * Gets the total news pages
+	 */
+	function getTotalNewsPages() {
+		return ceil($this->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	}
 
 	/**

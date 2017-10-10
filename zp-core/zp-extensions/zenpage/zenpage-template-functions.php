@@ -931,17 +931,27 @@ function getNewsPathNav($page) {
 }
 
 /**
+ * Returns true there is a previous news page
+ * 
+ * @global int $_zp_page
+ * @return bool
+ */
+function hasPrevNewsPage() {
+	global $_zp_page;
+	return $_zp_page > 1;
+}
+
+/**
  * Returns the url to the previous news page
  *
  * @return string
  */
 function getPrevNewsPageURL() {
 	global $_zp_page;
-	if ($_zp_page > 1) {
+	if (hasPrevNewsPage()) {
 		return getNewsPathNav($_zp_page - 1);
-	} else {
-		return false;
-	}
+	} 
+	return false;
 }
 
 /**
@@ -962,18 +972,29 @@ function printPrevNewsPageLink($prev = '« prev', $class = 'disabledlink') {
 }
 
 /**
+ * Returns true if there is a next news page
+ * 
+ * @global obj $_zp_zenpage
+ * @global int $_zp_page
+ * @return bool
+ */
+function hasNextNewsPage() {
+	global $_zp_zenpage, $_zp_page;
+	$total_pages = $_zp_zenpage->getTotalNewsPages();
+	return $_zp_page < $total_pages;
+}
+
+/**
  * Returns the url to the next news page
  *
  * @return string
  */
 function getNextNewsPageURL() {
-	global $_zp_zenpage, $_zp_page;
-	$total_pages = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
-	if ($_zp_page < $total_pages) {
+	global $_zp_page;
+	if (hasNextNewsPage()) {
 		return getNewsPathNav($_zp_page + 1);
-	} else {
-		return false;
 	}
+	return false;
 }
 
 /**
@@ -986,8 +1007,8 @@ function getNextNewsPageURL() {
  */
 function printNextNewsPageLink($next = 'next »', $class = 'disabledlink') {
 	global $_zp_page;
-	if (getNextNewsPageURL()) {
-		echo "<a href='" . getNextNewsPageURL() . "' title='" . gettext("Next page") . " " . ($_zp_page + 1) . "'>" . html_encode($next) . "</a>\n";
+	if ($link = getNextNewsPageURL()) {
+		echo "<a href='" . html_encode($link) . "' title='" . gettext("Next page") . " " . ($_zp_page + 1) . "'>" . html_encode($next) . "</a>\n";
 	} else {
 		echo "<span class=\"$class\">" . html_encode($next) . "</span>\n";
 	}
@@ -1086,7 +1107,7 @@ function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'page
 
 function getTotalNewsPages() {
 	global $_zp_zenpage;
-	return ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+	return$_zp_zenpage->getTotalNewsPages();
 }
 
 /* * ********************************************************************* */
@@ -1111,30 +1132,16 @@ function getNextPrevNews($option = '') {
 	if (!empty($option)) {
 		switch ($option) {
 			case "prev":
-				$article = $_zp_current_zenpage_news->getPrevArticle();
-				if (!$article)
-					return false;
-				return array("link" => $article->getLink(), "title" => $article->getTitle());
+				if ($article = $_zp_current_zenpage_news->getPrevArticle()) {
+					return array("link" => $article->getLink(), "title" => $article->getTitle());
+				}
 			case "next":
-				$article = $_zp_current_zenpage_news->getNextArticle();
-				if (!$article)
-					return false;
-				return array("link" => $article->getLink(), "title" => $article->getTitle());
+				if ($article = $_zp_current_zenpage_news->getNextArticle()) {
+					return array("link" => $article->getLink(), "title" => $article->getTitle());
+				}
 		}
 	}
 	return false;
-}
-
-/**
- * Returns the title and the titlelink of the next article in single news article pagination as an array
- * Returns false if there is none (or option is empty)
- *
- * NOTE: This is not available if using the CombiNews feature
- *
- * @return mixed
- */
-function getNextNewsURL() {
-	return getNextPrevNews("next");
 }
 
 /**
@@ -1147,6 +1154,18 @@ function getNextNewsURL() {
  */
 function getPrevNewsURL() {
 	return getNextPrevNews("prev");
+}
+
+/**
+ * Returns the title and the titlelink of the next article in single news article pagination as an array
+ * Returns false if there is none (or option is empty)
+ *
+ * NOTE: This is not available if using the CombiNews feature
+ *
+ * @return mixed
+ */
+function getNextNewsURL() {
+	return getNextPrevNews("next");
 }
 
 /**
