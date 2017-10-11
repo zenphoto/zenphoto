@@ -1572,8 +1572,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 				} else {
 					$parent = '&amp;album=' . $parent . '&tab=subalbuminfo';
 				}
+				if (isset($_GET['subpage']) && !is_numeric($_GET['subpage'])) {
+					if (isset($_GET['i'])) {
+						$image = newImage($album, sanitize($_GET['i']));
+						$backbutton = $image->getLink();
+					} else {
+						$backbutton = $album->getLink();
+					}
+				} else {
+					$backbutton = WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent;
+				}
 				?>
-				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
+				<a href="<?php echo $backbutton ?>">
 					<?php echo BACK_ARROW_BLUE; ?>
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
@@ -2288,7 +2298,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if ($buttons) {
 			?>
 			<span class="buttons">
-				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
+				<a href="<?php echo $backbutton; ?>">
 					<?php echo BACK_ARROW_BLUE; ?>
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>

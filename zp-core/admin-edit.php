@@ -833,7 +833,11 @@ echo "\n</head>";
 						$pagenum = 1;
 					}
 				}
-				$images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
+				if (is_numeric($pagenum)) {
+					$images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
+				} else {
+					$images = $allimages;
+				}
 
 				$totalimages = count($images);
 
@@ -1049,6 +1053,8 @@ echo "\n</head>";
 					require_once(SERVERPATH . '/' . ZENFOLDER . '/exif/exifTranslations.php');
 					$singleimagelink = $singleimage = NULL;
 					$showfilter = true;
+					$bakcButton = WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent;
+					;
 					if (isset($_GET['singleimage']) && $_GET['singleimage'] || $totalimages == 1) {
 						$showfilter = !isset($_GET['singleimage']);
 						if ($totalimages == 1) {
@@ -1152,7 +1158,15 @@ echo "\n</head>";
 
 								<div style="padding: 10px;">
 									<p class="buttons">
-										<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>&filter=<?php echo $filter; ?>">
+										<?php
+										if (is_numeric($pagenum)) {
+											$backbutton = WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent . '&filter=' . $filter;
+										} else {
+											$image = newImage($album, $singleimage);
+											$backbutton = $image->getLink();
+										}
+										?>
+										<a href="<?php echo $backbutton; ?>">
 											<?php echo BACK_ARROW_BLUE; ?>
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
@@ -1220,7 +1234,7 @@ echo "\n</head>";
 													}
 													?>
 													<p class="buttons">
-														<a href="<?php echo $image->getLink(); ?>">
+														<a href="<?php echo $image = newImage($album, $filename); ?>">
 															<?php echo BULLSEYE_BLUE; ?>
 															<strong><?php echo gettext('View'); ?></strong>
 														</a>
@@ -1582,21 +1596,15 @@ echo "\n</head>";
 														<span class="clearall" ></span>
 													</div>
 												</div>
-
-
 											</div>
 											<br class="clearall">
-
-
 											<?php
 											$currentimage++;
 										}
 									}
 									?>
-
-
 									<p class="buttons">
-										<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
+										<a href="<?php $backbutton; ?>">
 											<?php echo BACK_ARROW_BLUE; ?>
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
@@ -1609,9 +1617,6 @@ echo "\n</head>";
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 									</p>
-
-
-
 									<?php
 									printImagePagination($album, $image, $singleimage, $allimagecount, $totalimages, $pagenum, $totalpages, $filter);
 									?>
@@ -1619,7 +1624,6 @@ echo "\n</head>";
 								</div>
 								<input type="hidden" name="checkForPostTruncation" value="1" />
 							</form>
-
 							<?php
 						}
 						?>
