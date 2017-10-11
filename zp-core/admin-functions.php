@@ -4114,7 +4114,7 @@ function printEditDropdown($subtab, $nestinglevels, $nesting, $query = NULL) {
 			break;
 	}
 	?>
-	<form name="AutoListBox2" style="float: right;" action="#" >
+	<form name="AutoListBox2" style="float: right;padding-right: 10px;" action="#" >
 		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
 			<?php
 			foreach ($nestinglevels as $nestinglevel) {
@@ -4248,10 +4248,10 @@ function printBulkActions($checkarray, $checkAll = false) {
 		if ($checkAll) {
 			?>
 			<br />
-			<?php
-			echo gettext("Check All");
-			?>
-			<input class="ignoredirty" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			<span style="float:right">
+				<?php echo gettext("Check All"); ?>
+				<input class="ignoredirty" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			</span>
 			<?php
 		}
 		?>

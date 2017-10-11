@@ -1099,7 +1099,7 @@ echo "\n</head>";
 									<?php
 								}
 								?>
-								<form  name="albumedit3" style="float: right;"	id="form_sortselect" action="?action=sortorder"	method="post" >
+								<form  name="albumedit3" style="float: right;padding-right: 10px;"	id="form_sortselect" action="?action=sortorder"	method="post" >
 									<?php XSRFToken('albumsortorder'); ?>
 									<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 									<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
@@ -1779,7 +1779,7 @@ echo "\n</head>";
 							}
 							echo gettext('Drag the albums into the order you wish them displayed.');
 							?>
-							<form name="gallery_sort" style="float: right;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&action=gallery_sortorder" >
+							<form name="gallery_sort" style="float: right;padding-right: 10px;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&action=gallery_sortorder" >
 								<?php XSRFToken('gallery_sortorder'); ?>
 								<span class="nowrap">
 									<?php echo gettext('Sort albums by:'); ?>
