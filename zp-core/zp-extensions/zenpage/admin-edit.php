@@ -435,8 +435,8 @@ $tagsort = 'alpha';
 								<p><?php echo gettext("<em>ExtraContent:</em> Here you can enter extra content for example to be printed on the sidebar"); ?></p>
 								<p>
 									<?php
-									echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example zenphoto functions) or JavaScript code.");
-									echo gettext("You also can use the codeblock fields as custom fields.");
+									echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example zenphoto functions) or JavaScript code.") . ' ';
+									echo gettext("You also can use the codeblock fields as custom fields.") . '';
 									echo gettext("Note that your theme must be setup to use the codeblock functions. Note also that codeblock fields are not multi-lingual.");
 									?>
 								</p>
@@ -888,12 +888,12 @@ $tagsort = 'alpha';
 											</strong>
 										</a>
 										<button type="submit" title="<?php echo $updateitem; ?>"><?php echo CHECKMARK_GREEN; ?> <?php
-												if ($result->transient) {
-													echo $saveitem;
-												} else {
-													echo $updateitem;
-												}
-												?></strong></button>
+											if ($result->transient) {
+												echo $saveitem;
+											} else {
+												echo $updateitem;
+											}
+											?></strong></button>
 										<button type="reset" onclick="$('.copydelete').hide();">
 											<?php echo CROSS_MARK_RED; ?>
 											<strong><?php echo gettext("Reset"); ?></strong>
