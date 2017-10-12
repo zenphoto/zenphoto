@@ -415,7 +415,12 @@ echo $refresh;
 					if ($subpage > $max) {
 						$subpage = $max;
 					}
-					$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
+					if (isset($_GET['user'])) {
+						$u = $_zp_authority->getAnAdmin(array('`user`=' => sanitize($_GET['user'])));
+						$userlist = array($u->getData());
+					} else {
+						$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
+					}
 					if (count($userlist) == 1) {
 						$l = $userlist;
 						$u = array_shift($l);
