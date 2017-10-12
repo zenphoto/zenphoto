@@ -4301,7 +4301,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_cats" style="display:none;">
 			<div id="mass_cats_data">
 				<?php
-				echo gettext('New categorys:');
+				echo gettext('New categories:');
 				?>
 				<ul>
 					<?php
