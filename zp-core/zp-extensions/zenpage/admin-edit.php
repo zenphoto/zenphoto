@@ -182,9 +182,12 @@ $tagsort = 'alpha';
 			<?php
 			if (empty($_GET['subpage'])) {
 				$page = "";
+				$pageno = 0;
 			} else {
-				$page = '&amp;subpage=' . sanitize_numeric($_GET['subpage']);
+				$pageno = sanitize($_GET['subpage']);
+				$page = '&amp;subpage=' . $pageno;
 			}
+
 			$saveitem = $updateitem = gettext('Apply');
 
 			if (is_AdminEditPage('newsarticle')) {
@@ -230,9 +233,13 @@ $tagsort = 'alpha';
 				$me = 'page';
 				$backurl = 'admin-pages.php';
 			}
+			if (!is_numeric($pageno)) {
+				$backurl = $result->getLink();
+			}
 
-			if (!$result->isMyItem($result->manage_some_rights))
+			if (!$result->isMyItem($result->manage_some_rights)) {
 				$locked = true;
+			}
 			zp_apply_filter('admin_note', $me, 'edit');
 
 			if ($result->transient) {
