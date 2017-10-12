@@ -35,13 +35,16 @@ if (isset($_REQUEST['show']) && is_array($_REQUEST['show'])) {
 
 
 if (isset($_GET['subpage'])) {
-	$subpage = sanitize_numeric($_GET['subpage']);
+	$subpage = sanitize($_GET['subpage']);
 } else {
 	if (isset($_POST['subpage'])) {
 		$subpage = sanitize_numeric($_POST['subpage']);
 	} else {
 		$subpage = 0;
 	}
+}
+if ($subpage !== 0) {
+	$ticket .= '&subpage=' . $subpage;
 }
 
 if (!isset($_GET['page'])) {
