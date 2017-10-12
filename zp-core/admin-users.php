@@ -416,6 +416,11 @@ echo $refresh;
 						$subpage = $max;
 					}
 					$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
+					if (count($userlist) == 1) {
+						$l = $userlist;
+						$u = array_shift($l);
+						$showset = array($u['user']);
+					}
 
 					if (isset($_GET['deleted'])) {
 						echo '<div class="messagebox fade-message">';
@@ -504,7 +509,7 @@ echo $refresh;
 							<tr>
 								<td style="width: 48en;">
 									<?php
-									if (count($admins) > 1) {
+									if (count($userlist) != 1) {
 										?>
 										<span class="nowrap" style="font-weight: normal;">
 											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
