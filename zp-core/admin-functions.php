@@ -299,11 +299,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 				if (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->reset) {
 					$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
 					$last = $_zp_current_admin_obj->getLastlogon();
-					if (empty($last)) {
-						printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
-					} else {
-						printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
-					}
+					?>
+					<a href="admin-users.php?saved&show[]=<?php echo $_zp_current_admin_obj->getUser(); ?>&page=admin&tab=users" title="<?php echo gettext('go to user profile'); ?>">
+						<?php
+						if (empty($last)) {
+							printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
+						} else {
+							printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
+						}
+						?>
+					</a>
+					<?php
 					if ($_zp_current_admin_obj->logout_link) {
 						$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . $sec;
 						echo " &nbsp; | &nbsp; <a href=\"" . $link . "\">" . gettext("Log Out") . "</a> &nbsp; | &nbsp; ";
