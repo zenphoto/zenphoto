@@ -4114,7 +4114,7 @@ function printEditDropdown($subtab, $nestinglevels, $nesting, $query = NULL) {
 			break;
 	}
 	?>
-	<form name="AutoListBox2" style="float: right;padding-right: 10px;" action="#" >
+	<form name="AutoListBox2" style="float: right;padding-right: 14px;" action="#" >
 		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
 			<?php
 			foreach ($nestinglevels as $nestinglevel) {

@@ -922,7 +922,7 @@ echo "\n</head>";
 								$dsp = 'inline';
 							}
 							?>
-							<form name="subalbum_sort" style="float: right;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&album=<?php echo pathurlencode($album->name); ?>&tab=subalbuminfo&action=subalbum_sortorder" >
+							<form name="subalbum_sort" style="float: right;padding-right: 10px;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&album=<?php echo pathurlencode($album->name); ?>&tab=subalbuminfo&action=subalbum_sortorder" >
 								<?php XSRFToken('subalbum_sortorder'); ?>
 								<span class="nowrap">
 									<?php echo gettext('Sort subalbums by:'); ?>
@@ -963,7 +963,7 @@ echo "\n</head>";
 											<?php echo CROSS_MARK_RED; ?>
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
-										<div class="floatright">
+										<div class="floatright" style="padding-right: 5px">
 											<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
 												<img src="images/folder.png" alt="" />
 												<strong><?php echo gettext('New subalbum'); ?></strong>
@@ -1099,7 +1099,7 @@ echo "\n</head>";
 									<?php
 								}
 								?>
-								<form  name="albumedit3" style="float: right;padding-right: 10px;"	id="form_sortselect" action="?action=sortorder"	method="post" >
+								<form  name="albumedit3" style="float: right;padding-right: 14px;"	id="form_sortselect" action="?action=sortorder"	method="post" >
 									<?php XSRFToken('albumsortorder'); ?>
 									<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 									<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
@@ -1819,7 +1819,7 @@ echo "\n</head>";
 								}
 								if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 									?>
-									<span class="floatright">
+									<span class="floatright" style="padding-right: 3px;">
 										<button type="button" onclick="newAlbumJS('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
 										<button type="button" onclick="newAlbumJS('', true);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New dynamic album'); ?></strong></button>
 									</span>
@@ -1840,8 +1840,7 @@ echo "\n</head>";
 									</a>
 								</label>
 								<label style="float: right;padding-right:20px;">
-									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																	.checked);" />
+									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 								</label>
 							</div>
 							<div class="bordered">
