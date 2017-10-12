@@ -108,7 +108,7 @@ if (extensionEnabled('zenpage')) {
 								$('#titleinput').show();
 								$('#link').val('<?php echo getNewsIndexURL(); ?>');
 								break;
-							case 'all_categorys':
+							case 'all_categories':
 								$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
 								$('#selector').html('<?php echo js_encode(gettext("All Zenpage categories")); ?>');
 								$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage categories.")); ?>');
@@ -273,7 +273,7 @@ if (is_array($result)) {
 								<option value="all_pages"><?php echo gettext("All pages"); ?></option>
 								<option value="page"><?php echo gettext("Page"); ?></option>
 								<option value="newsindex"><?php echo gettext("News index"); ?></option>
-								<option value="all_categorys"><?php echo gettext("All news categories"); ?></option>
+								<option value="all_categories"><?php echo gettext("All news categories"); ?></option>
 								<option value="category"><?php echo gettext("News category"); ?></option>
 								<?php
 							}
