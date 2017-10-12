@@ -878,7 +878,7 @@ echo $refresh;
 								<tr>
 									<td colspan="100%">
 										<span class="floatright padded">
-											<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+											<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users', 'showgroup' => $showgroup)); ?>
 										</span>
 									</td>
 								</tr>
