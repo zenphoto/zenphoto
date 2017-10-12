@@ -300,7 +300,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
 					$last = $_zp_current_admin_obj->getLastlogon();
 					?>
-					<a href="admin-users.php?saved&show[]=<?php echo $_zp_current_admin_obj->getUser(); ?>&page=admin&tab=users" title="<?php echo gettext('go to user profile'); ?>">
+					<a href="admin-users.php?show[]=<?php echo $_zp_current_admin_obj->getUser(); ?>&page=admin&tab=users" title="<?php echo gettext('go to user profile'); ?>">
 						<?php
 						if (empty($last)) {
 							printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
