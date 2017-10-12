@@ -381,7 +381,7 @@ echo $refresh;
 									}
 								}
 							}
-							$admins = sortMultiArray($admins, 'user');
+							$admins = sortMultiArray($admins, 'user', false, true, true);
 							$rights = DEFAULT_RIGHTS;
 							$groupname = 'default';
 							$list = array();
