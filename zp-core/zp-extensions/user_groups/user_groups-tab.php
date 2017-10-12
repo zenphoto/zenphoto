@@ -220,6 +220,22 @@ echo '</head>' . "\n";
 								</tr>
 
 								<?php
+								$user_count = array();
+								foreach ($admins as $key => $user) {
+									if ($user['valid'] >= 1) {
+										if (!empty($user['group'])) {
+											$belongs = explode(',', $user['group']);
+											foreach ($belongs as $group) {
+												if (!isset($user_count[$group])) {
+													$user_count[$group] = 1;
+												} else {
+													$user_count[$group] ++;
+												}
+											}
+										}
+									}
+								}
+
 								$id = 0;
 								$groupselector = $groups;
 								$groupselector[''] = array('id' => -1, 'user' => '', 'name' => 'group', 'rights' => ALL_RIGHTS ^ MANAGE_ALL_ALBUM_RIGHTS, 'valid' => 0, 'other_credentials' => '');
@@ -232,8 +248,10 @@ echo '</head>' . "\n";
 									$groupobj = new Zenphoto_Administrator($groupname, 0);
 									if ($grouptype == 'group') {
 										$kind = gettext('group');
+										$count = ' (' . (int) @$user_count[$groupname] . ')';
 									} else {
 										$kind = gettext('template');
+										$count = '';
 									}
 									if ($background) {
 										$background = "";
@@ -251,11 +269,11 @@ echo '</head>' . "\n";
 													<em>
 														<label>
 															<input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
+																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
 														</label>
 														<label>
 															<input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
+																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
 														</label>
 													</em>
 													<br />
@@ -267,13 +285,13 @@ echo '</head>' . "\n";
 													<span class="userextrashow">
 														<em><?php echo $kind; ?></em>:
 														<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', true);" title="<?php echo $groupname; ?>" >
-															<strong><?php echo $groupname; ?></strong>
+															<strong><?php echo $groupname; ?></strong> <?php echo $count; ?>
 														</a>
 													</span>
 													<span style="display:none;" class="userextrahide">
 														<em><?php echo $kind; ?></em>:
 														<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', false);" title="<?php echo $groupname; ?>" >
-															<strong><?php echo $groupname; ?></strong>
+															<strong><?php echo $groupname; ?></strong> <?php echo $count; ?>
 														</a>
 													</span>
 													<input type="hidden" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value="<?php echo html_encode($groupname); ?>" />
