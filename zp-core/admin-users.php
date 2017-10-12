@@ -35,13 +35,16 @@ if (isset($_REQUEST['show']) && is_array($_REQUEST['show'])) {
 
 
 if (isset($_GET['subpage'])) {
-	$subpage = sanitize_numeric($_GET['subpage']);
+	$subpage = sanitize($_GET['subpage']);
 } else {
 	if (isset($_POST['subpage'])) {
 		$subpage = sanitize_numeric($_POST['subpage']);
 	} else {
 		$subpage = 0;
 	}
+}
+if ($subpage !== 0) {
+	$ticket .= '&subpage=' . $subpage;
 }
 
 if (!isset($_GET['page'])) {
@@ -381,7 +384,7 @@ echo $refresh;
 									}
 								}
 							}
-							$admins = sortMultiArray($admins, 'user');
+							$admins = sortMultiArray($admins, 'user', false, true, true);
 							$rights = DEFAULT_RIGHTS;
 							$groupname = 'default';
 							$list = array();
@@ -415,7 +418,17 @@ echo $refresh;
 					if ($subpage > $max) {
 						$subpage = $max;
 					}
-					$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
+					if (isset($_GET['user'])) {
+						$u = $_zp_authority->getAnAdmin(array('`user`=' => sanitize($_GET['user'])));
+						$userlist = array($u->getData());
+					} else {
+						$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
+					}
+					if (count($userlist) == 1) {
+						$l = $userlist;
+						$u = array_shift($l);
+						$showset = array($u['user']);
+					}
 
 					if (isset($_GET['deleted'])) {
 						echo '<div class="messagebox fade-message">';
@@ -504,7 +517,7 @@ echo $refresh;
 							<tr>
 								<td style="width: 48en;">
 									<?php
-									if (count($admins) > 1) {
+									if (count($userlist) != 1) {
 										?>
 										<span class="nowrap" style="font-weight: normal;">
 											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
@@ -878,7 +891,7 @@ echo $refresh;
 								<tr>
 									<td colspan="100%">
 										<span class="floatright padded">
-											<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+											<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users', 'showgroup' => $showgroup)); ?>
 										</span>
 									</td>
 								</tr>

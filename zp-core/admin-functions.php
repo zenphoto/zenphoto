@@ -299,11 +299,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 				if (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->reset) {
 					$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
 					$last = $_zp_current_admin_obj->getLastlogon();
+					?>
+
+					<?php
 					if (empty($last)) {
-						printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
+						printf(gettext('Logged in as %1$s'), '<a href="admin-users.php?user=' . $_zp_current_admin_obj->getUser() . '&page=admin&tab=users" title="' . gettext('go to user profile') . '">' . $_zp_current_admin_obj->getUser() . '</a>');
 					} else {
-						printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
+						printf(gettext('Logged in as %1$s (last login %2$s)'), '<a href = "admin-users.php?user=' . $_zp_current_admin_obj->getUser() . '&page=admin&tab=users" title = "' . gettext('go to user profile') . '">' . $_zp_current_admin_obj->getUser() . '</a>', $last);
 					}
+					?>
+					</a>
+					<?php
 					if ($_zp_current_admin_obj->logout_link) {
 						$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . $sec;
 						echo " &nbsp; | &nbsp; <a href=\"" . $link . "\">" . gettext("Log Out") . "</a> &nbsp; | &nbsp; ";
@@ -1572,8 +1578,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 				} else {
 					$parent = '&amp;album=' . $parent . '&tab=subalbuminfo';
 				}
+				if (isset($_GET['subpage']) && !is_numeric($_GET['subpage'])) {
+					if (isset($_GET['i'])) {
+						$image = newImage($album, sanitize($_GET['i']));
+						$backbutton = $image->getLink();
+					} else {
+						$backbutton = $album->getLink();
+					}
+				} else {
+					$backbutton = WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent;
+				}
 				?>
-				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
+				<a href="<?php echo $backbutton ?>">
 					<?php echo BACK_ARROW_BLUE; ?>
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
@@ -2288,7 +2304,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if ($buttons) {
 			?>
 			<span class="buttons">
-				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
+				<a href="<?php echo $backbutton; ?>">
 					<?php echo BACK_ARROW_BLUE; ?>
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
@@ -4104,7 +4120,7 @@ function printEditDropdown($subtab, $nestinglevels, $nesting, $query = NULL) {
 			break;
 	}
 	?>
-	<form name="AutoListBox2" style="float: right;" action="#" >
+	<form name="AutoListBox2" style="float: right;padding-right: 14px;" action="#" >
 		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
 			<?php
 			foreach ($nestinglevels as $nestinglevel) {
@@ -4238,10 +4254,10 @@ function printBulkActions($checkarray, $checkAll = false) {
 		if ($checkAll) {
 			?>
 			<br />
-			<?php
-			echo gettext("Check All");
-			?>
-			<input class="ignoredirty" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			<span style="float:right">
+				<?php echo gettext("Check All"); ?>
+				<input class="ignoredirty" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			</span>
 			<?php
 		}
 		?>
@@ -4291,7 +4307,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<div id="mass_cats" style="display:none;">
 			<div id="mass_cats_data">
 				<?php
-				echo gettext('New categorys:');
+				echo gettext('New categories:');
 				?>
 				<ul>
 					<?php

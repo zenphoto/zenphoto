@@ -833,7 +833,11 @@ echo "\n</head>";
 						$pagenum = 1;
 					}
 				}
-				$images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
+				if (is_numeric($pagenum)) {
+					$images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
+				} else {
+					$images = $allimages;
+				}
 
 				$totalimages = count($images);
 
@@ -918,7 +922,7 @@ echo "\n</head>";
 								$dsp = 'inline';
 							}
 							?>
-							<form name="subalbum_sort" style="float: right;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&album=<?php echo pathurlencode($album->name); ?>&tab=subalbuminfo&action=subalbum_sortorder" >
+							<form name="subalbum_sort" style="float: right;padding-right: 10px;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&album=<?php echo pathurlencode($album->name); ?>&tab=subalbuminfo&action=subalbum_sortorder" >
 								<?php XSRFToken('subalbum_sortorder'); ?>
 								<span class="nowrap">
 									<?php echo gettext('Sort subalbums by:'); ?>
@@ -959,7 +963,7 @@ echo "\n</head>";
 											<?php echo CROSS_MARK_RED; ?>
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
-										<div class="floatright">
+										<div class="floatright" style="padding-right: 5px">
 											<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
 												<img src="images/folder.png" alt="" />
 												<strong><?php echo gettext('New subalbum'); ?></strong>
@@ -1049,6 +1053,8 @@ echo "\n</head>";
 					require_once(SERVERPATH . '/' . ZENFOLDER . '/exif/exifTranslations.php');
 					$singleimagelink = $singleimage = NULL;
 					$showfilter = true;
+					$bakcButton = WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent;
+					;
 					if (isset($_GET['singleimage']) && $_GET['singleimage'] || $totalimages == 1) {
 						$showfilter = !isset($_GET['singleimage']);
 						if ($totalimages == 1) {
@@ -1093,7 +1099,7 @@ echo "\n</head>";
 									<?php
 								}
 								?>
-								<form  name="albumedit3" style="float: right;"	id="form_sortselect" action="?action=sortorder"	method="post" >
+								<form  name="albumedit3" style="float: right;padding-right: 14px;"	id="form_sortselect" action="?action=sortorder"	method="post" >
 									<?php XSRFToken('albumsortorder'); ?>
 									<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 									<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum); ?>" />
@@ -1152,7 +1158,15 @@ echo "\n</head>";
 
 								<div style="padding: 10px;">
 									<p class="buttons">
-										<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>&filter=<?php echo $filter; ?>">
+										<?php
+										if (is_numeric($pagenum)) {
+											$backbutton = WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent . '&filter=' . $filter;
+										} else {
+											$image = newImage($album, $singleimage);
+											$backbutton = $image->getLink();
+										}
+										?>
+										<a href="<?php echo $backbutton; ?>">
 											<?php echo BACK_ARROW_BLUE; ?>
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
@@ -1220,7 +1234,7 @@ echo "\n</head>";
 													}
 													?>
 													<p class="buttons">
-														<a href="<?php echo $image->getLink(); ?>">
+														<a href="<?php echo $image = newImage($album, $filename); ?>">
 															<?php echo BULLSEYE_BLUE; ?>
 															<strong><?php echo gettext('View'); ?></strong>
 														</a>
@@ -1582,21 +1596,15 @@ echo "\n</head>";
 														<span class="clearall" ></span>
 													</div>
 												</div>
-
-
 											</div>
 											<br class="clearall">
-
-
 											<?php
 											$currentimage++;
 										}
 									}
 									?>
-
-
 									<p class="buttons">
-										<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
+										<a href="<?php $backbutton; ?>">
 											<?php echo BACK_ARROW_BLUE; ?>
 											<strong><?php echo gettext("Back"); ?></strong>
 										</a>
@@ -1609,9 +1617,6 @@ echo "\n</head>";
 											<strong><?php echo gettext("Reset"); ?></strong>
 										</button>
 									</p>
-
-
-
 									<?php
 									printImagePagination($album, $image, $singleimage, $allimagecount, $totalimages, $pagenum, $totalpages, $filter);
 									?>
@@ -1619,7 +1624,6 @@ echo "\n</head>";
 								</div>
 								<input type="hidden" name="checkForPostTruncation" value="1" />
 							</form>
-
 							<?php
 						}
 						?>
@@ -1775,7 +1779,7 @@ echo "\n</head>";
 							}
 							echo gettext('Drag the albums into the order you wish them displayed.');
 							?>
-							<form name="gallery_sort" style="float: right;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&action=gallery_sortorder" >
+							<form name="gallery_sort" style="float: right;padding-right: 10px;" method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&action=gallery_sortorder" >
 								<?php XSRFToken('gallery_sortorder'); ?>
 								<span class="nowrap">
 									<?php echo gettext('Sort albums by:'); ?>
@@ -1815,7 +1819,7 @@ echo "\n</head>";
 								}
 								if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 									?>
-									<span class="floatright">
+									<span class="floatright" style="padding-right: 3px;">
 										<button type="button" onclick="newAlbumJS('', false);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New album'); ?></strong></button>
 										<button type="button" onclick="newAlbumJS('', true);"><img src="images/folder.png" alt="" /><strong><?php echo gettext('New dynamic album'); ?></strong></button>
 									</span>
@@ -1836,8 +1840,7 @@ echo "\n</head>";
 									</a>
 								</label>
 								<label style="float: right;padding-right:20px;">
-									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																	.checked);" />
+									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 								</label>
 							</div>
 							<div class="bordered">

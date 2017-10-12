@@ -844,7 +844,7 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					$orders[$nesting] = addPagesToDatabase($menuset, $orders);
 					$type = false;
 					break;
-				case 'all_categorys':
+				case 'all_categories':
 					$orders[$nesting] ++;
 					$orders[$nesting] = addCategoriesToDatabase($menuset, $orders);
 					$type = false;

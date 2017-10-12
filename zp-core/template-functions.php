@@ -154,14 +154,14 @@ function adminToolbox() {
 							if (GALLERY_SESSION) { // XSRF defense requires sessions
 								?>
 								<script type="text/javascript">
-						// <!-- <![CDATA[
+									// <!-- <![CDATA[
 									function newAlbum(folder, albumtab) {
 										var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
 										if (album) {
 											launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
 										}
 									}
-						// ]]> -->
+									// ]]> -->
 								</script>
 								<li>
 									<a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a>
@@ -186,9 +186,14 @@ function adminToolbox() {
 						$albumname = $_zp_current_album->name;
 						if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
 							// admin is empowered to edit this album--show an edit link
+							if ($inImage) {
+								$imagepart = '&i=' . $_zp_current_image->filename;
+							} else {
+								$imagepart = '';
+							}
 							?>
 							<li>
-								<?php printLinkHTML($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name) . '&subpage=object', gettext('Edit album'), NULL, NULL, NULL); ?>
+								<?php printLinkHTML($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name) . '&subpage=object' . $imagepart, gettext('Edit album'), NULL, NULL, NULL); ?>
 							</li>
 							<?php
 							if (!$_zp_current_album->isDynamic()) {
@@ -3837,39 +3842,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-							// <!-- <![CDATA[
-							var within = <?php echo (int) $within; ?>;
-							function search_(way) {
-								within = way;
-								if (way) {
-									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-								} else {
-									lastsearch = '';
-									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-								}
-								$('#search_input').val('');
-							}
-							$('#search_form').submit(function () {
-								if (within) {
-									var newsearch = $.trim($('#search_input').val());
-									if (newsearch.substring(newsearch.length - 1) == ',') {
-										newsearch = newsearch.substr(0, newsearch.length - 1);
-									}
-									if (newsearch.length > 0) {
-										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-									} else {
-										$('#search_input').val('<?php echo $searchwords; ?>');
-									}
-								}
-								return true;
-							});
-							function search_all() {
-								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-								var check = $('#SEARCH_checkall').prop('checked');
-								$('.SEARCH_checkall').prop('checked', check);
-							}
+														// <!-- <![CDATA[
+														var within = <?php echo (int) $within; ?>;
+														function search_(way) {
+															within = way;
+															if (way) {
+																$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+															} else {
+																lastsearch = '';
+																$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+															}
+															$('#search_input').val('');
+														}
+														$('#search_form').submit(function () {
+															if (within) {
+																var newsearch = $.trim($('#search_input').val());
+																if (newsearch.substring(newsearch.length - 1) == ',') {
+																	newsearch = newsearch.substr(0, newsearch.length - 1);
+																}
+																if (newsearch.length > 0) {
+																	$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+																} else {
+																	$('#search_input').val('<?php echo $searchwords; ?>');
+																}
+															}
+															return true;
+														});
+														function search_all() {
+															//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+															var check = $('#SEARCH_checkall').prop('checked');
+															$('.SEARCH_checkall').prop('checked', check);
+														}
 
-							// ]]> -->
+														// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>

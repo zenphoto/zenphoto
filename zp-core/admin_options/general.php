@@ -85,6 +85,9 @@ function saveOptions() {
 
 	setOption('site_email_name', process_language_string_save('site_email_name', 3));
 	setOption('users_per_page', sanitize_numeric($_POST['users_per_page']));
+	if (isset($_POST['groups_per_page'])) {
+		setOption('groups_per_page', sanitize_numeric($_POST['groups_per_page']));
+	}
 	setOption('dirtyform_enable', sanitize_numeric($_POST['dirtyform_enable']));
 	setOption('plugins_per_page', sanitize_numeric($_POST['plugins_per_page']));
 	if (isset($_POST['articles_per_page'])) {
@@ -640,6 +643,7 @@ function getOptionContent() {
 					<td class="option_name">
 						<span style="line-height:190%">
 							<?php echo gettext("Users per page"); ?><br />
+							<?php echo gettext("Groups per page"); ?><br />
 							<?php echo gettext("Plugins per page"); ?><br />
 							<?php
 							if (extensionEnabled('zenpage')) {
@@ -653,6 +657,14 @@ function getOptionContent() {
 					<td class="option_value">
 						<input type="text" size="5" id="users_per_page" name="users_per_page"  value="<?php echo getOption('users_per_page'); ?>" />
 						<br />
+						<?php
+						if (extensionEnabled('user_groups')) {
+							?>
+							<input type="text" size="5" id="groups_per_page" name="groups_per_page"  value="<?php echo getOption('groups_per_page'); ?>" />
+							<br />
+							<?php
+						}
+						?>
 						<input type="text" size="5" id="plugins_per_page" name="plugins_per_page"  value="<?php echo getOption('plugins_per_page'); ?>" />
 						<?php
 						if (extensionEnabled('zenpage')) {

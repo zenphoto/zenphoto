@@ -508,7 +508,7 @@ function addItem(&$reports) {
 			addPagesToDatabase($menuset);
 			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all Zenpage pages added.") . " </p>";
 			return NULL;
-		case 'all_categorys':
+		case 'all_categories':
 			addCategoriesToDatabase($menuset);
 			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all Zenpage categories added.") . " </p>";
 			return NULL;

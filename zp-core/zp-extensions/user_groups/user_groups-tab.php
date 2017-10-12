@@ -9,7 +9,7 @@ define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
 admin_securityChecks(NULL, currentRelativeURL());
-define('USERS_PER_PAGE', max(1, getOption('users_per_page')));
+define('GROUPS_PER_PAGE', max(1, getOption('groups_per_page')));
 if (isset($_GET['subpage'])) {
 	$subpage = sanitize_numeric($_GET['subpage']);
 } else {
@@ -173,12 +173,17 @@ echo '</head>' . "\n";
 								$list[] = $user['user'];
 							}
 						}
-						$max = floor((count($list) - 1) / USERS_PER_PAGE);
+						$max = floor((count($list) - 1) / GROUPS_PER_PAGE);
 						if ($subpage > $max) {
 							$subpage = $max;
 						}
-						$rangeset = getPageSelector($list, USERS_PER_PAGE);
-						$groups = array_slice($groups, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
+						$rangeset = getPageSelector($list, GROUPS_PER_PAGE);
+						$groups = array_slice($groups, $subpage * GROUPS_PER_PAGE, GROUPS_PER_PAGE);
+						if (count($groups) == 1) {
+							$display = '';
+						} else {
+							$display = ' style="display:none"';
+						}
 						$albumlist = array();
 						foreach ($_zp_gallery->getAlbums() as $folder) {
 							$alb = newAlbum($folder);
@@ -208,11 +213,17 @@ echo '</head>' . "\n";
 							<table class="bordered">
 								<tr>
 									<th>
-										<span style="font-weight: normal">
-											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
-											|
-											<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
-										</span>
+										<?php
+										if (count($groups) != 1) {
+											?>
+											<span style="font-weight: normal">
+												<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
+												|
+												<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
+											</span>
+											<?php
+										}
+										?>
 									</th>
 									<th>
 										<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab' => 'groups')); ?>
@@ -220,6 +231,22 @@ echo '</head>' . "\n";
 								</tr>
 
 								<?php
+								$user_count = array();
+								foreach ($admins as $key => $user) {
+									if ($user['valid'] >= 1) {
+										if (!empty($user['group'])) {
+											$belongs = explode(',', $user['group']);
+											foreach ($belongs as $group) {
+												if (!isset($user_count[$group])) {
+													$user_count[$group] = 1;
+												} else {
+													$user_count[$group] ++;
+												}
+											}
+										}
+									}
+								}
+
 								$id = 0;
 								$groupselector = $groups;
 								$groupselector[''] = array('id' => -1, 'user' => '', 'name' => 'group', 'rights' => ALL_RIGHTS ^ MANAGE_ALL_ALBUM_RIGHTS, 'valid' => 0, 'other_credentials' => '');
@@ -232,8 +259,10 @@ echo '</head>' . "\n";
 									$groupobj = new Zenphoto_Administrator($groupname, 0);
 									if ($grouptype == 'group') {
 										$kind = gettext('group');
+										$count = ' (' . (int) @$user_count[$groupname] . ')';
 									} else {
 										$kind = gettext('template');
+										$count = '';
 									}
 									if ($background) {
 										$background = "";
@@ -251,11 +280,11 @@ echo '</head>' . "\n";
 													<em>
 														<label>
 															<input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
+																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
 														</label>
 														<label>
 															<input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
+																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
 														</label>
 													</em>
 													<br />
@@ -267,13 +296,13 @@ echo '</head>' . "\n";
 													<span class="userextrashow">
 														<em><?php echo $kind; ?></em>:
 														<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', true);" title="<?php echo $groupname; ?>" >
-															<strong><?php echo $groupname; ?></strong>
+															<strong><?php echo $groupname; ?></strong> <?php echo $count; ?>
 														</a>
 													</span>
 													<span style="display:none;" class="userextrahide">
 														<em><?php echo $kind; ?></em>:
 														<a onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', false);" title="<?php echo $groupname; ?>" >
-															<strong><?php echo $groupname; ?></strong>
+															<strong><?php echo $groupname; ?></strong> <?php echo $count; ?>
 														</a>
 													</span>
 													<input type="hidden" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value="<?php echo html_encode($groupname); ?>" />
@@ -297,9 +326,9 @@ echo '</head>' . "\n";
 												?>
 											</div>
 											<br class="clearall">
-											<div class="user_left userextrainfo" style="display:none">
+											<div class="user_left userextrainfo"<?php echo $display; ?>>
 												<?php
-												printAdminRightsTable($id, '', '', $rights);
+												printAdminRightsTable($id, '  ', ' ', $rights);
 
 												if (empty($groupname) && !empty($groups)) {
 													?>
@@ -390,15 +419,22 @@ echo '</head>' . "\n";
 
 									<?php
 									$id++;
+									$display = ' style="display:none"';
 								}
 								?>
 								<tr>
 									<th>
-										<span style="font-weight: normal">
-											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
-											|
-											<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
-										</span>
+										<?php
+										if (count($users) != 1) {
+											?>
+											<span style="font-weight: normal">
+												<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
+												|
+												<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
+											</span>
+											<?php
+										}
+										?>
 									</th>
 									<th>
 										<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab' => 'groups')); ?>
