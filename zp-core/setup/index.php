@@ -1815,7 +1815,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										<?php
 									}
 								}
-								$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
+								$link = sprintf(gettext('You can now %1$sadminister your gallery%2$s.'), '<a href="' . WEBPATH . '/' . ZENFOLDER . '/admin.php">', '</a>');
 								?>
 								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 								<?php

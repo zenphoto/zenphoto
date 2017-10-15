@@ -343,7 +343,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
 					<?php
 					if (zpFunctions::hasPrimaryScripts()) {
-						echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. <a href="' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup&XSRFToken=' . getXSRFToken('protect_setup') . '">Protect the scripts</a>. ');
+						printf(gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. %1$sProtect the scripts%2$s.'), '<a href="' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup&XSRFToken=' . getXSRFToken('protect_setup') . '">', '</a>');
 					}
 					?>
 				</div>
@@ -5068,6 +5068,15 @@ function getLogTabs() {
  * Figures out which plugin tabs to display
  */
 function getPluginTabs() {
+	global $_subpackages;
+	$classXlate = array(
+			'all' => gettext('all'),
+			'thirdparty' => gettext('3rd party'),
+			'enabled' => gettext('enabled'),
+			'misc' => gettext('misc')
+	);
+	$classXlate = array_merge($classXlate, $_subpackages);
+
 	if (isset($_GET['tab'])) {
 		$default = sanitize($_GET['tab']);
 	} else {
@@ -5075,23 +5084,6 @@ function getPluginTabs() {
 	}
 	$plugin_lc = array();
 	$paths = getPluginFiles('*.php');
-
-	$classXlate = array(
-			'all' => gettext('all'),
-			'thirdparty' => gettext('3rd party'),
-			'enabled' => gettext('enabled'),
-			'admin' => gettext('admin'),
-			'demo' => gettext('demo'),
-			'development' => gettext('development'),
-			'feed' => gettext('feed'),
-			'mail' => gettext('mail'),
-			'media' => gettext('media'),
-			'misc' => gettext('misc'),
-			'spam' => gettext('spam'),
-			'seo' => gettext('seo'),
-			'uploader' => gettext('uploader'),
-			'users' => gettext('users')
-	);
 	zp_apply_filter('plugin_tabs', $classXlate);
 
 	$classes = $member = $thirdparty = array();
