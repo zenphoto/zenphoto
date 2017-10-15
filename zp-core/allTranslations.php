@@ -87,17 +87,4 @@ gettext('Register');
 
 /* zp-core/zp-extensions/zenpage.php */
 gettext('Read more');
-
-/* subpackages */
-$_subpackages = array (
-	'admin'	=>	gettext('admin'),
-	'development'	=>	gettext('development'),
-	'example'	=>	gettext('example'),
-	'mail'	=>	gettext('mail'),
-	'media'	=>	gettext('media'),
-	'seo'	=>	gettext('seo'),
-	'theme'	=>	gettext('theme'),
-	'users'	=>	gettext('users'),
-	'zenphoto20'	=>	gettext('zenphoto20')
-);
 ?>

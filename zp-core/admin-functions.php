@@ -5069,7 +5069,18 @@ function getLogTabs() {
  * Figures out which plugin tabs to display
  */
 function getPluginTabs() {
-	global $_subpackages;
+	/* subpackages */
+	$_subpackages = array(
+			'admin' => gettext('admin'),
+			'development' => gettext('development'),
+			'example' => gettext('example'),
+			'mail' => gettext('mail'),
+			'media' => gettext('media'),
+			'seo' => gettext('seo'),
+			'theme' => gettext('theme'),
+			'users' => gettext('users'),
+			'zenphoto20' => gettext('zenphoto20')
+	);
 	$classXlate = array(
 			'all' => gettext('all'),
 			'thirdparty' => gettext('3rd party'),
