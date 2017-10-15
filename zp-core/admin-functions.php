@@ -342,8 +342,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<div class="warningbox">
 					<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
 					<?php
+					echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers.') . ' ';
 					if (zpFunctions::hasPrimaryScripts()) {
-						printf(gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. %1$sProtect the scripts%2$s.'), '<a href="' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup&XSRFToken=' . getXSRFToken('protect_setup') . '">', '</a>');
+						echo '<a href="' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup&XSRFToken=' . getXSRFToken('protect_setup') . '">' . gettext('Protect the scripts.') . '</a>';
 					}
 					?>
 				</div>

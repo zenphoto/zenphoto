@@ -593,8 +593,11 @@ $buttonlist = array();
 							$filters = $_zp_filters;
 							$c = count($plugins);
 							?>
-							<h3><a onclick="$('#plugins_hide').toggle();
-											$('#plugins_show').toggle();" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
+							<h3>
+								<a onclick="$('#plugins_hide').toggle();$('#plugins_show').toggle();" >
+									<?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?>
+								</a>
+							</h3>
 							<div id="plugins_hide" style="display:none">
 								<ul class="plugins">
 									<?php
@@ -642,7 +645,7 @@ $buttonlist = array();
 							$c = count($filters);
 							?>
 							<h3><a onclick="$('#filters_hide').toggle();
-											$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+									$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 							<div id="filters_hide" style="display:none">
 								<ul class="plugins">
 									<?php
