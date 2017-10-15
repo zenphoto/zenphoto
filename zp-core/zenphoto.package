@@ -1379,8 +1379,6 @@ zp-core/js/msdropdown/jquery.dd.min.js
 zp-core/js/spectrum
 zp-core/js/spectrum/spectrum.css
 zp-core/js/spectrum/spectrum.js
-zp-core/lib-gettext
-zp-core/lib-gettext/gettext.inc
 zp-core/locale
 zp-core/locale/auto.png
 zp-core/locale/missing_flag.png
@@ -8202,4 +8200,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8204
+8202

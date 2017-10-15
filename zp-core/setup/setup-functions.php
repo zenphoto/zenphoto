@@ -368,6 +368,7 @@ function setupLog($message, $anyway = false, $reset = false) {
 }
 
 function setupLanguageSelector() {
+	global $_zp_setupCurrentLocale_result;
 	$languages = generateLanguageList();
 	$unsupported = getSerializedArray(getOption('locale_unsupported'));
 	if (isset($_REQUEST['locale'])) {
@@ -398,7 +399,7 @@ function setupLanguageSelector() {
 					<?php
 					if ($lang != $currentValue) {
 						?>
-						<a href="javascript:launchScript('',['locale=<?php echo $lang; ?>']);" >
+						<a href="?locale=<?php echo $lang; ?>">
 							<?php
 						}
 						if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png')) {
@@ -422,6 +423,7 @@ function setupLanguageSelector() {
 		?>
 	</ul>
 	<?php
+	setupCurrentLocale($_zp_setupCurrentLocale_result);
 }
 
 function setupXSRFDefender($where) {

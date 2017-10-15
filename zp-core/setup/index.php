@@ -18,7 +18,6 @@ define('OFFSET_PATH', 2);
 if (function_exists("gettext")) {
 	$noxlate = 1;
 } else {
-	require_once(dirname(dirname(__FILE__)) . '/lib-gettext/gettext.inc');
 	$noxlate = -1;
 }
 if (version_compare(PHP_VERSION, PHP_MIN_VERSION, '<')) {
@@ -1671,9 +1670,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								<?php
 								$_zp_authority->printLoginForm('', false);
 							}
-							if ($noxlate > 0) {
-								setupLanguageSelector();
-							}
+
+							setupLanguageSelector();
 							?>
 							<br class="clearall">
 								<?php
@@ -1974,7 +1972,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						}
 						?>
 						<?php
-						if ($noxlate > 0 && !isset($_GET['checked'])) {
+						if (!isset($_GET['checked'])) {
 							setupLanguageSelector();
 						}
 						?>

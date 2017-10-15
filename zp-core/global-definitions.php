@@ -3,7 +3,7 @@
 if (!isset($_SERVER['HTTP_HOST']))
 	die();
 if (!function_exists("gettext")) {
-	require_once(dirname(__FILE__) . '/lib-gettext/gettext.inc');
+	require_once(dirname(__FILE__) . '/php-gettext/gettext.inc');
 }
 require_once(dirname(__FILE__) . '/version.php'); // Include the version info.
 
