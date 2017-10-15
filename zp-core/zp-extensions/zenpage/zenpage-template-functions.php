@@ -1126,19 +1126,21 @@ function getTotalNewsPages() {
  */
 function getNextPrevNews($option = '') {
 	global $_zp_zenpage, $_zp_current_zenpage_news;
- if (func_num_args() != 1) {
-   Zenpage_internal_deprecations::getNextPrevNews();
- }
+	if (func_num_args() != 1) {
+		Zenpage_internal_deprecations::getNextPrevNews();
+	}
 	if (!empty($option)) {
 		switch ($option) {
 			case "prev":
 				if ($article = $_zp_current_zenpage_news->getPrevArticle()) {
 					return array("link" => $article->getLink(), "title" => $article->getTitle());
 				}
+				break;
 			case "next":
 				if ($article = $_zp_current_zenpage_news->getNextArticle()) {
 					return array("link" => $article->getLink(), "title" => $article->getTitle());
 				}
+				break;
 		}
 	}
 	return false;
