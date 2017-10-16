@@ -1752,13 +1752,12 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									setupLog(gettext("Begin database creation and update"), true);
 
 									require_once(SERVERPATH . '/' . ZENFOLDER . '/setup/database.php');
-
 									echo "<h3>";
 									if ($updateErrors) {
 										$autorun = false;
-										echo gettext('Done with table update with errors. See the <code>setup</code> log for details.');
+										echo gettext('Table update completed with errors. See the <code>setup</code> log for details.');
 									} else {
-										echo gettext('Done with table update.');
+										echo gettext('Table update complete.');
 									}
 									echo "</h3>";
 
@@ -1790,10 +1789,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								if ($_zp_loggedin == ADMIN_RIGHTS) {
 									$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . "/" . BACKUPFOLDER . '/*.zdb');
 									if (count($filelist) > 0) {
-										$link = sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin', WEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php');
+										$link = sprintf(gettext('You may %1$sset your admin user and password%3$s or %2$srun backup-restore%3$s'), '<a href="' . WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin">', '<a href="' . WEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php">', '</a>');
 										$autorun = false;
 									} else {
-										$link = sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin');
+										$link = sprintf(gettext('You need to %1$sset your admin user and password%2$s'), '<a href="' . WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin">', '</a>');
 										if ($autorun == 'admin' || $autorun == 'gallery') {
 											$autorun = WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin';
 										}
@@ -1813,7 +1812,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										<?php
 									}
 								}
-								$link = sprintf(gettext('You can now %1$sadminister your gallery%2$s.'), '<a href="' . WEBPATH . '/' . ZENFOLDER . '/admin.php">', '</a>');
+								$link = sprintf(gettext('You may now %1$sadminister your gallery%2$s.'), '<a href="' . WEBPATH . '/' . ZENFOLDER . '/admin.php">', '</a>');
 								?>
 								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 								<?php
