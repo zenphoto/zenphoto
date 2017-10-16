@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-15 16:46-0700\n"
-"PO-Revision-Date: 2017-10-15 17:05-0700\n"
+"POT-Creation-Date: 2017-10-16 09:48-0700\n"
+"PO-Revision-Date: 2017-10-16 10:11-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michel@mgagnon.net>\n"
 "Language: fr_FR\n"
@@ -29,7 +29,7 @@ msgstr ""
 #: plugins/._piwik - Copy.php:39 plugins/piwik.php:44
 #, fuzzy
 msgid "piwik url"
-msgstr "url de Piwik"
+msgstr "Piwik"
 
 #: plugins/._piwik - Copy.php:41 plugins/piwik.php:46
 #, fuzzy
@@ -65,13 +65,13 @@ msgstr ""
 #: plugins/LDAP_Server.php:13
 #, fuzzy
 msgid "LDAP server surrogate."
-msgstr "Substitution de serveur LDAP."
+msgstr "Nom de domaine du serveur LDAP"
 
 #: plugins/MyBB_auth.php:47
 #, fuzzy
 #| msgid "Checks for Apache HTTP authentication of authorized users."
 msgid "Checks for MyBB authentication of authorized users."
-msgstr "Contrôles pour MyBB l’authentification des utilisateurs autorisés."
+msgstr "Vérifie les droits des utilisateurs via l’authentification HTTP Apache"
 
 #: plugins/MyBB_auth.php:102
 #, fuzzy
@@ -81,18 +81,18 @@ msgstr "Site de MyBB"
 #: plugins/MyBB_auth.php:104
 #, fuzzy
 msgid "The WEB path to the MyBB installation."
-msgstr "Le chemin d’accès WEB pour l’installation de MyBB."
+msgstr "Chemin d’accès internet :"
 
 #: plugins/MyBB_auth.php:105
 #, fuzzy
 #| msgid "Title"
 msgid "MyBB Title"
-msgstr "Titre de MyBB"
+msgstr "Titre"
 
 #: plugins/MyBB_auth.php:107
 #, fuzzy
 msgid "The name of the MyBB site."
-msgstr "Le nom du site MyBB."
+msgstr "Nom :"
 
 #: plugins/MyBB_auth.php:108
 #, fuzzy
@@ -115,7 +115,7 @@ msgstr "Base de données de MyBB"
 #, fuzzy
 #| msgid "Database name"
 msgid "The MyBB database name."
-msgstr "Le nom de base de données de MyBB."
+msgstr "Nom de la base de données"
 
 #: plugins/MyBB_auth.php:114
 #, fuzzy
@@ -139,7 +139,7 @@ msgstr "Mot de passe de la base de données"
 #, fuzzy
 #| msgid "Database password"
 msgid "The MyBB database passwrod."
-msgstr "Le passwrod de base de données de MyBB."
+msgstr "Actualiser la base de données"
 
 #: plugins/MyBB_auth.php:120
 #, fuzzy
@@ -284,9 +284,7 @@ msgstr ""
 #: themes/zpskeleton/search.php:26 zp-core/admin-edit.php:1673
 #: zp-core/admin-themes.php:102 zp-core/admin-themes.php:103
 #: zp-core/admin_options/theme.php:10 zp-core/admin_options/theme.php:11
-#: zp-core/allTranslations.php:10 zp-core/allTranslations.php:20
-#: zp-core/allTranslations.php:28 zp-core/allTranslations.php:38
-#: zp-core/allTranslations.php:47 zp-core/lib-auth.php:558
+#: zp-core/allTranslations.php:10 zp-core/lib-auth.php:558
 #: zp-core/lib-auth.php:559 zp-core/lib-auth.php:560 zp-core/lib-auth.php:561
 #: zp-core/lib-auth.php:562 zp-core/lib-auth.php:566 zp-core/lib-auth.php:570
 #: zp-core/lib-auth.php:578 zp-core/lib-auth.php:579 zp-core/lib-auth.php:585
@@ -537,11 +535,10 @@ msgstr "Catégories d’actualités"
 #: themes/zpmobile/functions.php:80 themes/zpmobile/functions.php:189
 #: themes/zpmobile/pagelist.php:26 themes/zpmobile/pages.php:26
 #: zp-core/admin-functions.php:3541 zp-core/admin-functions.php:3711
-#: zp-core/allTranslations.php:13 zp-core/allTranslations.php:31
-#: zp-core/allTranslations.php:41 zp-core/allTranslations.php:50
-#: zp-core/lib-auth.php:564 zp-core/lib-auth.php:567 zp-core/lib-auth.php:582
-#: zp-core/lib-auth.php:589 zp-core/lib-auth.php:593 zp-core/lib-auth.php:609
-#: zp-core/lib-auth.php:616 zp-core/lib-auth.php:618 zp-core/lib-auth.php:622
+#: zp-core/allTranslations.php:13 zp-core/lib-auth.php:564
+#: zp-core/lib-auth.php:567 zp-core/lib-auth.php:582 zp-core/lib-auth.php:589
+#: zp-core/lib-auth.php:593 zp-core/lib-auth.php:609 zp-core/lib-auth.php:616
+#: zp-core/lib-auth.php:618 zp-core/lib-auth.php:622
 #: zp-core/utilities/gallery_statistics.php:77
 #: zp-core/utilities/gallery_statistics.php:598
 #: zp-core/zp-extensions/cacheManager.php:157
@@ -593,7 +590,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Image date"
 msgid "Bulk Image update"
-msgstr "Mise à jour de Image en vrac"
+msgstr "mettre à jour"
 
 #: plugins/customFieldExtendergtf/album_tab.php:103
 #: zp-core/admin-albumsort.php:115 zp-core/admin-edit.php:864
@@ -1447,7 +1444,7 @@ msgstr "Progrès"
 #, fuzzy
 #| msgid "Current Theme"
 msgid "Current"
-msgstr "Enregistre l’état courant des extensions (activées ou non)."
+msgstr "Insère le numéro de page courant."
 
 #: plugins/mediaelementjs_player.php:117
 #, fuzzy
@@ -1938,7 +1935,7 @@ msgstr "Génère le fichier <em>zenphoto.package</em>."
 #, fuzzy
 #| msgid "older"
 msgid "Folder"
-msgstr "%s n’est pas un dossier racine."
+msgstr "Nom du fichier ou du dossier"
 
 #: plugins/zenphoto_package.php:34
 #, fuzzy
@@ -2918,8 +2915,7 @@ msgstr "Galerie et actualités"
 #: themes/zenpage/sidebar.php:16 themes/zpArdoise/news.php:26
 #: themes/zpBootstrap/news.php:62 themes/zpEnlighten/sidebar.php:11
 #: themes/zpbase/inc/index-news.php:65 themes/zpmobile/functions.php:174
-#: zp-core/allTranslations.php:8 zp-core/allTranslations.php:26
-#: zp-core/allTranslations.php:37 zp-core/allTranslations.php:46
+#: zp-core/allTranslations.php:8
 msgid "All news"
 msgstr "Toutes les actualités"
 
@@ -3582,13 +3578,13 @@ msgstr "Total voix"
 #: themes/libratus/archive-stats.php:115
 #, fuzzy
 msgid "Sorry, no statistical page to show..."
-msgstr "Désolé, aucune statistique page pour montrer..."
+msgstr "Cocher pour afficher le sigle sur la page d’image."
 
 #: themes/libratus/archive.php:7 themes/libratus/inc-archive-stats-menu.php:22
 #, fuzzy
 #| msgid "Latest Images"
 msgid "Latest Images by ID"
-msgstr "Dernières Images par ID"
+msgstr "Images"
 
 #: themes/libratus/archive.php:12 themes/libratus/inc-archive-stats-menu.php:13
 #: themes/libratus/inc-footer.php:98 themes/zpgalleriffic/archive.php:14
@@ -3604,7 +3600,7 @@ msgstr "Dernières Images par Date"
 #: themes/libratus/archive.php:22
 #, fuzzy
 msgid "Latest Images by mTime"
-msgstr "Dernières Images de mTime"
+msgstr "les plus récentes selon la date de modification"
 
 #: themes/libratus/archive.php:27
 #, fuzzy
@@ -3639,7 +3635,7 @@ msgstr "Albums les plus populaires"
 #: themes/libratus/archive.php:53 themes/libratus/inc-archive-stats-menu.php:94
 #, fuzzy
 msgid "Latest Albums by Date"
-msgstr "Derniers Albums par Date"
+msgstr "Albums récents"
 
 #: themes/libratus/archive.php:58
 #, fuzzy
@@ -3649,7 +3645,7 @@ msgstr "Derniers Albums de mTime"
 #: themes/libratus/archive.php:63
 #, fuzzy
 msgid "Latest Albums by Publish Date"
-msgstr "Derniers Albums de la Date de publication"
+msgstr "Date de publication"
 
 #: themes/libratus/archive.php:68
 #: themes/libratus/inc-archive-stats-menu.php:121
@@ -3741,7 +3737,7 @@ msgstr "Jeux de album"
 #: themes/libratus/inc-archive-stats-menu.php:40
 #, fuzzy
 msgid "Latest Images by Mtime"
-msgstr "Dernières Images de Mtime"
+msgstr "les plus récentes selon la date de modification"
 
 #: themes/libratus/inc-archive-stats-menu.php:49
 #, fuzzy
@@ -3751,12 +3747,12 @@ msgstr "Dernières Images par Date de publication"
 #: themes/libratus/inc-archive-stats-menu.php:103
 #, fuzzy
 msgid "Latest Albums by Mtime"
-msgstr "Derniers Albums de Mtime"
+msgstr "les plus récentes selon la date de modification"
 
 #: themes/libratus/inc-archive-stats-menu.php:112
 #, fuzzy
 msgid "Latest Albums by Published Date"
-msgstr "Derniers Albums par Date de publication"
+msgstr "Albums récents"
 
 #: themes/libratus/inc-favorites.php:4 themes/libratus/inc-favorites.php:9
 #: themes/zpbase/functions.php:337 themes/zpbase/inc/header.php:102
@@ -3786,7 +3782,7 @@ msgstr "Nouvelles RSS"
 #, fuzzy
 #| msgid "Pages"
 msgid "RSS Pages"
-msgstr "Pages RSS"
+msgstr "Pages"
 
 #: themes/libratus/inc-footer.php:28 themes/zpbase/inc/footer.php:51
 #, fuzzy
@@ -3824,19 +3820,19 @@ msgstr "Commentaires récents"
 #, fuzzy
 #| msgid "More News"
 msgid "More"
-msgstr "Afficher plus de résultats"
+msgstr "Gestionnaires d’un ou de plusieurs albums"
 
 #: themes/libratus/inc-footer.php:124
 #, fuzzy
 #| msgid "Latest Images"
 msgid "Latest Images (ID)"
-msgstr "Dernières Images (ID)"
+msgstr "Images"
 
 #: themes/libratus/inc-footer.php:150
 #, fuzzy
 #| msgid "Latest Images"
 msgid "Latest Images (mTime)"
-msgstr "Dernières Images (mTime)"
+msgstr "les plus récentes selon la date de modification"
 
 #: themes/libratus/inc-footer.php:176
 #, fuzzy
@@ -3848,7 +3844,7 @@ msgstr "Dernières Images (Date)"
 #, fuzzy
 #| msgid "Latest Images"
 msgid "Latest Images (Pub. Date)"
-msgstr "Dernières Images (Pub. Date)"
+msgstr "Images récentes"
 
 #: themes/libratus/inc-footer.php:311
 #, fuzzy
@@ -3860,7 +3856,7 @@ msgstr "Derniers Albums (ID)"
 #, fuzzy
 #| msgid "Latest Albums"
 msgid "Latest Albums (mTime)"
-msgstr "Derniers Albums (mTime)"
+msgstr "les plus récentes selon la date de modification"
 
 #: themes/libratus/inc-footer.php:369
 #, fuzzy
@@ -3910,7 +3906,7 @@ msgstr "Non publié(e)"
 #, fuzzy
 #| msgid "Archive"
 msgid "Archive/Search"
-msgstr "Archives/recherche"
+msgstr "Archive"
 
 #: themes/libratus/inc-header.php:19 themes/zpbase/inc/header.php:250
 #, fuzzy
@@ -4053,7 +4049,7 @@ msgstr "Images - populaires"
 #: themes/libratus/themeoptions.php:78 themes/libratus/themeoptions.php:98
 #, fuzzy
 msgid "Images - Latest by ID"
-msgstr "Images - plus tard par ID"
+msgstr "les plus récentes par id"
 
 #: themes/libratus/themeoptions.php:79 themes/libratus/themeoptions.php:99
 #, fuzzy
@@ -4068,7 +4064,7 @@ msgstr "Images - plus tard par mtime"
 #: themes/libratus/themeoptions.php:81 themes/libratus/themeoptions.php:101
 #, fuzzy
 msgid "Images - Latest by Publish Date"
-msgstr "Images - plus tard à la Date de publication"
+msgstr "Date de publication"
 
 #: themes/libratus/themeoptions.php:82 themes/libratus/themeoptions.php:102
 #, fuzzy
@@ -4090,7 +4086,7 @@ msgstr "Albums - populaires"
 #: themes/libratus/themeoptions.php:85 themes/libratus/themeoptions.php:105
 #, fuzzy
 msgid "Albums - Latest by ID"
-msgstr "Albums - plus tard par ID"
+msgstr "Albums récents"
 
 #: themes/libratus/themeoptions.php:86 themes/libratus/themeoptions.php:106
 #, fuzzy
@@ -4105,7 +4101,7 @@ msgstr "Albums - Latest par mtime"
 #: themes/libratus/themeoptions.php:88 themes/libratus/themeoptions.php:108
 #, fuzzy
 msgid "Albums - Latest by Publish Date"
-msgstr "Albums - plus tard à la Date de publication"
+msgstr "Date de publication"
 
 #: themes/libratus/themeoptions.php:89 themes/libratus/themeoptions.php:109
 #, fuzzy
@@ -4133,7 +4129,7 @@ msgstr "Description de la galerie : "
 #, fuzzy
 #| msgid "News articles"
 msgid "News - Latest"
-msgstr "Actualités - plus tard"
+msgstr "Plus récents"
 
 #: themes/libratus/themeoptions.php:96
 #, fuzzy
@@ -4293,7 +4289,7 @@ msgstr ""
 #: themes/libratus/themeoptions.php:156 themes/zpbase/themeoptions.php:147
 #, fuzzy
 msgid "Simple Social Sharing?"
-msgstr "Partage Social simple ?"
+msgstr "Partage sur les réseaux sociaux ?"
 
 #: themes/libratus/themeoptions.php:158 themes/zpbase/themeoptions.php:149
 #, fuzzy
@@ -4461,7 +4457,7 @@ msgstr "Désactiver"
 #, fuzzy
 #| msgid "10s"
 msgid "1"
-msgstr "Nombre de résultats : %1$u"
+msgstr "Nouvel album : %1$s"
 
 #: themes/libratus/themeoptions.php:197
 #, fuzzy
@@ -4503,7 +4499,7 @@ msgstr ""
 #: themes/libratus/themeoptions.php:203
 #, fuzzy
 msgid "Number of Images in Bottom Stats"
-msgstr "Nombre d’Images dans les Stats de fond"
+msgstr "Image numéro / nombre total d’images"
 
 #: themes/libratus/themeoptions.php:206
 #, fuzzy
@@ -4517,7 +4513,7 @@ msgstr ""
 #: themes/libratus/themeoptions.php:207
 #, fuzzy
 msgid "Related Max Number"
-msgstr "Nombre Max"
+msgstr "Nombre maximal de fichiers dépassé"
 
 #: themes/libratus/themeoptions.php:210
 #, fuzzy
@@ -4713,7 +4709,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Theme setup:"
 msgid "Theme used:"
-msgstr "Thème utilisé :"
+msgstr "Thème :"
 
 #: themes/paradigm/credits.php:35 zp-core/class-feed.php:426
 #: zp-core/zp-extensions/comment_form/functions.php:821
@@ -4747,13 +4743,13 @@ msgstr "Affichages : %u"
 #, fuzzy
 #| msgid "options"
 msgid "Caption"
-msgstr "Légende de la galerie d’images"
+msgstr "Auteur de la légende de l’image"
 
 #: themes/paradigm/image.php:105
 #, fuzzy
 #| msgid "Other"
 msgid "Other info"
-msgstr "Autre info"
+msgstr "autre info"
 
 #: themes/paradigm/image.php:107
 #, fuzzy
@@ -4764,13 +4760,13 @@ msgstr "Affichages : %u"
 #, fuzzy
 #| msgid "404 not found"
 msgid "Not found"
-msgstr "Désolé, aucune correspondance."
+msgstr "Habilitations trouvées : "
 
 #: themes/paradigm/includes/_breadcrumbs.php:51
 #, fuzzy
 #| msgid "Error"
 msgid "error"
-msgstr "Erreur !"
+msgstr "ERREUR"
 
 #: themes/paradigm/includes/_gallery.php:12 themes/zpfocus/inc-sidebar.php:43
 msgid "About"
@@ -4784,8 +4780,7 @@ msgstr "Actualités récentes"
 
 #: themes/paradigm/includes/_head.php:47 themes/paradigm/includes/_head.php:138
 #: themes/zpArdoise/inc_header.php:36 themes/zpBootstrap/inc_header.php:41
-#: zp-core/allTranslations.php:70 zp-core/allTranslations.php:71
-#: zp-core/template-functions.php:458
+#: zp-core/allTranslations.php:70 zp-core/template-functions.php:458
 #: zp-core/zp-extensions/downloadList.php:587
 #: zp-core/zp-extensions/html_meta_tags.php:236
 msgid "My favorites"
@@ -4865,7 +4860,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Album theme:"
 msgid "Album to choose from"
-msgstr "Album au choix"
+msgstr "Créer un album à partir de cette recherche"
 
 #: themes/paradigm/themeoptions.php:74
 #, fuzzy
@@ -4952,7 +4947,7 @@ msgstr "Dernières photos"
 #, fuzzy
 #| msgid "Random picture..."
 msgid "Random pictures"
-msgstr "Photos au hasard"
+msgstr "aléatoire"
 
 #: themes/paradigm/themeoptions.php:94
 #, fuzzy
@@ -4963,7 +4958,7 @@ msgstr "A choisi ce qu’il faut afficher sur la page d’accueil."
 #, fuzzy
 #| msgid "Display a link to the Archive list."
 msgid "Display archive link in footer."
-msgstr "Afficher les archives lien en pied de page."
+msgstr "Afficher un lien à la liste d’archives."
 
 #: themes/paradigm/themeoptions.php:98
 #, fuzzy
@@ -5107,7 +5102,7 @@ msgstr "Fournir votre page <a href=\"http://deviantart.com/\">Deviantart</a>"
 #: themes/paradigm/themeoptions.php:109
 #, fuzzy
 msgid "URL to Tumblr"
-msgstr "URL sur Tumblr"
+msgstr "URL de votre identité :"
 
 #: themes/paradigm/themeoptions.php:109
 #, fuzzy
@@ -5224,7 +5219,7 @@ msgstr "fin du Javascript externe"
 #: themes/zenfluid/functions.php:514
 #, fuzzy
 msgid "other Script"
-msgstr "autre Script"
+msgstr "Autre"
 
 #: themes/zenfluid/functions.php:518
 #, fuzzy
@@ -5236,13 +5231,13 @@ msgstr "fin d’autre Script"
 #, fuzzy
 #| msgid "unprocessed heading items"
 msgid "unprocessed head items"
-msgstr "Articles de tête non traités"
+msgstr "éléments d’en-tête non traités"
 
 #: themes/zenfluid/functions.php:525
 #, fuzzy
 #| msgid "unprocessed heading items"
 msgid "end of unprocessed head items"
-msgstr "fin des articles tête non traités"
+msgstr "Fin des éléments d’en-tête de thème (« theme_head »)."
 
 #: themes/zenfluid/functions.php:532
 #, fuzzy
@@ -5254,7 +5249,7 @@ msgstr "javascript incorporé"
 #, fuzzy
 #| msgid "In-line javaScript"
 msgid "end of in-line Javascript"
-msgstr "fin de Javascript en ligne"
+msgstr "javascript incorporé"
 
 #: themes/zenfluid/image.php:96 themes/zpmasonry/news.php:83
 msgid "« Prev"
@@ -5286,7 +5281,14 @@ msgstr "Images et vidéos"
 #: themes/zenfluid/sidebar.php:34
 #, fuzzy
 msgid "Home<br />&nbsp;"
-msgstr "Accueil<br>"
+msgstr ""
+"<p>Blah blah blah</p><table border=\"1\" cellpadding=\"1\" cellspacing=\"1\">"
+"\t<tbody>\t\t<tr>\t\t\t<td><strong>S</strong></td>\t\t\t<td>[field name="
+"\"field_subjective\"]</td>\t\t</tr>\t\t<tr>\t\t\t<td><strong>O</strong></td>"
+"\t\t\t<td>[field name=\"field_objective\"]</td>\t\t</tr>\t\t<tr>\t\t"
+"\t<td><strong>A</strong></td>\t\t\t<td>[field name=\"field_assessment\"]</td>"
+"\t\t</tr>\t\t<tr>\t\t\t<td><strong>P</strong></td>\t\t\t<td>[field name="
+"\"field_plan\"]<br />\t\t\t&nbsp;</td>\t\t</tr>\t</tbody></table>"
 
 #: themes/zenfluid/sidebar.php:36
 #, fuzzy
@@ -5306,7 +5308,7 @@ msgstr "Le thème de ZenFluid nécessite que le plugin zenpage soit activée."
 #, fuzzy
 #| msgid "files"
 msgid "Profile"
-msgstr "Mon profil"
+msgstr "Profile"
 
 #: themes/zenfluid/sidebar.php:86
 #, fuzzy
@@ -5333,7 +5335,7 @@ msgstr "Cocher pour activer le formulaire de recherche."
 #: themes/zenfluid/themeoptions.php:68
 #, fuzzy
 msgid "Use UPPERCASE menu"
-msgstr "MAJUSCULES menu utiliser"
+msgstr "Utiliser un menu personnalisé"
 
 #: themes/zenfluid/themeoptions.php:68
 #, fuzzy
@@ -5360,7 +5362,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Random images"
 msgid "Use random image"
-msgstr "Utiliser une image au hasard"
+msgstr "Image aléatoire de l’album"
 
 #: themes/zenfluid/themeoptions.php:70
 #, fuzzy
@@ -5374,7 +5376,7 @@ msgstr ""
 #: themes/zenfluid/themeoptions.php:71
 #, fuzzy
 msgid "Transition on new row"
-msgstr "Sur la nouvelle ligne de transition"
+msgstr "Transition :"
 
 #: themes/zenfluid/themeoptions.php:71
 #, fuzzy
@@ -5475,7 +5477,7 @@ msgstr ""
 #: themes/zenfluid/themeoptions.php:78
 #, fuzzy
 msgid "Make Neat"
-msgstr "Faire soignée"
+msgstr "Marque"
 
 #: themes/zenfluid/themeoptions.php:78
 #, fuzzy
@@ -6184,7 +6186,7 @@ msgstr "404 – non trouvée"
 #, fuzzy
 #| msgid "scroll up"
 msgid "Scroll"
-msgstr "Utiliser le défilement infini ?"
+msgstr "vers le haut"
 
 #: themes/zpbase/inc/header.php:286
 #, fuzzy
@@ -6276,7 +6278,7 @@ msgstr "Masonry"
 #: themes/zpbase/themeoptions.php:215
 #, fuzzy
 msgid "Smooth DIV Scroll"
-msgstr "Rouleau lisse DIV"
+msgstr "Balayage horizontal"
 
 #: themes/zpbase/themeoptions.php:116
 #, fuzzy
@@ -6468,7 +6470,7 @@ msgstr ""
 #| msgid "%u image per page"
 #| msgid_plural "%u images per page"
 msgid "No Image Detail page"
-msgstr "Aucune page de détail de l’Image"
+msgstr "détail de l'image"
 
 #: themes/zpbase/themeoptions.php:158
 #, fuzzy
@@ -6532,7 +6534,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Gallery index page"
 msgid "Gallery Index is Homepage"
-msgstr "Index de la Galerie est la page d’accueil"
+msgstr "Accueil de la galerie"
 
 #: themes/zpbase/themeoptions.php:172
 #, fuzzy
@@ -6609,13 +6611,13 @@ msgstr "<h2>Plusieurs Options de mise en page/Defaults</h2><hr>"
 #, fuzzy
 #| msgid "Gallery Index"
 msgid "Gallery Index Layout"
-msgstr "Galerie Index Layout"
+msgstr "Index distinct de la galerie"
 
 #: themes/zpbase/themeoptions.php:191 themes/zpbase/themeoptions.php:212
 #, fuzzy
 #| msgid "Standard"
 msgid "Standard Grid"
-msgstr "Grille standard"
+msgstr "Standard"
 
 #: themes/zpbase/themeoptions.php:192 themes/zpbase/themeoptions.php:213
 #, fuzzy
@@ -6816,11 +6818,7 @@ msgstr ""
 #: themes/zpbase/themeoptions.php:253
 #, fuzzy
 msgid "False"
-msgstr ""
-"<strong>Note :</strong> Cette recherche donnera de faux positifs, notamment "
-"lorsque le nom de la fonction apparaît dans un commentaire ou une chaîne de "
-"caractères. Les fonctions signalées par « * » sont des méthodes de classe. "
-"Celles signalépes par « + » ont des paramètres obsolètes."
+msgstr "Faux"
 
 #: themes/zpbase/themeoptions.php:254
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:72
@@ -6873,7 +6871,7 @@ msgstr "Affichage de la légende initiale Galleria"
 #, fuzzy
 #| msgid "Visible items"
 msgid "Visible"
-msgstr "L’image est marquée comme non visible."
+msgstr "Éléments visibles et masqués"
 
 #: themes/zpbase/themeoptions.php:267
 #, fuzzy
@@ -7282,7 +7280,7 @@ msgstr "OPTIONS PIED DE PAGE DU SITE"
 #: themes/zpbase/themeoptions.php:425
 #, fuzzy
 msgid "*Use Gallery Name Text"
-msgstr "* Utilisation Galerie nom texte"
+msgstr "Utiliser le texte"
 
 #: themes/zpbase/themeoptions.php:436
 #, fuzzy
@@ -7999,13 +7997,13 @@ msgstr "Le plugin du formulaire de contact n'a pas été activé."
 #, fuzzy
 #| msgid "This Album"
 msgid "This Album Collection"
-msgstr "Cette Collection d’Album"
+msgstr "Afficher la collection d&apos; albums"
 
 #: themes/zpgalleriffic/header.php:187
 #, fuzzy
 #| msgid "Article"
 msgid "Article RSS"
-msgstr "Article RSS"
+msgstr "Article"
 
 #: themes/zpgalleriffic/header.php:330
 #, fuzzy
@@ -8767,7 +8765,6 @@ msgstr ""
 "les pages)."
 
 #: themes/zpminimal/404.php:14 zp-core/allTranslations.php:39
-#: zp-core/allTranslations.php:48
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:62
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:267
 msgid "Gallery index"
@@ -12061,7 +12058,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Album thumbnails:"
 msgid "Album thumbnails"
-msgstr "Vignettes de l’album"
+msgstr "Vignettes d’albums :"
 
 #: zp-core/admin_options/gallery.php:328
 msgid "Default thumbnail selection for albums."
@@ -12071,7 +12068,7 @@ msgstr "Choix par défaut de la vignette utilisée pour les albums."
 #, fuzzy
 #| msgid "Sort gallery by:"
 msgid "Sort gallery by"
-msgstr "Trier la galerie"
+msgstr "Trier la galerie par : "
 
 #: zp-core/admin_options/gallery.php:396
 msgid ""
@@ -12760,8 +12757,8 @@ msgid ""
 "If checked, an e-mail will be sent to the gallery admin when a new user has "
 "registered on the site."
 msgstr ""
-"Si coché, un courriel sera envoyé à l’administrateur de la Galerie lorsqu’un "
-"nouvel utilisateur est enregistré sur le site."
+"Si activé, un courriel est envoyé à l’administrateur de la galerie lorsqu’un "
+"nouvel utilisateur a validé son inscription."
 
 #: zp-core/admin_options/general.php:636
 #: zp-core/zp-extensions/register_user.php:90
@@ -12808,7 +12805,7 @@ msgstr ""
 #: zp-core/admin_options/general.php:689
 #, fuzzy
 msgid "Dirty form check"
-msgstr "Vérification de formulaire sale"
+msgstr "Cocher pour activer le formulaire de recherche."
 
 #: zp-core/admin_options/general.php:694
 #, fuzzy
@@ -12825,7 +12822,7 @@ msgstr "exclure de tinyMCE"
 #, fuzzy
 #| msgid "Reset all ratings"
 msgid "detect all changes"
-msgstr "détecter toutes les modifications"
+msgstr "Modifications appliquées"
 
 #: zp-core/admin_options/general.php:709
 #, fuzzy
@@ -13240,7 +13237,7 @@ msgstr "Mettre en cache les images pleine grandeur"
 #, fuzzy
 #| msgid "password:"
 msgid "password"
-msgstr "Mot de passe"
+msgstr "mot de passe :"
 
 #: zp-core/admin_options/image.php:702
 #, fuzzy
@@ -14172,6 +14169,12 @@ msgstr ""
 msgid "Theme head &lt;title&gt; tag"
 msgstr "Balise &lt;title&gt; dans l’en-tête du thème"
 
+#: zp-core/admin_options/theme.php:516
+#, fuzzy
+#| msgid "separate"
+msgid "separator"
+msgstr "séparateur "
+
 #: zp-core/admin_options/theme.php:523
 msgid "Select if you want parent breadcrumbs and if so the separator for them."
 msgstr ""
@@ -14182,35 +14185,31 @@ msgstr ""
 msgid "The following are options specifically implemented by %s."
 msgstr "Les options qui suivent sont spécifiquement utilisées par le thème %s."
 
-#: zp-core/allTranslations.php:7 zp-core/allTranslations.php:25
-#: zp-core/allTranslations.php:36 zp-core/allTranslations.php:45
-#: zp-core/utilities/gallery_statistics.php:81
+#: zp-core/allTranslations.php:7 zp-core/utilities/gallery_statistics.php:81
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:118
 msgid "News Articles"
 msgstr "Articles d’actualité"
 
-#: zp-core/allTranslations.php:9 zp-core/allTranslations.php:27
+#: zp-core/allTranslations.php:9
 msgid "News Articles Rule"
 msgstr "Règle pour les articles d’actualité"
 
-#: zp-core/allTranslations.php:11 zp-core/allTranslations.php:29
-#: zp-core/allTranslations.php:40 zp-core/allTranslations.php:49
+#: zp-core/allTranslations.php:11
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:70
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:268
 msgid "All Albums"
 msgstr "Tous les albums"
 
-#: zp-core/allTranslations.php:12 zp-core/allTranslations.php:30
+#: zp-core/allTranslations.php:12
 msgid "Gallery Rule"
 msgstr "Règle pour la galerie"
 
-#: zp-core/allTranslations.php:14 zp-core/allTranslations.php:32
-#: zp-core/allTranslations.php:42 zp-core/allTranslations.php:51
+#: zp-core/allTranslations.php:14
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:273
 msgid "All pages"
 msgstr "Toutes les pages"
 
-#: zp-core/allTranslations.php:15 zp-core/allTranslations.php:33
+#: zp-core/allTranslations.php:15
 msgid "Pages Rule"
 msgstr "Règle pour les pages"
 
@@ -16993,7 +16992,7 @@ msgstr "mot de passe %1$s réinitialise le courrier de demande a échoué."
 #, fuzzy
 #| msgid "Restore failed"
 msgid "Reset request failed."
-msgstr "Demande de réinitialisation a échoué."
+msgstr "Demande de réinitialisation du mot de passe"
 
 #: zp-core/lib-auth.php:790
 msgid "Your input did not match the captcha"
@@ -17388,7 +17387,7 @@ msgstr "Requête du script d’installation"
 #: zp-core/reconfigure.php:99
 #, fuzzy
 msgid "The configuration file is missing."
-msgstr "Le fichier de configuration est manquant."
+msgstr "Paramètres de la base de données dans le fichier de configuration"
 
 #: zp-core/reconfigure.php:102
 #, fuzzy
@@ -17462,7 +17461,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Your installation configuration is damaged."
 msgid "Ignore this configuration change."
-msgstr "Ignorer ce changement de configuration."
+msgstr "La configuration de votre installation est endommagée."
 
 #: zp-core/reconfigure.php:291
 #, fuzzy
@@ -17472,7 +17471,7 @@ msgstr "驳回"
 #: zp-core/reconfigure.php:320
 #, fuzzy, php-format
 msgid "to run setup [%s]"
-msgstr "pour exécuter l’installation [%s]"
+msgstr "Lancer le script d’installation."
 
 #: zp-core/reconfigure.php:323
 #, fuzzy
@@ -17707,7 +17706,7 @@ msgstr ""
 #, fuzzy
 #| msgid "PHP <code>Sessions</code>."
 msgid "PHP <code>session.use_strict_mode</code>"
-msgstr "PHP<code>session.use_strict_mode</code>"
+msgstr "Le mode <code>Sans échec</code> de PHP est activé"
 
 #: zp-core/setup/index.php:587
 #, fuzzy
@@ -19399,7 +19398,7 @@ msgstr "L’installation du theme : %s est complétée en %2$.4f secondes"
 #, fuzzy
 #| msgid "Logged in as %1$s"
 msgid "Logged in as"
-msgstr "Connecté sous %1$s"
+msgstr "vous êtes déjà connecté(e)."
 
 #: zp-core/template-functions.php:135
 msgid "Logs"
@@ -19715,7 +19714,7 @@ msgstr "Choisir le fichier de restauration de la base de données :"
 #, fuzzy
 #| msgid "Select the database restore file:"
 msgid "Select the tables to restore."
-msgstr "Sélectionnez les tables à restaurer."
+msgstr "Choisir le fichier de restauration de la base de données :"
 
 #: zp-core/utilities/backup_restore.php:588
 msgid "Restore the tables in your database from a previous backup."
@@ -20236,8 +20235,9 @@ msgstr "Outils pour bloquer les attaques par déni de service."
 #, fuzzy
 msgid "Memory"
 msgstr ""
-"Limite de mémoire de PHP : <strong>%1$s</strong> (Note : votre serveur peut "
-"en allouer moins.)"
+"Plus il y a de processus concurents de mise en cache, plus la tâche sera "
+"réalisée rapidement… à condition que le serveur ne soit pas sursollicité ou "
+"à court de mémoire."
 
 #: zp-core/zp-extensions/accessThreshold.php:50
 #, fuzzy
@@ -22413,7 +22413,7 @@ msgstr "Session"
 #: zp-core/zp-extensions/debug.php:166
 #, fuzzy
 msgid "SERVER"
-msgstr "Ne peut rediriger au serveur : %s"
+msgstr "Nom de domaine du serveur LDAP"
 
 #: zp-core/zp-extensions/debug.php:167
 #, fuzzy
@@ -26082,7 +26082,7 @@ msgstr "Éléments visibles et masqués"
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:273
 #, fuzzy
 msgid "empty"
-msgstr "Le champ de critères de recherche est vide."
+msgstr "Les mots de passe ne peuvent pas être vides !"
 
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:284
 #, fuzzy
