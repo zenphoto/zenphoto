@@ -513,7 +513,7 @@ function getOptionContent() {
 							<td class="option_value">
 								<label><input type="checkbox" name="theme_head_listparents" value="1"<?php if (getThemeOption('theme_head_listparents', $album, $themename)) echo ' checked="checked"'; ?> /><?php echo gettext('enabled'); ?></label>
 								<br />
-								<input type="text" name="theme_head_separator" size="2em" value="<?php echo getThemeOption('theme_head_separator', $album, $themename); ?>" /><?php echo "separator"; ?>
+								<input type="text" name="theme_head_separator" size="2em" value="<?php echo getThemeOption('theme_head_separator', $album, $themename); ?>" /><?php echo gettext("separator"); ?>
 							</td>
 
 							<td class="option_desc">
