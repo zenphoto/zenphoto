@@ -16,6 +16,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . "/zp-core/admin-globals.php")
 admin_securityChecks(THEMES_RIGHTS, currentRelativeURL());
 
 $legacyReplacements = array(
+		'SERVER_HTTP_HOST' => 'FULLHOSTPATH',
 		'new ZenpagePage' => 'newPage',
 		'new ZenpageNews' => 'newArticle',
 		'new ZenpageCategory' => 'newCategory',
