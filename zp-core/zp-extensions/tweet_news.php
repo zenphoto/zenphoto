@@ -307,9 +307,9 @@ class tweet {
 		}
 		$error = '';
 		if (class_exists('tinyURL')) {
-			$link = tinyURL::getURL($obj);
+			$link = FULLHOSTPATH . tinyURL::getURL($obj);
 		} else {
-			$link = $obj->getLink();
+			$link = FULLHOSTPATH . $obj->getLink();
 		}
 		switch ($type = $obj->table) {
 			case 'pages':

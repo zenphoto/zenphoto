@@ -83,7 +83,7 @@ switch (OFFSET_PATH) {
 			define('ZP_PAGES_ENABLED', $_zp_CMS->pages_enabled);
 		}
 }
-
+define('SERVER_HTTP_HOST', FULLHOSTPATH);
 
 
 zp_register_filter('load_theme_script', 'zenphotoCompatibilityPack::filter');

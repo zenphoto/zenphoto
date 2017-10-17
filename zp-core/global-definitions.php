@@ -2,12 +2,14 @@
 
 if (!isset($_SERVER['HTTP_HOST']))
 	die();
+if (!function_exists("gettext")) {
+	require_once(dirname(__FILE__) . '/php-gettext/gettext.inc');
+}
+require_once(dirname(__FILE__) . '/version.php'); // Include the version info.
+
 define('GITHUB', 'github.com/ZenPhoto20/ZenPhoto20');
 define('ZP_LAST_MODIFIED', gmdate('D, d M Y H:i:s') . ' GMT');
-require_once(dirname(__FILE__) . '/version.php'); // Include the version info.
-if (!function_exists("gettext")) {
-	require_once(dirname(__FILE__) . '/lib-gettext/gettext.inc');
-}
+
 if (!defined('SORT_FLAG_CASE'))
 	define('SORT_FLAG_CASE', 0);
 if (!defined('SORT_NATURAL'))

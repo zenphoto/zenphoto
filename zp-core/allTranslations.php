@@ -17,38 +17,38 @@ gettext('Archive');
 gettext('Gallery and News');
 gettext('Archive Rule');
 gettext('RSS');
-gettext('Gallery');
+//gettext('Gallery');
 gettext('News');
 gettext('News and Gallery');
 
 /* themes/garland/themeoptions.php */
-gettext('News Articles');
-gettext('All news');
-gettext('News Articles Rule');
-gettext('Gallery');
-gettext('All Albums');
-gettext('Gallery Rule');
-gettext('Pages');
-gettext('All pages');
-gettext('Pages Rule');
+//gettext('News Articles');
+//gettext('All news');
+//gettext('News Articles Rule');
+//gettext('Gallery');
+//gettext('All Albums');
+//gettext('Gallery Rule');
+//gettext('Pages');
+//gettext('All pages');
+//gettext('Pages Rule');
 
 /* themes/zenpage/themeoptions.php */
-gettext('News Articles');
-gettext('All news');
-gettext('Gallery');
+//gettext('News Articles');
+//gettext('All news');
+//gettext('Gallery');
 gettext('Gallery index');
-gettext('All Albums');
-gettext('Pages');
-gettext('All pages');
+//gettext('All Albums');
+//gettext('Pages');
+//gettext('All pages');
 
 /* themes/zpEnlighten/themeoptions.php */
-gettext('News Articles');
-gettext('All news');
-gettext('Gallery');
-gettext('Gallery index');
-gettext('All Albums');
-gettext('Pages');
-gettext('All pages');
+//gettext('News Articles');
+//gettext('All news');
+//gettext('Gallery');
+//gettext('Gallery index');
+//gettext('All Albums');
+//gettext('Pages');
+//gettext('All pages');
 
 /* zp-core/setup/setup-option-defaults.php */
 gettext("What is your father’s middle name?");
@@ -68,7 +68,7 @@ gettext('<p>A copy of your e-mail will automatically be sent to the address you 
 
 /* zp-core/zp-extensions/favoritesHandler.php */
 gettext('My favorites');
-gettext('My favorites');
+//gettext('My favorites');
 gettext('The albums and images selected as favorites.');
 gettext('Add favorite');
 gettext('Remove favorite');

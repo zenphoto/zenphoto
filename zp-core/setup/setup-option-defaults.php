@@ -783,6 +783,7 @@ foreach ($_languages as $language => $dirname) {
 	}
 }
 setOption('locale_unsupported', serialize($unsupported));
+setupCurrentLocale($_zp_setupCurrentLocale_result);
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
