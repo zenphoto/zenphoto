@@ -7,7 +7,6 @@ $optionRights = OPTIONS_RIGHTS;
 
 function saveOptions() {
 	global $_zp_gallery;
-
 	$notify = $returntab = NULL;
 	$_zp_gallery->setAlbumPublish((int) isset($_POST['album_default']));
 	$_zp_gallery->setImagePublish((int) isset($_POST['image_default']));
@@ -22,8 +21,9 @@ function saveOptions() {
 	$_zp_gallery->setWebsiteURL($web);
 	$_zp_gallery->setAlbumUseImagedate((int) isset($_POST['album_use_new_image_date']));
 	$st = strtolower(sanitize($_POST['gallery_sorttype'], 3));
-	if ($st == 'custom')
+	if ($st == 'custom') {
 		$st = strtolower(sanitize($_POST['customalbumsort'], 3));
+	}
 	$_zp_gallery->setSortType($st);
 	if (($st == 'manual') || ($st == 'random')) {
 		$_zp_gallery->setSortDirection(false);
@@ -55,7 +55,7 @@ function getOptionContent() {
 	?>
 	<div id="tab_gallery" class="tabbox">
 		<form class="dirtylistening" onReset="toggle_passwords('', false);
-					setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+				setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 					<?php XSRFToken('saveoptions'); ?>
 			<input	type="hidden" name="saveoptions" value="gallery" />
 			<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -198,7 +198,7 @@ function getOptionContent() {
 											 name="disclose_password"
 											 id="disclose_password"
 											 onclick="passwordClear('');
-															 togglePassword('');" /><?php echo gettext('Show'); ?>
+													 togglePassword('');" /><?php echo gettext('Show'); ?>
 							</label>
 
 							<br />
@@ -346,47 +346,38 @@ function getOptionContent() {
 						ksort($sort, SORT_LOCALE_STRING);
 						$flip = array_flip($sort);
 						if (isset($flip[$cv])) {
-							$dspc = 'none';
+							$dspc = 'style="margin-top:5px;display:none"';
 						} else {
-							$dspc = 'block';
+							$dspc = 'style="margin-top:5px;"';
 						}
 						if (($cv == 'manual') || ($cv == 'random') || ($cv == '')) {
 							$dspd = 'none';
 						} else {
-							$dspd = 'block';
+							$dspd = 'inline-block';
+						}
+						if (array_search($cv, $sort) === false) {
+							$cv = 'custom';
 						}
 						?>
-						<table>
-							<tr>
-								<td>
-									<select id="gallerysortselect" name="gallery_sorttype" onchange="update_direction(this, 'gallery_sortdirection', 'customTextBox2')">
-										<?php
-										if (array_search($cv, $sort) === false)
-											$cv = 'custom';
-										generateListFromArray(array($cv), $sort, false, true);
-										?>
-									</select>
-								</td>
-								<td>
-									<span id="gallery_sortdirection" style="display:<?php echo $dspd; ?>">
-										<label>
-											<input type="checkbox" name="gallery_sortdirection"	value="1" <?php checked('1', $_zp_gallery->getSortDirection()); ?> />
-											<?php echo gettext("descending"); ?>
-										</label>
-									</span>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="100%">
-									<span id="customTextBox2" class="customText" style="display:<?php echo $dspc; ?>">
-										<?php echo gettext('custom fields') ?>
-										<span class="tagSuggestContainer">
-											<input id="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
-										</span>
-									</span>
-								</td>
-							</tr>
-						</table>
+						<select id="gallerysortselect" name="gallery_sorttype" onchange="update_direction(this, 'gallery_sortdirection', 'customTextBox2')">
+							<?php
+							generateListFromArray(array($cv), $sort, false, true);
+							?>
+						</select>
+						<span id="gallery_sortdirection" style="display:<?php echo $dspd; ?>">
+							<label>
+								<input type="checkbox" name="gallery_sortdirection"	value="1" <?php checked('1', $_zp_gallery->getSortDirection()); ?> />
+								<?php echo gettext("descending"); ?>
+							</label>
+						</span>
+
+						<div id="customTextBox2" class="customText" <?php echo $dspc; ?>>
+							<?php echo gettext('custom fields') ?>
+							<span class="tagSuggestContainer">
+								<input id="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
+							</span>
+						</div>
+
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
