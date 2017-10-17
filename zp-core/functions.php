@@ -1739,7 +1739,7 @@ function sanitizeRedirect($redirectTo, $forceHost = false) {
 			$redirect .= $redir['scheme'] . '://' . sanitize($redir['host']);
 		} else {
 			if ($forceHost) {
-				$redirect .= PROTOCOL . '://' . $_SERVER['HTTP_HOST'];
+				$redirect .= FULLHOSTPATH;
 				if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
 					$redirect .= WEBPATH;
 				}

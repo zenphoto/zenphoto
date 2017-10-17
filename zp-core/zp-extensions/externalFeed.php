@@ -534,7 +534,7 @@ class ExternalFeed extends feed {
 						?>
 						<item>
 							<title><![CDATA[<?php echo $item['title']; ?>]]></title>
-							<link><?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . '/' . html_encode(ltrim($item['link'], '/')); ?></link>
+							<link><?php echo FULLHOSTPATH . WEBPATH . '/' . html_encode(ltrim($item['link'], '/')); ?></link>
 							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
 							<?php
 							if (!empty($item['enclosure'])) {
