@@ -701,7 +701,7 @@ function getTotalPages($_oneImagePage = false) {
  * @return int
  */
 function getPageNumURL($page, $total = null) {
-	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page;
+	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page, $_zp_conf_vars;
 	if (is_null($total)) {
 		$total = getTotalPages();
 	}
@@ -730,7 +730,11 @@ function getPageNumURL($page, $total = null) {
 	} else {
 		// handle custom page
 		$pg = stripSuffix($_zp_gallery_page);
-		$pagination1 = '/' . _PAGE_ . '/' . $pg . '/';
+		if (array_key_exists($pg, $_zp_conf_vars['special_pages'])) {
+			$pagination1 = preg_replace('~^_PAGE_/~', _PAGE_ . '/', $_zp_conf_vars['special_pages'][$pg]['rewrite']) . '/';
+		} else {
+			$pagination1 = '/' . _PAGE_ . '/' . $pg . '/';
+		}
 		$pagination2 = 'index.php?p=' . $pg;
 		if ($page > 1) {
 			$pagination1 .= $page;
@@ -861,8 +865,9 @@ function getPageNavList($_oneImagePage, $navlen, $firstlast, $current, $total) {
 		$navlen = $total;
 	}
 	$extralinks = 2;
-	if ($firstlast)
+	if ($firstlast) {
 		$extralinks = $extralinks + 2;
+	}
 	$len = floor(($navlen - $extralinks) / 2);
 	$j = max(round($extralinks / 2), min($current - $len - (2 - round($extralinks / 2)), $total - $navlen + $extralinks - 1));
 	$ilim = min($total, max($navlen - round($extralinks / 2), $current + floor($len)));
@@ -3842,39 +3847,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-														// <!-- <![CDATA[
-														var within = <?php echo (int) $within; ?>;
-														function search_(way) {
-															within = way;
-															if (way) {
-																$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-															} else {
-																lastsearch = '';
-																$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-															}
-															$('#search_input').val('');
-														}
-														$('#search_form').submit(function () {
-															if (within) {
-																var newsearch = $.trim($('#search_input').val());
-																if (newsearch.substring(newsearch.length - 1) == ',') {
-																	newsearch = newsearch.substr(0, newsearch.length - 1);
-																}
-																if (newsearch.length > 0) {
-																	$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-																} else {
-																	$('#search_input').val('<?php echo $searchwords; ?>');
-																}
-															}
-															return true;
-														});
-														function search_all() {
-															//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-															var check = $('#SEARCH_checkall').prop('checked');
-															$('.SEARCH_checkall').prop('checked', check);
-														}
+							// <!-- <![CDATA[
+							var within = <?php echo (int) $within; ?>;
+							function search_(way) {
+								within = way;
+								if (way) {
+									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+								} else {
+									lastsearch = '';
+									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+								}
+								$('#search_input').val('');
+							}
+							$('#search_form').submit(function () {
+								if (within) {
+									var newsearch = $.trim($('#search_input').val());
+									if (newsearch.substring(newsearch.length - 1) == ',') {
+										newsearch = newsearch.substr(0, newsearch.length - 1);
+									}
+									if (newsearch.length > 0) {
+										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+									} else {
+										$('#search_input').val('<?php echo $searchwords; ?>');
+									}
+								}
+								return true;
+							});
+							function search_all() {
+								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+								var check = $('#SEARCH_checkall').prop('checked');
+								$('.SEARCH_checkall').prop('checked', check);
+							}
 
-														// ]]> -->
+							// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
