@@ -328,14 +328,18 @@ function sitemap_getDBLimit($items_per_sitemap = 2) {
  */
 
 function getSitemapIndexLinks() {
-	global $_zp_gallery, $sitemap_number;
+	global $_zp_gallery, $_zp_conf_vars, $sitemap_number;
 	$data = '';
 	if ($sitemap_number < 2) {
 		set_context(ZP_INDEX);
 		$albums_per_page = getOption('albums_per_page');
 		if (getOption('sitemap_galleryindex')) {
-			$galleryindex_mod = _PAGE_ . '/' . getOption('sitemap_galleryindex');
-			$galleryindex_nomod = 'index.php?p=' . getOption('sitemap_galleryindex') . '&amp;page=';
+			if (array_key_exists($page = getOption('sitemap_galleryindex'), $_zp_conf_vars['special_pages'])) {
+				$galleryindex_mod = preg_replace('~^_PAGE_/~', _PAGE_ . '/', $_zp_conf_vars['special_pages'][$page]['rewrite']);
+			} else {
+				$galleryindex_mod = '/' . _PAGE_ . '/' . $page;
+			}
+			$galleryindex_nomod = 'index.php?p=' . $page . '&amp;page=';
 		} else {
 			$galleryindex_mod = '';
 			$galleryindex_nomod = 'index.php?page=';
