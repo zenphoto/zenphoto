@@ -59,7 +59,7 @@ class themeSwitcher {
 
 		$list = array();
 		foreach ($themes as $key => $theme) {
-			$list[$key] = $theme['name'];
+			$list[$theme['name']] = $key;
 			if (!isset($knownThemes[$key]) && in_array($key, $enabled)) {
 				$unknown[$key] = $theme['name'];
 			}
@@ -138,6 +138,7 @@ class themeSwitcher {
 					}
 				}
 			}
+
 			$text = $textIn;
 			if (empty($text)) {
 				$text = gettext('Theme');
@@ -178,7 +179,7 @@ class themeSwitcher {
 						echo '>' . $item . "</option>" . "\n";
 					}
 					?>
-					<?php //generateListFromArray(array($theme), $themes, false, true); ?>
+					<?php //generateListFromArray(array($theme), $themes, false, true);  ?>
 				</select>
 				<?php zp_apply_filter('themeSwitcher_Controllink', $theme); ?>
 			</div>
@@ -202,7 +203,7 @@ class themeSwitcher {
 $_themeSwitcherThemelist = array();
 $__enabled = getSerializedArray(getOption('themeSwitcher_list'));
 foreach ($_zp_gallery->getThemes() as $__key => $__theme) {
-	$_themeSwitcherThemelist[$__key] = array_key_exists($__key, $__enabled);
+	$_themeSwitcherThemelist[$__key] = in_array($__key, $__enabled);
 }
 unset($__enabled);
 unset($__key);
