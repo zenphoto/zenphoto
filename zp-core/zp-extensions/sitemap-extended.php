@@ -333,12 +333,8 @@ function getSitemapIndexLinks() {
 	if ($sitemap_number < 2) {
 		set_context(ZP_INDEX);
 		$albums_per_page = getOption('albums_per_page');
-		if (getOption('sitemap_galleryindex')) {
-			if (array_key_exists($page = getOption('sitemap_galleryindex'), $_zp_conf_vars['special_pages'])) {
-				$galleryindex_mod = preg_replace('~^_PAGE_/~', _PAGE_ . '/', $_zp_conf_vars['special_pages'][$page]['rewrite']);
-			} else {
-				$galleryindex_mod = '/' . _PAGE_ . '/' . $page;
-			}
+		if ($page = getOption('sitemap_galleryindex')) {
+			$galleryindex_mod = getCustomPageRewrite($page);
 			$galleryindex_nomod = 'index.php?p=' . $page . '&amp;page=';
 		} else {
 			$galleryindex_mod = '';
