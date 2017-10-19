@@ -1443,7 +1443,7 @@ class Transientimage extends Image {
 		if (!is_object($album)) {
 			$album = new AlbumBase('Transient');
 		}
-		$this->album = $album;
+		$this->album = $this->albumnamealbum = $album;
 		$this->localpath = $image;
 		$filename = makeSpecialImageName($image);
 		$this->filename = $filename;
