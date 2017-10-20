@@ -209,22 +209,22 @@ function reconfigureCS() {
  * HTML for the configuration change notification
  */
 function reconfigurePage($diff, $needs, $mandatory) {
+	if (OFFSET_PATH) {
+		$where = 'admin';
+	} else {
+		$where = 'gallery';
+	}
 	if (function_exists('getXSRFToken')) {
 		$token = getXSRFToken('setup');
 		if (isset($_GET['dismiss']) && isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == $token) {
 			setOption('zenphoto_install', serialize(installSignature()));
 			return;
 		}
-		$token = 'xsrfToken=' . $token;
+		$where .= '&amp;xsrfToken=' . $token;
 	} else {
-		$token = 'noToken';
+		$where .= '&amp;notoken';
 	}
-	if (OFFSET_PATH) {
-		$where = 'admin';
-	} else {
-		$where = 'gallery';
-	}
-	$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;' . $token . '">';
+	$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '">';
 	$l2 = '</a>';
 	?>
 	<div class="reconfigbox">
@@ -284,11 +284,11 @@ function reconfigurePage($diff, $needs, $mandatory) {
 				} else {
 					$query = array();
 				}
-				$query[] = 'dismiss=config_warning';
-				$query[] = $token;
+				$query['dismiss'] = 'config_warning';
+				$query['xsrfToken'] = $token;
 				?>
 				<p class="buttons">
-					<a href="?<?php echo ltrim(implode('&amp;', $query), '&amp;'); ?>" title="<?php echo gettext('Ignore this configuration change.'); ?>"><?php echo gettext('dismiss'); ?></a>
+					<a href="?<?php echo html_encode(http_build_query($query)); ?>" title="<?php echo gettext('Ignore this configuration change.'); ?>"><?php echo gettext('dismiss'); ?></a>
 				</p>
 				<br class="clearall">
 					<?php

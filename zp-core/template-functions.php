@@ -701,7 +701,7 @@ function getTotalPages($_oneImagePage = false) {
  * @return int
  */
 function getPageNumURL($page, $total = null) {
-	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page;
+	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page, $_zp_conf_vars;
 	if (is_null($total)) {
 		$total = getTotalPages();
 	}
@@ -730,7 +730,7 @@ function getPageNumURL($page, $total = null) {
 	} else {
 		// handle custom page
 		$pg = stripSuffix($_zp_gallery_page);
-		$pagination1 = '/' . _PAGE_ . '/' . $pg . '/';
+		$pagination1 = getCustomPageRewrite($pg);
 		$pagination2 = 'index.php?p=' . $pg;
 		if ($page > 1) {
 			$pagination1 .= $page;
@@ -861,8 +861,9 @@ function getPageNavList($_oneImagePage, $navlen, $firstlast, $current, $total) {
 		$navlen = $total;
 	}
 	$extralinks = 2;
-	if ($firstlast)
+	if ($firstlast) {
 		$extralinks = $extralinks + 2;
+	}
 	$len = floor(($navlen - $extralinks) / 2);
 	$j = max(round($extralinks / 2), min($current - $len - (2 - round($extralinks / 2)), $total - $navlen + $extralinks - 1));
 	$ilim = min($total, max($navlen - round($extralinks / 2), $current + floor($len)));
@@ -3607,6 +3608,22 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 }
 
 /**
+ * returns the rewrite part of a custom page link
+ *
+ * @global array $_zp_conf_vars
+ * @param string $page
+ * @return string
+ */
+function getCustomPageRewrite($page) {
+	global $_zp_conf_vars;
+	if (array_key_exists($page, $_zp_conf_vars['special_pages'])) {
+		return preg_replace('~^_PAGE_/~', _PAGE_ . '/', $_zp_conf_vars['special_pages'][$page]['rewrite']);
+	} else {
+		return '/' . _PAGE_ . '/' . $page;
+	}
+}
+
+/**
  * Produces the url to a custom page (e.g. one that is not album.php, image.php, or index.php)
  *
  * @param string $linktext Text for the URL
@@ -3616,11 +3633,7 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
  */
 function getCustomPageURL($page, $q = '') {
 	global $_zp_current_album, $_zp_conf_vars, $_zp_gallery_page;
-	if (array_key_exists($page, $_zp_conf_vars['special_pages'])) {
-		$result_r = preg_replace('~^_PAGE_/~', _PAGE_ . '/', $_zp_conf_vars['special_pages'][$page]['rewrite']);
-	} else {
-		$result_r = '/' . _PAGE_ . '/' . $page;
-	}
+	$result_r = getCustomPageRewrite($page);
 	$result = "index.php?p=$page";
 
 	if (in_context(ZP_ALBUM) && $_zp_gallery_page != $page . '.php') {

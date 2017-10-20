@@ -30,7 +30,7 @@ if (!defined('WEBPATH'))
 	<html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<?php zp_apply_filter('theme_head'); ?>
-			<link rel="stylesheet" href="<?php echo WEBPATH; ?>/themes/zenpage/slideshow.css" type="text/css" />
+			<link rel="stylesheet" href="slideshow.css" type="text/css" />
 			<?php printSlideShowJS(); ?>
 
 		</head>

@@ -516,6 +516,7 @@ themes/zpfocus/pages.php
 themes/zpfocus/password.php
 themes/zpfocus/register.php
 themes/zpfocus/search.php
+themes/zpfocus/slideshow.css
 themes/zpfocus/slideshow.php
 themes/zpfocus/theme.png
 themes/zpfocus/theme_description.php
@@ -581,6 +582,7 @@ themes/zpmasonry/pages.php
 themes/zpmasonry/password.php
 themes/zpmasonry/register.php
 themes/zpmasonry/search.php
+themes/zpmasonry/slideshow.css
 themes/zpmasonry/slideshow.php
 themes/zpmasonry/theme.png
 themes/zpmasonry/theme_description.php
@@ -663,6 +665,7 @@ themes/zpminimal/pages.php
 themes/zpminimal/password.php
 themes/zpminimal/register.php
 themes/zpminimal/search.php
+themes/zpminimal/slideshow.css
 themes/zpminimal/slideshow.php
 themes/zpminimal/theme.png
 themes/zpminimal/theme_description.php
@@ -8200,4 +8203,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8202
+8205

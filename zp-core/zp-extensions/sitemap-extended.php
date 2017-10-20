@@ -18,7 +18,7 @@
  * @package plugins
  * @subpackage seo
  */
-$plugin_is_filter = 0 | CLASS_PLUGIN;
+$plugin_is_filter = 0 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Generates sitemap.org compatible XML files for use with Google and other search engines.');
 $plugin_notice = gettext('<strong>Note:</strong> The index links may not match if using the Zenpage option "news on index" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!!');
 $plugin_author = 'Malte Müller (acrylian)';
@@ -194,7 +194,7 @@ class sitemap {
 
 }
 
-if (isset($_GET['sitemap'])) {
+if (OFFSET_PATH === 0 && isset($_GET['sitemap']) && $_zp_gallery_page == 'index.php') { //	only front-end.
 	$sitemappath = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/sitemap/sitemapindex.xml';
 	if (file_exists($sitemappath)) {
 		$sitemapfile = file_get_contents($sitemappath);
@@ -328,14 +328,14 @@ function sitemap_getDBLimit($items_per_sitemap = 2) {
  */
 
 function getSitemapIndexLinks() {
-	global $_zp_gallery, $sitemap_number;
+	global $_zp_gallery, $_zp_conf_vars, $sitemap_number;
 	$data = '';
 	if ($sitemap_number < 2) {
 		set_context(ZP_INDEX);
 		$albums_per_page = getOption('albums_per_page');
-		if (getOption('sitemap_galleryindex')) {
-			$galleryindex_mod = _PAGE_ . '/' . getOption('sitemap_galleryindex');
-			$galleryindex_nomod = 'index.php?p=' . getOption('sitemap_galleryindex') . '&amp;page=';
+		if ($page = getOption('sitemap_galleryindex')) {
+			$galleryindex_mod = getCustomPageRewrite($page);
+			$galleryindex_nomod = 'index.php?p=' . $page . '&amp;page=';
 		} else {
 			$galleryindex_mod = '';
 			$galleryindex_nomod = 'index.php?page=';
