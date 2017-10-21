@@ -199,10 +199,17 @@ class htmlmetatags {
 		$type = 'article';
 		switch ($_zp_gallery_page) {
 			case 'index.php':
+			case getCustomGalleryIndexPage():
 				$desc = getBareGalleryDesc();
-				//$canonicalurl = $host . getGalleryIndexURL();
-				$canonicalurl = $host . getPageNumURL($_zp_page);
 				$type = 'website';
+				switch ($_zp_gallery_page) {
+					case 'index.php':
+						$canonicalurl = $host . getPageNumURL($_zp_page);
+						break;
+					case getCustomGalleryIndexPage():
+						$canonicalurl = $host . getCustomGalleryIndexURL($_zp_page);
+						break;
+				}
 				break;
 			case 'album.php':
 				$pagetitle = getBareAlbumTitle() . " - ";
@@ -379,8 +386,8 @@ class htmlmetatags {
 								case 'index.php':
 									$altlink .= '/';
 									break;
-								case 'gallery.php':
-									$altlink .= '/'. _PAGE_ . '/gallery';
+								case getCustomGalleryIndexPage():
+									$altlink .= getCustomGalleryIndexURL($_zp_page, false);
 									break;
 								case 'album.php':
 									$altlink .= '/' . html_encode($_zp_current_album->name) . '/';
@@ -424,7 +431,6 @@ class htmlmetatags {
 										$altlink .= _PAGE_ . '/' . $_zp_page . '/';
 									}
 									break;
-								case 'gallery.php':
 								case 'news.php':
 									if ($_zp_page != 1) {
 										$altlink .= '/' . $_zp_page;

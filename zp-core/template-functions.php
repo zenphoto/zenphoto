@@ -526,27 +526,85 @@ function getMainSiteURL() {
  * @return string
  */
 function getGalleryIndexURL() {
-  global $_zp_current_album, $_zp_gallery_page;
-  if (func_num_args() !== 0) {
-    internal_deprecations::getGalleryIndexURL();
-  }
-	$custom_index = getOption('custom_index_page');
-	if ($custom_index) {
-		$link = rewrite_path('/' . _PAGE_ . '/' . $custom_index . '/', "/index.php?p=" . $custom_index);
-	} else {
-		$link = WEBPATH . "/";
+	global $_zp_current_album, $_zp_gallery_page;
+	if (func_num_args() !== 0) {
+		internal_deprecations::getGalleryIndexURL();
 	}
+	$page = 1;
 	if (in_context(ZP_ALBUM) && $_zp_gallery_page != 'index.php') {
 		$album = getUrAlbum($_zp_current_album);
-		if (($page = $album->getGalleryPage()) > 1) {
-			if ($custom_index) {
-				$link = rewrite_path('/' . _PAGE_ . '/' . $custom_index . '/' . $page . '/', "/index.php?p=" . $custom_index . "&amp;page=" . $page);
-			} else {
-				$link = rewrite_path('/' . _PAGE_ . '/' . $page . '/', "/index.php?" . "page=" . $page);
-			}
-		}
+		$page = $album->getGalleryPage();
+	}
+	if (!$link = getCustomGalleryIndexURL($page)) {
+		$link = getStandardGalleryIndexURL($page);
 	}
 	return zp_apply_filter('getLink', $link, 'index.php', NULL);
+}
+
+/**
+ * Returns the url to the standard gallery index.php page
+ * 
+ * @see getGalleryIndexURL()
+ * 
+ * @param int $page Pagenumber to append
+ * @param bool $webpath host path to be prefixed. If "false" is passed you will get a localized "WEBPATH"
+ * @return string
+ */
+function getStandardGalleryIndexURL($page = 1, $webpath = null) {
+	if ($page > 1) {
+		return rewrite_path('/' . _PAGE_ . '/' . $page . '/', "/index.php?" . "page=" . $page, $webpath);
+	} else {
+		if (is_null($webpath)) {
+			if (class_exists('seo_locale')) {
+				$webpath = seo_locale::localePath();
+			} else {
+				$webpath = WEBPATH;
+			}
+		}
+		return $webpath . "/";
+	}
+}
+
+/**
+ * Gets the custom gallery index url if one is set, otherwise false
+ * 
+ * @see getGalleryIndexURL()
+ * 
+ * @global array $_zp_conf_vars
+ * @param int $page Pagenumber for pagination
+ * @param bool $webpath host path to be prefixed. If "false" is passed you will get a localized "WEBPATH"
+ * @return string
+ */
+function getCustomGalleryIndexURL($page = 1, $webpath = null) {
+	$custom_index = getOption('custom_index_page');
+	if ($custom_index) {
+		$link = getCustomPageURL($custom_index, '', $webpath);
+		if ($page > 1) {
+			if (MOD_REWRITE) {
+				$link .= $page . '/';
+			} else {
+				$link .= "&amp;page=" . $page;
+			}
+		}
+		return $link;
+	}
+	return false;
+}
+
+/**
+ * Returns the name to the individual custom gallery index page name if set, 
+ * otherwise returns generic custom gallery page "gallery.php" that is widely supported by themes
+ * If you need to check if there is an indovidual custom_index_page set use 
+ * `getOption('custom_index_page')` or `getCustomGalleryIndexURL()`
+ * 
+ * @return string
+ */
+function getCustomGallerIndexPage() {
+	$custom_index = getOption('custom_index_page');
+	if ($custom_index) {
+		return $custom_index . '.php';
+	}
+	return 'gallery.php';
 }
 
 /**
@@ -559,20 +617,21 @@ function getGalleryIndexURL() {
  * @param bool $printHomeURL In case of a custom gallery index, display breadcrumb with home link (default is true)
  */
 function printGalleryIndexURL($after = NULL, $text = NULL, $printHomeURL = true) {
-    global $_zp_gallery_page;
-    if(is_null($text)) {
-        $text = gettext('Gallery');
-    }
-    $customgalleryindex = getOption('custom_index_page');
-    if($customgalleryindex && $printHomeURL) {
-        printSiteHomeURL($after);
-    }
-    if ($_zp_gallery_page == getOption('custom_index_page').'.php') {
-        $after = NULL;
-    }
-    if(!$customgalleryindex || ($customgalleryindex && in_array($_zp_gallery_page, array('image.php', 'album.php', 'gallery.php')))) {
-        printLinkHTML(getGalleryIndexURL(), $text, $text, 'galleryindexurl'); echo $after;
-    }
+	global $_zp_gallery_page;
+	if (is_null($text)) {
+		$text = gettext('Gallery');
+	}
+	$customgalleryindex = getOption('custom_index_page');
+	if ($customgalleryindex && $printHomeURL) {
+		printSiteHomeURL($after);
+	}
+	if ($_zp_gallery_page == getCustomGallerIndexPage()) {
+		$after = NULL;
+	}
+	if (!$customgalleryindex || ($customgalleryindex && in_array($_zp_gallery_page, array('image.php', 'album.php', getCustomGallerIndexPage())))) {
+		printLinkHTML(getGalleryIndexURL(), $text, $text, 'galleryindexurl');
+		echo $after;
+	}
 }
 
 
@@ -785,7 +844,7 @@ function getTotalPages($_oneImagePage = false) {
  * @return int
  */
 function getPageNumURL($page, $total = null) {
-	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page;
+	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page, $_zp_conf_vars;
 	if (is_null($total)) {
 		$total = getTotalPages();
 	}
@@ -812,9 +871,13 @@ function getPageNumURL($page, $total = null) {
 			return NULL;
 		}
 	} else {
-// handle custom page
+		// handle custom page
 		$pg = stripSuffix($_zp_gallery_page);
-		$pagination1 = '/' . _PAGE_ . '/' . $pg . '/';
+		if (array_key_exists($pg, $_zp_conf_vars['special_pages'])) {
+			$pagination1 = preg_replace('~^_PAGE_/~', _PAGE_ . '/', $_zp_conf_vars['special_pages'][$pg]['rewrite']) . '/';
+		} else {
+			$pagination1 = '/' . _PAGE_ . '/' . $pg . '/';
+		}
 		$pagination2 = 'index.php?p=' . $pg;
 		if ($page > 1) {
 			$pagination1 .= $page . '/';
@@ -3718,25 +3781,24 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 /**
  * Produces the url to a custom page (e.g. one that is not album.php, image.php, or index.php)
  *
- * @param string $linktext Text for the URL
  * @param string $page page name to include in URL
  * @param string $q query string to add to url
+ * @param bool $webpath host path to be prefixed. If "false" is passed you will get a localized "WEBPATH"
  * @return string
  */
-function getCustomPageURL($page, $q = '') {
-	global $_zp_current_album, $_zp_conf_vars;
+function getCustomPageURL($page, $q = '', $webpath = null) {
+	global $_zp_conf_vars;
 	if (array_key_exists($page, $_zp_conf_vars['special_pages'])) {
-		$result_r = preg_replace('~^_PAGE_/~', _PAGE_ . '/', $_zp_conf_vars['special_pages'][$page]['rewrite']) . '/';
+		$rewrite = preg_replace('~^_PAGE_/~', _PAGE_ . '/', $_zp_conf_vars['special_pages'][$page]['rewrite']) . '/';
 	} else {
-		$result_r = '/' . _PAGE_ . '/' . $page . '/';
+		$rewrite = '/' . _PAGE_ . '/' . $page . '/';
 	}
-	$result = "index.php?p=$page";
-
+	$plain = "index.php?p=$page";
 	if (!empty($q)) {
-		$result_r .= "?$q";
-		$result .= "&$q";
+		$rewrite .= "?$q";
+		$plain .= "&$q";
 	}
-	return zp_apply_filter('getLink', rewrite_path($result_r, $result), $page . '.php', NULL);
+	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain, $webpath), $page . '.php', null);
 }
 
 /**

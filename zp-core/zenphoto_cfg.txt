@@ -73,7 +73,8 @@ $conf['special_pages'] = array(
 														'page'=>				array('define'=>'_PAGE_',					'rewrite'=>'page'),
 														'search'=>			array('define'=>'_SEARCH_',				'rewrite'=>'_PAGE_/search'),
 														'archive'=>			array('define'=>'_ARCHIVE_',			'rewrite'=>'_PAGE_/archive'),
-														'tags'=>				array('define'=>'_TAGS_',					'rewrite'=>'_SEARCH_/tags')
+														'tags'=>				array('define'=>'_TAGS_',					'rewrite'=>'_SEARCH_/tags'),
+														'gallery'=>			array('define'=>'_GALLERY_INDEX_','rewrite'=>'_PAGE_/gallery')
 												);
 //
 ////////////////////////////////////////////////////////////////////////////////

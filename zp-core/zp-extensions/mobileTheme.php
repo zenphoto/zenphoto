@@ -165,8 +165,8 @@ class mobileTheme {
 					case 'index.php':
 						$link = 'index.php?mobileTheme=' . $enable;
 						break;
-					case 'gallery.php':
-						$link = 'index.php?p=gallery&amp;mobileTheme=' . $enable;
+					case getCustomGalleryIndexPage():
+						$link = 'index.php?p=' . stripSuffix(getCustomGalleryIndexPage()) . '&amp;mobileTheme=' . $enable;
 						break;
 					case 'album.php':
 						$link = $_zp_current_album->getLink(null) . '&amp;mobileTheme=' . $enable;
