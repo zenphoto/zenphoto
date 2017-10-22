@@ -34,13 +34,8 @@
 		<input type="password" id="adminpass_2" name="adminpass_2"	value="" size="23" />
 	</div>
 
-	<?php
-	$msg = $_zp_authority->passwordNote();
-	if (!empty($msg))
-		echo $msg;
-	?>
 
-<?php if (!getOption('register_user_email_is_id')) { ?>
+	<?php if (!getOption('register_user_email_is_id')) { ?>
 		<div>
 			<label for="admin_email"><?php echo gettext("Email:"); ?></label>
 			<input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode($admin_e); ?>" size="22" />
@@ -53,9 +48,9 @@
 		echo $html;
 	?>
 
-		<?php
-		if (getOption('register_user_captcha')) {
-			?>
+	<?php
+	if (getOption('register_user_captcha')) {
+		?>
 		<div>
 			<?php $captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>:")); ?>
 			<?php if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html']; ?>
@@ -70,9 +65,9 @@
 				echo $captcha['hidden'];
 			?>
 		</div>
-	<?php
-}
-?>
+		<?php
+	}
+	?>
 
 	<div id="contact-submit">
 		<input type="submit" value="<?php echo gettext('Submit') ?>" />
@@ -81,8 +76,8 @@
 	<?php if (function_exists('federated_login_buttons')) { ?>
 		<fieldset id="Federated_buttons_fieldlist">
 			<legend><?php echo gettext('You may also register using federated credentials'); ?></legend>
-	<?php federated_login_buttons(WEBPATH . '/index.php'); ?>
+			<?php federated_login_buttons(WEBPATH . '/index.php'); ?>
 		</fieldset>
-<?php } ?>
+	<?php } ?>
 
 </form>

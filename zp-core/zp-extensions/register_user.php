@@ -472,7 +472,7 @@ function printRegistrationForm($thanks = NULL) {
 				?>
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Registration failed."); ?></h2>
-					<p><?php echo gettext('The CAPTCHA you entered was not correct.'); ?></p>
+					<p><?php echo gettext('CAPTCHA verification failed.'); ?></p>
 				</div>
 				<?php
 				break;

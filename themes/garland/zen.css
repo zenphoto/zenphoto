@@ -1063,7 +1063,7 @@ button.positive,.buttons a.positive {
 #registration_form input[type="password"],
 #mailform input[type="text"],
 #commentform input[type="text"] {
-	width: 65%;
+	width: 250px;
 }
 img#captcha {
 	display: block;

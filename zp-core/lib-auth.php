@@ -787,7 +787,7 @@ class _Authority {
 							}
 						}
 					} else {
-						$_zp_login_error = gettext('Your input did not match the captcha');
+						$_zp_login_error = gettext('CAPTCHA verification failed.');
 						$_REQUEST['logon_step'] = 'captcha';
 					}
 					break;
@@ -1342,13 +1342,14 @@ class _Authority {
 		?>
 		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" class="inputbox"/>
 		<p>
-			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>"><?php echo gettext("Password") . $flag; ?>
-			</label>
-			<label for="disclose_password<?php echo $id; ?>" class="floatright" style="padding-right: 15px;"><?php echo gettext('Show'); ?></label>
-			<input class="floatright"
-						 type="checkbox"
-						 name="disclose_password<?php echo $id; ?>"
+			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>"><?php echo gettext("Password") . $flag; ?></label>
+			<span style="float: right !important; padding-right: 15px;">
+				<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show'); ?></label>
+			</span>
+			<input type="checkbox"
 						 class="disclose_password"
+						 style="float: right !important;"
+						 name="disclose_password<?php echo $id; ?>"
 						 id="disclose_password<?php echo $id; ?>"
 						 onclick="passwordClear('<?php echo $id; ?>');
 								 togglePassword('<?php echo $id; ?>');">
@@ -1359,7 +1360,7 @@ class _Authority {
 						 onclick="passwordClear('<?php echo $id; ?>');"
 						 onkeyup="passwordStrength('<?php echo $id; ?>');"
 						 <?php echo $disable; ?> class="inputbox"/>
-
+			<br clear="all">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

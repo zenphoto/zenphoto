@@ -1568,6 +1568,7 @@ zp-core/zp-extensions/purgeOptions.php
 zp-core/zp-extensions/quota_manager.php
 zp-core/zp-extensions/rating.php
 zp-core/zp-extensions/reCaptcha.php
+zp-core/zp-extensions/reCaptche_v2.php
 zp-core/zp-extensions/register_user.php
 zp-core/zp-extensions/related_items.php
 zp-core/zp-extensions/rewriteRules.php
@@ -8203,4 +8204,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8205
+8206
