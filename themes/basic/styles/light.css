@@ -410,9 +410,6 @@ input#code {
 	margin-left: 10px;
 	width: 10em !important;
 }
-#recaptcha_widget_div {
-	float: left;
-}
 
 /* Forms
 ------------------------------ */

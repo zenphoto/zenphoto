@@ -511,3 +511,7 @@ li.sfHover > a > .sf-sub-indicator {
 #loginform button[type] {
 	background-color: #F7F8F9;
 }
+
+.disclose_password_show {
+	padding-right: 80px !important;
+}

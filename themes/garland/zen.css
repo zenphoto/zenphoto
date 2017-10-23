@@ -1075,9 +1075,7 @@ input#code {
 	margin-left: 10px;
 	width: 10em !important;
 }
-#recaptcha_widget_div {
-	float: left;
-}
+
 
 input.button {
 	padding: 5px 8px 5px 8px!important;
@@ -1147,4 +1145,11 @@ input.button {
 
 #loginform button[type] {
 	background-color: #F7F8F9;
+}
+
+.g-recaptcha > div{
+	margin: 10px auto !important;
+	text-align: center;
+	width: auto !important;
+	height: auto !important;
 }

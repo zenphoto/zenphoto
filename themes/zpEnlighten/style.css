@@ -1396,3 +1396,7 @@ h2.contact {
 .zen-logo img {
 	vertical-align: sub;
 }
+
+.disclose_password_show {
+	padding-right: 130px !important;
+}

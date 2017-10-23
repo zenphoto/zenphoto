@@ -158,7 +158,7 @@ class reCaptcha extends _zp_captcha {
 							"				};\n" .
 							"</script>\n";
 			$html .= recaptcha_get_html($publicKey, NULL, secureServer());
-			return array('html' => '<label class="captcha_label">' . $prompt . '</label>', 'input' => $themejs, 'hidden' => $html);
+			return array('html' => '<label class="captcha_label">' . $prompt . '</label>', 'hidden' => $themejs . $html);
 		}
 	}
 

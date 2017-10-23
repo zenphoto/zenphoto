@@ -544,3 +544,14 @@ h2{
 #loginform .show_checkbox {
 	display: none;
 }
+
+.g-recaptcha > div{
+	margin: 10px auto !important;
+	text-align: center;
+	width: auto !important;
+	height: auto !important;
+}
+
+.disclose_password_show {
+	padding-right: 70px !important;
+}

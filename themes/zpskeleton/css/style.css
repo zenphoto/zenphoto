@@ -875,3 +875,10 @@ or wrap each row of columns in a <div class="row"> */
 #loginform button[type] {
 	background-color: #F7F8F9;
 }
+
+.g-recaptcha > div{
+	margin: 10px auto !important;
+	padding-left: 100px;
+	width: auto !important;
+	height: auto !important;
+}

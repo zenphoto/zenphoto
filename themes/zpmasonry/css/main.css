@@ -287,3 +287,7 @@ ul.flags{z-index:99;text-align:center;position:fixed;bottom:10px;right:5px;width
 	color: black;
 	background-color: #F7F8F9;
 }
+
+#registration_form {
+	width: 500px;
+}

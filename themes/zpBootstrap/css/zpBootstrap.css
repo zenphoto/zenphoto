@@ -362,10 +362,16 @@ blockquote small, blockquote.small {
 /*------------------------------------
 	contact, login, password and register
 -------------------------------------- */
+
+#registration_form {
+	width: 680px;
+}
+
 /* contact */
 #mailform strong, #commentform strong, #registration_form strong {
 	color: red;
 }
+
 div.buttons {
 	padding: 10px 0;
 }
@@ -458,3 +464,14 @@ div.buttons button {
 /*------------------------------------
 	Misc
 -------------------------------------- */
+
+.g-recaptcha > div{
+	padding-left: 270px;
+	margin: 10px auto !important;
+	width: auto !important;
+	height: auto !important;
+}
+
+.disclose_password_show {
+	padding-right: 0px !important;
+}

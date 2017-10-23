@@ -1342,24 +1342,28 @@ class _Authority {
 		?>
 		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" class="inputbox"/>
 		<p>
-			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>"><?php echo gettext("Password") . $flag; ?></label>
-			<span style="float: right !important; padding-right: 15px;">
-				<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show'); ?></label>
+			<label for="pass<?php echo $id; ?>_text" id="strength<?php echo $id; ?>"><?php echo gettext("Password") . $flag; ?></label>
+			<span class="disclose_password_show" style="float: right !important; padding-right: 15px;">
+				<?php echo gettext('Show'); ?>
+
+				<input type="checkbox"
+							 class="disclose_password"
+							 style="float: right !important;"
+							 name="disclose_password<?php echo $id; ?>"
+							 id="disclose_password<?php echo $id; ?>"
+							 onclick="passwordClear('<?php echo $id; ?>');
+									 togglePassword('<?php echo $id; ?>');">
 			</span>
-			<input type="checkbox"
-						 class="disclose_password"
-						 style="float: right !important;"
-						 name="disclose_password<?php echo $id; ?>"
-						 id="disclose_password<?php echo $id; ?>"
-						 onclick="passwordClear('<?php echo $id; ?>');
-								 togglePassword('<?php echo $id; ?>');">
-			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-						 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
-						 id="pass<?php echo $id; ?>"
-						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
-						 onclick="passwordClear('<?php echo $id; ?>');"
-						 onkeyup="passwordStrength('<?php echo $id; ?>');"
-						 <?php echo $disable; ?> class="inputbox"/>
+
+			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
+				<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+							 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
+							 id="pass<?php echo $id; ?>"
+							 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
+							 onclick="passwordClear('<?php echo $id; ?>');"
+							 onkeyup="passwordStrength('<?php echo $id; ?>');"
+							 <?php echo $disable; ?> class="password_input inputbox"/>
+			</label>
 			<br clear="all">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
