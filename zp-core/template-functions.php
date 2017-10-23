@@ -599,7 +599,7 @@ function getCustomGalleryIndexURL($page = 1, $webpath = null) {
  * 
  * @return string
  */
-function getCustomGallerIndexPage() {
+function getCustomGalleryIndexPage() {
 	$custom_index = getOption('custom_index_page');
 	if ($custom_index) {
 		return $custom_index . '.php';
@@ -625,10 +625,10 @@ function printGalleryIndexURL($after = NULL, $text = NULL, $printHomeURL = true)
 	if ($customgalleryindex && $printHomeURL) {
 		printSiteHomeURL($after);
 	}
-	if ($_zp_gallery_page == getCustomGallerIndexPage()) {
+	if ($_zp_gallery_page == getCustomGalleryIndexPage()) {
 		$after = NULL;
 	}
-	if (!$customgalleryindex || ($customgalleryindex && in_array($_zp_gallery_page, array('image.php', 'album.php', getCustomGallerIndexPage())))) {
+	if (!$customgalleryindex || ($customgalleryindex && in_array($_zp_gallery_page, array('image.php', 'album.php', getCustomGalleryIndexPage())))) {
 		printLinkHTML(getGalleryIndexURL(), $text, $text, 'galleryindexurl');
 		echo $after;
 	}
