@@ -103,8 +103,14 @@
 		</p>
 		<?php
 	}
+	$class = $buttonExtra = '';
 	if (getOption("contactform_captcha") && !$_processing_post) {
+		$_zp_captcha->form = 'mailform';
 		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
+		if (isset($captcha['submitButton'])) {
+			$class = ' ' . $captcha['submitButton']['class'];
+			$buttonExtra = ' ' . $captcha['submitButton']['extra'];
+		}
 		?>
 		<p>
 			<?php
@@ -132,7 +138,7 @@
 	if (!$_processing_post) {
 		?>
 		<p>
-			<input type="submit" class="button buttons" value="<?php echo gettext("Send e-mail"); ?>" />
+			<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Send e-mail'); ?></button>
 			<input type="reset" class="button buttons" value="<?php echo gettext("Reset"); ?>" />
 		</p>
 	<?php } ?>

@@ -692,6 +692,9 @@ class _Authority {
 	 */
 	function handleLogon() {
 		global $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha, $_zp_loggedin;
+
+		debugLogVar('$_POST', $_POST);
+
 		if (isset($_POST['login'])) {
 			$post_user = sanitize(@$_POST['user'], 0);
 			$post_pass = sanitize(@$_POST['pass'], 0);
@@ -728,6 +731,9 @@ class _Authority {
 					$_REQUEST['logon_step'] = 'challenge';
 					break;
 				case 'captcha':
+
+					debugLogVar('$_zp_captcha', $_zp_captcha);
+
 					if ($_zp_captcha->checkCaptcha(trim(@$_POST['code']), sanitize(@$_POST['code_h'], 3))) {
 						require_once(dirname(__FILE__) . '/load_objectClasses.php'); // be sure that the plugins are loaded for the mail handler
 						if (empty($post_user)) {
@@ -975,7 +981,7 @@ class _Authority {
 			switch ($whichForm) {
 				case 'challenge':
 					?>
-					<form name="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
+					<form name="login" id="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
 						<fieldset id="logon_box">
 							<input type="hidden" name="login" value="1" />
 							<input type="hidden" name="password" value="challenge" />
@@ -1076,7 +1082,7 @@ class _Authority {
 					}
 					$redirect = zp_apply_filter('login_redirect_link', $redirect);
 					?>
-					<form name="login" action="<?php echo html_encode(pathurlencode($redirect)); ?>" method="post">
+					<form name="login" id="login" action="<?php echo html_encode(pathurlencode($redirect)); ?>" method="post">
 						<input type="hidden" name="login" value="1" />
 						<input type="hidden" name="password" value="1" />
 						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
@@ -1139,7 +1145,12 @@ class _Authority {
 					}
 					break;
 				case 'captcha':
+					$class = $buttonExtra = '';
+					$_zp_captcha->form = 'login';
 					$captcha = $_zp_captcha->getCaptcha(NULL);
+					if (isset($captcha['submitButton'])) {
+						$extra = ' class="' . $captcha['submitButton']['class'] . '" ' . $captcha['submitButton']['extra'];
+					}
 					?>
 					<script type="text/javascript">
 						function toggleSubmit() {
@@ -1150,8 +1161,11 @@ class _Authority {
 							}
 						}
 					</script>
-					<form name="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
-						<?php if (isset($captcha['hidden'])) echo $captcha['hidden']; ?>
+					<form name="login" id="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
+						<?php
+						if (isset($captcha['hidden']))
+							echo $captcha['hidden'];
+						?>
 						<input type="hidden" name="login" value="1" />
 						<input type="hidden" name="password" value="captcha" />
 						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
@@ -1159,7 +1173,10 @@ class _Authority {
 							<fieldset><legend><?php echo gettext('User name or e-mail address'); ?></legend>
 								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" onkeyup="toggleSubmit();"/>
 							</fieldset>
-							<?php if (isset($captcha['html'])) echo $captcha['html']; ?>
+							<?php
+							if (isset($captcha['html']))
+								echo $captcha['html'];
+							?>
 							<?php
 							if (isset($captcha['input'])) {
 								?>
@@ -1171,9 +1188,13 @@ class _Authority {
 							?>
 							<br />
 							<div class="buttons">
-								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" >
-									<?php echo CHECKMARK_GREEN; ?>
-									<?php echo gettext("Request password reset"); ?>
+								<button type="submit"  id="submitButton"<?php
+								echo $extra;
+								if (empty($requestor))
+									echo ' disabled="disabled"';
+								?>>
+													<?php echo CHECKMARK_GREEN; ?>
+													<?php echo gettext("Request password reset"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
 									<?php echo BACK_ARROW_BLUE; ?>

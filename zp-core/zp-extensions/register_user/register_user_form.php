@@ -9,7 +9,7 @@ Zenphoto_Authority::printPasswordFormJS(true);
 $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 ?>
 <div id="registration_form">
-	<form action="<?php echo $action; ?>" method="post" autocomplete="off">
+	<form id="registration" action="<?php echo $action; ?>" method="post" autocomplete="off">
 		<input type="hidden" name="register_user" value="yes" />
 		<p style="display:none;">
 			<label for="username"><?php echo gettext("Username* (this will be your user username)"); ?></label>
@@ -87,9 +87,14 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 				<?php
 			}
 		}
-
+		$class = $buttonExtra = '';
 		if (getOption('register_user_captcha')) {
+			$_zp_captcha->form = 'registration';
 			$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
+			if (isset($captcha['submitButton'])) {
+				$class = ' ' . $captcha['submitButton']['class'];
+				$buttonExtra = ' ' . $captcha['submitButton']['extra'];
+			}
 			?>
 			<p>
 				<?php
@@ -105,7 +110,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		}
 		?>
 		<p><?php echo gettext('<strong>*</strong>Required'); ?></p>
-		<input type="submit" class="button buttons" value="<?php echo gettext('Submit') ?>" />
+		<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Submit'); ?></button>
 		<?php
 		if (class_exists('federated_logon')) {
 			?>
