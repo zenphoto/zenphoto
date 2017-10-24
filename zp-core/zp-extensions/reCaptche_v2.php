@@ -59,7 +59,7 @@ class reCAPTCHA_v2 extends _zp_captcha {
 						'desc' => gettext('Select the size your Google <em>reCAPTCHA widget</em>.')),
 				'' => array('key' => 'recaptcha_link', 'type' => OPTION_TYPE_NOTE,
 						'order' => 3,
-						'desc' => gettext('You can get your credentials from <a href="http://www.google.com/recaptcha/admin">Google reCAPTCHA</a>. You should choose the <em>client side integration</em>: <strong>a. reCAPTCHA V2</strong>'))
+						'desc' => gettext('You can get your credentials from <a href="http://www.google.com/recaptcha/admin">Google reCAPTCHA</a>.'))
 		);
 		return $options;
 	}
@@ -75,12 +75,12 @@ class reCAPTCHA_v2 extends _zp_captcha {
 		if (getOption('reCAPTCHAKey')) {
 			$captcha = array();
 			if ($hidden) {
-				$captcha['hidden'] = '<script src="https://www.google.com/recaptcha/api.js?hl=' . trim(substr($_zp_current_locale, 0, 2)) . '"  async defer></script>
-		 <script>
-       function reCAPTCHAonSubmit(token) {
-         document.getElementById($(".g-recaptcha").closest("form").attr("id")).submit();
-       }
-     </script>';
+				$captcha['hidden'] = '<script src = "https://www.google.com/recaptcha/api.js?hl=' . trim(substr($_zp_current_locale, 0, 2)) . '" async defer></script>
+<script>
+	function reCAPTCHAonSubmit(token) {
+		document.getElementById($(".g-recaptcha").closest("form").attr("id")).submit();
+	}
+</script>';
 				$captcha['submitButton'] = array('class' => 'g-recaptcha', 'extra' => 'data-sitekey="' . getOption('reCAPTCHAKey') . '" data-callback="reCAPTCHAonSubmit"');
 			} else {
 				$captcha['hidden'] = '<script src="https://www.google.com/recaptcha/api.js?hl=' . trim(substr($_zp_current_locale, 0, 2)) . '"></script>';
