@@ -105,7 +105,6 @@
 	}
 	$class = $buttonExtra = '';
 	if (getOption("contactform_captcha") && !$_processing_post) {
-		$_zp_captcha->form = 'mailform';
 		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
 		if (isset($captcha['submitButton'])) {
 			$class = ' ' . $captcha['submitButton']['class'];

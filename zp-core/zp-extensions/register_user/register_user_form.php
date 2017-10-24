@@ -89,7 +89,6 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		}
 		$class = $buttonExtra = '';
 		if (getOption('register_user_captcha')) {
-			$_zp_captcha->form = 'registration';
 			$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
 			if (isset($captcha['submitButton'])) {
 				$class = ' ' . $captcha['submitButton']['class'];

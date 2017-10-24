@@ -21,17 +21,11 @@
 			else
 				echo gettext("User ID:");
 			?></label>
-		<input type="text" id="adminuser" name="adminuser" value="<?php echo html_encode($user); ?>" size="22" />
+		<input type="text" id="adminuser" name="user" value="<?php echo html_encode($user); ?>" size="22" />
 	</div>
 
 	<div>
-		<label for="password"><?php echo gettext("Password:"); ?></label>
-		<input type="password" id="adminpass" name="adminpass"	value="" size="23" />
-	</div>
-
-	<div>
-		<label for="adminpass_2"><?php echo gettext("Re-enter:"); ?></label>
-		<input type="password" id="adminpass_2" name="adminpass_2"	value="" size="23" />
+		<?php Zenphoto_Authority::printPasswordForm(NULL, false, NULL, false, $flag = '<strong>*</strong>'); ?>
 	</div>
 
 
@@ -52,9 +46,14 @@
 	if (getOption('register_user_captcha')) {
 		?>
 		<div>
-			<?php $captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>:")); ?>
-			<?php if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html']; ?>
 			<?php
+			$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>:"));
+			if (isset($captcha['submitButton'])) {
+				$class = ' ' . $captcha['submitButton']['class'];
+				$buttonExtra = ' ' . $captcha['submitButton']['extra'];
+			}
+			if (isset($captcha['html']) && isset($captcha['input']))
+				echo $captcha['html'];
 			if (isset($captcha['input'])) {
 				echo $captcha['input'];
 			} else {
@@ -70,7 +69,7 @@
 	?>
 
 	<div id="contact-submit">
-		<input type="submit" value="<?php echo gettext('Submit') ?>" />
+		<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Send e-mail'); ?></button>
 	</div>
 
 	<?php if (function_exists('federated_login_buttons')) { ?>

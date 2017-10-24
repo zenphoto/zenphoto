@@ -882,3 +882,7 @@ or wrap each row of columns in a <div class="row"> */
 	width: auto !important;
 	height: auto !important;
 }
+
+.disclose_password_show {
+	padding-right: 400px !important;
+}

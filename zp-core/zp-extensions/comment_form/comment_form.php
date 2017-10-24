@@ -76,7 +76,6 @@
 	}
 	$class = $buttonExtra = '';
 	if (commentFormUseCaptcha()) {
-		$_zp_captcha->form = 'commentform';
 		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
 		$required = true;
 		if (isset($captcha['submitButton'])) {

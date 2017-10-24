@@ -4,9 +4,13 @@
  *
  * Google reCAPTCHA version 2 handler, See {@link https://www.google.com/recaptcha/ google reCAPTCHA}
  *
- *
+ * This plugin supports the three reCAPTCHA v2 themes: <i>light</i>, <i>dark</i>, and <i>hidden</i>.
+ * The <i>hidden</i> theme requires theme support on the submit button of the form. The button must
+ * include the class <var>g-recaptcha</var> and must also have the reCaptcha data elements <var>data-sitekey="<i>your key</i>"</var>
+ * and <var>data-callback="reCAPTCHAonSubmit"</var>. See, for example, the <i>register_user_form</i> script.
  *
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ *
  *
  * @author Stephen Billard (sbillard)
 
@@ -27,7 +31,6 @@ $option_interface = 'reCAPTCHA_v2';
 class reCAPTCHA_v2 extends _zp_captcha {
 
 	var $name = 'reCAPTCHA_v2';
-	var $form = NULL;
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
@@ -49,7 +52,7 @@ class reCAPTCHA_v2 extends _zp_captcha {
 				gettext('Theme') => array('key' => 'reCAPTCHATheme', 'type' => OPTION_TYPE_RADIO,
 						'order' => 4,
 						'buttons' => array(gettext('Light') => 'light', gettext('Dark') => 'dark', gettext('Hidden') => 'hidden'),
-						'desc' => gettext('Select the theme your Google <em>reCAPTCHA widget</em>.<br />Note: if you select <em>Hidden</em> the form\'s <em>submit</em> button must include the reCAPTCHA class and data elements and you must set the captcha object <code>form</code> property to the ID of your form. See the register_user plugin for an example.')),
+						'desc' => gettext('Select the theme your Google <em>reCAPTCHA widget</em>.<br />Note: if you select <em>Hidden</em> the form\'s <em>submit</em> button must include the reCAPTCHA class and data elements.')),
 				gettext('Size') => array('key' => 'reCAPTCHASize', 'type' => OPTION_TYPE_RADIO,
 						'order' => 5,
 						'buttons' => array(gettext('Normal') => 'normal', gettext('Compact') => 'compact'),
@@ -69,13 +72,13 @@ class reCAPTCHA_v2 extends _zp_captcha {
 	function getCaptcha($prompt = NULL) {
 		global $_zp_current_locale;
 		$hidden = getOption('reCAPTCHATheme') == 'hidden';
-		if (getOption('reCAPTCHAKey') && ($this->form || !$hidden )) {
+		if (getOption('reCAPTCHAKey')) {
 			$captcha = array();
 			if ($hidden) {
 				$captcha['hidden'] = '<script src="https://www.google.com/recaptcha/api.js?hl=' . trim(substr($_zp_current_locale, 0, 2)) . '"  async defer></script>
 		 <script>
        function reCAPTCHAonSubmit(token) {
-         document.getElementById("' . $this->form . '").submit();
+         document.getElementById($(".g-recaptcha").closest("form").attr("id")).submit();
        }
      </script>';
 				$captcha['submitButton'] = array('class' => 'g-recaptcha', 'extra' => 'data-sitekey="' . getOption('reCAPTCHAKey') . '" data-callback="reCAPTCHAonSubmit"');
