@@ -1146,7 +1146,6 @@ class _Authority {
 					break;
 				case 'captcha':
 					$class = $buttonExtra = '';
-					$_zp_captcha->form = 'login';
 					$captcha = $_zp_captcha->getCaptcha(NULL);
 					if (isset($captcha['submitButton'])) {
 						$extra = ' class="' . $captcha['submitButton']['class'] . '" ' . $captcha['submitButton']['extra'];
