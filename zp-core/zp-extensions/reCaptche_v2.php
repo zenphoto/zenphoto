@@ -38,6 +38,7 @@ class reCAPTCHA_v2 extends _zp_captcha {
 			setOptionDefault('reCAPTCHASecret', '');
 			setOptionDefault('reCAPTCHATheme', 'light');
 			setOptionDefault('reCAPTCHASize', 'normal');
+			setOptionDefault('reCAPTCHAType', 'image');
 		}
 	}
 
@@ -53,8 +54,13 @@ class reCAPTCHA_v2 extends _zp_captcha {
 						'order' => 4,
 						'buttons' => array(gettext('Light') => 'light', gettext('Dark') => 'dark', gettext('Hidden') => 'hidden'),
 						'desc' => gettext('Select the theme your Google <em>reCAPTCHA widget</em>.<br />Note: if you select <em>Hidden</em> the form\'s <em>submit</em> button must include the reCAPTCHA class and data elements.')),
-				gettext('Size') => array('key' => 'reCAPTCHASize', 'type' => OPTION_TYPE_RADIO,
+				gettext('Widget') => array('key' => 'reCAPTCHAType', 'type' => OPTION_TYPE_RADIO,
 						'order' => 5,
+						'buttons' => array(gettext('Audio') => 'audio', gettext('Image') => 'image'),
+						'desc' => gettext('Choose the secondary verification method you would like to use.')
+				),
+				gettext('Size') => array('key' => 'reCAPTCHASize', 'type' => OPTION_TYPE_RADIO,
+						'order' => 6,
 						'buttons' => array(gettext('Normal') => 'normal', gettext('Compact') => 'compact'),
 						'desc' => gettext('Select the size your Google <em>reCAPTCHA widget</em>.')),
 				'' => array('key' => 'recaptcha_link', 'type' => OPTION_TYPE_NOTE,
@@ -81,10 +87,10 @@ class reCAPTCHA_v2 extends _zp_captcha {
 		document.getElementById($(".g-recaptcha").closest("form").attr("id")).submit();
 	}
 </script>';
-				$captcha['submitButton'] = array('class' => 'g-recaptcha', 'extra' => 'data-sitekey="' . getOption('reCAPTCHAKey') . '" data-callback="reCAPTCHAonSubmit"');
+				$captcha['submitButton'] = array('class' => 'g-recaptcha', 'extra' => 'data-sitekey="' . getOption('reCAPTCHAKey') . '" data-callback="reCAPTCHAonSubmit" data-type="' . getOption('reCAPTCHAType') . '"');
 			} else {
 				$captcha['hidden'] = '<script src="https://www.google.com/recaptcha/api.js?hl=' . trim(substr($_zp_current_locale, 0, 2)) . '"></script>';
-				$captcha['input'] = '<div class="g-recaptcha" data-sitekey="' . getOption('reCAPTCHAKey') . '" data-theme="' . getOption('reCAPTCHATheme') . '" data-size="' . getOption('reCAPTCHASize') . '"></div>';
+				$captcha['input'] = '<div class="g-recaptcha" data-sitekey="' . getOption('reCAPTCHAKey') . '" data-theme="' . getOption('reCAPTCHATheme') . '" data-type="' . getOption('reCAPTCHAType') . '" data-size="' . getOption('reCAPTCHASize') . '"></div>';
 			}
 			return $captcha;
 		}
