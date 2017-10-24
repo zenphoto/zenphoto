@@ -692,9 +692,6 @@ class _Authority {
 	 */
 	function handleLogon() {
 		global $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha, $_zp_loggedin;
-
-		debugLogVar('$_POST', $_POST);
-
 		if (isset($_POST['login'])) {
 			$post_user = sanitize(@$_POST['user'], 0);
 			$post_pass = sanitize(@$_POST['pass'], 0);
@@ -1372,7 +1369,7 @@ class _Authority {
 							 name="disclose_password<?php echo $id; ?>"
 							 id="disclose_password<?php echo $id; ?>"
 							 onclick="passwordClear('<?php echo $id; ?>');
-									 togglePassword('<?php echo $id; ?>');">
+											 togglePassword('<?php echo $id; ?>');">
 			</span>
 
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
