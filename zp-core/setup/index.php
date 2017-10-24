@@ -502,6 +502,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 		}
 	</script>
 	<link rel="stylesheet" href="setup.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/loginForm.css" type="text/css" />
 </head>
 <body>
 	<div id="main">
