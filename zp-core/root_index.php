@@ -18,7 +18,8 @@ if ($_contents) {
 		}
 		if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
 			if (file_exists(dirname($_zp_script) . '/plugins/site_upgrade/closed.php')) {
-				header('location: plugins/site_upgrade/closed.php');
+				require_once(dirname(__FILE__) . '/zp-core/global-definitions.php');
+				header('location: ' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
 			}
 			exit();
 		}
