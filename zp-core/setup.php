@@ -28,7 +28,13 @@ if (empty($needs)) {
 		<head>
 			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
-			<?php reconfigureCS(); ?>
+			<?php if (!zp_loggedin(ADMIN_RIGHTS)) {
+				?>
+				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/loginForm.css" type="text/css" />
+				<?php
+			}
+			reconfigureCS();
+			?>
 		</head>
 		<?php
 		if (!zp_loggedin(ADMIN_RIGHTS)) {
