@@ -25,8 +25,7 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop_height', 200);
 		setThemeOptionDefault('image_size', 650);
 		setThemeOptionDefault('image_use_side', 'longest');
-		setThemeOptionDefault('custom_index_page', '');
-
+		setThemeOptionDefault('gallery_index', TRUE);
 		setOptionDefault('gmap_width', '100%');
 		setOptionDefault('htmlmeta_name-title', 0);
 		setOptionDefault('htmlmeta_name-description', 0);
@@ -111,7 +110,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('custom_index_page', 'paradigm_zp_index_news', 'paradigm_homepage');
+		return array('paradigm_zp_index_news', 'paradigm_homepage');
 	}
 
 	function handleOption($option, $currentValue) {
