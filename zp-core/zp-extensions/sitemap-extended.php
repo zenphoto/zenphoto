@@ -318,9 +318,9 @@ class sitemap {
 		if (is_null($_sitemapGalleryIndex)) {
 			$_sitemapGalleryIndex = false;
 			$theme = $_zp_gallery->getCurrentTheme();
-			if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . 'gallery.php')) {
+			if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/gallery.php')) {
 				$_sitemapGalleryIndex = getThemeOption('gallery_index', NULL, $theme);
-				if (is_null($gallery)) {
+				if (is_null($_sitemapGalleryIndex)) {
 					$_sitemapGalleryIndex = extensionEnabled('zenpage');
 				}
 			}
@@ -342,7 +342,7 @@ class sitemap {
 			set_context(ZP_INDEX);
 			$albums_per_page = getOption('albums_per_page');
 			if (sitemap::galleryIndex()) {
-				$galleryindex_mod = getCustomPageRewrite('gallery');
+				$galleryindex_mod = ltrim(getCustomPageRewrite('gallery'), '/');
 				$galleryindex_nomod = 'index.php?p=gallery&amp;page=';
 			} else {
 				$galleryindex_mod = '';
