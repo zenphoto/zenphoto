@@ -9,9 +9,10 @@
  * into individual sitemaps per album.
  *
  * NOTE: if the current theme has a <i>gallery.php</i> script and zenpage is enabled
- * a separate sitemap will be generated for it than
- * the index page. This can be overridden in the theme by setting the theme option
- * <i>gallery_index</i>.
+ * a separate sitemap will be generated for "gallery" pages rather than
+ * <i>index</i> pages. This can be overridden in the theme by setting the theme option
+ * <i>gallery_index</i>. <var>TRUE</var> generates the "gallery" sitemap, <var>FALSE</var>
+ * forces the <i>index</i> sitemap.
  *
  * The sitemapindex file can be referenced via <var>%FULLWEBPATH%/index.php?sitemap</var> or
  * with modrewrite <var>%FULLWEBPATH%/?sitemap</var>.
