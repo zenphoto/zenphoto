@@ -174,6 +174,11 @@ class htmlmetatags {
 		}
 		$type = 'article';
 		switch ($_zp_gallery_page) {
+			case'gallery.php':
+				$desc = gettext('Album index');
+				$canonicalurl = FULLHOSTPATH . getCustomPageURL('gallery', '', $_zp_page);
+				$type = 'website';
+				break;
 			case 'index.php':
 				$desc = getBareGalleryDesc();
 				$canonicalurl = FULLHOSTPATH . $_zp_gallery->getLink($_zp_page);
@@ -348,6 +353,9 @@ class htmlmetatags {
 								$altlink = dynamic_locale::fullHostPath($lang);
 							}
 							switch ($_zp_gallery_page) {
+								case 'gallery.php':
+									$altlink .= str_replace($locallink, '', getCustomPageURL('gallery', '', $_zp_page));
+									break;
 								case 'index.php':
 									$altlink .= str_replace($locallink, '', $_zp_gallery->getLink($_zp_page));
 									break;
