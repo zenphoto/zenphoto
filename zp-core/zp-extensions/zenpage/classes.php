@@ -28,7 +28,7 @@ class CMS {
 	protected $sortdirection = true;
 	protected $sortSticky = true;
 	// page defaults
-	protected $page_sortorder;
+	protected $page_sortorder = 'sort_order';
 	protected $page_sortdirection;
 	var $news_enabled = NULL;
 	var $pages_enabled = NULL;
@@ -92,7 +92,7 @@ class CMS {
 		if (is_null($sorttype)) {
 			$sorttype = $this->getSortType('pages');
 			if (empty($sorttype)) {
-				$sorttype = 'date';
+				$sorttype = 'sort_order';
 			}
 		}
 		if (is_null($published)) {
