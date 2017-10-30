@@ -33,7 +33,7 @@ $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Google reCaptcha handler.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'reCaptcha') ? sprintf(gettext('Only one Captcha handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_captcha->name) : '';
-$plugin_notice = gettext('This plugin is deprecated as Google has released version 2 of reCaptcha. You should migrate to the reCaptcha_v2 plugin');
+$plugin_notice = gettext('This plugin is deprecated. See the <a href="https://developers.google.com/recaptcha/docs/faq">reCAPTCHA FAQ</a>. You should migrate to the reCaptcha_v2 plugin by March 2018');
 
 $option_interface = 'reCaptcha';
 
@@ -162,11 +162,23 @@ class reCaptcha extends _zp_captcha {
 		}
 	}
 
+	static function deprecated($tab, $subtab) {
+		?>
+		<div class="notebox">
+			<h2>
+				<?php echo gettext('The reCaptcha plugin is deprecated. See the <a href="https://developers.google.com/recaptcha/docs/faq">reCAPTCHA FAQ</a>. You should migrate to the reCaptcha_v2 plugin by March 2018'); ?>
+			</h2>
+		</div>
+
+		<?php
+	}
+
 }
 
 if ($plugin_disable) {
 	enableExtension('reCaptcha', 0);
 } else {
 	$_zp_captcha = new reCaptcha();
+	zp_register_filter('admin_note', 'reCaptcha::deprecated');
 }
 ?>
