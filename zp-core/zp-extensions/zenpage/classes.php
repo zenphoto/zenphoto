@@ -23,13 +23,16 @@ class CMS {
 
 	public $categoryStructure = array();
 	protected $categoryCache = array();
+	// category defaults
+	protected $cat_sortorder = 'sort_order';
+	protected $cat_sortdirection = false;
 	// article defaults (mirrors category vars)
 	protected $sortorder = 'date';
 	protected $sortdirection = true;
 	protected $sortSticky = true;
 	// page defaults
 	protected $page_sortorder = 'sort_order';
-	protected $page_sortdirection;
+	protected $page_sortdirection = false;
 	var $news_enabled = NULL;
 	var $pages_enabled = NULL;
 
@@ -81,7 +84,7 @@ class CMS {
 	 * @param bool $toplevel TRUE for only the toplevel pages
 	 * @param int $number number of pages to get (NULL by default for all)
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "id", "popular", "mostrated", "toprated", "random"
-	 * @param string $sortdirection false for ascenting, true for descending
+	 * @param bool $sortdirection false for ascenting, true for descending
 	 * @return array
 	 */
 	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
@@ -91,9 +94,6 @@ class CMS {
 		}
 		if (is_null($sorttype)) {
 			$sorttype = $this->getSortType('pages');
-			if (empty($sorttype)) {
-				$sorttype = 'sort_order';
-			}
 		}
 		if (is_null($published)) {
 			$published = !zp_loggedin();
@@ -566,14 +566,18 @@ class CMS {
 	 * Gets all categories
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "id", "popular", "random"
-	 * @param bool $sortdirection TRUE for ascending or FALSE for descending order
+	 * @param bool $sortdirection TRUE for descending or FALSE for ascending order
 	 * @return array
 	 */
 	function getAllCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
 
 		$structure = $this->getCategoryStructure();
-		if (is_null($sortdirection))
-			$sortdirection = $this->sortdirection;
+		if (is_null($sortdirection)) {
+			$sortdirection = $this->cat_sortdirection;
+		}
+		if (is_null($sorttype)) {
+			$sorttype = $this->cat_sortorder;
+		}
 
 		switch ($sorttype) {
 			case "id":
@@ -590,6 +594,7 @@ class CMS {
 				break;
 			default:
 				$sortorder = "sort_order";
+				$sortdirection = false;
 				break;
 		}
 		$all = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS);
@@ -611,7 +616,7 @@ class CMS {
 				if ($sorttype == 'random') {
 					shuffle($structure);
 				} else {
-					$structure = sortMultiArray($structure, $sortorder, !$sortdirection, true, false, false);
+					$structure = sortMultiArray($structure, $sortorder, $sortdirection, true, false, false);
 				}
 			}
 			$this->categoryCache[$key] = $structure;
@@ -629,35 +634,60 @@ class CMS {
 	}
 
 	function getSortDirection($what = 'news') {
-		if ($what == 'pages') {
-			return $this->page_sortdirection;
-		} else {
-			return $this->sortdirection;
+		switch ($what) {
+			case 'pages':
+				$type = $this->page_sortdirection;
+				break;
+			case'categories':
+				$type = $this->cat_sortdirection;
+				break;
+			default:
+				$type = $this->sortdirection;
+				break;
 		}
+		return $type;
 	}
 
 	function setSortDirection($value, $what = 'news') {
-		if ($what == 'pages') {
-			$this->page_sortdirection = (int) ($value && true);
-		} else {
-			$this->sortdirection = (int) ($value && true);
+		switch ($what) {
+			case 'pages':
+				$this->page_sortdirection = $value;
+				break;
+			case'categories':
+				$this->cat_sortdirection = $value;
+				break;
+			default:
+				$this->sortdirection = $value;
+				break;
 		}
 	}
 
 	function getSortType($what = 'news') {
-		if ($what == 'pages') {
-			$type = $this->page_sortorder;
-		} else {
-			$type = $this->sortorder;
+		switch ($what) {
+			case 'pages':
+				$type = $this->page_sortorder;
+				break;
+			case'categories':
+				$type = $this->cat_sortorder;
+				break;
+			default:
+				$type = $this->sortorder;
+				break;
 		}
 		return $type;
 	}
 
 	function setSortType($value, $what = 'news') {
-		if ($what == 'pages') {
-			$this->page_sortorder = $value;
-		} else {
-			$this->sortorder = $value;
+		switch ($what) {
+			case 'pages':
+				$this->page_sortorder = $value;
+				break;
+			case'categories':
+				$this->cat_sortorder = $value;
+				break;
+			default:
+				$this->sortorder = $value;
+				break;
 		}
 	}
 

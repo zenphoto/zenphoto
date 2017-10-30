@@ -245,7 +245,7 @@ class Category extends CMSRoot {
 	 */
 	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
 		global $_zp_CMS;
-		$subcategories = self::subCategoryRecurse($this, $_zp_CMS->getAllCategories($visible, $sorttype, $sortdirection));
+		$subcategories = self::subCategoryRecurse($this, $_zp_CMS->getAllCategories($visible, $sorttype, $sortdirection && strtolower($sortdirection) != 'asc'));
 		if (!empty($subcategories)) {
 			return $subcategories;
 		}

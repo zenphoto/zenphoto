@@ -1081,19 +1081,19 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 
 	switch ($listtype) {
 		case 'cats-checkboxlist':
-			$items = $_zp_CMS->getAllCategories(false);
+			$items = $_zp_CMS->getAllCategories(false, 'sort_order', false);
 			$classInstantiator = 'newCategory';
 			$rights = LIST_RIGHTS;
 			$ulclass = "";
 			break;
 		case 'cats-sortablelist':
-			$items = $_zp_CMS->getAllCategories(false);
+			$items = $_zp_CMS->getAllCategories(false, 'sort_order', false);
 			$classInstantiator = 'newCategory';
 			$rights = ZENPAGE_NEWS_RIGHTS;
 			$ulclass = " class=\"page-list\"";
 			break;
 		case 'pages-sortablelist':
-			$items = $_zp_CMS->getPages(false);
+			$items = $_zp_CMS->getPages(false, false, NULL, $sorttype = 'sort_order', false);
 			$classInstantiator = 'newPage';
 			$rights = ZENPAGE_PAGES_RIGHTS;
 			$ulclass = " class=\"page-list\"";
