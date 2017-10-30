@@ -86,69 +86,109 @@ class htmlmetatags {
 		if (!$_common_locale_type) {
 			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
 		}
-		$options = array(gettext('Cache control')				 => array('key'				 => 'htmlmeta_cache_control', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 0,
-										'selections' => array('no-cache' => "no-cache", 'public' => "public", 'private' => "private", 'no-store' => "no-store"),
-										'desc'			 => gettext("If the browser cache should be used.")),
-						gettext('Pragma')								 => array('key'				 => 'htmlmeta_pragma', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => array('no-cache' => "no-cache", 'cache' => "cache"),
-										'desc'			 => gettext("If the pages should be allowed to be cached on proxy servers.")),
-						gettext('Robots')								 => array('key'				 => 'htmlmeta_robots', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => array('noindex' => "noindex", 'index' => "index", 'nofollow' => "nofollow", 'noindex,nofollow' => "noindex,nofollow", 'noindex,follow' => "noindex,follow", 'index,nofollow' => "index,nofollow", 'none' => "none"),
-										'desc'			 => gettext("If and how robots are allowed to visit the site. Default is “index”. Note that you also should use a robot.txt file.")),
-						gettext('Revisit after')				 => array('key'	 => 'htmlmeta_revisit_after', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Request the crawler to revisit the page after x days.")),
-						gettext('Expires')							 => array('key'	 => 'htmlmeta_expires', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
-						gettext('Canonical URL link')		 => array('key'		 => 'htmlmeta_canonical-url', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 11,
-										'desc'	 => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
-						gettext('Site logo')						 => array('key'	 => 'htmlmeta_sitelogo', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
-						gettext('Twitter name')					 => array('key'	 => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
-						gettext('Open graph image - width')							 => array('key'	 => 'htmlmeta_ogimage_width', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Max width of the open graph image used for sharing to social networks if enabled.")),
-						gettext('Open graph image - height')							 => array('key'	 => 'htmlmeta_ogimage_height', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Max height of the open graph image used for sharing to social networks if enabled.")),
-						gettext('HTML meta tags')				 => array('key'				 => 'htmlmeta_tags', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-										"checkboxes" => array(
-														"http-equiv='cache-control'"					 => "htmlmeta_http-equiv-cache-control",
-														"http-equiv='pragma'"									 => "htmlmeta_http-equiv-pragma",
-														"http-equiv='content-style-type'"			 => "htmlmeta_http-equiv-content-style-type",
-														"name='keywords'"											 => "htmlmeta_name-keywords",
-														"name='description'"									 => "htmlmeta_name-description",
-														"name='page-topic'"										 => "htmlmeta_name-page-topic",
-														"name='robots'"												 => "htmlmeta_name-robots",
-														"name='publisher'"										 => "htmlmeta_name-publisher",
-														"name='creator'"											 => "htmlmeta_name-creator",
-														"name='author'"												 => "htmlmeta_name-author",
-														"name='copyright'"										 => "htmlmeta_name-copyright",
-														"name='rights'"												 => "htmlmeta_name-rights",
-														"name='generator' ('Zenphoto')"				 => "htmlmeta_name-generator",
-														"name='revisit-after'"								 => "htmlmeta_name-revisit-after",
-														"name='expires'"											 => "htmlmeta_name-expires",
-														"name='date'"													 => "htmlmeta_name-date",
-														"OpenGraph (og:)"											 => "htmlmeta_opengraph",
-														"name='pinterest' content='nopin'"		 => "htmlmeta_name-pinterest",
-														"twitter:card"												 => "htmlmeta_twittercard"
-										),
-										"desc"			 => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
-						gettext('Use subdomains') . '*'	 => array('key'			 => 'dynamic_locale_subdomain', 'type'		 => OPTION_TYPE_CHECKBOX,
-										'order'		 => 12,
-										'disabled' => $_common_locale_type,
-										'desc'		 => $localdesc)
+		$options = array(
+				gettext('Cache control') => array(
+						'key' => 'htmlmeta_cache_control', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => array(
+								'no-cache' => "no-cache", 
+								'public' => "public", 
+								'private' => "private", 
+								'no-store' => "no-store"),
+						'desc' => gettext("If the browser cache should be used.")),
+				gettext('Pragma') => array(
+						'key' => 'htmlmeta_pragma', 
+						'type' => OPTION_TYPE_SELECTOR,
+						'selections' => array(
+								'no-cache' => "no-cache", 
+								'cache' => "cache"),
+						'desc' => gettext("If the pages should be allowed to be cached on proxy servers.")),
+				gettext('Robots') => array(
+						'key' => 'htmlmeta_robots', 
+						'type' => OPTION_TYPE_SELECTOR,
+						'selections' => array(
+								'noindex' => "noindex", 
+								'index' => "index", 
+								'nofollow' => "nofollow", 
+								'noindex,nofollow' => "noindex,nofollow", 
+								'noindex,follow' => "noindex,follow", 
+								'index,nofollow' => "index,nofollow", 
+								'none' => "none"),
+						'desc' => gettext("If and how robots are allowed to visit the site. Default is “index”. Note that you also should use a robot.txt file.")),
+				gettext('Revisit after') => array(
+						'key' => 'htmlmeta_revisit_after', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("Request the crawler to revisit the page after x days.")),
+				gettext('Expires') => array(
+						'key' => 'htmlmeta_expires', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
+				gettext('Canonical URL link') => array(
+						'key' => 'htmlmeta_canonical-url', 
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 11,
+						'desc' => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
+				gettext('Site logo') => array(
+						'key' => 'htmlmeta_sitelogo', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
+				gettext('Twitter name') => array(
+						'key' => 'htmlmeta_twittername', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
+				gettext('Open graph image - width') => array(
+						'key' => 'htmlmeta_ogimage_width', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("Max width of the open graph image used for sharing to social networks if enabled.")),
+				gettext('Open graph image - height') => array(
+						'key' => 'htmlmeta_ogimage_height', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("Max height of the open graph image used for sharing to social networks if enabled.")),
+				gettext('HTML meta tags') => array(
+						'key' => 'htmlmeta_tags', 
+						'type' => OPTION_TYPE_CHECKBOX_UL,
+						"checkboxes" => array(
+								"http-equiv='cache-control'" => "htmlmeta_http-equiv-cache-control",
+								"http-equiv='pragma'" => "htmlmeta_http-equiv-pragma",
+								"http-equiv='content-style-type'" => "htmlmeta_http-equiv-content-style-type",
+								"name='keywords'" => "htmlmeta_name-keywords",
+								"name='description'" => "htmlmeta_name-description",
+								"name='page-topic'" => "htmlmeta_name-page-topic",
+								"name='robots'" => "htmlmeta_name-robots",
+								"name='publisher'" => "htmlmeta_name-publisher",
+								"name='creator'" => "htmlmeta_name-creator",
+								"name='author'" => "htmlmeta_name-author",
+								"name='copyright'" => "htmlmeta_name-copyright",
+								"name='rights'" => "htmlmeta_name-rights",
+								"name='generator' ('Zenphoto')" => "htmlmeta_name-generator",
+								"name='revisit-after'" => "htmlmeta_name-revisit-after",
+								"name='expires'" => "htmlmeta_name-expires",
+								"name='date'" => "htmlmeta_name-date",
+								"OpenGraph (og:)" => "htmlmeta_opengraph",
+								"name='pinterest' content='nopin'" => "htmlmeta_name-pinterest",
+								"twitter:card" => "htmlmeta_twittercard"
+						),
+						"desc" => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
+				gettext('Use subdomains') . '*' => array(
+						'key' => 'dynamic_locale_subdomain', 
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 12,
+						'disabled' => $_common_locale_type,
+						'desc' => $localdesc)
 		);
 		if ($_common_locale_type) {
-			$options['note'] = array('key'		 => 'html_meta_tags_locale_type', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 13,
-							'desc'	 => '<p class="notebox">' . $_common_locale_type . '</p>');
+			$options['note'] = array(
+					'key' => 'html_meta_tags_locale_type', 
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 13,
+					'desc' => '<p class="notebox">' . $_common_locale_type . '</p>');
 		} else {
 			$_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'html_meta_tags\');"><em>html_meta_tags</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'html_meta_tags_locale_type',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 13,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
+			$options['note'] = array(
+					'key' => 'html_meta_tags_locale_type',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 13,
+					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
 		}
 		return $options;
 	}
@@ -185,7 +225,7 @@ class htmlmetatags {
 		if (getOption('htmlmeta_sitelogo')) {
 			$thumb = getOption('htmlmeta_sitelogo');
 		}
-		if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
+		if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 			$ogimage_width = getOption('htmlmeta_ogimage_width');
 			$ogimage_height = getOption('htmlmeta_ogimage_height');
 			if (empty($ogimage_width)) {
@@ -216,7 +256,7 @@ class htmlmetatags {
 				$date = getAlbumDate();
 				$desc = getBareAlbumDesc();
 				$canonicalurl = $host . getPageNumURL($_zp_page);
-				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
+				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
 					getMaxSpaceContainer($ogimage_width, $ogimage_height, $thumbimg, false);
 					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
@@ -228,7 +268,7 @@ class htmlmetatags {
 				$date = getImageDate();
 				$desc = getBareImageDesc();
 				$canonicalurl = $host . getImageURL();
-				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
+				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
 					$twittercard_type = 'summary_large_image';
 				}
