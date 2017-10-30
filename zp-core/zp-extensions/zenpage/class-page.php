@@ -28,6 +28,7 @@ class Page extends CMSItems {
 		if ($new || empty($titlelink)) {
 			$this->setPermalink(1);
 			$this->setDateTime(date('Y-m-d H:i:s'));
+			$this->set('sort_order', '999');
 		}
 		$this->exists = $this->loaded;
 	}

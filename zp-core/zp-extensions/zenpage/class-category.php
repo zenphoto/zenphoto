@@ -30,6 +30,7 @@ class Category extends CMSRoot {
 		$this->checkForPublish();
 		if ($new || empty($catlink)) {
 			$this->setShow(1);
+			$this->set('sort_order', '999');
 		}
 		$this->exists = $this->loaded;
 	}

@@ -1290,7 +1290,7 @@ function getNewsPagesStatistic($option) {
 				$itemobj = newCategory($item['titlelink']);
 				break;
 		}
-		if ($itemobj->getShow() == 1) {
+		if ($itemobj->getShow()) {
 			$pub++;
 		}
 	}
@@ -1468,27 +1468,23 @@ function printPublishIconLink($object, $urladd) {
 	}
 	if ($object->getShow()) {
 		$title = gettext("Un-publish");
-		?>
-		<a href="?publish=0&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-			<?php echo CHECKMARK_GREEN; ?>
-		</a>
-		<?php
+		$icon = CHECKMARK_GREEN;
+		$publish = 0;
 	} else {
+		$title = gettext("Publish");
+		$publish = 1;
 		if ($object->getPublishDate() > date('Y-m-d H:i:s')) {
 			//overriding scheduling
-			?>
-			<a href="?publish=2&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-				<?php echo CLOCKFACE; ?>
-			</a>
-			<?php
+			$icon = CLOCKFACE;
 		} else {
-			?>
-			<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-				<?php echo EXCLAMATION_RED; ?>
-			</a>
-			<?php
+			$icon = EXCLAMATION_RED;
 		}
 	}
+	?>
+	<a href="?publish=<?php echo $publish; ?>&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
+		<?php echo $icon; ?>
+	</a>
+	<?php
 }
 
 /**
