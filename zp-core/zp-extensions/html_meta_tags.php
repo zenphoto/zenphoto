@@ -41,20 +41,10 @@ class htmlmetatags {
 			setOptionDefault('htmlmeta_revisit_after', '10');
 			setOptionDefault('htmlmeta_expires', '43200');
 			setOptionDefault('htmlmeta_tags', '');
-
-			if (getOption('htmlmeta_og-title')) { // assume this will be set
-				setOptionDefault('htmlmeta_opengraph', 1);
-			}
-			//remove obsolete old options
-			purgeOption('htmlmeta_og-title');
-			purgeOption('htmlmeta_og-image');
-			purgeOption('htmlmeta_og-description');
-			purgeOption('htmlmeta_og-url');
-			purgeOption('htmlmeta_og-type');
+			setOptionDefault('htmlmeta_opengraph', 1);
 
 			// the html meta tag selector prechecked ones
 			setOptionDefault('htmlmeta_htmlmeta_tags', '1');
-			setOptionDefault('htmlmeta_tags_threshold', 1);
 			setOptionDefault('htmlmeta_http-equiv-cache-control', '1');
 			setOptionDefault('htmlmeta_http-equiv-pragma', '1');
 			setOptionDefault('htmlmeta_name=keywords', '1');
@@ -88,13 +78,29 @@ class htmlmetatags {
 
 		$options = array(gettext('Cache control') => array('key' => 'htmlmeta_cache_control', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 0,
-						'selections' => array('no-cache' => "no-cache", 'public' => "public", 'private' => "private", 'no-store' => "no-store"),
+						'selections' => array(
+								'no-cache' => "no-cache",
+								'public' => "public",
+								'private' => "private",
+								'no-store' => "no-store"
+						),
 						'desc' => gettext("If the browser cache should be used.")),
 				gettext('Pragma') => array('key' => 'htmlmeta_pragma', 'type' => OPTION_TYPE_SELECTOR,
-						'selections' => array('no-cache' => "no-cache", 'cache' => "cache"),
+						'selections' => array(
+								'no-cache' => "no-cache",
+								'cache' => "cache"
+						),
 						'desc' => gettext("If the pages should be allowed to be cached on proxy servers.")),
 				gettext('Robots') => array('key' => 'htmlmeta_robots', 'type' => OPTION_TYPE_SELECTOR,
-						'selections' => array('noindex' => "noindex", 'index' => "index", 'nofollow' => "nofollow", 'noindex,nofollow' => "noindex,nofollow", 'noindex,follow' => "noindex,follow", 'index,nofollow' => "index,nofollow", 'none' => "none"),
+						'selections' => array(
+								'noindex' => "noindex",
+								'index' => "index",
+								'nofollow' => "nofollow",
+								'noindex,nofollow' => "noindex,nofollow",
+								'noindex,follow' => "noindex,follow",
+								'index,nofollow' => "index,nofollow",
+								'none' => "none"
+						),
 						'desc' => gettext("If and how robots are allowed to visit the site. Default is “index”. Note that you also should use a robot.txt file.")),
 				gettext('Revisit after') => array('key' => 'htmlmeta_revisit_after', 'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("Request the crawler to revisit the page after x days.")),
@@ -161,7 +167,7 @@ class htmlmetatags {
 		if (getOption('htmlmeta_sitelogo')) {
 			$thumb = getOption('htmlmeta_sitelogo');
 		}
-		if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
+		if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 			$ogimage_width = getOption('htmlmeta_ogimage_width');
 			$ogimage_height = getOption('htmlmeta_ogimage_height');
 			if (empty($ogimage_width)) {
@@ -190,7 +196,7 @@ class htmlmetatags {
 				$date = getAlbumDate();
 				$desc = getBareAlbumDesc();
 				$canonicalurl = FULLHOSTPATH . $_zp_current_album->getLink($_zp_page);
-				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
+				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
 					getMaxSpaceContainer($ogimage_width, $ogimage_height, $thumbimg, false);
 					$thumb = FULLHOSTPATH . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
@@ -202,7 +208,7 @@ class htmlmetatags {
 				$date = getImageDate();
 				$desc = getBareImageDesc();
 				$canonicalurl = FULLHOSTPATH . $_zp_current_image->getLink();
-				if (getOption('htmlmeta_og-image') || getOption('htmlmeta_twittercard')) {
+				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 					$thumb = FULLHOSTPATH . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
 					$twittercard_type = 'summary_large_image';
 				}
@@ -419,7 +425,7 @@ class htmlmetatags {
 			$tags = getTags();
 			$words .= htmlmetatags::getMetaAlbumAndImageTags($tags, "gallery");
 		} else if ($_zp_gallery_page === "index.php") {
-			$tags = array_keys(getAllTagsUnique(NULL, getOption('htmlmeta_tags_threshold'))); // get all if no specific item is set
+			$tags = array_keys(getAllTagsUnique(NULL, 1)); // get all if no specific item is set
 			$words .= htmlmetatags::getMetaAlbumAndImageTags($tags, "gallery");
 		}
 		if (extensionEnabled('zenpage')) {
