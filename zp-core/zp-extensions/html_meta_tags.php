@@ -69,6 +69,7 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_name-date', '1');
 		setOptionDefault('htmlmeta_canonical-url', '0');
 		setOptionDefault('htmlmeta_sitelogo', '');
+		setOptionDefault('htmlmeta_fb-app_id', '');
 		setOptionDefault('htmlmeta_twittercard', '');
 		setOptionDefault('htmlmeta_twittername', '');
 		setOptionDefault('htmlmeta_ogimage_width', 1280);
@@ -144,6 +145,10 @@ class htmlmetatags {
 						'key' => 'htmlmeta_ogimage_height', 
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("Max height of the open graph image used for sharing to social networks if enabled.")),
+				gettext('Facebook app id') => array(
+						'key' => 'htmlmeta_fb-app_id', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("Enter your Facebook app id. IF using this you also should enable the OpenGraph meta tags.")),
 				gettext('HTML meta tags') => array(
 						'key' => 'htmlmeta_tags', 
 						'type' => OPTION_TYPE_CHECKBOX_UL,
@@ -386,10 +391,16 @@ class htmlmetatags {
 			$meta .= '<meta property="og:type" content="' . $type . '">' . "\n";
 		}
 
-		// Social network extras
+		// Facebook app id
+		if (getOption('htmlmeta_fb-app_id')) {
+			$meta .= '<meta property="fb:app_id"  content="' . sanitize_numeric(getOption('htmlmeta_fb-app_id')) . '" />' . "\n";
+		}
+		
+		// dissalow users to pin images on Pinterest
 		if (getOption('htmlmeta_name-pinterest')) {
 			$meta .= '<meta name="pinterest" content="nopin">' . "\n";
-		} // dissalow users to pin images on Pinterest
+		} 
+
 		// Twitter card
 		if (getOption('htmlmeta_twittercard')) {
 			$twittername = getOption('htmlmeta_twittername');
