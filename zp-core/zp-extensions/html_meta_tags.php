@@ -203,8 +203,8 @@ class htmlmetatags {
 	 * @param string $uri
 	 */
 	static function ipURI($uri) {
-		global $htmlmetatags_need_cache;
-		$htmlmetatags_need_cache[] = $uri;
+		global $_zp_htmlmetatags_need_cache;
+		$_zp_htmlmetatags_need_cache[] = $uri;
 	}
 
 	/**
@@ -214,7 +214,7 @@ class htmlmetatags {
 	static function getHTMLMetaData() {
 		global $_zp_gallery, $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
 		$_zp_current_zenpage_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites,
-		$htmlmetatags_need_cache, $_zp_page;
+		$_zp_htmlmetatags_need_cache, $_zp_page;
 		zp_register_filter('image_processor_uri', 'htmlmetatags::ipURI');
 		$host = sanitize(SERVER_HTTP_HOST);
 		$url = $host . getRequestURI();
@@ -498,9 +498,9 @@ class htmlmetatags {
 
 
 		} // if canonical
-		if (!empty($htmlmetatags_need_cache)) {
+		if (!empty($_zp_htmlmetatags_need_cache)) {
 			$meta .= '<script type="text/javascript">' . "\n";
-			$meta .= 'var caches = ["' . implode('","', $htmlmetatags_need_cache) . '"];' . "\n";
+			$meta .= 'var caches = ["' . implode('","', $_zp_htmlmetatags_need_cache) . '"];' . "\n";
 			$meta .= '
 					window.onload = function() {
 						var index,value;
