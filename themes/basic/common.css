@@ -144,3 +144,13 @@ button.positive,.buttons a.positive {
 	background-color: #F7F8F9;
 }
 
+.g-recaptcha > div{
+	margin: 10px auto !important;
+	text-align: center;
+	width: auto !important;
+	height: auto !important;
+}
+
+.disclose_password_show {
+	padding-right: 70px !important;
+}

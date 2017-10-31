@@ -30,6 +30,7 @@ class Category extends CMSRoot {
 		$this->checkForPublish();
 		if ($new || empty($catlink)) {
 			$this->setShow(1);
+			$this->set('sort_order', '999');
 		}
 		$this->exists = $this->loaded;
 	}
@@ -245,7 +246,7 @@ class Category extends CMSRoot {
 	 */
 	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
 		global $_zp_CMS;
-		$subcategories = self::subCategoryRecurse($this, $_zp_CMS->getAllCategories($visible, $sorttype, $sortdirection));
+		$subcategories = self::subCategoryRecurse($this, $_zp_CMS->getAllCategories($visible, $sorttype, $sortdirection && strtolower($sortdirection) != 'asc'));
 		if (!empty($subcategories)) {
 			return $subcategories;
 		}

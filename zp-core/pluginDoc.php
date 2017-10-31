@@ -435,18 +435,30 @@ if (!defined('OFFSET_PATH')) {
 											}
 										}
 									}
-									foreach ($notes as $note) {
-										$n = getBare($note['desc']);
-										if (!empty($n)) {
-											?>
-											<li><code><?php echo $note['desc']; ?></li>
-											<?php
-										}
-									}
 									?>
 								</ul>
 							</p>
 							<?php
+							if (!empty($notes)) {
+								?>
+								<hr />
+								<p>
+									<?php echo gettext('Notes:'); ?>
+									<ul>
+										<?php
+										foreach ($notes as $note) {
+											$n = getBare($note['desc']);
+											if (!empty($n)) {
+												?>
+												<li><code><?php echo $note['desc']; ?></li>
+												<?php
+											}
+										}
+										?>
+									</ul>
+								</p>
+								<?php
+							}
 						}
 						if (!empty($buttonlist) || !empty($albumbuttons) || !empty($imagebuttons)) {
 							?>

@@ -15,13 +15,13 @@ class ThemeOptions {
 		setThemeOptionDefault('albums_per_page', 12);
 		setThemeOptionDefault('images_per_row', 4);
 		setThemeOptionDefault('images_per_page', 16);
-		setThemeOptionDefault('thumb_size', 350);	// 220
+		setThemeOptionDefault('thumb_size', 350); // 220
 		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('thumb_crop_width', 350); // 220
 		setThemeOptionDefault('thumb_crop_height', 350); // 220
 		setThemeOptionDefault('image_size', 800);
 		setThemeOptionDefault('image_use_side', 'longest');
-		setThemeOptionDefault('custom_index_page', 'gallery');
+		setThemeOptionDefault('gallery_index', TRUE);
 
 		setThemeOptionDefault('zpB_homepage', true);
 		setThemeOptionDefault('zpB_homepage_album_filename', '');

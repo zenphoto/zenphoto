@@ -15,7 +15,7 @@
 			<label for="title" class="col-sm-3 control-label"><?php printf(gettext("Title%s"), checkRequiredField(getOption('contactform_title'))); ?></label>
 			<div class="col-sm-9">
 				<input class="form-control" type="text" id="title" name="title" size="50" value="<?php echo html_encode($mailcontent['title']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
-			</div>	
+			</div>
 		</div>
 		<?php
 	}
@@ -32,7 +32,7 @@
 	?>
 	<div class="form-group" style="display:none;">
 		<label for="username" class="col-sm-3 control-label">Username:</label>
-		<div class="col-sm-9">	
+		<div class="col-sm-9">
 			<input type="text" class="form-control" id="username" name="username" size="50" value="<?php echo html_encode($mailcontent['honeypot']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 		</div>
 	</div>
@@ -53,7 +53,7 @@
 			<label for="street" class="col-sm-3 control-label"><?php printf(gettext("Street%s"), checkRequiredField(getOption('contactform_street'))); ?></label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="street" name="street" size="50" value="<?php echo html_encode($mailcontent['street']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
-			</div>	
+			</div>
 		</div>
 		<?php
 	}
@@ -127,30 +127,35 @@
 		</div>
 		<?php
 	}
+	$class = $buttonExtra = '';
 	if (getOption("contactform_captcha") && !$_processing_post) {
 		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
+		if (isset($captcha['submitButton'])) {
+			$class = ' ' . $captcha['submitButton']['class'];
+			$buttonExtra = ' ' . $captcha['submitButton']['extra'];
+		}
 		?>
 		<div class="form-group">
 			<?php
 			if (isset($captcha['html']))
 				echo $captcha['html'];
-				echo '<div class="col-sm-9">';
+			echo '<div class="col-sm-9">';
 			if (isset($captcha['input']))
 				echo $captcha['input'];
 			if (isset($captcha['hidden']))
 				echo $captcha['hidden'];
-				echo '</div>';
+			echo '</div>';
 			?>
 		</div>
 		<?php
 	}
 	?>
-		<div class="form-group">
-			<label for="subject" class="col-sm-3 control-label"><?php echo gettext("Subject<strong>*</strong>"); ?></label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="subject" name="subject" size="50" value="<?php echo html_encode($mailcontent['subject']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
-			</div>
+	<div class="form-group">
+		<label for="subject" class="col-sm-3 control-label"><?php echo gettext("Subject<strong>*</strong>"); ?></label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="subject" name="subject" size="50" value="<?php echo html_encode($mailcontent['subject']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 		</div>
+	</div>
 	<div class="mailmessage form-group">
 		<label for="message" class="col-sm-3 control-label"><?php echo gettext("Message<strong>*</strong>"); ?></label>
 		<div class="col-sm-9">
@@ -161,7 +166,7 @@
 	if (!$_processing_post) {
 		?>
 		<div class="col-sm-9 col-sm-offset-3">
-			<input type="submit" class="button buttons" value="<?php echo gettext("Send e-mail"); ?>" onclick="ga('send', 'event', 'contact-form', 'submit');"/>
+			<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Send e-mail'); ?></button>
 		</div>
 	<?php } ?>
 </form>

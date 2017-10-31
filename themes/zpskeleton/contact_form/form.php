@@ -86,8 +86,13 @@
 	<?php } ?>
 
 	<?php
+	$class = $buttonExtra = '';
 	if (getOption("contactform_captcha") && !$_processing_post) {
 		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>:"));
+		if (isset($captcha['submitButton'])) {
+			$class = ' ' . $captcha['submitButton']['class'];
+			$buttonExtra = ' ' . $captcha['submitButton']['extra'];
+		}
 		?>
 		<div>
 			<?php
@@ -117,7 +122,7 @@
 
 	<?php if (!$_processing_post) { ?>
 		<div id="contact-submit">
-			<input type="submit" value="<?php echo gettext("Send e-mail"); ?>" />
+			<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Send e-mail'); ?></button>
 			<input type="reset" value="<?php echo gettext("Reset"); ?>" />
 		</div>
 	<?php } ?>

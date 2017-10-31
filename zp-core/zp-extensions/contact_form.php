@@ -241,7 +241,7 @@ function printContactForm($subject_override = '') {
 			$code_ok = trim(isset($_POST['code_h']) ? sanitize($_POST['code_h']) : NULL);
 			$code = trim(isset($_POST['code']) ? sanitize($_POST['code']) : NULL);
 			if (!$_zp_captcha->checkCaptcha($code, $code_ok)) {
-				$error[5] = gettext("the correct CAPTCHA verification code");
+				$error[5] = gettext("CAPTCHA verification.");
 			} // no ticket
 		}
 		// CAPTCHA end

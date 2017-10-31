@@ -422,9 +422,6 @@ input#code {
 	margin-left: 10px;
 	width: 10em !important;
 }
-#recaptcha_widget_div {
-	float: left;
-}
 
 /* Forms
 ------------------------------ */
@@ -682,7 +679,7 @@ label:hover {
 #registration_form input[type="password"],
 #mailform input[type="text"],
 #commentform input[type="text"] {
-	width: 65%;
+	width: 250px;
 }
 
 input.button {

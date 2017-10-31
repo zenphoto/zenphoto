@@ -21,26 +21,15 @@
 			else
 				echo gettext("User ID:");
 			?></label>
-		<input type="text" id="adminuser" name="adminuser" value="<?php echo html_encode($user); ?>" size="22" />
+		<input type="text" id="adminuser" name="user" value="<?php echo html_encode($user); ?>" size="22" />
 	</div>
 
 	<div>
-		<label for="password"><?php echo gettext("Password:"); ?></label>
-		<input type="password" id="adminpass" name="adminpass"	value="" size="23" />
+		<?php Zenphoto_Authority::printPasswordForm(NULL, false, NULL, false, $flag = '<strong>*</strong>'); ?>
 	</div>
 
-	<div>
-		<label for="adminpass_2"><?php echo gettext("Re-enter:"); ?></label>
-		<input type="password" id="adminpass_2" name="adminpass_2"	value="" size="23" />
-	</div>
 
-	<?php
-	$msg = $_zp_authority->passwordNote();
-	if (!empty($msg))
-		echo $msg;
-	?>
-
-<?php if (!getOption('register_user_email_is_id')) { ?>
+	<?php if (!getOption('register_user_email_is_id')) { ?>
 		<div>
 			<label for="admin_email"><?php echo gettext("Email:"); ?></label>
 			<input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode($admin_e); ?>" size="22" />
@@ -53,13 +42,18 @@
 		echo $html;
 	?>
 
-		<?php
-		if (getOption('register_user_captcha')) {
-			?>
+	<?php
+	if (getOption('register_user_captcha')) {
+		?>
 		<div>
-			<?php $captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>:")); ?>
-			<?php if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html']; ?>
 			<?php
+			$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>:"));
+			if (isset($captcha['submitButton'])) {
+				$class = ' ' . $captcha['submitButton']['class'];
+				$buttonExtra = ' ' . $captcha['submitButton']['extra'];
+			}
+			if (isset($captcha['html']) && isset($captcha['input']))
+				echo $captcha['html'];
 			if (isset($captcha['input'])) {
 				echo $captcha['input'];
 			} else {
@@ -70,19 +64,19 @@
 				echo $captcha['hidden'];
 			?>
 		</div>
-	<?php
-}
-?>
+		<?php
+	}
+	?>
 
 	<div id="contact-submit">
-		<input type="submit" value="<?php echo gettext('Submit') ?>" />
+		<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Send e-mail'); ?></button>
 	</div>
 
 	<?php if (function_exists('federated_login_buttons')) { ?>
 		<fieldset id="Federated_buttons_fieldlist">
 			<legend><?php echo gettext('You may also register using federated credentials'); ?></legend>
-	<?php federated_login_buttons(WEBPATH . '/index.php'); ?>
+			<?php federated_login_buttons(WEBPATH . '/index.php'); ?>
 		</fieldset>
-<?php } ?>
+	<?php } ?>
 
 </form>

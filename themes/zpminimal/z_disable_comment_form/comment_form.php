@@ -36,22 +36,28 @@
 			<tr>
 				<td colspan="3" style="padding-top:5px;">
 					<?php if (getOption('comment_form_anon') && !$disabled['anon']) { ?>
-						<span><input type="checkbox" name="anon" value="1"<?php if ($stored['anon'])
-						echo ' checked="checked"';
-					echo $disabled['anon'];
-						?> /> <?php echo gettext("Anonymous"); ?></span>
-						<?php } ?>&nbsp;&nbsp;
-						<?php if (getOption('comment_form_private') && !$disabled['private']) { ?>
+						<span><input type="checkbox" name="anon" value="1"<?php
+							if ($stored['anon'])
+								echo ' checked="checked"';
+							echo $disabled['anon'];
+							?> /> <?php echo gettext("Anonymous"); ?></span>
+					<?php } ?>&nbsp;&nbsp;
+					<?php if (getOption('comment_form_private') && !$disabled['private']) { ?>
 						<span><input type="checkbox" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ?> />
-	<?php echo gettext("Private comment (don't publish)"); ?></span>
-<?php } ?>
+							<?php echo gettext("Private comment (don't publish)"); ?></span>
+					<?php } ?>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="3" class="commform-code" style="padding-top:10px;">
 					<?php
+					$class = $buttonExtra = '';
 					if (getOption('Use_Captcha') && is_object($_zp_captcha)) {
 						$captcha = $_zp_captcha->getCaptcha();
+						if (isset($captcha['submitButton'])) {
+							$class = ' ' . $captcha['submitButton']['class'];
+							$buttonExtra = ' ' . $captcha['submitButton']['extra'];
+						}
 						?>
 
 						<p><?php echo gettext("Enter CAPTCHA"); ?><span><?php echo '*'; ?></span></p>
@@ -68,12 +74,12 @@
 								echo $captcha['hidden'];
 							?>
 						</div>
-<?php } ?>
+					<?php } ?>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 	<div class="submit clear">
-		<input type="submit" value="<?php echo gettext('Add Comment'); ?>" tabindex="5" id="submit" name="submit">
+		<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?> tabindex="5"><?php echo gettext('Add Comment'); ?></button>
 	</div>
 </form>

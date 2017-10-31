@@ -74,9 +74,14 @@
 		</p>
 		<?php
 	}
+	$class = $buttonExtra = '';
 	if (commentFormUseCaptcha()) {
 		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
 		$required = true;
+		if (isset($captcha['submitButton'])) {
+			$class = ' ' . $captcha['submitButton']['class'];
+			$buttonExtra = ' ' . $captcha['submitButton']['extra'];
+		}
 		?>
 		<p>
 			<?php
@@ -114,5 +119,5 @@
 	</textarea>
 	<br clear="all">
 	<br />
-	<input type="submit" class="button buttons"  value="<?php echo gettext('Add Comment'); ?>" />
+	<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Add Comment'); ?></button>
 </form>

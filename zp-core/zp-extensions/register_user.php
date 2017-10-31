@@ -210,7 +210,7 @@ class register_user {
 		if (empty($pass)) {
 			$_notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
-			if (isset($_POST['disclose_password']) || $pass == trim(sanitize($_POST['pass_r']))) {
+			if (isset($_POST['disclose_password']) || $pass == trim(sanitize(@$_POST['pass_r']))) {
 				$currentadmin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
 					$_notify = 'exists';
@@ -472,7 +472,7 @@ function printRegistrationForm($thanks = NULL) {
 				?>
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Registration failed."); ?></h2>
-					<p><?php echo gettext('The CAPTCHA you entered was not correct.'); ?></p>
+					<p><?php echo gettext('CAPTCHA verification failed.'); ?></p>
 				</div>
 				<?php
 				break;

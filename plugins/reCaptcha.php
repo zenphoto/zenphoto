@@ -1,6 +1,6 @@
 <?php
 /**
- * reCaptcha handler (http://www.google.com/recaptcha)
+ * Google reCaptcha handler see {@link http://www.google.com/recaptcha reCaptcha}
  *
  * This plugin lets you select from one of Google's reCaptcha themes (<i>Red</i>, <i>White</i>, <i>Black Glass</i>, or <i>Clean</i>)
  * or from a custom reCaptcha theme such as the <i>lt-blue</i> theme included.
@@ -33,6 +33,7 @@ $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Google reCaptcha handler.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'reCaptcha') ? sprintf(gettext('Only one Captcha handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_captcha->name) : '';
+$plugin_notice = gettext('This plugin is deprecated. See the <a href="https://developers.google.com/recaptcha/docs/faq">reCAPTCHA FAQ</a>. You should migrate to the reCaptcha_v2 plugin by March 2018');
 
 $option_interface = 'reCaptcha';
 
@@ -157,8 +158,19 @@ class reCaptcha extends _zp_captcha {
 							"				};\n" .
 							"</script>\n";
 			$html .= recaptcha_get_html($publicKey, NULL, secureServer());
-			return array('html' => '<label class="captcha_label">' . $prompt . '</label>', 'input' => $themejs . $html);
+			return array('html' => '<label class="captcha_label">' . $prompt . '</label>', 'hidden' => $themejs . $html);
 		}
+	}
+
+	static function deprecated($tab, $subtab) {
+		?>
+		<div class="notebox">
+			<h2>
+				<?php echo gettext('The reCaptcha plugin is deprecated. See the <a href="https://developers.google.com/recaptcha/docs/faq">reCAPTCHA FAQ</a>. You should migrate to the reCaptcha_v2 plugin by March 2018'); ?>
+			</h2>
+		</div>
+
+		<?php
 	}
 
 }
@@ -167,5 +179,6 @@ if ($plugin_disable) {
 	enableExtension('reCaptcha', 0);
 } else {
 	$_zp_captcha = new reCaptcha();
+	zp_register_filter('admin_note', 'reCaptcha::deprecated');
 }
 ?>

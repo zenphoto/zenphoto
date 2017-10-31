@@ -2,7 +2,7 @@
  * Bootstrap complementary styles
  * Special styles for presenting the website
  */
- 
+
 /* ===== Layout ===== */
 
 .intermediaire {
@@ -21,7 +21,7 @@
 /* ===== Backgrounds ===== */
 
 #background-header {
-  
+
 }
 
 #background-slideshow {
@@ -38,7 +38,7 @@
 
 #background-main {
   background:#f4f5f6;
-  margin-bottom:5px; 
+  margin-bottom:5px;
 }
 
 #background-footer {
@@ -57,7 +57,7 @@
 
 #bs-example-navbar-collapse-1 {
   padding-top:33px;
-  
+
 }
 
 .navbar li {
@@ -69,7 +69,7 @@
 .navbar li li {
   text-transform: none;
   letter-spacing: 0;
-  font-weight:normal;  
+  font-weight:normal;
 }
 
 /* ===== css dropdowns ===== */
@@ -78,33 +78,33 @@
 	display: none;
 }
 .css-dropdown ul li:hover ul {
-	display:block; 
-	position:absolute; 
-	top:38px; 
-	left:0px; 
+	display:block;
+	position:absolute;
+	top:38px;
+	left:0px;
 }
 
-@media (max-width: 767px) { 
-.css-dropdown ul li:hover ul {
-	display:none;
-}
+@media (max-width: 767px) {
+	.css-dropdown ul li:hover ul {
+		display:none;
+	}
 }
 
 .navbar .css-dropdown ul li:hover ul {
-	top:38px; 
+	top:38px;
 }
 
 
 /* Forms */
- 
+
 #navbar_search {
 	float:right;
 }
 
-@media (max-width: 767px) { 
-#navbar_search {
-	float:none;
-}
+@media (max-width: 767px) {
+	#navbar_search {
+		float:none;
+	}
 }
 
 .form-horizontal .form-group label, .form-horizontal .form-group input {
@@ -130,7 +130,7 @@
     margin-bottom: 0;
     text-align: right;
     width: 25%;
-   }
+	}
 	.form-horizontal .form-group h2 {
 		width:75%;
 	}
@@ -190,28 +190,28 @@ ul.news-info {
   margin-bottom:15px;
 }
 
-@media (min-width: 768px) { 
-.columns {
-	-webkit-columns: 2;
-	-moz-columns: 2;
-	columns: 2;
-}
-}
-
-@media (min-width: 992px) { 
-.columns {
-	-webkit-columns: 3;
-	-moz-columns: 3;
-	columns: 3;
-}
+@media (min-width: 768px) {
+	.columns {
+		-webkit-columns: 2;
+		-moz-columns: 2;
+		columns: 2;
+	}
 }
 
-@media (min-width: 1200px) { 
-.columns {
-	-webkit-columns: 3;
-	-moz-columns: 3;
-	columns: 3;
+@media (min-width: 992px) {
+	.columns {
+		-webkit-columns: 3;
+		-moz-columns: 3;
+		columns: 3;
+	}
 }
+
+@media (min-width: 1200px) {
+	.columns {
+		-webkit-columns: 3;
+		-moz-columns: 3;
+		columns: 3;
+	}
 }
 
 #rating {
@@ -249,7 +249,7 @@ h2.media-heading i {
 .panel img, .well img, .content img, #main img  {
   border-radius: 3px;
   max-width: 100%;
-  height: auto;  
+  height: auto;
 }
 
 .full-image {
@@ -259,7 +259,7 @@ h2.media-heading i {
 .zenpage_imagelink {
 	display: block;
   border-radius: 3px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15); 
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
   margin-right:15px;
   float:left;
 }
@@ -293,22 +293,22 @@ ul.tag-cloud  li {
 }
 
 .tl-tag-weight1 {
-	font-size:0.4em;	
+	font-size:0.4em;
 }
 .tl-tag-weight2 {
-	font-size:0.5em;	
+	font-size:0.5em;
 }
 .tl-tag-weight3 {
-	font-size:0.6em;	
+	font-size:0.6em;
 }
 .tl-tag-weight4 {
-	font-size:0.7em;	
+	font-size:0.7em;
 }
 .tl-tag-weight5 {
-	font-size:0.8em;	
+	font-size:0.8em;
 }
 .tl-tag-weight6 {
-	font-size:0.9em;	
+	font-size:0.9em;
 }
 
 /* ===== Albums ===== */
@@ -444,10 +444,10 @@ ul.taglist > li {
 
 
 /*!
- * Bootstrap v3 icons 
+ * Bootstrap v3 icons
  * Based on regular Bootstrap icons
  */
- 
+
 .the-icons {
 	margin-left: 0;
 	list-style: none;
@@ -455,15 +455,15 @@ ul.taglist > li {
 }
 
 .the-icons li {
-float: left;
-width: 25%;
-line-height: 25px;
+	float: left;
+	width: 25%;
+	line-height: 25px;
 }
 
 section > ul li {
-margin-bottom: 5px;
+	margin-bottom: 5px;
 }
- 
+
 [class^="social-icon-"],
 [class*=" social-icon-"] {
   display: inline-block;
@@ -513,3 +513,8 @@ margin-bottom: 5px;
 .social-icon-wordpress {background-position: -80px -240px;}
 .social-icon-yelp {background-position: -120px -240px;}
 .social-icon-apple {background-position: -160px -240px;}
+
+
+.disclose_password_show {
+	padding-right: 300px !important;
+}

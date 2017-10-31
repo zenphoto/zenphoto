@@ -761,8 +761,15 @@ input#code{
 	margin-left: 7px;
 	width: 80px !important;
 }
-#recaptcha_widget, #recaptcha_widget_div {
+#recaptcha_widget {
 	float: left;
+}
+
+.g-recaptcha > div{
+	margin: 10px auto !important;
+	text-align: center;
+	width: auto !important;
+	height: auto !important;
 }
 
 /* contact */
@@ -1193,4 +1200,15 @@ div#jump-search select option {
 }
 .slide img {
 	display: block;
+}
+
+.g-recaptcha > div{
+	margin: 10px auto !important;
+	text-align: center;
+	width: auto !important;
+	height: auto !important;
+}
+
+.disclose_password_show {
+	padding-right: 80px !important;
 }

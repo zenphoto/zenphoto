@@ -420,7 +420,11 @@ class PersistentObject {
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->table . " (" . $this->id . ")";
+		if ($this->table) {
+			return $this->table . " (" . $this->id . ")";
+		} else {
+			return get_class($this) . ' ' . gettext('Object');
+		}
 	}
 
 	/**
@@ -438,16 +442,13 @@ class PersistentObject {
 		$result = NULL;
 		switch ($how) {
 			case 'get':
-				$result = $this->get($what);
-				break;
+				return $this->get($what);
 			case 'set':
-				$result = $this->set($what, $arg);
-				break;
-			default:
-				throw new Exception(sprintf(gettext('Call to undefined method Image::%s()'), $method));
-				break;
+				return $this->set($what, $arg);
 		}
-		return $result;
+		$caller = debug_backtrace();
+		$caller = array_shift($caller);
+		trigger_error(sprintf(gettext('Call to undefined method %1$s() in %2$s on line %3$s'), get_class($this) . '::' . $method, $caller['file'], $caller['line']), E_USER_WARNING);
 	}
 
 }

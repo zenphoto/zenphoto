@@ -728,6 +728,9 @@ class _Authority {
 					$_REQUEST['logon_step'] = 'challenge';
 					break;
 				case 'captcha':
+
+					debugLogVar('$_zp_captcha', $_zp_captcha);
+
 					if ($_zp_captcha->checkCaptcha(trim(@$_POST['code']), sanitize(@$_POST['code_h'], 3))) {
 						require_once(dirname(__FILE__) . '/load_objectClasses.php'); // be sure that the plugins are loaded for the mail handler
 						if (empty($post_user)) {
@@ -787,7 +790,7 @@ class _Authority {
 							}
 						}
 					} else {
-						$_zp_login_error = gettext('Your input did not match the captcha');
+						$_zp_login_error = gettext('CAPTCHA verification failed.');
 						$_REQUEST['logon_step'] = 'captcha';
 					}
 					break;
@@ -975,7 +978,7 @@ class _Authority {
 			switch ($whichForm) {
 				case 'challenge':
 					?>
-					<form name="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
+					<form name="login" id="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
 						<fieldset id="logon_box">
 							<input type="hidden" name="login" value="1" />
 							<input type="hidden" name="password" value="challenge" />
@@ -1076,7 +1079,7 @@ class _Authority {
 					}
 					$redirect = zp_apply_filter('login_redirect_link', $redirect);
 					?>
-					<form name="login" action="<?php echo html_encode(pathurlencode($redirect)); ?>" method="post">
+					<form name="login" id="login" action="<?php echo html_encode(pathurlencode($redirect)); ?>" method="post">
 						<input type="hidden" name="login" value="1" />
 						<input type="hidden" name="password" value="1" />
 						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
@@ -1139,7 +1142,11 @@ class _Authority {
 					}
 					break;
 				case 'captcha':
+					$class = $buttonExtra = '';
 					$captcha = $_zp_captcha->getCaptcha(NULL);
+					if (isset($captcha['submitButton'])) {
+						$extra = ' class="' . $captcha['submitButton']['class'] . '" ' . $captcha['submitButton']['extra'];
+					}
 					?>
 					<script type="text/javascript">
 						function toggleSubmit() {
@@ -1150,8 +1157,11 @@ class _Authority {
 							}
 						}
 					</script>
-					<form name="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
-						<?php if (isset($captcha['hidden'])) echo $captcha['hidden']; ?>
+					<form name="login" id="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
+						<?php
+						if (isset($captcha['hidden']))
+							echo $captcha['hidden'];
+						?>
 						<input type="hidden" name="login" value="1" />
 						<input type="hidden" name="password" value="captcha" />
 						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
@@ -1159,7 +1169,10 @@ class _Authority {
 							<fieldset><legend><?php echo gettext('User name or e-mail address'); ?></legend>
 								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" onkeyup="toggleSubmit();"/>
 							</fieldset>
-							<?php if (isset($captcha['html'])) echo $captcha['html']; ?>
+							<?php
+							if (isset($captcha['html']))
+								echo $captcha['html'];
+							?>
 							<?php
 							if (isset($captcha['input'])) {
 								?>
@@ -1171,9 +1184,13 @@ class _Authority {
 							?>
 							<br />
 							<div class="buttons">
-								<button type="submit"<?php if (empty($requestor)) echo ' disabled="disabled"'; ?>  id="submitButton" value="<?php echo gettext("Request"); ?>" >
-									<?php echo CHECKMARK_GREEN; ?>
-									<?php echo gettext("Request password reset"); ?>
+								<button type="submit"  id="submitButton"<?php
+								echo $extra;
+								if (empty($requestor))
+									echo ' disabled="disabled"';
+								?>>
+													<?php echo CHECKMARK_GREEN; ?>
+													<?php echo gettext("Request password reset"); ?>
 								</button>
 								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
 									<?php echo BACK_ARROW_BLUE; ?>
@@ -1342,24 +1359,29 @@ class _Authority {
 		?>
 		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" class="inputbox"/>
 		<p>
-			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>"><?php echo gettext("Password") . $flag; ?>
-			</label>
-			<label for="disclose_password<?php echo $id; ?>" class="floatright" style="padding-right: 15px;"><?php echo gettext('Show'); ?></label>
-			<input class="floatright"
-						 type="checkbox"
-						 name="disclose_password<?php echo $id; ?>"
-						 class="disclose_password"
-						 id="disclose_password<?php echo $id; ?>"
-						 onclick="passwordClear('<?php echo $id; ?>');
-								 togglePassword('<?php echo $id; ?>');">
-			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-						 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
-						 id="pass<?php echo $id; ?>"
-						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
-						 onclick="passwordClear('<?php echo $id; ?>');"
-						 onkeyup="passwordStrength('<?php echo $id; ?>');"
-						 <?php echo $disable; ?> class="inputbox"/>
+			<label for="pass<?php echo $id; ?>_text" id="strength<?php echo $id; ?>"><?php echo gettext("Password") . $flag; ?></label>
+			<span class="disclose_password_show" style="float: right !important; padding-right: 15px;">
+				<?php echo gettext('Show'); ?>
 
+				<input type="checkbox"
+							 class="disclose_password"
+							 style="float: right !important;"
+							 name="disclose_password<?php echo $id; ?>"
+							 id="disclose_password<?php echo $id; ?>"
+							 onclick="passwordClear('<?php echo $id; ?>');
+											 togglePassword('<?php echo $id; ?>');">
+			</span>
+
+			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
+				<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+							 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
+							 id="pass<?php echo $id; ?>"
+							 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
+							 onclick="passwordClear('<?php echo $id; ?>');"
+							 onkeyup="passwordStrength('<?php echo $id; ?>');"
+							 <?php echo $disable; ?> class="password_input inputbox"/>
+			</label>
+			<br clear="all">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>

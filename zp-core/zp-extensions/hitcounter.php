@@ -36,7 +36,7 @@ if (!defined('OFFSET_PATH')) {
 	}
 }
 
-$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN | FEATURE_PLUGIN);
+$plugin_is_filter = defaultExtension(5 | FEATURE_PLUGIN);
 $plugin_description = gettext('Automatically increments hitcounters on gallery objects viewed by a <em>visitor</em>.');
 $plugin_author = "Stephen Billard (sbillard)";
 
