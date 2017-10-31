@@ -2,7 +2,12 @@
 
 /*
  * Note: Zenphoto does not want html entities encoded. This script has been modified
- * to prevent the encodings. Search for Zenphoto for changes.
+ * to prevent the encodings. 
+ * 
+ * Additionally it has been modified so css properties within style attributes are not mistaken
+ * as "bad protocols" and cleared.
+ * 
+ * Search for Zenphoto for changes.
  */
 
 # kses 0.2.2 - HTML/XHTML filter that only allows some elements and attributes
@@ -257,7 +262,11 @@ function kses_hair($attr, $allowed_protocols)
         if (preg_match('/^"([^"]*)"(\s+|$)/', $attr, $match))
          # "value"
         {
-          $thisval = kses_bad_protocol($match[1], $allowed_protocols);
+          //Zenhoto: Avoid first css property of style attribute being mistaked for bad protocol and clear partly
+					$thisval = $match[1];
+					if($attrname != 'style') { 
+						$thisval = kses_bad_protocol($match[1], $allowed_protocols);
+					} 
 
           $attrarr[] = array
                         ('name'  => $attrname,
@@ -272,7 +281,11 @@ function kses_hair($attr, $allowed_protocols)
         if (preg_match("/^'([^']*)'(\s+|$)/", $attr, $match))
          # 'value'
         {
-          $thisval = kses_bad_protocol($match[1], $allowed_protocols);
+          //Zenhoto: Avoid first css property of style attribute being mistaked for bad protocol and clear partly
+					$thisval = $match[1];
+					if($attrname != 'style') { 
+						$thisval = kses_bad_protocol($match[1], $allowed_protocols);
+					} 
 
           $attrarr[] = array
                         ('name'  => $attrname,
@@ -287,7 +300,11 @@ function kses_hair($attr, $allowed_protocols)
         if (preg_match("%^([^\s\"']+)(\s+|$)%", $attr, $match))
          # value
         {
-          $thisval = kses_bad_protocol($match[1], $allowed_protocols);
+         //Zenhoto: Avoid first css property of style attribute being mistaked for bad protocol and clear partly
+					$thisval = $match[1];
+					if($attrname != 'style') { 
+						$thisval = kses_bad_protocol($match[1], $allowed_protocols);
+					} 
 
           $attrarr[] = array
                         ('name'  => $attrname,
