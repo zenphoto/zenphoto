@@ -88,10 +88,7 @@ class reCaptcha extends _zp_captcha {
 	}
 
 	function handleOption($key, $cv) {
-		$captcha = $this->getCaptcha(NULL);
-		?>
-		<span id="zenphoto_captcha_image_loc"><?php echo $captcha['input']; ?></span>
-		<?php
+
 	}
 
 	/**
@@ -166,7 +163,7 @@ class reCaptcha extends _zp_captcha {
 		?>
 		<div class="notebox">
 			<h2>
-				<?php echo gettext('The reCaptcha plugin is deprecated. See the <a href="https://developers.google.com/recaptcha/docs/faq">reCAPTCHA FAQ</a>. You should migrate to the reCaptcha_v2 plugin by March 2018'); ?>
+		<?php echo gettext('The reCaptcha plugin is deprecated. See the <a href="https://developers.google.com/recaptcha/docs/faq">reCAPTCHA FAQ</a>. You should migrate to the reCaptcha_v2 plugin by March 2018'); ?>
 			</h2>
 		</div>
 
