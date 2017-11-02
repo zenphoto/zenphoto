@@ -41,6 +41,9 @@ class htmlmetatags {
 			setOptionDefault('htmlmeta_revisit_after', '10');
 			setOptionDefault('htmlmeta_expires', '43200');
 			setOptionDefault('htmlmeta_tags', '');
+			setOptionDefault('htmlmeta_google-site-verification', getOption('google-site-verification'));
+			purgeOption('google-site-verification'); // remove obsolete option
+
 			setOptionDefault('htmlmeta_opengraph', 1);
 
 			// the html meta tag selector prechecked ones
@@ -61,6 +64,7 @@ class htmlmetatags {
 			setOptionDefault('htmlmeta_name-date', '1');
 			setOptionDefault('htmlmeta_canonical-url', '0');
 			setOptionDefault('htmlmeta_sitelogo', '');
+			setOptionDefault('htmlmeta_fb-app_id', '');
 			setOptionDefault('htmlmeta_twittercard', '');
 			setOptionDefault('htmlmeta_twittername', '');
 			setOptionDefault('htmlmeta_ogimage_width', 1280);
@@ -76,7 +80,8 @@ class htmlmetatags {
 	// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
 	function getOptionsSupported() {
 
-		$options = array(gettext('Cache control') => array('key' => 'htmlmeta_cache_control', 'type' => OPTION_TYPE_SELECTOR,
+		$options = array(
+				gettext('Cache control') => array('key' => 'htmlmeta_cache_control', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 0,
 						'selections' => array(
 								'no-cache' => "no-cache",
@@ -109,6 +114,8 @@ class htmlmetatags {
 				gettext('Canonical URL link') => array('key' => 'htmlmeta_canonical-url', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 11,
 						'desc' => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
+				gettext('Verification content') => array('key' => 'htmlmeta_google-site-verification', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Google.')),
 				gettext('Site logo') => array('key' => 'htmlmeta_sitelogo', 'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
 				gettext('Twitter name') => array('key' => 'htmlmeta_twittername', 'type' => OPTION_TYPE_TEXTBOX,
@@ -117,6 +124,8 @@ class htmlmetatags {
 						'desc' => gettext("Max width of the open graph image used for sharing to social networks if enabled.")),
 				gettext('Open graph image - height') => array('key' => 'htmlmeta_ogimage_height', 'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("Max height of the open graph image used for sharing to social networks if enabled.")),
+				gettext('Facebook app id') => array('key' => 'htmlmeta_fb-app_id', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("Enter your Facebook app id. IF using this you also should enable the OpenGraph meta tags.")),
 				gettext('HTML meta tags') => array('key' => 'htmlmeta_tags', 'type' => OPTION_TYPE_CHECKBOX_UL,
 						"checkboxes" => array(
 								"http-equiv='cache-control'" => "htmlmeta_http-equiv-cache-control",
@@ -307,6 +316,9 @@ class htmlmetatags {
 				$expires = preg_replace('|\s\-\d+|', '', date('r', time() + $expires)) . ' GMT';
 			$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
 		}
+		if (getOption('htmlmeta_google-site-verification')) {
+			$meta .= '<meta name="google-site-verification" content="' . getOption('htmlmeta_google-site-verification') . '">' . "\n";
+		}
 
 		// OpenGraph meta
 		if (getOption('htmlmeta_opengraph')) {
@@ -319,10 +331,16 @@ class htmlmetatags {
 			$meta .= '<meta property="og:type" content="' . $type . '">' . "\n";
 		}
 
-		// Social network extras
+		// Facebook app id
+		if (getOption('htmlmeta_fb-app_id')) {
+			$meta .= '<meta property="fb:app_id"  content="' . sanitize_numeric(getOption('htmlmeta_fb-app_id')) . '" />' . "\n";
+		}
+
+		// dissalow users to pin images on Pinterest
 		if (getOption('htmlmeta_name-pinterest')) {
 			$meta .= '<meta name="pinterest" content="nopin">' . "\n";
-		} // dissalow users to pin images on Pinterest
+		}
+
 		// Twitter card
 		if (getOption('htmlmeta_twittercard')) {
 			$twittername = getOption('htmlmeta_twittername');
