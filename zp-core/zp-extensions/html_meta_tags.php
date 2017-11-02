@@ -40,6 +40,14 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_revisit_after', '10 Days');
 		setOptionDefault('htmlmeta_expires', '43200');
 		setOptionDefault('htmlmeta_tags', '');
+		
+		if(getOption('google-site-verification')) { // import existing old option
+			$verify = getOption('google-site-verification');
+			setOptionDefault('htmlmeta_google-site-verification', $verify);
+			purgeOption('google-site-verification'); // remove obsolete option
+		} else {
+			setOptionDefault('htmlmeta_google-site-verification', '');
+		}
 
 		if(getOption('htmlmeta_og-title')) { // assume this will be set
 			setOptionDefault('htmlmeta_opengraph', 1);
@@ -129,6 +137,10 @@ class htmlmetatags {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 11,
 						'desc' => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
+				gettext('Verification content') => array(
+						'key' => 'htmlmeta_google-site-verification',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Google.')),
 				gettext('Site logo') => array(
 						'key' => 'htmlmeta_sitelogo', 
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -378,6 +390,9 @@ class htmlmetatags {
 			if ($expires == (int) $expires)
 				$expires = preg_replace('|\s\-\d+|', '', date('r', time() + $expires)) . ' GMT';
 			$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
+		}
+		if(getOption('htmlmeta_google-site-verification')) {
+			$meta .= '<meta name="google-site-verification" content="' . getOption('htmlmeta_google-site-verification') . '">' . "\n";
 		}
 
 		// OpenGraph meta

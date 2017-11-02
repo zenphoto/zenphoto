@@ -1203,7 +1203,6 @@ zp-core/zp-extensions/flag_thumbnail/new.png
 zp-core/zp-extensions/galleryArticles
 zp-core/zp-extensions/galleryArticles.php
 zp-core/zp-extensions/galleryArticles/combiNews.php
-zp-core/zp-extensions/googleVerify.php
 zp-core/zp-extensions/hitcounter.php
 zp-core/zp-extensions/html_meta_tags.php
 zp-core/zp-extensions/http_auth.php
@@ -1780,4 +1779,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1782
+1781
