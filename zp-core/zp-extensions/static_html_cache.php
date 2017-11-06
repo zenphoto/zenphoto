@@ -148,7 +148,7 @@ class static_html_cache {
 			if (!empty($cachefilepath)) {
 				$cachefilepath = SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/" . $cachefilepath;
 				if (file_exists($cachefilepath)) {
-					$lastmodified = filemtime($cachefilepath);
+					$lastmodified = @filemtime($cachefilepath);
 					// don't use cache if comment is posted or cache has expired
 					if (time() - $lastmodified < getOption("static_cache_expire")) {
 						//send the headers!
@@ -169,8 +169,8 @@ class static_html_cache {
 						echo "<!-- " . sprintf(gettext('Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable overhead.'), $end - $start_cache, $start_cache - $start, date('D, d M Y H:i:s', filemtime($cachefilepath))) . " -->\n";
 						exitZP();
 					}
+					$this->deletestatic_html_cacheFile($cachefilepath);
 				}
-				$this->deletestatic_html_cacheFile($cachefilepath);
 				if (ob_start()) {
 					$this->pageCachePath = $cachefilepath;
 				}
@@ -320,6 +320,7 @@ class static_html_cache {
 		if (file_exists($cachefilepath)) {
 			@chmod($cachefilepath, 0777);
 			@unlink($cachefilepath);
+			clearstatcache();
 		}
 	}
 
@@ -337,6 +338,7 @@ class static_html_cache {
 		} else {
 			zpFunctions::removeDir(SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/" . $folder);
 		}
+		clearstatcache();
 	}
 
 	/**
