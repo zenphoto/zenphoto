@@ -18,8 +18,12 @@ if ($_contents) {
 		}
 		if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
 			if (file_exists(dirname($_zp_script) . '/plugins/site_upgrade/closed.php')) {
-				require_once(dirname(__FILE__) . '/zp-core/global-definitions.php');
-				header('location: ' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
+				if (isset($_SERVER['HTTPS'])) {
+					$protocol = 'https';
+				} else {
+					$protocol = 'http';
+				}
+				header('location: ' . $protocol . '://' . $_SERVER['HTTP_HOST'] . str_replace('index.php', '', $_SERVER['SCRIPT_NAME']) . 'plugins/site_upgrade/closed.php');
 			}
 			exit();
 		}
