@@ -41,11 +41,11 @@ $plugin_notice = (MOD_REWRITE) ? false : gettext('<em>mod_rewrite</em> is not en
 
 if (OFFSET_PATH) {
 	$_site_filelist = array(
-			'closed.htm' => '+', // copy and update
-			'closed.php' => '*', // just copy
-// "feed" plugins. The convention is that the file name is plugin prefix-closed.xml
+			'closed.htm' => '+', // copy and update define
+			'closed.php' => '*', // copy and update
+			// "feed" plugins. The convention is that the file name is plugin prefix-closed.xml
 			'rss-closed.xml' => 'RSS', // create from RSS class
-			'externalFeed-closed.xml' => 'externalFeed' // create from externamFeed class
+			'externalFeed-closed.xml' => 'externalFeed' // create from externalFeed class
 	);
 }
 
@@ -248,12 +248,13 @@ switch (OFFSET_PATH) {
 		foreach ($_site_filelist as $name => $source) {
 			if (isset($_REQUEST['refreshHTML']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/' . $name)) {
 				switch ($source) {
-					case '+':
 					case '*':
 						$data = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/' . $name);
-						if ($source != '*') {
-							$data = sprintf($data, sprintf(gettext('%s upgrade'), $_zp_gallery->getTitle()), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.png', sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'), $_zp_gallery->getTitle()), '<a href="' . FULLWEBPATH . '/index.php">' . gettext('Please return later') . '</a>', FULLWEBPATH . '/index.php');
-						}
+						$data = str_replace('SITEINDEX', FULLWEBPATH . "/index.php", $data);
+						break;
+					case '+':
+						$data = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/' . $name);
+						$data = sprintf($data, sprintf(gettext('%s upgrade'), $_zp_gallery->getTitle()), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/site_upgrade/closed.png', sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'), $_zp_gallery->getTitle()), '<a href="' . FULLWEBPATH . '/index.php">' . gettext('Please return later') . '</a>', FULLWEBPATH . '/index.php');
 						break;
 					default:
 // Feed plugin
