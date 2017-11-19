@@ -43,7 +43,7 @@ if (is_array($result)) {
 }
 
 
-$sql = 'ALTER DATABASE ' . db_name() . ' CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;';
+$sql = 'ALTER DATABASE `' . db_name() . '` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;';
 query($sql);
 
 foreach ($tables as $table) {
