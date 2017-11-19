@@ -200,7 +200,7 @@ foreach ($datefields as $fix) {
 	$table = $fix['table'];
 	$field = $fix['field'];
 	$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=NULL WHERE `' . $field . '`="0000-00-00 00:00:00"';
-	setupQuery($sql, false, FALSE);
+	setupQuery($sql, FALSE, FALSE);
 }
 
 //setup database
@@ -212,7 +212,7 @@ if (is_array($result)) {
 	$dbmigrate = true;
 }
 if ($utf8mb4 && $dbmigrate) {
-	$sql = 'ALTER DATABASE ' . db_name() . ' CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;';
+	$sql = 'ALTER DATABASE `' . db_name() . '` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;';
 	setupQuery($sql);
 }
 $tablePresent = array();
