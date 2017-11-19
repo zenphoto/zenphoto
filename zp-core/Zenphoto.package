@@ -1305,6 +1305,9 @@ zp-core/zp-extensions/mobileTheme.php
 zp-core/zp-extensions/mobileTheme/Mobile_Detect.php
 zp-core/zp-extensions/multiple_layouts.php
 zp-core/zp-extensions/paged_thumbs_nav.php
+zp-core/zp-extensions/piwik
+zp-core/zp-extensions/piwik.php
+zp-core/zp-extensions/piwik/piwik_tab.php
 zp-core/zp-extensions/print_album_menu.php
 zp-core/zp-extensions/publishContent
 zp-core/zp-extensions/publishContent.php
@@ -1779,4 +1782,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1781
+1784
