@@ -7773,6 +7773,8 @@ zp-core/zp-extensions/PHPMailer/class.phpmailer.php
 zp-core/zp-extensions/PHPMailer/class.pop3.php
 zp-core/zp-extensions/PHPMailer/class.smtp.php
 zp-core/zp-extensions/PHPMailer/PHPMailerAutoload.php
+zp-core/zp-extensions/piwik
+zp-core/zp-extensions/piwik/piwik_tab.php
 zp-core/zp-extensions/publishContent
 zp-core/zp-extensions/publishContent/publishContent.css
 zp-core/zp-extensions/publishContent/publishContent.php
@@ -8142,4 +8144,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8144
+8146
