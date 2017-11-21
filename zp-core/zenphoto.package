@@ -1561,6 +1561,7 @@ zp-core/zp-extensions/nanospell.php
 zp-core/zp-extensions/optionalObjectFields.php
 zp-core/zp-extensions/paged_thumbs_nav.php
 zp-core/zp-extensions/PHPMailer.php
+zp-core/zp-extensions/piwik.php
 zp-core/zp-extensions/print_album_menu.php
 zp-core/zp-extensions/publishContent.php
 zp-core/zp-extensions/purgeOptions.php
@@ -8144,4 +8145,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8146
+8147
