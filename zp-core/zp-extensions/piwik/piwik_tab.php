@@ -17,14 +17,13 @@ printAdminHeader('overview', 'piwik');
 		<?php printTabs(); ?>
 		<div id="content">
 			<div id="container">
-				<?php printSubtabs(); ?>
-					<h1><?php echo gettext('Piwik statistics'); ?></h1>
-					<?php echo getOption('piwik_widgets_code'); ?>
+				<h1><?php echo gettext('Piwik statistics'); ?></h1>
+				<?php echo getOption('piwik_widgets_code'); ?>
 			</div>
 		</div>
 		<br class="clearall" />
 	</div>
-	
+
 	<?php printAdminFooter(); ?>
 </body>
 </html>
