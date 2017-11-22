@@ -358,7 +358,8 @@ $a = "a => (href =>() title =>() target=>() class=>() id=>())\n" .
 				"address=>(class=>() id=>() style=>())\n" .
 				"span=>(class=>() id=>() style=>())\n" .
 				"div=>(class=>() id=>() style=>())\n" .
-				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>())\n"
+				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>())\n" .
+				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>() frameborder=>())\n"
 ;
 purgeOption('allowed_tags_default');
 setOptionDefault('allowed_tags_default', $a);
@@ -537,6 +538,7 @@ if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 	$themes = array_keys($_zp_gallery->getThemes());
 	natcasesort($themes);
 	echo gettext('Theme setup:') . '<br />';
+
 	foreach ($themes as $key => $theme) {
 		if (protectedTheme($theme)) {
 			unset($themes[$key]);
@@ -793,8 +795,9 @@ $plugins = array_keys($plugins);
 <p>
 	<?php
 	//clean up plugins needed for themes and other plugins
-	$dependentExtensions = array('cacheManager', 'colorbox_js');
-	foreach ($dependentExtensions as $extension) {
+	$dependentExtensions = array('cacheManager' => 'cacheManager', 'colorbox' => 'colorbox_js');
+
+	foreach ($dependentExtensions as $class => $extension) {
 		$key = array_search($extension, $plugins);
 		if ($key !== false) {
 			$_GET['from'] = $from;
@@ -820,13 +823,14 @@ $plugins = array_keys($plugins);
 				enableExtension($extension, $plugin_is_filter);
 			}
 			setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), TEST_RELEASE);
-			new cacheManager;
+			new $class;
 			setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), TEST_RELEASE);
 			list($usec, $sec) = explode(" ", microtime());
 			$last = (float) $usec + (float) $sec;
-			setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start));
+			setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), TEST_RELEASE);
 		}
 	}
+
 	natcasesort($plugins);
 	echo gettext('Plugin setup:') . '<br />';
 	foreach ($plugins as $key => $extension) {
@@ -875,5 +879,6 @@ if ($deprecate) {
 		setupLog(gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
 	}
 }
+
 setOption('zenphotoCompatibilityPack_signature', serialize($compatibilityIs));
 ?>

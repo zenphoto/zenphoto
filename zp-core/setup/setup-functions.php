@@ -560,7 +560,7 @@ function shutDownFunction() {
 		setupLog($msg, true);
 		if ($extension) {
 			enableExtension($extension, 0);
-			setupLog(gettext('Plugin:%1$s setup failed.'));
+			setupLog(sprintf(gettext('Plugin:%1$s setup failed.'), $extension));
 		}
 	}
 	error_reporting(0); //	bypass any further error handling

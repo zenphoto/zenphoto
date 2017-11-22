@@ -33,11 +33,6 @@ class ThemeOptions {
 		setThemeOptionDefault('zpB_show_exif', true);
 		setThemeOptionDefault('zpB_use_isotope', false);
 
-		// configure some zenphoto plugin options
-		enableExtension('colorbox_js', 0);
-		enableExtension('slideshow', 0);
-		enableExtension('slideshow2', 0);
-
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
