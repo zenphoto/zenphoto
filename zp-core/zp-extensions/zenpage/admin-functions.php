@@ -1307,8 +1307,10 @@ function printPagesStatistic() {
 	}
 }
 
-function printNewsStatistic() {
-	list($total, $type, $unpub) = getNewsPagesStatistic("news");
+function printNewsStatistic($total = NULL, $unpub = NULL) {
+	if (is_null($total)) {
+		list($total, $type, $unpub) = getNewsPagesStatistic("news");
+	}
 	if (empty($unpub)) {
 		printf(ngettext('<strong>%1$u</strong> article', '<strong>%1$u</strong> articles', $total), $total);
 	} else {

@@ -117,8 +117,14 @@ updatePublished('news');
 					if (isset($_GET['author'])) {
 						echo "<em><small>" . html_encode(sanitize($_GET['author'])) . '</small></em>';
 					}
+					$catobj = $category = NULL;
 					if (isset($_GET['category'])) {
-						echo "<em><small>" . html_encode(sanitize($_GET['category'])) . '</small></em>';
+						if ('`' == $category = sanitize($_GET['category'])) {
+							$category = gettext('Un-categorized');
+						} else {
+							$catobj = newCategory($category);
+						}
+						echo "<em><small>" . html_encode($category) . '</small></em>';
 					}
 					if (isset($_GET['date'])) {
 						$_zp_post_date = sanitize($_GET['date']);
@@ -146,22 +152,18 @@ updatePublished('news');
 						list($sortorder, $sortdirection) = explode('-', $_GET['sortorder']);
 						$direction = $sortdirection && $sortdirection == 'desc';
 					}
-					if (isset($_GET['category'])) {
-						$catobj = newCategory(sanitize($_GET['category']));
-					} else {
-						$catobj = NULL;
-					}
+
 					$resultU = $_zp_CMS->getArticles(0, 'unpublished', false, $sortorder, $direction, false, $catobj);
 					$result = $_zp_CMS->getArticles(0, $published, false, $sortorder, $direction, false, $catobj);
 					foreach ($result as $key => $article) {
 						$article = newArticle($article['titlelink']);
-						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS) || ($cur_author && $cur_author != $article->getAuthor())) {
+						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS) || ($cur_author && $cur_author != $article->getAuthor()) || (is_null($catobj) && !is_null($category) && !empty($article->getCategories()))) {
 							unset($result[$key]);
 						}
 					}
 					foreach ($resultU as $key => $article) {
 						$article = newArticle($article['titlelink']);
-						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS) || ($cur_author && $cur_author != $article->getAuthor())) {
+						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS) || ($cur_author && $cur_author != $article->getAuthor()) || (is_null($catobj) && !is_null($category) && !empty($article->getCategories()))) {
 							unset($resultU[$key]);
 						}
 					}
