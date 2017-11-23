@@ -117,6 +117,13 @@ if (isset($result['EXIFGPSLatitude'])) {
 } else if (isset($result['EXIFGPSAltitude'])) {
 	$where .= ' OR (`GPSAltitude` IS NULL AND NOT `EXIFGPSAltitude` IS NULL)';
 }
+
+//original was mis-spelled
+if (extensionEnabled('reCaptche_v2')) {
+	purgeOption('zp_plugin_reCaptche_v2');
+	enableExtension('reCAPTCHA_v2', 500 | CLASS_PLUGIN);
+}
+
 if (!empty($where)) {
 	$sql = 'SELECT `id` FROM ' . prefix('images') . ' WHERE ' . $where;
 	$result = query($sql);
