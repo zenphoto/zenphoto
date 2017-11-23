@@ -157,13 +157,17 @@ updatePublished('news');
 					$result = $_zp_CMS->getArticles(0, $published, false, $sortorder, $direction, false, $catobj);
 					foreach ($result as $key => $article) {
 						$article = newArticle($article['titlelink']);
-						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS) || ($cur_author && $cur_author != $article->getAuthor()) || (is_null($catobj) && !is_null($category) && !empty($article->getCategories()))) {
+						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS) ||
+										($cur_author && $cur_author != $article->getAuthor()) ||
+										(is_null($catobj) && !is_null($category) && !empty($article->getCategories()))) {
 							unset($result[$key]);
 						}
 					}
 					foreach ($resultU as $key => $article) {
 						$article = newArticle($article['titlelink']);
-						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS) || ($cur_author && $cur_author != $article->getAuthor()) || (is_null($catobj) && !is_null($category) && !empty($article->getCategories()))) {
+						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS) ||
+										($cur_author && $cur_author != $article->getAuthor()) ||
+										(is_null($catobj) && !is_null($category) && !empty($article->getCategories()))) {
 							unset($resultU[$key]);
 						}
 					}
@@ -192,7 +196,12 @@ updatePublished('news');
 						$offset = CMS::getOffset($articles_page);
 						$list = array();
 						foreach ($result as $article) {
-							$list[] = $article[$sortorder];
+							$item = $article[$sortorder];
+							if ($sortorder == 'title') {
+								$item = getSerializedArray($item);
+								$item = get_language_string($item);
+							}
+							$list[] = $item;
 						}
 						if ($sortorder == 'title') {
 							$rangeset = getPageSelector($list, $articles_page);
