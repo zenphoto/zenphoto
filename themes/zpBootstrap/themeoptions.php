@@ -33,6 +33,10 @@ class ThemeOptions {
 		setThemeOptionDefault('zpB_show_exif', true);
 		setThemeOptionDefault('zpB_use_isotope', false);
 
+		if (class_exists('colorbox')) {
+			colorbox::registerScripts(array());
+		}
+
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
