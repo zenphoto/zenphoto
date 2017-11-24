@@ -13,6 +13,8 @@ if (getOption('gmap_sessions')) {
 	zp_session_start();
 }
 require_once(dirname(dirname(__FILE__)) . '/googleMap.php');
+GoogleMap::js();
+
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
@@ -74,7 +76,6 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 		$config['clusterAverageCenter'] = true;
 		$config['onclick'] = "iw.close();";
 		$config['minifyJS'] = true;
-
 		$map = new Googlemaps($config);
 
 		$map->output_js_contents = $map_data["output_js_contents"];

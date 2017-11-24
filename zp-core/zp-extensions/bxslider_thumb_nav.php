@@ -14,7 +14,7 @@
  */
 $plugin_description = gettext("Responsive jQuery bxSlider thumb nav plugin based on <a href='http://bxslider.com'>http://bxslider.com</a>");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)";
-$plugin_disable = (extensionEnabled('jcarousel_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'jcarousel_thumb_nav') : '';
+$plugin_disable = (extensionEnabled('jCarousel_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'jCarousel_thumb_nav') : '';
 $option_interface = 'bxslider';
 
 /**
@@ -116,12 +116,10 @@ class bxslider {
 	 *
 	 * @param string $theme
 	 * @param array $scripts list of the scripts
+	 * @deprecated
 	 */
 	static function registerScripts($scripts, $theme = NULL) {
-		if (is_null($theme)) {
-			list($theme, $creaator) = getOptionOwner();
-		}
-		setOptionDefault('bxslider_' . $theme . '_scripts', serialize($scripts));
+
 	}
 
 	/**
@@ -145,25 +143,20 @@ class bxslider {
 		return true;
 	}
 
-	static function themeJS() {
+	static function js() {
+		global $_bxslider_scripts;
 		$theme = getCurrentTheme();
-		$css = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($theme) . '/jquery.bxslider.css';
-		if (file_exists($css)) {
-			$css = WEBPATH . '/' . THEMEFOLDER . '/' . $theme . '/jquery.bxslider.css';
-		} else {
-			$css = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/bxslider_thumb_nav/jquery.bxslider.css';
-		}
+		$_bxslider_scripts = getPlugin('bxslider_thumb_nav/jquery.bxslider.css', getCurrentTheme(), true);
 		?>
 
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/bxslider_thumb_nav/jquery.bxslider.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="<?php echo html_encode($css); ?>" />
+		<link rel="stylesheet" type="text/css" href="<?php echo html_encode($_bxslider_scripts); ?>" />
 		<?php
 	}
 
 }
 
-if (!$plugin_disable && !OFFSET_PATH && in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('bxslider_' . $_zp_gallery->getCurrentTheme() . '_scripts')))) {
-	zp_register_filter('theme_head', 'bxslider::themeJS');
+if (extensionEnabled('bxslider_thumb_nav') && !OFFSET_PATH) {
 
 	/** Prints the jQuery bxslider HTML setup to be replaced by JS
 	 *
@@ -179,10 +172,13 @@ if (!$plugin_disable && !OFFSET_PATH && in_array(stripSuffix($_zp_gallery_page),
 	 * @param int $speed The speed in milliseconds the slides advance when clicked
 	 */
 	function printThumbNav($minitems = NULL, $maxitems = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $mode = NULL, $speed = NULL) {
-		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page;
+		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_bxslider_scripts;
 		//	Just incase the theme has not set the option, at least second try will work!
+		if (is_null($_bxslider_scripts)) {
+			bxslider::js();
+		}
 		bxslider::scriptEnabled($_zp_gallery->getCurrentTheme(), stripSuffix($_zp_gallery_page));
-		$items = "";
+		$items = array();
 		if (is_object($_zp_current_album) && $_zp_current_album->getNumImages() >= 2) {
 			if (is_null($minitems)) {
 				$minitems = getOption('bxslider_minitems');
@@ -271,7 +267,6 @@ if (!$plugin_disable && !OFFSET_PATH && in_array(stripSuffix($_zp_gallery_page),
 				}
 			}
 			$albumid = $_zp_current_album->get('id');
-			//$items = substr($items, 0, -2);
 			$numimages = getNumImages();
 			if (!is_null($_zp_current_image)) {
 				$imgnumber = (imageNumber() - 1);

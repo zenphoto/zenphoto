@@ -1,17 +1,13 @@
 <?php
+
 // force UTF-8 Ø
 
 if (!OFFSET_PATH) {
 
 	setOption('comment_form_toggle', false, true); // override this option of comment_form, to avoid JS conflits
 	setOption('comment_form_pagination', false, true); // override this option of comment_form, to avoid JS conflits
-	setOption('tinymce_comments', null, true);	// force this option to disable tinyMCE for comment form
-	setOption('user_logout_login_form', 1);	//override this option called by user_login-out plugin
-	// disable some plugins
-	enableExtension('colorbox_js', 0, false);
-	enableExtension('slideshow', 0, false);
-	enableExtension('slideshow2', 0, false);
-
+	setOption('tinymce_comments', null, true); // force this option to disable tinyMCE for comment form
+	setOption('user_logout_login_form', 1); //override this option called by user_login-out plugin
 	// Check for mobile and tablets, set some options...
 	require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/mobileTheme/Mobile_Detect.php');
 	$detect = new Mobile_Detect;
