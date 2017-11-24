@@ -1567,7 +1567,7 @@ zp-core/zp-extensions/publishContent.php
 zp-core/zp-extensions/purgeOptions.php
 zp-core/zp-extensions/quota_manager.php
 zp-core/zp-extensions/rating.php
-zp-core/zp-extensions/reCaptche_v2.php
+zp-core/zp-extensions/reCAPTCHA_v2.php
 zp-core/zp-extensions/register_user.php
 zp-core/zp-extensions/related_items.php
 zp-core/zp-extensions/rewriteRules.php
