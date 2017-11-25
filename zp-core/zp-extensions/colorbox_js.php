@@ -74,7 +74,7 @@ class colorbox {
 		);
 		$c = 10;
 
-		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
+		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'functions.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
 				$list[$script] = stripSuffix($script);
@@ -82,7 +82,7 @@ class colorbox {
 			$opts[$theme] = array('key' => 'colorbox_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
 					'order' => $c++,
 					'checkboxes' => $list,
-					'desc' => gettext('The scripts for which Colorbox is enabled.')
+					'desc' => sprintf(gettext('The %1$s scripts for which Colorbox is enabled.'), $theme)
 			);
 		}
 
