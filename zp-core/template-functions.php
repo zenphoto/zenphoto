@@ -65,7 +65,7 @@ function adminToolbox() {
 			$name = $_zp_current_admin_obj->getUser();
 		}
 		?>
-		<div id="<?php echo $id; ?>" style="margin-right: 10px;">
+		<div id="<?php echo $id; ?>">
 			<a onclick="$('#<?php echo $dataid; ?>').toggle();" title="<?php echo gettext('Logged in as') . ' ' . $name; ?>" style="text-decoration: none;">
 				<span class="adminGear">
 					<?php echo GEAR_SYMBOL; ?>
