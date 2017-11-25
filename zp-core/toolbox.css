@@ -15,6 +15,7 @@ Default admin toolbox css
 	text-align: center !important;
 	padding-top: 5px !important;
 	padding-left: 5px !important;
+	margin-right: 10px;
 }
 #admin_tb_data{
 	position: fixed;
