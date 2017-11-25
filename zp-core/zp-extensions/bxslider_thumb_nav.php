@@ -122,27 +122,6 @@ class bxslider {
 
 	}
 
-	/**
-	 * Checks if the theme script is registered for colorbox. If not it will register the script
-	 * so next time things will workl
-	 *
-	 * @global type $_zp_gallery
-	 * @global type $_zp_gallery_page
-	 * @param string $theme
-	 * @param string $script
-	 * @return boolean true registered
-	 */
-	static function scriptEnabled($theme, $script) {
-		global $_zp_gallery, $_zp_gallery_page;
-		$scripts = getSerializedArray(getOption('bxslider_' . $_zp_gallery->getCurrentTheme() . '_scripts'));
-		if (!in_array(stripSuffix($_zp_gallery_page), $scripts)) {
-			array_push($scripts, $script);
-			setOption('bxslider_' . $theme . '_scripts', serialize($scripts));
-			return false;
-		}
-		return true;
-	}
-
 	static function js() {
 		global $_bxslider_scripts;
 		$theme = getCurrentTheme();
@@ -177,7 +156,6 @@ if (extensionEnabled('bxslider_thumb_nav') && !OFFSET_PATH) {
 		if (is_null($_bxslider_scripts)) {
 			bxslider::js();
 		}
-		bxslider::scriptEnabled($_zp_gallery->getCurrentTheme(), stripSuffix($_zp_gallery_page));
 		$items = array();
 		if (is_object($_zp_current_album) && $_zp_current_album->getNumImages() >= 2) {
 			if (is_null($minitems)) {
