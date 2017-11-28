@@ -6,16 +6,15 @@
  */
 
 // force UTF-8 Ø
-
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/functions.php');
 if (getOption('gmap_sessions')) {
 	zp_session_start();
 }
 require_once(dirname(dirname(__FILE__)) . '/googleMap.php');
-GoogleMap::js();
 
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+GoogleMap::js();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" />
