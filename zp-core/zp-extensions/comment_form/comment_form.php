@@ -115,8 +115,7 @@
 	<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php
 		echo $stored['comment'];
 		echo $disabled['comment'];
-		?>
-	</textarea>
+		?></textarea>
 	<br clear="all">
 	<br />
 	<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Add Comment'); ?></button>
