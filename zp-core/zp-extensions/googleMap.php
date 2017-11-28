@@ -23,7 +23,6 @@ if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {
 	if (getOption('gmap_sessions')) {
 		zp_session_start();
 	}
-	zp_register_filter('theme_head', 'GoogleMap::js');
 }
 
 /**
@@ -380,6 +379,10 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 	$config['clusterAverageCenter'] = true;
 	$config['onclick'] = "iw.close();";
 	$config['minifyJS'] = !TEST_RELEASE;
+	if (!class_exists('Googlemaps')) {
+		GoogleMap::js();
+	}
+
 	$map = new Googlemaps($config);
 
 	/* add markers from geocoded pictures */

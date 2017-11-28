@@ -8,9 +8,6 @@ if (!defined('WEBPATH'))
 	<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 		<?php
-		if (!( (($_zp_gallery_page == 'pages.php') && ((getPageTitleLink() == 'map')) ) || ($_zp_gallery_page == 'album.php'))) {
-			zp_remove_filter('theme_head', 'GoogleMap::js');
-		}
 		zp_apply_filter('theme_head');
 		?>
 		<title>

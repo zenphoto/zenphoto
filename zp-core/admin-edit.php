@@ -329,13 +329,12 @@ if (isset($_GET['action'])) {
 		/*		 * *************************************************************************** */
 		case "save":
 			unset($folder);
-			$returntab = '';
+			$bulknotify = $notify = $returntab = '';
 			XSRFdefender('albumedit');
 			/** SAVE A SINGLE ALBUM ****************************************************** */
 			if (isset($_POST['album'])) {
 				$folder = sanitize_path($_POST['album']);
 				$album = newAlbum($folder, false, true);
-				$notify = '';
 				$returnalbum = NULL;
 				if (isset($_POST['savealbuminfo']) && $album->exists) {
 					$notify = processAlbumEdit(0, $album, $returnalbum);
@@ -348,85 +347,84 @@ if (isset($_GET['action'])) {
 						if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
 							$action = processImageBulkActions($album);
 							if (!empty($action))
-								$notify = '&bulkmessage=' . $action;
-						} else {
-							if (isset($_POST['singleimage'])) {
-								$single = sanitize($_POST['singleimage']);
-							}
-							for ($i = 0; $i <= $_POST['totalimages']; $i++) {
-								if (isset($_POST["$i-filename"])) {
-									$filename = sanitize($_POST["$i-filename"]);
-									$image = newImage($album, $filename, true);
-									if ($image->exists) { // The file might no longer exist
-										if (isset($_POST[$i . '-MoveCopyRename'])) {
-											$movecopyrename_action = sanitize($_POST[$i . '-MoveCopyRename'], 3);
-										} else {
-											$movecopyrename_action = '';
+								$bulknotify = '&bulkmessage=' . $action;
+						}
+						if (isset($_POST['singleimage'])) {
+							$single = sanitize($_POST['singleimage']);
+						}
+						for ($i = 0; $i <= $_POST['totalimages']; $i++) {
+							if (isset($_POST["$i-filename"])) {
+								$filename = sanitize($_POST["$i-filename"]);
+								$image = newImage($album, $filename, true);
+								if ($image->exists) { // The file might no longer exist
+									if (isset($_POST[$i . '-MoveCopyRename'])) {
+										$movecopyrename_action = sanitize($_POST[$i . '-MoveCopyRename'], 3);
+									} else {
+										$movecopyrename_action = '';
+									}
+									if ($movecopyrename_action == 'delete') {
+										unset($single);
+										$image->remove();
+									} else {
+										if (isset($_POST[$i . '-reset_rating'])) {
+											$image->set('total_value', 0);
+											$image->set('total_votes', 0);
+											$image->set('used_ips', 0);
 										}
-										if ($movecopyrename_action == 'delete') {
+										$pubdate = $image->setPublishDate(sanitize($_POST['publishdate-' . $i]));
+										$image->setExpireDate(sanitize($_POST['expirationdate-' . $i]));
+										$image->setTitle(process_language_string_save("$i-title", 2));
+										$image->setDesc(process_language_string_save("$i-desc", EDITOR_SANITIZE_LEVEL));
+										if (isset($_POST[$i . '-oldrotation']) && isset($_POST[$i . '-rotation'])) {
+											$oldrotation = (int) $_POST[$i . '-oldrotation'];
+											$rotation = (int) $_POST[$i . '-rotation'];
+											if ($rotation != $oldrotation) {
+												$image->set('rotation', $rotation);
+												$image->updateDimensions();
+												$album = $image->getAlbum();
+												Gallery::clearCache($album->name);
+											}
+										}
+										$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
+										if (isset($_POST["reset_hitcounter$i"])) {
+											$image->set('hitcounter', 0);
+										}
+										$image->set('filesize', filesize($image->localpath));
+										$image->setShow(isset($_POST["$i-Visible"]));
+										zp_apply_filter('save_image_custom_data', NULL, $i, $image);
+										zp_apply_filter('save_image_utilities_data', $image, $i);
+
+										$image->save();
+
+										// Process move/copy/rename
+										if ($movecopyrename_action == 'move') {
 											unset($single);
-											$image->remove();
-										} else {
-											if (isset($_POST[$i . '-reset_rating'])) {
-												$image->set('total_value', 0);
-												$image->set('total_votes', 0);
-												$image->set('used_ips', 0);
-											}
-											$pubdate = $image->setPublishDate(sanitize($_POST['publishdate-' . $i]));
-											$image->setExpireDate(sanitize($_POST['expirationdate-' . $i]));
-											$image->setTitle(process_language_string_save("$i-title", 2));
-											$image->setDesc(process_language_string_save("$i-desc", EDITOR_SANITIZE_LEVEL));
-											if (isset($_POST[$i . '-oldrotation']) && isset($_POST[$i . '-rotation'])) {
-												$oldrotation = (int) $_POST[$i . '-oldrotation'];
-												$rotation = (int) $_POST[$i . '-rotation'];
-												if ($rotation != $oldrotation) {
-													$image->set('rotation', $rotation);
-													$image->updateDimensions();
-													$album = $image->getAlbum();
-													Gallery::clearCache($album->name);
-												}
-											}
-											$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
-											if (isset($_POST["reset_hitcounter$i"])) {
-												$image->set('hitcounter', 0);
-											}
-											$image->set('filesize', filesize($image->localpath));
-											$image->setShow(isset($_POST["$i-Visible"]));
-											zp_apply_filter('save_image_custom_data', NULL, $i, $image);
-											zp_apply_filter('save_image_utilities_data', $image, $i);
-
-											$image->save();
-
-											// Process move/copy/rename
-											if ($movecopyrename_action == 'move') {
-												unset($single);
-												$dest = sanitize_path($_POST[$i . '-albumselect']);
-												if ($dest && $dest != $folder) {
-													if ($e = $image->move($dest)) {
-														$notify = "&mcrerr=" . $e;
-													}
-												} else {
-													// Cannot move image to same album.
-													$notify = "&mcrerr=2";
-												}
-											} else if ($movecopyrename_action == 'copy') {
-												$dest = sanitize_path($_POST[$i . '-albumselect']);
-												if ($dest && $dest != $folder) {
-													if ($e = $image->copy($dest)) {
-														$notify = "&mcrerr=" . $e;
-													}
-												} else {
-													// Cannot copy image to existing album.
-													// Or, copy with rename?
-													$notify = "&mcrerr=2";
-												}
-											} else if ($movecopyrename_action == 'rename') {
-												$renameto = sanitize_path($_POST[$i . '-renameto']);
-												if ($e = $image->rename($renameto)) {
+											$dest = sanitize_path($_POST[$i . '-albumselect']);
+											if ($dest && $dest != $folder) {
+												if ($e = $image->move($dest)) {
 													$notify = "&mcrerr=" . $e;
-												} else {
-													$single = $renameto;
 												}
+											} else {
+												// Cannot move image to same album.
+												$notify = "&mcrerr=2";
+											}
+										} else if ($movecopyrename_action == 'copy') {
+											$dest = sanitize_path($_POST[$i . '-albumselect']);
+											if ($dest && $dest != $folder) {
+												if ($e = $image->copy($dest)) {
+													$notify = "&mcrerr=" . $e;
+												}
+											} else {
+												// Cannot copy image to existing album.
+												// Or, copy with rename?
+												$notify = "&mcrerr=2";
+											}
+										} else if ($movecopyrename_action == 'rename') {
+											$renameto = sanitize_path($_POST[$i . '-renameto']);
+											if ($e = $image->rename($renameto)) {
+												$notify = "&mcrerr=" . $e;
+											} else {
+												$single = $renameto;
 											}
 										}
 									}
@@ -494,7 +492,7 @@ if (isset($_GET['action'])) {
 				header('Location: ' . $link);
 				exitZP();
 			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $notify . $pg . $returntab);
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $bulknotify . $notify . $pg . $returntab);
 			exitZP();
 			break;
 
@@ -1349,9 +1347,9 @@ echo "\n</head>";
 																		 name="<?php echo $currentimage; ?>-Visible"
 																		 value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?>
 																		 onclick="$('#publishdate-<?php echo $currentimage; ?>').val('');
-																									 $('#expirationdate-<?php echo $currentimage; ?>').val('');
-																									 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
-																									 $('.expire-<?php echo $currentimage; ?>').html('');"
+																				 $('#expirationdate-<?php echo $currentimage; ?>').val('');
+																				 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
+																				 $('.expire-<?php echo $currentimage; ?>').html('');"
 																		 />
 																		 <?php echo gettext("Published"); ?>
 														</label>
@@ -1468,7 +1466,7 @@ echo "\n</head>";
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete" onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																						deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																	deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 														</label>
 														<br class="clearall">
 														<div id="movecopydiv-<?php echo $currentimage; ?>" class="resetHide" style="padding-top: .5em; padding-left: .5em; padding-bottom: .5em; display: none;">

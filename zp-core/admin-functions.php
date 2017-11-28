@@ -3062,9 +3062,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 						if ($textbox) {
 							?>
-							<textarea name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?>	rows="<?php echo $rows ?>">
-								<?php echo html_encode($string); ?>
-							</textarea>
+							<textarea name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?>	rows="<?php echo $rows ?>"><?php echo html_encode($string); ?></textarea>
 							<?php
 						} else {
 							?>

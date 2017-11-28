@@ -100,23 +100,6 @@ class slideshow {
 						'order' => 1,
 						'desc' => gettext("Speed of the transition in milliseconds."))
 		);
-		$c = 30;
-		$opts['note'] = array('key' => 'slideshow_note', 'type' => OPTION_TYPE_NOTE,
-				'order' => $c,
-				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. They may also be set by the themes themselves. It is unnecessary to set them here, but the first time used the JavaScript and CSS files may be loaded and the slideshow not shown. Refreshing the page will then show the slideshow.')
-		);
-		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
-			$list = array();
-			foreach ($scripts as $script) {
-				$list[$script] = stripSuffix($script);
-			}
-			$opts[$theme] = array('key' => 'slideshow_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
-					'order' => $c++,
-					'checkboxes' => $list,
-					'desc' => gettext('The scripts for which the slideshow is enabled.')
-			);
-		}
-		$options = array_merge($options, $opts);
 
 		switch (getOption('slideshow_mode')) {
 			case 'jQuery':
@@ -171,33 +154,10 @@ class slideshow {
 	 *
 	 * @param string $theme
 	 * @param array $scripts list of the scripts
+	 * @deprecated
 	 */
 	static function registerScripts($scripts, $theme = NULL) {
-		if (is_null($theme)) {
-			list($theme, $creaator) = getOptionOwner();
-		}
-		setOptionDefault('slideshow_' . $theme . '_scripts', serialize($scripts));
-	}
 
-	/**
-	 * Checks if the theme script is registered for colorbox. If not it will register the script
-	 * so next time things will workl
-	 *
-	 * @global type $_zp_gallery
-	 * @global type $_zp_gallery_page
-	 * @param string $theme
-	 * @param string $script
-	 * @return boolean true registered
-	 */
-	static function scriptEnabled($theme, $script) {
-		global $_zp_gallery, $_zp_gallery_page;
-		$scripts = getSerializedArray(getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . '_scripts'));
-		if (!in_array(stripSuffix($_zp_gallery_page), $scripts)) {
-			array_push($scripts, $script);
-			setOption('slideshow_' . $theme . '_scripts', serialize($scripts));
-			return false;
-		}
-		return true;
 	}
 
 	static function getPlayer($album, $controls = false, $width = NULL, $height = NULL) {
@@ -501,17 +461,12 @@ class slideshow {
 		return $macros;
 	}
 
-	static function header_js() {
-		$theme = getCurrentTheme();
-		$css = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($theme) . '/slideshow.css';
-		if (file_exists($css)) {
-			$css = WEBPATH . '/' . THEMEFOLDER . '/' . $theme . '/slideshow.css';
-		} else {
-			$css = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/slideshow/slideshow.css';
-		}
+	static function js() {
+		global $__slideshow_scripts;
+		$__slideshow_scripts = getPlugin('slideshow/slideshow.css', getCurrentTheme(), true);
 		?>
 		<script type="text/javascript"	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow/jquery.cycle.all.js"></script>
-		<link type="text/css" rel="stylesheet" href="<?php echo $css; ?>" />
+		<link type="text/css" rel="stylesheet" href="<?php echo $__slideshow_scripts; ?>" />
 		<?php
 	}
 
@@ -534,10 +489,7 @@ class slideshow {
 
 }
 
-if (extensionEnabled('slideshow')) {
-	if ($_zp_gallery_page == 'slideshow.php' || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('slideshow_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
-		zp_register_filter('theme_head', 'slideshow::header_js');
-	}
+if (extensionEnabled('slideshow') && !OFFSET_PATH) {
 	zp_register_filter('content_macro', 'slideshow::macro');
 
 	$slideshow_instance = 0;
@@ -745,12 +697,15 @@ if (extensionEnabled('slideshow')) {
 	 *
 	 */
 	function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop = false, $shuffle = false, $linkslides = false, $controls = true) {
-		global $_myFavorites, $_zp_conf_vars, $_zp_gallery, $_zp_gallery_page;
+		global $_myFavorites, $_zp_conf_vars, $_zp_gallery, $_zp_gallery_page, $__slideshow_scripts;
 
 		if (!isset($_POST['albumid']) AND ! is_object($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
 		}
-		slideshow::scriptEnabled($_zp_gallery->getCurrentTheme(), stripSuffix($_zp_gallery_page));
+		if (is_null($__slideshow_scripts)) {
+			slideshow::js();
+		}
+
 		//getting the image to start with
 		if (!empty($_POST['imagenumber']) AND ! is_object($imageobj)) {
 			$imagenumber = sanitize_numeric($_POST['imagenumber']) - 1; // slideshows starts with 0, but zp with 1.

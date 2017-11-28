@@ -644,7 +644,8 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
 function getPlugin($plugin, $inTheme = false, $webpath = false) {
 	global $_zp_gallery;
 	$pluginFile = NULL;
-	$sources = array('/' . USER_PLUGIN_FOLDER . '/' . internalToFilesystem($plugin), '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . internalToFilesystem($plugin));
+	$plugin_fs = internalToFilesystem($plugin);
+	$sources = array('/' . USER_PLUGIN_FOLDER . '/' . $plugin_fs, '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $plugin_fs, '/' . ZENFOLDER . '/' . $plugin_fs);
 	if ($inTheme === true) {
 		$inTheme = $_zp_gallery->getCurrentTheme();
 	}

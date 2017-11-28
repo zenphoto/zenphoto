@@ -73,11 +73,8 @@ class colorbox {
 						'desc' => gettext("The Colorbox script comes with 5 example themes you can select here. If you select <em>custom (within theme)</em> you need to place a folder <em>colorbox_js</em> containing a <em>colorbox.css</em> file and a folder <em>images</em> within the current theme to override to use a custom Colorbox theme."))
 		);
 		$c = 10;
-		$opts['note'] = array('key' => 'colorbox_note', 'type' => OPTION_TYPE_NOTE,
-				'order' => $c,
-				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. They may also be set by the themes themselves. It is unnecessary to set them here, but the first time used the JavaScript and CSS files may not be loaded and the colorbox not shown. Refreshing the page will then show the colorbox.')
-		);
-		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
+
+		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'functions.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
 				$list[$script] = stripSuffix($script);
@@ -85,7 +82,7 @@ class colorbox {
 			$opts[$theme] = array('key' => 'colorbox_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
 					'order' => $c++,
 					'checkboxes' => $list,
-					'desc' => gettext('The scripts for which Colorbox is enabled.')
+					'desc' => sprintf(gettext('The %1$s scripts for which Colorbox is enabled.'), $theme)
 			);
 		}
 

@@ -170,25 +170,6 @@ class cycle {
 				}
 				break;
 		}
-		$c = 10;
-		$options2['note'] = array('key' => 'cycle_note', 'type' => OPTION_TYPE_NOTE,
-				'order' => $c,
-				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. They may also be set by the themes themselves. It is unnecessary to set them here, but the first time used the JavaScript and CSS files may not be loaded and the slideshow not shown. Refreshing the page will then show the slideshow.')
-		);
-		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
-			$list = array();
-			foreach ($scripts as $script) {
-				$list[$script] = stripSuffix($script);
-			}
-
-			$options2[$theme] = array('key' => 'cycle_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
-					'order' => $c++,
-					'checkboxes' => $list,
-					'desc' => gettext('The scripts for which the cycle2 plugin is enabled.')
-			);
-		}
-
-		$options = array_merge($options, $options2);
 
 		return $options;
 	}
@@ -202,33 +183,10 @@ class cycle {
 	 *
 	 * @param string $theme
 	 * @param array $scripts list of the scripts
+	 * @deprecated
 	 */
 	static function registerScripts($scripts, $theme = NULL) {
-		if (is_null($theme)) {
-			list($theme, $creaator) = getOptionOwner();
-		}
-		setOptionDefault('cycle-slideshow_' . $theme . '_scripts', serialize($scripts));
-	}
 
-	/**
-	 * Checks if the theme script is registered for colorbox. If not it will register the script
-	 * so next time things will workl
-	 *
-	 * @global type $_zp_gallery
-	 * @global type $_zp_gallery_page
-	 * @param string $theme
-	 * @param string $script
-	 * @return boolean true registered
-	 */
-	static function scriptEnabled($theme, $script) {
-		global $_zp_gallery, $_zp_gallery_page;
-		$scripts = getSerializedArray(getOption('cycle_' . $_zp_gallery->getCurrentTheme() . '_scripts'));
-		if (!in_array(stripSuffix($_zp_gallery_page), $scripts)) {
-			array_push($scripts, $script);
-			setOption('cycle_' . $theme . '_scripts', serialize($scripts));
-			return false;
-		}
-		return true;
 	}
 
 	static function getSlideshowPlayer($album, $controls = false, $width = NULL, $height = NULL) {
@@ -471,7 +429,8 @@ class cycle {
 		return $macros;
 	}
 
-	static function cycleJS() {
+	static function js() {
+		global $__cycle_css;
 		?>
 		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.min.js" type="text/javascript"></script>
 		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.center.min.js" type="text/javascript"></script>
@@ -505,9 +464,9 @@ class cycle {
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/ios6fix.js" type="text/javascript"></script>
 			<?php
 		}
-		$css = getPlugin('slideshow2/slideshow2.css', getCurrentTheme(), true);
+		$__cycle_css = getPlugin('slideshow2/slideshow2.css', getCurrentTheme(), true);
 		?>
-		<link rel="stylesheet" type="text/css" href="<?php echo $css ?>" />
+		<link rel="stylesheet" type="text/css" href="<?php echo $__cycle_css ?>" />
 		<!--[if lte IE 7]>
 			<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/ie7.css" />
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/ie7.js" type="text/javascript"></script>
@@ -536,10 +495,7 @@ class cycle {
 }
 
 // cycle class end
-if (extensionEnabled('slideshow2')) {
-	if ($_zp_gallery_page == 'slideshow.php' || in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . 'scripts')))) {
-		zp_register_filter('theme_head', 'cycle::cycleJS');
-	}
+if (extensionEnabled('slideshow2') && !OFFSET_PATH) {
 	zp_register_filter('content_macro', 'cycle::macro');
 
 	/**
@@ -727,11 +683,13 @@ if (extensionEnabled('slideshow2')) {
 	 *
 	 */
 	function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop = false, $shuffle = false, $linkslides = false, $controls = true) {
-		global $_myFavorites, $_zp_conf_vars, $_zp_gallery, $_zp_gallery_page;
-		if (!isset($_POST['albumid']) AND ! is_object($albumobj)) {
-			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
+		global $_myFavorites, $_zp_conf_vars, $_zp_gallery, $_zp_gallery_page, $__cycle_css;
+		if (!isset($_POST['albumid']) && !is_object($albumobj)) {
+			echo '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
 		}
-		cycle::scriptEnabled($_zp_gallery->getCurrentTheme(), stripSuffix($_zp_gallery_page));
+		if (is_null($__cycle_css)) {
+			cycle::js();
+		}
 
 //getting the image to start with
 		if (!empty($_POST['imagenumber']) AND ! is_object($imageobj)) {
