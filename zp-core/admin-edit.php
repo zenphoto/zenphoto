@@ -264,37 +264,36 @@ if (isset($_GET['action'])) {
           }
           if (isset($_POST['totalimages'])) {
             if (isset($_POST['checkForPostTruncation'])) {
-              $returntab = '&tagsort=' . $tagsort . '&tab=imageinfo';
-              if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
-                $action = processImageBulkActions($album);
-                if (!empty($action))
-                  $notify = '&bulkmessage=' . $action;
-              } else {
-                $oldsort = checkAlbumimagesort(sanitize($_POST['oldalbumimagesort'], 3));
-                if (getOption('albumimagedirection'))
-                  $oldsort = $oldsort . '_desc';
-                $newsort = checkAlbumimagesort(sanitize($_POST['albumimagesort'], 3));
-                if ($oldsort == $newsort) {
-                  for ($i = 0; $i < $_POST['totalimages']; $i++) {
-                    $filename = sanitize($_POST["$i-filename"]);
-                   // The file might no longer exist
-                    $image = newImage($album, $filename);
-                    if ($image->exists) {
-                      processImageEdit($image, $i);
-                    } // if image exists
-                  }
-                } else {
-                  if (strpos($newsort, '_desc')) {
-                    setOption('albumimagesort', substr($newsort, 0, -5));
-                    setOption('albumimagedirection', 'DESC');
-                  } else {
-                    setOption('albumimagesort', $newsort);
-                    setOption('albumimagedirection', '');
-                  }
-                  $notify = '&';
-                }
-              }
-            } else {
+							$returntab = '&tagsort=' . $tagsort . '&tab=imageinfo';
+							$oldsort = checkAlbumimagesort(sanitize($_POST['oldalbumimagesort'], 3));
+							if (getOption('albumimagedirection'))
+								$oldsort = $oldsort . '_desc';
+							$newsort = checkAlbumimagesort(sanitize($_POST['albumimagesort'], 3));
+							if ($oldsort == $newsort) {
+								for ($i = 0; $i < $_POST['totalimages']; $i++) {
+									$filename = sanitize($_POST["$i-filename"]);
+									// The file might no longer exist
+									$image = newImage($album, $filename);
+									if ($image->exists) {
+										processImageEdit($image, $i);
+									} // if image exists
+								}
+							} else {
+								if (strpos($newsort, '_desc')) {
+									setOption('albumimagesort', substr($newsort, 0, -5));
+									setOption('albumimagedirection', 'DESC');
+								} else {
+									setOption('albumimagesort', $newsort);
+									setOption('albumimagedirection', '');
+								}
+								$notify = '&';
+							}
+							if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
+								$action = processImageBulkActions($album);
+								if (!empty($action))
+									$notify = '&bulkmessage=' . $action;
+							}
+						} else {
               $notify = '&post_error';
             }
           }
