@@ -52,9 +52,10 @@ function lookup_Canon_tag($tag) {
 // Formats Data for the data type
 //====================================================================
 function formatCanonData($type,$tag,$intel,$data,$exif,&$result) {
+	if(empty($result) && !is_array($result)) {
+		$result = array();
+	}
 	$place = 0;
-
-
 	if($type=="ASCII") {
 		$result = $data = str_replace("\0", "", $data);
 	} else if($type=="URATIONAL" || $type=="SRATIONAL") {

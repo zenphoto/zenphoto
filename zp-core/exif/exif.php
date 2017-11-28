@@ -703,7 +703,7 @@ function formatExposure($data) {
 // Reads one standard IFD entry
 //================================================================================================
 function read_entry(&$result,$in,$seek,$intel,$ifd_name,$globalOffset) {
-
+	
 	if (feof($in)) { // test to make sure we can still read.
 		$result['Errors'] = $result['Errors']+1;
 		return;
@@ -819,7 +819,7 @@ function read_entry(&$result,$in,$seek,$intel,$ifd_name,$globalOffset) {
 // http:// us2.php.net/manual/en/function.exif-read-data.php
 //================================================================================================
 function read_exif_data_raw($path,$verbose) {
-
+	$result = array();
 	if ($path == '' || $path == 'none') return;
 
 	$in = @fopen($path, 'rb'); // the b is for windows machines to open in binary mode
@@ -1160,10 +1160,9 @@ function get35mmEquivFocalLength(&$result) {
 	} else {
 		$fl = 0;
 	}
-
 	if (($width != 0) && !empty($units) && !empty($xres) && !empty($fl) && !empty($width)) {
-		$ccdwidth = ($width * $unitfactor) / $xres;
-		$equivfl = $fl / $ccdwidth*36+0.5;
+		$ccdwidth = (intval($width) * $unitfactor) / $xres;
+		$equivfl = intval($fl) / $ccdwidth*36+0.5;
 		return $equivfl;
 	}
 	return null;
