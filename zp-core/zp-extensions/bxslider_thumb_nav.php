@@ -126,7 +126,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page;
 		//	Just incase the theme has not set the option, at least second try will work!
 		setOptionDefault('bxslider_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
-		$items = "";
+		$items = array();
 		if (is_object($_zp_current_album) && $_zp_current_album->getNumImages() >= 2) {
 			if (is_null($minitems)) {
 				$minitems = getOption('bxslider_minitems');
