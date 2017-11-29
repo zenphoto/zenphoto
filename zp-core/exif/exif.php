@@ -1075,6 +1075,7 @@ function read_exif_data_raw($path, $verbose) {
 
 	if ($path == '' || $path == 'none')
 		return;
+	$result = array();
 
 	$in = @fopen($path, 'rb'); // the b is for windows machines to open in binary mode
 	$seek = @fopen($path, 'rb'); // There may be an elegant way to do this with one file handle.
@@ -1465,8 +1466,8 @@ function get35mmEquivFocalLength(&$result) {
 	if (!empty($units) && !empty($xres) && !empty($fl) && !empty($width)) {
 
 
-		$ccdwidth = ($width * $unitfactor) / $xres;
-		$equivfl = $fl / $ccdwidth * 36 + 0.5;
+		$ccdwidth = (intval($width) * $unitfactor) / $xres;
+		$equivfl = intval($fl) / $ccdwidth*36+0.5;
 		return $equivfl;
 	}
 	return null;
