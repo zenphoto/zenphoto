@@ -803,6 +803,7 @@ $plugins = array_keys($plugins);
 	<?php
 	//clean up plugins needed for themes and other plugins
 	$dependentExtensions = array('cacheManager' => 'cacheManager', 'colorbox' => 'colorbox_js');
+	$testRelease = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
 
 	foreach ($dependentExtensions as $class => $extension) {
 		$key = array_search($extension, $plugins);
@@ -811,7 +812,7 @@ $plugins = array_keys($plugins);
 			unset($plugins[$key]);
 			list($usec, $sec) = explode(" ", microtime());
 			$start = (float) $usec + (float) $sec;
-			setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), TEST_RELEASE);
+			setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), $testRelease);
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $extension . '.php');
 			$priority = $plugin_is_filter & PLUGIN_PRIORITY;
 			if ($plugin_is_filter & CLASS_PLUGIN) {
@@ -829,12 +830,12 @@ $plugins = array_keys($plugins);
 			if (extensionEnabled($extension)) {
 				enableExtension($extension, $plugin_is_filter);
 			}
-			setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), TEST_RELEASE);
+			setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), $testRelease);
 			new $class;
-			setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), TEST_RELEASE);
+			setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), $testRelease);
 			list($usec, $sec) = explode(" ", microtime());
 			$last = (float) $usec + (float) $sec;
-			setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), TEST_RELEASE);
+			setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), $testRelease);
 		}
 	}
 

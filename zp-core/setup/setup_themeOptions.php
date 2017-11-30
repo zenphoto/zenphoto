@@ -14,13 +14,14 @@ $start = (float) $usec + (float) $sec;
 define('OFFSET_PATH', 2);
 require_once('setup-functions.php');
 require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
-$debug = TEST_RELEASE || isset($_GET['debug']);
+$testRelease = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
+$debug = isset($_GET['debug']);
 
 $iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
 $iMutex->lock();
 
 $theme = sanitize($_REQUEST['theme']);
-setupLog(sprintf(gettext('Theme:%s setup started'), $theme));
+setupLog(sprintf(gettext('Theme:%s setup started'), $theme), $testRelease);
 
 $requirePath = getPlugin('themeoptions.php', $theme);
 
@@ -31,7 +32,7 @@ if (!empty($requirePath)) {
 	/* prime the default theme options */
 	$_zp_gallery->setCurrentTheme($theme);
 	$optionHandler = new ThemeOptions();
-	setupLog(sprintf(gettext('Theme:%s option interface instantiated'), $theme));
+	setupLog(sprintf(gettext('Theme:%s option interface instantiated'), $theme), $testRelease);
 }
 /* then set any "standard" options that may not have been covered by the theme */
 standardThemeOptions($theme, NULL);
@@ -43,6 +44,6 @@ sendImage(!protectedTheme($theme));
 list($usec, $sec) = explode(" ", microtime());
 $last = (float) $usec + (float) $sec;
 /* and record that we finished */
-setupLog(sprintf(gettext('Theme:%s setup completed in %2$.4f seconds'), $theme, $last - $start));
+setupLog(sprintf(gettext('Theme:%s setup completed in %2$.4f seconds'), $theme, $last - $start), $testRelease);
 exitZP();
 ?>
