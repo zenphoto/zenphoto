@@ -34,6 +34,7 @@ purgeOption('zenphoto_release');
 purgeOption('zenphoto_version');
 purgeOption('zenphoto_install');
 setOption('zenphoto_install', serialize(installSignature()));
+setOptionDefault('setup_unprotected_by_adminrequest', 0);
 
 if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
 	if (empty($oldv)) {

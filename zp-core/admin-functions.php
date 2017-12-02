@@ -25,7 +25,7 @@ function printAdminFooter($addl = '') {
 	?>
 	<div id="footer">
 		<?php
-		printf(gettext('<a href="http://www.zenphoto.org" title="The simpler media website CMS">Zen<strong>photo</strong></a> version %1$s [%2$s]'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);
+		printf(gettext('<a href="http://www.zenphoto.org" title="The simpler media website CMS">Zen<strong>photo</strong></a> version %1$s'), ZENPHOTO_VERSION);
 		if (!empty($addl)) {
 			echo ' | ' . $addl;
 		}
@@ -4295,24 +4295,6 @@ function httpsRedirect() {
 			exitZP();
 		}
 	}
-}
-
-/**
- * Checks for Cross Site Request Forgeries
- * @param string $action
- */
-function XSRFdefender($action) {
-	$token = getXSRFToken($action);
-	if (!isset($_REQUEST['XSRFToken']) || $_REQUEST['XSRFToken'] != $token) {
-		zp_apply_filter('admin_XSRF_access', false, $action);
-		header("HTTP/1.0 302 Found");
-		header("Status: 302 Found");
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
-		exitZP();
-	}
-	unset($_REQUEST['XSRFToken']);
-	unset($_POST['XSRFToken']);
-	unset($_GET['XSRFToken']);
 }
 
 /**

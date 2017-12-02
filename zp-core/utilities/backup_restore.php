@@ -461,7 +461,7 @@ if (isset($_REQUEST['backup'])) {
 			</div>';
 	}
 
-	setOption('license_accepted', ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . ']');
+	setOption('license_accepted', ZENPHOTO_VERSION);
 	if ($oldlibauth != Zenphoto_Authority::getVersion()) {
 		if (!$_zp_authority->migrateAuth($oldlibauth)) {
 			$messages .= '

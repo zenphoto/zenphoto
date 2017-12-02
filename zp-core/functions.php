@@ -2200,12 +2200,30 @@ function debug404($album, $image, $theme) {
 }
 
 /**
+ * Checks for Cross Site Request Forgeries
+ * @param string $action
+ */
+function XSRFdefender($action) {
+	$token = getXSRFToken($action);
+	if (!isset($_REQUEST['XSRFToken']) || $_REQUEST['XSRFToken'] != $token) {
+		zp_apply_filter('admin_XSRF_access', false, $action);
+		header("HTTP/1.0 302 Found");
+		header("Status: 302 Found");
+		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
+		exitZP();
+	}
+	unset($_REQUEST['XSRFToken']);
+	unset($_POST['XSRFToken']);
+	unset($_GET['XSRFToken']);
+}
+
+/**
  * returns an XSRF token
  * @param striong $action
  */
 function getXSRFToken($action) {
 	global $_zp_current_admin_obj;
-	return sha1($action . prefix(ZENPHOTO_RELEASE) . serialize($_zp_current_admin_obj) . session_id());
+	return sha1($action . prefix(ZENPHOTO_VERSION) . serialize($_zp_current_admin_obj) . session_id());
 }
 
 /**

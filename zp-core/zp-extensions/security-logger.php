@@ -127,12 +127,15 @@ class security_logger {
 				break;
 			case 'setup_install':
 				$type = gettext('Install');
-				$addl = gettext('version') . ' ' . ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . "]";
+				$addl = gettext('version') . ' ' . ZENPHOTO_VERSION;
 				if (!zpFunctions::hasPrimaryScripts()) {
 					$addl .= ' ' . gettext('clone');
 				}
 				break;
-			case 'setup_proptect':
+			case 'setup_ignore_setup':
+				$type = gettext('Setup run request skipped.');
+				break;
+			case 'setup_protect':
 				$type = gettext('Protect setup scripts');
 				break;
 			case 'user_new':

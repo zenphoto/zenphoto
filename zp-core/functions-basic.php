@@ -1228,7 +1228,7 @@ function debugLog($message, $reset = false) {
 				} else {
 					$clone = ' ' . gettext('clone');
 				}
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} Zenphoto v" . ZENPHOTO_VERSION . '[' . ZENPHOTO_FULL_RELEASE . ']' . $clone . "\n");
+				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} Zenphoto v" . ZENPHOTO_VERSION . $clone . "\n");
 			}
 		} else {
 			$f = fopen($path, 'a');
@@ -1494,14 +1494,12 @@ function safe_glob($pattern, $flags = 0) {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
 	if ($i = getOption('zenphoto_install')) {
 		$install = getSerializedArray($i);
 	} else {
-		$install = array('ZENPHOTO' => '0.0.0[0000]');
+		$install = array('ZENPHOTO' => '0.0.0');
 	}
-	preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-	if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
+	if ($install['ZENPHOTO'] && $install['ZENPHOTO'] != ZENPHOTO_VERSION || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
 		require_once(dirname(__FILE__) . '/reconfigure.php');
 		reconfigureAction(0);
 	}
@@ -1524,14 +1522,19 @@ function exitZP() {
  * @return string
  */
 function installSignature() {
-	$testFiles = array('template-functions.php'	 => filesize(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php'),
-					'functions-filter.php'		 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-filter.php'),
-					'lib-auth.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/lib-auth.php'),
-					'lib-utf8.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/lib-utf8.php'),
-					'functions.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions.php'),
-					'functions-basic.php'			 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-basic.php'),
-					'functions-controller.php' => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-controller.php'),
-					'functions-image.php'			 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-image.php'));
+	$all_algos = hash_algos();
+	$algo = 'sha256';
+	if(!in_array($algo, $all_algos)) { // make sure we have the algo
+		$algo = 'sha1';
+	}
+	$testFiles = array('template-functions.php'	 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/template-functions.php'),
+					'functions-filter.php'		 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-filter.php'),
+					'lib-auth.php'						 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/lib-auth.php'),
+					'lib-utf8.php'						 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/lib-utf8.php'),
+					'functions.php'						 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions.php'),
+					'functions-basic.php'			 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-basic.php'),
+					'functions-controller.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-controller.php'),
+					'functions-image.php'			 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-image.php'));
 
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {
 		$s = $_SERVER['SERVER_SOFTWARE'];
@@ -1544,12 +1547,15 @@ function installSignature() {
 	if ($i !== false) {
 		$version = substr($version, 0, $i);
 	}
-	return array_merge($testFiles, array('SERVER_SOFTWARE'	 => $s,
-					'ZENPHOTO'				 => $version . '[' . ZENPHOTO_RELEASE . ']',
-					'FOLDER'					 => dirname(SERVERPATH . '/' . ZENFOLDER),
-					'DATABASE'				 => $dbs['application'] . ' ' . $dbs['version']
+	$signature_array = array_merge($testFiles, array(
+			'SERVER_SOFTWARE' => $s,
+			'ZENPHOTO' => $version,
+			'FOLDER' => dirname(SERVERPATH . '/' . ZENFOLDER),
+			'DATABASE' => $dbs['application'] . ' ' . $dbs['version']
 					)
 	);
+	$signature_array['SIGNATURE_HASH'] = hash($algo, implode(array_values($signature_array))); 
+	return $signature_array;
 }
 
 /**

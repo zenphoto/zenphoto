@@ -22,7 +22,7 @@ if (!defined('SEO_FULLWEBPATH')) {
  * Returns the zenphoto version string
  */
 function getVersion() {
-	return ZENPHOTO_VERSION . ' [' . ZENPHOTO_RELEASE . ']';
+	return ZENPHOTO_VERSION;
 }
 
 /**
@@ -4446,7 +4446,6 @@ function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
 	if ($a != 'full-image.php') {
 		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION;
 		if (TEST_RELEASE) {
-			echo " [" . ZENPHOTO_FULL_RELEASE . "]";
 			echo " THEME: " . $theme . " (" . $a . ")";
 			$graphics = zp_graphicsLibInfo();
 			$graphics = sanitize(str_replace('<br />', ', ', $graphics['Library_desc']), 3);

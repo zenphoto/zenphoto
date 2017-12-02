@@ -127,7 +127,7 @@ if ($success) {
 			$msg[] = '<p><span class="buttons"><a href="'.$urlpath.$newinstall.ZENFOLDER.'/setup/index.php?autorun">'.gettext('setup the new install').'</a></span><br class="clearall" /></p>'."\n";
 		}
 	} else {
-		$reinstall = '<p>'.sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:'),$newinstall,ZENPHOTO_VERSION,ZENPHOTO_RELEASE).
+		$reinstall = '<p>'.sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s to this installation:'),$newinstall,ZENPHOTO_VERSION).
 								"\n".'<ul>'."\n";
 		if (!empty($needs)) {
 				foreach ($needs as $script) {
