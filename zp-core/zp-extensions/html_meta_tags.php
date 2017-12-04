@@ -40,7 +40,7 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_revisit_after', '10 Days');
 		setOptionDefault('htmlmeta_expires', '43200');
 		setOptionDefault('htmlmeta_tags', '');
-		
+
 		if(getOption('google-site-verification')) { // import existing old option
 			$verify = getOption('google-site-verification');
 			setOptionDefault('htmlmeta_google-site-verification', $verify);
@@ -100,40 +100,40 @@ class htmlmetatags {
 						'key' => 'htmlmeta_cache_control', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 0,
 						'selections' => array(
-								'no-cache' => "no-cache", 
-								'public' => "public", 
-								'private' => "private", 
+								'no-cache' => "no-cache",
+								'public' => "public",
+								'private' => "private",
 								'no-store' => "no-store"),
 						'desc' => gettext("If the browser cache should be used.")),
 				gettext('Pragma') => array(
-						'key' => 'htmlmeta_pragma', 
+						'key' => 'htmlmeta_pragma',
 						'type' => OPTION_TYPE_SELECTOR,
 						'selections' => array(
-								'no-cache' => "no-cache", 
+								'no-cache' => "no-cache",
 								'cache' => "cache"),
 						'desc' => gettext("If the pages should be allowed to be cached on proxy servers.")),
 				gettext('Robots') => array(
-						'key' => 'htmlmeta_robots', 
+						'key' => 'htmlmeta_robots',
 						'type' => OPTION_TYPE_SELECTOR,
 						'selections' => array(
-								'noindex' => "noindex", 
-								'index' => "index", 
-								'nofollow' => "nofollow", 
-								'noindex,nofollow' => "noindex,nofollow", 
-								'noindex,follow' => "noindex,follow", 
-								'index,nofollow' => "index,nofollow", 
+								'noindex' => "noindex",
+								'index' => "index",
+								'nofollow' => "nofollow",
+								'noindex,nofollow' => "noindex,nofollow",
+								'noindex,follow' => "noindex,follow",
+								'index,nofollow' => "index,nofollow",
 								'none' => "none"),
 						'desc' => gettext("If and how robots are allowed to visit the site. Default is “index”. Note that you also should use a robot.txt file.")),
 				gettext('Revisit after') => array(
-						'key' => 'htmlmeta_revisit_after', 
+						'key' => 'htmlmeta_revisit_after',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("Request the crawler to revisit the page after x days.")),
 				gettext('Expires') => array(
-						'key' => 'htmlmeta_expires', 
+						'key' => 'htmlmeta_expires',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
 				gettext('Canonical URL link') => array(
-						'key' => 'htmlmeta_canonical-url', 
+						'key' => 'htmlmeta_canonical-url',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 11,
 						'desc' => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
@@ -142,27 +142,27 @@ class htmlmetatags {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Google.')),
 				gettext('Site logo') => array(
-						'key' => 'htmlmeta_sitelogo', 
+						'key' => 'htmlmeta_sitelogo',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
 				gettext('Twitter name') => array(
-						'key' => 'htmlmeta_twittername', 
+						'key' => 'htmlmeta_twittername',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("If you enabled Twitter card meta tags, you need to enter your Twitter user name here.")),
 				gettext('Open graph image - width') => array(
-						'key' => 'htmlmeta_ogimage_width', 
+						'key' => 'htmlmeta_ogimage_width',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("Max width of the open graph image used for sharing to social networks if enabled.")),
 				gettext('Open graph image - height') => array(
-						'key' => 'htmlmeta_ogimage_height', 
+						'key' => 'htmlmeta_ogimage_height',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("Max height of the open graph image used for sharing to social networks if enabled.")),
 				gettext('Facebook app id') => array(
-						'key' => 'htmlmeta_fb-app_id', 
+						'key' => 'htmlmeta_fb-app_id',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("Enter your Facebook app id. IF using this you also should enable the OpenGraph meta tags.")),
 				gettext('HTML meta tags') => array(
-						'key' => 'htmlmeta_tags', 
+						'key' => 'htmlmeta_tags',
 						'type' => OPTION_TYPE_CHECKBOX_UL,
 						"checkboxes" => array(
 								"http-equiv='cache-control'" => "htmlmeta_http-equiv-cache-control",
@@ -187,7 +187,7 @@ class htmlmetatags {
 						),
 						"desc" => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
 				gettext('Use subdomains') . '*' => array(
-						'key' => 'dynamic_locale_subdomain', 
+						'key' => 'dynamic_locale_subdomain',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 12,
 						'disabled' => $_common_locale_type,
@@ -195,7 +195,7 @@ class htmlmetatags {
 		);
 		if ($_common_locale_type) {
 			$options['note'] = array(
-					'key' => 'html_meta_tags_locale_type', 
+					'key' => 'html_meta_tags_locale_type',
 					'type' => OPTION_TYPE_NOTE,
 					'order' => 13,
 					'desc' => '<p class="notebox">' . $_common_locale_type . '</p>');
@@ -410,11 +410,11 @@ class htmlmetatags {
 		if (getOption('htmlmeta_fb-app_id')) {
 			$meta .= '<meta property="fb:app_id"  content="' . sanitize_numeric(getOption('htmlmeta_fb-app_id')) . '" />' . "\n";
 		}
-		
+
 		// dissalow users to pin images on Pinterest
 		if (getOption('htmlmeta_name-pinterest')) {
 			$meta .= '<meta name="pinterest" content="nopin">' . "\n";
-		} 
+		}
 
 		// Twitter card
 		if (getOption('htmlmeta_twittercard')) {
@@ -514,20 +514,21 @@ class htmlmetatags {
 
 		} // if canonical
 		if (!empty($_zp_htmlmetatags_need_cache)) {
-			$meta .= '<script type="text/javascript">' . "\n";
-			$meta .= 'var caches = ["' . implode('","', $_zp_htmlmetatags_need_cache) . '"];' . "\n";
-			$meta .= '
-					window.onload = function() {
-						var index,value;
-						for (index in caches) {
-								value = caches[index];
-								$.ajax({
-									cache: false,
-									type: "GET",
-									url: value
-								});
-						}
-					}
+  			$meta .= '<script type="text/javascript">' . "\n";
+  			$meta .= '
+    				window.onload = function() {
+      				var caches = ["' . implode(",", $_zp_htmlmetatags_need_cache) . '"];
+      				var arrayLength = caches.length;
+      				var i,value;
+             			for (i = 0; i < arrayLength; i++) {
+                 			value = caches[i];
+                 				$.ajax({
+                     				cache: false,
+                     				type: "GET",
+                     				url: value
+                				});
+        				}
+  					}
 					';
 			$meta .= '</script>' . "\n";
 		}
