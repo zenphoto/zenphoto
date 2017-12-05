@@ -109,7 +109,10 @@ class reCaptcha extends _zp_captcha {
 	 */
 	function checkCaptcha($s1, $s2) {
 		$secretKey = getOption('reCaptcha_private_key');
-		$captcha = sanitize($_POST['g-recaptcha-response']);
+		$captcha = '';
+		if(isset($_POST['g-recaptcha-response'])) {
+			$captcha = sanitize($_POST['g-recaptcha-response']);
+		}
 
 		// verifies reCaptcha
 		$response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $captcha . '&remoteip=' . sanitize($_SERVER['REMOTE_ADDR']));
