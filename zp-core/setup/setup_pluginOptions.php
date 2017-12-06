@@ -16,13 +16,14 @@ require_once('setup-functions.php');
 register_shutdown_function('shutDownFunction');
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
-$debug = TEST_RELEASE || isset($_GET['debug']);
+$testRelease = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
+$debug = isset($_GET['debug']);
 
 $iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
 $iMutex->lock();
 
 $extension = sanitize($_REQUEST['plugin']);
-setupLog(sprintf(gettext('Plugin:%s setup started'), $extension));
+setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), $testRelease);
 $option_interface = NULL;
 $plugin_is_filter = 5 | THEME_PLUGIN;
 
@@ -43,7 +44,7 @@ if (extensionEnabled($extension)) {
 	if ($plugin_is_filter & THEME_PLUGIN) {
 		$priority .= ' | THEME_PLUGIN';
 	}
-	setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority));
+	setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), $testRelease);
 	enableExtension($extension, $plugin_is_filter);
 }
 if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
@@ -59,7 +60,7 @@ if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
 }
 if ($option_interface) {
 	//	prime the default options
-	setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface));
+	setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), $testRelease);
 	$option_interface = new $option_interface;
 }
 
@@ -69,6 +70,6 @@ sendImage($deprecate);
 
 list($usec, $sec) = explode(" ", microtime());
 $last = (float) $usec + (float) $sec;
-setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start));
+setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), $testRelease);
 exitZP();
 ?>

@@ -480,6 +480,7 @@ if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_resu
 	if (DEBUG_LOCALE)
 		debugLog('$_zp_setupCurrentLocale_result = ' . $_zp_setupCurrentLocale_result);
 }
+$testRelease = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
 
 $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"));
 ?>
@@ -537,7 +538,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 				global $_zp_conf_vars;
 				$good = true;
 				if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
-					if (TEST_RELEASE) {
+					if ($testRelease) {
 						?>
 						<div class="notebox">
 							<?php echo '<p>' . gettext('<strong>Note:</strong> The release you are installing has debugging settings enabled!') . '</p>'; ?>
@@ -654,7 +655,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							case 'on':
 							case 'stdout':
 							default:
-								if (TEST_RELEASE || ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) & ACK_DISPLAY_ERRORS)) {
+								if ($testRelease || ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) & ACK_DISPLAY_ERRORS)) {
 									$display = -1;
 									$aux = '';
 								} else {
@@ -663,7 +664,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								}
 								break;
 						}
-						checkmark($display, gettext('PHP <code>display_errors</code>'), sprintf(gettext('PHP <code>display_errors</code> [is enabled]'), $display), gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sensitive information about your site.') . $aux, $display && !TEST_RELEASE);
+						checkmark($display, gettext('PHP <code>display_errors</code>'), sprintf(gettext('PHP <code>display_errors</code> [is enabled]'), $display), gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sensitive information about your site.') . $aux, $display && !$testRelease);
 
 						checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization requires native PHP <code>gettext()</code> support"));
 						checkmark(function_exists('flock') ? 1 : -1, gettext('PHP <code>flock</code> support'), gettext('PHP <code>flock</code> support [is not present]'), gettext('Zenpoto uses <code>flock</code> for serializing critical regions of code. Without <code>flock</code> active sites may experience <em>race conditions</em> which may be causing inconsistent data.'));
@@ -1246,7 +1247,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										clearstatcache();
 										$perms = fileperms($component) & 0777;
 										if ($permissions == 1 && !checkPermissions($perms, $chmod | 0311)) {
-											if (checkPermissions($perms & 0755, 0755) || TEST_RELEASE) { // could not set them, but they will work.
+											if (checkPermissions($perms & 0755, 0755) || $testRelease) { // could not set them, but they will work.
 												$permissions = -1;
 											} else {
 												$permissions = 0;
@@ -1264,7 +1265,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										clearstatcache();
 										$perms = fileperms($component) & 0777;
 										if ($permissions == 1 && !checkPermissions($perms, $chmod)) {
-											if (checkPermissions($perms & 0644, 0644) || TEST_RELEASE) { // could not set them, but they will work.
+											if (checkPermissions($perms & 0644, 0644) || $testRelease) { // could not set them, but they will work.
 												$permissions = -1;
 											} else {
 												$permissions = 0;
@@ -1273,7 +1274,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									}
 
 									$t = filemtime($component);
-									if ((!(TEST_RELEASE || $fromPackage == '*') && ($t < $lowset || $t > $highset))) {
+									if ((!($testRelease || $fromPackage == '*') && ($t < $lowset || $t > $highset))) {
 										$installed_files[$key] = $value;
 									} else {
 										unset($installed_files[$key]);
@@ -1288,7 +1289,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									clearstatcache();
 									$perms = fileperms($folder) & 0777;
 									if ($permissions == 1 && !checkPermissions($perms, $chmod | 0311)) {
-										if (checkPermissions($perms & 0755, 0755) || TEST_RELEASE) { // could not set them, but they will work.
+										if (checkPermissions($perms & 0755, 0755) || $testRelease) { // could not set them, but they will work.
 											$permissions = 0;
 										} else {
 											$permissions = -1;
@@ -1335,7 +1336,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$filelist .= '....<br />';
 						}
 						if (zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
-							if (defined('TEST_RELEASE') && TEST_RELEASE) {
+							if ($testRelease) {
 								$msg1 = gettext("ZenPhoto20 core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 							} else {
 								$msg1 = gettext("ZenPhoto20 core files [Some files are missing or seem wrong]");
@@ -1349,7 +1350,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$msg2 = sprintf(gettext('Perhaps there is a permissions issue. You should manually copy the %s <em>root_index.php</em> file to the installation root and rename it <em>index.php</em>.'), ZENFOLDER);
 							} else {
 								if (zpFunctions::hasPrimaryScripts()) {
-									if (defined('TEST_RELEASE') && TEST_RELEASE) {
+									if ($testRelease) {
 										$mark = -1;
 										$msg1 = gettext("ZenPhoto20 core files [This is a <em>debug</em> build]");
 									} else {
@@ -1374,7 +1375,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									@unlink($extra); //	presumed to be protected copies of the setup files
 								} else if (strpos($extra, 'php.ini') !== false) {
 									$phi_ini_count++;
-								} else if (defined('TEST_RELEASE') && TEST_RELEASE || (strpos($extra, '/.svn') === false)) {
+								} else if ($testRelease || (strpos($extra, '/.svn') === false)) {
 									$systemlist[] = str_replace($base, '', $extra);
 								} else {
 									$svncount++;
@@ -1383,7 +1384,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							if ($svncount) {
 								$filelist[] = '<br />' . sprintf(ngettext('.svn [%s instance]', '.svn [%s instances]', $svncount), $svncount);
 							}
-							if ($phi_ini_count && TEST_RELEASE) {
+							if ($phi_ini_count && $testRelease) {
 								$filelist[] = '<br />' . sprintf(ngettext('php.ini [%s instance]', 'php.ini [%s instances]', $phi_ini_count), $phi_ini_count);
 							}
 							if ($package_file_count) { //	no point in this if the package list was damaged!

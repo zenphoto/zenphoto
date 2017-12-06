@@ -680,18 +680,18 @@ class sitemap {
 			} else {
 				$imagelocation = $host . html_encode($imageobj->getSizedImage(getOption('image_size')));
 			}
-			$data .= sitemap::echonl("\t\t<image:image>\n\t\t\t<image:loc>" . $imagelocation . "</image:loc>\n");
+			$data .= sitemap::echonl("\t\t<image:image>\n\t\t\t<image:loc>" . html_encode($imagelocation) . "</image:loc>\n");
 			// disabled for the multilingual reasons above
 			$data .= sitemap::echonl("\t\t\t<image:title>" . html_encode($imageobj->getTitle($locale)) . "</image:title>");
 			if ($imageobj->getDesc()) {
 				$data .= sitemap::echonl("\t\t\t<image:caption>" . html_encode(getBare($imageobj->getDesc($locale))) . "</image:caption>");
 			}
 			if (!empty($license)) {
-				$data .= sitemap::echonl("\t\t\t<image:license>" . $license . "</image:license>");
+				$data .= sitemap::echonl("\t\t\t<image:license>" . html_encode($license) . "</image:license>");
 			}
 			// location is kept although the same multilingual issue applies
 			if (!empty($location)) {
-				$data .= sitemap::echonl("\t\t\t<image:geo_location>" . $location . "</image:geo_location>");
+				$data .= sitemap::echonl("\t\t\t<image:geo_location>" . html_encode($location) . "</image:geo_location>");
 			}
 			$data .= sitemap::echonl("\t\t</image:image>");
 		}
