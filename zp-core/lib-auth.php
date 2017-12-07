@@ -1142,7 +1142,7 @@ class _Authority {
 					}
 					break;
 				case 'captcha':
-					$class = $buttonExtra = '';
+					$extra = $class = $buttonExtra = '';
 					$captcha = $_zp_captcha->getCaptcha(NULL);
 					if (isset($captcha['submitButton'])) {
 						$extra = ' class="' . $captcha['submitButton']['class'] . '" ' . $captcha['submitButton']['extra'];
@@ -1369,7 +1369,7 @@ class _Authority {
 							 name="disclose_password<?php echo $id; ?>"
 							 id="disclose_password<?php echo $id; ?>"
 							 onclick="passwordClear('<?php echo $id; ?>');
-											 togglePassword('<?php echo $id; ?>');">
+									 togglePassword('<?php echo $id; ?>');">
 			</span>
 
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
