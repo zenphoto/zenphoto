@@ -51,6 +51,7 @@ class rewriteTokens {
 				}
 			}
 		}
+
 		if (OFFSET_PATH == 2) {
 			$old = array_keys($conf['special_pages']);
 			$zp_cfg = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto_cfg.txt');
@@ -77,7 +78,11 @@ class rewriteTokens {
 	protected static function anOption($page, $element, &$_definitions) {
 		if ($define = $element['define']) {
 			$_definitions[$element['define']] = strtr($element['rewrite'], $_definitions);
-			$desc = sprintf(gettext('The <code>%1$s</code> rule defines <strong>%2$s</strong> as <em>%3$s</em>.'), $page, $define, strtr($element['rewrite'], $_definitions));
+			$rewrite = strtr($element['rewrite'], $_definitions);
+			if (!$rewrite) {
+				$rewrite = gettext('<strong>disabled</strong>');
+			}
+			$desc = sprintf(gettext('The <code>%1$s</code> rule defines <strong>%2$s</strong> as <em>%3$s</em>.'), $page, $define, $rewrite);
 		} else {
 			$desc = sprintf(gettext('Link for <em>%s</em> script page.'), $page);
 		}
@@ -148,12 +153,12 @@ class rewriteTokens {
 				foreach ($this->plugin_vars as $page => $element) {
 					if (isset($element['option'])) {
 						$rewrite = sanitize($_POST['rewriteTokens_' . $page]);
-						if (empty($rewrite)) {
-							$notify = '&custom=' . gettext('Rewrite tokens may not be empty.');
-						} else {
-							$this->plugin_vars[$page]['rewrite'] = $rewrite;
-							setOption($element['option'], $rewrite);
-						}
+//						if (empty($rewrite)) {
+//							$notify = '&custom=' . gettext('Rewrite tokens may not be empty.');
+//						} else {
+						$this->plugin_vars[$page]['rewrite'] = $rewrite;
+						setOption($element['option'], $rewrite);
+//						}
 					}
 				}
 			}
