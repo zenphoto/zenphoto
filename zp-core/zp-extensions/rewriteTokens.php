@@ -80,7 +80,7 @@ class rewriteTokens {
 			$_definitions[$element['define']] = strtr($element['rewrite'], $_definitions);
 			$rewrite = strtr($element['rewrite'], $_definitions);
 			if (!$rewrite) {
-				$rewrite = gettext('<strong>disabled</strong>');
+				$rewrite = '<strong>' . gettext('disabled') . '</strong>';
 			}
 			$desc = sprintf(gettext('The <code>%1$s</code> rule defines <strong>%2$s</strong> as <em>%3$s</em>.'), $page, $define, $rewrite);
 		} else {
