@@ -1052,7 +1052,6 @@ plugins/filterDoc/intro.html
 plugins/filterDoc/logo.png
 plugins/filterDoc/process.php
 plugins/filterDoc.php
-plugins/galleryToken.php
 plugins/headConsolidator.php
 plugins/no_show.php
 plugins/overrideEXIFDesc.php
@@ -8145,4 +8144,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8147
+8146
