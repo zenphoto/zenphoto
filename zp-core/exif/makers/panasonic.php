@@ -2,17 +2,17 @@
 /**
  * Exifer
  * Extracts EXIF information from digital photos.
- * 
+ *
  * Copyright © 2003 Jake Olefsky
  * http://www.offsky.com/software/exif/index.php
  * jake@olefsky.com
- * 
+ *
  * Please see exif.php for the complete information about this software.
-
+ *
  * This program is free software; you can redistribute it and/or modify it under the terms of
  * the GNU General Public License as published by the Free Software Foundation; either version 2
  * of the License, or (at your option) any later version.
-
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details. http://www.gnu.org/copyleft/gpl.html
@@ -20,7 +20,7 @@
 
 /**
  * Looks up the name of the tag for the MakerNote (Depends on Manufacturer)
- * 
+ *
  * @param type $tag
  * @return string
  */
@@ -58,7 +58,7 @@ function lookup_Panasonic_tag($tag) {
 
 /**
  * Formats Data for the data type
- * 
+ *
  * @param type $type
  * @param type $tag
  * @param type $intel
@@ -219,7 +219,7 @@ function formatPanasonicData($type,$tag,$intel,$data) {
 
 /**
  * Panasonic Special data section
- * 
+ *
  * @param type $block
  * @param type $result
  */
