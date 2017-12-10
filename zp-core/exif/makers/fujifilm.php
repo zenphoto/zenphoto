@@ -1,8 +1,9 @@
 <?php
 
 /**
- * Exifer
- * 	Extracts EXIF information from digital photos.
+ * Fijifilm Exifer
+ *
+ * Extracts EXIF information from digital photos.
  *
  * Copyright © 2003 Jake Olefsky
  * http://www.offsky.com/software/exif/index.php

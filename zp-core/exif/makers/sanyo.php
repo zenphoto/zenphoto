@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Exifer
+ * Sanyo Exifer
+ *
  * Extracts EXIF information from digital photos.
  *
  * Copyright © 2003 Jake Olefsky
