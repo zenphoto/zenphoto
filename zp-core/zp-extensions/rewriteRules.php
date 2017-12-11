@@ -3,7 +3,7 @@
 /*
  * List the site rewrite rules
  *
- * This plugin creates an development tab that lists the rewrite rules as "active". That is the rules will
+ * This plugin creates an development page that lists the rewrite rules as "active". That is the rules will
  * have had all definitions replaced with the definition value so that the rule\
  * is shown in the state in which it is applied.
  *

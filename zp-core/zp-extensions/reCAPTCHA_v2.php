@@ -77,8 +77,8 @@ class reCAPTCHA_v2 extends _zp_captcha {
 	 */
 	function getCaptcha($prompt = NULL) {
 		global $_zp_current_locale;
-		$hidden = getOption('reCAPTCHATheme') == 'hidden';
 		if (getOption('reCAPTCHAKey')) {
+			$hidden = ($theme = getOption('reCAPTCHATheme')) == 'hidden';
 			$captcha = array();
 			if ($hidden) {
 				$captcha['hidden'] = '<script src = "https://www.google.com/recaptcha/api.js?hl=' . trim(substr($_zp_current_locale, 0, 2)) . '" async defer></script>
@@ -90,7 +90,7 @@ class reCAPTCHA_v2 extends _zp_captcha {
 				$captcha['submitButton'] = array('class' => 'g-recaptcha', 'extra' => 'data-sitekey="' . getOption('reCAPTCHAKey') . '" data-callback="reCAPTCHAonSubmit" data-type="' . getOption('reCAPTCHAType') . '"');
 			} else {
 				$captcha['hidden'] = '<script src="https://www.google.com/recaptcha/api.js?hl=' . trim(substr($_zp_current_locale, 0, 2)) . '"></script>';
-				$captcha['input'] = '<div class="g-recaptcha" data-sitekey="' . getOption('reCAPTCHAKey') . '" data-theme="' . getOption('reCAPTCHATheme') . '" data-type="' . getOption('reCAPTCHAType') . '" data-size="' . getOption('reCAPTCHASize') . '"></div>' . "\n" . '
+				$captcha['input'] = '<div class="g-recaptcha" data-sitekey="' . getOption('reCAPTCHAKey') . '" data-theme="' . $theme . '" data-type="' . getOption('reCAPTCHAType') . '" data-size="' . getOption('reCAPTCHASize') . '"></div>' . "\n" . '
 <noscript>
 	<div>
 		<div style="width: 302px; height: 422px; position: relative;">
@@ -116,8 +116,6 @@ class reCAPTCHA_v2 extends _zp_captcha {
 			}
 			return $captcha;
 		}
-
-		var_dump($hidden, $this->form, getOption('reCAPTCHAKey'));
 
 		return array('input' => '', 'html' => '<p class="errorbox">' . gettext('reCAPTCHA_v2 is not properly configured.') . '</p>', 'hidden' => '');
 	}

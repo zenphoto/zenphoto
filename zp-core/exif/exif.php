@@ -2,6 +2,7 @@
 
 /**
  * Exifer 1.7
+ * 
  * Extracts EXIF information from digital photos.
  *
  * Originally created by:
@@ -964,7 +965,7 @@ function formatData($type, $tag, $intel, $data) {
 
 /**
  * Formats the exposure data for display
- * 
+ *
  * @param type $data
  * @return string
  */
@@ -1268,6 +1269,7 @@ function read_exif_data_raw($path, $verbose) {
 
 	if (hexdec($offset) > 8)
 		$unknown = fread($in, hexdec($offset) - 8); // fixed this bug in 1.3
+
 
 
 

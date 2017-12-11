@@ -109,8 +109,6 @@ class create_album {
 						}
 						purgeOption($option);
 					}
-
-					var_dump($__creatAlbumList);
 				}
 				setOptionDefault('create_album_userlist', serialize($__creatAlbumList));
 			}
