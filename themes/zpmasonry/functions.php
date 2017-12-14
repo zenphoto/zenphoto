@@ -6,12 +6,15 @@ zp_register_filter('iconColor', 'iconColor');
 
 $themecolors = array('light', 'dark');
 if (extensionEnabled('themeSwitcher')) {
+	$themeColor = zp_getCookie('themeSwitcher_color');
 	if (isset($_GET['themeColor'])) {
-		$new = $_GET['themeColor'];
-		if (in_array($new, $themecolors)) {
-			zp_setCookie('themeSwitcher_color', $new, false);
-			$themeColor = $new;
+		if (in_array($_GET['themeColor'], $themecolors)) {
+			zp_setCookie('themeSwitcher_color', $_GET['themeColor'], false);
+			$themeColor = $_GET['themeColor'];
 		}
+	}
+	if (!in_array($themeColor, $themecolors)) {
+		$themeColor = NULL;
 	}
 	if (!empty($themeColor)) {
 		setOption('zpmas_css', $themeColor, false);

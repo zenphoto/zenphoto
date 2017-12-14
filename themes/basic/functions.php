@@ -14,11 +14,15 @@ foreach ($filelist as $file) {
 }
 chdir($curdir);
 if (!OFFSET_PATH) {
+	$themeColor = zp_getCookie('themeSwitcher_color');
 	if (isset($_GET['themeColor'])) {
 		if (in_array($_GET['themeColor'], $themecolors)) {
 			zp_setCookie('themeSwitcher_color', $_GET['themeColor'], false);
 			$themeColor = $_GET['themeColor'];
 		}
+	}
+	if (!in_array($themeColor, $themecolors)) {
+		$themeColor = NULL;
 	}
 }
 
