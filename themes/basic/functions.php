@@ -13,6 +13,14 @@ foreach ($filelist as $file) {
 	$themecolors[] = stripSuffix(filesystemToInternal($file));
 }
 chdir($curdir);
+if (!OFFSET_PATH) {
+	if (isset($_GET['themeColor'])) {
+		if (in_array($_GET['themeColor'], $themecolors)) {
+			zp_setCookie('themeSwitcher_color', $_GET['themeColor'], false);
+			$themeColor = $_GET['themeColor'];
+		}
+	}
+}
 
 function css_head($ignore) {
 	global $themecolors, $zenCSS, $themeColor, $_zp_themeroot;
@@ -63,15 +71,6 @@ function printSoftwareLink() {
 }
 
 function switcher_head($ignore) {
-	global $personalities, $themecolors, $themeColor;
-	$themeColor = zp_getCookie('themeSwitcher_color');
-	if (isset($_GET['themeColor'])) {
-		$new = $_GET['themeColor'];
-		if (in_array($new, $themecolors)) {
-			zp_setCookie('themeSwitcher_color', $new, false);
-			$themeColor = $new;
-		}
-	}
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[

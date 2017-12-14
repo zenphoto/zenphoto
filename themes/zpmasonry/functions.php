@@ -6,7 +6,6 @@ zp_register_filter('iconColor', 'iconColor');
 
 $themecolors = array('light', 'dark');
 if (extensionEnabled('themeSwitcher')) {
-	$themeColor = zp_getCookie('themeSwitcher_color');
 	if (isset($_GET['themeColor'])) {
 		$new = $_GET['themeColor'];
 		if (in_array($new, $themecolors)) {

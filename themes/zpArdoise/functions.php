@@ -22,6 +22,15 @@ if (!OFFSET_PATH) {
 
 	$_zenpage_enabled = extensionEnabled('zenpage');
 	$_zp_page_check = 'my_checkPageValidity';
+
+	$themecolors = array('light', 'dark');
+
+	if (isset($_GET['themeColor'])) {
+		if (in_array($_GET['themeColor'], $themecolors)) {
+			zp_setCookie('themeSwitcher_color', $_GET['themeColor'], false);
+			$themeColor = $_GET['themeColor'];
+		}
+	}
 }
 
 function iconColor($icon) {
@@ -32,18 +41,9 @@ function iconColor($icon) {
 	return($icon);
 }
 
-$themecolors = array('light', 'dark');
-
 function switcher_head($ignore) {
 	global $personalities, $themecolors, $themeColor;
 	$themeColor = zp_getCookie('themeSwitcher_color');
-	if (isset($_GET['themeColor'])) {
-		$new = $_GET['themeColor'];
-		if (in_array($new, $themecolors)) {
-			zp_setCookie('themeSwitcher_color', $new, false);
-			$themeColor = $new;
-		}
-	}
 	if (!empty($themeColor)) {
 		setOption('css_style', $themeColor, false);
 	}
