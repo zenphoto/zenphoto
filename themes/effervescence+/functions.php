@@ -23,11 +23,7 @@ foreach ($persona as $personality) {
 		$personalities[ucfirst(str_replace('_', ' ', $personality))] = $personality;
 }
 
-$personality = strtolower(getOption('effervescence_personality'));
-if (!in_array($personality, $personalities)) {
-	$persona = $personalities;
-	$personality = array_shift($persona);
-}
+
 
 chdir(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/styles");
 $filelist = safe_glob('*.txt');
@@ -37,46 +33,37 @@ foreach ($filelist as $file) {
 }
 chdir($cwd);
 
-if (!OFFSET_PATH) {
-	if (extensionEnabled('themeSwitcher')) {
-		if (isset($_GET['themeColor'])) {
-			$new = $_GET['themeColor'];
-		} else {
-			$new = zp_getCookie('themeSwitcher_color');
-		}
-		if (in_array($new, $themecolors)) {
-			$themeColor = $new;
-		} else {
-			$themeColor = NULL;
-		}
-		zp_setCookie('themeSwitcher_color', $themeColor, false);
-
-		if (!$themeColor) {
-			$themeColor = getOption('Theme_colors');
-		}
-
-		$personality = zp_getCookie('themeSwitcher_personality');
-		if (isset($_GET['themePersonality'])) {
-			$new = $_GET['themePersonality'];
-			if (in_array($new, $personalities)) {
-				zp_setCookie('themeSwitcher_personality', $new, false);
-				$personality = $new;
-			}
-		}
-		if ($personality) {
-			setOption('effervescence_personality', $personality, false);
-		} else {
-			$personality = strtolower(getOption('effervescence_personality'));
-		}
+if (extensionEnabled('themeSwitcher')) {
+	$themeColor = themeSwitcher::themeSelection('themeColor', $themecolors);
+	if (!$themeColor) {
+		$themeColor = getOption('Theme_colors');
 	}
 
-	if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_menu == 'zenpage') {
-		enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
+	$personality = themeSwitcher::themeSelection('themePersonality', $personalities);
+	if ($personality) {
+		setOption('effervescence_personality', $personality, false);
+	} else {
+		$personality = strtolower(getOption('effervescence_personality'));
 	}
-	require_once(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/' . $personality . '/functions.php');
-	$_oneImagePage = $handler->onePage();
-	$_zp_page_check = 'my_checkPageValidity';
+} else {
+	$personality = strtolower(getOption('effervescence_personality'));
 }
+
+if (!in_array($personality, $personalities)) {
+	$persona = $personalities;
+	$personality = array_shift($persona);
+}
+
+if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_menu == 'zenpage') {
+	enableExtension('print_album_menu', 1 | THEME_PLUGIN, false);
+}
+require_once(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/' . $personality . '/functions.php');
+$_oneImagePage = $handler->onePage();
+$_zp_page_check = 'my_checkPageValidity';
+
+
+
+
 define('_IMAGE_PATH', WEBPATH . '/' . THEMEFOLDER . '/effervescence+/images/');
 
 function EF_head($ignore) {
@@ -148,7 +135,7 @@ function switcher_head($ignore) {
 }
 
 function switcher_controllink($ignore) {
-	global $personalities, $themecolors, $_zp_gallery_page, $themeColor;
+	global $personality, $personalities, $themecolors, $_zp_gallery_page, $themeColor;
 	$themeColor = zp_getCookie('themeSwitcher_color');
 	if (!$themeColor) {
 		list($personality, $themeColor) = getPersonality();
@@ -162,7 +149,6 @@ function switcher_controllink($ignore) {
 			</select>
 		</span>
 		<?php
-		$personality = zp_getCookie('themeSwitcher_personality');
 		if (!$personality) {
 			$personality = getOption('effervescence_personality');
 		}

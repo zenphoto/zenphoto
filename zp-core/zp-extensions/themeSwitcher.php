@@ -87,6 +87,27 @@ class themeSwitcher {
 	}
 
 	/**
+	 * Utility functon for managing switched theme options
+	 *
+	 * @param string $option
+	 * @param array $allowed
+	 * @return string Option as set by themeSwitcher
+	 */
+	static function themeSelection($option, $allowed) {
+		$themeOption = zp_getCookie('themeSwitcher_' . $option);
+		if (isset($_GET[$option])) {
+			if (in_array($_GET[$option], $allowed)) {
+				zp_setCookie('themeSwitcher_' . $option, $_GET[$option], false);
+				$themeOption = $_GET[$option];
+			}
+		}
+		if (!in_array($themeOption, $allowed)) {
+			return NULL;
+		}
+		return $themeOption;
+	}
+
+	/**
 	 *
 	 * Filter to "setupTheme" that will override the gallery theme with user selected theme
 	 * @param string $theme
