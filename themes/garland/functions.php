@@ -16,7 +16,7 @@ foreach ($persona as $personality) {
 }
 
 if (!OFFSET_PATH) {
-	if (extensionEnabled('themeSwitcher')) {
+	if (class_exists('themeSwitcher')) {
 		$personality = themeSwitcher::themeSelection('themePersonality', $personalities);
 		if ($personality) {
 			setOption('garland_personality', $personality, false);

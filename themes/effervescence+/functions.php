@@ -33,7 +33,7 @@ foreach ($filelist as $file) {
 }
 chdir($cwd);
 
-if (extensionEnabled('themeSwitcher')) {
+if (class_exists('themeSwitcher')) {
 	$themeColor = themeSwitcher::themeSelection('themeColor', $themecolors);
 	if (!$themeColor) {
 		$themeColor = getOption('Theme_colors');
