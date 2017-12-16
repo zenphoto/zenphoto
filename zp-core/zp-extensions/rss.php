@@ -442,7 +442,6 @@ class RSS extends feed {
 				$albumname = $this->getChannelTitleExtra();
 
 				$this->channel_title = html_encode($this->channel_title . ' ' . getBare($albumname));
-				$this->imagesize = $this->getImageSize();
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 				break;
 
@@ -482,7 +481,6 @@ class RSS extends feed {
 						break;
 				}
 				$this->channel_title = html_encode($this->channel_title . $this->cattitle . $titleappendix);
-				$this->imagesize = $this->getImageSize();
 				$this->itemnumber = getOption("RSS_zenpage_items"); // # of Items displayed on the feed
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
