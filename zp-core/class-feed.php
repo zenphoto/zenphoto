@@ -102,7 +102,7 @@ class feed {
 	protected function getCacheFilename() {
 		$filename = array();
 		foreach ($this->options as $key => $value) {
-			if (empty($value)) {
+			if (empty($value) || $key == 'albumsmode') { // supposed to be empty always
 				$filename[] = $key;
 			} else {
 				$filename[] = $value;
