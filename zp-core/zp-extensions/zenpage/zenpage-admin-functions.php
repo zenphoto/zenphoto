@@ -1575,10 +1575,11 @@ function printPublishIconLink($object, $type, $linkback = '') {
 	 * @return bool
 	 */
 	function checkIfLockedPage($page) {
+		global $_zp_current_admin_obj;
 		if (zp_loggedin(ADMIN_RIGHTS))
 			return true;
 		if ($page->getLocked()) {
-			return $page->isMyItem(ZENPAGE_PAGES_RIGHTS);
+			return $_zp_current_admin_obj->getUser() == $page->getAuthor() && $page->isMyItem(ZENPAGE_PAGES_RIGHTS);
 		} else {
 			return true;
 		}
@@ -1592,10 +1593,13 @@ function printPublishIconLink($object, $type, $linkback = '') {
 	 * @return bool
 	 */
 	function checkIfLockedNews($news) {
+		global $_zp_current_admin_obj;
 		if (zp_loggedin(ADMIN_RIGHTS))
 			return true;
+			
 		if ($news->getLocked()) {
-			return $news->isMyItem(ZENPAGE_NEWS_RIGHTS);
+			echo $_zp_current_admin_obj->getUser(). "/" . $news->getAuthor();
+			return $_zp_current_admin_obj->getUser() == $news->getAuthor() && $news->isMyItem(ZENPAGE_NEWS_RIGHTS);
 		} else {
 			return true;
 		}
