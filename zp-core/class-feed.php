@@ -322,7 +322,7 @@ class feed {
 	 * @return int
 	 */
 	protected function getAlbum($option) {
-		if (in_array($which, array('folder', 'albumname')) && isset($this->options[$option])) {
+		if (in_array($option, array('folder', 'albumname')) && isset($this->options[$option])) {
 			$albumobj = newAlbum($this->options[$option], true, true);
 			if ($albumobj->exists) {
 				return $this->options[$option];
