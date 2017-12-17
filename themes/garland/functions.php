@@ -16,15 +16,8 @@ foreach ($persona as $personality) {
 }
 
 if (!OFFSET_PATH) {
-	if (extensionEnabled('themeSwitcher')) {
-		$personality = zp_getCookie('themeSwitcher_personality');
-		if (isset($_GET['themePersonality'])) {
-			$new = $_GET['themePersonality'];
-			if (in_array($new, $personalities)) {
-				zp_setCookie('themeSwitcher_personality', $new, false);
-				$personality = $new;
-			}
-		}
+	if (class_exists('themeSwitcher')) {
+		$personality = themeSwitcher::themeSelection('themePersonality', $personalities);
 		if ($personality) {
 			setOption('garland_personality', $personality, false);
 		} else {
@@ -58,8 +51,7 @@ function switcher_head($ignore) {
 }
 
 function switcher_controllink($html) {
-	global $personalities, $_zp_gallery_page;
-	$personality = zp_getCookie('themeSwitcher_personality');
+	global $personality, $personalities, $_zp_gallery_page;
 	if (!$personality) {
 		$personality = getOption('garland_personality');
 	}
