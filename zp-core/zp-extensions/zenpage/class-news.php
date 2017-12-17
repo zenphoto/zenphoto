@@ -265,11 +265,11 @@ class Article extends CMSItems {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if (GALLERY_SECURITY == 'public' && $this->getShow() && $action == LIST_RIGHTS) {
-				return true;
-			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true; //	he is the author
+			}
+			if (GALLERY_SECURITY == 'public' && $this->getShow() && $action == LIST_RIGHTS) {
+				return LIST_RIGHTS;
 			}
 			$myObjects = $_zp_current_admin_obj->getObjects('news', true);
 			if (!empty($myObjects)) {

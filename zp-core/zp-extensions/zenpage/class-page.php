@@ -302,11 +302,11 @@ class Page extends CMSItems {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if (GALLERY_SECURITY == 'public' && $this->getShow() && $action == LIST_RIGHTS) {
-				return LIST_RIGHTS;
-			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true;
+			}
+			if (GALLERY_SECURITY == 'public' && $this->getShow() && $action == LIST_RIGHTS) {
+				return LIST_RIGHTS;
 			}
 			$subRights = $this->subRights();
 			if ($subRights) {

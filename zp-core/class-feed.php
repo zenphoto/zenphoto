@@ -260,7 +260,7 @@ class feed {
 			return strtolower($this->options['sortdir']) != 'asc';
 		}
 		$this->options['sortdir'] = 'desc'; // make sure this is a valid default name
-		return true;
+		return TRUE;
 	}
 
 	/**
@@ -278,7 +278,7 @@ class feed {
 				$this->unsetOptions(array('sortorder'));
 			}
 		}
-		return null;
+		return NULL;
 	}
 
 	/**
@@ -304,7 +304,7 @@ class feed {
 	 */
 	protected function getID() {
 		if (isset($this->options['id'])) {
-			$type = $this->validateOption('type');
+			$type = $this->getCommentFeedType('type');
 			if ($type != 'all') {
 				$id = (int) $this->options['id'];
 				$result = query_single_row('SELECT `id` FROM ' . prefix($type) . ' WHERE id =' . $id);
@@ -314,7 +314,7 @@ class feed {
 			}
 		}
 		$this->unsetOptions(array('id'));
-		return '';
+		return NULL;
 	}
 
 	/**
@@ -323,14 +323,14 @@ class feed {
 	 * @return int
 	 */
 	protected function getAlbum($option) {
-		if (in_array($which, array('folder', 'albumname')) && isset($this->options[$option])) {
+		if (in_array($option, array('folder', 'albumname')) && isset($this->options[$option])) {
 			$albumobj = newAlbum($this->options[$option], true, true);
 			if ($albumobj->exists) {
 				return $this->options[$option];
 			}
 		}
 		$this->unsetOptions(array($option));
-		return '';
+		return NULL;
 	}
 
 	/**
@@ -346,7 +346,7 @@ class feed {
 			}
 		}
 		$this->unsetOptions(array('category'));
-		return '';
+		return NULL;
 	}
 
 	protected function getChannelTitleExtra() {
