@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package plugins
+ * @subpackage federated-logon
+ */
 
 $path_extra = dirname(__FILE__);
 $path = ini_get('include_path');

@@ -29,12 +29,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage media
+ * @subpackage xmpmetadata
  */
 $plugin_is_filter = 9 | CLASS_PLUGIN;
 $plugin_description = gettext('Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar files.');
 $plugin_author = "Stephen Billard (sbillard)";
-
+$plugin_category = gettext('Media');
 $option_interface = 'xmpMetadata';
 
 zp_register_filter('album_instantiate', 'xmpMetadata::album_instantiate');

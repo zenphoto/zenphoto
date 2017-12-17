@@ -2,6 +2,8 @@
 
 /*
  * RSS deprecated functions
+ * @package plugins
+ * @subpackage rss
  */
 
 class RSS_internal_deprecations {

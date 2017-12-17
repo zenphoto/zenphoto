@@ -6,13 +6,13 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage spam
+ * @subpackage simplespam
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Simple SPAM filter.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (isset($_zp_spamFilter) && !extensionEnabled('simpleSpam')) ? sprintf(gettext('Only one SPAM handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_spamFilter->name) : '';
-
+$plugin_category = gettext('Spam');
 $option_interface = 'zpSimpleSpam';
 
 if ($plugin_disable) {

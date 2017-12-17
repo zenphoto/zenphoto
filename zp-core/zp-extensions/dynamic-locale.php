@@ -23,12 +23,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage seo
+ * @subpackage dynamic-locale
  */
 $plugin_is_filter = 10 | CLASS_PLUGIN;
 $plugin_description = gettext("Allows viewers of your site to select the language translation of their choice.");
 $plugin_author = "Stephen Billard (sbillard)";
-
+$plugin_category = gettext('SEO');
 $option_interface = 'dynamic_locale';
 
 zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeJS');

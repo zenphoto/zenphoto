@@ -22,11 +22,12 @@
  * the gallery options tab.)
  *
  * @package plugins
- * @subpackage admin
+ * @subpackage publishcontent
  */
 $plugin_is_filter = 500 | ADMIN_PLUGIN;
 $plugin_description = gettext('A single place to quickly review your unpublished content.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Admin');
 
 zp_register_filter('admin_utilities_buttons', 'publishContent::button');
 

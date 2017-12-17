@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package plugins
+ * @subpackage comment-form
+ */
 define('COMMENTS_PER_PAGE', max(1, getOption('comment_form_comments_per_page')));
 
 $_zp_comment_stored = array();

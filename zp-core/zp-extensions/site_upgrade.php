@@ -31,13 +31,13 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage site-upgrade
  */
 $plugin_is_filter = 1000 | ADMIN_PLUGIN | FEATURE_PLUGIN;
 $plugin_description = gettext('Utility to divert access to the gallery to a screen saying the site is upgrading.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_notice = (MOD_REWRITE) ? false : gettext('<em>mod_rewrite</em> is not enabled. This plugin may not work without rewrite redirection if the upgrade is significantly different than the running release.');
-
+$plugin_category = gettext('Admin');
 switch (OFFSET_PATH) {
 	case 0:
 		$state = @$_zp_conf_vars['site_upgrade_state'];

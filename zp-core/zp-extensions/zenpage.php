@@ -37,11 +37,13 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage zenpage
  */
 $plugin_is_filter = 9 | CLASS_PLUGIN;
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto.");
 $plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> or the <em>stopdesign</em> theme.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
+$plugin_category = gettext('Media');
 $option_interface = 'zenpagecms';
 
 if (OFFSET_PATH == 2) {

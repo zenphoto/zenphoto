@@ -6,11 +6,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage users
+ * @subpackage user-login-out
  */
 $plugin_is_filter = 900 | THEME_PLUGIN;
 $plugin_description = gettext("Provides a means for users to login/out from your theme pages.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Users');
 
 $option_interface = 'user_logout_options';
 if (isset($_zp_gallery_page) && getOption('user_logout_login_form') > 1) {

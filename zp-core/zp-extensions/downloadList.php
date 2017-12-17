@@ -31,12 +31,13 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage misc
+ * @subpackage downloadlist
  * @tags "file download", "download manager", download
  */
 $plugin_is_filter = 800 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("Plugin to generate file download lists.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
+$plugin_category = gettext('Misc');
 
 $option_interface = "downloadList";
 

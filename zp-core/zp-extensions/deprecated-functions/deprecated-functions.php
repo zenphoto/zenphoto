@@ -1,7 +1,14 @@
 <?php
+/**
+ * @package plugins
+ * @subpackage deprecated-functions
+ */
 
 /**
  * Zenphoto general deprecated functions
+ * 
+ * @package plugins
+ * @subpackage deprecated-functions
  */
 class internal_deprecations {
 

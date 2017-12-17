@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package plugins
+ * @subpackage downloadlist
+ */
 
 /**
  * @deprecated

@@ -36,7 +36,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage fieldextender
  *
  */
 

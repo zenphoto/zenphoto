@@ -17,11 +17,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage auto-backup
  */
 $plugin_is_filter = 2 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("Periodically backup the Zenphoto database.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Admin');
 
 $option_interface = 'auto_backup';
 if ((getOption('last_backup_run') + getOption('backup_interval') * 86400) < time()) { // register if it is time for a backup

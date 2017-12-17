@@ -15,13 +15,13 @@
  *
  * @author Malte Müller (acrylian) based on the plugin by Jeppe Toustrup (Tenzer) http://github.com/Tenzer/zenphoto-sitemap and on contributions by timo, Blue Dragonfly and Francois Marechal (frankm)
  * @package plugins
- * @subpackage seo
+ * @subpackage sitemap-extended
  */
 $plugin_is_filter = 0 | CLASS_PLUGIN;
 $plugin_description = gettext('Generates sitemap.org compatible XML files for use with Google and other search engines.');
 $plugin_notice = gettext('<strong>Note:</strong> The index links may not match if using the Zenpage option "news on index" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!!');
 $plugin_author = 'Malte Müller (acrylian)';
-
+$plugin_category = gettext('SEO');
 $option_interface = 'sitemapOptions';
 
 zp_register_filter('admin_utilities_buttons', 'sitemap::button');

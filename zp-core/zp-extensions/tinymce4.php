@@ -11,11 +11,12 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage admin
+ * @subpackage tinymce4
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Text editor TinyMCE 4.x");
 $plugin_author = "Malte Müller (acrylian)";
+$plugin_category = gettext('Admin');
 $option_interface = 'tinymce4Options';
 
 if (!defined('EDITOR_SANITIZE_LEVEL'))

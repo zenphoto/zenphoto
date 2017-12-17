@@ -4,6 +4,7 @@
  * supplying an album name (ex: loadAlbums.php?album=newalbum) will only process the album named.
  * Passing clear=on will purge the designated cache before generating cache images
  * @package plugins
+ * @subpackage cachemanager
  */
 // force UTF-8 Ø
 define('OFFSET_PATH', 3);

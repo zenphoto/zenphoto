@@ -1,9 +1,12 @@
 <?php
 
-/*
+/**
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ * 
+ * @package plugins
+ * @subpackage class-video
  */
 
 class Video_internal_deprecations {

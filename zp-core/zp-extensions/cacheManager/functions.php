@@ -1,4 +1,9 @@
 <?php
+/**
+ * Cache manage functions
+ * @package plugins
+ * @subpackge cachemanager
+ */
 
 define("CACHE_HASH_LENGTH", strlen(sha1(HASH_SEED)));
 

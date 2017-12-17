@@ -4,14 +4,14 @@
  *
  * @package plugins
  * @author Stephen Billard (sbillard)
- * @subpackage misc
+ * @subpackage tweet-news
  */
 $plugin_is_filter = 9 | FEATURE_PLUGIN;
 $plugin_description = gettext('Tweet news articles when published.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (function_exists('curl_init')) ? false : gettext('The <em>php_curl</em> extension is required');
 $plugin_notice = (extensionEnabled('TinyURL')) ? '' : gettext('Enable the tinyURL plugin to shorten URLs in your tweets.');
-
+$plugin_category = gettext('Misc');
 $option_interface = 'tweet';
 
 if ($plugin_disable) {

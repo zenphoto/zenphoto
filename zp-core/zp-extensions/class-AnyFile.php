@@ -10,12 +10,13 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage media
+ * @subpackage class-anyfile
  *
  */
 $plugin_is_filter = 990 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides a means for handling arbitrary file types. (No rendering provided!)');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Media');
 
 
 foreach (get_AnyFile_suffixes() as $suffix) {

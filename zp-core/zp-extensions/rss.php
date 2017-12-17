@@ -4,14 +4,14 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage feed
+ * @subpackage rss
  */
 // force UTF-8 Ø
 
 $plugin_is_filter = 900 | FEATURE_PLUGIN;
 $plugin_description = gettext('The Zenphoto <em>RSS</em> handler.');
 $plugin_notice = gettext('This plugin must be enabled to supply <em>RSS</em> feeds.') . '<br />' . gettext('<strong>Note:</strong> Theme support is required to display RSS links.');
-
+$plugin_category = gettext('Feed');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'rss_options';

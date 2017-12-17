@@ -4532,60 +4532,68 @@ function getLogTabs() {
  * Figures out which plugin tabs to display
  */
 function getPluginTabs() {
-	if (isset($_GET['tab'])) {
-		$default = sanitize($_GET['tab']);
-	} else {
-		$default = 'all';
-	}
-	$paths = getPluginFiles('*.php');
+  if (isset($_GET['tab'])) {
+    $default = sanitize($_GET['tab']);
+  } else {
+    $default = 'all';
+  }
+  $paths = getPluginFiles('*.php');
 
-	$classXlate = array(
-					'all'					 => gettext('all'),
-					'admin'				 => gettext('admin'),
-					'demo'				 => gettext('demo'),
-					'development'	 => gettext('development'),
-					'feed'				 => gettext('feed'),
-					'mail'				 => gettext('mail'),
-					'media'				 => gettext('media'),
-					'misc'				 => gettext('misc'),
-					'spam'				 => gettext('spam'),
-					'seo'					 => gettext('seo'),
-					'uploader'		 => gettext('uploader'),
-					'users'				 => gettext('users')
-	);
-	zp_apply_filter('plugin_tabs', $classXlate);
-
-	$currentlist = $classes = $member = array();
-	foreach ($paths as $plugin => $path) {
-		$p = file_get_contents($path);
-		$i = strpos($p, '* @subpackage');
-		if (($key = $i) !== false) {
-			$key = strtolower(trim(substr($p, $i + 13, strpos($p, "\n", $i) - $i - 13)));
-		}
-		if (empty($key)) {
-			$key = 'misc';
-		}
-		$classes[$key]['list'][] = $plugin;
-		if (array_key_exists($key, $classXlate)) {
-			$local = $classXlate[$key];
+  $currentlist = $classes = $member = array();
+  foreach ($paths as $plugin => $path) {
+    $p = file_get_contents($path);
+		$i = sanitize(isolate('$plugin_category', $p));
+		if ($i !== false) {
+			eval($i); // populates variable $plugin_category - ugly but otherwise gettext does not work…
+			$member[$plugin] = strtolower($plugin_category);
 		} else {
-			$local = $classXlate[$key] = $key;
+			// fallback for older plugins using @package for category without gettext
+			$i = strpos($p, '* @subpackage');
+			if (($key = $i) !== false) {
+				$plugin_category = strtolower(trim(substr($p, $i + 13, strpos($p, "\n", $i) - $i - 13)));
+			}
+			$classXlate = array(
+					'active' => gettext('Active'),
+					'all' => gettext('All'),
+					'admin' => gettext('Admin'),
+					'demo' => gettext('Demo'),
+					'development' => gettext('Development'),
+					'feed' => gettext('Feed'),
+					'mail' => gettext('Mail'),
+					'media' => gettext('Media'),
+					'misc' => gettext('Misc'),
+					'spam' => gettext('Spam'),
+					'seo' => gettext('SEO'),
+					'uploader' => gettext('Uploader'),
+					'users' => gettext('Users')
+			);
+			zp_apply_filter('plugin_tabs', $classXlate);
+			if (array_key_exists($plugin_category, $classXlate)) {
+				$local = $classXlate[$plugin_category];
+			} else {
+				$local = $plugin_category;
+			}
+			$member[$plugin] = strtolower($local);
 		}
-		$member[$plugin] = $local;
-	}
+		if (empty($plugin_category)) {
+      $plugin_category = gettext('Misc');
+    }
+    $classes[strtolower($plugin_category)]['list'][] = $plugin;
+    if(extensionEnabled($plugin)) {
+      $classes['active']['list'][] = $plugin;
+    }
+  }
+  ksort($classes);
+  $tabs[gettext('all')] = 'admin-plugins.php?page=plugins&tab=all';
+  $currentlist = array_keys($paths);
 
-	ksort($classes);
-	$tabs[$classXlate['all']] = 'admin-plugins.php?page=plugins&tab=all';
-	$currentlist = array_keys($paths);
-
-
-	foreach ($classes as $class => $list) {
-		$tabs[$classXlate[$class]] = 'admin-plugins.php?page=plugins&tab=' . $class;
-		if ($class == $default) {
-			$currentlist = $list['list'];
-		}
-	}
-	return array($tabs, $default, $currentlist, $paths, $member);
+  foreach ($classes as $class => $list) {
+    $tabs[$class] = 'admin-plugins.php?page=plugins&tab=' . $class;
+    if ($class == $default) {
+      $currentlist = $list['list'];
+    }
+  }
+  return array($tabs, $default, $currentlist, $paths, $member);
 }
 
 function getAdminThumb($image, $size) {

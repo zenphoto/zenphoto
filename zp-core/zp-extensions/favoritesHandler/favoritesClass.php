@@ -2,6 +2,8 @@
 
 /**
  * This is the class declaration
+ * @package plugins
+ * @subpackage favoriteshandler
  */
 class favorites extends AlbumBase {
 

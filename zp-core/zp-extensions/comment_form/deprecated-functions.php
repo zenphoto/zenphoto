@@ -3,6 +3,8 @@
 /**
  * @deprecated
  * @since 1.4.6
+ * @package plugins
+ * @subpackage comment-form
  */
 function getCommentsAllowed() {
 	global $_zp_current_image, $_zp_current_album;

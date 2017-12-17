@@ -37,10 +37,12 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage multiple-layouts
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Multiple <em>Theme</em> layouts");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
+$plugin_category = gettext('Misc');
 
 $option_interface = 'multipleLayoutOptions';
 

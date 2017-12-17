@@ -1,5 +1,17 @@
 <?php
+/**
+ * 
+ * @package plugins
+ * @subpackage deprecated-functions
+*/
 
+/**
+ * 
+ * @global type $files
+ * @param type $folder
+ * @param type $exclude
+ * @return string
+ */
 function getPHPFiles($folder, $exclude) {
 	global $files;
 	$dir = opendir($folder);
@@ -19,7 +31,14 @@ function getPHPFiles($folder, $exclude) {
 	closedir($dir);
 	return $files;
 }
-
+/**
+ * 
+ * @global type $deprecated
+ * @param type $title
+ * @param type $subject
+ * @param type $pattern
+ * @return boolean
+ */
 function formatList($title, $subject, $pattern) {
 	global $deprecated;
 	preg_match_all($pattern, $subject, $matches);
@@ -71,7 +90,13 @@ function formatList($title, $subject, $pattern) {
 
 	return $started;
 }
-
+/**
+ * 
+ * @param type $files
+ * @param type $base
+ * @param type $pattern
+ * @return type
+ */
 function listUses($files, $base, $pattern) {
 	if (is_array($files)) {
 		$open = $output = false;
@@ -105,7 +130,11 @@ function listUses($files, $base, $pattern) {
 		return $output;
 	}
 }
-
+/**
+ * 
+ * @param type $pattern
+ * @return boolean
+ */
 function listDBUses($pattern) {
 	$lookfor = array('images', 'albums', 'news', 'pages');
 	$found = array();

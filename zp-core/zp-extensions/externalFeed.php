@@ -39,7 +39,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage feed
+ * @subpackage externalfeed
  */
 // force UTF-8 Ø
 
@@ -47,6 +47,7 @@ $plugin_is_filter = 900 | FEATURE_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('The Zenphoto <em>externalFeed</em> handler.');
 
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Feed');
 
 $option_interface = 'externalFeed_options';
 

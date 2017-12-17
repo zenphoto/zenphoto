@@ -24,13 +24,14 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage users
+ * @subpackage quota-manager
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides a quota management system to limit the sum of sizes of images a user uploads.");
 $plugin_notice = gettext("<strong>Note:</strong> if FTP is used to upload images, manual user assignment is necessary. ZIP file upload is disabled by default as quotas are not applied to the files contained therein.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('get_upload_header_text') && !extensionEnabled('quota_manager')) ? sprintf(gettext('<a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('get_upload_header_text'))) : '';
+$plugin_category = gettext('Users');
 
 $option_interface = 'quota_manager';
 

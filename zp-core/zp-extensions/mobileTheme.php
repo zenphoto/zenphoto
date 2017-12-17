@@ -72,11 +72,13 @@
  * </ul>
  *
  * @package plugins
+ * @subpackage mobiletheme
  */
 
 $plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext('Select your theme based on the device connecting to your site');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Misc');
 
 $option_interface = 'mobileTheme';
 

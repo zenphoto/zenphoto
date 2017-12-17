@@ -23,14 +23,14 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage users
+ * @subpackage user-expiry
  */
 // force UTF-8 Ø
 
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Provides management of users based on when they were created.");
 $plugin_author = "Stephen Billard (sbillard)";
-
+$plugin_category = gettext('Users');
 
 $option_interface = 'user_expiry';
 

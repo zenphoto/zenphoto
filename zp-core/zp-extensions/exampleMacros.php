@@ -3,12 +3,12 @@
  * Declares example macros
  *
  * @package plugins
- * @subpackage development
-
+ * @subpackage examplemacros
  */
 $plugin_is_filter = 5 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext("Adds example macros.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Development');
 
 zp_register_filter('content_macro', 'exampleMacros::macro');
 

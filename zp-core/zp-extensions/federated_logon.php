@@ -43,12 +43,13 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage users
+ * @subpackage federated-logon
  */
 $plugin_is_filter = 900 | CLASS_PLUGIN;
 $plugin_description = gettext('Handles logon from <em>OpenID</em> credential providers.');
 $plugin_notice = sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php?test_query=a%26b');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Users');
 
 $plugin_disable = (getOption('federated_logon_detect')) ? false : sprintf(gettext('The <a href="%s">OpenID detect</a> script has not been run.'), FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/federated_logon/Auth/OpenID_detect.php?test_query=a%26b');
 if ($plugin_disable) {

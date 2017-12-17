@@ -5,13 +5,13 @@
  * for more robust SPAM filters.
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage spam
+ * @subpackage trivialspam
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Trivial SPAM filter.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (isset($_zp_spamFilter) && !extensionEnabled('trivialSpam')) ? sprintf(gettext('Only one SPAM handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_spamFilter->name) : '';
-
+$plugin_category = gettext('Spam');
 $option_interface = 'zpTrivialSpam';
 
 if ($plugin_disable) {

@@ -5,12 +5,13 @@
  * This plugin provides an HTTP based image upload handler for the <i>upload/images</i> admin tab.
  *
  * @package plugins
- * @subpackage uploader
+ * @subpackage uploader-http
  *
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('<em>http</em> image upload handler.');
 $plugin_author = 'Stephen Billard (sbillard)';
+$plugin_category = gettext('Uploader');
 
 if (OFFSET_PATH == 2)
 	setoptiondefault('zp_plugin_uploader_http', $plugin_is_filter);

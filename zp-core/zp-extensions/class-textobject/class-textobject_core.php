@@ -58,6 +58,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage class-textobject
  *
  */
 class TextObject extends Image {

@@ -8,12 +8,13 @@
  * is shown in the state in which it is applied.
  *
  * @package plugins
- * @subpackage development
+ * @subpackage rewriterules
  */
 
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Site rewrite rules tab.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Development');
 
 zp_register_filter('admin_tabs', 'rewriteRules::tabs');
 

@@ -22,12 +22,12 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage admin
+ * @subpackage static-html-cache
  */
 $plugin_is_filter = 400 | CLASS_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
-
+$plugin_category = gettext('Admin');
 $option_interface = 'static_html_cache';
 
 $cache_path = SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/";

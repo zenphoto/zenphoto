@@ -2,6 +2,8 @@
 
 /*
  * Rating deprecated functions
+ * @package plugins
+ * @subpackage rating
  */
 
 /**
