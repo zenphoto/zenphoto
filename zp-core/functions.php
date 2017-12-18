@@ -159,7 +159,7 @@ function cleanHTML($html) {
  * Returns truncated html formatted content
  *
  * @param string $articlecontent the source string
- * @param int $shorten new size
+ * @param int $shorten new size or TRUE to shorten to the first page break
  * @param string $shortenindicator
  * @return string
  *
@@ -167,14 +167,18 @@ function cleanHTML($html) {
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 	//conservatve check if the string is too long.
-	if ($shorten && (mb_strlen(strip_tags($articlecontent)) > $shorten)) {
+	if ($shorten && (mb_strlen(strip_tags($articlecontent)) > (int) $shorten)) {
 		//remove HTML comments (except for page break indicators)
-		$content = preg_replace('~<!-- pagebreak -->~isU', '<_PageBreak_>', $articlecontent);
+		$content = preg_replace('~<!-- pagebreak -->~isU', '<_PageBreak_>', $articlecontent, -1, $breaks);
 		$content = preg_replace('~<!--.*-->~isU', '', $content);
 
 		//remove scripts to be added back later
 		preg_match_all('~<script.*>.*</script>~isU', $content, $scripts);
 		$content = preg_replace('~<script.*>.*</script>~isU', '<_Script_>', $content);
+
+		if ($shorten === TRUE && $breaks) { //shorten to the first page break
+			$shorten = strpos($content, '<_PageBreak_>') + 1;
+		}
 
 		$pagebreak = $html = $short = '';
 		$count = 0;
