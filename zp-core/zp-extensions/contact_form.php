@@ -12,8 +12,8 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage theme
+ * @package plugins/contact_form
+ * @pluginCategory theme
  */
 $plugin_is_filter = defaultExtension(5 | FEATURE_PLUGIN);
 $plugin_description = gettext("Prints an e-mail contact so that visitors may e-mail the site administrator.");

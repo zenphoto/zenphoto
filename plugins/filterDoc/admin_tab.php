@@ -2,8 +2,7 @@
 /**
  * This is the "filters" tab
  *
- * @package plugins
- * @subpackage development
+ * @package plugins/filterDoc
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))) . "/zp-core/admin-globals.php");

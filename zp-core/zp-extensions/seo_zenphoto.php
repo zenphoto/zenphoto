@@ -5,8 +5,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage seo
+ * @package plugins/seo_zenphoto
+ * @pluginCategory seo
  */
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext("SEO filter to translate extended characters into their basic alpha-numeric equivalents.");

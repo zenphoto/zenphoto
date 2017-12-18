@@ -13,8 +13,8 @@
  * 	<li>comment-<name>.php</li>
  * </ul>
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/tinymce
+ * @pluginCategory admin
  */
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext("TinyMCE WYSIWYG editor");

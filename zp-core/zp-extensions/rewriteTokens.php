@@ -4,8 +4,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage development
+ * @package plugins/rewriteTokens
+ * @pluginCategory development
  */
 $plugin_is_filter = defaultExtension(950 | ADMIN_PLUGIN);
 $plugin_description = gettext('Utility to alter the rewrite token substitutions array in the configuration file.');

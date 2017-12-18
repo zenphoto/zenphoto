@@ -9,8 +9,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage media
+ * @package plugins/class-WEBdocs
+ * @pluginCategory media
  *
  */
 $plugin_is_filter = 990 | CLASS_PLUGIN;

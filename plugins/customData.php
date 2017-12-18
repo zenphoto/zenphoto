@@ -15,8 +15,8 @@
  *
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage admin
+ * @package plugins/customData
+ * @pluginCategory admin
  *
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */

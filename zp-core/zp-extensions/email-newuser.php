@@ -6,8 +6,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage users
+ * @package plugins/email-newuser
+ * @pluginCategory users
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Emails a password reset request to a newly created user.");

@@ -23,8 +23,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage users
+ * @package plugins/user-expiry
+ * @pluginCategory users
  */
 // force UTF-8 Ø
 

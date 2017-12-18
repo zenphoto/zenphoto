@@ -4,8 +4,7 @@
  * zenpage news class
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package plugins/zenpage
  */
 // force UTF-8 Ø
 

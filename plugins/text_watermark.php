@@ -4,8 +4,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage example
+ * @package plugins/text_watermark
+ * @pluginCategory example
  * @category package
  */
 $plugin_description = gettext("Creates text based watermarks.");

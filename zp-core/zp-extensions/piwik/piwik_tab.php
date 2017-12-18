@@ -2,8 +2,7 @@
 /**
  * The Piwik statistis page if widgets are defined
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/piwik
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

@@ -54,8 +54,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage media
+ * @package plugins/image_effects
+ * @pluginCategory media
  */
 $plugin_description = gettext('Attaches “Image effects” to images and thumbnails.');
 $plugin_author = "Stephen Billard (sbillard)";

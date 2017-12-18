@@ -2,8 +2,7 @@
 /**
  * This is the "files" upload tab
  *
- * @package plugins
- * @subpackage development
+ * @package plugins/macroList
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(NULL, $return = currentRelativeURL());

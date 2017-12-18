@@ -2,8 +2,7 @@
 /**
  * This is the "files" upload tab
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/elFinder
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(FILES_RIGHTS | UPLOAD_RIGHTS, currentRelativeURL());

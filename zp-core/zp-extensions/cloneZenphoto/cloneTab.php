@@ -3,7 +3,7 @@
  * Clone tab
  *
  *
- * @package admin
+ * @package admin/cloneZenphoto
  */
 if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 4);

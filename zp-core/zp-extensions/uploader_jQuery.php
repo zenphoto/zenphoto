@@ -10,8 +10,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/uploader_jQuery
+ * @pluginCategory admin
  */
 $plugin_is_filter = defaultExtension(40 | ADMIN_PLUGIN);
 $plugin_description = gettext('<em>jQuery</em> image upload handler.');

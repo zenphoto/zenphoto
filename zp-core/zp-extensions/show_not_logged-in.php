@@ -4,8 +4,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage development
+ * @package plugins/show_not_logged-in
+ * @pluginCategory development
  */
 $plugin_is_filter = 1001 | FEATURE_PLUGIN;
 $plugin_description = sprintf(gettext("Treats users as not logged in for gallery pages."), DATA_FOLDER);

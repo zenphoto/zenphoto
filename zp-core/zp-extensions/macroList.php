@@ -61,8 +61,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage development
+ * @package plugins/macroList
+ * @pluginCategory development
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('View available <code>content macros</code>.');

@@ -29,8 +29,8 @@
  * </ul>
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage media
+ * @package plugins/slideshow2
+ * @pluginCategory media
  */
 $plugin_is_filter = defaultExtension(9 | THEME_PLUGIN | ADMIN_PLUGIN);
 $plugin_description = gettext("Slideshow plugin based on the Cycle2 jQuery plugin.");

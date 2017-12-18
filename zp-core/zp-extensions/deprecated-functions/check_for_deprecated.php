@@ -2,7 +2,7 @@
 /**
  * Check for use of deprecated functions
  * @author Stephen Billard (sbillard)
- * @package plugins
+ * @package plugins/deprecated-functions
  */
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

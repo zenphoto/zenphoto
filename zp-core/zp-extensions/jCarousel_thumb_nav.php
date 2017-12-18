@@ -6,8 +6,8 @@
  * Supports theme based custom css files (place <var>jcarousel.css</var> and needed images in your theme's folder).
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage theme
+ * @package plugins/jCarousel_thumb_nav
+ * @pluginCategory theme
  */
 $plugin_description = gettext("jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on request via JavaScript.");
 $plugin_author = "Malte Müller (acrylian) based on a jCarousel example";

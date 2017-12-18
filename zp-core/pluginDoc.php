@@ -28,7 +28,7 @@
  * @author Stephen Billard (sbillard)
  *
  * @package admin
- * @subpackage development
+ * @pluginCategory development
  */
 // force UTF-8 Ø
 

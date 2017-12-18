@@ -2,8 +2,7 @@
 /**
  * Form for registering users
  *
- * @package plugins
- * @subpackage users
+ * @package plugins/register_user
  */
 Zenphoto_Authority::printPasswordFormJS(true);
 $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());

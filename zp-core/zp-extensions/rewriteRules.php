@@ -9,8 +9,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage development
+ * @package plugins/rewriteRules
+ * @pluginCategory development
  */
 
 $plugin_is_filter = 5 | ADMIN_PLUGIN;

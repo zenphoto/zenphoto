@@ -33,8 +33,8 @@
  * allow your plugin to co-exist with other custom field extender plugins.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage example
+ * @package plugins/customFieldExtender
+ * @pluginCategory example
  * @category package
  *
  */

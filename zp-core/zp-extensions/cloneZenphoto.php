@@ -23,8 +23,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/cloneZenphoto
+ * @pluginCategory admin
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allows multiple installations to share a single set of script files.');

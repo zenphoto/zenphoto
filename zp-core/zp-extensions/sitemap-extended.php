@@ -20,8 +20,8 @@
  * <b>IMPORTANT:</b> A multilingual sitemap requires the <var>dynamic-locale</var> plugin and either the <var>seo_locale</var> plugin or <i>language subdomains</i>.
  *
  * @author Malte Müller (acrylian) Stephen Billard (sbillard) based on the plugin by Jeppe Toustrup (Tenzer) http://github.com/Tenzer/zenphoto-sitemap and on contributions by timo, Blue Dragonfly and Francois Marechal (frankm)
- * @package plugins
- * @subpackage seo
+ * @package plugins/sitemap-extended
+ * @pluginCategory seo
  */
 $plugin_is_filter = 0 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Generates sitemap.org compatible XML files for use with Google and other search engines.');

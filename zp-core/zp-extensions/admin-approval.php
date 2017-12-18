@@ -7,8 +7,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/admin-approval
+ * @pluginCategory admin
  */
 $plugin_is_filter = 980 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allows only users with Admin or Manage All rights to change the publish state of objects.');

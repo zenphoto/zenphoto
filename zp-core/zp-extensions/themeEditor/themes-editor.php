@@ -2,7 +2,7 @@
 /**
  * Theme file editor
  *
- * @package admin
+ * @package admin/themeEditor
  * @author Ozh
  */
 // force UTF-8 Ø

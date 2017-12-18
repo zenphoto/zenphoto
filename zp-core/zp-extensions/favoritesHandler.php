@@ -41,8 +41,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage media
+ * @package plugins/favoritesHandler
+ * @pluginCategory media
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');

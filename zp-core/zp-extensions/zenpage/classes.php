@@ -3,8 +3,7 @@
 /**
  * Zenpage root classes
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package plugins/zenpage
  */
 /**
  * Some global variable setup

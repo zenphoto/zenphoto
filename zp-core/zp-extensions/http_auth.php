@@ -43,8 +43,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage users
+ * @package plugins/http_auth
+ * @pluginCategory users
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Checks for Apache HTTP authentication of authorized users.');

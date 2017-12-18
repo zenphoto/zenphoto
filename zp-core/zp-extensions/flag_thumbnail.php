@@ -19,8 +19,8 @@
  *
  * @author Stephen Billard (sbillard) and Malte Müller (acrylian)
  *
- * @package plugins
- * @subpackage media
+ * @package plugins/flag_thumbnail
+ * @pluginCategory media
  */
 $plugin_description = gettext('Overlay icons over thumbnails to indicate image status.');
 $plugin_author = "Stephen Billard (sbillard)";

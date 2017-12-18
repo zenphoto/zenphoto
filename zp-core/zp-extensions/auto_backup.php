@@ -15,8 +15,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/auto_backup
+ * @pluginCategory admin
  */
 $plugin_is_filter = defaultExtension(2 | ADMIN_PLUGIN | THEME_PLUGIN);
 $plugin_description = gettext("Periodically backup the database.");

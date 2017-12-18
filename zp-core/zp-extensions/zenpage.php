@@ -29,8 +29,8 @@
  *
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage theme
+ * @package plugins/zenpage
+ * @pluginCategory theme
  */
 $plugin_is_filter = defaultExtension(99 | CLASS_PLUGIN);
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with ZenPhoto20.");

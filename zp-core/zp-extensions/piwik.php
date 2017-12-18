@@ -26,8 +26,8 @@
  *
  *  Piwik aims to be an open source alternative to Google Analytics.
  *
- * @package plugins
- * @subpackage seo
+ * @package plugins/piwik
+ * @pluginCategory seo
  */
 $plugin_is_filter = 9 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('A plugin to insert your Piwik JavaScript tracking code into your theme pages.');

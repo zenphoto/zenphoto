@@ -39,8 +39,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/externalFeed
+ * @pluginCategory admin
  */
 // force UTF-8 Ø
 

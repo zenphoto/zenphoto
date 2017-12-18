@@ -1,8 +1,6 @@
 <?php
 /**
  * Form for contact_form plugin
- *
- * @package plugins
  */
 ?>
 <form id="mailform" class="remove-bottom" action="<?php echo sanitize($_SERVER['REQUEST_URI']); ?>" method="post" accept-charset="UTF-8">

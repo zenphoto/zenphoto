@@ -7,8 +7,8 @@
  * Note: The optional counter prints the total number of the tag used, not just for the select items (as clicking on it will return all anyway.)
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage theme
+ * @package plugins/tag_extras
+ * @pluginCategory theme
  */
 $plugin_description = gettext("Provides functions to print a tag cloud of all tags from a zenphoto object.");
 $plugin_author = "Malte Müller (acrylian)";

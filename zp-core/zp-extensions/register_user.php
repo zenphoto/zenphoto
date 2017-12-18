@@ -20,8 +20,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage users
+ * @package plugins/register_user
+ * @pluginCategory users
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");

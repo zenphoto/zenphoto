@@ -4,8 +4,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage development
+ * @package plugins/filterDoc
+ * @pluginCategory development
  * @category package
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;

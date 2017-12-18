@@ -15,8 +15,8 @@
  * @author Stephen Billard (sbillard)
  * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/accessThreshold
+ * @pluginCategory admin
  */
 $plugin_is_filter = 990 | FEATURE_PLUGIN;
 $plugin_description = gettext("Tools to block denial of service attacks.");

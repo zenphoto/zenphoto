@@ -10,8 +10,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage media
+ * @package plugins/crop_image
+ * @pluginCategory media
  */
 if (isset($_REQUEST['performcrop'])) {
 	if (!defined('OFFSET_PATH'))

@@ -3,8 +3,8 @@
 /*
  * enables the touchPunch jQuery tablet hack
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/touchPunch
+ * @pluginCategory admin
  *
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */

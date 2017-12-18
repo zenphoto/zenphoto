@@ -3,8 +3,8 @@
  * This plugin handles <i>RSS</i> feeds:
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage admin
+ * @package plugins/rss
+ * @pluginCategory admin
  */
 // force UTF-8 Ø
 

@@ -20,8 +20,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/search_statistics
+ * @pluginCategory admin
  */
 $plugin_is_filter = 2 | CLASS_PLUGIN;
 $plugin_description = gettext("Collects and displays search criteria.");

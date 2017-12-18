@@ -30,8 +30,8 @@
  * @author Stephen Billard (sbillard)
  * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/ipBlocker
+ * @pluginCategory admin
  */
 $plugin_is_filter = 10 | CLASS_PLUGIN;
 $plugin_description = gettext("Tools to block hacker access to your site.");

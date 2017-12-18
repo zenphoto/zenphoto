@@ -4,7 +4,7 @@
  *
  * site cloner
  *
- * @package admin
+ * @package admin/cloneZenphoto
  */
 // UTF-8 Ø
 define('OFFSET_PATH', 4);

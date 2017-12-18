@@ -2,7 +2,7 @@
 
 /**
  * Bulk enable/disable of plugins
- * @package core
+ * @package core/pluginEnabler
  */
 // force UTF-8 Ø
 

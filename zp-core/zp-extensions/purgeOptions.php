@@ -14,8 +14,8 @@
  *
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/purgeOptions
+ * @pluginCategory admin
  */
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext('Provides a means to purge options for Themes and Plugins.');

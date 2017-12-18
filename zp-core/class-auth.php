@@ -39,8 +39,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage admin
+ * @package admin
  */
 require_once(dirname(__FILE__) . '/lib-auth.php');
 

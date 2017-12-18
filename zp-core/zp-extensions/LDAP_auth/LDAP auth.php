@@ -7,8 +7,7 @@
  *
  * @author Stephen Billard (sbillard), Arie (ariep)
  *
- * @package alt
- * @subpackage users
+ * @package alt/LDAP_auth
  */
 
 define('LDAP_DOMAIN', getOption('ldap_domain'));
