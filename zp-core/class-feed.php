@@ -481,7 +481,7 @@ class feed {
 					case 'zenpage':
 						$type = 'all';
 					case 'news':
-					case 'page':
+					case 'pages':
 						if (function_exists('getLatestZenpageComments')) {
 							$items = getLatestZenpageComments($this->itemnumber, $type, $this->id);
 						}
