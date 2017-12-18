@@ -304,7 +304,7 @@ class feed {
 	 */
 	protected function getID() {
 		if (isset($this->options['id'])) {
-			$type = $this->getCommentFeedType('type');
+			$type = $this->getCommentFeedType();
 			if ($type != 'all') {
 				$id = (int) $this->options['id'];
 				$result = query_single_row('SELECT `id` FROM ' . prefix($type) . ' WHERE id =' . $id);
