@@ -28,11 +28,11 @@ if ($filehandler) {
 }
 ?>
 		plugins: [
-			"advlist autolink lists link image charmap print preview anchor",
+			"advlist autolink lists link image charmap print preview anchor pagebreak",
 			"searchreplace visualblocks code fullscreen directionality",
 			"insertdatetime media table contextmenu paste tinyzenpage"
 		],
-		toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code fullscreen | tinyzenpage | ltr rtl",
+		toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code fullscreen | pagebreak tinyzenpage | ltr rtl",
 		setup: function(ed) {
 			ed.on('change', function(e) {
 				$('.dirty-check').addClass('dirty');

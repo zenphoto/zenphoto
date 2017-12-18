@@ -17,7 +17,7 @@ global $_zp_RTL_css;
 		menubar: false,
 		relative_urls: false,
 		plugins: [
-			"advlist autolink lists link image charmap print preview hr anchor pagebreak",
+			"advlist autolink lists link image charmap print preview hr anchor",
 			"searchreplace visualblocks code directionality",
 			"insertdatetime media table contextmenu",
 			"emoticons paste"

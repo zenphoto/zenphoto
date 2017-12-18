@@ -33,7 +33,7 @@ if ($filehandler) {
 			"emoticons template paste tinyzenpage"
 		],
 		toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-		toolbar2: "print preview media | forecolor backcolor emoticons | tinyzenpage | code fullscreen | ltr rtl",
+		toolbar2: "print preview media | forecolor backcolor emoticons | pagebreak tinyzenpage | code fullscreen | ltr rtl",
 		setup: function(ed) {
 			ed.on('change', function(e) {
 				$('.dirty-check').addClass('dirty');
