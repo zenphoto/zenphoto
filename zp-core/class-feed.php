@@ -480,7 +480,7 @@ class feed {
 					case 'zenpage':
 						$type = 'all';
 					case 'news':
-					case 'page':
+					case 'pages':
 						if (function_exists('getLatestZenpageComments')) {
 							$items = getLatestZenpageComments($this->itemnumber, $type, $this->id);
 						}
@@ -502,7 +502,7 @@ class feed {
 			return $items;
 		}
 		if (TEST_RELEASE) {
-			trigger_error(gettext('Bad ' . $this->feed . ' feed:' . $this->feedtype), E_USER_WARNING);
+			trigger_error(gettext('Bad ' . $this->feed . ' feed respectively no items available:' . $this->feedtype), E_USER_WARNING);
 		}
 		return NULL;
 	}

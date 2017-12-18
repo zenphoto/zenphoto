@@ -72,80 +72,113 @@ class rss_options {
 	}
 
 	function getOptionsSupported() {
-		$options = array(gettext('RSS feeds enabled:')			 => array('key'				 => 'RSS_feed_list', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'order'			 => 0,
-										'checkboxes' => array(gettext('Gallery')						 => 'RSS_album_image',
-														gettext('Gallery Comments')		 => 'RSS_comments',
-														gettext('All News')						 => 'RSS_articles',
-														gettext('All Pages')					 => 'RSS_pages',
-														gettext('News/Page Comments')	 => 'RSS_article_comments'
-										),
-										'desc'			 => gettext('Check each RSS feed you wish to activate.')),
-						gettext('Image feed items:')			 => array('key'		 => 'RSS_items', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
-						gettext('Album feed items:')			 => array('key'		 => 'RSS_items_albums', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
-						gettext('Image size')							 => array('key'		 => 'RSS_imagesize', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 3,
-										'desc'	 => gettext('Size of RSS image feed images:')),
-						gettext('Album image size')				 => array('key'		 => 'RSS_imagesize_albums', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 4,
-										'desc'	 => gettext('Size of RSS album feed images :')),
-						gettext('Image feed sort order:')	 => array('key'				 => 'RSS_sortorder', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 6,
-										'selections' => array(gettext('latest by id')					 => 'latest',
-														gettext('latest by date')				 => 'latest-date',
-														gettext('latest by mtime')			 => 'latest-mtime',
-														gettext('latest by publishdate') => 'latest-publishdate'
-										),
-										'desc'			 => gettext("Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file’ last change timestamp.")),
-						gettext('Album feed sort order:')	 => array('key'				 => 'RSS_sortorder_albums', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext('latest by id')					 => 'latest',
-														gettext('latest by date')				 => 'latest-date',
-														gettext('latest by mtime')			 => 'latest-mtime',
-														gettext('latest by publishdate') => 'latest-publishdate',
-														gettext('latest updated')				 => 'latestupdated'
-										),
-										'order'			 => 7,
-										'desc'			 => gettext('Choose between latest by id for the latest uploaded and latest updated')),
-						gettext('RSS enclosure:')					 => array('key'		 => 'RSS_enclosure', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 8,
-										'desc'	 => gettext('Check if you want to enable the RSS enclosure feature which provides a direct download for full images, movies etc. from within certain RSS reader clients (only Images RSS).')),
-						gettext('Media RSS:')							 => array('key'		 => 'RSS_mediarss', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 9,
-										'desc'	 => gettext('Check if media RSS support is to be enabled. This support is used by some services and programs (only Images RSS).')),
-						gettext('Cache')									 => array('key'		 => 'RSS_cache', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 10,
-										'desc'	 => sprintf(gettext('Check if you want to enable static RSS feed caching. The cached file will be placed within the <em>%s</em> folder.'), STATIC_CACHE_FOLDER)),
-						gettext('Cache expiration')				 => array('key'		 => 'RSS_cache_expire', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 11,
-										'desc'	 => gettext('Cache expire default is 86400 seconds (1 day = 24 hrs * 60 min * 60 sec).')),
-						gettext('Hitcounter')							 => array('key'		 => 'RSS_hitcounter', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 12,
-										'desc'	 => gettext('Check if you want to store the hitcount on RSS feeds.')),
-						gettext('Title')									 => array('key'			 => 'RSS_title', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 13,
-										'buttons'	 => array(gettext('Gallery title') => 'gallery', gettext('Website title') => 'website', gettext('Both') => 'both'),
-										'desc'		 => gettext("Select what you want to use as the main RSS feed (channel) title. “Both” means Website title followed by Gallery title")),
-						gettext('Portable RSS link')			 => array('key'		 => 'RSS_portable_link', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 14,
-										'desc'	 => gettext('If checked links generated for logged‑in users will include a token identifying the user. Use of that link when not logged‑in will give the same feed as if the user were logged‑in.'))
+		$options = array(
+				gettext('RSS feeds enabled:') => array(
+						'key' => 'RSS_feed_list',
+						'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'order' => 0,
+						'checkboxes' => array(gettext('Gallery') => 'RSS_album_image',
+								gettext('Gallery Comments') => 'RSS_comments',
+								gettext('All News') => 'RSS_articles',
+								gettext('All Pages') => 'RSS_pages',
+								gettext('News/Page Comments') => 'RSS_article_comments'
+						),
+						'desc' => gettext('Check each RSS feed you wish to activate.')),
+				gettext('Image feed items:') => array(
+						'key' => 'RSS_items',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
+				gettext('Album feed items:') => array(
+						'key' => 'RSS_items_albums',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext("The number of new images and comments you want to appear in your site’s RSS feed")),
+				gettext('Image size') => array(
+						'key' => 'RSS_imagesize',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 3,
+						'desc' => gettext('Size of RSS image feed images:')),
+				gettext('Album image size') => array(
+						'key' => 'RSS_imagesize_albums',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 4,
+						'desc' => gettext('Size of RSS album feed images :')),
+				gettext('Image feed sort order:') => array(
+						'key' => 'RSS_sortorder',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 6,
+						'selections' => array(gettext('latest by id') => 'latest',
+								gettext('latest by date') => 'latest-date',
+								gettext('latest by mtime') => 'latest-mtime',
+								gettext('latest by publishdate') => 'latest-publishdate'
+						),
+						'desc' => gettext("Choose between latest by id for the latest uploaded, latest by date for the latest uploaded fetched by date, or latest by mtime for the latest uploaded fetched by the file’ last change timestamp.")),
+				gettext('Album feed sort order:') => array(
+						'key' => 'RSS_sortorder_albums',
+						'type' => OPTION_TYPE_SELECTOR,
+						'selections' => array(gettext('latest by id') => 'latest',
+								gettext('latest by date') => 'latest-date',
+								gettext('latest by mtime') => 'latest-mtime',
+								gettext('latest by publishdate') => 'latest-publishdate',
+								gettext('latest updated') => 'latestupdated'
+						),
+						'order' => 7,
+						'desc' => gettext('Choose between latest by id for the latest uploaded and latest updated')),
+				gettext('RSS enclosure:') => array(
+						'key' => 'RSS_enclosure',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 8,
+						'desc' => gettext('Check if you want to enable the RSS enclosure feature which provides a direct download for full images, movies etc. from within certain RSS reader clients (only Images RSS).')),
+				gettext('Media RSS:') => array(
+						'key' => 'RSS_mediarss',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 9,
+						'desc' => gettext('Check if media RSS support is to be enabled. This support is used by some services and programs (only Images RSS).')),
+				gettext('Cache') => array(
+						'key' => 'RSS_cache',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 10,
+						'desc' => sprintf(gettext('Check if you want to enable static RSS feed caching. The cached file will be placed within the <em>%s</em> folder.'), STATIC_CACHE_FOLDER)),
+				gettext('Cache expiration') => array(
+						'key' => 'RSS_cache_expire',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 11,
+						'desc' => gettext('Cache expire default is 86400 seconds (1 day = 24 hrs * 60 min * 60 sec).')),
+				gettext('Hitcounter') => array(
+						'key' => 'RSS_hitcounter',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 12,
+						'desc' => gettext('Check if you want to store the hitcount on RSS feeds.')),
+				gettext('Title') => array(
+						'key' => 'RSS_title',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 13,
+						'buttons' => array(gettext('Gallery title') => 'gallery', gettext('Website title') => 'website', gettext('Both') => 'both'),
+						'desc' => gettext("Select what you want to use as the main RSS feed (channel) title. “Both” means Website title followed by Gallery title")),
+				gettext('Portable RSS link') => array(
+						'key' => 'RSS_portable_link',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 14,
+						'desc' => gettext('If checked links generated for logged‑in users will include a token identifying the user. Use of that link when not logged‑in will give the same feed as if the user were logged‑in.'))
 		);
 		if (extensionEnabled('zenpage')) {
-			$options[gettext('Feed text length')] = array('key'		 => 'RSS_truncate_length', 'type'	 => OPTION_TYPE_TEXTBOX,
-							'order'	 => 5.5,
-							'desc'	 => gettext("The text length of the Zenpage RSS feed items. No value for full length."));
-			$options[gettext('Zenpage feed items')] = array('key'		 => 'RSS_zenpage_items', 'type'	 => OPTION_TYPE_TEXTBOX,
-							'order'	 => 5,
-							'desc'	 => gettext("The number of news articles you want to appear in your site’s News RSS feed."));
+			$options[gettext('Feed text length')] = array(
+					'key' => 'RSS_truncate_length',
+					'type' => OPTION_TYPE_TEXTBOX,
+					'order' => 5.5,
+					'desc' => gettext("The text length of the Zenpage RSS feed items. No value for full length."));
+			$options[gettext('Zenpage feed items')] = array(
+					'key' => 'RSS_zenpage_items',
+					'type' => OPTION_TYPE_TEXTBOX,
+					'order' => 5,
+					'desc' => gettext("The number of news articles you want to appear in your site’s News RSS feed."));
 		}
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
-
+		
 	}
 
 	function handleOptionSave() {
@@ -701,24 +734,25 @@ class RSS extends feed {
 		global $_zp_gallery;
 		$feeditems = $this->getitems();
 		//NOTE: feeditems are complete HTML so necessarily must have been properly endoded by the server function!
-		if (is_array($feeditems)) {
-			header('Content-Type: application/xml');
-			$this->hitcounter();
-			$this->startCache();
-			echo '<?xml-stylesheet type="text/css" href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rss/rss.css" ?>' . "\n";
-			?>
-			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
-				<channel>
-					<title><![CDATA[<?php echo $this->channel_title; ?>]]></title>
-					<link><?php echo PROTOCOL . '://' . $this->host . WEBPATH; ?></link>
-					<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
-					<description><![CDATA[<?php echo getBare($_zp_gallery->getDesc($this->locale)); ?>]]></description>
-					<language><?php echo $this->locale_xml; ?></language>
-					<pubDate><?php echo date("r", time()); ?></pubDate>
-					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
-					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
-					<generator>Zenphoto RSS Generator</generator>
-					<?php
+
+		header('Content-Type: application/xml');
+		$this->hitcounter();
+		$this->startCache();
+		echo '<?xml-stylesheet type="text/css" href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rss/rss.css" ?>' . "\n";
+		?>
+		<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+			<channel>
+				<title><![CDATA[<?php echo $this->channel_title; ?>]]></title>
+				<link><?php echo PROTOCOL . '://' . $this->host . WEBPATH; ?></link>
+				<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
+				<description><![CDATA[<?php echo getBare($_zp_gallery->getDesc($this->locale)); ?>]]></description>
+				<language><?php echo $this->locale_xml; ?></language>
+				<pubDate><?php echo date("r", time()); ?></pubDate>
+				<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
+				<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+				<generator>Zenphoto RSS Generator</generator>
+				<?php
+				if (is_array($feeditems)) {
 					foreach ($feeditems as $feeditem) {
 						switch ($this->feedtype) {
 							case 'gallery':
@@ -763,12 +797,12 @@ class RSS extends feed {
 						</item>
 						<?php
 					} // foreach
-					?>
-				</channel>
-			</rss>
-			<?php
-			$this->endCache();
-		}
+				}
+				?>
+			</channel>
+		</rss>
+		<?php
+		$this->endCache();
 	}
 
 }
