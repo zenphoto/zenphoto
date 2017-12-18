@@ -1598,7 +1598,6 @@ function printPublishIconLink($object, $type, $linkback = '') {
 			return true;
 			
 		if ($news->getLocked()) {
-			echo $_zp_current_admin_obj->getUser(). "/" . $news->getAuthor();
 			return $_zp_current_admin_obj->getUser() == $news->getAuthor() && $news->isMyItem(ZENPAGE_NEWS_RIGHTS);
 		} else {
 			return true;
