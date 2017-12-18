@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @package plugins/uploader_jQuery
+ */
+
 zp_register_filter('admin_headers', 'jQueryUpload_headers', 0);
 zp_register_filter('admin_head', 'jQueryUpload_head');
 

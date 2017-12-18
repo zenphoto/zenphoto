@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * jQuery File Upload Plugin PHP Example 5.2.9
  * https://github.com/blueimp/jQuery-File-Upload
  *
@@ -9,7 +9,9 @@
  *
  * Licensed under the MIT license:
  * http://creativecommons.org/licenses/MIT/
+ * @package plugins/uploader_jQuery
  */
+
 
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

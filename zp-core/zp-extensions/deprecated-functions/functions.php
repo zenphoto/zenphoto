@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package plugins/deprecated-functions
+ */
+
 function getPHPFiles($folder, $exclude, &$files = array()) {
 	$dir = opendir($folder);
 	while (($file = readdir($dir)) !== false) {

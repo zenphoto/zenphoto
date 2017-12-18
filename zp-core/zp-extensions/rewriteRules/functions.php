@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package plugins/rewriteRules
+ */
+
 function rulesList() {
 	global $_zp_conf_vars;
 	list($pluginDefinitions, $rules) = getRules();

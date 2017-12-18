@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @package plugins/publishContent
+ */
+
 define('OFFSET_PATH', 3);
 require_once("../../admin-globals.php");
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');

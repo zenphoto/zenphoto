@@ -1,3 +1,8 @@
+<?php
+/**
+ * @package plugins/comment_form
+ */
+?>
 <form id="commentform" action="#commentform" method="post">
 	<input type="hidden" name="comment" value="1" />
 	<input type="hidden" name="remember" value="1" />
@@ -24,10 +29,10 @@
 			<p>
 				<label for="anon"> (<?php echo gettext("<em>anonymous</em>"); ?>)</label>
 				<input type="checkbox" name="anon" id="anon" value="1"<?php
-				if ($stored['anon'])
-					echo ' checked="checked"';
-				echo $disabled['anon'];
-				?> />
+		if ($stored['anon'])
+			echo ' checked="checked"';
+		echo $disabled['anon'];
+			?> />
 			</p>
 			<?php
 		}
@@ -113,9 +118,9 @@
 	?>
 	<br clear="all">
 	<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php
-		echo $stored['comment'];
-		echo $disabled['comment'];
-		?></textarea>
+	echo $stored['comment'];
+	echo $disabled['comment'];
+	?></textarea>
 	<br clear="all">
 	<br />
 	<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Add Comment'); ?></button>

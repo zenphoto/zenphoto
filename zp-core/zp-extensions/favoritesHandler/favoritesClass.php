@@ -3,7 +3,9 @@
 /**
  * This is the class declaration
  * @author Stephen Billard (sbillard)
+ * @package plugins/favoritesHandler
  */
+
 class favorites extends AlbumBase {
 
 	var $imageSortDirection;

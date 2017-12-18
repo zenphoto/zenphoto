@@ -2,7 +2,9 @@
 
 /**
  * General deprecated functions
+ * @package plugins/deprecated-functions
  */
+
 class internal_deprecations {
 # all methods must be declared static
 #

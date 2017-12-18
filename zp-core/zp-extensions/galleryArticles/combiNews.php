@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package plugins/galleryArticles
+ */
+
 class Combi extends CMS {
 
 	/**
