@@ -239,8 +239,8 @@ class feed {
 	 */
 	protected function getLang() {
 		if (isset($this->options['lang'])) {
-			global $_zp_active_languages;
-			$valid = array_values($_zp_active_languages);
+			$langs = generateLanguageList();
+			$valid = array_values($langs);
 			if (in_array($this->options['lang'], $valid)) {
 				return $this->options['lang'];
 			}
