@@ -308,7 +308,7 @@ class CMS {
 					break;
 				case "all":
 					$getUnpublished = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS);
-					$show = false;
+					$show = '';
 					break;
 			}
 			$order = " ORDER BY $sticky";
