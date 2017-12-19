@@ -242,9 +242,12 @@ class Zenpage {
 	 */
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL) {
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
+		$getunpublished_myitems = false;
 		if (empty($published)) {
-			if (zp_loggedin(ALL_NEWS_RIGHTS) || ($category && $category->isMyItem(ALL_NEWS_RIGHTS))) {
-				$published = "all";
+			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) || ($category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS))) { // lower rights, additionally checked below
+				$published = "all"; 
+				// without explicitly $published == 'all' we only want all the logged in is allowed to get
+				$getunpublished_myitems = true; 
 			} else {
 				$published = "published";
 			}
@@ -350,8 +353,11 @@ class Zenpage {
 					$getUnpublished = true;
 					break;
 				case "all":
-					$getUnpublished = true;
 					$show = false;
+					$getUnpublished = true;
+					if($getunpublished_myitems) {
+						$getUnpublished = false;
+					}
 					break;
 			}
 			$order = " ORDER BY $sticky";
@@ -395,8 +401,8 @@ class Zenpage {
 			$result = array();
 			if ($resource) {
 				while ($item = db_fetch_assoc($resource)) {
-					$article = new ZenpageNews($item['titlelink']);
-					if ($getUnpublished || $article->isMyItem(LIST_RIGHTS) || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+					$article = new ZenpageNews($item['titlelink']); 
+					if ($getUnpublished && $article->isMyItem(LIST_RIGHTS) || ($currentcategory && $article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
 						$result[] = $item;
 					}
 				}

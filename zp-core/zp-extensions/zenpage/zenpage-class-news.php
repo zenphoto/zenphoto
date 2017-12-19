@@ -233,15 +233,21 @@ class ZenpageNews extends ZenpageItems {
 			if ($this->getShow() && $action == LIST_RIGHTS && !$this->isProtected() && $this->categoryIsVisible()) {
 				return true;
 			}
+			// A user actually cannot have rights for an article without categories assigned
+			if(!$this->getCategories()) {
+				return false;
+			}
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
 			if (!empty($mycategories)) {
 				foreach ($this->getCategories() as $category) {
 					$cat = new ZenpageCategory($category['titlelink']);
-					if ($cat->isMyItem(ZENPAGE_NEWS_RIGHTS)) { // only override item visibility if we "own" the category
+					// only override item visibility if we "own" the category and this article is in an owned category
+					if ($cat->isMyItem(ZENPAGE_NEWS_RIGHTS)) { 
 						return true;
-					}
+					} 
 				}
 			}
+			//echo "no category so for sure not my item!";			
 		}
 		return false;
 	}
