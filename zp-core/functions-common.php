@@ -458,7 +458,7 @@ function cleanHTML($html, $options) {
 		$tidy->cleanRepair();
 		$html = trim($tidy);
 	} else {
-		$html = trim(htmLawed($html));
+		$html = trim(htmLawed($html, array('tidy')));
 	}
 	return $html;
 }
