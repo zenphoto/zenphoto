@@ -124,38 +124,6 @@ function truncate_string($string, $length, $elipsis = '...') {
 }
 
 /**
- *
- * fixes unbalanced HTML tags. Used by shortenContent when PHP tidy is not present
- * @param string $html
- * @return string
- */
-function cleanHTML($html) {
-
-	preg_match_all('#<(?!meta|img|br|hr|input\b)\b([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $html, $result);
-	$openedtags = $result[1];
-
-	preg_match_all('#</([a-z]+)>#iU', $html, $result);
-	$closedtags = $result[1];
-
-	$len_opened = count($openedtags);
-
-	if (count($closedtags) == $len_opened) {
-		return $html;
-	}
-
-	$openedtags = array_reverse($openedtags);
-	for ($i = 0; $i < $len_opened; $i++) {
-		if (!in_array($openedtags[$i], $closedtags)) {
-			$html .= '</' . $openedtags[$i] . '>';
-		} else {
-			unset($closedtags[array_search($openedtags[$i], $closedtags)]);
-		}
-	}
-
-	return $html;
-}
-
-/**
  * Returns truncated html formatted content
  *
  * @param string $articlecontent the source string
@@ -232,15 +200,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 		}
 
 		//tidy up the html--probably dropped a few closing tags!
-		if (class_exists('tidy')) {
-			$tidy = new tidy();
-			$tidy->parseString($short, array('show-body-only' => true), 'utf8');
-			$tidy->cleanRepair();
-			$short = trim($tidy);
-		} else {
-			$short = trim(cleanHTML($short));
-		}
-		$articlecontent = $short;
+		$articlecontent = trim(cleanHTML($short, array('show-body-only' => true)));
 	}
 
 	return $articlecontent;

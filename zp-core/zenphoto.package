@@ -1124,6 +1124,7 @@ zp-core/functions.php
 zp-core/global-definitions.php
 zp-core/gpl-2.0-standalone.htm
 zp-core/htaccess
+zp-core/htmLawed.php
 zp-core/i.php
 zp-core/index.php
 zp-core/lib-auth.php
@@ -8125,7 +8126,6 @@ zp-core/zp-extensions/zenpage/class-news.php
 zp-core/zp-extensions/zenpage/class-page.php
 zp-core/zp-extensions/zenpage/classes.php
 zp-core/zp-extensions/zenpage/deprecated-functions.php
-zp-core/zp-extensions/zenpage/index.php
 zp-core/zp-extensions/zenpage/template-functions.php
 zp-core/zp-extensions/zenpage/zenpage.css
 zp-core/zp-extensions/zpCaptcha
