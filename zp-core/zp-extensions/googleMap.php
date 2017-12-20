@@ -8,8 +8,8 @@
  *
  * @author Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
  *
- * @package plugins
- * @subpackage theme
+ * @package plugins/googleMap
+ * @pluginCategory theme
  *
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;

@@ -440,6 +440,29 @@ function html_decode($string) {
 	return $string;
 }
 
+if (!class_exists('tidy')) {
+	require_once( SERVERPATH . '/' . ZENFOLDER . '/htmLawed.php');
+}
+
+/**
+ *
+ * fixes unbalanced HTML tags. Used by shortenContent, html_encodeTagged
+ * @param string $html
+ * @param array $options tidy() parameters
+ * @return string
+ */
+function cleanHTML($html, $options) {
+	if (class_exists('tidy')) {
+		$tidy = new tidy();
+		$tidy->parseString($html, $options, 'utf8');
+		$tidy->cleanRepair();
+		$html = trim($tidy);
+	} else {
+		$html = trim(htmLawed($html, array('tidy')));
+	}
+	return $html;
+}
+
 /**
  * encodes a pre-sanitized string to be used in an HTML text-only field (value, alt, title, etc.)
  *
@@ -486,12 +509,7 @@ function html_encodeTagged($original, $allowScript = true) {
 	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
 	}
-	if (class_exists('tidy') && $str != $original) {
-		$tidy = new tidy();
-		$tidy->parseString($str, array('show-body-only' => 1, 'quote-marks' => 1, 'quote-ampersand' => 1, 'preserve-entities' => true), 'utf8');
-		$tidy->cleanRepair();
-		$str = $tidy->value;
-	}
+	$str = cleanHTML($str, array('show-body-only' => 1, 'quote-marks' => 1, 'quote-ampersand' => 1, 'preserve-entities' => true));
 	return $str;
 }
 

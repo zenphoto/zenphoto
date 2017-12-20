@@ -9,8 +9,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage seo
+ * @package plugins/seo_cleanup
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

@@ -6,8 +6,7 @@
  * NOTE: Requires MySQLi enabled as the database handler.
  *
  * @author Malte Müller (acrylian) made plugin compliant by Stephen Billard
- * @package plugins
- * @subpackage admin
+ * @package plugins/wordpress_import
  */
 define('OFFSET_PATH', 3);
 

@@ -9,8 +9,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package classes
- * @subpackage media
+ * @package classes/class-video
+ * @pluginCategory media
  */
 // force UTF-8 Ø
 

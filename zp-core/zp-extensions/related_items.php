@@ -3,8 +3,8 @@
  * Provides functionality to list (or get) objects related to the current object based on a search of the tags
  * the assigned to the current object.
  *
- * @package plugins
- * @subpackage theme
+ * @package plugins/related_items
+ * @pluginCategory theme
  */
 $plugin_description = gettext('Provides functionality to get the related items to an item based on a tag search.');
 $plugin_author = "Malte Müller (acrylian)";

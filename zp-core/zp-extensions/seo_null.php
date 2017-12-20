@@ -5,8 +5,8 @@
  *
  * @author Stephen Billard (sbillard)
  * 
- * @package plugins
- * @subpackage seo
+ * @package plugins/seo_null
+ * @pluginCategory seo
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('SEO <em>Null</em> filter.');

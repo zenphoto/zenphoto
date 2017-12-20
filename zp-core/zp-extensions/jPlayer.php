@@ -64,8 +64,8 @@
  * <b>NOTE:</b> This player does not support external albums!
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage media
+ * @package plugins/jPlayer
+ * @pluginCategory media
  */
 $plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext("This plugin handles <code>flv</code>, <code>fla</code>, <code>mp3</code>, <code>mp4</code>, <code>m4v</code>, and <code>m4a</code> multi-media files.");

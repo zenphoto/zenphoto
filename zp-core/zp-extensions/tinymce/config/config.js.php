@@ -61,7 +61,7 @@ if (OFFSET_PATH && getOption('dirtyform_enable') > 1) {
 }
 ?>
 <script type="text/javascript">
-// <!-- <![CDATA[
+	// <!-- <![CDATA[
 	tinymce.init({
 	entity_encoding : "<?php echo getOption('tiny_mce_entity_encoding'); ?>",
 					selector: "<?php echo $MCEselector; ?>",
@@ -89,6 +89,13 @@ if ($filehandler) {
 }
 ?>
 	plugins: ["<?php echo $MCEplugins; ?>"],
+<?php
+if (strpos($MCEplugins, 'pagebreak') != FALSE) {
+	?>
+		pagebreak_split_block: true,
+	<?php
+}
+?>
 <?php
 if ($MCEspecial) {
 	echo $MCEspecial . ",\n";

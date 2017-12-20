@@ -3,8 +3,7 @@
  * zenpage admin functions
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage zenpage
+ * @package plugins/zenpage
  */
 
 /**

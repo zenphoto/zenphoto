@@ -10,8 +10,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage example
+ * @package plugins/create_album
+ * @pluginCategory example
  * @category package
  * @category ZenPhoto20Tools
  */

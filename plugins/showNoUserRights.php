@@ -7,8 +7,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage example
+ * @package plugins/showNoUserRights
+ * @pluginCategory example
  * @category package
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;

@@ -13,8 +13,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage theme
+ * @package plugins/comment_form
+ * @pluginCategory theme
  */
 $plugin_is_filter = defaultExtension(5 | FEATURE_PLUGIN);
 $plugin_description = gettext("Provides a unified comment handling facility.");

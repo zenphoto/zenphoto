@@ -7,8 +7,8 @@
  * NOTE: Requires MySQLi enabled as the database handler.
  *
  * @author Malte Müller (acrylian) made plugin compliant by Stephen Billard
- * @package plugins
- * @subpackage development
+ * @package plugins/wordpress_import
+ * @pluginCategory development
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Import Wordpress pages, posts, categories, and comments to Zenpage.");

@@ -5,8 +5,8 @@
  * The function contains some predefined CSS id's you can use for styling.
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage theme
+ * @package plugins/paged_thumbs_nav
+ * @pluginCategory theme
  */
 $plugin_description = gettext("Prints a paged thumbs navigation on image.php, independent of the album.php’s thumbs.");
 $plugin_author = "Malte Müller (acrylian)";

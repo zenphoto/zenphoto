@@ -3,8 +3,7 @@
  * zenpage template functions
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage zenpage
+ * @package plugins/zenpage
  */
 /* * ********************************************* */
 /* ZENPAGE TEMPLATE FUNCTIONS
@@ -184,7 +183,7 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 		$thumb = "";
 		$content = $obj->getContent();
 		if ($obj->getTruncation()) {
-			$shorten = true;
+			$contentlength = true;
 		}
 		$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
 		echo "<li>";
@@ -370,15 +369,15 @@ function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = 
 	if (!$_zp_current_article->checkAccess()) {
 		return '<p>' . gettext('<em>This entry belongs to a protected category.</em>') . '</p>';
 	}
-	$excerptbreak = false;
-	if (!$shorten && !is_NewsArticle()) {
-		$shorten = ZP_SHORTEN_LENGTH;
-	}
 
 	$articlecontent = $_zp_current_article->getContent();
-	if (!is_NewsArticle()) {
+	if (!is_NewsArticle()) { //then we shorten the content displayed
 		if ($_zp_current_article->getTruncation()) {
 			$shorten = true;
+		} else {
+			if (!$shorten) {
+				$shorten = ZP_SHORTEN_LENGTH;
+			}
 		}
 		$articlecontent = getContentShorten($articlecontent, $shorten, $shortenindicator, $readmore, $_zp_current_article->getLink());
 	}

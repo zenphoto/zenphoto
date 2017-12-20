@@ -25,8 +25,8 @@
  *
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
- * @package plugins
- * @subpackage media
+ * @package plugins/favoritesAlbums
+ * @pluginCategory media
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Publish <em>favorites</em> into albums that others can view.');

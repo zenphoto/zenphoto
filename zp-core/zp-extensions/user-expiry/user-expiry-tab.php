@@ -2,8 +2,7 @@
 /**
  * user_groups plugin--tabs
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage users
+ * @package plugins/user-expiry
  */
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

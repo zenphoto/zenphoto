@@ -37,8 +37,8 @@
  * if no specific layout is seleced. News articles don't inherit anything because they don't directly belong to any parent item.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage theme
+ * @package plugins/multiple_layouts
+ * @pluginCategory theme
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Multiple <em>Theme</em> layouts");

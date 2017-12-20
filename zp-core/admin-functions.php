@@ -5102,8 +5102,8 @@ function getPluginTabs() {
 			$plugin_lc[strtolower($plugin)] = true;
 			$p = file_get_contents($path);
 			$key = 'misc';
-			if ($str = isolate('@subpackage', $p)) {
-				preg_match('|@subpackage\s+(.*)\s|', $str, $matches);
+			if ($str = isolate('@pluginCategory', $p)) {
+				preg_match('|@pluginCategory\s+(.*)\s|', $str, $matches);
 				if (isset($matches[1])) {
 					$key = strtolower(trim($matches[1]));
 				}
@@ -5115,7 +5115,7 @@ function getPluginTabs() {
 			}
 			if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
 				if ($str = isolate('@category', $p)) {
-					preg_match('|@category\s+(.*)\s|', $str, $matches);
+					preg_match('~@category\s+([^\/|^\s]*)~', $str, $matches);
 					$deprecate = !isset($matches[1]) || $matches[1] != 'package';
 				} else {
 					$deprecate = true;

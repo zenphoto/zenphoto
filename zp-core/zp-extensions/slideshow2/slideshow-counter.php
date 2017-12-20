@@ -2,7 +2,7 @@
 /**
  * Hitcounter handler for slidshow
  *
- * @package plugins
+ * @package plugins/slideshow2
  */
 
 require_once("../../functions.php");

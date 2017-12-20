@@ -18,8 +18,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage example
+ * @package plugins/headConsolidator
+ * @pluginCategory example
  * @category package
  *
  */

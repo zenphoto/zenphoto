@@ -31,8 +31,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/site_upgrade
+ * @pluginCategory admin
  */
 $plugin_is_filter = defaultExtension(1000 | ADMIN_PLUGIN | FEATURE_PLUGIN);
 $plugin_description = gettext('Utility to divert access to the gallery to a screen saying the site is upgrading.');

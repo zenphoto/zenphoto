@@ -6,8 +6,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage mail
+ * @package plugins/PHPMailer
+ * @pluginCategory mail
  */
 $plugin_is_filter = 800 | CLASS_PLUGIN;
 $plugin_description = gettext("Outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");

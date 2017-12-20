@@ -1,10 +1,12 @@
 <?php
 
-/*
+/**
  * These are the Zenpage functions which have been deprecated
  *
  * See the deprecated functions plugin for examples
+ * @package plugins/zenpage
  */
+
 
 class Zenpage_internal_deprecations {
 

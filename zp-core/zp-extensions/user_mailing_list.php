@@ -5,8 +5,8 @@
  * A tool to send e-mails to all registered users who have provided an e-mail address.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage users
+ * @package plugins/user_mailing_list
+ * @pluginCategory users
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides a utility function to send e-mails to all users who have provided an e-mail address.");

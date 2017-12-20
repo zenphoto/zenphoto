@@ -34,8 +34,8 @@
  * </ul>
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard), Don Peterson (dpeterson)
- * @package plugins
- * @subpackage media
+ * @package plugins/slideshow
+ * @pluginCategory media
  */
 $plugin_is_filter = 9 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext("Adds a theme function to call a slideshow either based on jQuery (default) or Colorbox.");

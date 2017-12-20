@@ -6,8 +6,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage example
+ * @package plugins/singleAlbum
+ * @pluginCategory example
  * @category package
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;

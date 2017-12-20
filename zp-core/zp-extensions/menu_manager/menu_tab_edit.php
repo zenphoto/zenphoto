@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @package plugins/menu_manager
+ */
+
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 if (extensionEnabled('zenpage')) {

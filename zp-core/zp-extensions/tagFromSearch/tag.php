@@ -4,7 +4,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package core
+ * @package core/tagFromSearch
  *
  * Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *

@@ -26,8 +26,8 @@
  * @author Stephen Billard (sbillard)
  * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
- * @package plugins
- * @subpackage users
+ * @package plugins/googleLogin
+ * @pluginCategory users
  */
 $plugin_is_filter = 900 | CLASS_PLUGIN;
 $plugin_description = gettext("Handles logon via the user's <em>Google</em> account.");

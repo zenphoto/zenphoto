@@ -1,8 +1,6 @@
 <?php
 /**
  * Form for contact_form plugin
- *
- * @package plugins
  */
 ?>
 <form id="mailform" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8" class="form-horizontal" role="form">

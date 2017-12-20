@@ -3,7 +3,7 @@
 /**
  * rating plugin updater - Updates the rating in the database
  * @author Stephen Billard (sbillard)
- * @package plugins
+ * @package plugins/rating
  */
 if (isset($_POST['id']) && isset($_POST['table'])) {
 	define('OFFSET_PATH', 4);

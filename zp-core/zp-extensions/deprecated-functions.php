@@ -21,8 +21,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage development
+ * @package plugins/deprecated-functions
+ * @pluginCategory development
  */
 $plugin_description = gettext("Provides replacements for deprecated functions.");
 $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the distributed code.");

@@ -3,7 +3,7 @@
  * This template is used to generate cache images. Running it will process the entire gallery,
  * supplying an album name (ex: loadAlbums.php?album=newalbum) will only process the album named.
  * Passing clear=on will purge the designated cache before generating cache images
- * @package plugins
+ * @package plugins/cacheManager
  */
 // force UTF-8 Ø
 define('OFFSET_PATH', 3);

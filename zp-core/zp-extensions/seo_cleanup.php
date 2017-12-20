@@ -10,8 +10,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage seo
+ * @package plugins/seo_cleanup
+ * @pluginCategory seo
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides a utility SEO file/folder name clenser.");

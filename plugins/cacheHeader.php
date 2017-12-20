@@ -9,10 +9,9 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage example
- * @category package
- * @category ZenPhoto20Tools
+ * @package plugins/cacheHeader
+ * @pluginCategory example
+ * @category package/ZenPhoto20Tools
  */
 $plugin_is_filter = 9 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Outputs a "Cache-control" header with selected caching options.');

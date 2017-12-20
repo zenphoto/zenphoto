@@ -14,8 +14,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/security-logger
+ * @pluginCategory admin
  */
 $plugin_is_filter = defaultExtension(100 | CLASS_PLUGIN);
 $plugin_description = gettext('Logs selected security events.');

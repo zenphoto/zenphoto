@@ -5,8 +5,8 @@
  *
  * @author Stephen Billard (sbillard)
 
- * @package plugins
- * @subpackage theme
+ * @package plugins/galleryArticles
+ * @pluginCategory theme
  */
 $plugin_is_filter = 600 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('Create news articles when a gallery item is published.');

@@ -8,8 +8,7 @@ function newCategory($catllink, $create = NULL) {
  * zenpage news category class
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package plugins/zenpage
  */
 class Category extends CMSRoot {
 

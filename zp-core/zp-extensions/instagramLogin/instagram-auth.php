@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package plugins/instagramLogin
+ */
+
 if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-functions.php');

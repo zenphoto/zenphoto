@@ -3,8 +3,8 @@
  * This plugin handles <i>RSS</i> feeds:
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage admin
+ * @package plugins/rss
+ * @pluginCategory admin
  */
 // force UTF-8 Ø
 
@@ -682,24 +682,25 @@ class RSS extends feed {
 			$feeditems = $this->getitems();
 		}
 //NOTE: feeditems are complete HTML so necessarily must have been properly endoded by the server function!
-		if (is_array($feeditems)) {
-			header('Content-Type: application/xml');
-			$this->hitcounter();
-			$this->startCache();
-			echo '<?xml-stylesheet type="text/css" href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rss/rss.css" ?>' . "\n";
-			?>
-			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
-				<channel>
-					<title><![CDATA[<?php echo $this->channel_title; ?>]]></title>
-					<link><?php echo PROTOCOL . '://' . $this->host . WEBPATH; ?></link>
-					<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
-					<description><![CDATA[<?php echo html_encode(getBare($_zp_gallery->getDesc($this->locale))); ?>]]></description>
-					<language><?php echo $this->locale_xml; ?></language>
-					<pubDate><?php echo date("r", time()); ?></pubDate>
-					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
-					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
-					<generator>ZenPhoto20 RSS Generator</generator>
-					<?php
+
+		header('Content-Type: application/xml');
+		$this->hitcounter();
+		$this->startCache();
+		echo '<?xml-stylesheet type="text/css" href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rss/rss.css" ?>' . "\n";
+		?>
+		<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+			<channel>
+				<title><![CDATA[<?php echo $this->channel_title; ?>]]></title>
+				<link><?php echo PROTOCOL . '://' . $this->host . WEBPATH; ?></link>
+				<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
+				<description><![CDATA[<?php echo html_encode(getBare($_zp_gallery->getDesc($this->locale))); ?>]]></description>
+				<language><?php echo $this->locale_xml; ?></language>
+				<pubDate><?php echo date("r", time()); ?></pubDate>
+				<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
+				<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+				<generator>ZenPhoto20 RSS Generator</generator>
+				<?php
+				if (is_array($feeditems)) {
 					foreach ($feeditems as $feeditem) {
 						switch ($this->feedtype) {
 							case 'gallery':
@@ -744,12 +745,12 @@ class RSS extends feed {
 						</item>
 						<?php
 					} // foreach
-					?>
-				</channel>
-			</rss>
-			<?php
-			$this->endCache();
-		}
+				}
+				?>
+			</channel>
+		</rss>
+		<?php
+		$this->endCache();
 	}
 
 }

@@ -32,8 +32,8 @@
  * The list has a CSS class <var>downloadList</var> attached.
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage media
+ * @package plugins/downloadList
+ * @pluginCategory media
  * @tags "file download", "download manager", download
  */
 $plugin_is_filter = 800 | ADMIN_PLUGIN | THEME_PLUGIN;

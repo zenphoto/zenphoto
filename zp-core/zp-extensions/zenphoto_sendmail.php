@@ -5,8 +5,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage mail
+ * @package plugins/zenphoto_sendmail
+ * @pluginCategory mail
  */
 $plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext("Outgoing mail handler based on the PHP <em>mail</em> facility.");

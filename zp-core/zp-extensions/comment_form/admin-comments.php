@@ -1,7 +1,7 @@
 <?php
 /**
  * provides the Comments tab of admin
- * @package admin
+ * @package admin/comment_form
  */
 // force UTF-8 Ø
 

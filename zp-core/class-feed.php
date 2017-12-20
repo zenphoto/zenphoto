@@ -240,8 +240,8 @@ class feed {
 	 */
 	protected function getLang() {
 		if (isset($this->options['lang'])) {
-			global $_zp_active_languages;
-			$valid = array_values($_zp_active_languages);
+			$langs = generateLanguageList();
+			$valid = array_values($langs);
 			if (in_array($this->options['lang'], $valid)) {
 				return $this->options['lang'];
 			}
@@ -304,7 +304,7 @@ class feed {
 	 */
 	protected function getID() {
 		if (isset($this->options['id'])) {
-			$type = $this->getCommentFeedType('type');
+			$type = $this->getCommentFeedType();
 			if ($type != 'all') {
 				$id = (int) $this->options['id'];
 				$result = query_single_row('SELECT `id` FROM ' . prefix($type) . ' WHERE id =' . $id);
@@ -481,7 +481,7 @@ class feed {
 					case 'zenpage':
 						$type = 'all';
 					case 'news':
-					case 'page':
+					case 'pages':
 						if (function_exists('getLatestZenpageComments')) {
 							$items = getLatestZenpageComments($this->itemnumber, $type, $this->id);
 						}

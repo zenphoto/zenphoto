@@ -3,8 +3,8 @@
  * Provides automatic hitcounter counting for gallery objects
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage theme
+ * @package plugins/hitcounter
+ * @pluginCategory theme
  */
 /** Reset hitcounters ********************************************************** */
 /* * ***************************************************************************** */

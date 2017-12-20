@@ -2,7 +2,7 @@
 
 /**
  * creates the CAPTCHA images
- * @package core
+ * @package core/zpCaptcha
  */
 // force UTF-8 Ø
 define('OFFSET_PATH', 3);

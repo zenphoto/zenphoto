@@ -7,8 +7,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage users
+ * @package plugins/LDAP_auth
+ * @pluginCategory users
  */
 
 $plugin_is_filter = 5 | CLASS_PLUGIN;

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package plugins/uploader_http
+ */
+
 function upload_head() {
 	$myfolder = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_http';
 	?>

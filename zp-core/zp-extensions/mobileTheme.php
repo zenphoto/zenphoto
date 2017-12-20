@@ -70,8 +70,8 @@
  * </li>
  * </ul>
  *
- * @package plugins
- * @subpackage theme
+ * @package plugins/mobileTheme
+ * @pluginCategory theme
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Select your theme based on the device connecting to your site');

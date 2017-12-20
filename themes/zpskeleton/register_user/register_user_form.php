@@ -2,8 +2,6 @@
 /**
  * Form for registering users
  *
- * @package plugins
- * @subpackage usermanagement
  */
 ?>
 <form id="mailform" class="register_user remove-bottom" action="<?php echo sanitize($_SERVER['REQUEST_URI']); ?>" method="post" autocomplete="off">

@@ -4,7 +4,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
+ * @package admin
  */
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');

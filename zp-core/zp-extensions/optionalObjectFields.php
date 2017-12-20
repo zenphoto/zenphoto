@@ -40,8 +40,8 @@
  * You should copy this script to the user plugin folder if you wish to customize which fields are provided.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage admin
+ * @package plugins/optionalObjectFields
+ * @pluginCategory admin
  * @category package
  *
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}

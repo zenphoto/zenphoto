@@ -4,8 +4,8 @@
  *
  * @author Stephen Billard (sbillard)
  * 
- * @package plugins
- * @subpackage example
+ * @package plugins/no_show
+ * @pluginCategory example
  * @category package
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;

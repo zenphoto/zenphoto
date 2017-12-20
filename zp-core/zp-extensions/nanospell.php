@@ -15,8 +15,8 @@
  *
  * Unzip the files into the <i>nanospell/dictionaries</i> subfolder.
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/nanospell
+ * @pluginCategory admin
  */
 $plugin_is_filter = 8 | CLASS_PLUGIN;
 $plugin_description = gettext("Spellchecker for tinyMCE.");

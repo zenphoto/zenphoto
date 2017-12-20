@@ -124,42 +124,10 @@ function truncate_string($string, $length, $elipsis = '...') {
 }
 
 /**
- *
- * fixes unbalanced HTML tags. Used by shortenContent when PHP tidy is not present
- * @param string $html
- * @return string
- */
-function cleanHTML($html) {
-
-	preg_match_all('#<(?!meta|img|br|hr|input\b)\b([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $html, $result);
-	$openedtags = $result[1];
-
-	preg_match_all('#</([a-z]+)>#iU', $html, $result);
-	$closedtags = $result[1];
-
-	$len_opened = count($openedtags);
-
-	if (count($closedtags) == $len_opened) {
-		return $html;
-	}
-
-	$openedtags = array_reverse($openedtags);
-	for ($i = 0; $i < $len_opened; $i++) {
-		if (!in_array($openedtags[$i], $closedtags)) {
-			$html .= '</' . $openedtags[$i] . '>';
-		} else {
-			unset($closedtags[array_search($openedtags[$i], $closedtags)]);
-		}
-	}
-
-	return $html;
-}
-
-/**
  * Returns truncated html formatted content
  *
  * @param string $articlecontent the source string
- * @param int $shorten new size
+ * @param int $shorten new size or TRUE to shorten to the first page break
  * @param string $shortenindicator
  * @return string
  *
@@ -167,14 +135,18 @@ function cleanHTML($html) {
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 	//conservatve check if the string is too long.
-	if ($shorten && (mb_strlen(strip_tags($articlecontent)) > $shorten)) {
+	if ($shorten && (mb_strlen(strip_tags($articlecontent)) > (int) $shorten)) {
 		//remove HTML comments (except for page break indicators)
-		$content = preg_replace('~<!-- pagebreak -->~isU', '<_PageBreak_>', $articlecontent);
+		$content = preg_replace('~<!-- pagebreak -->~isU', '<_PageBreak_>', $articlecontent, -1, $breaks);
 		$content = preg_replace('~<!--.*-->~isU', '', $content);
 
 		//remove scripts to be added back later
 		preg_match_all('~<script.*>.*</script>~isU', $content, $scripts);
 		$content = preg_replace('~<script.*>.*</script>~isU', '<_Script_>', $content);
+
+		if ($shorten === TRUE && $breaks) { //shorten to the first page break
+			$shorten = strpos($content, '<_PageBreak_>') + 1;
+		}
 
 		$pagebreak = $html = $short = '';
 		$count = 0;
@@ -228,15 +200,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 		}
 
 		//tidy up the html--probably dropped a few closing tags!
-		if (class_exists('tidy')) {
-			$tidy = new tidy();
-			$tidy->parseString($short, array('show-body-only' => true), 'utf8');
-			$tidy->cleanRepair();
-			$short = trim($tidy);
-		} else {
-			$short = trim(cleanHTML($short));
-		}
-		$articlecontent = $short;
+		$articlecontent = trim(cleanHTML($short, array('show-body-only' => true)));
 	}
 
 	return $articlecontent;

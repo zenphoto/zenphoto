@@ -14,8 +14,8 @@
  *
  * @author Stephen Billard (sbillard)
 
- * @package plugins
- * @subpackage admin
+ * @package plugins/reCAPTCHA_v2
+ * @pluginCategory admin
  */
 // force UTF-8 Ø
 

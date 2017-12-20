@@ -846,7 +846,7 @@ $plugins = array_keys($plugins);
 		if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
 			$pluginStream = file_get_contents($path);
 			if ($str = isolate('@category', $pluginStream)) {
-				preg_match('|@category\s+(.*)\s|', $str, $matches);
+				preg_match('~@category\s+([^\/^\s]*)~', $str, $matches);
 				if (!isset($matches[1]) || $matches[1] != 'package') {
 					$deprecate = true;
 				} else {

@@ -1,8 +1,7 @@
 <?php
 
 /**
- * @package plugins
- * @subpackage zenphoto_news
+ * @package plugins/zenphoto_news
  */
 /*
   RSS Extractor and Displayer

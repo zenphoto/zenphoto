@@ -6,8 +6,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/uploader_http
+ * @pluginCategory admin
  *
  */
 $plugin_is_filter = defaultExtension(30 | ADMIN_PLUGIN);

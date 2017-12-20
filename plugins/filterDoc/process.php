@@ -3,8 +3,7 @@
 /**
  * This is processfilters guts
  *
- * @package plugins
- * @subpackage development
+ * @package plugins/filterDoc
  */
 require_once(SERVERPATH . '/' . ZENFOLDER . '/setup/setup-functions.php');
 

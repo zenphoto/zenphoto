@@ -10,8 +10,8 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @package plugins
- * @subpackage users
+ * @package plugins/userAddressFields
+ * @pluginCategory users
  *
  */
 $plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);

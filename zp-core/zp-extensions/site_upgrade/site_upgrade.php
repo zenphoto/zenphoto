@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package plugins/site_upgrade
+ */
+
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
