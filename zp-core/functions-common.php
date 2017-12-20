@@ -451,7 +451,7 @@ if (!class_exists('tidy')) {
  * @param array $options tidy() parameters
  * @return string
  */
-function cleanHTML($html, $optons) {
+function cleanHTML($html, $options) {
 	if (class_exists('tidy')) {
 		$tidy = new tidy();
 		$tidy->parseString($html, $options, 'utf8');
