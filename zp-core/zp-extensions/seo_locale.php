@@ -92,7 +92,7 @@ class seo_locale {
 		} else {
 			$path = WEBPATH;
 		}
-		if ($locale = zpFunctions::getLanguageText($loc)) {
+		if ($locale = getLanguageText($loc)) {
 			$path .= '/' . $locale;
 		}
 		return $path;

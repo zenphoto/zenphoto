@@ -88,7 +88,7 @@ if (defined('OFFSET_PATH')) {
 				echo "<br />\n";
 				$albumcount++;
 				$obj = newAlbum($newname);
-				zpFunctions::removeDir(SERVERCACHE . '/' . $subalbum);
+				removeDir(SERVERCACHE . '/' . $subalbum);
 				if (extensionEnabled('static_html_cache')) {
 					Gallery::clearCache(SERVERPATH . '/' . STATIC_CACHE_FOLDER);
 				}

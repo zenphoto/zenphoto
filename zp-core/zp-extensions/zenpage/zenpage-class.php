@@ -1107,9 +1107,9 @@ class ZenpageItems extends ZenpageRoot {
 	function getContent($locale = NULL) {
 		$text = $this->get("content");
 		if ($locale == 'all') {
-			return zpFunctions::unTagURLs($text);
+			return unTagURLs($text);
 		} else {
-			return applyMacros(zpFunctions::unTagURLs(get_language_string($text, $locale)));
+			return applyMacros(unTagURLs(get_language_string($text, $locale)));
 		}
 	}
 
@@ -1119,7 +1119,7 @@ class ZenpageItems extends ZenpageRoot {
 	 * @param $c full language string
 	 */
 	function setContent($c) {
-		$c = zpFunctions::tagURLs($c);
+		$c = tagURLs($c);
 		$this->set("content", $c);
 	}
 
@@ -1189,9 +1189,9 @@ class ZenpageItems extends ZenpageRoot {
 	function getExtraContent($locale = NULL) {
 		$text = $this->get("extracontent");
 		if ($locale == 'all') {
-			return zpFunctions::unTagURLs($text);
+			return unTagURLs($text);
 		} else {
-			return applyMacros(zpFunctions::unTagURLs(get_language_string($text, $locale)));
+			return applyMacros(unTagURLs(get_language_string($text, $locale)));
 		}
 	}
 
@@ -1200,7 +1200,7 @@ class ZenpageItems extends ZenpageRoot {
 	 *
 	 */
 	function setExtraContent($ec) {
-		$this->set("extracontent", zpFunctions::tagURLs($ec));
+		$this->set("extracontent", tagURLs($ec));
 	}
 
 	/**

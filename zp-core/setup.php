@@ -22,7 +22,7 @@ if (empty($needs)) {
 					<div class="tabbox">
 						<p>
 							<?php
-							if (zpFunctions::hasPrimaryScripts()) {
+							if (hasPrimaryScripts()) {
 								chdir(dirname(__FILE__) . '/setup/');
 								$found = safe_glob('*.xxx');
 								if ($found && zp_loggedin(ADMIN_RIGHTS)) {

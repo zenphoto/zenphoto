@@ -439,7 +439,7 @@ class htmlmetatags {
 				$langs = generateLanguageList();
 				if (count($langs) != 1) {
 					foreach ($langs as $text => $lang) {
-						$langcheck = zpFunctions::getLanguageText($lang, '-'); //	for hreflang we need en-US
+						$langcheck = getLanguageText($lang, '-'); //	for hreflang we need en-US
 						if ($langcheck != $locale) {
 							switch (METATAG_LOCALE_TYPE) {
 								case 1:

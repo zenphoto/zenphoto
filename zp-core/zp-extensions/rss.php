@@ -236,7 +236,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 		RSS_internal_deprecations::getRSSLink($option);
 	}
 	if (empty($lang)) {
-		$lang = zpFunctions::getLanguageText(getOption('locale'));
+		$lang = getLanguageText(getOption('locale'));
 	}
 	$link = NULL;
 	switch (strtolower($option)) {
@@ -372,7 +372,7 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $clas
 		$class = 'class="' . $class . '"';
 	}
 	if (empty($lang)) {
-		$lang = zpFunctions::getLanguageText(getOption("locale"));
+		$lang = getLanguageText(getOption("locale"));
 	}
 	echo $prev . "<a $class href=\"" . html_encode(getRSSLink($option, $lang, $addl)) . "\" title=\"" . html_encode($linktext) . "\" rel=\"nofollow\">" . $linktext . "$icon</a>" . $next;
 }

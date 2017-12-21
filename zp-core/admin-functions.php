@@ -2638,7 +2638,7 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 	 */
 	function print_language_string_list($dbstring, $name, $textbox = false, $locale = NULL, $edit = '', $wide = TEXT_INPUT_SIZE, $ulclass = 'language_string_list', $rows = 6) {
 		global $_zp_active_languages, $_zp_current_locale;
-		$dbstring = zpFunctions::unTagURLs($dbstring);
+		$dbstring = unTagURLs($dbstring);
 		if (!empty($edit))
 			$edit = ' class="' . $edit . '"';
 		if (is_null($locale)) {

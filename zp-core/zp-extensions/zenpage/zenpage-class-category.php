@@ -32,9 +32,9 @@ class ZenpageCategory extends ZenpageRoot {
 	function getDesc($locale = NULL) {
 		$text = $this->get('desc');
 		if ($locale == 'all') {
-			return zpFunctions::unTagURLs($text);
+			return unTagURLs($text);
 		} else {
-			return applyMacros(zpFunctions::unTagURLs(get_language_string($text, $locale)));
+			return applyMacros(unTagURLs(get_language_string($text, $locale)));
 		}
 	}
 
@@ -44,7 +44,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param string $desc description text
 	 */
 	function setDesc($desc) {
-		$desc = zpFunctions::tagURLs($desc);
+		$desc = tagURLs($desc);
 		$this->set('desc', $desc);
 	}
 
@@ -56,9 +56,9 @@ class ZenpageCategory extends ZenpageRoot {
 	function getContent($locale = NULL) {
 		$content = $this->get("content");
 		if ($locale == 'all') {
-			return zpFunctions::unTagURLs($content);
+			return unTagURLs($content);
 		} else {
-			return applyMacros(zpFunctions::unTagURLs(get_language_string($content, $locale)));
+			return applyMacros(unTagURLs(get_language_string($content, $locale)));
 		}
 	}
 
@@ -68,7 +68,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param $c full language string
 	 */
 	function setContent($c) {
-		$c = zpFunctions::tagURLs($c);
+		$c = tagURLs($c);
 		$this->set("content", $c);
 	}
 
@@ -80,9 +80,9 @@ class ZenpageCategory extends ZenpageRoot {
 	function getExtraContent($locale = NULL) {
 		$text = $this->get("extracontent");
 		if ($locale == 'all') {
-			return zpFunctions::unTagURLs($text);
+			return unTagURLs($text);
 		} else {
-			return applyMacros(zpFunctions::unTagURLs(get_language_string($text, $locale)));
+			return applyMacros(unTagURLs(get_language_string($text, $locale)));
 		}
 	}
 
@@ -91,7 +91,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 *
 	 */
 	function setExtraContent($ec) {
-		$this->set("extracontent", zpFunctions::tagURLs($ec));
+		$this->set("extracontent", tagURLs($ec));
 	}
 
 	/**

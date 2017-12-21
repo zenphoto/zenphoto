@@ -25,7 +25,7 @@ foreach (getEnabledPlugins() as $extension => $plugin) {
 		}
 		require_once($plugin['path']);
 		if (DEBUG_PLUGINS) {
-			zpFunctions::pluginDebug($extension, $priority, $start);
+			pluginDebug($extension, $priority, $start);
 		}
 		$_zp_loaded_plugins[$extension] = $extension;
 	}
@@ -87,7 +87,7 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 			}
 			require_once($plugin['path']);
 			if (DEBUG_PLUGINS) {
-				zpFunctions::pluginDebug($extension, $priority, $start);
+				pluginDebug($extension, $priority, $start);
 			}
 			$_zp_loaded_plugins[$extension] = $extension;
 			//		$_zp_script_timer['load '.$extension] = microtime();

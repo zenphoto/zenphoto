@@ -1322,7 +1322,7 @@ if ($c <= 0) {
 							foreach ($installed_files as $extra) {
 								$filelist .= filesystemToInternal(str_replace($base, '', $extra) . '<br />');
 							}
-							if (class_exists('zpFunctions') && zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
+							if (class_exists('zpFunctions') && hasPrimaryScripts() && count($installed_files) > 0) {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {
 									$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 								} else {

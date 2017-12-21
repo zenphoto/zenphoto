@@ -47,7 +47,7 @@ if (trim($folder,'/') == SERVERPATH) {
 				case 'dir':
 					if (empty($link) || $link == $folder.$target) {
 						// an actual folder
-						if (zpFunctions::removeDir($folder.$target)) {
+						if (removeDir($folder.$target)) {
 							if (SYMLINK && @symlink(SERVERPATH.'/'.$target, $folder.$target)) {
 								$msg[] = sprintf(gettext('The existing folder <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
 							} else {

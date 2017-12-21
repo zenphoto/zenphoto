@@ -601,6 +601,57 @@ function getAllTranslations($text) {
 	return serialize($result);
 }
 
+/**
+ * creates an SEO language prefix list
+ */
+function getLanguageSubdomains() {
+	$domains = array();
+	$langs = generateLanguageList();
+	$domains = array();
+	foreach ($langs as $value) {
+		$domains[substr($value, 0, 2)][] = $value;
+	}
+	$langs = array();
+	foreach ($domains as $simple => $full) {
+		if (count($full) > 1) {
+			foreach ($full as $loc) {
+				$langs[$loc] = $loc;
+			}
+		} else {
+			$langs[$full[0]] = $simple;
+		}
+	}
+	if (isset($langs[SITE_LOCALE])) {
+		$langs[SITE_LOCALE] = '';
+	}
+	return $langs;
+}
+
+/**
+ * Returns a canonical language name string for the location
+ *
+ * @param string $loc the location. If NULL use the current cookie
+ * @param string separator will be used between the major and qualifier parts, e.g. en_US
+ *
+ * @return string
+ */
+function getLanguageText($loc = NULL, $separator = NULL) {
+	global $_locale_Subdomains;
+	if (is_null($loc)) {
+		$text = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
+	} else {
+		$text = @$_locale_Subdomains[$loc];
+		//en_US always is always empty here so so urls in dynamic locale or html_meta_tags are wrong (Quickfix)
+		if (empty($text)) {
+			$text = $loc;
+		}
+	}
+	if (!is_null($separator)) {
+		$text = str_replace('_', $separator, $text);
+	}
+	return $text;
+}
+
 if (function_exists('date_default_timezone_set')) { // insure a correct time zone
 	$tz = getOption('time_zone');
 	if (!empty($tz)) {
@@ -611,4 +662,5 @@ if (function_exists('date_default_timezone_set')) { // insure a correct time zon
 	}
 	unset($tz);
 }
-?>
+
+$_locale_Subdomains = getLanguageSubdomains();

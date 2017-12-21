@@ -65,7 +65,7 @@ echo "\n" . '<div id="content">';
 								if (!file_exists(getAlbumFolder() . $query['a'] . '/' . $query['i'])) {
 									recordMissing($table, $row, $query['a'] . '/' . $query['i']);
 								} else {
-									$text = zpFunctions::updateImageProcessorLink($uri);
+									$text = updateImageProcessorLink($uri);
 									if (strpos($text, 'i.php') !== false) {
 										$url = '<img src="' . $uri . '" height="20" width="20" alt="X" />';
 										$title = getTitle($table, $row) . ' ' . gettext('image processor reference');
@@ -75,7 +75,7 @@ echo "\n" . '<div id="content">';
 										</a>
 										<?php
 									}
-									$text = zpFunctions::updateImageProcessorLink($row[$field]);
+									$text = updateImageProcessorLink($row[$field]);
 									if ($text != $row[$field]) {
 										$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($text) . ' WHERE `id`=' . $row['id'];
 										query($sql);

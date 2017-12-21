@@ -11,6 +11,87 @@
  * @subpackage deprecated-functions
  */
 class internal_deprecations {
+	
+	/**
+	 * @deprecated Use getLanguageSubdomains() instead
+	 * @since 1.4.15
+	 */
+	static function LanguageSubdomains() {
+		deprecated_functions::notify(gettext('Use getLanguageSubdomains() instead'));
+	}
+	/**
+	 * @deprecated Use getLanguageText() instead
+	 * @since 1.4.15
+	 */
+	static function getLanguageText() {
+		deprecated_functions::notify(gettext('Use getLanguageText() instead'));
+	}
+	/**
+	 * @deprecated Use setexifvars() instead
+	 * @since 1.4.15
+	 */
+	static function setexifvars() {
+		deprecated_functions::notify(gettext('Use setexifvars() instead'));
+	}
+	/**
+	 * @deprecated Use hasPrimaryScripts() instead
+	 * @since 1.4.15
+	 */
+	static function hasPrimaryScripts() {
+		deprecated_functions::notify(gettext('Use removeTrailingSlash() instead'));
+	}
+	/**
+	 * @deprecated Use removeDir() instead
+	 * @since 1.4.15
+	 */
+	static function removeDir() {
+		deprecated_functions::notify(gettext('Use removeDir() instead'));
+	}
+	/**
+	 * @deprecated Use tagURLs() instead
+	 * @since 1.4.15
+	 */
+	static function tagURLs() {
+		deprecated_functions::notify(gettext('Use tagURLs(() instead'));
+	}
+	/**
+	 * @deprecated Use unTagURLs() instead
+	 * @since 1.4.15
+	 */
+	static function unTagURLs() {
+		deprecated_functions::notify(gettext('Use unTagURLs() instead'));
+	}
+	
+	/**
+	 * @deprecated Use updateImageProcessorLink() instead
+	 * @since 1.4.15
+	 */
+	static function updateImageProcessorLink() {
+		deprecated_functions::notify(gettext('Use updateImageProcessorLink() instead'));
+	}
+	/**
+	 * @deprecated Use pluginDebug() instead
+	 * @since 1.4.15
+	 */
+	static function pluginDebug() {
+		deprecated_functions::notify(gettext('Use pluginDebug() instead'));
+	}
+	
+	/**
+	 * @deprecated Use removeTrailingSlash() instead
+	 * @since 1.4.15
+	 */
+	static function removeTrailingSlash($string) {
+		deprecated_functions::notify(gettext('Use removeTrailingSlash() instead'));
+	}
+	
+	/**
+	 * @deprecated Use htmlTidy() instead
+	 * @since 1.4.15
+	 */
+	static function tidyHTML() {
+		deprecated_functions::notify(gettext('User tidyHTML() instead'));
+	}
 
 	/**
 	 * @deprecated
@@ -670,7 +751,7 @@ function printField($context, $field, $convertBR = NULL, $override = false, $lab
 	} else {
 		$text = trim(get_language_string($object->get($field)));
 	}
-	$text = zpFunctions::unTagURLs($text);
+	$text = unTagURLs($text);
 
 	$text = html_encodeTagged($text);
 	if ($convertBR) {
@@ -859,6 +940,127 @@ function is_valid_image($filename) {
 function is_valid_other_type($filename) {
 	deprecated_functions::notify(gettext("use Gallery::validImageAlt()"));
 	return Gallery::validImageAlt($filename);
+}
+
+/**
+ *
+ * fixes unbalanced HTML tags. Used by shortenContent when PHP tidy is not present
+ * 
+ * @deprecated 1.4.15 Use tidyHTML() instead
+ * 
+ * @param string $html
+ * @return string
+ */
+function cleanHTML($html) {
+	deprecated_functions::notify(gettext("Use tidyHTML() instead"));
+	return tidyHTML($html);
+}
+
+/**
+ * @deprecated 1.4.15
+
+ */
+class zpFunctions {
+
+	/**
+	 * @deprecated 1.4.15
+	 * @see etLanguageSubdomains()
+	 */
+	static function LanguageSubdomains() {
+		internal_deprecations::LanguageSubdomains();
+		return getLanguageSubdomains();
+	}
+
+	/**
+	 * @deprecated 1.4.15
+	 * @see getLanguageText()
+	 */
+	static function getLanguageText($loc = NULL, $separator = NULL) {
+		internal_deprecations::getLanguageText();
+		return getLanguageText($loc, $separator);
+	}
+
+	/**
+	 * @deprecated 1.4.15
+	 * @see setexifvars()
+	 */
+	static function setexifvars() {
+		internal_deprecations::setexifvars();
+		setexifvars();
+	}
+
+	/**
+	 * @deprecated 1.4.15
+	 * @see hasPrimaryScripts()
+	 */
+	static function hasPrimaryScripts() {
+		internal_deprecations::hasPrimaryScripts();
+		return hasPrimaryScripts();
+	}
+
+	/**
+	 * @deprecated 1.4.15
+	 * @see removeDir()
+	 */
+	static function removeDir($path, $within = false) {
+		internal_deprecations::removeDir();
+		return removeDir($path, $within);
+	}
+
+	/**
+	 * @deprecated 1.4.15
+	 * @see tagURLs()
+	 */
+	static function tagURLs($text) {
+		internal_deprecations::tagURLs();
+		return tagURLs($text);
+	}
+
+	/**
+	 * @deprecated 1.4.15
+	 * @see untagURLs()
+	 */
+	static function unTagURLs($text) {
+		internal_deprecations::unTagURLs();
+		return unTagURLs($text);
+	}
+
+	/**
+	 * @deprecated 1.4.15
+	 * @see updateImageProcessorLink()
+	 */
+	static function updateImageProcessorLink($text) {
+		internal_deprecations::updateImageProcessorLink();
+		return updateImageProcessorLink($text);
+	}
+
+	/**
+	 * @deprecated 1.4.15
+	 * @see pluginDebug()
+	 */
+	static function pluginDebug($extension, $priority, $start) {
+		internal_deprecations::pluginDebug();
+		pluginDebug($extension, $priority, $start);
+	}
+
+	/**
+	 * @deprecated 1.4.15
+	 * @see removeTrailingSlash()
+	 */
+	static function removeTrailingSlash($string) {
+		internal_deprecations::removeTrailingSlash();
+		return removeTrailingSlash($string);
+	}
+
+	/**
+	 * @deprecated 1.4.15
+	 * @see tidyHTML()
+	 */
+	static function tidyHTML($html) {
+		internal_deprecations::tidyHTML();
+		return tidyHTML($html);
+	}
+
 }
 
 ?>

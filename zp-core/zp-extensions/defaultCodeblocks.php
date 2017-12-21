@@ -65,7 +65,7 @@ class defaultCodeblocks {
 	 * @return array
 	 */
 	function getCodeblock() {
-		return zpFunctions::unTagURLs($this->codeblocks);
+		return unTagURLs($this->codeblocks);
 	}
 
 	/**
@@ -73,7 +73,7 @@ class defaultCodeblocks {
 	 *
 	 */
 	function setCodeblock($cb) {
-		$this->codeblocks = zpFunctions::tagURLs($cb);
+		$this->codeblocks = tagURLs($cb);
 		$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `data`=' . db_quote($this->codeblocks) . ' WHERE `type`="defaultCodeblocks"';
 		query($sql);
 	}

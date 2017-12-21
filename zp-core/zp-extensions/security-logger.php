@@ -129,7 +129,7 @@ class security_logger {
 			case 'setup_install':
 				$type = gettext('Install');
 				$addl = gettext('version') . ' ' . ZENPHOTO_VERSION;
-				if (!zpFunctions::hasPrimaryScripts()) {
+				if (!hasPrimaryScripts()) {
 					$addl .= ' ' . gettext('clone');
 				}
 				break;

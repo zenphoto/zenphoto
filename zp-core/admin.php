@@ -239,7 +239,7 @@ if (!zp_loggedin()) {
 				}
 			}
 			list($diff, $needs) = checkSignature(false);
-			if (zpFunctions::hasPrimaryScripts()) {
+			if (hasPrimaryScripts()) {
 				//	button to restore setup files if needed
 				if (!empty($needs)) {
 					$buttonlist[] = array(
@@ -312,7 +312,7 @@ if (!zp_loggedin()) {
 								} else {
 									$official = gettext('Official build');
 								}
-								if (zpFunctions::hasPrimaryScripts()) {
+								if (hasPrimaryScripts()) {
 									$source = '';
 								} else {
 									$clone = clonedFrom();

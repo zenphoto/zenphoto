@@ -1223,7 +1223,7 @@ function debugLog($message, $reset = false) {
 			}
 			$f = fopen($path, 'w');
 			if ($f) {
-				if (!class_exists('zpFunctions') || zpFunctions::hasPrimaryScripts()) {
+				if (!class_exists('zpFunctions') || hasPrimaryScripts()) {
 					$clone = '';
 				} else {
 					$clone = ' ' . gettext('clone');

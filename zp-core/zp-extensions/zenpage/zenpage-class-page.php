@@ -89,7 +89,7 @@ class ZenpagePage extends ZenpageItems {
 		if ($locale !== 'all') {
 			$text = get_language_string($text, $locale);
 		}
-		$text = zpFunctions::unTagURLs($text);
+		$text = unTagURLs($text);
 		return $text;
 	}
 
@@ -99,7 +99,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @param string $hint the hint text
 	 */
 	function setPasswordHint($hint) {
-		$this->set('password_hint', zpFunctions::tagURLs($hint));
+		$this->set('password_hint', tagURLs($hint));
 	}
 
 	/**
