@@ -200,7 +200,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 		}
 
 		//tidy up the html--probably dropped a few closing tags!
-		$articlecontent = trim(cleanHTML($short, array('show-body-only' => true)));
+		$articlecontent = trim(cleanHTML($short));
 	}
 
 	return $articlecontent;

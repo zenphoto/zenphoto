@@ -448,17 +448,16 @@ if (!class_exists('tidy')) {
  *
  * fixes unbalanced HTML tags. Used by shortenContent, html_encodeTagged
  * @param string $html
- * @param array $options tidy() parameters
  * @return string
  */
-function cleanHTML($html, $options) {
+function cleanHTML($html) {
 	if (class_exists('tidy')) {
 		$tidy = new tidy();
-		$tidy->parseString($html, $options, 'utf8');
+		$tidy->parseString($html, array('preserve-entities' => TRUE, 'indent' => TRUE, 'markup' => TRUE, 'show-body-only' => TRUE, 'wrap' => 0, 'quote-marks' => TRUE), 'utf8');
 		$tidy->cleanRepair();
 		$html = trim($tidy);
 	} else {
-		$html = trim(htmLawed($html, array('tidy')));
+		$html = htmLawed($html, array('tidy' => '2s2n'));
 	}
 	return $html;
 }
@@ -509,7 +508,7 @@ function html_encodeTagged($original, $allowScript = true) {
 	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
 	}
-	$str = cleanHTML($str, array('show-body-only' => 1, 'quote-marks' => 1, 'quote-ampersand' => 1, 'preserve-entities' => true));
+	$str = cleanHTML($str);
 	return $str;
 }
 
