@@ -350,7 +350,7 @@ function html_encodeTagged($original, $allowScript = true) {
 		$str = strtr($str, $taglist);
 	}
 	if ($str != $original) {
-		$str = zpFunctions::tidyHTML($str);
+		$str = tidyHTML($str);
 	}
 	return $str;
 }
