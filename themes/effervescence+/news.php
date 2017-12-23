@@ -91,14 +91,11 @@ if (class_exists('CMS')) {
 									}
 									if (!empty($cat)) {
 										echo ' | ';
+										printNewsCategories(", ", gettext("Categories: "), "newscategories");
 									}
 									?>
 								</span>
-								<?php
-								if (!empty($cat)) {
-									printNewsCategories(", ", gettext("Categories: "), "newscategories");
-								}
-								?>
+								<br />
 								<?php printCodeblock(1); ?>
 								<?php printNewsContent(); ?>
 								<?php printCodeblock(2); ?>
