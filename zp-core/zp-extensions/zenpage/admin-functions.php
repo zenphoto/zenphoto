@@ -432,7 +432,6 @@ function updateArticle(&$reports, $newarticle = false) {
 		$article->set('total_votes', 0);
 		$article->set('used_ips', 0);
 	}
-	$article->setTruncation(getcheckboxState('truncation'));
 	processTags($article);
 	$categories = array();
 	$myCategories = array_flip($_zp_current_admin_obj->getObjects('news'));
