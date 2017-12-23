@@ -182,9 +182,6 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 		}
 		$thumb = "";
 		$content = $obj->getContent();
-		if ($obj->getTruncation()) {
-			$contentlength = true;
-		}
 		$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
 		echo "<li>";
 		echo "<h3><a href=\"" . $link . "\" title=\"" . getBare(html_encode($title)) . "\">" . $title . "</a></h3>\n";
@@ -371,13 +368,9 @@ function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = 
 	}
 
 	$articlecontent = $_zp_current_article->getContent();
-	if (!is_NewsArticle()) { //then we shorten the content displayed
-		if ($_zp_current_article->getTruncation()) {
-			$shorten = true;
-		} else {
-			if (!$shorten) {
-				$shorten = ZP_SHORTEN_LENGTH;
-			}
+	if ($shorten !== false || !is_NewsArticle()) { //then we shorten the content displayed
+		if (!$shorten) {
+			$shorten = ZP_SHORTEN_LENGTH;
 		}
 		$articlecontent = getContentShorten($articlecontent, $shorten, $shortenindicator, $readmore, $_zp_current_article->getLink());
 	}
@@ -423,10 +416,6 @@ function getContentShorten($text, $shorten, $shortenindicator = NULL, $readmore 
 	}
 	if (!is_null($readmoreurl)) {
 		$readmorelink = '<p class="readmorelink"><a href="' . html_encode($readmoreurl) . '" title="' . html_encode($readmore) . '">' . html_encode($readmore) . '</a></p>';
-	}
-
-	if (!$shorten && !is_NewsArticle()) {
-		$shorten = ZP_SHORTEN_LENGTH;
 	}
 
 	if (!empty($shorten)) {

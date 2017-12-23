@@ -85,14 +85,6 @@ class Article extends CMSItems {
 		$this->set('sticky', $v);
 	}
 
-	function getTruncation() {
-		return $this->get('truncation');
-	}
-
-	function setTruncation($v) {
-		$this->set('truncation', $v);
-	}
-
 	/**
 	 * duplicates an article
 	 * @param string $newtitle the title for the new article

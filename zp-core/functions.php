@@ -137,16 +137,12 @@ function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 	//conservatve check if the string is too long.
 	if ($shorten && (mb_strlen(strip_tags($articlecontent)) > (int) $shorten)) {
 		//remove HTML comments (except for page break indicators)
-		$content = preg_replace('~<!-- pagebreak -->~isU', '<_PageBreak_>', $articlecontent, -1, $breaks);
+		$content = preg_replace('~<!-- pagebreak -->~isU', '</PageBreak>', $articlecontent, -1, $breaks);
 		$content = preg_replace('~<!--.*-->~isU', '', $content);
 
 		//remove scripts to be added back later
 		preg_match_all('~<script.*>.*</script>~isU', $content, $scripts);
 		$content = preg_replace('~<script.*>.*</script>~isU', '<_Script_>', $content);
-
-		if ($shorten === TRUE && $breaks) { //shorten to the first page break
-			$shorten = strpos($content, '<_PageBreak_>') + 1;
-		}
 
 		$pagebreak = $html = $short = '';
 		$count = 0;
@@ -183,7 +179,9 @@ function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 							default:
 								//close the tag
 								$short .= $html;
+							case '</PageBreak>';
 								$html = '';
+								break;
 						}
 					}
 					$short .= $shortenindicator . $html;
@@ -191,7 +189,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 				break;
 			}
 			$short .= $part;
-			if ($html == '<_PageBreak_>') {
+			if ($html == '</PageBreak>') {
 				$pagebreak = $short;
 			} else {
 				$short .= $html;
@@ -200,7 +198,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 		}
 
 		//tidy up the html--probably dropped a few closing tags!
-		$articlecontent = trim(cleanHTML($short, array('show-body-only' => true)));
+		$articlecontent = trim(cleanHTML($short));
 	}
 
 	return $articlecontent;

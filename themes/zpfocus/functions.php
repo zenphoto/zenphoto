@@ -204,7 +204,7 @@ function printLatestNewsCustom($number = 5, $category = '', $showdate = true, $s
 		echo "<span class=\"latestnews-date\">" . $date . "</span>\n";
 		echo "<span class=\"latestnews-cats\">| Posted in " . $categories . "</span>\n";
 		echo "</div>\n";
-		echo "<p class=\"latestnews-desc\">" . html_encode(getContentShorten($content, $contentlength, '(...)', null, null)) . "</p>\n";
+		echo "<p class=\"latestnews-desc\">" . html_encode(shortenContent($content, $contentlength, '(...)')) . "</p>\n";
 		echo "</div>\n";
 		if ($count == $number) {
 			break;

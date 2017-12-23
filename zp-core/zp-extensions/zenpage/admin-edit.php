@@ -581,10 +581,6 @@ $tagsort = 'alpha';
 												if (is_AdminEditPage('newsarticle')) {
 													$sticky = $result->get('sticky');
 													?>
-													<p class="checkbox">
-														<input name="truncation" type="checkbox" id="truncation" value="1" <?php checkIfChecked($result->getTruncation()); ?> />
-														<label for="truncation"><?php echo gettext("Truncate at <em>pagebreak</em>"); ?></label>
-													</p>
 													<p><?php echo gettext("Position:"); ?>
 														<select id="sticky" name="sticky">
 															<option value="<?php echo NEWS_POSITION_NORMAL; ?>" <?php if ($sticky == NEWS_POSITION_NORMAL) echo 'selected="selected"'; ?>><?php echo gettext("normal"); ?></option>
