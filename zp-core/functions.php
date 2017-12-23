@@ -144,10 +144,6 @@ function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 		preg_match_all('~<script.*>.*</script>~isU', $content, $scripts);
 		$content = preg_replace('~<script.*>.*</script>~isU', '<_Script_>', $content);
 
-		if ($shorten === TRUE && $breaks) { //shorten to the first page break
-			$shorten = strpos($content, '</PageBreak>') + 1;
-		}
-
 		$pagebreak = $html = $short = '';
 		$count = 0;
 
