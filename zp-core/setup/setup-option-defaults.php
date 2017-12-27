@@ -340,7 +340,7 @@ setOptionDefault('hotlink_protection', '1');
 
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
 
-$a = "a => (href =>() title =>() target=>() class=>() id=>())\n" .
+$a = "a => (href =>() title =>() target=>() class=>() id=>() rel=>())\n" .
 				"abbr =>(class=>() id=>() title =>())\n" .
 				"acronym =>(class=>() id=>() title =>())\n" .
 				"b => (class=>() id=>() )\n" .
@@ -366,7 +366,7 @@ $a = "a => (href =>() title =>() target=>() class=>() id=>())\n" .
 				"span=>(class=>() id=>() style=>())\n" .
 				"div=>(class=>() id=>() style=>())\n" .
 				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>())\n" .
-				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>() frameborder=>())\n"
+				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>())\n"
 ;
 purgeOption('allowed_tags_default');
 setOptionDefault('allowed_tags_default', $a);
