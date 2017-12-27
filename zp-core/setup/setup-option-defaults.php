@@ -345,12 +345,12 @@ $a = "a => (href =>() title =>() target=>() class=>() id=>() rel=>())\n" .
 				"acronym =>(class=>() id=>() title =>())\n" .
 				"b => (class=>() id=>() )\n" .
 				"blockquote =>(class=>() id=>() cite =>())\n" .
-				"br => (class=>() id=>() )\n" .
-				"code => (class=>() id=>() )\n" .
-				"em => (class=>() id=>() )\n" .
-				"i => (class=>() id=>() ) \n" .
-				"strike => (class=>() id=>() )\n" .
-				"strong => (class=>() id=>() )\n" .
+				"br => (class=>() id=>())\n" .
+				"code => (class=>() id=>())\n" .
+				"em => (class=>() id=>())\n" .
+				"i => (class=>() id=>()) \n" .
+				"strike => (class=>() id=>())\n" .
+				"strong => (class=>() id=>())\n" .
 				"ul => (class=>() id=>())\n" .
 				"ol => (class=>() id=>())\n" .
 				"li => (class=>() id=>())\n" .
