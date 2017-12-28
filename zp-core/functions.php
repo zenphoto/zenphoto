@@ -141,14 +141,16 @@ function tidyHTML($html) {
 				'new-blocklevel-tags' => 'article aside audio bdi canvas details dialog figcaption figure footer header main nav section source summary template track video',
 				'new-empty-tags' => 'command embed keygen source track wbr',
 				'new-inline-tags' => 'audio command datalist embed keygen mark menuitem meter output progress source time video wbr srcset sizes',
-				'show-body-only' => true
+				'show-body-only' => true,
+				'indent' => true,
+				'wrap' => 0
 		);
 		$tidy = new tidy();
 		$tidy->parseString($html, $options, 'utf8');
 		$tidy->cleanRepair();
 		return trim($tidy);
 	} else {
-		return trim(htmLawed($html));
+		return trim(htmLawed($html, array('tidy' => '2s2n')));
 	}
 }
 

@@ -349,9 +349,7 @@ function html_encodeTagged($original, $allowScript = true) {
 	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
 	}
-	if ($str != $original) {
-		$str = tidyHTML($str);
-	}
+	$str = tidyHTML($str);
 	return $str;
 }
 

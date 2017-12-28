@@ -116,7 +116,7 @@ class zenpagecms {
 			setOptionDefault('zenpage_indexhitcounter', false);
 			setOptionDefault('menu_truncate_string', 0);
 			setOptionDefault('menu_truncate_indicator', '');
-   setOptionDefault('enabled-zenpage-items', 'news-and-pages');
+			setOptionDefault('enabled-zenpage-items', 'news-and-pages');
 		}
 	}
 
@@ -124,7 +124,7 @@ class zenpagecms {
 		global $_common_truncate_handler;
 
 		$options = array(
-      gettext('Enabled Zenpage items') => array(
+		gettext('Enabled Zenpage items') => array(
 										'key'			 => 'enabled-zenpage-items',
 										'type'		 => OPTION_TYPE_RADIO,
 										'order'		 => 7,
@@ -135,12 +135,13 @@ class zenpagecms {
 										),
 										'desc'		 => gettext('This enables or disables the admin tabs for pages and/or news articles. To hide news and/or pages content on the front end as well, themes must be setup to use <br><code>if(extensionEnabled("zenpage") && ZP_NEWS_ENABLED) { … }</code> or <br><code>if(extensionEnabled("zenpage") && ZP_PAGES_ENABLED) { … }</code> in appropriate places. Same if disabled items should blocked as they otherwise still can be accessed via direct links. <p class="notebox"><strong>NOTE:</strong> This does not delete content and is not related to management rights.</p>')
 						), // The description of the option
-      gettext('Articles per page (theme)')					 => array('key'		 => 'zenpage_articles_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
+						gettext('Articles per page (theme)')					 => array('key'		 => 'zenpage_articles_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 0,
 										'desc'	 => gettext("How many news articles you want to show per page on the news or news category pages.")),
 						gettext('News article text length')						 => array('key'		 => 'zenpage_text_length', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 1,
-										'desc'	 => gettext("The length of news article excerpts in news or news category pages. Leave empty for full text.")),
+										'desc'	 => gettext("The length of news article excerpts in news or news category pages. Leave empty for full text.") . '<br />' .
+													gettext("You can also set a custom article shorten length for the news loop excerpts by using the standard TinyMCE <em>page break</em> plugin button. If set, this will override this option.")),
 						gettext('News article text shorten indicator') => array('key'		 => 'zenpage_textshorten_indicator', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 2,
 										'desc'	 => gettext("Something that indicates that the article text is shortened, “ (...)” by default.")),
@@ -282,9 +283,9 @@ class zenpagecms {
 	 * Zenpage admin toolbox links
 	 */
 	static function admin_toolbox_global($zf) {
-  global $_zp_zenpage;
+		global $_zp_zenpage;
 		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && ZP_NEWS_ENABLED) {
-// admin has zenpage rights, provide link to the Zenpage admin tab
+			// admin has zenpage rights, provide link to the Zenpage admin tab
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news-articles.php\">" . gettext("News") . "</a></li>";
 		}
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && ZP_PAGES_ENABLED) {
@@ -294,16 +295,16 @@ class zenpagecms {
 	}
 
 	static function admin_toolbox_pages($redirect, $zf) {
-   global $_zp_zenpage;
+		global $_zp_zenpage;
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && ZP_PAGES_ENABLED) {
-// page is zenpage page--provide edit, delete, and add links
+			// page is zenpage page--provide edit, delete, and add links
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=" . urlencode(getPageTitlelink()) . "\">" . gettext("Edit Page") . "</a></li>";
 			if (GALLERY_SESSION) {
-// XSRF defense requires sessions
+				// XSRF defense requires sessions
 				?>
-				<li><a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/page-admin.php?del=<?php echo getPageID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deletePage)"
-							 title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?>
-					</a></li>
+				<li>
+					<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/page-admin.php?del=<?php echo getPageID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deletePage)" title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?></a>
+				</li>
 				<?php
 			}
 			echo "<li><a href=\"" . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;add\">" . gettext("Add Page") . "</a></li>";
@@ -312,20 +313,16 @@ class zenpagecms {
 	}
 
 	static function admin_toolbox_news($redirect, $zf) {
-		global $_zp_zenpage, $_zp_current_category, $_zp_current_zenpage_news;
+		global $_zp_current_zenpage_news, $_zp_current_category;
 		if (is_NewsArticle()) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && ZP_NEWS_ENABLED) {
-
-
-
-// page is a NewsArticle--provide zenpage edit, delete, and Add links
+				// page is a NewsArticle--provide zenpage edit, delete, and Add links
 				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_zenpage_news->getTitleLink()) . "\">" . gettext("Edit Article") . "</a></li>";
 				if (GALLERY_SESSION) {
-// XSRF defense requires sessions
+					// XSRF defense requires sessions
 					?>
 					<li>
-						<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
-							 title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?>	</a>
+						<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)" title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?></a>
 					</li>
 					<?php
 				}
@@ -333,7 +330,6 @@ class zenpagecms {
 			}
 			$redirect .= '&amp;title=' . urlencode($_zp_current_zenpage_news->getTitlelink());
 		} else {
-
 			if (!empty($_zp_current_category)) {
 				$redirect .= '&amp;category=' . $_zp_current_category->getTitlelink();
 			}
