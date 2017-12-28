@@ -750,7 +750,11 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 		if ($before) {
 			echo '<span class="beforetext">' . html_encode($before) . '</span>';
 		}
-		echo "<a href=\"" . html_encode($link) . "\" title=\"" . html_encode(getBare($name)) . "\">" . html_encode(getbare($name)) . "</a>";
+		if (is_NewsArticle()) {
+			echo "<a href=\"" . html_encode($link) . "\" title=\"" . html_encode(getBare($name)) . "\">" . html_encode(getbare($name)) . "</a>";
+		} else {
+			echo html_encode(getbare($name));
+		}
 	}
 }
 
@@ -1603,27 +1607,22 @@ function printZenpageItemsBreadcrumb($before = NULL, $after = NULL) {
 		if (is_Pages()) {
 			//$parentid = $_zp_current_page->getParentID();
 			$parentitems = $_zp_current_page->getParents();
+			$new = 'newPage';
 		} else if (is_NewsCategory()) {
 			//$parentid = $_zp_current_category->getParentID();
 			$parentitems = $_zp_current_category->getParents();
+			$new = 'newCategory';
 		} else {
 			$parentitems = array();
 		}
 		foreach ($parentitems as $item) {
-			if (is_Pages()) {
-				$pageobj = newPage($item);
-				$parentitemurl = $pageobj->getLink();
-				$parentitemtitle = $pageobj->getTitle();
-			}
-			if (is_NewsCategory()) {
-				$catobj = newCategory($item);
-				$parentitemurl = $catobj->getLink();
-				$parentitemtitle = $catobj->getTitle();
-			}
+
+			$obj = $new($item);
+
 			if ($before) {
 				echo '<span class="beforetext">' . html_encode($before) . '</span>';
 			}
-			echo"<a href='" . html_encode($parentitemurl) . "'>" . html_encode($parentitemtitle) . "</a>";
+			echo"<a href='" . html_encode($obj->getLink()) . "'>" . html_encode($obj->getTitle()) . "</a>";
 			if ($after) {
 				echo '<span class="aftertext">' . html_encode($after) . '</span>';
 			}
