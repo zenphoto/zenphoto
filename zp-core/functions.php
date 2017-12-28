@@ -17,8 +17,9 @@ if (!function_exists("json_encode")) {
 require_once(dirname(__FILE__) . '/functions-basic.php');
 require_once(dirname(__FILE__) . '/functions-filter.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-kses.php');
-
-require_once dirname(__FILE__) . '/lib-htmLawed.php';
+if (!class_exists('tidy')) {
+	require_once dirname(__FILE__) . '/lib-htmLawed.php';
+}
 
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
 $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
@@ -129,12 +130,26 @@ function truncate_string($string, $length, $elipsis = '...') {
 }
 
 /**
- * Fixes unbalanced HTML tags. Uses the library htmlawed
+ * Fixes unbalanced HTML tags. Uses the library htmlawed or if available the native PHP extension tidy
+ * 
  * @param string $html
  * @return string
  */
 function tidyHTML($html) {
-	return trim(htmLawed($html));
+	if (class_exists('tidy')) {
+		$options = array(
+				'new-blocklevel-tags' => 'article aside audio bdi canvas details dialog figcaption figure footer header main nav section source summary template track video',
+				'new-empty-tags' => 'command embed keygen source track wbr',
+				'new-inline-tags' => 'audio command datalist embed keygen mark menuitem meter output progress source time video wbr srcset sizes',
+				'show-body-only' => true
+		);
+		$tidy = new tidy();
+		$tidy->parseString($html, $options, 'utf8');
+		$tidy->cleanRepair();
+		return trim($tidy);
+	} else {
+		return trim(htmLawed($html));
+	}
 }
 
 /**
