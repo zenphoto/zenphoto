@@ -707,7 +707,7 @@ if (isset($_GET['download'])) {
 			exitZP();
 		default:
 			$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . (int) $item);
-			if (array_key_exists('aux', $path) && file_exists($_downloadFile = internalToFilesystem($path['aux']))) {
+			if ($path && array_key_exists('aux', $path) && file_exists($_downloadFile = internalToFilesystem($path['aux']))) {
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
 				DownloadList::updateListItemCount($_downloadFile);
 				$ext = getSuffix($_downloadFile);
