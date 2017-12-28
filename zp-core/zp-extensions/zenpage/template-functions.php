@@ -158,6 +158,9 @@ function getLatestNews($number = 2, $category = '', $sticky = true, $sortdirecti
  */
 function printLatestNews($number = 5, $category = '', $showdate = true, $showcontent = true, $contentlength = 70, $showcat = true, $readmore = NULL, $sticky = true) {
 	global $_zp_gallery;
+	if (is_null($readmore)) {
+		$readmore = get_language_string(ZP_READ_MORE);
+	}
 
 	$latest = getLatestNews($number, $category, $sticky);
 	echo "\n<ul id=\"latestnews\">\n";
@@ -170,6 +173,7 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 		$obj = newArticle($item['titlelink']);
 		$title = html_encode($obj->getTitle());
 		$link = html_encode(getNewsURL($item['titlelink']));
+
 		$count2 = 0;
 		$category = $obj->getCategories();
 		foreach ($category as $cat) {
@@ -189,7 +193,7 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 			echo "<span class=\"latestnews-date\">" . $date . "</span>\n";
 		}
 		if ($showcontent) {
-			echo "<span class=\"latestnews-desc\">" . getContentShorten($content, $contentlength, '', $readmore, $link) . "</span>\n";
+			echo "<span class=\"latestnews-desc\">" . shortenContent($content, $contentlength, ZP_SHORTENINDICATOR) . "</span>\n";
 		}
 		if ($showcat && !empty($categories)) {
 			echo "<span class=\"latestnews-cats\">(" . html_encode($categories) . ")</span>\n";
@@ -361,7 +365,7 @@ function printNewsURL($before = '') {
  *
  * @return string
  */
-function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = NULL) {
+function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = false) {
 	global $_zp_current_image, $_zp_gallery, $_zp_current_article, $_zp_page;
 	if (!$_zp_current_article->checkAccess()) {
 		return '<p>' . gettext('<em>This entry belongs to a protected category.</em>') . '</p>';
@@ -369,10 +373,17 @@ function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = 
 
 	$articlecontent = $_zp_current_article->getContent();
 	if ($shorten !== false || !is_NewsArticle()) { //then we shorten the content displayed
+		if (is_null($shortenindicator)) {
+			$shortenindicator = ZP_SHORTENINDICATOR;
+		}
+		if (is_null($readmore)) {
+			$readmore = get_language_string(ZP_READ_MORE);
+		}
 		if (!$shorten) {
 			$shorten = ZP_SHORTEN_LENGTH;
 		}
-		$articlecontent = getContentShorten($articlecontent, $shorten, $shortenindicator, $readmore, $_zp_current_article->getLink());
+		$readmorelink = '<p class="readmorelink"><a href="' . html_encode($_zp_current_article->getLink()) . '" title="' . html_encode($readmore) . '">' . html_encode($readmore) . '</a></p>';
+		$articlecontent = shortenContent($articlecontent, $shorten, $shortenindicator . $readmorelink);
 	}
 
 	return $articlecontent;
@@ -388,40 +399,9 @@ function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = 
  * @param string $shortenindicator The placeholder to mark the shortening (e.g."(...)"). If empty the Zenpage option for this is used.
  * @param string $readmore The text for the "read more" link. If empty the term set in Zenpage option is used.
  */
-function printNewsContent($shorten = false, $shortenindicator = NULL, $readmore = NULL) {
+function printNewsContent($shorten = false, $shortenindicator = NULL, $readmore = false) {
 	$newscontent = getNewsContent($shorten, $shortenindicator, $readmore);
 	echo html_encodeTagged($newscontent);
-}
-
-/**
- * Shorten the content of any type of item and add the shorten indicator and readmore link
- * set on the Zenpage plugin options. Helper function for getNewsContent() but usage of course not limited to that.
- * If there is nothing to shorten the content passed.
- *
- * The read more link is wrapped within <p class="readmorelink"></p>.
- *
- * @param string $text The text content to be shortenend.
- * @param mixed $shorten The lenght the content should be shortened. Set to true for shorten to pagebreak zero or false for no shortening
- * @param string $shortenindicator The placeholder to mark the shortening (e.g."(...)"). If empty the Zenpage option for this is used.
- * @param string $readmore The text for the "read more" link. If empty the term set in Zenpage option is used.
- * @param string $readmoreurl The url the read more link should point to
- */
-function getContentShorten($text, $shorten, $shortenindicator = NULL, $readmore = NULL, $readmoreurl = NULL) {
-	$readmorelink = '';
-	if (is_null($shortenindicator)) {
-		$shortenindicator = ZP_SHORTENINDICATOR;
-	}
-	if (is_null($readmore)) {
-		$readmore = get_language_string(ZP_READ_MORE);
-	}
-	if (!is_null($readmoreurl)) {
-		$readmorelink = '<p class="readmorelink"><a href="' . html_encode($readmoreurl) . '" title="' . html_encode($readmore) . '">' . html_encode($readmore) . '</a></p>';
-	}
-
-	if (!empty($shorten)) {
-		$text = shortenContent($text, $shorten, $shortenindicator . $readmorelink);
-	}
-	return $text;
 }
 
 /**
@@ -2034,6 +2014,13 @@ function printSubPagesExcerpts($excerptlength = NULL, $readmore = NULL, $shorten
 	if (is_null($excerptlength)) {
 		$excerptlength = ZP_SHORTEN_LENGTH;
 	}
+	if (is_null($readmore)) {
+		$readmore = get_language_string(ZP_READ_MORE);
+	}
+	if (is_null($shortenindicator)) {
+		$shortenindicator = ZP_SHORTENINDICATOR;
+	}
+
 	foreach ($pages as $page) {
 		$pageobj = newPage($page['titlelink']);
 		if ($pageobj->getParentID() == $_zp_current_page->getID()) {
@@ -2041,7 +2028,8 @@ function printSubPagesExcerpts($excerptlength = NULL, $readmore = NULL, $shorten
 			$pagetitle = html_encode($pageobj->getTitle());
 			$pagecontent = $pageobj->getContent();
 			if ($pageobj->checkAccess()) {
-				$pagecontent = getContentShorten($pagecontent, $excerptlength, $shortenindicator, $readmore, $pageobj->getLink());
+				$readmorelink = '<p class="readmorelink"><a href="' . html_encode($pageobj->getLink()) . '" title="' . html_encode($readmore) . '">' . html_encode($readmore) . '</a></p>';
+				$pagecontent = shortenContent($pagecontent, $excerptlength, $shortenindicator . $readmorelink);
 			} else {
 				$pagecontent = '<p><em>' . gettext('This page is password protected') . '</em></p>';
 			}

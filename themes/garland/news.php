@@ -54,11 +54,16 @@ if (class_exists('CMS')) {
 											<div class="newsarticlecredit">
 												<span class="newsarticlecredit-left">
 													<?php
+													$cat = getNewsCategories();
 													$count = @call_user_func('getCommentCount');
 													printNewsDate();
 													if ($count > 0) {
 														echo ' | ';
 														printf(gettext("Comments: %d"), $count);
+													}
+													if (!empty($cat)) {
+														echo ' | ';
+														printNewsCategories(", ", gettext("Categories: "), "newscategories");
 													}
 													?>
 												</span>

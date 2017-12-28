@@ -6,8 +6,6 @@
  * See the deprecated functions plugin for examples
  * @package plugins/zenpage
  */
-
-
 class Zenpage_internal_deprecations {
 
 }
@@ -93,6 +91,29 @@ function getPageCustomData() {
 function printPageCustomData() {
 	deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
 	echo getPageCustomData();
+}
+
+/**
+ * @deprecated
+ * @since 1.5.3
+ */
+function getContentShorten($text, $shorten, $shortenindicator = NULL, $readmore = NULL, $readmoreurl = NULL) {
+	deprecated_functions::notify(gettext('Use shortenContent()'));
+	$readmorelink = '';
+	if (is_null($shortenindicator)) {
+		$shortenindicator = ZP_SHORTENINDICATOR;
+	}
+	if (is_null($readmore)) {
+		$readmore = get_language_string(ZP_READ_MORE);
+	}
+	if (!is_null($readmoreurl)) {
+		$readmorelink = '<p class="readmorelink"><a href="' . html_encode($readmoreurl) . '" title="' . html_encode($readmore) . '">' . html_encode($readmore) . '</a></p>';
+	}
+
+	if (!empty($shorten)) {
+		$text = shortenContent($text, $shorten, $shortenindicator . $readmorelink);
+	}
+	return $text;
 }
 
 ?>
