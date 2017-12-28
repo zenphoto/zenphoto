@@ -61,6 +61,8 @@ function adminToolbox() {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
+			var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this item?"); ?>";
+			var deleteAlbum2 = "<?php echo gettext("Are you Absolutely positively sure you want to delete this item? THIS CANNOT BE UNDONE!"); ?>";
 			function newAlbum(folder, albumtab) {
 				var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
 				if (album) {
@@ -221,6 +223,7 @@ function adminToolbox() {
 										 title="<?php echo gettext('Delete the album'); ?>"><?php echo gettext('Delete album'); ?></a>
 								</li>
 								<?php
+								
 							}
 						}
 						if ($_zp_current_album->isMyItem(UPLOAD_RIGHTS) && !$_zp_current_album->isDynamic()) {
