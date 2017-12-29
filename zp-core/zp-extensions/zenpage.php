@@ -124,49 +124,65 @@ class zenpagecms {
 		global $_common_truncate_handler;
 
 		$options = array(
-		gettext('Enabled Zenpage items') => array(
-										'key'			 => 'enabled-zenpage-items',
-										'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 7,
-										'buttons'	 => array(
-														gettext('Enable news articles and pages') => 'news-and-pages',
-														gettext('Enable news') => 'news',
-														gettext('Enable pages') => 'pages'
-										),
-										'desc'		 => gettext('This enables or disables the admin tabs for pages and/or news articles. To hide news and/or pages content on the front end as well, themes must be setup to use <br><code>if(extensionEnabled("zenpage") && ZP_NEWS_ENABLED) { … }</code> or <br><code>if(extensionEnabled("zenpage") && ZP_PAGES_ENABLED) { … }</code> in appropriate places. Same if disabled items should blocked as they otherwise still can be accessed via direct links. <p class="notebox"><strong>NOTE:</strong> This does not delete content and is not related to management rights.</p>')
-						), // The description of the option
-						gettext('Articles per page (theme)')					 => array('key'		 => 'zenpage_articles_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 0,
-										'desc'	 => gettext("How many news articles you want to show per page on the news or news category pages.")),
-						gettext('News article text length')						 => array('key'		 => 'zenpage_text_length', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext("The length of news article excerpts in news or news category pages. Leave empty for full text.") . '<br />' .
-													gettext("You can also set a custom article shorten length for the news loop excerpts by using the standard TinyMCE <em>page break</em> plugin button. If set, this will override this option.")),
-						gettext('News article text shorten indicator') => array('key'		 => 'zenpage_textshorten_indicator', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("Something that indicates that the article text is shortened, “ (...)” by default.")),
-						gettext('Read more')													 => array('key'					 => 'zenpage_read_more', 'type'				 => OPTION_TYPE_TEXTBOX, 'multilingual' => 1,
-										'order'				 => 3,
-										'desc'				 => gettext("The text for the link to the full article.")),
-						gettext('Truncate titles*')										 => array('key'			 => 'menu_truncate_string', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'disabled' => $_common_truncate_handler,
-										'order'		 => 23,
-										'desc'		 => gettext('Limit titles to this many characters. Zero means no limit.')),
-						gettext('Truncate indicator*')								 => array('key'			 => 'menu_truncate_indicator', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'disabled' => $_common_truncate_handler,
-										'order'		 => 24,
-										'desc'		 => gettext('Append this string to truncated titles.'))
+				gettext('Enabled Zenpage items') => array(
+						'key' => 'enabled-zenpage-items',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 7,
+						'buttons' => array(
+								gettext('Enable news articles and pages') => 'news-and-pages',
+								gettext('Enable news') => 'news',
+								gettext('Enable pages') => 'pages'
+						),
+						'desc' => gettext('This enables or disables the admin tabs for pages and/or news articles. To hide news and/or pages content on the front end as well, themes must be setup to use <br><code>if(extensionEnabled("zenpage") && ZP_NEWS_ENABLED) { … }</code> or <br><code>if(extensionEnabled("zenpage") && ZP_PAGES_ENABLED) { … }</code> in appropriate places. Same if disabled items should blocked as they otherwise still can be accessed via direct links. <p class="notebox"><strong>NOTE:</strong> This does not delete content and is not related to management rights.</p>')
+				), // The description of the option
+				gettext('Articles per page (theme)') => array(
+						'key' => 'zenpage_articles_per_page',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 0,
+						'desc' => gettext("How many news articles you want to show per page on the news or news category pages.")),
+				gettext('News article text length') => array(
+						'key' => 'zenpage_text_length',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext("The length of news article excerpts in news or news category pages. Leave empty for full text.") . '<br />' .
+						gettext("You can also set a custom article shorten length for the news loop excerpts by using the standard TinyMCE <em>page break</em> plugin button (or manually using the html comment snippet <code>&lt;!-- pagebreak --&gt;</code>. If set, this will override this option.")),
+				gettext('News article text shorten indicator') => array(
+						'key' => 'zenpage_textshorten_indicator',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext("Something that indicates that the article text is shortened, “ (...)” by default.")),
+				gettext('Read more') => array(
+						'key' => 'zenpage_read_more',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => 1,
+						'order' => 3,
+						'desc' => gettext("The text for the link to the full article.")),
+				gettext('Truncate titles*') => array(
+						'key' => 'menu_truncate_string',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'disabled' => $_common_truncate_handler,
+						'order' => 23,
+						'desc' => gettext('Limit titles to this many characters. Zero means no limit.')),
+				gettext('Truncate indicator*') => array(
+						'key' => 'menu_truncate_indicator',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'disabled' => $_common_truncate_handler,
+						'order' => 24,
+						'desc' => gettext('Append this string to truncated titles.'))
 		);
 		if ($_common_truncate_handler) {
-			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 25,
-							'desc'	 => '<p class="notebox">' . $_common_truncate_handler . '</p>');
+			$options['note'] = array(
+					'key' => 'menu_truncate_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 25,
+					'desc' => '<p class="notebox">' . $_common_truncate_handler . '</p>');
 		} else {
 			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'zenpage\');"><em>Zenpage</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'menu_truncate_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 25,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
+			$options['note'] = array(
+					'key' => 'menu_truncate_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 25,
+					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
 		}
 		return $options;
 	}
