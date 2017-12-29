@@ -59,6 +59,11 @@ body {
 	color: slategrey;
 }
 
+#zp__admin_info .zp_sitestatus {
+ color: red;
+ font-weight: bold;
+}
+
 #zp__admin_link {
 	font-weight: bold;
 	color: #999;

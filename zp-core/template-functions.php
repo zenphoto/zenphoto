@@ -53,7 +53,7 @@ function printZenJavascripts() {
  *
  */
 function adminToolbox() {
-	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin;
+	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin, $_zp_conf_vars;
 	if (zp_loggedin()) {
 		$zf = FULLWEBPATH . "/" . ZENFOLDER;
 		$page = getCurrentPage();
@@ -74,13 +74,20 @@ function adminToolbox() {
 		<div id="zp__admin_module">
 			<div id="zp__admin_info">
 				<span class="zp_logo">ZP</span>
-				<span class="zp_user"> <?php echo $_zp_current_admin_obj->getUser(); ?></span>
+				<span class="zp_user"> <?php echo $_zp_current_admin_obj->getUser(); ?> 
+					<?php 
+					if(array_key_exists('site_upgrade_state', $_zp_conf_vars)) {
+						if($_zp_conf_vars['site_upgrade_state'] == 'closed_for_test') {
+							echo ' | <span class="zp_sitestatus">' . gettext('Test mode') . '</span>';
+						}
+					}
+					?>
+				</span>
 			</div>
 			<button type="button" id="zp__admin_link" onclick="javascript:toggle('zp__admin_data');">
 				<?php echo gettext('Admin'); ?>
 			</button>
 			<div id="zp__admin_data" style="display: none;">
-
 				<ul>
 				<?php
 				$outputA = ob_get_contents();
