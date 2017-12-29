@@ -440,28 +440,6 @@ function html_decode($string) {
 	return $string;
 }
 
-if (!class_exists('tidy')) {
-	require_once( SERVERPATH . '/' . ZENFOLDER . '/htmLawed.php');
-}
-
-/**
- *
- * fixes unbalanced HTML tags. Used by shortenContent, html_encodeTagged
- * @param string $html
- * @return string
- */
-function cleanHTML($html) {
-	if (class_exists('tidy')) {
-		$tidy = new tidy();
-		$tidy->parseString($html, array('preserve-entities' => TRUE, 'indent' => TRUE, 'markup' => TRUE, 'show-body-only' => TRUE, 'wrap' => 0, 'quote-marks' => TRUE), 'utf8');
-		$tidy->cleanRepair();
-		$html = trim($tidy);
-	} else {
-		$html = htmLawed($html, array('tidy' => '2s2n'));
-	}
-	return $html;
-}
-
 /**
  * encodes a pre-sanitized string to be used in an HTML text-only field (value, alt, title, etc.)
  *
@@ -470,48 +448,6 @@ function cleanHTML($html) {
  */
 function html_encode($this_string) {
 	return htmlspecialchars($this_string, ENT_FLAGS, LOCAL_CHARSET);
-}
-
-/**
- * HTML encodes the non-metatag part of the string.
- *
- * @param string $original string to be encoded
- * @param bool $allowScript set to false to prevent pass-through of script tags.
- * @return string
- */
-function html_encodeTagged($original, $allowScript = true) {
-	$tags = array();
-	$str = $original;
-	//javascript
-	if ($allowScript) {
-		preg_match_all('~<script.*>.*</script>~isU', $str, $matches);
-		foreach (array_unique($matches[0]) as $key => $tag) {
-			$tags[2]['%' . $key . '$j'] = $tag;
-			$str = str_replace($tag, '%' . $key . '$j', $str);
-		}
-	} else {
-		$str = preg_replace('|<a(.*)href(.*)=(.*)javascript|ixs', '%$x', $str);
-		$tags[2]['%$x'] = '&lt;a href=<strike>javascript</strike>';
-		$str = preg_replace('|<(.*)onclick|ixs', '%$c', $str);
-		$tags[2]['%$c'] = '&lt;<strike>onclick</strike>';
-	}
-	//strip html comments
-	$str = preg_replace('~<!--.*?-->~is', '', $str);
-	// markup
-	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
-	foreach (array_unique($matches[0]) as $key => $tag) {
-		$tags[2]['%' . $key . '$s'] = $tag;
-		$str = str_replace($tag, '%' . $key . '$s', $str);
-	}
-	$str = html_decode($str);
-	$str = htmlentities($str, ENT_FLAGS, LOCAL_CHARSET);
-	foreach (array_reverse($tags, true) as $taglist) {
-		$str = strtr($str, $taglist);
-	}
-	if ($str != $original) {
-		$original = cleanHTML($str);
-	}
-	return $original;
 }
 
 /**
