@@ -1722,7 +1722,7 @@ function getPageTitle() {
  * @return string
  */
 function printPageTitle($before = NULL) {
-	echo html_encodeTagged($before) . html_encode(getPageTitle());
+	echo html_encode($before) . html_encode(getPageTitle());
 }
 
 /**
