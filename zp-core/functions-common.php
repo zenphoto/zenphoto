@@ -508,8 +508,10 @@ function html_encodeTagged($original, $allowScript = true) {
 	foreach (array_reverse($tags, true) as $taglist) {
 		$str = strtr($str, $taglist);
 	}
-	$str = cleanHTML($str);
-	return $str;
+	if ($str != $original) {
+		$original = cleanHTML($str);
+	}
+	return $original;
 }
 
 /**

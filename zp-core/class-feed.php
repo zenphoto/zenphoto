@@ -503,7 +503,7 @@ class feed {
 			return $items;
 		}
 		if (TEST_RELEASE) {
-			zp_error(gettext('Bad ' . $this->feed . ' feed:' . $this->feedtype), E_USER_WARNING);
+			debugLogBacktrace(gettext('Bad ' . $this->feed . ' feed:' . $this->feedtype . (isset($type) ? '»' . $type : '')), E_USER_WARNING);
 		}
 		return NULL;
 	}

@@ -184,6 +184,15 @@ if ($_REQUEST['origin'] == 'upload') {
 				$excluded_folders[$key] = preg_quote($folder);
 			}
 
+			$junkFiles = safe_glob(getAlbumFolder() . '*.*');
+			foreach ($junkFiles as $key => $path) {
+				if (is_dir($path) || hasDynamicAlbumSuffix($path) || in_array(getSuffix($path), $sidecars)) {
+					unset($junkFiles[$key]);
+				} else {
+					$junkFiles[$key] = preg_quote(basename($path));
+				}
+			}
+
 			$maxupload = ini_get('upload_max_filesize');
 			$maxuploadint = parse_size($maxupload);
 			$uploadlimit = zp_apply_filter('get_upload_limit', $maxuploadint);
@@ -219,6 +228,17 @@ if ($_REQUEST['origin'] == 'upload') {
 			}
 
 			$opts['roots'][2]['attributes'] = array();
+
+			if (!empty($junkFiles)) {
+				$opts['roots'][2]['attributes'][] = array(// files in the album root that don't belong
+						'pattern' => '/.(' . implode('$|', $junkFiles) . '$)/' . $i, // Dont write or delete
+						'read' => false,
+						'write' => false,
+						'hidden' => true,
+						'locked' => true
+				);
+			}
+
 			if (!empty($excluded_folders)) {
 				$opts['roots'][2]['attributes'][] = array(//	albums he does not manage
 						'pattern' => '/.(' . implode('$|', $excluded_folders) . '$)/' . $i, // Dont write or delete to this but subfolders and files
@@ -259,7 +279,7 @@ if ($_REQUEST['origin'] == 'upload') {
 				);
 			}
 			if (!empty($all_actions)) {
-				$opts['roots'][2]['attributes'][] = array(//	albums he can not upload
+				$opts['roots'][2]['attributes'][] = array(//	albums he can upload
 						'pattern' => '/.(' . implode('$|', $all_actions) . '$)/' . $i, // Dont write or delete to this but subfolders and files
 						'read' => true,
 						'write' => true,
