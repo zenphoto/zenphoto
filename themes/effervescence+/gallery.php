@@ -45,6 +45,7 @@ if (!defined('WEBPATH'))
 							?>
 							<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Main Index'); ?>"><?php printGalleryTitle(); ?></a>
 							<?php
+							echo ' | ' . gettext('Album index');
 						}
 						?>
 					</span>
