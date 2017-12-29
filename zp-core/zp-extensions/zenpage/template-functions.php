@@ -750,7 +750,7 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 		if ($before) {
 			echo '<span class="beforetext">' . html_encode($before) . '</span>';
 		}
-		if (is_NewsArticle()) {
+		if (is_NewsArticle() || is_NewsCategory()) {
 			echo "<a href=\"" . html_encode($link) . "\" title=\"" . html_encode(getBare($name)) . "\">" . html_encode(getbare($name)) . "</a>";
 		} else {
 			echo html_encode(getbare($name));
