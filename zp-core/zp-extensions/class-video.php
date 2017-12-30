@@ -514,7 +514,7 @@ function class_video_enable($enabled) {
 		setOption('metadata_disabled', serialize($disable));
 		setOption('metadata_displayed', serialize($display));
 	}
-	requestSetup('Video Metadata', $enabled ? NULL : gettext('Video metadata DB field(s) will be dropped'));
+	requestSetup('Video Metadata', $enabled ? NULL : gettext('The <em>video metadata</em> Database field(s) will be dropped'));
 }
 
 $_zp_multimedia_extension = new pseudoPlayer();

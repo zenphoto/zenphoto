@@ -108,7 +108,7 @@ class userAddressFields extends fieldExtender {
 }
 
 function userAddressFields_enable($enabled) {
-	requestSetup('userAddressFields', $enabled ? NULL : gettext('The "user address" DB fields will be dropped'));
+	requestSetup('userAddressFields', $enabled ? NULL : gettext('The <em>user address</em> Database fields will be dropped'));
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database

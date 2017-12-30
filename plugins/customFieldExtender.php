@@ -215,7 +215,7 @@ class customFieldExtender extends fieldExtender {
 
 function customFieldExtender_enable($enabled) {
 	if (!$enabled) {
-		requestSetup('customFieldExtender', $enabled ? NULL : gettext('The plugin defined DB field(s) will be dropped'));
+		requestSetup('customFieldExtender', $enabled ? NULL : gettext('The database field(s) defined by the plugin will be dropped'));
 	}
 }
 

@@ -1177,7 +1177,7 @@ function xmpMetadata_enable($enabled) {
 		setOption('metadata_disabled', serialize($disable));
 		setOption('metadata_displayed', serialize($display));
 	}
-	requestSetup('XMP Metadata', $enabled ? NULL : gettext('The XMP metadata DB fields will be dropped'));
+	requestSetup('XMP Metadata', $enabled ? NULL : gettext('The XMP metadata Database fields will be dropped'));
 }
 
 ?>
