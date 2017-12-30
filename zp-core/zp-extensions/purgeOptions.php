@@ -37,7 +37,9 @@ function purgeOptions_admin_tabs($tabs) {
 }
 
 function listOwners($owners, $nest = '') {
-	global $xlate, $highlighted;
+	global $xlate, $highlighted, $_zp_gallery;
+
+	$currentTheme = $_zp_gallery->getCurrentTheme();
 
 	foreach ($owners as $owner => $detail) {
 		if (is_array($detail)) {
@@ -60,6 +62,7 @@ function listOwners($owners, $nest = '') {
 			<?php
 		} else {
 			$autocheck = str_replace('/', '_', rtrim($nest, '/'));
+			$active = false;
 
 			if ($nest == THEMEFOLDER . '/') {
 				$suffix = '';
@@ -71,12 +74,15 @@ function listOwners($owners, $nest = '') {
 				$labelclass = 'none';
 				$missing = '';
 				$checked = false;
-				$active = extensionEnabled($detail);
+				if ($suffix && extensionEnabled($detail)) {
+					$active = gettext('Active Extension');
+				} else if ($detail == $currentTheme) {
+					$active = gettext('Current Theme');
+				}
 			} else {
 				$labelclass = 'missing_owner';
 				$missing = ' missing';
 				$checked = ' checked="checked"';
-				$active = false;
 				$highlighted = true;
 				if (basename($nest) != THEMEFOLDER) {
 					?>
@@ -94,7 +100,7 @@ function listOwners($owners, $nest = '') {
 			?>
 			<li>
 				<label class="<?php echo $labelclass; ?>">
-					<input type="checkbox" name="del[]" class="<?php echo $autocheck . $missing; ?>" value="<?php echo $nest . $detail; ?>"<?php echo $checked; ?> /><span <?php if ($active) echo 'class="active" title="' . gettext('active plugin') . '"'; ?>><?php echo $display; ?></span>
+					<input type="checkbox" name="del[]" class="<?php echo $autocheck . $missing; ?>" value="<?php echo $nest . $detail; ?>"<?php echo $checked; ?> /><span <?php if ($active) echo 'class="active" title="' . $active . '"'; ?>><?php echo $display; ?></span>
 				</label>
 			</li>
 			<?php
