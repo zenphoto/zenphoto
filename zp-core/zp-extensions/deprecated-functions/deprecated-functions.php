@@ -90,7 +90,7 @@ class internal_deprecations {
 	 * @since 1.4.15
 	 */
 	static function tidyHTML() {
-		deprecated_functions::notify(gettext('User tidyHTML() instead'));
+		deprecated_functions::notify(gettext('Use tidyHTML() instead'));
 	}
 
 	/**

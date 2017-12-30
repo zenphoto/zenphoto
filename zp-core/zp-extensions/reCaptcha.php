@@ -147,7 +147,7 @@ class reCaptcha extends _zp_captcha {
 		if (!getOption('reCaptcha_public_key') || !getOption('reCaptcha_private_key')) {
 			return array(
 					'input' => '',
-					'html' => '<div class="errorbox"><p>' . gettext('reCAPTCHA v2 keys are not configured properly. Visit <a href="https://www.google.com/recaptcha/intro/index.html">this link</a> to retrieve your reCaptcha keys).') . '</p></div>',
+					'html' => '<div class="errorbox"><p>' . gettext('reCAPTCHA v2 keys are not configured properly. Visit <a href="https://www.google.com/recaptcha/intro/index.html">this link</a> to retrieve your reCaptcha keys.') . '</p></div>',
 					'hidden' => ''
 			);
 		} else {
