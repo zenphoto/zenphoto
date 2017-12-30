@@ -172,7 +172,7 @@ function saveOptions() {
 	setOption('metadata_displayed', serialize($display));
 
 	foreach ($dbChange as $requestor) {
-		requestSetup($requestor);
+		requestSetup($requestor, empty($dbChange) ? NULL : gettext('Disabled metadata DB field(s) will be dropped'));
 	}
 
 	$_zp_gallery->save();
@@ -682,7 +682,7 @@ function getOptionContent() {
 														 name="disclose_password"
 														 id="disclose_password"
 														 onclick="passwordClear('');
-																 togglePassword('');" /><?php echo gettext('Show'); ?>
+																		 togglePassword('');" /><?php echo gettext('Show'); ?>
 										</label>
 
 										<br />

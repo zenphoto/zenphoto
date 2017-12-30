@@ -1398,13 +1398,18 @@ function checkInstall() {
 /**
  * registers a request to have setup run
  * @param string $whom the requestor
+ * @param string $addl additional information for request message
  *
  * @author Stephen Billard
  * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
-function requestSetup($whom) {
+function requestSetup($whom, $addl = NULL) {
 	$sig = getSerializedArray(getOption('zenphoto_install'));
 	$sig['REQUESTS'][$whom] = $whom;
+	if (!is_null($addl)) {
+		$sig['REQUESTS'][$whom] .= ' (' . $addl . ')';
+	}
+
 	setOption('zenphoto_install', serialize($sig));
 }
 

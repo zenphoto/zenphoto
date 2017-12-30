@@ -622,9 +622,7 @@ class optionalObjectFields extends fieldExtender {
 }
 
 function optionalObjectFields_enable($enabled) {
-	if (!$enabled) {
-		requestSetup('optionalObjectFields');
-	}
+	requestSetup('optionalObjectFields', $enabled ? NULL : gettext('The "optional object" DB fields will be dropped'));
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database

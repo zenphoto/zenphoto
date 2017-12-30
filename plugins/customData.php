@@ -185,5 +185,5 @@ class customData {
 }
 
 function customData_enable($enabled) {
-	requestSetup('customData');
+	requestSetup('customData', $enabled ? NULL : gettext('The "custom" DB field will be dropped'));
 }
