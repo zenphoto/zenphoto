@@ -2,6 +2,10 @@
 	color: red;
 }
 
+.active {
+	color: darkred;
+}
+
 .empty_name {
 	color:red;
 	text-decoration:line-through;

@@ -35,8 +35,15 @@ if (isset($_POST['purge'])) {
 			} else {
 				$plugin = basename($owner);
 				if (!(isset($_POST['missingplugin']) && in_array($plugin, $_POST['missingplugin']))) {
-					$purgedActive[basename($owner)] = true;
-					purgeOption('zp_plugin_' . stripSuffix(basename($owner)));
+					if (extensionEnabled($plugin)) {
+						$purgedActive[$plugin] = true;
+					}
+					purgeOption('zp_plugin_' . $plugin);
+					//invoke the enable method if it exists
+					$f = str_replace('-', '_', $plugin) . '_enable';
+					if (function_exists($f)) {
+						$f(false);
+					}
 				}
 			}
 		}
@@ -62,7 +69,7 @@ if (isset($_POST['purge'])) {
 	}
 
 	if (!empty($purgedActive)) {
-		requestSetup('purgeOptions');
+		requestSetup('purgeOptions', gettext('Active plugins have been disabled.'));
 	}
 	header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/purgeOptions/purgeOptions_tab.php?tab=purge');
 	exitZP();
@@ -112,6 +119,7 @@ $orphaned = array();
 					$sql = 'SELECT `creator` FROM ' . prefix('options') . ' ORDER BY `creator`';
 					$result = query_full_array($sql);
 					foreach ($result as $owner) {
+						$highlight = '';
 						$structure = explode('/', preg_replace('~\[.*\]$~', '', $owner['creator']));
 						switch ($structure[0]) {
 							case NULL:

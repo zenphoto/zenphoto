@@ -68,13 +68,15 @@ function listOwners($owners, $nest = '') {
 			}
 
 			if ($detail && file_exists(SERVERPATH . '/' . internalToFilesystem($nest . $detail . $suffix))) {
-				$missing = '';
 				$labelclass = 'none';
+				$missing = '';
 				$checked = false;
+				$active = extensionEnabled($detail);
 			} else {
 				$labelclass = 'missing_owner';
 				$missing = ' missing';
 				$checked = ' checked="checked"';
+				$active = false;
 				$highlighted = true;
 				if (basename($nest) != THEMEFOLDER) {
 					?>
@@ -84,7 +86,7 @@ function listOwners($owners, $nest = '') {
 			}
 			if (empty($detail)) {
 				$display = gettext('unknown');
-				$labelclass = ' empty_name';
+				$labelclass = 'empty_name';
 				$checked = ' checked="checked"';
 			} else {
 				$display = stripSuffix($detail);
@@ -92,7 +94,7 @@ function listOwners($owners, $nest = '') {
 			?>
 			<li>
 				<label class="<?php echo $labelclass; ?>">
-					<input type="checkbox" name="del[]" class="<?php echo $autocheck . $missing; ?>" value="<?php echo $nest . $detail; ?>"<?php echo $checked; ?> /><?php echo $display; ?>
+					<input type="checkbox" name="del[]" class="<?php echo $autocheck . $missing; ?>" value="<?php echo $nest . $detail; ?>"<?php echo $checked; ?> /><span <?php if ($active) echo 'class="active" title="' . gettext('active plugin') . '"'; ?>><?php echo $display; ?></span>
 				</label>
 			</li>
 			<?php
