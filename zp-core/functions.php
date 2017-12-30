@@ -123,26 +123,28 @@ function truncate_string($string, $length, $elipsis = '...') {
 	return $string;
 }
 
-if (!class_exists('tidy')) {
-	require_once( SERVERPATH . '/' . ZENFOLDER . '/htmLawed.php');
-}
-
 /**
  *
  * fixes unbalanced HTML tags. Used by shortenContent, html_encodeTagged
  * @param string $html
  * @return string
  */
-function cleanHTML($html) {
-	if (class_exists('tidy')) {
+if (class_exists('tidy')) {
+
+	function cleanHTML($html) {
 		$tidy = new tidy();
 		$tidy->parseString($html, array('preserve-entities' => TRUE, 'indent' => TRUE, 'markup' => TRUE, 'show-body-only' => TRUE, 'wrap' => 0, 'quote-marks' => TRUE), 'utf8');
 		$tidy->cleanRepair();
-		$html = $tidy;
-	} else {
-		$html = htmLawed($html, array('tidy' => '2s2n'));
+		return $tidy;
 	}
-	return $html;
+
+} else {
+	require_once( SERVERPATH . '/' . ZENFOLDER . '/htmLawed.php');
+
+	function cleanHTML($html) {
+		return htmLawed($html, array('tidy' => '2s2n'));
+	}
+
 }
 
 /**
