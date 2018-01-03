@@ -629,21 +629,24 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							}
 						}
 
-						primeMark(gettext('Magic_quotes'));
-						if (get_magic_quotes_gpc()) {
-							$magic_quotes_disabled = -1;
-						} else {
-							$magic_quotes_disabled = true;
+						if (version_compare(PHP_VERSION, '5.4', '<')) {
+							primeMark(gettext('Magic_quotes'));
+							if (get_magic_quotes_gpc()) {
+								$magic_quotes_disabled = 0;
+							} else {
+								$magic_quotes_disabled = true;
+							}
+							checkMark($magic_quotes_disabled, gettext("PHP <code>magic_quotes_gpc</code>"), gettext("PHP <code>magic_quotes_gpc</code> [is enabled]"), gettext('You must disable <code>magic_quotes_gpc</code>.'));
+							if (get_magic_quotes_runtime()) {
+								$magic_quotes_disabled = 0;
+							} else {
+								$magic_quotes_disabled = true;
+							}
+							checkMark($magic_quotes_disabled, gettext("PHP <code>magic_quotes_runtime</code>"), gettext("PHP <code>magic_quotes_runtime</code> [is enabled]"), gettext('You must disable <code>magic_quotes_runtime</code>.'));
+							checkMark(!ini_get('magic_quotes_sybase'), gettext("PHP <code>magic_quotes_sybase</code>"), gettext("PHP <code>magic_quotes_sybase</code> [is enabled]"), gettext('You must disable <code>magic_quotes_sybase</code>.'));
 						}
-						checkMark($magic_quotes_disabled, gettext("PHP <code>magic_quotes_gpc</code>"), gettext("PHP <code>magic_quotes_gpc</code> [is enabled]"), gettext('We strongly recommend disabling <code>magic_quotes_gpc</code>.'));
-						if (get_magic_quotes_runtime()) {
-							$magic_quotes_disabled = 0;
-						} else {
-							$magic_quotes_disabled = true;
-						}
-						checkMark($magic_quotes_disabled, gettext("PHP <code>magic_quotes_runtime</code>"), gettext("PHP <code>magic_quotes_runtime</code> [is enabled]"), gettext('You must disable <code>magic_quotes_runtime</code>.'));
-						checkMark(!ini_get('magic_quotes_sybase'), gettext("PHP <code>magic_quotes_sybase</code>"), gettext("PHP <code>magic_quotes_sybase</code> [is enabled]"), gettext('You must disable <code>magic_quotes_sybase</code>.'));
 
+						primeMark(gettext('Display_errors'));
 						switch (strtolower(@ini_get('display_errors'))) {
 							case 0:
 							case 'off':

@@ -1127,6 +1127,8 @@ zp-core/htaccess
 zp-core/htmLawed.php
 zp-core/i.php
 zp-core/index.php
+zp-core/initialize-basic.php
+zp-core/initialize-general.php
 zp-core/lib-auth.php
 zp-core/lib-encryption.php
 zp-core/lib-GD.php
@@ -8144,4 +8146,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8146
+8148

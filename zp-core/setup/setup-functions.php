@@ -13,6 +13,22 @@ require_once(dirname(dirname(__FILE__)) . '/functions-config.php');
 define('SETUPLOG', SERVERPATH . '/' . DATA_FOLDER . '/setup.log');
 
 /**
+ * Returns true if we are running on a Windows server
+ *
+ * @return bool
+ */
+function isWin() {
+	return (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN');
+}
+
+/**
+ * Returns true if we are running on a Macintosh
+ */
+function isMac() {
+	return strtoupper(PHP_OS) == 'DARWIN';
+}
+
+/**
  *
  * enumerates the files in folder(s)
  * @param $folder
