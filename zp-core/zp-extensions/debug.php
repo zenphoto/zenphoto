@@ -84,7 +84,8 @@ class debug {
 				gettext('Log image processing debug information.') => 'IMAGE',
 				gettext('Log language selection processing.') => 'LOCALE',
 				gettext('Log admin saves and login attempts.') => 'LOGIN',
-				gettext('Log plugin load sequence.') => 'PLUGINS'
+				gettext('Log plugin load sequence.') => 'PLUGINS',
+				gettext('Log Feed issues.') => 'FEED'
 		);
 		$options = array(
 				NULL => array('key' => 'debug_marks', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,

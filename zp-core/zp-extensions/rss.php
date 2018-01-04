@@ -202,12 +202,12 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 			break;
 		case 'comments-image':
 			if (getOption('RSS_comments')) {
-				$link = array('rss' => 'comments', 'type' => 'image', 'id' => (string) $_zp_current_image->getID());
+				$link = array('rss' => 'comments', 'type' => 'images', 'id' => (string) $_zp_current_image->getID());
 			}
 			break;
 		case 'comments-album':
 			if (getOption('RSS_comments')) {
-				$link = array('rss' => 'comments', 'type' => 'album', 'id' => (string) $_zp_current_album->getID());
+				$link = array('rss' => 'comments', 'type' => 'albums', 'id' => (string) $_zp_current_album->getID());
 			}
 			break;
 		case 'albumsrss':
@@ -360,7 +360,7 @@ class RSS extends feed {
 		parent::__construct($options);
 
 		if (isset($options['token'])) {
-//	The link camed from a logged in user, see if it is valid
+			//	The link camed from a logged in user, see if it is valid
 			$link = $options;
 			unset($link['token']);
 			$token = Zenphoto_Authority::passwordHash(serialize($link), '');
@@ -372,11 +372,11 @@ class RSS extends feed {
 				}
 			}
 		}
-// general feed setup
+		// general feed setup
 		$channeltitlemode = getOption('RSS_title');
 		$this->host = html_encode($_SERVER["HTTP_HOST"]);
 
-//channeltitle general
+		//channeltitle general
 		switch ($channeltitlemode) {
 			case 'gallery':
 				$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
@@ -393,7 +393,7 @@ class RSS extends feed {
 				break;
 		}
 
-// individual feedtype setup
+		// individual feedtype setup
 		switch ($this->feedtype) {
 
 			case 'gallery':
@@ -488,28 +488,12 @@ class RSS extends feed {
 				break;
 
 			case 'comments': //Comments RSS
+
 				if (!getOption('RSS_comments')) {
 					self::feed404();
 				}
 				if ($this->id) {
-					switch ($this->commentfeedtype) {
-						case 'album':
-							$table = 'albums';
-							break;
-						case 'image':
-							$table = 'images';
-							break;
-						case 'news':
-							$table = 'news';
-							break;
-						case 'page':
-							$table = 'pages';
-							break;
-						default:
-							self::feed404();
-							break;
-					}
-					$this->itemobj = getItemByID($table, $this->id);
+					$this->itemobj = getItemByID($this->commentfeedtype, $this->id);
 					if ($this->itemobj) {
 						$title = ' - ' . $this->itemobj->getTitle();
 					} else {
@@ -681,26 +665,27 @@ class RSS extends feed {
 		if (is_null($feeditems)) {
 			$feeditems = $this->getitems();
 		}
-//NOTE: feeditems are complete HTML so necessarily must have been properly endoded by the server function!
 
-		header('Content-Type: application/xml');
-		$this->hitcounter();
-		$this->startCache();
-		echo '<?xml-stylesheet type="text/css" href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rss/rss.css" ?>' . "\n";
-		?>
-		<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
-			<channel>
-				<title><![CDATA[<?php echo $this->channel_title; ?>]]></title>
-				<link><?php echo PROTOCOL . '://' . $this->host . WEBPATH; ?></link>
-				<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
-				<description><![CDATA[<?php echo html_encode(getBare($_zp_gallery->getDesc($this->locale))); ?>]]></description>
-				<language><?php echo $this->locale_xml; ?></language>
-				<pubDate><?php echo date("r", time()); ?></pubDate>
-				<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
-				<docs>http://blogs.law.harvard.edu/tech/rss</docs>
-				<generator>ZenPhoto20 RSS Generator</generator>
-				<?php
-				if (is_array($feeditems)) {
+		if (is_array($feeditems)) {
+			//NOTE: feeditems are complete HTML so necessarily must have been properly endoded by the server function!
+
+			header('Content-Type: application/xml');
+			$this->hitcounter();
+			$this->startCache();
+			echo '<?xml-stylesheet type="text/css" href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rss/rss.css" ?>' . "\n";
+			?>
+			<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+				<channel>
+					<title><![CDATA[<?php echo $this->channel_title; ?>]]></title>
+					<link><?php echo PROTOCOL . '://' . $this->host . WEBPATH; ?></link>
+					<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
+					<description><![CDATA[<?php echo html_encode(getBare($_zp_gallery->getDesc($this->locale))); ?>]]></description>
+					<language><?php echo $this->locale_xml; ?></language>
+					<pubDate><?php echo date("r", time()); ?></pubDate>
+					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
+					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+					<generator>ZenPhoto20 RSS Generator</generator>
+					<?php
 					foreach ($feeditems as $feeditem) {
 						switch ($this->feedtype) {
 							case 'gallery':
@@ -745,12 +730,14 @@ class RSS extends feed {
 						</item>
 						<?php
 					} // foreach
-				}
-				?>
-			</channel>
-		</rss>
-		<?php
-		$this->endCache();
+					?>
+				</channel>
+			</rss>
+			<?php
+			$this->endCache();
+		} else {
+			self::feed404();
+		}
 	}
 
 }

@@ -289,8 +289,10 @@ class feed {
 	protected function getCommentFeedType() {
 		$valid = false;
 		if (isset($this->options['type'])) {
-			$valid = array('albums', 'images', 'pages', 'news', 'all');
-			if (in_array($this->options['type'], $valid)) {
+			if ($this->options['type'] == 'image' || $this->options['type'] == 'albium') {
+				$this->options['type'] = $this->options['type'] . 's'; //	some old feeds have the singular
+			}
+			if (in_array($this->options['type'], array('albums', 'images', 'pages', 'news', 'all'))) {
 				return $this->options['type'];
 			}
 		}
@@ -472,10 +474,10 @@ class feed {
 					case 'gallery':
 						$items = getLatestComments($this->itemnumber, 'all');
 						break;
-					case 'album':
+					case 'albums':
 						$items = getLatestComments($this->itemnumber, 'album', $this->id);
 						break;
-					case 'image':
+					case 'images':
 						$items = getLatestComments($this->itemnumber, 'image', $this->id);
 						break;
 					case 'zenpage':
@@ -502,7 +504,7 @@ class feed {
 		if (isset($items)) {
 			return $items;
 		}
-		if (TEST_RELEASE) {
+		if (DEBUG_FEED) {
 			debugLogBacktrace(gettext('Bad ' . $this->feed . ' feed:' . $this->feedtype . (isset($type) ? '»' . $type : '')), E_USER_WARNING);
 		}
 		return NULL;
