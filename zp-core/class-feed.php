@@ -289,7 +289,7 @@ class feed {
 	protected function getCommentFeedType() {
 		$valid = false;
 		if (isset($this->options['type'])) {
-			if ($this->options['type'] == 'image' || $this->options['type'] == 'albium') {
+			if ($this->options['type'] == 'image' || $this->options['type'] == 'album') {
 				$this->options['type'] = $this->options['type'] . 's'; //	some old feeds have the singular
 			}
 			if (in_array($this->options['type'], array('albums', 'images', 'pages', 'news', 'all'))) {
