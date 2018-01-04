@@ -37,18 +37,22 @@ $option_interface = 'debug';
 zp_register_filter('admin_tabs', 'debug::tabs');
 zp_register_filter('admin_utilities_buttons', 'debug::button');
 
-if (OFFSET_PATH == 2) {
-	if (strpos(getOption('markRelease_state'), '-DEBUG') !== false) {
-		$version = debug::version(false);
-		debug::updateVersion($version);
-	}
-} else if (isset($_REQUEST['markRelease'])) {
+
+
+if (isset($_REQUEST['markRelease'])) {
 	XSRFdefender('markRelease');
 	$version = debug::version($_REQUEST['markRelease'] == 'released');
 	setOption('markRelease_state', $version);
 	debug::updateVersion($version);
 	header('location:' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 	exitZP();
+} else {
+	if (!TEST_RELEASE && strpos(getOption('markRelease_state'), '-DEBUG') !== false) {
+		$version = debug::version(false);
+		debug::updateVersion($version);
+		header('location:' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
+		exitZP();
+	}
 }
 
 class debug {
