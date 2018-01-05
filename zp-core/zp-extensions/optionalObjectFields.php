@@ -622,9 +622,7 @@ class optionalObjectFields extends fieldExtender {
 }
 
 function optionalObjectFields_enable($enabled) {
-	if (!$enabled) {
-		requestSetup('optionalObjectFields');
-	}
+	requestSetup('optionalObjectFields', $enabled ? NULL : gettext('The "owner", "date", "location", "watermark", "credit", "copyright", "extra content", and "codeblocks" Databaase fields will be dropped'));
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database

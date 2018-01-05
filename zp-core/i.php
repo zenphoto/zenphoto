@@ -57,6 +57,7 @@ if (getOption('secure_image_processor')) {
 	if (!$albumobj->checkAccess()) {
 		imageError('403 Forbidden', gettext("Forbidden(1)"));
 	}
+	unset($albumobj);
 }
 
 $args = getImageArgs($_GET);
@@ -139,6 +140,7 @@ if (!SAFE_MODE) {
 			@chmod($dir, FOLDER_MOD);
 		}
 	}
+	unset($dir);
 }
 $process = true;
 // If the file exists, check its modification time and update as needed.

@@ -66,6 +66,7 @@ define('DEBUG_IMAGE', strpos($_debug, 'IMAGE')); // set to true to log image pro
 define('DEBUG_LOCALE', strpos($_debug, 'LOCALE')); // used for examining language selection problems
 define('DEBUG_LOGIN', strpos($_debug, 'LOGIN')); // set to true to log admin saves and login attempts
 define('DEBUG_PLUGINS', strpos($_debug, 'PLUGINS')); // set to true to log plugin load sequence.
+define('DEBUG_FEED', strpos($_debug, 'FEED')); // set to true to log class feed detected issues.
 
 unset($_debug);
 

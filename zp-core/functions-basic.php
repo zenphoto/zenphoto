@@ -16,237 +16,7 @@ $_zp_options = array();
 
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/functions-common.php');
-
-switch (PHP_MAJOR_VERSION) {
-	case 5:
-		switch (PHP_MINOR_VERSION) {
-			case 0:
-			case 1:
-			case 2:
-				define('ENT_FLAGS', ENT_QUOTES);
-				break;
-			case 3:
-				define('ENT_FLAGS', ENT_QUOTES | ENT_IGNORE);
-				break;
-			default: // 4 and beyond
-				define('ENT_FLAGS', ENT_QUOTES | ENT_SUBSTITUTE);
-				break;
-		}
-		break;
-	default: // PHP 6?
-		define('ENT_FLAGS', ENT_QUOTES | ENT_SUBSTITUTE);
-		break;
-}
-
-// Set error reporting.
-if (TEST_RELEASE) {
-	error_reporting(E_ALL | E_STRICT);
-	@ini_set('display_errors', 1);
-}
-
-set_error_handler("zpErrorHandler");
-set_exception_handler("zpExceptionHandler");
-register_shutdown_function('zpShutDownFunction');
-$_configMutex = new zpMutex('cF');
-$_zp_mutex = new zpMutex();
-
-$_zp_conf_vars = array('db_software' => 'NULL', 'mysql_prefix' => '_', 'charset' => 'UTF-8', 'UTF-8' => 'utf8');
-// Including the config file more than once is OK, and avoids $conf missing.
-if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	@eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
-	if (!isset($_zp_conf_vars['UTF-8']) || $_zp_conf_vars['UTF-8'] === true) {
-		$_zp_conf_vars['UTF-8'] = 'utf8';
-	}
-	define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
-} else {
-	define('DATA_MOD', 0777);
-}
-define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
-define('LOCAL_CHARSET', $_zp_conf_vars['charset']);
-if (!isset($_zp_conf_vars['special_pages'])) {
-	$_zp_conf_vars['special_pages'] = array();
-}
-
-if (!defined('CHMOD_VALUE')) {
-	define('CHMOD_VALUE', fileperms(dirname(__FILE__)) & 0666);
-}
-define('FOLDER_MOD', CHMOD_VALUE | 0311);
-define('FILE_MOD', CHMOD_VALUE & 0666);
-
-if (OFFSET_PATH != 2) {
-	if (!file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-		_setup(11);
-	} else if (!file_exists(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php')) {
-		_setup(12);
-	}
-}
-
-require_once(dirname(__FILE__) . '/lib-utf8.php');
-
-if (!defined('FILESYSTEM_CHARSET')) {
-	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
-		define('FILESYSTEM_CHARSET', $_zp_conf_vars['FILESYSTEM_CHARSET']);
-	} else {
-		if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
-			define('FILESYSTEM_CHARSET', 'ISO-8859-1');
-		} else {
-			define('FILESYSTEM_CHARSET', 'UTF-8');
-		}
-	}
-}
-
-// If the server protocol is not set, set it to the default.
-if (!isset($_zp_conf_vars['server_protocol'])) {
-	$_zp_conf_vars['server_protocol'] = 'http';
-}
-
-if (!defined('DATABASE_SOFTWARE') && (extension_loaded(strtolower($_zp_conf_vars['db_software'])) || $_zp_conf_vars['db_software'] == 'NULL')) {
-	require_once(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php');
-	$data = db_connect(array_intersect_key($_zp_conf_vars, array('db_software' => '', 'mysql_user' => '', 'mysql_pass' => '', 'mysql_host' => '', 'mysql_database' => '', 'mysql_prefix' => '', 'UTF-8' => '')), false);
-	if ($data) {
-		$software = db_software();
-		define('MySQL_VERSION', $software['version']);
-	}
-} else {
-	$data = false;
-}
-if (!defined('MySQL_VERSION')) {
-	define('MySQL_VERSION', '0.0.0');
-}
-
-if (!$data && OFFSET_PATH != 2) {
-	_setup(13);
-}
-
-primeOptions();
-define('SITE_LOCALE', getOption('locale'));
-
-$data = getOption('gallery_data');
-if ($data) {
-	$data = getSerializedArray($data);
-} else {
-	$data = array();
-}
-define('GALLERY_SESSION', @$data['album_session']);
-define('GALLERY_SECURITY', @$data['gallery_security']);
-unset($data);
-
-// insure a correct timezone
-if (function_exists('date_default_timezone_set')) {
-	$level = error_reporting(0);
-	$_zp_server_timezone = date_default_timezone_get();
-	date_default_timezone_set($_zp_server_timezone);
-	@ini_set('date.timezone', $_zp_server_timezone);
-	error_reporting($level);
-}
-
-// Set the memory limit higher just in case -- suppress errors if user doesn't have control.
-// 100663296 bytes = 96M
-if (ini_get('memory_limit') && parse_size(ini_get('memory_limit')) < 100663296) {
-	@ini_set('memory_limit', '96M');
-}
-
-// Set the internal encoding
-@ini_set('default_charset', LOCAL_CHARSET);
-if (function_exists('mb_internal_encoding')) {
-	@mb_internal_encoding(LOCAL_CHARSET);
-}
-
-// load graphics libraries in priority order
-// once a library has concented to load, all others will
-// abdicate.
-$_zp_graphics_optionhandlers = array();
-$try = array('lib-GD.php', 'lib-NoGraphics.php');
-if (getOption('use_imagick')) {
-	array_unshift($try, 'lib-Imagick.php');
-}
-while (!function_exists('zp_graphicsLibInfo')) {
-	require_once(dirname(__FILE__) . '/' . array_shift($try));
-}
-$_zp_cachefileSuffix = zp_graphicsLibInfo();
-
-
-define('GRAPHICS_LIBRARY', $_zp_cachefileSuffix['Library']);
-unset($_zp_cachefileSuffix['Library']);
-unset($_zp_cachefileSuffix['Library_desc']);
-$_zp_supported_images = $_zp_images_classes = array();
-foreach ($_zp_cachefileSuffix as $key => $type) {
-	if ($type) {
-		$_zp_images_classes[$_zp_supported_images[] = strtolower($key)] = 'Image';
-	}
-}
-
-require_once(dirname(__FILE__) . '/lib-encryption.php');
-
-//NOTE: SERVER_PROTOCOL is the option PROTOCOL is what should be used in links!!!!
-define('SERVER_PROTOCOL', getOption('server_protocol'));
-switch (SERVER_PROTOCOL) {
-	case 'https':
-		define('PROTOCOL', 'https');
-		break;
-	default:
-		if (secureServer()) {
-			define('PROTOCOL', 'https');
-		} else {
-			define('PROTOCOL', 'http');
-		}
-		break;
-}
-
-if (!defined('COOKIE_PESISTENCE')) {
-	$persistence = getOption('cookie_persistence');
-	if (!$persistence)
-		$persistence = 5184000;
-	define('COOKIE_PESISTENCE', $persistence);
-	unset($persistence);
-}
-if ($c = getOption('zenphoto_cookie_path')) {
-	define('COOKIE_PATH', $c);
-} else {
-	define('COOKIE_PATH', WEBPATH);
-}
-
-define('SAFE_MODE', preg_match('#(1|ON)#i', ini_get('safe_mode')));
-define('FULLHOSTPATH', PROTOCOL . "://" . $_SERVER['HTTP_HOST']);
-define('FULLWEBPATH', FULLHOSTPATH . WEBPATH);
-define('SAFE_MODE_ALBUM_SEP', '__');
-define('SERVERCACHE', SERVERPATH . '/' . CACHEFOLDER);
-define('MOD_REWRITE', getOption('mod_rewrite'));
-
-define('DEBUG_LOG_SIZE', getOption('debug_log_size'));
-
-define('ALBUM_FOLDER_WEBPATH', getAlbumFolder(WEBPATH));
-define('ALBUM_FOLDER_SERVERPATH', getAlbumFolder(SERVERPATH));
-define('ALBUM_FOLDER_EMPTY', getAlbumFolder(''));
-
-define('IMAGE_WATERMARK', getOption('fullimage_watermark'));
-define('FULLIMAGE_WATERMARK', getOption('fullsizeimage_watermark'));
-define('THUMB_WATERMARK', getOption('Image_watermark'));
-define('OPEN_IMAGE_CACHE', !getOption('protected_image_cache'));
-define('IMAGE_CACHE_SUFFIX', getOption('image_cache_suffix'));
-
-define('DATE_FORMAT', getOption('date_format'));
-
-define('IM_SUFFIX', getOption('mod_rewrite_image_suffix'));
-define('UNIQUE_IMAGE', getOption('unique_image_prefix') && IM_SUFFIX && MOD_REWRITE);
-define('UTF8_IMAGE_URI', getOption('UTF8_image_URI'));
-define('MEMBERS_ONLY_COMMENTS', getOption('comment_form_members_only'));
-
-define('HASH_SEED', getOption('extra_auth_hash_text'));
-define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
-
-/**
- * encodes a pre-sanitized string to be used as a Javascript parameter
- *
- * @param string $this_string
- * @return string
- */
-function js_encode($this_string) {
-	global $_zp_UTF8;
-	$this_string = preg_replace("/\r?\n/", "\\n", $this_string);
-	$this_string = utf8::encode_javascript($this_string);
-	return $this_string;
-}
+require_once(dirname(__FILE__) . '/initialize-basic.php');
 
 function primeOptions() {
 	global $_zp_options;
@@ -466,7 +236,7 @@ function isHandledAlbum($path) {
 	global $_zp_albumHandlers;
 	foreach (array_keys($_zp_albumHandlers) as $suffix) {
 		if (file_exists($path . '.' . $suffix)) {
-//	it is a handled album sans suffix
+			//	it is a handled album sans suffix
 			return $suffix;
 		}
 	} return NULL;
@@ -572,65 +342,6 @@ function getImageCacheFilename($album8, $image8, $args) {
 		$result = '/' . $album . $albumsep . $image . $postfix . '.' . $suffix;
 	}
 	return $result;
-}
-
-/**
- * Returns an i.php "image name" for an image not within the albums structure
- *
- * @param string $image Path to the image
- * @return string
- */
-function makeSpecialImageName($image) {
-	$filename = basename($image);
-	$base = explode('/', replaceScriptPath(dirname($image)));
-	$sourceFolder = array_shift($base);
-	$sourceSubfolder = implode('/', $base);
-	return array('source' => $sourceFolder . '/' . $sourceSubfolder . '/' . $filename, 'name' => $sourceFolder . '_' . basename($sourceSubfolder) . '_' . $filename);
-}
-
-define('NO_WATERMARK', '!');
-
-/**
- * Returns the watermark image to pass to i.php
- *
- * Note: this should be used for "real" images only since thumbnail handling for Video and TextObjects is special
- * and the "album" thumbnail is not appropriate for the "default" images for those
- *
- * @param $image image object in question
- * @param $use what the watermark use is
- * @return string
- */
-function getWatermarkParam($image, $use) {
-	$watermark_use_image = $image->getWatermark();
-	if (!empty($watermark_use_image) && ($image->getWMUse() & $use)) { //	Use the image defined watermark
-		return $watermark_use_image;
-	}
-	$id = NULL;
-	$album = $image->album;
-	if ($use & (WATERMARK_FULL)) { //	watermark for the full sized image
-		$watermark_use_image = getAlbumInherited($album->name, 'watermark', $id);
-		if (empty($watermark_use_image)) {
-			$watermark_use_image = FULLIMAGE_WATERMARK;
-		}
-	} else {
-		if ($use & (WATERMARK_IMAGE)) { //	watermark for the image
-			$watermark_use_image = getAlbumInherited($album->name, 'watermark', $id);
-			if (empty($watermark_use_image)) {
-				$watermark_use_image = IMAGE_WATERMARK;
-			}
-		} else {
-			if ($use & WATERMARK_THUMB) { //	watermark for the thumb
-				$watermark_use_image = getAlbumInherited($album->name, 'watermark_thumb', $id);
-				if (empty($watermark_use_image)) {
-					$watermark_use_image = THUMB_WATERMARK;
-				}
-			}
-		}
-	}
-	if (!empty($watermark_use_image)) {
-		return $watermark_use_image;
-	}
-	return NO_WATERMARK; //	apply no watermark
 }
 
 /**
@@ -859,9 +570,6 @@ function getImageProcessorURI($args, $album, $image) {
 	return $uri;
 }
 
-// Don't let anything get above this, to save the server from burning up...
-define('MAX_SIZE', getOption('image_max_size'));
-
 /**
  * Extract the image parameters from the input variables
  * @param array $set
@@ -993,39 +701,6 @@ function getAllowedTags($which) {
 			break;
 	}
 	return array();
-}
-
-/**
- * Returns either the rewrite path or the plain, non-mod_rewrite path
- * based on the mod_rewrite option.
- * The given paths can start /with or without a slash, it doesn't matter.
- *
- * IDEA: this function could be used to specially escape items in
- * the rewrite chain, like the # character (a bug in mod_rewrite).
- *
- * This is here because it's used in both template-functions.php and in the classes.
- * @param string $rewrite is the path to return if rewrite is enabled. (eg: "/myalbum")
- * @param string $plain is the path if rewrite is disabled (eg: "/?album=myalbum")
- * @param bool $webpath host path to be prefixed. If "false" is passed you will get a localized "WEBPATH"
- * @return string
- */
-function rewrite_path($rewrite, $plain, $webpath = NULL) {
-	if (is_null($webpath)) {
-		if (defined('LOCALE_TYPE') && LOCALE_TYPE == 1) {
-			$webpath = seo_locale::localePath();
-		} else {
-			$webpath = WEBPATH;
-		}
-	}
-	if (MOD_REWRITE) {
-		$path = $rewrite;
-	} else {
-		$path = $plain;
-	}
-	if ($path && $path{0} == "/") {
-		$path = substr($path, 1);
-	}
-	return $webpath . "/" . $path;
 }
 
 /**
@@ -1190,8 +865,7 @@ function parse_size($size) {
 	}
 }
 
-/** getAlbumArray - returns an array of folder names corresponding to the
- *     given album string.
+/** getAlbumArray - returns an array of folder names corresponding to the given album string.
  * @param string $albumstring is the path to the album as a string. Ex: album/subalbum/my-album
  * @param string $includepaths is a boolean whether or not to include the full path to the album
  *    in each item of the array. Ex: when $includepaths==false, the above array would be
@@ -1263,7 +937,7 @@ function getAlbumInherited($folder, $field, &$id) {
  * @return string
  */
 function imageThemeSetup($album) {
-// we need to conserve memory in i.php so loading the classes is out of the question.
+	// we need to conserve memory in i.php so loading the classes is out of the question.
 	$id = NULL;
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {
@@ -1272,24 +946,6 @@ function imageThemeSetup($album) {
 	}
 	loadLocalOptions($id, $theme);
 	return $theme;
-}
-
-/**
- * Checks access for the album root
- *
- * @param bit $action what the caller wants to do
- *
- */
-function accessAllAlbums($action) {
-	global $_zp_admin_album_list, $_zp_loggedin;
-	if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-		if (zp_loggedin($action))
-			return true;
-	}
-	if (zp_loggedin(ALL_ALBUMS_RIGHTS) && ($action == LIST_RIGHTS)) { // sees all
-		return $_zp_loggedin;
-	}
-	return false;
 }
 
 /**
@@ -1398,13 +1054,18 @@ function checkInstall() {
 /**
  * registers a request to have setup run
  * @param string $whom the requestor
+ * @param string $addl additional information for request message
  *
  * @author Stephen Billard
  * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
-function requestSetup($whom) {
+function requestSetup($whom, $addl = NULL) {
 	$sig = getSerializedArray(getOption('zenphoto_install'));
 	$sig['REQUESTS'][$whom] = $whom;
+	if (!is_null($addl)) {
+		$sig['REQUESTS'][$whom] .= ' (' . $addl . ')';
+	}
+
 	setOption('zenphoto_install', serialize($sig));
 }
 

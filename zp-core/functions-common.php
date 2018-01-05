@@ -33,26 +33,6 @@ function db_quote($string) {
 }
 
 /**
- * Returns a list of database tables for the installation
- * @return type
- */
-function getDBTables() {
-	$tables = array();
-	$prefix = trim(prefix(), '`');
-	$resource = db_show('tables');
-	if ($resource) {
-		$result = array();
-		while ($row = db_fetch_assoc($resource)) {
-			$table = array_shift($row);
-			$table = substr($table, strlen($prefix));
-			$tables[] = $table;
-		}
-		db_free_result($resource);
-	}
-	return $tables;
-}
-
-/**
  * Returns the viewer's IP address
  * Deals with transparent proxies
  *
@@ -63,22 +43,6 @@ function getUserIP() {
 		return sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
 	}
 	return sanitize($_SERVER['REMOTE_ADDR']);
-}
-
-/**
- * Returns true if we are running on a Windows server
- *
- * @return bool
- */
-function isWin() {
-	return (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN');
-}
-
-/**
- * Returns true if we are running on a Macintosh
- */
-function isMac() {
-	return strtoupper(PHP_OS) == 'DARWIN';
 }
 
 /**
@@ -235,8 +199,6 @@ function stripSuffix($filename) {
  * @return string
  */
 function sanitize_path($filename) {
-	if (get_magic_quotes_gpc())
-		$filename = stripslashes(trim($filename));
 	$filename = strip_tags(str_replace('\\', '/', $filename));
 	$filename = preg_replace(array('/x00/', '/\/\/+/', '/\/\.\./', '/\/\./', '/:/', '/</', '/>/', '/\?/', '/\*/', '/\"/', '/\|/', '/\/+$/', '/^\/+/'), '', $filename);
 	return $filename;
@@ -312,26 +274,13 @@ function ksesProcess($input_string, $allowed_tags) {
 	}
 }
 
-/**
- * Cleans tags and some content.
- * @param type $content
- * @return type
- */
-function getBare($content) {
-	return ksesProcess($content, array());
-}
-
 /** returns a sanitized string for the sanitize function
  * @param string $input_string
  * @param string $sanitize_level See sanitize()
  * @return string the sanitized string.
  */
 function sanitize_string($input, $sanitize_level) {
-	// Strip slashes if get_magic_quotes_gpc is enabled.
 	if (is_string($input)) {
-		if (get_magic_quotes_gpc()) {
-			$input = stripslashes($input);
-		}
 		$input = str_replace(chr(0), " ", $input);
 		switch ($sanitize_level) {
 			case 0:
@@ -604,7 +553,7 @@ function debugLogVar($message) {
 	foreach ($formatting as $pattern) {
 		$str = preg_replace('~' . $pattern . '~', '', $str);
 	}
-	$str = getBare($str);
+	$str = ksesProcess($str, array());
 
 	debugLog(trim($message) . "\r" . html_decode($str), false, $log);
 }
@@ -777,19 +726,17 @@ function getSerializedArray($string) {
 	if (is_array($string)) {
 		return $string;
 	}
-	if (is_null($string) || $string === '') {
+	if (empty($string)) {
 		return array();
 	}
-	if (preg_match('/^a:[0-9]+:{/', $string)) {
-		$r = @unserialize($string);
-		if ($r) {
-			return $r;
+	if (is_string($string) && (($data = @unserialize($string)) !== FALSE || $string === 'b:0;')) {
+		if (is_array($data)) {
+			return $data;
 		} else {
-			return array();
+			return array($data);
 		}
-	} else {
-		return array($string);
 	}
+	return array($string);
 }
 
 /**
@@ -873,20 +820,6 @@ class zpMutex {
 			return true;
 		}
 		return false;
-	}
-
-}
-
-if (!function_exists('hex2bin')) {
-
-	function hex2bin($h) {
-		if (!is_string($h))
-			return null;
-		$r = '';
-		for ($a = 0; $a < strlen($h); $a+=2) {
-			$r .= chr(hexdec($h{$a} . $h{($a + 1)}));
-		}
-		return $r;
 	}
 
 }

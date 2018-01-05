@@ -560,6 +560,8 @@ class ExternalFeed extends feed {
 				</channel>
 			</external>
 			<?php
+		} else {
+			self::feed404();
 		}
 	}
 
@@ -574,7 +576,6 @@ if (!OFFSET_PATH) {
 		if (!$_GET['externalfeed']) {
 			$_GET['externalfeed'] = 'gallery';
 		}
-		//	load the theme plugins just incase
 		$_zp_gallery_page = 'rss.php';
 		$e = new ExternalFeed(sanitize($_GET));
 		$e->printFeed();

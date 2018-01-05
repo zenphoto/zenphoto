@@ -13,6 +13,22 @@ require_once(dirname(dirname(__FILE__)) . '/functions-config.php');
 define('SETUPLOG', SERVERPATH . '/' . DATA_FOLDER . '/setup.log');
 
 /**
+ * Returns true if we are running on a Windows server
+ *
+ * @return bool
+ */
+function isWin() {
+	return (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN');
+}
+
+/**
+ * Returns true if we are running on a Macintosh
+ */
+function isMac() {
+	return strtoupper(PHP_OS) == 'DARWIN';
+}
+
+/**
  *
  * enumerates the files in folder(s)
  * @param $folder
@@ -476,7 +492,7 @@ function configMod() {
 
 function printSetupFooter() {
 	echo "<div id=\"footer\">";
-	echo gettext('<span class="zen-logo"><a href="https://' . GITHUB . ' title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zen-logo-light.png" /></a></span> ');
+	echo gettext('<span class="zen-logo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zen-logo-light.png" /></a></span> ');
 	echo ' | <a href="https://' . GITHUB . '/issues" title="Support">' . gettext('Support') . '</a> | <a href="https://' . GITHUB . '/commits/master" title="' . gettext('View Change log') . '">' . gettext('Change log') . "</a>\n</div>";
 }
 

@@ -7,40 +7,8 @@
  */
 // force UTF-8 Ø
 
-global $_zp_current_context_stack, $_zp_HTML_cache;
-
-if (!function_exists("json_encode")) {
-// load the drop-in replacement library
-	require_once(dirname(__FILE__) . '/lib-json.php');
-}
-
-require_once(dirname(__FILE__) . '/functions-filter.php');
-require_once(dirname(__FILE__) . '/lib-kses.php');
 require_once(dirname(__FILE__) . '/functions-basic.php');
-
-$_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
-$_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
-require_once(dirname(__FILE__) . '/functions-i18n.php');
-
-if (GALLERY_SESSION) {
-	zp_session_start();
-}
-
-define('ZENPHOTO_LOCALE', setMainDomain());
-
-require_once(dirname(__FILE__) . '/load_objectClasses.php');
-
-$_zp_current_context_stack = array();
-
-$_zp_albumthumb_selector = array(array('field' => '', 'direction' => '', 'desc' => 'random'),
-		array('field' => 'id', 'direction' => 'DESC', 'desc' => gettext('most recent')),
-		array('field' => 'mtime', 'direction' => '', 'desc' => gettext('oldest')),
-		array('field' => 'title', 'direction' => '', 'desc' => gettext('first alphabetically')),
-		array('field' => 'hitcounter', 'direction' => 'DESC', 'desc' => gettext('most viewed'))
-);
-
-$_zp_missing_album = new TransientAlbum(gettext('missing'));
-$_zp_missing_image = new Transientimage($_zp_missing_album, SERVERPATH . '/' . ZENFOLDER . '/images/err-imagenotfound.png');
+require_once(dirname(__FILE__) . '/initialize-general.php');
 
 /**
  * parses the allowed HTML tags for use by htmLawed
@@ -123,26 +91,28 @@ function truncate_string($string, $length, $elipsis = '...') {
 	return $string;
 }
 
-if (!class_exists('tidy')) {
-	require_once( SERVERPATH . '/' . ZENFOLDER . '/htmLawed.php');
-}
-
 /**
  *
  * fixes unbalanced HTML tags. Used by shortenContent, html_encodeTagged
  * @param string $html
  * @return string
  */
-function cleanHTML($html) {
-	if (class_exists('tidy')) {
+if (class_exists('tidy')) {
+
+	function cleanHTML($html) {
 		$tidy = new tidy();
 		$tidy->parseString($html, array('preserve-entities' => TRUE, 'indent' => TRUE, 'markup' => TRUE, 'show-body-only' => TRUE, 'wrap' => 0, 'quote-marks' => TRUE), 'utf8');
 		$tidy->cleanRepair();
-		$html = $tidy;
-	} else {
-		$html = htmLawed($html, array('tidy' => '2s2n'));
+		return $tidy;
 	}
-	return $html;
+
+} else {
+	require_once( SERVERPATH . '/' . ZENFOLDER . '/htmLawed.php');
+
+	function cleanHTML($html) {
+		return htmLawed($html, array('tidy' => '2s2n'));
+	}
+
 }
 
 /**
@@ -266,6 +236,39 @@ function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 	}
 
 	return $articlecontent;
+}
+
+/**
+ * Returns either the rewrite path or the plain, non-mod_rewrite path
+ * based on the mod_rewrite option.
+ * The given paths can start /with or without a slash, it doesn't matter.
+ *
+ * IDEA: this function could be used to specially escape items in
+ * the rewrite chain, like the # character (a bug in mod_rewrite).
+ *
+ * This is here because it's used in both template-functions.php and in the classes.
+ * @param string $rewrite is the path to return if rewrite is enabled. (eg: "/myalbum")
+ * @param string $plain is the path if rewrite is disabled (eg: "/?album=myalbum")
+ * @param bool $webpath host path to be prefixed. If "false" is passed you will get a localized "WEBPATH"
+ * @return string
+ */
+function rewrite_path($rewrite, $plain, $webpath = NULL) {
+	if (is_null($webpath)) {
+		if (defined('LOCALE_TYPE') && LOCALE_TYPE == 1) {
+			$webpath = seo_locale::localePath();
+		} else {
+			$webpath = WEBPATH;
+		}
+	}
+	if (MOD_REWRITE) {
+		$path = $rewrite;
+	} else {
+		$path = $plain;
+	}
+	if ($path && $path{0} == "/") {
+		$path = substr($path, 1);
+	}
+	return $webpath . "/" . $path;
 }
 
 /**
@@ -551,6 +554,24 @@ function sortByMultilingual($dbresult, $field, $descending) {
 		$result[$key] = $dbresult[$key];
 	}
 	return $result;
+}
+
+/**
+ * Checks access for the album root
+ *
+ * @param bit $action what the caller wants to do
+ *
+ */
+function accessAllAlbums($action) {
+	global $_zp_admin_album_list, $_zp_loggedin;
+	if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+		if (zp_loggedin($action))
+			return true;
+	}
+	if (zp_loggedin(ALL_ALBUMS_RIGHTS) && ($action == LIST_RIGHTS)) { // sees all
+		return $_zp_loggedin;
+	}
+	return false;
 }
 
 /**
@@ -1135,11 +1156,6 @@ function setupTheme($album = NULL) {
 	return $theme;
 }
 
-define('SELECT_IMAGES', 1);
-define('SELECT_ALBUMS', 2);
-define('SELECT_PAGES', 4);
-define('SELECT_ARTICLES', 8);
-
 /**
  * Returns an array of unique tag names
  *
@@ -1594,6 +1610,63 @@ function safe_fnmatch($pattern, $string) {
 }
 
 /**
+ * Returns an i.php "image name" for an image not within the albums structure
+ *
+ * @param string $image Path to the image
+ * @return string
+ */
+function makeSpecialImageName($image) {
+	$filename = basename($image);
+	$base = explode('/', replaceScriptPath(dirname($image)));
+	$sourceFolder = array_shift($base);
+	$sourceSubfolder = implode('/', $base);
+	return array('source' => $sourceFolder . '/' . $sourceSubfolder . '/' . $filename, 'name' => $sourceFolder . '_' . basename($sourceSubfolder) . '_' . $filename);
+}
+
+/**
+ * Returns the watermark image to pass to i.php
+ *
+ * Note: this should be used for "real" images only since thumbnail handling for Video and TextObjects is special
+ * and the "album" thumbnail is not appropriate for the "default" images for those
+ *
+ * @param $image image object in question
+ * @param $use what the watermark use is
+ * @return string
+ */
+function getWatermarkParam($image, $use) {
+	$watermark_use_image = $image->getWatermark();
+	if (!empty($watermark_use_image) && ($image->getWMUse() & $use)) { //	Use the image defined watermark
+		return $watermark_use_image;
+	}
+	$id = NULL;
+	$album = $image->album;
+	if ($use & (WATERMARK_FULL)) { //	watermark for the full sized image
+		$watermark_use_image = getAlbumInherited($album->name, 'watermark', $id);
+		if (empty($watermark_use_image)) {
+			$watermark_use_image = FULLIMAGE_WATERMARK;
+		}
+	} else {
+		if ($use & (WATERMARK_IMAGE)) { //	watermark for the image
+			$watermark_use_image = getAlbumInherited($album->name, 'watermark', $id);
+			if (empty($watermark_use_image)) {
+				$watermark_use_image = IMAGE_WATERMARK;
+			}
+		} else {
+			if ($use & WATERMARK_THUMB) { //	watermark for the thumb
+				$watermark_use_image = getAlbumInherited($album->name, 'watermark_thumb', $id);
+				if (empty($watermark_use_image)) {
+					$watermark_use_image = THUMB_WATERMARK;
+				}
+			}
+		}
+	}
+	if (!empty($watermark_use_image)) {
+		return $watermark_use_image;
+	}
+	return NO_WATERMARK; //	apply no watermark
+}
+
+/**
  * returns a list of comment record 'types' for "images"
  * @param string $quote quotation mark to use
  *
@@ -1751,6 +1824,15 @@ function save_context() {
 function restore_context() {
 	global $_zp_current_context, $_zp_current_context_stack;
 	$_zp_current_context = array_pop($_zp_current_context_stack);
+}
+
+/**
+ * Cleans tags and some content.
+ * @param type $content
+ * @return type
+ */
+function getBare($content) {
+	return ksesProcess($content, array());
 }
 
 /**
@@ -2064,6 +2146,26 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 }
 
 /**
+ * Returns a list of database tables for the installation
+ * @return type
+ */
+function getDBTables() {
+	$tables = array();
+	$prefix = trim(prefix(), '`');
+	$resource = db_show('tables');
+	if ($resource) {
+		$result = array();
+		while ($row = db_fetch_assoc($resource)) {
+			$table = array_shift($row);
+			$table = substr($table, strlen($prefix));
+			$tables[] = $table;
+		}
+		db_free_result($resource);
+	}
+	return $tables;
+}
+
+/**
  * Returns true if all the right conditions are set to allow comments for the $type
  *
  * @param string $type Which comments
@@ -2111,6 +2213,33 @@ function seoFriendlyJS() {
 		}
 		<?php
 	}
+}
+
+if (!function_exists('hex2bin')) {
+
+	function hex2bin($h) {
+		if (!is_string($h))
+			return null;
+		$r = '';
+		for ($a = 0; $a < strlen($h); $a+=2) {
+			$r .= chr(hexdec($h{$a} . $h{($a + 1)}));
+		}
+		return $r;
+	}
+
+}
+
+/**
+ * encodes a pre-sanitized string to be used as a Javascript parameter
+ *
+ * @param string $this_string
+ * @return string
+ */
+function js_encode($this_string) {
+	global $_zp_UTF8;
+	$this_string = preg_replace("/\r?\n/", "\\n", $this_string);
+	$this_string = utf8::encode_javascript($this_string);
+	return $this_string;
 }
 
 /**
@@ -2702,16 +2831,16 @@ class zpFunctions {
 	 * @param string $text
 	 * @return string
 	 */
-	static function unTagURLs($text) {
-		if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
-			$text = getSerializedArray($text);
+	static function unTagURLs($text, $debug = NULL) {
+		if (is_string($text) && (($data = @unserialize($text)) !== FALSE || $text === 'b:0;')) { //	serialized array
+			$text = $data;
 			$serial = true;
 		} else {
 			$serial = false;
 		}
 		if (is_array($text)) {
 			foreach ($text as $key => $textelement) {
-				$text[$key] = self::unTagURLs($textelement);
+				$text[$key] = self::unTagURLs($textelement, $debug + 1);
 			}
 			if ($serial) {
 				$text = serialize($text);
