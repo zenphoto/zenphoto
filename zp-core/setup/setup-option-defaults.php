@@ -719,6 +719,7 @@ foreach ($data as $key => $value) {
 $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
 
 setOptionDefault('search_cache_duration', 30);
+setOptionDefault('cache_random_search', 1);
 setOptionDefault('search_within', 1);
 
 setOptionDefault('plugins_per_page', 25);
