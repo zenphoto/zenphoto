@@ -54,73 +54,38 @@ if (OFFSET_PATH == 2) {
 }
 
 //Zenpage rewrite definitions
-$_zp_conf_vars['special_pages']['news'] = array(
-		'define' => '_NEWS_',
-		'rewrite' => getOption('zenpageNewsLink'),
-		'option' => 'zenpageNewsLink', 'default' => 'news');
-$_zp_conf_vars['special_pages']['category'] = array(
-		'define' => '_CATEGORY_',
-		'rewrite' => getOption('zenpageCategoryLink'),
-		'option' => 'zenpageCategoryLink',
-		'default' => '_NEWS_/category');
-$_zp_conf_vars['special_pages']['news_archive'] = array(
-		'define' => '_NEWS_ARCHIVE_',
-		'rewrite' => getOption('zenpageNewsArchiveLink'),
-		'option' => 'zenpageNewsArchiveLink', 'default' => '_NEWS_/archive');
-$_zp_conf_vars['special_pages']['pages'] = array(
-		'define' => '_PAGES_',
-		'rewrite' => getOption('zenpagePagesLink'),
-		'option' => 'zenpagePagesLink', 'default' => 'pages');
+$_zp_conf_vars['special_pages']['news'] = array('define'	 => '_NEWS_', 'rewrite'	 => getOption('zenpageNewsLink'),
+				'option'	 => 'zenpageNewsLink', 'default'	 => 'news');
+$_zp_conf_vars['special_pages']['category'] = array('define'	 => '_CATEGORY_', 'rewrite'	 => getOption('zenpageCategoryLink'),
+				'option'	 => 'zenpageCategoryLink', 'default'	 => '_NEWS_/category');
+$_zp_conf_vars['special_pages']['news_archive'] = array('define'	 => '_NEWS_ARCHIVE_', 'rewrite'	 => getOption('zenpageNewsArchiveLink'),
+				'option'	 => 'zenpageNewsArchiveLink', 'default'	 => '_NEWS_/archive');
+$_zp_conf_vars['special_pages']['pages'] = array('define'	 => '_PAGES_', 'rewrite'	 => getOption('zenpagePagesLink'),
+				'option'	 => 'zenpagePagesLink', 'default'	 => 'pages');
 
-$_zp_conf_vars['special_pages'][] = array(
-		'definition' => '%NEWS%',
-		'rewrite' => '_NEWS_');
-$_zp_conf_vars['special_pages'][] = array(
-		'definition' => '%CATEGORY%',
-		'rewrite' => '_CATEGORY_');
-$_zp_conf_vars['special_pages'][] = array(
-		'definition' => '%NEWS_ARCHIVE%',
-		'rewrite' => '_NEWS_ARCHIVE_');
-$_zp_conf_vars['special_pages'][] = array(
-		'definition' => '%PAGES%',
-		'rewrite' => '_PAGES_');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%NEWS%', 'rewrite' => '_NEWS_');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%CATEGORY%', 'rewrite' => '_CATEGORY_');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%NEWS_ARCHIVE%', 'rewrite' => '_NEWS_ARCHIVE_');
+$_zp_conf_vars['special_pages'][] = array('definition' => '%PAGES%', 'rewrite' => '_PAGES_');
 
-$_zp_conf_vars['special_pages'][] = array(
-		'define' => false,
-		'rewrite' => '^%PAGES%/*$',
-		'rule' => '%REWRITE% index.php?p=pages [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array(
-		'define' => false,
-		'rewrite' => '^%PAGES%/(.*)/?$',
-		'rule' => '%REWRITE% index.php?p=pages&title=$1 [L, QSA]');
-$_zp_conf_vars['special_pages'][] = array(
-		'define' => false,
-		'rewrite' => '^%CATEGORY%/(.*)/([0-9]+)/?$',
-		'rule' => '%REWRITE% index.php?p=news&category=$1&page=$2 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array(
-		'define' => false,
-		'rewrite' => '^%CATEGORY%/(.*)/?$',
-		'rule' => '%REWRITE% index.php?p=news&category=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array(
-		'define' => false, 'rewrite' =>
-		'^%NEWS_ARCHIVE%/(.*)/([0-9]+)/?$',
-		'rule' => '%REWRITE% index.php?p=news&date=$1&page=$2 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array(
-		'define' => false,
-		'rewrite' => '^%NEWS_ARCHIVE%/(.+)/?$',
-		'rule' => '%REWRITE% index.php?p=news&date=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array(
-		'define' => false,
-		'rewrite' => '^%NEWS%/([0-9]+)/?$',
-		'rule' => '%REWRITE% index.php?p=news&page=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array(
-		'define' => false,
-		'rewrite' => '^%NEWS%/(.+)/?$',
-		'rule' => '%REWRITE% index.php?p=news&title=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array(
-		'define' => false,
-		'rewrite' => '^%NEWS%/*$',
-		'rule' => '%REWRITE% index.php?p=news [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%PAGES%/*$',
+				'rule'		 => '%REWRITE% index.php?p=pages [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%PAGES%/(.*)/?$',
+				'rule'		 => '%REWRITE% index.php?p=pages&title=$1 [L, QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%CATEGORY%/(.*)/([0-9]+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&category=$1&page=$2 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%CATEGORY%/(.*)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&category=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.*)/([0-9]+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&date=$1&page=$2 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS_ARCHIVE%/(.+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&date=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/([0-9]+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&page=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/(.+)/?$',
+				'rule'		 => '%REWRITE% index.php?p=news&title=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%NEWS%/*$',
+				'rule'		 => '%REWRITE% index.php?p=news [L,QSA]');
 
 zp_register_filter('checkForGuest', 'zenpagecms::checkForGuest');
 zp_register_filter('isMyItemToView', 'zenpagecms::isMyItemToView');
@@ -382,7 +347,6 @@ class zenpagecms {
 			$redirect .= '&amp;title=' . urlencode($_zp_current_zenpage_news->getTitlelink());
 		} else {
 			if (!empty($_zp_current_category)) {
-				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newscategory&titlelink=" . html_encode($_zp_current_category->getTitleLink()) . "\">" . gettext("Edit Category") . "</a></li>";
 				$redirect .= '&amp;category=' . $_zp_current_category->getTitlelink();
 			}
 		}
