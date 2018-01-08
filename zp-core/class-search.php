@@ -1498,7 +1498,7 @@ class SearchEngine {
 			return array();
 		} // nothing to find
 		$criteria = $this->getCacheTag('albums', serialize($searchstring), $sortkey . '_' . $sortdirection . '_' . (int) $mine);
-		if ($this->albums && $criteria == $this->searches['albums']) {
+		if ($criteria && $this->albums && $criteria == $this->searches['albums']) {
 			return $this->albums;
 		}
 		$albums = $this->getCachedSearch($criteria);
@@ -1640,8 +1640,7 @@ class SearchEngine {
 			return array(); // nothing to find
 		}
 		$criteria = $this->getCacheTag('images', serialize($searchstring) . '_' . $searchdate, $sortkey . '_' . $sortdirection . '_' . (int) $mine);
-
-		if ($criteria == $this->searches['images']) {
+		if ($criteria && $criteria == $this->searches['images']) {
 			return $this->images;
 		}
 		$images = $this->getCachedSearch($criteria);
@@ -1833,7 +1832,7 @@ class SearchEngine {
 			return array();
 		} // nothing to find
 		$criteria = $this->getCacheTag('pages', serialize($searchstring), $sortkey . '_' . $sortdirection);
-		if ($this->pages && $criteria == $this->searches['pages']) {
+		if ($criteria && $this->pages && $criteria == $this->searches['pages']) {
 			return $this->pages;
 		}
 		if (is_null($this->pages)) {
@@ -1914,7 +1913,7 @@ class SearchEngine {
 			return array();
 		} // nothing to find
 		$criteria = $this->getCacheTag('news', serialize($searchstring), $sortkey . '_' . $sortdirection);
-		if ($this->articles && $criteria == $this->searches['news']) {
+		if ($criteria && $this->articles && $criteria == $this->searches['news']) {
 			return $this->articles;
 		}
 		$result = $this->getCachedSearch($criteria);
@@ -1961,6 +1960,9 @@ class SearchEngine {
 	 * @param string $sort	Sort criteria
 	 */
 	protected function getCacheTag($table, $search, $sort) {
+		if (SEARCH_CACHE_DURATION > 0 || strpos(strtoupper($sort), 'RAND()' !== FALSE) && !getOption('cache_random_search')) {
+			return NULL; //	don't cache
+		}
 		$user = 'guest';
 		$authCookies = Zenphoto_Authority::getAuthCookies();
 		if (!empty($authCookies)) { // some sort of password exists, play it safe and make the tag unique
@@ -1988,7 +1990,7 @@ class SearchEngine {
 	 * @param string $found reslts of the search
 	 */
 	private function cacheSearch($criteria, $found) {
-		if (SEARCH_CACHE_DURATION) {
+		if ($criteria) {
 			$criteria = serialize($criteria);
 			$sql = 'SELECT `id`, `data`, `date` FROM ' . prefix('search_cache') . ' WHERE `criteria` = ' . db_quote($criteria);
 			$result = query_single_row($sql);
@@ -2008,7 +2010,7 @@ class SearchEngine {
 	 * @param string $criteria
 	 */
 	private function getCachedSearch($criteria) {
-		if (SEARCH_CACHE_DURATION) {
+		if ($criteria) {
 			$sql = 'SELECT `id`, `date`, `data` FROM ' . prefix('search_cache') . ' WHERE `criteria` = ' . db_quote($criteria);
 			$result = query_single_row($sql);
 			if ($result) {

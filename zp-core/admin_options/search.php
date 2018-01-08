@@ -16,6 +16,7 @@ function saveOptions() {
 	natcasesort($searchfields);
 	setOption('search_fields', implode(',', $searchfields));
 	setOption('search_cache_duration', sanitize_numeric($_POST['search_cache_duration']));
+	setOption('cache_random_search', (int) isset($_POST['cache_random_search']));
 	$notify = processCredentials('search');
 	setOption('exact_tag_match', sanitize($_POST['tag_match']));
 	setOption('exact_string_match', sanitize($_POST['string_match']));
@@ -367,6 +368,9 @@ function getOptionContent() {
 					<td class="option_name"><?php echo gettext('Cache expiry'); ?></td>
 					<td class="option_value">
 						<?php printf(gettext('redo search after %s minutes.'), '<input type="textbox" size="4" name="search_cache_duration" value="' . getOption('search_cache_duration') . '" />'); ?>
+						<br />
+
+						<input type="checkbox" name="cache_random_search" value="1" <?php if (getoption('cache_random_search')) echo ' checked="checked"'; ?>> <?php echo gettext('cache searches which return randomly sorted items'); ?>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
