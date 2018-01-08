@@ -55,6 +55,7 @@ function printZenJavascripts() {
 function adminToolbox() {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery, $_zp_current_admin_obj, $_zp_loggedin, $_zp_conf_vars;
 	if (zp_loggedin()) {
+		zp_session_start();
 		$zf = FULLWEBPATH . "/" . ZENFOLDER;
 		$page = getCurrentPage();
 		ob_start();
@@ -116,7 +117,6 @@ function adminToolbox() {
 					<?php
 				}
 				zp_apply_filter('admin_toolbox_global', $zf);
-
 				if (zp_loggedin(TAGS_RIGHTS)) {
 					?>
 					<li>
@@ -176,13 +176,11 @@ function adminToolbox() {
 						}
 						if (zp_loggedin(UPLOAD_RIGHTS)) {
 							// admin has upload rights, provide an upload link for a new album
-							if (GALLERY_SESSION) { // XSRF defense requires sessions
-								?>
-								<li>
-									<a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a>
-								</li>
-								<?php
-							}
+							?>
+							<li>
+								<a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a>
+							</li>
+							<?php
 						}
 						if ($_zp_gallery_page == 'index.php') {
 							$redirect = '';
@@ -223,15 +221,12 @@ function adminToolbox() {
 								}
 							}
 							// and a delete link
-							if (GALLERY_SESSION) { // XSRF defense requires sessions
-								?>
-								<li>
-									<a href="javascript:confirmDeleteAlbum('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($albumname)) ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>');"
-										 title="<?php echo gettext('Delete the album'); ?>"><?php echo gettext('Delete album'); ?></a>
-								</li>
-								<?php
-								
-							}
+							?>
+							<li>
+								<a href="javascript:confirmDeleteAlbum('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($albumname)) ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>');"
+									 title="<?php echo gettext('Delete the album'); ?>"><?php echo gettext('Delete album'); ?></a>
+							</li>
+							<?php
 						}
 						if ($_zp_current_album->isMyItem(UPLOAD_RIGHTS) && !$_zp_current_album->isDynamic()) {
 							// provide an album upload link if the admin has upload rights for this album and it is not a dynamic album
@@ -239,14 +234,10 @@ function adminToolbox() {
 							<li>
 								<?php printLinkHTML($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
 							</li>
+							<li>
+								<a href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New Album Here"); ?></a>
+							</li>
 							<?php
-							if (GALLERY_SESSION) { // XSRF defense requires sessions
-								?>
-								<li>
-									<a href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New Album Here"); ?></a>
-								</li>
-								<?php
-							}
 						}
 						zp_apply_filter('admin_toolbox_album', $albumname, $zf);
 						if ($inImage) {
@@ -255,15 +246,11 @@ function adminToolbox() {
 							if (!$_zp_current_album->isDynamic()) { // don't provide links when it is a dynamic album
 								if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
 									// if admin has edit rights on this album, provide a delete link for the image.
-									if (GALLERY_SESSION) { // XSRF defense requires sessions
-										?>
-										<li>
-											<a href="javascript:confirmDelete('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deleteimage&amp;album=<?php echo urlencode(pathurlencode($albumname)); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteImage);"
-												 title="<?php echo gettext("Delete the image"); ?>"><?php echo gettext("Delete image"); ?></a>
-										</li>
-										<?php
-									}
 									?>
+									<li>
+										<a href="javascript:confirmDelete('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deleteimage&amp;album=<?php echo urlencode(pathurlencode($albumname)); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteImage);"
+											 title="<?php echo gettext("Delete the image"); ?>"><?php echo gettext("Delete image"); ?></a>
+									</li>
 									<li>
 										<a href="<?php echo $zf; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($albumname); ?>&amp;singleimage=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo&amp;nopagination"
 											 title="<?php echo gettext('Edit image'); ?>"><?php echo gettext('Edit image'); ?></a>
