@@ -686,6 +686,7 @@ if (extensionEnabled('slideshow2') && !OFFSET_PATH) {
 		global $_myFavorites, $_zp_conf_vars, $_zp_gallery, $_zp_gallery_page, $__cycle_css;
 		if (!isset($_POST['albumid']) && !is_object($albumobj)) {
 			echo '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
+			return;
 		}
 		if (is_null($__cycle_css)) {
 			cycle::js();
