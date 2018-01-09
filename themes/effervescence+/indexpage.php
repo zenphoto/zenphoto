@@ -1,7 +1,8 @@
 <?php
 // force UTF-8 Ø
-if (!defined('WEBPATH'))
+if (!isset($zenpage)) {
 	die();
+}
 ?>
 <!DOCTYPE html>
 <html>

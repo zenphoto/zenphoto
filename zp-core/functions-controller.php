@@ -363,7 +363,6 @@ function zp_load_request() {
 			switch ($page) {
 				case 'search':
 					return zp_load_search();
-					break;
 				case 'pages':
 					if (extensionEnabled('zenpage')) {
 						return load_zenpage_pages(sanitize(trim(@$_GET['title'], '/')));
@@ -374,6 +373,11 @@ function zp_load_request() {
 						return load_zenpage_news(sanitize($_GET));
 					}
 					break;
+				case 'functions':
+				case 'themeoptions':
+				case 'theme_description':
+				case 'password':
+					return false; //	disallowed as theme pages
 			}
 		}
 		//	may need image and album parameters processed
