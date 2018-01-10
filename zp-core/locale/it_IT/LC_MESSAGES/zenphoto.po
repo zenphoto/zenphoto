@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.12\n"
+"Project-Id-Version: Zenphoto 1.4.14\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-13 18:10+0100\n"
-"PO-Revision-Date: 2016-03-13 18:10+0100\n"
+"PO-Revision-Date: 2018-01-10 14:12+0100\n"
 "Last-Translator: Antonio <ranesi@tiscali.it>\n"
 "Language-Team: Antonio Ranesi [bic]\n"
 "Language: it_IT\n"
@@ -5837,12 +5837,12 @@ msgstr "Nascondi dettagli"
 #: zp-core/admin-users.php:585
 #, php-format
 msgid "Show details for user %s"
-msgstr "Mostra dettagli per l'utente %s"
+msgstr "Mostra dettagli per %s"
 
 #: zp-core/admin-users.php:586
 #, php-format
 msgid "Hide details for user %s"
-msgstr "Nascondi dettagli per l'utente %s"
+msgstr "Nascondi dettagli per %s"
 
 #: zp-core/admin-users.php:596
 msgid "New User"
@@ -20932,7 +20932,7 @@ msgstr ""
 "mostrare una lista di questi elementi. Fare clic su un titolo per includere "
 "un collegamento. Andare sopra un collegamento per vedere un estratto della "
 "pagina o articolo. Le pagine o gli articoli non pubblicati sono marcati con "
-"'*' e quelli protetti con '+'. Non ci sono altre opzioni."
+"\"*\" e quelli protetti con \"+\". Non ci sono altre opzioni."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:187
 msgid ""
