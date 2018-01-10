@@ -5,13 +5,13 @@
  * Configure the plugin options as necessary for your e-mail server.
  *
  * @package plugins
- * @subpackage mail
+ * @subpackage phpmailer
  */
 $plugin_is_filter = 800 | CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('PHPMailer')) ? sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('sendmail'))) : '';
-
+$plugin_category = gettext('Mail');
 $option_interface = 'zp_PHPMailer';
 
 if ($plugin_disable) {
@@ -85,10 +85,9 @@ class zp_PHPMailer {
 }
 
 function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
-	require_once(dirname(__FILE__) . '/PHPMailer/class.phpmailer.php');
+	require_once(dirname(__FILE__) . '/PHPMailer/PHPMailerAutoload.php');
 	switch (getOption('PHPMailer_mail_protocol')) {
 		case 'pop3':
-			require_once(dirname(__FILE__) . '/PHPMailer/class.pop3.php');
 			$pop = new POP3();
 			$authorized = $pop->Authorise(getOption('PHPMailer_server'), getOption('PHPMailer_pop_port'), 30, getOption('PHPMailer_user'), getOption('PHPMailer_password'), 0);
 			$mail = new PHPMailer();

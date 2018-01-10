@@ -1,5 +1,17 @@
 <?php
+/**
+ * 
+ * @package plugins
+ * @subpackage deprecated-functions
+*/
 
+/**
+ * 
+ * @global type $files
+ * @param type $folder
+ * @param type $exclude
+ * @return string
+ */
 function getPHPFiles($folder, $exclude) {
 	global $files;
 	$dir = opendir($folder);
@@ -19,7 +31,14 @@ function getPHPFiles($folder, $exclude) {
 	closedir($dir);
 	return $files;
 }
-
+/**
+ * 
+ * @global type $deprecated
+ * @param type $title
+ * @param type $subject
+ * @param type $pattern
+ * @return boolean
+ */
 function formatList($title, $subject, $pattern) {
 	global $deprecated;
 	preg_match_all($pattern, $subject, $matches);
@@ -71,39 +90,51 @@ function formatList($title, $subject, $pattern) {
 
 	return $started;
 }
-
+/**
+ * 
+ * @param type $files
+ * @param type $base
+ * @param type $pattern
+ * @return type
+ */
 function listUses($files, $base, $pattern) {
-	$open = $output = false;
-	$oldLocation = '';
-	foreach ($files as $file) {
-		if (basename($file) != 'deprecated-functions.php') {
-			@set_time_limit(120);
-			$subject = file_get_contents($file);
-			$location = str_replace($base . '/', '', dirname($file));
-			$folders = explode('/', $location);
-			if ($folders[0] != $oldLocation) {
-				$oldLocation = $folders[0];
-				echo '<br /><strong>' . $location . '</strong>';
-			}
-			if ($open) {
-				echo '</ul>';
-			}
-			$script_location = $base . '/' . $location . '/';
-			$script = str_replace($script_location, '', $file);
-			$open = $output = formatList($script, $subject, $pattern);
+	if (is_array($files)) {
+		$open = $output = false;
+		$oldLocation = '';
+		foreach ($files as $file) {
+			if (basename($file) != 'deprecated-functions.php') {
+				@set_time_limit(120);
+				$subject = file_get_contents($file);
+				$location = str_replace($base . '/', '', dirname($file));
+				$folders = explode('/', $location);
+				if ($folders[0] != $oldLocation) {
+					$oldLocation = $folders[0];
+					echo '<br /><strong>' . $location . '</strong>';
+				}
+				if ($open) {
+					echo '</ul>';
+				}
+				$script_location = $base . '/' . $location . '/';
+				$script = str_replace($script_location, '', $file);
+				$open = $output = formatList($script, $subject, $pattern);
+			} 
 		}
+		if ($open) {
+			echo '</ul>';
+		}
+		if ($output) {
+			?>
+			<p class="messagebox"><?php echo gettext('No calls on deprecated functions were found.'); ?></p>
+			<?php
+		}
+		return $output;
 	}
-	if ($open) {
-		echo '</ul>';
-	}
-	if ($output) {
-		?>
-		<p class="messagebox"><?php echo gettext('No calls on deprecated functions were found.'); ?></p>
-		<?php
-	}
-	return $output;
 }
-
+/**
+ * 
+ * @param type $pattern
+ * @return boolean
+ */
 function listDBUses($pattern) {
 	$lookfor = array('images', 'albums', 'news', 'pages');
 	$found = array();

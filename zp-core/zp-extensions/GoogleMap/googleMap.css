@@ -3,10 +3,15 @@ CSS Rules for google map plugin
 Author: Vincent3569
 */
 
-.hidden_map {
-	position: absolute;
-	left: -50000px;
+#map_canvas {
+	width: 100%;
+	height: 400px;
 }
+
+.hidden_map {
+	display: none;
+}
+
 .map_img {
 	text-align: center;
 	margin: 0 0 10px;

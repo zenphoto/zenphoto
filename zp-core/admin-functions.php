@@ -25,7 +25,7 @@ function printAdminFooter($addl = '') {
 	?>
 	<div id="footer">
 		<?php
-		printf(gettext('<a href="http://www.zenphoto.org" title="The simpler media website CMS">Zen<strong>photo</strong></a> version %1$s [%2$s]'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE);
+		printf(gettext('<a href="http://www.zenphoto.org" title="The simpler media website CMS">Zen<strong>photo</strong></a> version %1$s'), ZENPHOTO_VERSION);
 		if (!empty($addl)) {
 			echo ' | ' . $addl;
 		}
@@ -143,7 +143,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				?>
 				$('form.dirty-check').dirtyForms({ 
-					message: '<?php echo addslashes(gettext('You have unsaved changes!')); ?>' 
+					message: '<?php echo addslashes(gettext('You have unsaved changes!')); ?>',
+					ignoreSelector: '.dirtyignore'
 				});
 				});
 				$(function() {
@@ -883,10 +884,15 @@ function printAdminHeader($tab, $subtab = NULL) {
   }
   foreach ($customHandlers as $custom) {
     if ($extension = $custom['extension']) {
-      require_once(getPlugin($extension . '.php'));
+			$getplugin = getPlugin($extension . '.php');
+			if($getplugin) {
+				require_once($getplugin);
+			}
     }
-    $whom = new $custom['whom']();
-    $returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
+		if(class_exists($custom['whom'])) {
+			$whom = new $custom['whom']();
+			$returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
+		}
   }
   return $returntab;
 }
@@ -1303,9 +1309,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<td>
 									<p>
 										<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+												 class="dirtyignore"  
 												 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
-												 value="<?php echo $album->getUser(); ?>" />
+												 value="<?php echo $album->getUser(); ?>" autocomplete="off" />
 									</p>
 								</td>
 							</tr>
@@ -1327,11 +1334,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 										// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
 										?>
 										<input class="dirtyignore" type="password" name="pass" style="display:none;" />
-										<input type="password"
+										<input type="password" 
+													 class="dirtyignore" 
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
 													 onkeydown="passwordClearZ('<?php echo $suffix; ?>');"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
-													 value="<?php echo $x; ?>" />
+													 value="<?php echo $x; ?>" autocomplete="off" />
 										<label><input class="dirtyignore" type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
 																onclick="passwordClear('<?php echo $suffix; ?>');
@@ -1342,7 +1350,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 														 id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
 														 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 														 onkeyup="passwordMatch('<?php echo $suffix; ?>');"
-														 value="<?php echo $x; ?>" />
+														 value="<?php echo $x; ?>" autocomplete="off" />
 										</span>
 									</p>
 								</td>
@@ -2630,7 +2638,7 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 	 */
 	function print_language_string_list($dbstring, $name, $textbox = false, $locale = NULL, $edit = '', $wide = TEXT_INPUT_SIZE, $ulclass = 'language_string_list', $rows = 6) {
 		global $_zp_active_languages, $_zp_current_locale;
-		$dbstring = zpFunctions::unTagURLs($dbstring);
+		$dbstring = unTagURLs($dbstring);
 		if (!empty($edit))
 			$edit = ' class="' . $edit . '"';
 		if (is_null($locale)) {
@@ -4290,24 +4298,6 @@ function httpsRedirect() {
 }
 
 /**
- * Checks for Cross Site Request Forgeries
- * @param string $action
- */
-function XSRFdefender($action) {
-	$token = getXSRFToken($action);
-	if (!isset($_REQUEST['XSRFToken']) || $_REQUEST['XSRFToken'] != $token) {
-		zp_apply_filter('admin_XSRF_access', false, $action);
-		header("HTTP/1.0 302 Found");
-		header("Status: 302 Found");
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
-		exitZP();
-	}
-	unset($_REQUEST['XSRFToken']);
-	unset($_POST['XSRFToken']);
-	unset($_GET['XSRFToken']);
-}
-
-/**
  * getPageSelector "diff" function
  *
  * returns the shortest string difference
@@ -4542,60 +4532,68 @@ function getLogTabs() {
  * Figures out which plugin tabs to display
  */
 function getPluginTabs() {
-	if (isset($_GET['tab'])) {
-		$default = sanitize($_GET['tab']);
-	} else {
-		$default = 'all';
-	}
-	$paths = getPluginFiles('*.php');
+  if (isset($_GET['tab'])) {
+    $default = sanitize($_GET['tab']);
+  } else {
+    $default = 'all';
+  }
+  $paths = getPluginFiles('*.php');
 
-	$classXlate = array(
-					'all'					 => gettext('all'),
-					'admin'				 => gettext('admin'),
-					'demo'				 => gettext('demo'),
-					'development'	 => gettext('development'),
-					'feed'				 => gettext('feed'),
-					'mail'				 => gettext('mail'),
-					'media'				 => gettext('media'),
-					'misc'				 => gettext('misc'),
-					'spam'				 => gettext('spam'),
-					'seo'					 => gettext('seo'),
-					'uploader'		 => gettext('uploader'),
-					'users'				 => gettext('users')
-	);
-	zp_apply_filter('plugin_tabs', $classXlate);
-
-	$currentlist = $classes = $member = array();
-	foreach ($paths as $plugin => $path) {
-		$p = file_get_contents($path);
-		$i = strpos($p, '* @subpackage');
-		if (($key = $i) !== false) {
-			$key = strtolower(trim(substr($p, $i + 13, strpos($p, "\n", $i) - $i - 13)));
-		}
-		if (empty($key)) {
-			$key = 'misc';
-		}
-		$classes[$key]['list'][] = $plugin;
-		if (array_key_exists($key, $classXlate)) {
-			$local = $classXlate[$key];
+  $currentlist = $classes = $member = array();
+  foreach ($paths as $plugin => $path) {
+    $p = file_get_contents($path);
+		$i = sanitize(isolate('$plugin_category', $p));
+		if ($i !== false) {
+			eval($i); // populates variable $plugin_category - ugly but otherwise gettext does not work…
+			$member[$plugin] = strtolower($plugin_category);
 		} else {
-			$local = $classXlate[$key] = $key;
+			// fallback for older plugins using @package for category without gettext
+			$i = strpos($p, '* @subpackage');
+			if (($key = $i) !== false) {
+				$plugin_category = strtolower(trim(substr($p, $i + 13, strpos($p, "\n", $i) - $i - 13)));
+			}
+			$classXlate = array(
+					'active' => gettext('Active'),
+					'all' => gettext('All'),
+					'admin' => gettext('Admin'),
+					'demo' => gettext('Demo'),
+					'development' => gettext('Development'),
+					'feed' => gettext('Feed'),
+					'mail' => gettext('Mail'),
+					'media' => gettext('Media'),
+					'misc' => gettext('Misc'),
+					'spam' => gettext('Spam'),
+					'seo' => gettext('SEO'),
+					'uploader' => gettext('Uploader'),
+					'users' => gettext('Users')
+			);
+			zp_apply_filter('plugin_tabs', $classXlate);
+			if (array_key_exists($plugin_category, $classXlate)) {
+				$local = $classXlate[$plugin_category];
+			} else {
+				$local = $plugin_category;
+			}
+			$member[$plugin] = strtolower($local);
 		}
-		$member[$plugin] = $local;
-	}
+		if (empty($plugin_category)) {
+      $plugin_category = gettext('Misc');
+    }
+    $classes[strtolower($plugin_category)]['list'][] = $plugin;
+    if(extensionEnabled($plugin)) {
+      $classes['active']['list'][] = $plugin;
+    }
+  }
+  ksort($classes);
+  $tabs[gettext('all')] = 'admin-plugins.php?page=plugins&tab=all';
+  $currentlist = array_keys($paths);
 
-	ksort($classes);
-	$tabs[$classXlate['all']] = 'admin-plugins.php?page=plugins&tab=all';
-	$currentlist = array_keys($paths);
-
-
-	foreach ($classes as $class => $list) {
-		$tabs[$classXlate[$class]] = 'admin-plugins.php?page=plugins&tab=' . $class;
-		if ($class == $default) {
-			$currentlist = $list['list'];
-		}
-	}
-	return array($tabs, $default, $currentlist, $paths, $member);
+  foreach ($classes as $class => $list) {
+    $tabs[$class] = 'admin-plugins.php?page=plugins&tab=' . $class;
+    if ($class == $default) {
+      $currentlist = $list['list'];
+    }
+  }
+  return array($tabs, $default, $currentlist, $paths, $member);
 }
 
 function getAdminThumb($image, $size) {

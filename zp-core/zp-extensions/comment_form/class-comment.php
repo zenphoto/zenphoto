@@ -1,7 +1,8 @@
 <?php
 /**
  *Comment Class
- * @package classes
+ * @package plugins
+ * @subpackage comment-form
  */
 
 // force UTF-8 Ø

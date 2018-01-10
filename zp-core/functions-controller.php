@@ -237,7 +237,7 @@ function load_zenpage_news($request) {
 	global $_zp_current_zenpage_news, $_zp_current_category, $_zp_post_date;
 	if (isset($request['date'])) {
 		add_context(ZP_ZENPAGE_NEWS_DATE);
-		$_zp_post_date = zpFunctions::removeTrailingSlash(sanitize($request['date']));
+		$_zp_post_date = removeTrailingSlash(sanitize($request['date']));
 	}
 	if (isset($request['category'])) {
 		$titlelink = sanitize(rtrim($request['category'], '/'));
@@ -358,9 +358,10 @@ function prepareCustomPage() {
 	global $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_script, $_zp_current_search;
 	$searchalbums = handleSearchParms('page', $_zp_current_album, $_zp_current_image);
 	$album = NULL;
-	$page = str_replace(array('/', '\\', '.'), '', sanitize($_GET['p']));
+	$replace = array('/', '\\', '.');
+	$page = str_replace($replace, '', sanitize($_GET['p']));
 	if (isset($_GET['z'])) { // system page
-		if ($subfolder = sanitize($_GET['z'])) {
+		if ($subfolder = str_replace($replace, '', sanitize($_GET['z']))) {
 			$subfolder .= '/';
 		}
 		$_zp_gallery_page = $page . '.php';

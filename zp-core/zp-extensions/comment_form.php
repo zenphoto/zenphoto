@@ -12,11 +12,12 @@
  * There are several options to tune what the plugin will do.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
+ * @package comment-form
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Provides a unified comment handling facility.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Misc');
 
 $option_interface = 'comment_form';
 

@@ -6,10 +6,12 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard) - an adaption of Remy Sharp's jQuery Tag Suggestion
  * @package plugins
+ * @subpackage tag-suggest
  */
 $plugin_is_filter = 9 | THEME_PLUGIN;
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
+$plugin_category = gettext('Misc');
 $option_interface = 'tagsuggest';
 zp_register_filter('theme_head', 'tagSuggestJS_frontend');
 zp_register_filter('admin_head', 'tagSuggestJS_admin');

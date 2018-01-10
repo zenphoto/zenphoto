@@ -14,11 +14,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage security-logger
  */
 $plugin_is_filter = 100 | CLASS_PLUGIN;
 $plugin_description = gettext('Logs selected security events.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Admin');
 
 $option_interface = 'security_logger';
 
@@ -127,12 +128,15 @@ class security_logger {
 				break;
 			case 'setup_install':
 				$type = gettext('Install');
-				$addl = gettext('version') . ' ' . ZENPHOTO_VERSION . '[' . ZENPHOTO_RELEASE . "]";
-				if (!zpFunctions::hasPrimaryScripts()) {
+				$addl = gettext('version') . ' ' . ZENPHOTO_VERSION;
+				if (!hasPrimaryScripts()) {
 					$addl .= ' ' . gettext('clone');
 				}
 				break;
-			case 'setup_proptect':
+			case 'setup_ignore_setup':
+				$type = gettext('Setup run request skipped.');
+				break;
+			case 'setup_protect':
 				$type = gettext('Protect setup scripts');
 				break;
 			case 'user_new':

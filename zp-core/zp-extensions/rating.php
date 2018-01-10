@@ -12,6 +12,7 @@
  *
  * @author Stephen Billard (sbillard)and Malte Müller (acrylian)
  * @package plugins
+ * @subpackage rating
  */
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
@@ -46,7 +47,7 @@ if (!defined('OFFSET_PATH')) {
 $plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. ");
 $plugin_author = "Stephen Billard (sbillard) and Malte Müller (acrylian)";
-
+$plugin_category = gettext('Statistics');
 $option_interface = 'jquery_rating';
 
 zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');

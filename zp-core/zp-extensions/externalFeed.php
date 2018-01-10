@@ -39,7 +39,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage feed
+ * @subpackage externalfeed
  */
 // force UTF-8 Ø
 
@@ -47,6 +47,7 @@ $plugin_is_filter = 900 | FEATURE_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('The Zenphoto <em>externalFeed</em> handler.');
 
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Feed');
 
 $option_interface = 'externalFeed_options';
 
@@ -337,7 +338,7 @@ class ExternalFeed extends feed {
 		if ($this->mode == "albums") {
 			$albumobj = $item;
 			$totalimages = $albumobj->getNumImages();
-			$itemlink = $this->host . pathurlencode($albumobj->getLink());
+			$itemlink = $this->host . $albumobj->getLink();
 			$thumb = $albumobj->getAlbumThumbImage();
 			$title = $albumobj->getTitle($this->locale);
 
@@ -525,7 +526,7 @@ class ExternalFeed extends feed {
 						?>
 						<item>
 							<title><![CDATA[<?php echo $item['title']; ?>]]></title>
-							<link><?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . '/' . html_encode(ltrim($item['link'], '/')); ?></link>
+							<link><?php echo FULLWEBPATH . '/' . html_encode(ltrim($item['link'], '/')); ?></link>
 							<description><![CDATA[<?php echo $item['desc']; ?>]]></description>
 							<?php
 							if (!empty($item['enclosure'])) {

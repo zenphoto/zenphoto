@@ -16,9 +16,11 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage print-album-menu
  */
 $plugin_description = gettext("Adds a theme function to print an album menu either as a nested list or as a dropdown menu.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
+$plugin_category = gettext('Media');
 
 $option_interface = 'print_album_menu';
 

@@ -68,8 +68,6 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			} else {
 				$config['disableMapTypeControl'] = true;
 			}
-			$config['map_width'] = getOption('gmap_width') . "px";
-			$config['map_height'] = getOption('gmap_height') . "px";
 			$config['clusterMaxZoom'] = getOption('gmap_cluster_max_zoom');
 			$config['clusterAverageCenter'] = true;
 			$config['onclick'] = "iw.close();";
@@ -93,7 +91,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					}
 					//]]>
 				</script>
-				<div id=googlemap_data">
+				<div id="googlemap_data">
 					<?php echo $map->output_html; ?>
 				</div>
 			</div>

@@ -11,8 +11,8 @@
 // force UTF-8 Ø
 
 define('DATABASE_SOFTWARE', 'PDO::MySQL');
-Define('DATABASE_MIN_VERSION', '5.0.0');
-Define('DATABASE_DESIRED_VERSION', '5.5.0');
+Define('DATABASE_MIN_VERSION', '5.0.7');
+Define('DATABASE_DESIRED_VERSION', '5.5.3');
 
 /**
  * Connect to the database server and select the database.
@@ -46,7 +46,7 @@ function db_connect($config, $errorstop = true) {
 		return false;
 	}
 	$_zp_DB_details = $config;
-	if ($utf8 && version_compare(PHP_VERSION, '5.3.6', '<')) {
+	if ($utf8 && version_compare(PHP_VERSION, '5.5.3', '<')) {
 		try {
 			$_zp_DB_connection->query("SET NAMES 'utf8'");
 		} catch (PDOException $e) {

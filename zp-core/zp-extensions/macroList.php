@@ -61,11 +61,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage development
+ * @subpackage macrolist
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('View available <code>content macros</code>.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Development');
 
 if (OFFSET_PATH != 2 && zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS | ALBUM_RIGHTS)) {
 	foreach (getEnabledPlugins() as $ext => $pn) {
@@ -83,16 +84,18 @@ if (OFFSET_PATH != 2 && zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS |
 }
 
 function macro_admin_tabs($tabs) {
-	if (!isset($tabs['development'])) {
-		$tabs['development'] = array('text'		 => gettext("development"),
-						'subtabs'	 => NULL);
+	if (zp_loggedin(ADMIN_RIGHTS)) {
+		if (!isset($tabs['development'])) {
+			$tabs['development'] = array('text' => gettext("development"),
+					'subtabs' => NULL);
+		}
+		$tabs['development']['subtabs'][gettext("macros")] = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=macros&tab=' . gettext('macros');
+		$named = array_flip($tabs['development']['subtabs']);
+		natcasesort($named);
+		$tabs['development']['subtabs'] = $named = array_flip($named);
+		$tabs['development']['link'] = array_shift($named);
+		return $tabs;
 	}
-	$tabs['development']['subtabs'][gettext("macros")] = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=macros&tab=' . gettext('macros');
-	$named = array_flip($tabs['development']['subtabs']);
-	natcasesort($named);
-	$tabs['development']['subtabs'] = $named = array_flip($named);
-	$tabs['development']['link'] = array_shift($named);
-	return $tabs;
 }
 
 function macroList_show($macro, $detail) {

@@ -35,7 +35,7 @@ if (OFFSET_PATH != 2) { // setup does not need (and might have problems with) pl
 				require_once($plugin['path']);
 				$_zp_loaded_plugins[$extension] = $extension;
 				if (DEBUG_PLUGINS) {
-					zpFunctions::pluginDebug($extension, $priority, $start);
+					pluginDebug($extension, $priority, $start);
 				}
 			}
 		}

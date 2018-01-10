@@ -10,12 +10,13 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage users
+ * @subpackage useraddressfields
  *
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Adds user address fields');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Users');
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 

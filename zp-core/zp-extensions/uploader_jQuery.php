@@ -9,13 +9,13 @@
  * PHP 5.3 or greater is required by the encorporated software.
  *
  * @package plugins
- * @subpackage uploader
+ * @subpackage uploader-jquery
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('<em>jQuery</em> image upload handler.');
 $plugin_author = 'Stephen Billard (sbillard)';
 $plugin_disable = (version_compare(PHP_VERSION, '5.3') >= 0) ? false : gettext('jQuery uploader requires PHP 5.3 or greater.');
-
+$plugin_category = gettext('Uploader');
 if ($plugin_disable) {
 	enableExtension('uploader_jQuery', 0);
 } else {

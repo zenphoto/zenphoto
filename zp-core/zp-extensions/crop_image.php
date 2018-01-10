@@ -7,7 +7,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage misc
+ * @subpackage crop-image
  */
 if (isset($_REQUEST['performcrop'])) {
 	if (!defined('OFFSET_PATH'))
@@ -21,6 +21,7 @@ if (isset($_REQUEST['performcrop'])) {
 	$plugin_is_filter = 5 | ADMIN_PLUGIN;
 	$plugin_description = gettext("An image cropping tool.");
 	$plugin_author = "Stephen Billard (sbillard)";
+	$plugin_category = gettext('Media');
 	return;
 }
 

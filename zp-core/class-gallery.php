@@ -47,7 +47,7 @@ class Gallery {
 		if ($locale !== 'all') {
 			$text = get_language_string($text, $locale);
 		}
-		$text = zpFunctions::unTagURLs($text);
+		$text = unTagURLs($text);
 		return $text;
 	}
 
@@ -61,7 +61,7 @@ class Gallery {
 	}
 
 	function setTitle($title) {
-		$this->set('gallery_title', zpFunctions::tagURLs($title));
+		$this->set('gallery_title', tagURLs($title));
 	}
 
 	/**
@@ -72,9 +72,9 @@ class Gallery {
 	function getDesc($locale = NULL) {
 		$text = $this->get('Gallery_description');
 		if ($locale == 'all') {
-			return zpFunctions::unTagURLs($text);
+			return unTagURLs($text);
 		} else {
-			return applyMacros(zpFunctions::unTagURLs(get_language_string($text, $locale)));
+			return applyMacros(unTagURLs(get_language_string($text, $locale)));
 		}
 		return $text;
 	}
@@ -84,7 +84,7 @@ class Gallery {
 	 * @param string $desc
 	 */
 	function setDesc($desc) {
-		$desc = zpFunctions::tagURLs($desc);
+		$desc = tagURLs($desc);
 		$this->set('Gallery_description', $desc);
 	}
 
@@ -114,12 +114,12 @@ class Gallery {
 		if ($locale !== 'all') {
 			$text = get_language_string($text, $locale);
 		}
-		$text = zpFunctions::unTagURLs($text);
+		$text = unTagURLs($text);
 		return $text;
 	}
 
 	function setPasswordHint($value) {
-		$this->set('gallery_hint', zpFunctions::tagURLs($value));
+		$this->set('gallery_hint', tagURLs($value));
 	}
 
 	function getUser() {
@@ -722,7 +722,7 @@ class Gallery {
 		if (is_null($cachefolder)) {
 			$cachefolder = SERVERCACHE;
 		}
-		zpFunctions::removeDir($cachefolder, true);
+		removeDir($cachefolder, true);
 	}
 
 	/**
@@ -838,12 +838,12 @@ class Gallery {
 		if ($locale !== 'all') {
 			$text = get_language_string($text, $locale);
 		}
-		$text = zpFunctions::unTagURLs($text);
+		$text = unTagURLs($text);
 		return $text;
 	}
 
 	function setWebsiteTitle($value) {
-		$this->set('website_title', zpFunctions::tagURLs($value));
+		$this->set('website_title', tagURLs($value));
 	}
 
 	/**
@@ -967,7 +967,7 @@ class Gallery {
 	 * @return array
 	 */
 	function getCodeblock() {
-		return zpFunctions::unTagURLs($this->get("codeblock"));
+		return unTagURLs($this->get("codeblock"));
 	}
 
 	/**
@@ -975,7 +975,7 @@ class Gallery {
 	 *
 	 */
 	function setCodeblock($cb) {
-		$this->set('codeblock', zpFunctions::tagURLs($cb));
+		$this->set('codeblock', tagURLs($cb));
 	}
 
 	/**

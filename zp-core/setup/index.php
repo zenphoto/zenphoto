@@ -4,8 +4,8 @@
  * @package setup
  */
 // force UTF-8 Ø
-Define('PHP_MIN_VERSION', '5.2.0');
-Define('PHP_DESIRED_VERSION', '5.4.0');
+Define('PHP_MIN_VERSION', '5.6.0');
+Define('PHP_DESIRED_VERSION', '7.1.0');
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if (!function_exists("gettext")) {
@@ -107,6 +107,7 @@ if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE))
 
 $zptime = filemtime($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 @copy(dirname(dirname(__FILE__)) . '/dataaccess', $serverpath . '/' . DATA_FOLDER . '/.htaccess');
+@copy(dirname(dirname(__FILE__)) . '/dataaccess', $serverpath . '/' . BACKUPFOLDER . '/.htaccess'); 
 @chmod($serverpath . '/' . DATA_FOLDER . '/.htaccess', 0444);
 
 if (session_id() == '') {
@@ -225,7 +226,11 @@ $curdir = getcwd();
 chdir(dirname(dirname(__FILE__)));
 // Important. when adding new database support this switch may need to be extended,
 $engines = array();
+
 $preferences = array('mysqli' => 1, 'pdo_mysql' => 2, 'mysql' => 3);
+if (version_compare(PHP_VERSION, '7.0.0', '>=')) {
+	unset($preferences['mysql']);
+}
 $cur = 999999;
 $preferred = NULL;
 foreach (setup_glob('functions-db-*.php') as $key => $engineMC) {
@@ -248,6 +253,9 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	unset($_zp_conf_vars);
 	require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 	if (isset($_zp_conf_vars) && !isset($conf) && isset($_zp_conf_vars['special_pages'])) {
+		if(!isset($_zp_conf_vars['special_pages']['gallery'])) {
+			$updatezp_config = true;
+		}
 		if (isset($_zp_conf_vars['db_software'])) {
 			$confDB = $_zp_conf_vars['db_software'];
 			if (empty($_POST) && empty($_GET) && ($confDB === 'MySQL' || $preferred != 'MySQL')) {
@@ -376,7 +384,7 @@ if ($setup_checked) {
 		} else {
 			$setup_cookie = '';
 		}
-		if ($setup_cookie == ZENPHOTO_RELEASE) {
+		if ($setup_cookie == ZENPHOTO_VERSION) {
 			setupLog(gettext('Setup cookie test successful'));
 			setcookie('setup_test_cookie', '', time() - 368000, '/');
 		} else {
@@ -398,7 +406,7 @@ if ($setup_checked) {
 		} else {
 			$clone = ' ' . gettext('clone');
 		}
-		setupLog(sprintf(gettext('Zenphoto Setup v%1$s[%2$s]%3$s: %4$s'), ZENPHOTO_VERSION, ZENPHOTO_RELEASE, $clone, date('r')), true, true); // initialize the log file
+		setupLog(sprintf(gettext('Zenphoto Setup v%1$s %2$s: %3$s'), ZENPHOTO_VERSION, $clone, date('r')), true, true); // initialize the log file
 	}
 	if ($environ) {
 		setupLog(gettext("Full environment"));
@@ -408,7 +416,7 @@ if ($setup_checked) {
 			setupLog(sprintf(gettext("Query error: %s"), $connectDBErr), true);
 		}
 	}
-	setcookie('setup_test_cookie', ZENPHOTO_RELEASE, time() + 3600, '/');
+	setcookie('setup_test_cookie', ZENPHOTO_VERSION, time() + 3600, '/');
 }
 
 if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_result)) {
@@ -1314,7 +1322,7 @@ if ($c <= 0) {
 							foreach ($installed_files as $extra) {
 								$filelist .= filesystemToInternal(str_replace($base, '', $extra) . '<br />');
 							}
-							if (class_exists('zpFunctions') && zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
+							if (class_exists('zpFunctions') && hasPrimaryScripts() && count($installed_files) > 0) {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {
 									$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 								} else {
@@ -1423,7 +1431,7 @@ if ($c <= 0) {
 								}
 
 								$ch = !empty($vr) && ($vr == HTACCESS_VERSION);
-								$d = str_replace('\\', '/', dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))));
+								$d = rtrim(str_replace('\\', '/', dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])))), '/') . '/';
 								$d = str_replace(' ', '%20', $d); //	apache appears to trip out if there is a space in the rewrite base
 								if (!$ch) { // wrong version
 									$oht = trim(@file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/oldhtaccess'));
@@ -1441,6 +1449,7 @@ if ($c <= 0) {
 										if ($closed) {
 											$ht = close_site($ht);
 										}
+
 										$htu = strtoupper($ht);
 										@chmod($htfile, 0777);
 										@unlink($htfile);
@@ -2499,6 +2508,7 @@ if ($c <= 0) {
 								} else {
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 								}
+								setOption('setup_unprotected_by_adminrequest', 0, true, null);
 								?>
 								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 								<?php

@@ -2,7 +2,7 @@
 <IfModule mod_autoindex.c>
 	IndexIgnore *
 </IfModule>
-<FilesMatch "\.(htaccess|cfg|log|php)$">
+<FilesMatch "\.(htaccess|cfg|log|php|zdb|xxx)$">
   Order Allow,Deny
   Deny from all
 	</FilesMatch>

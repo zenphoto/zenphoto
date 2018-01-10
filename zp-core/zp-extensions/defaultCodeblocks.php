@@ -6,11 +6,12 @@
  * @package plugins
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage misc
+ * @subpackage defaultcodeblocks
  */
 $plugin_is_filter = 500 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Create default codeblocks.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Misc');
 $option_interface = 'defaultCodeblocks';
 
 zp_register_filter('codeblock', 'defaultCodeblocks_codebox');
@@ -64,7 +65,7 @@ class defaultCodeblocks {
 	 * @return array
 	 */
 	function getCodeblock() {
-		return zpFunctions::unTagURLs($this->codeblocks);
+		return unTagURLs($this->codeblocks);
 	}
 
 	/**
@@ -72,7 +73,7 @@ class defaultCodeblocks {
 	 *
 	 */
 	function setCodeblock($cb) {
-		$this->codeblocks = zpFunctions::tagURLs($cb);
+		$this->codeblocks = tagURLs($cb);
 		$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `data`=' . db_quote($this->codeblocks) . ' WHERE `type`="defaultCodeblocks"';
 		query($sql);
 	}

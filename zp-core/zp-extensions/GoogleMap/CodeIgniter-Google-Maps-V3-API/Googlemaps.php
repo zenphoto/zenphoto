@@ -147,7 +147,7 @@ class Googlemaps {
 	var $placesAutocompleteBoundsMap= FALSE;					// An alternative to setting the SW and NE bounds is to use the bounds of the current viewport. If set to TRUE, the bounds will be set to the viewport of the visible map, even if dragged or zoomed
 	var $placesAutocompleteOnChange	= '';						// The JavaScript action to perform when a place is selected
 
-	function Googlemaps($config = array())
+	function __construct($config = array())
 	{
 		if (count($config) > 0)
 		{
@@ -1106,10 +1106,10 @@ class Googlemaps {
 		<script type="text/javascript" src="'.$apiLocation.'"></script>';
 		if ($this->center=="auto" || $this->directionsStart=="auto") { $this->output_js .= '
 		<script type="text/javascript" src="http://code.google.com/apis/gears/gears_init.js"></script>
-		'; }
+		'; } // Script not hosted on Google anymore !
 		if ($this->cluster) { $this->output_js .= '
-		<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js"></script>
-		'; }
+		<script type="text/javascript" src="' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/GoogleMap-plugins/markerclusterer.js"></script>
+		'; } // Script not hosted on Google anymore !
 		if ($this->jsfile=="") {
 			$this->output_js .= '
 			<script type="text/javascript">
@@ -1819,6 +1819,11 @@ class Googlemaps {
 				zoomOnClick: false'; }
 			if ($this->clusterAverageCenter) { $this->output_js_contents .= ',
 				averageCenter: true'; }
+			// zenphoto hack
+			// Google abandoned their CDN
+			$this->output_js_contents .= ',
+				imagePath: "' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/GoogleMap/markerClustererPlus/images/m"';
+			// end zenphotohack
 			$this->output_js_contents .= ',
 				minimumClusterSize: '.$this->clusterMinimumClusterSize.'
 			};
@@ -2050,6 +2055,14 @@ class Googlemaps {
 		}else{
 			$this->output_js_contents .= '
 				window.onload = initialize;
+
+				// hack zenphoto - recenter map after resize
+				google.maps.event.addDomListener(window, "resize", function() {
+					var center = map.getCenter();
+					google.maps.event.trigger(map, "resize");
+					map.setCenter(center);
+				});
+
 			';
 		}
 
@@ -2091,7 +2104,7 @@ class Googlemaps {
 		}
 		//
 
-		$this->output_html .= '<div id="'.$this->map_div_id.'" style="width:'.$this->map_width.'; height:'.$this->map_height.';"></div>';
+		$this->output_html .= '<div id="'.$this->map_div_id.'"></div>';
 
 		return array('js'=>$this->output_js, 'html'=>$this->output_html, 'markers'=>$this->markersInfo);
 

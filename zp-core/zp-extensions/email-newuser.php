@@ -6,11 +6,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage users
+ * @subpackage email-newuser
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Emails a password reset request to a newly created user.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Users');
 
 
 zp_register_filter('save_user', 'email_new_user::save');

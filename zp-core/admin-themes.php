@@ -21,7 +21,7 @@ if (isset($_GET['action'])) {
 		case 'settheme':
 			if (isset($_GET['theme'])) {
 				$alb = sanitize_path($_GET['themealbum']);
-				$newtheme = sanitize($_GET['theme']);
+				$newtheme = str_replace(array('/', '.', '\\'), '', sanitize($_GET['theme']));
 				if (empty($alb)) {
 					$_zp_gallery->setCurrentTheme($newtheme);
 					$_zp_gallery->save();
@@ -32,18 +32,18 @@ if (isset($_GET['action'])) {
 					$_set_theme_album->setAlbumTheme($newtheme);
 					$_set_theme_album->save();
 				}
-				$opthandler = SERVERPATH.'/'.THEMEFOLDER.'/'.$newtheme.'/themeoptions.php';
+				$opthandler = SERVERPATH . '/' . THEMEFOLDER . '/' . $newtheme . '/themeoptions.php';
 				if (file_exists($opthandler)) {
 					require_once($opthandler);
-					$opt = new ThemeOptions();	//	prime the default options!
+					$opt = new ThemeOptions(); //	prime the default options!
 				}
 				/* set any "standard" options that may not have been covered by the theme */
 				standardThemeOptions($newtheme, $_set_theme_album);
-				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php?themealbum=".sanitize($_GET['themealbum']));
+				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php?themealbum=" . sanitize($_GET['themealbum']));
 				exitZP();
 			}
 			break;
-			// Duplicate a theme
+		// Duplicate a theme
 		case 'copytheme':
 			if (isset($_GET['source']) && isset($_GET['target']) && isset($_GET['name'])) {
 				$message = copyThemeDirectory(sanitize($_GET['source'],3), sanitize($_GET['target'],3), sanitize($_GET['name'],3));

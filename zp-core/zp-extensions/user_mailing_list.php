@@ -2,15 +2,18 @@
 /**
  *
  * A tool to send e-mails to all registered users who have provided an e-mail address.
+ * 
+ * Note this is not meant to be used as a newsletter system but rather for a small group of users!
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage users
+ * @subpackage user-mailing-list
  */
 if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5 | ADMIN_PLUGIN;
 	$plugin_description = gettext("Provides a utility function to send e-mails to all users who have provided an e-mail address.");
 	$plugin_author = "Malte Müller (acrylian)";
+	$plugin_category = gettext('Mail');
 
 	zp_register_filter('admin_utilities_buttons', 'user_mailing_list_button');
 

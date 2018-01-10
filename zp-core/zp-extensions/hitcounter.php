@@ -3,6 +3,7 @@
  * Provides automatic hitcounter counting for Zenphoto objects
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage hitcounter
  */
 /** Reset hitcounters ********************************************************** */
 /* * ***************************************************************************** */
@@ -23,7 +24,7 @@ if (!defined('OFFSET_PATH')) {
 			query('UPDATE ' . prefix('news') . ' SET `hitcounter`= 0');
 			query('UPDATE ' . prefix('pages') . ' SET `hitcounter`= 0');
 			query('UPDATE ' . prefix('news_categories') . ' SET `hitcounter`= 0');
-			query('UPDATE ' . prefix('options') . ' SET `value`= 0 WHERE `name` LIKE "Page-Hitcounter-%"');
+			query('DELETE FROM ' . prefix('options') . ' WHERE `name` LIKE "Page-Hitcounter-%"');
 			query("DELETE FROM " . prefix('plugin_storage') . " WHERE `type` = 'rsshitcounter'");
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=' . gettext('All hitcounters have been set to zero.'));
 			exitZP();
@@ -34,6 +35,7 @@ if (!defined('OFFSET_PATH')) {
 $plugin_is_filter = 5 | ADMIN_PLUGIN | FEATURE_PLUGIN;
 $plugin_description = gettext('Automatically increments hitcounters on Zenphoto objects viewed by a <em>visitor</em>.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Statistics');
 
 $option_interface = 'hitcounter';
 

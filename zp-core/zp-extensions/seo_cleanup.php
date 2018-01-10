@@ -9,12 +9,13 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage seo
+ * @subpackage seo-cleanup
  */
 if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5 | ADMIN_PLUGIN;
 	$plugin_description = gettext("Provides a utility SEO file/folder name clenser.");
 	$plugin_author = "Stephen Billard (sbillard)";
+	$plugin_category = gettext('SEO');
 
 	zp_register_filter('admin_utilities_buttons', 'seo_cleanup_button');
 
@@ -87,7 +88,7 @@ if (defined('OFFSET_PATH')) {
 				echo "<br />\n";
 				$albumcount++;
 				$obj = newAlbum($newname);
-				zpFunctions::removeDir(SERVERCACHE . '/' . $subalbum);
+				removeDir(SERVERCACHE . '/' . $subalbum);
 				if (extensionEnabled('static_html_cache')) {
 					Gallery::clearCache(SERVERPATH . '/' . STATIC_CACHE_FOLDER);
 				}

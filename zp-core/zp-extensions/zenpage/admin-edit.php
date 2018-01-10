@@ -504,8 +504,10 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																	<?php echo gettext("Guest user:"); ?>
 																</a>
 																<input type="text" size="27" id="user_name" name="user"
+																			 class="dirtyignore"
 																			 onkeydown="passwordClear('');"
-																			 value="<?php echo html_encode($user); ?>" />
+																			 value="<?php echo html_encode($user); ?>" 
+																			 autocomplete="off" />
 																<span id="strength"><?php echo gettext("Password:"); ?></span>
 																<br />
 																<?php
@@ -515,19 +517,23 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																?>
 																<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 																<input type="password" size="27"
+																			 class="dirtyignore"
 																			 id="pass" name="pass"
 																			 onkeydown="passwordClear('');"
 																			 onkeyup="passwordStrength('');"
-																			 value="<?php echo $x; ?>" />
+																			 value="<?php echo $x; ?>" 
+																			 autocomplete="off" />
 																<br />
 																<span class="password_field_">
 																	<span id="match"><?php echo gettext("(repeat)"); ?></span>
 																	<br />
 																	<input type="password" size="27"
+																				 class="dirtyignore"
 																				 id="pass_r" name="pass_r" disabled="disabled"
 																				 onkeydown="passwordClear('');"
 																				 onkeyup="passwordMatch('');"
-																				 value="<?php echo $x; ?>" />
+																				 value="<?php echo $x; ?>" 
+																				 autocomplete="off" />
 																	<br />
 																</span>
 																<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');

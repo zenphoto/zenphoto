@@ -7,11 +7,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage admin-approval
  */
 $plugin_is_filter = 980 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allows only users with Admin or Manage All rights to change the publish state of objects.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Admin');
 
 zp_register_filter('save_album_utilities_data', 'admin_approval::publishZenphoto');
 zp_register_filter('save_image_utilities_data', 'admin_approval::publishZenphoto');

@@ -9,14 +9,14 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage users
+ * @subpackage user-groups
  */
 // force UTF-8 Ø
 
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides rudimentary user groups.");
 $plugin_author = "Stephen Billard (sbillard)";
-
+$plugin_category = gettext('Users');
 
 zp_register_filter('admin_tabs', 'user_groups::admin_tabs');
 zp_register_filter('admin_alterrights', 'user_groups::admin_alterrights');

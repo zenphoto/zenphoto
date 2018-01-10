@@ -263,8 +263,9 @@ if ($c = getOption('zenphoto_cookie_path')) {
 	define('COOKIE_PATH', WEBPATH);
 }
 
+define('SERVER_HTTP_HOST', PROTOCOL . "://" . $_SERVER['HTTP_HOST']);
 define('SAFE_MODE', preg_match('#(1|ON)#i', ini_get('safe_mode')));
-define('FULLWEBPATH', PROTOCOL . "://" . $_SERVER['HTTP_HOST'] . WEBPATH);
+define('FULLWEBPATH', SERVER_HTTP_HOST . WEBPATH);
 define('SAFE_MODE_ALBUM_SEP', '__');
 define('SERVERCACHE', SERVERPATH . '/' . CACHEFOLDER);
 define('MOD_REWRITE', getOption('mod_rewrite'));
@@ -1222,12 +1223,12 @@ function debugLog($message, $reset = false) {
 			}
 			$f = fopen($path, 'w');
 			if ($f) {
-				if (!class_exists('zpFunctions') || zpFunctions::hasPrimaryScripts()) {
+				if (!class_exists('zpFunctions') || hasPrimaryScripts()) {
 					$clone = '';
 				} else {
 					$clone = ' ' . gettext('clone');
 				}
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} Zenphoto v" . ZENPHOTO_VERSION . '[' . ZENPHOTO_FULL_RELEASE . ']' . $clone . "\n");
+				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} Zenphoto v" . ZENPHOTO_VERSION . $clone . "\n");
 			}
 		} else {
 			$f = fopen($path, 'a');
@@ -1493,14 +1494,12 @@ function safe_glob($pattern, $flags = 0) {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	preg_match('|([^-]*)|', ZENPHOTO_VERSION, $version);
 	if ($i = getOption('zenphoto_install')) {
 		$install = getSerializedArray($i);
 	} else {
-		$install = array('ZENPHOTO' => '0.0.0[0000]');
+		$install = array('ZENPHOTO' => '0.0.0');
 	}
-	preg_match('|([^-]*).*\[(.*)\]|', $install['ZENPHOTO'], $matches);
-	if (isset($matches[1]) && isset($matches[2]) && $matches[1] != $version[1] || $matches[2] != ZENPHOTO_RELEASE || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
+	if ($install['ZENPHOTO'] && $install['ZENPHOTO'] != ZENPHOTO_VERSION || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
 		require_once(dirname(__FILE__) . '/reconfigure.php');
 		reconfigureAction(0);
 	}
@@ -1523,14 +1522,19 @@ function exitZP() {
  * @return string
  */
 function installSignature() {
-	$testFiles = array('template-functions.php'	 => filesize(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php'),
-					'functions-filter.php'		 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-filter.php'),
-					'lib-auth.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/lib-auth.php'),
-					'lib-utf8.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/lib-utf8.php'),
-					'functions.php'						 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions.php'),
-					'functions-basic.php'			 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-basic.php'),
-					'functions-controller.php' => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-controller.php'),
-					'functions-image.php'			 => filesize(SERVERPATH . '/' . ZENFOLDER . '/functions-image.php'));
+	$all_algos = hash_algos();
+	$algo = 'sha256';
+	if(!in_array($algo, $all_algos)) { // make sure we have the algo
+		$algo = 'sha1';
+	}
+	$testFiles = array('template-functions.php'	 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/template-functions.php'),
+					'functions-filter.php'		 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-filter.php'),
+					'lib-auth.php'						 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/lib-auth.php'),
+					'lib-utf8.php'						 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/lib-utf8.php'),
+					'functions.php'						 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions.php'),
+					'functions-basic.php'			 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-basic.php'),
+					'functions-controller.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-controller.php'),
+					'functions-image.php'			 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-image.php'));
 
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {
 		$s = $_SERVER['SERVER_SOFTWARE'];
@@ -1543,12 +1547,15 @@ function installSignature() {
 	if ($i !== false) {
 		$version = substr($version, 0, $i);
 	}
-	return array_merge($testFiles, array('SERVER_SOFTWARE'	 => $s,
-					'ZENPHOTO'				 => $version . '[' . ZENPHOTO_RELEASE . ']',
-					'FOLDER'					 => dirname(SERVERPATH . '/' . ZENFOLDER),
-					'DATABASE'				 => $dbs['application'] . ' ' . $dbs['version']
+	$signature_array = array_merge($testFiles, array(
+			'SERVER_SOFTWARE' => $s,
+			'ZENPHOTO' => $version,
+			'FOLDER' => dirname(SERVERPATH . '/' . ZENFOLDER),
+			'DATABASE' => $dbs['application'] . ' ' . $dbs['version']
 					)
 	);
+	$signature_array['SIGNATURE_HASH'] = hash($algo, implode(array_values($signature_array))); 
+	return $signature_array;
 }
 
 /**
@@ -1558,11 +1565,22 @@ function installSignature() {
 function zp_session_start() {
 	if (session_id() == '') {
 		// force session cookie to be secure when in https
-		if (secureServer()) {
-			$CookieInfo = session_get_cookie_params();
-			session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
-		}
+		$CookieInfo = session_get_cookie_params();
+		// force session cookie to be secure when in https
+		session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], secureServer(), true);
 		session_start();
+	}
+}
+
+/**
+ * Ends a zenphoto session if there is one and clear the session cookie
+ */
+function zp_session_destroy() {
+	$CookieInfo = session_get_cookie_params();
+	zp_setCookie(session_name(), '', time() - 42000, $CookieInfo['path'], secureServer(), true);
+	if (session_id() != '') {
+		$_SESSION = array();
+		session_destroy();
 	}
 }
 

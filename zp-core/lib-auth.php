@@ -641,7 +641,7 @@ class Zenphoto_Authority {
 		$user->set('lastloggedin', $user->get('loggedin'));
 		$user->set('loggedin', date('Y-m-d H:i:s'));
 		$user->save();
-		zp_setCookie("zp_user_auth", $user->getPass() . '.' . $user->getID(), NULL, NULL, secureServer());
+		zp_setCookie('zp_user_auth', $user->getPass() . '.' . $user->getID(), NULL, NULL, secureServer(), true);
 	}
 
 	/**
@@ -665,7 +665,7 @@ class Zenphoto_Authority {
 						self::logUser($user);
 						$_zp_current_admin_obj = $user;
 					} else {
-						zp_clearCookie("zp_user_auth"); // Clear the cookie, just in case
+						zp_clearCookie('zp_user_auth', null, secureServer(), true ); // Clear the cookie, just in case
 						$_zp_login_error = 1;
 					}
 					break;
@@ -782,10 +782,11 @@ class Zenphoto_Authority {
 	static function handleLogout() {
 		global $_zp_loggedin, $_zp_pre_authorization, $_zp_current_admin_obj;
 		foreach (self::getAuthCookies() as $cookie => $value) {
-			zp_clearCookie($cookie);
+			zp_clearCookie($cookie, null, secureServer(), true);
 		}
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
+		zp_session_destroy();
 		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);
 	}
 
@@ -799,7 +800,7 @@ class Zenphoto_Authority {
 		if ($loggedin) {
 			return $loggedin;
 		} else {
-			zp_clearCookie("zp_user_auth");
+			zp_clearCookie('zp_user_auth', null, secureServer(), true);
 			return NULL;
 		}
 	}
@@ -834,6 +835,7 @@ class Zenphoto_Authority {
 		$star = false;
 		$mails = array();
 		$info = array('challenge' => '', 'response' => '');
+		$username_is_valid = false;
 		if (!empty($requestor)) {
 			$admin = self::getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1));
 			if (is_object($admin)) {
@@ -841,6 +843,7 @@ class Zenphoto_Authority {
 					$star = $showCaptcha;
 				}
 				$info = $admin->getChallengePhraseInfo();
+				$username_is_valid = true;
 			}
 		}
 		if (!$star) {
@@ -908,7 +911,7 @@ class Zenphoto_Authority {
 							</fieldset>
 							<?php
 							if ($requestor && $admin) {
-								if (!empty($info['challenge'])) {
+							if (!empty($info['challenge'])) {
 								?>
 								<p class="logon_form_text"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?>
 								<?php if ( $admin->getEmail() ) { echo gettext('<br />You may also use the link below to request a reset by e-mail.'); } ?>
@@ -923,7 +926,7 @@ class Zenphoto_Authority {
 								</fieldset>
 								<br />
 								<?php } else {
-										if ( !$admin->getEmail() ) { ?>
+										if ( $username_is_valid && !$admin->getEmail() ) { ?>
 											<fieldset><p class="logon_form_text errorbox"><?php echo gettext('A password reset is not possible.'); ?></p></fieldset>
 									<?php } else { ?>
 											<p class="logon_form_text"><?php echo gettext('Please request a reset by e-mail by clicking the link below.'); ?></p>
@@ -941,18 +944,24 @@ class Zenphoto_Authority {
 							}
 							?>
 							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?></button>
-								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=challenge', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
-								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
+								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> >
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?>
+								</button>
+								<a id="logonstep_challenge_js" class="button" title="<?php echo gettext("Refresh"); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=">
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?>
+								</a>
+								<a id="logonstep_return_js" class="button" title="<?php echo gettext("Return"); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=">
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?>
+								</a>
 							</div>
 							<br class="clearall" />
 						</fieldset>
 						<br />
 						<?php
-						if ( $star && (!empty($requestor) && $admin->getEmail()) ) {
+						if ( $star && (!empty($requestor) && $username_is_valid && $admin->getEmail()) ) {
 							?>
 							<p class="logon_link">
-								<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
+								<a id="logonstep_captcha_js" class="button" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=captcha&amp;ref=">
 									<?php echo gettext('Request reset by e-mail'); ?>
 								</a>
 							</p>
@@ -962,8 +971,43 @@ class Zenphoto_Authority {
 					</form>
 					<?php
 					break;
+				case 'captcha':
+					$captcha = $_zp_captcha->getCaptcha(NULL);
+					?>
+					<form name="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
+						<?php if (isset($captcha['hidden'])) echo $captcha['hidden']; ?>
+						<input type="hidden" name="login" value="1" />
+						<input type="hidden" name="password" value="captcha" />
+						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
+						<fieldset id="logon_box">
+							<fieldset><legend><?php echo gettext('User'); ?></legend>
+								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" />
+							</fieldset>
+							<?php if (isset($captcha['html'])) echo $captcha['html']; ?>
+							<?php
+							if (isset($captcha['input'])) {
+								?>
+								<fieldset><legend><?php echo gettext("Enter CAPTCHA"); ?></legend>
+									<?php echo $captcha['input']; ?>
+								</fieldset>
+								<?php
+							}
+							?>
+							<br />
+							<div class="buttons">
+								<button type="submit" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+									<?php echo gettext("Request password reset"); ?>
+								</button>
+								<a id="logonstep_return_js" class="button" title="<?php echo gettext("Return"); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=">
+									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?>
+								</a>
+							</div>
+							<br class="clearall" />
+						</fieldset>
+					</form>
+					<?php
+					break;
 				default:
-					Zenphoto_Authority::printPasswordFormJS();
 					if (empty($alt_handlers)) {
 						$legend = gettext('Login');
 					} else {
@@ -991,7 +1035,7 @@ class Zenphoto_Authority {
 							function changeHandler(handler) {
 								handler.push('user=' + $('#user').val());
 								var script = handler.shift();
-								launchScript(script, handler);
+								window.location = script+'?'+handler.join('&');
 							}
 							// ]]> -->
 						</script>
@@ -1032,48 +1076,19 @@ class Zenphoto_Authority {
 					if ($showUserField && OFFSET_PATH != 2) {
 						?>
 						<p class="logon_link">
-							<a href="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" >
+							<a id="logonstep_challenge_js" class="button" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=">
 								<?php echo gettext('I forgot my <strong>User ID</strong>/<strong>Password</strong>'); ?>
 							</a>
 						</p>
 						<?php
 					}
 					break;
-				case 'captcha':
-					$captcha = $_zp_captcha->getCaptcha(NULL);
-					?>
-					<form name="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
-						<?php if (isset($captcha['hidden'])) echo $captcha['hidden']; ?>
-						<input type="hidden" name="login" value="1" />
-						<input type="hidden" name="password" value="captcha" />
-						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
-						<fieldset id="logon_box">
-							<fieldset><legend><?php echo gettext('User'); ?></legend>
-								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" />
-							</fieldset>
-							<?php if (isset($captcha['html'])) echo $captcha['html']; ?>
-							<?php
-							if (isset($captcha['input'])) {
-								?>
-								<fieldset><legend><?php echo gettext("Enter CAPTCHA"); ?></legend>
-									<?php echo $captcha['input']; ?>
-								</fieldset>
-								<?php
-							}
-							?>
-							<br />
-							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>
-								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="javascript:launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php', ['logon_step=', 'ref=' + $('#user').val()]);" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
-							</div>
-							<br class="clearall" />
-						</fieldset>
-					</form>
-					<?php
-					break;
+
 			}
+			Zenphoto_Authority::printPasswordFormJS()
 			?>
 		</div>
+
 		<?php
 	}
 
@@ -1143,7 +1158,7 @@ class Zenphoto_Authority {
 						$(displays).html('<?php echo gettext('password strength too weak'); ?>');
 					} else {
       $(inputb).parent().removeClass('ui-state-disabled');
-      $(inputb).prop('disabled',false);  
+      $(inputb).prop('disabled',false);
 						passwordMatch(id);
 					}
 					var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
@@ -1195,6 +1210,25 @@ class Zenphoto_Authority {
 					oldp.remove();
 					$('.password_field_' + id).show();
 				}
+			}
+
+			var logonsteps = {
+				'logonstep_challenge_js' : $('#logonstep_challenge_js').attr('href'),
+				'logonstep_captcha_js' : $('#logonstep_captcha_js').attr('href'),
+				'logonstep_return_js' : $('#logonstep_return_js').attr('href')
+			};
+			setLogonStepURL(logonsteps)
+			$( "#user" ).keyup(function() {
+				setLogonStepURL(logonsteps);
+			});
+
+			function setLogonStepURL(logonsteps) {
+				var user = $('#user').val();
+				$.each( logonsteps, function( key, value ) {
+					if($('#'+key).length) {
+						$('#'+key).attr('href', value + user);
+					}
+				});
 			}
 			// ]]> -->
 		</script>
@@ -1263,10 +1297,10 @@ class Zenphoto_Authority {
 		# Return derived key of correct length
 		return substr($dk, 0, $kl);
 	}
-	
+
 	/**
 	 * Checks if the email address being set is already used by another user
-	 * 
+	 *
 	 * @param string $email_to_check email address to check
 	 * @param type $current_user user id of the user trying to set this email address
 	 * @return boolean
@@ -1692,6 +1726,7 @@ class Zenphoto_Administrator extends PersistentObject {
 			if ($title = $this->getName()) {
 				$album->setTitle($title);
 			}
+			$album->setOwner($this->getUser());
 			$album->save();
 			$this->setAlbum($album);
 			$this->setRights($this->getRights() | ALBUM_RIGHTS);
@@ -1729,7 +1764,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	function getLastLogon() {
 		return $this->get('lastloggedin');
 	}
-	
+
 	/**
 	 * Preserves the user's prime album as managed album even if he is in a group the album is actually set as managed
 	 */

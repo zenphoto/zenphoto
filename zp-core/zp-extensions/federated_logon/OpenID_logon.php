@@ -4,7 +4,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage users
+ * @subpackage federated-logon
  */
 require_once('OpenID_common.php');
 if (session_id() == '')

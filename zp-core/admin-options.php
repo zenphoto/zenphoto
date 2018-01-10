@@ -131,6 +131,7 @@ if (isset($_GET['action'])) {
 					setOption($matches[1] . '_log_mail', (int) isset($_POST['log_mail_' . $matches[1]]));
 				}
 			}
+			setOption('anonymize_ip', (int) isset($_POST['anonymize_ip']));
 		}
 
 		/*		 * * Gallery options ** */
@@ -193,9 +194,11 @@ if (isset($_GET['action'])) {
 			setOption('search_no_pages', (int) isset($_POST['search_no_pages']));
 			setOption('search_no_news', (int) isset($_POST['search_no_news']));
 			setOption('search_within', (int) ($_POST['search_within'] && true));
-			$sorttype = strtolower(sanitize($_POST['sortby'], 3));
+			
+			// image default sort order + direction
+			$sorttype = strtolower(sanitize($_POST['search_image_sort_type'], 3));
 			if ($sorttype == 'custom') {
-				$sorttype = unquote(strtolower(sanitize($_POST['customimagesort'], 3)));
+				$sorttype = unquote(strtolower(sanitize($_POST['custom_image_sort'], 3)));
 			}
 			setOption('search_image_sort_type', $sorttype);
 			if ($sorttype == 'random') {
@@ -204,18 +207,48 @@ if (isset($_GET['action'])) {
 				if (empty($sorttype)) {
 					$direction = 0;
 				} else {
-					$direction = isset($_POST['image_sortdirection']);
+					$direction = isset($_POST['search_image_sort_direction']);
 				}
 				setOption('search_image_sort_direction', $direction);
 			}
-			$sorttype = strtolower(sanitize($_POST['subalbumsortby'], 3));
-			if ($sorttype == 'custom')
-				$sorttype = strtolower(sanitize($_POST['customalbumsort'], 3));
+			
+			// album default sort order + direction
+			$sorttype = strtolower(sanitize($_POST['search_album_sort_type'], 3));
+			if ($sorttype == 'custom') {
+				$sorttype = strtolower(sanitize($_POST['custom_album_sort'], 3));
+			}
 			setOption('search_album_sort_type', $sorttype);
 			if ($sorttype == 'random') {
 				setOption('search_album_sort_direction', 0);
 			} else {
-				setOption('search_album_sort_direction', isset($_POST['album_sortdirection']));
+				setOption('search_album_sort_direction', isset($_POST['search_album_sort_direction']));
+			}
+			
+			if (extensionEnabled('zenpage') && ZP_NEWS_ENABLED) {
+				// Zenpage news articles default sort order + direction
+				$sorttype = strtolower(sanitize($_POST['search_newsarticle_sort_type'], 3));
+				if ($sorttype == 'custom') {
+					$sorttype = strtolower(sanitize($_POST['custom_newsarticle_sort'], 3));
+				}
+				setOption('search_newsarticle_sort_type', $sorttype);
+				if ($sorttype == 'random') {
+					setOption('search_newsarticle_sort_direction', 0);
+				} else {
+					setOption('search_newsarticle_sort_direction', isset($_POST['search_newsarticle_sort_direction']));
+				}
+			}
+			
+			if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+				// Zenpage pages default sort order + direction
+				$sorttype = strtolower(sanitize($_POST['search_page_sort_type'], 3));
+				if ($sorttype == 'custom')
+					$sorttype = strtolower(sanitize($_POST['custom_page_sort'], 3));
+				setOption('search_page_sort_type', $sorttype);
+				if ($sorttype == 'random') {
+					setOption('search_page_sort_direction', 0);
+				} else {
+					setOption('search_page_sort_direction', isset($_POST['search_page_sort_direction']));
+				}
 			}
 			$returntab = "&tab=search";
 		}
@@ -1053,6 +1086,20 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext('Logs will be "rolled" over when they exceed the specified size. If checked, the administrator will be e-mailed when this occurs.') ?></td>
 								</tr>
+								<tr>
+									<td width="175">
+										<p><?php echo gettext('Anonym IP'); ?></p>
+									</td>
+									<td width="350">
+										<label>
+											<input type="checkbox" size="5" id="anonymize_ip" name="anonymize_ip"  value="1" <?php checked('1', getOption('anonymize_ip')); ?> />
+											<?php echo gettext("Anonymize IP"); ?>
+										</label>
+									</td>
+									<td width="175">
+										<p><?php echo gettext('Zenphoto stores the IP address of visitors on several occasions (e.g. rating, spam filtering). In some countries\'s laws (e.g. EU countries) the IP address is considered private information and therefore it is require to not store the full address. Enable this so the last part of the IP address is replacd by 0.'); ?></p>
+									</td>
+								</tr>
 								<?php zp_apply_filter('admin_general_data'); ?>
 								<tr>
 									<td colspan="3">
@@ -1155,6 +1202,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<td>
 											<p>
 											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														 class="dirtyignore" 
 														 onkeydown="passwordClear('');"
 														 id="user_name"  name="user"
 														 value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
@@ -1183,17 +1231,19 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 											<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														 class="dirtyignore" 
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
 														 onkeyup="passwordStrength('');"
-														 value="<?php echo $x; ?>" />
+														 value="<?php echo $x; ?>" autocomplete="off" />
 											<br />
 											<span class="password_field_">
 												<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															 class="dirtyignore" 
 															 id="pass_r" name="pass_r" disabled="disabled"
 															 onkeydown="passwordClear('');"
 															 onkeyup="passwordMatch('');"
-															 value="<?php echo $x; ?>" />
+															 value="<?php echo $x; ?>" autocomplete="off" />
 											</span>
 											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 
@@ -1489,9 +1539,10 @@ Zenphoto_Authority::printPasswordFormJS();
 										</td>
 										<td>
 											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														 class="dirtyignore" 
 														 onkeydown="passwordClear('');"
 														 id="user_name"  name="user"
-														 value="<?php echo html_encode(getOption('search_user')); ?>" />
+														 value="<?php echo html_encode(getOption('search_user')); ?>" autocomplete="off" />
 											<br />
 
 										</td>
@@ -1517,17 +1568,19 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 											<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														 class="dirtyignore" 
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
 														 onkeyup="passwordStrength('');"
-														 value="<?php echo $x; ?>" />
+														 value="<?php echo $x; ?>" autocomplete="off" />
 											<br />
 											<span class="password_field_">
 												<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															 class="dirtyignore" 
 															 id="pass_r" name="pass_r" disabled="disabled"
 															 onkeydown="passwordClear('');"
 															 onkeyup="passwordMatch('');"
-															 value="<?php echo $x; ?>" />
+															 value="<?php echo $x; ?>" autocomplete="off" />
 											</span>
 											<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>
 										</td>
@@ -1667,15 +1720,16 @@ Zenphoto_Authority::printPasswordFormJS();
 										<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
 									</td>
 								</tr>
-								<?php
-								$sort = $_zp_sortby;
-								$sort[gettext('Custom')] = 'custom';
+								<?php 
+									$sort = $_zp_sortby;
+									$sort[gettext('Custom')] = 'custom'; 
+									$sort[gettext('Manual')] = 'sort_order'; 
 								?>
 								<tr>
 									<td class="leftcolumn"><?php echo gettext("Sort albums by"); ?> </td>
 									<td colspan="2">
 										<span class="nowrap">
-											<select id="albumsortselect" name="subalbumsortby" onchange="update_direction(this, 'album_direction_div', 'album_custom_div');">
+											<select id="album_sort_select" name="search_album_sort_type" onchange="update_direction(this, 'album_direction_div', 'album_custom_div');">
 												<?php
 												$cvt = $type = strtolower(getOption('search_album_sort_type'));
 												if ($type && !in_array($type, $sort)) {
@@ -1695,7 +1749,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 											<label id="album_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 												<?php echo gettext("Descending"); ?>
-												<input type="checkbox" name="album_sortdirection" value="1"
+												<input type="checkbox" name="search_album_sort_direction" value="1"
 												<?php
 												if (getOption('search_album_sort_direction')) {
 													echo "CHECKED";
@@ -1715,7 +1769,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<br />
 											<?php echo gettext('custom fields:') ?>
 											<span class="tagSuggestContainer">
-												<input id="customalbumsort" class="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
+												<input id="custom_album_sort" class="custom_album_sort" name="custom_album_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
 											</span>
 										</span>
 									</td>
@@ -1726,7 +1780,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td class="leftcolumn"><?php echo gettext("Sort images by"); ?> </td>
 									<td colspan="2">
 										<span class="nowrap">
-											<select id="imagesortselect" name="sortby" onchange="update_direction(this, 'image_direction_div', 'image_custom_div')">
+											<select id="image_sort_select" name="search_image_sort_type" onchange="update_direction(this, 'image_direction_div', 'image_custom_div')">
 												<?php
 												$cvt = $type = strtolower(getOption('search_image_sort_type'));
 												if ($type && !in_array($type, $sort)) {
@@ -1746,7 +1800,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 											<label id="image_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 												<?php echo gettext("Descending"); ?>
-												<input type="checkbox" name="image_sortdirection" value="1"
+												<input type="checkbox" name="search_image_sort_direction" value="1"
 												<?php
 												if (getOption('search_image_sort_direction')) {
 													echo ' checked="checked"';
@@ -1766,12 +1820,127 @@ Zenphoto_Authority::printPasswordFormJS();
 											<br />
 											<?php echo gettext('custom fields:') ?>
 											<span class="tagSuggestContainer">
-												<input id="customimagesort" class="customimagesort" name="customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
+												<input id="custom_image_sort" class="custom_image_sort" name="custom_image_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
 											</span>
 										</span>
 									</td>
-
 								</tr>
+								<?php
+								$zenpage_sort = array(
+										gettext('Title') => 'title',
+										gettext('TitleLink') => 'titlelink',
+										gettext('ID') => 'id',
+										gettext('Date') => 'date',
+										gettext('Published') => 'show',
+										gettext('Author') => 'author'
+								);
+								if (extensionEnabled('zenpage') && ZP_NEWS_ENABLED) {
+								?>
+									<tr>
+										<td class="leftcolumn"><?php echo gettext("Sort news articles by"); ?> </td>
+										<td colspan="2">
+											<span class="nowrap">
+												<select id="newsarticle_sort_select" name="search_newsarticle_sort_type" onchange="update_direction(this, 'newsarticle_direction_div', 'newsarticle_custom_div')">
+													<?php
+													$cvt = $type = strtolower(getOption('search_newsarticle_sort_type'));
+													if ($type && !in_array($type, $zenpage_sort)) {
+														$cv = array('custom');
+													} else {
+														$cv = array($type);
+													}
+													generateListFromArray($cv, $zenpage_sort, false, true);
+													?>
+												</select>
+												<?php
+												if (($type == 'random') || ($type == '')) {
+													$dsp = 'none';
+												} else {
+													$dsp = 'inline';
+												}
+												?>
+												<label id="newsarticle_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+													<?php echo gettext("Descending"); ?>
+													<input type="checkbox" name="search_newsarticle_sort_direction" value="1"
+													<?php
+													if (getOption('search_newsarticle_sort_direction')) {
+														echo ' checked="checked"';
+													}
+													?> />
+												</label>
+											</span>
+											<?php
+											$flip = array_flip($zenpage_sort);
+											if (empty($type) || isset($flip[$type])) {
+												$dsp = 'none';
+											} else {
+												$dsp = 'block';
+											}
+											?>
+											<span id="newsarticle_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+												<br />
+												<?php echo gettext('custom fields:') ?>
+												<span class="tagSuggestContainer">
+													<input id="custom_newsarticle_sort" class="custom_newsarticle_sort" name="custom_newsarticle_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
+												</span>
+											</span>
+										</td>
+									</tr>
+								<?php 
+								} 
+								if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+									$zenpage_sort[gettext('Manual')] = 'sort_order';
+								?>
+									<tr>
+										<td class="leftcolumn"><?php echo gettext("Sort pages by"); ?> </td>
+										<td colspan="2">
+											<span class="nowrap">
+												<select id="page_sort_select" name="search_page_sort_type" onchange="update_direction(this, 'page_direction_div', 'page_custom_div')">
+													<?php
+													$cvt = $type = strtolower(getOption('search_page_sort_type'));
+													if ($type && !in_array($type, $zenpage_sort)) {
+														$cv = array('custom');
+													} else {
+														$cv = array($type);
+													}
+													generateListFromArray($cv, $zenpage_sort, false, true);
+													?>
+												</select>
+												<?php
+												if (($type == 'random') || ($type == '')) {
+													$dsp = 'none';
+												} else {
+													$dsp = 'inline';
+												}
+												?>
+												<label id="page_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+													<?php echo gettext("Descending"); ?>
+													<input type="checkbox" name="search_page_sort_direction" value="1"
+													<?php
+													if (getOption('search_page_sort_direction')) {
+														echo ' checked="checked"';
+													}
+													?> />
+												</label>
+											</span>
+											<?php
+											$flip = array_flip($zenpage_sort);
+											if (empty($type) || isset($flip[$type])) {
+												$dsp = 'none';
+											} else {
+												$dsp = 'block';
+											}
+											?>
+											<span id="page_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
+												<br />
+												<?php echo gettext('custom fields:') ?>
+												<span class="tagSuggestContainer">
+													<input id="custom_page_sort" class="custom_page_sort" name="custom_page_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
+												</span>
+											</span>
+										</td>
+									</tr>
+								<?php } ?>
+					
 								<tr>
 									<td colspan="3">
 										<p class="buttons">
@@ -2249,9 +2418,10 @@ Zenphoto_Authority::printPasswordFormJS();
 													</td>
 													<td style="margin:0; padding:0">
 														<input type="text" size="30"
+																	 class="dirtyignore" 
 																	 onkeydown="passwordClear('');"
 																	 id="user_name"  name="user"
-																	 value="<?php echo html_encode(getOption('protected_image_user')); ?>" />
+																	 value="<?php echo html_encode(getOption('protected_image_user')); ?>" autocomplete="off" />
 
 													</td>
 												</tr>
@@ -2273,17 +2443,19 @@ Zenphoto_Authority::printPasswordFormJS();
 														?>
 														<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 														<input type="password" size="30"
+																	 class="dirtyignore" 
 																	 id="pass" name="pass"
 																	 onkeydown="passwordClear('');"
 																	 onkeyup="passwordStrength('');"
-																	 value="<?php echo $x; ?>" />
+																	 value="<?php echo $x; ?>" autocomplete="off" />
 														<br />
 														<span class="password_field_">
 															<input type="password" size="30"
+																		 class="dirtyignore" 
 																		 id="pass_r" name="pass_r" disabled="disabled"
 																		 onkeydown="passwordClear('');"
 																		 onkeyup="passwordMatch('');"
-																		 value="<?php echo $x; ?>" />
+																		 value="<?php echo $x; ?>" autocomplete="off" />
 														</span>
 														<br />
 														<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear(''); togglePassword('');" /><?php echo gettext('Show password'); ?></label>

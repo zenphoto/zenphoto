@@ -4,9 +4,11 @@
  * the assigned to the current object.
  *
  * @package plugins
+ * @subpackage related-items
  */
 $plugin_description = gettext('Provides functionality to get the related items to an item based on a tag search.');
 $plugin_author = "Malte Müller (acrylian)";
+$plugin_category = gettext('Media');
 
 function getRelatedItems($type = 'news', $album = NULL) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_gallery_page;

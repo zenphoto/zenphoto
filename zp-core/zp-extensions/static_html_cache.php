@@ -22,12 +22,12 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage admin
+ * @subpackage static-html-cache
  */
 $plugin_is_filter = 400 | CLASS_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
-
+$plugin_category = gettext('Admin');
 $option_interface = 'static_html_cache';
 
 $cache_path = SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/";
@@ -284,7 +284,7 @@ class static_html_cache {
 			// strip characters that cannot be in file names
 			$cachefilepath = str_replace(array('<', '>', ':', '"', '/', '\\', '|', '?', '*'), '_', $cachefilepath) . $locale;
 		}
-		return $cachesubfolder . "/" . $cachefilepath;
+		return $cachesubfolder . "/" . $cachefilepath . '.html';
 	}
 
 	/**
@@ -308,10 +308,10 @@ class static_html_cache {
 		if (is_null($folder)) {
 			$cachesubfolders = array("index", "albums", "images", "pages");
 			foreach ($cachesubfolders as $cachesubfolder) {
-				zpFunctions::removeDir(SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/" . $cachesubfolder, true);
+				removeDir(SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/" . $cachesubfolder, true);
 			}
 		} else {
-			zpFunctions::removeDir(SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/" . $folder);
+			removeDir(SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/" . $folder);
 		}
 	}
 

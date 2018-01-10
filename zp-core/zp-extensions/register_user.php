@@ -20,11 +20,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage users
+ * @subpackage register-user
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Users');
 
 $option_interface = 'register_user';
 
@@ -301,7 +302,7 @@ class register_user {
 						} else {
 							$verify ='&verify=';
 						}
-						$_link = PROTOCOL . "://" . $_SERVER['HTTP_HOST'] . register_user::getLink() . $verify . bin2hex(serialize(array('user' => $user, 'email' => $admin_e)));
+						$_link = SERVER_HTTP_HOST . register_user::getLink() . $verify . bin2hex(serialize(array('user' => $user, 'email' => $admin_e)));
 						$_message = sprintf(get_language_string(getOption('register_user_text')), $_link, $admin_n, $user, $pass);
 						$_notify = zp_mail(get_language_string(gettext('Registration confirmation')), $_message, array($user => $admin_e));
 						if (empty($_notify)) {

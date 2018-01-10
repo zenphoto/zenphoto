@@ -35,7 +35,7 @@ div.jp-video {
 	/* Edit the font-size to counteract inherited font sizing.
 	 * Eg. 1.25em = 1 / 0.8em
 	 */
-	display: table;
+	display: block;
 	font-size:12px !important; /* 1.25em for testing in site pages */ /* No parent CSS that can effect the size in the demos ZIP */
 	font-weight: normal;
 	font-family:Arial,Helvetica, Verdana, sans-serif;

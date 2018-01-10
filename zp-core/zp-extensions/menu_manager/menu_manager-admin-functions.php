@@ -1,7 +1,9 @@
 <?php
-/* * *****************************
+/**
  * Menu manager admin functions
- * ***************************** */
+ * @package plugins
+ * @subpackage menu-manager
+ */
 
 /**
  * Updates the sortorder of the pages list in the database

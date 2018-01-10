@@ -1,35 +1,29 @@
-<?php //================================================================================================
-//================================================================================================
-//================================================================================================
-/*
-	Exifer
-	Extracts EXIF information from digital photos.
+<?php
+/**
+ * Exifer
+ * Extracts EXIF information from digital photos.
+ *
+ * Copyright © 2003 Jake Olefsky
+ * http://www.offsky.com/software/exif/index.php
+ * jake@olefsky.com
+ *
+ * Please see exif.php for the complete information about this software.
+ *
+ * This program is free software; you can redistribute it and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. http://www.gnu.org/copyleft/gpl.html
+ */
 
-	Copyright © 2003 Jake Olefsky
-	http://www.offsky.com/software/exif/index.php
-	jake@olefsky.com
-
-	Please see exif.php for the complete information about this software.
-
-	------------
-
-	This program is free software; you can redistribute it and/or modify it under the terms of
-	the GNU General Public License as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-
-	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-	without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-	See the GNU General Public License for more details. http://www.gnu.org/copyleft/gpl.html
-*/
-//================================================================================================
-//================================================================================================
-//================================================================================================
-
-
-
-//=================
-// Looks up the name of the tag
-//====================================================================
+/**
+ * Looks up the name of the tag
+ *
+ * @param type $tag
+ * @return string
+ */
 function lookup_GPS_tag($tag) {
 
 	switch($tag) {
@@ -72,76 +66,86 @@ function lookup_GPS_tag($tag) {
 	return $tag;
 }
 
-//=================
-// Formats Data for the data type
-//====================================================================
-function formatGPSData($type,$tag,$intel,$data) {
+/**
+ * Formats Data for the data type
+ *
+ * @param type $type
+ * @param type $tag
+ * @param type $intel
+ * @param type $data
+ * @return type
+ */
+function formatGPSData($type, $tag, $intel, $data) {
 
-	if($type=="ASCII") {
-		if($tag=="0001" || $tag=="0003"){ // Latitude Reference, Longitude Reference
+	if ($type == "ASCII") {
+		if ($tag == "0001" || $tag == "0003") { // Latitude Reference, Longitude Reference
 			$data = ($data{1} == @$data{2} && @$data{1} == @$data{3}) ? $data{0} : $data;
 		}
-
-	} else if($type=="URATIONAL" || $type=="SRATIONAL") {
-		if($tag=="0002" || $tag=="0004" || $tag=='0007') { //Latitude, Longitude, Time
+	} else if ($type == "URATIONAL" || $type == "SRATIONAL") {
+		if ($tag == "0002" || $tag == "0004" || $tag == '0007') { //Latitude, Longitude, Time
 			$datum = array();
-			for ($i=0;$i<strlen($data);$i=$i+8) {
-				array_push($datum,substr($data, $i, 8));
+			for ($i = 0; $i < strlen($data); $i = $i + 8) {
+				array_push($datum, substr($data, $i, 8));
 			}
-			$hour = unRational($datum[0],$type,$intel);
-			$minutes = unRational($datum[1],$type,$intel);
-			$seconds = unRational($datum[2],$type,$intel);
-			if($tag=="0007") { //Time
-				$data = $hour.":".$minutes.":".$seconds;
+			$hour = unRational($datum[0], $type, $intel);
+			$minutes = unRational($datum[1], $type, $intel);
+			$seconds = unRational($datum[2], $type, $intel);
+			if ($tag == "0007") { //Time
+				$data = $hour . ":" . $minutes . ":" . $seconds;
 			} else {
-				$data = $hour+$minutes/60+$seconds/3600;
+				$data = $hour + $minutes / 60 + $seconds / 3600;
 			}
 		} else {
-			$data = unRational($data,$type,$intel);
+			$data = unRational($data, $type, $intel);
 
-			if($tag=="0006"){
+			if ($tag == "0006") {
 				$data .= 'm';
 			}
 		}
-	} else if($type=="USHORT" || $type=="SSHORT" || $type=="ULONG" || $type=="SLONG" || $type=="FLOAT" || $type=="DOUBLE") {
-		$data = rational($data,$type,$intel);
+	} else if ($type == "USHORT" || $type == "SSHORT" || $type == "ULONG" || $type == "SLONG" || $type == "FLOAT" || $type == "DOUBLE") {
+		$data = rational($data, $type, $intel);
+	} else if ($type == "UNDEFINED") {
 
-
-	} else if($type=="UNDEFINED") {
-
-
-
-	} else if($type=="UBYTE") {
+	} else if ($type == "UBYTE") {
 		$data = bin2hex($data);
-		if($intel==1) $num = intel2Moto($data);
+		if ($intel == 1)
+			$num = intel2Moto($data);
 
-
-		if($tag=="0000") { // VersionID
-			$data =  hexdec(substr($data,0,2)) .
-												".". hexdec(substr($data,2,2)) .
-												".". hexdec(substr($data,4,2)) .
-												".". hexdec(substr($data,6,2));
-
-		} else if($tag=="0005"){ // Altitude Reference
-			if($data == "00000000"){ $data = '+'; }
-			else if($data == "01000000"){ $data = '-'; }
+		if ($tag == "0000") { // VersionID
+			$data = hexdec(substr($data, 0, 2)) .
+							"." . hexdec(substr($data, 2, 2)) .
+							"." . hexdec(substr($data, 4, 2)) .
+							"." . hexdec(substr($data, 6, 2));
+		} else if ($tag == "0005") { // Altitude Reference
+			if ($data == "00000000") {
+				$data = '+';
+			} else if ($data == "01000000") {
+				$data = '-';
+			}
 		}
-
 	} else {
 		$data = bin2hex($data);
-		if($intel==1) $data = intel2Moto($data);
+		if ($intel == 1)
+			$data = intel2Moto($data);
 	}
 
 	return $data;
 }
 
-
-//=================
-// GPS Special data section
-// Useful websites
-// http://drewnoakes.com/code/exif/sampleOutput.html
-// http://www.geosnapper.com
-//====================================================================
+/**
+ * GPS Special data section
+ *
+ * Useful websites
+ *
+ * -http://drewnoakes.com/code/exif/sampleOutput.html
+ * - http://www.geosnapper.com
+ * @param type $block
+ * @param type $result
+ * @param type $offset
+ * @param type $seek
+ * @param type $globalOffset
+ * @return type
+ */
 function parseGPS($block,&$result,$offset,$seek, $globalOffset) {
 
 	if($result['Endien']=="Intel") $intel=1;
@@ -213,6 +217,3 @@ function parseGPS($block,&$result,$offset,$seek, $globalOffset) {
 		}
 	}
 }
-
-
-?>

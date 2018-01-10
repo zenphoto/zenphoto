@@ -89,7 +89,7 @@ class ZenpagePage extends ZenpageItems {
 		if ($locale !== 'all') {
 			$text = get_language_string($text, $locale);
 		}
-		$text = zpFunctions::unTagURLs($text);
+		$text = unTagURLs($text);
 		return $text;
 	}
 
@@ -99,7 +99,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @param string $hint the hint text
 	 */
 	function setPasswordHint($hint) {
-		$this->set('password_hint', zpFunctions::tagURLs($hint));
+		$this->set('password_hint', tagURLs($hint));
 	}
 
 	/**
@@ -215,6 +215,7 @@ class ZenpagePage extends ZenpageItems {
 		return $this->getPages();
 	}
 
+
 	/**
 	 * Checks if user is allowed to access the page
 	 * @param $hint
@@ -252,7 +253,7 @@ class ZenpagePage extends ZenpageItems {
 			}
 		}
 	}
-
+	
 	/**
 	 * Checks if a page is protected and returns TRUE or FALSE
 	 * NOTE: This function does only check if a password is set not if it has been entered! Use $this->checkforGuest() for that.

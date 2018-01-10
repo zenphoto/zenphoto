@@ -7,12 +7,12 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage media
+ * @subpackage jcarousel-thumb-nav
  */
 $plugin_description = gettext("jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on request via JavaScript.");
 $plugin_author = "Malte Müller (acrylian) based on a jCarousel example";
 $plugin_disable = (extensionEnabled('bxslider_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'bxslider_thumb_nav') : '';
-
+$plugin_category = gettext('Media');
 $option_interface = 'jcarousel';
 
 /**

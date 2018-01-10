@@ -138,6 +138,16 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			}
 			$headline = $typename . " - " . gettext("most viewed");
 			break;
+		case "popularimages":
+			$dbquery = "SELECT a.*, ROUND(AVG( i.hitcounter ), 0) AS average FROM " . prefix('albums') . " a INNER JOIN " . prefix('images') . " i ON i.albumid = a.id ";
+			$itemssorted = query_full_array($dbquery . " GROUP BY i.albumid ORDER BY average DESC LIMIT " . $limit);
+			if (empty($itemssorted)) {
+				$maxvalue = 0;
+			} else {
+				$maxvalue = $itemssorted[0]['hitcounter'];
+			}
+			$headline = $typename . " - " . gettext("most viewed images");
+			break;
 		case "mostrated":
 			$itemssorted = query_full_array($dbquery . " ORDER BY total_votes DESC LIMIT " . $limit);
 			if (empty($itemssorted)) {
@@ -242,7 +252,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		$no_statistic_message = "<tr><td><em>" . gettext("No statistic available.") . $no_hitcount_enabled_msg . "</em></td><td></td><td></td><td></td></tr>";
 	} else {
 		$no_statistic_message = "";
-		if ($sortorder == 'popular' && $type != 'rss' && !extensionEnabled('hitcounter')) {
+		if (($sortorder == 'popular' || $sortorder == 'popularimages') && $type != 'rss' && !extensionEnabled('hitcounter')) {
 			$no_statistic_message = "<tr><td colspan='4'><em>" . gettext("Note: The hitcounter plugin is not enabled, therefore any existing values will not get updated.") . "</em></td><td></td><td></td><td></td></tr>";
 		}
 	}
@@ -289,6 +299,10 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 						$value = $item['hitcounter'];
 						break;
 				}
+				break;
+			case 'popularimages':
+				$barsize = round($item['average'] / $maxvalue * $bargraphmaxsize) - 10;
+				$value = $item['average'] . " views / image";
 				break;
 			case "mostrated":
 				if ($item['total_votes'] != 0) {
@@ -578,6 +592,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 								<li><a href="#albums-latestupdated"><?php echo gettext("latest updated"); ?></a> | </li>
 								<li><a href="#albums-mostimages"><?php echo gettext("most images"); ?></a> | </li>
 								<li><a href="#albums-popular"><?php echo gettext("most viewed"); ?></a> | </li>
+								<li><a href="#albums-popularimages"><?php echo gettext("most viewed images"); ?></a> | </li>
 								<li><a href="#albums-mostrated"><?php echo gettext("most rated"); ?></a> | </li>
 								<li><a href="#albums-toprated"><?php echo gettext("top rated"); ?></a> | </li>
 								<li><a href="#albums-mostcommented"><?php echo gettext("most commented"); ?></a></li>
@@ -650,6 +665,9 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 
 						<span id="albums-popular"></span>
 						<?php printBarGraph("popular", "albums"); ?>
+
+						<span id="albums-popularimages"></span>
+						<?php printBarGraph("popularimages", "albums"); ?>
 
 						<span id="albums-mostrated"></span>
 						<?php printBarGraph("mostrated", "albums"); ?>
@@ -761,6 +779,9 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 										case "popular":
 											printBarGraph("popular", "albums", $from_number, $to_number);
 											break;
+        								case "popularimages":
+        									printBarGraph("popularimages", "albums", $from_number, $to_number);
+        									break;
 										case "mostrated":
 											printBarGraph("mostrated", "albums", $from_number, $to_number);
 											break;

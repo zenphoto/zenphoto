@@ -5,13 +5,13 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage mail
+ * @subpackage zenphoto-sendmail
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto outgoing mail handler based on the PHP <em>mail</em> facility.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('zenphoto_sendmail')) ? sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('sendmail'))) : '';
-
+$plugin_category = gettext('Mail');
 if ($plugin_disable) {
 	enableExtension('zenphoto_sendmail', 0);
 } else {

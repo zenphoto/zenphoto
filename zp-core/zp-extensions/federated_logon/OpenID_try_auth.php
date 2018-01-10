@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package plugins
+ * @subpackage federated-logon
+ */
 
 require_once("OpenID_common.php");
 require_once(dirname(__FILE__).'/Auth/OpenID/AX.php');

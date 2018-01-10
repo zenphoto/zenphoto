@@ -14,12 +14,13 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage feed
+ * @subpackage mergedrss
  */
 $plugin_description = gettext("Merges several RSS feeds into one.");
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_disable = (class_exists('SimpleXMLElement')) ? false : gettext('PHP <em>SimpleXML</em> is required.');
 $option_interface = 'MergedRSSOptions';
+$plugin_category = gettext('Feed');
 
 // Create the merged rss feed
 if (isset($_GET['mergedrss'])) {

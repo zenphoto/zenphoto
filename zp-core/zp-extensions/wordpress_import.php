@@ -7,13 +7,13 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage misc
+ * @subpackage wordpress-import
  */
 if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5 | ADMIN_PLUGIN;
 	$plugin_description = gettext("Import Wordpress pages, posts, categories, and comments to Zenpage.");
 	$plugin_author = "Malte Müller (acrylian)";
-
+ $plugin_category = gettext('Misc');
 
 	zp_register_filter('admin_utilities_buttons', 'wordpress_import_button');
 

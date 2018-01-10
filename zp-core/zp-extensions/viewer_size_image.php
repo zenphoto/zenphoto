@@ -21,11 +21,11 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage media
+ * @subpackage viewer-size-image
  */
 $plugin_description = gettext("Provides a means allowing users to select the image size to view.");
 $plugin_author = "Stephen Billard (sbillard)";
-
+$plugin_category = gettext('Media');
 $option_interface = 'viewer_size_image_options';
 
 /**

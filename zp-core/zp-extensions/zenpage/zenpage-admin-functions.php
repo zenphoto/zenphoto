@@ -59,8 +59,8 @@ function processTags($object) {
 function updatePage(&$reports, $newpage = false) {
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
-	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
-	$extracontent = zpFunctions::updateImageProcessorLink(process_language_string_save("extracontent", EDITOR_SANITIZE_LEVEL));
+	$content = updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
+	$extracontent = updateImageProcessorLink(process_language_string_save("extracontent", EDITOR_SANITIZE_LEVEL));
 	$custom = process_language_string_save("custom_data", 1);
 	$show = getcheckboxState('show');
 	$date = sanitize($_POST['date']);
@@ -332,8 +332,8 @@ function updateArticle(&$reports, $newarticle = false) {
 	$date = date('Y-m-d_H-i-s');
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
-	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
-	$extracontent = zpFunctions::updateImageProcessorLink(process_language_string_save("extracontent", EDITOR_SANITIZE_LEVEL));
+	$content = updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
+	$extracontent = updateImageProcessorLink(process_language_string_save("extracontent", EDITOR_SANITIZE_LEVEL));
 	$custom = process_language_string_save("custom_data", 1);
 	$show = getcheckboxState('show');
 	$date = sanitize($_POST['date']);
@@ -1575,10 +1575,11 @@ function printPublishIconLink($object, $type, $linkback = '') {
 	 * @return bool
 	 */
 	function checkIfLockedPage($page) {
+		global $_zp_current_admin_obj;
 		if (zp_loggedin(ADMIN_RIGHTS))
 			return true;
 		if ($page->getLocked()) {
-			return $page->isMyItem(ZENPAGE_PAGES_RIGHTS);
+			return $_zp_current_admin_obj->getUser() == $page->getAuthor() && $page->isMyItem(ZENPAGE_PAGES_RIGHTS);
 		} else {
 			return true;
 		}
@@ -1592,10 +1593,12 @@ function printPublishIconLink($object, $type, $linkback = '') {
 	 * @return bool
 	 */
 	function checkIfLockedNews($news) {
+		global $_zp_current_admin_obj;
 		if (zp_loggedin(ADMIN_RIGHTS))
 			return true;
+			
 		if ($news->getLocked()) {
-			return $news->isMyItem(ZENPAGE_NEWS_RIGHTS);
+			return $_zp_current_admin_obj->getUser() == $news->getAuthor() && $news->isMyItem(ZENPAGE_NEWS_RIGHTS);
 		} else {
 			return true;
 		}

@@ -2,6 +2,8 @@
 
 /*
  * Slideshow deprecated functions
+ * @package plugins
+ * @subpackage slideshow
  */
 
 /**

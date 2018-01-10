@@ -5,12 +5,13 @@
  * a "debug" release and a normal release.
  *
  * @package plugins
- * @subpackage development
+ * @subpackage markrelease
  *
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('Mark installation as “released”.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Development');
 
 zp_register_filter('admin_utilities_buttons', 'markRelease_button');
 

@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package plugins
+ * @subpackage galleryarticles
+ */
 
 class Combi extends Zenpage {
 

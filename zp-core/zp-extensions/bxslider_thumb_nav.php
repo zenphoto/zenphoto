@@ -10,12 +10,15 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)
  * @package plugins
- * @subpackage media
+ * @subpackage bxslider-thumb-nav
  */
 $plugin_description = gettext("Responsive jQuery bxSlider thumb nav plugin based on <a href='http://bxslider.com'>http://bxslider.com</a>");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)";
 $plugin_disable = (extensionEnabled('jcarousel_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'jcarousel_thumb_nav') : '';
+$plugin_category = gettext('Media');
 $option_interface = 'bxslider';
+
+
 
 /**
  * Plugin option handling class
@@ -126,7 +129,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page;
 		//	Just incase the theme has not set the option, at least second try will work!
 		setOptionDefault('bxslider_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
-		$items = "";
+		$items = array();
 		if (is_object($_zp_current_album) && $_zp_current_album->getNumImages() >= 2) {
 			if (is_null($minitems)) {
 				$minitems = getOption('bxslider_minitems');

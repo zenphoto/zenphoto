@@ -4,11 +4,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage check-for-update
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Checks if there is a Zenphoto versions that is newer than the installed version.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Admin');
 $plugin_disable = (!class_exists('DOMDocument')) ? gettext('PHP <em>DOM Object Model</em> is required.') : false;
 
 if (!$plugin_disable) {

@@ -34,6 +34,7 @@ purgeOption('zenphoto_release');
 purgeOption('zenphoto_version');
 purgeOption('zenphoto_install');
 setOption('zenphoto_install', serialize(installSignature()));
+setOptionDefault('setup_unprotected_by_adminrequest', 0);
 
 if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
 	if (empty($oldv)) {
@@ -130,17 +131,17 @@ setOptionDefault('hotlink_protection', '1');
 
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
 
-$a = "a => (href =>() title =>() target=>() class=>() id=>())\n" .
+$a = "a => (href =>() title =>() target=>() class=>() id=>() rel=>())\n" .
 				"abbr =>(class=>() id=>() title =>())\n" .
 				"acronym =>(class=>() id=>() title =>())\n" .
 				"b => (class=>() id=>() )\n" .
 				"blockquote =>(class=>() id=>() cite =>())\n" .
-				"br => (class=>() id=>() )\n" .
-				"code => (class=>() id=>() )\n" .
-				"em => (class=>() id=>() )\n" .
-				"i => (class=>() id=>() ) \n" .
-				"strike => (class=>() id=>() )\n" .
-				"strong => (class=>() id=>() )\n" .
+				"br => (class=>() id=>())\n" .
+				"code => (class=>() id=>())\n" .
+				"em => (class=>() id=>())\n" .
+				"i => (class=>() id=>()) \n" .
+				"strike => (class=>() id=>())\n" .
+				"strong => (class=>() id=>())\n" .
 				"ul => (class=>() id=>())\n" .
 				"ol => (class=>() id=>())\n" .
 				"li => (class=>() id=>())\n" .
@@ -155,7 +156,8 @@ $a = "a => (href =>() title =>() target=>() class=>() id=>())\n" .
 				"address=>(class=>() id=>() style=>())\n" .
 				"span=>(class=>() id=>() style=>())\n" .
 				"div=>(class=>() id=>() style=>())\n" .
-				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>())\n"
+				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>())\n" .
+				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>())\n"
 ;
 setOption('allowed_tags_default', $a);
 setOptionDefault('allowed_tags', $a);
@@ -558,9 +560,15 @@ switch (getOption('spam_filter')) {
 		break;
 }
 setOptionDefault('search_album_sort_type', 'title');
-setOptionDefault('search_image_sort_type', 'title');
 setOptionDefault('search_album_sort_direction', '');
+setOptionDefault('search_image_sort_type', 'title');
 setOptionDefault('search_image_sort_direction', '');
+
+setOptionDefault('search_newsarticle_sort_type', 'date');
+setOptionDefault('search_newsarticle_sort_direction', 1);
+setOptionDefault('search_page_sort_type', 'title');
+setOptionDefault('search_page_sort_direction', '');
+
 purgeOption('zp_plugin_releaseUpdater');
 
 query('UPDATE ' . prefix('administrators') . ' SET `passhash`=' . ((int) getOption('strong_hash')) . ' WHERE `valid`>=1 AND `passhash` IS NULL');

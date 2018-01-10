@@ -11,13 +11,13 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage tinyurl
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides short URLs to Zenphoto objects.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('Shortened URLs require the <code>mod_rewrite</code> option be enabled.');
-
+$plugin_category = gettext('Admin');
 $option_interface = 'tinyURL';
 
 if (getOption('tinyURL_agressive'))

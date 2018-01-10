@@ -106,7 +106,7 @@ if (!defined('OFFSET_PATH')) {
 			}
 		} else {
 			if ($subpackage) {
-				$sublink = $subpackage . '/';
+				$sublink = strtolower(str_replace(array('_','-'), '.', $subpackage));
 			}
 			$whose = 'Zenphoto official plugin';
 			$ico = 'images/zp_gold.png';
@@ -126,7 +126,7 @@ if (!defined('OFFSET_PATH')) {
 				$doclink = sprintf('See also the <a href="%1$s">%2$s</a>', $plugin_URL, $extension);
 			}
 		} else {
-			$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/' . $sublink . '_' . PLUGIN_FOLDER . '---' . $extension . '.php.html';
+			$plugin_URL = 'http://docs.zenphoto.org/package-plugins.' . $sublink . '.html';
 			$doclink = sprintf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'), $plugin_URL, $extension);
 		}
 		$pluginusage = gettext('Plugin usage information');

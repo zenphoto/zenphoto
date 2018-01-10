@@ -8,9 +8,11 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage tag-extras
  */
 $plugin_description = gettext("Provides functions to print a tag cloud of all tags from a Zenphoto object.");
 $plugin_author = "Malte Müller (acrylian)";
+$plugin_category = gettext('Misc');
 
 /**
  * Prints a tag cloud list of the tags in one album and optionally its subalbums. Returns FALSE if no value.

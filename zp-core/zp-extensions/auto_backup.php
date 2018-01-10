@@ -3,6 +3,8 @@
 /**
  * This plugin provides a facility to periodically run the Zenphoto backup utility. Use it to
  * insure that database backups are done on a regular basis.
+ * 
+ * The backups are stored within the /backup folder in the root of your install.
  *
  * <b>NOTE:</b> The website must be visited and live pages must be served for this
  * plugin to be able to check if it is time to run.
@@ -15,11 +17,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage auto-backup
  */
 $plugin_is_filter = 2 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("Periodically backup the Zenphoto database.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Admin');
 
 $option_interface = 'auto_backup';
 if ((getOption('last_backup_run') + getOption('backup_interval') * 86400) < time()) { // register if it is time for a backup
@@ -49,17 +52,25 @@ class auto_backup {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		$options = array(gettext('Run interval')		 => array('key'		 => 'backup_interval', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('The run interval (in days) for auto backup.')),
-						gettext('Backups to keep') => array('key'		 => 'backups_to_keep', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 0,
-										'desc'	 => gettext('Auto backup will keep only this many backup sets. Older sets will be removed.'))
+		$options = array(
+				gettext('Run interval') => array(
+						'key' => 'backup_interval',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext('The run interval (in days) for auto backup.')),
+				gettext('Backups to keep') => array(
+						'key' => 'backups_to_keep',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 0,
+						'desc' => gettext('Auto backup will keep only this many backup sets. Older sets will be removed.'))
 		);
 		if ($d = getOption('last_backup_run')) {
-			$options[gettext('Last backup')] = array('key'		 => 'last_backup_run', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 2,
-							'desc'	 => '<p class="notebox">' . sprintf(gettext('Auto Backup last ran %s.'), date('Y-m-d H:i:s', $d)) . '</p>');
+			$options[
+							gettext('Last backup')] = array(
+					'key' => 'last_backup_run',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 2,
+					'desc' => '<p class="notebox">' . sprintf(gettext('Auto Backup last ran %s.'), date('Y-m-d H:i:s', $d)) . '</p>');
 		}
 		return $options;
 	}

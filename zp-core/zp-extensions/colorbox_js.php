@@ -20,12 +20,13 @@
  * @author Stephen Billard (sbillard)
  *
  * @package plugins
- * @subpackage media
+ * @subpackage colorbox-js
  */
 $plugin_is_filter = 800 | THEME_PLUGIN;
 $plugin_description = gettext('Loads Colorbox JS and CSS scripts for selected theme page scripts.');
 $plugin_notice = gettext('Note that this plugin does not attach Colorbox to any element. You need to do this on your theme yourself.');
 $plugin_author = 'Stephen Billard (sbillard)';
+$plugin_category = gettext('Media');
 $option_interface = 'colorbox';
 
 if (OFFSET_PATH) {
@@ -58,7 +59,7 @@ class colorbox {
 										'desc'			 => gettext("The Colorbox script comes with 5 example themes you can select here. If you select <em>custom (within theme)</em> you need to place a folder <em>colorbox_js</em> containing a <em>colorbox.css</em> file and a folder <em>images</em> within the current theme to override to use a custom Colorbox theme."))
 		);
 		$c = 1;
-		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
+		foreach (getThemeFiles(array('404.php', 'functions.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
 				$list[$script] = 'colorbox_' . $theme . '_' . stripSuffix($script);
@@ -100,25 +101,36 @@ class colorbox {
 		<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
 		<script type="text/javascript" src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/colorbox_js/jquery.colorbox-min.js"></script>
 		<script>
-			/* Colorbox resize function */
+			/* Colorbox resize function for images*/
 			var resizeTimer;
-			function resizeColorBox()
-			{
+
+			function resizeColorBoxImage() {
 				if (resizeTimer)
 					clearTimeout(resizeTimer);
-				resizeTimer = setTimeout(function() {
+					resizeTimer = setTimeout(function() {
 					if (jQuery('#cboxOverlay').is(':visible')) {
-						jQuery.colorbox.resize({width: '90%', maxHeight: '90%'});
+						jQuery.colorbox.resize({width: '90%'});
 						jQuery('#cboxLoadedContent img').css('max-width', '100%').css('height', 'auto');
 					}
 				}, 300)
 			}
-
-			// Resize Colorbox when resizing window or changing mobile device orientation
-			jQuery(window).resize(resizeColorBox);
-			window.addEventListener("orientationchange", resizeColorBox, false);
-
+			/* Colorbox resize function for Google Maps*/
+			function resizeColorBoxMap() {
+				if (resizeTimer)
+					clearTimeout(resizeTimer);
+					resizeTimer = setTimeout(function() {
+					var mapw = $(window).width() * 0.8;
+        			var maph = $(window).height() * 0.7;
+						if (jQuery('#cboxOverlay').is(':visible')) {
+							$.colorbox.resize({innerWidth: mapw, innerHeight: maph});
+							$('#cboxLoadedContent iframe').contents().find('#map_canvas').css('width', '100%').css('height', maph-20);
+						}
+					}, 500)
+			}
+			// Resize Colorbox when changing mobile device orientation
+			window.addEventListener("orientationchange", function(){resizeColorBoxImage();parent.resizeColorBoxMap()}, false);
 		</script>
+
 		<?php
 	}
 

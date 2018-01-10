@@ -16,9 +16,12 @@ if ($_contents) {
 		} else {
 			$page = 'page';
 		}
+		$protocol = explode('/', strtolower($_SERVER['SERVER_PROTOCOL']));
+		$root = $protocol[0] . '://' . $_SERVER['HTTP_HOST'] . str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
+	
 		if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
 			if (file_exists(dirname($_zp_script) . '/plugins/site_upgrade/closed.php')) {
-				header('location: plugins/site_upgrade/closed.php');
+				header('location: ' . $root . 'plugins/site_upgrade/closed.php');
 			}
 			exit();
 		}

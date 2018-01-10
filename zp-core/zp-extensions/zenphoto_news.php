@@ -5,13 +5,13 @@
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage zenphoto-news
  */
 $plugin_is_filter = 7 | ADMIN_PLUGIN;
 $plugin_description = gettext("Places the latest 3 news articles from Zenphoto.org on the admin overview page.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_disable = (!class_exists('DOMDocument')) ? gettext('PHP <em>DOM Object Model</em> is required.') : false;
-
+$plugin_category = gettext('Admin');
 $option_interface = 'zenphoto_org_news';
 
 zp_register_filter('admin_overview', 'printNews');

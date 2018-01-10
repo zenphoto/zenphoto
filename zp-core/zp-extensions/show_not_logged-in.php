@@ -4,12 +4,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage development
+ * @subpackage show-not-logged-in
  */
 $plugin_is_filter = 1001 | FEATURE_PLUGIN;
 $plugin_description = sprintf(gettext("Treats users as not logged in for gallery pages."), DATA_FOLDER);
 $plugin_author = "Stephen Billard (sbillard)";
-
+$plugin_category = gettext('Development');
 
 if (!OFFSET_PATH) {
 	zp_register_filter('guest_login_attempt', 'show_not_loggedin::adminLoginAttempt');

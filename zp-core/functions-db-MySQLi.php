@@ -11,8 +11,8 @@
 // force UTF-8 Ø
 
 define('DATABASE_SOFTWARE', 'MySQLi');
-define('DATABASE_MIN_VERSION', '5.0.0');
-define('DATABASE_DESIRED_VERSION', '5.5.0');
+define('DATABASE_MIN_VERSION', '5.0.7');
+define('DATABASE_DESIRED_VERSION', '5.5.3');
 
 /**
  * Connect to the database server and select the database.

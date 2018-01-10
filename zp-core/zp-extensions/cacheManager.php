@@ -78,12 +78,13 @@
  *
  *
  * @package plugins
- * @subpackage admin
+ * @subpackage cachemanager
  * @author Stephen Billard (sbillard)
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides cache management utilities for Image, HTML, and RSS caches.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Admin');
 
 $option_interface = 'cacheManager';
 

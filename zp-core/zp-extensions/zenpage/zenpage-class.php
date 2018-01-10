@@ -138,7 +138,6 @@ class Zenpage {
 			$sortdir = ' ASC';
 		}
 		switch ($sorttype) {
-			default:
 			case 'date':
 				$sortorder = 'date';
 				break;
@@ -168,7 +167,6 @@ class Zenpage {
 				break;
 			default:
 				$sortorder = 'sort_order';
-				$sortdir = '';
 				break;
 		}
 		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
@@ -196,7 +194,7 @@ class Zenpage {
    * Returns a list of Zenpage page IDs that the current viewer is not allowed to see
    * Helper function to be used with getAllTagsUnique() and getAllTagsCount()
    * Note if the Zenpage plugin is not enabled but items exists this returns no IDs so you need an extra check afterwards!
-   * 
+   *
    * @return array
    */
   function getNotViewablePages() {
@@ -218,7 +216,7 @@ class Zenpage {
     }
     return $_zp_not_viewable_pages_list;
   }
- 
+
 	/*	 * ********************************* */
 	/* general news article functions   */
 	/*	 * ********************************* */
@@ -244,9 +242,12 @@ class Zenpage {
 	 */
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL) {
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
+		$getunpublished_myitems = false;
 		if (empty($published)) {
-			if (zp_loggedin() || $category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
-				$published = "all";
+			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) || ($category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS))) { // lower rights, additionally checked below
+				$published = "all"; 
+				// without explicitly $published == 'all' we only want all the logged in is allowed to get
+				$getunpublished_myitems = true; 
 			} else {
 				$published = "published";
 			}
@@ -352,8 +353,11 @@ class Zenpage {
 					$getUnpublished = true;
 					break;
 				case "all":
-					$getUnpublished = true;
 					$show = false;
+					$getUnpublished = true;
+					if($getunpublished_myitems) {
+						$getUnpublished = false;
+					}
 					break;
 			}
 			$order = " ORDER BY $sticky";
@@ -397,8 +401,8 @@ class Zenpage {
 			$result = array();
 			if ($resource) {
 				while ($item = db_fetch_assoc($resource)) {
-					$article = new ZenpageNews($item['titlelink']);
-					if ($getUnpublished || $article->isMyItem(ZENPAGE_NEWS_RIGHTS) || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+					$article = new ZenpageNews($item['titlelink']); 
+					if ($getUnpublished && $article->isMyItem(LIST_RIGHTS) || ($currentcategory && $article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
 						$result[] = $item;
 					}
 				}
@@ -431,7 +435,7 @@ class Zenpage {
 		}
 		return $result;
 	}
- 
+
  /**
    * Returns a list of Zenpage news article IDs that the current viewer is not allowed to see
    * Helper function to be used with getAllTagsUnique() and getAllTagsCount() or db queries only
@@ -499,8 +503,6 @@ class Zenpage {
 
 	/**
 	 * Returns the articles count
-	 * @deprecated since version 1.4.6
-	 *
 	 */
 	function getTotalArticles() {
 		global $_zp_current_category;
@@ -515,6 +517,13 @@ class Zenpage {
 			$catobj = $_zp_current_category;
 		}
 		return count($catobj->getArticles());
+	}
+	
+	/**
+	 * Gets the total news pages
+	 */
+	function getTotalNewsPages() {
+		return ceil($this->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	}
 
 	/**
@@ -1098,9 +1107,9 @@ class ZenpageItems extends ZenpageRoot {
 	function getContent($locale = NULL) {
 		$text = $this->get("content");
 		if ($locale == 'all') {
-			return zpFunctions::unTagURLs($text);
+			return unTagURLs($text);
 		} else {
-			return applyMacros(zpFunctions::unTagURLs(get_language_string($text, $locale)));
+			return applyMacros(unTagURLs(get_language_string($text, $locale)));
 		}
 	}
 
@@ -1110,7 +1119,7 @@ class ZenpageItems extends ZenpageRoot {
 	 * @param $c full language string
 	 */
 	function setContent($c) {
-		$c = zpFunctions::tagURLs($c);
+		$c = tagURLs($c);
 		$this->set("content", $c);
 	}
 
@@ -1180,9 +1189,9 @@ class ZenpageItems extends ZenpageRoot {
 	function getExtraContent($locale = NULL) {
 		$text = $this->get("extracontent");
 		if ($locale == 'all') {
-			return zpFunctions::unTagURLs($text);
+			return unTagURLs($text);
 		} else {
-			return applyMacros(zpFunctions::unTagURLs(get_language_string($text, $locale)));
+			return applyMacros(unTagURLs(get_language_string($text, $locale)));
 		}
 	}
 
@@ -1191,7 +1200,7 @@ class ZenpageItems extends ZenpageRoot {
 	 *
 	 */
 	function setExtraContent($ec) {
-		$this->set("extracontent", zpFunctions::tagURLs($ec));
+		$this->set("extracontent", tagURLs($ec));
 	}
 
 	/**

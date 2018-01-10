@@ -6,14 +6,24 @@
  * 		markerClustererPlus library 2.0.15 (http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/)
  * 		overlappingMarkerSpiderfier library 0.3 (https://github.com/jawj/OverlappingMarkerSpiderfier)
  *
+ * <b>NOTE:</b> To calculate the correct geolocation of images, this plugin needs to process certain EXIF values in pairs.
+ *
+ * This means that you have to enable the following Metadata fields in <i>Options => Image => Metadata:</i>
+ * <ul>
+ * <li>Latitude 	+	Latitude Reference</li>
+ * <li>Longitude 	+	Longitude Reference</li>
+ * <li>(and optionally Altitude 	+	Altitude Reference)</li>
+ * </ul>
+ *
  * @author Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
  * @package plugins
- *
+ * @subpackage googlemap
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext('Display Google Maps based on <em>latitude</em> and <em>longitude</em> metadata in the images.');
 $plugin_notice = sprintf(gettext('<strong>Note</strong>: Google does place limits on the use of its <a href="%s"><em>Maps API</em></a>. Please review these to be sure your site is in compliance.'), 'http://googlegeodevelopers.blogspot.com/2011/10/introduction-of-usage-limits-to-maps.html');
 $plugin_author = 'Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)';
+$plugin_category = gettext('Misc');
 
 
 $option_interface = 'GoogleMap';
@@ -31,8 +41,6 @@ if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {
 class GoogleMap {
 
 	function __construct() {
-		setOptionDefault('gmap_width', 595);
-		setOptionDefault('gmap_height', 300);
 		setOptionDefault('gmap_map_roadmap', 1);
 		setOptionDefault('gmap_map_hybrid', 1);
 		setOptionDefault('gmap_map_satellite', 1);
@@ -106,15 +114,12 @@ class GoogleMap {
 						gettext('Max zoom level')								 => array('key'		 => 'gmap_cluster_max_zoom', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 6,
 										'desc'	 => gettext('The max zoom level for clustering pictures on map.')),
-						gettext('Map dimensions—width')					 => array('key'		 => 'gmap_width', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 7,
-										'desc'	 => gettext('The default width of the map.')),
-						gettext('Map dimensions—height')				 => array('key'		 => 'gmap_height', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 8,
-										'desc'	 => gettext('The default height of the map.')),
 						gettext('Map sessions')									 => array('key'		 => 'gmap_sessions', 'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 9,
-										'desc'	 => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.'))
+										'desc'	 => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.')),
+						gettext('API key')									 => array('key'		 => 'gmap_api_key', 'type'	 => OPTION_TYPE_TEXTBOX,
+										'order'	 => 10,
+										'desc'	 => gettext('Enter your API key. You can get one <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#key">here</a>.'))
 		);
 	}
 
@@ -130,15 +135,22 @@ class GoogleMap {
 		if (!defined('BASEPATH'))
 			define('BASEPATH', true); //	for no access test in GoogleMap.php
 		require_once(dirname(__FILE__) . '/GoogleMap/CodeIgniter-Google-Maps-V3-API/Googlemaps.php');
+		$parameters = array();
+		$url_appendix = '';
 		$loc = getOption('locale');
-		if (empty($loc)) {
-			$loc = '';
-		} else {
-			$loc = '&amp;language=' . substr(getOption('locale'), 0, 2);
+		if ( !empty($loc) ) {
+			$parameters[] = 'language=' . substr(getOption('locale'), 0, 2);
+		}
+		$apikey = getOption('gmap_api_key');
+		if ( !empty($apikey) ) {
+			$parameters[]  = 'key=' . $apikey;
+		}
+		if ( !empty($parameters) ) {
+			$url_appendix = implode('&amp;', $parameters);
 		}
 		?>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false<?php echo $loc; ?>"></script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/markerClustererPlus/markerclusterer_packed.js"></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?<?php echo $url_appendix; ?>"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/markerClustererPlus/markerclusterer.js"></script>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/overlappingMarkerSpiderfier/oms.min.js"></script>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/googleMap.css" type="text/css" media="screen"/>
 		<?php
@@ -248,7 +260,7 @@ function addGeoCoord($map, $coord) {
 		}
 
 		$marker['position'] = number_format($coord['lat'], 12, '.', '') . ", " . number_format($coord['long'], 12, '.', '');
-		$marker['title'] = $coord['title'];
+		$marker['title'] = addslashes($coord['title']);
 		$marker['infowindow_content'] = $title . $thumb . $desc;
 		$map->add_marker($marker);
 		$lat_f = $coord['lat'] * M_PI / 180;
@@ -368,13 +380,10 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 	} else {
 		$config['disableMapTypeControl'] = true;
 	}
-	$config['map_width'] = getOption('gmap_width') . "px";
-	$config['map_height'] = getOption('gmap_height') . "px";
 	$config['clusterMaxZoom'] = getOption('gmap_cluster_max_zoom');
 	$config['clusterAverageCenter'] = true;
 	$config['onclick'] = "iw.close();";
 	$config['minifyJS'] = !TEST_RELEASE;
-
 	$map = new Googlemaps($config);
 
 	/* add markers from geocoded pictures */
@@ -459,6 +468,10 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				function toggle_<?php echo $id_data; ?>() {
 					if ($('#<?php echo $id_data; ?>').hasClass('hidden_map')) {
 						$('#<?php echo $id_data; ?>').removeClass('hidden_map');
+						var center = map.getCenter();
+						google.maps.event.trigger(map, "resize");
+						map.setCenter(center);
+    					fitMapToBounds();
 					} else {
 						$('#<?php echo $id_data; ?>').addClass('hidden_map');
 					}
@@ -500,9 +513,12 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 					$(document).ready(function() {
 						$(".google_map").colorbox({
 							iframe: true,
-							innerWidth: '<?php echo (int) (getOption('gmap_width') + 20) ?>px',
-							innerHeight: '<?php echo (int) ($cbox_h = getOption('gmap_height') + 20) ?>px',
-							close: '<?php echo gettext("close"); ?>'
+							innerWidth: $(window).width() * 0.8,
+							innerHeight: $(window).height() * 0.7,
+							close: '<?php echo gettext("close"); ?>',
+							onComplete: function() {
+								parent.resizeColorBoxMap();$(window).resize(resizeColorBoxMap);
+							}
 						});
 					});
 					//]]>

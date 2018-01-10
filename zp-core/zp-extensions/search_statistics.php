@@ -19,11 +19,12 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage search-statistics
  */
 $plugin_is_filter = 2|CLASS_PLUGIN;
 $plugin_description = gettext("Collects and displays search criteria.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_category = gettext('Statistics');
 
 $option_interface = 'search_statistics';
 

@@ -15,7 +15,12 @@ if (isset($_GET['_zp_login_error'])) {
 	$_zp_login_error = sanitize($_GET['_zp_login_error']);
 }
 
-checkInstall();
+if (!isset($_GET['action']) || (isset($_GET['action']) && sanitize($_GET['action']) != 'ignore_setup')) {
+	checkInstall();
+}
+if(!getOption('setup_unprotected_by_adminrequest')) {
+	protectSetupFiles();
+}
 if (time() > getOption('last_garbage_collect') + 864000) {
 	$_zp_gallery->garbageCollect();
 }
@@ -82,6 +87,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					XSRFdefender('restore_setup');
 					checkSignature(true);
 					zp_apply_filter('log_setup', true, 'protect', gettext('enabled'));
+					setOption('setup_unprotected_by_adminrequest', 1, true, null);
 					$class = 'messagebox';
 					$msg = gettext('Setup files restored.');
 					break;
@@ -90,19 +96,8 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				/*				 * *************************************************************************** */
 				case 'protect_setup':
 					XSRFdefender('protect_setup');
-					chdir(SERVERPATH . '/' . ZENFOLDER . '/setup/');
-					$list = safe_glob('*.php');
-					$rslt = array();
-					foreach ($list as $component) {
-						@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, 0777);
-						if (@rename(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component . '.xxx')) {
-							@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component . '.xxx', FILE_MOD);
-						} else {
-							@chmod(SERVERPATH . '/' . ZENFOLDER . '/setup/' . $component, FILE_MOD);
-							$rslt[] = '../setup/' . $component;
-						}
-					}
-					zp_apply_filter('log_setup', true, 'protect', gettext('protected'));
+					protectSetupFiles();
+					setOption('setup_unprotected_by_adminrequest', 0, true, null);
 					$class = 'messagebox';
 					$msg = gettext('Setup files protected.');
 					break;
@@ -244,7 +239,7 @@ if (!zp_loggedin()) {
 				}
 			}
 			list($diff, $needs) = checkSignature(false);
-			if (zpFunctions::hasPrimaryScripts()) {
+			if (hasPrimaryScripts()) {
 				//	button to restore setup files if needed
 				if (!empty($needs)) {
 					$buttonlist[] = array(
@@ -317,7 +312,7 @@ if (!zp_loggedin()) {
 								} else {
 									$official = gettext('Official build');
 								}
-								if (zpFunctions::hasPrimaryScripts()) {
+								if (hasPrimaryScripts()) {
 									$source = '';
 								} else {
 									$clone = clonedFrom();
@@ -337,7 +332,7 @@ if (!zp_loggedin()) {
 								?>
 								<li>
 									<?php
-									printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'), ZENPHOTO_VERSION, '<a title="' . ZENPHOTO_FULL_RELEASE . '">' . ZENPHOTO_RELEASE . '</a>', $official);
+									printf(gettext('Zenphoto version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official);
 									echo $source;
 									if (extensionEnabled('check_for_update') && TEST_RELEASE) {
 										if (is_connected() && class_exists('DOMDocument')) {

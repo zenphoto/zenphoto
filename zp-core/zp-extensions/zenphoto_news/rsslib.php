@@ -1,7 +1,7 @@
 <?php
 /**
  * @package plugins
- * @subpackage zenphoto_news
+ * @subpackage zenphoto-news
  */
 
 

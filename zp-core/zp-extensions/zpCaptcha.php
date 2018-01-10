@@ -4,15 +4,15 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage spam
+ * @subpackage zpcaptcha
  */
 // force UTF-8 Ø
 
 $plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext("Zenphoto captcha handler.");
+$plugin_description = gettext("Zenphoto captcha handler. <strong>Note</strong> this uses the old v1 API which is to be disabled in 2018. Switch to use the reCaptcha plugin instead.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'zpCaptcha') ? sprintf(gettext('Only one Captcha handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_captcha->name) : '';
-
+$plugin_category = gettext('Spam');
 $option_interface = 'zpCaptcha';
 
 class zpCaptcha extends _zp_captcha {

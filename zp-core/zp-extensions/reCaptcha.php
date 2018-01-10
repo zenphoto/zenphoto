@@ -1,38 +1,24 @@
 <?php
+
 /**
- * reCaptcha handler (http://www.google.com/recaptcha)
+ * reCaptcha v2 handler (http://www.google.com/recaptcha)
+ * 
+ * Adapted from the third paryt noCaptcha reCaptcha plugin by Ben Feather (Epsilon) 
+ * https://github.com/Epsilon8425/Zenphoto-noCaptcha-reCaptcha
  *
- * This plugin lets you select from one of Google's reCaptcha themes (<i>Red</i>, <i>White</i>, <i>Black Glass</i>, or <i>Clean</i>)
- * or from a custom reCaptcha theme such as the <i>lt-blue</i> theme included.
+ * Note this plugin embeds the external reCaptcha JavaScript library from Google's servers
  *
- * The <i>lt-blue></i> theme is intended as an example of how to create a custom theme.
- * You can create themes and place them into the <var>%USER_PLUGIN_FOLDER%/reCpatcha</var> folder. The folder name will be the theme name. The only
- * required file is <var>reCaptcha.html</var> but you can include other items like images, etc. in the folder.
- *
- * Your custom <var>reCaptcha.html</var> will be processed at runtime making substitutions of the followng "definitions":
- * <ul>
- * 	<li><var>__GETHELP__</var> => <i>localized text for</i> "Help"</li>
- * 	<li><var>__GETIMAGE__</var> => <i>localized text for</i> "Get an image CAPTCHA"</li>
- * 	<li><var>__GETAUDIO__</var> => <i>localized text for</i> "Get an audio CAPTCHA"</li>
- * 	<li><var>__RELOAD__</var> => <i>localized text for</i> "Get another CAPTCHA"</li>
- * 	<li><var>__WORDS__</var> => <i>localized text for</i> "Enter the words above"</li>
- * 	<li><var>__NUMBERS__</var> => <i>localized text for</i> "Enter the numbers you hear"</li>
- * 	<li><var>__ERROR__</var> => <i>localized text for</i> "Incorrect please try again"</li>
- * 	<li><var>__SOURCEWEBPATH__</var> => <i>the WEB path to your folder (for url references)</i></li>
- * </ul>
- *
+ * @author Ben Feather (Epsilon), Stephen Billard (sbillard), Malte Müller (acrylian)
  * @package plugins
- * @subpackage spam
+ * @subpackage recaptcha
  */
 // force UTF-8 Ø
 $plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext("Google reCaptcha handler.");
-$plugin_author = "Stephen Billard (sbillard)";
+$plugin_description = gettext("Google reCaptcha v2 handler.");
+$plugin_author = "Ben Feather (Epsilon), Stephen Billard (sbillard), Malte Müller (acrylian)";
 $plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'reCaptcha') ? sprintf(gettext('Only one Captcha handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_captcha->name) : '';
-
 $option_interface = 'reCaptcha';
-
-require_once(dirname(__FILE__) . '/reCaptcha/recaptchalib.php');
+$plugin_category = gettext('Spam');
 
 class reCaptcha extends _zp_captcha {
 
@@ -44,120 +30,140 @@ class reCaptcha extends _zp_captcha {
 	 * @return captcha
 	 */
 	function __construct() {
-		setOptionDefault('reCaptcha_theme', 'red');
+		//setOptionDefault('reCaptcha_theme', 'red');
+		setOptionDefault('reCaptcha_theme', 'light');
+		setOptionDefault('reCaptcha_type', 'image');
+		setOptionDefault('reCaptcha_size', 'normal');
 	}
 
 	/**
 	 * Returns array of supported options for the admin-options handler
 	 *
-	 * @return unknown
+	 * @return array
 	 */
 	function getOptionsSupported() {
-		$themes = array(gettext('Red')				 => 'red', gettext('White')			 => 'white', gettext('Black Glass') => 'blackglass', gettext('Clean')			 => 'clean');
-		$custom = getPluginFiles('*', 'reCaptcha', false);
-		foreach ($custom as $theme => $path) {
-			if (is_dir($path)) {
-				$themes[$theme = basename($theme)] = $theme;
-			}
-		}
-
 		return array(
-						gettext('Public key')	 => array('key'		 => 'reCaptcha_public_key', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('Enter your <em>reCaptcha</em> public key. You can obtain this key from the Google <a href="http://www.google.com/recaptcha">reCaptcha</a> site')),
-						gettext('Private key') => array('key'		 => 'reCaptcha_private_key', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext('Enter your <em>reCaptcha</em> private key.')),
-						gettext('Theme')			 => array('key'				 => 'reCaptcha_theme', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 3,
-										'selections' => $themes,
-										'desc'			 => gettext('Select the <em>reCaptcha</em> theme.')),
-						''										 => array('key'		 => 'reCcaptcha_image', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 4,
-										'desc'	 => gettext('Sample CAPTCHA image'))
+				gettext('Public key') => array(
+						'key' => 'reCaptcha_public_key',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext('Enter your <em>reCaptcha v2</em> public key. You can obtain this key from the Google <a href="http://www.google.com/recaptcha">reCaptcha</a> site')),
+				gettext('Private key') => array(
+						'key' => 'reCaptcha_private_key',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext('Enter your <em>reCaptcha v2</em> private key.')),
+				// Dropdown for reCaptcha theme
+				gettext('Widget Theme:') => array(
+						'key' => 'reCaptcha_theme',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 3,
+						'selections' => array(
+								gettext('Light') => 'light',
+								gettext('Dark') => 'dark'
+						),
+						'desc' => gettext('Choose the theme for your reCaptcha.')
+				),
+				gettext('Widget Type:') => array(
+						'key' => 'reCaptcha_type',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 4,
+						'selections' => array(
+								gettext('Audio') => 'audio',
+								gettext('Image') => 'image'
+						),
+						'desc' => gettext('Choose the secondary verification method you would like to use.')
+				),
+				gettext('Widget Size:') => array(
+						'key' => 'reCaptcha_size',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 5,
+						'selections' => array(
+								gettext('Normal') => 'normal',
+								gettext('Compact') => 'compact'
+						),
+						'desc' => gettext('Choose the size of the reCaptcha widget.')
+				)
 		);
 	}
 
-	function handleOption($key, $cv) {
-		$captcha = $this->getCaptcha(NULL);
-		?>
-		<span id="zenphoto_captcha_image_loc"><?php echo $captcha['input']; ?></span>
-		<?php
+	/**
+	 * Returns HTML for reCaptcha (including required reCaptcha script)
+	 * 
+	 * @param string $publicKey The public key
+	 * @param string $theme The theme to use "light" or "dark"
+	 * @param string $type Type to use "audio" or "image"
+	 * @param string $size Size to use "normal" or "compact"
+	 * @return type
+	 */
+	function getCaptchaHTML($publicKey, $theme, $type, $size) {
+		return '<span class="g-recaptcha" data-sitekey="' . $publicKey . '" data-theme="' . $theme . '" data-type="' . $type . '" data-size="' . $size . '"></span>
+				<script src="https://www.google.com/recaptcha/api.js"></script>';
 	}
 
 	/**
-	 * Checks reCaptcha
-	 *
-	 * @return bool
+	 * Called by form (wherever reCaptcha is enabled) on submit to check whether or not the capture has succeeded. $s1, $s2 are required.
+	 * 
+	 * @param type $s1 Not used
+	 * @param type $s2 Not used
+	 * @return boolean
 	 */
 	function checkCaptcha($s1, $s2) {
-		$resp = recaptcha_check_answer(getOption('reCaptcha_private_key'), @$_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
-		return $resp->is_valid;
+		$secretKey = getOption('reCaptcha_private_key');
+		$captcha = '';
+		if(isset($_POST['g-recaptcha-response'])) {
+			$captcha = sanitize($_POST['g-recaptcha-response']);
+		}
+
+		// verifies reCaptcha
+		$response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $captcha . '&remoteip=' . sanitize($_SERVER['REMOTE_ADDR']));
+
+		// Changes response value into expected format (for return)
+		if (strpos($response, 'true') == true) {
+			$valid = true;
+		} else {
+			$valid = false;
+		}
+		return $valid;
 	}
 
 	/**
-	 * generates a simple captcha for comments
-	 *
-	 * Thanks to gregb34 who posted the original code
-	 *
-	 * Returns the captcha code string and image URL (via the $image parameter).
-	 *
-	 * @return string;
+	 * Called by form (wherever reCaptcha is enabled) to add reCaptcha widget
+	 * 
+	 * @param type $prompt
+	 * @return type
 	 */
 	function getCaptcha($prompt) {
-		$theme = getOption('reCaptcha_theme');
 		$publicKey = getOption('reCaptcha_public_key');
-		$lang = strtolower(substr(ZENPHOTO_LOCALE, 0, 2));
+		$theme = getOption('reCaptcha_theme');
+		//handle outdated recaptcha v1 themes if still set
+		if (!in_array($theme, array('light', 'dark'))) {
+			$theme = 'light';
+		}
+		$type = getOption('reCaptcha_type');
+		$size = getOption('reCaptcha_size');
 
-		if (!getOption('reCaptcha_public_key')) {
-			return array('input'	 => '', 'html'	 => '<p class="errorbox">' . gettext('reCAPTCHA is not properly configured.') . '</p>', 'hidden' => '');
+		// Check for proper configuration of options
+		if (!getOption('reCaptcha_public_key') || !getOption('reCaptcha_private_key')) {
+			return array(
+					'input' => '',
+					'html' => '<div class="errorbox"><p>' . gettext('reCAPTCHA v2 keys are not configured properly. Visit <a href="https://www.google.com/recaptcha/intro/index.html">this link</a> to retrieve your reCaptcha keys.') . '</p></div>',
+					'hidden' => ''
+			);
 		} else {
-
-			$source = getPlugin('reCaptcha/' . $theme . '/reCaptcha.html');
-			if ($source) {
-				$webpath = dirname(getplugin('reCaptcha/' . $theme . '/reCaptcha.html', false, true));
-				$tr = array('__GETHELP__'				 => gettext("Help"),
-								'__GETIMAGE__'			 => gettext("Get a visual challenge"),
-								'__GETAUDIO__'			 => gettext("Get an audio challenge"),
-								'__RELOAD__'				 => gettext("Get another challenge"),
-								'__WORDS__'					 => gettext("Type the two words"),
-								'__NUMBERS__'				 => gettext("Type what you hear"),
-								'__ERROR__'					 => gettext("Incorrect please try again"),
-								'__SOURCEWEBPATH__'	 => $webpath);
-				$html = strtr(file_get_contents($source), $tr);
-				$theme = 'custom'; //	to tell google to use the above
-			} else {
-				$html = '';
-			}
-			$themejs = '<script type="text/javascript">' . "\n" .
-							"  var RecaptchaOptions = {\n";
-			if (!in_array($lang, array('de', 'en', 'es', 'fr', 'nl', 'ru', 'pt', 'tr'))) { // google's list as of June 2013
-				$themejs .= "      custom_translations : {\n" .
-								"               instructions_visual : 'Type the two words',\n" .
-								"               instructions_audio : 'Type what you hear',\n" .
-								"               play_again : 'Play sound again',\n" .
-								"               cant_hear_this : 'Download the sound as MP3',\n" .
-								"               visual_challenge : 'Get a visual challenge',\n" .
-								"               audio_challenge : 'Get an audio challenge',\n" .
-								"               refresh_btn : 'Get another challenge',\n" .
-								"               help_btn : 'Help',\n" .
-								"               incorrect_try_again : 'Incorrect please try again',\n" .
-								"      },\n";
-			}
-			$themejs .= "       lang : '$lang',\n" .
-							"				theme : '$theme'\n" .
-							"				};\n" .
-							"</script>\n";
-			$html .= recaptcha_get_html($publicKey, NULL, secureServer());
-			return array('html'	 => '<label class="captcha_label">' . $prompt . '</label>', 'input'	 => $themejs . $html);
+			$html = $this->getCaptchaHTML($publicKey, $theme, $type, $size);
+			return array(
+					'html' => '<label class="captcha-label">' . $prompt . '</label>',
+					'input' => $html
+			);
 		}
 	}
 
 }
 
+// Required for script to be considered a reCaptcha handler
 if ($plugin_disable) {
 	enableExtension('reCaptcha', 0);
 } else {
-	$_zp_captcha = new reCaptcha();
+	$_zp_captcha = new reCaptcha(getOption('reCaptcha_private_key'));
 }
-?>
