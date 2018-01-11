@@ -700,7 +700,8 @@ if (extensionEnabled('slideshow') && !OFFSET_PATH) {
 		global $_myFavorites, $_zp_conf_vars, $_zp_gallery, $_zp_gallery_page, $__slideshow_scripts;
 
 		if (!isset($_POST['albumid']) AND ! is_object($albumobj)) {
-			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
+			echo '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
+			return;
 		}
 		if (is_null($__slideshow_scripts)) {
 			slideshow::js();
