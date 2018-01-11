@@ -740,17 +740,16 @@ function printNewsCategoryURL($before = '', $catlink = '') {
  * @param string $before The text to appear before the link text
  */
 function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
-	global $_zp_post_date;
+	global $_zp_post_date, $_zp_gallery_page;
 	if (!in_context(ZP_SEARCH_LINKED)) {
 		if (is_null($name)) {
 			$name = gettext('News');
 		}
 		$link = getNewsIndexURL();
-
 		if ($before) {
 			echo '<span class="beforetext">' . html_encode($before) . '</span>';
 		}
-		if (is_NewsArticle() || is_NewsCategory()) {
+		if ($_zp_gallery_page !== 'news.php' || is_NewsArticle() || is_NewsCategory()) {
 			echo "<a href=\"" . html_encode($link) . "\" title=\"" . html_encode(getBare($name)) . "\">" . html_encode(getbare($name)) . "</a>";
 		} else {
 			echo html_encode(getbare($name));
