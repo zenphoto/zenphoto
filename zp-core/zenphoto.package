@@ -1555,6 +1555,7 @@ zp-core/zp-extensions/jPlayer.php
 zp-core/zp-extensions/LDAP_auth.php
 zp-core/zp-extensions/linkedinLogin.php
 zp-core/zp-extensions/macroList.php
+zp-core/zp-extensions/matomo.php
 zp-core/zp-extensions/menu_manager.php
 zp-core/zp-extensions/mergedRSS.php
 zp-core/zp-extensions/mobileTheme.php
@@ -1563,7 +1564,6 @@ zp-core/zp-extensions/nanospell.php
 zp-core/zp-extensions/optionalObjectFields.php
 zp-core/zp-extensions/paged_thumbs_nav.php
 zp-core/zp-extensions/PHPMailer.php
-zp-core/zp-extensions/piwik.php
 zp-core/zp-extensions/print_album_menu.php
 zp-core/zp-extensions/publishContent.php
 zp-core/zp-extensions/purgeOptions.php
@@ -7765,6 +7765,8 @@ zp-core/zp-extensions/linkedinLogin/linkedin.php
 zp-core/zp-extensions/linkedinLogin/login_button.png
 zp-core/zp-extensions/macroList
 zp-core/zp-extensions/macroList/macroList_tab.php
+zp-core/zp-extensions/matomo
+zp-core/zp-extensions/matomo/matomo_tab.php
 zp-core/zp-extensions/menu_manager
 zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php
 zp-core/zp-extensions/menu_manager/menu_tab.php
@@ -7776,8 +7778,6 @@ zp-core/zp-extensions/PHPMailer/class.phpmailer.php
 zp-core/zp-extensions/PHPMailer/class.pop3.php
 zp-core/zp-extensions/PHPMailer/class.smtp.php
 zp-core/zp-extensions/PHPMailer/PHPMailerAutoload.php
-zp-core/zp-extensions/piwik
-zp-core/zp-extensions/piwik/piwik_tab.php
 zp-core/zp-extensions/publishContent
 zp-core/zp-extensions/publishContent/publishContent.css
 zp-core/zp-extensions/publishContent/publishContent.php
