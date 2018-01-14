@@ -57,6 +57,9 @@ class matomoStats {
 			if (!empty($old)) {
 				setupLog('Plugin:matomo ' . gettext('Piwik options migrated to Matomo plugin'), $testRelease);
 			}
+			if (extensionEnabled('piwik')) {
+				enableExtension('matomo', 9 | ADMIN_PLUGIN | THEME_PLUGIN);
+			}
 		}
 	}
 
