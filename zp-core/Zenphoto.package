@@ -1295,6 +1295,9 @@ zp-core/zp-extensions/macroList
 zp-core/zp-extensions/macroList.php
 zp-core/zp-extensions/macroList/macroList_tab.php
 zp-core/zp-extensions/markRelease.php
+zp-core/zp-extensions/matomo
+zp-core/zp-extensions/matomo.php
+zp-core/zp-extensions/matomo/matomo_tab.php
 zp-core/zp-extensions/menu_manager
 zp-core/zp-extensions/menu_manager.php
 zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php
@@ -1306,9 +1309,6 @@ zp-core/zp-extensions/mobileTheme.php
 zp-core/zp-extensions/mobileTheme/Mobile_Detect.php
 zp-core/zp-extensions/multiple_layouts.php
 zp-core/zp-extensions/paged_thumbs_nav.php
-zp-core/zp-extensions/piwik
-zp-core/zp-extensions/piwik.php
-zp-core/zp-extensions/piwik/piwik_tab.php
 zp-core/zp-extensions/print_album_menu.php
 zp-core/zp-extensions/publishContent
 zp-core/zp-extensions/publishContent.php
