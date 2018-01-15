@@ -4,11 +4,11 @@
 
 The current "official" release (and all previous ones) may be found at [Releases] (https://github.com/ZenPhoto20/ZenPhoto20/releases)
 
-Tagged releases include a single file install package for ease of installation. Instructions for its use are included in the download. 
+Tagged releases include one or more single file install packages for ease of installation. Instructions for its use are included in the download. (Interim install packages are created to incorporate minor updates to the software.)
 
-ZenPhoto20 will be updated incrementally via GitHub. We will tag reases when new features are added or significant bugs are fixed. There will not be a fixed release cycle nor a "Development" stream.
+ZenPhoto20 will be updated incrementally via GitHub. We will tag releases when new features are added or significant bugs are fixed. There will not be a fixed release cycle nor a "Development" stream.
 
-Our development methodology is structured to insure that the _master_ branch of the repository remains stable. So if you wish to have the most recent fixes you can safely install the _master_ branch. But there is no means to include the single file install with the branch, so it is available only on taged releases.
+Our development methodology is structured to insure that the _master_ branch of the repository remains stable. So if you wish to have the most recent fixes you can safely install the _master_ branch. There is no means to include the single file install with the branch, so they are available only on tagged releases.
 
 
 # About ZenPhoto20
@@ -22,7 +22,7 @@ This makes ZenPhoto20 the ideal CMS for personal websites of illustrators, artis
 
 ZenPhoto20 was created with a fork of the Zenphoto repository at the time of the Zenphoto 1.4.6 release.
 The intent of this branching is to clean up the years of detritus that the original code accumulated. At the same time
-the we intend to modernize the support process and enable third party contributors to easily get their works attached to the release packages.
+the we intend to modernize the software, the support process, and the integration of third party contributor.
 
 # Support
 
