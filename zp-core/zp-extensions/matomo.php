@@ -51,7 +51,7 @@ class matomoStats {
 			//migrate piwik plugin options
 			$old = getOptionsLike('piwik_');
 			foreach ($old as $key => $value) {
-//				purgeOption($key);
+				purgeOption($key);
 				setOption(str_replace('piwik', 'matomo', $key), $value);
 			}
 			if (!empty($old)) {
