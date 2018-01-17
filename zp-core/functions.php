@@ -27,12 +27,7 @@ $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin
 define('SITE_LOCALE', getOptionFromDB('locale'));
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
-if (GALLERY_SESSION) {
-	zp_session_start();
-}
-
 define('ZENPHOTO_LOCALE', setMainDomain());
-
 
 require_once(dirname(__FILE__) . '/load_objectClasses.php');
 
