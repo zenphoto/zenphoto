@@ -121,114 +121,128 @@ zenpageJSCSS();
 						echo '<p class="' . $type . '">' . implode('<br />', $list) . '</p>';
 					}
 				}
-				?>
-				<span class="zenpagestats"><?php printCategoriesStatistic(); ?></span>
-				<form class="dirtylistening" onReset="setClean('checkeditems');" action="admin-categories.php?page=news&amp;tab=categories" method="post" id="checkeditems" name="checkeditems" onsubmit="return confirmAction();" autocomplete="off">
-					<?php XSRFToken('checkeditems'); ?>
-					<input	type="hidden" name="action" id="action" value="update" />
-					<p class="buttons">
-						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<?php echo CHECKMARK_GREEN; ?> <?php echo gettext('Apply'); ?></strong>
-						</button>
-						<?php
-						if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
-							?>
-							<span class="floatright">
-								<a href="admin-edit.php?newscategory&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo gettext('New category'); ?>">
-									<?php echo PLUS_ICON; ?>
-									<strong>
-										<?php echo gettext('New category'); ?>
-									</strong>
-								</a>
-							</span>
-							<?php
-						}
-						?>
-					</p>
-					<br class="clearall">
-					<br />
-					<div class="headline">
-						<?php
-						echo gettext('Edit this Category');
-						$checkarray = array(
-								gettext('Set to published') => 'showall',
-								gettext('Set to unpublished') => 'hideall',
-								gettext('*Bulk actions*') => 'noaction',
-								gettext('Delete') => 'deleteall',
-						);
-						if (extensionEnabled('hitcounter')) {
-							$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
-						}
-						$checkarray = zp_apply_filter('bulk_category_actions', $checkarray);
-						printBulkActions($checkarray);
-						?>
-					</div>
-					<div class="bordered">
-
-						<div class="subhead">
-							<label style="float: right;"><?php echo gettext("Check All"); ?>
-								<input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
-							</label>
-						</div>
-
-						<ul class="page-list">
-							<?php $toodeep = printNestedItemsList('cats-sortablelist', '', ''); ?>
-						</ul>
-					</div>
-					<?php
-					if ($toodeep) {
-						echo '<div class="errorbox">';
-						echo '<h2>' . gettext('The sort position of the indicated items cannot be recorded because the nesting is too deep. Please move them to a higher level and save your order.') . '</h2>';
-						echo '</div>';
+				$categories = $_zp_CMS->getAllCategories();
+				foreach ($categories as $key => $cat) {
+					$catobj = newCategory($cat['titlelink']);
+					if (!($catobj->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+						unset($categories[$key]);
 					}
+				}
+
+				if (!empty($categories)) {
 					?>
-					<span id="serializeOutput"></span>
-					<input name="update" type="hidden" value="Save Order" />
-					<p class="buttons">
-						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<?php echo CHECKMARK_GREEN; ?> <?php echo gettext('Apply'); ?></strong>
-						</button>
-					</p>
-					<ul class="iconlegend">
-						<?php
-						if (GALLERY_SECURITY == 'public') {
-							?>
-							<li>
+					<span class="zenpagestats"><?php printCategoriesStatistic(); ?></span>
+					<form class="dirtylistening" onReset="setClean('checkeditems');" action="admin-categories.php?page=news&amp;tab=categories" method="post" id="checkeditems" name="checkeditems" onsubmit="return confirmAction();" autocomplete="off">
+						<?php XSRFToken('checkeditems'); ?>
+						<input	type="hidden" name="action" id="action" value="update" />
+						<p class="buttons">
+							<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
+								<?php echo CHECKMARK_GREEN; ?> <?php echo gettext('Apply'); ?></strong>
+							</button>
+							<?php
+							if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+								?>
+								<span class="floatright">
+									<a href="admin-edit.php?newscategory&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo gettext('New category'); ?>">
+										<?php echo PLUS_ICON; ?>
+										<strong>
+											<?php echo gettext('New category'); ?>
+										</strong>
+									</a>
+								</span>
 								<?php
-								if (true) {
+							}
+							?>
+						</p>
+						<br class="clearall">
+						<br />
+						<div class="headline">
+							<?php
+							echo gettext('Edit this Category');
+							$checkarray = array(
+									gettext('Set to published') => 'showall',
+									gettext('Set to unpublished') => 'hideall',
+									gettext('*Bulk actions*') => 'noaction',
+									gettext('Delete') => 'deleteall',
+							);
+							if (extensionEnabled('hitcounter')) {
+								$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
+							}
+							$checkarray = zp_apply_filter('bulk_category_actions', $checkarray);
+							printBulkActions($checkarray);
+							?>
+						</div>
+						<div class="bordered">
+
+							<div class="subhead">
+								<label style="float: right;"><?php echo gettext("Check All"); ?>
+									<input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+								</label>
+							</div>
+
+							<ul class="page-list">
+								<?php $toodeep = printNestedItemsList('cats-sortablelist', '', ''); ?>
+							</ul>
+						</div>
+						<?php
+						if ($toodeep) {
+							echo '<div class="errorbox">';
+							echo '<h2>' . gettext('The sort position of the indicated items cannot be recorded because the nesting is too deep. Please move them to a higher level and save your order.') . '</h2>';
+							echo '</div>';
+						}
+						?>
+						<span id="serializeOutput"></span>
+						<input name="update" type="hidden" value="Save Order" />
+						<p class="buttons">
+							<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
+								<?php echo CHECKMARK_GREEN; ?> <?php echo gettext('Apply'); ?></strong>
+							</button>
+						</p>
+						<ul class="iconlegend">
+							<?php
+							if (GALLERY_SECURITY == 'public') {
+								?>
+								<li>
+									<?php
+									if (true) {
+										?>
+										<?php echo LOCK; ?>
+										<?php echo LOCK_OPEN; ?>
+										<?php echo gettext("has/does not have password"); ?>
+										<?php
+									}
 									?>
-									<?php echo LOCK; ?>
-									<?php echo LOCK_OPEN; ?>
-									<?php echo gettext("has/does not have password"); ?>
+								<li>
 									<?php
 								}
 								?>
 							<li>
+								<?php echo CLIPBOARD . ' ' . gettext("pick source"); ?>
+							</li>
+							<li>
+								<?php echo BULLSEYE_BLUE; ?> <?php echo gettext('view'); ?>
+							</li>
+							<?php
+							if (extensionEnabled('hitcounter')) {
+								?>
+								<li>
+									<?php echo RECYCLE_ICON; ?>
+									<?php echo gettext('reset hitcounter'); ?>
+								</li>
 								<?php
 							}
 							?>
-						<li>
-							<?php echo CLIPBOARD . ' ' . gettext("pick source"); ?>
-						</li>
-						<li>
-							<?php echo BULLSEYE_BLUE; ?> <?php echo gettext('view'); ?>
-						</li>
-						<?php
-						if (extensionEnabled('hitcounter')) {
-							?>
 							<li>
-								<?php echo RECYCLE_ICON; ?>
-								<?php echo gettext('reset hitcounter'); ?>
+								<?php echo WASTEBASKET; ?>
+								<?php echo gettext('Delete'); ?>
 							</li>
-							<?php
-						}
-						?>
-						<li>
-							<?php echo WASTEBASKET; ?>
-							<?php echo gettext('Delete'); ?>
-						</li>
-					</ul>
-				</form>
+						</ul>
+					</form>
+					<?php
+				} else {
+					echo gettext('There are no categories for you to edit.');
+				}
+				?>
 			</div> <!-- tab_articles -->
 		</div> <!-- content -->
 	</div> <!-- main -->

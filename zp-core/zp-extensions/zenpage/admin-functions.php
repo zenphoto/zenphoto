@@ -1107,8 +1107,9 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 	foreach ($items as $item) {
 		$itemobj = $classInstantiator($item['titlelink']);
 		if ($rights == LIST_RIGHTS) {
-			//	list the catagory if the user has it as a maanaged object
-			$ismine = $itemobj->subRights();
+			//	list the catagory if the user has it as a managed object with edit rights
+			$subrights = $itemobj->subRights();
+			$ismine = $subrights & MANAGED_OBJECT_RIGHTS_EDIT;
 		} else {
 			$ismine = $itemobj->isMyItem($rights);
 		}
@@ -1258,7 +1259,7 @@ function checkHitcounterDisplay($item) {
  *
  * @param string $option What the statistic should be shown of: "news", "pages", "categories"
  */
-function getNewsPagesStatistic($option) {
+function getNewsPagesStatistic($option, $all = TRUE) {
 	global $_zp_CMS;
 	switch ($option) {
 		case "news":
@@ -1288,16 +1289,19 @@ function getNewsPagesStatistic($option) {
 				$itemobj = newCategory($item['titlelink']);
 				break;
 		}
-		if ($itemobj->getShow()) {
-			$pub++;
+		if ($all || $itemobj->subRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+			if ($itemobj->getShow()) {
+				$pub++;
+			}
+		} else {
+			$total--;
 		}
 	}
-	$unpub = $total - $pub;
-	return array($total, $type, $unpub);
+	return array($total, $type, $total - $pub);
 }
 
 function printPagesStatistic() {
-	list($total, $type, $unpub) = getNewsPagesStatistic("pages");
+	list($total, $type, $unpub) = getNewsPagesStatistic("pages", FALSE);
 	if (empty($unpub)) {
 		printf(ngettext('<strong>%1$u</strong> page', '<strong>%1$u</strong> pages', $total), $total);
 	} else {
@@ -1307,7 +1311,7 @@ function printPagesStatistic() {
 
 function printNewsStatistic($total = NULL, $unpub = NULL) {
 	if (is_null($total)) {
-		list($total, $type, $unpub) = getNewsPagesStatistic("news");
+		list($total, $type, $unpub) = getNewsPagesStatistic("news", FALSE);
 	}
 	if (empty($unpub)) {
 		printf(ngettext('<strong>%1$u</strong> article', '<strong>%1$u</strong> articles', $total), $total);
@@ -1317,7 +1321,7 @@ function printNewsStatistic($total = NULL, $unpub = NULL) {
 }
 
 function printCategoriesStatistic() {
-	list($total, $type, $unpub) = getNewsPagesStatistic("categories");
+	list($total, $type, $unpub) = getNewsPagesStatistic("categories", FALSE);
 	if (empty($unpub)) {
 		printf(ngettext('<strong>%1$u</strong> category', '<strong>%1$u</strong> categories', $total), $total);
 	} else {
