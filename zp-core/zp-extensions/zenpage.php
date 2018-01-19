@@ -386,7 +386,7 @@ class zenpagecms {
 					echo '<li><a href="' . $zf . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?newscategory&add">' . gettext('New Category') . '</a></li>';
 					?>
 					<li>
-						<a href='javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-categories.php?delete=<?php echo html_encode($_zp_current_category->getTitleLink()); ?>&tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category'); ?>', '<?php echo $delete_category; ?>')" title="<?php echo gettext('Delete Category'); ?>"><?php echo gettext('Delete Category'); ?></a>
+						<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-categories.php?delete=<?php echo html_encode($_zp_current_category->getTitleLink()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category'); ?>', '<?php echo $delete_category; ?>')" title="<?php echo gettext('Delete Category'); ?>"><?php echo gettext('Delete Category'); ?></a>
 					</li>
 					<?php
 					$redirect .= '&amp;category=' . $_zp_current_category->getTitlelink();
