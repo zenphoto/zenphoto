@@ -42,18 +42,34 @@ class lazyImage {
 	static function end() {
 		$data = ob_get_contents();
 		ob_end_clean();
-		preg_match_all('~<img\s+[^>]*src="([^"]*)"[^>]*>~i', $data, $matches);
-
+		preg_match_all('~<img\s+[^>]*src="([^"]*)"[^>]*>~is', $data, $matches);
 		foreach ($matches[0] as $imgtag) {
 			$data = str_replace($imgtag, str_replace('src=', 'class="lazy" data-src=', $imgtag) . '<noscript>' . $imgtag . '</noscript>', $data);
+		}
+		if (class_exists('Video')) {
+			preg_match_all('~<video.*</video>~is', $data, $matches);
+			foreach ($matches[0] as $imgtag) {
+				$newtag = str_replace('<video', '<video class="lazy"', $imgtag);
+				$newtag = str_replace('src=', 'data-src=', $newtag);
+				$data = str_replace($imgtag, $newtag . '<noscript>' . $imgtag . '</noscript>', $data);
+			}
 		}
 
 		echo $data;
 	}
 
 	static function head() {
+
+		if (class_exists('Video')) {
+			?>
+			<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyImage/jquery.lazyloadxt.extra.min.js" ></script>
+			<?php
+		} else {
+			?>
+			<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyImage/jquery.lazyloadxt.min.js"></script>
+			<?php
+		}
 		?>
-		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyImage/jquery.lazyloadxt.min.js"></script>
 		<style>
 			img.lazy {
 				display: none;
@@ -62,12 +78,12 @@ class lazyImage {
 		<?php
 		if (getOption('lazyImage_jqBootstrap')) {
 			?>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyImage/jquery.lazyloadxt.jquerymobile.min.js">< /scr
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyImage/jquery.lazyloadxt.jquerymobile.min.js"></script>
 			<?php
 		}
 		if (getOption('lazyImage_jqMobile')) {
 			?>
-				< script src = "<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyImage/jquery.lazyloadxt.bootstrap.min.js" ></script>
+			<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyImage/jquery.lazyloadxt.bootstrap.min.js" ></script>
 			<?php
 		}
 	}
