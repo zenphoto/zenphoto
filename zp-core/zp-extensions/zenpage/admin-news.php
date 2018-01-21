@@ -143,7 +143,7 @@ updatePublished('news');
 								$published = 'sticky';
 						}
 					} else {
-						$published = 'myall';
+						$published = 'all';
 					}
 					$sortorder = 'publishdate';
 					$direction = true;
