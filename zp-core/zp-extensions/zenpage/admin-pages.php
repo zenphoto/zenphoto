@@ -110,87 +110,102 @@ updatePublished('pages');
 			<h1><?php echo gettext('Pages'); ?></h1>
 
 			<div class="tabbox">
-
-				<span class="zenpagestats"><?php printPagesStatistic(); ?></span>
-				<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
-					<?php XSRFToken('update'); ?>
-
-					<p><?php echo gettext("Select a page to edit or drag the pages into the order, including subpage levels, you wish them displayed."); ?></p>
-					<?php
-					if (GALLERY_SECURITY == 'public') {
-						?>
-						<p class="notebox"><?php echo gettext("<strong>Note:</strong> Subpages of password protected pages inherit the protection."); ?></p>
-						<?php
+				<?php
+				$pagelist = $_zp_CMS->getPages();
+				foreach ($pagelist as $key => $apage) {
+					$pageobj = newPage($apage['titlelink']);
+					if (!($pageobj->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+						unset($pagelist[$key]);
 					}
+				}
+
+				if (!empty($pagelist)) {
 					?>
-					<p class="buttons">
-						<button class="serialize" type="submit">
-							<?php echo CHECKMARK_GREEN; ?>
-							<strong><?php echo gettext("Apply"); ?></strong>
-						</button>
+					<span class="zenpagestats"><?php printPagesStatistic(); ?></span>
+					<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
+						<?php XSRFToken('update'); ?>
+
+						<p><?php echo gettext("Select a page to edit or drag the pages into the order, including subpage levels, you wish them displayed."); ?></p>
 						<?php
-						if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
+						if (GALLERY_SECURITY == 'public') {
 							?>
-							<span class="floatright">
-								<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>">
-									<?php echo PLUS_ICON; ?>
-									<strong>
-										<?php echo gettext('New Page'); ?>
-									</strong>
-								</a>
-							</span>
+							<p class="notebox"><?php echo gettext("<strong>Note:</strong> Subpages of password protected pages inherit the protection."); ?></p>
 							<?php
 						}
 						?>
-					</p>
+						<p class="buttons">
+							<button class="serialize" type="submit">
+								<?php echo CHECKMARK_GREEN; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<?php
+							if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
+								?>
+								<span class="floatright">
+									<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>">
+										<?php echo PLUS_ICON; ?>
+										<strong>
+											<?php echo gettext('New Page'); ?>
+										</strong>
+									</a>
+								</span>
+								<?php
+							}
+							?>
+						</p>
 
-					<br class="clearall">
-					<div class="headline"><?php echo gettext('Edit this page'); ?>
-						<?php
-						$checkarray = array(
-								gettext('*Bulk actions*') => 'noaction',
-								gettext('Delete') => 'deleteall',
-								gettext('Set to published') => 'showall',
-								gettext('Set to unpublished') => 'hideall',
-								gettext('Disable comments') => 'commentsoff',
-								gettext('Enable comments') => 'commentson'
-						);
-						if (extensionEnabled('hitcounter')) {
-							$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
-						}
-						$checkarray = zp_apply_filter('bulk_page_actions', $checkarray);
-						printBulkActions($checkarray);
-						?>
-					</div>
-					<div class="bordered">
-
-						<div class="subhead">
-							<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
-							</label>
+						<br class="clearall">
+						<div class="headline"><?php echo gettext('Edit this page'); ?>
+							<?php
+							$checkarray = array(
+									gettext('*Bulk actions*') => 'noaction',
+									gettext('Delete') => 'deleteall',
+									gettext('Set to published') => 'showall',
+									gettext('Set to unpublished') => 'hideall',
+									gettext('Disable comments') => 'commentsoff',
+									gettext('Enable comments') => 'commentson'
+							);
+							if (extensionEnabled('hitcounter')) {
+								$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
+							}
+							$checkarray = zp_apply_filter('bulk_page_actions', $checkarray);
+							printBulkActions($checkarray);
+							?>
 						</div>
-						<ul class="page-list">
-							<?php $toodeep = printNestedItemsList('pages-sortablelist'); ?>
-						</ul>
+						<div class="bordered">
 
-					</div>
+							<div class="subhead">
+								<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+								</label>
+							</div>
+							<ul class="page-list">
+								<?php $toodeep = printNestedItemsList('pages-sortablelist'); ?>
+							</ul>
 
+						</div>
+
+						<?php
+						if ($toodeep) {
+							echo '<div class="errorbox">';
+							echo '<h2>' . gettext('The sort position of the indicated pages cannot be recorded because the nesting is too deep. Please move them to a higher level and save your order.') . '</h2>';
+							echo '</div>';
+						}
+						?>
+						<span id="serializeOutput"></span>
+						<input name="update" type="hidden" value="Save Order" />
+						<p class="buttons">
+							<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
+								<?php echo CHECKMARK_GREEN; ?>
+								<strong><?php echo gettext('Apply'); ?></strong>
+							</button>
+						</p>
+					</form>
 					<?php
-					if ($toodeep) {
-						echo '<div class="errorbox">';
-						echo '<h2>' . gettext('The sort position of the indicated pages cannot be recorded because the nesting is too deep. Please move them to a higher level and save your order.') . '</h2>';
-						echo '</div>';
-					}
-					?>
-					<span id="serializeOutput"></span>
-					<input name="update" type="hidden" value="Save Order" />
-					<p class="buttons">
-						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<?php echo CHECKMARK_GREEN; ?>
-							<strong><?php echo gettext('Apply'); ?></strong>
-						</button>
-					</p>
-				</form>
-				<?php printZenpageIconLegend(); ?>
+					printZenpageIconLegend();
+				} else {
+					echo gettext('There are no pages for you to edit.');
+				}
+				?>
 			</div>
 		</div>
 	</div>

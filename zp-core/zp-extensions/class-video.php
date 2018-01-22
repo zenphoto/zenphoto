@@ -16,12 +16,16 @@
 
 $plugin_is_filter = defaultExtension(990 | CLASS_PLUGIN);
 $plugin_description = gettext('The <em>audio-video</em> handler.');
-$plugin_notice = gettext('This plugin handles <code>3gp</code> and <code>mov</code> multi-media files. <strong>Note:</strong> you should also enable a multimedia player plugin to handle other media files.');
+$plugin_notice = gettext('This plugin handles <code>mp3</code>, <code>mp4</code>, <code>3gp</code>, and <code>mov</code> multi-media files. <strong>Note:</strong> <code>mp3</code> and <code>mp4</code> require HTML5 browser support. You should also enable a multimedia player plugin to handle other media files.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 if (extensionEnabled('class-video')) {
 	Gallery::addImageHandler('3gp', 'Video');
 	Gallery::addImageHandler('mov', 'Video');
+	if (getOption('class-video_html5')) {
+		Gallery::addImageHandler('mp3', 'Video');
+		Gallery::addImageHandler('mp4', 'Video');
+	}
 }
 $option_interface = 'VideoObject_Options';
 
@@ -36,6 +40,7 @@ class VideoObject_Options {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
+			setOptionDefault('class-video_html5', true);
 			setOptionDefault('class-video_mov_w', 520);
 			setOptionDefault('class-video_mov_h', 390);
 			setOptionDefault('class-video_3gp_w', 520);
@@ -53,6 +58,9 @@ class VideoObject_Options {
 		return array(gettext('Watermark default images') => array('key' => 'video_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 0,
 						'desc' => gettext('Check to place watermark image on default thumbnail images.')),
+				gettext('Assume HTML5') => array('key' => 'class-video_html5', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 0.5,
+						'desc' => gettext('If checked <code>mp3</code> and <code>mp4</code> files will be handled withj the HTML5 <em>video</em> and <em>audio</em> tags. Otherwise these must be handled via a multimedia player plugin.')),
 				gettext('Quicktime video width') => array('key' => 'class-video_mov_w', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 2,
 						'desc' => ''),
@@ -360,8 +368,20 @@ class Video extends Image {
 			$w = $this->getWidth();
 		if (is_null($h))
 			$h = $this->getHeight();
-		$ext = getSuffix($this->getFullImageURL());
+		$ext = getSuffix($link = $this->getFullImageURL());
 		switch ($ext) {
+			case 'mp3':
+				return '<audio controls>
+						<source src="' . $link . '" type="audio/mpg">
+								' . gettext('Your browser does not support the audio tag') . '
+					</audio>';
+				break;
+			case 'mp4':
+				return '<video  width="' . $w . '" height="' . $h . '" controls>
+						<source src="' . $this->getFullImageURL() . '" type="video/' . $ext . '">
+								' . gettext('Your browser does not support the video tag') . '
+					</video>';
+				break;
 			default:
 				return $_zp_multimedia_extension->getPlayerConfig($this, NULL, NULL, $w, $h);
 				break;
@@ -369,11 +389,11 @@ class Video extends Image {
 			case 'mov':
 				return '</a>
 					<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="' . $w . '" height="' . $h . '" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
-					<param name="src" value="' . pathurlencode($this->getFullImageURL()) . '"/>
+					<param name="src" value="' . pathurlencode($link) . '"/>
 					<param name="autoplay" value="false" />
 					<param name="type" value="video/quicktime" />
 					<param name="controller" value="true" />
-					<embed src="' . pathurlencode($this->getFullImageURL()) . '" width="' . $w . '" height="' . $h . '" scale="aspect" autoplay="false" controller"true" type="video/quicktime"
+					<embed src="' . pathurlencode($link) . '" width="' . $w . '" height="' . $h . '" scale="aspect" autoplay="false" controller"true" type="video/quicktime"
 						pluginspage="http://www.apple.com/quicktime/download/" cache="true"></embed>
 					</object><a>';
 				break;
