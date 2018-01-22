@@ -7761,6 +7761,7 @@ zp-core/zp-extensions/jPlayer/skin/zenphotolight/jplayer.zenphoto.seeking.gif
 zp-core/zp-extensions/jPlayer/skin/zenphotolight/jplayer.zenphotolight.css
 zp-core/zp-extensions/lazyImage
 zp-core/zp-extensions/lazyImage/jquery.lazyloadxt.bootstrap.min.js
+zp-core/zp-extensions/lazyImage/jquery.lazyloadxt.extra.min.js
 zp-core/zp-extensions/lazyImage/jquery.lazyloadxt.jquerymobile.min.js
 zp-core/zp-extensions/lazyImage/jquery.lazyloadxt.min.js
 zp-core/zp-extensions/LDAP_auth
@@ -8151,4 +8152,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8153
+8154
