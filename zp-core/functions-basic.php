@@ -99,10 +99,11 @@ switch (PHP_MAJOR_VERSION) {
 }
 
 // Set error reporting.
+@ini_set('display_errors', '0'); // try to disable in case set
 if (TEST_RELEASE) {
 	error_reporting(E_ALL | E_STRICT);
-	@ini_set('display_errors', 1);
-}
+	@ini_set('display_errors', '1');
+} 
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 $_configMutex = new zpMutex('cF');
