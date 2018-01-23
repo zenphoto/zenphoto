@@ -943,9 +943,8 @@ function getImageArgs($set) {
  */
 function getImageURI($args, $album, $image, $mtime) {
 	$cachefilename = getImageCacheFilename($album, $image, $args);
-	$cachefiletime = filemtime(SERVERCACHE . $cachefilename);
-	if (OPEN_IMAGE_CACHE && file_exists(SERVERCACHE . $cachefilename) && (!$mtime || $cachefiletime >= $mtime)) {
-		return WEBPATH . '/' . CACHEFOLDER . imgSrcURI($cachefilename) . '?cached=' . $cachefiletime;
+	if (OPEN_IMAGE_CACHE && file_exists(SERVERCACHE . $cachefilename) && (!$mtime || filemtime(SERVERCACHE . $cachefilename) >= $mtime)) {
+		return WEBPATH . '/' . CACHEFOLDER . imgSrcURI($cachefilename) . '?cached=' . filemtime(SERVERCACHE . $cachefilename);
 	} else {
 		return getImageProcessorURI($args, $album, $image);
 	}
