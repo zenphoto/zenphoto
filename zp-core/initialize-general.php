@@ -19,10 +19,6 @@ $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if en
 $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
-if (GALLERY_SESSION) {
-	zp_session_start();
-}
-
 define('ZENPHOTO_LOCALE', setMainDomain());
 
 require_once(dirname(__FILE__) . '/load_objectClasses.php');
