@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-23 12:34-0800\n"
-"PO-Revision-Date: 2018-01-23 12:36-0800\n"
+"PO-Revision-Date: 2018-01-23 13:20-0800\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Michael Kay, Carlos Varela <mikeque@gmail.com>\n"
 "Language: es_ES\n"
@@ -678,7 +678,7 @@ msgstr "Oscuro"
 #: plugins/reCaptcha.php:65
 #, fuzzy
 msgid "Clean"
-msgstr "Limpiar"
+msgstr "Limpio"
 
 #: plugins/reCaptcha.php:74
 #, fuzzy
@@ -808,7 +808,7 @@ msgstr "Color"
 #, fuzzy
 #| msgid "Theme colors"
 msgid "Text color."
-msgstr "Color       texto"
+msgstr "Color de texto"
 
 #: plugins/text_watermark.php:39
 #, fuzzy
@@ -1303,7 +1303,7 @@ msgstr "Remover"
 #: themes/zpmasonry/functions.php:36
 #, fuzzy
 msgid "Default theme color scheme."
-msgstr "Combinación de colores del tema"
+msgstr "Esquema de colores de tema por defecto."
 
 #: themes/basic/functions.php:90 themes/effervescence+/functions.php:146
 #: themes/zpArdoise/functions.php:66 themes/zpmasonry/functions.php:37
@@ -1746,7 +1746,7 @@ msgstr "Índice de álbumes"
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:145
 #, fuzzy
 msgid "Start"
-msgstr "Empezar"
+msgstr "Comienzo"
 
 #: themes/effervescence+/image_gallery/functions.php:47
 #: themes/garland/image_gallery/functions.php:47
@@ -2142,7 +2142,7 @@ msgstr "Seleccione el menú <em>menu_manager</em> que desee utilizar."
 #: themes/garland/themeoptions.php:91
 #, fuzzy
 msgid "Image gallery transition"
-msgstr "Galería de imágenes"
+msgstr "Transición de galería de imágenes"
 
 #: themes/effervescence+/themeoptions.php:107
 #: themes/garland/themeoptions.php:92 zp-core/exif/exifTranslations.php:147
@@ -2162,7 +2162,7 @@ msgstr "desvanecer"
 #: themes/garland/themeoptions.php:92
 #, fuzzy
 msgid "Shrink/grow"
-msgstr "Reducir"
+msgstr "Encogimiento/crecer"
 
 #: themes/effervescence+/themeoptions.php:107
 #: themes/garland/themeoptions.php:92
@@ -2390,7 +2390,7 @@ msgstr "Marcar para activar el tag cloud en la página del álbum."
 #: themes/garland/themeoptions.php:85
 #, fuzzy
 msgid "Custom Homepage"
-msgstr "Página de inicio personalizada"
+msgstr "Formulario de inscripción con redirección personalizada"
 
 #: themes/garland/themeoptions.php:88
 #, fuzzy
@@ -2505,7 +2505,7 @@ msgstr "<em>anonimo</em>"
 #: zp-core/zp-extensions/contact_form/form.php:85
 #, fuzzy, php-format
 msgid "E-Mail%s"
-msgstr "Correo electrónico: %s"
+msgstr "Correo electronico: %s"
 
 #: themes/paradigm/comment_form/comment_form.php:55
 #: zp-core/zp-extensions/comment_form/comment_form.php:52
@@ -2556,7 +2556,7 @@ msgstr "País: %s"
 #: zp-core/zp-extensions/register_user/register_user_form.php:82
 #, fuzzy, php-format
 msgid "Postal code%s"
-msgstr "Código postal %s"
+msgstr "Código Postal"
 
 #: themes/paradigm/comment_form/comment_form.php:99
 #: themes/paradigm/contact_form/form.php:130
@@ -2597,7 +2597,7 @@ msgstr "Añadir comentario"
 #: zp-core/zp-extensions/contact_form/form.php:15
 #, fuzzy, php-format
 msgid "Title%s"
-msgstr "Titulo del Anuncio: %s"
+msgstr "Título: %s"
 
 #: themes/paradigm/contact_form/form.php:41
 #: zp-core/zp-extensions/contact_form/form.php:37
@@ -2656,7 +2656,7 @@ msgstr ""
 #: themes/paradigm/credits.php:35
 #, fuzzy
 msgid "Theme used:"
-msgstr "Tema usado:"
+msgstr "Tema:"
 
 #: themes/paradigm/credits.php:35 zp-core/class-feed.php:545
 #: zp-core/zp-extensions/comment_form/functions.php:824
@@ -2690,7 +2690,7 @@ msgstr "Visitas: %u"
 #, fuzzy
 #| msgid "options"
 msgid "Caption"
-msgstr "Subtítulo"
+msgstr "Leyenda"
 
 #: themes/paradigm/image.php:105
 #, fuzzy
@@ -2717,7 +2717,7 @@ msgstr "¡Error!"
 #: themes/paradigm/includes/_gallery.php:12 themes/zpfocus/inc-sidebar.php:43
 #, fuzzy
 msgid "About"
-msgstr "Acerca de Dogeo"
+msgstr "About"
 
 #: themes/paradigm/includes/_gallery.php:17 themes/zpArdoise/inc_footer.php:32
 #: themes/zpArdoise/inc_header.php:82 themes/zpBootstrap/home.php:62
@@ -2960,7 +2960,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Homepage"
 msgid "Homepage blog"
-msgstr "Página principal"
+msgstr "Página principal (blog)"
 
 #: themes/paradigm/themeoptions.php:88
 #, fuzzy
@@ -3040,7 +3040,7 @@ msgstr ""
 #: themes/paradigm/themeoptions.php:100
 #, fuzzy
 msgid "URL to Facebook"
-msgstr "Enlace a Facebook"
+msgstr "a Facebook"
 
 #: themes/paradigm/themeoptions.php:100
 #, fuzzy
@@ -3556,12 +3556,15 @@ msgstr "Slider de Homepage"
 msgid ""
 "Select the Album to use for the homepage slider (Dynamic albums may used)."
 msgstr ""
-"Seleccione cómo se escogerán los cuadros para la presentación de la Página "
-"principal. Por defecto es 5"
+"Seleccione el álbum para el deslizador de la página de inicio (puede "
+"utilizar discos dinámicos)."
 
 #: themes/zpBootstrap/themeoptions.php:71
+#, fuzzy
 msgid "If Gallery is selected, the whole gallery will be used for the slider."
 msgstr ""
+"Si se selecciona la galería, la galería se utilizará para el control "
+"deslizante."
 
 #: themes/zpBootstrap/themeoptions.php:72
 #, fuzzy
@@ -3572,9 +3575,7 @@ msgstr "Fotos al azar"
 #: themes/zpBootstrap/themeoptions.php:72
 #, fuzzy
 msgid "Number of random pictures to use for the homepage slider."
-msgstr ""
-"Seleccione cómo se escogerán los cuadros para la presentación de la Página "
-"principal."
+msgstr "Número de fotos al azar para el deslizador de la Página principal."
 
 #: themes/zpBootstrap/themeoptions.php:73
 #, fuzzy
@@ -3617,7 +3618,7 @@ msgstr ""
 #: themes/zpBootstrap/themeoptions.php:82
 #, fuzzy
 msgid "Social Links"
-msgstr "Enlaces sociales"
+msgstr "Vínculos sociales"
 
 #: themes/zpBootstrap/themeoptions.php:82
 #, fuzzy
@@ -3649,7 +3650,8 @@ msgid ""
 "want to show on options>image>information EXIF."
 msgstr ""
 "Mostrar los datos EXIF en la página de la imagen. Recuerda que tienes que "
-"comprobar EXIFs datos que desee mostrar en admin > Imagen > información EXIF."
+"comprobar EXIFs datos que desea mostrar en Opciones > Imagen > información "
+"EXIF."
 
 #: themes/zpEnlighten/album.php:90 themes/zpEnlighten/favorites.php:98
 #: themes/zpEnlighten/image.php:123 themes/zpEnlighten/search.php:161
@@ -3816,7 +3818,7 @@ msgstr "Resultado de la Búsqueda"
 #: themes/zpskeleton/inc-header.php:122
 #, fuzzy
 msgid "Latest News"
-msgstr "Últimas notícias"
+msgstr "Noticias de películas"
 
 #: themes/zpfocus/gallery.php:19 themes/zpfocus/inc-header.php:111
 #: themes/zpmasonry/functions.php:214 themes/zpmasonry/inc-header.php:113
@@ -3848,7 +3850,7 @@ msgstr "todos los derechos reservados"
 #: themes/zpfocus/inc-footer.php:41 themes/zpminimal/inc-footer.php:8
 #, fuzzy
 msgid "Subscribe: "
-msgstr "Suscribirse:"
+msgstr "Suscribir:"
 
 #: themes/zpfocus/inc-footer.php:44 themes/zpminimal/inc-footer.php:11
 #, fuzzy
@@ -3858,7 +3860,7 @@ msgstr "Este álbum"
 #: themes/zpfocus/inc-footer.php:47 themes/zpminimal/inc-footer.php:13
 #, fuzzy
 msgid "Gallery Images"
-msgstr "Galeria de imagenes"
+msgstr "Galería de Imágenes"
 
 #: themes/zpfocus/inc-header.php:35 themes/zpfocus/inc-header.php:49
 #: themes/zpfocus/inc-header.php:118 themes/zpfocus/inc-sidebar.php:66
@@ -3882,7 +3884,7 @@ msgstr "Protegido por contraseña"
 #: themes/zpminimal/inc-header.php:104 themes/zpskeleton/inc-header.php:103
 #, fuzzy
 msgid "404 Not Found..."
-msgstr "404 - Pagina no encontrada"
+msgstr "404 No encontrado"
 
 #: themes/zpfocus/inc-header.php:159 themes/zpfocus/inc-header.php:173
 #: themes/zpmasonry/inc-footer.php:33 themes/zpmasonry/inc-header.php:144
@@ -3905,7 +3907,7 @@ msgstr "buscar"
 #: themes/zpfocus/inc-sidebar.php:13
 #, fuzzy
 msgid "Random Album Image"
-msgstr "Imagen de disco al azar"
+msgstr "Imagen del álbum"
 
 #: themes/zpfocus/inc-sidebar.php:17
 #, fuzzy
@@ -3938,7 +3940,7 @@ msgstr "Etiquetas:"
 #: themes/zpskeleton/password.php:15
 #, fuzzy
 msgid "Please Login"
-msgstr "Inicia la sesión"
+msgstr "Por favor ingrese a su cuenta"
 
 #: themes/zpfocus/password.php:17 themes/zpmasonry/password.php:21
 #: themes/zpminimal/password.php:17 themes/zpskeleton/password.php:19
@@ -3959,7 +3961,7 @@ msgstr "Ver álbum:"
 #: themes/zpfocus/search.php:156
 #, fuzzy
 msgid "Image Search Results"
-msgstr "Resultados de búsqueda de imagen"
+msgstr "Resultados de la búsqueda"
 
 #: themes/zpfocus/search.php:216
 #, fuzzy
@@ -3969,7 +3971,7 @@ msgstr "Lo sentimos, no hubo resultados. Intenta refinar la búsqueda."
 #: themes/zpfocus/themeoptions.php:66
 #, fuzzy
 msgid "Tagline"
-msgstr "Descripción breve"
+msgstr "Tagline"
 
 #: themes/zpfocus/themeoptions.php:66
 #, fuzzy
@@ -4057,7 +4059,7 @@ msgstr ""
 #: themes/zpfocus/themeoptions.php:74
 #, fuzzy
 msgid "Spotlight Text"
-msgstr "Proyector de texto"
+msgstr "Foco"
 
 #: themes/zpfocus/themeoptions.php:74
 #, fuzzy
@@ -4450,7 +4452,7 @@ msgstr "imágenes"
 #: themes/zpmasonry/search.php:129
 #, fuzzy
 msgid "Preview"
-msgstr "Previsualizar Formulario"
+msgstr "Prever"
 
 #: themes/zpmasonry/comment_form/comment_form.php:18
 #: themes/zpminimal/z_disable_comment_form/comment_form.php:18
@@ -4495,7 +4497,7 @@ msgstr "Últimos álbumes actualizados"
 #: themes/zpmasonry/functions.php:224
 #, fuzzy
 msgid "Most Rated Albums"
-msgstr "Más clasificación álbumes"
+msgstr "Álbumes Mejor Valorados"
 
 #: themes/zpmasonry/functions.php:229
 #, fuzzy
@@ -4648,7 +4650,7 @@ msgstr ""
 #: themes/zpmasonry/themeoptions.php:86
 #, fuzzy
 msgid "Use Infinite Scroll?"
-msgstr "Scroll Infinito"
+msgstr "Scroll infinito"
 
 #: themes/zpmasonry/themeoptions.php:88
 #, fuzzy
@@ -4678,7 +4680,7 @@ msgstr ""
 #: themes/zpmasonry/themeoptions.php:93 themes/zpminimal/themeoptions.php:42
 #, fuzzy
 msgid "Logo Image"
-msgstr "Logo Image"
+msgstr "Logotipo"
 
 #: themes/zpmasonry/themeoptions.php:95
 #, fuzzy
@@ -4817,7 +4819,7 @@ msgstr ""
 #: themes/zpmasonry/themeoptions.php:137
 #, fuzzy
 msgid "Frontpage Slideshow Transition Effect?"
-msgstr "Seleccione efecto de transición en la presentación"
+msgstr "¿Efecto de transición de FrontPage Slideshow?"
 
 #: themes/zpmasonry/themeoptions.php:139
 #, fuzzy
@@ -5520,7 +5522,7 @@ msgstr "dentro"
 #: zp-core/admin-dynamic-album.php:285
 #, fuzzy
 msgid "tagged"
-msgstr "etiquetado"
+msgstr "tipificación de Licitador"
 
 #: zp-core/admin-dynamic-album.php:292
 #, fuzzy
@@ -5833,7 +5835,7 @@ msgstr "Descripción"
 #: zp-core/admin-edit.php:1293 zp-core/admin_options/image.php:755
 #, fuzzy
 msgid "Metadata"
-msgstr "Se terminaron de actualizar los metadatos"
+msgstr "Actualizar metadatos del álbum %s"
 
 #: zp-core/admin-edit.php:1310
 msgid "None selected for display"
@@ -6093,7 +6095,7 @@ msgstr "Ver índice de la galería"
 #, fuzzy
 #| msgid "Return to %s"
 msgid "return to top"
-msgstr "Volver arriba"
+msgstr "Volver a la parte Superior"
 
 #: zp-core/admin-functions.php:343
 #, fuzzy
@@ -6229,7 +6231,7 @@ msgstr "Descendiente"
 #, fuzzy
 #| msgid "custom fields:"
 msgid "custom fields"
-msgstr "campos Personalizados"
+msgstr "campos personalizados"
 
 #: zp-core/admin-functions.php:1850 zp-core/admin_options/image.php:249
 #: zp-core/admin_options/search.php:450
@@ -6607,7 +6609,7 @@ msgstr[1] "%u imágenes por página"
 #: zp-core/admin-functions.php:4240
 #, fuzzy
 msgid "ok"
-msgstr "ok"
+msgstr "Aceptar"
 
 #: zp-core/admin-functions.php:4310
 #, fuzzy
@@ -6628,12 +6630,12 @@ msgstr "Destinación"
 #: zp-core/admin-functions.php:4650 zp-core/admin-functions.php:4685
 #, fuzzy, php-format
 msgid "codeblock %u"
-msgstr "indentado %u"
+msgstr "bloque-código"
 
 #: zp-core/admin-functions.php:4651 zp-core/admin-functions.php:4691
 #, fuzzy
 msgid "add codeblock"
-msgstr "Añadir indentado"
+msgstr "bloque-código"
 
 #: zp-core/admin-functions.php:4706
 #, fuzzy
@@ -6691,7 +6693,7 @@ msgstr "Falló el envío de correo, no hay controlador de correo configurado."
 #: zp-core/admin-functions.php:5076
 #, fuzzy
 msgid "media"
-msgstr "medios de comunicación"
+msgstr "medios"
 
 #: zp-core/admin-functions.php:5077
 #, fuzzy
@@ -7096,7 +7098,7 @@ msgstr "Plugin adicional"
 #: zp-core/admin-plugins.php:206
 #, fuzzy
 msgid "Third party plugin"
-msgstr "Plugin de terceros"
+msgstr "Tercero"
 
 #: zp-core/admin-plugins.php:210 zp-core/admin-plugins.php:444
 #, fuzzy
@@ -7305,7 +7307,7 @@ msgstr "Etiquetas marcadas borrados"
 #: zp-core/admin-tags.php:105
 #, fuzzy
 msgid "Tags renamed"
-msgstr "Etiquetas de nombre"
+msgstr "Renombrado"
 
 #: zp-core/admin-tags.php:132
 msgid "Tag Management"
@@ -7838,7 +7840,7 @@ msgstr "CHALLENGE RESPONSE"
 #: zp-core/admin-users.php:773
 #, fuzzy
 msgid "Full name"
-msgstr "Nombre completo"
+msgstr "Nombre y apellido completos"
 
 #: zp-core/admin-users.php:778 zp-core/admin_options/general.php:600
 #: zp-core/zp-extensions/register_user/register_user_form.php:38
@@ -7878,7 +7880,7 @@ msgstr ""
 #, fuzzy
 #| msgid "*not categorized*"
 msgid "un-categorized"
-msgstr "no categorizado"
+msgstr "Categorizado"
 
 #: zp-core/admin-users.php:928
 #, fuzzy, php-format
@@ -8008,7 +8010,7 @@ msgstr "Descargar ZenPhoto20 versión %s."
 #: zp-core/admin.php:321
 #, fuzzy
 msgid "Misc"
-msgstr "Miscelánea"
+msgstr "Otros"
 
 #: zp-core/admin.php:334
 #, fuzzy
@@ -8072,7 +8074,7 @@ msgstr "Fuente: %s"
 #: zp-core/admin.php:430
 #, fuzzy
 msgid "release notes"
-msgstr "Información de la versión"
+msgstr "Notas de la versión"
 
 #: zp-core/admin.php:430
 #, fuzzy
@@ -8372,7 +8374,7 @@ msgstr ""
 #: zp-core/admin_options/gallery.php:283 zp-core/zp-extensions/rss.php:96
 #, fuzzy
 msgid "Website title"
-msgstr "Titulo del Sitio"
+msgstr "Título de la Web"
 
 #: zp-core/admin_options/gallery.php:291
 msgid "Your web site title."
@@ -8737,7 +8739,7 @@ msgstr "Por ciento traducido mecánicamente en rojo."
 #, fuzzy
 #| msgid "Multi-lingual"
 msgid "multi-lingual"
-msgstr "MULTILINGÜE"
+msgstr "Multilingüe"
 
 #: zp-core/admin_options/general.php:396
 msgid ""
@@ -9136,7 +9138,7 @@ msgstr "Compruebe de forma sucia"
 #: zp-core/admin_options/general.php:694
 #, fuzzy
 msgid "ignore"
-msgstr "Ignorar"
+msgstr "ignorar"
 
 #: zp-core/admin_options/general.php:698
 #, fuzzy
@@ -9181,8 +9183,9 @@ msgid "save"
 msgstr "guardar"
 
 #: zp-core/admin_options/image.php:175
+#, fuzzy
 msgid "Disabled metadata Database field(s) will be dropped"
-msgstr ""
+msgstr "Se quitarán los metadatos movilidad campos de base de datos"
 
 #: zp-core/admin_options/image.php:227
 #, fuzzy
@@ -9687,7 +9690,7 @@ msgstr "dishabilitar"
 #: zp-core/admin_options/image.php:817
 #, fuzzy
 msgid "restore defaults"
-msgstr "-1 para mostrar todos las entradas"
+msgstr "Restaurar Por Defecto"
 
 #: zp-core/admin_options/image.php:819
 #: zp-core/zp-extensions/multiple_layouts.php:274
@@ -9921,7 +9924,7 @@ msgstr "<em>palabra</em>"
 #: zp-core/admin_options/search.php:283
 #, fuzzy
 msgid "tag matching"
-msgstr "etiqueta que empareja"
+msgstr "correspondiente"
 
 #: zp-core/admin_options/search.php:284
 #, fuzzy
@@ -9951,7 +9954,7 @@ msgstr "genérico"
 #: zp-core/admin_options/search.php:296
 #, fuzzy
 msgid "specific"
-msgstr "."
+msgstr "específico."
 
 #: zp-core/admin_options/search.php:301
 #, fuzzy
@@ -10121,8 +10124,9 @@ msgid "redo search after %s minutes."
 msgstr "rehacer la búsqueda después de %s minutos."
 
 #: zp-core/admin_options/search.php:373
+#, fuzzy
 msgid "cache searches which return randomly sorted items"
-msgstr ""
+msgstr "búsquedas de caché que devolución los elementos ordenados al azar"
 
 #: zp-core/admin_options/search.php:379
 #, fuzzy
@@ -10277,7 +10281,7 @@ msgstr ""
 #: zp-core/admin_options/security.php:166
 #, fuzzy
 msgid "Image Processor security"
-msgstr "Seguridad del procesador de imagen"
+msgstr "procesador de imágenes"
 
 #: zp-core/admin_options/security.php:174
 #, fuzzy
@@ -10292,7 +10296,7 @@ msgstr ""
 #: zp-core/admin_options/security.php:184
 #, fuzzy
 msgid "User name"
-msgstr "Nombre de usuario"
+msgstr "Nombre de Usuario"
 
 #: zp-core/admin_options/security.php:208
 #, fuzzy
@@ -10600,7 +10604,7 @@ msgstr "Noticias y Galería"
 #: zp-core/allTranslations.php:54
 #, fuzzy
 msgid "What is your father’s middle name?"
-msgstr "¿Cuál es el nombre de tu padre?"
+msgstr "*¿Cómo se llama tu padre?"
 
 #: zp-core/allTranslations.php:55
 msgid "What street did your Grandmother live on?"
@@ -10796,7 +10800,7 @@ msgstr "Carpeta de disco no válido: %1$s %2$s"
 #: zp-core/class-gallery.php:518
 #, fuzzy
 msgid "fixed"
-msgstr "problemas solucionados"
+msgstr "fixed"
 
 #: zp-core/class-gallery.php:518
 #, fuzzy
@@ -10848,7 +10852,7 @@ msgstr "Título de la imagen"
 #: zp-core/class-image.php:182 zp-core/zp-extensions/xmpMetadata.php:645
 #, fuzzy
 msgid "Image Caption"
-msgstr "Leyenda de la imagen"
+msgstr "Imagen destacada"
 
 #: zp-core/class-image.php:183
 #, fuzzy
@@ -10917,7 +10921,7 @@ msgstr "Aviso de Derechos de Autor"
 #: zp-core/class-image.php:199 zp-core/zp-extensions/xmpMetadata.php:648
 #, fuzzy
 msgid "Keywords"
-msgstr "Palabra Clave"
+msgstr "Palabras clave"
 
 #: zp-core/class-image.php:200 zp-core/zp-extensions/xmpMetadata.php:625
 #, fuzzy
@@ -11000,7 +11004,7 @@ msgstr "Información de la lente"
 #: zp-core/class-image.php:219
 #, fuzzy
 msgid "35mm Focal Length Equivalent"
-msgstr "Longitud Focal equivalente a 35mm"
+msgstr "Distancia focal (equivalente a 35 mm):"
 
 #: zp-core/class-image.php:220 zp-core/zp-extensions/contact_form.php:112
 #: zp-core/zp-extensions/contact_form.php:114
@@ -11480,12 +11484,12 @@ msgstr "Flash; Modo auto-"
 #: zp-core/exif/exifTranslations.php:101
 #, fuzzy
 msgid "Flash; Auto-Mode; Return light detected"
-msgstr "Flash; Modo automático; Vuelta luz detectado"
+msgstr "Flash disparado, modo automático, se detectó el regreso de la luz"
 
 #: zp-core/exif/exifTranslations.php:102
 #, fuzzy
 msgid "Flash; Auto-Mode; Return light not detected"
-msgstr "Flash; Modo automático; Regreso de la luz no se detectó"
+msgstr "Flash disparado, modo automático, no se detectó el regreso de la luz"
 
 #: zp-core/exif/exifTranslations.php:103
 #, fuzzy
@@ -11762,7 +11766,7 @@ msgstr "RAW"
 #: zp-core/exif/exifTranslations.php:173
 #, fuzzy
 msgid "Recommended Exposure Index"
-msgstr "Índice de exposición se recomienda"
+msgstr "Índice de exposición"
 
 #: zp-core/exif/exifTranslations.php:174
 #, fuzzy
@@ -11924,7 +11928,7 @@ msgstr "Luz estándar C"
 #: zp-core/exif/exifTranslations.php:212
 #, fuzzy
 msgid "Standard Output Sensitivity"
-msgstr "Sensibilidad de salida estándar"
+msgstr "norma de rendimiento"
 
 #: zp-core/exif/exifTranslations.php:213
 #, fuzzy
@@ -12052,7 +12056,7 @@ msgstr "¡Faltan argumentos! Imagen no encontrada."
 #: zp-core/full-image.php:220 zp-core/i.php:158
 #, fuzzy
 msgid "Forbidden(2)"
-msgstr "Forbidden(2)"
+msgstr "Prohibido"
 
 #: zp-core/functions-basic.php:832
 #, fuzzy, php-format
@@ -12275,7 +12279,7 @@ msgstr "Catalán"
 #: zp-core/functions-i18n.php:39
 #, fuzzy
 msgid "Chinese (People’s Republic of China)"
-msgstr "chino (República Popular China)"
+msgstr "Chino (República Popular de la China)"
 
 #: zp-core/functions-i18n.php:40
 msgid "Chinese (Hong Kong)"
@@ -13116,7 +13120,7 @@ msgstr ""
 #: zp-core/lib-auth.php:94
 #, fuzzy
 msgid "Minimum password strength"
-msgstr "Seguridad de la contraseña"
+msgstr "Fuerza mínima de la contraseña"
 
 #: zp-core/lib-auth.php:96
 #, fuzzy, php-format
@@ -13156,7 +13160,7 @@ msgstr ""
 #: zp-core/lib-auth.php:106
 #, fuzzy
 msgid "Challenge phrase foils"
-msgstr "Láminas de frase de desafío"
+msgstr "Contraseña por desafío"
 
 #: zp-core/lib-auth.php:108
 #, fuzzy
@@ -13516,7 +13520,7 @@ msgstr "contraseña de %1$s restablece correo de petición no se pudo."
 #, fuzzy
 #| msgid "Registration failed."
 msgid "Reset request failed."
-msgstr "Petición de RESET error."
+msgstr "Petición fallida"
 
 #: zp-core/lib-auth.php:793
 #: zp-core/zp-extensions/comment_form/functions.php:292
@@ -13605,12 +13609,12 @@ msgstr "Olvidé mi <strong>ID de usuario</strong>/<strong>contraseña</strong>"
 #, fuzzy
 #| msgid "Enter a valid email address."
 msgid "User name or e-mail address"
-msgstr "Usuario nombre o dirección de e-mail"
+msgstr "Nombre de usuario o correo electrónico (*)"
 
 #: zp-core/lib-auth.php:1193
 #, fuzzy
 msgid "Request password reset"
-msgstr "Solicitar restablecer contraseña"
+msgstr "Solicitar restablecimiento de contraseña"
 
 #: zp-core/lib-auth.php:1278
 #, fuzzy
@@ -13625,7 +13629,7 @@ msgstr "Seguridad de la contraseña"
 #: zp-core/lib-auth.php:1284
 #, fuzzy
 msgid "password strength strong"
-msgstr "contraseña fuerte"
+msgstr "Seguridad de la contraseña"
 
 #: zp-core/lib-auth.php:1289
 #, fuzzy
@@ -13655,7 +13659,7 @@ msgstr "Árabe"
 #: zp-core/lib-utf8.php:50
 #, fuzzy
 msgid "Chinese Traditional"
-msgstr "Chino (tradicional)"
+msgstr "Chino tradicional"
 
 #: zp-core/lib-utf8.php:51
 #, fuzzy
@@ -13685,7 +13689,7 @@ msgstr "Árabe (DOS)"
 #: zp-core/lib-utf8.php:56
 #, fuzzy
 msgid "Hebrew (DOS)"
-msgstr "Hebreo (DOS)"
+msgstr "Hebreo"
 
 #: zp-core/lib-utf8.php:57
 #, fuzzy
@@ -13695,7 +13699,7 @@ msgstr "IBM EBCDIC (Estados Unidos-Canadá)"
 #: zp-core/lib-utf8.php:58
 #, fuzzy
 msgid "Chinese Simplified (EUC)"
-msgstr "CHINO (SIMPLIFICADO)"
+msgstr "Chino (simplificado)"
 
 #: zp-core/lib-utf8.php:59
 #, fuzzy
@@ -13705,17 +13709,17 @@ msgstr "Japonés (EUC)"
 #: zp-core/lib-utf8.php:60
 #, fuzzy
 msgid "Korean (EUC)"
-msgstr "Coreano (EUC)"
+msgstr "Coreano (EUC-KR)"
 
 #: zp-core/lib-utf8.php:61
 #, fuzzy
 msgid "Chinese Simplified (GB2312)"
-msgstr "Chino simplificado (GB2312)"
+msgstr "Chino (simplificado)"
 
 #: zp-core/lib-utf8.php:62
 #, fuzzy
 msgid "Chinese Simplified (HZ)"
-msgstr "CHINO (SIMPLIFICADO)"
+msgstr "Chino (simplificado)"
 
 #: zp-core/lib-utf8.php:63
 #, fuzzy
@@ -13730,12 +13734,12 @@ msgstr "Griego (DOS)"
 #: zp-core/lib-utf8.php:65
 #, fuzzy
 msgid "Baltic (DOS)"
-msgstr "Báltico (DOS)"
+msgstr "Mar Báltico"
 
 #: zp-core/lib-utf8.php:66
 #, fuzzy
 msgid "Western European (DOS)"
-msgstr "Europa occidental (DOS)"
+msgstr "Europeo Occidental"
 
 #: zp-core/lib-utf8.php:67
 #, fuzzy
@@ -13770,12 +13774,12 @@ msgstr "Japonés (JIS-permitir 1 byte Kana - así / SI)"
 #: zp-core/lib-utf8.php:73
 #, fuzzy
 msgid "Korean (ISO)"
-msgstr "Coreano (ISO)"
+msgstr "Coreano"
 
 #: zp-core/lib-utf8.php:74
 #, fuzzy
 msgid "Western European (ISO)"
-msgstr "Western European (ISO)"
+msgstr "Europeo Occidental"
 
 #: zp-core/lib-utf8.php:75
 #, fuzzy
@@ -13805,12 +13809,12 @@ msgstr "Cirílico"
 #: zp-core/lib-utf8.php:80
 #, fuzzy
 msgid "Arabic (ISO)"
-msgstr "Árabe (ISO)"
+msgstr "ÁRABE"
 
 #: zp-core/lib-utf8.php:81
 #, fuzzy
 msgid "Greek (ISO)"
-msgstr "Griego (ISO)"
+msgstr "Griego"
 
 #: zp-core/lib-utf8.php:82
 #, fuzzy
@@ -14073,7 +14077,7 @@ msgstr "Ignorar este cambio de configuración."
 #: zp-core/reconfigure.php:291
 #, fuzzy
 msgid "dismiss"
-msgstr "ignorar"
+msgstr "descartar"
 
 #: zp-core/reconfigure.php:320
 #, fuzzy, php-format
@@ -14207,7 +14211,7 @@ msgstr "Envío de credenciales de base de datos"
 #: zp-core/setup/index.php:437
 #, fuzzy
 msgid "Started"
-msgstr "Publicado"
+msgstr "Comenzado"
 
 #: zp-core/setup/index.php:462
 #, fuzzy, php-format
@@ -14455,7 +14459,7 @@ msgstr "Debe deshabilitar <code>magic_quotes_sybase</code> ."
 #: zp-core/setup/index.php:649
 #, fuzzy
 msgid "Display_errors"
-msgstr "Error en la visualización del mapa"
+msgstr "display_errors = Off"
 
 #: zp-core/setup/index.php:670
 #, fuzzy
@@ -14709,7 +14713,7 @@ msgstr ""
 #: zp-core/setup/index.php:770
 #, fuzzy, php-format
 msgid "<em>%1$s</em> file"
-msgstr "archivo de <em>%1$s</em>"
+msgstr "%1$s"
 
 #: zp-core/setup/index.php:770
 #, fuzzy, php-format
@@ -15638,7 +15642,7 @@ msgstr "Si aún no han creado la base de datos, ahora sería un buen momento."
 #: zp-core/setup/index.php:1969
 #, fuzzy, php-format
 msgid "The %1$s file does not exist."
-msgstr "No existe el archivo %1$s."
+msgstr "El archivo no existe."
 
 #: zp-core/setup/setup-functions.php:67
 #, php-format
@@ -15832,7 +15836,7 @@ msgstr "Error en consulta: %1$s Error: %2$s"
 #: zp-core/setup/setup-functions.php:575
 #, fuzzy, php-format
 msgid "Plugin:%1$s ERROR \"%2$s\" in %3$s on line %4$s"
-msgstr "%1$s: \"%2$s\" en %3$s en línea %4$s"
+msgstr "Plugin:%1$s \"%2$s\" en %3$s ERROR en línea %4$s"
 
 #: zp-core/setup/setup-functions.php:579
 #, fuzzy, php-format
@@ -15900,7 +15904,7 @@ msgstr "Usuarios verificados y recién registrados."
 #: zp-core/setup/setup-option-defaults.php:547
 #, fuzzy
 msgid "Theme setup:"
-msgstr "Theme Setup Wizard"
+msgstr "Configuración del tema"
 
 #: zp-core/setup/setup-option-defaults.php:583
 #, fuzzy, php-format
@@ -16015,7 +16019,7 @@ msgstr "Prefijo de tabla en la base de datos"
 #, fuzzy
 #| msgid "Completed system check"
 msgid "Completed with errors"
-msgstr "Finalizado con errores"
+msgstr "Completed with errors (Completado con errores)"
 
 #: zp-core/setup/setupComplete.php:19
 #, fuzzy
@@ -16218,7 +16222,7 @@ msgstr "campos"
 #: zp-core/template-functions.php:3928
 #, fuzzy
 msgid "Within"
-msgstr "Dentro de"
+msgstr "Menos de"
 
 #: zp-core/template-functions.php:3932
 #: zp-core/zp-extensions/flag_thumbnail.php:94
@@ -16495,12 +16499,12 @@ msgstr "Prefijo de TABLE: sin prefijo"
 #: zp-core/utilities/database_reference.php:190
 #, fuzzy
 msgid "Key"
-msgstr "Clave:"
+msgstr "Key"
 
 #: zp-core/utilities/database_reference.php:193
 #, fuzzy
 msgid "Column"
-msgstr "1/2 Colonne "
+msgstr "Columna"
 
 #: zp-core/utilities/gallery_statistics.php:89
 #, fuzzy
@@ -16860,7 +16864,7 @@ msgstr "Grupo LDAP"
 #, fuzzy
 #| msgid "Could not redirect to server: %s"
 msgid "Could not connect to LDAP server."
-msgstr "No se pudo conectar con el servidor"
+msgstr "No se ha podido conectar al servidor."
 
 #: zp-core/zp-extensions/PHPMailer.php:13
 msgid ""
@@ -16983,7 +16987,7 @@ msgstr ""
 #: zp-core/zp-extensions/accessThreshold.php:54
 #, fuzzy
 msgid "Window"
-msgstr "Window"
+msgstr "Ventana"
 
 #: zp-core/zp-extensions/accessThreshold.php:56
 #, fuzzy
@@ -17035,7 +17039,7 @@ msgstr "Las solicitudes de esta IP serán ignoradas."
 #: zp-core/zp-extensions/accessThreshold.php:69
 #, fuzzy
 msgid "Clear list"
-msgstr "Limpiar la lista"
+msgstr "Limpiar"
 
 #: zp-core/zp-extensions/accessThreshold.php:71
 #, fuzzy
@@ -17069,7 +17073,7 @@ msgid ""
 "Address with intervals that are <span style=\"color:Red;\">red</span> have "
 "been blocked. "
 msgstr ""
-"Dirección con intervalos que son de <span style=\"color: red;\">color rojo</"
+"Dirección con intervalos que son de <span style=\"color:Red;\">color rojo</"
 "span> han sido bloqueados."
 
 #: zp-core/zp-extensions/accessThreshold/admin_tab.php:91
@@ -17150,7 +17154,7 @@ msgstr "No tienes privilegios para cambiar el estado <em>publicado</em>."
 #: zp-core/zp-extensions/auto_backup.php:22
 #, fuzzy
 msgid "Periodically backup the database."
-msgstr "Periódicamente copias de seguridad de la base de datos."
+msgstr "¿Desea hacer una copia de seguridad de la base de datos?"
 
 #: zp-core/zp-extensions/auto_backup.php:60
 msgid "Run interval"
@@ -17449,7 +17453,7 @@ msgstr "tamaño ="
 #: zp-core/zp-extensions/cacheManager.php:247
 #, fuzzy
 msgid "Crop X axis"
-msgstr "Eje X"
+msgstr "Eje X cultivo"
 
 #: zp-core/zp-extensions/cacheManager.php:248
 #, fuzzy
@@ -17879,15 +17883,20 @@ msgstr ""
 "reproductor multimedia manejar otros archivos de medios de comunicación."
 
 #: zp-core/zp-extensions/class-video.php:61
+#, fuzzy
 msgid "Assume HTML5"
-msgstr ""
+msgstr "Asumir HTML5"
 
 #: zp-core/zp-extensions/class-video.php:63
+#, fuzzy
 msgid ""
 "If checked <code>mp3</code> and <code>mp4</code> files will be handled withj "
 "the HTML5 <em>video</em> and <em>audio</em> tags. Otherwise these must be "
 "handled via a multimedia player plugin."
 msgstr ""
+"Si <code>mp3</code> y <code>mp4</code> archivos será manejado no-residentes "
+"el HTML5 <em>video</em> y <em>audio</em> tags. De lo contrario estos deben "
+"manejarse mediante un plugin del reproductor multimedia."
 
 #: zp-core/zp-extensions/class-video.php:64
 msgid "Quicktime video width"
@@ -18021,12 +18030,12 @@ msgstr "Timpo de juego"
 #: zp-core/zp-extensions/class-video.php:376
 #, fuzzy
 msgid "Your browser does not support the audio tag"
-msgstr "Su servidor no admite la vinculación simbólica."
+msgstr "Su navegador no es compatible con el elemento de audio."
 
 #: zp-core/zp-extensions/class-video.php:382
 #, fuzzy
 msgid "Your browser does not support the video tag"
-msgstr "Su servidor no admite la vinculación simbólica."
+msgstr "Su navegador no soporta la etiqueta de vídeo."
 
 #: zp-core/zp-extensions/class-video.php:456
 #, fuzzy, php-format
@@ -18039,8 +18048,9 @@ msgid "No multimeida extension installed."
 msgstr "Sin extensión multimeida instalada."
 
 #: zp-core/zp-extensions/class-video.php:537
+#, fuzzy
 msgid "The <em>video metadata</em> Database field(s) will be dropped"
-msgstr ""
+msgstr "Se quitarán los <em>metadatos de vídeo</em> campos de base de datos"
 
 #: zp-core/zp-extensions/cloneZenphoto.php:30
 #, fuzzy
@@ -18316,7 +18326,7 @@ msgstr "Campo captcha "
 #: zp-core/zp-extensions/comment_form.php:110
 #, fuzzy
 msgid "For guests"
-msgstr "Mostrar para invitados"
+msgstr "para los huéspedes"
 
 #: zp-core/zp-extensions/comment_form.php:111
 msgid ""
@@ -18493,7 +18503,7 @@ msgstr "ocultar comentarios"
 #: zp-core/zp-extensions/comment_form.php:288
 #, fuzzy
 msgid "on"
-msgstr "en"
+msgstr "activada"
 
 #: zp-core/zp-extensions/comment_form.php:311
 msgid "Only registered users may post comments."
@@ -19257,7 +19267,7 @@ msgstr "Ayudas de depuración."
 #: zp-core/zp-extensions/debug.php:80
 #, fuzzy
 msgid "Display PHP errors."
-msgstr "Error en la visualización del mapa"
+msgstr "Mostrar errores de PHP."
 
 #: zp-core/zp-extensions/debug.php:81
 #, fuzzy
@@ -19302,8 +19312,9 @@ msgid "Log plugin load sequence."
 msgstr "Secuencia de carga de plugin de registro."
 
 #: zp-core/zp-extensions/debug.php:89
+#, fuzzy
 msgid "Log Feed issues."
-msgstr ""
+msgstr "Sesión de problemas de alimentación."
 
 #: zp-core/zp-extensions/debug.php:96
 #, fuzzy
@@ -19347,7 +19358,7 @@ msgstr "Charla"
 #: zp-core/zp-extensions/debug.php:172
 #, fuzzy
 msgid "SERVER"
-msgstr "La localización %s no está soportada por el servidor."
+msgstr "No se puede redirigir al servidor: %s"
 
 #: zp-core/zp-extensions/debug.php:173
 #, fuzzy
@@ -19639,7 +19650,7 @@ msgstr "Zip fuente"
 #: zp-core/zp-extensions/downloadList.php:84
 #, fuzzy
 msgid "From album"
-msgstr "Del álbum"
+msgstr "Álbum"
 
 #: zp-core/zp-extensions/downloadList.php:84
 #, fuzzy
@@ -19870,7 +19881,7 @@ msgstr "Enlaces de lengua"
 #: zp-core/zp-extensions/dynamic-locale.php:217
 #, fuzzy
 msgid "Site language"
-msgstr "Lenguaje del sitio"
+msgstr "Idioma del sitio"
 
 #: zp-core/zp-extensions/dynamic-locale.php:220
 #, fuzzy
@@ -19900,7 +19911,7 @@ msgstr "Utilícelo como la subficha Subir <em>archivos</em> ."
 #, fuzzy
 #| msgid "Edit the menu"
 msgid "Edit themes"
-msgstr "تم ها"
+msgstr "Editar temas"
 
 #: zp-core/zp-extensions/elFinder.php:58
 #, fuzzy
@@ -19949,7 +19960,7 @@ msgstr ""
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:81
 #, fuzzy, php-format
 msgid "Themes (%s)"
-msgstr "Temas (%s)"
+msgstr "Temas"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:87
 #, php-format
@@ -19960,7 +19971,7 @@ msgstr "%s"
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:344
 #, fuzzy, php-format
 msgid "Upload folder (%s)"
-msgstr "Suba la carpeta (%s)"
+msgstr "Carpeta upload"
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:162
 #, fuzzy, php-format
@@ -20094,7 +20105,7 @@ msgstr "Comentarios de la galería"
 #: zp-core/zp-extensions/externalFeed.php:74 zp-core/zp-extensions/rss.php:47
 #, fuzzy
 msgid "News/Page Comments"
-msgstr "Comentarios de la página"
+msgstr "Comentarios de la página de noticias"
 
 #: zp-core/zp-extensions/externalFeed.php:76
 #, fuzzy
@@ -20193,7 +20204,7 @@ msgstr "Marque la casilla para quitar un sitio Web."
 #: zp-core/zp-extensions/externalFeed.php:108 zp-core/zp-extensions/rss.php:103
 #, fuzzy
 msgid "Feed text length"
-msgstr "Longitud del texto"
+msgstr "Campo de búsqueda de texto"
 
 #: zp-core/zp-extensions/externalFeed.php:110
 #, fuzzy
@@ -20216,7 +20227,7 @@ msgstr "El número de noticias que desea que aparezca en de noticias su sitio."
 #: zp-core/zp-extensions/externalFeed.php:130
 #, fuzzy, php-format
 msgid "<em><strong>%1$s</strong></em> key=%2$s"
-msgstr "<em><strong>%1$s</strong></em> clave = %2$s"
+msgstr "%1$s %2$s"
 
 #: zp-core/zp-extensions/externalFeed.php:136
 #, fuzzy
@@ -20226,7 +20237,7 @@ msgstr "No hay sitios registrados"
 #: zp-core/zp-extensions/externalFeed.php:240 zp-core/zp-extensions/rss.php:427
 #, fuzzy
 msgid " (Latest news)"
-msgstr "Últimas notícias"
+msgstr "Últimas Noticias"
 
 #: zp-core/zp-extensions/externalFeed.php:244 zp-core/zp-extensions/rss.php:444
 #, fuzzy
@@ -20241,7 +20252,7 @@ msgstr "(La mayoría clasificada noticias)"
 #: zp-core/zp-extensions/externalFeed.php:250 zp-core/zp-extensions/rss.php:450
 #, fuzzy
 msgid " (Top rated news)"
-msgstr "Mejor valorados"
+msgstr "Mejor Valorados"
 
 #: zp-core/zp-extensions/externalFeed.php:253 zp-core/zp-extensions/rss.php:453
 #, fuzzy
@@ -20315,7 +20326,7 @@ msgstr "El Curl de PHP se requiere."
 #: zp-core/zp-extensions/linkedinLogin.php:67
 #, fuzzy
 msgid "App ID"
-msgstr "App ID"
+msgstr "ID de la aplicación"
 
 #: zp-core/zp-extensions/facebookLogin.php:69
 #, fuzzy
@@ -20327,7 +20338,7 @@ msgstr "Este es su Facebook <em>App ID</em>."
 #, fuzzy
 #| msgid "Secret"
 msgid "App Secret"
-msgstr "App secreta"
+msgstr "Secreto de la aplicación"
 
 #: zp-core/zp-extensions/facebookLogin.php:72
 #, fuzzy
@@ -20352,7 +20363,7 @@ msgstr "Crear álbum de favoritos"
 #: zp-core/zp-extensions/favoritesAlbums/admin-album.php:94
 #, fuzzy
 msgid "favorite"
-msgstr "Favorito "
+msgstr "favorito"
 
 #: zp-core/zp-extensions/favoritesHandler.php:48
 #, fuzzy
@@ -20583,8 +20594,8 @@ msgid ""
 "If a <em>type</em> is checked, a news article will be made when an object of "
 "that <em>type</em> is published."
 msgstr ""
-"Si se marca un <em>tipo,</em> se hará un reportaje cuando se publica un "
-"objeto de ese <em>tipo.</em>"
+"Si un <em>tipo</em> está marcada, se hará una noticia cuando un objeto de "
+"ese <em>tipo</em> se publica."
 
 #: zp-core/zp-extensions/galleryArticles.php:70
 msgid "Image title"
@@ -20612,7 +20623,7 @@ msgid ""
 "will be substituted for <code>%1$s</code>."
 msgstr ""
 "Este texto se utilizará como <em>título</em> del artículo. El título del "
-"álbum se sustituirá por <code>%1$s</code> ."
+"álbum será sustituido por <code>%1$s</code> ."
 
 #: zp-core/zp-extensions/galleryArticles.php:80
 #, fuzzy
@@ -20716,7 +20727,7 @@ msgstr "Este es el Google <em>OAuth cliente secreto</em>."
 #: zp-core/zp-extensions/googleMap.php:112
 #, fuzzy
 msgid "API key"
-msgstr "API key"
+msgstr "Clave de API"
 
 #: zp-core/zp-extensions/googleLogin.php:77
 #, fuzzy
@@ -21071,7 +21082,7 @@ msgstr ""
 #: zp-core/zp-extensions/html_meta_tags.php:114
 #, fuzzy
 msgid "Canonical URL link"
-msgstr "Enlace URL canónica"
+msgstr "URL canónica"
 
 #: zp-core/zp-extensions/html_meta_tags.php:116
 #, fuzzy
@@ -21097,7 +21108,7 @@ msgstr "Contenido de verificación"
 #, fuzzy
 msgid "Insert the <em>content</em> portion of the meta tag supplied by Google."
 msgstr ""
-"Inserte la parte de <em>contenido</em> de la metaetiqueta suministrada por "
+"Inserte la parte de <em>contenido</em> de la etiqueta meta suministrada por "
 "Google."
 
 #: zp-core/zp-extensions/html_meta_tags.php:119
@@ -21166,7 +21177,7 @@ msgstr ""
 #: zp-core/zp-extensions/html_meta_tags.php:127
 #, fuzzy
 msgid "Facebook app id"
-msgstr "Enlace Facebook"
+msgstr "Facebook App ID:"
 
 #: zp-core/zp-extensions/html_meta_tags.php:128
 msgid ""
@@ -21393,7 +21404,7 @@ msgstr ""
 #: zp-core/zp-extensions/instagramLogin.php:67
 #, fuzzy
 msgid "Client ID"
-msgstr "ID de Cliente"
+msgstr "ID Cliente"
 
 #: zp-core/zp-extensions/instagramLogin.php:69
 #, fuzzy
@@ -21404,7 +21415,7 @@ msgstr "Este es su <em>ID de cliente</em>de Instagram."
 #, fuzzy
 #| msgid "Secret"
 msgid "Client Secret"
-msgstr "Clave Secreta del Cliente."
+msgstr "Cliente Secret"
 
 #: zp-core/zp-extensions/instagramLogin.php:72
 #, fuzzy
@@ -21429,7 +21440,7 @@ msgstr "Permitir publicaciones privadas"
 #: zp-core/zp-extensions/ipBlocker.php:79
 #, fuzzy
 msgid "Block"
-msgstr "Bloqueado"
+msgstr "Bloque"
 
 #: zp-core/zp-extensions/ipBlocker.php:89
 #, fuzzy
@@ -21502,7 +21513,7 @@ msgstr "Rangos de la lista IP no se pueden gestionar con el plugin desactivado"
 #: zp-core/zp-extensions/ipBlocker.php:169
 #, fuzzy
 msgid "clear list"
-msgstr "Limpiar Lista"
+msgstr "Limpiar"
 
 #: zp-core/zp-extensions/ipBlocker.php:192
 #, fuzzy
@@ -21691,7 +21702,7 @@ msgstr ""
 #: zp-core/zp-extensions/jPlayer.php:152
 #, fuzzy
 msgid "Enable download"
-msgstr "Permiten descargar"
+msgstr "Habilitar sección de descargas"
 
 #: zp-core/zp-extensions/jPlayer.php:153
 #, fuzzy
@@ -21747,7 +21758,7 @@ msgstr ""
 #: zp-core/zp-extensions/jPlayer.php:162
 #, fuzzy
 msgid "Player skin"
-msgstr "Reproductor de piel"
+msgstr "Jugador"
 
 #: zp-core/zp-extensions/jPlayer.php:164
 #, fuzzy
@@ -21848,19 +21859,21 @@ msgstr ""
 #: zp-core/zp-extensions/lazyImage.php:31
 #, fuzzy
 msgid "Bootstrap support"
-msgstr "Soporte lista de reproducción"
+msgstr "Apoyo bootstrap"
 
 #: zp-core/zp-extensions/lazyImage.php:32
+#, fuzzy
 msgid "Load support for the Bootstrap's Carousel."
-msgstr ""
+msgstr "Carga de apoyo para el carrusel de Bootstrap."
 
 #: zp-core/zp-extensions/lazyImage.php:33
 msgid "jqueryMobile support"
 msgstr ""
 
 #: zp-core/zp-extensions/lazyImage.php:34
+#, fuzzy
 msgid "Load support for the jQueryMobile's Panel."
-msgstr ""
+msgstr "Carga de apoyo para el Panel de jQueryMobile."
 
 #: zp-core/zp-extensions/linkedinLogin.php:32
 #, fuzzy
@@ -21888,7 +21901,7 @@ msgstr "Ver disponible <code>content macros</code> ."
 #: zp-core/zp-extensions/macroList/macroList_tab.php:10
 #, fuzzy
 msgid "macros"
-msgstr "Macro"
+msgstr "Macros"
 
 #: zp-core/zp-extensions/macroList.php:103
 #, fuzzy
@@ -21991,16 +22004,17 @@ msgid ""
 "A plugin to insert your Matomo (formerly Piwik) JavaScript tracking code "
 "into your theme pages."
 msgstr ""
-"Un plugin para insertar la etiqueta de Piwik JavaScript en las páginas de "
-"tema."
+"Un plugin para insertar su JavaScript Matomo (anteriormente Piwik) código de "
+"seguimiento en las páginas de tema."
 
 #: zp-core/zp-extensions/matomo.php:58
 msgid "Piwik options migrated to Matomo plugin"
 msgstr ""
 
 #: zp-core/zp-extensions/matomo.php:68
+#, fuzzy
 msgid "Matomo url"
-msgstr ""
+msgstr "Matomo url"
 
 #: zp-core/zp-extensions/matomo.php:72
 msgid ""
@@ -22038,14 +22052,18 @@ msgid "Main domain for subdomain tracking"
 msgstr ""
 
 #: zp-core/zp-extensions/matomo.php:88
+#, fuzzy
 msgid ""
 "Enter your site domain name if you also like to track all subdomains of it. "
 "Enter like <code>domain.com</code>."
 msgstr ""
+"Introduzca su nombre de dominio de sitio si quieres seguir todos los "
+"subdominios de la misma. Entrar como <code>domain.com</code> ."
 
 #: zp-core/zp-extensions/matomo.php:89
+#, fuzzy
 msgid "Widgets: Embed code"
-msgstr ""
+msgstr "Widgets: Incrustar código"
 
 #: zp-core/zp-extensions/matomo.php:94
 msgid ""
@@ -22059,7 +22077,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Download statistics"
 msgid "Matomo statistics"
-msgstr "Estadísticas de descargas"
+msgstr "Matomo estadísticas"
 
 #: zp-core/zp-extensions/matomo.php:156
 msgid ""
@@ -22193,7 +22211,7 @@ msgstr "Objetivo no existe en el tema de <em>%1$s</em>"
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:77
 #, fuzzy
 msgid "Target does not exist"
-msgstr "Destino no existe"
+msgstr "El término no existe."
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:158
 #, php-format
@@ -22348,7 +22366,7 @@ msgstr "Elemento de menu borrado"
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:66
 #, fuzzy, php-format
 msgid "Menu “%s” deleted"
-msgstr "Menú \"%s\" eliminado"
+msgstr "%s eliminado"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:78
 #, fuzzy, php-format
@@ -22358,7 +22376,7 @@ msgstr "Menú \"%s\" duplicado"
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:80
 #, fuzzy, php-format
 msgid "Menu “%s” already exists"
-msgstr "Menú \"%s\" ya existe"
+msgstr "%s ya existe"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:106
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:112
@@ -22719,7 +22737,7 @@ msgstr "Modo de prueba"
 #: zp-core/zp-extensions/mobileTheme.php:103
 #, fuzzy
 msgid "Tablet"
-msgstr "Tableta"
+msgstr "Tablet"
 
 #: zp-core/zp-extensions/mobileTheme.php:104
 #, fuzzy
@@ -23079,12 +23097,12 @@ msgstr "Publicar contenido"
 #: zp-core/zp-extensions/publishContent/publishContent.php:32
 #, fuzzy
 msgid "Click to show content"
-msgstr "Haga clic para mostrar contenido"
+msgstr "Hacer clic para mostrar"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:37
 #, fuzzy
 msgid "Click to hide content"
-msgstr "Hacer clic para ocultar"
+msgstr "Haga clic para ocultar contenido"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:151
 msgid "Manage content publication"
@@ -23371,12 +23389,12 @@ msgstr "Proporciona un medio para purgar opciones de temas y Plugins."
 #: zp-core/zp-extensions/purgeOptions.php:35
 #, fuzzy
 msgid "purge"
-msgstr "purgar"
+msgstr "purga"
 
 #: zp-core/zp-extensions/purgeOptions.php:78
 #, fuzzy
 msgid "Active Extension"
-msgstr "Extensiones"
+msgstr "Extensión activa"
 
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:18
 #, fuzzy
@@ -23438,7 +23456,7 @@ msgstr "todos: no acation"
 #, fuzzy
 #| msgid "delete"
 msgid "all: delete"
-msgstr "todos: eliminar"
+msgstr "Eliminar:"
 
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:228
 #, fuzzy
@@ -23769,7 +23787,7 @@ msgstr "Todavía sin puntuación"
 #: zp-core/zp-extensions/rating.php:419
 #, fuzzy
 msgid "like"
-msgstr "me gusta"
+msgstr "agrado"
 
 #: zp-core/zp-extensions/rating.php:421
 #, fuzzy, php-format
@@ -23797,10 +23815,14 @@ msgid "Google reCAPTCHA handler."
 msgstr "Controlador de reCAPTCHA de Google."
 
 #: zp-core/zp-extensions/reCAPTCHA_v2.php:29
+#, fuzzy
 msgid ""
 "The <em>allow_url_fopen</em> PHP.ini setting is disabled. reCAPTCHA requires "
 "that <em>allow_url_fopen</em> PHP.ini setting to be enabled."
 msgstr ""
+"La configuración de PHP.ini <em>allow_url_fopen</em> está deshabilitada. "
+"reCAPTCHA requiere esa configuración de PHP.ini <em>allow_url_fopen</em> "
+"debe estar habilitada."
 
 #: zp-core/zp-extensions/reCAPTCHA_v2.php:49
 #, fuzzy
@@ -23858,7 +23880,7 @@ msgstr "Widget"
 #: zp-core/zp-extensions/reCAPTCHA_v2.php:61
 #, fuzzy
 msgid "Audio"
-msgstr "Audio"
+msgstr "Vídeo"
 
 #: zp-core/zp-extensions/reCAPTCHA_v2.php:62
 #, fuzzy
@@ -23927,8 +23949,8 @@ msgid ""
 "If checked, an e-mail will be sent to the gallery admin when a new user has "
 "verified his registration."
 msgstr ""
-"Si está marcada, un correo electrónico se enviará al administrador de la "
-"Galería cuando un nuevo usuario ha registrado en el sitio."
+"Si marcas esta opción, se te enviará una notificación por e-mail cada vez "
+"que se registre un nuevo usuario."
 
 #: zp-core/zp-extensions/register_user.php:68
 msgid "User album"
@@ -24054,7 +24076,7 @@ msgstr "El ID de usuario <em>%s</em> ya está siendo usado."
 #, fuzzy, php-format
 #| msgid "A page with the title/titlelink <em>%s</em> already exists!"
 msgid "A user with the e-mail <em>%s</em> already exists."
-msgstr "Ya existe un usuario con el correo electrónico <em>%s</em> ."
+msgstr "Ya existe usuario con el mismo correo electrónico ."
 
 #: zp-core/zp-extensions/register_user.php:438
 #, fuzzy
@@ -24366,7 +24388,7 @@ msgstr "Marcar si quieres guardar el contador de visitas de los feed RSS."
 #: zp-core/zp-extensions/rss.php:96 zp-core/zp-extensions/zenpage.php:123
 #, fuzzy
 msgid "Both"
-msgstr "Las dos cosas"
+msgstr "Ambos"
 
 #: zp-core/zp-extensions/rss.php:97
 #, fuzzy
@@ -24884,7 +24906,7 @@ msgstr "¡El sitio está cerrado!"
 #: zp-core/zp-extensions/site_upgrade.php:140
 #, fuzzy
 msgid "Site status:"
-msgstr "Estatus:"
+msgstr "Estado de sitio:"
 
 #: zp-core/zp-extensions/site_upgrade.php:133
 #, fuzzy
@@ -24894,7 +24916,7 @@ msgstr "¡El sitio está en modo de prueba!"
 #: zp-core/zp-extensions/site_upgrade.php:140
 #, fuzzy
 msgid "The site is opened"
-msgstr "El sitio se abre"
+msgstr "La puerta se abre"
 
 #: zp-core/zp-extensions/site_upgrade.php:163
 #, fuzzy
@@ -24914,7 +24936,7 @@ msgstr ""
 #: zp-core/zp-extensions/site_upgrade.php:179
 #, fuzzy
 msgid "Site » test mode"
-msgstr "Modo de prueba de sitio»"
+msgstr "Modo de prueba"
 
 #: zp-core/zp-extensions/site_upgrade.php:183
 #, fuzzy
@@ -24957,7 +24979,7 @@ msgstr "archivos de site_upgrade restaurado a original."
 #: zp-core/zp-extensions/site_upgrade.php:257
 #, fuzzy, php-format
 msgid "%s upgrade"
-msgstr "actualización de %s"
+msgstr "mejora"
 
 #: zp-core/zp-extensions/site_upgrade.php:257
 #, fuzzy, php-format
@@ -24972,7 +24994,7 @@ msgstr "Por favor, vuelva más tarde"
 #: zp-core/zp-extensions/site_upgrade.php:264
 #, fuzzy, php-format
 msgid "%s suspended"
-msgstr "Suspendido"
+msgstr "%s suspendido"
 
 #: zp-core/zp-extensions/site_upgrade.php:271
 #, fuzzy, php-format
@@ -25549,7 +25571,7 @@ msgstr ""
 #: zp-core/zp-extensions/slideshow2.php:600
 #, fuzzy, php-format
 msgid "image %1$s of %2$s"
-msgstr "imagen%1$s de%2$s"
+msgstr "%1$s of %2$s"
 
 #: zp-core/zp-extensions/slideshow.php:703
 #: zp-core/zp-extensions/slideshow2.php:688
@@ -25708,7 +25730,7 @@ msgstr "Tipo de imagen Colorbox"
 #: zp-core/zp-extensions/slideshow2.php:161
 #, fuzzy
 msgid "Colorbox: Image title"
-msgstr "Colorbox: Título imagen"
+msgstr "Título de imagen:"
 
 #: zp-core/zp-extensions/slideshow2.php:166
 #, fuzzy
@@ -25996,7 +26018,7 @@ msgstr ""
 #: zp-core/zp-extensions/themeSwitcher.php:71
 #, fuzzy
 msgid "Theme list"
-msgstr "Lista de tema"
+msgstr "Tema"
 
 #: zp-core/zp-extensions/themeSwitcher.php:74
 #, fuzzy
@@ -26157,7 +26179,7 @@ msgstr "%s con el enlace al álbum"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:74
 #, fuzzy, php-format
 msgid "<em>news article</em>: %s"
-msgstr "<em>noticia</em>: %s"
+msgstr "Artículo de noticias"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:75
 #, fuzzy
@@ -26188,7 +26210,7 @@ msgstr "título con enlace a la categoría"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:215
 #, fuzzy
 msgid "paste"
-msgstr "pasta"
+msgstr "pegar"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:226
 #, fuzzy
@@ -26208,7 +26230,7 @@ msgstr "pulgar con enlace a álbum"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:251
 #, fuzzy
 msgid "image only"
-msgstr "Únicamente imagen"
+msgstr "Solo imagen"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:257
 #, fuzzy
@@ -26342,7 +26364,7 @@ msgstr "Esta su Twitter <em>Consumidores clave</em>."
 #, fuzzy
 #| msgid "Consumer key"
 msgid "Consumer Secret"
-msgstr "Secreto del consumidor"
+msgstr "Consumidor Secreto"
 
 #: zp-core/zp-extensions/tweet_news.php:85
 #: zp-core/zp-extensions/twitterLogin.php:76
@@ -26638,7 +26660,7 @@ msgstr "El archivo sólo se cargó parcialmente"
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:161
 #, fuzzy
 msgid "No File was uploaded"
-msgstr "Ningún archivo ha sido cargado"
+msgstr "No se subió ningún archivo"
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:162
 #, fuzzy
@@ -26648,7 +26670,7 @@ msgstr "Falta una carpeta temporal"
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:163
 #, fuzzy
 msgid "Failed to write file to disk"
-msgstr "No se pudo guardar el archivo al disco"
+msgstr "No se pudo escribir el archivo en el disco"
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:164
 #, fuzzy
@@ -26658,7 +26680,7 @@ msgstr "Carga del archivo interrumpida por la extensión"
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:169
 #, fuzzy
 msgid "Uploaded bytes exceed file size"
-msgstr "Subido bytes exceden el tamaño del archivo"
+msgstr "Los bytes cargados exceden el tamaño del archivo"
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:170
 #, fuzzy
@@ -26799,7 +26821,7 @@ msgstr "Gestionar caducidad de usuario."
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:159
 #, fuzzy, php-format
 msgid "Expired:%s; "
-msgstr "Caducado (%s)"
+msgstr "Caducada (%s)"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:162
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:164
@@ -26975,7 +26997,7 @@ msgstr "Grupo no podrán contener \"?\", \"y\", o las comillas."
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:482
 #, fuzzy, php-format
 msgid "The group “%s” already exists."
-msgstr "El grupo \"%s\", ya existe."
+msgstr "El grupo %1 ya existe."
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:503
 msgid "Assign users to groups."
@@ -27494,8 +27516,9 @@ msgid "Export Metadata"
 msgstr "Exportar metadatos"
 
 #: zp-core/zp-extensions/xmpMetadata.php:1180
+#, fuzzy
 msgid "The XMP metadata Database fields will be dropped"
-msgstr ""
+msgstr "Se quitarán los campos de la base de datos de metadatos XMP"
 
 #: zp-core/zp-extensions/zenpage.php:36
 #, fuzzy
@@ -27660,7 +27683,7 @@ msgstr "Reiniciar contadores de visitas"
 #, fuzzy
 #| msgid "There are no albums for you to edit."
 msgid "There are no categories for you to edit."
-msgstr "No ningún álbum para editar."
+msgstr "Hay no hay categorías para editar."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:62
 #, php-format
@@ -28201,7 +28224,7 @@ msgstr "no publicado"
 #, fuzzy
 #| msgid "View category"
 msgid "view category"
-msgstr "Ver Sección"
+msgstr "Ver Categoría"
 
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1024
 msgid "Delete Category"
@@ -28322,7 +28345,7 @@ msgstr "Editar este artículo"
 #: zp-core/zp-extensions/zenpage/admin-news.php:275
 #, fuzzy
 msgid "Add categories"
-msgstr "Agregar Categorías"
+msgstr "Agregar categorías"
 
 #: zp-core/zp-extensions/zenpage/admin-news.php:276
 #, fuzzy
@@ -28347,7 +28370,7 @@ msgstr "Ver artículo"
 #, fuzzy
 #| msgid "There are no albums for you to edit."
 msgid "There are no articles for you to edit."
-msgstr "No ningún álbum para editar."
+msgstr "No hay ningún artículo para editar."
 
 #: zp-core/zp-extensions/zenpage/admin-pages.php:128
 msgid ""
@@ -28382,7 +28405,7 @@ msgstr ""
 #, fuzzy
 #| msgid "There are no albums for you to edit."
 msgid "There are no pages for you to edit."
-msgstr "No ningún álbum para editar."
+msgstr "No hay ninguna página para editar."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:18
 #, fuzzy
