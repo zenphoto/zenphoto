@@ -1,5 +1,5 @@
 <?php
-// force UTF-8// Ø
+// force UTF-8  Ø
 zp_clearCookie('index_page_paged');
 list($album, $image) = rewrite_get_album_image('album', 'image');
 $folders = explode('/', $album);
