@@ -615,16 +615,12 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name">
 						<p><?php echo gettext('Registration'); ?></p>
-						<p><?php echo gettext('Text'); ?></p>
 					</td>
 					<td class="option_value">
 						<?php
 						$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 						?>
 						<p><input type="checkbox" size="48" id="site_email" name="register_user_notify"  value="1" <?php checked('1', getOption('register_user_notify')); ?> <?php if (!$mailinglist) echo ' disabled="disabled"'; ?> /><?php echo gettext('notify'); ?></p>
-						<p>
-							<textarea name="register_user_text" cols="<?php echo TEXTAREA_COLUMNS; ?>" rows="6" ><?php echo get_language_string(getOption('register_user_text')); ?></textarea>
-						</p>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
