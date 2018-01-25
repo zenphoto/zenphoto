@@ -81,7 +81,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('thumb_size', 'image_size', 'image_use_side1', 'image_use_side2', 'image_use_side3', 'image_use_side4');
+		return array('thumb_size', 'image_size', 'image_use_side');
 	}
 
 	function handleOption($option, $currentValue) {

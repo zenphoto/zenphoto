@@ -462,6 +462,16 @@ function getOptionContent() {
 					} else {
 						$disable = '';
 					}
+					if (in_array('image_size', $unsupportedOptions)) {
+						$disable = ' disabled="disabled"';
+					} else {
+						$disable = '';
+					}
+					if (in_array('image_use_side', $unsupportedOptions)) {
+						$disableside = ' disabled="disabled"';
+					} else {
+						$disableside = '';
+					}
 					?>
 					<tr>
 						<td class="option_name"><?php echo gettext("Image size"); ?></td>
@@ -475,22 +485,22 @@ function getOptionContent() {
 									<td style="margin: 0; padding: 0"><label> <input type="radio"
 																																	 id="image_use_side1" name="image_use_side" value="height"
 																																	 <?php if ($side == 'height') echo ' checked="checked"'; ?>
-																																	 <?php echo $disable; ?> /> <?php echo gettext('height') ?> </label>
+																																	 <?php echo $disableside; ?> /> <?php echo gettext('height') ?> </label>
 										<label> <input type="radio" id="image_use_side2"
 																	 name="image_use_side" value="width"
 																	 <?php if ($side == 'width') echo ' checked="checked"'; ?>
-																	 <?php echo $disable; ?> /> <?php echo gettext('width') ?> </label>
+																	 <?php echo $disableside; ?> /> <?php echo gettext('width') ?> </label>
 									</td>
 								</tr>
 								<tr>
 									<td style="margin: 0; padding: 0"><label> <input type="radio"
 																																	 id="image_use_side3" name="image_use_side" value="shortest"
 																																	 <?php if ($side == 'shortest') echo ' checked="checked"'; ?>
-																																	 <?php echo $disable; ?> /> <?php echo gettext('shortest side') ?>
+																																	 <?php echo $disableside; ?> /> <?php echo gettext('shortest side') ?>
 										</label> <label> <input type="radio" id="image_use_side4"
 																						name="image_use_side" value="longest"
 																						<?php if ($side == 'longest') echo ' checked="checked"'; ?>
-																						<?php echo $disable; ?> /> <?php echo gettext('longest side') ?> </label>
+																						<?php echo $disableside; ?> /> <?php echo gettext('longest side') ?> </label>
 									</td>
 								</tr>
 							</table>
