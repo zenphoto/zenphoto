@@ -26,8 +26,8 @@ switch (PHP_MAJOR_VERSION) {
 }
 
 // Set error reporting.
+error_reporting(E_ALL | E_STRICT);
 if (DISPLAY_ERRORS) {
-	error_reporting(E_ALL | E_STRICT);
 	@ini_set('display_errors', 1);
 } else {
 	@ini_set('display_errors', 0);
