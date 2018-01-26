@@ -151,23 +151,21 @@ function adminToolbox() {
 						}
 						if (zp_loggedin(UPLOAD_RIGHTS)) {
 							// admin has upload rights, provide an upload link for a new album
-							if (GALLERY_SESSION) { // XSRF defense requires sessions
-								?>
-								<script type="text/javascript">
-									// <!-- <![CDATA[
-									function newAlbum(folder, albumtab) {
-										var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
-										if (album) {
-											launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
-										}
+							?>
+							<script type="text/javascript">
+								// <!-- <![CDATA[
+								function newAlbum(folder, albumtab) {
+									var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
+									if (album) {
+										launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
 									}
-									// ]]> -->
-								</script>
-								<li>
-									<a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a>
-								</li>
-								<?php
-							}
+								}
+								// ]]> -->
+							</script>
+							<li>
+								<a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a>
+							</li>
+							<?php
 						}
 						if ($_zp_gallery_page == 'index.php') {
 							$redirect = '';
@@ -213,24 +211,22 @@ function adminToolbox() {
 								}
 							}
 							// and a delete link
-							if (GALLERY_SESSION) { // XSRF defense requires sessions
-								?>
-								<script type="text/javascript">
-									// <!-- <![CDATA[
-									function confirmAlbumDelete(url) {
-										if (confirm("<?php echo gettext("Are you sure you want to delete this entire album?"); ?>")) {
-											if (confirm("<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>")) {
-												window.location = '<?php echo $zf; ?>/admin-edit.php?page=edit&action=deletealbum&album=<?php echo urlencode(pathurlencode($albumname)) ?>&XSRFToken=<?php echo getXSRFToken('delete'); ?>';
-															}
+							?>
+							<script type="text/javascript">
+								// <!-- <![CDATA[
+								function confirmAlbumDelete(url) {
+									if (confirm("<?php echo gettext("Are you sure you want to delete this entire album?"); ?>")) {
+										if (confirm("<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>")) {
+											window.location = '<?php echo $zf; ?>/admin-edit.php?page=edit&action=deletealbum&album=<?php echo urlencode(pathurlencode($albumname)) ?>&XSRFToken=<?php echo getXSRFToken('delete'); ?>';
 														}
 													}
-													// ]]> -->
-								</script>
-								<li>
-									<a href="javascript:confirmAlbumDelete();" title="<?php echo gettext('Delete the album'); ?>"><?php echo gettext('Delete album'); ?></a>
-								</li>
-								<?php
-							}
+												}
+												// ]]> -->
+							</script>
+							<li>
+								<a href="javascript:confirmAlbumDelete();" title="<?php echo gettext('Delete the album'); ?>"><?php echo gettext('Delete album'); ?></a>
+							</li>
+							<?php
 						}
 						if ($_zp_current_album->isMyItem(UPLOAD_RIGHTS) && !$_zp_current_album->isDynamic()) {
 							// provide an album upload link if the admin has upload rights for this album and it is not a dynamic album
@@ -238,14 +234,10 @@ function adminToolbox() {
 							<li>
 								<?php printLinkHTML($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
 							</li>
+							<li>
+								<a href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New Album Here"); ?></a>
+							</li>
 							<?php
-							if (GALLERY_SESSION) { // XSRF defense requires sessions
-								?>
-								<li>
-									<a href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New Album Here"); ?></a>
-								</li>
-								<?php
-							}
 						}
 					case 'favorites.php';
 						$albumname = $_zp_current_album->name;
@@ -256,24 +248,20 @@ function adminToolbox() {
 							if (!$_zp_current_album->isDynamic()) { // don't provide links when it is a dynamic album
 								if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
 									// if admin has edit rights on this album, provide a delete link for the image.
-									if (GALLERY_SESSION) { // XSRF defense requires sessions
-										?>
-										<script type='text/javascript'>
-											function confirmImageDelete() {
-												if (confirm('<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>')) {
-													window.location = '<?php echo $zf; ?>/admin-edit.php?page=edit&action=deleteimage&album=<?php echo urlencode(pathurlencode($albumname)); ?>&image=<?php echo urlencode($imagename); ?>&XSRFToken=<?php echo getXSRFToken('delete'); ?>';
-															}
-														}
-										</script>
-
-										<li>
-											<a href="javascript:confirmImageDelete();" title="<?php echo gettext("Delete the image"); ?>">
-												<?php echo gettext("Delete image"); ?>
-											</a>
-										</li>
-										<?php
-									}
 									?>
+									<script type='text/javascript'>
+										function confirmImageDelete() {
+											if (confirm('<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>')) {
+												window.location = '<?php echo $zf; ?>/admin-edit.php?page=edit&action=deleteimage&album=<?php echo urlencode(pathurlencode($albumname)); ?>&image=<?php echo urlencode($imagename); ?>&XSRFToken=<?php echo getXSRFToken('delete'); ?>';
+														}
+													}
+									</script>
+
+									<li>
+										<a href="javascript:confirmImageDelete();" title="<?php echo gettext("Delete the image"); ?>">
+											<?php echo gettext("Delete image"); ?>
+										</a>
+									</li>
 									<li>
 										<a href="<?php echo $zf; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($albumname); ?>&amp;singleimage=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo&amp;subpage=object"
 											 title="<?php echo gettext('Edit image'); ?>"><?php echo gettext('Edit image'); ?></a>
@@ -3857,39 +3845,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-							// <!-- <![CDATA[
-							var within = <?php echo (int) $within; ?>;
-							function search_(way) {
-								within = way;
-								if (way) {
-									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-								} else {
-									lastsearch = '';
-									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-								}
-								$('#search_input').val('');
-							}
-							$('#search_form').submit(function () {
-								if (within) {
-									var newsearch = $.trim($('#search_input').val());
-									if (newsearch.substring(newsearch.length - 1) == ',') {
-										newsearch = newsearch.substr(0, newsearch.length - 1);
-									}
-									if (newsearch.length > 0) {
-										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-									} else {
-										$('#search_input').val('<?php echo $searchwords; ?>');
-									}
-								}
-								return true;
-							});
-							function search_all() {
-								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-								var check = $('#SEARCH_checkall').prop('checked');
-								$('.SEARCH_checkall').prop('checked', check);
-							}
+														// <!-- <![CDATA[
+														var within = <?php echo (int) $within; ?>;
+														function search_(way) {
+															within = way;
+															if (way) {
+																$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+															} else {
+																lastsearch = '';
+																$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+															}
+															$('#search_input').val('');
+														}
+														$('#search_form').submit(function () {
+															if (within) {
+																var newsearch = $.trim($('#search_input').val());
+																if (newsearch.substring(newsearch.length - 1) == ',') {
+																	newsearch = newsearch.substr(0, newsearch.length - 1);
+																}
+																if (newsearch.length > 0) {
+																	$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+																} else {
+																	$('#search_input').val('<?php echo $searchwords; ?>');
+																}
+															}
+															return true;
+														});
+														function search_all() {
+															//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+															var check = $('#SEARCH_checkall').prop('checked');
+															$('.SEARCH_checkall').prop('checked', check);
+														}
 
-							// ]]> -->
+														// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>

@@ -276,30 +276,25 @@ class cmsFilters {
 	static function admin_toolbox_pages($redirect, $zf) {
 		global $_zp_CMS, $_zp_current_page;
 		;
-		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS && $_zp_CMS->pages_enabled) {
+		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS && $_zp_CMS->pages_enabled && ($_zp_current_page->subrights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
 			// page is zenpage page--provide edit, delete, and add links
 			?>
 			<li>
 				<a href="<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=<?php echo urlencode(getPageTitlelink()); ?>&amp;subpage=object"><?php echo gettext("Edit Page"); ?>
 				</a>
 			</li>
-			<?php
-			if (GALLERY_SESSION) {
-				// XSRF defense requires sessions
-				?>
-				<script type='text/javascript'>
-					function confirmPageDelete() {
-						if (confirm('<?php echo gettext("Are you sure you want to delete the page? THIS CANNOT BE UNDONE!"); ?>')) {
-							window.location = '<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-pages.php?delete=<?php echo $_zp_current_page->getTitlelink(); ?>&add&XSRFToken=<?php echo getXSRFToken('delete'); ?>';
-									}
+			<script type='text/javascript'>
+				function confirmPageDelete() {
+					if (confirm('<?php echo gettext("Are you sure you want to delete the page? THIS CANNOT BE UNDONE!"); ?>')) {
+						window.location = '<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-pages.php?delete=<?php echo $_zp_current_page->getTitlelink(); ?>&add&XSRFToken=<?php echo getXSRFToken('delete'); ?>';
 								}
-				</script>
-				<li>
-					<a href="javascript:confirmPageDelete();" title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?>
-					</a>
-				</li>
-				<?php
-			}
+							}
+			</script>
+			<li>
+				<a href="javascript:confirmPageDelete();" title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?>
+				</a>
+			</li>
+			<?php
 			echo "<li><a href=\"" . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;add\">" . gettext("Add Page") . "</a></li>";
 		}
 		return $redirect . '&amp;title=' . urlencode(getPageTitlelink());
@@ -314,24 +309,21 @@ class cmsFilters {
 		}
 
 		if (is_NewsArticle()) {
-			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS && $_zp_CMS->news_enabled) {
+			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS && $_zp_CMS->news_enabled && ($_zp_current_article->subrights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
 				// page is a NewsArticle--provide zenpage edit, delete, and Add links
 				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_article->getTitleLink()) . $cat . "&amp;subpage=object\">" . gettext("Edit Article") . "</a></li>";
-				if (GALLERY_SESSION) {
-					// XSRF defense requires sessions
-					?>
-					<script type='text/javascript'>
-						function confirmArticleDelete() {
-							if (confirm('<?php echo gettext("Are you sure you want to delete the article? THIS CANNOT BE UNDONE!"); ?>')) {
-								window.location = '<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-news.php?delete=<?php echo $_zp_current_article->getTitlelink(); ?>&XSRFToken=<?php echo getXSRFToken('delete'); ?>';
-										}
+				?>
+				<script type='text/javascript'>
+					function confirmArticleDelete() {
+						if (confirm('<?php echo gettext("Are you sure you want to delete the article? THIS CANNOT BE UNDONE!"); ?>')) {
+							window.location = '<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-news.php?delete=<?php echo $_zp_current_article->getTitlelink(); ?>&XSRFToken=<?php echo getXSRFToken('delete'); ?>';
 									}
-					</script>
-					<li>
-						<a href="javascript:confirmArticleDelete();" title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?>	</a>
-					</li>
-					<?php
-				}
+								}
+				</script>
+				<li>
+					<a href="javascript:confirmArticleDelete();" title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?>	</a>
+				</li>
+				<?php
 				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;add\">" . gettext("Add Article") . "</a></li>";
 			}
 			$redirect .= '&amp;title=' . urlencode($_zp_current_article->getTitlelink());

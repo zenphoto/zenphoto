@@ -50,6 +50,7 @@ class register_user {
 			setOptionDefault('register_user_captcha', 0);
 			setOptionDefault('register_user_email_is_id', 1);
 			setOptionDefault('register_user_create_album', 0);
+			setOptionDefault('register_user_text', getAllTranslations('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s.'));
 		}
 	}
 
@@ -62,9 +63,9 @@ class register_user {
 				gettext('Hint text') => array('key' => 'register_user_page_tip', 'type' => OPTION_TYPE_TEXTAREA,
 						'order' => 2.5,
 						'desc' => gettext('Default hint text for the register user link.')),
-				gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 4,
-						'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
+				gettext('Registration text') => array('key' => 'register_user_text', 'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 3,
+						'desc' => gettext('Registration confirmation text.')),
 				gettext('User album') => array('key' => 'register_user_create_album', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 6,
 						'desc' => gettext('If checked, an album will be created and assigned to the user.')),
@@ -82,16 +83,6 @@ class register_user {
 					'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.'));
 		}
 
-		$options['note'] = array('key' => 'menu_truncate_note',
-				'type' => OPTION_TYPE_NOTE,
-				'order' => 8,
-				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> This option is shared among <em>federated_logon</em>, <em>googleLogin</em>, <em>facebookLogin</em>, and <em>register_user</em>.</p>'));
-
-		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
-		if (count($mailinglist) == 0) { //	no one to send the notice to!
-			$options[gettext('Notify*')]['disabled'] = true;
-			$options[gettext('Notify*')]['desc'] .= ' ' . gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
-		}
 		if (class_exists('user_groups')) {
 			$admins = $_zp_authority->getAdministrators('groups');
 			$defaultrights = ALL_RIGHTS;

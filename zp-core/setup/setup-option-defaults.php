@@ -493,8 +493,6 @@ setOptionDefault('site_email_name', 'ZenPhoto20');
 
 setOptionDefault('register_user_notify', 1);
 
-setOptionDefault('register_user_text', getAllTranslations('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s.'));
-
 setOptionDefault('obfuscate_cache', 0);
 
 //	obsolete plugin cleanup.

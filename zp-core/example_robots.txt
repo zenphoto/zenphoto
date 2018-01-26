@@ -14,6 +14,7 @@ User-agent: *
 Disallow: /zenphoto/albums/
 Allow: /zenphoto/cache/
 Allow: /zenphoto/cache_html/
+Disallow: /zenphoto/plugins/
 Disallow: /zenphoto/themes/
 Disallow: /zenphoto/zp-core/
 Disallow: /zenphoto/zp-data/

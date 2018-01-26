@@ -59,7 +59,7 @@ class debug {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
-			$list = array('404' => '404');
+			$list = array('404' => '404', 'DISPLAY_ERRORS' => 'DISPLAY_ERRORS');
 			$options = getOptionsLike('debug_mark_');
 			foreach ($options as $option => $value) {
 				if ($value) {
@@ -77,6 +77,7 @@ class debug {
 
 	function getOptionsSupported() {
 		$list = array(
+				gettext('Display PHP errors.') => 'DISPLAY_ERRORS',
 				gettext('Log 404 error processing debug information.') => '404',
 				gettext('Log start/finish of exif processing.') => 'EXIF',
 				gettext('Log the <em>EXPLAIN</em> output from SQL SELECT queries.') => 'EXPLAIN_SELECTS',

@@ -58,6 +58,7 @@ $_debug = explode('-', preg_replace('~-RC\d+~', '', ZENPHOTO_VERSION) . '-');
 $_debug = $_debug[1];
 define('TEST_RELEASE', !empty($_debug));
 
+define('DISPLAY_ERRORS', strpos($_debug, 'DISPLAY_ERRORS')); // set to true to have PHP show errors on the web pages
 define('DEBUG_404', strpos($_debug, '404')); // set to true to log 404 error processing debug information.
 define('DEBUG_EXIF', strpos($_debug, 'EXIF')); // set to true to log start/finish of exif processing.
 define('EXPLAIN_SELECTS', strpos($_debug, 'EXPLAIN')); //	set to true to log the "EXPLAIN" of SQL SELECT queries
