@@ -73,13 +73,21 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.5.2.0</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.5.3.0</h2>
 <h2>General</h2>
 <p>This release fixes multiple bugs and security holes. For details see the change log.</p>
 <p>ZenPhoto20 now provides a fall-back translation facility for cases where a site does not have the PHP <em>gettext module</em> or where translations are otherwise not working. This facility is invoked when ZenPhoto20 notices that the function <code>gettext()</code> is not present. You can disable the gettext module by editing your PHP.ini file. Find the line which reads <code>extension=php_gettext.dll</code> and place a semicolon in front of the text, e.g. <code>;extension=php_gettext.dll. </code>Note: the PHP module is the preferred translation facility. Using the fall-back comes with some performance loss. Also note that number formatting is controlled by the locale settings, not <code><em>gettext</em></code>. If PHP <em>gettext </em>does not work because of locale issues your number formatting may not be correct.</p>
 <h2>plugins</h2>
+<p><em>zenpage</em></p>
+<p>The "Truncate at <em>pagebreak</em>" checkbox has been removed from the <em>article</em> edit page. This setting is redundant as content shortening will always occur at a page break so long as there is one before the truncation limit. The article methods <code>getTruncation()</code> and <code>setTruncation()</code> are also removed. These were for internal use only and not needed.</p>
 <p><em>reCaptcha, reCaptcha_v2</em></p>
-<p>Google has updated its reCAPTCHA scripts to version 2 and will deprecate the old reCAPTCHA methods. ZenPhoto20 now supplies the <em>reCaptcha_v2</em> plugin which works with Google's new implementation. The <em>reCaptcha</em> plugin has now been moved to the optional plugins folder and is deprecated. You will need to register new credentials for <em>reCaptcha_v2</em> and switch to this plugin before Google drops all support for the version 1 methodology. The hidden theme of<em> reCAPTCHA v2</em> requires modifications to the <em>submit</em> button on the form to function. See the <em>register_user_form</em> script for details on this implementation.</p>
+<p>Google has updated its reCAPTCHA scripts to version 2 and will deprecate the old reCAPTCHA methods. ZenPhoto20 now supplies the <em>reCaptcha_v2</em> plugin which works with Google's new implementation. The <em>reCaptcha</em> plugin has now been moved to the optional plugins folder and is deprecated. You will need to register new credentials for <em>reCaptcha_v2</em> and switch to this plugin before Google drops all support for the version 1 methodology. The hidden theme of<em> reCAPTCHA v2</em> requires modifications to the <em>submit</em> button on the form to function. See the <em>register_user_form</em> script for details on this implementation.\</p>
+<p><em>piwik</em></p>
+<p>The name of this plugin has been changed to <em>Matomo </em>in accordance to the same change made by the developers. See the <a href="https://matomo.org/blog/2018/01/piwik-is-now-matomo/">developer's notice</a>. Any settings you have made for <em>piwik </em>will migrate to the new plugin.</p>
+<p><em>lazyImage</em></p>
+<p>This is a new plugin that implements lazy loading of images. <em>Lazy loading</em> is a design pattern commonly used in computer programming to defer initialization of an object until the point at which it is needed. It can contribute to efficiency in the program's operation if properly and appropriately used.  The plugin integrates <a href="https://github.com/ressio/lazy-load-xt#about">lazy-load-xt</a> with ZenPhoto20 theme page images. </p>
+<p><em>class-video</em></p>
+<p><code>MP3</code> and <code>MP4</code> file formats are now (optionally) rendered directly by the plugin using the HTML5 <em>video</em> and <em>audio</em> tags rather than via a multimedia plugin.</p>
 <h2>Themes</h2>
 <p><em>zpBootstrap </em>has been updated to version 2.0.</p>
 <hr />
