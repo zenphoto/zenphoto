@@ -6,12 +6,12 @@
 
 /**
  * Zenphoto general deprecated functions
- * 
+ *
  * @package plugins
  * @subpackage deprecated-functions
  */
 class internal_deprecations {
-	
+
 	/**
 	 * @deprecated Use getLanguageSubdomains() instead
 	 * @since 1.4.15
@@ -52,7 +52,7 @@ class internal_deprecations {
 	 * @since 1.4.15
 	 */
 	static function tagURLs() {
-		deprecated_functions::notify(gettext('Use tagURLs(() instead'));
+		deprecated_functions::notify(gettext('Use tagURLs() instead'));
 	}
 	/**
 	 * @deprecated Use unTagURLs() instead
@@ -61,7 +61,7 @@ class internal_deprecations {
 	static function unTagURLs() {
 		deprecated_functions::notify(gettext('Use unTagURLs() instead'));
 	}
-	
+
 	/**
 	 * @deprecated Use updateImageProcessorLink() instead
 	 * @since 1.4.15
@@ -76,7 +76,7 @@ class internal_deprecations {
 	static function pluginDebug() {
 		deprecated_functions::notify(gettext('Use pluginDebug() instead'));
 	}
-	
+
 	/**
 	 * @deprecated Use removeTrailingSlash() instead
 	 * @since 1.4.15
@@ -84,7 +84,7 @@ class internal_deprecations {
 	static function removeTrailingSlash($string) {
 		deprecated_functions::notify(gettext('Use removeTrailingSlash() instead'));
 	}
-	
+
 	/**
 	 * @deprecated Use htmlTidy() instead
 	 * @since 1.4.15
@@ -945,9 +945,9 @@ function is_valid_other_type($filename) {
 /**
  *
  * fixes unbalanced HTML tags. Used by shortenContent when PHP tidy is not present
- * 
+ *
  * @deprecated 1.4.15 Use tidyHTML() instead
- * 
+ *
  * @param string $html
  * @return string
  */

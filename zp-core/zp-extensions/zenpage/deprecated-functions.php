@@ -3,7 +3,7 @@
 /**
  * These are the Zenpage functions which have been deprecated
  * @package plugins
- * @subpackage zenpage 
+ * @subpackage zenpage
  */
 
 class Zenpage_internal_deprecations {
@@ -679,7 +679,7 @@ function getZenpageRSSHeaderLink($option = '', $categorylink = '', $linktext = '
  * @since 1.4.5
  */
 function printLatestZenpageComments($number, $shorten = '123', $id = 'showlatestcomments', $type = "all", $itemID = "") {
-	deprecated_functions::notify(gettext('use printLatestComments($number, $shorten, $type, $itemID, $id, $shortenindicator);'));
+	deprecated_functions::notify(gettext('use printLatestComments($number, $shorten, $type, $itemID, $id, $shortenindicator)'));
 	printLatestComments($number, $shorten, $type, $itemID, $id, $shortenindicator);
 }
 
