@@ -810,7 +810,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										<?php
 									} else {
 										primeMark(gettext('Character set'));
-										$charset_defined = $_zp_UTF8->iconv_sets[FILESYSTEM_CHARSET];
+										$sets = array_merge($_zp_UTF8->iconv_sets, $_zp_UTF8->mb_sets);
+										$charset_defined = @$sets[FILESYSTEM_CHARSET];
 										$test = '';
 										if (($dir = opendir(SERVERPATH . '/' . DATA_FOLDER . '/')) !== false) {
 											while (($file = readdir($dir)) !== false) {
