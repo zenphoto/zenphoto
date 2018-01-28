@@ -240,11 +240,11 @@ class utf8 {
 			$instring = $string;
 		}
 		if ($dest_mb) {
-			$outstring = mb_convert_encoding($string, $destination, 'UTF-8');
+			$outstring = mb_convert_encoding($instring, $destination, 'UTF-8');
 		} else if ($dest_iconv) {
-			$outstring = @iconv('UTF-8', $destination . '//IGNORE', $string);
+			$outstring = @iconv('UTF-8', $destination . '//IGNORE', $instring);
 		} else {
-			$outstring = $string;
+			$outstring = $instring;
 		}
 		return $outstring;
 	}
