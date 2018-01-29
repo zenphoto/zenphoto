@@ -70,7 +70,7 @@ class matomoStats {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 0,
 						'desc' => gettext('Enter your Matomo installation URL including protocol (e.g. <code>https://domain.com</code>).')),
-				gettext('site id') => array(
+				gettext('Site id') => array(
 						'key' => 'matomo_id',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 1,
