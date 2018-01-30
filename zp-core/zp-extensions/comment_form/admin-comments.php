@@ -174,7 +174,7 @@ printLogoAndLinks();
 								}
 								?>
 								<label for="date"><?php echo gettext("Date/Time:"); ?></label>
-								<input type="text" size="18" name="date" value="<?php echo date('Y-m-d H:i:s', strtotime($date)); ?>" />
+								<input type="text" size="18" name="date" value="<?php echo $date; ?>" />
 								<label for="date"><?php echo gettext("IP:"); ?></label>
 								<input type="text" size="18" name="ip" value="<?php echo html_encode($IP); ?>" />
 								<?php
@@ -413,7 +413,6 @@ printLogoAndLinks();
 										}
 										break;
 								}
-								$date = myts_date('%m/%d/%Y %I:%M %p', $comment['date']);
 								$website = $comment['website'];
 								$fullcomment = sanitize($comment['comment'], 2);
 								$shortcomment = truncate_string(getBare($fullcomment), 123);
@@ -426,7 +425,7 @@ printLogoAndLinks();
 
 										<?php echo ($fulltext) ? $fullcomment : $shortcomment; ?>
 
-									<td><?php echo date('Y-m-d H:i:s', strtotime($date)); ?></td>
+									<td><?php echo $comment['date']; ?></td>
 									<td>
 										<?php
 										echo $website ? "<a href=\"$website\">$author</a>" : $author;
