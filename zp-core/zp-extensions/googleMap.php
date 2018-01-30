@@ -311,6 +311,17 @@ function getAlbumGeodata($album, $map) {
 function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $callback = NULL) {
 	global $_zp_current_album, $_zp_current_image, $_x, $_y, $_z, $_n;
 
+	/* API keys are required post June 2016 */
+	if (!getOption('gmap_map_api_key')) {
+		?>
+		<br clear="all">
+		<div class="errorbox">
+			<?php echo gettext('No Google Map API key has been set.'); ?>
+		</div>
+		<?php
+		return;
+	}
+
 	/* controls of parameters */
 	if (is_null($obj)) {
 		if (is_null($_zp_current_image)) {
