@@ -279,11 +279,11 @@ echo '</head>' . "\n";
 													<em>
 														<label>
 															<input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
+																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
 														</label>
 														<label>
 															<input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
+																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
 														</label>
 													</em>
 													<br />
@@ -355,7 +355,7 @@ echo '</head>' . "\n";
 												?>
 
 											</div>
-											<div class="user_right userextrainfo" style="display:none">
+											<div class="user_right userextrainfo" <?php echo $display; ?>>
 												<strong><?php echo gettext('description:'); ?></strong>
 												<br />
 												<textarea name="<?php echo $id; ?>-desc" cols="40" rows="4"><?php echo html_encode($desc); ?></textarea>
@@ -380,6 +380,7 @@ echo '</head>' . "\n";
 														</ul>
 													</div>
 												</div>
+
 												<?php
 												printManagedObjects('albums', $albumlist, '', $groupobj, $id, $kind, array());
 												if (extensionEnabled('zenpage')) {
@@ -402,7 +403,7 @@ echo '</head>' . "\n";
 
 											</div>
 											<br class="clearall">
-											<div class="userextrainfo" style="display:none">
+											<div class="userextrainfo" <?php echo $display; ?>>
 												<?php
 												$custom = zp_apply_filter('edit_admin_custom_data', '', $groupobj, $id, $background, true, '');
 												if ($custom) {
@@ -410,12 +411,8 @@ echo '</head>' . "\n";
 												}
 												?>
 											</div>
-
-
 										</td>
-
 									</tr>
-
 									<?php
 									$id++;
 									$display = ' style="display:none"';
@@ -424,7 +421,7 @@ echo '</head>' . "\n";
 								<tr>
 									<th>
 										<?php
-										if (count($users) != 1) {
+										if (count($groups) != 1) {
 											?>
 											<span style="font-weight: normal">
 												<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
