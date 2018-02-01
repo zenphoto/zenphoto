@@ -366,29 +366,6 @@ function zpFormattedDate($format, $dt) {
 }
 
 /**
- * Simple SQL timestamp formatting function.
- *
- * @param string $format formatting template
- * @param int $mytimestamp timestamp
- * @return string
- */
-function myts_date($format, $mytimestamp) {
-	$timezoneadjust = getOption('time_offset');
-
-	$month = substr($mytimestamp, 4, 2);
-	$day = substr($mytimestamp, 6, 2);
-	$year = substr($mytimestamp, 0, 4);
-
-	$hour = substr($mytimestamp, 8, 2);
-	$min = substr($mytimestamp, 10, 2);
-	$sec = substr($mytimestamp, 12, 2);
-
-	$epoch = mktime($hour + $timezoneadjust, $min, $sec, $month, $day, $year);
-	$date = zpFormattedDate($format, $epoch);
-	return $date;
-}
-
-/**
  * Determines if the input is an e-mail address. Adapted from WordPress.
  * Name changed to avoid conflicts in WP integrations.
  *
@@ -773,90 +750,6 @@ function defaultExtension($priority) {
 		setOptionDefault('zp_plugin_' . stripSuffix(basename($b['file'])), $priority);
 	}
 	return $priority;
-}
-
-/**
- * Gets an array of comments for the current admin
- *
- * @param int $number how many comments desired
- * @return array
- */
-function fetchComments($number) {
-	if ($number) {
-		$limit = " LIMIT $number";
-	} else {
-		$limit = '';
-	}
-
-	$comments = array();
-	if (zp_loggedin(ADMIN_RIGHTS | COMMENT_RIGHTS)) {
-		if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
-			$sql = "SELECT *, (date + 0) AS date FROM " . prefix('comments') . " ORDER BY id DESC$limit";
-			$comments = query_full_array($sql);
-		} else {
-			$albumlist = getManagedAlbumList();
-			$albumIDs = array();
-			foreach ($albumlist as $albumname) {
-				$subalbums = getAllSubAlbumIDs($albumname);
-				foreach ($subalbums as $ID) {
-					$albumIDs[] = $ID['id'];
-				}
-			}
-			if (count($albumIDs) > 0) {
-				$sql = "SELECT  *, (`date` + 0) AS date FROM " . prefix('comments') . " WHERE ";
-
-				$sql .= " (`type`='albums' AND (";
-				$i = 0;
-				foreach ($albumIDs as $ID) {
-					if ($i > 0) {
-						$sql .= " OR ";
-					}
-					$sql .= "(" . prefix('comments') . ".ownerid=$ID)";
-					$i++;
-				}
-				$sql .= ")) ";
-				$sql .= " ORDER BY id DESC$limit";
-				$albumcomments = query($sql);
-				if ($albumcomments) {
-					while ($comment = db_fetch_assoc($albumcomments)) {
-						$comments[$comment['id']] = $comment;
-					}
-					db_free_result($albumcomments);
-				}
-				$sql = "SELECT *, " . prefix('comments') . ".id as id, " .
-								prefix('comments') . ".name as name, (" . prefix('comments') . ".date + 0) AS date, " .
-								prefix('images') . ".`albumid` as albumid," .
-								prefix('images') . ".`id` as imageid" .
-								" FROM " . prefix('comments') . "," . prefix('images') . " WHERE ";
-
-				$sql .= "(`type` IN (" . zp_image_types("'") . ") AND (";
-				$i = 0;
-				foreach ($albumIDs as $ID) {
-					if ($i > 0) {
-						$sql .= " OR ";
-					}
-					$sql .= "(" . prefix('comments') . ".ownerid=" . prefix('images') . ".id AND " . prefix('images') . ".albumid=$ID)";
-					$i++;
-				}
-				$sql .= "))";
-				$sql .= " ORDER BY " . prefix('images') . ".`id` DESC$limit";
-				$imagecomments = query($sql);
-				if ($imagecomments) {
-					while ($comment = db_fetch_assoc($imagecomments)) {
-						$comments[$comment['id']] = $comment;
-					}
-					db_free_result($imagecomments);
-				}
-				krsort($comments);
-				if ($number) {
-					if ($number < count($comments)) {
-						$comments = array_slice($comments, 0, $number);
-					}
-				}
-			}
-		}
-	}
-	return $comments;
 }
 
 /**

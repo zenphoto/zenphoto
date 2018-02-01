@@ -1156,7 +1156,7 @@ class xmpMetadata {
 	}
 
 	static function bulkActions($actions) {
-		return array_merge($actions, array(gettext('Export Metadata') => 'xmpMetadataPublish'));
+		return array_merge($actions, array(gettext('Export Metadata') => 'xmpMetadata::publish'));
 	}
 
 }
