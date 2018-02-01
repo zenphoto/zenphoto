@@ -1369,7 +1369,7 @@ class _Authority {
 							 name="disclose_password<?php echo $id; ?>"
 							 id="disclose_password<?php echo $id; ?>"
 							 onclick="passwordClear('<?php echo $id; ?>');
-									 togglePassword('<?php echo $id; ?>');">
+											 togglePassword('<?php echo $id; ?>');">
 			</span>
 
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
@@ -1710,8 +1710,8 @@ class _Administrator extends PersistentObject {
 		}
 		parent::save();
 
-		$id = $this->getID();
 		if (is_array($objects)) {
+			$id = $this->getID();
 			$sql = "DELETE FROM " . prefix('admin_to_object') . ' WHERE `adminid`=' . $id;
 			$result = query($sql, false);
 			foreach ($objects as $object) {
@@ -1736,7 +1736,7 @@ class _Administrator extends PersistentObject {
 						}
 						break;
 					case 'news':
-						if ($object['data'] == '`') {
+						if ($object['data'] == '`') { //uncategorized
 							$result = array('id' => 0);
 						} else {
 							$sql = 'SELECT * FROM ' . prefix('news_categories') . ' WHERE `titlelink`=' . db_quote($object['data']);
