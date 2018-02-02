@@ -1016,11 +1016,11 @@ class _Authority {
 									<?php echo CHECKMARK_GREEN; ?>
 									<?php echo gettext("Submit"); ?>
 								</button>
-								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=' + $('#user').val();" >
+								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="window.location = '?logon_step=challenge&amp;ref=' + $('#user').val();" >
 									<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 									<?php echo gettext("Refresh"); ?>
 								</button>
-								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
+								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '?logon_step=&amp;ref=' + $('#user').val();" >
 									<?php echo BACK_ARROW_BLUE; ?>
 									<?php echo gettext("Return"); ?>
 								</button>
@@ -1032,7 +1032,7 @@ class _Authority {
 						if ($star) {
 							?>
 							<p class="logon_link">
-								<a onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=captcha&amp;ref=' + $('#user').val();" >
+								<a onclick="window.location = '?logon_step=captcha&amp;ref=' + $('#user').val();" >
 									<?php echo gettext('Request reset by e-mail'); ?>
 								</a>
 							</p>
@@ -1123,7 +1123,7 @@ class _Authority {
 						if (getOption('challenge_foil_enabled')) {
 							?>
 							<p class="logon_link">
-								<a onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=' + $('#user').val();" >
+								<a onclick="window.location = '?logon_step=challenge&amp;ref=' + $('#user').val();" >
 									<?php echo gettext('I forgot my <strong>User ID</strong>/<strong>Password</strong>'); ?>
 								</a>
 							</p>
@@ -1132,7 +1132,7 @@ class _Authority {
 							if ($star) {
 								?>
 								<p class="logon_link">
-									<a onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=captcha&amp;ref=' + $('#user').val();" >
+									<a onclick="window.location = '?logon_step=captcha&amp;ref=' + $('#user').val();" >
 										<?php echo gettext('I forgot my <strong>User ID</strong>/<strong>Password</strong>'); ?>
 									</a>
 								</p>
@@ -1192,7 +1192,7 @@ class _Authority {
 													<?php echo CHECKMARK_GREEN; ?>
 													<?php echo gettext("Request password reset"); ?>
 								</button>
-								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=' + $('#user').val();" >
+								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '?logon_step=&amp;ref=' + $('#user').val();" >
 									<?php echo BACK_ARROW_BLUE; ?>
 									<?php echo gettext("Return"); ?>
 								</button>
@@ -1350,6 +1350,15 @@ class _Authority {
 		<?php
 	}
 
+	/**
+	 * provides the form for password handling
+	 *
+	 * @param int $id id number for when there are multiple forms on a page
+	 * @param bool $pad if true the password will have dummy asterix filled in
+	 * @param bool $disable for disabling the field
+	 * @param bool $required if a password is required
+	 * @param string $flag to "flag" the field as required
+	 */
 	static function printPasswordForm($id = '', $pad = false, $disable = NULL, $required = false, $flag = '') {
 		if ($pad) {
 			$x = '          ';
