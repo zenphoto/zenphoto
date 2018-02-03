@@ -376,7 +376,6 @@ function zp_load_request() {
 				case 'functions':
 				case 'themeoptions':
 				case 'theme_description':
-				case 'password':
 					return false; //	disallowed as theme pages
 			}
 		}

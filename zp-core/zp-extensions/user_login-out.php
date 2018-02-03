@@ -152,14 +152,24 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 							// <!-- <![CDATA[
 							window.addEventListener('load', function () {
 								$(".logonlink").colorbox({
-									inline: true,
-									innerWidth: "400px",
-									href: "#passwordform",
-									close: '<?php echo gettext("close"); ?>',
+								inline: true,
+												innerWidth: "400px",
+												href: "#passwordform",
+												close: '<?php echo gettext("close"); ?>',
+						<?php
+						if (isset($_GET['logon_step'])) {
+							?>
+									open: 1
+							<?php
+						} else {
+							?>
 									open: $('#passwordform_enclosure .errorbox').length
-								});
+							<?php
+						}
+						?>
+							});
 							}, false);
-							// ]]> -->
+											// ]]> -->
 						</script>
 						<?php
 						if ($before) {
