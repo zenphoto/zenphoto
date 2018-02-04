@@ -131,18 +131,20 @@ function fix_path_redirect() {
 			if (isset($_GET['p'])) {
 				switch ($_GET['p']) {
 					case 'news':
-						if (isset($_GET['title'])) {
-							//article URLs should not end in slash
-							if (substr($parts['path'], -1, 1) == '/') {
-								$redirectURL = zpRewriteURL($_GET);
+						if (extensionEnabled('zenpage')) {
+							if (isset($_GET['title'])) {
+								//article URLs should not end in slash
+								if (substr($parts['path'], -1, 1) == '/') {
+									$redirectURL = zpRewriteURL($_GET);
+								}
+							} else {
+								//should be news/
+								if (substr($parts['path'], -1, 1) != '/') {
+									$redirectURL = zpRewriteURL($_GET);
+								}
 							}
-						} else {
-							//should be news/
-							if (substr($parts['path'], -1, 1) != '/') {
-								$redirectURL = zpRewriteURL($_GET);
-							}
+							break;
 						}
-						break;
 					case 'search':
 						if (isset($_GET['date'])) {
 							if (substr($parts['path'], -1, 1) != '/') {
@@ -376,10 +378,12 @@ function zp_load_request() {
 				case 'functions':
 				case 'themeoptions':
 				case 'theme_description':
+				case 'index':
 					return false; //	disallowed as theme pages
 			}
 		}
-		//	may need image and album parameters processed
+
+//	may need image and album parameters processed
 		list($album, $image) = rewrite_get_album_image('album', 'image');
 		if (!empty($image)) {
 			return zp_load_image($album, $image);
@@ -431,7 +435,7 @@ function prepareImagePage() {
 	handleSearchParms('image', $_zp_current_album, $_zp_current_image);
 	$theme = setupTheme();
 	$_zp_gallery_page = basename($_zp_script = THEMEFOLDER . "/$theme/image.php");
-	// re-initialize video dimensions if needed
+// re-initialize video dimensions if needed
 	if (isImageVideo()) {
 		$_zp_current_image->updateDimensions();
 	}
@@ -485,7 +489,7 @@ function prepareCustomPage() {
 //force license page if not acknowledged
 if (!getOption('license_accepted')) {
 	if (isset($_GET['z']) && $_GET['z'] != 'setup') {
-		// License needs agreement
+// License needs agreement
 		$_GET['p'] = 'license';
 		$_GET['z'] = '';
 	}
