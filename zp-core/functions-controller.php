@@ -366,15 +366,15 @@ function zp_load_request() {
 				case 'search':
 					return zp_load_search();
 				case 'pages':
-					if (extensionEnabled('zenpage')) {
+					if (extensionEnabled('zenpage') && getOption('zenpage_enabled_items') & 2) {
 						return load_zenpage_pages(sanitize(trim(@$_GET['title'], '/')));
 					}
-					break;
+					return false;
 				case 'news':
-					if (extensionEnabled('zenpage')) {
+					if (extensionEnabled('zenpage') && getOption('zenpage_enabled_items') & 1) {
 						return load_zenpage_news(sanitize($_GET));
 					}
-					break;
+					return false;
 				case 'functions':
 				case 'themeoptions':
 				case 'theme_description':
