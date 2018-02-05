@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.15\n"
+"Project-Id-Version: Zenphoto 1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-27 14:21+0100\n"
+"POT-Creation-Date: 2018-02-05 19:43+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -58,7 +58,7 @@ msgstr "Bekijk album:"
 #: themes/zpmobile/album.php:70 themes/zpmobile/favorites.php:30
 #: themes/zpmobile/favorites.php:57 themes/zpmobile/gallery.php:27
 #: themes/zpmobile/gallery.php:40 themes/zpmobile/image.php:32
-#: themes/zpmobile/news.php:56 themes/zpmobile/search.php:185
+#: themes/zpmobile/news.php:55 themes/zpmobile/search.php:185
 #: zp-core/admin-functions.php:4429
 #: zp-core/zp-extensions/comment_form/functions.php:34
 #: zp-core/zp-extensions/slideshow.php:593
@@ -86,7 +86,7 @@ msgstr "vorige"
 #: themes/zpmobile/album.php:70 themes/zpmobile/favorites.php:30
 #: themes/zpmobile/favorites.php:57 themes/zpmobile/gallery.php:27
 #: themes/zpmobile/gallery.php:40 themes/zpmobile/image.php:35
-#: themes/zpmobile/news.php:60 themes/zpmobile/search.php:185
+#: themes/zpmobile/news.php:59 themes/zpmobile/search.php:185
 #: zp-core/admin-functions.php:4457
 #: zp-core/zp-extensions/comment_form/functions.php:35
 #: zp-core/zp-extensions/jplayer.php:476
@@ -99,9 +99,9 @@ msgstr "volgende"
 #: themes/basic/album.php:66 themes/basic/image.php:111
 #: themes/zenpage/album.php:74 themes/zenpage/favorites.php:73
 #: themes/zenpage/gallery.php:81 themes/zenpage/image.php:105
-#: themes/zenpage/news.php:64 themes/zenpage/news.php:101
-#: themes/zenpage/pages.php:50 themes/zpmobile/news.php:46
-#: themes/zpmobile/pages.php:57
+#: themes/zenpage/news.php:63 themes/zenpage/news.php:100
+#: themes/zenpage/pages.php:49 themes/zpmobile/news.php:45
+#: themes/zpmobile/pages.php:56
 msgid "<strong>Tags:</strong>"
 msgstr "<strong>Tags:</strong>"
 
@@ -122,7 +122,7 @@ msgstr "Archief"
 #: themes/basic/search.php:96 themes/garland/404.php:12
 #: themes/garland/archive.php:12 themes/garland/gallery.php:12
 #: themes/garland/image.php:41 themes/garland/main.php:12
-#: themes/garland/pages.php:13 themes/garland/password.php:12
+#: themes/garland/pages.php:12 themes/garland/password.php:12
 #: themes/garland/register.php:13 themes/garland/search.php:16
 #: themes/zenpage/archive.php:14 themes/zenpage/gallery.php:14
 #: themes/zenpage/search.php:14
@@ -278,15 +278,15 @@ msgstr "Pagina niet gevonden"
 #: themes/effervescence_plus/album.php:52
 #: themes/effervescence_plus/gallery.php:31
 #: themes/effervescence_plus/indexpage.php:31
-#: themes/effervescence_plus/news.php:26
+#: themes/effervescence_plus/news.php:25
 #: themes/effervescence_plus/search.php:81
 #: themes/effervescence_plus/search.php:86
 #: themes/effervescence_plus/search.php:88
 #: themes/effervescence_plus/slideshow.php:55 themes/zenpage/404.php:27
 #: themes/zenpage/album.php:25 themes/zenpage/archive.php:26
 #: themes/zenpage/contact.php:25 themes/zenpage/favorites.php:25
-#: themes/zenpage/gallery.php:26 themes/zenpage/news.php:26
-#: themes/zenpage/pages.php:26 themes/zenpage/password.php:25
+#: themes/zenpage/gallery.php:26 themes/zenpage/news.php:25
+#: themes/zenpage/pages.php:25 themes/zenpage/password.php:25
 #: themes/zenpage/register.php:26 themes/zenpage/search.php:41
 #: themes/zenpage/search.php:46 themes/zenpage/search.php:48
 #: themes/zpmobile/functions.php:67 themes/zpmobile/search.php:46
@@ -314,7 +314,7 @@ msgstr "Foto’s op datum"
 msgid "News archive"
 msgstr "Nieuwsarchief"
 
-#: themes/effervescence_plus/contact.php:42 zp-core/functions.php:2624
+#: themes/effervescence_plus/contact.php:42 zp-core/functions.php:2648
 #: zp-core/template-functions.php:441
 #: zp-core/zp-extensions/html_meta_tags.php:326
 msgid "Contact"
@@ -490,17 +490,17 @@ msgid "sticky"
 msgstr "Sticky (vastprikken)"
 
 #: themes/effervescence_plus/functions.php:443
-#: themes/effervescence_plus/news.php:72 themes/garland/functions.php:166
-#: themes/garland/news.php:63
+#: themes/effervescence_plus/news.php:71 themes/garland/functions.php:166
+#: themes/garland/news.php:62
 #, php-format
 msgid "Comments: %d"
 msgstr "Reacties: %d"
 
 #: themes/effervescence_plus/functions.php:450
-#: themes/effervescence_plus/news.php:81 themes/garland/functions.php:173
-#: themes/garland/news.php:108 themes/zenpage/gallery.php:75
-#: themes/zenpage/news.php:59 themes/zenpage/news.php:94
-#: themes/zpmobile/news.php:45
+#: themes/effervescence_plus/news.php:80 themes/garland/functions.php:173
+#: themes/garland/news.php:107 themes/zenpage/gallery.php:75
+#: themes/zenpage/news.php:58 themes/zenpage/news.php:93
+#: themes/zpmobile/news.php:44
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/zoom.php:61
 msgid "Categories: "
 msgstr "Categorieën:"
@@ -509,8 +509,8 @@ msgstr "Categorieën:"
 #: themes/garland/favorites.php:91 themes/garland/functions.php:186
 #: themes/garland/gallery.php:62 themes/garland/search.php:225
 #: themes/zenpage/gallery.php:61 themes/zenpage/gallery.php:86
-#: themes/zenpage/news.php:71 themes/zenpage/news.php:108
-#: themes/zpmobile/news.php:66 themes/zpmobile/news.php:81
+#: themes/zenpage/news.php:70 themes/zenpage/news.php:107
+#: themes/zpmobile/news.php:65 themes/zpmobile/news.php:80
 msgid "next »"
 msgstr "volgende »"
 
@@ -518,8 +518,8 @@ msgstr "volgende »"
 #: themes/garland/favorites.php:91 themes/garland/functions.php:186
 #: themes/garland/gallery.php:62 themes/garland/search.php:225
 #: themes/zenpage/gallery.php:61 themes/zenpage/gallery.php:86
-#: themes/zenpage/news.php:71 themes/zenpage/news.php:108
-#: themes/zpmobile/news.php:66 themes/zpmobile/news.php:81
+#: themes/zenpage/news.php:70 themes/zenpage/news.php:107
+#: themes/zpmobile/news.php:65 themes/zpmobile/news.php:80
 msgid "« prev"
 msgstr "« vorige"
 
@@ -529,7 +529,7 @@ msgstr "Reageer"
 
 #: themes/effervescence_plus/image_gallery/functions.php:46
 #: themes/garland/image_gallery/functions.php:46
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:140
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:139
 msgid "Start"
 msgstr "Start"
 
@@ -712,8 +712,8 @@ msgstr "Albums"
 #: themes/effervescence_plus/themeoptions.php:74 themes/garland/sidebar.php:80
 #: themes/garland/themeoptions.php:52 themes/zenpage/sidebar.php:47
 #: themes/zenpage/themeoptions.php:53 themes/zpmobile/functions.php:75
-#: themes/zpmobile/functions.php:173 themes/zpmobile/pages.php:28
-#: themes/zpmobile/pages.php:34 zp-core/admin-functions.php:3180
+#: themes/zpmobile/functions.php:173 themes/zpmobile/pages.php:27
+#: themes/zpmobile/pages.php:33 zp-core/admin-functions.php:3180
 #: zp-core/admin-functions.php:3316 zp-core/lib-auth.php:526
 #: zp-core/lib-auth.php:529 zp-core/lib-auth.php:544 zp-core/lib-auth.php:551
 #: zp-core/lib-auth.php:555 zp-core/lib-auth.php:570 zp-core/lib-auth.php:577
@@ -727,7 +727,7 @@ msgstr "Albums"
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:104
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:484
 #: zp-core/zp-extensions/tweet_news.php:93
-#: zp-core/zp-extensions/zenpage.php:346
+#: zp-core/zp-extensions/zenpage.php:366
 #: zp-core/zp-extensions/zenpage/admin-pages.php:105
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1326
 msgid "Pages"
@@ -772,7 +772,7 @@ msgstr "RSS"
 #: zp-core/zp-extensions/related_items.php:154
 #: zp-core/zp-extensions/related_items.php:189
 #: zp-core/zp-extensions/tweet_news.php:92
-#: zp-core/zp-extensions/zenpage.php:343
+#: zp-core/zp-extensions/zenpage.php:363
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:885
 msgid "News"
 msgstr "Nieuws"
@@ -1052,7 +1052,7 @@ msgstr "Effervescence"
 #: themes/garland/archive.php:22 themes/garland/contact.php:23
 #: themes/garland/favorites.php:24 themes/garland/gallery.php:23
 #: themes/garland/image.php:52 themes/garland/main.php:23
-#: themes/garland/news.php:24 themes/garland/pages.php:24
+#: themes/garland/news.php:23 themes/garland/pages.php:23
 #: themes/garland/password.php:23 themes/garland/register.php:24
 #: themes/garland/search.php:66 themes/zenpage/404.php:23
 msgid "Gallery Index"
@@ -1087,7 +1087,7 @@ msgid "« Prev Album"
 msgstr "« vorig album"
 
 #: themes/garland/album.php:119 themes/garland/image.php:140
-#: themes/garland/news.php:113 themes/garland/pages.php:67
+#: themes/garland/news.php:112 themes/garland/pages.php:66
 msgid "Tags: "
 msgstr "Tags:"
 
@@ -1177,8 +1177,8 @@ msgstr ""
 "Zenpage thema ontworpen door <a href=\"http://www.maltem.de\">Malte Müller</"
 "a>"
 
-#: themes/zenpage/gallery.php:70 themes/zenpage/news.php:58
-#: themes/zenpage/news.php:86
+#: themes/zenpage/gallery.php:70 themes/zenpage/news.php:57
+#: themes/zenpage/news.php:85
 msgid "Comments:"
 msgstr "Reacties:"
 
@@ -2053,7 +2053,7 @@ msgstr "naar"
 #: zp-core/zp-extensions/comment_form/admin-comments.php:144
 #: zp-core/zp-extensions/uploader_http/upload_form.php:71
 #: zp-core/zp-extensions/uploader_http/upload_form.php:72
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:142
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:141
 msgid "Cancel"
 msgstr "Annuleer"
 
@@ -6544,7 +6544,7 @@ msgstr "Custom data"
 msgid "Location/Place"
 msgstr "Locatie/Plaats"
 
-#: zp-core/class-search.php:105 zp-core/functions.php:2647
+#: zp-core/class-search.php:105 zp-core/functions.php:2671
 #: zp-core/zp-extensions/contact_form.php:118
 #: zp-core/zp-extensions/contact_form.php:120
 #: zp-core/zp-extensions/userAddressFields.php:52
@@ -7204,7 +7204,7 @@ msgstr "Auto-DEP"
 msgid "Flash Did Not Fire"
 msgstr "Geen Flits"
 
-#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2633
+#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2657
 msgid "Flash Fired"
 msgstr "Flits"
 
@@ -8365,45 +8365,45 @@ msgstr "meest bekeken"
 msgid "missing"
 msgstr "ontbreekt"
 
-#: zp-core/functions.php:374 zp-core/functions.php:386
-#: zp-core/functions.php:397 zp-core/functions.php:406
-#: zp-core/functions.php:419 zp-core/functions.php:464
+#: zp-core/functions.php:398 zp-core/functions.php:410
+#: zp-core/functions.php:421 zp-core/functions.php:430
+#: zp-core/functions.php:443 zp-core/functions.php:488
 msgid "Mail send failed."
 msgstr "E-mail verzenden mislukt."
 
-#: zp-core/functions.php:376
+#: zp-core/functions.php:400
 #, php-format
 msgid "Invalid “reply-to” mail address %s."
 msgstr "Ongeldig “antwoord-aan” e-mailadres %s."
 
-#: zp-core/functions.php:388
+#: zp-core/functions.php:412
 #, php-format
 msgid "Invalid “to” mail address %s."
 msgstr "Ongeldig “aan” e-mailadres %s."
 
-#: zp-core/functions.php:399
+#: zp-core/functions.php:423
 msgid "“cc” list provided without “to” address list."
 msgstr "“cc” lijst opgegeven zonder “to” adreslijst."
 
-#: zp-core/functions.php:408
+#: zp-core/functions.php:432
 #, php-format
 msgid "Invalid “cc” mail address %s."
 msgstr "Ongeldig “cc” e-mailadres %s."
 
-#: zp-core/functions.php:421
+#: zp-core/functions.php:445
 #, php-format
 msgid "Invalid “bcc” mail address %s."
 msgstr "Ongeldig “bcc” e-mailadres %s."
 
-#: zp-core/functions.php:460
+#: zp-core/functions.php:484
 msgid "Mail send failed. There is no mail handler configured."
 msgstr "Verzenden van mail mislukt. Er is geen mail script geconfigureerd!"
 
-#: zp-core/functions.php:466
+#: zp-core/functions.php:490
 msgid "No “to” address list provided."
 msgstr "Geen “to” adreslijst opgegeven."
 
-#: zp-core/functions.php:1049
+#: zp-core/functions.php:1073
 #, php-format
 msgid ""
 "Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your "
@@ -8412,40 +8412,40 @@ msgstr ""
 "Zenphoto heeft geen themascripts gevonden. Controleer a.u.b. de <em>%s</em> "
 "map van de installatie."
 
-#: zp-core/functions.php:1665
+#: zp-core/functions.php:1689
 msgid "0 Bytes"
 msgstr "0 Bytes"
 
-#: zp-core/functions.php:2177
+#: zp-core/functions.php:2201
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr ""
 "Zenphoto heeft een 404 fout verwerkt in %s. Zie het debug log voor details."
 
-#: zp-core/functions.php:2204
+#: zp-core/functions.php:2228
 #, php-format
 msgid "“%s” Cross Site Request Forgery blocked."
 msgstr "“%s” Cross Site Request Forgery geblokkeerd."
 
-#: zp-core/functions.php:2368
+#: zp-core/functions.php:2392
 msgid "Click to show content"
 msgstr "Klik om inhoud te tonen"
 
-#: zp-core/functions.php:2373
+#: zp-core/functions.php:2397
 msgid "Click to hide content"
 msgstr "Klik om inhoud te verbergen"
 
-#: zp-core/functions.php:2423
+#: zp-core/functions.php:2447
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "<em>[%1$s]</em> parameter %2$d moet een getal zijn."
 
-#: zp-core/functions.php:2431
+#: zp-core/functions.php:2455
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "<em>[%1$s]</em> parameter %2$d moet een string zijn."
 
-#: zp-core/functions.php:2444
+#: zp-core/functions.php:2468
 #, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
@@ -8454,339 +8454,339 @@ msgstr ""
 "<em>[%1$s]</em> parameter %2$d moet <code>true</code> of <code>false</code> "
 "zijn."
 
-#: zp-core/functions.php:2463
+#: zp-core/functions.php:2487
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
 msgstr "<em>[%1$s]</em> parameter %2$d is niet goed gedefinieërd."
 
-#: zp-core/functions.php:2469
+#: zp-core/functions.php:2493
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "<em>[%1$s]</em> parameter %2$d ontbreekt."
 
-#: zp-core/functions.php:2478
+#: zp-core/functions.php:2502
 #, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "<em>[%1$s]</em> macro mag geen parameters hebben."
 
-#: zp-core/functions.php:2501 zp-core/functions.php:2528
+#: zp-core/functions.php:2525 zp-core/functions.php:2552
 #, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>[%1$s]</em> kan niks weergeven."
 
-#: zp-core/functions.php:2506
+#: zp-core/functions.php:2530
 #, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>[%1$s]</em> <code>%2$s</code> kan niet aangeroepen worden."
 
-#: zp-core/functions.php:2533
+#: zp-core/functions.php:2557
 #, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>[%1$s]</em> moet %2$d parameter hebben."
 msgstr[1] "<em>[%1$s]</em> moet %2$d parameters hebben."
 
-#: zp-core/functions.php:2605
+#: zp-core/functions.php:2629
 msgid "Camera Maker"
 msgstr "Cameraproducent"
 
-#: zp-core/functions.php:2606
+#: zp-core/functions.php:2630
 msgid "Camera Model"
 msgstr "Cameramodel"
 
-#: zp-core/functions.php:2607
+#: zp-core/functions.php:2631
 msgid "Image Title"
 msgstr "Titel van de foto"
 
-#: zp-core/functions.php:2608
+#: zp-core/functions.php:2632
 msgid "Object Name"
 msgstr "Objectnaam"
 
-#: zp-core/functions.php:2609
+#: zp-core/functions.php:2633
 msgid "Image Headline"
 msgstr "Kopregel"
 
-#: zp-core/functions.php:2610
+#: zp-core/functions.php:2634
 msgid "Image Caption"
 msgstr "Beschrijving"
 
-#: zp-core/functions.php:2611
+#: zp-core/functions.php:2635
 msgid "Image Caption Writer"
 msgstr "Auteur van beschrijving"
 
-#: zp-core/functions.php:2612
+#: zp-core/functions.php:2636
 msgid "Time Taken"
 msgstr "Datum/tijd"
 
-#: zp-core/functions.php:2613
+#: zp-core/functions.php:2637
 msgid "Original Time Taken"
 msgstr "Oorspronkelijke datum/tijd"
 
-#: zp-core/functions.php:2614
+#: zp-core/functions.php:2638
 msgid "Time Digitized"
 msgstr "Gedigitaliseerde datum/tijd"
 
-#: zp-core/functions.php:2615
+#: zp-core/functions.php:2639
 msgid "Date Created"
 msgstr "Datum van de foto"
 
-#: zp-core/functions.php:2616
+#: zp-core/functions.php:2640
 msgid "Time Created"
 msgstr "Tijd van de foto"
 
-#: zp-core/functions.php:2617
+#: zp-core/functions.php:2641
 msgid "Digital Creation Date"
 msgstr "Digitale datum van de foto"
 
-#: zp-core/functions.php:2618
+#: zp-core/functions.php:2642
 msgid "Digital Creation Time"
 msgstr "Digitale tijd van de foto"
 
-#: zp-core/functions.php:2619
+#: zp-core/functions.php:2643
 msgid "Artist"
 msgstr "Auteur"
 
-#: zp-core/functions.php:2620
+#: zp-core/functions.php:2644
 msgid "Image Credit"
 msgstr "Auteur afbeelding"
 
-#: zp-core/functions.php:2621
+#: zp-core/functions.php:2645
 msgid "Byline"
 msgstr "Bijschrift"
 
-#: zp-core/functions.php:2622
+#: zp-core/functions.php:2646
 msgid "Byline Title"
 msgstr "Titel bijschrift"
 
-#: zp-core/functions.php:2623
+#: zp-core/functions.php:2647
 msgid "Image Source"
 msgstr "Bron"
 
-#: zp-core/functions.php:2625
+#: zp-core/functions.php:2649
 msgid "Copyright Holder"
 msgstr "Copyright houder"
 
-#: zp-core/functions.php:2626
+#: zp-core/functions.php:2650
 msgid "Copyright Notice"
 msgstr "Copyright vermelding"
 
-#: zp-core/functions.php:2627
+#: zp-core/functions.php:2651
 msgid "Keywords"
 msgstr "Trefwoorden"
 
-#: zp-core/functions.php:2628
+#: zp-core/functions.php:2652
 msgid "Shutter Speed"
 msgstr "Sluitertijd"
 
-#: zp-core/functions.php:2629
+#: zp-core/functions.php:2653
 msgid "Aperture"
 msgstr "Diafragma"
 
-#: zp-core/functions.php:2630
+#: zp-core/functions.php:2654
 msgid "ISO Sensitivity"
 msgstr "ISO gevoeligheid"
 
-#: zp-core/functions.php:2631
+#: zp-core/functions.php:2655
 msgid "Exposure Compensation"
 msgstr "Belichtingscompensatie"
 
-#: zp-core/functions.php:2632
+#: zp-core/functions.php:2656
 msgid "Metering Mode"
 msgstr "Methode lichtmeting"
 
-#: zp-core/functions.php:2634
+#: zp-core/functions.php:2658
 msgid "Original Width"
 msgstr "Originele breedte"
 
-#: zp-core/functions.php:2635
+#: zp-core/functions.php:2659
 msgid "Original Height"
 msgstr "Originele hoogte"
 
-#: zp-core/functions.php:2636
+#: zp-core/functions.php:2660
 msgid "Orientation"
 msgstr "Oriëntatie"
 
-#: zp-core/functions.php:2637
+#: zp-core/functions.php:2661
 msgid "Software"
 msgstr "Software"
 
-#: zp-core/functions.php:2638
+#: zp-core/functions.php:2662
 msgid "Contrast Setting"
 msgstr "Contrast"
 
-#: zp-core/functions.php:2639
+#: zp-core/functions.php:2663
 msgid "Sharpness Setting"
 msgstr "Scherpte"
 
-#: zp-core/functions.php:2640
+#: zp-core/functions.php:2664
 msgid "Saturation Setting"
 msgstr "Verzadiging"
 
-#: zp-core/functions.php:2641
+#: zp-core/functions.php:2665
 msgid "White Balance"
 msgstr "Witbalans"
 
-#: zp-core/functions.php:2642
+#: zp-core/functions.php:2666
 msgid "Subject Distance"
 msgstr "Onderwerpsafstand"
 
-#: zp-core/functions.php:2643
+#: zp-core/functions.php:2667
 msgid "Focal Length"
 msgstr "Brandpuntsafstand"
 
-#: zp-core/functions.php:2644
+#: zp-core/functions.php:2668
 msgid "Lens Type"
 msgstr "Lenstype"
 
-#: zp-core/functions.php:2645
+#: zp-core/functions.php:2669
 msgid "Lens Info"
 msgstr "Lensinformatie"
 
-#: zp-core/functions.php:2646
+#: zp-core/functions.php:2670
 msgid "35mm Focal Length Equivalent"
 msgstr "Brandpuntsafstand equivalent voor 35mm film"
 
-#: zp-core/functions.php:2648
+#: zp-core/functions.php:2672
 msgid "Sub-location"
 msgstr "Sublocatie"
 
-#: zp-core/functions.php:2649
+#: zp-core/functions.php:2673
 msgid "Province/State"
 msgstr "Provincie/Staat"
 
-#: zp-core/functions.php:2650
+#: zp-core/functions.php:2674
 msgid "Country/Primary Location Code"
 msgstr "Land/locatiecode"
 
-#: zp-core/functions.php:2651
+#: zp-core/functions.php:2675
 msgid "Country/Primary Location Name"
 msgstr "Land/ locatienaam"
 
-#: zp-core/functions.php:2652
+#: zp-core/functions.php:2676
 msgid "Content Location Code"
 msgstr "Content locatiecode"
 
-#: zp-core/functions.php:2653
+#: zp-core/functions.php:2677
 msgid "Content Location Name"
 msgstr "Content locatienaam"
 
-#: zp-core/functions.php:2654
+#: zp-core/functions.php:2678
 msgid "Latitude"
 msgstr "Breedtegraad"
 
-#: zp-core/functions.php:2655
+#: zp-core/functions.php:2679
 msgid "Latitude Reference"
 msgstr "Breedtegraad verwijzing"
 
-#: zp-core/functions.php:2656
+#: zp-core/functions.php:2680
 msgid "Longitude"
 msgstr "Lengtegraad"
 
-#: zp-core/functions.php:2657
+#: zp-core/functions.php:2681
 msgid "Longitude Reference"
 msgstr "Lengtegraad verwijzing"
 
-#: zp-core/functions.php:2658
+#: zp-core/functions.php:2682
 msgid "Altitude"
 msgstr "Hoogtegraad"
 
-#: zp-core/functions.php:2659
+#: zp-core/functions.php:2683
 msgid "Altitude Reference"
 msgstr "Hoogtegraad verwijzing"
 
-#: zp-core/functions.php:2660
+#: zp-core/functions.php:2684
 msgid "Originating Program "
 msgstr "Gebruikt programma"
 
-#: zp-core/functions.php:2661
+#: zp-core/functions.php:2685
 msgid "Program Version"
 msgstr "Programmaversie"
 
-#: zp-core/functions.php:2662
+#: zp-core/functions.php:2686
 msgid "Video File Format"
 msgstr "Video format"
 
-#: zp-core/functions.php:2663
+#: zp-core/functions.php:2687
 msgid "Video File Size"
 msgstr "Video bestandsgrootte"
 
-#: zp-core/functions.php:2664
+#: zp-core/functions.php:2688
 msgid "Video Artist"
 msgstr "Video artiest"
 
-#: zp-core/functions.php:2665
+#: zp-core/functions.php:2689
 msgid "Video Title"
 msgstr "Video titel"
 
-#: zp-core/functions.php:2666
+#: zp-core/functions.php:2690
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: zp-core/functions.php:2667
+#: zp-core/functions.php:2691
 msgid "Bitrate_Mode"
 msgstr "Bitrate type"
 
-#: zp-core/functions.php:2668
+#: zp-core/functions.php:2692
 msgid "Bits per sample"
 msgstr "Bits per sample"
 
-#: zp-core/functions.php:2669
+#: zp-core/functions.php:2693
 msgid "Codec"
 msgstr "Codec"
 
-#: zp-core/functions.php:2670
+#: zp-core/functions.php:2694
 msgid "Compression Ratio"
 msgstr "Compressieverhouding"
 
-#: zp-core/functions.php:2671
+#: zp-core/functions.php:2695
 msgid "Video Dataformat"
 msgstr "Video type"
 
-#: zp-core/functions.php:2672
+#: zp-core/functions.php:2696
 msgid "File Encoder"
 msgstr "Encoder"
 
-#: zp-core/functions.php:2673
+#: zp-core/functions.php:2697
 msgid "Sample rate"
 msgstr "Sample rate"
 
-#: zp-core/functions.php:2674
+#: zp-core/functions.php:2698
 msgid "Channel mode"
 msgstr "Channel mode"
 
-#: zp-core/functions.php:2675
+#: zp-core/functions.php:2699
 msgid "Format"
 msgstr "Type"
 
-#: zp-core/functions.php:2676
+#: zp-core/functions.php:2700
 msgid "Channels"
 msgstr "Channels"
 
-#: zp-core/functions.php:2677
+#: zp-core/functions.php:2701
 msgid "Frame rate"
 msgstr "Frame rate"
 
-#: zp-core/functions.php:2678
+#: zp-core/functions.php:2702
 msgid "X Resolution"
 msgstr "X resolutie"
 
-#: zp-core/functions.php:2679
+#: zp-core/functions.php:2703
 msgid "Y Resolution"
 msgstr "Y resolutie"
 
-#: zp-core/functions.php:2680
+#: zp-core/functions.php:2704
 msgid "Aspect ratio"
 msgstr "Verhouding lengte/breedte"
 
-#: zp-core/functions.php:2681
+#: zp-core/functions.php:2705
 msgid "Play Time"
 msgstr "Speeltijd"
 
-#: zp-core/functions.php:2682
+#: zp-core/functions.php:2706
 msgid "XMP Rating"
 msgstr "XMP waardering"
 
-#: zp-core/functions.php:2883 zp-core/zp-extensions/comment_form.php:106
+#: zp-core/functions.php:2907 zp-core/zp-extensions/comment_form.php:106
 #: zp-core/zp-extensions/contact_form.php:138
 #: zp-core/zp-extensions/register_user.php:92
 msgid "No captcha handler is enabled."
@@ -9921,10 +9921,15 @@ msgstr "PHP versie %s"
 #, php-format
 msgid ""
 "PHP Version %1$s or greater is required. Version %2$s or greater is strongly "
-"recommended. Use earlier versions at your own risk."
+"recommended. Use earlier versions at your own risk. Zenphoto is developed on "
+"PHP 7.1+ and in any case not tested below 5.6. There will be no fixes if you "
+"encounter any issues below 5.6. Please contact your webhost about a PHP "
+"upgrade on your server."
 msgstr ""
-"PHP versie %1$s of hoger is vereist. Versie %2$s of later wordt sterk "
-"aangeraden. Gebruik van oudere versies is op eigen risico."
+"PHP versie %1$s of hoger is vereist. Versie %2$s of hoger wordt aangeraden. "
+"Gebruik van vroegere PHP versies is voor eigen risico. Zenphoto wordt "
+"ontwikkeld met PHP 7.1.x. Vraag, indien nodig, aan je host of ze de PHP "
+"versie op je server willen verhogen."
 
 #: zp-core/setup/index.php:600
 msgid "PHP <code>Sessions</code>."
@@ -17283,25 +17288,25 @@ msgstr ""
 
 #: zp-core/zp-extensions/menu_manager.php:57
 #: zp-core/zp-extensions/print_album_menu.php:61
-#: zp-core/zp-extensions/zenpage.php:204
+#: zp-core/zp-extensions/zenpage.php:205
 msgid "Truncate indicator*"
 msgstr "Inkortings-indicator*"
 
 #: zp-core/zp-extensions/menu_manager.php:60
 #: zp-core/zp-extensions/print_album_menu.php:64
-#: zp-core/zp-extensions/zenpage.php:209
+#: zp-core/zp-extensions/zenpage.php:210
 msgid "Append this string to truncated titles."
 msgstr "Voeg deze string toe aan ingekorte titels."
 
 #: zp-core/zp-extensions/menu_manager.php:61
 #: zp-core/zp-extensions/print_album_menu.php:57
-#: zp-core/zp-extensions/zenpage.php:198
+#: zp-core/zp-extensions/zenpage.php:199
 msgid "Truncate titles*"
 msgstr "Inkorten titels*"
 
 #: zp-core/zp-extensions/menu_manager.php:63
 #: zp-core/zp-extensions/print_album_menu.php:60
-#: zp-core/zp-extensions/zenpage.php:203
+#: zp-core/zp-extensions/zenpage.php:204
 msgid "Limit titles to this many characters. Zero means no limit."
 msgstr "Beperkt titels tot dit aantal karakters. Nul betekent ongelimiteerd."
 
@@ -17314,7 +17319,7 @@ msgstr ""
 "gotoName('menu_manager');\"><em>menu_manager</em></a> plugin opties."
 
 #: zp-core/zp-extensions/menu_manager.php:74
-#: zp-core/zp-extensions/zenpage.php:223
+#: zp-core/zp-extensions/zenpage.php:224
 msgid ""
 "<p class=\"notebox\">*<strong>Note:</strong> The setting of these options "
 "are shared with other plugins.</p>"
@@ -21443,76 +21448,76 @@ msgstr "<em>jQuery</em> afbeeldings uploader."
 msgid "jQuery uploader requires PHP 5.3 or greater."
 msgstr "jQuery uploader heeft PHP 5.3 of hoger nodig."
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:110
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:109
 msgid "Add files..."
 msgstr "Bestanden toevoegen..."
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:114
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:113
 msgid "Start upload"
 msgstr "Start upload"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:115
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:114
 msgid "Cancel upload"
 msgstr "Stop upload"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:130
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:152
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:129
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:151
 msgid "Error:"
 msgstr "Fout:"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:131
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:160
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:130
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:159
 msgid "File is too big"
 msgstr "Bestand is te groot"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:132
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:161
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:131
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:160
 msgid "File is too small"
 msgstr "Bestand is te klein"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:133
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:162
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:132
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:161
 msgid "Filetype not allowed"
 msgstr "Bestandstype niet toegestaan"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:134
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:163
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:133
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:162
 msgid "Max number of files exceeded"
 msgstr "Maximaal aantal bestanden overschreden"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:153
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:152
 msgid "File exceeds upload_max_filesize (php.ini directive)"
 msgstr "Bestand overschrijdt <em>upload_max_filesize</em> (php.ini instelling)"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:154
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:153
 msgid "File exceeds MAX_FILE_SIZE (HTML form directive)"
 msgstr "Bestand overschrijdt <em>MAX_FILE_SIZE</em> (HTML formulier richtlijn)"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:155
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:154
 msgid "File was only partially uploaded"
 msgstr "Bestand is slechts gedeeltelijk ge-upload"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:156
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:155
 msgid "No File was uploaded"
 msgstr "Er is geen bestand ge-upload."
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:157
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:156
 msgid "Missing a temporary folder"
 msgstr "Een tijdelijke map ontbreekt"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:158
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:157
 msgid "Failed to write file to disk"
 msgstr "Schrijven naar schijf mislukt."
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:159
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:158
 msgid "File upload stopped by extension"
 msgstr "Upload gestopt door een verkeerde extensie"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:164
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:163
 msgid "Uploaded bytes exceed file size"
 msgstr "Aantal ge-uploade bytes overschrijdt bestandsgrootte"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:165
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:164
 msgid "Empty file upload result"
 msgstr "Leeg bestand ge-upload"
 
@@ -22315,49 +22320,46 @@ msgstr ""
 "deze mogelijkheid gebruik te maken. Het wordt niet ondersteund door het "
 "<em>Default</em> en <em>Stopdesign</em> thema."
 
-#: zp-core/zp-extensions/zenpage.php:152 zp-core/zp-extensions/zenpage.php:192
+#: zp-core/zp-extensions/zenpage.php:153 zp-core/zp-extensions/zenpage.php:193
 msgid "Read more"
 msgstr "Lees meer"
 
-#: zp-core/zp-extensions/zenpage.php:165
+#: zp-core/zp-extensions/zenpage.php:166
 msgid "Enabled Zenpage items"
 msgstr "Geactiveerde Zenpage onderedelen"
 
-#: zp-core/zp-extensions/zenpage.php:170
+#: zp-core/zp-extensions/zenpage.php:171
 msgid "Enable news articles and pages"
 msgstr "Activeer nieuws en pagina's"
 
-#: zp-core/zp-extensions/zenpage.php:171
+#: zp-core/zp-extensions/zenpage.php:172
 msgid "Enable news"
 msgstr "Activeer nieuws"
 
-#: zp-core/zp-extensions/zenpage.php:172
+#: zp-core/zp-extensions/zenpage.php:173
 msgid "Enable pages"
 msgstr "Activeer pagina's"
 
-#: zp-core/zp-extensions/zenpage.php:174
+#: zp-core/zp-extensions/zenpage.php:175
 msgid ""
 "This enables or disables the admin tabs for pages and/or news articles. To "
 "hide news and/or pages content on the front end as well, themes must be "
-"setup to use <br><code>if(extensionEnabled(\"zenpage\") && ZP_NEWS_ENABLED) "
-"{ … }</code> or <br><code>if(extensionEnabled(\"zenpage\") && "
-"ZP_PAGES_ENABLED) { … }</code> in appropriate places. Same if disabled items "
-"should blocked as they otherwise still can be accessed via direct links. <p "
-"class=\"notebox\"><strong>NOTE:</strong> This does not delete content and is "
-"not related to management rights.</p>"
+"setup to use <br><code>if(ZP_NEWS_ENABLED) { … }</code> or "
+"<br><code>if(ZP_PAGES_ENABLED) { … }</code> in appropriate places. Same if "
+"disabled items should blocked as they otherwise still can be accessed via "
+"direct links. <p class=\"notebox\"><strong>NOTE:</strong> This does not "
+"delete content and is not related to management rights.</p>"
 msgstr ""
-"Dit activeert of deactiveert de admin tabs voor pagina's en/of nieuws. Om de "
-"inhoud van pagina's en/of nieuws te verbergen in de front-end moeten thema's "
-"op de gewenste plek gebruik maken van <br><code>if(extensionEnabled(\"zenpage"
-"\") && ZP_NEWS_ENABLED) { … }</code> of "
-"<br><code>if(extensionEnabled(\"zenpage\") && ZP_PAGES_ENABLED) { … }</"
-"code><br>"
+"Dit activeert of deactiveert de admin tabs voor pagina's en/of nieuws. Om "
+"ook de inhoud van pagina's en/of nieuws te verbergen op de front-end moeten "
+"thema's gebruik maken van <br><code>if(ZP_NEWS_ENABLED) { … }</code> of "
+"<br><code>if(ZP_PAGES_ENABLED) { … }</code><br>"
 
-#: zp-core/zp-extensions/zenpage.php:176
+#: zp-core/zp-extensions/zenpage.php:177
 msgid "Articles per page (theme)"
 msgstr "Artikelen per pagina"
 
-#: zp-core/zp-extensions/zenpage.php:180
+#: zp-core/zp-extensions/zenpage.php:181
 msgid ""
 "How many news articles you want to show per page on the news or news "
 "category pages."
@@ -22365,11 +22367,11 @@ msgstr ""
 "Hoeveel nieuwsartikelen je wilt laten zien per pagina op de nieuws of "
 "nieuwscategorie pagina’s."
 
-#: zp-core/zp-extensions/zenpage.php:181
+#: zp-core/zp-extensions/zenpage.php:182
 msgid "News article text length"
 msgstr "Lengte van een nieuwsartikel"
 
-#: zp-core/zp-extensions/zenpage.php:185
+#: zp-core/zp-extensions/zenpage.php:186
 msgid ""
 "The length of news article excerpts in news or news category pages. Leave "
 "empty for full text."
@@ -22377,7 +22379,7 @@ msgstr ""
 "Tekstengte van de verkorte weergave van een nieuwsartikel in nieuws of "
 "nieuwscategorie pagina.<br />Laat leeg voor de volledige tekst."
 
-#: zp-core/zp-extensions/zenpage.php:186
+#: zp-core/zp-extensions/zenpage.php:187
 msgid ""
 "You can also set a custom article shorten length for the news loop excerpts "
 "by using the standard TinyMCE <em>page break</em> plugin button (or manually "
@@ -22389,11 +22391,11 @@ msgstr ""
 "pagebreak —&gt;</code> gebruiken)<br />Deze mogelijkheid heeft voorrang op "
 "de plugin optie."
 
-#: zp-core/zp-extensions/zenpage.php:187
+#: zp-core/zp-extensions/zenpage.php:188
 msgid "News article text shorten indicator"
 msgstr "Ingekorte tekst indicator"
 
-#: zp-core/zp-extensions/zenpage.php:191
+#: zp-core/zp-extensions/zenpage.php:192
 msgid ""
 "Something that indicates that the article text is shortened, “ (...)” by "
 "default."
@@ -22401,11 +22403,11 @@ msgstr ""
 "Iets dat aangeeft dat de tekst is ingekort.<br />Standaard wordt “(...)” "
 "gebruikt."
 
-#: zp-core/zp-extensions/zenpage.php:197
+#: zp-core/zp-extensions/zenpage.php:198
 msgid "The text for the link to the full article."
 msgstr "De tekst voor de link naar het volledige artikel."
 
-#: zp-core/zp-extensions/zenpage.php:218
+#: zp-core/zp-extensions/zenpage.php:219
 msgid ""
 "* These options may be set via the <a href=\"javascript:gotoName('zenpage');"
 "\"><em>Zenpage</em></a> plugin options."
@@ -22413,11 +22415,11 @@ msgstr ""
 "* Deze optie(s) worden gedeeld met de <a href=\"javascript:"
 "gotoName('zenpage');\"><em>Zenpage</em></a> plugin opties."
 
-#: zp-core/zp-extensions/zenpage.php:254
+#: zp-core/zp-extensions/zenpage.php:274
 msgid "Enable Zenpage CMS plugin"
 msgstr "Activeer de Zenpage plugin."
 
-#: zp-core/zp-extensions/zenpage.php:353
+#: zp-core/zp-extensions/zenpage.php:373
 #: zp-core/zp-extensions/zenpage/admin-edit.php:133
 #: zp-core/zp-extensions/zenpage/admin-pages.php:74
 msgid "Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"
@@ -22425,27 +22427,27 @@ msgstr ""
 "Weet je zeker dat je deze pagina wilt verwijderen? DIT KAN NIET HERSTELD "
 "WORDEN!"
 
-#: zp-core/zp-extensions/zenpage.php:355
+#: zp-core/zp-extensions/zenpage.php:375
 msgid "Edit Page"
 msgstr "Bewerk pagina"
 
-#: zp-core/zp-extensions/zenpage.php:358
+#: zp-core/zp-extensions/zenpage.php:378
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:297
 msgid "Delete page"
 msgstr "Verwijder pagina"
 
-#: zp-core/zp-extensions/zenpage.php:358
+#: zp-core/zp-extensions/zenpage.php:378
 msgid "Delete Page"
 msgstr "Verwijder pagina"
 
-#: zp-core/zp-extensions/zenpage.php:361
+#: zp-core/zp-extensions/zenpage.php:381
 #: zp-core/zp-extensions/zenpage/admin-edit.php:218
 #: zp-core/zp-extensions/zenpage/admin-edit.php:236
 #: zp-core/zp-extensions/zenpage/admin-pages.php:129
 msgid "New Page"
 msgstr "Nieuwe pagina"
 
-#: zp-core/zp-extensions/zenpage.php:370
+#: zp-core/zp-extensions/zenpage.php:390
 #: zp-core/zp-extensions/zenpage/admin-edit.php:132
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:67
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:374
@@ -22455,28 +22457,28 @@ msgstr ""
 "Weet je zeker dat je dit artikel wilt verwijderen? DIT KAN NIET HERSTELD "
 "WORDEN!"
 
-#: zp-core/zp-extensions/zenpage.php:372
+#: zp-core/zp-extensions/zenpage.php:392
 msgid "Edit Article"
 msgstr "Bewerk Artikel"
 
-#: zp-core/zp-extensions/zenpage.php:375
+#: zp-core/zp-extensions/zenpage.php:395
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:374
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:375
 msgid "Delete article"
 msgstr "Verwijder artikel"
 
-#: zp-core/zp-extensions/zenpage.php:375
+#: zp-core/zp-extensions/zenpage.php:395
 msgid "Delete Article"
 msgstr "Verwijder artikel"
 
-#: zp-core/zp-extensions/zenpage.php:378
+#: zp-core/zp-extensions/zenpage.php:398
 #: zp-core/zp-extensions/zenpage/admin-edit.php:195
 #: zp-core/zp-extensions/zenpage/admin-edit.php:226
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:200
 msgid "New Article"
 msgstr "Nieuw artikel"
 
-#: zp-core/zp-extensions/zenpage.php:383
+#: zp-core/zp-extensions/zenpage.php:403
 #: zp-core/zp-extensions/zenpage/admin-categories.php:70
 #: zp-core/zp-extensions/zenpage/admin-edit.php:134
 msgid "Are you sure you want to delete this category? THIS CANNOT BE UNDONE!"
@@ -22484,17 +22486,17 @@ msgstr ""
 "Weet je zeker dat je deze categorie wilt verwijderen? DIT KAN NIET ONGEDAAN "
 "GEMAAKT WORDEN!"
 
-#: zp-core/zp-extensions/zenpage.php:385
+#: zp-core/zp-extensions/zenpage.php:405
 msgid "Edit Category"
 msgstr "Bewerk categorie"
 
-#: zp-core/zp-extensions/zenpage.php:386
+#: zp-core/zp-extensions/zenpage.php:406
 #: zp-core/zp-extensions/zenpage/admin-edit.php:207
 #: zp-core/zp-extensions/zenpage/admin-edit.php:231
 msgid "New Category"
 msgstr "Nieuwe categorie"
 
-#: zp-core/zp-extensions/zenpage.php:389
+#: zp-core/zp-extensions/zenpage.php:409
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1050
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1052
 msgid "Delete Category"
@@ -23718,6 +23720,13 @@ msgstr "OL"
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
 msgid "DL"
 msgstr "DL"
+
+#~ msgid ""
+#~ "PHP Version %1$s or greater is required. Version %2$s or greater is "
+#~ "strongly recommended. Use earlier versions at your own risk."
+#~ msgstr ""
+#~ "PHP versie %1$s of hoger is vereist. Versie %2$s of later wordt sterk "
+#~ "aangeraden. Gebruik van oudere versies is op eigen risico."
 
 #~ msgid "demo"
 #~ msgstr "demo"
