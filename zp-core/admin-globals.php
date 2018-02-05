@@ -96,13 +96,13 @@ if (@$_zp_loggedin) {
 
 
 		if (extensionEnabled('zenpage')) {
-			if (($_zp_loggedin & ZENPAGE_PAGES_RIGHTS) && getOption('zenpage_enabled_items') & 2) {
+			if (($_zp_loggedin & ZENPAGE_PAGES_RIGHTS) && $_zp_CMS->pages_enabled) {
 				$zenphoto_tabs['pages'] = array('text' => gettext("pages"),
 						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php',
 						'subtabs' => NULL);
 			}
 
-			if (($_zp_loggedin & ZENPAGE_NEWS_RIGHTS) && getOption('zenpage_enabled_items') & 1) {
+			if (($_zp_loggedin & ZENPAGE_NEWS_RIGHTS) && $_zp_CMS->news_enabled) {
 				$zenphoto_tabs['news'] = array('text' => gettext("news"),
 						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news.php',
 						'subtabs' => array(gettext('articles') => PLUGIN_FOLDER . '/zenpage/admin-news.php?page=news&tab=articles',
