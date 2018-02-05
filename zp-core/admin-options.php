@@ -224,7 +224,7 @@ if (isset($_GET['action'])) {
 				setOption('search_album_sort_direction', isset($_POST['search_album_sort_direction']));
 			}
 			
-			if (extensionEnabled('zenpage') && ZP_NEWS_ENABLED) {
+			if (ZP_NEWS_ENABLED) {
 				// Zenpage news articles default sort order + direction
 				$sorttype = strtolower(sanitize($_POST['search_newsarticle_sort_type'], 3));
 				if ($sorttype == 'custom') {
@@ -238,7 +238,7 @@ if (isset($_GET['action'])) {
 				}
 			}
 			
-			if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+			if (ZP_PAGES_ENABLED) {
 				// Zenpage pages default sort order + direction
 				$sorttype = strtolower(sanitize($_POST['search_page_sort_type'], 3));
 				if ($sorttype == 'custom')
@@ -1834,7 +1834,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										gettext('Published') => 'show',
 										gettext('Author') => 'author'
 								);
-								if (extensionEnabled('zenpage') && ZP_NEWS_ENABLED) {
+								if (ZP_NEWS_ENABLED) {
 								?>
 									<tr>
 										<td class="leftcolumn"><?php echo gettext("Sort news articles by"); ?> </td>
@@ -1887,7 +1887,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									</tr>
 								<?php 
 								} 
-								if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+								if (ZP_PAGES_ENABLED) {
 									$zenpage_sort[gettext('Manual')] = 'sort_order';
 								?>
 									<tr>

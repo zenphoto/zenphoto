@@ -47,6 +47,30 @@ $_zp_albumthumb_selector = array(array('field' => '', 'direction' => '', 'desc' 
 $_zp_missing_album = new AlbumBase(gettext('missing'), false);
 $_zp_missing_image = new Transientimage($_zp_missing_album, SERVERPATH . '/' . ZENFOLDER . '/images/err-imagenotfound.png');
 
+if (extensionEnabled('zenpage')) {
+	if (!defined('ZP_NEWS_ENABLED')) {
+		if (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'news') {
+			define('ZP_NEWS_ENABLED', true);
+		} else {
+			define('ZP_NEWS_ENABLED', false);
+		}
+	}
+	if (!defined('ZP_PAGES_ENABLED')) {
+		if (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'pages') {
+			define('ZP_PAGES_ENABLED', true);
+		} else {
+			define('ZP_PAGES_ENABLED', false);
+		}
+	}
+} else {
+	if (!defined('ZP_NEWS_ENABLED')) {
+		define('ZP_NEWS_ENABLED', false);
+	}
+	if (!defined('ZP_PAGES_ENABLED')) {
+		define('ZP_PAGES_ENABLED', false);
+	}
+}
+
 /**
  * parses the allowed HTML tags for use by htmLawed
  *
@@ -1195,14 +1219,14 @@ function getTagCountByAccess($tag) {
             }
             break;
           case 'news':
-            if (extensionEnabled('Zenpage') && ZP_NEWS_ENABLED) {
+            if (ZP_NEWS_ENABLED) {
               if (!in_array($tagcheck['objectid'], $hidenews)) {
                 $count++;
               }
             }
             break;
           case 'pages':
-            if (extensionEnabled('Zenpage') && ZP_PAGES_ENABLED) {
+            if (ZP_PAGES_ENABLED) {
               if (!in_array($tagcheck['objectid'], $hidepages)) {
                 $count++;
               }

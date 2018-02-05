@@ -2,7 +2,6 @@
 // force UTF-8 Ø
 if (!defined('WEBPATH'))
 	die();
-if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 	?>
 	<!DOCTYPE html>
 	<html>
@@ -109,8 +108,3 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 
 		</body>
 	</html>
-	<?php
-} else {
-	include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
-}
-?>

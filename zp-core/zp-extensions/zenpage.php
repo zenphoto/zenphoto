@@ -133,6 +133,7 @@ zp_register_filter('admin_toolbox_pages', 'zenpagecms::admin_toolbox_pages');
 zp_register_filter('themeSwitcher_head', 'zenpagecms::switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'zenpagecms::switcher_controllink', 0);
 zp_register_filter('load_theme_script', 'zenpagecms::switcher_setup', 99);
+zp_register_filter('load_theme_script', 'zenpagecms::disableZenpageItems', 0);
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class-news.php');
@@ -171,7 +172,7 @@ class zenpagecms {
 								gettext('Enable news') => 'news',
 								gettext('Enable pages') => 'pages'
 						),
-						'desc' => gettext('This enables or disables the admin tabs for pages and/or news articles. To hide news and/or pages content on the front end as well, themes must be setup to use <br><code>if(extensionEnabled("zenpage") && ZP_NEWS_ENABLED) { … }</code> or <br><code>if(extensionEnabled("zenpage") && ZP_PAGES_ENABLED) { … }</code> in appropriate places. Same if disabled items should blocked as they otherwise still can be accessed via direct links. <p class="notebox"><strong>NOTE:</strong> This does not delete content and is not related to management rights.</p>')
+						'desc' => gettext('This enables or disables the admin tabs for pages and/or news articles. To hide news and/or pages content on the front end as well, themes must be setup to use <br><code>if(ZP_NEWS_ENABLED) { … }</code> or <br><code>if(ZP_PAGES_ENABLED) { … }</code> in appropriate places. Same if disabled items should blocked as they otherwise still can be accessed via direct links. <p class="notebox"><strong>NOTE:</strong> This does not delete content and is not related to management rights.</p>')
 				), // The description of the option
 				gettext('Articles per page (theme)') => array(
 						'key' => 'zenpage_articles_per_page',
@@ -227,6 +228,25 @@ class zenpagecms {
 
 	function handleOption($option, $currentValue) {
 
+	}
+	
+	static function disableZenpageItems($script, $valid) {
+		global $_zp_gallery_page;
+		if ($script && $valid) {
+			switch ($_zp_gallery_page) {
+				case 'news.php':
+					if (!ZP_NEWS_ENABLED) {
+						$script = '404.php';
+					}
+					break;
+				case 'pages.php':
+					if (!ZP_PAGES_ENABLED) {
+						$script = '404.php';
+					}
+					break;
+			}
+			return $script;
+		}
 	}
 
 	static function switcher_head($list) {

@@ -1,7 +1,6 @@
 <?php
 if (!defined('WEBPATH'))
 	die();
-if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
 	?>
 	<!DOCTYPE html>
 	<html>
@@ -74,8 +73,3 @@ if (class_exists('Zenpage') && ZP_PAGES_ENABLED) {
 			?>
 		</body>
 	</html>
-	<?php
-} else {
-	include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
-}
-?>
