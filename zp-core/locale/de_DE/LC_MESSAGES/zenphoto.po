@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.15\n"
+"Project-Id-Version: Zenphoto 1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-25 13:10+0100\n"
-"PO-Revision-Date: 2018-01-25 13:32+0100\n"
+"POT-Creation-Date: 2018-02-05 13:58+0100\n"
+"PO-Revision-Date: 2018-02-05 13:58+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -525,7 +525,7 @@ msgstr "Kommentar hinzufügen"
 
 #: themes/effervescence_plus/image_gallery/functions.php:46
 #: themes/garland/image_gallery/functions.php:46
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:140
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:139
 msgid "Start"
 msgstr "Start"
 
@@ -675,8 +675,6 @@ msgstr "Album-Index"
 #: zp-core/lib-auth.php:558 zp-core/lib-auth.php:566 zp-core/lib-auth.php:567
 #: zp-core/lib-auth.php:573 zp-core/lib-auth.php:574 zp-core/lib-auth.php:578
 #: zp-core/lib-auth.php:584 zp-core/lib-auth.php:585
-#: zp-core/setup/setup-option-defaults.php:392
-#: zp-core/setup/setup-option-defaults.php:393
 #: zp-core/template-functions.php:620
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:151
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
@@ -1393,7 +1391,7 @@ msgstr ""
 "wollen, für den Fall, dass der Player im Gerät nicht funktioniert, obwohl "
 "das Format unterstützt wird."
 
-#: zp-core/404.php:56 zp-core/setup/index.php:1081
+#: zp-core/404.php:56
 msgid "Index"
 msgstr "Index"
 
@@ -1414,8 +1412,7 @@ msgstr "*Sammelaktionen*"
 #: zp-core/admin-albumsort.php:74 zp-core/admin-edit.php:565
 #: zp-core/admin-edit.php:578 zp-core/admin-edit.php:582
 #: zp-core/admin-functions.php:2058 zp-core/admin-logs.php:144
-#: zp-core/admin-themes.php:299 zp-core/setup/index.php:1081
-#: zp-core/zp-extensions/cacheManager.php:251
+#: zp-core/admin-themes.php:299 zp-core/zp-extensions/cacheManager.php:251
 #: zp-core/zp-extensions/comment_form/admin-comments.php:132
 #: zp-core/zp-extensions/comment_form/admin-comments.php:133
 #: zp-core/zp-extensions/comment_form/admin-comments.php:351
@@ -2055,7 +2052,7 @@ msgstr "nach"
 #: zp-core/zp-extensions/comment_form/admin-comments.php:144
 #: zp-core/zp-extensions/uploader_http/upload_form.php:71
 #: zp-core/zp-extensions/uploader_http/upload_form.php:72
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:142
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:141
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -2242,7 +2239,7 @@ msgstr "Lizenz"
 msgid "User guide"
 msgstr "Benutzeranleitung"
 
-#: zp-core/admin-functions.php:35 zp-core/setup/setup-functions.php:579
+#: zp-core/admin-functions.php:35
 msgid "Forum"
 msgstr "Forum"
 
@@ -2250,11 +2247,11 @@ msgstr "Forum"
 msgid "Bugtracker"
 msgstr "Bugtracker"
 
-#: zp-core/admin-functions.php:37 zp-core/setup/setup-functions.php:579
+#: zp-core/admin-functions.php:37
 msgid "View Change log"
 msgstr "Änderungen ansehen"
 
-#: zp-core/admin-functions.php:37 zp-core/setup/setup-functions.php:579
+#: zp-core/admin-functions.php:37
 msgid "Change log"
 msgstr "Änderungen"
 
@@ -3284,14 +3281,12 @@ msgstr ""
 "Der von Ihnen ausgewählte Pfad ist für Cookies ungültig. Er wurde "
 "zurückgesetzt."
 
-#: zp-core/admin-options.php:603 zp-core/setup/setup-functions.php:425
-#: zp-core/zp-extensions/dynamic-locale.php:58
+#: zp-core/admin-options.php:603 zp-core/zp-extensions/dynamic-locale.php:58
 #, php-format
 msgid "<em>%s</em> is not available."
 msgstr "<em>%s</em> ist nicht verfügbar."
 
-#: zp-core/admin-options.php:604 zp-core/setup/setup-functions.php:426
-#: zp-core/zp-extensions/dynamic-locale.php:59
+#: zp-core/admin-options.php:604 zp-core/zp-extensions/dynamic-locale.php:59
 #, php-format
 msgid "The locale %s is not supported on your server."
 msgstr "Die Locale %s wird von Ihrem Server nicht unterstützt."
@@ -3841,7 +3836,7 @@ msgstr ""
 
 #: zp-core/admin-options.php:1107 zp-core/admin-options.php:3066
 #: zp-core/admin-options.php:3194 zp-core/admin-options.php:3221
-#: zp-core/admin-options.php:3336 zp-core/setup/setup-sqlform.php:102
+#: zp-core/admin-options.php:3336
 msgid "save"
 msgstr "Sichern"
 
@@ -5439,7 +5434,7 @@ msgid "Continue refreshing the metadata."
 msgstr "Metadaten-Aktualisierung fortsetzen."
 
 #: zp-core/admin-refresh-metadata.php:130 zp-core/lib-auth.php:950
-#: zp-core/lib-auth.php:951 zp-core/setup/index.php:1614
+#: zp-core/lib-auth.php:951
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:155
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:375
 msgid "Refresh"
@@ -5888,7 +5883,7 @@ msgstr ""
 msgid "Make a new Album"
 msgstr "Neues Album erstellen"
 
-#: zp-core/admin-upload.php:285 zp-core/setup/index.php:1089
+#: zp-core/admin-upload.php:285
 msgid "and"
 msgstr "und"
 
@@ -6211,7 +6206,7 @@ msgid "Official build"
 msgstr "Offizielle Version"
 
 #: zp-core/admin.php:319 zp-core/functions-basic.php:1230
-#: zp-core/setup/index.php:407 zp-core/zp-extensions/security-logger.php:133
+#: zp-core/zp-extensions/security-logger.php:133
 msgid "clone"
 msgstr "Klon"
 
@@ -6524,7 +6519,7 @@ msgstr "Fehler: Das „albums“-Verzeichnis (%s) ist nicht lesbar."
 #: zp-core/exif/makers/panasonic.php:188 zp-core/exif/makers/panasonic.php:194
 #: zp-core/exif/makers/panasonic.php:200 zp-core/exif/makers/panasonic.php:205
 #: zp-core/exif/makers/sanyo.php:64 zp-core/exif/makers/sanyo.php:68
-#: zp-core/exif/makers/sanyo.php:72 zp-core/setup/setup-functions.php:363
+#: zp-core/exif/makers/sanyo.php:72
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -9796,1802 +9791,6 @@ msgstr ""
 "Sie müssen die Setup-Dateien von Ihrer Hauptinstallation wiederherstellen, "
 "um Setup ausführen zu können."
 
-#: zp-core/setup/index.php:22
-#, php-format
-msgid "Zenphoto requires PHP version %s or greater"
-msgstr "Zenphoto benötigt PHP %s oder neuer"
-
-#: zp-core/setup/index.php:149
-msgid "db POST handling"
-msgstr "Datenbank-POST-Behandlung"
-
-#: zp-core/setup/index.php:181
-msgid "readonly"
-msgstr "nur lesen"
-
-#: zp-core/setup/index.php:182
-msgid "strict"
-msgstr "streng"
-
-#: zp-core/setup/index.php:183
-msgid "relaxed"
-msgstr "entspannt"
-
-#: zp-core/setup/index.php:184
-msgid "loose"
-msgstr "locker"
-
-#: zp-core/setup/index.php:290
-msgid ""
-"A corrupt configuration file was detected. You should remove or repair the "
-"file and re-run setup."
-msgstr ""
-"Es wurde eine korrupte Installationsdatei gefunden. Sie sollten es entfernen "
-"oder reparieren und dann Setup ausführen."
-
-#: zp-core/setup/index.php:317
-msgid "upgrade"
-msgstr "Aktualisierung"
-
-#: zp-core/setup/index.php:381
-msgid "Completed system check"
-msgstr "Systemüberprüfung komplett"
-
-#: zp-core/setup/index.php:388
-msgid "Setup cookie test successful"
-msgstr "Installations-Testcookie erfolgreich"
-
-#: zp-core/setup/index.php:391
-msgid "Setup cookie test unsuccessful"
-msgstr "Setup Cookietest fehlgeschlagen"
-
-#: zp-core/setup/index.php:396
-msgid "Post of Database credentials"
-msgstr "Datenbank-Benutzerdaten"
-
-#: zp-core/setup/index.php:409
-#, php-format
-msgid "Zenphoto Setup v%1$s %2$s: %3$s"
-msgstr "Zenphoto Setup v%1$s %2$s: %3$s"
-
-#: zp-core/setup/index.php:412
-msgid "Full environment"
-msgstr "Volle Umgebung"
-
-#: zp-core/setup/index.php:414
-msgid "Primitive environment"
-msgstr "Einfache Umgebung"
-
-#: zp-core/setup/index.php:416
-#, php-format
-msgid "Query error: %s"
-msgstr "Abfragefehler:  %s"
-
-#: zp-core/setup/index.php:430
-msgid "create"
-msgstr "erstellen"
-
-#: zp-core/setup/index.php:430
-msgid "update"
-msgstr "aktualisieren"
-
-#: zp-core/setup/index.php:447
-msgid "Upgrade from before Zenphoto v1.2"
-msgstr "Aktualisierung von vor Zenphoto 1.2"
-
-#: zp-core/setup/index.php:458 zp-core/setup/index.php:475
-#, php-format
-msgid "Upgrade from Zenphoto v%s"
-msgstr "Aktualisierung von Zenphoto v%s"
-
-#: zp-core/setup/index.php:463 zp-core/setup/index.php:491
-msgid "Reinstalling current Zenphoto release"
-msgstr "Erneute Installation der aktuellen Zenphoto-Version"
-
-#: zp-core/setup/index.php:464 zp-core/setup/index.php:492
-msgid "reinstall"
-msgstr "Erneut installieren"
-
-#: zp-core/setup/index.php:503
-msgid "install"
-msgstr "Installieren"
-
-#: zp-core/setup/index.php:526
-msgid "Zenphoto Setup"
-msgstr "Zenphoto-Installation"
-
-#: zp-core/setup/index.php:527
-msgid "Setup"
-msgstr "Installation"
-
-#: zp-core/setup/index.php:551
-#, php-format
-msgid ""
-"Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."
-msgstr ""
-"Willkommen bei Zenphoto! Diese Seite wird Zenphoto %s auf Ihrem Webserver "
-"einrichten."
-
-#: zp-core/setup/index.php:553
-msgid "Systems Check:"
-msgstr "Systemcheck:"
-
-#: zp-core/setup/index.php:568
-msgid ""
-"<strong>Note:</strong> The release you are installing has debugging settings "
-"enabled!"
-msgstr ""
-"<strong>Anmerkung:</strong> Die Version, die Sie installieren, hat "
-"Fehlersucheinstellungen aktiviert!"
-
-#: zp-core/setup/index.php:575
-#, php-format
-msgid "[%u release skipped]"
-msgid_plural "[%u releases skipped]"
-msgstr[0] "[%u Version übersprungen]"
-msgstr[1] "[%u Versionen übersprungen]"
-
-#: zp-core/setup/index.php:575
-msgid ""
-"We do not test upgrades that skip releases. We recommend you upgrade in "
-"sequence."
-msgstr ""
-"Wir testen keine Aktualisierungen, die Versionen auslassen und empfehlen der "
-"Reihenfolge nach zu akualisieren."
-
-#: zp-core/setup/index.php:581
-#, php-format
-msgid "Installing Zenphoto v%s"
-msgstr "Zenphoto v%s wird installiert"
-
-#: zp-core/setup/index.php:594
-#, php-format
-msgid "<em>%s</em> security"
-msgstr "<em>%s</em>-Sicherheit"
-
-#: zp-core/setup/index.php:594
-#, php-format
-msgid "<em>%s</em> security [is compromised]"
-msgstr "<em>%s</em>-Protokollsicherheit [ist gefährdet]"
-
-#: zp-core/setup/index.php:594
-#, php-format
-msgid ""
-"Zenphoto suggests you make the sensitive files in the %1$s folder accessable "
-"by <em>owner</em> only (permissions = 0600). The file permissions for <em>"
-"%2$s</em> are %3$04o which may allow unauthorized access."
-msgstr ""
-"Zenphoto empfiehlt, die sensiblen Dateien im %1$s-Order nur für den "
-"<em>Owner</em> zugänglich zu machen (Zugrifssrechte = 0600).  Die "
-"Dateizugriffsrechte für <em>%2$s</em> sind %3$04o, was unerlaubten Zugriff "
-"erlauben kann."
-
-#: zp-core/setup/index.php:597
-#, php-format
-msgid "PHP version %s"
-msgstr "PHP-Version %s"
-
-#: zp-core/setup/index.php:597
-#, php-format
-msgid ""
-"PHP Version %1$s or greater is required. Version %2$s or greater is strongly "
-"recommended. Use earlier versions at your own risk."
-msgstr ""
-"Version %1$s oder neuer ist notwendig. Version %2$s oder neuer ist "
-"ausdrücklich empfohlen. Verwenden Sie ältere Versionen auf eigenes Risiko. "
-
-#: zp-core/setup/index.php:600
-msgid "PHP <code>Sessions</code>."
-msgstr "PHP <code>Sessions</code>."
-
-#: zp-core/setup/index.php:600 zp-core/setup/index.php:602
-msgid "PHP <code>Sessions</code> [appear to not be working]."
-msgstr ""
-"PHP <code>Sessions</code>-Unterstützung [scheint nicht zu funktionieren]"
-
-#: zp-core/setup/index.php:602
-msgid "PHP Sessions are required for Zenphoto administrative functions."
-msgstr "PHP Sessions sind für Zenphoto-Verwaltungsfunktionen erforderlich."
-
-#: zp-core/setup/index.php:617
-msgid "PHP <code>Register Globals</code>"
-msgstr "PHP <code>Register Globals</code>"
-
-#: zp-core/setup/index.php:617
-msgid "PHP <code>Register Globals</code> [is set]"
-msgstr "PHP <code>Register Globals</code> [ist aktiv]"
-
-#: zp-core/setup/index.php:617
-msgid ""
-"PHP Register globals presents a security risk to any PHP application. See <a "
-"href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register "
-"Globals</em></a>. Change your PHP.ini settings to <code>register_globals = "
-"off</code>."
-msgstr ""
-"PHP Register globals stellt ein Sicherheitsrisiko für jedes PHP-Programm "
-"dar. Bitte lesen Sie auf <a href=\"http://php.net/manual/de/security.globals."
-"php\"><em>Verwendung von Register Globals</em></a>. Ändern Sie Ihre PHP.ini-"
-"Einstellung auf <code>register_globals = off</code>."
-
-#: zp-core/setup/index.php:624
-msgid "PHP <code>Safe Mode</code>"
-msgstr "PHP <code>Safe Mode</code>"
-
-#: zp-core/setup/index.php:624
-msgid "PHP <code>Safe Mode</code> [is set]"
-msgstr "PHP <code>Safe Mode</code> [ist aktiv]"
-
-#: zp-core/setup/index.php:624
-msgid ""
-"Zenphoto functionality is reduced when PHP <code>safe mode</code> "
-"restrictions are in effect."
-msgstr ""
-"Zenphotos Funktionalität ist eingeschränkt solange PHP Safe Mode-"
-"Einschränkungen aktiv sind."
-
-#: zp-core/setup/index.php:642
-msgid "<code>Suhosin</code> module [is enabled]"
-msgstr "PHP <code>Suoshin</code>-Modul [ist aktiviert]"
-
-#: zp-core/setup/index.php:642
-#, php-format
-msgid ""
-"The following PHP functions are blocked: %s. Flagged functions are required "
-"by Zenphoto. Other functions in the list may be used by Zenphoto, possibly "
-"causing reduced functionality or Zenphoto failures."
-msgstr ""
-"Die folgenden PHP-Funktionen sind blockiert: %s. Die markierten Funktionen "
-"warden von Zenphoto benötigt. Andere Funktionen der Liste werden "
-"möglicherweise von Zenphoto verwendet und können daher eingeschränkte "
-"Funktionalität oder Zenphoto-Fehler verursachen."
-
-#: zp-core/setup/index.php:646
-msgid "Magic_quotes"
-msgstr "Magic_quotes"
-
-#: zp-core/setup/index.php:652
-msgid "PHP <code>magic_quotes_gpc</code>"
-msgstr "PHP <code>magic_quotes_gpc</code>"
-
-#: zp-core/setup/index.php:652
-msgid "PHP <code>magic_quotes_gpc</code> [is enabled]"
-msgstr "PHP <code>magic_quotes_gpc</code> [sind aktiviert]"
-
-#: zp-core/setup/index.php:652
-msgid ""
-"We strongly recommend disabling <code>magic_quotes_gpc</code>. For more "
-"information See <em><a href=\"http://www.zenphoto.org/news/installation-"
-"problems#about-magicquotes-and-why-they-should-be-disabled\">What is "
-"magic_quotes_gpc and why should it be disabled?</a></em> in the Zenphoto "
-"troubleshooting guide."
-msgstr ""
-"Wir empfehlen dringend, <code>magic_quotes_gpc</code> zu deaktivieren. Für "
-"mehr Information lesen Sie bitte <em><a href=\"http://www.zenphoto.org/news/"
-"troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-it-be-"
-"disabled-\">What is magic_quotes_gpc and why should it be disabled?</a></em> "
-"im Zenphoto troubleshooting guide."
-
-#: zp-core/setup/index.php:658
-msgid "PHP <code>magic_quotes_runtime</code>"
-msgstr "PHP <code>magic_quotes_runtime</code>"
-
-#: zp-core/setup/index.php:658
-msgid "PHP <code>magic_quotes_runtime</code> [is enabled]"
-msgstr "PHP <code>magic_quotes_runtime</code> [ist aktiviert]"
-
-#: zp-core/setup/index.php:658
-msgid "You must disable <code>magic_quotes_runtime</code>."
-msgstr "Sie müssen <code>magic_quotes_runtime</code> deaktivieren."
-
-#: zp-core/setup/index.php:659
-msgid "PHP <code>magic_quotes_sybase</code>"
-msgstr "PHP <code>magic_quotes_sybase</code>"
-
-#: zp-core/setup/index.php:659
-msgid "PHP <code>magic_quotes_sybase</code> [is enabled]"
-msgstr "PHP <code>magic_quotes_sybase</code> [ist aktiviert]"
-
-#: zp-core/setup/index.php:659
-msgid "You must disable <code>magic_quotes_sybase</code>."
-msgstr "Sie müssen <code>magic_quotes_sybase</code> deaktivieren."
-
-#: zp-core/setup/index.php:681
-msgid "PHP <code>display_errors</code>"
-msgstr "PHP <code>display_errors</code>"
-
-#: zp-core/setup/index.php:681
-#, php-format
-msgid "PHP <code>display_errors</code> [is enabled]"
-msgstr "PHP <code>display_errors</code> [ist aktiviert]"
-
-#: zp-core/setup/index.php:681
-msgid ""
-"This setting may result in PHP error messages being displayed on WEB pages. "
-"These displays may contain sensitive information about your site."
-msgstr ""
-"PHP-Fehlermeldungen werden möglicherweise auf Ihrer Website angezeigt. Diese "
-"können ungewollt sensitive Daten beinhalten."
-
-#: zp-core/setup/index.php:683
-msgid "PHP <code>gettext()</code> support"
-msgstr "PHP <code>gettext()</code>-Unterstützung"
-
-#: zp-core/setup/index.php:683
-msgid "PHP <code>gettext()</code> support [is not present]"
-msgstr "PHP <code>gettext()</code>-Unterstützung [ist nicht vorhanden]"
-
-#: zp-core/setup/index.php:683
-msgid ""
-"Localization of Zenphoto requires native PHP <code>gettext()</code> support"
-msgstr ""
-"Lokalisation von Zenphoto benötigt die PHP-<code>gettext()</code>-Erweiterung"
-
-#: zp-core/setup/index.php:684
-msgid "PHP <code>flock</code> support"
-msgstr "PHP <code>flock</code>-Unterstützung"
-
-#: zp-core/setup/index.php:684
-msgid "PHP <code>flock</code> support [is not present]"
-msgstr "PHP <code>flock</code>-Unterstützung [ist nicht vorhanden]"
-
-#: zp-core/setup/index.php:684
-msgid ""
-"Zenpoto uses <code>flock</code> for serializing critical regions of code. "
-"Without <code>flock</code> active sites may experience <em>race conditions</"
-"em> which may be causing inconsistent data."
-msgstr ""
-"Zenpoto verwendet <code>flock</code>. um kritische Coderegionen zu "
-"sterilisieren. Ohne <code>flock</code> können Sites <em>kritische Wettläufe</"
-"em> erfahren, die inkonsistente Daten zur Folge haben können."
-
-#: zp-core/setup/index.php:686
-msgid "PHP <code>setlocale()</code>"
-msgstr "PHP <code>setlocale()</code>"
-
-#: zp-core/setup/index.php:686
-msgid "PHP <code>setlocale()</code> failed"
-msgstr "PHP <code>setlocale()</code> fehlgeschlagen"
-
-#: zp-core/setup/index.php:686
-msgid ""
-"Locale functionality is not implemented on your platform or the specified "
-"locale does not exist. Language translation may not work."
-msgstr ""
-"Ihr Server verfügt nicht über Locale-Funktionalität oder die ausgewählte "
-"Locale existiert nicht. Übersetzung funktionieren daher möglicherweise nicht."
-
-#: zp-core/setup/index.php:686
-msgid ""
-"See the <a  href=\"http://www.zenphoto.org/news/problems-with-languages"
-"\">user guide</a> on zenphoto.org for details."
-msgstr ""
-"Bitte lesen Sie den <a  href=\"http://www.zenphoto.org/news/problems-with-"
-"languages\">Troubleshooting guide</a> auf zenphoto.org für mehr Information."
-
-#: zp-core/setup/index.php:688
-msgid "mb_strings"
-msgstr "mb_strings"
-
-#: zp-core/setup/index.php:696
-msgid ""
-"Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
-"your <em>php.ini</em> file is recommended to insure accented and multi-byte "
-"characters function properly."
-msgstr ""
-"Es wird empfohlen, die <em>mbstring.internal_encoding</em> auf "
-"<strong>UTF-8</strong> in Ihrer <em>php.ini</em>-Datei zu setzen, um sicher "
-"zu stellen, dass akzentuierte und multi-byte Buchstaben wie erwartet "
-"funktionieren."
-
-#: zp-core/setup/index.php:697
-msgid "PHP <code>mbstring</code> package"
-msgstr "PHP <code>mbstring</code>-Erweiterung"
-
-#: zp-core/setup/index.php:697
-#, php-format
-msgid ""
-"PHP <code>mbstring</code> package [Your internal character set is <strong>"
-"%s</strong>]"
-msgstr ""
-"PHP <code>mbstring</code>-Erweiterung [Ihr interner Zeichensatz ist auf "
-"<strong>%s</strong> eingestellt]"
-
-#: zp-core/setup/index.php:701
-msgid ""
-"You need to install the <code>mbstring</code> package or correct the issue "
-"with <code>iconv()</code>"
-msgstr ""
-"Sie müssen die <code>mbstring</code>-Erweiterung installieren oder "
-"Angelegenheit mit  <code>iconv(()</code> beheben"
-
-#: zp-core/setup/index.php:702
-msgid ""
-"PHP <code>mbstring</code> package [is not present and <code>iconv()</code> "
-"is not working]"
-msgstr ""
-"PHP <code>mbstring</code>-Erweiterung [ist nicht vorhanden und "
-"<code>iconv()</code> funktioniert nicht]"
-
-#: zp-core/setup/index.php:704
-msgid ""
-"Strings generated internally by PHP may not display correctly. (e.g. dates)"
-msgstr ""
-"Zeichenketten, die intern von PHP generiert werden, können unter Umständen "
-"nicht korrekt dargestellt werden (z. B. Datumsangaben)."
-
-#: zp-core/setup/index.php:705
-msgid "PHP <code>mbstring</code> package [is not present]"
-msgstr "PHP <code>mbstring</code>-Erweiterung [ist nicht vorhanden]"
-
-#: zp-core/setup/index.php:711
-msgid "Graphics library"
-msgstr "Grafikbibliothek"
-
-#: zp-core/setup/index.php:719
-#, php-format
-msgid "Graphics support: <code>%s</code>"
-msgstr "Grafikunterstützung: <code>%s</code>"
-
-#: zp-core/setup/index.php:719
-msgid "Graphics support [is not installed]"
-msgstr "Grafikunterstützung [ist nicht installiert]"
-
-#: zp-core/setup/index.php:719
-msgid ""
-"You need to install a graphics support library such as the <em>GD library</"
-"em> in your PHP"
-msgstr ""
-"Sie müssen eine <em>Grafikerweitung</em> für PHP wie die GD-Bibliothek "
-"installieren"
-
-#: zp-core/setup/index.php:734
-#, php-format
-msgid "Your PHP graphics library does not support %1$s or %2$s"
-msgstr "Ihre PHP-Grafiklibary unterstützt %1$s oder %2$s nicht"
-
-#: zp-core/setup/index.php:736
-#, php-format
-msgid "Your PHP graphics library does not support %1$s"
-msgstr "Ihre PHP-Grafiklibary unterstützt %1$s nicht"
-
-#: zp-core/setup/index.php:739
-msgid ""
-"To correct this you should install a graphics library with appropriate image "
-"support in your PHP"
-msgstr ""
-"Um dies zu beheben, sollten Sie GD-Grafikerweiterung mit entsprechender "
-"Bildunterstützung für PHP installieren"
-
-#: zp-core/setup/index.php:741
-#, php-format
-msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
-msgstr "Ihre PHP-Grafiklibary unterstützt  %1$s, %2$s oder %3$s nicht"
-
-#: zp-core/setup/index.php:744
-msgid ""
-"To correct this you need to install GD with appropriate image support in "
-"your PHP"
-msgstr ""
-"Um dies zu beheben, müssen Sie die GD-Erweiterung für PHP mit der "
-"entsprechenden Bildformatunterstützung installieren"
-
-#: zp-core/setup/index.php:746
-msgid "PHP graphics image support"
-msgstr "PHP-GD-Bildbearbeitungs-Unterstützung"
-
-#: zp-core/setup/index.php:747
-msgid "The unsupported image types will not be viewable in your albums."
-msgstr ""
-"Die nicht unterstützten Bildformate werden in Ihren Alben nicht zu sehen "
-"sein."
-
-#: zp-core/setup/index.php:751
-msgid "Graphics Library rotation support [is not present]"
-msgstr "Grafikbibliothek Bildrotationunterstützung [ist nicht vorhanden]"
-
-#: zp-core/setup/index.php:751
-msgid ""
-"The graphics support library does not provide support for image rotation."
-msgstr "Die Grafikunterstützung bietet keine Bildrotationsfunktionalität."
-
-#: zp-core/setup/index.php:759
-msgid "Graphics support [configuration error]"
-msgstr "Grafikunterstützung [Konfigurationsfehler]"
-
-#: zp-core/setup/index.php:759
-msgid ""
-"No Zenphoto image handling library was loaded. Be sure that your PHP has a "
-"graphics support."
-msgstr ""
-"Es wurde keine Zenphoto-Grafikbibliothek geladen. Überprüfen Sie, dass Ihr "
-"PHP über Grafikunterstützung verfügt."
-
-#: zp-core/setup/index.php:770
-#, php-format
-msgid "<em>%1$s</em> file"
-msgstr "<em>%1$s</em>-Datei"
-
-#: zp-core/setup/index.php:770
-#, php-format
-msgid "<em>%1$s</em> file [does not exist]"
-msgstr "<em>%1$s</em>-Datei [existiert nicht]"
-
-#: zp-core/setup/index.php:770
-#, php-format
-msgid ""
-"Setup was not able to create this file. You will need to copy the <code>%1$s/"
-"zenphoto_cfg.txt</code> file to <code>%2$s/%3$s</code> then edit it as "
-"indicated in the file’s comments."
-msgstr ""
-"Das Installationsprogramm konnte diese Datei nicht erstellen. Sie müssen "
-"daher die Datei <code>%1$s/zenphoto_cfg.txt</code> nach <code>%2$s/%3$s</"
-"code>kopieren und dann wie in den Dateikommentaren beschrieben ändern."
-
-#: zp-core/setup/index.php:772
-msgid "File permissions"
-msgstr "Dateizugriffsrechte"
-
-#: zp-core/setup/index.php:774
-#, php-format
-msgid "Set File permissions to %s."
-msgstr "Dateizugriffsrechte auf %s ändern."
-
-#: zp-core/setup/index.php:777
-#, php-format
-msgid "<em>%1$s</em> (<code>0%2$o</code>)"
-msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
-
-#: zp-core/setup/index.php:779
-#, php-format
-msgid "<em>unknown</em> (<code>%o</code>)"
-msgstr "<em>Unbekannt</em> (<code>%o</code>)"
-
-#: zp-core/setup/index.php:790
-#, php-format
-msgid "File Permissions [are %s]"
-msgstr "Dateizugriffsrechte [sind %s]"
-
-#: zp-core/setup/index.php:791
-msgid ""
-"If file permissions are not set to <em>strict</em> or tighter there could be "
-"a security risk. However, on some servers Zenphoto does not function "
-"correctly with tight file permissions. If Zenphoto has permission errors, "
-"run setup again and select a more relaxed permission."
-msgstr ""
-"Es ist empfohlen, dass Sie <em>Strenge Rechte</em> aktivieren, da dies "
-"andernfalls ein Sicherheitsrisiko darstellen kann. Jedoch funktioniert "
-"Zenphoto auf einigen Servern leider nicht korrekt mit strenger "
-"Rechtevergabe. Wenn Sie diese Einstellung aktivieren und Fehler bezüglich "
-"Rechtevergabe erhalten, führen Sie das Installationsprogramm erneut aus und "
-"setzten Sie weniger strenge Rechte. "
-
-#: zp-core/setup/index.php:797
-msgid "Your filesystem is Macintosh"
-msgstr "Ihr Dateisystem ist Macintosh"
-
-#: zp-core/setup/index.php:797
-msgid ""
-"Zenphoto is unable to deal with Macintosh file names containing diacritical "
-"marks. You should avoid these."
-msgstr ""
-"Zenphoto kann auf Macs nicht mit Dateinamen, die Akzente enthalten, umgehen. "
-"Sie sollten diese vermeiden."
-
-#: zp-core/setup/index.php:804
-msgid "Character set"
-msgstr "Zeichensatz"
-
-#: zp-core/setup/index.php:845
-#, php-format
-msgid ""
-"If your server filesystem character set is different from <code>%s</code> "
-"and you create album or image filenames names containing characters with "
-"diacritical marks you may have problems with these objects."
-msgstr ""
-"Wenn Ihr Server-Dateisystem-Zeichensatz anders als <code>%s</code> ist, "
-"können Datei -und Ordnernamen mit Zeichen, die diakritische Zeichen "
-"enthalten, Probleme verursachen."
-
-#: zp-core/setup/index.php:847
-#, php-format
-msgid "Change the filesystem character set define to %1$s"
-msgstr "Die Dateisystem-Zeichensatz-Definition auf %1$s ändern"
-
-#: zp-core/setup/index.php:861
-#, php-format
-msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
-msgstr ""
-"Der Zenphoto-Dateisystem-Zeichensatz ist als %1$s definiert [bestätigt]"
-
-#: zp-core/setup/index.php:866
-msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
-msgstr ""
-"Der Zenphoto-Dateisystem-Zeichensatz ist als ISO-8859-1 [angenommen] "
-"definiert"
-
-#: zp-core/setup/index.php:871
-#, php-format
-msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
-msgstr ""
-"Der Zenphoto-Dateisystem-Zeichensatz ist als %1$s definiert  [scheint falsch]"
-
-#: zp-core/setup/index.php:876
-#, php-format
-msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
-msgstr ""
-"Der Zenphoto-Dateisystem-Zeichensatz ist als %1$s definiert [Es wurde kein "
-"Test ausgeführt]."
-
-#: zp-core/setup/index.php:877
-#, php-format
-msgid ""
-"Setup did not perform a test of the filesystem character set. You can cause "
-"setup to test for a proper definition by creating a file in your <code>%1$s</"
-"code> folder named <strong><code>%2$s</code></strong> and re-running setup."
-msgstr ""
-"Das Installationsskript hat keinen Test bezüglich des Dateisystem-"
-"Zeichensatzes durchgeführt. Sie können es anweisen, eine  einen Test "
-"durchzuführen, indem Sie eine Datei in Ihrem <code>%1$s</code>-Ordner mit "
-"dem Namen <strong><code>%2$s</code></strong> erstellen und das "
-"Installationsskript erneut aufrufen. "
-
-#: zp-core/setup/index.php:890
-msgid "Image URIs appear require the <em>filesystem</em> character set."
-msgstr "Bild-URIs scheinen den <em>filesystem</em>-Zeichensatz zu erfordern."
-
-#: zp-core/setup/index.php:891
-msgid "Image URIs appear to require the UTF-8 character set."
-msgstr "Bild-URIs scheinen den UTF-8-Zeichensatz zu erfordern."
-
-#: zp-core/setup/index.php:912
-msgid "You should enable the URL option <em>UTF8 image URIs</em>."
-msgstr "Sie sollten die URL-Einstellung <em>UTF8 Bild-URIs</em> aktivieren"
-
-#: zp-core/setup/index.php:912
-msgid "<a href=\"javascript:uri(true)\">Please do</a>"
-msgstr "<a href=\"javascript:uri(true)\">Bitte machen</a>"
-
-#: zp-core/setup/index.php:929
-msgid "You should disable the URL option <em>UTF8 image URIs</em>."
-msgstr "Sie sollten die URL-Einstellung <em>UTF8 Bild-URIs</em> deaktivieren"
-
-#: zp-core/setup/index.php:929
-msgid "<a href=\"javascript:uri(false)\">Please do</a>"
-msgstr "<a href=\"javascript:uri(false)\">Bitte machen</a>"
-
-#: zp-core/setup/index.php:951 zp-core/setup/setup-functions.php:123
-#: zp-core/setup/setup-functions.php:138
-msgid "Warning!"
-msgstr "Warnung!"
-
-#: zp-core/setup/index.php:962 zp-core/utilities/database_reference.php:33
-#: zp-core/utilities/refresh_database.php:4
-#: zp-core/utilities/refresh_metadata.php:4
-#: zp-core/utilities/reset_albumthumbs.php:13
-#: zp-core/zp-extensions/hitcounter.php:212
-#: zp-core/zp-extensions/rating.php:174
-msgid "Database"
-msgstr "Datenbank"
-
-#: zp-core/setup/index.php:966
-#, php-format
-msgid "PHP <code>%s</code> support for configured Database"
-msgstr "PHP <code>%s</code>-Unterstützung für die konfigurierte Datenbank"
-
-#: zp-core/setup/index.php:971
-#, php-format
-msgid ""
-" <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" "
-">experimental</a>)"
-msgstr ""
-" <code>%1$s</code>-Support (<a onclick=\"$('#%1$s').toggle('show')\" "
-">experimentell</a>)"
-
-#: zp-core/setup/index.php:980
-#, php-format
-msgid "PHP <code>%s</code> support"
-msgstr "PHP <code>%s</code>-Unterstützung"
-
-#: zp-core/setup/index.php:986
-#, php-format
-msgid "PHP <code>%s</code> support [is not installed]"
-msgstr "PHP <code>%s</code>-Unterstützung [ist nicht installiert]"
-
-#: zp-core/setup/index.php:996
-msgid "No database selected"
-msgstr "Keine Datenbank ausgewählt"
-
-#: zp-core/setup/index.php:1008
-#, php-format
-msgid "%1$s version %2$s"
-msgstr "%1$s Version %2$s"
-
-#: zp-core/setup/index.php:1008
-#, php-format
-msgid ""
-"%1$s Version %2$s or greater is required. Version %3$s or greater is "
-"preferred. Use a lower version at your own risk."
-msgstr ""
-"%1$s Version %2$s oder neuer ist notwendig. Version %3$s oder neuer ist "
-"ausdrücklich empfohlen. Verwenden Sie ältere Versionen auf eigenes Risiko. "
-
-#: zp-core/setup/index.php:1010
-msgid "Database connection"
-msgstr "Datenbankverbindung"
-
-#: zp-core/setup/index.php:1016
-msgid "Database credentials in configuration file"
-msgstr "Datenbank-Konfiguration in der Konfigurationsdatei"
-
-#: zp-core/setup/index.php:1016
-#, php-format
-msgid "<em>%1$s</em> reported: %2$s"
-msgstr "<em>%1$s</em> berichtet: %2$s"
-
-#: zp-core/setup/index.php:1023
-msgid ""
-"You have not correctly set your <strong>Database</strong> <code>user</code>, "
-"<code>password</code>, etc. in your configuration file and <strong>setup</"
-"strong> is not able to write to the file."
-msgstr ""
-"Sie haben den <strong>Datenbank</strong>-<code>Benutzer</code>, <code>-"
-"Passwort</code> etc. in Ihrer<code>zp-config.php</code>-Datei nicht korrekt "
-"eingetragen, so dass <strong>setup</strong> die Datei nicht aktualisieren "
-"kann."
-
-#: zp-core/setup/index.php:1025
-msgid "Database setup in configuration file"
-msgstr "Datenbank-Konfiguration in der Konfigurationsdatei"
-
-#: zp-core/setup/index.php:1028
-#, php-format
-msgid "Connect to %s"
-msgstr "Verbinden mit %s"
-
-#: zp-core/setup/index.php:1028
-msgid "Connect to Database [<code>CONNECT</code> query failed]"
-msgstr "Datenbank-Verbindung  [<code>CONNECT</code>-Abfrage fehlgeschlagen]"
-
-#: zp-core/setup/index.php:1035
-#, php-format
-msgid "Database <code>%s</code> created"
-msgstr "Datenbank <code>%s</code> erstellt"
-
-#: zp-core/setup/index.php:1043
-#, php-format
-msgid "Click here to attempt to create <a href=\"?Create_Database\" >%s</a>."
-msgstr ""
-"Klicken Sie hier, um die Datenbank zu erstellen: <a href=\"?Create_Database"
-"\" >%s</a>. "
-
-#: zp-core/setup/index.php:1048
-#, php-format
-msgid ""
-"Database <code>%s</code> not created [<code>CREATE DATABASE</code> query "
-"failed]"
-msgstr ""
-"Datenbank <code>%s</code> nicht erstellt [<code>CREATE DATABASE</code>-"
-"Abfrage fehlgeschlagen]"
-
-#: zp-core/setup/index.php:1054
-msgid ""
-"You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
-"configuration."
-msgstr ""
-"Sie müssen möglicherweise den  <code>SQL-Modus</code> in Ihrer Datenbank-"
-"Konfiguration auf <em>leer</em>"
-
-#: zp-core/setup/index.php:1058
-#, php-format
-msgid "<code>SQL mode</code> [query failed]"
-msgstr "<code>SQL-Modus</code> [Abfrage fehlgeschlagen]"
-
-#: zp-core/setup/index.php:1061
-#, php-format
-msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
-msgstr "<code>SQL-Modus</code> [<em>%s</em> übergangen]"
-
-#: zp-core/setup/index.php:1061
-msgid "Consider setting it <em>empty</em> in your Database configuration."
-msgstr ""
-"Ziehen Sie in Erwägung dies in Ihrer MySQL-Konfiguration auf <em>leer</em> "
-"zu stellen."
-
-#: zp-core/setup/index.php:1068
-msgid "<code>SQL mode</code>"
-msgstr "<code>SQL-Modus</code>"
-
-#: zp-core/setup/index.php:1068
-#, php-format
-msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
-msgstr "<code>SQL-Modus</code> [ist auf <em>%s</em> gestellt]"
-
-#: zp-core/setup/index.php:1068
-msgid "Consider setting it <em>empty</em> if you get Database errors."
-msgstr ""
-"Ziehen Sie in Erwägung, dies auf <em>leer</em> zu stellen, wenn Sie "
-"Datenbank-Fehlermeldungen bekommen."
-
-#: zp-core/setup/index.php:1072
-msgid "<code>SQL mode</code> [SET SESSION failed]"
-msgstr "<code>SQL-Modus</code> [SET SESSION fehlgeschlagen]"
-
-#: zp-core/setup/index.php:1080
-msgid "Select"
-msgstr "Auswählen"
-
-#: zp-core/setup/index.php:1080
-msgid "Create"
-msgstr "Erzeugen"
-
-#: zp-core/setup/index.php:1080
-msgid "Drop"
-msgstr "Verwerfen"
-
-#: zp-core/setup/index.php:1080
-msgid "Insert"
-msgstr "Einfügen"
-
-#: zp-core/setup/index.php:1081
-msgid "Update"
-msgstr "Aktualisieren"
-
-#: zp-core/setup/index.php:1081
-msgid "Alter"
-msgstr "Ändern"
-
-#: zp-core/setup/index.php:1091
-msgid "Grants found:"
-msgstr "Grants gefunden:"
-
-#: zp-core/setup/index.php:1119
-msgid "The <em>SHOW GRANTS</em> query failed."
-msgstr "Die <code>SHOW GRANTS</code>-Abfrage ist fehlgeschlagen."
-
-#: zp-core/setup/index.php:1121
-#, php-format
-msgid "Database <code>access rights</code> for <em>%s</em>"
-msgstr "Datenbank-<code>Zugriffsrechte</code> für <em>%s</em>"
-
-#: zp-core/setup/index.php:1121
-#, php-format
-msgid "Database <code>access rights</code> for <em>%1$s</em> [%2$s]"
-msgstr "Datenbank-<code>Zugriffsrechte</code> für <em>%1$s</em> [%2$s]"
-
-#: zp-core/setup/index.php:1121
-#, php-format
-msgid "Your Database user must have %s rights."
-msgstr "Ihr Datenbank-Benutzer muß über %s Rechte verfügen."
-
-#: zp-core/setup/index.php:1138
-msgid "<em>SHOW TABLES</em> [found no tables]"
-msgstr "<em>SHOW TABLES</em> [keine Tabellen gefunden]"
-
-#: zp-core/setup/index.php:1141
-#, php-format
-msgid "<em>SHOW TABLES</em> found: %s"
-msgstr "<em>SHOW TABLES</em> fand: %s"
-
-#: zp-core/setup/index.php:1144
-msgid "<em>SHOW TABLES</em> [Failed]"
-msgstr "<em>SHOW TABLES</em> [fehlgeschlagen]"
-
-#: zp-core/setup/index.php:1144
-#, php-format
-msgid ""
-"The database did not return a list of the database tables for <code>%s</"
-"code>."
-msgstr ""
-"MySQL hat für <code>%s</code> keine Liste der Datenbanktabellen "
-"zurückgegeben."
-
-#: zp-core/setup/index.php:1145
-msgid ""
-"<strong>Setup</strong> will attempt to create all tables. This will not over "
-"write any existing tables."
-msgstr ""
-"<strong>Setup</strong> wird versuchen, die Tabellen zu erstellen. Es werden "
-"keine bereits existierenden Tabellen überschrieben."
-
-#: zp-core/setup/index.php:1171
-msgid "Database <code>field collations</code> [Image table]"
-msgstr "Datenbank-<code>Feldkollationen</code> [Bildtabelle]"
-
-#: zp-core/setup/index.php:1174
-msgid "Database <code>field collations</code> [Album table]"
-msgstr "Datenbank-<code>Feldkollationen</code> [Albumtabelle]"
-
-#: zp-core/setup/index.php:1177
-msgid "Database <code>field collations</code> [Image and Album tables]"
-msgstr "Datenbank-<code>Feldkollationen</code> [Bild- und Albumtabellen]"
-
-#: zp-core/setup/index.php:1180
-msgid "Database <code>field collations</code> [SHOW COLUMNS query failed]"
-msgstr ""
-"Datenbank-<code>Feldkollationen</code> [SHOW COLUMNS-Abfrage fehlgeschlagen]"
-
-#: zp-core/setup/index.php:1183
-msgid "Database <code>field collations</code>"
-msgstr "Datenbank-<code>Feldkollationen</code> "
-
-#: zp-core/setup/index.php:1183
-#, php-format
-msgid ""
-"%s is not UTF-8. You should consider porting your data to UTF-8 and changing "
-"the collation of the database fields to <code>utf8_unicode_ci</code>"
-msgid_plural ""
-"%s are not UTF-8. You should consider porting your data to UTF-8 and "
-"changing the collation of the database fields to <code>utf8_unicode_ci</code>"
-msgstr[0] ""
-"%s ist nicht UTF-8. Sie sollten erwägen, Ihre Daten in UTF-8 zu übertragen "
-"und die Kollation der Datenbankfelder auf  <code>utf8_unicode_ci</code> zu "
-"setzen."
-msgstr[1] ""
-"%s sind nicht UTF-8. Sie sollten erwägen, Ihre Daten in UTF-8 zu übertragen "
-"und die Kollation der Datenbankfelder auf  <code>utf8_unicode_ci</code> zu "
-"setzen."
-
-#: zp-core/setup/index.php:1185
-msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
-msgstr ""
-"Datenbank <code>$conf[\"UTF-8\"]</code> [ist nicht auf <em>true</em> "
-"gestellt]"
-
-#: zp-core/setup/index.php:1185
-msgid ""
-"You should consider porting your data to UTF-8 and changing the collation of "
-"the database fields to <code>utf8_unicode_ci</code> and setting this "
-"<em>true</em>. Zenphoto works best with pure UTF-8 encodings."
-msgstr ""
-"Sie sollten erwägen, Ihre Daten in UTF-8 zu übertragen und die Kollation der "
-"Datenbankfelder auf  <code>utf8_unicode_ci</code> zu setzen und dies auf "
-"<em>true</em> zu stellen. Zenphoto arbeitet am besten mit reinen UTF-8-"
-"Kodierungen."
-
-#: zp-core/setup/index.php:1190
-msgid "Zenphoto files"
-msgstr "Zenphoto-Dateien"
-
-#: zp-core/setup/index.php:1218
-msgid "Zenphoto package [missing]"
-msgstr "Zenphoto package [fehlt]"
-
-#: zp-core/setup/index.php:1218
-msgid ""
-"The file <code>Zenphoto.package</code> is either missing, not readable, or "
-"defective. Your installation may be corrupt!"
-msgstr ""
-"Die Datei <code>Zenphoto.package</code> fehlt, ist nicht lesbar oder "
-"beschädigt. Ihre Installation könnte korrupt sein!"
-
-#: zp-core/setup/index.php:1224
-#, php-format
-msgid "Setting permissions (0%o) for Zenphoto package."
-msgstr "Dateizugriffsrechte (0%o) für das Zenphoto-Paket."
-
-#: zp-core/setup/index.php:1327
-msgid ""
-"Zenphoto core files [This is a <em>debug</em> build. Some files are missing "
-"or seem wrong]"
-msgstr ""
-"Zenphoto-Hauptdateien [Dies ist keine offizielle Version. Einige Dateien "
-"fehlen oder scheinen falsch zu sein]"
-
-#: zp-core/setup/index.php:1329
-msgid "Zenphoto core files [Some files are missing or seem wrong]"
-msgstr "Zenphoto-Hauptdateien [Einige fehlen oder scheinen falsch zu sein]"
-
-#: zp-core/setup/index.php:1331
-msgid ""
-"Perhaps there was a problem with the upload. You should check the following "
-"files: "
-msgstr ""
-"Vielleicht ist ein Problem mit dem Upload aufgetreten. Sie sollten die "
-"folgenden Dateien überprüfen:"
-
-#: zp-core/setup/index.php:1336
-msgid "Zenphoto core files [This is a <em>debug</em> build]"
-msgstr "Zenphoto-Hauptdateien [Dies ist keine offizielle Version]"
-
-#: zp-core/setup/index.php:1343
-msgid "Zenphoto core files"
-msgstr "Zenphoto-Hauptdateien"
-
-#: zp-core/setup/index.php:1345
-msgid "Installation files"
-msgstr "Installationsdateien"
-
-#: zp-core/setup/index.php:1361
-#, php-format
-msgid ".svn [%s instance]"
-msgid_plural ".svn [%s instances]"
-msgstr[0] ".svn [%s Vorkommen]"
-msgstr[1] ".svn [%s Vorkommen]"
-
-#: zp-core/setup/index.php:1364
-#, php-format
-msgid "php.ini [%s instance]"
-msgid_plural "php.ini [%s instances]"
-msgstr[0] "php.ini [%s Vorkommen]"
-msgstr[1] "php.ini [%s Vorkommen]"
-
-#: zp-core/setup/index.php:1387 zp-core/setup/index.php:1390
-msgid "Zenphoto core folders [Some unknown files were found]"
-msgstr "Zenphoto-Hauptordner [Einige unbekannte Dateien wurden gefunden]"
-
-#: zp-core/setup/index.php:1387
-msgid "The following files could not be deleted."
-msgstr "Die folgenden Dateien konnten nicht gelöscht werden."
-
-#: zp-core/setup/index.php:1390
-msgid "You should remove the following files: "
-msgstr "Sie sollten die folgenden Dateien entfernen: "
-
-#: zp-core/setup/index.php:1391
-msgid "Delete extra files"
-msgstr "Extradateien löschen"
-
-#: zp-core/setup/index.php:1394
-msgid "Zenphoto core file permissions"
-msgstr "Zenphoto-Hauptdateien-Zugriffsrechte"
-
-#: zp-core/setup/index.php:1394
-msgid "Zenphoto core file permissions [not correct]"
-msgstr "Zenphoto-Hauptdateien-Dateiberechtigungen [nicht korrekt]"
-
-#: zp-core/setup/index.php:1394
-msgid ""
-"Setup could not set the one or more components to the selected permissions "
-"level. You will have to set the permissions manually. See the <a href="
-"\"http://www.zenphoto.org/news/permissions-for-zenphoto-files-and-folders"
-"\">Troubleshooting guide</a> for details on Zenphoto permissions "
-"requirements."
-msgstr ""
-"Setup konnte die die gewünschten Dateizugriffsrechte nicht setzen. Sie "
-"müssen diese manuell einstellen. Bitte lesen Sie a href=\"http://www."
-"zenphoto.org/news/permissions-for-zenphoto-files-and-folders"
-"\">Troubleshooting guide</a> zu Details über die erforderlichen "
-"Dateizugriffsrechte."
-
-#: zp-core/setup/index.php:1397
-msgid "<em>.htaccess</em> file"
-msgstr "<em>.htaccess</em>-Datei"
-
-#: zp-core/setup/index.php:1409
-msgid "<em>.htaccess</em> file [is empty or does not exist]"
-msgstr "<em>.htaccess</em>-Datei [ist leer oder existiert nicht]"
-
-#: zp-core/setup/index.php:1412
-msgid ""
-"If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
-"required the root zenphoto folder to create cruft-free URLs."
-msgstr ""
-"Wenn Ihr Apache-Server über mod_rewrite-Funktionalität verfügt, muß eine "
-"<em>.htaccess</em>-Datei im Zenphoto-Hauptverzeichnis vorhanden sein, wenn "
-"Sie suchmaschinenfreundliche, klare URLs verwenden möchten."
-
-#: zp-core/setup/index.php:1413 zp-core/setup/index.php:1421
-msgid ""
-"You can ignore this warning if you do not intend to set the "
-"<code>mod_rewrite</code> option."
-msgstr ""
-"Sie können dies ignorieren, wenn Sie nicht vorhaben <code>mod_rewrite</code> "
-"zu verwenden."
-
-#: zp-core/setup/index.php:1415
-msgid ""
-"<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</"
-"a></p><br style=\"clear:both\" /><br />"
-msgstr ""
-"<p class=\"buttons\"><a href=\"?copyhtaccess\" >Das Installationsskript "
-"anweisen, die Datei zu erstellen </a></p><br style=\"clear:both\" /><br />"
-
-#: zp-core/setup/index.php:1418
-msgid "Server seems to be <em>nginx</em>"
-msgstr "Der Server scheint <em>nginx</em> zu sein."
-
-#: zp-core/setup/index.php:1420
-msgid ""
-"If you wish to create cruft-free URLs, you will need to configuring <a href="
-"\"http://www.zenphoto.org/news/nginx-rewrite-rules-tutorial\"><em>URL "
-"rewriting for NGINX servers</em></a>."
-msgstr ""
-"Wenn Sie suchmaschinenfreundliche URLs möchten, müssen Sie dies für gemäß "
-"dem Tutorial <a href=\"http://www.zenphoto.org/news/nginx-rewrite-rules-"
-"tutorial\"><em>URL rewriting for NGINX servers</em></a> konfigurieren."
-
-#: zp-core/setup/index.php:1424
-msgid ""
-"Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, "
-"<code>mod_rewrite</code> may not be available."
-msgstr ""
-"Der Server scheint kein Apache-Server oder nicht Apache kompatibel zu sein, "
-"daher ist<code>mod_rewrite</code> möglicherweise nicht verfügbar."
-
-#: zp-core/setup/index.php:1462
-msgid ""
-"Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> "
-"not required."
-msgstr ""
-"Der Server scheint kein Apache-Server oder nicht Apache kompatibel zu sein, "
-"daher wird der<code>.htaccess</code> nicht benötigt."
-
-#: zp-core/setup/index.php:1465
-#, php-format
-msgid ""
-"The <em>.htaccess</em> file in your root folder is not the same version as "
-"the one distributed with this version of Zenphoto. If you have made changes "
-"to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> "
-"file to produce a new <em>.htaccess</em> file."
-msgstr ""
-"Die <em>.htaccess</em>-Datei in Ihren Zenphoto-Hauptverzeichnis ist nicht "
-"die selbe Version wie die in dieser Zenphoto-Version enthaltene. Wenn Sie "
-"Änderungen an <em>.htaccess</em> vorgenommen haben, fügen Sie diese "
-"Änderungen in die <em>%s/htaccess</em>-Datei ein, um eine neue <em>."
-"htaccess</em>-Datei zu erstellen."
-
-#: zp-core/setup/index.php:1467
-msgid ""
-"<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>."
-"htaccess</em> file with the current version</a></p><br style=\"clear:both\" /"
-"><br />"
-msgstr ""
-"<p class=\"buttons\"><a href=\"?copyhtaccess\" >Die existierende <em>."
-"htaccess</em>-Datei durch die aktuelle Version ersetzen. </a></p><br style="
-"\"clear:both\" /><br />"
-
-#: zp-core/setup/index.php:1470
-msgid "<em>.htaccess</em> file [wrong version]"
-msgstr "<em>.htaccess</em>-Datei [falsche Version]"
-
-#: zp-core/setup/index.php:1484
-#, php-format
-msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
-msgstr ""
-"<em>.htaccess</em>-Datei (<em>RewriteEngine</em> ist <strong>%s</strong>)"
-
-#: zp-core/setup/index.php:1497
-msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
-msgstr "<em>.htaccess</em> RewriteBase [<em>fehlt</em>]"
-
-#: zp-core/setup/index.php:1503
-#, php-format
-msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
-msgstr "<em>.htaccess</em> RewriteBase ist <code>%s</code>"
-
-#: zp-core/setup/index.php:1504
-#, php-format
-msgid ""
-"<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
-"folder]"
-msgstr ""
-"<em>.htaccess</em> RewriteBase ist <code>%s</code> [Stimmt nicht mit dem "
-"Installationsordner überein]"
-
-#: zp-core/setup/index.php:1511
-#, php-format
-msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
-msgstr "<em>.htaccess</em> RewriteBase ist <code>%s</code> (behoben)"
-
-#: zp-core/setup/index.php:1535
-msgid ""
-"Setup was not able to write to the file change RewriteBase match the install "
-"folder."
-msgstr ""
-"Setup konnte die Dateiänderung nicht schreiben. Ändern Sie die RewriteBase "
-"passend zum Installationsordner."
-
-#: zp-core/setup/index.php:1536
-#, php-format
-msgid ""
-"Either make the file writeable or set <code>RewriteBase</code> in your "
-"<code>.htaccess</code> file to <code>%s</code>."
-msgstr ""
-"Entweder Sie machen die Datei beschreibbar oder Sie setzen "
-"die<code>RewriteBase</code> in Ihrer <code>.htaccess</code>-Datei auf <code>"
-"%s</code>."
-
-#: zp-core/setup/index.php:1538
-msgid "Rewrite rules updated"
-msgstr "Rewrite-Rules aktualisiert."
-
-#: zp-core/setup/index.php:1538
-msgid "Rewrite rules updated [not updated]"
-msgstr "Rewrite-Regel aktualisiert  [nicht aktualisiert]"
-
-#: zp-core/setup/index.php:1538
-msgid ""
-"Setup was not able to write to the file change the rewrite rules for site "
-"upgrades."
-msgstr ""
-"Setup konnte die Änderungen für die Rewrite-Regeln nicht schreiben, die zum "
-"Schliessen der Site bei Upgrade benötigt werden."
-
-#: zp-core/setup/index.php:1544 zp-core/setup/index.php:1547
-#: zp-core/setup/index.php:1560
-msgid "<em>robots.txt</em> file"
-msgstr "<em>robots.txt</em>-Datei"
-
-#: zp-core/setup/index.php:1544 zp-core/setup/index.php:1547
-#: zp-core/setup/index.php:1560
-msgid "<em>robots.txt</em> file [Not created]"
-msgstr "<em>robots.txt</em>-Dateu [nicht erstellt]"
-
-#: zp-core/setup/index.php:1544
-msgid "Setup could not find the  <em>example_robots.txt</em> file."
-msgstr "Setup konnte keine<em>example_robots.txt</em>-Datei finden."
-
-#: zp-core/setup/index.php:1547
-msgid ""
-"Setup did not create a <em>robots.txt</em> file because one already exists."
-msgstr ""
-"Setup konnte keine<em>robots.txt</em>-Datei erstellen, da die Datei bereits "
-"existiert."
-
-#: zp-core/setup/index.php:1560
-msgid "Setup could not create a <em>robots.txt</em> file."
-msgstr "Setup konnte keine<em>robots.txt</em>-Datei erstellen."
-
-#: zp-core/setup/index.php:1565
-msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
-msgstr "Alben [<code>$conf['external_album_folder']</code> ist veraltet]"
-
-#: zp-core/setup/index.php:1565 zp-core/setup/index.php:1589
-#, php-format
-msgid ""
-"You should update your configuration file to conform to the current %1$s "
-"example file."
-msgstr ""
-"Sie sollten Ihre Konfigurationsdatei aktualisieren, damit sie der aktuellen "
-"%1$s-Beispieldatei entspricht."
-
-#: zp-core/setup/index.php:1589
-msgid "<em>albums</em> folder"
-msgstr "<em>albums</em>-Ordner"
-
-#: zp-core/setup/index.php:1589
-msgid ""
-"<em>albums</em> folder [The line <code>\\$conf['album_folder']</code> is "
-"missing from your configuration file]"
-msgstr ""
-"<em>albums</em>-Ordner [Die Zeile <code>$conf['album_folder']</code> fehlt "
-"in Ihrer Konfigurations-Datei]"
-
-#: zp-core/setup/index.php:1593
-msgid "<em>locale</em> folders"
-msgstr "<em>locale</em>-Ordner"
-
-#: zp-core/setup/index.php:1593
-msgid "<em>locale</em> folders [Are not complete]"
-msgstr "<em>locale</em>-Ordner [sind nicht vollständig]"
-
-#: zp-core/setup/index.php:1593
-msgid ""
-"Be sure you have uploaded the complete Zenphoto package. You must have at "
-"least the <em>en_US</em> folder."
-msgstr ""
-"Stellen Sie sicher, dass sie das komplette Zenphoto-Paket heruntergeladen "
-"haben. Sie müssen wenigstens den <em>en_US</em>-Ordner haben."
-
-#: zp-core/setup/index.php:1594
-msgid "uploaded"
-msgstr "uploaded"
-
-#: zp-core/setup/index.php:1599
-msgid "HTML cache"
-msgstr "HTML-Cache"
-
-#: zp-core/setup/index.php:1600
-msgid "Third party plugins"
-msgstr "Drittherstellerplugins"
-
-#: zp-core/setup/index.php:1610
-msgid ""
-"You need to address the problems indicated above then run <code>setup</code> "
-"again."
-msgstr ""
-"Sie müssen die oben aufgeführten Problem beheben und dann <code>Setup</code> "
-"erneut ausführen."
-
-#: zp-core/setup/index.php:1613
-msgid "Setup failed."
-msgstr "Installation fehlgeschlagen."
-
-#: zp-core/setup/index.php:1624 zp-core/setup/index.php:2650
-msgid "You need <em>USER ADMIN</em> rights to run setup."
-msgstr ""
-"Sie müssen über<em>Benutzerverwaltungsrechte</em> verfügen, um setup "
-"ausführen zu können."
-
-#: zp-core/setup/index.php:1626 zp-core/setup/index.php:2652
-msgid "You must be logged in to run setup."
-msgstr "Sie müssen angemeldet sein, um die Installation durchführen zu können."
-
-#: zp-core/setup/index.php:1647
-msgid "database connected"
-msgstr "Mit Datenbank verbunden"
-
-#: zp-core/setup/index.php:2400
-msgid "About to create tables"
-msgstr "Bereit, die Tabellen zu erstellen"
-
-#: zp-core/setup/index.php:2402
-msgid "About to update tables"
-msgstr "Bereit, die Tabellen zu aktualisieren"
-
-#: zp-core/setup/index.php:2404
-msgid "Begin table creation"
-msgstr "Tabellenerstellung begonnen."
-
-#: zp-core/setup/index.php:2411 zp-core/setup/index.php:2427
-#, php-format
-msgid "Query %1$s Failed. Error: %2$s"
-msgstr "Abfrage %1$s fehlgeschlagen. Fehler: %2$s"
-
-#: zp-core/setup/index.php:2413
-#, php-format
-msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
-msgstr ""
-"Tabellenerstellung fehlgeschlagen: <br />Abfrage: %1$s<br />Fehler: %2$s"
-
-#: zp-core/setup/index.php:2416 zp-core/setup/index.php:2429
-#, php-format
-msgid "Query ( %s ) Success."
-msgstr "Abfrage ( %s ) erfolgreich."
-
-#: zp-core/setup/index.php:2420
-msgid "Begin table updates"
-msgstr "Die Tabellenaktualisierung wird gestartet."
-
-#: zp-core/setup/index.php:2436
-msgid "Done with table create!"
-msgstr "Tabellenerstellung abgeschlossen!"
-
-#: zp-core/setup/index.php:2438
-msgid "Done with table create with errors!"
-msgstr "Tabellenerstellung mit Fehlern abgeschlossen!"
-
-#: zp-core/setup/index.php:2442
-msgid "Done with table update"
-msgstr "Tabellenaktualisierung abgeschlossen!"
-
-#: zp-core/setup/index.php:2444
-msgid "Done with table update with errors"
-msgstr "Tabellenaktualisierung mit Fehlern abgeschlossen"
-
-#: zp-core/setup/index.php:2459
-msgid "Done with database creation and update"
-msgstr "Tabellenaktualisierung abgeschlossen!"
-
-#: zp-core/setup/index.php:2461
-#, php-format
-msgid "Previous Release was %s"
-msgstr "Die vorige Veröffentlichung war %s"
-
-#: zp-core/setup/index.php:2500
-#, php-format
-msgid ""
-"You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
-"\"%2$s\">run backup-restore</a>"
-msgstr ""
-"Sie können entweder Ihren <a href=\"%1$s\">Benutzernamen und Ihr Passwort "
-"definieren</a> oder die <a href=\"%2$s\">Backup-Wiederherstellung</a> "
-"ausführen"
-
-#: zp-core/setup/index.php:2503
-#, php-format
-msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
-msgstr ""
-"Sie müssen Ihren <a href=\"%1$s\">Benutzernamen und Ihr Passwort setzen</a>"
-
-#: zp-core/setup/index.php:2509
-#, php-format
-msgid "You can now <a href=\"%1$s\">administer your gallery.</a>"
-msgstr "Sie können nun <a href=\"%1$s\">Ihre Galerie verwalten</a>."
-
-#: zp-core/setup/index.php:2570
-#, php-format
-msgid "Database tables to create: %s"
-msgstr "Datenbanktabelle zu erstellen: %s"
-
-#: zp-core/setup/index.php:2590
-#, php-format
-msgid "Database tables to update: %s"
-msgstr "Datenbanktabelle zu aktualisieren:  %s"
-
-#: zp-core/setup/index.php:2619
-msgid ""
-"<strong>Warning!</strong> This upgrade makes structural changes to the "
-"database which are not easily reversed. Be sure you have a database backup "
-"before proceeding."
-msgstr ""
-"<strong>Warnung!</strong> Diese Aktualisierung führt strukturelle Änderung "
-"an der Datenbank aus, die nicht leicht zurückzusetzen sind. Stellen Sie "
-"sicher, dass Sie ein Backup erstellt haben, bevor Sie fortfahren. "
-
-#: zp-core/setup/index.php:2622
-#, php-format
-msgid "%s I acknowledge that proceeding will restructure my database."
-msgstr ""
-"%s Ich nehme zur Kenntnis, dass Fortfahren meine Datenbank umstrukturieren "
-"wird."
-
-#: zp-core/setup/index.php:2682
-msgid "run setup"
-msgstr "Installation aufrufen"
-
-#: zp-core/setup/index.php:2682
-msgid "Go"
-msgstr "Los"
-
-#: zp-core/setup/index.php:2698
-msgid "database did not connect"
-msgstr "Die Datenbank konnte keine Verbindung herstellen"
-
-#: zp-core/setup/index.php:2700
-msgid "If you haven not created the database yet, now would be a good time."
-msgstr ""
-"Wenn Sie die Datenbank noch nicht erstellt haben, wäre jetzt der richtige "
-"Zeitpunkt."
-
-#: zp-core/setup/index.php:2709
-#, php-format
-msgid "The %1$s file does not exist."
-msgstr "Die Datei %1$s existiert nicht."
-
-#: zp-core/setup/setup-functions.php:61
-#, php-format
-msgid "Testing %s."
-msgstr "%s testen"
-
-#: zp-core/setup/setup-functions.php:67
-msgid "Fail: "
-msgstr "Fehlgeschlagen:"
-
-#: zp-core/setup/setup-functions.php:67
-msgid "Warn: "
-msgstr "Warnung:"
-
-#: zp-core/setup/setup-functions.php:67
-msgid "Pass: "
-msgstr "In Ordnung:"
-
-#: zp-core/setup/setup-functions.php:114
-msgid "Error!"
-msgstr "Fehler!"
-
-#: zp-core/setup/setup-functions.php:135
-msgid "<strong>Warning!</strong> click for details"
-msgstr "<strong>Anmerkung!</strong> Für mehr Details klicken"
-
-#: zp-core/setup/setup-functions.php:143
-msgid "<strong>Notice!</strong> click for details"
-msgstr "<strong>Anmerkung!</strong> Für mehr Details klicken"
-
-#: zp-core/setup/setup-functions.php:146
-msgid "Notice!"
-msgstr "Anmerkung!"
-
-#: zp-core/setup/setup-functions.php:167
-msgid "Autorun aborted"
-msgstr "Automatisches Ausführen abgebrochen"
-
-#: zp-core/setup/setup-functions.php:206
-#, php-format
-msgid "<em>%1$s</em> folder%2$s [subfolder creation failure]"
-msgstr "<em>%1$s</em> Ordner%2$s [Unterordnererstellung fehlgeschlagen]"
-
-#: zp-core/setup/setup-functions.php:206
-#, php-format
-msgid "Setup could not create the following subfolders:<br />%s"
-msgstr "Setup konnte die folgenden Unterordner nicht erstellen:<br />%s"
-
-#: zp-core/setup/setup-functions.php:225 zp-core/setup/setup-functions.php:230
-#: zp-core/zp-extensions/deprecated-functions.php:145
-msgid "unknown"
-msgstr "Unbekannt"
-
-#: zp-core/setup/setup-functions.php:232
-#, php-format
-msgid "<em>%1$s</em> folder%2$s [permissions failure]"
-msgstr "<em>%1$s</em> Ordner%2$s [Dateizugriffsrechte fehlgeschlagen]"
-
-#: zp-core/setup/setup-functions.php:232
-#, php-format
-msgid ""
-"Setup could not change the file permissions from <em>%1$s</em> (<code>0%2$o</"
-"code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the "
-"permissions manually. See the <a href=\"http://www.zenphoto.org/news/"
-"troubleshooting-zenphoto#29\">Troubleshooting guide</a> for details on "
-"Zenphoto permissions requirements."
-msgstr ""
-"Setup konnte die  Dateizugriffsrechte  nicht von <em>%1$s</em> (<code>0%2$o</"
-"code>) auf <em>%3$s</em> (<code>0%4$o</code>) setzen. Sie müssen diese "
-"manuell einstellen. Bitte lesen Sie <a href=\"//http://www.zenphoto.org/news/"
-"troubleshooting-zenphoto#29\">Troubleshooting guide</a> zu Details zu  den "
-"erforderlichen Dateizugriffsrechte."
-
-#: zp-core/setup/setup-functions.php:269
-#, php-format
-msgid ""
-"You must create the folder <em>%1$s</em><br /><code>mkdir(%2$s, 0777)</code>."
-msgstr ""
-"Sie müssen den Ordner <em>%1$s</em><br /><code>mkdir(%2$s, 0777)</code> "
-"erstellen."
-
-#: zp-core/setup/setup-functions.php:271
-#, php-format
-msgid "<em>%1$s</em> folder [<em>%2$s</em> does not exist]"
-msgstr "Ordner <em>%1$s</em> [<em>%2$s</em> existiert nicht]"
-
-#: zp-core/setup/setup-functions.php:273
-#, php-format
-msgid ""
-"<em>%1$s</em> folder [<em>%2$s</em> does not exist and <strong>setup</"
-"strong> could not create it]"
-msgstr ""
-"Ordner <em>%1$s</em> [<em>%2$s</em> existiert nicht und <strong>setup</"
-"strong> konnte ihn nicht erstellen]"
-
-#: zp-core/setup/setup-functions.php:276
-#, php-format
-msgid ""
-"Change the permissions on the <code>%1$s</code> folder to be writable by the "
-"server (<code>chmod 777 %2$s</code>)"
-msgstr ""
-"Ändern Sie die Zugriffsrechte des <code>%1$s</code>-Ordners auf schreibbar "
-"durch den Server (<code>chmod 777 %2$s</code>)"
-
-#: zp-core/setup/setup-functions.php:277
-#, php-format
-msgid ""
-"<em>%1$s</em> folder [<em>%2$s</em> is not writeable and <strong>setup</"
-"strong> could not make it so]"
-msgstr ""
-"Ordner <em>%1$s</em> [<em>%2$s</em> ist nicht beschreibbar und "
-"<strong>setup</strong> konnte dies nicht ändern]"
-
-#: zp-core/setup/setup-functions.php:279
-#, php-format
-msgid "<em>%1$s</em> folder%2$s"
-msgstr "<em>%1$s</em> Ordner %2$s"
-
-#: zp-core/setup/setup-functions.php:374 zp-core/setup/setup-functions.php:388
-msgid "change the definition"
-msgstr "Definition ändern"
-
-#: zp-core/setup/setup-functions.php:374 zp-core/setup/setup-functions.php:388
-msgid "apply"
-msgstr "Anwenden"
-
-#: zp-core/setup/setup-functions.php:384
-#, php-format
-msgid "%1$s (0%2$o)"
-msgstr "%1$s (0%2$o)"
-
-#: zp-core/setup/setup-functions.php:428
-msgid ""
-"See the <a href=\"http://www.zenphoto.org/news/troubleshooting-"
-"zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
-msgstr ""
-"Bitte lesen Sie den <a href=\"http://www.zenphoto.org/news/troubleshooting-"
-"zenphoto#24\">Troubleshooting guide</a> auf zenphoto.org für Details."
-
-#: zp-core/setup/setup-functions.php:478
-msgid "An attempt at cross site reference forgery has been blocked."
-msgstr "Der Versuch eines  Cross-Site Request Forgery wurde blockiert."
-
-#: zp-core/setup/setup-functions.php:559
-#, php-format
-msgid ""
-"Click <a href=\"%s\">here</a> to acknowledge that you wish to ignore this "
-"issue. It will then become a warning."
-msgstr ""
-"Klicken Sie <a href=\"%s\">here</a>, um zu bestätigen, dass Sie dieses "
-"Problem ignorieren möchten. Es wird dann als Warnung angezeigt."
-
-#: zp-core/setup/setup-functions.php:578
-msgid "The simpler media website CMS"
-msgstr "Das einfachere Medien-Website-CMS"
-
-#: zp-core/setup/setup-functions.php:601
-msgid "Updated configuration file"
-msgstr "Konfigurationsdatei aktualisiert"
-
-#: zp-core/setup/setup-functions.php:627
-#, php-format
-msgid ""
-"<strong>Warning:</strong> the <code>%s</code> table appears not to have a "
-"proper <em>UNIQUE</em> key. There are probably duplicate entries in the "
-"table which can cause unpredictable behavior. This can normally be corrected "
-"by creating a Zenphoto backup, dropping the table, running setup to restore "
-"the table, and then restoring from the backup. Note, however, that the "
-"duplicate entries will be lost."
-msgstr ""
-"<strong>Warnung:</strong> Die <code>%s</code>-Tabelle schein keinen  "
-"<em>UNIQUE</em>-Schlüssel definiert zu habeb. Es existieren daher "
-"wahrscheinlich duplizierte Einträge, die unerwünschtes Verhalten nach sich "
-"ziehen können.  Dies kann normalerweise korrigiert werden, indem Sie ein "
-"Zenphoto-Datenbank-Backup erstellen, die Tabelle löschen, Setup erneut "
-"ausführen und dann vom Backup wiederherstellen. In jedem Fall gehen die "
-"duplizierten Einträge verloren."
-
-#: zp-core/setup/setup-option-defaults.php:8
-msgid "Set Zenphoto default options"
-msgstr "Zenphoto-Standardeinstellungen setzen"
-
-#: zp-core/setup/setup-option-defaults.php:46
-#, php-format
-msgid "Migrating lib-auth data version %1$s => version %2$s"
-msgstr "Übertrage lib-auth Datenversion %1$s => version %2$s"
-
-#: zp-core/setup/setup-option-defaults.php:48
-msgid "failed"
-msgstr "fehlgeschlagen"
-
-#: zp-core/setup/setup-option-defaults.php:91
-msgid "Mod_Rewrite check:"
-msgstr "Mod_Rewrite-Test:"
-
-#: zp-core/setup/setup-option-defaults.php:94
-msgid "Mod_rewrite"
-msgstr "Mod_rewrite"
-
-#: zp-core/setup/setup-option-defaults.php:250
-msgid "Users with full privileges"
-msgstr "Benutzer mit vollen Privilegien."
-
-#: zp-core/setup/setup-option-defaults.php:259
-msgid "Users allowed only to view zenphoto objects"
-msgstr "Benutzern ist nur erlaubt, Zenphoto-Objekte anzusehen."
-
-#: zp-core/setup/setup-option-defaults.php:268
-msgid "Banned users"
-msgstr "Gebannte Benutzer"
-
-#: zp-core/setup/setup-option-defaults.php:277
-msgid "Managers of one or more albums"
-msgstr "Verwalter von einem oder mehreren Alben."
-
-#: zp-core/setup/setup-option-defaults.php:286
-msgid "Default user settings"
-msgstr "Standard-Benutzer-Einstellungen"
-
-#: zp-core/setup/setup-option-defaults.php:295
-msgid "Newly registered and verified users"
-msgstr "Neu registrierte und bestätigte Benutzer"
-
-#: zp-core/setup/setup-option-defaults.php:327
-msgid "Theme setup:"
-msgstr "Verfügbare Themes:"
-
-#: zp-core/setup/setup-option-defaults.php:349
-#, php-format
-msgid "Copyright %1$u: %2$s"
-msgstr "Copyright %1$u: %2$s"
-
-#: zp-core/setup/setup-option-defaults.php:399
-msgid ""
-"You can insert your Gallery description on the Admin Options Gallery tab."
-msgstr "Sie können Ihre Galeriebeschreibung bei den Einstellungen eingeben."
-
-#: zp-core/setup/setup-option-defaults.php:622
-msgid "Plugin setup:"
-msgstr "Verfügbare Plugins:"
-
-#: zp-core/setup/setup-sqlform.php:3
-msgid ""
-"Fill in the information below and <strong>setup</strong> will attempt to "
-"update your configuration file."
-msgstr ""
-"Tragen Sie die fehlende Information unten ein und <strong>setup</strong> "
-"wird versuchen, Ihre Konfigurations-Datei zu aktualisieren."
-
-#: zp-core/setup/setup-sqlform.php:49
-msgid "Database engine"
-msgstr "Datenbank-Engine"
-
-#: zp-core/setup/setup-sqlform.php:64
-#, php-format
-msgid "%s (experimental)"
-msgstr "%s (experimentell)"
-
-#: zp-core/setup/setup-sqlform.php:72
-#: zp-core/zp-extensions/wordpress_import.php:102
-#: zp-core/zp-extensions/wordpress_import.php:424
-msgid "Database user"
-msgstr "Datenbankbenutzer"
-
-#: zp-core/setup/setup-sqlform.php:77
-#: zp-core/zp-extensions/wordpress_import.php:103
-#: zp-core/zp-extensions/wordpress_import.php:425
-msgid "Database password"
-msgstr "Datenbankpasswort"
-
-#: zp-core/setup/setup-sqlform.php:81
-#: zp-core/zp-extensions/wordpress_import.php:104
-#: zp-core/zp-extensions/wordpress_import.php:426
-msgid "Database host"
-msgstr "Datenbankserver"
-
-#: zp-core/setup/setup-sqlform.php:86
-#: zp-core/zp-extensions/wordpress_import.php:101
-#: zp-core/zp-extensions/wordpress_import.php:423
-msgid "Database name"
-msgstr "Datenbankname"
-
-#: zp-core/setup/setup-sqlform.php:90
-#: zp-core/zp-extensions/wordpress_import.php:105
-#: zp-core/zp-extensions/wordpress_import.php:427
-msgid "Database table prefix"
-msgstr "Datenbank-Vorsilbe"
-
-#: zp-core/setup/setup_permissions_changer.php:18
-#, php-format
-msgid "Setting permissions (0%o) for %s."
-msgstr "Dateizugriffsrechteänderung (0%o) für  %s gesetzt."
-
-#: zp-core/setup/setup_permissions_changer.php:20
-#, php-format
-msgid "Notice: failed setting permissions (0%o) for %s."
-msgstr "Hinweis: Setzen der Dateizugriffsrechte (0%o) für  %s fehlgeschlagen."
-
-#: zp-core/setup/setup_permissions_changer.php:23
-#, php-format
-msgid "Notice: illegal call for permissions setting for %s."
-msgstr "Hinweis: Ungültiger Aufruf der Dateizugriffsrechteänderung für  %s."
-
-#: zp-core/setup/setup_pluginOptions.php:18
-#, php-format
-msgid "Plugin:%s setup started"
-msgstr "Plugin: %s Einrichten gestartet"
-
-#: zp-core/setup/setup_pluginOptions.php:38
-#, php-format
-msgid "Plugin:%s enabled (%2$s)"
-msgstr "Plugin:%s aktiviert (%2$s)"
-
-#: zp-core/setup/setup_pluginOptions.php:44
-#, php-format
-msgid "Plugin:%1$s option interface instantiated (%2$s)"
-msgstr "Plugin:%1$s Einstellungssteuerung erzeugt (%2$s)"
-
-#: zp-core/setup/setup_pluginOptions.php:48
-#, php-format
-msgid "Plugin:%s setup completed"
-msgstr "Plugin:%s Einrichtung komplett"
-
-#: zp-core/setup/setup_set-mod_rewrite.php:16
-msgid "The Zenphoto option “mod_rewrite” will be set to “enabled”."
-msgstr "Die Zenphoto-Einstellung „mod_rewrite“ wird auf „aktiviert“ gestellt."
-
-#: zp-core/setup/setup_set-mod_rewrite.php:19
-msgid "The Zenphoto option “mod_rewrite” is “enabled”."
-msgstr "Die Zenphoto-Einstellung „mod_rewrite“ ist „aktiviert“."
-
-#: zp-core/setup/setup_set-mod_rewrite.php:21
-msgid "The Zenphoto option “mod_rewrite” is “disabled”."
-msgstr "Die Zenphoto-Einstellung „mod_rewrite“ ist „deaktiviert“."
-
-#: zp-core/setup/setup_set-mod_rewrite.php:24
-msgid "Notice: “Module mod_rewrite” is working."
-msgstr "Hinweis: „Module mod_rewrite“ arbeitet."
-
-#: zp-core/setup/setup_themeOptions.php:17
-#, php-format
-msgid "Theme:%s setup started"
-msgstr "Theme:%s Einrichtung gestartet"
-
-#: zp-core/setup/setup_themeOptions.php:24
-#, php-format
-msgid "Theme:%s option interface instantiated"
-msgstr "Theme: %s Einstellungssteuerung erzeugt"
-
-#: zp-core/setup/setup_themeOptions.php:29
-#, php-format
-msgid "Theme:%s setup completed"
-msgstr "Theme: %s Installation komplett"
-
 #: zp-core/template-functions.php:64
 msgid "Are you sure you want to delete this item?"
 msgstr "Sind Sie sicher, dass Sie diesen Eintrag löschen wollen?"
@@ -12055,6 +10254,15 @@ msgstr "Datenbank-Schnellreferenz"
 msgid "Shows all database table and field info for quick reference."
 msgstr ""
 "Zeigt alle Datenbanktabellen und -feldinformationen als Schnellreferenz."
+
+#: zp-core/utilities/database_reference.php:33
+#: zp-core/utilities/refresh_database.php:4
+#: zp-core/utilities/refresh_metadata.php:4
+#: zp-core/utilities/reset_albumthumbs.php:13
+#: zp-core/zp-extensions/hitcounter.php:212
+#: zp-core/zp-extensions/rating.php:174
+msgid "Database"
+msgstr "Datenbank"
 
 #: zp-core/utilities/database_reference.php:74
 msgid ""
@@ -14770,6 +12978,10 @@ msgstr "Veraltet"
 msgid "function"
 msgstr "Funktion"
 
+#: zp-core/zp-extensions/deprecated-functions.php:145
+msgid "unknown"
+msgstr "Unbekannt"
+
 #: zp-core/zp-extensions/deprecated-functions.php:155
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated"
@@ -14860,26 +13072,22 @@ msgstr "Verwenden Sie stattdessen setexifvars()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:41
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:85
-#| msgid "User mailing list"
 msgid "Use removeTrailingSlash() instead"
 msgstr "Verwenden Sie stattdessen  removeTrailingSlash()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:48
-#| msgid "Use the getLink() method instead"
 msgid "Use removeDir() instead"
 msgstr "Verwenden Sie stattdessen removeDir()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:55
-#| msgid "Use the getLink() method instead"
-msgid "Use tagURLs(() instead"
-msgstr "Verwenden Sie stattdessen  tagURLs(()"
+msgid "Use tagURLs() instead"
+msgstr "Verwenden Sie stattdessen tagURLs(()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:62
 msgid "Use unTagURLs() instead"
 msgstr "Verwenden Sie stattdessen  unTagURLs()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:70
-#| msgid "Use the getLink() method instead"
 msgid "Use updateImageProcessorLink() instead"
 msgstr "Verwenden Sie stattdessen updateImageProcessorLink()"
 
@@ -17360,7 +15568,7 @@ msgstr ""
 "<code>https://domain.com</code>)."
 
 #: zp-core/zp-extensions/matomo.php:80
-msgid "site id"
+msgid "Site id"
 msgstr "Site-ID"
 
 #: zp-core/zp-extensions/matomo.php:84
@@ -21628,77 +19836,77 @@ msgstr "<em>jQuery</em>-Bildhochlader."
 msgid "jQuery uploader requires PHP 5.3 or greater."
 msgstr "JQuery-Uploader benötige PHP 5.3 oder neuer."
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:110
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:109
 msgid "Add files..."
 msgstr "Dateien hinzufügen..."
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:114
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:113
 msgid "Start upload"
 msgstr "Hochladen starten"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:115
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:114
 msgid "Cancel upload"
 msgstr "Hochladen abbrechen"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:130
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:152
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:129
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:151
 msgid "Error:"
 msgstr "Fehler:"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:131
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:160
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:130
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:159
 msgid "File is too big"
 msgstr "Datei ist zu groß"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:132
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:161
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:131
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:160
 msgid "File is too small"
 msgstr "Datei ist zu klein"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:133
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:162
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:132
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:161
 msgid "Filetype not allowed"
 msgstr "Dateityp nicht erlaubt"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:134
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:163
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:133
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:162
 msgid "Max number of files exceeded"
 msgstr "Maximale Anzahl an Dateien überschritten"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:153
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:152
 msgid "File exceeds upload_max_filesize (php.ini directive)"
 msgstr "Die Datei überschreitet die upload_max_filesize-Größe (php.ini-Angabe)"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:154
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:153
 msgid "File exceeds MAX_FILE_SIZE (HTML form directive)"
 msgstr ""
 "Die Datei überschreitet die upload_max_filesize-Größe (HTML-Formular-Angabe)"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:155
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:154
 msgid "File was only partially uploaded"
 msgstr "Die Datei wurde nur teilweise hochgeladen"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:156
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:155
 msgid "No File was uploaded"
 msgstr "Es wurde keine Datei hochgeladen"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:157
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:156
 msgid "Missing a temporary folder"
 msgstr "Temporärer Ordner fehlt"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:158
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:157
 msgid "Failed to write file to disk"
 msgstr "Datei konnten nicht geschrieben werden"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:159
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:158
 msgid "File upload stopped by extension"
 msgstr "Hochladen der Datei durch Erweiterung gestoppt"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:164
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:163
 msgid "Uploaded bytes exceed file size"
 msgstr "Hochgeladene Bytes überschreiten die Dateigröße"
 
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:165
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:164
 msgid "Empty file upload result"
 msgstr "Keine Datei hochgeladen"
 
@@ -22217,6 +20425,31 @@ msgstr "Fehlt"
 #: zp-core/zp-extensions/wordpress_import.php:99
 msgid "Wordpress-Database info"
 msgstr "Wordpress-Datenbank-Info"
+
+#: zp-core/zp-extensions/wordpress_import.php:101
+#: zp-core/zp-extensions/wordpress_import.php:423
+msgid "Database name"
+msgstr "Datenbankname"
+
+#: zp-core/zp-extensions/wordpress_import.php:102
+#: zp-core/zp-extensions/wordpress_import.php:424
+msgid "Database user"
+msgstr "Datenbankbenutzer"
+
+#: zp-core/zp-extensions/wordpress_import.php:103
+#: zp-core/zp-extensions/wordpress_import.php:425
+msgid "Database password"
+msgstr "Datenbankpasswort"
+
+#: zp-core/zp-extensions/wordpress_import.php:104
+#: zp-core/zp-extensions/wordpress_import.php:426
+msgid "Database host"
+msgstr "Datenbankserver"
+
+#: zp-core/zp-extensions/wordpress_import.php:105
+#: zp-core/zp-extensions/wordpress_import.php:427
+msgid "Database table prefix"
+msgstr "Datenbank-Vorsilbe"
 
 #: zp-core/zp-extensions/wordpress_import.php:115
 msgid ""
@@ -23366,7 +21599,7 @@ msgstr ""
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:682
 msgid ""
 "use printLatestComments($number, $shorten, $type, $itemID, $id, "
-"$shortenindicator);"
+"$shortenindicator)"
 msgstr ""
 "Verwenden Sie printLatestComments($number, $shorten, $type, $itemID, $id, "
 "$shortenindicator);"
@@ -23920,7 +22153,6 @@ msgid "Sample CAPTCHA image"
 msgstr "Beispiel-CAPTCHA-Bild"
 
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
-#| msgid "URL"
 msgid "UL"
 msgstr "UL"
 
@@ -23943,6 +22175,1366 @@ msgstr "Blockzitat"
 #: zp-core/zp-extensions/tinymce4/tinymce.min.js:8
 msgid "p"
 msgstr "p"
+
+#~ msgid "Zenphoto requires PHP version %s or greater"
+#~ msgstr "Zenphoto benötigt PHP %s oder neuer"
+
+#~ msgid "db POST handling"
+#~ msgstr "Datenbank-POST-Behandlung"
+
+#~ msgid "readonly"
+#~ msgstr "nur lesen"
+
+#~ msgid "strict"
+#~ msgstr "streng"
+
+#~ msgid "relaxed"
+#~ msgstr "entspannt"
+
+#~ msgid "loose"
+#~ msgstr "locker"
+
+#~ msgid ""
+#~ "A corrupt configuration file was detected. You should remove or repair "
+#~ "the file and re-run setup."
+#~ msgstr ""
+#~ "Es wurde eine korrupte Installationsdatei gefunden. Sie sollten es "
+#~ "entfernen oder reparieren und dann Setup ausführen."
+
+#~ msgid "upgrade"
+#~ msgstr "Aktualisierung"
+
+#~ msgid "Completed system check"
+#~ msgstr "Systemüberprüfung komplett"
+
+#~ msgid "Setup cookie test successful"
+#~ msgstr "Installations-Testcookie erfolgreich"
+
+#~ msgid "Setup cookie test unsuccessful"
+#~ msgstr "Setup Cookietest fehlgeschlagen"
+
+#~ msgid "Post of Database credentials"
+#~ msgstr "Datenbank-Benutzerdaten"
+
+#~ msgid "Zenphoto Setup v%1$s %2$s: %3$s"
+#~ msgstr "Zenphoto Setup v%1$s %2$s: %3$s"
+
+#~ msgid "Full environment"
+#~ msgstr "Volle Umgebung"
+
+#~ msgid "Primitive environment"
+#~ msgstr "Einfache Umgebung"
+
+#~ msgid "Query error: %s"
+#~ msgstr "Abfragefehler:  %s"
+
+#~ msgid "create"
+#~ msgstr "erstellen"
+
+#~ msgid "update"
+#~ msgstr "aktualisieren"
+
+#~ msgid "Upgrade from before Zenphoto v1.2"
+#~ msgstr "Aktualisierung von vor Zenphoto 1.2"
+
+#~ msgid "Upgrade from Zenphoto v%s"
+#~ msgstr "Aktualisierung von Zenphoto v%s"
+
+#~ msgid "Reinstalling current Zenphoto release"
+#~ msgstr "Erneute Installation der aktuellen Zenphoto-Version"
+
+#~ msgid "reinstall"
+#~ msgstr "Erneut installieren"
+
+#~ msgid "install"
+#~ msgstr "Installieren"
+
+#~ msgid "Zenphoto Setup"
+#~ msgstr "Zenphoto-Installation"
+
+#~ msgid "Setup"
+#~ msgstr "Installation"
+
+#~ msgid ""
+#~ "Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."
+#~ msgstr ""
+#~ "Willkommen bei Zenphoto! Diese Seite wird Zenphoto %s auf Ihrem Webserver "
+#~ "einrichten."
+
+#~ msgid "Systems Check:"
+#~ msgstr "Systemcheck:"
+
+#~ msgid ""
+#~ "<strong>Note:</strong> The release you are installing has debugging "
+#~ "settings enabled!"
+#~ msgstr ""
+#~ "<strong>Anmerkung:</strong> Die Version, die Sie installieren, hat "
+#~ "Fehlersucheinstellungen aktiviert!"
+
+#~ msgid "[%u release skipped]"
+#~ msgid_plural "[%u releases skipped]"
+#~ msgstr[0] "[%u Version übersprungen]"
+#~ msgstr[1] "[%u Versionen übersprungen]"
+
+#~ msgid ""
+#~ "We do not test upgrades that skip releases. We recommend you upgrade in "
+#~ "sequence."
+#~ msgstr ""
+#~ "Wir testen keine Aktualisierungen, die Versionen auslassen und empfehlen "
+#~ "der Reihenfolge nach zu akualisieren."
+
+#~ msgid "Installing Zenphoto v%s"
+#~ msgstr "Zenphoto v%s wird installiert"
+
+#~ msgid "<em>%s</em> security"
+#~ msgstr "<em>%s</em>-Sicherheit"
+
+#~ msgid "<em>%s</em> security [is compromised]"
+#~ msgstr "<em>%s</em>-Protokollsicherheit [ist gefährdet]"
+
+#~ msgid ""
+#~ "Zenphoto suggests you make the sensitive files in the %1$s folder "
+#~ "accessable by <em>owner</em> only (permissions = 0600). The file "
+#~ "permissions for <em>%2$s</em> are %3$04o which may allow unauthorized "
+#~ "access."
+#~ msgstr ""
+#~ "Zenphoto empfiehlt, die sensiblen Dateien im %1$s-Order nur für den "
+#~ "<em>Owner</em> zugänglich zu machen (Zugrifssrechte = 0600).  Die "
+#~ "Dateizugriffsrechte für <em>%2$s</em> sind %3$04o, was unerlaubten "
+#~ "Zugriff erlauben kann."
+
+#~ msgid "PHP version %s"
+#~ msgstr "PHP-Version %s"
+
+#~ msgid ""
+#~ "PHP Version %1$s or greater is required. Version %2$s or greater is "
+#~ "strongly recommended. Use earlier versions at your own risk."
+#~ msgstr ""
+#~ "Version %1$s oder neuer ist notwendig. Version %2$s oder neuer ist "
+#~ "ausdrücklich empfohlen. Verwenden Sie ältere Versionen auf eigenes "
+#~ "Risiko. "
+
+#~ msgid "PHP <code>Sessions</code>."
+#~ msgstr "PHP <code>Sessions</code>."
+
+#~ msgid "PHP <code>Sessions</code> [appear to not be working]."
+#~ msgstr ""
+#~ "PHP <code>Sessions</code>-Unterstützung [scheint nicht zu funktionieren]"
+
+#~ msgid "PHP Sessions are required for Zenphoto administrative functions."
+#~ msgstr "PHP Sessions sind für Zenphoto-Verwaltungsfunktionen erforderlich."
+
+#~ msgid "PHP <code>Register Globals</code>"
+#~ msgstr "PHP <code>Register Globals</code>"
+
+#~ msgid "PHP <code>Register Globals</code> [is set]"
+#~ msgstr "PHP <code>Register Globals</code> [ist aktiv]"
+
+#~ msgid ""
+#~ "PHP Register globals presents a security risk to any PHP application. See "
+#~ "<a href=\"http://php.net/manual/en/security.globals.php\"><em>Using "
+#~ "Register Globals</em></a>. Change your PHP.ini settings to "
+#~ "<code>register_globals = off</code>."
+#~ msgstr ""
+#~ "PHP Register globals stellt ein Sicherheitsrisiko für jedes PHP-Programm "
+#~ "dar. Bitte lesen Sie auf <a href=\"http://php.net/manual/de/security."
+#~ "globals.php\"><em>Verwendung von Register Globals</em></a>. Ändern Sie "
+#~ "Ihre PHP.ini-Einstellung auf <code>register_globals = off</code>."
+
+#~ msgid "PHP <code>Safe Mode</code>"
+#~ msgstr "PHP <code>Safe Mode</code>"
+
+#~ msgid "PHP <code>Safe Mode</code> [is set]"
+#~ msgstr "PHP <code>Safe Mode</code> [ist aktiv]"
+
+#~ msgid ""
+#~ "Zenphoto functionality is reduced when PHP <code>safe mode</code> "
+#~ "restrictions are in effect."
+#~ msgstr ""
+#~ "Zenphotos Funktionalität ist eingeschränkt solange PHP Safe Mode-"
+#~ "Einschränkungen aktiv sind."
+
+#~ msgid "<code>Suhosin</code> module [is enabled]"
+#~ msgstr "PHP <code>Suoshin</code>-Modul [ist aktiviert]"
+
+#~ msgid ""
+#~ "The following PHP functions are blocked: %s. Flagged functions are "
+#~ "required by Zenphoto. Other functions in the list may be used by "
+#~ "Zenphoto, possibly causing reduced functionality or Zenphoto failures."
+#~ msgstr ""
+#~ "Die folgenden PHP-Funktionen sind blockiert: %s. Die markierten "
+#~ "Funktionen warden von Zenphoto benötigt. Andere Funktionen der Liste "
+#~ "werden möglicherweise von Zenphoto verwendet und können daher "
+#~ "eingeschränkte Funktionalität oder Zenphoto-Fehler verursachen."
+
+#~ msgid "Magic_quotes"
+#~ msgstr "Magic_quotes"
+
+#~ msgid "PHP <code>magic_quotes_gpc</code>"
+#~ msgstr "PHP <code>magic_quotes_gpc</code>"
+
+#~ msgid "PHP <code>magic_quotes_gpc</code> [is enabled]"
+#~ msgstr "PHP <code>magic_quotes_gpc</code> [sind aktiviert]"
+
+#~ msgid ""
+#~ "We strongly recommend disabling <code>magic_quotes_gpc</code>. For more "
+#~ "information See <em><a href=\"http://www.zenphoto.org/news/installation-"
+#~ "problems#about-magicquotes-and-why-they-should-be-disabled\">What is "
+#~ "magic_quotes_gpc and why should it be disabled?</a></em> in the Zenphoto "
+#~ "troubleshooting guide."
+#~ msgstr ""
+#~ "Wir empfehlen dringend, <code>magic_quotes_gpc</code> zu deaktivieren. "
+#~ "Für mehr Information lesen Sie bitte <em><a href=\"http://www.zenphoto."
+#~ "org/news/troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-"
+#~ "it-be-disabled-\">What is magic_quotes_gpc and why should it be disabled?"
+#~ "</a></em> im Zenphoto troubleshooting guide."
+
+#~ msgid "PHP <code>magic_quotes_runtime</code>"
+#~ msgstr "PHP <code>magic_quotes_runtime</code>"
+
+#~ msgid "PHP <code>magic_quotes_runtime</code> [is enabled]"
+#~ msgstr "PHP <code>magic_quotes_runtime</code> [ist aktiviert]"
+
+#~ msgid "You must disable <code>magic_quotes_runtime</code>."
+#~ msgstr "Sie müssen <code>magic_quotes_runtime</code> deaktivieren."
+
+#~ msgid "PHP <code>magic_quotes_sybase</code>"
+#~ msgstr "PHP <code>magic_quotes_sybase</code>"
+
+#~ msgid "PHP <code>magic_quotes_sybase</code> [is enabled]"
+#~ msgstr "PHP <code>magic_quotes_sybase</code> [ist aktiviert]"
+
+#~ msgid "You must disable <code>magic_quotes_sybase</code>."
+#~ msgstr "Sie müssen <code>magic_quotes_sybase</code> deaktivieren."
+
+#~ msgid "PHP <code>display_errors</code>"
+#~ msgstr "PHP <code>display_errors</code>"
+
+#~ msgid "PHP <code>display_errors</code> [is enabled]"
+#~ msgstr "PHP <code>display_errors</code> [ist aktiviert]"
+
+#~ msgid ""
+#~ "This setting may result in PHP error messages being displayed on WEB "
+#~ "pages. These displays may contain sensitive information about your site."
+#~ msgstr ""
+#~ "PHP-Fehlermeldungen werden möglicherweise auf Ihrer Website angezeigt. "
+#~ "Diese können ungewollt sensitive Daten beinhalten."
+
+#~ msgid "PHP <code>gettext()</code> support"
+#~ msgstr "PHP <code>gettext()</code>-Unterstützung"
+
+#~ msgid "PHP <code>gettext()</code> support [is not present]"
+#~ msgstr "PHP <code>gettext()</code>-Unterstützung [ist nicht vorhanden]"
+
+#~ msgid ""
+#~ "Localization of Zenphoto requires native PHP <code>gettext()</code> "
+#~ "support"
+#~ msgstr ""
+#~ "Lokalisation von Zenphoto benötigt die PHP-<code>gettext()</code>-"
+#~ "Erweiterung"
+
+#~ msgid "PHP <code>flock</code> support"
+#~ msgstr "PHP <code>flock</code>-Unterstützung"
+
+#~ msgid "PHP <code>flock</code> support [is not present]"
+#~ msgstr "PHP <code>flock</code>-Unterstützung [ist nicht vorhanden]"
+
+#~ msgid ""
+#~ "Zenpoto uses <code>flock</code> for serializing critical regions of code. "
+#~ "Without <code>flock</code> active sites may experience <em>race "
+#~ "conditions</em> which may be causing inconsistent data."
+#~ msgstr ""
+#~ "Zenpoto verwendet <code>flock</code>. um kritische Coderegionen zu "
+#~ "sterilisieren. Ohne <code>flock</code> können Sites <em>kritische "
+#~ "Wettläufe</em> erfahren, die inkonsistente Daten zur Folge haben können."
+
+#~ msgid "PHP <code>setlocale()</code>"
+#~ msgstr "PHP <code>setlocale()</code>"
+
+#~ msgid "PHP <code>setlocale()</code> failed"
+#~ msgstr "PHP <code>setlocale()</code> fehlgeschlagen"
+
+#~ msgid ""
+#~ "Locale functionality is not implemented on your platform or the specified "
+#~ "locale does not exist. Language translation may not work."
+#~ msgstr ""
+#~ "Ihr Server verfügt nicht über Locale-Funktionalität oder die ausgewählte "
+#~ "Locale existiert nicht. Übersetzung funktionieren daher möglicherweise "
+#~ "nicht."
+
+#~ msgid ""
+#~ "See the <a  href=\"http://www.zenphoto.org/news/problems-with-languages"
+#~ "\">user guide</a> on zenphoto.org for details."
+#~ msgstr ""
+#~ "Bitte lesen Sie den <a  href=\"http://www.zenphoto.org/news/problems-with-"
+#~ "languages\">Troubleshooting guide</a> auf zenphoto.org für mehr "
+#~ "Information."
+
+#~ msgid "mb_strings"
+#~ msgstr "mb_strings"
+
+#~ msgid ""
+#~ "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
+#~ "your <em>php.ini</em> file is recommended to insure accented and multi-"
+#~ "byte characters function properly."
+#~ msgstr ""
+#~ "Es wird empfohlen, die <em>mbstring.internal_encoding</em> auf "
+#~ "<strong>UTF-8</strong> in Ihrer <em>php.ini</em>-Datei zu setzen, um "
+#~ "sicher zu stellen, dass akzentuierte und multi-byte Buchstaben wie "
+#~ "erwartet funktionieren."
+
+#~ msgid "PHP <code>mbstring</code> package"
+#~ msgstr "PHP <code>mbstring</code>-Erweiterung"
+
+#~ msgid ""
+#~ "PHP <code>mbstring</code> package [Your internal character set is <strong>"
+#~ "%s</strong>]"
+#~ msgstr ""
+#~ "PHP <code>mbstring</code>-Erweiterung [Ihr interner Zeichensatz ist auf "
+#~ "<strong>%s</strong> eingestellt]"
+
+#~ msgid ""
+#~ "You need to install the <code>mbstring</code> package or correct the "
+#~ "issue with <code>iconv()</code>"
+#~ msgstr ""
+#~ "Sie müssen die <code>mbstring</code>-Erweiterung installieren oder "
+#~ "Angelegenheit mit  <code>iconv(()</code> beheben"
+
+#~ msgid ""
+#~ "PHP <code>mbstring</code> package [is not present and <code>iconv()</"
+#~ "code> is not working]"
+#~ msgstr ""
+#~ "PHP <code>mbstring</code>-Erweiterung [ist nicht vorhanden und "
+#~ "<code>iconv()</code> funktioniert nicht]"
+
+#~ msgid ""
+#~ "Strings generated internally by PHP may not display correctly. (e.g. "
+#~ "dates)"
+#~ msgstr ""
+#~ "Zeichenketten, die intern von PHP generiert werden, können unter "
+#~ "Umständen nicht korrekt dargestellt werden (z. B. Datumsangaben)."
+
+#~ msgid "PHP <code>mbstring</code> package [is not present]"
+#~ msgstr "PHP <code>mbstring</code>-Erweiterung [ist nicht vorhanden]"
+
+#~ msgid "Graphics library"
+#~ msgstr "Grafikbibliothek"
+
+#~ msgid "Graphics support: <code>%s</code>"
+#~ msgstr "Grafikunterstützung: <code>%s</code>"
+
+#~ msgid "Graphics support [is not installed]"
+#~ msgstr "Grafikunterstützung [ist nicht installiert]"
+
+#~ msgid ""
+#~ "You need to install a graphics support library such as the <em>GD "
+#~ "library</em> in your PHP"
+#~ msgstr ""
+#~ "Sie müssen eine <em>Grafikerweitung</em> für PHP wie die GD-Bibliothek "
+#~ "installieren"
+
+#~ msgid "Your PHP graphics library does not support %1$s or %2$s"
+#~ msgstr "Ihre PHP-Grafiklibary unterstützt %1$s oder %2$s nicht"
+
+#~ msgid "Your PHP graphics library does not support %1$s"
+#~ msgstr "Ihre PHP-Grafiklibary unterstützt %1$s nicht"
+
+#~ msgid ""
+#~ "To correct this you should install a graphics library with appropriate "
+#~ "image support in your PHP"
+#~ msgstr ""
+#~ "Um dies zu beheben, sollten Sie GD-Grafikerweiterung mit entsprechender "
+#~ "Bildunterstützung für PHP installieren"
+
+#~ msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
+#~ msgstr "Ihre PHP-Grafiklibary unterstützt  %1$s, %2$s oder %3$s nicht"
+
+#~ msgid ""
+#~ "To correct this you need to install GD with appropriate image support in "
+#~ "your PHP"
+#~ msgstr ""
+#~ "Um dies zu beheben, müssen Sie die GD-Erweiterung für PHP mit der "
+#~ "entsprechenden Bildformatunterstützung installieren"
+
+#~ msgid "PHP graphics image support"
+#~ msgstr "PHP-GD-Bildbearbeitungs-Unterstützung"
+
+#~ msgid "The unsupported image types will not be viewable in your albums."
+#~ msgstr ""
+#~ "Die nicht unterstützten Bildformate werden in Ihren Alben nicht zu sehen "
+#~ "sein."
+
+#~ msgid "Graphics Library rotation support [is not present]"
+#~ msgstr "Grafikbibliothek Bildrotationunterstützung [ist nicht vorhanden]"
+
+#~ msgid ""
+#~ "The graphics support library does not provide support for image rotation."
+#~ msgstr "Die Grafikunterstützung bietet keine Bildrotationsfunktionalität."
+
+#~ msgid "Graphics support [configuration error]"
+#~ msgstr "Grafikunterstützung [Konfigurationsfehler]"
+
+#~ msgid ""
+#~ "No Zenphoto image handling library was loaded. Be sure that your PHP has "
+#~ "a graphics support."
+#~ msgstr ""
+#~ "Es wurde keine Zenphoto-Grafikbibliothek geladen. Überprüfen Sie, dass "
+#~ "Ihr PHP über Grafikunterstützung verfügt."
+
+#~ msgid "<em>%1$s</em> file"
+#~ msgstr "<em>%1$s</em>-Datei"
+
+#~ msgid "<em>%1$s</em> file [does not exist]"
+#~ msgstr "<em>%1$s</em>-Datei [existiert nicht]"
+
+#~ msgid ""
+#~ "Setup was not able to create this file. You will need to copy the <code>"
+#~ "%1$s/zenphoto_cfg.txt</code> file to <code>%2$s/%3$s</code> then edit it "
+#~ "as indicated in the file’s comments."
+#~ msgstr ""
+#~ "Das Installationsprogramm konnte diese Datei nicht erstellen. Sie müssen "
+#~ "daher die Datei <code>%1$s/zenphoto_cfg.txt</code> nach <code>%2$s/%3$s</"
+#~ "code>kopieren und dann wie in den Dateikommentaren beschrieben ändern."
+
+#~ msgid "File permissions"
+#~ msgstr "Dateizugriffsrechte"
+
+#~ msgid "Set File permissions to %s."
+#~ msgstr "Dateizugriffsrechte auf %s ändern."
+
+#~ msgid "<em>%1$s</em> (<code>0%2$o</code>)"
+#~ msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
+
+#~ msgid "<em>unknown</em> (<code>%o</code>)"
+#~ msgstr "<em>Unbekannt</em> (<code>%o</code>)"
+
+#~ msgid "File Permissions [are %s]"
+#~ msgstr "Dateizugriffsrechte [sind %s]"
+
+#~ msgid ""
+#~ "If file permissions are not set to <em>strict</em> or tighter there could "
+#~ "be a security risk. However, on some servers Zenphoto does not function "
+#~ "correctly with tight file permissions. If Zenphoto has permission errors, "
+#~ "run setup again and select a more relaxed permission."
+#~ msgstr ""
+#~ "Es ist empfohlen, dass Sie <em>Strenge Rechte</em> aktivieren, da dies "
+#~ "andernfalls ein Sicherheitsrisiko darstellen kann. Jedoch funktioniert "
+#~ "Zenphoto auf einigen Servern leider nicht korrekt mit strenger "
+#~ "Rechtevergabe. Wenn Sie diese Einstellung aktivieren und Fehler bezüglich "
+#~ "Rechtevergabe erhalten, führen Sie das Installationsprogramm erneut aus "
+#~ "und setzten Sie weniger strenge Rechte. "
+
+#~ msgid "Your filesystem is Macintosh"
+#~ msgstr "Ihr Dateisystem ist Macintosh"
+
+#~ msgid ""
+#~ "Zenphoto is unable to deal with Macintosh file names containing "
+#~ "diacritical marks. You should avoid these."
+#~ msgstr ""
+#~ "Zenphoto kann auf Macs nicht mit Dateinamen, die Akzente enthalten, "
+#~ "umgehen. Sie sollten diese vermeiden."
+
+#~ msgid "Character set"
+#~ msgstr "Zeichensatz"
+
+#~ msgid ""
+#~ "If your server filesystem character set is different from <code>%s</code> "
+#~ "and you create album or image filenames names containing characters with "
+#~ "diacritical marks you may have problems with these objects."
+#~ msgstr ""
+#~ "Wenn Ihr Server-Dateisystem-Zeichensatz anders als <code>%s</code> ist, "
+#~ "können Datei -und Ordnernamen mit Zeichen, die diakritische Zeichen "
+#~ "enthalten, Probleme verursachen."
+
+#~ msgid "Change the filesystem character set define to %1$s"
+#~ msgstr "Die Dateisystem-Zeichensatz-Definition auf %1$s ändern"
+
+#~ msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
+#~ msgstr ""
+#~ "Der Zenphoto-Dateisystem-Zeichensatz ist als %1$s definiert [bestätigt]"
+
+#~ msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
+#~ msgstr ""
+#~ "Der Zenphoto-Dateisystem-Zeichensatz ist als ISO-8859-1 [angenommen] "
+#~ "definiert"
+
+#~ msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
+#~ msgstr ""
+#~ "Der Zenphoto-Dateisystem-Zeichensatz ist als %1$s definiert  [scheint "
+#~ "falsch]"
+
+#~ msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
+#~ msgstr ""
+#~ "Der Zenphoto-Dateisystem-Zeichensatz ist als %1$s definiert [Es wurde "
+#~ "kein Test ausgeführt]."
+
+#~ msgid ""
+#~ "Setup did not perform a test of the filesystem character set. You can "
+#~ "cause setup to test for a proper definition by creating a file in your "
+#~ "<code>%1$s</code> folder named <strong><code>%2$s</code></strong> and re-"
+#~ "running setup."
+#~ msgstr ""
+#~ "Das Installationsskript hat keinen Test bezüglich des Dateisystem-"
+#~ "Zeichensatzes durchgeführt. Sie können es anweisen, eine  einen Test "
+#~ "durchzuführen, indem Sie eine Datei in Ihrem <code>%1$s</code>-Ordner mit "
+#~ "dem Namen <strong><code>%2$s</code></strong> erstellen und das "
+#~ "Installationsskript erneut aufrufen. "
+
+#~ msgid "Image URIs appear require the <em>filesystem</em> character set."
+#~ msgstr ""
+#~ "Bild-URIs scheinen den <em>filesystem</em>-Zeichensatz zu erfordern."
+
+#~ msgid "Image URIs appear to require the UTF-8 character set."
+#~ msgstr "Bild-URIs scheinen den UTF-8-Zeichensatz zu erfordern."
+
+#~ msgid "You should enable the URL option <em>UTF8 image URIs</em>."
+#~ msgstr "Sie sollten die URL-Einstellung <em>UTF8 Bild-URIs</em> aktivieren"
+
+#~ msgid "<a href=\"javascript:uri(true)\">Please do</a>"
+#~ msgstr "<a href=\"javascript:uri(true)\">Bitte machen</a>"
+
+#~ msgid "You should disable the URL option <em>UTF8 image URIs</em>."
+#~ msgstr ""
+#~ "Sie sollten die URL-Einstellung <em>UTF8 Bild-URIs</em> deaktivieren"
+
+#~ msgid "<a href=\"javascript:uri(false)\">Please do</a>"
+#~ msgstr "<a href=\"javascript:uri(false)\">Bitte machen</a>"
+
+#~ msgid "Warning!"
+#~ msgstr "Warnung!"
+
+#~ msgid "PHP <code>%s</code> support for configured Database"
+#~ msgstr "PHP <code>%s</code>-Unterstützung für die konfigurierte Datenbank"
+
+#~ msgid ""
+#~ " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" "
+#~ ">experimental</a>)"
+#~ msgstr ""
+#~ " <code>%1$s</code>-Support (<a onclick=\"$('#%1$s').toggle('show')\" "
+#~ ">experimentell</a>)"
+
+#~ msgid "PHP <code>%s</code> support"
+#~ msgstr "PHP <code>%s</code>-Unterstützung"
+
+#~ msgid "PHP <code>%s</code> support [is not installed]"
+#~ msgstr "PHP <code>%s</code>-Unterstützung [ist nicht installiert]"
+
+#~ msgid "No database selected"
+#~ msgstr "Keine Datenbank ausgewählt"
+
+#~ msgid "%1$s version %2$s"
+#~ msgstr "%1$s Version %2$s"
+
+#~ msgid ""
+#~ "%1$s Version %2$s or greater is required. Version %3$s or greater is "
+#~ "preferred. Use a lower version at your own risk."
+#~ msgstr ""
+#~ "%1$s Version %2$s oder neuer ist notwendig. Version %3$s oder neuer ist "
+#~ "ausdrücklich empfohlen. Verwenden Sie ältere Versionen auf eigenes "
+#~ "Risiko. "
+
+#~ msgid "Database connection"
+#~ msgstr "Datenbankverbindung"
+
+#~ msgid "Database credentials in configuration file"
+#~ msgstr "Datenbank-Konfiguration in der Konfigurationsdatei"
+
+#~ msgid "<em>%1$s</em> reported: %2$s"
+#~ msgstr "<em>%1$s</em> berichtet: %2$s"
+
+#~ msgid ""
+#~ "You have not correctly set your <strong>Database</strong> <code>user</"
+#~ "code>, <code>password</code>, etc. in your configuration file and "
+#~ "<strong>setup</strong> is not able to write to the file."
+#~ msgstr ""
+#~ "Sie haben den <strong>Datenbank</strong>-<code>Benutzer</code>, <code>-"
+#~ "Passwort</code> etc. in Ihrer<code>zp-config.php</code>-Datei nicht "
+#~ "korrekt eingetragen, so dass <strong>setup</strong> die Datei nicht "
+#~ "aktualisieren kann."
+
+#~ msgid "Database setup in configuration file"
+#~ msgstr "Datenbank-Konfiguration in der Konfigurationsdatei"
+
+#~ msgid "Connect to %s"
+#~ msgstr "Verbinden mit %s"
+
+#~ msgid "Connect to Database [<code>CONNECT</code> query failed]"
+#~ msgstr "Datenbank-Verbindung  [<code>CONNECT</code>-Abfrage fehlgeschlagen]"
+
+#~ msgid "Database <code>%s</code> created"
+#~ msgstr "Datenbank <code>%s</code> erstellt"
+
+#~ msgid ""
+#~ "Click here to attempt to create <a href=\"?Create_Database\" >%s</a>."
+#~ msgstr ""
+#~ "Klicken Sie hier, um die Datenbank zu erstellen: <a href=\"?"
+#~ "Create_Database\" >%s</a>. "
+
+#~ msgid ""
+#~ "Database <code>%s</code> not created [<code>CREATE DATABASE</code> query "
+#~ "failed]"
+#~ msgstr ""
+#~ "Datenbank <code>%s</code> nicht erstellt [<code>CREATE DATABASE</code>-"
+#~ "Abfrage fehlgeschlagen]"
+
+#~ msgid ""
+#~ "You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
+#~ "configuration."
+#~ msgstr ""
+#~ "Sie müssen möglicherweise den  <code>SQL-Modus</code> in Ihrer Datenbank-"
+#~ "Konfiguration auf <em>leer</em>"
+
+#~ msgid "<code>SQL mode</code> [query failed]"
+#~ msgstr "<code>SQL-Modus</code> [Abfrage fehlgeschlagen]"
+
+#~ msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
+#~ msgstr "<code>SQL-Modus</code> [<em>%s</em> übergangen]"
+
+#~ msgid "Consider setting it <em>empty</em> in your Database configuration."
+#~ msgstr ""
+#~ "Ziehen Sie in Erwägung dies in Ihrer MySQL-Konfiguration auf <em>leer</"
+#~ "em> zu stellen."
+
+#~ msgid "<code>SQL mode</code>"
+#~ msgstr "<code>SQL-Modus</code>"
+
+#~ msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
+#~ msgstr "<code>SQL-Modus</code> [ist auf <em>%s</em> gestellt]"
+
+#~ msgid "Consider setting it <em>empty</em> if you get Database errors."
+#~ msgstr ""
+#~ "Ziehen Sie in Erwägung, dies auf <em>leer</em> zu stellen, wenn Sie "
+#~ "Datenbank-Fehlermeldungen bekommen."
+
+#~ msgid "<code>SQL mode</code> [SET SESSION failed]"
+#~ msgstr "<code>SQL-Modus</code> [SET SESSION fehlgeschlagen]"
+
+#~ msgid "Select"
+#~ msgstr "Auswählen"
+
+#~ msgid "Create"
+#~ msgstr "Erzeugen"
+
+#~ msgid "Drop"
+#~ msgstr "Verwerfen"
+
+#~ msgid "Insert"
+#~ msgstr "Einfügen"
+
+#~ msgid "Update"
+#~ msgstr "Aktualisieren"
+
+#~ msgid "Alter"
+#~ msgstr "Ändern"
+
+#~ msgid "Grants found:"
+#~ msgstr "Grants gefunden:"
+
+#~ msgid "The <em>SHOW GRANTS</em> query failed."
+#~ msgstr "Die <code>SHOW GRANTS</code>-Abfrage ist fehlgeschlagen."
+
+#~ msgid "Database <code>access rights</code> for <em>%s</em>"
+#~ msgstr "Datenbank-<code>Zugriffsrechte</code> für <em>%s</em>"
+
+#~ msgid "Database <code>access rights</code> for <em>%1$s</em> [%2$s]"
+#~ msgstr "Datenbank-<code>Zugriffsrechte</code> für <em>%1$s</em> [%2$s]"
+
+#~ msgid "Your Database user must have %s rights."
+#~ msgstr "Ihr Datenbank-Benutzer muß über %s Rechte verfügen."
+
+#~ msgid "<em>SHOW TABLES</em> [found no tables]"
+#~ msgstr "<em>SHOW TABLES</em> [keine Tabellen gefunden]"
+
+#~ msgid "<em>SHOW TABLES</em> found: %s"
+#~ msgstr "<em>SHOW TABLES</em> fand: %s"
+
+#~ msgid "<em>SHOW TABLES</em> [Failed]"
+#~ msgstr "<em>SHOW TABLES</em> [fehlgeschlagen]"
+
+#~ msgid ""
+#~ "The database did not return a list of the database tables for <code>%s</"
+#~ "code>."
+#~ msgstr ""
+#~ "MySQL hat für <code>%s</code> keine Liste der Datenbanktabellen "
+#~ "zurückgegeben."
+
+#~ msgid ""
+#~ "<strong>Setup</strong> will attempt to create all tables. This will not "
+#~ "over write any existing tables."
+#~ msgstr ""
+#~ "<strong>Setup</strong> wird versuchen, die Tabellen zu erstellen. Es "
+#~ "werden keine bereits existierenden Tabellen überschrieben."
+
+#~ msgid "Database <code>field collations</code> [Image table]"
+#~ msgstr "Datenbank-<code>Feldkollationen</code> [Bildtabelle]"
+
+#~ msgid "Database <code>field collations</code> [Album table]"
+#~ msgstr "Datenbank-<code>Feldkollationen</code> [Albumtabelle]"
+
+#~ msgid "Database <code>field collations</code> [Image and Album tables]"
+#~ msgstr "Datenbank-<code>Feldkollationen</code> [Bild- und Albumtabellen]"
+
+#~ msgid "Database <code>field collations</code> [SHOW COLUMNS query failed]"
+#~ msgstr ""
+#~ "Datenbank-<code>Feldkollationen</code> [SHOW COLUMNS-Abfrage "
+#~ "fehlgeschlagen]"
+
+#~ msgid "Database <code>field collations</code>"
+#~ msgstr "Datenbank-<code>Feldkollationen</code> "
+
+#~ msgid ""
+#~ "%s is not UTF-8. You should consider porting your data to UTF-8 and "
+#~ "changing the collation of the database fields to <code>utf8_unicode_ci</"
+#~ "code>"
+#~ msgid_plural ""
+#~ "%s are not UTF-8. You should consider porting your data to UTF-8 and "
+#~ "changing the collation of the database fields to <code>utf8_unicode_ci</"
+#~ "code>"
+#~ msgstr[0] ""
+#~ "%s ist nicht UTF-8. Sie sollten erwägen, Ihre Daten in UTF-8 zu "
+#~ "übertragen und die Kollation der Datenbankfelder auf  "
+#~ "<code>utf8_unicode_ci</code> zu setzen."
+#~ msgstr[1] ""
+#~ "%s sind nicht UTF-8. Sie sollten erwägen, Ihre Daten in UTF-8 zu "
+#~ "übertragen und die Kollation der Datenbankfelder auf  "
+#~ "<code>utf8_unicode_ci</code> zu setzen."
+
+#~ msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
+#~ msgstr ""
+#~ "Datenbank <code>$conf[\"UTF-8\"]</code> [ist nicht auf <em>true</em> "
+#~ "gestellt]"
+
+#~ msgid ""
+#~ "You should consider porting your data to UTF-8 and changing the collation "
+#~ "of the database fields to <code>utf8_unicode_ci</code> and setting this "
+#~ "<em>true</em>. Zenphoto works best with pure UTF-8 encodings."
+#~ msgstr ""
+#~ "Sie sollten erwägen, Ihre Daten in UTF-8 zu übertragen und die Kollation "
+#~ "der Datenbankfelder auf  <code>utf8_unicode_ci</code> zu setzen und dies "
+#~ "auf <em>true</em> zu stellen. Zenphoto arbeitet am besten mit reinen "
+#~ "UTF-8-Kodierungen."
+
+#~ msgid "Zenphoto files"
+#~ msgstr "Zenphoto-Dateien"
+
+#~ msgid "Zenphoto package [missing]"
+#~ msgstr "Zenphoto package [fehlt]"
+
+#~ msgid ""
+#~ "The file <code>Zenphoto.package</code> is either missing, not readable, "
+#~ "or defective. Your installation may be corrupt!"
+#~ msgstr ""
+#~ "Die Datei <code>Zenphoto.package</code> fehlt, ist nicht lesbar oder "
+#~ "beschädigt. Ihre Installation könnte korrupt sein!"
+
+#~ msgid "Setting permissions (0%o) for Zenphoto package."
+#~ msgstr "Dateizugriffsrechte (0%o) für das Zenphoto-Paket."
+
+#~ msgid ""
+#~ "Zenphoto core files [This is a <em>debug</em> build. Some files are "
+#~ "missing or seem wrong]"
+#~ msgstr ""
+#~ "Zenphoto-Hauptdateien [Dies ist keine offizielle Version. Einige Dateien "
+#~ "fehlen oder scheinen falsch zu sein]"
+
+#~ msgid "Zenphoto core files [Some files are missing or seem wrong]"
+#~ msgstr "Zenphoto-Hauptdateien [Einige fehlen oder scheinen falsch zu sein]"
+
+#~ msgid ""
+#~ "Perhaps there was a problem with the upload. You should check the "
+#~ "following files: "
+#~ msgstr ""
+#~ "Vielleicht ist ein Problem mit dem Upload aufgetreten. Sie sollten die "
+#~ "folgenden Dateien überprüfen:"
+
+#~ msgid "Zenphoto core files [This is a <em>debug</em> build]"
+#~ msgstr "Zenphoto-Hauptdateien [Dies ist keine offizielle Version]"
+
+#~ msgid "Zenphoto core files"
+#~ msgstr "Zenphoto-Hauptdateien"
+
+#~ msgid "Installation files"
+#~ msgstr "Installationsdateien"
+
+#~ msgid ".svn [%s instance]"
+#~ msgid_plural ".svn [%s instances]"
+#~ msgstr[0] ".svn [%s Vorkommen]"
+#~ msgstr[1] ".svn [%s Vorkommen]"
+
+#~ msgid "php.ini [%s instance]"
+#~ msgid_plural "php.ini [%s instances]"
+#~ msgstr[0] "php.ini [%s Vorkommen]"
+#~ msgstr[1] "php.ini [%s Vorkommen]"
+
+#~ msgid "Zenphoto core folders [Some unknown files were found]"
+#~ msgstr "Zenphoto-Hauptordner [Einige unbekannte Dateien wurden gefunden]"
+
+#~ msgid "The following files could not be deleted."
+#~ msgstr "Die folgenden Dateien konnten nicht gelöscht werden."
+
+#~ msgid "You should remove the following files: "
+#~ msgstr "Sie sollten die folgenden Dateien entfernen: "
+
+#~ msgid "Delete extra files"
+#~ msgstr "Extradateien löschen"
+
+#~ msgid "Zenphoto core file permissions"
+#~ msgstr "Zenphoto-Hauptdateien-Zugriffsrechte"
+
+#~ msgid "Zenphoto core file permissions [not correct]"
+#~ msgstr "Zenphoto-Hauptdateien-Dateiberechtigungen [nicht korrekt]"
+
+#~ msgid ""
+#~ "Setup could not set the one or more components to the selected "
+#~ "permissions level. You will have to set the permissions manually. See the "
+#~ "<a href=\"http://www.zenphoto.org/news/permissions-for-zenphoto-files-and-"
+#~ "folders\">Troubleshooting guide</a> for details on Zenphoto permissions "
+#~ "requirements."
+#~ msgstr ""
+#~ "Setup konnte die die gewünschten Dateizugriffsrechte nicht setzen. Sie "
+#~ "müssen diese manuell einstellen. Bitte lesen Sie a href=\"http://www."
+#~ "zenphoto.org/news/permissions-for-zenphoto-files-and-folders"
+#~ "\">Troubleshooting guide</a> zu Details über die erforderlichen "
+#~ "Dateizugriffsrechte."
+
+#~ msgid "<em>.htaccess</em> file"
+#~ msgstr "<em>.htaccess</em>-Datei"
+
+#~ msgid "<em>.htaccess</em> file [is empty or does not exist]"
+#~ msgstr "<em>.htaccess</em>-Datei [ist leer oder existiert nicht]"
+
+#~ msgid ""
+#~ "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
+#~ "required the root zenphoto folder to create cruft-free URLs."
+#~ msgstr ""
+#~ "Wenn Ihr Apache-Server über mod_rewrite-Funktionalität verfügt, muß eine "
+#~ "<em>.htaccess</em>-Datei im Zenphoto-Hauptverzeichnis vorhanden sein, "
+#~ "wenn Sie suchmaschinenfreundliche, klare URLs verwenden möchten."
+
+#~ msgid ""
+#~ "You can ignore this warning if you do not intend to set the "
+#~ "<code>mod_rewrite</code> option."
+#~ msgstr ""
+#~ "Sie können dies ignorieren, wenn Sie nicht vorhaben <code>mod_rewrite</"
+#~ "code> zu verwenden."
+
+#~ msgid ""
+#~ "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the "
+#~ "file</a></p><br style=\"clear:both\" /><br />"
+#~ msgstr ""
+#~ "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Das Installationsskript "
+#~ "anweisen, die Datei zu erstellen </a></p><br style=\"clear:both\" /><br />"
+
+#~ msgid "Server seems to be <em>nginx</em>"
+#~ msgstr "Der Server scheint <em>nginx</em> zu sein."
+
+#~ msgid ""
+#~ "If you wish to create cruft-free URLs, you will need to configuring <a "
+#~ "href=\"http://www.zenphoto.org/news/nginx-rewrite-rules-tutorial"
+#~ "\"><em>URL rewriting for NGINX servers</em></a>."
+#~ msgstr ""
+#~ "Wenn Sie suchmaschinenfreundliche URLs möchten, müssen Sie dies für gemäß "
+#~ "dem Tutorial <a href=\"http://www.zenphoto.org/news/nginx-rewrite-rules-"
+#~ "tutorial\"><em>URL rewriting for NGINX servers</em></a> konfigurieren."
+
+#~ msgid ""
+#~ "Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, "
+#~ "<code>mod_rewrite</code> may not be available."
+#~ msgstr ""
+#~ "Der Server scheint kein Apache-Server oder nicht Apache kompatibel zu "
+#~ "sein, daher ist<code>mod_rewrite</code> möglicherweise nicht verfügbar."
+
+#~ msgid ""
+#~ "Server seems not to be Apache or Apache-compatible, <code>.htaccess</"
+#~ "code> not required."
+#~ msgstr ""
+#~ "Der Server scheint kein Apache-Server oder nicht Apache kompatibel zu "
+#~ "sein, daher wird der<code>.htaccess</code> nicht benötigt."
+
+#~ msgid ""
+#~ "The <em>.htaccess</em> file in your root folder is not the same version "
+#~ "as the one distributed with this version of Zenphoto. If you have made "
+#~ "changes to <em>.htaccess</em>, merge those changes with the <em>%s/"
+#~ "htaccess</em> file to produce a new <em>.htaccess</em> file."
+#~ msgstr ""
+#~ "Die <em>.htaccess</em>-Datei in Ihren Zenphoto-Hauptverzeichnis ist nicht "
+#~ "die selbe Version wie die in dieser Zenphoto-Version enthaltene. Wenn Sie "
+#~ "Änderungen an <em>.htaccess</em> vorgenommen haben, fügen Sie diese "
+#~ "Änderungen in die <em>%s/htaccess</em>-Datei ein, um eine neue <em>."
+#~ "htaccess</em>-Datei zu erstellen."
+
+#~ msgid ""
+#~ "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>."
+#~ "htaccess</em> file with the current version</a></p><br style=\"clear:both"
+#~ "\" /><br />"
+#~ msgstr ""
+#~ "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Die existierende <em>."
+#~ "htaccess</em>-Datei durch die aktuelle Version ersetzen. </a></p><br "
+#~ "style=\"clear:both\" /><br />"
+
+#~ msgid "<em>.htaccess</em> file [wrong version]"
+#~ msgstr "<em>.htaccess</em>-Datei [falsche Version]"
+
+#~ msgid ""
+#~ "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
+#~ msgstr ""
+#~ "<em>.htaccess</em>-Datei (<em>RewriteEngine</em> ist <strong>%s</strong>)"
+
+#~ msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
+#~ msgstr "<em>.htaccess</em> RewriteBase [<em>fehlt</em>]"
+
+#~ msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
+#~ msgstr "<em>.htaccess</em> RewriteBase ist <code>%s</code>"
+
+#~ msgid ""
+#~ "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
+#~ "folder]"
+#~ msgstr ""
+#~ "<em>.htaccess</em> RewriteBase ist <code>%s</code> [Stimmt nicht mit dem "
+#~ "Installationsordner überein]"
+
+#~ msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
+#~ msgstr "<em>.htaccess</em> RewriteBase ist <code>%s</code> (behoben)"
+
+#~ msgid ""
+#~ "Setup was not able to write to the file change RewriteBase match the "
+#~ "install folder."
+#~ msgstr ""
+#~ "Setup konnte die Dateiänderung nicht schreiben. Ändern Sie die "
+#~ "RewriteBase passend zum Installationsordner."
+
+#~ msgid ""
+#~ "Either make the file writeable or set <code>RewriteBase</code> in your "
+#~ "<code>.htaccess</code> file to <code>%s</code>."
+#~ msgstr ""
+#~ "Entweder Sie machen die Datei beschreibbar oder Sie setzen "
+#~ "die<code>RewriteBase</code> in Ihrer <code>.htaccess</code>-Datei auf "
+#~ "<code>%s</code>."
+
+#~ msgid "Rewrite rules updated"
+#~ msgstr "Rewrite-Rules aktualisiert."
+
+#~ msgid "Rewrite rules updated [not updated]"
+#~ msgstr "Rewrite-Regel aktualisiert  [nicht aktualisiert]"
+
+#~ msgid ""
+#~ "Setup was not able to write to the file change the rewrite rules for site "
+#~ "upgrades."
+#~ msgstr ""
+#~ "Setup konnte die Änderungen für die Rewrite-Regeln nicht schreiben, die "
+#~ "zum Schliessen der Site bei Upgrade benötigt werden."
+
+#~ msgid "<em>robots.txt</em> file"
+#~ msgstr "<em>robots.txt</em>-Datei"
+
+#~ msgid "<em>robots.txt</em> file [Not created]"
+#~ msgstr "<em>robots.txt</em>-Dateu [nicht erstellt]"
+
+#~ msgid "Setup could not find the  <em>example_robots.txt</em> file."
+#~ msgstr "Setup konnte keine<em>example_robots.txt</em>-Datei finden."
+
+#~ msgid ""
+#~ "Setup did not create a <em>robots.txt</em> file because one already "
+#~ "exists."
+#~ msgstr ""
+#~ "Setup konnte keine<em>robots.txt</em>-Datei erstellen, da die Datei "
+#~ "bereits existiert."
+
+#~ msgid "Setup could not create a <em>robots.txt</em> file."
+#~ msgstr "Setup konnte keine<em>robots.txt</em>-Datei erstellen."
+
+#~ msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
+#~ msgstr "Alben [<code>$conf['external_album_folder']</code> ist veraltet]"
+
+#~ msgid ""
+#~ "You should update your configuration file to conform to the current %1$s "
+#~ "example file."
+#~ msgstr ""
+#~ "Sie sollten Ihre Konfigurationsdatei aktualisieren, damit sie der "
+#~ "aktuellen %1$s-Beispieldatei entspricht."
+
+#~ msgid "<em>albums</em> folder"
+#~ msgstr "<em>albums</em>-Ordner"
+
+#~ msgid ""
+#~ "<em>albums</em> folder [The line <code>\\$conf['album_folder']</code> is "
+#~ "missing from your configuration file]"
+#~ msgstr ""
+#~ "<em>albums</em>-Ordner [Die Zeile <code>$conf['album_folder']</code> "
+#~ "fehlt in Ihrer Konfigurations-Datei]"
+
+#~ msgid "<em>locale</em> folders"
+#~ msgstr "<em>locale</em>-Ordner"
+
+#~ msgid "<em>locale</em> folders [Are not complete]"
+#~ msgstr "<em>locale</em>-Ordner [sind nicht vollständig]"
+
+#~ msgid ""
+#~ "Be sure you have uploaded the complete Zenphoto package. You must have at "
+#~ "least the <em>en_US</em> folder."
+#~ msgstr ""
+#~ "Stellen Sie sicher, dass sie das komplette Zenphoto-Paket heruntergeladen "
+#~ "haben. Sie müssen wenigstens den <em>en_US</em>-Ordner haben."
+
+#~ msgid "uploaded"
+#~ msgstr "uploaded"
+
+#~ msgid "HTML cache"
+#~ msgstr "HTML-Cache"
+
+#~ msgid "Third party plugins"
+#~ msgstr "Drittherstellerplugins"
+
+#~ msgid ""
+#~ "You need to address the problems indicated above then run <code>setup</"
+#~ "code> again."
+#~ msgstr ""
+#~ "Sie müssen die oben aufgeführten Problem beheben und dann <code>Setup</"
+#~ "code> erneut ausführen."
+
+#~ msgid "Setup failed."
+#~ msgstr "Installation fehlgeschlagen."
+
+#~ msgid "You need <em>USER ADMIN</em> rights to run setup."
+#~ msgstr ""
+#~ "Sie müssen über<em>Benutzerverwaltungsrechte</em> verfügen, um setup "
+#~ "ausführen zu können."
+
+#~ msgid "You must be logged in to run setup."
+#~ msgstr ""
+#~ "Sie müssen angemeldet sein, um die Installation durchführen zu können."
+
+#~ msgid "database connected"
+#~ msgstr "Mit Datenbank verbunden"
+
+#~ msgid "About to create tables"
+#~ msgstr "Bereit, die Tabellen zu erstellen"
+
+#~ msgid "About to update tables"
+#~ msgstr "Bereit, die Tabellen zu aktualisieren"
+
+#~ msgid "Begin table creation"
+#~ msgstr "Tabellenerstellung begonnen."
+
+#~ msgid "Query %1$s Failed. Error: %2$s"
+#~ msgstr "Abfrage %1$s fehlgeschlagen. Fehler: %2$s"
+
+#~ msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
+#~ msgstr ""
+#~ "Tabellenerstellung fehlgeschlagen: <br />Abfrage: %1$s<br />Fehler: %2$s"
+
+#~ msgid "Query ( %s ) Success."
+#~ msgstr "Abfrage ( %s ) erfolgreich."
+
+#~ msgid "Begin table updates"
+#~ msgstr "Die Tabellenaktualisierung wird gestartet."
+
+#~ msgid "Done with table create!"
+#~ msgstr "Tabellenerstellung abgeschlossen!"
+
+#~ msgid "Done with table create with errors!"
+#~ msgstr "Tabellenerstellung mit Fehlern abgeschlossen!"
+
+#~ msgid "Done with table update"
+#~ msgstr "Tabellenaktualisierung abgeschlossen!"
+
+#~ msgid "Done with table update with errors"
+#~ msgstr "Tabellenaktualisierung mit Fehlern abgeschlossen"
+
+#~ msgid "Done with database creation and update"
+#~ msgstr "Tabellenaktualisierung abgeschlossen!"
+
+#~ msgid "Previous Release was %s"
+#~ msgstr "Die vorige Veröffentlichung war %s"
+
+#~ msgid ""
+#~ "You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
+#~ "\"%2$s\">run backup-restore</a>"
+#~ msgstr ""
+#~ "Sie können entweder Ihren <a href=\"%1$s\">Benutzernamen und Ihr Passwort "
+#~ "definieren</a> oder die <a href=\"%2$s\">Backup-Wiederherstellung</a> "
+#~ "ausführen"
+
+#~ msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
+#~ msgstr ""
+#~ "Sie müssen Ihren <a href=\"%1$s\">Benutzernamen und Ihr Passwort setzen</"
+#~ "a>"
+
+#~ msgid "You can now <a href=\"%1$s\">administer your gallery.</a>"
+#~ msgstr "Sie können nun <a href=\"%1$s\">Ihre Galerie verwalten</a>."
+
+#~ msgid "Database tables to create: %s"
+#~ msgstr "Datenbanktabelle zu erstellen: %s"
+
+#~ msgid "Database tables to update: %s"
+#~ msgstr "Datenbanktabelle zu aktualisieren:  %s"
+
+#~ msgid ""
+#~ "<strong>Warning!</strong> This upgrade makes structural changes to the "
+#~ "database which are not easily reversed. Be sure you have a database "
+#~ "backup before proceeding."
+#~ msgstr ""
+#~ "<strong>Warnung!</strong> Diese Aktualisierung führt strukturelle "
+#~ "Änderung an der Datenbank aus, die nicht leicht zurückzusetzen sind. "
+#~ "Stellen Sie sicher, dass Sie ein Backup erstellt haben, bevor Sie "
+#~ "fortfahren. "
+
+#~ msgid "%s I acknowledge that proceeding will restructure my database."
+#~ msgstr ""
+#~ "%s Ich nehme zur Kenntnis, dass Fortfahren meine Datenbank "
+#~ "umstrukturieren wird."
+
+#~ msgid "run setup"
+#~ msgstr "Installation aufrufen"
+
+#~ msgid "Go"
+#~ msgstr "Los"
+
+#~ msgid "database did not connect"
+#~ msgstr "Die Datenbank konnte keine Verbindung herstellen"
+
+#~ msgid "If you haven not created the database yet, now would be a good time."
+#~ msgstr ""
+#~ "Wenn Sie die Datenbank noch nicht erstellt haben, wäre jetzt der richtige "
+#~ "Zeitpunkt."
+
+#~ msgid "The %1$s file does not exist."
+#~ msgstr "Die Datei %1$s existiert nicht."
+
+#~ msgid "Testing %s."
+#~ msgstr "%s testen"
+
+#~ msgid "Fail: "
+#~ msgstr "Fehlgeschlagen:"
+
+#~ msgid "Warn: "
+#~ msgstr "Warnung:"
+
+#~ msgid "Pass: "
+#~ msgstr "In Ordnung:"
+
+#~ msgid "Error!"
+#~ msgstr "Fehler!"
+
+#~ msgid "<strong>Warning!</strong> click for details"
+#~ msgstr "<strong>Anmerkung!</strong> Für mehr Details klicken"
+
+#~ msgid "<strong>Notice!</strong> click for details"
+#~ msgstr "<strong>Anmerkung!</strong> Für mehr Details klicken"
+
+#~ msgid "Notice!"
+#~ msgstr "Anmerkung!"
+
+#~ msgid "Autorun aborted"
+#~ msgstr "Automatisches Ausführen abgebrochen"
+
+#~ msgid "<em>%1$s</em> folder%2$s [subfolder creation failure]"
+#~ msgstr "<em>%1$s</em> Ordner%2$s [Unterordnererstellung fehlgeschlagen]"
+
+#~ msgid "Setup could not create the following subfolders:<br />%s"
+#~ msgstr "Setup konnte die folgenden Unterordner nicht erstellen:<br />%s"
+
+#~ msgid "<em>%1$s</em> folder%2$s [permissions failure]"
+#~ msgstr "<em>%1$s</em> Ordner%2$s [Dateizugriffsrechte fehlgeschlagen]"
+
+#~ msgid ""
+#~ "Setup could not change the file permissions from <em>%1$s</em> "
+#~ "(<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have "
+#~ "to set the permissions manually. See the <a href=\"http://www.zenphoto."
+#~ "org/news/troubleshooting-zenphoto#29\">Troubleshooting guide</a> for "
+#~ "details on Zenphoto permissions requirements."
+#~ msgstr ""
+#~ "Setup konnte die  Dateizugriffsrechte  nicht von <em>%1$s</em> "
+#~ "(<code>0%2$o</code>) auf <em>%3$s</em> (<code>0%4$o</code>) setzen. Sie "
+#~ "müssen diese manuell einstellen. Bitte lesen Sie <a href=\"//http://www."
+#~ "zenphoto.org/news/troubleshooting-zenphoto#29\">Troubleshooting guide</a> "
+#~ "zu Details zu  den erforderlichen Dateizugriffsrechte."
+
+#~ msgid ""
+#~ "You must create the folder <em>%1$s</em><br /><code>mkdir(%2$s, 0777)</"
+#~ "code>."
+#~ msgstr ""
+#~ "Sie müssen den Ordner <em>%1$s</em><br /><code>mkdir(%2$s, 0777)</code> "
+#~ "erstellen."
+
+#~ msgid "<em>%1$s</em> folder [<em>%2$s</em> does not exist]"
+#~ msgstr "Ordner <em>%1$s</em> [<em>%2$s</em> existiert nicht]"
+
+#~ msgid ""
+#~ "<em>%1$s</em> folder [<em>%2$s</em> does not exist and <strong>setup</"
+#~ "strong> could not create it]"
+#~ msgstr ""
+#~ "Ordner <em>%1$s</em> [<em>%2$s</em> existiert nicht und <strong>setup</"
+#~ "strong> konnte ihn nicht erstellen]"
+
+#~ msgid ""
+#~ "Change the permissions on the <code>%1$s</code> folder to be writable by "
+#~ "the server (<code>chmod 777 %2$s</code>)"
+#~ msgstr ""
+#~ "Ändern Sie die Zugriffsrechte des <code>%1$s</code>-Ordners auf "
+#~ "schreibbar durch den Server (<code>chmod 777 %2$s</code>)"
+
+#~ msgid ""
+#~ "<em>%1$s</em> folder [<em>%2$s</em> is not writeable and <strong>setup</"
+#~ "strong> could not make it so]"
+#~ msgstr ""
+#~ "Ordner <em>%1$s</em> [<em>%2$s</em> ist nicht beschreibbar und "
+#~ "<strong>setup</strong> konnte dies nicht ändern]"
+
+#~ msgid "<em>%1$s</em> folder%2$s"
+#~ msgstr "<em>%1$s</em> Ordner %2$s"
+
+#~ msgid "change the definition"
+#~ msgstr "Definition ändern"
+
+#~ msgid "apply"
+#~ msgstr "Anwenden"
+
+#~ msgid "%1$s (0%2$o)"
+#~ msgstr "%1$s (0%2$o)"
+
+#~ msgid ""
+#~ "See the <a href=\"http://www.zenphoto.org/news/troubleshooting-"
+#~ "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
+#~ msgstr ""
+#~ "Bitte lesen Sie den <a href=\"http://www.zenphoto.org/news/"
+#~ "troubleshooting-zenphoto#24\">Troubleshooting guide</a> auf zenphoto.org "
+#~ "für Details."
+
+#~ msgid "An attempt at cross site reference forgery has been blocked."
+#~ msgstr "Der Versuch eines  Cross-Site Request Forgery wurde blockiert."
+
+#~ msgid ""
+#~ "Click <a href=\"%s\">here</a> to acknowledge that you wish to ignore this "
+#~ "issue. It will then become a warning."
+#~ msgstr ""
+#~ "Klicken Sie <a href=\"%s\">here</a>, um zu bestätigen, dass Sie dieses "
+#~ "Problem ignorieren möchten. Es wird dann als Warnung angezeigt."
+
+#~ msgid "The simpler media website CMS"
+#~ msgstr "Das einfachere Medien-Website-CMS"
+
+#~ msgid "Updated configuration file"
+#~ msgstr "Konfigurationsdatei aktualisiert"
+
+#~ msgid ""
+#~ "<strong>Warning:</strong> the <code>%s</code> table appears not to have a "
+#~ "proper <em>UNIQUE</em> key. There are probably duplicate entries in the "
+#~ "table which can cause unpredictable behavior. This can normally be "
+#~ "corrected by creating a Zenphoto backup, dropping the table, running "
+#~ "setup to restore the table, and then restoring from the backup. Note, "
+#~ "however, that the duplicate entries will be lost."
+#~ msgstr ""
+#~ "<strong>Warnung:</strong> Die <code>%s</code>-Tabelle schein keinen  "
+#~ "<em>UNIQUE</em>-Schlüssel definiert zu habeb. Es existieren daher "
+#~ "wahrscheinlich duplizierte Einträge, die unerwünschtes Verhalten nach "
+#~ "sich ziehen können.  Dies kann normalerweise korrigiert werden, indem Sie "
+#~ "ein Zenphoto-Datenbank-Backup erstellen, die Tabelle löschen, Setup "
+#~ "erneut ausführen und dann vom Backup wiederherstellen. In jedem Fall "
+#~ "gehen die duplizierten Einträge verloren."
+
+#~ msgid "Set Zenphoto default options"
+#~ msgstr "Zenphoto-Standardeinstellungen setzen"
+
+#~ msgid "Migrating lib-auth data version %1$s => version %2$s"
+#~ msgstr "Übertrage lib-auth Datenversion %1$s => version %2$s"
+
+#~ msgid "failed"
+#~ msgstr "fehlgeschlagen"
+
+#~ msgid "Mod_Rewrite check:"
+#~ msgstr "Mod_Rewrite-Test:"
+
+#~ msgid "Mod_rewrite"
+#~ msgstr "Mod_rewrite"
+
+#~ msgid "Users with full privileges"
+#~ msgstr "Benutzer mit vollen Privilegien."
+
+#~ msgid "Users allowed only to view zenphoto objects"
+#~ msgstr "Benutzern ist nur erlaubt, Zenphoto-Objekte anzusehen."
+
+#~ msgid "Banned users"
+#~ msgstr "Gebannte Benutzer"
+
+#~ msgid "Managers of one or more albums"
+#~ msgstr "Verwalter von einem oder mehreren Alben."
+
+#~ msgid "Default user settings"
+#~ msgstr "Standard-Benutzer-Einstellungen"
+
+#~ msgid "Newly registered and verified users"
+#~ msgstr "Neu registrierte und bestätigte Benutzer"
+
+#~ msgid "Theme setup:"
+#~ msgstr "Verfügbare Themes:"
+
+#~ msgid "Copyright %1$u: %2$s"
+#~ msgstr "Copyright %1$u: %2$s"
+
+#~ msgid ""
+#~ "You can insert your Gallery description on the Admin Options Gallery tab."
+#~ msgstr "Sie können Ihre Galeriebeschreibung bei den Einstellungen eingeben."
+
+#~ msgid "Plugin setup:"
+#~ msgstr "Verfügbare Plugins:"
+
+#~ msgid ""
+#~ "Fill in the information below and <strong>setup</strong> will attempt to "
+#~ "update your configuration file."
+#~ msgstr ""
+#~ "Tragen Sie die fehlende Information unten ein und <strong>setup</strong> "
+#~ "wird versuchen, Ihre Konfigurations-Datei zu aktualisieren."
+
+#~ msgid "Database engine"
+#~ msgstr "Datenbank-Engine"
+
+#~ msgid "%s (experimental)"
+#~ msgstr "%s (experimentell)"
+
+#~ msgid "Setting permissions (0%o) for %s."
+#~ msgstr "Dateizugriffsrechteänderung (0%o) für  %s gesetzt."
+
+#~ msgid "Notice: failed setting permissions (0%o) for %s."
+#~ msgstr ""
+#~ "Hinweis: Setzen der Dateizugriffsrechte (0%o) für  %s fehlgeschlagen."
+
+#~ msgid "Notice: illegal call for permissions setting for %s."
+#~ msgstr "Hinweis: Ungültiger Aufruf der Dateizugriffsrechteänderung für  %s."
+
+#~ msgid "Plugin:%s setup started"
+#~ msgstr "Plugin: %s Einrichten gestartet"
+
+#~ msgid "Plugin:%s enabled (%2$s)"
+#~ msgstr "Plugin:%s aktiviert (%2$s)"
+
+#~ msgid "Plugin:%1$s option interface instantiated (%2$s)"
+#~ msgstr "Plugin:%1$s Einstellungssteuerung erzeugt (%2$s)"
+
+#~ msgid "Plugin:%s setup completed"
+#~ msgstr "Plugin:%s Einrichtung komplett"
+
+#~ msgid "The Zenphoto option “mod_rewrite” will be set to “enabled”."
+#~ msgstr ""
+#~ "Die Zenphoto-Einstellung „mod_rewrite“ wird auf „aktiviert“ gestellt."
+
+#~ msgid "The Zenphoto option “mod_rewrite” is “enabled”."
+#~ msgstr "Die Zenphoto-Einstellung „mod_rewrite“ ist „aktiviert“."
+
+#~ msgid "The Zenphoto option “mod_rewrite” is “disabled”."
+#~ msgstr "Die Zenphoto-Einstellung „mod_rewrite“ ist „deaktiviert“."
+
+#~ msgid "Notice: “Module mod_rewrite” is working."
+#~ msgstr "Hinweis: „Module mod_rewrite“ arbeitet."
+
+#~ msgid "Theme:%s setup started"
+#~ msgstr "Theme:%s Einrichtung gestartet"
+
+#~ msgid "Theme:%s option interface instantiated"
+#~ msgstr "Theme: %s Einstellungssteuerung erzeugt"
+
+#~ msgid "Theme:%s setup completed"
+#~ msgstr "Theme: %s Installation komplett"
 
 #~ msgid "demo"
 #~ msgstr "Demo"
