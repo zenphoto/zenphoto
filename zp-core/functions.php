@@ -33,7 +33,6 @@ if (GALLERY_SESSION) {
 
 define('ZENPHOTO_LOCALE', setMainDomain());
 
-
 require_once(dirname(__FILE__) . '/load_objectClasses.php');
 
 $_zp_current_context_stack = array();

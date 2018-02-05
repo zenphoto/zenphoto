@@ -11,7 +11,6 @@ function jQueryUpload_head() {
 	ob_end_clean();
 	//insure we are running compatible scripts
 	preg_match_all('~(<script.*/js/jquery\.js.*</script>)~', $head, $matches);
-	$head = str_replace($matches[1], '<script src="//code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>', $head);
 	$head = str_replace('<script src="' . WEBPATH . '/' . ZENFOLDER . '/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>', '<script src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/jqueryui/jquery-ui-zenphoto.js"></script>', $head);
 	echo $head;
 }

@@ -44,4 +44,8 @@ if (OFFSET_PATH != 2) { // setup does not need (and might have problems with) pl
 } else {
 	require_once(dirname(__FILE__) . '/auth_zp.php'); // setup needs this!
 }
+
+if (GALLERY_SESSION || zp_loggedin()) {
+	zp_session_start();
+} 
 ?>

@@ -4538,8 +4538,8 @@ function getPluginTabs() {
     $default = 'all';
   }
   $paths = getPluginFiles('*.php');
-
   $currentlist = $classes = $member = array();
+	$plugin_category = '';
   foreach ($paths as $plugin => $path) {
     $p = file_get_contents($path);
 		$i = sanitize(isolate('$plugin_category', $p));
@@ -4552,6 +4552,9 @@ function getPluginTabs() {
 			if (($key = $i) !== false) {
 				$plugin_category = strtolower(trim(substr($p, $i + 13, strpos($p, "\n", $i) - $i - 13)));
 			}
+			if (empty($plugin_category)) {
+				$plugin_category = gettext('Misc');
+			}
 			$classXlate = array(
 					'active' => gettext('Active'),
 					'all' => gettext('All'),
@@ -4563,6 +4566,7 @@ function getPluginTabs() {
 					'media' => gettext('Media'),
 					'misc' => gettext('Misc'),
 					'spam' => gettext('Spam'),
+					'statistics' => gettext('Statistics'),
 					'seo' => gettext('SEO'),
 					'uploader' => gettext('Uploader'),
 					'users' => gettext('Users')
@@ -4575,9 +4579,6 @@ function getPluginTabs() {
 			}
 			$member[$plugin] = strtolower($local);
 		}
-		if (empty($plugin_category)) {
-      $plugin_category = gettext('Misc');
-    }
     $classes[strtolower($plugin_category)]['list'][] = $plugin;
     if(extensionEnabled($plugin)) {
       $classes['active']['list'][] = $plugin;

@@ -99,10 +99,11 @@ switch (PHP_MAJOR_VERSION) {
 }
 
 // Set error reporting.
+@ini_set('display_errors', '0'); // try to disable in case set
 if (TEST_RELEASE) {
 	error_reporting(E_ALL | E_STRICT);
-	@ini_set('display_errors', 1);
-}
+	@ini_set('display_errors', '1');
+} 
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 $_configMutex = new zpMutex('cF');
@@ -943,7 +944,7 @@ function getImageArgs($set) {
 function getImageURI($args, $album, $image, $mtime) {
 	$cachefilename = getImageCacheFilename($album, $image, $args);
 	if (OPEN_IMAGE_CACHE && file_exists(SERVERCACHE . $cachefilename) && (!$mtime || filemtime(SERVERCACHE . $cachefilename) >= $mtime)) {
-		return WEBPATH . '/' . CACHEFOLDER . imgSrcURI($cachefilename);
+		return WEBPATH . '/' . CACHEFOLDER . imgSrcURI($cachefilename) . '?cached=' . filemtime(SERVERCACHE . $cachefilename);
 	} else {
 		return getImageProcessorURI($args, $album, $image);
 	}

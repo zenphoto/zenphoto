@@ -4,14 +4,14 @@
  * This module helps you to keep track of your Zenphoto visitors through the Matomo platform (formerly known as Piwik).
  * It places the <i>Matomo JavaScript tracking scripts</i> at the bottom of your webpages using the <i>theme_body_close</i>
  * filter. It also supports tracking for users with JavaScript disabled.
- * 
+ *
  * If you do not want particular pages to be tracked you should pass an array containing <var>"matomo_tag"</var> as the
  * <i>exclude</i> parameter to the theme page body close filter application. e.g.
  * <code>zp_apply_filter('theme_body_close',array("matomo_tag"));</code>
- * 
+ *
  * Additionally it provides content macro [MATOMO_OPTOUT] that embeds a facility for visitors to optout of tracking as required by the law of several countries.
  * Place this on your privacy statement page.
- * 
+ *
  * You can also add Matomo widget iFrame code to view your statistics via a Zenphoto backend utility.
  *
  * Please visit the Matomo site for the Matomo software and installation instructions.
@@ -77,7 +77,7 @@ class matomoStats {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 0,
 						'desc' => gettext('Enter your Matomo installation URL including protocol (e.g. <code>https://domain.com</code>).')),
-				gettext('site id') => array(
+				gettext('Site id') => array(
 						'key' => 'matomo_id',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 1,
