@@ -48,27 +48,19 @@ $_zp_missing_album = new AlbumBase(gettext('missing'), false);
 $_zp_missing_image = new Transientimage($_zp_missing_album, SERVERPATH . '/' . ZENFOLDER . '/images/err-imagenotfound.png');
 
 if (extensionEnabled('zenpage')) {
-	if (!defined('ZP_NEWS_ENABLED')) {
-		if (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'news') {
-			define('ZP_NEWS_ENABLED', true);
-		} else {
-			define('ZP_NEWS_ENABLED', false);
-		}
-	}
-	if (!defined('ZP_PAGES_ENABLED')) {
-		if (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'pages') {
-			define('ZP_PAGES_ENABLED', true);
-		} else {
-			define('ZP_PAGES_ENABLED', false);
-		}
-	}
-} else {
-	if (!defined('ZP_NEWS_ENABLED')) {
+	if (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'news') {
+		define('ZP_NEWS_ENABLED', true);
+	} else {
 		define('ZP_NEWS_ENABLED', false);
 	}
-	if (!defined('ZP_PAGES_ENABLED')) {
+	if (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'pages') {
+		define('ZP_PAGES_ENABLED', true);
+	} else {
 		define('ZP_PAGES_ENABLED', false);
 	}
+} else {
+	define('ZP_NEWS_ENABLED', false);
+	define('ZP_PAGES_ENABLED', false);
 }
 
 /**
