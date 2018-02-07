@@ -389,16 +389,17 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Sharpen"); ?></td>
 					<td class="option_value">
-						<p class="nowrap">
-							<label>
-								<input type="checkbox" name="image_sharpen" value="1" <?php checked('1', getOption('image_sharpen')); ?> />
-								<?php echo gettext('images'); ?>
-							</label>
-							<label>
-								<input type="checkbox" name="thumb_sharpen" value="1" <?php checked('1', getOption('thumb_sharpen')); ?> />
-								<?php echo gettext('thumbs'); ?>
-							</label>
-						</p>
+						<!--<span class="nowrap">-->
+						<label>
+							<input type="checkbox" name="image_sharpen" value="1" <?php checked('1', getOption('image_sharpen')); ?> />
+							<?php echo gettext('images'); ?>
+						</label>
+						<label>
+							<input type="checkbox" name="thumb_sharpen" value="1" <?php checked('1', getOption('thumb_sharpen')); ?> />
+							<?php echo gettext('thumbs'); ?>
+						</label>
+						</span>
+						<br />
 						<?php putSlider(gettext('amount'), 'sharpen_amount', 0, 100, getOption('sharpen_amount')); ?>
 
 						<table>
