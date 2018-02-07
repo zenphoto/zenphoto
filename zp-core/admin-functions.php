@@ -647,20 +647,35 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 */
 	function putSlider($text, $postkey, $min, $max, $v) {
 		?>
+		<style>
+			#<?php echo $postkey; ?>-handle {
+				width: 3em;
+				height: 1.6em;
+				top: 50%;
+				margin-top: -.8em;
+				text-align: center;
+				line-height: 1.6em;
+			}
+		</style>
 		<span id="slider_display-<?php echo $postkey; ?>" class="nowrap">
 			<?php echo $text; ?>
-			<input type="text" id="<?php echo $postkey; ?>" name="<?php echo $postkey; ?>" size="2" value="<?php echo $v; ?>" onchange="$('#slider-<?php echo $postkey; ?>').slider('value', $('#<?php echo $postkey; ?>').val());"/>
+			<input type="hidden" id="<?php echo $postkey; ?>" name="<?php echo $postkey; ?>" size="2" value="<?php echo $v; ?>" onchange="$('#slider-<?php echo $postkey; ?>').slider('value', $('#<?php echo $postkey; ?>').val());"/>
 		</span>
 
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(function () {
+				var handle = $("#<?php echo $postkey; ?>-handle");
 				$("#slider-<?php echo $postkey; ?>").slider({
 					startValue: <?php echo (int) $v; ?>,
 					value: <?php echo (int) $v; ?>,
 					min: <?php echo (int) $min; ?>,
 					max: <?php echo (int) $max; ?>,
+					create: function () {
+						handle.text($(this).slider("value"));
+					},
 					slide: function (event, ui) {
+						handle.text(ui.value);
 						$("#<?php echo $postkey; ?>").val(ui.value);
 					}
 				});
@@ -668,7 +683,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			});
 			// ]]> -->
 		</script>
-		<div id="slider-<?php echo $postkey; ?>"></div>
+		<div id="slider-<?php echo $postkey; ?>">
+			<div id="<?php echo $postkey; ?>-handle" class="ui-slider-handle"></div>
+		</div>
 		<br />
 		<?php
 	}
