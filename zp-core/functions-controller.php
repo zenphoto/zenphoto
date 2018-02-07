@@ -358,6 +358,7 @@ function load_zenpage_news($request) {
  * @return bool
  */
 function zp_load_request() {
+	global $_zp_CMS;
 	if ($success = zp_apply_filter('load_request', true)) { // filter allowed the load
 		zp_load_page();
 		if (isset($_GET['p'])) {
@@ -366,15 +367,15 @@ function zp_load_request() {
 				case 'search':
 					return zp_load_search();
 				case 'pages':
-					if (extensionEnabled('zenpage')) {
+					if (extensionEnabled('zenpage') && $_zp_CMS->pages_enabled) {
 						return load_zenpage_pages(sanitize(trim(@$_GET['title'], '/')));
 					}
-					break;
+					return false;
 				case 'news':
-					if (extensionEnabled('zenpage')) {
+					if (extensionEnabled('zenpage') && $_zp_CMS->news_enabled) {
 						return load_zenpage_news(sanitize($_GET));
 					}
-					break;
+					return false;
 				case 'functions':
 				case 'themeoptions':
 				case 'theme_description':

@@ -118,6 +118,16 @@ class _Authority {
 		switch ($option) {
 			case 'password_strength':
 				?>
+				<style>
+					#strength-handle {
+						width: 3em;
+						height: 1.6em;
+						top: 50%;
+						margin-top: -.8em;
+						text-align: center;
+						line-height: 1.6em;
+					}
+				</style>
 				<input type="hidden" size="3" id="password_strength" name="password_strength" value="<?php echo getOption('password_strength'); ?>" />
 				<script type="text/javascript">
 					// <!-- <![CDATA[
@@ -126,13 +136,18 @@ class _Authority {
 						$('#slider-password_strength').css('background-image', url);
 					}
 					$(function () {
+						var handle = $("#strength-handle");
 						$("#slider-password_strength").slider({
 				<?php $v = getOption('password_strength'); ?>
 							startValue: <?php echo $v; ?>,
 							value: <?php echo $v; ?>,
 							min: 1,
 							max: 30,
+							create: function () {
+								handle.text($(this).slider("value"));
+							},
 							slide: function (event, ui) {
+								handle.text(ui.value);
 								$("#password_strength").val(ui.value);
 								$('#password_strength_display').html(ui.value);
 								sliderColor(ui.value);
@@ -145,7 +160,9 @@ class _Authority {
 					});
 					// ]]> -->
 				</script>
-				<div id="slider-password_strength"></div>
+				<div id="slider-password_strength">
+					<div id="strength-handle" class="ui-slider-handle"></div>
+				</div>
 				<?php
 				break;
 			case 'challenge_foil':
@@ -1378,7 +1395,7 @@ class _Authority {
 							 name="disclose_password<?php echo $id; ?>"
 							 id="disclose_password<?php echo $id; ?>"
 							 onclick="passwordClear('<?php echo $id; ?>');
-											 togglePassword('<?php echo $id; ?>');">
+									 togglePassword('<?php echo $id; ?>');">
 			</span>
 
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">

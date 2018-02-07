@@ -528,8 +528,7 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Caching concurrency"); ?></td>
 					<td class="option_value">
-						<p>
-							<?php putSlider(gettext('limit'), 'imageProcessorConcurrency', 1, 60, getOption('imageProcessorConcurrency')); ?>
+						<?php putSlider(gettext('limit'), 'imageProcessorConcurrency', 1, 60, getOption('imageProcessorConcurrency')); ?>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
