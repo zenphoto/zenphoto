@@ -74,8 +74,8 @@ function adminToolbox() {
 		<div id="zp__admin_module">
 			<div id="zp__admin_info">
 				<span class="zp_logo">ZP</span>
-				<span class="zp_user"> <?php echo $_zp_current_admin_obj->getUser(); ?> 
-					<?php 
+				<span class="zp_user"> <?php echo $_zp_current_admin_obj->getUser(); ?>
+					<?php
 					if(array_key_exists('site_upgrade_state', $_zp_conf_vars)) {
 						if($_zp_conf_vars['site_upgrade_state'] == 'closed_for_test') {
 							echo ' | <span class="zp_sitestatus">' . gettext('Test mode') . '</span>';
@@ -251,7 +251,7 @@ function adminToolbox() {
 									<li>
 										<a href="javascript:confirmDelete('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deleteimage&amp;album=<?php echo urlencode(pathurlencode($albumname)); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>','<?php echo $delete_image; ?>');"
 											 title="<?php echo gettext("Delete the image"); ?>"><?php echo gettext("Delete image"); ?></a>
-									</li>						
+									</li>
 									<li>
 										<a href="<?php echo $zf; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($albumname); ?>&amp;singleimage=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo&amp;nopagination"
 											 title="<?php echo gettext('Edit image'); ?>"><?php echo gettext('Edit image'); ?></a>
@@ -541,9 +541,9 @@ function getGalleryIndexURL() {
 
 /**
  * Returns the url to the standard gallery index.php page
- * 
+ *
  * @see getGalleryIndexURL()
- * 
+ *
  * @param int $page Pagenumber to append
  * @param bool $webpath host path to be prefixed. If "false" is passed you will get a localized "WEBPATH"
  * @return string
@@ -565,9 +565,9 @@ function getStandardGalleryIndexURL($page = 1, $webpath = null) {
 
 /**
  * Gets the custom gallery index url if one is set, otherwise false
- * 
+ *
  * @see getGalleryIndexURL()
- * 
+ *
  * @global array $_zp_conf_vars
  * @param int $page Pagenumber for pagination
  * @param bool $webpath host path to be prefixed. If "false" is passed you will get a localized "WEBPATH"
@@ -590,11 +590,11 @@ function getCustomGalleryIndexURL($page = 1, $webpath = null) {
 }
 
 /**
- * Returns the name to the individual custom gallery index page name if set, 
+ * Returns the name to the individual custom gallery index page name if set,
  * otherwise returns generic custom gallery page "gallery.php" that is widely supported by themes
- * If you need to check if there is an indovidual custom_index_page set use 
+ * If you need to check if there is an indovidual custom_index_page set use
  * `getOption('custom_index_page')` or `getCustomGalleryIndexURL()`
- * 
+ *
  * @return string
  */
 function getCustomGalleryIndexPage() {
@@ -4367,7 +4367,7 @@ function getPageRedirect() {
       if ($action == '/' . _PAGE_ . '/password' || $action == '/index.php?p=password') {
         $action = '/index.php';
       }
-      break; 
+      break;
     default:
       if (in_context(ZP_SEARCH)) {
         $action = '/index.php?userlog=1&p=search' . $_zp_current_search->getSearchParams();
@@ -4428,7 +4428,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
  *
  */
 function printZenphotoLink() {
-	echo gettext("Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>");
+	echo gettext("Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\">Zenphoto</a>");
 }
 
 /**

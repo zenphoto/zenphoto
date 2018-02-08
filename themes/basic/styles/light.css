@@ -550,21 +550,6 @@ ul.archive .month {
 	list-style-type: none;
 }
 
-/* Zenphoto link
------------------------------- */
-
-#zen-part {
- font-family: Arial, Helvetica, sans-serif;
- font-size: 1.8em;
- font-weight: 100;
-}
-
-#photo-part {
- font-family: Arial, Helvetica, sans-serif;
- font-size: 0.9em;
- font-weight: bold;
-}
-
 /* centering flowplayer 3 on image.php */
 #image .flowplayer,
 .jp-audio,
