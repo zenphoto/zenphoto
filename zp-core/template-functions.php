@@ -4428,7 +4428,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
  *
  */
 function printZenphotoLink() {
-	echo gettext("Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\">Zenphoto</a>");
+	echo gettext("Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media website CMS\">Zenphoto</a>");
 }
 
 /**
