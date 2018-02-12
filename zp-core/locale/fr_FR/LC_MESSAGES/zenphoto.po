@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-06 22:24+0100\n"
-"PO-Revision-Date: 2018-02-06 22:50+0100\n"
+"POT-Creation-Date: 2018-02-12 22:25+0100\n"
+"PO-Revision-Date: 2018-02-12 22:26+0100\n"
 "Last-Translator: Vincent Bourganel <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569)\n"
@@ -313,7 +313,7 @@ msgstr "Images par date"
 msgid "News archive"
 msgstr "Archives des actualités"
 
-#: themes/effervescence_plus/contact.php:42 zp-core/functions.php:2648
+#: themes/effervescence_plus/contact.php:42 zp-core/functions.php:2640
 #: zp-core/template-functions.php:441
 #: zp-core/zp-extensions/html_meta_tags.php:326
 msgid "Contact"
@@ -6611,7 +6611,7 @@ msgstr "Données personnalisées"
 msgid "Location/Place"
 msgstr "Lieu"
 
-#: zp-core/class-search.php:105 zp-core/functions.php:2671
+#: zp-core/class-search.php:105 zp-core/functions.php:2663
 #: zp-core/zp-extensions/contact_form.php:118
 #: zp-core/zp-extensions/contact_form.php:120
 #: zp-core/zp-extensions/userAddressFields.php:52
@@ -7277,7 +7277,7 @@ msgstr "Mode DEP automatique"
 msgid "Flash Did Not Fire"
 msgstr "Le flash ne s’est pas déclenché"
 
-#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2657
+#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2649
 msgid "Flash Fired"
 msgstr "Flash déclenché"
 
@@ -8441,47 +8441,47 @@ msgstr "les plus vu(e)s"
 msgid "missing"
 msgstr "Manquant"
 
-#: zp-core/functions.php:398 zp-core/functions.php:410
-#: zp-core/functions.php:421 zp-core/functions.php:430
-#: zp-core/functions.php:443 zp-core/functions.php:488
+#: zp-core/functions.php:390 zp-core/functions.php:402
+#: zp-core/functions.php:413 zp-core/functions.php:422
+#: zp-core/functions.php:435 zp-core/functions.php:480
 msgid "Mail send failed."
 msgstr "L’envoi du mail a échoué."
 
-#: zp-core/functions.php:400
+#: zp-core/functions.php:392
 #, php-format
 msgid "Invalid “reply-to” mail address %s."
 msgstr "L’adresse de retour %s (« reply-to ») est invalide."
 
-#: zp-core/functions.php:412
+#: zp-core/functions.php:404
 #, php-format
 msgid "Invalid “to” mail address %s."
 msgstr "L’adresse du destinataire (%s) est invalide."
 
-#: zp-core/functions.php:423
+#: zp-core/functions.php:415
 msgid "“cc” list provided without “to” address list."
 msgstr ""
 "Une liste de destinataires en copie conforme est fournie, mais aucun "
 "destinataire principal n’a été spécifié."
 
-#: zp-core/functions.php:432
+#: zp-core/functions.php:424
 #, php-format
 msgid "Invalid “cc” mail address %s."
 msgstr "L’adresse de copie conforme (%s) est invalide."
 
-#: zp-core/functions.php:445
+#: zp-core/functions.php:437
 #, php-format
 msgid "Invalid “bcc” mail address %s."
 msgstr "L’adresse de copie cachée (%s) est invalide."
 
-#: zp-core/functions.php:484
+#: zp-core/functions.php:476
 msgid "Mail send failed. There is no mail handler configured."
 msgstr "L’envoi du mail a échoué. Aucun gestionnaire de mail n’est configuré."
 
-#: zp-core/functions.php:490
+#: zp-core/functions.php:482
 msgid "No “to” address list provided."
 msgstr "Aucune liste de destinataires n’est fournie."
 
-#: zp-core/functions.php:1073
+#: zp-core/functions.php:1065
 #, php-format
 msgid ""
 "Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your "
@@ -8490,41 +8490,41 @@ msgstr ""
 "Zenphoto n’a pas trouvé de scripts de thèmes. Veuillez vérifier le dossier "
 "<em>%s</em> de votre installation."
 
-#: zp-core/functions.php:1689
+#: zp-core/functions.php:1681
 msgid "0 Bytes"
 msgstr "0 octet"
 
-#: zp-core/functions.php:2201
+#: zp-core/functions.php:2193
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr ""
 "Zenphoto a produit une erreur 404 sur %s. Voir le journal de déboggage pour "
 "plus de détails."
 
-#: zp-core/functions.php:2228
+#: zp-core/functions.php:2220
 #, php-format
 msgid "“%s” Cross Site Request Forgery blocked."
 msgstr "« %s » tentative d’hameçonnage bloquée."
 
-#: zp-core/functions.php:2392
+#: zp-core/functions.php:2384
 msgid "Click to show content"
 msgstr "Cliquer pour afficher le contenu"
 
-#: zp-core/functions.php:2397
+#: zp-core/functions.php:2389
 msgid "Click to hide content"
 msgstr "Cliquer pour masquer le contenu"
 
-#: zp-core/functions.php:2447
+#: zp-core/functions.php:2439
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "<em>[%1$s]</em> le paramètre %2$d doit être numérique."
 
-#: zp-core/functions.php:2455
+#: zp-core/functions.php:2447
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "<em>[%1$s]</em> le paramètre %2$d doit être une chaine de caractère."
 
-#: zp-core/functions.php:2468
+#: zp-core/functions.php:2460
 #, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
@@ -8533,339 +8533,339 @@ msgstr ""
 "<em>[%1$s]</em> le paramètre %2$d doit avoir les valeurs <code>true</code> "
 "ou <code>false</code>."
 
-#: zp-core/functions.php:2487
+#: zp-core/functions.php:2479
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
 msgstr "<em>[%1$s]</em> le paramètre %2$d n’est pas correctement défini."
 
-#: zp-core/functions.php:2493
+#: zp-core/functions.php:2485
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "<em>[%1$s]</em> le paramètre %2$d est manquant."
 
-#: zp-core/functions.php:2502
+#: zp-core/functions.php:2494
 #, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "La macro <em>[%1$s]</em> ne prend aucun paramètre."
 
-#: zp-core/functions.php:2525 zp-core/functions.php:2552
+#: zp-core/functions.php:2517 zp-core/functions.php:2544
 #, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>[%1$s]</em> n’a retourné aucune donnée"
 
-#: zp-core/functions.php:2530
+#: zp-core/functions.php:2522
 #, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>[%1$s]</em> <code>%2$s</code> ne peut être lancée"
 
-#: zp-core/functions.php:2557
+#: zp-core/functions.php:2549
 #, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>[%1$s]</em> requiert %2$d paramètre"
 msgstr[1] "<em>[%1$s]</em> requiert %2$d paramètres"
 
-#: zp-core/functions.php:2629
+#: zp-core/functions.php:2621
 msgid "Camera Maker"
 msgstr "Fabricant de l’appareil"
 
-#: zp-core/functions.php:2630
+#: zp-core/functions.php:2622
 msgid "Camera Model"
 msgstr "Modèle d’appareil"
 
-#: zp-core/functions.php:2631
+#: zp-core/functions.php:2623
 msgid "Image Title"
 msgstr "Titre de l’image"
 
-#: zp-core/functions.php:2632
+#: zp-core/functions.php:2624
 msgid "Object Name"
 msgstr "Nom de l’objet"
 
-#: zp-core/functions.php:2633
+#: zp-core/functions.php:2625
 msgid "Image Headline"
 msgstr "Fait saillant de l’image"
 
-#: zp-core/functions.php:2634
+#: zp-core/functions.php:2626
 msgid "Image Caption"
 msgstr "Légende de l’image"
 
-#: zp-core/functions.php:2635
+#: zp-core/functions.php:2627
 msgid "Image Caption Writer"
 msgstr "Auteur de la légende de l’image"
 
-#: zp-core/functions.php:2636
+#: zp-core/functions.php:2628
 msgid "Time Taken"
 msgstr "Heure de prise de vue"
 
-#: zp-core/functions.php:2637
+#: zp-core/functions.php:2629
 msgid "Original Time Taken"
 msgstr "Heure de prise de vue originale"
 
-#: zp-core/functions.php:2638
+#: zp-core/functions.php:2630
 msgid "Time Digitized"
 msgstr "Heure de la numérisation"
 
-#: zp-core/functions.php:2639
+#: zp-core/functions.php:2631
 msgid "Date Created"
 msgstr "Date de création"
 
-#: zp-core/functions.php:2640
+#: zp-core/functions.php:2632
 msgid "Time Created"
 msgstr "Heure de création"
 
-#: zp-core/functions.php:2641
+#: zp-core/functions.php:2633
 msgid "Digital Creation Date"
 msgstr "Date de création numérique"
 
-#: zp-core/functions.php:2642
+#: zp-core/functions.php:2634
 msgid "Digital Creation Time"
 msgstr "Heure de création numérique"
 
-#: zp-core/functions.php:2643
+#: zp-core/functions.php:2635
 msgid "Artist"
 msgstr "Artiste"
 
-#: zp-core/functions.php:2644
+#: zp-core/functions.php:2636
 msgid "Image Credit"
 msgstr "Crédits de l’image"
 
-#: zp-core/functions.php:2645
+#: zp-core/functions.php:2637
 msgid "Byline"
 msgstr "Accroche"
 
-#: zp-core/functions.php:2646
+#: zp-core/functions.php:2638
 msgid "Byline Title"
 msgstr "Titre de l’accroche"
 
-#: zp-core/functions.php:2647
+#: zp-core/functions.php:2639
 msgid "Image Source"
 msgstr "Source de l’image"
 
-#: zp-core/functions.php:2649
+#: zp-core/functions.php:2641
 msgid "Copyright Holder"
 msgstr "Titulaire du copyright"
 
-#: zp-core/functions.php:2650
+#: zp-core/functions.php:2642
 msgid "Copyright Notice"
 msgstr "Informations de copyright"
 
-#: zp-core/functions.php:2651
+#: zp-core/functions.php:2643
 msgid "Keywords"
 msgstr "Mots-clés"
 
-#: zp-core/functions.php:2652
+#: zp-core/functions.php:2644
 msgid "Shutter Speed"
 msgstr "Vitesse d’obturation"
 
-#: zp-core/functions.php:2653
+#: zp-core/functions.php:2645
 msgid "Aperture"
 msgstr "Ouverture"
 
-#: zp-core/functions.php:2654
+#: zp-core/functions.php:2646
 msgid "ISO Sensitivity"
 msgstr "Sensibilité ISO"
 
-#: zp-core/functions.php:2655
+#: zp-core/functions.php:2647
 msgid "Exposure Compensation"
 msgstr "Correction de l’exposition"
 
-#: zp-core/functions.php:2656
+#: zp-core/functions.php:2648
 msgid "Metering Mode"
 msgstr "Mode de mesure"
 
-#: zp-core/functions.php:2658
+#: zp-core/functions.php:2650
 msgid "Original Width"
 msgstr "Largeur de l’image pleine grandeur"
 
-#: zp-core/functions.php:2659
+#: zp-core/functions.php:2651
 msgid "Original Height"
 msgstr "Hauteur de l’image pleine grandeur"
 
-#: zp-core/functions.php:2660
+#: zp-core/functions.php:2652
 msgid "Orientation"
 msgstr "Orientation"
 
-#: zp-core/functions.php:2661
+#: zp-core/functions.php:2653
 msgid "Software"
 msgstr "Logiciel"
 
-#: zp-core/functions.php:2662
+#: zp-core/functions.php:2654
 msgid "Contrast Setting"
 msgstr "Réglage du contraste"
 
-#: zp-core/functions.php:2663
+#: zp-core/functions.php:2655
 msgid "Sharpness Setting"
 msgstr "Réglage du renforcement"
 
-#: zp-core/functions.php:2664
+#: zp-core/functions.php:2656
 msgid "Saturation Setting"
 msgstr "Réglage de la saturation"
 
-#: zp-core/functions.php:2665
+#: zp-core/functions.php:2657
 msgid "White Balance"
 msgstr "Balance des blancs"
 
-#: zp-core/functions.php:2666
+#: zp-core/functions.php:2658
 msgid "Subject Distance"
 msgstr "Distance du sujet"
 
-#: zp-core/functions.php:2667
+#: zp-core/functions.php:2659
 msgid "Focal Length"
 msgstr "Longueur de focale"
 
-#: zp-core/functions.php:2668
+#: zp-core/functions.php:2660
 msgid "Lens Type"
 msgstr "Type d’objectif"
 
-#: zp-core/functions.php:2669
+#: zp-core/functions.php:2661
 msgid "Lens Info"
 msgstr "Détails sur l’objectif"
 
-#: zp-core/functions.php:2670
+#: zp-core/functions.php:2662
 msgid "35mm Focal Length Equivalent"
 msgstr "Longueur focale équivalente pour pellicule 35 mm"
 
-#: zp-core/functions.php:2672
+#: zp-core/functions.php:2664
 msgid "Sub-location"
 msgstr "Lieu (très précis)"
 
-#: zp-core/functions.php:2673
+#: zp-core/functions.php:2665
 msgid "Province/State"
 msgstr "État, province"
 
-#: zp-core/functions.php:2674
+#: zp-core/functions.php:2666
 msgid "Country/Primary Location Code"
 msgstr "Code du pays/de la localisation primaire"
 
-#: zp-core/functions.php:2675
+#: zp-core/functions.php:2667
 msgid "Country/Primary Location Name"
 msgstr "Nom du pays/de la localisation primaire"
 
-#: zp-core/functions.php:2676
+#: zp-core/functions.php:2668
 msgid "Content Location Code"
 msgstr "Code du lieu du contenu"
 
-#: zp-core/functions.php:2677
+#: zp-core/functions.php:2669
 msgid "Content Location Name"
 msgstr "Lieu du contenu"
 
-#: zp-core/functions.php:2678
+#: zp-core/functions.php:2670
 msgid "Latitude"
 msgstr "Latitude"
 
-#: zp-core/functions.php:2679
+#: zp-core/functions.php:2671
 msgid "Latitude Reference"
 msgstr "Latitude de référence"
 
-#: zp-core/functions.php:2680
+#: zp-core/functions.php:2672
 msgid "Longitude"
 msgstr "Longitude"
 
-#: zp-core/functions.php:2681
+#: zp-core/functions.php:2673
 msgid "Longitude Reference"
 msgstr "Longitude de référence"
 
-#: zp-core/functions.php:2682
+#: zp-core/functions.php:2674
 msgid "Altitude"
 msgstr "Altitude"
 
-#: zp-core/functions.php:2683
+#: zp-core/functions.php:2675
 msgid "Altitude Reference"
 msgstr "Altitude de référence"
 
-#: zp-core/functions.php:2684
+#: zp-core/functions.php:2676
 msgid "Originating Program "
 msgstr "Programme d’origine"
 
-#: zp-core/functions.php:2685
+#: zp-core/functions.php:2677
 msgid "Program Version"
 msgstr "Version du programme"
 
-#: zp-core/functions.php:2686
+#: zp-core/functions.php:2678
 msgid "Video File Format"
 msgstr "Format de fichier vidéo"
 
-#: zp-core/functions.php:2687
+#: zp-core/functions.php:2679
 msgid "Video File Size"
 msgstr "Taille du fichier vidéo"
 
-#: zp-core/functions.php:2688
+#: zp-core/functions.php:2680
 msgid "Video Artist"
 msgstr "Artiste de la vidéo"
 
-#: zp-core/functions.php:2689
+#: zp-core/functions.php:2681
 msgid "Video Title"
 msgstr "Titre de la vidéo"
 
-#: zp-core/functions.php:2690
+#: zp-core/functions.php:2682
 msgid "Bitrate"
 msgstr "Débit"
 
-#: zp-core/functions.php:2691
+#: zp-core/functions.php:2683
 msgid "Bitrate_Mode"
 msgstr "Bitrate_Mode"
 
-#: zp-core/functions.php:2692
+#: zp-core/functions.php:2684
 msgid "Bits per sample"
 msgstr "Bits par échantillon"
 
-#: zp-core/functions.php:2693
+#: zp-core/functions.php:2685
 msgid "Codec"
 msgstr "Codec"
 
-#: zp-core/functions.php:2694
+#: zp-core/functions.php:2686
 msgid "Compression Ratio"
 msgstr "Taux de compression"
 
-#: zp-core/functions.php:2695
+#: zp-core/functions.php:2687
 msgid "Video Dataformat"
 msgstr "Format des données vidéos"
 
-#: zp-core/functions.php:2696
+#: zp-core/functions.php:2688
 msgid "File Encoder"
 msgstr "Encodeur de fichiers"
 
-#: zp-core/functions.php:2697
+#: zp-core/functions.php:2689
 msgid "Sample rate"
 msgstr "Taux d’échantillonage"
 
-#: zp-core/functions.php:2698
+#: zp-core/functions.php:2690
 msgid "Channel mode"
 msgstr "Mode de canaux"
 
-#: zp-core/functions.php:2699
+#: zp-core/functions.php:2691
 msgid "Format"
 msgstr "Format"
 
-#: zp-core/functions.php:2700
+#: zp-core/functions.php:2692
 msgid "Channels"
 msgstr "Canaux"
 
-#: zp-core/functions.php:2701
+#: zp-core/functions.php:2693
 msgid "Frame rate"
 msgstr "Nombre de cadres / seconde"
 
-#: zp-core/functions.php:2702
+#: zp-core/functions.php:2694
 msgid "X Resolution"
 msgstr "Résolution en X"
 
-#: zp-core/functions.php:2703
+#: zp-core/functions.php:2695
 msgid "Y Resolution"
 msgstr "Résolution en Y"
 
-#: zp-core/functions.php:2704
+#: zp-core/functions.php:2696
 msgid "Aspect ratio"
 msgstr "Ratio d’aspect"
 
-#: zp-core/functions.php:2705
+#: zp-core/functions.php:2697
 msgid "Play Time"
 msgstr "Robustesse minimale du mot de passe"
 
-#: zp-core/functions.php:2706
+#: zp-core/functions.php:2698
 msgid "XMP Rating"
 msgstr "Vote XMP"
 
-#: zp-core/functions.php:2907 zp-core/zp-extensions/comment_form.php:106
+#: zp-core/functions.php:2899 zp-core/zp-extensions/comment_form.php:106
 #: zp-core/zp-extensions/contact_form.php:138
 #: zp-core/zp-extensions/register_user.php:92
 msgid "No captcha handler is enabled."
@@ -11900,12 +11900,11 @@ msgstr "Connexion"
 
 #: zp-core/template-functions.php:4431
 msgid ""
-"Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
-"\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
+"Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
+"website CMS\">Zenphoto</a>"
 msgstr ""
-"Galerie gérée par <a href=\"http://www.zenphoto.org\" title=\"Un album photo "
-"plus simple\"><span id=\"zen-part\">Zen</span><span id=\"photo-part\">PHOTO</"
-"span></a>"
+"Géré par <a href=\"http://www.zenphoto.org\" title=\"Le système de gestion "
+"de contenu média le plus simple\">Zenphoto</a>"
 
 #: zp-core/template-functions.php:4596
 msgid "Zenphoto Error:</strong> the requested object was not found."
@@ -21154,18 +21153,6 @@ msgstr ""
 "Hauteur de rognage prédéfinie (%) pour les vignettes d’images avec rognage "
 "personnalisé qui sont insérées avec tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
-msgid "UL"
-msgstr ""
-
-#: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
-msgid "OL"
-msgstr ""
-
-#: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
-msgid "DL"
-msgstr ""
-
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:80
 #, php-format
 msgid "It is not possible to a include a custom size %s."
@@ -21554,17 +21541,21 @@ msgstr ""
 "Vous pouvez aussi définir le style directement en utilisant le bouton "
 "d’image de TinyMCE ou l’éditeur de code source."
 
-#: zp-core/zp-extensions/tinymce4/tinymce.min.js:8
-msgid "align"
-msgstr "align"
+#: zp-core/zp-extensions/tinymce4/tinymce.min.js:2
+msgid "#cdata"
+msgstr ""
 
-#: zp-core/zp-extensions/tinymce4/tinymce.min.js:8
-msgid "blockquote"
-msgstr "blockquote"
+#: zp-core/zp-extensions/tinymce4/tinymce.min.js:2
+msgid "#text"
+msgstr ""
 
-#: zp-core/zp-extensions/tinymce4/tinymce.min.js:8
-msgid "p"
-msgstr "p"
+#: zp-core/zp-extensions/tinymce4/tinymce.min.js:2
+msgid "#comment"
+msgstr ""
+
+#: zp-core/zp-extensions/tinymce4/tinymce.min.js:2
+msgid "#doctype"
+msgstr ""
 
 #: zp-core/zp-extensions/trivialSpam.php:11
 msgid "Trivial SPAM filter."
@@ -24135,6 +24126,24 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:65
 msgid "Sample CAPTCHA image"
 msgstr "Exemple d’image Captcha"
+
+#~ msgid ""
+#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
+#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></"
+#~ "a>"
+#~ msgstr ""
+#~ "Galerie gérée par <a href=\"http://www.zenphoto.org\" title=\"Un album "
+#~ "photo plus simple\"><span id=\"zen-part\">Zen</span><span id=\"photo-part"
+#~ "\">PHOTO</span></a>"
+
+#~ msgid "align"
+#~ msgstr "align"
+
+#~ msgid "blockquote"
+#~ msgstr "blockquote"
+
+#~ msgid "p"
+#~ msgstr "p"
 
 #~ msgid ""
 #~ "PHP Version %1$s or greater is required. Version %2$s or greater is "
