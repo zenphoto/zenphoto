@@ -572,7 +572,7 @@ echo "\n</head>";
 							gettext('Change owner')				 => 'changeowner'
 			);
 			if (extensionEnabled('hitcounter')) {
-				$checkarray['Reset hitcounter'] = 'resethitcounter';
+				$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
 			}
 			$checkarray_albums = array_merge($checkarray_images, array(
 							gettext('Delete')								 => 'deleteallalbum',

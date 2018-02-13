@@ -239,7 +239,7 @@ datepickerJS();
 												gettext('Clear categories')		 => 'clearcats'
 								);
 								if (extensionEnabled('hitcounter')) {
-									$checkarray['hitcounter'] = 'resethitcounter';
+									$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
 								}
 								printBulkActions($checkarray);
 								?>
