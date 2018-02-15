@@ -3789,6 +3789,25 @@ function processRights($i) {
 	return $rights;
 }
 
+/**
+ * Compares two lists of objects
+ *
+ * @param type $objectsA
+ * @param type $objectsB
+ * @return boolean true if they are the same list
+ */
+function compareObjects($objectsA, $objectsB) {
+	if (is_array($objectsA) & is_array($objectsB)) {
+		if (count($objectsA) == count($objectsB)) {
+			$objectsA = sortMultiArray($objectsA, array('type', 'data', 'name'), false, true, false, false);
+			$objectsB = sortMultiArray($objectsB, array('type', 'data', 'name'), false, true, false, false);
+			return $objectsA == $objectsB;
+		}
+	}
+
+	return false;
+}
+
 function processManagedObjects($i, &$rights) {
 	$objects = array();
 	$albums = array();
@@ -3843,7 +3862,7 @@ function processManagedObjects($i, &$rights) {
 				}
 			} else if ($value) {
 				$key = postIndexDecode($key);
-				$pages[$key] = array('data' => $key, 'type' => 'pages', 'edit' => MANAGED_OBJECT_MEMBER);
+				$pages[$key] = array('data' => $key, 'name' => '', 'type' => 'pages', 'edit' => MANAGED_OBJECT_MEMBER);
 			}
 		}
 
@@ -3866,7 +3885,7 @@ function processManagedObjects($i, &$rights) {
 				}
 			} else if ($value) {
 				$key = postIndexDecode($key);
-				$news[$key] = array('data' => $key, 'type' => 'news', 'edit' => MANAGED_OBJECT_MEMBER);
+				$news[$key] = array('data' => $key, 'name' => '', 'type' => 'news', 'edit' => MANAGED_OBJECT_MEMBER);
 			}
 		}
 	}

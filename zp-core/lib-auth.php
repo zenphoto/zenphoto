@@ -1395,7 +1395,7 @@ class _Authority {
 							 name="disclose_password<?php echo $id; ?>"
 							 id="disclose_password<?php echo $id; ?>"
 							 onclick="passwordClear('<?php echo $id; ?>');
-									 togglePassword('<?php echo $id; ?>');">
+											 togglePassword('<?php echo $id; ?>');">
 			</span>
 
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
@@ -1624,21 +1624,12 @@ class _Administrator extends PersistentObject {
 	 */
 	function setObjects($objects) {
 		if (DEBUG_OBJECTS) {
-			$flag = !is_array($this->objects) || count($this->objects) != count($objects);
-			if (!$flag) {
-				$myobjects = array();
-				foreach ($this->objects as $obj) {
-					$myobjects[$obj['data']] = $obj;
+			if (!function_exists('compareObjects') || !compareObjects($this->objects, $objects)) {
+				$name = $this->getName();
+				if ($name) {
+					$name = ' (' . $name . ')';
 				}
-				foreach ($objects as $obj) {
-					if (!array_key_exists($obj['data'], $myobjects) || $obj['edit'] != $myobjects[$obj['data']]['edit']) {
-						$flag = true;
-						break;
-					}
-				}
-			}
-			if ($flag) {
-				debugLogBacktrace($this->getName() . ':' . $this->getUser() . " setObjects");
+				debugLogBacktrace($this->getUser() . $name . " setObjects");
 				debuglogVar('old', $this->objects);
 				debuglogVar('new', $objects);
 			}
