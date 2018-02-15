@@ -215,7 +215,7 @@ class _Authority {
 				$hash = sha1($user . $pass . HASH_SEED);
 				break;
 			case 2:
-				//	deprecated beause of possible "+" in the text
+				//	deprecated because of possible "+" in the text
 				$hash = base64_encode(self::pbkdf2($pass, $user . HASH_SEED));
 				break;
 			case 3:
@@ -1503,7 +1503,7 @@ class _Administrator extends PersistentObject {
 				$this->getObjects();
 				foreach ($this->objects as $object) {
 					switch ($object['type']) {
-						case 'album':
+						case 'albums':
 							if ($object['edit'] & MANAGED_OBJECT_RIGHTS_EDIT) {
 								$new_rights = $new_rights | ALBUM_RIGHTS;
 							}
@@ -1621,6 +1621,23 @@ class _Administrator extends PersistentObject {
 	 * cause an update
 	 */
 	function setObjects($objects) {
+		if (DEBUG_OBJECTS) {
+			$oldobjects = $this->getObjects();
+			$flag = count($oldobjects) != count($objects);
+			if (!$flag) {
+				foreach ($oldobjects as $obj) {
+					if (!array_key_exists($obj['data'], $objects) || $obj['edit'] != $objects[$obj['data']]['edit']) {
+						$flag = true;
+						break;
+					}
+				}
+			}
+			if ($flag) {
+				debugLogBacktrace($this->getName() . ':' . $this->getUser() . " setObjects");
+				debuglogVar('old', $oldobjects);
+				debuglogVar('new', $objects);
+			}
+		}
 		$this->objects = $objects;
 	}
 
@@ -1730,51 +1747,41 @@ class _Administrator extends PersistentObject {
 		if (DEBUG_LOGIN) {
 			debugLogVar("Zenphoto_Administrator->save()", $this);
 		}
-		$objects = $this->getObjects();
 		if (is_null($this->get('date'))) {
 			$this->set('date', date('Y-m-d H:i:s'));
 		}
 		parent::save();
 
-		if (is_array($objects)) {
+		if (is_array($this->objects)) {
 			$id = $this->getID();
 			$sql = "DELETE FROM " . prefix('admin_to_object') . ' WHERE `adminid`=' . $id;
 			$result = query($sql, false);
-			foreach ($objects as $object) {
+			foreach ($this->objects as $object) {
 				$edit = MANAGED_OBJECT_MEMBER;
 				if (array_key_exists('edit', $object)) {
 					$edit = $object['edit'] | MANAGED_OBJECT_MEMBER;
 				}
-				switch ($object['type']) {
-					case 'album':
-						$album = newAlbum($object['data']);
-						$albumid = $album->getID();
-						$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $albumid, 'albums', $edit)";
-						$result = query($sql);
+				$table = $object['type'];
+				switch ($table) {
+					case 'albums':
+						$obj = newAlbum($object['data']);
+						$objectid = $obj->getID();
 						break;
 					case 'pages':
-						$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`=' . db_quote($object['data']);
-						$result = query_single_row($sql);
-						if (is_array($result)) {
-							$objectid = $result['id'];
-							$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, 'pages', $edit)";
-							$result = query($sql);
-						}
+						$obj = newPage($object['data']);
+						$objectid = $obj->getID();
 						break;
 					case 'news':
 						if ($object['data'] == '`') { //uncategorized
-							$result = array('id' => 0);
+							$objectid = 0;
 						} else {
-							$sql = 'SELECT * FROM ' . prefix('news_categories') . ' WHERE `titlelink`=' . db_quote($object['data']);
-							$result = query_single_row($sql);
-						}
-						if (is_array($result)) {
-							$objectid = $result['id'];
-							$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, 'news', $edit)";
-							$result = query($sql);
+							$obj = newCategory($object['data']);
+							$objectid = $obj->getID();
 						}
 						break;
 				}
+				$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, '$table', $edit)";
+				$result = query($sql);
 			}
 		}
 	}
@@ -1873,7 +1880,7 @@ class _Administrator extends PersistentObject {
 				$subrights = $subrights | MANAGED_OBJECT_RIGHTS_UPLOAD;
 			}
 			$objects = $this->getObjects();
-			$objects[] = array('data' => $albumname, 'name' => $albumname, 'type' => 'album', 'edit' => $subrights);
+			$objects[] = array('data' => $albumname, 'name' => $albumname, 'type' => 'albums', 'edit' => $subrights);
 			$this->setObjects($objects);
 		}
 	}

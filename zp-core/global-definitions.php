@@ -68,6 +68,7 @@ define('DEBUG_LOCALE', strpos($_debug, 'LOCALE')); // used for examining languag
 define('DEBUG_LOGIN', strpos($_debug, 'LOGIN')); // set to true to log admin saves and login attempts
 define('DEBUG_PLUGINS', strpos($_debug, 'PLUGINS')); // set to true to log plugin load sequence.
 define('DEBUG_FEED', strpos($_debug, 'FEED')); // set to true to log class feed detected issues.
+define('DEBUG_OBJECTS', strpos($_debug, 'OBJECTS')); // set to true to log object management.
 
 unset($_debug);
 

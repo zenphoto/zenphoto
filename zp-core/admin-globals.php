@@ -95,7 +95,7 @@ if (@$_zp_loggedin) {
 
 
 
-		if (extensionEnabled('zenpage')) {
+		if (isset($_zp_CMS)) {
 			if (($_zp_loggedin & ZENPAGE_PAGES_RIGHTS) && $_zp_CMS->pages_enabled) {
 				$zenphoto_tabs['pages'] = array('text' => gettext("pages"),
 						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php',

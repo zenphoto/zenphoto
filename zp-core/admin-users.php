@@ -193,7 +193,7 @@ if (isset($_GET['action'])) {
 								}
 								$oldobjects = $userobj->getObjects();
 								foreach ($oldobjects as $key => $oldobj) {
-									if ($oldobj['type'] != 'album') {
+									if ($oldobj['type'] != 'albums') {
 										unset($oldobjects[$key]['name']);
 									}
 								}
@@ -201,6 +201,7 @@ if (isset($_GET['action'])) {
 
 								$oldobjects = sortMultiArray($oldobjects, 'data', true, false, false, false);
 								$objects = sortMultiArray(processManagedObjects($i, $rights), 'data', true, false, false, false);
+
 								if ($objects != $oldobjects) {
 									$userobj->setObjects($objects);
 									markUpdated($user);
