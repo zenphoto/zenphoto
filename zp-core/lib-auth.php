@@ -1483,7 +1483,7 @@ class _Administrator extends PersistentObject {
 		if (empty($user)) {
 			$this->set('id', -1);
 		}
-		if ($valid) {
+		if ($this->loaded) {
 			$rights = $this->getRights();
 			$new_rights = 0;
 			if ($_zp_authority->isMasterUser($user)) {
@@ -1619,14 +1619,19 @@ class _Administrator extends PersistentObject {
 	 * Stores local copy of managed objects.
 	 * NOTE: The database is NOT updated by this, the user object MUST be saved to
 	 * cause an update
+	 *
+	 * @param array $objects the object list.
 	 */
 	function setObjects($objects) {
 		if (DEBUG_OBJECTS) {
-			$oldobjects = $this->getObjects();
-			$flag = count($oldobjects) != count($objects);
+			$flag = !is_array($this->objects) || count($this->objects) != count($objects);
 			if (!$flag) {
-				foreach ($oldobjects as $obj) {
-					if (!array_key_exists($obj['data'], $objects) || $obj['edit'] != $objects[$obj['data']]['edit']) {
+				$myobjects = array();
+				foreach ($this->objects as $obj) {
+					$myobjects[$obj['data']] = $obj;
+				}
+				foreach ($objects as $obj) {
+					if (!array_key_exists($obj['data'], $myobjects) || $obj['edit'] != $myobjects[$obj['data']]['edit']) {
 						$flag = true;
 						break;
 					}
@@ -1634,7 +1639,7 @@ class _Administrator extends PersistentObject {
 			}
 			if ($flag) {
 				debugLogBacktrace($this->getName() . ':' . $this->getUser() . " setObjects");
-				debuglogVar('old', $oldobjects);
+				debuglogVar('old', $this->objects);
 				debuglogVar('new', $objects);
 			}
 		}
@@ -1645,7 +1650,7 @@ class _Administrator extends PersistentObject {
 	 * Returns local copy of managed objects.
 	 */
 	function getObjects($what = NULL, $full = NULL) {
-		if (is_null($this->objects)) {
+		if (!is_array($this->objects)) {
 			if ($this->transient) {
 				$this->objects = array();
 			} else {

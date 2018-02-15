@@ -123,7 +123,7 @@ class oAuthLogin {
 
 				$userobj->setName($name);
 				$userobj->setPass($user . HASH_SEED . gmdate('d M Y H:i:s'));
-				$userobj->setObjects(NULL);
+				$userobj->objects = NULL;
 				$userobj->setLanguage(getUserLocale());
 				$userobj->setObjects($groupobj->getObjects());
 				$userobj->setEmail($email);

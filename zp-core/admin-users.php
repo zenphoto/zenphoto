@@ -181,7 +181,7 @@ if (isset($_GET['action'])) {
 								markUpdated($user);
 							}
 							$rights = 0;
-							if ($alter) {
+							if ($alter && (!isset($_POST[$i . 'group']) || $_POST[$i . 'group'] == array(''))) {
 								if (isset($_POST[$i . '-rightsenabled'])) {
 									$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
 									$rights = processRights($i);
@@ -211,7 +211,7 @@ if (isset($_GET['action'])) {
 									markUpdated($user);
 								}
 							} else {
-								$oldobjects = $userobj->setObjects(NULL); // indicates no change
+								$oldobjects = $userobj->objects = NULL; // indicates no change
 							}
 							if (isset($_POST['delinkAlbum_' . $i])) {
 								$userobj->setAlbum(NULL);
@@ -645,8 +645,8 @@ echo $refresh;
 													}
 													?>
 													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-																$('#show_<?php echo $id; ?>').val(visible);
-																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
+															$('#show_<?php echo $id; ?>').val(visible);
+															toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
 															 <?php
 															 if (empty($userid)) {
 																 ?>
@@ -655,7 +655,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																						 $('#adminuser<?php echo $id; ?>').focus();" />
+																				 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
