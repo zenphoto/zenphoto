@@ -87,7 +87,7 @@ class debug {
 				gettext('Log admin saves and login attempts.') => 'LOGIN',
 				gettext('Log plugin load sequence.') => 'PLUGINS',
 				gettext('Log Feed issues.') => 'FEED',
-				gettext('Log Managaed Objecst changes.') => 'OBJECTS'
+				gettext('Log Managaed Objects changes.') => 'OBJECTS'
 		);
 		$options = array(
 				NULL => array('key' => 'debug_marks', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
