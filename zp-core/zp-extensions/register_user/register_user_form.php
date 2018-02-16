@@ -109,15 +109,5 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		?>
 		<p><?php echo gettext('<strong>*</strong>Required'); ?></p>
 		<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Submit'); ?></button>
-		<?php
-		if (class_exists('federated_logon')) {
-			?>
-			<p id="Federated_buttons_fieldlist">
-				<?php echo gettext('You may also register using federated credentials'); ?>
-				<?php federated_logon::buttons(WEBPATH . '/index.php'); ?>
-			</p>
-			<?php
-		}
-		?>
 	</form>
 </div>
