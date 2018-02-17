@@ -57,7 +57,6 @@ gettext("Who was your favorite singer?");
 gettext("When did you first get a computer?");
 gettext("How much wood could a woodchuck chuck if a woodchuck could chuck wood?");
 gettext("What is the date of the Ides of March?");
-gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s.');
 
 /* zp-core/zp-extensions/contact_form.php */
 gettext('<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
@@ -84,6 +83,8 @@ gettext('next thumbs »');
 /* zp-core/zp-extensions/register_user.php */
 gettext('Click here to register for this site.');
 gettext('Register');
+gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s.');
+gettext('Your registration information has been accepted. An email has been sent to you to verify your email address.');
 
 /* zp-core/zp-extensions/zenpage.php */
 gettext('Read more');
