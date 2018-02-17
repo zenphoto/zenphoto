@@ -51,6 +51,7 @@ class register_user {
 			setOptionDefault('register_user_email_is_id', 1);
 			setOptionDefault('register_user_create_album', 0);
 			setOptionDefault('register_user_text', getAllTranslations('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s.'));
+			setOptionDefault('register_user_accepted', getAllTranslations('Your registration information has been accepted. An email has been sent to you to verify your email address.'));
 		}
 	}
 
@@ -66,6 +67,9 @@ class register_user {
 				gettext('Registration text') => array('key' => 'register_user_text', 'type' => OPTION_TYPE_TEXTAREA,
 						'order' => 3,
 						'desc' => gettext('Registration confirmation text.')),
+				gettext('Accepted text') => array('key' => 'register_user_text', 'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 3.5,
+						'desc' => gettext('Registration accepted text.')),
 				gettext('User album') => array('key' => 'register_user_create_album', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 6,
 						'desc' => gettext('If checked, an album will be created and assigned to the user.')),
@@ -400,7 +404,7 @@ function printRegistrationForm($thanks = NULL) {
 			case 'accepted':
 				?>
 				<div class="Messagebox fade-message">
-					<p><?php echo gettext('Your registration information has been accepted. An email has been sent to you to verify your email address.'); ?></p>
+					<p><?php echo gettext(get_language_string(getOption('register_user_accepted'))); ?></p>
 				</div>
 				<?php
 				if ($_notify != 'honeypot')
