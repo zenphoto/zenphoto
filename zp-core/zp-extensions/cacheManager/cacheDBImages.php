@@ -57,7 +57,7 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 						$imageprocessor++;
 						preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $row[$field], $matches);
 						foreach ($matches[1] as $uri) {
-							$params = parse_url(html_decode($uri));
+							$params = mb_parse_url(html_decode($uri));
 							if (array_key_exists('query', $params)) {
 								parse_str($params['query'], $query);
 								if (!file_exists(getAlbumFolder() . $query['a'] . '/' . $query['i'])) {

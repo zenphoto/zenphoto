@@ -99,7 +99,7 @@ function printLanguageSelector($flags = NULL) {
 	if (is_null($flags)) {
 		$flags = getOption('dynamic_locale_visual');
 	}
-	$request = parse_url(getRequestURI());
+	$request = mb_parse_url(getRequestURI());
 	if (isset($request['query'])) {
 		$query = explode('&', $request['query']);
 		$uri['query'] = '';

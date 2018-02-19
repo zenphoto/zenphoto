@@ -278,7 +278,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
 				printf(gettext('The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function.'), $l1, $l2);
 			} else {
 				printf(gettext('The change detected may not be critical but you should run %1$ssetup%2$s at your earliest convenience.'), $l1, $l2);
-				$request = parse_url(getRequestURI());
+				$request = mb_parse_url(getRequestURI());
 				if (isset($request['query'])) {
 					$query = parse_query($request['query']);
 				} else {

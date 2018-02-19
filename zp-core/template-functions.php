@@ -4166,7 +4166,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 		return;
 	$_zp_password_form_printed = true;
 	if (is_null($_password_redirect)) {
-		$parts = parse_url(getRequestURI());
+		$parts = mb_parse_url(getRequestURI());
 		if (array_key_exists('query', $parts)) {
 			$query = parse_query($parts['query']);
 		} else {

@@ -448,7 +448,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 												$link = WEBPATH . $link;
 												break;
 											case '?':
-												$request = parse_url(getRequestURI());
+												$request = mb_parse_url(getRequestURI());
 												if (isset($request['query'])) {
 													$link .= '&' . $request['query'];
 												}

@@ -755,20 +755,46 @@ function build_url($parts) {
 }
 
 /**
+ * UTF-8 aware parse_url() replacement.
+ *
+ * @return array
+ */
+function mb_parse_url($url) {
+	$enc_url = preg_replace_callback(
+					'%[^:/@?&=#]+%usD', function ($matches) {
+		return urlencode($matches[0]);
+	}, $url
+	);
+
+	$parts = parse_url($enc_url);
+
+	if ($parts === false) {
+		throw new \InvalidArgumentException('Malformed URL: ' . $url);
+	}
+
+	foreach ($parts as $name => $value) {
+		$parts[$name] = urldecode($value);
+	}
+
+	return $parts;
+}
+
+/**
  * rawurlencode function that is path-safe (does not encode /)
  *
  * @param string $path URL
  * @return string
  */
 function pathurlencode($path) {
-	$parts = parse_url($path);
+	$parts = mb_parse_url($path);
 	if (isset($parts['query'])) {
 //	some kind of query link
 		$pairs = parse_query($parts['query']);
 		$parts['query'] = http_build_query($pairs);
 	}
-	if (array_key_exists('path', $parts))
+	if (array_key_exists('path', $parts)) {
 		$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));
+	}
 	return build_url($parts);
 }
 

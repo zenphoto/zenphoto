@@ -1736,7 +1736,7 @@ function getBare($content) {
  */
 function sanitizeRedirect($redirectTo, $forceHost = false) {
 	$redirect = NULL;
-	if ($redirectTo && $redir = parse_url($redirectTo)) {
+	if ($redirectTo && $redir = mb_parse_url($redirectTo)) {
 		if (isset($redir['scheme']) && isset($redir['host'])) {
 			$redirect .= $redir['scheme'] . '://' . sanitize($redir['host']);
 		} else {

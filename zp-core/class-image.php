@@ -256,6 +256,8 @@ class Image extends MediaObject {
 	 *
 	 */
 	protected function classSetup(&$album, $filename) {
+		global $_zp_current_admin_obj;
+
 		if (TEST_RELEASE) {
 			$bt = debug_backtrace();
 			$good = false;
@@ -270,7 +272,6 @@ class Image extends MediaObject {
 			}
 		}
 
-		global $_zp_current_admin_obj;
 		$fileFS = internalToFilesystem($filename);
 		if ($filename != filesystemToInternal($fileFS)) { // image name spoof attempt
 			return false;
