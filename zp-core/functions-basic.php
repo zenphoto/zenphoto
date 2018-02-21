@@ -1235,7 +1235,7 @@ function debugLog($message, $reset = false) {
 			$f = fopen($path, 'a');
 			if ($f) {
 				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT}\n");
-			}
+			}	
 		}
 		if ($f) {
 			fwrite($f, "  " . $message . "\n");
