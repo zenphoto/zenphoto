@@ -20,7 +20,7 @@ function reconfigureAction($mandatory) {
 			}
 			exit(); //	can't really run setup from an RSS feed.
 		}
-		if (empty($needs)) {
+		if (in_array('ZENPHOTO', $diffkeys) || empty($needs)) {
 			$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 			$p = strpos($dir, ZENFOLDER);
 			if ($p !== false) {
@@ -69,7 +69,7 @@ function checkSignature($auto) {
 		}
 	}
 
-	$package = file_get_contents(dirname(__FILE__) . '/Zenphoto.package');
+	$package = file_get_contents(SERVERPATH . '/' .ZENFOLDER . '/Zenphoto.package');
 	preg_match_all('|' . ZENFOLDER . '/setup/(.*)|', $package, $matches);
 	$needs = array();
 	foreach ($matches[1] as $need) {
@@ -77,7 +77,7 @@ function checkSignature($auto) {
 	}
 	// serialize the following
 	$_configMutex->lock();
-	if (file_exists(dirname(__FILE__) . '/setup/')) {
+	if (file_exists(SERVERPATH . '/' .ZENFOLDER . '/setup/')) {
 		$found = isSetupProtected();
 		if(!empty($found) && $auto && zp_loggedin(ADMIN_RIGHTS)) {
 			unprotectSetupFiles();
@@ -216,8 +216,8 @@ function reconfigurePage($diff, $needs, $mandatory) {
  * @return array
  */
 function isSetupProtected() {
-	if (file_exists(dirname(__FILE__) . '/setup/')) {
-		chdir(dirname(__FILE__) . '/setup/');
+	if (file_exists(SERVERPATH . '/' .ZENFOLDER . '/setup/')) {
+		chdir(SERVERPATH . '/' .ZENFOLDER . '/setup/');
 		$found = safe_glob('*.xxx');
 		return $found;
 	}
