@@ -205,7 +205,6 @@ class Video extends Image {
 	 */
 	function getThumb($type = 'image') {
 		$ts = getOption('thumb_size');
-		$thumb = true;
 		if (getOption('thumb_crop')) {
 			$crop = true;
 			$sw = getOption('thumb_crop_width');
@@ -229,7 +228,7 @@ class Video extends Image {
 			$filename = filesystemToInternal($this->objectsThumb);
 			$mtime = filemtime(ALBUM_FOLDER_SERVERPATH . '/' . internalToFilesystem($this->imagefolder) . '/' . $this->objectsThumb);
 		}
-		$args = getImageParameters(array($ts, $sw, $sh, $cw, $ch, $cx, $cy, null, $thumb, $crop, true, $wmt, NULL, NULL), $this->album->name);
+		$args = getImageParameters(array($ts, $sw, $sh, $cw, $ch, $cx, $cy, null, true, $crop, true, $wmt, NULL, NULL), $this->album->name);
 		return getImageURI($args, $this->album->name, $filename, $mtime);
 	}
 
