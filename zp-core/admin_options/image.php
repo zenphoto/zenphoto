@@ -464,11 +464,8 @@ function getOptionContent() {
 								?>
 								<tr>
 									<td class="image_option_tablerow">
-										<?php
-										printf(gettext('%s thumbnails'), lcfirst(gettext($plugin)));
-										if ($plugin != 'Image')
-											echo ' <strong>*</strong>';
-										?> </td>
+										<?php printf(gettext('%s thumbnails'), lcfirst(gettext($plugin))); ?>
+									</td>
 									<td class="image_option_tablerow">
 										<select id="<?php echo $opt; ?>" name="<?php echo $opt; ?>">
 											<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray">
@@ -515,13 +512,7 @@ function getOptionContent() {
 								<p><?php echo gettext("It is offset from there (moved toward the lower right corner) by the <em>offset</em> percentages of the height and width difference between the image and the watermark."); ?></p>
 								<p><?php echo gettext("If <em>allow upscale</em> is not checked the watermark will not be made larger than the original watermark image."); ?></p>
 								<p><?php printf(gettext('Custom watermarks should be placed in the <code>/%s/watermarks/</code> folder. The images must be in png-24 format.'), USER_PLUGIN_FOLDER); ?></p>
-								<?php
-								if (!empty($imageplugins)) {
-									?>
-									<p class="notebox"><?php echo '* ' . gettext('If a watermark image is selected for these <em>images classes</em> it will be used in place of the image thumbnail watermark.'); ?></p>
-									<?php
-								}
-								?>
+
 							</div>
 						</span>
 					</td>
