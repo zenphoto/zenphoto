@@ -593,7 +593,7 @@ function printNewsArchive($class = 'archive', $yearclass = 'year', $monthclass =
 	$lastyear = "";
 	$nr = "";
 	echo "\n<ul $class>\n";
-	while (list($key, $val) = each($datecount)) {
+	foreach ($datecount as $key => $val) {
 		$nr++;
 		if ($key == '0000-00-01') {
 			$year = "no date";

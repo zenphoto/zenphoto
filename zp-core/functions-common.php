@@ -151,7 +151,10 @@ function zpShutDownFunction() {
  */
 function filesystemToInternal($filename) {
 	global $_zp_UTF8;
-	return str_replace('\\', '/', $_zp_UTF8->convert($filename, FILESYSTEM_CHARSET, LOCAL_CHARSET));
+	if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
+		$filename = str_replace('\\', '/', $_zp_UTF8->convert($filename, FILESYSTEM_CHARSET, LOCAL_CHARSET));
+	}
+	return $filename;
 }
 
 /**
@@ -162,7 +165,10 @@ function filesystemToInternal($filename) {
  */
 function internalToFilesystem($filename) {
 	global $_zp_UTF8;
-	return $_zp_UTF8->convert($filename, LOCAL_CHARSET, FILESYSTEM_CHARSET);
+	if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
+		$filename = $_zp_UTF8->convert($filename, LOCAL_CHARSET, FILESYSTEM_CHARSET);
+	}
+	return $filename;
 }
 
 /**

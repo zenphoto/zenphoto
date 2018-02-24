@@ -803,11 +803,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 										?>
 										<input type="hidden" name="FILESYSTEM_CHARSET" value="UTF-8" />
 										<?php
-									} else if (isWin()) {
-										checkMark(1, gettext('Your Windows filesystem character set is Western European (ISO)'), '', '', false);
-										?>
-										<input type="hidden" name="FILESYSTEM_CHARSET" value="ISO-8859-1" />
-										<?php
 									} else {
 										primeMark(gettext('Character set'));
 										$sets = array_merge($_zp_UTF8->iconv_sets, $_zp_UTF8->mb_sets);

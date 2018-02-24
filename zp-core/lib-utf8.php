@@ -382,8 +382,9 @@ class utf8 {
 						$count++;
 					else
 						$count = $count + 2;
-				} else
+				} else {
 					$count++;
+				}
 			}
 
 			if ($count > $width) {

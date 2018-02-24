@@ -104,7 +104,7 @@ function zpRewriteURL($query) {
 function fix_path_redirect() {
 	if (MOD_REWRITE) {
 		$request_uri = getRequestURI(false);
-		$parts = parse_url($request_uri);
+		$parts = mb_parse_url($request_uri);
 		$redirectURL = NULL;
 		if (isset($parts['path'])) { // don't know how this can happen, but if it does, don't redirect
 			if (isset($parts['query'])) {
@@ -162,7 +162,7 @@ function fix_path_redirect() {
 			}
 
 			if ($redirectURL) {
-				$parts2 = parse_url($redirectURL);
+				$parts2 = mb_parse_url($redirectURL);
 				if (isset($parts2['query'])) {
 					parse_str($parts2['query'], $query2);
 				} else {

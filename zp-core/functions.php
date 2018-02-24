@@ -773,7 +773,7 @@ function getManagedAlbumList() {
 			$_zp_admin_album_list = array();
 			$objects = $_zp_current_admin_obj->getObjects();
 			foreach ($objects as $object) {
-				if ($object['type'] == 'album') {
+				if ($object['type'] == 'albums') {
 					$_zp_admin_album_list[$object['data']] = $object['edit'];
 				}
 			}
@@ -807,7 +807,7 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 				if ($type && !$rights) {
 					$cv[$name] = $folder;
 				} else {
-					$cv[] = array('data' => $folder, 'name' => $name, 'type' => 'album', 'edit' => (int) $albumitem['edit']);
+					$cv[] = array('data' => $folder, 'name' => $name, 'type' => 'albums', 'edit' => (int) $albumitem['edit']);
 				}
 			}
 			db_free_result($currentvalues);
@@ -1736,7 +1736,7 @@ function getBare($content) {
  */
 function sanitizeRedirect($redirectTo, $forceHost = false) {
 	$redirect = NULL;
-	if ($redirectTo && $redir = parse_url($redirectTo)) {
+	if ($redirectTo && $redir = mb_parse_url($redirectTo)) {
 		if (isset($redir['scheme']) && isset($redir['host'])) {
 			$redirect .= $redir['scheme'] . '://' . sanitize($redir['host']);
 		} else {

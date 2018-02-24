@@ -513,7 +513,7 @@ function getDownloadURL($file) {
 	if (substr($file, 0, 1) != '/' && strpos($file, ':') === false) {
 		$file = SERVERPATH . '/' . getOption('downloadList_directory') . '/' . $file;
 	}
-	$request = parse_url(getRequestURI());
+	$request = mb_parse_url(getRequestURI());
 	if (isset($request['query'])) {
 		$query = parse_query($request['query']);
 	} else {
@@ -570,7 +570,7 @@ function printDownloadURL($file, $linktext = NULL) {
  */
 function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache = NULL, $subalbums = true) {
 	global $_zp_current_album, $_zp_current_search;
-	$request = parse_url(getRequestURI());
+	$request = mb_parse_url(getRequestURI());
 	if (isset($request['query'])) {
 		$query = parse_query($request['query']);
 	} else {

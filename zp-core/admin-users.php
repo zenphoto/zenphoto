@@ -181,7 +181,7 @@ if (isset($_GET['action'])) {
 								markUpdated($user);
 							}
 							$rights = 0;
-							if ($alter) {
+							if ($alter && (!isset($_POST[$i . 'group']) || $_POST[$i . 'group'] == array(''))) {
 								if (isset($_POST[$i . '-rightsenabled'])) {
 									$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
 									$rights = processRights($i);
@@ -192,16 +192,11 @@ if (isset($_GET['action'])) {
 									}
 								}
 								$oldobjects = $userobj->getObjects();
-								foreach ($oldobjects as $key => $oldobj) {
-									if ($oldobj['type'] != 'album') {
-										unset($oldobjects[$key]['name']);
-									}
-								}
 								$oldrights = $rights;
-
-								$oldobjects = sortMultiArray($oldobjects, 'data', true, false, false, false);
-								$objects = sortMultiArray(processManagedObjects($i, $rights), 'data', true, false, false, false);
-								if ($objects != $oldobjects) {
+								$objects = processManagedObjects($i, $rights);
+								if (compareObjects($objects, $oldobjects)) {
+									$userobj->objects = NULL;
+								} else {
 									$userobj->setObjects($objects);
 									markUpdated($user);
 								}
@@ -210,7 +205,7 @@ if (isset($_GET['action'])) {
 									markUpdated($user);
 								}
 							} else {
-								$oldobjects = $userobj->setObjects(NULL); // indicates no change
+								$oldobjects = $userobj->objects = NULL; // indicates no change
 							}
 							if (isset($_POST['delinkAlbum_' . $i])) {
 								$userobj->setAlbum(NULL);

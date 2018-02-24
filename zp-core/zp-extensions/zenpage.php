@@ -201,7 +201,7 @@ class cmsFilters {
 		if (extensionEnabled('zenpage')) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 		} else {
-			$_zp_CMS = NULL;
+			unset($GLOBALS['_zp_CMS']);
 		}
 		return $ignore;
 	}

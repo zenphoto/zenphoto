@@ -82,7 +82,7 @@ if ($plugin_disable) {
 						$clonesig = @file_get_contents($row['aux'] . '/' . ZENFOLDER . '/version.php');
 						$valid = $sig == $clonesig;
 					}
-					$link = parse_url($row['data']);
+					$link = mb_parse_url($row['data']);
 					if ($link['host'] != $_SERVER['HTTP_HOST']) {
 						$valid = false;
 					}

@@ -5,15 +5,12 @@
  *
  * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
- * adapted from the tinyMCE 4: compat3x
+ * adapted from the tinyMCE 4: compat3x plugin
  */
 
 var tinymce, tinyMCE;
 
 /**
- * TinyMCE popup/dialog helper class. This gives you easy access to the
- * parent editor instance and a bunch of other things. It's higly recommended
- * that you load this script into your dialogs.
  *
  * @static
  * @class pasteObjPopup

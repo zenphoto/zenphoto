@@ -567,7 +567,7 @@ function printNewsDatesDropdown() {
 		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
 			<?php
 			echo "<option $selected value='admin-news.php" . getNewsAdminOptionPath($option) . "'>" . gettext("View all months") . "</option>\n";
-			while (list($key, $val) = each($datecount)) {
+			foreach ($datecount as $key => $val) {
 				$nr++;
 				if ($key == '0000-00-01') {
 					$year = "no date";
