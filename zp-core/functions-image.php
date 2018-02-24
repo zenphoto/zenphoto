@@ -332,15 +332,15 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					$cf = min($cf, $cw / $neww);
 				if ($ch)
 					$cf = min($cf, $ch / $newh);
-				//	set the image area of the crop (use the most image possible, rule of thirds positioning)
+				//	set the image area of the crop (use the most image possible)
 				if (!$cw || $w / $cw * $ch > $h) {
 					$cw = round($h / $ch * $cw * $cf);
 					$ch = round($h * $cf);
-					$cx = round(($w - $cw) / 3);
+					$cx = round(($w - $cw) / 2);
 				} else {
 					$ch = round($w / $cw * $ch * $cf);
 					$cw = round($w * $cf);
-					$cy = round(($h - $ch) / 3);
+					$cy = round(($h - $ch) / 2);
 				}
 			} else { // custom crop
 				if (!$cw || $cw > $w)
