@@ -1665,23 +1665,3 @@ class zpMutex {
 	}
 
 }
-
-
-function doSomething() {
-	echo "hallo";
-}
-
-
-function doSomething2() {
-	echo "hallo";
-}
-
-
-function doSomething3() {
-	echo "hallo";
-}
-
-
-function doSomething4() {
-	echo "hallo";
-}
