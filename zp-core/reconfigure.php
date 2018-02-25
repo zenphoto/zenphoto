@@ -37,7 +37,7 @@ function reconfigureAction($mandatory) {
 			header("Location: $location");
 			exitZP();
 		} else {
-			reconfigureNote();
+			reconfigurePage($diff, $needs, $mandatory);
 		}
 	} else if (!empty($diff)) {
 		reconfigureNote();
@@ -122,7 +122,6 @@ function reconfigureNote() {
  * HTML for the configuration change notification
  */
 function reconfigurePage($diff, $needs, $mandatory) {
-	global $_zp_db;
 	if (isset($_GET['ignore_setup']) && zp_loggedin(ADMIN_RIGHTS)) {
 		XSRFdefender('ignore_setup');
 		purgeOption('zenphoto_install');
@@ -141,7 +140,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
 							echo '<li>' . sprintf(gettext('Your server software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						case 'DATABASE':
-							$dbs = $_zp_db->getSoftware();
+							$dbs = db_software();
 							echo '<li>' . sprintf(gettext('Your database software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						case 'ZENPHOTO':
