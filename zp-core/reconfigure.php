@@ -282,6 +282,7 @@ function reconfigureCS() {
 			-khtml-border-radius: 5px;
 			-webkit-border-radius: 5px;
 			border-radius: 5px;
+			text-align: left;
 		}
 		
 		.successbox {
@@ -315,11 +316,9 @@ function reconfigureCS() {
 	
 		.reconfig_link-runsetup {
 			font-weight: bold;
-
 			border: 1px solid darkgray !important;
 		}
 		
-		 
 		.reconfig_link-ignore {
 			display: block;
 			float: right;		
