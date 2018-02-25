@@ -908,7 +908,11 @@ class xmpMetadata {
 		}
 		if (!empty($source)) {
 			$metadata = self::extract($source);
-			$image->set('hasMetadata', count($metadata > 0));
+			$hasmetadata = 0;
+			if(count($metadata) > 0) {
+				$hasmetadata = 1;
+			}
+			$image->set('hasMetadata', $hasmetadata);
 			foreach ($metadata as $field => $element) {
 				if (array_key_exists($field, $_zp_exifvars)) {
 					if (!$_zp_exifvars[$field][5]) {
