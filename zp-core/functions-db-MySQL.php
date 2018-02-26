@@ -306,7 +306,7 @@ function db_list_fields($table) {
 		$result = db_show('columns', $table);
 		if (is_resource($result)) {
 			while ($row = db_fetch_assoc($result)) {
-				$tableFields[$table][] = $row;
+				$tableFields[$table][$row['Field']] = $row;
 			}
 		}
 	}

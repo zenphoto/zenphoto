@@ -256,13 +256,13 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	global $_zp_rewritten, $_zp_albumHandlers;
 	$ralbum = isset($_GET[$albumvar]) ? trim(sanitize($_GET[$albumvar]), '/') : NULL;
 	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
-//	we assume that everything is correct if rewrite rules were not applied
+	//	we assume that everything is correct if rewrite rules were not applied
 	if ($_zp_rewritten) {
 		if (!empty($ralbum) && empty($rimage)) { //	rewrite rules never set the image part!
 			$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
 			if (IM_SUFFIX) { // require the rewrite have the suffix as well
 				if (preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $ralbum, $matches)) {
-//has an IM_SUFFIX attached
+					//has an IM_SUFFIX attached
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);

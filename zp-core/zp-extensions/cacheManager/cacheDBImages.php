@@ -37,10 +37,19 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 		?>
 	</p>
 	<?php
-	$tables = array('albums' => array('desc'),
+	$tables = array(
+			'albums' => array('desc'),
 			'images' => array('desc'),
-			'pages' => array('content', 'extracontent'),
-			'news' => array('content', 'extracontent'));
+			'pages' => array('content'),
+			'news' => array('content')
+	);
+	// "extracontent" is optional
+	foreach (array('pages', 'news') as $table) {
+		$fields = db_list_fields($table);
+		if (array_key_exists('extracontent', $fields)) {
+			$tables[$table][] = 'extracontent';
+		}
+	}
 	?>
 	<form name="size_selections" action="?tab=DB&select" method="post">
 		<?php
