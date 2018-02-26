@@ -97,8 +97,9 @@ class security_logger {
 		global $_zp_authority, $_zp_mutex;
 		$ip = sanitize($_SERVER['REMOTE_ADDR']);
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$forwardedIP = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
-			if (preg_match($pattern, $forwardedIP)) {
+			$proxy_list = explode(",", $_SERVER['HTTP_X_FORWARDED_FOR']);
+			$forwardedIP = trim(sanitize(end($proxy_list)));
+			if ($forwardedIP) {
 				$ip .= ' {' . $forwardedIP . '}';
 			}
 		}

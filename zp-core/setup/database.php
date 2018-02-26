@@ -107,7 +107,7 @@ $display = array();
 //clean up metadata item options.
 foreach (array('iptc', 'exif', 'xmp', 'video') as $cat) {
 	foreach (getOptionsLike($cat) as $option => $value) {
-		if (!in_array($option, array('IPTC_encoding', 'xmpMetadata_suffix', 'Video_watermark'))) {
+		if (!in_array(strtolower($option), array('iptc_encoding', 'xmpmetadata_suffix', 'video_watermark'))) {
 			$validMetadataOptions = true;
 			if ($value) { // no need to process if the option was not set
 				$matches = explode('-', $option);
