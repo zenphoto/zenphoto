@@ -486,6 +486,9 @@ setOptionDefault('RSS_articles', 1);
 setOptionDefault('RSS_pages', 1);
 setOptionDefault('RSS_article_comments', 1);
 
+setOptionDefault('menu_truncate_string', 0);
+setOptionDefault('menu_truncate_indicator', '');
+
 setOptionDefault('AlbumThumbSelect', 1);
 
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);

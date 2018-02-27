@@ -226,3 +226,6 @@ define('NO_WATERMARK', '!');
 
 // Don't let anything get above this, to save the server from burning up...
 define('MAX_SIZE', getOption('image_max_size'));
+
+define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
+define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
