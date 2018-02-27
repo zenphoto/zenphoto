@@ -292,8 +292,9 @@ function zp_load_image($folder, $filename) {
 	} else {
 		$album = $_zp_current_album;
 	}
-	if (!is_object($album) || !$album->exists)
+	if (!is_object($album) || !$album->exists) {
 		return false;
+	}
 	if (!getSuffix($filename)) { //	still some work to do
 		foreach ($album->getImages() as $image) {
 			if (is_array($image)) {
@@ -316,7 +317,7 @@ function zp_load_image($folder, $filename) {
 	}
 	$_zp_current_image = newImage($album, $filename, true);
 
-	if (is_null($_zp_current_image) || !$_zp_current_image->exists) {
+	if (!is_object($_zp_current_image) || !$_zp_current_image->exists) {
 		return false;
 	}
 	add_context(ZP_IMAGE | ZP_ALBUM);
