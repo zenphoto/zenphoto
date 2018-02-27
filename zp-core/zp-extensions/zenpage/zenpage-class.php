@@ -18,6 +18,10 @@ define('ZP_SHORTENINDICATOR', $shortenindicator = getOption('zenpage_textshorten
 define('ZP_SHORTEN_LENGTH', getOption('zenpage_text_length'));
 define('ZP_READ_MORE', getOption("zenpage_read_more"));
 define('ZP_ARTICLES_PER_PAGE', getOption("zenpage_articles_per_page"));
+if (!defined('MENU_TRUNCATE_STRING'))
+	define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
+if (!defined('MENU_TRUNCATE_INDICATOR'))
+	define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
 
 class Zenpage {
 
