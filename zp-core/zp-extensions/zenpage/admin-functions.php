@@ -94,12 +94,19 @@ function updatePage(&$reports, $newpage = false) {
 			}
 		}
 	}
+
 	$id = sanitize($_POST['id']);
 	$rslt = true;
 	if ($titlelink != $oldtitlelink) { // title link change must be reflected in DB before any other updates
 		$rslt = query('UPDATE ' . prefix('pages') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$rslt) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
+		}
+	}
+	if (IM_SUFFIX && ($newpage || $titlelink != $oldtitlelink)) {
+		//append IM_SUFFIX
+		if (!preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $titlelink)) {
+			$titlelink .= IM_SUFFIX;
 		}
 	}
 	// update page
@@ -408,6 +415,12 @@ function updateArticle(&$reports, $newarticle = false) {
 		$rslt = query('UPDATE ' . prefix('news') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$rslt) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
+		}
+	}
+	if (IM_SUFFIX && ($newarticle || $titlelink != $oldtitlelink)) {
+		//append IM_SUFFIX
+		if (!preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $titlelink)) {
+			$titlelink .= IM_SUFFIX;
 		}
 	}
 	// update article

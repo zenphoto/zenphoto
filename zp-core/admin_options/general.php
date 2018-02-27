@@ -43,7 +43,14 @@ function saveOptions() {
 	setOption('locale_disallowed', serialize($disallow));
 
 	setOption('mod_rewrite', (int) isset($_POST['mod_rewrite']));
-	setOption('mod_rewrite_image_suffix', sanitize($_POST['mod_rewrite_image_suffix'], 3));
+
+	$oldsuffix = getOption('mod_rewrite_image_suffix');
+	$newsuffix = sanitize($_POST['mod_rewrite_image_suffix'], 3);
+	setOption('mod_rewrite_image_suffix', $newsuffix);
+
+	if ($oldsuffix != $newsuffix) {
+		migrateTitleLinks($oldsuffix, $newsuffix);
+	}
 	setOption('unique_image_prefix', (int) isset($_POST['unique_image_prefix']));
 	if (isset($_POST['time_zone'])) {
 		setOption('time_zone', sanitize($_POST['time_zone'], 3));
