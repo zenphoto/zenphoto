@@ -21,7 +21,7 @@ admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
 
 XSRFdefender('titlelinkMigration');
 
-migrateTitleLinks('', IM_SUFFIX);
+migrateTitleLinks('', RW_SUFFIX);
 
 header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action = external&msg = ' . gettext('titlelink migration completed.'));
 exitZP();

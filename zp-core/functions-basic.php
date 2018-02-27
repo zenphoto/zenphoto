@@ -260,9 +260,9 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	if ($_zp_rewritten) {
 		if (!empty($ralbum) && empty($rimage)) { //	rewrite rules never set the image part!
 			$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
-			if (IM_SUFFIX) { // require the rewrite have the suffix as well
-				if (preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $ralbum, $matches)) {
-					//has an IM_SUFFIX attached
+			if (RW_SUFFIX) { // require the rewrite have the suffix as well
+				if (preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $ralbum, $matches)) {
+					//has an RW_SUFFIX attached
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
 					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);

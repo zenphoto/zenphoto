@@ -98,10 +98,10 @@ function updatePage(&$reports, $newpage = false) {
 	}
 
 	$rslt = true;
-	if (IM_SUFFIX && ($newpage || $titlelink != $oldtitlelink)) {
-		//append IM_SUFFIX
-		if (!preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $titlelink)) {
-			$titlelink .= IM_SUFFIX;
+	if (RW_SUFFIX && ($newpage || $titlelink != $oldtitlelink)) {
+		//append RW_SUFFIX
+		if (!preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $titlelink)) {
+			$titlelink .= RW_SUFFIX;
 		}
 	}
 	if ($titlelink != $oldtitlelink) { // title link change must be reflected in DB before any other updates
@@ -413,10 +413,10 @@ function updateArticle(&$reports, $newarticle = false) {
 		}
 	}
 
-	if (IM_SUFFIX && ($newarticle || $titlelink != $oldtitlelink)) {
-		//append IM_SUFFIX
-		if (!preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $titlelink)) {
-			$titlelink .= IM_SUFFIX;
+	if (RW_SUFFIX && ($newarticle || $titlelink != $oldtitlelink)) {
+		//append RW_SUFFIX
+		if (!preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $titlelink)) {
+			$titlelink .= RW_SUFFIX;
 		}
 	}
 

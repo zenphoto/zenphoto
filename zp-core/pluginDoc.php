@@ -73,7 +73,7 @@ function processCommentBlock($commentBlock) {
 			'%STATIC_CACHE_FOLDER%' => STATIC_CACHE_FOLDER,
 			'%FULLWEBPATH%' => FULLWEBPATH,
 			'%WEBPATH%' => WEBPATH,
-			'%IM_SUFFIX%' => IM_SUFFIX
+			'%RW_SUFFIX%' => RW_SUFFIX
 	);
 	$body = $doc = '';
 	$par = false;

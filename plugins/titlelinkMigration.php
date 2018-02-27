@@ -5,7 +5,7 @@
  * with newly created titlelinks.
  *
  * This migration will not add the <em>mod_rewrite_suffix</em> if it is already present.
- * Otherwise the new titlelink will be <var>old_titlelink</var>%IM_SUFFIX%.
+ * Otherwise the new titlelink will be <var>old_titlelink</var>%RW_SUFFIX%.
  *
  * <b>NOTE</b>: migration may result in duplicated titlelinks. If that would be the case,
  * the titlelink will not be changed. This occurrence will be logged in the debug log.
@@ -21,7 +21,7 @@
 
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext("Migrate titlelinks to include the <em>mod_rewrite_suffix</em>.");
-$plugin_disable = zpFunctions::pluginDisable(array(array(!IM_SUFFIX, gettext('No <em>mod_rewrite_suffix</em> has been set.'))));
+$plugin_disable = zpFunctions::pluginDisable(array(array(!RW_SUFFIX, gettext('No <em>mod_rewrite_suffix</em> has been set.'))));
 
 zp_register_filter('admin_utilities_buttons', 'titlelinkMigration::buttons');
 

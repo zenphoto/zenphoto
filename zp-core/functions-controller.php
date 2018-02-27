@@ -180,6 +180,20 @@ function fix_path_redirect() {
 	}
 }
 
+/**
+ * Redirects to moved titlelink
+ *
+ * @param type $titlelink
+ */
+function fix_suffix_redirect($titlelink) {
+	$request_uri = getRequestURI(false);
+	$redirectURL = str_replace($titlelink, $titlelink . RW_SUFFIX, $request_uri);
+	header("HTTP/1.0 301 Moved Permanently");
+	header("Status: 301 Moved Permanently");
+	header('Location: ' . FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $redirectURL));
+	exitZP();
+}
+
 function zp_load_page() {
 	global $_zp_page;
 	if (isset($_GET['page'])) {
@@ -305,6 +319,13 @@ function load_zenpage_pages($titlelink) {
 	if ($_zp_current_page->loaded) {
 		add_context(ZP_ZENPAGE_PAGE | ZP_ZENPAGE_SINGLE);
 	} else {
+		//check if it is an old link missing the suffix adn redirect if so
+		if (RW_SUFFIX && !preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $titlelink)) {
+			$_zp_current_page = newPage($titlelink . RW_SUFFIX);
+			if ($_zp_current_page->loaded) {
+				fix_suffix_redirect($titlelink);
+			}
+		}
 		$_GET['p'] = 'PAGES:' . $titlelink;
 		return NULL;
 	}
@@ -345,6 +366,14 @@ function load_zenpage_news($request) {
 			add_context(ZP_ZENPAGE_NEWS_ARTICLE | ZP_ZENPAGE_SINGLE);
 			$_zp_current_article = newArticle($titlelink);
 		} else {
+			//check if it is an old link missing the suffix and redirect if so
+			if (RW_SUFFIX && !preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $titlelink)) {
+				$sql = 'SELECT `id` FROM ' . prefix('news') . ' WHERE `titlelink`=' . db_quote($titlelink . RW_SUFFIX);
+				$result = query_single_row($sql);
+				if (is_array($result)) {
+					fix_suffix_redirect($titlelink);
+				}
+			}
 			$_GET['p'] = 'NEWS:' . $titlelink;
 		}
 		return $_zp_current_article;

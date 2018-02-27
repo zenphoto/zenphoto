@@ -252,7 +252,17 @@ setOption('album_tab_showDefaultThumbs', serialize($showDefaultThumbs));
 
 setOptionDefault('time_zone', date('T'));
 setOptionDefault('mod_rewrite', 0);
-setOptionDefault('mod_rewrite_image_suffix', NULL);
+$sfx = getOption('mod_rewrite_image_suffix');
+if ($sfx) {
+	purgeOption('mod_rewrite_image_suffix');
+} else {
+	if (MOD_REWRITE) {
+		$sfx = '.htm';
+	} else {
+		$sfx = NULL;
+	}
+}
+setOptionDefault('mod_rewrite_suffix', $sfx);
 setOptionDefault('dirtyform_enable', 2);
 
 purgeOption('mod_rewrite_detected');
