@@ -249,8 +249,6 @@ function getOptionContent() {
 						<p>
 							<label>
 								<input type="checkbox" name="unique_image_prefix"<?php
-								if (!MOD_REWRITE || !RW_SUFFIX)
-									echo ' disabled="disabled"';
 								if (UNIQUE_IMAGE)
 									echo ' checked="checked";'
 									?>><?php echo gettext("unique images"); ?>
@@ -296,7 +294,7 @@ function getOptionContent() {
 									<?php
 									printf(gettext('If <em>Unique images</em> is checked, image links will omit the image suffix. E.g. a link to the image page for <code>myalbum/myphoto.jpg</code> will appear as <code>myalbum/myphoto%s</code>'), RW_SUFFIX);
 									echo '<p class="notebox">';
-									echo gettext('<strong>Note:</strong> This option requires <em>mod rewrite</em> and <em>mod_rewrite suffix</em> both be set and the image prefixes must be unique within an album!');
+									echo gettext('<strong>Note:</strong> This option requires <em>mod rewrite</em> to be set and the image prefixes must be unique within an album!');
 									echo '</p>';
 									?>
 								</p>

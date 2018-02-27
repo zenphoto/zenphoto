@@ -260,23 +260,23 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	if ($_zp_rewritten) {
 		if (!empty($ralbum) && empty($rimage)) { //	rewrite rules never set the image part!
 			$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
-			if (RW_SUFFIX) { // require the rewrite have the suffix as well
-				if (preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $ralbum, $matches)) {
+			if (!is_dir($path)) {
+				if (RW_SUFFIX && preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $ralbum, $matches)) {
 					//has an RW_SUFFIX attached
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
-					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
+				} else { //	have to figure it out
+					if (Gallery::imageObjectClass($ralbum)) {
+						//	it is an image request
+						$rimage = basename($ralbum);
+						$ralbum = trim(dirname($ralbum), '/');
+					}
 				}
-			} else { //	have to figure it out
-				if (Gallery::imageObjectClass($ralbum)) { //	it is an image request
-					$rimage = basename($ralbum);
-					$ralbum = trim(dirname($ralbum), '/');
-					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
-				}
-			}
-			if (!is_dir($path)) {
-				if ($suffix = isHandledAlbum($path)) { //	it is a dynamic album sans suffix
-					$ralbum .= '.' . $suffix;
+				$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
+				if (!is_dir($path)) {
+					if ($suffix = isHandledAlbum($path)) { //	it is a dynamic album sans suffix
+						$ralbum .= '.' . $suffix;
+					}
 				}
 			}
 		}

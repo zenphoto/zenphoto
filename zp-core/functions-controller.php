@@ -181,13 +181,14 @@ function fix_path_redirect() {
 }
 
 /**
- * Redirects to moved titlelink
+ * Redirects to moved link with suffix added
  *
- * @param type $titlelink
+ * @param string $tofix the string missing the suffix
+ * @param string $toadd the missing suffix
  */
-function fix_suffix_redirect($titlelink) {
+function fix_suffix_redirect($tofix, $toadd = RW_SUFFIX) {
 	$request_uri = getRequestURI(false);
-	$redirectURL = str_replace($titlelink, $titlelink . RW_SUFFIX, $request_uri);
+	$redirectURL = str_replace($tofix, $tofix . $toadd, $request_uri);
 	header("HTTP/1.0 301 Moved Permanently");
 	header("Status: 301 Moved Permanently");
 	header('Location: ' . FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $redirectURL));
@@ -254,8 +255,25 @@ function zp_load_search() {
 function zp_load_album($folder, $force_nocache = false) {
 	global $_zp_current_album, $_zp_gallery;
 	$_zp_current_album = newAlbum($folder, !$force_nocache, true);
-	if (!is_object($_zp_current_album) || !$_zp_current_album->exists)
-		return false;
+	if (!is_object($_zp_current_album) || !$_zp_current_album->exists) {
+		$rimage = basename($folder);
+		$ralbum = dirname($folder);
+		$image = zp_load_image($ralbum, $rimage);
+		if ($image && $image->getFileName() != $rimage) {
+			$suffix = false;
+			if (RW_SUFFIX && !preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $rimage)) {
+				// must be missing the rewrite suffix
+				$suffix = RW_SUFFIX;
+			} else if (!UNIQUE_IMAGE) {
+				//missing the file suffix
+				$suffix = '.' . getSuffix($image->getFileName());
+			}
+			if ($suffix) {
+				fix_suffix_redirect($rimage, $suffix);
+			}
+		}
+		return $image;
+	}
 	add_context(ZP_ALBUM);
 	return $_zp_current_album;
 }

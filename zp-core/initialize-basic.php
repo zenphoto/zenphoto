@@ -215,7 +215,7 @@ define('IMAGE_CACHE_SUFFIX', getOption('image_cache_suffix'));
 define('DATE_FORMAT', getOption('date_format'));
 
 define('RW_SUFFIX', getOption('mod_rewrite_suffix'));
-define('UNIQUE_IMAGE', getOption('unique_image_prefix') && RW_SUFFIX && MOD_REWRITE);
+define('UNIQUE_IMAGE', getOption('unique_image_prefix') && MOD_REWRITE);
 define('UTF8_IMAGE_URI', getOption('UTF8_image_URI'));
 define('MEMBERS_ONLY_COMMENTS', getOption('comment_form_members_only'));
 
