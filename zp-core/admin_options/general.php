@@ -48,7 +48,8 @@ function saveOptions() {
 	$newsuffix = sanitize($_POST['mod_rewrite_image_suffix'], 3);
 	setOption('mod_rewrite_image_suffix', $newsuffix);
 
-	if ($oldsuffix != $newsuffix) {
+	if (!is_null($oldsuffix) && $oldsuffix != $newsuffix) {
+		//the suffix was changed as opposed to set for the first time
 		migrateTitleLinks($oldsuffix, $newsuffix);
 	}
 	setOption('unique_image_prefix', (int) isset($_POST['unique_image_prefix']));

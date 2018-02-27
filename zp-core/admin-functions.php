@@ -4931,16 +4931,22 @@ function dateDiff($date1, $date2) {
  * @param type $new
  */
 function migrateTitleLinks($old, $new) {
+	if ($old) {
+		$sql2 = ' WHERE `titlelink` LIKE ' . db_quote('%' . db_LIKE_escape($old));
+	} else {
+		$sql2 = ' WHERE `titlelink` NOT LIKE ' . db_quote('%' . db_LIKE_escape($new));
+	}
 	foreach (array('pages', 'news') as $table) {
-		$sql = 'SELECT `id`,`titlelink` FROM ' . prefix($table);
+		$sql = 'SELECT `id`,`titlelink` FROM ' . prefix($table) . $sql2;
 		$result = query($sql);
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
-				$titlelink = $row['titlelink'];
-				if (preg_match('|^(.*)' . preg_quote($old) . '$|', $titlelink)) {
-					$titlelink = substr($titlelink, 0, strlen($titlelink) - strlen($old)) . $new;
-					$sql = 'UPDATE ' . prefix($table) . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $row['id'];
-					query($sql);
+				$oldlink = $titlelink = $row['titlelink'];
+				$titlelink = substr($titlelink, 0, strlen($titlelink) - strlen($old)) . $new;
+				$sql = 'UPDATE ' . prefix($table) . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $row['id'];
+				if (!query($sql, false)) {
+					//there may be duplicated titlelinks, if so no change
+					debugLog(sprintf(gettext('%1$s:%2$s not changed to %3$s (duplicate titlelink.)'), $table, $oldlink, $titlelink));
 				}
 			}
 		}
