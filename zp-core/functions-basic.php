@@ -292,6 +292,9 @@ define('MEMBERS_ONLY_COMMENTS', getOption('comment_form_members_only'));
 define('HASH_SEED', getOption('extra_auth_hash_text'));
 define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
 
+define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
+define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
+
 /**
  * Decodes HTML Special Characters.
  *

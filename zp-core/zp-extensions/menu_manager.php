@@ -28,11 +28,6 @@ if (OFFSET_PATH) {
 	zp_register_filter('admin_toolbox_global', 'menu_admin_toolbox_global');
 }
 
-if (!defined('MENU_TRUNCATE_STRING'))
-	define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
-if (!defined('MENU_TRUNCATE_INDICATOR'))
-	define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
-
 /**
  *
  * option handler
