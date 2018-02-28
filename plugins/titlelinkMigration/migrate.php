@@ -23,5 +23,5 @@ XSRFdefender('titlelinkMigration');
 
 migrateTitleLinks('', RW_SUFFIX);
 
-header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action = external&msg = ' . gettext('titlelink migration completed.'));
+header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=' . gettext('titlelink migration completed.'));
 exitZP();
