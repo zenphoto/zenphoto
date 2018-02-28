@@ -289,7 +289,7 @@ function getOptionContent() {
 									echo '</p>';
 								}
 								?>
-								<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
+								<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
 								<p>
 									<?php
 									printf(gettext('If <em>Unique images</em> is checked, image links will omit the image suffix. E.g. a link to the image page for <code>myalbum/myphoto.jpg</code> will appear as <code>myalbum/myphoto%s</code>'), RW_SUFFIX);
