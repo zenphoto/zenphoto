@@ -153,8 +153,6 @@ class zenpagecms {
 			gettext($str = 'Read more');
 			setOptionDefault('zenpage_read_more', getAllTranslations($str));
 			setOptionDefault('zenpage_indexhitcounter', false);
-			setOptionDefault('menu_truncate_string', 0);
-			setOptionDefault('menu_truncate_indicator', '');
 			setOptionDefault('enabled-zenpage-items', 'news-and-pages');
 		}
 	}
