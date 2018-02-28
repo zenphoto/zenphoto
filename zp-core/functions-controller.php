@@ -195,6 +195,23 @@ function fix_suffix_redirect($tofix, $toadd = RW_SUFFIX) {
 	exitZP();
 }
 
+/**
+ * checks if there is a file with the prefix and one of the
+ * handled suffixes. Returns the found suffix
+ *
+ * @param type $path SERVER path to be tested
+ * @return string
+ */
+function isHandledAlbum($path) {
+	global $_zp_albumHandlers;
+	foreach (array_keys($_zp_albumHandlers) as $suffix) {
+		if (file_exists($path . '.' . $suffix)) {
+			//	it is a handled album sans suffix
+			return $suffix;
+		}
+	} return NULL;
+}
+
 function zp_load_page() {
 	global $_zp_page;
 	if (isset($_GET['page'])) {
@@ -254,6 +271,12 @@ function zp_load_search() {
  */
 function zp_load_album($folder, $force_nocache = false) {
 	global $_zp_current_album, $_zp_gallery;
+	$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $folder);
+	if (!is_dir($path)) {
+		if ($suffix = isHandledAlbum($path)) { //	it is a dynamic album sans suffix
+			$folder .= '.' . $suffix;
+		}
+	}
 	$_zp_current_album = newAlbum($folder, !$force_nocache, true);
 	if (!is_object($_zp_current_album) || !$_zp_current_album->exists) {
 		$rimage = basename($folder);
@@ -432,7 +455,7 @@ function zp_load_request() {
 			}
 		}
 
-//	may need image and album parameters processed
+		//	may need image and album parameters processed
 		list($album, $image) = rewrite_get_album_image('album', 'image');
 		if (!empty($image)) {
 			return zp_load_image($album, $image);
