@@ -129,24 +129,26 @@ if (!empty($where)) {
 	$result = query($sql);
 	while ($row = db_fetch_assoc($result)) {
 		$img = getItemByID('images', $row['id']);
-		foreach (array('EXIFGPSLatitude', 'EXIFGPSLongitude') as $source) {
-			$data = $img->get($source);
-			if (!empty($data)) {
-				if (in_array(strtoupper($img->get($source . 'Ref')), array('S', 'W'))) {
-					$data = -$data;
+		if ($img) {
+			foreach (array('EXIFGPSLatitude', 'EXIFGPSLongitude') as $source) {
+				$data = $img->get($source);
+				if (!empty($data)) {
+					if (in_array(strtoupper($img->get($source . 'Ref')), array('S', 'W'))) {
+						$data = -$data;
+					}
+					$img->set(substr($source, 4), $data);
 				}
-				$img->set(substr($source, 4), $data);
 			}
-		}
-		$alt = $img->get('EXIFGPSAltitude');
-		if (!empty($alt)) {
-			if ($img->get('EXIFGPSAltitudeRef') == '-') {
-				$alt = -$alt;
+			$alt = $img->get('EXIFGPSAltitude');
+			if (!empty($alt)) {
+				if ($img->get('EXIFGPSAltitudeRef') == '-') {
+					$alt = -$alt;
+				}
+				$img->set('GPSAltitude', $alt);
 			}
-			$img->set('GPSAltitude', $alt);
+			$img->set('rotation', substr(trim($img->get('EXIFOrientation'), '!'), 0, 1));
+			$img->save();
 		}
-		$img->set('rotation', substr(trim($img->get('EXIFOrientation'), '!'), 0, 1));
-		$img->save();
 	}
 	db_free_result($result);
 }
