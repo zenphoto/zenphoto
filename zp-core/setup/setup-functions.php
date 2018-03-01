@@ -308,16 +308,12 @@ function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod, $upda
  * @param $found
  */
 function versionCheck($required, $desired, $found) {
-	$nr = explode(".", $required . '.0.0.0');
-	$vr = $nr[0] * 10000 + $nr[1] * 100 + $nr[2];
-	$nf = explode(".", $found . '.0.0.0');
-	$vf = $nf[0] * 10000 + $nf[1] * 100 + $nf[2];
-	$nd = explode(".", $desired . '.0.0.0');
-	$vd = $nd[0] * 10000 + $nd[1] * 100 + $nd[2];
-	if ($vf < $vr)
+	if (version_compare($found, $required, '<')) {
 		return 0;
-	if ($vf < $vd)
+	}
+	if (version_compare($found, $desired, '<')) {
 		return -1;
+	}
 	return 1;
 }
 
