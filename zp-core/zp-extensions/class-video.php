@@ -380,17 +380,21 @@ class Video extends Image {
 		$ext = getSuffix($link = $this->getFullImageURL());
 		switch ($ext) {
 			case 'mp3':
-				return '<audio controls>
-						<source src="' . $link . '" type="audio/mpg">
+				if (getOption('class-video_html5')) {
+					return '<audio controls>
+						<source src="' . $link . '" type="audio/mpeg">
 								' . gettext('Your browser does not support the audio tag') . '
 					</audio>';
-				break;
+					break;
+				}
 			case 'mp4':
-				return '<video  width="' . $w . '" height="' . $h . '" controls>
+				if (getOption('class-video_html5')) {
+					return '<video  width="' . $w . '" height="' . $h . '" controls>
 						<source src="' . $this->getFullImageURL() . '" type="video/' . $ext . '">
 								' . gettext('Your browser does not support the video tag') . '
 					</video>';
-				break;
+					break;
+				}
 			default:
 				return $_zp_multimedia_extension->getPlayerConfig($this, NULL, NULL, $w, $h);
 				break;
