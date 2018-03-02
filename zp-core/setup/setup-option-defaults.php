@@ -129,24 +129,26 @@ if (!empty($where)) {
 	$result = query($sql);
 	while ($row = db_fetch_assoc($result)) {
 		$img = getItemByID('images', $row['id']);
-		foreach (array('EXIFGPSLatitude', 'EXIFGPSLongitude') as $source) {
-			$data = $img->get($source);
-			if (!empty($data)) {
-				if (in_array(strtoupper($img->get($source . 'Ref')), array('S', 'W'))) {
-					$data = -$data;
+		if ($img) {
+			foreach (array('EXIFGPSLatitude', 'EXIFGPSLongitude') as $source) {
+				$data = $img->get($source);
+				if (!empty($data)) {
+					if (in_array(strtoupper($img->get($source . 'Ref')), array('S', 'W'))) {
+						$data = -$data;
+					}
+					$img->set(substr($source, 4), $data);
 				}
-				$img->set(substr($source, 4), $data);
 			}
-		}
-		$alt = $img->get('EXIFGPSAltitude');
-		if (!empty($alt)) {
-			if ($img->get('EXIFGPSAltitudeRef') == '-') {
-				$alt = -$alt;
+			$alt = $img->get('EXIFGPSAltitude');
+			if (!empty($alt)) {
+				if ($img->get('EXIFGPSAltitudeRef') == '-') {
+					$alt = -$alt;
+				}
+				$img->set('GPSAltitude', $alt);
 			}
-			$img->set('GPSAltitude', $alt);
+			$img->set('rotation', substr(trim($img->get('EXIFOrientation'), '!'), 0, 1));
+			$img->save();
 		}
-		$img->set('rotation', substr(trim($img->get('EXIFOrientation'), '!'), 0, 1));
-		$img->save();
 	}
 	db_free_result($result);
 }
@@ -252,7 +254,17 @@ setOption('album_tab_showDefaultThumbs', serialize($showDefaultThumbs));
 
 setOptionDefault('time_zone', date('T'));
 setOptionDefault('mod_rewrite', 0);
-setOptionDefault('mod_rewrite_image_suffix', NULL);
+$sfx = getOption('mod_rewrite_image_suffix');
+if ($sfx) {
+	purgeOption('mod_rewrite_image_suffix');
+} else {
+	if (MOD_REWRITE) {
+		$sfx = '.htm';
+	} else {
+		$sfx = NULL;
+	}
+}
+setOptionDefault('mod_rewrite_suffix', $sfx);
 setOptionDefault('dirtyform_enable', 2);
 
 purgeOption('mod_rewrite_detected');
@@ -485,6 +497,9 @@ setOptionDefault('RSS_comments', 1);
 setOptionDefault('RSS_articles', 1);
 setOptionDefault('RSS_pages', 1);
 setOptionDefault('RSS_article_comments', 1);
+
+setOptionDefault('menu_truncate_string', 0);
+setOptionDefault('menu_truncate_indicator', '');
 
 setOptionDefault('AlbumThumbSelect', 1);
 

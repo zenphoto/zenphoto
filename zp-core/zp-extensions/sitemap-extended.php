@@ -435,10 +435,10 @@ class sitemap {
 		$locallist = $obj->getAlbums();
 		foreach ($locallist as $folder) {
 			$album = newAlbum($folder);
-			if ($album->getShow() && $gateway($album)) {
+			if ($album->getShow() && self::$gateway($album)) {
 				$albumlist[] = array('folder' => $album->name, 'date' => $album->getDateTime(), 'title' => $album->getTitle());
 				if (!$album->isDynamic()) {
-					sitemap::getAlbumList($album, $albumlist, $gateway);
+					self::getAlbumList($album, $albumlist, $gateway);
 				}
 			}
 		}
@@ -480,12 +480,12 @@ class sitemap {
 		$imagelastmod = getOption('sitemap_lastmod_images');
 
 		$albums = array();
-		sitemap::getAlbumList($_zp_gallery, $albums, 'sitemap::passAlbums');
+		self::getAlbumList($_zp_gallery, $albums, 'passAlbums');
 		$offset = ($_sitemap_number - 1);
 		$albums = array_slice($albums, $offset, SITEMAP_CHUNK);
 		if (!empty($albums)) {
-			$data .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
-			$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+			$data .= self::echonl('<?xml version="1.0" encoding="UTF-8"?>');
+			$data .= self::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($albums as $album) {
 				$albumobj = newAlbum($album['folder']);
 				set_context(ZP_ALBUM);
@@ -493,27 +493,27 @@ class sitemap {
 				$pageCount = getTotalPages();
 				//$imageCount = getNumImages();
 				//$images = $albumobj->getImages();
-				$date = sitemap::getDateformat($albumobj, $albumlastmod);
+				$date = self::getDateformat($albumobj, $albumlastmod);
 				$base = $albumobj->getLink();
 				switch (SITEMAP_LOCALE_TYPE) {
 					case 1:
 						foreach ($sitemap_locales as $locale) {
 							$url = str_replace(WEBPATH, seo_locale::localePath(true, $locale), $base);
-							$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
-							$data .= sitemap::echonl("\t</url>");
+							$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
+							$data .= self::echonl("\t</url>");
 						}
 						break;
 					case 2:
 						foreach ($sitemap_locales as $locale) {
 							$url = dynamic_locale::fullHostPath($locale) . $base;
-							$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
-							$data .= sitemap::echonl("\t</url>");
+							$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
+							$data .= self::echonl("\t</url>");
 						}
 						break;
 					default:
 						$url = FULLHOSTPATH . $base;
-						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
-						$data .= sitemap::echonl("\t</url>");
+						$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
+						$data .= self::echonl("\t</url>");
 						break;
 				}
 				// print album pages if available
@@ -524,28 +524,28 @@ class sitemap {
 							case 1:
 								foreach ($sitemap_locales as $locale) {
 									$url = str_replace(WEBPATH, seo_locale::localePath(true, $locale), $base);
-									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
-									$data .= sitemap::echonl("\t</url>");
+									$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
+									$data .= self::echonl("\t</url>");
 								}
 								break;
 							case 2:
 
 								foreach ($sitemap_locales as $locale) {
 									$url = dynamic_locale::fullHostPath($locale) . $base;
-									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
-									$data .= sitemap::echonl("\t</url>");
+									$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
+									$data .= self::echonl("\t</url>");
 								}
 								break;
 							default:
 								$url = FULLHOSTPATH . $base;
-								$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
-								$data .= sitemap::echonl("\t</url>");
+								$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
+								$data .= self::echonl("\t</url>");
 								break;
 						}
 					}
 				}
 			}
-			$data .= sitemap::echonl('</urlset>'); // End off the <urlset> tag
+			$data .= self::echonl('</urlset>'); // End off the <urlset> tag
 		}
 		restore_context();
 		return $data;
@@ -564,17 +564,17 @@ class sitemap {
 		$sitemap_locales = generateLanguageList();
 		$imagechangefreq = getOption('sitemap_changefreq_images');
 		$imagelastmod = getOption('sitemap_lastmod_images');
-		$limit = sitemap::getDBLimit(1);
+		$limit = self::getDBLimit(1);
 		$albums = array();
-		sitemap::getAlbumList($_zp_gallery, $albums, 'sitemap::passImages');
+		self::getAlbumList($_zp_gallery, $albums, 'passImages');
 		$offset = ($_sitemap_number - 1);
 		$albums = array_slice($albums, $offset, SITEMAP_CHUNK);
 		if ($albums) {
-			$data .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
+			$data .= self::echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			if (GOOGLE_SITEMAP) {
-				$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
+				$data .= self::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
 			} else {
-				$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+				$data .= self::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			}
 			foreach ($albums as $album) {
 				@set_time_limit(120); //	Extend script timeout to allow for gathering the images.
@@ -586,41 +586,41 @@ class sitemap {
 						$imageobj = newImage($albumobj, $image);
 						$base = $imageobj->getLink();
 						$ext = getSuffix($imageobj->filename);
-						$date = sitemap::getDateformat($imageobj, $imagelastmod);
+						$date = self::getDateformat($imageobj, $imagelastmod);
 						switch (SITEMAP_LOCALE_TYPE) {
 							case 1:
 								foreach ($sitemap_locales as $locale) {
 									$path = str_replace(WEBPATH, seo_locale::localePath(true, $locale), $base);
-									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $path . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $imagechangefreq . "</changefreq>\n\t\t<priority>0.6</priority>\n");
+									$data .= self::echonl("\t<url>\n\t\t<loc>" . $path . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $imagechangefreq . "</changefreq>\n\t\t<priority>0.6</priority>\n");
 									if (GOOGLE_SITEMAP) {
-										$data .= sitemap::getGoogleImageVideoExtras($albumobj, $imageobj, $locale);
+										$data .= self::getGoogleImageVideoExtras($albumobj, $imageobj, $locale);
 									}
-									$data .= sitemap::echonl("</url>");
+									$data .= self::echonl("</url>");
 								}
 								break;
 							case 2:
 								foreach ($sitemap_locales as $locale) {
 									$path = dynamic_locale::fullHostPath($locale) . $base;
-									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $path . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $imagechangefreq . "</changefreq>\n\t\t<priority>0.6</priority>\n");
+									$data .= self::echonl("\t<url>\n\t\t<loc>" . $path . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $imagechangefreq . "</changefreq>\n\t\t<priority>0.6</priority>\n");
 									if (GOOGLE_SITEMAP) {
-										$data .= sitemap::getGoogleImageVideoExtras($albumobj, $imageobj, $locale);
+										$data .= self::getGoogleImageVideoExtras($albumobj, $imageobj, $locale);
 									}
-									$data .= sitemap::echonl("</url>");
+									$data .= self::echonl("</url>");
 								}
 								break;
 							default:
 								$path = FULLHOSTPATH . $base;
-								$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $path . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $imagechangefreq . "</changefreq>\n\t\t<priority>0.6</priority>\n");
+								$data .= self::echonl("\t<url>\n\t\t<loc>" . $path . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $imagechangefreq . "</changefreq>\n\t\t<priority>0.6</priority>\n");
 								if (GOOGLE_SITEMAP) {
-									$data .= sitemap::getGoogleImageVideoExtras($albumobj, $imageobj, NULL);
+									$data .= self::getGoogleImageVideoExtras($albumobj, $imageobj, NULL);
 								}
-								$data .= sitemap::echonl("</url>");
+								$data .= self::echonl("</url>");
 								break;
 						}
 					}
 				}
 			}
-			$data .= sitemap::echonl('</urlset>'); // End off the <urlset> tag
+			$data .= self::echonl('</urlset>'); // End off the <urlset> tag
 		}
 		return $data;
 	}
@@ -667,33 +667,33 @@ class sitemap {
 		}
 		$license = get_language_string(getOption('sitemap_license'), $locale);
 		if (isImageVideo($imageobj) && in_array($ext, array('.mpg', '.mpeg', '.mp4', '.m4v', '.mov', '.wmv', '.asf', '.avi', '.ra', '.ram', '.flv', '.swf'))) { // google says it can index these so we list them even if unsupported by zenphoto
-			$data .= sitemap::echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>" . $host . html_encode($imageobj->getThumb()) . "</video:thumbnail_loc>\n");
-			$data .= sitemap::echonl("\t\t\t<video:title>" . html_encode($imageobj->getTitle($locale)) . "</video:title>");
+			$data .= self::echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>" . $host . html_encode($imageobj->getThumb()) . "</video:thumbnail_loc>\n");
+			$data .= self::echonl("\t\t\t<video:title>" . html_encode($imageobj->getTitle($locale)) . "</video:title>");
 			if ($imageobj->getDesc()) {
-				$data .= sitemap::echonl("\t\t\t<video:description>" . html_encode(getBare($imageobj->getDesc($locale))) . "</video:description>");
+				$data .= self::echonl("\t\t\t<video:description>" . html_encode(getBare($imageobj->getDesc($locale))) . "</video:description>");
 			}
-			$data .= sitemap::echonl("\t\t\t<video:content_loc>" . $host . pathurlencode($imageobj->getFullImageURL()) . "</video:content_loc>");
-			$data .= sitemap::echonl("\t\t</video:video>");
+			$data .= self::echonl("\t\t\t<video:content_loc>" . $host . pathurlencode($imageobj->getFullImageURL()) . "</video:content_loc>");
+			$data .= self::echonl("\t\t</video:video>");
 		} else if (in_array($ext, array('.jpg', '.jpeg', '.gif', '.png'))) { // this might need to be extended!
 			if (getOption('sitemap_google_fullimage')) {
 				$imagelocation = $host . pathurlencode($imageobj->getFullImageURL());
 			} else {
 				$imagelocation = $host . html_encode($imageobj->getSizedImage(getOption('image_size')));
 			}
-			$data .= sitemap::echonl("\t\t<image:image>\n\t\t\t<image:loc>" . html_encode($imagelocation) . "</image:loc>\n");
+			$data .= self::echonl("\t\t<image:image>\n\t\t\t<image:loc>" . html_encode($imagelocation) . "</image:loc>\n");
 			// disabled for the multilingual reasons above
-			$data .= sitemap::echonl("\t\t\t<image:title>" . html_encode($imageobj->getTitle($locale)) . "</image:title>");
+			$data .= self::echonl("\t\t\t<image:title>" . html_encode($imageobj->getTitle($locale)) . "</image:title>");
 			if ($imageobj->getDesc()) {
-				$data .= sitemap::echonl("\t\t\t<image:caption>" . html_encode(getBare($imageobj->getDesc($locale))) . "</image:caption>");
+				$data .= self::echonl("\t\t\t<image:caption>" . html_encode(getBare($imageobj->getDesc($locale))) . "</image:caption>");
 			}
 			if (!empty($license)) {
-				$data .= sitemap::echonl("\t\t\t<image:license>" . html_encode($license) . "</image:license>");
+				$data .= self::echonl("\t\t\t<image:license>" . html_encode($license) . "</image:license>");
 			}
 			// location is kept although the same multilingual issue applies
 			if (!empty($location)) {
-				$data .= sitemap::echonl("\t\t\t<image:geo_location>" . html_encode($location) . "</image:geo_location>");
+				$data .= self::echonl("\t\t\t<image:geo_location>" . html_encode($location) . "</image:geo_location>");
 			}
-			$data .= sitemap::echonl("\t\t</image:image>");
+			$data .= self::echonl("\t\t</image:image>");
 		}
 		return $data;
 	}
@@ -708,13 +708,13 @@ class sitemap {
 		//not splitted into several sitemaps yet
 		if ($_sitemap_number == 1) {
 			$data = '';
-			$limit = sitemap::getDBLimit(2);
+			$limit = self::getDBLimit(2);
 			$sitemap_locales = generateLanguageList();
 			$changefreq = getOption('sitemap_changefreq_pages');
 			$pages = $_zp_CMS->getPages(true);
 			if ($pages) {
-				$data .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
-				$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+				$data .= self::echonl('<?xml version="1.0" encoding="UTF-8"?>');
+				$data .= self::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 				foreach ($pages as $page) {
 					$pageobj = newPage($page['titlelink']);
 					$lastchange = $date = substr($pageobj->getPublishDate(), 0, 10);
@@ -728,23 +728,23 @@ class sitemap {
 							case 1:
 								foreach ($sitemap_locales as $locale) {
 									$url = str_replace(WEBPATH, seo_locale::localePath(true, $locale), $base);
-									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+									$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 								}
 								break;
 							case 2:
 								foreach ($sitemap_locales as $locale) {
 									$url = dynamic_locale::fullHostPath($locale) . $base;
-									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+									$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 								}
 								break;
 							default:
 								$url = FULLHOSTPATH . $base;
-								$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+								$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 								break;
 						}
 					}
 				}
-				$data .= sitemap::echonl('</urlset>'); // End off the <urlset> tag
+				$data .= self::echonl('</urlset>'); // End off the <urlset> tag
 			}
 			return $data;
 		}
@@ -760,8 +760,8 @@ class sitemap {
 		//not splitted into several sitemaps yet
 		if ($_sitemap_number == 1) {
 			$data = '';
-			$data .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
-			$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+			$data .= self::echonl('<?xml version="1.0" encoding="UTF-8"?>');
+			$data .= self::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			$sitemap_locales = generateLanguageList();
 			$changefreq = getOption('sitemap_changefreq_newsindex');
 			$date = date(DATE_ISO8601);
@@ -769,18 +769,18 @@ class sitemap {
 				case 1:
 					foreach ($sitemap_locales as $locale) {
 						$url = seo_locale::localePath(true, $locale) . '/' . _NEWS_;
-						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 					Break;
 				case 2:
 					foreach ($sitemap_locales as $locale) {
 						$url = rewrite_path(_NEWS_, '?p=news', dynamic_locale::fullHostPath($locale));
-						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 					Break;
 				default:
 					$url = rewrite_path(_NEWS_, '?p=news', FULLWEBPATH);
-					$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					Break;
 			}
 			// getting pages for the main news loop
@@ -792,23 +792,23 @@ class sitemap {
 						case 1:
 							foreach ($sitemap_locales as $locale) {
 								$url = seo_locale::localePath(true, $locale) . '/' . _NEWS_ . '/' . $x;
-								$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+								$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 							break;
 						case 2:
 							foreach ($sitemap_locales as $locale) {
 								$url = rewrite_path(_NEWS_ . '/' . $x, '?p=news&amp;page=' . $x, dynamic_locale::fullHostPath($locale));
-								$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+								$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 							break;
 						default:
 							$url = rewrite_path(_NEWS_ . '/' . $x, '?p=news&amp;page=' . $x, FULLWEBPATH);
-							$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+							$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							break;
 					}
 				}
 			}
-			$data .= sitemap::echonl('</urlset>'); // End off the <urlset> tag
+			$data .= self::echonl('</urlset>'); // End off the <urlset> tag
 			return $data;
 		}
 	}
@@ -828,8 +828,8 @@ class sitemap {
 			$changefreq = getOption('sitemap_changefreq_news');
 			$articles = $_zp_CMS->getArticles('', 'published', true, "date", "desc");
 			if ($articles) {
-				$data .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
-				$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+				$data .= self::echonl('<?xml version="1.0" encoding="UTF-8"?>');
+				$data .= self::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 				foreach ($articles as $article) {
 					$articleobj = newArticle($article['titlelink']);
 					$lastchange = $date = substr($articleobj->getPublishDate(), 0, 10);
@@ -843,23 +843,23 @@ class sitemap {
 							case 1:
 								foreach ($sitemap_locales as $locale) {
 									$url = str_replace(WEBPATH, seo_locale::localePath(true, $locale), $base);
-									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+									$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 								}
 								break;
 							case 2:
 								foreach ($sitemap_locales as $locale) {
 									$url = dynamic_locale::fullHostPath($locale) . $base;
-									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+									$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 								}
 								break;
 							default:
 								$url = FULLHOSTPATH . $base;
-								$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+								$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 								break;
 						}
 					}
 				}
-				$data .= sitemap::echonl('</urlset>'); // End off the <urlset> tag
+				$data .= self::echonl('</urlset>'); // End off the <urlset> tag
 			}
 			return $data;
 		}
@@ -879,8 +879,8 @@ class sitemap {
 			$changefreq = getOption('sitemap_changefreq_newscats');
 			$newscats = $_zp_CMS->getAllCategories();
 			if ($newscats) {
-				$data .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
-				$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+				$data .= self::echonl('<?xml version="1.0" encoding="UTF-8"?>');
+				$data .= self::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 				foreach ($newscats as $newscat) {
 					$catobj = newCategory($newscat['titlelink']);
 					if (!$catobj->isProtected()) {
@@ -889,18 +889,18 @@ class sitemap {
 							case 1:
 								foreach ($sitemap_locales as $locale) {
 									$url = str_replace(WEBPATH, seo_locale::localePath(true, $locale), $base);
-									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+									$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 								}
 								break;
 							case 2:
 								foreach ($sitemap_locales as $locale) {
 									$url = dynamic_locale::fullHostPath($locale) . $base;
-									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+									$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 								}
 								break;
 							default:
 								$url = FULLHOSTPATH . $base;
-								$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+								$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 								break;
 						}
 
@@ -916,25 +916,25 @@ class sitemap {
 									case 1:
 										foreach ($sitemap_locales as $locale) {
 											$url = str_replace(WEBPATH, seo_locale::localePath(true, $locale), $base);
-											$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+											$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 										}
 										break;
 									case 2:
 										foreach ($sitemap_locales as $locale) {
 											$url = dynamic_locale::fullHostPath($locale) . $base;
-											$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+											$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 										}
 										break;
 									default:
 										$url = FULLHOSTPATH . $base;
-										$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+										$data .= self::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 										break;
 								}
 							}
 						}
 					}
 				}
-				$data .= sitemap::echonl('</urlset>'); // End off the <urlset> tag
+				$data .= self::echonl('</urlset>'); // End off the <urlset> tag
 			}
 			return $data;
 		}

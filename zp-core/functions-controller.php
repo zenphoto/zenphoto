@@ -180,6 +180,38 @@ function fix_path_redirect() {
 	}
 }
 
+/**
+ * Redirects to moved link with suffix added
+ *
+ * @param string $tofix the string missing the suffix
+ * @param string $toadd the missing suffix
+ */
+function fix_suffix_redirect($tofix, $toadd = RW_SUFFIX) {
+	$request_uri = getRequestURI(false);
+	$redirectURL = str_replace($tofix, $tofix . $toadd, $request_uri);
+	header("HTTP/1.0 301 Moved Permanently");
+	header("Status: 301 Moved Permanently");
+	header('Location: ' . FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $redirectURL));
+	exitZP();
+}
+
+/**
+ * checks if there is a file with the prefix and one of the
+ * handled suffixes. Returns the found suffix
+ *
+ * @param type $path SERVER path to be tested
+ * @return string
+ */
+function isHandledAlbum($path) {
+	global $_zp_albumHandlers;
+	foreach (array_keys($_zp_albumHandlers) as $suffix) {
+		if (file_exists($path . '.' . $suffix)) {
+			//	it is a handled album sans suffix
+			return $suffix;
+		}
+	} return NULL;
+}
+
 function zp_load_page() {
 	global $_zp_page;
 	if (isset($_GET['page'])) {
@@ -239,9 +271,32 @@ function zp_load_search() {
  */
 function zp_load_album($folder, $force_nocache = false) {
 	global $_zp_current_album, $_zp_gallery;
+	$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $folder);
+	if (!is_dir($path)) {
+		if ($suffix = isHandledAlbum($path)) { //	it is a dynamic album sans suffix
+			$folder .= '.' . $suffix;
+		}
+	}
 	$_zp_current_album = newAlbum($folder, !$force_nocache, true);
-	if (!is_object($_zp_current_album) || !$_zp_current_album->exists)
-		return false;
+	if (!is_object($_zp_current_album) || !$_zp_current_album->exists) {
+		$rimage = basename($folder);
+		$ralbum = dirname($folder);
+		$image = zp_load_image($ralbum, $rimage);
+		if ($image && $image->getFileName() != $rimage) {
+			$suffix = false;
+			if (RW_SUFFIX && !preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $rimage)) {
+				// must be missing the rewrite suffix
+				$suffix = RW_SUFFIX;
+			} else if (!UNIQUE_IMAGE) {
+				//missing the file suffix
+				$suffix = '.' . getSuffix($image->getFileName());
+			}
+			if ($suffix) {
+				fix_suffix_redirect($rimage, $suffix);
+			}
+		}
+		return $image;
+	}
 	add_context(ZP_ALBUM);
 	return $_zp_current_album;
 }
@@ -260,8 +315,9 @@ function zp_load_image($folder, $filename) {
 	} else {
 		$album = $_zp_current_album;
 	}
-	if (!is_object($album) || !$album->exists)
+	if (!is_object($album) || !$album->exists) {
 		return false;
+	}
 	if (!getSuffix($filename)) { //	still some work to do
 		foreach ($album->getImages() as $image) {
 			if (is_array($image)) {
@@ -284,7 +340,7 @@ function zp_load_image($folder, $filename) {
 	}
 	$_zp_current_image = newImage($album, $filename, true);
 
-	if (is_null($_zp_current_image) || !$_zp_current_image->exists) {
+	if (!is_object($_zp_current_image) || !$_zp_current_image->exists) {
 		return false;
 	}
 	add_context(ZP_IMAGE | ZP_ALBUM);
@@ -305,6 +361,13 @@ function load_zenpage_pages($titlelink) {
 	if ($_zp_current_page->loaded) {
 		add_context(ZP_ZENPAGE_PAGE | ZP_ZENPAGE_SINGLE);
 	} else {
+		//check if it is an old link missing the suffix adn redirect if so
+		if (RW_SUFFIX && !preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $titlelink)) {
+			$_zp_current_page = newPage($titlelink . RW_SUFFIX);
+			if ($_zp_current_page->loaded) {
+				fix_suffix_redirect($titlelink);
+			}
+		}
 		$_GET['p'] = 'PAGES:' . $titlelink;
 		return NULL;
 	}
@@ -345,6 +408,14 @@ function load_zenpage_news($request) {
 			add_context(ZP_ZENPAGE_NEWS_ARTICLE | ZP_ZENPAGE_SINGLE);
 			$_zp_current_article = newArticle($titlelink);
 		} else {
+			//check if it is an old link missing the suffix and redirect if so
+			if (RW_SUFFIX && !preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $titlelink)) {
+				$sql = 'SELECT `id` FROM ' . prefix('news') . ' WHERE `titlelink`=' . db_quote($titlelink . RW_SUFFIX);
+				$result = query_single_row($sql);
+				if (is_array($result)) {
+					fix_suffix_redirect($titlelink);
+				}
+			}
 			$_GET['p'] = 'NEWS:' . $titlelink;
 		}
 		return $_zp_current_article;
@@ -384,7 +455,7 @@ function zp_load_request() {
 			}
 		}
 
-//	may need image and album parameters processed
+		//	may need image and album parameters processed
 		list($album, $image) = rewrite_get_album_image('album', 'image');
 		if (!empty($image)) {
 			return zp_load_image($album, $image);

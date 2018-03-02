@@ -453,7 +453,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 
 		function cast<?php echo $unique; ?>() {
 			var dataString = $('#star_rating<?php echo $unique; ?>').serialize();
-			if (!dataString && <?php echo (bool) getOption('rating_like-dislike'); ?>) {
+			if (!dataString && <?php echo getOption('rating_like-dislike') ? 'TRUE' : 'FALSE'; ?>) {
 				dataString = 'star_rating-value<?php echo $unique; ?>=0';
 			}
 

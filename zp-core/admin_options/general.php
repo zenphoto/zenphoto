@@ -43,7 +43,15 @@ function saveOptions() {
 	setOption('locale_disallowed', serialize($disallow));
 
 	setOption('mod_rewrite', (int) isset($_POST['mod_rewrite']));
-	setOption('mod_rewrite_image_suffix', sanitize($_POST['mod_rewrite_image_suffix'], 3));
+
+	$oldsuffix = getOption('mod_rewrite_suffix');
+	$newsuffix = sanitize($_POST['mod_rewrite_suffix'], 3);
+	setOption('mod_rewrite_suffix', $newsuffix);
+
+	if (!is_null($oldsuffix) && $oldsuffix != $newsuffix) {
+		//the suffix was changed as opposed to set for the first time
+		migrateTitleLinks($oldsuffix, $newsuffix);
+	}
 	setOption('unique_image_prefix', (int) isset($_POST['unique_image_prefix']));
 	if (isset($_POST['time_zone'])) {
 		setOption('time_zone', sanitize($_POST['time_zone'], 3));
@@ -237,12 +245,10 @@ function getOptionContent() {
 							<?php
 						}
 						?>
-						<p><?php echo gettext("mod_rewrite suffix"); ?> <input type="text" size="10" name="mod_rewrite_image_suffix" value="<?php echo html_encode(getOption('mod_rewrite_image_suffix')); ?>" /></p>
+						<p><?php echo gettext("mod_rewrite suffix"); ?> <input type="text" size="10" name="mod_rewrite_suffix" value="<?php echo html_encode(getOption('mod_rewrite_suffix')); ?>" /></p>
 						<p>
 							<label>
 								<input type="checkbox" name="unique_image_prefix"<?php
-								if (!MOD_REWRITE || !IM_SUFFIX)
-									echo ' disabled="disabled"';
 								if (UNIQUE_IMAGE)
 									echo ' checked="checked";'
 									?>><?php echo gettext("unique images"); ?>
@@ -283,12 +289,12 @@ function getOptionContent() {
 									echo '</p>';
 								}
 								?>
-								<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
+								<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
 								<p>
 									<?php
-									printf(gettext('If <em>Unique images</em> is checked, image links will omit the image suffix. E.g. a link to the image page for <code>myalbum/myphoto.jpg</code> will appear as <code>myalbum/myphoto%s</code>'), IM_SUFFIX);
+									printf(gettext('If <em>Unique images</em> is checked, image links will omit the image suffix. E.g. a link to the image page for <code>myalbum/myphoto.jpg</code> will appear as <code>myalbum/myphoto%s</code>'), RW_SUFFIX);
 									echo '<p class="notebox">';
-									echo gettext('<strong>Note:</strong> This option requires <em>mod rewrite</em> and <em>mod_rewrite suffix</em> both be set and the image prefixes must be unique within an album!');
+									echo gettext('<strong>Note:</strong> This option requires <em>mod rewrite</em> to be set and the image prefixes must be unique within an album!');
 									echo '</p>';
 									?>
 								</p>

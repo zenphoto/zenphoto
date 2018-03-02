@@ -226,23 +226,6 @@ function hasDynamicAlbumSuffix($path) {
 }
 
 /**
- * checks if there is a file with the prefix and one of the
- * handled suffixes. Returns the found suffix
- *
- * @param type $path SERVER path to be tested
- * @return string
- */
-function isHandledAlbum($path) {
-	global $_zp_albumHandlers;
-	foreach (array_keys($_zp_albumHandlers) as $suffix) {
-		if (file_exists($path . '.' . $suffix)) {
-			//	it is a handled album sans suffix
-			return $suffix;
-		}
-	} return NULL;
-}
-
-/**
  * Handles the special cases of album/image[rewrite_suffix]
  *
  * Separates the image part from the album if it is an image reference
@@ -259,24 +242,17 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	//	we assume that everything is correct if rewrite rules were not applied
 	if ($_zp_rewritten) {
 		if (!empty($ralbum) && empty($rimage)) { //	rewrite rules never set the image part!
-			$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
-			if (IM_SUFFIX) { // require the rewrite have the suffix as well
-				if (preg_match('|^(.*)' . preg_quote(IM_SUFFIX) . '$|', $ralbum, $matches)) {
-					//has an IM_SUFFIX attached
+			if (!is_dir(internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum))) {
+				if (RW_SUFFIX && preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $ralbum, $matches)) {
+					//has an RW_SUFFIX attached
 					$rimage = basename($matches[1]);
 					$ralbum = trim(dirname($matches[1]), '/');
-					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
-				}
-			} else { //	have to figure it out
-				if (Gallery::imageObjectClass($ralbum)) { //	it is an image request
-					$rimage = basename($ralbum);
-					$ralbum = trim(dirname($ralbum), '/');
-					$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $ralbum);
-				}
-			}
-			if (!is_dir($path)) {
-				if ($suffix = isHandledAlbum($path)) { //	it is a dynamic album sans suffix
-					$ralbum .= '.' . $suffix;
+				} else { //	have to figure it out
+					if (Gallery::imageObjectClass($ralbum)) {
+						//	it is an image request
+						$rimage = basename($ralbum);
+						$ralbum = trim(dirname($ralbum), '/');
+					}
 				}
 			}
 		}

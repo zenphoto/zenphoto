@@ -75,8 +75,10 @@ function updatePage(&$reports, $newpage = false) {
 			$reports[] = "<p class='warningbox fade-message'>" . gettext('Duplicate page title') . '</p>';
 		}
 		$oldtitlelink = $titlelink;
+		$id = 0;
 	} else {
 		$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old']);
+		$id = sanitize($_POST['id']);
 	}
 	if (getcheckboxState('edittitlelink')) {
 		$titlelink = sanitize($_POST['titlelink'], 3);
@@ -94,14 +96,21 @@ function updatePage(&$reports, $newpage = false) {
 			}
 		}
 	}
-	$id = sanitize($_POST['id']);
+
 	$rslt = true;
+	if (RW_SUFFIX && ($newpage || $titlelink != $oldtitlelink)) {
+		//append RW_SUFFIX
+		if (!preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $titlelink)) {
+			$titlelink .= RW_SUFFIX;
+		}
+	}
 	if ($titlelink != $oldtitlelink) { // title link change must be reflected in DB before any other updates
 		$rslt = query('UPDATE ' . prefix('pages') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$rslt) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
 		}
 	}
+
 	// update page
 	$page = newPage($titlelink, true);
 	$notice = processCredentials($page);
@@ -351,6 +360,7 @@ function printPagesListTable($page, $toodeep) {
  */
 function updateArticle(&$reports, $newarticle = false) {
 	global $_zp_current_admin_obj;
+
 	$date = date('Y-m-d_H-i-s');
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
@@ -403,7 +413,16 @@ function updateArticle(&$reports, $newarticle = false) {
 		}
 	}
 
+	if (RW_SUFFIX && ($newarticle || $titlelink != $oldtitlelink)) {
+		//append RW_SUFFIX
+		if (!preg_match('|^(.*)' . preg_quote(RW_SUFFIX) . '$|', $titlelink)) {
+			$titlelink .= RW_SUFFIX;
+		}
+	}
+
+
 	$rslt = true;
+
 	if ($titlelink != $oldtitlelink) { // title link change must be reflected in DB before any other updates
 		$rslt = query('UPDATE ' . prefix('news') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$rslt) {
@@ -967,13 +986,13 @@ function printCategoryListSortableTable($cat, $toodeep) {
 
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon"><?php
-				$password = $cat->getPassword();
-				if ($password) {
-					echo LOCK;
-				} else {
-					echo LOCK_OPEN;
-				}
-				?>
+		$password = $cat->getPassword();
+		if ($password) {
+			echo LOCK;
+		} else {
+			echo LOCK_OPEN;
+		}
+			?>
 			</div>
 			<div class="page-list_icon">
 				<?php echo linkPickerIcon($cat); ?>
