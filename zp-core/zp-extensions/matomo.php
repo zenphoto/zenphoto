@@ -52,8 +52,8 @@ class matomoStats {
 			purgeOption('piwik_url');
 		}
 		if (getOption('piwik_id')) {
-			setOption('matomo_id', getOption('piwik_url'));
-			purgeOption('piwik_url');
+			setOption('matomo_id', getOption('piwik_id'));
+			purgeOption('piwik_id');
 		}
 		if (getOption('piwik_admintracking')) {
 			setOption('matomo_admintracking', getOption('piwik_admintracking'));
