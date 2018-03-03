@@ -104,11 +104,18 @@ if ($result) {
 		query($sql);
 	}
 }
+
+//original was mis-spelled
+if (extensionEnabled('reCaptche_v2')) {
+	purgeOption('zp_plugin_reCaptche_v2');
+	enableExtension('reCAPTCHA_v2', 500 | CLASS_PLUGIN);
+}
+
 //migrate rotation and GPS data
 $result = db_list_fields('images');
 $where = '';
 if (isset($result['EXIFOrientation'])) {
-	$where = '(`rotation` IS NULL AND `EXIFOrientation`!="")';
+	$where = ' OR (`rotation` IS NULL AND `EXIFOrientation`!="")';
 }
 if (isset($result['EXIFGPSLatitude'])) {
 	$where .= ' OR (`GPSLatitude` IS NULL AND NOT `EXIFGPSLatitude` IS NULL)';
@@ -117,12 +124,7 @@ if (isset($result['EXIFGPSLatitude'])) {
 } else if (isset($result['EXIFGPSAltitude'])) {
 	$where .= ' OR (`GPSAltitude` IS NULL AND NOT `EXIFGPSAltitude` IS NULL)';
 }
-
-//original was mis-spelled
-if (extensionEnabled('reCaptche_v2')) {
-	purgeOption('zp_plugin_reCaptche_v2');
-	enableExtension('reCAPTCHA_v2', 500 | CLASS_PLUGIN);
-}
+$where = ltrim($where, ' OR ');
 
 if (!empty($where)) {
 	$sql = 'SELECT `id` FROM ' . prefix('images') . ' WHERE ' . $where;
