@@ -80,6 +80,9 @@ function setOption($key, $value, $persistent = true) {
 		if (is_null($value)) {
 			$v = 'NULL';
 		} else {
+			if (is_bool($value)) {
+				$value = (int) $value;
+			}
 			$v = db_quote($value);
 		}
 		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`value`,`ownerid`,`theme`,`creator`) VALUES (' . db_quote($key) . ',' . $v . ',0,' . db_quote($theme) . ',' . db_quote($creator) . ')' . ' ON DUPLICATE KEY UPDATE `value`=' . $v;
@@ -136,6 +139,9 @@ function setOptionDefault($key, $default) {
 	if (is_null($default)) {
 		$sql .= 'NULL';
 	} else {
+		if (is_bool($default)) {
+			$default = (int) $default;
+		}
 		$sql .= db_quote($default);
 	}
 	$sql .= ',0,' . db_quote($theme) . ',' . db_quote($creator) . ');';

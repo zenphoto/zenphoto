@@ -1972,6 +1972,9 @@ function setThemeOption($key, $value, $album = NULL, $theme = NULL, $default = f
 		$sql .= 'NULL';
 		$sqlu .= 'NULL';
 	} else {
+		if (is_bool($value)) {
+			$value = (int) $value;
+		}
 		$sql .= db_quote($value);
 		$sqlu .= db_quote($value);
 	}
