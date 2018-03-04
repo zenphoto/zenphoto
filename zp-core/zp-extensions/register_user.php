@@ -225,7 +225,7 @@ class register_user {
 					$userobj->setName($admin_n);
 					$userobj->setEmail($admin_e);
 					$userobj->setRights(0);
-					$userobj->objects = NULL;
+					$userobj->setObjects(NULL);
 					$userobj->setGroup('');
 					$userobj->setLanguage(getUserLocale());
 					if (extensionEnabled('userAddressFields')) {

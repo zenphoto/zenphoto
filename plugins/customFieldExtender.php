@@ -35,7 +35,6 @@
  * @author Stephen Billard (sbillard)
  * @package plugins/customFieldExtender
  * @pluginCategory example
- * @category package
  *
  */
 $plugin_is_filter = /* defaultExtension( */ 5 | CLASS_PLUGIN /* ) */; //	if you have such a plugin you probably want to use it

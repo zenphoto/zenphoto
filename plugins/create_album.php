@@ -12,8 +12,6 @@
  *
  * @package plugins/create_album
  * @pluginCategory example
- * @category package
- * @category ZenPhoto20Tools
  */
 $plugin_is_filter = 9 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allow a user to create a root level album when he does not otherwise have rights to do so.');

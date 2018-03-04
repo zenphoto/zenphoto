@@ -6,7 +6,6 @@
  *
  * @package plugins/text_watermark
  * @pluginCategory example
- * @category package
  */
 $plugin_description = gettext("Creates text based watermarks.");
 $plugin_author = "Stephen Billard (sbillard)";

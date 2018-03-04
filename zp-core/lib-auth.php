@@ -1395,7 +1395,7 @@ class _Authority {
 							 name="disclose_password<?php echo $id; ?>"
 							 id="disclose_password<?php echo $id; ?>"
 							 onclick="passwordClear('<?php echo $id; ?>');
-											 togglePassword('<?php echo $id; ?>');">
+									 togglePassword('<?php echo $id; ?>');">
 			</span>
 
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
@@ -1461,7 +1461,7 @@ class _Administrator extends PersistentObject {
 	 * an administrator object
 	 *
 	 */
-	var $objects = NULL;
+	protected $objects = NULL;
 	var $master = false; //	will be set to true if this is the inherited master user
 	var $msg = NULL; //	a means of storing error messages from filter processing
 	var $logout_link = true; // for a zenphoto logout
@@ -1619,6 +1619,7 @@ class _Administrator extends PersistentObject {
 	 * Stores local copy of managed objects.
 	 * NOTE: The database is NOT updated by this, the user object MUST be saved to
 	 * cause an update
+	 * use setObjects(NULL) to indicate no change in the objects
 	 *
 	 * @param array $objects the object list.
 	 */
@@ -1629,7 +1630,7 @@ class _Administrator extends PersistentObject {
 				if ($name) {
 					$name = ' (' . $name . ')';
 				}
-				debugLogBacktrace($this->getUser() . $name . " setObjects");
+				debugLogBacktrace($this->getUser() . $name . "->setObjects()");
 				debuglogVar('old', $this->objects);
 				debuglogVar('new', $objects);
 			}
@@ -1749,6 +1750,14 @@ class _Administrator extends PersistentObject {
 		parent::save();
 
 		if (is_array($this->objects)) {
+			if (DEBUG_OBJECTS) {
+				$name = $this->getName();
+				if ($name) {
+					$name = ' (' . $name . ')';
+				}
+				debugLogBacktrace($this->getUser() . $name . "->save()");
+				debugLogVar('objects', $this->objects);
+			}
 			$id = $this->getID();
 			$sql = "DELETE FROM " . prefix('admin_to_object') . ' WHERE `adminid`=' . $id;
 			$result = query($sql, false);
@@ -1792,6 +1801,13 @@ class _Administrator extends PersistentObject {
 		if (parent::remove()) {
 			if (!empty($album)) { //	Remove users album as well
 				$album->remove();
+			}
+			if (DEBUG_OBJECTS) {
+				$name = $this->getName();
+				if ($name) {
+					$name = ' (' . $name . ')';
+				}
+				debugLogBacktrace($this->getUser() . $name . "->remove()");
 			}
 			$sql = "DELETE FROM " . prefix('admin_to_object') . " WHERE `adminid`=$id";
 			$result = query($sql);

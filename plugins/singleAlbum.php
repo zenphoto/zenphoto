@@ -8,7 +8,6 @@
  *
  * @package plugins/singleAlbum
  * @pluginCategory example
- * @category package
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Forces a defined album as the index page.');

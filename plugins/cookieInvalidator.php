@@ -14,7 +14,6 @@
  *
  * @package plugin/cookieInvalidator
  * @pluginCategory development
- * @category package/ZenPhoto20Tools
  */
 $plugin_is_filter = 99 | CLASS_PLUGIN;
 $plugin_description = gettext('Invalidates all cookies that were created earlier than the invalidate action.');

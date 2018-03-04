@@ -478,6 +478,9 @@ class Gallery {
 			}
 			if (!empty($dead)) {
 				$dead = array_unique($dead);
+				if (DEBUG_OBJECTS) {
+					debugLogVar('Garbage Collect `admin_to_object`', $dead);
+				}
 				query('DELETE FROM ' . prefix('admin_to_object') . ' WHERE `id`=' . implode(' OR `id`=', $dead));
 			}
 			// clean up news2cat

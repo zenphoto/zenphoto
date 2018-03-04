@@ -6,7 +6,6 @@
  * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins/zenphotoCompatibilityPack
- * @category package
  */
 // force UTF-8 Ø
 
@@ -150,7 +149,7 @@ echo "\n" . '<div id="container">';
 	}
 	$themesP = $themes = $plugins = $pluginsP = array();
 	foreach ($_zp_gallery->getThemes() as $theme => $data) {
-		if (!protectedTheme($theme, true)) {
+		if (!protectedTheme($theme)) {
 			$themes[] = $theme;
 			if (checkIfProcessed('theme', $theme)) {
 				$themesP[] = $theme;
