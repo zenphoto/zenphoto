@@ -1776,7 +1776,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 														 name="disclose_password<?php echo $suffix; ?>"
 														 id="disclose_password<?php echo $suffix; ?>"
 														 onclick="passwordClear('<?php echo $suffix; ?>');
-																 togglePassword('<?php echo $suffix; ?>');" />
+																		 togglePassword('<?php echo $suffix; ?>');" />
 														 <?php echo addslashes(gettext('Show')); ?>
 										</label>
 
@@ -2105,9 +2105,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-												 $('#<?php echo $prefix; ?>expirationdate').val('');
-												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-												 $('.<?php echo $prefix; ?>expire').html('');"
+													 $('#<?php echo $prefix; ?>expirationdate').val('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+													 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2240,7 +2240,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -3303,17 +3303,39 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 	}
 
-	function protectedTheme($theme, $distributed = false) {
-		$theme_description = array();
-		$desc = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/theme_description.php';
-		if (file_exists($desc)) {
-			require($desc);
-			$protected = isset($theme_description['distribution']) && $theme_description['distribution'];
-			if ($protected && $distributed)
-				$protected = $theme_description['distribution'] == 'ZenPhoto20';
-			return $protected;
+	/**
+	 * Returns true if the theme is distributed by ZenPhoto20
+	 * @global array $_ZP20_themes
+	 * @param string $theme
+	 * @return bool
+	 */
+	function protectedTheme($theme) {
+		global $_ZP20_themes;
+		if (is_null($_ZP20_themes)) {
+			$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto.package');
+			preg_match_all('~' . THEMEFOLDER . '/(.*)/theme_description.php~', $package, $matches);
+			$_ZP20_themes = $matches[1];
 		}
-		return false;
+		return(in_array($theme, $_ZP20_themes));
+	}
+
+	/**
+	 * Returns true if the USER_PLUGINS_FOLDER plugin is part of the ZenPhoto20 distribution
+	 * NOTE: plugins in the PLUGIN_FOLDER should be presumed to be distributed plugins,
+	 * not checked by this function
+	 *
+	 * @global array $_ZP20_plugins
+	 * @param string $plugin
+	 * @return bool
+	 */
+	function distributedPlugin($plugin) {
+		global $_ZP20_plugins;
+		if (is_null($_ZP20_plugins)) {
+			$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto.package');
+			preg_match_all('~' . USER_PLUGIN_FOLDER . '/([^/]*).php~', $package, $matches);
+			$_ZP20_plugins = $matches[1];
+		}
+		return(in_array($plugin, $_ZP20_plugins));
 	}
 
 	/**
@@ -4252,30 +4274,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-			var sel = obj.options[obj.selectedIndex].value;
-							var mark;
-							switch (sel) {
+				var sel = obj.options[obj.selectedIndex].value;
+				var mark;
+				switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-				case '<?php echo $key; ?>':
-								mark = '<?php echo $mark; ?>';
-								break;
+					case '<?php echo $key; ?>':
+									mark = '<?php echo $mark; ?>';
+									break;
 			<?php
 		}
 		?>
-			default:
-							mark = false;
-							break;
+				default:
+								mark = false;
+								break;
 			}
 			if (mark) {
-			$.colorbox({
-			href: '#' + mark,
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-			});
-			}
+				$.colorbox({
+					href: '#' + mark,
+					inline: true,
+					open: true,
+					close: '<?php echo gettext("ok"); ?>'
+				});
+				}
 			}
 			// ]]> -->
 		</script>
@@ -4653,7 +4675,7 @@ function processCommentBulkActions() {
  * @return type
  */
 function stripTableRows($custom) {
-	//remove the table row stuff since we are in a DIV and replace with user_right class DIVs
+//remove the table row stuff since we are in a DIV and replace with user_right class DIVs
 	$custom = preg_replace('~<tr[^>]*>~i', '', $custom);
 	$custom = preg_replace('~<td[^>]*>~i', 'div class="user_right">', $custom);
 	$custom = preg_replace('~</td[^>]*>~i', '</div>', $custom);
@@ -4668,27 +4690,27 @@ function stripTableRows($custom) {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-						// <!-- <![CDATA[
-						$(function () {
-						var tabContainers = $('div.tabs > div');
-										$('.first').addClass('selected');
-						});
-						function cbclick(num, id) {
-						$('.cbx-' + id).hide();
-										$('#cb' + num + '-' + id).show();
-										$('.cbt-' + id).removeClass('selected');
-										$('#cbt' + num + '-' + id).addClass('selected');
-						}
+		// <!-- <![CDATA[
+		$(function () {
+			var tabContainers = $('div.tabs > div');
+			$('.first').addClass('selected');
+		});
+		function cbclick(num, id) {
+			$('.cbx-' + id).hide();
+			$('#cb' + num + '-' + id).show();
+			$('.cbt-' + id).removeClass('selected');
+			$('#cbt' + num + '-' + id).addClass('selected');
+		}
 
 		function cbadd(id, offset) {
-		var num = $('#cbu-' + id + ' li').size() - offset;
-						$('li:last', $('#cbu-' + id)).remove();
-						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-						'</div>');
-						cbclick(num, id);
+			var num = $('#cbu-' + id + ' li').size() - offset;
+			$('li:last', $('#cbu-' + id)).remove();
+			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+							'</div>');
+			cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -4809,7 +4831,7 @@ function admin_securityChecks($rights, $return) {
  */
 function httpsRedirect() {
 	if (defined('SERVER_PROTOCOL') && SERVER_PROTOCOL !== 'http') {
-		// force https login
+// force https login
 		if (!isset($_SERVER["HTTPS"])) {
 			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
 			header("Location:$redirect");
@@ -4945,7 +4967,7 @@ function migrateTitleLinks($old, $new) {
 				$titlelink = substr($titlelink, 0, strlen($titlelink) - strlen($old)) . $new;
 				$sql = 'UPDATE ' . prefix($table) . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $row['id'];
 				if (!query($sql, false)) {
-					//there may be duplicated titlelinks, if so no change
+//there may be duplicated titlelinks, if so no change
 					debugLog(sprintf(gettext('%1$s:%2$s not changed to %3$s (duplicate titlelink.)'), $table, $oldlink, $titlelink));
 				}
 			}
@@ -5542,7 +5564,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 			 <?php echo CLIPBOARD; ?>
 	</a>
 	<?php

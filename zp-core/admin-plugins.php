@@ -193,14 +193,11 @@ zp_apply_filter('admin_note', 'plugins', '');
 				$parserr = 0;
 				$plugin_URL = FULLWEBPATH . '/' . ZENFOLDER . '/pluginDoc.php?extension=' . $extension;
 				if ($third_party_plugin = strpos($paths[$extension], ZENFOLDER) === false) {
-					if ($str = isolate('@category', $pluginStream)) {
-						preg_match('~@category\s+([^\/^\s]*)~', $str, $matches);
-						if (isset($matches[1]) && $matches[1] == 'package') {
-							$third_party_plugin = false;
-							$ico = 'images/zp.png';
-							$whose = gettext('Supplemental plugin');
-							$plugin_URL .= '&type=supplemental';
-						}
+					if (distributedPlugin($extension)) {
+						$third_party_plugin = false;
+						$ico = 'images/zp.png';
+						$whose = gettext('Supplemental plugin');
+						$plugin_URL .= '&type=supplemental';
 					}
 					if ($third_party_plugin) {
 						$whose = gettext('Third party plugin');

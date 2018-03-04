@@ -6,7 +6,6 @@
  *
  * @package plugins/filterDoc
  * @pluginCategory development
- * @category package
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('Generates and displays a Doc file for filters.');

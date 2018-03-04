@@ -8,7 +8,6 @@
  *
  * @package plugins/filter-fileSearches
  * @pluginCategory example
- * @category package
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Filter out files from albums and image searches that we do not want shown.");

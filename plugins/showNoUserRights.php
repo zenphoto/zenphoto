@@ -9,7 +9,6 @@
  *
  * @package plugins/showNoUserRights
  * @pluginCategory example
- * @category package
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Hide the output of user rights and other info if user does NOT have ADMIN_RIGHTS.");

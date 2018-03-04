@@ -23,7 +23,6 @@
  *
  * @package plugins/utf8mb4Migration
  * @pluginCategory development
- * @category package
  *
  * Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */

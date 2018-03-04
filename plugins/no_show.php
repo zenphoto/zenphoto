@@ -3,10 +3,9 @@
 /* Totally hides unpublished images from not signed in viewers.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins/no_show
  * @pluginCategory example
- * @category package
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext('Prevents guest viewers from viewing unpublished images albums.');

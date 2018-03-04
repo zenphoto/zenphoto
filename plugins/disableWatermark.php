@@ -8,7 +8,6 @@
  *
  * @package plugins/disableWatermark
  * @pluginCategory example
- * @category package
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Disable setting watermarks if user does not have ADMIN_RIGHTS.");

@@ -214,7 +214,7 @@ if (count($themelist) == 0) {
 			} else {
 				$ico = NULL;
 			}
-			if (protectedTheme($theme, true)) {
+			if (protectedTheme($theme)) {
 				$whose = 'Official theme';
 				if (!$ico) {
 					$ico = '<img class="zp_logoicon" src="images/zp_gold.png" alt="' . gettext('logo') . '" title="' . $whose . '" />';

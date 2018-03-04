@@ -7,7 +7,6 @@
  * @author Stephen Billard (sbillard)
  *
  * @package plugins/utf8mb4Migration
- * @category package
  *
  * Copyright 2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
