@@ -8124,11 +8124,6 @@ zp-core/zp-extensions/VideoJS/alt
 zp-core/zp-extensions/VideoJS/alt/video.novtt.js
 zp-core/zp-extensions/VideoJS/alt/video.novtt.min.js
 zp-core/zp-extensions/VideoJS/alt/video.novtt.min.js.map
-zp-core/zp-extensions/VideoJS/examples
-zp-core/zp-extensions/VideoJS/examples/shared
-zp-core/zp-extensions/VideoJS/examples/shared/example-captions.vtt
-zp-core/zp-extensions/VideoJS/examples/simple-embed
-zp-core/zp-extensions/VideoJS/examples/simple-embed/index.html
 zp-core/zp-extensions/VideoJS/font
 zp-core/zp-extensions/VideoJS/font/VideoJS.eot
 zp-core/zp-extensions/VideoJS/font/VideoJS.svg
@@ -8195,4 +8190,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8197
+8192
