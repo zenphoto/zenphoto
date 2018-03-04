@@ -29,7 +29,7 @@
  *
  * @author Jim Brown
  * @pluginCategory media
- * @package plugins/mediaelementjs_player
+ * @package plugins/VideoJS
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Enable <strong>VideoJS</strong> to handle multimedia files.");
@@ -92,11 +92,11 @@ class VideoJS {
 
 	static function headJS() {
 		?>
-		<link type="text/css" rel="stylesheet" href="<?php echo  WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/VideoJS/video-js.css"/>
-		<link type="text/css" rel="stylesheet" href="<?php echo  WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/VideoJS/videojs-resolution-switcher.css"/>
-		<script type="text/javascript" src="<?php echo  WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/VideoJS/ie8/videojs-ie8.min.js"></script>
-		<script type="text/javascript" src="<?php echo  WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/VideoJS/video.js"></script>
-		<script type="text/javascript" src="<?php echo  WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/VideoJS/videojs-resolution-switcher.js"></script>
+		<link type="text/css" rel="stylesheet" href="<?php echo WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/VideoJS/video-js.css"/>
+		<link type="text/css" rel="stylesheet" href="<?php echo WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/VideoJS/videojs-resolution-switcher.css"/>
+		<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/VideoJS/ie8/videojs-ie8.min.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/VideoJS/video.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/VideoJS/videojs-resolution-switcher.js"></script>
 		<?php
 	}
 
