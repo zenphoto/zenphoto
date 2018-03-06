@@ -31,9 +31,7 @@ if (count($_POST) > 0) {
 				if (!is_array($result)) { // it really is a new tag
 					query('INSERT INTO ' . prefix('tags') . ' (`name`,`language`) VALUES (' . db_quote($value) . ',' . db_quote($language) . ')');
 					if ($multi) {
-						$sql = 'SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($value);
-						$row = query_single_row($sql);
-						$master = $row['id'];
+						$master = db_insert_id();
 						foreach (generateLanguageList(false)as $text => $dirname) {
 							if ($dirname != $language) {
 								query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($value . '[' . $dirname . ']') . ',' . $master . ',' . db_quote($dirname) . ')');
@@ -93,9 +91,28 @@ if (count($_POST) > 0) {
 				break;
 			case'assign':
 				if (count($tags) > 0) {
+					$tbdeleted = array();
+					$multi = getOption('multi_lingual');
 					foreach ($tags as $tag) {
+						$sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($tag);
+						$old = query_single_row($sql);
 						$sql = 'UPDATE ' . prefix('tags') . ' SET `language`=' . db_quote($language) . ' WHERE `name`=' . db_quote($tag);
 						query($sql);
+						if ($multi) {
+							if (empty($old['language'])) {
+								//create subtags
+								foreach (generateLanguageList(false)as $text => $dirname) {
+									if ($dirname != $language) {
+										query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($tag . '[' . $dirname . ']') . ',' . $old['id'] . ',' . db_quote($dirname) . ')');
+									}
+								}
+							} else if (empty($language)) {
+								$tbdeleted[] = $old['id'];
+							}
+						}
+					}
+					if (!empty($tbdeleted)) {
+						query('DELETE FROM ' . prefix('tags') . ' WHERE `masterid`=' . implode(' OR `masterid`=', $tbdeleted));
 					}
 				}
 				break;

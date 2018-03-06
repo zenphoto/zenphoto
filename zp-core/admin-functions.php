@@ -1478,7 +1478,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$indent = ' ' . $indent;
 				}
 				if (empty($indent)) {
-					$auto = 'onclick="$(\'.' . $postit . 'subto_' . $item . '\').prop(\'checked\', $(\'#' . $listitem . '\').prop(\'checked\'));"';
+					$auto = ' onclick="$(\'.' . 'subto_' . $listitem . '\').prop(\'checked\', $(\'#' . $listitem . '\').prop(\'checked\'));"';
 				} else {
 					$auto = '';
 				}
@@ -1592,7 +1592,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							ksort($itemarray);
 							foreach ($itemarray as $lang => $tag) {
 								$LCtag = mb_strtolower($tag);
-								tagListElement($postit, $class, $LCtag, $tag, $flags[$lang], false, $postit . 'subto_' . $item);
+								tagListElement($postit, $class, $LCtag, $tag, $flags[$lang], false, 'subto_' . $postit . postIndexEncode($item));
 							}
 						}
 					}
@@ -1613,7 +1613,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						ksort($itemarray);
 						foreach ($itemarray as $lang => $tag) {
 							$LCtag = mb_strtolower($tag);
-							tagListElement($postit, $class, $LCtag, $tag, $flags[$lang], false, $postit . 'subto_' . $item);
+							tagListElement($postit, $class, $LCtag, $tag, $flags[$lang], false, 'subto_' . $postit . postIndexEncode($item));
 						}
 					}
 				}
