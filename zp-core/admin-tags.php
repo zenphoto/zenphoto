@@ -22,12 +22,24 @@ if (count($_POST) > 0) {
 		$language = sanitize($_POST['language']);
 		unset($_POST['language']);
 		unset($_POST['XSRFToken']);
+		$multi = getOption('multi_lingual') && !empty($language);
 		foreach ($_POST as $value) {
 			if (!empty($value)) {
 				$value = html_decode(sanitize($value, 3));
-				$result = query_single_row('SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($value));
+				$sql = 'SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($value);
+				$result = query_single_row($sql);
 				if (!is_array($result)) { // it really is a new tag
 					query('INSERT INTO ' . prefix('tags') . ' (`name`,`language`) VALUES (' . db_quote($value) . ',' . db_quote($language) . ')');
+					if ($multi) {
+						$sql = 'SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($value);
+						$row = query_single_row($sql);
+						$master = $row['id'];
+						foreach (generateLanguageList(false)as $text => $dirname) {
+							if ($dirname != $language) {
+								query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($value . '[' . $dirname . ']') . ',' . $master . ',' . db_quote($dirname) . ')');
+							}
+						}
+					}
 				}
 			}
 		}
@@ -48,7 +60,7 @@ if (count($_POST) > 0) {
 		switch ($action) {
 			case'delete':
 				if (count($tags) > 0) {
-					$sql = "SELECT `id` FROM " . prefix('tags') . " WHERE ";
+					$sql = "SELECT `id`, `masterid` FROM " . prefix('tags') . " WHERE ";
 					foreach ($tags as $tag) {
 						$sql .= "`name`=" . (db_quote($tag)) . " OR ";
 					}
@@ -60,6 +72,16 @@ if (count($_POST) > 0) {
 						foreach ($dbtags as $tag) {
 							$sqltags .= "`id`='" . $tag['id'] . "' OR ";
 							$sqlobjects .= "`tagid`='" . $tag['id'] . "' OR ";
+							if (is_null($tag['masterid'])) {
+								$sqltags .="`masterid`='" . $tag['id'] . "' OR ";
+								$sqlSub = "SELECT `id`, `masterid` FROM " . prefix('tags') . " WHERE `masterid`=" . $tag['id'];
+								$subTags = query_full_array($sqlSub);
+								if (is_array($subTags) && count($subTags) > 0) {
+									foreach ($subTags as $subTag) {
+										$sqlobjects .= "`tagid`='" . $subTag['id'] . "' OR ";
+									}
+								}
+							}
 						}
 						$sqltags = substr($sqltags, 0, strlen($sqltags) - 4);
 						query($sqltags);
@@ -148,7 +170,10 @@ printAdminHeader('admin');
 				</button>
 			</div>
 
-			<br class="clearall"><br />
+			<br class="clearall">
+			<p class="notebox">
+				<?php echo gettext('Indented tags are language translations of the superior (master) tag. If you delete a master tag, the language translations will also be deleted.'); ?>
+			</p>
 			<div class="tabbox">
 				<div class="floatleft">
 					<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?>
@@ -163,7 +188,8 @@ printAdminHeader('admin');
 						<div class="box-tags-unpadded">
 							<?php
 							tagSelector(NULL, 'tags_', true, $tagsort, false);
-							list($list, $counts, $languages, $flags) = $_zp_admin_ordered_taglist;
+							list($list, $counts, $languages) = $_zp_admin_ordered_taglist;
+							$flags = getLanguageFlags();
 							?>
 						</div>
 
@@ -224,16 +250,36 @@ printAdminHeader('admin');
 						<div class="box-tags-unpadded">
 							<ul class="tagrenamelist">
 								<?php
-								foreach ($list as $item) {
+								foreach ($list as $tagLC => $item) {
+									if (is_array($item)) {
+										$itemarray = $item;
+										$item = $itemarray['tag'];
+									} else {
+										$itemarray = NULL;
+									}
+
 									$listitem = 'R_' . postIndexEncode($item);
 									?>
 									<li>
-										<label>
-											<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
-											<?php echo $item; ?>
-											<br />
-											<input id="<?php echo $listitem; ?>" name="<?php echo $listitem; ?>" type="text" size='33' />
-										</label>
+										<span class="nowrap">
+											<img src="<?php echo $flags[$languages[$tagLC]]; ?>" height="10" width="16" />
+											<input id="<?php echo $listitem; ?>" name="<?php echo $listitem; ?>" type="text" size='33' value="<?php echo $item; ?>" />
+										</span>
+										<?php
+										if (is_array($itemarray)) {
+											unset($itemarray['tag']);
+											ksort($itemarray);
+											foreach ($itemarray as $lang => $tag) {
+												$LCtag = mb_strtolower($tag);
+												$listitem = 'R_' . postIndexEncode($tag);
+												?>
+												<span class="nowrap">&nbsp;&nbsp;<img src="<?php echo $flags[$languages[$LCtag]]; ?>" height="10" width="16" />
+													<input id="<?php echo $listitem; ?>" name="<?php echo $listitem; ?>" type="text" size='33' value="<?php echo $tag; ?>"/>
+												</span>
+												<?php
+											}
+										}
+										?>
 									</li>
 									<?php
 								}

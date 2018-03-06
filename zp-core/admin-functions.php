@@ -1394,19 +1394,32 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	/**
-	 * Creates an unordered checklist of the tags
+	 * returns an array of language flag images
 	 *
-	 * @param object $that Object for which to get the tags
-	 * @param string $postit prefix to prepend for posting
-	 * @param bool $showCounts set to true to get tag count displayed
-	 * @param string $tagsort set true to sort alphabetically
-	 * @param bool $addnew true enables adding tags, ==2 for "additive" tags
-	 * @param bool $resizeable set true to allow the box to be resized
-	 * @param string $class class of the selections
+	 * @global type $_zp_language_flags
+	 * @return array
 	 */
-	function tagSelector($that, $postit, $showCounts = false, $tagsort = 'alpha', $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
+	function getLanguageFlags() {
+		global $_zp_language_flags;
+		if (is_null($_zp_language_flags)) {
+			$_zp_language_flags = array('' => WEBPATH . '/' . ZENFOLDER . '/images/placeholder.png');
+			foreach (generateLanguageList('all') as $dirname) {
+				$_zp_language_flags[$dirname] = getLanguageFlag($dirname);
+			}
+		}
+		return $_zp_language_flags;
+	}
+
+	/**
+	 * Creates sorted tag list(s)
+	 *
+	 * @global type $_zp_admin_ordered_taglist
+	 * @param type $tagsort
+	 * @return array
+	 */
+	function sortTagList($tagsort = 'alpha') {
 		global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist;
-		if ((int) $addnew <= 1 && is_null($_zp_admin_ordered_taglist)) {
+		if (is_null($_zp_admin_ordered_taglist)) {
 			switch ($tagsort) {
 				case 'language':
 					$order = '`language` DESC,`name`';
@@ -1418,36 +1431,96 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$order = '`name`';
 					break;
 			}
-			$languages = $counts = array();
-			$sql = "SELECT DISTINCT tags.name, tags.language, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY $order";
+			$masters = $translation = $them = $languages = $counts = array();
+			$sql = "SELECT DISTINCT tags.id, tags.name, tags.masterid, tags.language, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY $order";
 			$tagresult = query($sql);
 			if ($tagresult) {
 				while ($tag = db_fetch_assoc($tagresult)) {
-					$counts[$tag['name']] = $tag['count'];
-					$languages[$tag['name']] = $tag['language'];
+					$tagname = mb_strtolower($tag['name']);
+					$them[$tagname] = $tag['name'];
+					$counts[$tagname] = $tag['count'];
+					$languages[$tagname] = $tag['language'];
+					if (is_null($tag['masterid'])) {
+						$masters[$tag['id']] = $tagname;
+					} else {
+						$translations[$tag['masterid']][$tag['language']] = $tagname;
+					}
 				}
 				db_free_result($tagresult);
+
+				foreach ($translations as $master => $list) {
+					$newMaster = array('tag' => $them[$masters[$master]]);
+					foreach ($list as $lang => $tagname) {
+						$newMaster[$lang] = $them[$tagname];
+						unset($them[$tagname]);
+					}
+					$them[$masters[$master]] = $newMaster;
+				}
 			}
+
 			if ($tagsort == 'mostused') {
 				arsort($counts, SORT_NUMERIC);
 			}
 
-			$_zp_admin_LC_taglist = $them = array();
-			foreach ($counts as $tag => $count) {
-				$them[mb_strtolower($tag)] = $tag;
-				$_zp_admin_LC_taglist[$tag] = $tag;
-			}
-			$flags = array('' => WEBPATH . '/' . ZENFOLDER . '/images/placeholder.png');
-			foreach (generateLanguageList('all') as $dirname) {
-				$flags[$dirname] = getLanguageFlag($dirname);
-			}
+			$_zp_admin_ordered_taglist = array($them, $counts, $languages);
+		}
+		return $_zp_admin_ordered_taglist;
+	}
 
-			$_zp_admin_ordered_taglist = array($them, $counts, $languages, $flags);
-		} else {
-			list($them, $counts, $languages, $flags) = $_zp_admin_ordered_taglist;
-			if ((int) $addnew == 2) {
-				$them = $counts = array();
-			}
+	function tagListElement($postit, $class, $tagLC, $item, $flag, $count, $indent) {
+		$listitem = $postit . postIndexEncode($item);
+		?>
+		<li id="<?php echo $listitem; ?>_element">
+			<label class="displayinline">
+				<?php
+				if ($indent) {
+					echo '&nbsp;&nbsp';
+					$indent = ' ' . $indent;
+				}
+				if (empty($indent)) {
+					$auto = 'onclick="$(\'.' . $postit . 'subto_' . $item . '\').prop(\'checked\', $(\'#' . $listitem . '\').prop(\'checked\'));"';
+				} else {
+					$auto = '';
+				}
+				?>
+				<input id="<?php echo $listitem; ?>" class="<?php echo $class . $indent; ?>" name="<?php echo 'tag_list_' . $postit . '[]'; ?>" type="checkbox" value="<?php echo html_encode($item); ?>"<?php echo $auto; ?> />
+				<img src="<?php echo $flag; ?>" height="10" width="16" />
+				<?php
+				/**
+				  ?php if (empty($indent)) echo '"onchange=alert($(#' . $listitem . ').prop(\'checked\'));$(\'.' . $postit . 'subto_' . $item . '\').prop(\'checked\',$(#' . $listitem . ').prop(\'checked\'));"'; ?>
+				 */
+				if (is_int($count)) {
+					echo html_encode($item) . ' [' . $count . ']';
+				} else {
+					echo html_encode($item);
+				}
+				?>
+			</label>
+		</li>
+		<?php
+	}
+
+	/**
+	 * Creates an unordered checklist of the tags
+	 *
+	 * @param object $that Object for which to get the tags
+	 * @param string $postit prefix to prepend for posting
+	 * @param bool $showCounts set to true to get tag count displayed
+	 * @param string $tagsort set true to sort alphabetically
+	 * @param bool $addnew true enables adding tags, ==2 for "additive" tags
+	 * @param bool $resizeable set true to allow the box to be resized
+	 * @param string $class class of the selections
+	 */
+	function tagSelector($that, $postit, $showCounts = false, $tagsort = 'alpha', $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
+		global $_zp_admin_ordered_taglist;
+		if ((int) $addnew <= 1 && is_null($_zp_admin_ordered_taglist)) {
+			sortTagList($that, $tagsort);
+		}
+		list($them, $counts, $languages) = $_zp_admin_ordered_taglist;
+		$flags = getLanguageFlags();
+
+		if ((int) $addnew == 2) {
+			$them = $counts = array();
 		}
 
 		if (is_null($that)) {
@@ -1506,45 +1579,43 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<ul id="list_<?php echo $postit; ?>" class="<?php echo $tagclass; ?>">
 				<?php
 				if (count($tags) > 0) {
-					foreach ($tags as $tag => $item) {
-						$listitem = $postit . postIndexEncode($item);
-						?>
-						<li id="<?php echo $tag; ?>_element">
-							<label class="displayinline">
-								<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo 'tag_list_' . $postit . '[]'; ?>" type="checkbox" checked="checked" value="<?php echo html_encode($item); ?>" />
-								<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
-								<?php
-								if ($showCounts) {
-									echo html_encode($item) . ' [' . $counts[$item] . ']';
-								} else {
-									echo html_encode($item);
-								}
-								?>
-							</label>
-						</li>
-						<?php
+					foreach ($tags as $tagLC => $item) {
+						if (is_array($item)) {
+							$itemarray = $item;
+							$item = $itemarray['tag'];
+						} else {
+							$itemarray = NULL;
+						}
+						tagListElement($postit, $class, $tagLC, $item, $flags[$languages[$tagLC]], $showCounts ? $counts[$tagLC] : false, false);
+						if (is_array($itemarray)) {
+							unset($itemarray['tag']);
+							ksort($itemarray);
+							foreach ($itemarray as $lang => $tag) {
+								$LCtag = mb_strtolower($tag);
+								tagListElement($postit, $class, $LCtag, $tag, $flags[$lang], false, $postit . 'subto_' . $item);
+							}
+						}
 					}
 					?>
 					<li><hr /></li>
 					<?php
 				}
 				foreach ($them as $tagLC => $item) {
-					$listitem = $postit . postIndexEncode($item);
-					?>
-					<li id="<?php echo $listitem; ?>_element">
-						<label class="displayinline">
-							<input id="<?php echo $listitem; ?>" class="<?php echo $class; ?>" name="<?php echo 'tag_list_' . $postit . '[]'; ?>" type="checkbox" value="<?php echo html_encode($item); ?>" />
-							<img src="<?php echo $flags[$languages[$item]]; ?>" height="10" width="16" />
-							<?php
-							if ($showCounts) {
-								echo html_encode($item) . ' [' . $counts[$item] . ']';
-							} else {
-								echo html_encode($item);
-							}
-							?>
-						</label>
-					</li>
-					<?php
+					if (is_array($item)) {
+						$itemarray = $item;
+						$item = $itemarray['tag'];
+					} else {
+						$itemarray = NULL;
+					}
+					tagListElement($postit, $class, $tagLC, $item, $flags[$languages[$tagLC]], $showCounts ? $counts[$tagLC] : false, false);
+					if (is_array($itemarray)) {
+						unset($itemarray['tag']);
+						ksort($itemarray);
+						foreach ($itemarray as $lang => $tag) {
+							$LCtag = mb_strtolower($tag);
+							tagListElement($postit, $class, $LCtag, $tag, $flags[$lang], false, $postit . 'subto_' . $item);
+						}
+					}
 				}
 				?>
 			</ul>
@@ -1776,7 +1847,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 														 name="disclose_password<?php echo $suffix; ?>"
 														 id="disclose_password<?php echo $suffix; ?>"
 														 onclick="passwordClear('<?php echo $suffix; ?>');
-																		 togglePassword('<?php echo $suffix; ?>');" />
+																 togglePassword('<?php echo $suffix; ?>');" />
 														 <?php echo addslashes(gettext('Show')); ?>
 										</label>
 
@@ -2105,9 +2176,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-													 $('#<?php echo $prefix; ?>expirationdate').val('');
-													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-													 $('.<?php echo $prefix; ?>expire').html('');"
+												 $('#<?php echo $prefix; ?>expirationdate').val('');
+												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+												 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2240,7 +2311,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4274,30 +4345,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-				var sel = obj.options[obj.selectedIndex].value;
-				var mark;
-				switch (sel) {
+			var sel = obj.options[obj.selectedIndex].value;
+							var mark;
+							switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-					case '<?php echo $key; ?>':
-									mark = '<?php echo $mark; ?>';
-									break;
+				case '<?php echo $key; ?>':
+								mark = '<?php echo $mark; ?>';
+								break;
 			<?php
 		}
 		?>
-				default:
-								mark = false;
-								break;
+			default:
+							mark = false;
+							break;
 			}
 			if (mark) {
-				$.colorbox({
-					href: '#' + mark,
-					inline: true,
-					open: true,
-					close: '<?php echo gettext("ok"); ?>'
-				});
-				}
+			$.colorbox({
+			href: '#' + mark,
+							inline: true,
+							open: true,
+							close: '<?php echo gettext("ok"); ?>'
+			});
+			}
 			}
 			// ]]> -->
 		</script>
@@ -4690,27 +4761,27 @@ function stripTableRows($custom) {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-		// <!-- <![CDATA[
-		$(function () {
-			var tabContainers = $('div.tabs > div');
-			$('.first').addClass('selected');
-		});
-		function cbclick(num, id) {
-			$('.cbx-' + id).hide();
-			$('#cb' + num + '-' + id).show();
-			$('.cbt-' + id).removeClass('selected');
-			$('#cbt' + num + '-' + id).addClass('selected');
-		}
+						// <!-- <![CDATA[
+						$(function () {
+						var tabContainers = $('div.tabs > div');
+										$('.first').addClass('selected');
+						});
+						function cbclick(num, id) {
+						$('.cbx-' + id).hide();
+										$('#cb' + num + '-' + id).show();
+										$('.cbt-' + id).removeClass('selected');
+										$('#cbt' + num + '-' + id).addClass('selected');
+						}
 
 		function cbadd(id, offset) {
-			var num = $('#cbu-' + id + ' li').size() - offset;
-			$('li:last', $('#cbu-' + id)).remove();
-			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-							'</div>');
-			cbclick(num, id);
+		var num = $('#cbu-' + id + ' li').size() - offset;
+						$('li:last', $('#cbu-' + id)).remove();
+						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+						'</div>');
+						cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -5564,7 +5635,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 			 <?php echo CLIPBOARD; ?>
 	</a>
 	<?php

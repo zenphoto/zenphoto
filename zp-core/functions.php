@@ -1127,7 +1127,7 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 			$lang = ' AND (tag.language="" OR tag.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
 		}
 
-		$sql = 'SELECT tag.name, count(DISTINCT tag.name,obj.type,obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . $source . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
+		$sql = 'SELECT tag.name, count(DISTINCT tag.name, obj.type, obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . $source . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
 		$unique_tags = query($sql);
 
 		if ($unique_tags) {
