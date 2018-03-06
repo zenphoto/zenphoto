@@ -2653,7 +2653,14 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 			}
 		}
 		$activelang = generateLanguageList();
-
+		$inactivelang = array();
+		$activelang_locales = array_values($activelang);
+		foreach ($strings as $key => $content) {
+			if (!in_array($key, $activelang_locales)) {
+				$inactivelang[$key] = $content;
+			}
+		}
+	
 		if (getOption('multi_lingual') && !empty($activelang)) {
 			if ($textbox) {
 				if (strpos($wide, '%') === false) {
@@ -2740,6 +2747,16 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 				</li>
 				<?php
 			}
+			// print hidden lang content here so all is re-submitted and no meanwhile or accidentally inactive language content gets lost
+			foreach ($inactivelang as $key => $content) {
+				if ($key !== $locale) {
+					if ($textbox) {
+						echo "\n" . '<textarea name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($content) . '</textarea>';
+					} else {
+						echo '<br /><input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="text" value="' . html_encode($content) . '"' . $width . ' />';
+					}
+				}
+			}
 			echo "</ul>\n";
 		} else {
 			if ($textbox) {
@@ -2767,6 +2784,17 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 			} else {
 				echo '<input name="' . $name . '_' . $locale . '"' . $edit . ' type="text" value="' . html_encode($dbstring) . '"' . $width . ' />';
 			}
+			
+			// print hidden lang content here so all is re-submitted and no meanwhile or accidentally inactive language content gets lost
+			foreach($strings as $key => $content ) {
+				if($key !== $locale) {
+					if ($textbox) {
+						echo '<div style="position: absolute !important; left: -1000px !Important;"><textarea name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">'. html_encode($content) .' </textarea></div>';
+					} else {
+						echo '<input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="hiddden" value="'.html_encode($content).'"' . $width . ' />';
+					}
+				}
+			}
 		}
 	}
 
@@ -2784,9 +2812,9 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 		foreach ($_POST as $key => $value) {
 			if ($value && preg_match('/^' . $name . '_[a-z]{2}_[A-Z]{2}$/', $key)) {
 				$key = substr($key, $l);
-				if (in_array($key, $languages)) {
+				//if (in_array($key, $languages)) { // disabled as we want to keep even inactive lang content savely
 					$strings[$key] = sanitize($value, $sanitize_level);
-				}
+				//}
 			}
 		}
 		switch (count($strings)) {
