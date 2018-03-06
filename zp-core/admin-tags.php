@@ -98,17 +98,15 @@ if (count($_POST) > 0) {
 						$old = query_single_row($sql);
 						$sql = 'UPDATE ' . prefix('tags') . ' SET `language`=' . db_quote($language) . ' WHERE `name`=' . db_quote($tag);
 						query($sql);
-						if ($multi) {
-							if (empty($old['language'])) {
-								//create subtags
-								foreach (generateLanguageList(false)as $text => $dirname) {
-									if ($dirname != $language) {
-										query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($tag . '[' . $dirname . ']') . ',' . $old['id'] . ',' . db_quote($dirname) . ')');
-									}
+						if ($multi && empty($old['language'])) {
+							//create subtags
+							foreach (generateLanguageList(false)as $text => $dirname) {
+								if ($dirname != $language) {
+									query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($tag . '[' . $dirname . ']') . ',' . $old['id'] . ',' . db_quote($dirname) . ')');
 								}
-							} else if (empty($language)) {
-								$tbdeleted[] = $old['id'];
 							}
+						} else if (empty($language)) {
+							$tbdeleted[] = $old['id'];
 						}
 					}
 					if (!empty($tbdeleted)) {
@@ -182,7 +180,7 @@ printAdminHeader('admin');
 				<button type="reset" onclick="$('#tag_action_form').trigger('reset');
 						$('#form_tagrename').trigger('reset');
 						$('#form_newtags').trigger('reset');">
-									<?php echo CROSS_MARK_RED; ?>
+								<?php echo CROSS_MARK_RED; ?>
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
 			</div>
@@ -251,12 +249,12 @@ printAdminHeader('admin');
 
 					<div class="tagtext">
 						<p><?php
-							if (getOption('multi_lingual')) {
-								echo gettext('Place a checkmark in the box for each tag you wish to delete or to assign a language then press the appropriate button. The brackets contain the number of times the tag appears.');
-							} else {
-								echo gettext('Place a checkmark in the box for each tag you wish to delete then press the appropriate button. The brackets contain the number of times the tag appears.');
-							}
-							?></p>
+						if (getOption('multi_lingual')) {
+							echo gettext('Place a checkmark in the box for each tag you wish to delete or to assign a language then press the appropriate button. The brackets contain the number of times the tag appears.');
+						} else {
+							echo gettext('Place a checkmark in the box for each tag you wish to delete then press the appropriate button. The brackets contain the number of times the tag appears.');
+						}
+						?></p>
 					</div>
 				</div>
 
@@ -365,11 +363,11 @@ printAdminHeader('admin');
 
 					<div class="tagtext">
 						<p><?php
-							echo gettext("Add tags to the list by entering their names in the input fields of the <em>New tags</em> list. Then press the <em>Add tags</em> button.");
-							if (getOption('multi_lingual')) {
-								echo ' ' . gettext('You can assign a language to the tags with the language selector.');
-							}
-							?></p>
+						echo gettext("Add tags to the list by entering their names in the input fields of the <em>New tags</em> list. Then press the <em>Add tags</em> button.");
+						if (getOption('multi_lingual')) {
+							echo ' ' . gettext('You can assign a language to the tags with the language selector.');
+						}
+						?></p>
 					</div>
 				</div>
 				<br class="clearall">
