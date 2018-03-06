@@ -1431,7 +1431,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$order = '`name`';
 					break;
 			}
-			$masters = $translation = $them = $languages = $counts = array();
+			$masters = $translations = $them = $languages = $counts = array();
 			$sql = "SELECT DISTINCT tags.id, tags.name, tags.masterid, tags.language, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY $order";
 			$tagresult = query($sql);
 			if ($tagresult) {
