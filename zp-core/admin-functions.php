@@ -1402,7 +1402,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function getLanguageFlags() {
 		global $_zp_language_flags;
 		if (is_null($_zp_language_flags)) {
-			$_zp_language_flags = array('' => WEBPATH . '/' . ZENFOLDER . '/locale/world.png');
+			$_zp_language_flags = array('' => WEBPATH . '/' . ZENFOLDER . '/locale/UN.png');
 			foreach (generateLanguageList('all') as $dirname) {
 				$_zp_language_flags[$dirname] = getLanguageFlag($dirname);
 			}
