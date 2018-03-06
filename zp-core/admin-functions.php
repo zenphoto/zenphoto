@@ -1402,7 +1402,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function getLanguageFlags() {
 		global $_zp_language_flags;
 		if (is_null($_zp_language_flags)) {
-			$_zp_language_flags = array('' => WEBPATH . '/' . ZENFOLDER . '/images/placeholder.png');
+			$_zp_language_flags = array('' => WEBPATH . '/' . ZENFOLDER . '/locale/world.png');
 			foreach (generateLanguageList('all') as $dirname) {
 				$_zp_language_flags[$dirname] = getLanguageFlag($dirname);
 			}
@@ -1484,7 +1484,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				?>
 				<input id="<?php echo $listitem; ?>" class="<?php echo $class . $indent; ?>" name="<?php echo 'tag_list_' . $postit . '[]'; ?>" type="checkbox" value="<?php echo html_encode($item); ?>"<?php echo $auto; ?> />
-				<img src="<?php echo $flag; ?>" height="10" width="16" />
+				<img src="<?php echo $flag; ?>" height="10" width="15" />
 				<?php
 				/**
 				  ?php if (empty($indent)) echo '"onchange=alert($(#' . $listitem . ').prop(\'checked\'));$(\'.' . $postit . 'subto_' . $item . '\').prop(\'checked\',$(#' . $listitem . ').prop(\'checked\'));"'; ?>

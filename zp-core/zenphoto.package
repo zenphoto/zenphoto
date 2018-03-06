@@ -1392,6 +1392,7 @@ zp-core/js/spectrum/spectrum.js
 zp-core/locale
 zp-core/locale/auto.png
 zp-core/locale/missing_flag.png
+zp-core/locale/world.png
 zp-core/locale/cs_CZ
 zp-core/locale/cs_CZ/flag.png
 zp-core/locale/cs_CZ/LC_MESSAGES
@@ -8190,4 +8191,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8192
+8193

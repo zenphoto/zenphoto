@@ -149,6 +149,7 @@ printAdminHeader('admin');
 <body>
 	<?php
 	printLogoAndLinks();
+	$flags = getLanguageFlags();
 	?>
 	<div id="main">
 		<?php
@@ -180,7 +181,7 @@ printAdminHeader('admin');
 				<button type="reset" onclick="$('#tag_action_form').trigger('reset');
 						$('#form_tagrename').trigger('reset');
 						$('#form_newtags').trigger('reset');">
-								<?php echo CROSS_MARK_RED; ?>
+									<?php echo CROSS_MARK_RED; ?>
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
 			</div>
@@ -204,7 +205,6 @@ printAdminHeader('admin');
 							<?php
 							tagSelector(NULL, 'tags_', true, $tagsort, false);
 							list($list, $counts, $languages) = $_zp_admin_ordered_taglist;
-							$flags = getLanguageFlags();
 							?>
 						</div>
 
@@ -249,12 +249,12 @@ printAdminHeader('admin');
 
 					<div class="tagtext">
 						<p><?php
-						if (getOption('multi_lingual')) {
-							echo gettext('Place a checkmark in the box for each tag you wish to delete or to assign a language then press the appropriate button. The brackets contain the number of times the tag appears.');
-						} else {
-							echo gettext('Place a checkmark in the box for each tag you wish to delete then press the appropriate button. The brackets contain the number of times the tag appears.');
-						}
-						?></p>
+							if (getOption('multi_lingual')) {
+								echo gettext('Place a checkmark in the box for each tag you wish to delete or to assign a language then press the appropriate button. The brackets contain the number of times the tag appears.');
+							} else {
+								echo gettext('Place a checkmark in the box for each tag you wish to delete then press the appropriate button. The brackets contain the number of times the tag appears.');
+							}
+							?></p>
 					</div>
 				</div>
 
@@ -363,11 +363,11 @@ printAdminHeader('admin');
 
 					<div class="tagtext">
 						<p><?php
-						echo gettext("Add tags to the list by entering their names in the input fields of the <em>New tags</em> list. Then press the <em>Add tags</em> button.");
-						if (getOption('multi_lingual')) {
-							echo ' ' . gettext('You can assign a language to the tags with the language selector.');
-						}
-						?></p>
+							echo gettext("Add tags to the list by entering their names in the input fields of the <em>New tags</em> list. Then press the <em>Add tags</em> button.");
+							if (getOption('multi_lingual')) {
+								echo ' ' . gettext('You can assign a language to the tags with the language selector.');
+							}
+							?></p>
 					</div>
 				</div>
 				<br class="clearall">
