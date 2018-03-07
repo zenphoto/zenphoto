@@ -189,7 +189,13 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 						break;
 					}
 				default:
-					if ($loginlink = zp_apply_filter('login_link', PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER . '/admin.php')) {
+					$theme = $_zp_gallery->getCurrentTheme();
+					if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/password.php')) {
+						$link = getCustomPageURL('password');
+					} else {
+						$link = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER . '/admin.php';
+					}
+					if ($loginlink = zp_apply_filter('login_link', $link)) {
 						if ($before) {
 							echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
 						}

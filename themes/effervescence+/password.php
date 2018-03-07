@@ -6,9 +6,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		
+
 		<?php zp_apply_filter('theme_head'); ?>
-		
+
 	</head>
 
 	<body>
@@ -39,7 +39,7 @@ if (!defined('WEBPATH'))
 		<div id="content">
 			<small>&nbsp;</small>
 			<div id="main">
-				<?php printPasswordForm($hint, $show, false); ?>
+				<?php printPasswordForm($hint, isset($show) ? $show : TRUE, false; ?>
 			</div>
 		</div>
 
