@@ -130,6 +130,9 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 		if (!file_exists(internalToFilesystem($_zp_script))) {
 			$_zp_script = SERVERPATH . '/' . ZENFOLDER . '/password.php';
 		}
+	} else {
+		unset($hint);
+		unset($show);
 	}
 
 	//update publish state, but only on static cache expiry intervals

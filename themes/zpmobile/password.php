@@ -28,7 +28,7 @@ if (!defined('WEBPATH'))
 
 					<div id="content-error">
 						<div class="errorbox">
-							<?php printPasswordForm($hint, $show, false); ?>
+							<?php printPasswordForm($hint, isset($show) ? $show : TRUE, false; ?>
 						</div>
 						<?php
 						if (!zp_loggedin() && function_exists('printRegisterURL') && $_zp_gallery->isUnprotectedPage('register')) {
