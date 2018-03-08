@@ -34,7 +34,7 @@ if (count($_POST) > 0) {
 						$master = db_insert_id();
 						foreach (generateLanguageList(false)as $text => $dirname) {
 							if ($dirname != $language) {
-								query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($value . '[' . $dirname . ']') . ',' . $master . ',' . db_quote($dirname) . ')');
+								query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($value) . ',' . $master . ',' . db_quote($dirname) . ')');
 							}
 						}
 					}
@@ -102,7 +102,7 @@ if (count($_POST) > 0) {
 							//create subtags
 							foreach (generateLanguageList(false)as $text => $dirname) {
 								if ($dirname != $language) {
-									query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($tag . '[' . $dirname . ']') . ',' . $old['id'] . ',' . db_quote($dirname) . ')');
+									query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($tag) . ',' . $old['id'] . ',' . db_quote($dirname) . ')');
 								}
 							}
 						} else if (empty($language)) {
@@ -265,13 +265,14 @@ printAdminHeader('admin');
 						<div class="box-tags-unpadded">
 							<ul class="tagrenamelist">
 								<?php
-								foreach ($list as $tagLC => $item) {
+								foreach ($list as $item) {
 									if (is_array($item)) {
 										$itemarray = $item;
 										$item = $itemarray['tag'];
 									} else {
 										$itemarray = NULL;
 									}
+									$tagLC = mb_strtolower($item);
 
 									$listitem = 'R_' . postIndexEncode($item);
 									?>
@@ -288,7 +289,7 @@ printAdminHeader('admin');
 												$LCtag = mb_strtolower($tag);
 												$listitem = 'R_' . postIndexEncode($tag);
 												?>
-												<span class="nowrap">&nbsp;&nbsp;<img src="<?php echo $flags[$languages[$LCtag]]; ?>" height="10" width="16" />
+												<span class="nowrap">&nbsp;&nbsp;<img src="<?php echo $flags[$lang]; ?>" height="10" width="16" />
 													<input id="<?php echo $listitem; ?>" name="<?php echo $listitem; ?>" type="text" size='33' value="<?php echo $tag; ?>"/>
 												</span>
 												<?php
