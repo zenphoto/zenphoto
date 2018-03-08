@@ -1467,8 +1467,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 		return $_zp_admin_ordered_taglist;
 	}
 
-	function tagListElement($postit, $class, $tagLC, $item, $flag, $count, $indent) {
+	function tagListElement($postit, $class, $tagLC, $item, $lang, $count, $indent) {
+		global $_zp_language_flags;
 		$listitem = $postit . postIndexEncode($item);
+		$flag = $_zp_language_flags[$lang];
 		?>
 		<li id="<?php echo $listitem; ?>_element">
 			<label class="displayinline">
@@ -1484,6 +1486,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				?>
 				<input id="<?php echo $listitem; ?>" class="<?php echo $class . $indent; ?>" name="<?php echo 'tag_list_' . $postit . '[]'; ?>" type="checkbox" value="<?php echo html_encode($item); ?>"<?php echo $auto; ?> />
+				<input type="hidden" name="<?php echo 'lang_list_' . $postit . '[]'; ?>" value="<?php echo html_encode($lang); ?>" />
 				<img src="<?php echo $flag; ?>" height="10" width="15" />
 				<?php
 				/**
@@ -1587,13 +1590,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 						} else {
 							$itemarray = NULL;
 						}
-						tagListElement($postit, $class, $tagLC, $item, $flags[$languages[$tagLC]], $showCounts ? $counts[$tagLC] : false, false);
+						tagListElement($postit, $class, $tagLC, $item, $languages[$tagLC], $showCounts ? $counts[$tagLC] : false, false);
 						if (is_array($itemarray)) {
 							unset($itemarray['tag']);
 							ksort($itemarray);
 							foreach ($itemarray as $lang => $tag) {
 								$LCtag = mb_strtolower($tag);
-								tagListElement($postit, $class, $LCtag, $tag, $flags[$lang], false, 'subto_' . $postit . postIndexEncode($item));
+								tagListElement($postit, $class, $LCtag, $tag, $lang, false, 'subto_' . $postit . postIndexEncode($item));
 							}
 						}
 					}
@@ -1609,13 +1612,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$itemarray = NULL;
 					}
 					$tagLC = mb_strtolower($item);
-					tagListElement($postit, $class, $tagLC, $item, $flags[$languages[$tagLC]], $showCounts ? $counts[$tagLC] : false, false);
+					tagListElement($postit, $class, $tagLC, $item, $languages[$tagLC], $showCounts ? $counts[$tagLC] : false, false);
 					if (is_array($itemarray)) {
 						unset($itemarray['tag']);
 						ksort($itemarray);
 						foreach ($itemarray as $lang => $tag) {
 							$LCtag = mb_strtolower($tag);
-							tagListElement($postit, $class, $LCtag, $tag, $flags[$lang], false, 'subto_' . $postit . postIndexEncode($item));
+							tagListElement($postit, $class, $LCtag, $tag, $lang, false, 'subto_' . $postit . postIndexEncode($item));
 						}
 					}
 				}
