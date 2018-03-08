@@ -15,7 +15,7 @@
 		<div class="post">
 			<?php if (!zp_loggedin()) { ?>
 				<div class="error"><?php echo gettext("Please Login"); ?></div>
-				<?php printPasswordForm($hint, $show); ?>
+				<?php printPasswordForm(isset($hint) ? $hint : NULL, isset($show) ? $show : TRUE, false, isset($hint) ? WEBPATH : NULL); ?>
 			<?php } else { ?>
 				<div class="errorbox">
 					<p><?php echo gettext('You are logged in...'); ?></p>

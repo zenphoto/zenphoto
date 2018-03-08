@@ -13,7 +13,7 @@
 			<div class="errorbox">
 				<?php if (!zp_loggedin()) { ?>
 					<div class="error"><?php echo gettext("Please Login"); ?></div>
-					<?php printPasswordForm($hint, isset($show) ? $show : TRUE, false; ?>
+					<?php printPasswordForm(isset($hint) ? $hint : NULL, isset($show) ? $show : TRUE, false, isset($hint) ? WEBPATH : NULL); ?>
 				<?php } else { ?>
 					<div class="errorbox">
 						<p><?php echo gettext('You are logged in...'); ?></p>

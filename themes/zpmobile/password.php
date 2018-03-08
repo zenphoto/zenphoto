@@ -24,11 +24,21 @@ if (!defined('WEBPATH'))
 
 			<div class="ui-content" role="main">
 				<div class="content-primary">
-					<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a> » <strong><strong><?php echo gettext("A password is required for the page you requested"); ?></strong></strong></h2>
+					<?php if (isset($hint)) {
+						?>
+						<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a>
+							<?php if (isset($hint)) {
+								?>» <strong><strong><?php echo gettext("A password is required for the page you requested"); ?></strong></strong>
+								<?php
+							}
+							?></h2>
+						<?php
+					}
+					?>
 
 					<div id="content-error">
 						<div class="errorbox">
-							<?php printPasswordForm($hint, isset($show) ? $show : TRUE, false; ?>
+							<?php printPasswordForm(isset($hint) ? $hint : NULL, isset($show) ? $show : TRUE, false, isset($hint) ? WEBPATH : NULL); ?>
 						</div>
 						<?php
 						if (!zp_loggedin() && function_exists('printRegisterURL') && $_zp_gallery->isUnprotectedPage('register')) {

@@ -16,17 +16,22 @@ if (!defined('WEBPATH'))
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="main">
+
 			<div id="gallerytitle">
 				<h2>
 					<span>
 						<?php printHomeLink('', ' | '); ?>
 						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
-					</span> |
-					<?php echo gettext("A password is required for the page you requested"); ?>
+					</span>
+					<?php
+					if (isset($hint)) {
+						echo '| ' . gettext("A password is required for the page you requested");
+					}
+					?>
 				</h2>
 			</div>
 			<div id="padbox">
-				<?php printPasswordForm($hint, isset($show) ? $show : TRUE, false); ?>
+				<?php printPasswordForm(isset($hint) ? $hint : NULL, isset($show) ? $show : TRUE, false, isset($hint) ? WEBPATH : NULL); ?>
 			</div>
 		</div>
 		<div id="credit">
@@ -39,8 +44,6 @@ if (!defined('WEBPATH'))
 			?>
 			<?php printSoftwareLink(); ?>
 		</div>
-		<?php
-		zp_apply_filter('theme_body_close');
-		?>
+		<?php zp_apply_filter('theme_body_close'); ?>
 	</body>
 </html>

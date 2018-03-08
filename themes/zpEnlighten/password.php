@@ -21,15 +21,20 @@ if (!defined('WEBPATH'))
 					<?php if (extensionEnabled('zenpage')) { ?>
 						<a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a>»
 					<?php } ?>
-					<a href="<?php echo htmlspecialchars(getCustomPageURl('gallery')); ?>" title="<?php echo gettext('Gallery'); ?>"><?php echo gettext("Gallery") . " » "; ?></a>
-					<strong><?php echo gettext("A password is required for the page you requested"); ?></strong>
+					<a href="<?php echo htmlspecialchars(getCustomPageURl('gallery')); ?>" title="<?php echo gettext('Gallery'); ?>"><?php echo gettext("Gallery"); ?></a>
+					<?php if (isset($hint)) {
+						?>
+						» <strong><?php echo gettext("A password is required for the page you requested"); ?></strong>
+						<?php
+					}
+					?>
 				</h2>
 			</div>
 
 			<div id="content-error">
 
 				<div class="errorbox">
-					<?php printPasswordForm($hint, isset($show) ? $show : TRUE, false; ?>
+					<?php printPasswordForm(isset($hint) ? $hint : NULL, isset($show) ? $show : TRUE, false, isset($hint) ? WEBPATH : NULL); ?>
 				</div>
 
 				<?php
