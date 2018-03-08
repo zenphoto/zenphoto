@@ -49,18 +49,18 @@
 				<li><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>" itemprop="url"><?php echo gettext("Index"); ?></a></li><li class="active"><?php echo gettext('Credits'); ?></li>
 			<?php } ?>
 			<?php if ($_zp_gallery_page == 'password.php') { ?>
-				<li><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>" itemprop="url"><?php echo gettext("Index"); ?></a></li><li><?php echo gettext("error"); ?></li>
+				<li><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>" itemprop="url"><?php echo gettext("Index"); ?></a></li>
 			<?php } ?>
 			<?php if ($_zp_gallery_page == 'register.php') { ?>
 				<li><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>" itemprop="url"><?php echo gettext("Index"); ?></a></li><li><?php echo gettext('User Registration') ?></li>
 			<?php } ?>
 			<?php if ($_zp_gallery_page == 'search.php') { ?>
 				<li><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>" itemprop="url"><?php echo gettext("Index"); ?></a></li><li><?php echo html_encode($searchwords); ?></li>
-<?php } ?>
+			<?php } ?>
 		</ul>
 	</div>
 	<div class="col-sm-3" id="sharing">
-<?php if (getOption('sharethis_id') != '') { ?>
+		<?php if (getOption('sharethis_id') != '') { ?>
 			<!-- ShareThis -->
 			<span class='st_facebook'></span>
 			<span class='st_googleplus'></span>
@@ -69,10 +69,10 @@
 			<span class='st_email'></span>
 		<?php } ?>
 
-<?php if (getOption('addthis_code') != '') { ?>
+		<?php if (getOption('addthis_code') != '') { ?>
 			<!-- AddThis -->
 			<div class="addthis_sharing_toolbox"></div>
-<?php } ?>
+		<?php } ?>
 	</div>
 
 </div>

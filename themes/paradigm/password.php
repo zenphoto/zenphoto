@@ -12,23 +12,28 @@ if (!defined('WEBPATH'))
 <?php include(SERVERPATH . '/' . THEMEFOLDER . '/paradigm/includes/_header.php'); ?>
 
 <div id="background-main" class="background">
-	<div class="container<?php if (getOption('full_width')) {echo '-fluid';}?>">
-	<?php include(SERVERPATH . '/' . THEMEFOLDER . '/paradigm/includes/_breadcrumbs.php'); ?>
+	<div class="container<?php if (getOption('full_width')) {
+	echo '-fluid';
+} ?>">
+<?php include(SERVERPATH . '/' . THEMEFOLDER . '/paradigm/includes/_breadcrumbs.php'); ?>
 		<div id="center" class="row">
 
 			<section class="col-sm-9" id="main">
+				<?php if (isset($hint)) {
+					?>
+					<strong><?php echo gettext("A password is required for the page you requested"); ?></strong>
+					<?php
+				}
+				?>
+				<p><?php printPasswordForm(isset($hint) ? $hint : NULL, isset($show) ? $show : TRUE, false, isset($hint) ? WEBPATH : NULL); ?></p>
 
-			<strong><?php echo gettext("A password is required for the page you requested"); ?></strong>
-				
-			<p><?php printPasswordForm($hint, $show); ?></p>
-							
-			<?php
+				<?php
 				if (!zp_loggedin() && function_exists('printRegisterURL') && $_zp_gallery->isUnprotectedPage('register')) {
 					printRegisterURL(gettext('Register for this site'), '<br />');
-				echo '<br />';
+					echo '<br />';
 				}
-			?>
-				
+				?>
+
 			</section>
 <?php include(SERVERPATH . '/' . THEMEFOLDER . '/paradigm/includes/_sidebar.php'); ?>
 		</div>
