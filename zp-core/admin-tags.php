@@ -99,10 +99,11 @@ if (count($_POST) > 0) {
 					$tbdeleted = array();
 					$multi = getOption('multi_lingual');
 					foreach ($tags as $key => $tag) {
-						$sql = 'UPDATE ' . prefix('tags') . ' SET `language`=' . db_quote($language) . ' WHERE `name`=' . db_quote($tag) . ' AND `lang`=' . db_quote($langs[$key]);
+						$lang = $langs[$key];
+						$sql = 'UPDATE ' . prefix('tags') . ' SET `language`=' . db_quote($language) . ' WHERE `name`=' . db_quote($tag) . ' AND `lang`=' . db_quote($lang);
 						$success = query($sql, false);
 						if ($success) {
-							$tag = query_single_row('SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($tag) . ' AND `lang`=' . db_quote($langs[$key]));
+							$tag = query_single_row('SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($tag) . ' AND `lang`=' . db_quote($lang));
 							if ($multi && empty($tag['language'])) {
 								//create subtags
 								foreach (generateLanguageList(false)as $text => $dirname) {
@@ -114,7 +115,7 @@ if (count($_POST) > 0) {
 								$tbdeleted[] = $id;
 							}
 						} else {
-							$subaction[] = sprintf(gettext('%1$s:%2$s not changed, duplicate tag.'), $language, $tag);
+							$subaction[] = trim(sprintf(gettext('%1$s %2$s language not changed, duplicate tag.'), $lang, $tag));
 						}
 						if (!empty($tbdeleted)) {
 							query('DELETE FROM ' . prefix('tags') . ' WHERE `masterid`=' . implode(' OR `masterid`=', $tbdeleted));
@@ -223,7 +224,7 @@ printAdminHeader('admin');
 						<div class="box-tags-unpadded">
 							<?php
 							tagSelector(NULL, 'tags_', true, $tagsort, false);
-							list($list, $counts, $languages) = $_zp_admin_ordered_taglist;
+							$list = $_zp_admin_ordered_taglist;
 							?>
 						</div>
 
@@ -284,28 +285,23 @@ printAdminHeader('admin');
 						<div class="box-tags-unpadded">
 							<ul class="tagrenamelist">
 								<?php
-								foreach ($list as $item) {
-									if (is_array($item)) {
-										$itemarray = $item;
-										$item = $itemarray['tag'];
-									} else {
-										$itemarray = NULL;
-									}
+								foreach ($list as $tagitem) {
+									$item = $tagitem['tag'];
 									$tagLC = mb_strtolower($item);
-
 									$listitem = 'R_' . postIndexEncode($item);
 									?>
 									<li>
 										<span class="nowrap">
-											<img src="<?php echo $flags[$lang = $languages[$tagLC]]; ?>" height="10" width="16" />
+											<img src="<?php echo $flags[$lang = $tagitem['lang']]; ?>" height="10" width="16" />
 											<input id="<?php echo $listitem; ?>" name="<?php echo $listitem; ?>" type="text" size='33' value="<?php echo $item; ?>" />
 											<input type="hidden" name="lang_list_tags[<?php echo $listitem; ?>]" value="<?php echo html_encode($lang); ?>" />
 										</span>
 										<?php
-										if (is_array($itemarray)) {
-											unset($itemarray['tag']);
+										if (is_array($tagitem['subtags'])) {
+											$itemarray = $tagitem['subtags'];
 											ksort($itemarray);
-											foreach ($itemarray as $lang => $tag) {
+											foreach ($itemarray as $lang => $tagitem) {
+												$tag = $tagitem['tag'];
 												$LCtag = mb_strtolower($tag);
 												$listitem = 'R_' . postIndexEncode($tag);
 												?>
