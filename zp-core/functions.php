@@ -1234,6 +1234,7 @@ function readTags($id, $tbl, $language) {
 		}
 		db_free_result($result);
 	}
+	$tags = array_unique($tags);
 	natcasesort($tags);
 	return $tags;
 }
