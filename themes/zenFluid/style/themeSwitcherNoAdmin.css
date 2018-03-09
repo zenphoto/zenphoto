@@ -1,0 +1,28 @@
+/*
+    Created on : May 27, 2015, 9:55:20 AM
+    Author     : Stephen
+*/
+.themeSwitcherMenuMain {
+	left: auto;
+	right: 0px;
+	top: 0px;
+	width: 23px;
+	text-align: center;
+}
+.themeSwitcherMenu {
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.themeSwitcherControlLink {
+	position: fixed;
+	z-index: 90000;
+	left: auto;
+	right: 0px;
+	top: 0px;
+	padding-right: 10px;
+	text-align: right;
+}
+.themeSwitcherMenuShow {
+	position: relative;
+	right: 0px;
+}
