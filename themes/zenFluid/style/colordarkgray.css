@@ -1,0 +1,56 @@
+html, body, #sidebar, #container, #contents {
+	color: #ddd;
+	background-color: rgb(72,72,72);
+}
+.colour, #passwordform, #admin_tb, #admin_tb_data, .themeSwitcherMenuMain, .themeSwitcherControlLink {
+	background-color: rgb(72,72,72);
+}
+.sidebarsubtitle {
+	color: rgb(195, 224, 160);
+}
+.footer {
+	color: #272727;
+}
+.sidebarfooter {
+	color: #272727;
+}
+.zen-logo a:link {
+	color: #272727;
+}
+.zen-logo a:visited {
+	color: #272727;
+}
+.thumbtitle p {
+	color: rgb(195, 224, 160);
+}
+form label strong, form p strong {
+	color: red;
+}
+input, textarea, button {
+	background-color: #bbb;
+}
+#articlethumb p {
+	color: rgb(195, 224, 160);
+}
+a:link {
+	color: rgb(195, 224, 160);
+}
+a:visited {
+	color: rgb(195, 224, 160);
+}
+a:active {
+	color: #ddd;
+}
+a:hover {
+	color: #ddd;
+}
+.error {
+	color: #C33;
+}
+.errorbox {
+	color: #DD6666;
+}
+.errorbox h2 {
+	color: #DD6666;
+	background-color: #FDD;
+}
