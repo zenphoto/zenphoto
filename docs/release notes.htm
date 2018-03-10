@@ -73,13 +73,15 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.5.3.18</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.5.3.19</h2>
 <h2>General</h2>
 <p>This release fixes multiple bugs and security holes. For details see the change log.</p>
 <p>ZenPhoto20 now provides a fall-back translation facility for cases where a site does not have the PHP <em>gettext module</em> or where translations are otherwise not working. This facility is invoked when ZenPhoto20 notices that the function <code>gettext()</code> is not present. You can disable the gettext module by editing your PHP.ini file. Find the line which reads <code>extension=php_gettext.dll</code> and place a semicolon in front of the text, e.g. <code>;extension=php_gettext.dll. </code>Note: the PHP module is the preferred translation facility. Using the fall-back comes with some performance loss. Also note that number formatting is controlled by the locale settings, not <code><em>gettext</em></code>. If PHP <em>gettext </em>does not work because of locale issues your number formatting may not be correct</p>
 <h2>Tags</h2>
 <p>The language tag implementation has been enhanced so that language specific translations of tags can be organized under a "master:" tag. (Presumably this would be the tag in the administrator's native language.) These language "subtags" will be ordered by language and indented under the master tag. When there is a checkbox, the master tag checkbox will also apply to the language subtags.</p>
-<p>If the <em>multi-lingual</em> option is set and you create a new tag with a language specified or assign a language to a tag which was previously language independent then subtags for each of the site active languages will automatically be created. The initial value of the tag will be the master tag text with a language indicator postpended. (Note that tags, regardless of language, must be unique.) Once created you can edit the subtag text to provide the translation.</p>
+<p>If the <em>multi-lingual</em> option is set and you create a new tag with a language specified or assign a language to a tag which was previously language independent then subtags for each of the site active languages will automatically be created. The initial value of the tag will be the master tag text with a language indicator postpended. Once created you can edit the subtag text to provide the translation.</p>
+<p>Notes:</p>
+<p>Tags uniqueness now includes the language. That is the same tag spelling is possible so long as the assigned language is different. Thus it is now possible to have both  the English tag "table" and the French tag "table." However, only unique tags are listed for objects as there is no language association there. So if in the example above, only one instance of "table" will be listed.</p>
 <h2>plugins</h2>
 <p><em>VideoJS</em></p>
 <p>The plugin provides support for the Video.JS video player (videojs.com). It will play video natively via HTML5 in capable browsers. if the appropiate multimedia formats are provided. It will fall back to flash in older browsers. The player size is responsive to the browser size and is is capable of switching between HD and SD video files.</p>
@@ -97,6 +99,7 @@
 <p><em>class-video</em></p>
 <p><code>MP3</code> and <code>MP4</code> file formats are now (optionally) rendered directly by the plugin using the HTML5 <em>video</em> and <em>audio</em> tags rather than via a multimedia plugin.</p>
 <h2>Themes</h2>
+<p><em>zenFluid </em>by James Brown is now part of ZenPhoto20. This is fluid theme based on the original ZenPage theme.</p>
 <p><em>zpBootstrap </em>has been updated to version 2.0.</p>
 <hr />
 <h2>Version 1.5.0</h2>

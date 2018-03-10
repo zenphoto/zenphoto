@@ -1230,10 +1230,11 @@ function readTags($id, $tbl, $language) {
 	$result = query($sql);
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
-			$tags[mb_strtolower($row['name'])] = $row['name'];
+			$tags[] = $row['name'];
 		}
 		db_free_result($result);
 	}
+	$tags = array_unique($tags);
 	natcasesort($tags);
 	return $tags;
 }
