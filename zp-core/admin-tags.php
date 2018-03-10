@@ -41,7 +41,7 @@ if (count($_POST) > 0) {
 							}
 						}
 					} else {
-						$subaction[] = sprintf(gettext('%1$s:%2$s not stored, duplicate tag.'), $language, $value);
+						$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s not stored, duplicate tag.'), $language, $value), ': ');
 					}
 				}
 			}
@@ -115,13 +115,14 @@ if (count($_POST) > 0) {
 								$tbdeleted[] = $id;
 							}
 						} else {
-							$subaction[] = trim(sprintf(gettext('%1$s %2$s language not changed, duplicate tag.'), $lang, $tag));
+							$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s language not changed, duplicate tag.'), $lang, $tag), ': ');
 						}
 						if (!empty($tbdeleted)) {
 							query('DELETE FROM ' . prefix('tags') . ' WHERE `masterid`=' . implode(' OR `masterid`=', $tbdeleted));
 						}
 					}
 				}
+				$action = gettext('Checked tags language assigned');
 				break;
 		}
 	} // tag action
@@ -144,7 +145,7 @@ if (count($_POST) > 0) {
 					$existing = false;
 				}
 				if ($existing) {
-					$subaction[] = sprintf(gettext('%1$s:%2$s not changed, duplicate tag.'), $lang, $key);
+					$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s not changed, duplicate tag.'), $lang, $key), ': ');
 				} else {
 					query('UPDATE ' . prefix('tags') . ' SET `name`=' . db_quote($newName) . ' WHERE `id`=' . $oldtag['id']) . ' AND `language`=' . db_quote($langs[$postkey]);
 				}
@@ -178,7 +179,18 @@ printAdminHeader('admin');
 					?>
 					<div class = "errorbox">
 						<?php
-						echo implode('<br />', $subaction);
+						$br = '';
+						foreach ($subaction as $action) {
+							$flag = '';
+							if (preg_match('~([a-z]{2}_*[A-Z]{0,2}.*):\s*(.*)~', $action, $matches)) {
+								$action = $matches[2];
+								if ($matches[1]) {
+									$flag = '<img src="' . $flags[$matches[1]] . '" height="10" width="15" /> ';
+								}
+							}
+							echo $br . $flag . $action;
+							$br = '<br />';
+						}
 						?>
 					</div>
 					<?php
