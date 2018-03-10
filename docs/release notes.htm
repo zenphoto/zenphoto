@@ -73,7 +73,7 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.5.3.19</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.5.3.20</h2>
 <h2>General</h2>
 <p>This release fixes multiple bugs and security holes. For details see the change log.</p>
 <p>ZenPhoto20 now provides a fall-back translation facility for cases where a site does not have the PHP <em>gettext module</em> or where translations are otherwise not working. This facility is invoked when ZenPhoto20 notices that the function <code>gettext()</code> is not present. You can disable the gettext module by editing your PHP.ini file. Find the line which reads <code>extension=php_gettext.dll</code> and place a semicolon in front of the text, e.g. <code>;extension=php_gettext.dll. </code>Note: the PHP module is the preferred translation facility. Using the fall-back comes with some performance loss. Also note that number formatting is controlled by the locale settings, not <code><em>gettext</em></code>. If PHP <em>gettext </em>does not work because of locale issues your number formatting may not be correct</p>
