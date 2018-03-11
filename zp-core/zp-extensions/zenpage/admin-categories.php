@@ -129,7 +129,7 @@ zenpageJSCSS();
 					}
 				}
 
-				if (!empty($categories)) {
+				if (!empty($categories) || zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 					?>
 					<span class="zenpagestats"><?php printCategoriesStatistic(); ?></span>
 					<form class="dirtylistening" onReset="setClean('checkeditems');" action="admin-categories.php?page=news&amp;tab=categories" method="post" id="checkeditems" name="checkeditems" onsubmit="return confirmAction();" autocomplete="off">
