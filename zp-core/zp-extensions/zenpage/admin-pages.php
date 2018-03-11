@@ -119,7 +119,7 @@ updatePublished('pages');
 					}
 				}
 
-				if (!empty($pagelist)) {
+				if (!empty($pagelist) || zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
 					?>
 					<span class="zenpagestats"><?php printPagesStatistic(); ?></span>
 					<form class="dirtylistening" onReset="setClean('form_zenpageitemlist');" action="admin-pages.php" method="post" name="update" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
