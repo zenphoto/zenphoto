@@ -1485,12 +1485,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 				?>
 				<input id="<?php echo $listitem; ?>" class="<?php echo $class . $indent; ?>" name="<?php echo 'tag_list_' . $postit . '[' . ++$_tagListIndex . ']'; ?>" type="checkbox" value="<?php echo html_encode($item); ?>"<?php
 				echo $auto;
-				if ($checked)
-					echo ' checked="checked";'
-					?> />
+				if ($checked) {
+					echo ' checked="checked";';
+				}
+				?> />
 				<input type="hidden" name="<?php echo 'lang_list_' . $postit . '[' . $_tagListIndex . ']'; ?>" value="<?php echo html_encode($lang); ?>" />
 				<?php
-				if (!$checked) {
+				if (!$checked && $lang) {
 					?>
 					<img src="<?php echo $flag; ?>" height="10" width="15" />
 					<?php

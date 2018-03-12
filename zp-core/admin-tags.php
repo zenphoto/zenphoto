@@ -304,7 +304,13 @@ printAdminHeader('admin');
 									?>
 									<li>
 										<span class="nowrap">
-											<img src="<?php echo $flags[$lang = $tagitem['lang']]; ?>" height="10" width="16" />
+											<?php
+											if ($lang = $tagitem['lang']) {
+												?>
+												<img src="<?php echo $flags[$lang]; ?>" height="10" width="16" />
+												<?php
+											}
+											?>
 											<input id="<?php echo $listitem; ?>" name="<?php echo $listitem; ?>" type="text" size='33' value="<?php echo $item; ?>" />
 											<input type="hidden" name="lang_list_tags[<?php echo $listitem; ?>]" value="<?php echo html_encode($lang); ?>" />
 										</span>
