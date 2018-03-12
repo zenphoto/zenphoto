@@ -318,8 +318,9 @@ function zp_load_image($folder, $filename) {
 	if (!is_object($album) || !$album->exists) {
 		return false;
 	}
-	if (!getSuffix($filename)) { //	still some work to do
-		foreach ($album->getImages() as $image) {
+	$images = $album->getImages();
+	if (!getSuffix($filename) && !empty($images)) { //	still some work to do
+		foreach ($images as $image) {
 			if (is_array($image)) {
 				$image = $image['filename'];
 			}
@@ -330,7 +331,6 @@ function zp_load_image($folder, $filename) {
 		}
 	}
 	if ($album->isDynamic() && $_zp_page) {
-		$album->getImages();
 		$matches = array_keys($album->imageNames, $filename);
 		$albumName = @$matches[$_zp_page - 1];
 		if ($albumName) {
