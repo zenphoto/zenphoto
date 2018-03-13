@@ -63,8 +63,8 @@ function getIPSizedImage($size, $image) {
 					$args['album'] = $thumbobj->album->getFilename();
 					$imageb = preg_replace('~&check=(.*)~', '', getIPSizedImage($size, $thumbobj));
 				}
+				$image = preg_replace('~&check=(.*)~', '', $image);
 				$alt1 = $obj->getFileName();
-
 				// an image type object
 			} else {
 				// a simple link
@@ -105,7 +105,17 @@ function getIPSizedImage($size, $image) {
 				var imagec = '<img src="<?php echo pathurlencode($imageb); ?>" alt="' + alt1 + '" title="' + title1 + '" />';
 				var imagef = '<?php echo pathurlencode($imagef); ?>';
 				var picture = <?php echo (int) $picture; ?>;
-
+				function sizechange() {
+					var selectedlink = $('input:radio[name=link]:checked').val();
+					switch (selectedlink) {
+						case 'thumb':
+						case 'thumblink':
+						case 'thumblink2':
+						case 'thumblinkfull':
+							$('#link_image_image').prop('checked', 'checked');
+							break;
+					}
+				}
 				function zenchange() {
 					var selectedlink = $('input:radio[name=link]:checked').val();
 					if (picture) {
@@ -113,7 +123,6 @@ function getIPSizedImage($size, $image) {
 					} else {
 						imageb = imagec.replace('s=<?php echo $size; ?>', 's=' + $('#imagesize').val());
 					}
-
 					switch (selectedlink) {
 						case 'thumb':
 							if ($('#addcaption').prop('checked')) {
@@ -292,7 +301,7 @@ function getIPSizedImage($size, $image) {
 						<?php
 					} else {
 						?>
-						<input type="text" size="4" name="image_size" id="imagesize" value="<?php echo $size; ?>" onchange="zenchange();" />px
+						<input type="text" size="4" name="image_size" id="imagesize" value="<?php echo $size; ?>" onchange="sizechange();" />px
 						<?php
 					}
 					?>

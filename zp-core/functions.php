@@ -2751,9 +2751,10 @@ class zpFunctions {
 	/**
 	 * Searches out i.php image links and replaces them with cache links if image is cached
 	 * @param string $text
+	 * @param bool $force used by cachemanager to get update i.php links to cache links
 	 * @return string
 	 */
-	static function updateImageProcessorLink($text) {
+	static function updateImageProcessorLink($text, $force = false) {
 		if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
 			$text = getSerializedArray($text);
 			$serial = true;
@@ -2762,13 +2763,13 @@ class zpFunctions {
 		}
 		if (is_array($text)) {
 			foreach ($text as $key => $textelement) {
-				$text[$key] = self::updateImageProcessorLink($textelement);
+				$text[$key] = self::updateImageProcessorLink($textelement, $force);
 			}
 			if ($serial) {
 				$text = serialize($text);
 			}
 		} else {
-			preg_match_all('|<\s*img.*?\ssrc\s*=\s*"([^"]*)?|', $text, $matches);
+			preg_match_all('|\<\s*img.*\ssrc\s*=\s*"(.*i\.php\?.*)/\>|U', $text, $matches);
 			foreach ($matches[1] as $key => $match) {
 				preg_match('|.*i\.php\?(.*)|', $match, $imgproc);
 				if ($imgproc) {
@@ -2779,9 +2780,16 @@ class zpFunctions {
 						$set[$s[0]] = $s[1];
 					}
 					$args = getImageArgs($set);
-					$imageuri = getImageURI($args, urldecode($set['a']), urldecode($set['i']), NULL);
-					if (strpos($imageuri, 'i.php') === false) {
+
+					if ($force) {
+						$cachefilename = getImageCacheFilename(urldecode($set['a']), urldecode($set['i']), $args);
+						$imageuri = '{*WEBPATH*}/' . CACHEFOLDER . imgSrcURI($cachefilename);
 						$text = str_replace($matches[1][$key], $imageuri, $text);
+					} else {
+						$imageuri = self::tagURLs(getImageURI($args, urldecode($set['a']), urldecode($set['i']), NULL));
+						if (strpos($imageuri, 'i.php') === false) {
+							$text = str_replace($matches[1][$key], $imageuri, $text);
+						}
 					}
 				}
 			}

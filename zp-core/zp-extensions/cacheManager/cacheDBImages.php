@@ -63,18 +63,20 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 				$result = query($sql);
 				if ($result) {
 					while ($row = db_fetch_assoc($result)) {
-						$imageprocessor++;
-						preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $row[$field], $matches);
+						$update = false;
+						preg_match_all('|\<\s*img.*\ssrc\s*=\s*"(.*i\.php\?.*)/\>|U', zpFunctions::unTagURLs($row[$field]), $matches);
 						foreach ($matches[1] as $uri) {
+							$imageprocessor++;
 							$params = mb_parse_url(html_decode($uri));
 							if (array_key_exists('query', $params)) {
 								parse_str($params['query'], $query);
 								if (!file_exists(getAlbumFolder() . $query['a'] . '/' . $query['i'])) {
 									recordMissing($table, $row, $query['a'] . '/' . $query['i']);
 								} else {
-									$text = zpFunctions::updateImageProcessorLink($uri);
-									if (strpos($text, 'i.php') !== false) {
-										$url = '<img src="' . $uri . '" height="20" width="20" alt="X" />';
+									$update = true;
+
+									if (strpos($uri, 'i.php') !== false) {
+										$url = '<img src="' . zpFunctions::updateImageProcessorLink($uri) . '" height="20" width="20" alt="X" />';
 										$title = getTitle($table, $row) . ' ' . gettext('image processor reference');
 										?>
 										<a href="<?php echo $uri; ?>&amp;debug" title="<?php echo $title; ?>">
@@ -82,14 +84,16 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 										</a>
 										<?php
 									}
-									$text = zpFunctions::updateImageProcessorLink($row[$field]);
-									if ($text != $row[$field]) {
-										$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($text) . ' WHERE `id`=' . $row['id'];
-										query($sql);
-									} else {
-										$refresh++;
-									}
 								}
+							}
+						}
+						if ($update) {
+							$text = zpFunctions::updateImageProcessorLink($row[$field], true);
+							if ($text != $row[$field]) {
+								$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($text) . ' WHERE `id`=' . $row['id'];
+								query($sql);
+							} else {
+								$refresh++;
 							}
 						}
 					}
@@ -100,14 +104,15 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 
 				if ($result) {
 					while ($row = db_fetch_assoc($result)) {
-						preg_match_all('~\<img.*src\s*=\s*"((\\.|[^"])*)~', $row[$field], $matches);
+						preg_match_all('~\<\s*img.*\ssrc\s*=\s*"(.*)".*/\>~U', $row[$field], $matches);
 						foreach ($matches[1] as $key => $match) {
 							$updated = false;
 							if (preg_match('~/' . CACHEFOLDER . '/~', $match)) {
+								$match = urldecode($match);
 								$found++;
-								list($image, $args) = getImageProcessorURIFromCacheName($match, $watermarks);
+								list($image_uri, $args) = getImageProcessorURIFromCacheName($match, $watermarks);
 								$try = $_zp_supported_images;
-								$base = stripSuffix($image);
+								$base = stripSuffix($image = $image_uri);
 								$prime = getSuffix($image);
 								array_unshift($try, $prime);
 								$try = array_unique($try);
@@ -138,7 +143,7 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 									}
 								}
 								if ($missing) {
-									recordMissing($table, $row, $image);
+									recordMissing($table, $row, $image_uri);
 								}
 								$cache_file = '{*WEBPATH*}/' . CACHEFOLDER . getImageCacheFilename(dirname($image), basename($image), $args);
 								if ($match != $cache_file) {
