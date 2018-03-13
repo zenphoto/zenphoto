@@ -459,6 +459,16 @@ function getImageParameters($args, $album = NULL) {
 }
 
 /**
+ * gemerates the image processor protection check code
+ *
+ * @param array $args
+ * @return string
+ */
+function ipProtectTag($album, $image, $args) {
+	$tag = sha1(HASH_SEED . $album . $image . serialize($args));
+}
+
+/**
  * forms the i.php parameter list for an image.
  *
  * @param array $args
@@ -545,7 +555,7 @@ function getImageProcessorURI($args, $album, $image) {
 	}
 	$args[14] = $z;
 
-	$uri .= '&check=' . sha1(HASH_SEED . serialize($args));
+	$uri .= '&check=' . ipProtectTag(internalToFilesystem($album), internalToFilesystem($image), $args);
 
 	$uri = zp_apply_filter('image_processor_uri', $uri, $args, $album, $image);
 
