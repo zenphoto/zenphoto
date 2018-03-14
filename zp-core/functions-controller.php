@@ -279,6 +279,9 @@ function zp_load_album($folder, $force_nocache = false) {
 	}
 	$_zp_current_album = newAlbum($folder, !$force_nocache, true);
 	if (!is_object($_zp_current_album) || !$_zp_current_album->exists) {
+		if ($force_nocache) {
+			return false;
+		}
 		$rimage = basename($folder);
 		$ralbum = dirname($folder);
 		$image = zp_load_image($ralbum, $rimage);
