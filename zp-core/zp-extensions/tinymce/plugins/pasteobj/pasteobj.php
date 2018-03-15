@@ -113,6 +113,7 @@ function getIPSizedImage($size, $image) {
 						case 'thumblink2':
 						case 'thumblinkfull':
 							$('#link_image_image').prop('checked', 'checked');
+							zenchange();
 							break;
 					}
 				}

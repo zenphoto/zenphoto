@@ -465,6 +465,9 @@ function getImageParameters($args, $album = NULL) {
  * @return string
  */
 function ipProtectTag($album, $image, $args) {
+	if (is_array($image)) {
+		$image = $image['name'];
+	}
 	$tag = sha1(HASH_SEED . $album . $image . serialize($args));
 }
 
