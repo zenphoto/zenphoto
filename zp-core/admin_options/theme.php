@@ -180,6 +180,7 @@ function getOptionContent() {
 		<form class="dirtylistening" onReset="setClean('themeoptionsform');" action="?action=saveoptions" method="post" id="themeoptionsform" autocomplete="off" >
 			<?php XSRFToken('saveoptions'); ?>
 			<input type="hidden" id="saveoptions" name="saveoptions" value="theme" />
+			<input type="hidden" id="savethemeoptions" name="savethemeoptions" value="theme" />
 			<input type="hidden" name="optiontheme" value="<?php echo urlencode($themename); ?>" />
 			<input type="hidden" name="old_themealbum" value="<?php echo pathurlencode($alb); ?>" />
 			<table>
@@ -236,7 +237,7 @@ function getOptionContent() {
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-										$('#themeoptionsform').submit();">
+												$('#themeoptionsform').submit();">
 													<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 									<strong><?php echo gettext("Revert to default"); ?></strong>
 								</button>
@@ -558,7 +559,7 @@ function getOptionContent() {
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-										$('#themeoptionsform').submit();">
+												$('#themeoptionsform').submit();">
 													<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 									<strong><?php echo gettext("Revert to default"); ?></strong>
 								</button>

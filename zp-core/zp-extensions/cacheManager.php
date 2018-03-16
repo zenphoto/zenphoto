@@ -304,6 +304,25 @@ class cacheManager {
 	}
 
 	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = NULL) {
+		if (is_null($effects)) {
+			if ($thumb) {
+				if (getThemeOption('thumb_gray')) {
+					$effects = 'gray';
+				}
+			} else {
+				if (getThemeOption('image_gray')) {
+					$effects = 'gray';
+				}
+			}
+		}
+		if ($thumb && is_null($cw) && is_null($ch)) {
+			if (getThemeOption('thumb_crop')) {
+				$ch = getThemeOption('thumb_crop_height');
+				$cw = getThemeOption('thumb_crop_width');
+			} else {
+				$ch = $cw = NULL;
+			}
+		}
 		$cacheSize = serialize(array('theme' => $theme, 'apply' => false, 'image_size' => $size, 'image_width' => $width, 'image_height' => $height,
 				'crop_width' => $cw, 'crop_height' => $ch, 'crop_x' => $cx, 'crop_y' => $cy, 'thumb' => $thumb, 'wmk' => $watermark, 'gray' => $effects, 'maxspace' => $maxspace, 'valid' => 1));
 		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($theme) . ',' . db_quote($cacheSize) . ')';
@@ -316,7 +335,7 @@ class cacheManager {
 	static function printShowHide() {
 		?>
 		<script type="text/javascript">
-		//<!-- <![CDATA[
+			//<!-- <![CDATA[
 			function checkTheme(theme) {
 				$('.' + theme).prop('checked', $('#' + theme).prop('checked'));
 			}
@@ -335,7 +354,7 @@ class cacheManager {
 				}
 				$('#' + theme + '_arrow').html(html);
 			}
-		//]]> -->
+			//]]> -->
 		</script>
 		<?php
 	}
