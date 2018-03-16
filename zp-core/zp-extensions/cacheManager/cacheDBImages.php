@@ -44,10 +44,13 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 			'news' => array('content')
 	);
 	// "extracontent" is optional
-	foreach (array('pages', 'news') as $table) {
+	foreach (array('albums', 'images', 'pages', 'news') as $table) {
 		$fields = db_list_fields($table);
 		if (array_key_exists('extracontent', $fields)) {
 			$tables[$table][] = 'extracontent';
+		}
+		if (array_key_exists('codeblock', $fields)) {
+			$tables[$table][] = 'codeblock';
 		}
 	}
 	?>
