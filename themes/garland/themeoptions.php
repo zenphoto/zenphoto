@@ -29,10 +29,16 @@ class ThemeOptions {
 			colorbox::registerScripts(array('album', 'favorites', 'image', 'search'));
 		}
 		if (class_exists('cacheManager')) {
+			if (getThemeOption('thumb_crop')) {
+				$th = getThemeOption('thumb_crop_height');
+				$tw = getThemeOption('thumb_crop_width');
+			} else {
+				$th = $tw = NULL;
+			}
 			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
 			cacheManager::addThemeCacheSize($me, 520, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize($me, 85, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::addThemeCacheSize($me, 85, NULL, NULL, $tw, $th, NULL, NULL, true, NULL, NULL, NULL);
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
