@@ -304,9 +304,39 @@ class cacheManager {
 	}
 
 	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = NULL) {
-		$cacheSize = serialize(array('theme' => $theme, 'apply' => false, 'image_size' => $size, 'image_width' => $width, 'image_height' => $height,
+		global $_set_theme_album, $_zp_gallery;
+		$themeList = array_map('strtolower', array_keys($_zp_gallery->getThemes()));
+
+		$albumName = '';
+		if (in_array(strtolower($theme), $themeList)) {
+			if (is_null($effects)) {
+				if ($thumb) {
+					if (getThemeOption('thumb_gray', $_set_theme_album, $theme)) {
+						$effects = 'gray';
+					}
+				} else {
+					if (getThemeOption('image_gray', $_set_theme_album, $theme)) {
+						$effects = 'gray';
+					}
+				}
+			}
+			if ($thumb) {
+				if (getThemeOption('thumb_crop', $_set_theme_album, $theme)) {
+					if (is_null($cw) && is_null($ch)) {
+						$ch = getThemeOption('thumb_crop_height', $_set_theme_album, $theme);
+						$cw = getThemeOption('thumb_crop_width', $_set_theme_album, $theme);
+					}
+				} else {
+					$ch = $cw = NULL;
+				}
+			}
+			if (!is_null($_set_theme_album)) {
+				$albumName = $_set_theme_album->name;
+			}
+		}
+		$cacheSize = serialize(array('theme' => $theme, 'album' => $albumName, 'apply' => false, 'image_size' => $size, 'image_width' => $width, 'image_height' => $height,
 				'crop_width' => $cw, 'crop_height' => $ch, 'crop_x' => $cx, 'crop_y' => $cy, 'thumb' => $thumb, 'wmk' => $watermark, 'gray' => $effects, 'maxspace' => $maxspace, 'valid' => 1));
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($theme) . ',' . db_quote($cacheSize) . ')';
+		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($albumName) . ',' . db_quote($theme) . ',' . db_quote($cacheSize) . ')';
 		query($sql);
 	}
 
@@ -316,7 +346,7 @@ class cacheManager {
 	static function printShowHide() {
 		?>
 		<script type="text/javascript">
-		//<!-- <![CDATA[
+			//<!-- <![CDATA[
 			function checkTheme(theme) {
 				$('.' + theme).prop('checked', $('#' + theme).prop('checked'));
 			}
@@ -335,7 +365,7 @@ class cacheManager {
 				}
 				$('#' + theme + '_arrow').html(html);
 			}
-		//]]> -->
+			//]]> -->
 		</script>
 		<?php
 	}
@@ -447,7 +477,13 @@ class cacheManager {
 	}
 
 	static function deleteThemeCacheSizes($theme) {
-		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `aux`=' . db_quote($theme));
+		global $_set_theme_album;
+		$albumName = '';
+		if (!is_null($_set_theme_album)) {
+			$albumName = $_set_theme_album->name;
+		}
+		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `subtype`=' . db_quote($albumName) . ' AND `aux`=' . db_quote($theme);
+		query($sql);
 	}
 
 }

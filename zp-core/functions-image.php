@@ -389,6 +389,10 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			if (DEBUG_IMAGE)
 				debugLog("cacheImage:no crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
 			$newim = zp_createImage($neww, $newh);
+			if ($thumb) {
+				$im = zp_stripMetadata($im);
+			}
+
 			if (!zp_resampleImage($newim, $im, 0, 0, 0, 0, $neww, $newh, $w, $h)) {
 				imageError('404 Not Found', sprintf(gettext('Image %s not renderable (resample).'), filesystemToInternal($imgfile)), 'err-failimage.png');
 			}

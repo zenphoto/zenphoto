@@ -300,6 +300,19 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	}
 
 	/**
+	 * removes metadata (except ICC profile) from an image.
+	 * @param object $img
+	 */
+	function zp_stripMetadata($img) {
+		$profiles = $img->getImageProfiles("icc", true);
+		$img->stripImage();
+		if (!empty($profiles)) {
+			$img->profileImage("icc", $profiles['icc']);
+		}
+		return $img;
+	}
+
+	/**
 	 * Copies an image canvas
 	 *
 	 * @param Imagick $imgCanvas destination canvas

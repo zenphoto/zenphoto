@@ -363,7 +363,8 @@ function getOptionContent() {
 									<script type="text/javascript">
 										window.addEventListener('load', function () {
 											$('ul.languagelist').scrollTo('li:eq(<?php echo ($c - 2); ?>)');
-										}, false);</script>
+										}, false);
+									</script>
 									<?php
 								}
 								$c++;

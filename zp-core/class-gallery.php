@@ -318,7 +318,6 @@ class Gallery {
 	 * @return string
 	 */
 	function getCurrentTheme() {
-		$theme = NULL;
 		if (empty($this->theme)) {
 			$theme = $this->get('current_theme');
 			if (empty($theme) || !file_exists(SERVERPATH . "/" . THEMEFOLDER . "/$theme")) {

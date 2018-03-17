@@ -162,6 +162,15 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		}
 
 		/**
+		 * would remove metadata (except ICC profile) from an image.
+		 * But since GD drops these anyway, it does nothing.
+		 * @param object $img
+		 */
+		function zp_stripMetadata($img) {
+			return $img;
+		}
+
+		/**
 		 * copies an image canvas
 		 *
 		 * @param image $imgCanvas source canvas

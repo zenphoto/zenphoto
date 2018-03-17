@@ -50,7 +50,7 @@ $args = getImageArgs($_GET);
 $args[0] = 'FULL';
 $adminrequest = $args[12];
 
-if ($forbidden = getOption('image_processor_flooding_protection') && (!isset($_GET['check']) || $_GET['check'] != sha1(HASH_SEED . serialize($args)))) {
+if ($forbidden = getOption('image_processor_flooding_protection') && (!isset($_GET['check']) || $_GET['check'] != ipProtectTag($album, $image, $args))) {
 	// maybe it was from the tinyZenpage javascript which does not know better!
 	zp_session_start();
 	$forbidden = !isset($_SESSION['adminRequest']) || $_SESSION['adminRequest'] != @$_COOKIE['zp_user_auth'];
