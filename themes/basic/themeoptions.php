@@ -32,10 +32,35 @@ class ThemeOptions {
 		setOptionDefault('colorbox_' . $me . '_image', 1);
 		setOptionDefault('colorbox_' . $me . '_search', 1);
 		if (class_exists('cacheManager')) {
-			$me = basename(dirname(__FILE__));
+			if (getThemeOption('thumb_crop')) {
+				$thumb_cw = getThemeOption('thumb_crop_width');
+				$thumb_ch = getThemeOption('thumb_crop_height');
+			} else {
+				$thumb_cw = $thumb_ch = NULL;
+			}
+			if (getOption('Image_watermark')) {
+				$thumb_wmk = getOption('Image_watermark');
+			} else {
+				$thumb_wmk = NULL;
+			}
+			if (getOption('fullimage_watermark')) {
+				$img_wmk = getOption('fullimage_watermark');
+			} else {
+				$img_wmk = NULL;
+			}
+			if (getThemeOption('thumb_gray')) {
+				$thumb_effect = 'gray';
+			} else {
+				$thumb_effect = NULL;
+			}
+			if (getThemeOption('image_gray')) {
+				$img_effect = 'gray';
+			} else {
+				$img_effect = NULL;
+			}
 			cacheManager::deleteThemeCacheSizes($me);
-			cacheManager::addThemeCacheSize($me, getThemeOption('image_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::addThemeCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, $thumb_cw, $thumb_ch, NULL, NULL, true, $thumb_wmk, $thumb_effect, NULL);
+			cacheManager::addThemeCacheSize($me, getThemeOption('image_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, $img_wmk, $img_effect, NULL);
 		}
 	}
 
