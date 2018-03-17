@@ -297,7 +297,7 @@ class Gallery {
 				while (false !== ($dir = readdir($dp))) {
 					if (substr($dir, 0, 1) != "." && is_dir("$themedir/$dir")) {
 						$themefile = $themedir . "/$dir/theme_description.php";
-						$dir8 = filesystemToInternal($dir);
+						$dir8 = strtolower(filesystemToInternal($dir));
 						$this->themes[$dir8] = array('name' => gettext('Unknown'), 'author' => gettext('Unknown'), 'version' => gettext('Unknown'), 'desc' => gettext('<strong>Missing theme info file!</strong>'), 'date' => gettext('Unknown'));
 						if (file_exists($themefile)) {
 							$theme_description = array();

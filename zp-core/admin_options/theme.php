@@ -14,11 +14,11 @@ if (zp_loggedin(ADMIN_RIGHTS)) {
 }
 $albums = $_zp_gallery->getAlbums(0);
 foreach ($albums as $alb) {
-	$album = newAlbum($alb);
-	if ($album->isMyItem(THEMES_RIGHTS)) {
-		$theme = $album->getAlbumTheme();
+	$_set_theme_album = newAlbum($alb);
+	if ($_set_theme_album->isMyItem(THEMES_RIGHTS)) {
+		$theme = $_set_theme_album->getAlbumTheme();
 		if (!empty($theme)) {
-			$key = $album->getTitle();
+			$key = $_set_theme_album->getTitle();
 			if ($key != $alb) {
 				$key .= " ($alb)";
 			}
@@ -26,12 +26,12 @@ foreach ($albums as $alb) {
 		}
 	}
 }
-$alb = $album = NULL;
+$alb = $_set_theme_album = NULL;
 $themename = $_zp_gallery->getCurrentTheme();
 if (!empty($_REQUEST['themealbum'])) {
 	$alb = urldecode(sanitize_path($_REQUEST['themealbum']));
-	$album = newAlbum($alb);
-	$themename = $album->getAlbumTheme();
+	$_set_theme_album = newAlbum($alb);
+	$themename = $_set_theme_album->getAlbumTheme();
 }
 if (!empty($_REQUEST['optiontheme'])) {
 	$themename = sanitize($_REQUEST['optiontheme']);
@@ -40,11 +40,11 @@ if (empty($alb)) {
 	foreach ($themelist as $albumtitle => $alb)
 		break;
 	if (empty($alb)) {
-		$album = NULL;
+		$_set_theme_album = NULL;
 	} else {
 		$alb = sanitize_path($alb);
-		$album = newAlbum($alb);
-		$themename = $album->getAlbumTheme();
+		$_set_theme_album = newAlbum($alb);
+		$themename = $_set_theme_album->getAlbumTheme();
 	}
 }
 if (!(false === ($requirePath = getPlugin('themeoptions.php', $themename)))) {
@@ -57,8 +57,7 @@ if (!(false === ($requirePath = getPlugin('themeoptions.php', $themename)))) {
 
 function saveOptions() {
 	global $_zp_gallery;
-
-	$themeswitch = $themealbum = $notify = $table = NULL;
+	$themeswitch = $_set_theme_album = $notify = $table = NULL;
 	$themename = urldecode(sanitize($_POST['optiontheme'], 3));
 	$returntab = "&tab=theme";
 	if ($themename)
@@ -68,13 +67,12 @@ function saveOptions() {
 		$themeswitch = urldecode(sanitize_path($_POST['old_themealbum'])) != '';
 	} else {
 		$alb = urldecode(sanitize_path($_POST['themealbum']));
-		$themealbum = $table = newAlbum($alb);
-		if ($themealbum->exists) {
-			$table = $themealbum;
+		$_set_theme_album = newAlbum($alb);
+		if ($_set_theme_album->exists) {
 			$returntab .= '&themealbum=' . html_encode(pathurlencode($alb)) . '&tab=theme';
 			$themeswitch = $alb != urldecode(sanitize_path($_POST['old_themealbum']));
 		} else {
-			$themealbum = NULL;
+			$_set_theme_album = NULL;
 		}
 	}
 
@@ -83,67 +81,67 @@ function saveOptions() {
 	} else {
 		if (isset($_POST['savethemeoptions']) && $_POST['savethemeoptions'] == 'reset') {
 			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `theme`=' . db_quote($themename);
-			if ($themealbum) {
-				$sql .= ' AND `ownerid`=' . $themealbum->getID();
+			if ($_set_theme_album) {
+				$sql .= ' AND `ownerid`=' . $_set_theme_album->getID();
 			} else {
 				$sql .= ' AND `ownerid`=0';
 			}
 			query($sql);
 			$themeswitch = true;
 		} else {
-			$ncw = $cw = getThemeOption('thumb_crop_width', $table, $themename);
-			$nch = $ch = getThemeOption('thumb_crop_height', $table, $themename);
+			$ncw = $cw = getThemeOption('thumb_crop_width', $_set_theme_album, $themename);
+			$nch = $ch = getThemeOption('thumb_crop_height', $_set_theme_album, $themename);
 			if (isset($_POST['image_size']))
-				setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
+				setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $_set_theme_album, $themename);
 			if (isset($_POST['image_use_side']))
-				setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
-			setThemeOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
+				setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $_set_theme_album, $themename);
+			setThemeOption('thumb_crop', (int) isset($_POST['thumb_crop']), $_set_theme_album, $themename);
 			if (isset($_POST['thumb_size'])) {
 				$ts = sanitize_numeric($_POST['thumb_size']);
-				setThemeOption('thumb_size', $ts, $table, $themename);
+				setThemeOption('thumb_size', $ts, $_set_theme_album, $themename);
 			} else {
-				$ts = getThemeOption('thumb_size', $table, $themename);
+				$ts = getThemeOption('thumb_size', $_set_theme_album, $themename);
 			}
 			if (isset($_POST['thumb_crop_width'])) {
 				if (is_numeric($_POST['thumb_crop_width'])) {
 					$ncw = round($ts - $ts * 2 * sanitize_numeric($_POST['thumb_crop_width']) / 100);
 				}
-				setThemeOption('thumb_crop_width', $ncw, $table, $themename);
+				setThemeOption('thumb_crop_width', $ncw, $_set_theme_album, $themename);
 			}
 			if (isset($_POST['thumb_crop_height'])) {
 				if (is_numeric($_POST['thumb_crop_height'])) {
 					$nch = round($ts - $ts * 2 * sanitize_numeric($_POST['thumb_crop_height']) / 100);
 				}
-				setThemeOption('thumb_crop_height', $nch, $table, $themename);
+				setThemeOption('thumb_crop_height', $nch, $_set_theme_album, $themename);
 			}
 			if (isset($_POST['albums_per_page']) && isset($_POST['albums_per_row'])) {
 				$albums_per_page = sanitize_numeric($_POST['albums_per_page']);
 				$albums_per_row = max(1, sanitize_numeric($_POST['albums_per_row']));
 				$albums_per_page = ceil($albums_per_page / $albums_per_row) * $albums_per_row;
-				setThemeOption('albums_per_page', $albums_per_page, $table, $themename);
-				setThemeOption('albums_per_row', $albums_per_row, $table, $themename);
+				setThemeOption('albums_per_page', $albums_per_page, $_set_theme_album, $themename);
+				setThemeOption('albums_per_row', $albums_per_row, $_set_theme_album, $themename);
 			}
 			if (isset($_POST['images_per_page']) && isset($_POST['images_per_row'])) {
 				$images_per_page = sanitize_numeric($_POST['images_per_page']);
 				$images_per_row = max(1, sanitize_numeric($_POST['images_per_row']));
 				$images_per_page = ceil($images_per_page / $images_per_row) * $images_per_row;
-				setThemeOption('images_per_page', $images_per_page, $table, $themename);
-				setThemeOption('images_per_row', $images_per_row, $table, $themename);
+				setThemeOption('images_per_page', $images_per_page, $_set_theme_album, $themename);
+				setThemeOption('images_per_row', $images_per_row, $_set_theme_album, $themename);
 			}
 			if (isset($_POST['theme_head_separator'])) {
-				setThemeOption('theme_head_separator', sanitize($_POST['theme_head_separator']), $table, $themename);
+				setThemeOption('theme_head_separator', sanitize($_POST['theme_head_separator']), $_set_theme_album, $themename);
 			}
-			setThemeOption('theme_head_listparents', (int) isset($_POST['theme_head_listparents']), $table, $themename);
+			setThemeOption('theme_head_listparents', (int) isset($_POST['theme_head_listparents']), $_set_theme_album, $themename);
 
 			if (isset($_POST['thumb_transition']))
-				setThemeOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition']) - 1) && true), $table, $themename);
-			$otg = getThemeOption('thumb_gray', $table, $themename);
-			setThemeOption('thumb_gray', (int) isset($_POST['thumb_gray']), $table, $themename);
-			if ($otg = getThemeOption('thumb_gray', $table, $themename))
+				setThemeOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition']) - 1) && true), $_set_theme_album, $themename);
+			$otg = getThemeOption('thumb_gray', $_set_theme_album, $themename);
+			setThemeOption('thumb_gray', (int) isset($_POST['thumb_gray']), $_set_theme_album, $themename);
+			if ($otg = getThemeOption('thumb_gray', $_set_theme_album, $themename))
 				$wmo = 99; // force cache clear
-			$oig = getThemeOption('image_gray', $table, $themename);
-			setThemeOption('image_gray', (int) isset($_POST['image_gray']), $table, $themename);
-			if ($oig = getThemeOption('image_gray', $table, $themename))
+			$oig = getThemeOption('image_gray', $_set_theme_album, $themename);
+			setThemeOption('image_gray', (int) isset($_POST['image_gray']), $_set_theme_album, $themename);
+			if ($oig = getThemeOption('image_gray', $_set_theme_album, $themename))
 				$wmo = 99; // force cache clear
 			if ($nch != $ch || $ncw != $cw) { // the crop height/width has been changed
 				$sql = 'UPDATE ' . prefix('images') . ' SET `thumbX`=NULL,`thumbY`=NULL,`thumbW`=NULL,`thumbH`=NULL WHERE `thumbY` IS NOT NULL';
@@ -156,11 +154,11 @@ function saveOptions() {
 		}
 	}
 
-	return array($returntab, $notify, $themealbum, $themename, $themeswitch);
+	return array($returntab, $notify, $_set_theme_album, $themename, $themeswitch);
 }
 
 function getOptionContent() {
-	global $_zp_gallery, $optionHandler, $themelist, $themename, $themealbum, $alb, $album, $albumtitle;
+	global $_zp_gallery, $_set_theme_album, $optionHandler, $themelist, $themename, $_set_theme_album, $alb, $album, $albumtitle;
 	?>
 	<div id="tab_theme" class="tabbox">
 		<?php
@@ -180,7 +178,7 @@ function getOptionContent() {
 		<form class="dirtylistening" onReset="setClean('themeoptionsform');" action="?action=saveoptions" method="post" id="themeoptionsform" autocomplete="off" >
 			<?php XSRFToken('saveoptions'); ?>
 			<input type="hidden" id="saveoptions" name="saveoptions" value="theme" />
-			<input type="hidden" id="savethemeoptions" name="savethemeoptions" value="theme" />
+			<input type="hidden" id="savethemeoptions" name="savethemeoptions" value="" />
 			<input type="hidden" name="optiontheme" value="<?php echo urlencode($themename); ?>" />
 			<input type="hidden" name="old_themealbum" value="<?php echo pathurlencode($alb); ?>" />
 			<table>

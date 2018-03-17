@@ -17,10 +17,23 @@ require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 $testRelease = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
 $debug = isset($_GET['debug']);
 
+$theme = sanitize($_REQUEST['theme']);
+
+$themelist = array();
+$albums = $_zp_gallery->getAlbums(0);
+foreach ($albums as $alb) {
+	$album = newAlbum($alb);
+	if ($album->isMyItem(THEMES_RIGHTS)) {
+		$albumtheme = $album->getAlbumTheme();
+		if ($theme == $albumtheme) {
+			$themelist[] = $album;
+		}
+	}
+}
+
 $iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
 $iMutex->lock();
 
-$theme = sanitize($_REQUEST['theme']);
 setupLog(sprintf(gettext('Theme:%s setup started'), $theme), $testRelease);
 
 $requirePath = getPlugin('themeoptions.php', $theme);
@@ -32,6 +45,10 @@ if (!empty($requirePath)) {
 	/* prime the default theme options */
 	$_zp_gallery->setCurrentTheme($theme);
 	$optionHandler = new ThemeOptions();
+	foreach ($themelist as $_set_theme_album) {
+		$optionHandler->__construct();
+		standardThemeOptions($theme, $_set_theme_album);
+	}
 	setupLog(sprintf(gettext('Theme:%s option interface instantiated'), $theme), $testRelease);
 }
 /* then set any "standard" options that may not have been covered by the theme */

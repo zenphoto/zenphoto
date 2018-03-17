@@ -156,7 +156,7 @@ while ($row = db_fetch_assoc($result)) {
 	$row = getSerializedArray($row['data']);
 	$custom[] = $row;
 }
-$custom = sortMultiArray($custom, array('theme', 'thumb', 'image_size', 'image_width', 'image_height'));
+$custom = sortMultiArray($custom, array('theme', 'album', 'thumb', 'image_size', 'image_width', 'image_height'));
 
 if (isset($_GET['select'])) {
 	XSRFdefender('cacheImages');
@@ -227,14 +227,25 @@ if ($alb) {
 				</li>
 				<?php
 			}
-
 			$seen = array();
 			foreach ($custom as $key => $cacheimage) {
 				if (!is_array($enabled) || in_array($key, $enabled)) {
+					$themeid = $cacheimage['theme'];
+					$theme = preg_replace('/[^A-Za-z0-9\-_]/', '', $themeid);
+					if (isset($themes[$theme])) {
+						$themeid = $themes[$theme];
+					}
+					if (isset($cacheimage['album']) && $cacheimage['album']) {
+						$theme .= '_' . $cacheimage['album'];
+						$themeid .= ' (' . $cacheimage['album'] . ')';
+					} else {
+						$cacheimage['album'] = NULL;
+					}
+
 					if (is_array($enabled)) {
 						$checked = ' checked="checked" disabled="disabled"';
 					} else {
-						if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin') {
+						if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin' || $cacheimage['album']) {
 							$checked = ' checked="checked"';
 						} else {
 							$checked = '';
@@ -262,11 +273,7 @@ if ($alb) {
 							$checked = ' disabled="disabled"';
 						}
 					}
-					$themeid = $cacheimage['theme'];
-					$theme = preg_replace('/[^A-Za-z0-9\-_]/', '', $themeid);
-					if (isset($themes[$theme])) {
-						$themeid = $themes[$theme];
-					}
+
 					if ($theme != $last && !is_array($enabled)) {
 						if ($last) {
 							?>
