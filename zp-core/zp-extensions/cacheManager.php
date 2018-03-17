@@ -305,11 +305,10 @@ class cacheManager {
 
 	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = NULL) {
 		global $_set_theme_album, $_zp_gallery;
-		$themeList = array_keys($_zp_gallery->getThemes());
+		$themeList = array_map('strtolower', array_keys($_zp_gallery->getThemes()));
 
 		$albumName = '';
 		if (in_array(strtolower($theme), $themeList)) {
-			$theme = strtolower($theme);
 			if (is_null($effects)) {
 				if ($thumb) {
 					if (getThemeOption('thumb_gray', $_set_theme_album, $theme)) {
