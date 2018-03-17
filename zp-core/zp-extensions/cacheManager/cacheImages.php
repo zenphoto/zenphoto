@@ -151,12 +151,12 @@ if ($alb) {
 }
 $custom = array();
 
-$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type` = "cacheManager" ORDER BY `aux`');
+$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type` = "cacheManager"');
 while ($row = db_fetch_assoc($result)) {
 	$row = getSerializedArray($row['data']);
 	$custom[] = $row;
 }
-$custom = sortMultiArray($custom, array('theme', 'album', 'thumb', 'image_size', 'image_width', 'image_height'));
+$custom = sortMultiArray($custom, array('theme', 'album', 'thumb', 'image_size', 'image_width', 'image_height'), false, true, true);
 
 if (isset($_GET['select'])) {
 	XSRFdefender('cacheImages');
