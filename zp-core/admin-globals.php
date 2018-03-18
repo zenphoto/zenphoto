@@ -16,6 +16,9 @@ zp_session_start();
 require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 httpsRedirect();
 
+@ini_set('post_max_size', "10M");
+@ini_set('post_input_vars', "2500");
+
 $_SESSION['adminRequest'] = @$_COOKIE['zp_user_auth']; //	Allow "unprotected" i.php if the request came from an admin session
 
 require_once(SERVERPATH . "/" . ZENFOLDER . '/rewrite.php');

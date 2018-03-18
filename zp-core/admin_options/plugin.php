@@ -8,14 +8,14 @@ function saveOptions() {
 	global $_zp_gallery;
 
 	$notify = $returntab = NULL;
-	if (isset($_POST['checkForPostTruncation'])) {
-		// all plugin options are handled by the custom option code.
-		if (isset($_GET['single'])) {
-			$returntab = "&tab=plugin&single=" . sanitize($_GET['single']);
-		} else {
-			$returntab = "&tab=plugin&subpage=$subpage";
-		}
+	if (isset($_GET['single'])) {
+		$returntab = "&tab=plugin&single=" . sanitize($_GET['single']);
 	} else {
+		$returntab = "&tab=plugin&subpage=$subpage";
+	}
+
+	if (!isset($_POST['checkForPostTruncation'])) {
+		// all plugin options are handled by the custom option code.
 		$notify = '?post_error';
 	}
 
