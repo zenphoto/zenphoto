@@ -98,7 +98,7 @@ $_zp_cached_feeds = array('RSS'); //	Add to this array any feed classes that nee
 
 class cacheManagerFeed extends feed {
 
-	//fake feed descendent class so we can use the feed::clearCache()
+//fake feed descendent class so we can use the feed::clearCache()
 
 	protected $feed = NULL;
 
@@ -118,7 +118,7 @@ class cacheManager {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
-			query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager"');
+			query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `subtype`!="_custom_"');
 			self::addThemeCacheSize('admin', ADMIN_THUMB_LARGE, NULL, NULL, ADMIN_THUMB_LARGE, ADMIN_THUMB_LARGE, NULL, NULL, -1);
 			self::addThemeCacheSize('admin', ADMIN_THUMB_MEDIUM, NULL, NULL, ADMIN_THUMB_MEDIUM, ADMIN_THUMB_MEDIUM, NULL, NULL, -1);
 			self::addThemeCacheSize('admin', ADMIN_THUMB_SMALL, NULL, NULL, ADMIN_THUMB_SMALL, ADMIN_THUMB_SMALL, NULL, NULL, -1);
@@ -183,35 +183,54 @@ class cacheManager {
 		while ($row = db_fetch_assoc($result)) {
 			$theme = $row['aux'];
 			$data = getSerializedArray($row['data']);
-			$custom[$theme][] = $data;
+			$index = $data['theme'];
+			if (array_key_exists('album', $data) && $data['album']) {
+				$index .= '__' . $data['album'];
+			}
+			$custom[$index][] = $data;
 		}
+
 		ksort($custom, SORT_LOCALE_STRING);
-		$custom[''] = array(array());
+		$custom[] = array(array('theme' => NULL));
 		$c = 0;
 		self::printShowHide();
 
-		foreach ($custom as $theme => $themedata) {
+		foreach ($custom as $themedata) {
+			$a = $themedata;
+			$a = array_shift($a);
+			$themeid = $theme = $a['theme'];
+			if (array_key_exists('album', $a) && $a['album']) {
+				$album = $a['album'];
+				$themeid = $theme . '__' . $album;
+				$albumdisp = ' (' . $album . ')';
+			} else {
+				$albumdisp = $album = NULL;
+			}
+			$themeid = preg_replace('/[^A-Za-z0-9\-_]/', '', $themeid);
+
 			$themedata = sortMultiArray($themedata, array('thumb', 'image_size', 'image_width', 'image_height'));
 			if (!$theme) {
 				echo '<br />';
 			}
 			?>
-			<span class="icons upArrow" id="<?php echo $theme; ?>_arrow">
-				<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
+			<span class="icons upArrow" id="<?php echo $themeid; ?>_arrow">
+				<a onclick="showTheme('<?php echo $themeid; ?>');" title="<?php echo gettext('Show'); ?>">
 					<?php echo ARROW_DOWN_GREEN; ?>
 				</a>
 				<?php
 				if ($theme) {
 					$inputclass = 'hidden';
-					echo '<em>' . $theme . '</em> (' . count($themedata), ')';
+					echo '<em>' . $theme . $albumdisp . '</em> (' . count($themedata), ')';
+					$subtype = @$themedata['album'];
 				} else {
 					$inputclass = 'textbox';
+					$subtype = '_custom_';
 					echo gettext('add');
 				}
 				?>
 			</span>
 			<br />
-			<div id="<?php echo $theme; ?>_list" style="display:none">
+			<div id="<?php echo $themeid; ?>_list" style="display:none">
 				<br />
 				<?php
 				foreach ($themedata as $cache) {
@@ -233,6 +252,7 @@ class cacheManager {
 						?>
 						<div class="<?php echo $class; ?>">
 							<input type="<?php echo $inputclass; ?>" size="25" name="cacheManager_theme_<?php echo $key; ?>" value="<?php echo $theme; ?>" />
+							<input type="hidden" name="cacheManager_subtype_<?php echo $key; ?>" value="<?php echo $subtype; ?>" />
 							<?php
 							if ($theme) {
 								?>
@@ -272,7 +292,7 @@ class cacheManager {
 					<?php
 				}
 				?>
-			</div><!-- <?php echo $theme; ?>_list -->
+			</div><!-- <?php echo $theme . $album; ?>_list -->
 			<?php
 		}
 	}
@@ -292,11 +312,12 @@ class cacheManager {
 				$cache[$matches[2]][$matches[1]] = sanitize(trim($value));
 			}
 		}
+
 		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager"');
 		foreach ($cache as $cacheimage) {
 			if (!isset($cacheimage['delete']) && count($cacheimage) > 1) {
 				$cacheimage['theme'] = preg_replace("/[\s\"\']+/", "-", $cacheimage['theme']);
-				$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($cacheimage['theme']) . ',' . db_quote(serialize($cacheimage)) . ')';
+				$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`, `data`) VALUES ("cacheManager",' . db_quote(@$cacheimage['subtype']) . ',' . db_quote($cacheimage['theme']) . ',' . db_quote(serialize($cacheimage)) . ')';
 				query($sql);
 			}
 		}
@@ -335,7 +356,7 @@ class cacheManager {
 			}
 		}
 		$cacheSize = serialize(array('theme' => $theme, 'album' => $albumName, 'apply' => false, 'image_size' => $size, 'image_width' => $width, 'image_height' => $height,
-				'crop_width' => $cw, 'crop_height' => $ch, 'crop_x' => $cx, 'crop_y' => $cy, 'thumb' => $thumb, 'wmk' => $watermark, 'gray' => $effects, 'maxspace' => $maxspace, 'valid' => 1));
+				'crop_width' => $cw, 'crop_height' => $ch, 'crop_x' => $cx, 'crop_y' => $cy, 'thumb' => $thumb, 'wmk' => $watermark, 'gray' => $effects, 'maxspace' => $maxspace));
 		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($albumName) . ',' . db_quote($theme) . ',' . db_quote($cacheSize) . ')';
 		query($sql);
 	}
