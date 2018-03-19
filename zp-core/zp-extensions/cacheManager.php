@@ -251,13 +251,12 @@ class cacheManager {
 						}
 						?>
 						<div class="<?php echo $class; ?>">
-							<input type="<?php echo $inputclass; ?>" size="25" name="cacheManager_theme_<?php echo $key; ?>" value="<?php echo $theme; ?>" />
-							<input type="hidden" name="cacheManager_subtype_<?php echo $key; ?>" value="<?php echo $subtype; ?>" />
+							<input type="<?php echo $inputclass; ?>" size="25" name="cacheManager[<?php echo $key; ?>][theme]" value="<?php echo $theme; ?>" />
+							<input type="hidden" name="cacheManager[<?php echo $key; ?>][subtype]" value="<?php echo $subtype; ?>" />
 							<?php
 							if ($theme) {
 								?>
-								<span class="displayinlineright"><?php echo gettext('Delete'); ?> <input type="checkbox" name="cacheManager_delete_<?php echo $key; ?>" value="1" /></span>
-								<input type="hidden" name="cacheManager_valid_<?php echo $key; ?>" value="1" />
+								<span class="displayinlineright"><?php echo gettext('Delete'); ?> <input type="checkbox" name="cacheManager[<?php echo $key; ?>][delete]" value="1" /></span>
 								<?php
 							}
 							?>
@@ -272,7 +271,7 @@ class cacheManager {
 									$v = '';
 								}
 								?>
-								<span class="nowrap"><?php echo $display; ?> <input type="textbox" size="2" name="cacheManager_<?php echo $what; ?>_<?php echo $key; ?>" value="<?php echo $v; ?>" /></span>
+								<span class="nowrap"><?php echo $display; ?> <input type="textbox" size="2" name="cacheManager[<?php echo $key; ?>][<?php echo $what; ?>]" value="<?php echo $v; ?>" /></span>
 								<?php
 							}
 							if (isset($cache['wmk'])) {
@@ -281,11 +280,11 @@ class cacheManager {
 								$wmk = '';
 							}
 							?>
-							<span class="nowrap"><?php echo gettext('Watermark'); ?> <input type="textbox" size="20" name="cacheManager_wmk_<?php echo $key; ?>" value="<?php echo $wmk; ?>" /></span>
+							<span class="nowrap"><?php echo gettext('Watermark'); ?> <input type="textbox" size="20" name="cacheManager[<?php echo $key; ?>][wmk]" value="<?php echo $wmk; ?>" /></span>
 							<br />
-							<span class="nowrap"><?php echo gettext('MaxSpace'); ?><input type="checkbox"  name="cacheManager_maxspace_<?php echo $key; ?>" value="1"<?php if (isset($cache['maxspace']) && $cache['maxspace']) echo ' checked="checked"'; ?> /></span>
-							<span class="nowrap"><?php echo gettext('Thumbnail'); ?><input type="checkbox"  name="cacheManager_thumb_<?php echo $key; ?>" value="1"<?php if (isset($cache['thumb']) && $cache['thumb']) echo ' checked="checked"'; ?> /></span>
-							<span class="nowrap"><?php echo gettext('Grayscale'); ?><input type="checkbox"  name="cacheManager_gray_<?php echo $key; ?>" value="gray"<?php if (isset($cache['gray']) && $cache['gray']) echo ' checked="checked"'; ?> /></span>
+							<span class="nowrap"><?php echo gettext('MaxSpace'); ?><input type="checkbox"  name="cacheManager[<?php echo $key; ?>][maxspace]" value="1"<?php if (isset($cache['maxspace']) && $cache['maxspace']) echo ' checked="checked"'; ?> /></span>
+							<span class="nowrap"><?php echo gettext('Thumbnail'); ?><input type="checkbox"  name="cacheManager[<?php echo $key; ?>][thumb]" value="1"<?php if (isset($cache['thumb']) && $cache['thumb']) echo ' checked="checked"'; ?> /></span>
+							<span class="nowrap"><?php echo gettext('Grayscale'); ?><input type="checkbox"  name="cacheManager[<?php echo $key; ?>][gray]" value="gray"<?php if (isset($cache['gray']) && $cache['gray']) echo ' checked="checked"'; ?> /></span>
 						</div>
 						<br />
 					</div>
@@ -305,16 +304,8 @@ class cacheManager {
 	 * @return string
 	 */
 	static function handleOptionSave($themename, $themealbum) {
-		$cache = array();
-		foreach ($_POST as $key => $value) {
-			preg_match('/^cacheManager_(.*)_(.*)/', $key, $matches);
-			if ($value && !empty($matches)) {
-				$cache[$matches[2]][$matches[1]] = sanitize(trim($value));
-			}
-		}
-
 		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager"');
-		foreach ($cache as $cacheimage) {
+		foreach ($_POST['cacheManager'] as $cacheimage) {
 			if (!isset($cacheimage['delete']) && count($cacheimage) > 1) {
 				$cacheimage['theme'] = preg_replace("/[\s\"\']+/", "-", $cacheimage['theme']);
 				$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`, `data`) VALUES ("cacheManager",' . db_quote(@$cacheimage['subtype']) . ',' . db_quote($cacheimage['theme']) . ',' . db_quote(serialize($cacheimage)) . ')';
