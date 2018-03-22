@@ -84,12 +84,15 @@ if (isset($_GET['action'])) {
 			break;
 		case 'saveoptions':
 			XSRFdefender('saveadmin');
+
 			$notify = $returntab = $msg = '';
+			$newuserid = @$_POST['newuser'];
 			if (isset($_POST['saveadminoptions'])) {
 				if (isset($_POST['checkForPostTruncation'])) {
+					$userlist = $_POST['user'];
 					if (isset($_POST['alter_enabled']) || sanitize_numeric($_POST['totaladmins']) > 1 ||
 									trim(sanitize($_POST['adminuser0'])) != $_zp_current_admin_obj->getUser() ||
-									isset($_POST['0-newuser'])) {
+									$newuserid === 0) {
 						if (!$_zp_current_admin_obj->reset) {
 							admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 						}
@@ -102,15 +105,15 @@ if (isset($_GET['action'])) {
 						$updated = false;
 						$error = false;
 						$userobj = NULL;
-						$pass = trim(sanitize($_POST['pass' . $i], 0));
-						$user = trim(sanitize($_POST['adminuser' . $i]));
+						$pass = trim(sanitize($userlist[$i]['pass'], 0));
+						$user = trim(sanitize($userlist[$i]['adminuser']));
 						if (empty($user) && !empty($pass)) {
 							$notify = '?mismatch=nothing';
 							$error = true;
 						}
 						if (!empty($user)) {
 							$nouser = false;
-							if (isset($_POST[$i . '-newuser'])) {
+							if ($i === $newuserid) {
 								$newuser = $user;
 								$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 								if (is_object($userobj)) {
@@ -127,31 +130,31 @@ if (isset($_GET['action'])) {
 								$userobj = Zenphoto_Authority::newAdministrator($user);
 							}
 
-							if (isset($_POST[$i . '-admin_name'])) {
-								$admin_n = trim(sanitize($_POST[$i . '-admin_name']));
+							if (isset($userlist[$i]['admin_name'])) {
+								$admin_n = trim(sanitize($userlist[$i]['admin_name']));
 								if ($admin_n != $userobj->getName()) {
 									markUpdated($user);
 									$userobj->setName($admin_n);
 								}
 							}
-							if (isset($_POST[$i . '-admin_email'])) {
-								$admin_e = trim(sanitize($_POST[$i . '-admin_email']));
+							if (isset($userlist[$i]['admin_email'])) {
+								$admin_e = trim(sanitize($userlist[$i]['admin_email']));
 								if ($admin_e != $userobj->getEmail()) {
 									markUpdated($user);
 									$userobj->setEmail($admin_e);
 								}
 							}
 							if (empty($pass)) {
-								if ($newuser || @$_POST['passrequired' . $i]) {
+								if ($newuser || @$userlist[$i]['passrequired']) {
 									$msg = sprintf(gettext('%s password may not be empty!'), $admin_n);
 									$notify = '?mismatch=format&error=' . urlencode($msg);
 									$error = true;
 								}
 							} else {
-								if (isset($_POST['disclose_password' . $i]) && $_POST['disclose_password' . $i] == 'on') {
+								if (isset($userlist[$i]['disclose_password']) && $userlist[$i]['disclose_password'] == 'on') {
 									$pass2 = $pass;
 								} else {
-									$pass2 = trim(sanitize(@$_POST['pass_r' . $i], 0));
+									$pass2 = trim(sanitize(@$userlist[$i]['pass_r'], 0));
 								}
 								if ($pass == $pass2) {
 									$pass2 = $userobj->getPass($pass);
@@ -166,23 +169,23 @@ if (isset($_GET['action'])) {
 									$error = true;
 								}
 							}
-							if (isset($_POST[$i . '-challengephrase'])) {
-								$challenge = sanitize($_POST[$i . '-challengephrase']);
-								$response = sanitize($_POST[$i . '-challengeresponse']);
+							if (isset($userlist[$i]['challengephrase'])) {
+								$challenge = sanitize($userlist[$i]['challengephrase']);
+								$response = sanitize($userlist[$i]['challengeresponse']);
 								$info = $userobj->getChallengePhraseInfo();
 								if ($challenge != $info['challenge'] || $response != $info['response']) {
 									$userobj->setChallengePhraseInfo($challenge, $response);
 									markUpdated($user);
 								}
 							}
-							$lang = sanitize($_POST[$i . '-admin_language'], 3);
+							$lang = sanitize($userlist[$i]['admin_language'], 3);
 							if ($lang != $userobj->getLanguage()) {
 								$userobj->setLanguage($lang);
 								markUpdated($user);
 							}
 							$rights = 0;
-							if ($alter && (!isset($_POST[$i . 'group']) || $_POST[$i . 'group'] == array(''))) {
-								if (isset($_POST[$i . '-rightsenabled'])) {
+							if ($alter && (!isset($userlist[$i]['group']) || $userlist[$i]['group'] == array(''))) {
+								if (isset($userlist[$i]['rightsenabled'])) {
 									$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
 									$rights = processRights($i);
 
@@ -207,11 +210,11 @@ if (isset($_GET['action'])) {
 							} else {
 								$userobj->setObjects($oldobjects = NULL); // indicates no change
 							}
-							if (isset($_POST['delinkAlbum_' . $i])) {
+							if (isset($userlist[$i]['delinkAlbum'])) {
 								$userobj->setAlbum(NULL);
 								markUpdated($user);
 							}
-							if (isset($_POST['createAlbum_' . $i])) {
+							if (isset($userlist[$i]['createAlbum'])) {
 								$userobj->createPrimealbum();
 								markUpdated($user);
 							}
@@ -639,22 +642,22 @@ echo $refresh;
 													}
 													?>
 													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-															$('#show_<?php echo $id; ?>').val(visible);
-															toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
+																$('#show_<?php echo $id; ?>').val(visible);
+																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
 															 <?php
 															 if (empty($userid)) {
 																 ?>
-															<input type="hidden" name="<?php echo $id ?>-newuser" value="1" />
+															<input type="hidden" name="newuser" value="<?php echo $id ?>" />
 
 															<em><?php echo gettext("New User"); ?></em>
-															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
+															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="user[<?php echo $id; ?>][adminuser]" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																				 $('#adminuser<?php echo $id; ?>').focus();" />
+																						 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
 															?>
-															<input type="hidden" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id ?>" value="<?php echo $userid ?>" />
+															<input type="hidden" id="adminuser<?php echo $id; ?>" name="user[<?php echo $id; ?>][adminuser]" value="<?php echo $userid ?>" />
 															<?php
 															echo '<strong>' . $userid . '</strong> ';
 															if (!empty($userid)) {
@@ -668,7 +671,7 @@ echo $refresh;
 													if (!$alterrights || !$userobj->getID()) {
 														if ($pending) {
 															?>
-															<input type="checkbox" name="<?php echo $id ?>-confirmed" value="<?php
+															<input type="checkbox" name="user[<?php echo $id ?>][confirmed]" value="<?php
 															echo NO_RIGHTS;
 															echo $alterrights;
 															?>" />
@@ -676,7 +679,7 @@ echo $refresh;
 																		 <?php
 																	 } else {
 																		 ?>
-															<input type = "hidden" name="<?php echo $id ?>-confirmed"	value="<?php echo NO_RIGHTS; ?>" />
+															<input type = "hidden" name="user[<?php echo $id ?>][confirmed]"	value="<?php echo NO_RIGHTS; ?>" />
 															<?php
 														}
 														?>
@@ -754,24 +757,22 @@ echo $refresh;
 															?>
 															<p>
 																<?php echo gettext('Challenge phrase') ?>
-																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="<?php echo $id ?>-challengephrase"
-																			 value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
+																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="user[<?php echo $id ?>][challengephrase]" value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
 																<br />
 																<?php echo gettext('Challenge response') ?>
-																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengeresponse-<?php echo $id ?>" name="<?php echo $id ?>-challengeresponse"
-																			 value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
+																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="<?php echo $id ?>-challengeresponse" name="user[<?php echo $id ?>][challengeresponse]" value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
 
 															</p>
 															<?php
 														}
 														?>
 														<?php echo gettext("Full name"); ?>
-														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
+														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="user[<?php echo $id ?>][admin_name]"
 																	 value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
 
 														<p>
 															<?php echo gettext("Email"); ?>
-															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
+															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="user[<?php echo $id ?>][admin_email]"
 																		 value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
 														</p>
 														<?php
@@ -782,7 +783,7 @@ echo $refresh;
 																	?>
 																	<p>
 																		<label>
-																			<input type="checkbox" name="createAlbum_<?php echo $id ?>" id="createAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
+																			<input type="checkbox" name="user[<?php echo $id ?>][createAlbum]" id="createAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
 																			<?php echo gettext('create primary album'); ?>
 																		</label>
 																	</p>
@@ -792,7 +793,7 @@ echo $refresh;
 																?>
 																<p>
 																	<label>
-																		<input type="checkbox" name="delinkAlbum_<?php echo $id ?>" id="delinkAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
+																		<input type="checkbox" name="user[<?php echo $id ?>][delinkAlbum]" id="delinkAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
 																		<?php printf(gettext('delink primary album <strong>%1$s</strong>(<em>%2$s</em>)'), $primeAlbum->getTitle(), $primeAlbum->name); ?>
 																	</label>
 																</p>
@@ -806,7 +807,7 @@ echo $refresh;
 														?>
 														<p>
 															<label for="admin_language_<?php echo $id ?>"><?php echo gettext('Language:'); ?></label></p>
-														<input type="hidden" name="<?php echo $id ?>-admin_language" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
+														<input type="hidden" name="user[<?php echo $id ?>][admin_language]" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
 														<ul class="flags" style="margin-left: 0px;">
 															<?php
 															$_languages = generateLanguageList();
@@ -831,9 +832,9 @@ echo $refresh;
 														<?php
 														printAdminRightsTable($id, $background, $local_alterrights, $userobj->getRights());
 														if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-															$album_alter_rights = $local_alterrights;
+															$alter_rights = $local_alterrights;
 														} else {
-															$album_alter_rights = ' disabled="disabled"';
+															$alter_rights = ' disabled="disabled"';
 														}
 														if ($ismaster) {
 															echo '<p>' . gettext("The <em>master</em> account has full rights to all objects.") . '</p>';
@@ -843,9 +844,14 @@ echo $refresh;
 															} else {
 																$flag = array();
 															}
-															printManagedObjects('albums', $albumlist, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
+															printManagedObjects('albums', $albumlist, $alter_rights, $userobj, $id, gettext('user'), $flag);
 															if (extensionEnabled('zenpage')) {
 																$pagelist = array();
+																if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
+																	$alter_rights = $local_alterrights;
+																} else {
+																	$alter_rights = ' disabled="disabled"';
+																}
 																$pages = $_zp_CMS->getPages(false);
 																foreach ($pages as $page) {
 																	if (!$page['parentid']) {
@@ -857,8 +863,13 @@ echo $refresh;
 																foreach ($categories as $category) {
 																	$newslist[get_language_string($category['title'])] = $category['titlelink'];
 																}
-																printManagedObjects('news', $newslist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
-																printManagedObjects('pages', $pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
+																printManagedObjects('news', $newslist, $alter_rights, $userobj, $id, gettext('user'), NULL);
+																if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+																	$alter_rights = $local_alterrights;
+																} else {
+																	$alter_rights = ' disabled="disabled"';
+																}
+																printManagedObjects('pages', $pagelist, $alter_rights, $userobj, $id, gettext('user'), NULL);
 															}
 														}
 														?>

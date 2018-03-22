@@ -102,8 +102,8 @@ class user_groups {
 	 */
 	static function save_admin($updated, $userobj, $i, $alter) {
 		if ($alter && $userobj->getValid()) {
-			if (isset($_POST[$i . 'group'])) {
-				$newgroups = sanitize($_POST[$i . 'group']);
+			if (isset($_POST['user'][$i]['group'])) {
+				$newgroups = sanitize($_POST['user'][$i]['group']);
 				$updated = self::merge_rights($userobj, $newgroups, self::getPrimeObjects($userobj)) || $updated;
 			}
 		}
@@ -159,7 +159,7 @@ class user_groups {
 			} else {
 				$display = $user['user'];
 			}
-			$grouppart .= '<label title="' . html_encode($user['other_credentials']) . $type . '"' . $highlight . '><input type="checkbox" class="' . $class . '" name="' . $i . 'group[]" id="' . $user['user'] . '_' . $i . '" value="' . $user['user'] . '" onclick="groupchange' . $i . '(' . $case . ');"' . $checked . ' />' . html_encode($display) . '</label>' . "\n";
+			$grouppart .= '<label title="' . html_encode($user['other_credentials']) . $type . '"' . $highlight . '><input type="checkbox" class="' . $class . '" name="user[' . $i . '][group][]" id="' . $user['user'] . '_' . $i . '" value="' . $user['user'] . '" onclick="groupchange' . $i . '(' . $case . ');"' . $checked . ' />' . html_encode($display) . '</label>' . "\n";
 		}
 
 		$grouppart .= "</ul>\n";

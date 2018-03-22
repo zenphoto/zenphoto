@@ -74,7 +74,10 @@ class userAddressFields extends fieldExtender {
 	}
 
 	static function adminEdit($html, $userobj, $i, $background, $current) {
-		return parent::_adminEdit($html, $userobj, $i, $background, $current, self::fields());
+		if ($userobj->getValid()) {
+			return parent::_adminEdit($html, $userobj, $i, $background, $current, self::fields());
+		}
+		return $html;
 	}
 
 	static function mediaItemSave($object, $i) {

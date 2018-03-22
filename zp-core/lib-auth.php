@@ -1382,8 +1382,13 @@ class _Authority {
 		} else {
 			$x = '';
 		}
+		if (is_numeric($id)) {
+			$format = 'user[%2$s][%1$s]';
+		} else {
+			$format = '%2$s';
+		}
 		?>
-		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" class="inputbox"/>
+		<input type="hidden" name="<?php printf($format, 'passrequired', $id); ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" class="inputbox"/>
 		<p>
 			<label for="pass<?php echo $id; ?>_text" id="strength<?php echo $id; ?>"><?php echo gettext("Password") . $flag; ?></label>
 			<span class="disclose_password_show" style="float: right !important; padding-right: 15px;">
@@ -1392,15 +1397,15 @@ class _Authority {
 				<input type="checkbox"
 							 class="disclose_password"
 							 style="float: right !important;"
-							 name="disclose_password<?php echo $id; ?>"
+							 name="<?php printf($format, 'disclose_password', $id); ?>"
 							 id="disclose_password<?php echo $id; ?>"
 							 onclick="passwordClear('<?php echo $id; ?>');
-									 togglePassword('<?php echo $id; ?>');">
+											 togglePassword('<?php echo $id; ?>');">
 			</span>
 
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
 				<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-							 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
+							 name="<?php printf($format, 'pass', $id); ?>" value="<?php echo $x; ?>"
 							 id="pass<?php echo $id; ?>"
 							 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 							 onclick="passwordClear('<?php echo $id; ?>');"
@@ -1412,7 +1417,7 @@ class _Authority {
 		<p class="password_field password_field_<?php echo $id; ?>">
 			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-						 name="pass_r<?php echo $id ?>" value="<?php echo $x; ?>"
+						 name="<?php printf($format, 'pass_r', $id); ?>" value="<?php echo $x; ?>"
 						 id="pass_r<?php echo $id; ?>"
 						 disabled="disabled"
 						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"

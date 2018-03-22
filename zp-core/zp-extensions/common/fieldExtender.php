@@ -184,7 +184,7 @@ class fieldExtender {
 	 * @param type $instance
 	 * @param type $fields
 	 */
-	static protected function _saveHandler($obj, $instance, $field) {
+	static protected function _saveHandler($obj, $instance, $field, $userfield = false) {
 		if (array_key_exists('edit', $field)) {
 			$action = $field['edit'];
 			if (is_null($action)) {
@@ -202,13 +202,21 @@ class fieldExtender {
 				$newdata = call_user_func($field['function'], $obj, $instance, $field, 'save');
 				break;
 			default:
-				if (!is_null($instance)) {
-					$instance = '_' . $instance;
-				}
-				if (isset($_POST[$field['name'] . $instance])) {
-					$newdata = sanitize($_POST[$field['name'] . $instance]);
+
+				$newdata = NULL;
+				if ($userfield) {
+					if (isset($_POST[$userfield][$instance][$field['name']])) {
+						$newdata = sanitize($_POST['user'][$instance][$field['name']]);
+					}
 				} else {
-					$newdata = NULL;
+					if (!is_null($instance)) {
+						$instance = '_' . $instance;
+					}
+					if (isset($_POST[$field['name'] . $instance])) {
+						$newdata = sanitize($_POST[$field['name'] . $instance]);
+					} else {
+
+					}
 				}
 		}
 
@@ -249,8 +257,6 @@ class fieldExtender {
 				}
 				break;
 			default:
-				if ($instance)
-					$instance = '_' . $instance;
 				$item = html_encode($obj->get($field['name']));
 				$formatted = false;
 				break;
@@ -272,7 +278,7 @@ class fieldExtender {
 			foreach ($fields as $field) {
 				if ($field['table'] == 'administrators') {
 					$olddata = $userobj->get($field['name']);
-					$newdata = fieldExtender::_saveHandler($userobj, $i, $field);
+					$newdata = fieldExtender::_saveHandler($userobj, $i, $field, 'user');
 					if (!is_null($newdata))
 						$userobj->set($field['name'], $newdata);
 					if ($olddata != $newdata) {
@@ -306,9 +312,9 @@ class fieldExtender {
 						$html .= $item;
 					} else {
 						if (in_array(strtolower($field['type']), array('varchar', 'int', 'tinytext'))) {
-							$input .= '<input name = "' . $field['name'] . '_' . $i . '" type = "text" style="width:98%;" value = "' . $item . '" />';
+							$input .= '<input name = "user[' . $i . '][' . $field['name'] . ']" type = "text" style="width:98%;" value = "' . $item . '" />';
 						} else {
-							$input .= '<textarea name = "' . $field['name'] . '_' . $i . '" cols = "' . TEXTAREA_COLUMNS . '"rows = "1">' . $item . '</textarea>';
+							$input .= '<textarea name = "user[' . $i . '][' . $field['name'] . ']" cols = "' . TEXTAREA_COLUMNS . '"rows = "1">' . $item . '</textarea>';
 						}
 					}
 					$input .='</fieldset>';

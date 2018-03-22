@@ -1324,16 +1324,23 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		$cv = array_flip($currentValue);
 		foreach ($list as $key => $item) {
-			$listitem = $prefix . postIndexEncode($item);
+			$listitem = preg_replace('~[\[\]]~', '_', $prefix) . postIndexEncode($item);
 			if ($localize) {
 				$display = $key;
 			} else {
 				$display = $item;
 			}
-			if ($postArray) {
-				$name = $prefix . 'list[]';
-			} else {
-				$name = $listitem;
+			switch ((int) $postArray) {
+				case 0:
+					$namechecked = $name = $prefix . 'list[]';
+					break;
+				case 1:
+					$namechecked = $name = $listitem;
+					break;
+				case 2:
+					$name = $prefix . '[' . postIndexEncode($item) . ']';
+					$namechecked = $name . '[checked]';
+					break;
 			}
 			if (isset($cv[$item])) {
 				$checked = ' checked="checked"';
@@ -1343,7 +1350,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<li id="<?php echo $listitem; ?>_element">
 				<label class="displayinline">
-					<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $name; ?>" type="checkbox"<?php echo $checked; ?> value="<?php echo $item; ?>" <?php echo $alterrights; ?> />
+					<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $namechecked; ?>" type="checkbox"<?php echo $checked; ?> value="<?php echo $item; ?>" <?php echo $alterrights; ?> />
 					<?php echo html_encode($display); ?>
 				</label>
 				<?php
@@ -1365,7 +1372,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							}
 							?>
 							<label class="displayinlineright">
-								<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem) . '_' . $box['name'] . $unique; ?>"<?php echo $class; ?> name="<?php echo $listitem . '_' . $box['name']; ?>"
+								<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem) . '_' . $box['name'] . $unique; ?>"<?php echo $class; ?> name="<?php echo $name . '[' . $box['name'] . ']'; ?>"
 											 value="<?php echo html_encode($box['value']); ?>" <?php
 											 if ($box['checked']) {
 												 echo ' checked="checked"';
@@ -1376,7 +1383,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 						} else {
 							?>
-							<input type="hidden" id="<?php echo strtolower($listitem . '_' . $box['name']); ?>" name="<?php echo $listitem . '_' . $box['name']; ?>"<?php echo $class; ?>
+							<input type="hidden" id="<?php echo strtolower($listitem . '_' . $box['name']); ?>" name="<?php echo $name . '[' . $box['name'] . ']'; ?>"<?php echo $class; ?>
 										 value="<?php echo html_encode($box['value']); ?>" />
 										 <?php
 									 }
@@ -3632,8 +3639,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<?php
 			$element = 3;
 			$activeset = false;
+			$format = 'user[%2$s][%1$s]';
 			?>
-			<input type="checkbox" name="<?php echo $id; ?>-rightsenabled" class="user-<?php echo $id; ?>" value="1" checked="checked" <?php echo $alterrights; ?> style="display:none" />
+			<input type="checkbox" name="<?php printf($format, 'rightsenabled', $id); ?>" class="user-<?php echo $id; ?>" value="1" checked="checked" <?php echo $alterrights; ?> style="display:none" />
 			<?php
 			foreach ($rightslist as $rightselement => $right) {
 				if (!empty($right['set'])) {
@@ -3651,17 +3659,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 						?>
 						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
-							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>" value="<?php echo $right['value']; ?>"<?php
-							if ($rights & $right['value'])
-								echo ' checked="checked"';
-							echo $alterrights;
-							?> /> <?php echo $right['name']; ?>
+							<input type="checkbox" name="<?php printf($format, $rightselement, $id); ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>" value="<?php echo $right['value']; ?>"<?php
+				if ($rights & $right['value'])
+					echo ' checked="checked"';
+				echo $alterrights;
+						?> /> <?php echo $right['name']; ?>
 						</label>
 						<?php
 					} else {
 						if ($rights & $right['value']) {
 							?>
-							<input type="hidden" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>" />
+							<input type="hidden" name="<?php printf($format, $rightselement, $id); ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>" />
 							<?php
 						}
 					}
@@ -3750,7 +3758,6 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 			}
 			$text = gettext("Managed albums:");
 			$simplename = $objectname = gettext('Albums');
-			$prefix = 'managed_albums_list_' . $prefix_id . '_';
 			break;
 		case 'news':
 			if ($rights & (MANAGE_ALL_NEWS_RIGHTS | ADMIN_RIGHTS)) {
@@ -3780,7 +3787,6 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 			$text = gettext("Managed news categories:");
 			$simplename = gettext('News');
 			$objectname = gettext('News categories');
-			$prefix = 'managed_news_list_' . $prefix_id . '_';
 			break;
 		case 'pages':
 			if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
@@ -3808,10 +3814,10 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 			}
 			$text = gettext("Managed pages:");
 			$simplename = $objectname = gettext('Pages');
-			$prefix = 'managed_pages_list_' . $prefix_id . '_';
+
 			break;
 	}
-
+	$prefix = 'managed_' . $type . '_list_' . $prefix_id . '_';
 	if (empty($alterrights)) {
 		$hint = sprintf(gettext('Select one or more %1$s for the %2$s to manage.'), $simplename, $kind) . ' ';
 		if ($kind == gettext('user')) {
@@ -3833,8 +3839,8 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 		<div id="<?php echo $prefix ?>" style="display:none;">
 			<ul class="albumchecklist">
 				<?php
-				generateUnorderedListFromArray($cv, $cv, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra);
-				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra2);
+				generateUnorderedListFromArray($cv, $cv, 'user[' . $prefix_id . '][managed][' . $type . ']', $alterrights, true, true, 'user-' . $prefix_id, $extra, 2);
+				generateUnorderedListFromArray(array(), $rest, 'user[' . $prefix_id . '][managed][' . $type . ']', $alterrights, true, true, 'user-' . $prefix_id, $extra2, 2);
 				?>
 			</ul>
 			<span class="floatright"><?php echo $legend; ?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -3851,13 +3857,14 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
  * @return bit
  */
 function processRights($i) {
-	if (isset($_POST[$i . '-confirmed'])) {
+	$userdata = $_POST['user'][$i];
+	if (isset($userdata['confirmed'])) {
 		$rights = NO_RIGHTS;
 	} else {
 		$rights = 0;
 	}
 	foreach (Zenphoto_Authority::getRights() as $name => $right) {
-		if (isset($_POST[$i . '-' . $name])) {
+		if (isset($userdata[$name])) {
 			$rights = $rights | $right['value'] | NO_RIGHTS;
 		}
 	}
@@ -3894,123 +3901,85 @@ function compareObjects($objectsA, $objectsB) {
 
 function processManagedObjects($i, &$rights) {
 	$objects = array();
+
 	$albums = array();
 	$pages = array();
 	$news = array();
-	$l_a = strlen($prefix_a = 'managed_albums_list_' . $i . '_');
-	$l_p = strlen($prefix_p = 'managed_pages_list_' . $i . '_');
-	$l_n = strlen($prefix_n = 'managed_news_list_' . $i . '_');
 
-	foreach ($_POST as $key => $value) {
-		if (substr($key, 0, $l_a) == $prefix_a) { //albums
-			$key = sanitize(substr($key, $l_a));
-			if (preg_match('/(.*)(_edit|_view|_upload|_name)$/', $key, $matches)) {
-				$key = postIndexDecode($matches[1]);
-				if (array_key_exists($key, $albums)) {
-					switch ($matches[2]) {
-						case '_edit':
-							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_MEMBER;
-							break;
-						case '_upload':
-							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_MEMBER;
-							break;
-						case '_view':
-							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW | MANAGED_OBJECT_MEMBER;
-							break;
-						case '_name':
-							$albums[$key]['name'] = $value;
-							break;
+	if (isset($_POST['user'][$i]['managed'])) {
+		$managedlist = $_POST['user'][$i]['managed'];
+
+		foreach (array('albums', 'pages', 'news') as $class) {
+			if (isset($managedlist[$class])) {
+				$container = array();
+				foreach ($managedlist[$class] as $postkey => $managed) {
+					if (isset($managed['checked'])) {
+						$key = postIndexDecode($postkey);
+						$container[$key] = array('data' => $key, 'name' => $managed['name'], 'type' => $class, 'edit' => MANAGED_OBJECT_MEMBER);
+						if (array_key_exists('edit', $managed)) {
+							$container[$key]['edit'] = $container[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
+						}
+						if (array_key_exists('upload', $managed)) {
+							$container[$key]['edit'] = $container[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD;
+						}
+						if (array_key_exists('view', $managed)) {
+							$container[$key]['edit'] = $container[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
+						}
 					}
 				}
-			} else if ($value) {
-				$key = postIndexDecode($key);
-				$albums[$key] = array('data' => $key, 'name' => '', 'type' => 'albums', 'edit' => MANAGED_OBJECT_MEMBER);
 			}
-		}
-		if (substr($key, 0, $l_p) == $prefix_p) { //pages
-			$key = sanitize(substr($key, $l_p));
-			if (preg_match('/(.*)(_edit|_view|_name)$/', $key, $matches)) {
-				$key = postIndexDecode($matches[1]);
-				if (array_key_exists($key, $pages)) {
-					switch ($matches[2]) {
-						case '_edit':
-							$pages[$key]['edit'] = $pages[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_MEMBER;
-							break;
-						case '_view':
-							$pages[$key]['edit'] = $pages[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW | MANAGED_OBJECT_MEMBER;
-							break;
-						case '_name':
-							$pages[$key]['name'] = $value;
-							break;
-					}
-				}
-			} else if ($value) {
-				$key = postIndexDecode($key);
-				$pages[$key] = array('data' => $key, 'name' => '', 'type' => 'pages', 'edit' => MANAGED_OBJECT_MEMBER);
+
+			switch ($class) {
+				case 'albums':
+					$albums = $container;
+					break;
+				case 'pages':
+					$pages = $container;
+					break;
+				case 'news':
+					$news = $container;
+					break;
 			}
 		}
 
-		if (substr($key, 0, $l_n) == $prefix_n) { //news
-			$key = sanitize(substr($key, $l_n));
-			if (preg_match('/(.*)(_edit|_view|_name)$/', $key, $matches)) {
-				$key = postIndexDecode($matches[1]);
-				if (array_key_exists($key, $news)) {
-					switch ($matches[2]) {
-						case '_edit':
-							$news[$key]['edit'] = $news[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_MEMBER;
-							break;
-						case '_view':
-							$news[$key]['edit'] = $news[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW | MANAGED_OBJECT_MEMBER;
-							break;
-						case '_name':
-							$news[$key]['name'] = $value;
-							break;
-					}
-				}
-			} else if ($value) {
-				$key = postIndexDecode($key);
-				$news[$key] = array('data' => $key, 'name' => '', 'type' => 'news', 'edit' => MANAGED_OBJECT_MEMBER);
+		foreach ($albums as $key => $analbum) {
+			unset($albums[$key]);
+			$albums[] = $analbum;
+		}
+		if (empty($albums)) {
+			if (!($rights & MANAGE_ALL_ALBUM_RIGHTS)) {
+				$rights = $rights & ~ALBUM_RIGHTS;
+			}
+		} else {
+			$rights = $rights | ALBUM_RIGHTS;
+			if ($rights & (MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) {
+				$albums = array();
 			}
 		}
-	}
+		if (empty($pages)) {
+			if (!($rights & MANAGE_ALL_PAGES_RIGHTS)) {
+				$rights = $rights & ~ZENPAGE_PAGES_RIGHTS;
+			}
+		} else {
+			$rights = $rights | ZENPAGE_PAGES_RIGHTS;
+			if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
+				$pages = array();
+			}
+		}
 
-	foreach ($albums as $key => $analbum) {
-		unset($albums[$key]);
-		$albums[] = $analbum;
-	}
-	if (empty($albums)) {
-		if (!($rights & MANAGE_ALL_ALBUM_RIGHTS)) {
-			$rights = $rights & ~ALBUM_RIGHTS;
+		if (empty($news)) {
+			if (!($rights & MANAGE_ALL_NEWS_RIGHTS)) {
+				$rights = $rights & ~ZENPAGE_NEWS_RIGHTS;
+			}
+		} else {
+			$rights = $rights | ZENPAGE_NEWS_RIGHTS;
+			if ($rights & (MANAGE_ALL_NEWS_RIGHTS | ADMIN_RIGHTS)) {
+				$news = array();
+			}
 		}
-	} else {
-		$rights = $rights | ALBUM_RIGHTS;
-		if ($rights & (MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) {
-			$albums = array();
-		}
-	}
-	if (empty($pages)) {
-		if (!($rights & MANAGE_ALL_PAGES_RIGHTS)) {
-			$rights = $rights & ~ZENPAGE_PAGES_RIGHTS;
-		}
-	} else {
-		$rights = $rights | ZENPAGE_PAGES_RIGHTS;
-		if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
-			$pages = array();
-		}
-	}
 
-	if (empty($news)) {
-		if (!($rights & MANAGE_ALL_NEWS_RIGHTS)) {
-			$rights = $rights & ~ZENPAGE_NEWS_RIGHTS;
-		}
-	} else {
-		$rights = $rights | ZENPAGE_NEWS_RIGHTS;
-		if ($rights & (MANAGE_ALL_NEWS_RIGHTS | ADMIN_RIGHTS)) {
-			$news = array();
-		}
+		$objects = array_merge($albums, $pages, $news);
 	}
-
-	$objects = array_merge($albums, $pages, $news);
 	return $objects;
 }
 
@@ -5627,7 +5596,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
 										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
-			 <?php echo CLIPBOARD; ?>
+		 <?php echo CLIPBOARD; ?>
 	</a>
 	<?php
 }
