@@ -75,17 +75,17 @@ class debug {
 
 	function getOptionsSupported() {
 		$list = array(
-				gettext('Display PHP errors.') => 'DISPLAY_ERRORS',
-				gettext('Log 404 error processing debug information.') => '404',
-				gettext('Log start/finish of exif processing.') => 'EXIF',
-				gettext('Log the <em>EXPLAIN</em> output from SQL SELECT queries.') => 'EXPLAIN_SELECTS',
-				gettext('Log filter application sequence.') => 'FILTERS',
-				gettext('Log image processing debug information.') => 'IMAGE',
-				gettext('Log language selection processing.') => 'LOCALE',
-				gettext('Log admin saves and login attempts.') => 'LOGIN',
-				gettext('Log plugin load sequence.') => 'PLUGINS',
-				gettext('Log Feed issues.') => 'FEED',
-				gettext('Log Managaed Objects changes.') => 'OBJECTS'
+				gettext('Display PHP errors') => 'DISPLAY_ERRORS',
+				gettext('Log 404 error processing debug information') => '404',
+				gettext('Log start/finish of exif processing') => 'EXIF',
+				gettext('Log the <em>EXPLAIN</em> output from SQL SELECT queries') => 'EXPLAIN_SELECTS',
+				gettext('Log filter application sequence') => 'FILTERS',
+				gettext('Log image processing debug information') => 'IMAGE',
+				gettext('Log language selection processing') => 'LOCALE',
+				gettext('Log admin saves and login attempts') => 'LOGIN',
+				gettext('Log plugin load sequence') => 'PLUGINS',
+				gettext('Log Feed issues') => 'FEED',
+				gettext('Log Managaed Objects changes') => 'OBJECTS'
 		);
 		$options = array(
 				NULL => array('key' => 'debug_marks', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,

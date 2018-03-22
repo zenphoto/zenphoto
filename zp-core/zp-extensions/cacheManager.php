@@ -321,6 +321,9 @@ class cacheManager {
 
 		$albumName = '';
 		if (in_array(strtolower($theme), $themeList)) {
+			if (is_null($watermark)) {
+				$watermark = getThemeOption('image_watermark', $_set_theme_album, $theme);
+			}
 			if (is_null($effects)) {
 				if ($thumb) {
 					if (getThemeOption('thumb_gray', $_set_theme_album, $theme)) {

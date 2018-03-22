@@ -324,8 +324,8 @@ function getOptionContent() {
 								$languageAlt = $language;
 								if (empty($dirname)) {
 									$languageP = '';
-								} else if ($dirname == 'en_US') {
-									$languageP = ' <small>[100%]</small>';
+								} else if (!file_exists(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES')) {
+									$languageP = '';
 								} else {
 									$stat = explode("\n", file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/statistics.txt'));
 									preg_match_all('~([\d]+)~', $stat[1], $matches);

@@ -787,20 +787,6 @@ setOptionDefault('locale_disallowed', serialize($disallow));
 
 foreach ($_languages as $language => $dirname) {
 	if (!empty($dirname) && $dirname != 'en_US') {
-		$version = '';
-		$po = file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/zenphoto.po');
-		$i = strpos($po, 'Project-Id-Version:');
-		if ($i !== false) {
-			$j = strpos($po, '\n', $i);
-			if ($j !== false) {
-				$pversion = strtolower(substr($po, $i + 19, $j - $i - 19));
-				$vers = explode('.', trim(str_replace('zenphoto', '', $pversion)));
-				while (count($vers) < 3) {
-					$vers[] = 0;
-				}
-				$version = (int) $vers[0] . '.' . (int) $vers[1] . '.' . (int) $vers[2];
-			}
-		}
 		purgeOption('unsupported_' . $dirname);
 		if (!i18nSetLocale($dirname)) {
 			$unsupported[$dirname] = $dirname;
@@ -903,6 +889,8 @@ if ($deprecate) {
 		setupLog(gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
 	}
 }
+
+$_zp_gallery->garbageCollect();
 
 setOption('zenphotoCompatibilityPack_signature', serialize($compatibilityIs));
 ?>

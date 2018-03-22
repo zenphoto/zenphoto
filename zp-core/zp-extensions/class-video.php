@@ -61,7 +61,7 @@ class VideoObject_Options {
 						'desc' => gettext('Check to place watermark image on default thumbnail images.')),
 				gettext('Assume HTML5') => array('key' => 'class-video_html5', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 0.5,
-						'desc' => gettext('If checked <code>mp3</code> and <code>mp4</code> files will be handled withj the HTML5 <em>video</em> and <em>audio</em> tags. Otherwise these must be handled via a multimedia player plugin.')),
+						'desc' => gettext('If checked <code>mp3</code> and <code>mp4</code> files will be handled with the HTML5 <em>video</em> and <em>audio</em> tags. Otherwise these must be handled via a multimedia player plugin.')),
 				gettext('Quicktime video width') => array('key' => 'class-video_mov_w', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 2,
 						'desc' => ''),

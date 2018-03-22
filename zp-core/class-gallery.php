@@ -444,20 +444,22 @@ class Gallery {
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$tbl = $row['type'];
-					$dbtag = query_single_row("SELECT `id` FROM " . prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'", false);
+					$dbtag = query_single_row($sql = "SELECT `id` FROM " . prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'", false);
 					if (!$dbtag) {
-						$dead[] = $row['id'];
+						$dead[$row['id']]['tags'] = $row['tagid'];
 					}
-					$dbtag = query_single_row("SELECT `id` FROM " . prefix($tbl) . " WHERE `id`='" . $row['objectid'] . "'", false);
+					$dbtag = query_single_row($sql = "SELECT `id` FROM " . prefix($tbl) . " WHERE `id`='" . $row['objectid'] . "'", false);
 					if (!$dbtag) {
-						$dead[] = $row['id'];
+						$dead[$row['id']][$tbl] = $row['objectid'];
 					}
 				}
 				db_free_result($result);
 			}
 			if (!empty($dead)) {
-				$dead = array_unique($dead);
-				query('DELETE FROM ' . prefix('obj_to_tag') . ' WHERE `id`=' . implode(' OR `id`=', $dead));
+				if (DEBUG_OBJECTS) {
+					debugLogVar('Garbage Collect `obj_to_tag`', $dead);
+				}
+				query('DELETE FROM ' . prefix('obj_to_tag') . ' WHERE `id`=' . implode(' OR `id`=', array_keys($dead)));
 			}
 			// clean up admin_to_object
 			$dead = array();
@@ -465,42 +467,43 @@ class Gallery {
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					if (!$_zp_authority->validID($row['adminid'])) {
-						$dead[] = $row['id'];
+						$dead[$row['id']]['user'] = $row['adminid'];
 					}
 					$tbl = $row['type'];
-					$dbtag = query_single_row("SELECT `id` FROM " . prefix($tbl) . " WHERE `id`='" . $row['objectid'] . "'", false);
+					$dbtag = query_single_row($sql = "SELECT * FROM " . prefix($tbl) . " WHERE `id`='" . $row['objectid'] . "'", false);
 					if (!$dbtag) {
-						$dead[] = $row['id'];
+						$row['id'][$tbl] = $row['objectid'];
 					}
 				}
 				db_free_result($result);
 			}
 			if (!empty($dead)) {
-				$dead = array_unique($dead);
 				if (DEBUG_OBJECTS) {
 					debugLogVar('Garbage Collect `admin_to_object`', $dead);
 				}
-				query('DELETE FROM ' . prefix('admin_to_object') . ' WHERE `id`=' . implode(' OR `id`=', $dead));
+				query('DELETE FROM ' . prefix('admin_to_object') . ' WHERE `id`=' . implode(' OR `id`=', array_keys($dead)));
 			}
 			// clean up news2cat
 			$dead = array();
 			$result = query("SELECT * FROM " . prefix('news2cat'));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
-					$dbtag = query_single_row("SELECT `id` FROM " . prefix('news') . " WHERE `id`='" . $row['news_id'] . "'", false);
+					$dbtag = query_single_row($sql = "SELECT `id` FROM " . prefix('news') . " WHERE `id`='" . $row['news_id'] . "'", false);
 					if (!$dbtag) {
-						$dead[] = $row['id'];
+						$dead[$row['id']]['news'] = $row['news_id'];
 					}
-					$dbtag = query_single_row("SELECT `id` FROM " . prefix('news_categories') . " WHERE `id`='" . $row['cat_id'] . "'", false);
+					$dbtag = query_single_row($sql = "SELECT `id` FROM " . prefix('news_categories') . " WHERE `id`='" . $row['cat_id'] . "'", false);
 					if (!$dbtag) {
-						$dead[] = $row['id'];
+						$dead[$row['id']]['categories'] = $row['cat_id'];
 					}
 				}
 				db_free_result($result);
 			}
 			if (!empty($dead)) {
-				$dead = array_unique($dead);
-				query('DELETE FROM ' . prefix('news2cat') . ' WHERE `id`=' . implode(' OR `id`=', $dead));
+				if (DEBUG_OBJECTS) {
+					debugLogVar('Garbage Collect `news2cat`', $dead);
+				}
+				query('DELETE FROM ' . prefix('news2cat') . ' WHERE `id`=' . implode(' OR `id`=', array_keys($dead)));
 			}
 
 			// Check for the existence albums
