@@ -890,5 +890,7 @@ if ($deprecate) {
 	}
 }
 
+$_zp_gallery->garbageCollect();
+
 setOption('zenphotoCompatibilityPack_signature', serialize($compatibilityIs));
 ?>
