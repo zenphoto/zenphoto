@@ -28,7 +28,7 @@ $chmod = fileperms(dirname(dirname(__FILE__))) & 0666;
 $_initial_session_path = session_save_path();
 
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
-require_once(dirname(dirname(__FILE__)) . '/functions-common.php');
+require_once(dirname(dirname(__FILE__)) . '/functions.php');
 require_once(dirname(__FILE__) . '/setup-functions.php');
 
 //allow only one setup to run
@@ -325,10 +325,7 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		storeConfig($zp_cfg);
 		$updatezp_config = false;
 	}
-	require_once(dirname(dirname(__FILE__)) . '/functions.php');
 }
-
-
 
 if ($updatezp_config) {
 	storeConfig($zp_cfg);

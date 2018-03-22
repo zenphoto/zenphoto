@@ -1633,6 +1633,7 @@ function printAlbumThumbImage($alt, $class = NULL, $id = NULL) {
 	if ($id) {
 		$id = ' id="' . $id . '"';
 	}
+
 	$thumbobj = $_zp_current_album->getAlbumThumbImage();
 	$sizes = getSizeDefaultThumb($thumbobj);
 	$size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
@@ -1719,9 +1720,14 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	} else {
 		$sizing = $sizing . ' height="' . $height . '"';
 	}
+	if ($id) {
+		$id = ' id="' . $id . '"';
+	}
+	if ($class) {
+		$class = ' class="' . $class . '"';
+	}
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . html_encode(pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy))) . '"' . $sizing . ' alt="' . html_encode($alt) . '"' .
-						(($class) ? ' class="' . $class . '"' : '') . (($id) ? ' id="' . $id . '"' : '') . " />";
+		$html = '<img src="' . html_encode(pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy))) . '"' . $sizing . ' alt="' . html_encode($alt) . '"' . $class . $id . " />";
 		$html = zp_apply_filter('custom_album_thumb_html', $html);
 		echo $html;
 	} else {
@@ -2666,11 +2672,16 @@ function printDefaultSizedImage($alt, $class = NULL, $id = NULL) {
 	if (!empty($pwd)) {
 		$class .= " password_protected";
 	}
+	if ($id) {
+		$id = ' id="' . $id . '"';
+	}
+	if ($class) {
+		$class = ' class="' . $class . '"';
+	}
+
 	if (isImagePhoto()) { //Print images
 		$html = '<img src="' . html_encode(pathurlencode(getDefaultSizedImage())) . '" alt="' . html_encode($alt) . '"' .
-						' width="' . getDefaultWidth() . '" height="' . getDefaultHeight() . '"' .
-						(($class) ? " class=\"$class\"" : "") .
-						(($id) ? " id=\"$id\"" : "") . " />";
+						' width="' . getDefaultWidth() . '" height="' . getDefaultHeight() . '"' . $class . $id . " />";
 		$html = zp_apply_filter('standard_image_html', $html);
 		echo $html;
 	} else { // better be a plugin class then
@@ -2717,6 +2728,7 @@ function printImageThumb($alt, $class = NULL, $id = NULL) {
 	if ($id) {
 		$id = ' id="' . $id . '"';
 	}
+
 	$html = '<img src="' . html_encode(pathurlencode($url)) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . " />";
 	$html = zp_apply_filter('standard_image_thumb_html', $html);
 	echo $html;
@@ -2977,10 +2989,12 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		if ($height)
 			$sizing .= ' height="' . $height . '"';
 	}
-	if ($id)
+	if ($id) {
 		$id = ' id="' . $id . '"';
-	if ($class)
+	}
+	if ($class) {
 		$id .= ' class="' . $class . '"';
+	}
 	if (isImagePhoto() || $thumbStandin) {
 		$html = '<img src="' . html_encode(pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects))) . '"' .
 						' alt="' . html_encode($alt) . '"' .
@@ -3267,8 +3281,9 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 			$crop = (int) $crop && true;
 		}
 	}
-	if (!empty($class))
+	if (!empty($class)) {
 		$class = ' class="' . $class . '"';
+	}
 	echo "<ul" . $class . ">";
 	for ($i = 1; $i <= $number; $i++) {
 		switch ($option) {
@@ -3846,39 +3861,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-													// <!-- <![CDATA[
-													var within = <?php echo (int) $within; ?>;
-													function search_(way) {
-														within = way;
-														if (way) {
-															$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-														} else {
-															lastsearch = '';
-															$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-														}
-														$('#search_input').val('');
-													}
-													$('#search_form').submit(function () {
-														if (within) {
-															var newsearch = $.trim($('#search_input').val());
-															if (newsearch.substring(newsearch.length - 1) == ',') {
-																newsearch = newsearch.substr(0, newsearch.length - 1);
-															}
-															if (newsearch.length > 0) {
-																$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-															} else {
-																$('#search_input').val('<?php echo $searchwords; ?>');
-															}
-														}
-														return true;
-													});
-													function search_all() {
-														//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-														var check = $('#SEARCH_checkall').prop('checked');
-														$('.SEARCH_checkall').prop('checked', check);
-													}
+							// <!-- <![CDATA[
+							var within = <?php echo (int) $within; ?>;
+							function search_(way) {
+								within = way;
+								if (way) {
+									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+								} else {
+									lastsearch = '';
+									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+								}
+								$('#search_input').val('');
+							}
+							$('#search_form').submit(function () {
+								if (within) {
+									var newsearch = $.trim($('#search_input').val());
+									if (newsearch.substring(newsearch.length - 1) == ',') {
+										newsearch = newsearch.substr(0, newsearch.length - 1);
+									}
+									if (newsearch.length > 0) {
+										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+									} else {
+										$('#search_input').val('<?php echo $searchwords; ?>');
+									}
+								}
+								return true;
+							});
+							function search_all() {
+								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+								var check = $('#SEARCH_checkall').prop('checked');
+								$('.SEARCH_checkall').prop('checked', check);
+							}
 
-													// ]]> -->
+							// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
