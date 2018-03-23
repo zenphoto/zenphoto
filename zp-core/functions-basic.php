@@ -469,6 +469,7 @@ function ipProtectTag($album, $image, $args) {
 		$image = $image['name'];
 	}
 	$tag = sha1(HASH_SEED . $album . $image . serialize($args));
+	return $tag;
 }
 
 /**
