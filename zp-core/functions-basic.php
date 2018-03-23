@@ -647,7 +647,7 @@ function getImageArgs($set) {
 function getImageURI($args, $album, $image, $mtime) {
 	$cachefilename = getImageCacheFilename($album, $image, $args);
 	if (OPEN_IMAGE_CACHE && file_exists(SERVERCACHE . $cachefilename)) {
-		if ($cachefiletime = filemtime(SERVERCACHE . $cachefilename) >= $mtime) {
+		if (($cachefiletime = filemtime(SERVERCACHE . $cachefilename)) >= $mtime) {
 			return WEBPATH . '/' . CACHEFOLDER . imgSrcURI($cachefilename) . '?cached=' . $cachefiletime;
 		}
 	}
