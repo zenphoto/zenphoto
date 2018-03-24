@@ -30,6 +30,7 @@ class SearchEngine {
 	var $tagPattern;
 	var $language;
 	protected $dynalbumname = NULL;
+	protected $searchprivatetags = NULL;
 	protected $album = NULL;
 	protected $words;
 	protected $dates;
@@ -478,6 +479,7 @@ class SearchEngine {
 					if ($alb->loaded) {
 						$this->album = $alb;
 						$this->dynalbumname = $v;
+						$this->searchprivatetags = true;
 						$this->setSortType($this->album->getSortType('album'), 'albums');
 						$this->setSortDirection($this->album->getSortDirection('album'), 'albums');
 						$this->setSortType($this->album->getSortType(), 'images');
@@ -536,6 +538,7 @@ class SearchEngine {
 	function setAlbum($alb) {
 		$this->album = $alb;
 		$this->dynalbumname = $alb->name;
+		$this->searchprivatetags = true;
 		$this->setSortType($this->album->getSortType('album'), 'albums');
 		$this->setSortDirection($this->album->getSortDirection('album'), 'albums');
 		$this->setSortType($this->album->getSortType(), 'images');
@@ -545,6 +548,11 @@ class SearchEngine {
 	// call to always return unpublished items
 	function setSearchUnpublished() {
 		$this->search_unpublished = true;
+	}
+
+	// call to always return private tags in searches
+	function setSearchPrivateTags() {
+		$this->searchprivatetags = true;
 	}
 
 	/**
@@ -1121,7 +1129,7 @@ class SearchEngine {
 		global $_zp_gallery;
 		$weights = $idlist = array();
 		$sql = $allIDs = NULL;
-		$admin = zp_loggedin(TAGS_RIGHTS);
+		$admin = zp_loggedin(TAGS_RIGHTS) || $this->searchprivatetags;
 		$tagPattern = $this->tagPattern;
 		// create an array of [tag, objectid] pairs for tags
 		$tag_objects = array();
