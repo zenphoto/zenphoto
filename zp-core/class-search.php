@@ -1121,6 +1121,7 @@ class SearchEngine {
 		global $_zp_gallery;
 		$weights = $idlist = array();
 		$sql = $allIDs = NULL;
+		$admin = zp_loggedin(TAGS_RIGHTS);
 		$tagPattern = $this->tagPattern;
 		// create an array of [tag, objectid] pairs for tags
 		$tag_objects = array();
@@ -1168,6 +1169,9 @@ class SearchEngine {
 					$tagsql = 'SELECT @serachfield AS field, t.`name`,t.language, o.`objectid` FROM ' . prefix('tags') . ' AS t, ' . prefix('obj_to_tag') . ' AS o WHERE t.`id`=o.`tagid` ';
 					if (getOption('languageTagSearch')) {
 						$tagsql .= 'AND (t.language LIKE ' . db_quote(db_LIKE_escape($this->language) . '%') . ' OR t.language="") ';
+					}
+					if (!$admin) {
+						$tagsql .= 'AND (t.private=0) ';
 					}
 					$tagsql .= 'AND o.`type`="' . $tbl . '" AND (';
 					foreach ($searchstring as $singlesearchstring) {

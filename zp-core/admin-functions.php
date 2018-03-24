@@ -1426,6 +1426,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 */
 	function sortTagList($tagsort = 'alpha') {
 		global $_zp_admin_ordered_taglist;
+		if (zp_loggedin(TAGS_RIGHTS)) {
+			$private = '';
+		} else {
+			$private = ' AND (tags.private=0)';
+		}
+
 		if (is_null($_zp_admin_ordered_taglist)) {
 			switch ($tagsort) {
 				case 'language':
@@ -1438,14 +1444,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$order = '`name`';
 					break;
 			}
-			$masters = $translations = $them = $languages = array();
-			$sql = "SELECT DISTINCT tags.id, tags.name, tags.masterid, tags.language, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY $order, `masterid`";
+			$masters = $translations = $_zp_admin_ordered_taglist = $languages = array();
+			$sql = "SELECT DISTINCT tags.id, tags.name, tags.masterid, tags.language, tags.private, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') .
+							' as object WHERE (object.tagid=tags.id)' . $private . ') AS count FROM ' . prefix('tags') . " as tags ORDER BY $order, `masterid`";
 			$tagresult = query($sql);
 			if ($tagresult) {
 				while ($tag = db_fetch_assoc($tagresult)) {
 					$tagname = mb_strtolower($tag['name']);
 					$lang = $tag['language'];
-					$them[$lang . $tagname] = array('tag' => $tag['name'], 'lang' => $lang, 'count' => $tag['count'], 'subtags' => NULL);
+					$_zp_admin_ordered_taglist[$lang . $tagname] = array('tag' => $tag['name'], 'lang' => $lang, 'count' => $tag['count'], 'subtags' => NULL, 'private' => $tag['private']);
 					if (is_null($tag['masterid'])) {
 						$masters[$tag['id']] = $lang . $tagname;
 					} else {
@@ -1456,23 +1463,21 @@ function printAdminHeader($tab, $subtab = NULL) {
 				foreach ($translations as $master => $list) {
 					$subtags = array();
 					foreach ($list as $lang => $tagname) {
-						$subtags[$lang] = $them[$lang . $tagname];
-						unset($them[$lang . $tagname]);
+						$subtags[$lang] = $_zp_admin_ordered_taglist[$lang . $tagname];
+						unset($_zp_admin_ordered_taglist[$lang . $tagname]);
 					}
-					$them[$masters[$master]]['subtags'] = $subtags;
+					$_zp_admin_ordered_taglist[$masters[$master]]['subtags'] = $subtags;
 				}
 
 				if ($tagsort == 'mostused') {
 					arsort($counts, SORT_NUMERIC);
 				}
 			}
-
-			$_zp_admin_ordered_taglist = $them;
 		}
 		return $_zp_admin_ordered_taglist;
 	}
 
-	function tagListElement($postit, $class, $tagLC, $item, $lang, $count, $indent, $checked = false) {
+	function tagListElement($postit, $class, $tagLC, $item, $lang, $private, $count, $indent, $checked = false) {
 		global $_zp_language_flags, $_tagListIndex;
 		$listitem = $postit . postIndexEncode($item);
 		$flag = $_zp_language_flags[$lang];
@@ -1481,11 +1486,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<label class="displayinline">
 				<?php
 				if ($indent) {
-					echo '&nbsp;&nbsp';
+					echo '&nbsp;
+			&nbsp';
 					$indent = ' ' . $indent;
 				}
 				if (empty($indent)) {
-					$auto = ' onclick="$(\'.' . 'subto_' . $listitem . '\').prop(\'checked\', $(\'#' . $listitem . '\').prop(\'checked\'));"';
+					$auto = ' onclick = "$(\'.' . 'subto_' . $listitem . '\').prop(\'checked\', $(\'#' . $listitem . '\').prop(\'checked\'));"';
 				} else {
 					$auto = '';
 				}
@@ -1493,7 +1499,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<input id="<?php echo $listitem; ?>" class="<?php echo $class . $indent; ?>" name="<?php echo 'tag_list_' . $postit . '[' . ++$_tagListIndex . ']'; ?>" type="checkbox" value="<?php echo html_encode($item); ?>"<?php
 				echo $auto;
 				if ($checked) {
-					echo ' checked="checked";';
+					echo ' checked = "checked";
+			';
 				}
 				?> />
 				<input type="hidden" name="<?php echo 'lang_list_' . $postit . '[' . $_tagListIndex . ']'; ?>" value="<?php echo html_encode($lang); ?>" />
@@ -1503,10 +1510,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<img src="<?php echo $flag; ?>" height="10" width="15" />
 					<?php
 				}
-				if (is_int($count)) {
-					echo html_encode($item) . ' [' . $count . ']';
+
+				if ($private) {
+					echo '<span style = "text-decoration: overline underline">' . html_encode($item) . '</span>';
 				} else {
 					echo html_encode($item);
+				}
+				if (is_int($count)) {
+					echo ' [' . $count . ']';
 				}
 				?>
 			</label>
@@ -1527,11 +1538,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 */
 	function tagSelector($that, $postit, $showCounts = false, $tagsort = 'alpha', $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
 		global $_zp_admin_ordered_taglist;
+		$admin = zp_loggedin(TAGS_RIGHTS);
 		if ((int) $addnew <= 1 && is_null($_zp_admin_ordered_taglist)) {
 			$them = sortTagList($that, $tagsort);
 		} else {
 			$them = $_zp_admin_ordered_taglist;
 		}
+
 		$flags = getLanguageFlags();
 
 		if ((int) $addnew == 2) {
@@ -1564,7 +1577,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 						minHeight: 120,
 						resize: function (event, ui) {
 							$(this).css("width", '');
-							$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
+							$('#list_<?php echo $postit;
+		?>').height($('#resizable_<?php echo $postit; ?>').height());
 						}
 					})
 				});</script>
@@ -1595,7 +1609,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 				if (count($tags) > 0) {
 					foreach ($tags as $tag) {
-						tagListElement($postit, $class, mb_strtolower($tag), $tag, '', false, false, true);
+						if ($admin || empty($tag['private'])) {
+							tagListElement($postit, $class, mb_strtolower($tag), $tag, '', $tag['private'], false, false, true);
+						}
 					}
 					?>
 					<li><hr /></li>
@@ -1603,15 +1619,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				foreach ($them as $tagitem) {
 					$item = $tagitem['tag'];
-					$tagLC = mb_strtolower($item);
-					tagListElement($postit, $class, $tagLC, $item, $tagitem['lang'], $showCounts ? $tagitem['count'] : false, false);
-					if (is_array($tagitem['subtags'])) {
-						$itemarray = $tagitem['subtags'];
-						ksort($itemarray);
-						foreach ($itemarray as $lang => $tagitem) {
-							$tag = $tagitem['tag'];
-							$LCtag = mb_strtolower($tag);
-							tagListElement($postit, $class, $LCtag, $tag, $lang, false, 'subto_' . $postit . postIndexEncode($item));
+					if ($admin || empty($tagitem['private'])) {
+						$tagLC = mb_strtolower($item);
+						tagListElement($postit, $class, $tagLC, $item, $tagitem['lang'], $tagitem['private'], $showCounts ? $tagitem['count'] : false, false);
+						if (is_array($tagitem['subtags'])) {
+							$itemarray = $tagitem['subtags'];
+							ksort($itemarray);
+							foreach ($itemarray as $lang => $tagitem) {
+								$tag = $tagitem['tag'];
+								$LCtag = mb_strtolower($tag);
+								tagListElement($postit, $class, $LCtag, $tag, $lang, $tagitem['private'], false, 'subto_' . $postit . postIndexEncode($item));
+							}
 						}
 					}
 				}
@@ -1845,7 +1863,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 														 name="disclose_password<?php echo $suffix; ?>"
 														 id="disclose_password<?php echo $suffix; ?>"
 														 onclick="passwordClear('<?php echo $suffix; ?>');
-																 togglePassword('<?php echo $suffix; ?>');" />
+																	 togglePassword('<?php echo $suffix; ?>');" />
 														 <?php echo addslashes(gettext('Show')); ?>
 										</label>
 
@@ -2309,7 +2327,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+														 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4305,30 +4323,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-			var sel = obj.options[obj.selectedIndex].value;
-							var mark;
-							switch (sel) {
+				var sel = obj.options[obj.selectedIndex].value;
+				var mark;
+				switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-				case '<?php echo $key; ?>':
-								mark = '<?php echo $mark; ?>';
-								break;
+					case '<?php echo $key; ?>':
+									mark = '<?php echo $mark; ?>';
+									break;
 			<?php
 		}
 		?>
-			default:
-							mark = false;
-							break;
+				default:
+								mark = false;
+								break;
 			}
 			if (mark) {
-			$.colorbox({
-			href: '#' + mark,
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-			});
-			}
+				$.colorbox({
+					href: '#' + mark,
+					inline: true,
+					open: true,
+					close: '<?php echo gettext("ok"); ?>'
+				});
+				}
 			}
 			// ]]> -->
 		</script>
@@ -4721,27 +4739,27 @@ function stripTableRows($custom) {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-						// <!-- <![CDATA[
-						$(function () {
-						var tabContainers = $('div.tabs > div');
-										$('.first').addClass('selected');
-						});
-						function cbclick(num, id) {
-						$('.cbx-' + id).hide();
-										$('#cb' + num + '-' + id).show();
-										$('.cbt-' + id).removeClass('selected');
-										$('#cbt' + num + '-' + id).addClass('selected');
-						}
+		// <!-- <![CDATA[
+		$(function () {
+			var tabContainers = $('div.tabs > div');
+			$('.first').addClass('selected');
+		});
+		function cbclick(num, id) {
+			$('.cbx-' + id).hide();
+			$('#cb' + num + '-' + id).show();
+			$('.cbt-' + id).removeClass('selected');
+			$('#cbt' + num + '-' + id).addClass('selected');
+		}
 
 		function cbadd(id, offset) {
-		var num = $('#cbu-' + id + ' li').size() - offset;
-						$('li:last', $('#cbu-' + id)).remove();
-						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-						'</div>');
-						cbclick(num, id);
+			var num = $('#cbu-' + id + ' li').size() - offset;
+			$('li:last', $('#cbu-' + id)).remove();
+			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+							'</div>');
+			cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -5595,7 +5613,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 			 <?php echo CLIPBOARD; ?>
 	</a>
 	<?php

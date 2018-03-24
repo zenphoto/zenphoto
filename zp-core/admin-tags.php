@@ -94,6 +94,19 @@ if (count($_POST) > 0) {
 				}
 				$action = gettext('Checked tags deleted');
 				break;
+			case 'private':
+				$sql = "UPDATE " . prefix('tags') . " SET `private`=0 WHERE `private`=1";
+				query($sql);
+				if (count($tags) > 0) {
+					$sql = "UPDATE " . prefix('tags') . " SET `private`=1 WHERE ";
+					foreach ($tags as $key => $tag) {
+						$sql .= "(`name`=" . (db_quote($tag)) . ' AND `language`=' . db_quote($langs[$key]) . ") OR ";
+					}
+					$sql = substr($sql, 0, strlen($sql) - 4);
+					query($sql);
+				}
+				$action = gettext('Checked tags marked private');
+				break;
 			case'assign':
 				if (count($tags) > 0) {
 					$tbdeleted = array();
@@ -246,6 +259,12 @@ printAdminHeader('admin');
 								<?php echo gettext("Delete checked tags"); ?>
 							</button>
 						</p>
+						<p class="buttons"<?php if (getOption('multi_lingual')) echo ' style="padding-bottom: 27px;"'; ?>>
+							<button type="submit" id="delete_tags" onclick="$('#tag_action').val('private');	this.form.submit();">
+								<?php echo KEY_RED; ?>
+								<?php echo gettext("Mark checked tags private"); ?>
+							</button>
+						</p>
 
 						<?php
 						if (getOption('multi_lingual')) {
@@ -286,6 +305,7 @@ printAdminHeader('admin');
 							} else {
 								echo gettext('Place a checkmark in the box for each tag you wish to delete then press the appropriate button. The brackets contain the number of times the tag appears.');
 							}
+							echo gettext('Tags that are <span style="text-decoration: overline underline">over/underlined</span> are private.');
 							?></p>
 					</div>
 				</div>

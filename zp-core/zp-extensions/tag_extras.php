@@ -26,6 +26,12 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 	$passwordcheck = '';
 	$imageWhere = '';
 	$tagWhere = "";
+	if (zp_loggedin(TAGS_RIGHTS)) {
+		$private = '';
+	} else {
+		$private = ' AND (t.private=0)';
+	}
+
 	if (empty($albumname)) {
 		return FALSE;
 	}
@@ -82,7 +88,7 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 			if (empty($tagWhere)) {
 				return FALSE;
 			} else {
-				$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND type = 'images') AS count FROM  " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
+				$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND type = 'images') AS count FROM  " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . $private . " ORDER BY t.name");
 			}
 			break;
 		case "albums":
@@ -165,7 +171,7 @@ function getAllTagsFromZenpage($mode = 'news') {
 	if (empty($tagWhere)) {
 		return FALSE;
 	} else {
-		$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = '" . $type . "') AS count FROM " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
+		$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = '" . $type . "') AS count FROM " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . $private . " ORDER BY t.name");
 	}
 	return $tags;
 }

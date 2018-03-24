@@ -1126,8 +1126,13 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 		} else {
 			$lang = ' AND (tag.language="" OR tag.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
 		}
+		if ($_zp_loggedin & TAGS_RIGHTS) {
+			$private = '';
+		} else {
+			$private = ' AND (tag.private=0)';
+		}
 
-		$sql = 'SELECT tag.name, count(DISTINCT tag.name, obj.type, obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . $source . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
+		$sql = 'SELECT tag.name, count(DISTINCT tag.name, obj.type, obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . $source . ' obj WHERE (tag.id=obj.tagid) ' . $lang . $private . ' GROUP BY tag.name';
 		$unique_tags = query($sql);
 
 		if ($unique_tags) {
@@ -1219,10 +1224,16 @@ function readTags($id, $tbl, $language) {
 				break;
 		}
 	}
+	if (zp_loggedin(TAGS_RIGHTS)) {
+		$private = '';
+	} else {
+		$private = ' AND tags.private=0';
+	}
+
 
 	$tags = array();
 
-	$sql = 'SELECT * FROM ' . prefix('tags') . ' AS tags, ' . prefix('obj_to_tag') . ' AS objects WHERE `type`="' . $tbl . '" AND `objectid`="' . $id . '" AND tagid=tags.id';
+	$sql = 'SELECT * FROM ' . prefix('tags') . ' AS tags, ' . prefix('obj_to_tag') . ' AS objects WHERE `type`="' . $tbl . '" AND `objectid`="' . $id . '" AND tagid=tags.id' . $private;
 
 	if ($language) {
 		$sql .= ' AND (tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
