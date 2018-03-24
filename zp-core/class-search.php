@@ -365,6 +365,12 @@ class SearchEngine {
 				$this->page = $_zp_page;
 				$r .= '&page=' . $_zp_page;
 			}
+			if ($this->search_unpublished) {
+				$r.='&unpublished';
+			}
+			if ($this->searchprivatetags) {
+				$r.='&privatetags';
+			}
 		}
 		if ($long !== 0) {
 			foreach ($this->extraparams as $p => $v) {
@@ -521,6 +527,10 @@ class SearchEngine {
 				case 'unpublished':
 					$this->search_unpublished = (bool) $v;
 					break;
+				case 'privatetags':
+					$this->searchprivatetags = (bool) $v;
+					break;
+
 				default:
 					$this->extraparams[$p] = $v;
 					break;
