@@ -2859,7 +2859,7 @@ function getProtectedImageURL($image = NULL, $disposal = NULL) {
 			$album = $album->name;
 			$image = $image->filename;
 		}
-		$params .= '&check=' . ipProtectTag(internalToFilesystem($album), internalToFilesystem($image), $args);
+		$params .= '&check=' . ipProtectTag(internalToFilesystem($album), internalToFilesystem($image), $args) . '&cached=' . rand();
 
 		return WEBPATH . '/' . ZENFOLDER . '/full-image.php?a=' . $album . '&i=' . $image . $params;
 	}

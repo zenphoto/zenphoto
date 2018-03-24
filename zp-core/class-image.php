@@ -1260,8 +1260,9 @@ class Image extends MediaObject {
 		} else {
 			$sw = $sh = NULL;
 		}
-		if (empty($wmt))
+		if (empty($wmt)) {
 			$wmt = getWatermarkParam($this, WATERMARK_THUMB);
+		}
 		$args = getImageParameters(array($ts, NULL, NULL, $sw, $sh, NULL, NULL, NULL, true, NULL, true, $wmt, NULL, NULL), $this->album->name);
 
 		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);

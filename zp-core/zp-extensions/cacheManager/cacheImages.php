@@ -96,8 +96,7 @@ function loadAlbum($album) {
 						$args = getImageParameters($args, $album->name);
 						$uri = getImageURI($args, $album->name, $_zp_current_image->filename, $_zp_current_image->filemtime);
 						if (strpos($uri, 'i.php?') !== false) {
-							$uri = str_replace('check=', '' . rand(), $uri);
-							$uri .= '&cache=' . rand();
+							$uri = str_replace('check=', '', $uri);
 							if (!($count + $countit)) {
 								echo "{ ";
 							} else {

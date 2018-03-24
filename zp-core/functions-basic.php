@@ -1226,6 +1226,11 @@ function getImageParameters($args, $album = NULL) {
 	} else {
 		$height = false;
 	}
+	if (empty($size) && $width == $height) {
+		//square image
+		$size = $height;
+		$width = $height = false;
+	}
 	if (is_numeric($cw)) {
 		$cw = (int) round($cw);
 	} else {
@@ -1297,6 +1302,7 @@ function ipProtectTag($album, $image, $args) {
 		$image = $image['name'];
 	}
 	$tag = sha1(HASH_SEED . $album . $image . serialize($args));
+	return $tag;
 }
 
 /**
@@ -1386,7 +1392,7 @@ function getImageProcessorURI($args, $album, $image) {
 	}
 	$args[14] = $z;
 
-	$uri .= '&check=' . ipProtectTag(internalToFilesystem($album), internalToFilesystem($image), $args);
+	$uri .= '&check=' . ipProtectTag(internalToFilesystem($album), internalToFilesystem($image), $args) . '&cached=' . rand();
 
 	$uri = zp_apply_filter('image_processor_uri', $uri, $args, $album, $image);
 
