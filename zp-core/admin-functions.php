@@ -1308,7 +1308,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $class optional class for items
 	 * @param bool $localize true if the list local key is text for the item
 	 */
-	function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrights, $sort, $localize, $class = NULL, $extra = NULL, $postArray = false) {
+	function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrights, $sort, $localize, $class = NULL, $extra = NULL, $postArray = 1) {
 		if (is_null($extra))
 			$extra = array();
 		if (!empty($class))
