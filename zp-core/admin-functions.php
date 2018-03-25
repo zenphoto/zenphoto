@@ -1520,7 +1520,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					echo html_encode($item);
 				}
 				if ($count !== false) {
-					echo ' [' . $count . ']';
+					echo ' {' . $count . '}';
 				}
 				?>
 			</label>
