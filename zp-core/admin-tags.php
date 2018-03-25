@@ -51,9 +51,7 @@ if (count($_POST) > 0) {
 	if (isset($_POST['tag_action'])) {
 		XSRFdefender('tag_action');
 		$language = sanitize($_POST['language']);
-		unset($_POST['language']);
 		$action = $_POST['tag_action'];
-		unset($_POST['tag_action']);
 		if (isset($_POST['tag_list_tags_'])) {
 			$tags = sanitize($_POST['tag_list_tags_']);
 			$langs = sanitize($_POST['lang_list_tags_']);
@@ -115,27 +113,32 @@ if (count($_POST) > 0) {
 				if (count($tags) > 0) {
 					$tbdeleted = array();
 					$multi = getOption('multi_lingual');
-					foreach ($tags as $key => $tag) {
+					$languageList = generateLanguageList(false);
+
+					foreach ($tags as $key => $tagname) {
 						$lang = $langs[$key];
-						$sql = 'UPDATE ' . prefix('tags') . ' SET `language`=' . db_quote($language) . ' WHERE `name`=' . db_quote($tag) . ' AND `lang`=' . db_quote($lang);
+						$sql = 'UPDATE ' . prefix('tags') . ' SET `language`=' . db_quote($language) . ' WHERE `name`=' . db_quote($tagname) . ' AND `language`=' . db_quote($lang);
 						$success = query($sql, false);
 						if ($success) {
-							$tag = query_single_row('SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($tag) . ' AND `lang`=' . db_quote($lang));
-							if ($multi && empty($tag['language'])) {
+							$sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($tagname) . ' AND `language`=' . db_quote($language);
+							$tagelement = query_single_row($sql);
+							if ($multi && !empty($language)) {
 								//create subtags
-								foreach (generateLanguageList(false)as $text => $dirname) {
+								foreach ($languageList as $text => $dirname) {
 									if ($dirname != $language) {
-										query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($tag) . ',' . $tag['id'] . ',' . db_quote($dirname) . ')');
+										$sql = 'INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($tagname) . ',' . $tagelement['id'] . ',' . db_quote($dirname) . ')';
+										query($sql);
 									}
 								}
 							} else if (empty($language)) {
-								$tbdeleted[] = $id;
+								$tbdeleted[] = $tagelement['id'];
 							}
 						} else {
-							$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s language not changed, duplicate tag.'), $lang, $tag), ': ');
+							$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s language not changed, duplicate tag.'), $lang, $tagname), ': ');
 						}
 						if (!empty($tbdeleted)) {
-							query('DELETE FROM ' . prefix('tags') . ' WHERE `masterid`=' . implode(' OR `masterid`=', $tbdeleted));
+							$sql = 'DELETE FROM ' . prefix('tags') . ' WHERE `masterid`=' . implode(' OR `masterid`=', $tbdeleted);
+							query($sql);
 						}
 					}
 				}
@@ -393,33 +396,35 @@ printAdminHeader('admin');
 								?>
 							</ul>
 						</div>
-						<p class="buttons"<?php if (getOption('multi_lingual')) echo ' style="padding-bottom: 25px;"'; ?>>
+						<span class="buttons"<?php if (getOption('multi_lingual')) echo ' style="padding-bottom: 25px;"'; ?>>
 							<button type="submit" id='save_tags' value="<?php echo gettext("Add tags"); ?>">
 								<?php echo PLUS_ICON; ?>
 								<?php echo gettext("Add tags"); ?>
 							</button>
-						</p>
-						<?php
-						if (getOption('multi_lingual')) {
-							?>
-							<select name="language" id="language" class="ignoredirty">
-								<option value="" selected="language"><?php echo gettext('Universal'); ?></option>
-								<?php
-								foreach ($_zp_active_languages as $text => $lang) {
-									?>
-									<option value="<?php echo $lang; ?>" ><?php echo html_encode($text); ?></option>
-									<?php
-								}
+
+							<?php
+							if (getOption('multi_lingual')) {
 								?>
-							</select>
-							<?php
-						} else {
+								<span style="line-height: 35px;">
+									<select name="language" id="language" class="ignoredirty">
+										<option value="" selected="language"><?php echo gettext('Universal'); ?></option>
+										<?php
+										foreach ($_zp_active_languages as $text => $lang) {
+											?>
+											<option value="<?php echo $lang; ?>" ><?php echo html_encode($text); ?></option>
+											<?php
+										}
+										?>
+									</select>
+								</span>
+								<?php
+							} else {
+								?>
+								<input type="hidden" name="language" value="" />
+								<?php
+							}
 							?>
-							<input type="hidden" name="language" value="" />
-							<br />
-							<?php
-						}
-						?>
+						</span>
 						<div class="clearall"></div>
 					</form>
 
