@@ -283,21 +283,21 @@ printAdminHeader('admin');
 							<span class="buttons">
 								<button type="submit" id="assign_tags" onclick="$('#tag_action').val('assign');	this.form.submit();" title="<?php echo gettext('Assign tags to selected language'); ?>">
 									<?php echo ARROW_RIGHT_BLUE; ?>
-									<?php echo gettext('Assign language'); ?>
+									<?php echo gettext('Assign to'); ?>
 								</button>
-							</span>
-							<div style="padding-bottom: 7px;">
-								<select name="language" id="language" class="ignoredirty" >
-									<option value=""><?php echo gettext('Universal'); ?></option>
-									<?php
-									foreach ($_zp_active_languages as $text => $lang) {
-										?>
-										<option value="<?php echo $lang; ?>"><?php echo html_encode($text); ?></option>
+								<span style="line-height: 35px;">
+									<select name="language" id="language" class="ignoredirty" >
+										<option value=""><?php echo gettext('Universal'); ?></option>
 										<?php
-									}
-									?>
-								</select>
-							</div>
+										foreach ($_zp_active_languages as $text => $lang) {
+											?>
+											<option value="<?php echo $lang; ?>"><?php echo html_encode($text); ?></option>
+											<?php
+										}
+										?>
+									</select>
+								</span>
+							</span>
 							<?php
 						} else {
 							?>
