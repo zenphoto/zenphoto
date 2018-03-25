@@ -305,7 +305,7 @@ printAdminHeader('admin');
 							} else {
 								echo gettext('Place a checkmark in the box for each tag you wish to delete then press the appropriate button. The brackets contain the number of times the tag appears.');
 							}
-							echo gettext('Tags that are <span style="text-decoration: overline underline">over/underlined</span> are private.');
+							echo gettext('Tags that are <span class="privatetag">highlighted</span> are private.');
 							?></p>
 					</div>
 				</div>

@@ -1512,7 +1512,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 
 				if ($private) {
-					echo '<span style = "text-decoration: overline underline">' . html_encode($item) . '</span>';
+					echo '<span class="privatetag">' . html_encode($item) . '</span>';
 				} else {
 					echo html_encode($item);
 				}
