@@ -95,17 +95,21 @@ if (count($_POST) > 0) {
 				$action = gettext('Checked tags deleted');
 				break;
 			case 'private':
-				$sql = "UPDATE " . prefix('tags') . " SET `private`=0 WHERE `private`=1";
-				query($sql);
+			case 'notprivate':
+				$private = (int) ($action == 'private');
 				if (count($tags) > 0) {
-					$sql = "UPDATE " . prefix('tags') . " SET `private`=1 WHERE ";
+					$sql = "UPDATE " . prefix('tags') . " SET `private`=$private WHERE ";
 					foreach ($tags as $key => $tag) {
 						$sql .= "(`name`=" . (db_quote($tag)) . ' AND `language`=' . db_quote($langs[$key]) . ") OR ";
 					}
 					$sql = substr($sql, 0, strlen($sql) - 4);
 					query($sql);
 				}
-				$action = gettext('Checked tags marked private');
+				if ($private) {
+					$action = gettext('Checked tags marked private');
+				} else {
+					$action = gettext('Checked tags marked public');
+				}
 				break;
 			case'assign':
 				if (count($tags) > 0) {
@@ -221,6 +225,7 @@ printAdminHeader('admin');
 				<option value="mostused" <?php if ($tagsort == 'mostused') echo ' selected="selected"'; ?>><?php echo gettext('Most used'); ?></option>
 				<option value="language" <?php if ($tagsort == 'language') echo ' selected="selected"'; ?>><?php echo gettext('Language'); ?></option>
 				<option value="recent" <?php if ($tagsort == 'recent') echo ' selected="selected"'; ?>><?php echo gettext('Most recent'); ?></option>
+				<option value="private" <?php if ($tagsort == 'private') echo ' selected="selected"'; ?>><?php echo gettext('Private first'); ?></option>
 			</select>
 			<div class="buttons floatright">
 				<button type="reset" onclick="$('#tag_action_form').trigger('reset');
@@ -261,8 +266,14 @@ printAdminHeader('admin');
 						</p>
 						<p class="buttons"<?php if (getOption('multi_lingual')) echo ' style="padding-bottom: 27px;"'; ?>>
 							<button type="submit" id="delete_tags" onclick="$('#tag_action').val('private');	this.form.submit();">
-								<?php echo KEY_RED; ?>
+								<?php echo LOCK; ?>
 								<?php echo gettext("Mark checked tags private"); ?>
+							</button>
+						</p>
+						<p class="buttons"<?php if (getOption('multi_lingual')) echo ' style="padding-bottom: 27px;"'; ?>>
+							<button type="submit" id="delete_tags" onclick="$('#tag_action').val('notprivate');	this.form.submit();">
+								<?php echo LOCK_OPEN; ?>
+								<?php echo gettext("Mark checked tags public"); ?>
 							</button>
 						</p>
 

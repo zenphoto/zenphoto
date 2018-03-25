@@ -1425,20 +1425,27 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @return array
 	 */
 	function sortTagList($tagsort = 'alpha') {
-		global $_zp_admin_ordered_taglist;
+		global $_zp_admin_ordered_taglist, $_zp_admin_ordered_taglist_order;
 		if (zp_loggedin(TAGS_RIGHTS)) {
 			$private = '';
 		} else {
 			$private = ' AND (tags.private=0)';
 		}
 
-		if (is_null($_zp_admin_ordered_taglist)) {
+		if (is_null($_zp_admin_ordered_taglist) || $tagsort != $_zp_admin_ordered_taglist_order) {
+			$_zp_admin_ordered_taglist_order = $tagsort;
 			switch ($tagsort) {
 				case 'language':
 					$order = '`language` DESC,`name`';
 					break;
 				case 'recent':
 					$order = '`id` DESC';
+					break;
+				case 'mostused':
+					$order = '`count` DESC';
+					break;
+				case 'private':
+					$order = '`private` DESC, `name`';
 					break;
 				default:
 					$order = '`name`';
@@ -1467,10 +1474,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 						unset($_zp_admin_ordered_taglist[$lang . $tagname]);
 					}
 					$_zp_admin_ordered_taglist[$masters[$master]]['subtags'] = $subtags;
-				}
-
-				if ($tagsort == 'mostused') {
-					arsort($counts, SORT_NUMERIC);
 				}
 			}
 		}
@@ -1516,7 +1519,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				} else {
 					echo html_encode($item);
 				}
-				if (is_int($count)) {
+				if ($count !== false) {
 					echo ' [' . $count . ']';
 				}
 				?>
@@ -1537,19 +1540,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $class class of the selections
 	 */
 	function tagSelector($that, $postit, $showCounts = false, $tagsort = 'alpha', $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
-		global $_zp_admin_ordered_taglist;
 		$admin = zp_loggedin(TAGS_RIGHTS);
-		if ((int) $addnew <= 1 && is_null($_zp_admin_ordered_taglist)) {
-			$them = sortTagList($that, $tagsort);
-		} else {
-			$them = $_zp_admin_ordered_taglist;
-		}
-
-		$flags = getLanguageFlags();
-
 		if ((int) $addnew == 2) {
 			$them = array();
+		} else {
+			$them = sortTagList($tagsort);
 		}
+		$flags = getLanguageFlags();
 
 		if (is_null($that)) {
 			$tags = array();
@@ -1628,7 +1625,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							foreach ($itemarray as $lang => $tagitem) {
 								$tag = $tagitem['tag'];
 								$LCtag = mb_strtolower($tag);
-								tagListElement($postit, $class, $LCtag, $tag, $lang, $tagitem['private'], false, 'subto_' . $postit . postIndexEncode($item));
+								tagListElement($postit, $class, $LCtag, $tag, $lang, $tagitem['private'], $showCounts ? $tagitem['count'] : false, 'subto_' . $postit . postIndexEncode($item));
 							}
 						}
 					}
