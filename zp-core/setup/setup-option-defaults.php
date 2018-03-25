@@ -38,6 +38,10 @@ purgeOption('adminTagsTab', 0);
 /* fix for NULL theme name */
 Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');
 
+/* fix the admin_to_object table. type=news should have been type=news_categories */
+$sql = 'UPDATE ' . prefix('admin_to_object') . ' SET `type`="news_categories" WHERE `type`="news"';
+query($sql);
+
 $sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `theme`="" AND `creator` LIKE "themes/%";';
 $result = query_full_array($sql);
 foreach ($result as $row) {

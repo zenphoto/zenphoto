@@ -453,7 +453,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	}
 	processTags($article);
 	$categories = array();
-	$myCategories = array_flip($_zp_current_admin_obj->getObjects('news'));
+	$myCategories = array_flip($_zp_current_admin_obj->getObjects('news_categories'));
 
 	if (isset($_POST['addcategories'])) {
 		$cats = sanitize($_POST['addcategories']);
@@ -986,13 +986,13 @@ function printCategoryListSortableTable($cat, $toodeep) {
 
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon"><?php
-		$password = $cat->getPassword();
-		if ($password) {
-			echo LOCK;
-		} else {
-			echo LOCK_OPEN;
-		}
-			?>
+				$password = $cat->getPassword();
+				if ($password) {
+					echo LOCK;
+				} else {
+					echo LOCK_OPEN;
+				}
+				?>
 			</div>
 			<div class="page-list_icon">
 				<?php echo linkPickerIcon($cat); ?>

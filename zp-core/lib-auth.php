@@ -1400,7 +1400,7 @@ class _Authority {
 							 name="<?php printf($format, 'disclose_password', $id); ?>"
 							 id="disclose_password<?php echo $id; ?>"
 							 onclick="passwordClear('<?php echo $id; ?>');
-											 togglePassword('<?php echo $id; ?>');">
+									 togglePassword('<?php echo $id; ?>');">
 			</span>
 
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
@@ -1518,7 +1518,7 @@ class _Administrator extends PersistentObject {
 								$new_rights = $new_rights | ZENPAGE_PAGES_RIGHTS;
 							}
 							break;
-						case 'news':
+						case 'news_categories':
 							if ($object['edit'] & MANAGED_OBJECT_RIGHTS_EDIT) {
 								$new_rights = $new_rights | ZENPAGE_NEWS_RIGHTS;
 							}
@@ -1781,7 +1781,7 @@ class _Administrator extends PersistentObject {
 						$obj = newPage($object['data']);
 						$objectid = $obj->getID();
 						break;
-					case 'news':
+					case 'news_categories':
 						if ($object['data'] == '`') { //uncategorized
 							$objectid = 0;
 						} else {

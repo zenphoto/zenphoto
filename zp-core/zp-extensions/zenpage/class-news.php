@@ -226,10 +226,10 @@ class Article extends CMSItems {
 
 			$objects = $_zp_current_admin_obj->getObjects();
 			$categories = $this->getCategories();
-			$categories['`'] = array('type' => 'news', 'titlelink' => '`');
+			$categories['`'] = array('type' => 'news_categories', 'titlelink' => '`');
 			$possible = array();
 			foreach ($objects as $object) {
-				if ($object['type'] == 'news') {
+				if ($object['type'] == 'news_categories') {
 					$possible[$object['data']] = $object;
 				}
 			}
@@ -262,7 +262,7 @@ class Article extends CMSItems {
 			if (GALLERY_SECURITY == 'public' && $this->getShow() && $action == LIST_RIGHTS) {
 				return LIST_RIGHTS;
 			}
-			$myObjects = $_zp_current_admin_obj->getObjects('news', true);
+			$myObjects = $_zp_current_admin_obj->getObjects('news_categories', true);
 			if (!empty($myObjects)) {
 				$thisCats = $this->getCategories();
 				if (empty($thisCats) && isset($myObjects['`'])) {

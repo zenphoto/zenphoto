@@ -827,24 +827,24 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 			db_free_result($currentvalues);
 		}
 	}
-	if (empty($type) || $type == 'news') {
+	if (empty($type) || $type == 'news_categories') {
 		$sql = 'SELECT ' . prefix('news_categories') . '.`titlelink`,' . prefix('news_categories') . '.`title`, ' . prefix('admin_to_object') . '.`edit` FROM ' . prefix('news_categories') . ', ' .
 						prefix('admin_to_object') . " WHERE " . prefix('admin_to_object') . ".adminid=" . $id .
-						" AND " . prefix('news_categories') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='news'";
+						" AND " . prefix('news_categories') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='news_categories'";
 		$currentvalues = query($sql, false);
 		if ($currentvalues) {
 			while ($item = db_fetch_assoc($currentvalues)) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'news', 'edit' => (int) $item['edit']);
+					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'news_categories', 'edit' => (int) $item['edit']);
 				}
 			}
 			db_free_result($currentvalues);
 		}
-		$item = query_single_row('SELECT `edit` FROM ' . prefix('admin_to_object') . "WHERE adminid=$id AND objectid=0 AND type='news'", false);
+		$item = query_single_row('SELECT `edit` FROM ' . prefix('admin_to_object') . "WHERE adminid=$id AND objectid=0 AND type='news_categories'", false);
 		if ($item) {
-			$cv[] = array('data' => '`', 'name' => '"' . gettext('un-categorized') . '"', 'type' => 'news', 'edit' => (int) $item['edit']);
+			$cv[] = array('data' => '`', 'name' => '"' . gettext('un-categorized') . '"', 'type' => 'news_categories', 'edit' => (int) $item['edit']);
 		}
 	}
 	return $cv;

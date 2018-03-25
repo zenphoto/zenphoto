@@ -286,11 +286,11 @@ echo '</head>' . "\n";
 													<em>
 														<label>
 															<input type="radio" name="user[<?php echo $id; ?>][type]" value="group" checked="checked" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
+																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
 														</label>
 														<label>
 															<input type="radio" name="user[<?php echo $id; ?>][type]" value="template" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
+																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
 														</label>
 													</em>
 													<br />
@@ -398,7 +398,7 @@ echo '</head>' . "\n";
 													foreach ($categories as $category) {
 														$newslist[get_language_string($category['title'])] = $category['titlelink'];
 													}
-													printManagedObjects('news', $newslist, NULL, $groupobj, $id, $kind, NULL);
+													printManagedObjects('news_categories', $newslist, NULL, $groupobj, $id, $kind, NULL);
 													$pagelist = array();
 													$pages = $_zp_CMS->getPages(false);
 													foreach ($pages as $page) {
