@@ -280,6 +280,12 @@ printAdminHeader('admin');
 						<?php
 						if (getOption('multi_lingual')) {
 							?>
+							<span class="buttons">
+								<button type="submit" id="assign_tags" onclick="$('#tag_action').val('assign');	this.form.submit();" title="<?php echo gettext('Assign tags to selected language'); ?>">
+									<?php echo ARROW_RIGHT_BLUE; ?>
+									<?php echo gettext('Assign language'); ?>
+								</button>
+							</span>
 							<div style="padding-bottom: 7px;">
 								<select name="language" id="language" class="ignoredirty" >
 									<option value=""><?php echo gettext('Universal'); ?></option>
@@ -292,13 +298,6 @@ printAdminHeader('admin');
 									?>
 								</select>
 							</div>
-
-							<span class="buttons">
-								<button type="submit" id="assign_tags" onclick="$('#tag_action').val('assign');	this.form.submit();" title="<?php echo gettext('Assign tags to selected language'); ?>">
-									<?php echo ARROW_RIGHT_BLUE; ?>
-									<?php echo gettext('assign'); ?>
-								</button>
-							</span>
 							<?php
 						} else {
 							?>
@@ -311,11 +310,7 @@ printAdminHeader('admin');
 
 					<div class="tagtext">
 						<p><?php
-							if (getOption('multi_lingual')) {
-								echo gettext('Place a checkmark in the box for each tag you wish to delete or to assign a language then press the appropriate button. The brackets contain the number of times the tag appears.');
-							} else {
-								echo gettext('Place a checkmark in the box for each tag you wish to delete then press the appropriate button. The brackets contain the number of times the tag appears.');
-							}
+							echo gettext('Place a checkmark in the box for each tag you wish to act upon then press the appropriate button. The brackets contain the number of times the tag appears.');
 							echo gettext('Tags that are <span class="privatetag">highlighted</span> are private.');
 							?></p>
 					</div>
