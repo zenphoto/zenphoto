@@ -510,21 +510,25 @@ $buttonlist = array();
 								}
 								?>
 							</li>
+							<li>
+								<?php
+								$t = count($_zp_authority->getAdministrators('groups'));
+								if ($t) {
+									printf(ngettext('<strong>%u</strong> Group or Template', '<strong>%u</strong> Groups and Templates', $t), $t);
+								}
+								?>
+							</li>
 							<?php
-							$t = count($_zp_authority->getAdministrators('groups'));
-							if ($t) {
-								printf(ngettext('<strong>%u</strong> Group or Template', '<strong>%u</strong> Groups and Templates', $t), $t);
-							}
 							if (extensionEnabled('zenpage')) {
 								?>
 								<li>
-									<?php printPagesStatistic(); ?>
+		<?php printPagesStatistic(); ?>
 								</li>
 								<li>
-									<?php printNewsStatistic(); ?>
+		<?php printNewsStatistic(); ?>
 								</li>
 								<li>
-									<?php printCategoriesStatistic(); ?>
+								<?php printCategoriesStatistic(); ?>
 								</li>
 								<?php
 							}
@@ -541,7 +545,7 @@ $buttonlist = array();
 		} else {
 			?>
 			<div class="errorbox">
-				<?php echo gettext('Your user rights do not allow access to administrative functions.'); ?>
+			<?php echo gettext('Your user rights do not allow access to administrative functions.'); ?>
 			</div>
 			<?php
 		}
