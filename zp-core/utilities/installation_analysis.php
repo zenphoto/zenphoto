@@ -23,7 +23,7 @@ echo '</head>';
 			<?php zp_apply_filter('admin_note', 'albums', ''); ?>
 			<h1><?php echo gettext("Installation information"); ?></h1>
 
-			<div class="tabbox">
+			<div class="overviewboxes">
 				<?php
 				if (zp_loggedin(ADMIN_RIGHTS)) {
 					?>
