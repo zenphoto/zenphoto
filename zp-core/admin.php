@@ -378,182 +378,190 @@ $buttonlist = array();
 			$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false, true, true);
 
 			if (zp_loggedin(OVERVIEW_RIGHTS)) {
+				if (TEST_RELEASE) {
+					$official = gettext('<em>Debug build</em>');
+				} else {
+					$official = gettext('Official build');
+				}
 				?>
 				<div id="overviewboxes">
+					<div class="box overview-section overview_utilities">
+						<h2 class="h2_bordered">
+							<?php printf(gettext('ZenPhoto20 version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official); ?>
+						</h2>
+						<?php
+						if (!empty($buttonlist)) {
+							?>
+							<div class="box overview-section overview_utilities">
+								<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
+								<?php
+								$category = '';
+								foreach ($buttonlist as $button) {
+									$button_category = $button['category'];
+									$button_icon = $button['icon'];
 
-					<?php
-					if (!empty($buttonlist)) {
-						?>
-						<div class="box overview-section overview_utilities">
-							<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
-							<?php
-							$category = '';
-							foreach ($buttonlist as $button) {
-								$button_category = $button['category'];
-								$button_icon = $button['icon'];
-
-								$color = $disable = '';
-								switch ((int) $button['enable']) {
-									case 0:
-										$disable = ' disabled="disabled"';
-										break;
-									case 2:
-										$color = ' style="color:orange"';
-										break;
-									case 3:
-										$color = ' style="color:red"';
-										break;
-								}
-								if ($category != $button_category) {
-									if ($category) {
+									$color = $disable = '';
+									switch ((int) $button['enable']) {
+										case 0:
+											$disable = ' disabled="disabled"';
+											break;
+										case 2:
+											$color = ' style="color:orange"';
+											break;
+										case 3:
+											$color = ' style="color:red"';
+											break;
+									}
+									if ($category != $button_category) {
+										if ($category) {
+											?>
+											</fieldset>
+											<?php
+										}
+										$category = $button_category;
 										?>
-										</fieldset>
-										<?php
-									}
-									$category = $button_category;
-									?>
-									<fieldset class="overview_utility_buttons_field"><legend><?php echo $category; ?></legend>
-										<?php
-									}
-									?>
-									<form name="<?php echo $button['formname']; ?>"	id="<?php echo $button['formname']; ?>" action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
-										<?php
-										if (isset($button['XSRFTag']) && $button['XSRFTag'])
-											XSRFToken($button['XSRFTag']);
-										echo $button['hidden'];
-										if (isset($button['onclick'])) {
-											$type = 'type="button" onclick="' . $button['onclick'] . '"';
-										} else {
-											$type = 'type="submit"';
+										<fieldset class="overview_utility_buttons_field"><legend><?php echo $category; ?></legend>
+											<?php
 										}
 										?>
-										<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">
-											<button class="fixedwidth<?php if ($disable) echo ' disabled_button'; ?>" <?php echo $type . $disable; ?>>
-												<?php
-												if (!empty($button_icon)) {
-													if (strpos($button_icon, 'images/') === 0) {
-														// old style icon image
-														?>
-														<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
-														<?php
-													} else {
-														echo $button_icon . ' ';
+										<form name="<?php echo $button['formname']; ?>"	id="<?php echo $button['formname']; ?>" action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
+											<?php
+											if (isset($button['XSRFTag']) && $button['XSRFTag'])
+												XSRFToken($button['XSRFTag']);
+											echo $button['hidden'];
+											if (isset($button['onclick'])) {
+												$type = 'type="button" onclick="' . $button['onclick'] . '"';
+											} else {
+												$type = 'type="submit"';
+											}
+											?>
+											<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">
+												<button class="fixedwidth<?php if ($disable) echo ' disabled_button'; ?>" <?php echo $type . $disable; ?>>
+													<?php
+													if (!empty($button_icon)) {
+														if (strpos($button_icon, 'images/') === 0) {
+															// old style icon image
+															?>
+															<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
+															<?php
+														} else {
+															echo $button_icon . ' ';
+														}
 													}
-												}
-												echo '<span' . $color . '>' . html_encode($button['button_text']) . '</span>';
-												?>
-											</button>
-										</div><!--buttons -->
-									</form>
+													echo '<span' . $color . '>' . html_encode($button['button_text']) . '</span>';
+													?>
+												</button>
+											</div><!--buttons -->
+										</form>
+										<?php
+									}
+									if ($category) {
+										?>
+									</fieldset>
 									<?php
 								}
-								if ($category) {
-									?>
-								</fieldset>
-								<?php
-							}
-							?>
-						</div><!-- overview-section -->
-						<?php
-					}
-					?>
-					<div class="box overview-section overiew-gallery-stats">
-						<h2 class="h2_bordered"><?php echo gettext("Gallery Stats"); ?></h2>
-						<ul>
-							<li>
-								<?php
-								$t = $_zp_gallery->getNumImages();
-								$c = $t - $_zp_gallery->getNumImages(true);
-								if ($c > 0) {
-									printf(ngettext('<strong>%1$u</strong> Image (%2$u un-published)', '<strong>%1$u</strong> Images (%2$u un-published)', $t), $t, $c);
-								} else {
-									printf(ngettext('<strong>%u</strong> Image', '<strong>%u</strong> Images', $t), $t);
-								}
 								?>
-							</li>
-							<li>
-								<?php
-								$t = $_zp_gallery->getNumAlbums(true);
-								$c = $t - $_zp_gallery->getNumAlbums(true, true);
-								if ($c > 0) {
-									printf(ngettext('<strong>%1$u</strong> Album (%2$u un-published)', '<strong>%1$u</strong> Albums (%2$u un-published)', $t), $t, $c);
-								} else {
-									printf(ngettext('<strong>%u</strong> Album', '<strong>%u</strong> Albums', $t), $t);
-								}
-								?>
-							</li>
-							<li>
-								<?php
-								$t = $_zp_gallery->getNumComments(true);
-								$c = $t - $_zp_gallery->getNumComments(false);
-								if ($c > 0) {
-									printf(ngettext('<strong>%1$u</strong> Comment (%2$u in moderation)', '<strong>%1$u</strong> Comments (%2$u in moderation)', $t), $t, $c);
-								} else {
-									printf(ngettext('<strong>%u</strong> Comment', '<strong>%u</strong> Comments', $t), $t);
-								}
-								?>
-							</li>
-							<li>
-								<?php
-								$users = $_zp_authority->getAdministrators('allusers');
-								$t = count($users);
-								$c = 0;
-								foreach ($users as $key => $user) {
-									if ($user['valid'] > 1) {
-										$c++;
-									}
-								}
-								if ($c) {
-									printf(ngettext('<strong>%1$u</strong> User (%2$u expired)', '<strong>%1$u</strong> Users (%2$u expired)', $t), $t, $c);
-								} else {
-									printf(ngettext('<strong>%u</strong> User', '<strong>%u</strong> Users', $t), $t);
-								}
-								?>
-							</li>
-							<li>
-								<?php
-								$t = count($_zp_authority->getAdministrators('groups'));
-								if ($t) {
-									printf(ngettext('<strong>%u</strong> Group or Template', '<strong>%u</strong> Groups and Templates', $t), $t);
-								}
-								?>
-							</li>
+							</div><!-- overview-section -->
 							<?php
-							if (extensionEnabled('zenpage')) {
-								?>
+						}
+						?>
+						<div class="box overview-section overiew-gallery-stats">
+							<h2 class="h2_bordered"><?php echo gettext("Gallery Stats"); ?></h2>
+							<ul>
 								<li>
-		<?php printPagesStatistic(); ?>
+									<?php
+									$t = $_zp_gallery->getNumImages();
+									$c = $t - $_zp_gallery->getNumImages(true);
+									if ($c > 0) {
+										printf(ngettext('<strong>%1$u</strong> Image (%2$u un-published)', '<strong>%1$u</strong> Images (%2$u un-published)', $t), $t, $c);
+									} else {
+										printf(ngettext('<strong>%u</strong> Image', '<strong>%u</strong> Images', $t), $t);
+									}
+									?>
 								</li>
 								<li>
-		<?php printNewsStatistic(); ?>
+									<?php
+									$t = $_zp_gallery->getNumAlbums(true);
+									$c = $t - $_zp_gallery->getNumAlbums(true, true);
+									if ($c > 0) {
+										printf(ngettext('<strong>%1$u</strong> Album (%2$u un-published)', '<strong>%1$u</strong> Albums (%2$u un-published)', $t), $t, $c);
+									} else {
+										printf(ngettext('<strong>%u</strong> Album', '<strong>%u</strong> Albums', $t), $t);
+									}
+									?>
 								</li>
 								<li>
-								<?php printCategoriesStatistic(); ?>
+									<?php
+									$t = $_zp_gallery->getNumComments(true);
+									$c = $t - $_zp_gallery->getNumComments(false);
+									if ($c > 0) {
+										printf(ngettext('<strong>%1$u</strong> Comment (%2$u in moderation)', '<strong>%1$u</strong> Comments (%2$u in moderation)', $t), $t, $c);
+									} else {
+										printf(ngettext('<strong>%u</strong> Comment', '<strong>%u</strong> Comments', $t), $t);
+									}
+									?>
+								</li>
+								<li>
+									<?php
+									$users = $_zp_authority->getAdministrators('allusers');
+									$t = count($users);
+									$c = 0;
+									foreach ($users as $key => $user) {
+										if ($user['valid'] > 1) {
+											$c++;
+										}
+									}
+									if ($c) {
+										printf(ngettext('<strong>%1$u</strong> User (%2$u expired)', '<strong>%1$u</strong> Users (%2$u expired)', $t), $t, $c);
+									} else {
+										printf(ngettext('<strong>%u</strong> User', '<strong>%u</strong> Users', $t), $t);
+									}
+									?>
+								</li>
+								<li>
+									<?php
+									$t = count($_zp_authority->getAdministrators('groups'));
+									if ($t) {
+										printf(ngettext('<strong>%u</strong> Group or Template', '<strong>%u</strong> Groups and Templates', $t), $t);
+									}
+									?>
 								</li>
 								<?php
-							}
-							?>
-						</ul>
-					</div><!-- overview-gallerystats -->
+								if (extensionEnabled('zenpage')) {
+									?>
+									<li>
+										<?php printPagesStatistic(); ?>
+									</li>
+									<li>
+										<?php printNewsStatistic(); ?>
+									</li>
+									<li>
+										<?php printCategoriesStatistic(); ?>
+									</li>
+									<?php
+								}
+								?>
+							</ul>
+						</div><!-- overview-gallerystats -->
 
-					<?php
-					zp_apply_filter('admin_overview');
-					?>
-				</div><!-- boxouter -->
-			</div><!-- content -->
-			<?php
-		} else {
+						<?php
+						zp_apply_filter('admin_overview');
+						?>
+					</div><!-- boxouter -->
+				</div><!-- content -->
+				<?php
+			} else {
+				?>
+				<div class="errorbox">
+					<?php echo gettext('Your user rights do not allow access to administrative functions.'); ?>
+				</div>
+				<?php
+			}
+			printAdminFooter();
+			/* No admin-only content allowed after point! */
 			?>
-			<div class="errorbox">
-			<?php echo gettext('Your user rights do not allow access to administrative functions.'); ?>
-			</div>
-			<?php
-		}
-		printAdminFooter();
-		/* No admin-only content allowed after point! */
-		?>
-	</div>
-	<!-- main -->
+		</div>
+		<!-- main -->
 </body>
 <?php
 // to fool the validator

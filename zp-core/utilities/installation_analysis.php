@@ -286,11 +286,13 @@ echo '</head>';
 						<div id="plugins_show">
 							<br />
 						</div><!-- plugins_show -->
+					</div>
+					<div class="box overview-section overview-install-info">
 						<?php
 						$c = count($filters);
 						?>
 						<h3><a onclick="$('#filters_hide').toggle();
-								$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
+									$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
 						<div id="filters_hide" style="display:none">
 							<ul class="plugins">
 								<?php
