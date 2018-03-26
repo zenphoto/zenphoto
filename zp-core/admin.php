@@ -493,7 +493,17 @@ $buttonlist = array();
 								}
 								?>
 							</li>
+							<li>
+								<?php
+								$t = count($_zp_authority->getAdministrators('users'));
+								printf(ngettext('<strong>%u</strong> User', '<strong>%u</strong> Users', $t), $t);
+								?>
+							</li>
 							<?php
+							$t = count($_zp_authority->getAdministrators('groups'));
+							if ($t) {
+								printf(ngettext('<strong>%u</strong> Group or Template', '<strong>%u</strong> Groups and Templates', $t), $t);
+							}
 							if (extensionEnabled('zenpage')) {
 								?>
 								<li>
