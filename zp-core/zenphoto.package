@@ -1581,6 +1581,7 @@ zp-core/utilities
 zp-core/utilities/backup_restore.php
 zp-core/utilities/database_reference.php
 zp-core/utilities/gallery_statistics.php
+zp-core/utilities/installation_analysis.php
 zp-core/utilities/reset_albumthumbs.php
 zp-core/watermarks
 zp-core/watermarks/copyright.png
@@ -8253,4 +8254,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8255
+8256
