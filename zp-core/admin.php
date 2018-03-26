@@ -495,8 +495,19 @@ $buttonlist = array();
 							</li>
 							<li>
 								<?php
-								$t = count($_zp_authority->getAdministrators('users'));
-								printf(ngettext('<strong>%u</strong> User', '<strong>%u</strong> Users', $t), $t);
+								$users = $_zp_authority->getAdministrators('allusers');
+								$t = count($users);
+								$c = 0;
+								foreach ($users as $key => $user) {
+									if ($user['valid'] > 1) {
+										$c++;
+									}
+								}
+								if ($c) {
+									printf(ngettext('<strong>%1$u</strong> User (%2$u expired)', '<strong>%1$u</strong> Users (%2$u expired)', $t), $t, $c);
+								} else {
+									printf(ngettext('<strong>%u</strong> User', '<strong>%u</strong> Users', $t), $t);
+								}
 								?>
 							</li>
 							<?php
