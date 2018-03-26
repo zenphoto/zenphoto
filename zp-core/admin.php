@@ -470,17 +470,6 @@ $buttonlist = array();
 							<ul>
 								<li>
 									<?php
-									$t = $_zp_gallery->getNumImages();
-									$c = $t - $_zp_gallery->getNumImages(true);
-									if ($c > 0) {
-										printf(ngettext('<strong>%1$u</strong> Image (%2$u un-published)', '<strong>%1$u</strong> Images (%2$u un-published)', $t), $t, $c);
-									} else {
-										printf(ngettext('<strong>%u</strong> Image', '<strong>%u</strong> Images', $t), $t);
-									}
-									?>
-								</li>
-								<li>
-									<?php
 									$t = $_zp_gallery->getNumAlbums(true);
 									$c = $t - $_zp_gallery->getNumAlbums(true, true);
 									if ($c > 0) {
@@ -490,6 +479,32 @@ $buttonlist = array();
 									}
 									?>
 								</li>
+								<li>
+									<?php
+									$t = $_zp_gallery->getNumImages();
+									$c = $t - $_zp_gallery->getNumImages(true);
+									if ($c > 0) {
+										printf(ngettext('<strong>%1$u</strong> Image (%2$u un-published)', '<strong>%1$u</strong> Images (%2$u un-published)', $t), $t, $c);
+									} else {
+										printf(ngettext('<strong>%u</strong> Image', '<strong>%u</strong> Images', $t), $t);
+									}
+									?>
+								</li>
+								<?php
+								if (extensionEnabled('zenpage')) {
+									?>
+									<li>
+										<?php printPagesStatistic(); ?>
+									</li>
+									<li>
+										<?php printCategoriesStatistic(); ?>
+									</li>
+									<li>
+										<?php printNewsStatistic(); ?>
+									</li>
+									<?php
+								}
+								?>
 								<li>
 									<?php
 									$t = $_zp_gallery->getNumComments(true);
@@ -518,25 +533,27 @@ $buttonlist = array();
 									}
 									?>
 								</li>
-								<li>
-									<?php
-									$t = count($_zp_authority->getAdministrators('groups'));
-									if ($t) {
-										printf(ngettext('<strong>%u</strong> Group or Template', '<strong>%u</strong> Groups and Templates', $t), $t);
-									}
-									?>
-								</li>
+
 								<?php
-								if (extensionEnabled('zenpage')) {
+								$g = $t = 0;
+								foreach ($_zp_authority->getAdministrators('groups') as $element) {
+									if ($element['name'] == 'group') {
+										$g++;
+									} else {
+										$t++;
+									}
+								}
+								if ($g) {
 									?>
 									<li>
-										<?php printPagesStatistic(); ?>
+										<?php printf(ngettext('<strong>%u</strong> Group', '<strong>%u</strong> Groups', $g), $g); ?>
 									</li>
+									<?php
+								}
+								if ($t) {
+									?>
 									<li>
-										<?php printNewsStatistic(); ?>
-									</li>
-									<li>
-										<?php printCategoriesStatistic(); ?>
+										<?php printf(ngettext('<strong>%u</strong> Template', '<strong>%u</strong> Templates', $t), $t); ?>
 									</li>
 									<?php
 								}
