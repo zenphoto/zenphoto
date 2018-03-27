@@ -453,7 +453,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	}
 	processTags($article);
 	$categories = array();
-	$myCategories = array_flip($_zp_current_admin_obj->getObjects('news'));
+	$myCategories = array_flip($_zp_current_admin_obj->getObjects('news_categories'));
 
 	if (isset($_POST['addcategories'])) {
 		$cats = sanitize($_POST['addcategories']);
@@ -986,13 +986,13 @@ function printCategoryListSortableTable($cat, $toodeep) {
 
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon"><?php
-		$password = $cat->getPassword();
-		if ($password) {
-			echo LOCK;
-		} else {
-			echo LOCK_OPEN;
-		}
-			?>
+				$password = $cat->getPassword();
+				if ($password) {
+					echo LOCK;
+				} else {
+					echo LOCK_OPEN;
+				}
+				?>
 			</div>
 			<div class="page-list_icon">
 				<?php echo linkPickerIcon($cat); ?>
@@ -1322,9 +1322,9 @@ function getNewsPagesStatistic($option, $all = TRUE) {
 function printPagesStatistic() {
 	list($total, $type, $unpub) = getNewsPagesStatistic("pages", FALSE);
 	if (empty($unpub)) {
-		printf(ngettext('<strong>%1$u</strong> page', '<strong>%1$u</strong> pages', $total), $total);
+		printf(ngettext('<strong>%1$u</strong> Page', '<strong>%1$u</strong> Pages', $total), $total);
 	} else {
-		printf(ngettext('<strong>%1$u</strong> page (%2$u un-published)', '<strong>%1$u</strong> pages (%2$u un-published)', $total), $total, $unpub);
+		printf(ngettext('<strong>%1$u</strong> Page (%2$u un-published)', '<strong>%1$u</strong> Pages (%2$u un-published)', $total), $total, $unpub);
 	}
 }
 
@@ -1333,18 +1333,18 @@ function printNewsStatistic($total = NULL, $unpub = NULL) {
 		list($total, $type, $unpub) = getNewsPagesStatistic("news", FALSE);
 	}
 	if (empty($unpub)) {
-		printf(ngettext('<strong>%1$u</strong> article', '<strong>%1$u</strong> articles', $total), $total);
+		printf(ngettext('<strong>%1$u</strong> Article', '<strong>%1$u</strong> Articles', $total), $total);
 	} else {
-		printf(ngettext('<strong>%1$u</strong> article (%2$u un-published)', '<strong>%1$u</strong> articles (%2$u un-published)', $total), $total, $unpub);
+		printf(ngettext('<strong>%1$u</strong> Article (%2$u un-published)', '<strong>%1$u</strong> Articles (%2$u un-published)', $total), $total, $unpub);
 	}
 }
 
 function printCategoriesStatistic() {
 	list($total, $type, $unpub) = getNewsPagesStatistic("categories", FALSE);
 	if (empty($unpub)) {
-		printf(ngettext('<strong>%1$u</strong> category', '<strong>%1$u</strong> categories', $total), $total);
+		printf(ngettext('<strong>%1$u</strong> Category', '<strong>%1$u</strong> Categories', $total), $total);
 	} else {
-		printf(ngettext('<strong>%1$u</strong> category (%2$u un-published)', '<strong>%1$u</strong> categories (%2$u un-published)', $total), $total, $unpub);
+		printf(ngettext('<strong>%1$u</strong> Category (%2$u un-published)', '<strong>%1$u</strong> Categories (%2$u un-published)', $total), $total, $unpub);
 	}
 }
 

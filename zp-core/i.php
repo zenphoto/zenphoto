@@ -171,27 +171,33 @@ if ($process) { // If the file hasn't been cached yet, create it.
 $protocol = FULLWEBPATH;
 $path = $protocol . '/' . CACHEFOLDER . pathurlencode(imgSrcURI($newfilename));
 
-if (!$debug) {
+if ($debug) {
+	//	i.php is being accessed directly via an image debug link
+	echo "\n<p>Image: <img src=\"" . $path . "\" /></p>";
+} else {
 	// ... and redirect the browser to it.
 	$suffix = getSuffix($newfilename);
 	switch ($suffix) {
-		case 'wbm':
-		case 'wbmp':
-			$suffix = 'wbmp';
-			break;
 		case 'jpg':
 			$suffix = 'jpeg';
+			break;
+		case 'wbm':
+			$suffix = 'wbmp';
 			break;
 		case 'png':
 		case 'gif':
 		case 'jpeg':
+		case 'wbmp':
+			// these are the correct content type
 			break;
 		default:
 			imageError(405, 'Method Not Allowed', sprintf(gettext("Suffix Not Allowed: %s"), filesystemToInternal(basename($newfilename))));
 	}
 	if (OPEN_IMAGE_CACHE) {
+		// send the right headers
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt) . ' GMT');
 		header('Content-Type: image/' . $suffix);
+		//redirect to the cached image
 		header('Location: ' . $path, true, 301);
 	} else {
 		$fp = fopen($newfile, 'rb');
@@ -199,11 +205,9 @@ if (!$debug) {
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 		header("Content-Type: image/$suffix");
 		header("Content-Length: " . filesize($newfile));
-		// dump the picture and stop the script
+		// dump the picture
 		fpassthru($fp);
 		fclose($fp);
 	}
-} else {
-	echo "\n<p>Image: <img src=\"" . $path . "\" /></p>";
 }
 ?>

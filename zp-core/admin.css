@@ -2579,6 +2579,10 @@ ul.page-list {
 	background-color:#F1F2F3;
 }
 
+.privatetag {
+	background-color:gold;
+}
+
 .ui-nestedSortable-error {
 	background: red; /*#fbe3e4;*/
 	color: #8a1f11;

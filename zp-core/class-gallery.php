@@ -472,7 +472,7 @@ class Gallery {
 					$tbl = $row['type'];
 					$dbtag = query_single_row($sql = "SELECT * FROM " . prefix($tbl) . " WHERE `id`='" . $row['objectid'] . "'", false);
 					if (!$dbtag) {
-						$row['id'][$tbl] = $row['objectid'];
+						$dead[$row['id']][$tbl] = $row['objectid'];
 					}
 				}
 				db_free_result($result);

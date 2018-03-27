@@ -59,7 +59,7 @@ class register_user {
 		global $_zp_authority, $_zp_captcha;
 		$options = array(
 				gettext('Link text') => array('key' => 'register_user_page_link', 'type' => OPTION_TYPE_TEXTAREA,
-						'order' => 1,
+						'order' => 2,
 						'desc' => gettext('Default text for the register user link.')),
 				gettext('Hint text') => array('key' => 'register_user_page_tip', 'type' => OPTION_TYPE_TEXTAREA,
 						'order' => 2.5,
@@ -116,7 +116,7 @@ class register_user {
 				setOption('register_user_user_rights', NO_RIGHTS);
 			}
 			$options[gettext('Default rights')] = array('key' => 'register_user_user_rights', 'type' => OPTION_TYPE_CUSTOM,
-					'order' => 2,
+					'order' => 1,
 					'desc' => gettext("Initial rights for the new user. (If no rights are set, approval of the user will be required.)"));
 		}
 		return $options;
@@ -126,21 +126,14 @@ class register_user {
 		global $_zp_gallery;
 		switch ($option) {
 			case 'register_user_user_rights':
-				printAdminRightsTable('register_user', '', '', getOption('register_user_user_rights'));
+				printAdminRightsTable(0, '', '', getOption('register_user_user_rights'));
 				break;
 		}
 	}
 
 	static function handleOptionSave($themename, $themealbum) {
-		if (!class_exists('user_groups')) {
-			$saved_rights = NO_RIGHTS;
-			$rightslist = sortMultiArray(Zenphoto_Authority::getRights(), array('set', 'value'));
-			foreach ($rightslist as $rightselement => $right) {
-				if (isset($_POST['register_user-' . $rightselement])) {
-					$saved_rights = $saved_rights | $_POST['register_user-' . $rightselement];
-				}
-			}
-			setOption('register_user_user_rights', $saved_rights);
+		if (isset($_POST['user'][0])) {
+			setOption('register_user_user_rights', processRights(0));
 		}
 		return false;
 	}

@@ -390,7 +390,7 @@ class Category extends CMSRoot {
 			$objects = $_zp_current_admin_obj->getObjects();
 			$me = $this->getTitlelink();
 			foreach ($objects as $object) {
-				if ($object['type'] == 'news') {
+				if ($object['type'] == 'news_categories') {
 					if ($object['data'] == $me) {
 						$this->subrights = $object['edit'] | MANAGED_OBJECT_MEMBER;
 						return $this->subrights;

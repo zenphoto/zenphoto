@@ -171,6 +171,7 @@ if (@$_zp_loggedin) {
 					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-plugins.php',
 					'subtabs' => $subtabs);
 			zp_register_filter('admin_tabs', 'backup_subtab', -200);
+			$zenphoto_tabs['overview']['subtabs'][gettext('Installation information')] = '/' . ZENFOLDER . '/utilities/installation_analysis.php?tab=installstats';
 		}
 
 		if ($_zp_loggedin & ADMIN_RIGHTS) {

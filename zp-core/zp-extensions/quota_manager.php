@@ -95,9 +95,9 @@ class quota_manager {
 	 * @return bool
 	 */
 	static function save_admin($updated, $userobj, $i, $alter) {
-		if (isset($_POST[$i . 'quota']) && $alter) {
+		if (isset($_POST['user'][$i]['quota']) && $alter) {
 			$oldquota = $userobj->getQuota();
-			$userobj->setQuota(sanitize_numeric($_POST[$i . 'quota']));
+			$userobj->setQuota(sanitize_numeric($_POST['user'][$i]['quota']));
 			if ($oldquota != $userobj->getQuota()) {
 				$updated = true;
 			}
@@ -131,10 +131,11 @@ class quota_manager {
 		}
 		$result = '<div class="user_left">' . "\n"
 						. gettext("Image storage quota:") . '&nbsp;' .
-						sprintf(gettext('Allowed: %s kb'), '<input type="text" size="10" name="' . $i . 'quota" value="' . $quota . '" ' . $local_alterrights . ' />') . ' ' .
+						sprintf(gettext('Allowed: %s kb'), '<input type="text" size="10" name="user[' . $i . '][quota]" value="' . $quota . '" ' . $local_alterrights . ' />') . ' ' .
 						$used . "\n"
 						. '</div>' . "\n"
 						. '<br class="clearall">' . "\n";
+
 		return $html . $result;
 	}
 

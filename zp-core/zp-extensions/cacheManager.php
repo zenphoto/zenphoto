@@ -321,6 +321,7 @@ class cacheManager {
 
 		$albumName = '';
 		if (in_array(strtolower($theme), $themeList)) {
+			//from a theme, so there are standard options
 			if (is_null($watermark)) {
 				$watermark = getThemeOption('image_watermark', $_set_theme_album, $theme);
 			}

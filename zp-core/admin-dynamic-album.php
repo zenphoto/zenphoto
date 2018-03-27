@@ -48,9 +48,13 @@ if (isset($_POST['savealbum'])) {
 
 		if ($allow) {
 			if ($_POST['create_tagged'] == 'static') {
+				//	create the tag
+				$words = sanitize($_POST['album_tag']);
+				$success = query('INSERT INTO ' . prefix('tags') . ' (`name`,`private`) VALUES (' . db_quote($words) . ', "1")', false);
+
 				$unpublished = isset($_POST['return_unpublished']);
 				$_POST['return_unpublished'] = true; //	state is frozen at this point, so unpublishing should not impact
-				$words = sanitize($_POST['album_tag']);
+
 				$searchfields[] = 'tags_exact';
 				// now tag each element
 				if (isset($_POST['return_albums'])) {

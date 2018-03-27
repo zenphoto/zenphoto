@@ -827,24 +827,24 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 			db_free_result($currentvalues);
 		}
 	}
-	if (empty($type) || $type == 'news') {
+	if (empty($type) || $type == 'news_categories') {
 		$sql = 'SELECT ' . prefix('news_categories') . '.`titlelink`,' . prefix('news_categories') . '.`title`, ' . prefix('admin_to_object') . '.`edit` FROM ' . prefix('news_categories') . ', ' .
 						prefix('admin_to_object') . " WHERE " . prefix('admin_to_object') . ".adminid=" . $id .
-						" AND " . prefix('news_categories') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='news'";
+						" AND " . prefix('news_categories') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='news_categories'";
 		$currentvalues = query($sql, false);
 		if ($currentvalues) {
 			while ($item = db_fetch_assoc($currentvalues)) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
-					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'news', 'edit' => (int) $item['edit']);
+					$cv[] = array('data' => $item['titlelink'], 'name' => get_language_string($item['title']), 'type' => 'news_categories', 'edit' => (int) $item['edit']);
 				}
 			}
 			db_free_result($currentvalues);
 		}
-		$item = query_single_row('SELECT `edit` FROM ' . prefix('admin_to_object') . "WHERE adminid=$id AND objectid=0 AND type='news'", false);
+		$item = query_single_row('SELECT `edit` FROM ' . prefix('admin_to_object') . "WHERE adminid=$id AND objectid=0 AND type='news_categories'", false);
 		if ($item) {
-			$cv[] = array('data' => '`', 'name' => '"' . gettext('un-categorized') . '"', 'type' => 'news', 'edit' => (int) $item['edit']);
+			$cv[] = array('data' => '`', 'name' => '"' . gettext('un-categorized') . '"', 'type' => 'news_categories', 'edit' => (int) $item['edit']);
 		}
 	}
 	return $cv;
@@ -1126,8 +1126,13 @@ function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 		} else {
 			$lang = ' AND (tag.language="" OR tag.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';
 		}
+		if ($_zp_loggedin & TAGS_RIGHTS) {
+			$private = '';
+		} else {
+			$private = ' AND (tag.private=0)';
+		}
 
-		$sql = 'SELECT tag.name, count(DISTINCT tag.name, obj.type, obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . $source . ' obj WHERE (tag.id=obj.tagid) ' . $lang . ' GROUP BY tag.name';
+		$sql = 'SELECT tag.name, count(DISTINCT tag.name, obj.type, obj.objectid) as count FROM ' . prefix('tags') . ' tag, ' . $source . ' obj WHERE (tag.id=obj.tagid) ' . $lang . $private . ' GROUP BY tag.name';
 		$unique_tags = query($sql);
 
 		if ($unique_tags) {
@@ -1219,10 +1224,16 @@ function readTags($id, $tbl, $language) {
 				break;
 		}
 	}
+	if (zp_loggedin(TAGS_RIGHTS)) {
+		$private = '';
+	} else {
+		$private = ' AND tags.private=0';
+	}
+
 
 	$tags = array();
 
-	$sql = 'SELECT * FROM ' . prefix('tags') . ' AS tags, ' . prefix('obj_to_tag') . ' AS objects WHERE `type`="' . $tbl . '" AND `objectid`="' . $id . '" AND tagid=tags.id';
+	$sql = 'SELECT * FROM ' . prefix('tags') . ' AS tags, ' . prefix('obj_to_tag') . ' AS objects WHERE `type`="' . $tbl . '" AND `objectid`="' . $id . '" AND tagid=tags.id' . $private;
 
 	if ($language) {
 		$sql .= ' AND (tags.language="" OR tags.language LIKE ' . db_quote(db_LIKE_escape($language) . '%') . ')';

@@ -38,13 +38,15 @@ if (isset($_GET['action'])) {
 			exitZP();
 		case 'savegroups':
 			if (isset($_POST['checkForPostTruncation'])) {
-				for ($i = 0; $i < $_POST['totalgroups']; $i++) {
-					$groupname = trim(sanitize($_POST[$i . '-group']));
+				$newgroupid = @$_POST['newgroup'];
+				$grouplist = $_POST['user'];
+				foreach ($grouplist as $i => $groupelement) {
+					$groupname = trim(sanitize($groupelement['group']));
 					if (!empty($groupname)) {
 						$rights = 0;
 						$group = Zenphoto_Authority::newAdministrator($groupname, 0);
-						if (isset($_POST[$i . '-initgroup']) && !empty($_POST[$i . '-initgroup'])) {
-							$initgroupname = trim(sanitize($_POST[$i . '-initgroup'], 3));
+						if (isset($groupelement['initgroup']) && !empty($groupelement['initgroup'])) {
+							$initgroupname = trim(sanitize($groupelement['initgroup'], 3));
 							$initgroup = Zenphoto_Authority::newAdministrator($initgroupname, 0);
 							$rights = $initgroup->getRights();
 							$group->setObjects(processManagedObjects($group->getID(), $rights));
@@ -54,9 +56,10 @@ if (isset($_GET['action'])) {
 							$group->setObjects(processManagedObjects($i, $rights));
 							$group->setRights(NO_RIGHTS | $rights);
 						}
-						$group->set('other_credentials', trim(sanitize($_POST[$i . '-desc'], 3)));
-						$group->setName(trim(sanitize($_POST[$i . '-type'], 3)));
+						$group->setCredentials(trim(sanitize($groupelement['desc'], 3)));
+						$group->setName(trim(sanitize($groupelement['type'], 3)));
 						$group->setValid(0);
+						$group->setDesc(trim(sanitize($groupelement['desc'], 3)));
 						zp_apply_filter('save_admin_custom_data', true, $group, $i, true);
 						$group->save();
 
@@ -67,22 +70,21 @@ if (isset($_GET['action'])) {
 								if ($admin['valid']) {
 									$hisgroups = explode(',', $admin['group']);
 									if (in_array($groupname, $hisgroups)) {
-										$user = Zenphoto_Authority::newAdministrator($admin['user'], $admin['valid']);
-										user_groups::merge_rights($user, $hisgroups, user_groups::getPrimeObjects($user));
-										$user->save();
+										$userobj = Zenphoto_Authority::newAdministrator($admin['user'], $admin['valid']);
+										user_groups::merge_rights($userobj, $hisgroups, user_groups::getPrimeObjects($userobj));
+										$userobj->save();
 									}
 								}
 							}
 							//user assignments: first clear out existing ones
 							Zenphoto_Authority::updateAdminField('group', NULL, array('`valid`>=' => '1', '`group`=' => $groupname));
-							//then add the ones marked
-							$target = 'user_' . $i . '-';
-							foreach ($_POST as $item => $username) {
-								if (strpos($item, $target) !== false) {
-									//$username = substr($item, strlen($target));
-									$user = $_zp_authority->getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
-									user_groups::merge_rights($user, array(1 => $groupname), user_groups::getPrimeObjects($user));
-									$user->save();
+							if (isset($groupelement['userlist'])) {
+								//then add the ones marked
+								foreach ($groupelement['userlist'] as $list) {
+									$username = $list['checked'];
+									$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
+									user_groups::merge_rights($userobj, array(1 => $groupname), user_groups::getPrimeObjects($userobj));
+									$userobj->save();
 								}
 							}
 						}
@@ -92,14 +94,16 @@ if (isset($_GET['action'])) {
 			} else {
 				$notify = '&post_error';
 			}
+
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=admin&tab=groups&subpage=' . $subpage . $notify);
 			exitZP();
 		case 'saveauserassignments':
 			if (isset($_POST['checkForPostTruncation'])) {
-				for ($i = 0; $i < $_POST['totalusers']; $i++) {
-					if (isset($_POST[$i . 'group'])) {
-						$newgroups = sanitize($_POST[$i . 'group']);
-						$username = trim(sanitize($_POST[$i . '-user'], 3));
+				$userlist = $_POST['user'];
+				foreach ($userlist as $i => $user) {
+					if (isset($user['group'])) {
+						$newgroups = sanitize($user['group']);
+						$username = trim(sanitize($user['userid'], 3));
 						$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 						user_groups::merge_rights($userobj, $newgroups, user_groups::getPrimeObjects($userobj));
 						$userobj->save();
@@ -234,7 +238,7 @@ echo '</head>' . "\n";
 								foreach ($admins as $key => $user) {
 									if ($user['valid'] >= 1) {
 										if (!empty($user['group'])) {
-											$belongs = explode(',', $user['group']);
+											$membership[$user['user']] = $belongs = explode(',', $user['group']);
 											foreach ($belongs as $group) {
 												if (!isset($user_count[$group])) {
 													$user_count[$group] = 1;
@@ -242,6 +246,8 @@ echo '</head>' . "\n";
 													$user_count[$group] ++;
 												}
 											}
+										} else {
+											$membership[$user['user']] = array();
 										}
 									}
 								}
@@ -254,7 +260,7 @@ echo '</head>' . "\n";
 									$groupid = $user['id'];
 									$rights = $user['rights'];
 									$grouptype = $user['name'];
-									$desc = $user['other_credentials'];
+									$desc = get_language_string($user['other_credentials']);
 									$groupobj = new Zenphoto_Administrator($groupname, 0);
 									if ($grouptype == 'group') {
 										$kind = gettext('group');
@@ -276,18 +282,19 @@ echo '</head>' . "\n";
 												<?php
 												if (empty($groupname)) {
 													?>
+													<input type="hidden" name="newgroupid" value="<?php echo $id; ?>" />
 													<em>
 														<label>
-															<input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
+															<input type="radio" name="user[<?php echo $id; ?>][type]" value="group" checked="checked" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
 																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
 														</label>
 														<label>
-															<input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
+															<input type="radio" name="user[<?php echo $id; ?>][type]" value="template" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
 																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
 														</label>
 													</em>
 													<br />
-													<input type="text" size="35" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value=""
+													<input type="text" size="35" id="group-<?php echo $id ?>" name="user[<?php echo $id ?>][group]" value=""
 																 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', true);" />
 																 <?php
 															 } else {
@@ -304,12 +311,12 @@ echo '</head>' . "\n";
 															<strong><?php echo $groupname; ?></strong> <?php echo $count; ?>
 														</a>
 													</span>
-													<input type="hidden" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value="<?php echo html_encode($groupname); ?>" />
-													<input type="hidden" name="<?php echo $id ?>-type" value="<?php echo html_encode($grouptype); ?>" />
+													<input type="hidden" id="group-<?php echo $id ?>" name="user[<?php echo $id ?>][group]" value="<?php echo html_encode($groupname); ?>" />
+													<input type="hidden" name="user[<?php echo $id ?>][type]" value="<?php echo html_encode($grouptype); ?>" />
 													<?php
 												}
 												?>
-												<input type="hidden" name="<?php echo $id ?>-confirmed" value="1" />
+												<input type="hidden" name="user[<?php echo $id ?>][confirmed]" value="1" />
 											</div>
 											<div class="floatright">
 												<?php
@@ -333,7 +340,7 @@ echo '</head>' . "\n";
 													?>
 													<?php echo gettext('clone:'); ?>
 													<br />
-													<select name="<?php echo $id; ?>-initgroup" onchange="javascript:$('#hint<?php echo $id; ?>').html(this.options[this.selectedIndex].title);">
+													<select name="user[<?php echo $id; ?>][initgroup]" onchange="javascript:$('#hint<?php echo $id; ?>').html(this.options[this.selectedIndex].title);">
 														<option title=""></option>
 														<?php
 														foreach ($groups as $user) {
@@ -358,7 +365,7 @@ echo '</head>' . "\n";
 											<div class="user_right userextrainfo" <?php echo $display; ?>>
 												<strong><?php echo gettext('description:'); ?></strong>
 												<br />
-												<textarea name="<?php echo $id; ?>-desc" cols="40" rows="4"><?php echo html_encode($desc); ?></textarea>
+												<textarea name="user[<?php echo $id; ?>][desc]" cols="40" rows="4"><?php echo html_encode($desc); ?></textarea>
 
 												<br /><br />
 												<div id="users<?php echo $id; ?>" <?php if ($grouptype == 'template') echo ' style="display:none"' ?>>
@@ -368,28 +375,30 @@ echo '</head>' . "\n";
 														$members = array();
 														if (!empty($groupname)) {
 															foreach ($adminlist as $user) {
-																if ($user['valid'] && $user['group'] == $groupname) {
-																	$members[] = $user['user'];
+																if ($user['valid']) {
+																	if (in_array($groupname, $membership[$user['user']])) {
+																		$members[] = $user['user'];
+																	}
 																}
 															}
 														}
 														?>
 														<ul class="shortchecklist">
-															<?php generateUnorderedListFromArray($members, $members, 'user_' . $id . '-', false, true, false); ?>
-															<?php generateUnorderedListFromArray(array(), array_diff($users, $members), 'user_' . $id . '-', false, true, false); ?>
+															<?php generateUnorderedListFromArray($members, $members, 'user[' . $id . '][userlist]', false, true, false, NULL, NULL, 2); ?>
+															<?php generateUnorderedListFromArray(array(), array_diff($users, $members), 'user[' . $id . '][userlist]', false, true, false, NULL, NULL, 2); ?>
 														</ul>
 													</div>
 												</div>
 
 												<?php
-												printManagedObjects('albums', $albumlist, '', $groupobj, $id, $kind, array());
+												printManagedObjects('albums', $albumlist, NULL, $groupobj, $id, $kind, array());
 												if (extensionEnabled('zenpage')) {
 													$newslist = array();
 													$categories = $_zp_CMS->getAllCategories(false);
 													foreach ($categories as $category) {
 														$newslist[get_language_string($category['title'])] = $category['titlelink'];
 													}
-													printManagedObjects('news', $newslist, '', $groupobj, $id, $kind, NULL);
+													printManagedObjects('news_categories', $newslist, NULL, $groupobj, $id, $kind, NULL);
 													$pagelist = array();
 													$pages = $_zp_CMS->getPages(false);
 													foreach ($pages as $page) {
@@ -397,7 +406,7 @@ echo '</head>' . "\n";
 															$pagelist[get_language_string($page['title'])] = $page['titlelink'];
 														}
 													}
-													printManagedObjects('pages', $pagelist, '', $groupobj, $id, $kind, NULL);
+													printManagedObjects('pages', $pagelist, NULL, $groupobj, $id, $kind, NULL);
 												}
 												?>
 
@@ -525,7 +534,7 @@ echo '</head>' . "\n";
 										?>
 										<tr>
 											<td width="20%" style="border-top: 1px solid #D1DBDF;" valign="top">
-												<input type="hidden" name="<?php echo $id; ?>-user" value="<?php echo $user['user']; ?>" />
+												<input type="hidden" name="user[<?php echo $id; ?>][userid]" value="<?php echo $user['user']; ?>" />
 												<?php echo $user['user']; ?>
 											</td>
 											<td style="border-top: 1px solid #D1DBDF;" valign="top" >
