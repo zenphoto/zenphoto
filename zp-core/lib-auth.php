@@ -1385,7 +1385,7 @@ class _Authority {
 		if (is_numeric($id)) {
 			$format = 'user[%2$s][%1$s]';
 		} else {
-			$format = '%2$s';
+			$format = '%1$s%2$s';
 		}
 		?>
 		<input type="hidden" name="<?php printf($format, 'passrequired', $id); ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" class="inputbox"/>
@@ -1400,7 +1400,7 @@ class _Authority {
 							 name="<?php printf($format, 'disclose_password', $id); ?>"
 							 id="disclose_password<?php echo $id; ?>"
 							 onclick="passwordClear('<?php echo $id; ?>');
-									 togglePassword('<?php echo $id; ?>');">
+											 togglePassword('<?php echo $id; ?>');">
 			</span>
 
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
