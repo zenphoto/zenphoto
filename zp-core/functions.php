@@ -1209,7 +1209,7 @@ function storeTags($tags, $id, $tbl) {
  * @param string $tbl 'albums' or 'images', etc.
  * @return array
  */
-function readTags($id, $tbl, $language) {
+function readTags($id, $tbl, $language, $full = false) {
 	global $_zp_current_locale;
 	if (is_null($language)) {
 		switch (getOption('languageTagSearch')) {
@@ -1241,13 +1241,18 @@ function readTags($id, $tbl, $language) {
 	$result = query($sql);
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
+			$tagsFull[] = $row;
 			$tags[] = $row['name'];
 		}
 		db_free_result($result);
 	}
-	$tags = array_unique($tags);
-	natcasesort($tags);
-	return $tags;
+	if ($full) {
+		return $tagsFull;
+	} else {
+		$tags = array_unique($tags);
+		natcasesort($tags);
+		return $tags;
+	}
 }
 
 /**
