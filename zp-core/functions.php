@@ -1230,8 +1230,7 @@ function readTags($id, $tbl, $language, $full = false) {
 		$private = ' AND tags.private=0';
 	}
 
-
-	$tags = array();
+	$tagsFull = $tags = array();
 
 	$sql = 'SELECT * FROM ' . prefix('tags') . ' AS tags, ' . prefix('obj_to_tag') . ' AS objects WHERE `type`="' . $tbl . '" AND `objectid`="' . $id . '" AND tagid=tags.id' . $private;
 
