@@ -47,7 +47,7 @@
 						printRSSLink("Gallery", "", (gettext('Gallery Images')), "", false, "rsslink");
 					}
 					if (function_exists('getBarePageTitle') && getOption('RSS_zenpage_items') && getNumNews(true)) {
-						printRSSLink("News", ' | ', gettext('News'), '', false);
+						printRSSLink("News", ' | ', NEWS_LABEL, '', false);
 					}
 					?>
 				</div>

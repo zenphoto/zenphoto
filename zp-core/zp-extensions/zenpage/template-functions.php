@@ -743,7 +743,7 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL) {
 	global $_zp_post_date, $_zp_gallery_page;
 	if (!in_context(ZP_SEARCH_LINKED)) {
 		if (is_null($name)) {
-			$name = gettext('News');
+			$name = NEWS_LABEL;
 		}
 		$link = getNewsIndexURL();
 		if ($before) {

@@ -6,7 +6,7 @@ if (!defined('WEBPATH'))
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-	<?php printRSSHeaderLink("Gallery", gettext('Gallery RSS')); ?>
+	<?php printRSSHeaderLink("Gallery", gettext('Gallery')); ?>
 	<?php printZDRoundedCornerJS(); ?>
 </head>
 
@@ -27,7 +27,7 @@ if (!defined('WEBPATH'))
 							printCurrentNewsArchive(" » ");
 							?></strong>
 					<?php } else { ?>
-						<a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a> » <strong><?php echo gettext("News"); ?></strong>
+						<a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext("Index"); ?></a> » <strong><?php echo NEWS_LABEL; ?></strong>
 					<?php } ?>
 				</h2>
 			</div>

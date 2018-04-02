@@ -26,13 +26,13 @@ if (!defined('WEBPATH'))
 					<h2><?php echo gettext("Archive view"); ?></h2>
 
 					<div id="archive">
-						<h3><?php echo gettext('Gallery archive'); ?></h3>
+						<h3><?php echo gettext('Gallery'); ?></h3>
 						<?php printAllDates(); ?>
 						<hr />
 						<?php
 						if (extensionEnabled('zenpage') && getNumNews(true)) {
 							?>
-							<h3><?php echo gettext('News archive'); ?></h3>
+							<h3><?php echo NEWS_LABEL; ?></h3>
 							<?php printNewsArchive("archive"); ?>
 							<hr />
 							<?php

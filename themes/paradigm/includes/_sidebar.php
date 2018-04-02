@@ -21,7 +21,7 @@
 	if (getNumNews(true)) {
 	?>
 <div class="panel panel-default" id="nav-local">
-	<div class="panel-heading"><span class="panel-title"><?php echo gettext("News"); ?></span></div>
+	<div class="panel-heading"><span class="panel-title"><?php echo NEWS_LABEL; ?></span></div>
 	<div class="panel-body">
 			<?php printAllNewsCategories("",false,"nav-local-news","open",true,"submenu","open", "list", true,""); ?>						
 	</div>

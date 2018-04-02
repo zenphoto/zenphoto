@@ -20,7 +20,7 @@
 
 					if (function_exists("printAllNewsCategories") && ((getNumNews(true)) > 0)) {
 						?>
-						<li><?php printNewsIndexURL(gettext('News'), '', gettext('News')); ?></li>
+						<li><?php printNewsIndexURL(NEWS_LABEL, '', NEWS_LABEL); ?></li>
 						<?php
 					}
 

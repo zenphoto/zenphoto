@@ -353,7 +353,7 @@
 
 		<!-- rss -->
 
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 
 		<?php zp_apply_filter('theme_head'); ?>
 

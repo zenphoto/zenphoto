@@ -4,7 +4,6 @@
  * @package plugins/menu_manager
  */
 
-
 /**
  * Updates the sortorder of the pages list in the database
  *
@@ -234,7 +233,7 @@ function printItemEditLink($item) {
 	$link = "";
 	$array = getItemTitleAndURL($item);
 	$title = html_encode(get_language_string($array['title']));
-	$link = '<a href="menu_tab_edit.php?edit&amp;id=' . $item['id'] . "&amp;type=" . $item['type'] . "&amp;menuset=" . html_encode(checkChosenMenuset()) . '">' . $title . '</a>';
+	$link = '<a href="menu_tab_edit.php?edit&amp;id=' . $item['id'] . "&amp;type=" . $item['type'] . "&amp;menuset=" . html_encode($item['menuset']) . '">' . $title . '</a>';
 	echo $link;
 }
 
@@ -277,7 +276,7 @@ function printItemStatusDropdown() {
  */
 function getMenuSetSelector($active) {
 	$menuset = checkChosenMenuset();
-	$menusets = array($menuset => $menuset);
+	$menusets = array();
 	$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu') . " ORDER BY menuset");
 	if ($result) {
 		foreach ($result as $set) {
@@ -299,7 +298,7 @@ function getMenuSetSelector($active) {
 		} else {
 			$selected = '';
 		}
-		$selector .= '<option ' . $selected . ' value="' . html_encode($set) . '">' . html_encode($set) . "</option>\n";
+		$selector .= '<option value="' . html_encode($set) . '"' . $selected . '>' . html_encode($set) . "</option>\n";
 	}
 	$selector .= "</select>\n";
 	return $selector;

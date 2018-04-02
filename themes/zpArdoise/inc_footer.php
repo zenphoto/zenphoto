@@ -20,7 +20,7 @@
 				<?php
 				$rss = false;
 				if (getOption('RSS_album_image')) {
-					printRSSLink('Gallery', '', gettext('Latest images'), '', false, 'rss');
+					printRSSLink('Gallery', '', gettext('Images'), '', false, 'rss');
 					$rss = true;
 				}
 				if (($_zenpage_enabled) && (getOption('RSS_articles'))) {
@@ -29,7 +29,7 @@
 					} else {
 						$separ = '';
 					};
-					printRSSLink('News', $separ, gettext('Latest news'), '', false, 'rss');
+					printRSSLink('News', $separ, NEWS_LABEL, '', false, 'rss');
 				}
 				?>
 				<script type="text/javascript">

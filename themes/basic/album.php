@@ -80,7 +80,7 @@ if (!defined('WEBPATH'))
 				printFavoritesURL(NULL, '', ' | ', '<br />');
 			}
 			if (class_exists('RSS'))
-				printRSSLink('Album', '', gettext('Album RSS'), ' | ');
+				printRSSLink('Album', '', gettext('Album'), ' | ');
 			printCustomPageURL(gettext("Archive View"), "archive", '', '', ' | ');
 			printSoftwareLink();
 			@call_user_func('printUserLogin_out', " | ");

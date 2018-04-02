@@ -42,3 +42,6 @@ define('SELECT_ARTICLES', 8);
 
 $_zp_exifvars = zpFunctions::exifvars();
 $_locale_Subdomains = zpFunctions::LanguageSubdomains();
+
+//	use this for labeling "News" pages, etc.
+define('NEWS_LABEL', get_language_string(getSerializedArray(getOption('zenpage_news_label'))));

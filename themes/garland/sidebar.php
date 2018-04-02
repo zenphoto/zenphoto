@@ -22,7 +22,7 @@ if (getOption('Allow_search')) {
 				$text = gettext('Search category');
 			} else {
 				$list = array('news' => '1', 'albums' => '0', 'images' => '0', 'pages' => '0');
-				$text = gettext("Search news");
+				$text = gettext("Search");
 			}
 			break;
 		case 'search.php':
@@ -68,9 +68,9 @@ if (function_exists('printCustomMenu') && extensionEnabled('zenpage') && ($menu 
 		if (getNumNews(true)) {
 			?>
 			<div class="menu">
-				<h3><?php echo gettext("News articles"); ?></h3>
+				<h3><?php echo NEWS_LABEL; ?></h3>
 				<?php
-				printAllNewsCategories(gettext("All news"), TRUE, "news_menu", "menu", true, "menu_sub", "menu_sub_active");
+				printAllNewsCategories(gettext("All"), TRUE, "news_menu", "menu", true, "menu_sub", "menu_sub_active");
 				?>
 			</div>
 			<?php

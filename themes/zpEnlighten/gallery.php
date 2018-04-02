@@ -7,7 +7,7 @@ if (!defined('WEBPATH'))
 	<?php zp_apply_filter('theme_head'); ?>
 	<?php printZDRoundedCornerJS(); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-	<?php printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+	<?php printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 </head>
 <body>
 	<?php zp_apply_filter('theme_body_open'); ?>

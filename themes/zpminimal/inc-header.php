@@ -60,15 +60,15 @@ if (function_exists('printAddThis')) {
 				break;
 			case 'news.php':
 				if (is_NewsArticle()) {
-					$zpmin_metatitle = gettext('News') . ' | ' . getBareNewsTitle() . ' | ';
+					$zpmin_metatitle = NEWS_LABEL . ' | ' . getBareNewsTitle() . ' | ';
 					$zpmin_metadesc = truncate_string(getBare(getNewsContent()), 150, '...');
 				} else if ($_zp_current_category) {
-					$zpmin_metatitle = gettext('News') . ' | ' . $_zp_current_category->getTitle() . ' | ';
+					$zpmin_metatitle = NEWS_LABEL . ' | ' . $_zp_current_category->getTitle() . ' | ';
 					$zpmin_metadesc = truncate_string(getBare(getNewsCategoryDesc()), 150, '...');
 				} else if (getCurrentNewsArchive()) {
-					$zpmin_metatitle = gettext('News') . ' | ' . getCurrentNewsArchive() . ' | ';
+					$zpmin_metatitle = NEWS_LABEL . ' | ' . getCurrentNewsArchive() . ' | ';
 				} else {
-					$zpmin_metatitle = gettext('News') . ' | ';
+					$zpmin_metatitle = NEWS_LABEL . ' | ';
 				}
 				$cbscript = true;
 				break;
@@ -117,8 +117,8 @@ if (function_exists('printAddThis')) {
 		<![endif]-->
 		<?php
 		if (extensionEnabled('rss')) {
-			printRSSHeaderLink('Gallery', gettext('Gallery RSS'));
-			printRSSHeaderLink("News", "", gettext('News RSS'), "");
+			printRSSHeaderLink('Gallery', gettext('Gallery'));
+			printRSSHeaderLink("News", "", NEWS_LABEL, "");
 		}
 		?>
 

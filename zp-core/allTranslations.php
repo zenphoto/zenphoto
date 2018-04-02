@@ -4,51 +4,45 @@
  */
 
 /* themes/effervescence+/themeoptions.php */
-gettext('News Articles');
-gettext('All news');
-gettext('News Articles Rule');
+gettext('All');
+gettext('Articles Rule');
 gettext('Gallery');
-gettext('All Albums');
+//gettext('All');
+gettext('Albums');
 gettext('Gallery Rule');
 gettext('Pages');
-gettext('All pages');
+//gettext('All');
 gettext('Pages Rule');
 gettext('Archive');
-gettext('Gallery and News');
+//gettext('All');
 gettext('Archive Rule');
 gettext('RSS');
 //gettext('Gallery');
-gettext('News');
-gettext('News and Gallery');
+gettext('Both');
 
 /* themes/garland/themeoptions.php */
-//gettext('News Articles');
-//gettext('All news');
-//gettext('News Articles Rule');
+//gettext('All');
+//gettext('Articles Rule');
 //gettext('Gallery');
-//gettext('All Albums');
+//gettext('All');
 //gettext('Gallery Rule');
 //gettext('Pages');
-//gettext('All pages');
+//gettext('All');
 //gettext('Pages Rule');
+//gettext('Archive');
+//gettext('Archive Rule');
+//gettext('RSS');
+//gettext('Gallery');
+//gettext('Both');
 
 /* themes/zenpage/themeoptions.php */
-//gettext('News Articles');
-//gettext('All news');
-//gettext('Gallery');
-gettext('Gallery index');
-//gettext('All Albums');
+//gettext('All');
+//gettext('Articles Rule');
+//gettext('All');
+gettext('Album list');
+//gettext('Gallery Rule');
 //gettext('Pages');
-//gettext('All pages');
-
-/* themes/zpEnlighten/themeoptions.php */
-//gettext('News Articles');
-//gettext('All news');
-//gettext('Gallery');
-//gettext('Gallery index');
-//gettext('All Albums');
-//gettext('Pages');
-//gettext('All pages');
+//gettext('All');
 
 /* zp-core/setup/setup-option-defaults.php */
 gettext("What is your father’s middle name?");
@@ -88,4 +82,5 @@ gettext('Your registration information has been accepted. An email has been sent
 
 /* zp-core/zp-extensions/zenpage.php */
 gettext('Read more');
+gettext('News');
 ?>

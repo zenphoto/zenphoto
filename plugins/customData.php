@@ -126,7 +126,7 @@ class customData {
 								gettext('Albums') => 'customDataAlbums',
 								gettext('Images') => 'customDataImages',
 								gettext('News articles') => 'customDataNews',
-								gettext('News categories') => 'customDataCategories',
+								gettext('Categories') => 'customDataCategories',
 								gettext('Pages') => 'customDataPages'
 						),
 						'desc' => gettext('Expose the <code>custom_data</code> field on the admin pages for these objects.'))

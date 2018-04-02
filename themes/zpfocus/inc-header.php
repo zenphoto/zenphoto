@@ -64,16 +64,16 @@
 				break;
 			case 'news.php':
 				if (is_NewsArticle()) {
-					$zpfocus_metatitle = gettext('News') . ' | ' . getBareNewsTitle() . ' | ' . getBareGalleryTitle();
+					$zpfocus_metatitle = NEWS_LABEL . ' | ' . getBareNewsTitle() . ' | ' . getBareGalleryTitle();
 					$zpfocus_metadesc = truncate_string(getBare(getNewsContent()), 150, '...');
 				} else if ($_zp_current_category) {
-					$zpfocus_metatitle = gettext('News') . ' | ' . $_zp_current_category->getTitle() . ' | ' . getBareGalleryTitle();
+					$zpfocus_metatitle = NEWS_LABEL . ' | ' . $_zp_current_category->getTitle() . ' | ' . getBareGalleryTitle();
 					$zpfocus_metadesc = truncate_string(getBare(getNewsCategoryDesc()), 150, '...');
 				} else if (getCurrentNewsArchive()) {
-					$zpfocus_metatitle = gettext('News') . ' | ' . getCurrentNewsArchive() . ' | ' . getBareGalleryTitle();
+					$zpfocus_metatitle = NEWS_LABEL . ' | ' . getCurrentNewsArchive() . ' | ' . getBareGalleryTitle();
 					$zpfocus_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');
 				} else {
-					$zpfocus_metatitle = gettext('News') . ' | ' . getBareGalleryTitle();
+					$zpfocus_metatitle = NEWS_LABEL . ' | ' . getBareGalleryTitle();
 					$zpfocus_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');
 				}
 				break;
@@ -105,17 +105,17 @@
 		// Finish out header RSS links for inc-header.php
 		if (extensionEnabled('rss')) {
 			if (getOption('RSS_items')) {
-				printRSSHeaderLink('Gallery', gettext('Latest Images')) . "\n";
+				printRSSHeaderLink('Gallery', gettext('Images')) . "\n";
 			}
 			if (getOption('RSS_items_albums')) {
-				printRSSHeaderLink('AlbumsRSS', gettext('Latest Albums')) . "\n";
+				printRSSHeaderLink('AlbumsRSS', gettext('Albums')) . "\n";
 			}
 			if ($zenpage) {
 				if (getOption('RSS_zenpage_items')) {
-					printRSSHeaderLink('News', '', gettext('Latest News')) . "\n";
+					printRSSHeaderLink('News', '', NEWS_LABEL) . "\n";
 				}
 				if (function_exists('printCommentForm')) {
-					printRSSHeaderLink('Comments', '', gettext('Latest Comments')) . "\n";
+					printRSSHeaderLink('Comments', '', gettext('Comments')) . "\n";
 				}
 			}
 		}
@@ -221,7 +221,7 @@
 								<?php printNestedMenu('list', 'pages', false, null, 'active', null, 'active', null, true, true, 30); ?>
 							</li>
 							<?php if ($zpfocus_news) { ?>
-								<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a>
+								<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo NEWS_LABEL; ?></a>
 									<?php printNestedMenu('list', 'categories', false, null, 'active', null, 'active', null, true, true, 30); ?>
 								</li>
 							<?php } ?>

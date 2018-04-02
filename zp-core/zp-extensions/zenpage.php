@@ -99,18 +99,23 @@ class cmsFilters {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
-
 			setOptionDefault('zenpage_articles_per_page', '10');
 			setOptionDefault('zenpage_text_length', '500');
 			setOptionDefault('zenpage_textshorten_indicator', ' (...)');
 			setOptionDefault('zenpage_read_more', getAllTranslations('Read more'));
 			setOptionDefault('zenpage_enabled_items', 3);
+			setOptionDefault('zenpage_news_label', getAllTranslations('News'));
 		}
 	}
 
 	function getOptionsSupported() {
 
 		$options = array(
+				gettext('News label') => array('key' => 'zenpage_news_label', 'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => true,
+						'order' => 0,
+						'desc' => gettext('Change this option if you want the news items named something else. This option also changes the rewrite token for <em>news</em>. For multilingual sites, the token will use the site language (if set) defaulting to the string for the current locale, the en_US string, or the first string which ever is present. Note: Themes should be using the define <var>NEWS_LABEL:</var> instead of <var>gettext("News")</var>. The change applies to the front-end only, admin pages still refer to <em>news</em> as news.')),
+				'hidden' => array('key' => 'zenpage_news_label_prior', 'type' => OPTION_TYPE_HIDDEN, 'value' => getOption('zenpage_news_label')),
 				gettext('Enabled CMS items') => array(
 						'key' => 'zenpage_enabled_items',
 						'type' => OPTION_TYPE_RADIO,
@@ -123,7 +128,7 @@ class cmsFilters {
 						'desc' => gettext('Select the CMS features you wish to use on your site.')
 				),
 				gettext('Articles per page (theme)') => array('key' => 'zenpage_articles_per_page', 'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 0,
+						'order' => 0.5,
 						'desc' => gettext("How many news articles you want to show per page on the news or news category pages.")),
 				gettext('News article text length') => array('key' => 'zenpage_text_length', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 1,
@@ -149,8 +154,12 @@ class cmsFilters {
 		return $options;
 	}
 
-	function handleOption($option, $currentValue) {
-
+	function handleOptionSave($option, $currentValue) {
+		$newslabel = getOption('zenpage_news_label');
+		if (!empty($newslabel) && $newslabel != getOptionPost('zenpage_news_label_prior')) {
+			$newslink = get_language_string(getSerializedArray($newslabel), getOption('locale'));
+			setOption('NewsLink', strtolower($newslink));
+		}
 	}
 
 	static function switcher_head($list) {
@@ -263,7 +272,7 @@ class cmsFilters {
 		global $_zp_CMS;
 		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS && $_zp_CMS->news_enabled) {
 			// admin has zenpage rights, provide link to the Zenpage admin tab
-			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news.php\">" . gettext("News") . "</a></li>";
+			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news.php\">" . gettext('news') . "</a></li>";
 		}
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS && $_zp_CMS->pages_enabled) {
 			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-pages.php\">" . gettext("Pages") . "</a></li>";

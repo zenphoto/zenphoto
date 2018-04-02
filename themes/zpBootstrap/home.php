@@ -33,14 +33,14 @@
 						?>
 						<li>
 							<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php html_encode(gettext('Gallery')); ?>">
-		<?php printCustomSizedImage(gettext('Gallery'), NULL, 800, 400, 800, 400, NULL, NULL, 'remove-attributes img-responsive'); ?>
+								<?php printCustomSizedImage(gettext('Gallery'), NULL, 800, 400, 800, 400, NULL, NULL, 'remove-attributes img-responsive'); ?>
 							</a>
 						</li>
-				<?php } ?>
+					<?php } ?>
 				</ul>
 			<?php } else { ?>
 				<img src="http://via.placeholder.com/800x400?text=<?php echo gettext('Slideshow'); ?> (800 x 400)">
-<?php } ?>
+			<?php } ?>
 		</div>
 	</div>
 </div>
@@ -57,12 +57,12 @@
 		<h3><?php echo gettext('Home'); ?></h3>
 		<div><?php printGalleryDesc(); ?></div>
 	</div>
-<?php if (($_zenpage_enabled) && (getNumNews() > 0)) { ?>
+	<?php if (($_zenpage_enabled) && (getNumNews() > 0)) { ?>
 		<div class="col-sm-5">
-			<h3><?php echo gettext('Latest news'); ?></h3>
-		<?php printLatestNews(1, '', true, true, 200, false); ?>
+			<h3><?php echo NEWS_LABEL; ?></h3>
+			<?php printLatestNews(1, '', true, true, 200, false); ?>
 		</div>
-<?php } ?>
+	<?php } ?>
 </div>
 
 </div><!-- /.container main -->

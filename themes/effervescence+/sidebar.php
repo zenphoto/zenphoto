@@ -5,7 +5,7 @@ rem_context(ZP_ALBUM | ZP_IMAGE);
 $archivlinktext = gettext('Gallery');
 if (extensionEnabled('zenpage')) {
 	if ($news = getNumNews(true)) {
-		$archivlinktext = gettext('Gallery and News');
+		$archivlinktext = gettext('Both');
 	}
 	$pages = getNumPages(true);
 } else {
@@ -24,8 +24,8 @@ if (function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu
 	if ($news) {
 		?>
 		<div class="menu">
-			<h3><?php echo gettext("News articles"); ?></h3>
-			<?php printAllNewsCategories(gettext("All news"), true, "", "menu-active", true, "submenu", "menu-active"); ?>
+			<h3><?php echo NEWS_LABEL; ?></h3>
+			<?php printAllNewsCategories(gettext("All"), true, "", "menu-active", true, "submenu", "menu-active"); ?>
 			<div class="menu_rule"></div>
 		</div>
 		<?php
@@ -82,24 +82,20 @@ if (function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu
 	?>
 
 	<div class="menu">
-		<h3><?php echo gettext("Archive"); ?></h3>
-		<ul>
+		<h3>
 			<?php
 			if ($_zp_gallery_page == "archive.php") {
 				?>
-				<li class='menu-active'>
-					<?php echo gettext("Gallery and News"); ?>
-				</li>
+				<?php echo gettext("Archive"); ?>
 				<?php
 			} else {
 				?>
-				<li>
-					<?php printCustomPageURL(gettext("Gallery and News"), "archive"); ?>
-				</li>
+				<?php printCustomPageURL(gettext("Archive"), "archive"); ?>
 				<?php
 			}
 			?>
-		</ul>
+		</h3>
+
 		<div class="menu_rule"></div>
 	</div>
 
@@ -113,7 +109,7 @@ if (function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu
 				if (class_exists('RSS')) {
 					printRSSLink('Gallery', '<li>', gettext('Gallery'), '</li>');
 					if ($news) {
-						printRSSLink("News", "<li>", gettext("News"), '</li>');
+						printRSSLink("News", "<li>", NEWS_LABEL, '</li>');
 					}
 				}
 				?>

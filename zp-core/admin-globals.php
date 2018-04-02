@@ -106,7 +106,7 @@ if (@$_zp_loggedin) {
 			}
 
 			if (($_zp_loggedin & ZENPAGE_NEWS_RIGHTS) && $_zp_CMS->news_enabled) {
-				$zenphoto_tabs['news'] = array('text' => gettext("news"),
+				$zenphoto_tabs['news'] = array('text' => gettext('news'),
 						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news.php',
 						'subtabs' => array(gettext('articles') => PLUGIN_FOLDER . '/zenpage/admin-news.php?page=news&tab=articles',
 								gettext('categories') => PLUGIN_FOLDER . '/zenpage/admin-categories.php?page=news&tab=categories'),

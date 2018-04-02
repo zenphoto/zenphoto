@@ -156,13 +156,11 @@ function getItem($id) {
  *
  * @return string
  */
-function checkChosenMenuset($default = 'default') {
-	if (isset($_GET['menuset'])) {
-		$menuset = sanitize($_GET['menuset']);
-	} else if (isset($_POST['menuset'])) {
-		$menuset = sanitize($_POST['menuset']);
+function checkChosenMenuset() {
+	if (isset($_REQUEST['menuset'])) {
+		$menuset = sanitize($_REQUEST['menuset']);
 	} else {
-		$menuset = $default;
+		$menuset = NULL;
 	}
 	return $menuset;
 }
