@@ -220,19 +220,17 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("URL options"); ?></td>
 					<td class="option_value">
-						<p>
-							<label>
-								<?php
-								if (MOD_REWRITE) {
-									$state = ' checked="checked"';
-								} else {
-									$state = '';
-								}
-								?>
-								<input type="checkbox" name="mod_rewrite" value="1"<?php echo $state; ?> />
-								<?php echo gettext('mod rewrite'); ?>
-							</label>
-						</p>
+						<label>
+							<?php
+							if (MOD_REWRITE) {
+								$state = ' checked="checked"';
+							} else {
+								$state = '';
+							}
+							?>
+							<input type="checkbox" name="mod_rewrite" value="1"<?php echo $state; ?> />
+							<?php echo gettext('mod rewrite'); ?>
+						</label>
 						<?php
 						if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
 							?>
@@ -305,7 +303,6 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Language"); ?></td>
 					<td class="option_value">
-						<br />
 						<ul class="languagelist">
 							<?php
 							$unsupported = getSerializedArray(getOption('locale_unsupported'));
