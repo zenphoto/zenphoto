@@ -834,14 +834,14 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 				case 'album':
 					if (empty($result['link'])) {
 						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key));
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key), $result);
 					}
 					$result['link'] = NULL;
 					break;
 				case 'galleryindex':
 					if (empty($result['title'])) {
 						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key), $result);
 					}
 					$result['link'] = NULL;
 					break;
@@ -862,7 +862,7 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 				case 'category':
 					if (empty($result['link'])) {
 						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key));
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key), $result);
 					}
 					$result['link'] = NULL;
 					break;
@@ -889,11 +889,6 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					$result['link'] = sha1($result['title']);
 					break;
 				case 'menufunction':
-					if (empty($result['title']) || empty($result['link'])) {
-						$success = -1;
-						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty title or link.'), $key), $result);
-					}
-					break;
 				case 'html':
 					if (empty($result['title']) || empty($result['link'])) {
 						$success = -1;
