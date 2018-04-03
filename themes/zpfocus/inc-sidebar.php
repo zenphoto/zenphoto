@@ -49,11 +49,11 @@
 		if ((($zpfocus_spotlight) == 'latest') && ($_zp_gallery_page == 'index.php')) {
 			?>
 			<div id="spotlight2">
-				<h4 class="blockhead"><span><?php echo gettext('More News'); ?></span></h4>
+				<h4 class="blockhead"><span><?php echo gettext('More'); ?></span></h4>
 				<?php printLatestNews(4, '', true, true, 150, true, null); ?>
 			<?php } else { ?>
 				<div id="spotlight1">
-					<h4 class="blockhead"><span><?php echo gettext('Latest News'); ?></span></h4>
+					<h4 class="blockhead"><span><?php echo NEWS_LABEL; ?></span></h4>
 					<?php printLatestNews(3, '', true, true, 150, true, null); ?>
 				<?php } ?>
 			</div>
@@ -77,7 +77,7 @@
 				<?php } ?>
 			<?php } else { ?>
 				<?php if (function_exists('printCommentForm')) { ?>
-					<h4 class="blockhead"><span><?php echo gettext('Latest News Comments'); ?></span></h4>
+					<h4 class="blockhead"><span><?php echo gettext('Latest Comments'); ?></span></h4>
 					<?php printLatestComments(3, '100'); ?>
 				<?php } ?>
 				<?php
@@ -88,7 +88,7 @@
 		<!-- PRINTS NEWS CATEGORIES IF IN NEWS CONTEXT -->
 		<?php if ($_zp_gallery_page == 'news.php') { ?>
 			<div id="newscats">
-				<h4 class="blockhead"><span><?php echo gettext('News Categories'); ?></span></h4>
+				<h4 class="blockhead"><span><?php echo gettext('Categories'); ?></span></h4>
 						<?php printAllNewsCategories(''); ?>
 			</div>
 		<?php } ?>

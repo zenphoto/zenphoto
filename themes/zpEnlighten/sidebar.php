@@ -1,50 +1,44 @@
-<?php if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) { ?>
+<?php
+if (function_exists("printAllNewsCategories")) {
+	?>
 	<div class="menu">
-		<?php printCustomMenu('zenpage', 'list', '', "menu-active", "submenu", "menu-active", 2); ?>
+		<h3><?php echo NEWS_LABEL; ?></h3>
+		<?php printAllNewsCategories(gettext("All"), TRUE, "", "menu-active"); ?>
 	</div>
-	<?php
-} else {
-	if (function_exists("printAllNewsCategories")) {
-		?>
-		<div class="menu">
-			<h3><?php echo gettext("News articles"); ?></h3>
-			<?php printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active"); ?>
-		</div>
-	<?php } ?>
+<?php } ?>
 
-	<?php if (function_exists("printAlbumMenu")) { ?>
-		<div class="menu">
-			<?php
-			if (extensionEnabled('zenpage')) {
-				if ($_zp_gallery_page == 'index.php' || $_zp_gallery_page != 'gallery.php') {
-					?>
-					<h3>
-						<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Album index'); ?>"><?php echo gettext("Gallery"); ?></a>
-					</h3>
-					<?php
-				} else {
-					?>
-					<h3><?php echo gettext("Gallery"); ?></h3>
-					<?php
-				}
+<?php if (function_exists("printAlbumMenu")) { ?>
+	<div class="menu">
+		<?php
+		if (extensionEnabled('zenpage')) {
+			if ($_zp_gallery_page == 'index.php' || $_zp_gallery_page != 'gallery.php') {
+				?>
+				<h3>
+					<a href="<?php echo html_encode(getCustomPageURL('gallery')); ?>" title="<?php echo gettext('Album index'); ?>"><?php echo gettext("Gallery"); ?></a>
+				</h3>
+				<?php
 			} else {
 				?>
 				<h3><?php echo gettext("Gallery"); ?></h3>
 				<?php
 			}
-			printAlbumMenu("list", false, "", "menu-active", "submenu", "menu-active", '');
+		} else {
 			?>
-		</div>
-	<?php } ?>
+			<h3><?php echo gettext("Gallery"); ?></h3>
+			<?php
+		}
+		printAlbumMenu("list", false, "", "menu-active", "submenu", "menu-active", '');
+		?>
+	</div>
+<?php } ?>
 
-	<?php if (function_exists("printPageMenu")) { ?>
-		<div class="menu">
-			<h3><?php echo gettext("Pages"); ?></h3>
-			<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active"); ?>
-		</div>
-		<?php
-	}
-} // custom menu check end
+<?php if (function_exists("printPageMenu")) { ?>
+	<div class="menu">
+		<h3><?php echo gettext("Pages"); ?></h3>
+		<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active"); ?>
+	</div>
+	<?php
+}
 ?>
 
 <?php if (extensionEnabled('zenpage')) { ?>
@@ -80,10 +74,10 @@
 		}
 		if (extensionEnabled('rss')) {
 			if (!is_null($_zp_current_album)) {
-				printRSSLink('Album', '<li>', gettext('Album RSS feed'), '</li>', false);
+				printRSSLink('Album', '<li>', gettext('Albums'), '</li>', false);
 			}
-			printRSSLink('Gallery', '<li>', 'Gallery RSS feed', '</li>', false);
-			printRSSLink("News", "<li>", gettext("Notes RSS feed"), '</li>', false);
+			printRSSLink('Gallery', '<li>', 'Gallery', '</li>', false);
+			printRSSLink("News", "<li>", NEWS_LABEL, '</li>', false);
 		}
 		?>
 	</ul>

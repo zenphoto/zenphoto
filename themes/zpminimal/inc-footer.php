@@ -12,7 +12,7 @@
 				}
 				printRSSLink("Gallery", "", (gettext('Gallery Images')), "", false, "rsslink");
 				if (extensionEnabled('zenpage') && getNumNews(true)) {
-					printRSSLink("News", '', ', ', gettext('News'), '', false);
+					printRSSLink("News", '', ', ', NEWS_LABEL, '', false);
 				}
 				?>
 			</span>

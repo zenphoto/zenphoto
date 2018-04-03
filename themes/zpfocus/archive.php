@@ -10,12 +10,12 @@
 	<?php } ?>
 	<div class="post">
 		<div class="archive">
-			<h3><?php echo gettext('Gallery Archive'); ?></h3>
+			<h3><?php echo gettext('Gallery'); ?></h3>
 			<?php printAllDates('archive-list', 'year', 'month', 'desc'); ?>
 		</div>
 		<?php if (function_exists('printNewsArchive')) { ?>
 			<div class="archive">
-				<h3><?php echo gettext('News Archive'); ?></h3>
+				<h3><?php echo NEWS_LABEL; ?></h3>
 				<?php printNewsArchive(); ?>
 			</div>
 		<?php } ?>

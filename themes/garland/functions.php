@@ -138,9 +138,9 @@ function footer() {
 }
 
 function commonNewsLoop($paged) {
-	$newstypes = array('album' => gettext('album'), 'image' => gettext('image'), 'video' => gettext('video'), 'news' => gettext('news'));
+	$newstypes = array('album' => gettext('album'), 'image' => gettext('image'), 'video' => gettext('video'), 'news' => NEWS_LABEL);
 	while (next_news()) {
-		$newstypedisplay = gettext('news');
+		$newstypedisplay = NEWS_LABEL;
 		if (stickyNews()) {
 			$newstypedisplay .= ' <small><em>' . gettext('sticky') . '</em></small>';
 		}

@@ -77,7 +77,7 @@ if (is_NewsArticle()) {
 	<?php if ($_zp_CMS->getAllCategories()) { ?>
 		<div class="row margin-bottom">
 			<div class="col-sm-offset-1 col-sm-10">
-				<?php printAllNewsCategories(gettext('All news'), true, 'news-cat-list', 'active'); ?>
+				<?php printAllNewsCategories(gettext('All'), true, 'news-cat-list', 'active'); ?>
 			</div>
 		</div>
 	<?php } ?>

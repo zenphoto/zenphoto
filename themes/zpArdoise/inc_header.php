@@ -48,13 +48,13 @@ if (!defined('WEBPATH'))
 				echo ' | ' . getBareAlbumTitle() . ' | ' . html_encode(getBareImageTitle());
 			}
 			if (($_zp_gallery_page == 'news.php') && (!is_NewsArticle())) {
-				echo ' | ' . gettext('News');
+				echo ' | ' . NEWS_LABEL;
 				if ($_zp_page > 1) {
 					echo ' [' . $_zp_page . ']';
 				}
 			}
 			if (($_zp_gallery_page == 'news.php') && (is_NewsArticle())) {
-				echo ' | ' . gettext('News') . ' | ' . getBareNewsTitle();
+				echo ' | ' . NEWS_LABEL . ' | ' . getBareNewsTitle();
 			}
 			if ($_zp_gallery_page == 'pages.php') {
 				echo ' | ' . getBarePageTitle();
@@ -79,7 +79,7 @@ if (!defined('WEBPATH'))
 				printRSSHeaderLink('Gallery', gettext('Latest images'));
 			}
 			if (($_zenpage_enabled) && (getOption('RSS_articles'))) {
-				printRSSHeaderLink('News', gettext('Latest news'));
+				printRSSHeaderLink('News', NEWS_LABEL);
 			}
 		}
 		?>
@@ -257,19 +257,19 @@ if (!defined('WEBPATH'))
 					case 63235: case 39:
 									if (e.ctrlKey || (docElem.scrollLeft == docElem.scrollWidth - docElem.clientWidth)) {
 	<?php if ($NextURL) { ?>window.location.href = nextURL; <?php } ?>return false; }
-				break;
-				case 63234: case 37:
-								if (e.ctrlKey || (docElem.scrollLeft == 0)) {
+					break;
+					case 63234: case 37:
+									if (e.ctrlKey || (docElem.scrollLeft == 0)) {
 	<?php if ($PrevURL) { ?>window.location.href = prevURL; <?php } ?>return false; }
-				break;
-				}
-				return true;
-				}
+					break;
+					}
+					return true;
+					}
 
-				document.onkeydown = keyboardNavigation;
-				//]]>
+					document.onkeydown = keyboardNavigation;
+					//]]>
 			</script>
-<?php } ?>
+		<?php } ?>
 
 		<script type="text/javascript">
 			//<![CDATA[
@@ -301,20 +301,20 @@ if (!defined('WEBPATH'))
 	</head>
 
 	<body>
-				<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 
 		<div id="page">
-<?php if (($_zp_gallery_page != 'image.php') || (getOption('show_image_logo_on_image'))) { ?>
+			<?php if (($_zp_gallery_page != 'image.php') || (getOption('show_image_logo_on_image'))) { ?>
 				<div id="site-title" class="clearfix">
-	<?php if (extensionEnabled('dynamic-locale')) { ?>
+					<?php if (extensionEnabled('dynamic-locale')) { ?>
 						<div id="flag"><?php printLanguageSelector(); ?></div>
-				<?php } ?>
+					<?php } ?>
 					<!-- banniere -->
 					<div id="banniere">
 						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Home'); ?>"><img id="zplogo" src="<?php echo $_zp_themeroot; ?>/images/<?php echo getOption('use_image_logo_filename'); ?>" alt="<?php echo getGalleryTitle(); ?>" /></a>
 					</div>
 				</div>
-				<?php } ?>
+			<?php } ?>
 
 			<div id="main-menu">
 				<?php
@@ -333,7 +333,7 @@ if (!defined('WEBPATH'))
 					<?php } ?>
 					<li <?php if ($galleryactive) { ?>class="active"<?php } ?>><?php printCustomPageURL(gettext('Gallery'), 'gallery'); ?></li>
 					<?php if (($_zenpage_enabled) && ((getNumNews(true)) > 0)) { ?>
-						<li <?php if ($_zp_gallery_page == 'news.php') { ?>class="active"<?php } ?>><?php printNewsIndexURL(gettext('News'), '', gettext('News')); ?></li>
+						<li <?php if ($_zp_gallery_page == 'news.php') { ?>class="active"<?php } ?>><?php printNewsIndexURL(NEWS_LABEL, '', NEWS_LABEL); ?></li>
 					<?php } ?>
 					<?php
 					if ($_zenpage_enabled) {
@@ -343,12 +343,12 @@ if (!defined('WEBPATH'))
 					<?php if ((zp_loggedin()) && (extensionEnabled('favoritesHandler'))) { ?>
 						<li <?php if ($_zp_gallery_page == 'favorites.php') { ?>class="active"<?php } ?>> <?php printFavoritesURL(); ?></li>
 					<?php } ?>
-<?php if (getOption('show_archive')) { ?>
+					<?php if (getOption('show_archive')) { ?>
 						<li <?php if ($_zp_gallery_page == 'archive.php') { ?>class="active"<?php } ?>><?php printCustomPageURL(gettext('Archive View'), 'archive'); ?></li>
-<?php } ?>
-<?php if (extensionEnabled('contact_form')) { ?>
+					<?php } ?>
+					<?php if (extensionEnabled('contact_form')) { ?>
 						<li <?php if ($_zp_gallery_page == 'contact.php') { ?>class="active"<?php } ?>><?php printCustomPageURL(gettext('Contact'), 'contact'); ?></li>
-<?php } ?>
+					<?php } ?>
 				</ul>
 
 			</div>		<!-- END #MAIN-MENU -->

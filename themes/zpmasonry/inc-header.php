@@ -66,16 +66,16 @@
 			case 'news.php':
 				setOption('zenpage_combinews', 0, false);
 				if (is_NewsArticle()) {
-					$zpmas_metatitle = gettext('News') . ' | ' . getBareNewsTitle() . ' | ' . getBareGalleryTitle();
+					$zpmas_metatitle = NEWS_LABEL . ' | ' . getBareNewsTitle() . ' | ' . getBareGalleryTitle();
 					$zpmas_metadesc = truncate_string(getBare(getNewsContent()), 150, '...');
 				} else if ($_zp_current_category) {
-					$zpmas_metatitle = gettext('News') . ' | ' . $_zp_current_category->getTitle() . ' | ' . getBareGalleryTitle();
+					$zpmas_metatitle = NEWS_LABEL . ' | ' . $_zp_current_category->getTitle() . ' | ' . getBareGalleryTitle();
 					$zpmas_metadesc = truncate_string(getBare(getNewsCategoryDesc()), 150, '...');
 				} else if (getCurrentNewsArchive()) {
-					$zpmas_metatitle = gettext('News') . ' | ' . getCurrentNewsArchive() . ' | ' . getBareGalleryTitle();
+					$zpmas_metatitle = NEWS_LABEL . ' | ' . getCurrentNewsArchive() . ' | ' . getBareGalleryTitle();
 					$zpmas_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');
 				} else {
-					$zpmas_metatitle = gettext('News') . ' | ' . getBareGalleryTitle();
+					$zpmas_metatitle = NEWS_LABEL . ' | ' . getBareGalleryTitle();
 					$zpmas_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');
 				}
 				break;
@@ -114,7 +114,7 @@
 			}
 			if (getOption('zp_plugin-zenpage') && getOption('zpmas_usenews')) {
 				if (getOption('RSS_articles')) {
-					printRSSHeaderLink('News', '', gettext('Latest News')) . "\n";
+					printRSSHeaderLink('News', '', NEWS_LABEL) . "\n";
 				}
 				if ((function_exists('printCommentForm')) && (getOption('RSS_article_comments'))) {
 					printRSSHeaderLink('Comments-all', '', gettext('Latest Comments')) . "\n";

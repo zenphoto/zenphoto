@@ -34,7 +34,7 @@ if (!defined('WEBPATH'))
 				// ]]> -->
 			</script>
 		<?php } ?>
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 	</head>
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>

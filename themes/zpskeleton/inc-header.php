@@ -70,16 +70,16 @@ $zpskel_social = function_exists('printAddThis');
 				break;
 			case 'news.php':
 				if (is_NewsArticle()) {
-					$zpskel_metatitle = gettext('News') . ' | ' . getBareNewsTitle() . ' | ' . getBareGalleryTitle();
+					$zpskel_metatitle = NEWS_LABEL . ' | ' . getBareNewsTitle() . ' | ' . getBareGalleryTitle();
 					$zpskel_metadesc = truncate_string(getBare(getNewsContent()), 150, '...');
 				} else if ($_zp_current_category) {
-					$zpskel_metatitle = gettext('News') . ' | ' . $_zp_current_category->getTitle() . ' | ' . getBareGalleryTitle();
+					$zpskel_metatitle = NEWS_LABEL . ' | ' . $_zp_current_category->getTitle() . ' | ' . getBareGalleryTitle();
 					$zpskel_metadesc = truncate_string(getBare(getNewsCategoryDesc()), 150, '...');
 				} else if (getCurrentNewsArchive()) {
-					$zpskel_metatitle = gettext('News') . ' | ' . getCurrentNewsArchive() . ' | ' . getBareGalleryTitle();
+					$zpskel_metatitle = NEWS_LABEL . ' | ' . getCurrentNewsArchive() . ' | ' . getBareGalleryTitle();
 					$zpskel_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');
 				} else {
-					$zpskel_metatitle = gettext('News') . ' | ' . getBareGalleryTitle();
+					$zpskel_metatitle = NEWS_LABEL . ' | ' . getBareGalleryTitle();
 					$zpskel_metadesc = truncate_string(getBareGalleryDesc(), 150, '...');
 				}
 				break;
@@ -119,7 +119,7 @@ $zpskel_social = function_exists('printAddThis');
 			}
 			if ($zenpage) {
 				if (getOption('RSS_articles')) {
-					printRSSHeaderLink('News', '', gettext('Latest News')) . "\n";
+					printRSSHeaderLink('News', '', NEWS_LABEL) . "\n";
 				}
 				if ((function_exists('printCommentForm')) && (getOption('RSS_article_comments'))) {
 					printRSSHeaderLink('Comments-all', '', gettext('Latest Comments')) . "\n";
@@ -178,7 +178,7 @@ $zpskel_social = function_exists('printAddThis');
 									<?php if ($zpskel_archive) { ?><li <?php if ($_zp_gallery_page == "archive.php") { ?>class="active" <?php } ?>><a href="<?php echo getCustomPageURL('archive'); ?>" title="<?php echo gettext('Archive View'); ?>"><?php echo gettext('Archive'); ?></a></li><?php } ?>
 									<?php if ((function_exists('getNewsIndexURL')) && ($zpskel_usenews)) { ?>
 									<li <?php if ($_zp_gallery_page == "news.php") { ?>class="active" <?php } ?>>
-										<a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a>
+										<a href="<?php echo getNewsIndexURL(); ?>"><?php echo NEWS_LABEL; ?></a>
 									</li>
 								<?php } ?>
 								<?php if (function_exists('printContactForm')) { ?><li <?php if ($_zp_gallery_page == "contact.php") { ?>class="active" <?php } ?>><?php printCustomPageURL(gettext('Contact'), "contact"); ?></li><?php } ?>

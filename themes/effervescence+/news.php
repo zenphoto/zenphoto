@@ -28,7 +28,7 @@ if (class_exists('CMS')) {
 								printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search within category'), NULL, NULL, $catlist);
 							} else {
 								$catlist = array('news' => '1', 'albums' => '0', 'images' => '0', 'pages' => '0');
-								printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search news'), NULL, NULL, $catlist);
+								printSearchForm(NULL, 'search', $_zp_themeroot . '/images/search.png', gettext('Search'), NULL, NULL, $catlist);
 							}
 						}
 						printLogo();

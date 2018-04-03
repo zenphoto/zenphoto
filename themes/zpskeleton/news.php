@@ -5,7 +5,7 @@
 			<?php include ("inc-search.php"); ?>
 			<?php if (is_NewsArticle()) { ?>
 				<h5><?php
-					printNewsIndexURL(gettext('News'));
+					printNewsIndexURL(NEWS_LABEL);
 					echo ' &raquo; ';
 					?>(<?php printNewsCategories(', ', '', 'taglist'); ?>)</h5>
 				<h1><?php printNewsTitle(); ?></h1>
@@ -23,19 +23,19 @@
 				</div>
 			<?php } else if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) { ?>
 				<h5><?php
-					printNewsIndexURL(gettext('News'));
+					printNewsIndexURL(NEWS_LABEL);
 					echo ' » ';
 					?></h5>
 				<h1><?php printCurrentNewsCategory(); ?></h1>
 				<p><?php printNewsCategoryDesc(); ?></p>
 			<?php } else if (in_context(ZP_ZENPAGE_NEWS_DATE)) { ?>
 				<h5><?php
-					printNewsIndexURL(gettext('News'));
+					printNewsIndexURL(NEWS_LABEL);
 					echo ' » ';
 					?></h5>
 				<h1><?php printCurrentNewsArchive(); ?></h1>
 			<?php } else { ?>
-				<h1><?php echo gettext('News'); ?></h1>
+				<h1><?php echo NEWS_LABEL; ?></h1>
 			<?php } ?>
 		</div>
 	</div>
@@ -102,7 +102,7 @@
 				</div>
 
 			<?php } ?>
-			<h3><?php echo gettext('News Categories'); ?></h3>
+			<h3><?php echo gettext('Categories'); ?></h3>
 			<?php printAllNewsCategories('', true, 'side-menu', 'active'); ?>
 		</div>
 	</div>

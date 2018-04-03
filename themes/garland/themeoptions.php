@@ -36,18 +36,29 @@ class ThemeOptions {
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
-					array('type' => 'menulabel', 'title' => getAllTranslations('News Articles'), 'link' => '', 'show' => 1, 'nesting' => 0),
-					array('type' => 'menufunction', 'title' => getAllTranslations('All news'),
-							'link' => 'printAllNewsCategories("All news",TRUE,"","menu-active",false,"inner_ul",false,"list",false,getOption("menu_manager_truncate_string"));',
+					array('type' => 'menulabel', 'title' => getOption('zenpage_news_label'), 'link' => '', 'show' => 1, 'nesting' => 0),
+					array('type' => 'menufunction', 'title' => getAllTranslations('All'),
+							'link' => 'printAllNewsCategories("All",TRUE,"","menu-active",false,"inner_ul",false,"list",false,getOption("menu_manager_truncate_string"));',
 							'show' => 1, 'include_li' => 0, 'nesting' => 1),
-					array('type' => 'html', 'title' => getAllTranslations('News Articles Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array('type' => 'html', 'title' => getAllTranslations('Articles Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
 					array('type' => 'custompage', 'title' => getAllTranslations('Gallery'), 'link' => 'gallery', 'show' => 1, 'nesting' => 0),
-					array('type' => 'menufunction', 'title' => getAllTranslations('All Albums'), 'link' => 'printAlbumMenuList("list",NULL,"","menu-active","inner_ul","menu-active","",false,false,false,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1),
+					array('type' => 'menufunction', 'title' => getAllTranslations('All'), 'link' => 'printAlbumMenuList("list",NULL,"","menu-active","inner_ul","menu-active","",false,false,false,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1),
 					array('type' => 'html', 'title' => getAllTranslations('Gallery Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
 					array('type' => 'menulabel', 'title' => getAllTranslations('Pages'), 'link' => '', 'show' => 1, 'nesting' => 0),
-					array('type' => 'menufunction', 'title' => getAllTranslations('All pages'), 'link' => 'printPageMenu("list","","menu-active","inner_ul","menu-active","",0,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1, getOption("menu_manager_truncate_string")),
+					array('type' => 'menufunction', 'title' => getAllTranslations('All'), 'link' => 'printPageMenu("list","","menu-active","inner_ul","menu-active","",0,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1, getOption("menu_manager_truncate_string")),
 					array('type' => 'html', 'title' => getAllTranslations('Pages Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array('type' => 'custompage', 'title' => getAllTranslations('Archive'), 'link' => 'archive', 'show' => 1, 'nesting' => 0),
+					array('type' => 'html', 'title' => getAllTranslations('Archive Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0)
 			);
+			if (class_exists('RSS')) {
+				$rssItems = array(
+						array('type' => 'menulabel', 'title' => getAllTranslations('RSS'), 'link' => '', 'show' => 1, 'nesting' => 0),
+						array('type' => 'dynamiclink', 'title' => getAllTranslations('Gallery'), 'link' => "html_encode(getRSSLink(''))", 'show' => 1, 'nesting' => 1),
+						array('type' => 'dynamiclink', 'title' => getOption('zenpage_news_label'), 'link' => "html_encode(getRSSLink('news'))", 'show' => 1, 'nesting' => 1),
+						array('type' => 'dynamiclink', 'title' => getAllTranslations('Both'), 'link' => "html_encode(getRSSLink('news')).'&amp;withimages'", 'show' => 1, 'nesting' => 1),
+				);
+				$menuitems = array_merge($menuitems, $rssItems);
+			}
 			createMenuIfNotExists($menuitems, 'garland');
 		}
 	}

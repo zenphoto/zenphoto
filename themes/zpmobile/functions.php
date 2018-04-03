@@ -33,7 +33,7 @@ function jqm_printRSSlinks() {
 			// these links must change to ones with rel="external" so they are actually loaded via jquerymobile!
 			if (extensionEnabled('zenpage') && getNumNews(true)) {
 				?>
-				<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
+				<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo NEWS_LABEL; ?></a></li>
 				<?php
 			}
 			?>
@@ -72,7 +72,7 @@ function jqm_printMainHeaderNav() {
 				<?php
 				if (extensionEnabled('zenpage') && getNumNews(true)) {
 					?>
-					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a></li>
+					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo NEWS_LABEL; ?></a></li>
 					<?php
 				}
 				if (extensionEnabled('zenpage') && getNumPages(true)) {
@@ -170,8 +170,8 @@ function jqm_printMenusLinks() {
 		if (extensionEnabled('zenpage') && getNumNews(true)) {
 			?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'news.php') echo ' data-collapsed="false"'; ?>>
-				<h3><?php echo gettext('News'); ?></h3>
-				<?php printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
+				<h3><?php echo NEWS_LABEL; ?></h3>
+				<?php printAllNewsCategories(gettext("All"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
 			</div>
 			<?php
 		}

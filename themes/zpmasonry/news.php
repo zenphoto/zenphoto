@@ -13,7 +13,7 @@
 						</div>
 						<?php } ?>
 						<div class="side-menu sidebar-divide">
-							<h3><?php echo gettext('News Categories'); ?></h3>
+							<h3><?php echo gettext('Categories'); ?></h3>
 							<?php printAllNewsCategories('',true,'','active',true,'','active','list',true); ?>
 						</div>
 						<?php if (function_exists('printCommentForm')) { ?>

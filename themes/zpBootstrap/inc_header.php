@@ -50,7 +50,7 @@ if (!defined('WEBPATH'))
 				echo ' | ' . getBareAlbumTitle() . ' | ' . getBareImageTitle();
 			}
 			if (($_zp_gallery_page == 'news.php') && (!is_NewsArticle())) {
-				echo ' | ' . gettext('News');
+				echo ' | ' . NEWS_LABEL;
 				if ($_zp_page > 1) {
 					echo ' [' . $_zp_page . ']';
 				}
@@ -82,7 +82,7 @@ if (!defined('WEBPATH'))
 				printRSSHeaderLink('Gallery', gettext('Latest images RSS'));
 			}
 			if (($_zenpage_enabled) && (getOption('RSS_articles'))) {
-				printRSSHeaderLink('News', gettext('Latest news'));
+				printRSSHeaderLink('News', NEWS_LABEL);
 			}
 		}
 		?>
@@ -206,17 +206,17 @@ if (!defined('WEBPATH'))
 				case 63235: case 39:
 								if (e.ctrlKey || (docElem.scrollLeft == docElem.scrollWidth - docElem.clientWidth)) {
 	<?php if ($NextURL) { ?>window.location.href = nextURL; <?php } ?>return false; }
-		break;
-		case 63234: case 37:
-						if (e.ctrlKey || (docElem.scrollLeft == 0)) {
+				break;
+				case 63234: case 37:
+								if (e.ctrlKey || (docElem.scrollLeft == 0)) {
 	<?php if ($PrevURL) { ?>window.location.href = prevURL; <?php } ?>return false; }
-		break;
-		}
-		return true;
-		}
+				break;
+				}
+				return true;
+				}
 
-		document.onkeydown = keyboardNavigation;
-		//]]>
+				document.onkeydown = keyboardNavigation;
+				//]]>
 			</script>
 		<?php } ?>
 
@@ -260,7 +260,7 @@ if (!defined('WEBPATH'))
 							<li<?php if ($galleryactive) { ?> class="active"<?php } ?>><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery'); ?>"><?php echo gettext('Gallery'); ?></a></li>
 						<?php } ?>
 						<?php if (($_zenpage_enabled) && ((getNumNews(true)) > 0)) { ?>
-							<li<?php if ($_zp_gallery_page == 'news.php') { ?> class="active"<?php } ?>><?php printNewsIndexURL(gettext('News'), '', gettext('News')); ?></li>
+							<li<?php if ($_zp_gallery_page == 'news.php') { ?> class="active"<?php } ?>><?php printNewsIndexURL(NEWS_LABEL, '', NEWS_LABEL); ?></li>
 						<?php } ?>
 						<?php if ($_zenpage_enabled) { ?>
 							<?php printPageMenu('list-top', '', 'active', '', '', '', 0, false); ?>

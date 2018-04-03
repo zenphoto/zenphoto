@@ -150,13 +150,14 @@ function createRelatedItemsResultArray($result, $type) {
  */
 function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excerpt = NULL, $thumb = false, $date = false) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image;
-	$label = array('albums' => gettext('Albums'), 'images' => gettext('Images'), 'news' => gettext('News'), 'pages' => gettext('Pages'));
+	$labels = array('albums' => gettext('Albums'), 'images' => gettext('Images'), 'news' => NEWS_LABEL, 'pages' => gettext('Pages'));
+
 	$result = getRelatedItems($type, $specific);
 	$resultcount = count($result);
 	if ($resultcount != 0) {
 		?>
 		<h3 class="relateditems">
-			<?php printf(gettext('Related %s'), $type); ?>
+			<?php printf(gettext('Related %s'), $labels[$type]); ?>
 		</h3>
 		<ul id="relateditems">
 			<?php
@@ -166,32 +167,28 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 				?>
 				<li class="<?php echo $item['type']; ?>">
 					<?php
-					$category = '';
+					$category = $labels[$item['type']];
 					switch ($item['type']) {
 						case 'albums':
 							$obj = newAlbum($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getDesc();
-							$category = gettext('Album');
 							break;
 						case 'images':
 							$alb = newAlbum($item['album']);
 							$obj = newImage($alb, $item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getDesc();
-							$category = gettext('Image');
 							break;
 						case 'news':
 							$obj = newArticle($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getContent();
-							$category = gettext('News');
 							break;
 						case 'pages':
 							$obj = newPage($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getContent();
-							$category = gettext('Page');
 							break;
 					}
 					?>

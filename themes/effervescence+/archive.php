@@ -65,7 +65,7 @@ if (!defined('WEBPATH'))
 						<?php
 						if (function_exists("printNewsArchive")) {
 							?>
-							<p><?php echo(gettext('News archive')); ?></p><?php printNewsArchive("archive"); ?>
+							<p><?php echo(NEWS_LABEL); ?></p><?php printNewsArchive("archive"); ?>
 							<?php
 						}
 						?>

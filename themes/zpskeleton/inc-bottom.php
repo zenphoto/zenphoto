@@ -33,7 +33,7 @@
 			<?php if (($zenpage) && (function_exists('printCommentForm')) && ($zpskel_usenews)) { ?>
 				<div class="sixteen columns<?php echo $class; ?>"><hr /></div>
 				<div class="eight columns latest-list<?php echo $class; ?>">
-					<h3><?php echo gettext('Latest News'); ?></h3>
+					<h3><?php echo NEWS_LABEL; ?></h3>
 					<?php printLatestNews(1, '', true, true, 250, false, 'Read More...'); ?>
 				</div>
 				<div class="eight columns latest-list<?php echo $class; ?>">
@@ -51,7 +51,7 @@
 						<li><?php printRSSLink('AlbumsRSS', '', gettext('Albums'), '', false); ?></li>
 					<?php } ?>
 					<?php if (($zenpage) && ($zpskel_usenews) && (getOption('RSS_articles'))) { ?>
-						<li><?php printRSSLink('News', '', gettext('News'), '', false); ?></li>
+						<li><?php printRSSLink('News', '', NEWS_LABEL, '', false); ?></li>
 						<?php
 						if ((function_exists('printCommentForm')) && getOption('RSS_article_comments')) {
 							?>

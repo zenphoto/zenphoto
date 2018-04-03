@@ -16,7 +16,7 @@
 			<li <?php if ($_zp_gallery_page == "archive.php") { ?>class="active" <?php } ?>><a href="<?php echo getCustomPageURL('archive'); ?>" title="<?php echo gettext('Archive View'); ?>"><?php echo gettext('Archive'); ?></a></li>
 			<?php if (function_exists('getNewsIndexURL')) { ?>
 				<li <?php if ($_zp_gallery_page == "news.php") { ?>class="active" <?php } ?>>
-					<a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a>
+					<a href="<?php echo getNewsIndexURL(); ?>"><?php echo NEWS_LABEL; ?></a>
 					<?php
 					if ($_zp_gallery_page == "news.php") {
 						printAllNewsCategories('', true, '', 'active', true, '', 'active', 'list', true);

@@ -27,7 +27,7 @@ if (class_exists('CMS')) {
 							printSearchForm(NULL, 'search', NULL, gettext('Search category'), NULL, NULL, $catlist);
 						} else {
 							$catlist = array('news' => '1', 'albums' => '0', 'images' => '0', 'pages' => '0');
-							printSearchForm(NULL, "search", "", gettext("Search news"), NULL, NULL, $catlist);
+							printSearchForm(NULL, "search", "", gettext("Search"), NULL, NULL, $catlist);
 						}
 					}
 					?>

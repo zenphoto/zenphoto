@@ -9,7 +9,7 @@ if (!defined('WEBPATH'))
 		<?php zp_apply_filter('theme_head'); ?>
 		
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 	</head>
 	<body class="sidebars">
 		<?php zp_apply_filter('theme_body_open'); ?>
@@ -47,7 +47,7 @@ if (!defined('WEBPATH'))
 										<?php
 										if (function_exists("printNewsArchive")) {
 											?>
-											<p><?php echo(gettext('News archive')); ?></p><?php printNewsArchive("archive"); ?>
+											<p><?php echo(NEWS_LABEL); ?></p><?php printNewsArchive("archive"); ?>
 											<?php
 										}
 										?>

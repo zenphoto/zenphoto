@@ -156,11 +156,12 @@ class htmlmetatags {
 
 	/**
 	 * Prints html meta data to be used in the <head> section of a page
-	 *
 	 */
 	static function getHTMLMetaData() {
 		global $_zp_gallery, $_zp_page, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_current_article,
 		$_zp_current_page, $_zp_gallery_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites;
+
+		$labels = array('albums' => gettext('Album page'), 'news' => NEWS_LABEL);
 
 		$url = FULLHOSTPATH . getRequestURI();
 
@@ -190,7 +191,7 @@ class htmlmetatags {
 		$type = 'article';
 		switch ($_zp_gallery_page) {
 			case'gallery.php':
-				$desc = gettext('Album index');
+				$desc = $labels['albums'];
 				$canonicalurl = FULLHOSTPATH . getCustomPageURL('gallery', '', $_zp_page);
 				$type = 'website';
 				break;
@@ -236,7 +237,7 @@ class htmlmetatags {
 						$canonicalurl = FULLHOSTPATH . $_zp_current_category->getLink($_zp_page);
 						$type = 'category';
 					} else {
-						$pagetitle = gettext('News') . " - ";
+						$pagetitle = $labels['news'] . " - ";
 						$desc = '';
 						$canonicalurl = FULLHOSTPATH . getNewsPathNav($_zp_page);
 						$type = 'website';

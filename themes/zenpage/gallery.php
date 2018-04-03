@@ -10,7 +10,7 @@ if (!defined('WEBPATH'))
 		<?php zp_apply_filter('theme_head'); ?>
 
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 	</head>
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
@@ -63,7 +63,7 @@ if (!defined('WEBPATH'))
 						while (next_news()):;
 							?>
 							<div class="newsarticle">
-								<h3><?php printNewsURL(); ?><?php echo " <span class='newstype'>[" . gettext('news') . "]</span>"; ?></h3>
+								<h3><?php printNewsURL(); ?><?php echo " <span class='newstype'>[" . NEWS_LABEL . "]</span>"; ?></h3>
 								<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php
 										printNewsDate();
 										if (function_exists('getCommentCount')) {

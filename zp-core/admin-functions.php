@@ -747,6 +747,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	define('OPTION_TYPE_ORDERED_SELECTOR', 15);
 	define('OPTION_TYPE_CHECKBOX_ARRAYLIST', 16);
 	define('OPTION_TYPE_CHECKBOX_ULLIST', 17);
+	define('OPTION_TYPE_HIDDEN', 18);
 
 	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $extension = NULL) {
 		if (is_null($supportedOptions)) {
@@ -766,11 +767,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 			if (method_exists($optionHandler, 'handleOptionSave')) {
 				?>
-				<tr style="display:none">
-					<td>
-						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $extension; ?>" />
-					</td>
-				</tr>
+				<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $extension; ?>" />
 				<?php
 			}
 
@@ -783,10 +780,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 
 				$type = $row['type'];
-				$desc = $row['desc'];
 				$key = @$row['key'];
 				$postkey = postIndexEncode($key);
 				$optionID = $whom . '_' . $key;
+
+				if ($type == OPTION_TYPE_HIDDEN) {
+					?>
+					<input type="hidden" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>" value="<?php echo html_encode($row['value']); ?>" />
+					<?php
+					continue;
+				}
+
+				$desc = $row['desc'];
+
 				if (isset($row['multilingual'])) {
 					$multilingual = $row['multilingual'];
 				} else {
@@ -1143,6 +1149,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 			}
 		}
+	}
+
+	/**
+	 * Helper tool to fetch a post entry for a custom option
+	 * Specially useful for OPTION_TYPE_HIDDEN
+	 *
+	 * @param string $name
+	 * @return mixed
+	 */
+	function getOptionPost($name) {
+		return $_POST[postIndexEncode($name)];
 	}
 
 	function processCustomOptionSave($returntab, $themename = NULL, $themealbum = NULL) {
@@ -3134,7 +3151,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$emptylang[$active] = $key;
 			}
 
-			$tabSelected = ' selected';
 			$editHidden = '';
 			?>
 			<div id="ls_<?php echo ++$_lsInstance; ?>">

@@ -412,11 +412,11 @@ function getHeadTitle($separator = ' | ', $listparents = true) {
 		case 'news.php':
 			if (function_exists("is_NewsArticle")) {
 				if (is_NewsArticle()) {
-					return html_encode(getBareNewsTitle()) . $pagenumber . $separator . gettext('News') . $separator . $gallerytitle . $mainsitetitle;
+					return html_encode(getBareNewsTitle()) . $pagenumber . $separator . NEWS_LABEL . $separator . $gallerytitle . $mainsitetitle;
 				} else if (is_NewsCategory()) {
-					return html_encode(getBare($_zp_current_category->getTitle())) . $pagenumber . $separator . gettext('News') . $separator . $gallerytitle . $mainsitetitle;
+					return html_encode(getBare($_zp_current_category->getTitle())) . $pagenumber . $separator . NEWS_LABEL . $separator . $gallerytitle . $mainsitetitle;
 				} else {
-					return gettext('News') . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
+					return NEWS_LABEL . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
 				}
 			}
 			break;

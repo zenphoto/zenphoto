@@ -1,9 +1,7 @@
 <?php
-
 /**
  * @package plugins/menu_manager
  */
-
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(dirname(dirname(dirname(__FILE__))) . '/template-functions.php');
@@ -15,18 +13,6 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/' . PLUGIN_FOLDER . '/menu_
 admin_securityChecks(NULL, currentRelativeURL());
 
 $page = 'edit';
-
-$menuset = checkChosenMenuset('');
-if (empty($menuset)) { //	setup default menuset
-	$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu'));
-	if (is_array($result)) { // default to the first one
-		$set = array_shift($result);
-		$menuset = $set['menuset'];
-	} else {
-		$menuset = 'default';
-	}
-	$_GET['menuset'] = $menuset;
-}
 
 $reports = array();
 if (isset($_POST['update'])) {
@@ -50,7 +36,7 @@ if (isset($_GET['delete'])) {
 	if (empty($result)) {
 		$reports[] = "<p class='errorbox' >" . gettext('Menu item deleted failed') . "</p>";
 	} else {
-		$_GET['menuset'] = $menuset = $result['menuset'];
+		$menuset = $result['menuset'];
 		$sql = 'DELETE FROM ' . prefix('menu') . ' WHERE `id`=' . $result['id'];
 		query($sql);
 		$sql = 'DELETE FROM ' . prefix('menu') . ' WHERE `menuset`="' . $menuset . '" AND `sort_order` LIKE "' . $result['sort_order'] . '-%"';
@@ -68,7 +54,7 @@ if (isset($_GET['deletemenuset'])) {
 if (isset($_GET['dupmenuset'])) {
 	XSRFdefender('dup_menu');
 	$oldmenuset = sanitize($_GET['dupmenuset']);
-	$_GET['menuset'] = $menuset = sanitize($_GET['targetname']);
+	$menuset = sanitize($_GET['targetname']);
 	$menuitems = query_full_array('SELECT * FROM ' . prefix('menu') . ' WHERE `menuset`=' . db_quote($oldmenuset) . ' ORDER BY `sort_order`');
 	foreach ($menuitems as $key => $item) {
 		$order = count(explode('-', $item['sort_order'])) - 1;
@@ -83,7 +69,18 @@ if (isset($_GET['dupmenuset'])) {
 // publish or un-publish page by click
 if (isset($_GET['publish'])) {
 	XSRFdefender('update_menu');
-	publishItem($_GET['id'], $_GET['show'], $menuset);
+	publishItem($_GET['id'], $_GET['show'], $_GET['menuset']);
+}
+
+$menuset = checkChosenMenuset('');
+if (empty($menuset)) { //	setup default menuset
+	$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu') . ' ORDER BY `menuset`');
+	if (is_array($result)) { // default to the first one
+		$set = array_shift($result);
+		$menuset = $set['menuset'];
+	} else {
+		$menuset = '';
+	}
 }
 
 printAdminHeader('menu');
@@ -178,6 +175,12 @@ printSortableHead();
 						<?php
 						$selector = getMenuSetSelector(true);
 						if ($selector) {
+							if (isset($_GET['visible'])) {
+								$visible = sanitize($_GET['visible']);
+							} else {
+								$visible = 'all';
+							}
+							$items = getMenuItems($menuset, $visible);
 							?>
 							<div class="headline-plain">
 								<strong><?php echo gettext("Edit the menu"); ?></strong>
@@ -226,12 +229,6 @@ printSortableHead();
 							</div>
 							<ul class="page-list">
 								<?php
-								if (isset($_GET['visible'])) {
-									$visible = sanitize($_GET['visible']);
-								} else {
-									$visible = 'all';
-								}
-								$items = getMenuItems($menuset, $visible);
 								printItemsList($items);
 								?>
 							</ul>

@@ -12,7 +12,7 @@ if (!defined('WEBPATH'))
 
 
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 		<?php printZDSearchToggleJS(); ?>
 	</head>
 	<body>

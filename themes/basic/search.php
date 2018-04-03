@@ -9,7 +9,7 @@ if (!defined('WEBPATH'))
 		<?php zp_apply_filter('theme_head'); ?>
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 	</head>
 	<body>
 		<?php
@@ -95,7 +95,7 @@ if (!defined('WEBPATH'))
 				printFavoritesURL(NULL, '', ' | ', '<br />');
 			}
 			?>
-			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', gettext('Gallery RSS'), ' | '); ?>
+			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', gettext('Gallery'), ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php printSoftwareLink(); ?>
 			<?php @call_user_func('printUserLogin_out', " | "); ?>
