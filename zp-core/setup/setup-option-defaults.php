@@ -513,6 +513,7 @@ setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
 setOptionDefault('site_email_name', 'ZenPhoto20');
 
 setOptionDefault('register_user_notify', 1);
+setOptionDefault('zenpage_news_label', getAllTranslations('News'));
 
 setOptionDefault('obfuscate_cache', 0);
 

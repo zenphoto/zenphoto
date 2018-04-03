@@ -51,6 +51,7 @@ gettext("Who was your favorite singer?");
 gettext("When did you first get a computer?");
 gettext("How much wood could a woodchuck chuck if a woodchuck could chuck wood?");
 gettext("What is the date of the Ides of March?");
+gettext('News');
 
 /* zp-core/zp-extensions/contact_form.php */
 gettext('<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
@@ -82,5 +83,4 @@ gettext('Your registration information has been accepted. An email has been sent
 
 /* zp-core/zp-extensions/zenpage.php */
 gettext('Read more');
-gettext('News');
 ?>

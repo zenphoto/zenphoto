@@ -104,7 +104,6 @@ class cmsFilters {
 			setOptionDefault('zenpage_textshorten_indicator', ' (...)');
 			setOptionDefault('zenpage_read_more', getAllTranslations('Read more'));
 			setOptionDefault('zenpage_enabled_items', 3);
-			setOptionDefault('zenpage_news_label', getAllTranslations('News'));
 		}
 	}
 
