@@ -1791,7 +1791,11 @@ class SearchEngine {
 		}
 		if ($index >= 0 && $index < $this->getNumImages()) {
 			$img = $this->images[$index];
-			return newImage(newAlbum($img['folder']), $img['filename']);
+			$image = newImage(newAlbum($img['folder']), $img['filename']);
+			if ($this->dynalbumname) {
+				$image->albumnamealbum = newAlbum($this->dynalbumname);
+			}
+			return $image;
 		}
 		return false;
 	}

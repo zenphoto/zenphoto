@@ -2279,9 +2279,9 @@ function hasPrevImage() {
  * @return string
  */
 function getNextImageURL() {
+	global $_zp_current_album, $_zp_current_image;
 	if (!in_context(ZP_IMAGE))
 		return false;
-	global $_zp_current_album, $_zp_current_image;
 	if (is_null($_zp_current_image))
 		return false;
 	$nextimg = $_zp_current_image->getNextImage();
