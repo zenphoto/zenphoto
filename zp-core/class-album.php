@@ -1693,12 +1693,12 @@ class dynamicAlbum extends AlbumBase {
 	 * @return object
 	 */
 	function getSearchEngine() {
-		if (!is_null($this->searchengine))
-			return $this->searchengine;
-		$this->searchengine = new SearchEngine(true);
-		$params = $this->get('search_params');
-		$this->searchengine->setSearchParams($params);
-		$this->searchengine->setAlbum($this);
+		if (is_null($this->searchengine)) {
+			$this->searchengine = new SearchEngine(true);
+			$params = $this->get('search_params');
+			$this->searchengine->setSearchParams($params);
+			$this->searchengine->setAlbum($this);
+		}
 		return $this->searchengine;
 	}
 

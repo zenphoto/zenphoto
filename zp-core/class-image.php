@@ -1050,10 +1050,10 @@ class Image extends MediaObject {
 	 */
 	function getLink() {
 		if (is_array($this->filename)) {
-			$albumq = $album = dirname($this->filename['source']);
+			$album = $albumq = dirname($this->filename['source']);
 			$image = basename($this->filename['source']);
 		} else {
-			$album = $this->albumlink;
+			$album = $this->albumnamealbum->linkname;
 			$albumq = $this->albumnamealbum->name;
 			$image = $this->filename;
 		}
