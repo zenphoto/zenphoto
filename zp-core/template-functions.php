@@ -1867,9 +1867,6 @@ function getNextAlbum() {
 	} else {
 		return null;
 	}
-
-	var_dump(in_context(ZP_SEARCH) || in_context(ZP_SEARCH_LINKED), $nextalbum);
-
 	return $nextalbum;
 }
 

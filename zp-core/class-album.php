@@ -1159,6 +1159,7 @@ class AlbumBase extends MediaObject {
 		}
 		$inx = array_search($this->name, $albums) - 1;
 		if ($inx >= 0 && $inx < count($albums)) {
+			$album = newAlbum($albums[$inx]);
 			if ($this->isDynamic()) {
 				$album->linkname = $this->linkname . '/' . $albums[$inx];
 			}
