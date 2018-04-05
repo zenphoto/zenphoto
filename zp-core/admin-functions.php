@@ -2751,9 +2751,9 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 			foreach ($inactivelang as $key => $content) {
 				if ($key !== $locale) {
 					if ($textbox) {
-						echo "\n" . '<textarea name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($content) . '</textarea>';
+						echo "\n" . '<textarea class="textarea_hidden" name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($content) . '</textarea>';
 					} else {
-						echo '<br /><input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="text" value="' . html_encode($content) . '"' . $width . ' />';
+						echo '<br /><input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="hidden" value="' . html_encode($content) . '"' . $width . ' />';
 					}
 				}
 			}
@@ -2789,9 +2789,9 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 			foreach($strings as $key => $content ) {
 				if($key !== $locale) {
 					if ($textbox) {
-						echo '<div style="position: absolute !important; left: -1000px !Important;"><textarea name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">'. html_encode($content) .' </textarea></div>';
+						echo '<textarea class="textarea_hidden" name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">'. html_encode($content) .' </textarea>';
 					} else {
-						echo '<input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="hiddden" value="'.html_encode($content).'"' . $width . ' />';
+						echo '<input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="hidden" value="'.html_encode($content).'"' . $width . ' />';
 					}
 				}
 			}
