@@ -43,6 +43,7 @@ class AlbumBase extends MediaObject {
 
 	var $name; // Folder name of the album (full path from the albums folder)
 	var $linkname; // may have the .alb suffix stripped off
+	var $parentLinks; // used for dynamic album heritage
 	var $localpath; // Latin1 full server path to the album
 	var $exists = true; // Does the folder exist?
 	var $images = NULL; // Full images array storage.
@@ -53,7 +54,7 @@ class AlbumBase extends MediaObject {
 	var $access_rights = ALL_ALBUMS_RIGHTS;
 	protected $sidecars = array(); // keeps the list of suffixes associated with this album
 	protected $subalbums = null; // Full album array storage.
-	protected $index;
+	var $index;
 	protected $lastimagesort = NULL; // remember the order for the last album/image sorts
 	protected $lastsubalbumsort = NULL;
 	protected $albumthumbnail = NULL; // remember the album thumb for the duration of the script
@@ -1135,7 +1136,11 @@ class AlbumBase extends MediaObject {
 		}
 		$inx = array_search($this->name, $albums) + 1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return newAlbum($albums[$inx]);
+			$album = newAlbum($albums[$inx]);
+			if ($this->isDynamic()) {
+				$album->linkname = $this->linkname . '/' . $albums[$inx];
+			}
+			return $album;
 		}
 		return null;
 	}
@@ -1154,7 +1159,10 @@ class AlbumBase extends MediaObject {
 		}
 		$inx = array_search($this->name, $albums) - 1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return newAlbum($albums[$inx]);
+			if ($this->isDynamic()) {
+				$album->linkname = $this->linkname . '/' . $albums[$inx];
+			}
+			return $album;
 		}
 		return null;
 	}

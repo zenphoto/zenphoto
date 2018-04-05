@@ -590,6 +590,10 @@ function next_album($all = false, $mine = NULL) {
 		} else {
 			$_zp_current_album_restore = $_zp_current_album;
 			$_zp_current_album = newAlbum(array_shift($_zp_albums), true, true);
+			if ($_zp_current_album_restore && $_zp_current_album_restore->isDynamic()) {
+				$_zp_current_album->linkname = $_zp_current_album_restore->linkname . '/' . basename($_zp_current_album->linkname);
+			}
+
 			save_context();
 			add_context(ZP_ALBUM);
 			$result = true;
@@ -601,6 +605,9 @@ function next_album($all = false, $mine = NULL) {
 		$result = NULL;
 	} else {
 		$_zp_current_album = newAlbum(array_shift($_zp_albums), true, true);
+		if ($_zp_current_album_restore && $_zp_current_album_restore->isDynamic()) {
+			$_zp_current_album->linkname = $_zp_current_album_restore->linkname . '/' . basename($_zp_current_album->name);
+		}
 		$result = true;
 	}
 	return zp_apply_filter('next_object_loop', $result, $_zp_current_album);
@@ -1131,20 +1138,29 @@ function albumNumber() {
  * @return array
  */
 function getParentAlbums($album = null) {
+	global $_zp_current_album, $_zp_current_search, $_zp_gallery;
 	$parents = array();
 	if (in_context(ZP_ALBUM)) {
-		global $_zp_current_album, $_zp_current_search, $_zp_gallery;
 		if (is_null($album)) {
 			if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) {
 				$album = $_zp_current_search->getDynamicAlbum();
-				if (empty($album))
+				if (empty($album)) {
 					return $parents;
+				}
 			} else {
 				$album = $_zp_current_album;
 			}
 		}
-		while (!is_null($album = $album->getParent())) {
-			array_unshift($parents, $album);
+		$parentNames = $album->parentLinks;
+		if ($parentNames) {
+			foreach ($parentNames as $alb) {
+				$album = newAlbum($alb);
+				$parents[] = $album;
+			}
+		} else {
+			while (!is_null($album = $album->getParent())) {
+				array_unshift($parents, $album);
+			}
 		}
 	}
 	return $parents;
@@ -1172,6 +1188,11 @@ function getAlbumBreadcrumb($title = NULL) {
 			if (in_context(ZP_IMAGE) && in_context(ZP_ALBUM_LINKED)) {
 				$album = $_zp_current_album;
 			} else {
+				if ($_zp_current_album) {
+					$dynamic_album->linkname = $_zp_current_album->linkname;
+					$dynamic_album->parentLinks = $_zp_current_album->parentLinks;
+					$dynamic_album->index = $_zp_current_album->index;
+				}
 				$album = $dynamic_album;
 			}
 		}
@@ -1292,17 +1313,25 @@ function getParentBreadcrumb() {
 				return array(array('link' => $searchpagepath, 'title' => gettext("Return to archive"), 'text' => gettext("Archive")));
 			}
 		} else {
+			if ($_zp_current_album) {
+				$dynamic_album->linkname = $_zp_current_album->linkname;
+				$dynamic_album->parentLinks = $_zp_current_album->parentLinks;
+				$dynamic_album->index = $_zp_current_album->index;
+			}
 			$album = $dynamic_album;
 			$parents = getParentAlbums($album);
 			if (in_context(ZP_ALBUM_LINKED)) {
 				array_push($parents, $album);
 			}
 		}
-		// remove parent links that are not in the search path
-		foreach ($parents as $key => $analbum) {
-			$target = $analbum->name;
-			if ($target !== $dynamic_album && !in_array($target, $search_album_list)) {
-				unset($parents[$key]);
+
+		if (empty($dynamic_album)) {
+			// remove parent links that are not in the search path
+			foreach ($parents as $key => $analbum) {
+				$target = $analbum->name;
+				if ($target !== $dynamic_album->name && !in_array($target, $search_album_list)) {
+					unset($parents[$key]);
+				}
 			}
 		}
 	} else {
@@ -1828,6 +1857,9 @@ function getNextAlbum() {
 	} else {
 		return null;
 	}
+
+	var_dump(in_context(ZP_SEARCH) || in_context(ZP_SEARCH_LINKED), $nextalbum);
+
 	return $nextalbum;
 }
 
@@ -2279,7 +2311,7 @@ function hasPrevImage() {
  * @return string
  */
 function getNextImageURL() {
-	global $_zp_current_album, $_zp_current_image;
+	global $_zp_current_image;
 	if (!in_context(ZP_IMAGE))
 		return false;
 	if (is_null($_zp_current_image))
@@ -2294,9 +2326,9 @@ function getNextImageURL() {
  * @return string
  */
 function getPrevImageURL() {
+	global $_zp_current_image;
 	if (!in_context(ZP_IMAGE))
 		return false;
-	global $_zp_current_album, $_zp_current_image;
 	if (is_null($_zp_current_image))
 		return false;
 	$previmg = $_zp_current_image->getPrevImage();
@@ -3861,39 +3893,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-							// <!-- <![CDATA[
-							var within = <?php echo (int) $within; ?>;
-							function search_(way) {
-								within = way;
-								if (way) {
-									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-								} else {
-									lastsearch = '';
-									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-								}
-								$('#search_input').val('');
-							}
-							$('#search_form').submit(function () {
-								if (within) {
-									var newsearch = $.trim($('#search_input').val());
-									if (newsearch.substring(newsearch.length - 1) == ',') {
-										newsearch = newsearch.substr(0, newsearch.length - 1);
-									}
-									if (newsearch.length > 0) {
-										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-									} else {
-										$('#search_input').val('<?php echo $searchwords; ?>');
-									}
-								}
-								return true;
-							});
-							function search_all() {
-								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-								var check = $('#SEARCH_checkall').prop('checked');
-								$('.SEARCH_checkall').prop('checked', check);
-							}
+													// <!-- <![CDATA[
+													var within = <?php echo (int) $within; ?>;
+													function search_(way) {
+														within = way;
+														if (way) {
+															$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+														} else {
+															lastsearch = '';
+															$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+														}
+														$('#search_input').val('');
+													}
+													$('#search_form').submit(function () {
+														if (within) {
+															var newsearch = $.trim($('#search_input').val());
+															if (newsearch.substring(newsearch.length - 1) == ',') {
+																newsearch = newsearch.substr(0, newsearch.length - 1);
+															}
+															if (newsearch.length > 0) {
+																$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+															} else {
+																$('#search_input').val('<?php echo $searchwords; ?>');
+															}
+														}
+														return true;
+													});
+													function search_all() {
+														//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+														var check = $('#SEARCH_checkall').prop('checked');
+														$('.SEARCH_checkall').prop('checked', check);
+													}
 
-							// ]]> -->
+													// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>

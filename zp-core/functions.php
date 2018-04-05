@@ -888,11 +888,14 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		$context = get_context();
 		$_zp_current_search = new SearchEngine();
 		$_zp_current_search->setSearchParams($params);
-// check to see if we are still "in the search context"
+		// check to see if we are still "in the search context"
 		if (!is_null($image)) {
 			$dynamic_album = $_zp_current_search->getDynamicAlbum();
 			if ($_zp_current_search->getImageIndex($album->name, $image->filename) !== false) {
 				if ($dynamic_album) {
+					$dynamic_album->linkname = $_zp_current_album->linkname;
+					$dynamic_album->parentLinks = $_zp_current_album->parentLinks;
+					$dynamic_album->index = $_zp_current_album->index;
 					$_zp_current_album = $dynamic_album;
 				}
 				$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
@@ -904,7 +907,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			if (hasDynamicAlbumSuffix($albumname) && !is_dir(ALBUM_FOLDER_SERVERPATH . $albumname)) {
 				$albumname = stripSuffix($albumname); // strip off the suffix as it will not be reflected in the search path
 			}
-//	see if the album is within the search context. NB for these purposes we need to look at all albums!
+			//	see if the album is within the search context. NB for these purposes we need to look at all albums!
 			$save_logon = $_zp_loggedin;
 			$_zp_loggedin = $_zp_loggedin | VIEW_ALL_RIGHTS;
 			$search_album_list = $_zp_current_search->getAlbums(0);

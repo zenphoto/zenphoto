@@ -1050,13 +1050,13 @@ class Image extends MediaObject {
 	 */
 	function getLink() {
 		if (is_array($this->filename)) {
-			$album = $albumq = dirname($this->filename['source']);
+			$albumq = dirname($this->filename['source']);
 			$image = basename($this->filename['source']);
 		} else {
-			$album = $this->albumnamealbum->linkname;
 			$albumq = $this->albumnamealbum->name;
 			$image = $this->filename;
 		}
+		$album = $this->albumnamealbum->linkname;
 		$addl = $addl_plain = NULL;
 		if ($this->albumnamealbum->isDynamic()) {
 			$this->albumnamealbum->getImages();
@@ -1274,7 +1274,7 @@ class Image extends MediaObject {
 	 * @return int
 	 */
 	function getIndex() {
-		global $_zp_current_search, $_zp_current_album;
+		global $_zp_current_search;
 		if ($this->index == NULL) {
 			$album = $this->albumnamealbum;
 			$filename = $this->filename;
@@ -1308,12 +1308,15 @@ class Image extends MediaObject {
 	function getNextImage() {
 		global $_zp_current_search;
 		$index = $this->getIndex();
+		$album = $this->albumnamealbum;
+
 		if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED)) {
 			$image = $_zp_current_search->getImage($index + 1);
 		} else {
-			$album = $this->albumnamealbum;
 			$image = $album->getImage($index + 1);
 		}
+		$image->albumnamealbum = $album;
+
 		return $image;
 	}
 
@@ -1324,13 +1327,16 @@ class Image extends MediaObject {
 	 */
 	function getPrevImage() {
 		global $_zp_current_search;
+		$album = $this->albumnamealbum;
 		$index = $this->getIndex();
+
 		if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED)) {
 			$image = $_zp_current_search->getImage($index - 1);
 		} else {
-			$album = $this->albumnamealbum;
 			$image = $album->getImage($index - 1);
 		}
+		$image->albumnamealbum = $album;
+
 		return $image;
 	}
 

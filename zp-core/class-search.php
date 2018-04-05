@@ -31,7 +31,7 @@ class SearchEngine {
 	var $language;
 	protected $dynalbumname = NULL;
 	protected $searchprivatetags = NULL;
-	protected $album = NULL;
+	var $album = NULL;
 	protected $words;
 	protected $dates;
 	protected $search_no_albums = false; // omit albums
@@ -1016,7 +1016,7 @@ class SearchEngine {
 	 * @since 1.1.3
 	 */
 	function searchDate($searchstring, $searchdate, $tbl, $sorttype, $sortdirection, $whichdate = 'date') {
-		global $_zp_current_album, $_zp_gallery;
+		global $_zp_gallery;
 		$sql = 'SELECT DISTINCT `id`, `show`,`title`';
 		switch ($tbl) {
 			case 'pages':
@@ -1607,7 +1607,11 @@ class SearchEngine {
 		$albums = $this->getAlbums(0);
 		$inx = array_search($curalbum, $albums) + 1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return newAlbum($albums[$inx]);
+			$album = newAlbum($albums[$inx]);
+			if ($this->dynalbumname) {
+				$album->linkname = $this->dynalbumname . '/' . $albums[$inx];
+			}
+			return $album;
 		}
 		return null;
 	}
@@ -1623,7 +1627,11 @@ class SearchEngine {
 		$albums = $this->getAlbums(0);
 		$inx = array_search($curalbum, $albums) - 1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return newAlbum($albums[$inx]);
+			$album = newAlbum($albums[$inx]);
+			if ($this->dynalbumname) {
+				$album->linkname = $this->dynalbumname . '/' . $albums[$inx];
+			}
+			return $album;
 		}
 		return null;
 	}
