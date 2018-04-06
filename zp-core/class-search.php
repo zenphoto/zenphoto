@@ -47,6 +47,9 @@ class SearchEngine {
 	protected $category_list = array(); // list of categories for a news search
 	protected $extraparams = array(); // allow plugins to add to search parameters
 	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
+	// $specialChars are characters with special meaning in parasing searach strings
+	// set to false and they are treated as regular characters
+	var $specialChars = array('"' => true, "'" => true, '`' => true, '\\' => true);
 	// mimic album object
 	var $loaded = false;
 	var $table = 'albums';
@@ -610,6 +613,7 @@ class SearchEngine {
 		if ($this->processed_search) {
 			return $this->processed_search;
 		}
+
 		$searchstring = trim($this->words);
 		$space_is = getOption('search_space_is');
 		$opChars = array('&' => 1, '|' => 1, '!' => 1, ',' => 1, '(' => 2);
@@ -627,14 +631,19 @@ class SearchEngine {
 				case "'":
 				case '"':
 				case '`':
-					$j = strpos(str_replace('\\' . $c, '__', $searchstring), $c, $i + 1);
-					if ($j !== false) {
-						$target .= stripcslashes(substr($searchstring, $i + 1, $j - $i - 1));
-						$i = $j;
+					if ($this->specialChars[$c]) {
+						$j = strpos(str_replace('\\' . $c, '__', $searchstring), $c, $i + 1);
+						if ($j !== false) {
+							$target .= stripcslashes(substr($searchstring, $i + 1, $j - $i - 1));
+							$i = $j;
+						} else {
+							$target .= $c;
+						}
+						$c1 = $c;
 					} else {
+						$c1 = $c;
 						$target .= $c;
 					}
-					$c1 = $c;
 					break;
 				case ' ':
 					$j = $i + 1;
@@ -772,7 +781,11 @@ class SearchEngine {
 						$target .= $c;
 					}
 					break;
-
+				case '\\': //	escape character just grabs next character
+					if ($this->specialChars[$c]) {
+						$i++;
+						$c = substr($searchstring, $i, 1);
+					}
 				default:
 					$c1 = $c;
 					$target .= $c;
