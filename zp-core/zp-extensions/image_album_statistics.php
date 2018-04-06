@@ -428,9 +428,10 @@ function printLatestUpdatedAlbums($number = 5, $showtitle = false, $showdate = f
 function getImageStatistic($number, $option, $albumfolder = NULL, $collection = false, $threshold = 0, $sortdirection = 'desc') {
 	global $_zp_gallery;
 	$where = '';
+	$obj = NULL;
 	if ($albumfolder) {
 		$obj = newAlbum($albumfolder);
-		$where = ' AND albums.id = ' . $obj->getID();
+		$where = 'albumid = ' . $obj->getID();
 		if ($collection) {
 			$ids = getAllSubAlbumIDs($albumfolder);
 			if (!empty($ids)) {
@@ -438,7 +439,7 @@ function getImageStatistic($number, $option, $albumfolder = NULL, $collection = 
 					$getids[] = $id['id'];
 				}
 				$getids = implode(', ', $getids);
-				$where = ' AND albums.id IN (' . $getids . ')';
+				$where = 'albumid IN (' . $getids . ')';
 			}
 		}
 	}
@@ -454,32 +455,35 @@ function getImageStatistic($number, $option, $albumfolder = NULL, $collection = 
 	}
 	switch ($option) {
 		case "popular":
-			$sortorder = "images.hitcounter";
-			$where .= 'AND images.hitcounter >= ' . $threshold;
+			$sortorder = "hitcounter";
+			$where .= ' AND hitcounter >= ' . $threshold;
 			break;
 		case "latest-date":
-			$sortorder = "images.date";
+			$sortorder = "date";
 			break;
 		case "latest-mtime":
-			$sortorder = "images.mtime";
+			$sortorder = "mtime";
 			break;
 		default:
 		case "latest":
-			$sortorder = "images.id";
+			$sortorder = "id";
 			break;
 		case "latest-publishdate":
-			$sortorder = "IFNULL(images.publishdate,images.date)";
+			$sortorder = "IFNULL(publishdate,date)";
 			break;
 		case "mostrated":
-			$sortorder = "images.total_votes";
+			$sortorder = "total_votes";
 			break;
 		case "toprated":
-			$sortorder = "(images.total_value/images.total_votes) DESC, images.total_value";
-			$where .= 'AND images.total_votes >= ' . $threshold;
+			$sortorder = "(total_value/total_votes) DESC, total_value";
+			$where .= ' AND total_votes >= ' . $threshold;
 			break;
 		case "random":
 			$sortorder = "RAND()";
 			break;
+	}
+	if ($where) {
+		$where = ' WHERE ' . ltrim($where, 'AND');
 	}
 
 	$imageArray = array();
@@ -496,19 +500,9 @@ function getImageStatistic($number, $option, $albumfolder = NULL, $collection = 
 			}
 		}
 	} else {
-		$result = query("SELECT images.filename AS filename, albums.folder AS folder FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums " . "WHERE (images.albumid = albums.id) " . $where . " ORDER BY " . $sortorder . " " . $sortdir);
-		if ($result) {
-			while ($row = db_fetch_assoc($result)) {
-				$image = newImage($row, true, true);
-				if ($image->exists && $image->checkAccess()) {
-					$imageArray[] = $image;
-					if (count($imageArray) >= $number) { // got enough
-						break;
-					}
-				}
-			}
-			db_free_result($result);
-		}
+		$sql = "SELECT `id` FROM " . prefix('images') . $where . " ORDER BY " . $sortorder . " " . $sortdir;
+		$result = query($sql);
+		$imageArray = filterImageQueryList($result, $obj, $number, false);
 	}
 	return $imageArray;
 }

@@ -11,9 +11,9 @@ class Utils {
 			$limit = 3;
 		$t_images = prefix("images");
 		$t_albums = prefix("albums");
-		$query = "SELECT i.filename, i.title, a.folder FROM $t_images i " .
+		$query = "SELECT i.id, i.filename, i.title, a.folder FROM $t_images i " .
 						"LEFT JOIN $t_albums a ON i.albumid=a.id " .
-						"ORDER BY i.date DESC LIMIT $limit";
+						"ORDER BY i.date DESC";
 		$result = query($query);
 		return filterImageQueryList($result, NULL, $limit, false);
 	}

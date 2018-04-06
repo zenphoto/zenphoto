@@ -3149,11 +3149,11 @@ function printSizedImageURL($size, $text, $title, $class = NULL, $id = NULL) {
  *
  * @return array
  */
-function filterImageQueryList($result, $source, $limit, $photo = true) {
+function filterImageQueryList($result, $source, $limit = 1, $photo = true) {
 	$list = array();
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
-			$image = newImage($row, NULL, true);
+			$image = getItemByID('images', $row['id']);
 			if ($image->exists) {
 				$album = $image->album;
 				if ($album->name == $source || $album->checkAccess()) {
@@ -3171,26 +3171,6 @@ function filterImageQueryList($result, $source, $limit, $photo = true) {
 		db_free_result($result);
 	}
 	return $list;
-}
-
-/**
- *
- * performs a query and then filters out "illegal" images returning the first "good" image
- * used by the random image functions.
- *
- * @param object $result query result
- * @param string $source album object if this is search within the album
- * @param int $limit How many images to cache (0 will fetch all)
- * @param bool $photos set true to return only imagePhotos
- *
- * @return object the image (if it exists)
- */
-function filterImageQuery($result, $source, $limit = 1, $photo = true) {
-	$list = filterImageQueryList($result, $source, $limit, $photo);
-	if (!empty($list)) {
-		return array_shift($list);
-	}
-	return NULL;
 }
 
 /**
@@ -3223,14 +3203,11 @@ function getRandomImages($daily = false, $limit = 1) {
 		if (zp_loggedin()) {
 			$imageWhere = '';
 		} else {
-			$imageWhere = " AND " . prefix('images') . ".show=1";
+			$imageWhere = " WHERE `show`=1";
 		}
-		$sql = 'SELECT `folder`, `filename` ' .
-						' FROM ' . prefix('images') . ', ' . prefix('albums') .
-						' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
-						prefix('albums') . '.id ' . $imageWhere . ' ORDER BY RAND()';
+		$sql = 'SELECT `id` FROM ' . prefix('images') . $imageWhere . ' ORDER BY MD5( CONCAT( id, now() ) )';
 		$result = query($sql);
-		$_random_image_list = filterImageQueryList($result, NULL, $limit);
+		$_random_image_list = filterImageQueryList($result, NULL, $limit, TRUE);
 	}
 	$image = array_shift($_random_image_list);
 	if ($image) {
