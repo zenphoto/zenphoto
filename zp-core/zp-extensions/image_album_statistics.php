@@ -479,11 +479,17 @@ function getImageStatistic($number, $option, $albumfolder = NULL, $collection = 
 			$where .= ' AND total_votes >= ' . $threshold;
 			break;
 		case "random":
+			$row = query_single_row('SELECT COUNT(*) FROM ' . prefix('images'));
+			if (5000 < $count = array_shift($row)) {
+				$sample = ceil((max(1000, $number * 100) / $count) * 100);
+				$where .= ' AND CAST((RAND() * 100 * `id`) % 100 as UNSIGNED) < ' . $sample;
+			}
 			$sortorder = "RAND()";
+			$sortdir = NULL;
 			break;
 	}
 	if ($where) {
-		$where = ' WHERE ' . ltrim($where, 'AND');
+		$where = ' WHERE ' . ltrim($where, ' AND');
 	}
 
 	$imageArray = array();

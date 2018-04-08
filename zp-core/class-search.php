@@ -615,6 +615,8 @@ class SearchEngine {
 		}
 
 		$searchstring = trim($this->words);
+		$escapeFreeString = strtr($searchstring, array('\\"' => '__', "\\'" => '__', '\\`' => '__'));
+
 		$space_is = getOption('search_space_is');
 		$opChars = array('&' => 1, '|' => 1, '!' => 1, ',' => 1, '(' => 2);
 		if ($space_is) {
@@ -632,7 +634,7 @@ class SearchEngine {
 				case '"':
 				case '`':
 					if ($this->specialChars[$c]) {
-						$j = strpos(str_replace('\\' . $c, '__', $searchstring), $c, $i + 1);
+						$j = strpos($escapeFreeString, $c, $i + 1);
 						if ($j !== false) {
 							$target .= stripcslashes(substr($searchstring, $i + 1, $j - $i - 1));
 							$i = $j;
