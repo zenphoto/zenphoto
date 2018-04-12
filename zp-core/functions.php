@@ -2334,6 +2334,7 @@ function getItemByID($table, $id) {
  * @return string
  */
 function applyMacros($text) {
+	global $_zp_UTF8;
 	$content_macros = getMacros();
 	preg_match_all('/\[(\w+)(.*?)\]/i', $text, $instances);
 
@@ -2345,7 +2346,7 @@ function applyMacros($text) {
 			$data = NULL;
 			$class = $macro['class'];
 			if ($p) {
-				$p = trim(utf8::sanitize(str_replace("\xC2\xA0", ' ', strip_tags($p)))); //	remove hard spaces and invalid characters
+				$p = trim($_zp_UTF8->sanitize(str_replace("\xC2\xA0", ' ', strip_tags($p)))); //	remove hard spaces and invalid characters
 				$p = preg_replace("~\s+=\s+(?=(?:[^\"]*+\"[^\"]*+\")*+[^\"]*+$)~", "=", $p); //	deblank assignment operator
 				preg_match_all("~'[^'\"]++'|\"[^\"]++\"|[^\s]++~", $p, $l); //	parse the parameter list
 				$parms = array();
