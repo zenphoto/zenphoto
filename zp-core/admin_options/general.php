@@ -624,7 +624,7 @@ function getOptionContent() {
 						<?php
 						$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 						?>
-						<p><input type="checkbox" size="48" id="site_email" name="register_user_notify"  value="1" <?php checked('1', getOption('register_user_notify')); ?> <?php if (!$mailinglist) echo ' disabled="disabled"'; ?> /><?php echo gettext('notify'); ?></p>
+						<p><input type="checkbox" size="48" id="site_email" name="register_user_notify"  value="1" <?php checked('1', getOption('register_user_notify') && $mailinglist); ?> <?php if (!$mailinglist) echo ' disabled="disabled"'; ?> /><?php echo gettext('notify'); ?></p>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">

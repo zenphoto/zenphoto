@@ -419,7 +419,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 		if ($_zp_authority) {
 			$email_list = $_zp_authority->getAdminEmail();
 		} else {
-			return $failMessage;
+			return $failMessage . gettext('There is no administrator with an e-mail address.');
 		}
 	} else {
 		foreach ($email_list as $key => $email) {
