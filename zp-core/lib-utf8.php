@@ -198,7 +198,7 @@ class utf8 {
 	 * replaces invalid UTF-8 characters with blanks
 	 *
 	 */
-	static function sanitize($text) {
+	function sanitize($text) {
 		if (function_exists('mb_convert_encoding') && array_key_exists('UTF-8', $this->mb_sets)) {
 			mb_convert_encoding($text, 'UTF-8', 'UTF-8');
 		} else if (function_exists('iconv') && array_key_exists('UTF-8', $this->iconv_sets)) {
