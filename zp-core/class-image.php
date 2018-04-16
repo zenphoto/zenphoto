@@ -1315,7 +1315,9 @@ class Image extends MediaObject {
 		} else {
 			$image = $album->getImage($index + 1);
 		}
-		$image->albumnamealbum = $album;
+		if ($image && $image->exists) {
+			$image->albumnamealbum = $album;
+		}
 
 		return $image;
 	}
@@ -1335,8 +1337,9 @@ class Image extends MediaObject {
 		} else {
 			$image = $album->getImage($index - 1);
 		}
-		$image->albumnamealbum = $album;
-
+		if ($image && $image->exists) {
+			$image->albumnamealbum = $album;
+		}
 		return $image;
 	}
 

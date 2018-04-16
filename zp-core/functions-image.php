@@ -221,7 +221,6 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		if (!empty($size)) {
 			$dim = $size;
 			if ($crop) {
-				$dim = $size;
 				if (!$ch)
 					$ch = $size;
 				if (!$cw)
