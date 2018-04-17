@@ -415,7 +415,7 @@ function printRegistrationForm($thanks = NULL) {
 				if (is_null($thanks))
 					$thanks = gettext("Thank you for registering.");
 				?>
-				<div class="Messagebox fade-message">
+				<div class="messagebox fade-message">
 					<p><?php echo $thanks; ?></p>
 					<p><?php echo gettext('You may now log onto the site and verify your personal information.'); ?></p>
 				</div>
@@ -435,7 +435,7 @@ function printRegistrationForm($thanks = NULL) {
 			case 'honeypot': //pretend it was accepted
 			case 'accepted':
 				?>
-				<div class="Messagebox fade-message">
+				<div class="messagebox fade-message">
 					<p><?php echo gettext('Your registration information has been accepted. An email has been sent to you to verify your email address.'); ?></p>
 				</div>
 				<?php

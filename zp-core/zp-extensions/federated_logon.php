@@ -143,7 +143,7 @@ class federated_logon {
 					'key' => 'menu_truncate_note',
 					'type' => OPTION_TYPE_NOTE,
 					'order' => 8,
-					'desc' => getMessageBox('info', gettext('*<strong>Note:</strong> The setting of this option is shared with other plugins.'), false));
+					'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
 		}
 		return $options;
 	}
