@@ -81,10 +81,12 @@ class zoomImage {
 		?>
 		<script type="text/javascript">
 		<?php
-		foreach ($_zoomImage_id_list as $id => $param) {
-			?>
-				$('#<?php echo $id; ?>').zoom(<?php echo $param; ?>);
-			<?php
+		if (!empty($_zoomImage_id_list)) {
+			foreach ($_zoomImage_id_list as $id => $param) {
+				?>
+					$('#<?php echo $id; ?>').zoom(<?php echo $param; ?>);
+				<?php
+			}
 		}
 		?>
 		</script>
