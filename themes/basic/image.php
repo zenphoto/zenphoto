@@ -73,7 +73,7 @@ if (!defined('WEBPATH'))
 					$zoom = floor($size * 3);
 					printZoomImage(floor($size * 2), NULL, NULL, 'zoom_window');
 					?>
-					<span id="zoom_window" style="display:inline-block; height:<?php echo $zoom; ?>px; width:<?php echo $zoom; ?>px; min_height:<?php echo $zoom; ?>px; min_width:<?php echo $zoom; ?>px; background-color:lightgray; text-align: center;">
+					<span id="zoom_window" style="display:inline-block; height:<?php echo $zoom; ?>px; width:<?php echo $zoom; ?>px;  background-color:lightgray; text-align: center;">
 						<p style="padding-top: 45%;"><?php echo gettext('Zoomed image will appear here.'); ?></p>
 					</span>
 					<?php
