@@ -1689,6 +1689,7 @@ zp-core/zp-extensions/wordpress_import.php
 zp-core/zp-extensions/xmpMetadata.php
 zp-core/zp-extensions/zenpage.php
 zp-core/zp-extensions/zenphoto_sendmail.php
+zp-core/zp-extensions/zoomImage.php
 zp-core/zp-extensions/zpCaptcha.php
 zp-core/zp-extensions/accessThreshold
 zp-core/zp-extensions/accessThreshold/admin_tab.php
@@ -8238,6 +8239,13 @@ zp-core/zp-extensions/zenpage/classes.php
 zp-core/zp-extensions/zenpage/deprecated-functions.php
 zp-core/zp-extensions/zenpage/template-functions.php
 zp-core/zp-extensions/zenpage/zenpage.css
+zp-core/zp-extensions/zoomImage
+zp-core/zp-extensions/zoomImage/grab.cur
+zp-core/zp-extensions/zoomImage/grabbed.cur
+zp-core/zp-extensions/zoomImage/icon.png
+zp-core/zp-extensions/zoomImage/jquery.zoom.min.js
+zp-core/zp-extensions/zoomImage/LICENSE.md
+zp-core/zp-extensions/zoomImage/zoom.css
 zp-core/zp-extensions/zpCaptcha
 zp-core/zp-extensions/zpCaptcha/c.php
 zp-core/zp-extensions/zpCaptcha/captcha_background.png
@@ -8254,4 +8262,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8256
+8264
