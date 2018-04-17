@@ -68,11 +68,11 @@ class ThemeOptions {
 								gettext('Latest by Publish Date') => 'latestbypdate',
 								gettext('Most Rated') => 'mostrated',
 								gettext('Top Rated') => 'toprated'),
-						'desc' => gettext('Select how the pictures will be chosen for the homepage slideshow.')),
+						'desc' => gettext('Select how the images will be chosen for the homepage slideshow.')),
 				gettext('Album to choose from') => array('key' => 'carousel_album', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 3,
 						'selections' => $albumlist,
-						'desc' => gettext('Choose a specific album to display its pictures. Album needs to be published. Images are preferrably in panoramic format: 1920px wide')),
+						'desc' => gettext('Choose a specific album to display its images. Album needs to be published. Images are preferrably in panoramic format: 1920px wide')),
 				gettext('Number of slides') => array('key' => 'carousel_number', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 4,
 						'selections' => array(
@@ -84,7 +84,7 @@ class ThemeOptions {
 								gettext('8') => '8',
 								gettext('9') => '9',
 								gettext('10') => '10'),
-						'desc' => gettext('Select how the pictures will be chosen for the homepage slideshow. Default is 5')),
+						'desc' => gettext('Select how the images will be chosen for the homepage slideshow. Default is 5')),
 				gettext('Homepage blog') => array('key' => 'homepage_blog', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 5, 'desc' => gettext('Check to enable blog posts as main content of the homepage.')),
 				gettext('Homepage content') => array('key' => 'homepage_content', 'type' => OPTION_TYPE_RADIO, 'order' => 6,
 						'buttons' => array(
