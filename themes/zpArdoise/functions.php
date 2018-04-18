@@ -220,30 +220,33 @@ function zpArdoise_printImageStatistic($number, $option, $albumfolder = '', $sho
 			echo "</li>";
 		}
 		echo "</ul></div>\n";
+	} else {
+		echo '<div class="alert alert-warning" role="alert">Please enable the image_album_statistics plugin</div>';
 	}
+}
 
-	/* zpArdoise_printEXIF */
+/* zpArdoise_printEXIF */
 
-	function zpardoise_printEXIF() {
-		$Meta_data = getImageMetaData(); // put all exif data in a array
-		if (!is_null($Meta_data)) {
-			$Exifs_list = '';
-			if (isset($Meta_data['EXIFModel'])) {
-				$Exifs_list .= html_encode($Meta_data['EXIFModel']);
-			};
-			if (isset($Meta_data['EXIFFocalLength'])) {
-				$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFFocalLength']);
-			};
-			if (isset($Meta_data['EXIFFNumber'])) {
-				$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFFNumber']);
-			};
-			if (isset($Meta_data['EXIFExposureTime'])) {
-				$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFExposureTime']);
-			};
-			if (isset($Meta_data['EXIFISOSpeedRatings'])) {
-				$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFISOSpeedRatings']) . ' ISO';
-			};
-			echo $Exifs_list;
-		}
+function zpardoise_printEXIF() {
+	$Meta_data = getImageMetaData(); // put all exif data in a array
+	if (!is_null($Meta_data)) {
+		$Exifs_list = '';
+		if (isset($Meta_data['EXIFModel'])) {
+			$Exifs_list .= html_encode($Meta_data['EXIFModel']);
+		};
+		if (isset($Meta_data['EXIFFocalLength'])) {
+			$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFFocalLength']);
+		};
+		if (isset($Meta_data['EXIFFNumber'])) {
+			$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFFNumber']);
+		};
+		if (isset($Meta_data['EXIFExposureTime'])) {
+			$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFExposureTime']);
+		};
+		if (isset($Meta_data['EXIFISOSpeedRatings'])) {
+			$Exifs_list .= ' &ndash; ' . html_encode($Meta_data['EXIFISOSpeedRatings']) . ' ISO';
+		};
+		echo $Exifs_list;
 	}
-	?>
+}
+?>
