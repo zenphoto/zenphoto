@@ -128,7 +128,7 @@ class cycle {
 						gettext('Slideshow: Tile Effect - Extra') => array('key' => 'cycle-slideshow_tileeffect', 'type' => OPTION_TYPE_SELECTOR,
 								'order' => 3,
 								'selections' => array(
-										gettext('Horziontal') => "tileVert",
+										gettext('Horizontal') => "tileVert",
 										gettext('Vertical') => "tileHorz"),
 								'desc' => gettext("If one of the tile effects is selected, this is its orientation.")),
 						gettext('Slideshow: Timeout') => array('key' => 'cycle-slideshow_timeout', 'type' => OPTION_TYPE_NUMBER,
