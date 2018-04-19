@@ -1348,8 +1348,8 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 					$articleCategories[$catMember['titlelink']] = $catMember['cat_id'];
 					while ($parentid) {
 						$cat = getItemByID('news_categories', $parentid);
-						$articleCategories[$cat->getTitleLink()] = $parentid;
-						$parentid = $cat->getParentID();
+						$articleCategories[@$cat->getTitleLink()] = $parentid;
+						$parentid = @$cat->getParentID();
 					}
 				}
 			}

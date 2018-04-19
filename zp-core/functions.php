@@ -970,8 +970,10 @@ function updatePublished($table) {
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
 			$obj = getItemByID($table, $row['id']);
-			$obj->setShow(1);
-			$obj->save();
+			if ($obj) {
+				$obj->setShow(1);
+				$obj->save();
+			}
 		}
 	}
 
@@ -981,8 +983,10 @@ function updatePublished($table) {
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
 			$obj = getItemByID($table, $row['id']);
-			$obj->setShow(0);
-			$obj->save();
+			if ($obj) {
+				$obj->setShow(0);
+				$obj->save();
+			}
 		}
 	}
 }
@@ -1830,9 +1834,11 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 					if ($parentID == 0)
 						break;
 					$pageobj = getItemByID('pages', $parentID);
-					$authType = "zp_page_auth_" . $pageobj->getID();
-					$check_auth = $pageobj->getPassword();
-					$check_user = $pageobj->getUser();
+					if ($pageobj) {
+						$authType = "zp_page_auth_" . $pageobj->getID();
+						$check_auth = $pageobj->getPassword();
+						$check_user = $pageobj->getUser();
+					}
 				}
 			}
 			$auth = array(array('authType' => $authType, 'check_auth' => $check_auth, 'check_user' => $check_user));

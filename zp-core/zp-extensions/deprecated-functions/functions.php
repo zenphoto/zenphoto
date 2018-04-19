@@ -3,7 +3,6 @@
 /**
  * @package plugins/deprecated-functions
  */
-
 function getPHPFiles($folder, $exclude, &$files = array()) {
 	$dir = opendir($folder);
 	while (($file = readdir($dir)) !== false) {
@@ -136,7 +135,7 @@ function listDBUses($pattern) {
 						break;
 					case 'images':
 						$album = getItemByID('albums', $row['albumid']);
-						$what = $album->name . ':' . $row['filename'] . '::' . $key;
+						$what = @$album->name . ':' . $row['filename'] . '::' . $key;
 						break;
 					case 'albums':
 						$what = $row['folder'] . '::' . $key;

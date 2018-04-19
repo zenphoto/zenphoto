@@ -812,8 +812,10 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 				foreach ($comments as $key => $comment) {
 					$comment['pubdate'] = $comment['date'];
 					$alb = getItemByID('albums', $comment['ownerid']);
-					$comment['folder'] = $alb->name;
-					$comment['albumtitle'] = $item->getTitle('all');
+					if ($alb) {
+						$comment['folder'] = $alb->name;
+						$comment['albumtitle'] = $item->getTitle('all');
+					}
 					$comments[$key] = $comment;
 				}
 				return $comments;
@@ -827,10 +829,12 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 				foreach ($comments as $key => $comment) {
 					$comment['pubdate'] = $comment['date'];
 					$img = getItemByID('images', $comment['ownerid']);
-					$comment['folder'] = $img->album->name;
-					$comment['filename'] = $img->filename;
-					$comment['title'] = $item->getTitle('all');
-					$comment['albumtitle'] = $img->album->getTitle('all');
+					if ($img) {
+						$comment['folder'] = $img->album->name;
+						$comment['filename'] = $img->filename;
+						$comment['title'] = $item->getTitle('all');
+						$comment['albumtitle'] = $img->album->getTitle('all');
+					}
 					$comments[$key] = $comment;
 				}
 				return $comments;

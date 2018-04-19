@@ -677,7 +677,7 @@ class Gallery {
 				$c = 0;
 				while ($image = db_fetch_assoc($images)) {
 					$albumobj = getItemByID('albums', $image['albumid']);
-					if ($albumobj->exists && file_exists($imageName = internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $albumobj->name . '/' . $image['filename']))) {
+					if ($albumobj && $albumobj->exists && file_exists($imageName = internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $albumobj->name . '/' . $image['filename']))) {
 						if ($image['mtime'] != $mtime = filemtime($imageName)) { // file has changed since we last saw it
 							$imageobj = newImage($albumobj, $image['filename']);
 							$imageobj->set('mtime', $mtime);
