@@ -347,6 +347,7 @@ themes/zpArdoise/password.php
 themes/zpArdoise/readme.htm
 themes/zpArdoise/register.php
 themes/zpArdoise/search.php
+themes/zpArdoise/slideshow.php
 themes/zpArdoise/theme.png
 themes/zpArdoise/theme_description.php
 themes/zpArdoise/themeoptions.php
@@ -8262,4 +8263,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8264
+8265
