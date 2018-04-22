@@ -149,7 +149,7 @@ class CMS {
 						$parentid = $page->getParentID();
 						if ($parentid) {
 							$parent = getItemByID('pages', $parentid);
-							if ($parent->subRights() & MANAGED_OBJECT_RIGHTS_VIEW) {
+							if ($parent && $parent->subRights() & MANAGED_OBJECT_RIGHTS_VIEW) {
 								$all_pages[] = $row;
 							}
 						}

@@ -170,7 +170,7 @@ function getField($field, $level = 3) {
  * @param string $subject_override set to override the subject.
  */
 function printContactForm($subject_override = '') {
-	global $_zp_UTF8, $_zp_captcha, $_processing_post, $_zp_current_admin_obj;
+	global $_zp_captcha, $_processing_post, $_zp_current_admin_obj;
 	$error = array();
 	if (isset($_POST['sendmail'])) {
 		$mailcontent = array();

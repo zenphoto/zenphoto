@@ -344,8 +344,10 @@ class Category extends CMSRoot {
 				$obj = NULL;
 			} else {
 				$obj = getItemByID('news_categories', $parentID);
-				$hash = $obj->getPassword();
-				$id = $obj->getID();
+				if ($obj) {
+					$hash = $obj->getPassword();
+					$id = $obj->getID();
+				}
 			}
 		}
 

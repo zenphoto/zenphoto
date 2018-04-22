@@ -1,0 +1,29 @@
+.zoom {
+	display:inline-block;
+	position: relative;
+}
+
+/* magnifying glass icon */
+.zoom:after {
+	content:'';
+	display:block;
+	width:33px;
+	height:33px;
+	position:absolute;
+	top:0;
+	right:0;
+	background:url(icon.png);
+}
+
+.zoom img {
+	display: block;
+}
+
+.zoom img::selection { background-color: transparent; }
+
+.zoomGrab img:hover { cursor: url(grab.cur), default; }
+.zoomGrab img:active { cursor: url(grabbed.cur), default; }
+
+.zoomHover img:hover { cursor: zoom-in }
+.zoomToggle img:hover { cursor: zoom-in }
+.zoomClick img:hover { cursor: zoom-in }

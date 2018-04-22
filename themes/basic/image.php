@@ -67,33 +67,48 @@ if (!defined('WEBPATH'))
 			</div>
 			<!-- The Image -->
 			<div id="image">
-				<strong>
+				<?php
+				if (function_exists('printZoomImage') && isImagePhoto()) {
+					$size = getOption('image_size') / 5;
+					$zoom = floor($size * 3);
+					printZoomImage(floor($size * 2), NULL, NULL, 'zoom_window');
+					?>
+					<span id="zoom_window" style="display:inline-block; height:<?php echo $zoom; ?>px; width:<?php echo $zoom; ?>px;  background-color:lightgray; text-align: center;">
+						<p style="padding-top: 45%;"><?php echo gettext('Zoomed image will appear here.'); ?></p>
+					</span>
 					<?php
-					if (isImagePhoto()) {
-						$fullimage = getFullImageURL();
-					} else {
-						$fullimage = NULL;
-					}
-					if (!empty($fullimage)) {
-						?>
-						<a href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php printBareImageTitle(); ?>" class="fullimage">
+				} else {
+					?>
+					<strong>
+						<?php
+						if (isImagePhoto()) {
+							$fullimage = getFullImageURL();
+						} else {
+							$fullimage = NULL;
+						}
+
+						if (empty($fullimage)) {
+							?>
+							<a href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php printBareImageTitle(); ?>" class="fullimage">
+								<?php
+							}
+							if (function_exists('printUserSizeImage') && isImagePhoto()) {
+								printUserSizeImage(getImageTitle());
+							} else {
+								printDefaultSizedImage(getImageTitle());
+							}
+							if (empty($fullimage)) {
+								?>
+							</a>
 							<?php
 						}
-						if (function_exists('printUserSizeImage') && isImagePhoto()) {
-							printUserSizeImage(getImageTitle());
-						} else {
-							printDefaultSizedImage(getImageTitle());
-						}
-						if (!empty($fullimage)) {
-							?>
-						</a>
-						<?php
+						?>
+					</strong>
+					<?php
+					if (isImagePhoto()) {
+						@call_user_func('printUserSizeSelector');
 					}
-					?>
-				</strong>
-				<?php
-				if (isImagePhoto())
-					@call_user_func('printUserSizeSelector');
+				}
 				?>
 			</div>
 			<div id="narrow">

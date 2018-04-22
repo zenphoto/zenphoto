@@ -270,14 +270,74 @@ function zp_load_search() {
  * @return the loaded album object on success, or (===false) on failure.
  */
 function zp_load_album($folder, $force_nocache = false) {
-	global $_zp_current_album, $_zp_gallery;
+	global $_zp_current_album, $_zp_gallery, $_zp_albumHandlers;
 	$path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $folder);
 	if (!is_dir($path)) {
-		if ($suffix = isHandledAlbum($path)) { //	it is a dynamic album sans suffix
-			$folder .= '.' . $suffix;
+		//see if there is a dynamic album in the path
+		$parents = array();
+		$folders = explode('/', $folder);
+		$build = '';
+		$album = NULL;
+		while (!empty($folders)) {
+			$try = array_shift($folders);
+			if ($build) {
+				$build .= '/';
+			}
+			$build .= $try;
+			if ($album) {
+				// find within the album's subalbums
+				$subalbums = $album->getAlbums();
+				$parents[$try] = $album->name;
+				$fail = true;
+				$c = 0;
+				foreach ($subalbums as $sub) {
+					$c++;
+					foreach (array_keys($_zp_albumHandlers) as $suffix) {
+						if ($try . '.' . $suffix == basename($sub)) {
+							$album = newAlbum($sub);
+							$album->linkname = $build;
+							$album->parentLinks = $parents;
+							$album->index = $c;
+							$fail = false;
+						}
+					}
+				}
+				if ($fail) {
+					$album = NULL;
+					break;
+				}
+			} else {
+				if (is_dir($path = internalToFilesystem(getAlbumFolder(SERVERPATH) . $build))) {
+					// natural album
+					$parents[$try] = $build;
+				} else {
+					//	dynamic album in path?
+					if ($suffix = isHandledAlbum($path)) {
+						$suffix = '.' . $suffix;
+					}
+					$album = newAlbum($build . $suffix, !$force_nocache, true);
+					if (!is_object($album) || !$album->exists) {
+						//	404 material
+						$album = NULL;
+						break;
+					}
+					$album->linkname = $build;
+					$album->parentLinks = $parents;
+				}
+			}
 		}
+
+		$_zp_current_album = $album;
+
+		/*
+		  if ($suffix = isHandledAlbum($path)) { //	it is a dynamic album sans suffix
+		  $folder .= '.' . $suffix;
+		  }
+		 *
+		 */
+	} else {
+		$_zp_current_album = newAlbum($folder, !$force_nocache, true);
 	}
-	$_zp_current_album = newAlbum($folder, !$force_nocache, true);
 	if (!is_object($_zp_current_album) || !$_zp_current_album->exists) {
 		if ($force_nocache) {
 			return false;
@@ -342,10 +402,11 @@ function zp_load_image($folder, $filename) {
 		$_zp_page = NULL;
 	}
 	$_zp_current_image = newImage($album, $filename, true);
-
 	if (!is_object($_zp_current_image) || !$_zp_current_image->exists) {
 		return false;
 	}
+	$_zp_current_image->albumanmealbum = $album;
+
 	add_context(ZP_IMAGE | ZP_ALBUM);
 	return $_zp_current_image;
 }

@@ -31,7 +31,7 @@ class SearchEngine {
 	var $language;
 	protected $dynalbumname = NULL;
 	protected $searchprivatetags = NULL;
-	protected $album = NULL;
+	var $album = NULL;
 	protected $words;
 	protected $dates;
 	protected $search_no_albums = false; // omit albums
@@ -47,6 +47,9 @@ class SearchEngine {
 	protected $category_list = array(); // list of categories for a news search
 	protected $extraparams = array(); // allow plugins to add to search parameters
 	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
+	// $specialChars are characters with special meaning in parasing searach strings
+	// set to false and they are treated as regular characters
+	var $specialChars = array('"' => true, "'" => true, '`' => true, '\\' => true);
 	// mimic album object
 	var $loaded = false;
 	var $table = 'albums';
@@ -610,7 +613,10 @@ class SearchEngine {
 		if ($this->processed_search) {
 			return $this->processed_search;
 		}
+
 		$searchstring = trim($this->words);
+		$escapeFreeString = strtr($searchstring, array('\\"' => '__', "\\'" => '__', '\\`' => '__'));
+
 		$space_is = getOption('search_space_is');
 		$opChars = array('&' => 1, '|' => 1, '!' => 1, ',' => 1, '(' => 2);
 		if ($space_is) {
@@ -627,14 +633,19 @@ class SearchEngine {
 				case "'":
 				case '"':
 				case '`':
-					$j = strpos(str_replace('\\' . $c, '__', $searchstring), $c, $i + 1);
-					if ($j !== false) {
-						$target .= stripcslashes(substr($searchstring, $i + 1, $j - $i - 1));
-						$i = $j;
+					if ($this->specialChars[$c]) {
+						$j = strpos($escapeFreeString, $c, $i + 1);
+						if ($j !== false) {
+							$target .= stripcslashes(substr($searchstring, $i + 1, $j - $i - 1));
+							$i = $j;
+						} else {
+							$target .= $c;
+						}
+						$c1 = $c;
 					} else {
+						$c1 = $c;
 						$target .= $c;
 					}
-					$c1 = $c;
 					break;
 				case ' ':
 					$j = $i + 1;
@@ -772,7 +783,11 @@ class SearchEngine {
 						$target .= $c;
 					}
 					break;
-
+				case '\\': //	escape character just grabs next character
+					if ($this->specialChars[$c]) {
+						$i++;
+						$c = substr($searchstring, $i, 1);
+					}
 				default:
 					$c1 = $c;
 					$target .= $c;
@@ -1016,7 +1031,7 @@ class SearchEngine {
 	 * @since 1.1.3
 	 */
 	function searchDate($searchstring, $searchdate, $tbl, $sorttype, $sortdirection, $whichdate = 'date') {
-		global $_zp_current_album, $_zp_gallery;
+		global $_zp_gallery;
 		$sql = 'SELECT DISTINCT `id`, `show`,`title`';
 		switch ($tbl) {
 			case 'pages':
@@ -1607,7 +1622,11 @@ class SearchEngine {
 		$albums = $this->getAlbums(0);
 		$inx = array_search($curalbum, $albums) + 1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return newAlbum($albums[$inx]);
+			$album = newAlbum($albums[$inx]);
+			if ($this->dynalbumname) {
+				$album->linkname = $this->dynalbumname . '/' . $albums[$inx];
+			}
+			return $album;
 		}
 		return null;
 	}
@@ -1623,7 +1642,11 @@ class SearchEngine {
 		$albums = $this->getAlbums(0);
 		$inx = array_search($curalbum, $albums) - 1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return newAlbum($albums[$inx]);
+			$album = newAlbum($albums[$inx]);
+			if ($this->dynalbumname) {
+				$album->linkname = $this->dynalbumname . '/' . $albums[$inx];
+			}
+			return $album;
 		}
 		return null;
 	}

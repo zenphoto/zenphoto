@@ -419,7 +419,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 		if ($_zp_authority) {
 			$email_list = $_zp_authority->getAdminEmail();
 		} else {
-			return $failMessage;
+			return $failMessage . gettext('There is no administrator with an e-mail address.');
 		}
 	} else {
 		foreach ($email_list as $key => $email) {
@@ -888,11 +888,14 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		$context = get_context();
 		$_zp_current_search = new SearchEngine();
 		$_zp_current_search->setSearchParams($params);
-// check to see if we are still "in the search context"
+		// check to see if we are still "in the search context"
 		if (!is_null($image)) {
 			$dynamic_album = $_zp_current_search->getDynamicAlbum();
 			if ($_zp_current_search->getImageIndex($album->name, $image->filename) !== false) {
 				if ($dynamic_album) {
+					$dynamic_album->linkname = $_zp_current_album->linkname;
+					$dynamic_album->parentLinks = $_zp_current_album->parentLinks;
+					$dynamic_album->index = $_zp_current_album->index;
 					$_zp_current_album = $dynamic_album;
 				}
 				$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
@@ -904,7 +907,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			if (hasDynamicAlbumSuffix($albumname) && !is_dir(ALBUM_FOLDER_SERVERPATH . $albumname)) {
 				$albumname = stripSuffix($albumname); // strip off the suffix as it will not be reflected in the search path
 			}
-//	see if the album is within the search context. NB for these purposes we need to look at all albums!
+			//	see if the album is within the search context. NB for these purposes we need to look at all albums!
 			$save_logon = $_zp_loggedin;
 			$_zp_loggedin = $_zp_loggedin | VIEW_ALL_RIGHTS;
 			$search_album_list = $_zp_current_search->getAlbums(0);
@@ -967,8 +970,10 @@ function updatePublished($table) {
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
 			$obj = getItemByID($table, $row['id']);
-			$obj->setShow(1);
-			$obj->save();
+			if ($obj) {
+				$obj->setShow(1);
+				$obj->save();
+			}
 		}
 	}
 
@@ -978,8 +983,10 @@ function updatePublished($table) {
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
 			$obj = getItemByID($table, $row['id']);
-			$obj->setShow(0);
-			$obj->save();
+			if ($obj) {
+				$obj->setShow(0);
+				$obj->save();
+			}
 		}
 	}
 }
@@ -1827,9 +1834,11 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 					if ($parentID == 0)
 						break;
 					$pageobj = getItemByID('pages', $parentID);
-					$authType = "zp_page_auth_" . $pageobj->getID();
-					$check_auth = $pageobj->getPassword();
-					$check_user = $pageobj->getUser();
+					if ($pageobj) {
+						$authType = "zp_page_auth_" . $pageobj->getID();
+						$check_auth = $pageobj->getPassword();
+						$check_user = $pageobj->getUser();
+					}
 				}
 			}
 			$auth = array(array('authType' => $authType, 'check_auth' => $check_auth, 'check_user' => $check_user));
@@ -2148,7 +2157,6 @@ if (!function_exists('hex2bin')) {
  * @return string
  */
 function js_encode($this_string) {
-	global $_zp_UTF8;
 	$this_string = preg_replace("/\r?\n/", "\\n", $this_string);
 	$this_string = utf8::encode_javascript($this_string);
 	return $this_string;

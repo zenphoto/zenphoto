@@ -4,7 +4,6 @@
  * General deprecated functions
  * @package plugins/deprecated-functions
  */
-
 class internal_deprecations {
 # all methods must be declared static
 #
@@ -136,6 +135,19 @@ function getSubtabs() {
 	deprecated_functions::notify(gettext('Subtabs are no longer separate from tabs. If you need the current subtab use getCurrentTab() otherwise remove the call'));
 	$current = getCurrentTab();
 	return $current;
+}
+
+/**
+ * @deorecated
+ * @since 1.6.2
+ */
+function filterImageQuery($result, $source, $limit = 1, $photo = true) {
+	deprecated_functions::notify(gettext('Use array_shift(filterImageQueryList())'));
+	$list = filterImageQueryList($result, $source, $limit, $photo);
+	if (!empty($list)) {
+		return array_shift($list);
+	}
+	return NULL;
 }
 
 ?>

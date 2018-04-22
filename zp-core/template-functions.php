@@ -590,6 +590,10 @@ function next_album($all = false, $mine = NULL) {
 		} else {
 			$_zp_current_album_restore = $_zp_current_album;
 			$_zp_current_album = newAlbum(array_shift($_zp_albums), true, true);
+			if ($_zp_current_album_restore && $_zp_current_album_restore->isDynamic()) {
+				$_zp_current_album->linkname = $_zp_current_album_restore->linkname . '/' . basename($_zp_current_album->linkname);
+			}
+
 			save_context();
 			add_context(ZP_ALBUM);
 			$result = true;
@@ -601,6 +605,9 @@ function next_album($all = false, $mine = NULL) {
 		$result = NULL;
 	} else {
 		$_zp_current_album = newAlbum(array_shift($_zp_albums), true, true);
+		if ($_zp_current_album_restore && $_zp_current_album_restore->isDynamic()) {
+			$_zp_current_album->linkname = $_zp_current_album_restore->linkname . '/' . basename($_zp_current_album->name);
+		}
 		$result = true;
 	}
 	return zp_apply_filter('next_object_loop', $result, $_zp_current_album);
@@ -1131,20 +1138,29 @@ function albumNumber() {
  * @return array
  */
 function getParentAlbums($album = null) {
+	global $_zp_current_album, $_zp_current_search, $_zp_gallery;
 	$parents = array();
 	if (in_context(ZP_ALBUM)) {
-		global $_zp_current_album, $_zp_current_search, $_zp_gallery;
 		if (is_null($album)) {
 			if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) {
 				$album = $_zp_current_search->getDynamicAlbum();
-				if (empty($album))
+				if (empty($album)) {
 					return $parents;
+				}
 			} else {
 				$album = $_zp_current_album;
 			}
 		}
-		while (!is_null($album = $album->getParent())) {
-			array_unshift($parents, $album);
+		$parentNames = $album->parentLinks;
+		if ($parentNames) {
+			foreach ($parentNames as $alb) {
+				$album = newAlbum($alb);
+				$parents[] = $album;
+			}
+		} else {
+			while (!is_null($album = $album->getParent())) {
+				array_unshift($parents, $album);
+			}
 		}
 	}
 	return $parents;
@@ -1172,6 +1188,11 @@ function getAlbumBreadcrumb($title = NULL) {
 			if (in_context(ZP_IMAGE) && in_context(ZP_ALBUM_LINKED)) {
 				$album = $_zp_current_album;
 			} else {
+				if ($_zp_current_album) {
+					$dynamic_album->linkname = $_zp_current_album->linkname;
+					$dynamic_album->parentLinks = $_zp_current_album->parentLinks;
+					$dynamic_album->index = $_zp_current_album->index;
+				}
 				$album = $dynamic_album;
 			}
 		}
@@ -1292,17 +1313,25 @@ function getParentBreadcrumb() {
 				return array(array('link' => $searchpagepath, 'title' => gettext("Return to archive"), 'text' => gettext("Archive")));
 			}
 		} else {
+			if ($_zp_current_album) {
+				$dynamic_album->linkname = $_zp_current_album->linkname;
+				$dynamic_album->parentLinks = $_zp_current_album->parentLinks;
+				$dynamic_album->index = $_zp_current_album->index;
+			}
 			$album = $dynamic_album;
 			$parents = getParentAlbums($album);
 			if (in_context(ZP_ALBUM_LINKED)) {
 				array_push($parents, $album);
 			}
 		}
-		// remove parent links that are not in the search path
-		foreach ($parents as $key => $analbum) {
-			$target = $analbum->name;
-			if ($target !== $dynamic_album && !in_array($target, $search_album_list)) {
-				unset($parents[$key]);
+
+		if (empty($dynamic_album)) {
+			// remove parent links that are not in the search path
+			foreach ($parents as $key => $analbum) {
+				$target = $analbum->name;
+				if ($target !== $dynamic_album->name && !in_array($target, $search_album_list)) {
+					unset($parents[$key]);
+				}
 			}
 		}
 	} else {
@@ -1615,8 +1644,9 @@ function getPasswordProtectImage($extra) {
  * @param string $alt Insert the text for the alternate image name here.
  * @param string $class Insert here the CSS-class name with with you want to style the link.
  * @param string $id Insert here the CSS-id name with with you want to style the link.
+ * @param string $title option title attribute
  *  */
-function printAlbumThumbImage($alt, $class = NULL, $id = NULL) {
+function printAlbumThumbImage($alt, $class = NULL, $id = NULL, $title = NULL) {
 	global $_zp_current_album, $_zp_themeroot;
 	if (!$_zp_current_album->getShow()) {
 		$class .= " not_visible";
@@ -1634,11 +1664,14 @@ function printAlbumThumbImage($alt, $class = NULL, $id = NULL) {
 		$id = ' id="' . $id . '"';
 	}
 
+	if ($title) {
+		$title = ' title="' . $title . '"';
+	}
 	$thumbobj = $_zp_current_album->getAlbumThumbImage();
 	$sizes = getSizeDefaultThumb($thumbobj);
 	$size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . html_encode(pathurlencode($thumbobj->getThumb('album'))) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . ' />';
+		$html = '<img src="' . html_encode(pathurlencode($thumbobj->getThumb('album'))) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html);
 		echo $html;
 	} else {
@@ -1681,10 +1714,11 @@ function getCustomAlbumThumb($size, $width = NULL, $height = NULL, $cropw = NULL
  * @param int $cropy crop part y axis
  * @param string $class css class
  * @param string $id css id
+ * @param string $title Optional title attribute
  *
  * @return string
  */
-function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = null, $class = NULL, $id = NULL) {
+function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = null, $class = NULL, $id = NULL, $title = NULL) {
 	global $_zp_current_album;
 	if (!$_zp_current_album->getShow()) {
 		$class .= " not_visible";
@@ -1726,8 +1760,12 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	if ($class) {
 		$class = ' class="' . $class . '"';
 	}
+	if ($title) {
+		$title = ' title="' . html_encode($title) . '"';
+	}
+
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . html_encode(pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy))) . '"' . $sizing . ' alt="' . html_encode($alt) . '"' . $class . $id . " />";
+		$html = '<img src="' . html_encode(pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy))) . '"' . $sizing . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
 		$html = zp_apply_filter('custom_album_thumb_html', $html);
 		echo $html;
 	} else {
@@ -1806,12 +1844,13 @@ function getCustomAlbumThumbMaxSpace($width, $height) {
  * @param string $class Optional style class
  * @param string $id Optional style id
  * @param bool $thumbStandin set to true to treat as thumbnail
+ * @param string $title optional title attribute
  */
-function printCustomAlbumThumbMaxSpace($alt, $width, $height, $class = NULL, $id = NULL) {
+function printCustomAlbumThumbMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $title = NULL) {
 	global $_zp_current_album;
 	$albumthumb = $_zp_current_album->getAlbumThumbImage();
 	getMaxSpaceContainer($width, $height, $albumthumb, true);
-	printCustomAlbumThumbImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id);
+	printCustomAlbumThumbImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, $title);
 }
 
 /**
@@ -2279,7 +2318,7 @@ function hasPrevImage() {
  * @return string
  */
 function getNextImageURL() {
-	global $_zp_current_album, $_zp_current_image;
+	global $_zp_current_image;
 	if (!in_context(ZP_IMAGE))
 		return false;
 	if (is_null($_zp_current_image))
@@ -2294,9 +2333,9 @@ function getNextImageURL() {
  * @return string
  */
 function getPrevImageURL() {
+	global $_zp_current_image;
 	if (!in_context(ZP_IMAGE))
 		return false;
-	global $_zp_current_album, $_zp_current_image;
 	if (is_null($_zp_current_image))
 		return false;
 	$previmg = $_zp_current_image->getPrevImage();
@@ -2659,8 +2698,9 @@ function getDefaultSizedImage($image = NULL) {
  * @param string $alt Alt text
  * @param string $class Optional style class
  * @param string $id Optional style id
+ * @param string $title Title attribute
  */
-function printDefaultSizedImage($alt, $class = NULL, $id = NULL) {
+function printDefaultSizedImage($alt, $class = NULL, $id = NULL, $title = NULL) {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image))
 		return;
@@ -2678,10 +2718,13 @@ function printDefaultSizedImage($alt, $class = NULL, $id = NULL) {
 	if ($class) {
 		$class = ' class="' . $class . '"';
 	}
+	if ($title) {
+		$title = ' title="' . html_encode($title) . '"';
+	}
 
 	if (isImagePhoto()) { //Print images
 		$html = '<img src="' . html_encode(pathurlencode(getDefaultSizedImage())) . '" alt="' . html_encode($alt) . '"' .
-						' width="' . getDefaultWidth() . '" height="' . getDefaultHeight() . '"' . $class . $id . " />";
+						' width="' . getDefaultWidth() . '" height="' . getDefaultHeight() . '"' . $class . $id . $title . " />";
 		$html = zp_apply_filter('standard_image_html', $html);
 		echo $html;
 	} else { // better be a plugin class then
@@ -2705,8 +2748,9 @@ function getImageThumb() {
  * @param string $alt Alt text
  * @param string $class optional class tag
  * @param string $id optional id tag
+ * @param string $title Title attribute
  */
-function printImageThumb($alt, $class = NULL, $id = NULL) {
+function printImageThumb($alt, $class = NULL, $id = NULL, $title = NULL) {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image))
 		return;
@@ -2728,8 +2772,11 @@ function printImageThumb($alt, $class = NULL, $id = NULL) {
 	if ($id) {
 		$id = ' id="' . $id . '"';
 	}
+	if ($title) {
+		$title = ' title="' . html_encode($title) . '"';
+	}
 
-	$html = '<img src="' . html_encode(pathurlencode($url)) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . " />";
+	$html = '<img src="' . html_encode(pathurlencode($url)) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
 	$html = zp_apply_filter('standard_image_thumb_html', $html);
 	echo $html;
 }
@@ -2962,9 +3009,9 @@ function getCustomImageURL($size, $width = NULL, $height = NULL, $cropw = NULL, 
  * @param string $id Optional style id
  * @param bool $thumbStandin set to true to treat as thumbnail
  * @param bool $effects image effects (e.g. set gray to force grayscale)
-
+ * @param string $title title attribute
  * */
-function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumbStandin = false, $effects = NULL) {
+function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumbStandin = false, $effects = NULL, $title = NULL) {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image))
 		return;
@@ -2995,11 +3042,14 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 	if ($class) {
 		$id .= ' class="' . $class . '"';
 	}
+	if ($title) {
+		$title = ' title="' . html_encode($title) . '"';
+	}
 	if (isImagePhoto() || $thumbStandin) {
 		$html = '<img src="' . html_encode(pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects))) . '"' .
 						' alt="' . html_encode($alt) . '"' .
-						$id .
-						$sizing .
+						$id . $class . $sizing . $title . ' />';
+		$sizing .
 						' />';
 		$html = zp_apply_filter('custom_image_html', $html, $thumbStandin);
 		echo $html;
@@ -3048,13 +3098,14 @@ function getCustomSizedImageThumbMaxSpace($width, $height) {
  * @param int $height height
  * @param string $class Optional style class
  * @param string $id Optional style id
+ * @param string $title Option title attribute
  */
-function printCustomSizedImageThumbMaxSpace($alt, $width, $height, $class = NULL, $id = NULL) {
+function printCustomSizedImageThumbMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $title = NULL) {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image))
 		return;
 	getMaxSpaceContainer($width, $height, $_zp_current_image, true);
-	printCustomSizedImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, true);
+	printCustomSizedImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, true, null, $title);
 }
 
 /**
@@ -3066,13 +3117,14 @@ function printCustomSizedImageThumbMaxSpace($alt, $width, $height, $class = NULL
  * @param int $height height
  * @param string $class Optional style class
  * @param string $id Optional style id
+ * @param string $title Option title attribute
  */
-function printCustomSizedImageMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $thumb = false) {
+function printCustomSizedImageMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $thumb = false, $title = NULL) {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image))
 		return;
 	getMaxSpaceContainer($width, $height, $_zp_current_image, $thumb);
-	printCustomSizedImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, $thumb);
+	printCustomSizedImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, $thumb, null, $title);
 }
 
 /**
@@ -3097,12 +3149,12 @@ function printSizedImageURL($size, $text, $title, $class = NULL, $id = NULL) {
  *
  * @return array
  */
-function filterImageQueryList($result, $source, $limit, $photo = true) {
+function filterImageQueryList($result, $source, $limit = 1, $photo = true) {
 	$list = array();
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
-			$image = newImage($row, NULL, true);
-			if ($image->exists) {
+			$image = getItemByID('images', $row['id']);
+			if ($image && $image->exists) {
 				$album = $image->album;
 				if ($album->name == $source || $album->checkAccess()) {
 					if (!$photo || isImagePhoto($image)) {
@@ -3119,26 +3171,6 @@ function filterImageQueryList($result, $source, $limit, $photo = true) {
 		db_free_result($result);
 	}
 	return $list;
-}
-
-/**
- *
- * performs a query and then filters out "illegal" images returning the first "good" image
- * used by the random image functions.
- *
- * @param object $result query result
- * @param string $source album object if this is search within the album
- * @param int $limit How many images to cache (0 will fetch all)
- * @param bool $photos set true to return only imagePhotos
- *
- * @return object the image (if it exists)
- */
-function filterImageQuery($result, $source, $limit = 1, $photo = true) {
-	$list = filterImageQueryList($result, $source, $limit, $photo);
-	if (!empty($list)) {
-		return array_shift($list);
-	}
-	return NULL;
 }
 
 /**
@@ -3171,14 +3203,21 @@ function getRandomImages($daily = false, $limit = 1) {
 		if (zp_loggedin()) {
 			$imageWhere = '';
 		} else {
-			$imageWhere = " AND " . prefix('images') . ".show=1";
+			$imageWhere = " WHERE `show`=1";
 		}
-		$sql = 'SELECT `folder`, `filename` ' .
-						' FROM ' . prefix('images') . ', ' . prefix('albums') .
-						' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
-						prefix('albums') . '.id ' . $imageWhere . ' ORDER BY RAND()';
+		$row = query_single_row('SELECT COUNT(*) FROM ' . prefix('images'));
+		if (5000 < $count = array_shift($row)) {
+			$sample = ceil((max(1000, $limit * 100) / $count) * 100);
+			if ($imageWhere) {
+				$imageWhere .= ' AND';
+			} else {
+				$imageWhere = ' WHERE';
+			}
+			$imageWhere .= ' CAST((RAND() * 100 * `id`) % 100 as UNSIGNED) < ' . $sample;
+		}
+		$sql = 'SELECT `id` FROM ' . prefix('images') . $imageWhere . ' ORDER BY RAND()';
 		$result = query($sql);
-		$_random_image_list = filterImageQueryList($result, NULL, $limit);
+		$_random_image_list = filterImageQueryList($result, NULL, $limit, TRUE);
 	}
 	$image = array_shift($_random_image_list);
 	if ($image) {
@@ -3861,39 +3900,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-							// <!-- <![CDATA[
-							var within = <?php echo (int) $within; ?>;
-							function search_(way) {
-								within = way;
-								if (way) {
-									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-								} else {
-									lastsearch = '';
-									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-								}
-								$('#search_input').val('');
-							}
-							$('#search_form').submit(function () {
-								if (within) {
-									var newsearch = $.trim($('#search_input').val());
-									if (newsearch.substring(newsearch.length - 1) == ',') {
-										newsearch = newsearch.substr(0, newsearch.length - 1);
-									}
-									if (newsearch.length > 0) {
-										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-									} else {
-										$('#search_input').val('<?php echo $searchwords; ?>');
-									}
-								}
-								return true;
-							});
-							function search_all() {
-								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-								var check = $('#SEARCH_checkall').prop('checked');
-								$('.SEARCH_checkall').prop('checked', check);
-							}
+													// <!-- <![CDATA[
+													var within = <?php echo (int) $within; ?>;
+													function search_(way) {
+														within = way;
+														if (way) {
+															$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+														} else {
+															lastsearch = '';
+															$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+														}
+														$('#search_input').val('');
+													}
+													$('#search_form').submit(function () {
+														if (within) {
+															var newsearch = $.trim($('#search_input').val());
+															if (newsearch.substring(newsearch.length - 1) == ',') {
+																newsearch = newsearch.substr(0, newsearch.length - 1);
+															}
+															if (newsearch.length > 0) {
+																$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+															} else {
+																$('#search_input').val('<?php echo $searchwords; ?>');
+															}
+														}
+														return true;
+													});
+													function search_all() {
+														//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+														var check = $('#SEARCH_checkall').prop('checked');
+														$('.SEARCH_checkall').prop('checked', check);
+													}
 
-							// ]]> -->
+													// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
