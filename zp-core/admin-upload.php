@@ -330,7 +330,7 @@ foreach ($albumlist as $key => $value) {
 	if (isset($_GET['autogen']) && !$_GET['autogen']) {
 		?>
 							$('#autogen').prop('checked', false);
-							$('#folderdisplay').removeAttr('disabled');
+							$('#folderdisplay').prop('disabled', false);
 							if ($('#folderdisplay').val() != '') {
 								$('#foldererror').hide();
 							}
@@ -338,7 +338,7 @@ foreach ($albumlist as $key => $value) {
 	} else {
 		?>
 							$('#autogen').checked;
-							$('#folderdisplay').attr('disabled', 'disabled');
+							$('#folderdisplay').prop('disabled', true);
 							if ($('#albumtitle').val() != '') {
 								$('#foldererror').hide();
 							}

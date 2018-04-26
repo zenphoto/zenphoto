@@ -270,11 +270,11 @@ echo "<h1>" . gettext("Create Dynamic Album") . "</h1>\n";
 				// <!-- <![CDATA[
 				function setTagged(state) {
 					if (state) {
-						$('#album_tag').removeAttr('disabled');
-						$('.searchchecklist').attr('disabled', 'disabled');
+						$('#album_tag').prop('disabled', false);
+						$('.searchchecklist').prop('disabled', true);
 					} else {
-						$('.searchchecklist').removeAttr('disabled');
-						$('#album_tag').attr('disabled', 'disabled');
+						$('.searchchecklist').prop('disabled', false);
+						$('#album_tag').prop('disabled', true);
 					}
 				}
 				// ]]> -->

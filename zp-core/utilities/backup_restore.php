@@ -557,7 +557,7 @@ if (isset($_GET['compression'])) {
 						<?php XSRFToken('backup'); ?>
 						<?php echo gettext('Select the database restore file:'); ?>
 						<br />
-						<select id="backupfile" name="backupfile" onchange="$('#restore_button').removeAttr('disabled')">
+						<select id="backupfile" name="backupfile" onchange="$('#restore_button').prop('disabled', false)">
 							<?php generateListFromArray(array(''), $list, true, false);
 							?>
 						</select>

@@ -125,16 +125,16 @@ function getOptionContent() {
 		var oldselect = '<?php echo SITE_LOCALE; ?>';
 		function radio_click(id) {
 			if ($('#r_' + id).prop('checked')) {
-				$('#language_allow_' + oldselect).removeAttr('disabled');
+				$('#language_allow_' + oldselect).prop('disabled',false);
 				oldselect = id;
-				$('#language_allow_' + id).attr('disabled', 'disabled');
+				$('#language_allow_' + id).prop('disabled',true);
 			}
 		}
 		function enable_click(id) {
 			if ($('#language_allow_' + id).prop('checked')) {
-				$('#r_' + id).removeAttr('disabled');
+				$('#r_' + id).prop('disabled',false);
 			} else {
-				$('#r_' + id).attr('disabled', 'disabled');
+				$('#r_' + id).prop('disabled',true);
 			}
 		}
 

@@ -157,9 +157,9 @@ printAdminHeader('admin');
 								$('#cloneButton').attr('title', sprintf('Clone installation to %s', $('#downbutton').attr('title')));
 								$('#clonePath').val($('#cloneFolder').val());
 								if (prime == $('#clonePath').val()) {
-									$('#cloneButton').attr('disabled', 'disabled');
+									$('#cloneButton').prop('disabled',true);
 								} else {
-									$('#cloneButton').removeAttr('disabled');
+									$('#cloneButton').prop('disabled',false);
 								}
 								newinstall = $('#clonePath').val().replace('<?php echo $path; ?>', '');
 								$('#cloneWebPath').val('<?php echo $urlpath; ?>' + newinstall);

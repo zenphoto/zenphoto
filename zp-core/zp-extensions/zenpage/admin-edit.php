@@ -140,10 +140,10 @@ $tagsort = 'alpha';
 		var today = new Date();
 		var pub = $('#pubdate').datepicker('getDate');
 		if (pub.getTime() > today.getTime()) {
-			$('#show').removeAttr('checked');
+			$('#show').prop('checked', false);
 			$("#pubdate").css("color", "blue");
 		} else {
-			$('#show').attr('checked', 'checked');
+			$('#show').prop('checked', true);
 			$("#pubdate").css("color", "black");
 
 		}
@@ -320,8 +320,8 @@ $tagsort = 'alpha';
 							<script type="text/javascript">
 								window.addEventListener('load', function () {
 									$('#form_cmsItemEdit :input').prop('disabled', true);
-									$('input[type="submit"]').attr('disabled', 'disabled');
-									$('input[type="reset"]').attr('disabled', 'disabled');
+									$('input[type="submit"]').prop('disabled', true);
+									$('input[type="reset"]').prop('disabled', true);
 								}, false);
 							</script>
 							<?php
@@ -546,9 +546,9 @@ $tagsort = 'alpha';
 																 id="show"
 																 value="1" <?php checkIfChecked($result->getShow()); ?>
 																 onclick="$('#pubdate').val('');
-																			 $('#expiredate').val('');
-																			 $('#pubdate').css('color', 'black');
-																			 $('.expire').html('');"
+																		 $('#expiredate').val('');
+																		 $('#pubdate').css('color', 'black');
+																		 $('.expire').html('');"
 																 />
 													<label for="show"><?php echo gettext("Published"); ?></label>
 												</p>
@@ -640,7 +640,7 @@ $tagsort = 'alpha';
 																			 name="disclose_password"
 																			 id="disclose_password"
 																			 onclick="passwordClear('');
-																								 togglePassword('');">
+																					 togglePassword('');">
 																			 <?php echo gettext('Show'); ?>
 															</label>
 															<br />
@@ -687,7 +687,7 @@ $tagsort = 'alpha';
 													<div class="copydelete resetHide" id="copyfield" style="display:none" >
 														<?php printf(gettext('copy as: %s'), '<input type="text" name="copy_object_as" value = "" />'); ?>
 														<p class="buttons">
-															<a	onclick="$('#copy_object').removeAttr('checked');$('#copyfield').hide();">
+															<a	onclick="$('#copy_object').prop('checked', false);$('#copyfield').hide();">
 																<?php echo CROSS_MARK_RED; ?>
 																<?php echo gettext("Cancel"); ?>
 															</a>
@@ -697,7 +697,7 @@ $tagsort = 'alpha';
 													<div class="copydelete resetHide" id="deletemsg"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
 														<?php printf(gettext('%s will be deleted when changes are applied.'), $deleteitem); ?>
 														<p class="buttons">
-															<a	onclick="$('#delete_object').removeAttr('checked');$('#deletemsg').hide();">
+															<a	onclick="$('#delete_object').prop('checked', false);$('#deletemsg').hide();">
 																<?php echo CROSS_MARK_RED; ?>
 																<?php echo gettext("Cancel"); ?>
 															</a>

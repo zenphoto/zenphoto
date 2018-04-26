@@ -147,19 +147,19 @@ class jquery_rating {
 					function ratinglikebox() {
 						if ($('#__rating_like').prop('checked')) {
 							$('#__rating_split_stars-1').prop('checked', 'checked');
-							$('#__rating_split_stars-3').attr('disabled', 'disabled');
-							$('#__rating_split_stars-2').attr('disabled', 'disabled');
-							$('#__rating_split_stars-1').attr('disabled', 'disabled');
+							$('#__rating_split_stars-3').prop('disabled',true);
+							$('#__rating_split_stars-2').prop('disabled',true);
+							$('#__rating_split_stars-1').prop('disabled',true);
 							$('#__rating_zero_ok').prop('checked', 'checked');
-							$('#__rating_zero_ok').attr('disabled', 'disabled');
+							$('#__rating_zero_ok').prop('disabled',true);
 							$('#__rating_stars_count').val(1);
-							$('#__rating_stars_count').attr('disabled', 'disabled');
+							$('#__rating_stars_count').prop('disabled',true);
 						} else {
-							$('#__rating_split_stars-1').removeAttr('disabled');
-							$('#__rating_split_stars-2').removeAttr('disabled');
-							$('#__rating_split_stars-3').removeAttr('disabled');
-							$('#__rating_zero_ok').removeAttr('disabled');
-							$('#__rating_stars_count').removeAttr('disabled');
+							$('#__rating_split_stars-1').prop('disabled',false);
+							$('#__rating_split_stars-2').prop('disabled',false);
+							$('#__rating_split_stars-3').prop('disabled',false);
+							$('#__rating_zero_ok').prop('disabled',false);
+							$('#__rating_stars_count').prop('disabled',false);
 						}
 					}
 

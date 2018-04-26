@@ -1416,10 +1416,10 @@ echo "\n</head>";
 																	var today = new Date();
 																	var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
 																	if (pub.getTime() > today.getTime()) {
-																		$("Visible-<?php echo $currentimage; ?>").removeAttr('checked');
+																		$("Visible-<?php echo $currentimage; ?>").prop('checked', false);
 																		$('#publishdate-<?php echo $currentimage; ?>').css('color', 'blue');
 																	} else {
-																		$("Visible-<?php echo $currentimage; ?>").attr('checked', 'checked');
+																		$("Visible-<?php echo $currentimage; ?>").prop('checked', true);
 																		$('#publishdate-<?php echo $currentimage; ?>').css('color', 'black');
 																	}
 																});
