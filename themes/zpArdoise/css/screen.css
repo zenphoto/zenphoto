@@ -547,12 +547,7 @@ div.ss-controls a:hover, div.nav-controls a:hover {
 	color: #fff !important;
 	text-decoration: none;
 }
-div.slideshow-container {
-	position: relative;
-	clear: both;
-	height: 575px; /* This should be set to be at least the height of the largest image in the slideshow */
-	background: url(../images/hr.gif) repeat-x;
-}
+
 div.loader {
 	position: absolute;
 	top: 0;
@@ -561,7 +556,15 @@ div.loader {
 	width: 580px;
 	height: 575px; /* Same comment as above */
 }
-div.slideshow {}
+div.slideshow {
+
+}
+div.slideshow-container {
+	position: relative;
+	clear: both;
+	height: 650px; /* This should be set to be at least the height of the largest image in the slideshow */
+	background: url(../images/hr.gif) repeat-x;
+}
 span.image-wrapper {
 	background: url(../images/hr.gif) repeat-x bottom;
 }
@@ -574,8 +577,8 @@ div.slideshow span.image-wrapper {
 div.slideshow a.advance-link {
 	display: block;
 	width: 580px;
-	height: 575px; /* Same comment as above */
-	line-height: 575px; /* Same comment as above */
+	height: 650px; /* Same comment as above */
+	line-height: 650px; /* Same comment as above */
 	text-align: center;
 }
 div.slideshow a.advance-link:hover, div.slideshow a.advance-link:active, div.slideshow a.advance-link:visited {
