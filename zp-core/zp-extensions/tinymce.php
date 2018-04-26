@@ -4,13 +4,13 @@
  * Back-end <i>WYSIWYG</i> editor TinyMCE 4.x.
  *
  * You can place your own additional custom configuration files within
- * <var>%USER_PLUGIN_FOLDER%/tiny_mce/config</var> or <var>%THEMEFOLDER%/theme_name/tiny_mce/config</var> folder.
+ * <var>%USER_PLUGIN_FOLDER%/tinymce/config</var> or <var>%THEMEFOLDER%/theme_name/tinymce/config</var> folder.
  * The naming convention for these files is use prefix the file name with the intended
  * use, e.g.
  * <ul>
- * 	<li>zenphoto-<name>.php</li>
- * 	<li>zenpage-<name>.php</li>
- * 	<li>comment-<name>.php</li>
+ * 	<li>zenphoto-&lt;name&gt;.php</li>
+ * 	<li>zenpage-&lt;name&gt;.php</li>
+ * 	<li>comment-&lt;name&gt;.php</li>
  * </ul>
  *
  * @package plugins/tinymce
@@ -18,7 +18,7 @@
  */
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext("TinyMCE WYSIWYG editor");
-$plugin_author = "Malte Müller (acrylian)";
+$plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
 $option_interface = 'tinymceOptions';
 
 if (!defined('EDITOR_SANITIZE_LEVEL'))
