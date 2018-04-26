@@ -1439,9 +1439,6 @@ zp-core/js/jqueryui/i18n/datepicker-zh-HK.js
 zp-core/js/jqueryui/i18n/datepicker-zh-TW.js
 zp-core/js/jqueryui/i18n/jquery-ui-i18n.js
 zp-core/js/jqueryui/images
-zp-core/js/jqueryui/images/animated-overlay.gif
-zp-core/js/jqueryui/images/ui-bg_flat_0_aaaaaa_40x100.png
-zp-core/js/jqueryui/images/ui-bg_flat_75_ffffff_40x100.png
 zp-core/js/jqueryui/images/ui-bg_glass_55_fbf9ee_1x400.png
 zp-core/js/jqueryui/images/ui-bg_glass_65_ffffff_1x400.png
 zp-core/js/jqueryui/images/ui-bg_glass_75_dadada_1x400.png
@@ -8263,4 +8260,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8265
+8262
