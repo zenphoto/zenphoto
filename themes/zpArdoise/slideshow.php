@@ -3,17 +3,19 @@
 <div id="image-page" class="clearfix">
 	<div id="headline" class="clearfix">
 
-
-		<h3><?php printGalleryIndexURL(' » ', getGalleryTitle(), false); ?><?php printParentBreadcrumb('', ' » ', ' » '); ?><?php printAlbumBreadcrumb('', ' » '); ?><?php printImageTitle(); ?></h3>
+		<h3><?php printGalleryIndexURL(' » ', getGalleryTitle(), false); ?><?php printParentBreadcrumb('', ' » ', ' » '); ?><?php printAlbumBreadcrumb('', ' » '); ?><?php echo gettext('Slideshow'); ?></h3>
 
 	</div>
 
-	<div id="image" class="clr">
-		<?php printSlideShow(true, true); ?>
+	<div class="slideshow-container">
+
+		<?php printSlideShow(true, false, $albumobj = $_zp_current_album, NULL, NULL, NULL, false, false, false, true); ?>
+
+
 	</div>
-	<br clear='both'><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+
+
 </div>
-
-<br clear='all'>
 
 <?php include('inc_footer.php'); ?>
