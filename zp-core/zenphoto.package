@@ -1348,11 +1348,11 @@ zp-core/js/Jcrop.gif
 zp-core/js/jquery.Jcrop.css
 zp-core/js/jquery.Jcrop.js
 zp-core/js/jquery.js
-zp-core/js/jquery.masonry.min.js
 zp-core/js/jquery.pagination.js
 zp-core/js/jquery.scrollTo.js
 zp-core/js/jquery.ui.nestedSortable.js
 zp-core/js/jquery.ui.touch-punch.min.js
+zp-core/js/masonry.pkgd.min.js
 zp-core/js/sprintf.js
 zp-core/js/upload.js
 zp-core/js/dirtyforms
