@@ -176,9 +176,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			if (getOption('dirtyform_enable')) {
 				?>
-				<!--
-				<script src="<?php echo WEBPATH ?>/jquery.dirtyforms.dist-master/jquery.dirtyforms.js" type="text/javascript"></script>
-				-->
 				<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.min.js" type="text/javascript"></script>
 				<?php
 			}
