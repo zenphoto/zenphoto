@@ -12,12 +12,8 @@ function jQueryUpload_headers() {
 function jQueryUpload_head() {
 	$head = ob_get_contents();
 	ob_end_clean();
-	// insure we are running compatible scripts
-	// for now we are running jquery 1,11
-	//preg_match_all('~(<script.*/js/jquery\.js.*</script>)~', $head, $matches);
-	//$head = str_replace($matches[1], '<script src="//code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>', $head);
-	// but the script needs an older version of jQueryUI
-	$head = str_replace('<script src="' . WEBPATH . '/' . ZENFOLDER . '/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>', '<script src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/jqueryui/jquery-ui-zenphoto.js"></script>', $head);
+	// the script needs jQueryUI v1.9
+	$head = str_replace('<script src="' . WEBPATH . '/' . ZENFOLDER . '/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>', '<script src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/jqueryui/jquery-ui-1.9.1.js"></script>', $head);
 	echo $head;
 }
 
