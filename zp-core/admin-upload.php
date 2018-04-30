@@ -185,9 +185,9 @@ foreach ($albumlist as $key => $value) {
 						$('#albumtitleslot').val($('#albumtitle').val());
 						$('#publishalbumslot').val($('#publishalbum').prop('checked'));
 						if (good) {
-							$('#fileUploadbuttons').show();
+							$('.fileUploadActions').show();
 						} else {
-							$('#fileUploadbuttons').hide();
+							$('.fileUploadActions').hide();
 						}
 					}
 					function publishCheck() {

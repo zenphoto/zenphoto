@@ -3,7 +3,6 @@
 /**
  * @package plugins/uploader_http
  */
-
 function upload_head() {
 	$myfolder = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_http';
 	?>
@@ -68,7 +67,7 @@ function upload_form($uploadlimit, $passedalbum) {
 	<p id="addUploadBoxes"><a href="javascript:addUploadBoxes('place','filetemplate',5)" title="<?php echo gettext("Does not reload!"); ?>">+ <?php echo gettext("Add more upload boxes"); ?></a> <small>
 			<?php echo gettext("(will not reload the page, but remember your upload limits!)"); ?></small></p>
 
-	<p id="fileUploadbuttons" class="buttons" style="display: none;">
+	<p class="fileUploadActions" class="buttons" style="display: none;">
 		<button type="submit" value="<?php echo gettext('Upload'); ?>" onclick="this.form.folder.value = this.form.folderdisplay.value;" class="button">
 			<?php echo CHECKMARK_GREEN; ?>
 			<?php echo gettext('Upload'); ?>
