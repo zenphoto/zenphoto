@@ -334,7 +334,7 @@
 
 		<!-- css -->
 
-		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/bootstrap.css" type="text/css" media="screen"/>
+		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/bootstrap/bootstrap.min.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/site.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/icons.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/slimbox2.css" type="text/css" media="screen"/>
@@ -347,7 +347,7 @@
 
 		<!-- js -->
 
-		<script src="<?php echo $_zp_themeroot; ?>/js/bootstrap.js" type="text/javascript" defer></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/bootstrap/bootstrap.min.js" type="text/javascript" defer></script>
 		<script src="<?php echo $_zp_themeroot; ?>/js/slimbox2-ar.js" type="text/javascript" defer></script>
 
 
