@@ -306,13 +306,6 @@ class create_album {
 		if (!$allow) {
 			$rights = $_zp_current_admin_obj->getRights();
 			$allow = in_array($_zp_current_admin_obj->getUser(), $__creatAlbumList);
-			/*
-			  if (is_null($enabled)) { // a new user
-			  if (($rights & (ALBUM_RIGHTS | UPLOAD_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) == (ALBUM_RIGHTS | UPLOAD_RIGHTS)) {
-			  return getOption('create_album_default');
-			  }
-			  }
-			 */
 		}
 		return $allow;
 	}
@@ -327,8 +320,18 @@ class create_album {
 					mkdir_recursive($targetPath, FOLDER_MOD);
 					$album = newAlbum($folder);
 					$album->save();
-					$userobj->setObjects(array_merge($userobj->getObjects(), array('data' => $folder, 'name' => $album->getTitle(), 'edit' => MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW)));
-					$userobj->save();
+					if (!zp_loggedin(ADMIN_RIGHTS)) {
+						// add the album to his managed objects
+						$objects = $_zp_current_admin_obj->getObjects();
+						$objects[] = array(
+								'data' => $folder,
+								'name' => $album->getTitle(),
+								'type' => 'albums',
+								'edit' => MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW
+						);
+						$_zp_current_admin_obj->setObjects($objects);
+						$_zp_current_admin_obj->save();
+					}
 				}
 			}
 		}
