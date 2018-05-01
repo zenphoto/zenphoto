@@ -1168,7 +1168,7 @@ class _Authority {
 					<script type="text/javascript">
 						function toggleSubmit() {
 							if ($('#user').val()) {
-								$('#submitButton').prop('disabled',false);
+								$('#submitButton').prop('disabled', false);
 							} else {
 								$('#submitButton').prop('disabled', 'disabled');
 							}

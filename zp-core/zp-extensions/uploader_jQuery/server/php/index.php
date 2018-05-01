@@ -13,9 +13,10 @@ if (isset($_POST['auth'])) {
 	$hash = sanitize($_POST['auth']);
 	$id = sanitize($_POST['id']);
 	$_zp_loggedin = $_zp_authority->checkAuthorization($hash, $id);
+	admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
+} else {
+	exitZP();
 }
-
-admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
 
 $folder = zp_apply_filter('admin_upload_process', sanitize_path($_POST['folder']));
 $types = array_keys($_zp_images_classes);

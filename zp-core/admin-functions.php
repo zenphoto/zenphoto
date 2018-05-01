@@ -140,7 +140,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<?php printStandardMeta(); ?>
+			<?php
+			printStandardMeta();
+			zp_apply_filter('admin_head');
+			?>
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/loginForm.css" type="text/css" />
@@ -236,7 +239,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 		// ]]> -->
 			</script>
 			<?php
-			zp_apply_filter('admin_head');
 		}
 
 		function printSortableHead() {
@@ -381,8 +383,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 						if ($activeTab) {
 							$class = ' class="active"';
 						} else {
-							if (!empty($alert))
-								$class = ' class="alert"';
+							if (!empty($alert)) {
+								$class = ' class="nav-alert"';
+							}
 						}
 						$subtabs = $zenphoto_tabs[$key]['subtabs'];
 						$hasSubtabs = !empty($subtabs) && is_array($subtabs);
@@ -457,7 +460,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										}
 
 										if (in_array($subkey, $alert)) {
-											$subclass = ' class="' . $subclass . 'alert"';
+											$subclass = ' class="' . $subclass . 'nav-alert"';
 										} else if ($subclass) {
 											$subclass = ' class="' . trim($subclass) . '"';
 										}
@@ -4867,13 +4870,17 @@ function admin_securityChecks($rights, $return) {
 	global $_zp_current_admin_obj, $_zp_loggedin;
 	checkInstall();
 	httpsRedirect();
+	if (is_null($rights)) {
+		$rights = ADMIN_RIGHTS;
+	}
 	if ($_zp_current_admin_obj) {
 		if ($_zp_current_admin_obj->reset) {
 			$_zp_loggedin = USER_RIGHTS;
 		}
 	}
-	if (!zp_loggedin($rights)) {
-// prevent nefarious access to this page.
+
+	if (!($rights & $_zp_loggedin)) {
+		// prevent nefarious access to this page.
 		$returnurl = urldecode($return);
 		if (!zp_apply_filter('admin_allow_access', false, $returnurl)) {
 			$uri = explode('?', $returnurl);

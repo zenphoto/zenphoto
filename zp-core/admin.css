@@ -272,7 +272,7 @@ code {
   display: block;
   padding: 0.5em 1.3em;
   color: black;
-  text-decoration: none;
+  text-decoration: none !important;
   text-transform: uppercase;
 }
 
@@ -330,8 +330,8 @@ code {
 	color: black;
 }
 
-.navigation ul li a.alert,
-.navigation ul ul li a.alert{
+.navigation ul li a.nav-alert,
+.navigation ul ul li a.nav-alert{
 	background-color: lightgoldenrodyellow !important;
 }
 
@@ -1862,7 +1862,7 @@ ul.pagelist li.current {
 }
 
 .textarea_hidden {
-	position: absolute !important; 
+	position: absolute !important;
 	left: -1000px !Important;
 }
 
