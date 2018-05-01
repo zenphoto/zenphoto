@@ -1307,13 +1307,12 @@ zp-core/js/Jcrop.gif
 zp-core/js/jquery.Jcrop.css
 zp-core/js/jquery.Jcrop.js
 zp-core/js/jquery.js
+zp-core/js/jquery.mjs.nestedSortable.js
 zp-core/js/jquery.pagination.js
-zp-core/js/jquery.scrollTo.js
-zp-core/js/jquery.ui.nestedSortable.js
+zp-core/js/jquery.scrollTo.min.js
 zp-core/js/jquery.ui.touch-punch.min.js
 zp-core/js/masonry.pkgd.min.js
 zp-core/js/sprintf.js
-zp-core/js/upload.js
 zp-core/js/bootstrap
 zp-core/js/bootstrap/bootstrap.min.css
 zp-core/js/bootstrap/bootstrap.min.js
@@ -1661,8 +1660,7 @@ zp-core/zp-extensions/accessThreshold
 zp-core/zp-extensions/accessThreshold/admin_tab.php
 zp-core/zp-extensions/accessThreshold/ip_list.php
 zp-core/zp-extensions/bxslider_thumb_nav
-zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.css
-zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.js
+zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.min.css
 zp-core/zp-extensions/bxslider_thumb_nav/jquery.bxslider.min.js
 zp-core/zp-extensions/bxslider_thumb_nav/images
 zp-core/zp-extensions/bxslider_thumb_nav/images/bx_loader.gif
@@ -8310,4 +8308,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8312
+8310
