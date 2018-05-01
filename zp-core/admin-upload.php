@@ -53,9 +53,7 @@ if (count($handlers) > 0) {
 	exitZP();
 }
 printAdminHeader('upload', 'albums');
-?>
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/upload.js"></script>
-<?php
+
 //	load the uploader specific header stuff
 $formAction = upload_head();
 
