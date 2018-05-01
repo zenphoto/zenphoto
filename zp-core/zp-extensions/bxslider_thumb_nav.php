@@ -125,7 +125,7 @@ class bxslider {
 	static function js() {
 		global $_bxslider_scripts;
 		$theme = getCurrentTheme();
-		$_bxslider_scripts = getPlugin('bxslider_thumb_nav/jquery.bxslider.css', getCurrentTheme(), true);
+		$_bxslider_scripts = getPlugin('bxslider_thumb_nav/jquery.bxslider.min.css', getCurrentTheme(), true);
 		?>
 
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/bxslider_thumb_nav/jquery.bxslider.min.js"></script>
