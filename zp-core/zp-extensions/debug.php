@@ -69,6 +69,8 @@ class debug {
 			setOptionDefault('debug_marks', serialize($list));
 
 			$version = debug::version(true);
+			setOptionDefault('jQuery_debug_theme', 1);
+			setOptionDefault('jQuery_debug_admin', 0);
 			setOptionDefault('markRelease_state', $version);
 		}
 	}
@@ -92,7 +94,23 @@ class debug {
 						'checkboxes' => $list,
 						'order' => 1,
 						'desc' => ''),
-				1 => array('key' => '', 'type' => OPTION_TYPE_NOTE, 'desc' => gettext('Note: These options are enabled only when the release is marked in <em>debug</em> mode.'))
+				1 => array('key' => '', 'type' => OPTION_TYPE_NOTE, 'desc' => gettext('Note: These options are enabled only when the release is marked in <em>debug</em> mode.')),
+				gettext('jQuery migration (admin)') => array('key' => 'jQuery_debug_admin', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(// The definition of the radio buttons to choose from and their values.
+								gettext('Disabled') => 0,
+								gettext('Production') => 1,
+								gettext('Debug') => 2
+						),
+						'order' => 2,
+						'desc' => gettext('Adds the <a href="https://jquery.com/upgrade-guide/3.0/">jQuery 3.3 migration</a> tool to the administrative pages.')),
+				gettext('jQuery migration (theme)') => array('key' => 'jQuery_debug_theme', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(// The definition of the radio buttons to choose from and their values.
+								gettext('Disabled') => 0,
+								gettext('Production') => 1,
+								gettext('Debug') => 2
+						),
+						'order' => 3,
+						'desc' => gettext('Adds the <a href="https://jquery.com/upgrade-guide/3.0/">jQuery 3.3 migration</a> tool to the administrative pages.'))
 		);
 		return $options;
 	}

@@ -1029,7 +1029,7 @@
 				inputClone.focus();
 			}
 			// Avoid memory leaks with the detached file input:
-			$.cleanData(input.unbind('remove'));
+			$.cleanData(input.off('remove'));
 			// Replace the original file input element in the fileInput
 			// elements set with the clone, which has been copied including
 			// event handlers:

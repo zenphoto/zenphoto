@@ -8195,6 +8195,7 @@ zp-core/zp-extensions/uploader_jQuery/css/jquery-ui-demo-ie8.css
 zp-core/zp-extensions/uploader_jQuery/css/jquery-ui-demo.css
 zp-core/zp-extensions/uploader_jQuery/css/jquery.fileupload-ui.css
 zp-core/zp-extensions/uploader_jQuery/css/jquery.fileupload.css
+zp-core/zp-extensions/uploader_jQuery/css/uploader_bootstrap.css
 zp-core/zp-extensions/uploader_jQuery/img
 zp-core/zp-extensions/uploader_jQuery/img/loading.gif
 zp-core/zp-extensions/uploader_jQuery/img/progressbar.gif
@@ -8309,4 +8310,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8311
+8312

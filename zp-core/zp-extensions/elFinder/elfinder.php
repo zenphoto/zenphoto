@@ -1,9 +1,7 @@
 <?php
-
 /**
  * @package plugins/elFinder
  */
-
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-functions.php');
 zp_session_start();
 admin_securityChecks(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_PAGES_RIGHTS, currentRelativeURL());
@@ -20,7 +18,7 @@ if (empty($locale))
 
 		<!-- jQuery and jQuery UI (REQUIRED) -->
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
+<?php load_jQuery_scripts('admin'); ?>
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
 
 		<!-- elFinder CSS (REQUIRED) -->
@@ -31,9 +29,9 @@ if (empty($locale))
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/elfinder.min.js"></script>
 
 		<!-- elFinder translation (OPTIONAL) -->
-		<?php
-		if ($locale != 'en') {
-			?>
+<?php
+if ($locale != 'en') {
+	?>
 			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/i18n/elfinder.<?php echo $locale; ?>.js"></script>
 			<?php
 		}

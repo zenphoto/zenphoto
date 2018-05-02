@@ -105,7 +105,7 @@
 													data.headers
 													);
 									iframe.remove();
-									$(window).unbind(eventName);
+									$(window).off(eventName);
 								}
 							}
 						});

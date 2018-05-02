@@ -2115,6 +2115,28 @@ function seoFriendly($string) {
 	return $string;
 }
 
+function load_jQuery_scripts($where) {
+	?>
+	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
+	<?php
+	switch (getOption('jQuery_debug_' . $where)) {
+		case 0: //disabled
+			break;
+		case 1: //production version
+			?>
+			<!-- for production purposes -->
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
+			<?php
+			break;
+		case 2: //debug version
+			?>
+			<!-- for migration purposes -->
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate-3.0.0.js" type="text/javascript"></script>
+			<?php
+			break;
+	}
+}
+
 /**
  *
  * emit the javascript seojs() function

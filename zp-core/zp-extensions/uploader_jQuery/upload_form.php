@@ -10,7 +10,7 @@ function upload_head() {
 	<!--[if IE]>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<![endif]-->
-	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/common/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo $myfolder; ?>css/uploader_bootstrap.css">
 	<link rel="stylesheet" href="<?php echo $myfolder; ?>css/blueimp-gallery.min.css">
 	<link rel="stylesheet" href="<?php echo $myfolder; ?>css/jquery.fileupload.css">
 	<link rel="stylesheet" href="<?php echo $myfolder; ?>css/jquery.fileupload-ui.css">
@@ -191,33 +191,33 @@ function upload_extra($uploadlimit, $passedalbum) {
 	<![endif]-->
 
 	<script type="text/javascript">
-		var upload_fail = false;
-		$('#fileupload')
-						.on('fileuploadfail', function (e, data) {
-							//alert('fail');
-							upload_fail = true;
-						})
-						.on('fileuploadstop', function (e, data) {
-							//alert('stop');
-							if (upload_fail) {
-								//alert('upload failed');
-								// clean up any globals since we are staying on the page
-								upload_fail = false;
-							} else {
+	var upload_fail = false;
+	$('#fileupload')
+					.on('fileuploadfail', function (e, data) {
+						//alert('fail');
+						upload_fail = true;
+					})
+					.on('fileuploadstop', function (e, data) {
+						//alert('stop');
+						if (upload_fail) {
+							//alert('upload failed');
+							// clean up any globals since we are staying on the page
+							upload_fail = false;
+						} else {
 
 	<?php
 	if (zp_loggedin(ALBUM_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
 		?>
-									launchScript('admin-edit.php', ['page=edit', 'subpage=1', 'tab=imageinfo', 'album=' + encodeURIComponent($('#folderdisplay').val()), 'uploaded=1', 'albumimagesort=id_desc']);
+								launchScript('admin-edit.php', ['page=edit', 'subpage=1', 'tab=imageinfo', 'album=' + encodeURIComponent($('#folderdisplay').val()), 'uploaded=1', 'albumimagesort=id_desc']);
 		<?php
 	} else {
 		?>
-									launchScript('admin-upload.php', ['uploaded=1']);
+								launchScript('admin-upload.php', ['uploaded=1']);
 		<?php
 	}
 	?>
-							}
-						});
+						}
+					});
 
 	</script>
 	<?php

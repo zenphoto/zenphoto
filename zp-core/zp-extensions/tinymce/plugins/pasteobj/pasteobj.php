@@ -26,7 +26,7 @@ function getIPSizedImage($size, $image) {
 	<head>
 		<?php printStandardMeta(); ?>
 		<title>tinyMCE:obj</title>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js"></script>
+		<?php load_jQuery_scripts('admin'); ?>
 		<script type="text/javascript" src="pasteobj_popup.js"></script>
 
 	</head>
