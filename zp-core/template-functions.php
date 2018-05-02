@@ -42,6 +42,10 @@ function printThemeHeadItems() {
 
 	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/loginForm.css" type="text/css" />
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
+
+	<!-- for migration purposes -->
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate-3.0.0" type="text/javascript"></script>
+
 	<?php
 	if (zp_loggedin()) {
 		?>

@@ -10,7 +10,7 @@ function upload_head() {
 	<!--[if IE]>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<![endif]-->
-	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/common/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo $myfolder; ?>css/blueimp-gallery.min.css">
 	<link rel="stylesheet" href="<?php echo $myfolder; ?>css/jquery.fileupload.css">
 	<link rel="stylesheet" href="<?php echo $myfolder; ?>css/jquery.fileupload-ui.css">
@@ -174,7 +174,7 @@ function upload_extra($uploadlimit, $passedalbum) {
 	<script src ="<?php echo $myfolder; ?>js/tmpl.min.js"></script>
 	<script src="<?php echo $myfolder; ?>js/load-image.all.min.js"></script>
 	<script src="<?php echo $myfolder; ?>js/canvas-to-blob.min.js"></script>
-	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/bootstrap/bootstrap.min.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/common/bootstrap/bootstrap.min.js"></script>
 	<script src="<?php echo $myfolder; ?>js/jquery.blueimp-gallery.min.js"></script>
 	<script src="<?php echo $myfolder; ?>js/jquery.iframe-transport.js"></script>
 	<script src="<?php echo $myfolder; ?>js/jquery.fileupload.js"></script>
@@ -193,11 +193,11 @@ function upload_extra($uploadlimit, $passedalbum) {
 	<script type="text/javascript">
 		var upload_fail = false;
 		$('#fileupload')
-						.bind('fileuploadfail', function (e, data) {
+						.on('fileuploadfail', function (e, data) {
 							//alert('fail');
 							upload_fail = true;
 						})
-						.bind('fileuploadstop', function (e, data) {
+						.on('fileuploadstop', function (e, data) {
 							//alert('stop');
 							if (upload_fail) {
 								//alert('upload failed');

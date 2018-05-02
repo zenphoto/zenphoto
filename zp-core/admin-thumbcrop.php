@@ -171,12 +171,12 @@ if (isset($_REQUEST['crop'])) {
 }
 printAdminHeader('edit', 'thumbcrop');
 ?>
-<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
-<link rel="stylesheet" href="js/jquery.Jcrop.css" type="text/css" />
+<script src="js/Jcrop/jquery.Jcrop.js" type="text/javascript"></script>
+<link rel="stylesheet" href="js/Jcrop/jquery.Jcrop.css" type="text/css" />
 <script type="text/javascript" >
 	//<!-- <![CDATA[
 	var jcrop_api;
-	jQuery(window).load(function () {
+	jQuery(window).on("load", function () {
 		initJcrop();
 		function initJcrop() {
 			jcrop_api = jQuery.Jcrop('#cropbox');

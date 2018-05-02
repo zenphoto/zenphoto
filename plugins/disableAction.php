@@ -35,7 +35,7 @@ class disableRight {
 					?>
 					<script type="text/javascript">
 						// <!-- <![CDATA[
-						$(window).load(function () {
+						$(window).on("load",function () {
 							//	disable the checkbox for publishing the album so it stays at its initial state
 							$('#publishalbum').prop('disabled', true);
 						});
@@ -52,7 +52,7 @@ class disableRight {
 							?>
 							<script type="text/javascript">
 								// <!-- <![CDATA[
-								$(window).load(function () {
+								$(window).on("load",function () {
 									//	remove the bulk action publish options
 									$('option[value=showall]').remove();
 									$('option[value=hideall]').remove();
@@ -68,7 +68,7 @@ class disableRight {
 							?>
 							<script type="text/javascript">
 								// <!-- <![CDATA[
-								$(window).load(function () {
+								$(window).on("load",function () {
 									//	disable the publish checkbox
 									$('input[name=Published]').prop('disabled', true);
 								});
@@ -85,7 +85,7 @@ class disableRight {
 								?>
 								<script type="text/javascript">
 									// <!-- <![CDATA[
-									$(window).load(function () {
+									$(window).on("load",function () {
 										//	disable the "mass-edit" publish checkboxes
 										$('input[name$=Published]').prop('disabled', true);
 									});
@@ -96,7 +96,7 @@ class disableRight {
 								?>
 								<script type="text/javascript">
 									// <!-- <![CDATA[
-									$(window).load(function () {
+									$(window).on("load",function () {
 										//	remove the bulk action publish options
 										$('option[value=showall]').remove();
 										$('option[value=hideall]').remove();

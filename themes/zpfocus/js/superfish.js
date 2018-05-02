@@ -22,7 +22,7 @@
 				var ios = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 				if (ios) {
 					// iOS clicks only bubble as far as body children
-					$(window).load(function () {
+					$(window).on("load",function () {
 						$('body').children().on('click', $.noop);
 					});
 				}

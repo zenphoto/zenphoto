@@ -235,9 +235,9 @@ if ($pasteobj) {
 }
 ?>
 
-<script src="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jquery.Jcrop.js" type="text/javascript"></script>
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/Jcrop/jquery.Jcrop.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/htmlencoder.js"></script>
-<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jquery.Jcrop.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/Jcrop/jquery.Jcrop.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/crop_image/crop_image.css" type="text/css" />
 <script type="text/javascript" >
 	//<!-- <![CDATA[
@@ -245,7 +245,7 @@ if ($pasteobj) {
 	var sizedWidth = <?php echo $sizedwidth ?>;
 	var sizedHeight = <?php echo $sizedheight ?>;
 	var oldSize = <?php echo $size; ?>;
-	jQuery(window).load(function () {
+	jQuery(window).on("load", function () {
 		initJcrop();
 		function initJcrop() {
 			jcrop_api = jQuery.Jcrop('#cropbox');

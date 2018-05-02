@@ -184,7 +184,10 @@ function reconfigureCS() {
 			border-style: solid;
 			margin-bottom: 10px;
 			font-size: 100%;
+			box-sizing: content-box !important;
+			webkit-box-sizing: content-box !important;
 		}
+
 		.reconfigbox h1,.notebox strong {
 			color: #663300;
 			font-size: 120%;

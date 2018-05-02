@@ -29,7 +29,7 @@ class disableWatermark {
 					?>
 					<script type="text/javascript">
 						// <!-- <![CDATA[
-						$(window).load(function () {
+						$(window).on("load",function () {
 							var num = $('input[name=totalimages]').val();
 							for (i = 0; i < num; i++) {
 								var selector = $('#image_watermark-' + i);
@@ -47,7 +47,7 @@ class disableWatermark {
 					?>
 					<script type="text/javascript">
 						// <!-- <![CDATA[
-						$(window).load(function () {
+						$(window).on("load",function () {
 							var selector = $('#album_watermark');
 							var selected = $('#album_watermark option:selected');
 							selector.before('<input type="hidden" name="album_watermark" value="' + selected.val() + '" />' + selected.text());
@@ -67,7 +67,7 @@ class disableWatermark {
 						?>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
-							$(window).load(function () {
+							$(window).on("load",function () {
 								var num = $('input[name=totalalbums]').val();
 								for (i = 1; i <= num; i++) {
 									var selector = $('#album_watermark_' + i);

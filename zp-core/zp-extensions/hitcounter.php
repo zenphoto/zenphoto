@@ -116,7 +116,7 @@ class hitcounter {
 					var reset = "<?php echo $this->defaultbots; ?>";
 					function hitcounter_defaults() {
 						$('#hitcounter_ignoreIPList').val('');
-						$('#hitcounter_ip_button').prop('disabled',false);
+						$('#hitcounter_ip_button').prop('disabled', false);
 						$('#__hitcounter_ignoreIPList_enable').prop('checked', false);
 						$('#__hitcounter_ignoreSearchCrawlers_enable').prop('checked', false);
 						$('#__hitcounter_searchCrawlerList').val(reset);
@@ -138,12 +138,12 @@ class hitcounter {
 						} else {
 							$('#hitcounter_ignoreIPList').val($('#hitcounter_ignoreIPList').val() + ',<?php echo getUserIP(); ?>');
 						}
-						$('#hitcounter_ip_button').prop('disabled',true);
+						$('#hitcounter_ip_button').prop('disabled', true);
 					}
-					jQuery(window).load(function () {
+					jQuery(window).on("load", function () {
 						var current = $('#hitcounter_ignoreIPList').val();
 						if (current.indexOf('<?php echo getUserIP(); ?>') < 0) {
-							$('#hitcounter_ip_button').prop('disabled',false);
+							$('#hitcounter_ip_button').prop('disabled', false);
 						}
 					});
 					// ]]> -->

@@ -18,7 +18,7 @@ class imagegallery {
 	function theme_head($_zp_themeroot) {
 		?>
 		<link rel="stylesheet" type="text/css" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . COMMON_FOLDER; ?>/adGallery/jquery.ad-gallery.css">
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . COMMON_FOLDER; ?>/adGallery/jquery.ad-gallery.min.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . COMMON_FOLDER; ?>/adGallery/jquery.ad-gallery.js"></script>
 		<?php
 	}
 
@@ -26,66 +26,66 @@ class imagegallery {
 		$location = getOption('effervescence_caption_location');
 		?>
 		<script type="text/javascript">
-			$(function() {
+			$(function () {
 				var galleries = $('.ad-gallery').adGallery({
 					width: 600, // Width of the image, set to false and it will read the CSS width
 					height: 400, // Height of the image, set to false and it will read the CSS height
 					start_at_index: 0, // Which image should be displayed at first? 0 is the first image
 					description_wrapper: <?php if ($location != 'image') { ?>$('#caption')<?php } else { ?>false<?php } ?>, // Either false or a jQuery object, if you want the image descriptions
-					// to be placed somewhere else than on top of the image
-					animate_first_image: false, // Should first image just be displayed, or animated in?
-					animation_speed: 500, // Which ever effect is used to switch images, how long should it take?
-					display_next_and_prev: true, // Can you navigate by clicking on the left/right on the image?
-					display_back_and_forward: true, // Are you allowed to scroll the thumb list?
-					scroll_jump: 0, // If 0, it jumps the width of the container
-					loader_image: '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . COMMON_FOLDER; ?>/adGallery/loader.gif',
-					slideshow: {
-						enable: true,
-						autostart: true,
-						speed: 5000,
-						start_label: '<?php echo gettext('Start'); ?>',
-						stop_label: '<?php echo gettext('Stop'); ?>',
-						stop_on_scroll: true, // Should the slideshow stop if the user scrolls the thumb list?
-						countdown_prefix: '(', // Wrap around the countdown
-						countdown_sufix: ')',
-					},
-					effect: '<?php echo getOption('effervescence_transition'); ?>', // or 'slide-vert', 'resize', 'fade', 'none' or false
-					enable_keyboard_move: true, // Move to next/previous image with keyboard arrows?
-					cycle: true, // If set to false, you can't go from the last image to the first, and vice versa
-					// All callbacks has the AdGallery objects as 'this' reference
-					callbacks: {
-						// Executes right after the internal init, can be used to choose which images
-						// you want to preload
-						// This gets fired right after the new_image is fully visible
-						afterImageVisible: function() {
-							// For example, preload the next image
-							var context = this;
-							this.preloadImage(this.current_index + 1,
-											function() {
-												// This function gets executed after the image has been loaded
-												context.loading(false);
-											}
-							);
+								// to be placed somewhere else than on top of the image
+								animate_first_image: false, // Should first image just be displayed, or animated in?
+								animation_speed: 500, // Which ever effect is used to switch images, how long should it take?
+								display_next_and_prev: true, // Can you navigate by clicking on the left/right on the image?
+								display_back_and_forward: true, // Are you allowed to scroll the thumb list?
+								scroll_jump: 0, // If 0, it jumps the width of the container
+								loader_image: '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . COMMON_FOLDER; ?>/adGallery/loader.gif',
+								slideshow: {
+									enable: true,
+									autostart: true,
+									speed: 5000,
+									start_label: '<?php echo gettext('Start'); ?>',
+									stop_label: '<?php echo gettext('Stop'); ?>',
+									stop_on_scroll: true, // Should the slideshow stop if the user scrolls the thumb list?
+									countdown_prefix: '(', // Wrap around the countdown
+									countdown_sufix: ')',
+								},
+								effect: '<?php echo getOption('effervescence_transition'); ?>', // or 'slide-vert', 'resize', 'fade', 'none' or false
+								enable_keyboard_move: true, // Move to next/previous image with keyboard arrows?
+								cycle: true, // If set to false, you can't go from the last image to the first, and vice versa
+								// All callbacks has the AdGallery objects as 'this' reference
+								callbacks: {
+									// Executes right after the internal init, can be used to choose which images
+									// you want to preload
+									// This gets fired right after the new_image is fully visible
+									afterImageVisible: function () {
+										// For example, preload the next image
+										var context = this;
+										this.preloadImage(this.current_index + 1,
+														function () {
+															// This function gets executed after the image has been loaded
+															context.loading(false);
+														}
+										);
 		<?php
 		if ($location == 'separate') {
 			?>
-								$('#caption').show();
+											$('#caption').show();
 			<?php
 		}
 		?>
-						},
-						beforeImageVisible: function(new_image, old_image) {
+									},
+									beforeImageVisible: function (new_image, old_image) {
 		<?php
 		if ($location == 'separate') {
 			?>
-								$('#caption').hide();
+											$('#caption').hide();
 			<?php
 		}
 		?>
-						}
-					}
-				});
-			});
+									}
+								}
+							});
+						});
 		</script>
 
 		<?php
@@ -161,14 +161,14 @@ class imagegallery {
 							}
 							?>
 							<div id="map_link">
-							<?php printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
+								<?php printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
 							</div>
-						<?php
-					}
-					?>
+							<?php
+						}
+						?>
 					</div><!-- images -->
-			<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
-			<?php @call_user_func('printRating'); ?>
+					<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
+					<?php @call_user_func('printRating'); ?>
 				</div><!-- main -->
 				<div class="clearage"></div>
 			</div><!-- content -->
