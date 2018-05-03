@@ -43,6 +43,7 @@ function printThemeHeadItems() {
 	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/loginForm.css" type="text/css" />
 
 	<?php
+	load_jQuery_CSS();
 	load_jQuery_scripts('theme');
 	if (zp_loggedin()) {
 		?>
