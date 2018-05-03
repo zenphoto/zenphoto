@@ -872,13 +872,13 @@
 					if (!this.isImageLoaded(img[0])) {
 						this.preloads.append(img);
 						var context = this;
-						img.load(
+						img.on('load',
 										function () {
 											image.preloaded = true;
 											image.size = {width: this.width, height: this.height};
 											context.fireCallback(callback);
 										}
-						).error(
+						).on('error',
 										function () {
 											image.error = true;
 											image.preloaded = false;
