@@ -244,9 +244,9 @@ class comment_form {
  * @param string $addcommenttext alternate text for "Add a comment:"
  * @param bool $addheader set true to display comment count header
  * @param string $comment_commententry_mod use to add styles, classes to the comment form div
- * @param bool $desc_order default true, set to false to change the comment order to ascending ( = oldest to newest)
+ * @param bool $desc_order default false, set to true to change the comment order to descending ( = newst to oldest)
  */
-function printCommentForm($showcomments = true, $addcommenttext = NULL, $addheader = true, $comment_commententry_mod = '', $desc_order = true) {
+function printCommentForm($showcomments = true, $addcommenttext = NULL, $addheader = true, $comment_commententry_mod = '', $desc_order = false) {
 	global $_zp_gallery_page, $_zp_current_admin_obj, $_zp_current_comment, $_zp_captcha, $_zp_authority, $_zp_HTML_cache, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 
 	if (getOption('email_new_comments')) {

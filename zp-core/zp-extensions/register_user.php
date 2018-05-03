@@ -29,11 +29,20 @@ $plugin_category = gettext('Users');
 
 $option_interface = 'register_user';
 
-$_zp_conf_vars['special_pages']['register_user'] = array('define'	 => '_REGISTER_USER_', 'rewrite'	 => getOption('register_user_link'),
-				'option'	 => 'register_user_link', 'default'	 => '_PAGE_/register');
-$_zp_conf_vars['special_pages'][] = array('definition' => '%REGISTER_USER%', 'rewrite' => '_REGISTER_USER_');
+$_zp_conf_vars['special_pages']['register_user'] = array(
+		'define' => '_REGISTER_USER_',
+		'rewrite' => getOption('register_user_link'),
+		'option' => 'register_user_link',
+		'default' => '_PAGE_/register');
+$_zp_conf_vars['special_pages'][] = array(
+		'definition' => '%REGISTER_USER%',
+		'rewrite' => '_REGISTER_USER_');
 
-$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%REGISTER_USER%', 'rule' => '^%REWRITE%/*$		index.php?p=' . 'register' . ' [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array(
+		'define' => false,
+		'rewrite' => '%REGISTER_USER%',
+		'rule' => '^%REWRITE%/*$		index.php?p=' .
+		'register' . ' [L,QSA]');
 
 
 if (getOption('register_user_address_info')) {
@@ -156,19 +165,23 @@ class register_user {
 					setOptionDefault('register_user_user_rights', $nullselection);
 				}
 			}
-			$options[gettext('Default user group')] = array('key'				 => 'register_user_user_rights', 'type'			 => OPTION_TYPE_SELECTOR,
-							'order'			 => 1,
-							'selections' => $ordered,
-							'desc'			 => gettext("Initial group assignment for the new user."));
+			$options[gettext('Default user group')] = array(
+					'key'				 => 'register_user_user_rights', 
+					'type'			 => OPTION_TYPE_SELECTOR,
+					'order'			 => 1,
+					'selections' => $ordered,
+					'desc'			 => gettext("Initial group assignment for the new user."));
 		} else {
 			if (is_numeric(getOption('register_user_user_rights'))) {
 				setOptionDefault('register_user_user_rights', NO_RIGHTS);
 			} else {
 				setOption('register_user_user_rights', NO_RIGHTS);
 			}
-			$options[gettext('Default rights')] = array('key'		 => 'register_user_user_rights', 'type'	 => OPTION_TYPE_CUSTOM,
-							'order'	 => 2,
-							'desc'	 => gettext("Initial rights for the new user. (If no rights are set, approval of the user will be required.)"));
+			$options[gettext('Default rights')] = array(
+					'key'		 => 'register_user_user_rights', 
+					'type'	 => OPTION_TYPE_CUSTOM,
+					'order'	 => 2,
+					'desc'	 => gettext("Initial rights for the new user. (If no rights are set, approval of the user will be required.)"));
 		}
 		return $options;
 	}

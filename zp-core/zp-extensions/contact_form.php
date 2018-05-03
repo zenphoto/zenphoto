@@ -69,6 +69,7 @@ class contactformOptions {
 		if ($email_list) {
 			setOptionDefault('contactform_mailaddress', substr($email_list, 1));
 		}
+		setOptionDefault('contactform_dataconfirmation', 0);
 	}
 
 	function getOptionsSupported() {
@@ -388,8 +389,8 @@ function printContactForm($subject_override = '') {
 			if (getOption('contactform_confirm')) {
 				echo get_language_string(getOption("contactform_confirmtext"));
 				if (getOption('contactform_sendcopy')) {
-      echo get_language_string(getOption("contactform_sendcopy_text"));
-    }
+					echo get_language_string(getOption("contactform_sendcopy_text"));
+				}
 				?>
 				<div>
 					<?PHP
@@ -402,7 +403,7 @@ function printContactForm($subject_override = '') {
 						<input type="hidden" id="subject" name="subject"	value="<?php echo html_encode($subject); ?>" />
 						<input type="hidden" id="message"	name="message" value="<?php echo html_encode($message); ?>" />
 						<input type="hidden" id="mailaddress" name="mailaddress" value="<?php echo html_encode($mailaddress); ?>" />
-      <input type="text" id="username" name="username" value="<?php echo html_encode($mailcontent['honeypot']); ?>" style="display: none" />
+						<input type="text" id="username" name="username" value="<?php echo html_encode($mailcontent['honeypot']); ?>" style="display: none" />
 						<input type="submit" value="<?php echo gettext("Confirm"); ?>" />
 					</form>
 					<form id="discard" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8">
@@ -426,7 +427,7 @@ function printContactForm($subject_override = '') {
 		$subject = sanitize($_POST['subject']);
 		$message = sanitize($_POST['message'], 1);
 		$mailaddress = sanitize($_POST['mailaddress']);
-  $honeypot = sanitize($_POST['username']);
+		$honeypot = sanitize($_POST['username']);
 		$name = sanitize($_POST['name']);
 		$mailinglist = explode(';', getOption("contactform_mailaddress"));
 		if (getOption('contactform_sendcopy')) {
@@ -462,9 +463,19 @@ function printContactForm($subject_override = '') {
 	} else {
 		if (count($error) <= 0) {
 			if (zp_loggedin()) {
-				$mailcontent = array('title'		 => '', 'name'		 => $_zp_current_admin_obj->getName(), 'company'	 => '', 'street'	 => '', 'city'		 => '', 'state'		 => '',
-								'country'	 => '', 'postal'	 => '', 'email'		 => $_zp_current_admin_obj->getEmail(), 'website'	 => '', 'phone'		 => '',
-								'subject'	 => $subject_override, 'message'	 => '', 'honeypot' => '');
+				$mailcontent = array(
+						'title'		 => '', 
+						'name'		 => $_zp_current_admin_obj->getName(), 
+						'company'	 => '', 
+						'street'	 => '', 
+						'city'		 => '', 
+						'state'		 => '',
+						'country'	 => '', 
+						'postal'	 => '', 
+						'email'		 => $_zp_current_admin_obj->getEmail(), 
+						'website'	 => '', 'phone'		 => '',
+						'subject'	 => $subject_override, 
+						'message'	 => '', 'honeypot' => '');
 				if (extensionEnabled('comment_form')) {
 					$address = getSerializedArray($_zp_current_admin_obj->getCustomData());
 					foreach ($address as $key => $field) {
@@ -472,8 +483,21 @@ function printContactForm($subject_override = '') {
 					}
 				}
 			} else {
-				$mailcontent = array('title'		 => '', 'name'		 => '', 'company'	 => '', 'street'	 => '', 'city'		 => '', 'st ate'	 => '', 'country'	 => '', 'email'		 => '',
-								'postal'	 => '', 'website'	 => '', 'phone'		 => '', 'subject'	 => $subject_override, 'message'	 => '', 'honeypot' => '');
+				$mailcontent = array(
+						'title'		 => '', 
+						'name'		 => '', 
+						'company'	 => '', 
+						'street'	 => '', 
+						'city'		 => '', 
+						'state'	 => '', 
+						'country'	 => '', 
+						'email'		 => '',
+						'postal'	 => '', 
+						'website'	 => '', 
+						'phone'		 => '', 
+						'subject'	 => $subject_override, 
+						'message'	 => '', 
+						'honeypot' => '');
 			}
 		}
 		echo get_language_string(getOption("contactform_introtext"));
@@ -511,4 +535,3 @@ function checkRequiredField($option) {
 		return "";
 	}
 }
-?>

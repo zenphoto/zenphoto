@@ -211,6 +211,7 @@ define('COMMENT_DATACONFIRMATION', 64);
  * @param bool $anon set to true if the poster wishes to remain anonymous
  * @param string $customdata
  * @param bit $check bitmask of which fields must be checked. If set overrides the options
+ * @param bool $dataconfirmation 
  * @return object
  */
 function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $customdata, $check = false, $dataconfirmation = null) {
@@ -303,7 +304,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		$goodMessage = false;
 	}
 	if (($whattocheck & COMMENT_DATACONFIRMATION) && empty($dataconfirmation)) {
-		$commentobj->setInModeration(-6);
+		$commentobj->setInModeration(-7);
 		$commentobj->comment_error_text .= ' ' . gettext("Please agree to storage and handling of your data by this website.");
 		$goodMessage = false;
 	}
