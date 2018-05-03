@@ -100,14 +100,14 @@ function propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim
 			$neww = $dim; // width is the size and height is proportional
 			$newh = $hprop;
 		}
-	} else { // length and/or width is set, size is NULL (Thumbs work the same as image in this case)
+	} else { // length and/or width is set, size is NULL
 		if ($height) {
-			$newh = $height; // height is supplied, use it
+			$newh = round(($height / $width) * $dim); // height is supplied, scale it
 		} else {
 			$newh = $hprop; // height not supplied, use the proprotional
 		}
 		if ($width) {
-			$neww = $width; // width is supplied, use it
+			$neww = round(($width / $height) * $dim); // width is supplied, scale it
 		} else {
 			$neww = $wprop; // width is not supplied, use the proportional
 		}
@@ -324,6 +324,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					}
 				}
 			}
+			$sizes = propSizes($size, $neww, $newh, $w, $h, $thumb, $image_use_side, $dim);
+			list($neww, $newh) = $sizes;
+
 			if (is_null($cx) && is_null($cy)) { // scale crop to max of image
 				// set crop scale factor
 				$cf = 1;
