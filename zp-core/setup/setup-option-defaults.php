@@ -272,21 +272,22 @@ if ($sfx) {
 }
 setOptionDefault('mod_rewrite_suffix', $sfx);
 setOptionDefault('dirtyform_enable', 2);
-
+?>
+<script type="text/javascript">
+	$(function () {
+		$('img').on("error", function () {
+			var link = $(this).attr('src');
+			var title = $(this).attr('title');
+			$(this).parent().html('<a href="' + link + '" target="_blank" title="' + title + '"><?php echo CROSS_MARK_RED; ?></a>');
+			imageErr = true;
+			$('#setupErrors').val(1);
+		});
+	});
+</script>
+<?php
 purgeOption('mod_rewrite_detected');
 if (isset($_GET['mod_rewrite'])) {
 	?>
-	<script type="text/javascript">
-		$(function () {
-			$('img').error(function () {
-				var link = $(this).attr('src');
-				var title = $(this).attr('title');
-				$(this).parent().html('<a href="' + link + '" target="_blank" title="' + title + '"><?php echo CROSS_MARK_RED; ?></a>');
-				imageErr = true;
-				$('#setupErrors').val(1);
-			});
-		});
-	</script>
 	<p>
 		<?php echo gettext('Mod_Rewrite check:'); ?>
 		<br />

@@ -1320,7 +1320,7 @@ zp-core/js/Jcrop/jquery.Jcrop.css
 zp-core/js/Jcrop/jquery.Jcrop.js
 zp-core/js/jqueryui
 zp-core/js/jqueryui/base-1.12.css
-zp-core/js/jqueryui/jquery-ui-1.12.1.js
+zp-core/js/jqueryui/jquery-ui-1.12.1.min.js
 zp-core/js/jqueryui/jquery-ui-1.12.css
 zp-core/js/jqueryui/readme.txt
 zp-core/js/jqueryui/i18n
