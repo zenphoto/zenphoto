@@ -7,4 +7,4 @@ jQuery UI files to get from http://ui.jquery.com/download :
 	- Core
 	- all Interaction components: Draggable, Droppable, Resizable, Selectable, Sortable
 	- all widgits
-	- the customized smoothness theme
+	- the customized base theme

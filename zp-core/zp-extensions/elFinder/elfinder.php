@@ -17,9 +17,10 @@ if (empty($locale))
 		<title>elFinder 2.0</title>
 
 		<!-- jQuery and jQuery UI (REQUIRED) -->
-		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
-<?php load_jQuery_scripts('admin'); ?>
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
+		<?php
+		load_jQuery_CSS();
+		load_jQuery_scripts('admin');
+		?>
 
 		<!-- elFinder CSS (REQUIRED) -->
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>css/elfinder.min.css">
@@ -29,9 +30,9 @@ if (empty($locale))
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/elfinder.min.js"></script>
 
 		<!-- elFinder translation (OPTIONAL) -->
-<?php
-if ($locale != 'en') {
-	?>
+		<?php
+		if ($locale != 'en') {
+			?>
 			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/i18n/elfinder.<?php echo $locale; ?>.js"></script>
 			<?php
 		}

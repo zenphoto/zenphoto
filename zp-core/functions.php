@@ -2115,10 +2115,22 @@ function seoFriendly($string) {
 	return $string;
 }
 
-function load_jQuery_scripts($where) {
+function load_jQuery_CSS() {
 	?>
-	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-1.12.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/base-1.12.css" type="text/css" />
 	<?php
+}
+
+function load_jQuery_scripts($where, $ui = true) {
+	?>
+	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery-3.3.1.js"></script>
+	<?php
+	if ($ui) {
+		?>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-1.12.1.js" type="text/javascript"></script>
+		<?php
+	}
 	switch (getOption('jQuery_debug_' . $where)) {
 		case 0: //disabled
 			break;
