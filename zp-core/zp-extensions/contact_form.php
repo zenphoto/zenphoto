@@ -79,66 +79,122 @@ class contactformOptions {
 		$list = array(gettext("required") => "required", gettext("show") => "show", gettext("omitted") => "omitted");
 		$mailfieldinstruction = gettext("Set if the <code>%s</code> field should be required, just shown or omitted");
 		$options = array(
-						gettext('Intro text')						 => array('key'		 => 'contactform_introtext', 'type'	 => OPTION_TYPE_TEXTAREA,
-										'order'	 => 13,
-										'desc'	 => gettext("The intro text for your contact form")),
-						gettext('Confirm text')					 => array('key'		 => 'contactform_confirmtext', 'type'	 => OPTION_TYPE_TEXTAREA,
-										'order'	 => 14,
-										'desc'	 => gettext("The text that asks the visitor to confirm that he really wants to send the message.")),
-						gettext('Thanks text')					 => array('key'		 => 'contactform_thankstext', 'type'	 => OPTION_TYPE_TEXTAREA,
-										'order'	 => 15,
-										'desc'	 => gettext("The text that is shown after a message has been confirmed and sent.")),
-						gettext('New message link text') => array('key'		 => 'contactform_newmessagelink', 'type'	 => OPTION_TYPE_TEXTAREA,
-										'order'	 => 16,
-										'desc'	 => gettext("The text for the link after the thanks text to return to the contact page to send another message.")),
-						gettext('Require confirmation')	 => array('key'		 => 'contactform_confirm', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 0.1,
-										'desc'	 => gettext("If checked, a confirmation form will be presented before sending the contact message.")),
-						gettext('Send copy')						 => array('key'		 => 'contactform_sendcopy', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 0.3,
-										'desc'	 => gettext("If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could misuse the e-mail address entered for spamming with this form and that in some countries’ jurisdictions(e.g. most European countries) you may be made responsible for this then!</p>")),
-						gettext('Send copy note text')	 => array('key'		 => 'contactform_sendcopy_text', 'type'	 => OPTION_TYPE_TEXTAREA,
-										'order'	 => 0.2,
-										'desc'	 => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),
-						gettext('Contact recipients')		 => array('key'		 => 'contactform_mailaddress', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 17,
-										'desc'	 => gettext("The e-mail address the messages should be sent to. Enter one or more address separated by semicolons.")),
-						gettext('Title')								 => array('key'			 => 'contactform_title', 'type'		 => OPTION_TYPE_RADIO, 'buttons'	 => $list,
-										'order'		 => 1,
-										'desc'		 => sprintf($mailfieldinstruction, gettext("Title"))),
-						gettext('Name')									 => array('key'			 => 'contactform_name', 'type'		 => OPTION_TYPE_RADIO, 'buttons'	 => $list,
-										'order'		 => 2,
-										'desc'		 => sprintf($mailfieldinstruction, gettext("Name"))),
-						gettext('Company')							 => array('key'			 => 'contactform_company', 'type'		 => OPTION_TYPE_RADIO, 'buttons'	 => $list,
-										'order'		 => 3,
-										'desc'		 => sprintf($mailfieldinstruction, gettext("Company"))),
-						gettext('Street')								 => array('key'			 => 'contactform_street', 'type'		 => OPTION_TYPE_RADIO, 'buttons'	 => $list,
-										'order'		 => 4,
-										'desc'		 => sprintf($mailfieldinstruction, gettext("Street"))),
-						gettext('City')									 => array('key'			 => 'contactform_city', 'type'		 => OPTION_TYPE_RADIO, 'buttons'	 => $list,
-										'order'		 => 5,
-										'desc'		 => sprintf($mailfieldinstruction, gettext("City"))),
-						gettext('State')								 => array('key'			 => 'contactform_state', 'type'		 => OPTION_TYPE_RADIO, 'buttons'	 => $list,
-										'order'		 => 5.1,
-										'desc'		 => sprintf($mailfieldinstruction, gettext("State"))),
-						gettext('Postal code')					 => array('key'			 => 'contactform_postal', 'type'		 => OPTION_TYPE_RADIO, 'buttons'	 => $list,
-										'order'		 => 5.2,
-										'desc'		 => sprintf($mailfieldinstruction, gettext("Postal code"))),
-						gettext('Country')							 => array('key'			 => 'contactform_country', 'type'		 => OPTION_TYPE_RADIO, 'buttons'	 => $list,
-										'order'		 => 6,
-										'desc'		 => sprintf($mailfieldinstruction, gettext("Country"))),
-						gettext('E-mail')								 => array('key'			 => 'contactform_email', 'type'		 => OPTION_TYPE_RADIO, 'buttons'	 => $list,
-										'order'		 => 7,
-										'desc'		 => sprintf($mailfieldinstruction, gettext("E-mail"))),
-						gettext('Website')							 => array('key'			 => 'contactform_website', 'type'		 => OPTION_TYPE_RADIO, 'buttons'	 => $list,
-										'order'		 => 8,
-										'desc'		 => sprintf($mailfieldinstruction, gettext("Website"))),
-						gettext('CAPTCHA')							 => array('key'		 => 'contactform_captcha', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 9,
-										'desc'	 => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
-						gettext('Phone')								 => array('key'			 => 'contactform_phone', 'type'		 => OPTION_TYPE_RADIO, 'buttons'	 => $list,
-										'order'		 => 10,
-										'desc'		 => sprintf($mailfieldinstruction, gettext("Phone number")))
+				gettext('Intro text') => array(
+						'key' => 'contactform_introtext',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 13,
+						'desc' => gettext("The intro text for your contact form")),
+				gettext('Confirm text') => array(
+						'key' => 'contactform_confirmtext',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 14,
+						'desc' => gettext("The text that asks the visitor to confirm that he really wants to send the message.")),
+				gettext('Thanks text') => array(
+						'key' => 'contactform_thankstext',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 15,
+						'desc' => gettext("The text that is shown after a message has been confirmed and sent.")),
+				gettext('New message link text') => array(
+						'key' => 'contactform_newmessagelink',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 16,
+						'desc' => gettext("The text for the link after the thanks text to return to the contact page to send another message.")),
+				gettext('Require confirmation') => array(
+						'key' => 'contactform_confirm',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 0.1,
+						'desc' => gettext("If checked, a confirmation form will be presented before sending the contact message.")),
+				gettext('Send copy') => array(
+						'key' => 'contactform_sendcopy',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 0.3,
+						'desc' => gettext("If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could misuse the e-mail address entered for spamming with this form and that in some countries’ jurisdictions(e.g. most European countries) you may be made responsible for this then!</p>")),
+				gettext('Send copy note text') => array(
+						'key' => 'contactform_sendcopy_text',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 0.2,
+						'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),
+				gettext('Contact recipients') => array(
+						'key' => 'contactform_mailaddress',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 17,
+						'desc' => gettext("The e-mail address the messages should be sent to. Enter one or more address separated by semicolons.")),
+				gettext('Title') => array(
+						'key' => 'contactform_title',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $list,
+						'order' => 1,
+						'desc' => sprintf($mailfieldinstruction, gettext("Title"))),
+				gettext('Name') => array(
+						'key' => 'contactform_name',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $list,
+						'order' => 2,
+						'desc' => sprintf($mailfieldinstruction, gettext("Name"))),
+				gettext('Company') => array(
+						'key' => 'contactform_company',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $list,
+						'order' => 3,
+						'desc' => sprintf($mailfieldinstruction, gettext("Company"))),
+				gettext('Street') => array(
+						'key' => 'contactform_street',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $list,
+						'order' => 4,
+						'desc' => sprintf($mailfieldinstruction, gettext("Street"))),
+				gettext('City') => array(
+						'key' => 'contactform_city',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $list,
+						'order' => 5,
+						'desc' => sprintf($mailfieldinstruction, gettext("City"))),
+				gettext('State') => array(
+						'key' => 'contactform_state',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $list,
+						'order' => 5.1,
+						'desc' => sprintf($mailfieldinstruction, gettext("State"))),
+				gettext('Postal code') => array(
+						'key' => 'contactform_postal',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $list,
+						'order' => 5.2,
+						'desc' => sprintf($mailfieldinstruction, gettext("Postal code"))),
+				gettext('Country') => array(
+						'key' => 'contactform_country',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $list,
+						'order' => 6,
+						'desc' => sprintf($mailfieldinstruction, gettext("Country"))),
+				gettext('E-mail') => array(
+						'key' => 'contactform_email',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $list,
+						'order' => 7,
+						'desc' => sprintf($mailfieldinstruction, gettext("E-mail"))),
+				gettext('Website') => array(
+						'key' => 'contactform_website',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $list,
+						'order' => 8,
+						'desc' => sprintf($mailfieldinstruction, gettext("Website"))),
+				gettext('CAPTCHA') => array(
+						'key' => 'contactform_captcha',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 9,
+						'desc' => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
+				gettext('Phone') => array(
+						'key' => 'contactform_phone',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $list,
+						'order' => 10,
+						'desc' => sprintf($mailfieldinstruction, gettext("Phone number"))),
+				gettext('Data usage confirmation') => array(
+						'key' => 'contactform_dataconfirmation',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 11,
+						'desc' => gettext('If checked a mandatory checkbox is added for users to confirm about data storage and handling by your site. This is recommend to comply with the European GDPR.'))
 		);
 		return $options;
 	}
@@ -178,6 +234,7 @@ function getField($field, $level = 3) {
 function printContactForm($subject_override = '') {
 	global $_zp_UTF8, $_zp_captcha, $_processing_post, $_zp_current_admin_obj;
 	$error = array();
+	$error_dataconfirmation = null;
 	if (isset($_POST['sendmail'])) {
 		$mailcontent = array();
 		$mailcontent['title'] = getField('title');
@@ -194,6 +251,7 @@ function printContactForm($subject_override = '') {
 		$mailcontent['phone'] = getField('phone');
 		$mailcontent['subject'] = getField('subject');
 		$mailcontent['message'] = getField('message', 1);
+		$mailcontent['dataconfirmation'] = getField('dataconfirmation', 1);
 
 		// if you want other required fields or less add/modify their checks here
 		if (getOption('contactform_title') == "required" && empty($mailcontent['title'])) {
@@ -241,7 +299,6 @@ function printContactForm($subject_override = '') {
 		if (empty($mailcontent['message'])) {
 			$error[11] = gettext("a message");
 		}
-
 		// CAPTCHA start
 		if (getOption("contactform_captcha")) {
 			$code_ok = trim(sanitize(isset($_POST['code_h']) ? $_POST['code_h'] : NULL));
@@ -251,12 +308,15 @@ function printContactForm($subject_override = '') {
 			} // no ticket
 		}
 		// CAPTCHA end
+		if (getOption('contactform_dataconfirmation') && empty($mailcontent['dataconfirmation'])) {
+			$error_dataconfirmation = gettext('Please agree to storage and handling of your data by this website.');
+		}
 		// If required fields are empty or not valide print note
-		if (count($error) != 0) {
+		if (count($error) != 0 || !is_null($error_dataconfirmation)) {
 			?>
 			<div class="errorbox">
-				<h2>
-					<?php
+				<?php
+				if (count($error) != 0) {
 					$err = $error;
 					switch (count($err)) {
 						case 1:
@@ -274,8 +334,11 @@ function printContactForm($subject_override = '') {
 							printf(gettext('Please enter: %sThanks.'), $list);
 							break;
 					}
-					?>
-				</h2>
+				}
+				if (!is_null($error_dataconfirmation)) {
+					echo '<p>' . $error_dataconfirmation . '</p>';
+				}
+				?>
 			</div>
 			<?php
 		} else {
@@ -317,6 +380,9 @@ function printContactForm($subject_override = '') {
 				$message .= $mailcontent['website'] . "\n";
 			}
 			$message .= "\n\n" . $mailcontent['message'];
+			if (!empty($mailcontent['dataconfirmation'])) {
+				$message .= gettext('I agree to storage and handling of my data by this website.') . "\n";
+			}
 			$message .= "\n\n";
 
 			if (getOption('contactform_confirm')) {

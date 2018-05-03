@@ -104,6 +104,14 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			<?php
 		}
 		?>
+		<?php if(getOption('register_user_dataconfirmation')) { ?>
+			<p>
+				<label for="admin_dataconfirmation">
+					<input type="checkbox" name="admin_dataconfirmation" id="admin_dataconfirmation" value="1">
+					<?php echo gettext('By using this form you agree with the storage and handling of your data by this website*'); ?>
+				</label>
+			</p>
+		<?php } ?>
 		<p><?php echo gettext('<strong>*</strong>Required'); ?></p>
 		<input type="submit" class="button buttons" value="<?php echo gettext('Submit') ?>" />
 		<?php

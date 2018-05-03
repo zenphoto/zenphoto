@@ -127,7 +127,14 @@
 		<label for="message"><?php echo gettext("Message<strong>*</strong>"); ?></label>
 		<textarea id="message" name="message" <?php if ($_processing_post) echo ' disabled="disabled"'; ?>><?php echo $mailcontent['message']; ?></textarea>
 	</p>
-	<?php
+	<?php if(getOption('contactform_dataconfirmation')) { ?>
+		<p>
+			<label for="dataconfirmation">
+				<input type="checkbox" name="dataconfirmation" id="dataconfirmation" value="1">
+				<?php echo gettext('By using this form you agree with the storage and handling of your data by this website') . '<strong>*</strong>'; ?>
+			</label>
+		</p>
+	<?php } 
 	if (!$_processing_post) {
 		?>
 		<p>

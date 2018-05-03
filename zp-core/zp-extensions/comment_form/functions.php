@@ -190,6 +190,7 @@ define('COMMENT_WEB_REQUIRED', 4);
 define('USE_CAPTCHA', 8);
 define('COMMENT_BODY_REQUIRED', 16);
 define('COMMENT_SEND_EMAIL', 32);
+define('COMMENT_DATACONFIRMATION', 64);
 
 /**
  * Generic comment adding routine. Called by album objects or image objects
@@ -212,7 +213,7 @@ define('COMMENT_SEND_EMAIL', 32);
  * @param bit $check bitmask of which fields must be checked. If set overrides the options
  * @return object
  */
-function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $customdata, $check = false) {
+function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $customdata, $check = false, $dataconfirmation = null) {
 	global $_zp_captcha, $_zp_gallery, $_zp_authority, $_zp_comment_on_hold, $_zp_spamFilter;
 	if ($check === false) {
 		$whattocheck = 0;
@@ -222,6 +223,8 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 			$whattocheck = $whattocheck | COMMENT_NAME_REQUIRED;
 		if (getOption('comment_web_required') == 'required')
 			$whattocheck = $whattocheck | COMMENT_WEB_REQUIRED;
+		if(getOption('comment_form_dataconfirmation')) 
+			$whattocheck = $whattocheck | COMMENT_DATACONFIRMATION;
 		switch (getOption('Use_Captcha')) {
 			case 0:
 				break;
@@ -250,7 +253,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	$comment = trim($comment);
 	$receiverid = $receiver->getID();
 	$goodMessage = 2;
-	if ($private)
+	if ($private) 
 		$private = 1;
 	else
 		$private = 0;
@@ -271,6 +274,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	$commentobj->setAnon($anon);
 	$commentobj->setInModeration(0);
 	$commentobj->setCustomData($customdata);
+	$commentobj->dataconfirmation = $dataconfirmation;
 	if (($whattocheck & COMMENT_EMAIL_REQUIRED) && (empty($email) || !is_valid_email_zp($email))) {
 		$commentobj->setInModeration(-2);
 		$commentobj->comment_error_text .= ' ' . gettext("You must supply an e-mail address.");
@@ -296,6 +300,11 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	if (($whattocheck & COMMENT_BODY_REQUIRED) && empty($comment)) {
 		$commentobj->setInModeration(-6);
 		$commentobj->comment_error_text .= ' ' . gettext("You must enter something in the comment text.");
+		$goodMessage = false;
+	}
+	if (($whattocheck & COMMENT_DATACONFIRMATION) && empty($dataconfirmation)) {
+		$commentobj->setInModeration(-6);
+		$commentobj->comment_error_text .= ' ' . gettext("Please agree to storage and handling of your data by this website.");
 		$goodMessage = false;
 	}
 	$moderate = 0;
@@ -329,12 +338,14 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		$commentobj->save();
 		//  add to comments array and notify the admin user
 		if (!$moderate) {
-			$receiver->comments[] = array('name'				 => $commentobj->getname(),
+			$receiver->comments[] = array(
+							'name'				 => $commentobj->getname(),
 							'email'				 => $commentobj->getEmail(),
 							'website'			 => $commentobj->getWebsite(),
 							'comment'			 => $commentobj->getComment(),
 							'date'				 => $commentobj->getDateTime(),
-							'custom_data'	 => $commentobj->getCustomData());
+							'custom_data'	 => $commentobj->getCustomData(),
+							'comment_dataconfirmation'	 => $commentobj->dataconfirmation);
 		}
 		switch ($type) {
 			case "albums":
@@ -521,17 +532,20 @@ function comment_form_handle_comment() {
 			}
 			$p_private = isset($_POST['private']);
 			$p_anon = isset($_POST['anon']);
+			$p_dataconfirmation = isset($_POST['comment_dataconfirmation']);
 
-			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment, $code1, $code2, $p_server, $p_private, $p_anon, serialize(getCommentAddress(0)));
+			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment, $code1, $code2, $p_server, $p_private, $p_anon, serialize(getCommentAddress(0)), $p_dataconfirmation);
 
 			$comment_error = $commentadded->getInModeration();
-			$_zp_comment_stored = array('name'		 => $commentadded->getName(),
+			$_zp_comment_stored = array(
+							'name'		 => $commentadded->getName(),
 							'email'		 => $commentadded->getEmail(),
 							'website'	 => $commentadded->getWebsite(),
 							'comment'	 => $commentadded->getComment(),
 							'saved'		 => isset($_POST['remember']),
 							'private'	 => $commentadded->getPrivate(),
 							'anon'		 => $commentadded->getAnon(),
+							'custom'	 => $commentadded->getCustomData(),
 							'custom'	 => $commentadded->getCustomData()
 			);
 
