@@ -110,7 +110,7 @@ class debug {
 								gettext('Debug') => 2
 						),
 						'order' => 3,
-						'desc' => gettext('Adds the <a href="https://jquery.com/upgrade-guide/3.0/">jQuery 3.3 migration</a> tool to the administrative pages.'))
+						'desc' => gettext('Adds the <a href="https://jquery.com/upgrade-guide/3.0/">jQuery 3.3 migration</a> tool to theme pages.'))
 		);
 		return $options;
 	}
