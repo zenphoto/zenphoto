@@ -1102,6 +1102,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 							break;
 						case OPTION_TYPE_COLOR_PICKER:
+
+							var_dump($v);
+
 							if (empty($v))
 								$v = '#000000';
 							?>
@@ -1112,7 +1115,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									window.addEventListener('load', function () {
 										$('#__<?php echo $key; ?>').spectrum({
 											preferredFormat: "hex",
-											color: "$('#__<?php echo $key; ?>').val()"
+											color: $('#__<?php echo $key; ?>').val()
 										});
 									}, false);
 									// ]]> -->
