@@ -71,6 +71,11 @@ class matomoStats {
 	}
 
 	function getOptionsSupported() {
+		$langs = $langs_list = array();
+		$langs_list = generateLanguageList();
+		foreach ($langs_list as $text => $lang) {
+			$langs[$text] = $lang;
+		}
 		return array(
 				gettext('Matomo url') => array(
 						'key' => 'matomo_url',
@@ -98,10 +103,22 @@ class matomoStats {
 						'type' => OPTION_TYPE_TEXTAREA,
 						'order' => 1,
 						'multilingual' => false,
-						'desc' => gettext('Enter widget iframe code if you like to embed statistics to your Zenphoto backend. You can view it via a utility button afterwards. Visit the widget area on your Matomo install for more info.'))
+						'desc' => gettext('Enter widget iframe code if you like to embed statistics to your Zenphoto backend. You can view it via a utility button afterwards. Visit the widget area on your Matomo install for more info.')),
+				gettext('Language to track') => array(
+								'order' => 2,
+								'key' => 'matomo_language_tracking',
+								'type' => OPTION_TYPE_SELECTOR,
+								'null_selection' => 'HTTP_Accept_Language',
+								'selections' => $langs,
+								'desc'=> gettext('Select in which language you want to track page titles. If none, the visitor language is used. '
+												. 'If you choose a single language it avoids tracking multiple title per page. '
+												. 'Note: It is rather not recommend to use this for SEO reasons as each language version of a page does count as separate content.'))
 				);
 	}
-
+	
+	/**
+	 * Adds the Matomo statistic script
+	 */
 	static function script($exclude = NULL) {
 		if (empty($exclude) || (!in_array('matomo_tag', $exclude))) {
 			$url = getOption('matomo_url');
@@ -111,10 +128,10 @@ class matomoStats {
 			<!-- Matomo -->
 			<script type="text/javascript">
 				var _paq = _paq || [];
-			<?php if ($sitedomain) { ?>
-					_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+				_paq.push(["setDocumentTitle", '<?php echo matomoStats::printDocumentTitle($lang_to_track); ?>']);	
+				<?php if ($sitedomain) { ?>
 					_paq.push(["setCookieDomain", "*.<?php echo $sitedomain; ?>"]);
-			<?php } ?>
+				<?php } ?>
 				_paq.push(['trackPageView']);
 				_paq.push(['enableLinkTracking']);
 				(function () {
@@ -162,7 +179,12 @@ class matomoStats {
 		$src = $url . '/index.php?module=CoreAdminHome&action=optOut&language=' . $userlocale;
 		return '<iframe style="border: 0; height: 200px; width: 100%;" src="' . $src . '"></iframe>';
 	}
-
+	
+	/**
+	 * The macro button for the utility page
+	 * @param type $macros
+	 * @return type
+	 */
 	static function macro($macros) {
 		$macros['MATOMO_OPTOUT'] = array(
 				'class' => 'function',
@@ -173,6 +195,20 @@ class matomoStats {
 		);
 		return $macros;
 	}
+	
+	/**
+	 * Gets the document title of the current page to track. Gets the title in a single language only if the option for single_language_tracking is set
+	 * @global string $_zp_current_locale
+	 */
+	static function printDocumentTitle() {
+		global $_zp_current_locale;
+		$lang_to_track = getOption('matomo_language_tracking');
+		if($lang_to_track != $_zp_current_locale && $lang_to_track != 'HTTP_Accept_Language') {
+			$original_locale = $_zp_current_locale;
+			$_zp_current_locale = $lang_to_track;
+		}
+		echo js_encode(getHeadTitle());
+		$_zp_current_locale = $original_locale;
+	}
 
 }
-?>
