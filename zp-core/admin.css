@@ -30,7 +30,7 @@ html { /* Force vertical scrollbar to prevent page shift "jog" */
 }
 
 body {
-	font: normal 82% Arial, "Helvetica Neue", Helvetica, Ariel, sans-serif;
+	font: normal 82% Arial, "Helvetica Neue", Helvetica, sans-serif;
 	color: #4B4B4B;
 	text-align: center;
 	background-color: #f1f1f1;
@@ -272,7 +272,7 @@ code {
   display: block;
   padding: 0.5em 1.3em;
   color: black;
-  text-decoration: none !important;
+  text-decoration: none;
   text-transform: uppercase;
 }
 
@@ -448,8 +448,6 @@ code {
 	border-color: #FAA;
 	margin-bottom: 10px;
 	font-size: 100%;
-	box-sizing: content-box !important;
-	webkit-box-sizing: content-box !important;
 }
 
 .errorbox li {
@@ -474,7 +472,6 @@ code {
 	margin-bottom: 10px;
 	font-size: 100%;
 	list-style-type: none;
-	box-sizing: content-box !important;
 }
 
 .warningbox li {
@@ -500,8 +497,6 @@ code {
 	font-size: 100%;
 	width: 94%;
 	font-weight: normal;
-	box-sizing: content-box !important;
-	webkit-box-sizing: content-box !important;
 }
 
 .notebox li {
@@ -1262,8 +1257,6 @@ label:hover {
 	color: #565656;
 	cursor: pointer;
 	padding: 5px 10px 6px 7px; /* Links */
-	box-sizing: content-box !important;
-	webkit-box-sizing: content-box !important;
 }
 
 .buttons button {
