@@ -102,19 +102,27 @@ function propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim
 		}
 	} else { // length and/or width is set, size is NULL
 		if ($height) {
-			$newh = round(($height / $width) * $dim); // height is supplied, scale it
+			if ($width) { // height is supplied
+				$newh = round(($height / $width) * $dim); //	scale it
+			} else {
+				$newh = $height; //	have to settle with what was passed
+			}
 		} else {
 			$newh = $hprop; // height not supplied, use the proprotional
 		}
-		if ($width) {
-			$neww = round(($width / $height) * $dim); // width is supplied, scale it
+		if ($width) { // width is supplied
+			if ($height) {
+				$neww = round(($width / $height) * $dim); //	scale it
+			} else {
+				$neww = $width; // height not supplied, use the proprotional
+			}
 		} else {
 			$neww = $wprop; // width is not supplied, use the proportional
 		}
 	}
 	if (DEBUG_IMAGE)
 		debugLog("propSizes(\$size=$size, \$width=$width, \$height=$height, \$w=$w, \$h=$h, \$thumb=$thumb, \$image_use_side=$image_use_side, \$dim=$dim):: \$wprop=$wprop; \$hprop=$hprop; \$neww=$neww; \$newh=$newh");
-	return array($neww, $newh);
+	return array((int) $neww, (int) $newh);
 }
 
 /**
