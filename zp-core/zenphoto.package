@@ -456,7 +456,6 @@ themes/zpBootstrap/js/isotope.pkgd.min.js
 themes/zpBootstrap/js/jquery.fancybox.js
 themes/zpBootstrap/js/jquery.fancybox.min.js
 themes/zpBootstrap/js/jquery.flexslider-min.js
-themes/zpBootstrap/js/masonry.pkgd.min.js
 themes/zpBootstrap/js/packery-mode.pkgd.min.js
 themes/zpBootstrap/js/zpB_fancybox_config.js
 themes/zpBootstrap/js/zpBootstrap.js
@@ -671,7 +670,6 @@ themes/zpmasonry/images/twitter.png
 themes/zpmasonry/images/zoom.png
 themes/zpmasonry/js
 themes/zpmasonry/js/jquery.infinitescroll.min.js
-themes/zpmasonry/js/jquery.masonry.min.js
 themes/zpminimal
 themes/zpminimal/404.php
 themes/zpminimal/album.php
@@ -1309,7 +1307,6 @@ zp-core/js/jquery.mjs.nestedSortable.js
 zp-core/js/jquery.pagination.js
 zp-core/js/jquery.scrollTo.min.js
 zp-core/js/jquery.ui.touch-punch.min.js
-zp-core/js/masonry.pkgd.min.js
 zp-core/js/sprintf.js
 zp-core/js/dirtyforms
 zp-core/js/dirtyforms/jquery.dirtyforms.helpers.tinymce.min.js
@@ -7531,6 +7528,8 @@ zp-core/zp-extensions/common/googleAPI/psr/log/Psr/Log/LogLevel.php
 zp-core/zp-extensions/common/googleAPI/psr/log/Psr/Log/NullLogger.php
 zp-core/zp-extensions/common/jsMin
 zp-core/zp-extensions/common/jsMin/JSMin.php
+zp-core/zp-extensions/common/masonry
+zp-core/zp-extensions/common/masonry/masonry.pkgd.min.js
 zp-core/zp-extensions/common/oAuth
 zp-core/zp-extensions/common/oAuth/http.php
 zp-core/zp-extensions/common/oAuth/OAuth.php
@@ -8306,4 +8305,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8308
+8307

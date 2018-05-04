@@ -4443,29 +4443,31 @@ function print404status() {
 	global $_404_data;
 	list($album, $image, $galleryPage, $theme, $page) = $_404_data;
 	if (DEBUG_404) {
-		$list = explode('/', $album);
-		if (array_shift($list) != 'cache') {
-			$target = getRequestURI();
-			if (!in_array($target, array(WEBPATH . '/favicon.ico', WEBPATH . '/zp-data/tést.jpg'))) {
-				$output = "404 error details\n\t\t\tSERVER:\n";
-				foreach (array('REQUEST_URI', 'HTTP_REFERER', 'REMOTE_ADDR', 'REDIRECT_STATUS') as $key) {
-					if (is_null(@$_SERVER[$key])) {
-						$value = 'NULL';
-					} else {
-						$value = "'$_SERVER[$key]'";
+		if (!preg_match('~\.min\.(css|js)\.map$~i', $album)) { //	don't log these
+			$list = explode('/', $album);
+			if (array_shift($list) != 'cache') {
+				$target = getRequestURI();
+				if (!in_array($target, array(WEBPATH . '/favicon.ico', WEBPATH . '/zp-data/tést.jpg'))) {
+					$output = "404 error details\n\t\t\tSERVER:\n";
+					foreach (array('REQUEST_URI', 'HTTP_REFERER', 'REMOTE_ADDR', 'REDIRECT_STATUS') as $key) {
+						if (is_null(@$_SERVER[$key])) {
+							$value = 'NULL';
+						} else {
+							$value = "'$_SERVER[$key]'";
+						}
+						$output .= "\t\t\t\t\t$key\t=>\t$value\n";
 					}
-					$output .= "\t\t\t\t\t$key\t=>\t$value\n";
+					$output .= "\t\t\tREQUEST:\n";
+					$request = $_REQUEST;
+					$request['theme'] = $theme;
+					if (!empty($image)) {
+						$request['image'] = $image;
+					}
+					foreach ($request as $key => $value) {
+						$output .= "\t\t\t\t\t$key\t=>\t'$value'\n";
+					}
+					debugLog($output);
 				}
-				$output .= "\t\t\tREQUEST:\n";
-				$request = $_REQUEST;
-				$request['theme'] = $theme;
-				if (!empty($image)) {
-					$request['image'] = $image;
-				}
-				foreach ($request as $key => $value) {
-					$output .= "\t\t\t\t\t$key\t=>\t'$value'\n";
-				}
-				debugLog($output);
 			}
 		}
 	}
