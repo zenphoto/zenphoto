@@ -1310,6 +1310,7 @@ function readTags($id, $tbl) {
  * @param array $currentValue list of items to be flagged as checked
  * @param array $list the elements of the select list
  * @param bool $descending set true for a reverse order sort
+ * @param bool $localize set true if the keys as description should be listed instead of the plain values
  */
 function generateListFromArray($currentValue, $list, $descending, $localize) {
 	if ($localize) {
@@ -1327,6 +1328,7 @@ function generateListFromArray($currentValue, $list, $descending, $localize) {
 			natcasesort($list);
 		}
 	}
+	
 	foreach ($list as $key => $item) {
 		echo '<option value="' . html_encode($item) . '"';
 		if (in_array($item, $currentValue)) {
@@ -2067,42 +2069,73 @@ function commentsAllowed($type) {
  * Returns the viewer's IP address
  * Deals with transparent proxies
  *
- * @param bool $anonymize_ip If null (default) the backend option setting is used. Override with true or false.
+ * @param bool $anonymize If null (default) the backend option setting is used. Override with anonymize levels 
+ * - 0 (No anonymizing)
+ * - 1 (Last fourth anonymized)
+ * - 2 (Last half anonymized)
+ * - 3 (Last three fourths anonymized)
+ * - 4 (Full anonymization, no IP stored)
  * @return string
  */
-function getUserIP($anonymize_ip = null) {
-	if (is_null($anonymize_ip)) {
-		$anonymize_ip = (bool) getOption('anonymize_ip');
-	}
-	$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
+function getUserIP($anonymize = null) {
 	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 		$ip = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
-		if (preg_match($pattern, $ip)) {
-			if ($anonymize_ip) {
-				$ip = getAnonymIp($ip);
-			}
-			return $ip;
+		if (filter_var($ip, FILTER_VALIDATE_IP)) {
+			return getAnonymIP($ip, $anonymize);
 		}
 	}
 	$ip = sanitize($_SERVER['REMOTE_ADDR']);
-	if (preg_match($pattern, $ip)) {
-		if ($anonymize_ip) {
-			$ip = getAnonymIp($ip);
-		}
-		return $ip;
+	if (filter_var($ip, FILTER_VALIDATE_IP)) {
+		return getAnonymIP($ip, $anonymize);
 	}
 	return NULL;
 }
 
 /**
- * Replaces the last chunk of an ip address with 0 for privacy concerns.
+ * Anonymizing of IP addresses
+ * @param bool $anonymize If null (default) the backend option setting is used. Override with anonymize levels 
+ * - 0 (No anonymizing)
+ * - 1 (Last fourth anonymized)
+ * - 2 (Last half anonymized)
+ * - 3 (Last three fourths anonymized)
+ * - 4 (Full anonymization, no IP stored)
  * 
- * @author Ralf Kerkhoff
- * @param string $ip IP address
  * @return string
  */
-function getAnonymIp($ip) {
-	return preg_replace('/[0-9]+\z/', '0', $ip);
+function getAnonymIP($ip, $anonymize = null) {
+	if (is_null($anonymize)) {
+		$anonymize = getOption('anonymize_ip');
+	}
+	$is_ipv6 = filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
+	switch ($anonymize) {
+		case 0; // No anonymizing
+			return $ip;
+		default:
+		case 1; // Last fourth anonymized
+			if ($is_ipv6) {
+				return preg_replace('~[0-9a-zA-Z]*:[0-9a-zA-Z]+$~', '0:0', $ip);
+			} else {
+				return preg_replace('~[0-9a-zA-Z]+$~', '0', $ip);
+			}
+		case 2: // Last half anonymized
+			if ($is_ipv6) {
+				return preg_replace('~[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]+$~', '0:0:0:0', $ip);
+			} else {
+				return preg_replace('~[0-9a-zA-Z]*.[0-9a-zA-Z]+$~', '0.0', $ip);
+			}
+		case 3: // Last three fourths anonymized
+			if ($is_ipv6) {
+				return preg_replace('~[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]+$~', '0:0:0:0:0:0', $ip);
+			} else {
+				return preg_replace('~[0-9a-zA-Z]*.[0-9a-zA-Z]*.[0-9a-zA-Z]+$~', '0.0.0', $ip);
+			}
+		case 4: // Full anonymization, no IP stored
+			if ($is_ipv6) {
+				return '0:0:0:0:0:0:0:0';
+			} else {
+				return '0.0.0.0';
+			}
+	}
 }
 
 /**
