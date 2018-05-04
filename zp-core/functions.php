@@ -2131,7 +2131,7 @@ function load_jQuery_scripts($where, $ui = true) {
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-1.12.1.min.js" type="text/javascript"></script>
 		<?php
 	}
-	switch (getOption('jQuery_debug_' . $where)) {
+	switch (getOption('jQuery_Migrate_' . $where)) {
 		case 0: //disabled
 			break;
 		case 1: //production version

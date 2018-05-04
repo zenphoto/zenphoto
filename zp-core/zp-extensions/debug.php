@@ -69,8 +69,8 @@ class debug {
 			setOptionDefault('debug_marks', serialize($list));
 
 			$version = debug::version(true);
-			setOptionDefault('jQuery_debug_theme', 1);
-			setOptionDefault('jQuery_debug_admin', 0);
+			setOptionDefault('jQuery_Migrate_theme', 0);
+			setOptionDefault('jQuery_Migrate_admin', 0);
 			setOptionDefault('markRelease_state', $version);
 		}
 	}
