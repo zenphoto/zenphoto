@@ -971,7 +971,8 @@ input.tags {
 .overview-section {
 	width: 550px;
 	margin: 0 0 15px 0px;
-	padding: 0px;
+	padding: 0;
+	margin-right: 10px;
 	float: left;
 }
 
@@ -999,6 +1000,11 @@ input.tags {
 
 .overview-install-info {
 	z-index: 50;
+}
+
+.overview_list {
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .overview_utilities {
