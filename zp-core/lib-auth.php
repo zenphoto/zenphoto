@@ -118,16 +118,6 @@ class _Authority {
 		switch ($option) {
 			case 'password_strength':
 				?>
-				<style>
-					#strength-handle {
-						width: 3em;
-						height: 1.6em;
-						top: 50%;
-						margin-top: -.8em;
-						text-align: center;
-						line-height: 1.6em;
-					}
-				</style>
 				<input type="hidden" size="3" id="password_strength" name="password_strength" value="<?php echo getOption('password_strength'); ?>" />
 				<script type="text/javascript">
 					// <!-- <![CDATA[

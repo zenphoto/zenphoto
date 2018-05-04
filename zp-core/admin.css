@@ -1067,6 +1067,18 @@ input.tags {
 	font-size: 100%;
 }
 
+#slider-password_strength {
+	background-size: 100%;
+}
+
+#strength-handle {
+	width: 3em;
+	height: 1.6em;
+	top: 50%;
+	margin-top: -.8em;
+	text-align: center;
+	line-height: 1.6em;
+}
 
 #albumselect {
 	padding-top: 10px;
