@@ -443,7 +443,13 @@ function getHeadTitle($separator = ' | ', $listparents = true) {
 			break;
 		default: // for all other possible static custom pages
 			$custompage = stripSuffix($_zp_gallery_page);
-			$standard = array('contact' => gettext('Contact'), 'register' => gettext('Register'), 'search' => gettext('Search'), 'archive' => gettext('Archive view'), 'password' => gettext('Password required'));
+			$standard = array(
+					'contact' => gettext('Contact'),
+					'register' => gettext('Register'),
+					'search' => gettext('Search'),
+					'archive' => gettext('Archive view'),
+					'password' => gettext('Password required')
+			);
 			if (is_object($_myFavorites)) {
 				$standard['favorites'] = gettext('My favorites');
 			}
