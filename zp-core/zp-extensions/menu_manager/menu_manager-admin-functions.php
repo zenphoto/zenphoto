@@ -283,7 +283,11 @@ function getMenuSetSelector($active) {
 			$menusets[$set['menuset']] = $set['menuset'];
 		}
 		natcasesort($menusets);
-	} else {
+	}
+	if ($menuset && !in_array($menuset, $menusets)) {
+		$menusets[$menuset] = $menuset;
+	}
+	if (empty($menusets)) {
 		return NULL;
 	}
 

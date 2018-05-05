@@ -1,9 +1,7 @@
 <?php
-
 /**
  * @package plugins/menu_manager
  */
-
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 if (extensionEnabled('zenpage')) {
@@ -144,7 +142,7 @@ if (extensionEnabled('zenpage')) {
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Custom link")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("Creates a dynamic link. The string will be evaluated by PHP to create the link.")); ?>');
-							$('#link').prop('disabled',false);
+							$('#link').prop('disabled', false);
 							$('#link_label').html('<?php echo js_encode(gettext('URL')); ?>');
 							$('#titleinput').show();
 							break;
@@ -152,7 +150,7 @@ if (extensionEnabled('zenpage')) {
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Custom link")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("Creates a link outside the zenphoto structure. Use of a full URL is recommended (e.g. http://www.domain.com).")); ?>');
-							$('#link').prop('disabled',false);
+							$('#link').prop('disabled', false);
 							$('#link_label').html('<?php echo js_encode(gettext('URL')); ?>');
 							$('#titleinput').show();
 							break;
@@ -167,7 +165,7 @@ if (extensionEnabled('zenpage')) {
 							$('#selector').html('<?php echo js_encode(gettext("Function")); ?>');
 							$('#description').html('<?php echo js_encode(gettext('Executes the PHP function provided.')); ?>');
 							$('#link_label').html('<?php echo js_encode(gettext('Function')); ?>');
-							$('#link').prop('disabled',false);
+							$('#link').prop('disabled', false);
 							$('#titleinput').show();
 							$('#include_li_label').show();
 							break;
@@ -176,7 +174,7 @@ if (extensionEnabled('zenpage')) {
 							$('#selector').html('<?php echo js_encode(gettext("HTML")); ?>');
 							$('#description').html('<?php echo js_encode(gettext('Inserts custom HTML.')); ?>');
 							$('#link_label').html('<?php echo js_encode(gettext('HTML')); ?>');
-							$('#link').prop('disabled',false);
+							$('#link').prop('disabled', false);
 							$('#titleinput').show();
 							$('#include_li_label').show();
 							break;
@@ -348,20 +346,20 @@ if (is_array($result)) {
 								<td>
 									<label id="show_visible" for="show" style="display: inline">
 										<input name="show" type="checkbox" id="show" value="1" <?php
-										if ($result['show'] == 1) {
-											echo "checked='checked'";
-										}
-										?> style="display: inline" />
+									if ($result['show'] == 1) {
+										echo "checked='checked'";
+									}
+									?> style="display: inline" />
 													 <?php echo gettext("published"); ?>
 									</label>
 								</td>
 								<td>
 									<label id="include_li_label" style="display: inline">
 										<input name="include_li" type="checkbox" id="include_li" value="1" <?php
-										if ($result['include_li'] == 1) {
-											echo "checked='checked'";
-										}
-										?> style="display: inline" />
+													 if ($result['include_li'] == 1) {
+														 echo "checked='checked'";
+													 }
+													 ?> style="display: inline" />
 													 <?php echo gettext("Include <em>&lt;LI&gt;</em> element"); ?>
 									</label>
 								</td>
@@ -371,10 +369,10 @@ if (is_array($result)) {
 									<label>
 										<span class="nowrap">
 											<input name="span" type="checkbox" id="span" value="1" <?php
-											if ($result['span_id'] || $result['span_class']) {
-												echo "checked='checked'";
-											}
-											?> style="display: inline" />
+													 if ($result['span_id'] || $result['span_class']) {
+														 echo "checked='checked'";
+													 }
+													 ?> style="display: inline" />
 														 <?php echo gettext("Add <em>span</em> tags"); ?>
 										</span>
 									</label>
