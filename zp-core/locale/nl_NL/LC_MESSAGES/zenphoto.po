@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-05 21:17+0200\n"
+"POT-Creation-Date: 2018-05-05 22:45+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -5260,16 +5260,16 @@ msgstr "Sterkte van anonimiseren"
 #: zp-core/admin-options.php:3336
 msgid ""
 "Zenphoto stores the IP address of visitors on several occasions (e.g. "
-"rating, spam filtering, comment posting). In some juristidictoons like the "
-"EU and its GDPR the IP address is considered private information and "
-"therefore it is require to not store the full IP address or no IP at all."
-"Choose your level of anonymization so parts are replaced by 0. This covers "
-"both IPv4 (1.1.1.0) and IPv6 (1:1:1:1:1:1:0:0) addresses."
+"rating, spam filtering, comment posting). In some jurisdictions like the EU "
+"and its GDPR the IP address is considered private information and therefore "
+"it is required to not store the full IP address or no IP at all.Choose your "
+"level of anonymization so parts are replaced by 0. This covers both IPv4 "
+"(1.1.1.0) and IPv6 (1:1:1:1:1:1:0:0) addresses."
 msgstr ""
 "Zenphoto bewaart het IP-adres van bezoekers o.a. voor waarderingen, "
 "spamfiltering en reacties. In sommige landen echter wordt het IP-adres "
 "beschouwd als privé informatie en is het daarom verboden het complete IP-"
-"adres te bewaren. Soms mage helemaal geen IP-adres bewaard worden. Kies de "
+"adres te bewaren. Soms mag helemaal geen IP-adres bewaard worden. Kies de "
 "sterkte van anonimiseren waarbij gedeeltes worden vervangen door 0. Dit "
 "geldt voor IPv4 (1.1.1.0) en en IPv6 (1:1:1:1:1:1:0:0) adressen."
 
@@ -11758,9 +11758,6 @@ msgid "login"
 msgstr "login"
 
 #: zp-core/template-functions.php:4469
-#| msgid ""
-#| "<a href=\"http://www.zenphoto.org\" title=\"The simpler media website CMS"
-#| "\">Zen<strong>photo</strong></a> version %1$s"
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
 "website CMS\">Zenphoto</a>"
@@ -14070,6 +14067,7 @@ msgstr "Voer CAPTCHA in<strong>*</strong>"
 
 #: zp-core/zp-extensions/comment_form/comment_form.php:95
 #: zp-core/zp-extensions/contact_form/form.php:134
+#: zp-core/zp-extensions/register_user/register_user_form.php:110
 msgid ""
 "By using this form you agree with the storage and handling of your data by "
 "this website"
@@ -19070,14 +19068,6 @@ msgstr "E-mail<strong>*</strong> (dit is meteen ook je gebruikers ID)"
 msgid "User ID"
 msgstr "Gebruikers ID"
 
-#: zp-core/zp-extensions/register_user/register_user_form.php:110
-msgid ""
-"By using this form you agree with the storage and handling of your data by "
-"this website*"
-msgstr ""
-"Door dit formulier te gebruiken stemt u in met de wijze waarop deze website "
-"met uw gegevens omgaat*"
-
 #: zp-core/zp-extensions/register_user/register_user_form.php:114
 msgid "<strong>*</strong>Required"
 msgstr "<strong>*</strong> Verplichte velden"
@@ -23806,6 +23796,13 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:65
 msgid "Sample CAPTCHA image"
 msgstr "Voorbeeld van CAPTCHA"
+
+#~ msgid ""
+#~ "By using this form you agree with the storage and handling of your data "
+#~ "by this website*"
+#~ msgstr ""
+#~ "Door dit formulier te gebruiken stemt u in met de wijze waarop deze "
+#~ "website met uw gegevens omgaat*"
 
 #~ msgid "Anonym IP"
 #~ msgstr "Anoniem IP-adres"
