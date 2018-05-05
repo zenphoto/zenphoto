@@ -3334,7 +3334,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td width="175">
 										<p><?php echo gettext('Zenphoto stores the IP address of visitors on several occasions (e.g. rating, spam filtering, comment posting). '
-														. 'In some juristidictoons like the EU and its GDPR the IP address is considered private information and therefore it is require to not store the full IP address or no IP at all.'
+														. 'In some jurisdictions like the EU and its GDPR the IP address is considered private information and therefore it is required to not store the full IP address or no IP at all.'
 														. 'Choose your level of anonymization so parts are replaced by 0. This covers both IPv4 (1.1.1.0) and IPv6 (1:1:1:1:1:1:0:0) addresses.'); ?>
 										</p>
 									</td>
