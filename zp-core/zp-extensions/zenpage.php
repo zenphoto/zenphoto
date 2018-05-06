@@ -11,7 +11,7 @@
  * You could even run an audio or podcast blog with zenphoto and zenpage.
  *
  * <b>Features</b>
- * <ul>
+ * <ol>
  * <li>Fully integrated with ZenPhoto20</li>
  * <li>Custom page management</li>
  * <li>News section with nested categories (blog)</li>
@@ -24,7 +24,7 @@
  * <li>Localization and multi-lingual</li>
  * <li>WSIWYG text editor {@link "http://tinymce.moxiecode.com/index.php TinyMCE} with Ajax File Manager included</li>
  * <li>TinyMCE plugin <i>tinyZenpage</i> to include zenphoto and zenpage items into your articles or pages</li>
- * </ul>
+ * </ol>
  *
  *
  *

@@ -15,7 +15,7 @@
  * <b>NOTE:</b> This link is present only when the browsing client is a mobile device!
  *
  * Class <var>mobile</var> methods you can use in your theme:
- * <ul>
+ * <ol>
  * 	<li>phone is connected.
  * 	<ul>
  * 		<li>isiPhone()</li>
@@ -68,7 +68,7 @@
  * 		<li>isMidori()</li>
  * 	</ul>
  * </li>
- * </ul>
+ * </ol>
  *
  * @package plugins/mobileTheme
  * @pluginCategory theme

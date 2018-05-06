@@ -7,11 +7,11 @@
  * <var>%USER_PLUGIN_FOLDER%/tinymce/config</var> or <var>%THEMEFOLDER%/theme_name/tinymce/config</var> folder.
  * The naming convention for these files is use prefix the file name with the intended
  * use, e.g.
- * <ul>
+ * <ol>
  * 	<li>zenphoto-&lt;name&gt;.php</li>
  * 	<li>zenpage-&lt;name&gt;.php</li>
  * 	<li>comment-&lt;name&gt;.php</li>
- * </ul>
+ * </ol>
  *
  * @package plugins/tinymce
  * @pluginCategory admin

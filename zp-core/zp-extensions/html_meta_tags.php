@@ -2,12 +2,12 @@
 
 /**
  * The plugin creates:
- * <ul>
+ * <ol>
  * <li><meta> tags using general existing info like <i>gallery description</i>, <i>tags</i> or Zenpage <i>news categories</i>.</li>
  * <li>Support for <var><link rel="canonical" href="..." /></var></li>
  * <li>Open Graph tags for social sharing</li>
  * <li>Pinterest sharing tag</li>
- * </ul>
+ * </ol>
  *
  * Just enable the plugin and the meta data will be inserted into your <var><head></var> section.
  * Use the plugin's options to choose which tags you want printed.

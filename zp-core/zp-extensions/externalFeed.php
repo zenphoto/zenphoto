@@ -11,9 +11,9 @@
  * Feed types:
  *
  * Supports all RSS feed options plus individual Image, News, and Page requests:
- * <ul>
+ * <ol>
  * 	<li>?external=gallery
- * 		<ul>
+ * 		<ol>
  * 			<li>&album=<i>album</i> for an album</li>
  * 			<li>&album[]=<i>album</i>&album[]=>i>album</i>... for a list of albums</li>
  * 			<li>&album=<i>album</i>&image=<i>image</i> for an image</li>
@@ -21,21 +21,21 @@
  *
  * 				add &size=<i>size</i> to the image request to select a particular image size. (This
  * 				cannot be larger than the plugin's image size option.)
- * 		</ul>
+ * 		</ol>
  * 	</li>
  * 	<li>?external=news
- * 		<ul>
+ * 		<ol>
  * 			<li>&titlelink=<i>article</i> for an article</li>
  * 			<li>&titlelink[]=<i>article</i>&titlelink[]=<i>article</i>... for a list of articles</li>
- * 		</ul>
+ * 		</ol>
  * 	</li>
  * 	<li>?external=news
- * 		<ul>
+ * 		<ol>
  * 			<li>&titlelink=<i>page</i> for a page</li>
  * 			<li>&titlelink[]=<i>page</i>&titlelink[]=<i>page</i>... for a list of pages</li>
- * 	 </ul>
+ * 	 </ol>
  * 	</li>
- * </ul>
+ * </ol>
  *
  * @author Stephen Billard (sbillard)
  *

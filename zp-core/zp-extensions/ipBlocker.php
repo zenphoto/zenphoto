@@ -1,10 +1,10 @@
 <?php
 /**
  * The plugin provides two services:
- * <ul>
+ * <ol>
  * 	<li>IP address filtering</li>
  * 	<li>Detection of <i>password probing</i> attempts
- * </ul>
+ * </ol>
  *
  * <b>IP address filtering:</b>
  *

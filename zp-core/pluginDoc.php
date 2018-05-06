@@ -1,5 +1,4 @@
 <?php
-
 /**
  *
  * Displays a "plugin usage" document based on the plugin's doc comment block.
@@ -12,7 +11,8 @@
  * <var> mono-spaced text
  * <code> code blocks (Note: PHPDocs will create an ordered list of the enclosed text)
  * <hr> horizontal rule
- * <ul><li>, <ol><li> lists
+ * <ul><li> bulleted list
+ * <ol><li> lists
  * <pre>
  * <br> line break
  * </code>
@@ -31,6 +31,8 @@
  * @pluginCategory development
  */
 // force UTF-8 Ø
+
+global $_zp_CMS;
 
 function processCommentBlock($commentBlock) {
 	global $plugin_author, $subpackage;
@@ -80,7 +82,7 @@ function processCommentBlock($commentBlock) {
 	$empty = false;
 	$lines = explode("\n", strtr($commentBlock, $const_tr));
 	foreach ($lines as $line) {
-		$line = trim(preg_replace('/^\s*\*/', '', $line));
+		$line = trim(preg_replace('~^\s*\*~', '', $line));
 		if (empty($line)) {
 			if (!$empty) {
 				if ($par) {
@@ -141,6 +143,7 @@ function processCommentBlock($commentBlock) {
 					}
 				}
 				$doc .= strtr(html_encodeTagged($line), array_merge($tags, $markup)) . ' ';
+
 				$empty = false;
 			}
 		}
@@ -321,8 +324,11 @@ if (!defined('OFFSET_PATH')) {
 					margin-left: 3em;
 				}
 
-
-				ul, ol {
+				ul {
+					list-style: bullet;
+					padding: 0;
+				}
+				ol {
 					list-style: none;
 					padding: 0;
 				}
@@ -417,7 +423,7 @@ if (!defined('OFFSET_PATH')) {
 							<hr />
 							<p>
 								<?php echo ngettext('Option:', 'Options:', count($options)); ?>
-								<ul class="options">
+								<ol class="options">
 									<?php
 									foreach ($options as $option) {
 										if (array_key_exists($option, $supportedOptions)) {
@@ -437,7 +443,7 @@ if (!defined('OFFSET_PATH')) {
 										}
 									}
 									?>
-								</ul>
+								</ol>
 							</p>
 							<?php
 							if (!empty($notes)) {

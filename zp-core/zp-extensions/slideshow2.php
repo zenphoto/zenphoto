@@ -20,13 +20,14 @@
  * Content macro support:
  * Use [SLIDESHOW <albumname> <true/false for control] for showing a slideshow within image/album descriptions or Zenpage article and page contents.
  * The slideshow size options must fit the space
+ * 
  * Notes:
- * <ul>
+ * <ol>
  * 	<li>The slideshow scripts must be enabled for the pages you wish to use it on.</li>
  * 	<li>Use only one slideshow per page to avoid CSS conflicts.</li>
  * 	<li>Also your theme might require extra CSS for this usage, especially the controls.</li>
  * 	<li>This only creates a slideshow in jQuery mode, no matter how the mode is set.</li>
- * </ul>
+ * </ol>
  *
  * @author Malte Müller (acrylian)
  * @package plugins/slideshow2
