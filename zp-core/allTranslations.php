@@ -51,6 +51,7 @@ gettext("Who was your favorite singer?");
 gettext("When did you first get a computer?");
 gettext("How much wood could a woodchuck chuck if a woodchuck could chuck wood?");
 gettext("What is the date of the Ides of March?");
+gettext('Check to acknowledge the site <a href="%s">usage policy</a>.');
 gettext('News');
 
 /* zp-core/zp-extensions/contact_form.php */

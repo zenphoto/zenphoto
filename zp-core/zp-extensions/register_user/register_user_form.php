@@ -108,6 +108,6 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		}
 		?>
 		<p><?php echo gettext('<strong>*</strong>Required'); ?></p>
-		<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Submit'); ?></button>
+		<?php policySubmitButton(gettext('Submit'), $class); ?>
 	</form>
 </div>

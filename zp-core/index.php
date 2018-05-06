@@ -42,7 +42,7 @@ require_once(dirname(__FILE__) . '/template-functions.php');
 checkInstall();
 // who cares if MOD_REWRITE is set. If we somehow got redirected here, handle the rewrite
 rewriteHandler();
-
+recordPolicyACK();
 //$_zp_script_timer['require'] = microtime();
 /**
  * Invoke the controller to handle requests

@@ -3908,39 +3908,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-							// <!-- <![CDATA[
-							var within = <?php echo (int) $within; ?>;
-							function search_(way) {
-								within = way;
-								if (way) {
-									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-								} else {
-									lastsearch = '';
-									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-								}
-								$('#search_input').val('');
-							}
-							$('#search_form').submit(function () {
-								if (within) {
-									var newsearch = $.trim($('#search_input').val());
-									if (newsearch.substring(newsearch.length - 1) == ',') {
-										newsearch = newsearch.substr(0, newsearch.length - 1);
-									}
-									if (newsearch.length > 0) {
-										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-									} else {
-										$('#search_input').val('<?php echo $searchwords; ?>');
-									}
-								}
-								return true;
-							});
-							function search_all() {
-								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-								var check = $('#SEARCH_checkall').prop('checked');
-								$('.SEARCH_checkall').prop('checked', check);
-							}
+													// <!-- <![CDATA[
+													var within = <?php echo (int) $within; ?>;
+													function search_(way) {
+														within = way;
+														if (way) {
+															$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+														} else {
+															lastsearch = '';
+															$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+														}
+														$('#search_input').val('');
+													}
+													$('#search_form').submit(function () {
+														if (within) {
+															var newsearch = $.trim($('#search_input').val());
+															if (newsearch.substring(newsearch.length - 1) == ',') {
+																newsearch = newsearch.substr(0, newsearch.length - 1);
+															}
+															if (newsearch.length > 0) {
+																$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+															} else {
+																$('#search_input').val('<?php echo $searchwords; ?>');
+															}
+														}
+														return true;
+													});
+													function search_all() {
+														//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+														var check = $('#SEARCH_checkall').prop('checked');
+														$('.SEARCH_checkall').prop('checked', check);
+													}
 
-							// ]]> -->
+													// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
@@ -4313,6 +4313,42 @@ function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
 		echo 'none ';
 	}
 	echo " -->";
+}
+
+function policySubmitButton($buttonText, $buttonClass = NULL, $buttonExtra = NULL) {
+	global $_zp_current_admin_obj;
+	if (getOption('GDPR_acknowledge') && !($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && !zp_getCookie('policyACK')) {
+		$buttonExtra .= ' style="display:none;"';
+		?>
+		<span id="GDPR_acknowledge">
+			<input type="checkbox" name="policy_acknowledge" onclick="$('#submitbutton').show();
+							$('#GDPR_acknowledge').hide();">
+						 <?php
+						 echo sprintf(get_language_string(getOption('GDPR_text')), getOption('GDPR_URL'));
+						 ?>
+		</span>
+		<?php
+	}
+	?>
+	<button id="submitbutton" class="button buttons <?php echo $buttonClass; ?>"<?php echo $buttonExtra; ?>>
+		<?php echo $buttonText; ?>
+	</button>
+	<?php
+}
+
+function recordPolicyACK($user = NULL) {
+	global $_zp_current_admin_obj;
+	if (is_null($user)) {
+		$user = $_zp_current_admin_obj;
+	}
+	if (isset($_POST['policy_acknowledge'])) {
+		if ($user) {
+			$user->setPolicyAck(1);
+			$user->save();
+		} else {
+			zp_setCookie('policyACK', 1);
+		}
+	}
 }
 
 /**

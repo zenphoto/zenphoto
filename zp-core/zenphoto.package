@@ -1568,6 +1568,7 @@ zp-core/zp-extensions/favoritesAlbums.php
 zp-core/zp-extensions/favoritesHandler.php
 zp-core/zp-extensions/flag_thumbnail.php
 zp-core/zp-extensions/galleryArticles.php
+zp-core/zp-extensions/GDPR_required.php
 zp-core/zp-extensions/googleLogin.php
 zp-core/zp-extensions/googleMap.php
 zp-core/zp-extensions/hitcounter.php
@@ -8305,4 +8306,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8307
+8308

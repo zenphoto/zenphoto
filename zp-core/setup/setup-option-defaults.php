@@ -399,6 +399,7 @@ setOptionDefault('style_tags', "abbr => (title => ())\n" .
 				"strong => ()\n");
 //	insure tags are in lower case!
 setOption('allowed_tags', strtolower(getOption('allowed_tags')));
+setOptionDefault('GDPR_text', getAllTranslations('Check to acknowledge the site <a href="%s">usage policy</a>.'));
 
 setOptionDefault('full_image_quality', 75);
 
