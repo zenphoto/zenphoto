@@ -73,10 +73,33 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.6.2.2</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.6.2.3</h2>
 <h2>General</h2>
 <p>This release fixes multiple bugs and security holes. For details see the change log.</p>
 <p>There has been a slight reorganization of the Administrative Overview section. The "Installation information" section is now a separate page accessible from the OVERVIEW fly-out. User information has been added to the Gallery stats display.</p>
+<h2>GDPR</h2>
+<p>Some tools have been added to help sites conform to the <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>. There is a new general option, <em>Usage policy</em>, which if enabled will force viewers to acknowledge your site usage policy.  A new function, <code>policySubmitButton()</code>, will display a checkbox until the viewer has acknowledged the policy (by checking the box.) The "submit" button replaces this checkbox once the acknowledgement has occurred. </p>
+<p>The acknowledged state is persistent. For a registered user it remains until cleared by the administrator. For anonymous visitors it is retained by a cookie so will persist until the cookie expires. (If <em>gallery sessions</em> is enabled it persists for the visitor's session.)</p>
+<p>Standard forms, such as the <em>comment form</em>, which may capture user data implement this button. There is also a new plugin, <em>GDPR_required, </em>that allows you to redirect first time viewers to your site usage page for confirmation before they can view any other content.</p>
+<p><em>GDPR and IP addresses</em></p>
+<p>The GDPR states that IP addresses should be considered personal data as it enters the scope of ‘<em>online identifiers</em>’. See the description of <a href="https://eugdprcompliant.com/personal-data/">personal data</a>.</p>
+<p>Your site usage policy statement may need to address these uses. They are described below:</p>
+<p>Security uses:</p>
+<ol>
+<li>The <em>accessThreshold plugin</em> records site visit frequency by IP address for the purpose of blocking denial of service attacks.</li>
+<li>The <em>IP_blocker plugin</em> allows an administrator to manually enter an IP address that is to be denied (allowed) access to the site.</li>
+<li>The security log contains the IP address of site which caused the security log entry.</li>
+</ol>
+<p>Uses as a unique identifier*: </p>
+<ol>
+<li>Cached searches</li>
+<li>Search statistics</li>
+<li>Rating (but the IP may be hashed if the <em>rating_hash_ip </em>option is set.)</li>
+<li>Recorded comments</li>
+</ol>
+<p>*To mitigate these issues, except for security purposes, ZenPhoto20 will use an IP address only for anonymous site visitors. For logged on users the identification will be by <em>username</em>.</p>
+<h2>jQuery</h2>
+<p>We have migrated to <em>jQuery </em>version 3.3 with this release since older versions of jQuery are no longer in support.<em> jQuery v3.3</em> has several deprecations that require script upgrades. See the <a href="https://jquery.com/upgrade-guide/3.0/">jQuery Core 3.0 Upgrade Guide</a> for details. ZenPhoto20 now has provisions to support the <a href="https://github.com/jquery/jquery-migrate/#README"><em>jQuery Migrate Plugin</em></a> via options in the <em>Debug</em> plugin. You may need to set these options to run or update incompatible scripts.</p>
 <p><strong>Tags</strong></p>
 <p><em>Tags</em> may now be classified as "private." Within tag administration, private tags are indicated by a highlight, e.g. <span style="background-color: gold;">aTag</span>. Only users with <em>TAGS_RIGHTS</em> will have visibility to private tags. This means they will not show up in tag suggestions, tag clouds, or search results for the general public or for users who do not have <em>TAGS_RIGHTS</em>. </p>
 <p>Private tags may be used for such things as identifying images for dynamic albums without exposing this organization to the site visitors. For custom search results you may invoke the class search method <code>setSearchPrivateTags()</code> to cause private tags to be found.</p>
@@ -84,6 +107,8 @@
 <p>Processing of search strings has been enhances. You may now use the backslash (\) charaacter to escape a quotation thus rendering the mark a literal character rather than the delimiter for a string sequence. For example searching on <code>123"45&amp;67"890</code> would normally render a search string of <code>12345&amp;67890</code>. (The &amp; is treated as part of the string, not the AND operator.) <code>123\"45&amp;67\"890</code> would result in two target strings, <code>123"45</code> and  <code>67"890</code>, both of which must be present (because of the &amp;.)</p>
 <p>There is now a search property named <code>specialCharacters</code>. it is an array containing indexed by character (quotation marks and backslash) If you set the value of a character to false it will have no special meaning in the parsing of search strings. (E.g. <code>$search_engine-&gt;specialCharacters['\\]=false;</code> will disable the escape character and treat it simply as a backslash.</p>
 <h2>Plugins</h2>
+<p><em>GDPR_required</em></p>
+<p>A plugin to require that visitors view and acknowledge a site policy page upon the first visit to your site. The plugin requires that zenpage be implemented for the theme and that you have created a<em> zenpage page</em> object which states the site usage policy. See the plugin usage information for implementation details.</p>
 <p><em>Zenpage</em></p>
 <p>There is now an option, <em>News label,</em> to set the "name" of news items. This will allow you to show a different name, for instance "Blog," on your website. The option also changes the rewrite token for <em>news</em> to match. For multilingual sites, the token will be set from the site language string for the option if present. If not it will default to the string for the current locale, the en_US string, or the first language string, which ever is present.</p>
 <p>Note: Themes should now use the define <code>NEWS_LABEL</code> instead of <code>gettext("News")</code>. The distributed themes have been updated to use <code>NEWS_LABEL</code> in places where the text "news" appeared. These changes include theme custom menus, but existing custom menus must be deleted and repopulated before the new structures will be used.</p>
