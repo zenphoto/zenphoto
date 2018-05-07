@@ -81,7 +81,6 @@ class GDPR_required {
 			$page = newPage(getOption('GDPR_page'));
 			$link = $page->getLink();
 			$me = getRequestURI();
-
 			if ($me == $link) {
 				$_GDPR_acknowledge_loaded = true;
 			} else {
