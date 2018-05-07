@@ -220,9 +220,11 @@ class Zenpage {
 	 * 													This parameter is not used for date archives
 	 * @param bool $sortdirection TRUE for descending, FALSE for ascending. Note: This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
+	 * @param obj $category Optional category to get the article from
+	 * @param string $author Optional author name to get the article of
 	 * @return array
 	 */
-	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL) {
+	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL, $author = null) {
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
 		$getunpublished_myitems = false;
 		if (empty($published)) {
@@ -249,10 +251,13 @@ class Zenpage {
 		if (is_null($sortorder)) {
 			$sortorder = $sortObj->getSortType('news');
 		}
-		$newsCacheIndex = "$sortorder-$sortdirection-$published-" . (bool) $sticky;
+		$newsCacheIndex = "$sortorder-$sortdirection-$published" . (bool) $sticky;
 		if ($category) {
 			$newsCacheIndex .= '-' . $category->getTitlelink();
 		}
+		if($author) {
+			$newsCacheIndex .= '-' . $author;
+		}  
 		if (isset($_zp_newsCache[$newsCacheIndex])) {
 			$result = $_zp_newsCache[$newsCacheIndex];
 		} else {
@@ -341,6 +346,14 @@ class Zenpage {
 						$getUnpublished = false;
 					}
 					break;
+			}
+			if ($author) {
+				if($cat || $show) {
+					$author_conjuction = ' AND ';
+				} else {
+					$author_conjuction = ' WHERE ';
+				}
+				$show .= $author_conjuction . ' author = ' .db_quote($author);
 			}
 			$order = " ORDER BY $sticky";
 
@@ -945,6 +958,34 @@ class Zenpage {
 			}
 		}
 		return $structure;
+	}
+	
+	/**
+	 * Gets all authors assigned to news articles or pages
+	 * 
+	 * @param string $type "news" or "pages"
+	 * @return array
+	 */
+	static public function getAllAuthors($type = 'news') {
+		$authors = array();
+		switch($type) {
+			default:
+			case 'news':
+				$table = 'news';
+				break;
+			case 'pages':
+				$table = 'pages';
+				break;
+		}
+		$sql = 'SELECT DISTINCT author FROM ' . prefix($table) . ' ORDER BY author ASC';
+		$resource = query($sql);
+		if ($resource) {
+			while ($item = db_fetch_assoc($resource)) {
+				$authors[] = $item['author'];
+			}
+		}
+		db_free_result($resource);
+		return $authors;
 	}
 
 	/**

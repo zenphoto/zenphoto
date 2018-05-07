@@ -130,13 +130,19 @@ datepickerJS();
 						list($sortorder, $sortdirection) = explode('-', $_GET['sortorder']);
 						$direction = $sortdirection == 'desc';
 					}
+					$catobj = NULL;
 					if (isset($_GET['category'])) {
 						$catobj = new ZenpageCategory(sanitize($_GET['category']));
-					} else {
-						$catobj = NULL;
+					} 
+					$author = null;
+					if (isset($_GET['author'])) {
+						$author = sanitize($_GET['author']);
+						if($author == 'all') {
+							$author = null;
+						}
 					}
-					$resultU = $_zp_zenpage->getArticles(0, 'unpublished', false, $sortorder, $direction, false, $catobj);
-					$result = $_zp_zenpage->getArticles(0, $published, false, $sortorder, $direction, false, $catobj);
+					$resultU = $_zp_zenpage->getArticles(0, 'unpublished', false, $sortorder, $direction, false, $catobj, $author);
+					$result = $_zp_zenpage->getArticles(0, $published, false, $sortorder, $direction, false, $catobj, $author);
 					foreach ($result as $key => $article) {
 						$article = new ZenpageNews($article['titlelink']);
 						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
@@ -181,7 +187,7 @@ datepickerJS();
 						} else {
 							$rangeset = getPageSelector($list, $articles_page);
 						}
-						$options = array_merge(array('page' => 'news', 'tab' => 'articles'), getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1)));
+						$options = array_merge(array('page' => 'news', 'tab' => 'articles'), getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'author' => 0)));
 						$result = array_slice($result, $offset, $articles_page);
 					} else {
 						$rangeset = $options = array();
@@ -190,11 +196,12 @@ datepickerJS();
           <span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU)); ?></span></h1>
         <div class="floatright">
 					<?php
-					printCategoryDropdown($subpage);
+					printCategoryDropdown();
 					printArticleDatesDropdown($subpage);
-					printUnpublishedDropdown($subpage);
-					printSortOrderDropdown($subpage);
-					printArticlesPerPageDropdown($subpage);
+					printUnpublishedDropdown();
+					printSortOrderDropdown();
+					printArticlesPerPageDropdown($subpage, $articles_page);
+					printAuthorDropdown();
 					?>
           <span class="buttons">
             <a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>"> <img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
@@ -202,7 +209,7 @@ datepickerJS();
           <br style="clear: both" />
         </div>
 				<?php
-				$option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1), '?'));
+				$option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1, 'author' => 0), '?'));
 				?>
         <form class="dirty-check" action="admin-news-articles.php<?php echo $option; ?>" method="post" name="checkeditems" id="form_zenpageitemlist" onsubmit="return confirmAction();" autocomplete="off">
 					<?php XSRFToken('checkeditems'); ?>

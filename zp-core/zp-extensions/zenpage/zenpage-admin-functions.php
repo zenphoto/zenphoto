@@ -552,7 +552,7 @@ function printArticleDatesDropdown() {
 	$datecount = $_zp_zenpage->getAllArticleDates();
 	$lastyear = "";
 	$nr = "";
-	$option = getNewsAdminOption(array('category' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1));
+	$option = getNewsAdminOption(array('category' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'author' => 0));
 	if (!isset($_GET['date'])) {
 		$selected = 'selected="selected"';
 	} else {
@@ -720,7 +720,7 @@ function printSortOrderDropdown() {
 			} else {
 				$orderdate_desc = "selected='selected'";
 			}
-			$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'articles_page' => 1));
+			$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'articles_page' => 1, 'author' => 0));
 			echo "<option $orderdate_desc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'date-desc'), $option)) . "'>" . gettext("Order by date descending") . "</option>\n";
 			echo "<option $orderdate_asc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'date-asc'), $option)) . "'>" . gettext("Order by date ascending") . "</option>\n";
 			echo "<option $ordertitle_desc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'title-desc'), $option)) . "'>" . gettext("Order by title descending") . "</option>\n";
@@ -765,7 +765,7 @@ function printCategoryDropdown() {
 	<form name ="AutoListBox2" id="categorydropdown" style="float:left" action="#" >
 		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
 			<?php
-			$option = getNewsAdminOption(array('date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1));
+			$option = getNewsAdminOption(array('date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'author' => 0));
 			echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All categories") . "</option>\n";
 
 			foreach ($result as $cat) {
@@ -810,13 +810,13 @@ function printCategoryDropdown() {
  * Prints the dropdown menu for the articles per page selector for the news articles list
  *
  */
-function printArticlesPerPageDropdown() {
-	global $_zp_zenpage, $subpage, $articles_page;
+function printArticlesPerPageDropdown($subpage, $articles_page) {
+	global $_zp_zenpage;
 	?>
-	<form name="AutoListBox5" id="articlesperpagedropdown" method="POST" style="float: left; margin-left: 10px;"	action="#">
+	<form name="AutoListBox6" id="articlesperpagedropdown" method="POST" style="float: left; margin-left: 10px;" action="#">
 		<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
 			<?php
-			$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0));
+			$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'author' => 0));
 			$list = array_unique(array(15, 30, 60, max(1, getOption('articles_per_page'))));
 			sort($list);
 			foreach ($list as $count) {
@@ -827,6 +827,45 @@ function printArticlesPerPageDropdown() {
 			?>
 			<option <?php if ($articles_page == 0) echo 'selected="selected"'; ?> value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('articles_page' => 'all'), $option)); ?>"><?php echo gettext("All"); ?></option>
 
+		</select>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			function gotoLink(form) {
+				var OptionIndex = form.ListBoxURL.selectedIndex;
+				parent.location = form.ListBoxURL.options[OptionIndex].value;
+			}
+			// ]]> -->
+		</script>
+		&nbsp;&nbsp;
+	</form>
+	<?php
+}
+
+/**
+ * Prints the dropdown menu all authors
+ */
+function printAuthorDropdown() {
+	global $_zp_zenpage;
+	$authors = Zenpage::getAllAuthors();
+	if (isset($_GET['author'])) {
+		$selected = '';
+		$current_author = sanitize($_GET['author']);
+	} else {
+		$selected = "selected='selected'";
+		$current_author = "";
+	}
+	?>
+	<form name="AutoListBox5" id="newssauthorsdropdown" method="POST" style="float: left; margin-left: 10px;"	action="#">
+		<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
+			<?php
+			$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'articles_page' => 1, 'sortorder' => 0));			
+			foreach ($authors as $author) {
+				?>
+				<option <?php if ($current_author == $author) echo 'selected="selected"'; ?>value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('author' => $author), $option)); ?>"><?php echo $author; ?></option>
+				<?php
+			}
+			?>
+			<option <?php echo $selected; ?>value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('author' => 'all'), $option)); ?>"><?php echo gettext("All authors"); ?></option>
 		</select>
 		<script type="text/javascript">
 			// <!-- <![CDATA[

@@ -366,11 +366,12 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
 	 * 											        This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
+	 * @param string $author Optional author name to get the article of
 	 * @return array
 	 */
-	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL) {
+	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $author = null) {
 		global $_zp_zenpage;
-		return $_zp_zenpage->getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this);
+		return $_zp_zenpage->getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this, $author);
 	}
 
 	/**
@@ -393,9 +394,8 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return int
 	 */
 	function getIndex($sortorder, $sortdirection, $sticky) {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
 		if ($this->index == NULL) {
-			$articles = $_zp_zenpage->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
+			$articles = $this->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
 				if ($this->getTitlelink() == $article['titlelink']) {
