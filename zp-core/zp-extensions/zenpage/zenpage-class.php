@@ -88,9 +88,10 @@ class Zenpage {
 	 * @param int $number number of pages to get (NULL by default for all)
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "id", "popular", "mostrated", "toprated", "random"
 	 * @param string $sortdirection false for ascenting, true for descending
+	 * @param string $author Optional author name to get the pages of
 	 * @return array
 	 */
-	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
+	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null) {
 		global $_zp_loggedin;
 		if (is_null($sortdirection)) {
 			$sortdirection = $this->getSortDirection('pages');
@@ -113,6 +114,9 @@ class Zenpage {
 			if ($toplevel)
 				$gettop = " WHERE parentid IS NULL";
 			$show = $gettop;
+		}
+		if ($author) {
+			$show .= ' AND author = ' . db_quote($author);
 		}
 		if ($sortdirection) {
 			$sortdir = ' DESC';
@@ -221,7 +225,7 @@ class Zenpage {
 	 * @param bool $sortdirection TRUE for descending, FALSE for ascending. Note: This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @param obj $category Optional category to get the article from
-	 * @param string $author Optional author name to get the article of
+	 * @param string $author Optional author name to get the articles of
 	 * @return array
 	 */
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL, $author = null) {
