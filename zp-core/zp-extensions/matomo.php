@@ -60,6 +60,7 @@ class matomoStats {
 			if (extensionEnabled('piwik')) {
 				enableExtension('matomo', 9 | ADMIN_PLUGIN | THEME_PLUGIN);
 			}
+			setOptionDefault('matomo_disablecookies', 0);
 		}
 	}
 
@@ -83,32 +84,37 @@ class matomoStats {
 				gettext('Enable Admin tracking') => array(
 						'key' => 'matomo_admintracking',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 2,
+						'order' => 3,
 						'desc' => gettext('Controls if you want Matomo to track users with <code>Admin</code> rights.')),
 				gettext('Main domain for subdomain tracking') => array(
 						'key' => 'matomo_sitedomain',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 2,
+						'order' => 4,
 						'multilingual' => false,
 						'desc' => gettext('Enter your site domain name if you also like to track all subdomains of it. Enter like <code>domain.com</code>.')),
 				gettext('Widgets: Embed code') => array(
 						'key' => 'matomo_widgets_code',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'order' => 1,
+						'order' => 5,
 						'multilingual' => false,
 						'desc' => gettext('Enter widget iframe code if you like to embed statistics to your Zenphoto backend. You can view it via a utility button afterwards. Visit the widget area on your Matomo install for more info.')),
 				gettext('Language to track') => array(
-								'order' => 2,
-								'key' => 'matomo_language_tracking',
-								'type' => OPTION_TYPE_SELECTOR,
-								'null_selection' => 'HTTP_Accept_Language',
-								'selections' => $langs,
-								'desc'=> gettext('Select in which language you want to track page titles. If none, the visitor language is used. '
-												. 'If you choose a single language it avoids tracking multiple title per page. '
-												. 'Note: It is rather not recommend to use this for SEO reasons as each language version of a page does count as separate content.'))
-				);
+						'order' => 6,
+						'key' => 'matomo_language_tracking',
+						'type' => OPTION_TYPE_SELECTOR,
+						'null_selection' => 'HTTP_Accept_Language',
+						'selections' => $langs,
+						'desc' => gettext('Select in which language you want to track page titles. If none, the visitor language is used. '
+										. 'If you choose a single language it avoids tracking multiple title per page. '
+										. 'Note: It is rather not recommend to use this for SEO reasons as each language version of a page does count as separate content.')),
+				gettext('Disable cookies') => array(
+						'key' => 'matomo_disablecookies',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 7,
+						'desc' => gettext('Enable this so Matomo does not use cookies to track visitors (less accurate tracking).')),
+		);
 	}
-	
+
 	/**
 	 * Adds the Matomo statistic script
 	 */
@@ -121,10 +127,19 @@ class matomoStats {
 			<!-- Matomo -->
 			<script type="text/javascript">
 				var _paq = _paq || [];
-				_paq.push(["setDocumentTitle", '<?php echo matomoStats::printDocumentTitle($lang_to_track); ?>']);	
-				<?php if ($sitedomain) { ?>
+				_paq.push(["setDocumentTitle", '<?php echo matomoStats::printDocumentTitle(); ?>']);
+			<?php
+			if ($sitedomain) {
+				?>
 					_paq.push(["setCookieDomain", "*.<?php echo $sitedomain; ?>"]);
-			<?php } ?>
+				<?php
+			}
+			if (getOption('matomo_disablecookies')) {
+				?>
+					_paq.push(['disableCookies']);
+				<?php
+			}
+			?>
 				_paq.push(['trackPageView']);
 				_paq.push(['enableLinkTracking']);
 				(function () {
@@ -163,7 +178,7 @@ class matomoStats {
 		$src = $url . '/index.php?module=CoreAdminHome&action=optOut&language=' . $userlocale;
 		return '<iframe style="border: 0; height: 200px; width: 100%;" src="' . $src . '"></iframe>';
 	}
-	
+
 	/**
 	 * The macro button for the utility page
 	 * @param type $macros
@@ -179,20 +194,20 @@ class matomoStats {
 		);
 		return $macros;
 	}
-	
+
 	/**
 	 * Gets the document title of the current page to track. Gets the title in a single language only if the option for single_language_tracking is set
 	 * @global string $_zp_current_locale
 	 */
 	static function printDocumentTitle() {
 		global $_zp_current_locale;
-		$lang_to_track = getOption('matomo_language_tracking');
-		if($lang_to_track != $_zp_current_locale && $lang_to_track != 'HTTP_Accept_Language') {
-			$original_locale = $_zp_current_locale;
-			$_zp_current_locale = $lang_to_track;
+		$locale_to_track = getOption('matomo_language_tracking');
+		if ($locale_to_track != $_zp_current_locale && $locale_to_track != 'HTTP_Accept_Language') {
+			$original_locale = getOption('locale');
+			setOption('locale', $locale_to_track, false);
 		}
 		echo js_encode(getHeadTitle());
-		$_zp_current_locale = $original_locale;
+		setOption('locale', $original_locale, false);
 	}
 
 }
