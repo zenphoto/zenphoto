@@ -416,53 +416,67 @@ if (!defined('OFFSET_PATH')) {
 								$options = array_keys($options);
 							} else {
 								$options = array_keys($supportedOptions);
-								natcasesort($options);
+								sort($options, SORT_NATURAL | SORT_FLAG_CASE);
 							}
 							$notes = array();
-							?>
-							<hr />
-							<p>
-								<?php echo ngettext('Option:', 'Options:', count($options)); ?>
-								<ol class="options">
-									<?php
-									foreach ($options as $option) {
-										if (array_key_exists($option, $supportedOptions)) {
-											$row = $supportedOptions[$option];
-											if ($row['type'] == OPTION_TYPE_NOTE) {
-												$notes[] = $row;
-											} else {
-												if (false !== $i = stripos($option, chr(0))) {
-													$option = substr($option, 0, $i);
-												}
-												if ($option) {
-													?>
-													<li><code><?php echo $option; ?></code></li>
-													<?php
-												}
-											}
+							foreach ($options as $key => $option) {
+								if (array_key_exists($option, $supportedOptions)) {
+									$row = $supportedOptions[$option];
+									if ($row['type'] == OPTION_TYPE_NOTE) {
+										$n = getBare($row['desc']);
+										if (!empty($n)) {
+											$row['desc'] = $n;
+											$notes[] = $row;
+										}
+										unset($options[$key]);
+									} else {
+										if (false !== $i = stripos($option, chr(0))) {
+											$option = substr($option, 0, $i);
+										}
+										if (!$option) {
+											unset($options[$key]);
 										}
 									}
-									?>
-								</ol>
-							</p>
-							<?php
+								} else {
+									unset($options[$key]);
+								}
+							}
+							if (!empty($options)) {
+								?>
+								<hr />
+								<p>
+									<?php echo ngettext('Option:', 'Options:', count($options)); ?>
+									<ol class="options">
+										<?php
+										foreach ($options as $option) {
+											if (false !== $i = stripos($option, chr(0))) {
+												$option = substr($option, 0, $i);
+											}
+											if ($option) {
+												?>
+												<li><code><?php echo $option; ?></code></li>
+												<?php
+											}
+										}
+										?>
+									</ol>
+								</p>
+								<?php
+							}
 							if (!empty($notes)) {
 								?>
 								<hr />
 								<p>
 									<?php echo gettext('Notes:'); ?>
-									<ul>
+									<ol>
 										<?php
 										foreach ($notes as $note) {
-											$n = getBare($note['desc']);
-											if (!empty($n)) {
-												?>
-												<li><code><?php echo $note['desc']; ?></li>
-												<?php
-											}
+											?>
+											<li><?php echo $note['desc']; ?></li>
+											<?php
 										}
 										?>
-									</ul>
+									</ol>
 								</p>
 								<?php
 							}
