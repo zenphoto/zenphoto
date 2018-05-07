@@ -19,8 +19,9 @@
  * 		<code><?php GDPR_required::button();?></code>
  * 		<br />
  * 		(This will place the policy button on the page.)
- * 		For most themes, <i>codeblock 2</i> will put the button just below your privacy statement.
- * 		But this may be theme dependent. Choose the <i>codeblock</i> which best locates the button.
+ * 		For most themes, <i>codeblock&nbsp;1</i> will put the button just below your privacy statement.
+ * 		But this is theme dependent. Choose the <i>codeblock</i> which best locates the button.
+ * 		(For Effervescence and Garland use <i>codeblock&nbsp;2</i>.)
  * 	</li>
  * 	<li>
  * 		Enable the <i>Usage policy</i> option on the general options page.
@@ -50,20 +51,27 @@ class GDPR_required {
 	function getOptionsSupported() {
 		global $_zp_CMS;
 		if (extensionEnabled('zenpage')) {
-			$possibilities = array();
-			foreach ($_zp_CMS->getPages(false) as $page) {
-				$possibilities[get_language_string($page['title'])] = $page['titlelink'];
-			}
-			if (empty($possibilities)) {
-				$options = array(
-						NULL => array('key' => 'GDPR_page', 'type' => OPTION_TYPE_NOTE,
-								'desc' => gettext('There are no pages to select from.'))
-				);
+			if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem(getCurrentTheme()) . '/pages.php')) {
+				$possibilities = array();
+				foreach ($_zp_CMS->getPages(false) as $page) {
+					$possibilities[get_language_string($page['title'])] = $page['titlelink'];
+				}
+				if (empty($possibilities)) {
+					$options = array(
+							NULL => array('key' => 'GDPR_page', 'type' => OPTION_TYPE_NOTE,
+									'desc' => gettext('There are no pages to select from.'))
+					);
+				} else {
+					$options = array(
+							gettext('Policy page') => array('key' => 'GDPR_page', 'type' => OPTION_TYPE_SELECTOR,
+									'selections' => $possibilities,
+									'desc' => gettext('The zenpage plugin is reqired but not enabled.'))
+					);
+				}
 			} else {
 				$options = array(
-						gettext('Policy page') => array('key' => 'GDPR_page', 'type' => OPTION_TYPE_SELECTOR,
-								'selections' => $possibilities,
-								'desc' => gettext('The zenpage plugin is reqired but not enabled.'))
+						gettext('Policy page') => array('key' => 'GDPR_page', 'type' => OPTION_TYPE_NOTE,
+								'desc' => gettext('The active theme has no <em>pages.php</em> script.'))
 				);
 			}
 		} else {
