@@ -134,15 +134,15 @@ class hitcounter {
 					// <!-- <![CDATA[
 					function hitcounter_insertIP() {
 						if ($('#hitcounter_ignoreIPList').val() == '') {
-							$('#hitcounter_ignoreIPList').val('<?php echo getUserIP(); ?>');
+							$('#hitcounter_ignoreIPList').val('<?php echo getUserID(); ?>');
 						} else {
-							$('#hitcounter_ignoreIPList').val($('#hitcounter_ignoreIPList').val() + ',<?php echo getUserIP(); ?>');
+							$('#hitcounter_ignoreIPList').val($('#hitcounter_ignoreIPList').val() + ',<?php echo getUserID(); ?>');
 						}
 						$('#hitcounter_ip_button').prop('disabled', true);
 					}
 					jQuery(window).on("load", function () {
 						var current = $('#hitcounter_ignoreIPList').val();
-						if (current.indexOf('<?php echo getUserIP(); ?>') < 0) {
+						if (current.indexOf('<?php echo getUserID(); ?>') < 0) {
 							$('#hitcounter_ip_button').prop('disabled', false);
 						}
 					});
@@ -165,7 +165,7 @@ class hitcounter {
 		if ($script && $valid) {
 			if (getOption('hitcounter_ignoreIPList_enable')) {
 				$ignoreIPAddressList = explode(',', str_replace(' ', '', getOption('hitcounter_ignoreIPList')));
-				$skip = in_array(getUserIP(), $ignoreIPAddressList);
+				$skip = in_array(getUserID(), $ignoreIPAddressList);
 			} else {
 				$skip = false;
 			}

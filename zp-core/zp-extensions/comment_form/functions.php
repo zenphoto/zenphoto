@@ -287,14 +287,14 @@ define('COMMENT_SEND_EMAIL', 32);
  * @param string $code_ok CAPTCHA hash expected
  * @param string $type 'albums' if it is an album or 'images' if it is an image comment
  * @param object $receiver the object (image or album) to which to post the comment
- * @param string $ip the IP address of the comment poster
+ * @param string $id the IP address of the comment poster
  * @param bool $private set to true if the comment is for the admin only
  * @param bool $anon set to true if the poster wishes to remain anonymous
  * @param string $customdata
  * @param bit $check bitmask of which fields must be checked. If set overrides the options
  * @return object
  */
-function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $customdata, $check = false) {
+function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $id, $private, $anon, $customdata, $check = false) {
 	global $_zp_captcha, $_zp_gallery, $_zp_authority, $_zp_comment_on_hold, $_zp_spamFilter;
 	if ($check === false) {
 		$whattocheck = 0;
@@ -349,7 +349,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	$commentobj->setWebsite($website);
 	$commentobj->setComment($comment);
 	$commentobj->setType($type);
-	$commentobj->setIP($ip);
+	$commentobj->setIP($id);
 	$commentobj->setPrivate($private);
 	$commentobj->setAnon($anon);
 	$commentobj->setInModeration(0);
@@ -384,7 +384,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	}
 	$moderate = 0;
 	if ($goodMessage && isset($_zp_spamFilter)) {
-		$goodMessage = $_zp_spamFilter->filterMessage($name, $email, $website, $comment, $receiver, $ip);
+		$goodMessage = $_zp_spamFilter->filterMessage($name, $email, $website, $comment, $receiver, $id);
 		switch ($goodMessage) {
 			case 0:
 				$commentobj->setInModeration(2);
@@ -596,7 +596,7 @@ function comment_form_handle_comment() {
 			} else {
 				$p_comment = '';
 			}
-			$p_server = getUserIP();
+			$p_server = getUserID();
 			if (isset($_POST['code'])) {
 				$code1 = sanitize($_POST['code'], 3);
 				$code2 = sanitize($_POST['code_h'], 3);

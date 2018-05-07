@@ -34,7 +34,7 @@ $plugin_description = gettext("Debugging aids.");
 $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'debug';
 
-zp_register_filter('admin_tabs', 'debug::tabs');
+zp_register_filter('admin_tabs', 'debug::tabs', 100);
 zp_register_filter('admin_utilities_buttons', 'debug::button');
 
 
@@ -179,17 +179,15 @@ class debug {
 			if (!isset($tabs['development'])) {
 				$tabs['development'] = array('text' => gettext("development"),
 						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/debug/admin_tab.php',
+						'default' => (zp_loggedin(ADMIN_RIGHTS)) ? 'phpinfo' : 'cookies',
 						'rights' => DEBUG_RIGHTS);
 			}
 			if (zp_loggedin(ADMIN_RIGHTS)) {
-				$tabs['development']['default'] = 'phpinfo';
 				$tabs['development']['subtabs'][gettext("phpinfo")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=phpinfo';
 				$tabs['development']['subtabs'][gettext("Locales")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=locale';
 				$tabs['development']['subtabs'][gettext("Session")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=session';
 				$tabs['development']['subtabs'][gettext("SERVER")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=server';
 				$tabs['development']['subtabs'][gettext("ENV")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=env';
-			} else {
-				$tabs['development']['default'] = 'cookie';
 			}
 			$tabs['development']['subtabs'][gettext("HTTP accept")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=http';
 			$tabs['development']['subtabs'][gettext("Cookies")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=cookie';

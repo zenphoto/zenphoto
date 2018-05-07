@@ -2015,7 +2015,7 @@ class SearchEngine {
 		$user = 'guest';
 		$authCookies = Zenphoto_Authority::getAuthCookies();
 		if (!empty($authCookies)) { // some sort of password exists, play it safe and make the tag unique
-			$user = getUserIP();
+			$user = getUserID();
 		}
 
 		$criteria = 'item:' . $table . ';' .

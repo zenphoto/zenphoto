@@ -99,7 +99,7 @@ class search_statistics {
 	static function handler($search_statistics, $type, $success, $dynamic, $iteration) {
 		if (!$dynamic) { // log unique user searches
 			$store = array('type' => $type, 'success' => $success, 'iteration' => $iteration, 'data' => $search_statistics);
-			$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("search_statistics", ' . db_quote(getUserIP()) . ',' . db_quote(serialize($store)) . ')';
+			$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("search_statistics", ' . db_quote(getUserID()) . ',' . db_quote(serialize($store)) . ')';
 			query($sql);
 		}
 		return $search_statistics;

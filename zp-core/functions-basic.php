@@ -62,6 +62,23 @@ function getUserIP() {
 }
 
 /**
+ * Returns the viewer's IDs
+ *
+ * This is his username if logged in, otherwise we use getUserIP()
+ *
+ * @return string
+ */
+function getUserID() {
+	global $_zp_current_admin_obj;
+	if (zp_loggedin()) {
+		$id = $_zp_current_admin_obj->getUser();
+	} else {
+		$id = getUserIP();
+	}
+	return $id;
+}
+
+/**
  * triggers an error
  *
  * @param string $message
@@ -507,7 +524,7 @@ function debugLogBacktrace($message, $omit = 0, $log = 'debug') {
 	if ($uri) {
 		$uri = "\n URI:" . urldecode(str_replace('\\', '/', $uri));
 	}
-	$uri .= "\n IP `" . getUserIP() . '`';
+	$uri .= "\n ID `" . getUserID() . '`';
 	if (is_object($_zp_current_admin_obj)) {
 		$uri .= "\n " . gettext('user') . ':' . $_zp_current_admin_obj->getUser();
 	}
