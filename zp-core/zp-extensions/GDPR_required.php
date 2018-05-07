@@ -76,18 +76,21 @@ class GDPR_required {
 	}
 
 	static function page() {
-		global $_GDPR_acknowledge_loaded;
-		$page = newPage(getOption('GDPR_page'));
-		$link = $page->getLink();
-		$me = getRequestURI();
+		global $_zp_current_admin_obj, $_GDPR_acknowledge_loaded;
+		if (getOption('GDPR_acknowledge') && !($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && zp_getCookie('policyACK') != getOption('GDPR_cookie')) {
+			$page = newPage(getOption('GDPR_page'));
+			$link = $page->getLink();
+			$me = getRequestURI();
 
-		if ($me == $link) {
-			$_GDPR_acknowledge_loaded = true;
-		} else {
-			//	redirect to the policy page
-			header("HTTP/1.0 307 Found");
-			header("Status: 307 Found");
-			header('Location: ' . $link);
+			if ($me == $link) {
+				$_GDPR_acknowledge_loaded = true;
+			} else {
+				//	redirect to the policy page
+				header("HTTP/1.0 307 Found");
+				header("Status: 307 Found");
+				header('Location: ' . $link);
+				exitZP();
+			}
 		}
 	}
 
@@ -106,8 +109,6 @@ class GDPR_required {
 }
 
 if (extensionEnabled('zenpage')) {
-	if (getOption('GDPR_acknowledge') && !($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && !zp_getCookie('policyACK')) {
-		zp_register_filter('theme_head', 'GDPR_required::page');
-	}
+	zp_register_filter('theme_head', 'GDPR_required::page');
 }
 ?>

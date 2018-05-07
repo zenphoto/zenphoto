@@ -4317,7 +4317,7 @@ function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
 
 function policySubmitButton($buttonText, $buttonClass = NULL, $buttonExtra = NULL) {
 	global $_zp_current_admin_obj;
-	if (getOption('GDPR_acknowledge') && !($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && !zp_getCookie('policyACK')) {
+	if (getOption('GDPR_acknowledge') && !($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && zp_getCookie('policyACK') != getOption('GDPR_cookie')) {
 		$buttonExtra .= ' style="display:none;"';
 		?>
 		<span id="GDPR_acknowledge">
@@ -4346,7 +4346,7 @@ function recordPolicyACK($user = NULL) {
 			$user->setPolicyAck(1);
 			$user->save();
 		} else {
-			zp_setCookie('policyACK', 1);
+			zp_setCookie('policyACK', getOption('GDPR_cookie'));
 		}
 	}
 }

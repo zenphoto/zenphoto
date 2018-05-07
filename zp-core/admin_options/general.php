@@ -90,12 +90,14 @@ function saveOptions() {
 			setOption('cookie_persistence', sanitize_numeric($_POST['cookie_persistence']));
 		}
 	}
+
 	setOption('GDPR_acknowledge', (int) isset($_POST['GDPR_acknowledge']));
 	setOption('GDPR_text', process_language_string_save('GDPR_text', 4));
 	setOption('GDPR_URL', sanitize($_POST['GDPR_URL']));
 	if (isset($_POST['GDPR_re-acknowledge']) && $_POST['GDPR_re-acknowledge']) {
 		$sql = 'UPDATE ' . prefix('administrators') . ' SET `policyACK`=0';
 		query($sql);
+		setOption('GDPR_cookie', microtime());
 	}
 
 	setOption('site_email_name', process_language_string_save('site_email_name', 3));
