@@ -255,10 +255,10 @@ $buttonlist = array();
 						setOption('getUpdates_lastCheck', time());
 					}
 					$newestVersionURI = getOption('getUpdates_latest');
-					$newestVersion = str_replace('setup-', '', stripSuffix(basename($newestVersionURI)));
+					$newestVersion = preg_replace('~[^0-9,.]~', '', str_replace('setup-', '', stripSuffix(basename($newestVersionURI))));
 
 					$zenphoto_version = explode('-', ZENPHOTO_VERSION);
-					$zenphoto_version = array_shift($zenphoto_version);
+					$zenphoto_version = preg_replace('~[^0-9,.]~', '', array_shift($zenphoto_version));
 
 					if (version_compare($newestVersion, $zenphoto_version, '>')) {
 						if (!isset($_SESSION['new_version_available'])) {
