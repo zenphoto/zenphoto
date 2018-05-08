@@ -131,15 +131,14 @@ class debug {
 
 	static function version($released) {
 		$o = explode('-', ZENPHOTO_VERSION . '-');
-		$originalVersion = $o[0] . $o[1];
 		if ($released) {
-			return $originalVersion;
+			return $o[0];
 		} else {
 			$options = '';
 			$list = getSerializedArray(getOption('debug_marks'));
 			sort($list);
 			$options = rtrim('-DEBUG_' . implode('_', $list), '_');
-			return $originalVersion . $options;
+			return $o[0] . $options;
 		}
 	}
 
