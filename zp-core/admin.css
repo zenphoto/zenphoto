@@ -1881,7 +1881,7 @@ ul.pagelist li.current {
 
 .textarea_hidden {
 	position: absolute !important;
-	left: -1000px !Important;
+	left: -9999px !Important;
 }
 
 /* icon legend

@@ -328,17 +328,9 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
 
 	if (!$skipform) {
 		?>
-		<script type="text/javaScript">
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-			var OptionIndex=form.ListBoxURL.selectedIndex;
-			parent.location = form.ListBoxURL.options[OptionIndex].value;
-			}
-			// ]]> -->
-		</script>
 		<form name="AutoListBox" action="#">
 			<p>
-				<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
+				<select name="ListBoxURL" size="1" onchange="zp_gotoLink(this.form);">
 					<?php
 					if (!empty($indexname)) {
 						$selected = checkSelectedAlbum("", "index");

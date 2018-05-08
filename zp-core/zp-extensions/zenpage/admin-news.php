@@ -72,10 +72,6 @@ updatePublished('news');
 		}
 	}
 
-	function gotoLink(form) {
-		var OptionIndex = form.ListBoxURL.selectedIndex;
-		parent.location = form.ListBoxURL.options[OptionIndex].value;
-	}
 	// ]]> -->
 </script>
 
