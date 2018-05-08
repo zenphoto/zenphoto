@@ -877,12 +877,10 @@ zp-core/zp-extensions/class-WEBdocs/tifDefault.png
 zp-core/zp-extensions/class-textobject
 zp-core/zp-extensions/class-textobject.php
 zp-core/zp-extensions/class-textobject/class-textobject_core.php
-zp-core/zp-extensions/class-textobject/deprecated-functions.php
 zp-core/zp-extensions/class-textobject/textDefault.png
 zp-core/zp-extensions/class-video
 zp-core/zp-extensions/class-video.php
 zp-core/zp-extensions/class-video/3gpDefault.png
-zp-core/zp-extensions/class-video/deprecated-functions.php
 zp-core/zp-extensions/class-video/flaDefault.png
 zp-core/zp-extensions/class-video/flvDefault.png
 zp-core/zp-extensions/class-video/getid3
@@ -994,7 +992,6 @@ zp-core/zp-extensions/comment_form.php
 zp-core/zp-extensions/comment_form/admin-comments.php
 zp-core/zp-extensions/comment_form/class-comment.php
 zp-core/zp-extensions/comment_form/comment_form.php
-zp-core/zp-extensions/comment_form/deprecated-functions.php
 zp-core/zp-extensions/comment_form/functions.php
 zp-core/zp-extensions/common
 zp-core/zp-extensions/common/adGallery
@@ -1032,7 +1029,6 @@ zp-core/zp-extensions/deprecated-functions/deprecated-functions.php
 zp-core/zp-extensions/deprecated-functions/functions.php
 zp-core/zp-extensions/downloadList
 zp-core/zp-extensions/downloadList.php
-zp-core/zp-extensions/downloadList/deprecated-functions.php
 zp-core/zp-extensions/downloadList/download_statistics.php
 zp-core/zp-extensions/dynamic-locale
 zp-core/zp-extensions/dynamic-locale.php
@@ -1130,7 +1126,6 @@ zp-core/zp-extensions/exampleMacros.php
 zp-core/zp-extensions/externalFeed.php
 zp-core/zp-extensions/favoritesHandler
 zp-core/zp-extensions/favoritesHandler.php
-zp-core/zp-extensions/favoritesHandler/deprecated-functions.php
 zp-core/zp-extensions/favoritesHandler/favoritesClass.php
 zp-core/zp-extensions/federated_logon
 zp-core/zp-extensions/federated_logon.php
@@ -1238,7 +1233,6 @@ zp-core/zp-extensions/image_effects/sphere.txt
 zp-core/zp-extensions/ipBlocker.php
 zp-core/zp-extensions/jcarousel_thumb_nav
 zp-core/zp-extensions/jcarousel_thumb_nav.php
-zp-core/zp-extensions/jcarousel_thumb_nav/deprecated-functions.php
 zp-core/zp-extensions/jcarousel_thumb_nav/jcarousel.css
 zp-core/zp-extensions/jcarousel_thumb_nav/jcarousel.js
 zp-core/zp-extensions/jcarousel_thumb_nav/jcarousel_ajax.php
@@ -1318,7 +1312,6 @@ zp-core/zp-extensions/quota_manager.php
 zp-core/zp-extensions/rating
 zp-core/zp-extensions/rating.php
 zp-core/zp-extensions/rating/delete.png
-zp-core/zp-extensions/rating/deprecated-functions.php
 zp-core/zp-extensions/rating/jquery.MetaData.js
 zp-core/zp-extensions/rating/jquery.rating.css
 zp-core/zp-extensions/rating/jquery.rating.js
@@ -1338,7 +1331,6 @@ zp-core/zp-extensions/rewriteTokens.php
 zp-core/zp-extensions/rewriteTokens/admin_tab.php
 zp-core/zp-extensions/rss
 zp-core/zp-extensions/rss.php
-zp-core/zp-extensions/rss/deprecated-functions.php
 zp-core/zp-extensions/rss/rss.css
 zp-core/zp-extensions/search_statistics
 zp-core/zp-extensions/search_statistics.php
@@ -1361,7 +1353,6 @@ zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php
 zp-core/zp-extensions/slideshow
 zp-core/zp-extensions/slideshow.php
 zp-core/zp-extensions/slideshow/controls.png
-zp-core/zp-extensions/slideshow/deprecated-functions.php
 zp-core/zp-extensions/slideshow/jquery.cycle.all.js
 zp-core/zp-extensions/slideshow/slideshow-controls.png
 zp-core/zp-extensions/slideshow/slideshow-counter.php
@@ -1681,7 +1672,6 @@ zp-core/zp-extensions/zenpage/admin-categories.php
 zp-core/zp-extensions/zenpage/admin-edit.php
 zp-core/zp-extensions/zenpage/admin-news-articles.php
 zp-core/zp-extensions/zenpage/admin-pages.php
-zp-core/zp-extensions/zenpage/deprecated-functions.php
 zp-core/zp-extensions/zenpage/images
 zp-core/zp-extensions/zenpage/images/add.png
 zp-core/zp-extensions/zenpage/images/clock.png
@@ -1719,4 +1709,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1721
+1711
