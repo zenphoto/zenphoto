@@ -2922,6 +2922,59 @@ function removeTrailingSlash($string) {
 }
 
 /**
+ * Returns an array the data privacy policy page and the data usage confirmation text as defined on Options > Security
+ * array(
+ *	'notice' => '<The defined text>',
+ *	'url' => '<url to the define page either custom page url or Zenpage page>',
+ *	'linktext' => '<The defined text>'
+ * )
+ * 
+ * @since Zenphoto 1.5
+ * 
+ * @return array
+ */
+function getDataUsageNotice() {
+	$array = array('notice' => '', 'url' => '', 'linktext' => '');
+	$array['linktext'] = get_language_string(getOption('dataprivacy_policy_customlinktext'));
+	$array['notice'] = get_language_string(getOption('data_usage_notice'));
+	$custompage = trim(getOption("dataprivacy_policy_custompage"));
+	$zenpage_page =  '';
+	if(empty($array['notice'])) {
+		$array['notice'] = gettext('By using this form you agree with the storage and handling of your data by this website.');
+	} 
+	if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+		$zenpage_page = getOption('datapolicypage_zenpage');
+		if($zenpage_page == 'none') {
+			$zenpage_page = '';
+		}
+	}
+	if(!empty($custompage)) {
+		$array['url'] = $custompage;
+	} else if(!empty($zenpage_page)) {
+		$obj = new ZenpagePage($zenpage_page);
+		$array['url'] = $obj->getLink();
+	}
+	if(empty($array['linktext'])) {
+		$array['linktext'] = gettext('More info on our data privacy policy.');
+	} 
+	return $array;
+}
+
+/**
+ * Prints the data privacy policy page and the data usage confirmation text as defined on Options > Security
+ * If there is no page defined it only prints the default text.
+ *  
+ * @since Zenphoto 1.5
+ */
+function printDataUsageNotice() {
+	$data = getDataUsageNotice();
+	echo $data['notice'];
+	if(!empty($data['url'])) {
+		?> <a href="<?php echo html_encode($data['url']); ?>" title="<?php echo html_encode($data['linktext']); ?>"><?php echo html_encode($data['linktext']); ?></a><?php
+	}
+}
+
+/**
  * Standins for when no captcha is enabled
  */
 class _zp_captcha {
@@ -2965,4 +3018,3 @@ class _zp_HTML_cache {
 
 }
 setexifvars();
-

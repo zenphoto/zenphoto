@@ -131,7 +131,7 @@
 		<p>
 			<label for="dataconfirmation">
 				<input type="checkbox" name="dataconfirmation" id="dataconfirmation" value="1">
-				<?php echo gettext('By using this form you agree with the storage and handling of your data by this website') . '<strong>*</strong>'; ?>
+				<?php printDataUsageNotice(); echo '<strong>*</strong>'; ?>
 			</label>
 		</p>
 	<?php } 

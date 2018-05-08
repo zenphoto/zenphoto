@@ -470,6 +470,10 @@ if (isset($_GET['action'])) {
 			setOption('image_processor_flooding_protection', (int) isset($_POST['image_processor_flooding_protection']));
 			$_zp_gallery->save();
 			setOption('anonymize_ip', sanitize_numeric($_POST['anonymize_ip']));
+			setOption('dataprivacy_policy_notice', process_language_string_save('dataprivacy_policy_notice', 3));
+			setOption('dataprivacy_policy_custompage', sanitize($_POST['dataprivacy_policy_custompage']));
+			setOption('dataprivacy_policy_zenpage', sanitize($_POST['dataprivacy_policy_zenpage']));
+			setOption('dataprivacy_policy_customlinktext', process_language_string_save('dataprivacy_policy_customlinktext', 3));
 			$returntab = "&tab=security";
 		}
 		/*		 * * custom options ** */
@@ -1646,8 +1650,6 @@ Zenphoto_Authority::printPasswordFormJS();
 									<p>
 										<?php
 										echo gettext('Default search');
-
-
 										generateRadiobuttonsFromArray(getOption('search_within'), array(gettext('<em>New</em>') => '0', gettext('<em>Within</em>') => '1'), 'search_within', false, false);
 										?>
 									</p>
@@ -3339,6 +3341,69 @@ Zenphoto_Authority::printPasswordFormJS();
 										</p>
 									</td>
 								</tr>
+								<?php 
+								$data_policy_sharedtext = gettext('This is used by the official plugins <em>comment_form</em>, <em>contact_form</em> and <em>register_user</em> plugins if the data usage confirmation is enabled. Other plugins or usages must implement <code>getDataUsageNotice()/printDataUsageNotice()</code> specifially.'); 
+								?>
+								<tr>
+									<td width="175">
+										<p><?php echo gettext('Data privacy usage notice'); ?></p>
+									</td>
+									<td width="350">
+										<textarea id="dataprivacy_policy_notice" name="dataprivacy_policy_notice" style="width:100%; height: 100px">
+											<?php echo get_language_string(getOption('dataprivacy_policy_notice')); ?>
+										</textarea>
+									</td>
+									<td width="175">
+										<p><?php echo gettext('Here you can define the data usage confirmation notice that is recommended if your site is using forms submitting data in some jurisdictions like the EU and its GDPR. Leave empty to use the default text:'); ?></p>
+											<blockquote><?php echo gettext('By using this form you agree with the storage and handling of your data by this website.'); ?></blockquote>
+										
+										<p class="notebox">
+											<?php echo $data_policy_sharedtext; ?>
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td width="175">
+										<p><?php echo gettext('Data privacy policy page'); ?></p>
+									</td>
+									<td width="350">
+										<?php echo html_encode(getOption('dataprivacy_policy_custompage')); ?>
+										<p><label><input type="text" name="dataprivacy_policy_custompage" id="dataprivacy_policy_custompage" value="<?php echo html_encode(getOption('dataprivacy_policy_custompage')); ?>"> <?php echo gettext('Custom page url'); ?></label></p>
+										<?php
+										if(extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+											$datapolicy_zenpage = getOption('dataprivacy_policy_zenpage');
+											$zenpageobj = new Zenpage();
+											$zenpagepages = $zenpageobj->getPages(true);
+											$privacypages = array();
+											$privacypages[gettext('None')] = 'none'; 
+											foreach($zenpagepages as $zenpagepage) {
+												$pageobj = new Zenpagepage($zenpagepage['titlelink']);
+												if(!$pageobj->isProtected()) {
+													$privacypages[get_language_string($zenpagepage['title'])] = $zenpagepage['titlelink'];
+												}
+											}
+											if($privacypages) {
+												unset($zenpagepages);
+												?>
+												<label><select id="dataprivacy_policy_zenpage" name="dataprivacy_policy_zenpage">
+													<?php	generateListFromArray(array($datapolicy_zenpage), $privacypages, false, true); ?>
+													</select><br<?php echo gettext('Select a Zenpage page.'); ?></label>
+												<?php 
+											}  else {
+												echo '<p><em>' . gettext('No public Zenpage pages available') . '</em></p>';
+											}
+										}
+									  ?>	
+										<p><label><input type="text" name="dataprivacy_policy_customlinktext" id="dataprivacy_policy_customlinktext" value="<?php echo html_encode(getOption('dataprivacy_policy_customlinktext')); ?>"> <?php echo gettext('Custom link text'); ?></label></p>
+										</td>
+									<td width="175">
+										<p><?php echo gettext('Here you can define your data policy statement page that is recommended to have in jurisdictions like the EU and its GDPR.'); ?></p>
+										<p><?php echo gettext('If the Zenpage CMS plugin is enabled and also its pages feature you can select one of its pages, otherwise enter a full custom page url manually which would also override the Zenpage page selection.'); ?></p>
+										<p><?php echo gettext('Additionally you can define a custom text for the page link. If not set the default text <em>More info on our data privacy policy.</em> is used.'); ?></p>
+										<p class="notebox">
+											<?php echo $data_policy_sharedtext; ?>
+										</p>
+									</td>
 								<tr>
 									<?php
 									$supportedOptions = $_zp_authority->getOptionsSupported();

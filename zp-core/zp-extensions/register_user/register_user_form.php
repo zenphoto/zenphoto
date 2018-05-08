@@ -107,7 +107,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			<p>
 				<label for="admin_dataconfirmation">
 					<input type="checkbox" name="admin_dataconfirmation" id="admin_dataconfirmation" value="1">
-					<?php echo gettext('By using this form you agree with the storage and handling of your data by this website') . '<strong>*</strong>'; ?>
+					<?php printDataUsageNotice(); echo '<strong>*</strong>'; ?>
 				</label>
 			</p>
 		<?php } ?>
