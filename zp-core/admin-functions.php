@@ -3717,7 +3717,7 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 	}
 	?>
 	<form name="AutoListBox2" style="float: right;" action="#" >
-		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
+		<select name="ListBoxURL" size="1" onchange="zp_gotoLink(this.form);">
 			<?php
 			foreach ($nestinglevels as $nestinglevel) {
 				if ($nesting == $nestinglevel) {
@@ -3739,14 +3739,6 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 			}
 			?>
 		</select>
-		<script type="text/javascript" >
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-				var OptionIndex = form.ListBoxURL.selectedIndex;
-				parent.location = form.ListBoxURL.options[OptionIndex].value;
-			}
-			// ]]> -->
-		</script>
 	</form>
 	<?php
 }
