@@ -131,11 +131,6 @@ class debug {
 
 	static function version($released) {
 		$o = explode('-', ZENPHOTO_VERSION . '-');
-		for ($i = count($o) - 1; $i > 0; $i--) {
-			if (strpos(strtolower($o[$i]), 'dev_') !== 0) {
-				unset($o[$i]);
-			}
-		}
 		$originalVersion = implode('-', $o);
 		if ($released) {
 			return $originalVersion;
