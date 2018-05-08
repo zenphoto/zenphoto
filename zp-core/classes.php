@@ -52,10 +52,10 @@ class PersistentObject {
 
 	/**
 	 *
-	 * @deprecated
+	 * @deprecated 2.0
+	 * @since 1.4.6
 	 */
 	function __construct($tablename, $unique_set, $cache_by = NULL, $use_cache = true, $is_transient = false, $allowCreate = true) {
-		internal_deprecations::PersistentObject();
 		return instantiate($tablename, $unique_set, $cache_by, $use_cache, $is_transient, $allowCreate);
 	}
 

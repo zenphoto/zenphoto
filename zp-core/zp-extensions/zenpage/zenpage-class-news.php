@@ -312,30 +312,12 @@ class ZenpageNews extends ZenpageItems {
 	}
 
 	/**
-	 * Returns the url to a news article
-	 *
-	 *
-	 * @return string
-	 * @deprecated since version 1.4.6
-	 */
-	function getNewsURL() {
-		Zenpage_internal_deprecations::getNewsURL();
-		return $this->getLink();
-	}
-
-	/**
 	 * Get the index of this article
 	 *
-	 * @param string $sortorder
-	 * @param bool $sortdirection TRUE for ascending, FALSE for descending
-	 * @param bool $sticky If sticky article should come first
 	 * @return int
 	 */
 	function getIndex() {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
-		if (func_num_args() != 0) {
-			Zenpage_internal_deprecations::getIndex();
-		}
 		if ($this->index == NULL) {
 			$articles = $_zp_zenpage->getArticles(0, NULL, true);
 			for ($i = 0; $i < count($articles); $i++) {
@@ -356,9 +338,6 @@ class ZenpageNews extends ZenpageItems {
 	 */
 	function getPrevArticle() {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
-		if (func_num_args() != 0) {
-			Zenpage_internal_deprecations::getPrevArticle();
-		}
 		$index = $this->getIndex();
 		$article = $_zp_zenpage->getArticle($index - 1);
 		return $article;
@@ -371,9 +350,6 @@ class ZenpageNews extends ZenpageItems {
 	 */
 	function getNextArticle() {
 		global $_zp_zenpage, $_zp_current_zenpage_news;
-		if (func_num_args() != 0) {
-			Zenpage_internal_deprecations::getNextArticle();
-		}
 		$index = $this->getIndex();
 		$article = $_zp_zenpage->getArticle($index + 1);
 		return $article;

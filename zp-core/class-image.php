@@ -921,16 +921,6 @@ class Image extends MediaObject {
 	}
 
 	/**
-	 * Returns a path urlencoded image page link for the image
-	 * @return string
-	 * @deprecated since version 1.4.6
-	 */
-	function getImageLink() {
-		internal_deprecations::getImageLink();
-		return $this->getLink();
-	}
-
-	/**
 	 * Returns a path to the original image in the original folder.
 	 *
 	 * @param string $path the "path" to the image. Defaults to the simple WEBPATH
