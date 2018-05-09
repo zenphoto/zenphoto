@@ -231,6 +231,7 @@ class Zenpage {
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL, $author = null) {
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
 		$getunpublished_myitems = false;
+		$cat = '';
 		if (empty($published)) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) || ($category && $category->isMyItem(ZENPAGE_NEWS_RIGHTS))) { // lower rights, additionally checked below
 				$published = "all"; 
