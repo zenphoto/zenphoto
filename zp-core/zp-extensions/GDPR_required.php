@@ -3,14 +3,16 @@
  * A plugin to require that visitors view and acknowledge a site policy page upon the first
  * visit to your site.
  *
- * The plugin requires that zenpage be implemented for the theme and that you have created a <i>zenpage page</i>
- * object which states the site usage policy.
+ * The plugin requires a <i>zenpage page</i> object or a custom URL which states the site usage policy.
+ * This URL will also become the <i>Policy URL</i> used for <i>Policy Submit</i> buttons. But of course that will
+ * be moot since the visitor will have had to acknowledge your policy before
+ * any content pages are shown.
  *
  * Usage:
  *
  * <ul>
  * 	<li>
- * 		Create a <em>zenpage page</em> that states your site usage policy. For guidelines visit
+ * 		Create a <em>zenpage page</em> or a custom theme script that states your site usage policy. For guidelines visit
  * 		{@link https://www.itgovernance.co.uk/blog/how-to-write-a-gdpr-privacy-notice-with-documentation-template-example/* How to write a GDPR privacy notice}.
  * </li>
  * 	<li>
@@ -22,6 +24,9 @@
  * 		For most themes, <i>codeblock&nbsp;1</i> will put the button just below your privacy statement.
  * 		But this is theme dependent. Choose the <i>codeblock</i> which best locates the button.
  * 		(For Effervescence and Garland use <i>codeblock&nbsp;2</i>.)
+ *
+ * 		<strong>Note</strong>: If you are using a custom page you will need to place this function call somewhere appropriate in
+ * 		your script.
  * 	</li>
  * 	<li>
  * 		Enable the <i>Usage policy</i> option on the general options page.
@@ -52,7 +57,7 @@ class GDPR_required {
 		global $_zp_CMS;
 		if (extensionEnabled('zenpage')) {
 			if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem(getCurrentTheme()) . '/pages.php')) {
-				$possibilities = array();
+				$possibilities = array('*' . gettext('Custom url') . '*' => '');
 				foreach ($_zp_CMS->getPages(false) as $page) {
 					$possibilities[get_language_string($page['title'])] = $page['titlelink'];
 				}
@@ -65,7 +70,11 @@ class GDPR_required {
 					$options = array(
 							gettext('Policy page') => array('key' => 'GDPR_page', 'type' => OPTION_TYPE_SELECTOR,
 									'selections' => $possibilities,
-									'desc' => gettext('The zenpage plugin is reqired but not enabled.'))
+									'order' => 1,
+									'desc' => gettext('The zenpage plugin is reqired but not enabled.')),
+							gettext('*' . gettext('Custom URL') . '*') => array('key' => 'GDPR_URL', 'type' => OPTION_TYPE_CUSTOM,
+									'order' => 2,
+									'desc' => gettext('The URL to use if *Custom url* is selected.'))
 					);
 				}
 			} else {
@@ -83,13 +92,35 @@ class GDPR_required {
 		return $options;
 	}
 
+	function handleOption($option, $currentvalue) {
+		?>
+		<input type="text" name="GDPR_URL" size="35" value="<?php echo getOption('GDPR_URL'); ?>" />
+		<?php
+	}
+
+	static function handleOptionSave($themename, $themealbum) {
+		$page = getOption('GDPR_page');
+		if ($page) {
+			$page = newPage($page);
+			$link = $page->getLink();
+		} else {
+			$link = sanitize($_POST['GDPR_URL']);
+		}
+		setOption('GDPR_URL', $link);
+		return false;
+	}
+
 	static function page() {
 		global $_zp_current_admin_obj, $_GDPR_acknowledge_loaded;
 		if (getOption('GDPR_acknowledge') && !($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && zp_getCookie('policyACK') != getOption('GDPR_cookie')) {
-			$page = newPage(getOption('GDPR_page'));
-			$link = $page->getLink();
-			$me = getRequestURI();
-			if ($me == $link) {
+			$page = getOption('GDPR_page');
+			if ($page) {
+				$page = newPage($page);
+				$link = $page->getLink();
+			} else {
+				$link = getOption('GDPR_URL');
+			}
+			if (getRequestURI() == $link) {
 				$_GDPR_acknowledge_loaded = true;
 			} else {
 				//	redirect to the policy page

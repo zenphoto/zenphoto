@@ -3,6 +3,15 @@
 /**
  * Supply default codeblocks to theme pages.
  *
+ * This plugin provides a means to supply codeblock text for theme pages that
+ * is "global" in context whereas normally you would have to insert the text
+ * into each and every object.
+ *
+ * So you can, for instance, define a default codeblock 1 for "news articles"
+ * and all your news articles will display that block. It can be overridden for
+ * an individual news article by setting codeblock 1 for that article.
+ *
+ * 
  * @author Stephen Billard (sbillard)
  *
  * @package plugins/defaultCodeblocks
