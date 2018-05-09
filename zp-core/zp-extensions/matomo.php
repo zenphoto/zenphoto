@@ -69,6 +69,7 @@ class matomoStats {
 			purgeOption('piwik_widgets_code');
 		}
 		setOptionDefault('matomo_disablecookies', 0);
+		setOptionDefault('matomo_requireconsent', 'no-consent');
 	}
 
 	function getOptionsSupported() {
@@ -119,9 +120,19 @@ class matomoStats {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 7,
 						'desc' => gettext('Enable this so Matomo does not use cookies to track visitors (less accurate tracking).')),
-				);
+				gettext('Require consent') => array(
+						'key' => 'matomo_requireconsent',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(
+								gettext('No consent required') => 'no-consent',
+								gettext('Consent required') => 'consent-required',
+								gettext('Consent required and remember consent*') => 'consent-required-remembered'
+						),
+						'order' => 8,
+						'desc' => gettext('Enable this so Matomo will ask users for consent about tracking statistics. *requires cookies.'))
+		);
 	}
-	
+
 	/**
 	 * Adds the Matomo statistic script
 	 */
@@ -130,6 +141,16 @@ class matomoStats {
 			$url = getOption('matomo_url');
 			$id = getOption('matomo_id');
 			$sitedomain = trim(getOption('matomo_sitedomain'));
+			$requireconsent = getOption('matomo_requireconsent');
+			$requireconsent_js = "_paq.push(['requireConsent']);";
+			switch($requireconsent) {
+				case 'no-consent':
+					$requireconsent_js = '';
+					break;
+				case 'consent-required-remembered':
+					$requireconsent_js .= "\n_paq.push(['rememberConsentGiven']);";
+					break;
+			}
 			?>
 			<!-- Matomo -->
 			<script type="text/javascript">
@@ -137,8 +158,9 @@ class matomoStats {
 				_paq.push(["setDocumentTitle", '<?php echo matomoStats::printDocumentTitle(); ?>']);	
 				<?php if ($sitedomain) { ?>
 					_paq.push(["setCookieDomain", "*.<?php echo $sitedomain; ?>"]);
-				<?php } ?>
-				<?php if(getOption('matomo_disablecookies')) { ?>
+				<?php } 
+				echo $requireconsent_js; 
+				if(getOption('matomo_disablecookies')) { ?>
 					_paq.push(['disableCookies']);
 				<?php } ?>
 				_paq.push(['trackPageView']);
