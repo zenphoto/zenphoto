@@ -62,6 +62,7 @@ class matomoStats {
 			}
 			setOptionDefault('matomo_disablecookies', 0);
 		}
+		setOptionDefault('matomo_requireconsent', 'no-consent');
 	}
 
 	function getOptionsSupported() {
@@ -112,6 +113,16 @@ class matomoStats {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 7,
 						'desc' => gettext('Enable this so Matomo does not use cookies to track visitors (less accurate tracking).')),
+				gettext('Require consent') => array(
+						'key' => 'matomo_requireconsent',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(
+								gettext('No consent required') => 'no-consent',
+								gettext('Consent required') => 'consent-required',
+								gettext('Consent required and remembered') => 'consent-required-remembered'
+						),
+						'order' => 8,
+						'desc' => gettext('How motomo will deal with users consent about tracking statistics. Consent required and remembered requires cookies.'))
 		);
 	}
 
@@ -130,6 +141,20 @@ class matomoStats {
 				_paq.push(["setDocumentTitle", '<?php echo matomoStats::printDocumentTitle(); ?>']);
 			<?php
 			if ($sitedomain) {
+				switch (getOption('matomo_requireconsent')) {
+					case 'no-consent':
+						break;
+					case 'consent-required-remembered':
+						?>
+							_paq.push(['rememberConsentGiven']);
+						<?php
+						break;
+					default:
+						?>
+							_paq.push(['requireConsent']);
+						<?php
+						break;
+				}
 				?>
 					_paq.push(["setCookieDomain", "*.<?php echo $sitedomain; ?>"]);
 				<?php
