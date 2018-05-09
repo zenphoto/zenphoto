@@ -107,7 +107,7 @@ class jquery_rating {
 										'buttons'	 => array(gettext('No') => 0, gettext('Show rating') => 1, gettext('Show previous vote') => 2),
 										'desc'		 => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.')),
 						gettext('Disguise IP')							 => array('key'	 => 'rating_hash_ip', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.'))
+										'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues. If not set the IP is anonymized as defined on the general Zenphoto option <em>Anonymize IP</em>.'))
 		);
 	}
 
