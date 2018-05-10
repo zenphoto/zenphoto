@@ -51,7 +51,7 @@ function printFooter() {
 	?>
 	<div class="copyright">
 		<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
-			<img alt="Licence Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" />
+			<img alt="Licence Creative Commons" style="border-width:0" src="<?php echo WEBPATH . '/' . THEMEFOLDER; ?>/gray_highlights/images/88x31.png" />
 		</a>
 		<span class="bold">Gray Highlights</span> by The Whole Life To Learn
 	</div>
