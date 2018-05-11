@@ -185,7 +185,7 @@ function printPPSlideShowLink($linktext = '', $linkstyle = '') {
 				$imagedetaillink = $imgobj->getLink();
 				?>
 				<div class="ss-link noshow-mobile">
-					<a class="ss button" href="<?php echo html_encode($imagelink); ?>" rel="slideshow[group]"<?php echo $style; ?> title="&lt;a href='<?php echo $imagedetaillink; ?>'&gt;<?php echo html_encode(strip_tags($imgobj->getTitle())) . ' (' . gettext('Click for Detail Page') . ')'; ?>&lt;/a&gt;"><?php echo $linktext; ?></a>
+					<a class="ss button" href="<?php echo html_encode($imagelink); ?>" rel="slideshow[group]"<?php echo $style; ?> title="<?php echo gettext('Sllideshow'); ?>"><?php echo $linktext; ?></a>
 				</div>
 				<?php
 			}
