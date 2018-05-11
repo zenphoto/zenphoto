@@ -112,9 +112,11 @@ if (isset($_GET['action'])) {
 	foreach ($files as $file) {
 		$source = $body = file_get_contents($file);
 		if (strpos($body, '/*LegacyConverter was here*/') === false) {
-			$body = preg_replace('~\<\?php~i', "<?php\n/*LegacyConverter was here*/\n", $body, 1);
+			preg_match('~\<\?php(.*)\?>~ixUs', $body, $matches);
+			if (isset($matches[0])) {
+				$body = str_replace($matches[0], "<?php\n/*LegacyConverter was here*/\n" . $matches[1] . "\n?>", $body);
+			}
 		}
-
 		foreach ($legacyReplacements as $match => $replace) {
 			$body = preg_replace('~' . $match . '~im', $replace, $body);
 		}
