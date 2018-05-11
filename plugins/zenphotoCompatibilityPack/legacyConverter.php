@@ -42,7 +42,7 @@ $legacyReplacements = array(
 		'\$_zp_current_zenpage_page' => '$_zp_current_page',
 		'->getFullImage\(' => '->getFullImageURL(',
 		'tinymce4_' => 'tinymce_',
-		'setOptionDefault\([\'"]colorbox_.*[\'"],.*\);?)' => '$1 /* TODO:replace with a call to colorbox::registerScripts(); */',
+		'setOptionDefault\([\'"]colorbox_.*[\'"],.*\);?\)' => '$1 /* TODO:replace with a call to colorbox::registerScripts(); */',
 		'getSubtabs' => 'getCurrentTab	/* TODO:replaced printSubtabs. Remove this if you do not use the return value */',
 		'printSubtabs' => 'getCurrentTab	/* TODO:replaced printSubtabs. Remove this if you do not use the return value */',
 		'gettext\(\'news\'\)' => 'NEWS_LABEL', 'gettext("news")' => 'NEWS_LABEL',
@@ -112,7 +112,7 @@ if (isset($_GET['action'])) {
 	foreach ($files as $file) {
 		$source = $body = file_get_contents($file);
 		if (strpos($body, '/*LegacyConverter was here*/') === false) {
-			$body = preg_replace('~\<\?php~i', "<?php\n/*LegacyConverter was here*/", $body, 1);
+			$body = preg_replace('~\<\?php~i', "<?php\n/*LegacyConverter was here*/\n", $body, 1);
 		}
 
 		foreach ($legacyReplacements as $match => $replace) {
