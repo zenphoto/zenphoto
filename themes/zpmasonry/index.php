@@ -51,6 +51,7 @@
 									$randomList = $randomList . ' ' . $imageName;
 									$randomImageURL = html_encode($randomImage->getLink());
 									echo '<li><a href="' . $randomImageURL . '" title="' . sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">';
+									getMaxSpaceContainer($zpmas_ss_size_w, $zpmas_ss_size_h, $randomImage, true);
 									$html = "<img src=\"" . html_encode($randomImage->getCustomImage(null, $zpmas_ss_size_w, $zpmas_ss_size_h, $zpmas_ss_size_w, $zpmas_ss_size_h, null, null, true)) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 									echo zp_apply_filter('custom_image_html', $html, false);
 									echo "</a>";
