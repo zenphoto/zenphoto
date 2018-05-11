@@ -71,6 +71,7 @@ class debug {
 			$version = debug::version(true);
 			setOptionDefault('jQuery_Migrate_theme', 0);
 			setOptionDefault('jQuery_Migrate_admin', 0);
+			setOptionDefault('jQuery_v1', 0);
 			setOptionDefault('markRelease_state', $version);
 		}
 	}
@@ -107,10 +108,12 @@ class debug {
 						'buttons' => array(// The definition of the radio buttons to choose from and their values.
 								gettext('Disabled') => 0,
 								gettext('Production') => 1,
-								gettext('Debug') => 2
+								gettext('Debug 3.0') => 2,
+								gettext('Debug 1.9') => 3,
+								gettext('No migration') => 4
 						),
 						'order' => 3,
-						'desc' => gettext('Adds the <a href="https://jquery.com/upgrade-guide/3.0/">jQuery 3.3 migration</a> tool to theme pages.'))
+						'desc' => gettext('Adds the <a href="https://jquery.com/upgrade-guide/">jQuery migration</a> tool to theme pages. (If <em>No migration</em> is selected jQuery v1.12 will be loaded instead of jQuery v3.'))
 		);
 		return $options;
 	}

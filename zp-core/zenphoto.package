@@ -1337,9 +1337,6 @@ zp-core/images/strengths/strength9.png
 zp-core/js
 zp-core/js/admin.js
 zp-core/js/htmlencoder.js
-zp-core/js/jquery-3.3.1.js
-zp-core/js/jquery-migrate-3.0.0.js
-zp-core/js/jquery-migrate-3.0.0.min.js
 zp-core/js/jquery.mjs.nestedSortable.js
 zp-core/js/jquery.pagination.js
 zp-core/js/jquery.scrollTo.min.js
@@ -1352,6 +1349,12 @@ zp-core/js/Jcrop
 zp-core/js/Jcrop/Jcrop.gif
 zp-core/js/Jcrop/jquery.Jcrop.css
 zp-core/js/Jcrop/jquery.Jcrop.js
+zp-core/js/jQuery
+zp-core/js/jQuery/jquery-1.12.js
+zp-core/js/jQuery/jquery-3.3.1.js
+zp-core/js/jQuery/jquery-migrate-1.4.1.js
+zp-core/js/jQuery/jquery-migrate-3.0.0.js
+zp-core/js/jQuery/jquery-migrate-3.0.0.min.js
 zp-core/js/jqueryui
 zp-core/js/jqueryui/base-1.12.css
 zp-core/js/jqueryui/jquery-ui-1.12.1.min.js
@@ -8343,4 +8346,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8345
+8348

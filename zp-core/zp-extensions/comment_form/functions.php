@@ -94,6 +94,7 @@ function comment_form_PaginationJS() {
 	?>
 	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.pagination.js"></script>
 	<script type="text/javascript">
+		var current_comment_N, addrBar_hash = window.location.hash, Comm_ID_found = !addrBar_hash.search(/#zp_comment_id_/);
 		function pageselectCallback(page_index, jq) {
 			var items_per_page = <?php echo max(1, COMMENTS_PER_PAGE); ?>;
 			var max_elem = Math.min((page_index + 1) * items_per_page, $('#comments div.comment').length);
@@ -130,7 +131,6 @@ function comment_form_PaginationJS() {
 				$(addrBar_hash).scrollToMe();
 			}
 		}, false);
-		var current_comment_N, addrBar_hash = window.location.hash, Comm_ID_found = !addrBar_hash.search(/#zp_comment_id_/);
 		jQuery.fn.extend({
 			scrollToMe: function () {
 				var x = jQuery(this).offset().top - 10;
