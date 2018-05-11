@@ -2117,8 +2117,8 @@ function seoFriendly($string) {
 
 function load_jQuery_CSS() {
 	?>
-	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-1.12.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/base-1.12.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQueryui/jquery-ui-1.12.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQueryui/base-1.12.css" type="text/css" />
 	<?php
 }
 
@@ -2126,39 +2126,39 @@ function load_jQuery_scripts($where, $ui = true) {
 	switch (getOption('jQuery_Migrate_' . $where)) {
 		case 0: //	no migration script
 			?>
-			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery/jquery-3.3.1.js"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jQuery/jquery-3.3.1.js"></script>
 			<?php
 			break;
 		case 1: //	production version
 			?>
-			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery/jquery-3.3.1.js"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jQuery/jquery-3.3.1.js"></script>
 			<!-- for production purposes -->
-			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQuery/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
 			<?php
 			break;
 		case 2: //	debug version
 			?>
-			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery/jquery-3.3.1.js"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jQuery/jquery-3.3.1.js"></script>
 			<!-- for migration to jQuery 3.0 purposes -->
-			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery/jquery-migrate-3.0.0.js"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQuery/jquery-migrate-3.0.0.js"></script>
 			<?php
 			break;
 		case 3: //	debug version for jQuery 1.9
 			?>
-			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery/jquery-3.3.1.js"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jQuery/jquery-3.3.1.js"></script>
 			<!-- for migration to jQuery 1.9 purposes -->
-			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery/jquery-migrate-1.4.1.js"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQuery/jquery-migrate-1.4.1.js"></script>
 			<?php
 			break;
 		case 4: //	use legacy jQuery
 			?>
-			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery/jquery-1.12.js"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jQuery/jquery-1.12.js"></script>
 			<?php
 			break;
 	}
 	if ($ui) {
 		?>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-1.12.1.min.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQueryui/jquery-ui-1.12.1.min.js"></script>
 		<?php
 	}
 }
