@@ -137,7 +137,7 @@ $zpskel_social = function_exists('printAddThis');
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/style.css">
 		<?php if (!$zpskel_ismobile) { ?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
-			<script src="<?php echo $_zp_themeroot; ?>/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+			<script src="<?php echo $_zp_themeroot; ?>/js/jquery.prettyPhoto.min.js" type="text/javascript" charset="utf-8"></script>
 			<script type="text/javascript" charset="utf-8">
 				$(document).ready(function () {
 					$("a[rel^='slideshow']").prettyPhoto({
