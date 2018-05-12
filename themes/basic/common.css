@@ -154,3 +154,9 @@ button.positive,.buttons a.positive {
 .disclose_password_show {
 	padding-right: 70px !important;
 }
+.singlenews_prev {
+	float: left;
+}
+.singlenews_next {
+	float: right;
+}

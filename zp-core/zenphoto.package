@@ -9,6 +9,8 @@ themes/basic/favorites.php
 themes/basic/functions.php
 themes/basic/image.php
 themes/basic/index.php
+themes/basic/news.php
+themes/basic/pages.php
 themes/basic/password.php
 themes/basic/register.php
 themes/basic/search.php
@@ -8324,4 +8326,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8326
+8328

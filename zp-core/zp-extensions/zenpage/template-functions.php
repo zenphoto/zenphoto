@@ -1368,8 +1368,6 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 
 	// don't highlight current pages or foldout if in search mode as next_page() sets page context
 	if (in_context(ZP_SEARCH) && $mode == 'pages') { // categories are not searched
-		$css_class_topactive = "";
-		$css_class_active = "";
 		rem_context(ZP_ZENPAGE_PAGE);
 	}
 
@@ -1543,10 +1541,13 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				if (empty($current)) {
 					$current = trim($password_class);
 				}
+				if (!empty($current)) {
+					$current = ' class="' . $current . '"';
+				}
 				if ($limit) {
 					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
-				echo '<li><a class="' . $current . '" href="' . html_encode($itemurl) . '" title="' . html_encode(getBare($itemtitle)) . '">' . html_encode($itemtitle) . '</a>' . $count;
+				echo '<li><a' . $current . ' href="' . html_encode($itemurl) . '" title="' . html_encode(getBare($itemtitle)) . '">' . html_encode($itemtitle) . '</a>' . $count;
 			}
 		}
 	}
