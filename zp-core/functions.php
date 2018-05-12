@@ -2143,16 +2143,11 @@ function load_jQuery_scripts($where, $ui = true) {
 			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQuery/jquery-migrate-3.0.0.js"></script>
 			<?php
 			break;
-		case 3: //	debug version for jQuery 1.9
+		case 3: //	use legacy jQuery
 			?>
-			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jQuery/jquery-3.3.1.js"></script>
 			<!-- for migration to jQuery 1.9 purposes -->
-			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQuery/jquery-migrate-1.4.1.js"></script>
-			<?php
-			break;
-		case 4: //	use legacy jQuery
-			?>
 			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jQuery/jquery-1.12.js"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQuery/jquery-migrate-1.4.1.js"></script>
 			<?php
 			break;
 	}
