@@ -387,7 +387,9 @@ $buttonlist = array();
 				<div id="overviewboxes">
 					<div class="box overview-section overview_utilities">
 						<h2 class="h2_bordered">
-							<?php printf(gettext('ZenPhoto20 version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official); ?>
+							<a href="<?php echo WEBPATH; ?>/docs/release%20notes.htm" class="doc" title="<?php echo gettext('release notes'); ?>">
+								<?php printf(gettext('ZenPhoto20 version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official); ?>
+							</a>
 						</h2>
 						<?php
 						if (!empty($buttonlist)) {
