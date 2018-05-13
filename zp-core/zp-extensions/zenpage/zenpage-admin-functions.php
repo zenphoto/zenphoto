@@ -661,7 +661,7 @@ function printUnpublishedDropdown() {
 			} else {
 				$all = "selected='selected'";
 			}
-			$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'sortorder' => 0, 'articles_page' => 1));
+			$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'sortorder' => 0, 'articles_page' => 1, 'author' => 0));
 			echo "<option $all value='admin-news-articles.php" . getNewsAdminOptionPath($option) . "'>" . gettext("All articles") . "</option>\n";
 			echo "<option $published value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('published' => 'yes'), $option)) . "'>" . gettext("Published") . "</option>\n";
 			echo "<option $unpublished value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('published' => 'no'), $option)) . "'>" . gettext("Un-published") . "</option>\n";
