@@ -137,7 +137,7 @@ if (!defined('WEBPATH'))
 					<?php
 				}
 				if (getImageMetaData()) {
-					printImageMetadata(NULL, 'colorbox_meta');
+					printImageMetadata(NULL, 'colorbox');
 				}
 				?>
 				<br class="clearall" />
