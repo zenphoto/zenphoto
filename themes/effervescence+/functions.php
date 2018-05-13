@@ -136,7 +136,7 @@ function switcher_head($ignore) {
 
 function switcher_controllink($ignore) {
 	global $personality, $personalities, $themecolors, $_zp_gallery_page, $themeColor;
-	$themeColor = zp_getCookie('themeSwitcher_color');
+	$themeColor = zp_getCookie('themeSwitcher_themeColor');
 	if (!$themeColor) {
 		list($personality, $themeColor) = getPersonality();
 	}

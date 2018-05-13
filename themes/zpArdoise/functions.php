@@ -38,7 +38,7 @@ function iconColor($icon) {
 
 function switcher_head($ignore) {
 	global $personalities, $themecolors, $themeColor;
-	$themeColor = zp_getCookie('themeSwitcher_color');
+	$themeColor = zp_getCookie('themeSwitcher_themeColor');
 	if (!empty($themeColor)) {
 		setOption('css_style', $themeColor, false);
 	}
@@ -57,7 +57,7 @@ function switcher_head($ignore) {
 
 function switcher_controllink($ignore) {
 	global $themecolors;
-	$color = zp_getCookie('themeSwitcher_color');
+	$color = zp_getCookie('themeSwitcher_themeColor');
 	if (!$color) {
 		$color = getOption('css_style');
 	}
