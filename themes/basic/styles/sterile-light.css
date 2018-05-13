@@ -696,23 +696,11 @@ input.button {
 
 form input[type="submit"],
 form input[type="reset"],
-form input[type="button"],
-a.slideshowlink {
+form input[type="button"] {
 	background-color: white;
 	border: 1px solid lightgray;
 	font-size: 12px;
 }
-
-a.slideshowlink {
-	padding: 5px 6px 3px 6px;
-	margin-top: 10px !important;
-	text-decoration: none;
-	clear: both;
-	margin-top: 10px;
-	display: inline-block;
-	color: gray;
-}
-
 
 .clearall {
 	clear: both !important;

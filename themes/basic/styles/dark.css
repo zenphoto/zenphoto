@@ -66,7 +66,7 @@ body {
 
 /* Link Styles
 ------------------------------ */
-a:link, a:active, a:visited { text-decoration: underline; color: #86a1b6; }
+a, a:link, a:active, a:visited { text-decoration: underline; color: #86a1b6; }
 a:hover, a:focus { text-decoration: underline; color: #94c2e5; }
 
 /* Text Styles
@@ -188,13 +188,10 @@ ul.pagelist li.next {
 #imageDescEditable, #albumTagsEditable {
 	margin-top: 24px;
 }
-#imageDesc, #exif_link {
+#imageDesc {
 	margin-bottom: 4px;
 }
 
-#exif_link {
-	float: right;
-}
 
 /* Tags
 ------------------------------ */
@@ -668,21 +665,10 @@ input.button {
 
 form input[type="submit"],
 form input[type="reset"],
-form input[type="button"],
-a.slideshowlink {
+form input[type="button"] {
 	background-color: gray;
 	border: 0;
 	font-size: 12px;
-}
-
-a.slideshowlink {
-	color: black;
-	padding: 5px 6px 3px 6px;
-	margin-top: 10px !important;
-	text-decoration: none;
-	clear: both;
-	margin-top: 10px;
-	display: inline-block;
 }
 
 
