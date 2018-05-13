@@ -114,7 +114,7 @@ function propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim
 	}
 	if (DEBUG_IMAGE)
 		debugLog("propSizes(\$size=$size, \$width=$width, \$height=$height, \$w=$w, \$h=$h, \$thumb=$thumb, \$image_use_side=$image_use_side, \$dim=$dim):: \$wprop=$wprop; \$hprop=$hprop; \$neww=$neww; \$newh=$newh");
-	return array($neww, $newh);
+	return array((int) $neww, (int) $newh);
 }
 
 /**
@@ -324,6 +324,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					}
 				}
 			}
+			$sizes = propSizes($size, $neww, $newh, $w, $h, $thumb, $image_use_side, $dim);
+			list($neww, $newh) = $sizes;
+
 			if (is_null($cx) && is_null($cy)) { // scale crop to max of image
 				// set crop scale factor
 				$cf = 1;
