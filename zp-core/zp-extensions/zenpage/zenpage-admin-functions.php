@@ -806,11 +806,10 @@ function printArticlesPerPageDropdown($subpage, $articles_page) {
  */
 function printAuthorDropdown() {
 	$authors = Zenpage::getAllAuthors();
+	$selected = "selected='selected'";
 	if (isset($_GET['author'])) {
-		$selected = '';
 		$current_author = sanitize($_GET['author']);
 	} else {
-		$selected = "selected='selected'";
 		$current_author = "";
 	}
 	?>
@@ -820,11 +819,11 @@ function printAuthorDropdown() {
 			$option = getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'articles_page' => 1, 'sortorder' => 0));			
 			foreach ($authors as $author) {
 				?>
-				<option <?php if ($current_author == $author) echo 'selected="selected"'; ?>value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('author' => $author), $option)); ?>"><?php echo $author; ?></option>
+				<option <?php if ($current_author == $author) echo $selected; ?>value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('author' => $author), $option)); ?>"><?php echo $author; ?></option>
 				<?php
 			}
 			?>
-			<option <?php echo $selected; ?>value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('author' => 'all'), $option)); ?>"><?php echo gettext("All authors"); ?></option>
+			<option <?php if ($current_author == 'all') echo $selected; ?>value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('author' => 'all'), $option)); ?>"><?php echo gettext("All authors"); ?></option>
 		</select>
 		&nbsp;&nbsp;
 	</form>

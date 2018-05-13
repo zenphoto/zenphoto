@@ -128,7 +128,9 @@ datepickerJS();
 					$direction = true;
 					if (isset($_GET['sortorder'])) {
 						list($sortorder, $sortdirection) = explode('-', $_GET['sortorder']);
-						$direction = $sortdirection == 'desc';
+						if($sortdirection == 'asc') {
+							$direction = false;
+						} 
 					}
 					$catobj = NULL;
 					if (isset($_GET['category'])) {
@@ -141,7 +143,7 @@ datepickerJS();
 							$author = null;
 						}
 					}
-					$resultU = $_zp_zenpage->getArticles(0, 'unpublished', false, $sortorder, $direction, false, $catobj, $author);
+					$resultU = $_zp_zenpage->getArticles(0, 'unpublished', false, $sortorder, $sortdirection, false, $catobj, $author);
 					$result = $_zp_zenpage->getArticles(0, $published, false, $sortorder, $direction, false, $catobj, $author);
 					foreach ($result as $key => $article) {
 						$article = new ZenpageNews($article['titlelink']);
