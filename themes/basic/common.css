@@ -160,3 +160,8 @@ button.positive,.buttons a.positive {
 .singlenews_next {
 	float: right;
 }
+.zp_link {
+	text-decoration: underline;
+	padding-right: 20px;
+	white-space: nowrap;
+}

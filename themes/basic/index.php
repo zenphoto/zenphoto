@@ -57,15 +57,22 @@ if (!defined('WEBPATH'))
 					<br /><hr />
 					<?php
 					if ($news) {
-						printCustomPageURL(NEWS_LABEL, 'news');
-						echo '&nbsp;&nbsp;';
+						?>
+						<span class="zp_link">
+							<?php
+							printCustomPageURL(NEWS_LABEL, 'news');
+							?>
+						</span>
+						<?php
 					}
 					if ($pages) {
 						$pages = $_zp_CMS->getPages(NULL, true); // top level only
 						foreach ($pages as $item) {
 							$pageobj = newPage($item['titlelink']);
 							?>
-							<a href="<?php echo $pageobj->getLink(); ?>"><?php echo html_encode($pageobj->getTitle()); ?></a>&nbsp;&nbsp;
+							<span class="zp_link">
+								<a href="<?php echo $pageobj->getLink(); ?>"><?php echo html_encode($pageobj->getTitle()); ?></a>
+							</span>
 							<?php
 						}
 					}

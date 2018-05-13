@@ -56,13 +56,15 @@ if (class_exists('CMS')) {
 					foreach ($pages as $item) {
 						$pageobj = newPage($item['titlelink']);
 						?>
-						<a href="<?php echo $pageobj->getLink(); ?>"><?php echo html_encode($pageobj->getTitle()); ?></a>
+						<span class="zp_link">
+							<a href="<?php echo $pageobj->getLink(); ?>"><?php echo html_encode($pageobj->getTitle()); ?></a>
+						</span>
 						<?php
 					}
 				}
 				?>
 
-			</div> 
+			</div>
 			<div id="credit">
 				<?php
 				if (function_exists('printFavoritesURL')) {
