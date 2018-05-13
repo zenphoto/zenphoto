@@ -689,3 +689,7 @@ form input[type="button"] {
 .zen-logo img {
 	vertical-align: sub;
 }
+
+.zp_link a {
+	background-color: #EEF5F9 !important;
+}

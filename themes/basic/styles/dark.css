@@ -102,6 +102,11 @@ h3 a:link, h3 a:visited { text-decoration: none; }
 h3 a:hover { text-decoration: underline; }
 
 
+.zp_link a {
+	background-color: #333;
+	color: #86a1b6;
+}
+
 /* Miscellaneous
 ------------------------------ */
 hr {
