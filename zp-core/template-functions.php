@@ -3197,7 +3197,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		$id = ' id="' . $id . '"';
 	}
 	if ($class) {
-		$class .= ' class="' . $class . '"';
+		$class = ' class="' . $class . '"';
 	}
 	if($title) {
 		$title = ' title="' . html_encode($title) . '"';
