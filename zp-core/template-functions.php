@@ -439,6 +439,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 		default: // for all other possible static custom pages
 			$custompage = stripSuffix($_zp_gallery_page);
 			$standard = array(
+					'gallery' => gettext('Gallery'), 
 					'contact' => gettext('Contact'), 
 					'register' => gettext('Register'), 
 					'search' => gettext('Search'), 

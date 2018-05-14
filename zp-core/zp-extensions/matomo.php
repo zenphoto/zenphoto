@@ -233,13 +233,16 @@ class matomoStats {
 	 */
 	static function printDocumentTitle() {
 		global $_zp_current_locale;
+		$original_locale = null;
 		$locale_to_track = getOption('matomo_language_tracking');
 		if($locale_to_track != $_zp_current_locale && $locale_to_track != 'HTTP_Accept_Language') {
 			$original_locale = getOption('locale');
 			setOption('locale', $locale_to_track, false);
 		}
-		echo js_encode(getHeadTitle());
-		setOption('locale', $original_locale, false);
+		echo getHeadTitle();
+		if(!is_null($original_locale)) {
+			setOption('locale', $original_locale, false);
+		}
 	}
 
 }
