@@ -34,7 +34,7 @@ if (!defined('WEBPATH'))
 					<h3><?php echo gettext('Gallery'); ?></h3>
 					<?php printAllDates(); ?>
 					<br />
-					<?php if (function_exists("printNewsArchive")) { ?>
+					<?php if (extensionEnabled('zenpage') && getNumNews(true)) { ?>
 						<h3><?php echo NEWS_LABEL; ?></h3>
 						<?php printNewsArchive("archive"); ?>
 						<br />

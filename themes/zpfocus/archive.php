@@ -13,7 +13,7 @@
 			<h3><?php echo gettext('Gallery'); ?></h3>
 			<?php printAllDates('archive-list', 'year', 'month', 'desc'); ?>
 		</div>
-		<?php if (function_exists('printNewsArchive')) { ?>
+		<?php if (extensionEnabled('zenpage') && getNumNews(true)) { ?>
 			<div class="archive">
 				<h3><?php echo NEWS_LABEL; ?></h3>
 				<?php printNewsArchive(); ?>

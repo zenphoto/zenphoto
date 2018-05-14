@@ -10,9 +10,11 @@ if (!defined('WEBPATH'))
 <?php include(SERVERPATH . '/' . THEMEFOLDER . '/paradigm/includes/_header.php'); ?>
 
 <div id="background-main" class="background">
-	<div class="container<?php if (getOption('full_width')) {
-	echo '-fluid';
-} ?>">
+	<div class="container<?php
+	if (getOption('full_width')) {
+		echo '-fluid';
+	}
+	?>">
 <?php include(SERVERPATH . '/' . THEMEFOLDER . '/paradigm/includes/_breadcrumbs.php'); ?>
 		<div id="center" class="row" itemscope itemtype="http://schema.org/WebPage">
 			<section class="col-sm-12" id="main" itemprop="mainContentOfPage">
@@ -23,7 +25,7 @@ if (!defined('WEBPATH'))
 
 				<hr />
 
-					<?php if (function_exists("printNewsArchive")) { ?>
+					<?php if (extensionEnabled('zenpage') && getNumNews(true)) { ?>
 					<h2><?php echo NEWS_LABEL; ?></h2>
 					<div class="columns">
 					<?php printNewsArchive("archive"); ?>

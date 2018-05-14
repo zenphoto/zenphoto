@@ -5,9 +5,9 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		
+
 		<?php zp_apply_filter('theme_head'); ?>
-		
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 	</head>
@@ -45,7 +45,7 @@ if (!defined('WEBPATH'))
 										<p><?php echo gettext('Images By Date'); ?></p>
 										<?php printAllDates(); ?>
 										<?php
-										if (function_exists("printNewsArchive")) {
+										if (extensionEnabled('zenpage') && getNumNews(true)) {
 											?>
 											<p><?php echo(NEWS_LABEL); ?></p><?php printNewsArchive("archive"); ?>
 											<?php

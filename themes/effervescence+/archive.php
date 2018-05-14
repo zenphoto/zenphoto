@@ -63,7 +63,7 @@ if (!defined('WEBPATH'))
 						<p><?php echo gettext('Images By Date'); ?></p>
 						<?php printAllDates('archive', 'year', 'month', 'desc'); ?>
 						<?php
-						if (function_exists("printNewsArchive")) {
+						if ($zenpage && getNumNews(true)) {
 							?>
 							<p><?php echo(NEWS_LABEL); ?></p><?php printNewsArchive("archive"); ?>
 							<?php

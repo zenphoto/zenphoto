@@ -25,7 +25,7 @@
 		<td>
 			<?php printAllDates('list-unstyled', 'year', 'month nav nav-pills col-xs-offset-1', 'desc'); ?>
 		</td>
-		<?php if ($_zenpage_enabled) { ?>
+		<?php if (extensionEnabled('zenpage') && getNumNews(true)) { ?>
 			<td id="newsarchives">
 				<?php printNewsArchive('list-unstyled', 'year', 'month nav nav-pills col-xs-offset-1', null, false, 'desc'); ?>
 			</td>

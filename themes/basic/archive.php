@@ -37,13 +37,15 @@ if (!defined('WEBPATH'))
 				</div>
 				<div id="archive"><?php printAllDates(); ?></div>
 				<?php
-				if (function_exists("printNewsArchive")) {
-					?>
-					<div class="news_header">
-						<p><?php echo(NEWS_LABEL); ?></p>
-					</div>
-					<?php
-					printNewsArchive("archive");
+				if (extensionEnabled('zenpage')) {
+					if (getNumNews(true)) {
+						?>
+						<div class="news_header">
+							<p><?php echo(NEWS_LABEL); ?></p>
+						</div>
+						<?php
+						printNewsArchive("archive");
+					}
 				}
 				?>
 				<div id="tag_cloud">
