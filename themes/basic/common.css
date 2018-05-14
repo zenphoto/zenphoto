@@ -4,6 +4,12 @@ shared css so we need make them only once.
 
 */
 
+/* start with a clean slate */
+
+* {
+  margin: 0;
+  padding: 0;
+}
 /* Pretty Buttons
 ------------------------------------- */
 .buttons a,.buttons button {
@@ -169,12 +175,16 @@ button.positive,.buttons a.positive {
 	text-decoration: none;
 }
 
+#archive {
+	padding: 0;
+}
 .image_header {
 	margin:20px 0;
 	background: #fff;
 	font-size: 18px;
 	font-weight:bold;
 	text-align: center;
+	border: 1px black;
 }
 .news_header {
 	margin:20px 0;

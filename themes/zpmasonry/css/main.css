@@ -1,6 +1,11 @@
+/* start with a clean slate */
 
+* {
+  margin: 0;
+  padding: 0;
+	outline:none;
+}
 html{height:101%;} /* Safeguard for infinite scroll on short pages */
-* {outline:none;}
 a img{text-decoration:none!important;}
 body{font:11px/18px Georgia,Times,"Times New Roman",serif;}
 a:link,a:active,a:visited{text-decoration:none;}

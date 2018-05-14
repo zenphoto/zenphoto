@@ -1,7 +1,17 @@
 /*
 	Zenpage Default theme
-*/ /* Basics
+*/
+
+/* Basics
 ------------------------------ */
+
+/* start with a clean slate */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html { /* Moz */
 	margin: 0;
 	padding: 0;
