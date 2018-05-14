@@ -185,10 +185,11 @@ class CMS {
 	 * 													This parameter is not used for date archives
 	 * @param bool $sortdirection TRUE for descending, FALSE for ascending. Note: This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
+	 * @param obj $category Optional category to get the article from
+	 * @param string $author Optional author name to get the articles of
 	 * @return array
 	 */
-	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL) {
-
+	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL, $author = null) {
 		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
 		if (empty($published)) {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_UNPUBLISHED_NEWS_RIGHTS)) {
@@ -201,6 +202,9 @@ class CMS {
 		if ($category && $category->exists) {
 			$sortObj = $category;
 			$cat = $category->getTitlelink();
+		} else if (is_object($_zp_current_category)) {
+			$sortObj = $_zp_current_category;
+			$cat = $sortObj->getTitlelink();
 		} else {
 			$sortObj = $this;
 			$cat = '*';
@@ -218,7 +222,7 @@ class CMS {
 				$sortorder = 'date';
 			}
 		}
-		$newsCacheIndex = "$sortorder-$sortdirection-$published-$cat-" . (int) $sticky;
+		$newsCacheIndex = "$sortorder-$sortdirection-$published-$cat-$author-" . (int) $sticky;
 
 		if (isset($_zp_newsCache[$newsCacheIndex])) {
 			$result = $_zp_newsCache[$newsCacheIndex];
@@ -306,6 +310,14 @@ class CMS {
 					$getUnpublished = zp_loggedin(MANAGE_ALL_NEWS_RIGHTS);
 					$show = '';
 					break;
+			}
+			if ($author) {
+				if($cat || $show) {
+					$author_conjuction = ' AND ';
+				} else {
+					$author_conjuction = ' WHERE ';
+				}
+				$show .= $author_conjuction . ' author = ' .db_quote($author);
 			}
 			$order = " ORDER BY $sticky";
 

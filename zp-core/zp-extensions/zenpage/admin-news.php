@@ -142,7 +142,7 @@ updatePublished('news');
 						$published = 'all';
 					}
 					$sortorder = 'publishdate';
-					$direction = true;
+					$direction = $sortdirection = true;
 					if (isset($_GET['sortorder'])) {
 						list($sortorder, $sortdirection) = explode('-', $_GET['sortorder']);
 						$direction = $sortdirection && $sortdirection == 'desc';
