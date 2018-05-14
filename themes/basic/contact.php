@@ -28,7 +28,7 @@ if (function_exists('printContactForm')) {
 						<em><?php echo gettext('Contact us'); ?></em>
 					</h2>
 				</div>
-				<h3><?php echo gettext('Contact us.') ?></h3>
+				<h3><?php echo gettext('Contact us') ?></h3>
 				<?php printContactForm(); ?>
 			</div>
 			<?php @call_user_func('printLanguageSelector'); ?>
