@@ -168,3 +168,19 @@ button.positive,.buttons a.positive {
 .zp_link a {
 	text-decoration: none;
 }
+
+.image_header {
+	margin:20px 0;
+	background: #fff;
+	font-size: 18px;
+	font-weight:bold;
+	text-align: center;
+}
+.news_header {
+	margin:20px 0;
+	background: #fff;
+	border-top: 3px solid #E6E6DF;
+	font-size: 18px;
+	font-weight:bold;
+	text-align: center;
+}

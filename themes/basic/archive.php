@@ -32,7 +32,20 @@ if (!defined('WEBPATH'))
 				</h2>
 			</div>
 			<div id="padbox">
+				<div class="image_header">
+					<p><?php echo gettext('Images By Date'); ?></p>
+				</div>
 				<div id="archive"><?php printAllDates(); ?></div>
+				<?php
+				if (function_exists("printNewsArchive")) {
+					?>
+					<div class="news_header">
+						<p><?php echo(NEWS_LABEL); ?></p>
+					</div>
+					<?php
+					printNewsArchive("archive");
+				}
+				?>
 				<div id="tag_cloud">
 					<p><?php echo gettext('Popular Tags'); ?></p>
 					<?php printAllTagsAs('cloud', 'tags'); ?>
