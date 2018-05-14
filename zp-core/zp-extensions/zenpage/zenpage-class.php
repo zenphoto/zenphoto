@@ -243,6 +243,8 @@ class Zenpage {
 		}
 		if ($category) {
 			$sortObj = $category;
+		} else if (is_object($_zp_current_category)) {
+			$sortObj = $_zp_current_category;
 		} else {
 			$sortObj = $this;
 		}
@@ -268,9 +270,7 @@ class Zenpage {
 		} else {
 			$show = $currentcategory = false;
 			if ($category) {
-				if (is_object($_zp_current_category)) {
-					$currentcategory = $_zp_current_category->getTitlelink();
-				}
+				$currentcategory = $category->getTitlelink();
 				$showConjunction = ' AND ';
 				// new code to get nested cats
 				$catid = $category->getID();
@@ -382,7 +382,11 @@ class Zenpage {
 						$datesearch = ' WHERE ' . $datesearch;
 					}
 				}
-				$order .= " date DESC";
+				if ($sortdirection || is_null($sortdirection)) {
+					$order .= ' date DESC';
+				} else {
+					$order .= ' date ASC';
+				}
 			} else {
 				$datesearch = "";
 				if ($category) {

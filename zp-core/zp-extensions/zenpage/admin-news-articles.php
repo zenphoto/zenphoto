@@ -125,7 +125,7 @@ datepickerJS();
 						$published = 'all';
 					}
 					$sortorder = 'date';
-					$direction = true;
+					$sortdirection = $direction = true;
 					if (isset($_GET['sortorder'])) {
 						list($sortorder, $sortdirection) = explode('-', $_GET['sortorder']);
 						if($sortdirection == 'asc') {

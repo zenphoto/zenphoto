@@ -3770,7 +3770,7 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 	$lastyear = "";
 	echo "\n<ul $class>\n";
 	$nr = 0;
-	while (list($key, $val) = each($datecount)) {
+	foreach($datecount as $key => $val) {
 		$nr++;
 		if ($key == '0000-00-01') {
 			$year = "no date";
