@@ -30,7 +30,7 @@ if (isset($_GET['purge'])) {
 		$success = false;
 	} else {
 		$success = true;
-		$targets = array(ZENFOLDER => 'dir', USER_PLUGIN_FOLDER => 'dir', 'index.php' => 'file');
+		$targets = array('docs' => 'dir', ZENFOLDER => 'dir', USER_PLUGIN_FOLDER => 'dir', 'index.php' => 'file');
 
 		foreach ($_zp_gallery->getThemes() as $theme => $data) {
 			$targets[THEMEFOLDER . '/' . $theme] = 'dir';
