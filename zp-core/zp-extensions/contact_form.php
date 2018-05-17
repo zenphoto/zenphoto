@@ -286,7 +286,7 @@ function printContactForm($subject_override = '') {
 			$error[8] = gettext('a website');
 		} else {
 			if (!empty($mailcontent['website'])) {
-				if (substr($mailcontent['website'], 0, 7) != "http: //") {
+				if (substr($mailcontent['website'], 0, 7) != "http://" || substr($mailcontent['website'], 0, 8) != "https://") {
 					$mailcontent['website'] = "http://" . $mailcontent['website'];
 				}
 			}
