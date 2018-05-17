@@ -36,7 +36,7 @@ function getSubalbumImages($folder) {
 
 $user = $_zp_current_admin_obj->getUser();
 $favorite = trim(sanitize($_REQUEST['title']), '/');
-if (isset($_POST['savealbum'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'savealbum') {
 	XSRFdefender('savealbum');
 	$albumname = sanitize($_POST['album']);
 	if ($album = sanitize($_POST['albumselect'])) {
@@ -117,7 +117,7 @@ while ($old != $albumname) {
 }
 ?>
 <div class="tabbox">
-	<form class="dirtylistening" onReset="setClean('savealbum_form');" id="savealbum_form" action="?savealbum" method="post">
+	<form class="dirtylistening" onReset="setClean('savealbum_form');" id="savealbum_form" action="?action=savealbum" method="post">
 		<?php XSRFToken('savealbum'); ?>
 		<input type="hidden" name="savealbum" value="yes" />
 		<input type="hidden" name="title" value="<?php echo sanitize($_GET['title']); ?>" />

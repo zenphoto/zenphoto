@@ -132,7 +132,7 @@ if (is_null($isCrop)) {
 	$iH = round($imageobj->get('thumbH') * $sr);
 }
 
-if (isset($_REQUEST['crop'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'crop') {
 	XSRFdefender('thumb_crop');
 	$cw = $_REQUEST['w'];
 	$ch = $_REQUEST['h'];
@@ -265,7 +265,7 @@ printAdminHeader('edit', 'thumbcrop');
 					</div>
 					<br clear="all">
 					<!-- This is the form that our event handler fills -->
-					<form class="dirtylistening" onReset="setClean('crop');" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
+					<form class="dirtylistening" onReset="setClean('crop');" name="crop" id="crop" method="post" action="?action=crop" onsubmit="return checkCoords();">
 						<?php XSRFToken('thumb_crop'); ?>
 						<?php
 						if ($singleimage) {

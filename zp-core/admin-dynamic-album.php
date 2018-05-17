@@ -32,7 +32,7 @@ function getSubalbumImages($folder) {
 }
 
 $search = new SearchEngine(true);
-if (isset($_POST['savealbum'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'savealbum') {
 	XSRFdefender('savealbum');
 	$msg = gettext("Failed to save the album file");
 	$_GET['name'] = $albumname = sanitize($_POST['album']);
@@ -175,7 +175,7 @@ echo "<h1>" . gettext("Create Dynamic Album") . "</h1>\n";
 		getSubalbumImages($folder);
 	}
 	?>
-	<form class="dirtylistening" onReset="setClean('savealbun_form');" id="savealbun_form" action="?savealbum" method="post" autocomplete="off" >
+	<form class="dirtylistening" onReset="setClean('savealbun_form');" id="savealbun_form" action="?action=savealbum" method="post" autocomplete="off" >
 		<?php XSRFToken('savealbum'); ?>
 		<input type="hidden" name="savealbum" value="yes" />
 		<table>

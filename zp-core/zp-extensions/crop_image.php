@@ -149,7 +149,7 @@ $iH = round($sizedheight * 0.9);
 $iX = round($sizedwidth * 0.05);
 $iY = round($sizedheight * 0.05);
 
-if (isset($_REQUEST['crop'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'crop') {
 	XSRFdefender('crop');
 	$cw = $_REQUEST['w'];
 	$ch = $_REQUEST['h'];
@@ -393,7 +393,7 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 
 					<div style="text-align:left; float: left;">
 						<!-- This is the form that our event handler fills -->
-						<form class="dirtylistening" onReset="setClean('crop');"  name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
+						<form class="dirtylistening" onReset="setClean('crop');"  name="crop" id="crop" method="post" action="?action=crop" onsubmit="return checkCoords();">
 							<?php XSRFToken('crop'); ?>
 
 							<div style="width: <?php echo $sizedwidth; ?>px; height: <?php echo $sizedheight; ?>px; margin-bottom: 10px; border: 4px solid gray;">
