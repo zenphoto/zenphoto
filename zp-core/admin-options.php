@@ -3394,7 +3394,10 @@ Zenphoto_Authority::printPasswordFormJS();
 										} 
 									  ?>	
 										<p>
+											<label>
 											<?php print_language_string_list(getOption('dataprivacy_policy_customlinktext'), 'dataprivacy_policy_customlinktext'); ?>
+											<?php echo gettext('Custom link text'); ?>
+										</label>
 										</p>
 									</td>
 									<td width="175">
