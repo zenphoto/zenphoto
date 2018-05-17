@@ -70,9 +70,20 @@ if (isset($_GET['showthumbs'])) { // switch the display selector
 	}
 	setOption('album_tab_showDefaultThumbs', serialize($showDefaultThumbs));
 }
+
 if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action']);
 	switch ($action) {
+		default:
+			$return = sanitize_path($r = @$_GET['return']);
+			if (!empty($return)) {
+				$return = '&album=' . $return;
+				if (strpos($r, '*') === 0) {
+					$return .= '&tab=subalbuminfo';
+				}
+			}
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return);
+			exitZP();
 		/** reorder the tag list ***************************************************** */
 		/*		 * *************************************************************************** */
 		case 'savealbumorder':
