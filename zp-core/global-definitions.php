@@ -35,8 +35,8 @@ define('MUTEX_FOLDER', '.mutex');
 
 //bit masks for plugin priorities
 define('CLASS_PLUGIN', 8192);
-define('ADMIN_PLUGIN', 4096);
-define('FEATURE_PLUGIN', 2048);
+define('ADMIN_PLUGIN', 2048);
+define('FEATURE_PLUGIN', 4096);
 define('THEME_PLUGIN', 1024);
 define('PLUGIN_PRIORITY', 1023);
 

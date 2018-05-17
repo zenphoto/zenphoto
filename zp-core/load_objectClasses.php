@@ -19,7 +19,8 @@ $_zp_loaded_plugins = array();
 if (abs(OFFSET_PATH) != 2) { // setup does not need (and might have problems with) plugins
 	$masks[] = CLASS_PLUGIN;
 	if (OFFSET_PATH) {
-		$masks[] = ADMIN_PLUGIN | FEATURE_PLUGIN;
+		$masks[] = FEATURE_PLUGIN;
+		$masks[] = ADMIN_PLUGIN;
 	}
 	if (DEBUG_PLUGINS) {
 		if (OFFSET_PATH) {
