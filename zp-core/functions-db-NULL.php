@@ -33,7 +33,7 @@ function db_connect($config, $errorstop = true) {
  * @return results of the sql statements
  * @since 0.6
  */
-function query($sql, $errorstop = true) {
+function db_query($sql, $errorstop = true) {
 	return false;
 }
 

@@ -70,7 +70,7 @@ function getUserIP() {
  */
 function getUserID() {
 	global $_zp_current_admin_obj;
-	if (zp_loggedin()) {
+	if ($_zp_current_admin_obj) {
 		$id = $_zp_current_admin_obj->getUser();
 	} else {
 		$id = getUserIP();
@@ -396,6 +396,19 @@ function getSetClause($new_unique_set) {
 		}
 	}
 	return substr($set, 0, -1);
+}
+
+/**
+ * gating functionm for all database queries
+ * @param type $sql
+ * @param type $errorstop
+ */
+function query($sql, $errorstop = true) {
+	$result = function_exists('zp_apply_filter') ? zp_apply_filter('database_query', NULL, $sql) : NULL;
+	if (is_null($result)) {
+		return db_query($sql, $errorstop);
+	}
+	return $result;
 }
 
 /*
