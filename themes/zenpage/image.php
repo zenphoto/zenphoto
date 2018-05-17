@@ -124,6 +124,7 @@ if (!defined('WEBPATH'))
 <?php If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
       @call_user_func('printRating');
       @call_user_func('printGoogleMap');
+			@call_user_func('printOpenStreetMap');
       ?>
 					</div>
 <?php @call_user_func('printCommentForm'); ?>

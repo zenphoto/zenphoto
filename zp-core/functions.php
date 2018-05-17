@@ -2936,14 +2936,14 @@ function removeTrailingSlash($string) {
 function getDataUsageNotice() {
 	$array = array('notice' => '', 'url' => '', 'linktext' => '');
 	$array['linktext'] = get_language_string(getOption('dataprivacy_policy_customlinktext'));
-	$array['notice'] = get_language_string(getOption('data_usage_notice'));
-	$custompage = trim(getOption("dataprivacy_policy_custompage"));
+	$array['notice'] = get_language_string(getOption('dataprivacy_policy_notice'));
+	$custompage = trim(getOption('dataprivacy_policy_custompage'));
 	$zenpage_page =  '';
 	if(empty($array['notice'])) {
 		$array['notice'] = gettext('By using this form you agree with the storage and handling of your data by this website.');
 	} 
 	if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
-		$zenpage_page = getOption('datapolicypage_zenpage');
+		$zenpage_page = getOption('dataprivacy_policy_zenpage');
 		if($zenpage_page == 'none') {
 			$zenpage_page = '';
 		}
