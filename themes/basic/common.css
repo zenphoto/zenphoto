@@ -194,3 +194,6 @@ button.positive,.buttons a.positive {
 	font-weight:bold;
 	text-align: center;
 }
+#commentcontent {
+	clear: both;
+}
