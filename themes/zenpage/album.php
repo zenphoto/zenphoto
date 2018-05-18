@@ -79,6 +79,7 @@ if (!defined('WEBPATH'))
 						printGoogleMap();
 						echo '</p>';
 					}
+					@call_user_func('printOpenStreetMap');
 					?>
 					<?php
 					if (function_exists('printSlideShowLink')) {

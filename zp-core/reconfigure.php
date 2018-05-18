@@ -38,7 +38,7 @@ function reconfigureAction($mandatory) {
 				$where = 'gallery';
 			}
 			$dir = rtrim($dir, '/');
-			$location = "http://" . $_SERVER['HTTP_HOST'] . $dir . "/" . ZENFOLDER . "/setup/index.php?autorun=$where";
+			$location = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $dir . "/" . ZENFOLDER . "/setup/index.php?autorun=$where";
 			header("Location: $location");
 			exitZP();
 		} else {
