@@ -126,10 +126,12 @@ class galleryArticles {
 	 */
 	static function published($obj) {
 		global $_seen;
-		$me = array($obj->table, $obj->getID());
-		if (!$_seen || !in_array($me, $_seen)) { //prevent recursive publications
-			$_seen[] = $me;
-			self::publishArticlesWithCheck($obj);
+		if ($obj->getShow()) {
+			$me = array($obj->table, $obj->getID());
+			if (!$_seen || !in_array($me, $_seen)) { //prevent recursive publications
+				$_seen[] = $me;
+				self::publishArticlesWithCheck($obj);
+			}
 		}
 		return $obj;
 	}

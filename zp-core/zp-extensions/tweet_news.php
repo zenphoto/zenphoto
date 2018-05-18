@@ -180,9 +180,11 @@ class tweet {
 	 * @param object $obj
 	 */
 	static function published($obj) {
-		$error = self::tweetObjectWithCheck($obj);
-		if ($error) {
-			query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("tweet_news","error",' . db_quote($error) . ')');
+		if ($obj->getShow()) {
+			$error = self::tweetObjectWithCheck($obj);
+			if ($error) {
+				query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("tweet_news","error",' . db_quote($error) . ')');
+			}
 		}
 		return $obj;
 	}
