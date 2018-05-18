@@ -159,7 +159,7 @@ while ($row = db_fetch_assoc($result)) {
 }
 $custom = sortMultiArray($custom, array('theme', 'album', 'thumb', 'image_size', 'image_width', 'image_height'), false, true, true);
 
-if (isset($_GET['select'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'select') {
 	XSRFdefender('cacheImages');
 	$enabled = @$_POST['enable'];
 } else {
@@ -198,7 +198,7 @@ if ($alb) {
 	cacheManager::printShowHide();
 	?>
 
-	<form class="dirtylistening" onReset="setClean('size_selections');" id="size_selections" name="size_selections" action="?tab=images&select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
+	<form class="dirtylistening" onReset="setClean('size_selections');" id="size_selections" name="size_selections" action="?tab=images&action=select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
 		<?php XSRFToken('cacheImages') ?>
 		<ol class="no_bullets">
 			<?php

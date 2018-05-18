@@ -27,8 +27,11 @@ if (!$_zp_current_admin_obj || $_zp_current_admin_obj->getID()) {
 }
 admin_securityChecks($rights, currentRelativeURL());
 
-if (isset($_REQUEST['backup']) || isset($_REQUEST['restore'])) {
+if (isset($_GET['action']) && ($_GET['action'] == 'backup' || $_GET['action'] == 'restore')) {
 	XSRFDefender('backup');
+	$action = $_GET['action'];
+} else {
+	$action = NULL;
 }
 
 global $handle, $buffer, $counter, $file_version, $compression_handler; // so this script can run from a function
@@ -142,7 +145,7 @@ if ($result) {
 	db_free_result($result);
 }
 
-if (isset($_REQUEST['backup'])) {
+if ($action == 'backup') {
 	$compression_level = sanitize($_REQUEST['compress'], 3);
 	setOption('backup_compression', $compression_level);
 	if ($compression_level > 0) {
@@ -237,7 +240,7 @@ if (isset($_REQUEST['backup'])) {
 		</div>
 		';
 	}
-} else if (isset($_REQUEST['restore'])) {
+} else if ($action == 'restore') {
 	$oldlibauth = Zenphoto_Authority::getVersion();
 	$errors = array(gettext('No backup set found.'));
 	if (isset($_REQUEST['backupfile'])) {
@@ -512,7 +515,7 @@ if (isset($_GET['compression'])) {
 				<?php
 				if (!$_zp_current_admin_obj->reset) {
 					?>
-					<form name="backup_gallery" action="?tab=backup">
+					<form name="backup_gallery" method="post" action="?tab=backup&action=backup">
 						<?php XSRFToken('backup'); ?>
 						<input type="hidden" name="tab" value="backup" />
 						<input type="hidden" name="backup" value="true" />
@@ -552,7 +555,7 @@ if (isset($_GET['compression'])) {
 					}
 					chdir($curdir);
 					?>
-					<form name="restore_gallery" action="?tab=backup">
+					<form name="restore_gallery" method="post" action="?tab=backup&action=restore">
 						<input type="hidden" name="tab" value="backup" />
 						<?php XSRFToken('backup'); ?>
 						<?php echo gettext('Select the database restore file:'); ?>

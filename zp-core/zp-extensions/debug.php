@@ -37,11 +37,9 @@ $option_interface = 'debug';
 zp_register_filter('admin_tabs', 'debug::tabs', 100);
 zp_register_filter('admin_utilities_buttons', 'debug::button');
 
-
-
-if (isset($_REQUEST['markRelease'])) {
+if (isset($_GET['markRelease'])) {
 	XSRFdefender('markRelease');
-	$version = debug::version($_REQUEST['markRelease'] == 'released');
+	$version = debug::version($_GET['markRelease'] == 'released');
 	setOption('markRelease_state', $version);
 	debug::updateVersion($version);
 	header('location:' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
@@ -163,7 +161,7 @@ class debug {
 				'icon' => $mark ? BULLSEYE_GREEN : BULLSEYE_RED,
 				'title' => sprintf(gettext('Edits the version.php file making a “%s” install.'), $text[$action]),
 				'alt' => '',
-				'hidden' => '<input type="hidden" name="markRelease" value="' . $action . '" />',
+				'hidden' => '',
 				'rights' => ADMIN_RIGHTS,
 				'XSRFTag' => 'markRelease'
 		);
