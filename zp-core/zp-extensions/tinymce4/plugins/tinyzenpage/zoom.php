@@ -1,7 +1,6 @@
 <?php
 define('OFFSET_PATH', 3);
 require_once("../../../../functions.php");
-$host = PROTOCOL . '://'.html_encode($_SERVER["HTTP_HOST"]);
 ?>
 <!DOCTYPE html>
 <html>

@@ -6,8 +6,6 @@
  */
 // sorry about all the inline css but something by TinyMCE's main css seems to override most setting on the css file no matter what I do...Too "lazy" for further investigation...:-)
 
-$host = "http://" . html_encode($_SERVER["HTTP_HOST"]);
-
 /**
  * Prints all albums of the Zenphoto gallery as a partial drop down menu (<option></option> parts).
  *
@@ -94,7 +92,7 @@ function shortentitle($title, $length) {
  * @return string
  */
 function printImageslist($number) {
-	global $_zp_gallery, $host;
+	global $_zp_gallery;
 	$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 	if (isset($_GET['album']) && ! empty($_GET['album'])) {
@@ -291,7 +289,7 @@ function getImageType($imageobj) {
  * @return string
  */
 function printNewsArticlesList($number) {
-	global $_zp_zenpage, $_zp_current_zenpage_news, $host;
+	global $_zp_zenpage;
 	if (isset($_GET['zenpage']) && $_GET['zenpage'] == "articles") {
 		echo "<h3>Zenpage: <em>" . gettext('Articles') . "</em> <small>" . gettext("(Click on article title to include a link)") . "</small></h3>";
 		if (isset($_GET['category'])) {
@@ -475,7 +473,7 @@ function printZenpageItems() {
  * @return string
  */
 function printAllNestedList() {
-	global $_zp_zenpage, $host;
+	global $_zp_zenpage;
 	if (isset($_GET['zenpage']) && ($_GET['zenpage'] == "pages" || $_GET['zenpage'] == "categories")) {
 		$mode = sanitize($_GET['zenpage']);
 		switch ($mode) {
