@@ -36,6 +36,7 @@ class galleryArticles {
 			setOptionDefault('galleryArticles_images', NULL);
 			setOptionDefault('galleryArticles_albums', NULL);
 			setOptionDefault('galleryArticles_category', NULL);
+			setOptionDefault('galleryArticles_show', 1);
 			setOptionDefault('galleryArticles_albumCategory', 0);
 			setOptionDefault('galleryArticles_album_text', getAllTranslations('New album: %1$s'));
 			setOptionDefault('galleryArticles_image_text', getAllTranslations('New image: [%2$s]%1$s'));
@@ -81,6 +82,9 @@ class galleryArticles {
 					gettext('Publish protected') => array('key' => 'galleryArticles_protected', 'type' => OPTION_TYPE_CHECKBOX,
 							'order' => 4,
 							'desc' => gettext('Unless this is checked, objects which are "protected" will not have news articles generated.')),
+					gettext('Publish article') => array('key' => 'galleryArticles_show', 'type' => OPTION_TYPE_CHECKBOX,
+							'order' => 4.5,
+							'desc' => gettext('If checked the generated article will be published.')),
 					gettext('Category') => array('key' => 'galleryArticles_category', 'type' => OPTION_TYPE_SELECTOR,
 							'order' => 6,
 							'selections' => $categories,
