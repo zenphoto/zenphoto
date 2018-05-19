@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-14 15:07+0200\n"
+"POT-Creation-Date: 2018-05-19 18:35+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -134,15 +134,12 @@ msgstr "Galerij RSS"
 msgid "Popular Tags"
 msgstr "Populaire tags"
 
-#: themes/basic/contact.php:28 themes/basic/index.php:63
+#: themes/basic/contact.php:28 themes/basic/contact.php:31
+#: themes/basic/index.php:63 themes/effervescence_plus/contact.php:52
 #: themes/effervescence_plus/functions.php:407 themes/garland/contact.php:43
 #: themes/garland/functions.php:128 themes/zenpage/contact.php:38
 #: themes/zenpage/sidebar.php:110 themes/zenpage/sidebar.php:112
 msgid "Contact us"
-msgstr "Contact"
-
-#: themes/basic/contact.php:31 themes/effervescence_plus/contact.php:52
-msgid "Contact us."
 msgstr "Contact"
 
 #: themes/basic/favorites.php:44 themes/basic/favorites.php:59
@@ -203,7 +200,7 @@ msgid "A password is required for the page you requested"
 msgstr "Een wachtwoord is nodig om de opgevraagde pagina te bekijken."
 
 #: themes/basic/register.php:28 themes/effervescence_plus/register.php:40
-#: themes/garland/register.php:43 zp-core/template-functions.php:443
+#: themes/garland/register.php:43 zp-core/template-functions.php:444
 #: zp-core/zp-extensions/html_meta_tags.php:326
 #: zp-core/zp-extensions/register_user.php:65
 msgid "Register"
@@ -291,8 +288,8 @@ msgstr "Pagina niet gevonden"
 #: themes/zenpage/search.php:46 themes/zenpage/search.php:48
 #: themes/zpmobile/functions.php:67 themes/zpmobile/search.php:46
 #: themes/zpmobile/search.php:51 themes/zpmobile/search.php:53
-#: zp-core/template-functions.php:444 zp-core/template-functions.php:1408
-#: zp-core/template-functions.php:1439 zp-core/template-functions.php:3994
+#: zp-core/template-functions.php:445 zp-core/template-functions.php:1409
+#: zp-core/template-functions.php:1440 zp-core/template-functions.php:3995
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-core/zp-extensions/html_meta_tags.php:326
 #: zp-core/zp-extensions/slideshow.php:749
@@ -315,7 +312,7 @@ msgid "News archive"
 msgstr "Nieuwsarchief"
 
 #: themes/effervescence_plus/contact.php:42 zp-core/functions.php:2673
-#: zp-core/template-functions.php:442
+#: zp-core/template-functions.php:443
 #: zp-core/zp-extensions/html_meta_tags.php:326
 msgid "Contact"
 msgstr "Contact"
@@ -397,7 +394,7 @@ msgid "Effervescence %1$s %2$s"
 msgstr "Effervescence %1$s %2$s"
 
 #: themes/effervescence_plus/functions.php:323
-#: zp-core/template-functions.php:1227
+#: zp-core/template-functions.php:1228
 msgid "The album is password protected."
 msgstr "Dit is album is beveiligd met een wachtwoord."
 
@@ -501,7 +498,7 @@ msgstr "Reacties: %d"
 #: themes/garland/news.php:107 themes/zenpage/gallery.php:75
 #: themes/zenpage/news.php:58 themes/zenpage/news.php:93
 #: themes/zpmobile/news.php:44
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/zoom.php:61
+#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/zoom.php:49
 msgid "Categories: "
 msgstr "categorieën"
 
@@ -540,7 +537,7 @@ msgstr "Stop"
 
 #: themes/effervescence_plus/indexpage.php:43
 #: themes/effervescence_plus/slideshow.php:34 themes/zpmobile/functions.php:65
-#: zp-core/template-functions.php:663 zp-core/template-functions.php:1547
+#: zp-core/template-functions.php:664 zp-core/template-functions.php:1548
 #: zp-core/zp-extensions/menu_manager.php:822
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:465
 msgid "Home"
@@ -682,7 +679,7 @@ msgstr "Albumindex"
 #: zp-core/lib-auth.php:584 zp-core/lib-auth.php:585
 #: zp-core/setup/setup-option-defaults.php:395
 #: zp-core/setup/setup-option-defaults.php:396
-#: zp-core/template-functions.php:622
+#: zp-core/template-functions.php:442 zp-core/template-functions.php:623
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:151
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
 #: zp-core/zp-extensions/externalFeed.php:70 zp-core/zp-extensions/rss.php:80
@@ -735,8 +732,8 @@ msgstr "Pagina’s"
 
 #: themes/effervescence_plus/sidebar.php:80
 #: themes/effervescence_plus/themeoptions.php:77 themes/zenpage/sidebar.php:56
-#: themes/zpmobile/functions.php:78 zp-core/template-functions.php:1391
-#: zp-core/template-functions.php:1446
+#: themes/zpmobile/functions.php:78 zp-core/template-functions.php:1392
+#: zp-core/template-functions.php:1447
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:836
 msgid "Archive"
 msgstr "Archief"
@@ -938,7 +935,7 @@ msgid "Image gallery transition"
 msgstr "Galerij overgang"
 
 #: themes/effervescence_plus/themeoptions.php:125
-#: themes/garland/themeoptions.php:92 zp-core/admin-options.php:3378
+#: themes/garland/themeoptions.php:92 zp-core/admin-options.php:3374
 #: zp-core/exif/makers/canon.php:155 zp-core/exif/makers/nikon.php:216
 #: zp-core/zp-extensions/GoogleMap.php:103
 #: zp-core/zp-extensions/user_login-out.php:37
@@ -1123,7 +1120,7 @@ msgid "« Previous"
 msgstr "« Vorige"
 
 #: themes/garland/password.php:41 zp-core/password.php:6
-#: zp-core/template-functions.php:446
+#: zp-core/template-functions.php:447
 #: zp-core/zp-extensions/html_meta_tags.php:326
 msgid "Password required"
 msgstr "Wachtwoord vereist"
@@ -1294,7 +1291,7 @@ msgstr ""
 msgid "The Zenphoto object you are requesting cannot be found."
 msgstr "Het Zenphoto object dat je zoekt kan niet gevonden worden."
 
-#: themes/zpmobile/archive.php:26 zp-core/template-functions.php:445
+#: themes/zpmobile/archive.php:26 zp-core/template-functions.php:446
 #: zp-core/zp-extensions/html_meta_tags.php:326
 msgid "Archive view"
 msgstr "Archief"
@@ -1596,7 +1593,7 @@ msgstr "Terug"
 #: zp-core/admin-options.php:1966 zp-core/admin-options.php:2601
 #: zp-core/admin-options.php:2730 zp-core/admin-options.php:2997
 #: zp-core/admin-options.php:3056 zp-core/admin-options.php:3184
-#: zp-core/admin-options.php:3211 zp-core/admin-options.php:3418
+#: zp-core/admin-options.php:3211 zp-core/admin-options.php:3422
 #: zp-core/admin-plugins.php:140 zp-core/admin-plugins.php:393
 #: zp-core/admin-thumbcrop.php:269 zp-core/admin-users.php:464
 #: zp-core/admin-users.php:833
@@ -1902,7 +1899,7 @@ msgstr "Toon afbeeldingen op:"
 #: zp-core/admin-options.php:2602 zp-core/admin-options.php:2732
 #: zp-core/admin-options.php:2999 zp-core/admin-options.php:3057
 #: zp-core/admin-options.php:3185 zp-core/admin-options.php:3212
-#: zp-core/admin-options.php:3419 zp-core/admin-plugins.php:141
+#: zp-core/admin-options.php:3423 zp-core/admin-plugins.php:141
 #: zp-core/admin-plugins.php:394 zp-core/admin-themes-editor.php:158
 #: zp-core/admin-thumbcrop.php:265 zp-core/admin-users.php:465
 #: zp-core/admin-users.php:834 zp-core/lib-auth.php:1067
@@ -2721,8 +2718,8 @@ msgid ""
 "An error occurred while copying files. Please delete manually the new theme "
 "directory “%s” and retry or copy files manually."
 msgstr ""
-"Er is iets fout gegaan tijdens het kopiëren. Verwijder a.u.b. handmatig de "
-"nieuwe thema-map “%s” en probeer het nogmaals of kopiëer de bestanden "
+"Er is iets fout gegaan tijdens het kopiëren. Verwijder alsjeblieft handmatig "
+"de nieuwe thema-map “%s” en probeer het nogmaals of kopiëer de bestanden "
 "handmatig."
 
 #: zp-core/admin-functions.php:3046
@@ -3318,7 +3315,7 @@ msgstr "Raadpleeg de troubleshooting uitleg op zenphoto.org voor details."
 #: zp-core/admin-options.php:1967 zp-core/admin-options.php:2602
 #: zp-core/admin-options.php:2732 zp-core/admin-options.php:2999
 #: zp-core/admin-options.php:3057 zp-core/admin-options.php:3185
-#: zp-core/admin-options.php:3212 zp-core/admin-options.php:3419
+#: zp-core/admin-options.php:3212 zp-core/admin-options.php:3423
 #: zp-core/admin-users.php:465
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:267
 msgid "reset"
@@ -3424,7 +3421,7 @@ msgid ""
 msgstr ""
 "Als <em>mod_rewrite</em> hierboven ingeschakeld is zal Zenphoto de "
 "<em>mod_rewrite toevoeging</em> toevoegen aan het eind van de afbeeldings "
-"URL (hulpvol voor zoekmachines). Voorbeelden: <em>.html, .php</em>, etc."
+"URL (hulpvol voor zoekmachines). Voorbeelden: <em>.html, .php</em>, enz."
 
 #: zp-core/admin-options.php:699 zp-core/admin-users.php:749
 msgid "Language:"
@@ -3818,7 +3815,7 @@ msgstr ""
 
 #: zp-core/admin-options.php:1099 zp-core/admin-options.php:3056
 #: zp-core/admin-options.php:3184 zp-core/admin-options.php:3211
-#: zp-core/admin-options.php:3418 zp-core/setup/setup-sqlform.php:102
+#: zp-core/admin-options.php:3422 zp-core/setup/setup-sqlform.php:102
 msgid "save"
 msgstr "opslaan"
 
@@ -5291,7 +5288,7 @@ msgstr ""
 msgid "Data privacy usage notice"
 msgstr "Privacybeleid waarschuwing"
 
-#: zp-core/admin-options.php:3357
+#: zp-core/admin-options.php:3355
 msgid ""
 "Here you can define the data usage confirmation notice that is recommended "
 "if your site is using forms submitting data in some jurisdictions like the "
@@ -5300,7 +5297,7 @@ msgstr ""
 "Je kunt hier je eigen privacybeleid waarschuwing invullen. Laat leeg voor de "
 "standaard tekst:"
 
-#: zp-core/admin-options.php:3358 zp-core/functions.php:2943
+#: zp-core/admin-options.php:3356 zp-core/functions.php:2943
 msgid ""
 "By using this form you agree with the storage and handling of your data by "
 "this website."
@@ -5308,27 +5305,27 @@ msgstr ""
 "Door dit formulier te gebruiken stemt u in met de wijze waarop deze website "
 "met uw gegevens omgaat."
 
-#: zp-core/admin-options.php:3367
+#: zp-core/admin-options.php:3364
 msgid "Data privacy policy page"
 msgstr "Privacybeleid pagina"
 
-#: zp-core/admin-options.php:3371
+#: zp-core/admin-options.php:3367
 msgid "Custom page url"
 msgstr "Custom pagina URL"
 
-#: zp-core/admin-options.php:3390
+#: zp-core/admin-options.php:3388
 msgid "Select a Zenpage page."
 msgstr "Selecteer een Zenpage pagina."
 
-#: zp-core/admin-options.php:3393
+#: zp-core/admin-options.php:3392
 msgid "No public Zenpage pages available"
 msgstr "Geen zichtbare Zenpage pagina's beschikbaar"
 
-#: zp-core/admin-options.php:3397
+#: zp-core/admin-options.php:3399
 msgid "Custom link text"
 msgstr "Custom link tekst"
 
-#: zp-core/admin-options.php:3400
+#: zp-core/admin-options.php:3404
 msgid ""
 "Here you can define your data policy statement page that is recommended to "
 "have in jurisdictions like the EU and its GDPR."
@@ -5336,7 +5333,7 @@ msgstr ""
 "Hier kun je kiezen welke op welke pagina de waarschuwing over het "
 "privacybeleid getoond wordt."
 
-#: zp-core/admin-options.php:3401
+#: zp-core/admin-options.php:3405
 msgid ""
 "If the Zenpage CMS plugin is enabled and also its pages feature you can "
 "select one of its pages, otherwise enter a full custom page url manually "
@@ -5346,7 +5343,7 @@ msgstr ""
 "kun je hier een van de pagina’s selecteren. Anders kun je de absolute URL "
 "van een custom pagina invoeren."
 
-#: zp-core/admin-options.php:3402
+#: zp-core/admin-options.php:3406
 msgid ""
 "Additionally you can define a custom text for the page link. If not set the "
 "default text <em>More info on our data privacy policy.</em> is used."
@@ -5655,7 +5652,8 @@ msgstr "Bestand met succes ge-update"
 #: zp-core/admin-themes-editor.php:75 zp-core/admin-themes-editor.php:78
 msgid "Could not write file. Please check its write permissions"
 msgstr ""
-"Kan niet naar het bestand schrijven. Controleer a.u.b. de toegangsrechten."
+"Kan niet naar het bestand schrijven. Controleer alsjeblieft de "
+"toegangsrechten."
 
 #: zp-core/admin-themes-editor.php:102
 msgid "Theme File Editor"
@@ -8529,8 +8527,8 @@ msgid ""
 "Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your "
 "installation."
 msgstr ""
-"Zenphoto heeft geen themascripts gevonden. Controleer a.u.b. de <em>%s</em> "
-"map van de installatie."
+"Zenphoto heeft geen themascripts gevonden. Controleer alsjeblieft de <em>%s</"
+"em> map van de installatie."
 
 #: zp-core/functions.php:1683
 msgid "0 Bytes"
@@ -9729,7 +9727,7 @@ msgstr "Je moet deze voorwaarden accepteren om Zenphoto te kunnen gebruiken."
 
 #: zp-core/license.php:48
 msgid "I agree to these terms and conditions"
-msgstr "Ik ga accoord met deze voorwaarden."
+msgstr "Ik ga akkoord met deze voorwaarden."
 
 #: zp-core/no_uploader.php:13
 msgid "There are no upload handlers enabled that can service your request."
@@ -9857,7 +9855,7 @@ msgstr "Klik hier om de setup scripts te herstellen en setup te activeren."
 #: zp-core/setup.php:31
 #, php-format
 msgid "You must restore the setup files from the %1$s release."
-msgstr "Installeer a.u.b. opnieuw de setup bestanden van versie %1$s."
+msgstr "Installeer alsjeblieft opnieuw de setup bestanden van versie %1$s."
 
 #: zp-core/setup.php:34
 msgid ""
@@ -10602,7 +10600,7 @@ msgid ""
 "strong> is not able to write to the file."
 msgstr ""
 "Je hebt je <strong>database</strong> <code>gebruiker</code>, "
-"<code>wachtwoord</code>, etc. niet correct in je configuratiebestand bestand "
+"<code>wachtwoord</code>, enz. niet correct in je configuratiebestand bestand "
 "gezet en <strong>setup</strong> is niet in staat om naar het bestand te "
 "schrijven."
 
@@ -11721,30 +11719,30 @@ msgstr "Maak album"
 msgid "Logout"
 msgstr "Log uit"
 
-#: zp-core/template-functions.php:448
+#: zp-core/template-functions.php:449
 #: zp-core/zp-extensions/favoritesHandler.php:61
 #: zp-core/zp-extensions/html_meta_tags.php:328
 msgid "My favorites"
 msgstr "Mijn favorieten"
 
-#: zp-core/template-functions.php:965 zp-core/template-functions.php:1059
+#: zp-core/template-functions.php:966 zp-core/template-functions.php:1060
 #: zp-core/zp-extensions/menu_manager.php:607
 msgid "Previous Page"
 msgstr "Vorige Pagina"
 
-#: zp-core/template-functions.php:967 zp-core/template-functions.php:1165
+#: zp-core/template-functions.php:968 zp-core/template-functions.php:1166
 #: zp-core/zp-extensions/menu_manager.php:647
 msgid "Next Page"
 msgstr "Volgende Pagina"
 
-#: zp-core/template-functions.php:1082
+#: zp-core/template-functions.php:1083
 #: zp-core/zp-extensions/menu_manager.php:613
 msgid "Page 1"
 msgstr "pagina 1"
 
-#: zp-core/template-functions.php:1097 zp-core/template-functions.php:1106
-#: zp-core/template-functions.php:1136 zp-core/template-functions.php:1143
-#: zp-core/template-functions.php:1153
+#: zp-core/template-functions.php:1098 zp-core/template-functions.php:1107
+#: zp-core/template-functions.php:1137 zp-core/template-functions.php:1144
+#: zp-core/template-functions.php:1154
 #: zp-core/zp-extensions/menu_manager.php:618
 #: zp-core/zp-extensions/menu_manager.php:636
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1029
@@ -11755,7 +11753,7 @@ msgid_plural "Page %u"
 msgstr[0] "pagina %u"
 msgstr[1] "pagina’s %u"
 
-#: zp-core/template-functions.php:1117
+#: zp-core/template-functions.php:1118
 #: zp-core/zp-extensions/menu_manager.php:628
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1038
 #, php-format
@@ -11764,40 +11762,40 @@ msgid_plural "Page %1$u"
 msgstr[0] "pagina %1$u"
 msgstr[1] "pagina %1$u"
 
-#: zp-core/template-functions.php:1230
+#: zp-core/template-functions.php:1231
 msgid "The album is un-published."
 msgstr "Dit album is niet gepubliceerd."
 
-#: zp-core/template-functions.php:1339
+#: zp-core/template-functions.php:1340
 msgid "Album Thumbnails"
 msgstr "Albumthumbnails"
 
-#: zp-core/template-functions.php:1439
+#: zp-core/template-functions.php:1440
 msgid "Return to search"
 msgstr "Keer terug naar <em>zoeken</em>"
 
-#: zp-core/template-functions.php:1446
+#: zp-core/template-functions.php:1447
 msgid "Return to archive"
 msgstr "Keer terug naar <em>archief</em>"
 
-#: zp-core/template-functions.php:2230
+#: zp-core/template-functions.php:2231
 msgid "The image is marked un-published."
 msgstr "Deze afbeelding is als niet-gepubliceerd gemarkeerd."
 
-#: zp-core/template-functions.php:2605
+#: zp-core/template-functions.php:2606
 msgid "Image Info"
 msgstr "Foto-informatie"
 
-#: zp-core/template-functions.php:3494
+#: zp-core/template-functions.php:3495
 #, php-format
 msgid "View image: %s"
 msgstr "Bekijk afbeelding: %s"
 
-#: zp-core/template-functions.php:3688
+#: zp-core/template-functions.php:3689
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: zp-core/template-functions.php:3989
+#: zp-core/template-functions.php:3990
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -11805,45 +11803,45 @@ msgstr ""
 "printSearchForm() $album_list parameter is verouderd. Gebruik in plaats "
 "daarvan array(“albums”=>aray(album, album,...))."
 
-#: zp-core/template-functions.php:4005
+#: zp-core/template-functions.php:4006
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: zp-core/template-functions.php:4086
+#: zp-core/template-functions.php:4087
 msgid "search options"
 msgstr "zoekopties"
 
-#: zp-core/template-functions.php:4086
+#: zp-core/template-functions.php:4087
 msgid "fields"
 msgstr "velden"
 
-#: zp-core/template-functions.php:4132
+#: zp-core/template-functions.php:4133
 msgid "Within"
 msgstr "binnen"
 
-#: zp-core/template-functions.php:4136
+#: zp-core/template-functions.php:4137
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nieuw"
 
-#: zp-core/template-functions.php:4143
+#: zp-core/template-functions.php:4144
 msgid "Check/uncheck all"
 msgstr "Selecteer/Deselecteer alle"
 
-#: zp-core/template-functions.php:4195
+#: zp-core/template-functions.php:4196
 msgid "no date"
 msgstr "geen datum"
 
-#: zp-core/template-functions.php:4431
+#: zp-core/template-functions.php:4432
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: zp-core/template-functions.php:4436
+#: zp-core/template-functions.php:4437
 msgid "login"
 msgstr "login"
 
-#: zp-core/template-functions.php:4453
+#: zp-core/template-functions.php:4454
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
 "website CMS\">Zenphoto</a>"
@@ -11851,21 +11849,21 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
 "website CMS\">Zenphoto</a>"
 
-#: zp-core/template-functions.php:4618
+#: zp-core/template-functions.php:4619
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Zenphoto fout:</strong> het gevraagde object kon niet gevonden worden."
 
-#: zp-core/template-functions.php:4620
+#: zp-core/template-functions.php:4621
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zp-core/template-functions.php:4623
+#: zp-core/template-functions.php:4624
 #, php-format
 msgid "Image: %s"
 msgstr "Afbeelding: %s"
 
-#: zp-core/template-functions.php:4626
+#: zp-core/template-functions.php:4627
 #, php-format
 msgid "Page: %s"
 msgstr "Pagina: %s"
@@ -14186,8 +14184,8 @@ msgstr "Je bent vergeten een bericht te schrijven."
 #: zp-core/zp-extensions/contact_form.php:313
 msgid "Please agree to storage and handling of your data by this website."
 msgstr ""
-"Gaat u a.u.b. accoord met het opslaan en verwerken van uw gegevens door deze "
-"website"
+"U dient nog akkoord te gaan met het opslaan en verwerken van uw gegevens "
+"door deze website"
 
 #: zp-core/zp-extensions/comment_form/functions.php:317
 #, php-format
@@ -14576,12 +14574,12 @@ msgstr "de juiste CAPTCHA code"
 #: zp-core/zp-extensions/contact_form.php:324
 #, php-format
 msgid "Please enter %s. Thanks."
-msgstr "Vul a.u.b. %s in."
+msgstr "Vul alsjeblieft %s in."
 
 #: zp-core/zp-extensions/contact_form.php:327
 #, php-format
 msgid "Please enter %1$s and %2$s. Thanks."
-msgstr "Vul a.u.b. %1$s en %2$s in."
+msgstr "Vul alsjeblieft %1$s en %2$s in."
 
 #: zp-core/zp-extensions/contact_form.php:335
 #, php-format
@@ -14591,7 +14589,7 @@ msgstr "De volgende velden zijn niet of onjuist ingevuld: %s"
 #: zp-core/zp-extensions/contact_form.php:385
 msgid "I agree to storage and handling of my data by this website."
 msgstr ""
-"I ga accoord met het opslaan en verwerken van mijn gegevens door deze "
+"I ga akkoord met het opslaan en verwerken van mijn gegevens door deze "
 "website."
 
 #: zp-core/zp-extensions/contact_form.php:407
@@ -15313,7 +15311,7 @@ msgid ""
 msgstr ""
 "Print de inhoud van de array parameter. De array heeft de volgende syntax "
 "<em>variabele_1</em>=<code>waarde</code> <em>variabele_2</em>=<code>waarde</"
-"code> <em>etc.</em>."
+"code> <em>enz.</em>."
 
 #: zp-core/zp-extensions/exampleMacros.php:48
 msgid ""
@@ -15716,7 +15714,8 @@ msgid ""
 "Could not create the FileStore directory %s. Please check the effective "
 "permissions."
 msgstr ""
-"Kon de FileStore map %s niet aanmaken. Controleer a.u.b. de toegangsrechten."
+"Kon de FileStore map %s niet aanmaken. Controleer alsjeblieft de "
+"toegangsrechten."
 
 #: zp-core/zp-extensions/federated_logon/OpenID_finish_auth.php:29
 msgid "Verification cancelled."
@@ -16889,7 +16888,7 @@ msgid ""
 "in the expression."
 msgstr ""
 "Het aantal macro-parameters moet hetzelfde zijn als het aantal elementen in "
-"de expressie. (%1, %2, %3, etc.)"
+"de expressie. (%1, %2, %3, enz.)"
 
 #: zp-core/zp-extensions/macroList.php:123
 #, php-format
@@ -18791,12 +18790,12 @@ msgstr "Je registratie is niet gelukt."
 
 #: zp-core/zp-extensions/register_user.php:584
 msgid "Data usage confirmation missing."
-msgstr "Accoord gebruik gegevens ontbreekt"
+msgstr "Akkoord gebruik gegevens ontbreekt"
 
 #: zp-core/zp-extensions/register_user.php:585
 msgid "You have not agreed to data storage and handling by this website."
 msgstr ""
-"Je bent nog niet accoord met het opslaan en verwerken van je gegevens door "
+"Je bent nog niet akkoord met het opslaan en verwerken van je gegevens door "
 "deze website."
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:15
@@ -22365,7 +22364,7 @@ msgid ""
 "nesting is too deep. Please move them to a higher level and save your order."
 msgstr ""
 "De volgorde van de aangegeven onderdelen kan niet worden bewaard omdat er te "
-"diep is genest. Verplaats ze a.u.b. naar een hoger niveau."
+"diep is genest. Verplaats ze alsjeblieft naar een hoger niveau."
 
 #: zp-core/zp-extensions/zenpage/admin-categories.php:199
 msgid "Delete category"
@@ -22725,7 +22724,7 @@ msgid ""
 "nesting is too deep. Please move them to a higher level and save your order."
 msgstr ""
 "De volgorde van de aangegeven pagina’s kan niet worden bewaard omdat er te "
-"diep is genest. Verplaats ze a.u.b. naar een hoger niveau."
+"diep is genest. Verplaats ze alsjeblieft naar een hoger niveau."
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:88
 msgid "Duplicate page title"
@@ -23218,6 +23217,9 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:65
 msgid "Sample CAPTCHA image"
 msgstr "Voorbeeld van CAPTCHA"
+
+#~ msgid "Contact us."
+#~ msgstr "Contact"
 
 #~ msgid "Use the getContent() method."
 #~ msgstr "Gebruik de getContent() methode."
