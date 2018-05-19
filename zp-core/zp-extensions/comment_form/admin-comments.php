@@ -444,7 +444,7 @@ printLogoAndLinks();
 												. '<a title = "' . gettext("Private message") . '">'
 												. NO_ENTRY
 												. '</a>'
-												. '/div>';
+												. '</div>';
 											}
 											?>
 											<div class="page-list_icon">

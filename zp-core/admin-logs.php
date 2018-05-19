@@ -63,8 +63,12 @@ if (isset($_GET['action'])) {
 	}
 }
 
-list($logtabs, $subtab, $new) = getLogTabs();
-$logname = $subtab;
+$logtabs = $zenphoto_tabs['logs']['subtabs'];
+if (isset($_GET['tab']) && isset($logtabs[$_GET['tab']])) {
+	$logname = $subtab = $_GET['tab'];
+} else {
+	$logname = $subtab = $zenphoto_tabs['logs']['default'];
+}
 
 printAdminHeader('logs', $subtab);
 

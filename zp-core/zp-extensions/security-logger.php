@@ -316,15 +316,17 @@ class security_logger {
 	 */
 	static function adminGate($allow, $page) {
 		list($user, $name) = security_logger::populate_user();
-		switch (getOption('logge_access_log_type')) {
-			case 'all':
-				break;
-			case 'all_user':
-				if (!$user)
-					return $allow;
-				break;
+		if (!$allow) {
+			switch (getOption('logge_access_log_type')) {
+				case 'all':
+					break;
+				case 'all_user':
+					if (!$user)
+						return $allow;
+					break;
+			}
+			security_logger::Logger(0, $user, $name, 'blocked_access', '', getRequestURI());
 		}
-		security_logger::Logger(0, $user, $name, 'blocked_access', '', getRequestURI());
 		return $allow;
 	}
 

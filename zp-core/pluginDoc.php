@@ -370,7 +370,7 @@ if (!defined('OFFSET_PATH')) {
 						<?php echo $plugin_description; ?>
 					</div>
 					<?php
-					if ($pluginType == 'thirdparty') {
+					if ($pluginType == 'thirdparty' && $plugin_version) {
 						?>
 						<h3><?php printf('Version: %s', $plugin_version); ?></h3>
 						<?php
