@@ -27,8 +27,7 @@ if (!$_zp_current_admin_obj || $_zp_current_admin_obj->getID()) {
 }
 admin_securityChecks($rights, currentRelativeURL());
 
-if (isset($_GET['action']) && ($_GET['action'] == 'backup' || $_GET['action'] == 'restore')) {
-	XSRFDefender('backup');
+if (isset($_GET['action'])) {
 	$action = $_GET['action'];
 } else {
 	$action = NULL;
@@ -146,6 +145,7 @@ if ($result) {
 }
 
 if ($action == 'backup') {
+	XSRFdefender('backup');
 	$compression_level = sanitize($_REQUEST['compress'], 3);
 	setOption('backup_compression', $compression_level);
 	if ($compression_level > 0) {
@@ -241,8 +241,10 @@ if ($action == 'backup') {
 		';
 	}
 } else if ($action == 'restore') {
+	XSRFdefender('restore');
 	$oldlibauth = Zenphoto_Authority::getVersion();
 	$errors = array(gettext('No backup set found.'));
+
 	if (isset($_REQUEST['backupfile'])) {
 		$file_version = 0;
 		$compression_handler = 'gzip';
@@ -557,7 +559,7 @@ if (isset($_GET['compression'])) {
 					?>
 					<form name="restore_gallery" method="post" action="?tab=backup&action=restore">
 						<input type="hidden" name="tab" value="backup" />
-						<?php XSRFToken('backup'); ?>
+						<?php XSRFToken('restore'); ?>
 						<?php echo gettext('Select the database restore file:'); ?>
 						<br />
 						<select id="backupfile" name="backupfile" onchange="$('#restore_button').prop('disabled', false)">

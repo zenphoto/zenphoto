@@ -25,10 +25,10 @@ $adminordered = sortMultiArray($admins, 'user');
 
 if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action']);
-	XSRFdefender($action);
 	$themeswitch = false;
 	switch ($action) {
 		case 'deletegroup':
+			XSRFdefender('deletegroup');
 			$groupname = trim(sanitize($_GET['group']));
 			$groupobj = Zenphoto_Authority::newAdministrator($groupname, 0);
 			$groupobj->remove();
@@ -37,6 +37,7 @@ if (isset($_GET['action'])) {
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=admin&tab=groups&deleted&subpage=' . $subpage);
 			exitZP();
 		case 'savegroups':
+			XSRFdefender('savegroups');
 			if (isset($_POST['checkForPostTruncation'])) {
 				$newgroupid = @$_POST['newgroup'];
 				$grouplist = $_POST['user'];
@@ -98,6 +99,7 @@ if (isset($_GET['action'])) {
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=admin&tab=groups&subpage=' . $subpage . $notify);
 			exitZP();
 		case 'saveauserassignments':
+			XSRFdefender('saveauserassignments');
 			if (isset($_POST['checkForPostTruncation'])) {
 				$userlist = $_POST['user'];
 				foreach ($userlist as $i => $user) {
@@ -323,7 +325,7 @@ echo '</head>' . "\n";
 												if (!empty($groupname)) {
 													$msg = gettext('Are you sure you want to delete this group?');
 													?>
-													<a href="javascript:if(confirm(<?php echo "'" . $msg . "'"; ?>)) { launchScript('',['action=deletegroup','group=<?php echo addslashes($groupname); ?>','XSRFToken=<?php echo getXSRFToken('deletegroup') ?>']); }"
+													<a href="javascript:if(confirm(<?php echo "'" . $msg . "'"; ?>)) { launchScript('',['tab=groups', 'action=deletegroup','group=<?php echo addslashes($groupname); ?>','XSRFToken=<?php echo getXSRFToken('deletegroup') ?>']); }"
 														 title="<?php echo gettext('Delete this group.'); ?>" style="color: #c33;">
 															 <?php echo WASTEBASKET; ?>
 													</a>
@@ -509,7 +511,7 @@ echo '</head>' . "\n";
 							echo gettext("Assign users to groups.");
 							?>
 						</p>
-						<form class="dirtylistening" onReset="setClean('saveAssignments_form');" id="saveAssignments_form" action="?action=saveauserassignments" method="post" autocomplete="off" >
+						<form class="dirtylistening" onReset="setClean('saveAssignments_form');" id="saveAssignments_form" action="?tab=assignments&amp;action=saveauserassignments" method="post" autocomplete="off" >
 							<?php XSRFToken('saveauserassignments'); ?>
 							<p class="buttons">
 								<button type="submit"><?php echo CHECKMARK_GREEN; ?> <?php echo gettext("Apply"); ?></strong></button>

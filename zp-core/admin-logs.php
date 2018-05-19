@@ -15,10 +15,11 @@ if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action'], 3);
 	$what = sanitize($_GET['filename'], 3);
 	$file = SERVERPATH . '/' . DATA_FOLDER . '/' . $what . '.log';
-	XSRFdefender($action, $what);
+
 	if (zp_apply_filter('admin_log_actions', true, $file, $action)) {
 		switch ($action) {
 			case 'clear_log':
+				XSRFdefender($action, $what);
 				$_zp_mutex->lock();
 				$f = fopen($file, 'w');
 				if (@ftruncate($f, 0)) {
@@ -36,6 +37,7 @@ if (isset($_GET['action'])) {
 				}
 				break;
 			case 'delete_log':
+				XSRFdefender($action, $what);
 				purgeOption('logviewed_' . $what);
 				$_zp_mutex->lock();
 				@chmod($file, 0777);
@@ -54,6 +56,7 @@ if (isset($_GET['action'])) {
 				header('location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-logs.php');
 				exitZP();
 			case 'download_log':
+				XSRFdefender($action, $what);
 				putZip($what . '.zip', $file);
 				exitZP();
 		}

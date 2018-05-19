@@ -241,25 +241,10 @@ $tagsort = 'alpha';
 			}
 			zp_apply_filter('admin_note', $me, 'edit');
 
-			if ($result->transient) {
-				if (is_AdminEditPage('newsarticle')) {
-					?>
-					<h1><?php echo gettext('New Article'); ?></h1>
-					<?php
-				}
-				if (is_AdminEditPage('newscategory')) {
-					?>
-					<h1><?php echo gettext('New Category'); ?></h1>
-					<?php
-				}
-				if (is_AdminEditPage('page')) {
-					?>
-					<h1><?php echo gettext('New Page'); ?></h1>
-					<?php
-				}
-			} else if (!$result->loaded) {
+			if (!$result->loaded && !$result->transient) {
+				$result->transient = true;
 				?>
-				<div class="errorbox">
+				<div class="errorbox fade-message">
 					<?php
 					if (is_AdminEditPage('newsarticle')) {
 						?>
@@ -279,6 +264,23 @@ $tagsort = 'alpha';
 					?>
 				</div>
 				<?php
+			}
+			if ($result->transient) {
+				if (is_AdminEditPage('newsarticle')) {
+					?>
+					<h1><?php echo gettext('New Article'); ?></h1>
+					<?php
+				}
+				if (is_AdminEditPage('newscategory')) {
+					?>
+					<h1><?php echo gettext('New Category'); ?></h1>
+					<?php
+				}
+				if (is_AdminEditPage('page')) {
+					?>
+					<h1><?php echo gettext('New Page'); ?></h1>
+					<?php
+				}
 			} else {
 				if (is_AdminEditPage('newsarticle')) {
 					?>
