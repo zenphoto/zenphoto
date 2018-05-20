@@ -247,9 +247,12 @@ foreach($themes as $theme => $themeinfo) {
 			echo gettext('Version').' '. $version.', '.$date;
 			?>
 			<br />
-			<?php echo $themeinfo['desc']; ?>
-			<br /><br />
-			<a href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-options.php?page=options&amp;tab=theme&amp;optiontheme=<?php echo $theme; if ($alb) { echo '&amp;themealbum='.$alb; } ?>" ><?php echo sprintf(gettext('Set <em>%s</em> theme options'),$themeinfo['name']); ?></a>
+			<?php echo $themeinfo['desc']; 
+			if(array_key_exists('deprecated', $themeinfo)) {
+				echo '<p class="notebox">' . $themeinfo['deprecated'] . '</p>';
+			}
+			?>
+			<p><a href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-options.php?page=options&amp;tab=theme&amp;optiontheme=<?php echo $theme; if ($alb) { echo '&amp;themealbum='.$alb; } ?>" ><?php echo sprintf(gettext('Set <em>%s</em> theme options'),$themeinfo['name']); ?></a></p>
 		</td>
 		<td width="20%" <?php echo $style; ?>>
 			<ul class="theme_links">
