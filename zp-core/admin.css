@@ -466,7 +466,7 @@ code {
 
 /* Warning Messages
 ------------------------------ */
-.ul {
+.warningbox {
 	padding: 5px 10px 5px 10px;
 	background-color: #fcf676;
 	border-width: 1px 1px 2px 1px;
