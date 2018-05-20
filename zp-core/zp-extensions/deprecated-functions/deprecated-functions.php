@@ -138,7 +138,7 @@ function getSubtabs() {
 }
 
 /**
- * @deorecated
+ * @deprecated
  * @since 1.6.2
  */
 function filterImageQuery($result, $source, $limit = 1, $photo = true) {

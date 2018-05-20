@@ -73,8 +73,8 @@ echo "\n</head>";
 										ksort($plugins, SORT_NATURAL | SORT_FLAG_CASE);
 										foreach ($plugins as $plugin => $functions) {
 											natcasesort($functions);
-											if (empty($plugin))
-												$plugin = "<em>zp-core</em>";
+											if (empty($plugin) || $plugin == 'core')
+												$plugin = "<em>core</em>";
 											?>
 											<li>
 												<h2><?php echo $plugin; ?></h2>
@@ -89,11 +89,13 @@ echo "\n</head>";
 													}
 													?>
 												</ul>
+												<br />
 											</li>
 											<?php
 										}
 										?>
 									</ul>
+									<br />
 								</li>
 								<?php
 							}

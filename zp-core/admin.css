@@ -466,7 +466,7 @@ code {
 
 /* Warning Messages
 ------------------------------ */
-.warningbox {
+.ul {
 	padding: 5px 10px 5px 10px;
 	background-color: #fcf676;
 	border-width: 1px 1px 2px 1px;
@@ -2850,3 +2850,15 @@ form.tinyDirty input[type=submit]:active {
 	background-position: center;
 }
 
+.ulclean {
+	list-style: none;
+}
+.ulclean li {
+	margin-left:20px;
+	list-style: none;
+}
+.ulclean h3 {
+	padding-top: 10px;
+	font-family: Courier, Monaco, monospace;
+	font-size: 1.1em;
+}
