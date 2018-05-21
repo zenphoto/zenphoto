@@ -914,13 +914,15 @@ function getAllSubAlbumIDs($albumfolder = '') {
  */
 function handleSearchParms($what, $album = NULL, $image = NULL) {
 	global $_zp_current_search, $zp_request, $_zp_last_album, $_zp_current_album,
-	$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_loggedin;
+	$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_loggedin, $_zp_gallery_page;
 	$_zp_last_album = zp_getCookie('zenphoto_last_album');
 	if (is_object($zp_request) && get_class($zp_request) == 'SearchEngine') { //	we are are on a search
+		zp_setCookie('zenphoto_searchparent', 'searchresults');
 		return $zp_request->getAlbumList();
 	}
 	$params = zp_getCookie('zenphoto_search_params');
 	if (!empty($params)) {
+		$searchparent = zp_getCookie('zenphoto_searchparent');
 		$context = get_context();
 		$_zp_current_search = new SearchEngine();
 		$_zp_current_search->setSearchParams($params);
@@ -937,6 +939,9 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		if (!is_null($album)) {
 			$albumname = $album->name;
 			zp_setCookie('zenphoto_last_album', $albumname);
+			if ($_zp_gallery_page == 'album.php') {
+				$searchparent = 'searchresults_album'; // so we know we are in an album search result so any of its images that are also results don't throw us out of context
+			}
 			if (hasDynamicAlbumSuffix($albumname) && !is_dir(ALBUM_FOLDER_SERVERPATH . $albumname)) {
 				$albumname = stripSuffix($albumname); // strip off the suffix as it will not be reflected in the search path
 			}
@@ -947,11 +952,17 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			$_zp_loggedin = $save_logon;
 			foreach ($search_album_list as $searchalbum) {
 				if (strpos($albumname, $searchalbum) !== false) {
-					$context = $context | ZP_SEARCH_LINKED | ZP_ALBUM_LINKED;
+					if($searchparent == 'searchresults_album' && $_zp_last_album == $albumname) {
+						$context = $context | ZP_SEARCH_LINKED | ZP_ALBUM_LINKED;
+					} else {
+						$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
+					}
 					break;
 				}
 			}
+			zp_setCookie('zenphoto_searchparent', $searchparent);
 		} else {
+			zp_clearCookie('zenphoto_searchparent');
 			zp_clearCookie('zenphoto_last_album');
 		}
 		if (!is_null($_zp_current_zenpage_page)) {

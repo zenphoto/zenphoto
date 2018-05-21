@@ -327,14 +327,14 @@ function prepareIndexPage() {
  */
 function prepareAlbumPage() {
 	global $_zp_current_album, $_zp_gallery_page, $_zp_script;
+	$theme = setupTheme();
+	$_zp_gallery_page = "album.php";
+	$_zp_script = THEMEFOLDER . "/$theme/album.php";
 	if ($search = $_zp_current_album->getSearchEngine()) {
 		zp_setCookie("zenphoto_search_params", $search->getSearchParams(), SEARCH_DURATION);
 	} else {
 		handleSearchParms('album', $_zp_current_album);
 	}
-	$theme = setupTheme();
-	$_zp_gallery_page = "album.php";
-	$_zp_script = THEMEFOLDER . "/$theme/album.php";
 	return $theme;
 }
 
@@ -348,7 +348,7 @@ function prepareImagePage() {
 	handleSearchParms('image', $_zp_current_album, $_zp_current_image);
 	$theme = setupTheme();
 	$_zp_gallery_page = basename($_zp_script = THEMEFOLDER . "/$theme/image.php");
-// re-initialize video dimensions if needed
+	// re-initialize video dimensions if needed
 	if (isImageVideo()) {
 		$_zp_current_image->updateDimensions();
 	}

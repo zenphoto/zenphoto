@@ -169,7 +169,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			} else {
 				$searchimages = false;
 			}
-			if (in_context(ZP_SEARCH_LINKED) && $searchimages) {
+			if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED) && $searchimages) {
 				$jcarousel_items = $_zp_current_search->getImages();
 			} else {
 				$jcarousel_items = $_zp_current_album->getImages();

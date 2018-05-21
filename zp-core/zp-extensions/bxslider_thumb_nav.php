@@ -187,7 +187,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			} else {
 				$searchimages = false;
 			}
-			if (in_context(ZP_SEARCH_LINKED) && $searchimages) {
+			if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED) && $searchimages) {
 				$bxslider_items = $_zp_current_search->getImages();
 			} else {
 				$bxslider_items = $_zp_current_album->getImages();
