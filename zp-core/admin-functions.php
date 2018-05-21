@@ -5230,6 +5230,8 @@ function getPluginTabs() {
 			'all' => gettext('all'),
 			'thirdparty' => gettext('3rd party'),
 			'enabled' => gettext('enabled'),
+			'disabled' => gettext('disabled'),
+			'deprecated' => gettext('deprecated'),
 			'misc' => gettext('misc')
 	);
 	$classXlate = array_merge($classXlate, $_subpackages);
@@ -5243,11 +5245,18 @@ function getPluginTabs() {
 	$paths = getPluginFiles('*.php');
 	zp_apply_filter('plugin_tabs', $classXlate);
 
-	$classes = $member = $thirdparty = array();
+	$deprecated = $active = $inactive = $disabled = $classes = $member = $thirdparty = array();
 	foreach ($paths as $plugin => $path) {
 		if (!isset($plugin_lc[strtolower($plugin)])) {
 			$plugin_lc[strtolower($plugin)] = true;
 			$p = file_get_contents($path);
+			preg_match('~/\*(.*?)\*/~s', $p, $matches);
+			if (isset($matches[1])) {
+				$d = $matches[1];
+			} else {
+				$d = '';
+			}
+
 			$key = 'misc';
 			if ($str = isolate('@pluginCategory', $p)) {
 				preg_match('|@pluginCategory\s+(.*)\s|', $str, $matches);
@@ -5256,18 +5265,24 @@ function getPluginTabs() {
 				}
 			}
 
+			if (preg_match('~@deprecated~', $d)) {
+				$deprecated[$plugin] = $path;
+			}
+
 			$classes[$key][] = $plugin;
 			if (extensionEnabled($plugin)) {
 				$active[$plugin] = $path;
+			} else {
+				$inactive[$plugin] = $path;
 			}
 			if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
 				if ($str = isolate('@category', $p)) {
 					preg_match('~@category\s+([^\/|^\s]*)~', $str, $matches);
-					$deprecate = !isset($matches[1]) || $matches[1] != 'package';
+					$tpp = !isset($matches[1]) || $matches[1] != 'package';
 				} else {
-					$deprecate = true;
+					$tpp = true;
 				}
-				if ($deprecate) {
+				if ($tpp) {
 					$thirdparty[$plugin] = $path;
 				}
 			}
@@ -5284,12 +5299,23 @@ function getPluginTabs() {
 		$tabs[$classXlate['thirdparty']] = 'admin-plugins.php?page=plugins&tab=thirdparty';
 	if (!empty($active))
 		$tabs[$classXlate['enabled']] = 'admin-plugins.php?page=plugins&tab=enabled';
+	if (!empty($inactive))
+		$tabs[$classXlate['disabled']] = 'admin-plugins.php?page=plugins&tab=disabled';
+	if (!empty($deprecated))
+		$tabs[$classXlate['deprecated']] = 'admin-plugins.php?page=plugins&tab=deprecated';
+
 	switch ($default) {
 		case 'all':
 			$currentlist = array_keys($paths);
 			break;
 		case 'enabled':
 			$currentlist = array_keys($active);
+			break;
+		case 'disabled':
+			$currentlist = array_keys($inactive);
+			break;
+		case 'deprecated':
+			$currentlist = array_keys($deprecated);
 			break;
 		case'thirdparty':
 			$currentlist = array_keys($thirdparty);
@@ -5306,7 +5332,7 @@ function getPluginTabs() {
 			$currentlist = $list;
 		}
 	}
-	return array($tabs, $default, $currentlist, $paths, $member, $classXlate);
+	return array($tabs, $default, $currentlist, $paths, $member, $classXlate, $deprecated);
 }
 
 function getAdminThumb($image, $size) {

@@ -25,7 +25,7 @@ if (isset($_GET['subpage'])) {
 }
 
 $_GET['page'] = 'plugins';
-list($tabs, $subtab, $pluginlist, $paths, $member, $classXlate) = getPluginTabs();
+list($tabs, $subtab, $pluginlist, $paths, $member, $classXlate, $deprecated) = getPluginTabs();
 
 /* handle posts */
 if (isset($_GET['action'])) {
@@ -207,14 +207,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 					$whose = gettext('Official plugin');
 					$ico = 'images/zp_gold.png';
 				}
-				if ($str = isolate('$plugin_deprecated', $pluginStream)) {
-					if (false === eval($str)) {
-						$parserr = $parserr | 1;
-						$plugin_deprecated = gettext('<strong>Error parsing <em>plugin_deprecated</em>!</strong>.');
-					}
-				} else {
-					$plugin_deprecated = false;
-				}
+				$plugin_deprecated = array_key_exists($extension, $deprecated);
 				if ($str = isolate('$plugin_description', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
@@ -352,35 +345,40 @@ zp_apply_filter('admin_note', 'plugins', '');
 									<?php
 									?>
 									<span class="icons">
-										<span style="padding-left: 2px;">
-											<?php echo CROSS_MARK_RED; ?>
-										</span>
+										<?php echo CROSS_MARK_RED; ?>
 									</span>
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
 									<?php
 								} else {
 									?>
-									<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
+									<span style="padding-left: 3px;padding-right: 2px;">
+										<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
+									</span>
 									<?php
 								}
 								if ($plugin_deprecated) {
-									echo '<span class="deprecated" title="deprecated">';
-									if (!$plugin_notice) {
-										$plugin_notice = gettext('Plugin is deprecated.');
+									if ($plugin_notice) {
+										$plugin_notice = '<strong>' . gettext('Plugin is deprecated!') . '</strong><br />' . $plugin_notice;
+									} else {
+										$plugin_notice = '<strong>' . gettext('Plugin is deprecated!') . '</strong>';
 									}
-								}
-								echo $extension;
-								if (!empty($plugin_version)) {
-									echo ' v' . $plugin_version;
-								}
-								if ($plugin_deprecated) {
-									echo '</span>';
-								}
-
-								if ($plugin_disable) {
 									?>
-								</span>
-								<?php
+									<span class="deprecated">
+										<?php
+									}
+									echo $extension;
+									if (!empty($plugin_version)) {
+										echo ' v' . $plugin_version;
+									}
+									if ($plugin_deprecated) {
+										?>
+									</span>
+									<?php
+									if ($plugin_disable) {
+										?>
+									</span>
+									<?php
+								}
 							}
 							?>
 						</label>
