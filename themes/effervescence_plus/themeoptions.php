@@ -57,26 +57,30 @@ class ThemeOptions {
 		}
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes($me);
-			cacheManager::addThemeCacheSize($me, 595, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize($me, NULL, 180, 80, NUll, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			$img_wmk = getOption('fullimage_watermark') ? true : null;
+			$img_effect = getThemeOption('image_gray') ? 'gray' : null;
+			cacheManager::addThemeCacheSize($me, 595, NULL, NULL, NULL, NULL, NULL, NULL, false, $img_wmk, $img_effect, NULL);
+			cacheManager::addThemeDefaultThumbSize($me);
+			$thumb_wmk = getOption('Image_watermark') ? true : null;
+			$thumb_effect = getThemeOption('thumb_gray') ? 'gray' : null;
+			cacheManager::addThemeCacheSize($me, NULL, 180, 80, NUll, NULL, NULL, NULL, true, $thumb_wmk, $thumb_effect, NULL);
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
-							array('type' => 'menulabel', 'title' => gettext('News Articles'), 'link' => '', 'show' => 1, 'nesting' => 0),
-							array('type'			 => 'menufunction', 'title'			 => gettext('All news'),
-											'link'			 => 'printAllNewsCategories("All news",TRUE,"","menu-active",false,false,false,"list",false,getOption("menu_manager_truncate_string"));',
-											'show'			 => 1, 'include_li' => 0, 'nesting'		 => 1),
-							array('type' => 'html', 'title' => gettext('News Articles Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
-							array('type' => 'custompage', 'title' => gettext('Gallery'), 'link' => 'gallery', 'show' => 1, 'nesting' => 0),
-							array('type' => 'menufunction', 'title' => gettext('All Albums'), 'link' => 'printAlbumMenuList("list",NULL,"","menu-active","submenu","menu-active","",false,false,false,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1),
-							array('type' => 'html', 'title' => gettext('Gallery Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
-							array('type' => 'menulabel', 'title' => gettext('Pages'), 'link' => '', 'show' => 1, 'nesting' => 0),
-							array('type' => 'menufunction', 'title' => gettext('All pages'), 'link' => 'printPageMenu("list","","menu-active","submenu","menu-active","",0,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1, getOption("menu_manager_truncate_string")),
-							array('type' => 'html', 'title' => gettext('Pages Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
-							array('type' => 'menulabel', 'title' => gettext('Archive'), 'link' => '', 'show' => 1, 'nesting' => 0),
-							array('type' => 'custompage', 'title' => gettext('Gallery and News'), 'link' => 'archive', 'show' => 1, 'nesting' => 1),
-							array('type' => 'html', 'title' => gettext('Archive Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0)
+					array('type' => 'menulabel', 'title' => gettext('News Articles'), 'link' => '', 'show' => 1, 'nesting' => 0),
+					array('type' => 'menufunction', 'title' => gettext('All news'),
+							'link' => 'printAllNewsCategories("All news",TRUE,"","menu-active",false,false,false,"list",false,getOption("menu_manager_truncate_string"));',
+							'show' => 1, 'include_li' => 0, 'nesting' => 1),
+					array('type' => 'html', 'title' => gettext('News Articles Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array('type' => 'custompage', 'title' => gettext('Gallery'), 'link' => 'gallery', 'show' => 1, 'nesting' => 0),
+					array('type' => 'menufunction', 'title' => gettext('All Albums'), 'link' => 'printAlbumMenuList("list",NULL,"","menu-active","submenu","menu-active","",false,false,false,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1),
+					array('type' => 'html', 'title' => gettext('Gallery Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array('type' => 'menulabel', 'title' => gettext('Pages'), 'link' => '', 'show' => 1, 'nesting' => 0),
+					array('type' => 'menufunction', 'title' => gettext('All pages'), 'link' => 'printPageMenu("list","","menu-active","submenu","menu-active","",0,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1, getOption("menu_manager_truncate_string")),
+					array('type' => 'html', 'title' => gettext('Pages Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array('type' => 'menulabel', 'title' => gettext('Archive'), 'link' => '', 'show' => 1, 'nesting' => 0),
+					array('type' => 'custompage', 'title' => gettext('Gallery and News'), 'link' => 'archive', 'show' => 1, 'nesting' => 1),
+					array('type' => 'html', 'title' => gettext('Archive Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0)
 			);
 			if (extensionEnabled('rss')) {
 				$rssItems = array(

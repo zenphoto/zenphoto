@@ -39,9 +39,13 @@ class ThemeOptions {
 			setThemeOption('custom_index_page', '', NULL, 'zenpage', false);
 		}
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes($me);
-			cacheManager::addThemeCacheSize($me, NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, false, NULL, true);
-			cacheManager::addThemeCacheSize($me, 95, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::deleteThemeCacheSizes($me);		
+			$img_wmk = getOption('fullimage_watermark') ? getOption('fullimage_watermark') : null;
+			$img_effect = getThemeOption('image_gray') ? 'gray' : null;
+			cacheManager::addThemeCacheSize($me, NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, $img_wmk, $img_effect, true);
+			$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
+			$thumb_effect = getThemeOption('thumb_gray') ? 'gray' : null;
+			cacheManager::addThemeCacheSize($me, 95, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, $thumb_wmk, $thumb_effect, NULL);
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
