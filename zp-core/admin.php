@@ -259,6 +259,7 @@ $buttonlist = array();
 
 					$v = explode('.', $newestVersion);
 					if (isset($v[3]) && substr($v[3], 0, 1) == '0') {
+						//strip the leading zero
 						$v[3] = substr($v[3], 1);
 						$newestVersion = implode('.', $v);
 					}

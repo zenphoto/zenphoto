@@ -207,6 +207,14 @@ zp_apply_filter('admin_note', 'plugins', '');
 					$whose = gettext('Official plugin');
 					$ico = 'images/zp_gold.png';
 				}
+				if ($str = isolate('$plugin_deprecated', $pluginStream)) {
+					if (false === eval($str)) {
+						$parserr = $parserr | 1;
+						$plugin_deprecated = gettext('<strong>Error parsing <em>plugin_deprecated</em>!</strong>.');
+					}
+				} else {
+					$plugin_deprecated = false;
+				}
 				if ($str = isolate('$plugin_description', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
@@ -337,15 +345,11 @@ zp_apply_filter('admin_note', 'plugins', '');
 								if ($plugin_disable) {
 									?>
 								</span>
-								<?php
-								if ($plugin_disable) {
-									?>
-									<span class="plugin_disable">
-										<div class="plugin_disable_hidden">
-											<?php echo $plugin_disable; ?>
-										</div>
-										<?php
-									}
+								<span class="plugin_disable">
+									<div class="plugin_disable_hidden">
+										<?php echo $plugin_disable; ?>
+									</div>
+									<?php
 									?>
 									<span class="icons">
 										<span style="padding-left: 2px;">
@@ -353,20 +357,26 @@ zp_apply_filter('admin_note', 'plugins', '');
 										</span>
 									</span>
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
-
 									<?php
 								} else {
 									?>
 									<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
 									<?php
 								}
+								if ($plugin_deprecated) {
+									echo '<span class="deprecated" title="deprecated">';
+									if (!$plugin_notice) {
+										$plugin_notice = gettext('Plugin is deprecated.');
+									}
+								}
 								echo $extension;
 								if (!empty($plugin_version)) {
 									echo ' v' . $plugin_version;
 								}
-								?>
+								if ($plugin_deprecated) {
+									echo '</span>';
+								}
 
-								<?php
 								if ($plugin_disable) {
 									?>
 								</span>
