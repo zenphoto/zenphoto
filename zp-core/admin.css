@@ -2862,3 +2862,7 @@ form.tinyDirty input[type=submit]:active {
 	font-family: Courier, Monaco, monospace;
 	font-size: 1.1em;
 }
+
+.deprecated {
+	text-decoration: line-through;
+}
