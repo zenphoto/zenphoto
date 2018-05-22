@@ -33,7 +33,6 @@ echo "\n</head>";
 		<div id="content">
 			<div id="container">
 				<?php
-				$subtab = getCurrentTab();
 				zp_apply_filter('admin_note', 'development', $subtab);
 
 				switch ($subtab) {
@@ -89,6 +88,7 @@ echo "\n</head>";
 						</h1>
 						<?php
 						break;
+					default:
 					case 'locale':
 						?>
 						<h1>
@@ -111,7 +111,6 @@ echo "\n</head>";
 				?>
 				<div class="tabbox">
 					<?php
-					$subtab = getCurrentTab();
 					switch ($subtab) {
 						case 'phpinfo':
 							//	need to cleanup the phpinfo() output because it thinks it is a page unto itself
@@ -165,6 +164,7 @@ echo "\n</head>";
 							$session = preg_replace('/^Array\n/', '<pre>', print_r($_SESSION, true)) . '</pre>';
 							echo $session;
 							break;
+						default:
 						case 'http':
 							$httpaccept = parseHttpAcceptLanguage();
 							if (count($httpaccept) > 0) {

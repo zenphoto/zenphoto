@@ -173,7 +173,7 @@ class debug {
 			if (!isset($tabs['development'])) {
 				$tabs['development'] = array('text' => gettext("development"),
 						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/debug/admin_tab.php',
-						'default' => (zp_loggedin(ADMIN_RIGHTS)) ? 'phpinfo' : 'cookies',
+						'default' => (zp_loggedin(ADMIN_RIGHTS)) ? 'phpinfo' : 'http',
 						'rights' => DEBUG_RIGHTS);
 			}
 			if (zp_loggedin(ADMIN_RIGHTS)) {
