@@ -878,13 +878,14 @@ class zpMutex {
 
 function primeOptions() {
 	global $_zp_options;
+	$_zp_options = array();
+
 	if (function_exists('query_full_array')) { //	incase we are in primitive mode
-		$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
-		$optionlist = query_full_array($sql, false);
-		if ($optionlist !== false) {
-			$_zp_options = array();
-			foreach ($optionlist as $option) {
-				$_zp_options[$option['name']] = $option['value'];
+		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0 ORDER BY `name`';
+		$rslt = query($sql);
+		if ($rslt) {
+			while ($option = db_fetch_assoc($rslt)) {
+				$_zp_options[strtolower($option['name'])] = $option['value'];
 			}
 		}
 	}

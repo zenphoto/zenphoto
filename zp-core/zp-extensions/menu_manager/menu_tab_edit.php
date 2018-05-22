@@ -9,7 +9,7 @@ if (extensionEnabled('zenpage')) {
 }
 require_once(dirname(__FILE__) . '/menu_manager-admin-functions.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 $page = 'edit';
 
@@ -346,20 +346,20 @@ if (is_array($result)) {
 								<td>
 									<label id="show_visible" for="show" style="display: inline">
 										<input name="show" type="checkbox" id="show" value="1" <?php
-									if ($result['show'] == 1) {
-										echo "checked='checked'";
-									}
-									?> style="display: inline" />
+										if ($result['show'] == 1) {
+											echo "checked='checked'";
+										}
+										?> style="display: inline" />
 													 <?php echo gettext("published"); ?>
 									</label>
 								</td>
 								<td>
 									<label id="include_li_label" style="display: inline">
 										<input name="include_li" type="checkbox" id="include_li" value="1" <?php
-													 if ($result['include_li'] == 1) {
-														 echo "checked='checked'";
-													 }
-													 ?> style="display: inline" />
+										if ($result['include_li'] == 1) {
+											echo "checked='checked'";
+										}
+										?> style="display: inline" />
 													 <?php echo gettext("Include <em>&lt;LI&gt;</em> element"); ?>
 									</label>
 								</td>
@@ -369,10 +369,10 @@ if (is_array($result)) {
 									<label>
 										<span class="nowrap">
 											<input name="span" type="checkbox" id="span" value="1" <?php
-													 if ($result['span_id'] || $result['span_class']) {
-														 echo "checked='checked'";
-													 }
-													 ?> style="display: inline" />
+											if ($result['span_id'] || $result['span_class']) {
+												echo "checked='checked'";
+											}
+											?> style="display: inline" />
 														 <?php echo gettext("Add <em>span</em> tags"); ?>
 										</span>
 									</label>

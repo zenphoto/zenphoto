@@ -9,7 +9,7 @@ if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 printAdminHeader('admin');
 ?>

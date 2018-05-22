@@ -8,7 +8,7 @@ define('OFFSET_PATH', 3);
 
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 if (isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass']) || isset($_POST['dbhost'])) {
 	XSRFdefender('databaseinfo');

@@ -11,7 +11,7 @@
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 define('PLUGINS_PER_PAGE', max(1, getOption('plugins_per_page')));
 if (isset($_GET['subpage'])) {

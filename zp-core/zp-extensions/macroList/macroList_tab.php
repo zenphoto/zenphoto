@@ -5,7 +5,7 @@
  * @package plugins/macroList
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-admin_securityChecks(NULL, $return = currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
 
 printAdminHeader('development', gettext('macros'));
 

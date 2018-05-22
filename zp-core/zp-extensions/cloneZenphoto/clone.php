@@ -11,7 +11,7 @@ define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 XSRFdefender('cloneZenphoto');
 
 if (isset($_GET['purge'])) {

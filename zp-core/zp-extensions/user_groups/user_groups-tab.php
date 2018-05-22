@@ -7,7 +7,7 @@
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 define('GROUPS_PER_PAGE', max(1, getOption('groups_per_page')));
 if (isset($_GET['subpage'])) {
 	$subpage = sanitize_numeric($_GET['subpage']);
@@ -288,11 +288,11 @@ echo '</head>' . "\n";
 													<em>
 														<label>
 															<input type="radio" name="user[<?php echo $id; ?>][type]" value="group" checked="checked" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
+																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('group'); ?>
 														</label>
 														<label>
 															<input type="radio" name="user[<?php echo $id; ?>][type]" value="template" onclick="javascrpt:$('#users<?php echo $id; ?>').toggle();
-																	toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
+																					toggleExtraInfo('<?php echo $id; ?>', 'user', true);" /><?php echo gettext('template'); ?>
 														</label>
 													</em>
 													<br />
