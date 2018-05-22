@@ -257,13 +257,6 @@ $buttonlist = array();
 					$newestVersionURI = getOption('getUpdates_latest');
 					$newestVersion = preg_replace('~[^0-9,.]~', '', str_replace('setup-', '', stripSuffix(basename($newestVersionURI))));
 
-					$v = explode('.', $newestVersion);
-					if (isset($v[3]) && substr($v[3], 0, 1) == '0') {
-						//strip the leading zero
-						$v[3] = substr($v[3], 1);
-						$newestVersion = implode('.', $v);
-					}
-
 					$zenphoto_version = explode('-', ZENPHOTO_VERSION);
 					$zenphoto_version = preg_replace('~[^0-9,.]~', '', array_shift($zenphoto_version));
 
