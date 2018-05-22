@@ -75,7 +75,7 @@
 		</tr>
 		<tr id="pass" >
 			<td><?php echo gettext("Database password") ?></td>
-			<td><input type="password" size="40" name="db_pass" value="<?php echo $_zp_conf_vars['mysql_pass']; ?>" />&nbsp;</td>
+			<td><input type="password" size="40" name="db_pass" value="" />&nbsp;</td>
 		</tr>
 		<tr id="host" >
 			<td><?php echo gettext("Database host"); ?>
