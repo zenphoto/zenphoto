@@ -193,7 +193,10 @@ if (zp_loggedin() && !empty($zenphoto_tabs)) {
 		$from = urldecode(currentRelativeURL());
 	}
 }
-admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
+if (zp_loggedin()) {
+	//	check rights if logged in, if not we will display the logon form below
+	admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
+}
 
 // Print our header
 printAdminHeader('overview');
