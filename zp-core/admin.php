@@ -193,6 +193,7 @@ if (zp_loggedin() && !empty($zenphoto_tabs)) {
 		$from = urldecode(currentRelativeURL());
 	}
 }
+admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
 
 // Print our header
 printAdminHeader('overview');
