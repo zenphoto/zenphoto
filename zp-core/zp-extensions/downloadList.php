@@ -29,7 +29,7 @@
  *
  * The list has a CSS class <var>downloadList</var> attached.
  *
- * @author Malte Müller (acrylian)
+ * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
  * @subpackage downloadlist
  * @tags "file download", "download manager", download

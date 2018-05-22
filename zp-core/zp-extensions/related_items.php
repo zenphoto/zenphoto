@@ -3,6 +3,7 @@
  * Provides functionality to list (or get) objects related to the current object based on a search of the tags
  * the assigned to the current object.
  *
+ * @author Malte Müller (acrylian)
  * @package plugins
  * @subpackage related-items
  */

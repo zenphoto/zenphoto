@@ -2,6 +2,7 @@
 /**
  * Provides a donation button to solicit contributions to Zenphoto
  *
+ * @author Stephen Billard (sbillard)
  * @package plugins
  * @subpackage zenphotodonate
  */

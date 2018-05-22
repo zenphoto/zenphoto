@@ -2,6 +2,8 @@
 
 /**
  * Translates characters with diacritical marks to simple equivalents
+ * 
+ * @author Stephen Billard (sbillard)
  * @package plugins
  * @subpackage seo-zenphoto
  */

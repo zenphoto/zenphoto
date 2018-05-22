@@ -30,6 +30,7 @@
  * @subpackage deprecated-functions
  */
 $plugin_description = gettext("Provides deprecated Zenphoto functions.");
+$plugin_author = "Stephen Billard (sbillard)";
 $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the Zenphoto distributed functions.");
 $option_interface = 'deprecated_functions';
 $plugin_category = gettext('Development');

@@ -12,7 +12,7 @@
  * @subpackage image-album-statistiscs
  */
 $plugin_description = gettext("Functions that provide various statistics about images and albums in the gallery.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
+$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), gjr";
 $plugin_category = gettext('Statistics');
 
 require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
