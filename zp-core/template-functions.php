@@ -637,34 +637,49 @@ function printGalleryIndexURL($after = NULL, $text = NULL, $printHomeURL = true)
 
 
 /**
-	 * Returns the home page link (WEBPATH) to the Zenphoto theme index.php page
-	 * Use in breadcrumbs if the theme uses a custom gallery index page so the gallery is not the site's home page
-	 *
-	 * @since 1.4.9
-	 * @global string $_zp_gallery_page
-	 * @return string
-	 */
-	function getSiteHomeURL() {
-		return WEBPATH . '/';
-	}
+ * Returns the home page link (WEBPATH) to the Zenphoto theme index.php page
+ * Use in breadcrumbs if the theme uses a custom gallery index page so the gallery is not the site's home page
+ *
+ * @since 1.4.9
+ * @global string $_zp_gallery_page
+ * @return string
+ */
+function getSiteHomeURL() {
+	return WEBPATH . '/';
+}
 
-	/**
-	 * Prints the home page link (WEBPATH with trailing slash) to a Zenphoto theme index.php page
-	 * Use in breadcrumbs if the theme uses a custom gallery index page so the gallery is not the site's home page
-	 *
-	 * @param string $after Text after and outside the link for breadcrumbs
-		 * @param string $text Text of the link, if NULL "Home"
-	 */
-	function printSiteHomeURL($after = NULL, $text = NULL) {
-		global $_zp_gallery_page;
-		if ($_zp_gallery_page == 'index.php') {
-			$after = '';
-		}
-		if (is_null($text)) {
-			$text= gettext('Home');
-		}
-		printLinkHTML(getSiteHomeURL(), $text, $text, 'homeurl'); echo $after;
+/**
+ * Prints the home page link (WEBPATH with trailing slash) to a Zenphoto theme index.php page
+ * Use in breadcrumbs if the theme uses a custom gallery index page so the gallery is not the site's home page
+ *
+ * @param string $after Text after and outside the link for breadcrumbs
+ * @param string $text Text of the link, if NULL "Home"
+ */
+function printSiteHomeURL($after = NULL, $text = NULL) {
+	global $_zp_gallery_page;
+	if ($_zp_gallery_page == 'index.php') {
+		$after = '';
 	}
+	if (is_null($text)) {
+		$text = gettext('Home');
+	}
+	printLinkHTML(getSiteHomeURL(), $text, $text, 'homeurl');
+	echo $after;
+}
+
+/**
+ * If the privacy page url option is set this prints a link to it
+ * @param string $before To print before the link
+ * @param string $after To print after the link
+ */
+function printPrivacyPageLink($before = null, $after = null) {
+	$data = getDataUsageNotice();
+	if (!empty($data['url'])) {
+		echo $before;
+		printLinkHTML($data['url'], $data['linktext'], $data['linktext'], null, null);
+		echo $after;
+	}
+}
 
 /**
  * Returns the number of albums.

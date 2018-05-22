@@ -2974,14 +2974,14 @@ function getDataUsageNotice() {
 /**
  * Prints the data privacy policy page and the data usage confirmation text as defined on Options > Security
  * If there is no page defined it only prints the default text.
- *  
+ * 
  * @since Zenphoto 1.5
  */
 function printDataUsageNotice() {
 	$data = getDataUsageNotice();
 	echo $data['notice'];
 	if(!empty($data['url'])) {
-		?> <a href="<?php echo html_encode($data['url']); ?>" title="<?php echo html_encode($data['linktext']); ?>"><?php echo html_encode($data['linktext']); ?></a><?php
+		printLinkHTML($data['url'], $data['linktext'], $data['linktext'], null, null);
 	}
 }
 

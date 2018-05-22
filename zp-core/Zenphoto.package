@@ -14,6 +14,7 @@ themes/basic/images/50percent.png
 themes/basic/images/admin-buttonback.jpg
 themes/basic/images/img-bg.gif
 themes/basic/images/tag.png
+themes/basic/inc-footer.php
 themes/basic/index.php
 themes/basic/password.php
 themes/basic/register.php
@@ -1709,4 +1710,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1711
+1712

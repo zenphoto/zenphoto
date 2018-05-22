@@ -31,16 +31,7 @@ if (function_exists('printRegistrationForm')) {
 				<h2><?php echo gettext('User Registration') ?></h2>
 				<?php printRegistrationForm(); ?>
 			</div>
-			<?php 
-   @call_user_func('printUserLogin_out', "");
-   @call_user_func('printLanguageSelector'); 
-   ?>
-			<div id="credit">
-				<?php printZenphotoLink(); ?>
-			</div>
-			<?php
-			zp_apply_filter('theme_body_close');
-			?>
+			<?php include 'inc-footer.php'; ?>
 		</body>
 	</html>
 	<?php
