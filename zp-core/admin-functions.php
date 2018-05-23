@@ -5169,7 +5169,7 @@ function getLogTabs() {
 		foreach ($filelist as $logfile) {
 			$log = substr(basename($logfile), 0, -4);
 			if (filemtime($logfile) > getOption('logviewed_' . $log)) {
-				$new[] = $log;
+				$new[$log] = $log;
 			}
 			if ($log == $tab) {
 				$default = $tab;
