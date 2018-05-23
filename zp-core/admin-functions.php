@@ -394,7 +394,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$loc++;
 						?>
 						<li<?php if ($hasSubtabs) echo ' class="has-sub"'; ?>>
-							<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encode(ucfirst($atab['text'])); ?></a>
+							<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encodeTagged(ucfirst($atab['text'])); ?></a>
 							<?php
 							if ($hasSubtabs) { // don't print <ul> if there is nothing
 								if (!(isset($atab['ordered']) && $atab['ordered'])) {
@@ -468,7 +468,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										}
 										?>
 										<li>
-											<a href="<?php echo html_encode($link); ?>"<?php echo $subclass; ?>><?php echo html_encode(ucfirst($subkey)); ?></a>
+											<a href="<?php echo html_encode($link); ?>"<?php echo $subclass; ?>><?php echo html_encodeTagged(ucfirst($subkey)); ?></a>
 										</li>
 										<?php
 									} // foreach end
@@ -5218,7 +5218,7 @@ function getLogTabs() {
 function getPluginTabs() {
 	/* subpackages */
 	$_subpackages = array(
-			'admin' => gettext('admin'),
+			'admin' => gettext('administration'),
 			'development' => gettext('development'),
 			'example' => gettext('example'),
 			'mail' => gettext('mail'),
@@ -5226,15 +5226,19 @@ function getPluginTabs() {
 			'seo' => gettext('seo'),
 			'theme' => gettext('theme'),
 			'users' => gettext('users'),
-			'zenphoto20' => gettext('zenphoto20')
+			'zenphoto20' => gettext('zenphoto20'),
+			'misc' => gettext('misc')
 	);
 	$classXlate = array(
 			'all' => gettext('all'),
-			'thirdparty' => gettext('3rd party'),
-			'enabled' => gettext('enabled'),
-			'disabled' => gettext('disabled'),
-			'deprecated' => gettext('deprecated'),
-			'misc' => gettext('misc')
+			'thirdparty' => gettext('<em>3rd party</em>'),
+			'enabled' => gettext('<em>enabled</em>'),
+			'disabled' => gettext('<em>disabled</em>'),
+			'deprecated' => gettext('<em>deprecated</em>'),
+			'class_plugin' => gettext('<em>class</em>'),
+			'feature_plugin' => gettext('<em>feature</em>'),
+			'admin_plugin' => gettext('<em>admin</em>'),
+			'theme_plugin' => gettext('<em>theme</em>')
 	);
 	$classXlate = array_merge($classXlate, $_subpackages);
 
@@ -5247,7 +5251,7 @@ function getPluginTabs() {
 	$paths = getPluginFiles('*.php');
 	zp_apply_filter('plugin_tabs', $classXlate);
 
-	$deprecated = $active = $inactive = $disabled = $classes = $member = $thirdparty = array();
+	$class = $feature = $admin = $theme = $deprecated = $active = $inactive = $disabled = $classes = $member = $thirdparty = array();
 	foreach ($paths as $plugin => $path) {
 		if (!isset($plugin_lc[strtolower($plugin)])) {
 			$plugin_lc[strtolower($plugin)] = true;
@@ -5269,6 +5273,22 @@ function getPluginTabs() {
 
 			if (preg_match('~@deprecated~', $d)) {
 				$deprecated[$plugin] = $path;
+			}
+			$plugin_is_filter = 1 | THEME_PLUGIN;
+			if ($str = isolate('$plugin_is_filter', $p)) {
+				eval($str);
+			}
+			if ($plugin_is_filter & THEME_PLUGIN) {
+				$theme[$plugin] = $path;
+			}
+			if ($plugin_is_filter & ADMIN_PLUGIN) {
+				$admin[$plugin] = $path;
+			}
+			if ($plugin_is_filter & CLASS_PLUGIN) {
+				$class[$plugin] = $path;
+			}
+			if ($plugin_is_filter & FEATURE_PLUGIN) {
+				$feature[$plugin] = $path;
 			}
 
 			$classes[$key][] = $plugin;
@@ -5296,7 +5316,7 @@ function getPluginTabs() {
 			$member[$plugin] = $local;
 		}
 	}
-	ksort($classes);
+
 	if (!empty($thirdparty))
 		$tabs[$classXlate['thirdparty']] = 'admin-plugins.php?page=plugins&tab=thirdparty';
 	if (!empty($active))
@@ -5305,6 +5325,14 @@ function getPluginTabs() {
 		$tabs[$classXlate['disabled']] = 'admin-plugins.php?page=plugins&tab=disabled';
 	if (!empty($deprecated))
 		$tabs[$classXlate['deprecated']] = 'admin-plugins.php?page=plugins&tab=deprecated';
+	if (!empty($class))
+		$tabs[$classXlate['class_plugin']] = 'admin-plugins.php?page=plugins&tab=class_plugin';
+	if (!empty($feature))
+		$tabs[$classXlate['feature_plugin']] = 'admin-plugins.php?page=plugins&tab=feature_plugin';
+	if (!empty($admin))
+		$tabs[$classXlate['admin_plugin']] = 'admin-plugins.php?page=plugins&tab=admin_plugin';
+	if (!empty($theme))
+		$tabs[$classXlate['theme_plugin']] = 'admin-plugins.php?page=plugins&tab=theme_plugin';
 
 	switch ($default) {
 		case 'all':
@@ -5315,6 +5343,18 @@ function getPluginTabs() {
 			break;
 		case 'disabled':
 			$currentlist = array_keys($inactive);
+			break;
+		case 'class_plugin':
+			$currentlist = array_keys($class);
+			break;
+		case 'feature_plugin':
+			$currentlist = array_keys($feature);
+			break;
+		case 'admin_plugin':
+			$currentlist = array_keys($admin);
+			break;
+		case 'theme_plugin':
+			$currentlist = array_keys($theme);
 			break;
 		case 'deprecated':
 			$currentlist = array_keys($deprecated);
@@ -5334,6 +5374,7 @@ function getPluginTabs() {
 			$currentlist = $list;
 		}
 	}
+
 	return array($tabs, $default, $currentlist, $paths, $member, $classXlate, $deprecated);
 }
 
