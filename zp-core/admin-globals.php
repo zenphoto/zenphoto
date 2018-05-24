@@ -166,10 +166,11 @@ if (@$_zp_loggedin) {
 		}
 
 		if ($_zp_loggedin & ADMIN_RIGHTS) {
-			list($subtabs, $default) = getPluginTabs();
+			//NOTE: the following listed variables will be assumed by the admin-plugins script
+			list($plugin_subtabs, $plugin_default, $pluginlist, $plugin_paths, $plugin_member, $classXlate, $pluginDetails) = getPluginTabs();
 			$zenphoto_tabs['plugins'] = array('text' => gettext("plugins"),
 					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-plugins.php',
-					'subtabs' => $subtabs);
+					'subtabs' => $plugin_subtabs);
 			zp_register_filter('admin_tabs', 'backup_subtab', -200);
 			$zenphoto_tabs['overview']['subtabs'][gettext('Installation information')] = '/' . ZENFOLDER . '/utilities/installation_analysis.php?tab=installstats';
 		}

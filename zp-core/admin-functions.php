@@ -751,7 +751,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	define('OPTION_TYPE_CHECKBOX_ULLIST', 17);
 	define('OPTION_TYPE_HIDDEN', 18);
 
-	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $extension = NULL) {
+	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $plugin = NULL) {
 		if (is_null($supportedOptions)) {
 			$supportedOptions = $optionHandler->getOptionsSupported();
 		}
@@ -769,7 +769,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 			if (method_exists($optionHandler, 'handleOptionSave')) {
 				?>
-				<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $extension; ?>" />
+				<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $plugin; ?>" />
 				<?php
 			}
 
@@ -5251,7 +5251,7 @@ function getPluginTabs() {
 	$paths = getPluginFiles('*.php');
 	zp_apply_filter('plugin_tabs', $classXlate);
 
-	$class = $feature = $admin = $theme = $deprecated = $active = $inactive = $disabled = $classes = $member = $thirdparty = array();
+	$class = $feature = $admin = $theme = $details = $active = $inactive = $disabled = $classes = $member = $thirdparty = array();
 	foreach ($paths as $plugin => $path) {
 		if (!isset($plugin_lc[strtolower($plugin)])) {
 			$plugin_lc[strtolower($plugin)] = true;
@@ -5263,6 +5263,28 @@ function getPluginTabs() {
 				$d = '';
 			}
 
+			if ($str = isolate('$plugin_description', $p)) {
+				$details[$plugin]['plugin_description'] = $str;
+			}
+
+			if ($str = isolate('$plugin_notice', $p)) {
+				$details[$plugin]['plugin_notice'] = $str;
+			}
+
+			if ($str = isolate('$plugin_author', $p)) {
+				$details[$plugin]['plugin_author'] = $str;
+			}
+
+			if ($str = isolate('$plugin_version', $p)) {
+				$details[$plugin]['plugin_version'] = $str;
+			}
+
+			if ($str = isolate('$plugin_disable', $p)) {
+				$details[$plugin]['plugin_disable'] = $str;
+			}
+
+			$details[$plugin]['option_interface'] = isolate('$option_interface', $p);
+
 			$key = 'misc';
 			if ($str = isolate('@pluginCategory', $p)) {
 				preg_match('|@pluginCategory\s+(.*)\s|', $str, $matches);
@@ -5270,14 +5292,17 @@ function getPluginTabs() {
 					$key = strtolower(trim($matches[1]));
 				}
 			}
+			$details[$plugin]['category'] = $key;
 
 			if (preg_match('~@deprecated~', $d)) {
-				$deprecated[$plugin] = $path;
+				$details[$plugin]['deprecated'] = 'deprecated';
 			}
 			$plugin_is_filter = 1 | THEME_PLUGIN;
 			if ($str = isolate('$plugin_is_filter', $p)) {
 				eval($str);
 			}
+			$details[$plugin]['plugin_is_filter'] = $plugin_is_filter;
+
 			if ($plugin_is_filter & THEME_PLUGIN) {
 				$theme[$plugin] = $path;
 			}
@@ -5297,17 +5322,20 @@ function getPluginTabs() {
 			} else {
 				$inactive[$plugin] = $path;
 			}
+			$tpp = 0;
 			if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
 				if ($str = isolate('@category', $p)) {
 					preg_match('~@category\s+([^\/|^\s]*)~', $str, $matches);
-					$tpp = !isset($matches[1]) || $matches[1] != 'package';
-				} else {
-					$tpp = true;
-				}
-				if ($tpp) {
-					$thirdparty[$plugin] = $path;
+					if (isset($matches[1]) || $matches[1] == 'package') {
+						$tpp = 1;
+					} else {
+						$thirdparty[$plugin] = $path;
+						$tpp = 2;
+					}
 				}
 			}
+			$details[$plugin]['thridparty'] = $tpp;
+
 			if (array_key_exists($key, $classXlate)) {
 				$local = $classXlate[$key];
 			} else {
@@ -5375,7 +5403,7 @@ function getPluginTabs() {
 		}
 	}
 
-	return array($tabs, $default, $currentlist, $paths, $member, $classXlate, $deprecated);
+	return array($tabs, $default, $currentlist, $paths, $member, $classXlate, $details);
 }
 
 function getAdminThumb($image, $size) {
