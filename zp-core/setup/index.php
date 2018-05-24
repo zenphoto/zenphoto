@@ -477,6 +477,9 @@ if (empty($prevRel)) {
 	if ($prevRel[0] == 1 && $prevRel[1] <= 3) {
 		$c = $c - 8; // there were only two 1.3.x releases
 	}
+	if ($prevRel[0] == 1 && $prevRel[1] <= 4) {
+		$c = $c - 10; // there were 14 1.4.x releases
+	} 
 	switch ($c) {
 		case 1:
 			$check = 1;
