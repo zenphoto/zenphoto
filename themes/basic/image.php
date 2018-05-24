@@ -91,10 +91,6 @@ if (!defined('WEBPATH'))
 					}
 					?>
 				</strong>
-				<?php
-				if (isImagePhoto())
-					@call_user_func('printUserSizeSelector');
-				?>
 			</div>
 			<div id="narrow">
 				<?php printImageDesc(); ?>
@@ -115,6 +111,7 @@ if (!defined('WEBPATH'))
 				<br class="clearall" />
 
 				<?php
+				@call_user_func('printOpenStreetMap');
 				@call_user_func('printGoogleMap');
 				@call_user_func('printRating');
 				@call_user_func('printCommentForm');

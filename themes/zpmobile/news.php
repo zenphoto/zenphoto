@@ -42,8 +42,10 @@ if (!defined('WEBPATH'))
 							?>
 							<br class="clearall" /><br />
 							<?php printNewsCategories(', ', gettext('Categories: '), 'catlist'); ?>
-							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'catlist', ', '); ?>
-							<?php
+							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'catlist', ', '); 
+							if(class_exists('ScriptlessSocialSharing')) {
+								ScriptlessSocialSharing::printButtons();
+							}
 							if (function_exists('printCommentForm')) {
 								printCommentForm();
 							}

@@ -1,5 +1,8 @@
 <div id="credit">
 	<?php
+	if(class_exists('ScriptlessSocialSharing')) {
+		ScriptlessSocialSharing::printButtons();
+	}
 	if (function_exists('printFavoritesURL')) {
 		printFavoritesURL(NULL, '', ' | ', '<br />');
 	} 
@@ -18,6 +21,7 @@
 	?>
 </div>
 <?php 
+
 @call_user_func('mobileTheme::controlLink'); 
 @call_user_func('printLanguageSelector'); 
 zp_apply_filter('theme_body_close'); 

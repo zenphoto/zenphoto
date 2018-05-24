@@ -37,7 +37,7 @@ body {
 	width: 640px;
 	font-size: 85%;
 	color: #294550;
-	text-align: right;
+	text-align: center;
 	clear: both;
 }
 #credit a, #sort a {
@@ -49,6 +49,14 @@ body {
 	color: #748da0;
 	border-bottom: 1px solid #294550;
 	text-decoration: none;
+}
+.scriptless_socialsharing  {
+ text-align: center;
+}
+
+.scriptless_socialsharing  li {
+	float: none;
+	display: inline-block !important;
 }
 #gallerytitle {
 	border-bottom: 1px solid #E6E6DF;

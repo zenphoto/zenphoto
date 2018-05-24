@@ -23,7 +23,8 @@ padding: 0;
 }
 .aligncenter2 {
 margin: 0 auto;
-width: 610px;
+width: 100%;
+text-align: center;
 }
 .clearage {
 clear: both;
@@ -736,6 +737,7 @@ font-size: 11px;
 text-align: center;
 padding: 4px 0;
 clear: both;
+
 }
 .footlinks a {
 color: __C_58__;
@@ -1182,3 +1184,15 @@ font-style: italic;
 clear: both !important;
 }
 
+.footlinks {
+	display: none;
+}
+
+.scriptless_socialsharing  {
+ text-align: center;
+}
+
+.scriptless_socialsharing  li {
+	float: none;
+	display: inline-block !important;
+}

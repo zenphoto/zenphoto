@@ -64,6 +64,7 @@ if (!defined('WEBPATH'))
 					printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
 					if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album);
 					printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
+					@call_user_func('printOpenStreetMap');
 					@call_user_func('printGoogleMap');
 					@call_user_func('printSlideShowLink');
 					@call_user_func('printRating');

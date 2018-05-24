@@ -106,6 +106,9 @@ if (!defined('WEBPATH'))
 							endwhile;
 							printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 						}
+						if(class_exists('ScriptlessSocialSharing')) {
+							ScriptlessSocialSharing::printButtons();
+						}	
 						?>
 
 

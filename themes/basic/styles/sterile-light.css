@@ -34,7 +34,7 @@ body {
 	width: 680px;
 	font-size: 9px;
 	color: #AAA;
-	text-align: right;
+	text-align: center;
 	clear: both;
 }
 #credit a {
@@ -44,6 +44,14 @@ body {
 #credit a:hover {
 	color: #7A2;
 	text-decoration: none;
+}
+.scriptless_socialsharing  {
+ text-align: center;
+}
+
+.scriptless_socialsharing  li {
+	float: none;
+	display: inline-block !important;
 }
 #gallerytitle {
 	padding: 20px 10px 10px 20px;

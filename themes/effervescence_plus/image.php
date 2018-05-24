@@ -145,10 +145,13 @@ if (!defined('WEBPATH'))
 				@call_user_func('printRating');
 				If (function_exists('printAddToFavorites'))
 					printAddToFavorites($_zp_current_image);
-				if (function_exists('printGoogleMap')) {
+				if (function_exists('printOpenStreetMap') || function_exists('printGoogleMap')) {
 					?>
 					<div id="map_link">
-					<?php printGoogleMap(); ?>
+					<?php 
+					@call_user_func('printOpenStreetMap');
+					@call_user_func('printGoogleMap'); 
+					?>
 					</div>
 					<br class="clearall" />
 					<?php

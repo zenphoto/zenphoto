@@ -72,7 +72,8 @@ class image_page {
 						}
 						?>
 						<div id="map_link">
-						<?php printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
+						<?php
+						printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
 						</div>
 						<?php
 					}

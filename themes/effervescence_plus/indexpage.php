@@ -110,11 +110,15 @@ if (!defined('WEBPATH')) die();
 			</div><!-- sidebar -->
 			<br style="clear:both" />
 		</div> <!-- main2 -->
-
+		
 	</div> <!-- content -->
 	<?php
 	}
+	if(class_exists('ScriptlessSocialSharing')) {
+			ScriptlessSocialSharing::printButtons();
+		}
 	?>
+			
 <div class="aligncenter2">
 <?php printGalleryDesc(); ?>
 </div>

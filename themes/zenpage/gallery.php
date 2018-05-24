@@ -57,7 +57,7 @@ if (!defined('WEBPATH'))
 						<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 
 						<?php
-					} else if(ZP_NEWS_ENABLED) { // news article loop
+					} else if (ZP_NEWS_ENABLED) { // news article loop
 						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 						echo "<hr />";
 						while (next_news()):;
@@ -76,14 +76,17 @@ if (!defined('WEBPATH'))
 									?>
 								</div>
 								<?php
-            printNewsContent();
-            printCodeblock(1);
-            printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
-        ?>
+								printNewsContent();
+								printCodeblock(1);
+								printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
+								?>
 							</div>
 							<?php
 						endwhile;
 						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
+					}
+					if (class_exists('ScriptlessSocialSharing')) {
+						ScriptlessSocialSharing::printButtons();
 					}
 					?>
 
