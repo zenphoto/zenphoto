@@ -11,7 +11,6 @@
  * - leaflet-providers plugin: https://github.com/leaflet-extras/leaflet-providers
  * 
  * @author Malte Müller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569)
- * @copyright 2018 Malte Müller (acrylian)
  * @licence GPL v3 or later
  * @package plugins
  * @subpackage media

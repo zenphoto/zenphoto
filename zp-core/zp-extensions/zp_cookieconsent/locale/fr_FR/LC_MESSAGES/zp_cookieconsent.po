@@ -1,0 +1,259 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: zp_cookieconsent\n"
+"POT-Creation-Date: 2018-05-17 21:01+0200\n"
+"PO-Revision-Date: 2018-05-17 21:36+0200\n"
+"Last-Translator: Vincent Bourganel <vincent_bourganel@yahoo.fr>\n"
+"Language-Team: Michel Gagnon <michel@mgagnon.net>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.7\n"
+"X-Poedit-Basepath: ../../../..\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: gettext_pl\n"
+"X-Poedit-SearchPath-0: zp_cookieconsent\n"
+"X-Poedit-SearchPath-1: zp_cookieconsent.php\n"
+
+#: zp_cookieconsent.php:14
+msgid ""
+"A plugin to add a cookie notify dialog to comply with the EU cookie law and "
+"Google's request regarding usages of Google Adwords, Analytics and more"
+msgstr ""
+"Cette extension ajoute une notification sur la présence de cookies, en "
+"conformité avec la loi de l'Union européenne sur les cookies et des "
+"exigences de Google concernant l'utilisation de Google Adwords, Google "
+"Analytics et autres"
+
+#: zp_cookieconsent.php:41
+msgid "Button: Agree"
+msgstr "Bouton : Accepter"
+
+#: zp_cookieconsent.php:46
+msgid "Text used for the dismiss button. Leave empty to use the default text."
+msgstr ""
+"Texte utilisé pour le bouton de rejet. Laisser le champ vide pour utiliser "
+"le texte par défaut."
+
+#: zp_cookieconsent.php:47
+msgid "Button: Learn more"
+msgstr "Bouton : En savoir davantage"
+
+#: zp_cookieconsent.php:52
+msgid ""
+"Text used for the learn more info button. Leave empty to use the default "
+"text."
+msgstr ""
+"Texte utilisé pour le bouton <em>En savoir davantage</em>. Laisser le champ "
+"vide pour utiliser le texte par défaut."
+
+#: zp_cookieconsent.php:53
+msgid "Button: Learn more - url"
+msgstr "Bouton : En savoir davantage - Url"
+
+#: zp_cookieconsent.php:57
+msgid "Url to your cookie policy / privacy info page."
+msgstr "URL vers votre politique de cookie / page d’info sur la vie privée."
+
+#: zp_cookieconsent.php:58
+msgid "Button: Decline"
+msgstr "Bouton : Décliner"
+
+#: zp_cookieconsent.php:62
+msgid "Link text for the decline button"
+msgstr "Texte pour le bouton décliner"
+
+#: zp_cookieconsent.php:63
+msgid "Message"
+msgstr "Message"
+
+#: zp_cookieconsent.php:68
+msgid "The message shown by the plugin. Leave empty to use the default text."
+msgstr ""
+"Message affiché par le plugin. Laisser le champ vide pour utiliser le texte "
+"par défaut."
+
+#: zp_cookieconsent.php:69
+msgid "Header"
+msgstr "Entête"
+
+#: zp_cookieconsent.php:74
+msgid ""
+"Text for the popup header by the plugin. Leave empty to use the default text."
+msgstr ""
+"Texte utilisé pour le header de la popup du plugin. Laisser le champ vide "
+"pour utiliser le texte par défaut."
+
+#: zp_cookieconsent.php:75
+msgid "Domain"
+msgstr "Domaine"
+
+#: zp_cookieconsent.php:79
+msgid ""
+"The domain for the consent cookie that Cookie Consent uses, to remember that "
+"users have consented to cookies. Useful if your website uses multiple "
+"subdomains, e.g. if your script is hosted at <code>www.example.com</code> "
+"you might override this to <code>example.com</code>, thereby allowing the "
+"same consent cookie to be read by subdomains like <code>foo.example.com</"
+"code>."
+msgstr ""
+"Le domaine d’application des cookies, utilisé par le plugin cookie_consent "
+"afin de mémoriser le consentement de l’usager. Si votre site utilise "
+"plusieurs sous-domaines (ex. : si ce script est à <code>www.example.com</"
+"code>, vous pouvez forcer le témoin à s’appliquer au domaine <code>example."
+"com</code> pour qu’il s’applique aussi aux autres sous-domaines tels que "
+"<code>foo.example.com</code>."
+
+#: zp_cookieconsent.php:80
+msgid "Expire"
+msgstr "Durée de vie"
+
+#: zp_cookieconsent.php:84
+msgid ""
+"The number of days Cookie Consent should store the user’s consent "
+"information for."
+msgstr ""
+"Le nombre de jours durant lequel le coockie de consentement doit mémoriser "
+"l’information."
+
+#: zp_cookieconsent.php:85
+msgid "Theme"
+msgstr "Thème"
+
+#: zp_cookieconsent.php:93
+msgid "custom"
+msgstr "personnalisé"
+
+#: zp_cookieconsent.php:95
+msgid ""
+"These are the included default themes. Users can create their own themes: "
+"The chosen theme is added to the popup container as a CSS class in the form "
+"of .cc-style-THEME_NAME."
+msgstr ""
+"Voici les thèmes inclus par défaut. Les utilisateurs peuvent créer leurs "
+"propres thèmes : le thème choisi est ajouté au conteneur popup comme une "
+"classe CSS sous forme de .cc-style-THEME_NAME."
+
+#: zp_cookieconsent.php:96
+msgid "Position"
+msgstr "Position :"
+
+#: zp_cookieconsent.php:101
+msgid "Top"
+msgstr "En haut"
+
+#: zp_cookieconsent.php:102
+msgid "Top left"
+msgstr "En haut à gauche"
+
+#: zp_cookieconsent.php:103
+msgid "Top right"
+msgstr "En haut à droite"
+
+#: zp_cookieconsent.php:104
+msgid "Bottom"
+msgstr "En bas"
+
+#: zp_cookieconsent.php:105
+msgid "Bottom left"
+msgstr "En bas à gauche"
+
+#: zp_cookieconsent.php:106
+msgid "Bottom right"
+msgstr "En bas à droite"
+
+#: zp_cookieconsent.php:108
+msgid ""
+"Choose the position of the popup. top and bottom = banner, top-left/right, "
+"bottom-left/right = floating"
+msgstr ""
+"Choisir la position de la fenêtre contextuelle. haut et bas = bannière, haut-"
+"gauche/droite, bas-gauche/droite = flottant"
+
+#: zp_cookieconsent.php:109
+msgid "Dismiss on Scroll"
+msgstr "Rejeter sur navigation"
+
+#: zp_cookieconsent.php:113
+msgid ""
+"Check to dismiss when users scroll a page [other than <em>Learn more</em> "
+"page]."
+msgstr ""
+"Cochez pour rejeter quand l'utilisateur navigue sur une page [autre que la "
+"page <em>En savoir davantage</em>]."
+
+#: zp_cookieconsent.php:114
+msgid "Color - Popup"
+msgstr "Couleur - Popup"
+
+#: zp_cookieconsent.php:118
+msgid "Choose the color of the popup background."
+msgstr "Choisir la couleur de l’arrière-plan de la fenêtre contextuelle."
+
+#: zp_cookieconsent.php:119
+msgid "Color - Button"
+msgstr "Bouton - Couleur"
+
+#: zp_cookieconsent.php:123
+msgid "Choose the color of the button."
+msgstr "Choisissez la couleur du bouton."
+
+#: zp_cookieconsent.php:136
+msgid ""
+"This website uses cookies. By continuing to browse the site, you agree to "
+"our use of cookies."
+msgstr ""
+"Ce site utilise des cookies. En continuant de visiter le site, vous "
+"consentez à leur utilisation."
+
+#: zp_cookieconsent.php:140
+msgid "Agree"
+msgstr "Accepter"
+
+#: zp_cookieconsent.php:144
+msgid "More info"
+msgstr "En savoir davantage"
+
+#: zp_cookieconsent.php:148
+msgid "Cookies used on the website!"
+msgstr "Cookies utilisés sur le site Web !"
+
+#: zp_cookieconsent.php:152
+msgid "Decline"
+msgstr "Décliner"
+
+#~ msgid "Button: Learn more - Link"
+#~ msgstr "Bouton : En savoir davantage – lien"
+
+#~ msgid "Link to your cookie policy / privacy info page."
+#~ msgstr ""
+#~ "Lien à la page où sont présentées vos règles de protection de la vie "
+#~ "privée et vos pratiques d’utilisation des témoins."
+
+#~ msgid ""
+#~ "The theme you wish to use. Select NONE to use your own css via your "
+#~ "custom theme for example."
+#~ msgstr ""
+#~ "Le thème utilisé. Choisir <em>aucun</em> pour utiliser vos propres styles "
+#~ "tels que définis dans votre thème personnalisé."
+
+#~ msgid "none"
+#~ msgstr "custom"
+
+#~ msgid "Dismiss"
+#~ msgstr "Sluiten"
+
+#~ msgid "Path"
+#~ msgstr "Pfad"
+
+#~ msgid ""
+#~ "The path for the consent cookie that Cookie Consent uses, to remember "
+#~ "that users have consented to cookies. Use to limit consent to a specific "
+#~ "path within your website. If empty the default <code>/</code> is used."
+#~ msgstr ""
+#~ "Der PFade für den Zustimmungscookie, den Cookie Consent nutzt, um zu "
+#~ "speichern, dass ein Besucher zugestimmt hat. Verwenden sie dies, um die "
+#~ "Zustimmung für einen bestimmten Pfad innerhalb Ihrer Website zu "
+#~ "begrenzen. Leer lassen, um den Standard <code>/</code> zu verwenden."

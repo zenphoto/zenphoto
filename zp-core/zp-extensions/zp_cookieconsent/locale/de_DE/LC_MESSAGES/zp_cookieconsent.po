@@ -1,0 +1,304 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: zp_cookieconsent 1.0.2\n"
+"POT-Creation-Date: 2018-05-01 14:16+0200\n"
+"PO-Revision-Date: 2018-05-01 14:22+0200\n"
+"Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
+"Language-Team: Malte Müller\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.7\n"
+"X-Poedit-Basepath: ../../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: gettext_pl\n"
+"X-Poedit-SearchPath-0: zp_cookieconsent\n"
+"X-Poedit-SearchPath-1: zp_cookieconsent.php\n"
+
+#: zp_cookieconsent.php:14
+msgid ""
+"A plugin to add a cookie notify dialog to comply with the EU cookie law and "
+"Google's request regarding usages of Google Adwords, Analytics and more"
+msgstr ""
+"Ein Plugin für einen Cookie-Hinweis-Dialog, um dem EU Cookie-Gesetz und "
+"Googles Anforderung bezüglich der Verwendung von Google Adwords, Analytics "
+"und mehr zu entsprechen"
+
+#: zp_cookieconsent.php:40
+msgid "Button: Agree"
+msgstr "Button: Zustimmen"
+
+#: zp_cookieconsent.php:45
+msgid "Text used for the dismiss button. Leave empty to use the default text."
+msgstr ""
+"Der Text für den Zustimmungsbutton. Leer lassen, um den Standardtext zu "
+"verwenden."
+
+#: zp_cookieconsent.php:46
+msgid "Button: Learn more"
+msgstr "Button: Mehr erfahren"
+
+#: zp_cookieconsent.php:51
+msgid ""
+"Text used for the learn more info button. Leave empty to use the default "
+"text."
+msgstr ""
+"Der Text für den Link mit mehr Informationen. Leer lassen, um den "
+"Standardtext zu verwenden."
+
+#: zp_cookieconsent.php:52
+msgid "Button: Learn more - url"
+msgstr "Button: Mehr-erfahren-URL"
+
+#: zp_cookieconsent.php:56
+msgid "Url to your cookie policy / privacy info page."
+msgstr "Link zu Ihrer Cookie-/Privatspären-Infoseite."
+
+#: zp_cookieconsent.php:57
+msgid "Button: Decline"
+msgstr "Button: Ablehnen"
+
+#: zp_cookieconsent.php:61
+msgid "Link text for the decline button"
+msgstr "Linktext für den Ablehnen-Button"
+
+#: zp_cookieconsent.php:62
+msgid "Message"
+msgstr "Nachricht"
+
+#: zp_cookieconsent.php:67
+msgid "The message shown by the plugin. Leave empty to use the default text."
+msgstr ""
+"Die Nachricht, die vom Plugin angezeigt wird. Leer lassen, um den "
+"Standardtext zu verwenden."
+
+#: zp_cookieconsent.php:68
+msgid "Header"
+msgstr "Kopftext"
+
+#: zp_cookieconsent.php:73
+msgid ""
+"Text for the popup header by the plugin. Leave empty to use the default text."
+msgstr ""
+"Die Nachricht, die vom Plugin angezeigt wird. Leer lassen, um den "
+"Standardtext zu verwenden."
+
+#: zp_cookieconsent.php:74
+msgid "Domain"
+msgstr "Domain"
+
+#: zp_cookieconsent.php:78
+msgid ""
+"The domain for the consent cookie that Cookie Consent uses, to remember that "
+"users have consented to cookies. Useful if your website uses multiple "
+"subdomains, e.g. if your script is hosted at <code>www.example.com</code> "
+"you might override this to <code>example.com</code>, thereby allowing the "
+"same consent cookie to be read by subdomains like <code>foo.example.com</"
+"code>."
+msgstr ""
+"Die Domain für den der Zustimmungscookie, den Cookie Consent verwendet, um "
+"zu speichern, dass ein Besucher zugestimmt hat. Nützlich, wenn Ihre Website "
+"mehrere subdomains verwendent, z.B. wenn Ihr Skript unter <code>www.example."
+"com</code> platziert ist, möchten Sie vielleicht dies mit <code>example.com</"
+"code> übergehen, so dass der Cookie auch für subdomains wie <code>foo."
+"example.com</code> gilt."
+
+#: zp_cookieconsent.php:79
+msgid "Expire"
+msgstr "Verfall"
+
+#: zp_cookieconsent.php:83
+msgid ""
+"The number of days Cookie Consent should store the user’s consent "
+"information for."
+msgstr "Die Anzahl an Tagen, die der Zustimmungscookie gültig sein soll."
+
+#: zp_cookieconsent.php:84
+msgid "Theme"
+msgstr "Theme"
+
+#: zp_cookieconsent.php:92
+msgid "custom"
+msgstr "benutzerdefiniert"
+
+#: zp_cookieconsent.php:94
+msgid ""
+"These are the included default themes. Users can create their own themes: "
+"The chosen theme is added to the popup container as a CSS class in the form "
+"of .cc-style-THEME_NAME."
+msgstr ""
+"Dies sind die enthaltenen Standardthemes. Benutzer können Ihre eigene Themes "
+"hinzufügen. Der gewählte Themename wird dem Popupcontainer als Klassennamen "
+"in der  Form .cc-style-THEME_NAME hinzugefügt."
+
+#: zp_cookieconsent.php:95
+msgid "Position"
+msgstr "Position"
+
+#: zp_cookieconsent.php:100
+msgid "Top"
+msgstr "Oben"
+
+#: zp_cookieconsent.php:101
+msgid "Top left"
+msgstr "Open links"
+
+#: zp_cookieconsent.php:102
+msgid "Top right"
+msgstr "Oben rechts"
+
+#: zp_cookieconsent.php:103
+msgid "Bottom"
+msgstr "Unten"
+
+#: zp_cookieconsent.php:104
+msgid "Bottom left"
+msgstr "Unten links"
+
+#: zp_cookieconsent.php:105
+msgid "Bottom right"
+msgstr "Unten rechts"
+
+#: zp_cookieconsent.php:107
+msgid ""
+"Choose the position of the popup. top and bottom = banner, top-left/right, "
+"bottom-left/right = floating"
+msgstr ""
+"Wählen Sie die Position des Popups. Oben und unten = banner, Oben links/"
+"rechts, Unten links/rechts = überlagernd"
+
+#: zp_cookieconsent.php:108
+msgid "Dismiss on Scroll"
+msgstr "Ausblenden durch Scrollen"
+
+#: zp_cookieconsent.php:112
+msgid ""
+"Check to dismiss when users scroll a page [other than <em>Learn more</em> "
+"page]. The scroll range option must be set."
+msgstr ""
+"Wählen Sie dies, wenn das Popup verschwinden soll, wenn Besucher auf der "
+"WEbsite scrollen (andere Seiten als die <em>Mehr Information</em>-Seite)"
+
+#: zp_cookieconsent.php:113
+msgid "Color - Popup"
+msgstr "Farbe - Popup"
+
+#: zp_cookieconsent.php:117
+msgid "Choose the color of the popup background."
+msgstr "Wählen Sie die Farbe des Popup-Hintergrundes."
+
+#: zp_cookieconsent.php:118
+msgid "Color - Button"
+msgstr "Farbe - Button"
+
+#: zp_cookieconsent.php:122
+msgid "Choose the color of the button."
+msgstr "Wählen Sie die Farbe des Buttons."
+
+#: zp_cookieconsent.php:135
+msgid ""
+"This website uses cookies. By continuing to browse the site, you agree to "
+"our use of cookies."
+msgstr ""
+"Diese Website verwendet Cookies. Wenn Sie die Site weiter verwenden, stimmen "
+"Sie unserer Cookienutzung zu."
+
+#: zp_cookieconsent.php:139
+msgid "Agree"
+msgstr "Einverstanden"
+
+#: zp_cookieconsent.php:143
+msgid "More info"
+msgstr "Mehr Information"
+
+#: zp_cookieconsent.php:147
+msgid "Cookies used on the website!"
+msgstr "Diese Website verwendet Cookies!"
+
+#: zp_cookieconsent.php:151
+msgid "Decline"
+msgstr "Ablehnen"
+
+#~ msgid "Style"
+#~ msgstr "Aussehen"
+
+#~ msgid "dark-bottom"
+#~ msgstr "Dunkel unten"
+
+#~ msgid "dark-floating-tada"
+#~ msgstr "Dunkel-schwebend-tada"
+
+#~ msgid "dark-floating"
+#~ msgstr "Dunkel-schwebend"
+
+#~ msgid "dark-inline"
+#~ msgstr "dunkel-inline"
+
+#~ msgid "dark-top"
+#~ msgstr "dunkel-oben"
+
+#~ msgid "light-bottom"
+#~ msgstr "hell-unten"
+
+#~ msgid "light-floating"
+#~ msgstr "hell-schwebend"
+
+#~ msgid "light-top"
+#~ msgstr "hell-oben"
+
+#~ msgid ""
+#~ "The style you wish to use. Select <em>custom</em> to use a custom.css "
+#~ "file you need to place within <code>zp_cookieconsent/styles/</code>.<p "
+#~ "class=\"notebox\"><strong>Notice:</strong> If you select <em>custom</em> "
+#~ "and no <code>custom.css</code> file is in place, the banner will not work "
+#~ "at all.</p>"
+#~ msgstr ""
+#~ "Das Aussehen, das Sie verwenden möchten.  Wählen Sie "
+#~ "<em>benutzerdefiniert</em>, um eine custom.css Datei zu verwenden, die "
+#~ "Sie innerhalb von   <code>zp_cookieconsent/styles/</code> platzieren "
+#~ "müssen.<p class=\"notebox\"><strong>Hinweis:</strong> Wenn Sie "
+#~ "<em>benutzerdefiniert</em> auswählen und keine <code>custom.css</code> "
+#~ "Datei existiert, funktioniert der Banner nicht.</p>"
+
+#~ msgid "Dismiss on Browse Site"
+#~ msgstr "Ausblenden beim Browsen auf der Website"
+
+#~ msgid "Check to dismiss when users click on internal links."
+#~ msgstr ""
+#~ "Wählen Sie dies aus, wenn der Banner ausgeblendet werden soll, wenn "
+#~ "Besucher auf interne Links klicken."
+
+#~ msgid "Scroll Range"
+#~ msgstr "Scroll-Bereich"
+
+#~ msgid "How many pixels should be scrolled before dismiss."
+#~ msgstr ""
+#~ "Wie viele Pixel gescrollt werden soll bevor der Banner ausgeblendet wird."
+
+#~ msgid ""
+#~ "The theme you wish to use. Select NONE to use your own css via your "
+#~ "custom theme for example."
+#~ msgstr ""
+#~ "Das zu verwendende Theme. Wählen Sie KEINS, wenn Sie das Aussehen z.B. "
+#~ "über Ihr eigenes Theme CSS steuern möchten."
+
+#~ msgid "none"
+#~ msgstr "Keins"
+
+#~ msgid "Dismiss"
+#~ msgstr "Wegtreten"
+
+#~ msgid "Path"
+#~ msgstr "Pfad"
+
+#~ msgid ""
+#~ "The path for the consent cookie that Cookie Consent uses, to remember "
+#~ "that users have consented to cookies. Use to limit consent to a specific "
+#~ "path within your website. If empty the default <code>/</code> is used."
+#~ msgstr ""
+#~ "Der PFade für den Zustimmungscookie, den Cookie Consent nutzt, um zu "
+#~ "speichern, dass ein Besucher zugestimmt hat. Verwenden sie dies, um die "
+#~ "Zustimmung für einen bestimmten Pfad innerhalb Ihrer Website zu "
+#~ "begrenzen. Leer lassen, um den Standard <code>/</code> zu verwenden."

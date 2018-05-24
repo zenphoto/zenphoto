@@ -1,0 +1,221 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: zp_cookieconsent\n"
+"POT-Creation-Date: 2016-04-04 09:46+0200\n"
+"PO-Revision-Date: 2016-04-04 11:32+0200\n"
+"Last-Translator: fretzl\n"
+"Language-Team: fretzl\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-Basepath: ../../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: gettext_pl\n"
+"X-Poedit-SearchPath-0: zp_cookieconsent\n"
+"X-Poedit-SearchPath-1: zp_cookieconsent.php\n"
+
+#: zp_cookieconsent.php:14
+msgid ""
+"A plugin to add a cookie notify dialog to comply with the EU cookie law and "
+"Google's request regarding usages of Google Adwords, Analytics and more"
+msgstr ""
+"Een plugin voor het tonen van een cookieverklaring volgens EU wetgeving."
+
+#: zp_cookieconsent.php:33
+msgid "Button: Agree"
+msgstr "Knop: Akkoord"
+
+#: zp_cookieconsent.php:38
+msgid "Text used for the dismiss button. Leave empty to use the default text."
+msgstr ""
+"De tekst voor de <em>Sluiten</em> knop. Laat leeg om de standaard tekst te "
+"gebruiken."
+
+#: zp_cookieconsent.php:39
+msgid "Button: Learn more"
+msgstr "Knop: Meer informatie"
+
+#: zp_cookieconsent.php:44
+msgid ""
+"Text used for the learn more info button. Leave empty to use the default "
+"text."
+msgstr ""
+"De tekst voor de <em>Meer informatie</em> knop. Laat leeg om de standaard "
+"tekst te gebruiken.\n"
+"Wordt alleen zichtbaar als <em>Knop: Meer informatie - link</em> niet leeg "
+"is."
+
+#: zp_cookieconsent.php:45
+msgid "Button: Learn more - Link"
+msgstr "Knop: Meer informatie - link"
+
+#: zp_cookieconsent.php:49
+msgid "Link to your cookie policy / privacy info page."
+msgstr "Link naar de pagina met cookie / privacy informatie."
+
+#: zp_cookieconsent.php:50
+msgid "Message"
+msgstr "Bericht"
+
+#: zp_cookieconsent.php:55
+msgid "The message shown by the plugin. Leave empty to use the default text."
+msgstr ""
+"De tekst die getoond wordt. Laat leeg om de standaard tekst te gebruiken."
+
+#: zp_cookieconsent.php:56
+msgid "Domain"
+msgstr "Domein"
+
+#: zp_cookieconsent.php:60
+msgid ""
+"The domain for the consent cookie that Cookie Consent uses, to remember that "
+"users have consented to cookies. Useful if your website uses multiple "
+"subdomains, e.g. if your script is hosted at <code>www.example.com</code> "
+"you might override this to <code>example.com</code>, thereby allowing the "
+"same consent cookie to be read by subdomains like <code>foo.example.com</"
+"code>."
+msgstr ""
+"Het domein dat onthouden wordt door Cookie Consent wanneer gebruikers "
+"akkoord zijn gegaan. Dit kan handig zijn wanneer de website meerdere "
+"subdomeinen gebruikt. Als je website bijvoorbeeld gehost wordt op <code>www."
+"example.com</code> kun je hier  <code>example.com</code> invullen zodat "
+"dezelfde cookie-toestemming gebruikt kan worden door <code>foo.example.com</"
+"code>."
+
+#: zp_cookieconsent.php:61
+msgid "Expire"
+msgstr "Vervalt na"
+
+#: zp_cookieconsent.php:65
+msgid ""
+"The number of days Cookie Consent should store the user’s consent "
+"information for."
+msgstr "Het aantal dagen dat de cookie-toestemming bewaard wordt."
+
+#: zp_cookieconsent.php:66
+msgid "Style"
+msgstr "Stijl"
+
+#: zp_cookieconsent.php:71
+msgid "dark-bottom"
+msgstr "dark-bottom"
+
+#: zp_cookieconsent.php:72
+msgid "dark-floating-tada"
+msgstr "dark-floating-tada"
+
+#: zp_cookieconsent.php:73
+msgid "dark-floating"
+msgstr "dark-floating"
+
+#: zp_cookieconsent.php:74
+msgid "dark-inline"
+msgstr "dark-inline"
+
+#: zp_cookieconsent.php:75
+msgid "dark-top"
+msgstr "dark-top"
+
+#: zp_cookieconsent.php:76
+msgid "light-bottom"
+msgstr "light-bottom"
+
+#: zp_cookieconsent.php:77
+msgid "light-floating"
+msgstr "light-floating"
+
+#: zp_cookieconsent.php:78
+msgid "light-top"
+msgstr "light-top"
+
+#: zp_cookieconsent.php:79
+msgid "custom"
+msgstr "custom"
+
+#: zp_cookieconsent.php:81
+msgid ""
+"The style you wish to use. Select <em>custom</em> to use a custom.css file "
+"you need to place within <code>zp_cookieconsent/styles/</code>.<p class="
+"\"notebox\"><strong>Notice:</strong> If you select <em>custom</em> and no "
+"<code>custom.css</code> file is in place, the banner will not work at all.</"
+"p>"
+msgstr ""
+"De stijl die je wilt gebruiken. Selecteer <em>custom</em> voor een eigen "
+"stijl. Om een eigen stijl te knnen gebruiken moet een <em>custom.css</em> "
+"geplaatst worden in <code>zp_cookieconsent/styles/</code>.<p class=\"notebox"
+"\"><strong>Opmerking:</strong> Als je <em>custom</em> selecteerd en er is "
+"geen <code>custom.css</code> bestand aanwezig, dan werkt de banner niet.</p>"
+
+#: zp_cookieconsent.php:82
+msgid "Dismiss on Browse Site"
+msgstr "Afwijzen bij browsen"
+
+#: zp_cookieconsent.php:86
+msgid "Check to dismiss when users click on internal links."
+msgstr "Vink aan om af te wijzen als de gebruiker op interne links klikt."
+
+#: zp_cookieconsent.php:87
+msgid "Dismiss on Scroll"
+msgstr "Afwijzen bij scrollen"
+
+#: zp_cookieconsent.php:91
+msgid ""
+"Check to dismiss when users scroll a page [other than <em>Learn more</em> "
+"page]."
+msgstr "Vink aan om af te wijzen als de pagina gescrolld wordt."
+
+#: zp_cookieconsent.php:92
+msgid "Scroll Range"
+msgstr "Scroll afstand"
+
+#: zp_cookieconsent.php:96
+msgid "How many pixels should be scrolled before dismiss."
+msgstr "Hoeveel pixels moet er gescrolld worden voordat er wordt afgewezen."
+
+#: zp_cookieconsent.php:102
+msgid ""
+"This website uses cookies. By continuing to browse the site, you agree to "
+"our use of cookies."
+msgstr ""
+"Deze website gebruikt cookies. Wanneer u doorgaat accepteert u het gebruik "
+"van deze cookies."
+
+#: zp_cookieconsent.php:106
+msgid "Agree"
+msgstr "Akkoord"
+
+#: zp_cookieconsent.php:110
+msgid "More info"
+msgstr "Meer informatie"
+
+#~ msgid "Theme"
+#~ msgstr "Thema"
+
+#~ msgid ""
+#~ "The theme you wish to use. Select NONE to use your own css via your "
+#~ "custom theme for example."
+#~ msgstr ""
+#~ "Het thema dat je wilt gebruiken. Selecteer <em>custom</em> om je eigen "
+#~ "stylesheet met de naam <code>custom.css</code> te gebruiken."
+
+#~ msgid "none"
+#~ msgstr "custom"
+
+#~ msgid "Dismiss"
+#~ msgstr "Sluiten"
+
+#~ msgid "Path"
+#~ msgstr "Pfad"
+
+#~ msgid ""
+#~ "The path for the consent cookie that Cookie Consent uses, to remember "
+#~ "that users have consented to cookies. Use to limit consent to a specific "
+#~ "path within your website. If empty the default <code>/</code> is used."
+#~ msgstr ""
+#~ "Der PFade für den Zustimmungscookie, den Cookie Consent nutzt, um zu "
+#~ "speichern, dass ein Besucher zugestimmt hat. Verwenden sie dies, um die "
+#~ "Zustimmung für einen bestimmten Pfad innerhalb Ihrer Website zu "
+#~ "begrenzen. Leer lassen, um den Standard <code>/</code> zu verwenden."
