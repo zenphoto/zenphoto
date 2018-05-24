@@ -77,9 +77,9 @@ printAdminHeader('overview', 'User data export');
 					<?php XSRFToken('userdata-export'); ?>
 					<p>
 						<label><input type="text" id="userdata-username" name="userdata-username" value="<?php echo html_encode($username); ?>"> <?php echo gettext('User name'); ?>*</label>
-						<label><input type="email" id="userdata-usermail" name="userdata-usermail" value=""> <?php echo gettext('User mail address'); ?></label>
+						<label><input type="email" id="userdata-usermail" name="userdata-usermail" value=""> <?php echo gettext('User email address'); ?></label>
 					</p>
-					<p><?php echo gettext('*User name is required but it is recommended to also enter a mail address for more reliable results on some queries.'); ?></p>
+					<p><?php echo gettext('*User name is required but it is recommended to also enter an email address for more reliable results on some queries.'); ?></p>
 					<p>
 						<label><input type="radio" id="userdata-format" name="userdata-format" value="html" checked="checked"> HTML</label>
 						<label><input type="radio" id="userdata-format" name="userdata-format" value="json"> JSON</label>
