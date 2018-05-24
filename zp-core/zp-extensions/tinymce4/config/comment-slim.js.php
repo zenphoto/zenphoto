@@ -12,7 +12,10 @@ global $_zp_RTL_css;
 	tinymce.init({
 		selector: "textarea.textarea_inputbox,textarea.texteditor_comments",
 		language: "<?php echo $locale; ?>",
-		entity_encoding: 'raw',
+		entity_encoding: '<?php echo getOption('tinymce4_entityencoding'); ?>',
+		<?php if(!empty(trim(getOption('tinymce4_entities')))) { ?>
+			entities: '<?php echo getOption('tinymce4_entities'); ?>',
+		<?php } ?>	
 		directionality: "<?php echo $_zp_RTL_css ? 'rtl' : 'ltr'; ?>",
 		menubar: false,
 		relative_urls: false,
