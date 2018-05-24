@@ -4,6 +4,12 @@
  *
  * Zenphoto plugin default light configuration
  */
+/**
+ * Filter used by "file manager" plugins to attach themselves to tinyMCE.
+ *
+ * @package filters
+ * @subpackage zenpage
+ */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 global $_zp_RTL_css;
 ?>
@@ -11,7 +17,7 @@ global $_zp_RTL_css;
 <script type="text/javascript">
 // <!-- <![CDATA[
 	tinymce.init({
-		selector: "textarea.content,textarea.desc,textarea.extracontent",
+		selector: "textarea.content,textarea.desc,textarea.extracontent,textarea.texteditor",
 		language: "<?php echo $locale; ?>",
 		entity_encoding: '<?php echo getOption('tinymce4_entityencoding'); ?>',
 		<?php if(!empty(trim(getOption('tinymce4_entities')))) { ?>
@@ -32,9 +38,9 @@ if ($filehandler) {
 		plugins: [
 			"advlist autolink lists link image charmap print preview anchor pagebreak",
 			"searchreplace visualblocks code fullscreen directionality",
-			"insertdatetime media table contextmenu paste tinyzenpage"
+			"insertdatetime media table contextmenu paste textpattern imagetools tinyzenpage"
 		],
-		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image pagebreak tinyzenpage | code fullscreen | ltr rtl",
+		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image tinyzenpage pagebreak | code fullscreen | ltr rtl",
 		setup: function(ed) {
 			ed.on('change', function(e) {
 				$('.dirty-check').addClass('dirty');

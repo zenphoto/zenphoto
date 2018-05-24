@@ -4,7 +4,7 @@
  *
  * Zenpage plugin default light configuration
  */
-global $_zp_RTL_css;
+ global $_zp_RTL_css;
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
 <script type="text/javascript">

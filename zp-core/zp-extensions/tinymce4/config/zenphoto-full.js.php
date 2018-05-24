@@ -4,6 +4,12 @@
  *
  * Zenpage plugin default light configuration
  */
+/**
+ * Filter used by "file manager" plugins to attach themselves to tinyMCE.
+ *
+ * @package filters
+ * @subpackage zenpage
+ */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 global $_zp_RTL_css;
 ?>
@@ -33,9 +39,9 @@ if ($filehandler) {
 			"advlist autolink lists link image charmap print preview hr anchor pagebreak",
 			"searchreplace wordcount visualblocks visualchars code fullscreen",
 			"insertdatetime media nonbreaking save table contextmenu directionality",
-			"emoticons template paste tinyzenpage"
+			"emoticons template paste textpattern imagetools tinyzenpage"
 		],
-		toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+		toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image",
 		toolbar2: "print preview media | forecolor backcolor emoticons | code fullscreen | pagebreak tinyzenpage | ltr rtl",
 		setup: function(ed) {
 			ed.on('change', function(e) {

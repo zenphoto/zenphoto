@@ -4,6 +4,12 @@
  *
  * Zenphoto plugin default light configuration
  */
+/**
+ * Filter used by "file manager" plugins to attach themselves to tinyMCE.
+ *
+ * @package filters
+ * @subpackage zenpage
+ */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 global $_zp_RTL_css;
 ?>
@@ -33,9 +39,9 @@ if ($filehandler) {
 		plugins: [
 			"advlist autolink lists link image charmap print preview anchor pagebreak",
 			"searchreplace visualblocks code fullscreen directionality",
-			"insertdatetime media table contextmenu paste tinyzenpage"
+			"insertdatetime media table contextmenu paste textpattern imagetools tinyzenpage"
 		],
-		toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code fullscreen | pagebreak tinyzenpage | ltr rtl",
+		toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image | code fullscreen | pagebreak tinyzenpage | ltr rtl",
 		setup: function(ed) {
 			ed.on('change', function(e) {
 				$('.dirty-check').addClass('dirty');

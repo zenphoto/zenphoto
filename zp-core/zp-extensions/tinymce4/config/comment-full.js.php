@@ -4,13 +4,13 @@
  *
  * Comment form plugin default light configuration
  */
-global $_zp_RTL_css;
+ global $_zp_RTL_css;
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
 <script type="text/javascript">
 // <!-- <![CDATA[
 	tinymce.init({
-		selector: "textarea.textarea_inputbox, textarea.texteditor_comments",
+		selector: "textarea.textarea_inputbox,textarea.texteditor_comments",
 		language: "<?php echo $locale; ?>",
 		entity_encoding: '<?php echo getOption('tinymce4_entityencoding'); ?>',
 		<?php if(!empty(trim(getOption('tinymce4_entities')))) { ?>
@@ -20,7 +20,7 @@ global $_zp_RTL_css;
 		menubar: false,
 		relative_urls: false,
 		plugins: [
-			"advlist autolink lists link image charmap print preview hr anchor",
+			"advlist autolink lists link image charmap print preview hr anchor pagebreak",
 			"searchreplace visualblocks code directionality",
 			"insertdatetime media table contextmenu",
 			"emoticons paste"
