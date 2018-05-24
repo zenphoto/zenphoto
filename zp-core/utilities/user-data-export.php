@@ -64,10 +64,10 @@ printAdminHeader('overview', 'User data export');
 				<h1><span id="top"><?php echo $mybutton['button_text']; ?></span></h1>
 				<p><?php echo gettext('This tool helps to export possible personal user data if requested. It does not delete any data. This covers the following data:'); ?></p>
 				<ul>
-					<li><?php echo gettext('<strong>User account</strong> (<em>user name</em> and <em>email address</em>).'); ?></li>
+					<li><?php echo gettext('<strong>User account</strong> (<em>user name</em> and <em>email address</em>)'); ?></li>
 					<li><?php echo gettext('<strong>Securitylog</strong> (<em>user name</em>)'); ?></li>
 					<li><?php echo gettext('<strong>Comments</strong> (<em>user name</em> and <em>email address</em>)'); ?></li>
-					<li><?php echo gettext('<strong>Albums and images owner</strong> (<em>user name</em>) (excluding images of dynamic albums).'); ?></li>
+					<li><?php echo gettext('<strong>Albums and images owner</strong> (<em>user name</em>) (excluding images of dynamic albums)'); ?></li>
 					<li><?php echo gettext('<strong>All items guest user</strong> (<em>user name</em>).'); ?></li>
 					<li><?php echo gettext('<strong>Zenpage pages and news articles author and last change author</strong> (<em>user name</em>)'); ?></li>
 				</ul>
