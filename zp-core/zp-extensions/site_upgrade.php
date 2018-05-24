@@ -207,42 +207,6 @@ switch (OFFSET_PATH) {
 			ob_end_clean();
 			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss-closed.xml', $xml);
 		}
-		if (isset($_REQUEST['refreshHTML']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/externalFeed_closed.xml')) {
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/externalFeed.php');
-
-			class setupexternalFeed extends externalFeed {
-
-				public function getitems() {
-					$this->feedtype = 'setup';
-					$items = array();
-					$items[] = array('title'						 => gettext('externalFeed suspended'),
-									'link'						 => '',
-									'enclosure'				 => '',
-									'category'				 => '',
-									'media_content'		 => '',
-									'media_thumbnail'	 => '',
-									'pubdate'					 => date("r", time()),
-									'desc'						 => gettext('The external feed is currently not available.'));
-					return $items;
-				}
-
-				protected function startCache() {
-
-				}
-
-				protected function endCache() {
-
-				}
-
-			}
-
-			$obj = new setupexternalFeed(array('external' => 'site_closed'));
-			ob_start();
-			$obj->printFeed();
-			$xml = ob_get_contents();
-			ob_end_clean();
-			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/externalFeed-closed.xml', $xml);
-		}
 		setOptionDefault('zp_plugin_site_upgrade', $plugin_is_filter);
 		break;
 }
