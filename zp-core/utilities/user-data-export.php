@@ -68,10 +68,10 @@ printAdminHeader('overview', 'User data export');
 					<li><?php echo gettext('<strong>Securitylog</strong> (<em>user name</em>)'); ?></li>
 					<li><?php echo gettext('<strong>Comments</strong> (<em>user name</em> and <em>email address</em>)'); ?></li>
 					<li><?php echo gettext('<strong>Albums and images owner</strong> (<em>user name</em>) (excluding images of dynamic albums)'); ?></li>
-					<li><?php echo gettext('<strong>All items guest user</strong> (<em>user name</em>).'); ?></li>
+					<li><?php echo gettext('<strong>All items guest user</strong> (<em>user name</em>)'); ?></li>
 					<li><?php echo gettext('<strong>Zenpage pages and news articles author and last change author</strong> (<em>user name</em>)'); ?></li>
 				</ul>
-				<p class="notebox"><?php echo gettext('<strong>Note:</strong> This covers only what Zenphoto core and plugins store and not what other third party tools may do or your server. <strong>This tool is provided without any any legal warranties regarding requirments of the e.g. GDPR</strong>. Contact your lawyer to find out if this is sufficient for your site.'); ?></p>
+				<p class="notebox"><?php echo gettext('<strong>Note:</strong> This covers only what Zenphoto core and plugins store and not what other third party tools may do or your server. <strong>This tool is provided without any any legal warranties regarding requirements of the e.g. GDPR</strong>. Contact your lawyer to find out if this is sufficient for your site.'); ?></p>
 				<?php echo $error; ?>
 				<form id="userdata-export-form" name="userdata-export-form" method="post">
 					<?php XSRFToken('userdata-export'); ?>
