@@ -13,7 +13,6 @@
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A plugin to add a cookie notify dialog to comply with the EU cookie law and Google's request regarding usages of Google Adwords, Analytics and more");
 $plugin_author = "Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)";
-$plugin_version = '2.0.0';
 $option_interface = 'zpCookieconsent';
 
 if (!isset($_COOKIE['cookieconsent_status'])) {
