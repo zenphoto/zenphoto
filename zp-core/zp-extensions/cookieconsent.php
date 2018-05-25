@@ -13,13 +13,13 @@
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A plugin to add a cookie notify dialog to comply with the EU cookie law and Google's request regarding usages of Google Adwords, Analytics and more");
 $plugin_author = "Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)";
-$option_interface = 'zpCookieconsent';
+$option_interface = 'cookieConsent';
 
 if (!isset($_COOKIE['cookieconsent_status'])) {
-	zp_register_filter('theme_head', 'zpCookieconsent::getCSS');
-	zp_register_filter('theme_head', 'zpCookieconsent::getJS');
+	zp_register_filter('theme_head', 'cookieConsent::getCSS');
+	zp_register_filter('theme_head', 'cookieConsent::getJS');
 }	
-class zpCookieconsent {
+class cookieConsent {
 
 	function __construct() {
 		setOptionDefault('zpcookieconsent_expirydays', 365);
@@ -49,7 +49,7 @@ class zpCookieconsent {
 						'order' => 2,
 						'multilingual' => 1,
 						'desc' => gettext('Text used for the learn more info button. Leave empty to use the default text.')),
-				gettext('Button: Learn more - url', 'zp_cookieconsent') => array(
+				gettext('Button: Learn more - url') => array(
 						'key' => 'zpcookieconsent_buttonlearnmorelink',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 3,
@@ -122,7 +122,7 @@ class zpCookieconsent {
 
 	static function getCSS() {
 		?>
-		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_cookieconsent/cookieconsent.min.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cookieconsent/cookieconsent.min.css" />
 		<?php
 	}
 
@@ -169,7 +169,7 @@ class zpCookieconsent {
 		$color_popup = getOption('zpcookieconsent_colorpopup');
 		$color_button = getOption('zpcookieconsent_colorbutton');
 		?>
-		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_cookieconsent/cookieconsent.min.js"></script>
+		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cookieconsent/cookieconsent.min.js"></script>
 		<script>
 			window.addEventListener("load", function () {
 				window.cookieconsent.initialise({

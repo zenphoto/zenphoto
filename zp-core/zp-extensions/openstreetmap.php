@@ -18,11 +18,11 @@
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A Zenphoto plugin for displaying OpenStreetMap based maps using LeafletJS for images or images from albums with embeded geodata.");
 $plugin_author = "Malte Müller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569)";
-$option_interface = 'zpOpenStreetMapOptions';
+$option_interface = 'openStreetMapOptions';
 
-zp_register_filter('theme_head', 'zpOpenStreetMap::scripts');
+zp_register_filter('theme_head', 'openStreetMap::scripts');
 
-class zpOpenStreetMapOptions {
+class openStreetMapOptions {
 
 	function __construct() {
 		setOptionDefault('osmap_width', '100%'); //responsive by default!
@@ -45,13 +45,13 @@ class zpOpenStreetMapOptions {
 		setOptionDefault('osmap_minimap_zoom', -5);
 		setOptionDefault('osmap_cluster_showcoverage_on_hover', 0);
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('zp_openstreetmap');
-			cacheManager::addThemeCacheSize('zp_openstreetmap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::deleteThemeCacheSizes('openstreetmap');
+			cacheManager::addThemeCacheSize('openstreetmap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
 		}
 	}
 
 	function getOptionsSupported() {
-		$providers = array_combine(zpOpenStreetMap::getTitleProviders(), zpOpenStreetMap::getTitleProviders());
+		$providers = array_combine(openStreetMap::getTitleProviders(), openStreetMap::getTitleProviders());
 		return array(
 				gettext('Map dimensions—width') => array(
 						'key' => 'osmap_width',
@@ -190,7 +190,7 @@ class zpOpenStreetMapOptions {
 /**
  * The class for all OSM map related functionality
  */
-class zpOpenStreetMap {
+class openStreetMap {
 
 	/**
 	 * Contains the array of the image or images from albums geodata
@@ -447,34 +447,34 @@ class zpOpenStreetMap {
 	 */
 	static function scripts() {
 		?>
-		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_openstreetmap/leaflet.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_openstreetmap/MarkerCluster.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_openstreetmap/MarkerCluster.Default.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_openstreetmap/zp_openstreetmap.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/leaflet.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/MarkerCluster.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/MarkerCluster.Default.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/openstreetmap.css" />
 		<?php
 		if (getOption('osmap_showcursorpos')) {
 			?>
-			<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_openstreetmap/L.Control.MousePosition.css" />
+			<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/L.Control.MousePosition.css" />
 			<?php
 		}
 		if (getOption('osmap_showminimap')) {
 			?>
-			<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_openstreetmap/Control.MiniMap.min.css" />
+			<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/Control.MiniMap.min.css" />
 			<?php
 		}
 		?>
-		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_openstreetmap/leaflet.js"></script>
-		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_openstreetmap/leaflet.markercluster.js"></script>
-		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_openstreetmap/leaflet-providers.js"></script>
+		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/leaflet.js"></script>
+		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/leaflet.markercluster.js"></script>
+		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/leaflet-providers.js"></script>
 		<?php
 		if (getOption('osmap_showcursorpos')) {
 			?>
-			<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_openstreetmap/L.Control.MousePosition.js"></script>
+			<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/L.Control.MousePosition.js"></script>
 			<?php
 		}
 		if (getOption('osmap_showminimap')) {
 			?>
-			<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/zp_openstreetmap/Control.MiniMap.min.js"></script>
+			<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/Control.MiniMap.min.js"></script>
 			<?php
 		}
 	}
@@ -917,7 +917,7 @@ class zpOpenStreetMap {
 // osm class end
 
 /**
- * Template function wrapper for the zpOpenStreetMap class to show a map with geodata markers 
+ * Template function wrapper for the openStreetMap class to show a map with geodata markers 
  * for the current image or collected the images of an album.
  * 
  * For more flexibility use the class directly.
@@ -927,7 +927,7 @@ class zpOpenStreetMap {
  * @global obj $_zp_current_album
  * @global obj $_zp_current_image
  * @global string $_zp_gallery_page
- * @param array $geodata Array of the geodata to create and display markers. See the constructor of the zpOpenStreetMap Class for the require structure
+ * @param array $geodata Array of the geodata to create and display markers. See the constructor of the openStreetMap Class for the require structure
  * @param string $width Width with unit, e.g. 100%, 100px, 100em
  * @param string $height Height with unit, e.g. 100px, 100em
  * @param array $mapcenter geodata array(lat,lng);
@@ -942,7 +942,7 @@ function printOpenStreetMap($geodata = NULL, $width = NULL, $height = NULL, $map
 	if (!empty($class)) {
 		$class = ' class="' . $class . '"';
 	}
-	$map = new zpOpenStreetMap($geodata, $obj);
+	$map = new openStreetMap($geodata, $obj);
 	if (!is_null($width)) {
 		$map->width = $width;
 	}
