@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -331,14 +332,14 @@ class userDataExport {
 			$tempdata = array();
 			while ($row = db_fetch_assoc($result)) {
 				$albobj = newAlbum($row['folder']);
-				$albtitle = $albobj->getTitle();
+				$title = $albobj->getTitle();
 				if (!$albobj->getShow()) {
-					$albtitle .= ' [' . gettext('unpublished') . ']';
+					$title .= ' [' . gettext('unpublished') . ']';
 				}
 				if ($albobj->isProtected()) {
 					$title .= ' [' . gettext('protected') . ']';
 				}
-				$tempdata[$albtitle] = SERVER_HTTP_HOST . $albobj->getLink();
+				$tempdata[$title] = SERVER_HTTP_HOST . $albobj->getLink();
 			}
 			db_free_result($result);
 			if (!empty($tempdata)) {
