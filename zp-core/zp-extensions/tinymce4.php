@@ -98,7 +98,7 @@ class tinymce4Options {
 						'key' => 'tinymce4_entities',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 3,
-						'desc' => gettext('You you can adjust how entities are processed. More info on the <a href="https://www.tinymce.com/docs/configure/content-filtering/#entities">tinyMCE docs</a>.')),
+						'desc' => gettext('You can adjust how entities are processed. More info on the <a href="https://www.tinymce.com/docs/configure/content-filtering/#entities">tinyMCE docs</a>.')),
 		);
 		return $options;
 	}
