@@ -50,12 +50,8 @@ body {
 	text-decoration: none;
 }
 
-.scriptless_socialsharing  {
- text-align: center;
-}
-
-.scriptless_socialsharing  li {
-	float: none;
+/* Scriptless Social Sharing */
+ul.scriptless_socialsharing li {
 	display: inline-block !important;
 }
 

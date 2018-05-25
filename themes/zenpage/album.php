@@ -81,11 +81,11 @@ if (!defined('WEBPATH'))
 						echo '</p>';
 					}
 					@call_user_func('printOpenStreetMap');
+					
 					if(class_exists('ScriptlessSocialSharing')) {
 						ScriptlessSocialSharing::printButtons();
 					}	
-					?>
-					<?php
+					
 					if (function_exists('printSlideShowLink')) {
 						echo '<span id="slideshowlink">';
 						printSlideShowLink();

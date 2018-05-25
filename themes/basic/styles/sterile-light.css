@@ -45,14 +45,12 @@ body {
 	color: #7A2;
 	text-decoration: none;
 }
-.scriptless_socialsharing  {
- text-align: center;
-}
 
-.scriptless_socialsharing  li {
-	float: none;
+/* Scriptless Social Sharing */
+ul.scriptless_socialsharing li {
 	display: inline-block !important;
 }
+
 #gallerytitle {
 	padding: 20px 10px 10px 20px;
 	-moz-border-radius: 10px 10px 0px 0px;

@@ -951,6 +951,11 @@ font-weight: bold;
 	width:370px;
 }
 
+/* Scriptless Social Sharing */
+ul.scriptless_socialsharing li {
+	display: inline-block !important;
+}
+
 /* Pretty Buttons
 ------------------------------------- */
 .buttons a,.buttons button {

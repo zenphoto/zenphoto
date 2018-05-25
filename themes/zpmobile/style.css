@@ -325,6 +325,14 @@ padding: 2px;
 vertical-align: top;
 }
 
+/* Scriptless Social Sharing */
+ul.scriptless_socialsharing li {
+	display: inline-block !important;
+}
+
+ul.scriptless_socialsharing li a {
+	text-decoration: none;
+}
 
 /* comments
 ------------------------------ */

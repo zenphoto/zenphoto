@@ -50,14 +50,12 @@ body {
 	border-bottom: 1px solid #294550;
 	text-decoration: none;
 }
-.scriptless_socialsharing  {
- text-align: center;
-}
 
-.scriptless_socialsharing  li {
-	float: none;
+/* Scriptless Social Sharing */
+ul.scriptless_socialsharing li {
 	display: inline-block !important;
 }
+
 #gallerytitle {
 	border-bottom: 1px solid #E6E6DF;
 	padding-bottom: 14px;

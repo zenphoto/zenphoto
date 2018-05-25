@@ -1208,6 +1208,11 @@ text-align:center;
 padding:8px;
 }
 
+/* Scriptless Social Sharing */
+ul.scriptless_socialsharing li {
+	display: inline-block !important;
+}
+
 /* tinyZenpage title addition */
 .zenpage_wrapper_left,
 .zenpage_wrapper_right {
