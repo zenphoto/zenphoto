@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-25 00:26+0200\n"
-"PO-Revision-Date: 2018-05-25 00:42+0200\n"
+"POT-Creation-Date: 2018-05-25 09:24+0200\n"
+"PO-Revision-Date: 2018-05-25 09:24+0200\n"
 "Last-Translator: Vincent Bourganel <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569)\n"
@@ -191,7 +191,7 @@ msgstr "Un mot de passe est nécessaire pour accéder à cette page"
 #: themes/garland/register.php:43 zp-core/template-functions.php:444
 #: zp-core/zp-extensions/html_meta_tags.php:326
 #: zp-core/zp-extensions/register_user.php:65
-#: zp-core/zp-extensions/scriptless-socialsharing.php:183
+#: zp-core/zp-extensions/scriptless-socialsharing.php:184
 msgid "Register"
 msgstr "Inscrivez-vous"
 
@@ -283,7 +283,7 @@ msgstr "Page non trouvée"
 #: zp-core/template-functions.php:1455 zp-core/template-functions.php:4010
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-core/zp-extensions/html_meta_tags.php:326
-#: zp-core/zp-extensions/scriptless-socialsharing.php:186
+#: zp-core/zp-extensions/scriptless-socialsharing.php:187
 #: zp-core/zp-extensions/slideshow2.php:733
 msgid "Search"
 msgstr "Recherche"
@@ -305,7 +305,7 @@ msgstr "Archives des actualités"
 #: themes/effervescence_plus/contact.php:42 zp-core/functions.php:2684
 #: zp-core/template-functions.php:443
 #: zp-core/zp-extensions/html_meta_tags.php:326
-#: zp-core/zp-extensions/scriptless-socialsharing.php:177
+#: zp-core/zp-extensions/scriptless-socialsharing.php:178
 msgid "Contact"
 msgstr "Contact"
 
@@ -723,7 +723,7 @@ msgstr "Pages"
 #: themes/effervescence_plus/themeoptions.php:81 themes/zenpage/sidebar.php:56
 #: themes/zpmobile/functions.php:78 zp-core/template-functions.php:1407
 #: zp-core/template-functions.php:1462
-#: zp-core/zp-extensions/scriptless-socialsharing.php:180
+#: zp-core/zp-extensions/scriptless-socialsharing.php:181
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:836
 msgid "Archive"
 msgstr "Archive"
@@ -757,7 +757,7 @@ msgstr "Flux RSS"
 #: zp-core/zp-extensions/multiple_layouts.php:95
 #: zp-core/zp-extensions/related_items.php:155
 #: zp-core/zp-extensions/related_items.php:190
-#: zp-core/zp-extensions/scriptless-socialsharing.php:161
+#: zp-core/zp-extensions/scriptless-socialsharing.php:162
 #: zp-core/zp-extensions/zenpage.php:361
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:843
 msgid "News"
@@ -2863,11 +2863,14 @@ msgstr "déboggage"
 #: zp-core/admin-functions.php:4576 zp-core/admin-functions.php:4587
 #: zp-core/admin.php:235 zp-core/zp-extensions/GoogleMap.php:26
 #: zp-core/zp-extensions/comment_form.php:20
+#: zp-core/zp-extensions/cookieconsent.php:17
 #: zp-core/zp-extensions/defaultCodeblocks.php:14
 #: zp-core/zp-extensions/downloadList.php:40
 #: zp-core/zp-extensions/galleryArticles.php:13
 #: zp-core/zp-extensions/mobileTheme.php:82
 #: zp-core/zp-extensions/multiple_layouts.php:45
+#: zp-core/zp-extensions/openstreetmap.php:22
+#: zp-core/zp-extensions/scriptless-socialsharing.php:50
 #: zp-core/zp-extensions/tag_extras.php:15
 #: zp-core/zp-extensions/tag_suggest.php:14
 msgid "Misc"
@@ -5305,7 +5308,7 @@ msgstr ""
 
 #: zp-core/admin-options.php:3349
 msgid "Data privacy usage notice"
-msgstr "Note d'utilisation de données personnelles"
+msgstr "Note d'utilisation des données personnelles"
 
 #: zp-core/admin-options.php:3355
 msgid ""
@@ -12659,7 +12662,7 @@ msgstr "Règle tous les albums à"
 
 #: zp-core/utilities/user-data-export.php:15
 msgid "User data export"
-msgstr "Export de données utilisateur"
+msgstr "Export des données utilisateur"
 
 #: zp-core/utilities/user-data-export.php:19
 msgid "Lists and exports data stored about a specific user and email address."
@@ -12694,18 +12697,18 @@ msgstr ""
 msgid ""
 "<strong>User account</strong> (<em>user name</em> and <em>email address</em>)"
 msgstr ""
-"<strong>Compte utilisateur</strong> (<em>nom d'utilisateur</em> et "
+"<strong>Compte utilisateur</strong> (<em>nom de l'utilisateur</em> et "
 "<em>adresse email</em>)"
 
 #: zp-core/utilities/user-data-export.php:68
 msgid "<strong>Securitylog</strong> (<em>user name</em>)"
-msgstr "<strong>Journal de Sécurité</strong> (<em>nom d'utilisateur</em>)"
+msgstr "<strong>Journal de Sécurité</strong> (<em>nom de l'utilisateur</em>)"
 
 #: zp-core/utilities/user-data-export.php:69
 msgid ""
 "<strong>Comments</strong> (<em>user name</em> and <em>email address</em>)"
 msgstr ""
-"<strong>Commentaires</strong> (<em>nom d'utilisateur</em> et <em>adresse "
+"<strong>Commentaires</strong> (<em>nom de l'utilisateur</em> et <em>adresse "
 "email</em>)"
 
 #: zp-core/utilities/user-data-export.php:70
@@ -12713,13 +12716,13 @@ msgid ""
 "<strong>Albums and images owner</strong> (<em>user name</em>) (excluding "
 "images of dynamic albums)"
 msgstr ""
-"<strong>Propriétaire des albums et des images</strong> (<em>nom "
-"d'utilisateur</em>) (en excluant les images d'albums dynamiques)"
+"<strong>Propriétaire des albums et des images</strong> (<em>nom de "
+"l'utilisateur</em>) (en excluant les images d'albums dynamiques)"
 
 #: zp-core/utilities/user-data-export.php:71
 msgid "<strong>All items guest user</strong> (<em>user name</em>)"
 msgstr ""
-"<strong>Invité de tous les items</strong> (<em>nom d'utilisateur</em>) "
+"<strong>Invité de tous les items</strong> (<em>nom de l'utilisateur</em>) "
 
 #: zp-core/utilities/user-data-export.php:72
 msgid ""
@@ -12727,7 +12730,7 @@ msgid ""
 "strong> (<em>user name</em>)"
 msgstr ""
 "<strong>Auteur et auteur du dernier changement des pages et articles "
-"d'actualités Zenpage</strong> (<em>nom d'utilisateur</em>) "
+"d'actualités Zenpage</strong> (<em>nom de l'utilisateur</em>) "
 
 #: zp-core/utilities/user-data-export.php:74
 msgid ""
@@ -12753,8 +12756,8 @@ msgid ""
 "*User name is required but it is recommended to also enter an email address "
 "for more reliable results on some queries."
 msgstr ""
-"* Nom d’utilisateur nécessaire mais il faut également saisir une adresse "
-"email pour des résultats plus fiables sur certaines requêtes."
+"* Le nom de l’utilisateur nécessaire mais il faut également saisir une "
+"adresse email pour des résultats plus fiables sur certaines requêtes."
 
 #: zp-core/zp-extensions/GoogleMap.php:23
 msgid ""
@@ -14849,7 +14852,7 @@ msgstr "Code postal"
 
 #: zp-core/zp-extensions/contact_form.php:171
 #: zp-core/zp-extensions/contact_form.php:176
-#: zp-core/zp-extensions/scriptless-socialsharing.php:85
+#: zp-core/zp-extensions/scriptless-socialsharing.php:86
 msgid "E-mail"
 msgstr "Email"
 
@@ -14993,6 +14996,209 @@ msgstr "Message<strong>*</strong>"
 #: zp-core/zp-extensions/contact_form/form.php:141
 msgid "Send e-mail"
 msgstr "Envoyer l’email"
+
+#: zp-core/zp-extensions/cookieconsent.php:14
+msgid ""
+"A plugin to add a cookie notify dialog to comply with the EU cookie law and "
+"Google's request regarding usages of Google Adwords, Analytics and more"
+msgstr ""
+"Cette extension ajoute une notification sur les cookies, en conformité avec "
+"la loi de l'Union européenne sur les cookies et des exigences de Google "
+"concernant l'utilisation de Google Adwords, Google Analytics et autres"
+
+#: zp-core/zp-extensions/cookieconsent.php:41
+msgid "Button: Agree"
+msgstr "Bouton : Accepter"
+
+#: zp-core/zp-extensions/cookieconsent.php:46
+msgid "Text used for the dismiss button. Leave empty to use the default text."
+msgstr ""
+"Texte utilisé pour le bouton <em>Accepter</em>. Laisser le champ vide pour "
+"utiliser le texte par défaut."
+
+#: zp-core/zp-extensions/cookieconsent.php:47
+msgid "Button: Learn more"
+msgstr "Bouton : En savoir davantage"
+
+#: zp-core/zp-extensions/cookieconsent.php:52
+msgid ""
+"Text used for the learn more info button. Leave empty to use the default "
+"text."
+msgstr ""
+"Texte utilisé pour le bouton <em>En savoir davantage</em>. Laisser le champ "
+"vide pour utiliser le texte par défaut."
+
+#: zp-core/zp-extensions/cookieconsent.php:53
+msgid "Button: Learn more - url"
+msgstr "Bouton : En savoir davantage - Url"
+
+#: zp-core/zp-extensions/cookieconsent.php:57
+msgid "Url to your cookie policy / privacy info page."
+msgstr "URL vers votre page de politique de cookies / info sur la vie privée."
+
+#: zp-core/zp-extensions/cookieconsent.php:58
+msgid "Message"
+msgstr "Corps du message : "
+
+#: zp-core/zp-extensions/cookieconsent.php:63
+msgid "The message shown by the plugin. Leave empty to use the default text."
+msgstr ""
+"Message affiché par le plugin. Laisser le champ vide pour utiliser le texte "
+"par défaut."
+
+#: zp-core/zp-extensions/cookieconsent.php:64
+msgid "Header"
+msgstr "Entête"
+
+#: zp-core/zp-extensions/cookieconsent.php:69
+msgid ""
+"Text for the popup header by the plugin. Leave empty to use the default text."
+msgstr ""
+"Texte utilisé pour le header de la popup du plugin. Laisser le champ vide "
+"pour utiliser le texte par défaut."
+
+#: zp-core/zp-extensions/cookieconsent.php:70
+msgid "Domain"
+msgstr "Domaine"
+
+#: zp-core/zp-extensions/cookieconsent.php:74
+msgid ""
+"The domain for the consent cookie that Cookie Consent uses, to remember that "
+"users have consented to cookies. Useful if your website uses multiple "
+"subdomains, e.g. if your script is hosted at <code>www.example.com</code> "
+"you might override this to <code>example.com</code>, thereby allowing the "
+"same consent cookie to be read by subdomains like <code>foo.example.com</"
+"code>."
+msgstr ""
+"Le domaine d’application des cookies, utilisé par le plugin cookie_consent "
+"afin de mémoriser le consentement de l’usager. Si votre site utilise "
+"plusieurs sous-domaines (ex. : si ce script est hébergé sur <code>www."
+"example.com</code>, vous pouvez forcer le cookie à s’appliquer au domaine "
+"<code>example.com</code> pour qu’il s’applique aussi aux autres sous-"
+"domaines tels que <code>foo.example.com</code>."
+
+#: zp-core/zp-extensions/cookieconsent.php:75
+msgid "Expire"
+msgstr "Durée de vie"
+
+#: zp-core/zp-extensions/cookieconsent.php:79
+msgid ""
+"The number of days Cookie Consent should store the user’s consent "
+"information for."
+msgstr ""
+"Le nombre de jours durant lequel le cookie de consentement doit mémoriser "
+"l’information."
+
+#: zp-core/zp-extensions/cookieconsent.php:80
+#: zp-core/zp-extensions/themeSwitcher.php:156
+msgid "Theme"
+msgstr "Thème"
+
+#: zp-core/zp-extensions/cookieconsent.php:88
+msgid "custom"
+msgstr "personnalisé"
+
+#: zp-core/zp-extensions/cookieconsent.php:90
+msgid ""
+"These are the included default themes. Users can create their own themes: "
+"The chosen theme is added to the popup container as a CSS class in the form "
+"of .cc-style-THEME_NAME."
+msgstr ""
+"Voici les thèmes inclus par défaut. Les utilisateurs peuvent créer leurs "
+"propres thèmes : le thème choisi est ajouté au conteneur popup comme une "
+"classe CSS sous forme de .cc-style-THEME_NAME."
+
+#: zp-core/zp-extensions/cookieconsent.php:91
+msgid "Position"
+msgstr "Position"
+
+#: zp-core/zp-extensions/cookieconsent.php:96
+msgid "Top"
+msgstr "En haut"
+
+#: zp-core/zp-extensions/cookieconsent.php:97
+#: zp-core/zp-extensions/openstreetmap.php:95
+msgid "Top left"
+msgstr "En haut à gauche"
+
+#: zp-core/zp-extensions/cookieconsent.php:98
+#: zp-core/zp-extensions/openstreetmap.php:96
+msgid "Top right"
+msgstr "En haut à droite"
+
+#: zp-core/zp-extensions/cookieconsent.php:99
+msgid "Bottom"
+msgstr "En bas"
+
+#: zp-core/zp-extensions/cookieconsent.php:100
+#: zp-core/zp-extensions/openstreetmap.php:97
+msgid "Bottom left"
+msgstr "En bas à gauche"
+
+#: zp-core/zp-extensions/cookieconsent.php:101
+#: zp-core/zp-extensions/openstreetmap.php:98
+msgid "Bottom right"
+msgstr "En bas à droite"
+
+#: zp-core/zp-extensions/cookieconsent.php:103
+msgid ""
+"Choose the position of the popup. top and bottom = banner, top-left/right, "
+"bottom-left/right = floating"
+msgstr ""
+"Choisir la position de la fenêtre contextuelle. haut et bas = bannière, haut-"
+"gauche/droite, bas-gauche/droite = flottant"
+
+#: zp-core/zp-extensions/cookieconsent.php:104
+msgid "Dismiss on Scroll"
+msgstr "Accepter sur navigation"
+
+#: zp-core/zp-extensions/cookieconsent.php:108
+msgid ""
+"Check to dismiss when users scroll a page [other than <em>Learn more</em> "
+"page]."
+msgstr ""
+"Cochez pour accepter quand l'utilisateur navigue sur une page [autre que la "
+"page <em>En savoir davantage</em>]."
+
+#: zp-core/zp-extensions/cookieconsent.php:109
+msgid "Color - Popup"
+msgstr "Couleur - Popup"
+
+#: zp-core/zp-extensions/cookieconsent.php:113
+msgid "Choose the color of the popup background."
+msgstr "Choisir la couleur de l’arrière-plan de la fenêtre contextuelle."
+
+#: zp-core/zp-extensions/cookieconsent.php:114
+msgid "Color - Button"
+msgstr "Couleur - Bouton"
+
+#: zp-core/zp-extensions/cookieconsent.php:118
+msgid "Choose the color of the button."
+msgstr "Choisissez la couleur du bouton."
+
+#: zp-core/zp-extensions/cookieconsent.php:131
+msgid ""
+"This website uses cookies. By continuing to browse the site, you agree to "
+"our use of cookies."
+msgstr ""
+"Ce site utilise des cookies. En continuant de visiter le site, vous "
+"consentez à leur utilisation."
+
+#: zp-core/zp-extensions/cookieconsent.php:135
+msgid "Agree"
+msgstr "Accepter"
+
+#: zp-core/zp-extensions/cookieconsent.php:139
+msgid "More info"
+msgstr "En savoir davantage"
+
+#: zp-core/zp-extensions/cookieconsent.php:143
+msgid "Cookies used on the website!"
+msgstr "Cookies utilisés sur le site Web !"
+
+#: zp-core/zp-extensions/cookieconsent.php:147
+msgid "Decline"
+msgstr "Décliner"
 
 #: zp-core/zp-extensions/crop_image.php:22
 msgid "An image cropping tool."
@@ -17605,6 +17811,243 @@ msgstr "Aucune page supplémentaire du thème <em>%s</em> disponible"
 msgid "Query failure: %s"
 msgstr "Requête échouée : %s"
 
+#: zp-core/zp-extensions/openstreetmap.php:19
+msgid ""
+"A Zenphoto plugin for displaying OpenStreetMap based maps using LeafletJS "
+"for images or images from albums with embeded geodata."
+msgstr ""
+"Un plugin Zenphoto pour afficher des cartes basées sur OpenStreetMap, à "
+"l’aide de LeafletJS, pour les images ou les images des albums avec "
+"géodonnées."
+
+#: zp-core/zp-extensions/openstreetmap.php:57
+msgid "Map dimensions—width"
+msgstr "Dimensions de la carte : largeur"
+
+#: zp-core/zp-extensions/openstreetmap.php:61
+msgid ""
+"Width of the map including the unit name e.g 100% (default for responsive "
+"map), 100px or 100em."
+msgstr ""
+"Largeur de la carte, y compris l'unité, par exemple 100% (par défaut pour "
+"une carte responsive), 100px ou 100em."
+
+#: zp-core/zp-extensions/openstreetmap.php:62
+msgid "Map dimensions—height"
+msgstr "Dimensions de la carte : hauteur"
+
+#: zp-core/zp-extensions/openstreetmap.php:66
+msgid ""
+"Height of the map including the unit name e.g 100% (default for responsive "
+"map), 100px or 100em."
+msgstr ""
+"Hauteur de la carte, y compris l'unité, par exemple 100% (par défaut pour "
+"une carte responsive), 100px ou 100em."
+
+#: zp-core/zp-extensions/openstreetmap.php:67
+msgid "Map zoom"
+msgstr "Zoom sur la carte"
+
+#: zp-core/zp-extensions/openstreetmap.php:71
+msgid "Default zoom level."
+msgstr "Niveau de zoom par défaut."
+
+#: zp-core/zp-extensions/openstreetmap.php:72
+msgid "Map minimum zoom"
+msgstr "Zoom minimum sur la carte"
+
+#: zp-core/zp-extensions/openstreetmap.php:76
+msgid "Default minimum zoom level possible."
+msgstr "Niveau de zoom par défaut minimum."
+
+#: zp-core/zp-extensions/openstreetmap.php:77
+msgid "Map maximum zoom"
+msgstr "Zoom maximum sur la carte"
+
+#: zp-core/zp-extensions/openstreetmap.php:81
+msgid "Default maximum zoom level possible."
+msgstr "Niveau de zoom par défaut maximum."
+
+#: zp-core/zp-extensions/openstreetmap.php:82
+msgid "Map tiles"
+msgstr "Fournisseur de carte"
+
+#: zp-core/zp-extensions/openstreetmap.php:87
+msgid ""
+"The map tile provider to use. Only free providers are included. HERE, Mapbox "
+"and Thunderforest map tiles require access credentials and Esri requires "
+"registration. More info on <a href=\"https://github.com/leaflet-extras/"
+"leaflet-providers\">leaflet-providers</a>"
+msgstr ""
+"Le fournisseur de carte à utiliser. Seuls les fournisseurs gratuits sont "
+"inclus. Les fournisseur decartes HERE, Mapbox et Thunderforest requièrent "
+"des informations d'identification et Esri requière d'être enregistré. Plus "
+"d'informations sur <a href=\"https://github.com/leaflet-extras/leaflet-"
+"providers\">leaflet-providers</a>"
+
+#: zp-core/zp-extensions/openstreetmap.php:90
+msgid "Controls position"
+msgstr "Position des contrôles"
+
+#: zp-core/zp-extensions/openstreetmap.php:100
+msgid "Position of the map controls"
+msgstr "Position du sélecteur de type de carte"
+
+#: zp-core/zp-extensions/openstreetmap.php:101
+msgid "Cluster radius"
+msgstr "Rayon du cluster"
+
+#: zp-core/zp-extensions/openstreetmap.php:105
+msgid "The radius when marker clusters should be used."
+msgstr "Le rayon lorsque les marqueurs de cluster sont utilisés."
+
+#: zp-core/zp-extensions/openstreetmap.php:106
+msgid "Show cluster coverage on hover"
+msgstr "Affiche la couverture d'un cluster lors de son survol."
+
+#: zp-core/zp-extensions/openstreetmap.php:110
+msgid "Enable if you want to the bounds of a marker cluster on hover."
+msgstr ""
+"Activer si vous voulez apercevoir les limites d’un cluster de marqueurs lors "
+"de son survol."
+
+#: zp-core/zp-extensions/openstreetmap.php:111
+msgid "Marker popups"
+msgstr "Popup des marqueurs"
+
+#: zp-core/zp-extensions/openstreetmap.php:115
+msgid ""
+"Enable this if you wish info popups on the map markers. Only for album "
+"context or custom geodata."
+msgstr ""
+"Activer si vous souhaitez afficher des popup sur les marqueurs de la carte. "
+"Seulement dans un contexte d’album ou de données de localisation "
+"personnalisées."
+
+#: zp-core/zp-extensions/openstreetmap.php:116
+msgid "Marker popups with thumbs"
+msgstr "Popup avec vignette"
+
+#: zp-core/zp-extensions/openstreetmap.php:120
+msgid ""
+"Enable if you want to show thumb of images in the marker popups. Only for "
+"album context."
+msgstr ""
+"Activer si vous souhaitez afficher les vignettes des images dans la popup "
+"des marqueurs. Seulement dans un contexte d’album."
+
+#: zp-core/zp-extensions/openstreetmap.php:121
+msgid "Marker popups with title"
+msgstr "Popup avec titre"
+
+#: zp-core/zp-extensions/openstreetmap.php:125
+msgid ""
+"Enable if you want to show title of images in the marker popups. Only for "
+"album context."
+msgstr ""
+"Activer si vous souhaitez afficher le titre des images dans la popup des "
+"marqueurs. Seulement dans un contexte d’album."
+
+#: zp-core/zp-extensions/openstreetmap.php:126
+msgid "Marker popups with description"
+msgstr "Popup avec description"
+
+#: zp-core/zp-extensions/openstreetmap.php:130
+msgid ""
+"Enable if you want to show desc of images in the marker popups. Only for "
+"album context."
+msgstr ""
+"Activer si vous souhaitez afficher la description des images dans la popup "
+"des marqueurs. Seulement dans un contexte d’album."
+
+#: zp-core/zp-extensions/openstreetmap.php:131
+msgid "Show scale"
+msgstr "Affiche l'échelle"
+
+#: zp-core/zp-extensions/openstreetmap.php:135
+msgid "Enable if you want to show scale overlay (kilometers and miles)."
+msgstr "Activer si vous souhaitez afficher l'échelle (kilomètres et miles)."
+
+#: zp-core/zp-extensions/openstreetmap.php:136
+msgid "Show cursor position"
+msgstr "Affiche la position du curseur"
+
+#: zp-core/zp-extensions/openstreetmap.php:140
+msgid ""
+"Enable if you want to show the coordinates if moving the cursor over the map."
+msgstr ""
+"Activer si vous souhaitez afficher les coordonnées lorsque vous déplacez le "
+"curseur sur la carte."
+
+#: zp-core/zp-extensions/openstreetmap.php:141
+msgid "Show album markers"
+msgstr "Affiche les marqueurs d'album"
+
+#: zp-core/zp-extensions/openstreetmap.php:145
+msgid ""
+"Enable if you want to show the map on the single image page not only the "
+"marker of the current image but all markers from the album. The current "
+"position will be highlighted."
+msgstr ""
+"Activer si vous souhaitez afficher sur la carte sur la page d’image unique, "
+"non seulement le marqueur de l’image courante, mais aussi tous les marqueurs "
+"de l’album. La position actuelle sera en surbrillance."
+
+#: zp-core/zp-extensions/openstreetmap.php:146
+msgid "Mini map"
+msgstr "Mini-carte"
+
+#: zp-core/zp-extensions/openstreetmap.php:150
+msgid ""
+"Enable if you want to show an overview mini map in the lower right corner."
+msgstr ""
+"Activer si vous souhaitez afficher une mini-carte d'aperçu dans le coin "
+"inférieur droit."
+
+#: zp-core/zp-extensions/openstreetmap.php:151
+msgid "Mini map: width"
+msgstr "mini-carte : largeur"
+
+#: zp-core/zp-extensions/openstreetmap.php:155
+msgid "Pixel width"
+msgstr "Pixel de largeur"
+
+#: zp-core/zp-extensions/openstreetmap.php:156
+msgid "Mini map: height"
+msgstr "Mini-carte : hauteur"
+
+#: zp-core/zp-extensions/openstreetmap.php:160
+msgid "Pixel height"
+msgstr "Pixel de hauteur"
+
+#: zp-core/zp-extensions/openstreetmap.php:161
+msgid "Mini map: Zoom level"
+msgstr "Mini-carte : niveau de zoom"
+
+#: zp-core/zp-extensions/openstreetmap.php:165
+msgid ""
+"The offset applied to the zoom in the minimap compared to the zoom of the "
+"main map. Can be positive or negative, defaults to -5."
+msgstr ""
+"Le décalage appliqué au zoom dans la mini-carte par rapport au zoom de la "
+"carte principale. Peut être positif ou négatif, par défaut à -5."
+
+#: zp-core/zp-extensions/openstreetmap.php:166
+msgid "HERE - App id"
+msgstr "HERE - App id"
+
+#: zp-core/zp-extensions/openstreetmap.php:171
+msgid "HERE - App code"
+msgstr "HERE - App code"
+
+#: zp-core/zp-extensions/openstreetmap.php:176
+msgid "Mapbox - Access token"
+msgstr "Mapbox - Access token"
+
+#: zp-core/zp-extensions/openstreetmap.php:181
+msgid "Thunderforest - ApiKey"
+msgstr "Thunderforest - ApiKey"
+
 #: zp-core/zp-extensions/paged_thumbs_nav.php:11
 msgid ""
 "Prints a paged thumbs navigation on image.php, independent of the album."
@@ -19029,45 +19472,56 @@ msgid ""
 "Stumbleupon, Tumblr, WhatsApp (iOS only) and e-mail. (Note: No share counts "
 "because of that!)."
 msgstr ""
+"Un plugin Zenphoto qui fournit des boutons de partage sans script et "
+"respectueux de la vie privée pour Facebook, Twitter, Google+, Pinterest, "
+"Linkedin, Xing, Reddit, Stumbleupon, Tumblr, WhatsApp (iOS uniquement) et "
+"email. (Note: Aucun décompte de partage à cause de cela !)."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:63
+#: zp-core/zp-extensions/scriptless-socialsharing.php:64
 msgid "Social networks"
-msgstr ""
+msgstr "Réseaux sociaux"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:87
+#: zp-core/zp-extensions/scriptless-socialsharing.php:88
 msgid ""
 "Select the social networks you wish buttons to appear for. Note: WhatsApp "
 "iOS only."
 msgstr ""
+"Sélectionnez les sites de réseaux sociaux pour lesquels vous souhaitez "
+"afficher le bouton. Note : pour WhatsApp, iOS uniquement"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:88
+#: zp-core/zp-extensions/scriptless-socialsharing.php:89
 msgid "Icon font and default CSS"
-msgstr ""
+msgstr "Icones et CSS par défaut"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:92
+#: zp-core/zp-extensions/scriptless-socialsharing.php:93
 msgid ""
 "Uncheck to disable loading to use your own theme based icon font and css."
 msgstr ""
+"Décochez pour désactiver le chargement afin d'utiliser les icones et css de "
+"votre thème personnel."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:93
+#: zp-core/zp-extensions/scriptless-socialsharing.php:94
 msgid "Icons only"
-msgstr ""
-
-#: zp-core/zp-extensions/scriptless-socialsharing.php:97
-msgid "Check to hide the service name and only show icon buttons."
-msgstr ""
+msgstr "Icones seulement"
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:98
-msgid "Twitter user name"
+msgid "Check to hide the service name and only show icon buttons."
 msgstr ""
+"Cochez pour masquer le nom du service et afficher uniquement les icônes."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:102
+#: zp-core/zp-extensions/scriptless-socialsharing.php:99
+msgid "Twitter user name"
+msgstr "Nom d'utilisateur Twitter"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:103
 msgid ""
 "Enter your Twitter name without @ here if you like to have it appended to "
 "tweets made."
 msgstr ""
+"Entrez votre nom Twitter sans @, si vous souhaitez le voir apparaitre dans "
+"les tweets envoyés."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:334
+#: zp-core/zp-extensions/scriptless-socialsharing.php:335
 msgid "e-mail"
 msgstr "email"
 
@@ -20387,11 +20841,6 @@ msgstr "Liste des thèmes"
 msgid "These are the themes that may be selected among."
 msgstr "Liste des thèmes pouvant être choisis par l’utilisateur."
 
-#: zp-core/zp-extensions/themeSwitcher.php:156
-#: zp-core/zp-extensions/zp_cookieconsent.php:79
-msgid "Theme"
-msgstr "Thème"
-
 #: zp-core/zp-extensions/themeSwitcher.php:167
 msgid ""
 "Themes will not show in this list if selecting them would result in a “not "
@@ -20498,7 +20947,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/tinymce4.php:85
 msgid "Entity encoding"
-msgstr ""
+msgstr "Encodage des Entités"
 
 #: zp-core/zp-extensions/tinymce4.php:90
 msgid "Raw"
@@ -20523,10 +20972,15 @@ msgid ""
 "the <a href=\"https://www.tinymce.com/docs/configure/content-filtering/"
 "#entity_encoding\">tinyMCE docs</a>."
 msgstr ""
+"Si vous rencontrez des problèmes avec des caractères spéciaux et d'autres "
+"entités de caractères, modifiez cela. Notez que cela ne s'applique qu'au ré-"
+"enregistrement du contenu. Plus d'informations sur la <a href=\"https://www."
+"tinymce.com/docs/configure/content-filtering/#entity_encoding"
+"\">documentation tinyMCE</a>."
 
 #: zp-core/zp-extensions/tinymce4.php:97
 msgid "Entities"
-msgstr ""
+msgstr "Entités"
 
 #: zp-core/zp-extensions/tinymce4.php:101
 msgid ""
@@ -20534,6 +20988,9 @@ msgid ""
 "\"https://www.tinymce.com/docs/configure/content-filtering/#entities"
 "\">tinyMCE docs</a>."
 msgstr ""
+"Vous pouvez ajuster la manière dont les entités sont traitées. Plus d'info "
+"sur le <a href=\"https://www.tinymce.com/docs/configure/content-filtering/"
+"#entities\">documentation tinyMCE</a>."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:80
 #, php-format
@@ -22605,441 +23062,6 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à "
 "un ou à plusieurs destinataires."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:14
-msgid ""
-"A plugin to add a cookie notify dialog to comply with the EU cookie law and "
-"Google's request regarding usages of Google Adwords, Analytics and more"
-msgstr ""
-"Cette extension ajoute une notification sur les cookies, en conformité avec "
-"la loi de l'Union européenne sur les cookies et des exigences de Google "
-"concernant l'utilisation de Google Adwords, Google Analytics et autres"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:40
-msgid "Button: Agree"
-msgstr "Bouton : Accepter"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:45
-msgid "Text used for the dismiss button. Leave empty to use the default text."
-msgstr ""
-"Texte utilisé pour le bouton de rejet. Laisser le champ vide pour utiliser "
-"le texte par défaut."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:46
-msgid "Button: Learn more"
-msgstr "Bouton : En savoir davantage"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:51
-msgid ""
-"Text used for the learn more info button. Leave empty to use the default "
-"text."
-msgstr ""
-"Texte utilisé pour le bouton <em>En savoir davantage</em>. Laisser le champ "
-"vide pour utiliser le texte par défaut."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:52
-msgid "Button: Learn more - url"
-msgstr "Bouton : En savoir davantage - Url"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:56
-msgid "Url to your cookie policy / privacy info page."
-msgstr "URL vers votre page de politique de cookies / info sur la vie privée."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:57
-msgid "Message"
-msgstr "Corps du message : "
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:62
-msgid "The message shown by the plugin. Leave empty to use the default text."
-msgstr ""
-"Message affiché par le plugin. Laisser le champ vide pour utiliser le texte "
-"par défaut."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:63
-msgid "Header"
-msgstr "Entête"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:68
-msgid ""
-"Text for the popup header by the plugin. Leave empty to use the default text."
-msgstr ""
-"Texte utilisé pour le header de la popup du plugin. Laisser le champ vide "
-"pour utiliser le texte par défaut."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:69
-msgid "Domain"
-msgstr "Domaine"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:73
-msgid ""
-"The domain for the consent cookie that Cookie Consent uses, to remember that "
-"users have consented to cookies. Useful if your website uses multiple "
-"subdomains, e.g. if your script is hosted at <code>www.example.com</code> "
-"you might override this to <code>example.com</code>, thereby allowing the "
-"same consent cookie to be read by subdomains like <code>foo.example.com</"
-"code>."
-msgstr ""
-"Le domaine d’application des cookies, utilisé par le plugin cookie_consent "
-"afin de mémoriser le consentement de l’usager. Si votre site utilise "
-"plusieurs sous-domaines (ex. : si ce script est hébergé sur <code>www."
-"example.com</code>, vous pouvez forcer le cookie à s’appliquer au domaine "
-"<code>example.com</code> pour qu’il s’applique aussi aux autres sous-"
-"domaines tels que <code>foo.example.com</code>."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:74
-msgid "Expire"
-msgstr "Durée de vie"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:78
-msgid ""
-"The number of days Cookie Consent should store the user’s consent "
-"information for."
-msgstr ""
-"Le nombre de jours durant lequel le cookie de consentement doit mémoriser "
-"l’information."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:87
-msgid "custom"
-msgstr "personnalisé"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:89
-msgid ""
-"These are the included default themes. Users can create their own themes: "
-"The chosen theme is added to the popup container as a CSS class in the form "
-"of .cc-style-THEME_NAME."
-msgstr ""
-"Voici les thèmes inclus par défaut. Les utilisateurs peuvent créer leurs "
-"propres thèmes : le thème choisi est ajouté au conteneur popup comme une "
-"classe CSS sous forme de .cc-style-THEME_NAME."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:90
-msgid "Position"
-msgstr "Position"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:95
-msgid "Top"
-msgstr "En haut"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:96
-#: zp-core/zp-extensions/zp_openstreetmap.php:94
-msgid "Top left"
-msgstr "En haut à gauche"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:97
-#: zp-core/zp-extensions/zp_openstreetmap.php:95
-msgid "Top right"
-msgstr "En haut à droite"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:98
-msgid "Bottom"
-msgstr "En bas"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:99
-#: zp-core/zp-extensions/zp_openstreetmap.php:96
-msgid "Bottom left"
-msgstr "En bas à gauche"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:100
-#: zp-core/zp-extensions/zp_openstreetmap.php:97
-msgid "Bottom right"
-msgstr "En bas à droite"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:102
-msgid ""
-"Choose the position of the popup. top and bottom = banner, top-left/right, "
-"bottom-left/right = floating"
-msgstr ""
-"Choisir la position de la fenêtre contextuelle. haut et bas = bannière, haut-"
-"gauche/droite, bas-gauche/droite = flottant"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:103
-msgid "Dismiss on Scroll"
-msgstr "Rejeter sur navigation"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:107
-msgid ""
-"Check to dismiss when users scroll a page [other than <em>Learn more</em> "
-"page]."
-msgstr ""
-"Cochez pour rejeter quand l'utilisateur navigue sur une page [autre que la "
-"page <em>En savoir davantage</em>]."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:108
-msgid "Color - Popup"
-msgstr "Couleur - Popup"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:112
-msgid "Choose the color of the popup background."
-msgstr "Choisir la couleur de l’arrière-plan de la fenêtre contextuelle."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:113
-msgid "Color - Button"
-msgstr "Couleur - Bouton"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:117
-msgid "Choose the color of the button."
-msgstr "Choisissez la couleur du bouton."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:130
-msgid ""
-"This website uses cookies. By continuing to browse the site, you agree to "
-"our use of cookies."
-msgstr ""
-"Ce site utilise des cookies. En continuant de visiter le site, vous "
-"consentez à leur utilisation."
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:134
-msgid "Agree"
-msgstr "Accepter"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:138
-msgid "More info"
-msgstr "En savoir davantage"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:142
-msgid "Cookies used on the website!"
-msgstr "Cookies utilisés sur le site Web !"
-
-#: zp-core/zp-extensions/zp_cookieconsent.php:146
-msgid "Decline"
-msgstr "Décliner"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:19
-msgid ""
-"A Zenphoto plugin for displaying OpenStreetMap based maps using LeafletJS "
-"for images or images from albums with embeded geodata."
-msgstr ""
-"Un plugin Zenphoto pour afficher des cartes basées sur OpenStreetMap, à "
-"l’aide de LeafletJS, pour les images ou les images des albums avec "
-"géodonnées."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:56
-msgid "Map dimensions—width"
-msgstr "Dimensions de la carte : largeur"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:60
-msgid ""
-"Width of the map including the unit name e.g 100% (default for responsive "
-"map), 100px or 100em."
-msgstr ""
-"Largeur de la carte, y compris l'unité, par exemple 100% (par défaut pour "
-"une carte responsive), 100px ou 100em."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:61
-msgid "Map dimensions—height"
-msgstr "Dimensions de la carte : hauteur"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:65
-msgid ""
-"Height of the map including the unit name e.g 100% (default for responsive "
-"map), 100px or 100em."
-msgstr ""
-"Hauteur de la carte, y compris l'unité, par exemple 100% (par défaut pour "
-"une carte responsive), 100px ou 100em."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:66
-msgid "Map zoom"
-msgstr "Zoom sur la carte"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:70
-msgid "Default zoom level."
-msgstr "Niveau de zoom par défaut."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:71
-msgid "Map minimum zoom"
-msgstr "Zoom minimum sur la carte"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:75
-msgid "Default minimum zoom level possible."
-msgstr "Niveau de zoom par défaut minimum."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:76
-msgid "Map maximum zoom"
-msgstr "Zoom maximum sur la carte"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:80
-msgid "Default maximum zoom level possible."
-msgstr "Niveau de zoom par défaut maximum."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:81
-msgid "Map tiles"
-msgstr "Fournisseur de carte"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:86
-msgid ""
-"The map tile provider to use. Only free providers are included. HERE, Mapbox "
-"and Thunderforest map tiles require access credentials and Esri requires "
-"registration. More info on <a href=\"https://github.com/leaflet-extras/"
-"leaflet-providers\">leaflet-providers</a>"
-msgstr ""
-"Le fournisseur de carte à utiliser. Seuls les fournisseurs gratuits sont "
-"inclus. Les fournisseur decartes HERE, Mapbox et Thunderforest requièrent "
-"des informations d'identification et Esri requière d'être enregistré. Plus "
-"d'informations sur <a href=\"https://github.com/leaflet-extras/leaflet-"
-"providers\">leaflet-providers</a>"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:89
-msgid "Controls position"
-msgstr "Position des contrôles"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:99
-msgid "Position of the map controls"
-msgstr "Position du sélecteur de type de carte"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:100
-msgid "Cluster radius"
-msgstr "Rayon du cluster"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:104
-msgid "The radius when marker clusters should be used."
-msgstr "Le rayon lorsque les marqueurs de cluster sont utilisés."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:105
-msgid "Show cluster coverage on hover"
-msgstr "Affiche la couverture d'un cluster lors de son survol."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:109
-msgid "Enable if you want to the bounds of a marker cluster on hover."
-msgstr ""
-"Activer si vous voulez apercevoir les limites d’un cluster de marqueurs lors "
-"de son survol."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:110
-msgid "Marker popups"
-msgstr "Popup des marqueurs"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:114
-msgid ""
-"Enable this if you wish info popups on the map markers. Only for album "
-"context or custom geodata."
-msgstr ""
-"Activer si vous souhaitez afficher des popup sur les marqueurs de la carte. "
-"Seulement dans un contexte d’album ou de données de localisation "
-"personnalisées."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:115
-msgid "Marker popups with thumbs"
-msgstr "Popup avec vignette"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:119
-msgid ""
-"Enable if you want to show thumb of images in the marker popups. Only for "
-"album context."
-msgstr ""
-"Activer si vous souhaitez afficher les vignettes des images dans la popup "
-"des marqueurs. Seulement dans un contexte d’album."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:120
-msgid "Marker popups with title"
-msgstr "Popup avec titre"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:124
-msgid ""
-"Enable if you want to show title of images in the marker popups. Only for "
-"album context."
-msgstr ""
-"Activer si vous souhaitez afficher le titre des images dans la popup des "
-"marqueurs. Seulement dans un contexte d’album."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:125
-msgid "Marker popups with description"
-msgstr "Popup avec description"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:129
-msgid ""
-"Enable if you want to show desc of images in the marker popups. Only for "
-"album context."
-msgstr ""
-"Activer si vous souhaitez afficher la description des images dans la popup "
-"des marqueurs. Seulement dans un contexte d’album."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:130
-msgid "Show scale"
-msgstr "Affiche l'échelle"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:134
-msgid "Enable if you want to show scale overlay (kilometers and miles)."
-msgstr "Activer si vous souhaitez afficher l'échelle (kilomètres et miles)."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:135
-msgid "Show cursor position"
-msgstr "Affiche la position du curseur"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:139
-msgid ""
-"Enable if you want to show the coordinates if moving the cursor over the map."
-msgstr ""
-"Activer si vous souhaitez afficher les coordonnées lorsque vous déplacez le "
-"curseur sur la carte."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:140
-msgid "Show album markers"
-msgstr "Affiche les marqueurs d'album"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:144
-msgid ""
-"Enable if you want to show the map on the single image page not only the "
-"marker of the current image but all markers from the album. The current "
-"position will be highlighted."
-msgstr ""
-"Activer si vous souhaitez afficher sur la carte sur la page d’image unique, "
-"non seulement le marqueur de l’image courante, mais aussi tous les marqueurs "
-"de l’album. La position actuelle sera en surbrillance."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:145
-msgid "Mini map"
-msgstr "Mini-carte"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:149
-msgid ""
-"Enable if you want to show an overview mini map in the lower right corner."
-msgstr ""
-"Activer si vous souhaitez afficher une mini-carte d'aperçu dans le coin "
-"inférieur droit."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:150
-msgid "Mini map: width"
-msgstr "mini-carte : largeur"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:154
-msgid "Pixel width"
-msgstr "Pixel de largeur"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:155
-msgid "Mini map: height"
-msgstr "Mini-carte : hauteur"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:159
-msgid "Pixel height"
-msgstr "Pixel de hauteur"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:160
-msgid "Mini map: Zoom level"
-msgstr "Mini-carte : niveau de zoom"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:164
-msgid ""
-"The offset applied to the zoom in the minimap compared to the zoom of the "
-"main map. Can be positive or negative, defaults to -5."
-msgstr ""
-"Le décalage appliqué au zoom dans la mini-carte par rapport au zoom de la "
-"carte principale. Peut être positif ou négatif, par défaut à -5."
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:165
-msgid "HERE - App id"
-msgstr "HERE - App id"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:170
-msgid "HERE - App code"
-msgstr "HERE - App code"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:175
-msgid "Mapbox - Access token"
-msgstr "Mapbox - Access token"
-
-#: zp-core/zp-extensions/zp_openstreetmap.php:180
-msgid "Thunderforest - ApiKey"
-msgstr "Thunderforest - ApiKey"
 
 #~ msgid "Mini map: Width"
 #~ msgstr "Mini-carte : largeur"
