@@ -125,7 +125,6 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 	if (is_null($showLoginForm)) {
 		$showLoginForm = getOption('user_logout_login_form');
 	}
-
 	if (is_object($_zp_current_admin_obj)) {
 		if (!$_zp_current_admin_obj->logout_link) {
 			return;
