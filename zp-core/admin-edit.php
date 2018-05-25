@@ -351,14 +351,32 @@ if (isset($_GET['action'])) {
 					$notify = processAlbumEdit(0, $album, $returnalbum);
 					$returntab = '&tagsort=' . $tagsort . '&tab=albuminfo';
 				}
+
+				if (isset($single)) {
+					$qs_albumsuffix = '&singleimage=' . $single;
+				} else {
+					$qs_albumsuffix = '';
+				}
+				// Redirect to the same album we saved.
+				if (isset($folder) && !empty($folder)) {
+					$qs_albumsuffix .= '&album=' . pathurlencode($folder);
+				}
+				if (isset($_POST['subpage'])) {
+					$pg = '&subpage=' . ($subpage = sanitize($_POST['subpage']));
+				} else {
+					$subpage = $pg = false;
+				}
 				if (isset($_POST['totalimages']) && $album->exists) {
 					if (isset($_POST['checkForPostTruncation'])) {
 						$filter = sanitize($_REQUEST['filter']);
 						$returntab = '&tagsort=' . $tagsort . '&tab=imageinfo&filter=' . $filter;
 						if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
 							$action = processImageBulkActions($album);
-							if (!empty($action))
+							if (!empty($action)) {
 								$bulknotify = '&bulkmessage=' . $action;
+							}
+							header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $bulknotify . $pg . $returntab);
+							exitZP();
 						}
 						if (isset($_POST['singleimage'])) {
 							$single = sanitize($_POST['singleimage']);
