@@ -260,7 +260,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				tolerance: 'intersect',
 				toleranceElement: '> div',
 				listType: 'ul',
-				change: function (event, ui) {
+				relocate: function (event, ui) {
 					$('#sortableListForm').dirtyForms('setDirty');
 				}
 			});
@@ -5224,7 +5224,7 @@ function getPluginTabs() {
 			'mail' => gettext('mail'),
 			'media' => gettext('media'),
 			'seo' => gettext('seo'),
-			'theme' => gettext('theme'),
+			'theme' => gettext('theme support'),
 			'users' => gettext('users'),
 			'zenphoto20' => gettext('zenphoto20'),
 			'misc' => gettext('misc')

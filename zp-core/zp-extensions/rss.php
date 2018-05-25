@@ -8,12 +8,14 @@
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = defaultExtension(900 | FEATURE_PLUGIN);
+$plugin_is_filter = defaultExtension(910 | FEATURE_PLUGIN);
 $plugin_description = gettext('The <em>RSS</em> handler.');
 $plugin_notice = gettext('This plugin must be enabled to supply <em>RSS</em> feeds.') . '<br />' . gettext('<strong>Note:</strong> Theme support is required to display RSS links.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'rss_options';
+
+zp_register_filter('site_upgrade_xml', 'rss_options::xmlfile');
 
 class rss_options {
 
@@ -136,6 +138,11 @@ class rss_options {
 			setOption('RSS_portable_link', (int) isset($_POST['RSS_portable_link']));
 			$returntab = "&tab=rss";
 		}
+	}
+
+	static function xmlfile($filelist) {
+		$filelist['rss-closed.xml'] = 'RSS';
+		return $filelist;
 	}
 
 }

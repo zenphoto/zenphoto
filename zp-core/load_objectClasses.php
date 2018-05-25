@@ -22,15 +22,23 @@ if (abs(OFFSET_PATH) != 2) { // setup does not need (and might have problems wit
 		$masks[] = FEATURE_PLUGIN;
 		$masks[] = ADMIN_PLUGIN;
 	}
-	if (DEBUG_PLUGINS) {
-		if (OFFSET_PATH) {
-			debugLog('Loading the "class" "feature" and "admin" plugins.');
-		} else {
-			debugLog('Loading the "class" plugins.');
-		}
-	}
+
 	foreach ($masks as $mask) {
-		foreach (getEnabledPlugins() as $extension => $plugin) {
+		if (DEBUG_PLUGINS) {
+			switch ($mask) {
+				case CLASS_PLUGIN:
+					debugLog('Loading the "class" plugins.');
+					break;
+				case FEATURE_PLUGIN:
+					debugLog('Loading the "feature" plugins.');
+					break;
+				case ADMIN_PLUGIN:
+					debugLog('Loading the "admin" plugins.');
+					break;
+			}
+		}
+		$enabled = getEnabledPlugins();
+		foreach ($enabled as $extension => $plugin) {
 			$priority = $plugin['priority'];
 			if ($priority & $mask) {
 				if (DEBUG_PLUGINS) {

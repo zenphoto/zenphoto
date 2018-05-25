@@ -213,6 +213,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 						break;
 				}
 
+				$plugin_is_filter = $details['plugin_is_filter'];
 				$plugin_deprecated = isset($pluginDetails[$extension]['deprecated']);
 				if (isset($details['plugin_description'])) {
 					if (false === eval($details['plugin_description'])) {
@@ -340,8 +341,6 @@ zp_apply_filter('admin_note', 'plugins', '');
 									<div class="plugin_disable_hidden">
 										<?php echo $plugin_disable; ?>
 									</div>
-									<?php
-									?>
 									<span class="icons">
 										<?php echo CROSS_MARK_RED; ?>
 									</span>

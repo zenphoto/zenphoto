@@ -44,12 +44,17 @@
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 900 | FEATURE_PLUGIN;
+$plugin_is_filter = 910 | FEATURE_PLUGIN;
 $plugin_description = gettext('The <em>externalFeed</em> handler.');
 
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'externalFeed_options';
+
+zp_register_filter('site_upgrade_xml', 'externalFeed_options::xmlfile');
+
+require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
 
 class externalFeed_options {
 
@@ -151,10 +156,12 @@ class externalFeed_options {
 		return false;
 	}
 
-}
+	static function xmlfile($filelist) {
+		$filelist['externalFeed-closed.xml'] = 'externalFeed';
+		return $filelist;
+	}
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
+}
 
 class ExternalFeed extends feed {
 
