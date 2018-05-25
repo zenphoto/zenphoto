@@ -13,12 +13,13 @@
  * @author Malte Müller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569)
  * @licence GPL v3 or later
  * @package plugins
- * @subpackage media
+ * @subpackage openstreetmap
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A Zenphoto plugin for displaying OpenStreetMap based maps using LeafletJS for images or images from albums with embeded geodata.");
 $plugin_author = "Malte Müller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569)";
 $option_interface = 'openStreetMapOptions';
+$plugin_category = gettext('Misc');
 
 zp_register_filter('theme_head', 'openStreetMap::scripts');
 

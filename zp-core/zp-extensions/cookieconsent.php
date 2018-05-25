@@ -8,12 +8,13 @@
  * @author Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)
  * @license GPL v3 or later
  * @package plugins
- * @subpackage misc
+ * @subpackage cookieconsent
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A plugin to add a cookie notify dialog to comply with the EU cookie law and Google's request regarding usages of Google Adwords, Analytics and more");
 $plugin_author = "Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)";
 $option_interface = 'cookieConsent';
+$plugin_category = gettext('Misc');
 
 if (!isset($_COOKIE['cookieconsent_status'])) {
 	zp_register_filter('theme_head', 'cookieConsent::getCSS');
