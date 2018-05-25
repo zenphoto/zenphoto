@@ -93,7 +93,7 @@ class tinymce4Options {
 								gettext('Named and numeric') => 'named+numeric'
 								),
 						'null_selection' => 'raw',
-						'desc' => gettext('If encountering issues with special chars and other character entities change this. Note that this appliies on re-saving content only. More info on the <a href="https://www.tinymce.com/docs/configure/content-filtering/#entity_encoding">tinyMCE docs</a>.')),
+						'desc' => gettext('If encountering issues with special chars and other character entities change this. Note that this applies on re-saving content only. More info on the <a href="https://www.tinymce.com/docs/configure/content-filtering/#entity_encoding">tinyMCE docs</a>.')),
 				gettext('Entities') => array(
 						'key' => 'tinymce4_entities',
 						'type' => OPTION_TYPE_TEXTBOX,
