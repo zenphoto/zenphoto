@@ -131,24 +131,20 @@ class userDataExport {
 											<ul>
 												<?php
 												foreach ($entries as $key => $val) {
-													if (substr($val, 0, 7) == 'http://' || substr($val, 0, 8) == 'https://') {
-														$value = '<a href="' . html_encode($val) . '">' . html_encode($val) . '</a>';
-													} else {
-														$value = html_encode($val);
-													}
-													?><li><strong><?php echo html_encode($key); ?>: </strong> <?php echo $value; ?></li><?php
+													?>
+													<li><strong><?php echo html_encode($key); ?>: </strong> 
+														<?php
+														self::printList($val);
+														?>
+													</li>
+													<?php
 												}
 												?>
 											</ul>
 											<?php
 										} else {
-											if (substr($entries, 0, 7) == 'http://' || substr($entries, 0, 8) == 'https://') {
-												$entry = '<a href="' . html_encode($entries) . '">' . html_encode($entries) . '</a>';
-											} else {
-												$entry = html_encode($entries);
-											}
 											?>
-											<li><strong><?php echo html_encode($headline); ?>:</strong> <?php echo $entry; ?></li>
+											<li><strong><?php echo html_encode($headline); ?>:</strong> <?php self::printLink($entries); ?></li>
 											<?php
 										}
 									}
@@ -164,6 +160,35 @@ class userDataExport {
 				case 'json':
 					echo json_encode($data);
 			}
+		}
+	}
+
+	/**
+	 * Helper method for printDataReport() to return a link element if $value is an url.
+	 * Otherwise returns the value unchanged
+	 * 
+	 * @param string $value
+	 * @return string
+	 */
+	static function printLink($value) {
+		if (substr($value, 0, 7) == 'http://' || substr($value, 0, 8) == 'https://') {
+			echo '<a href="' . html_encode($value) . '">' . html_encode($value) . '</a>';
+		} else {
+			echo $value;
+		}
+	}
+
+	static function printList($value) {
+		if (is_array($value)) {
+			echo '<ul>';
+			foreach ($value as $key => $val) {
+				echo '<li><strong>' . $key . ':</strong> ';
+				self::printList($val);
+				echo '</li>';
+			}
+			echo '</ul>';
+		} else {
+			self::printLink($value);
 		}
 	}
 
@@ -259,7 +284,7 @@ class userDataExport {
 	 * @return array
 	 */
 	function getCommentData() {
-		$title = gettext('Comments');
+		$sectiontitle = gettext('Comments');
 		$dbquery = "SELECT * FROM " . prefix('comments') . " WHERE name = " . db_quote($this->username);
 		if (!empty($this->usermail)) {
 			$dbquery .= "AND email = " . db_quote($this->usermail);
@@ -275,7 +300,7 @@ class userDataExport {
 
 			db_free_result($result);
 			if (!empty($tempdata)) {
-				return array($title => $tempdata);
+				return array($sectiontitle => $tempdata);
 			}
 		}
 		return array();
@@ -293,11 +318,11 @@ class userDataExport {
 		}
 		switch ($field) {
 			case 'owner':
-				$title = gettext('Album owner');
+				$sectiontitle = gettext('Album owner');
 				$dbquery = "SELECT folder FROM " . prefix('albums') . " WHERE owner = " . db_quote($this->username);
 				break;
 			case 'user':
-				$title = gettext('Album guest user');
+				$sectiontitle = gettext('Album guest user');
 				$dbquery = "SELECT folder FROM " . prefix('albums') . " WHERE user = " . db_quote($this->username);
 				break;
 		}
@@ -306,11 +331,18 @@ class userDataExport {
 			$tempdata = array();
 			while ($row = db_fetch_assoc($result)) {
 				$albobj = newAlbum($row['folder']);
-				$tempdata[$albobj->getTitle()] = SERVER_HTTP_HOST . $albobj->getLink();
+				$albtitle = $albobj->getTitle();
+				if (!$albobj->getShow()) {
+					$albtitle .= ' [' . gettext('unpublished') . ']';
+				}
+				if ($albobj->isProtected()) {
+					$title .= ' [' . gettext('protected') . ']';
+				}
+				$tempdata[$albtitle] = SERVER_HTTP_HOST . $albobj->getLink();
 			}
 			db_free_result($result);
 			if (!empty($tempdata)) {
-				return array($title => $tempdata);
+				return array($sectiontitle => $tempdata);
 			}
 		}
 		return array();
@@ -328,17 +360,19 @@ class userDataExport {
 		}
 		switch ($field) {
 			case 'owner':
-				$title = gettext('Image owner');
+				$sectiontitle = gettext('Image owner');
 				$dbquery = "SELECT filename, albumid FROM " . prefix('images') . " WHERE owner = " . db_quote($this->username) . ' ORDER By albumid ASC';
 				break;
 			case 'user':
-				$title = gettext('Image guest user');
+				$sectiontitle = gettext('Image guest user');
 				$dbquery = "SELECT filename, albumid FROM " . prefix('images') . " WHERE user = " . db_quote($this->username) . ' ORDER By albumid ASC';
 				break;
 		}
 		$result = query($dbquery);
 		$tempdata = array();
 		$imagesbyalbum = array();
+		$images = array();
+		$image_cache_suffix = getOption('image_cache_suffix');
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
 				$imagesbyalbum[$row['albumid']][] = $row['filename'];
@@ -349,12 +383,35 @@ class userDataExport {
 				if ($albobj && !$albobj->isDynamic()) {
 					foreach ($images as $image) {
 						$imgobj = newImage($albobj, $image);
-						$tempdata[$albobj->getTitle()][$imgobj->getTitle()] = SERVER_HTTP_HOST . $imgobj->getLink();
+						$title = $imgobj->getTitle();
+						if (!$imgobj->getShow()) {
+							$title .= ' [' . gettext('unpublished') . ']';
+						}
+						if ($imgobj->isProtected()) {
+							$title .= ' [' . gettext('protected') . ']';
+						}
+						$tempdata[$albobj->getTitle()][$title][gettext('Full image')] = SERVER_HTTP_HOST . $imgobj->getFullImage();
+						//get cached version that current exist
+						$filename_nosuffix = stripSuffix($imgobj->filename);
+						$suffix = getSuffix($imgobj->filename);
+						if (empty($image_cache_suffix)) {
+							$suffix = getSuffix($imgobj->filename);
+						} else {
+							$suffix = $image_cache_suffix;
+						}
+						$cachedimages = safe_glob(SERVERPATH . '/' . CACHEFOLDER . '/' . $albobj->name . '/' . $filename_nosuffix . '*' . $suffix);
+						if (!empty($cachedimages)) {
+							$cachedimages_webpath = array();
+							foreach ($cachedimages as $cacheimage) {
+								$cachedimages_webpath[] = str_replace(SERVERPATH, FULLWEBPATH, $cacheimage);
+							}
+							$tempdata[$albobj->getTitle()][$title][gettext('Cached images')] = $cachedimages_webpath;
+						}
 					}
 				}
 			}
 			if (!empty($tempdata)) {
-				return array($title => $tempdata);
+				return array($sectiontitle => $tempdata);
 			}
 		}
 		return array();
@@ -374,29 +431,29 @@ class userDataExport {
 		}
 		switch ($itemtype) {
 			case 'news':
-				$title = gettext('News articles');
+				$sectiontitle = gettext('News articles');
 				$dbquery = "SELECT titlelink FROM " . prefix('news');
 				break;
 			case 'newscategories':
-				$title = gettext('News categories');
+				$sectiontitle = gettext('News categories');
 				$dbquery = "SELECT titlelink FROM " . prefix('news_categories');
 				break;
 			case 'pages':
-				$title = gettext('Pages');
+				$sectiontitle = gettext('Pages');
 				$dbquery = "SELECT titlelink FROM " . prefix('pages');
 				break;
 		}
 		switch ($field) {
 			case 'author':
-				$title .= ' ' . gettext('author');
+				$sectiontitle .= ' ' . gettext('author');
 				$dbquery .= " WHERE author = " . db_quote($this->username);
 				break;
 			case 'lastchangeauthor':
-				$title .= ' ' . gettext('last change author');
+				$sectiontitle .= ' ' . gettext('last change author');
 				$dbquery .= " WHERE lastchangeauthor = " . db_quote($this->username);
 				break;
 			case 'user':
-				$title .= ' ' . gettext('guest user');
+				$sectiontitle .= ' ' . gettext('guest user');
 				$dbquery .= " WHERE user = " . db_quote($this->username);
 				break;
 		}
@@ -415,11 +472,18 @@ class userDataExport {
 						$obj = new ZenpagePage($row['titlelink']);
 						break;
 				}
-				$tempdata[$obj->getTitle()] = SERVER_HTTP_HOST . $obj->getLink();
+				$title = $obj->getTitle();
+				if (!$obj->getShow()) {
+					$title .= ' [' . gettext('Unpublished') . ']';
+				}
+				if ($obj->isProtected()) {
+					$title .= ' [' . gettext('protected') . ']';
+				}
+				$tempdata[$title] = SERVER_HTTP_HOST . $obj->getLink();
 			}
 			db_free_result($result);
 			if (!empty($tempdata)) {
-				return array($title => $tempdata);
+				return array($sectiontitle => $tempdata);
 			}
 		}
 		return array();
