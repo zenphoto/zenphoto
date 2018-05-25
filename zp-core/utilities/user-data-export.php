@@ -64,12 +64,12 @@ printAdminHeader('overview', 'User data export');
 				<h1><span id="top"><?php echo $mybutton['button_text']; ?></span></h1>
 				<p><?php echo gettext('This tool helps to export possible personal user data if requested. It does not delete any data. This covers the following data:'); ?></p>
 				<ul>
-					<li><?php echo gettext('<strong>User account</strong> (<em>user name</em> and optionally <em>email address</em>): This exports the full data of an account as stored in the database if one matching exists.'); ?></li>
-					<li><?php echo gettext('<strong>Securitylog</strong> (<em>user name</em>):'); ?></li>
-					<li><?php echo gettext('<strong>Comments</strong> (<em>user name</em> and <em>email address</em>): Note that if you included no mail addresss this info may not be reliable as comments are possible without user account and may use the same name accidentally. Site owners should check this before handing over data especially if these were non public comments.'); ?></li>
-					<li><?php echo gettext('<strong>Albums and images owner</strong> (<em>user name</em>) (excluding images of dynamic albums): The owner may be the user who uploaded this image or created this album but technically any user can be assigned as owner later on. There is no history stored about that.'); ?></li>
-					<li><?php echo gettext('<strong>All items guest user</strong> (<em>user name</em>): T'); ?></li>
-					<li><?php echo gettext('<strong>Zenpage pages and news articles author and last change author</strong> (<em>user name</em>): Here the same applies as to owners above. The author may have created the entry but may have changed afterwards. The last change author is only that. There is no history stored about that.'); ?></li>
+					<li><?php echo gettext('<strong>User account</strong> (<em>user name</em> and optionally <em>email address</em>). This exports the full data of an account as stored in the database if a match exists.'); ?></li>
+					<li><?php echo gettext('<strong>Securitylog</strong> (<em>user name</em>).'); ?></li>
+					<li><?php echo gettext('<strong>Comments</strong> (<em>user name</em> and <em>email address</em>). Note that if you did not include an email addresss this info may not be reliable as comments are possible without user account and may use the same name accidentally. Site owners should check this before handing over data especially if these were non public comments.'); ?></li>
+					<li><?php echo gettext('<strong>Albums and images owner</strong> (<em>user name</em>) (excluding images of dynamic albums). The owner may be the user who uploaded the image or created the album but technically any user can be assigned as owner later on. There is no history stored about that.'); ?></li>
+					<li><?php echo gettext('<strong>All items guest user</strong> (<em>user name</em>)'); ?></li>
+					<li><?php echo gettext('<strong>Zenpage pages and news articles author and last change author</strong> (<em>user name</em>). Here the same applies as to owners above. The author may have created the entry but may have changed afterwards. The last change author is only that. There is no history stored about that.'); ?></li>
 				</ul>
 				<p class="notebox"><?php echo gettext('<strong>Note:</strong> This covers only what Zenphoto core and plugins store and not what other third party tools may do or your server. <strong>This tool is provided without any any legal warranties regarding requirements of the e.g. GDPR</strong>. Contact your lawyer to find out if this is sufficient for your site.'); ?></p>
 				<?php echo $error; ?>
