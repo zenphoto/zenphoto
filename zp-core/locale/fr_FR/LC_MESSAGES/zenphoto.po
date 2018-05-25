@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-25 14:11+0200\n"
-"PO-Revision-Date: 2018-05-25 14:15+0200\n"
+"POT-Creation-Date: 2018-05-25 17:23+0200\n"
+"PO-Revision-Date: 2018-05-25 17:36+0200\n"
 "Last-Translator: Vincent Bourganel <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569)\n"
@@ -38,16 +38,7 @@ msgstr "Voir l’album :"
 
 #: themes/basic/album.php:64 themes/basic/favorites.php:71
 #: themes/basic/image.php:47 themes/basic/index.php:49
-#: themes/basic/search.php:86 themes/effervescence_plus/album.php:32
-#: themes/effervescence_plus/album.php:35
-#: themes/effervescence_plus/album.php:163
-#: themes/effervescence_plus/favorites.php:30
-#: themes/effervescence_plus/favorites.php:33
-#: themes/effervescence_plus/favorites.php:196
-#: themes/effervescence_plus/gallery.php:84
-#: themes/effervescence_plus/image.php:62
-#: themes/effervescence_plus/image.php:64
-#: themes/effervescence_plus/search.php:293 themes/zenpage/album.php:40
+#: themes/basic/search.php:86 themes/zenpage/album.php:40
 #: themes/zenpage/album.php:73 themes/zenpage/favorites.php:40
 #: themes/zenpage/favorites.php:72 themes/zenpage/gallery.php:41
 #: themes/zenpage/gallery.php:57 themes/zenpage/image.php:46
@@ -65,16 +56,7 @@ msgstr "préc."
 
 #: themes/basic/album.php:64 themes/basic/favorites.php:71
 #: themes/basic/image.php:51 themes/basic/index.php:49
-#: themes/basic/search.php:86 themes/effervescence_plus/album.php:43
-#: themes/effervescence_plus/album.php:46
-#: themes/effervescence_plus/album.php:163
-#: themes/effervescence_plus/favorites.php:41
-#: themes/effervescence_plus/favorites.php:44
-#: themes/effervescence_plus/favorites.php:196
-#: themes/effervescence_plus/gallery.php:84
-#: themes/effervescence_plus/image.php:72
-#: themes/effervescence_plus/image.php:74
-#: themes/effervescence_plus/search.php:293 themes/zenpage/album.php:40
+#: themes/basic/search.php:86 themes/zenpage/album.php:40
 #: themes/zenpage/album.php:73 themes/zenpage/favorites.php:40
 #: themes/zenpage/favorites.php:72 themes/zenpage/gallery.php:41
 #: themes/zenpage/gallery.php:57 themes/zenpage/image.php:48
@@ -113,30 +95,27 @@ msgid "Gallery RSS"
 msgstr "Flux RSS de la galerie"
 
 #: themes/basic/archive.php:30 themes/basic/inc-footer.php:10
-#: themes/effervescence_plus/archive.php:30 themes/garland/archive.php:41
-#: themes/garland/functions.php:125 themes/zenpage/archive.php:33
+#: themes/garland/archive.php:41 themes/garland/functions.php:125
+#: themes/zenpage/archive.php:33
 msgid "Archive View"
 msgstr "Archives"
 
-#: themes/basic/archive.php:36 themes/effervescence_plus/archive.php:62
-#: themes/zenpage/archive.php:48 themes/zpmobile/archive.php:38
+#: themes/basic/archive.php:36 themes/zenpage/archive.php:48
+#: themes/zpmobile/archive.php:38
 msgid "Popular Tags"
 msgstr "Tags populaires"
 
 #: themes/basic/contact.php:28 themes/basic/contact.php:31
-#: themes/basic/inc-footer.php:13 themes/effervescence_plus/contact.php:52
-#: themes/effervescence_plus/functions.php:407 themes/garland/contact.php:43
+#: themes/basic/inc-footer.php:13 themes/garland/contact.php:43
 #: themes/garland/functions.php:131 themes/zenpage/contact.php:38
 #: themes/zenpage/sidebar.php:110 themes/zenpage/sidebar.php:112
 msgid "Contact us"
 msgstr "Contactez-nous"
 
 #: themes/basic/favorites.php:46 themes/basic/favorites.php:61
-#: themes/effervescence_plus/favorites.php:111
-#: themes/effervescence_plus/favorites.php:163 themes/garland/favorites.php:62
-#: themes/garland/favorites.php:80 themes/zenpage/favorites.php:52
-#: themes/zenpage/favorites.php:63 themes/zpmobile/favorites.php:40
-#: themes/zpmobile/favorites.php:52
+#: themes/garland/favorites.php:62 themes/garland/favorites.php:80
+#: themes/zenpage/favorites.php:52 themes/zenpage/favorites.php:63
+#: themes/zpmobile/favorites.php:40 themes/zpmobile/favorites.php:52
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:199
 msgid "Remove"
 msgstr "Enlever"
@@ -145,14 +124,11 @@ msgstr "Enlever"
 msgid "Default theme color scheme."
 msgstr "Palette de couleurs par défaut du thème."
 
-#: themes/basic/functions.php:70 themes/effervescence_plus/functions.php:134
+#: themes/basic/functions.php:70
 msgid "Theme Color"
 msgstr "Couleur du thème"
 
 #: themes/basic/image.php:22 themes/basic/image.php:28
-#: themes/effervescence_plus/colorbox/functions.php:32
-#: themes/effervescence_plus/image.php:19
-#: themes/effervescence_plus/image.php:29
 #: themes/garland/colorbox/functions.php:32 themes/garland/image.php:19
 #: themes/garland/image.php:29 themes/zenpage/image.php:21
 #: themes/zenpage/image.php:27 zp-core/admin-functions.php:139
@@ -175,29 +151,27 @@ msgstr "Image précédente"
 msgid "Next Image"
 msgstr "Image suivante"
 
-#: themes/basic/inc-footer.php:16 themes/effervescence_plus/functions.php:413
-#: themes/garland/functions.php:137 themes/zenpage/password.php:43
-#: themes/zenpage/sidebar.php:129 themes/zenpage/sidebar.php:131
-#: themes/zpmobile/password.php:34
+#: themes/basic/inc-footer.php:16 themes/garland/functions.php:137
+#: themes/zenpage/password.php:43 themes/zenpage/sidebar.php:129
+#: themes/zenpage/sidebar.php:131 themes/zpmobile/password.php:34
 msgid "Register for this site"
 msgstr "Inscrivez-vous à ce site"
 
-#: themes/basic/password.php:29 themes/effervescence_plus/password.php:30
-#: themes/zenpage/password.php:32 themes/zpmobile/password.php:26
+#: themes/basic/password.php:29 themes/zenpage/password.php:32
+#: themes/zpmobile/password.php:26
 msgid "A password is required for the page you requested"
 msgstr "Un mot de passe est nécessaire pour accéder à cette page"
 
-#: themes/basic/register.php:28 themes/effervescence_plus/register.php:40
-#: themes/garland/register.php:43 zp-core/template-functions.php:444
+#: themes/basic/register.php:28 themes/garland/register.php:43
+#: zp-core/template-functions.php:444
 #: zp-core/zp-extensions/html_meta_tags.php:326
 #: zp-core/zp-extensions/register_user.php:65
 #: zp-core/zp-extensions/scriptless-socialsharing.php:184
 msgid "Register"
 msgstr "Inscrivez-vous"
 
-#: themes/basic/register.php:31 themes/effervescence_plus/register.php:51
-#: themes/garland/register.php:45 themes/zenpage/register.php:38
-#: themes/zpmobile/register.php:27
+#: themes/basic/register.php:31 themes/garland/register.php:45
+#: themes/zenpage/register.php:38 themes/zpmobile/register.php:27
 msgid "User Registration"
 msgstr "Inscription d’un utilisateur"
 
@@ -235,804 +209,23 @@ msgstr ""
 "> Options (ou en cliquant le lien ci-dessous) et en modifiant l’option "
 "<em>Couleurs du thème</em>."
 
-#: themes/basic/themeoptions.php:43
-#: themes/effervescence_plus/themeoptions.php:112
-#: themes/garland/themeoptions.php:79 themes/zenpage/themeoptions.php:70
-#: themes/zpmobile/themeoptions.php:41
+#: themes/basic/themeoptions.php:43 themes/garland/themeoptions.php:79
+#: themes/zenpage/themeoptions.php:70 themes/zpmobile/themeoptions.php:41
 msgid "Allow search"
 msgstr "Autoriser la recherche"
 
-#: themes/basic/themeoptions.php:43
-#: themes/effervescence_plus/themeoptions.php:112
-#: themes/zenpage/themeoptions.php:70 themes/zpmobile/themeoptions.php:41
+#: themes/basic/themeoptions.php:43 themes/zenpage/themeoptions.php:70
+#: themes/zpmobile/themeoptions.php:41
 msgid "Check to enable search form."
 msgstr "Cocher pour activer le formulaire de recherche."
 
 #: themes/basic/themeoptions.php:44
-#: themes/effervescence_plus/themeoptions.php:119
 msgid "Theme colors"
 msgstr "Couleurs du thème"
 
 #: themes/basic/themeoptions.php:44
-#: themes/effervescence_plus/themeoptions.php:119
 msgid "Select the colors of the theme"
 msgstr "Choisir les couleurs du thème"
-
-#: themes/effervescence_plus/404.php:33 themes/garland/404.php:44
-#: themes/garland/404.php:46
-msgid "Page not found"
-msgstr "Page non trouvée"
-
-#: themes/effervescence_plus/album.php:52
-#: themes/effervescence_plus/gallery.php:31
-#: themes/effervescence_plus/indexpage.php:31
-#: themes/effervescence_plus/news.php:25
-#: themes/effervescence_plus/search.php:81
-#: themes/effervescence_plus/search.php:86
-#: themes/effervescence_plus/search.php:88
-#: themes/effervescence_plus/slideshow.php:55 themes/zenpage/404.php:27
-#: themes/zenpage/album.php:25 themes/zenpage/archive.php:26
-#: themes/zenpage/contact.php:26 themes/zenpage/favorites.php:25
-#: themes/zenpage/gallery.php:26 themes/zenpage/news.php:25
-#: themes/zenpage/pages.php:25 themes/zenpage/password.php:25
-#: themes/zenpage/register.php:26 themes/zenpage/search.php:41
-#: themes/zenpage/search.php:46 themes/zenpage/search.php:48
-#: themes/zpmobile/functions.php:67 themes/zpmobile/search.php:46
-#: themes/zpmobile/search.php:51 themes/zpmobile/search.php:53
-#: zp-core/template-functions.php:445 zp-core/template-functions.php:1424
-#: zp-core/template-functions.php:1455 zp-core/template-functions.php:4010
-#: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
-#: zp-core/zp-extensions/html_meta_tags.php:326
-#: zp-core/zp-extensions/scriptless-socialsharing.php:187
-#: zp-core/zp-extensions/slideshow2.php:733
-msgid "Search"
-msgstr "Recherche"
-
-#: themes/effervescence_plus/album.php:144
-#: themes/effervescence_plus/favorites.php:184
-msgid "Album is empty"
-msgstr "L’album est vide"
-
-#: themes/effervescence_plus/archive.php:52 themes/garland/archive.php:45
-msgid "Images By Date"
-msgstr "Images par date"
-
-#: themes/effervescence_plus/archive.php:57 themes/garland/archive.php:50
-#: themes/zenpage/archive.php:43 themes/zpmobile/archive.php:33
-msgid "News archive"
-msgstr "Archives des actualités"
-
-#: themes/effervescence_plus/contact.php:42 zp-core/functions.php:2684
-#: zp-core/template-functions.php:443
-#: zp-core/zp-extensions/html_meta_tags.php:326
-#: zp-core/zp-extensions/scriptless-socialsharing.php:178
-msgid "Contact"
-msgstr "Contact"
-
-#: themes/effervescence_plus/favorites.php:50
-msgid "Search gallery"
-msgstr "Rechercher dans la galerie"
-
-#: themes/effervescence_plus/functions.php:133
-msgid "Effervescence color scheme."
-msgstr "Palette de couleurs Effervescence."
-
-#: themes/effervescence_plus/functions.php:145
-msgid "Effervescence image display handling."
-msgstr "Mode d’affichage des images du thème Effervescence."
-
-#: themes/effervescence_plus/functions.php:146 themes/garland/functions.php:69
-msgid "Personality"
-msgstr "Présentation"
-
-#: themes/effervescence_plus/functions.php:179
-#: themes/effervescence_plus/indexpage.php:81
-msgid "There were no images from which to select the random heading."
-msgstr ""
-"Il n’y a aucune image parmi lesquelles en choisir une aléatoirement pour la "
-"une."
-
-#: themes/effervescence_plus/functions.php:198
-msgid "Random picture..."
-msgstr "Image aléatoire..."
-
-#: themes/effervescence_plus/functions.php:229
-#: zp-core/zp-extensions/menu_manager.php:1091
-#: zp-core/zp-extensions/print_album_menu.php:262
-#, php-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u album"
-msgstr[1] "%u albums"
-
-#: themes/effervescence_plus/functions.php:235
-#: zp-core/zp-extensions/menu_manager.php:1097
-#: zp-core/zp-extensions/print_album_menu.php:268
-#, php-format
-msgid "%u image"
-msgid_plural "%u images"
-msgstr[0] "%u image"
-msgstr[1] "%u images"
-
-#: themes/effervescence_plus/functions.php:245
-#, php-format
-msgid "Album %1$u of %2$u"
-msgstr "Album %1$u sur %2$u"
-
-#: themes/effervescence_plus/functions.php:247
-#, php-format
-msgid "Photo %1$u of %2$u"
-msgstr "Photo %1$u sur %2$u"
-
-#: themes/effervescence_plus/functions.php:251
-#, php-format
-msgid "Albums %1$u-%2$u of %3$u"
-msgstr "Albums %1$u – %2$u sur %3$u"
-
-#: themes/effervescence_plus/functions.php:253
-#, php-format
-msgid "Photos %1$u-%2$u of %3$u"
-msgstr "Photos %1$u – %2$u sur %3$u"
-
-#: themes/effervescence_plus/functions.php:287
-#: themes/effervescence_plus/functions.php:289
-#, php-format
-msgid "Effervescence %s"
-msgstr "Effervescence %s"
-
-#: themes/effervescence_plus/functions.php:291
-#, php-format
-msgid "Effervescence %1$s %2$s"
-msgstr "Effervescence %1$s %2$s"
-
-#: themes/effervescence_plus/functions.php:323
-#: zp-core/template-functions.php:1243
-msgid "The album is password protected."
-msgstr "Cet album est protégé par mot de passe."
-
-#: themes/effervescence_plus/functions.php:326
-msgid "The album is not published."
-msgstr "Cet album n’est pas publié."
-
-#: themes/effervescence_plus/functions.php:328
-#, php-format
-msgid "View the Album: %s"
-msgstr "Voir l’album : %s"
-
-#: themes/effervescence_plus/functions.php:335
-msgid "The image is marked not visible."
-msgstr "L’image est marquée comme non visible."
-
-#: themes/effervescence_plus/functions.php:339
-#, php-format
-msgid "View the image: %s"
-msgstr "Voir l’image : %s"
-
-#: themes/effervescence_plus/functions.php:354
-#, php-format
-msgid "%1$u hit on this %2$s"
-msgid_plural "%1$u hits on this %2$s"
-msgstr[0] "%1$u affichage de cette %2$s"
-msgstr[1] "%1$u affichages de cette %2$s"
-
-#: themes/effervescence_plus/functions.php:354
-msgid "page"
-msgstr "page"
-
-#: themes/effervescence_plus/functions.php:364
-#, php-format
-msgid "%u Album"
-msgid_plural "%u Albums"
-msgstr[0] "%u album"
-msgstr[1] "%u albums"
-
-#: themes/effervescence_plus/functions.php:368
-#, php-format
-msgid "%u Subalbum"
-msgid_plural "%u Subalbums"
-msgstr[0] "%u sous-album"
-msgstr[1] "%u sous-albums"
-
-#: themes/effervescence_plus/functions.php:372
-#, php-format
-msgid "%u Image"
-msgid_plural "%u Images"
-msgstr[0] "%u image"
-msgstr[1] "%u images"
-
-#: themes/effervescence_plus/functions.php:378
-#: zp-core/zp-extensions/comment_form.php:298
-#, php-format
-msgid "%u Comment"
-msgid_plural "%u Comments"
-msgstr[0] "%u commentaire"
-msgstr[1] "%u commentaires"
-
-#: themes/effervescence_plus/functions.php:426 themes/garland/functions.php:152
-msgid "album"
-msgstr "album"
-
-#: themes/effervescence_plus/functions.php:426 themes/garland/functions.php:152
-#: zp-core/admin-edit.php:1358 zp-core/admin-globals.php:110
-#: zp-core/admin-options.php:2896
-#: zp-core/zp-extensions/image_album_statistics.php:266
-msgid "image"
-msgstr "image"
-
-#: themes/effervescence_plus/functions.php:426 themes/garland/functions.php:152
-msgid "video"
-msgstr "vidéo"
-
-#: themes/effervescence_plus/functions.php:426
-#: themes/effervescence_plus/functions.php:428 themes/garland/functions.php:152
-#: themes/garland/functions.php:154 themes/zenpage/gallery.php:66
-#: zp-core/admin-globals.php:76 zp-core/zp-extensions/tinyURL.php:81
-msgid "news"
-msgstr "actualités"
-
-#: themes/effervescence_plus/functions.php:430 themes/garland/functions.php:156
-#: zp-core/zp-extensions/zenpage/admin-edit.php:455
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:272
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:275
-msgid "sticky"
-msgstr "épinglé"
-
-#: themes/effervescence_plus/functions.php:443
-#: themes/effervescence_plus/news.php:71 themes/garland/functions.php:169
-#: themes/garland/news.php:62
-#, php-format
-msgid "Comments: %d"
-msgstr "Commentaires : %d"
-
-#: themes/effervescence_plus/functions.php:450
-#: themes/effervescence_plus/news.php:80 themes/garland/functions.php:176
-#: themes/garland/news.php:107 themes/zenpage/gallery.php:75
-#: themes/zenpage/news.php:58 themes/zenpage/news.php:93
-#: themes/zpmobile/news.php:44
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/zoom.php:48
-msgid "Categories: "
-msgstr "Catégories : "
-
-#: themes/effervescence_plus/functions.php:462 themes/garland/album.php:77
-#: themes/garland/favorites.php:91 themes/garland/functions.php:189
-#: themes/garland/gallery.php:62 themes/garland/search.php:225
-#: themes/zenpage/gallery.php:61 themes/zenpage/gallery.php:86
-#: themes/zenpage/news.php:70 themes/zenpage/news.php:107
-#: themes/zpmobile/news.php:67 themes/zpmobile/news.php:82
-msgid "next »"
-msgstr "suiv. ››"
-
-#: themes/effervescence_plus/functions.php:462 themes/garland/album.php:77
-#: themes/garland/favorites.php:91 themes/garland/functions.php:189
-#: themes/garland/gallery.php:62 themes/garland/search.php:225
-#: themes/zenpage/gallery.php:61 themes/zenpage/gallery.php:86
-#: themes/zenpage/news.php:70 themes/zenpage/news.php:107
-#: themes/zpmobile/news.php:67 themes/zpmobile/news.php:82
-msgid "« prev"
-msgstr "‹‹ préc."
-
-#: themes/effervescence_plus/functions.php:482
-msgid "Add a comment"
-msgstr "Ajouter un commentaire"
-
-#: themes/effervescence_plus/image_gallery/functions.php:46
-#: themes/garland/image_gallery/functions.php:46
-#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:139
-msgid "Start"
-msgstr "Démarrer"
-
-#: themes/effervescence_plus/image_gallery/functions.php:47
-#: themes/garland/image_gallery/functions.php:47
-msgid "Stop"
-msgstr "Arrêter"
-
-#: themes/effervescence_plus/indexpage.php:43
-#: themes/effervescence_plus/slideshow.php:34 themes/zpmobile/functions.php:65
-#: zp-core/template-functions.php:664 zp-core/template-functions.php:1563
-#: zp-core/zp-extensions/menu_manager.php:822
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:465
-msgid "Home"
-msgstr "Accueil"
-
-#: themes/effervescence_plus/indexpage.php:66
-msgid "Picture of the day"
-msgstr "Image du jour"
-
-#: themes/effervescence_plus/indexpage.php:76
-#: themes/effervescence_plus/indexpage.php:89
-#: themes/effervescence_plus/slideshow.php:35
-#: themes/effervescence_plus/slideshow.php:39
-msgid "Albums Index"
-msgstr "Racine des albums"
-
-#: themes/effervescence_plus/indexpage.php:77
-#: themes/effervescence_plus/indexpage.php:89
-msgid "Visit the image gallery"
-msgstr "Visiter la galerie de photos"
-
-#: themes/effervescence_plus/search.php:104
-#, php-format
-msgid "Search album: %s"
-msgid_plural "Search albums: %s"
-msgstr[0] "Recherche dans l’album : %s"
-msgstr[1] "Recherche dans les albums : %s"
-
-#: themes/effervescence_plus/search.php:107
-#, php-format
-msgid "Search category: %s"
-msgid_plural "Search categories: %s"
-msgstr[0] "Recherche dans la catégorie : %s"
-msgstr[1] "Recherche dans les catégories : %s"
-
-#: themes/effervescence_plus/search.php:127 themes/garland/search.php:93
-#: themes/zenpage/search.php:75 themes/zpmobile/search.php:69
-#, php-format
-msgid "%1$u Hit for <em>%2$s</em>"
-msgid_plural "%1$u Hits for <em>%2$s</em>"
-msgstr[0] "%1$u affichage sur <em>%2$s</em>"
-msgstr[1] "%1$u affichages sur <em>%2$s</em>"
-
-#: themes/effervescence_plus/search.php:138 themes/garland/search.php:112
-#: themes/zenpage/search.php:86 themes/zpmobile/search.php:80
-#, php-format
-msgid "Pages (%s)"
-msgstr "Pages (%s)"
-
-#: themes/effervescence_plus/search.php:142
-#: themes/effervescence_plus/search.php:175 themes/garland/search.php:116
-#: themes/garland/search.php:149 themes/zenpage/functions.php:46
-#: themes/zpmobile/functions.php:257
-msgid "Show more results"
-msgstr "Afficher plus de résultats"
-
-#: themes/effervescence_plus/search.php:143
-#: themes/effervescence_plus/search.php:176 themes/garland/search.php:117
-#: themes/garland/search.php:150 themes/zenpage/functions.php:47
-#: themes/zpmobile/functions.php:258
-msgid "Show fewer results"
-msgstr "Afficher moins de résultats"
-
-#: themes/effervescence_plus/search.php:171 themes/garland/search.php:145
-#: themes/zenpage/search.php:106 themes/zpmobile/search.php:100
-#, php-format
-msgid "Articles (%s)"
-msgstr "Articles (%s)"
-
-#: themes/effervescence_plus/search.php:207 themes/garland/search.php:182
-#: themes/zenpage/search.php:128 themes/zpmobile/search.php:122
-#, php-format
-msgid "Images (%s)"
-msgstr "Images (%s)"
-
-#: themes/effervescence_plus/search.php:211 themes/garland/search.php:186
-#: themes/zenpage/search.php:133 themes/zpmobile/search.php:127
-#, php-format
-msgid "Albums (%s)"
-msgstr "Albums (%s)"
-
-#: themes/effervescence_plus/search.php:213 themes/garland/search.php:188
-#: themes/zenpage/search.php:136 themes/zpmobile/search.php:130
-#, php-format
-msgid "Albums (%1$s) &amp; Images (%2$s)"
-msgstr "Albums (%1$s) et images (%2$s)"
-
-#: themes/effervescence_plus/search.php:276
-msgid "Enter your search criteria."
-msgstr "Veuillez saisir vos critères de recherche."
-
-#: themes/effervescence_plus/search.php:278
-#, php-format
-msgid "Sorry, no matches for <em>%s</em>. Try refining your search."
-msgstr ""
-"Désolé, aucun résultat pour <em>%s</em>. Veuillez préciser votre recherche."
-
-#: themes/effervescence_plus/sidebar.php:19 themes/garland/sidebar.php:27
-#: themes/zenpage/sidebar.php:14 zp-core/class-userdataexport.php:377
-#: zp-core/utilities/gallery_statistics.php:615
-msgid "News articles"
-msgstr "Articles d’actualité"
-
-#: themes/effervescence_plus/sidebar.php:20
-#: themes/effervescence_plus/themeoptions.php:71 themes/garland/sidebar.php:29
-#: themes/garland/themeoptions.php:49 themes/zenpage/sidebar.php:16
-#: themes/zenpage/themeoptions.php:53 themes/zpmobile/functions.php:162
-msgid "All news"
-msgstr "Toutes les actualités"
-
-#: themes/effervescence_plus/sidebar.php:36
-#: themes/effervescence_plus/sidebar.php:56 themes/garland/sidebar.php:46
-#: themes/garland/sidebar.php:66 themes/zenpage/sidebar.php:27
-msgid "Album index"
-msgstr "Racine des albums"
-
-#: themes/effervescence_plus/sidebar.php:36
-#: themes/effervescence_plus/sidebar.php:42
-#: themes/effervescence_plus/sidebar.php:86
-#: themes/effervescence_plus/sidebar.php:114
-#: themes/effervescence_plus/themeoptions.php:75
-#: themes/effervescence_plus/themeoptions.php:88 themes/garland/sidebar.php:46
-#: themes/garland/sidebar.php:52 themes/garland/themeoptions.php:53
-#: themes/zenpage/sidebar.php:27 themes/zenpage/sidebar.php:32
-#: themes/zenpage/sidebar.php:37 themes/zenpage/sidebar.php:62
-#: themes/zenpage/sidebar.php:89 themes/zenpage/themeoptions.php:54
-#: themes/zpmobile/album.php:27 themes/zpmobile/favorites.php:28
-#: themes/zpmobile/functions.php:40 themes/zpmobile/functions.php:71
-#: themes/zpmobile/functions.php:167 themes/zpmobile/image.php:28
-#: zp-core/admin-edit.php:1589 zp-core/admin-options.php:2620
-#: zp-core/admin-options.php:2621 zp-core/admin-themes.php:101
-#: zp-core/admin-themes.php:102 zp-core/lib-auth.php:520
-#: zp-core/lib-auth.php:521 zp-core/lib-auth.php:522 zp-core/lib-auth.php:523
-#: zp-core/lib-auth.php:524 zp-core/lib-auth.php:528 zp-core/lib-auth.php:532
-#: zp-core/lib-auth.php:540 zp-core/lib-auth.php:541 zp-core/lib-auth.php:547
-#: zp-core/lib-auth.php:548 zp-core/lib-auth.php:552 zp-core/lib-auth.php:557
-#: zp-core/lib-auth.php:558 zp-core/lib-auth.php:566 zp-core/lib-auth.php:567
-#: zp-core/lib-auth.php:573 zp-core/lib-auth.php:574 zp-core/lib-auth.php:578
-#: zp-core/lib-auth.php:584 zp-core/lib-auth.php:585
-#: zp-core/setup/setup-option-defaults.php:395
-#: zp-core/setup/setup-option-defaults.php:396
-#: zp-core/template-functions.php:442 zp-core/template-functions.php:623
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:151
-#: zp-core/zp-extensions/defaultCodeblocks.php:35
-#: zp-core/zp-extensions/rss.php:80
-msgid "Gallery"
-msgstr "Galerie"
-
-#: themes/effervescence_plus/sidebar.php:53 themes/garland/sidebar.php:63
-#: zp-core/admin-functions.php:2034 zp-core/admin-functions.php:3317
-#: zp-core/lib-auth.php:525 zp-core/lib-auth.php:531 zp-core/lib-auth.php:542
-#: zp-core/lib-auth.php:545 zp-core/lib-auth.php:546 zp-core/lib-auth.php:549
-#: zp-core/lib-auth.php:553 zp-core/lib-auth.php:556 zp-core/lib-auth.php:568
-#: zp-core/lib-auth.php:571 zp-core/lib-auth.php:572 zp-core/lib-auth.php:575
-#: zp-core/lib-auth.php:579 zp-core/lib-auth.php:582
-#: zp-core/template-functions.php:114
-#: zp-core/utilities/gallery_statistics.php:72
-#: zp-core/utilities/gallery_statistics.php:589
-#: zp-core/zp-extensions/cacheManager.php:152
-#: zp-core/zp-extensions/comment_form.php:83
-#: zp-core/zp-extensions/galleryArticles.php:66
-#: zp-core/zp-extensions/multiple_layouts.php:93
-#: zp-core/zp-extensions/related_items.php:155
-msgid "Albums"
-msgstr "Albums"
-
-#: themes/effervescence_plus/sidebar.php:70
-#: themes/effervescence_plus/themeoptions.php:78 themes/garland/sidebar.php:80
-#: themes/garland/themeoptions.php:56 themes/zenpage/sidebar.php:47
-#: themes/zenpage/themeoptions.php:57 themes/zpmobile/functions.php:75
-#: themes/zpmobile/functions.php:173 themes/zpmobile/pages.php:27
-#: themes/zpmobile/pages.php:33 zp-core/admin-functions.php:3208
-#: zp-core/admin-functions.php:3344 zp-core/class-userdataexport.php:385
-#: zp-core/lib-auth.php:526 zp-core/lib-auth.php:529 zp-core/lib-auth.php:544
-#: zp-core/lib-auth.php:551 zp-core/lib-auth.php:555 zp-core/lib-auth.php:570
-#: zp-core/lib-auth.php:577 zp-core/lib-auth.php:581
-#: zp-core/utilities/gallery_statistics.php:80
-#: zp-core/utilities/gallery_statistics.php:607
-#: zp-core/zp-extensions/cacheManager.php:155
-#: zp-core/zp-extensions/comment_form.php:87
-#: zp-core/zp-extensions/multiple_layouts.php:95
-#: zp-core/zp-extensions/related_items.php:155
-#: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:104
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:482
-#: zp-core/zp-extensions/zenpage.php:364
-#: zp-core/zp-extensions/zenpage/admin-pages.php:105
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1315
-msgid "Pages"
-msgstr "Pages"
-
-#: themes/effervescence_plus/sidebar.php:80
-#: themes/effervescence_plus/themeoptions.php:81 themes/zenpage/sidebar.php:56
-#: themes/zpmobile/functions.php:78 zp-core/template-functions.php:1407
-#: zp-core/template-functions.php:1462
-#: zp-core/zp-extensions/scriptless-socialsharing.php:181
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:836
-msgid "Archive"
-msgstr "Archive"
-
-#: themes/effervescence_plus/sidebar.php:84
-#: themes/effervescence_plus/themeoptions.php:82
-msgid "Gallery and News"
-msgstr "Galerie et actualités"
-
-#: themes/effervescence_plus/sidebar.php:110
-#: themes/effervescence_plus/themeoptions.php:87 themes/zenpage/sidebar.php:79
-#: themes/zpmobile/functions.php:30
-msgid "RSS"
-msgstr "Flux RSS"
-
-#: themes/effervescence_plus/sidebar.php:116
-#: themes/effervescence_plus/themeoptions.php:89 themes/zenpage/sidebar.php:93
-#: themes/zpmobile/functions.php:36 themes/zpmobile/functions.php:73
-#: themes/zpmobile/functions.php:161 zp-core/admin-functions.php:3208
-#: zp-core/admin-functions.php:3330 zp-core/lib-auth.php:527
-#: zp-core/lib-auth.php:530 zp-core/lib-auth.php:543 zp-core/lib-auth.php:550
-#: zp-core/lib-auth.php:554 zp-core/lib-auth.php:569 zp-core/lib-auth.php:576
-#: zp-core/lib-auth.php:580 zp-core/template-functions.php:412
-#: zp-core/template-functions.php:414 zp-core/template-functions.php:416
-#: zp-core/zp-extensions/cacheManager.php:154
-#: zp-core/zp-extensions/comment_form.php:88
-#: zp-core/zp-extensions/comment_form/functions.php:861
-#: zp-core/zp-extensions/comment_form/functions.php:868
-#: zp-core/zp-extensions/defaultCodeblocks.php:37
-#: zp-core/zp-extensions/html_meta_tags.php:308
-#: zp-core/zp-extensions/multiple_layouts.php:95
-#: zp-core/zp-extensions/related_items.php:155
-#: zp-core/zp-extensions/related_items.php:190
-#: zp-core/zp-extensions/scriptless-socialsharing.php:162
-#: zp-core/zp-extensions/zenpage.php:361
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:843
-msgid "News"
-msgstr "Actualités"
-
-#: themes/effervescence_plus/slideshow.php:34
-msgid "Main Index"
-msgstr "Accueil principal"
-
-#: themes/effervescence_plus/theme_description.php:7
-msgid ""
-"<a href=\"http://angoulvant.net/\">Stephane Angoulvant</a> with "
-"modifications by Stephen Billard (sbillard)"
-msgstr ""
-"<a href=\"http://sblog.angoulvant.net/\">Stephane Angoulvant</a>, modifié "
-"par <a href=\"http://stephen.sbillard.org/\">Stephen Billard (sbillard)</a>"
-
-#: themes/effervescence_plus/theme_description.php:10
-msgid ""
-"Based on Effervescence 1.1 with multiple color schemes and personalities "
-"added."
-msgstr ""
-"D’après Effervescence 1.1 avec de nombreux coloris et options "
-"supplémentaires."
-
-#: themes/effervescence_plus/themeoptions.php:70
-#: themes/garland/themeoptions.php:48 themes/zenpage/themeoptions.php:52
-#: zp-core/utilities/gallery_statistics.php:84
-#: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:102
-msgid "News Articles"
-msgstr "Articles d’actualité"
-
-#: themes/effervescence_plus/themeoptions.php:74
-#: themes/garland/themeoptions.php:52
-msgid "News Articles Rule"
-msgstr "Règle pour les articles d’actualité"
-
-#: themes/effervescence_plus/themeoptions.php:76
-#: themes/garland/themeoptions.php:54 themes/zenpage/themeoptions.php:56
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:76
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:245
-msgid "All Albums"
-msgstr "Tous les albums"
-
-#: themes/effervescence_plus/themeoptions.php:77
-#: themes/garland/themeoptions.php:55
-msgid "Gallery Rule"
-msgstr "Règle pour la galerie"
-
-#: themes/effervescence_plus/themeoptions.php:79
-#: themes/garland/themeoptions.php:57 themes/zenpage/themeoptions.php:58
-msgid "All pages"
-msgstr "Toutes les pages"
-
-#: themes/effervescence_plus/themeoptions.php:80
-#: themes/garland/themeoptions.php:58
-msgid "Pages Rule"
-msgstr "Règle pour les pages"
-
-#: themes/effervescence_plus/themeoptions.php:83
-msgid "Archive Rule"
-msgstr "Règle pour les archives"
-
-#: themes/effervescence_plus/themeoptions.php:90
-msgid "News and Gallery"
-msgstr "Actualités et galerie"
-
-#: themes/effervescence_plus/themeoptions.php:104
-msgid ""
-"<strong>Note:</strong> This option is valid only if you have the <em>Gallery "
-"index page link</em> option set to \"gallery\". Of course the "
-"<em>menu_manager</em> plugin must also be enabled."
-msgstr ""
-"<strong>Note. </strong>Cette option n’est valable que si l’option <em>Lien "
-"vers la page d’accueil de la galerie</em> a comme valeur « galerie ». De "
-"plus, l’extension <em>menu_manager</em> doit être activée."
-
-#: themes/effervescence_plus/themeoptions.php:107
-#: themes/garland/themeoptions.php:71
-#, php-format
-msgid ""
-"<strong>Note:</strong> The <em>%s</em> custom menu makes use of the "
-"<em>print_album_menu</em> plugin."
-msgstr ""
-"<strong>Note. </strong> Le menu personnalisé <em>%s</em> utilise l’extension "
-"<em>print_album_menu</em>."
-
-#: themes/effervescence_plus/themeoptions.php:109
-msgid "Theme logo"
-msgstr "Signature du thème"
-
-#: themes/effervescence_plus/themeoptions.php:109
-msgid "The text for the theme logo"
-msgstr "Le texte de remplacement pour le logo du thème"
-
-#: themes/effervescence_plus/themeoptions.php:110
-msgid "Watermark head image"
-msgstr "Filigrane de l’image de la une"
-
-#: themes/effervescence_plus/themeoptions.php:110
-msgid ""
-"Check to place a watermark on the heading image. (Image watermarking must be "
-"set.)"
-msgstr ""
-"Cocher pour placer un filigrane sur l’image de la une (l’utilisation de "
-"filigranes sur les images doit être activée)."
-
-#: themes/effervescence_plus/themeoptions.php:111
-msgid "Daily image"
-msgstr "Image du jour"
-
-#: themes/effervescence_plus/themeoptions.php:111
-msgid ""
-"If checked on the heading image will change daily rather than on each page "
-"load."
-msgstr ""
-"Si cette option est activée, l’image de la une changera une fois par jour "
-"plutôt qu’à chaque fois que la page est chargée."
-
-#: themes/effervescence_plus/themeoptions.php:113
-#: themes/zenpage/slideshow.php:12
-msgid "Slideshow"
-msgstr "Diaporama"
-
-#: themes/effervescence_plus/themeoptions.php:113
-msgid "Check to enable slideshow for the <em>Smoothgallery</em> personality."
-msgstr ""
-"Cocher pour activer le diaporama dans le cas d’une présentation "
-"<em>Smoothgallery</em>."
-
-#: themes/effervescence_plus/themeoptions.php:114
-msgid "Graphic logo"
-msgstr "Logo graphique"
-
-#: themes/effervescence_plus/themeoptions.php:114
-#, php-format
-msgid ""
-"Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty "
-"for text logo."
-msgstr ""
-"Sélectionner un logo (un des fichiers PNG du dossier <em>%s/images</em>) ou "
-"laisser vide pour afficher un logo textuel."
-
-#: themes/effervescence_plus/themeoptions.php:115
-#: themes/garland/themeoptions.php:76
-msgid "Theme personality"
-msgstr "Présentation du thème"
-
-#: themes/effervescence_plus/themeoptions.php:118
-#: themes/garland/themeoptions.php:78
-msgid "Select the theme personality"
-msgstr "Choisir la présentation du thème"
-
-#: themes/effervescence_plus/themeoptions.php:120
-#: themes/effervescence_plus/themeoptions.php:124
-#: themes/garland/themeoptions.php:81
-msgid "Custom menu"
-msgstr "Menu personnalisé"
-
-#: themes/effervescence_plus/themeoptions.php:120
-#: themes/garland/themeoptions.php:81
-msgid "Set this to the <em>menu_manager</em> menu you wish to use."
-msgstr ""
-"Choisir le jeu de menus du <em>menu_manager</em> que vous voulez utiliser."
-
-#: themes/effervescence_plus/themeoptions.php:128
-#: themes/garland/themeoptions.php:95
-msgid "Image gallery transition"
-msgstr "Transition entre les images de la galerie"
-
-#: themes/effervescence_plus/themeoptions.php:129
-#: themes/garland/themeoptions.php:96 zp-core/admin-options.php:3374
-#: zp-core/exif/makers/canon.php:155 zp-core/exif/makers/nikon.php:216
-#: zp-core/zp-extensions/GoogleMap.php:103
-#: zp-core/zp-extensions/user_login-out.php:37
-msgid "None"
-msgstr "Aucun"
-
-#: themes/effervescence_plus/themeoptions.php:129
-#: themes/garland/themeoptions.php:96
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:78
-msgid "Fade"
-msgstr "Fondu"
-
-#: themes/effervescence_plus/themeoptions.php:129
-#: themes/garland/themeoptions.php:96
-msgid "Shrink/grow"
-msgstr "Ajuster (réduire ou agrandir)"
-
-#: themes/effervescence_plus/themeoptions.php:129
-#: themes/garland/themeoptions.php:96 zp-core/zp-extensions/GoogleMap.php:106
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:76
-msgid "Horizontal"
-msgstr "Horizontal"
-
-#: themes/effervescence_plus/themeoptions.php:129
-#: themes/garland/themeoptions.php:96
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:77
-#: zp-core/zp-extensions/slideshow2.php:117
-msgid "Vertical"
-msgstr "Vertical"
-
-#: themes/effervescence_plus/themeoptions.php:131
-#: themes/garland/themeoptions.php:98
-msgid "Transition effect for Image gallery"
-msgstr "Effet de transition appliqué entre les images de la galerie"
-
-#: themes/effervescence_plus/themeoptions.php:132
-#: themes/garland/themeoptions.php:99
-msgid "Image gallery caption"
-msgstr "Légende de la galerie d’images"
-
-#: themes/effervescence_plus/themeoptions.php:133
-#: themes/garland/themeoptions.php:100
-msgid "On image"
-msgstr "Sur l’image"
-
-#: themes/effervescence_plus/themeoptions.php:133
-#: themes/garland/themeoptions.php:100
-msgid "Separate"
-msgstr "À part"
-
-#: themes/effervescence_plus/themeoptions.php:133
-#: themes/garland/themeoptions.php:100
-#: zp-core/zp-extensions/comment_form.php:103
-#: zp-core/zp-extensions/comment_form.php:112
-#: zp-core/zp-extensions/comment_form.php:121
-#: zp-core/zp-extensions/comment_form.php:130
-#: zp-core/zp-extensions/comment_form.php:139
-#: zp-core/zp-extensions/register_user.php:128
-msgid "Omit"
-msgstr "Aucun"
-
-#: themes/effervescence_plus/themeoptions.php:135
-#: themes/garland/themeoptions.php:102
-msgid "Location for Image gallery picture caption"
-msgstr "Localisation des bas de vignettes des images de la galerie"
-
-#: themes/effervescence_plus/themeoptions.php:145
-#: themes/effervescence_plus/themeoptions.php:150
-#: themes/effervescence_plus/themeoptions.php:151
-msgid "Index Image"
-msgstr "Image de la page d’accueil"
-
-#: themes/effervescence_plus/themeoptions.php:146
-#: themes/garland/themeoptions.php:91 themes/zenpage/themeoptions.php:73
-#: zp-core/admin-edit.php:1221 zp-core/admin-options.php:2201
-#: zp-core/admin-options.php:2214 zp-core/admin-options.php:2242
-#: zp-core/admin-options.php:2961 zp-core/zp-extensions/slideshow2.php:102
-#: zp-core/zp-extensions/slideshow2.php:140
-msgid "none"
-msgstr "aucune"
-
-#: themes/effervescence_plus/themeoptions.php:148
-msgid "Apply this effect to the index page image."
-msgstr "Appliquer cet effet à l’image de la page d’accueil."
-
-#: themes/effervescence_plus/themeoptions.php:151
-msgid "This option requires the <em>image_effects</em> plugin to be enabled."
-msgstr ""
-"Cette extension nécessite que l’extension <em>image_effects</em> soit "
-"activée."
-
-#: themes/effervescence_plus/themeoptions.php:185
-#: themes/garland/themeoptions.php:121
-msgid "*standard menu"
-msgstr "*menu standard"
-
-#: themes/effervescence_plus/themeoptions.php:192
-msgid "*no logo selected"
-msgstr "*aucun logo sélectionné"
-
-#: themes/effervescence_plus/themeoptions.php:193
-msgid "Effervescence"
-msgstr "Effervescence"
 
 #: themes/garland/404.php:23 themes/garland/album.php:28
 #: themes/garland/archive.php:22 themes/garland/contact.php:23
@@ -1044,6 +237,10 @@ msgstr "Effervescence"
 msgid "Gallery Index"
 msgstr "Accueil de la galerie"
 
+#: themes/garland/404.php:44 themes/garland/404.php:46
+msgid "Page not found"
+msgstr "Page non trouvée"
+
 #: themes/garland/album.php:54 themes/garland/album.php:59
 #: themes/garland/favorites.php:51 themes/garland/favorites.php:56
 #: themes/garland/gallery.php:46 themes/garland/gallery.php:51
@@ -1051,6 +248,24 @@ msgstr "Accueil de la galerie"
 #, php-format
 msgid "View album:  %s"
 msgstr "Voir l’album : %s"
+
+#: themes/garland/album.php:77 themes/garland/favorites.php:91
+#: themes/garland/functions.php:189 themes/garland/gallery.php:62
+#: themes/garland/search.php:225 themes/zenpage/gallery.php:61
+#: themes/zenpage/gallery.php:86 themes/zenpage/news.php:70
+#: themes/zenpage/news.php:107 themes/zpmobile/news.php:67
+#: themes/zpmobile/news.php:82
+msgid "« prev"
+msgstr "‹‹ préc."
+
+#: themes/garland/album.php:77 themes/garland/favorites.php:91
+#: themes/garland/functions.php:189 themes/garland/gallery.php:62
+#: themes/garland/search.php:225 themes/zenpage/gallery.php:61
+#: themes/zenpage/gallery.php:86 themes/zenpage/news.php:70
+#: themes/zenpage/news.php:107 themes/zpmobile/news.php:67
+#: themes/zpmobile/news.php:82
+msgid "next »"
+msgstr "suiv. ››"
 
 #: themes/garland/album.php:101 themes/garland/favorites.php:112
 msgid "Album Navigation"
@@ -1082,9 +297,61 @@ msgstr "Tags : "
 msgid "Latest Images for %s"
 msgstr "Images récentes de %s"
 
+#: themes/garland/archive.php:45
+msgid "Images By Date"
+msgstr "Images par date"
+
+#: themes/garland/archive.php:50 themes/zenpage/archive.php:43
+#: themes/zpmobile/archive.php:33
+msgid "News archive"
+msgstr "Archives des actualités"
+
 #: themes/garland/functions.php:68
 msgid "Garland image display handling."
 msgstr "Mode d’affichage des images du thème Garland."
+
+#: themes/garland/functions.php:69
+msgid "Personality"
+msgstr "Présentation"
+
+#: themes/garland/functions.php:152
+msgid "album"
+msgstr "album"
+
+#: themes/garland/functions.php:152 zp-core/admin-edit.php:1358
+#: zp-core/admin-globals.php:110 zp-core/admin-options.php:2896
+#: zp-core/zp-extensions/image_album_statistics.php:266
+msgid "image"
+msgstr "image"
+
+#: themes/garland/functions.php:152
+msgid "video"
+msgstr "vidéo"
+
+#: themes/garland/functions.php:152 themes/garland/functions.php:154
+#: themes/zenpage/gallery.php:66 zp-core/admin-globals.php:76
+#: zp-core/zp-extensions/tinyURL.php:81
+msgid "news"
+msgstr "actualités"
+
+#: themes/garland/functions.php:156
+#: zp-core/zp-extensions/zenpage/admin-edit.php:455
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:272
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:275
+msgid "sticky"
+msgstr "épinglé"
+
+#: themes/garland/functions.php:169 themes/garland/news.php:62
+#, php-format
+msgid "Comments: %d"
+msgstr "Commentaires : %d"
+
+#: themes/garland/functions.php:176 themes/garland/news.php:107
+#: themes/zenpage/gallery.php:75 themes/zenpage/news.php:58
+#: themes/zenpage/news.php:93 themes/zpmobile/news.php:44
+#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/zoom.php:48
+msgid "Categories: "
+msgstr "Catégories : "
 
 #: themes/garland/gallery.php:80 themes/garland/main.php:56
 msgid "Latest Images"
@@ -1106,6 +373,15 @@ msgstr "Image précédente"
 msgid "« Previous"
 msgstr "‹‹ Précédente"
 
+#: themes/garland/image_gallery/functions.php:46
+#: zp-core/zp-extensions/uploader_jQuery/upload_form.php:139
+msgid "Start"
+msgstr "Démarrer"
+
+#: themes/garland/image_gallery/functions.php:47
+msgid "Stop"
+msgstr "Arrêter"
+
 #: themes/garland/password.php:41 zp-core/password.php:6
 #: zp-core/template-functions.php:447
 #: zp-core/zp-extensions/html_meta_tags.php:326
@@ -1116,9 +392,139 @@ msgstr "Un mot de passe est requis"
 msgid "A password is required to access this page."
 msgstr "Il faut un mot de passe pour accéder à cette page."
 
+#: themes/garland/search.php:93 themes/zenpage/search.php:75
+#: themes/zpmobile/search.php:69
+#, php-format
+msgid "%1$u Hit for <em>%2$s</em>"
+msgid_plural "%1$u Hits for <em>%2$s</em>"
+msgstr[0] "%1$u affichage sur <em>%2$s</em>"
+msgstr[1] "%1$u affichages sur <em>%2$s</em>"
+
 #: themes/garland/search.php:98
 msgid "Sorry, no matches for your search."
 msgstr "Désolé, aucune correspondance."
+
+#: themes/garland/search.php:112 themes/zenpage/search.php:86
+#: themes/zpmobile/search.php:80
+#, php-format
+msgid "Pages (%s)"
+msgstr "Pages (%s)"
+
+#: themes/garland/search.php:116 themes/garland/search.php:149
+#: themes/zenpage/functions.php:46 themes/zpmobile/functions.php:257
+msgid "Show more results"
+msgstr "Afficher plus de résultats"
+
+#: themes/garland/search.php:117 themes/garland/search.php:150
+#: themes/zenpage/functions.php:47 themes/zpmobile/functions.php:258
+msgid "Show fewer results"
+msgstr "Afficher moins de résultats"
+
+#: themes/garland/search.php:145 themes/zenpage/search.php:106
+#: themes/zpmobile/search.php:100
+#, php-format
+msgid "Articles (%s)"
+msgstr "Articles (%s)"
+
+#: themes/garland/search.php:182 themes/zenpage/search.php:128
+#: themes/zpmobile/search.php:122
+#, php-format
+msgid "Images (%s)"
+msgstr "Images (%s)"
+
+#: themes/garland/search.php:186 themes/zenpage/search.php:133
+#: themes/zpmobile/search.php:127
+#, php-format
+msgid "Albums (%s)"
+msgstr "Albums (%s)"
+
+#: themes/garland/search.php:188 themes/zenpage/search.php:136
+#: themes/zpmobile/search.php:130
+#, php-format
+msgid "Albums (%1$s) &amp; Images (%2$s)"
+msgstr "Albums (%1$s) et images (%2$s)"
+
+#: themes/garland/sidebar.php:27 themes/zenpage/sidebar.php:14
+#: zp-core/class-userdataexport.php:434
+#: zp-core/utilities/gallery_statistics.php:615
+msgid "News articles"
+msgstr "Articles d’actualité"
+
+#: themes/garland/sidebar.php:29 themes/garland/themeoptions.php:49
+#: themes/zenpage/sidebar.php:16 themes/zenpage/themeoptions.php:53
+#: themes/zpmobile/functions.php:162
+msgid "All news"
+msgstr "Toutes les actualités"
+
+#: themes/garland/sidebar.php:46 themes/garland/sidebar.php:66
+#: themes/zenpage/sidebar.php:27
+msgid "Album index"
+msgstr "Racine des albums"
+
+#: themes/garland/sidebar.php:46 themes/garland/sidebar.php:52
+#: themes/garland/themeoptions.php:53 themes/zenpage/sidebar.php:27
+#: themes/zenpage/sidebar.php:32 themes/zenpage/sidebar.php:37
+#: themes/zenpage/sidebar.php:62 themes/zenpage/sidebar.php:89
+#: themes/zenpage/themeoptions.php:54 themes/zpmobile/album.php:27
+#: themes/zpmobile/favorites.php:28 themes/zpmobile/functions.php:40
+#: themes/zpmobile/functions.php:71 themes/zpmobile/functions.php:167
+#: themes/zpmobile/image.php:28 zp-core/admin-edit.php:1589
+#: zp-core/admin-options.php:2620 zp-core/admin-options.php:2621
+#: zp-core/admin-themes.php:101 zp-core/admin-themes.php:102
+#: zp-core/lib-auth.php:520 zp-core/lib-auth.php:521 zp-core/lib-auth.php:522
+#: zp-core/lib-auth.php:523 zp-core/lib-auth.php:524 zp-core/lib-auth.php:528
+#: zp-core/lib-auth.php:532 zp-core/lib-auth.php:540 zp-core/lib-auth.php:541
+#: zp-core/lib-auth.php:547 zp-core/lib-auth.php:548 zp-core/lib-auth.php:552
+#: zp-core/lib-auth.php:557 zp-core/lib-auth.php:558 zp-core/lib-auth.php:566
+#: zp-core/lib-auth.php:567 zp-core/lib-auth.php:573 zp-core/lib-auth.php:574
+#: zp-core/lib-auth.php:578 zp-core/lib-auth.php:584 zp-core/lib-auth.php:585
+#: zp-core/setup/setup-option-defaults.php:395
+#: zp-core/setup/setup-option-defaults.php:396
+#: zp-core/template-functions.php:442 zp-core/template-functions.php:623
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:151
+#: zp-core/zp-extensions/defaultCodeblocks.php:35
+#: zp-core/zp-extensions/rss.php:80
+msgid "Gallery"
+msgstr "Galerie"
+
+#: themes/garland/sidebar.php:63 zp-core/admin-functions.php:2034
+#: zp-core/admin-functions.php:3317 zp-core/lib-auth.php:525
+#: zp-core/lib-auth.php:531 zp-core/lib-auth.php:542 zp-core/lib-auth.php:545
+#: zp-core/lib-auth.php:546 zp-core/lib-auth.php:549 zp-core/lib-auth.php:553
+#: zp-core/lib-auth.php:556 zp-core/lib-auth.php:568 zp-core/lib-auth.php:571
+#: zp-core/lib-auth.php:572 zp-core/lib-auth.php:575 zp-core/lib-auth.php:579
+#: zp-core/lib-auth.php:582 zp-core/template-functions.php:114
+#: zp-core/utilities/gallery_statistics.php:72
+#: zp-core/utilities/gallery_statistics.php:589
+#: zp-core/zp-extensions/cacheManager.php:152
+#: zp-core/zp-extensions/comment_form.php:83
+#: zp-core/zp-extensions/galleryArticles.php:66
+#: zp-core/zp-extensions/multiple_layouts.php:93
+#: zp-core/zp-extensions/related_items.php:155
+msgid "Albums"
+msgstr "Albums"
+
+#: themes/garland/sidebar.php:80 themes/garland/themeoptions.php:56
+#: themes/zenpage/sidebar.php:47 themes/zenpage/themeoptions.php:57
+#: themes/zpmobile/functions.php:75 themes/zpmobile/functions.php:173
+#: themes/zpmobile/pages.php:27 themes/zpmobile/pages.php:33
+#: zp-core/admin-functions.php:3208 zp-core/admin-functions.php:3344
+#: zp-core/class-userdataexport.php:442 zp-core/lib-auth.php:526
+#: zp-core/lib-auth.php:529 zp-core/lib-auth.php:544 zp-core/lib-auth.php:551
+#: zp-core/lib-auth.php:555 zp-core/lib-auth.php:570 zp-core/lib-auth.php:577
+#: zp-core/lib-auth.php:581 zp-core/utilities/gallery_statistics.php:80
+#: zp-core/utilities/gallery_statistics.php:607
+#: zp-core/zp-extensions/cacheManager.php:155
+#: zp-core/zp-extensions/comment_form.php:87
+#: zp-core/zp-extensions/multiple_layouts.php:95
+#: zp-core/zp-extensions/related_items.php:155
+#: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:104
+#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:482
+#: zp-core/zp-extensions/zenpage.php:364
+#: zp-core/zp-extensions/zenpage/admin-pages.php:105
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1315
+msgid "Pages"
+msgstr "Pages"
 
 #: themes/garland/theme_description.php:10
 msgid ""
@@ -1127,6 +533,51 @@ msgid ""
 msgstr ""
 "Développé à partir du thème <a href=\"http://garlandtheme.blogspot.com/"
 "\">Garland</a> de Wordpress"
+
+#: themes/garland/themeoptions.php:48 themes/zenpage/themeoptions.php:52
+#: zp-core/utilities/gallery_statistics.php:84
+#: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:102
+msgid "News Articles"
+msgstr "Articles d’actualité"
+
+#: themes/garland/themeoptions.php:52
+msgid "News Articles Rule"
+msgstr "Règle pour les articles d’actualité"
+
+#: themes/garland/themeoptions.php:54 themes/zenpage/themeoptions.php:56
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:76
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:245
+msgid "All Albums"
+msgstr "Tous les albums"
+
+#: themes/garland/themeoptions.php:55
+msgid "Gallery Rule"
+msgstr "Règle pour la galerie"
+
+#: themes/garland/themeoptions.php:57 themes/zenpage/themeoptions.php:58
+msgid "All pages"
+msgstr "Toutes les pages"
+
+#: themes/garland/themeoptions.php:58
+msgid "Pages Rule"
+msgstr "Règle pour les pages"
+
+#: themes/garland/themeoptions.php:71
+#, php-format
+msgid ""
+"<strong>Note:</strong> The <em>%s</em> custom menu makes use of the "
+"<em>print_album_menu</em> plugin."
+msgstr ""
+"<strong>Note. </strong> Le menu personnalisé <em>%s</em> utilise l’extension "
+"<em>print_album_menu</em>."
+
+#: themes/garland/themeoptions.php:76
+msgid "Theme personality"
+msgstr "Présentation du thème"
+
+#: themes/garland/themeoptions.php:78
+msgid "Select the theme personality"
+msgstr "Choisir la présentation du thème"
 
 #: themes/garland/themeoptions.php:79
 msgid "Set to enable search form."
@@ -1140,9 +591,26 @@ msgstr "Autoriser le nuage de tags"
 msgid "Set to enable tag cloud for album page."
 msgstr "Active le nuage de tags pour la page de l’album."
 
+#: themes/garland/themeoptions.php:81
+msgid "Custom menu"
+msgstr "Menu personnalisé"
+
+#: themes/garland/themeoptions.php:81
+msgid "Set this to the <em>menu_manager</em> menu you wish to use."
+msgstr ""
+"Choisir le jeu de menus du <em>menu_manager</em> que vous voulez utiliser."
+
 #: themes/garland/themeoptions.php:89
 msgid "Custom Homepage"
 msgstr "Page d’accueil personnalisée"
+
+#: themes/garland/themeoptions.php:91 themes/zenpage/themeoptions.php:73
+#: zp-core/admin-edit.php:1221 zp-core/admin-options.php:2201
+#: zp-core/admin-options.php:2214 zp-core/admin-options.php:2242
+#: zp-core/admin-options.php:2961 zp-core/zp-extensions/slideshow2.php:102
+#: zp-core/zp-extensions/slideshow2.php:140
+msgid "none"
+msgstr "aucune"
 
 #: themes/garland/themeoptions.php:92
 msgid ""
@@ -1151,6 +619,89 @@ msgid ""
 msgstr ""
 "Sélectionner le titre-lien de la <em>page</em> utilisée comme page "
 "d’accueil. La sélection s’effectue parmi les pages non publiées."
+
+#: themes/garland/themeoptions.php:95
+msgid "Image gallery transition"
+msgstr "Transition entre les images de la galerie"
+
+#: themes/garland/themeoptions.php:96 zp-core/admin-options.php:3374
+#: zp-core/exif/makers/canon.php:155 zp-core/exif/makers/nikon.php:216
+#: zp-core/zp-extensions/GoogleMap.php:103
+#: zp-core/zp-extensions/user_login-out.php:37
+msgid "None"
+msgstr "Aucun"
+
+#: themes/garland/themeoptions.php:96
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:78
+msgid "Fade"
+msgstr "Fondu"
+
+#: themes/garland/themeoptions.php:96
+msgid "Shrink/grow"
+msgstr "Ajuster (réduire ou agrandir)"
+
+#: themes/garland/themeoptions.php:96 zp-core/zp-extensions/GoogleMap.php:106
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:76
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#: themes/garland/themeoptions.php:96
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:77
+#: zp-core/zp-extensions/slideshow2.php:117
+msgid "Vertical"
+msgstr "Vertical"
+
+#: themes/garland/themeoptions.php:98
+msgid "Transition effect for Image gallery"
+msgstr "Effet de transition appliqué entre les images de la galerie"
+
+#: themes/garland/themeoptions.php:99
+msgid "Image gallery caption"
+msgstr "Légende de la galerie d’images"
+
+#: themes/garland/themeoptions.php:100
+msgid "On image"
+msgstr "Sur l’image"
+
+#: themes/garland/themeoptions.php:100
+msgid "Separate"
+msgstr "À part"
+
+#: themes/garland/themeoptions.php:100
+#: zp-core/zp-extensions/comment_form.php:103
+#: zp-core/zp-extensions/comment_form.php:112
+#: zp-core/zp-extensions/comment_form.php:121
+#: zp-core/zp-extensions/comment_form.php:130
+#: zp-core/zp-extensions/comment_form.php:139
+#: zp-core/zp-extensions/register_user.php:128
+msgid "Omit"
+msgstr "Aucun"
+
+#: themes/garland/themeoptions.php:102
+msgid "Location for Image gallery picture caption"
+msgstr "Localisation des bas de vignettes des images de la galerie"
+
+#: themes/garland/themeoptions.php:121
+msgid "*standard menu"
+msgstr "*menu standard"
+
+#: themes/zenpage/404.php:27 themes/zenpage/album.php:25
+#: themes/zenpage/archive.php:26 themes/zenpage/contact.php:26
+#: themes/zenpage/favorites.php:25 themes/zenpage/gallery.php:26
+#: themes/zenpage/news.php:25 themes/zenpage/pages.php:25
+#: themes/zenpage/password.php:25 themes/zenpage/register.php:26
+#: themes/zenpage/search.php:41 themes/zenpage/search.php:46
+#: themes/zenpage/search.php:48 themes/zpmobile/functions.php:67
+#: themes/zpmobile/search.php:46 themes/zpmobile/search.php:51
+#: themes/zpmobile/search.php:53 zp-core/template-functions.php:445
+#: zp-core/template-functions.php:1424 zp-core/template-functions.php:1455
+#: zp-core/template-functions.php:4010
+#: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
+#: zp-core/zp-extensions/html_meta_tags.php:326
+#: zp-core/zp-extensions/scriptless-socialsharing.php:187
+#: zp-core/zp-extensions/slideshow2.php:733
+msgid "Search"
+msgstr "Recherche"
 
 #: themes/zenpage/archive.php:39 themes/zpmobile/archive.php:29
 msgid "Gallery archive"
@@ -1180,13 +731,51 @@ msgstr "vignettes suivantes ››"
 msgid "Sorry, no matches found. Try refining your search."
 msgstr "Désolé, aucune correspondance. Essayez de préciser votre recherche."
 
+#: themes/zenpage/sidebar.php:56 themes/zpmobile/functions.php:78
+#: zp-core/template-functions.php:1407 zp-core/template-functions.php:1462
+#: zp-core/zp-extensions/scriptless-socialsharing.php:181
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:836
+msgid "Archive"
+msgstr "Archive"
+
 #: themes/zenpage/sidebar.php:60
 msgid "Gallery And News"
 msgstr "Galerie et actualités"
 
+#: themes/zenpage/sidebar.php:79 themes/zpmobile/functions.php:30
+msgid "RSS"
+msgstr "Flux RSS"
+
 #: themes/zenpage/sidebar.php:83
 msgid "Album RSS"
 msgstr "Flux RSS de l’album"
+
+#: themes/zenpage/sidebar.php:93 themes/zpmobile/functions.php:36
+#: themes/zpmobile/functions.php:73 themes/zpmobile/functions.php:161
+#: zp-core/admin-functions.php:3208 zp-core/admin-functions.php:3330
+#: zp-core/lib-auth.php:527 zp-core/lib-auth.php:530 zp-core/lib-auth.php:543
+#: zp-core/lib-auth.php:550 zp-core/lib-auth.php:554 zp-core/lib-auth.php:569
+#: zp-core/lib-auth.php:576 zp-core/lib-auth.php:580
+#: zp-core/template-functions.php:412 zp-core/template-functions.php:414
+#: zp-core/template-functions.php:416
+#: zp-core/zp-extensions/cacheManager.php:154
+#: zp-core/zp-extensions/comment_form.php:88
+#: zp-core/zp-extensions/comment_form/functions.php:861
+#: zp-core/zp-extensions/comment_form/functions.php:868
+#: zp-core/zp-extensions/defaultCodeblocks.php:37
+#: zp-core/zp-extensions/html_meta_tags.php:308
+#: zp-core/zp-extensions/multiple_layouts.php:95
+#: zp-core/zp-extensions/related_items.php:155
+#: zp-core/zp-extensions/related_items.php:190
+#: zp-core/zp-extensions/scriptless-socialsharing.php:162
+#: zp-core/zp-extensions/zenpage.php:361
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:843
+msgid "News"
+msgstr "Actualités"
+
+#: themes/zenpage/slideshow.php:12
+msgid "Slideshow"
+msgstr "Diaporama"
 
 #: themes/zenpage/theme_description.php:10
 msgid ""
@@ -1300,6 +889,13 @@ msgstr "Archives"
 #: zp-core/zp-extensions/related_items.php:177
 msgid "Album"
 msgstr "Album"
+
+#: themes/zpmobile/functions.php:65 zp-core/template-functions.php:664
+#: zp-core/template-functions.php:1563
+#: zp-core/zp-extensions/menu_manager.php:822
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:465
+msgid "Home"
+msgstr "Accueil"
 
 #: themes/zpmobile/functions.php:96
 msgid "Powered by"
@@ -2605,7 +2201,7 @@ msgstr "Dépublier l’album %s"
 msgid "Publish the album %s"
 msgstr "Publier l’album %s"
 
-#: zp-core/admin-functions.php:2176
+#: zp-core/admin-functions.php:2176 zp-core/class-userdataexport.php:477
 #, php-format
 msgid "Unpublished"
 msgstr "Non publié(e)"
@@ -2772,7 +2368,7 @@ msgstr "Albums gérés : "
 msgid "Managed news categories:"
 msgstr "Catégories d’actualités gérées :"
 
-#: zp-core/admin-functions.php:3331 zp-core/class-userdataexport.php:381
+#: zp-core/admin-functions.php:3331 zp-core/class-userdataexport.php:438
 #: zp-core/utilities/gallery_statistics.php:623
 #: zp-core/zp-extensions/multiple_layouts.php:95
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:103
@@ -3101,7 +2697,7 @@ msgid "Filename"
 msgstr "Nom de fichier"
 
 #: zp-core/admin-globals.php:26 zp-core/admin-options.php:1823
-#: zp-core/class-search.php:102 zp-core/class-userdataexport.php:198
+#: zp-core/class-search.php:102 zp-core/class-userdataexport.php:223
 #: zp-core/zp-extensions/favoritesHandler.php:136
 #: zp-core/zp-extensions/zenpage/admin-edit.php:586
 msgid "Date"
@@ -5226,7 +4822,7 @@ msgstr ""
 "les attaques de déni de service consistant à faire des requêtes d’images de "
 "tailles arbitraires."
 
-#: zp-core/admin-options.php:3279 zp-core/class-userdataexport.php:195
+#: zp-core/admin-options.php:3279 zp-core/class-userdataexport.php:220
 #: zp-core/utilities/user-data-export.php:79
 msgid "User name"
 msgstr "Nom de l’utilisateur"
@@ -6767,77 +6363,95 @@ msgstr "Export des données personnelles pour %1$s"
 msgid "Personal user data export for %1$s and %2$s"
 msgstr "Export des données personnelles pour %1$s et %2$s"
 
-#: zp-core/class-userdataexport.php:178
+#: zp-core/class-userdataexport.php:203
 msgid "Export user data"
 msgstr "Export des données utilisateur"
 
-#: zp-core/class-userdataexport.php:180
+#: zp-core/class-userdataexport.php:205
 msgid "Export as HTML"
 msgstr "Exporter en HTML"
 
-#: zp-core/class-userdataexport.php:181
+#: zp-core/class-userdataexport.php:206
 msgid "Export as JSON"
 msgstr "Exporter au format JSON"
 
-#: zp-core/class-userdataexport.php:193
+#: zp-core/class-userdataexport.php:218
 msgid "Report for"
 msgstr "Rapport pour"
 
-#: zp-core/class-userdataexport.php:196
+#: zp-core/class-userdataexport.php:221
 msgid "User mail"
 msgstr "E-mail de l’utilisateur"
 
-#: zp-core/class-userdataexport.php:197
+#: zp-core/class-userdataexport.php:222
 #: zp-core/zp-extensions/contact_form.php:177
 #: zp-core/zp-extensions/contact_form.php:182
 #: zp-core/zp-extensions/userAddressFields.php:51
 msgid "Website"
 msgstr "Site internet"
 
-#: zp-core/class-userdataexport.php:210
+#: zp-core/class-userdataexport.php:235
 msgid "Gallery guest user"
 msgstr "Invité de la Galerie"
 
-#: zp-core/class-userdataexport.php:227
+#: zp-core/class-userdataexport.php:252
 msgid "User account data"
 msgstr "Données du compte utilisateur"
 
-#: zp-core/class-userdataexport.php:251
+#: zp-core/class-userdataexport.php:276
 msgid "Security log entries"
 msgstr "Données du journal de sécurité"
 
-#: zp-core/class-userdataexport.php:262 zp-core/lib-auth.php:509
+#: zp-core/class-userdataexport.php:287 zp-core/lib-auth.php:509
 #: zp-core/lib-auth.php:524 zp-core/lib-auth.php:548 zp-core/lib-auth.php:574
 #: zp-core/zp-extensions/comment_form.php:232
 #: zp-core/zp-extensions/comment_form/admin-comments.php:261
 msgid "Comments"
 msgstr "Commentaires"
 
-#: zp-core/class-userdataexport.php:296
+#: zp-core/class-userdataexport.php:321
 msgid "Album owner"
 msgstr "Propriétaire de l’album"
 
-#: zp-core/class-userdataexport.php:300
+#: zp-core/class-userdataexport.php:325
 msgid "Album guest user"
 msgstr "Invité des albums"
 
-#: zp-core/class-userdataexport.php:331
+#: zp-core/class-userdataexport.php:336 zp-core/class-userdataexport.php:388
+msgid "unpublished"
+msgstr "non publié(e)"
+
+#: zp-core/class-userdataexport.php:339 zp-core/class-userdataexport.php:391
+#: zp-core/class-userdataexport.php:480 zp-core/reconfigure.php:260
+msgid "protected"
+msgstr "protégé"
+
+#: zp-core/class-userdataexport.php:363
 msgid "Image owner"
 msgstr "Propriétaire de l’image"
 
-#: zp-core/class-userdataexport.php:335
+#: zp-core/class-userdataexport.php:367
 msgid "Image guest user"
 msgstr "Invité des images"
 
-#: zp-core/class-userdataexport.php:391
+#: zp-core/class-userdataexport.php:393
+#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:120
+msgid "Full image"
+msgstr "image pleine grandeur"
+
+#: zp-core/class-userdataexport.php:408
+msgid "Cached images"
+msgstr "Images mises en cache"
+
+#: zp-core/class-userdataexport.php:448
 msgid "author"
 msgstr "Auteur"
 
-#: zp-core/class-userdataexport.php:395
+#: zp-core/class-userdataexport.php:452
 msgid "last change author"
 msgstr "Auteur du dernier changement"
 
-#: zp-core/class-userdataexport.php:399
+#: zp-core/class-userdataexport.php:456
 msgid "guest user"
 msgstr "utilisateur invité"
 
@@ -8821,6 +8435,12 @@ msgstr "Titre de l’accroche"
 msgid "Image Source"
 msgstr "Source de l’image"
 
+#: zp-core/functions.php:2684 zp-core/template-functions.php:443
+#: zp-core/zp-extensions/html_meta_tags.php:326
+#: zp-core/zp-extensions/scriptless-socialsharing.php:178
+msgid "Contact"
+msgstr "Contact"
+
 #: zp-core/functions.php:2685
 msgid "Copyright Holder"
 msgstr "Titulaire du copyright"
@@ -10007,10 +9627,6 @@ msgstr ""
 "Vous n'avez pas les droits pour exécuter le script d'installation. Veuillez "
 "contacter l'administrateur de votre site ou connectez-vous avec votre compte "
 "administrateur."
-
-#: zp-core/reconfigure.php:260
-msgid "protected"
-msgstr "protégé"
 
 #: zp-core/rewrite.php:95
 #, php-format
@@ -11987,6 +11603,10 @@ msgid_plural "Page %1$u"
 msgstr[0] "Page %1$u"
 msgstr[1] "Page %1$u"
 
+#: zp-core/template-functions.php:1243
+msgid "The album is password protected."
+msgstr "Cet album est protégé par mot de passe."
+
 #: zp-core/template-functions.php:1246
 msgid "The album is un-published."
 msgstr "Cet album n’est pas publié."
@@ -12695,29 +12315,45 @@ msgstr ""
 
 #: zp-core/utilities/user-data-export.php:67
 msgid ""
-"<strong>User account</strong> (<em>user name</em> and <em>email address</em>)"
+"<strong>User account</strong> (<em>user name</em> and optionally <em>email "
+"address</em>). This exports the full data of an account as stored in the "
+"database if a match exists."
 msgstr ""
 "<strong>Compte utilisateur</strong> (<em>nom de l'utilisateur</em> et "
-"<em>adresse email</em>)"
+"éventuellement <em>adresse email</em>). Cela exporte les données complètes "
+"d'un compte stocké dans la base de données s'il existe une correspondance."
 
 #: zp-core/utilities/user-data-export.php:68
-msgid "<strong>Securitylog</strong> (<em>user name</em>)"
+msgid "<strong>Securitylog</strong> (<em>user name</em>)."
 msgstr "<strong>Journal de Sécurité</strong> (<em>nom de l'utilisateur</em>)"
 
 #: zp-core/utilities/user-data-export.php:69
 msgid ""
-"<strong>Comments</strong> (<em>user name</em> and <em>email address</em>)"
+"<strong>Comments</strong> (<em>user name</em> and <em>email address</em>). "
+"Note that if you did not include an email addresss this info may not be "
+"reliable as comments are possible without user account and may use the same "
+"name accidentally. Site owners should check this before handing over data "
+"especially if these were non public comments."
 msgstr ""
 "<strong>Commentaires</strong> (<em>nom de l'utilisateur</em> et <em>adresse "
-"email</em>)"
+"email</em>). Notez que si vous n'avez pas indiqué d'adresse email, cette "
+"information peut ne pas être fiable car les commentaires sont possibles sans "
+"compte utilisateur et peuvent utiliser accidentellement le même nom. Les "
+"propriétaires de sites doivent vérifier cela avant de transmettre des "
+"données, surtout s'il s'agit de commentaires non publics."
 
 #: zp-core/utilities/user-data-export.php:70
 msgid ""
 "<strong>Albums and images owner</strong> (<em>user name</em>) (excluding "
-"images of dynamic albums)"
+"images of dynamic albums). The owner may be the user who uploaded the image "
+"or created the album but technically any user can be assigned as owner later "
+"on. There is no history stored about that."
 msgstr ""
 "<strong>Propriétaire des albums et des images</strong> (<em>nom de "
-"l'utilisateur</em>) (en excluant les images d'albums dynamiques)"
+"l'utilisateur</em>) (en excluant les images d'albums dynamiques). Le "
+"propriétaire peut être l'utilisateur qui a téléchargé l'image ou créé "
+"l'album, mais techniquement, n'importe quel utilisateur peut être désigné "
+"comme propriétaire plus tard. Il n'y a pas d'historique stocké à ce sujet."
 
 #: zp-core/utilities/user-data-export.php:71
 msgid "<strong>All items guest user</strong> (<em>user name</em>)"
@@ -12727,10 +12363,15 @@ msgstr ""
 #: zp-core/utilities/user-data-export.php:72
 msgid ""
 "<strong>Zenpage pages and news articles author and last change author</"
-"strong> (<em>user name</em>)"
+"strong> (<em>user name</em>). Here the same applies as to owners above. The "
+"author may have created the entry but may have changed afterwards. The last "
+"change author is only that. There is no history stored about that."
 msgstr ""
 "<strong>Auteur et auteur du dernier changement des pages et articles "
-"d'actualités Zenpage</strong> (<em>nom de l'utilisateur</em>) "
+"d'actualités Zenpage</strong> (<em>nom de l'utilisateur</em>). Ici la même "
+"chose s'applique aux propriétaires que ci-dessus. L'auteur a peut-être créé "
+"l'entrée mais peut avoir changé par la suite. Le dernier auteur de "
+"changement est seulement cela. Il n'y a pas d'historique stocké à ce sujet."
 
 #: zp-core/utilities/user-data-export.php:74
 msgid ""
@@ -14203,6 +13844,13 @@ msgstr "Ajouter un commentaire :"
 msgid "No Comments"
 msgstr "Aucun commentaire"
 
+#: zp-core/zp-extensions/comment_form.php:298
+#, php-format
+msgid "%u Comment"
+msgid_plural "%u Comments"
+msgstr[0] "%u commentaire"
+msgstr[1] "%u commentaires"
+
 #: zp-core/zp-extensions/comment_form.php:308
 msgid "show comments"
 msgstr "afficher les commentaires"
@@ -15029,11 +14677,11 @@ msgstr ""
 "vide pour utiliser le texte par défaut."
 
 #: zp-core/zp-extensions/cookieconsent.php:53
-msgid "Button: Learn more - url"
-msgstr "Bouton : En savoir davantage - Url"
+msgid "Button: Learn more - URL"
+msgstr "Bouton : En savoir davantage - URL"
 
 #: zp-core/zp-extensions/cookieconsent.php:57
-msgid "Url to your cookie policy / privacy info page."
+msgid "URL to your cookie policy / privacy info page."
 msgstr "URL vers votre page de politique de cookies / info sur la vie privée."
 
 #: zp-core/zp-extensions/cookieconsent.php:58
@@ -15100,13 +14748,13 @@ msgstr "personnalisé"
 
 #: zp-core/zp-extensions/cookieconsent.php:90
 msgid ""
-"These are the included default themes. Users can create their own themes: "
-"The chosen theme is added to the popup container as a CSS class in the form "
-"of .cc-style-THEME_NAME."
+"These are the included default themes. The chosen theme is added to the "
+"popup container as a CSS class in the form of .cc-style-THEME_NAME. Users "
+"can create their own themes."
 msgstr ""
-"Voici les thèmes inclus par défaut. Les utilisateurs peuvent créer leurs "
-"propres thèmes : le thème choisi est ajouté au conteneur popup comme une "
-"classe CSS sous forme de .cc-style-THEME_NAME."
+"Thèmes inclus par défaut. Le thème choisi est ajouté au conteneur popup "
+"comme une classe CSS sous forme de .cc-style-THEME_NAME. Les utilisateurs "
+"peuvent créer leurs propres thèmes."
 
 #: zp-core/zp-extensions/cookieconsent.php:91
 msgid "Position"
@@ -15142,10 +14790,10 @@ msgstr "En bas à droite"
 
 #: zp-core/zp-extensions/cookieconsent.php:103
 msgid ""
-"Choose the position of the popup. top and bottom = banner, top-left/right, "
-"bottom-left/right = floating"
+"Choose the position of the popup. Top and Bottom = banner, Top left/right, "
+"Bottom left/right = floating"
 msgstr ""
-"Choisir la position de la fenêtre contextuelle. haut et bas = bannière, haut-"
+"Choisir la position de la fenêtre contextuelle. Haut et bas = bannière, haut-"
 "gauche/droite, bas-gauche/droite = flottant"
 
 #: zp-core/zp-extensions/cookieconsent.php:104
@@ -17193,6 +16841,22 @@ msgid "createMenuIfNotExists has posted processing errors to your debug log."
 msgstr ""
 "La fonction createMenuIfNotExists a inscrit des erreurs de traitement dans "
 "le journal de déboggage."
+
+#: zp-core/zp-extensions/menu_manager.php:1091
+#: zp-core/zp-extensions/print_album_menu.php:262
+#, php-format
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u album"
+msgstr[1] "%u albums"
+
+#: zp-core/zp-extensions/menu_manager.php:1097
+#: zp-core/zp-extensions/print_album_menu.php:268
+#, php-format
+msgid "%u image"
+msgid_plural "%u images"
+msgstr[0] "%u image"
+msgstr[1] "%u images"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:27
 #: zp-core/zp-extensions/zenpage/admin-categories.php:23
@@ -21079,10 +20743,6 @@ msgstr "Image ou multimédia redimensionné"
 msgid "Custom size (un-cropped)"
 msgstr "Taille personnalisée (non rognée)"
 
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:120
-msgid "Full image"
-msgstr "image pleine grandeur"
-
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:128
 msgid "Title and description"
 msgstr "Titre et description"
@@ -23063,6 +22723,282 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à "
 "un ou à plusieurs destinataires."
+
+#~ msgid ""
+#~ "<strong>User account</strong> (<em>user name</em> and optionally "
+#~ "<em>email address</em>): This exports the full data of an account as "
+#~ "stored in the database if one matching exists."
+#~ msgstr ""
+#~ "<strong>Compte utilisateur</strong> (<em>nom de l'utilisateur</em> et "
+#~ "éventuellement <em>adresse email</em>) : exporte toutes les données d'un "
+#~ "compte stocké en base si une des données correspond."
+
+#~ msgid ""
+#~ "<strong>Zenpage pages and news articles author and last change author</"
+#~ "strong> (<em>user name</em>): Here the same applies as to owners above. "
+#~ "The author may have created the entry but may have changed afterwards. "
+#~ "The last change author is only that. There is no history stored about "
+#~ "that."
+#~ msgstr ""
+#~ "<strong>Auteur et auteur du dernier changement, des pages et articles "
+#~ "d'actualités Zenpage</strong> (<em>nom de l'utilisateur</em>) : Ici la "
+#~ "même chose s'applique aux propriétaires ci-dessus. L'auteur a peut-être "
+#~ "créé l'entrée mais peut avoir changé par la suite. Le dernier auteur de "
+#~ "changement est seulement cela. Il n'y a pas d'historique stocké à ce "
+#~ "sujet."
+
+#~ msgid "Album is empty"
+#~ msgstr "L’album est vide"
+
+#~ msgid "Search gallery"
+#~ msgstr "Rechercher dans la galerie"
+
+#~ msgid "Effervescence color scheme."
+#~ msgstr "Palette de couleurs Effervescence."
+
+#~ msgid "Effervescence image display handling."
+#~ msgstr "Mode d’affichage des images du thème Effervescence."
+
+#~ msgid "There were no images from which to select the random heading."
+#~ msgstr ""
+#~ "Il n’y a aucune image parmi lesquelles en choisir une aléatoirement pour "
+#~ "la une."
+
+#~ msgid "Random picture..."
+#~ msgstr "Image aléatoire..."
+
+#~ msgid "Album %1$u of %2$u"
+#~ msgstr "Album %1$u sur %2$u"
+
+#~ msgid "Photo %1$u of %2$u"
+#~ msgstr "Photo %1$u sur %2$u"
+
+#~ msgid "Albums %1$u-%2$u of %3$u"
+#~ msgstr "Albums %1$u – %2$u sur %3$u"
+
+#~ msgid "Photos %1$u-%2$u of %3$u"
+#~ msgstr "Photos %1$u – %2$u sur %3$u"
+
+#~ msgid "Effervescence %s"
+#~ msgstr "Effervescence %s"
+
+#~ msgid "Effervescence %1$s %2$s"
+#~ msgstr "Effervescence %1$s %2$s"
+
+#~ msgid "The album is not published."
+#~ msgstr "Cet album n’est pas publié."
+
+#~ msgid "View the Album: %s"
+#~ msgstr "Voir l’album : %s"
+
+#~ msgid "The image is marked not visible."
+#~ msgstr "L’image est marquée comme non visible."
+
+#~ msgid "View the image: %s"
+#~ msgstr "Voir l’image : %s"
+
+#~ msgid "%1$u hit on this %2$s"
+#~ msgid_plural "%1$u hits on this %2$s"
+#~ msgstr[0] "%1$u affichage de cette %2$s"
+#~ msgstr[1] "%1$u affichages de cette %2$s"
+
+#~ msgid "page"
+#~ msgstr "page"
+
+#~ msgid "%u Album"
+#~ msgid_plural "%u Albums"
+#~ msgstr[0] "%u album"
+#~ msgstr[1] "%u albums"
+
+#~ msgid "%u Subalbum"
+#~ msgid_plural "%u Subalbums"
+#~ msgstr[0] "%u sous-album"
+#~ msgstr[1] "%u sous-albums"
+
+#~ msgid "%u Image"
+#~ msgid_plural "%u Images"
+#~ msgstr[0] "%u image"
+#~ msgstr[1] "%u images"
+
+#~ msgid "Add a comment"
+#~ msgstr "Ajouter un commentaire"
+
+#~ msgid "Picture of the day"
+#~ msgstr "Image du jour"
+
+#~ msgid "Albums Index"
+#~ msgstr "Racine des albums"
+
+#~ msgid "Visit the image gallery"
+#~ msgstr "Visiter la galerie de photos"
+
+#~ msgid "Search album: %s"
+#~ msgid_plural "Search albums: %s"
+#~ msgstr[0] "Recherche dans l’album : %s"
+#~ msgstr[1] "Recherche dans les albums : %s"
+
+#~ msgid "Search category: %s"
+#~ msgid_plural "Search categories: %s"
+#~ msgstr[0] "Recherche dans la catégorie : %s"
+#~ msgstr[1] "Recherche dans les catégories : %s"
+
+#~ msgid "Enter your search criteria."
+#~ msgstr "Veuillez saisir vos critères de recherche."
+
+#~ msgid "Sorry, no matches for <em>%s</em>. Try refining your search."
+#~ msgstr ""
+#~ "Désolé, aucun résultat pour <em>%s</em>. Veuillez préciser votre "
+#~ "recherche."
+
+#~ msgid "Gallery and News"
+#~ msgstr "Galerie et actualités"
+
+#~ msgid "Main Index"
+#~ msgstr "Accueil principal"
+
+#~ msgid ""
+#~ "<a href=\"http://angoulvant.net/\">Stephane Angoulvant</a> with "
+#~ "modifications by Stephen Billard (sbillard)"
+#~ msgstr ""
+#~ "<a href=\"http://sblog.angoulvant.net/\">Stephane Angoulvant</a>, modifié "
+#~ "par <a href=\"http://stephen.sbillard.org/\">Stephen Billard (sbillard)</"
+#~ "a>"
+
+#~ msgid ""
+#~ "Based on Effervescence 1.1 with multiple color schemes and personalities "
+#~ "added."
+#~ msgstr ""
+#~ "D’après Effervescence 1.1 avec de nombreux coloris et options "
+#~ "supplémentaires."
+
+#~ msgid "Archive Rule"
+#~ msgstr "Règle pour les archives"
+
+#~ msgid "News and Gallery"
+#~ msgstr "Actualités et galerie"
+
+#~ msgid ""
+#~ "<strong>Note:</strong> This option is valid only if you have the "
+#~ "<em>Gallery index page link</em> option set to \"gallery\". Of course the "
+#~ "<em>menu_manager</em> plugin must also be enabled."
+#~ msgstr ""
+#~ "<strong>Note. </strong>Cette option n’est valable que si l’option "
+#~ "<em>Lien vers la page d’accueil de la galerie</em> a comme valeur "
+#~ "« galerie ». De plus, l’extension <em>menu_manager</em> doit être activée."
+
+#~ msgid "Theme logo"
+#~ msgstr "Signature du thème"
+
+#~ msgid "The text for the theme logo"
+#~ msgstr "Le texte de remplacement pour le logo du thème"
+
+#~ msgid "Watermark head image"
+#~ msgstr "Filigrane de l’image de la une"
+
+#~ msgid ""
+#~ "Check to place a watermark on the heading image. (Image watermarking must "
+#~ "be set.)"
+#~ msgstr ""
+#~ "Cocher pour placer un filigrane sur l’image de la une (l’utilisation de "
+#~ "filigranes sur les images doit être activée)."
+
+#~ msgid "Daily image"
+#~ msgstr "Image du jour"
+
+#~ msgid ""
+#~ "If checked on the heading image will change daily rather than on each "
+#~ "page load."
+#~ msgstr ""
+#~ "Si cette option est activée, l’image de la une changera une fois par jour "
+#~ "plutôt qu’à chaque fois que la page est chargée."
+
+#~ msgid ""
+#~ "Check to enable slideshow for the <em>Smoothgallery</em> personality."
+#~ msgstr ""
+#~ "Cocher pour activer le diaporama dans le cas d’une présentation "
+#~ "<em>Smoothgallery</em>."
+
+#~ msgid "Graphic logo"
+#~ msgstr "Logo graphique"
+
+#~ msgid ""
+#~ "Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty "
+#~ "for text logo."
+#~ msgstr ""
+#~ "Sélectionner un logo (un des fichiers PNG du dossier <em>%s/images</em>) "
+#~ "ou laisser vide pour afficher un logo textuel."
+
+#~ msgid "Index Image"
+#~ msgstr "Image de la page d’accueil"
+
+#~ msgid "Apply this effect to the index page image."
+#~ msgstr "Appliquer cet effet à l’image de la page d’accueil."
+
+#~ msgid ""
+#~ "This option requires the <em>image_effects</em> plugin to be enabled."
+#~ msgstr ""
+#~ "Cette extension nécessite que l’extension <em>image_effects</em> soit "
+#~ "activée."
+
+#~ msgid "*no logo selected"
+#~ msgstr "*aucun logo sélectionné"
+
+#~ msgid "Effervescence"
+#~ msgstr "Effervescence"
+
+#~ msgid ""
+#~ "<strong>User account</strong> (<em>user name</em> and <em>email address</"
+#~ "em>)"
+#~ msgstr ""
+#~ "<strong>Compte utilisateur</strong> (<em>nom de l'utilisateur</em> et "
+#~ "<em>adresse email</em>)"
+
+#~ msgid "<strong>Securitylog</strong> (<em>user name</em>)"
+#~ msgstr ""
+#~ "<strong>Journal de Sécurité</strong> (<em>nom de l'utilisateur</em>)"
+
+#~ msgid ""
+#~ "<strong>Comments</strong> (<em>user name</em> and <em>email address</em>)"
+#~ msgstr ""
+#~ "<strong>Commentaires</strong> (<em>nom de l'utilisateur</em> et "
+#~ "<em>adresse email</em>)"
+
+#~ msgid ""
+#~ "<strong>Albums and images owner</strong> (<em>user name</em>) (excluding "
+#~ "images of dynamic albums)"
+#~ msgstr ""
+#~ "<strong>Propriétaire des albums et des images</strong> (<em>nom de "
+#~ "l'utilisateur</em>) (en excluant les images d'albums dynamiques)"
+
+#~ msgid ""
+#~ "<strong>Zenpage pages and news articles author and last change author</"
+#~ "strong> (<em>user name</em>)"
+#~ msgstr ""
+#~ "<strong>Auteur et auteur du dernier changement des pages et articles "
+#~ "d'actualités Zenpage</strong> (<em>nom de l'utilisateur</em>) "
+
+#~ msgid "Button: Learn more - url"
+#~ msgstr "Bouton : En savoir davantage - Url"
+
+#~ msgid "Url to your cookie policy / privacy info page."
+#~ msgstr ""
+#~ "URL vers votre page de politique de cookies / info sur la vie privée."
+
+#~ msgid ""
+#~ "These are the included default themes. Users can create their own themes: "
+#~ "The chosen theme is added to the popup container as a CSS class in the "
+#~ "form of .cc-style-THEME_NAME."
+#~ msgstr ""
+#~ "Voici les thèmes inclus par défaut. Les utilisateurs peuvent créer leurs "
+#~ "propres thèmes : le thème choisi est ajouté au conteneur popup comme une "
+#~ "classe CSS sous forme de .cc-style-THEME_NAME."
+
+#~ msgid ""
+#~ "Choose the position of the popup. top and bottom = banner, top-left/"
+#~ "right, bottom-left/right = floating"
+#~ msgstr ""
+#~ "Choisir la position de la fenêtre contextuelle. haut et bas = bannière, "
+#~ "haut-gauche/droite, bas-gauche/droite = flottant"
 
 #~ msgid ""
 #~ "If encountering issues with special chars and other character entities "
