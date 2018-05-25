@@ -951,6 +951,11 @@ font-weight: bold;
 	width:370px;
 }
 
+/* OpenStreetMap  */
+div#osm_map {
+	margin: 20px 0;
+}
+
 /* Scriptless Social Sharing */
 ul.scriptless_socialsharing li {
 	display: inline-block !important;

@@ -50,6 +50,11 @@ body {
 	text-decoration: none;
 }
 
+/* OpenStreetMap  */
+div#osm_map {
+	margin: 20px 0;
+}
+
 /* Scriptless Social Sharing */
 ul.scriptless_socialsharing li {
 	display: inline-block !important;
