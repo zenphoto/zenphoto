@@ -90,7 +90,7 @@ class scriptlessSocialsharingOptions {
 						'key' => 'scriptless_socialsharing_iconfont',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 1,
-						'desc' => gettext("Uncheck to disable loading to use your own theme based icon font and css.")),
+						'desc' => gettext("Uncheck to disable loading the included font and CSS and use your own theme based icon font and CSS.")),
 				gettext('Icons only') => array(
 						'key' => 'scriptless_socialsharing_iconsonly',
 						'type' => OPTION_TYPE_CHECKBOX,
