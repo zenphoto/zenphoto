@@ -196,7 +196,7 @@ datepickerJS();
 					}
 					?>
           <span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU)); ?></span></h1>
-        <div class="floatright">
+        <div class="news-dropdowns floatright">
 					<?php
 					printCategoryDropdown();
 					printArticleDatesDropdown($subpage);

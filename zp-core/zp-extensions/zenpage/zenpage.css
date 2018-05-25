@@ -437,3 +437,7 @@ form#sortorderdropdown {
 	padding: 0;
 	margin: 0  10px 0 -30px;
 }
+
+.news-dropdowns form select {
+	max-width: 150px;
+}
