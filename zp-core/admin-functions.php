@@ -262,7 +262,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				toleranceElement: '> div',
 				listType: 'ul',
 				change: function (event, ui) {
-					$('#sortableListForm').dirtyForms('setDirty');
+					$('#sortableListForm').addClass('dirty');
 				}
 			});
 			$('.serialize').click(function () {
