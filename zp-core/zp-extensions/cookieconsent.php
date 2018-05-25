@@ -50,11 +50,11 @@ class cookieConsent {
 						'order' => 2,
 						'multilingual' => 1,
 						'desc' => gettext('Text used for the learn more info button. Leave empty to use the default text.')),
-				gettext('Button: Learn more - url') => array(
+				gettext('Button: Learn more - URL') => array(
 						'key' => 'zpcookieconsent_buttonlearnmorelink',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 3,
-						'desc' => gettext('Url to your cookie policy / privacy info page.')),
+						'desc' => gettext('URL to your cookie policy / privacy info page.')),
 				gettext('Message') => array(
 						'key' => 'zpcookieconsent_message',
 						'type' => OPTION_TYPE_TEXTAREA,
@@ -87,7 +87,7 @@ class cookieConsent {
 								'classic' => 'classic',
 								gettext('custom') => 'custom'
 						),
-						'desc' => gettext('These are the included default themes. Users can create their own themes: The chosen theme is added to the popup container as a CSS class in the form of .cc-style-THEME_NAME.')),
+						'desc' => gettext('These are the included default themes. The chosen theme is added to the popup container as a CSS class in the form of .cc-style-THEME_NAME. Users can create their own themes.')),
 				gettext('Position') => array(
 						'key' => 'zpcookieconsent_position',
 						'type' => OPTION_TYPE_SELECTOR,
@@ -100,7 +100,7 @@ class cookieConsent {
 								gettext('Bottom left') => 'bottom-left',
 								gettext('Bottom right') => 'bottom-right',
 						),
-						'desc' => gettext('Choose the position of the popup. top and bottom = banner, top-left/right, bottom-left/right = floating')),
+						'desc' => gettext('Choose the position of the popup. Top and Bottom = banner, Top left/right, Bottom left/right = floating')),
 				gettext('Dismiss on Scroll') => array(
 						'key' => 'zpcookieconsent_dismissonscroll',
 						'type' => OPTION_TYPE_CHECKBOX,
