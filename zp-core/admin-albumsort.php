@@ -61,7 +61,7 @@ printAdminHeader('edit', 'sort');
 	$(function () {
 		$('#images').sortable({
 			change: function (event, ui) {
-				$('#sortableListForm').dirtyForms('setDirty');
+				$('#sortableListForm').addClass('dirty');
 			}
 		});
 	});

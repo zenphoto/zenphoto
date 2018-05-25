@@ -260,8 +260,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 				tolerance: 'intersect',
 				toleranceElement: '> div',
 				listType: 'ul',
-				relocate: function (event, ui) {
-					$('#sortableListForm').dirtyForms('setDirty');
+				change: function (event, ui) {
+					$('#sortableListForm').addClass('dirty');
 				}
 			});
 			$('.serialize').click(function () {
@@ -1104,9 +1104,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 							break;
 						case OPTION_TYPE_COLOR_PICKER:
-
-							var_dump($v);
-
 							if (empty($v))
 								$v = '#000000';
 							?>
