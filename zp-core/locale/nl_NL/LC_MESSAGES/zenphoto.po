@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-25 15:08+0200\n"
+"POT-Creation-Date: 2018-05-25 17:18+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -446,7 +446,7 @@ msgid "Albums (%1$s) &amp; Images (%2$s)"
 msgstr "Albums (%1$s) &amp; Afbeeldingen (%2$s)"
 
 #: themes/garland/sidebar.php:27 themes/zenpage/sidebar.php:14
-#: zp-core/class-userdataexport.php:377
+#: zp-core/class-userdataexport.php:434
 #: zp-core/utilities/gallery_statistics.php:615
 msgid "News articles"
 msgstr "Nieuwsartikelen"
@@ -510,7 +510,7 @@ msgstr "Albums"
 #: themes/zpmobile/functions.php:75 themes/zpmobile/functions.php:173
 #: themes/zpmobile/pages.php:27 themes/zpmobile/pages.php:33
 #: zp-core/admin-functions.php:3208 zp-core/admin-functions.php:3344
-#: zp-core/class-userdataexport.php:385 zp-core/lib-auth.php:526
+#: zp-core/class-userdataexport.php:442 zp-core/lib-auth.php:526
 #: zp-core/lib-auth.php:529 zp-core/lib-auth.php:544 zp-core/lib-auth.php:551
 #: zp-core/lib-auth.php:555 zp-core/lib-auth.php:570 zp-core/lib-auth.php:577
 #: zp-core/lib-auth.php:581 zp-core/utilities/gallery_statistics.php:80
@@ -2197,7 +2197,7 @@ msgstr "Maak publicatie van het album %s ongedaan"
 msgid "Publish the album %s"
 msgstr "Publiceerd het album %s"
 
-#: zp-core/admin-functions.php:2176
+#: zp-core/admin-functions.php:2176 zp-core/class-userdataexport.php:477
 #, php-format
 msgid "Unpublished"
 msgstr "Niet gepubliceerd"
@@ -2364,7 +2364,7 @@ msgstr "Beheerde albums:"
 msgid "Managed news categories:"
 msgstr "Beheerde nieuwscategorieën."
 
-#: zp-core/admin-functions.php:3331 zp-core/class-userdataexport.php:381
+#: zp-core/admin-functions.php:3331 zp-core/class-userdataexport.php:438
 #: zp-core/utilities/gallery_statistics.php:623
 #: zp-core/zp-extensions/multiple_layouts.php:95
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:103
@@ -2689,7 +2689,7 @@ msgid "Filename"
 msgstr "bestandsnaam"
 
 #: zp-core/admin-globals.php:26 zp-core/admin-options.php:1823
-#: zp-core/class-search.php:102 zp-core/class-userdataexport.php:198
+#: zp-core/class-search.php:102 zp-core/class-userdataexport.php:223
 #: zp-core/zp-extensions/favoritesHandler.php:136
 #: zp-core/zp-extensions/zenpage/admin-edit.php:586
 msgid "Date"
@@ -4778,7 +4778,7 @@ msgstr ""
 "Voegt een veiligheidsparameter toe aan de afbeeldings-processor URI’s. Dit "
 "om <em>denial of service</em> (DoS) aanvallen te voorkomen."
 
-#: zp-core/admin-options.php:3279 zp-core/class-userdataexport.php:195
+#: zp-core/admin-options.php:3279 zp-core/class-userdataexport.php:220
 #: zp-core/utilities/user-data-export.php:79
 msgid "User name"
 msgstr "Gebruikersnaam"
@@ -6298,77 +6298,95 @@ msgstr "Persoonlijke data export voor %1$s"
 msgid "Personal user data export for %1$s and %2$s"
 msgstr "Persoonlijke data export voor %1$s en %2$s"
 
-#: zp-core/class-userdataexport.php:178
+#: zp-core/class-userdataexport.php:203
 msgid "Export user data"
 msgstr "Exporteer data gebruiker"
 
-#: zp-core/class-userdataexport.php:180
+#: zp-core/class-userdataexport.php:205
 msgid "Export as HTML"
 msgstr "Exporteer als HTML"
 
-#: zp-core/class-userdataexport.php:181
+#: zp-core/class-userdataexport.php:206
 msgid "Export as JSON"
 msgstr "Exporteer als JSON"
 
-#: zp-core/class-userdataexport.php:193
+#: zp-core/class-userdataexport.php:218
 msgid "Report for"
 msgstr "Rapport voor"
 
-#: zp-core/class-userdataexport.php:196
+#: zp-core/class-userdataexport.php:221
 msgid "User mail"
 msgstr "E-mail gebruiker"
 
-#: zp-core/class-userdataexport.php:197
+#: zp-core/class-userdataexport.php:222
 #: zp-core/zp-extensions/contact_form.php:177
 #: zp-core/zp-extensions/contact_form.php:182
 #: zp-core/zp-extensions/userAddressFields.php:51
 msgid "Website"
 msgstr "Website"
 
-#: zp-core/class-userdataexport.php:210
+#: zp-core/class-userdataexport.php:235
 msgid "Gallery guest user"
 msgstr "Gastgebruiker galerij"
 
-#: zp-core/class-userdataexport.php:227
+#: zp-core/class-userdataexport.php:252
 msgid "User account data"
 msgstr "Data gebruikersaccount"
 
-#: zp-core/class-userdataexport.php:251
+#: zp-core/class-userdataexport.php:276
 msgid "Security log entries"
 msgstr "Beveiligingslog inhoud"
 
-#: zp-core/class-userdataexport.php:262 zp-core/lib-auth.php:509
+#: zp-core/class-userdataexport.php:287 zp-core/lib-auth.php:509
 #: zp-core/lib-auth.php:524 zp-core/lib-auth.php:548 zp-core/lib-auth.php:574
 #: zp-core/zp-extensions/comment_form.php:232
 #: zp-core/zp-extensions/comment_form/admin-comments.php:261
 msgid "Comments"
 msgstr "Reacties"
 
-#: zp-core/class-userdataexport.php:296
+#: zp-core/class-userdataexport.php:321
 msgid "Album owner"
 msgstr "Eigenaar album(s)"
 
-#: zp-core/class-userdataexport.php:300
+#: zp-core/class-userdataexport.php:325
 msgid "Album guest user"
 msgstr "Gastgebruiker album(s)"
 
-#: zp-core/class-userdataexport.php:331
+#: zp-core/class-userdataexport.php:336 zp-core/class-userdataexport.php:388
+msgid "unpublished"
+msgstr "niet-gepubliceerd"
+
+#: zp-core/class-userdataexport.php:339 zp-core/class-userdataexport.php:391
+#: zp-core/class-userdataexport.php:480 zp-core/reconfigure.php:260
+msgid "protected"
+msgstr "beschermd"
+
+#: zp-core/class-userdataexport.php:363
 msgid "Image owner"
 msgstr "Eigenaar afbeelding(en)"
 
-#: zp-core/class-userdataexport.php:335
+#: zp-core/class-userdataexport.php:367
 msgid "Image guest user"
 msgstr "Gastgebruiker afbeelding(en)"
 
-#: zp-core/class-userdataexport.php:391
+#: zp-core/class-userdataexport.php:393
+#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:120
+msgid "Full image"
+msgstr "Volledige afbeelding"
+
+#: zp-core/class-userdataexport.php:408
+msgid "Cached images"
+msgstr "Gecachte afbeeldingen"
+
+#: zp-core/class-userdataexport.php:448
 msgid "author"
 msgstr "auteur"
 
-#: zp-core/class-userdataexport.php:395
+#: zp-core/class-userdataexport.php:452
 msgid "last change author"
 msgstr "laatste verandering(en)"
 
-#: zp-core/class-userdataexport.php:399
+#: zp-core/class-userdataexport.php:456
 msgid "guest user"
 msgstr "Gastgebruiker"
 
@@ -9499,10 +9517,6 @@ msgstr ""
 "Je hebt geen rechten om setup uit te voeren. Neem contact op met de "
 "webmaster of log in met een <em>administrator</em> account."
 
-#: zp-core/reconfigure.php:260
-msgid "protected"
-msgstr "beschermd"
-
 #: zp-core/rewrite.php:95
 #, php-format
 msgid "Error processing rewrite rule: “%s”"
@@ -12110,32 +12124,49 @@ msgid ""
 "not delete any data. This covers the following data:"
 msgstr ""
 "Hiermee kun je persoonlijke gebruikersdata exporteren. Er wordt geen "
-"informatie verwijdert. De volgende infomatie wordt geëxporteerd:"
+"informatie verwijdert. De volgende infomatie wordt geëxporteert:"
 
 #: zp-core/utilities/user-data-export.php:67
 msgid ""
-"<strong>User account</strong> (<em>user name</em> and <em>email address</em>)"
+"<strong>User account</strong> (<em>user name</em> and optionally <em>email "
+"address</em>). This exports the full data of an account as stored in the "
+"database if a match exists."
 msgstr ""
-"<strong>Gebruikers account</strong> (<em>gebruikersnaam</em> en <em>e-"
-"mailadres</em>)."
+"<strong>Gebruikers account</strong> (<em>gebruikersnaam</em> en optioneel "
+"het <em>e-mailadres</em>). Dit exporteert alle data van een account zoals "
+"het is opgeslagen in de database."
 
 #: zp-core/utilities/user-data-export.php:68
-msgid "<strong>Securitylog</strong> (<em>user name</em>)"
-msgstr "<strong>Beveiligingslog</strong> (<em>gebruikersnaam</em>)"
+msgid "<strong>Securitylog</strong> (<em>user name</em>)."
+msgstr "<strong>Beveiligingslog</strong> (<em>gebruikersnaam</em>)."
 
 #: zp-core/utilities/user-data-export.php:69
 msgid ""
-"<strong>Comments</strong> (<em>user name</em> and <em>email address</em>)"
+"<strong>Comments</strong> (<em>user name</em> and <em>email address</em>). "
+"Note that if you did not include an email addresss this info may not be "
+"reliable as comments are possible without user account and may use the same "
+"name accidentally. Site owners should check this before handing over data "
+"especially if these were non public comments."
 msgstr ""
-"<strong>Reacties</strong> (<em>gebruikersnaam</em> and <em>e-mailadres</em>)"
+"<strong>Reacties</strong> (<em>gebruikersnaam</em> en <em>e-mailadres</em>). "
+"Wanneer je geen e-mailadres hebt ingevuld kan deze informatie onvolledig "
+"zijn omdat reacties ook mogelijk zijn zonder gebruikers-account en een reeds "
+"bestaande gebruikersnaam zou per ongeluk gebruikt kunnen worden. Beheerders "
+"van een website zouden hiermee rekening moeten houden, vooral wanneer het "
+"niet-publieke reacties betreft."
 
 #: zp-core/utilities/user-data-export.php:70
 msgid ""
 "<strong>Albums and images owner</strong> (<em>user name</em>) (excluding "
-"images of dynamic albums)"
+"images of dynamic albums). The owner may be the user who uploaded the image "
+"or created the album but technically any user can be assigned as owner later "
+"on. There is no history stored about that."
 msgstr ""
-"<strong>Albums- en afbeeldingseigenaar</strong> (<em>gebruikersnaam</em>) "
-"(behalve afbeeldingen in dynamische albums)."
+"<strong>Albums en afbeeldingen eigenaar</strong> (<em>gebruikersnaam</em>) "
+"(behalve afbeeldingen in dynamische albums). De eigenaar kan de gebruiker "
+"zijn die een afbeelding heeft ge-upload of een album aangemaakt maar elke "
+"gebruiker kan later alsnog eigenaar worden. Er wordt hierover geen "
+"geschiedenis bewaard."
 
 #: zp-core/utilities/user-data-export.php:71
 msgid "<strong>All items guest user</strong> (<em>user name</em>)"
@@ -12144,10 +12175,15 @@ msgstr "<strong>Alle items gastgebruiker</strong> (<em>gebruikersnaam</em>)."
 #: zp-core/utilities/user-data-export.php:72
 msgid ""
 "<strong>Zenpage pages and news articles author and last change author</"
-"strong> (<em>user name</em>)"
+"strong> (<em>user name</em>). Here the same applies as to owners above. The "
+"author may have created the entry but may have changed afterwards. The last "
+"change author is only that. There is no history stored about that."
 msgstr ""
-"<strong>Zenpage pagina’s en artikelen en laatste verandering </strong> "
-"(<em>gebruikersnaam</em>)"
+"<strong>Zenpage pagina’s en artikelen auteur en laatste verandering(en) "
+"auteur</strong> (<em>gebruikersnaam</em>). Hiervoor geldt hetzelfde als voor "
+"eigenaren hierboven. De auteur kan het artikel of de pagina gemaakt hebben "
+"maar dat kan achteraf veranderd worden. Er wordt hierover geen geschiedenis "
+"bewaard."
 
 #: zp-core/utilities/user-data-export.php:74
 msgid ""
@@ -12158,7 +12194,7 @@ msgid ""
 "sufficient for your site."
 msgstr ""
 "<strong>Opmerking:</strong> Dit betreft alleen hetgeen Zenphoto en officiële "
-"plugins bewaren en niet wat third-party scripts eventueel op je server doen."
+"plugins bewaren en niet wat third-party scripts eventueel op je server doen. "
 "<strong>Dit tool wordt verstrekt zonder enige wettelijke garantie met "
 "betrekking tot vereisten van de GDPR (AVG)</strong>. Vraag juridisch advies "
 "om te beoordelen of dit voor jouw website voldoende is."
@@ -20343,10 +20379,6 @@ msgstr "Ingesteld formaat afbeelding/multimedia bestand"
 msgid "Custom size (un-cropped)"
 msgstr "Aangepast formaat (geen uitsnede)"
 
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:120
-msgid "Full image"
-msgstr "Volledige afbeelding"
-
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:128
 msgid "Title and description"
 msgstr "Titel en beschrijving"
@@ -21268,7 +21300,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/xmpMetadata.php:1107
 msgid "Metadata exported"
-msgstr "Metadata geëxporteerd"
+msgstr "Metadata geëxporteert"
 
 #: zp-core/zp-extensions/xmpMetadata.php:1113
 msgid "Export metadata info to XMP sidecar."
@@ -22292,6 +22324,26 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid ""
+#~ "<strong>Comments</strong> (<em>user name</em> and <em>email address</em>)"
+#~ msgstr ""
+#~ "<strong>Reacties</strong> (<em>gebruikersnaam</em> and <em>e-mailadres</"
+#~ "em>)"
+
+#~ msgid ""
+#~ "<strong>Albums and images owner</strong> (<em>user name</em>) (excluding "
+#~ "images of dynamic albums)"
+#~ msgstr ""
+#~ "<strong>Albums- en afbeeldingseigenaar</strong> (<em>gebruikersnaam</em>) "
+#~ "(behalve afbeeldingen in dynamische albums)."
+
+#~ msgid ""
+#~ "<strong>Zenpage pages and news articles author and last change author</"
+#~ "strong> (<em>user name</em>)"
+#~ msgstr ""
+#~ "<strong>Zenpage pagina’s en artikelen en laatste verandering </strong> "
+#~ "(<em>gebruikersnaam</em>)"
 
 #~ msgid "Album is empty"
 #~ msgstr "Album is leeg"
