@@ -88,49 +88,47 @@ if (isset($_GET['action'])) {
 		/*		 * *************************************************************************** */
 		case 'savealbumorder':
 			XSRFdefender('savealbumorder');
-			if ($_POST['checkallaction'] == 'noaction') {
-				$notify = postAlbumSort(NULL);
-				if ($notify) {
-					if ($notify === true) {
-						$notify = '&saved';
-					} else {
-						$notify = '&saved' . $notify;
-					}
-					$_zp_gallery->setSortDirection(0);
-					$_zp_gallery->setSortType('manual');
-					$_zp_gallery->save();
+			$notify = postAlbumSort(NULL);
+			if ($notify) {
+				if ($notify === true) {
+					$notify = '&saved';
 				} else {
-					$notify = '&noaction';
+					$notify = '&saved' . $notify;
 				}
+				$_zp_gallery->setSortDirection(0);
+				$_zp_gallery->setSortType('manual');
+				$_zp_gallery->save();
 			} else {
-				$notify = processAlbumBulkActions();
-				if (empty($notify)) {
-					$notify = '&noaction';
-				} else {
-					$notify = '&bulkmessage=' . $notify;
-				}
+				$notify = '&noaction';
 			}
+
+			$notify = processAlbumBulkActions();
+			if (empty($notify)) {
+				$notify = '&noaction';
+			} else {
+				$notify = '&bulkmessage=' . $notify;
+			}
+
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $notify);
 			exitZP();
 			break;
 		case 'savesubalbumorder':
 			XSRFdefender('savealbumorder');
-			if ($_POST['checkallaction'] == 'noaction') {
-				$notify = postAlbumSort($album->getID());
-				if ($notify) {
-					if ($notify === true) {
-						$notify = '&saved';
-					} else {
-						$notify = '&saved' . $notify;
-					}
-					$album = newAlbum($folder);
-					$album->setSortType('manual', 'album');
-					$album->setSortDirection(false, 'album');
-					$album->save();
+			$notify = postAlbumSort($album->getID());
+			if ($notify) {
+				if ($notify === true) {
+					$notify = '&saved';
 				} else {
-					$notify = '&noaction';
+					$notify = '&saved' . $notify;
 				}
+				$album = newAlbum($folder);
+				$album->setSortType('manual', 'album');
+				$album->setSortDirection(false, 'album');
+				$album->save();
 			} else {
+				$notify = '&noaction';
+			}
+			if ($_POST['checkallaction'] == 'noaction') {
 				$notify = processAlbumBulkActions();
 				if (empty($notify)) {
 					$notify = '&noaction';
@@ -370,15 +368,6 @@ if (isset($_GET['action'])) {
 					if (isset($_POST['checkForPostTruncation'])) {
 						$filter = sanitize($_REQUEST['filter']);
 						$returntab = '&tagsort=' . $tagsort . '&tab=imageinfo&filter=' . $filter;
-						if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
-							$action = processImageBulkActions($album);
-							if (!empty($action)) {
-								$bulknotify = '&bulkmessage=' . $action;
-							}
-							header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $bulknotify . $pg . $returntab);
-							exitZP();
-						}
-
 						if (isset($_POST['singleimage'])) {
 							$single = sanitize($_POST['singleimage']);
 						}
@@ -459,6 +448,12 @@ if (isset($_GET['action'])) {
 										}
 									}
 								}
+							}
+						}
+						if (isset($_POST['ids'])) { //	process bulk actions
+							$action = processImageBulkActions($album);
+							if (!empty($action)) {
+								$bulknotify = '&bulkmessage=' . $action;
 							}
 						}
 					} else {

@@ -12,23 +12,16 @@ require_once("admin-functions.php");
 admin_securityChecks(ZENPAGE_PAGES_RIGHTS, currentRelativeURL());
 
 $reports = array();
-if (isset($_GET['bulkaction'])) {
-	$reports[] = zenpageBulkActionMessage(sanitize($_GET['bulkaction']));
-}
+$nothing = false;
 if (isset($_GET['deleted'])) {
 	$reports[] = "<p class='messagebox fade-message'>" . gettext("Article successfully deleted!") . "</p>";
 }
 if (isset($_POST['update'])) {
 	XSRFdefender('update');
-	if ($_POST['checkallaction'] == 'noaction') {
-		if (updateItemSortorder('pages')) {
-			$reports[] = "<p class='messagebox fade-message'>" . gettext("Sort order saved.") . "</p>";
-		} else {
-			$reports[] = "<p class='notebox fade-message'>" . gettext("Nothing changed.") . "</p>";
-		}
+	if (updateItemSortorder('pages')) {
+		$reports[] = "<p class='messagebox fade-message'>" . gettext("Sort order saved.") . "</p>";
 	} else {
-		$action = processZenpageBulkActions('Page');
-		bulkActionRedirect($action);
+		$nothing = true;
 	}
 }
 // remove the page from the database
@@ -60,12 +53,30 @@ if (isset($_GET['hitcounter'])) {
 	$obj->save();
 	$reports[] = '<p class="messagebox fade-message">' . gettext("Hitcounter reset") . '</p>';
 }
-/*
- * Here we should restart if any action processing has occurred to be sure that everything is
- * in its proper state. But that would require significant rewrite of the handling and
- * reporting code so is impractical. Instead we will presume that all that needs to be restarted
- * is the CMS object.
- */
+
+if (isset($_POST['checkallaction']) && $_POST['checkallaction'] != 'noaction') {
+	$action = processZenpageBulkActions('Page');
+	if ($report = zenpageBulkActionMessage($action)) {
+		$reports[] = $report;
+	} else {
+		$nothing = true;
+	}
+}
+if ($nothing & empty($reports)) {
+	$reports[] = "<p class='notebox fade-message'>" . gettext("Nothing changed.") . "</p>";
+}
+if (empty($reports)) {
+	if (isset($_SESSION['reports'])) {
+		$reports = $_SESSION['reports'];
+		unset($_SESSION['reports']);
+	}
+} else {
+	$_SESSION['reports'] = $reports;
+	$uri = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php';
+	header('Location: ' . $uri);
+	exitZP();
+}
+
 $_zp_CMS = new CMS();
 
 printAdminHeader('pages');
@@ -96,21 +107,22 @@ updatePublished('pages');
 		<div id="content">
 			<?php
 			zp_apply_filter('admin_note', 'pages', '');
-			if ($reports) {
-				$show = array();
-				preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports), $matches);
-				foreach ($matches[1] as $key => $report) {
-					$show[$report][] = $matches[2][$key];
-				}
-				foreach ($show as $type => $list) {
-					echo '<p class="' . $type . '">' . implode('<br />', $list) . '</p>';
-				}
-			}
 			?>
 			<h1><?php echo gettext('Pages'); ?></h1>
 
 			<div class="tabbox">
 				<?php
+				if ($reports) {
+					$show = array();
+					preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports), $matches);
+					foreach ($matches[1] as $key => $report) {
+						$show[$report][] = $matches[2][$key];
+					}
+					foreach ($show as $type => $list) {
+						echo '<p class="' . $type . '">' . implode('<br />', $list) . '</p>';
+					}
+				}
+
 				$pagelist = $_zp_CMS->getPages();
 				foreach ($pagelist as $key => $apage) {
 					$pageobj = newPage($apage['titlelink']);

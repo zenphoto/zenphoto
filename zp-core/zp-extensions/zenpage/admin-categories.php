@@ -12,20 +12,19 @@ require_once("admin-functions.php");
 admin_securityChecks(ZENPAGE_NEWS_RIGHTS, currentRelativeURL());
 
 $reports = array();
-if (isset($_GET['bulkaction'])) {
-	$reports[] = zenpageBulkActionMessage(sanitize($_GET['bulkaction']));
-}
+
 if (isset($_POST['action'])) {
 	XSRFdefender('checkeditems');
-	if ($_POST['checkallaction'] == 'noaction') {
-		if (updateItemSortorder('categories', $reports)) {
-			$reports[] = "<p class='messagebox fade-message'>" . gettext("Sort order saved.") . "</p>";
-		} else {
+	if (updateItemSortorder('categories', $reports)) {
+		$reports[] = "<p class='messagebox fade-message'>" . gettext("Sort order saved.") . "</p>";
+	}
+	$action = processZenpageBulkActions('Category');
+	if ($report = zenpageBulkActionMessage($action)) {
+		$reports[] = $report;
+	} else {
+		if (empty($reports)) {
 			$reports[] = "<p class='notebox fade-message'>" . gettext("Nothing changed.") . "</p>";
 		}
-	} else {
-		$action = processZenpageBulkActions('Category');
-		bulkActionRedirect($action);
 	}
 }
 if (isset($_GET['delete'])) {
@@ -50,12 +49,20 @@ if (isset($_GET['save'])) {
 	updateCategory($reports, true);
 }
 
-/*
- * Here we should restart if any action processing has occurred to be sure that everything is
- * in its proper state. But that would require significant rewrite of the handling and
- * reporting code so is impractical. Instead we will presume that all that needs to be restarted
- * is the CMS object.
- */
+if (empty($reports)) {
+	if (isset($_SESSION['reports'])) {
+		$reports = $_SESSION['reports'];
+		unset($_SESSION['reports']);
+	}
+} else {
+	$_SESSION['reports'] = $reports;
+
+	var_dump($reports);
+	$uri = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-categories.php';
+	header('Location: ' . $uri);
+	exitZP();
+}
+
 $_zp_CMS = new CMS();
 
 printAdminHeader('news', 'categories');

@@ -641,7 +641,7 @@ function getNewsAdminOption($exclude) {
 }
 
 /**
- * Crea tes the a dmin paths for news articles if you use the dropdowns on the admin news article list together
+ * Creates the adminpaths for news articles if you use the dropdowns on the admin news article list together
  *
  * @param array $list an parameter array of item=>value for instance, the result of getNewsAdminOption()
  * @return string
@@ -1704,7 +1704,7 @@ function zenpageBulkActionMessage($action) {
 			$message = gettext('Categories cleared from selected items');
 			break;
 		default:
-			return "<p class='notebox fade-message'>" . gettext('Nothing changed') . "</p>";
+			return false;
 	}
 	if (isset($message)) {
 		return "<p class='messagebox fade-message'>" . $message . "</p>";
