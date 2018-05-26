@@ -30,8 +30,20 @@ shuffle($list);
 for ($i = 0; $i < 30; $i++) {
 	$auth_extratext = $auth_extratext . $salt{$list[$i]};
 }
-
 setOptionDefault('extra_auth_hash_text', $auth_extratext);
+$auth_extratext = "";
+shuffle($list);
+for ($i = 0; $i < 30; $i++) {
+	$auth_extratext = $auth_extratext . $salt{$list[$i]};
+}
+setOptionDefault('secret_key_text', $auth_extratext);
+$auth_extratext = "";
+shuffle($list);
+for ($i = 0; $i < 30; $i++) {
+	$auth_extratext = $auth_extratext . $salt{$list[$i]};
+}
+setOptionDefault('secret_init_vector', $auth_extratext);
+
 purgeOption('adminTagsTab', 0);
 
 

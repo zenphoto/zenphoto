@@ -220,6 +220,11 @@ define('UTF8_IMAGE_URI', getOption('UTF8_image_URI'));
 define('MEMBERS_ONLY_COMMENTS', getOption('comment_form_members_only'));
 
 define('HASH_SEED', getOption('extra_auth_hash_text'));
+//encrypt/decrypt constants
+define('SECRET_KEY', getOption('secret_key_text'));
+define('SECRET_IV', getOption('secret_init_vector'));
+define('INCRIPTION_METHOD', 'AES-256-CBC');
+
 define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
 
 define('NO_WATERMARK', '!');

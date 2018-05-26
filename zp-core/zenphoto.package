@@ -1149,6 +1149,7 @@ zp-core/class-feed.php
 zp-core/class-gallery.php
 zp-core/class-image.php
 zp-core/class-search.php
+zp-core/class.ncrypt.php
 zp-core/classes.php
 zp-core/controller.php
 zp-core/cron_runner.php
@@ -8326,4 +8327,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8328
+8329

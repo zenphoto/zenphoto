@@ -38,7 +38,7 @@ function saveOptions() {
 	setOption('IP_tied_cookies', (int) isset($_POST['IP_tied_cookies']));
 	setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
 	setOption('image_processor_flooding_protection', (int) isset($_POST['image_processor_flooding_protection']));
-	$_zp_gallery->save();
+	setOption('security_log_encryption', (int) isset($_POST['security_log_encryption']));
 	$returntab = "&tab=security";
 
 	return array($returntab, $notify, NULL, NULL, NULL);
@@ -172,6 +172,41 @@ function getOptionContent() {
 							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php echo gettext('Add a security parameter to image processor URIs to prevent denial of service attacks requesting arbitrary sized images.'); ?>
+							</div>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="option_name"><?php echo gettext('Encrypt security log') ?></td>
+					<td class="option_value">
+						<?php
+						if (function_exists('openssl_encrypt')) {
+							$disabled = '';
+						} else {
+							$disabled = ' disabled="disabled"';
+						}
+						?>
+						<label><input type="checkbox" name="security_log_encryption" value="1" <?php
+							checked(1, getOption('security_log_encryption'));
+							echo $disabled;
+							?> /></label>
+					</td>
+					<td class="option_desc">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
+							<div class="option_desc_hidden">
+								<?php
+								echo gettext('Add encrypts the security log.');
+								if ($disabled) {
+									?>
+									<p class="notebox">
+										<?php
+										echo gettext('The <code>php_openssl</code> library needs to be enabled')
+										?>
+									</p>
+									<?php
+								}
+								?>
 							</div>
 						</span>
 					</td>
