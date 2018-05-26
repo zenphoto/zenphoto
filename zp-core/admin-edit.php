@@ -378,6 +378,7 @@ if (isset($_GET['action'])) {
 							header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $bulknotify . $pg . $returntab);
 							exitZP();
 						}
+
 						if (isset($_POST['singleimage'])) {
 							$single = sanitize($_POST['singleimage']);
 						}
@@ -467,9 +468,6 @@ if (isset($_GET['action'])) {
 				if (!is_null($returnalbum)) {
 					$folder = $returnalbum;
 				}
-				$qs_albumsuffix = '';
-				if (isset($single))
-					$qs_albumsuffix .= '&singleimage=' . $single;
 				/** SAVE MULTIPLE ALBUMS ***************************************************** */
 			} else if ($_POST['totalalbums']) {
 				$notify = '';
@@ -493,15 +491,6 @@ if (isset($_GET['action'])) {
 				}
 			}
 
-			// Redirect to the same album we saved.
-			if (isset($folder) && !empty($folder)) {
-				$qs_albumsuffix .= '&album=' . pathurlencode($folder);
-			}
-			if (isset($_POST['subpage'])) {
-				$pg = '&subpage=' . ($subpage = sanitize($_POST['subpage']));
-			} else {
-				$subpage = $pg = false;
-			}
 			$msg = zp_apply_filter('edit_error', '');
 			if ($msg) {
 				$notify .= '&edit_error=' . $msg;
@@ -1376,9 +1365,9 @@ echo "\n</head>";
 																		 name="<?php echo $currentimage; ?>-Visible"
 																		 value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?>
 																		 onclick="$('#publishdate-<?php echo $currentimage; ?>').val('');
-																				 $('#expirationdate-<?php echo $currentimage; ?>').val('');
-																				 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
-																				 $('.expire-<?php echo $currentimage; ?>').html('');"
+																									 $('#expirationdate-<?php echo $currentimage; ?>').val('');
+																									 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
+																									 $('.expire-<?php echo $currentimage; ?>').html('');"
 																		 />
 																		 <?php echo gettext("Published"); ?>
 														</label>
@@ -1495,7 +1484,7 @@ echo "\n</head>";
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete" onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																	deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																						deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 														</label>
 														<br class="clearall">
 														<div id="movecopydiv-<?php echo $currentimage; ?>" class="resetHide" style="padding-top: .5em; padding-left: .5em; padding-bottom: .5em; display: none;">
