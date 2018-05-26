@@ -5299,7 +5299,6 @@ function getPluginTabs() {
 				eval($str);
 			}
 			$details[$plugin]['plugin_is_filter'] = $plugin_is_filter;
-
 			if ($plugin_is_filter & THEME_PLUGIN) {
 				$theme[$plugin] = $path;
 			}
@@ -5312,6 +5311,7 @@ function getPluginTabs() {
 			if ($plugin_is_filter & FEATURE_PLUGIN) {
 				$feature[$plugin] = $path;
 			}
+			unset($plugin_is_filter);
 
 			$classes[$key][] = $plugin;
 			if (extensionEnabled($plugin)) {
