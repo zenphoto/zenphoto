@@ -17,9 +17,8 @@ $page = 'edit';
 $reports = array();
 if (isset($_POST['update'])) {
 	XSRFdefender('update_menu');
-	if ($_POST['checkallaction'] == 'noaction') {
-		$reports[] = updateItemsSortorder();
-	} else {
+	$reports[] = updateItemsSortorder();
+	if ($_POST['checkallaction'] != 'noaction') {
 		$report = processMenuBulkActions();
 		if ($report) {
 			$reports[] = $report;
