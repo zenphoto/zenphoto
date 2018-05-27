@@ -70,13 +70,9 @@ if (isset($_GET['tab']) && isset($logtabs[$_GET['tab']])) {
 	$logname = $subtab = $zenphoto_tabs['logs']['default'];
 }
 if (getOption(preg_replace('~-\d*$~', '', $logname) . '_log_encryption')) {
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/class.ncrypt.php');
-	$_ncrypt = new mukto90\Ncrypt;
-	$_ncrypt->set_secret_key(SECRET_KEY);
-	$_ncrypt->set_secret_iv(SECRET_IV);
-	$_ncrypt->set_cipher(INCRIPTION_METHOD);
+	$_logCrypt = $_adminCript;
 } else {
-	$_ncrypt = NULL;
+	$_logCript = NULL;
 }
 
 printAdminHeader('logs', $subtab);
@@ -115,8 +111,8 @@ echo "\n</head>";
 					$logfile = SERVERPATH . "/" . DATA_FOLDER . '/' . $subtab . '.log';
 					if (file_exists($logfile) && filesize($logfile) > 0) {
 						$logtext = explode("\n", file_get_contents($logfile));
-						if ($_ncrypt) {
-							$logtext = array_map(array($_ncrypt, 'decrypt'), $logtext);
+						if ($_logCript) {
+							$logtext = array_map(array($_logCript, 'decrypt'), $logtext);
 						}
 					} else {
 						$logtext = array();

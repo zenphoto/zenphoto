@@ -24,11 +24,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'security_logger';
 
 if (getOption('security_log_encryption')) {
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/class.ncrypt.php');
-	$_ncrypt = new mukto90\Ncrypt;
-	$_ncrypt->set_secret_key(SECRET_KEY);
-	$_ncrypt->set_secret_iv(SECRET_IV);
-	$_ncrypt->set_cipher(INCRIPTION_METHOD);
+	$_logCript = $_adminCript;
 }
 if (getOption('logger_log_admin')) {
 	zp_register_filter('admin_login_attempt', 'security_logger::adminLoginLogger');
@@ -102,7 +98,7 @@ class security_logger {
 	 * @param string $addl more info
 	 */
 	private static function Logger($success, $user, $name, $action, $authority, $addl = NULL) {
-		global $_zp_authority, $_zp_mutex, $_ncrypt;
+		global $_zp_authority, $_zp_mutex, $_logCript;
 		$ip = sanitize($_SERVER['REMOTE_ADDR']);
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			$proxy_list = explode(",", $_SERVER['HTTP_X_FORWARDED_FOR']);
@@ -187,8 +183,8 @@ class security_logger {
 			if (!$preexists) { // add a header
 				@chmod($file, DATA_MOD);
 				$message = gettext('date' . "\t" . 'requestor’s IP' . "\t" . 'type' . "\t" . 'user ID' . "\t" . 'user name' . "\t" . 'outcome' . "\t" . 'authority' . "\tadditional information");
-				if ($_ncrypt) {
-					$message = $_ncrypt->encrypt($message);
+				if ($_logCript) {
+					$message = $_logCript->encrypt($message);
 				}
 				fwrite($f, $message . "\n");
 			}
@@ -215,8 +211,8 @@ class security_logger {
 			if ($addl) {
 				$message .= "\t" . $addl;
 			}
-			if ($_ncrypt) {
-				$message = $_ncrypt->encrypt($message);
+			if ($_logCript) {
+				$message = $_logCript->encrypt($message);
 			}
 			fwrite($f, $message . "\n");
 			fclose($f);

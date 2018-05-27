@@ -12,6 +12,13 @@
 $_zp_button_actions = $zenphoto_tabs = array();
 require_once(dirname(__FILE__) . '/functions-basic.php');
 
+
+require_once(SERVERPATH . '/' . ZENFOLDER . '/class.ncrypt.php');
+$_adminCript = new mukto90\Ncrypt;
+$_adminCript->set_secret_key(SECRET_KEY);
+$_adminCript->set_secret_iv(SECRET_IV);
+$_adminCript->set_cipher(INCRIPTION_METHOD);
+
 zp_session_start();
 require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 httpsRedirect();
@@ -35,7 +42,6 @@ $_zp_sortby = array(
 		gettext('Owner') => 'owner',
 		gettext('Published') => 'show'
 );
-
 
 // setup sub-tab arrays for use in dropdown
 if (@$_zp_loggedin) {
