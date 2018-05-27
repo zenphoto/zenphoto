@@ -127,7 +127,7 @@ class jquery_rating {
 						'desc' => gettext('Allows rating to be zero.')),
 				gettext('Disguise IP') => array('key' => 'rating_hash_ip', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 1,
-						'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.')),
+						'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.') . '<p class="notebox">' . gettext('<strong>Note</strong>: Ratiings will be less accurate if this option is selected since multiple IP address may hash to the same value.') . '</p>'),
 				'' => array('key' => 'rating_js', 'type' => OPTION_TYPE_CUSTOM,
 						'order' => 9999,
 						'desc' => '')
