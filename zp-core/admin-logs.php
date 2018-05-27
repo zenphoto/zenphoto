@@ -69,12 +69,14 @@ if (isset($_GET['tab']) && isset($logtabs[$_GET['tab']])) {
 } else {
 	$logname = $subtab = $zenphoto_tabs['logs']['default'];
 }
-if (getOption(preg_replace('~-\d*$~', '', $logname))) {
+if (getOption(preg_replace('~-\d*$~', '', $logname) . '_log_encryption')) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/class.ncrypt.php');
 	$_ncrypt = new mukto90\Ncrypt;
 	$_ncrypt->set_secret_key(SECRET_KEY);
 	$_ncrypt->set_secret_iv(SECRET_IV);
 	$_ncrypt->set_cipher(INCRIPTION_METHOD);
+} else {
+	$_ncrypt = NULL;
 }
 
 printAdminHeader('logs', $subtab);
