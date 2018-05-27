@@ -16,7 +16,13 @@ require_once(dirname(__FILE__) . '/functions.php');
 if (GALLERY_SESSION || zp_loggedin(UPLOAD_RIGHTS | ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) {
 	zp_session_start();
 }
-
+if (function_exists('openssl_encrypt')) {
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/class.ncrypt.php');
+	$_themeCript = new mukto90\Ncrypt;
+	$_themeCript->set_secret_key(HASH_SEED);
+	$_themeCript->set_secret_iv(SECRET_IV);
+	$_themeCript->set_cipher(INCRIPTION_METHOD);
+}
 zp_apply_filter('feature_plugin_load');
 if (DEBUG_PLUGINS) {
 	debugLog('Loading the "feature" plugins.');

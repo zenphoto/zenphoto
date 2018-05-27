@@ -125,9 +125,6 @@ class jquery_rating {
 				gettext('Allow zero') => array('key' => 'rating_zero_ok', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 5,
 						'desc' => gettext('Allows rating to be zero.')),
-				gettext('Disguise IP') => array('key' => 'rating_hash_ip', 'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 1,
-						'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.') . '<p class="notebox">' . gettext('<strong>Note</strong>: Ratiings will be less accurate if this option is selected since multiple IP address may hash to the same value.') . '</p>'),
 				'' => array('key' => 'rating_js', 'type' => OPTION_TYPE_CUSTOM,
 						'order' => 9999,
 						'desc' => '')
@@ -201,9 +198,9 @@ class jquery_rating {
 		?>
 
 		<script type="text/javascript">
-					// <!-- <![CDATA[
-					$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: <?php echo $size; ?>};
-					// ]]> -->
+			// <!-- <![CDATA[
+			$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: <?php echo $size; ?>};
+			// ]]> -->
 		</script>
 		<?php
 	}
@@ -307,18 +304,6 @@ class jquery_rating {
 		}
 	}
 
-	/**
-	 *
-	 * returns an "ID" tag for rating records
-	 */
-	static function id() {
-		if (getOption('rating_hash_ip')) {
-			return sha1(getUserIP());
-		} else {
-			return getUserID();
-		}
-	}
-
 }
 
 /**
@@ -384,7 +369,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 	$id = $object->getID();
 	$unique = '_' . $table . '_' . $id;
 
-	$ip = jquery_rating::id();
+	$ip = getUserID();
 	$oldrating = jquery_rating::getRatingByIP($ip, $object->get('used_ips'), $object->get('rating'));
 	if ($vote && $recast == 2 && $oldrating) {
 		$starselector = round($oldrating * $split_stars);

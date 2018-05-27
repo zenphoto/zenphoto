@@ -69,11 +69,14 @@ function getUserIP() {
  * @return string
  */
 function getUserID() {
-	global $_zp_current_admin_obj;
+	global $_zp_current_admin_obj, $_themeCript;
 	if ($_zp_current_admin_obj) {
 		$id = $_zp_current_admin_obj->getUser();
 	} else {
 		$id = getUserIP();
+		if ($_themeCript) {
+			$id = $_themeCript->encrypt($id);
+		}
 	}
 	return $id;
 }
