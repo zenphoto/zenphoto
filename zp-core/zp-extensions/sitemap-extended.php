@@ -357,7 +357,7 @@ class sitemap {
 				}
 				break;
 		}
-		return sitemap_getISO8601Date($date);
+		return sitemap::getISO8601Date($date);
 		// For more streamlined but PHP5-only equivalent, remove the above line and uncomment the following:
 		// return gmstrftime(DATE_ISO8601, strtotime($date));
 	}
