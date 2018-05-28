@@ -73,10 +73,14 @@
 			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.6.2.07.DEV_04</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.6.2.08.DEV_01</h2>
 <h2>General</h2>
 <p>This release fixes multiple bugs and security holes. For details see the change log.</p>
 <p>There has been a slight reorganization of the Administrative Overview section. The "Installation information" section is now a separate page accessible from the OVERVIEW fly-out. User information has been added to the Gallery stats display.</p>
+<p>Security</p>
+<p>The <em>Security</em>, <em>Setup</em>, and <em>Debug</em> logs can be encrypted. This provides additional protection of possible sensitive data in these files. The options to encrypt the logs is found on the <em>Security</em> options page.</p>
+<p><strong>Note</strong>: Since these encrypted logs cannot be read "off line" you should carefully consider what you encrypt. The encryption depends on reading the state of an option. So if the log entry is generated before option handling is initialized the entries will NOT be encrypted. This could happen with the <em>Setup</em> log when the database is not available. It could happen with the <em>Debug</em> log if an error occurs before options are available. In both these cases your log may have a mixture of encrypted and unencrypted records. When these are displayed on the <em>Logs</em> page the unencrypted records will be garbled.</p>
+<p>A further consideration for the <em>Debug</em> log is that encrypted records cannot be deciphered "off line." This means that the records of a site crash may not be available for analysis until the site is back up and running. This would make analyzing and correcting the problem more difficult.</p>
 <h2>GDPR</h2>
 <p>Some tools have been added to help sites conform to the <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>. There is a new general option, <em>Usage policy</em>, which if enabled will force viewers to acknowledge your site usage policy.  A new function, <code>policySubmitButton()</code>, will display a checkbox until the viewer has acknowledged the policy (by checking the box.) The "submit" button replaces this checkbox once the acknowledgement has occurred. </p>
 <p>The acknowledged state is persistent. For a registered user it remains until cleared by the administrator. For anonymous visitors it is retained by a cookie so will persist until the cookie expires. (If <em>gallery sessions</em> is enabled it persists for the visitor's session.)</p>
@@ -84,20 +88,23 @@
 <p><em>GDPR and IP addresses</em></p>
 <p>The GDPR states that IP addresses should be considered personal data as it enters the scope of ‘<em>online identifiers</em>’. See the description of <a href="https://eugdprcompliant.com/personal-data/">personal data</a>.</p>
 <p>Your site usage policy statement may need to address these uses. They are described below:</p>
-<p>Security uses:</p>
+<p>Security uses*:</p>
 <ol>
 <li>The <em>accessThreshold plugin</em> records site visit frequency by IP address for the purpose of blocking denial of service attacks.</li>
 <li>The <em>IP_blocker plugin</em> allows an administrator to manually enter an IP address that is to be denied (allowed) access to the site.</li>
-<li>The security log contains the IP address of site which caused the security log entry.</li>
+<li>The security log contains the IP address of site which caused the security log entry†.</li>
+<li>In the logging of 404 errors to the debug log.</li>
 </ol>
+<p>†Except for the security log, there is no direct link between and IP address and a user. Encrypt the content of the security log for further protection of this data.</p>
 <p>Uses as a unique identifier*: </p>
 <ol>
 <li>Cached searches</li>
 <li>Search statistics</li>
-<li>Rating (but the IP may be hashed if the <em>rating_hash_ip </em>option is set.)</li>
+<li>Rating</li>
 <li>Recorded comments</li>
 </ol>
-<p>*To mitigate these issues, except for security purposes, ZenPhoto20 will use an IP address only for anonymous site visitors. For logged on users the identification will be by <em>username</em>.</p>
+<p>*Except for security purposes, ZenPhoto20 will use an IP address only for anonymous site visitors. If the <em>php_openssl</em> library is enabled the IP address will be encrypted. For logged on users the identification will be by <em>username</em>.</p>
+<p> </p>
 <h2>jQuery</h2>
 <p>We have migrated to <em>jQuery </em>version 3.3 with this release since older versions of jQuery are no longer in support.<em> jQuery v3.3</em> has several deprecations that require script upgrades. See the <a href="https://jquery.com/upgrade-guide/3.0/">jQuery Core 3.0 Upgrade Guide</a> for details. ZenPhoto20 now has provisions to support the <a href="https://github.com/jquery/jquery-migrate/#README"><em>jQuery Migrate Plugin</em></a> or revert (for themes) to <em>jQuery v1.12</em> via options in the <em>Debug</em> plugin. You may need to set these options to run or update incompatible scripts.</p>
 <p><strong>Tags</strong></p>
@@ -109,7 +116,9 @@
 <h2>Plugins</h2>
 <p><em>GDPR_required</em></p>
 <p>A plugin to require that visitors view and acknowledge a site policy page upon the first visit to your site. The plugin requires a<em> zenpage page</em> object or a custom page script which states the site usage policy. See the plugin usage information for implementation details.</p>
-<p><em>Zenpage</em></p>
+<p><em>rating</em></p>
+<p>The <code>Disguise IP</code> option has been removed as it is now redundant. If for logged-on users, the user name is used to identify the rating. For anonymous users, the IP address is encrypted and used. It is suggested you clear ratings with this update since old ratings cannot be associated with the originator.</p>
+<p><em>zenpage</em></p>
 <p>There is now an option, <em>News label,</em> to set the "name" of news items. This will allow you to show a different name, for instance "Blog," on your website. The option also changes the rewrite token for <em>news</em> to match. For multilingual sites, the token will be set from the site language string for the option if present. If not it will default to the string for the current locale, the en_US string, or the first language string, which ever is present.</p>
 <p>Note: Themes should now use the define <code>NEWS_LABEL</code> instead of <code>gettext("News")</code>. The distributed themes have been updated to use <code>NEWS_LABEL</code> in places where the text "news" appeared. These changes include theme custom menus, but existing custom menus must be deleted and repopulated before the new structures will be used.</p>
 <p><em>zoomImage</em></p>
