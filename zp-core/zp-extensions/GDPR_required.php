@@ -71,10 +71,10 @@ class GDPR_required {
 							gettext('Policy page') => array('key' => 'GDPR_page', 'type' => OPTION_TYPE_SELECTOR,
 									'selections' => $possibilities,
 									'order' => 1,
-									'desc' => gettext('The zenpage plugin is reqired but not enabled.')),
-							gettext('*' . gettext('Custom URL') . '*') => array('key' => 'GDPR_URL', 'type' => OPTION_TYPE_CUSTOM,
+									'desc' => gettext('The <em>zenpage page</em> object to use as the policy page.')),
+							gettext('Policy page URL') => array('key' => 'GDPR_URL', 'type' => OPTION_TYPE_CUSTOM,
 									'order' => 2,
-									'desc' => gettext('The URL to use if *Custom url* is selected.'))
+									'desc' => gettext('The URL to the site policy page. This will be the link to the <em>Policy page</em> object if a <em>zenpage page</em> is selected.'))
 					);
 				}
 			} else {
@@ -101,8 +101,8 @@ class GDPR_required {
 	static function handleOptionSave($themename, $themealbum) {
 		$page = getOption('GDPR_page');
 		if ($page) {
-			$page = newPage($page);
-			$link = $page->getLink();
+			$pageobj = newPage($page);
+			$link = $pageobj->getLink();
 		} else {
 			$link = sanitize($_POST['GDPR_URL']);
 		}
@@ -134,7 +134,7 @@ class GDPR_required {
 
 	static function button() {
 		global $_GDPR_acknowledge_loaded;
-		if (true || $_GDPR_acknowledge_loaded) {
+		if ($_GDPR_acknowledge_loaded) {
 			$link = getGalleryIndexURL();
 			?>
 			<form action="<?php echo $link; ?>" method = "post">
