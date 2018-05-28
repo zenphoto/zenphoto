@@ -112,7 +112,7 @@ class GDPR_required {
 
 	static function page() {
 		global $_zp_current_admin_obj, $_GDPR_acknowledge_loaded;
-		if (getOption('GDPR_acknowledge') && !($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && zp_getCookie('policyACK') != getOption('GDPR_cookie')) {
+		if (!($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && zp_getCookie('policyACK') != getOption('GDPR_cookie')) {
 			$page = getOption('GDPR_page');
 			if ($page) {
 				$page = newPage($page);
@@ -135,6 +135,7 @@ class GDPR_required {
 	static function button() {
 		global $_GDPR_acknowledge_loaded;
 		if ($_GDPR_acknowledge_loaded) {
+			setOption('GDPR_text', gettext('Check to acknowledge the site usage policy.'), false);
 			$link = getGalleryIndexURL();
 			?>
 			<form action="<?php echo $link; ?>" method = "post">

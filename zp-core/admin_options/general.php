@@ -565,14 +565,15 @@ function getOptionContent() {
 					<td class="option_name"><?php echo gettext("Usage policy"); ?></td>
 					<td class="option_value">
 						<label>
-							<input type="checkbox" name="GDPR_acknowledge" value="1" <?php checked(1, getOption('GDPR_acknowledge')); ?> onclick="$('#GDR_Details').toggle()" />
+							<input type="checkbox" name="GDPR_acknowledge" value="1" <?php checked(1, getOption('GDPR_acknowledge')); ?> onclick="$('#GDR_Details').toggle();<?php if (!extensionEnabled('GDPR_required')) echo '$(\'#GDPR_clear\').toggle();'; ?>" />
 							<?php echo gettext('require acknowledgement'); ?>
 						</label>
+						<p id="GDPR_clear" <?php if (!(GetOption('GDPR_acknowledge') || extensionEnabled('GDPR_required'))) echo ' style="display:none"'; ?>>
+							<input type="checkbox" name="GDPR_re-acknowledge" value="1" />
+							<?php echo gettext('Clear remembered acknowledgements'); ?>
+						</p>
+
 						<div id="GDR_Details" <?php if (!GetOption('GDPR_acknowledge')) echo ' style="display:none"'; ?>>
-							<p>
-								<input type="checkbox" name="GDPR_re-acknowledge" value="1" />
-								<?php echo gettext('Clear remembered acknowledgements'); ?>
-							</p>
 							<p>
 								<?php echo gettext('Policy URL'); ?>
 								<input type="text" name="GDPR_URL" size="35" value="<?php echo getOption('GDPR_URL'); ?>" />
