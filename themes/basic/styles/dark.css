@@ -41,14 +41,12 @@ body {
 	clear: both;
 }
 #credit a, #sort a {
-	text-decoration: none;
 	color: #294550;
 	border-bottom: 1px dotted #294550;
 }
 #credit a:hover, #sort a:hover {
 	color: #748da0;
 	border-bottom: 1px solid #294550;
-	text-decoration: none;
 }
 
 /* OpenStreetMap  */
@@ -77,8 +75,13 @@ ul.scriptless_socialsharing li {
 
 /* Link Styles
 ------------------------------ */
-a:link, a:active, a:visited { text-decoration: underline; color: #86a1b6; }
-a:hover, a:focus { text-decoration: underline; color: #94c2e5; }
+a:link, a:active, a:visited { 
+	text-decoration: none; color: #86a1b6; 
+}
+
+a:hover, a:focus { 
+	color: #94c2e5; 
+}
 
 /* Text Styles
 ------------------------------ */
@@ -94,14 +97,12 @@ h2 {
 }
 h2 a:link, h2 a:visited {
 	color: #86a1b6;
-	text-decoration: none;
 }
 h2 span {
 	color: #666;
 }
 h2 a:hover {
 	color: #94c2e5;
-	text-decoration: none;
 }
 h3 {
 	font: 110% "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
@@ -109,8 +110,6 @@ h3 {
 	color: #748da0;
 	margin-top: 30px;
 }
-h3 a:link, h3 a:visited { text-decoration: none; }
-h3 a:hover { text-decoration: underline; }
 
 
 /* Miscellaneous
@@ -169,7 +168,6 @@ ul.pagelist li a, ul.pagelist span.disabledlink {
 }
 ul.pagelist li.current a {
 	font-weight: bold;
-	text-decoration: none;
 	cursor: default;
 	color: #748da0;
 }
@@ -346,13 +344,11 @@ cursor: pointer !important;
 	float: left;
 	padding: 4px 0;
 	font-size: 120%;
-	text-decoration: none;
 	line-height: 180%;
 	color: #666;
 }
 .imgnav .imgprevious a:hover, .imgnav .imgnext a:hover {
 	background-color: #333;
-	text-decoration: none;
 	color: #888;
 }
 .imgnav .imgprevious a {
@@ -469,9 +465,7 @@ label:hover {
 	padding: 1px;
 	font-size: 80%;
 }
-#search a {
-text-decoration: none;
-}
+
 #search ul {
 border: 1px solid #444; position:absolute; text-align:left; list-style: none;
 height: 8em; width: 20em; overflow: auto;
@@ -562,20 +556,6 @@ ul.archive .month {
 	list-style-type: none;
 }
 
-/* centering flowplayer 3 on image.php */
-#image .flowplayer,
-.jp-audio,
-.jp-video {
-	margin: 0 auto;
-}
-
-.textobject {
-	font-size: 12px;
-	line-height: 16px;
-	text-align: left !important;
-	text-decoration: none !important;
-	overflow:scroll !important;
-}
 /* box for important notes
 ------------------------------ */
 .notebox {
@@ -684,7 +664,6 @@ a.slideshowlink {
 color: black;
 padding: 5px 6px 3px 6px;
 margin-top: 10px !important;
-text-decoration: none;
 clear: both;
 margin-top: 10px;
 display: inline-block;

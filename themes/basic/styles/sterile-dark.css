@@ -38,12 +38,10 @@ body {
 	clear: both;
 }
 #credit a {
-	text-decoration: none;
 	color: #9C3;
 }
 #credit a:hover {
 	color: #7A2;
-	text-decoration: none;
 }
 
 /* OpenStreetMap  */
@@ -96,7 +94,6 @@ h1 {
 }
 h1 a:link, h1 a:active, h1 a:visited {
 	color: #1a1a1a;
-	text-decoration: none;
 }
 h1 span {
 	color: #1a1a1a;
@@ -114,8 +111,12 @@ h2 {
 	width:410px;
 	float:left;
 }
-h2 a:link, h2 a:active, h2 a:visited { text-decoration: none; color: #666;}
-h2 a:hover, h2 a:focus { text-decoration: none; color: #999;}
+h2 a:link, h2 a:active, h2 a:visited { 
+	color: #666;
+}
+h2 a:hover, h2 a:focus { 
+	color: #999;
+}
 h2 a:hover {
 	color: #eeffac;
 }
@@ -133,8 +134,13 @@ h4 {
 
 /* Link Styles
 ------------------------------ */
-a:link, a:active, a:visited { text-decoration: none; color: #9C3; }
-a:hover, a:focus { text-decoration: none; color: #580;}
+a:link, a:active, a:visited { 
+	text-decoration: none; color: #9C3; 
+}
+
+a:hover, a:focus { 
+	color: #580;
+}
 
 /* Miscellaneous
 ------------------------------ */
@@ -180,7 +186,6 @@ ul.pagelist li a, ul.pagelist span.disabledlink {
 }
 ul.pagelist li.current a {
 	font-weight: bold;
-	text-decoration: none;
 	color: #666;
 }
 ul.pagelist li.prev {
@@ -344,11 +349,9 @@ cursor: pointer !important;
 	width: 50%;
 	height: 100%;
 	float: left;
-	text-decoration: none;
 	color: #214902;
 }
 .imgnav .imgprevious a:hover, .imgnav .imgnext a:hover {
-	text-decoration: none;
 	color: #0c2601;
 }
 .imgnav .imgprevious a {
@@ -459,9 +462,7 @@ label {
   padding: 1px;
   font-size: 80%;
 }
-#search a {
-text-decoration: none;
-}
+
 #search ul {
 border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;
 height: 8em; width: 20em; overflow: auto;
@@ -553,20 +554,6 @@ ul.archive .month {
 	list-style-type: none;
 }
 
-/* centering flowplayer 3 on image.php */
-#image .flowplayer,
-.jp-audio,
-.jp-video {
-	margin: 0 auto;
-}
-
-.textobject {
-	font-size: 12px;
-	line-height: 16px;
-	text-align: left !important;
-	text-decoration: none !important;
-	overflow:scroll !important;
-}
 /* box for important notes
 ------------------------------ */
 .notebox {
@@ -696,7 +683,6 @@ font-size: 12px;
 a.slideshowlink {
 padding: 5px 6px 3px 6px;
 margin-top: 10px !important;
-text-decoration: none;
 clear: both;
 margin-top: 10px;
 display: inline-block;
