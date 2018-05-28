@@ -183,10 +183,7 @@ class security_logger {
 			if (!$preexists) { // add a header
 				@chmod($file, DATA_MOD);
 				$message = gettext('date' . "\t" . 'requestor’s IP' . "\t" . 'type' . "\t" . 'user ID' . "\t" . 'user name' . "\t" . 'outcome' . "\t" . 'authority' . "\tadditional information");
-				if ($_logCript) {
-					$message = $_logCript->encrypt($message);
-				}
-				fwrite($f, $message . "\n");
+				fwrite($f, $message . NEWLINE);
 			}
 			$message = date('Y-m-d H:i:s') . "\t";
 			$message .= $ip . "\t";
@@ -195,13 +192,13 @@ class security_logger {
 			$message .= $name . "\t";
 			switch ($success) {
 				case 0:
-					$message .= gettext("Failed") . "\t";
+					$message .= '<span class="error">' . gettext("Failed") . "</span>\t";
 					break;
 				case 1:
 					$message .= gettext("Success") . "\t";
 					break;
 				case 2:
-					$message .= gettext("Blocked") . "\t";
+					$message .= '<span class="logwarning">' . gettext("Blocked") . "</span>\t";
 					break;
 				case 3:
 					$message .= $aux1 . "\t";
@@ -214,7 +211,7 @@ class security_logger {
 			if ($_logCript) {
 				$message = $_logCript->encrypt($message);
 			}
-			fwrite($f, $message . "\n");
+			fwrite($f, $message . NEWLINE);
 			fclose($f);
 			clearstatcache();
 		}

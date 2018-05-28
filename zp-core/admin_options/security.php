@@ -4,10 +4,34 @@
  */
 $optionRights = ADMIN_RIGHTS;
 
+function logSecuritySwitch($log) {
+	global $_adminCript, $_zp_mutex;
+	$oldLogEncryption = getOption($log . '_log_encryption');
+	setOption($log . '_log_encryption', $newLogEncryption = (int) isset($_POST[$log . '_log_encryption']));
+	if ($oldLogEncryption != $newLogEncryption) {
+		$logfile = SERVERPATH . "/" . DATA_FOLDER . '/' . $log . '.log';
+		if (file_exists($logfile) && filesize($logfile) > 0) {
+			$_zp_mutex->lock();
+			$logtext = explode(NEWLINE, file_get_contents($logfile));
+			$header = $logtext[0];
+			$fields = explode("\t", $header);
+			if ($newLogEncryption) {
+				$logtext = array_map(array($_adminCript, 'encrypt'), $logtext);
+			} else {
+				$logtext = array_map(array($_adminCript, 'decrypt'), $logtext);
+			}
+			if (count($fields) > 1) {
+				$logtext[0] = $header; //	restore un-encrypted header
+			}
+			file_put_contents($logfile, rtrim(implode(NEWLINE, $logtext), NEWLINE) . NEWLINE);
+			$_zp_mutex->unlock();
+		}
+	}
+}
+
 function saveOptions() {
 	global $_zp_gallery, $_zp_authority, $zp_cfg, $_configMutex;
 
-	$notify = $returntab = NULL;
 	$protocol = sanitize($_POST['server_protocol'], 3);
 	if (getOption('server_protocol') != $protocol) {
 		switch ($protocol) {
@@ -38,10 +62,12 @@ function saveOptions() {
 	setOption('IP_tied_cookies', (int) isset($_POST['IP_tied_cookies']));
 	setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
 	setOption('image_processor_flooding_protection', (int) isset($_POST['image_processor_flooding_protection']));
-	setOption('security_log_encryption', (int) isset($_POST['security_log_encryption']));
-	$returntab = "&tab=security";
 
-	return array($returntab, $notify, NULL, NULL, NULL);
+	logSecuritySwitch('security');
+	logSecuritySwitch('setup');
+	logSecuritySwitch('debug');
+
+	return array("&tab=security", NULL, NULL, NULL, NULL);
 }
 
 function getOptionContent() {
@@ -177,7 +203,7 @@ function getOptionContent() {
 					</td>
 				</tr>
 				<tr>
-					<td class="option_name"><?php echo gettext('Encrypt security log') ?></td>
+					<td class="option_name"><?php echo gettext('Log encryption') ?></td>
 					<td class="option_value">
 						<?php
 						if (function_exists('openssl_encrypt')) {
@@ -186,17 +212,34 @@ function getOptionContent() {
 							$disabled = ' disabled="disabled"';
 						}
 						?>
-						<label><input type="checkbox" name="security_log_encryption" value="1" <?php
+						<label>
+							<input type="checkbox" name="security_log_encryption" value="1" <?php
 							checked(1, getOption('security_log_encryption'));
 							echo $disabled;
-							?> /></label>
+							?> />
+										 <?php echo gettext('Security log'); ?>
+						</label>
+						<label>
+							<input type="checkbox" name="setup_log_encryption" value="1" <?php
+							checked(1, getOption('setup_log_encryption'));
+							echo $disabled;
+							?> />
+										 <?php echo gettext('Setup log'); ?>
+						</label>
+						<label>
+							<input type="checkbox" name="debug_log_encryption" value="1" <?php
+							checked(1, getOption('debug_log_encryption'));
+							echo $disabled;
+							?> />
+										 <?php echo gettext('Debug log'); ?>
+						</label>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
 							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php
-								echo gettext('Add encrypts the security log.');
+								echo gettext('Add encrypts the the logs.') . '<p class="notebox">' . gettext('<strong>Note</strong>: Encrypting the debug log is not recommended. See the ZenPhoto20 Version 1.7 release notes for details.');
 								if ($disabled) {
 									?>
 									<p class="notebox">

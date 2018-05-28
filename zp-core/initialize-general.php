@@ -20,6 +20,20 @@ $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
 define('ZENPHOTO_LOCALE', setMainDomain());
+//encrypt/decrypt constants
+define('SECRET_KEY', getOption('secret_key_text'));
+define('SECRET_IV', getOption('secret_init_vector'));
+define('INCRIPTION_METHOD', 'AES-256-CBC');
+
+if (function_exists('openssl_encrypt')) {
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/class.ncrypt.php');
+	$_adminCript = new mukto90\Ncrypt;
+	$_adminCript->set_secret_key(SECRET_KEY);
+	$_adminCript->set_secret_iv(SECRET_IV);
+	$_adminCript->set_cipher(INCRIPTION_METHOD);
+} else {
+	$_adminCript = NULL;
+}
 
 require_once(dirname(__FILE__) . '/load_objectClasses.php');
 

@@ -72,7 +72,7 @@ if (isset($_GET['tab']) && isset($logtabs[$_GET['tab']])) {
 if (getOption(preg_replace('~-\d*$~', '', $logname) . '_log_encryption')) {
 	$_logCrypt = $_adminCript;
 } else {
-	$_logCript = NULL;
+	$_logCrypt = NULL;
 }
 
 printAdminHeader('logs', $subtab);
@@ -110,9 +110,10 @@ echo "\n</head>";
 					$logfiletext = strtoupper(substr($logfiletext, 0, 1)) . substr($logfiletext, 1);
 					$logfile = SERVERPATH . "/" . DATA_FOLDER . '/' . $subtab . '.log';
 					if (file_exists($logfile) && filesize($logfile) > 0) {
-						$logtext = explode("\n", file_get_contents($logfile));
-						if ($_logCript) {
-							$logtext = array_map(array($_logCript, 'decrypt'), $logtext);
+						$logtext = explode(NEWLINE, file_get_contents($logfile));
+						$header = $logtext[0];
+						if ($_logCrypt) {
+							$logtext = array_map(array($_logCrypt, 'decrypt'), $logtext);
 						}
 					} else {
 						$logtext = array();
@@ -160,9 +161,9 @@ echo "\n</head>";
 						<blockquote class="logtext">
 							<?php
 							if (!empty($logtext)) {
-								$header = array_shift($logtext);
 								$fields = explode("\t", $header);
 								if (count($fields) > 1) { // there is a header row, display in a table
+									unset($logtext[0]); //	delete the header
 									?>
 									<table id="log_table">
 										<?php
@@ -192,7 +193,7 @@ echo "\n</head>";
 														<?php
 														if ($field) {
 															?>
-															<span class="nowrap"><?php echo html_encode($field); ?></span>
+															<span class="nowrap"><?php echo html_encodeTagged($field); ?></span>
 															<?php
 														}
 														?>
@@ -207,15 +208,14 @@ echo "\n</head>";
 									</table>
 									<?php
 								} else {
-									array_unshift($logtext, $header);
 									foreach ($logtext as $line) {
 										if ($line) {
-											$line = str_replace("\t", '  ', $line);
+											$line = str_replace("\t", '&nbsp;&nbsp;', $line);
 											?>
 											<p>
 												<span class="nowrap">
 													<?php
-													echo str_replace(' ', '&nbsp;', html_encode($line));
+													echo html_encodeTagged($line);
 													?>
 												</span>
 											</p>

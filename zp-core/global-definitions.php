@@ -17,6 +17,8 @@ if (!defined('SORT_NATURAL'))
 if (!defined('SORT_LOCALE_STRING'))
 	define('SORT_LOCALE_STRING', 0);
 
+define('NEWLINE', "\n");
+
 define('SCRIPTPATH', str_replace('\\', '/', dirname(dirname(__FILE__))));
 define('ZENFOLDER', 'zp-core');
 define('PLUGIN_FOLDER', 'zp-extensions');

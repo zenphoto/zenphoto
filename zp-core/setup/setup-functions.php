@@ -188,7 +188,17 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 	} else {
 		$stopped = '';
 	}
-	setupLog($classes[$cls] . $stopped . $dsp, $anyway);
+	$msg = $classes[$cls] . $stopped . strip_tags($dsp);
+	switch ($cls) {
+		case 'warn':
+			$msg = '<span class="logwarning">' . $msg . '</span>';
+			break;
+		case 'fail':
+			$msg = '<span class="logerror">' . $msg . '</span>';
+
+			break;
+	}
+	setupLog($msg, $anyway);
 	return $check;
 }
 
@@ -355,7 +365,12 @@ function permissionsSelector($permission_names, $select) {
 }
 
 function setupLog($message, $anyway = false, $reset = false) {
-	global $debug, $_zp_mutex, $chmod;
+	global $debug, $_zp_mutex, $chmod, $_adminCript;
+	if (getOption('setup_log_encryption')) {
+		$_logCript = $_adminCript;
+	} else {
+		$_logCript = NULL;
+	}
 	if ($debug || $anyway) {
 		if (is_object($_zp_mutex))
 			$_zp_mutex->lock();
@@ -369,7 +384,10 @@ function setupLog($message, $anyway = false, $reset = false) {
 		}
 		$f = fopen(SETUPLOG, $mode);
 		if ($f) {
-			fwrite($f, strip_tags($message) . "\n");
+			if ($_logCript) {
+				$message = $_logCript->encrypt($message);
+			}
+			fwrite($f, $message . NEWLINE);
 			fclose($f);
 			chmod(SETUPLOG, DATA_MOD);
 			clearstatcache();
@@ -539,7 +557,7 @@ function setupQuery($sql, $failNotify = true, $log = true) {
 			if ($failNotify) {
 				$updateErrors = true;
 				$error = db_error();
-				setupLog(sprintf(gettext('Query Failed: %1$s ' . "\n" . ' Error: %2$s'), $sql, $error), true);
+				setupLog(sprintf(gettext('Query Failed: %1$s ' . NEWLINE . ' Error: %2$s'), $sql, $error), true);
 			}
 		}
 	}
@@ -568,7 +586,7 @@ function shutDownFunction() {
 
 	$error = error_get_last();
 	if ($error && !in_array($error['type'], array(E_USER_ERROR, E_WARNING, E_CORE_WARNING, E_COMPILE_WARNING, E_USER_WARNING, E_NOTICE, E_USER_NOTICE))) {
-		$msg = sprintf(gettext('Plugin:%1$s ERROR "%2$s" in %3$s on line %4$s'), $extension, $error['message'], $error['file'], $error['line']);
+		$msg = '<span class="error">' . sprintf(gettext('Plugin:%1$s *ERROR* "%2$s" in %3$s on line %4$s'), $extension, $error['message'], $error['file'], $error['line']) . '</span>';
 		setupLog($msg, true);
 		if ($extension) {
 			enableExtension($extension, 0);

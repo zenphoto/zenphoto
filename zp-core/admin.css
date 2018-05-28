@@ -442,6 +442,9 @@ code {
 	color: #DD6666;
 	font-weight: bold;
 }
+.logerror{
+	background-color: #FDD;
+}
 
 .errorbox {
 	padding: 10px 15px 10px 15px;
@@ -466,6 +469,9 @@ code {
 
 /* Warning Messages
 ------------------------------ */
+.logwarning {
+	background-color: #fcf676;
+}
 .warningbox {
 	padding: 5px 10px 5px 10px;
 	background-color: #fcf676;
@@ -490,6 +496,10 @@ code {
 
 /* box for important notes
 ------------------------------ */
+.lognotice {
+	background-color: #FFEFB7;
+}
+
 .notebox {
 	padding: 5px 10px 5px 10px;
 	background-color: #FFEFB7;

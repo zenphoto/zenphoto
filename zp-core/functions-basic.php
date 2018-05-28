@@ -479,6 +479,13 @@ function mkdir_recursive($pathname, $mode) {
  * @param string $log alternative log file
  */
 function debugLog($message, $reset = false, $log = 'debug') {
+	global $_adminCript;
+	if (getOption('debug_log_encryption')) {
+		$_logCript = $_adminCript;
+	} else {
+		$_logCript = NULL;
+	}
+
 	if (defined('SERVERPATH')) {
 		global $_zp_mutex;
 		$path = SERVERPATH . '/' . DATA_FOLDER . '/' . $log . '.log';
@@ -496,16 +503,27 @@ function debugLog($message, $reset = false, $log = 'debug') {
 				} else {
 					$clone = ' ' . gettext('clone');
 				}
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . $clone . "\n");
+				$preamble = '<span class="lognotice">{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . $clone . '</span>';
+				if ($_logCript) {
+					$preamble = $_logCript->encrypt($message);
+				}
+				fwrite($f, $preamble . NEWLINE);
 			}
 		} else {
 			$f = fopen($path, 'a');
 			if ($f) {
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT}\n");
+				$preamble = '<span class="lognotice">{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT}</span>";
+				if ($_logCript) {
+					$preamble = $_logCript->encrypt($message);
+				}
+				fwrite($f, $preamble . NEWLINE);
 			}
 		}
 		if ($f) {
-			fwrite($f, "  " . $message . "\n");
+			if ($_logCript) {
+				$message = $_logCript->encrypt($message);
+			}
+			fwrite($f, "  " . $message . NEWLINE);
 			fclose($f);
 			clearstatcache();
 			if (defined('DATA_MOD')) {
@@ -526,7 +544,7 @@ function debugLog($message, $reset = false, $log = 'debug') {
  */
 function debugLogBacktrace($message, $omit = 0, $log = 'debug') {
 	global $_zp_current_admin_obj, $_index_theme;
-	$output = trim($message) . "\n";
+	$output = trim($message) . NEWLINE;
 	if (array_key_exists('REQUEST_URI', $_SERVER)) {
 		$uri = sanitize($_SERVER['REQUEST_URI']);
 		preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $uri, $matches);
@@ -547,7 +565,7 @@ function debugLogBacktrace($message, $omit = 0, $log = 'debug') {
 	if ($_index_theme) {
 		$uri .= "\n " . gettext('theme') . ':' . $_index_theme;
 	}
-	$output .= $uri . "\n";
+	$output .= $uri . NEWLINE;
 	// Get a backtrace.
 	$bt = debug_backtrace();
 	while ($omit >= 0) {
