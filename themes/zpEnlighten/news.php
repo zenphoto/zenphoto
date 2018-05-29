@@ -51,11 +51,6 @@ if (!defined('WEBPATH'))
 					<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
 					<br style="clear:both;" /><br />
 					<?php
-					if (function_exists('printRating')) {
-						printRating();
-					}
-					?>
-					<?php
 					// COMMENTS TEST
 					if (function_exists('printCommentForm')) {
 						?>

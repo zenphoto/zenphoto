@@ -75,7 +75,6 @@ if (class_exists("CMS")) {
 								<?php if (getNextNewsURL()) { ?><li class="pull-right"><?php printNextNewsLink(); ?></li><?php } ?>
 							</ul>
 
-							<?php @call_user_func('printRating'); ?>
 							<?php
 							// COMMENTS TEST
 							@call_user_func('printCommentForm');

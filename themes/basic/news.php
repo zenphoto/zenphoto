@@ -77,7 +77,6 @@ if (class_exists('CMS')) {
 						<?php printCodeblock(2); ?>
 					</div>
 					<?php
-					@call_user_func('printRating');
 					@call_user_func('printCommentForm');
 				} else { // news article loop
 					while (next_news()) {
@@ -119,7 +118,7 @@ if (class_exists('CMS')) {
 				}
 				?>
 
-			</div> 
+			</div>
 			<div id="credit">
 				<?php
 				if (function_exists('printFavoritesURL')) {

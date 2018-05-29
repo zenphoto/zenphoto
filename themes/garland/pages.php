@@ -48,7 +48,6 @@ if (class_exists('CMS')) {
 											<?php printCodeblock(2); ?>
 										</div>
 										<?php
-										@call_user_func('printRating');
 										@call_user_func('printCommentForm');
 										footer();
 										?>

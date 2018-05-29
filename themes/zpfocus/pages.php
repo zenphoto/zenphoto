@@ -16,16 +16,12 @@
 		printCodeblock(1);
 		?>
 		<div class="newsarticlecredit">
-		<?php printTags('links', gettext('Tags:') . ' ', 'taglist', ', '); ?>
+			<?php printTags('links', gettext('Tags:') . ' ', 'taglist', ', '); ?>
 		</div>
-		<?php
-		if (function_exists('printRating')) {
-			printRating();
-		}
-		?>
+
 	</div>
-<?php printCodeblock(); ?>
-<?php if (function_exists('printCommentForm')) printCommentForm(); ?>
+	<?php printCodeblock(); ?>
+	<?php if (function_exists('printCommentForm')) printCommentForm(); ?>
 
 </div>
 

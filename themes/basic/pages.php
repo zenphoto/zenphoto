@@ -45,7 +45,6 @@ if (class_exists('CMS')) {
 				</div>
 
 				<?php
-				@call_user_func('printRating');
 				@call_user_func('printCommentForm');
 
 				$pages = $_zp_current_page->getPages(NULL, true); // top level only

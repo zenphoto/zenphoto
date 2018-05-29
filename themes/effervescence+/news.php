@@ -101,7 +101,6 @@ if (class_exists('CMS')) {
 								<?php printCodeblock(2); ?>
 							</div>
 							<?php
-							@call_user_func('printRating');
 							commonComment();
 						} else { // news article loop
 							commonNewsLoop(true);

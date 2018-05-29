@@ -32,12 +32,6 @@
 			<?php printNewsContent(); ?>
 		</div>
 
-		<?php if (function_exists('printRating')) { ?>
-			<div id="rating" class="rating-news">
-				<?php printRating(); ?>
-			</div>
-		<?php } ?>
-
 		<?php if (function_exists('printCommentForm')) printCommentForm(); ?>
 
 		<div id="img-topbar" class="clearfix" style="margin-top:15px;">

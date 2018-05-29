@@ -63,7 +63,6 @@ if (class_exists('CMS')) {
 						</div>
 
 						<?php
-						@call_user_func('printRating');
 						commonComment();
 						?>
 
