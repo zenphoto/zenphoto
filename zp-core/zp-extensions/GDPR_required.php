@@ -110,6 +110,11 @@ class GDPR_required {
 		return false;
 	}
 
+	/*
+	 * Tests if the site policy has been acknowledged and if not, redirects to the
+	 * policy page.
+	 */
+
 	static function page() {
 		global $_zp_current_admin_obj, $_GDPR_acknowledge_loaded;
 		if (!($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && zp_getCookie('policyACK') != getOption('GDPR_cookie')) {
@@ -132,6 +137,15 @@ class GDPR_required {
 		}
 	}
 
+	/**
+	 * Displays the policySubmitButton on the policy page.
+	 *
+	 * Note: the button will NOT be present if the visitor has already acknowledged
+	 * the policy, e.g. he visited the page from a normal link after his acknowledgement
+	 * was recorded.
+	 *
+	 * @global type $_GDPR_acknowledge_loaded
+	 */
 	static function button() {
 		global $_GDPR_acknowledge_loaded;
 		if ($_GDPR_acknowledge_loaded) {
@@ -139,7 +153,7 @@ class GDPR_required {
 			$link = getGalleryIndexURL();
 			?>
 			<form action="<?php echo $link; ?>" method = "post">
-				<?php policySubmitButton(gettext('Continue to site')); ?>
+			<?php policySubmitButton(gettext('Continue to site')); ?>
 			</form>
 			<?php
 		}
