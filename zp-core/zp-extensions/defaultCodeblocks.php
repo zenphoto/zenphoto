@@ -31,17 +31,15 @@ class defaultCodeblocks {
 	var $currentObject = NULL;
 
 	function __construct() {
-		$this->blocks = array('gallery' => NULL, 'albums' => NULL, 'images' => NULL, 'news_category' => NULL, 'news' => NULL, 'pages' => NULL);
+		$this->blocks = array('gallery' => NULL, 'albums' => NULL, 'images' => NULL, 'news_categories' => NULL, 'news' => NULL, 'pages' => NULL);
 		$blocks = query_full_array("SELECT id, `subtype`, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'defaultCodeblocks'");
 		foreach ($blocks as $block) {
 			if ($block['subtype']) {
 				$this->blocks[$block['subtype']] = $block['data'];
 			} else {
+				//	migrate the legacy codeblocks
 				$oldoptions = getSerializedArray(getOption('defaultCodeblocks_objects'));
 				foreach ($oldoptions as $object) {
-					if ($object == 'page' || $object == 'image' || $object == 'album' || $object == 'news') {
-						$object = $object . 's';
-					}
 					if (is_null($this->blocks[$object])) {
 						$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`,`data`) VALUES ("defaultCodeblocks",' . db_quote($object) . ',"",' . db_quote($block['data']) . ')';
 						query($sql);
