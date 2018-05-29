@@ -693,19 +693,23 @@ function getCommentAuthorSite() {
  */
 function getCommentAuthorLink($title = NULL, $class = NULL, $id = NULL) {
 	global $_zp_current_comment;
-	$name = $_zp_current_comment['name'];
 	if ($_zp_current_comment['anon']) {
+		$name = gettext('anonymous ');
 		$site = NULL;
 	} else {
+		$name = $_zp_current_comment['name'];
+		if (empty($name)) {
+			$name = $_zp_current_comment['email'];
+		}
 		$site = $_zp_current_comment['website'];
 	}
 	if (empty($site)) {
-		return html_encode($_zp_current_comment['name']);
+		return html_encode($name);
 	} else {
 		if (is_null($title)) {
 			$title = "Visit " . $name;
 		}
-		return getLinkHTML($site, $_zp_current_comment['name'], $title, $class, $id);
+		return getLinkHTML($site, $name, $title, $class, $id);
 	}
 }
 
