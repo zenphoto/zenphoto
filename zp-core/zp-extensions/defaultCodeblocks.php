@@ -11,7 +11,7 @@
  * and all your news articles will display that block. It can be overridden for
  * an individual news article by setting codeblock 1 for that article.
  *
- * 
+ *
  * @author Stephen Billard (sbillard)
  *
  * @package plugins/defaultCodeblocks
@@ -22,60 +22,70 @@ $plugin_description = gettext('Create default codeblocks.');
 $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'defaultCodeblocks';
 
-zp_register_filter('codeblock', 'defaultCodeblocks_codebox');
+zp_register_filter('codeblock', 'defaultCodeblocks::codeblock');
 
 class defaultCodeblocks {
 
 	var $codeblocks;
-	var $enabled = array();
+	var $blocks = array();
+	var $currentObject = NULL;
 
 	function __construct() {
-		if (OFFSET_PATH == 2) {
-			$list = getOptionsLike('defaultcodeblocks_object_');
-			$objects = array();
-			foreach ($list as $option => $value) {
-				if ($value) {
-					$object = str_replace('defaultcodeblocks_object_', '', $option);
-					$objects[$object] = $object;
+		$this->blocks = array('gallery' => NULL, 'albums' => NULL, 'images' => NULL, 'news_category' => NULL, 'news' => NULL, 'pages' => NULL);
+		$blocks = query_full_array("SELECT id, `subtype`, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'defaultCodeblocks'");
+		foreach ($blocks as $block) {
+			if ($block['subtype']) {
+				$this->blocks[$block['subtype']] = $block['data'];
+			} else {
+				$oldoptions = getSerializedArray(getOption('defaultCodeblocks_objects'));
+				foreach ($oldoptions as $object) {
+					if ($object == 'page' || $object == 'image' || $object == 'album' || $object == 'news') {
+						$object = $object . 's';
+					}
+					if (is_null($this->blocks[$object])) {
+						$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`,`data`) VALUES ("defaultCodeblocks",' . db_quote($object) . ',"",' . db_quote($block['data']) . ')';
+						query($sql);
+					}
+					$this->blocks[$object] = $block['data'];
 				}
-				purgeOption($option);
+				query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $block['id']);
+				purgeOption('defaultCodeblocks_objects');
 			}
-			setOptionDefault('defaultCodeblocks_objects', serialize($objects));
 		}
-		$blocks = query_single_row("SELECT id, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'defaultCodeblocks'");
-		if ($blocks) {
-			$this->codeblocks = $blocks['data'];
-		} else {
-			$this->codeblocks = serialize(array());
-			$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("defaultCodeblocks","",' . db_quote($this->codeblocks) . ')';
-			query($sql);
+		foreach ($this->blocks as $object => $block) {
+			if (is_null($block)) {
+				$this->blocks[$object] = serialize(array());
+				$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`,`data`) VALUES ("defaultCodeblocks",' . db_quote($object) . ',"",' . db_quote($this->blocks[$object]) . ')';
+				query($sql);
+			}
 		}
 	}
 
-	static function getOptionsSupported() {
-		$list = array(gettext('Gallery') => 'gallery', gettext('Album') => 'albums', gettext('Image') => 'images');
-		if (extensionEnabled('zenpage')) {
-			$list = array_merge($list, array(gettext('News category') => 'news_categories', gettext('News') => 'news', gettext('Page') => 'pages'));
+	function getOptionsSupported() {
+		$xlate = array('gallery' => gettext('Gallery'), 'albums' => gettext('Albums'), 'images' => gettext('Images'), 'news_category' => gettext('News Categories'), 'news' => gettext('Articles'), 'pages' => gettext('Pages'));
+
+		foreach ($this->blocks as $object => $block) {
+			$options [$xlate[$object]] = array('key' => 'defaultCodeblocks_' . $object, 'type' => OPTION_TYPE_CUSTOM,
+					'order' => 2,
+					'desc' => sprintf(gettext('Codeblocks to be inserted when the one for the <em>%s</ object is empty.'), $xlate[$object])
+			);
 		}
-		$options = array(gettext('Objects') => array('key' => 'defaultCodeblocks_objects', 'type' => OPTION_TYPE_CHECKBOX_ULLIST,
-						'order' => 0,
-						'checkboxes' => $list,
-						'desc' => gettext('Default codeblocks will be applied for the checked objects.')),
-				gettext('Codeblocks') => array('key' => 'defaultCodeblocks_blocks', 'type' => OPTION_TYPE_CUSTOM,
-						'order' => 2,
-						'desc' => gettext('Codeblocks to be inserted when the one for the object is empty.'))
-		);
+		codeblocktabsJS();
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
-		codeblocktabsJS();
-		printCodeblockEdit($this, 0);
+		$option = str_replace('defaultCodeblocks_', '', $option);
+		$this->currentObject = $option;
+		printCodeblockEdit($this, $option);
 	}
 
 	function handleOptionSave($themename, $themealbum) {
 		if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-			processCodeblockSave(0, $this);
+			foreach ($this->blocks as $object => $block) {
+				$this->currentObject = $object;
+				processCodeblockSave($object, $this);
+			}
 		}
 		return false;
 	}
@@ -86,7 +96,7 @@ class defaultCodeblocks {
 	 * @return array
 	 */
 	function getCodeblock() {
-		return zpFunctions::unTagURLs($this->codeblocks);
+		return zpFunctions::unTagURLs($this->blocks[$this->currentObject]);
 	}
 
 	/**
@@ -94,28 +104,26 @@ class defaultCodeblocks {
 	 *
 	 */
 	function setCodeblock($cb) {
-		$this->codeblocks = zpFunctions::tagURLs($cb);
-		$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `data`=' . db_quote($this->codeblocks) . ' WHERE `type`="defaultCodeblocks"';
+		$this->blocks[$this->currentObject] = zpFunctions::tagURLs($cb);
+		$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `data`=' . db_quote($this->blocks[$this->currentObject]) . ' WHERE `type`="defaultCodeblocks" AND `subtype`=' . db_quote($this->currentObject);
 		query($sql);
 	}
 
-}
+	static function codeblock($current, $object, $number) {
+		global $_defaultCodeBlocks;
+		if (empty($current)) {
+			if (!$_defaultCodeBlocks) {
+				$_defaultCodeBlocks = new defaultCodeblocks();
+			}
+			$_defaultCodeBlocks->currentObject = $object->table;
+			$blocks = getSerializedArray($_defaultCodeBlocks->getCodeblock());
+			if (isset($blocks[$number])) {
+				$current = $blocks[$number];
+			}
+		}
+		return $current;
+	}
 
-function defaultCodeblocks_codebox($current, $object, $number) {
-	global $_defaultCodeBlocks, $_enabledCodeblockTables;
-	if (is_null($_enabledCodeblockTables)) {
-		$_enabledCodeblockTables = getSerializedArray(getOption('defaultCodeblocks_objects'));
-	}
-	if (empty($current) && isset($_enabledCodeblockTables[$object->table])) {
-		if (!$_defaultCodeBlocks) {
-			$_defaultCodeBlocks = new defaultCodeblocks();
-		}
-		$blocks = getSerializedArray($_defaultCodeBlocks->getCodeblock());
-		if (isset($blocks[$number])) {
-			$current = $blocks[$number];
-		}
-	}
-	return $current;
 }
 
 ?>
