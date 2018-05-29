@@ -33,7 +33,10 @@ if (!defined('WEBPATH'))
 				</h2>
 			</div>
 			<div id="padbox">
-				<?php printAlbumDesc(); ?>
+				<?php
+				printAlbumDesc();
+				printCodeblock(1);
+				?>
 				<div id="albums">
 					<?php while (next_album()): ?>
 						<div class="album">
@@ -63,6 +66,7 @@ if (!defined('WEBPATH'))
 				</div>
 				<br class="clearall">
 				<?php
+				printCodeblock(2);
 				printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
 				if (function_exists('printAddToFavorites'))
 					printAddToFavorites($_zp_current_album);

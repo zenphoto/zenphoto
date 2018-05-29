@@ -30,7 +30,10 @@ if (!defined('WEBPATH'))
 			<div id="padbox">
 				<?php printGalleryDesc(); ?>
 				<div id="albums">
-					<?php while (next_album()): ?>
+					<?php
+					printCodeblock(1);
+					while (next_album()):
+						?>
 						<div class="album">
 							<div class="thumb">
 								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumThumbImage(getAnnotatedAlbumTitle()); ?></a>
@@ -42,10 +45,12 @@ if (!defined('WEBPATH'))
 							</div>
 							<p style="clear: both; "></p>
 						</div>
-					<?php endwhile; ?>
+<?php endwhile; ?>
+
 				</div>
 				<br class="clearall">
 				<?php
+				printCodeblock(2);
 				printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
 				$pages = $news = NULL;
 				if (extensionEnabled('zenpage')) {
@@ -99,7 +104,7 @@ if (!defined('WEBPATH'))
 				printRegisterURL(gettext('Register for this site'), '', ' | ');
 			}
 			?>
-			<?php printSoftwareLink(); ?>
+		<?php printSoftwareLink(); ?>
 		</div>
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<?php @call_user_func('printLanguageSelector'); ?>
