@@ -558,7 +558,7 @@ function debugLogBacktrace($message, $omit = 0, $log = 'debug') {
 	if ($uri) {
 		$uri = "\n URI:" . urldecode(str_replace('\\', '/', $uri));
 	}
-	$uri .= "\n ID `" . getUserID() . '`';
+	$uri .= "\n IP `" . getUserIP() . '`';
 	if (is_object($_zp_current_admin_obj)) {
 		$uri .= "\n " . gettext('user') . ':' . $_zp_current_admin_obj->getUser();
 	}
