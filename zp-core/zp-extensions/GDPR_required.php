@@ -150,10 +150,11 @@ class GDPR_required {
 		global $_GDPR_acknowledge_loaded;
 		if ($_GDPR_acknowledge_loaded) {
 			setOption('GDPR_text', gettext('Check to acknowledge the site usage policy.'), false);
+			setOption('GDPR_acknowledge', 1, false);
 			$link = getGalleryIndexURL();
 			?>
 			<form action="<?php echo $link; ?>" method = "post">
-			<?php policySubmitButton(gettext('Continue to site')); ?>
+				<?php policySubmitButton(gettext('Continue to site')); ?>
 			</form>
 			<?php
 		}
@@ -161,7 +162,4 @@ class GDPR_required {
 
 }
 
-if (extensionEnabled('zenpage')) {
-	zp_register_filter('theme_head', 'GDPR_required::page');
-}
-?>
+zp_register_filter('load_theme_script', 'GDPR_required::page');

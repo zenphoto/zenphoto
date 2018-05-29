@@ -3,7 +3,6 @@
 require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
-zp_register_filter('load_theme_script', 'fourOhFour');
 
 $cwd = getcwd();
 chdir(dirname(__FILE__));

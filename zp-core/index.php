@@ -76,15 +76,6 @@ if (isset($_GET['p'])) {
 }
 
 //$_zp_script_timer['theme setup'] = microtime();
-$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
-
-$custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
-if (file_exists($custom)) {
-	require_once($custom);
-} else {
-	$custom = false;
-}
-
 //	Load the THEME plugins
 if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 	if (DEBUG_PLUGINS) {
@@ -106,6 +97,15 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 		}
 	}
 }
+
+$custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
+if (file_exists($custom)) {
+	require_once($custom);
+} else {
+	$custom = false;
+}
+
+$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
 
 //	HTML caching?
 if ($zp_request) {
