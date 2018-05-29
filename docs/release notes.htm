@@ -71,9 +71,18 @@
 				text-decoration: none;
 				color: #6c802e;
 			}
+			ol {
+				display: block;
+				list-style-type: decimal;
+				margin-top: 1em;
+				margin-bottom: 1em;
+				margin-left: 0;
+				margin-right: 0;
+				padding-left: 40px;
+			}
 		</style>
 	<body>
-<h1>ZenPhoto20 release notes</h1><h2>Version 1.6.2.08.DEV_01</h2>
+<h1>ZenPhoto20 release notes</h1><h2>Version 1.6.2.08.DEV_02</h2>
 <h2>General</h2>
 <p>This release fixes multiple bugs and security holes. For details see the change log.</p>
 <p>There has been a slight reorganization of the Administrative Overview section. The "Installation information" section is now a separate page accessible from the OVERVIEW fly-out. User information has been added to the Gallery stats display.</p>
@@ -114,8 +123,11 @@
 <p>Processing of search strings has been enhances. You may now use the backslash (\) charaacter to escape a quotation thus rendering the mark a literal character rather than the delimiter for a string sequence. For example searching on <code>123"45&amp;67"890</code> would normally render a search string of <code>12345&amp;67890</code>. (The &amp; is treated as part of the string, not the AND operator.) <code>123\"45&amp;67\"890</code> would result in two target strings, <code>123"45</code> and  <code>67"890</code>, both of which must be present (because of the &amp;.)</p>
 <p>There is now a search property named <code>specialCharacters</code>. it is an array containing indexed by character (quotation marks and backslash) If you set the value of a character to false it will have no special meaning in the parsing of search strings. (E.g. <code>$search_engine-&gt;specialCharacters['\\]=false;</code> will disable the escape character and treat it simply as a backslash.</p>
 <h2>Plugins</h2>
+<p><em>defaultCodeblocks</em></p>
+<p>There are now individual codeblock sets for each object (gallery, image, album, article, news category, and page.) This enables a different default for each. The codeblocks set from prior releases will be imported into each of the object codeblocks that were checked in the Objects option.</p>
 <p><em>GDPR_required</em></p>
 <p>A plugin to require that visitors view and acknowledge a site policy page upon the first visit to your site. The plugin requires a<em> zenpage page</em> object or a custom page script which states the site usage policy. See the plugin usage information for implementation details.</p>
+<p>The plugin conatains a method <code>GDPR_required::button()</code> that may be placed in a codeblock of your <em>zenpage page</em> or as part of your custom page script. This method will display a policySubmitButton that will redirect to the site index page.</p>
 <p><em>rating</em></p>
 <p>The <code>Disguise IP</code> option has been removed as it is now redundant. If for logged-on users, the user name is used to identify the rating. For anonymous users, the IP address is encrypted and used. It is suggested you clear ratings with this update since old ratings cannot be associated with the originator.</p>
 <p><em>zenpage</em></p>
