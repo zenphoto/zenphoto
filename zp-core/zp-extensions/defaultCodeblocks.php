@@ -60,7 +60,7 @@ class defaultCodeblocks {
 	}
 
 	function getOptionsSupported() {
-		$xlate = array('gallery' => gettext('Gallery'), 'albums' => gettext('Albums'), 'images' => gettext('Images'), 'news_category' => gettext('News Categories'), 'news' => gettext('Articles'), 'pages' => gettext('Pages'));
+		$xlate = array('gallery' => gettext('Gallery'), 'albums' => gettext('Albums'), 'images' => gettext('Images'), 'news_categories' => gettext('News Categories'), 'news' => gettext('Articles'), 'pages' => gettext('Pages'));
 
 		foreach ($this->blocks as $object => $block) {
 			$options [$xlate[$object]] = array('key' => 'defaultCodeblocks_' . $object, 'type' => OPTION_TYPE_CUSTOM,
