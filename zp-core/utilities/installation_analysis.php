@@ -97,6 +97,9 @@ echo '</head>';
 								<?php echo gettext('PHP Session path:') . ' <strong>' . session_save_path() . '</strong>' ?>
 							</li>
 							<li>
+								<?php printf(gettext('PHP openSSL is %s'), function_exists('openssl_encrypt') ? gettext('enabled') : gettext('disabled')); ?>
+							</li>
+							<li>
 								<?php
 								$themes = $_zp_gallery->getThemes();
 								$currenttheme = $_zp_gallery->getCurrentTheme();
@@ -338,8 +341,8 @@ echo '</head>';
 	<?php printAdminFooter(); ?>
 </body>
 <script type="text/javascript">
-										var height = Math.floor(($('#overview_left').height() - $('.overview-list-h3').height() * 2) / 2 - 8);
-										$('.overview_list').height(height);
+								var height = Math.floor(($('#overview_left').height() - $('.overview-list-h3').height() * 2) / 2 - 8);
+								$('.overview_list').height(height);
 </script>
 
 <?php
