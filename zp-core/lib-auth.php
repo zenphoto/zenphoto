@@ -1913,5 +1913,22 @@ class _Administrator extends PersistentObject {
 		return $this->get('lastloggedin');
 	}
 
+	/**
+	 * retrieves the state of the user policy acknowledgement
+	 * @return int
+	 */
+	function getPolicyACK() {
+		return $this->get('policyAck');
+	}
+
+	/**
+	 * sets the state of the user policy acknowledgement
+	 *
+	 * @param int $v the state
+	 */
+	function setPolicyACK($v) {
+		$this->set('policyAck', (int) $v);
+	}
+
 }
 ?>
