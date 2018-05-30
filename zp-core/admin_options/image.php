@@ -337,7 +337,11 @@ function getOptionContent() {
 				</tr>
 				<tr>
 					<td class="option_name"><?php echo gettext("Interlace"); ?></td>
-					<td class="option_value"><input type="checkbox" name="image_interlace" value="1" <?php checked('1', getOption('image_interlace')); ?> /></td>
+					<td class="option_value">
+						<label>
+							<input type="checkbox" name="image_interlace" value="1" <?php checked('1', getOption('image_interlace')); ?> />
+						</label>
+					</td>
 					<td class="option_desc">
 						<span class="option_info">
 							<?php echo INFORMATION_BLUE; ?>
@@ -357,7 +361,12 @@ function getOptionContent() {
 						setOption('use_embedded_thumb', 0);
 					}
 					?>
-					<td class="option_value"><input type="checkbox" name="use_embedded_thumb" value="1" <?php checked('1', getOption('use_embedded_thumb')); ?><?php echo $disabled; ?> /></td>
+					<td class="option_value">
+						<label>
+							<input type="checkbox" name="use_embedded_thumb" value="1" <?php checked('1', getOption('use_embedded_thumb')); ?>
+										 <?php echo $disabled; ?> />
+						</label>
+					</td>
 					<td class="option_desc">
 						<span class="option_info">
 							<?php echo INFORMATION_BLUE; ?>
@@ -376,7 +385,9 @@ function getOptionContent() {
 				</tr>
 				<tr>
 					<td class="option_name"><?php echo gettext("Allow upscale"); ?></td>
-					<td class="option_value"><input type="checkbox" name="image_allow_upscale" value="1" <?php checked('1', getOption('image_allow_upscale')); ?> /></td>
+					<td class="option_value">
+						<input type="checkbox" name="image_allow_upscale" value="1" <?php checked('1', getOption('image_allow_upscale')); ?> />
+					</td>
 					<td class="option_desc">
 						<span class="option_info">
 							<?php echo INFORMATION_BLUE; ?>
@@ -542,7 +553,9 @@ function getOptionContent() {
 						$cachesuffix = array_unique($_zp_cachefileSuffix);
 						foreach ($cachesuffix as $suffix) {
 							?>
-							<input type="radio" name="image_cache_suffix" value="<?php echo $suffix; ?>"<?php if ($type == $suffix) echo ' checked="checked"'; ?> />&nbsp;<?php echo $suffix; ?>
+							<label>
+								<input type="radio" name="image_cache_suffix" value="<?php echo $suffix; ?>"<?php if ($type == $suffix) echo ' checked="checked"'; ?> />&nbsp;<?php echo $suffix; ?>
+							</label>
 							<?php
 						}
 						?>
@@ -559,8 +572,7 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Protect image cache"); ?></td>
 					<td class="option_value">
-						<input type="checkbox" name="protected_image_cache" value="1"
-									 <?php checked('1', getOption('protected_image_cache')); ?> />
+						<input type="checkbox" name="protected_image_cache" value="1" <?php checked('1', getOption('protected_image_cache')); ?> />
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
@@ -577,8 +589,7 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Secure image processor"); ?></td>
 					<td class="option_value">
-						<input type="checkbox" name="secure_image_processor" value="1"
-									 <?php checked('1', getOption('secure_image_processor')); ?> />
+						<input type="checkbox" name="secure_image_processor" value="1" <?php checked('1', getOption('secure_image_processor')); ?> />
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
@@ -673,7 +684,8 @@ function getOptionContent() {
 														 name="disclose_password"
 														 id="disclose_password"
 														 onclick="passwordClear('');
-																 togglePassword('');" /><?php echo gettext('Show'); ?>
+																 togglePassword('');" />
+														 <?php echo gettext('Show'); ?>
 										</label>
 
 										<br />
@@ -826,10 +838,20 @@ function getOptionContent() {
 
 						<br clear="all"/>
 						<p>
-							<label><input type="checkbox" name="restore_to_defaults" value="1" /><?php echo gettext('restore fields to defaults'); ?></label><br />
-							<label><input type="checkbox" name="disableEmpty" value="1" /><?php echo gettext('mark unused fields <em>do not process</em>'); ?></label>
+							<label>
+								<input type="checkbox" name="restore_to_defaults" value="1" />
+								<?php echo gettext('restore fields to defaults'); ?>
+							</label>
 							<br />
-							<label><input type="checkbox" name="transform_newlines" value="1" /><?php echo gettext('replace newlines'); ?></label>
+							<label>
+								<input type="checkbox" name="disableEmpty" value="1" />
+								<?php echo gettext('mark unused fields <em>do not process</em>'); ?>
+							</label>
+							<br />
+							<label>
+								<input type="checkbox" name="transform_newlines" value="1" />
+								<?php echo gettext('replace newlines'); ?>
+							</label>
 
 						</p>
 					</td>
@@ -899,8 +921,13 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("IPTC Imbedding"); ?></td>
 					<td class="option_value">
-						<label><input type="checkbox" name="ImbedIPTC" value="1"	<?php checked('1', getOption('ImbedIPTC')); ?> /> <?php echo $optionText; ?></label>
-						<p><input type="textbox" name="default_copyright" value="<?php echo getOption('default_copyright'); ?>" size="50" /></p>
+						<label>
+							<input type="checkbox" name="ImbedIPTC" value="1"	<?php checked('1', getOption('ImbedIPTC')); ?> />
+							<?php echo $optionText; ?>
+						</label>
+						<p>
+							<input type="textbox" name="default_copyright" value="<?php echo getOption('default_copyright'); ?>" size="50" />
+						</p>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">

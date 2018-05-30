@@ -152,7 +152,9 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext('Cookie security') ?></td>
 					<td class="option_value">
-						<label><input type="checkbox" name="IP_tied_cookies" value="1" <?php checked(1, getOption('IP_tied_cookies')); ?> /></label>
+						<label>
+							<input type="checkbox" name="IP_tied_cookies" value="1" <?php checked(1, getOption('IP_tied_cookies')); ?> />
+						</label>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
@@ -177,7 +179,9 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext('Obscure cache filenames'); ?></td>
 					<td class="option_value">
-						<label><input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php checked(1, getOption('obfuscate_cache')); ?> /></label>
+						<label>
+							<input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php checked(1, getOption('obfuscate_cache')); ?> />
+						</label>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
@@ -191,7 +195,9 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext('Image Processor security') ?></td>
 					<td class="option_value">
-						<label><input type="checkbox" name="image_processor_flooding_protection" value="1" <?php checked(1, getOption('image_processor_flooding_protection')); ?> /></label>
+						<label>
+							<input type="checkbox" name="image_processor_flooding_protection" value="1" <?php checked(1, getOption('image_processor_flooding_protection')); ?> />
+						</label>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">

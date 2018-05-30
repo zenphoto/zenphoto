@@ -572,7 +572,9 @@ if (isset($_GET['compression'])) {
 							<?php
 							echo gettext('Select the tables to restore.');
 							?>
-							<input type="checkbox" name="all" id="checkAllAuto" value="1" checked="checked" onclick="$('.checkAuto').prop('checked', $('#checkAllAuto').prop('checked'));" /><?php echo gettext('all'); ?>
+							<label>
+								<input type="checkbox" name="all" id="checkAllAuto" value="1" checked="checked" onclick="$('.checkAuto').prop('checked', $('#checkAllAuto').prop('checked'));" /><?php echo gettext('all'); ?>
+							</label>
 						</span>
 						<br />
 						<div  style="max-width: 750px;">
@@ -581,7 +583,9 @@ if (isset($_GET['compression'])) {
 								$table = preg_replace('~^' . $prefix . '~', '', array_shift($row));
 								?>
 								<span class="nowrap">
-									<input type="checkbox" class="checkAuto" name="restore_<?php echo $table; ?>" value="1" checked="checked" /><?php echo $table; ?>
+									<label>
+										<input type="checkbox" class="checkAuto" name="restore_<?php echo $table; ?>" value="1" checked="checked" /><?php echo $table; ?>
+									</label>
 								</span>
 								<?php
 							}

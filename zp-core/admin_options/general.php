@@ -229,14 +229,15 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("URL options"); ?></td>
 					<td class="option_value">
+
+						<?php
+						if (MOD_REWRITE) {
+							$state = ' checked="checked"';
+						} else {
+							$state = '';
+						}
+						?>
 						<label>
-							<?php
-							if (MOD_REWRITE) {
-								$state = ' checked="checked"';
-							} else {
-								$state = '';
-							}
-							?>
 							<input type="checkbox" name="mod_rewrite" value="1"<?php echo $state; ?> />
 							<?php echo gettext('mod rewrite'); ?>
 						</label>
@@ -258,7 +259,8 @@ function getOptionContent() {
 								<input type="checkbox" name="unique_image_prefix"<?php
 								if (UNIQUE_IMAGE)
 									echo ' checked="checked";'
-									?>><?php echo gettext("unique images"); ?>
+									?>>
+											 <?php echo gettext("unique images"); ?>
 							</label>
 						</p>
 
@@ -398,7 +400,8 @@ function getOptionContent() {
 						<?php echo '<span class="floatright" style="font-size:xx-small;">' . gettext('Percent mechanically translated in red.'); ?></span>
 						<br class="clearall">
 						<label class="checkboxlabel">
-							<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('multi-lingual'); ?>
+							<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> />
+							<?php echo gettext('multi-lingual'); ?>
 						</label>
 					</td>
 					<td class="option_desc">
@@ -569,8 +572,10 @@ function getOptionContent() {
 							<?php echo gettext('require acknowledgement'); ?>
 						</label>
 						<p id="GDPR_clear" <?php if (!(GetOption('GDPR_acknowledge') || extensionEnabled('GDPR_required'))) echo ' style="display:none"'; ?>>
-							<input type="checkbox" name="GDPR_re-acknowledge" value="1" />
-							<?php echo gettext('Clear remembered acknowledgements'); ?>
+							<label>
+								<input type="checkbox" name="GDPR_re-acknowledge" value="1" />
+								<?php echo gettext('Clear remembered acknowledgements'); ?>
+							</label>
 						</p>
 
 						<div id="GDR_Details" <?php if (!GetOption('GDPR_acknowledge')) echo ' style="display:none"'; ?>>
@@ -669,7 +674,9 @@ Standard forms which collect user data will have a policy acknowledgement checkb
 						<?php
 						$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 						?>
-						<input type="checkbox" size="48" id="site_email" name="register_user_notify"  value="1" <?php checked('1', getOption('register_user_notify') && $mailinglist); ?> <?php if (!$mailinglist) echo ' disabled="disabled"'; ?> /><?php echo gettext('notify'); ?>
+						<label>
+							<input type="checkbox" size="48" id="site_email" name="register_user_notify"  value="1" <?php checked('1', getOption('register_user_notify') && $mailinglist); ?> <?php if (!$mailinglist) echo ' disabled="disabled"'; ?> /><?php echo gettext('notify'); ?>
+						</label>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
@@ -796,8 +803,12 @@ Standard forms which collect user data will have a policy acknowledgement checkb
 							if (!is_null($size = getOption($subtab . '_log_size'))) {
 								?>
 								<p>
-									<input type="text" size="4" id="<?php echo $log ?>_log" name="log_size_<?php echo $subtab; ?>" value="<?php echo $size; ?>" />
-									<input type="checkbox" id="<?php echo $log ?>_log" name="log_mail_<?php echo $subtab; ?>" value="1" <?php checked('1', getOption($subtab . '_log_mail')); ?> /> <?php echo gettext('e-mail when exceeded'); ?>
+									<label>
+										<input type="text" size="4" id="<?php echo $log ?>_log" name="log_size_<?php echo $subtab; ?>" value="<?php echo $size; ?>" />
+									</label>
+									<label>
+										<input type="checkbox" id="<?php echo $log ?>_log" name="log_mail_<?php echo $subtab; ?>" value="1" <?php checked('1', getOption($subtab . '_log_mail')); ?> /> <?php echo gettext('e-mail when exceeded'); ?>
+									</label>
 								</p>
 								<?php
 							}
