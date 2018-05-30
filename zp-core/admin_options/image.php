@@ -407,7 +407,7 @@ function getOptionContent() {
 						</label>
 						<label>
 							<input type="checkbox" name="thumb_sharpen" value="1" <?php checked('1', getOption('thumb_sharpen')); ?> />
-							<?php echo gettext('thumbs'); ?>
+							<?php echo gettext('thumbnails'); ?>
 						</label>
 						</span>
 						<br />
@@ -484,7 +484,7 @@ function getOptionContent() {
 												if ($plugin == 'Image')
 													echo gettext('none');
 												else
-													echo gettext('image thumb')
+													echo gettext('image thumbnail')
 													?>
 											</option>
 											<?php

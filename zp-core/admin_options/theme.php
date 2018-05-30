@@ -235,7 +235,7 @@ function getOptionContent() {
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-												$('#themeoptionsform').submit();">
+										$('#themeoptionsform').submit();">
 													<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 									<strong><?php echo gettext("Revert to default"); ?></strong>
 								</button>
@@ -388,7 +388,7 @@ function getOptionContent() {
 					$ct = round(($ts - $ih) / $ts * 50, 1);
 					?>
 					<tr>
-						<td class="option_name"><?php echo gettext("Thumb size"); ?></td>
+						<td class="option_name"><?php echo gettext("Thumbnail size"); ?></td>
 						<td class="option_value">
 							<input type="text" size="3" name="thumb_size" value="<?php echo $ts; ?>"<?php echo $disable; ?> />
 						</td>
@@ -557,7 +557,7 @@ function getOptionContent() {
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-												$('#themeoptionsform').submit();">
+										$('#themeoptionsform').submit();">
 													<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 									<strong><?php echo gettext("Revert to default"); ?></strong>
 								</button>

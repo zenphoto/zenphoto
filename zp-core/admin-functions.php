@@ -1758,7 +1758,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<table class="width100percent">
 						<tr>
 							<td class="leftcolumn">
-								<?php echo gettext("Album Title"); ?>:
+								<?php echo gettext("Album Title"); ?>
 							</td>
 							<td class="middlecolumn">
 								<?php print_language_string_list($album->getTitle('all'), $prefix . "albumtitle", false, null, '', '100%'); ?>
@@ -2087,7 +2087,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										generateListFromArray(array($current), $watermarks, false, false);
 										?>
 									</select>
-									<em><?php echo gettext('Thumbs'); ?></em>
+									<em><?php echo gettext('Thumbnails'); ?></em>
 								</td>
 							</tr>
 							<?php
