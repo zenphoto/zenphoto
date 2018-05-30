@@ -756,22 +756,22 @@ echo $refresh;
 															$challenge = $userobj->getChallengePhraseInfo();
 															?>
 															<p>
-																<?php echo gettext('Challenge phrase') ?>
+																<?php echo gettext('Challenge phrase') ?><br />
 																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="user[<?php echo $id ?>][challengephrase]" value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
 																<br />
-																<?php echo gettext('Challenge response') ?>
+																<?php echo gettext('Challenge response') ?><br />
 																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="<?php echo $id ?>-challengeresponse" name="user[<?php echo $id ?>][challengeresponse]" value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
 
 															</p>
 															<?php
 														}
 														?>
-														<?php echo gettext("Full name"); ?>
+														<?php echo gettext("Full name"); ?><br />
 														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="user[<?php echo $id ?>][admin_name]"
 																	 value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
 
 														<p>
-															<?php echo gettext("Email"); ?>
+															<?php echo gettext("Email"); ?><br />
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="user[<?php echo $id ?>][admin_email]"
 																		 value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
 														</p>

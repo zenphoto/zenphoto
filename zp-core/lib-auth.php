@@ -1382,17 +1382,17 @@ class _Authority {
 		<p>
 			<label for="pass<?php echo $id; ?>_text" id="strength<?php echo $id; ?>"><?php echo gettext("Password") . $flag; ?></label>
 			<span class="disclose_password_show" style="float: right !important; padding-right: 15px;">
-				<?php echo gettext('Show'); ?>
-
-				<input type="checkbox"
-							 class="disclose_password"
-							 style="float: right !important;"
-							 name="<?php printf($format, 'disclose_password', $id); ?>"
-							 id="disclose_password<?php echo $id; ?>"
-							 onclick="passwordClear('<?php echo $id; ?>');
-											 togglePassword('<?php echo $id; ?>');">
+				<label>
+					<?php echo gettext('Show'); ?>
+					<input type="checkbox"
+								 class="disclose_password"
+								 style="float: right !important;"
+								 name="<?php printf($format, 'disclose_password', $id); ?>"
+								 id="disclose_password<?php echo $id; ?>"
+								 onclick="passwordClear('<?php echo $id; ?>');
+										 togglePassword('<?php echo $id; ?>');">
+				</label>
 			</span>
-
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
 				<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 							 name="<?php printf($format, 'pass', $id); ?>" value="<?php echo $x; ?>"
