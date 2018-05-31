@@ -170,7 +170,7 @@ class scriptlessSocialsharing {
 				}
 				break;
 			default: //static custom pages
-				$url = getCustomPageURL($custompage);
+				$url = getCustomPageURL(stripSuffix($_zp_gallery_page));
 				if (empty($customtext)) {
 					// Handle some static custom pages we often have
 					switch ($_zp_gallery_page) {
