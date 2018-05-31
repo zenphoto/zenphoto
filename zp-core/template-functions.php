@@ -66,6 +66,20 @@ function adminToolbox() {
 		if (!$name = $_zp_current_admin_obj->getName()) {
 			$name = $_zp_current_admin_obj->getUser();
 		}
+		if (zp_loggedin(UPLOAD_RIGHTS) && in_array($_zp_gallery_page, array('index.php', 'gallery.php', 'album.php'))) {
+			?>
+			<script type="text/javascript">
+				// <!-- <![CDATA[
+				function newAlbum(folder, albumtab) {
+					var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
+					if (album) {
+						launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'folder=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+					}
+				}
+				// ]]> -->
+			</script>
+			<?php
+		}
 		?>
 		<div id="<?php echo $id; ?>">
 			<a onclick="$('#<?php echo $dataid; ?>').toggle();" title="<?php echo gettext('Logged in as') . ' ' . $name; ?>" style="text-decoration: none;">
@@ -154,16 +168,7 @@ function adminToolbox() {
 						if (zp_loggedin(UPLOAD_RIGHTS)) {
 							// admin has upload rights, provide an upload link for a new album
 							?>
-							<script type="text/javascript">
-								// <!-- <![CDATA[
-								function newAlbum(folder, albumtab) {
-									var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
-									if (album) {
-										launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
-									}
-								}
-								// ]]> -->
-							</script>
+
 							<li>
 								<a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a>
 							</li>
@@ -234,10 +239,10 @@ function adminToolbox() {
 							// provide an album upload link if the admin has upload rights for this album and it is not a dynamic album
 							?>
 							<li>
-								<?php printLinkHTML($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
+								<?php printLinkHTML($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload here"), NULL, NULL, NULL); ?>
 							</li>
 							<li>
-								<a href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New Album Here"); ?></a>
+								<a href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New subalbum"); ?></a>
 							</li>
 							<?php
 						}
@@ -3908,39 +3913,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-							// <!-- <![CDATA[
-							var within = <?php echo (int) $within; ?>;
-							function search_(way) {
-								within = way;
-								if (way) {
-									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-								} else {
-									lastsearch = '';
-									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-								}
-								$('#search_input').val('');
-							}
-							$('#search_form').submit(function () {
-								if (within) {
-									var newsearch = $.trim($('#search_input').val());
-									if (newsearch.substring(newsearch.length - 1) == ',') {
-										newsearch = newsearch.substr(0, newsearch.length - 1);
-									}
-									if (newsearch.length > 0) {
-										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-									} else {
-										$('#search_input').val('<?php echo $searchwords; ?>');
-									}
-								}
-								return true;
-							});
-							function search_all() {
-								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-								var check = $('#SEARCH_checkall').prop('checked');
-								$('.SEARCH_checkall').prop('checked', check);
-							}
+													// <!-- <![CDATA[
+													var within = <?php echo (int) $within; ?>;
+													function search_(way) {
+														within = way;
+														if (way) {
+															$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+														} else {
+															lastsearch = '';
+															$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+														}
+														$('#search_input').val('');
+													}
+													$('#search_form').submit(function () {
+														if (within) {
+															var newsearch = $.trim($('#search_input').val());
+															if (newsearch.substring(newsearch.length - 1) == ',') {
+																newsearch = newsearch.substr(0, newsearch.length - 1);
+															}
+															if (newsearch.length > 0) {
+																$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+															} else {
+																$('#search_input').val('<?php echo $searchwords; ?>');
+															}
+														}
+														return true;
+													});
+													function search_all() {
+														//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+														var check = $('#SEARCH_checkall').prop('checked');
+														$('.SEARCH_checkall').prop('checked', check);
+													}
 
-							// ]]> -->
+													// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
@@ -4330,7 +4335,7 @@ function policySubmitButton($buttonText, $buttonClass = NULL, $buttonExtra = NUL
 		?>
 		<span id="GDPR_acknowledge">
 			<input type="checkbox" name="policy_acknowledge" onclick="$('#submitbutton').show();
-					$('#GDPR_acknowledge').hide();">
+							$('#GDPR_acknowledge').hide();">
 						 <?php
 						 echo sprintf(get_language_string(getOption('GDPR_text')), getOption('GDPR_URL'));
 						 ?>
