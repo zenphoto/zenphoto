@@ -37,7 +37,6 @@ themes/basic/tinymce4/config/dark_comment-full.js.php
 themes/basic/tinymce4/config/dark_comment-ribbon.js.php
 themes/basic/tinymce4/config/dark_comment-slim.js.php
 themes/basic/tinymce4/config/dark_content.css
-themes/effervescence_plus
 themes/garland
 themes/garland/404.php
 themes/garland/album.php
@@ -1576,4 +1575,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1578
+1577
