@@ -118,21 +118,16 @@ class GDPR_required {
 	static function page() {
 		global $_zp_current_admin_obj, $_GDPR_acknowledge_loaded;
 		if (!($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && zp_getCookie('policyACK') != getOption('GDPR_cookie')) {
-			$page = getOption('GDPR_page');
-			if ($page) {
-				$page = newPage($page);
-				$link = $page->getLink();
-			} else {
-				$link = getOption('GDPR_URL');
-			}
-			if (getRequestURI() == $link) {
-				$_GDPR_acknowledge_loaded = true;
-			} else {
-				//	redirect to the policy page
-				header("HTTP/1.0 307 Found");
-				header("Status: 307 Found");
-				header('Location: ' . $link);
-				exitZP();
+			if ($link = getOption('GDPR_URL')) {
+				if (getRequestURI() == $link) {
+					$_GDPR_acknowledge_loaded = true;
+				} else {
+					//	redirect to the policy page
+					header("HTTP/1.0 307 Found");
+					header("Status: 307 Found");
+					header('Location: ' . $link);
+					exitZP();
+				}
 			}
 		}
 	}
