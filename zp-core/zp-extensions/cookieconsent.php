@@ -61,12 +61,6 @@ class cookieConsent {
 						'order' => 4,
 						'multilingual' => 1,
 						'desc' => gettext('The message shown by the plugin. Leave empty to use the default text.')),
-				gettext('Header') => array(
-						'key' => 'zpcookieconsent_header',
-						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 0.5,
-						'multilingual' => 1,
-						'desc' => gettext('Text for the popup header by the plugin. Leave empty to use the default text.')),
 				gettext('Domain') => array(
 						'key' => 'zpcookieconsent_domain',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -140,14 +134,6 @@ class cookieConsent {
 		if (getOption('zpcookieconsent_buttonlearnmore')) {
 			$learnmore = get_language_string(getOption('zpcookieconsent_buttonlearnmore'));
 		}
-		$header = gettext('Cookies used on the website!');
-		if (getOption('zpcookieconsent_header')) {
-			$header = get_language_string(getOption('zpcookieconsent_header'));
-		}
-		$decline = gettext('Decline');
-		if (getOption('zpcookieconsent_buttondecline')) {
-			$decline = get_language_string(getOption('zpcookieconsent_buttondecline'));
-		}
 		$link = getOption('zpcookieconsent_buttonlearnmorelink');
 		$theme = 'block';
 		if (getOption('zpcookieconsent_theme')) {
@@ -186,10 +172,8 @@ class cookieConsent {
 					"theme": "<?php echo js_encode($theme); ?>",
 					"dismissOnScroll": <?php echo js_encode($dismiss_on_scroll); ?>,
 					"content": {
-						"header": "<?php echo js_encode($header); ?>",
 						"message": "<?php echo js_encode($message); ?>",
 						"dismiss": "<?php echo js_encode($dismiss); ?>",
-						"deny": "<?php echo js_encode($decline); ?>",
 						"link": "<?php echo js_encode($learnmore); ?>",
 						"href": "<?php echo html_encode($link); ?>"
 					}
