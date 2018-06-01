@@ -5306,13 +5306,13 @@ function getPluginTabs() {
 			}
 			$tpp = 0;
 			if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
+				$tpp = 2;
+				$thirdparty[$plugin] = $path;
 				if ($str = isolate('@category', $p)) {
 					preg_match('~@category\s+([^\/|^\s]*)~', $str, $matches);
 					if (isset($matches[1]) || $matches[1] == 'package') {
 						$tpp = 1;
-					} else {
-						$thirdparty[$plugin] = $path;
-						$tpp = 2;
+						unset($thirdparty[$plugin]);
 					}
 				}
 			}
