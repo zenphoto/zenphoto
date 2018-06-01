@@ -404,38 +404,40 @@ zp_apply_filter('admin_note', 'plugins', '');
 						?>
 					</td>
 					<td>
-						<span class="icons plugin_info" id="doc_<?php echo $extension; ?>">
-							<a onclick="showPluginInfo('<?php echo $plugin_URL; ?>');" title="<?php echo gettext('Show plugin usage information.'); ?>">
-								<?php echo INFORMATION_BLUE; ?>
-							</a>
-						</span>
-						<?php
-						if ($optionlink) {
-							?>
-							<span class="icons">
-								<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>">
-									<?php echo OPTIONS_ICON; ?>
+						<span class="nowrap">
+							<span class="icons plugin_info" id="doc_<?php echo $extension; ?>">
+								<a onclick="showPluginInfo('<?php echo $plugin_URL; ?>');" title="<?php echo gettext('Show plugin usage information.'); ?>">
+									<?php echo INFORMATION_BLUE; ?>
 								</a>
 							</span>
 							<?php
-						} else {
-							?>
-							<span class="icons"><img class="icon-position-top3" src="images/placeholder.png" alt="" /></span>
-							<?php
-						}
-						if ($plugin_notice) {
-							?>
-							<span class="icons">
-								<span class="plugin_warning">
-									<?php echo WARNING_SIGN_ORANGE; ?>
-									<div class="plugin_warning_hidden">
-										<?php echo $plugin_notice; ?>
-									</div>
+							if ($optionlink) {
+								?>
+								<span class="icons">
+									<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>">
+										<?php echo OPTIONS_ICON; ?>
+									</a>
 								</span>
-							</span>
-							<?php
-						}
-						?>
+								<?php
+							} else {
+								?>
+								<span class="icons"><img class="icon-position-top3" src="images/placeholder.png" alt="" /></span>
+								<?php
+							}
+							if ($plugin_notice) {
+								?>
+								<span class="icons">
+									<span class="plugin_warning">
+										<?php echo WARNING_SIGN_ORANGE; ?>
+										<div class="plugin_warning_hidden">
+											<?php echo $plugin_notice; ?>
+										</div>
+									</span>
+								</span>
+								<?php
+							}
+							?>
+						</span>
 					</td>
 					<td colspan="100%">
 						<?php echo $plugin_description; ?>
