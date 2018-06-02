@@ -27,13 +27,7 @@ class cookieConsent {
 		setOptionDefault('zpcookieconsent_theme', 'block');
 		setOptionDefault('zpcookieconsent_position', 'bottom');
 		setOptionDefault('zpcookieconsent_colorpopup', '#000');
-		setOptionDefault('zpcookieconsent_colorbutton', '#f1d600');		
-		if (getOption('zpcookieconsent_dismissonclick')) {
-			purgeOption('zpcookieconsent_dismissonclick');
-		}
-		if(getOption('zpcookieconsent_scrollrange')) {
-			purgeOption('zpcookieconsent_scrollrange');
-		}
+		setOptionDefault('zpcookieconsent_colorbutton', '#f1d600');
 	}
 
 	function getOptionsSupported() {
@@ -70,7 +64,7 @@ class cookieConsent {
 						'key' => 'zpcookieconsent_expirydays',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 6,
-						'desc' => gettext('The number of days Cookie Consent should store the user’s consent information for.')),
+						'desc' => gettext('The number of days Cookie Consent should store the user’s consent information for. Use -1 for no expiry.')),
 				gettext('Theme') => array(
 						'key' => 'zpcookieconsent_theme',
 						'type' => OPTION_TYPE_SELECTOR,
@@ -149,9 +143,10 @@ class cookieConsent {
 			$domain = getOption('zpcookieconsent_domain');
 		}
 		$position = getOption('zpcookieconsent_position');
-		$dismiss_on_scroll = 0;
-		if (getOption('zpcookieconsent_dismissonscroll') && !strpos($link, sanitize($_SERVER['REQUEST_URI']))) { // false in Cookie Policy Page
-			$dismiss_on_scroll = 1;
+		$cookie_expiry = getOption('zpcookieconsent_expirydays');
+		$dismiss_on_scroll = "false";
+		if (getOption('zpcookieconsent_dismissonscroll') && strpos(sanitize($_SERVER['REQUEST_URI']), $link) === false) { // false in Cookie Policy Page
+			$dismiss_on_scroll = 100;
 		}
 		$color_popup = getOption('zpcookieconsent_colorpopup');
 		$color_button = getOption('zpcookieconsent_colorbutton');
@@ -171,11 +166,18 @@ class cookieConsent {
 					"position": "<?php echo js_encode($position); ?>",
 					"theme": "<?php echo js_encode($theme); ?>",
 					"dismissOnScroll": <?php echo js_encode($dismiss_on_scroll); ?>,
+					"cookie": {
+						"domain": "<?php echo js_encode($domain); ?>",
+						"expiryDays": <?php echo js_encode($cookie_expiry); ?>
+					},
 					"content": {
 						"message": "<?php echo js_encode($message); ?>",
 						"dismiss": "<?php echo js_encode($dismiss); ?>",
 						"link": "<?php echo js_encode($learnmore); ?>",
 						"href": "<?php echo html_encode($link); ?>"
+					},
+					onStatusChange: function(status) {
+						this.element.parentNode.removeChild(this.element);
 					}
 				})
 			});
