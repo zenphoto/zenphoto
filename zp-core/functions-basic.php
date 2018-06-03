@@ -1639,11 +1639,9 @@ function build_url($parts) {
  * @return array
  */
 function mb_parse_url($url) {
-	$enc_url = preg_replace_callback(
-					'%[^:/@?&=#]+%usD', function ($matches) {
+	$enc_url = preg_replace_callback('%[^:/@?&=#]+%usD', function ($matches) {
 		return urlencode($matches[0]);
-	}, $url
-	);
+	}, $url);
 
 	$parts = parse_url($enc_url);
 
