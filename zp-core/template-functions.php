@@ -4331,7 +4331,6 @@ function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
 function policySubmitButton($buttonText, $buttonClass = NULL, $buttonExtra = NULL) {
 	global $_zp_current_admin_obj;
 	if (getOption('GDPR_acknowledge') && !($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && zp_getCookie('policyACK') != getOption('GDPR_cookie')) {
-		$buttonExtra .= ' style="display:none;"';
 		?>
 		<span id="GDPR_acknowledge">
 			<input type="checkbox" name="policy_acknowledge" onclick="$('#submitbutton').show();
@@ -4343,7 +4342,7 @@ function policySubmitButton($buttonText, $buttonClass = NULL, $buttonExtra = NUL
 		<?php
 	}
 	?>
-	<button id="submitbutton" class="button buttons <?php echo $buttonClass; ?>"<?php echo $buttonExtra; ?>>
+	<button id="submitbutton" class="button buttons policyBurron <?php echo $buttonClass; ?>" style="display:none;"<?php echo $buttonExtra; ?>>
 		<?php echo $buttonText; ?>
 	</button>
 	<?php
