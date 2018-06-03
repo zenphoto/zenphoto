@@ -4342,7 +4342,7 @@ function policySubmitButton($buttonText, $buttonClass = NULL, $buttonExtra = NUL
 		<?php
 	}
 	?>
-	<button id="submitbutton" class="button buttons policyButton <?php echo $buttonClass; ?>" style="display:none;"<?php echo $buttonExtra; ?>>
+	<button id="submitbutton" class="button buttons policyButton <?php echo $buttonClass; ?>" style="display:none;" <?php echo $buttonExtra; ?>>
 		<?php echo $buttonText; ?>
 	</button>
 	<?php
