@@ -182,7 +182,7 @@ class zenpagecms {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 1,
 						'desc' => gettext("The length of news article excerpts in news or news category pages. Leave empty for full text.") . '<br />' .
-						gettext("You can also set a custom article shorten length for the news loop excerpts by using the standard TinyMCE <em>page break</em> plugin button (or manually using the html comment snippet <code>&lt;!-- pagebreak --&gt;</code>. If set, this will override this option.")),
+						gettext("You can also set a custom article shorten length for the news loop excerpts by using the standard TinyMCE <em>page break</em> plugin button (or manually using the html comment snippet <code>&lt;!-- pagebreak --&gt;</code>). If set, this will override this option.")),
 				gettext('News article text shorten indicator') => array(
 						'key' => 'zenpage_textshorten_indicator',
 						'type' => OPTION_TYPE_TEXTBOX,

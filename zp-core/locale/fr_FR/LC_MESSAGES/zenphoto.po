@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-25 17:23+0200\n"
-"PO-Revision-Date: 2018-05-25 17:36+0200\n"
+"POT-Creation-Date: 2018-06-04 22:37+0200\n"
+"PO-Revision-Date: 2018-06-04 22:45+0200\n"
 "Last-Translator: Vincent Bourganel <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569)\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-Basepath: ../../../..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Bookmarks: 1740,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.0.8\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: themes/basic/404.php:27 themes/zpmobile/404.php:26
@@ -2579,7 +2579,7 @@ msgstr "Statistiques"
 #: zp-core/zp-extensions/seo_locale.php:39
 #: zp-core/zp-extensions/seo_null.php:15
 #: zp-core/zp-extensions/seo_zenphoto.php:14
-#: zp-core/zp-extensions/sitemap-extended.php:24
+#: zp-core/zp-extensions/sitemap-extended.php:26
 msgid "SEO"
 msgstr ""
 
@@ -14654,21 +14654,21 @@ msgstr ""
 "la loi de l'Union européenne sur les cookies et des exigences de Google "
 "concernant l'utilisation de Google Adwords, Google Analytics et autres"
 
-#: zp-core/zp-extensions/cookieconsent.php:41
+#: zp-core/zp-extensions/cookieconsent.php:35
 msgid "Button: Agree"
 msgstr "Bouton : Accepter"
 
-#: zp-core/zp-extensions/cookieconsent.php:46
+#: zp-core/zp-extensions/cookieconsent.php:40
 msgid "Text used for the dismiss button. Leave empty to use the default text."
 msgstr ""
 "Texte utilisé pour le bouton <em>Accepter</em>. Laisser le champ vide pour "
 "utiliser le texte par défaut."
 
-#: zp-core/zp-extensions/cookieconsent.php:47
+#: zp-core/zp-extensions/cookieconsent.php:41
 msgid "Button: Learn more"
 msgstr "Bouton : En savoir davantage"
 
-#: zp-core/zp-extensions/cookieconsent.php:52
+#: zp-core/zp-extensions/cookieconsent.php:46
 msgid ""
 "Text used for the learn more info button. Leave empty to use the default "
 "text."
@@ -14676,40 +14676,29 @@ msgstr ""
 "Texte utilisé pour le bouton <em>En savoir davantage</em>. Laisser le champ "
 "vide pour utiliser le texte par défaut."
 
-#: zp-core/zp-extensions/cookieconsent.php:53
+#: zp-core/zp-extensions/cookieconsent.php:47
 msgid "Button: Learn more - URL"
 msgstr "Bouton : En savoir davantage - URL"
 
-#: zp-core/zp-extensions/cookieconsent.php:57
+#: zp-core/zp-extensions/cookieconsent.php:51
 msgid "URL to your cookie policy / privacy info page."
 msgstr "URL vers votre page de politique de cookies / info sur la vie privée."
 
-#: zp-core/zp-extensions/cookieconsent.php:58
+#: zp-core/zp-extensions/cookieconsent.php:52
 msgid "Message"
 msgstr "Corps du message : "
 
-#: zp-core/zp-extensions/cookieconsent.php:63
+#: zp-core/zp-extensions/cookieconsent.php:57
 msgid "The message shown by the plugin. Leave empty to use the default text."
 msgstr ""
 "Message affiché par le plugin. Laisser le champ vide pour utiliser le texte "
 "par défaut."
 
-#: zp-core/zp-extensions/cookieconsent.php:64
-msgid "Header"
-msgstr "Entête"
-
-#: zp-core/zp-extensions/cookieconsent.php:69
-msgid ""
-"Text for the popup header by the plugin. Leave empty to use the default text."
-msgstr ""
-"Texte utilisé pour le header de la popup du plugin. Laisser le champ vide "
-"pour utiliser le texte par défaut."
-
-#: zp-core/zp-extensions/cookieconsent.php:70
+#: zp-core/zp-extensions/cookieconsent.php:58
 msgid "Domain"
 msgstr "Domaine"
 
-#: zp-core/zp-extensions/cookieconsent.php:74
+#: zp-core/zp-extensions/cookieconsent.php:62
 msgid ""
 "The domain for the consent cookie that Cookie Consent uses, to remember that "
 "users have consented to cookies. Useful if your website uses multiple "
@@ -14725,28 +14714,28 @@ msgstr ""
 "<code>example.com</code> pour qu’il s’applique aussi aux autres sous-"
 "domaines tels que <code>foo.example.com</code>."
 
-#: zp-core/zp-extensions/cookieconsent.php:75
+#: zp-core/zp-extensions/cookieconsent.php:63
 msgid "Expire"
 msgstr "Durée de vie"
 
-#: zp-core/zp-extensions/cookieconsent.php:79
+#: zp-core/zp-extensions/cookieconsent.php:67
 msgid ""
 "The number of days Cookie Consent should store the user’s consent "
-"information for."
+"information for. Use -1 for no expiry."
 msgstr ""
-"Le nombre de jours durant lequel le cookie de consentement doit mémoriser "
-"l’information."
+"Le nombre de jours durant lequel le cookie de consentement doit mémoriser le "
+"consentement de l'utilisateur. Use -1 pour une durée non limitée."
 
-#: zp-core/zp-extensions/cookieconsent.php:80
+#: zp-core/zp-extensions/cookieconsent.php:68
 #: zp-core/zp-extensions/themeSwitcher.php:156
 msgid "Theme"
 msgstr "Thème"
 
-#: zp-core/zp-extensions/cookieconsent.php:88
+#: zp-core/zp-extensions/cookieconsent.php:76
 msgid "custom"
 msgstr "personnalisé"
 
-#: zp-core/zp-extensions/cookieconsent.php:90
+#: zp-core/zp-extensions/cookieconsent.php:78
 msgid ""
 "These are the included default themes. The chosen theme is added to the "
 "popup container as a CSS class in the form of .cc-style-THEME_NAME. Users "
@@ -14756,39 +14745,39 @@ msgstr ""
 "comme une classe CSS sous forme de .cc-style-THEME_NAME. Les utilisateurs "
 "peuvent créer leurs propres thèmes."
 
-#: zp-core/zp-extensions/cookieconsent.php:91
+#: zp-core/zp-extensions/cookieconsent.php:79
 msgid "Position"
 msgstr "Position"
 
-#: zp-core/zp-extensions/cookieconsent.php:96
+#: zp-core/zp-extensions/cookieconsent.php:84
 msgid "Top"
 msgstr "En haut"
 
-#: zp-core/zp-extensions/cookieconsent.php:97
+#: zp-core/zp-extensions/cookieconsent.php:85
 #: zp-core/zp-extensions/openstreetmap.php:95
 msgid "Top left"
 msgstr "En haut à gauche"
 
-#: zp-core/zp-extensions/cookieconsent.php:98
+#: zp-core/zp-extensions/cookieconsent.php:86
 #: zp-core/zp-extensions/openstreetmap.php:96
 msgid "Top right"
 msgstr "En haut à droite"
 
-#: zp-core/zp-extensions/cookieconsent.php:99
+#: zp-core/zp-extensions/cookieconsent.php:87
 msgid "Bottom"
 msgstr "En bas"
 
-#: zp-core/zp-extensions/cookieconsent.php:100
+#: zp-core/zp-extensions/cookieconsent.php:88
 #: zp-core/zp-extensions/openstreetmap.php:97
 msgid "Bottom left"
 msgstr "En bas à gauche"
 
-#: zp-core/zp-extensions/cookieconsent.php:101
+#: zp-core/zp-extensions/cookieconsent.php:89
 #: zp-core/zp-extensions/openstreetmap.php:98
 msgid "Bottom right"
 msgstr "En bas à droite"
 
-#: zp-core/zp-extensions/cookieconsent.php:103
+#: zp-core/zp-extensions/cookieconsent.php:91
 msgid ""
 "Choose the position of the popup. Top and Bottom = banner, Top left/right, "
 "Bottom left/right = floating"
@@ -14796,11 +14785,11 @@ msgstr ""
 "Choisir la position de la fenêtre contextuelle. Haut et bas = bannière, haut-"
 "gauche/droite, bas-gauche/droite = flottant"
 
-#: zp-core/zp-extensions/cookieconsent.php:104
+#: zp-core/zp-extensions/cookieconsent.php:92
 msgid "Dismiss on Scroll"
 msgstr "Accepter sur navigation"
 
-#: zp-core/zp-extensions/cookieconsent.php:108
+#: zp-core/zp-extensions/cookieconsent.php:96
 msgid ""
 "Check to dismiss when users scroll a page [other than <em>Learn more</em> "
 "page]."
@@ -14808,23 +14797,23 @@ msgstr ""
 "Cochez pour accepter quand l'utilisateur navigue sur une page [autre que la "
 "page <em>En savoir davantage</em>]."
 
-#: zp-core/zp-extensions/cookieconsent.php:109
+#: zp-core/zp-extensions/cookieconsent.php:97
 msgid "Color - Popup"
 msgstr "Couleur - Popup"
 
-#: zp-core/zp-extensions/cookieconsent.php:113
+#: zp-core/zp-extensions/cookieconsent.php:101
 msgid "Choose the color of the popup background."
 msgstr "Choisir la couleur de l’arrière-plan de la fenêtre contextuelle."
 
-#: zp-core/zp-extensions/cookieconsent.php:114
+#: zp-core/zp-extensions/cookieconsent.php:102
 msgid "Color - Button"
 msgstr "Couleur - Bouton"
 
-#: zp-core/zp-extensions/cookieconsent.php:118
+#: zp-core/zp-extensions/cookieconsent.php:106
 msgid "Choose the color of the button."
 msgstr "Choisissez la couleur du bouton."
 
-#: zp-core/zp-extensions/cookieconsent.php:131
+#: zp-core/zp-extensions/cookieconsent.php:119
 msgid ""
 "This website uses cookies. By continuing to browse the site, you agree to "
 "our use of cookies."
@@ -14832,21 +14821,13 @@ msgstr ""
 "Ce site utilise des cookies. En continuant de visiter le site, vous "
 "consentez à leur utilisation."
 
-#: zp-core/zp-extensions/cookieconsent.php:135
+#: zp-core/zp-extensions/cookieconsent.php:123
 msgid "Agree"
 msgstr "Accepter"
 
-#: zp-core/zp-extensions/cookieconsent.php:139
+#: zp-core/zp-extensions/cookieconsent.php:127
 msgid "More info"
 msgstr "En savoir davantage"
-
-#: zp-core/zp-extensions/cookieconsent.php:143
-msgid "Cookies used on the website!"
-msgstr "Cookies utilisés sur le site Web !"
-
-#: zp-core/zp-extensions/cookieconsent.php:147
-msgid "Decline"
-msgstr "Décliner"
 
 #: zp-core/zp-extensions/crop_image.php:22
 msgid "An image cropping tool."
@@ -15322,7 +15303,7 @@ msgstr "Permet aux visiteurs de voir ce site dans la langue de leur choix."
 
 #: zp-core/zp-extensions/dynamic-locale.php:161
 #: zp-core/zp-extensions/html_meta_tags.php:95
-#: zp-core/zp-extensions/sitemap-extended.php:72
+#: zp-core/zp-extensions/sitemap-extended.php:74
 msgid ""
 "If checked links to the alternative languages will be in the form "
 "<code><em>language</em>.domain</code> where <code><em>language</em></code> "
@@ -15334,7 +15315,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/dynamic-locale.php:163
 #: zp-core/zp-extensions/html_meta_tags.php:97
-#: zp-core/zp-extensions/sitemap-extended.php:74
+#: zp-core/zp-extensions/sitemap-extended.php:76
 msgid ""
 "This requires that you have created the appropriate subdomains pointing to "
 "your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> "
@@ -15361,7 +15342,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/dynamic-locale.php:168
 #: zp-core/zp-extensions/html_meta_tags.php:190
-#: zp-core/zp-extensions/sitemap-extended.php:196
+#: zp-core/zp-extensions/sitemap-extended.php:198
 msgid "Use subdomains"
 msgstr "Utiliser des sous-domaines"
 
@@ -15376,7 +15357,7 @@ msgstr ""
 #: zp-core/zp-extensions/dynamic-locale.php:182
 #: zp-core/zp-extensions/html_meta_tags.php:209
 #: zp-core/zp-extensions/register_user.php:143
-#: zp-core/zp-extensions/sitemap-extended.php:215
+#: zp-core/zp-extensions/sitemap-extended.php:217
 msgid ""
 "<p class=\"notebox\">*<strong>Note:</strong> The setting of this option is "
 "shared with other plugins.</p>"
@@ -15629,14 +15610,14 @@ msgid "Criteria"
 msgstr "Critères"
 
 #: zp-core/zp-extensions/flag_thumbnail.php:67
-#: zp-core/zp-extensions/sitemap-extended.php:81
-#: zp-core/zp-extensions/sitemap-extended.php:88
+#: zp-core/zp-extensions/sitemap-extended.php:83
+#: zp-core/zp-extensions/sitemap-extended.php:90
 msgid "date"
 msgstr "Date"
 
 #: zp-core/zp-extensions/flag_thumbnail.php:67
-#: zp-core/zp-extensions/sitemap-extended.php:82
-#: zp-core/zp-extensions/sitemap-extended.php:89
+#: zp-core/zp-extensions/sitemap-extended.php:84
+#: zp-core/zp-extensions/sitemap-extended.php:91
 msgid "mtime"
 msgstr "les dernières par date de modification"
 
@@ -19449,7 +19430,7 @@ msgstr ""
 "optimiser pour les moteurs de recherche."
 
 #: zp-core/zp-extensions/seo_cleanup.php:25
-#: zp-core/zp-extensions/sitemap-extended.php:247
+#: zp-core/zp-extensions/sitemap-extended.php:249
 msgid "Seo"
 msgstr "Optimisation pour les moteurs de recherche"
 
@@ -19770,7 +19751,7 @@ msgstr "Le site peut être visité."
 msgid "Site is avaiable for testing only."
 msgstr "Le site est uniquement disponible pour effectuer des tests."
 
-#: zp-core/zp-extensions/sitemap-extended.php:21
+#: zp-core/zp-extensions/sitemap-extended.php:23
 msgid ""
 "Generates sitemap.org compatible XML files for use with Google and other "
 "search engines."
@@ -19778,7 +19759,7 @@ msgstr ""
 "Génère des fichiers XML compatibles sitemaps.org, à utiliser avec Google et "
 "les autres moteurs de recherche."
 
-#: zp-core/zp-extensions/sitemap-extended.php:22
+#: zp-core/zp-extensions/sitemap-extended.php:24
 msgid ""
 "<strong>Note:</strong> The index links may not match if using the Zenpage "
 "option \"news on index\" that some themes provide! Also it does not \"know\" "
@@ -19790,7 +19771,7 @@ msgstr ""
 "dehors des Zenpages ou de n’importe quelle personnalisation d’un thème ne "
 "sont pas reconnues !"
 
-#: zp-core/zp-extensions/sitemap-extended.php:32
+#: zp-core/zp-extensions/sitemap-extended.php:34
 msgid ""
 "sitemap cache folder could not be created. Please try to create it manually "
 "via FTP with chmod 0777."
@@ -19798,45 +19779,25 @@ msgstr ""
 "Le dossier du cache sitemap n’a pu être créé. Essayez de le créer "
 "manuellement via FTP avec les droits chmod 0777."
 
-#: zp-core/zp-extensions/sitemap-extended.php:77
+#: zp-core/zp-extensions/sitemap-extended.php:79
 msgid "Album date"
 msgstr "Date de l’album"
 
-#: zp-core/zp-extensions/sitemap-extended.php:83
+#: zp-core/zp-extensions/sitemap-extended.php:85
 msgid "Field to use for the last modification date of albums."
 msgstr "Champ à utiliser pour la dernière date de modification des albums"
 
-#: zp-core/zp-extensions/sitemap-extended.php:84
+#: zp-core/zp-extensions/sitemap-extended.php:86
 msgid "Image date"
 msgstr "Date de l’image"
 
-#: zp-core/zp-extensions/sitemap-extended.php:90
+#: zp-core/zp-extensions/sitemap-extended.php:92
 msgid "Field to use for the last modification date of images."
 msgstr "Champ à utiliser pour la dernière date de modification des images"
 
-#: zp-core/zp-extensions/sitemap-extended.php:91
+#: zp-core/zp-extensions/sitemap-extended.php:93
 msgid "Change frequency - Zenphoto index"
 msgstr "Fréquence des modifications : index Zenphoto"
-
-#: zp-core/zp-extensions/sitemap-extended.php:95
-#: zp-core/zp-extensions/sitemap-extended.php:107
-#: zp-core/zp-extensions/sitemap-extended.php:119
-#: zp-core/zp-extensions/sitemap-extended.php:131
-#: zp-core/zp-extensions/sitemap-extended.php:143
-#: zp-core/zp-extensions/sitemap-extended.php:155
-#: zp-core/zp-extensions/sitemap-extended.php:167
-msgid "always"
-msgstr "toujours"
-
-#: zp-core/zp-extensions/sitemap-extended.php:96
-#: zp-core/zp-extensions/sitemap-extended.php:108
-#: zp-core/zp-extensions/sitemap-extended.php:120
-#: zp-core/zp-extensions/sitemap-extended.php:132
-#: zp-core/zp-extensions/sitemap-extended.php:144
-#: zp-core/zp-extensions/sitemap-extended.php:156
-#: zp-core/zp-extensions/sitemap-extended.php:168
-msgid "hourly"
-msgstr "toutes les heures"
 
 #: zp-core/zp-extensions/sitemap-extended.php:97
 #: zp-core/zp-extensions/sitemap-extended.php:109
@@ -19845,8 +19806,8 @@ msgstr "toutes les heures"
 #: zp-core/zp-extensions/sitemap-extended.php:145
 #: zp-core/zp-extensions/sitemap-extended.php:157
 #: zp-core/zp-extensions/sitemap-extended.php:169
-msgid "daily"
-msgstr "tous les jours"
+msgid "always"
+msgstr "toujours"
 
 #: zp-core/zp-extensions/sitemap-extended.php:98
 #: zp-core/zp-extensions/sitemap-extended.php:110
@@ -19855,8 +19816,8 @@ msgstr "tous les jours"
 #: zp-core/zp-extensions/sitemap-extended.php:146
 #: zp-core/zp-extensions/sitemap-extended.php:158
 #: zp-core/zp-extensions/sitemap-extended.php:170
-msgid "weekly"
-msgstr "toutes les semaines"
+msgid "hourly"
+msgstr "toutes les heures"
 
 #: zp-core/zp-extensions/sitemap-extended.php:99
 #: zp-core/zp-extensions/sitemap-extended.php:111
@@ -19865,8 +19826,8 @@ msgstr "toutes les semaines"
 #: zp-core/zp-extensions/sitemap-extended.php:147
 #: zp-core/zp-extensions/sitemap-extended.php:159
 #: zp-core/zp-extensions/sitemap-extended.php:171
-msgid "monthly"
-msgstr "tous les mois"
+msgid "daily"
+msgstr "tous les jours"
 
 #: zp-core/zp-extensions/sitemap-extended.php:100
 #: zp-core/zp-extensions/sitemap-extended.php:112
@@ -19875,8 +19836,8 @@ msgstr "tous les mois"
 #: zp-core/zp-extensions/sitemap-extended.php:148
 #: zp-core/zp-extensions/sitemap-extended.php:160
 #: zp-core/zp-extensions/sitemap-extended.php:172
-msgid "yearly"
-msgstr "tous les ans"
+msgid "weekly"
+msgstr "toutes les semaines"
 
 #: zp-core/zp-extensions/sitemap-extended.php:101
 #: zp-core/zp-extensions/sitemap-extended.php:113
@@ -19885,39 +19846,59 @@ msgstr "tous les ans"
 #: zp-core/zp-extensions/sitemap-extended.php:149
 #: zp-core/zp-extensions/sitemap-extended.php:161
 #: zp-core/zp-extensions/sitemap-extended.php:173
+msgid "monthly"
+msgstr "tous les mois"
+
+#: zp-core/zp-extensions/sitemap-extended.php:102
+#: zp-core/zp-extensions/sitemap-extended.php:114
+#: zp-core/zp-extensions/sitemap-extended.php:126
+#: zp-core/zp-extensions/sitemap-extended.php:138
+#: zp-core/zp-extensions/sitemap-extended.php:150
+#: zp-core/zp-extensions/sitemap-extended.php:162
+#: zp-core/zp-extensions/sitemap-extended.php:174
+msgid "yearly"
+msgstr "tous les ans"
+
+#: zp-core/zp-extensions/sitemap-extended.php:103
+#: zp-core/zp-extensions/sitemap-extended.php:115
+#: zp-core/zp-extensions/sitemap-extended.php:127
+#: zp-core/zp-extensions/sitemap-extended.php:139
+#: zp-core/zp-extensions/sitemap-extended.php:151
+#: zp-core/zp-extensions/sitemap-extended.php:163
+#: zp-core/zp-extensions/sitemap-extended.php:175
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:138
 msgid "never"
 msgstr "Jamais"
 
-#: zp-core/zp-extensions/sitemap-extended.php:103
+#: zp-core/zp-extensions/sitemap-extended.php:105
 msgid "Change frequency - albums"
 msgstr "Fréquence des modifications : albums"
 
-#: zp-core/zp-extensions/sitemap-extended.php:115
+#: zp-core/zp-extensions/sitemap-extended.php:117
 msgid "Change frequency - images"
 msgstr "Fréquence des modifications : images"
 
-#: zp-core/zp-extensions/sitemap-extended.php:127
+#: zp-core/zp-extensions/sitemap-extended.php:129
 msgid "Change frequency - Zenpage pages"
 msgstr "Fréquence des modifications : pages Zenpage"
 
-#: zp-core/zp-extensions/sitemap-extended.php:139
+#: zp-core/zp-extensions/sitemap-extended.php:141
 msgid "Change frequency - Zenpage news index"
 msgstr "Fréquence des modifications : index des actualités Zenpage"
 
-#: zp-core/zp-extensions/sitemap-extended.php:151
+#: zp-core/zp-extensions/sitemap-extended.php:153
 msgid "Change frequency: Zenpage news articles"
 msgstr "Fréquence des modifications : articles d’actualités Zenpage"
 
-#: zp-core/zp-extensions/sitemap-extended.php:163
+#: zp-core/zp-extensions/sitemap-extended.php:165
 msgid "Change frequency - Zenpage news categories"
 msgstr "Fréquence des modifications : catégories d’actualités Zenpage"
 
-#: zp-core/zp-extensions/sitemap-extended.php:175
+#: zp-core/zp-extensions/sitemap-extended.php:177
 msgid "Enable Google image and video extension"
 msgstr "Active l’extension Google image et vidéo"
 
-#: zp-core/zp-extensions/sitemap-extended.php:179
+#: zp-core/zp-extensions/sitemap-extended.php:181
 msgid ""
 "If checked, the XML output file will be formatted using the Google XML image "
 "and video extensions where applicable."
@@ -19925,7 +19906,7 @@ msgstr ""
 "Si cette option est activée, le fichier de sortie XML sera formaté en "
 "utilisant si possible les extensions Google image et vidéo."
 
-#: zp-core/zp-extensions/sitemap-extended.php:179
+#: zp-core/zp-extensions/sitemap-extended.php:181
 msgid ""
 "<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able "
 "to read your sitemap. Also the Google extensions cover only image and video "
@@ -19944,11 +19925,11 @@ msgstr ""
 "pensez-y sérieusement avant d’utiliser cette option car cela risque de "
 "surcharger le serveur."
 
-#: zp-core/zp-extensions/sitemap-extended.php:180
+#: zp-core/zp-extensions/sitemap-extended.php:182
 msgid "Google image and video extension: Link full image "
 msgstr "Extension Google image et vidéo : lien à l’image pleine grandeur "
 
-#: zp-core/zp-extensions/sitemap-extended.php:184
+#: zp-core/zp-extensions/sitemap-extended.php:186
 msgid ""
 "If checked, the original full image is referenced instead of the sized "
 "images in the cache. For image formats only."
@@ -19956,11 +19937,11 @@ msgstr ""
 "Si coché, le référencement se fera aux images originales pleine grandeur et "
 "non aux images redimensionnées du cache. Pour les formats d’image seulement."
 
-#: zp-core/zp-extensions/sitemap-extended.php:185
+#: zp-core/zp-extensions/sitemap-extended.php:187
 msgid "Google - URL to image license"
 msgstr "Google – URL vers la licence de l’image"
 
-#: zp-core/zp-extensions/sitemap-extended.php:190
+#: zp-core/zp-extensions/sitemap-extended.php:192
 msgid ""
 "Optional. Used only if the Google extension is checked. Must be an absolute "
 "URL address of the form: http://mydomain.com/license.html"
@@ -19968,11 +19949,11 @@ msgstr ""
 "Optionnelle. Utilisée seulement si l’extension Google est cochée (doit être "
 "une URL complète de la forme : http://mondomaine.com/license.html)."
 
-#: zp-core/zp-extensions/sitemap-extended.php:191
+#: zp-core/zp-extensions/sitemap-extended.php:193
 msgid "Sitemap processing chunk"
 msgstr "Nombre d’albums par fichier sitemap"
 
-#: zp-core/zp-extensions/sitemap-extended.php:195
+#: zp-core/zp-extensions/sitemap-extended.php:197
 msgid ""
 "The number of albums that will be processed for each sitemap file. Lower "
 "this value if you get script timeouts when creating the files."
@@ -19981,7 +19962,7 @@ msgstr ""
 "valeur si, lors de la création des fichiers, les scripts prennent trop de "
 "temps à répondre."
 
-#: zp-core/zp-extensions/sitemap-extended.php:210
+#: zp-core/zp-extensions/sitemap-extended.php:212
 msgid ""
 "* This option may be set via the <a href=\"javascript:gotoName('sitemap-"
 "extended');\"><em>sitemap-extended</em></a> plugin options."
@@ -19989,20 +19970,20 @@ msgstr ""
 "* Ce paramètre est configuré avec ceux de l’extension <a href=\"javascript:"
 "gotoName('sitemap-extended');\"><em>sitemap-extended</em>."
 
-#: zp-core/zp-extensions/sitemap-extended.php:249
+#: zp-core/zp-extensions/sitemap-extended.php:251
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:87
 msgid "Sitemap tools"
 msgstr "Outils sitemap"
 
-#: zp-core/zp-extensions/sitemap-extended.php:253
+#: zp-core/zp-extensions/sitemap-extended.php:255
 msgid "Generate or purge sitemap cache files."
 msgstr "Génère ou efface les fichiers sitemap mis en cache."
 
-#: zp-core/zp-extensions/sitemap-extended.php:1039
+#: zp-core/zp-extensions/sitemap-extended.php:1041
 msgid "Available sitemap files:"
 msgstr "Fichiers sitemap disponibles :"
 
-#: zp-core/zp-extensions/sitemap-extended.php:1041
+#: zp-core/zp-extensions/sitemap-extended.php:1043
 msgid "No sitemap files available."
 msgstr "Aucun fichier sitemap disponible"
 
@@ -21780,14 +21761,13 @@ msgstr ""
 msgid ""
 "You can also set a custom article shorten length for the news loop excerpts "
 "by using the standard TinyMCE <em>page break</em> plugin button (or manually "
-"using the html comment snippet <code>&lt;!-- pagebreak --&gt;</code>. If "
+"using the html comment snippet <code>&lt;!-- pagebreak --&gt;</code>). If "
 "set, this will override this option."
 msgstr ""
-"Vous pouvez également définir un article personnalisé raccourcir la longueur "
-"pour les extraits de boucle de nouvelles en utilisant le bouton de plugin "
-"TinyMCE <em>saut de page</em> standard (ou manuellement à l’aide de "
-"l’extrait de commentaire html <code><!-- pagebreak --></code> . Si défini, "
-"cela remplacera cette option."
+"Vous pouvez également définir une longueur personnalisée pour les extraits "
+"d'actualité en utilisant le bouton standard <em>saut de page</em> du plugin "
+"TinyMCE (ou manuellement à l’aide du snipet de commentaire html <code><!-- "
+"pagebreak --></code> ). Si défini, cela remplacera cette option."
 
 #: zp-core/zp-extensions/zenpage.php:186
 msgid "News article text shorten indicator"
@@ -22723,6 +22703,41 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à "
 "un ou à plusieurs destinataires."
+
+#~ msgid "Header"
+#~ msgstr "Entête"
+
+#~ msgid ""
+#~ "Text for the popup header by the plugin. Leave empty to use the default "
+#~ "text."
+#~ msgstr ""
+#~ "Texte utilisé pour le header de la popup du plugin. Laisser le champ vide "
+#~ "pour utiliser le texte par défaut."
+
+#~ msgid ""
+#~ "The number of days Cookie Consent should store the user’s consent "
+#~ "information for."
+#~ msgstr ""
+#~ "Le nombre de jours durant lequel le cookie de consentement doit mémoriser "
+#~ "l’information."
+
+#~ msgid "Cookies used on the website!"
+#~ msgstr "Cookies utilisés sur le site Web !"
+
+#~ msgid "Decline"
+#~ msgstr "Décliner"
+
+#~ msgid ""
+#~ "You can also set a custom article shorten length for the news loop "
+#~ "excerpts by using the standard TinyMCE <em>page break</em> plugin button "
+#~ "(or manually using the html comment snippet <code>&lt;!-- pagebreak --&gt;"
+#~ "</code>. If set, this will override this option."
+#~ msgstr ""
+#~ "Vous pouvez également définir un article personnalisé raccourcir la "
+#~ "longueur pour les extraits de boucle de nouvelles en utilisant le bouton "
+#~ "de plugin TinyMCE <em>saut de page</em> standard (ou manuellement à "
+#~ "l’aide de l’extrait de commentaire html <code><!-- pagebreak --></code> . "
+#~ "Si défini, cela remplacera cette option."
 
 #~ msgid ""
 #~ "<strong>User account</strong> (<em>user name</em> and optionally "
