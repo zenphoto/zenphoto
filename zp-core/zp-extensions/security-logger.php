@@ -390,7 +390,8 @@ class security_logger {
 	 */
 	static function admin_XSRF_access($discard, $token) {
 		list($user, $name) = security_logger::populate_user();
-		security_logger::Logger(2, $user, $name, 'XSRF_blocked', '', $token);
+		$uri = getRequestURI();
+		security_logger::Logger(2, $user, $name, 'XSRF_blocked', $token, $uri);
 		return false;
 	}
 
