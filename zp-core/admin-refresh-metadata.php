@@ -17,7 +17,6 @@ foreach (getEnabledPlugins() as $extension => $plugin) {
 	if ($plugin['priority'] & CLASS_PLUGIN)
 		require_once($plugin['path']);
 }
-$zenphoto_tabs = $_SESSION['navigation_tabs']; //	Remembered since we are not loading all the plugins
 
 require_once(dirname(__FILE__) . '/template-functions.php');
 
@@ -28,8 +27,9 @@ if (isset($_REQUEST['album'])) {
 }
 
 admin_securityChecks($localrights, $return = currentRelativeURL());
-
 XSRFdefender('refresh');
+
+$zenphoto_tabs = $_SESSION['navigation_tabs']; //	Remembered since we are not loading all the plugins
 
 $imageid = '';
 if (isset($_GET['refresh'])) {
