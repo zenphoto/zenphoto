@@ -211,7 +211,7 @@ if (!defined('OFFSET_PATH')) {
 		}
 	}
 
-	$pluginStream = @file_get_contents($pluginToBeDocPath);
+	$pluginStream = str_replace('/* LegacyConverter was here */', '', @file_get_contents($pluginToBeDocPath));
 	$i = strpos($pluginStream, '/*');
 	$j = strpos($pluginStream, '*/');
 
