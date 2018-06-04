@@ -2864,9 +2864,7 @@ class zpFunctions {
 		return $text;
 	}
 
-	static function pluginDebug($extension, $priority, $start) {
-		list($usec, $sec) = explode(" ", microtime());
-		$end = (float) $usec + (float) $sec;
+	static function getPriorityDisplay($priority) {
 		$class = array();
 		if ($priority & CLASS_PLUGIN) {
 			$class[] = 'CLASS';
@@ -2880,9 +2878,17 @@ class zpFunctions {
 		if ($priority & THEME_PLUGIN) {
 			$class[] = 'THEME';
 		}
-		if (empty($class))
-			$class[] = 'theme';
-		debugLog(sprintf('    ' . $extension . '(%s:%u)=>%.4fs', implode('|', $class), $priority & PLUGIN_PRIORITY, $end - $start));
+		if (empty($class)) {
+			$class[] = 'THEME';
+		}
+		return sprintf('%s | %u', implode(' | ', $class), $priority & PLUGIN_PRIORITY);
+	}
+
+	static function pluginDebug($extension, $priority, $start) {
+		list($usec, $sec) = explode(" ", microtime());
+		$end = (float) $usec + (float) $sec;
+		$priority = self::getPriorityDisplay($priority);
+		debugLog(sprintf('    ' . $extension . '(%s)=>%.4fs', $priority, $end - $start));
 	}
 
 	/**
