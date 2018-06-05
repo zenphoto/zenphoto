@@ -162,56 +162,57 @@ echo "\n</head>";
 						<blockquote class="logtext">
 							<?php
 							if (!empty($logtext)) {
-								if (in_array($baseName, array('security', 'debug'))) {
-									?>
-									<script type="text/javascript">
-										window.addEventListener('load', function () {
-											$('.logtext').scrollTo('#bottom');
-										}, false);
-									</script>
-									<?php
-								}
 								$fields = explode("\t", $header);
 								if (count($fields) > 1) { // there is a header row, display in a table
 									unset($logtext[0]); //	delete the header
 									?>
 									<table id="log_table">
-										<tr>
-											<?php
-											foreach ($fields as $field) {
-												?>
-												<th>
-													<span class="nowrap"><?php echo $field; ?></span>
-												</th>
-												<?php
-											}
-											?>
-										</tr>
-										<?php
-										foreach ($logtext as $line) {
-											?>
+										<thead>
 											<tr>
 												<?php
-												$fields = explode("\t", trim($line));
-												foreach ($fields as $key => $field) {
+												foreach ($fields as $field) {
 													?>
-													<td>
-														<?php
-														if ($field) {
-															?>
-															<span class="nowrap"><?php echo html_encodeTagged($field); ?></span>
-															<?php
-														}
-														?>
-													</td>
+													<th>
+														<span class="nowrap"><?php echo $field; ?></span>
+													</th>
 													<?php
 												}
 												?>
 											</tr>
+										</thead>
+										<tbody>
 											<?php
-										}
-										?>
+											foreach ($logtext as $line) {
+												?>
+												<tr>
+													<?php
+													$fields = explode("\t", trim($line));
+													foreach ($fields as $key => $field) {
+														?>
+														<td>
+															<?php
+															if ($field) {
+																?>
+																<span class="nowrap"><?php echo html_encodeTagged($field); ?></span>
+																<?php
+															}
+															?>
+														</td>
+														<?php
+													}
+													?>
+												</tr>
+												<?php
+											}
+											?>
+										</tbody>
 									</table>
+									<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.stickytableheaders.min.js"></script>
+									<script>
+										$(function () {
+											$('#log_table').stickyTableHeaders({scrollableArea: $('.logtext'), cacheHeaderHeight: true});
+										});
+									</script>
 									<?php
 								} else {
 									foreach ($logtext as $line) {
@@ -244,8 +245,18 @@ echo "\n</head>";
 			</div>
 		</div>
 	</div>
-	<?php printAdminFooter(); ?>
 	<?php
+	if (in_array($baseName, array('security', 'debug'))) {
+		?>
+		<script type="text/javascript">
+			window.addEventListener('load', function () {
+				$('.logtext').scrollTo('#bottom');
+			}, false);
+		</script>
+		<?php
+	}
+	printAdminFooter();
+
 	// to fool the validator
 	echo "\n</body>";
 	echo "\n</html>";

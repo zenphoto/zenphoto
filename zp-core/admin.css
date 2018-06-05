@@ -2197,6 +2197,13 @@ fieldset,
 	text-align: left;
 }
 
+.logtext table tr:nth-child(2n) {
+  background-color: #F7F7F7;
+}
+.logtext tbody tr:hover {
+  background-color: #EEEEEE;
+}
+
 .nowrap {
 	white-space: nowrap;
 }
