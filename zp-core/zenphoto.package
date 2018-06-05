@@ -1321,6 +1321,7 @@ zp-core/js/htmlencoder.js
 zp-core/js/jquery.mjs.nestedSortable.js
 zp-core/js/jquery.pagination.js
 zp-core/js/jquery.scrollTo.min.js
+zp-core/js/jquery.stickytableheaders.min.js
 zp-core/js/jquery.ui.touch-punch.min.js
 zp-core/js/sprintf.js
 zp-core/js/dirtyforms
@@ -8327,4 +8328,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8329
+8330
