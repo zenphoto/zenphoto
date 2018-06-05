@@ -69,7 +69,8 @@ if (isset($_GET['tab']) && isset($logtabs[$_GET['tab']])) {
 } else {
 	$logname = $subtab = $zenphoto_tabs['logs']['default'];
 }
-if (getOption(preg_replace('~-\d*$~', '', $logname) . '_log_encryption')) {
+$baseName = preg_replace('~-\d*$~', '', $logname);
+if (getOption($baseName . '_log_encryption')) {
 	$_logCrypt = $_adminCript;
 } else {
 	$_logCrypt = NULL;
@@ -161,27 +162,32 @@ echo "\n</head>";
 						<blockquote class="logtext">
 							<?php
 							if (!empty($logtext)) {
+								if (in_array($baseName, array('security', 'debug'))) {
+									?>
+									<script type="text/javascript">
+										window.addEventListener('load', function () {
+											$('.logtext').scrollTo('#bottom');
+										}, false);
+									</script>
+									<?php
+								}
 								$fields = explode("\t", $header);
 								if (count($fields) > 1) { // there is a header row, display in a table
 									unset($logtext[0]); //	delete the header
 									?>
 									<table id="log_table">
-										<?php
-										if (!empty($header)) {
-											?>
-											<tr>
-												<?php
-												foreach ($fields as $field) {
-													?>
-													<th>
-														<span class="nowrap"><?php echo $field; ?></span>
-													</th>
-													<?php
-												}
-												?>
-											</tr>
+										<tr>
 											<?php
-										}
+											foreach ($fields as $field) {
+												?>
+												<th>
+													<span class="nowrap"><?php echo $field; ?></span>
+												</th>
+												<?php
+											}
+											?>
+										</tr>
+										<?php
 										foreach ($logtext as $line) {
 											?>
 											<tr>
@@ -225,6 +231,7 @@ echo "\n</head>";
 								}
 							}
 							?>
+							<span id="bottom"></span>
 						</blockquote>
 					</div>
 					<?php
