@@ -31,7 +31,7 @@
 
 $plugin_is_filter = 10 | ADMIN_PLUGIN;
 $plugin_description = gettext("Debugging aids.");
-$plugin_author = "Stephen Billard (sbillard)";
+
 $option_interface = 'debug';
 
 zp_register_filter('admin_tabs', 'debug::tabs', 100);

@@ -9,7 +9,6 @@
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('Generates and displays a Doc file for filters.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('admin_utilities_buttons', 'filterDoc_button');
 if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/filterDoc/filter list_index.html')) {

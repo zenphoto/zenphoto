@@ -38,7 +38,6 @@
  */
 $plugin_is_filter = 800 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("Plugin to generate file downloads.");
-$plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
 
 $option_interface = "downloadList";
 

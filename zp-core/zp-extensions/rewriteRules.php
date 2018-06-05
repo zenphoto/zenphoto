@@ -15,7 +15,6 @@
 
 $plugin_is_filter = 20 | ADMIN_PLUGIN;
 $plugin_description = gettext("Site rewrite rules subtab.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('admin_tabs', 'rewriteRules::tabs', 100);
 

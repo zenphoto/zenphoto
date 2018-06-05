@@ -15,7 +15,6 @@
  */
 $plugin_is_filter = 9 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allow a user to create a root level album when he does not otherwise have rights to do so.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'create_album';
 

@@ -48,7 +48,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage.php'
 
 $plugin_is_filter = 980 | FEATURE_PLUGIN;
 $plugin_description = gettext('Inject a site policy acknowledgement page.');
-$plugin_author = "Stephen Billard (sbillard)";
+
 $option_interface = 'GDPR_required';
 
 class GDPR_required {

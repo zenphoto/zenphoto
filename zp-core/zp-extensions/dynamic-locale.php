@@ -54,7 +54,6 @@
  */
 $plugin_is_filter = 10 | CLASS_PLUGIN;
 $plugin_description = gettext("Allows viewers of your site to select the language translation of their choice.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'dynamic_locale';
 

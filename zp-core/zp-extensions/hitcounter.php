@@ -9,6 +9,14 @@
 /** Reset hitcounters ********************************************************** */
 /* * ***************************************************************************** */
 
+$plugin_is_filter = defaultExtension(5 | FEATURE_PLUGIN);
+$plugin_description = gettext('Automatically increments hitcounters on gallery objects viewed by a <em>visitor</em>.');
+
+$option_interface = 'hitcounter';
+
+zp_register_filter('load_theme_script', 'hitcounter::load_script');
+zp_register_filter('admin_utilities_buttons', 'hitcounter::button');
+
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
@@ -35,15 +43,6 @@ if (!defined('OFFSET_PATH')) {
 		}
 	}
 }
-
-$plugin_is_filter = defaultExtension(5 | FEATURE_PLUGIN);
-$plugin_description = gettext('Automatically increments hitcounters on gallery objects viewed by a <em>visitor</em>.');
-$plugin_author = "Stephen Billard (sbillard)";
-
-$option_interface = 'hitcounter';
-
-zp_register_filter('load_theme_script', 'hitcounter::load_script');
-zp_register_filter('admin_utilities_buttons', 'hitcounter::button');
 
 $_scriptpage_hitcounters = getSerializedArray(getOption('page_hitcounters'));
 

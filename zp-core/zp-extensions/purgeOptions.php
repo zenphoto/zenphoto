@@ -19,7 +19,6 @@
  */
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext('Provides a means to purge options for Themes and Plugins.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesHandler/favoritesClass.php');
 if (strpos(__FILE__, ZENFOLDER) === false) {

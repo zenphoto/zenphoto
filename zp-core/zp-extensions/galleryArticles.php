@@ -10,7 +10,6 @@
  */
 $plugin_is_filter = 600 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('Create news articles when a gallery item is published.');
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = extensionEnabled('zenpage') ? '' : gettext('Gallery Articles requires Zenpage to be enabled.');
 
 $option_interface = 'galleryArticles';

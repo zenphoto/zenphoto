@@ -16,7 +16,6 @@
  */
 $plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext('Provides short URLs to zenphoto objects.');
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('Shortened URLs require the <code>mod_rewrite</code> option be enabled.');
 
 $option_interface = 'tinyURL';
@@ -37,10 +36,10 @@ switch (OFFSET_PATH) {
 	default:
 		break;
 }
-$_zp_conf_vars['special_pages']['tiny'] = array('define'	 => '_TINY_', 'rewrite'	 => getOption('tinyURL_text'),
-				'option'	 => 'tinyURL_text', 'default'	 => 'tiny/');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%TINY%([0-9]+)/*$',
-				'rule'		 => '%REWRITE% index.php?p=$1&t [L,QSA]');
+$_zp_conf_vars['special_pages']['tiny'] = array('define' => '_TINY_', 'rewrite' => getOption('tinyURL_text'),
+		'option' => 'tinyURL_text', 'default' => 'tiny/');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%TINY%([0-9]+)/*$',
+		'rule' => '%REWRITE% index.php?p=$1&t [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%TINY%([0-9]+)/([0-9]+)/*$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%TINY%', 'rewrite' => '_TINY_');
 
@@ -62,10 +61,10 @@ class tinyURL {
 	function getOptionsSupported() {
 		$options = array();
 		$options[gettext('Use in themes for')] = array(
-						'key'		 => 'tinyURL_agressive',
-						'type'	 => OPTION_TYPE_CUSTOM,
-						'order'	 => 1,
-						'desc'	 => gettext('If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</i>s for that object.')
+				'key' => 'tinyURL_agressive',
+				'type' => OPTION_TYPE_CUSTOM,
+				'order' => 1,
+				'desc' => gettext('If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</i>s for that object.')
 		);
 
 		return $options;

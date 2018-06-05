@@ -10,7 +10,6 @@
  */
 $plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext("Outgoing mail handler based on the PHP <em>mail</em> facility.");
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('zenphoto_sendmail')) ? sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('sendmail'))) : '';
 
 if ($plugin_disable) {

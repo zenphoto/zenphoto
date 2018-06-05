@@ -9,7 +9,6 @@
  */
 $plugin_is_filter = 1001 | FEATURE_PLUGIN;
 $plugin_description = sprintf(gettext("Treats users as not logged in for gallery pages."), DATA_FOLDER);
-$plugin_author = "Stephen Billard (sbillard)";
 
 
 if (OFFSET_PATH) {

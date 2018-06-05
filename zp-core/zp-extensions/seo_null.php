@@ -4,14 +4,13 @@
  * Changes <i>white space</i> characters to hyphens.
  *
  * @author Stephen Billard (sbillard)
- * 
+ *
  * @package plugins/seo_null
  * @pluginCategory seo
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('SEO <em>Null</em> filter.');
 $plugin_notice = gettext('The only translation performed is one or more <em>white space</em> characters are converted to a <em>hyphen</em>.');
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('seoFriendly') && !extensionEnabled('seo_null')) ? sprintf(gettext('Only one SEO filter plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('seoFriendly'))) : '';
 
 zp_register_filter('seoFriendly', 'null_seo::filter');

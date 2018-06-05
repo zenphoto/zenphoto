@@ -5,14 +5,13 @@
  *
  * To change what is hidden, comment lines you do want to display.
  *
- * @author Stephen Billard (sbillard)
+ * @author Stephen Billard (sbillard), Fred Sondaar (fretzl)
  *
  * @package plugins/showNoUserRights
  * @pluginCategory example
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Hide the output of user rights and other info if user does NOT have ADMIN_RIGHTS.");
-$plugin_author = "Stephen Billard (sbillard), Fred Sondaar (fretzl)";
 
 zp_register_filter('admin_head', 'showNoUserRights::customDisplayRights');
 zp_register_filter('plugin_tabs', 'showNoUserRights::tab');

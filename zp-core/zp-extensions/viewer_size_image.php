@@ -25,7 +25,6 @@
  * @pluginCategory media
  */
 $plugin_description = gettext("Provides a means allowing users to select the image size to view.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'viewer_size_image_options';
 
@@ -53,14 +52,14 @@ class viewer_size_image_options {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Image sizes allowed') => array('key'					 => 'viewer_size_image_sizes', 'type'				 => OPTION_TYPE_TEXTAREA,
-										'multilingual' => false,
-										'desc'				 => gettext('List of sizes from which the viewer may select.<br />The form is "$s=&lt;size&gt;" or "$h=&lt;height&gt;,$w=&lt;width&gt;"....<br />See printCustomSizedImage() for details')),
-						gettext('Selector')						 => array('key'			 => 'viewer_size_image_radio', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('Radio buttons') => 2, gettext('Drop-down') => 1),
-										'desc'		 => gettext('Choose the kind of selector to be presented the viewer.')),
-						gettext('Default size')				 => array('key'	 => 'viewer_size_image_default', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('The initial size for the image. Format is a single instance of the sizes list.'))
+		return array(gettext('Image sizes allowed') => array('key' => 'viewer_size_image_sizes', 'type' => OPTION_TYPE_TEXTAREA,
+						'multilingual' => false,
+						'desc' => gettext('List of sizes from which the viewer may select.<br />The form is "$s=&lt;size&gt;" or "$h=&lt;height&gt;,$w=&lt;width&gt;"....<br />See printCustomSizedImage() for details')),
+				gettext('Selector') => array('key' => 'viewer_size_image_radio', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(gettext('Radio buttons') => 2, gettext('Drop-down') => 1),
+						'desc' => gettext('Choose the kind of selector to be presented the viewer.')),
+				gettext('Default size') => array('key' => 'viewer_size_image_default', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('The initial size for the image. Format is a single instance of the sizes list.'))
 		);
 	}
 

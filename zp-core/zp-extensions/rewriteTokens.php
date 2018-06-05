@@ -9,7 +9,6 @@
  */
 $plugin_is_filter = defaultExtension(950 | ADMIN_PLUGIN);
 $plugin_description = gettext('Utility to alter the rewrite token substitutions array in the configuration file.');
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.');
 
 $option_interface = 'rewriteTokens';

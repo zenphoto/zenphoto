@@ -35,7 +35,6 @@
  */
 $plugin_is_filter = 10 | CLASS_PLUGIN;
 $plugin_description = gettext("Tools to block hacker access to your site.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'ipBlocker';
 

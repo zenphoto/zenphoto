@@ -30,12 +30,12 @@
  * </ol>
  *
  * @author Malte Müller (acrylian)
+ *
  * @package plugins/slideshow2
  * @pluginCategory media
  */
 $plugin_is_filter = defaultExtension(9 | THEME_PLUGIN | ADMIN_PLUGIN);
 $plugin_description = gettext("Slideshow plugin based on the Cycle2 jQuery plugin.");
-$plugin_author = "Malte Müller (acrylian)";
 $plugin_disable = (extensionEnabled('slideshow')) ? sprintf(gettext('Only one slideshow plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'slideshow') : '';
 
 $option_interface = 'cycle';

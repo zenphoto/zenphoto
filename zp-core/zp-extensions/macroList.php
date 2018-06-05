@@ -66,7 +66,6 @@
  */
 $plugin_is_filter = 15 | ADMIN_PLUGIN;
 $plugin_description = gettext('View available <code>content macros</code>.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 if (OFFSET_PATH != 2 && zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS | ALBUM_RIGHTS)) {
 	foreach (getEnabledPlugins() as $ext => $pn) {

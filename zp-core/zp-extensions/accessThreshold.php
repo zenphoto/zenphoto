@@ -20,7 +20,6 @@
  */
 $plugin_is_filter = 990 | FEATURE_PLUGIN;
 $plugin_description = gettext("Tools to block denial of service attacks.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'accessThreshold';
 

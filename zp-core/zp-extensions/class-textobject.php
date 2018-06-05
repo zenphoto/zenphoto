@@ -49,7 +49,6 @@
  */
 $plugin_is_filter = 990 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides a means for showing text type documents (.txt, .html, .htm).');
-$plugin_author = "Stephen Billard (sbillard)";
 
 
 Gallery::addImageHandler('htm', 'TextObject');

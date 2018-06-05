@@ -17,7 +17,6 @@
  */
 $plugin_is_filter = 9 | FEATURE_PLUGIN;
 $plugin_description = gettext('Facilitates assigning unique tags to related objects.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'tagFromSearch';
 
@@ -25,8 +24,8 @@ class tagFromSearch {
 
 	function getOptionsSupported() {
 
-		$options = array(gettext('Tags only searches') => array('key'	 => 'tagFromSearch_tagOnly', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Restrict viewer searches to the <code>tags</code> field unless they have <em>Tags rights</em>.'))
+		$options = array(gettext('Tags only searches') => array('key' => 'tagFromSearch_tagOnly', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Restrict viewer searches to the <code>tags</code> field unless they have <em>Tags rights</em>.'))
 		);
 		return $options;
 	}

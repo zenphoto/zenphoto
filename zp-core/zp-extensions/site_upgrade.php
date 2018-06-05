@@ -36,7 +36,6 @@
  */
 $plugin_is_filter = defaultExtension(900 | FEATURE_PLUGIN);
 $plugin_description = gettext('Utility to divert access to the gallery to a screen saying the site is upgrading.');
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_notice = (MOD_REWRITE) ? false : gettext('<em>mod_rewrite</em> is not enabled. This plugin may not work without rewrite redirection if the upgrade is significantly different than the running release.');
 
 $_site_filelist = array(

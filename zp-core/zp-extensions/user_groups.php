@@ -16,7 +16,6 @@
 
 $plugin_is_filter = 10 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides rudimentary user groups.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 
 zp_register_filter('admin_tabs', 'user_groups::admin_tabs', 2000);

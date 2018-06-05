@@ -40,8 +40,6 @@
 $plugin_is_filter = /* defaultExtension( */ 5 | CLASS_PLUGIN /* ) */; //	if you have such a plugin you probably want to use it
 $plugin_description = gettext('Adds user defined fields to database tables');
 
-$plugin_author = "Stephen Billard (sbillard)";
-
 if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php')) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 } else {

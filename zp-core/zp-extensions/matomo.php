@@ -26,12 +26,14 @@
  *
  *  Matomo aims to be an open source alternative to Google Analytics.
  *
+ * @author Stephen Billard (sbillard), Malte Müller (acrylian)
+ *
+ *
  * @package plugins/matomo
  * @pluginCategory seo
  */
 $plugin_is_filter = 9 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('A plugin to insert Matomo (formerly Piwik) JavaScript tracking code into theme pages.');
-$plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
 
 $option_interface = 'matomoStats';
 

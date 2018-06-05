@@ -231,14 +231,6 @@ zp_apply_filter('admin_note', 'plugins', '');
 				} else {
 					$plugin_notice = '';
 				}
-				if (isset($details['plugin_author'])) {
-					if (false === eval($details['plugin_author'])) {
-						$parserr = $parserr | 2;
-						$plugin_author = gettext('<strong>Error parsing <em>plugin_author</em> string!</strong>.');
-					}
-				} else {
-					$plugin_author = '';
-				}
 				if (isset($details['plugin_version'])) {
 					if (false === eval($details['plugin_version'])) {
 						$parserr = $parserr | 4;

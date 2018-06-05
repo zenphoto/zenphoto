@@ -9,7 +9,6 @@
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext('Prevents guest viewers from viewing unpublished images albums.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 if (!OFFSET_PATH) {
 	zp_register_filter('album_instantiate', 'no_show_hideAlbum');

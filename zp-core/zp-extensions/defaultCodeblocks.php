@@ -19,7 +19,7 @@
  */
 $plugin_is_filter = 500 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Create default codeblocks.');
-$plugin_author = "Stephen Billard (sbillard)";
+
 $option_interface = 'defaultCodeblocks';
 
 zp_register_filter('codeblock', 'defaultCodeblocks::codeblock');

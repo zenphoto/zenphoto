@@ -19,13 +19,13 @@
  * <var>ADMIN</var> privileges or if he is the manager of an album being viewed or whose images are
  * being viewed. Likewise, Zenpage News and Pages are not cached when viewed by the author.
  *
- * @author Malte Müller (acrylian)
+ * @author Malte Müller (acrylian), Stephen Billard (sbillard)
+ *
  * @package plugins/static_html_cache
  * @pluginCategory admin
  */
 $plugin_is_filter = 400 | CLASS_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'static_html_cache';
 

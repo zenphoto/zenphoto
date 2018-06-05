@@ -15,7 +15,6 @@
  */
 $plugin_is_filter = defaultExtension(900 | ADMIN_PLUGIN); // lowest priotiry so other instances will override
 $plugin_description = gettext('PHP based theme editor.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('theme_editor', 'PHPThemeEdit');
 

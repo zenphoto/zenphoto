@@ -28,7 +28,6 @@
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allows multiple installations to share a single set of script files.');
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (SYMLINK) ? (zpFunctions::hasPrimaryScripts()) ? false : gettext('Only the primary installation may clone offspring installations.') : gettext('Your server does not support symbolic linking.');
 
 if (OFFSET_PATH == 2) {

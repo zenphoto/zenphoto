@@ -24,7 +24,7 @@ if (isset($_REQUEST['performcrop'])) {
 	zp_register_filter('edit_image_utilities', 'crop_image::edit', 99999); // we want this one to come right after the crop thumbnail button
 	$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 	$plugin_description = gettext("An image cropping tool.");
-	$plugin_author = "Stephen Billard (sbillard)";
+
 	return;
 }
 

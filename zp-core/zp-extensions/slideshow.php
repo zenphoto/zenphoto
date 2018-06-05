@@ -34,12 +34,12 @@
  * </ul>
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard), Don Peterson (dpeterson)
+ *
  * @package plugins/slideshow
  * @pluginCategory media
  */
 $plugin_is_filter = 9 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext("Adds a theme function to call a slideshow either based on jQuery (default) or Colorbox.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Don Peterson (dpeterson)";
 $plugin_disable = (extensionEnabled('slideshow2')) ? sprintf(gettext('Only one slideshow plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'slideshow2') : '';
 
 $option_interface = 'slideshow';

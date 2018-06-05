@@ -13,7 +13,6 @@
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Disable publish/unpublish if user does not have <em>ADMIN_RIGHTS</em>.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('admin_note', 'disableRight::disable'); // a convenient point since it is established what page and tab are selected
 zp_register_filter('admin_managed_albums_access', 'disableRight::save'); // this point allows us to alter the $_GET and $_POST arrays before they are used
@@ -35,7 +34,7 @@ class disableRight {
 					?>
 					<script type="text/javascript">
 						// <!-- <![CDATA[
-						$(window).on("load",function () {
+						$(window).on("load", function () {
 							//	disable the checkbox for publishing the album so it stays at its initial state
 							$('#publishalbum').prop('disabled', true);
 						});
@@ -52,7 +51,7 @@ class disableRight {
 							?>
 							<script type="text/javascript">
 								// <!-- <![CDATA[
-								$(window).on("load",function () {
+								$(window).on("load", function () {
 									//	remove the bulk action publish options
 									$('option[value=showall]').remove();
 									$('option[value=hideall]').remove();
@@ -68,7 +67,7 @@ class disableRight {
 							?>
 							<script type="text/javascript">
 								// <!-- <![CDATA[
-								$(window).on("load",function () {
+								$(window).on("load", function () {
 									//	disable the publish checkbox
 									$('input[name=Published]').prop('disabled', true);
 								});
@@ -85,7 +84,7 @@ class disableRight {
 								?>
 								<script type="text/javascript">
 									// <!-- <![CDATA[
-									$(window).on("load",function () {
+									$(window).on("load", function () {
 										//	disable the "mass-edit" publish checkboxes
 										$('input[name$=Published]').prop('disabled', true);
 									});
@@ -96,7 +95,7 @@ class disableRight {
 								?>
 								<script type="text/javascript">
 									// <!-- <![CDATA[
-									$(window).on("load",function () {
+									$(window).on("load", function () {
 										//	remove the bulk action publish options
 										$('option[value=showall]').remove();
 										$('option[value=hideall]').remove();

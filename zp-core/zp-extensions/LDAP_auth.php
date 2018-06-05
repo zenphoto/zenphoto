@@ -13,7 +13,7 @@
 
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Enable LDAP user authentication.');
-$plugin_author = "Stephen Billard (sbillard)";
+
 $plugin_disable = function_exists('ldap_connect') ? '' : gettext('php_ldap extension is not enabled');
 $option_interface = 'LDAP_auth_options';
 
@@ -46,31 +46,31 @@ class LDAP_auth_options {
 	static function getOptionsSupported() {
 		setOptionDefault('ldap_id_offset', 100000);
 		$ldapOptions = array(
-						gettext('LDAP domain')								 => array('key'		 => 'ldap_domain', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('Domain name of the LDAP server')),
-						gettext('LDAP base dn')								 => array('key'		 => 'ldap_basedn', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1.1,
-										'desc'	 => gettext('Base DN strings for the LDAP searches.')),
-						gettext('ID offset for LDAP usersids') => array('key'		 => 'ldap_id_offset', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 1.4,
-										'desc'	 => gettext('This number is added to the LDAP <em>userid</em> to insure that there is no overlap to ZenPhoto20 <em>userids</em>.')),
-						gettext('LDAP reader user')						 => array('key'		 => 'ldap_reader_user', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1.2,
-										'desc'	 => gettext('User name for LDAP searches. If empty the searches will be anonymous.')),
-						gettext('LDAP reader password')				 => array('key'		 => 'ldap_reader_pass', 'type'	 => OPTION_TYPE_PASSWORD,
-										'order'	 => 1.3,
-										'desc'	 => gettext('User password for LDAP searches.'))
+				gettext('LDAP domain') => array('key' => 'ldap_domain', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext('Domain name of the LDAP server')),
+				gettext('LDAP base dn') => array('key' => 'ldap_basedn', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1.1,
+						'desc' => gettext('Base DN strings for the LDAP searches.')),
+				gettext('ID offset for LDAP usersids') => array('key' => 'ldap_id_offset', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1.4,
+						'desc' => gettext('This number is added to the LDAP <em>userid</em> to insure that there is no overlap to ZenPhoto20 <em>userids</em>.')),
+				gettext('LDAP reader user') => array('key' => 'ldap_reader_user', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1.2,
+						'desc' => gettext('User name for LDAP searches. If empty the searches will be anonymous.')),
+				gettext('LDAP reader password') => array('key' => 'ldap_reader_pass', 'type' => OPTION_TYPE_PASSWORD,
+						'order' => 1.3,
+						'desc' => gettext('User password for LDAP searches.'))
 		);
 		if (extensionEnabled('user_groups')) {
-			$ldapOptions[gettext('LDAP Group map')] = array('key'		 => 'ldap_group_map_custom', 'type'	 => OPTION_TYPE_CUSTOM,
-							'order'	 => 1.5,
-							'desc'	 => gettext('Mapping of LDAP groups to ZenPhoto20 groups') . '<p class="notebox">' . gettext('<strong>Note:</strong> if the LDAP group is empty no mapping will take place.') . '</p>');
+			$ldapOptions[gettext('LDAP Group map')] = array('key' => 'ldap_group_map_custom', 'type' => OPTION_TYPE_CUSTOM,
+					'order' => 1.5,
+					'desc' => gettext('Mapping of LDAP groups to ZenPhoto20 groups') . '<p class="notebox">' . gettext('<strong>Note:</strong> if the LDAP group is empty no mapping will take place.') . '</p>');
 			if (!extensionEnabled('LDAP_auth')) {
 				$ldapOptions['note'] = array(
-								'key'		 => 'LDAP_auth_note', 'type'	 => OPTION_TYPE_NOTE,
-								'order'	 => 0,
-								'desc'	 => '<p class="notebox">' . gettext('The LDAP Group map cannot be managed with the plugin disabled') . '</p>');
+						'key' => 'LDAP_auth_note', 'type' => OPTION_TYPE_NOTE,
+						'order' => 0,
+						'desc' => '<p class="notebox">' . gettext('The LDAP Group map cannot be managed with the plugin disabled') . '</p>');
 			}
 		}
 		return $ldapOptions;
@@ -98,7 +98,7 @@ class LDAP_auth_options {
 							}
 							?>
 							<dt>
-							<?php echo html_encode($group['user']); ?>
+								<?php echo html_encode($group['user']); ?>
 							</dt>
 							<dd>
 								<?php echo '<input type="textbox" name="LDAP_group_for_' . $group['id'] . '" value="' . html_encode($ldapgroup) . '">'; ?>

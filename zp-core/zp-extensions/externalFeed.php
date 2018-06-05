@@ -47,8 +47,6 @@
 $plugin_is_filter = 910 | FEATURE_PLUGIN;
 $plugin_description = gettext('The <em>externalFeed</em> handler.');
 
-$plugin_author = "Stephen Billard (sbillard)";
-
 $option_interface = 'externalFeed_options';
 
 zp_register_filter('site_upgrade_xml', 'externalFeed_options::xmlfile');

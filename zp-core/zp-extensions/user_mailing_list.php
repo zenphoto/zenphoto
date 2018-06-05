@@ -10,7 +10,6 @@
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides a utility function to send e-mails to all users who have provided an e-mail address.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'user_mailing_list';
 

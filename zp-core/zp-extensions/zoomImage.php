@@ -42,7 +42,6 @@
  * @pluginCategory media
  */
 $plugin_description = gettext("Provides a function to display an image that can be zoomed by the viewer.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'zoomImage';
 

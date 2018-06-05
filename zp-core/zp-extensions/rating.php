@@ -14,6 +14,15 @@
  * @package plugins/rating
  * @pluginCategory theme
  */
+$plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;
+$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. ");
+
+$option_interface = 'jquery_rating';
+
+zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');
+zp_register_filter('save_album_utilities_data', 'jquery_rating::optionVoteStatusSave');
+zp_register_filter('admin_utilities_buttons', 'jquery_rating::rating_purgebutton');
+
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)) . '/functions.php');
@@ -43,16 +52,6 @@ if (!defined('OFFSET_PATH')) {
 		exitZP();
 	}
 }
-
-$plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;
-$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. ");
-$plugin_author = "Stephen Billard (sbillard) and Malte Müller (acrylian)";
-
-$option_interface = 'jquery_rating';
-
-zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');
-zp_register_filter('save_album_utilities_data', 'jquery_rating::optionVoteStatusSave');
-zp_register_filter('admin_utilities_buttons', 'jquery_rating::rating_purgebutton');
 
 if (getOption('rating_image_individual_control')) {
 	zp_register_filter('edit_image_utilities', 'jquery_rating::optionVoteStatus');
@@ -198,9 +197,9 @@ class jquery_rating {
 		?>
 
 		<script type="text/javascript">
-			// <!-- <![CDATA[
-			$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: <?php echo $size; ?>};
-			// ]]> -->
+					// <!-- <![CDATA[
+					$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: <?php echo $size; ?>};
+					// ]]> -->
 		</script>
 		<?php
 	}
@@ -400,11 +399,11 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 			$j++;
 			?>
 			<input type="radio" class="star<?php echo $split; ?>" name="star_rating-value<?php echo $unique; ?>" value="<?php echo $j; ?>" title="<?php
-			if ($like) {
-				echo gettext('like');
-			} else {
-				printf(ngettext('%u star', '%u stars', $v), $v);
-			}
+		if ($like) {
+			echo gettext('like');
+		} else {
+			printf(ngettext('%u star', '%u stars', $v), $v);
+		}
 			?>" />
 						 <?php
 					 }

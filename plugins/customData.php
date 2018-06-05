@@ -26,7 +26,7 @@
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('This plugin exposes the "custom_data" field on objects.');
 $plugin_notice = gettext('This plugin is for legacy use. You should make a custom field extender plugin.');
-$plugin_author = "Stephen Billard (sbillard)";
+
 $option_interface = 'customData';
 
 if (getOption('customDataAlbums')) {

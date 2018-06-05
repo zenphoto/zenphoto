@@ -19,7 +19,6 @@
 $plugin_is_filter = defaultExtension(990 | CLASS_PLUGIN);
 $plugin_description = gettext('The <em>audio-video</em> handler.');
 $plugin_notice = gettext('This plugin handles <code>mp3</code>, <code>mp4</code>, <code>3gp</code>, and <code>mov</code> multi-media files. <strong>Note:</strong> <code>mp3</code> and <code>mp4</code> require HTML5 browser support. You should enable a multimedia player plugin to handle other media files.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 if (extensionEnabled('class-video')) {
 	Gallery::addImageHandler('3gp', 'Video');

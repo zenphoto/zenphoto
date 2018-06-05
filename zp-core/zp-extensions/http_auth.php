@@ -48,7 +48,6 @@
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Checks for Apache HTTP authentication of authorized users.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'http_auth';
 
@@ -73,9 +72,9 @@ class http_auth {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('User validation') => array('key'			 => 'http_auth_trust', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('verify') => '0', gettext('trusted') => '1'),
-										'desc'		 => gettext('Set to <em>trusted</em> to presume the HTTP user is securely authorized. (This setting does not verify passwords against the zenphoto user.)')));
+		return array(gettext('User validation') => array('key' => 'http_auth_trust', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(gettext('verify') => '0', gettext('trusted') => '1'),
+						'desc' => gettext('Set to <em>trusted</em> to presume the HTTP user is securely authorized. (This setting does not verify passwords against the zenphoto user.)')));
 	}
 
 	function handleOption($option, $currentValue) {

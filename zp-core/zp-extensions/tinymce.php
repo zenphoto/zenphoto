@@ -13,12 +13,13 @@
  * 	<li>comment-&lt;name&gt;.php</li>
  * </ol>
  *
+ * @author Stephen Billard (sbillard), Malte Müller (acrylian)
+ *
  * @package plugins/tinymce
  * @pluginCategory admin
  */
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext("TinyMCE WYSIWYG editor");
-$plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
 $option_interface = 'tinymceOptions';
 
 if (!defined('EDITOR_SANITIZE_LEVEL'))

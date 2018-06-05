@@ -19,7 +19,6 @@
  */
 $plugin_is_filter = defaultExtension(100 | CLASS_PLUGIN);
 $plugin_description = gettext('Logs selected security events.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'security_logger';
 

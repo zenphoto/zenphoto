@@ -11,12 +11,12 @@
  * Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @author Stephen Billard (sbillard)
+ *
  * @package plugins/tag_suggest
  * @pluginCategory theme
  */
 $plugin_is_filter = defaultExtension(9 | THEME_PLUGIN);
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field.");
-$plugin_author = "Stephen Billard";
 
 $option_interface = 'tag_suggest';
 
@@ -32,10 +32,10 @@ class tag_suggest {
 	}
 
 	function getOptionsSupported() {
-		$options = array(gettext('threshold') => array('key'		 => 'tag_suggest_threshold', 'type'	 => OPTION_TYPE_NUMBER,
-										'order'	 => 1,
-										'limits' => array('min' => 1),
-										'desc'	 => gettext('Only tags with at least this number of uses will be suggested.'))
+		$options = array(gettext('threshold') => array('key' => 'tag_suggest_threshold', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'limits' => array('min' => 1),
+						'desc' => gettext('Only tags with at least this number of uses will be suggested.'))
 		);
 		return $options;
 	}

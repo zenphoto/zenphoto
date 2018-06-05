@@ -34,7 +34,7 @@
  */
 $plugin_is_filter = defaultExtension(99 | CLASS_PLUGIN);
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with ZenPhoto20.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
+
 $option_interface = 'cmsFilters';
 
 if (OFFSET_PATH == 2) {
