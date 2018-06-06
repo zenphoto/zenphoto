@@ -3,7 +3,6 @@
 /**
  * @package plugins/uploader_http
  */
-
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
@@ -12,6 +11,8 @@ if (isset($_POST['auth'])) {
 	$hash = sanitize($_POST['auth']);
 	$id = sanitize($_POST['id']);
 	$_zp_loggedin = $_zp_authority->checkAuthorization($hash, $id);
+} else {
+	exitZP();
 }
 
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
