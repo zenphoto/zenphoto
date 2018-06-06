@@ -42,13 +42,14 @@ function upload_extra($uploadlimit, $passedalbum) {
 			<!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
 			<div class="row fileupload-buttonbar">
 				<div class="col-lg-7">
-					<!-- The fileinput-button span is used to style the file input field as button -->
-					<span class="btn btn-success fileinput-button fileUploadActions">
-						<i class="glyphicon glyphicon-plus"></i>
-						<span><?php echo gettext('Add files...'); ?></span>
-						<input type="file" name="files[]" multiple>
-					</span>
 					<span class="fileUploadActions">
+						<!-- The fileinput-button span is used to style the file input field as button -->
+						<span class="btn btn-success fileinput-button">
+							<i class="glyphicon glyphicon-plus"></i>
+							<span><?php echo gettext('Add files...'); ?></span>
+							<input type="file" name="files[]" multiple>
+						</span>
+
 						<button type="submit" class="btn btn-primary start">
 							<i class="glyphicon glyphicon-upload"></i>
 							<span><?php echo gettext('Start upload'); ?></span>
