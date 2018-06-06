@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-02 12:19-0700\n"
-"PO-Revision-Date: 2018-06-02 13:24-0700\n"
+"PO-Revision-Date: 2018-06-06 10:06-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
 "Language: is_IS\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.0.8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: zp-core/locale/is_IS/LC_MESSAGES/zenphoto.po\n"
@@ -31481,139 +31481,3 @@ msgstr ""
 #, fuzzy
 msgid "Sample CAPTCHA image"
 msgstr "Dæmi um CAPTCHA mynd"
-
-#, fuzzy
-#~ msgid "Download release"
-#~ msgstr "Niðurhala"
-
-#, fuzzy
-#~ msgid "Red"
-#~ msgstr "Rauður"
-
-#, fuzzy
-#~ msgid "Clean"
-#~ msgstr "Hrein"
-
-#, fuzzy
-#~ msgid "Public key"
-#~ msgstr "Dreifilykill"
-
-#, fuzzy
-#~ msgid "Private key"
-#~ msgstr "Einkalykill"
-
-#, fuzzy
-#~ msgid "Enter your <em>reCaptcha</em> private key."
-#~ msgstr "Sláðu inn leitarskilyrðin."
-
-#, fuzzy
-#~ msgid "Select the <em>reCaptcha</em> theme."
-#~ msgstr "Veldu liti þemans"
-
-#, fuzzy
-#~ msgid "Help"
-#~ msgstr "Hjálp"
-
-#, fuzzy
-#~ msgid "Incorrect please try again"
-#~ msgstr "Rangt lykilorð, vinsamlegast reyndu aftur."
-
-#~ msgid "Gallery RSS"
-#~ msgstr "RSS flæði gallerýa"
-
-#, fuzzy
-#~ msgid "Contact us."
-#~ msgstr "Hafðu samband"
-
-#, fuzzy
-#~ msgid "News archive"
-#~ msgstr "Skjalasafn"
-
-#~ msgid "Gallery and News"
-#~ msgstr "Gallerý of fréttir"
-
-#, fuzzy
-#~ msgid "All news"
-#~ msgstr "Sjá allar fréttir"
-
-#, fuzzy
-#~ msgid "Calendar"
-#~ msgstr "Dagatal"
-
-#, fuzzy
-#~ msgid "Credit:"
-#~ msgstr "Þakkir fá:"
-
-#, fuzzy
-#~ msgid "Total matches: %1$u"
-#~ msgstr "Samtals passar:% 1 $ u"
-
-#, fuzzy
-#~ msgid "Gallery archive"
-#~ msgstr "Gallerýssafn"
-
-#, fuzzy
-#~ msgid "Latest news"
-#~ msgstr "Nýjustu fréttir"
-
-#, fuzzy
-#~ msgid "News RSS"
-#~ msgstr "Fréttir"
-
-#~ msgid "Gallery And News"
-#~ msgstr "Gallerý of fréttir"
-
-#, fuzzy
-#~ msgid "Album RSS feed"
-#~ msgstr "RSS flæði albúma"
-
-#, fuzzy
-#~ msgid "Notes RSS feed"
-#~ msgstr "RSS flæði albúma"
-
-#, fuzzy
-#~ msgid "More News"
-#~ msgstr "meira"
-
-#, fuzzy
-#~ msgid "Latest News Comments"
-#~ msgstr "Fréttir"
-
-#, fuzzy
-#~ msgid "Click for Detail Page"
-#~ msgstr "Smelltu á myndina breyta hve mikið skal skera af smámyndinni."
-
-#, fuzzy
-#~ msgid "Thumbs"
-#~ msgstr "Smámyndastærð:"
-
-#, fuzzy
-#~ msgid "3rd party"
-#~ msgstr "Fjöldi"
-
-#, fuzzy
-#~ msgid "assign"
-#~ msgstr "Tengja"
-
-#, fuzzy
-#~ msgid "thumbs"
-#~ msgstr "Smámyndastærð:"
-
-#, fuzzy
-#~ msgid "News and Gallery"
-#~ msgstr "Gallerý of fréttir"
-
-#~ msgid "New Album Here"
-#~ msgstr "Nýtt albúm hér"
-
-#, fuzzy
-#~ msgid "IP:"
-#~ msgstr "IP"
-
-#, fuzzy
-#~ msgid "Objects"
-#~ msgstr "& Hlutur"
-
-#, fuzzy
-#~ msgid "Error:"
-#~ msgstr "Villa!"
