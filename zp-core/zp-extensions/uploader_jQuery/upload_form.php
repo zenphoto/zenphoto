@@ -43,7 +43,7 @@ function upload_extra($uploadlimit, $passedalbum) {
 			<div class="row fileupload-buttonbar">
 				<div class="col-lg-7">
 					<!-- The fileinput-button span is used to style the file input field as button -->
-					<span class="btn btn-success fileinput-button">
+					<span class="btn btn-success fileinput-button fileUploadActions">
 						<i class="glyphicon glyphicon-plus"></i>
 						<span><?php echo gettext('Add files...'); ?></span>
 						<input type="file" name="files[]" multiple>
@@ -191,33 +191,33 @@ function upload_extra($uploadlimit, $passedalbum) {
 	<![endif]-->
 
 	<script type="text/javascript">
-	var upload_fail = false;
-	$('#fileupload')
-					.on('fileuploadfail', function (e, data) {
-						//alert('fail');
-						upload_fail = true;
-					})
-					.on('fileuploadstop', function (e, data) {
-						//alert('stop');
-						if (upload_fail) {
-							//alert('upload failed');
-							// clean up any globals since we are staying on the page
-							upload_fail = false;
-						} else {
+		var upload_fail = false;
+		$('#fileupload')
+						.on('fileuploadfail', function (e, data) {
+							//alert('fail');
+							upload_fail = true;
+						})
+						.on('fileuploadstop', function (e, data) {
+							//alert('stop');
+							if (upload_fail) {
+								//alert('upload failed');
+								// clean up any globals since we are staying on the page
+								upload_fail = false;
+							} else {
 
 	<?php
 	if (zp_loggedin(ALBUM_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
 		?>
-								launchScript('admin-edit.php', ['page=edit', 'subpage=1', 'tab=imageinfo', 'album=' + encodeURIComponent($('#folderdisplay').val()), 'uploaded=1', 'albumimagesort=id_desc']);
+									launchScript('admin-edit.php', ['page=edit', 'subpage=1', 'tab=imageinfo', 'album=' + encodeURIComponent($('#folderdisplay').val()), 'uploaded=1', 'albumimagesort=id_desc']);
 		<?php
 	} else {
 		?>
-								launchScript('admin-upload.php', ['uploaded=1']);
+									launchScript('admin-upload.php', ['uploaded=1']);
 		<?php
 	}
 	?>
-						}
-					});
+							}
+						});
 
 	</script>
 	<?php
