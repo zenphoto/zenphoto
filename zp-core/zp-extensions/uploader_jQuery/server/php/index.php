@@ -1,5 +1,4 @@
 <?php
-
 /*
  * ZenPhoto20 adaptation of the upload handler
  */
@@ -15,6 +14,13 @@ if (isset($_POST['auth'])) {
 	$_zp_loggedin = $_zp_authority->checkAuthorization($hash, $id);
 	admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
 } else {
+	?>
+	{"files": [
+	{
+	"error": "<?php echo gettext('Upload not allowed'); ?>"
+	}
+	]}
+	<?php
 	exitZP();
 }
 

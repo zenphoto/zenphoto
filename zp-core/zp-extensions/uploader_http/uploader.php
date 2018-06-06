@@ -12,6 +12,7 @@ if (isset($_POST['auth'])) {
 	$id = sanitize($_POST['id']);
 	$_zp_loggedin = $_zp_authority->checkAuthorization($hash, $id);
 } else {
+	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?error=' . gettext('Upload not allowed'));
 	exitZP();
 }
 
