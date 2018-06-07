@@ -14,13 +14,14 @@ if (isset($_POST['auth'])) {
 	$_zp_loggedin = $_zp_authority->checkAuthorization($hash, $id);
 	admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
 } else {
-	?>
-	{"files": [
-	{
-	"error": "<?php echo gettext('Upload not allowed'); ?>"
+	if (isset($_POST['id'])) {
+		?>
+		{"files": [
+		{
+		}
+		]}
+		<?php
 	}
-	]}
-	<?php
 	exitZP();
 }
 
@@ -50,7 +51,7 @@ if (!empty($folder)) {
 			}
 		}
 	} else {
-		// upload to the root
+// upload to the root
 		if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 			exitZP();

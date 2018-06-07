@@ -12,7 +12,7 @@ if (isset($_POST['auth'])) {
 	$id = sanitize($_POST['id']);
 	$_zp_loggedin = $_zp_authority->checkAuthorization($hash, $id);
 } else {
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?error=' . gettext('Upload not allowed'));
+	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?page=upload&tab=http&type=images&uploaded=1');
 	exitZP();
 }
 
@@ -125,7 +125,7 @@ if (isset($_POST['processed'])) {
 					//	he has edit rights, allow new album creation
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($folder) . '&uploaded&subpage=1&tab=imageinfo&albumimagesort=id_desc');
 				} else {
-					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?tab=http&uploaded=1');
+					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?page=upload&tab=http&type=images&uploaded=1');
 				}
 				exitZP();
 			}
