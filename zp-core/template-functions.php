@@ -1338,7 +1338,7 @@ function getParentBreadcrumb() {
 			}
 		}
 
-		if (empty($dynamic_album)) {
+		if (!empty($dynamic_album)) {
 			// remove parent links that are not in the search path
 			foreach ($parents as $key => $analbum) {
 				$target = $analbum->name;
