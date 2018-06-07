@@ -233,14 +233,20 @@ function getIPSizedImage($size, $image) {
 				if ($image) {
 					if (!$picture) {
 						?>
-						<label class="nowrap"><input type="radio" name="link" value="thumb" id="link_thumb_none" onchange="zenchange();" /><?php echo gettext('thumb only'); ?></label>
+						<label class="nowrap">
+							<input type="radio" name="link" value="thumb" id="link_thumb_none" onchange="zenchange();" />
+							<?php echo gettext('thumb only'); ?>
+						</label>
 						<label class="nowrap"><input type="radio" name="link" value="thumblink" id="link_thumb_image" checked="checked" onchange="zenchange();" /><?php printf($token, 'thumb'); ?>
 						</label>
 						<?php
 						if ($imagef) {
 							if (isImagePhoto($obj)) {
 								?>
-								<label class="nowrap"><input type="radio" name="link" value="thumblinkfull" id="link_thumb_full" onchange="zenchange();" /><?php echo gettext('thumb with link to full-sized image'); ?></label>
+								<label class="nowrap">
+									<input type="radio" name="link" value="thumblinkfull" id="link_thumb_full" onchange="zenchange();" />
+									<?php echo gettext('thumb with link to full-sized image'); ?>
+								</label>
 								<?php
 							}
 						}
@@ -258,13 +264,21 @@ function getIPSizedImage($size, $image) {
 					}
 					if (isImagePhoto($obj)) {
 						?>
-						<label class="nowrap"><input type="radio" name="link" value="image" id="link_image_none" onchange="zenchange();" /><?php echo gettext('image only'); ?></label>
-						<label class="nowrap"><input type="radio" name="link" value="imagelink" id="link_image_image"<?php if ($picture) echo 'checked="checked"'; ?> onchange="zenchange();" /><?php printf($token, 'image'); ?>
+						<label class="nowrap">
+							<input type="radio" name="link" value="image" id="link_image_none" onchange="zenchange();" />
+							<?php echo gettext('image only'); ?>
+						</label>
+						<label class="nowrap">
+							<input type="radio" name="link" value="imagelink" id="link_image_image"<?php if ($picture) echo 'checked="checked"'; ?> onchange="zenchange();" />
+							<?php printf($token, 'image'); ?>
 						</label>
 						<?php
 						if ($imagef) {
 							?>
-							<label class="nowrap"><input type="radio" name="link" value="imagelinkfull" id="link_image_full" onchange="zenchange();" /><?php echo gettext('image with link to full-sized image'); ?></label>
+							<label class="nowrap">
+								<input type="radio" name="link" value="imagelinkfull" id="link_image_full" onchange="zenchange();" />
+								<?php echo gettext('image with link to full-sized image'); ?>
+							</label>
 							<?php
 						}
 						?>
@@ -281,14 +295,20 @@ function getIPSizedImage($size, $image) {
 						$content_macros = getMacros();
 						if (array_key_exists('MEDIAPLAYER', $content_macros)) {
 							?>
-							<label class="nowrap"><input type="radio" name="link" value="player" id="link_image_none" onchange="zenchange();" /><?php echo gettext('Mediaplayer macro'); ?></label>
+							<label class="nowrap">
+								<input type="radio" name="link" value="player" id="link_image_none" onchange="zenchange();" />
+								<?php echo gettext('Mediaplayer macro'); ?>
+							</label>
 							<?php
 						}
 					} else if (!$imagef) {
 						$content_macros = getMacros();
 						if (array_key_exists('SLIDESHOW', $content_macros)) {
 							?>
-							<label class="nowrap"><input type="radio" name="link" value="show" id="link_image_none" onchange="zenchange();" /><?php echo gettext('Slideshow macro'); ?></label>
+							<label class="nowrap">
+								<input type="radio" name="link" value="show" id="link_image_none" onchange="zenchange();" />
+								<?php echo gettext('Slideshow macro'); ?>
+							</label>
 							<?php
 						}
 					}
@@ -306,12 +326,20 @@ function getIPSizedImage($size, $image) {
 						<?php
 					}
 					?>
-					<label><input type="checkbox" name="addcaption" id="addcaption" onchange="zenchange()"	/><?php echo gettext('Include caption'); ?></label>
+					<label>
+						<input type="checkbox" name="addcaption" id="addcaption" onchange="zenchange()"	/>
+						<?php echo gettext('Include caption'); ?>
+					</label>
 					<?php
 				} else {
 					?>
-					<label class="nowrap"><input type="radio" name="link" value="title" id="link_title" onchange="zenchange();" /><?php echo gettext('title only'); ?></label>
-					<label class="nowrap"><input type="radio" name="link" value="link" id="link_on" checked="checked" onchange="zenchange();" /><?php echo $token; ?>
+					<label class="nowrap">
+						<input type="radio" name="link" value="title" id="link_title" onchange="zenchange();" />
+						<?php echo gettext('title only'); ?>
+					</label>
+					<label class="nowrap">
+						<input type="radio" name="link" value="link" id="link_on" checked="checked" onchange="zenchange();" />
+						<?php echo $token; ?>
 					</label>
 					<?php
 				}

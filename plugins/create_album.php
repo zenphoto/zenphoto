@@ -43,7 +43,8 @@ ob_start();
 		<input id="newalbumcheckbox" type="checkbox" name="createalbum" />
 		<?php echo gettext('Create an album') ?>
 	</div>
-	<div id="albumtext" style="margin-top: 5px;"><?php echo gettext("titled:"); ?>
+	<div id="albumtext" style="margin-top: 5px;">
+		<?php echo gettext("titled:"); ?>
 		<input id="albumtitle" size="42" type="text" name="albumtitle"
 					 onkeyup="updateFolder(this, 'folderdisplay', 'autogen', '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>');" />
 
@@ -53,11 +54,15 @@ ob_start();
 			<span id="foldererror" style="display: none; color: #D66;"></span>
 			<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
 						 onclick="toggleAutogen('folderdisplay', 'albumtitle', this);" />
-			<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
+			<label for="autogen">
+				<?php echo gettext("Auto-generate"); ?>
+			</label>
 		</div>
 		<div id="publishtext">
 			<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> />
-			<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
+			<label for="publishalbum">
+				<?php echo gettext("Publish the album so everyone can see it."); ?>
+			</label>
 		</div>
 	</div>
 </div>

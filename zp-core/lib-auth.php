@@ -1380,7 +1380,9 @@ class _Authority {
 		?>
 		<input type="hidden" name="<?php printf($format, 'passrequired', $id); ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" class="inputbox"/>
 		<p>
-			<label for="pass<?php echo $id; ?>_text" id="strength<?php echo $id; ?>"><?php echo gettext("Password") . $flag; ?></label>
+			<label for="pass<?php echo $id; ?>_text" id="strength<?php echo $id; ?>">
+				<?php echo gettext("Password") . $flag; ?>
+			</label>
 			<span class="disclose_password_show" style="float: right !important; padding-right: 15px;">
 				<label>
 					<?php echo gettext('Show'); ?>
@@ -1405,7 +1407,9 @@ class _Authority {
 			<br clear="all">
 		</p>
 		<p class="password_field password_field_<?php echo $id; ?>">
-			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
+			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>">
+				<?php echo gettext("Repeat password") . $flag; ?>
+			</label>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 						 name="<?php printf($format, 'pass_r', $id); ?>" value="<?php echo $x; ?>"
 						 id="pass_r<?php echo $id; ?>"

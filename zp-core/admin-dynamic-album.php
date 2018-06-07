@@ -254,15 +254,25 @@ echo "<h1>" . gettext("Create Dynamic Album") . "</h1>\n";
 				<td><?php echo gettext("Search criteria:"); ?></td>
 				<td>
 					<input type="text" size="60" name="words" value="<?php echo html_encode($words); ?>" />
-					<label><input type="checkbox" name="return_albums" value="1"<?php if (!getOption('search_no_albums')) echo ' checked="checked"' ?> /><?php echo gettext('Return albums found') ?></label>
-					<label><input type="checkbox" name="return_images" value="1"<?php if (!getOption('search_no_images')) echo ' checked="checked"' ?> /><?php echo gettext('Return images found') ?></label>
-					<label><input type="checkbox" name="return_unpublished" value="1" /><?php echo gettext('Return unpublished items') ?></label>
+					<label>
+						<input type="checkbox" name="return_albums" value="1"<?php if (!getOption('search_no_albums')) echo ' checked="checked"' ?> />
+						<?php echo gettext('Return albums found') ?>
+					</label>
+					<label>
+						<input type="checkbox" name="return_images" value="1"<?php if (!getOption('search_no_images')) echo ' checked="checked"' ?> />
+						<?php echo gettext('Return images found') ?>
+					</label>
+					<label>
+						<input type="checkbox" name="return_unpublished" value="1" />
+						<?php echo gettext('Return unpublished items') ?>
+					</label>
 				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>
-					<?php echo gettext('within'); ?> <input type="text" size="60" name="albumlist" value="<?php echo html_encode($inalbums); ?>" />
+					<?php echo gettext('within'); ?>
+					<input type="text" size="60" name="albumlist" value="<?php echo html_encode($inalbums); ?>" />
 				</td>
 			</tr>
 
@@ -283,10 +293,12 @@ echo "<h1>" . gettext("Create Dynamic Album") . "</h1>\n";
 			<tr>
 				<td>
 					<label>
-						<input type="radio" name="create_tagged" value="dynamic" onchange="setTagged(false)" checked="checked" /><?php echo gettext('dynamic'); ?>
+						<input type="radio" name="create_tagged" value="dynamic" onchange="setTagged(false)" checked="checked" />
+						<?php echo gettext('dynamic'); ?>
 					</label>
 					<label>
-						<input type="radio" name="create_tagged" value="static" onchange="setTagged(true)"/><?php echo gettext('tagged'); ?>
+						<input type="radio" name="create_tagged" value="static" onchange="setTagged(true)"/>
+						<?php echo gettext('tagged'); ?>
 					</label>
 				</td>
 				<td>

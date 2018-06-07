@@ -72,16 +72,31 @@ class tinyURL {
 
 	function handleOption($option, $currentValue) {
 		?>
-		<label class="nowrap"><input type="checkbox" name="tinyURL_albums" value="<?php echo self::albums; ?>" <?php if ($currentValue & self::albums) echo 'checked="checked" '; ?>/><?php echo gettext('albums'); ?></label>
-		<label class="nowrap"><input type="checkbox" name="tinyURL_images" value="<?php echo self::images; ?>" <?php if ($currentValue & self::images) echo 'checked="checked" '; ?>/><?php echo gettext('images'); ?></label>
+		<label class="nowrap">
+			<input type="checkbox" name="tinyURL_albums" value="<?php echo self::albums; ?>" <?php if ($currentValue & self::albums) echo 'checked="checked" '; ?>/>
+			<?php echo gettext('albums'); ?>
+		</label>
+		<label class="nowrap">
+			<input type="checkbox" name="tinyURL_images" value="<?php echo self::images; ?>" <?php if ($currentValue & self::images) echo 'checked="checked" '; ?>/>
+			<?php echo gettext('images'); ?>
+		</label>
 		<?php
 		if (extensionEnabled('zenpage')) {
 			?>
-			<label class="nowrap"><input type="checkbox" name="tinyURL_news" value="<?php echo self::news; ?>" <?php if ($currentValue & self::news) echo 'checked="checked" '; ?>/><?php echo gettext('news'); ?></label>
+			<label class="nowrap">
+				<input type="checkbox" name="tinyURL_news" value="<?php echo self::news; ?>" <?php if ($currentValue & self::news) echo 'checked="checked" '; ?>/>
+				<?php echo gettext('news'); ?>
+			</label>
 
-			<label class="nowrap"><input type="checkbox" name="tinyURL_news_categories" value="<?php echo self::news_categories; ?>" <?php if ($currentValue & self::news_categories) echo 'checked="checked" '; ?>/><?php echo gettext('news categories'); ?></label>
+			<label class="nowrap">
+				<input type="checkbox" name="tinyURL_news_categories" value="<?php echo self::news_categories; ?>" <?php if ($currentValue & self::news_categories) echo 'checked="checked" '; ?>/>
+				<?php echo gettext('news categories'); ?>
+			</label>
 
-			<label class="nowrap"><input type="checkbox" name="tinyURL_pages" value="<?php echo self::pages; ?>" <?php if ($currentValue & self::pages) echo 'checked="checked" '; ?>/><?php echo gettext('pages'); ?></label>
+			<label class="nowrap">
+				<input type="checkbox" name="tinyURL_pages" value="<?php echo self::pages; ?>" <?php if ($currentValue & self::pages) echo 'checked="checked" '; ?>/>
+				<?php echo gettext('pages'); ?>
+			</label>
 			<?php
 		}
 	}

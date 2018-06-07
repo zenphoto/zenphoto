@@ -806,7 +806,10 @@ echo $refresh;
 														$currentValue = $userobj->getLanguage();
 														?>
 														<p>
-															<label for="admin_language_<?php echo $id ?>"><?php echo gettext('Language:'); ?></label></p>
+															<label for="admin_language_<?php echo $id ?>">
+																<?php echo gettext('Language:'); ?>
+															</label>
+														</p>
 														<input type="hidden" name="user[<?php echo $id ?>][admin_language]" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
 														<ul class="flags" style="margin-left: 0px;">
 															<?php

@@ -983,8 +983,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
 										<label class="checkboxlabel">
 											<?php if ($behind) echo($display); ?>
-											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php checked('1', $v); ?><?php echo $disabled; ?> />
-											<?php if (!$behind) echo($display); ?>
+											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php
+											checked('1', $v);
+											echo $disabled;
+											?> />
+														 <?php if (!$behind) echo($display); ?>
 										</label>
 										<?php
 									}
@@ -1007,7 +1010,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										?>
 										<label class="checkboxlabel">
 											<?php if ($behind) echo($display); ?>
-											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo ' checked="checked"'; ?><?php echo $disabled; ?> />
+											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo ' checked="checked"' . $disabled; ?> />
 											<?php if (!$behind) echo($display); ?>
 										</label>
 										<?php
@@ -1308,7 +1311,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<label<?php if ($class) echo ' class="' . $class . '"'; ?>>
 				<?php if ($behind) echo $text; ?>
-				<input type="radio" name="<?php echo $option; ?>" id="__<?php echo $radioid . '-' . $value; ?>" value="<?php echo $value; ?>"<?php echo $checked; ?><?php echo $disabled; ?> />
+				<input type="radio" name="<?php echo $option; ?>" id="__<?php echo $radioid . '-' . $value; ?>" value="<?php echo $value; ?>"<?php echo $checked . $disabled; ?> />
 				<?php if (!$behind) echo $text; ?>
 			</label>
 			<?php

@@ -268,11 +268,15 @@ foreach ($albumlist as $key => $value) {
 						<div id="newalbumbox" style="margin-top: 5px;<?php echo $display; ?>">
 							<div>
 								<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect, false, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>')" />
-								<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
+								<label for="newalbumcheckbox">
+									<?php echo gettext("Make a new Album"); ?>
+								</label>
 							</div>
 							<div id="publishtext"><?php echo gettext("and"); ?>
 								<input type="checkbox" name="publishalbum" id="publishalbum" value="true" <?php echo $publishchecked; ?> onchange="publishCheck();" />
-								<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
+								<label for="publishalbum">
+									<?php echo gettext("Publish the album so everyone can see it."); ?>
+								</label>
 							</div>
 						</div>
 						<div id="albumtext" style="margin-top: 5px;<?php echo $display; ?>">
@@ -287,7 +291,9 @@ foreach ($albumlist as $key => $value) {
 											 onkeyup="buttonstate(validateFolder(this, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>'));" />
 								<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
 											 onclick="buttonstate(toggleAutogen('folderdisplay', 'albumtitle', this));" />
-								<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
+								<label for="autogen">
+									<?php echo gettext("Auto-generate"); ?>
+								</label>
 								<br />
 								<br />
 							</div>

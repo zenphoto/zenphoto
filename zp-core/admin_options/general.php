@@ -675,7 +675,8 @@ Standard forms which collect user data will have a policy acknowledgement checkb
 						$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 						?>
 						<label>
-							<input type="checkbox" size="48" id="site_email" name="register_user_notify"  value="1" <?php checked('1', getOption('register_user_notify') && $mailinglist); ?> <?php if (!$mailinglist) echo ' disabled="disabled"'; ?> /><?php echo gettext('notify'); ?>
+							<input type="checkbox" size="48" id="site_email" name="register_user_notify"  value="1" <?php checked('1', getOption('register_user_notify') && $mailinglist); ?> <?php if (!$mailinglist) echo ' disabled="disabled"'; ?> />
+							<?php echo gettext('notify'); ?>
 						</label>
 					</td>
 					<td class="option_desc">
