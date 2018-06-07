@@ -25,7 +25,7 @@ if (isset($_GET['page'])) {
 	$_GET['page'] = 'upload';
 }
 
-if (isset($_GET['type'])) {
+if (isset($_GET['tab'])) {
 	$uploadtype = sanitize($_GET['tab']);
 	zp_setCookie('uploadtype', $uploadtype);
 } else {
