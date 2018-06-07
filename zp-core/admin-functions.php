@@ -3691,13 +3691,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 						}
 						?>
-						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
+
+						<label style="padding-right: 15px;" title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
 							<input type="checkbox" name="<?php printf($format, $rightselement, $id); ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>" value="<?php echo $right['value']; ?>"<?php
 							if ($rights & $right['value'])
 								echo ' checked="checked"';
 							echo $alterrights;
-							?> /> <?php echo $right['name']; ?>
+							?> />
+										 <?php echo $right['name']; ?>
 						</label>
+
 						<?php
 					} else {
 						if ($rights & $right['value']) {
