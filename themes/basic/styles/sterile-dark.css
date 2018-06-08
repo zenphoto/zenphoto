@@ -387,6 +387,11 @@ width: 10em !important;
 float: left;
 }
 
+/* Clear floats
+------------------------------ */
+.clearfloat {
+	clear: both;
+}
 
 /* Forms
 ------------------------------ */

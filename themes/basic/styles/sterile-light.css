@@ -384,6 +384,12 @@ cursor: pointer !important;
 	width: 440px;
 }
 
+/* Clear floats
+------------------------------ */
+.clearfloat {
+	clear: both;
+}
+
 /* Comments
 ------------------------------ */
 
