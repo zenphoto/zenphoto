@@ -370,6 +370,12 @@ input#code {
 	width: 10em !important;
 }
 
+/* Clear floats
+------------------------------ */
+.clearfloat {
+	clear: both;
+}
+
 /* Forms
 ------------------------------ */
 form {padding-bottom:10px;}
@@ -681,7 +687,7 @@ input.button {
 
 form input[type="submit"],
 form input[type="reset"],
-form input[type="button" {
+form input[type="button"] {
 	background-color: #EEF5F9;
 	border: 0;
 	font-size: 12px;

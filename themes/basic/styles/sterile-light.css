@@ -372,6 +372,12 @@ span.tags_title {
 	width: 440px;
 }
 
+/* Clear floats
+------------------------------ */
+.clearfloat {
+	clear: both;
+}
+
 /* Comments
 ------------------------------ */
 #comments {
