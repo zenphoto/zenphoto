@@ -75,7 +75,6 @@ if (getOption($baseName . '_log_encryption')) {
 } else {
 	$_logCrypt = NULL;
 }
-$scroll = false;
 
 printAdminHeader('logs', $subtab);
 
@@ -166,7 +165,6 @@ echo "\n</head>";
 								$fields = explode("\t", $header);
 								if (count($fields) > 1) { // there is a header row, display in a table
 									unset($logtext[0]); //	delete the header
-									$scroll = true;
 									?>
 									<table id="log_table">
 										<thead>
@@ -217,7 +215,6 @@ echo "\n</head>";
 									</script>
 									<?php
 								} else {
-									$scroll = $baseName != 'setup';
 									foreach ($logtext as $line) {
 										if ($line) {
 											$line = str_replace("\t", '&nbsp;&nbsp;', $line);
@@ -248,16 +245,13 @@ echo "\n</head>";
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		window.addEventListener('load', function () {
+			$('.logtext').scrollTo('#bottom');
+		}, false);
+	</script>
 	<?php
-	if ($scroll) {
-		?>
-		<script type="text/javascript">
-			window.addEventListener('load', function () {
-				$('.logtext').scrollTo('#bottom');
-			}, false);
-		</script>
-		<?php
-	}
 	printAdminFooter();
 
 	// to fool the validator

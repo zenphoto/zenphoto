@@ -2047,23 +2047,14 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 	if (empty($theme)) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
-	// album-theme
-	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
+	// album-theme order of preference is: Album theme => Theme => album => general
+	$sql = "SELECT `name`, `value`, `ownerid`, `theme` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND (`ownerid`=" . $id . " OR `ownerid`=0) AND (`theme`=" . db_quote($theme) . ' OR `theme`="") ORDER BY `theme` DESC, `id` DESC LIMIT 1';
 	$db = query_single_row($sql);
-	if (!$db) {
-		// raw theme option
-		$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=0 AND `theme`=" . db_quote($theme);
-		$db = query_single_row($sql);
-		if (!$db) {
-			// raw album option
-			$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=NULL";
-			$db = query_single_row($sql);
-			if (!$db) {
-				return getOption($option);
-			}
-		}
+	if (empty($db)) {
+		return NULL;
+	} else {
+		return $db['value'];
 	}
-	return $db['value'];
 }
 
 /**

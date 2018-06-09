@@ -900,7 +900,7 @@ function primeOptions() {
 	$_zp_options = array();
 
 	if (function_exists('query_full_array')) { //	incase we are in primitive mode
-		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0 ORDER BY `name`';
+		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`="" AND `ownerid`=0 ORDER BY `name`';
 		$rslt = query($sql);
 		if ($rslt) {
 			while ($option = db_fetch_assoc($rslt)) {
@@ -1038,23 +1038,13 @@ function setOptionDefault($key, $default) {
  * @param string $theme
  */
 function loadLocalOptions($albumid, $theme) {
-	global $_zp_options, $_loaded_local;
-//raw theme options
-	$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=0';
+	global $_zp_options;
+	//raw theme options Order is so that Album theme options will override simple theme options
+	$sql = "SELECT LCASE(`name`) as name, `value`, `ownerid` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND (`ownerid`=0 OR `ownerid`=' . $albumid . ') ORDER BY `ownerid` ASC';
 	$optionlist = query_full_array($sql, false);
-	if ($optionlist !== false) {
+	if (!empty($optionlist)) {
 		foreach ($optionlist as $option) {
 			$_zp_options[$option['name']] = $option['value'];
-		}
-	}
-	if ($albumid) {
-//album-theme options
-		$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=' . $albumid;
-		$optionlist = query_full_array($sql, false);
-		if ($optionlist !== false) {
-			foreach ($optionlist as $option) {
-				$_zp_options[$option['name']] = $option['value'];
-			}
 		}
 	}
 }
@@ -1842,7 +1832,7 @@ function getAlbumInherited($folder, $field, &$id) {
  */
 function imageThemeSetup($album) {
 	// we need to conserve memory in i.php so loading the classes is out of the question.
-	$id = NULL;
+	$id = 0;
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {
 		$galleryoptions = getSerializedArray(getOption('gallery_data'));

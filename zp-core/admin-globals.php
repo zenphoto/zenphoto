@@ -211,6 +211,6 @@ if (@$_zp_loggedin) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/colorbox_js.php');
 		}
 	}
-	loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
+	loadLocalOptions(0, $_zp_gallery->getCurrentTheme());
 }
 ?>
