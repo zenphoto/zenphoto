@@ -282,15 +282,10 @@ class SearchEngine {
 	 */
 	function allowedSearchFields() {
 		$setlist = array();
-		$fields = strtolower(getOption('search_fields'));
-		if (is_numeric($fields)) {
-			$setlist = $this->numericFields($fields);
-		} else {
-			$list = explode(',', $fields);
-			foreach ($this->search_structure as $key => $display) {
-				if ($display && in_array($key, $list)) {
-					$setlist[$display] = $key;
-				}
+		$list = explode(',', strtolower(getOption('search_fields')));
+		foreach ($this->search_structure as $key => $display) {
+			if ($display && in_array($key, $list)) {
+				$setlist[$display] = $key;
 			}
 		}
 		return $setlist;
@@ -303,6 +298,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	protected function numericFields($fields) {
+		debugLogBacktrace(gettext('Numeric search fields are deprecated'));
 		if ($fields == 0)
 			$fields = 0x0fff;
 		if ($fields & 0x01)
