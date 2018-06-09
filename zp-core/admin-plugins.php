@@ -251,7 +251,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 				} else {
 					$plugin_disable = false;
 				}
-				$currentsetting = getOption($opt);
+				$currentsetting = getOptionFromDB($opt);
 				$optionlink = NULL;
 
 				if (isset($details['option_interface'])) {
