@@ -170,7 +170,6 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 							<?php
 							break;
 					}
-					$dsp .= ' ' . $msg;
 				}
 				?>
 		</li>
@@ -188,17 +187,21 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 	} else {
 		$stopped = '';
 	}
-	$msg = $classes[$cls] . $stopped . strip_tags($dsp);
+	$msg = preg_replace('~<form.*\/form>~iU', '', $msg);
+	$head = $classes[$cls] . $stopped . $dsp;
+
 	switch ($cls) {
 		case 'warn':
-			$msg = '<span class="logwarning">' . $msg . '</span>';
+			$log = '<span class="logwarning">' . $head . '</span><br />' . $msg;
 			break;
 		case 'fail':
-			$msg = '<span class="logerror">' . $msg . '</span>';
-
+			$log = '<span class="logerror">' . $head . '</span><br />' . $msg;
+			break;
+		default:
+			$log = $head;
 			break;
 	}
-	setupLog($msg, $anyway);
+	setupLog($log, $anyway);
 	return $check;
 }
 

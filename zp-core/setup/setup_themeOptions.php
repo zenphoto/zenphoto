@@ -19,18 +19,6 @@ $debug = isset($_GET['debug']);
 
 $theme = sanitize($_REQUEST['theme']);
 
-$themelist = array();
-$albums = $_zp_gallery->getAlbums(0);
-foreach ($albums as $alb) {
-	$album = newAlbum($alb);
-	if ($album->isMyItem(THEMES_RIGHTS)) {
-		$albumtheme = $album->getAlbumTheme();
-		if ($theme == $albumtheme) {
-			$themelist[] = $album;
-		}
-	}
-}
-
 $iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
 $iMutex->lock();
 
@@ -44,15 +32,7 @@ if (!empty($requirePath)) {
 	//loat theme related plugins incase they interact with the theme options
 	foreach (getEnabledPlugins() as $extension => $plugin) {
 		$loadtype = $plugin['priority'];
-
 		if ($loadtype & FEATURE_PLUGIN) {
-			require_once($plugin['path']);
-		}
-	}
-
-	foreach (getEnabledPlugins() as $extension => $plugin) {
-		$loadtype = $plugin['priority'];
-		if ($loadtype & THEME_PLUGIN) {
 			require_once($plugin['path']);
 		}
 	}
@@ -61,10 +41,6 @@ if (!empty($requirePath)) {
 	/* prime the default theme options */
 	$_zp_gallery->setCurrentTheme($theme);
 	$optionHandler = new ThemeOptions();
-	foreach ($themelist as $_set_theme_album) {
-		$optionHandler->__construct();
-		standardThemeOptions($theme, $_set_theme_album);
-	}
 	setupLog(sprintf(gettext('Theme:%s option interface instantiated'), $theme), $testRelease);
 }
 /* then set any "standard" options that may not have been covered by the theme */
@@ -72,7 +48,7 @@ standardThemeOptions($theme, NULL);
 
 $iMutex->unlock();
 
-sendImage(!protectedTheme($theme));
+sendImage($_GET['class']);
 
 list($usec, $sec) = explode(" ", microtime());
 $last = (float) $usec + (float) $sec;

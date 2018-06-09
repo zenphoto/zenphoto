@@ -18,6 +18,7 @@ if (sanitize($_POST['errors'])) {
 } else {
 	$result = gettext('Completed');
 }
+setupLog($result, true);
 zp_apply_filter('log_setup', true, 'install', $result);
 unset($_SESSION['SetupStarted']);
 exitZP();

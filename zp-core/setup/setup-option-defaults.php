@@ -183,7 +183,7 @@ $admins = $_zp_authority->getAdministrators('all');
 setOptionDefault('gallery_data', NULL);
 
 $questions[] = getSerializedArray(getAllTranslations("What is your father’s middle name?"));
-$questions [] = getSerializedArray(getAllTranslations("What street did your Grandmother live on?"));
+$questions[] = getSerializedArray(getAllTranslations("What street did your Grandmother live on?"));
 $questions[] = getSerializedArray(getAllTranslations("Who was your favorite singer?"));
 $questions[] = getSerializedArray(getAllTranslations("When did you first get a computer?"));
 $questions[] = getSerializedArray(getAllTranslations("How much wood could a woodchuck chuck if a woodchuck could chuck wood?"));
@@ -587,14 +587,16 @@ if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 	echo gettext('Theme setup:') . '<br />';
 
 	foreach ($themes as $key => $theme) {
+		$class = 0;
 		if (protectedTheme($theme)) {
 			unset($themes[$key]);
 		} else {
 			$deprecate = true;
+			$class = 1;
 		}
 		?>
 		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme) . $debug; ?>&from=<?php echo $from; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
+			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme) . $debug; ?>&class=<?php echo $class; ?>&from=<?php echo $from; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
 		</span>
 		<?php
 	}
@@ -869,6 +871,7 @@ $plugins = array_keys($plugins);
 	natcasesort($plugins);
 	echo gettext('Plugin setup:') . '<br />';
 	foreach ($plugins as $key => $extension) {
+		$class = 0;
 		$path = getPlugin($extension . '.php');
 		if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
 			$pluginStream = file_get_contents($path);
@@ -876,6 +879,7 @@ $plugins = array_keys($plugins);
 				preg_match('~@category\s+([^\/^\s]*)~', $str, $matches);
 				if (!isset($matches[1]) || $matches[1] != 'package') {
 					$deprecate = true;
+					$class = 1;
 				} else {
 					unset($plugins[$key]);
 				}
@@ -887,7 +891,7 @@ $plugins = array_keys($plugins);
 		}
 		?>
 		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>&from=<?php echo $from; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
+			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>&class=<?php echo $class; ?>&from=<?php echo $from; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
 		</span>
 		<?php
 	}

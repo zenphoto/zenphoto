@@ -10,11 +10,18 @@
  * @package setup
  *
  */
+list($usec, $sec) = explode(" ", microtime());
+$start = (float) $usec + (float) $sec;
+
 require_once(dirname(dirname(__FILE__)) . '/functions-basic.php');
 require_once(dirname(__FILE__) . '/setup-functions.php');
+$testRelease = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
+
 
 $iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
 $iMutex->lock();
+
+setupLog(sprintf(gettext('Mog_rewrite setup started')), $testRelease);
 
 $mod_rewrite = MOD_REWRITE;
 if (is_null($mod_rewrite)) {
@@ -29,5 +36,10 @@ setOption('mod_rewrite_detected', 1);
 setupLog(gettext('Notice: “Module mod_rewrite” is working.') . ' ' . $msg);
 
 sendImage(false);
+list($usec, $sec) = explode(" ", microtime());
+$last = (float) $usec + (float) $sec;
+/* and record that we finished */
+setupLog(sprintf(gettext('Mod_rewrite setup completed in %1$.4f seconds'), $last - $start), $testRelease);
+
 exitZP();
 ?>

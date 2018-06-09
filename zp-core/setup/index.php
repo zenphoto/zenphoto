@@ -1339,7 +1339,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							} else {
 								$msg1 = gettext("ZenPhoto20 core files [Some files are missing or seem wrong]");
 							}
-							$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files: ') . '<br /><code>' . substr($filelist, 0, -6) . '</code>';
+							$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files: ') . '<p><code>' . substr($filelist, 0, -6) . '</code></p>';
 							$mark = -1;
 						} else {
 							if (isset($rootupdate) && !$rootupdate) {
