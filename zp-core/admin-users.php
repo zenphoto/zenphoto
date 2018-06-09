@@ -416,18 +416,21 @@ echo $refresh;
 					if ($subpage > $max) {
 						$subpage = $max;
 					}
+					$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
 					if (isset($_GET['user'])) {
-						$u = $_zp_authority->getAnAdmin(array('`user`=' => sanitize($_GET['user'])));
-						$userlist = array($u->getData());
-					} else {
-						$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
+						$user = sanitize($_GET['user']);
+						foreach ($admins as $u) {
+							if ($u['user'] == $user && $u['valid'] == 1) {
+								$userlist = array($u['id'] => $u);
+								$newuser = NULL;
+								break;
+							}
+						}
 					}
 					if (count($userlist) == 1) {
-						$l = $userlist;
-						$u = array_shift($l);
+						$u = reset($userlist);
 						$showset = array($u['user']);
 					}
-
 					if (isset($_GET['deleted'])) {
 						echo '<div class="messagebox fade-message">';
 						echo "<h2>Deleted</h2>";
@@ -528,7 +531,7 @@ echo $refresh;
 								</td>
 								<td>
 									<?php
-									if ($pending || count($seenGroups) > 0) {
+									if (count($userlist) != 1 && ($pending || count($seenGroups) > 0)) {
 										echo gettext('show');
 										?>
 										<select name="showgroup" id="showgroup" class="ignoredirty" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-users.php', ['showgroup=' + $('#showgroup').val()]);" >
@@ -586,9 +589,9 @@ echo $refresh;
 									$userobj = $_zp_current_admin_obj;
 								} else {
 									$userobj = Zenphoto_Authority::newAdministrator($userid, 1, false);
-								}
-								if ($userid && $userobj->transient) {
-									continue;
+									if ($userid && $userobj->transient) {
+										continue;
+									}
 								}
 								if (empty($userid)) {
 									$userobj->setGroup($user['group']);
