@@ -37,8 +37,8 @@ if (!empty($_REQUEST['optiontheme'])) {
 	$themename = sanitize($_REQUEST['optiontheme']);
 }
 if (empty($alb)) {
-	foreach ($themelist as $albumtitle => $alb)
-		break;
+	$alb = reset($themelist);
+	$albumtitle = key($themelist);
 	if (empty($alb)) {
 		$_set_theme_album = NULL;
 	} else {
