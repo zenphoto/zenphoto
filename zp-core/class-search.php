@@ -2005,7 +2005,7 @@ class SearchEngine {
 	 * @param string $sort	Sort criteria
 	 */
 	protected function getCacheTag($table, $search, $sort) {
-		if (SEARCH_CACHE_DURATION > 0 || strpos(strtoupper($sort), 'RAND()' !== FALSE) && !getOption('cache_random_search')) {
+		if (SEARCH_CACHE_DURATION <= 0 || strpos(strtoupper($sort), 'RAND()' !== FALSE) && !getOption('cache_random_search')) {
 			return NULL; //	don't cache
 		}
 		$user = 'guest';
