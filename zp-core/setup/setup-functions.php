@@ -567,21 +567,22 @@ function setupQuery($sql, $failNotify = true, $log = true) {
 	return $result;
 }
 
-function sendImage($external) {
+function sendImage($external, $which) {
 	if ($external) {
 		$img = 'pass_open.png';
+		$image = $_SESSION['checkmark']['pass_open'];
 	} else {
+		$image = $_SESSION['checkmark']['pass'];
 		$img = 'pass.png';
 	}
-	$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img, 'rb');
 
-// send the right headers
+	// send the right headers
 	header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 	header("Content-Type: image/png");
 	header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img));
-// dump the picture and stop the script
-	fpassthru($fp);
-	fclose($fp);
+	header('Content-Disposition: filename="' . $which . '.png"');
+	// dump the picture
+	echo $image;
 }
 
 function shutDownFunction() {
@@ -593,8 +594,8 @@ function shutDownFunction() {
 		setupLog($msg, true);
 		if ($extension) {
 			enableExtension($extension, 0);
-			setupLog(sprintf(gettext('Plugin:%1$s setup failed.'), $extension));
 		}
+		setupLog(sprintf(gettext('Plugin:%1$s setup failed.'), $extension));
 	}
 	error_reporting(0); //	bypass any further error handling
 }

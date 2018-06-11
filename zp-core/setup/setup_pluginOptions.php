@@ -16,11 +16,7 @@ require_once('setup-functions.php');
 register_shutdown_function('shutDownFunction');
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager.php');
-$testRelease = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
-$debug = isset($_GET['debug']);
-
-$iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
-$iMutex->lock();
+$testRelease = $_SESSION['testrelease'];
 
 $extension = sanitize($_REQUEST['plugin']);
 setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), $testRelease);
@@ -54,12 +50,10 @@ if ($option_interface) {
 	$option_interface = new $option_interface;
 }
 
-$iMutex->unlock();
-
-sendImage($_GET['class']);
-
 list($usec, $sec) = explode(" ", microtime());
 $last = (float) $usec + (float) $sec;
 setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), $testRelease);
+
+sendImage($_GET['class'], 'plugin_' . $extension);
 exitZP();
 ?>
