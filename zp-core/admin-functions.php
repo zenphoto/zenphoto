@@ -5187,8 +5187,7 @@ function getLogTabs() {
 			if (empty($new)) {
 				$default = $default_viewed;
 			} else {
-				$default = $new;
-				$default = array_shift($default);
+				$default = reset($new);
 			}
 		}
 	}

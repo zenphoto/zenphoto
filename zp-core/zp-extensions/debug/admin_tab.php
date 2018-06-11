@@ -168,8 +168,7 @@ echo "\n</head>";
 						case 'http':
 							$httpaccept = parseHttpAcceptLanguage();
 							if (count($httpaccept) > 0) {
-								$accept = $httpaccept;
-								$accept = array_shift($accept);
+								$accept = reset($httpaccept);
 								?>
 								<table>
 									<tr>

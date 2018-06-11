@@ -195,8 +195,7 @@ class cacheManager {
 		self::printShowHide();
 
 		foreach ($custom as $themedata) {
-			$a = $themedata;
-			$a = array_shift($a);
+			$a = reset($themedata);
 			$themeid = $theme = $a['theme'];
 			if (array_key_exists('album', $a) && $a['album']) {
 				$album = $a['album'];

@@ -32,7 +32,7 @@ function newImage($album, $filename = NULL, $quiet = false) {
 		$dyn = true;
 		$album->getImages();
 		$xalbum = array_keys($album->imageNames, $filename);
-		$xalbum = array_shift($xalbum);
+		$xalbum = reset($xalbum);
 		$xalbum = newAlbum(dirname($xalbum), true, true);
 	} else {
 		$xalbum = $album;

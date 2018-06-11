@@ -585,7 +585,7 @@ function getOptionContent() {
 			<?php
 			$prev = $next = $found = NULL;
 			foreach ($themes as $atheme => $data) {
-				array_shift($themes);
+				unset($themes[$atheme]);
 				if ($atheme == $themename) {
 					$found = true;
 				} else {
