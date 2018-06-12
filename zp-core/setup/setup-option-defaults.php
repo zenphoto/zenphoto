@@ -304,7 +304,7 @@ setOptionDefault('dirtyform_enable', 2);
 if (defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false) {
 	$fullLog = '&fullLog';
 } else {
-	$fullLog = '';
+	$fullLog = false;
 }
 
 purgeOption('mod_rewrite_detected');
@@ -838,7 +838,6 @@ $plugins = array_keys($plugins);
 	<?php
 	//clean up plugins needed for themes and other plugins
 	$dependentExtensions = array('cacheManager' => 'cacheManager', 'colorbox' => 'colorbox_js');
-	$logFull = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
 
 	foreach ($dependentExtensions as $class => $extension) {
 		$key = array_search($extension, $plugins);
@@ -847,7 +846,7 @@ $plugins = array_keys($plugins);
 			unset($plugins[$key]);
 			list($usec, $sec) = explode(" ", microtime());
 			$start = (float) $usec + (float) $sec;
-			setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), $logFull);
+			setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), $fullLog);
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $extension . '.php');
 			$priority = $plugin_is_filter & PLUGIN_PRIORITY;
 			if ($plugin_is_filter & CLASS_PLUGIN) {
@@ -865,12 +864,12 @@ $plugins = array_keys($plugins);
 			if (extensionEnabled($extension)) {
 				enableExtension($extension, $plugin_is_filter);
 			}
-			setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), $logFull);
+			setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), $fullLog);
 			new $class;
-			setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), $logFull);
+			setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), $fullLog);
 			list($usec, $sec) = explode(" ", microtime());
 			$last = (float) $usec + (float) $sec;
-			setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), $logFull);
+			setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), $fullLog);
 		}
 	}
 
