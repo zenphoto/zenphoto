@@ -579,7 +579,7 @@ function sendImage($external, $which) {
 	// send the right headers
 	header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 	header("Content-Type: image/png");
-	header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/' . $img));
+	header("Content-Length: " . strlen($image));
 	header('Content-Disposition: filename="' . $which . '.png"');
 	// dump the picture
 	$image = hex2bin($image);
