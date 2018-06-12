@@ -1889,7 +1889,7 @@ class SearchEngine {
 				} else {
 					$search_result = query($search_query);
 				}
-				zp_apply_filter('search_statistics', $searchstring, 'pages', !$search_result, false, $this->iteration++);
+				zp_apply_filter('search_statistics', $searchstring, 'pages', $search_result, false, $this->iteration++);
 			} else {
 				$search_query = $this->searchDate($searchstring, $searchdate, 'pages', NULL, NULL);
 				$search_result = query($search_query);

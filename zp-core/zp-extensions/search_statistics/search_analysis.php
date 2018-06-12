@@ -234,9 +234,9 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							<tr class="statistic_wrapper">
 								<th class="statistic_link"><?php
 									if ($sitelimited) {
-										printf(gettext('Top %u Search IPs'), $limit_i);
+										printf(gettext('Top %u Search IDs'), $limit_i);
 									} else {
-										echo gettext('Search IPs');
+										echo gettext('Search IDs');
 									}
 									?></th>
 								<th class="statistic_graphwrap"></th>
