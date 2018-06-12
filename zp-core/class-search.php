@@ -2005,27 +2005,25 @@ class SearchEngine {
 	 * @param string $sort	Sort criteria
 	 */
 	protected function getCacheTag($table, $search, $sort) {
-		if (SEARCH_CACHE_DURATION <= 0 || strpos(strtoupper($sort), 'RAND()' !== FALSE) && !getOption('cache_random_search')) {
-			return NULL; //	don't cache
+		if ((SEARCH_CACHE_DURATION > 0) && (strpos(strtoupper($sort), 'RAND()') === FALSE || getOption('cache_random_search'))) {
+			$authCookies = Zenphoto_Authority::getAuthCookies();
+			if (!empty($authCookies)) { // some sort of password exists, play it safe and make the tag unique
+				$user = getUserID();
+			} else {
+				$user = 'guest';
+			}
+			return 'item:' . $table . ';' .
+							'fieldlist:' . implode(',', $this->fieldList) . ';' .
+							'albums:' . implode(',', $this->album_list) . ';' .
+							'newsdate:' . $this->whichdates . ';' .
+							'categories:' . implode(',', $this->category_list) . ';' .
+							'extraparams:' . implode(',', $this->extraparams) . ';' .
+							'search:' . $search . ';' .
+							'sort:' . $sort . ';' .
+							'user:' . $user . ';' .
+							'excluded:' . (int) $this->search_no_albums . (int) $this->search_no_images . (int) $this->search_no_news . (int) $this->search_no_pages;
 		}
-		$user = 'guest';
-		$authCookies = Zenphoto_Authority::getAuthCookies();
-		if (!empty($authCookies)) { // some sort of password exists, play it safe and make the tag unique
-			$user = getUserID();
-		}
-
-		$criteria = 'item:' . $table . ';' .
-						'fieldlist:' . implode(',', $this->fieldList) . ';' .
-						'albums:' . implode(',', $this->album_list) . ';' .
-						'newsdate:' . $this->whichdates . ';' .
-						'categories:' . implode(',', $this->category_list) . ';' .
-						'extraparams:' . implode(',', $this->extraparams) . ';' .
-						'search:' . $search . ';' .
-						'sort:' . $sort . ';' .
-						'user:' . $user . ';' .
-						'excluded:' . (int) $this->search_no_albums . (int) $this->search_no_images . (int) $this->search_no_news . (int) $this->search_no_pages;
-
-		return $criteria;
+		return NULL;
 	}
 
 	/**
@@ -2035,17 +2033,9 @@ class SearchEngine {
 	 * @param string $found reslts of the search
 	 */
 	private function cacheSearch($criteria, $found) {
-		if ($criteria) {
-			$criteria = serialize($criteria);
-			$sql = 'SELECT `id`, `data`, `date` FROM ' . prefix('search_cache') . ' WHERE `criteria` = ' . db_quote($criteria);
-			$result = query_single_row($sql);
-			if ($result) {
-				$sql = 'UPDATE ' . prefix('search_cache') . ' SET `data` = ' . db_quote(serialize($found)) . ', `date` = ' . db_quote(date('Y-m-d H:m:s')) . ' WHERE `id` = ' . $result['id'];
-				query($sql);
-			} else {
-				$sql = 'INSERT INTO ' . prefix('search_cache') . ' (criteria, data, date) VALUES (' . db_quote($criteria) . ', ' . db_quote(serialize($found)) . ', ' . db_quote(date('Y-m-d H:m:s')) . ')';
-				query($sql);
-			}
+		if ($criteria && !empty($found)) {
+			$sql = 'INSERT INTO ' . prefix('search_cache') . ' (criteria, data, date) VALUES (' . db_quote($criteria) . ', ' . db_quote(serialize($found)) . ', ' . db_quote(date('Y-m-d H:m:s')) . ') ON DUPLICATE KEY UPDATE `data`=' . db_quote(serialize($found)) . ', `date`=' . db_quote(date('Y-m-d H:m:s'));
+			query($sql);
 		}
 	}
 
