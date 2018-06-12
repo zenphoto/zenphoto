@@ -15,9 +15,9 @@ $start = (float) $usec + (float) $sec;
 
 require_once(dirname(dirname(__FILE__)) . '/functions-basic.php');
 require_once(dirname(__FILE__) . '/setup-functions.php');
-$testRelease = $_SESSION['testrelease'];
+$logFull = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
 
-setupLog(sprintf(gettext('Mod_rewrite setup started')), $testRelease);
+setupLog(sprintf(gettext('Mod_rewrite setup started')), $logFull);
 
 $mod_rewrite = MOD_REWRITE;
 if (is_null($mod_rewrite)) {
@@ -29,12 +29,12 @@ if (is_null($mod_rewrite)) {
 	$msg = gettext('The option “mod_rewrite” is “disabled”.');
 }
 setOption('mod_rewrite_detected', 1);
-setupLog(gettext('Notice: “Module mod_rewrite” is working.') . ' ' . $msg, $testRelease);
+setupLog(gettext('Notice: “Module mod_rewrite” is working.') . ' ' . $msg, $logFull);
 
 list($usec, $sec) = explode(" ", microtime());
 $last = (float) $usec + (float) $sec;
 /* and record that we finished */
-setupLog(sprintf(gettext('Mod_rewrite setup completed in %1$.4f seconds'), $last - $start), $testRelease);
+setupLog(sprintf(gettext('Mod_rewrite setup completed in %1$.4f seconds'), $last - $start), $logFull);
 
 sendImage(false, 'mod_rewrite');
 exitZP();

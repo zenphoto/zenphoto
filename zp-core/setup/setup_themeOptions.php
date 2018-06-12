@@ -15,10 +15,10 @@ define('OFFSET_PATH', 2);
 require_once('setup-functions.php');
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 
-$testRelease = $_SESSION['testrelease'];
+$logFull = isset($_GET['logFull']);
 
 $theme = sanitize($_REQUEST['theme']);
-setupLog(sprintf(gettext('Theme:%s setup started'), $theme), $testRelease);
+setupLog(sprintf(gettext('Theme:%s setup started'), $theme), $logFull);
 
 $requirePath = getPlugin('themeoptions.php', $theme);
 if (!empty($requirePath)) {
@@ -30,7 +30,7 @@ if (!empty($requirePath)) {
 	require_once(SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/themeoptions.php');
 	/* prime the default theme options */
 	$optionHandler = new ThemeOptions();
-	setupLog(sprintf(gettext('Theme:%s option interface instantiated'), $theme), $testRelease);
+	setupLog(sprintf(gettext('Theme:%s option interface instantiated'), $theme), $logFull);
 }
 /* then set any "standard" options that may not have been covered by the theme */
 standardThemeOptions($theme, NULL);
@@ -38,7 +38,7 @@ standardThemeOptions($theme, NULL);
 list($usec, $sec) = explode(" ", microtime());
 $last = (float) $usec + (float) $sec;
 /* and record that we finished */
-setupLog(sprintf(gettext('Theme:%s setup completed in %2$.4f seconds'), $theme, $last - $start), $testRelease);
+setupLog(sprintf(gettext('Theme:%s setup completed in %2$.4f seconds'), $theme, $last - $start), $logFull);
 
 sendImage($_GET['class'], 'theme_' . $theme);
 exitZP();

@@ -1263,8 +1263,6 @@ zp-core/images/lock_open.png
 zp-core/images/login_button.png
 zp-core/images/magnify.png
 zp-core/images/page_white_copy.png
-zp-core/images/pass.png
-zp-core/images/pass_open.png
 zp-core/images/pictures.png
 zp-core/images/pictures_dn.png
 zp-core/images/placeholder.png
@@ -8328,4 +8326,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8330
+8328

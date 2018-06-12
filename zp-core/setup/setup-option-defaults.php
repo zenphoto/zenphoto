@@ -301,9 +301,11 @@ setOptionDefault('dirtyform_enable', 2);
 	});
 </script>
 <?php
-$_SESSION['testrelease'] = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
-$_SESSION['checkmark']['pass'] = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png');
-$_SESSION['checkmark']['pass_open'] = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/images/pass_open.png');
+if (defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false) {
+	$fullLog = '&fullLog';
+} else {
+	$fullLog = '';
+}
 
 purgeOption('mod_rewrite_detected');
 if (isset($_GET['mod_rewrite'])) {
@@ -600,7 +602,7 @@ if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 		}
 		?>
 		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme) . $debug; ?>&class=<?php echo $class; ?>&from=<?php echo $from; ?>&unique=<?php echo time(); ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
+			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme) . $debug; ?>&class=<?php echo $class . $fullLog; ?>&from=<?php echo $from; ?>&unique=<?php echo time(); ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
 		</span>
 		<?php
 	}
@@ -836,7 +838,7 @@ $plugins = array_keys($plugins);
 	<?php
 	//clean up plugins needed for themes and other plugins
 	$dependentExtensions = array('cacheManager' => 'cacheManager', 'colorbox' => 'colorbox_js');
-	$testRelease = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
+	$logFull = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
 
 	foreach ($dependentExtensions as $class => $extension) {
 		$key = array_search($extension, $plugins);
@@ -845,7 +847,7 @@ $plugins = array_keys($plugins);
 			unset($plugins[$key]);
 			list($usec, $sec) = explode(" ", microtime());
 			$start = (float) $usec + (float) $sec;
-			setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), $testRelease);
+			setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), $logFull);
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $extension . '.php');
 			$priority = $plugin_is_filter & PLUGIN_PRIORITY;
 			if ($plugin_is_filter & CLASS_PLUGIN) {
@@ -863,12 +865,12 @@ $plugins = array_keys($plugins);
 			if (extensionEnabled($extension)) {
 				enableExtension($extension, $plugin_is_filter);
 			}
-			setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), $testRelease);
+			setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), $logFull);
 			new $class;
-			setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), $testRelease);
+			setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), $logFull);
 			list($usec, $sec) = explode(" ", microtime());
 			$last = (float) $usec + (float) $sec;
-			setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), $testRelease);
+			setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), $logFull);
 		}
 	}
 
@@ -895,7 +897,7 @@ $plugins = array_keys($plugins);
 		}
 		?>
 		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>&class=<?php echo $class; ?>&from=<?php echo $from; ?>&unique=<?php echo time(); ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
+			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>&class=<?php echo $class . $fullLog; ?>&from=<?php echo $from; ?>&unique=<?php echo time(); ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
 		</span>
 		<?php
 	}
