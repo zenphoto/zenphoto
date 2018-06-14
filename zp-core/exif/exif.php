@@ -502,6 +502,8 @@ function formatData($type, $tag, $intel, $data) {
 						case 1:	$data = gettext('No Unit');	break;
 						case 2:	$data = gettext('Inch');	break;
 						case 3:	$data = gettext('Centimeter');	break;
+						case 4:	$data = gettext('Millimeter');	break;
+						case 5:	$data = gettext('Micrometer');	break;
 					}
 					break;
 				case '0213':	// YCbCrPositioning
@@ -1195,6 +1197,11 @@ function get35mmEquivFocalLength(&$result) {
 	} else {
 		$width = 0;
 	}
+	if (isset($result['SubIFD']['ExifImageHeight'])) {
+		$height = $result['SubIFD']['ExifImageHeight'];
+	} else {
+		$height = 0;
+	}
 	if (isset($result['SubIFD']['FocalPlaneResolutionUnit'])) {
 		$units = $result['SubIFD']['FocalPlaneResolutionUnit'];
 	} else {
@@ -1202,31 +1209,49 @@ function get35mmEquivFocalLength(&$result) {
 	}
 	$unitfactor = 1;
 	switch ($units) {
-		case 'Inch' : 
+		case gettext('Inch') : 
 			$unitfactor = 25.4;
 			break;
-		case 'Centimeter' : 
+		case gettext('Centimeter') : 
 			$unitfactor = 10;
 			break;
-		case 'No Unit' : 
+		case gettext('Millimeter') : 
+			$unitfactor = 1;
+			break;
+		case gettext('Micrometer') : 
+			$unitfactor = 0.001;
+			break;
+		case gettext('No Unit') : 
 			$unitfactor = 25.4;
 			break;
 		default : 
 			$unitfactor = 25.4;
 	}
 	if (isset($result['SubIFD']['FocalPlaneXResolution'])) {
-		$xres = $result['SubIFD']['FocalPlaneXResolution'];
+		$res = $result['SubIFD']['FocalPlaneXResolution'];
 	} else {
-		$xres = '';
+		$res = '';
+	}
+	if (isset($result['SubIFD']['FocalPlaneYResolution'])) {
+		$yres = $result['SubIFD']['FocalPlaneYResolution'];
+	} else {
+		$yres = '';
 	}
 	if (isset($result['SubIFD']['FocalLength'])) {
 		$fl = $result['SubIFD']['FocalLength'];
 	} else {
 		$fl = 0;
 	}
-	if (($width != 0) && !empty($units) && !empty($xres) && !empty($fl) && !empty($width)) {
-		$ccdwidth = (intval($width) * $unitfactor) / $xres;
-		$equivfl = intval($fl) / $ccdwidth * 36 + 0.5;
+	if (!empty($width) && !empty($height) && !empty($xres) && !empty($yres) && !empty($units) && !empty($fl)) {
+		// Calculate CCD diagonal using Pythagoras' theorem (a² + b² = c²)
+		$diagccd = sqrt(
+				  pow(((intval($width) * $unitfactor) / $xres), 2)
+			 	+ pow(((intval($height) * $unitfactor) / $yres), 2)
+				);
+		// Calculate 35mm diagonal using Pythagoras' theorem
+		$diag35mm = sqrt(1872);   // 36² + 24² = 1872
+		$cropfactor = $diag35mm / $diagccd;
+		$equivfl = intval($fl) * $cropfactor;
 		return $equivfl;
 	}
 	return null;
