@@ -1228,9 +1228,9 @@ function get35mmEquivFocalLength(&$result) {
 			$unitfactor = 25.4;
 	}
 	if (isset($result['SubIFD']['FocalPlaneXResolution'])) {
-		$res = $result['SubIFD']['FocalPlaneXResolution'];
+		$xres = $result['SubIFD']['FocalPlaneXResolution'];
 	} else {
-		$res = '';
+		$xres = '';
 	}
 	if (isset($result['SubIFD']['FocalPlaneYResolution'])) {
 		$yres = $result['SubIFD']['FocalPlaneYResolution'];
