@@ -371,7 +371,7 @@ class scriptlessSocialsharing {
 					<?php 
 					if ($button['class'] == 'sharingicon-whatsapp') { ?>
 						<script>
-							(navigator.userAgent.match(/(iPhone)/g)) ? $(“.whatsappLink”).removeClass('hidden') : null;
+							(navigator.userAgent.match(/(iPhone)/g)) ? $('.whatsappLink').removeClass('hidden') : null;
 						</script>
 					<?php 
 					} 
