@@ -2053,6 +2053,7 @@ class SearchEngine {
 					query('DELETE FROM ' . prefix('search_cache') . ' WHERE `id` = ' . $result['id']);
 				} else {
 					if ($result = getSerializedArray($result['data'])) {
+						zp_apply_filter('search_statistics', NULL, 'cache', NULL, NULL, NULL, $this->iteration++);
 						return $result;
 					}
 				}

@@ -27,6 +27,7 @@ echo '</head>';
 $sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="search_statistics"';
 $data = query($sql);
 $ip_maxvalue = $criteria_maxvalue = $criteria_maxvalue_f = $terms_maxvalue = 1;
+$cacheHits = 0;
 $results_f = $results = $terms = $sites = array();
 $bargraphmaxsize = 400;
 $maxiterations = array();
@@ -34,6 +35,10 @@ $opChars = array('(', ')', '&', '|', '!', ',');
 if ($data) {
 	while ($datum = db_fetch_assoc($data)) {
 		$element = getSerializedArray($datum['data']);
+		if ($element['type'] == 'cache') {
+			$cacheHits++;
+			continue;
+		}
 		$ip = $datum['aux'];
 		if (array_key_exists($ip, $sites)) {
 			$sites[$ip] ++;
@@ -87,7 +92,6 @@ if ($data) {
 foreach ($results_f as $key => $failed) {
 	if (array_key_exists($key, $results)) { // really a successful search
 		unset($results_f[$key]);
-		$results[$key] ++;
 	}
 }
 $maxiterations = count($maxiterations);
@@ -125,12 +129,14 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 			<h1><?php echo (gettext('Search analysis')); ?></h1>
 			<div class="tabbox">
 				<?php
-				if (empty($results) && empty($results_f)) {
+				if (empty($results) && empty($results_f) && empty($cacheHits)) {
 					echo gettext('No search criteria collected.');
 				} else {
-					if (!empty($results)) {
-						?>
-						<table class="bordered">
+					?>
+					<table class="bordered">
+						<?php
+						if (!empty($results)) {
+							?>
 							<tr class="statistic_wrapper">
 								<th class="statistic_short_title"><?php
 									if ($criterialimited) {
@@ -155,16 +161,14 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 										<div class="statistic_value"><?php echo $count; ?></div>
 									</td>
 								</tr>
-
+								<tr>
+									<td></td><td></td>
+								</tr>
 								<?php
 							}
+						}
+						if (!empty($results_f)) {
 							?>
-						</table>
-						<?php
-					}
-					if (!empty($results_f)) {
-						?>
-						<table class="bordered">
 							<tr class="statistic_wrapper">
 								<th class="statistic_short_title"><?php
 									if ($criterialimited_f) {
@@ -177,8 +181,8 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($results_f as $criteria => $count) {
-								$count = round($count / $maxiterations);
-								$barsize = round($count / $criteria_maxvalue_f * $bargraphmaxsize);
+								$countr = round($count / $maxiterations);
+								$barsize = round($countr / $criteria_maxvalue_f * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
 									<td class="statistic_short_title" >
@@ -189,17 +193,16 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 										<div class="statistic_value"><?php echo $count; ?></div>
 									</td>
 								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
 								<?php
 							}
+						}
+						if (!empty($terms)) {
 							?>
-						</table>
-						<?php
-					}
-					if (!empty($terms)) {
-						?>
-						<table class="bordered">
 							<tr class="statistic_wrapper">
-								<th class="statistic_link"><?php
+								<th class="statistic_short_title"><?php
 									if ($termlimited) {
 										printf(gettext('Top %u search terms used'), $limit_t);
 									} else {
@@ -210,11 +213,11 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($terms as $criteria => $count) {
-								$count = round($count / $maxiterations);
-								$barsize = round($count / $terms_maxvalue * $bargraphmaxsize);
+								$countr = round($count / $maxiterations);
+								$barsize = round($countr / $terms_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
-									<td class="statistic_link" >
+									<td class="statistic_short_title" >
 										<strong><?php echo $criteria; ?></strong>
 									</td>
 									<td class="statistic_graphwrap" >
@@ -222,17 +225,39 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 										<div class="statistic_value"><?php echo $count; ?></div>
 									</td>
 								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
 								<?php
 							}
-							?>
-						</table>
-						<?php
-					}
-					if (!empty($sites)) {
-						?>
-						<table class="bordered">
+						}
+						if (!empty($cacheHits)) {
+							$count = round($cacheHits / $maxiterations + 100);
+							$barsize = round($count / $cacheHits + $bargraphmaxsize);
+							?><tr class="statistic_wrapper">
+								<th class="statistic_short_title"><?php
+									echo gettext('Cache hits');
+									?></th>
+								<th class="statistic_graphwrap"></th>
+							</tr>
 							<tr class="statistic_wrapper">
-								<th class="statistic_link"><?php
+								<td class="statistic_short_title" >
+
+								</td>
+								<td class="statistic_graphwrap" >
+									<div class="statistic_bargraph" style="width: <?php echo $barsize; ?>px"></div>
+									<div class="statistic_value"><?php echo $cacheHits; ?></div>
+								</td>
+							</tr>
+							<tr>
+								<td></td><td></td>
+							</tr>
+							<?php
+						}
+						if (!empty($sites)) {
+							?>
+							<tr class="statistic_wrapper">
+								<th class="statistic_short_title"><?php
 									if ($sitelimited) {
 										printf(gettext('Top %u Search IDs'), $limit_i);
 									} else {
@@ -243,11 +268,11 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($sites as $ip => $count) {
-								$count = round($count / $maxiterations);
-								$barsize = round($count / $ip_maxvalue * $bargraphmaxsize);
+								$countr = round($count / $maxiterations);
+								$barsize = round($countr / $ip_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
-									<td class="statistic_link" >
+									<td class="statistic_short_title" >
 										<strong><?php echo $ip; ?></strong>
 									</td>
 									<td class="statistic_graphwrap" >
@@ -255,12 +280,15 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 										<div class="statistic_value"><?php echo $count; ?></div>
 									</td>
 								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
 								<?php
 							}
-							?>
-						</table>
-						<?php
-					}
+						}
+						?>
+					</table>
+					<?php
 					if (zp_loggedin(ADMIN_RIGHTS)) {
 						?>
 						<p class="buttons">

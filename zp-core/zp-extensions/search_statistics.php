@@ -69,9 +69,9 @@ class search_statistics {
 				gettext('Threshold (terms)') => array('key' => 'search_statistics_terms_threshold', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 3,
 						'desc' => gettext('Show the top <em>Threshold</em> terms used in searches.')),
-				gettext('Threshold (IP)') => array('key' => 'search_statistics_ip_threshold', 'type' => OPTION_TYPE_NUMBER,
+				gettext('Threshold (ID)') => array('key' => 'search_statistics_ip_threshold', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 4,
-						'desc' => gettext('Show the top <em>Threshold</em> IPs that have performed searches.'))
+						'desc' => gettext('Show the top <em>Threshold</em> IDs that have performed searches.'))
 		);
 	}
 
