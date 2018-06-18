@@ -83,14 +83,14 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			$ext = getSuffix($imgfile);
 			switch ($ext) {
 				case 'png':
-					return imagecreatefrompng($imgfile);
+					return @imagecreatefrompng($imgfile);
 				case 'wbmp':
-					return imagecreatefromwbmp($imgfile);
+					return @imagecreatefromwbmp($imgfile);
 				case 'jpeg':
 				case 'jpg':
-					return imagecreatefromjpeg($imgfile);
+					return @imagecreatefromjpeg($imgfile);
 				case 'gif':
-					return imagecreatefromgif($imgfile);
+					return @imagecreatefromgif($imgfile);
 			}
 			return false;
 		}
