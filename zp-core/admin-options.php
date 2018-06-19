@@ -999,7 +999,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												<?php
 												echo gettext('Duration');
 												?>
-												<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PESISTENCE; ?>" />
+												<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PERSISTENCE; ?>" />
 											</p>
 											<?php
 										}

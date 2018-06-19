@@ -484,7 +484,7 @@ function zp_setCookie($name, $value, $time = NULL, $path = NULL, $secure = false
     $cookiev = zp_cookieEncode(sanitize($value));
   }
   if (is_null($time)) {
-    $time = COOKIE_PESISTENCE;
+    $time = COOKIE_PERSISTENCE;
   }
   if (is_null($path)) {
     $path = WEBPATH;
