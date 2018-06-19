@@ -144,7 +144,7 @@ class Image extends MediaObject {
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->filename;
+		return $this->imagefolder . '/' . $this->filename;
 	}
 
 	/**
