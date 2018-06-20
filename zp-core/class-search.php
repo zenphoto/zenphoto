@@ -1237,7 +1237,6 @@ class SearchEngine {
 			}
 		}
 
-
 		// create an array of [name, objectid] pairs for the search fields.
 		$field_objects = array();
 		if (count($fields) > 0) {
@@ -1403,7 +1402,6 @@ class SearchEngine {
 				}
 			}
 		}
-
 		// we now have an id list of the items that were found and will create the SQL Search to retrieve their records
 		if (count($idlist) > 0) {
 			$weights = array_count_values($idlist);
@@ -1418,7 +1416,7 @@ class SearchEngine {
 						$show = "`show` = 1 AND ";
 					}
 					$sql .= '`titlelink` ';
-					if (is_array($this->category_list)) {
+					if (!empty($this->category_list)) {
 						$news_list = $this->subsetNewsCategories();
 						$idlist = array_intersect($news_list, $idlist);
 						if (count($idlist) == 0) {
