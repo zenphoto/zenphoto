@@ -1564,10 +1564,12 @@ class SearchEngine {
 					foreach ($result as $album) {
 						$albums[] = $album['name'];
 					}
+					$this->cacheSearch($criteria, $albums);
+					zp_apply_filter('search_statistics', $searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->iteration++);
 				}
 			}
-			zp_apply_filter('search_statistics', $searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->iteration++);
-			$this->cacheSearch($criteria, $albums);
+		} else {
+			zp_apply_filter('search_statistics', $searchstring, 'albums', 'cache', false, $this->iteration++);
 		}
 		$this->albums = $albums;
 		$this->searches['albums'] = $criteria;
@@ -1733,13 +1735,13 @@ class SearchEngine {
 				}
 				db_free_result($search_result);
 				$images = self::sortResults($sortkey, $sortdirection, $result, isset($weights));
-			}
-
-			if (empty($searchdate)) {
+				$this->cacheSearch($criteria, $images);
 				zp_apply_filter('search_statistics', $searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
 			}
-			$this->cacheSearch($criteria, $images);
+		} else {
+			zp_apply_filter('search_statistics', $searchstring, 'images', 'cache', false, $this->iteration++);
 		}
+		$this->images = $images;
 		$this->searches['images'] = $criteria;
 		return $images;
 	}
@@ -1880,7 +1882,8 @@ class SearchEngine {
 		if ($criteria && $this->pages && $criteria == $this->searches['pages']) {
 			return $this->pages;
 		}
-		if (is_null($this->pages)) {
+		$pages = $this->getCachedSearch($criteria);
+		if (is_null($pages)) {
 			$pages = $result = array();
 			if (empty($searchdate)) {
 				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'pages', $sorttype, $direction);
@@ -1889,7 +1892,6 @@ class SearchEngine {
 				} else {
 					$search_result = query($search_query);
 				}
-				zp_apply_filter('search_statistics', $searchstring, 'pages', $search_result, false, $this->iteration++);
 			} else {
 				$search_query = $this->searchDate($searchstring, $searchdate, 'pages', NULL, NULL);
 				$search_result = query($search_query);
@@ -1903,16 +1905,20 @@ class SearchEngine {
 					$result[] = $row;
 				}
 				db_free_result($search_result);
-			}
-			$result = self::sortResults($sortkey, $sortdirection, $result, isset($weights));
+				$result = self::sortResults($sortkey, $sortdirection, $result, isset($weights));
 
-			foreach ($result as $page) {
-				$pages[] = $page['titlelink'];
+				foreach ($result as $page) {
+					$pages[] = $page['titlelink'];
+				}
+				$this->cacheSearch($criteria, $pages);
+				zp_apply_filter('search_statistics', $searchstring, 'pages', $search_result, false, $this->iteration++);
 			}
-			$this->pages = $pages;
+		} else {
+			zp_apply_filter('search_statistics', $searchstring, 'pages', 'cache', false, $this->iteration++);
 		}
+		$this->pages = $pages;
 		$this->searches['pages'] = $criteria;
-		return $this->pages;
+		return $pages;
 	}
 
 	/**
@@ -1955,15 +1961,15 @@ class SearchEngine {
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) {
-			return array();
-		} // nothing to find
+			return array(); // nothing to find
+		}
 		$criteria = $this->getCacheTag('news', serialize($searchstring), $sortkey . '_' . $sortdirection);
 		if ($criteria && $this->articles && $criteria == $this->searches['news']) {
 			return $this->articles;
 		}
-		$result = $this->getCachedSearch($criteria);
-		if (is_null($result)) {
-			$result = array();
+		$articles = $this->getCachedSearch($criteria);
+		if (is_null($articles)) {
+			$articles = array();
 			if (empty($searchdate)) {
 				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'news', $sorttype, $direction);
 			} else {
@@ -1974,20 +1980,22 @@ class SearchEngine {
 			} else {
 				$search_result = query($search_query);
 			}
-			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($search_result), false, $this->iteration++);
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
 					if (isset($weights)) {
 						$row['weight'] = $weights[$row['id']];
 					}
-					$result[] = $row;
+					$articles[] = $row;
 				}
 				db_free_result($search_result);
 			}
-			$result = self::sortResults($sortkey, $sortdirection, $result, isset($weights));
-			$this->cacheSearch($criteria, $result);
+			$articles = self::sortResults($sortkey, $sortdirection, $articles, isset($weights));
+			$this->cacheSearch($criteria, $articles);
+			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($search_result), false, $this->iteration++);
+		} else {
+			zp_apply_filter('search_statistics', $searchstring, 'news', 'cache', false, $this->iteration++);
 		}
-		$this->articles = $result;
+		$this->articles = $articles;
 		$this->searches['news'] = $criteria;
 		return $this->articles;
 	}
@@ -2053,7 +2061,6 @@ class SearchEngine {
 					query('DELETE FROM ' . prefix('search_cache') . ' WHERE `id` = ' . $result['id']);
 				} else {
 					if ($result = getSerializedArray($result['data'])) {
-						zp_apply_filter('search_statistics', NULL, 'cache', NULL, NULL, NULL, $this->iteration++);
 						return $result;
 					}
 				}
