@@ -617,7 +617,7 @@ Standard forms which collect user data will have a policy acknowledgement checkb
 								<?php
 								echo gettext('duration');
 								?>
-								<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PESISTENCE; ?>" />
+								<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PERSISTENCE; ?>" />
 							</p>
 							<?php
 						}

@@ -179,11 +179,11 @@ switch (SERVER_PROTOCOL) {
 		break;
 }
 
-if (!defined('COOKIE_PESISTENCE')) {
+if (!defined('COOKIE_PERSISTENCE')) {
 	$persistence = getOption('cookie_persistence');
 	if (!$persistence)
 		$persistence = 5184000;
-	define('COOKIE_PESISTENCE', $persistence);
+	define('COOKIE_PERSISTENCE', $persistence);
 	unset($persistence);
 }
 if ($c = getOption('zenphoto_cookie_path')) {

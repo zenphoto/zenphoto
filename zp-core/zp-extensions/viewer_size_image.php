@@ -148,7 +148,7 @@ function printUserSizeSelector($text = '', $default = NULL, $usersizes = NULL) {
 				$('#image img').attr('width', items[1]);
 				$('#image img').attr('height', items[2]);
 				$('#image img').attr('src', items[3]);
-				document.cookie = 'viewer_size_image_saved=' + items[0] + '; expires=<?php echo date('Y-m-d H:i:s', time() + COOKIE_PESISTENCE); ?>; path=<?php echo $cookiepath ?>';
+				document.cookie = 'viewer_size_image_saved=' + items[0] + '; expires=<?php echo date('Y-m-d H:i:s', time() + COOKIE_PERSISTENCE); ?>; path=<?php echo $cookiepath ?>';
 			}
 		<?php
 	} else { //	radio buttons
@@ -160,7 +160,7 @@ function printUserSizeSelector($text = '', $default = NULL, $usersizes = NULL) {
 				$('#image img').attr('width', w);
 				$('#image img').attr('height', h);
 				$('#image img').attr('src', url);
-				document.cookie = 'viewer_size_image_saved=' + $(obj).attr('value') + '; expires=<?php echo date('Y-m-d H:i:s', time() + COOKIE_PESISTENCE); ?>; path=<?php echo $cookiepath ?>';
+				document.cookie = 'viewer_size_image_saved=' + $(obj).attr('value') + '; expires=<?php echo date('Y-m-d H:i:s', time() + COOKIE_PERSISTENCE); ?>; path=<?php echo $cookiepath ?>';
 			}
 		<?php
 	}

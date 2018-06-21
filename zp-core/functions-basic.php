@@ -739,8 +739,8 @@ function zp_setCookie($name, $value, $time = NULL, $security = true) {
 		$cookiev = zp_cookieEncode($value);
 	}
 	if (is_null($t = $time)) {
-		$t = time() + COOKIE_PESISTENCE;
-		$tString = COOKIE_PESISTENCE;
+		$t = time() + COOKIE_PERSISTENCE;
+		$tString = COOKIE_PERSISTENCE;
 	} else {
 		if ($time === false) {
 			$tString = 'FALSE';
