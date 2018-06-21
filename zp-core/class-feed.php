@@ -57,7 +57,8 @@
  * </ul>
  *
  *
- * @package classes
+ * @package core
+ * @subpackage classes\objects
  */
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
 

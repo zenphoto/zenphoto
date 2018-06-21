@@ -2,6 +2,7 @@
 /**
  * Functions used to display content in themes.
  * @package functions
+ * @subpackage template-functions
  */
 // force UTF-8 Ø
 

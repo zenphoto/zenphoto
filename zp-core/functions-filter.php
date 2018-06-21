@@ -13,7 +13,8 @@
  *
  * This API is heavily inspired by the plugin API used in WordPress.
  *
- * @package functions
+ * @package core
+ * @subpackage functions\functions-filter
  * @author Ozh
  * @since 1.3
  */

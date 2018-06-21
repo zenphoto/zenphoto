@@ -2,6 +2,7 @@
 /**
  * encryption support functions
  * @package core
+ * @subpackage libraries\lib-encryption
  */
 
 // force UTF-8 Ø

@@ -1,4 +1,10 @@
 <?php
+/**
+ * ZipStream
+ * 
+ * @package core
+ * @subpackage libraries\lib-zipstream
+ */
 error_reporting(0);
 ##########################################################################
 # ZipStream - Streamed, dynamically generated zip archives.              #

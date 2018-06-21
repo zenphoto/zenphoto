@@ -10,6 +10,7 @@ if(!defined('SITE_LOCALE')) {
 /**
  * functions-i18n.php -- support functions for internationalization
  * @package core
+ * @subpackage functions\functions-i18n
  */
 // force UTF-8 Ø
 function getLanguageArray() {

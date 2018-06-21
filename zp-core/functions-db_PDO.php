@@ -3,6 +3,7 @@
 /**
  * database core functions for PDO implementations
  * @package core
+ * @subpackage database-handlers\functions-db-pdo
  */
 // force UTF-8 Ø
 

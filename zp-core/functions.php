@@ -3,6 +3,7 @@
  * basic functions used by zenphoto
  *
  * @package core
+ * @subpackage functions\functions-main
  *
  */
 // force UTF-8 Ø

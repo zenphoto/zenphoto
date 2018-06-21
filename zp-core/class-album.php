@@ -2,7 +2,8 @@
 
 /**
  * Album Class
- * @package classes
+ * @package core
+ * @subpackage classes\objects
  */
 // force UTF-8 Ø
 

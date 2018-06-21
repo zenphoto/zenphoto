@@ -28,6 +28,7 @@
  * - utf8::encode_numericentity()
  *
  * @package core
+ * @subpackage libraries\lib-utf8
  */
 // force UTF-8 Ø
 

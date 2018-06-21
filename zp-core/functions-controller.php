@@ -4,6 +4,7 @@
  * Common functions used in the controller for getting/setting current classes,
  * redirecting URLs, and working with the context.
  * @package core
+ * @subpackage functions\functions-controller
  */
 // force UTF-8 Ø
 
