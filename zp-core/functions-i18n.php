@@ -1,4 +1,11 @@
 <?php
+if(!defined('SITE_LOCALE')) {
+	if(function_exists('getOptionFromDB')) {
+		define('SITE_LOCALE', getOptionFromDB('locale'));
+	} else {
+		define('SITE_LOCALE', 'en_US');
+	}
+}
 
 /**
  * functions-i18n.php -- support functions for internationalization

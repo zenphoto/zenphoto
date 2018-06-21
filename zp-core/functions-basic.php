@@ -22,6 +22,8 @@ require_once(dirname(__FILE__) . '/functions-common.php');
 global $_zp_conf_vars;
 $const_webpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 $const_serverpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME']));
+
+
 /**
  * see if we are executing out of any of the known script folders. If so we know how to adjust the paths
  * if not we presume the script is in the root of the installation. If it is not the script better have set
@@ -59,7 +61,6 @@ if ($const_webpath == '/' || $const_webpath == '.') {
 if (defined('SERVERPATH')) {
 	$const_serverpath = SERVERPATH;
 }
-
 
 // Contexts (Bitwise and combinable)
 define("ZP_INDEX", 1);
@@ -107,17 +108,6 @@ if (TEST_RELEASE) {
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 $_configMutex = new zpMutex('cF');
-if (OFFSET_PATH != 2 && !file_exists($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
-	reconfigureAction(1);
-}
-// Including the config file more than once is OK, and avoids $conf missing.
-eval('?>' . file_get_contents($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE));
-if (!isset($_zp_conf_vars['special_pages'])) {
-	$_zp_conf_vars['special_pages'] = array();
-}
-
-define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
 
 if (!defined('WEBPATH')) {
 	define('WEBPATH', $const_webpath);
@@ -128,6 +118,40 @@ if (!defined('SERVERPATH')) {
 	define('SERVERPATH', $const_serverpath);
 }
 unset($const_serverpath);
+
+// If the server protocol is not set, set it to the default.
+if (!isset($_zp_conf_vars['server_protocol'])) {
+	$_zp_conf_vars['server_protocol'] = 'http';
+}
+
+//NOTE: SERVER_PROTOCOL is the option PROTOCOL is what should be used in links!!!!
+define('SERVER_PROTOCOL', getOption('server_protocol'));
+switch (SERVER_PROTOCOL) {
+	case 'https':
+		define('PROTOCOL', 'https');
+		break;
+	default:
+		
+		if (secureServer()) {
+			define('PROTOCOL', 'https');
+		} else {
+			define('PROTOCOL', 'http');
+		}
+		break;
+}
+
+if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+	require_once(dirname(__FILE__) . '/reconfigure.php');
+	reconfigureAction(1);
+}
+// Including the config file more than once is OK, and avoids $conf missing.
+eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+if (!isset($_zp_conf_vars['special_pages'])) {
+	$_zp_conf_vars['special_pages'] = array();
+}
+
+define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
+
 $_zp_mutex = new zpMutex();
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
@@ -137,19 +161,12 @@ if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 
 require_once(dirname(__FILE__) . '/lib-utf8.php');
 
-
-
 if (!defined('CHMOD_VALUE')) {
 	define('CHMOD_VALUE', fileperms(dirname(__FILE__)) & 0666);
 }
 define('FOLDER_MOD', CHMOD_VALUE | 0311);
 define('FILE_MOD', CHMOD_VALUE & 0666);
 define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
-
-// If the server protocol is not set, set it to the default.
-if (!isset($_zp_conf_vars['server_protocol'])) {
-	$_zp_conf_vars['server_protocol'] = 'http';
-}
 
 if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
 	require_once(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php');
@@ -236,26 +253,11 @@ foreach ($_zp_cachefileSuffix as $key => $type) {
 
 require_once(dirname(__FILE__) . '/lib-encryption.php');
 
-//NOTE: SERVER_PROTOCOL is the option PROTOCOL is what should be used in links!!!!
-define('SERVER_PROTOCOL', getOption('server_protocol'));
-switch (SERVER_PROTOCOL) {
-	case 'https':
-		define('PROTOCOL', 'https');
-		break;
-	default:
-		if (secureServer()) {
-			define('PROTOCOL', 'https');
-		} else {
-			define('PROTOCOL', 'http');
-		}
-		break;
-}
-
-if (!defined('COOKIE_PERSISTENCE')) {
+if (!defined('COOKIE_PESISTENCE')) {
 	$persistence = getOption('cookie_persistence');
 	if (!$persistence)
 		$persistence = 5184000;
-	define('COOKIE_PERSISTENCE', $persistence);
+	define('COOKIE_PESISTENCE', $persistence);
 	unset($persistence);
 }
 if ($c = getOption('zenphoto_cookie_path')) {

@@ -24,7 +24,6 @@ if (!class_exists('tidy')) {
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
 $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
 //setup session before checking for logon cookie
-define('SITE_LOCALE', getOptionFromDB('locale'));
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
 if (GALLERY_SESSION) {
