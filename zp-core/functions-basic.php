@@ -899,13 +899,11 @@ function primeOptions() {
 	global $_zp_options;
 	$_zp_options = array();
 
-	if (function_exists('query_full_array')) { //	incase we are in primitive mode
-		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`="" AND `ownerid`=0 ORDER BY `name`';
-		$rslt = query($sql);
-		if ($rslt) {
-			while ($option = db_fetch_assoc($rslt)) {
-				$_zp_options[strtolower($option['name'])] = $option['value'];
-			}
+	$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`="" AND `ownerid`=0 ORDER BY `name`';
+	$rslt = query($sql, false);
+	if ($rslt) {
+		while ($option = db_fetch_assoc($rslt)) {
+			$_zp_options[strtolower($option['name'])] = $option['value'];
 		}
 	}
 }
