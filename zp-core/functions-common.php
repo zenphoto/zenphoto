@@ -221,7 +221,12 @@ function sanitize_string($input, $sanitize_level) {
  * @since 0.6
  */
 function prefix($tablename = NULL) {
-	return '`' . DATABASE_PREFIX . $tablename . '`';
+	if(defined('DATABASE_PREFIX')) {
+		$prefix = DATABASE_PREFIX;
+	} else{
+		$prefix = 'zp_'; // use default in case this constant is not set in setup primitive environments
+	}
+	return '`' . $prefix . $tablename . '`';
 }
 
 /**

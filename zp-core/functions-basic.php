@@ -132,7 +132,6 @@ switch (SERVER_PROTOCOL) {
 		define('PROTOCOL', 'https');
 		break;
 	default:
-		
 		if (secureServer()) {
 			define('PROTOCOL', 'https');
 		} else {
