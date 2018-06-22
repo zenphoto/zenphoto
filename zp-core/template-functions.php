@@ -3913,39 +3913,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-													// <!-- <![CDATA[
-													var within = <?php echo (int) $within; ?>;
-													function search_(way) {
-														within = way;
-														if (way) {
-															$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-														} else {
-															lastsearch = '';
-															$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-														}
-														$('#search_input').val('');
-													}
-													$('#search_form').submit(function () {
-														if (within) {
-															var newsearch = $.trim($('#search_input').val());
-															if (newsearch.substring(newsearch.length - 1) == ',') {
-																newsearch = newsearch.substr(0, newsearch.length - 1);
-															}
-															if (newsearch.length > 0) {
-																$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-															} else {
-																$('#search_input').val('<?php echo $searchwords; ?>');
-															}
-														}
-														return true;
-													});
-													function search_all() {
-														//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-														var check = $('#SEARCH_checkall').prop('checked');
-														$('.SEARCH_checkall').prop('checked', check);
-													}
+							// <!-- <![CDATA[
+							var within = <?php echo (int) $within; ?>;
+							function search_(way) {
+								within = way;
+								if (way) {
+									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+								} else {
+									lastsearch = '';
+									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+								}
+								$('#search_input').val('');
+							}
+							$('#search_form').submit(function () {
+								if (within) {
+									var newsearch = $.trim($('#search_input').val());
+									if (newsearch.substring(newsearch.length - 1) == ',') {
+										newsearch = newsearch.substr(0, newsearch.length - 1);
+									}
+									if (newsearch.length > 0) {
+										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+									} else {
+										$('#search_input').val('<?php echo $searchwords; ?>');
+									}
+								}
+								return true;
+							});
+							function search_all() {
+								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+								var check = $('#SEARCH_checkall').prop('checked');
+								$('.SEARCH_checkall').prop('checked', check);
+							}
 
-													// ]]> -->
+							// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
@@ -4334,7 +4334,7 @@ function policySubmitButton($buttonText, $buttonClass = NULL, $buttonExtra = NUL
 		?>
 		<span id="GDPR_acknowledge">
 			<input type="checkbox" name="policy_acknowledge" onclick="$('#submitbutton').show();
-							$('#GDPR_acknowledge').hide();" value="<?php echo md5(getUserID() . getOption('GDPR_cookie')); ?>">
+					$('#GDPR_acknowledge').hide();" value="<?php echo md5(getUserID() . getOption('GDPR_cookie')); ?>">
 						 <?php
 						 echo sprintf(get_language_string(getOption('GDPR_text')), getOption('GDPR_URL'));
 						 ?>
@@ -4500,7 +4500,7 @@ function print404status() {
 	global $_404_data;
 	list($album, $image, $galleryPage, $theme, $page) = $_404_data;
 	if (DEBUG_404) {
-		if (!preg_match('~\.min\.(css|js)\.map$~i', $album)) { //	don't log these
+		if (!preg_match('~\.(css|js)\.map$~i', $album)) { //	don't log these
 			$list = explode('/', $album);
 			if (array_shift($list) != 'cache') {
 				$target = getRequestURI();
