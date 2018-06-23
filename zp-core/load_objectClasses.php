@@ -52,7 +52,7 @@ if (abs(OFFSET_PATH) != 2) { // setup does not need (and might have problems wit
 				}
 			}
 		}
-		require_once(dirname(__FILE__) . '/auth_zp.php'); // loaded after CLASS_PLUGIN and before ADMIN_PLUGIN
+		require_once(dirname(__FILE__) . '/auth_zp.php'); // loaded after CLASS_PLUGIN and before FEATURE_PLUGINS and ADMIN_PLUGIN
 	}
 } else {
 	require_once(dirname(__FILE__) . '/auth_zp.php'); // setup needs this!
