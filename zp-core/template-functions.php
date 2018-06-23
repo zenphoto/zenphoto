@@ -106,11 +106,20 @@ function adminToolbox() {
 					<?php
 				}
 				if (zp_loggedin(ALBUM_RIGHTS)) {
-					?>
-					<li>
-						<?php printLinkHTML($zf . '/admin-edit.php', gettext("Albums"), NULL, NULL, NULL); ?>
-					</li>
-					<?php
+					$albums = $_zp_gallery->getAlbums();
+					foreach ($albums as $key => $analbum) {
+						$albumobj = newAlbum($analbum);
+						if (!$albumobj->isMyItem(ALBUM_RIGHTS)) {
+							unset($albums[$key]);
+						}
+					}
+					if (!empty($albums)) {
+						?>
+						<li>
+							<?php printLinkHTML($zf . '/admin-edit.php', gettext("Albums"), NULL, NULL, NULL); ?>
+						</li>
+						<?php
+					}
 				}
 				zp_apply_filter('admin_toolbox_global', $zf);
 
@@ -121,10 +130,16 @@ function adminToolbox() {
 					</li>
 					<?php
 				}
-				if (zp_loggedin(USER_RIGHTS)) {
+				if (zp_loggedin(ADMIN_RIGHTS)) {
 					?>
 					<li>
 						<?php printLinkHTML($zf . '/admin-users.php', gettext("Users"), NULL, NULL, NULL); ?>
+					</li>
+					<?php
+				} else if (zp_loggedin(USER_RIGHTS)) {
+					?>
+					<li>
+						<?php printLinkHTML($zf . '/admin-users.php', gettext("My profile"), NULL, NULL, NULL); ?>
 					</li>
 					<?php
 				}
@@ -936,12 +951,12 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 				if ($firstlast) {
 					?>
 					<li class="<?php
-					if ($current == 1)
-						echo 'current';
-					else
-						echo 'first';
+			if ($current == 1)
+				echo 'current';
+			else
+				echo 'first';
 					?>">
-								<?php
+							<?php
 								if ($current == 1) {
 									echo '1';
 								} else {

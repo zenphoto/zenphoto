@@ -300,8 +300,13 @@ echo $refresh;
 				echo "</div>";
 			}
 			zp_apply_filter('admin_note', 'admin', 'users');
-
-			echo '<h1>' . gettext('Users') . '</h1>';
+			if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset || !$_zp_current_admin_obj->getID()) {
+				echo '<h1>' . gettext('Users') . '</h1>';
+				$alterrights = false;
+			} else {
+				echo '<h1>' . gettext('Profile') . '</h1>';
+				$alterrights = ' disabled="disabled"';
+			}
 			?>
 			<div id="container">
 				<?php
@@ -392,9 +397,7 @@ echo $refresh;
 							$rangeset = getPageSelector($list, USERS_PER_PAGE);
 						}
 						$newuser = array('id' => -1, 'user' => '', 'pass' => '', 'name' => '', 'email' => '', 'rights' => $rights, 'custom_data' => NULL, 'valid' => 1, 'group' => $groupname);
-						$alterrights = '';
 					} else {
-						$alterrights = ' disabled="disabled"';
 						$rangeset = array();
 						if ($_zp_current_admin_obj) {
 							$admins = array($_zp_current_admin_obj->getUser() =>
@@ -662,9 +665,11 @@ echo $refresh;
 															?>
 															<input type="hidden" id="adminuser<?php echo $id; ?>" name="user[<?php echo $id; ?>][adminuser]" value="<?php echo $userid ?>" />
 															<?php
-															echo '<strong>' . $userid . '</strong> ';
-															if (!empty($userid)) {
-																echo $master;
+															if (empty($alterrights)) {
+																echo '<strong>' . $userid . '</strong> ';
+																if (!empty($userid)) {
+																	echo $master;
+																}
 															}
 														}
 														?>
