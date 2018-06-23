@@ -270,18 +270,45 @@ class cmsFilters {
 	static function admin_toolbox_global($zf) {
 		global $_zp_CMS;
 		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS && $_zp_CMS->news_enabled) {
-			// admin has zenpage rights, provide link to the Zenpage admin tab
-			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news.php\">" . gettext('news') . "</a></li>";
+			$articles = $_zp_CMS->getArticles(0, 'all', false, NULL, NULL, false, NULL);
+			foreach ($articles as $key => $article) {
+				$article = newArticle($article['titlelink']);
+				$subrights = $article->subRights();
+				if (!($article->isMyItem(ZENPAGE_NEWS_RIGHTS) && $subrights & MANAGED_OBJECT_RIGHTS_EDIT)) {
+					unset($articles[$key]);
+				}
+			}
+
+			$categories = $_zp_CMS->getAllCategories();
+			foreach ($categories as $key => $cat) {
+				$catobj = newCategory($cat['titlelink']);
+				if (!($catobj->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+					unset($categories[$key]);
+				}
+			}
+			if (!empty($articles) || !empty($categories)) {
+				// admin has zenpage rights, provide link to the Zenpage admin tab
+				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news.php\">" . NEWS_LABEL . "</a></li>";
+			}
 		}
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS && $_zp_CMS->pages_enabled) {
-			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-pages.php\">" . gettext("Pages") . "</a></li>";
+			$pagelist = $_zp_CMS->getPages();
+			foreach ($pagelist as $key => $apage) {
+				$pageobj = newPage($apage['titlelink']);
+				if (!($pageobj->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+					unset($pagelist[$key]);
+				}
+			}
+			if (!empty($pagelist)) {
+				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-pages.php\">" . gettext("Pages") . "</a></li>";
+			}
 		}
 		return $zf;
 	}
 
 	static function admin_toolbox_pages($redirect, $zf) {
 		global $_zp_CMS, $_zp_current_page;
-		;
+
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS && $_zp_CMS->pages_enabled && ($_zp_current_page->subrights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
 			// page is zenpage page--provide edit, delete, and add links
 			?>
