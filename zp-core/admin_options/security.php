@@ -109,15 +109,16 @@ function getOptionContent() {
 							</script>
 							<?php
 						}
+						$current = getOption('server_protocol');
 						?>
 						<select id="server_protocol" name="server_protocol"<?php if (secureServer()) echo ' onchange="warn_http(this);"' ?>>
 							<option value="http"<?php
-							if (SERVER_PROTOCOL == 'http' && !secureServer())
+							if ($current == 'http' && !secureServer())
 								echo 'selected = "selected"';
 							?>>http</option>
 							<option value="https"<?php
 							if (secureServer()) {
-								if (SERVER_PROTOCOL == 'https')
+								if ($current == 'https')
 									echo ' selected="selected"';
 							} else {
 								echo ' disabled="disabled"';
@@ -125,7 +126,7 @@ function getOptionContent() {
 							?>>https</option>
 							<option value="https_admin"<?php
 							if (secureServer()) {
-								if (SERVER_PROTOCOL != 'https')
+								if ($current == 'https_admin')
 									echo ' selected="selected"';
 							} else {
 								echo ' disabled="disabled"';
