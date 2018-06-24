@@ -91,7 +91,7 @@ if (isset($_GET['action'])) {
 				if (isset($_POST['checkForPostTruncation'])) {
 					$userlist = $_POST['user'];
 					if (isset($_POST['alter_enabled']) || sanitize_numeric($_POST['totaladmins']) > 1 ||
-									trim(sanitize($_POST['adminuser0'])) != $_zp_current_admin_obj->getUser() ||
+									trim($userlist[0]['adminuser']) != $_zp_current_admin_obj->getUser() ||
 									$newuserid === 0) {
 						if (!$_zp_current_admin_obj->reset) {
 							admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
