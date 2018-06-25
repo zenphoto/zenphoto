@@ -16,17 +16,15 @@
  * 		{@link https://www.itgovernance.co.uk/blog/how-to-write-a-gdpr-privacy-notice-with-documentation-template-example/* How to write a GDPR privacy notice}.
  * </li>
  * 	<li>
- * 		Place the following text in one of the <i>codeblocks</i> for the page:
- * 		<br />
- * 		<code><?php GDPR_required::button();?></code>
- * 		<br />
- * 		(This will place the policy button on the page.)
+ * 		Place the following <i>macro</i> in your page content or in one of the <i>codeblocks</i> for the page:
+ * 		<code>[POLICYBUTTON]</code>
+ * 		(This <i>macro</i> will place the policy button on the page.)
  * 		For most themes, <i>codeblock&nbsp;1</i> will put the button just below your privacy statement.
  * 		But this is theme dependent. Choose the <i>codeblock</i> which best locates the button.
  * 		(For Effervescence and Garland use <i>codeblock&nbsp;2</i>.)
  *
- * 		<strong>Note</strong>: If you are using a custom page you will need to place this function call somewhere appropriate in
- * 		your script.
+ * 		<strong>Note</strong>: If you are using a custom page you will need to place a function call to
+ * 		<code>GDPR_required::button();</code> to place a policy button somewhere appropriate in	your script.
  * 	</li>
  * 	<li>
  * 		Enable the <i>Usage policy</i> option on the general options page.
@@ -155,6 +153,18 @@ class GDPR_required {
 		}
 	}
 
+	static function macro($macros) {
+		$my_macros = array(
+				'POLICYBUTTON' => array('class' => 'procedure',
+						'params' => array(),
+						'value' => 'GDPR_required::button',
+						'owner' => 'GDPR_required',
+						'desc' => gettext('Places a policy submit button on a page.'))
+		);
+		return array_merge($macros, $my_macros);
+	}
+
 }
 
 zp_register_filter('load_theme_script', 'GDPR_required::page');
+zp_register_filter('content_macro', 'GDPR_required::macro');

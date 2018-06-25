@@ -141,7 +141,7 @@ function html_encodeTagged($original, $allowScript = true) {
 	//strip html comments
 	$str = preg_replace('~<!--.*?-->~is', '', $str);
 	// markup
-	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
+	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/ims", $str, $matches);
 	foreach (array_unique($matches[0]) as $key => $tag) {
 		$tags[2]['%' . $key . '$s'] = $tag;
 		$str = str_replace($tag, '%' . $key . '$s', $str);
