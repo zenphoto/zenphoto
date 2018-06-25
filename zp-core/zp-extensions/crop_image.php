@@ -88,7 +88,7 @@ if (isset($_REQUEST['singleimage'])) {
 $use_side = getOption('image_use_side');
 // get full width and height
 $albumobj = newAlbum($albumname);
-$imageobj = newImage($albumobj, $imagename);
+$imageobj = newImage($albumobj, $imagename, true);
 
 if (isImagePhoto($imageobj)) {
 	$imgpath = $imageobj->localpath;
