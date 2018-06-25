@@ -150,6 +150,10 @@ class GDPR_required {
 				<?php policySubmitButton(gettext('Continue to site')); ?>
 			</form>
 			<?php
+		} else {
+			?>
+			<span style="display: none;"><?php echo gettext('Site usage policy has been acknowledged.'); ?></span>
+			<?php
 		}
 	}
 
