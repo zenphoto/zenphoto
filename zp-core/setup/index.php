@@ -56,8 +56,8 @@ if (isset($_REQUEST['autorun'])) {
 	$displayLimited = $autorun = false;
 }
 
-$session = zp_session_start();
 session_cache_limiter('nocache');
+$session = zp_session_start();
 $setup_checked = false;
 
 if (isset($_REQUEST['xsrfToken']) || isset($_REQUEST['update']) || isset($_REQUEST['checked'])) {
