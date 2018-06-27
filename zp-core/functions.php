@@ -2791,7 +2791,7 @@ class zpFunctions {
 				$text = serialize($text);
 			}
 		} else {
-			$text = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
+			$text = strtr($text, array(WEBPATH => '{*WEBPATH*}', FULLWEBPATH => '{*FULLWEBPATH*}', ZENFOLDER => '{*ZENFOLDER*}', PLUGIN_FOLDER => '{*PLUGIN_FOLDER*}', USER_PLUGIN_FOLDER => '{*USER_PLUGIN_FOLDER*}'));
 		}
 		return $text;
 	}
@@ -2816,7 +2816,7 @@ class zpFunctions {
 				$text = serialize($text);
 			}
 		} else {
-			$text = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+			$text = strtr($text, array('{*WEBPATH*}' => WEBPATH, '{*FULLWEBPATH*}' => FULLWEBPATH, '{*ZENFOLDER*}' => ZENFOLDER, '{*PLUGIN_FOLDER*}' => PLUGIN_FOLDER, '{*USER_PLUGIN_FOLDER*}' => USER_PLUGIN_FOLDER));
 		}
 		return $text;
 	}
