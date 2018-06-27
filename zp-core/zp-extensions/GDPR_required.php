@@ -137,16 +137,20 @@ class GDPR_required {
 	 * the policy, e.g. he visited the page from a normal link after his acknowledgement
 	 * was recorded.
 	 *
+	 * @param string $target where the button should redirect
+	 *
 	 * @global type $_GDPR_acknowledge_loaded
 	 */
-	static function button() {
+	static function button($target = NULL) {
 		global $_GDPR_acknowledge_loaded;
 		if ($_GDPR_acknowledge_loaded) {
 			setOption('GDPR_text', gettext('Check to acknowledge the site usage policy.'), false);
 			setOption('GDPR_acknowledge', 1, false);
-			$link = getGalleryIndexURL();
+			if (is_null($target)) {
+				$target = getGalleryIndexURL();
+			}
 			?>
-			<form action="<?php echo $link; ?>" method = "post">
+			<form action="<?php echo $target; ?>" method = "post">
 				<?php policySubmitButton(gettext('Continue to site')); ?>
 			</form>
 			<?php
@@ -160,10 +164,10 @@ class GDPR_required {
 	static function macro($macros) {
 		$my_macros = array(
 				'POLICYBUTTON' => array('class' => 'procedure',
-						'params' => array(),
+						'params' => array('string*'),
 						'value' => 'GDPR_required::button',
 						'owner' => 'GDPR_required',
-						'desc' => gettext('Places a policy submit button on a page.'))
+						'desc' => gettext('Places a policy submit button on a page. Provide the target link (optionally) as %1.'))
 		);
 		return array_merge($macros, $my_macros);
 	}
