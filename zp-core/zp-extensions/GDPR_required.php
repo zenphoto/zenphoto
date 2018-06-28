@@ -19,9 +19,6 @@
  * 		Place the following <i>macro</i> in your page content or in one of the <i>codeblocks</i> for the page:
  * 		<code>[POLICYBUTTON]</code>
  * 		(This <i>macro</i> will place the policy button on the page.)
- * 		For most themes, <i>codeblock&nbsp;1</i> will put the button just below your privacy statement.
- * 		But this is theme dependent. Choose the <i>codeblock</i> which best locates the button.
- * 		(For Effervescence and Garland use <i>codeblock&nbsp;2</i>.)
  *
  * 		<strong>Note</strong>: If you are using a custom page you will need to place a function call to
  * 		<code>GDPR_required::button();</code> to place a policy button somewhere appropriate in	your script.
