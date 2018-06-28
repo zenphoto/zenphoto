@@ -30,8 +30,6 @@
 
 $plugin_is_filter = 8 | CLASS_PLUGIN;
 $plugin_description = gettext("Provides management of users based on when they were created.");
-$plugin_author = "Stephen Billard (sbillard)";
-
 
 $option_interface = 'user_expiry';
 

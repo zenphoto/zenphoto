@@ -10,7 +10,16 @@ function jqm_loadScripts() {
 	global $_zp_themeroot;
 	?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.css" />
+	<?php
+	if (!getOption('jQuery_Migrate_theme')) { //	until such time as jquery.mobile works with jQuery 3.3
+		?>
+		<!-- because there is some issue with jQuery 3.3.x -->
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
+		<?php
+	}
+	?>
 	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+
 	<script type="text/javascript">
 		window.addEventListener('load', function () {
 			$("#admin_tb_data a, a.downloadlist_link").attr('data-ajax', 'false');

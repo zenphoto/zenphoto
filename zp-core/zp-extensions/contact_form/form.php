@@ -137,8 +137,10 @@
 	if (!$_processing_post) {
 		?>
 		<p>
-			<button class="button buttons<?php echo $class; ?>"<?php echo $buttonExtra; ?>><?php echo gettext('Send e-mail'); ?></button>
-			<input type="reset" class="button buttons" value="<?php echo gettext("Reset"); ?>" />
+			<?php policySubmitButton(gettext('Send e-mail'), $class, $buttonExtra); ?>
+			<button type="reset" class="button buttons">
+				<strong><?php echo gettext("Reset"); ?></strong>
+			</button>
 		</p>
 	<?php } ?>
 </form>

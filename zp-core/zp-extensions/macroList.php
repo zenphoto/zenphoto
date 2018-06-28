@@ -64,9 +64,8 @@
  * @package plugins/macroList
  * @pluginCategory development
  */
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = 15 | ADMIN_PLUGIN;
 $plugin_description = gettext('View available <code>content macros</code>.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 if (OFFSET_PATH != 2 && zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS | ALBUM_RIGHTS)) {
 	foreach (getEnabledPlugins() as $ext => $pn) {
@@ -79,7 +78,7 @@ if (OFFSET_PATH != 2 && zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS |
 	unset($pn);
 	$macros = getMacros();
 	if (!empty($macros)) {
-		zp_register_filter('admin_tabs', 'macro_admin_tabs');
+		zp_register_filter('admin_tabs', 'macro_admin_tabs', 200);
 	}
 }
 
@@ -88,6 +87,7 @@ function macro_admin_tabs($tabs) {
 		if (!isset($tabs['development'])) {
 			$tabs['development'] = array('text' => gettext("development"),
 					'link' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=development&tab=macros',
+					'default' => "macros",
 					'subtabs' => NULL);
 		}
 		$tabs['development']['subtabs'][gettext("macros")] = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=development&tab=macros';

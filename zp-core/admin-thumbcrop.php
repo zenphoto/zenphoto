@@ -132,7 +132,7 @@ if (is_null($isCrop)) {
 	$iH = round($imageobj->get('thumbH') * $sr);
 }
 
-if (isset($_REQUEST['crop'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'crop') {
 	XSRFdefender('thumb_crop');
 	$cw = $_REQUEST['w'];
 	$ch = $_REQUEST['h'];
@@ -171,12 +171,12 @@ if (isset($_REQUEST['crop'])) {
 }
 printAdminHeader('edit', 'thumbcrop');
 ?>
-<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
-<link rel="stylesheet" href="js/jquery.Jcrop.css" type="text/css" />
+<script src="js/Jcrop/jquery.Jcrop.js" type="text/javascript"></script>
+<link rel="stylesheet" href="js/Jcrop/jquery.Jcrop.css" type="text/css" />
 <script type="text/javascript" >
 	//<!-- <![CDATA[
 	var jcrop_api;
-	jQuery(window).load(function () {
+	jQuery(window).on("load", function () {
 		initJcrop();
 		function initJcrop() {
 			jcrop_api = jQuery.Jcrop('#cropbox');
@@ -265,7 +265,7 @@ printAdminHeader('edit', 'thumbcrop');
 					</div>
 					<br clear="all">
 					<!-- This is the form that our event handler fills -->
-					<form class="dirtylistening" onReset="setClean('crop');" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
+					<form class="dirtylistening" onReset="setClean('crop');" name="crop" id="crop" method="post" action="?action=crop" onsubmit="return checkCoords();">
 						<?php XSRFToken('thumb_crop'); ?>
 						<?php
 						if ($singleimage) {

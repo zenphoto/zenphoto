@@ -24,7 +24,7 @@ if (isset($_REQUEST['performcrop'])) {
 	zp_register_filter('edit_image_utilities', 'crop_image::edit', 99999); // we want this one to come right after the crop thumbnail button
 	$plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 	$plugin_description = gettext("An image cropping tool.");
-	$plugin_author = "Stephen Billard (sbillard)";
+
 	return;
 }
 
@@ -69,10 +69,10 @@ class crop_image {
 
 }
 
-$albumname = sanitize_path($_REQUEST['a']);
-$imagename = sanitize($_REQUEST['i']);
-$album = newAlbum($albumname);
-if (!$album->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
+$albumname = sanitize_path(@$_REQUEST['a']);
+$imagename = sanitize(@$_REQUEST['i']);
+$album = newAlbum($albumname, true, true);
+if (!$album->exists || !$album->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
 		exitZP();
@@ -88,7 +88,7 @@ if (isset($_REQUEST['singleimage'])) {
 $use_side = getOption('image_use_side');
 // get full width and height
 $albumobj = newAlbum($albumname);
-$imageobj = newImage($albumobj, $imagename);
+$imageobj = newImage($albumobj, $imagename, true);
 
 if (isImagePhoto($imageobj)) {
 	$imgpath = $imageobj->localpath;
@@ -149,7 +149,7 @@ $iH = round($sizedheight * 0.9);
 $iX = round($sizedwidth * 0.05);
 $iY = round($sizedheight * 0.05);
 
-if (isset($_REQUEST['crop'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'crop') {
 	XSRFdefender('crop');
 	$cw = $_REQUEST['w'];
 	$ch = $_REQUEST['h'];
@@ -235,9 +235,9 @@ if ($pasteobj) {
 }
 ?>
 
-<script src="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jquery.Jcrop.js" type="text/javascript"></script>
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/Jcrop/jquery.Jcrop.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/htmlencoder.js"></script>
-<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jquery.Jcrop.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/Jcrop/jquery.Jcrop.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/crop_image/crop_image.css" type="text/css" />
 <script type="text/javascript" >
 	//<!-- <![CDATA[
@@ -245,7 +245,7 @@ if ($pasteobj) {
 	var sizedWidth = <?php echo $sizedwidth ?>;
 	var sizedHeight = <?php echo $sizedheight ?>;
 	var oldSize = <?php echo $size; ?>;
-	jQuery(window).load(function () {
+	jQuery(window).on("load", function () {
 		initJcrop();
 		function initJcrop() {
 			jcrop_api = jQuery.Jcrop('#cropbox');
@@ -393,7 +393,7 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 
 					<div style="text-align:left; float: left;">
 						<!-- This is the form that our event handler fills -->
-						<form class="dirtylistening" onReset="setClean('crop');"  name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
+						<form class="dirtylistening" onReset="setClean('crop');"  name="crop" id="crop" method="post" action="?action=crop" onsubmit="return checkCoords();">
 							<?php XSRFToken('crop'); ?>
 
 							<div style="width: <?php echo $sizedwidth; ?>px; height: <?php echo $sizedheight; ?>px; margin-bottom: 10px; border: 4px solid gray;">

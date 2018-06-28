@@ -1,9 +1,9 @@
 * Translation                                           Items                Words           Characters
-Translated                                        3504 (64 %)                19467               127536
-Needs work                                        1908 (35 %)                15073                99810
+Translated                                        3454 (62 %)                19285               126331
+Needs work                                        2149 (38 %)                17100               114508
 Translations with errors                                    0
 
  *Source Text
-Strings in source language                               5469                37588               220700
-Needs work                                                                   15795                93356
-Not translated                                       57 (1 %)                  920                 5350
+Strings in source language                               5611                38884               228499
+Needs work                                                                   17902               105876
+Not translated                                        8 (0 %)                  304                 1796

@@ -175,7 +175,7 @@ printLogoAndLinks();
 								?>
 								<label for="date"><?php echo gettext("Date/Time:"); ?></label>
 								<input type="text" size="18" name="date" value="<?php echo $date; ?>" />
-								<label for="date"><?php echo gettext("IP:"); ?></label>
+								<label for="date"><?php echo gettext("ID:"); ?></label>
 								<input type="text" size="18" name="ip" value="<?php echo html_encode($IP); ?>" />
 								<?php
 								$_comment_form_save_post = $commentarr;
@@ -269,8 +269,8 @@ printLogoAndLinks();
 				<div class="tabbox">
 					<?php
 					/* Display a message if needed. Fade out and hide after 2 seconds. */
-
 					if (isset($_GET['bulk'])) {
+						$class = 'messagebox';
 						$bulkaction = sanitize($_GET['bulk']);
 						switch ($bulkaction) {
 							case 'deleteall':
@@ -282,34 +282,43 @@ printLogoAndLinks();
 							case 'approve':
 								$message = gettext('Selected items approved');
 								break;
+							default:
+								$message = gettext("Nothing changed");
+								$class = 'notebox';
+								break;
 						}
 						?>
-						<div class="messagebox fade-message"><?php echo $message; ?></div>
+						<div class="<?php echo $class; ?> fade-message">
+							<h2><?php echo $message; ?></h2>
+						</div>
 						<?php
 					}
 					if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['saved'])) {
 						?>
-						<div class="messagebox fade-message">
-							<?php
-							if (isset($_GET['ndeleted'])) {
-								?>
+						<?php
+						if (isset($_GET['ndeleted'])) {
+							?>
+							<div class="messagebox fade-message">
 								<h2>
 									<?php
 									$n = sanitize_numeric($_GET['ndeleted']);
 									printf(ngettext("%u Comment deleted successfully.", "%u Comment deleted successfully.", $n), $n);
 									?>
 								</h2>
-								<?php
-							}
-							if (isset($_GET['saved'])) {
-								?>
-								<h2>
-									<?php echo gettext("Changes applied"); ?>
-								</h2>
-								<?php
-							}
+							</div>
+							<?php
+						}
+						if (isset($_GET['saved'])) {
 							?>
-						</div>
+							<div class="notebox fade-message">
+								<h2>
+									<?php echo gettext("Nothing changed"); ?>
+								</h2>
+							</div>
+							<?php
+						}
+						?>
+
 						<?php
 					}
 					?>

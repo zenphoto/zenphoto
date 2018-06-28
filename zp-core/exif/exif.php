@@ -2,7 +2,7 @@
 
 /**
  * Exifer 1.7
- * 
+ *
  * Extracts EXIF information from digital photos.
  *
  * Originally created by:
@@ -677,6 +677,10 @@ function formatData($type, $tag, $intel, $data) {
 							break;
 						case 3: $data = '!centimeter!';
 							break;
+						case 4: $data = '!Millimeter';
+							break;
+						case 5: $data = '!Micrometer';
+							break;
 					}
 					break;
 				case '0213': // YCbCrPositioning
@@ -1274,6 +1278,22 @@ function read_exif_data_raw($path, $verbose) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // add 12 to the offset to account for TIFF header
 	if ($result['ValidJpeg'] == 1) {
 		$globalOffset+=12;
@@ -1463,25 +1483,43 @@ function get35mmEquivFocalLength(&$result) {
 	} else {
 		$width = 0;
 	}
+	if (isset($result['SubIFD']['ExifImageHeight'])) {
+		$height = $result['SubIFD']['ExifImageHeight'];
+	} else {
+		$height = 0;
+	}
 	if (isset($result['SubIFD']['FocalPlaneResolutionUnit'])) {
 		$units = $result['SubIFD']['FocalPlaneResolutionUnit'];
 	} else {
 		$units = '';
 	}
-	$unitfactor = 1;
+
 	switch ($units) {
-		case 'Inch' : $unitfactor = 25.4;
+		case 'Inch' :
+			$unitfactor = 25.4;
 			break;
-		case 'Centimeter' : $unitfactor = 10;
+		case 'Centimeter' :
+			$unitfactor = 10;
 			break;
-		case 'No Unit' : $unitfactor = 25.4;
+		case 'Millimeter' :
+			$unitfactor = 1;
 			break;
-		default : $unitfactor = 25.4;
+		case 'Micrometer' :
+			$unitfactor = 0.001;
+			break;
+		default :
+			$unitfactor = 25.4;
+			break;
 	}
 	if (isset($result['SubIFD']['FocalPlaneXResolution'])) {
 		$xres = filter_var($result['SubIFD']['FocalPlaneXResolution'], FILTER_SANITIZE_NUMBER_INT);
 	} else {
 		$xres = '';
+	}
+	if (isset($result['SubIFD']['FocalPlaneYResolution'])) {
+		$yres = $result['SubIFD']['FocalPlaneYResolution'];
+	} else {
+		$yres = '';
 	}
 	if (isset($result['SubIFD']['FocalLength'])) {
 		$fl = filter_var($result['SubIFD']['FocalLength'], FILTER_SANITIZE_NUMBER_INT);
@@ -1489,14 +1527,13 @@ function get35mmEquivFocalLength(&$result) {
 		$fl = 0;
 	}
 
-	if (!empty($units) && !empty($xres) && !empty($fl) && !empty($width)) {
-
-
-		$ccdwidth = ($width * $unitfactor) / $xres;
-		$equivfl = $fl / $ccdwidth * 36 + 0.5;
+	if (!empty($width) && !empty($height) && !empty($xres) && !empty($yres) && !empty($fl)) {
+		// Calculate CCD diagonal using Pythagoras' theorem (a² + b² = c²)
+		$diagccd = sqrt(pow(((intval($width) * $unitfactor) / $xres), 2) + pow(((intval($height) * $unitfactor) / $yres), 2));
+		$diag35mm = 43.266615305567871517430655209646; // √ 36² + 24² (35mm diagonal using Pythagoras' theorem)
+		$cropfactor = $diag35mm / $diagccd;
+		$equivfl = intval($fl) * $cropfactor;
 		return $equivfl;
 	}
 	return null;
 }
-
-?>

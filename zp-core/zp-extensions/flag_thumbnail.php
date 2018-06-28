@@ -23,7 +23,6 @@
  * @pluginCategory media
  */
 $plugin_description = gettext('Overlay icons over thumbnails to indicate image status.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'flag_thumbnail';
 

@@ -102,8 +102,14 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext('Gallery type'); ?></td>
 					<td class="option_value">
-						<label><input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (GALLERY_SECURITY == 'public') echo ' checked="checked"' ?> onclick="$('.public_gallery').show();" /><?php echo gettext('public'); ?></label>
-						<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY != 'public') echo 'checked="checked"' ?> onclick="$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
+						<label>
+							<input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (GALLERY_SECURITY == 'public') echo ' checked="checked"' ?> onclick="$('.public_gallery').show();" />
+							<?php echo gettext('public'); ?>
+						</label>
+						<label>
+							<input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY != 'public') echo 'checked="checked"' ?> onclick="$('.public_gallery').hide();" />
+							<?php echo gettext('private'); ?>
+						</label>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">

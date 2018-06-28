@@ -27,7 +27,7 @@ echo '</head>';
 				<?php
 				if (zp_loggedin(ADMIN_RIGHTS)) {
 					?>
-					<div class="box overview-section overview-install-info">
+					<div id="overview_left" class="box overview-section overview-install-info">
 
 						<ul>
 							<?php
@@ -95,6 +95,9 @@ echo '</head>';
 							</li>
 							<li>
 								<?php echo gettext('PHP Session path:') . ' <strong>' . session_save_path() . '</strong>' ?>
+							</li>
+							<li>
+								<?php printf(gettext('PHP openSSL is %s'), function_exists('openssl_encrypt') ? gettext('enabled') : gettext('disabled')); ?>
 							</li>
 							<li>
 								<?php
@@ -238,12 +241,12 @@ echo '</head>';
 						?>
 					</div>
 					<div class="box overview-section overview-install-info">
-						<h3>
-							<a onclick="$('#plugins_hide').toggle();$('#plugins_show').toggle();" >
+						<div class="overview-list-h3">
+							<h3 class="overview-list-h3">
 								<?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?>
-							</a>
-						</h3>
-						<div id="plugins_hide" style="display:none">
+							</h3>
+						</div>
+						<div class="overview_list">
 							<ul class="plugins">
 								<?php
 								if ($c > 0) {
@@ -282,18 +285,18 @@ echo '</head>';
 								}
 								?>
 							</ul>
-						</div><!-- plugins_hide -->
-						<div id="plugins_show">
-							<br />
-						</div><!-- plugins_show -->
+						</div><!-- plugins -->
 					</div>
 					<div class="box overview-section overview-install-info">
 						<?php
 						$c = count($filters);
 						?>
-						<h3><a onclick="$('#filters_hide').toggle();
-									$('#filters_show').toggle();" ><?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?></a></h3>
-						<div id="filters_hide" style="display:none">
+						<div class="overview-list-h3">
+							<h3>
+								<?php printf(ngettext("%u active filter:", "%u active filters:", $c), $c); ?>
+							</h3>
+						</div>
+						<div class="overview_list">
 							<ul class="plugins">
 								<?php
 								if ($c > 0) {
@@ -324,10 +327,7 @@ echo '</head>';
 								}
 								?>
 							</ul>
-						</div><!-- filters_hide -->
-						<div id="filters_show">
-							<br />
-						</div><!-- filters_show -->
+						</div><!-- filters -->
 
 					</div><!-- overview-info -->
 					<br class="clearall">
@@ -340,6 +340,11 @@ echo '</head>';
 	</div>
 	<?php printAdminFooter(); ?>
 </body>
+<script type="text/javascript">
+								var height = Math.floor(($('#overview_left').height() - $('.overview-list-h3').height() * 2) / 2 - 8);
+								$('.overview_list').height(height);
+</script>
+
 <?php
 echo "</html>";
 ?>

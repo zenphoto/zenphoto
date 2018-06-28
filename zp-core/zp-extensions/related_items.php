@@ -3,11 +3,12 @@
  * Provides functionality to list (or get) objects related to the current object based on a search of the tags
  * the assigned to the current object.
  *
+ * @author Malte Müller (acrylian)
+ *
  * @package plugins/related_items
  * @pluginCategory theme
  */
 $plugin_description = gettext('Provides functionality to get the related items to an item based on a tag search.');
-$plugin_author = "Malte Müller (acrylian)";
 
 function getRelatedItems($type = 'news', $album = NULL) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_gallery_page;

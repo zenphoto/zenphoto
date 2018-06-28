@@ -11,7 +11,7 @@ define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 XSRFdefender('cloneZenphoto');
 
 if (isset($_GET['purge'])) {
@@ -30,7 +30,7 @@ if (isset($_GET['purge'])) {
 		$success = false;
 	} else {
 		$success = true;
-		$targets = array(ZENFOLDER => 'dir', USER_PLUGIN_FOLDER => 'dir', 'index.php' => 'file');
+		$targets = array('docs' => 'dir', ZENFOLDER => 'dir', USER_PLUGIN_FOLDER => 'dir', 'index.php' => 'file');
 
 		foreach ($_zp_gallery->getThemes() as $theme => $data) {
 			$targets[THEMEFOLDER . '/' . $theme] = 'dir';

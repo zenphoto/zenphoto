@@ -91,7 +91,7 @@ function getOptionContent() {
 	?>
 	<div id="tab_search" class="tabbox">
 		<form class="dirtylistening" onReset="toggle_passwords('', false);
-					setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+				setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 					<?php XSRFToken('saveoptions'); ?>
 			<input	type="hidden" name="saveoptions" value="search" />
 			<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -194,7 +194,7 @@ function getOptionContent() {
 											 name="disclose_password"
 											 id="disclose_password"
 											 onclick="passwordClear('');
-															 togglePassword('');" /><?php echo gettext('Show'); ?>
+													 togglePassword('');" /><?php echo gettext('Show'); ?>
 							</label>
 							<br />
 							<span class="password_field_">
@@ -369,8 +369,10 @@ function getOptionContent() {
 					<td class="option_value">
 						<?php printf(gettext('redo search after %s minutes.'), '<input type="textbox" size="4" name="search_cache_duration" value="' . getOption('search_cache_duration') . '" />'); ?>
 						<br />
-
-						<input type="checkbox" name="cache_random_search" value="1" <?php if (getoption('cache_random_search')) echo ' checked="checked"'; ?>> <?php echo gettext('cache searches which return randomly sorted items'); ?>
+						<label>
+							<input type="checkbox" name="cache_random_search" value="1" <?php if (getoption('cache_random_search')) echo ' checked="checked"'; ?>>
+							<?php echo gettext('cache searches which return randomly sorted items'); ?>
+						</label>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">

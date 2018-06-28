@@ -62,6 +62,24 @@ function getUserIP() {
 }
 
 /**
+ * Returns the viewer's IDs
+ *
+ * This is his username if logged in, otherwise we use getUserIP()
+ *
+ * @return string
+ */
+function getUserID() {
+	global $_themeCript, $_adminCript;
+	$id = getUserIP();
+	if ($_themeCript) {
+		$id = $_themeCript->encrypt($id);
+	} else if ($_adminCript) {
+		$id = $_adminCript->encrypt($id);
+	}
+	return $id;
+}
+
+/**
  * triggers an error
  *
  * @param string $message
@@ -381,6 +399,19 @@ function getSetClause($new_unique_set) {
 	return substr($set, 0, -1);
 }
 
+/**
+ * gating functionm for all database queries
+ * @param type $sql
+ * @param type $errorstop
+ */
+function query($sql, $errorstop = true) {
+	$result = function_exists('zp_apply_filter') ? zp_apply_filter('database_query', NULL, $sql) : NULL;
+	if (is_null($result)) {
+		return db_query($sql, $errorstop);
+	}
+	return $result;
+}
+
 /*
  * returns the connected database name
  */
@@ -446,6 +477,13 @@ function mkdir_recursive($pathname, $mode) {
  * @param string $log alternative log file
  */
 function debugLog($message, $reset = false, $log = 'debug') {
+	global $_adminCript;
+	if (getOption('debug_log_encryption')) {
+		$_logCript = $_adminCript;
+	} else {
+		$_logCript = NULL;
+	}
+
 	if (defined('SERVERPATH')) {
 		global $_zp_mutex;
 		$path = SERVERPATH . '/' . DATA_FOLDER . '/' . $log . '.log';
@@ -463,16 +501,27 @@ function debugLog($message, $reset = false, $log = 'debug') {
 				} else {
 					$clone = ' ' . gettext('clone');
 				}
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . $clone . "\n");
+				$preamble = '<span class="lognotice">{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . $clone . '</span>';
+				if ($_logCript) {
+					$preamble = $_logCript->encrypt($message);
+				}
+				fwrite($f, $preamble . NEWLINE);
 			}
 		} else {
 			$f = fopen($path, 'a');
 			if ($f) {
-				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT}\n");
+				$preamble = '<span class="lognotice">{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT}</span>";
+				if ($_logCript) {
+					$preamble = $_logCript->encrypt($message);
+				}
+				fwrite($f, $preamble . NEWLINE);
 			}
 		}
 		if ($f) {
-			fwrite($f, "  " . $message . "\n");
+			if ($_logCript) {
+				$message = $_logCript->encrypt($message);
+			}
+			fwrite($f, "  " . $message . NEWLINE);
 			fclose($f);
 			clearstatcache();
 			if (defined('DATA_MOD')) {
@@ -493,7 +542,7 @@ function debugLog($message, $reset = false, $log = 'debug') {
  */
 function debugLogBacktrace($message, $omit = 0, $log = 'debug') {
 	global $_zp_current_admin_obj, $_index_theme;
-	$output = trim($message) . "\n";
+	$output = trim($message) . NEWLINE;
 	if (array_key_exists('REQUEST_URI', $_SERVER)) {
 		$uri = sanitize($_SERVER['REQUEST_URI']);
 		preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $uri, $matches);
@@ -514,7 +563,7 @@ function debugLogBacktrace($message, $omit = 0, $log = 'debug') {
 	if ($_index_theme) {
 		$uri .= "\n " . gettext('theme') . ':' . $_index_theme;
 	}
-	$output .= $uri . "\n";
+	$output .= $uri . NEWLINE;
 	// Get a backtrace.
 	$bt = debug_backtrace();
 	while ($omit >= 0) {
@@ -690,8 +739,8 @@ function zp_setCookie($name, $value, $time = NULL, $security = true) {
 		$cookiev = zp_cookieEncode($value);
 	}
 	if (is_null($t = $time)) {
-		$t = time() + COOKIE_PESISTENCE;
-		$tString = COOKIE_PESISTENCE;
+		$t = time() + COOKIE_PERSISTENCE;
+		$tString = COOKIE_PERSISTENCE;
 	} else {
 		if ($time === false) {
 			$tString = 'FALSE';
@@ -848,14 +897,13 @@ class zpMutex {
 
 function primeOptions() {
 	global $_zp_options;
-	if (function_exists('query_full_array')) { //	incase we are in primitive mode
-		$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
-		$optionlist = query_full_array($sql, false);
-		if ($optionlist !== false) {
-			$_zp_options = array();
-			foreach ($optionlist as $option) {
-				$_zp_options[$option['name']] = $option['value'];
-			}
+	$_zp_options = array();
+
+	$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`="" AND `ownerid`=0 ORDER BY `name`';
+	$rslt = query($sql, false);
+	if ($rslt) {
+		while ($option = db_fetch_assoc($rslt)) {
+			$_zp_options[strtolower($option['name'])] = $option['value'];
 		}
 	}
 }
@@ -988,23 +1036,13 @@ function setOptionDefault($key, $default) {
  * @param string $theme
  */
 function loadLocalOptions($albumid, $theme) {
-	global $_zp_options, $_loaded_local;
-//raw theme options
-	$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=0';
+	global $_zp_options;
+	//raw theme options Order is so that Album theme options will override simple theme options
+	$sql = "SELECT LCASE(`name`) as name, `value`, `ownerid` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND (`ownerid`=0 OR `ownerid`=' . $albumid . ') ORDER BY `ownerid` ASC';
 	$optionlist = query_full_array($sql, false);
-	if ($optionlist !== false) {
+	if (!empty($optionlist)) {
 		foreach ($optionlist as $option) {
 			$_zp_options[$option['name']] = $option['value'];
-		}
-	}
-	if ($albumid) {
-//album-theme options
-		$sql = "SELECT LCASE(`name`) as name, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=' . $albumid;
-		$optionlist = query_full_array($sql, false);
-		if ($optionlist !== false) {
-			foreach ($optionlist as $option) {
-				$_zp_options[$option['name']] = $option['value'];
-			}
 		}
 	}
 }
@@ -1589,11 +1627,9 @@ function build_url($parts) {
  * @return array
  */
 function mb_parse_url($url) {
-	$enc_url = preg_replace_callback(
-					'%[^:/@?&=#]+%usD', function ($matches) {
+	$enc_url = preg_replace_callback('%[^:/@?&=#]+%usD', function ($matches) {
 		return urlencode($matches[0]);
-	}, $url
-	);
+	}, $url);
 
 	$parts = parse_url($enc_url);
 
@@ -1794,7 +1830,7 @@ function getAlbumInherited($folder, $field, &$id) {
  */
 function imageThemeSetup($album) {
 	// we need to conserve memory in i.php so loading the classes is out of the question.
-	$id = NULL;
+	$id = 0;
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {
 		$galleryoptions = getSerializedArray(getOption('gallery_data'));

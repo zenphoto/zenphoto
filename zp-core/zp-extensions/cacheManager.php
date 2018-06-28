@@ -26,7 +26,7 @@
  *
  *
  * <b>Notes:</b>
- * <ul>
+ * <ol>
  * 		<li>
  * 			Setting theme options or installing a new version of ZenPhoto20 will re-create these caching sizes.
  * 			Use a different <i>theme name</i> for custom versions that you create. If you set image options that
@@ -48,7 +48,7 @@
  * 			Caching sizes shown on the <var>cache images</var> tab will be identified
  * 			with the same post-fixes as the image names in your cache folders. Some examples
  * 			are shown below:
- * 			<ul>
+ * 			<ol>
  * 					<li>
  * 					<var>_595</var>: sized to 595 pixels
  * 				</li>
@@ -65,7 +65,7 @@
  * 					<var>_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright</var>: a custom cropped 85px
  * 						thumbnail with watermark.
  * 				</li>
- * 			</ul>
+ * 			</ol>
  *
  * 			If a field is not represented in the cache size, it is not applied.
  *
@@ -74,7 +74,7 @@
  * 			<i>template-functions</i>::<var>getCustomImageURL()</var> comment block
  * 			for details on these fields.
  * 		</li>
- * </ul>
+ * </ol>
  *
  * @author Stephen Billard (sbillard)
  *
@@ -83,7 +83,6 @@
  */
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
 $plugin_description = gettext("Provides cache management utilities for Image, HTML, and RSS caches.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'cacheManager';
 
@@ -196,8 +195,7 @@ class cacheManager {
 		self::printShowHide();
 
 		foreach ($custom as $themedata) {
-			$a = $themedata;
-			$a = array_shift($a);
+			$a = reset($themedata);
 			$themeid = $theme = $a['theme'];
 			if (array_key_exists('album', $a) && $a['album']) {
 				$album = $a['album'];

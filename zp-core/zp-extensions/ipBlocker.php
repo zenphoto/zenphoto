@@ -1,10 +1,10 @@
 <?php
 /**
  * The plugin provides two services:
- * <ul>
+ * <ol>
  * 	<li>IP address filtering</li>
  * 	<li>Detection of <i>password probing</i> attempts
- * </ul>
+ * </ol>
  *
  * <b>IP address filtering:</b>
  *
@@ -35,7 +35,6 @@
  */
 $plugin_is_filter = 10 | CLASS_PLUGIN;
 $plugin_description = gettext("Tools to block hacker access to your site.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'ipBlocker';
 

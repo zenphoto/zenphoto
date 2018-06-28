@@ -16,7 +16,7 @@
  * @return results of the sql statements
  * @since 0.6
  */
-function query($sql, $errorstop = true) {
+function db_query($sql, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_last_result, $_zp_DB_details;
 	$_zp_DB_last_result = false;
 	if ($_zp_DB_connection) {

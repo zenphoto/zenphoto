@@ -112,24 +112,36 @@ if (!defined('WEBPATH'))
 				?>
 			</div>
 			<div id="narrow">
-				<?php printImageDesc(); ?>
-				<hr /><br />
 				<?php
-				If (function_exists('printAddToFavorites'))
+				printImageDesc();
+				?>
+				<hr />
+				<br class="clearall" />
+				<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ''); ?>
+				<br class="clearall" />
+				<?php
+				If (function_exists('printAddToFavorites')) {
 					printAddToFavorites($_zp_current_image);
-				@call_user_func('printSlideShowLink');
-
-				if (getImageMetaData()) {
-					printImageMetadata(NULL, 'colorbox_meta');
 					?>
-					<br class="clearall" />
+					&nbsp;&nbsp;
 					<?php
 				}
-				printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
+				If (function_exists('printSlideShowLink')) {
+					printSlideShowLink(NULL, NULL, '&nbsp;&nbsp;');
+				}
+
+				if (function_exists('printGoogleMap')) {
+					printGoogleMap();
+					?>
+					&nbsp;&nbsp;
+					<?php
+				}
+				if (getImageMetaData()) {
+					printImageMetadata(NULL, 'colorbox');
+				}
 				?>
 				<br class="clearall" />
 				<?php
-				@call_user_func('printGoogleMap');
 				@call_user_func('printRating');
 				@call_user_func('printCommentForm');
 				?>

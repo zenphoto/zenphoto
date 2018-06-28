@@ -30,8 +30,7 @@ $plugin_is_filter = 900 | CLASS_PLUGIN;
 
 define('DEPRECATED_LOG', SERVERPATH . '/' . DATA_FOLDER . '/deprecated.log');
 
-zp_register_filter('admin_tabs', 'deprecated_functions::admin_tabs', -308);
-zp_register_filter('admin_tabs', 'deprecated_functions::tabs');
+zp_register_filter('admin_tabs', 'deprecated_functions::tabs', -308);
 
 class deprecated_functions {
 
@@ -198,10 +197,6 @@ class deprecated_functions {
 			}
 			self::log($output);
 		}
-	}
-
-	static function admin_tabs($tabs) {
-		return $tabs;
 	}
 
 }

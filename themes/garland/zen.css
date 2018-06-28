@@ -8,6 +8,13 @@ Date:     5 July 2007
 Update By: Jack Book dot Com
 ----------------------------------------------- */
 
+/* start with a clean slate */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 #navbar, #navbar-iframe {opacity:0.0;filter:alpha(Opacity=0)}
 #navbar:hover, #navbar-iframe :hover{opacity:1.0;filter:alpha(Opacity=100, FinishedOpacity=100)}
 
@@ -525,6 +532,11 @@ label:hover {
 	margin-left:0px;
 }
 
+div.menu {
+	margin-left: -20px;
+	width: 205px;
+	overflow-x: hidden;
+}
 .menu li, .menu_menulabel {
 	background: none;
 	list-style-image: none;
@@ -641,11 +653,6 @@ label:hover {
 	border-bottom: 1px dashed #E6E6DF;
 	margin:0;
 	padding:0;
-}
-
-
-#admin_tb_data ul  {
-	margin-left: -30px;
 }
 
 /* Archive View

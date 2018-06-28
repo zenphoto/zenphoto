@@ -25,7 +25,6 @@
  */
 $plugin_is_filter = 2 | CLASS_PLUGIN;
 $plugin_description = gettext("Collects and displays search criteria.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'search_statistics';
 
@@ -70,9 +69,9 @@ class search_statistics {
 				gettext('Threshold (terms)') => array('key' => 'search_statistics_terms_threshold', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 3,
 						'desc' => gettext('Show the top <em>Threshold</em> terms used in searches.')),
-				gettext('Threshold (IP)') => array('key' => 'search_statistics_ip_threshold', 'type' => OPTION_TYPE_NUMBER,
+				gettext('Threshold (ID)') => array('key' => 'search_statistics_ip_threshold', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 4,
-						'desc' => gettext('Show the top <em>Threshold</em> IPs that have performed searches.'))
+						'desc' => gettext('Show the top <em>Threshold</em> IDs that have performed searches.'))
 		);
 	}
 
@@ -99,7 +98,7 @@ class search_statistics {
 	static function handler($search_statistics, $type, $success, $dynamic, $iteration) {
 		if (!$dynamic) { // log unique user searches
 			$store = array('type' => $type, 'success' => $success, 'iteration' => $iteration, 'data' => $search_statistics);
-			$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("search_statistics", ' . db_quote(getUserIP()) . ',' . db_quote(serialize($store)) . ')';
+			$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("search_statistics", ' . db_quote(getUserID()) . ',' . db_quote(serialize($store)) . ')';
 			query($sql);
 		}
 		return $search_statistics;

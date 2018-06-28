@@ -3,7 +3,7 @@
 /**
  *
  * Supports files of the following types:
- * <ul>
+ * <ol>
  * 	<li><var>.txt</var></var>
  * 	<li><var>.htm</var></li>
  * 	<li><var>.html</var></var>
@@ -17,16 +17,9 @@
  * Some key points to note:
  * <ul>
  * 	<li>The naming convention for these plugins is class-«handler class».php.</li>
- * 	<li>The statement setting the plugin_is_filter variable must be near the front of the file. This is important
- * as it is the indicator to the plugin loader to load the script at the same point that other
- * object modules are loaded.</li>
- * <li>These objects are extension to the zenphoto "Image" class. This means they have all the properties of
- * an image plus whatever you add. Of course you will need to override some of the image class functions to
- * implement the functionality of your new class.</li>
- * <li>There is one VERY IMPORTANT method that you must provide which is not part of the "Image" base class. The
- * getContent() method. This method is called by template-functions.php in place of where it would normally put a URL
- * to the image to show. This method must do everything needed to cause your image object to be viewable by the
- * browser.</li>
+ * 	<li>The statement setting the plugin_is_filter variable must be near the front of the file. This is important	as it is the indicator to the plugin loader to load the script at the same point that other	object modules are loaded.</li>
+ * 	<li>These objects are extension to the zenphoto "Image" class. This means they have all the properties of	an image plus whatever you add. Of course you will need to override some of the image class functions to implement the functionality of your new class.</li>
+ * 	<li>There is one VERY IMPORTANT method that you must provide which is not part of the "Image" base class. The	getContent() method. This method is called by template-functions.php in place of where it would normally put a URL to the image to show. This method must do everything needed to cause your image object to be viewable by the  browser.</li>
  * </ul>
  *
  * So, briefly, the first three lines of code below are the standard plugin interface to Admin.
@@ -56,7 +49,6 @@
  */
 $plugin_is_filter = 990 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides a means for showing text type documents (.txt, .html, .htm).');
-$plugin_author = "Stephen Billard (sbillard)";
 
 
 Gallery::addImageHandler('htm', 'TextObject');

@@ -12,19 +12,7 @@ require_once("admin-functions.php");
 admin_securityChecks(ZENPAGE_NEWS_RIGHTS, currentRelativeURL());
 
 $reports = array();
-if (isset($_GET['bulkaction'])) {
-	$reports[] = zenpageBulkActionMessage(sanitize($_GET['bulkaction']));
-}
-if (isset($_GET['deleted'])) {
-	$reports[] = "<p class='messagebox fade-message'>" . gettext("Article successfully deleted!") . "</p>";
-}
 
-if (isset($_POST['checkallaction'])) { // true if apply is pressed
-	XSRFdefender('checkeditems');
-	if ($action = processZenpageBulkActions('Article')) {
-		bulkActionRedirect($action);
-	}
-}
 if (isset($_GET['delete'])) {
 	XSRFdefender('delete');
 	$msg = deleteZenpageObj(newArticle(sanitize($_GET['delete']), 'admin-news.php'));
@@ -47,12 +35,37 @@ if (isset($_GET['commentson'])) {
 	$obj->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
 	$obj->save();
 }
+
 if (isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
 	$obj = newArticle(sanitize($_GET['titlelink']));
 	$obj->set('hitcounter', 0);
 	$obj->save();
 	$reports[] = '<p class="messagebox fade-message">' . gettext("Hitcounter reset") . '</p>';
+}
+
+if (isset($_POST['checkallaction'])) { // true if apply is pressed
+	XSRFdefender('checkeditems');
+	$action = processZenpageBulkActions('Article');
+	if ($report = zenpageBulkActionMessage($action)) {
+		$reports[] = $report;
+	} else {
+		if (empty($reports)) {
+			$reports[] = "<p class='notebox fade-message'>" . gettext("Nothing changed.") . "</p>";
+		}
+	}
+}
+
+if (empty($reports)) {
+	if (isset($_SESSION['reports'])) {
+		$reports = $_SESSION['reports'];
+		unset($_SESSION['reports']);
+	}
+} else {
+	$_SESSION['reports'] = $reports;
+	$uri = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news.php' . getNewsAdminOptionPath(getNewsAdminOption(NULL));
+	header('Location: ' . $uri);
+	exitZP();
 }
 
 printAdminHeader('news', 'articles');
@@ -72,10 +85,6 @@ updatePublished('news');
 		}
 	}
 
-	function gotoLink(form) {
-		var OptionIndex = form.ListBoxURL.selectedIndex;
-		parent.location = form.ListBoxURL.options[OptionIndex].value;
-	}
 	// ]]> -->
 </script>
 
@@ -146,7 +155,7 @@ updatePublished('news');
 						$published = 'all';
 					}
 					$sortorder = 'publishdate';
-					$direction = true;
+					$direction = $sortdirection = true;
 					if (isset($_GET['sortorder'])) {
 						list($sortorder, $sortdirection) = explode('-', $_GET['sortorder']);
 						$direction = $sortdirection && $sortdirection == 'desc';

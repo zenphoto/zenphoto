@@ -19,10 +19,12 @@
  */
 $plugin_is_filter = defaultExtension(100 | CLASS_PLUGIN);
 $plugin_description = gettext('Logs selected security events.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'security_logger';
 
+if (getOption('security_log_encryption')) {
+	$_logCript = $_adminCript;
+}
 if (getOption('logger_log_admin')) {
 	zp_register_filter('admin_login_attempt', 'security_logger::adminLoginLogger');
 	zp_register_filter('federated_login_attempt', 'security_logger::federatedLoginLogger');
@@ -56,8 +58,9 @@ class security_logger {
 			setOptionDefault('logger_log_guests', 1);
 			setOptionDefault('logger_log_admin', 1);
 			setOptionDefault('logger_log_type', 'all');
-			setOptionDefault('logge_access_log_type', 'all_user');
+			setOptionDefault('logger_access_log_type', 'all_user');
 			setOptionDefault('security_log_size', 5000000);
+			setOptionDefault('security_log_encryption', 0);
 		}
 	}
 
@@ -94,7 +97,7 @@ class security_logger {
 	 * @param string $addl more info
 	 */
 	private static function Logger($success, $user, $name, $action, $authority, $addl = NULL) {
-		global $_zp_authority, $_zp_mutex;
+		global $_zp_authority, $_zp_mutex, $_logCript;
 		$ip = sanitize($_SERVER['REMOTE_ADDR']);
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			$proxy_list = explode(",", $_SERVER['HTTP_X_FORWARDED_FOR']);
@@ -178,7 +181,8 @@ class security_logger {
 		if ($f) {
 			if (!$preexists) { // add a header
 				@chmod($file, DATA_MOD);
-				fwrite($f, gettext('date' . "\t" . 'requestor’s IP' . "\t" . 'type' . "\t" . 'user ID' . "\t" . 'user name' . "\t" . 'outcome' . "\t" . 'authority' . "\tadditional information\n"));
+				$message = gettext('date' . "\t" . 'requestor’s IP' . "\t" . 'type' . "\t" . 'user ID' . "\t" . 'user name' . "\t" . 'outcome' . "\t" . 'authority' . "\tadditional information");
+				fwrite($f, $message . NEWLINE);
 			}
 			$message = date('Y-m-d H:i:s') . "\t";
 			$message .= $ip . "\t";
@@ -187,13 +191,13 @@ class security_logger {
 			$message .= $name . "\t";
 			switch ($success) {
 				case 0:
-					$message .= gettext("Failed") . "\t";
+					$message .= '<span class="error">' . gettext("Failed") . "</span>\t";
 					break;
 				case 1:
 					$message .= gettext("Success") . "\t";
 					break;
 				case 2:
-					$message .= gettext("Blocked") . "\t";
+					$message .= '<span class="logwarning">' . gettext("Blocked") . "</span>\t";
 					break;
 				case 3:
 					$message .= $aux1 . "\t";
@@ -203,7 +207,10 @@ class security_logger {
 			if ($addl) {
 				$message .= "\t" . $addl;
 			}
-			fwrite($f, $message . "\n");
+			if ($_logCript) {
+				$message = $_logCript->encrypt($message);
+			}
+			fwrite($f, $message . NEWLINE);
 			fclose($f);
 			clearstatcache();
 		}
@@ -316,15 +323,17 @@ class security_logger {
 	 */
 	static function adminGate($allow, $page) {
 		list($user, $name) = security_logger::populate_user();
-		switch (getOption('logge_access_log_type')) {
-			case 'all':
-				break;
-			case 'all_user':
-				if (!$user)
-					return $allow;
-				break;
+		if (!$allow) {
+			switch (getOption('logge_access_log_type')) {
+				case 'all':
+					break;
+				case 'all_user':
+					if (!$user)
+						return $allow;
+					break;
+			}
+			security_logger::Logger(0, $user, $name, 'blocked_access', '', getRequestURI());
 		}
-		security_logger::Logger(0, $user, $name, 'blocked_access', '', getRequestURI());
 		return $allow;
 	}
 
@@ -380,7 +389,8 @@ class security_logger {
 	 */
 	static function admin_XSRF_access($discard, $token) {
 		list($user, $name) = security_logger::populate_user();
-		security_logger::Logger(2, $user, $name, 'XSRF_blocked', '', $token);
+		$uri = getRequestURI();
+		security_logger::Logger(2, $user, $name, 'XSRF_blocked', $token, $uri);
 		return false;
 	}
 

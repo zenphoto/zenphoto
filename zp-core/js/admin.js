@@ -78,6 +78,27 @@ function validateFolder(folderObj, msg1, msg2) {
 	}
 }
 
+function updateFolder(nameObj, folderID, checkboxID, msg1, msg2) {
+	var autogen = document.getElementById(checkboxID).checked;
+	var folder = document.getElementById(folderID);
+	var parentfolder = document.getElementById('albumselectmenu').value;
+	if (parentfolder != '')
+		parentfolder += '/';
+	var name = nameObj.value;
+	var fname = "";
+	var fnamesuffix = "";
+	var count = 1;
+	if (autogen && name != "") {
+		fname = seoFriendlyJS(name);
+		while (contains(albumArray, parentfolder + fname + fnamesuffix)) {
+			fnamesuffix = "-" + count;
+			count++;
+		}
+	}
+	folder.value = parentfolder + fname + fnamesuffix;
+	return validateFolder(folder, msg1, msg2);
+}
+
 function toggleAutogen(fieldID, nameID, checkbox) {
 	var field = document.getElementById(fieldID);
 	var name = document.getElementById(nameID);
@@ -350,7 +371,6 @@ function addNewTag(id) {
 	}
 }
 
-
 function confirmDeleteAlbum(url) {
 	if (confirm(deleteAlbum1)) {
 		if (confirm(deleteAlbum2)) {
@@ -372,4 +392,13 @@ function launchScript(script, params) {
 		params = '?' + params.join('&');
 	}
 	window.location = script + params;
+}
+
+/**
+ * General function for form select menus to jump to the url stored in their <option> elements' value attributes
+ * @param string form ID of the form 
+ */
+function zp_gotoLink(form) {
+	var OptionIndex = form.ListBoxURL.selectedIndex;
+	parent.location = form.ListBoxURL.options[OptionIndex].value;
 }

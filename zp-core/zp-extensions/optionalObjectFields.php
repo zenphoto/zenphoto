@@ -48,7 +48,6 @@
 $plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN); //	we want this done last so the codeblocks go at the end
 $plugin_description = gettext('Handles the "optional" object fields');
 $plugin_notice = (extensionEnabled('optionalObjectFields')) ? '' : gettext('<strong>IMPORTANT</strong>: This plugin enables the "tags" database fields. If disabled the admin <em>tags</em> tab will not be present. Click on the <em>More information</em> icon for details.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 
@@ -518,9 +517,18 @@ class optionalObjectFields extends fieldExtender {
 				?>
 				<span id="WMUSE_<?php echo $i; ?>" style="display:<?php echo $displaystyle; ?>">
 					<?php $wmuse = $image->getWMUse(); ?>
-					<label><input type="checkbox" value="1" id="wm_image-<?php echo $i; ?>" name="wm_image-<?php echo $i; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> /><?php echo gettext('image'); ?></label>
-					<label><input type="checkbox" value="1" id="wm_thumb-<?php echo $i; ?>" name="wm_thumb-<?php echo $i; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> /><?php echo gettext('thumb'); ?></label>
-					<label><input type="checkbox" value="1" id="wm_full-<?php echo $i; ?>" name="wm_full-<?php echo $i; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> /><?php echo gettext('full image'); ?></label>
+					<label>
+						<input type="checkbox" value="1" id="wm_image-<?php echo $i; ?>" name="wm_image-<?php echo $i; ?>" <?php if ($wmuse & WATERMARK_IMAGE) echo 'checked="checked"'; ?> />
+						<?php echo gettext('image'); ?>
+					</label>
+					<label>
+						<input type="checkbox" value="1" id="wm_thumb-<?php echo $i; ?>" name="wm_thumb-<?php echo $i; ?>" <?php if ($wmuse & WATERMARK_THUMB) echo 'checked="checked"'; ?> />
+						<?php echo gettext('thumb'); ?>
+					</label>
+					<label>
+						<input type="checkbox" value="1" id="wm_full-<?php echo $i; ?>" name="wm_full-<?php echo $i; ?>" <?php if ($wmuse & WATERMARK_FULL) echo 'checked="checked"'; ?> />
+						<?php echo gettext('full image'); ?>
+					</label>
 				</span>
 				<?php
 				$item = ob_get_contents();

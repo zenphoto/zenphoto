@@ -13,11 +13,10 @@
  * @pluginCategory development
  */
 
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = 20 | ADMIN_PLUGIN;
 $plugin_description = gettext("Site rewrite rules subtab.");
-$plugin_author = "Stephen Billard (sbillard)";
 
-zp_register_filter('admin_tabs', 'rewriteRules::tabs');
+zp_register_filter('admin_tabs', 'rewriteRules::tabs', 100);
 
 class rewriteRules {
 
@@ -26,6 +25,7 @@ class rewriteRules {
 			if (!isset($tabs['development'])) {
 				$tabs['development'] = array('text' => gettext("development"),
 						'link' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rewriteRules/admin_tab.php?page=development&tab=rewrite',
+						'default' => "rewrite",
 						'subtabs' => NULL);
 			}
 			$tabs['development']['subtabs'][gettext("rewrite")] = PLUGIN_FOLDER . '/rewriteRules/admin_tab.php?page=development&tab=rewrite';

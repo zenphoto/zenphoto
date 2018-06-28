@@ -9,16 +9,16 @@
  * <i>exclude</i> parameter to the theme page body close filter application. e.g.
  * <code>zp_apply_filter('theme_body_close',array("matomo_tag"));</code>
  *
- * Additionally it provides content macro [MATOMO_OPTOUT] that embeds a facility for visitors to optout of tracking as required by the law of several countries.
+ * Additionally a content macro [MATOMO_OPTOUT] is provided that embeds a facility for visitors to optout of tracking as required by the law of several countries.
  * Place this on your privacy statement page.
  *
- * You can also add Matomo widget iFrame code to view your statistics via a Zenphoto backend utility.
+ * You can add Matomo widget iFrame code to view your statistics via a Zenphoto backend utility.
  *
- * Please visit the Matomo site for the Matomo software and installation instructions.
+ * Please visit the {@link https://matomo.org/docs/ Matomo} site for the Matomo software and installation instructions.
  *
  * <hr>
  *
- * Quoted from [matomo.org](http://matomo.org).
+ * Quoted from {@link http://matomo.org <b>matomo.org</b>}.
  *
  *  Matomo is a downloadable, open source (GPL licensed) real time web analytics software program.
  *  It provides you with detailed reports on your website visitors:
@@ -26,12 +26,14 @@
  *
  *  Matomo aims to be an open source alternative to Google Analytics.
  *
+ * @author Stephen Billard (sbillard), Malte Müller (acrylian)
+ *
+ *
  * @package plugins/matomo
  * @pluginCategory seo
  */
 $plugin_is_filter = 9 | ADMIN_PLUGIN | THEME_PLUGIN;
-$plugin_description = gettext('A plugin to insert your Matomo (formerly Piwik) JavaScript tracking code into your theme pages.');
-$plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
+$plugin_description = gettext('A plugin to insert Matomo (formerly Piwik) JavaScript tracking code into theme pages.');
 
 $option_interface = 'matomoStats';
 
@@ -60,41 +62,73 @@ class matomoStats {
 			if (extensionEnabled('piwik')) {
 				enableExtension('matomo', 9 | ADMIN_PLUGIN | THEME_PLUGIN);
 			}
+			setOptionDefault('matomo_disablecookies', 0);
 		}
+		setOptionDefault('matomo_requireconsent', 'no-consent');
 	}
 
 	function getOptionsSupported() {
+		$langs = $langs_list = array();
+		$langs_list = generateLanguageList();
+		foreach ($langs_list as $text => $lang) {
+			$langs[$text] = $lang;
+		}
 		return array(
 				gettext('Matomo url') => array(
 						'key' => 'matomo_url',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 0,
-						'desc' => gettext('Enter your Matomo installation URL including protocol (e.g. <code>https://domain.com</code>).')),
+						'desc' => sprintf(gettext('Enter your Matomo installation URL including protocol (e.g. <code>%s</code>).'), FULLHOSTPATH)),
 				gettext('Site id') => array(
 						'key' => 'matomo_id',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 1,
-						'desc' => gettext('Enter the site id assigned by Matomo.')),
-				gettext('Enable Admin tracking') => array(
+						'desc' => gettext('Enter the id assigned to your site by Matomo.')),
+				gettext('Admin tracking') => array(
 						'key' => 'matomo_admintracking',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 2,
-						'desc' => gettext('Controls if you want Matomo to track users with <code>Admin</code> rights.')),
-				gettext('Main domain for subdomain tracking') => array(
+						'order' => 3,
+						'desc' => gettext('Check if you want Matomo to track users with <code>Admin</code> rights.')),
+				gettext('Site domain') => array(
 						'key' => 'matomo_sitedomain',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 2,
+						'order' => 4,
 						'multilingual' => false,
-						'desc' => gettext('Enter your site domain name if you also like to track all subdomains of it. Enter like <code>domain.com</code>.')),
+						'desc' => sprintf(gettext('Enter your site domain name (e.g. <code>%s</code>) if you would like to track all your subdomains.'), $_SERVER['HTTP_HOST'])),
 				gettext('Widgets: Embed code') => array(
 						'key' => 'matomo_widgets_code',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'order' => 1,
+						'order' => 5,
 						'multilingual' => false,
-						'desc' => gettext('Enter widget iframe code if you like to embed statistics to your Zenphoto backend. You can view it via a utility button afterwards. Visit the widget area on your Matomo install for more info.'))
+						'desc' => gettext('Enter widget iframe code if you like to embed statistics to your Zenphoto backend. This enables MATOMO STATISTICS on the OVERVIEW fly-out menu. Visit <a href="https://developer.matomo.org/guides/widgets">Matomo guides</a> for more information.')),
+				gettext('Language to track') => array(
+						'order' => 6,
+						'key' => 'matomo_language_tracking',
+						'type' => OPTION_TYPE_SELECTOR,
+						'null_selection' => 'HTTP_Accept_Language',
+						'selections' => $langs,
+						'desc' => gettext('Select which language you want use when you track page titles. Selecting <em>HTTP Accept Language</em> will use the visitor\'s language. Selecting a single language avoids tracking multiple titles per page. <strong>Note</strong>: Selecting a single language is not recommend for SEO reasons. Each language version of a page really is separate content.')),
+				gettext('Disable cookies') => array(
+						'key' => 'matomo_disablecookies',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 7,
+						'desc' => gettext('Check this so Matomo does not use cookies to track visitors (less accurate tracking).')),
+				gettext('User onsent') => array(
+						'key' => 'matomo_requireconsent',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(
+								gettext('Not required') => 'no-consent',
+								gettext('Required') => 'consent-required',
+								gettext('Required and remembered') => 'consent-required-remembered'
+						),
+						'order' => 8,
+						'desc' => gettext('How Matomo will deal with users consent about tracking statistics. <em>Required and remembered</em> requires cookies.'))
 		);
 	}
 
+	/**
+	 * Adds the Matomo statistic script
+	 */
 	static function script($exclude = NULL) {
 		if (empty($exclude) || (!in_array('matomo_tag', $exclude))) {
 			$url = getOption('matomo_url');
@@ -104,10 +138,33 @@ class matomoStats {
 			<!-- Matomo -->
 			<script type="text/javascript">
 				var _paq = _paq || [];
-			<?php if ($sitedomain) { ?>
-					_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+				_paq.push(["setDocumentTitle", '<?php echo matomoStats::printDocumentTitle(); ?>']);
+			<?php
+			if ($sitedomain) {
+				switch (getOption('matomo_requireconsent')) {
+					case 'no-consent':
+						break;
+					case 'consent-required-remembered':
+						?>
+							_paq.push(['rememberConsentGiven']);
+						<?php
+						break;
+					default:
+						?>
+							_paq.push(['requireConsent']);
+						<?php
+						break;
+				}
+				?>
 					_paq.push(["setCookieDomain", "*.<?php echo $sitedomain; ?>"]);
-			<?php } ?>
+				<?php
+			}
+			if (getOption('matomo_disablecookies')) {
+				?>
+					_paq.push(['disableCookies']);
+				<?php
+			}
+			?>
 				_paq.push(['trackPageView']);
 				_paq.push(['enableLinkTracking']);
 				(function () {
@@ -147,6 +204,11 @@ class matomoStats {
 		return '<iframe style="border: 0; height: 200px; width: 100%;" src="' . $src . '"></iframe>';
 	}
 
+	/**
+	 * The macro button for the utility page
+	 * @param type $macros
+	 * @return type
+	 */
 	static function macro($macros) {
 		$macros['MATOMO_OPTOUT'] = array(
 				'class' => 'function',
@@ -158,5 +220,24 @@ class matomoStats {
 		return $macros;
 	}
 
+	/**
+	 * Gets the document title of the current page to track. Gets the title in a single language only if the option for single_language_tracking is set
+	 * @global string $_zp_current_locale
+	 */
+	static function printDocumentTitle() {
+		global $_zp_current_locale;
+
+		$locale_to_track = getOption('matomo_language_tracking');
+		if ($locale_to_track != $_zp_current_locale && $locale_to_track != NULL) {
+			$original_locale = getOption('locale');
+			setOption('locale', $locale_to_track, false);
+			setupCurrentLocale($locale_to_track);
+		}
+		echo js_encode(getHeadTitle());
+		if ($original_locale != NULL) {
+			setOption('locale', $original_locale, false);
+			setupCurrentLocale($original_locale);
+		}
+	}
+
 }
-?>

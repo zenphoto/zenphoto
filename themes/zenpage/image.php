@@ -128,6 +128,7 @@ if (!defined('WEBPATH'))
 							printAddToFavorites($_zp_current_image);
 						@call_user_func('printRating');
 						@call_user_func('printGoogleMap');
+						@call_user_func('printOpenStreetMap');
 						?>
 
 					</div>

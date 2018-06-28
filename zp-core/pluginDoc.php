@@ -1,5 +1,4 @@
 <?php
-
 /**
  *
  * Displays a "plugin usage" document based on the plugin's doc comment block.
@@ -12,7 +11,8 @@
  * <var> mono-spaced text
  * <code> code blocks (Note: PHPDocs will create an ordered list of the enclosed text)
  * <hr> horizontal rule
- * <ul><li>, <ol><li> lists
+ * <ul><li> bulleted list
+ * <ol><li> lists
  * <pre>
  * <br> line break
  * </code>
@@ -31,6 +31,8 @@
  * @pluginCategory development
  */
 // force UTF-8 Ø
+
+global $_zp_CMS;
 
 function processCommentBlock($commentBlock) {
 	global $plugin_author, $subpackage;
@@ -80,7 +82,7 @@ function processCommentBlock($commentBlock) {
 	$empty = false;
 	$lines = explode("\n", strtr($commentBlock, $const_tr));
 	foreach ($lines as $line) {
-		$line = trim(preg_replace('/^\s*\*/', '', $line));
+		$line = trim(preg_replace('~^\s*\*~', '', $line));
 		if (empty($line)) {
 			if (!$empty) {
 				if ($par) {
@@ -141,6 +143,7 @@ function processCommentBlock($commentBlock) {
 					}
 				}
 				$doc .= strtr(html_encodeTagged($line), array_merge($tags, $markup)) . ' ';
+
 				$empty = false;
 			}
 		}
@@ -208,7 +211,7 @@ if (!defined('OFFSET_PATH')) {
 		}
 	}
 
-	$pluginStream = @file_get_contents($pluginToBeDocPath);
+	$pluginStream = str_replace('/* LegacyConverter was here */', '', @file_get_contents($pluginToBeDocPath));
 	$i = strpos($pluginStream, '/*');
 	$j = strpos($pluginStream, '*/');
 
@@ -321,8 +324,11 @@ if (!defined('OFFSET_PATH')) {
 					margin-left: 3em;
 				}
 
-
-				ul, ol {
+				ul {
+					list-style: bullet;
+					padding: 0;
+				}
+				ol {
 					list-style: none;
 					padding: 0;
 				}
@@ -364,7 +370,7 @@ if (!defined('OFFSET_PATH')) {
 						<?php echo $plugin_description; ?>
 					</div>
 					<?php
-					if ($pluginType == 'thirdparty') {
+					if ($pluginType == 'thirdparty' && $plugin_version) {
 						?>
 						<h3><?php printf('Version: %s', $plugin_version); ?></h3>
 						<?php
@@ -410,53 +416,67 @@ if (!defined('OFFSET_PATH')) {
 								$options = array_keys($options);
 							} else {
 								$options = array_keys($supportedOptions);
-								natcasesort($options);
+								sort($options, SORT_NATURAL | SORT_FLAG_CASE);
 							}
 							$notes = array();
-							?>
-							<hr />
-							<p>
-								<?php echo ngettext('Option:', 'Options:', count($options)); ?>
-								<ul class="options">
-									<?php
-									foreach ($options as $option) {
-										if (array_key_exists($option, $supportedOptions)) {
-											$row = $supportedOptions[$option];
-											if ($row['type'] == OPTION_TYPE_NOTE) {
-												$notes[] = $row;
-											} else {
-												if (false !== $i = stripos($option, chr(0))) {
-													$option = substr($option, 0, $i);
-												}
-												if ($option) {
-													?>
-													<li><code><?php echo $option; ?></code></li>
-													<?php
-												}
-											}
+							foreach ($options as $key => $option) {
+								if (array_key_exists($option, $supportedOptions)) {
+									$row = $supportedOptions[$option];
+									if ($row['type'] == OPTION_TYPE_NOTE) {
+										$n = getBare($row['desc']);
+										if (!empty($n)) {
+											$row['desc'] = $n;
+											$notes[] = $row;
+										}
+										unset($options[$key]);
+									} else {
+										if (false !== $i = stripos($option, chr(0))) {
+											$option = substr($option, 0, $i);
+										}
+										if (!$option) {
+											unset($options[$key]);
 										}
 									}
-									?>
-								</ul>
-							</p>
-							<?php
+								} else {
+									unset($options[$key]);
+								}
+							}
+							if (!empty($options)) {
+								?>
+								<hr />
+								<p>
+									<?php echo ngettext('Option:', 'Options:', count($options)); ?>
+									<ol class="options">
+										<?php
+										foreach ($options as $option) {
+											if (false !== $i = stripos($option, chr(0))) {
+												$option = substr($option, 0, $i);
+											}
+											if ($option) {
+												?>
+												<li><code><?php echo $option; ?></code></li>
+												<?php
+											}
+										}
+										?>
+									</ol>
+								</p>
+								<?php
+							}
 							if (!empty($notes)) {
 								?>
 								<hr />
 								<p>
 									<?php echo gettext('Notes:'); ?>
-									<ul>
+									<ol>
 										<?php
 										foreach ($notes as $note) {
-											$n = getBare($note['desc']);
-											if (!empty($n)) {
-												?>
-												<li><code><?php echo $note['desc']; ?></li>
-												<?php
-											}
+											?>
+											<li><?php echo $note['desc']; ?></li>
+											<?php
 										}
 										?>
-									</ul>
+									</ol>
 								</p>
 								<?php
 							}

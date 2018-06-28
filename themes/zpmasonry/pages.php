@@ -28,9 +28,9 @@
 		<div class="post">
 			<h1><?php printPageTitle(); ?></h1>
 			<?php printPageContent();
-			printCodeblock(); ?>
+			printCodeblock();
+			?>
 		</div>
-		<?php if (function_exists('printRating')) { ?><div class="post"><?php printRating(); ?></div><?php } ?>
 <?php if (function_exists('printCommentForm')) { ?><div class="post"><?php printCommentForm(); ?></div><?php } ?>
 	</div>
 </div>

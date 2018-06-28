@@ -179,11 +179,11 @@ switch (SERVER_PROTOCOL) {
 		break;
 }
 
-if (!defined('COOKIE_PESISTENCE')) {
+if (!defined('COOKIE_PERSISTENCE')) {
 	$persistence = getOption('cookie_persistence');
 	if (!$persistence)
 		$persistence = 5184000;
-	define('COOKIE_PESISTENCE', $persistence);
+	define('COOKIE_PERSISTENCE', $persistence);
 	unset($persistence);
 }
 if ($c = getOption('zenphoto_cookie_path')) {
@@ -220,6 +220,7 @@ define('UTF8_IMAGE_URI', getOption('UTF8_image_URI'));
 define('MEMBERS_ONLY_COMMENTS', getOption('comment_form_members_only'));
 
 define('HASH_SEED', getOption('extra_auth_hash_text'));
+
 define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
 
 define('NO_WATERMARK', '!');

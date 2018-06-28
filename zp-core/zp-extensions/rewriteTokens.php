@@ -9,12 +9,11 @@
  */
 $plugin_is_filter = defaultExtension(950 | ADMIN_PLUGIN);
 $plugin_description = gettext('Utility to alter the rewrite token substitutions array in the configuration file.');
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.');
 
 $option_interface = 'rewriteTokens';
 
-zp_register_filter('admin_tabs', 'rewriteTokens::tabs');
+zp_register_filter('admin_tabs', 'rewriteTokens::tabs', 100);
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
 
@@ -190,6 +189,7 @@ class rewriteTokens {
 			if (!isset($tabs['development'])) {
 				$tabs['development'] = array('text' => gettext("development"),
 						'link' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=development&tab=tokens',
+						'default' => "tokens",
 						'subtabs' => NULL);
 			}
 			$tabs['development']['subtabs'][gettext("tokens")] = PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=development&tab=tokens';

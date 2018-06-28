@@ -41,8 +41,10 @@ function printThemeHeadItems() {
 	<title><?php echo getHeadTitle(getOption('theme_head_separator'), getOption('theme_head_listparents')); ?></title>
 
 	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/loginForm.css" type="text/css" />
-	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
+
 	<?php
+	load_jQuery_CSS();
+	load_jQuery_scripts('theme');
 	if (zp_loggedin()) {
 		?>
 		<link rel="stylesheet" href="<?php echo getPlugin('toolbox.css', true, true); ?>" type="text/css" />
@@ -63,6 +65,20 @@ function adminToolbox() {
 		$page = getCurrentPage();
 		if (!$name = $_zp_current_admin_obj->getName()) {
 			$name = $_zp_current_admin_obj->getUser();
+		}
+		if (zp_loggedin(UPLOAD_RIGHTS) && in_array($_zp_gallery_page, array('index.php', 'gallery.php', 'album.php'))) {
+			?>
+			<script type="text/javascript">
+				// <!-- <![CDATA[
+				function newAlbum(folder, albumtab) {
+					var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
+					if (album) {
+						launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'folder=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+					}
+				}
+				// ]]> -->
+			</script>
+			<?php
 		}
 		?>
 		<div id="<?php echo $id; ?>">
@@ -90,11 +106,20 @@ function adminToolbox() {
 					<?php
 				}
 				if (zp_loggedin(ALBUM_RIGHTS)) {
-					?>
-					<li>
-						<?php printLinkHTML($zf . '/admin-edit.php', gettext("Albums"), NULL, NULL, NULL); ?>
-					</li>
-					<?php
+					$albums = $_zp_gallery->getAlbums();
+					foreach ($albums as $key => $analbum) {
+						$albumobj = newAlbum($analbum);
+						if (!$albumobj->isMyItem(ALBUM_RIGHTS)) {
+							unset($albums[$key]);
+						}
+					}
+					if (!empty($albums)) {
+						?>
+						<li>
+							<?php printLinkHTML($zf . '/admin-edit.php', gettext("Albums"), NULL, NULL, NULL); ?>
+						</li>
+						<?php
+					}
 				}
 				zp_apply_filter('admin_toolbox_global', $zf);
 
@@ -105,10 +130,16 @@ function adminToolbox() {
 					</li>
 					<?php
 				}
-				if (zp_loggedin(USER_RIGHTS)) {
+				if (zp_loggedin(ADMIN_RIGHTS)) {
 					?>
 					<li>
 						<?php printLinkHTML($zf . '/admin-users.php', gettext("Users"), NULL, NULL, NULL); ?>
+					</li>
+					<?php
+				} else if (zp_loggedin(USER_RIGHTS)) {
+					?>
+					<li>
+						<?php printLinkHTML($zf . '/admin-users.php', gettext("My profile"), NULL, NULL, NULL); ?>
 					</li>
 					<?php
 				}
@@ -152,16 +183,7 @@ function adminToolbox() {
 						if (zp_loggedin(UPLOAD_RIGHTS)) {
 							// admin has upload rights, provide an upload link for a new album
 							?>
-							<script type="text/javascript">
-								// <!-- <![CDATA[
-								function newAlbum(folder, albumtab) {
-									var album = prompt('<?php echo gettext('New album name?'); ?>', '<?php echo gettext('new album'); ?>');
-									if (album) {
-										launchScript('<?php echo PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php', ['action=newalbum', 'album=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
-									}
-								}
-								// ]]> -->
-							</script>
+
 							<li>
 								<a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a>
 							</li>
@@ -232,10 +254,10 @@ function adminToolbox() {
 							// provide an album upload link if the admin has upload rights for this album and it is not a dynamic album
 							?>
 							<li>
-								<?php printLinkHTML($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
+								<?php printLinkHTML($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload here"), NULL, NULL, NULL); ?>
 							</li>
 							<li>
-								<a href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New Album Here"); ?></a>
+								<a href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New subalbum"); ?></a>
 							</li>
 							<?php
 						}
@@ -314,7 +336,7 @@ function adminToolbox() {
 					$link = SEO_FULLWEBPATH . '/index.php?logout=' . $sec . $redirect;
 					?>
 					<li>
-						<a href="<?php echo $link; ?>"><?php echo gettext("Logout"); ?> </a>
+						<a href="<?php echo $link; ?>" id="toolbox_logout"><?php echo gettext("Logout"); ?> </a>
 					</li>
 				</ul>
 			</div>
@@ -441,7 +463,13 @@ function getHeadTitle($separator = ' | ', $listparents = true) {
 			break;
 		default: // for all other possible static custom pages
 			$custompage = stripSuffix($_zp_gallery_page);
-			$standard = array('contact' => gettext('Contact'), 'register' => gettext('Register'), 'search' => gettext('Search'), 'archive' => gettext('Archive view'), 'password' => gettext('Password required'));
+			$standard = array(
+					'contact' => gettext('Contact'),
+					'register' => gettext('Register'),
+					'search' => gettext('Search'),
+					'archive' => gettext('Archive view'),
+					'password' => gettext('Password required')
+			);
 			if (is_object($_myFavorites)) {
 				$standard['favorites'] = gettext('My favorites');
 			}
@@ -923,12 +951,12 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 				if ($firstlast) {
 					?>
 					<li class="<?php
-					if ($current == 1)
-						echo 'current';
-					else
-						echo 'first';
+			if ($current == 1)
+				echo 'current';
+			else
+				echo 'first';
 					?>">
-								<?php
+							<?php
 								if ($current == 1) {
 									echo '1';
 								} else {
@@ -1325,7 +1353,7 @@ function getParentBreadcrumb() {
 			}
 		}
 
-		if (empty($dynamic_album)) {
+		if (!empty($dynamic_album)) {
 			// remove parent links that are not in the search path
 			foreach ($parents as $key => $analbum) {
 				$target = $analbum->name;
@@ -3040,7 +3068,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		$id = ' id="' . $id . '"';
 	}
 	if ($class) {
-		$id .= ' class="' . $class . '"';
+		$id = ' class="' . $class . '"';
 	}
 	if ($title) {
 		$title = ' title="' . html_encode($title) . '"';
@@ -3616,7 +3644,7 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 	$lastyear = "";
 	echo "\n<ul $class>\n";
 	$nr = 0;
-	while (list($key, $val) = each($datecount)) {
+	foreach ($datecount as $key => $val) {
 		$nr++;
 		if ($key == '0000-00-01') {
 			$year = "no date";
@@ -3900,39 +3928,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-													// <!-- <![CDATA[
-													var within = <?php echo (int) $within; ?>;
-													function search_(way) {
-														within = way;
-														if (way) {
-															$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-														} else {
-															lastsearch = '';
-															$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-														}
-														$('#search_input').val('');
-													}
-													$('#search_form').submit(function () {
-														if (within) {
-															var newsearch = $.trim($('#search_input').val());
-															if (newsearch.substring(newsearch.length - 1) == ',') {
-																newsearch = newsearch.substr(0, newsearch.length - 1);
-															}
-															if (newsearch.length > 0) {
-																$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-															} else {
-																$('#search_input').val('<?php echo $searchwords; ?>');
-															}
-														}
-														return true;
-													});
-													function search_all() {
-														//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-														var check = $('#SEARCH_checkall').prop('checked');
-														$('.SEARCH_checkall').prop('checked', check);
-													}
+							// <!-- <![CDATA[
+							var within = <?php echo (int) $within; ?>;
+							function search_(way) {
+								within = way;
+								if (way) {
+									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+								} else {
+									lastsearch = '';
+									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+								}
+								$('#search_input').val('');
+							}
+							$('#search_form').submit(function () {
+								if (within) {
+									var newsearch = $.trim($('#search_input').val());
+									if (newsearch.substring(newsearch.length - 1) == ',') {
+										newsearch = newsearch.substr(0, newsearch.length - 1);
+									}
+									if (newsearch.length > 0) {
+										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+									} else {
+										$('#search_input').val('<?php echo $searchwords; ?>');
+									}
+								}
+								return true;
+							});
+							function search_all() {
+								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+								var check = $('#SEARCH_checkall').prop('checked');
+								$('.SEARCH_checkall').prop('checked', check);
+							}
 
-													// ]]> -->
+							// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
@@ -4308,6 +4336,52 @@ function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
 }
 
 /**
+ * displays a policy submit controlled button
+ *
+ * @global type $_zp_current_admin_obj
+ * @param string $buttonText The text displayed on the button
+ * @param string $buttonClass optional class to be added to the button
+ * @param string $buttonExtra provided for captcha support
+ */
+function policySubmitButton($buttonText, $buttonClass = NULL, $buttonExtra = NULL) {
+	global $_zp_current_admin_obj;
+	if (getOption('GDPR_acknowledge') && !($_zp_current_admin_obj && $_zp_current_admin_obj->getPolicyAck()) && zp_getCookie('policyACK') != getOption('GDPR_cookie')) {
+		?>
+		<span id="GDPR_acknowledge">
+			<input type="checkbox" name="policy_acknowledge" onclick="$('#submitbutton').show();
+					$('#GDPR_acknowledge').hide();" value="<?php echo md5(getUserID() . getOption('GDPR_cookie')); ?>">
+						 <?php
+						 echo sprintf(get_language_string(getOption('GDPR_text')), getOption('GDPR_URL'));
+						 ?>
+		</span>
+		<?php
+		$display = ' style="display:none;"';
+	} else {
+		$display = '';
+	}
+	?>
+	<button id="submitbutton" class="button buttons policyButton <?php echo $buttonClass; ?>" <?php echo $display . $buttonExtra; ?>>
+		<?php echo $buttonText; ?>
+	</button>
+	<?php
+}
+
+function recordPolicyACK($user = NULL) {
+	global $_zp_current_admin_obj;
+	if (is_null($user)) {
+		$user = $_zp_current_admin_obj;
+	}
+	if (isset($_POST['policy_acknowledge']) && $_POST['policy_acknowledge'] == md5(getUserID() . getOption('GDPR_cookie'))) {
+		if ($user) {
+			$user->setPolicyAck(1);
+			$user->save();
+		} else {
+			zp_setCookie('policyACK', getOption('GDPR_cookie'));
+		}
+	}
+}
+
+/**
  * Gets the content of a codeblock for an image, album or Zenpage newsarticle or page.
  *
  * The priority for codeblocks will be (based on context)
@@ -4441,29 +4515,31 @@ function print404status() {
 	global $_404_data;
 	list($album, $image, $galleryPage, $theme, $page) = $_404_data;
 	if (DEBUG_404) {
-		$list = explode('/', $album);
-		if (array_shift($list) != 'cache') {
-			$target = getRequestURI();
-			if (!in_array($target, array(WEBPATH . '/favicon.ico', WEBPATH . '/zp-data/tést.jpg'))) {
-				$output = "404 error details\n\t\t\tSERVER:\n";
-				foreach (array('REQUEST_URI', 'HTTP_REFERER', 'REMOTE_ADDR', 'REDIRECT_STATUS') as $key) {
-					if (is_null(@$_SERVER[$key])) {
-						$value = 'NULL';
-					} else {
-						$value = "'$_SERVER[$key]'";
+		if (!preg_match('~\.(css|js)\.map$~i', $album)) { //	don't log these
+			$list = explode('/', $album);
+			if (array_shift($list) != 'cache') {
+				$target = getRequestURI();
+				if (!in_array($target, array(WEBPATH . '/favicon.ico', WEBPATH . '/zp-data/tést.jpg'))) {
+					$output = "404 error details\n\t\t\tSERVER:\n";
+					foreach (array('REQUEST_URI', 'HTTP_REFERER', 'REMOTE_ADDR', 'REDIRECT_STATUS') as $key) {
+						if (is_null(@$_SERVER[$key])) {
+							$value = 'NULL';
+						} else {
+							$value = "'$_SERVER[$key]'";
+						}
+						$output .= "\t\t\t\t\t$key\t=>\t$value\n";
 					}
-					$output .= "\t\t\t\t\t$key\t=>\t$value\n";
+					$output .= "\t\t\tREQUEST:\n";
+					$request = $_REQUEST;
+					$request['theme'] = $theme;
+					if (!empty($image)) {
+						$request['image'] = $image;
+					}
+					foreach ($request as $key => $value) {
+						$output .= "\t\t\t\t\t$key\t=>\t'$value'\n";
+					}
+					debugLog($output);
 				}
-				$output .= "\t\t\tREQUEST:\n";
-				$request = $_REQUEST;
-				$request['theme'] = $theme;
-				if (!empty($image)) {
-					$request['image'] = $image;
-				}
-				foreach ($request as $key => $value) {
-					$output .= "\t\t\t\t\t$key\t=>\t'$value'\n";
-				}
-				debugLog($output);
 			}
 		}
 	}

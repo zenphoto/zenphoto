@@ -11,7 +11,7 @@
  * You could even run an audio or podcast blog with zenphoto and zenpage.
  *
  * <b>Features</b>
- * <ul>
+ * <ol>
  * <li>Fully integrated with ZenPhoto20</li>
  * <li>Custom page management</li>
  * <li>News section with nested categories (blog)</li>
@@ -24,7 +24,7 @@
  * <li>Localization and multi-lingual</li>
  * <li>WSIWYG text editor {@link "http://tinymce.moxiecode.com/index.php TinyMCE} with Ajax File Manager included</li>
  * <li>TinyMCE plugin <i>tinyZenpage</i> to include zenphoto and zenpage items into your articles or pages</li>
- * </ul>
+ * </ol>
  *
  *
  *
@@ -34,7 +34,7 @@
  */
 $plugin_is_filter = defaultExtension(99 | CLASS_PLUGIN);
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with ZenPhoto20.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
+
 $option_interface = 'cmsFilters';
 
 if (OFFSET_PATH == 2) {
@@ -270,18 +270,45 @@ class cmsFilters {
 	static function admin_toolbox_global($zf) {
 		global $_zp_CMS;
 		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && $_zp_CMS && $_zp_CMS->news_enabled) {
-			// admin has zenpage rights, provide link to the Zenpage admin tab
-			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news.php\">" . gettext('news') . "</a></li>";
+			$articles = $_zp_CMS->getArticles(0, 'all', false, NULL, NULL, false, NULL);
+			foreach ($articles as $key => $article) {
+				$article = newArticle($article['titlelink']);
+				$subrights = $article->subRights();
+				if (!($article->isMyItem(ZENPAGE_NEWS_RIGHTS) && $subrights & MANAGED_OBJECT_RIGHTS_EDIT)) {
+					unset($articles[$key]);
+				}
+			}
+
+			$categories = $_zp_CMS->getAllCategories();
+			foreach ($categories as $key => $cat) {
+				$catobj = newCategory($cat['titlelink']);
+				if (!($catobj->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+					unset($categories[$key]);
+				}
+			}
+			if (!empty($articles) || !empty($categories)) {
+				// admin has zenpage rights, provide link to the Zenpage admin tab
+				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-news.php\">" . NEWS_LABEL . "</a></li>";
+			}
 		}
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS && $_zp_CMS->pages_enabled) {
-			echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-pages.php\">" . gettext("Pages") . "</a></li>";
+			$pagelist = $_zp_CMS->getPages();
+			foreach ($pagelist as $key => $apage) {
+				$pageobj = newPage($apage['titlelink']);
+				if (!($pageobj->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+					unset($pagelist[$key]);
+				}
+			}
+			if (!empty($pagelist)) {
+				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-pages.php\">" . gettext("Pages") . "</a></li>";
+			}
 		}
 		return $zf;
 	}
 
 	static function admin_toolbox_pages($redirect, $zf) {
 		global $_zp_CMS, $_zp_current_page;
-		;
+
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && $_zp_CMS && $_zp_CMS->pages_enabled && ($_zp_current_page->subrights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
 			// page is zenpage page--provide edit, delete, and add links
 			?>

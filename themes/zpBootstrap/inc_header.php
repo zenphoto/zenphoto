@@ -88,7 +88,7 @@ if (!defined('WEBPATH'))
 		?>
 
 		<link rel="shortcut icon" href="<?php echo $_zp_themeroot; ?>/images/favicon.ico" />
-		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/bootstrap.min.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/common/bootstrap/bootstrap.min.css" type="text/css" media="screen" />
 		<?php if (($_zp_gallery_page == 'index.php') && ($isHomePage)) { ?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/flexslider.css" type="text/css" media="screen" />
 		<?php } ?>
@@ -103,7 +103,7 @@ if (!defined('WEBPATH'))
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-		<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/common/bootstrap/bootstrap.min.js"></script>
 		<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/js/zpBootstrap.js"></script>
 
 		<?php if (($_zp_gallery_page == 'index.php') && ($isHomePage)) { ?>

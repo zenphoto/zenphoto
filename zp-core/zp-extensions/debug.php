@@ -31,13 +31,11 @@
 
 $plugin_is_filter = 10 | ADMIN_PLUGIN;
 $plugin_description = gettext("Debugging aids.");
-$plugin_author = "Stephen Billard (sbillard)";
+
 $option_interface = 'debug';
 
-zp_register_filter('admin_tabs', 'debug::tabs');
+zp_register_filter('admin_tabs', 'debug::tabs', 100);
 zp_register_filter('admin_utilities_buttons', 'debug::button');
-
-
 
 if (isset($_REQUEST['markRelease'])) {
 	XSRFdefender('markRelease');
@@ -69,6 +67,9 @@ class debug {
 			setOptionDefault('debug_marks', serialize($list));
 
 			$version = debug::version(true);
+			setOptionDefault('jQuery_Migrate_theme', 0);
+			setOptionDefault('jQuery_Migrate_admin', 0);
+			setOptionDefault('jQuery_v1', 0);
 			setOptionDefault('markRelease_state', $version);
 		}
 	}
@@ -92,7 +93,24 @@ class debug {
 						'checkboxes' => $list,
 						'order' => 1,
 						'desc' => ''),
-				1 => array('key' => '', 'type' => OPTION_TYPE_NOTE, 'desc' => gettext('Note: These options are enabled only when the release is marked in <em>debug</em> mode.'))
+				1 => array('key' => '', 'type' => OPTION_TYPE_NOTE, 'desc' => gettext('Note: These options are enabled only when the release is marked in <em>debug</em> mode.')),
+				gettext('jQuery migration (admin)') => array('key' => 'jQuery_Migrate_admin', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(// The definition of the radio buttons to choose from and their values.
+								gettext('Disabled') => 0,
+								gettext('Production') => 1,
+								gettext('Debug') => 2
+						),
+						'order' => 2,
+						'desc' => gettext('Adds the <a href="https://jquery.com/upgrade-guide/3.0/">jQuery 3.3 migration</a> tool to the administrative pages.')),
+				gettext('jQuery migration (theme)') => array('key' => 'jQuery_Migrate_theme', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(// The definition of the radio buttons to choose from and their values.
+								gettext('Disabled') => 0,
+								gettext('Production') => 1,
+								gettext('Debug') => 2,
+								gettext('No migration') => 3
+						),
+						'order' => 3,
+						'desc' => gettext('Adds the <a href="https://jquery.com/upgrade-guide/">jQuery migration</a> tool to theme pages. (If <em>No migration</em> is selected jQuery v1.12 and jQuery migration v1.4.1 will be loaded instead of jQuery v3.'))
 		);
 		return $options;
 	}
@@ -113,20 +131,14 @@ class debug {
 
 	static function version($released) {
 		$o = explode('-', ZENPHOTO_VERSION . '-');
-		for ($i = count($o) - 1; $i > 0; $i--) {
-			if (strpos($o[$i], 'RC') === false) {
-				unset($o[$i]);
-			}
-		}
-		$originalVersion = implode('-', $o);
 		if ($released) {
-			return $originalVersion;
+			return $o[0];
 		} else {
 			$options = '';
 			$list = getSerializedArray(getOption('debug_marks'));
 			sort($list);
 			$options = rtrim('-DEBUG_' . implode('_', $list), '_');
-			return $originalVersion . $options;
+			return $o[0] . $options;
 		}
 	}
 
@@ -161,17 +173,15 @@ class debug {
 			if (!isset($tabs['development'])) {
 				$tabs['development'] = array('text' => gettext("development"),
 						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/debug/admin_tab.php',
+						'default' => (zp_loggedin(ADMIN_RIGHTS)) ? 'phpinfo' : 'http',
 						'rights' => DEBUG_RIGHTS);
 			}
 			if (zp_loggedin(ADMIN_RIGHTS)) {
-				$tabs['development']['default'] = 'phpinfo';
 				$tabs['development']['subtabs'][gettext("phpinfo")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=phpinfo';
 				$tabs['development']['subtabs'][gettext("Locales")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=locale';
 				$tabs['development']['subtabs'][gettext("Session")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=session';
 				$tabs['development']['subtabs'][gettext("SERVER")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=server';
 				$tabs['development']['subtabs'][gettext("ENV")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=env';
-			} else {
-				$tabs['development']['default'] = 'cookie';
 			}
 			$tabs['development']['subtabs'][gettext("HTTP accept")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=http';
 			$tabs['development']['subtabs'][gettext("Cookies")] = PLUGIN_FOLDER . '/debug/admin_tab.php?page=develpment&tab=cookie';

@@ -141,7 +141,7 @@ function html_encodeTagged($original, $allowScript = true) {
 	//strip html comments
 	$str = preg_replace('~<!--.*?-->~is', '', $str);
 	// markup
-	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
+	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/ims", $str, $matches);
 	foreach (array_unique($matches[0]) as $key => $tag) {
 		$tags[2]['%' . $key . '$s'] = $tag;
 		$str = str_replace($tag, '%' . $key . '$s', $str);
@@ -2047,23 +2047,14 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 	if (empty($theme)) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
-	// album-theme
-	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
+	// album-theme order of preference is: Album theme => Theme => album => general
+	$sql = "SELECT `name`, `value`, `ownerid`, `theme` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND (`ownerid`=" . $id . " OR `ownerid`=0) AND (`theme`=" . db_quote($theme) . ' OR `theme`="") ORDER BY `theme` DESC, `id` DESC LIMIT 1';
 	$db = query_single_row($sql);
-	if (!$db) {
-		// raw theme option
-		$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=0 AND `theme`=" . db_quote($theme);
-		$db = query_single_row($sql);
-		if (!$db) {
-			// raw album option
-			$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=NULL";
-			$db = query_single_row($sql);
-			if (!$db) {
-				return getOption($option);
-			}
-		}
+	if (empty($db)) {
+		return NULL;
+	} else {
+		return $db['value'];
 	}
-	return $db['value'];
 }
 
 /**
@@ -2113,6 +2104,49 @@ function seoFriendly($string) {
 		$string = str_replace(array('---', '--'), '-', $string);
 	}
 	return $string;
+}
+
+function load_jQuery_CSS() {
+	?>
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQueryui/jquery-ui-1.12.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQueryui/base-1.12.css" type="text/css" />
+	<?php
+}
+
+function load_jQuery_scripts($where, $ui = true) {
+	switch (getOption('jQuery_Migrate_' . $where)) {
+		case 0: //	no migration script
+			?>
+			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jQuery/jquery-3.3.1.js"></script>
+			<?php
+			break;
+		case 1: //	production version
+			?>
+			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jQuery/jquery-3.3.1.js"></script>
+			<!-- for production purposes -->
+			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQuery/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
+			<?php
+			break;
+		case 2: //	debug version
+			?>
+			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jQuery/jquery-3.3.1.js"></script>
+			<!-- for migration to jQuery 3.0 purposes -->
+			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQuery/jquery-migrate-3.0.0.js"></script>
+			<?php
+			break;
+		case 3: //	use legacy jQuery
+			?>
+			<!-- for migration to jQuery 1.9 purposes -->
+			<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jQuery/jquery-1.12.js"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQuery/jquery-migrate-1.4.1.js"></script>
+			<?php
+			break;
+	}
+	if ($ui) {
+		?>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQueryui/jquery-ui-1.12.1.min.js"></script>
+		<?php
+	}
 }
 
 /**
@@ -2190,6 +2224,21 @@ function XSRFToken($action, $modifier = NULL) {
 	?>
 	<input type="hidden" name="XSRFToken" id="XSRFToken" value="<?php echo getXSRFToken($action, $modifier); ?>" />
 	<?php
+}
+
+/**
+ *
+ * Checks if protocol not https and redirects if https required
+ */
+function httpsRedirect() {
+	if (zp_getCookie('zenphoto_ssl') || defined('SERVER_PROTOCOL') && SERVER_PROTOCOL !== 'http') {
+		// force https login
+		if (!isset($_SERVER["HTTPS"])) {
+			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
+			header("Location:$redirect");
+			exitZP();
+		}
+	}
 }
 
 /**
@@ -2742,7 +2791,7 @@ class zpFunctions {
 				$text = serialize($text);
 			}
 		} else {
-			$text = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
+			$text = strtr($text, array(WEBPATH => '{*WEBPATH*}', FULLWEBPATH => '{*FULLWEBPATH*}', ZENFOLDER => '{*ZENFOLDER*}', PLUGIN_FOLDER => '{*PLUGIN_FOLDER*}', USER_PLUGIN_FOLDER => '{*USER_PLUGIN_FOLDER*}'));
 		}
 		return $text;
 	}
@@ -2767,7 +2816,7 @@ class zpFunctions {
 				$text = serialize($text);
 			}
 		} else {
-			$text = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+			$text = strtr($text, array('{*WEBPATH*}' => WEBPATH, '{*FULLWEBPATH*}' => FULLWEBPATH, '{*ZENFOLDER*}' => ZENFOLDER, '{*PLUGIN_FOLDER*}' => PLUGIN_FOLDER, '{*USER_PLUGIN_FOLDER*}' => USER_PLUGIN_FOLDER));
 		}
 		return $text;
 	}
@@ -2821,9 +2870,7 @@ class zpFunctions {
 		return $text;
 	}
 
-	static function pluginDebug($extension, $priority, $start) {
-		list($usec, $sec) = explode(" ", microtime());
-		$end = (float) $usec + (float) $sec;
+	static function getPriorityDisplay($priority) {
 		$class = array();
 		if ($priority & CLASS_PLUGIN) {
 			$class[] = 'CLASS';
@@ -2837,9 +2884,17 @@ class zpFunctions {
 		if ($priority & THEME_PLUGIN) {
 			$class[] = 'THEME';
 		}
-		if (empty($class))
-			$class[] = 'theme';
-		debugLog(sprintf('    ' . $extension . '(%s:%u)=>%.4fs', implode('|', $class), $priority & PLUGIN_PRIORITY, $end - $start));
+		if (empty($class)) {
+			$class[] = 'THEME';
+		}
+		return sprintf('%s | %u', implode(' | ', $class), $priority & PLUGIN_PRIORITY);
+	}
+
+	static function pluginDebug($extension, $priority, $start) {
+		list($usec, $sec) = explode(" ", microtime());
+		$end = (float) $usec + (float) $sec;
+		$priority = self::getPriorityDisplay($priority);
+		debugLog(sprintf('    ' . $extension . '(%s)=>%.4fs', $priority, $end - $start));
 	}
 
 	/**

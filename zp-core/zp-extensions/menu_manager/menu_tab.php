@@ -10,16 +10,15 @@ if (extensionEnabled('zenpage')) {
 }
 require_once(dirname(dirname(dirname(__FILE__))) . '/' . PLUGIN_FOLDER . '/menu_manager/menu_manager-admin-functions.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 $page = 'edit';
 
 $reports = array();
 if (isset($_POST['update'])) {
 	XSRFdefender('update_menu');
-	if ($_POST['checkallaction'] == 'noaction') {
-		$reports[] = updateItemsSortorder();
-	} else {
+	$reports[] = updateItemsSortorder();
+	if ($_POST['checkallaction'] != 'noaction') {
 		$report = processMenuBulkActions();
 		if ($report) {
 			$reports[] = $report;

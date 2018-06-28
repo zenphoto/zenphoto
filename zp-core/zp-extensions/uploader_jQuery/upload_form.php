@@ -1,194 +1,225 @@
 <?php
+
 /**
  * @package plugins/uploader_jQuery
  */
-zp_register_filter('admin_headers', 'jQueryUpload_headers', 0);
-zp_register_filter('admin_head', 'jQueryUpload_head');
-
-function jQueryUpload_headers() {
-	ob_start();
-}
-
-function jQueryUpload_head() {
-	$head = ob_get_contents();
-	ob_end_clean();
-	// insure we are running compatible scripts
-	// for now we are running jquery 1,11
-	//preg_match_all('~(<script.*/js/jquery\.js.*</script>)~', $head, $matches);
-	//$head = str_replace($matches[1], '<script src="//code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>', $head);
-	// but the script needs an older version of jQueryUI
-	$head = str_replace('<script src="' . WEBPATH . '/' . ZENFOLDER . '/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>', '<script src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/jqueryui/jquery-ui-zenphoto.js"></script>', $head);
-	echo $head;
-}
-
 function upload_head() {
-	$myfolder = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery';
+	$myfolder = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/';
 	?>
-	<script type="text/javascript" src="<?php echo $myfolder; ?>/jquery.tmpl.min.js"></script>
-	<script type="text/javascript" src="<?php echo $myfolder; ?>/jquery.iframe-transport.js"></script>
-	<script type="text/javascript" src="<?php echo $myfolder; ?>/jquery.fileupload.js"></script>
-	<script type="text/javascript" src="<?php echo $myfolder; ?>/jquery.fileupload-ui.js"></script>
-	<link rel="stylesheet" href="<?php echo $myfolder; ?>/jquery.fileupload-ui.css">
+	<!-- Force latest IE rendering engine or ChromeFrame if installed -->
+	<!--[if IE]>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<![endif]-->
+	<link rel="stylesheet" href="<?php echo $myfolder; ?>css/uploader_bootstrap.css">
+	<link rel="stylesheet" href="<?php echo $myfolder; ?>css/blueimp-gallery.min.css">
+	<link rel="stylesheet" href="<?php echo $myfolder; ?>css/jquery.fileupload.css">
+	<link rel="stylesheet" href="<?php echo $myfolder; ?>css/jquery.fileupload-ui.css">
+
 	<?php
 	return $myfolder . '/uploader.php';
 }
 
 function upload_extra($uploadlimit, $passedalbum) {
 	global $_zp_current_admin_obj;
+
+	$myfolder = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/';
 	?>
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		// application
-		var upload_fail = false;
-		$(function () {
-			'use strict';
 
-			// Initialize the jQuery File Upload widget:
-			$('#fileupload').fileupload({
-				url: '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_jQuery/uploader.php' ?>'<?php if ($uploadlimit) echo ",
-maxFileSize:" . $uploadlimit; ?>
-			});
+	<div>
+		<!-- The file upload form used as target for the file upload widget -->
+		<form id="fileupload" action="<?php echo $myfolder; ?>xxserver/php/index.php" method="POST" enctype="multipart/form-data">
 
-			// Open download dialogs via iframes,
-			// to prevent aborting current uploads:
-			$('#fileupload .files').delegate(
-							'a:not([target^=_blank])',
-							'click',
-							function (e) {
-								e.preventDefault();
-								$('<iframe style="display:none;"></iframe>')
-												.prop('src', this.href)
-												.appendTo('body');
-							}
-			);
+			<noscript><?php echo gettext('This uploader requires browser javaScript support.'); ?></noscript>
 
-			/*
-			 $('#fileupload').bind('fileuploadadd', function(e, data) {
-			 alert('add');
-			 upload_fail = false;
-			 });
-
-
-			 $('#fileupload').bind('fileuploaddone', function(e, data) {
-			 alert('done');
-			 upload_fail = false;
-			 });
-			 */
-
-			$('#fileupload').bind('fileuploadfail', function (e, data) {
-				//alert('fail');
-				upload_fail = true;
-			});
-
-			$('#fileupload').bind('fileuploadstop', function (e, data) {
-				if (upload_fail) {
-					//alert('upload failed');
-					// clean up any globals since we are staying on the page
-					upload_fail = false;
-				} else {
-	<?php
-	if (zp_loggedin(ALBUM_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
-		?>
-						launchScript('admin-edit.php', ['page=edit', 'subpage=1', 'tab=imageinfo', 'album=' + encodeURIComponent($('#folderdisplay').val()), 'uploaded=1', 'albumimagesort=id_desc']);
-		<?php
-	} else {
-		?>
-						launchScript('admin-upload.php', ['uploaded=1']);
-		<?php
-	}
-	?>
-				}
-			});
-
-		});
-		// ]]> -->
-	</script>
-	<div id="fileupload">
-		<form action="uploader.php" method="POST" enctype="multipart/form-data">
+			<!-- ZenPhoto20 needed parameters -->
 			<input type="hidden" name="existingfolder" id="existingfolder" value="false" />
 			<input type="hidden" name="auth" id="auth" value="<?php echo $_zp_current_admin_obj->getPass(); ?>" />
 			<input type="hidden" name="id" id="id" value="<?php echo $_zp_current_admin_obj->getID(); ?>" />
 			<input type="hidden" name="folder" id="folderslot" value="<?php echo html_encode($passedalbum); ?>" />
 			<input type="hidden" name="albumtitle" id="albumtitleslot" value="" />
 			<input type="hidden" name="publishalbum" id="publishalbumslot" value="" />
-			<div class="fileupload-buttonbar">
-				<label class="fileinput-button"> <span><?php echo gettext('Add files...'); ?>
-					</span> <input type="file" name="files[]" multiple>
-				</label>
-				<span id="fileUploadbuttons">
-					<button type="submit" class="start"><?php echo gettext('Start upload'); ?></button>
-					<button type="reset" class="cancel"><?php echo gettext('Cancel upload'); ?></button>
-				</span>
+
+			<!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+			<div class="row fileupload-buttonbar">
+				<div class="col-lg-7">
+					<span class="fileUploadActions">
+						<!-- The fileinput-button span is used to style the file input field as button -->
+						<span class="btn btn-success fileinput-button">
+							<i class="glyphicon glyphicon-plus"></i>
+							<span><?php echo gettext('Add files...'); ?></span>
+							<input type="file" name="files[]" multiple>
+						</span>
+
+						<button type="submit" class="btn btn-primary start">
+							<i class="glyphicon glyphicon-upload"></i>
+							<span><?php echo gettext('Start upload'); ?></span>
+						</button>
+						<button type="reset" class="btn btn-warning cancel">
+							<i class="glyphicon glyphicon-ban-circle"></i>
+							<span><?php echo gettext('Cancel upload'); ?></span>
+						</button>
+						<!--
+						<button type="button" class="btn btn-danger delete">
+							<i class="glyphicon glyphicon-trash"></i>
+							<span><?php echo gettext('Delete'); ?></span>
+						</button>
+						<input type="checkbox" class="toggle">
+						-->
+					</span>
+					<!-- The global file processing state -->
+					<span class="fileupload-process"></span>
+				</div>
+				<!-- The global progress state -->
+				<div class="col-lg-5 fileupload-progress fade">
+					<!-- The global progress bar -->
+					<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+						<div class="progress-bar progress-bar-success" style="width:0%;"></div>
+					</div>
+					<!-- The extended global progress state -->
+					<div class="progress-extended">&nbsp;</div>
+				</div>
 			</div>
+			<!-- The table listing the files available for upload/download -->
+			<table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 		</form>
-		<div class="fileupload-content">
-			<table class="files"></table>
-			<div class="fileupload-progressbar"></div>
-		</div>
+
 	</div>
-	<script id="template-upload" type="text/x-jquery-tmpl">
-		<tr class="template-upload{{if error}} ui-state-error{{/if}}">
-		<td class="preview"></td>
-		<td class="name">{{if name}}${name}{{else}}Untitled{{/if}}</td>
-		<td class="size">${sizef}</td>
-		{{if error}}
-		<td class="error" colspan="2"><?php echo gettext('Error:'); ?>
-		{{if error === 'maxFileSize'}}<?php echo gettext('File is too big'); ?>
-		{{else error === 'minFileSize'}}<?php echo gettext('File is too small'); ?>
-		{{else error === 'acceptFileTypes'}}<?php echo gettext('Filetype not allowed'); ?>
-		{{else error === 'maxNumberOfFiles'}}<?php echo gettext('Max number of files exceeded'); ?>
-		{{else}}${error}
-		{{/if}}
+	<!-- The blueimp Gallery widget -->
+	<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+		<div class="slides"></div>
+		<h3 class="title"></h3>
+		<a class="prev">‹</a>
+		<a class="next">›</a>
+		<a class="close">×</a>
+		<a class="play-pause"></a>
+		<ol class="indicator"></ol>
+	</div>
+	<!-- The template to display files available for upload -->
+	<script id="template-upload" type="text/x-tmpl">
+		{% for (var i=0, file; file=o.files[i]; i++) { %}
+		<tr class="template-upload fade">
+		<td>
+		<span class="preview"></span>
 		</td>
-		{{else}}
-		<td class="progress"><div></div></td>
-		<td class="start" style="display:none"><button><?php echo gettext('Start'); ?></button></td>
-		{{/if}}
-		<td class="cancel"><button><?php echo gettext('Cancel'); ?></button></td>
+		<td>
+		<p class="name">{%=file.name%}</p>
+		<strong class="error text-danger"></strong>
+		</td>
+		<td>
+		<p class="size"><?php echo gettext('Processing...'); ?></p>
+		<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+		</td>
+		<td>
+		{% if (!i && !o.options.autoUpload) { %}
+		<button class="btn btn-primary start" disabled>
+		<i class="glyphicon glyphicon-upload"></i>
+		<span>Start</span>
+		</button>
+		{% } %}
+		{% if (!i) { %}
+		<button class="btn btn-warning cancel">
+		<i class="glyphicon glyphicon-ban-circle"></i>
+		<span><?php echo gettext('Cancel'); ?></span>
+		</button>
+		{% } %}
+		</td>
 		</tr>
+		{% } %}
 	</script>
-	<script id="template-download" type="text/x-jquery-tmpl">
-		{{if error !== 'emptyResult'}}
-		<tr class="template-download{{if error}}} ui-state-error{{/if}}">
-		{{if error}}
-		<td></td>
-		<td class="name">${name}</td>
-		<td class="size">${sizef}</td>
-		<td class="error" colspan="2"><?php echo gettext('Error:'); ?>
-		{{if error === 1}}<?php echo gettext('File exceeds upload_max_filesize (php.ini directive)'); ?>
-		{{else error === 2}}<?php echo gettext('File exceeds MAX_FILE_SIZE (HTML form directive)'); ?>
-		{{else error === 3}}<?php echo gettext('File was only partially uploaded'); ?>
-		{{else error === 4}}<?php echo gettext('No File was uploaded'); ?>
-		{{else error === 5}}<?php echo gettext('Missing a temporary folder'); ?>
-		{{else error === 6}}<?php echo gettext('Failed to write file to disk'); ?>
-		{{else error === 7}}<?php echo gettext('File upload stopped by extension'); ?>
-		{{else error === 'maxFileSize'}}<?php echo gettext('File is too big'); ?>
-		{{else error === 'minFileSize'}}<?php echo gettext('File is too small'); ?>
-		{{else error === 'acceptFileTypes'}}<?php echo gettext('Filetype not allowed'); ?>
-		{{else error === 'maxNumberOfFiles'}}<?php echo gettext('Max number of files exceeded'); ?>
-		{{else error === 'uploadedBytes'}}<?php echo gettext('Uploaded bytes exceed file size'); ?>
-		{{else error === 'emptyResult'}}<?php echo gettext('Empty file upload result'); ?>
-		{{else}}${error}
-		{{/if}}
+	<!-- The template to display files available for download -->
+	<script id="template-download" type="text/x-tmpl">
+		{% for (var i=0, file; file=o.files[i]; i++) { %}
+		<tr class="template-download fade">
+		<td>
+		<span class="preview">
+		{% if (file.thumbnailUrl) { %}
+		<a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+		{% } %}
+		</span>
 		</td>
-		<td class="delete">
-		<button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
+		<td>
+		<p class="name">
+		{% if (file.url) { %}
+		<a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+		{% } else { %}
+		<span>{%=file.name%}</span>
+		{% } %}
+		</p>
+		{% if (file.error) { %}
+		<div><span class="label label-danger"><?php echo gettext('Error'); ?></span> {%=file.error%}</div>
+		{% } %}
 		</td>
-		{{else}}
-		<td class="preview">
-		{{if thumbnail_url}}
-		<a href="${url}" target="_blank"><img src="${thumbnail_url}"></a>
-		{{/if}}
+		<td>
+		<span class="size">{%=o.formatFileSize(file.size)%}</span>
 		</td>
-		<td class="name">
-		<a href="${url}"{{if thumbnail_url}} target="_blank"{{/if}}>${name}</a>
+		<td>
+		{% if (file.deleteUrl) { %}
+		<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+		<!--
+		<i class="glyphicon glyphicon-trash"></i>
+		<span><?php echo gettext('Delete'); ?></span>
+		</button>
+		<input type="checkbox" name="delete" value="1" class="toggle">
+		-->
+		{% } else { %}
+		<button class="btn btn-warning cancel">
+		<i class="glyphicon glyphicon-ban-circle"></i>
+		<span><?php echo gettext('Cancel'); ?></span>
+		</button>
+		{% } %}
 		</td>
-		<td class="size">${sizef}</td>
-		<td colspan="2"></td>
-		<td class="delete"><?php echo CHECKMARK_GREEN; ?></td>
-		{{/if}}
 		</tr>
-		{{/if}}
+		{% } %}
+	</script>
+
+	<script src ="<?php echo $myfolder; ?>js/tmpl.min.js"></script>
+	<script src="<?php echo $myfolder; ?>js/load-image.all.min.js"></script>
+	<script src="<?php echo $myfolder; ?>js/canvas-to-blob.min.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/common/bootstrap/bootstrap.min.js"></script>
+	<script src="<?php echo $myfolder; ?>js/jquery.blueimp-gallery.min.js"></script>
+	<script src="<?php echo $myfolder; ?>js/jquery.iframe-transport.js"></script>
+	<script src="<?php echo $myfolder; ?>js/jquery.fileupload.js"></script>
+	<script src="<?php echo $myfolder; ?>js/jquery.fileupload-process.js"></script>
+	<script src="<?php echo $myfolder; ?>js/jquery.fileupload-image.js"></script>
+	<script src="<?php echo $myfolder; ?>js/jquery.fileupload-audio.js"></script>
+	<script src="<?php echo $myfolder; ?>js/jquery.fileupload-video.js"></script>
+	<script src="<?php echo $myfolder; ?>js/jquery.fileupload-validate.js"></script>
+	<script src="<?php echo $myfolder; ?>js/jquery.fileupload-ui.js"></script>
+	<script src="<?php echo $myfolder; ?>js/main.js"></script>
+	<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
+	<!--[if (gte IE 8)&(lt IE 10)]>
+	<script src="<?php echo $myfolder; ?>js/cors/jquery.xdr-transport.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript">
+		var upload_fail = false;
+		$('#fileupload')
+						.on('fileuploadfail', function (e, data) {
+							//alert('fail');
+							upload_fail = true;
+						})
+						.on('fileuploadstop', function (e, data) {
+							//alert('stop');
+							if (upload_fail) {
+								//alert('upload failed');
+								// clean up any globals since we are staying on the page
+								upload_fail = false;
+							} else {
+
+	<?php
+	if (zp_loggedin(ALBUM_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
+		?>
+									launchScript('admin-edit.php', ['page=edit', 'subpage=1', 'tab=imageinfo', 'album=' + encodeURIComponent($('#folderdisplay').val()), 'uploaded=1', 'albumimagesort=id_desc']);
+		<?php
+	} else {
+		?>
+									launchScript('admin-upload.php', ['uploaded=1']);
+		<?php
+	}
+	?>
+							}
+						});
+
 	</script>
 	<?php
 }

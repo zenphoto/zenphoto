@@ -193,11 +193,15 @@ if (zp_loggedin() && !empty($zenphoto_tabs)) {
 		$from = urldecode(currentRelativeURL());
 	}
 }
+if (zp_loggedin()) {
+	//	check rights if logged in, if not we will display the logon form below
+	admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
+}
 
 // Print our header
 printAdminHeader('overview');
 ?>
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/common/masonry/masonry.pkgd.min.js"></script>
 <script type="text/javascript">
 	// <!-- <![CDATA[
 	$(function () {
@@ -255,10 +259,10 @@ $buttonlist = array();
 						setOption('getUpdates_lastCheck', time());
 					}
 					$newestVersionURI = getOption('getUpdates_latest');
-					$newestVersion = str_replace('setup-', '', stripSuffix(basename($newestVersionURI)));
+					$newestVersion = preg_replace('~[^0-9,.]~', '', str_replace('setup-', '', stripSuffix(basename($newestVersionURI))));
 
 					$zenphoto_version = explode('-', ZENPHOTO_VERSION);
-					$zenphoto_version = array_shift($zenphoto_version);
+					$zenphoto_version = preg_replace('~[^0-9,.]~', '', array_shift($zenphoto_version));
 
 					if (version_compare($newestVersion, $zenphoto_version, '>')) {
 						if (!isset($_SESSION['new_version_available'])) {
@@ -387,7 +391,9 @@ $buttonlist = array();
 				<div id="overviewboxes">
 					<div class="box overview-section overview_utilities">
 						<h2 class="h2_bordered">
-							<?php printf(gettext('ZenPhoto20 version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official); ?>
+							<a href="<?php echo WEBPATH; ?>/docs/release%20notes.htm" class="doc" title="<?php echo gettext('release notes'); ?>">
+								<?php printf(gettext('ZenPhoto20 version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official); ?>
+							</a>
 						</h2>
 						<?php
 						if (!empty($buttonlist)) {

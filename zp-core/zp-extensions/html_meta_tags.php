@@ -2,12 +2,12 @@
 
 /**
  * The plugin creates:
- * <ul>
+ * <ol>
  * <li><meta> tags using general existing info like <i>gallery description</i>, <i>tags</i> or Zenpage <i>news categories</i>.</li>
  * <li>Support for <var><link rel="canonical" href="..." /></var></li>
  * <li>Open Graph tags for social sharing</li>
  * <li>Pinterest sharing tag</li>
- * </ul>
+ * </ol>
  *
  * Just enable the plugin and the meta data will be inserted into your <var><head></var> section.
  * Use the plugin's options to choose which tags you want printed.
@@ -18,7 +18,6 @@
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A plugin to print the most common HTML meta tags to the head of your site’s pages.");
-$plugin_author = "Malte Müller (acrylian)";
 
 $option_interface = 'htmlmetatags';
 

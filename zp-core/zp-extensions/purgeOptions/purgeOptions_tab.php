@@ -219,7 +219,7 @@ $orphaned = array();
 									<span class="purgeOptionsClass"><?php echo gettext('Orphaned options'); ?></span>
 									<label title="<?php echo gettext('all: no acation'); ?>">
 										<?php echo BULLSEYE_BLUE; ?>
-										<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').removeAttr('checked');$('.orphaned').removeAttr('checked');$('#emptyOptionCheck').removeAttr('checked');">
+										<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').prop('checked',false);$('.orphaned').prop('checked',false);$('#emptyOptionCheck').prop('checked',false);">
 									</label>
 									<label title="<?php echo gettext('all: delete'); ?>">
 										<?php echo WASTEBASKET; ?>
@@ -227,7 +227,7 @@ $orphaned = array();
 									</label>
 									<label title="<?php echo gettext('all: hide'); ?>">
 										<?php echo HIDE_ICON; ?>
-										<input type="radio" name="orphaned" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));$('#emptyOptionCheck').removeAttr('checked');">
+										<input type="radio" name="orphaned" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));$('#emptyOptionCheck').prop('checked',false);">
 									</label>
 									<?php
 									if ($empty) {

@@ -11,7 +11,7 @@
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 define('PLUGINS_PER_PAGE', max(1, getOption('plugins_per_page')));
 if (isset($_GET['subpage'])) {
@@ -25,7 +25,6 @@ if (isset($_GET['subpage'])) {
 }
 
 $_GET['page'] = 'plugins';
-list($tabs, $subtab, $pluginlist, $paths, $member, $classXlate) = getPluginTabs();
 
 /* handle posts */
 if (isset($_GET['action'])) {
@@ -89,7 +88,7 @@ if (isset($_GET['action'])) {
 			$notify = '&post_error';
 		}
 
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=" . html_encode($subtab) . "&subpage=" . html_encode($subpage) . $notify);
+		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=" . html_encode($plugin_default) . "&subpage=" . html_encode($subpage) . $notify);
 		exitZP();
 	}
 }
@@ -105,7 +104,7 @@ $filelist = array_slice($pluginlist, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PA
 	var pluginsToPage = ['<?php echo implode("','", array_map('strtolower', $pluginlist)); ?>'];
 	function gotoPlugin(plugin) {
 		i = Math.floor(jQuery.inArray(plugin, pluginsToPage) / <?php echo PLUGINS_PER_PAGE; ?>);
-		window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-plugins.php?page=plugins&tab=<?php echo html_encode($subtab); ?>&subpage=' + i + '&show=' + plugin + '#' + plugin;
+		window.location = '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-plugins.php?page=plugins&tab=<?php echo html_encode($plugin_default); ?>&subpage=' + i + '&show=' + plugin + '#' + plugin;
 	}
 
 	function showPluginInfo(plugin) {
@@ -139,7 +138,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 ?>
 <h1>
 	<?php
-	printf(gettext('%1$s plugins'), ucfirst(@$classXlate[$subtab]));
+	printf(gettext('%1$s plugins'), ucfirst(@$classXlate[$plugin_default]));
 	?>
 </h1>
 
@@ -163,7 +162,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 	</p>
 	<p class='notebox'><?php echo gettext("<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."); ?>
 	</p>
-	<form class="dirtylistening" onReset="setClean('form_plugins');" id="form_plugins" action="?action=saveplugins&amp;page=plugins&amp;tab=<?php echo html_encode($subtab); ?>" method="post" autocomplete="off" >
+	<form class="dirtylistening" onReset="setClean('form_plugins');" id="form_plugins" action="?action=saveplugins&amp;page=plugins&amp;tab=<?php echo html_encode($plugin_default); ?>" method="post" autocomplete="off" >
 		<?php XSRFToken('saveplugins'); ?>
 		<input type="hidden" name="saveplugins" value="yes" />
 		<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -176,7 +175,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 		<table>
 			<tr>
 				<th class="centered" colspan="100%">
-					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
+					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $plugin_default)); ?>
 				</th>
 			</tr>
 			<tr>
@@ -189,58 +188,59 @@ zp_apply_filter('admin_note', 'plugins', '');
 			<?php
 			foreach ($filelist as $extension) {
 				$opt = 'zp_plugin_' . $extension;
-				$pluginStream = file_get_contents($paths[$extension]);
+				$details = $pluginDetails[$extension];
 				$parserr = 0;
 				$plugin_URL = FULLWEBPATH . '/' . ZENFOLDER . '/pluginDoc.php?extension=' . $extension;
-				if ($third_party_plugin = strpos($paths[$extension], ZENFOLDER) === false) {
-					if (distributedPlugin($extension)) {
-						$third_party_plugin = false;
+				switch ($details['thridparty']) {
+					case 0:
+						$whose = gettext('Official plugin');
+						$ico = 'images/zp_gold.png';
+						break;
+					case 1:
 						$ico = 'images/zp.png';
 						$whose = gettext('Supplemental plugin');
 						$plugin_URL .= '&type=supplemental';
-					}
-					if ($third_party_plugin) {
+						break;
+					case 2:
+						$path = stripSuffix($plugin_paths[$extension]) . '/logo.png';
+						if (file_exists($path)) {
+							$ico = str_replace(SERVERPATH, WEBPATH, $path);
+						} else {
+							$ico = 'images/placeholder.png';
+						}
 						$whose = gettext('Third party plugin');
 						$plugin_URL .= '&type=thirdparty';
-					}
-				} else {
-					$whose = gettext('Official plugin');
-					$ico = 'images/zp_gold.png';
+						break;
 				}
-				if ($str = isolate('$plugin_description', $pluginStream)) {
-					if (false === eval($str)) {
+
+				$plugin_is_filter = $details['plugin_is_filter'];
+				$plugin_deprecated = isset($pluginDetails[$extension]['deprecated']);
+				if (isset($details['plugin_description'])) {
+					if (false === eval($details['plugin_description'])) {
 						$parserr = $parserr | 1;
 						$plugin_description = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>.');
 					}
 				} else {
 					$plugin_description = '';
 				}
-				if ($str = isolate('$plugin_notice', $pluginStream)) {
-					if (false === eval($str)) {
+				if (isset($details['plugin_notice'])) {
+					if (false === eval($details['plugin_notice'])) {
 						$parserr = $parserr | 1;
 						$plugin_notice = gettext('<strong>Error parsing <em>plugin_notice</em> string!</strong>.');
 					}
 				} else {
 					$plugin_notice = '';
 				}
-				if ($str = isolate('$plugin_author', $pluginStream)) {
-					if (false === eval($str)) {
-						$parserr = $parserr | 2;
-						$plugin_author = gettext('<strong>Error parsing <em>plugin_author</em> string!</strong>.');
-					}
-				} else {
-					$plugin_author = '';
-				}
-				if ($str = isolate('$plugin_version', $pluginStream)) {
-					if (false === eval($str)) {
+				if (isset($details['plugin_version'])) {
+					if (false === eval($details['plugin_version'])) {
 						$parserr = $parserr | 4;
 						$plugin_version = ' ' . gettext('<strong>Error parsing <em>plugin_version</em> string!</strong>.');
 					}
 				} else {
 					$plugin_version = '';
 				}
-				if ($str = isolate('$plugin_disable', $pluginStream)) {
-					if (false === eval($str)) {
+				if (isset($details['plugin_disable'])) {
+					if (false === eval($details['plugin_disable'])) {
 						$parserr = $parserr | 8;
 						$plugin_URL = gettext('<strong>Error parsing <em>plugin_disable</em> string!</strong>.');
 					} else {
@@ -251,13 +251,11 @@ zp_apply_filter('admin_note', 'plugins', '');
 				} else {
 					$plugin_disable = false;
 				}
-				$currentsetting = getOption($opt);
-				$plugin_is_filter = 1 | THEME_PLUGIN;
-				if ($str = isolate('$plugin_is_filter', $pluginStream)) {
-					eval($str);
-				}
+				$currentsetting = getOptionFromDB($opt);
 				$optionlink = NULL;
-				if ($str = isolate('$option_interface', $pluginStream)) {
+
+				if (isset($details['option_interface'])) {
+					$str = $details['option_interface'];
 					if (preg_match('/\s*=\s*new\s(.*)\(/i', $str)) {
 						$plugin_notice .= '<br /><br />' . gettext('<strong>Note:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string.');
 					} else {
@@ -268,6 +266,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 						}
 					}
 				}
+
 				$selected_style = '';
 				if ($currentsetting > THEME_PLUGIN) {
 					$selected_style = ' class="currentselection"';
@@ -275,14 +274,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 				if (isset($_GET['show']) && strtolower($_GET['show']) == strtolower($extension)) {
 					$selected_style = ' class="highlightselection"';
 				}
-				if ($third_party_plugin) {
-					$path = stripSuffix($paths[$extension]) . '/logo.png';
-					if (file_exists($path)) {
-						$ico = str_replace(SERVERPATH, WEBPATH, $path);
-					} else {
-						$ico = 'images/placeholder.png';
-					}
-				}
+
 				if ($plugin_is_filter & CLASS_PLUGIN) {
 					$iconA = '<img class="zp_logoicon" width="8px" src="images/placeholder.png" /><a title="' . gettext('class plugin') . '"><img class="zp_logoicon" src="images/folder_picture.png" /></a><img class="zp_logoicon" width="8px" src="images/placeholder.png" />';
 					$iconT = '';
@@ -337,49 +329,65 @@ zp_apply_filter('admin_note', 'plugins', '');
 								if ($plugin_disable) {
 									?>
 								</span>
-								<?php
-								if ($plugin_disable) {
-									?>
-									<span class="plugin_disable">
-										<div class="plugin_disable_hidden">
-											<?php echo $plugin_disable; ?>
-										</div>
-										<?php
-									}
-									?>
+								<span class="plugin_disable">
+									<div class="plugin_disable_hidden">
+										<?php echo $plugin_disable; ?>
+									</div>
 									<span class="icons">
-										<span style="padding-left: 2px;">
-											<?php echo CROSS_MARK_RED; ?>
-										</span>
+										<?php echo CROSS_MARK_RED; ?>
 									</span>
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
-
 									<?php
 								} else {
 									?>
-									<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
+									<span style="padding-left: 3px;padding-right: 2px;">
+										<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
+									</span>
 									<?php
 								}
-								echo $extension;
-								if (!empty($plugin_version)) {
-									echo ' v' . $plugin_version;
-								}
-								?>
-
-								<?php
-								if ($plugin_disable) {
+								if ($plugin_deprecated) {
+									if ($plugin_notice) {
+										$plugin_notice = '<strong>' . gettext('Plugin is deprecated!') . '</strong><br />' . $plugin_notice;
+									} else {
+										$plugin_notice = '<strong>' . gettext('Plugin is deprecated!') . '</strong>';
+									}
 									?>
-								</span>
-								<?php
+									<span class="deprecated">
+										<?php
+									}
+									echo $extension;
+									if (!empty($plugin_version)) {
+										echo ' v' . $plugin_version;
+									}
+									if ($plugin_deprecated) {
+										?>
+									</span>
+									<?php
+									if ($plugin_disable) {
+										?>
+									</span>
+									<?php
+								}
 							}
 							?>
 						</label>
 						<?php
-						if ($subtab == 'all') {
-							$tab = $member[$extension];
+						if (in_array($plugin_default, array(
+												'all',
+												'thirdparty',
+												'enabled',
+												'disabled',
+												'deprecated',
+												'class_plugin',
+												'feature_plugin',
+												'admin_plugin',
+												'theme_plugin')
+										)
+						) {
+							$tab = $plugin_member[$extension];
 							?>
 							<span class="displayrightsmall">
-								<a href="<?php echo html_encode($tabs[$tab]); ?>" title="<?php printf(gettext('Go to &quot;%s&quot; plugin page.'), $tab); ?>">
+								<a href="<?php echo html_encode($plugin_subtabs[$tab]); ?>" title="<?php printf(gettext('Go to &quot;%s&quot; plugin page.'), $tab); ?>">
 									<em><?php echo $tab; ?></em>
 								</a>
 							</span>
@@ -388,38 +396,40 @@ zp_apply_filter('admin_note', 'plugins', '');
 						?>
 					</td>
 					<td>
-						<span class="icons plugin_info" id="doc_<?php echo $extension; ?>">
-							<a onclick="showPluginInfo('<?php echo $plugin_URL; ?>');" title="<?php echo gettext('Show plugin usage information.'); ?>">
-								<?php echo INFORMATION_BLUE; ?>
-							</a>
-						</span>
-						<?php
-						if ($optionlink) {
-							?>
-							<span class="icons">
-								<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>">
-									<?php echo OPTIONS_ICON; ?>
+						<span class="nowrap">
+							<span class="icons plugin_info" id="doc_<?php echo $extension; ?>">
+								<a onclick="showPluginInfo('<?php echo $plugin_URL; ?>');" title="<?php echo gettext('Show plugin usage information.'); ?>">
+									<?php echo INFORMATION_BLUE; ?>
 								</a>
 							</span>
 							<?php
-						} else {
-							?>
-							<span class="icons"><img class="icon-position-top3" src="images/placeholder.png" alt="" /></span>
-							<?php
-						}
-						if ($plugin_notice) {
-							?>
-							<span class="icons">
-								<span class="plugin_warning">
-									<?php echo WARNING_SIGN_ORANGE; ?>
-									<div class="plugin_warning_hidden">
-										<?php echo $plugin_notice; ?>
-									</div>
+							if ($optionlink) {
+								?>
+								<span class="icons">
+									<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>">
+										<?php echo OPTIONS_ICON; ?>
+									</a>
 								</span>
-							</span>
-							<?php
-						}
-						?>
+								<?php
+							} else {
+								?>
+								<span class="icons"><img class="icon-position-top3" src="images/placeholder.png" alt="" /></span>
+								<?php
+							}
+							if ($plugin_notice) {
+								?>
+								<span class="icons">
+									<span class="plugin_warning">
+										<?php echo WARNING_SIGN_ORANGE; ?>
+										<div class="plugin_warning_hidden">
+											<?php echo $plugin_notice; ?>
+										</div>
+									</span>
+								</span>
+								<?php
+							}
+							?>
+						</span>
 					</td>
 					<td colspan="100%">
 						<?php echo $plugin_description; ?>
@@ -430,7 +440,7 @@ zp_apply_filter('admin_note', 'plugins', '');
 			?>
 			<tr>
 				<td colspan="100%" class="centered">
-					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
+					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $plugin_default)); ?>
 				</td>
 			</tr>
 		</table>

@@ -8,7 +8,7 @@ define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(dirname(__FILE__) . '/functions.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 $path = '';
 $selected = 0;
@@ -125,12 +125,16 @@ echo '</head>' . "\n";
 								}
 
 								$path = SERVERPATH . '/' . ZENFOLDER;
-								echo "<em>" . ZENFOLDER . "</em><br />\n";
-								listUses(getPHPFiles($path, array()), $path, $pattern);
+								echo "<em><strong>" . ZENFOLDER . "</strong></em><br />\n";
+								if (listUses(getPHPFiles($path, array()), $path, $pattern)) {
+									echo '<br />';
+								}
 								$path = SERVERPATH . '/' . USER_PLUGIN_FOLDER;
-								echo "<em>" . USER_PLUGIN_FOLDER . "</em><br />\n";
-								listUses(getPHPFiles($path, $userfiles), $path, $pattern);
-								echo "<em>" . THEMEFOLDER . "</em><br /><br />\n";
+								echo "<em><strong>" . USER_PLUGIN_FOLDER . "</strong></em><br />\n";
+								if (listUses(getPHPFiles($path, $userfiles), $path, $pattern)) {
+									echo '<br />';
+								}
+								echo "<em><strong>" . THEMEFOLDER . "</strong></em><br /><br />\n";
 								foreach ($zplist as $theme) {
 									$path = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme;
 									echo "<em>" . $theme . "</em><br />\n";

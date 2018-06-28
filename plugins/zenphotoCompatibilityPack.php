@@ -12,7 +12,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * Copyright 2014-2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins/zenphotoCompatibilityPack
  * @pluginCategory development
@@ -20,7 +20,6 @@
 
 $plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN);
 $plugin_description = gettext("Zenphoto compatibility.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 class zenPhotoCompatibilityPack {
 

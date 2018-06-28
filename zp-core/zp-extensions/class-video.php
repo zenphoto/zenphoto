@@ -1,9 +1,11 @@
 <?php
 
 /**
+ * This plugin provides basic handlling for videos.
  *
- * This plugin directly handles the <code>3gp</code> and <code>mov</code> <i>video</i>
- * class images if <i>Apple Quicktime</i> is installed on the visitors system.
+ * If the browser supports HTML5 the plugin will show <code>mp3</code> and <code>mp4</code> <i>video</i>
+ * natively. <code>3gp</code> and <code>mov</code> <i>video</i>
+ * class images will be shown if <i>Apple Quicktime</i> is installed on the visitors system.
  * Other formats require a multimedia player to be enabled. The actual supported multimedia types may vary
  * according to the player enabled.
  *
@@ -16,8 +18,7 @@
 
 $plugin_is_filter = defaultExtension(990 | CLASS_PLUGIN);
 $plugin_description = gettext('The <em>audio-video</em> handler.');
-$plugin_notice = gettext('This plugin handles <code>mp3</code>, <code>mp4</code>, <code>3gp</code>, and <code>mov</code> multi-media files. <strong>Note:</strong> <code>mp3</code> and <code>mp4</code> require HTML5 browser support. You should also enable a multimedia player plugin to handle other media files.');
-$plugin_author = "Stephen Billard (sbillard)";
+$plugin_notice = gettext('This plugin handles <code>mp3</code>, <code>mp4</code>, <code>3gp</code>, and <code>mov</code> multi-media files. <strong>Note:</strong> <code>mp3</code> and <code>mp4</code> require HTML5 browser support. You should enable a multimedia player plugin to handle other media files.');
 
 if (extensionEnabled('class-video')) {
 	Gallery::addImageHandler('3gp', 'Video');

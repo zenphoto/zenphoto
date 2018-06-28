@@ -12,7 +12,6 @@
  */
 $plugin_is_filter = 980 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allows only users with Admin or Manage All rights to change the publish state of objects.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('save_object', 'admin_approval::publish_object');
 zp_register_filter('edit_error', 'admin_approval::post_error');

@@ -14,6 +14,15 @@
  * @package plugins/rating
  * @pluginCategory theme
  */
+$plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;
+$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. ");
+
+$option_interface = 'jquery_rating';
+
+zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');
+zp_register_filter('save_album_utilities_data', 'jquery_rating::optionVoteStatusSave');
+zp_register_filter('admin_utilities_buttons', 'jquery_rating::rating_purgebutton');
+
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)) . '/functions.php');
@@ -43,16 +52,6 @@ if (!defined('OFFSET_PATH')) {
 		exitZP();
 	}
 }
-
-$plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;
-$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. ");
-$plugin_author = "Stephen Billard (sbillard) and Malte Müller (acrylian)";
-
-$option_interface = 'jquery_rating';
-
-zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');
-zp_register_filter('save_album_utilities_data', 'jquery_rating::optionVoteStatusSave');
-zp_register_filter('admin_utilities_buttons', 'jquery_rating::rating_purgebutton');
 
 if (getOption('rating_image_individual_control')) {
 	zp_register_filter('edit_image_utilities', 'jquery_rating::optionVoteStatus');
@@ -125,9 +124,6 @@ class jquery_rating {
 				gettext('Allow zero') => array('key' => 'rating_zero_ok', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 5,
 						'desc' => gettext('Allows rating to be zero.')),
-				gettext('Disguise IP') => array('key' => 'rating_hash_ip', 'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 1,
-						'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.')),
 				'' => array('key' => 'rating_js', 'type' => OPTION_TYPE_CUSTOM,
 						'order' => 9999,
 						'desc' => '')
@@ -147,19 +143,19 @@ class jquery_rating {
 					function ratinglikebox() {
 						if ($('#__rating_like').prop('checked')) {
 							$('#__rating_split_stars-1').prop('checked', 'checked');
-							$('#__rating_split_stars-3').attr('disabled', 'disabled');
-							$('#__rating_split_stars-2').attr('disabled', 'disabled');
-							$('#__rating_split_stars-1').attr('disabled', 'disabled');
+							$('#__rating_split_stars-3').prop('disabled', true);
+							$('#__rating_split_stars-2').prop('disabled', true);
+							$('#__rating_split_stars-1').prop('disabled', true);
 							$('#__rating_zero_ok').prop('checked', 'checked');
-							$('#__rating_zero_ok').attr('disabled', 'disabled');
+							$('#__rating_zero_ok').prop('disabled', true);
 							$('#__rating_stars_count').val(1);
-							$('#__rating_stars_count').attr('disabled', 'disabled');
+							$('#__rating_stars_count').prop('disabled', true);
 						} else {
-							$('#__rating_split_stars-1').removeAttr('disabled');
-							$('#__rating_split_stars-2').removeAttr('disabled');
-							$('#__rating_split_stars-3').removeAttr('disabled');
-							$('#__rating_zero_ok').removeAttr('disabled');
-							$('#__rating_stars_count').removeAttr('disabled');
+							$('#__rating_split_stars-1').prop('disabled', false);
+							$('#__rating_split_stars-2').prop('disabled', false);
+							$('#__rating_split_stars-3').prop('disabled', false);
+							$('#__rating_zero_ok').prop('disabled', false);
+							$('#__rating_stars_count').prop('disabled', false);
 						}
 					}
 
@@ -307,18 +303,6 @@ class jquery_rating {
 		}
 	}
 
-	/**
-	 *
-	 * returns an "ID" tag for rating records
-	 */
-	static function id() {
-		if (getOption('rating_hash_ip')) {
-			return sha1(getUserIP());
-		} else {
-			return getUserIP();
-		}
-	}
-
 }
 
 /**
@@ -384,7 +368,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 	$id = $object->getID();
 	$unique = '_' . $table . '_' . $id;
 
-	$ip = jquery_rating::id();
+	$ip = getUserID();
 	$oldrating = jquery_rating::getRatingByIP($ip, $object->get('used_ips'), $object->get('rating'));
 	if ($vote && $recast == 2 && $oldrating) {
 		$starselector = round($oldrating * $split_stars);
@@ -415,11 +399,11 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 			$j++;
 			?>
 			<input type="radio" class="star<?php echo $split; ?>" name="star_rating-value<?php echo $unique; ?>" value="<?php echo $j; ?>" title="<?php
-			if ($like) {
-				echo gettext('like');
-			} else {
-				printf(ngettext('%u star', '%u stars', $v), $v);
-			}
+		if ($like) {
+			echo gettext('like');
+		} else {
+			printf(ngettext('%u star', '%u stars', $v), $v);
+		}
 			?>" />
 						 <?php
 					 }

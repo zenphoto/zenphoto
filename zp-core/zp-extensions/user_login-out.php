@@ -11,7 +11,6 @@
  */
 $plugin_is_filter = 900 | THEME_PLUGIN;
 $plugin_description = gettext("Provides a means for users to login/out from your theme pages.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'user_logout_options';
 if (isset($_zp_gallery_page) && getOption('user_logout_login_form') > 1) {
@@ -125,7 +124,6 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 	if (is_null($showLoginForm)) {
 		$showLoginForm = getOption('user_logout_login_form');
 	}
-
 	if (is_object($_zp_current_admin_obj)) {
 		if (!$_zp_current_admin_obj->logout_link) {
 			return;

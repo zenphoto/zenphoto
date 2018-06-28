@@ -9,16 +9,17 @@
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action'], 3);
 	$what = sanitize($_GET['filename'], 3);
 	$file = SERVERPATH . '/' . DATA_FOLDER . '/' . $what . '.log';
-	XSRFdefender($action, $what);
+
 	if (zp_apply_filter('admin_log_actions', true, $file, $action)) {
 		switch ($action) {
 			case 'clear_log':
+				XSRFdefender($action, $what);
 				$_zp_mutex->lock();
 				$f = fopen($file, 'w');
 				if (@ftruncate($f, 0)) {
@@ -36,6 +37,7 @@ if (isset($_GET['action'])) {
 				}
 				break;
 			case 'delete_log':
+				XSRFdefender($action, $what);
 				purgeOption('logviewed_' . $what);
 				$_zp_mutex->lock();
 				@chmod($file, 0777);
@@ -54,14 +56,25 @@ if (isset($_GET['action'])) {
 				header('location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-logs.php');
 				exitZP();
 			case 'download_log':
+				XSRFdefender($action, $what);
 				putZip($what . '.zip', $file);
 				exitZP();
 		}
 	}
 }
 
-list($logtabs, $subtab, $new) = getLogTabs();
-$logname = $subtab;
+$logtabs = $zenphoto_tabs['logs']['subtabs'];
+if (isset($_GET['tab']) && isset($logtabs[$_GET['tab']])) {
+	$logname = $subtab = $_GET['tab'];
+} else {
+	$logname = $subtab = $zenphoto_tabs['logs']['default'];
+}
+$baseName = preg_replace('~-\d*$~', '', $logname);
+if (getOption($baseName . '_log_encryption')) {
+	$_logCrypt = $_adminCript;
+} else {
+	$_logCrypt = NULL;
+}
 
 printAdminHeader('logs', $subtab);
 
@@ -98,7 +111,11 @@ echo "\n</head>";
 					$logfiletext = strtoupper(substr($logfiletext, 0, 1)) . substr($logfiletext, 1);
 					$logfile = SERVERPATH . "/" . DATA_FOLDER . '/' . $subtab . '.log';
 					if (file_exists($logfile) && filesize($logfile) > 0) {
-						$logtext = explode("\n", file_get_contents($logfile));
+						$logtext = explode(NEWLINE, file_get_contents($logfile));
+						$header = $logtext[0];
+						if ($_logCrypt) {
+							$logtext = array_map(array($_logCrypt, 'decrypt'), $logtext);
+						}
 					} else {
 						$logtext = array();
 					}
@@ -145,14 +162,12 @@ echo "\n</head>";
 						<blockquote class="logtext">
 							<?php
 							if (!empty($logtext)) {
-								$header = array_shift($logtext);
 								$fields = explode("\t", $header);
 								if (count($fields) > 1) { // there is a header row, display in a table
+									unset($logtext[0]); //	delete the header
 									?>
 									<table id="log_table">
-										<?php
-										if (!empty($header)) {
-											?>
+										<thead>
 											<tr>
 												<?php
 												foreach ($fields as $field) {
@@ -164,43 +179,50 @@ echo "\n</head>";
 												}
 												?>
 											</tr>
+										</thead>
+										<tbody>
 											<?php
-										}
-										foreach ($logtext as $line) {
-											?>
-											<tr>
-												<?php
-												$fields = explode("\t", trim($line));
-												foreach ($fields as $key => $field) {
-													?>
-													<td>
-														<?php
-														if ($field) {
-															?>
-															<span class="nowrap"><?php echo html_encode($field); ?></span>
-															<?php
-														}
-														?>
-													</td>
-													<?php
-												}
+											foreach ($logtext as $line) {
 												?>
-											</tr>
-											<?php
-										}
-										?>
+												<tr>
+													<?php
+													$fields = explode("\t", trim($line));
+													foreach ($fields as $key => $field) {
+														?>
+														<td>
+															<?php
+															if ($field) {
+																?>
+																<span class="nowrap"><?php echo html_encodeTagged($field); ?></span>
+																<?php
+															}
+															?>
+														</td>
+														<?php
+													}
+													?>
+												</tr>
+												<?php
+											}
+											?>
+										</tbody>
 									</table>
+									<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.stickytableheaders.min.js"></script>
+									<script>
+										$(function () {
+											$('#log_table').stickyTableHeaders({scrollableArea: $('.logtext'), cacheHeaderHeight: true});
+										});
+									</script>
 									<?php
 								} else {
-									array_unshift($logtext, $header);
 									foreach ($logtext as $line) {
 										if ($line) {
-											$line = str_replace("\t", '  ', $line);
+											$line = str_replace("\t", '&nbsp;&nbsp;', $line);
 											?>
 											<p>
 												<span class="nowrap">
 													<?php
-													echo str_replace(' ', '&nbsp;', html_encode($line));
+													echo html_encodeTagged($line);
 													?>
 												</span>
 											</p>
@@ -210,6 +232,7 @@ echo "\n</head>";
 								}
 							}
 							?>
+							<span id="bottom"></span>
 						</blockquote>
 					</div>
 					<?php
@@ -222,8 +245,15 @@ echo "\n</head>";
 			</div>
 		</div>
 	</div>
-	<?php printAdminFooter(); ?>
+
+	<script type="text/javascript">
+		window.addEventListener('load', function () {
+			$('.logtext').scrollTo('#bottom');
+		}, false);
+	</script>
 	<?php
+	printAdminFooter();
+
 	// to fool the validator
 	echo "\n</body>";
 	echo "\n</html>";

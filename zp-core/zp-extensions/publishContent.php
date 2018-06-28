@@ -28,7 +28,6 @@
  */
 $plugin_is_filter = 500 | ADMIN_PLUGIN;
 $plugin_description = gettext('A single place to quickly review your unpublished content.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 if (zp_loggedin(ADMIN_RIGHTS)) {
 	zp_register_filter('admin_tabs', 'publishContent::admin_tabs', -1600);

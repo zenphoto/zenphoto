@@ -140,8 +140,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<?php printStandardMeta(); ?>
-			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
+			<?php
+			printStandardMeta();
+			load_jQuery_CSS();
+			?>
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/loginForm.css" type="text/css" />
 			<?php
@@ -158,10 +160,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 
 			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('Admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
+			<?php load_jQuery_scripts('admin'); ?>
+
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.min.js" type="text/javascript"></script>
 
 			<?php
 			if (extensionEnabled('touchPunch')) {
@@ -176,9 +178,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			if (getOption('dirtyform_enable')) {
 				?>
-				<!--
-				<script src="<?php echo WEBPATH ?>/jquery.dirtyforms.dist-master/jquery.dirtyforms.js" type="text/javascript"></script>
-				-->
 				<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.min.js" type="text/javascript"></script>
 				<?php
 			}
@@ -245,7 +244,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		function printSortableHead() {
 			?>
 			<!--Nested Sortables-->
-			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.ui.nestedSortable.js"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.mjs.nestedSortable.js"></script>
 			<script type="text/javascript">
 		//<!-- <![CDATA[
 		window.addEventListener('load', function () {
@@ -313,7 +312,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php
 					if ($_zp_current_admin_obj->logout_link) {
 						$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . (int) ((SERVER_PROTOCOL == 'https') & true);
-						echo " &nbsp; | &nbsp; <a href=\"" . $link . "\">" . gettext("Log Out") . "</a> &nbsp; | &nbsp; ";
+						?>
+						&nbsp; | &nbsp; <a href="<?php echo $link; ?>" id="admin_logout"><?php echo gettext("Log Out"); ?></a> &nbsp; | &nbsp;
+						<?php
 					}
 				}
 				?>
@@ -384,15 +385,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 						if ($activeTab) {
 							$class = ' class="active"';
 						} else {
-							if (!empty($alert))
-								$class = ' class="alert"';
+							if (!empty($alert)) {
+								$class = ' class="nav-alert"';
+							}
 						}
 						$subtabs = $zenphoto_tabs[$key]['subtabs'];
 						$hasSubtabs = !empty($subtabs) && is_array($subtabs);
 						$loc++;
 						?>
 						<li<?php if ($hasSubtabs) echo ' class="has-sub"'; ?>>
-							<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encode(ucfirst($atab['text'])); ?></a>
+							<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encodeTagged(ucfirst($atab['text'])); ?></a>
 							<?php
 							if ($hasSubtabs) { // don't print <ul> if there is nothing
 								if (!(isset($atab['ordered']) && $atab['ordered'])) {
@@ -460,13 +462,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 										}
 
 										if (in_array($subkey, $alert)) {
-											$subclass = ' class="' . $subclass . 'alert"';
+											$subclass = ' class="' . $subclass . 'nav-alert"';
 										} else if ($subclass) {
 											$subclass = ' class="' . trim($subclass) . '"';
 										}
 										?>
 										<li>
-											<a href="<?php echo html_encode($link); ?>"<?php echo $subclass; ?>><?php echo html_encode(ucfirst($subkey)); ?></a>
+											<a href="<?php echo html_encode($link); ?>"<?php echo $subclass; ?>><?php echo html_encodeTagged(ucfirst($subkey)); ?></a>
 										</li>
 										<?php
 									} // foreach end
@@ -749,7 +751,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	define('OPTION_TYPE_CHECKBOX_ULLIST', 17);
 	define('OPTION_TYPE_HIDDEN', 18);
 
-	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $extension = NULL) {
+	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $plugin = NULL) {
 		if (is_null($supportedOptions)) {
 			$supportedOptions = $optionHandler->getOptionsSupported();
 		}
@@ -767,7 +769,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 			if (method_exists($optionHandler, 'handleOptionSave')) {
 				?>
-				<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $extension; ?>" />
+				<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $plugin; ?>" />
 				<?php
 			}
 
@@ -981,8 +983,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
 										<label class="checkboxlabel">
 											<?php if ($behind) echo($display); ?>
-											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php checked('1', $v); ?><?php echo $disabled; ?> />
-											<?php if (!$behind) echo($display); ?>
+											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php
+											checked('1', $v);
+											echo $disabled;
+											?> />
+														 <?php if (!$behind) echo($display); ?>
 										</label>
 										<?php
 									}
@@ -1005,7 +1010,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										?>
 										<label class="checkboxlabel">
 											<?php if ($behind) echo($display); ?>
-											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo ' checked="checked"'; ?><?php echo $disabled; ?> />
+											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo ' checked="checked"' . $disabled; ?> />
 											<?php if (!$behind) echo($display); ?>
 										</label>
 										<?php
@@ -1112,7 +1117,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									window.addEventListener('load', function () {
 										$('#__<?php echo $key; ?>').spectrum({
 											preferredFormat: "hex",
-											color: "$('#__<?php echo $key; ?>').val()"
+											color: $('#__<?php echo $key; ?>').val()
 										});
 									}, false);
 									// ]]> -->
@@ -1232,17 +1237,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 		foreach ($customHandlers as $custom) {
-			if ($extension = $custom['extension'] . '.php' != '.php') {
+			if (($extension = $custom['extension'] . '.php') != '.php') {
 				if ($extension = getPlugin($extension)) {
 					require_once($extension);
 				}
 				if (class_exists($custom['whom'])) {
-					$whom = new $custom['whom']();
-					$returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
+					$whomobj = new $custom['whom']();
+					$returntab = $whomobj->handleOptionSave($themename, $themealbum) . $returntab;
 				}
 			}
 		}
-
 		return $returntab;
 	}
 
@@ -1307,7 +1311,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<label<?php if ($class) echo ' class="' . $class . '"'; ?>>
 				<?php if ($behind) echo $text; ?>
-				<input type="radio" name="<?php echo $option; ?>" id="__<?php echo $radioid . '-' . $value; ?>" value="<?php echo $value; ?>"<?php echo $checked; ?><?php echo $disabled; ?> />
+				<input type="radio" name="<?php echo $option; ?>" id="__<?php echo $radioid . '-' . $value; ?>" value="<?php echo $value; ?>"<?php echo $checked . $disabled; ?> />
 				<?php if (!$behind) echo $text; ?>
 			</label>
 			<?php
@@ -1757,7 +1761,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<table class="width100percent">
 						<tr>
 							<td class="leftcolumn">
-								<?php echo gettext("Album Title"); ?>:
+								<?php echo gettext("Album Title"); ?>
 							</td>
 							<td class="middlecolumn">
 								<?php print_language_string_list($album->getTitle('all'), $prefix . "albumtitle", false, null, '', '100%'); ?>
@@ -1878,7 +1882,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 														 name="disclose_password<?php echo $suffix; ?>"
 														 id="disclose_password<?php echo $suffix; ?>"
 														 onclick="passwordClear('<?php echo $suffix; ?>');
-																		 togglePassword('<?php echo $suffix; ?>');" />
+																 togglePassword('<?php echo $suffix; ?>');" />
 														 <?php echo addslashes(gettext('Show')); ?>
 										</label>
 
@@ -2086,7 +2090,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										generateListFromArray(array($current), $watermarks, false, false);
 										?>
 									</select>
-									<em><?php echo gettext('Thumbs'); ?></em>
+									<em><?php echo gettext('Thumbnails'); ?></em>
 								</td>
 							</tr>
 							<?php
@@ -2207,9 +2211,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-													 $('#<?php echo $prefix; ?>expirationdate').val('');
-													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-													 $('.<?php echo $prefix; ?>expire').html('');"
+												 $('#<?php echo $prefix; ?>expirationdate').val('');
+												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+												 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2276,10 +2280,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 									var today = new Date();
 									var pub = $('#<?php echo $prefix; ?>publishdate').datepicker('getDate');
 									if (pub.getTime() > today.getTime()) {
-										$("<?php echo $prefix; ?>Published").removeAttr('checked');
+										$("<?php echo $prefix; ?>Published").prop('checked', false);
 										$('#<?php echo $prefix; ?>publishdate').css('color', 'blue');
 									} else {
-										$("<?php echo $prefix; ?>Published").attr('checked', 'checked');
+										$("<?php echo $prefix; ?>Published").prop('checked', true);
 										$('#<?php echo $prefix; ?>publishdate').css('color', 'black');
 									}
 								});
@@ -2342,7 +2346,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -3690,13 +3694,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 						}
 						?>
-						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
+
+						<label style="padding-right: 15px;" title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
 							<input type="checkbox" name="<?php printf($format, $rightselement, $id); ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>" value="<?php echo $right['value']; ?>"<?php
 							if ($rights & $right['value'])
 								echo ' checked="checked"';
 							echo $alterrights;
-							?> /> <?php echo $right['name']; ?>
+							?> />
+										 <?php echo $right['name']; ?>
 						</label>
+
 						<?php
 					} else {
 						if ($rights & $right['value']) {
@@ -3872,7 +3879,9 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 			<ul class="albumchecklist">
 				<?php
 				generateUnorderedListFromArray($cv, $cv, 'user[' . $prefix_id . '][managed][' . $type . ']', $alterrights, true, true, 'user-' . $prefix_id, $extra, 2);
-				generateUnorderedListFromArray(array(), $rest, 'user[' . $prefix_id . '][managed][' . $type . ']', $alterrights, true, true, 'user-' . $prefix_id, $extra2, 2);
+				if (empty($alterrights)) {
+					generateUnorderedListFromArray(array(), $rest, 'user[' . $prefix_id . '][managed][' . $type . ']', $alterrights, true, true, 'user-' . $prefix_id, $extra2, 2);
+				}
 				?>
 			</ul>
 			<span class="floatright"><?php echo $legend; ?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -4242,7 +4251,7 @@ function printEditDropdown($subtab, $nestinglevels, $nesting, $query = NULL) {
 	}
 	?>
 	<form name="AutoListBox2" style="float: right;padding-right: 14px;" action="#" >
-		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
+		<select name="ListBoxURL" size="1" onchange="zp_gotoLink(this.form);">
 			<?php
 			foreach ($nestinglevels as $nestinglevel) {
 				if ($nesting == $nestinglevel) {
@@ -4264,14 +4273,6 @@ function printEditDropdown($subtab, $nestinglevels, $nesting, $query = NULL) {
 			}
 			?>
 		</select>
-		<script type="text/javascript" >
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-				var OptionIndex = form.ListBoxURL.selectedIndex;
-				parent.location = form.ListBoxURL.options[OptionIndex].value;
-			}
-			// ]]> -->
-		</script>
 	</form>
 	<?php
 }
@@ -4337,30 +4338,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-				var sel = obj.options[obj.selectedIndex].value;
-				var mark;
-				switch (sel) {
+			var sel = obj.options[obj.selectedIndex].value;
+							var mark;
+							switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-					case '<?php echo $key; ?>':
-									mark = '<?php echo $mark; ?>';
-									break;
+				case '<?php echo $key; ?>':
+								mark = '<?php echo $mark; ?>';
+								break;
 			<?php
 		}
 		?>
-				default:
-								mark = false;
-								break;
+			default:
+							mark = false;
+							break;
 			}
 			if (mark) {
-				$.colorbox({
-					href: '#' + mark,
-					inline: true,
-					open: true,
-					close: '<?php echo gettext("ok"); ?>'
-				});
-				}
+			$.colorbox({
+			href: '#' + mark,
+							inline: true,
+							open: true,
+							close: '<?php echo gettext("ok"); ?>'
+			});
+			}
 			}
 			// ]]> -->
 		</script>
@@ -4375,13 +4376,15 @@ function printBulkActions($checkarray, $checkAll = false) {
 		if ($checkAll) {
 			?>
 			<br />
-			<span style="float:right">
-				<?php echo gettext("Check All"); ?>
-				<input class="ignoredirty" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
-			</span>
-			<?php
-		}
-		?>
+			<label>
+				<span style="float:right">
+					<?php echo gettext("Check All"); ?>
+					<input class="ignoredirty" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			</label>
+		</span>
+		<?php
+	}
+	?>
 	</span>
 	<?php
 	foreach ($customInfo as $key => $data) {
@@ -4491,22 +4494,6 @@ function printBulkActions($checkarray, $checkAll = false) {
 		</div>
 		<?php
 	}
-}
-
-/**
- *
- * common redirector for bulk action handling return
- * @param string $action
- */
-function bulkActionRedirect($action) {
-	$uri = getRequestURI();
-	if (strpos($uri, '?')) {
-		$uri .= '&bulkaction=' . $action;
-	} else {
-		$uri .= '?bulkaction=' . $action;
-	}
-	header('Location: ' . $uri);
-	exitZP();
 }
 
 /**
@@ -4753,27 +4740,27 @@ function stripTableRows($custom) {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-		// <!-- <![CDATA[
-		$(function () {
-			var tabContainers = $('div.tabs > div');
-			$('.first').addClass('selected');
-		});
-		function cbclick(num, id) {
-			$('.cbx-' + id).hide();
-			$('#cb' + num + '-' + id).show();
-			$('.cbt-' + id).removeClass('selected');
-			$('#cbt' + num + '-' + id).addClass('selected');
-		}
+						// <!-- <![CDATA[
+						$(function () {
+						var tabContainers = $('div.tabs > div');
+										$('.first').addClass('selected');
+						});
+						function cbclick(num, id) {
+						$('.cbx-' + id).hide();
+										$('#cb' + num + '-' + id).show();
+										$('.cbt-' + id).removeClass('selected');
+										$('#cbt' + num + '-' + id).addClass('selected');
+						}
 
 		function cbadd(id, offset) {
-			var num = $('#cbu-' + id + ' li').size() - offset;
-			$('li:last', $('#cbu-' + id)).remove();
-			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-							'</div>');
-			cbclick(num, id);
+		var num = $('#cbu-' + id + ' li').length - offset;
+						$('li:last', $('#cbu-' + id)).remove();
+						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+						'</div>');
+						cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -4869,37 +4856,24 @@ function processCodeblockSave($id, $obj) {
 function admin_securityChecks($rights, $return) {
 	global $_zp_current_admin_obj, $_zp_loggedin;
 	checkInstall();
-	httpsRedirect();
+
+	if (is_null($rights)) {
+		$rights = ADMIN_RIGHTS;
+	}
 	if ($_zp_current_admin_obj) {
 		if ($_zp_current_admin_obj->reset) {
 			$_zp_loggedin = USER_RIGHTS;
 		}
 	}
-	if (!zp_loggedin($rights)) {
-// prevent nefarious access to this page.
-		$returnurl = urldecode($return);
-		if (!zp_apply_filter('admin_allow_access', false, $returnurl)) {
-			$uri = explode('?', $returnurl);
-			header("HTTP/1.0 302 Found");
-			header("Status: 302 Found");
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
-			exitZP();
-		}
-	}
-}
-
-/**
- *
- * Checks if protocol not https and redirects if https required
- */
-function httpsRedirect() {
-	if (defined('SERVER_PROTOCOL') && SERVER_PROTOCOL !== 'http') {
-// force https login
-		if (!isset($_SERVER["HTTPS"])) {
-			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
-			header("Location:$redirect");
-			exitZP();
-		}
+	$returnurl = urldecode($return);
+	$rights = zp_apply_filter('admin_allow_access', $rights, $returnurl);
+	if (!($rights & $_zp_loggedin)) {
+		// prevent nefarious access to this page.
+		$uri = explode('?', $returnurl);
+		header("HTTP/1.0 302 Found");
+		header("Status: 302 Found");
+		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
+		exitZP();
 	}
 }
 
@@ -5170,7 +5144,7 @@ function getLogTabs() {
 		foreach ($filelist as $logfile) {
 			$log = substr(basename($logfile), 0, -4);
 			if (filemtime($logfile) > getOption('logviewed_' . $log)) {
-				$new[] = $log;
+				$new[$log] = $log;
 			}
 			if ($log == $tab) {
 				$default = $tab;
@@ -5191,7 +5165,7 @@ function getLogTabs() {
 				$logfiletext = str_replace('_', ' ', $log);
 			}
 
-			$subtabs = array_merge($subtabs, array($logfiletext . $num => 'admin-logs.php?page=logs&tab=' . $log));
+			$subtabs = array_merge($subtabs, array($logfiletext . $num => '/' . ZENFOLDER . '/admin-logs.php?page=logs&tab=' . $log));
 			if (filesize($logfile) > 0 && empty($default)) {
 				$default_viewed = $log;
 			}
@@ -5200,8 +5174,7 @@ function getLogTabs() {
 			if (empty($new)) {
 				$default = $default_viewed;
 			} else {
-				$default = $new;
-				$default = array_shift($default);
+				$default = reset($new);
 			}
 		}
 	}
@@ -5219,21 +5192,27 @@ function getLogTabs() {
 function getPluginTabs() {
 	/* subpackages */
 	$_subpackages = array(
-			'admin' => gettext('admin'),
+			'admin' => gettext('administration'),
 			'development' => gettext('development'),
 			'example' => gettext('example'),
 			'mail' => gettext('mail'),
 			'media' => gettext('media'),
 			'seo' => gettext('seo'),
-			'theme' => gettext('theme'),
+			'theme' => gettext('theme support'),
 			'users' => gettext('users'),
-			'zenphoto20' => gettext('zenphoto20')
+			'zenphoto20' => gettext('zenphoto20'),
+			'misc' => gettext('misc')
 	);
 	$classXlate = array(
 			'all' => gettext('all'),
-			'thirdparty' => gettext('3rd party'),
-			'enabled' => gettext('enabled'),
-			'misc' => gettext('misc')
+			'thirdparty' => gettext('<em>3rd party</em>'),
+			'enabled' => gettext('<em>enabled</em>'),
+			'disabled' => gettext('<em>disabled</em>'),
+			'deprecated' => gettext('<em>deprecated</em>'),
+			'class_plugin' => gettext('<em>class</em>'),
+			'feature_plugin' => gettext('<em>feature</em>'),
+			'admin_plugin' => gettext('<em>admin</em>'),
+			'theme_plugin' => gettext('<em>theme</em>')
 	);
 	$classXlate = array_merge($classXlate, $_subpackages);
 
@@ -5246,11 +5225,36 @@ function getPluginTabs() {
 	$paths = getPluginFiles('*.php');
 	zp_apply_filter('plugin_tabs', $classXlate);
 
-	$classes = $member = $thirdparty = array();
+	$class = $feature = $admin = $theme = $details = $active = $inactive = $disabled = $deprecated = $classes = $member = $thirdparty = array();
 	foreach ($paths as $plugin => $path) {
 		if (!isset($plugin_lc[strtolower($plugin)])) {
 			$plugin_lc[strtolower($plugin)] = true;
 			$p = file_get_contents($path);
+			preg_match('~/\*(.*?)\*/~s', $p, $matches);
+			if (isset($matches[1])) {
+				$d = $matches[1];
+			} else {
+				$d = '';
+			}
+
+			if ($str = isolate('$plugin_description', $p)) {
+				$details[$plugin]['plugin_description'] = $str;
+			}
+
+			if ($str = isolate('$plugin_notice', $p)) {
+				$details[$plugin]['plugin_notice'] = $str;
+			}
+
+			if ($str = isolate('$plugin_version', $p)) {
+				$details[$plugin]['plugin_version'] = $str;
+			}
+
+			if ($str = isolate('$plugin_disable', $p)) {
+				$details[$plugin]['plugin_disable'] = $str;
+			}
+
+			$details[$plugin]['option_interface'] = isolate('$option_interface', $p);
+
 			$key = 'misc';
 			if ($str = isolate('@pluginCategory', $p)) {
 				preg_match('|@pluginCategory\s+(.*)\s|', $str, $matches);
@@ -5258,22 +5262,51 @@ function getPluginTabs() {
 					$key = strtolower(trim($matches[1]));
 				}
 			}
+			$details[$plugin]['category'] = $key;
+
+			if (preg_match('~@deprecated~', $d)) {
+				$details[$plugin]['deprecated'] = 'deprecated';
+				$deprecated[$plugin] = $path;
+			}
+			$plugin_is_filter = 1 | THEME_PLUGIN;
+			if ($str = isolate('$plugin_is_filter', $p)) {
+				eval($str);
+			}
+			$details[$plugin]['plugin_is_filter'] = $plugin_is_filter;
+			if ($plugin_is_filter & THEME_PLUGIN) {
+				$theme[$plugin] = $path;
+			}
+			if ($plugin_is_filter & ADMIN_PLUGIN) {
+				$admin[$plugin] = $path;
+			}
+			if ($plugin_is_filter & CLASS_PLUGIN) {
+				$class[$plugin] = $path;
+			}
+			if ($plugin_is_filter & FEATURE_PLUGIN) {
+				$feature[$plugin] = $path;
+			}
+			unset($plugin_is_filter);
 
 			$classes[$key][] = $plugin;
 			if (extensionEnabled($plugin)) {
 				$active[$plugin] = $path;
+			} else {
+				$inactive[$plugin] = $path;
 			}
+			$tpp = 0;
 			if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
+				$tpp = 2;
+				$thirdparty[$plugin] = $path;
 				if ($str = isolate('@category', $p)) {
 					preg_match('~@category\s+([^\/|^\s]*)~', $str, $matches);
-					$deprecate = !isset($matches[1]) || $matches[1] != 'package';
-				} else {
-					$deprecate = true;
-				}
-				if ($deprecate) {
-					$thirdparty[$plugin] = $path;
+					if (isset($matches[1]) || $matches[1] == 'package') {
+						$tpp = 1;
+						unset($thirdparty[$plugin]);
+					}
 				}
 			}
+			$details[$plugin]['thridparty'] = $tpp;
+
 			if (array_key_exists($key, $classXlate)) {
 				$local = $classXlate[$key];
 			} else {
@@ -5282,17 +5315,50 @@ function getPluginTabs() {
 			$member[$plugin] = $local;
 		}
 	}
-	ksort($classes);
+
 	if (!empty($thirdparty))
 		$tabs[$classXlate['thirdparty']] = 'admin-plugins.php?page=plugins&tab=thirdparty';
 	if (!empty($active))
 		$tabs[$classXlate['enabled']] = 'admin-plugins.php?page=plugins&tab=enabled';
+	if (!empty($inactive))
+		$tabs[$classXlate['disabled']] = 'admin-plugins.php?page=plugins&tab=disabled';
+	if (!empty($deprecated))
+		$tabs[$classXlate['deprecated']] = 'admin-plugins.php?page=plugins&tab=deprecated';
+	if (!empty($class))
+		$tabs[$classXlate['class_plugin']] = 'admin-plugins.php?page=plugins&tab=class_plugin';
+	if (!empty($feature))
+		$tabs[$classXlate['feature_plugin']] = 'admin-plugins.php?page=plugins&tab=feature_plugin';
+	if (!empty($admin))
+		$tabs[$classXlate['admin_plugin']] = 'admin-plugins.php?page=plugins&tab=admin_plugin';
+	if (!empty($theme))
+		$tabs[$classXlate['theme_plugin']] = 'admin-plugins.php?page=plugins&tab=theme_plugin';
+	if (!empty($deprecated))
+		$tabs[$classXlate['deprecated']] = 'admin-plugins.php?page=plugins&tab=deprecated';
+
 	switch ($default) {
 		case 'all':
 			$currentlist = array_keys($paths);
 			break;
 		case 'enabled':
 			$currentlist = array_keys($active);
+			break;
+		case 'disabled':
+			$currentlist = array_keys($inactive);
+			break;
+		case 'class_plugin':
+			$currentlist = array_keys($class);
+			break;
+		case 'feature_plugin':
+			$currentlist = array_keys($feature);
+			break;
+		case 'admin_plugin':
+			$currentlist = array_keys($admin);
+			break;
+		case 'theme_plugin':
+			$currentlist = array_keys($theme);
+			break;
+		case 'deprecated':
+			$currentlist = array_keys($deprecated);
 			break;
 		case'thirdparty':
 			$currentlist = array_keys($thirdparty);
@@ -5309,7 +5375,8 @@ function getPluginTabs() {
 			$currentlist = $list;
 		}
 	}
-	return array($tabs, $default, $currentlist, $paths, $member, $classXlate);
+
+	return array($tabs, $default, $currentlist, $paths, $member, $classXlate, $details);
 }
 
 function getAdminThumb($image, $size) {
@@ -5627,7 +5694,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 			 <?php echo CLIPBOARD; ?>
 	</a>
 	<?php

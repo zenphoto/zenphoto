@@ -15,7 +15,6 @@
  */
 $plugin_is_filter = 9 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allow a user to create a root level album when he does not otherwise have rights to do so.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'create_album';
 
@@ -44,7 +43,8 @@ ob_start();
 		<input id="newalbumcheckbox" type="checkbox" name="createalbum" />
 		<?php echo gettext('Create an album') ?>
 	</div>
-	<div id="albumtext" style="margin-top: 5px;"><?php echo gettext("titled:"); ?>
+	<div id="albumtext" style="margin-top: 5px;">
+		<?php echo gettext("titled:"); ?>
 		<input id="albumtitle" size="42" type="text" name="albumtitle"
 					 onkeyup="updateFolder(this, 'folderdisplay', 'autogen', '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>');" />
 
@@ -54,11 +54,15 @@ ob_start();
 			<span id="foldererror" style="display: none; color: #D66;"></span>
 			<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
 						 onclick="toggleAutogen('folderdisplay', 'albumtitle', this);" />
-			<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
+			<label for="autogen">
+				<?php echo gettext("Auto-generate"); ?>
+			</label>
 		</div>
 		<div id="publishtext">
 			<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> />
-			<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
+			<label for="publishalbum">
+				<?php echo gettext("Publish the album so everyone can see it."); ?>
+			</label>
 		</div>
 	</div>
 </div>
@@ -306,13 +310,6 @@ class create_album {
 		if (!$allow) {
 			$rights = $_zp_current_admin_obj->getRights();
 			$allow = in_array($_zp_current_admin_obj->getUser(), $__creatAlbumList);
-			/*
-			  if (is_null($enabled)) { // a new user
-			  if (($rights & (ALBUM_RIGHTS | UPLOAD_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) == (ALBUM_RIGHTS | UPLOAD_RIGHTS)) {
-			  return getOption('create_album_default');
-			  }
-			  }
-			 */
 		}
 		return $allow;
 	}
@@ -327,8 +324,18 @@ class create_album {
 					mkdir_recursive($targetPath, FOLDER_MOD);
 					$album = newAlbum($folder);
 					$album->save();
-					$userobj->setObjects(array_merge($userobj->getObjects(), array('data' => $folder, 'name' => $album->getTitle(), 'edit' => MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW)));
-					$userobj->save();
+					if (!zp_loggedin(ADMIN_RIGHTS)) {
+						// add the album to his managed objects
+						$objects = $_zp_current_admin_obj->getObjects();
+						$objects[] = array(
+								'data' => $folder,
+								'name' => $album->getTitle(),
+								'type' => 'albums',
+								'edit' => MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW
+						);
+						$_zp_current_admin_obj->setObjects($objects);
+						$_zp_current_admin_obj->save();
+					}
 				}
 			}
 		}

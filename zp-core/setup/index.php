@@ -56,8 +56,8 @@ if (isset($_REQUEST['autorun'])) {
 	$displayLimited = $autorun = false;
 }
 
-$session = zp_session_start();
 session_cache_limiter('nocache');
+$session = zp_session_start();
 $setup_checked = false;
 
 if (isset($_REQUEST['xsrfToken']) || isset($_REQUEST['update']) || isset($_REQUEST['checked'])) {
@@ -487,8 +487,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><?php printf('ZenPhoto20 %s', $upgrade); ?></title>
 	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
-
-	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
+	<?php
+	load_jQuery_CSS();
+	load_jQuery_scripts('theme');
+	?>
 	<script type="text/javascript">
 		var imageErr = false;
 		function toggle_visibility(id) {
@@ -1337,7 +1339,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							} else {
 								$msg1 = gettext("ZenPhoto20 core files [Some files are missing or seem wrong]");
 							}
-							$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files: ') . '<br /><code>' . substr($filelist, 0, -6) . '</code>';
+							$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files: ') . '<p><code>' . substr($filelist, 0, -6) . '</code></p>';
 							$mark = -1;
 						} else {
 							if (isset($rootupdate) && !$rootupdate) {
@@ -1805,8 +1807,10 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									foreach ($clones as $clone => $data) {
 										$url = $data['url'];
 										?>
-										<p class = "delayshow" style = "display:none;"><?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $data['url'] . ZENFOLDER . '/setup/index.php?autorun', $clone);
-										?></p>
+										<p class = "delayshow" style = "display:none;">
+											<?php echo sprintf(gettext('Setup <a href="%1$s" target="_blank">%2$s</a>'), $data['url'] . ZENFOLDER . '/setup/index.php?autorun', $clone);
+											?>
+										</p>
 										<?php
 									}
 								}

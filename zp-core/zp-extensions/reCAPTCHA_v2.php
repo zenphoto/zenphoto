@@ -25,7 +25,6 @@
 global $_zp_captcha;
 $plugin_is_filter = 500 | CLASS_PLUGIN;
 $plugin_description = gettext("Google reCAPTCHA handler.");
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = !ini_get('allow_url_fopen') ? gettext('The <em>allow_url_fopen</em> PHP.ini setting is disabled. reCAPTCHA requires that <em>allow_url_fopen</em> PHP.ini setting to be enabled.') : (($_zp_captcha->name && $_zp_captcha->name != 'reCAPTCHA_v2') ? sprintf(gettext('Only one Captcha handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_captcha->name) : '');
 
 $option_interface = 'reCAPTCHA_v2';

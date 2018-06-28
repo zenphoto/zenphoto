@@ -12,6 +12,10 @@
 $_zp_button_actions = $zenphoto_tabs = array();
 require_once(dirname(__FILE__) . '/functions-basic.php');
 
+if (TEST_RELEASE) {
+	setOption('zp_plugin_debug', 10 | ADMIN_PLUGIN, false);
+}
+
 zp_session_start();
 require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 httpsRedirect();
@@ -35,7 +39,6 @@ $_zp_sortby = array(
 		gettext('Owner') => 'owner',
 		gettext('Published') => 'show'
 );
-
 
 // setup sub-tab arrays for use in dropdown
 if (@$_zp_loggedin) {
@@ -91,37 +94,90 @@ if (@$_zp_loggedin) {
 		zp_register_filter('admin_tabs', 'refresh_subtabs', -1800);
 
 		if ($_zp_loggedin & ALBUM_RIGHTS) {
-			$zenphoto_tabs['edit'] = array('text' => gettext("albums"),
-					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-edit.php',
-					'subtabs' => NULL);
+			$albums = $_zp_gallery->getAlbums();
+			foreach ($albums as $key => $analbum) {
+				$albumobj = newAlbum($analbum);
+				if (!$albumobj->isMyItem(ALBUM_RIGHTS)) {
+					unset($albums[$key]);
+				}
+			}
+			if (!empty($albums)) {
+				$zenphoto_tabs['edit'] = array('text' => gettext("albums"),
+						'link' => WEBPATH . "/" . ZENFOLDER . '/admin-edit.php',
+						'subtabs' => NULL);
+			}
 		}
-
 
 
 		if (isset($_zp_CMS)) {
 			if (($_zp_loggedin & ZENPAGE_PAGES_RIGHTS) && $_zp_CMS->pages_enabled) {
-				$zenphoto_tabs['pages'] = array('text' => gettext("pages"),
-						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php',
-						'subtabs' => NULL);
+				$pagelist = $_zp_CMS->getPages();
+				foreach ($pagelist as $key => $apage) {
+					$pageobj = newPage($apage['titlelink']);
+					if (!($pageobj->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+						unset($pagelist[$key]);
+					}
+				}
+				if (!empty($pagelist)) {
+					$zenphoto_tabs['pages'] = array('text' => gettext("pages"),
+							'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php',
+							'subtabs' => NULL);
+				}
 			}
 
 			if (($_zp_loggedin & ZENPAGE_NEWS_RIGHTS) && $_zp_CMS->news_enabled) {
-				$zenphoto_tabs['news'] = array('text' => gettext('news'),
-						'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news.php',
-						'subtabs' => array(gettext('articles') => PLUGIN_FOLDER . '/zenpage/admin-news.php?page=news&tab=articles',
-								gettext('categories') => PLUGIN_FOLDER . '/zenpage/admin-categories.php?page=news&tab=categories'),
-						'ordered' => true,
-						'default' => 'articles');
+				$articles = $_zp_CMS->getArticles(0, 'all', false, NULL, NULL, false, NULL);
+				foreach ($articles as $key => $article) {
+					$article = newArticle($article['titlelink']);
+					$subrights = $article->subRights();
+					if (!($article->isMyItem(ZENPAGE_NEWS_RIGHTS) && $subrights & MANAGED_OBJECT_RIGHTS_EDIT)) {
+						unset($articles[$key]);
+					}
+				}
+
+				$categories = $_zp_CMS->getAllCategories();
+				foreach ($categories as $key => $cat) {
+					$catobj = newCategory($cat['titlelink']);
+					if (!($catobj->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+						unset($categories[$key]);
+					}
+				}
+				if (!empty($articles) && !empty($categories)) {
+					$zenphoto_tabs['news'] = array('text' => gettext('news'),
+							'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news.php',
+							'subtabs' => array(gettext('articles') => PLUGIN_FOLDER . '/zenpage/admin-news.php?page=news&tab=articles',
+									gettext('categories') => PLUGIN_FOLDER . '/zenpage/admin-categories.php?page=news&tab=categories'),
+							'ordered' => true,
+							'default' => 'articles');
+				} else if (!empty($articles)) {
+					$zenphoto_tabs['news'] = array('text' => gettext('news'),
+							'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news.php',
+							'subtabs' => NULL,
+							'ordered' => true,
+							'default' => 'articles');
+				} else if (!empty($categories)) {
+					$zenphoto_tabs['news'] = array('text' => gettext('categories'),
+							'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-categories.php',
+							'subtabs' => NULL,
+							'ordered' => true,
+							'default' => 'categories');
+				}
 			}
 		}
 
 		if (getOption('adminTagsTab')) {
 			zp_register_filter('admin_tabs', 'tags_subtab', -1900);
 		}
-
-		if ($_zp_loggedin & USER_RIGHTS) {
+		if ($_zp_loggedin & ADMIN_RIGHTS) {
 			$zenphoto_tabs['admin'] = array(
 					'text' => gettext("admin"),
+					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users',
+					'ordered' => true,
+					'subtabs' => array(gettext('users') => 'admin-users.php?page=admin&tab=users')
+			);
+		} else if ($_zp_loggedin & USER_RIGHTS) {
+			$zenphoto_tabs['admin'] = array(
+					'text' => gettext("my profile"),
 					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users',
 					'ordered' => true,
 					'subtabs' => array(gettext('users') => 'admin-users.php?page=admin&tab=users')
@@ -166,10 +222,11 @@ if (@$_zp_loggedin) {
 		}
 
 		if ($_zp_loggedin & ADMIN_RIGHTS) {
-			list($subtabs, $default) = getPluginTabs();
+			//NOTE: the following listed variables will be assumed by the admin-plugins script
+			list($plugin_subtabs, $plugin_default, $pluginlist, $plugin_paths, $plugin_member, $classXlate, $pluginDetails) = getPluginTabs();
 			$zenphoto_tabs['plugins'] = array('text' => gettext("plugins"),
 					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-plugins.php',
-					'subtabs' => $subtabs);
+					'subtabs' => $plugin_subtabs);
 			zp_register_filter('admin_tabs', 'backup_subtab', -200);
 			$zenphoto_tabs['overview']['subtabs'][gettext('Installation information')] = '/' . ZENFOLDER . '/utilities/installation_analysis.php?tab=installstats';
 		}
@@ -207,6 +264,6 @@ if (@$_zp_loggedin) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/colorbox_js.php');
 		}
 	}
-	loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
+	loadLocalOptions(0, $_zp_gallery->getCurrentTheme());
 }
 ?>

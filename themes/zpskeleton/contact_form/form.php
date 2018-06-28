@@ -27,10 +27,10 @@
 		</div>
 	<?php } ?>
 
-	<?php if (showOrNotShowField(getOption('contactform_sdiveet'))) { ?>
+	<?php if (showOrNotShowField(getOption('contactform_street'))) { ?>
 		<div>
-			<label for="sdiveet"><?php printf(gettext("Sdiveet<strong>%s</strong>:"), (checkRequiredField(getOption('contactform_sdiveet')))); ?></label>
-			<input type="text" id="sdiveet" name="sdiveet" size="50" value="<?php echo html_encode($mailcontent['sdiveet']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="street"><?php printf(gettext("Street<strong>%s</strong>:"), (checkRequiredField(getOption('contactform_street')))); ?></label>
+			<input type="text" id="street" name="street" size="50" value="<?php echo html_encode($mailcontent['street']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 		</div>
 	<?php } ?>
 

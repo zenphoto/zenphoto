@@ -15,7 +15,6 @@
  */
 $plugin_is_filter = 990 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides a means for showing documents using <em>WEBdocs</em> for the document rendering.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 
 $option_interface = 'WEBdocs_Options';

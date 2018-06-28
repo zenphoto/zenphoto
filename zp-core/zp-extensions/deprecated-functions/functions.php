@@ -60,21 +60,21 @@ function formatList($title, $subject, $pattern, $started = FALSE) {
 						break;
 					}
 			}
-			if ($started) {
-				echo "</ul>\n";
-			} else {
-				$started = true;
-				echo '<ul class="warningbox nobullet">' . "\n";
-			}
 			if (!$emitted) {
-				echo '<li>' . $title;
-				echo "\n<ul>\n";
+				if ($started) {
+					echo "</ul>\n";
+				} else {
+					echo '<ul class="ulclean">' . "\n";
+				}
+				echo "<li>\n<h3>$title</h3>\n<ul class=\"ulclean\">\n";
+				$started = $emitted = true;
 			}
 			echo '<li>' . $match . $class . "</li>\n";
-			$emitted = true;
 		}
 	}
-
+	if ($emitted) {
+		echo "</li>\n";
+	}
 	return $started;
 }
 
@@ -89,17 +89,8 @@ function listUses($files, $base, $pattern) {
 			$folders = explode('/', $location);
 			if ($folders[0] != $oldLocation) {
 				$oldLocation = $folders[0];
-				if ($location) {
-					if ($open) {
-						$open = false;
-						echo "</ul>\n</li>\n</ul>\n";
-					} else {
-						echo "<br/>\n";
-					}
-					echo '<strong>' . $location . "</strong>\n";
-				}
 			}
-			$script_location = $base . '/' . $location . '/';
+			$script_location = trim($base . '/' . $location, '/') . '/';
 			$script = str_replace($script_location, '', $file);
 			$open = formatList($script, $subject, $pattern, $open);
 			if ($open) {
@@ -115,6 +106,7 @@ function listUses($files, $base, $pattern) {
 		<p class="messagebox"><?php echo gettext('No calls on deprecated functions were found.'); ?></p>
 		<?php
 	}
+	return $output;
 }
 
 function listDBUses($pattern) {
@@ -146,7 +138,7 @@ function listDBUses($pattern) {
 			}
 		}
 		if ($output) {
-			echo '</ul>';
+			echo '</ul>,!-- 4 -->';
 		} else {
 			?>
 			<p class="messagebox"><?php echo gettext('No calls on deprecated functions were found.'); ?></p>

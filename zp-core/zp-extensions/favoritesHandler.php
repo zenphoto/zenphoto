@@ -46,7 +46,6 @@
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'favoritesHandler';
 
@@ -387,12 +386,12 @@ if (OFFSET_PATH) {
 					$favList = array_slice($list, 1);
 					?>
 					<script type="text/javascript">
-					// <!-- <![CDATA[
+						// <!-- <![CDATA[
 						var _favList = ['<?php echo implode("','", $favList); ?>'];
 						$(function () {
 							$('.favorite_instance').tagSuggest({tags: _favList})
 						});
-					// ]]> -->
+						// ]]> -->
 					</script>
 					<?php
 				}

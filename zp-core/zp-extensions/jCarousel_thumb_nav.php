@@ -10,7 +10,6 @@
  * @pluginCategory theme
  */
 $plugin_description = gettext("jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on request via JavaScript.");
-$plugin_author = "Malte Müller (acrylian) based on a jCarousel example";
 $plugin_disable = (extensionEnabled('bxslider_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'bxslider_thumb_nav') : '';
 
 $option_interface = 'jcarousel';
@@ -238,40 +237,40 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('jcarousel_' . $_zp_gallery->g
 			?>
 			<script type="text/javascript">
 			// <!-- <![CDATA[
-				var mycarousel_itemList = [
+			var mycarousel_itemList = [
 			<?php echo $items; ?>
-				];
+			];
 
-				function mycarousel_itemLoadCallback(carousel, state) {
-					for (var i = carousel.first; i <= carousel.last; i++) {
-						if (carousel.has(i)) {
-							continue;
-						}
-						if (i > mycarousel_itemList.length) {
-							break;
-						}
-						carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
+			function mycarousel_itemLoadCallback(carousel, state) {
+				for (var i = carousel.first; i <= carousel.last; i++) {
+					if (carousel.has(i)) {
+						continue;
 					}
-				}
-
-				function mycarousel_getItemHTML(item) {
-					if (item.active === "") {
-						html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
-					} else {
-						html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+					if (i > mycarousel_itemList.length) {
+						break;
 					}
-					return html;
+					carousel.add(i, mycarousel_getItemHTML(mycarousel_itemList[i - 1]));
 				}
+			}
 
-				jQuery(document).ready(function () {
-					jQuery("#mycarousel").jcarousel({
-						vertical: <?php echo $vertical; ?>,
-						size: mycarousel_itemList.length,
-						start: <?php echo $imgnumber; ?>,
-						scroll: <?php echo $thumbscroll; ?>,
-						itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
-					});
+			function mycarousel_getItemHTML(item) {
+				if (item.active === "") {
+					html = '<a href="' + item.link + '" title="' + item.title + '"><img src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				} else {
+					html = '<a href="' + item.link + '" title="' + item.title + '"><img class="activecarouselimage" src="' + item.url + '" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="' + item.url + '" /></a>';
+				}
+				return html;
+			}
+
+			jQuery(document).ready(function () {
+				jQuery("#mycarousel").jcarousel({
+					vertical: <?php echo $vertical; ?>,
+					size: mycarousel_itemList.length,
+					start: <?php echo $imgnumber; ?>,
+					scroll: <?php echo $thumbscroll; ?>,
+					itemLoadCallback: {onBeforeAnimation: mycarousel_itemLoadCallback}
 				});
+			});
 			// ]]> -->
 			</script>
 			<ul id="mycarousel">

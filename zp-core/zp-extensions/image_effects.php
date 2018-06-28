@@ -58,7 +58,6 @@
  * @pluginCategory media
  */
 $plugin_description = gettext('Attaches “Image effects” to images and thumbnails.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'image_effects';
 

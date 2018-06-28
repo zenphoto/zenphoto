@@ -20,21 +20,22 @@
  * Content macro support:
  * Use [SLIDESHOW <albumname> <true/false for control] for showing a slideshow within image/album descriptions or Zenpage article and page contents.
  * The slideshow size options must fit the space
+ *
  * Notes:
- * <ul>
+ * <ol>
  * 	<li>The slideshow scripts must be enabled for the pages you wish to use it on.</li>
  * 	<li>Use only one slideshow per page to avoid CSS conflicts.</li>
  * 	<li>Also your theme might require extra CSS for this usage, especially the controls.</li>
  * 	<li>This only creates a slideshow in jQuery mode, no matter how the mode is set.</li>
- * </ul>
+ * </ol>
  *
  * @author Malte Müller (acrylian)
+ *
  * @package plugins/slideshow2
  * @pluginCategory media
  */
 $plugin_is_filter = defaultExtension(9 | THEME_PLUGIN | ADMIN_PLUGIN);
 $plugin_description = gettext("Slideshow plugin based on the Cycle2 jQuery plugin.");
-$plugin_author = "Malte Müller (acrylian)";
 $plugin_disable = (extensionEnabled('slideshow')) ? sprintf(gettext('Only one slideshow plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'slideshow') : '';
 
 $option_interface = 'cycle';
@@ -508,8 +509,9 @@ if (extensionEnabled('slideshow2') && !OFFSET_PATH) {
 	 *
 	 * @param string $linktext Text for the link
 	 * @param string $linkstyle Style of Text for the link
+	 * @param string $after text to be placed after the link
 	 */
-	function printSlideShowLink($linktext = NULL, $linkstyle = Null) {
+	function printSlideShowLink($linktext = NULL, $linkstyle = Null, $after = NULL) {
 		global $_zp_gallery, $_zp_current_image, $_zp_current_album, $_zp_current_search, $slideshow_instance, $_zp_gallery_page, $_myFavorites;
 		if (is_null($linktext)) {
 			$linktext = gettext('View Slideshow');
@@ -559,10 +561,11 @@ if (extensionEnabled('slideshow2') && !OFFSET_PATH) {
 						<input type="hidden" name="numberofimages" value="<?php echo $numberofimages; ?>" />
 						<input type="hidden" name="imagenumber" value="<?php echo $imagenumber; ?>" />
 						<input type="hidden" name="imagefile" value="<?php echo html_encode($imagefile); ?>" />
-						<?php if (!empty($linkstyle)) echo '<p style="' . $linkstyle . '">'; ?>
-						<a class="slideshowlink" id="slideshowlink_<?php echo $slideshow_instance; ?>" 	href="javascript:document.slideshow_<?php echo $slideshow_instance; ?>.submit()"><?php echo $linktext; ?></a>
-						<?php if (!empty($linkstyle)) echo '</p>'; ?>
 					</form>
+					<?php if (!empty($linkstyle)) echo '<p style="' . $linkstyle . '">'; ?>
+					<a class="slideshowlink" id="slideshowlink_<?php echo $slideshow_instance; ?>" 	href="javascript:document.slideshow_<?php echo $slideshow_instance; ?>.submit()"><?php echo $linktext; ?></a><?php echo html_encodeTagged($after); ?>
+					<?php if (!empty($linkstyle)) echo '</p>'; ?>
+
 					<?php
 				}
 				$slideshow_instance++;
@@ -646,7 +649,7 @@ if (extensionEnabled('slideshow2') && !OFFSET_PATH) {
 								$imagetitle = html_encode(getBare($imgobj->getTitle()));
 							}
 							?>
-							<a class="slideshowlink" href="<?php echo html_encode(pathurlencode($imagelink)); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a>
+							<a class="slideshowlink" href="<?php echo html_encode(pathurlencode($imagelink)); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a><?php echo html_encodeTagged($after); ?>
 							<?php
 						}
 					}

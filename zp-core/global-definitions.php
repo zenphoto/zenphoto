@@ -17,6 +17,8 @@ if (!defined('SORT_NATURAL'))
 if (!defined('SORT_LOCALE_STRING'))
 	define('SORT_LOCALE_STRING', 0);
 
+define('NEWLINE', "\n");
+
 define('SCRIPTPATH', str_replace('\\', '/', dirname(dirname(__FILE__))));
 define('ZENFOLDER', 'zp-core');
 define('PLUGIN_FOLDER', 'zp-extensions');
@@ -35,8 +37,8 @@ define('MUTEX_FOLDER', '.mutex');
 
 //bit masks for plugin priorities
 define('CLASS_PLUGIN', 8192);
-define('ADMIN_PLUGIN', 4096);
-define('FEATURE_PLUGIN', 2048);
+define('ADMIN_PLUGIN', 2048);
+define('FEATURE_PLUGIN', 4096);
 define('THEME_PLUGIN', 1024);
 define('PLUGIN_PRIORITY', 1023);
 
@@ -54,7 +56,7 @@ define('EXIF_FIELD_LINKED', 7);
 define('SYMLINK', function_exists('symlink') && strpos(@ini_get("suhosin.executor.func.blacklist"), 'symlink') === false);
 define('CASE_INSENSITIVE', file_exists(strtoupper(__FILE__)));
 
-$_debug = explode('-', preg_replace('~-RC\d+~', '', ZENPHOTO_VERSION) . '-');
+$_debug = explode('-', ZENPHOTO_VERSION . '-');
 $_debug = $_debug[1];
 define('TEST_RELEASE', !empty($_debug));
 

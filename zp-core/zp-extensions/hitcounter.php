@@ -9,6 +9,14 @@
 /** Reset hitcounters ********************************************************** */
 /* * ***************************************************************************** */
 
+$plugin_is_filter = defaultExtension(5 | FEATURE_PLUGIN);
+$plugin_description = gettext('Automatically increments hitcounters on gallery objects viewed by a <em>visitor</em>.');
+
+$option_interface = 'hitcounter';
+
+zp_register_filter('load_theme_script', 'hitcounter::load_script');
+zp_register_filter('admin_utilities_buttons', 'hitcounter::button');
+
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
@@ -35,15 +43,6 @@ if (!defined('OFFSET_PATH')) {
 		}
 	}
 }
-
-$plugin_is_filter = defaultExtension(5 | FEATURE_PLUGIN);
-$plugin_description = gettext('Automatically increments hitcounters on gallery objects viewed by a <em>visitor</em>.');
-$plugin_author = "Stephen Billard (sbillard)";
-
-$option_interface = 'hitcounter';
-
-zp_register_filter('load_theme_script', 'hitcounter::load_script');
-zp_register_filter('admin_utilities_buttons', 'hitcounter::button');
 
 $_scriptpage_hitcounters = getSerializedArray(getOption('page_hitcounters'));
 
@@ -116,7 +115,7 @@ class hitcounter {
 					var reset = "<?php echo $this->defaultbots; ?>";
 					function hitcounter_defaults() {
 						$('#hitcounter_ignoreIPList').val('');
-						$('#hitcounter_ip_button').removeAttr('disabled');
+						$('#hitcounter_ip_button').prop('disabled', false);
 						$('#__hitcounter_ignoreIPList_enable').prop('checked', false);
 						$('#__hitcounter_ignoreSearchCrawlers_enable').prop('checked', false);
 						$('#__hitcounter_searchCrawlerList').val(reset);
@@ -134,16 +133,16 @@ class hitcounter {
 					// <!-- <![CDATA[
 					function hitcounter_insertIP() {
 						if ($('#hitcounter_ignoreIPList').val() == '') {
-							$('#hitcounter_ignoreIPList').val('<?php echo getUserIP(); ?>');
+							$('#hitcounter_ignoreIPList').val('<?php echo getUserID(); ?>');
 						} else {
-							$('#hitcounter_ignoreIPList').val($('#hitcounter_ignoreIPList').val() + ',<?php echo getUserIP(); ?>');
+							$('#hitcounter_ignoreIPList').val($('#hitcounter_ignoreIPList').val() + ',<?php echo getUserID(); ?>');
 						}
-						$('#hitcounter_ip_button').attr('disabled', 'disabled');
+						$('#hitcounter_ip_button').prop('disabled', true);
 					}
-					jQuery(window).load(function () {
+					jQuery(window).on("load", function () {
 						var current = $('#hitcounter_ignoreIPList').val();
-						if (current.indexOf('<?php echo getUserIP(); ?>') < 0) {
-							$('#hitcounter_ip_button').removeAttr('disabled');
+						if (current.indexOf('<?php echo getUserID(); ?>') < 0) {
+							$('#hitcounter_ip_button').prop('disabled', false);
 						}
 					});
 					// ]]> -->
@@ -165,7 +164,7 @@ class hitcounter {
 		if ($script && $valid) {
 			if (getOption('hitcounter_ignoreIPList_enable')) {
 				$ignoreIPAddressList = explode(',', str_replace(' ', '', getOption('hitcounter_ignoreIPList')));
-				$skip = in_array(getUserIP(), $ignoreIPAddressList);
+				$skip = in_array(getUserID(), $ignoreIPAddressList);
 			} else {
 				$skip = false;
 			}

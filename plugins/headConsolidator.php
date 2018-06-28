@@ -24,7 +24,6 @@
  */
 $plugin_is_filter = 9 | THEME_PLUGIN;
 $plugin_description = gettext('A plugin to collect and consolidate theme_head scripts and css.');
-$plugin_author = "Stephen Billard (sbillard)";
 
 // Note: these are not exact. If some other plugin decides to insert before or after, it's output
 // will not get processed.

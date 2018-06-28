@@ -94,6 +94,7 @@ function comment_form_PaginationJS() {
 	?>
 	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.pagination.js"></script>
 	<script type="text/javascript">
+		var current_comment_N, addrBar_hash = window.location.hash, Comm_ID_found = !addrBar_hash.search(/#zp_comment_id_/);
 		function pageselectCallback(page_index, jq) {
 			var items_per_page = <?php echo max(1, COMMENTS_PER_PAGE); ?>;
 			var max_elem = Math.min((page_index + 1) * items_per_page, $('#comments div.comment').length);
@@ -130,7 +131,6 @@ function comment_form_PaginationJS() {
 				$(addrBar_hash).scrollToMe();
 			}
 		}, false);
-		var current_comment_N, addrBar_hash = window.location.hash, Comm_ID_found = !addrBar_hash.search(/#zp_comment_id_/);
 		jQuery.fn.extend({
 			scrollToMe: function () {
 				var x = jQuery(this).offset().top - 10;
@@ -287,14 +287,14 @@ define('COMMENT_SEND_EMAIL', 32);
  * @param string $code_ok CAPTCHA hash expected
  * @param string $type 'albums' if it is an album or 'images' if it is an image comment
  * @param object $receiver the object (image or album) to which to post the comment
- * @param string $ip the IP address of the comment poster
+ * @param string $id the IP address of the comment poster
  * @param bool $private set to true if the comment is for the admin only
  * @param bool $anon set to true if the poster wishes to remain anonymous
  * @param string $customdata
  * @param bit $check bitmask of which fields must be checked. If set overrides the options
  * @return object
  */
-function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $customdata, $check = false) {
+function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $id, $private, $anon, $customdata, $check = false) {
 	global $_zp_captcha, $_zp_gallery, $_zp_authority, $_zp_comment_on_hold, $_zp_spamFilter;
 	if ($check === false) {
 		$whattocheck = 0;
@@ -349,7 +349,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	$commentobj->setWebsite($website);
 	$commentobj->setComment($comment);
 	$commentobj->setType($type);
-	$commentobj->setIP($ip);
+	$commentobj->setIP($id);
 	$commentobj->setPrivate($private);
 	$commentobj->setAnon($anon);
 	$commentobj->setInModeration(0);
@@ -384,7 +384,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	}
 	$moderate = 0;
 	if ($goodMessage && isset($_zp_spamFilter)) {
-		$goodMessage = $_zp_spamFilter->filterMessage($name, $email, $website, $comment, $receiver, $ip);
+		$goodMessage = $_zp_spamFilter->filterMessage($name, $email, $website, $comment, $receiver, $id);
 		switch ($goodMessage) {
 			case 0:
 				$commentobj->setInModeration(2);
@@ -596,7 +596,7 @@ function comment_form_handle_comment() {
 			} else {
 				$p_comment = '';
 			}
-			$p_server = getUserIP();
+			$p_server = getUserID();
 			if (isset($_POST['code'])) {
 				$code1 = sanitize($_POST['code'], 3);
 				$code2 = sanitize($_POST['code_h'], 3);
@@ -693,19 +693,23 @@ function getCommentAuthorSite() {
  */
 function getCommentAuthorLink($title = NULL, $class = NULL, $id = NULL) {
 	global $_zp_current_comment;
-	$name = $_zp_current_comment['name'];
 	if ($_zp_current_comment['anon']) {
+		$name = gettext('anonymous ');
 		$site = NULL;
 	} else {
+		$name = $_zp_current_comment['name'];
+		if (empty($name)) {
+			$name = $_zp_current_comment['email'];
+		}
 		$site = $_zp_current_comment['website'];
 	}
 	if (empty($site)) {
-		return html_encode($_zp_current_comment['name']);
+		return html_encode($name);
 	} else {
 		if (is_null($title)) {
 			$title = "Visit " . $name;
 		}
-		return getLinkHTML($site, $_zp_current_comment['name'], $title, $class, $id);
+		return getLinkHTML($site, $name, $title, $class, $id);
 	}
 }
 

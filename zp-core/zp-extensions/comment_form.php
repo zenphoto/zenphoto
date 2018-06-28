@@ -18,7 +18,6 @@
  */
 $plugin_is_filter = defaultExtension(5 | FEATURE_PLUGIN);
 $plugin_description = gettext("Provides a unified comment handling facility.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'comment_form';
 
@@ -225,194 +224,196 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 			break;
 	}
 	$comments_open = $obj->getCommentsAllowed();
-	?>
-	<!-- printCommentForm -->
-	<div id="commentcontent">
-		<?php
-		$num = getCommentCount();
-		if ($showcomments) {
-			if ($num == 0) {
-				if ($addheader)
-					echo '<h3 class="empty">' . gettext('No Comments') . '</h3>';
-				$display = '';
-			} else {
-				if ($addheader)
-					echo '<h3>' . sprintf(ngettext('%u Comment', '%u Comments', $num), $num) . '</h3>';
-				if (getOption('comment_form_toggle')) {
-					?>
-					<div id="comment_toggle"><!-- place holder for toggle button --></div>
-					<script type="text/javascript">
-						// <!-- <![CDATA[
-						function toggleComments(hide) {
-							if (hide) {
-								$('div.comment').hide();
-								$('.Pagination').hide();
-								$('#comment_toggle').html('<button class="button buttons" onclick="toggleComments(false);"><?php echo gettext('show comments'); ?></button>');
-							} else {
-								$('div.comment').show();
-								$('.Pagination').show();
-								$('#comment_toggle').html('<button class="button buttons" onclick="toggleComments(true);"><?php echo gettext('hide comments'); ?></button>');
-							}
-						}
-						window.addEventListener('load', function () {
-							toggleComments(window.location.hash.search(/#zp_comment_id_/));
-						}, false);
-						// ]]> -->
-					</script>
-					<?php
-					$display = ' style="display:none"';
-				} else {
+	$num = getCommentCount();
+	if ($comments_open || $num) {
+		?>
+		<!-- printCommentForm -->
+		<div id="commentcontent">
+			<?php
+			if ($showcomments) {
+				if ($num == 0) {
+					if ($addheader)
+						echo '<h3 class="empty">' . gettext('No Comments') . '</h3>';
 					$display = '';
+				} else {
+					if ($addheader)
+						echo '<h3>' . sprintf(ngettext('%u Comment', '%u Comments', $num), $num) . '</h3>';
+					if (getOption('comment_form_toggle')) {
+						?>
+						<div id="comment_toggle"><!-- place holder for toggle button --></div>
+						<script type="text/javascript">
+							// <!-- <![CDATA[
+							function toggleComments(hide) {
+								if (hide) {
+									$('div.comment').hide();
+									$('.Pagination').hide();
+									$('#comment_toggle').html('<button class="button buttons" onclick="toggleComments(false);"><?php echo gettext('show comments'); ?></button>');
+								} else {
+									$('div.comment').show();
+									$('.Pagination').show();
+									$('#comment_toggle').html('<button class="button buttons" onclick="toggleComments(true);"><?php echo gettext('hide comments'); ?></button>');
+								}
+							}
+							window.addEventListener('load', function () {
+								toggleComments(window.location.hash.search(/#zp_comment_id_/));
+							}, false);
+							// ]]> -->
+						</script>
+						<?php
+						$display = ' style="display:none"';
+					} else {
+						$display = '';
+					}
 				}
-			}
-			$hideoriginalcomments = '';
-			if (getOption('comment_form_pagination') && COMMENTS_PER_PAGE < $num) {
-				$hideoriginalcomments = ' style="display:none"'; // hide original comment display to be replaced by jQuery pagination
+				$hideoriginalcomments = '';
+				if (getOption('comment_form_pagination') && COMMENTS_PER_PAGE < $num) {
+					$hideoriginalcomments = ' style="display:none"'; // hide original comment display to be replaced by jQuery pagination
+				}
+				if (getOption('comment_form_pagination') && COMMENTS_PER_PAGE < $num) {
+					?>
+					<div class="Pagination"></div><!-- this is the jquery pagination nav placeholder -->
+					<div id="Commentresult"></div>
+					<?php
+				}
+				?>
+				<div id="comments"<?php echo $hideoriginalcomments; ?>>
+					<?php
+					while (next_comment($desc_order)) {
+						if (!getOption('comment_form_showURL')) {
+							$_zp_current_comment['website'] = '';
+						}
+						?>
+						<div class="comment" <?php echo $display; ?>>
+							<div class="commentinfo">
+								<h4 id="zp_comment_id_<?php echo $_zp_current_comment['id']; ?>"><?php printCommentAuthorLink(); ?>: <?php echo gettext('on'); ?> <?php
+									echo $_zp_current_comment['date'];
+									printEditCommentLink(gettext('Edit'), ', ', '');
+									?></h4>
+							</div><!-- class "commentinfo" -->
+							<div class="commenttext"><?php echo html_encodeTagged(getCommentBody(), false); ?></div><!-- class "commenttext" -->
+						</div><!-- class "comment" -->
+						<?php
+					}
+					?>
+				</div><!-- id "comments" -->
+				<?php
 			}
 			if (getOption('comment_form_pagination') && COMMENTS_PER_PAGE < $num) {
 				?>
 				<div class="Pagination"></div><!-- this is the jquery pagination nav placeholder -->
-				<div id="Commentresult"></div>
 				<?php
 			}
 			?>
-			<div id="comments"<?php echo $hideoriginalcomments; ?>>
-				<?php
-				while (next_comment($desc_order)) {
-					if (!getOption('comment_form_showURL')) {
-						$_zp_current_comment['website'] = '';
+			<!-- Comment Box -->
+			<?php
+			if ($comments_open) {
+				if (MEMBERS_ONLY_COMMENTS && !zp_loggedin(POST_COMMENT_RIGHTS)) {
+					echo gettext('Only registered users may post comments.');
+				} else {
+					$disabled = array('name' => '', 'website' => '', 'anon' => '', 'private' => '', 'comment' => '',
+							'street' => '', 'city' => '', 'state' => '', 'country' => '', 'postal' => '');
+					$stored = array_merge(array('email' => '', 'custom' => ''), $disabled, getCommentStored());
+					$addresses = getSerializedArray(@$stored['addresses']);
+					foreach ($addresses as $key => $value) {
+						if (!empty($value))
+							$stored[$key] = $value;
 					}
-					?>
-					<div class="comment" <?php echo $display; ?>>
-						<div class="commentinfo">
-							<h4 id="zp_comment_id_<?php echo $_zp_current_comment['id']; ?>"><?php printCommentAuthorLink(); ?>: <?php echo gettext('on'); ?> <?php
-								echo $_zp_current_comment['date'];
-								printEditCommentLink(gettext('Edit'), ', ', '');
-								?></h4>
-						</div><!-- class "commentinfo" -->
-						<div class="commenttext"><?php echo html_encodeTagged(getCommentBody(), false); ?></div><!-- class "commenttext" -->
-					</div><!-- class "comment" -->
-					<?php
-				}
-				?>
-			</div><!-- id "comments" -->
-			<?php
-		}
-		if (getOption('comment_form_pagination') && COMMENTS_PER_PAGE < $num) {
-			?>
-			<div class="Pagination"></div><!-- this is the jquery pagination nav placeholder -->
-			<?php
-		}
-		?>
-		<!-- Comment Box -->
-		<?php
-		if ($comments_open) {
-			if (MEMBERS_ONLY_COMMENTS && !zp_loggedin(POST_COMMENT_RIGHTS)) {
-				echo gettext('Only registered users may post comments.');
-			} else {
-				$disabled = array('name' => '', 'website' => '', 'anon' => '', 'private' => '', 'comment' => '',
-						'street' => '', 'city' => '', 'state' => '', 'country' => '', 'postal' => '');
-				$stored = array_merge(array('email' => '', 'custom' => ''), $disabled, getCommentStored());
-				$addresses = getSerializedArray(@$stored['addresses']);
-				foreach ($addresses as $key => $value) {
-					if (!empty($value))
-						$stored[$key] = $value;
-				}
 
-				foreach ($stored as $key => $value) {
-					$disabled[$key] = false;
-				}
+					foreach ($stored as $key => $value) {
+						$disabled[$key] = false;
+					}
 
-				if (zp_loggedin()) {
-					if (extensionEnabled('userAddressFields')) {
-						$address = userAddressFields::getCustomDataset($_zp_current_admin_obj);
-						foreach ($address as $key => $value) {
-							if (!empty($value)) {
-								$disabled[$key] = true;
-								$stored[$key] = $value;
+					if (zp_loggedin()) {
+						if (extensionEnabled('userAddressFields')) {
+							$address = userAddressFields::getCustomDataset($_zp_current_admin_obj);
+							foreach ($address as $key => $value) {
+								if (!empty($value)) {
+									$disabled[$key] = true;
+									$stored[$key] = $value;
+								}
+							}
+						}
+						$name = $_zp_current_admin_obj->getName();
+						if (!empty($name)) {
+							$stored['name'] = $name;
+							$disabled['name'] = ' disabled="disabled"';
+						} else {
+							$user = $_zp_current_admin_obj->getUser();
+							if (!empty($user)) {
+								$stored['name'] = $user;
+								$disabled['name'] = ' disabled="disabled"';
+							}
+						}
+						$email = $_zp_current_admin_obj->getEmail();
+						if (!empty($email)) {
+							$stored['email'] = $email;
+							$disabled['email'] = ' disabled="disabled"';
+						}
+						if (!empty($address['website'])) {
+							$stored['website'] = $address['website'];
+							$disabled['website'] = ' disabled="disabled"';
+						}
+					}
+					$data = zp_apply_filter('comment_form_data', array('data' => $stored, 'disabled' => $disabled));
+					$disabled = $data['disabled'];
+					$stored = $data['data'];
+
+					foreach ($data as $check) {
+						foreach ($check as $v) {
+							if ($v) {
+								$_zp_HTML_cache->disable(); //	shouldn't cache partially filled in pages
+								break 2;
 							}
 						}
 					}
-					$name = $_zp_current_admin_obj->getName();
-					if (!empty($name)) {
-						$stored['name'] = $name;
-						$disabled['name'] = ' disabled="disabled"';
-					} else {
-						$user = $_zp_current_admin_obj->getUser();
-						if (!empty($user)) {
-							$stored['name'] = $user;
-							$disabled['name'] = ' disabled="disabled"';
-						}
-					}
-					$email = $_zp_current_admin_obj->getEmail();
-					if (!empty($email)) {
-						$stored['email'] = $email;
-						$disabled['email'] = ' disabled="disabled"';
-					}
-					if (!empty($address['website'])) {
-						$stored['website'] = $address['website'];
-						$disabled['website'] = ' disabled="disabled"';
-					}
-				}
-				$data = zp_apply_filter('comment_form_data', array('data' => $stored, 'disabled' => $disabled));
-				$disabled = $data['disabled'];
-				$stored = $data['data'];
 
-				foreach ($data as $check) {
-					foreach ($check as $v) {
-						if ($v) {
-							$_zp_HTML_cache->disable(); //	shouldn't cache partially filled in pages
-							break 2;
-						}
+					if (!empty($addcommenttext)) {
+						echo $addcommenttext;
 					}
-				}
-
-				if (!empty($addcommenttext)) {
-					echo $addcommenttext;
-				}
-				?>
-				<div id="commententry" <?php echo $comment_commententry_mod; ?>>
-					<?php
-					$theme = getCurrentTheme();
-					$form = getPlugin('comment_form/comment_form.php', $theme);
-					require($form);
 					?>
+					<div id="commententry" <?php echo $comment_commententry_mod; ?>>
+						<?php
+						$theme = getCurrentTheme();
+						$form = getPlugin('comment_form/comment_form.php', $theme);
+						require($form);
+						?>
+					</div><!-- id="commententry" -->
+					<?php
+				}
+			} else {
+				?>
+				<div id="commententry">
+					<h3><?php echo gettext('Closed for comments.'); ?></h3>
 				</div><!-- id="commententry" -->
 				<?php
 			}
-		} else {
 			?>
-			<div id="commententry">
-				<h3><?php echo gettext('Closed for comments.'); ?></h3>
-			</div><!-- id="commententry" -->
-			<?php
-		}
-		?>
-	</div><!-- id="commentcontent" -->
-	<?php
-	if (getOption('comment_form_rss') && getOption('RSS_comments')) {
-		?>
-		<br clear="all" />
+		</div><!-- id="commentcontent" -->
 		<?php
-		if (class_exists('RSS')) {
-			switch ($_zp_gallery_page) {
-				case "image.php":
-					printRSSLink("Comments-image", "", gettext("Subscribe to comments"), "");
-					break;
-				case "album.php":
-					printRSSLink("Comments-album", "", gettext("Subscribe to comments"), "");
-					break;
-				case "news.php":
-					printRSSLink("Comments-news", "", gettext("Subscribe to comments"), "");
-					break;
-				case "pages.php":
-					printRSSLink("Comments-page", "", gettext("Subscribe to comments"), "");
-					break;
+		if (getOption('comment_form_rss') && getOption('RSS_comments')) {
+			?>
+			<br clear="all" />
+			<?php
+			if (class_exists('RSS')) {
+				switch ($_zp_gallery_page) {
+					case "image.php":
+						printRSSLink("Comments-image", "", gettext("Subscribe to comments"), "");
+						break;
+					case "album.php":
+						printRSSLink("Comments-album", "", gettext("Subscribe to comments"), "");
+						break;
+					case "news.php":
+						printRSSLink("Comments-news", "", gettext("Subscribe to comments"), "");
+						break;
+					case "pages.php":
+						printRSSLink("Comments-page", "", gettext("Subscribe to comments"), "");
+						break;
+				}
 			}
 		}
+		?>
+		<!-- end printCommentForm -->
+		<?php
 	}
-	?>
-	<!-- end printCommentForm -->
-	<?php
 }
 ?>

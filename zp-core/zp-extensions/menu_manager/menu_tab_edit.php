@@ -1,9 +1,7 @@
 <?php
-
 /**
  * @package plugins/menu_manager
  */
-
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 if (extensionEnabled('zenpage')) {
@@ -11,7 +9,7 @@ if (extensionEnabled('zenpage')) {
 }
 require_once(dirname(__FILE__) . '/menu_manager-admin-functions.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 $page = 'edit';
 
@@ -144,7 +142,7 @@ if (extensionEnabled('zenpage')) {
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Custom link")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("Creates a dynamic link. The string will be evaluated by PHP to create the link.")); ?>');
-							$('#link').removeAttr('disabled');
+							$('#link').prop('disabled', false);
 							$('#link_label').html('<?php echo js_encode(gettext('URL')); ?>');
 							$('#titleinput').show();
 							break;
@@ -152,7 +150,7 @@ if (extensionEnabled('zenpage')) {
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Custom link")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("Creates a link outside the zenphoto structure. Use of a full URL is recommended (e.g. http://www.domain.com).")); ?>');
-							$('#link').removeAttr('disabled');
+							$('#link').prop('disabled', false);
 							$('#link_label').html('<?php echo js_encode(gettext('URL')); ?>');
 							$('#titleinput').show();
 							break;
@@ -167,7 +165,7 @@ if (extensionEnabled('zenpage')) {
 							$('#selector').html('<?php echo js_encode(gettext("Function")); ?>');
 							$('#description').html('<?php echo js_encode(gettext('Executes the PHP function provided.')); ?>');
 							$('#link_label').html('<?php echo js_encode(gettext('Function')); ?>');
-							$('#link').removeAttr('disabled');
+							$('#link').prop('disabled', false);
 							$('#titleinput').show();
 							$('#include_li_label').show();
 							break;
@@ -176,7 +174,7 @@ if (extensionEnabled('zenpage')) {
 							$('#selector').html('<?php echo js_encode(gettext("HTML")); ?>');
 							$('#description').html('<?php echo js_encode(gettext('Inserts custom HTML.')); ?>');
 							$('#link_label').html('<?php echo js_encode(gettext('HTML')); ?>');
-							$('#link').removeAttr('disabled');
+							$('#link').prop('disabled', false);
 							$('#titleinput').show();
 							$('#include_li_label').show();
 							break;

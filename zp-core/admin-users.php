@@ -91,7 +91,7 @@ if (isset($_GET['action'])) {
 				if (isset($_POST['checkForPostTruncation'])) {
 					$userlist = $_POST['user'];
 					if (isset($_POST['alter_enabled']) || sanitize_numeric($_POST['totaladmins']) > 1 ||
-									trim(sanitize($_POST['adminuser0'])) != $_zp_current_admin_obj->getUser() ||
+									trim($userlist[0]['adminuser']) != $_zp_current_admin_obj->getUser() ||
 									$newuserid === 0) {
 						if (!$_zp_current_admin_obj->reset) {
 							admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
@@ -300,8 +300,13 @@ echo $refresh;
 				echo "</div>";
 			}
 			zp_apply_filter('admin_note', 'admin', 'users');
-
-			echo '<h1>' . gettext('Users') . '</h1>';
+			if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset || !$_zp_current_admin_obj->getID()) {
+				echo '<h1>' . gettext('Users') . '</h1>';
+				$alterrights = false;
+			} else {
+				echo '<h1>' . gettext('Profile') . '</h1>';
+				$alterrights = ' disabled="disabled"';
+			}
 			?>
 			<div id="container">
 				<?php
@@ -392,9 +397,7 @@ echo $refresh;
 							$rangeset = getPageSelector($list, USERS_PER_PAGE);
 						}
 						$newuser = array('id' => -1, 'user' => '', 'pass' => '', 'name' => '', 'email' => '', 'rights' => $rights, 'custom_data' => NULL, 'valid' => 1, 'group' => $groupname);
-						$alterrights = '';
 					} else {
-						$alterrights = ' disabled="disabled"';
 						$rangeset = array();
 						if ($_zp_current_admin_obj) {
 							$admins = array($_zp_current_admin_obj->getUser() =>
@@ -416,18 +419,21 @@ echo $refresh;
 					if ($subpage > $max) {
 						$subpage = $max;
 					}
+					$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
 					if (isset($_GET['user'])) {
-						$u = $_zp_authority->getAnAdmin(array('`user`=' => sanitize($_GET['user'])));
-						$userlist = array($u->getData());
-					} else {
-						$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
+						$user = sanitize($_GET['user']);
+						foreach ($admins as $u) {
+							if ($u['user'] == $user && $u['valid'] == 1) {
+								$userlist = array($u['id'] => $u);
+								$newuser = NULL;
+								break;
+							}
+						}
 					}
 					if (count($userlist) == 1) {
-						$l = $userlist;
-						$u = array_shift($l);
+						$u = reset($userlist);
 						$showset = array($u['user']);
 					}
-
 					if (isset($_GET['deleted'])) {
 						echo '<div class="messagebox fade-message">';
 						echo "<h2>Deleted</h2>";
@@ -528,7 +534,7 @@ echo $refresh;
 								</td>
 								<td>
 									<?php
-									if ($pending || count($seenGroups) > 0) {
+									if (count($userlist) != 1 && ($pending || count($seenGroups) > 0)) {
 										echo gettext('show');
 										?>
 										<select name="showgroup" id="showgroup" class="ignoredirty" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-users.php', ['showgroup=' + $('#showgroup').val()]);" >
@@ -586,9 +592,9 @@ echo $refresh;
 									$userobj = $_zp_current_admin_obj;
 								} else {
 									$userobj = Zenphoto_Authority::newAdministrator($userid, 1, false);
-								}
-								if ($userid && $userobj->transient) {
-									continue;
+									if ($userid && $userobj->transient) {
+										continue;
+									}
 								}
 								if (empty($userid)) {
 									$userobj->setGroup($user['group']);
@@ -659,9 +665,11 @@ echo $refresh;
 															?>
 															<input type="hidden" id="adminuser<?php echo $id; ?>" name="user[<?php echo $id; ?>][adminuser]" value="<?php echo $userid ?>" />
 															<?php
-															echo '<strong>' . $userid . '</strong> ';
-															if (!empty($userid)) {
-																echo $master;
+															if (empty($alterrights)) {
+																echo '<strong>' . $userid . '</strong> ';
+																if (!empty($userid)) {
+																	echo $master;
+																}
 															}
 														}
 														?>
@@ -756,22 +764,22 @@ echo $refresh;
 															$challenge = $userobj->getChallengePhraseInfo();
 															?>
 															<p>
-																<?php echo gettext('Challenge phrase') ?>
+																<?php echo gettext('Challenge phrase') ?><br />
 																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="user[<?php echo $id ?>][challengephrase]" value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
 																<br />
-																<?php echo gettext('Challenge response') ?>
+																<?php echo gettext('Challenge response') ?><br />
 																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="<?php echo $id ?>-challengeresponse" name="user[<?php echo $id ?>][challengeresponse]" value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
 
 															</p>
 															<?php
 														}
 														?>
-														<?php echo gettext("Full name"); ?>
+														<?php echo gettext("Full name"); ?><br />
 														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="user[<?php echo $id ?>][admin_name]"
 																	 value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
 
 														<p>
-															<?php echo gettext("Email"); ?>
+															<?php echo gettext("Email"); ?><br />
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="user[<?php echo $id ?>][admin_email]"
 																		 value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
 														</p>
@@ -806,7 +814,10 @@ echo $refresh;
 														$currentValue = $userobj->getLanguage();
 														?>
 														<p>
-															<label for="admin_language_<?php echo $id ?>"><?php echo gettext('Language:'); ?></label></p>
+															<label for="admin_language_<?php echo $id ?>">
+																<?php echo gettext('Language:'); ?>
+															</label>
+														</p>
 														<input type="hidden" name="user[<?php echo $id ?>][admin_language]" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
 														<ul class="flags" style="margin-left: 0px;">
 															<?php

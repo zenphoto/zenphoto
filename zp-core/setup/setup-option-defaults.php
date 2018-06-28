@@ -30,9 +30,25 @@ shuffle($list);
 for ($i = 0; $i < 30; $i++) {
 	$auth_extratext = $auth_extratext . $salt{$list[$i]};
 }
-
 setOptionDefault('extra_auth_hash_text', $auth_extratext);
+$auth_extratext = "";
+shuffle($list);
+for ($i = 0; $i < 30; $i++) {
+	$auth_extratext = $auth_extratext . $salt{$list[$i]};
+}
+setOptionDefault('secret_key_text', $auth_extratext);
+$auth_extratext = "";
+shuffle($list);
+for ($i = 0; $i < 30; $i++) {
+	$auth_extratext = $auth_extratext . $salt{$list[$i]};
+}
+setOptionDefault('secret_init_vector', $auth_extratext);
+
 purgeOption('adminTagsTab', 0);
+
+//	if your are installing, you must be OK
+$_zp_current_admin_obj->setPolicyAck(1);
+$_zp_current_admin_obj->save();
 
 
 /* fix for NULL theme name */
@@ -167,7 +183,7 @@ $admins = $_zp_authority->getAdministrators('all');
 setOptionDefault('gallery_data', NULL);
 
 $questions[] = getSerializedArray(getAllTranslations("What is your father’s middle name?"));
-$questions [] = getSerializedArray(getAllTranslations("What street did your Grandmother live on?"));
+$questions[] = getSerializedArray(getAllTranslations("What street did your Grandmother live on?"));
 $questions[] = getSerializedArray(getAllTranslations("Who was your favorite singer?"));
 $questions[] = getSerializedArray(getAllTranslations("When did you first get a computer?"));
 $questions[] = getSerializedArray(getAllTranslations("How much wood could a woodchuck chuck if a woodchuck could chuck wood?"));
@@ -272,21 +288,28 @@ if ($sfx) {
 }
 setOptionDefault('mod_rewrite_suffix', $sfx);
 setOptionDefault('dirtyform_enable', 2);
+?>
+<script type="text/javascript">
+	$(function () {
+		$('img').on("error", function () {
+			var link = $(this).attr('src');
+			var title = $(this).attr('title');
+			$(this).parent().html('<a href="' + link + '" target="_blank" title="' + title + '"><?php echo CROSS_MARK_RED; ?></a>');
+			imageErr = true;
+			$('#setupErrors').val(1);
+		});
+	});
+</script>
+<?php
+if (defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false) {
+	$fullLog = '&fullLog';
+} else {
+	$fullLog = false;
+}
 
 purgeOption('mod_rewrite_detected');
 if (isset($_GET['mod_rewrite'])) {
 	?>
-	<script type="text/javascript">
-		$(function () {
-			$('img').error(function () {
-				var link = $(this).attr('src');
-				var title = $(this).attr('title');
-				$(this).parent().html('<a href="' + link + '" target="_blank" title="' + title + '"><?php echo CROSS_MARK_RED; ?></a>');
-				imageErr = true;
-				$('#setupErrors').val(1);
-			});
-		});
-	</script>
 	<p>
 		<?php echo gettext('Mod_Rewrite check:'); ?>
 		<br />
@@ -398,6 +421,9 @@ setOptionDefault('style_tags', "abbr => (title => ())\n" .
 				"strong => ()\n");
 //	insure tags are in lower case!
 setOption('allowed_tags', strtolower(getOption('allowed_tags')));
+
+setOptionDefault('GDPR_text', getAllTranslations('Check to acknowledge the site <a href="%s">usage policy</a>.'));
+setOptionDefault('GDPR_cookie', microtime());
 
 setOptionDefault('full_image_quality', 75);
 
@@ -567,14 +593,16 @@ if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus')) {
 	echo gettext('Theme setup:') . '<br />';
 
 	foreach ($themes as $key => $theme) {
+		$class = 0;
 		if (protectedTheme($theme)) {
 			unset($themes[$key]);
 		} else {
 			$deprecate = true;
+			$class = 1;
 		}
 		?>
 		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme) . $debug; ?>&from=<?php echo $from; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
+			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . urlencode($theme) . $debug; ?>&class=<?php echo $class . $fullLog; ?>&from=<?php echo $from; ?>&unique=<?php echo time(); ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
 		</span>
 		<?php
 	}
@@ -810,7 +838,6 @@ $plugins = array_keys($plugins);
 	<?php
 	//clean up plugins needed for themes and other plugins
 	$dependentExtensions = array('cacheManager' => 'cacheManager', 'colorbox' => 'colorbox_js');
-	$testRelease = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
 
 	foreach ($dependentExtensions as $class => $extension) {
 		$key = array_search($extension, $plugins);
@@ -819,7 +846,7 @@ $plugins = array_keys($plugins);
 			unset($plugins[$key]);
 			list($usec, $sec) = explode(" ", microtime());
 			$start = (float) $usec + (float) $sec;
-			setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), $testRelease);
+			setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), $fullLog);
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $extension . '.php');
 			$priority = $plugin_is_filter & PLUGIN_PRIORITY;
 			if ($plugin_is_filter & CLASS_PLUGIN) {
@@ -837,18 +864,19 @@ $plugins = array_keys($plugins);
 			if (extensionEnabled($extension)) {
 				enableExtension($extension, $plugin_is_filter);
 			}
-			setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), $testRelease);
+			setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), $fullLog);
 			new $class;
-			setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), $testRelease);
+			setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), $fullLog);
 			list($usec, $sec) = explode(" ", microtime());
 			$last = (float) $usec + (float) $sec;
-			setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), $testRelease);
+			setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), $fullLog);
 		}
 	}
 
 	natcasesort($plugins);
 	echo gettext('Plugin setup:') . '<br />';
 	foreach ($plugins as $key => $extension) {
+		$class = 0;
 		$path = getPlugin($extension . '.php');
 		if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
 			$pluginStream = file_get_contents($path);
@@ -856,6 +884,7 @@ $plugins = array_keys($plugins);
 				preg_match('~@category\s+([^\/^\s]*)~', $str, $matches);
 				if (!isset($matches[1]) || $matches[1] != 'package') {
 					$deprecate = true;
+					$class = 1;
 				} else {
 					unset($plugins[$key]);
 				}
@@ -867,7 +896,7 @@ $plugins = array_keys($plugins);
 		}
 		?>
 		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>&from=<?php echo $from; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
+			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>&class=<?php echo $class . $fullLog; ?>&from=<?php echo $from; ?>&unique=<?php echo time(); ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
 		</span>
 		<?php
 	}

@@ -8,9 +8,9 @@ if (function_exists('printContactForm')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			
+
 			<?php zp_apply_filter('theme_head'); ?>
-			
+
 			<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 			<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		</head>
@@ -24,7 +24,7 @@ if (function_exists('printContactForm')) {
 						<em><?php echo gettext('Contact us'); ?></em>
 					</h2>
 				</div>
-				<h3><?php echo gettext('Contact us.') ?></h3>
+				<h3><?php echo gettext('Contact us') ?></h3>
 				<?php printContactForm(); ?>
 			</div>
 			<?php @call_user_func('printLanguageSelector'); ?>

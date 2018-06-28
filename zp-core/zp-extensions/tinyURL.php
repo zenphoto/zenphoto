@@ -16,7 +16,6 @@
  */
 $plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
 $plugin_description = gettext('Provides short URLs to zenphoto objects.');
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('Shortened URLs require the <code>mod_rewrite</code> option be enabled.');
 
 $option_interface = 'tinyURL';
@@ -37,10 +36,10 @@ switch (OFFSET_PATH) {
 	default:
 		break;
 }
-$_zp_conf_vars['special_pages']['tiny'] = array('define'	 => '_TINY_', 'rewrite'	 => getOption('tinyURL_text'),
-				'option'	 => 'tinyURL_text', 'default'	 => 'tiny/');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%TINY%([0-9]+)/*$',
-				'rule'		 => '%REWRITE% index.php?p=$1&t [L,QSA]');
+$_zp_conf_vars['special_pages']['tiny'] = array('define' => '_TINY_', 'rewrite' => getOption('tinyURL_text'),
+		'option' => 'tinyURL_text', 'default' => 'tiny/');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%TINY%([0-9]+)/*$',
+		'rule' => '%REWRITE% index.php?p=$1&t [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%TINY%([0-9]+)/([0-9]+)/*$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%TINY%', 'rewrite' => '_TINY_');
 
@@ -62,10 +61,10 @@ class tinyURL {
 	function getOptionsSupported() {
 		$options = array();
 		$options[gettext('Use in themes for')] = array(
-						'key'		 => 'tinyURL_agressive',
-						'type'	 => OPTION_TYPE_CUSTOM,
-						'order'	 => 1,
-						'desc'	 => gettext('If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</i>s for that object.')
+				'key' => 'tinyURL_agressive',
+				'type' => OPTION_TYPE_CUSTOM,
+				'order' => 1,
+				'desc' => gettext('If an option is chosen, normal theme URLs will be replaced with <i>tinyURL</i>s for that object.')
 		);
 
 		return $options;
@@ -73,16 +72,31 @@ class tinyURL {
 
 	function handleOption($option, $currentValue) {
 		?>
-		<label class="nowrap"><input type="checkbox" name="tinyURL_albums" value="<?php echo self::albums; ?>" <?php if ($currentValue & self::albums) echo 'checked="checked" '; ?>/><?php echo gettext('albums'); ?></label>
-		<label class="nowrap"><input type="checkbox" name="tinyURL_images" value="<?php echo self::images; ?>" <?php if ($currentValue & self::images) echo 'checked="checked" '; ?>/><?php echo gettext('images'); ?></label>
+		<label class="nowrap">
+			<input type="checkbox" name="tinyURL_albums" value="<?php echo self::albums; ?>" <?php if ($currentValue & self::albums) echo 'checked="checked" '; ?>/>
+			<?php echo gettext('albums'); ?>
+		</label>
+		<label class="nowrap">
+			<input type="checkbox" name="tinyURL_images" value="<?php echo self::images; ?>" <?php if ($currentValue & self::images) echo 'checked="checked" '; ?>/>
+			<?php echo gettext('images'); ?>
+		</label>
 		<?php
 		if (extensionEnabled('zenpage')) {
 			?>
-			<label class="nowrap"><input type="checkbox" name="tinyURL_news" value="<?php echo self::news; ?>" <?php if ($currentValue & self::news) echo 'checked="checked" '; ?>/><?php echo gettext('news'); ?></label>
+			<label class="nowrap">
+				<input type="checkbox" name="tinyURL_news" value="<?php echo self::news; ?>" <?php if ($currentValue & self::news) echo 'checked="checked" '; ?>/>
+				<?php echo gettext('news'); ?>
+			</label>
 
-			<label class="nowrap"><input type="checkbox" name="tinyURL_news_categories" value="<?php echo self::news_categories; ?>" <?php if ($currentValue & self::news_categories) echo 'checked="checked" '; ?>/><?php echo gettext('news categories'); ?></label>
+			<label class="nowrap">
+				<input type="checkbox" name="tinyURL_news_categories" value="<?php echo self::news_categories; ?>" <?php if ($currentValue & self::news_categories) echo 'checked="checked" '; ?>/>
+				<?php echo gettext('news categories'); ?>
+			</label>
 
-			<label class="nowrap"><input type="checkbox" name="tinyURL_pages" value="<?php echo self::pages; ?>" <?php if ($currentValue & self::pages) echo 'checked="checked" '; ?>/><?php echo gettext('pages'); ?></label>
+			<label class="nowrap">
+				<input type="checkbox" name="tinyURL_pages" value="<?php echo self::pages; ?>" <?php if ($currentValue & self::pages) echo 'checked="checked" '; ?>/>
+				<?php echo gettext('pages'); ?>
+			</label>
 			<?php
 		}
 	}

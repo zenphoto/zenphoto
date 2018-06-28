@@ -37,8 +37,8 @@ if (!empty($_REQUEST['optiontheme'])) {
 	$themename = sanitize($_REQUEST['optiontheme']);
 }
 if (empty($alb)) {
-	foreach ($themelist as $albumtitle => $alb)
-		break;
+	$alb = reset($themelist);
+	$albumtitle = key($themelist);
 	if (empty($alb)) {
 		$_set_theme_album = NULL;
 	} else {
@@ -235,7 +235,7 @@ function getOptionContent() {
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-												$('#themeoptionsform').submit();">
+										$('#themeoptionsform').submit();">
 													<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 									<strong><?php echo gettext("Revert to default"); ?></strong>
 								</button>
@@ -362,8 +362,14 @@ function getOptionContent() {
 									$combined = $separate = ' disabled="disabled"';
 								}
 								?>
-								<label><input type="radio" name="thumb_transition" value="1"<?php echo $separate; ?> /><?php echo gettext('separate'); ?></label>
-								<label><input type="radio" name="thumb_transition" value="2"<?php echo $combined; ?> /><?php echo gettext('combined'); ?></label>
+								<label>
+									<input type="radio" name="thumb_transition" value="1"<?php echo $separate; ?> />
+									<?php echo gettext('separate'); ?>
+								</label>
+								<label>
+									<input type="radio" name="thumb_transition" value="2"<?php echo $combined; ?> />
+									<?php echo gettext('combined'); ?>
+								</label>
 							</span>
 						</td>
 						<td class="option_desc">
@@ -388,7 +394,7 @@ function getOptionContent() {
 					$ct = round(($ts - $ih) / $ts * 50, 1);
 					?>
 					<tr>
-						<td class="option_name"><?php echo gettext("Thumb size"); ?></td>
+						<td class="option_name"><?php echo gettext("Thumbnail size"); ?></td>
 						<td class="option_value">
 							<input type="text" size="3" name="thumb_size" value="<?php echo $ts; ?>"<?php echo $disable; ?> />
 						</td>
@@ -520,9 +526,13 @@ function getOptionContent() {
 						<tr>
 							<td class="option_name"><?php echo gettext("Theme head &lt;title&gt; tag"); ?></td>
 							<td class="option_value">
-								<label><input type="checkbox" name="theme_head_listparents" value="1"<?php if (getThemeOption('theme_head_listparents', $album, $themename)) echo ' checked="checked"'; ?> /><?php echo gettext('enabled'); ?></label>
+								<label>
+									<input type="checkbox" name="theme_head_listparents" value="1"<?php if (getThemeOption('theme_head_listparents', $album, $themename)) echo ' checked="checked"'; ?> />
+									<?php echo gettext('enabled'); ?>
+								</label>
 								<br />
-								<input type="text" name="theme_head_separator" size="2em" value="<?php echo getThemeOption('theme_head_separator', $album, $themename); ?>" /><?php echo gettext("separator"); ?>
+								<input type="text" name="theme_head_separator" size="2em" value="<?php echo getThemeOption('theme_head_separator', $album, $themename); ?>" />
+								<?php echo gettext("separator"); ?>
 							</td>
 
 							<td class="option_desc">
@@ -557,7 +567,7 @@ function getOptionContent() {
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
 								<button type="button" value="<?php echo gettext('Revert to default') ?>" onclick="$('#savethemeoptions').val('reset');
-												$('#themeoptionsform').submit();">
+										$('#themeoptionsform').submit();">
 													<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 									<strong><?php echo gettext("Revert to default"); ?></strong>
 								</button>
@@ -575,7 +585,7 @@ function getOptionContent() {
 			<?php
 			$prev = $next = $found = NULL;
 			foreach ($themes as $atheme => $data) {
-				array_shift($themes);
+				unset($themes[$atheme]);
 				if ($atheme == $themename) {
 					$found = true;
 				} else {

@@ -16,163 +16,165 @@ $_GET['page'] = 'tags';
 
 $tagsort = getTagOrder();
 $action = '';
-if (count($_POST) > 0) {
+if (isset($_GET['action'])) {
 	$subaction = array();
-	if (isset($_GET['newtags'])) {
-		XSRFdefender('new_tags');
-		$language = sanitize($_POST['language']);
-		unset($_POST['language']);
-		unset($_POST['XSRFToken']);
-		$multi = getOption('multi_lingual') && !empty($language);
-		foreach ($_POST as $value) {
-			if (!empty($value)) {
-				$value = html_decode(sanitize($value, 3));
-				$sql = 'SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($value) . ' AND `language`=' . db_quote($language);
-				$result = query_single_row($sql);
-				if (!is_array($result)) { // it really is a new tag
-					$success = query('INSERT INTO ' . prefix('tags') . ' (`name`,`language`) VALUES (' . db_quote($value) . ',' . db_quote($language) . ')', false);
-					if ($success) {
-						if ($multi) {
-							$master = db_insert_id();
-							foreach (generateLanguageList(false)as $text => $dirname) {
-								if ($dirname != $language) {
-									query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($value) . ',' . $master . ',' . db_quote($dirname) . ')', false);
-								}
-							}
-						}
-					} else {
-						$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s not stored, duplicate tag.'), $language, $value), ': ');
-					}
-				}
-			}
-		}
-		$action = gettext('New tags added');
-	} // newtags
-	if (isset($_POST['tag_action'])) {
-		XSRFdefender('tag_action');
-		$language = sanitize($_POST['language']);
-		$action = $_POST['tag_action'];
-		if (isset($_POST['tag_list_tags_'])) {
-			$tags = sanitize($_POST['tag_list_tags_']);
-			$langs = sanitize($_POST['lang_list_tags_']);
-		} else {
-			$langs = $tags = array();
-		}
-		switch ($action) {
-			case'delete':
-				if (count($tags) > 0) {
-					$sql = "SELECT * FROM " . prefix('tags') . " WHERE ";
-					foreach ($tags as $key => $tag) {
-						$sql .= "(`name`=" . (db_quote($tag)) . ' AND `language`=' . db_quote($langs[$key]) . ") OR ";
-					}
-					$sql = substr($sql, 0, strlen($sql) - 4);
-					$dbtags = query_full_array($sql);
-					if (is_array($dbtags) && count($dbtags) > 0) {
-						$sqltags = "DELETE FROM " . prefix('tags') . " WHERE ";
-						$sqlobjects = "DELETE FROM " . prefix('obj_to_tag') . " WHERE ";
-						foreach ($dbtags as $tag) {
-							$sqltags .= "`id`='" . $tag['id'] . "' OR ";
-							$sqlobjects .= "`tagid`='" . $tag['id'] . "' OR ";
-							if (is_null($tag['masterid'])) {
-								$sqltags .="`masterid`='" . $tag['id'] . "' OR ";
-								$sqlSub = "SELECT `id`, `masterid` FROM " . prefix('tags') . " WHERE `masterid`=" . $tag['id'];
-								$subTags = query_full_array($sqlSub);
-								if (is_array($subTags) && count($subTags) > 0) {
-									foreach ($subTags as $subTag) {
-										$sqlobjects .= "`tagid`='" . $subTag['id'] . "' OR ";
-									}
-								}
-							}
-						}
-						$sqltags = substr($sqltags, 0, strlen($sqltags) - 4);
-						query($sqltags);
-						$sqlobjects = substr($sqlobjects, 0, strlen($sqlobjects) - 4);
-						query($sqlobjects);
-					}
-				}
-				$action = gettext('Checked tags deleted');
-				break;
-			case 'private':
-			case 'notprivate':
-				$private = (int) ($action == 'private');
-				if (count($tags) > 0) {
-					$sql = "UPDATE " . prefix('tags') . " SET `private`=$private WHERE ";
-					foreach ($tags as $key => $tag) {
-						$sql .= "(`name`=" . (db_quote($tag)) . ' AND `language`=' . db_quote($langs[$key]) . ") OR ";
-					}
-					$sql = substr($sql, 0, strlen($sql) - 4);
-					query($sql);
-				}
-				if ($private) {
-					$action = gettext('Checked tags marked private');
-				} else {
-					$action = gettext('Checked tags marked public');
-				}
-				break;
-			case'assign':
-				if (count($tags) > 0) {
-					$tbdeleted = array();
-					$multi = getOption('multi_lingual');
-					$languageList = generateLanguageList(false);
-
-					foreach ($tags as $key => $tagname) {
-						$lang = $langs[$key];
-						$sql = 'UPDATE ' . prefix('tags') . ' SET `language`=' . db_quote($language) . ' WHERE `name`=' . db_quote($tagname) . ' AND `language`=' . db_quote($lang);
-						$success = query($sql, false);
+	switch ($_GET['action']) {
+		case 'newtags':
+			XSRFdefender('new_tags');
+			$language = sanitize($_POST['language']);
+			unset($_POST['language']);
+			unset($_POST['XSRFToken']);
+			$multi = getOption('multi_lingual') && !empty($language);
+			foreach ($_POST as $value) {
+				if (!empty($value)) {
+					$value = html_decode(sanitize($value, 3));
+					$sql = 'SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($value) . ' AND `language`=' . db_quote($language);
+					$result = query_single_row($sql);
+					if (!is_array($result)) { // it really is a new tag
+						$success = query('INSERT INTO ' . prefix('tags') . ' (`name`,`language`) VALUES (' . db_quote($value) . ',' . db_quote($language) . ')', false);
 						if ($success) {
-							$sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($tagname) . ' AND `language`=' . db_quote($language);
-							$tagelement = query_single_row($sql);
-							if ($multi && !empty($language)) {
-								//create subtags
-								foreach ($languageList as $text => $dirname) {
+							if ($multi) {
+								$master = db_insert_id();
+								foreach (generateLanguageList(false)as $text => $dirname) {
 									if ($dirname != $language) {
-										$sql = 'INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($tagname) . ',' . $tagelement['id'] . ',' . db_quote($dirname) . ')';
-										query($sql);
+										query('INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($value) . ',' . $master . ',' . db_quote($dirname) . ')', false);
 									}
 								}
-							} else if (empty($language)) {
-								$tbdeleted[] = $tagelement['id'];
 							}
 						} else {
-							$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s language not changed, duplicate tag.'), $lang, $tagname), ': ');
-						}
-						if (!empty($tbdeleted)) {
-							$sql = 'DELETE FROM ' . prefix('tags') . ' WHERE `masterid`=' . implode(' OR `masterid`=', $tbdeleted);
-							query($sql);
+							$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s not stored, duplicate tag.'), $language, $value), ': ');
 						}
 					}
 				}
-				$action = gettext('Checked tags language assigned');
-				break;
-		}
-	} // tag action
-	if (isset($_GET['rename'])) {
-		XSRFdefender('tag_rename');
-		unset($_POST['XSRFToken']);
-		$langs = sanitize($_POST['lang_list_tags']);
-		unset($_POST['lang_list_tags']);
-		foreach ($_POST as $postkey => $newName) {
-			if (!empty($newName)) {
-				$lang = $langs[$postkey];
-				$newName = sanitize($newName, 3);
-				$key = substr($postkey, 2); // strip off the 'R_'
-				$key = postIndexDecode(sanitize($key));
-				$newtag = query_single_row('SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($newName) . ' AND `language`=' . db_quote($lang));
-				$oldtag = query_single_row('SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($key) . ' AND `language`=' . db_quote($lang));
-				if (is_array($newtag)) { // there is an existing tag of the same name
-					$existing = $newtag['id'] != $oldtag['id']; // but maybe it is actually the original in a different case.
-				} else {
-					$existing = false;
-				}
-				if ($existing) {
-					$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s not changed, duplicate tag.'), $lang, $key), ': ');
-				} else {
-					query('UPDATE ' . prefix('tags') . ' SET `name`=' . db_quote($newName) . ' WHERE `id`=' . $oldtag['id']) . ' AND `language`=' . db_quote($langs[$postkey]);
+			}
+			$action = gettext('New tags added');
+			break;
+		case 'tag_action':
+			XSRFdefender('tag_action');
+			$language = sanitize($_POST['language']);
+			$action = $_POST['tag_action'];
+			if (isset($_POST['tag_list_tags_'])) {
+				$tags = sanitize($_POST['tag_list_tags_']);
+				$langs = sanitize($_POST['lang_list_tags_']);
+			} else {
+				$langs = $tags = array();
+			}
+			switch ($action) {
+				case'delete':
+					if (count($tags) > 0) {
+						$sql = "SELECT * FROM " . prefix('tags') . " WHERE ";
+						foreach ($tags as $key => $tag) {
+							$sql .= "(`name`=" . (db_quote($tag)) . ' AND `language`=' . db_quote($langs[$key]) . ") OR ";
+						}
+						$sql = substr($sql, 0, strlen($sql) - 4);
+						$dbtags = query_full_array($sql);
+						if (is_array($dbtags) && count($dbtags) > 0) {
+							$sqltags = "DELETE FROM " . prefix('tags') . " WHERE ";
+							$sqlobjects = "DELETE FROM " . prefix('obj_to_tag') . " WHERE ";
+							foreach ($dbtags as $tag) {
+								$sqltags .= "`id`='" . $tag['id'] . "' OR ";
+								$sqlobjects .= "`tagid`='" . $tag['id'] . "' OR ";
+								if (is_null($tag['masterid'])) {
+									$sqltags .="`masterid`='" . $tag['id'] . "' OR ";
+									$sqlSub = "SELECT `id`, `masterid` FROM " . prefix('tags') . " WHERE `masterid`=" . $tag['id'];
+									$subTags = query_full_array($sqlSub);
+									if (is_array($subTags) && count($subTags) > 0) {
+										foreach ($subTags as $subTag) {
+											$sqlobjects .= "`tagid`='" . $subTag['id'] . "' OR ";
+										}
+									}
+								}
+							}
+							$sqltags = substr($sqltags, 0, strlen($sqltags) - 4);
+							query($sqltags);
+							$sqlobjects = substr($sqlobjects, 0, strlen($sqlobjects) - 4);
+							query($sqlobjects);
+						}
+					}
+					$action = gettext('Checked tags deleted');
+					break;
+				case 'private':
+				case 'notprivate':
+					$private = (int) ($action == 'private');
+					if (count($tags) > 0) {
+						$sql = "UPDATE " . prefix('tags') . " SET `private`=$private WHERE ";
+						foreach ($tags as $key => $tag) {
+							$sql .= "(`name`=" . (db_quote($tag)) . ' AND `language`=' . db_quote($langs[$key]) . ") OR ";
+						}
+						$sql = substr($sql, 0, strlen($sql) - 4);
+						query($sql);
+					}
+					if ($private) {
+						$action = gettext('Checked tags marked private');
+					} else {
+						$action = gettext('Checked tags marked public');
+					}
+					break;
+				case'assign':
+					if (count($tags) > 0) {
+						$tbdeleted = array();
+						$multi = getOption('multi_lingual');
+						$languageList = generateLanguageList(false);
+
+						foreach ($tags as $key => $tagname) {
+							$lang = $langs[$key];
+							$sql = 'UPDATE ' . prefix('tags') . ' SET `language`=' . db_quote($language) . ' WHERE `name`=' . db_quote($tagname) . ' AND `language`=' . db_quote($lang);
+							$success = query($sql, false);
+							if ($success) {
+								$sql = 'SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($tagname) . ' AND `language`=' . db_quote($language);
+								$tagelement = query_single_row($sql);
+								if ($multi && !empty($language)) {
+									//create subtags
+									foreach ($languageList as $text => $dirname) {
+										if ($dirname != $language) {
+											$sql = 'INSERT INTO ' . prefix('tags') . ' (`name`, `masterid`,`language`) VALUES (' . db_quote($tagname) . ',' . $tagelement['id'] . ',' . db_quote($dirname) . ')';
+											query($sql);
+										}
+									}
+								} else if (empty($language)) {
+									$tbdeleted[] = $tagelement['id'];
+								}
+							} else {
+								$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s language not changed, duplicate tag.'), $lang, $tagname), ': ');
+							}
+							if (!empty($tbdeleted)) {
+								$sql = 'DELETE FROM ' . prefix('tags') . ' WHERE `masterid`=' . implode(' OR `masterid`=', $tbdeleted);
+								query($sql);
+							}
+						}
+					}
+					$action = gettext('Checked tags language assigned');
+					break;
+			}
+			break;
+		case 'rename':
+			XSRFdefender('tag_rename');
+			unset($_POST['XSRFToken']);
+			$langs = sanitize($_POST['lang_list_tags']);
+			unset($_POST['lang_list_tags']);
+			foreach ($_POST as $postkey => $newName) {
+				if (!empty($newName)) {
+					$lang = $langs[$postkey];
+					$newName = sanitize($newName, 3);
+					$key = substr($postkey, 2); // strip off the 'R_'
+					$key = postIndexDecode(sanitize($key));
+					$newtag = query_single_row('SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($newName) . ' AND `language`=' . db_quote($lang));
+					$oldtag = query_single_row('SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($key) . ' AND `language`=' . db_quote($lang));
+					if (is_array($newtag)) { // there is an existing tag of the same name
+						$existing = $newtag['id'] != $oldtag['id']; // but maybe it is actually the original in a different case.
+					} else {
+						$existing = false;
+					}
+					if ($existing) {
+						$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s not changed, duplicate tag.'), $lang, $key), ': ');
+					} else {
+						query('UPDATE ' . prefix('tags') . ' SET `name`=' . db_quote($newName) . ' WHERE `id`=' . $oldtag['id']) . ' AND `language`=' . db_quote($langs[$postkey]);
+					}
 				}
 			}
-		}
-		$action = gettext('Tags renamed');
-	} // rename
+			$action = gettext('Tags renamed');
+			break;
+	}
 }
 
 printAdminHeader('admin');
@@ -251,7 +253,7 @@ printAdminHeader('admin');
 							<span id="autotext"><?php echo gettext('all'); ?></span>
 						</label>
 					</h2>
-					<form class="dirtylistening" onReset="setClean('tag_action_form');" name="tag_action_form" id="tag_action_form" action="?action=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" autocomplete="off" >
+					<form class="dirtylistening" onReset="setClean('tag_action_form');" name="tag_action_form" id="tag_action_form" action="?action=tag_action&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" autocomplete="off" >
 						<?php XSRFToken('tag_action'); ?>
 						<input type="hidden" name="tag_action" id="tag_action" value="delete" />
 						<div class="box-tags-unpadded">
@@ -321,7 +323,7 @@ printAdminHeader('admin');
 
 				<div class="floatleft">
 					<h2 class="h2_bordered_edit"><?php echo gettext("Rename tags"); ?></h2>
-					<form class="dirtylistening" onReset="setClean('form_tagrename');" name="tag_rename" id="form_tagrename" action="?rename=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" autocomplete="off" >
+					<form class="dirtylistening" onReset="setClean('form_tagrename');" name="tag_rename" id="form_tagrename" action="?action=rename&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" autocomplete="off" >
 						<?php XSRFToken('tag_rename'); ?>
 						<div class="box-tags-unpadded">
 							<ul class="tagrenamelist">
@@ -381,7 +383,7 @@ printAdminHeader('admin');
 
 				<div class="floatleft">
 					<h2 class="h2_bordered_edit"><?php echo gettext("New tags"); ?></h2>
-					<form class="dirtylistening" onReset="setClean('form_newtags');"  name="new_tags" id="form_newtags" action="?newtags=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" autocomplete="off" >
+					<form class="dirtylistening" onReset="setClean('form_newtags');"  name="new_tags" id="form_newtags" action="?action=newtags&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post" autocomplete="off" >
 						<?php XSRFToken('new_tags'); ?>
 						<div class="box-tags-unpadded">
 							<ul class="tagnewlist">

@@ -59,6 +59,8 @@ function exifTranslate($source) {
 		case '!center weighted average!' : return str_replace($sw, gettext('Center Weighted Average'), $source);
 		case '!center-weighted!' : return str_replace($sw, gettext("Center-weighted"), $source);
 		case '!centimeter!' : return str_replace($sw, gettext('Centimeter'), $source);
+		case '!Millimeter!' : return str_replace($sw, gettext('Millimeter'), $source);
+		case '!Micrometer!' : return str_replace($sw, gettext('Micrometer'), $source);
 		case '!chroma saturation high!' : return str_replace($sw, gettext("Chroma Saturation High"), $source);
 		case '!chroma saturation low(org)!' : return str_replace($sw, gettext("Chroma Saturation Low(ORG)"), $source);
 		case '!chroma saturation normal(std)!' : return str_replace($sw, gettext("Chroma Saturation Normal(STD)"), $source);

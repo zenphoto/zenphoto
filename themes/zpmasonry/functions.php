@@ -28,7 +28,7 @@ function switcher_head($ignore) {
 
 function switcher_controllink($ignore) {
 	global $themecolors;
-	$color = zp_getCookie('themeSwitcher_color');
+	$color = zp_getCookie('themeSwitcher_themeColor');
 	if (!$color) {
 		$color = getOption('zpmas_css');
 	}

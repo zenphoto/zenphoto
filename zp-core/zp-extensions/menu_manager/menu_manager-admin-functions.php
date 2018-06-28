@@ -282,10 +282,14 @@ function getMenuSetSelector($active) {
 		foreach ($result as $set) {
 			$menusets[$set['menuset']] = $set['menuset'];
 		}
-		natcasesort($menusets);
-	} else {
+	}
+	if ($menuset && !in_array($menuset, $menusets)) {
+		$menusets[$menuset] = $menuset;
+	}
+	if (empty($menusets)) {
 		return NULL;
 	}
+	natcasesort($menusets);
 
 	if ($active) {
 		$selector = '<select name="menuset" id="menuset" class="ignoredirty" size="1" onchange="window.location=\'?menuset=\'+encodeURIComponent($(\'#menuset\').val())">' . "\n";

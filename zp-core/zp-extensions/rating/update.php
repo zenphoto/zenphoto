@@ -12,7 +12,7 @@ if (isset($_POST['id']) && isset($_POST['table'])) {
 	$id = sanitize_numeric($_POST['id']);
 	$table = sanitize($_POST['table'], 3);
 	$dbtable = prefix($table);
-	$ip = jquery_rating::id();
+	$ip = getUserID();
 	$unique = '_' . $table . '_' . $id;
 	if (isset($_POST['star_rating-value' . $unique])) {
 		$rating = ceil(sanitize_numeric($_POST['star_rating-value' . $unique]) / max(1, getOption('rating_split_stars')));

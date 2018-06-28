@@ -59,7 +59,7 @@ if (function_exists('printContactForm')) {
 			<!-- Wrap Subalbums -->
 			<div id="subcontent">
 				<div id="submain">
-					<h3><?php echo gettext('Contact us.') ?></h3>
+					<h3><?php echo gettext('Contact us') ?></h3>
 
 					<?php printContactForm(); ?>
 				</div>

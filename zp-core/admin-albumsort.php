@@ -31,20 +31,19 @@ if (isset($_GET['album'])) {
 			$action = processImageBulkActions($album);
 			if (!empty($action))
 				$_GET['bulkmessage'] = $action;
-		} else {
-			parse_str($_POST['sortableList'], $inputArray);
-			if (isset($inputArray['id'])) {
-				$orderArray = $inputArray['id'];
-				if (!empty($orderArray)) {
-					foreach ($orderArray as $key => $id) {
-						$sql = 'UPDATE ' . prefix('images') . ' SET `sort_order`=' . db_quote(sprintf('%03u', $key)) . ' WHERE `id`=' . sanitize_numeric($id);
-						query($sql);
-					}
-					$album->setSortType("manual");
-					$album->setSortDirection(false, 'image');
-					$album->save();
-					$_GET['saved'] = 1;
+		}
+		parse_str($_POST['sortableList'], $inputArray);
+		if (isset($inputArray['id'])) {
+			$orderArray = $inputArray['id'];
+			if (!empty($orderArray)) {
+				foreach ($orderArray as $key => $id) {
+					$sql = 'UPDATE ' . prefix('images') . ' SET `sort_order`=' . db_quote(sprintf('%03u', $key)) . ' WHERE `id`=' . sanitize_numeric($id);
+					query($sql);
 				}
+				$album->setSortType("manual");
+				$album->setSortDirection(false, 'image');
+				$album->save();
+				$_GET['saved'] = 1;
 			}
 		}
 	}
@@ -222,8 +221,8 @@ echo "\n</head>";
 													 src="<?php echo getAdminThumb($image, 'large'); ?>"
 													 alt="<?php echo html_encode($image->getTitle()); ?>"
 													 title="<?php
-													 echo html_encode($image->getTitle()) . ' (' . html_encode($album->name) . ')';
-													 ?>"
+							echo html_encode($image->getTitle()) . ' (' . html_encode($album->name) . ')';
+									?>"
 													 width="<?php echo ADMIN_THUMB_LARGE; ?>" height="<?php echo ADMIN_THUMB_LARGE; ?>"  />
 											<p>
 												<input type="checkbox" name="ids[]" value="<?php echo $imagename; ?>">

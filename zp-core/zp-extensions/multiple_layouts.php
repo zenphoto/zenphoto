@@ -10,10 +10,10 @@
  *
  * Gallery items:
  * <hr>
- * <ul>
+ * <ol>
  * <li>For albums: album<var>customname</var>.php</li>
  * <li>For images : image<var>customname</var>.php</li>
- * <ul/>
+ * <ol/>
  *
  * "Select album layout" checkbox:
  * If you want to avoid to manually select a specific layout for all images in an album you can check this option
@@ -42,7 +42,6 @@
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Multiple <em>Theme</em> layouts");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'multipleLayoutOptions';
 

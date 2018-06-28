@@ -9,7 +9,7 @@ if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 printAdminHeader('admin');
 ?>
@@ -41,9 +41,31 @@ printAdminHeader('admin');
 					}
 					$invalid = false;
 					foreach ($clones as $clone => $data) {
+						$version = '';
+						$v = explode('-', ZENPHOTO_VERSION . '-');
+						$myVersion = $v[0];
 						if ($data['valid']) {
 							$title = gettext('Visit the site.');
 							$strike = '';
+							$old = $_zp_conf_vars;
+							unset($_zp_conf_vars);
+							require ($clone . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+
+							$saveDB = $_zp_DB_details;
+							db_close();
+							//	Setup for the MyBB database
+							$config = array('mysql_host' => $_zp_conf_vars['mysql_host'], 'mysql_database' => $_zp_conf_vars['mysql_database'], 'mysql_prefix' => $_zp_conf_vars['mysql_prefix'], 'mysql_user' => $_zp_conf_vars['mysql_user'], 'mysql_pass' => $_zp_conf_vars['mysql_pass']);
+							if ($_zp_DB_connection = db_connect($config, false)) {
+								$sql = 'SELECT * FROM `' . $config['mysql_prefix'] . 'options` WHERE `name`="zenphoto_install"';
+								$result = query_single_row($sql);
+								$signature = @unserialize($result['value']);
+								if ($signature['ZENPHOTO'] != $myVersion) {
+									$version = ' (' . sprintf(gettext('Last setup run version: %s'), $signature['ZENPHOTO']) . ')';
+								}
+							}
+							db_close();
+							$_zp_DB_connection = db_connect($saveDB);
+							$_zp_conf_vars = $old;
 						} else { // no longer a clone of this installation
 							$strike = ' style="text-decoration: line-through;"';
 							$title = gettext('No longer a clone of this installation.');
@@ -51,7 +73,7 @@ printAdminHeader('admin');
 						}
 						?>
 						<p<?php echo $strike; ?>>
-							<a href="<?php echo $data['url'] . ZENFOLDER . '/admin.php'; ?>" target="_blank" title="<?php echo $title; ?>"><?php echo $clone; ?></a>
+							<a href="<?php echo $data['url'] . ZENFOLDER . '/admin.php'; ?>" target="_blank" title="<?php echo $title; ?>"><?php echo $clone; ?></a><?php echo $version; ?>
 						</p>
 						<?php
 					}
@@ -157,9 +179,9 @@ printAdminHeader('admin');
 								$('#cloneButton').attr('title', sprintf('Clone installation to %s', $('#downbutton').attr('title')));
 								$('#clonePath').val($('#cloneFolder').val());
 								if (prime == $('#clonePath').val()) {
-									$('#cloneButton').attr('disabled', 'disabled');
+									$('#cloneButton').prop('disabled', true);
 								} else {
-									$('#cloneButton').removeAttr('disabled');
+									$('#cloneButton').prop('disabled', false);
 								}
 								newinstall = $('#clonePath').val().replace('<?php echo $path; ?>', '');
 								$('#cloneWebPath').val('<?php echo $urlpath; ?>' + newinstall);
@@ -189,7 +211,12 @@ printAdminHeader('admin');
 									<?php echo ARROW_UP_GREEN; ?>
 								</a>
 							</span>
-							<span class="icons"<?php if (empty($folderlist)) echo ' style="display:none;"'; ?>>
+							<span class="icons"<?php
+							if (empty($folderlist))
+								echo
+
+								' style="display:none;"';
+							?>>
 								<a id="downbutton" href="javascript:buttonAction($('#cloneFolder').val());" title="">
 									<?php echo ARROW_DOWN_GREEN; ?>
 								</a>
@@ -207,7 +234,10 @@ printAdminHeader('admin');
 							<br />
 							<br />
 							<div class="buttons pad_button" id="cloneZP">
-								<button id="cloneButton" class="tooltip" type="submit" title=""<?php if (empty($folderlist)) echo ' disabled="disabled"'; ?> >
+								<button id="cloneButton" class="tooltip" type="submit" title=""<?php
+								if (empty($folderlist))
+									echo ' disabled="disabled"';
+								?> >
 									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/folder.png" alt="" /> <?php echo gettext("Clone installation"); ?>
 								</button>
 							</div>

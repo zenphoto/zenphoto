@@ -15,7 +15,7 @@
  * <b>NOTE:</b> This link is present only when the browsing client is a mobile device!
  *
  * Class <var>mobile</var> methods you can use in your theme:
- * <ul>
+ * <ol>
  * 	<li>phone is connected.
  * 	<ul>
  * 		<li>isiPhone()</li>
@@ -68,14 +68,15 @@
  * 		<li>isMidori()</li>
  * 	</ul>
  * </li>
- * </ul>
+ * </ol>
+ *
+ * @author "Stephen Billard (sbillard)
  *
  * @package plugins/mobileTheme
  * @pluginCategory theme
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Select your theme based on the device connecting to your site');
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'mobileTheme';
 

@@ -11,9 +11,9 @@
  * Feed types:
  *
  * Supports all RSS feed options plus individual Image, News, and Page requests:
- * <ul>
+ * <ol>
  * 	<li>?external=gallery
- * 		<ul>
+ * 		<ol>
  * 			<li>&album=<i>album</i> for an album</li>
  * 			<li>&album[]=<i>album</i>&album[]=>i>album</i>... for a list of albums</li>
  * 			<li>&album=<i>album</i>&image=<i>image</i> for an image</li>
@@ -21,21 +21,21 @@
  *
  * 				add &size=<i>size</i> to the image request to select a particular image size. (This
  * 				cannot be larger than the plugin's image size option.)
- * 		</ul>
+ * 		</ol>
  * 	</li>
  * 	<li>?external=news
- * 		<ul>
+ * 		<ol>
  * 			<li>&titlelink=<i>article</i> for an article</li>
  * 			<li>&titlelink[]=<i>article</i>&titlelink[]=<i>article</i>... for a list of articles</li>
- * 		</ul>
+ * 		</ol>
  * 	</li>
  * 	<li>?external=news
- * 		<ul>
+ * 		<ol>
  * 			<li>&titlelink=<i>page</i> for a page</li>
  * 			<li>&titlelink[]=<i>page</i>&titlelink[]=<i>page</i>... for a list of pages</li>
- * 	 </ul>
+ * 	 </ol>
  * 	</li>
- * </ul>
+ * </ol>
  *
  * @author Stephen Billard (sbillard)
  *
@@ -44,12 +44,15 @@
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 900 | FEATURE_PLUGIN;
+$plugin_is_filter = 910 | FEATURE_PLUGIN;
 $plugin_description = gettext('The <em>externalFeed</em> handler.');
 
-$plugin_author = "Stephen Billard (sbillard)";
-
 $option_interface = 'externalFeed_options';
+
+zp_register_filter('site_upgrade_xml', 'externalFeed_options::xmlfile');
+
+require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
 
 class externalFeed_options {
 
@@ -151,10 +154,12 @@ class externalFeed_options {
 		return false;
 	}
 
-}
+	static function xmlfile($filelist) {
+		$filelist['externalFeed-closed.xml'] = 'externalFeed';
+		return $filelist;
+	}
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
+}
 
 class ExternalFeed extends feed {
 

@@ -25,7 +25,6 @@
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");
-$plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'register_user';
 
@@ -257,6 +256,7 @@ class register_user {
 							$_notify = 'filter';
 						}
 					} else {
+						recordPolicyACK($userobj);
 						$userobj->save();
 						if (MOD_REWRITE) {
 							$verify = '?verify=';

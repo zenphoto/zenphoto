@@ -49,7 +49,7 @@ function saveOptions() {
 	setOption('mod_rewrite_suffix', $newsuffix);
 
 	if (!is_null($oldsuffix) && $oldsuffix != $newsuffix) {
-		//the suffix was changed as opposed to set for the first time
+//the suffix was changed as opposed to set for the first time
 		migrateTitleLinks($oldsuffix, $newsuffix);
 	}
 	setOption('unique_image_prefix', (int) isset($_POST['unique_image_prefix']));
@@ -81,7 +81,7 @@ function saveOptions() {
 			if ($p == '//') {
 				$p = '/';
 			}
-			//	save a cookie to see if change works
+//	save a cookie to see if change works
 			$returntab .= '&cookiepath';
 			zp_setCookie('zenphoto_cookie_path', $p, 600);
 		}
@@ -89,6 +89,15 @@ function saveOptions() {
 		if (isset($_POST['cookie_persistence'])) {
 			setOption('cookie_persistence', sanitize_numeric($_POST['cookie_persistence']));
 		}
+	}
+
+	setOption('GDPR_acknowledge', (int) isset($_POST['GDPR_acknowledge']));
+	setOption('GDPR_text', process_language_string_save('GDPR_text', 4));
+	setOption('GDPR_URL', sanitize($_POST['GDPR_URL']));
+	if (isset($_POST['GDPR_re-acknowledge']) && $_POST['GDPR_re-acknowledge']) {
+		$sql = 'UPDATE ' . prefix('administrators') . ' SET `policyACK`=0';
+		query($sql);
+		setOption('GDPR_cookie', microtime());
 	}
 
 	setOption('site_email_name', process_language_string_save('site_email_name', 3));
@@ -125,16 +134,16 @@ function getOptionContent() {
 		var oldselect = '<?php echo SITE_LOCALE; ?>';
 		function radio_click(id) {
 			if ($('#r_' + id).prop('checked')) {
-				$('#language_allow_' + oldselect).removeAttr('disabled');
+				$('#language_allow_' + oldselect).prop('disabled', false);
 				oldselect = id;
-				$('#language_allow_' + id).attr('disabled', 'disabled');
+				$('#language_allow_' + id).prop('disabled', true);
 			}
 		}
 		function enable_click(id) {
 			if ($('#language_allow_' + id).prop('checked')) {
-				$('#r_' + id).removeAttr('disabled');
+				$('#r_' + id).prop('disabled', false);
 			} else {
-				$('#r_' + id).attr('disabled', 'disabled');
+				$('#r_' + id).prop('disabled', true);
 			}
 		}
 
@@ -220,14 +229,15 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("URL options"); ?></td>
 					<td class="option_value">
+
+						<?php
+						if (MOD_REWRITE) {
+							$state = ' checked="checked"';
+						} else {
+							$state = '';
+						}
+						?>
 						<label>
-							<?php
-							if (MOD_REWRITE) {
-								$state = ' checked="checked"';
-							} else {
-								$state = '';
-							}
-							?>
 							<input type="checkbox" name="mod_rewrite" value="1"<?php echo $state; ?> />
 							<?php echo gettext('mod rewrite'); ?>
 						</label>
@@ -249,7 +259,8 @@ function getOptionContent() {
 								<input type="checkbox" name="unique_image_prefix"<?php
 								if (UNIQUE_IMAGE)
 									echo ' checked="checked";'
-									?>><?php echo gettext("unique images"); ?>
+									?>>
+											 <?php echo gettext("unique images"); ?>
 							</label>
 						</p>
 
@@ -367,7 +378,6 @@ function getOptionContent() {
 								$c++;
 								?>
 								<li>
-
 									<label class="displayinline">
 										<input type="radio" name="locale" id="r_<?php echo $dirname; ?>" value="<?php echo $dirname; ?>"
 													 onclick="radio_click('<?php echo $dirname; ?>');" <?php echo $r_attrs; ?>/>
@@ -390,15 +400,16 @@ function getOptionContent() {
 						<?php echo '<span class="floatright" style="font-size:xx-small;">' . gettext('Percent mechanically translated in red.'); ?></span>
 						<br class="clearall">
 						<label class="checkboxlabel">
-							<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('multi-lingual'); ?>
+							<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> />
+							<?php echo gettext('multi-lingual'); ?>
 						</label>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
 							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
-								<p><?php echo gettext("You can disable languages by unchecking their checkboxes. Only checked languages will be available to the installation."); ?></p>
-								<p><?php echo gettext("Select the preferred language to display text in. (Set to <em>HTTP_Accept_Language</em> to use the language preference specified by the viewer’s browser.)"); ?></p>
+								<?php echo gettext("You can disable languages by unchecking their checkboxes. Only checked languages will be available to the installation."); ?>
+								<?php echo gettext("Select the preferred language to display text in. (Set to <em>HTTP_Accept_Language</em> to use the language preference specified by the viewer’s browser.)"); ?>
 								<p><?php echo gettext("Set <em>Multi-lingual</em> to enable multiple language input for options that provide theme text."); ?></p>
 							</div>
 						</span>
@@ -507,7 +518,7 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Allowed tags"); ?></td>
 					<td class="option_value">
-						<p><textarea name="allowed_tags" id="allowed_tags" style="width: 340px" rows="10" cols="35"><?php echo html_encode(getOption('allowed_tags')); ?></textarea>
+						<p><textarea name="allowed_tags" id="allowed_tags" style="width: 340px" rows="4" cols="35"><?php echo html_encode(getOption('allowed_tags')); ?></textarea>
 							<span class="buttons">
 								<a onclick="resetallowedtags()" >
 									<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
@@ -554,6 +565,45 @@ function getOptionContent() {
 					</td>
 				</tr>
 				<tr>
+					<td class="option_name"><?php echo gettext("Usage policy"); ?></td>
+					<td class="option_value">
+						<label>
+							<input type="checkbox" name="GDPR_acknowledge" value="1" <?php checked(1, getOption('GDPR_acknowledge')); ?> onclick="$('#GDR_Details').toggle();<?php if (!extensionEnabled('GDPR_required')) echo '$(\'#GDPR_clear\').toggle();'; ?>" />
+							<?php echo gettext('require acknowledgement'); ?>
+						</label>
+						<p id="GDPR_clear" <?php if (!(getOption('GDPR_acknowledge') || extensionEnabled('GDPR_required'))) echo ' style="display:none"'; ?>>
+							<label>
+								<input type="checkbox" name="GDPR_re-acknowledge" value="1" />
+								<?php echo gettext('Clear remembered acknowledgements'); ?>
+							</label>
+						</p>
+
+						<div id="GDR_Details" <?php if (!GetOption('GDPR_acknowledge')) echo ' style="display:none"'; ?>>
+							<p>
+								<?php echo gettext('Policy URL'); ?>
+								<input type="text" name="GDPR_URL" size="35" value="<?php echo getOption('GDPR_URL'); ?>" />
+							</p>
+							<p>
+								<?php
+								echo gettext('Notice text');
+								print_language_string_list(get_language_string(getOption('GDPR_text')), 'GDPR_text', false, null, '', '45');
+								?>
+							</p>
+						</div>
+
+
+					</td>
+					<td class="option_desc">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
+							<div class="option_desc_hidden">
+								<?php echo gettext('Require policy notice acknowledgement according to the <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>. The policy notice URL must point to your site usage policy.<br /><br />
+Standard forms which collect user data will have a policy acknowledgement checkbox which must be checked before the “submit” button is present.<br /><br />The acknowledgement will be remembered. They persist for site users until you clear the remembered acknowledgements. For anonymous visitors it persists for the cookie expiration interval (or browser session if <em>gallery sessions</em> is enabled.)'); ?>
+							</div>
+						</span>
+					</td>
+				</tr>
+				<tr>
 					<td class="option_name">
 						<?php echo gettext("Cookies"); ?>
 					</td>
@@ -562,12 +612,12 @@ function getOptionContent() {
 						if (!GALLERY_SESSION) {
 							echo gettext('path');
 							?>
-							<input type="text" size="48" id="zenphoto_cookie_path" name="zenphoto_cookie_path"  value="<?php echo getOption('zenphoto_cookie_path'); ?>" />
+							<input type="text" size="40" id="zenphoto_cookie_path" name="zenphoto_cookie_path"  value="<?php echo getOption('zenphoto_cookie_path'); ?>" />
 							<p>
 								<?php
 								echo gettext('duration');
 								?>
-								<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PESISTENCE; ?>" />
+								<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PERSISTENCE; ?>" />
 							</p>
 							<?php
 						}
@@ -600,11 +650,11 @@ function getOptionContent() {
 				</tr>
 				<tr>
 					<td class="option_name">
-						<p><?php echo gettext("Name"); ?></p>
+						<?php echo gettext("Name"); ?>
 						<p><?php echo gettext("Email"); ?></p>
 					</td>
 					<td class="option_value">
-						<p><input type="text" size="48" name="site_email_name" value="<?php echo get_language_string(getOption('site_email_name')) ?>" /></p>
+						<input type="text" size="48" name="site_email_name" value="<?php echo get_language_string(getOption('site_email_name')) ?>" />
 						<p><input type="text" size="48" id="site_email" name="site_email"  value="<?php echo getOption('site_email'); ?>" /></p>
 					</td>
 					<td class="option_desc">
@@ -618,13 +668,16 @@ function getOptionContent() {
 				</tr>
 				<tr>
 					<td class="option_name">
-						<p><?php echo gettext('Registration'); ?></p>
+						<?php echo gettext('Registration'); ?>
 					</td>
 					<td class="option_value">
 						<?php
 						$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 						?>
-						<p><input type="checkbox" size="48" id="site_email" name="register_user_notify"  value="1" <?php checked('1', getOption('register_user_notify') && $mailinglist); ?> <?php if (!$mailinglist) echo ' disabled="disabled"'; ?> /><?php echo gettext('notify'); ?></p>
+						<label>
+							<input type="checkbox" size="48" id="site_email" name="register_user_notify"  value="1" <?php checked('1', getOption('register_user_notify') && $mailinglist); ?> <?php if (!$mailinglist) echo ' disabled="disabled"'; ?> />
+							<?php echo gettext('notify'); ?>
+						</label>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
@@ -641,39 +694,60 @@ function getOptionContent() {
 				</tr>
 				<tr>
 					<td class="option_name">
-						<span style="line-height:190%">
-							<?php echo gettext("Users per page"); ?><br />
-							<?php echo gettext("Groups per page"); ?><br />
-							<?php echo gettext("Plugins per page"); ?><br />
+						<?php echo gettext('Admin pagination'); ?>
+					</td>
+					<td class="option_value">
+						<table>
+							<tr>
+								<td>
+									<?php echo gettext("Users per page"); ?>
+									<input type="text" size="2" id="users_per_page" name="users_per_page" style="float:right;" value="<?php echo getOption('users_per_page'); ?>" />
+								</td>
+								<td>
+									<?php
+									echo gettext("Plugins per page");
+									?>
+									<input type="text" size="2" id="plugins_per_page" name="plugins_per_page" style="float:right;"  value="<?php echo getOption('plugins_per_page'); ?>" />
+								</td>
+							</tr>
+
 							<?php
-							if (extensionEnabled('zenpage')) {
+							$row = false;
+							if (extensionEnabled('user_groups')) {
 								?>
-								<?php echo gettext("Articles per page"); ?><br />
+								<tr>
+									<td>
+										<?php
+										$row = true;
+										echo gettext("Groups per page");
+										?>
+										<input type="text" size="2" id="groups_per_page" name="groups_per_page" style="float:right;"  value="<?php echo getOption('groups_per_page'); ?>" />
+									</td>
+									<?php
+								}
+								if (extensionEnabled('zenpage')) {
+									if (!$row) {
+										$row = true;
+										?>
+									<tr>
+										<?php
+									}
+									?>
+									<td>
+										<?php
+										echo gettext("Articles per page");
+										?>
+										<input type="text" size="2" id="articles_per_page" name="articles_per_page" style="float:right;"  value="<?php echo getOption('articles_per_page'); ?>" />
+									</td>
+									<?php
+								}
+								if ($row) {
+									?>
+								</tr>
 								<?php
 							}
 							?>
-						</span>
-					</td>
-					<td class="option_value">
-						<input type="text" size="5" id="users_per_page" name="users_per_page"  value="<?php echo getOption('users_per_page'); ?>" />
-						<br />
-						<?php
-						if (extensionEnabled('user_groups')) {
-							?>
-							<input type="text" size="5" id="groups_per_page" name="groups_per_page"  value="<?php echo getOption('groups_per_page'); ?>" />
-							<br />
-							<?php
-						}
-						?>
-						<input type="text" size="5" id="plugins_per_page" name="plugins_per_page"  value="<?php echo getOption('plugins_per_page'); ?>" />
-						<?php
-						if (extensionEnabled('zenpage')) {
-							?>
-							<br />
-							<input type="text" size="5" id="articles_per_page" name="articles_per_page"  value="<?php echo getOption('articles_per_page'); ?>" />
-							<?php
-						}
-						?>
+						</table>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
@@ -730,8 +804,12 @@ function getOptionContent() {
 							if (!is_null($size = getOption($subtab . '_log_size'))) {
 								?>
 								<p>
-									<input type="text" size="4" id="<?php echo $log ?>_log" name="log_size_<?php echo $subtab; ?>" value="<?php echo $size; ?>" />
-									<input type="checkbox" id="<?php echo $log ?>_log" name="log_mail_<?php echo $subtab; ?>" value="1" <?php checked('1', getOption($subtab . '_log_mail')); ?> /> <?php echo gettext('e-mail when exceeded'); ?>
+									<label>
+										<input type="text" size="4" id="<?php echo $log ?>_log" name="log_size_<?php echo $subtab; ?>" value="<?php echo $size; ?>" />
+									</label>
+									<label>
+										<input type="checkbox" id="<?php echo $log ?>_log" name="log_mail_<?php echo $subtab; ?>" value="1" <?php checked('1', getOption($subtab . '_log_mail')); ?> /> <?php echo gettext('e-mail when exceeded'); ?>
+									</label>
 								</p>
 								<?php
 							}

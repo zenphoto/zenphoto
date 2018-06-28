@@ -16,7 +16,6 @@
  */
 $plugin_is_filter = 990 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides a means for handling arbitrary file types. (No rendering provided!)');
-$plugin_author = "Stephen Billard (sbillard)";
 
 
 foreach (get_AnyFile_suffixes() as $suffix) {
@@ -36,12 +35,12 @@ class AnyFile_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Watermark default images')	 => array('key'	 => 'AnyFile_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Check to place watermark image on default thumbnail images.')),
-						gettext('Handled files')						 => array('key'	 => 'AnyFile_file_list', 'type' => OPTION_TYPE_CUSTOM,
-										'desc' => gettext('File suffixes to be handled.')),
-						gettext('Add file suffix')					 => array('key'	 => 'AnyFile_file_new', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('Add a file suffix to be handled by the plugin'))
+		return array(gettext('Watermark default images') => array('key' => 'AnyFile_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Check to place watermark image on default thumbnail images.')),
+				gettext('Handled files') => array('key' => 'AnyFile_file_list', 'type' => OPTION_TYPE_CUSTOM,
+						'desc' => gettext('File suffixes to be handled.')),
+				gettext('Add file suffix') => array('key' => 'AnyFile_file_new', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Add a file suffix to be handled by the plugin'))
 		);
 	}
 

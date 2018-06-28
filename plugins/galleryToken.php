@@ -12,7 +12,6 @@
 
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Rewrite rule for the <em>gallery</em> custom page.');
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('<em>galleryToken</em> requires the <code>mod_rewrite</code> option be enabled.');
 
 

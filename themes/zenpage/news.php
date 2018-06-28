@@ -82,7 +82,6 @@ if (class_exists('CMS')) {
 							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
 							<br style="clear:both;" /><br />
 							<?php
-							@call_user_func('printRating');
 							// COMMENTS TEST
 							@call_user_func('printCommentForm');
 						} else {

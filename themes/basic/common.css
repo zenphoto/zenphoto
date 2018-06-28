@@ -4,6 +4,12 @@ shared css so we need make them only once.
 
 */
 
+/* start with a clean slate */
+
+* {
+  margin: 0;
+  padding: 0;
+}
 /* Pretty Buttons
 ------------------------------------- */
 .buttons a,.buttons button {
@@ -153,4 +159,41 @@ button.positive,.buttons a.positive {
 
 .disclose_password_show {
 	padding-right: 70px !important;
+}
+.singlenews_prev {
+	float: left;
+}
+.singlenews_next {
+	float: right;
+}
+.zp_link {
+	padding-right: 10px;
+	white-space: nowrap;
+	font-size: 14px;
+}
+.zp_link a {
+	text-decoration: none;
+}
+
+#archive {
+	padding: 0;
+}
+.image_header {
+	margin:20px 0;
+	background: #fff;
+	font-size: 18px;
+	font-weight:bold;
+	text-align: center;
+	border: 1px black;
+}
+.news_header {
+	margin:20px 0;
+	background: #fff;
+	border-top: 3px solid #E6E6DF;
+	font-size: 18px;
+	font-weight:bold;
+	text-align: center;
+}
+#commentcontent {
+	clear: both;
 }

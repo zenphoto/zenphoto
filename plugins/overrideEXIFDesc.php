@@ -24,7 +24,6 @@
  */
 $plugin_is_filter = 1000 | CLASS_PLUGIN;
 $plugin_description = gettext('Use the EXIF "desc" field for zenphoto titles');
-$plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('image_metadata', 'exifDescIsZPdesc');
 

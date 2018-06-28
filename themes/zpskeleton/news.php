@@ -120,19 +120,16 @@
 			</div>
 		</div>
 	</div>
-	<?php if ((function_exists('printRating')) || (function_exists('printCommentForm'))) { ?>
+	<?php if (function_exists('printCommentForm')) { ?>
 		<div class="wrapper">
 			<div class="container">
 				<div class="sixteen columns">
-					<?php if (function_exists('printRating')) { ?>
-						<div id="rating"><?php printRating(); ?><hr /></div>
-						<?php } ?>
-						<?php
-						if (function_exists('printCommentForm')) {
-							printCommentForm();
-							echo '<hr />';
-						}
-						?>
+					<?php
+					if (function_exists('printCommentForm')) {
+						printCommentForm();
+						echo '<hr />';
+					}
+					?>
 				</div>
 			</div>
 		</div>

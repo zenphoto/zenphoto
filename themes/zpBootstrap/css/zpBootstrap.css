@@ -5,6 +5,13 @@ Author URI: http://www.vincentbourganel.fr
 Version 2.0
 */
 
+/* start with a clean slate */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 /*------------------------------------
 	main Bootstrap overwriting
 -------------------------------------- */

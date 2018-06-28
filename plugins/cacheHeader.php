@@ -14,7 +14,7 @@
  */
 $plugin_is_filter = 9 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Outputs a "Cache-control" header with selected caching options.');
-$plugin_author = "Stephen Billard (sbillard)";
+
 $option_interface = 'cacheHeader_options';
 
 $_cacheHeader_side = getOption('cacheHeader_sides');

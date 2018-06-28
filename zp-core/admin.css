@@ -17,7 +17,10 @@
 /* Basics
 ------------------------------ */
 
+
 * {
+	margin: 0;
+  padding: 0;
 	line-height: 19px;
 }
 
@@ -330,8 +333,8 @@ code {
 	color: black;
 }
 
-.navigation ul li a.alert,
-.navigation ul ul li a.alert{
+.navigation ul li a.nav-alert,
+.navigation ul ul li a.nav-alert{
 	background-color: lightgoldenrodyellow !important;
 }
 
@@ -439,6 +442,9 @@ code {
 	color: #DD6666;
 	font-weight: bold;
 }
+.logerror{
+	background-color: #FDD;
+}
 
 .errorbox {
 	padding: 10px 15px 10px 15px;
@@ -463,6 +469,9 @@ code {
 
 /* Warning Messages
 ------------------------------ */
+.logwarning {
+	background-color: #fcf676;
+}
 .warningbox {
 	padding: 5px 10px 5px 10px;
 	background-color: #fcf676;
@@ -487,6 +496,10 @@ code {
 
 /* box for important notes
 ------------------------------ */
+.lognotice {
+	background-color: #FFEFB7;
+}
+
 .notebox {
 	padding: 5px 10px 5px 10px;
 	background-color: #FFEFB7;
@@ -999,6 +1012,12 @@ input.tags {
 
 .overview-install-info {
 	z-index: 50;
+	margin-left: 8px;
+}
+
+.overview_list {
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .overview_utilities {
@@ -1061,6 +1080,18 @@ input.tags {
 	font-size: 100%;
 }
 
+#slider-password_strength {
+	background-size: 100%;
+}
+
+#strength-handle {
+	width: 3em;
+	height: 1.6em;
+	top: 50%;
+	margin-top: -.8em;
+	text-align: center;
+	line-height: 1.6em;
+}
 
 #albumselect {
 	padding-top: 10px;
@@ -1862,8 +1893,8 @@ ul.pagelist li.current {
 }
 
 .textarea_hidden {
-	position: absolute !important; 
-	left: -1000px !Important;
+	position: absolute !important;
+	left: -9999px !Important;
 }
 
 /* icon legend
@@ -2164,6 +2195,13 @@ fieldset,
 	padding-left: 10px;
 	padding-right: 10px;
 	text-align: left;
+}
+
+.logtext table tr:nth-child(2n) {
+  background-color: #F7F7F7;
+}
+.logtext tbody tr:hover {
+  background-color: #EEEEEE;
 }
 
 .nowrap {
@@ -2829,3 +2867,19 @@ form.tinyDirty input[type=submit]:active {
 	background-position: center;
 }
 
+.ulclean {
+	list-style: none;
+}
+.ulclean li {
+	margin-left:20px;
+	list-style: none;
+}
+.ulclean h3 {
+	padding-top: 10px;
+	font-family: Courier, Monaco, monospace;
+	font-size: 1.1em;
+}
+
+.deprecated {
+	text-decoration: line-through;
+}

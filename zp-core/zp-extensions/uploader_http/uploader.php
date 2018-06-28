@@ -3,7 +3,6 @@
 /**
  * @package plugins/uploader_http
  */
-
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
@@ -12,6 +11,9 @@ if (isset($_POST['auth'])) {
 	$hash = sanitize($_POST['auth']);
 	$id = sanitize($_POST['id']);
 	$_zp_loggedin = $_zp_authority->checkAuthorization($hash, $id);
+} else {
+	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?page=upload&tab=http&type=images&uploaded=1');
+	exitZP();
 }
 
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
@@ -123,7 +125,7 @@ if (isset($_POST['processed'])) {
 					//	he has edit rights, allow new album creation
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($folder) . '&uploaded&subpage=1&tab=imageinfo&albumimagesort=id_desc');
 				} else {
-					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?tab=http&uploaded=1');
+					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?page=upload&tab=http&type=images&uploaded=1');
 				}
 				exitZP();
 			}

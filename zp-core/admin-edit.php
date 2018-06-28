@@ -70,56 +70,65 @@ if (isset($_GET['showthumbs'])) { // switch the display selector
 	}
 	setOption('album_tab_showDefaultThumbs', serialize($showDefaultThumbs));
 }
+
 if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action']);
 	switch ($action) {
+		default:
+			$return = sanitize_path($r = @$_GET['return']);
+			if (!empty($return)) {
+				$return = '&album=' . $return;
+				if (strpos($r, '*') === 0) {
+					$return .= '&tab=subalbuminfo';
+				}
+			}
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return);
+			exitZP();
 		/** reorder the tag list ***************************************************** */
 		/*		 * *************************************************************************** */
 		case 'savealbumorder':
 			XSRFdefender('savealbumorder');
-			if ($_POST['checkallaction'] == 'noaction') {
-				$notify = postAlbumSort(NULL);
-				if ($notify) {
-					if ($notify === true) {
-						$notify = '&saved';
-					} else {
-						$notify = '&saved' . $notify;
-					}
-					$_zp_gallery->setSortDirection(0);
-					$_zp_gallery->setSortType('manual');
-					$_zp_gallery->save();
+			$notify = postAlbumSort(NULL);
+			if ($notify) {
+				if ($notify === true) {
+					$notify = '&saved';
 				} else {
-					$notify = '&noaction';
+					$notify = '&saved' . $notify;
 				}
+				$_zp_gallery->setSortDirection(0);
+				$_zp_gallery->setSortType('manual');
+				$_zp_gallery->save();
 			} else {
-				$notify = processAlbumBulkActions();
-				if (empty($notify)) {
-					$notify = '&noaction';
-				} else {
-					$notify = '&bulkmessage=' . $notify;
-				}
+				$notify = '&noaction';
 			}
+
+			$notify = processAlbumBulkActions();
+			if (empty($notify)) {
+				$notify = '&noaction';
+			} else {
+				$notify = '&bulkmessage=' . $notify;
+			}
+
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $notify);
 			exitZP();
 			break;
 		case 'savesubalbumorder':
 			XSRFdefender('savealbumorder');
-			if ($_POST['checkallaction'] == 'noaction') {
-				$notify = postAlbumSort($album->getID());
-				if ($notify) {
-					if ($notify === true) {
-						$notify = '&saved';
-					} else {
-						$notify = '&saved' . $notify;
-					}
-					$album = newAlbum($folder);
-					$album->setSortType('manual', 'album');
-					$album->setSortDirection(false, 'album');
-					$album->save();
+			$notify = postAlbumSort($album->getID());
+			if ($notify) {
+				if ($notify === true) {
+					$notify = '&saved';
 				} else {
-					$notify = '&noaction';
+					$notify = '&saved' . $notify;
 				}
+				$album = newAlbum($folder);
+				$album->setSortType('manual', 'album');
+				$album->setSortDirection(false, 'album');
+				$album->save();
 			} else {
+				$notify = '&noaction';
+			}
+			if ($_POST['checkallaction'] == 'noaction') {
 				$notify = processAlbumBulkActions();
 				if (empty($notify)) {
 					$notify = '&noaction';
@@ -359,14 +368,6 @@ if (isset($_GET['action'])) {
 					if (isset($_POST['checkForPostTruncation'])) {
 						$filter = sanitize($_REQUEST['filter']);
 						$returntab = '&tagsort=' . $tagsort . '&tab=imageinfo&filter=' . $filter;
-						if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
-							$action = processImageBulkActions($album);
-							if (!empty($action)) {
-								$bulknotify = '&bulkmessage=' . $action;
-							}
-							header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $bulknotify . $pg . $returntab);
-							exitZP();
-						}
 						if (isset($_POST['singleimage'])) {
 							$single = sanitize($_POST['singleimage']);
 						}
@@ -449,6 +450,12 @@ if (isset($_GET['action'])) {
 								}
 							}
 						}
+						if (isset($_POST['ids'])) { //	process bulk actions
+							$action = processImageBulkActions($album);
+							if (!empty($action)) {
+								$bulknotify = '&bulkmessage=' . $action;
+							}
+						}
 					} else {
 						$notify = '&post_error';
 					}
@@ -456,9 +463,6 @@ if (isset($_GET['action'])) {
 				if (!is_null($returnalbum)) {
 					$folder = $returnalbum;
 				}
-				$qs_albumsuffix = '';
-				if (isset($single))
-					$qs_albumsuffix .= '&singleimage=' . $single;
 				/** SAVE MULTIPLE ALBUMS ***************************************************** */
 			} else if ($_POST['totalalbums']) {
 				$notify = '';
@@ -482,15 +486,6 @@ if (isset($_GET['action'])) {
 				}
 			}
 
-			// Redirect to the same album we saved.
-			if (isset($folder) && !empty($folder)) {
-				$qs_albumsuffix .= '&album=' . pathurlencode($folder);
-			}
-			if (isset($_POST['subpage'])) {
-				$pg = '&subpage=' . ($subpage = sanitize($_POST['subpage']));
-			} else {
-				$subpage = $pg = false;
-			}
 			$msg = zp_apply_filter('edit_error', '');
 			if ($msg) {
 				$notify .= '&edit_error=' . $msg;
@@ -1434,10 +1429,10 @@ echo "\n</head>";
 																	var today = new Date();
 																	var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
 																	if (pub.getTime() > today.getTime()) {
-																		$("Visible-<?php echo $currentimage; ?>").removeAttr('checked');
+																		$("Visible-<?php echo $currentimage; ?>").prop('checked', false);
 																		$('#publishdate-<?php echo $currentimage; ?>').css('color', 'blue');
 																	} else {
-																		$("Visible-<?php echo $currentimage; ?>").attr('checked', 'checked');
+																		$("Visible-<?php echo $currentimage; ?>").prop('checked', true);
 																		$('#publishdate-<?php echo $currentimage; ?>').css('color', 'black');
 																	}
 																});

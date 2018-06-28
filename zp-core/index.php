@@ -16,7 +16,13 @@ require_once(dirname(__FILE__) . '/functions.php');
 if (GALLERY_SESSION || zp_loggedin(UPLOAD_RIGHTS | ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) {
 	zp_session_start();
 }
-
+if (function_exists('openssl_encrypt')) {
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/class.ncrypt.php');
+	$_themeCript = new mukto90\Ncrypt;
+	$_themeCript->set_secret_key(HASH_SEED);
+	$_themeCript->set_secret_iv(SECRET_IV);
+	$_themeCript->set_cipher(INCRIPTION_METHOD);
+}
 zp_apply_filter('feature_plugin_load');
 if (DEBUG_PLUGINS) {
 	debugLog('Loading the "feature" plugins.');
@@ -42,7 +48,7 @@ require_once(dirname(__FILE__) . '/template-functions.php');
 checkInstall();
 // who cares if MOD_REWRITE is set. If we somehow got redirected here, handle the rewrite
 rewriteHandler();
-
+recordPolicyACK();
 //$_zp_script_timer['require'] = microtime();
 /**
  * Invoke the controller to handle requests
@@ -70,15 +76,6 @@ if (isset($_GET['p'])) {
 }
 
 //$_zp_script_timer['theme setup'] = microtime();
-$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
-
-$custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
-if (file_exists($custom)) {
-	require_once($custom);
-} else {
-	$custom = false;
-}
-
 //	Load the THEME plugins
 if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 	if (DEBUG_PLUGINS) {
@@ -99,6 +96,15 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 			//		$_zp_script_timer['load '.$extension] = microtime();
 		}
 	}
+}
+
+
+$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
+$custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
+if (file_exists($custom)) {
+	require_once($custom);
+} else {
+	$custom = false;
 }
 
 //	HTML caching?
