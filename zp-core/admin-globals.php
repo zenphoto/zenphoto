@@ -118,7 +118,7 @@ if (@$_zp_loggedin) {
 						unset($pagelist[$key]);
 					}
 				}
-				if (!empty($pagelist)) {
+				if (!empty($pagelist) || $_zp_loggedin & MANAGE_ALL_PAGES_RIGHTS) {
 					$zenphoto_tabs['pages'] = array('text' => gettext("pages"),
 							'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php',
 							'subtabs' => NULL);
@@ -142,7 +142,7 @@ if (@$_zp_loggedin) {
 						unset($categories[$key]);
 					}
 				}
-				if (!empty($articles) && !empty($categories)) {
+				if (!empty($articles) && !empty($categories) || $_zp_loggedin & MANAGE_ALL_NEWS_RIGHTS) {
 					$zenphoto_tabs['news'] = array('text' => gettext('news'),
 							'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news.php',
 							'subtabs' => array(gettext('articles') => PLUGIN_FOLDER . '/zenpage/admin-news.php?page=news&tab=articles',

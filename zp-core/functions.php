@@ -2791,7 +2791,9 @@ class zpFunctions {
 				$text = serialize($text);
 			}
 		} else {
-			$text = strtr($text, array(WEBPATH => '{*WEBPATH*}', FULLWEBPATH => '{*FULLWEBPATH*}', ZENFOLDER => '{*ZENFOLDER*}', PLUGIN_FOLDER => '{*PLUGIN_FOLDER*}', USER_PLUGIN_FOLDER => '{*USER_PLUGIN_FOLDER*}'));
+			foreach (array(WEBPATH => '{*WEBPATH*}', FULLWEBPATH => '{*FULLWEBPATH*}', ZENFOLDER => '{*ZENFOLDER*}', PLUGIN_FOLDER => '{*PLUGIN_FOLDER*}', USER_PLUGIN_FOLDER => '{*USER_PLUGIN_FOLDER*}') as $from => $to) {
+				$text = str_replace($from, $to, $text);
+			}
 		}
 		return $text;
 	}
@@ -2816,7 +2818,9 @@ class zpFunctions {
 				$text = serialize($text);
 			}
 		} else {
-			$text = strtr($text, array('{*WEBPATH*}' => WEBPATH, '{*FULLWEBPATH*}' => FULLWEBPATH, '{*ZENFOLDER*}' => ZENFOLDER, '{*PLUGIN_FOLDER*}' => PLUGIN_FOLDER, '{*USER_PLUGIN_FOLDER*}' => USER_PLUGIN_FOLDER));
+			foreach (array('{*WEBPATH*}' => WEBPATH, '{*FULLWEBPATH*}' => FULLWEBPATH, '{*ZENFOLDER*}' => ZENFOLDER, '{*PLUGIN_FOLDER*}' => PLUGIN_FOLDER, '{*USER_PLUGIN_FOLDER*}' => USER_PLUGIN_FOLDER) as $from => $to) {
+				$text = str_replace($from, $to, $text);
+			}
 		}
 		return $text;
 	}

@@ -193,7 +193,7 @@ updatePublished('news');
 
 					$total = 1;
 					$articles = count($result);
-					if ($articles || !empty($categories)) {
+					if ($articles || !empty($categories) || zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 						$articles_page = max(1, getOption('articles_per_page'));
 						if (isset($_GET['articles_page'])) {
 							if ($_GET['articles_page'] == 'all') {

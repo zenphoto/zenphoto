@@ -361,7 +361,6 @@ function printPagesListTable($page, $toodeep) {
 function updateArticle(&$reports, $newarticle = false) {
 	global $_zp_current_admin_obj;
 
-	$date = date('Y-m-d_H-i-s');
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
 	$content = zpFunctions::updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
@@ -374,7 +373,6 @@ function updateArticle(&$reports, $newarticle = false) {
 	$lastchangeauthor = sanitize($_POST['lastchangeauthor']);
 	$commentson = getcheckboxState('commentson');
 	$locked = getcheckboxState('locked');
-	$show = getcheckboxState('show');
 
 	if ($newarticle) {
 		$titlelink = seoFriendly(get_language_string($title));
@@ -419,7 +417,6 @@ function updateArticle(&$reports, $newarticle = false) {
 			$titlelink .= RW_SUFFIX;
 		}
 	}
-
 
 	$rslt = true;
 
@@ -503,6 +500,7 @@ function updateArticle(&$reports, $newarticle = false) {
 			$reports['success'] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated"), $titlelink) . '</p>';
 		}
 	}
+
 	zp_apply_filter('save_article_custom_data', NULL, $article);
 	$article->save();
 
