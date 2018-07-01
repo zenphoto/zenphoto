@@ -2791,8 +2791,10 @@ class zpFunctions {
 				$text = serialize($text);
 			}
 		} else {
-			foreach (array(WEBPATH => '{*WEBPATH*}', FULLWEBPATH => '{*FULLWEBPATH*}', ZENFOLDER => '{*ZENFOLDER*}', PLUGIN_FOLDER => '{*PLUGIN_FOLDER*}', USER_PLUGIN_FOLDER => '{*USER_PLUGIN_FOLDER*}') as $from => $to) {
-				$text = str_replace($from, $to, $text);
+			foreach (array(FULLWEBPATH => '{*FULLWEBPATH*}', WEBPATH => '{*WEBPATH*}', ZENFOLDER => '{*ZENFOLDER*}', PLUGIN_FOLDER => '{*PLUGIN_FOLDER*}', USER_PLUGIN_FOLDER => '{*USER_PLUGIN_FOLDER*}') as $from => $to) {
+				if ($from) {
+					$text = str_replace($from, $to, $text);
+				}
 			}
 		}
 		return $text;
