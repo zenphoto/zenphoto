@@ -2094,16 +2094,41 @@ function commentsAllowed($type) {
  * @return string
  */
 function seoFriendly($string) {
+	$string = trim($string);
 	$string = trim(preg_replace('~\s+\.\s*~', '.', $string));
 	if (zp_has_filter('seoFriendly')) {
 		$string = zp_apply_filter('seoFriendly', $string);
 	} else { // no filter, do basic cleanup
-		$string = trim($string);
-		$string = preg_replace("/\s+/", "-", $string);
 		$string = preg_replace("/[^a-zA-Z0-9_.-]/", "-", $string);
-		$string = str_replace(array('---', '--'), '-', $string);
 	}
+	$string = preg_replace("/\s+/", "-", $string);
+	$string = str_replace(array('---', '--'), '-', $string);
 	return $string;
+}
+
+/**
+ *
+ * emit the javascript seojs() function
+ */
+function seoFriendlyJS() {
+	?>
+	function seoFriendlyJS(fname) {
+	fname = fname.trim();
+	fname = fname.replace(/\s+\.\s*/,'.');
+	<?php
+	if (zp_has_filter('seoFriendly_js')) {
+		echo zp_apply_filter('seoFriendly_js', '');
+	} else { // no filter, do basic cleanup
+		?>
+		fname = fname.replace(/[^a-zA-Z0-9_.-]/g, '-');
+		<?php
+	}
+	?>
+	fname = fname.replace(/\s+/g, '-');
+	fname = fname.replace(/--*/g, '-');
+	return fname;
+	}
+	<?php
 }
 
 function load_jQuery_CSS() {
@@ -2145,27 +2170,6 @@ function load_jQuery_scripts($where, $ui = true) {
 	if ($ui) {
 		?>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jQueryui/jquery-ui-1.12.1.min.js"></script>
-		<?php
-	}
-}
-
-/**
- *
- * emit the javascript seojs() function
- */
-function seoFriendlyJS() {
-	if (zp_has_filter('seoFriendly_js')) {
-		echo zp_apply_filter('seoFriendly_js');
-	} else {
-		?>
-		function seoFriendlyJS(fname) {
-		fname=fname.trim();
-		fname=fname.replace(/\s+\.\s*/,'.');
-		fname = fname.replace(/\s+/g, '-');
-		fname = fname.replace(/[^a-zA-Z0-9_.-]/g, '-');
-		fname = fname.replace(/--*/g, '-');
-		return fname;
-		}
 		<?php
 	}
 }
