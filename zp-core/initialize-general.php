@@ -59,3 +59,6 @@ $_locale_Subdomains = zpFunctions::LanguageSubdomains();
 
 //	use this for labeling "News" pages, etc.
 define('NEWS_LABEL', get_language_string(getSerializedArray(getOption('zenpage_news_label'))));
+
+$_tagURLs_tags = array('{*FULLWEBPATH*}', '{*WEBPATH*}', '{*ZENFOLDER*}', '{*PLUGIN_FOLDER*}', '{*USER_PLUGIN_FOLDER*}');
+$_tagURLs_values = array(FULLWEBPATH, WEBPATH, ZENFOLDER, PLUGIN_FOLDER, USER_PLUGIN_FOLDER);

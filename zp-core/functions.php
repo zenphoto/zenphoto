@@ -2777,11 +2777,9 @@ class zpFunctions {
 	 * @param string $text
 	 */
 	static function tagURLs($text) {
-		if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
-			$text = getSerializedArray($text);
-			$serial = true;
-		} else {
-			$serial = false;
+		global $_tagURLs_tags, $_tagURLs_values;
+		if ($serial = is_string($text) && (($data = @unserialize($text)) !== FALSE || $text === 'b:0;')) { //	serialized array
+			$text = $data;
 		}
 		if (is_array($text)) {
 			foreach ($text as $key => $textelement) {
@@ -2791,11 +2789,7 @@ class zpFunctions {
 				$text = serialize($text);
 			}
 		} else {
-			foreach (array(FULLWEBPATH => '{*FULLWEBPATH*}', WEBPATH => '{*WEBPATH*}', ZENFOLDER => '{*ZENFOLDER*}', PLUGIN_FOLDER => '{*PLUGIN_FOLDER*}', USER_PLUGIN_FOLDER => '{*USER_PLUGIN_FOLDER*}') as $from => $to) {
-				if ($from) {
-					$text = str_replace($from, $to, $text);
-				}
-			}
+			$text = str_replace($_tagURLs_tags, $_tagURLs_values, $text);
 		}
 		return $text;
 	}
@@ -2806,11 +2800,9 @@ class zpFunctions {
 	 * @return string
 	 */
 	static function unTagURLs($text, $debug = NULL) {
-		if (is_string($text) && (($data = @unserialize($text)) !== FALSE || $text === 'b:0;')) { //	serialized array
+		global $_tagURLs_tags, $_tagURLs_values;
+		if ($serial = is_string($text) && (($data = @unserialize($text)) !== FALSE || $text === 'b:0;')) { //	serialized array
 			$text = $data;
-			$serial = true;
-		} else {
-			$serial = false;
 		}
 		if (is_array($text)) {
 			foreach ($text as $key => $textelement) {
@@ -2820,9 +2812,7 @@ class zpFunctions {
 				$text = serialize($text);
 			}
 		} else {
-			foreach (array('{*WEBPATH*}' => WEBPATH, '{*FULLWEBPATH*}' => FULLWEBPATH, '{*ZENFOLDER*}' => ZENFOLDER, '{*PLUGIN_FOLDER*}' => PLUGIN_FOLDER, '{*USER_PLUGIN_FOLDER*}' => USER_PLUGIN_FOLDER) as $from => $to) {
-				$text = str_replace($from, $to, $text);
-			}
+			$text = str_replace($_tagURLs_tags, $_tagURLs_values, $text);
 		}
 		return $text;
 	}
