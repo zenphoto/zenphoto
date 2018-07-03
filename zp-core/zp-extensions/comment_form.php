@@ -196,8 +196,9 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 			setOption('email_new_comments', 0);
 		}
 	}
-	if (is_null($addcommenttext))
+	if (is_null($addcommenttext)) {
 		$addcommenttext = '<h3>' . gettext('Add a comment:') . '</h3>';
+	}
 	switch ($_zp_gallery_page) {
 		case 'album.php':
 			if (!getOption('comment_form_albums'))

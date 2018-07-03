@@ -64,7 +64,12 @@ if (isset($_GET['action'])) {
 					if (count($tags) > 0) {
 						$sql = "SELECT * FROM " . prefix('tags') . " WHERE ";
 						foreach ($tags as $key => $tag) {
-							$sql .= "(`name`=" . (db_quote($tag)) . ' AND `language`=' . db_quote($langs[$key]) . ") OR ";
+							if (isset($langs[$key])) {
+								$lang = $langs[$key];
+							} else {
+								$lang = '';
+							}
+							$sql .= "(`name`=" . (db_quote($tag)) . ' AND `language`=' . db_quote($lang) . ") OR ";
 						}
 						$sql = substr($sql, 0, strlen($sql) - 4);
 						$dbtags = query_full_array($sql);
@@ -154,10 +159,14 @@ if (isset($_GET['action'])) {
 			unset($_POST['lang_list_tags']);
 			foreach ($_POST as $postkey => $newName) {
 				if (!empty($newName)) {
-					$lang = $langs[$postkey];
+					if (isset($langs[$postkey])) {
+						$lang = $langs[$postkey];
+					} else {
+						$lang = '';
+					}
 					$newName = sanitize($newName, 3);
 					$key = substr($postkey, 2); // strip off the 'R_'
-					$key = postIndexDecode(sanitize($key));
+					$key = postIndexDecode($key);
 					$newtag = query_single_row('SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($newName) . ' AND `language`=' . db_quote($lang));
 					$oldtag = query_single_row('SELECT * FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($key) . ' AND `language`=' . db_quote($lang));
 					if (is_array($newtag)) { // there is an existing tag of the same name
@@ -168,7 +177,7 @@ if (isset($_GET['action'])) {
 					if ($existing) {
 						$subaction[] = ltrim(sprintf(gettext('%1$s: %2$s not changed, duplicate tag.'), $lang, $key), ': ');
 					} else {
-						query('UPDATE ' . prefix('tags') . ' SET `name`=' . db_quote($newName) . ' WHERE `id`=' . $oldtag['id']) . ' AND `language`=' . db_quote($langs[$postkey]);
+						query('UPDATE ' . prefix('tags') . ' SET `name`=' . db_quote($newName) . ' WHERE `id`=' . $oldtag['id']) . ' AND `language`=' . db_quote($lang);
 					}
 				}
 			}
@@ -343,8 +352,15 @@ printAdminHeader('admin');
 											}
 											?>
 											<input id="<?php echo $listitem; ?>" name="<?php echo $listitem; ?>" type="text" size='33' value="<?php echo $item; ?>" />
-											<input type="hidden" name="lang_list_tags[<?php echo $listitem; ?>]" value="<?php echo html_encode($lang); ?>" />
 										</span>
+										<?php
+										if ($lang) {
+											?>
+											<input type="hidden" name="lang_list_tags[<?php echo $listitem; ?>]" value="<?php echo html_encode($lang); ?>" />
+											<?php
+										}
+										?>
+
 										<?php
 										if (is_array($tagitem['subtags'])) {
 											$itemarray = $tagitem['subtags'];
@@ -357,8 +373,12 @@ printAdminHeader('admin');
 												<span class="nowrap">&nbsp;&nbsp;<img src="<?php echo $flags[$lang]; ?>" height="10" width="16" />
 													<input id="<?php echo $listitem; ?>" name="<?php echo $listitem; ?>" type="text" size='33' value="<?php echo $tag; ?>"/>
 												</span>
-												<input type="hidden" name="lang_list_tags[<?php echo $listitem; ?>]" value="<?php echo html_encode($lang); ?>" />
 												<?php
+												if ($lang) {
+													?>
+													<input type="hidden" name="lang_list_tags[<?php echo $listitem; ?>]" value="<?php echo html_encode($lang); ?>" />
+													<?php
+												}
 											}
 										}
 										?>
