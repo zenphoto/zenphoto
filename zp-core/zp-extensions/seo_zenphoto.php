@@ -39,9 +39,6 @@ class zenphoto_seo {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-
-		echo seoFriendly('Töasted álmonds');
-
 		return array(gettext('Lowercase only') => array('key' => 'zenphoto_seo_lowercase', 'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('When set, all characters are converted to lower case.')));
 	}
@@ -253,13 +250,6 @@ class zenphoto_seo {
 			"Ṥ" => "S",
 			"Ṧ" => "S",
 			"Ṩ" => "S",
-<<<<<<< HEAD
-=======
-			"ṩ" => "s",
-			"ß" => "ss",
-			"ſ" => "ss",
-			"ẛ" => "t",
->>>>>>> parent of b2396291c... fix for #1174
 			"Ṫ" => "T",
 			"Ť" => "T",
 			"Ƭ" => "T",
