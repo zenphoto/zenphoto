@@ -605,27 +605,6 @@ class zenphoto_seo {
 			"ẓ" => "z",
 			"ẕ" => "z",
 			"ƶ" => "z",
-			"¨" => "",
-			"'" => "-",
-			"’" => "-",
-			"΅" => "",
-			"΄" => "",
-			"ͺ" => "",
-			"–" => "-",
-			"᾿" => "",
-			"῾" => "",
-			"῍" => "",
-			"῝" => "",
-			"῎" => "",
-			"῞" => "",
-			"῏" => "",
-			"῟" => "",
-			"῀" => "",
-			"῁" => "",
-			"΅" => "",
-			"`" => "",
-			"῭" => "",
-			"᾽" => "",
 			"ἀ" => "a",
 			"ἁ" => "a",
 			"ἂ" => "a",
@@ -1019,12 +998,8 @@ class zenphoto_seo {
 			"Ш" => "SH",
 			"щ" => "SHCH",
 			"Щ" => "SHCH",
-			"ъ" => "",
-			"Ъ" => "",
 			"ы" => "Y",
 			"Ы" => "Y",
-			"ь" => "",
-			"Ь" => "",
 			"э" => "E",
 			"Э" => "E",
 			"ю" => "YU",
@@ -1086,16 +1061,12 @@ class zenphoto_seo {
 		}
 
 		foreach ($xlate as $to => $from) {
-			$js .= "				fname = fname.replace(/[" . $from . "]/g, '" . $to . "');\n";
+			$js .= "fname = fname.replace(/[" . $from . "]/g, '" . $to . "');\n";
 		}
 
 		if (getOption('zenphoto_seo_lowercase')) {
-			$js .= "				fname = fname.toLowerCase();\n";
+			$js .= "fname = fname.toLowerCase();\n";
 		}
-		$js .= "
-				fname = fname.replace(/[^a-zA-Z0-9_.-]/g, '-');
-				return fname;
-			  ";
 		return $js;
 	}
 
