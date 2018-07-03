@@ -547,8 +547,11 @@ function class_video_enable($enabled) {
 		}
 		setOption('metadata_disabled', serialize($disable));
 		setOption('metadata_displayed', serialize($display));
+		$report = gettext('Metadata fields will be added to the Image object.');
+	} else {
+		$report = gettext('Metadata fields will be <span style="color:red;font-weight:bold;">dropped</span> from the Image object.');
 	}
-	requestSetup('Video Metadata', $enabled ? NULL : gettext('The <em>video metadata</em> Database field(s) will be dropped'));
+	requestSetup('Video Metadata', $report);
 }
 
 $_zp_multimedia_extension = new pseudoPlayer();

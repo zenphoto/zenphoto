@@ -110,7 +110,12 @@ class userAddressFields extends fieldExtender {
 }
 
 function userAddressFields_enable($enabled) {
-	requestSetup('userAddressFields', $enabled ? NULL : gettext('The <em>user address</em> Database fields will be dropped'));
+	if ($enabled) {
+		$report = gettext('<em>user address</em> fields will be added to the Administrator object.');
+	} else {
+		$report = gettext('<em>user address</em> fields will be <span style="color:red;font-weight:bold;">dropped</span> from the Administrator object.');
+	}
+	requestSetup('userAddressFields', $report);
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database

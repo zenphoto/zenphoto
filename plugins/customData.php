@@ -186,5 +186,10 @@ class customData {
 }
 
 function customData_enable($enabled) {
-	requestSetup('customData', $enabled ? NULL : gettext('The "custom" fields defined by the plugin dropped'));
+	if ($enabled) {
+		$report = gettext('The "custom" fields are <span style="color:red;font-weight:bold;">deprecated</span>. You should use create a custom field extender plugin instead.');
+	} else {
+		$report = gettext('The "custom" fields defined by the plugin dropped');
+	}
+	requestSetup('customData', $report);
 }

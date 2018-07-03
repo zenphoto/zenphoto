@@ -94,9 +94,7 @@ function saveOptions() {
 
 	$oldDisabled = getSerializedArray(getOption('metadata_disabled'));
 
-	$dbChange = array();
-	$disable = array();
-	$display = array();
+	$dbChange = $enableSource = $disableSource = $disable = $display = array();
 
 	if (isset($_POST['restore_to_defaults'])) {
 		$exifvars = zpFunctions::exifvars(true);
@@ -137,6 +135,7 @@ function saveOptions() {
 						}
 						if (in_array($key, $oldDisabled)) {
 							$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[EXIF_SOURCE] . ' Metadata';
+							$enableSource[] = $item[EXIF_SOURCE] . ' Metadata';
 						}
 					}
 					break;
@@ -144,6 +143,7 @@ function saveOptions() {
 					if ($item[EXIF_FIELD_SIZE]) { // item has data (size != 0)
 						if (!in_array($key, $oldDisabled)) {
 							$dbChange[$item[EXIF_SOURCE] . ' Metadata'] = $item[EXIF_SOURCE] . ' Metadata';
+							$disableSource[] = $item[EXIF_SOURCE] . ' Metadata';
 						}
 					}
 					$disable[$key] = $key;
@@ -172,7 +172,18 @@ function saveOptions() {
 	setOption('metadata_displayed', serialize($display));
 
 	foreach ($dbChange as $requestor) {
-		requestSetup($requestor, empty($dbChange) ? NULL : gettext('Disabled metadata Database field(s) will be dropped'));
+		switch ((int) in_array($requestor, $enableSource) + 2 * (int) in_array($requestor, $disableSource)) {
+			case 1:
+				$report = gettext('Metadata fields will be added to the Image object.');
+				break;
+			case 2:
+				$report = gettext('Metadata fields will be <span style="color:red;font-weight:bold;">dropped</span> from the Image object.');
+				break;
+			case 3:
+				$report = gettext('Metadata fields will be added and <span style="color:red;font-weight:bold;">dropped</span> from the Image object.');
+				break;
+		}
+		requestSetup($requestor, $report);
 	}
 
 	$_zp_gallery->save();
@@ -684,7 +695,7 @@ function getOptionContent() {
 														 name="disclose_password"
 														 id="disclose_password"
 														 onclick="passwordClear('');
-																 togglePassword('');" />
+																		 togglePassword('');" />
 														 <?php echo gettext('Show'); ?>
 										</label>
 
