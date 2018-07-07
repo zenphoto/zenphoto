@@ -8,6 +8,8 @@
  *
  * @package plugins/pdpqrcode
  * @pluginCategory admin
+ *
+ * Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
 
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
@@ -15,7 +17,7 @@ $plugin_description = gettext('Provides a function to emit a QR code image.');
 
 /**
  * Emits a QR code image
- * 
+ *
  * @param string $content the "content" of the QR image
  */
 function printQRImage($content) {
