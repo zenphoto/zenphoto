@@ -188,6 +188,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 		$stopped = '';
 	}
 	$msg = preg_replace('~<form.*\/form>~iU', '', $msg);
+	$msg = preg_replace('~<p class="buttons".*<\/p>~iU', '', $msg);
 	$head = $classes[$cls] . $stopped . $dsp;
 
 	switch ($cls) {
