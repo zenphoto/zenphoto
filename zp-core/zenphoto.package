@@ -7799,7 +7799,6 @@ zp-core/zp-extensions/googleMap/overlappingMarkerSpiderfier
 zp-core/zp-extensions/googleMap/overlappingMarkerSpiderfier/oms.min.js
 zp-core/zp-extensions/googleTFA
 zp-core/zp-extensions/googleTFA/auth_code.php
-zp-core/zp-extensions/googleTFA/Cache.php
 zp-core/zp-extensions/googleTFA/GoogleAuthenticator.php
 zp-core/zp-extensions/googleTFA/Secret.php
 zp-core/zp-extensions/googleTFA/SecretFactory.php
@@ -8403,4 +8402,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8405
+8404

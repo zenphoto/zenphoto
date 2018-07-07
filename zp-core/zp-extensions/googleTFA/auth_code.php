@@ -6,8 +6,6 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/Secret.php');
 require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/SecretFactory.php');
 
-var_dump($_SESSION['OTA'], $_POST);
-
 if (isset($_SESSION['OTA'])) {
 	$user = $_SESSION['OTA']['user'];
 	$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
@@ -15,7 +13,6 @@ if (isset($_SESSION['OTA'])) {
 
 		if (isset($_POST['authenticate'])) {
 			require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/Base32.php');
-			require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/Cache.php');
 			require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/GoogleAuthenticator.php');
 
 			$googleAuth = new Dolondro\GoogleAuthenticator\GoogleAuthenticator();
