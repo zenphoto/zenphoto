@@ -7944,7 +7944,6 @@ zp-core/zp-extensions/purgeOptions/purgeOptions.css
 zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php
 zp-core/zp-extensions/qrcode
 zp-core/zp-extensions/qrcode/image.php
-zp-core/zp-extensions/qrcode/INSTALL
 zp-core/zp-extensions/qrcode/LICENSE
 zp-core/zp-extensions/qrcode/phpqrcode.php
 zp-core/zp-extensions/qrcode/qrbitstream.php
@@ -7961,17 +7960,7 @@ zp-core/zp-extensions/qrcode/qrsplit.php
 zp-core/zp-extensions/qrcode/qrtools.php
 zp-core/zp-extensions/qrcode/qrvect.php
 zp-core/zp-extensions/qrcode/README
-zp-core/zp-extensions/qrcode/test.png
 zp-core/zp-extensions/qrcode/VERSION
-zp-core/zp-extensions/qrcode/bindings
-zp-core/zp-extensions/qrcode/bindings/tcpdf
-zp-core/zp-extensions/qrcode/bindings/tcpdf/qrcode.php
-zp-core/zp-extensions/qrcode/tools
-zp-core/zp-extensions/qrcode/tools/merge.bat
-zp-core/zp-extensions/qrcode/tools/merge.php
-zp-core/zp-extensions/qrcode/tools/merge.sh
-zp-core/zp-extensions/qrcode/tools/merged_config.php
-zp-core/zp-extensions/qrcode/tools/merged_header.php
 zp-core/zp-extensions/rating
 zp-core/zp-extensions/rating/delete-16.png
 zp-core/zp-extensions/rating/delete-24.png
@@ -8402,4 +8391,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8404
+8393
