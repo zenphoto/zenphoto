@@ -68,7 +68,7 @@ class googleTFA extends fieldExtender {
 
 	static function check($loggedin, $post_user, $post_pass, $userobj) {
 		if ($userobj->getOTAsecret()) {
-			$_SESSION['OTA'] = array('user' => $post_user, 'userID' => $userobj->getID(), 'redirect' => $_POST['redirect']);
+			$_SESSION['OTA'] = array('user' => $post_user, 'redirect' => $_POST['redirect']);
 			header('Location: ' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/auth_code.php');
 			exitZP();
 		}
@@ -94,14 +94,14 @@ class googleTFA extends fieldExtender {
 		return $updated;
 	}
 
-	static function edit($html, $userobj, $id, $background, $current, $local_alterrights) {
+	static function edit($html, $userobj, $id, $background, $current) {
 		if ($userobj->getOTAsecret()) {
 			$checked = ' checked="checked"';
 		} else {
 			$checked = '';
 		}
 		$result = '<div class="user_left">' . "\n"
-						. '<input type="checkbox" name="user[' . $id . '][otp]" value="1" ' . $local_alterrights . $checked . ' />&nbsp;'
+						. '<input type="checkbox" name="user[' . $id . '][otp]" value="1" ' . $checked . ' />&nbsp;'
 						. gettext("Two Factor Authentication") . "\n";
 
 		if ($checked) {

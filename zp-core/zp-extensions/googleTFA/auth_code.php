@@ -16,14 +16,12 @@ if (isset($_SESSION['OTA'])) {
 			require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/GoogleAuthenticator.php');
 
 			$googleAuth = new Dolondro\GoogleAuthenticator\GoogleAuthenticator();
-			/*
-			 * for this to work there needs to be an implementation of a cacheItemPool
-			  $googleAuth->setCache($cacheItemPoolInterface);
-			 */
 			$authOK = $googleAuth->authenticate($userobj->getOTAsecret(), $_POST['authenticate']);
 			if ($authOK) {
+				$link = $_SESSION['OTA']['redirect'];
+				unset($_SESSION['OTA']);
 				_Authority::logUser($userobj);
-				header('Location: ' . $_SESSION['OTA']['redirect']);
+				header('Location: ' . $link);
 				exitZP();
 			}
 		}
@@ -40,7 +38,7 @@ if (isset($_SESSION['OTA'])) {
 				if (isset($authOK)) {
 					?>
 					<div class="errorbox" id="message">
-						<h2><?php echo gettext("The PIN you entered is not valid."); ?></h2>
+						<h2><?php echo gettext("The Token you entered is not valid."); ?></h2>
 					</div>
 					<?php
 				}
@@ -48,12 +46,12 @@ if (isset($_SESSION['OTA'])) {
 				<form name="OTP" id="OTP" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/auth_code.php'; ?>" method="post">
 					<input type="hidden" name="authenticate" value="1" />
 					<fieldset id="logon_box">
-						<legend><?php echo gettext('Google Autenticator PIN'); ?></legend>
-						<input class="textfield" name="authenticate" id="authcode" type="text"  />
+						<legend><?php echo gettext('Google Autenticator Token'); ?></legend>
+						<input class="textfield" name="authenticate" id="authcode" type="text" />
 						<br />
 						<br />
 						<div class="buttons">
-							<button type="submit" value="<?php echo gettext("pin"); ?>" >
+							<button type="submit" value="<?php echo gettext("Token"); ?>" >
 								<?php echo CHECKMARK_GREEN; ?>
 								<?php echo gettext("Submit"); ?>
 							</button>
