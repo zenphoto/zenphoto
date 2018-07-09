@@ -4877,9 +4877,15 @@ function admin_securityChecks($rights, $return) {
 	if (!($rights & $_zp_loggedin)) {
 		// prevent nefarious access to this page.
 		$uri = explode('?', $returnurl);
+		if ($uri[0] == WEBPATH . '/' . ZENFOLDER . '/admin.php') {
+			$redirect = FULLWEBPATH;
+		} else {
+			$redirect = FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0];
+		}
+
 		header("HTTP/1.0 302 Found");
 		header("Status: 302 Found");
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
+		header('Location: ' . $redirect);
 		exitZP();
 	}
 }

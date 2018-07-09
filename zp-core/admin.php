@@ -193,7 +193,8 @@ if (zp_loggedin() && !empty($zenphoto_tabs)) {
 		$from = urldecode(currentRelativeURL());
 	}
 }
-if (zp_loggedin()) {
+
+if (zp_loggedin() && $zenphoto_tabs) {
 	//	check rights if logged in, if not we will display the logon form below
 	admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
 }
