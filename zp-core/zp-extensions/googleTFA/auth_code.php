@@ -8,22 +8,24 @@ require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/S
 
 if (isset($_SESSION['OTA'])) {
 	$user = $_SESSION['OTA']['user'];
+
 	$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 	if ($userobj->getOTAsecret()) {
 
 		if (isset($_POST['authenticate'])) {
 			require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/Base32.php');
 			require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/GoogleAuthenticator.php');
+			$link = $_SESSION['OTA']['redirect'];
+			unset($_SESSION['OTA']); // kill the possibility of a replay
 
 			$googleAuth = new Dolondro\GoogleAuthenticator\GoogleAuthenticator();
 			$authOK = $googleAuth->authenticate($userobj->getOTAsecret(), $_POST['authenticate']);
 			if ($authOK) {
-				$link = $_SESSION['OTA']['redirect'];
-				unset($_SESSION['OTA']);
 				_Authority::logUser($userobj);
 				header('Location: ' . $link);
 				exitZP();
 			}
+			$_SESSION['OTA'] = array('user' => $user, 'redirect' => $link); //	restore for the next attempt
 		}
 		printAdminHeader('overview');
 		echo "\n</head>";
