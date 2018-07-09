@@ -10,7 +10,7 @@ if (isset($_SESSION['OTA'])) {
 	$user = $_SESSION['OTA']['user'];
 
 	$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
-	if ($userobj->getOTAsecret()) {
+	if ($userobj && $userobj->getOTAsecret()) {
 
 		if (isset($_POST['authenticate'])) {
 			require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/Base32.php');
@@ -70,5 +70,6 @@ if (isset($_SESSION['OTA'])) {
 		</body>
 		<?php
 		echo "\n</html>";
+		exitZP();
 	}
 }

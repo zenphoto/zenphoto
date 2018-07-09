@@ -68,6 +68,7 @@ class googleTFA extends fieldExtender {
 
 	static function check($loggedin, $post_user, $post_pass, $userobj) {
 		if ($loggedin && $userobj->getOTAsecret()) {
+			zp_session_start();
 			$_SESSION['OTA'] = array('user' => $post_user, 'redirect' => $_POST['redirect']);
 			header('Location: ' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/auth_code.php');
 			exitZP();
