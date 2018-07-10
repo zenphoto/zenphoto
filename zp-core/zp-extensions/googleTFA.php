@@ -120,6 +120,32 @@ class googleTFA extends fieldExtender {
 		return $html . $result;
 	}
 
+	static function checkCache($key) {
+		global $otpCache;
+		$temp = sys_get_temp_dir() . '/ZP_OTP_cache.txt';
+		$validTags = $validExpires = array();
+		if (file_exists($temp)) {
+			$data = explode("\n", file_get_contents($temp));
+			$tags = explode(" ", $data[0]);
+			$expires = explode(" ", $data[1]);
+			foreach ($expires as $index => $exp) {
+				//	ignore expired items
+				if ($exp > time()) {
+					$validTags[] = $tags[$index];
+					$validExpires[] = $exp;
+				}
+			}
+			if (in_array($key, $validTags)) {
+				return FALSE;
+			}
+		}
+		$validTags[] = $key;
+		$validExpires[] = time() + 30; //30 second life
+		$data = implode(' ', $validTags) . "\n" . implode(" ", $validExpires);
+		file_put_contents($temp, $data);
+		return TRUE;
+	}
+
 }
 
 function googleTFA_enable($enabled) {

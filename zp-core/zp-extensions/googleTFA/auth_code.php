@@ -17,13 +17,16 @@ if (isset($_SESSION['OTA'])) {
 			require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/GoogleAuthenticator.php');
 			$link = $_SESSION['OTA']['redirect'];
 			unset($_SESSION['OTA']); // kill the possibility of a replay
-
+			$secret = $userobj->getOTAsecret();
+			$code = $_POST['authenticate'];
 			$googleAuth = new Dolondro\GoogleAuthenticator\GoogleAuthenticator();
-			$authOK = $googleAuth->authenticate($userobj->getOTAsecret(), $_POST['authenticate']);
+			$authOK = $googleAuth->authenticate($secret, $code);
 			if ($authOK) {
-				_Authority::logUser($userobj);
-				header('Location: ' . $link);
-				exitZP();
+				if (googleTFA::checkCache(crypt($secret . "|" . $code, md5($code)))) {
+					_Authority::logUser($userobj);
+					header('Location: ' . $link);
+					exitZP();
+				}
 			}
 			$_SESSION['OTA'] = array('user' => $user, 'redirect' => $link); //	restore for the next attempt
 		}
