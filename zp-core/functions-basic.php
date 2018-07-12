@@ -146,8 +146,12 @@ if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONF
 }
 // Including the config file more than once is OK, and avoids $conf missing.
 eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+
+// Silently setup default rewrite tokens if missing completely or partly from current config file
 if (!isset($_zp_conf_vars['special_pages'])) {
-	$_zp_conf_vars['special_pages'] = array();
+	$_zp_conf_vars['special_pages'] = getDefaultRewriteTokens(null);
+} else {
+	addMissingDefaultRewriteTokens();
 }
 
 define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
@@ -1587,6 +1591,44 @@ function zp_session_destroy() {
 	if (session_id() != '') {
 		$_SESSION = array();
 		session_destroy();
+	}
+}
+
+/**
+ * Reads the core default rewrite token define array from the config template file `zenphoto_cfg.txt`.
+ * Used primarily in case it is missing from the current config file as silent fallback and within the rewriteToken plugin
+ * 
+ * @param string $token The token to get, e.g. "gallery". If the token is not existing or NULL the whole definition array is returned
+ * @return array
+ */
+function getDefaultRewriteTokens($token = null) {
+	global $_zp_default_rewritetokens; 
+	if(!is_array($_zp_default_rewritetokens)) {
+		$zp_cfg = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto_cfg.txt');
+		$i = strpos($zp_cfg, "\$conf['special_pages']");
+		$j = strpos($zp_cfg, '//', $i);
+		eval(substr($zp_cfg, $i, $j - $i));
+		$_zp_default_rewritetokens = $conf['special_pages'];
+		unset($conf);
+	}
+	if(isset($_zp_default_rewritetokens[$token])) {
+		return $_zp_default_rewritetokens[$token];
+	} else {
+		return $_zp_default_rewritetokens;
+	}
+}
+
+/**
+ * Adds missing individual default rewrite tokens to $_zp_conf_vars['special_pages'] 
+ * @global array $_zp_conf_vars
+ */
+function addMissingDefaultRewriteTokens() {
+	global $_zp_conf_vars;
+	$tokens = array_keys(getDefaultRewriteTokens(null));
+	foreach($tokens as $token) {
+		if (!isset($_zp_conf_vars['special_pages'][$token])) {
+			$_zp_conf_vars['special_pages'][$token] = getDefaultRewriteTokens($token);
+		}
 	}
 }
 
