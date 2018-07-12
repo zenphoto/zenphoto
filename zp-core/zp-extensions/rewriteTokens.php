@@ -188,13 +188,13 @@ class rewriteTokens {
 				$desc = sprintf(gettext('Link for <em>%s</em> script page.'), $page);
 			}
 			if (array_key_exists('rule', $element)) {
-				$rule = ",		'rule'=>'{$element['rule']}'";
+				$rule = ", 'rule'=>'{$element['rule']}'";
 			} else {
 				$rule = '';
 			}
-			$newtext .= $token = "\n														'$page'=>			array('define'=>$define,						'rewrite'=>'{$element['rewrite']}'$rule),";
+			$newtext .= $token = "\n	'$page'=> array('define'=>$define, 'rewrite'=>'{$element['rewrite']}'$rule),";
 		}
-		$newtext = substr($newtext, 0, -1) . "\n												);\n";
+		$newtext = substr($newtext, 0, -1) . "\n);\n";
 		$zp_cfg = $this->zp_cfg_a . $newtext . $this->zp_cfg_b;
 		storeConfig($zp_cfg);
 		return $notify;
@@ -203,8 +203,9 @@ class rewriteTokens {
 	static function tabs($tabs) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
-				$tabs['development'] = array('text'		 => gettext("development"),
-								'subtabs'	 => NULL);
+				$tabs['development'] = array(
+						'text' => gettext("development"),
+						'subtabs' => NULL);
 			}
 			$tabs['development']['subtabs'][gettext("tokens")] = PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=tokens&tab=' . gettext('tokens');
 			$named = array_flip($tabs['development']['subtabs']);
