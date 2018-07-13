@@ -7,7 +7,7 @@
  * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  *
  * @package plugins/pdpqrcode
- * @pluginCategory admin
+ * @pluginCategory misc
  *
  * Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
  */
