@@ -53,7 +53,12 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
 define('LOCAL_CHARSET', $_zp_conf_vars['charset']);
 if (!isset($_zp_conf_vars['special_pages'])) {
-	$_zp_conf_vars['special_pages'] = array();
+	$_zp_conf_vars['special_pages'] = array(
+			'page' => array('define' => '_PAGE_', 'rewrite' => 'page'),
+			'search' => array('define' => '_SEARCH_', 'rewrite' => '_PAGE_/search'),
+			'archive' => array('define' => '_ARCHIVE_', 'rewrite' => '_PAGE_/archive'),
+			'tags' => array('define' => '_TAGS_', 'rewrite' => '_SEARCH_/tags')
+	);
 }
 
 if (!defined('CHMOD_VALUE')) {
