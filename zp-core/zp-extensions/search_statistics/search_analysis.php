@@ -24,102 +24,109 @@ printAdminHeader('overview', 'analysis');
 <?php
 echo '</head>';
 
-$sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="search_statistics"';
-$data = query($sql);
-$ip_maxvalue = $criteria_maxvalue = $criteria_maxvalue_f = $terms_maxvalue = 1;
+$nodata = gettext('No search criteria collected.');
+$criteria_maxvalue = 1;
 $cacheHits = 0;
-$results_f = $results = $terms = $sites = array();
+$data = $results_f = $results = $terms = $sites = array();
 $bargraphmaxsize = 400;
-$maxiterations = array();
 $opChars = array('(', ')', '&', '|', '!', ',');
-if ($data) {
-	while ($datum = db_fetch_assoc($data)) {
-		$element = getSerializedArray($datum['data']);
-		if (is_array($element)) {
-			$ip = $datum['aux'];
-			if (array_key_exists($ip, $sites)) {
-				$sites[$ip] ++;
-				if ($ip_maxvalue < $sites[$ip]) {
-					$ip_maxvalue = $sites[$ip];
-				}
-			} else {
-				$sites[$ip] = 1;
+
+$sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="search_statistics"';
+$searches = query($sql);
+while ($datum = db_fetch_assoc($searches)) {
+	$element = getSerializedArray($datum['data']);
+	if (is_array($element)) {
+		if (isset($element['iteration'])) {
+			$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="search_statistics"';
+			query($sql);
+			$nodata = gettext('Search criteria reset.');
+			break;
+		} else {
+			if ($element['success'] == 'cache') {
+				$cacheHits++;
 			}
-
-			$maxiterations[$element['iteration']] = 1;
-			$searchset = $element['data'];
-			$type = $element['type'];
-			$instance = implode(' ', $searchset);
-
-			$success = $element['success'];
-			if ($success) {
-				if ($success == 'cache') {
-					$cacheHits++;
-				}
-
-				if (array_key_exists($instance, $results)) {
-					$results[$instance] ++;
-					if ($criteria_maxvalue < $results[$instance]) {
-						$criteria_maxvalue = $results[$instance];
+			if (array_key_exists($datum['subtype'], $data)) {
+				$data[$datum['subtype']]['success'] = $data[$datum['subtype']]['success'] || $element['success'];
+			} else {
+				$data[$datum['subtype']] = $element;
+				$ip = $datum['aux'];
+				if (array_key_exists($ip, $sites)) {
+					$sites[$ip] ++;
+					if ($criteria_maxvalue < $sites[$ip]) {
+						$criteria_maxvalue = $sites[$ip];
 					}
 				} else {
-					$results[$instance] = 1;
-				}
-			} else {
-				if (array_key_exists($instance, $results_f)) {
-					$results_f[$instance] ++;
-					if ($criteria_maxvalue_f < $results_f[$instance]) {
-						$criteria_maxvalue_f = $results_f[$instance];
-					}
-				} else {
-					$results_f[$instance] = 1;
-				}
-			}
-
-			foreach ($searchset as $instance) {
-				if (!in_array($instance, $opChars)) {
-					if (array_key_exists($instance, $terms)) {
-						$terms[$instance] ++;
-						if ($terms_maxvalue < $terms[$instance]) {
-							$terms_maxvalue = $terms[$instance];
-						}
-					} else {
-						$terms[$instance] = 1;
-					}
+					$sites[$ip] = 1;
 				}
 			}
 		}
 	}
-	db_free_result($data);
 }
+
+foreach ($data as $uid => $element) {
+
+	$searchset = $element['data'];
+	$type = $element['type'];
+	$instance = implode(' ', $searchset);
+
+	$success = $element['success'];
+	if ($success) {
+		if (array_key_exists($instance, $results)) {
+			$results[$instance] ++;
+			if ($criteria_maxvalue < $results[$instance]) {
+				$criteria_maxvalue = $results[$instance];
+			}
+		} else {
+			$results[$instance] = 1;
+		}
+	} else {
+		if (array_key_exists($instance, $results_f)) {
+			$results_f[$instance] ++;
+			if ($criteria_maxvalue < $results_f[$instance]) {
+				$criteria_maxvalue = $results_f[$instance];
+			}
+		} else {
+			$results_f[$instance] = 1;
+		}
+	}
+
+	foreach ($searchset as $instance) {
+		if (!in_array($instance, $opChars)) {
+			if (array_key_exists($instance, $terms)) {
+				$terms[$instance] ++;
+				if ($criteria_maxvalue < $terms[$instance]) {
+					$criteria_maxvalue = $terms[$instance];
+				}
+			} else {
+				$terms[$instance] = 1;
+			}
+		}
+	}
+}
+
 foreach ($results_f as $key => $failed) {
 	if (array_key_exists($key, $results)) { // really a successful search
 		unset($results_f[$key]);
 	}
 }
-$maxiterations = count($maxiterations);
 
 $limit_i = getOption('search_statistics_ip_threshold');
 $sitelimited = count($sites) > $limit_i;
-asort($sites);
 arsort($sites);
 $sites = array_slice($sites, 0, $limit_i, true);
 
 $limit_t = getOption('search_statistics_terms_threshold');
 $termlimited = count($terms) > $limit_t;
-asort($terms);
 arsort($terms);
 $terms = array_slice($terms, 0, $limit_t, true);
 
 $limit_s = getOption('search_statistics_threshold');
 $criterialimited = count($results) > $limit_s;
-asort($results);
 arsort($results);
 $results = array_slice($results, 0, $limit_s, true);
 
 $limit_f = getOption('search_statistics_failed_threshold');
 $criterialimited_f = count($results_f) > $limit_f;
-asort($results_f);
 arsort($results_f);
 $results_f = array_slice($results_f, 0, $limit_f, true);
 ?>
@@ -133,7 +140,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 			<div class="tabbox">
 				<?php
 				if (empty($results) && empty($results_f) && empty($cacheHits)) {
-					echo gettext('No search criteria collected.');
+					echo $nodata;
 				} else {
 					?>
 					<table class="bordered">
@@ -152,8 +159,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($results as $criteria => $count) {
-								$countr = ceil($count / $maxiterations);
-								$barsize = ceil($countr / $criteria_maxvalue * $bargraphmaxsize);
+								$barsize = ceil($count / $criteria_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
 									<td class="statistic_short_title" >
@@ -184,8 +190,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($results_f as $criteria => $count) {
-								$countr = ceil($count / $maxiterations);
-								$barsize = ceil($countr / $criteria_maxvalue_f * $bargraphmaxsize);
+								$barsize = ceil($count / $criteria_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
 									<td class="statistic_short_title" >
@@ -216,8 +221,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($terms as $criteria => $count) {
-								$countr = ceil($count / $maxiterations);
-								$barsize = ceil($countr / $terms_maxvalue * $bargraphmaxsize);
+								$barsize = ceil($count / $criteria_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
 									<td class="statistic_short_title" >
@@ -235,8 +239,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							}
 						}
 						if (!empty($cacheHits)) {
-							$countr = ceil($cacheHits / $maxiterations);
-							$barsize = ceil($countr / $criteria_maxvalue * $bargraphmaxsize);
+							$barsize = ceil($cacheHits / $criteria_maxvalue * $bargraphmaxsize);
 							?><tr class="statistic_wrapper">
 								<th class="statistic_short_title"><?php
 									echo gettext('Cache hits');
@@ -271,8 +274,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($sites as $ip => $count) {
-								$countr = ceil($count / $maxiterations);
-								$barsize = ceil($countr / $ip_maxvalue * $bargraphmaxsize);
+								$barsize = ceil($count / $criteria_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
 									<td class="statistic_short_title" >

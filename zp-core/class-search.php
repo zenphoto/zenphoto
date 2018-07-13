@@ -40,7 +40,7 @@ class SearchEngine {
 	protected $search_no_news = false; // omit news
 	protected $search_unpublished = false; // will override the loggedin checks with respect to unpublished items
 	protected $search_structure; // relates translatable names to search fields
-	protected $iteration = 0; // used by apply_filter('search_statistics') to indicate sequential searches of different objects
+	protected $search_instance; // used by apply_filter('search_statistics') to indicate sequential searches of different objects
 	protected $processed_search = NULL; //remembers search string
 	protected $searches = NULL; // remember the criteria for past searches
 	protected $album_list = array(); // list of albums to search
@@ -98,6 +98,7 @@ class SearchEngine {
 				break;
 		}
 
+		$this->search_instance = uniqid();
 		$this->extraparams['albumssorttype'] = getOption('search_album_sort_type');
 		$this->extraparams['albumssortdirection'] = getOption('search_album_sort_direction') ? 'DESC' : '';
 		$this->extraparams['imagessorttype'] = getOption('search_image_sort_type');
@@ -1533,7 +1534,7 @@ class SearchEngine {
 		}
 		$albums = $this->getCachedSearch($criteria);
 		if ($albums) {
-			zp_apply_filter('search_statistics', $searchstring, 'albums', 'cache', $this->dynalbumname, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'albums', 'cache', $this->dynalbumname, $this->search_instance);
 		} else {
 			if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 				$mine = true;
@@ -1566,7 +1567,7 @@ class SearchEngine {
 					$this->cacheSearch($criteria, $albums);
 				}
 			}
-			zp_apply_filter('search_statistics', $searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->search_instance);
 		}
 		$this->albums = $albums;
 		$this->searches['albums'] = $criteria;
@@ -1685,7 +1686,7 @@ class SearchEngine {
 		}
 		$images = $this->getCachedSearch($criteria);
 		if ($images) {
-			zp_apply_filter('search_statistics', $searchstring, 'images', 'cache', $this->dynalbumname, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'images', 'cache', $this->dynalbumname, $this->search_instance);
 		} else {
 			if (empty($searchdate)) {
 				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $direction);
@@ -1736,7 +1737,7 @@ class SearchEngine {
 				$images = self::sortResults($sortkey, $sortdirection, $result, isset($weights));
 				$this->cacheSearch($criteria, $images);
 			}
-			zp_apply_filter('search_statistics', $searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'images', !empty($images), $this->dynalbumname, $this->search_instance);
 		}
 		$this->images = $images;
 		$this->searches['images'] = $criteria;
@@ -1881,7 +1882,7 @@ class SearchEngine {
 		}
 		$pages = $this->getCachedSearch($criteria);
 		if ($pages) {
-			zp_apply_filter('search_statistics', $searchstring, 'pages', 'cache', false, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'pages', 'cache', false, $this->search_instance);
 		} else {
 			$pages = $result = array();
 			if (empty($searchdate)) {
@@ -1911,7 +1912,7 @@ class SearchEngine {
 				}
 				$this->cacheSearch($criteria, $pages);
 			}
-			zp_apply_filter('search_statistics', $searchstring, 'pages', !empty($pages), false, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'pages', !empty($pages), false, $this->search_instance);
 		}
 		$this->pages = $pages;
 		$this->searches['pages'] = $criteria;
@@ -1966,7 +1967,7 @@ class SearchEngine {
 		}
 		$articles = $this->getCachedSearch($criteria);
 		if ($articles) {
-			zp_apply_filter('search_statistics', $searchstring, 'news', 'cache', false, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'news', 'cache', false, $this->search_instance);
 		} else {
 			$articles = array();
 			if (empty($searchdate)) {
@@ -1990,7 +1991,7 @@ class SearchEngine {
 				$articles = self::sortResults($sortkey, $sortdirection, $articles, isset($weights));
 				$this->cacheSearch($criteria, $articles);
 			}
-			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($articles), false, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($articles), false, $this->search_instance);
 		}
 		$this->articles = $articles;
 		$this->searches['news'] = $criteria;
