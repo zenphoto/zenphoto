@@ -42,8 +42,11 @@ while ($datum = db_fetch_assoc($searches)) {
 			$nodata = gettext('Search criteria reset.');
 			break;
 		} else {
-			if ($element['success'] == 'cache') {
+			if ($element['success'] === 'cache') {
 				$cacheHits++;
+				if ($criteria_maxvalue < $cacheHits) {
+					$criteria_maxvalue = $cacheHits;
+				}
 			}
 			if (array_key_exists($datum['subtype'], $data)) {
 				$data[$datum['subtype']]['success'] = $data[$datum['subtype']]['success'] || $element['success'];
@@ -149,12 +152,12 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							?>
 							<tr class="statistic_wrapper">
 								<th class="statistic_short_title"><?php
-									if ($criterialimited) {
-										printf(gettext('Top %u successful search criteria'), $limit_s);
-									} else {
-										echo gettext('Successful search criteria');
-									}
-									?></th>
+					if ($criterialimited) {
+						printf(gettext('Top %u successful search criteria'), $limit_s);
+					} else {
+						echo gettext('Successful search criteria');
+					}
+							?></th>
 								<th class="statistic_graphwrap"></th>
 							</tr>
 							<?php
@@ -180,12 +183,12 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							?>
 							<tr class="statistic_wrapper">
 								<th class="statistic_short_title"><?php
-									if ($criterialimited_f) {
-										printf(gettext('Top %u failed search criteria'), $limit_f);
-									} else {
-										echo gettext('Failed search criteria');
-									}
-									?></th>
+					if ($criterialimited_f) {
+						printf(gettext('Top %u failed search criteria'), $limit_f);
+					} else {
+						echo gettext('Failed search criteria');
+					}
+							?></th>
 								<th class="statistic_graphwrap"></th>
 							</tr>
 							<?php
@@ -211,12 +214,12 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							?>
 							<tr class="statistic_wrapper">
 								<th class="statistic_short_title"><?php
-									if ($termlimited) {
-										printf(gettext('Top %u search terms used'), $limit_t);
-									} else {
-										echo gettext('Search terms used');
-									}
-									?></th>
+					if ($termlimited) {
+						printf(gettext('Top %u search terms used'), $limit_t);
+					} else {
+						echo gettext('Search terms used');
+					}
+							?></th>
 								<th class="statistic_graphwrap"></th>
 							</tr>
 							<?php
@@ -242,8 +245,8 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							$barsize = ceil($cacheHits / $criteria_maxvalue * $bargraphmaxsize);
 							?><tr class="statistic_wrapper">
 								<th class="statistic_short_title"><?php
-									echo gettext('Cache hits');
-									?></th>
+					echo gettext('Cache hits');
+							?></th>
 								<th class="statistic_graphwrap"></th>
 							</tr>
 							<tr class="statistic_wrapper">
@@ -264,12 +267,12 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							?>
 							<tr class="statistic_wrapper">
 								<th class="statistic_short_title"><?php
-									if ($sitelimited) {
-										printf(gettext('Top %u Search IDs'), $limit_i);
-									} else {
-										echo gettext('Search IDs');
-									}
-									?></th>
+					if ($sitelimited) {
+						printf(gettext('Top %u Search IDs'), $limit_i);
+					} else {
+						echo gettext('Search IDs');
+					}
+							?></th>
 								<th class="statistic_graphwrap"></th>
 							</tr>
 							<?php

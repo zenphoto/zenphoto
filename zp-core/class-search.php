@@ -2058,7 +2058,7 @@ class SearchEngine {
 			$sql = 'SELECT `id`, `criteria`, `date`, `data` FROM ' . prefix('search_cache') . ' WHERE `cachetag` = ' . db_quote($cachetag);
 			$result = query($sql);
 			if ($result) {
-				while ($row = db_fetch_assoc($result)) {
+				while (!$found && $row = db_fetch_assoc($result)) {
 					$delete = (time() - strtotime($row['date'])) > SEARCH_CACHE_DURATION * 60;
 					if (!$delete) { //	not expired
 						if ($row['criteria'] == $criteria) {
