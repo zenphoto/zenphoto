@@ -609,7 +609,6 @@ class SearchEngine {
 		if ($this->processed_search) {
 			return $this->processed_search;
 		}
-
 		$searchstring = trim($this->words);
 		$escapeFreeString = strtr($searchstring, array('\\"' => '__', "\\'" => '__', '\\`' => '__'));
 
@@ -1533,7 +1532,9 @@ class SearchEngine {
 			return $this->albums;
 		}
 		$albums = $this->getCachedSearch($criteria);
-		if (is_null($albums)) {
+		if ($albums) {
+			zp_apply_filter('search_statistics', $searchstring, 'albums', 'cache', $this->dynalbumname, $this->iteration++);
+		} else {
 			if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 				$mine = true;
 			}
@@ -1563,11 +1564,9 @@ class SearchEngine {
 						$albums[] = $album['name'];
 					}
 					$this->cacheSearch($criteria, $albums);
-					zp_apply_filter('search_statistics', $searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->iteration++);
 				}
 			}
-		} else {
-			zp_apply_filter('search_statistics', $searchstring, 'albums', 'cache', false, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->iteration++);
 		}
 		$this->albums = $albums;
 		$this->searches['albums'] = $criteria;
@@ -1685,7 +1684,9 @@ class SearchEngine {
 			return $this->images;
 		}
 		$images = $this->getCachedSearch($criteria);
-		if (is_null($images)) {
+		if ($images) {
+			zp_apply_filter('search_statistics', $searchstring, 'images', 'cache', $this->dynalbumname, $this->iteration++);
+		} else {
 			if (empty($searchdate)) {
 				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $direction);
 			} else {
@@ -1734,10 +1735,8 @@ class SearchEngine {
 				db_free_result($search_result);
 				$images = self::sortResults($sortkey, $sortdirection, $result, isset($weights));
 				$this->cacheSearch($criteria, $images);
-				zp_apply_filter('search_statistics', $searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
 			}
-		} else {
-			zp_apply_filter('search_statistics', $searchstring, 'images', 'cache', false, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
 		}
 		$this->images = $images;
 		$this->searches['images'] = $criteria;
@@ -1881,7 +1880,9 @@ class SearchEngine {
 			return $this->pages;
 		}
 		$pages = $this->getCachedSearch($criteria);
-		if (is_null($pages)) {
+		if ($pages) {
+			zp_apply_filter('search_statistics', $searchstring, 'pages', 'cache', false, $this->iteration++);
+		} else {
 			$pages = $result = array();
 			if (empty($searchdate)) {
 				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'pages', $sorttype, $direction);
@@ -1909,10 +1910,8 @@ class SearchEngine {
 					$pages[] = $page['titlelink'];
 				}
 				$this->cacheSearch($criteria, $pages);
-				zp_apply_filter('search_statistics', $searchstring, 'pages', $search_result, false, $this->iteration++);
 			}
-		} else {
-			zp_apply_filter('search_statistics', $searchstring, 'pages', 'cache', false, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'pages', !empty($pages), false, $this->iteration++);
 		}
 		$this->pages = $pages;
 		$this->searches['pages'] = $criteria;
@@ -1966,7 +1965,9 @@ class SearchEngine {
 			return $this->articles;
 		}
 		$articles = $this->getCachedSearch($criteria);
-		if (is_null($articles)) {
+		if ($articles) {
+			zp_apply_filter('search_statistics', $searchstring, 'news', 'cache', false, $this->iteration++);
+		} else {
 			$articles = array();
 			if (empty($searchdate)) {
 				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'news', $sorttype, $direction);
@@ -1986,12 +1987,10 @@ class SearchEngine {
 					$articles[] = $row;
 				}
 				db_free_result($search_result);
+				$articles = self::sortResults($sortkey, $sortdirection, $articles, isset($weights));
+				$this->cacheSearch($criteria, $articles);
 			}
-			$articles = self::sortResults($sortkey, $sortdirection, $articles, isset($weights));
-			$this->cacheSearch($criteria, $articles);
-			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($search_result), false, $this->iteration++);
-		} else {
-			zp_apply_filter('search_statistics', $searchstring, 'news', 'cache', false, $this->iteration++);
+			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($articles), false, $this->iteration++);
 		}
 		$this->articles = $articles;
 		$this->searches['news'] = $criteria;
@@ -2040,7 +2039,8 @@ class SearchEngine {
 	 */
 	private function cacheSearch($criteria, $found) {
 		if ($criteria && !empty($found)) {
-			$sql = 'INSERT INTO ' . prefix('search_cache') . ' (criteria, data, date) VALUES (' . db_quote($criteria) . ', ' . db_quote(serialize($found)) . ', ' . db_quote(date('Y-m-d H:m:s')) . ') ON DUPLICATE KEY UPDATE `data`=' . db_quote(serialize($found)) . ', `date`=' . db_quote(date('Y-m-d H:m:s'));
+			$cachetag = md5($criteria);
+			$sql = 'INSERT INTO ' . prefix('search_cache') . ' (criteria, cachetag, data, date) VALUES (' . db_quote($criteria) . ', ' . db_quote($cachetag) . ', ' . db_quote(serialize($found)) . ', ' . db_quote(date('Y-m-d H:m:s')) . ')';
 			query($sql);
 		}
 	}
@@ -2051,20 +2051,30 @@ class SearchEngine {
 	 * @param string $criteria
 	 */
 	private function getCachedSearch($criteria) {
+		$found = NULL;
 		if ($criteria) {
-			$sql = 'SELECT `id`, `date`, `data` FROM ' . prefix('search_cache') . ' WHERE `criteria` = ' . db_quote($criteria);
-			$result = query_single_row($sql);
+			$cachetag = md5($criteria);
+			$sql = 'SELECT `id`, `criteria`, `date`, `data` FROM ' . prefix('search_cache') . ' WHERE `cachetag` = ' . db_quote($cachetag);
+			$result = query($sql);
 			if ($result) {
-				if ((time() - strtotime($result['date'])) > SEARCH_CACHE_DURATION * 60) {
-					query('DELETE FROM ' . prefix('search_cache') . ' WHERE `id` = ' . $result['id']);
-				} else {
-					if ($result = getSerializedArray($result['data'])) {
-						return $result;
+				while ($row = db_fetch_assoc($result)) {
+					$delete = (time() - strtotime($row['date'])) > SEARCH_CACHE_DURATION * 60;
+					if (!$delete) { //	not expired
+						if ($row['criteria'] == $criteria) {
+							if ($data = getSerializedArray($row['data'])) {
+								$found = $data;
+							} else {
+								$delete = TRUE;
+							}
+						}
+					}
+					if ($delete) { //	empty or expired
+						query('DELETE FROM ' . prefix('search_cache') . ' WHERE `id` = ' . $row['id']);
 					}
 				}
 			}
 		}
-		return NULL;
+		return $found;
 	}
 
 	/**

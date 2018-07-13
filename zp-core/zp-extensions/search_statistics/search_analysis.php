@@ -35,26 +35,28 @@ $opChars = array('(', ')', '&', '|', '!', ',');
 if ($data) {
 	while ($datum = db_fetch_assoc($data)) {
 		$element = getSerializedArray($datum['data']);
-		if ($element['type'] == 'cache') {
-			$cacheHits++;
-			continue;
-		}
-		$ip = $datum['aux'];
-		if (array_key_exists($ip, $sites)) {
-			$sites[$ip] ++;
-			if ($ip_maxvalue < $sites[$ip]) {
-				$ip_maxvalue = $sites[$ip];
-			}
-		} else {
-			$sites[$ip] = 1;
-		}
 		if (is_array($element)) {
+			$ip = $datum['aux'];
+			if (array_key_exists($ip, $sites)) {
+				$sites[$ip] ++;
+				if ($ip_maxvalue < $sites[$ip]) {
+					$ip_maxvalue = $sites[$ip];
+				}
+			} else {
+				$sites[$ip] = 1;
+			}
+
 			$maxiterations[$element['iteration']] = 1;
 			$searchset = $element['data'];
 			$type = $element['type'];
-			$success = $element['success'];
 			$instance = implode(' ', $searchset);
+
+			$success = $element['success'];
 			if ($success) {
+				if ($success == 'cache') {
+					$cacheHits++;
+				}
+
 				if (array_key_exists($instance, $results)) {
 					$results[$instance] ++;
 					if ($criteria_maxvalue < $results[$instance]) {
@@ -73,6 +75,7 @@ if ($data) {
 					$results_f[$instance] = 1;
 				}
 			}
+
 			foreach ($searchset as $instance) {
 				if (!in_array($instance, $opChars)) {
 					if (array_key_exists($instance, $terms)) {
@@ -149,8 +152,8 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($results as $criteria => $count) {
-								$count = round($count / $maxiterations);
-								$barsize = round($count / $criteria_maxvalue * $bargraphmaxsize);
+								$countr = ceil($count / $maxiterations);
+								$barsize = ceil($countr / $criteria_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
 									<td class="statistic_short_title" >
@@ -181,8 +184,8 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($results_f as $criteria => $count) {
-								$countr = round($count / $maxiterations);
-								$barsize = round($countr / $criteria_maxvalue_f * $bargraphmaxsize);
+								$countr = ceil($count / $maxiterations);
+								$barsize = ceil($countr / $criteria_maxvalue_f * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
 									<td class="statistic_short_title" >
@@ -213,8 +216,8 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($terms as $criteria => $count) {
-								$countr = round($count / $maxiterations);
-								$barsize = round($countr / $terms_maxvalue * $bargraphmaxsize);
+								$countr = ceil($count / $maxiterations);
+								$barsize = ceil($countr / $terms_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
 									<td class="statistic_short_title" >
@@ -232,8 +235,8 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							}
 						}
 						if (!empty($cacheHits)) {
-							$count = round($cacheHits / $maxiterations + 100);
-							$barsize = round($count / $cacheHits + $bargraphmaxsize);
+							$countr = ceil($cacheHits / $maxiterations);
+							$barsize = ceil($countr / $criteria_maxvalue * $bargraphmaxsize);
 							?><tr class="statistic_wrapper">
 								<th class="statistic_short_title"><?php
 									echo gettext('Cache hits');
@@ -268,8 +271,8 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($sites as $ip => $count) {
-								$countr = round($count / $maxiterations);
-								$barsize = round($countr / $ip_maxvalue * $bargraphmaxsize);
+								$countr = ceil($count / $maxiterations);
+								$barsize = ceil($countr / $ip_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
 									<td class="statistic_short_title" >
