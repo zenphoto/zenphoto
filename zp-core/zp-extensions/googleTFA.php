@@ -109,39 +109,35 @@ class googleTFA extends fieldExtender {
 			$result .= "<br />\n"
 							. "<fieldset>\n"
 							. '<legend>' . gettext('Provide to GoogleAuthenticator') . "</legend>\n"
-							. '<div style="display: flex; justify-content: center;">'
-							. '<img src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/qrcode/image.php?content=' . html_encode($userobj->getQRuri()) . '" title="' . html_encode($userobj->getOTAsecret()) . '" />'
-							. '</div>'
-							. "</fieldset>\n"
-			;
+							. '<div style="display: flex; justify-content: center;">' . "\n"
+							. '<img src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/qrcode/image.php?content=' . html_encode($userobj->getQRuri()) . '" title="' . html_encode($userobj->getOTAsecret()) . '" />' . "\n"
+							. "</div>\n";
+			$result .= "</fieldset>\n";
 		}
-		$result .= '</div>' . "\n"
-						. '<br class="clearall">' . "\n";
+		$result .= "</div>\n"
+						. '<br clear="all">' . "\n";
 		return $html . $result;
 	}
 
 	static function checkCache($key) {
 		global $otpCache;
 		$temp = sys_get_temp_dir() . '/ZP_OTP_cache.txt';
-		$validTags = $validExpires = array();
+		$validTags = array();
 		if (file_exists($temp)) {
 			$data = explode("\n", file_get_contents($temp));
-			$tags = explode(" ", $data[0]);
-			$expires = explode(" ", $data[1]);
-			foreach ($expires as $index => $exp) {
-				//	ignore expired items
-				if ($exp > time()) {
-					$validTags[] = $tags[$index];
-					$validExpires[] = $exp;
+			$validTags = array_combine(explode(" ", $data[0]), explode(" ", $data[1]));
+			foreach ($validTags as $index => $expire) {
+				//	remove expired items
+				if ($expire < time()) {
+					unset($validTags[$index]);
 				}
 			}
-			if (in_array($key, $validTags)) {
+			if (array_key_exists($key, $validTags)) {
 				return FALSE;
 			}
 		}
-		$validTags[] = $key;
-		$validExpires[] = time() + 30; //30 second life
-		$data = implode(' ', $validTags) . "\n" . implode(" ", $validExpires);
+		$validTags[$key] = time() + 30; //30 second life
+		$data = implode(' ', array_keys($validTags)) . "\n" . implode(" ", $validTags);
 		file_put_contents($temp, $data);
 		return TRUE;
 	}
@@ -152,7 +148,7 @@ function googleTFA_enable($enabled) {
 	if ($enabled) {
 		$report = gettext('<em>OTAsecret</em> field will be added to the Administrator object.');
 	} else {
-		$report = gettext('<em>OTAsecret</em> field will be <span style="color:red;font-weight:bold;">dropped</span> from the Administrator object.');
+		$report = gettext('<em>OTAsecret</em> field will be <span style = "color:red;font-weight:bold;">dropped</span> from the Administrator object.');
 	}
 	requestSetup('googleTFA', $report);
 }
