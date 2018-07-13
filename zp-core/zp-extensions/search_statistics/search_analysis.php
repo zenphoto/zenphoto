@@ -28,7 +28,7 @@ $nodata = gettext('No search criteria collected.');
 $criteria_maxvalue = 1;
 $cacheHits = 0;
 $data = $results_f = $results = $terms = $sites = array();
-$bargraphmaxsize = 400;
+$bargraphmaxsize = 600;
 $opChars = array('(', ')', '&', '|', '!', ',');
 
 $sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="search_statistics"';
