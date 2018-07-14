@@ -364,7 +364,7 @@ class cacheManager {
 		}
 		$thumb_effect = getThemeOption('thumb_gray') ? 'gray' : null;
 		$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
-		cacheManager::addThemeCacheSize($theme, getThemeOption('thumb_size'), null, null, $thumb_cw, $thumb_ch, null, null, true, $thumb_wmk, $thumb_effect, null);
+		cacheManager::addThemeCacheSize($theme, getThemeOption('thumb_size'), $thumb_cw, $thumb_ch, null, null, null, null, true, $thumb_wmk, $thumb_effect, null);
 	}
 
 	/**
