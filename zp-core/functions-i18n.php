@@ -436,6 +436,8 @@ function setMainDomain() {
 	global $_zp_current_admin_obj, $_zp_current_locale;
 	if (DEBUG_LOCALE)
 		debugLogBackTrace("setMainDomain()");
+
+	//	check url language for language
 	if (isset($_REQUEST['locale'])) {
 		$_zp_current_locale = validateLocale(sanitize($_REQUEST['locale']), (isset($_POST['locale'])) ? 'POST' : 'URI string');
 		if ($_zp_current_locale) {
@@ -455,33 +457,39 @@ function setMainDomain() {
 			debugLog("dynamic_locale from HTTP_HOST: " . sanitize($matches[0]) . "=>$_zp_current_locale");
 	}
 
+	//	check for a language cookie
+	if (!$_zp_current_locale) {
+		$_zp_current_locale = zp_getCookie('dynamic_locale');
+		if (DEBUG_LOCALE)
+			debugLog("locale from cookie: " . $_zp_current_locale . ';');
+	}
+
+	//	check if the user has a language selected
 	if (!$_zp_current_locale && is_object($_zp_current_admin_obj)) {
 		$_zp_current_locale = $_zp_current_admin_obj->getLanguage();
 		if (DEBUG_LOCALE)
 			debugLog("locale from user: " . $_zp_current_locale);
 	}
 
+	//	check the language option
 	if (!$_zp_current_locale) {
-		$localeOption = getOption('locale');
-		$_zp_current_locale = zp_getCookie('dynamic_locale');
-
+		$_zp_current_locale = getOption('locale');
 		if (DEBUG_LOCALE)
 			debugLog("locale from option: " . $localeOption . '; dynamic locale=' . $_zp_current_locale);
-		if (empty($localeOption) && empty($_zp_current_locale)) { // if one is not set, see if there is a match from 'HTTP_ACCEPT_LANGUAGE'
-			$languageSupport = generateLanguageList();
-			$userLang = parseHttpAcceptLanguage();
-			foreach ($userLang as $lang) {
-				$l = strtoupper($lang['fullcode']);
-				$_zp_current_locale = validateLocale($l, 'HTTP Accept Language');
-				if ($_zp_current_locale)
-					break;
-			}
-		} else {
-			if (empty($_zp_current_locale)) {
-				$_zp_current_locale = $localeOption;
-			}
+	}
+
+	//check the HTTP accept lang
+	if (empty($_zp_current_locale)) { // if one is not set, see if there is a match from 'HTTP_ACCEPT_LANGUAGE'
+		$languageSupport = generateLanguageList();
+		$userLang = parseHttpAcceptLanguage();
+		foreach ($userLang as $lang) {
+			$l = strtoupper($lang['fullcode']);
+			$_zp_current_locale = validateLocale($l, 'HTTP Accept Language');
+			if ($_zp_current_locale)
+				break;
 		}
 	}
+
 
 	if (empty($_zp_current_locale)) {
 		// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
