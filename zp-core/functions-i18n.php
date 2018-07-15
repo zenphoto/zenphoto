@@ -490,7 +490,6 @@ function setMainDomain() {
 		}
 	}
 
-
 	if (empty($_zp_current_locale)) {
 		// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
 		$languageSupport = generateLanguageList();
