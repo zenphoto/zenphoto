@@ -209,9 +209,8 @@ class SearchEngine {
 				}
 			}
 		}
-		$this->images = NULL;
-		$this->albums = NULL;
-		$this->searches = array('images' => NULL, 'albums' => NULL, 'pages' => NULL, 'news' => NULL);
+		$this->images = $this->albums = $this->pages = $this->articles = NULL;
+		$this->searches = array('images' => NULL, 'albums' => NULL, 'pages' => NULL, 'articles' => NULL);
 		zp_apply_filter('search_instantiate', $this);
 	}
 
@@ -450,6 +449,7 @@ class SearchEngine {
 	 * @param string $paramstr the string containing the search words
 	 */
 	function setSearchParams($paramstr) {
+		$this->clearSearchWords();
 		$params = explode('&', $paramstr);
 		foreach ($params as $param) {
 			$e = strpos($param, '=');
@@ -1979,7 +1979,7 @@ class SearchEngine {
 			return array(); // nothing to find
 		}
 		$criteria = $this->getCacheTag('news', serialize($searchstring), $sortkey . '_' . $sortdirection);
-		if ($criteria && $this->articles && $criteria == $this->searches['news']) {
+		if ($criteria && $this->articles && $criteria == $this->searches['articles']) {
 			return $this->articles;
 		}
 		$articles = $this->getCachedSearch($criteria);
@@ -2011,13 +2011,19 @@ class SearchEngine {
 			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($articles), false, $this->search_instance);
 		}
 		$this->articles = $articles;
-		$this->searches['news'] = $criteria;
+		$this->searches['articles'] = $criteria;
 		return $this->articles;
 	}
 
 	function clearSearchWords() {
 		$this->processed_search = '';
 		$this->words = '';
+		if ($this->searches['albums'] || $this->searches['images'] || $this->searches['pages'] || $this->searches['articles']) {
+			//	a new search may be comming!
+			$this->images = $this->albums = $this->pages = $this->articles = NULL;
+			$this->searches = array('albums' => NULL, 'images' => NULL, 'pages' => NULL, 'articles' => NULL);
+			$this->search_instance - uniqid();
+		}
 	}
 
 	/**
