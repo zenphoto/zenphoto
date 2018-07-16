@@ -232,6 +232,61 @@ $buttonlist = array();
 <body>
 	<?php
 	/* Admin-only content safe from here on. */
+	if (zp_loggedin(ADMIN_RIGHTS)) {
+		if (class_exists('Milo\Github\Api') && zpFunctions::hasPrimaryScripts()) {
+			/*
+			 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20
+			 */
+			if (getOption('getUpdates_lastCheck') + 8640 < time()) {
+				setOption('getUpdates_lastCheck', time());
+				try {
+					$api = new Github\Api;
+					$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20'));
+					$fullRepoData = $api->decode($fullRepoResponse);
+					$assets = $fullRepoData->assets;
+					if (!empty($assets)) {
+						$item = array_pop($assets);
+						setOption('getUpdates_latest', $item->browser_download_url);
+					}
+				} catch (Exception $e) {
+
+					debugLog('Github Api->' . $e->getMessage());
+				}
+			}
+
+			$newestVersionURI = getOption('getUpdates_latest');
+			$newestVersion = preg_replace('~[^0-9,.]~', '', str_replace('setup-', '', stripSuffix(basename($newestVersionURI))));
+
+			$zenphoto_version = explode('-', ZENPHOTO_VERSION);
+			$zenphoto_version = preg_replace('~[^0-9,.]~', '', array_shift($zenphoto_version));
+
+			if (version_compare($newestVersion, $zenphoto_version, '>')) {
+				if (!isset($_SESSION['new_version_available'])) {
+					$_SESSION['new_version_available'] = $newestVersion;
+					?>
+					<div class="notebox">
+						<h2><?php echo gettext('There is a new version of ZenPhoto20 available.'); ?></h2>
+						<?php
+						printf(gettext('ZenPhoto20 version %s can be downloaded by the utility button.'), $newestVersion);
+						?>
+					</div>
+					<?php
+				}
+				$buttonlist[] = array(
+						'category' => gettext('Admin'),
+						'enable' => 2,
+						'button_text' => 'ZenPhoto20 ' . $newestVersion,
+						'formname' => 'getUpdates_button',
+						'action' => $newestVersionURI,
+						'icon' => ARROW_DOWN_GREEN,
+						'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
+						'alt' => '',
+						'hidden' => '',
+						'rights' => ADMIN_RIGHTS
+				);
+			}
+		}
+	}
 	printLogoAndLinks();
 	?>
 	<div id="main">
@@ -241,57 +296,7 @@ $buttonlist = array();
 			/*			 * * HOME ************************************************************************** */
 			/*			 * ********************************************************************************* */
 			$setupUnprotected = printSetupWarning();
-			if (zp_loggedin(ADMIN_RIGHTS)) {
-				if (class_exists('Milo\Github\Api') && zpFunctions::hasPrimaryScripts()) {
-					/*
-					 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20
-					 */
-					if (getOption('getUpdates_lastCheck') + 8640 < time()) {
 
-						$api = new Github\Api;
-						$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20'));
-						$fullRepoData = $api->decode($fullRepoResponse);
-						$assets = $fullRepoData->assets;
-						if (!empty($assets)) {
-							$item = array_pop($assets);
-							setOption('getUpdates_latest', $item->browser_download_url);
-						}
-
-						setOption('getUpdates_lastCheck', time());
-					}
-					$newestVersionURI = getOption('getUpdates_latest');
-					$newestVersion = preg_replace('~[^0-9,.]~', '', str_replace('setup-', '', stripSuffix(basename($newestVersionURI))));
-
-					$zenphoto_version = explode('-', ZENPHOTO_VERSION);
-					$zenphoto_version = preg_replace('~[^0-9,.]~', '', array_shift($zenphoto_version));
-
-					if (version_compare($newestVersion, $zenphoto_version, '>')) {
-						if (!isset($_SESSION['new_version_available'])) {
-							$_SESSION['new_version_available'] = $newestVersion;
-							?>
-							<div class="notebox">
-								<h2><?php echo gettext('There is a new version of ZenPhoto20 available.'); ?></h2>
-								<?php
-								printf(gettext('ZenPhoto20 version %s can be downloaded by the utility button.'), $newestVersion);
-								?>
-							</div>
-							<?php
-						}
-						$buttonlist[] = array(
-								'category' => gettext('Admin'),
-								'enable' => 2,
-								'button_text' => 'ZenPhoto20 ' . $newestVersion,
-								'formname' => 'getUpdates_button',
-								'action' => $newestVersionURI,
-								'icon' => ARROW_DOWN_GREEN,
-								'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
-								'alt' => '',
-								'hidden' => '',
-								'rights' => ADMIN_RIGHTS
-						);
-					}
-				}
-			}
 			zp_apply_filter('admin_note', 'overview', '');
 
 			if (!empty($msg)) {
