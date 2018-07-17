@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-02 09:13-0700\n"
-"PO-Revision-Date: 2018-06-06 10:07-0700\n"
+"PO-Revision-Date: 2018-07-17 18:48+0200\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michel@mgagnon.net>\n"
 "Language: fr_FR\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Bookmarks: 1740,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.0.9\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: zp-core/locale/fr_FR/LC_MESSAGES/zenphoto.po\n"
 "X-Poedit-SearchPath-1: .\n"
@@ -398,6 +398,8 @@ msgstr "Bouton : d’accord"
 #: plugins/cookieconsent.php:47
 msgid "Text used for the dismiss button. Leave empty to use the default text."
 msgstr ""
+"Texte utilisé pour le bouton ignorer. Laisser vide pour utiliser le texte "
+"par défaut."
 
 #: plugins/cookieconsent.php:48
 #, fuzzy
@@ -415,11 +417,11 @@ msgstr ""
 
 #: plugins/cookieconsent.php:54
 msgid "Button: Learn more - URL"
-msgstr ""
+msgstr "Bouton : En savoir plus - URL"
 
 #: plugins/cookieconsent.php:58
 msgid "URL to your cookie policy / privacy info page."
-msgstr ""
+msgstr "URL à votre politique de cookie / page d’info de la vie privée."
 
 #: plugins/cookieconsent.php:59
 #, fuzzy
@@ -2278,6 +2280,8 @@ msgstr "Icônes seulement"
 #: plugins/scriptless-socialsharing.php:102
 msgid "Check to hide the service name and only show icon buttons."
 msgstr ""
+"Cochez pour masquer le nom du service et afficher uniquement les boutons "
+"d'icône."
 
 #: plugins/scriptless-socialsharing.php:103
 #, fuzzy
@@ -7016,6 +7020,15 @@ msgid ""
 "width with the image.  When you change this number, images will be re-cached "
 "on load.  It is recommended to keep the max-width in the 900-1200 range.</p>"
 msgstr ""
+"Définissez la largeur maximale du site en pixels. Le site est fluide mais ne "
+"s'étendra pas au-delà de cette largeur pour des raisons de style et de "
+"dimensionnement de l'image. <p class=\"notebox\">*<strong>Remarque:</"
+"strong>Le thème utilise également cette valeur pour définir l'image par "
+"défaut et la taille du pouce en pourcentage de cette largeur, afin "
+"d'optimiser l'efficacité de la taille de l'image / du pouce. tout en "
+"remplissant la largeur de la colonne avec l'image. Lorsque vous modifiez ce "
+"nombre, les images seront remises en cache lors du chargement. Il est "
+"recommandé de conserver la largeur maximale dans la plage 900-1200. </p>"
 
 #: themes/zpbase/themeoptions.php:127
 #, fuzzy
@@ -13436,6 +13449,19 @@ msgid ""
 "persists for the cookie expiration interval (or browser session if "
 "<em>gallery sessions</em> is enabled.)"
 msgstr ""
+"Exiger la reconnaissance d'avis de politique conformément au <a href="
+"\"https://en.wikipedia.org/wiki/General_Data_Protection_Regulation\"> "
+"Règlement général sur la protection des données </a>. L'URL de l'avis de "
+"politique doit pointer vers la politique d'utilisation de votre site. <br /> "
+"<br />\n"
+"Les formulaires standard qui collectent des données d'utilisateur auront une "
+"case à cocher d'accusé de réception de politique qui doit être vérifiée "
+"avant que le bouton \"soumettre\" soit présent. <br /> <br /> L'accusé de "
+"réception sera mémorisé. Ils persistent pour les utilisateurs du site "
+"jusqu'à ce que vous effaciez les accusés de réception mémorisés. Pour les "
+"visiteurs anonymes, il persiste pour l'intervalle d'expiration des cookies "
+"(ou la session du navigateur si <em> sessions de la galerie </em> est "
+"activé)."
 
 #: zp-core/admin_options/general.php:608 zp-core/zp-extensions/debug.php:187
 msgid "Cookies"
