@@ -3371,13 +3371,24 @@ Zenphoto_Authority::printPasswordFormJS();
 										if(extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
 											$datapolicy_zenpage = getOption('dataprivacy_policy_zenpage');
 											$zenpageobj = new Zenpage();
-											$zenpagepages = $zenpageobj->getPages(true);
+											$zenpagepages = $zenpageobj->getPages(false, false, null, 'sortorder', false);
 											$privacypages = array();
 											$privacypages[gettext('None')] = 'none'; 
 											foreach($zenpagepages as $zenpagepage) {
 												$pageobj = new Zenpagepage($zenpagepage['titlelink']);
 												if(!$pageobj->isProtected()) {
-													$privacypages[get_language_string($zenpagepage['title'])] = $zenpagepage['titlelink'];
+													$unpublished_note = '';
+													if(!$pageobj->getShow()) {
+														$unpublished_note = '*';
+													}
+													$sublevel = '';
+													$level = count(explode('-', $pageobj->getSortorder()));
+													if($level != 1) {
+														for($l = 1; $l < $level; $l++) {
+															$sublevel .= '-'; 
+														}
+													}
+													$privacypages[$sublevel . get_language_string($zenpagepage['title']) . $unpublished_note] = $zenpagepage['titlelink'];
 												}
 											}
 											if($privacypages) {
@@ -3385,13 +3396,13 @@ Zenphoto_Authority::printPasswordFormJS();
 												?>
 												<label>
 													<select id="dataprivacy_policy_zenpage" name="dataprivacy_policy_zenpage">
-													<?php	generateListFromArray(array($datapolicy_zenpage), $privacypages, false, true); ?>
+													<?php	generateListFromArray(array($datapolicy_zenpage), $privacypages, null, true); ?>
 													</select>
-													<br><?php echo gettext('Select a Zenpage page.'); ?>
+													<br><?php echo gettext('Select a Zenpage page. * denotes unpublished page.'); ?>
 												</label>
 												<?php 
 											}  else {
-												echo '<p><em>' . gettext('No public Zenpage pages available') . '</em></p>';
+												echo '<p><em>' . gettext('No suitable Zenpage pages available') . '</em></p>';
 											}
 										} 
 									  ?>	

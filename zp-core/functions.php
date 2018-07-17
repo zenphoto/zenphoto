@@ -1320,23 +1320,27 @@ function readTags($id, $tbl) {
  *
  * @param array $currentValue list of items to be flagged as checked
  * @param array $list the elements of the select list
- * @param bool $descending set true for a reverse order sort
+ * @param bool $descending set true for a ascending order sort. Set to null to keep the array as it is passed.
  * @param bool $localize set true if the keys as description should be listed instead of the plain values
  */
 function generateListFromArray($currentValue, $list, $descending, $localize) {
 	if ($localize) {
 		$list = array_flip($list);
-		if ($descending) {
-			arsort($list);
-		} else {
-			natcasesort($list);
+		if(!is_null($descending)) {
+			if ($descending) {
+				arsort($list);
+			} else {
+				natcasesort($list);
+			}
 		}
 		$list = array_flip($list);
 	} else {
-		if ($descending) {
-			rsort($list);
-		} else {
-			natcasesort($list);
+		if(!is_null($descending)) {
+			if ($descending) {
+				rsort($list);
+			} else {
+				natcasesort($list);
+			}
 		}
 	}
 	
@@ -1359,7 +1363,7 @@ function generateListFromArray($currentValue, $list, $descending, $localize) {
  * @param strig $currentValue the current value of the selector
  * @param string $root directory path to search
  * @param string $suffix suffix to select for
- * @param bool $descending set true to get a reverse order sort
+ * @param bool $descending set true to get a reverse order sort. Set to null to keep the array as it is passed.
  */
 function generateListFromFiles($currentValue, $root, $suffix, $descending = false) {
 	if (is_dir($root)) {
