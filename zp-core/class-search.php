@@ -2022,7 +2022,7 @@ class SearchEngine {
 			//	a new search may be comming!
 			$this->images = $this->albums = $this->pages = $this->articles = NULL;
 			$this->searches = array('albums' => NULL, 'images' => NULL, 'pages' => NULL, 'articles' => NULL);
-			$this->search_instance - uniqid();
+			$this->search_instance = uniqid();
 		}
 	}
 
