@@ -47,9 +47,10 @@ setOptionDefault('secret_init_vector', $auth_extratext);
 purgeOption('adminTagsTab', 0);
 
 //	if your are installing, you must be OK
-$_zp_current_admin_obj->setPolicyAck(1);
-$_zp_current_admin_obj->save();
-
+if ($_zp_current_admin_obj) {
+	$_zp_current_admin_obj->setPolicyAck(1);
+	$_zp_current_admin_obj->save();
+}
 
 /* fix for NULL theme name */
 Query('UPDATE ' . prefix('options') . ' SET `theme`="" WHERE `theme` IS NULL');

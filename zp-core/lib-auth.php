@@ -711,7 +711,7 @@ class _Authority {
 						if ($user) {
 							$_zp_loggedin = $user->getRights();
 						}
-						$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
+						$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass, $user);
 						if ($_zp_loggedin) {
 							self::logUser($user);
 							$_zp_current_admin_obj = $user;
@@ -1392,7 +1392,7 @@ class _Authority {
 								 name="<?php printf($format, 'disclose_password', $id); ?>"
 								 id="disclose_password<?php echo $id; ?>"
 								 onclick="passwordClear('<?php echo $id; ?>');
-										 togglePassword('<?php echo $id; ?>');">
+												 togglePassword('<?php echo $id; ?>');">
 				</label>
 			</span>
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">

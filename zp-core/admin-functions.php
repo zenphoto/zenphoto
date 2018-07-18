@@ -1409,8 +1409,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 <?php
 									 }
 								 }
-							 }
-							 ?>
+								 ?>
+					<br clear="right">
+					<?php
+				}
+				?>
 			</li>
 			<?php
 		}
@@ -1886,7 +1889,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 														 name="disclose_password<?php echo $suffix; ?>"
 														 id="disclose_password<?php echo $suffix; ?>"
 														 onclick="passwordClear('<?php echo $suffix; ?>');
-																		 togglePassword('<?php echo $suffix; ?>');" />
+																 togglePassword('<?php echo $suffix; ?>');" />
 														 <?php echo addslashes(gettext('Show')); ?>
 										</label>
 
@@ -2215,9 +2218,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-													 $('#<?php echo $prefix; ?>expirationdate').val('');
-													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-													 $('.<?php echo $prefix; ?>expire').html('');"
+												 $('#<?php echo $prefix; ?>expirationdate').val('');
+												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+												 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2350,7 +2353,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -4342,30 +4345,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-				var sel = obj.options[obj.selectedIndex].value;
-				var mark;
-				switch (sel) {
+			var sel = obj.options[obj.selectedIndex].value;
+							var mark;
+							switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-					case '<?php echo $key; ?>':
-									mark = '<?php echo $mark; ?>';
-									break;
+				case '<?php echo $key; ?>':
+								mark = '<?php echo $mark; ?>';
+								break;
 			<?php
 		}
 		?>
-				default:
-								mark = false;
-								break;
+			default:
+							mark = false;
+							break;
 			}
 			if (mark) {
-				$.colorbox({
-					href: '#' + mark,
-					inline: true,
-					open: true,
-					close: '<?php echo gettext("ok"); ?>'
-				});
-				}
+			$.colorbox({
+			href: '#' + mark,
+							inline: true,
+							open: true,
+							close: '<?php echo gettext("ok"); ?>'
+			});
+			}
 			}
 			// ]]> -->
 		</script>
@@ -4744,27 +4747,27 @@ function stripTableRows($custom) {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-		// <!-- <![CDATA[
-		$(function () {
-			var tabContainers = $('div.tabs > div');
-			$('.first').addClass('selected');
-		});
-		function cbclick(num, id) {
-			$('.cbx-' + id).hide();
-			$('#cb' + num + '-' + id).show();
-			$('.cbt-' + id).removeClass('selected');
-			$('#cbt' + num + '-' + id).addClass('selected');
-		}
+						// <!-- <![CDATA[
+						$(function () {
+						var tabContainers = $('div.tabs > div');
+										$('.first').addClass('selected');
+						});
+						function cbclick(num, id) {
+						$('.cbx-' + id).hide();
+										$('#cb' + num + '-' + id).show();
+										$('.cbt-' + id).removeClass('selected');
+										$('#cbt' + num + '-' + id).addClass('selected');
+						}
 
 		function cbadd(id, offset) {
-			var num = $('#cbu-' + id + ' li').length - offset;
-			$('li:last', $('#cbu-' + id)).remove();
-			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-							'</div>');
-			cbclick(num, id);
+		var num = $('#cbu-' + id + ' li').length - offset;
+						$('li:last', $('#cbu-' + id)).remove();
+						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+						'</div>');
+						cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -4874,9 +4877,15 @@ function admin_securityChecks($rights, $return) {
 	if (!($rights & $_zp_loggedin)) {
 		// prevent nefarious access to this page.
 		$uri = explode('?', $returnurl);
+		if ($uri[0] == WEBPATH . '/' . ZENFOLDER . '/admin.php') {
+			$redirect = FULLWEBPATH;
+		} else {
+			$redirect = FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0];
+		}
+
 		header("HTTP/1.0 302 Found");
 		header("Status: 302 Found");
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
+		header('Location: ' . $redirect);
 		exitZP();
 	}
 }
@@ -5698,7 +5707,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 			 <?php echo CLIPBOARD; ?>
 	</a>
 	<?php

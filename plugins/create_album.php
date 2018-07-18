@@ -210,9 +210,8 @@ class create_album {
 	 * @param $id
 	 * @param $background
 	 * @param $current
-	 * @param $local_alterrights
 	 */
-	static function edit($html, $userobj, $id, $background, $current, $local_alterrights) {
+	static function edit($html, $userobj, $id, $background, $current) {
 		global $_zp_current_admin_obj, $_zp_gallery, $__creatAlbumList, $_create_album_html;
 		if (!$userobj->getValid())
 			return $html;

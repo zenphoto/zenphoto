@@ -24,9 +24,6 @@ echo "\n</head>";
 echo "\n</html>";
 exitZP();
 
-$_zp_authority->printLoginForm(@$_GET['redirect']);
-exitZP();
-
 function removeAltHandlers($list) {
 	return array();
 }

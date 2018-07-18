@@ -1175,8 +1175,11 @@ function xmpMetadata_enable($enabled) {
 		}
 		setOption('metadata_disabled', serialize($disable));
 		setOption('metadata_displayed', serialize($display));
+		$report = gettext('XMP metadata fields will be added to the Image object.');
+	} else {
+		$report = gettext('XMP metadata fields will be <span style="color:red;font-weight:bold;">dropped</span> from the Image object.');
 	}
-	requestSetup('XMP Metadata', $enabled ? NULL : gettext('The XMP metadata Database fields will be dropped'));
+	requestSetup('XMP Metadata', $report);
 }
 
 ?>

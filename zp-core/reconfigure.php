@@ -197,10 +197,15 @@ function reconfigureCS() {
 		.reconfigbox a {
 			color: blue;
 		}
+		.reconfigbox p {
+			margin-top: 20px;
+		}
 		#errors ul {
+			margin-left: 1em;
 			list-style-type: square;
 		}
 		#files ul {
+			margin-left: 1em;
 			list-style-type: circle;
 		}
 	</style>

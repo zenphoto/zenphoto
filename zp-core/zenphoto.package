@@ -1592,6 +1592,7 @@ zp-core/zp-extensions/galleryArticles.php
 zp-core/zp-extensions/GDPR_required.php
 zp-core/zp-extensions/googleLogin.php
 zp-core/zp-extensions/googleMap.php
+zp-core/zp-extensions/googleTFA.php
 zp-core/zp-extensions/hitcounter.php
 zp-core/zp-extensions/html_meta_tags.php
 zp-core/zp-extensions/http_auth.php
@@ -1618,6 +1619,7 @@ zp-core/zp-extensions/PHPMailer.php
 zp-core/zp-extensions/print_album_menu.php
 zp-core/zp-extensions/publishContent.php
 zp-core/zp-extensions/purgeOptions.php
+zp-core/zp-extensions/qrcode.php
 zp-core/zp-extensions/quota_manager.php
 zp-core/zp-extensions/rating.php
 zp-core/zp-extensions/reCAPTCHA_v2.php
@@ -1803,6 +1805,7 @@ zp-core/zp-extensions/comment_form/class-comment.php
 zp-core/zp-extensions/comment_form/comment_form.php
 zp-core/zp-extensions/comment_form/functions.php
 zp-core/zp-extensions/common
+zp-core/zp-extensions/common/Base32.php
 zp-core/zp-extensions/common/fieldExtender.php
 zp-core/zp-extensions/common/rsslib.php
 zp-core/zp-extensions/common/adGallery
@@ -7794,6 +7797,11 @@ zp-core/zp-extensions/googleMap/markerClustererPlus/images/m5.png
 zp-core/zp-extensions/googleMap/markerClustererPlus/images/pin.png
 zp-core/zp-extensions/googleMap/overlappingMarkerSpiderfier
 zp-core/zp-extensions/googleMap/overlappingMarkerSpiderfier/oms.min.js
+zp-core/zp-extensions/googleTFA
+zp-core/zp-extensions/googleTFA/auth_code.php
+zp-core/zp-extensions/googleTFA/GoogleAuthenticator.php
+zp-core/zp-extensions/googleTFA/Secret.php
+zp-core/zp-extensions/googleTFA/SecretFactory.php
 zp-core/zp-extensions/image_effects
 zp-core/zp-extensions/image_effects/bevel.txt
 zp-core/zp-extensions/image_effects/corner.txt
@@ -7934,6 +7942,25 @@ zp-core/zp-extensions/publishContent/publishContent.php
 zp-core/zp-extensions/purgeOptions
 zp-core/zp-extensions/purgeOptions/purgeOptions.css
 zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php
+zp-core/zp-extensions/qrcode
+zp-core/zp-extensions/qrcode/image.php
+zp-core/zp-extensions/qrcode/LICENSE
+zp-core/zp-extensions/qrcode/phpqrcode.php
+zp-core/zp-extensions/qrcode/qrbitstream.php
+zp-core/zp-extensions/qrcode/qrconfig.php
+zp-core/zp-extensions/qrcode/qrconst.php
+zp-core/zp-extensions/qrcode/qrencode.php
+zp-core/zp-extensions/qrcode/qrimage.php
+zp-core/zp-extensions/qrcode/qrinput.php
+zp-core/zp-extensions/qrcode/qrlib.php
+zp-core/zp-extensions/qrcode/qrmask.php
+zp-core/zp-extensions/qrcode/qrrscode.php
+zp-core/zp-extensions/qrcode/qrspec.php
+zp-core/zp-extensions/qrcode/qrsplit.php
+zp-core/zp-extensions/qrcode/qrtools.php
+zp-core/zp-extensions/qrcode/qrvect.php
+zp-core/zp-extensions/qrcode/README
+zp-core/zp-extensions/qrcode/VERSION
 zp-core/zp-extensions/rating
 zp-core/zp-extensions/rating/delete-16.png
 zp-core/zp-extensions/rating/delete-24.png
@@ -8364,4 +8391,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8366
+8393

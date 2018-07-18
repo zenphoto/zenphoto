@@ -1,6 +1,6 @@
 <?php
 /**
- * This plugin will edit the tokens in the <var>%DATA_FOLDER%/zenphoto.cfg</var> file
+ * This plugin will edit the tokens
  *
  * @author Stephen Billard (sbillard)
  *
@@ -8,7 +8,7 @@
  * @pluginCategory development
  */
 $plugin_is_filter = defaultExtension(950 | ADMIN_PLUGIN);
-$plugin_description = gettext('Utility to alter the rewrite token substitutions array in the configuration file.');
+$plugin_description = gettext('Utility to alter the rewrite token substitutions.');
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.');
 
 $option_interface = 'rewriteTokens';
@@ -31,8 +31,7 @@ class rewriteTokens {
 		$i = strpos($zp_cfg, "\$conf['special_pages']");
 		$j = strpos($zp_cfg, '//', $i);
 		if ($i === false || $j === false) {
-			$conf = array('special_pages' => array());
-			$this->conf_vars = $conf['special_pages'];
+			$this->conf_vars = $_zp_conf_vars['special_pages'];
 			$i = strpos($zp_cfg, '/** Do not edit below this line. **/');
 			if ($i === false) {
 				zp_error(gettext('The Configuration file is corrupt. You will need to restore it from a backup.'));

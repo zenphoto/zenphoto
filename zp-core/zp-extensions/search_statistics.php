@@ -89,19 +89,19 @@ class search_statistics {
 	/**
 	 *
 	 * Logs User searches
-	 * @param array $search_statistics the search criteria
+	 * @param array $searchString the search criteria
 	 * @param string $type 'album', 'image', etc.
 	 * @param bool $success	did the search return a result
 	 * @param bool $dynamic was it from a dynamic album
-	 * @param int $iteration count of the filters since the search engine instantiation
+	 * @param int $instance unique id of the search engine instantiation
 	 */
-	static function handler($search_statistics, $type, $success, $dynamic, $iteration) {
+	static function handler($searchString, $type, $success, $dynamic, $instance) {
 		if (!$dynamic) { // log unique user searches
-			$store = array('type' => $type, 'success' => $success, 'iteration' => $iteration, 'data' => $search_statistics);
-			$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("search_statistics", ' . db_quote(getUserID()) . ',' . db_quote(serialize($store)) . ')';
+			$store = array('type' => $type, 'success' => $success, 'data' => $searchString);
+			$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`,`data`) VALUES ("search_statistics", ' . db_quote($instance) . ', ' . db_quote(getUserID()) . ',' . db_quote(serialize($store)) . ')';
 			query($sql);
 		}
-		return $search_statistics;
+		return $searchString;
 	}
 
 }
