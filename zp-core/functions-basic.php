@@ -125,8 +125,8 @@ if (!isset($_zp_conf_vars['server_protocol'])) {
 	$_zp_conf_vars['server_protocol'] = 'http';
 }
 
-//NOTE: SERVER_PROTOCOL is the option PROTOCOL is what should be used in links!!!!
-define('SERVER_PROTOCOL', getOption('server_protocol'));
+//NOTE: SERVER_PROTOCOL is the option, PROTOCOL is what should be used in links
+define('SERVER_PROTOCOL', $_zp_conf_vars['server_protocol']);
 switch (SERVER_PROTOCOL) {
 	case 'https':
 		define('PROTOCOL', 'https');
@@ -139,7 +139,6 @@ switch (SERVER_PROTOCOL) {
 		}
 		break;
 }
-
 if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
 	reconfigureAction(1);
