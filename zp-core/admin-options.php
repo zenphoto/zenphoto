@@ -3225,13 +3225,15 @@ Zenphoto_Authority::printPasswordFormJS();
 										</select>
 									</td>
 									<td>
-										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
+										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages. However, if your server supports <em>https</em> there is no reason to use for the admin only!"); ?></p>
 										<p class="notebox"><?php
-											echo gettext("<strong>Note:</strong>" .
-															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-															"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-															"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-															'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+											echo gettext('<strong>Note:</strong> Login from the front-end user login form is secure only if <em>https</em> is selected.');
+											?>
+										</p>
+										<p class="warningbox"><?php
+											echo gettext('<strong>Warning:</strong> If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  ' .
+															'If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! ' .
+															'Your only possibility then is to set or add <code>$conf["server_protocol"] = "http";</code> to your <code>zenphoto.cfg.php</code> file .');
 											?>
 										</p>
 									</td>

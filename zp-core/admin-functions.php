@@ -4310,7 +4310,7 @@ function admin_securityChecks($rights, $return) {
 function httpsRedirect() {
 	if (SERVER_PROTOCOL == 'https_admin' || SERVER_PROTOCOL == 'https') {
 		// force https login
-		if (!isset($_SERVER["HTTPS"])) {
+		if (!secureServer()) {
 			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
 			header("Location:$redirect");
 			exitZP();

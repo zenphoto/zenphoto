@@ -120,6 +120,9 @@ if (!defined('SERVERPATH')) {
 }
 unset($const_serverpath);
 
+// Including the config file more than once is OK, and avoids $conf missing.
+eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) {
 	$_zp_conf_vars['server_protocol'] = 'http';
@@ -143,8 +146,7 @@ if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONF
 	require_once(dirname(__FILE__) . '/reconfigure.php');
 	reconfigureAction(1);
 }
-// Including the config file more than once is OK, and avoids $conf missing.
-eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+
 
 // Silently setup default rewrite tokens if missing completely or partly from current config file
 if (!isset($_zp_conf_vars['special_pages'])) {
@@ -1428,11 +1430,23 @@ function getWatermarkPath($wm) {
 
 /**
  * Checks to see if access was through a secure protocol
- *
+ * 
+ * @since Zenphoto 1.5.1 Extended/adapted from WordPress' `is_ssl()` function: https://developer.wordpress.org/reference/functions/is_ssl/
+ * 
  * @return bool
  */
 function secureServer() {
-	return isset($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']), 'on') === 0;
+	if (isset($_SERVER['HTTPS'])) {
+		if ('on' == strtolower($_SERVER['HTTPS'])) {
+			return true;
+		}
+		if ('1' == $_SERVER['HTTPS']) {
+			return true;
+		}
+	} elseif (isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] )) {
+		return true;
+	}
+	return false;
 }
 
 /**
