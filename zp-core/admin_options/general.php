@@ -60,15 +60,7 @@ function saveOptions() {
 		$offset = sanitize($_POST['time_offset'], 3);
 	}
 	setOption('time_offset', $offset);
-
-	if (($new = sanitize($_POST['filesystem_charset'])) != FILESYSTEM_CHARSET) {
-		$_configMutex->lock();
-		$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-		$zp_cfg = updateConfigItem('FILESYSTEM_CHARSET', $new, $zp_cfg);
-		storeConfig($zp_cfg);
-		$_configMutex->unlock();
-	}
-
+	setOption('FILESYSTEM_CHARSET', sanitize($_POST['filesystem_charset']));
 	setOption('site_email', sanitize($_POST['site_email']), 3);
 	$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 	$_zp_gallery->save();

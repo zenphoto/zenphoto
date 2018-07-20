@@ -39,6 +39,7 @@ register_shutdown_function('zpShutDownFunction');
 $_configMutex = new zpMutex('cF');
 $_zp_mutex = new zpMutex();
 
+$_zp_conf_options_associations = $_zp_options = array();
 $_zp_conf_vars = array('db_software' => 'NULL', 'mysql_prefix' => '_', 'charset' => 'UTF-8', 'UTF-8' => 'utf8');
 // Including the config file more than once is OK, and avoids $conf missing.
 if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
@@ -87,6 +88,13 @@ if (!defined('FILESYSTEM_CHARSET')) {
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) {
 	$_zp_conf_vars['server_protocol'] = 'http';
+}
+
+foreach ($_zp_conf_vars as $name => $value) {
+	if (!is_array($value)) {
+		$_zp_conf_options_associations[strtolower($name)] = $name;
+		$_zp_options[strtolower($name)] = $value;
+	}
 }
 
 if (!defined('DATABASE_SOFTWARE') && (extension_loaded(strtolower($_zp_conf_vars['db_software'])) || $_zp_conf_vars['db_software'] == 'NULL')) {

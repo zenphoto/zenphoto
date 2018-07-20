@@ -35,7 +35,9 @@ function printAdminFooter($addl = '') {
 	?>
 	<div id="footer">
 		<?php
-		echo gettext('<span class="zenlogo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zen-logo-light.png" /></a></span> ') . sprintf(gettext('version %1$s'), ZENPHOTO_VERSION);
+		echo '<span class="zenlogo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '">';
+		printSWlogo();
+		echo '</a></span> ' . sprintf(gettext('version %1$s'), ZENPHOTO_VERSION);
 
 		if (!empty($addl)) {
 			echo ' | ' . $addl;
@@ -289,7 +291,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 		<div id="admin_head">
 			<span id="administration">
-				<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
+				<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png"
 						 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($tabtext), html_encode($subtabtext)); ?>"
 						 alt="<?php echo gettext('ZenPhoto20 Administration'); ?>" />
 			</span>

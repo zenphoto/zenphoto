@@ -27,7 +27,6 @@ zp_register_filter('admin_utilities_buttons', 'titlelinkMigration::buttons');
 class titlelinkMigration {
 
 	static function buttons($buttons) {
-		global $_zp_conf_vars;
 
 		$buttons[] = array(
 				'category' => gettext('Database'),

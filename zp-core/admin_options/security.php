@@ -43,11 +43,6 @@ function saveOptions() {
 				}
 			case'http':
 				setOption('server_protocol', $protocol);
-				$_configMutex->lock();
-				$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-				$zp_cfg = updateConfigItem('server_protocol', $protocol, $zp_cfg);
-				storeConfig($zp_cfg);
-				$_configMutex->unlock();
 				break;
 		}
 	}

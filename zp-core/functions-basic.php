@@ -417,8 +417,7 @@ function query($sql, $errorstop = true) {
  */
 
 function db_name() {
-	global $_zp_conf_vars;
-	return $_zp_conf_vars['mysql_database'];
+	return getOption('mysql_database');
 }
 
 function db_count($table, $clause = NULL, $field = "*") {
@@ -643,7 +642,6 @@ function secureServer() {
  * Starts a zenphoto session (perhaps a secure one)
  */
 function zp_session_start() {
-	global $_zp_conf_vars;
 	$result = session_id();
 	if ($result) {
 		return $result;
@@ -651,7 +649,7 @@ function zp_session_start() {
 		session_name('Session_' . str_replace('.', '_', ZENPHOTO_VERSION));
 		@ini_set('session.use_strict_mode', 1);
 		//	insure that the session data has a place to be saved
-		if (isset($_zp_conf_vars['session_save_path'])) {
+		if (getOption('session_save_path')) {
 			session_save_path($_zp_conf_vars['session_save_path']);
 		}
 		$_session_path = session_save_path();
@@ -897,8 +895,6 @@ class zpMutex {
 
 function primeOptions() {
 	global $_zp_options;
-	$_zp_options = array();
-
 	$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`="" AND `ownerid`=0 ORDER BY `name`';
 	$rslt = query($sql, false);
 	if ($rslt) {
@@ -950,7 +946,8 @@ function getOptionsLike($pattern) {
  * otherwise it is preserved in the database
  */
 function setOption($key, $value, $persistent = true) {
-	global $_zp_options;
+	global $_zp_options, $_zp_conf_options_associations, $_zp_conf_vars, $_configMutex;
+	$_zp_options[$key = strtolower($key)] = $value;
 	if ($persistent) {
 		list($theme, $creator) = getOptionOwner();
 		if (is_null($value)) {
@@ -964,14 +961,23 @@ function setOption($key, $value, $persistent = true) {
 		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`value`,`ownerid`,`theme`,`creator`) VALUES (' . db_quote($key) . ',' . $v . ',0,' . db_quote($theme) . ',' . db_quote($creator) . ')' . ' ON DUPLICATE KEY UPDATE `value`=' . $v;
 		;
 		$result = query($sql, false);
+		if ($result) {
+			if (array_key_exists($key, $_zp_conf_options_associations)) {
+				$configKey = $_zp_conf_options_associations[$key];
+				if ($_zp_conf_vars[$configKey] !== $value) {
+					//	it is stored in the config file, update that too
+					require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
+					$_configMutex->lock();
+					$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+					$zp_cfg = updateConfigItem($configKey, $value, $zp_cfg);
+					storeConfig($zp_cfg);
+					$_configMutex->unlock();
+				}
+			}
+		}
+		return $result;
 	} else {
-		$result = true;
-	}
-	if ($result) {
-		$_zp_options[strtolower($key)] = $value;
 		return true;
-	} else {
-		return false;
 	}
 }
 
@@ -1670,25 +1676,25 @@ function pathurlencode($path) {
  * @return sting
  */
 function getAlbumFolder($root = SERVERPATH) {
-	global $_zp_album_folder, $_zp_conf_vars;
+	global $_zp_album_folder;
 	if (is_null($_zp_album_folder)) {
-		if (!isset($_zp_conf_vars['external_album_folder']) || empty($_zp_conf_vars['external_album_folder'])) {
-			if (!isset($_zp_conf_vars['album_folder']) || empty($_zp_conf_vars['album_folder'])) {
-				$_zp_album_folder = $_zp_conf_vars['album_folder'] = '/' . ALBUMFOLDER . '/';
+		if (empty(getOption('external_album_folder'))) {
+			if (empty(getOption('album_folder'))) {
+				setOption('album_folder', $_zp_album_folder = '/' . ALBUMFOLDER . '/');
 			} else {
-				$_zp_album_folder = str_replace('\\', '/', $_zp_conf_vars['album_folder']);
+				$_zp_album_folder = str_replace('\\', '/', getOption('album_folder'));
 			}
 		} else {
-			$_zp_conf_vars['album_folder_class'] = 'external';
-			$_zp_album_folder = str_replace('\\', '/', $_zp_conf_vars['external_album_folder']);
+			setOption('album_folder_class', 'external');
+			$_zp_album_folder = str_replace('\\', '/', getOption('external_album_folder'));
 		}
 		if (substr($_zp_album_folder, -1) != '/')
 			$_zp_album_folder .= '/';
 	}
 	$root = str_replace('\\', '/', $root);
-	switch (@$_zp_conf_vars['album_folder_class']) {
+	switch (getOption('album_folder_class')) {
 		default:
-			$_zp_conf_vars['album_folder_class'] = 'std';
+			setOption('album_folder_class', 'std');
 		case 'std':
 			return $root . $_zp_album_folder;
 		case 'in_webpath':

@@ -1085,8 +1085,7 @@ class Image extends MediaObject {
 	 * @return string
 	 */
 	protected function getFullImage($path = WEBPATH) {
-		global $_zp_conf_vars;
-		if ($path == WEBPATH && $_zp_conf_vars['album_folder_class'] == 'external') {
+		if ($path == WEBPATH && getOption('album_folder_class') == 'external') {
 			return false;
 		}
 		if (is_array($this->filename)) {
