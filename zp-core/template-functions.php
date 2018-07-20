@@ -4296,9 +4296,7 @@ function printZenphotoLink() {
 	?>
 	<span class="zen-logo">
 		<a href="https://<?php echo GITHUB; ?>" title="<?php echo gettext('A media oriented content management system'); ?>">
-			<?php echo gettext('Powered by ');
-			printSWlogo();
-			?>
+			<?php printf(gettext('Powered by %s'), swLogo()); ?>
 		</a>
 	</span>
 	<?php
@@ -4357,7 +4355,7 @@ function policySubmitButton($buttonText, $buttonClass = NULL, $buttonExtra = NUL
 	}
 	?>
 	<button id="submitbutton" class="button buttons policyButton <?php echo $buttonClass; ?>" <?php echo $display . $buttonExtra; ?>>
-	<?php echo $buttonText; ?>
+		<?php echo $buttonText; ?>
 	</button>
 	<?php
 }
