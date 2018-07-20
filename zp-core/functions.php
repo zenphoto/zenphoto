@@ -213,14 +213,14 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 			$shorten = $l1;
 		}
 		$short = truncate_string($articlecontent, $shorten, '');
-		if ($short != $articlecontent) { //	we actually did remove some stuff
+		if ($short != $articlecontent || $forceindicator) { //	we actually did remove some stuff
 			// drop open tag strings
-			$open = mb_strrpos($short, '<');
-			if ($open > mb_strrpos($short, '>')) {
+			$open = mb_strrpos($short, '</');
+			if ($open) {
 				$short = mb_substr($short, 0, $open);
 			}
 			$short = tidyHTML($short . $shortenindicator);
-		}
+		} 
 		$articlecontent = $short;
 	}
 	if (isset($matches)) {
