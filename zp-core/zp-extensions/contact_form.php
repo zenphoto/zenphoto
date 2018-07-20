@@ -382,7 +382,7 @@ function printContactForm($subject_override = '') {
 			}
 			$message .= "\n\n" . $mailcontent['message'];
 			if (!empty($mailcontent['dataconfirmation'])) {
-				$message .= gettext('I agree to storage and handling of my data by this website.') . "\n";
+				$message .=  "\n\n" . gettext('I agree to storage and handling of my data by this website.') . "\n";
 			}
 			$message .= "\n\n";
 
