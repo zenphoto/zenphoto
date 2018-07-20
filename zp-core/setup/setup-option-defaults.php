@@ -623,9 +623,6 @@ if (!file_exists(SERVERPATH . '/favicon.ico')) {
 	$ico = md5_file(SERVERPATH . '/favicon.ico');
 	$ico_L = '2a479b69ab8479876cb5a7e6384e7a85'; //	hash of legacy zenphoto favicon
 	$ico_20 = '8eac492afff6cbb0d3f1e4b913baa8a3'; //	hash of zenphoto20 favicon
-
-	var_dump($ico, $ico_L, $ico_20);
-
 	if ($ico_L == $ico || $ico_20 == $ico) {
 		unlink(SERVERPATH . '/favicon.ico');
 		@copy(SERVERPATH . '/' . ZENFOLDER . '/images/favicon.ico', SERVERPATH . '/favicon.ico');
