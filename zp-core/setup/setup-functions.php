@@ -510,7 +510,7 @@ function configMod() {
 
 function printSetupFooter() {
 	echo "<div id=\"footer\">";
-	echo gettext('<span class="zen-logo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zen-logo-light.png" /></a></span> ');
+	echo'<span class="zen-logo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '">' . swLogo() . '</a></span> ';
 	echo ' | <a href="https://' . GITHUB . '/issues" title="Support">' . gettext('Support') . '</a> | <a href="https://' . GITHUB . '/commits/master" title="' . gettext('View Change log') . '">' . gettext('Change log') . "</a>\n</div>";
 }
 
