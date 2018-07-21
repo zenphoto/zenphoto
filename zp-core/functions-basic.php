@@ -1955,7 +1955,7 @@ function checkInstall() {
  * @param string $addl additional information for request message
  *
  * @author Stephen Billard
- * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  */
 function requestSetup($whom, $addl = NULL) {
 	$sig = getSerializedArray(getOption('zenphoto_install'));
@@ -1973,7 +1973,7 @@ function requestSetup($whom, $addl = NULL) {
  * @param int $action if positive the setup is mandatory
  *
  * @author Stephen Billard
- * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  */
 function _setup($action) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');

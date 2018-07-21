@@ -3955,7 +3955,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 								return true;
 							});
 							function search_all() {
-								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}. All rights reserved
 								var check = $('#SEARCH_checkall').prop('checked');
 								$('.SEARCH_checkall').prop('checked', check);
 							}

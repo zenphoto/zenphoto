@@ -6,7 +6,7 @@
  * The data extracted from image metadata is created with "tags" that can later
  * be translated into the current active language when displayed.
  *
- * Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  * for use with ZenPhoto20 CMS software.
  */
 

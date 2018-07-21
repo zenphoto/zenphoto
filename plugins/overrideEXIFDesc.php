@@ -20,7 +20,7 @@
  * @package plugins/overrideEXIFDesc
  * @pluginCategory media
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  */
 $plugin_is_filter = 1000 | CLASS_PLUGIN;
 $plugin_description = gettext('Use the EXIF "desc" field for zenphoto titles');

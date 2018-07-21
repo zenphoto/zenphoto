@@ -23,7 +23,7 @@
  * You can place a login button on your webpage by calling the function <var>facebookLogin::loginButton();</var>
  *
  * @author Stephen Billard (sbillard)
- * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  *
  * @package plugins/facebookLogin
  * @pluginCategory users
