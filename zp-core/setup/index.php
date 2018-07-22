@@ -1441,9 +1441,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$copyaccess = false;
 						if (file_exists($htfile)) {
 							$ht = trim(@file_get_contents($htfile));
-							$htu = strtoupper($ht);
 						} else {
-							$ht = $htu = false;
+							$ht = false;
 							$copyaccess = $Apache;
 						}
 						$vr = "";
@@ -1451,7 +1450,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						$j = 0;
 						$err = '';
 						$desc = '';
-						if (empty($htu)) {
+						if (empty($ht)) {
 							$err = gettext("<em>.htaccess</em> file [is empty or does not exist]");
 							$ch = -1;
 							if ($Apache) {
@@ -1470,32 +1469,16 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$desc = gettext("Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, <code>mod_rewrite</code> may not be available.");
 							}
 						} else {
-							$i = strpos($htu, 'VERSION');
-							if ($i !== false) {
-								$j = strpos($htu, ";");
-								$vr = trim(substr($htu, $i + 7, $j - $i - 7));
+							if (preg_match('~version (.*);~i', $ht, $matches)) {
+								$vr = $matches[1];
+							} else {
+								$vr = false;
 							}
 
 							$ch = !empty($vr) && version_compare($vr, HTACCESS_VERSION, '>=');
 							$d = rtrim(str_replace('\\', '/', dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])))), '/') . '/';
 							$d = str_replace(' ', '%20', $d); //	apache appears to trip out if there is a space in the rewrite base
-							if (!$ch) { // wrong version
-								$oht = trim(@file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/oldhtaccess'));
-								//fix the rewritebase
-								$i = strpos($oht, 'RewriteBase /zenphoto');
-								$oht = substr($oht, 0, $i) . "RewriteBase $d" . substr($oht, $i + 21);
-								$oht = trim($oht);
-								if ($oht == $ht) { // an unmodified .htaccess file, we can just replace it
-									$ht = trim(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/htaccess'));
-									$i = strpos($ht, 'RewriteBase /zenphoto');
-									$ht = substr($ht, 0, $i) . "RewriteBase $d" . substr($ht, $i + 21);
-									$htu = strtoupper($ht);
-									@chmod($htfile, 0777);
-									@unlink($htfile);
-									$ch = file_put_contents($htfile, trim($ht));
-									@chmod($htfile, 0444);
-								}
-							}
+
 							if (!$ch) {
 								if (!$Apache) {
 									$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not required.");
@@ -1512,40 +1495,38 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 						$rw = '';
 						if ($ch > 0) {
-							$i = strpos($htu, 'REWRITEENGINE');
-							if ($i === false) {
-								$rw = '';
+							if (preg_match('~RewriteEngine\s+(.*)\s~i', $ht, $matches)) {
+								$rw = $matches[1];
 							} else {
-								$j = strpos($htu, "\n", $i + 13);
-								$rw = trim(substr($htu, $i + 13, $j - $i - 13));
+								$rw = 'off';
 							}
-							if (!empty($rw)) {
-								$msg = sprintf(gettext("<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"), $rw);
-								$mod = "&amp;mod_rewrite=$rw";
-							}
+							$msg = sprintf(gettext("<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"), $rw);
+							$mod = "&amp;mod_rewrite=$rw";
 						}
 						$good = checkMark($ch, $msg, $err, $desc, false) && $good;
 
 						$base = true;
 						$f = '';
-						if ($rw == 'ON') {
-							$i = strpos($htu, 'REWRITEBASE', $j);
-							if ($i === false) {
-								$base = false;
-								$b = '';
-								$err = gettext("<em>.htaccess</em> RewriteBase [is <em>missing</em>]");
-								$i = $j + 1;
-							} else {
-								$j = strpos($htu, "\n", $i + 11);
-								$bs = trim(substr($ht, $i + 11, $j - $i - 11));
+						if (strtoupper($rw) == 'ON') {
+							if (preg_match('~RewriteBase\s+(.*)\s~', $ht, $matches)) {
+								$bs = $matches[1];
 								$base = ($bs == $d);
 								$b = sprintf(gettext("<em>.htaccess</em> RewriteBase is <code>%s</code>"), $bs);
 								$err = sprintf(gettext("<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install folder]"), $bs);
+							} else {
+								$base = 0;
+								$b = '';
+								$err = gettext("<em>.htaccess</em> RewriteBase [is <em>missing</em>]");
 							}
+
 							$f = '';
 							$save = false;
 							if (!$base) {
-								$ht = substr($ht, 0, $i) . "RewriteBase $d\n" . substr($ht, $j + 1);
+								if ($base === 0) {
+									$ht = preg_replace('~RewriteEngine\s+(.*)\s~i', "RewriteBase $d\n", $ht);
+								} else {
+									$ht = preg_replace('~RewriteBase\s+(.*)\s~i', "RewriteBase $d\n", $ht);
+								}
 								$save = $base = true;
 								$b = sprintf(gettext("<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"), $d);
 							}

@@ -1183,7 +1183,6 @@ zp-core/license.php
 zp-core/load_objectClasses.php
 zp-core/loginForm.css
 zp-core/no_uploader.php
-zp-core/oldhtaccess
 zp-core/password.php
 zp-core/pickSource.php
 zp-core/pluginDoc.php
@@ -8376,4 +8375,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8378
+8377
