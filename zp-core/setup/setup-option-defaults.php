@@ -537,7 +537,7 @@ setOptionDefault('menu_truncate_indicator', '');
 setOptionDefault('AlbumThumbSelect', 1);
 
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
-setOptionDefault('site_email_name', 'ZenPhoto20');
+setOptionDefault('site_email_name', 'ZenPhotoGraphics');
 
 setOptionDefault('register_user_notify', 1);
 setOptionDefault('zenpage_news_label', getAllTranslations('News'));

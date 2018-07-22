@@ -21,7 +21,7 @@ if (function_exists("gettext")) {
 	$noxlate = -1;
 }
 if (version_compare(PHP_VERSION, PHP_MIN_VERSION, '<')) {
-	die(sprintf(gettext('ZenPhoto20 requires PHP version %s or greater'), PHP_MIN_VERSION));
+	die(sprintf(gettext('ZenPhotoGraphics requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
 
 $chmod = fileperms(dirname(dirname(__FILE__))) & 0666;
@@ -456,7 +456,7 @@ if ($setup_checked) {
 		} else {
 			$clone = ' ' . gettext('clone');
 		}
-		setupLog(sprintf(gettext('ZenPhoto20 Setup v%1$s%2$s: %3$s'), ZENPHOTO_VERSION, $clone, date('r')), true, true); // initialize the log file
+		setupLog(sprintf(gettext('ZenPhotoGraphics Setup v%1$s%2$s: %3$s'), ZENPHOTO_VERSION, $clone, date('r')), true, true); // initialize the log file
 	}
 
 	if ($environ) {
@@ -485,8 +485,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 <html xmlns="http://www.w3.org/1999/xhtml" />
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title><?php printf('ZenPhoto20 %s', $upgrade); ?></title>
-	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
+	<title><?php printf('ZenPhotoGraphics %s', $upgrade); ?></title>
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?css_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
 	<?php
 	load_jQuery_CSS();
 	load_jQuery_scripts('theme');
@@ -506,7 +506,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 </head>
 <body>
 	<div id="main">
-		<h1><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="<?php echo gettext('ZenPhoto20 Setup'); ?>" alt="<?php echo gettext('ZenPhoto20 Setup'); ?>" />
+		<h1><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="<?php echo gettext('ZenPhotoGraphics Setup'); ?>" alt="<?php echo gettext('ZenPhotoGraphics Setup'); ?>" />
 			<span><?php echo $upgrade; ?></span>
 		</h1>
 		<br />
@@ -523,7 +523,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 				}
 				?>
 				<p>
-					<?php printf(gettext('Welcome to ZenPhoto20! This page will set up version %1$s on your web server.'), ZENPHOTO_VERSION); ?>
+					<?php printf(gettext('Welcome to ZenPhotoGraphics! This page will set up version %1$s on your web server.'), ZENPHOTO_VERSION); ?>
 				</p>
 				<h2><?php echo gettext("Systems Check:"); ?></h2>
 				<?php
@@ -552,7 +552,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						<ul>
 							<?php
 							$prevRel = false;
-							checkmark(1, sprintf(gettext('Installing ZenPhoto20 v%s'), ZENPHOTO_VERSION), '', '');
+							checkmark(1, sprintf(gettext('Installing ZenPhotoGraphics v%s'), ZENPHOTO_VERSION), '', '');
 						}
 						chdir(dirname(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
 						$test = safe_glob('*.log');
@@ -567,7 +567,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							}
 						}
 
-						checkMark($p, sprintf(gettext('<em>%s</em> security'), DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'), DATA_FOLDER), sprintf(gettext('ZenPhoto20 suggests you make the sensitive files in the %1$s folder accessible by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$s which may allow unauthorized access.'), DATA_FOLDER, implode(', ', array_keys($wrong)), implode(', ', $wrong)));
+						checkMark($p, sprintf(gettext('<em>%s</em> security'), DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'), DATA_FOLDER), sprintf(gettext('You should make the sensitive files in the %1$s folder accessible by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$s which may allow unauthorized access.'), DATA_FOLDER, implode(', ', array_keys($wrong)), implode(', ', $wrong)));
 
 						$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
 						if (version_compare(PHP_VERSION, PHP_MIN_SUPPORTED_VERSION, '<')) {
@@ -606,7 +606,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						} else {
 							$safe = true;
 						}
-						checkMark($safe, gettext("PHP <code>Safe Mode</code>"), gettext("PHP <code>Safe Mode</code> [is set]"), gettext("ZenPhoto20 functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."));
+						checkMark($safe, gettext("PHP <code>Safe Mode</code>"), gettext("PHP <code>Safe Mode</code> [is set]"), gettext("ZenPhotoGraphics functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."));
 
 						if (!extension_loaded('suhosin')) {
 							$blacklist = @ini_get("suhosin.executor.func.blacklist");
@@ -1185,7 +1185,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							}
 						}
 
-						primeMark(gettext('ZenPhoto20 files'));
+						primeMark(gettext('ZenPhotoGraphics files'));
 						@set_time_limit(120);
 						$stdExclude = Array('Thumbs.db', 'readme.md', 'data');
 
@@ -1215,13 +1215,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$package_file_count = is_numeric($count) && ($count > 0) && ($count == count($installed_files));
 						}
 						if (!$package_file_count) {
-							checkMark(-1, '', gettext("ZenPhoto20 package [missing]"), gettext('The file <code>zenphoto.package</code> is either missing, not readable, or defective. Your installation may be corrupt!'));
+							checkMark(-1, '', gettext("ZenPhotoGraphics package [missing]"), gettext('The file <code>zenphoto.package</code> is either missing, not readable, or defective. Your installation may be corrupt!'));
 							$installed_files = array();
 						}
 						$folders = array();
 						if ($updatechmod) {
 							$permissions = 1;
-							setupLog(sprintf(gettext('Setting permissions (0%o) for ZenPhoto20 package.'), $chmod), true);
+							setupLog(sprintf(gettext('Setting permissions (0%o) for ZenPhotoGraphics package.'), $chmod), true);
 						} else {
 							$permission = 0;
 						}
@@ -1335,34 +1335,34 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						}
 						if (zpFunctions::hasPrimaryScripts() && count($installed_files) > 0) {
 							if ($testRelease) {
-								$msg1 = gettext("ZenPhoto20 core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
+								$msg1 = gettext("Core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 							} else {
-								$msg1 = gettext("ZenPhoto20 core files [Some files are missing or seem wrong]");
+								$msg1 = gettext("Core files [Some files are missing or seem wrong]");
 							}
 							$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files: ') . '<p><code>' . substr($filelist, 0, -6) . '</code></p>';
 							$mark = -1;
 						} else {
 							if (isset($rootupdate) && !$rootupdate) {
 								$mark = 0;
-								$msg1 = gettext("ZenPhoto20 core files [Could not update the root <em>index.php</em> file.]");
+								$msg1 = gettext("Core files [Could not update the root <em>index.php</em> file.]");
 								$msg2 = sprintf(gettext('Perhaps there is a permissions issue. You should manually copy the %s <em>root_index.php</em> file to the installation root and rename it <em>index.php</em>.'), ZENFOLDER);
 							} else {
 								if (zpFunctions::hasPrimaryScripts()) {
 									if ($testRelease) {
 										$mark = -1;
-										$msg1 = gettext("ZenPhoto20 core files [This is a <em>debug</em> build]");
+										$msg1 = gettext("Core files [This is a <em>debug</em> build]");
 									} else {
 										$msg1 = '';
 										$mark = 1;
 									}
 								} else {
 									$mark = -1;
-									$msg1 = gettext("ZenPhoto20 core files [This is a <em>clone</em> installation]");
+									$msg1 = gettext("Core files [This is a <em>clone</em> installation]");
 								}
 								$msg2 = '';
 							}
 						}
-						checkMark($mark, gettext("ZenPhoto20 core files"), $msg1, $msg2, false);
+						checkMark($mark, gettext("Core files"), $msg1, $msg2, false);
 
 						if (setupUserAuthorized() && $connection && zpFunctions::hasPrimaryScripts()) {
 							primeMark(gettext('Installation files'));
@@ -1424,14 +1424,14 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 											}
 										}
 										if (!empty($filelist)) {
-											checkmark(-1, '', gettext('ZenPhoto20 core folders [Some unknown files were found]'), gettext('The following files could not be deleted.') . '<br /><code>' . implode('<br />', $filelist) . '<code>');
+											checkmark(-1, '', gettext('Core folders [Some unknown files were found]'), gettext('The following files could not be deleted.') . '<br /><code>' . implode('<br />', $filelist) . '<code>');
 										}
 									} else {
-										checkMark(-1, '', gettext('ZenPhoto20 core folders [Some unknown files were found]'), gettext('You should remove the following files: ') . '<br /><code>' . $_zp_UTF8->convert(implode('<br />', $systemlist), FILESYSTEM_CHARSET, 'UTF-8') .
+										checkMark(-1, '', gettext('Core folders [Some unknown files were found]'), gettext('You should remove the following files: ') . '<br /><code>' . $_zp_UTF8->convert(implode('<br />', $systemlist), FILESYSTEM_CHARSET, 'UTF-8') .
 														'</code><p class="buttons"><a href="?delete_extra' . ($debug ? '&amp;debug' : '') . '">' . gettext("Delete extra files") . '</a></p><br class="clearall"><br />');
 									}
 								}
-								checkMark($permissions, gettext("ZenPhoto20 core file permissions"), gettext("ZenPhoto20 core file permissions [not correct]"), gettext('Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually.'));
+								checkMark($permissions, gettext("Core file permissions"), gettext("Core file permissions [not correct]"), gettext('Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually.'));
 							}
 						}
 						$msg = gettext("<em>.htaccess</em> file");
@@ -1484,7 +1484,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not required.");
 									$ch = -1;
 								} else {
-									$desc = sprintf(gettext("The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of ZenPhoto20. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."), ZENFOLDER);
+									$desc = sprintf(gettext("The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of ZenPhotoGraphics. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."), ZENFOLDER);
 									if (setupUserAuthorized()) {
 										$desc .= ' ' . gettext('<p class="buttons"><a href="?copyhtaccess" >Replace the existing <em>.htaccess</em> file with the current version</a></p><br style="clear:both" /><br />');
 									}
@@ -1609,7 +1609,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						}
 
 						$good = folderCheck('cache', SERVERPATH . '/' . CACHEFOLDER . '/', 'std', NULL, true, $chmod | 0311, $updatechmod) && $good;
-						$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete ZenPhoto20 package. You must have at least the <em>en_US</em> folder.')) && $good;
+						$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete ZenPhotoGraphics package. You must have at least the <em>en_US</em> folder.')) && $good;
 						$good = folderCheck(gettext('uploaded'), SERVERPATH . '/' . UPLOAD_FOLDER . '/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
 						$good = folderCheck(DATA_FOLDER, SERVERPATH . '/' . DATA_FOLDER . '/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
 						@rmdir(SERVERPATH . '/' . DATA_FOLDER . '/mutex');
