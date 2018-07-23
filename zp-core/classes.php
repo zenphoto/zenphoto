@@ -2,7 +2,8 @@
 
 /**
  * root object class
- * @package classes
+ * @package core
+ * @subpackage classes\objects
  */
 // force UTF-8 Ø
 // classes.php
@@ -52,10 +53,10 @@ class PersistentObject {
 
 	/**
 	 *
-	 * @deprecated
+	 * @deprecated 2.0
+	 * @since 1.4.6
 	 */
 	function __construct($tablename, $unique_set, $cache_by = NULL, $use_cache = true, $is_transient = false, $allowCreate = true) {
-		internal_deprecations::PersistentObject();
 		return instantiate($tablename, $unique_set, $cache_by, $use_cache, $is_transient, $allowCreate);
 	}
 
@@ -670,10 +671,11 @@ class ThemeObject extends PersistentObject {
 	 * @param bool $private set to true if the comment is for the admin only
 	 * @param bool $anon set to true if the poster wishes to remain anonymous
 	 * @param string $customdata
+	 * @param bool $dataconfirmation true or false if data privacy confirmation was required
 	 * @return object
 	 */
-	function addComment($name, $email, $website, $comment, $code, $code_ok, $ip, $private, $anon, $customdata) {
-		$goodMessage = zp_apply_filter('object_addComment', $name, $email, $website, $comment, $code, $code_ok, $this, $ip, $private, $anon, $customdata);
+	function addComment($name, $email, $website, $comment, $code, $code_ok, $ip, $private, $anon, $customdata, $dataconfirmation) {
+		$goodMessage = zp_apply_filter('object_addComment', $name, $email, $website, $comment, $code, $code_ok, $this, $ip, $private, $anon, $customdata, false, $dataconfirmation);
 		return $goodMessage;
 	}
 

@@ -36,19 +36,28 @@ body {
 	width: 640px;
 	font-size: 85%;
 	color: #96967E;
-	text-align: right;
+	text-align: center;
 	clear: both;
 }
 #credit a, #sort a {
-	text-decoration: none;
 	color: #96967E;
 	border-bottom: 1px dotted #96967E;
 }
 #credit a:hover, #sort a:hover {
 	color: #BDBDAE;
 	border-bottom: 1px solid #BDBDAE;
-	text-decoration: none;
 }
+
+/* OpenStreetMap  */
+div#osm_map {
+	margin: 20px 0;
+}
+
+/* Scriptless Social Sharing */
+ul.scriptless_socialsharing li {
+	display: inline-block !important;
+}
+
 #gallerytitle {
 	border-bottom: 1px solid #E6E6DF;
 	padding-bottom: 14px;
@@ -65,8 +74,13 @@ body {
 
 /* Link Styles
 ------------------------------ */
-a:link, a:active, a:visited { text-decoration: underline; color: #17A; }
-a:hover, a:focus { text-decoration: underline; color: #6BD; }
+a:link, a:active, a:visited { 
+	text-decoration: none; color: #17A; 
+}
+
+a:hover, a:focus { 
+	color: #6BD; 
+}
 
 /* Text Styles
 ------------------------------ */
@@ -82,14 +96,12 @@ h2 {
 }
 h2 a:link, h2 a:visited {
 	color: #8DB8CF;
-	text-decoration: none;
 }
 h2 span {
 	color: #8DB8CF;
 }
 h2 a:hover {
 	color: #94c2e5;
-	text-decoration: none;
 }
 h3 {
 	font: 110% "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
@@ -97,8 +109,6 @@ h3 {
 	color: #002E5B;
 	margin-top: 30px;
 }
-h3 a:link, h3 a:visited { text-decoration: none; }
-h3 a:hover { text-decoration: none; }
 
 
 /* Miscellaneous
@@ -157,7 +167,6 @@ ul.pagelist li a, ul.pagelist span.disabledlink {
 }
 ul.pagelist li.current a {
 	font-weight: bold;
-	text-decoration: none;
 	cursor: default;
 	color: #5A5A4B;
 }
@@ -334,13 +343,11 @@ cursor: pointer !important;
 	float: left;
 	padding: 4px 0;
 	font-size: 120%;
-	text-decoration: none;
 	line-height: 180%;
 	color: #237898;
 }
 .imgnav .imgprevious a:hover, .imgnav .imgnext a:hover {
 	background-color: #fff;
-	text-decoration: none;
 	color: #002E5B;
 }
 .imgnav .imgprevious a {
@@ -354,6 +361,11 @@ cursor: pointer !important;
 	width: 440px;
 }
 
+/* Clear floats
+------------------------------ */
+.clearfloat {
+	clear: both;
+}
 
 /* Comments
 ------------------------------ */
@@ -456,9 +468,7 @@ label:hover {
 	padding: 1px;
 	font-size: 80%;
 }
-#search a {
-text-decoration: none;
-}
+
 #search ul {
 border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;
 height: 8em; width: 20em; overflow: auto;
@@ -550,35 +560,7 @@ ul.archive .month {
 	list-style-type: none;
 }
 
-/* Zenphoto link
------------------------------- */
 
-#zen-part {
- font-family: Arial, Helvetica, sans-serif;
- font-size: 1.8em;
- font-weight: 100;
-}
-
-#photo-part {
- font-family: Arial, Helvetica, sans-serif;
- font-size: 0.9em;
- font-weight: bold;
-}
-
-/* centering flowplayer 3 on image.php */
-#image .flowplayer,
-.jp-audio,
-.jp-video {
-	margin: 0 auto;
-}
-
-.textobject {
-	font-size: 12px;
-	line-height: 16px;
-	text-align: left !important;
-	text-decoration: none !important;
-	overflow:scroll !important;
-}
 /* box for important notes
 ------------------------------ */
 .notebox {
@@ -649,6 +631,12 @@ width: 30% !important;
 float: left;
 display: block;
 }
+#registration_form label[for=admin_dataconfirmation],
+#commentform label[for=comment_dataconfirmation],
+#mailform label[for=dataconfirmation] {
+	width: 100% !important;
+	float: none;
+}
 #registration_form input[type="text"],
 #registration_form input[type="password"],
 #mailform input[type="text"],
@@ -680,11 +668,11 @@ font-size: 12px;
 a.slideshowlink {
 padding: 5px 6px 3px 6px;
 margin-top: 10px !important;
-text-decoration: none;
 clear: both;
 margin-top: 10px;
 display: inline-block;
 }
+
 
 
 .clearall {

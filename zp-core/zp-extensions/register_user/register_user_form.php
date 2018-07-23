@@ -103,7 +103,14 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			</p>
 			<?php
 		}
-		?>
+		if(getOption('register_user_dataconfirmation')) { ?>
+			<p>
+				<label for="admin_dataconfirmation">
+					<input type="checkbox" name="admin_dataconfirmation" id="admin_dataconfirmation" value="1">
+					<?php printDataUsageNotice(); echo '<strong>*</strong>'; ?>
+				</label>
+			</p>
+		<?php } ?>
 		<p><?php echo gettext('<strong>*</strong>Required'); ?></p>
 		<input type="submit" class="button buttons" value="<?php echo gettext('Submit') ?>" />
 		<?php

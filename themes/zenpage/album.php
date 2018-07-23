@@ -80,8 +80,12 @@ if (!defined('WEBPATH'))
 						printGoogleMap();
 						echo '</p>';
 					}
-					?>
-					<?php
+					@call_user_func('printOpenStreetMap');
+					
+					if(class_exists('ScriptlessSocialSharing')) {
+						ScriptlessSocialSharing::printButtons();
+					}	
+					
 					if (function_exists('printSlideShowLink')) {
 						echo '<span id="slideshowlink">';
 						printSlideShowLink();

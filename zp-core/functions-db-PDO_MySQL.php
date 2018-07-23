@@ -7,6 +7,7 @@
  * It recommends using the PDO::MySQL or the MySQLi library instead.
  *
  * @package core
+ * @subpackage database-handlers\functions-db-pdo-mysql
  */
 // force UTF-8 Ø
 

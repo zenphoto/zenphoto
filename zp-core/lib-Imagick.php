@@ -6,6 +6,7 @@
  * Requires Imagick 3.0.0+ and ImageMagick 6.3.8+
  *
  * @package core
+ * @subpackage graphic-handlers\lib-imagick
  */
 // force UTF-8 Ø
 

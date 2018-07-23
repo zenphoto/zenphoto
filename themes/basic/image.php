@@ -15,7 +15,7 @@ if (!defined('WEBPATH'))
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				$(document).ready(function() {
+				$(document).ready(function () {
 					$(".colorbox").colorbox({
 						inline: true,
 						href: "#imagemetadata",
@@ -26,9 +26,9 @@ if (!defined('WEBPATH'))
 						maxHeight: "98%",
 						photo: true,
 						close: '<?php echo gettext("close"); ?>',
-							onComplete: function(){
-								$(window).resize(resizeColorBoxImage);
-							}
+						onComplete: function () {
+							$(window).resize(resizeColorBoxImage);
+						}
 					});
 				});
 				// ]]> -->
@@ -55,12 +55,14 @@ if (!defined('WEBPATH'))
 				</div>
 				<h2>
 					<span>
-						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle());
+						<?php
+						printHomeLink('', ' | ');
+						printGalleryIndexURL(' | ', getGalleryTitle());
 						printParentBreadcrumb("", " | ", " | ");
 						printAlbumBreadcrumb("", " | ");
 						?>
 					</span>
-					<?php printImageTitle(); ?>
+<?php printImageTitle(); ?>
 				</h2>
 			</div>
 			<!-- The Image -->
@@ -89,10 +91,6 @@ if (!defined('WEBPATH'))
 					}
 					?>
 				</strong>
-				<?php
-				if (isImagePhoto())
-					@call_user_func('printUserSizeSelector');
-				?>
 			</div>
 			<div id="narrow">
 				<?php printImageDesc(); ?>
@@ -113,27 +111,13 @@ if (!defined('WEBPATH'))
 				<br class="clearall" />
 
 				<?php
-    @call_user_func('printGoogleMap');
-    @call_user_func('printRating');
-    @call_user_func('printCommentForm');
-    ?>
+				@call_user_func('printOpenStreetMap');
+				@call_user_func('printGoogleMap');
+				@call_user_func('printRating');
+				@call_user_func('printCommentForm');
+				?>
 			</div>
 		</div>
-		<div id="credit">
-			<?php
-			if (function_exists('printFavoritesURL')) {
-				printFavoritesURL(NULL, '', ' | ', '<br />');
-			}
-			?>
-			<?php
-   if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | ');
-   printCustomPageURL(gettext("Archive View"), "archive"); ?> |
-			<?php printZenphotoLink();
-   @call_user_func('printUserLogin_out', " | ");
-   ?>
-		</div>
-		<?php
-		zp_apply_filter('theme_body_close');
-		?>
+<?php include 'inc-footer.php'; ?>
 	</body>
 </html>

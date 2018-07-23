@@ -32,6 +32,7 @@ class tinymce4Options {
 	function __construct() {
 		setOptionDefault('tinymce4_zenphoto', 'zenphoto-ribbon.js.php');
 		setOptionDefault('tinymce4_zenpage', 'zenpage-slim.js.php');
+		setOptionDefault('tinymce4_entitiyencoding', 'raw');
 		if (getOption('zp_plugin_tiny_mce')) {
 			setOptionDefault('zp_plugin_tinymce4', 5 | ADMIN_PLUGIN);
 			purgeOption('zp_plugin_tiny_mce');
@@ -41,31 +42,63 @@ class tinymce4Options {
 	function getOptionsSupported() {
 		$configs_zenpage = getTinyMCE4ConfigFiles('zenpage');
 		$configs_zenphoto = getTinyMCE4ConfigFiles('zenphoto');
-		$options = array(gettext('Text editor configuration - Zenphoto')	 => array('key'						 => 'tinymce4_zenphoto', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 0,
-										'selections'		 => $configs_zenphoto,
-										'null_selection' => gettext('Disabled'),
-										'desc'					 => gettext('Applies to <em>admin</em> editable text other than for Zenpage pages and news articles.')),
-						gettext('Text editor configuration - Zenpage')	 => array('key'						 => 'tinymce4_zenpage', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 0,
-										'selections'		 => $configs_zenpage,
-										'null_selection' => gettext('Disabled'),
-										'desc'					 => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.')),
-						gettext('Custom image size')										 => array('key'		 => 'tinymce_tinyzenpage_customimagesize', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
-						gettext('Custom image size')										 => array('key'		 => 'tinymce_tinyzenpage_customimagesize', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
-						gettext('Custom thumb crop - size')							 => array('key'		 => 'tinymce_tinyzenpage_customthumb_size', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("Predefined size (px) for custom cropped thumb images included using tinyZenpage.")),
-						gettext('Custom thumb crop - width')						 => array('key'		 => 'tinymce_tinyzenpage_customthumb_cropwidth', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("Predefined crop width (%) for custom cropped thumb  images included using tinyZenpage.")),
-						gettext('Custom thumb crop - height')						 => array('key'		 => 'tinymce_tinyzenpage_customthumb_cropheight', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext("Predefined crop height (%) for custom cropped thumb images included using tinyZenpage."))
+		$options = array(
+				gettext('Text editor configuration - Zenphoto') => array(
+						'key' => 'tinymce4_zenphoto',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $configs_zenphoto,
+						'null_selection' => gettext('Disabled'),
+						'desc' => gettext('Applies to <em>admin</em> editable text other than for Zenpage pages and news articles.')),
+				gettext('Text editor configuration - Zenpage') => array(
+						'key' => 'tinymce4_zenpage',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $configs_zenpage,
+						'null_selection' => gettext('Disabled'),
+						'desc' => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.')),
+				gettext('Custom image size') => array(
+						'key' => 'tinymce_tinyzenpage_customimagesize',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
+				gettext('Custom image size') => array(
+						'key' => 'tinymce_tinyzenpage_customimagesize',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
+				gettext('Custom thumb crop - size') => array(
+						'key' => 'tinymce_tinyzenpage_customthumb_size',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext("Predefined size (px) for custom cropped thumb images included using tinyZenpage.")),
+				gettext('Custom thumb crop - width') => array(
+						'key' => 'tinymce_tinyzenpage_customthumb_cropwidth',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext("Predefined crop width (%) for custom cropped thumb  images included using tinyZenpage.")),
+				gettext('Custom thumb crop - height') => array(
+						'key' => 'tinymce_tinyzenpage_customthumb_cropheight',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext("Predefined crop height (%) for custom cropped thumb images included using tinyZenpage.")),
+				gettext('Entity encoding') => array(
+						'key' => 'tinymce4_entityencoding',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 3,
+						'selections' => array(
+								gettext('Raw') => 'raw',
+								gettext('Numeric') => 'numeric',
+								gettext('Named') => 'named',
+								gettext('Named and numeric') => 'named+numeric'
+								),
+						'null_selection' => 'raw',
+						'desc' => gettext('If encountering issues with special chars and other character entities change this. Note that this applies on re-saving content only. More info on the <a href="https://www.tinymce.com/docs/configure/content-filtering/#entity_encoding">tinyMCE docs</a>.')),
+				gettext('Entities') => array(
+						'key' => 'tinymce4_entities',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 3,
+						'desc' => gettext('You can adjust how entities are processed. More info on the <a href="https://www.tinymce.com/docs/configure/content-filtering/#entities">tinyMCE docs</a>.')),
 		);
 		return $options;
 	}

@@ -167,6 +167,14 @@ $subtab = printSubtabs();
 				} else {
 					$plugin_description = '';
 				}
+				if ($str = isolate('$plugin_deprecated', $pluginStream)) {
+					if (false === eval($str)) {
+						$parserr = $parserr | 1;
+						$plugin_deprecated = gettext('<strong>Error parsing <em>plugin_deprecated</em> string!</strong>.');
+					}
+				} else {
+					$plugin_deprecated = '';
+				}
 				if ($str = isolate('$plugin_notice', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
@@ -343,6 +351,9 @@ $subtab = printSubtabs();
 					<td colspan="2">
 						<?php
 						echo $plugin_description;
+						if($plugin_deprecated) {
+							echo '<p class="notebox">' . $plugin_deprecated . '</p>';
+						}
 						if ($plugin_disable) {
 							?>
 							<div id="showdisable_<?php echo $extension; ?>" style="display: none" class="warningbox">

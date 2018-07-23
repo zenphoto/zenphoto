@@ -14,7 +14,7 @@ if (!defined('WEBPATH'))
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				$(document).ready(function() {
+				$(document).ready(function () {
 					$(".colorbox").colorbox({
 						inline: true,
 						href: "#imagemetadata",
@@ -25,7 +25,7 @@ if (!defined('WEBPATH'))
 						maxHeight: "98%",
 						photo: true,
 						close: '<?php echo gettext("close"); ?>',
-						onComplete: function(){
+						onComplete: function () {
 							$(window).resize(resizeColorBoxImage);
 						}
 					});
@@ -53,9 +53,11 @@ if (!defined('WEBPATH'))
 			<div id="content">
 
 				<div id="breadcrumb">
-					<h2><?php printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » ");
-					printAlbumBreadcrumb("  ", " » ");
-					?>
+					<h2><?php
+						printGalleryIndexURL(' » ');
+						printParentBreadcrumb("", " » ", " » ");
+						printAlbumBreadcrumb("  ", " » ");
+						?>
 						<strong><?php printImageTitle(); ?></strong> (<?php echo imageNumber() . "/" . getNumImages(); ?>)
 					</h2>
 				</div>
@@ -121,17 +123,23 @@ if (!defined('WEBPATH'))
 						?>
 
 						<br style="clear:both" />
-<?php If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
-      @call_user_func('printRating');
-      @call_user_func('printGoogleMap');
-      ?>
+						<?php
+						If (function_exists('printAddToFavorites'))
+							printAddToFavorites($_zp_current_image);
+						@call_user_func('printRating');
+						@call_user_func('printGoogleMap');
+						@call_user_func('printOpenStreetMap');
+						if (class_exists('ScriptlessSocialSharing')) {
+							ScriptlessSocialSharing::printButtons();
+						}
+						?>
 					</div>
 <?php @call_user_func('printCommentForm'); ?>
 
 				</div><!-- content-left -->
 
 				<div id="sidebar">
-					<?php include("sidebar.php"); ?>
+<?php include("sidebar.php"); ?>
 				</div>
 
 				<div id="footer">
@@ -142,8 +150,8 @@ if (!defined('WEBPATH'))
 			</div><!-- content -->
 
 		</div><!-- main -->
-<?php
-zp_apply_filter('theme_body_close');
-?>
+		<?php
+		zp_apply_filter('theme_body_close');
+		?>
 	</body>
 </html>

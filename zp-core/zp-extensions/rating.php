@@ -10,7 +10,7 @@
  *
  * <b>Legal note:</b> Use the <i>Disguise IP</i> option if your country considers IP tracking a privacy violation.
  *
- * @author Stephen Billard (sbillard)and Malte Müller (acrylian)
+ * @author Stephen Billard (sbillard), Malte Müller (acrylian)
  * @package plugins
  * @subpackage rating
  */
@@ -46,7 +46,7 @@ if (!defined('OFFSET_PATH')) {
 
 $plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. ");
-$plugin_author = "Stephen Billard (sbillard) and Malte Müller (acrylian)";
+$plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
 $plugin_category = gettext('Statistics');
 $option_interface = 'jquery_rating';
 
@@ -107,7 +107,7 @@ class jquery_rating {
 										'buttons'	 => array(gettext('No') => 0, gettext('Show rating') => 1, gettext('Show previous vote') => 2),
 										'desc'		 => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.')),
 						gettext('Disguise IP')							 => array('key'	 => 'rating_hash_ip', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.'))
+										'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues. If not set the IP is anonymized as defined on the general Zenphoto option <em>Anonymize IP</em>.'))
 		);
 	}
 

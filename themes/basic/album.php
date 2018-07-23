@@ -61,31 +61,17 @@ if (!defined('WEBPATH'))
 				</div>
 				<br class="clearfloat">
 				<?php
-    printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
-    if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album);
-    printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
-    @call_user_func('printGoogleMap');
-    @call_user_func('printSlideShowLink');
-    @call_user_func('printRating');
-    @call_user_func('printCommentForm');
-    ?>
+					printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
+					if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album);
+					printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
+					@call_user_func('printOpenStreetMap');
+					@call_user_func('printGoogleMap');
+					@call_user_func('printSlideShowLink');
+					@call_user_func('printRating');
+					@call_user_func('printCommentForm');
+				?>
 			</div>
 		</div>
-		<div id="credit">
-			<?php
-			if (function_exists('printFavoritesURL')) {
-				printFavoritesURL(NULL, '', ' | ', '<br />');
-			}
-			?>
-			<?php
-   if (class_exists('RSS')) printRSSLink('Album', '', gettext('Album RSS'), ' | ');
-   printCustomPageURL(gettext("Archive View"), "archive", '', '', ' | ');
-   printZenphotoLink();
-   @call_user_func('printUserLogin_out', " | ");
-   ?>
-		</div>
-		<?php
-		zp_apply_filter('theme_body_close');
-		?>
+		<?php include 'inc-footer.php'; ?>
 	</body>
 </html>

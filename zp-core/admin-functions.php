@@ -2,6 +2,7 @@
 /**
  * support functions for Admin
  * @package admin
+ * @subpackage admin-functions
  */
 // force UTF-8 Ø
 
@@ -2653,7 +2654,14 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 			}
 		}
 		$activelang = generateLanguageList();
-
+		$inactivelang = array();
+		$activelang_locales = array_values($activelang);
+		foreach ($strings as $key => $content) {
+			if (!in_array($key, $activelang_locales)) {
+				$inactivelang[$key] = $content;
+			}
+		}
+	
 		if (getOption('multi_lingual') && !empty($activelang)) {
 			if ($textbox) {
 				if (strpos($wide, '%') === false) {
@@ -2740,6 +2748,16 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 				</li>
 				<?php
 			}
+			// print hidden lang content here so all is re-submitted and no meanwhile or accidentally inactive language content gets lost
+			foreach ($inactivelang as $key => $content) {
+				if ($key !== $locale) {
+					if ($textbox) {
+						echo "\n" . '<textarea class="textarea_hidden" name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($content) . '</textarea>';
+					} else {
+						echo '<br /><input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="hidden" value="' . html_encode($content) . '"' . $width . ' />';
+					}
+				}
+			}
 			echo "</ul>\n";
 		} else {
 			if ($textbox) {
@@ -2767,6 +2785,17 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 			} else {
 				echo '<input name="' . $name . '_' . $locale . '"' . $edit . ' type="text" value="' . html_encode($dbstring) . '"' . $width . ' />';
 			}
+			
+			// print hidden lang content here so all is re-submitted and no meanwhile or accidentally inactive language content gets lost
+			foreach($strings as $key => $content ) {
+				if($key !== $locale) {
+					if ($textbox) {
+						echo '<textarea class="textarea_hidden" name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">'. html_encode($content) .' </textarea>';
+					} else {
+						echo '<input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="hidden" value="'.html_encode($content).'"' . $width . ' />';
+					}
+				}
+			}
 		}
 	}
 
@@ -2784,9 +2813,9 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 		foreach ($_POST as $key => $value) {
 			if ($value && preg_match('/^' . $name . '_[a-z]{2}_[A-Z]{2}$/', $key)) {
 				$key = substr($key, $l);
-				if (in_array($key, $languages)) {
+				//if (in_array($key, $languages)) { // disabled as we want to keep even inactive lang content savely
 					$strings[$key] = sanitize($value, $sanitize_level);
-				}
+				//}
 			}
 		}
 		switch (count($strings)) {
@@ -3689,7 +3718,7 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 	}
 	?>
 	<form name="AutoListBox2" style="float: right;" action="#" >
-		<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
+		<select name="ListBoxURL" size="1" onchange="zp_gotoLink(this.form);">
 			<?php
 			foreach ($nestinglevels as $nestinglevel) {
 				if ($nesting == $nestinglevel) {
@@ -3711,14 +3740,6 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 			}
 			?>
 		</select>
-		<script type="text/javascript" >
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-				var OptionIndex = form.ListBoxURL.selectedIndex;
-				parent.location = form.ListBoxURL.options[OptionIndex].value;
-			}
-			// ]]> -->
-		</script>
 	</form>
 	<?php
 }
@@ -4287,9 +4308,9 @@ function admin_securityChecks($rights, $return) {
  * Checks if protocol not https and redirects if https required
  */
 function httpsRedirect() {
-	if (SERVER_PROTOCOL == 'https_admin') {
+	if (SERVER_PROTOCOL == 'https_admin' || SERVER_PROTOCOL == 'https') {
 		// force https login
-		if (!isset($_SERVER["HTTPS"])) {
+		if (!secureServer()) {
 			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
 			header("Location:$redirect");
 			exitZP();

@@ -87,6 +87,16 @@
 		</p>
 		<?php
 	}
+	if (getOption('comment_form_dataconfirmation')) {
+		?>
+		<p>
+			<label for="comment_dataconfirmation">
+				<input type="checkbox" id="comment_dataconfirmation" name="comment_dataconfirmation" value="1"<?php if ($stored['comment_dataconfirmation']) echo ' checked="checked"'; ?> />
+				<?php printDataUsageNotice(); echo '<strong>*</strong>'; ?>
+			</label>
+		</p>
+		<?php
+	}
 	if ($required) {
 		?>
 		<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>

@@ -174,7 +174,7 @@ class pagedThumbsNav {
 			$this->searchimages = false;
 		}
 
-		if (in_context(ZP_SEARCH_LINKED) && $this->searchimages) {
+		if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED) && $this->searchimages) {
 			$this->images = $_zp_current_search->getImages();
 		} else {
 			$this->images = $_zp_current_album->getImages();

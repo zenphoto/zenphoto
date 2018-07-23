@@ -33,18 +33,6 @@ if (!defined('WEBPATH'))
 				<?php printPasswordForm('', true, false); ?>
 			</div>
 		</div>
-		<div id="credit">
-			<?php
-			if (!zp_loggedin() && function_exists('printRegisterURL') && $_zp_gallery->isUnprotectedPage('register')) {
-				echo '<p>';
-				printRegisterURL(gettext('Register for this site'), '<br />');
-				echo '</p>';
-			}
-			?>
-			<?php printZenphotoLink(); ?>
-		</div>
-		<?php
-		zp_apply_filter('theme_body_close');
-		?>
+		<?php include 'inc-footer.php'; ?>
 	</body>
 </html>

@@ -4,7 +4,8 @@
  * basic functions used by zenphoto i.php
  * Keep this file to the minimum to allow the largest available memory for processing images!
  * Headers not sent yet!
- * @package functions
+ * @package core
+ * @subpackage functions\functions-basic
  *
  */
 // force UTF-8 Ø
@@ -22,6 +23,8 @@ require_once(dirname(__FILE__) . '/functions-common.php');
 global $_zp_conf_vars;
 $const_webpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 $const_serverpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME']));
+
+
 /**
  * see if we are executing out of any of the known script folders. If so we know how to adjust the paths
  * if not we presume the script is in the root of the installation. If it is not the script better have set
@@ -59,7 +62,6 @@ if ($const_webpath == '/' || $const_webpath == '.') {
 if (defined('SERVERPATH')) {
 	$const_serverpath = SERVERPATH;
 }
-
 
 // Contexts (Bitwise and combinable)
 define("ZP_INDEX", 1);
@@ -107,17 +109,6 @@ if (TEST_RELEASE) {
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 $_configMutex = new zpMutex('cF');
-if (OFFSET_PATH != 2 && !file_exists($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
-	reconfigureAction(1);
-}
-// Including the config file more than once is OK, and avoids $conf missing.
-eval('?>' . file_get_contents($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE));
-if (!isset($_zp_conf_vars['special_pages'])) {
-	$_zp_conf_vars['special_pages'] = array();
-}
-
-define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
 
 if (!defined('WEBPATH')) {
 	define('WEBPATH', $const_webpath);
@@ -128,6 +119,44 @@ if (!defined('SERVERPATH')) {
 	define('SERVERPATH', $const_serverpath);
 }
 unset($const_serverpath);
+
+// Including the config file more than once is OK, and avoids $conf missing.
+eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+
+// If the server protocol is not set, set it to the default.
+if (!isset($_zp_conf_vars['server_protocol'])) {
+	$_zp_conf_vars['server_protocol'] = 'http';
+}
+
+//NOTE: SERVER_PROTOCOL is the option, PROTOCOL is what should be used in links
+define('SERVER_PROTOCOL', $_zp_conf_vars['server_protocol']);
+switch (SERVER_PROTOCOL) {
+	case 'https':
+		define('PROTOCOL', 'https');
+		break;
+	default:
+		if (secureServer()) {
+			define('PROTOCOL', 'https');
+		} else {
+			define('PROTOCOL', 'http');
+		}
+		break;
+}
+if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+	require_once(dirname(__FILE__) . '/reconfigure.php');
+	reconfigureAction(1);
+}
+
+
+// Silently setup default rewrite tokens if missing completely or partly from current config file
+if (!isset($_zp_conf_vars['special_pages'])) {
+	$_zp_conf_vars['special_pages'] = getDefaultRewriteTokens(null);
+} else {
+	addMissingDefaultRewriteTokens();
+}
+
+define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
+
 $_zp_mutex = new zpMutex();
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
@@ -137,19 +166,12 @@ if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 
 require_once(dirname(__FILE__) . '/lib-utf8.php');
 
-
-
 if (!defined('CHMOD_VALUE')) {
 	define('CHMOD_VALUE', fileperms(dirname(__FILE__)) & 0666);
 }
 define('FOLDER_MOD', CHMOD_VALUE | 0311);
 define('FILE_MOD', CHMOD_VALUE & 0666);
 define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
-
-// If the server protocol is not set, set it to the default.
-if (!isset($_zp_conf_vars['server_protocol'])) {
-	$_zp_conf_vars['server_protocol'] = 'http';
-}
 
 if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
 	require_once(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php');
@@ -236,26 +258,11 @@ foreach ($_zp_cachefileSuffix as $key => $type) {
 
 require_once(dirname(__FILE__) . '/lib-encryption.php');
 
-//NOTE: SERVER_PROTOCOL is the option PROTOCOL is what should be used in links!!!!
-define('SERVER_PROTOCOL', getOption('server_protocol'));
-switch (SERVER_PROTOCOL) {
-	case 'https':
-		define('PROTOCOL', 'https');
-		break;
-	default:
-		if (secureServer()) {
-			define('PROTOCOL', 'https');
-		} else {
-			define('PROTOCOL', 'http');
-		}
-		break;
-}
-
-if (!defined('COOKIE_PESISTENCE')) {
+if (!defined('COOKIE_PERSISTENCE')) {
 	$persistence = getOption('cookie_persistence');
 	if (!$persistence)
 		$persistence = 5184000;
-	define('COOKIE_PESISTENCE', $persistence);
+	define('COOKIE_PERSISTENCE', $persistence);
 	unset($persistence);
 }
 if ($c = getOption('zenphoto_cookie_path')) {
@@ -291,6 +298,9 @@ define('MEMBERS_ONLY_COMMENTS', getOption('comment_form_members_only'));
 
 define('HASH_SEED', getOption('extra_auth_hash_text'));
 define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
+
+define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
+define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
 
 /**
  * Decodes HTML Special Characters.
@@ -1235,7 +1245,7 @@ function debugLog($message, $reset = false) {
 			$f = fopen($path, 'a');
 			if ($f) {
 				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT}\n");
-			}
+			}	
 		}
 		if ($f) {
 			fwrite($f, "  " . $message . "\n");
@@ -1420,11 +1430,23 @@ function getWatermarkPath($wm) {
 
 /**
  * Checks to see if access was through a secure protocol
- *
+ * 
+ * @since Zenphoto 1.5.1 Extended/adapted from WordPress' `is_ssl()` function: https://developer.wordpress.org/reference/functions/is_ssl/
+ * 
  * @return bool
  */
 function secureServer() {
-	return isset($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']), 'on') === 0;
+	if (isset($_SERVER['HTTPS'])) {
+		if ('on' == strtolower($_SERVER['HTTPS'])) {
+			return true;
+		}
+		if ('1' == $_SERVER['HTTPS']) {
+			return true;
+		}
+	} elseif (isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] )) {
+		return true;
+	}
+	return false;
 }
 
 /**
@@ -1586,6 +1608,44 @@ function zp_session_destroy() {
 }
 
 /**
+ * Reads the core default rewrite token define array from the config template file `zenphoto_cfg.txt`.
+ * Used primarily in case it is missing from the current config file as silent fallback and within the rewriteToken plugin
+ * 
+ * @param string $token The token to get, e.g. "gallery". If the token is not existing or NULL the whole definition array is returned
+ * @return array
+ */
+function getDefaultRewriteTokens($token = null) {
+	global $_zp_default_rewritetokens; 
+	if(!is_array($_zp_default_rewritetokens)) {
+		$zp_cfg = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto_cfg.txt');
+		$i = strpos($zp_cfg, "\$conf['special_pages']");
+		$j = strpos($zp_cfg, '//', $i);
+		eval(substr($zp_cfg, $i, $j - $i));
+		$_zp_default_rewritetokens = $conf['special_pages'];
+		unset($conf);
+	}
+	if(isset($_zp_default_rewritetokens[$token])) {
+		return $_zp_default_rewritetokens[$token];
+	} else {
+		return $_zp_default_rewritetokens;
+	}
+}
+
+/**
+ * Adds missing individual default rewrite tokens to $_zp_conf_vars['special_pages'] 
+ * @global array $_zp_conf_vars
+ */
+function addMissingDefaultRewriteTokens() {
+	global $_zp_conf_vars;
+	$tokens = array_keys(getDefaultRewriteTokens(null));
+	foreach($tokens as $token) {
+		if (!isset($_zp_conf_vars['special_pages'][$token])) {
+			$_zp_conf_vars['special_pages'][$token] = getDefaultRewriteTokens($token);
+		}
+	}
+}
+
+/**
  * Zenphoto Mutex class
  * @author Stephen
  *
@@ -1665,5 +1725,3 @@ class zpMutex {
 	}
 
 }
-
-?>

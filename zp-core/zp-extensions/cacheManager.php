@@ -314,12 +314,67 @@ class cacheManager {
 		}
 		return false;
 	}
-
-	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = NULL) {
-		$cacheSize = serialize(array('theme'				 => $theme, 'apply'				 => false, 'image_size'	 => $size, 'image_width'	 => $width, 'image_height' => $height,
-						'crop_width'	 => $cw, 'crop_height'	 => $ch, 'crop_x'			 => $cx, 'crop_y'			 => $cy, 'thumb'				 => $thumb, 'wmk'					 => $watermark, 'gray'				 => $effects, 'maxspace'		 => $maxspace, 'valid'				 => 1));
+	
+	/**
+	 * Adds a custom image cache size for themes and – despite the method name – also for plugins
+	 * 
+	 * @param string $theme Name of the theme (or plugin) this belongs to
+	 * @param int $size
+	 * @param int $width
+	 * @param int $height
+	 * @param int $cw crop width
+	 * @param int $ch crop height
+	 * @param int $cx crop x
+	 * @param int $cy crop y
+	 * @param bool $thumb
+	 * @param bool $watermark
+	 * @param string $effects
+	 * @param bool $maxspace
+	 */
+	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = false) {
+		$cacheSize = serialize(array(
+				'theme' => $theme,
+				'apply' => false,
+				'image_size' => $size,
+				'image_width' => $width,
+				'image_height' => $height,
+				'crop_width' => $cw,
+				'crop_height' => $ch,
+				'crop_x' => $cx,
+				'crop_y' => $cy,
+				'thumb' => $thumb,
+				'wmk' => $watermark,
+				'gray' => $effects,
+				'maxspace' => $maxspace,
+				'valid' => 1));
 		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($theme) . ',' . db_quote($cacheSize) . ')';
 		query($sql);
+	}
+	
+	/**
+	 * Adds the default theme thumb cache size
+	 * 
+	 * @param string $theme The theme this size belongs to
+	 */
+	static function addThemeDefaultThumbSize($theme) {
+		$thumb_cw = $thumb_ch = null;
+		if (getThemeOption('thumb_crop')) {
+			$thumb_cw = getThemeOption('thumb_crop_width');
+			$thumb_ch = getThemeOption('thumb_crop_height');
+		}
+		$thumb_effect = getThemeOption('thumb_gray') ? 'gray' : null;
+		$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
+		cacheManager::addThemeCacheSize($theme, getThemeOption('thumb_size'), $thumb_cw, $thumb_ch, null, null, null, null, true, $thumb_wmk, $thumb_effect, null);
+	}
+
+	/**
+	 * Adds the default sized image cache size 
+	 * @param string $theme The theme this size belongs to
+	 */
+	static function addThemeDefaultSizedImageSize($theme) {
+		$img_effect = getThemeOption('image_gray') ? 'gray' : null;
+		$img_wmk = getOption('fullimage_watermark') ? getOption('fullimage_watermark') : null;
+		cacheManager::addThemeCacheSize($theme, getThemeOption('image_size'), null, null, null, null, null, null, false, $img_wmk, $img_effect, null);
 	}
 
 	/**

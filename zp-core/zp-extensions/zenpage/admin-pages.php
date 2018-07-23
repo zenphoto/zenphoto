@@ -149,7 +149,7 @@ zenpageJSCSS();
 								gettext('Enable comments')		 => 'commentson'
 				);
 				if (extensionEnabled('hitcounter')) {
-					$checkarray['Reset hitcounter'] = 'resethitcounter';
+					$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
 				}
 				printBulkActions($checkarray);
 				?>

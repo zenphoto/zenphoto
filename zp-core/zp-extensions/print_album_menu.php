@@ -24,10 +24,6 @@ $plugin_category = gettext('Media');
 
 $option_interface = 'print_album_menu';
 
-if (!defined('MENU_TRUNCATE_STRING'))
-	define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
-if (!defined('MENU_TRUNCATE_INDICATOR'))
-	define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
 define('ALBUM_MENU_COUNT', getOption('print_album_menu_count'));
 define('ALBUM_MENU_SHOWSUBS', getOption('print_album_menu_showsubs'));
 
@@ -42,8 +38,6 @@ class print_album_menu {
 	function __construct() {
 		setOptionDefault('print_album_menu_showsubs', 0);
 		setOptionDefault('print_album_menu_count', 1);
-		setOptionDefault('menu_truncate_string', 0);
-		setOptionDefault('menu_truncate_indicator', '');
 	}
 
 	function getOptionsSupported() {

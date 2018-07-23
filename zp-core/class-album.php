@@ -2,7 +2,8 @@
 
 /**
  * Album Class
- * @package classes
+ * @package core
+ * @subpackage classes\objects
  */
 // force UTF-8 Ø
 
@@ -234,12 +235,6 @@ class AlbumBase extends MediaObject {
 	 *        'album_sortdirection' if you want it for the album
 	 */
 	function setSortDirection($val, $what = 'image') {
-		if (is_string($val)) {
-			internal_deprecations::setSortDirection();
-			$t = $val;
-			$val = $what;
-			$what = $t;
-		}
 		if ($what == 'image') {
 			$this->set('image_sortdirection', (int) ($val && true));
 		} else {
@@ -259,30 +254,6 @@ class AlbumBase extends MediaObject {
 		} else {
 			$this->set('subalbum_sort_type', $sorttype);
 		}
-	}
-
-	/**
-	 * Returns the sort type for subalbums in this album.
-	 *
-	 * Will return a parent sort type if the sort type for this album is empty.
-	 *
-	 * @return string
-	 * @deprecated since version 1.4.5
-	 */
-	function getAlbumSortType() {
-		internal_deprecations::getAlbumSortType();
-		return $this->getSortType('album');
-	}
-
-	/**
-	 * Stores the subalbum sort type for this abum
-	 *
-	 * @param string $sorttype the subalbum sort type
-	 * @deprecated since version 1.4.5
-	 */
-	function setSubalbumSortType($sorttype) {
-		internal_deprecations::setAlbumSortType();
-		$this->setSortType($sorttype, 'album');
 	}
 
 	/**
@@ -538,45 +509,12 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
-	 * Gets the thumbnail URL for the album thumbnail image as returned by $this->getAlbumThumbImage();
-	 * @return string
-	 * @deprecated since version 1.4.6
-	 */
-	function getAlbumThumb() {
-		internal_deprecations::getAlbumThumb();
-		return $this->getThumb();
-	}
-
-	/**
 	 * Stores the thumbnail path for an album thumg
 	 *
 	 * @param string $filename thumbnail path
 	 */
 	function setThumb($filename) {
 		$this->set('thumb', $filename);
-	}
-
-	/**
-	 * Stores the thumbnail path for an album thumg
-	 *
-	 * @param string $filename thumbnail path
-	 * @deprecated since version 1.4.6
-	 */
-	function setAlbumThumb($filename) {
-		internal_deprecations::setAlbumThumb();
-		$this->setThumb($filename);
-	}
-
-	/**
-	 * Returns an URL to the album, including the current page number
-	 *
-	 * @param string $page if not null, apppend as page #
-	 * @return string
-	 * @deprecated since version 1.4.6
-	 */
-	function getAlbumLink($page = NULL) {
-		internal_deprecations::getAlbumLink();
-		return $this->getLink();
 	}
 
 	/**

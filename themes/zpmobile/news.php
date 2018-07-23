@@ -2,7 +2,6 @@
 // force UTF-8 Ø
 if (!defined('WEBPATH'))
 	die();
-if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 	?>
 	<!DOCTYPE html>
 	<html>
@@ -43,8 +42,10 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 							?>
 							<br class="clearall" /><br />
 							<?php printNewsCategories(', ', gettext('Categories: '), 'catlist'); ?>
-							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'catlist', ', '); ?>
-							<?php
+							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'catlist', ', '); 
+							if(class_exists('ScriptlessSocialSharing')) {
+								ScriptlessSocialSharing::printButtons();
+							}
 							if (function_exists('printCommentForm')) {
 								printCommentForm();
 							}
@@ -95,8 +96,3 @@ if (class_exists('Zenpage') && ZP_NEWS_ENABLED) {
 	?>
 		</body>
 	</html>
-	<?php
-} else {
-	include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
-}
-?>

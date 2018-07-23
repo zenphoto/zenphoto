@@ -4,6 +4,7 @@
  * Common functions used in the controller for getting/setting current classes,
  * redirecting URLs, and working with the context.
  * @package core
+ * @subpackage functions\functions-controller
  */
 // force UTF-8 Ø
 
@@ -214,12 +215,15 @@ function zp_load_image($folder, $filename) {
  */
 function load_zenpage_pages($titlelink) {
 	global $_zp_current_zenpage_page;
+	if (!ZP_PAGES_ENABLED) {
+		return false;
+	}
 	$_zp_current_zenpage_page = new ZenpagePage($titlelink);
 	if ($_zp_current_zenpage_page->loaded) {
 		add_context(ZP_ZENPAGE_PAGE | ZP_ZENPAGE_SINGLE);
 	} else {
 		$_GET['p'] = 'PAGES:' . $titlelink;
-		return NULL;
+		return false;
 	}
 	return $_zp_current_zenpage_page;
 }
@@ -235,6 +239,9 @@ function load_zenpage_pages($titlelink) {
  */
 function load_zenpage_news($request) {
 	global $_zp_current_zenpage_news, $_zp_current_category, $_zp_post_date;
+	if (!ZP_NEWS_ENABLED) {
+		return false;
+	}
 	if (isset($request['date'])) {
 		add_context(ZP_ZENPAGE_NEWS_DATE);
 		$_zp_post_date = removeTrailingSlash(sanitize($request['date']));
@@ -321,14 +328,14 @@ function prepareIndexPage() {
  */
 function prepareAlbumPage() {
 	global $_zp_current_album, $_zp_gallery_page, $_zp_script;
+	$theme = setupTheme();
+	$_zp_gallery_page = "album.php";
+	$_zp_script = THEMEFOLDER . "/$theme/album.php";
 	if ($search = $_zp_current_album->getSearchEngine()) {
 		zp_setCookie("zenphoto_search_params", $search->getSearchParams(), SEARCH_DURATION);
 	} else {
 		handleSearchParms('album', $_zp_current_album);
 	}
-	$theme = setupTheme();
-	$_zp_gallery_page = "album.php";
-	$_zp_script = THEMEFOLDER . "/$theme/album.php";
 	return $theme;
 }
 
@@ -342,7 +349,7 @@ function prepareImagePage() {
 	handleSearchParms('image', $_zp_current_album, $_zp_current_image);
 	$theme = setupTheme();
 	$_zp_gallery_page = basename($_zp_script = THEMEFOLDER . "/$theme/image.php");
-// re-initialize video dimensions if needed
+	// re-initialize video dimensions if needed
 	if (isImageVideo()) {
 		$_zp_current_image->updateDimensions();
 	}

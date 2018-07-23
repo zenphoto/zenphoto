@@ -309,6 +309,9 @@ setOptionDefault('AlbumThumbSelect', 1);
 purgeOption('AlbumThumbSelectField');
 purgeOption('AlbumThumbSelectDirection');
 
+setOptionDefault('menu_truncate_string', 0);
+setOptionDefault('menu_truncate_indicator', '');
+
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
 setOptionDefault('site_email_name', 'Zenphoto');
 

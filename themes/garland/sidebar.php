@@ -20,7 +20,7 @@ if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NU
 } else { //	"standard zenpage sidebar menus
 	?>
 	<!-- standard menu -->	<?php
-	if (extensionEnabled('zenpage') && ZP_NEWS_ENABLED) {
+	if (ZP_NEWS_ENABLED) {
 		if (getNumNews(true)) {
 			?>
 			<div class="menu">
@@ -57,7 +57,7 @@ if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NU
 		</div>
 		<?php
 	} else {
-		if (extensionEnabled('zenpage')) {
+		if (ZP_NEWS_ENABLED || ZP_PAGES_ENABLED) {
 			?>
 			<div class="menu">
 				<h3><?php echo gettext("Albums"); ?></h3>
@@ -73,7 +73,7 @@ if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NU
 	?>
 
 	<?php
-	if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+	if (ZP_PAGES_ENABLED) {
 		if (getNumPages(true)) {
 			?>
 			<div class="menu">

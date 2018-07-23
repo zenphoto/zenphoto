@@ -1,7 +1,6 @@
 <?php
 define('OFFSET_PATH', 3);
 require_once("../../../../functions.php");
-$host = "http://".html_encode($_SERVER["HTTP_HOST"]);
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,24 +26,12 @@ if(isset($_GET['image']) && isset($_GET['album'])) {
 			case '.flv':
 			case '.mp4':
 			case '.m4v':
-				echo '<video src="http://localhost/'.pathurlencode($imageobj->getFullImage()).'" id="player"></video>';
+				echo '<video src="'.pathurlencode($imageobj->getFullImage()).'" id="player"></video>';
 				break;
 			case '.mp3':
 			case '.fla':
 			case '.m4a':
 				echo '<audio src="'.pathurlencode($imageobj->getFullImage()).'" id="player"></audio>';
-				break;
-			case '.3gp':
-			case '.mov':
-				echo '</a>
-				<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="400" height="400" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
-				<param name="src" value="' . pathurlencode($imageobj->getFullImage()) . '"/>
-				<param name="autoplay" value="false" />
-				<param name="type" value="video/quicktime" />
-				<param name="controller" value="true" />
-				<embed src="' . pathurlencode($imageobj->getFullImage()) . '" width="400" height="400" scale="aspect" autoplay="false" controller"true" type="video/quicktime"
-					pluginspage="http://www.apple.com/quicktime/download/" cache="true"></embed>
-				</object><a>';
 				break;
 			}
 	} else {

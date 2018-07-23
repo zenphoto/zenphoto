@@ -190,13 +190,14 @@ class ZenpagePage extends ZenpageItems {
 	 * @param int $number number of pages to get (NULL by default for all)
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular", "mostrated", "toprated", "random"
 	 * @param string $sortdirection false for ascending, true for descending
+	 * @param string $author Optional author name to get the pages of
 	 * @return array
 	 */
-	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL) {
+	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null) {
 		global $_zp_zenpage;
 		$subpages = array();
 		$sortorder = $this->getSortOrder();
-		$pages = $_zp_zenpage->getPages($published, false, $number, $sorttype, $sortdirection, $this);
+		$pages = $_zp_zenpage->getPages($published, false, $number, $sorttype, $sortdirection, $author);
 		foreach ($pages as $page) {
 			if ($page['parentid'] == $this->getID() && $page['sort_order'] != $sortorder) { // exclude the page itself!
 				array_push($subpages, $page);
@@ -204,17 +205,6 @@ class ZenpagePage extends ZenpageItems {
 		}
 		return $subpages;
 	}
-
-	/**
-	 * Gets the sub pages recursivly by titlelink
-	 * @return array
-	 * @deprecated
-	 */
-	function getSubPages() {
-		Zenpage_internal_deprecations::getSubPages();
-		return $this->getPages();
-	}
-
 
 	/**
 	 * Checks if user is allowed to access the page
@@ -299,17 +289,6 @@ class ZenpagePage extends ZenpageItems {
 	 */
 	function getLink() {
 		return zp_apply_filter('getLink', rewrite_path(_PAGES_ . '/' . $this->getTitlelink() . '/', '/index.php?p=pages&title=' . $this->getTitlelink()), $this, NULL);
-	}
-
-	/**
-	 * Returns full path to a specific page
-	 *
-	 * @return string
-	 * @deprecated since version 1.4.6
-	 */
-	function getPageLink() {
-		Zenpage_internal_deprecations::getPageLink();
-		return $this->getLink();
 	}
 
 }

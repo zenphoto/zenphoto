@@ -3,6 +3,7 @@
  * Database core functions if no supported database is configured in PHP
  *
  * @package core
+ * @subpackage database-handlers\functions-db-null
  */
 
 // force UTF-8 Ø

@@ -3,6 +3,7 @@
  * basic functions used by zenphoto
  *
  * @package core
+ * @subpackage functions\functions-main
  *
  */
 // force UTF-8 Ø
@@ -24,7 +25,6 @@ if (!class_exists('tidy')) {
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
 $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
 //setup session before checking for logon cookie
-define('SITE_LOCALE', getOptionFromDB('locale'));
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
 if (GALLERY_SESSION) {
@@ -46,6 +46,22 @@ $_zp_albumthumb_selector = array(array('field' => '', 'direction' => '', 'desc' 
 
 $_zp_missing_album = new AlbumBase(gettext('missing'), false);
 $_zp_missing_image = new Transientimage($_zp_missing_album, SERVERPATH . '/' . ZENFOLDER . '/images/err-imagenotfound.png');
+
+if (extensionEnabled('zenpage')) {
+	if (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'news') {
+		define('ZP_NEWS_ENABLED', true);
+	} else {
+		define('ZP_NEWS_ENABLED', false);
+	}
+	if (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'pages') {
+		define('ZP_PAGES_ENABLED', true);
+	} else {
+		define('ZP_PAGES_ENABLED', false);
+	}
+} else {
+	define('ZP_NEWS_ENABLED', false);
+	define('ZP_PAGES_ENABLED', false);
+}
 
 /**
  * parses the allowed HTML tags for use by htmLawed
@@ -197,14 +213,14 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 			$shorten = $l1;
 		}
 		$short = truncate_string($articlecontent, $shorten, '');
-		if ($short != $articlecontent) { //	we actually did remove some stuff
+		if ($short != $articlecontent || $forceindicator) { //	we actually did remove some stuff
 			// drop open tag strings
-			$open = mb_strrpos($short, '<');
-			if ($open > mb_strrpos($short, '>')) {
+			$open = mb_strrpos($short, '</');
+			if ($open) {
 				$short = mb_substr($short, 0, $open);
 			}
 			$short = tidyHTML($short . $shortenindicator);
-		}
+		} 
 		$articlecontent = $short;
 	}
 	if (isset($matches)) {
@@ -898,13 +914,15 @@ function getAllSubAlbumIDs($albumfolder = '') {
  */
 function handleSearchParms($what, $album = NULL, $image = NULL) {
 	global $_zp_current_search, $zp_request, $_zp_last_album, $_zp_current_album,
-	$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_loggedin;
+	$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_loggedin, $_zp_gallery_page;
 	$_zp_last_album = zp_getCookie('zenphoto_last_album');
 	if (is_object($zp_request) && get_class($zp_request) == 'SearchEngine') { //	we are are on a search
+		zp_setCookie('zenphoto_searchparent', 'searchresults');
 		return $zp_request->getAlbumList();
 	}
 	$params = zp_getCookie('zenphoto_search_params');
 	if (!empty($params)) {
+		$searchparent = zp_getCookie('zenphoto_searchparent');
 		$context = get_context();
 		$_zp_current_search = new SearchEngine();
 		$_zp_current_search->setSearchParams($params);
@@ -921,6 +939,9 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		if (!is_null($album)) {
 			$albumname = $album->name;
 			zp_setCookie('zenphoto_last_album', $albumname);
+			if ($_zp_gallery_page == 'album.php') {
+				$searchparent = 'searchresults_album'; // so we know we are in an album search result so any of its images that are also results don't throw us out of context
+			}
 			if (hasDynamicAlbumSuffix($albumname) && !is_dir(ALBUM_FOLDER_SERVERPATH . $albumname)) {
 				$albumname = stripSuffix($albumname); // strip off the suffix as it will not be reflected in the search path
 			}
@@ -931,11 +952,17 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			$_zp_loggedin = $save_logon;
 			foreach ($search_album_list as $searchalbum) {
 				if (strpos($albumname, $searchalbum) !== false) {
-					$context = $context | ZP_SEARCH_LINKED | ZP_ALBUM_LINKED;
+					if($searchparent == 'searchresults_album' && $_zp_last_album == $albumname) {
+						$context = $context | ZP_SEARCH_LINKED | ZP_ALBUM_LINKED;
+					} else {
+						$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
+					}
 					break;
 				}
 			}
+			zp_setCookie('zenphoto_searchparent', $searchparent);
 		} else {
+			zp_clearCookie('zenphoto_searchparent');
 			zp_clearCookie('zenphoto_last_album');
 		}
 		if (!is_null($_zp_current_zenpage_page)) {
@@ -1195,14 +1222,14 @@ function getTagCountByAccess($tag) {
             }
             break;
           case 'news':
-            if (extensionEnabled('Zenpage') && ZP_NEWS_ENABLED) {
+            if (ZP_NEWS_ENABLED) {
               if (!in_array($tagcheck['objectid'], $hidenews)) {
                 $count++;
               }
             }
             break;
           case 'pages':
-            if (extensionEnabled('Zenpage') && ZP_PAGES_ENABLED) {
+            if (ZP_PAGES_ENABLED) {
               if (!in_array($tagcheck['objectid'], $hidepages)) {
                 $count++;
               }
@@ -1293,24 +1320,30 @@ function readTags($id, $tbl) {
  *
  * @param array $currentValue list of items to be flagged as checked
  * @param array $list the elements of the select list
- * @param bool $descending set true for a reverse order sort
+ * @param bool $descending set true for a ascending order sort. Set to null to keep the array as it is passed.
+ * @param bool $localize set true if the keys as description should be listed instead of the plain values
  */
 function generateListFromArray($currentValue, $list, $descending, $localize) {
 	if ($localize) {
 		$list = array_flip($list);
-		if ($descending) {
-			arsort($list);
-		} else {
-			natcasesort($list);
+		if(!is_null($descending)) {
+			if ($descending) {
+				arsort($list);
+			} else {
+				natcasesort($list);
+			}
 		}
 		$list = array_flip($list);
 	} else {
-		if ($descending) {
-			rsort($list);
-		} else {
-			natcasesort($list);
+		if(!is_null($descending)) {
+			if ($descending) {
+				rsort($list);
+			} else {
+				natcasesort($list);
+			}
 		}
 	}
+	
 	foreach ($list as $key => $item) {
 		echo '<option value="' . html_encode($item) . '"';
 		if (in_array($item, $currentValue)) {
@@ -1330,7 +1363,7 @@ function generateListFromArray($currentValue, $list, $descending, $localize) {
  * @param strig $currentValue the current value of the selector
  * @param string $root directory path to search
  * @param string $suffix suffix to select for
- * @param bool $descending set true to get a reverse order sort
+ * @param bool $descending set true to get a reverse order sort. Set to null to keep the array as it is passed.
  */
 function generateListFromFiles($currentValue, $root, $suffix, $descending = false) {
 	if (is_dir($root)) {
@@ -2051,42 +2084,73 @@ function commentsAllowed($type) {
  * Returns the viewer's IP address
  * Deals with transparent proxies
  *
- * @param bool $anonymize_ip If null (default) the backend option setting is used. Override with true or false.
+ * @param bool $anonymize If null (default) the backend option setting is used. Override with anonymize levels 
+ * - 0 (No anonymizing)
+ * - 1 (Last fourth anonymized)
+ * - 2 (Last half anonymized)
+ * - 3 (Last three fourths anonymized)
+ * - 4 (Full anonymization, no IP stored)
  * @return string
  */
-function getUserIP($anonymize_ip = null) {
-	if (is_null($anonymize_ip)) {
-		$anonymize_ip = (bool) getOption('anonymize_ip');
-	}
-	$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
+function getUserIP($anonymize = null) {
 	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 		$ip = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
-		if (preg_match($pattern, $ip)) {
-			if ($anonymize_ip) {
-				$ip = getAnonymIp($ip);
-			}
-			return $ip;
+		if (filter_var($ip, FILTER_VALIDATE_IP)) {
+			return getAnonymIP($ip, $anonymize);
 		}
 	}
 	$ip = sanitize($_SERVER['REMOTE_ADDR']);
-	if (preg_match($pattern, $ip)) {
-		if ($anonymize_ip) {
-			$ip = getAnonymIp($ip);
-		}
-		return $ip;
+	if (filter_var($ip, FILTER_VALIDATE_IP)) {
+		return getAnonymIP($ip, $anonymize);
 	}
 	return NULL;
 }
 
 /**
- * Replaces the last chunk of an ip address with 0 for privacy concerns.
+ * Anonymizing of IP addresses
+ * @param bool $anonymize If null (default) the backend option setting is used. Override with anonymize levels 
+ * - 0 (No anonymizing)
+ * - 1 (Last fourth anonymized)
+ * - 2 (Last half anonymized)
+ * - 3 (Last three fourths anonymized)
+ * - 4 (Full anonymization, no IP stored)
  * 
- * @author Ralf Kerkhoff
- * @param string $ip IP address
  * @return string
  */
-function getAnonymIp($ip) {
-	return preg_replace('/[0-9]+\z/', '0', $ip);
+function getAnonymIP($ip, $anonymize = null) {
+	if (is_null($anonymize)) {
+		$anonymize = getOption('anonymize_ip');
+	}
+	$is_ipv6 = filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
+	switch ($anonymize) {
+		case 0; // No anonymizing
+			return $ip;
+		default:
+		case 1; // Last fourth anonymized
+			if ($is_ipv6) {
+				return preg_replace('~[0-9a-zA-Z]*:[0-9a-zA-Z]+$~', '0:0', $ip);
+			} else {
+				return preg_replace('~[0-9a-zA-Z]+$~', '0', $ip);
+			}
+		case 2: // Last half anonymized
+			if ($is_ipv6) {
+				return preg_replace('~[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]+$~', '0:0:0:0', $ip);
+			} else {
+				return preg_replace('~[0-9a-zA-Z]*.[0-9a-zA-Z]+$~', '0.0', $ip);
+			}
+		case 3: // Last three fourths anonymized
+			if ($is_ipv6) {
+				return preg_replace('~[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]*:[0-9a-zA-Z]+$~', '0:0:0:0:0:0', $ip);
+			} else {
+				return preg_replace('~[0-9a-zA-Z]*.[0-9a-zA-Z]*.[0-9a-zA-Z]+$~', '0.0.0', $ip);
+			}
+		case 4: // Full anonymization, no IP stored
+			if ($is_ipv6) {
+				return '0:0:0:0:0:0:0:0';
+			} else {
+				return '0.0.0.0';
+			}
+	}
 }
 
 /**
@@ -2873,6 +2937,59 @@ function removeTrailingSlash($string) {
 }
 
 /**
+ * Returns an array the data privacy policy page and the data usage confirmation text as defined on Options > Security
+ * array(
+ *	'notice' => '<The defined text>',
+ *	'url' => '<url to the define page either custom page url or Zenpage page>',
+ *	'linktext' => '<The defined text>'
+ * )
+ * 
+ * @since Zenphoto 1.5
+ * 
+ * @return array
+ */
+function getDataUsageNotice() {
+	$array = array('notice' => '', 'url' => '', 'linktext' => '');
+	$array['linktext'] = get_language_string(getOption('dataprivacy_policy_customlinktext'));
+	$array['notice'] = get_language_string(getOption('dataprivacy_policy_notice'));
+	$custompage = trim(getOption('dataprivacy_policy_custompage'));
+	$zenpage_page =  '';
+	if(empty($array['notice'])) {
+		$array['notice'] = gettext('By using this form you agree with the storage and handling of your data by this website.');
+	} 
+	if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+		$zenpage_page = getOption('dataprivacy_policy_zenpage');
+		if($zenpage_page == 'none') {
+			$zenpage_page = '';
+		}
+	}
+	if(!empty($custompage)) {
+		$array['url'] = $custompage;
+	} else if(!empty($zenpage_page)) {
+		$obj = new ZenpagePage($zenpage_page);
+		$array['url'] = $obj->getLink();
+	}
+	if(empty($array['linktext'])) {
+		$array['linktext'] = gettext('More info on our data privacy policy.');
+	} 
+	return $array;
+}
+
+/**
+ * Prints the data privacy policy page and the data usage confirmation text as defined on Options > Security
+ * If there is no page defined it only prints the default text.
+ * 
+ * @since Zenphoto 1.5
+ */
+function printDataUsageNotice() {
+	$data = getDataUsageNotice();
+	echo $data['notice'];
+	if(!empty($data['url'])) {
+		printLinkHTML($data['url'], $data['linktext'], $data['linktext'], null, null);
+	}
+}
+
+/**
  * Standins for when no captcha is enabled
  */
 class _zp_captcha {
@@ -2916,4 +3033,3 @@ class _zp_HTML_cache {
 
 }
 setexifvars();
-

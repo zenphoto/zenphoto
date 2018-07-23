@@ -41,7 +41,7 @@
  */
 $plugin_is_filter = 9 | CLASS_PLUGIN;
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto.");
-$plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> or the <em>stopdesign</em> theme.");
+$plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by the <em>basic</em> theme.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_category = gettext('Media');
 $option_interface = 'zenpagecms';
@@ -133,6 +133,7 @@ zp_register_filter('admin_toolbox_pages', 'zenpagecms::admin_toolbox_pages');
 zp_register_filter('themeSwitcher_head', 'zenpagecms::switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'zenpagecms::switcher_controllink', 0);
 zp_register_filter('load_theme_script', 'zenpagecms::switcher_setup', 99);
+zp_register_filter('load_theme_script', 'zenpagecms::disableZenpageItems', 0);
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class-news.php');
@@ -152,8 +153,6 @@ class zenpagecms {
 			gettext($str = 'Read more');
 			setOptionDefault('zenpage_read_more', getAllTranslations($str));
 			setOptionDefault('zenpage_indexhitcounter', false);
-			setOptionDefault('menu_truncate_string', 0);
-			setOptionDefault('menu_truncate_indicator', '');
 			setOptionDefault('enabled-zenpage-items', 'news-and-pages');
 		}
 	}
@@ -171,7 +170,7 @@ class zenpagecms {
 								gettext('Enable news') => 'news',
 								gettext('Enable pages') => 'pages'
 						),
-						'desc' => gettext('This enables or disables the admin tabs for pages and/or news articles. To hide news and/or pages content on the front end as well, themes must be setup to use <br><code>if(extensionEnabled("zenpage") && ZP_NEWS_ENABLED) { … }</code> or <br><code>if(extensionEnabled("zenpage") && ZP_PAGES_ENABLED) { … }</code> in appropriate places. Same if disabled items should blocked as they otherwise still can be accessed via direct links. <p class="notebox"><strong>NOTE:</strong> This does not delete content and is not related to management rights.</p>')
+						'desc' => gettext('This enables or disables the admin tabs for pages and/or news articles. To hide news and/or pages content on the front end as well, themes must be setup to use <br><code>if(ZP_NEWS_ENABLED) { … }</code> or <br><code>if(ZP_PAGES_ENABLED) { … }</code> in appropriate places. Same if disabled items should blocked as they otherwise still can be accessed via direct links. <p class="notebox"><strong>NOTE:</strong> This does not delete content and is not related to management rights.</p>')
 				), // The description of the option
 				gettext('Articles per page (theme)') => array(
 						'key' => 'zenpage_articles_per_page',
@@ -183,7 +182,7 @@ class zenpagecms {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 1,
 						'desc' => gettext("The length of news article excerpts in news or news category pages. Leave empty for full text.") . '<br />' .
-						gettext("You can also set a custom article shorten length for the news loop excerpts by using the standard TinyMCE <em>page break</em> plugin button (or manually using the html comment snippet <code>&lt;!-- pagebreak --&gt;</code>. If set, this will override this option.")),
+						gettext("You can also set a custom article shorten length for the news loop excerpts by using the standard TinyMCE <em>page break</em> plugin button (or manually using the html comment snippet <code>&lt;!-- pagebreak --&gt;</code>). If set, this will override this option.")),
 				gettext('News article text shorten indicator') => array(
 						'key' => 'zenpage_textshorten_indicator',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -227,6 +226,25 @@ class zenpagecms {
 
 	function handleOption($option, $currentValue) {
 
+	}
+	
+	static function disableZenpageItems($script, $valid) {
+		global $_zp_gallery_page;
+		if ($script && $valid) {
+			switch ($_zp_gallery_page) {
+				case 'news.php':
+					if (!ZP_NEWS_ENABLED) {
+						$script = '404.php';
+					}
+					break;
+				case 'pages.php':
+					if (!ZP_PAGES_ENABLED) {
+						$script = '404.php';
+					}
+					break;
+			}
+			return $script;
+		}
 	}
 
 	static function switcher_head($list) {

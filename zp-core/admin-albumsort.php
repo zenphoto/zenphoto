@@ -81,7 +81,7 @@ echo "\n</head>";
 					gettext('Change owner')				 => 'changeowner'
 	);
 	if (extensionEnabled('hitcounter')) {
-		$checkarray_images['Reset hitcounter'] = 'resethitcounter';
+		$checkarray_images[gettext('Reset hitcounter')] = 'resethitcounter';
 	}
 	$checkarray_images = zp_apply_filter('bulk_image_actions', $checkarray_images);
 

@@ -8,19 +8,21 @@
  * Album sitemaps are split into individual sitemaps per album (incl. all albums pages) and image sitemaps
  * into individual sitemaps per album.
  *
+ * Based on the plugin by Jeppe Toustrup (Tenzer) http://github.com/Tenzer/zenphoto-sitemap 
+ *
  * The sitemapindex file can be referenced via <var>www.yourdomain.com/zenphoto/index.php?sitemap</var> or
  * with modrewrite <var>www.yourdomain.com/zenphoto/?sitemap</var>.
  *
  * <b>IMPORTANT:</b> A multilingual sitemap requires the <var>dynamic-locale</var> plugin and either the <var>seo_locale</var> plugin or <i>language subdomains</i>.
  *
- * @author Malte Müller (acrylian) based on the plugin by Jeppe Toustrup (Tenzer) http://github.com/Tenzer/zenphoto-sitemap and on contributions by timo, Blue Dragonfly and Francois Marechal (frankm)
+ * @author Malte Müller (acrylian), Jeppe Toustrup (Tenzer), timo, Blue Dragonfly and Francois Marechal (frankm)
  * @package plugins
  * @subpackage sitemap-extended
  */
 $plugin_is_filter = 0 | CLASS_PLUGIN;
 $plugin_description = gettext('Generates sitemap.org compatible XML files for use with Google and other search engines.');
 $plugin_notice = gettext('<strong>Note:</strong> The index links may not match if using the Zenpage option "news on index" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!!');
-$plugin_author = 'Malte Müller (acrylian)';
+$plugin_author = 'Malte Müller (acrylian), Jeppe Toustrup (Tenzer), timo, Blue Dragonfly and Francois Marechal (frankm)';
 $plugin_category = gettext('SEO');
 $option_interface = 'sitemapOptions';
 
@@ -357,7 +359,7 @@ class sitemap {
 				}
 				break;
 		}
-		return sitemap_getISO8601Date($date);
+		return sitemap::getISO8601Date($date);
 		// For more streamlined but PHP5-only equivalent, remove the above line and uncomment the following:
 		// return gmstrftime(DATE_ISO8601, strtotime($date));
 	}

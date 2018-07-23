@@ -42,6 +42,8 @@
  *
  * [kses strips evil scripts!]
  * 
+ * @package core
+ * @subpackage libraries\lib-kses
  */
 
 /**

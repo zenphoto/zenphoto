@@ -3,6 +3,7 @@
 /**
  * library for image handling using the GD library of functions
  * @package core
+ * @subpackage graphic-handlers\lib-gd
  */
 // force UTF-8 Ø
 

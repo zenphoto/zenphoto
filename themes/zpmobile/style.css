@@ -325,6 +325,19 @@ padding: 2px;
 vertical-align: top;
 }
 
+/* OpenStreetMap  */
+div#osm_map {
+	margin: 20px 0;
+}
+
+/* Scriptless Social Sharing */
+ul.scriptless_socialsharing li {
+	display: inline-block !important;
+}
+
+ul.scriptless_socialsharing li a {
+	text-decoration: none;
+}
 
 /* comments
 ------------------------------ */

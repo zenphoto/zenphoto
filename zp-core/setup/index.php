@@ -23,8 +23,8 @@ if (version_compare(PHP_VERSION, PHP_MIN_VERSION, '<')) {
 }
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
 
-$session = session_start();
 session_cache_limiter('nocache');
+$session = session_start();
 
 header('Content-Type: text/html; charset=UTF-8');
 header("HTTP/1.0 200 OK");
@@ -477,6 +477,9 @@ if (empty($prevRel)) {
 	if ($prevRel[0] == 1 && $prevRel[1] <= 3) {
 		$c = $c - 8; // there were only two 1.3.x releases
 	}
+	if ($prevRel[0] == 1 && $prevRel[1] <= 4) {
+		$c = $c - 10; // there were 14 1.4.x releases
+	} 
 	switch ($c) {
 		case 1:
 			$check = 1;

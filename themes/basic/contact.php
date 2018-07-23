@@ -28,16 +28,10 @@ if (function_exists('printContactForm')) {
 						<em><?php echo gettext('Contact us'); ?></em>
 					</h2>
 				</div>
-				<h3><?php echo gettext('Contact us.') ?></h3>
+				<h3><?php echo gettext('Contact us') ?></h3>
 				<?php printContactForm(); ?>
 			</div>
-			<?php @call_user_func('printLanguageSelector'); ?>
-			<div id="credit">
-				<?php printZenphotoLink(); ?>
-			</div>
-			<?php
-			zp_apply_filter('theme_body_close');
-			?>
+			<?php include 'inc-footer.php'; ?>
 		</body>
 	</html>
 	<?php

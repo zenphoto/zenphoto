@@ -36,8 +36,12 @@ class ThemeOptions {
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
 			cacheManager::deleteThemeCacheSizes($me);
-			cacheManager::addThemeCacheSize($me, 520, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize($me, 85, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, NULL, NULL, NULL);
+			$img_wmk = getOption('fullimage_watermark') ? getOption('fullimage_watermark') : null;
+			$img_effect = getThemeOption('image_gray') ? 'gray' : null;
+			cacheManager::addThemeCacheSize($me, 520, NULL, NULL, NULL, NULL, NULL, NULL, false, $img_wmk, $img_effect, NULL);
+			$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
+			$thumb_effect = getThemeOption('thumb_gray') ? 'gray' : null;
+			cacheManager::addThemeCacheSize($me, 85, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, $thumb_wmk, $thumb_effect, NULL);
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(

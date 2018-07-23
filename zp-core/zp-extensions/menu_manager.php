@@ -16,7 +16,7 @@
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("A menu creation facility. The <em>Menu</em> tab admin interface lets you create arbitrary menu trees.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
+$plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
 $plugin_category = gettext('Media');
 
 $option_interface = 'menu_manager';
@@ -27,11 +27,6 @@ if (OFFSET_PATH) {
 } else {
 	zp_register_filter('admin_toolbox_global', 'menu_admin_toolbox_global');
 }
-
-if (!defined('MENU_TRUNCATE_STRING'))
-	define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
-if (!defined('MENU_TRUNCATE_INDICATOR'))
-	define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
 
 /**
  *
@@ -46,8 +41,7 @@ class menu_manager {
 	 * class instantiator
 	 */
 	function __construct() {
-		setOptionDefault('menu_truncate_string', 0);
-		setOptionDefault('menu_truncate_indicator', '');
+		
 	}
 
 	function getOptionsSupported() {

@@ -152,7 +152,7 @@ zenpageJSCSS();
 											gettext('Clear tags of articles')	 => 'clearalltags'
 							);
 							if (extensionEnabled('hitcounter')) {
-								$checkarray['Reset hitcounter'] = 'resethitcounter';
+								$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
 							}
 							printBulkActions($checkarray);
 							?>

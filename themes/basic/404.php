@@ -31,11 +31,6 @@ if (!defined('WEBPATH'))
 				<?php print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj); ?>
 			</div>
 		</div>
-		<div id="credit">
-			<?php printZenphotoLink(); ?>
-		</div>
-		<?php
-		zp_apply_filter('theme_body_close');
-		?>
+		<?php include 'inc-footer.php'; ?>
 	</body>
 </html>

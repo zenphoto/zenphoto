@@ -174,11 +174,6 @@ class TextObject extends Image {
 		return getImageURI($args, $alb, $filename, $mtime);
 	}
 
-	function getBody($w = NULL, $h = NULL) {
-		TextObject_deprecated_functions::getBody();
-		$this->getContent($w, $h);
-	}
-
 	/**
 	 * Returns the content of the text file
 	 *

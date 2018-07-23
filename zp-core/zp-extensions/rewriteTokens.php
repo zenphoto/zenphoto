@@ -35,7 +35,7 @@ class rewriteTokens {
 		$i = strpos($zp_cfg, "\$conf['special_pages']");
 		$j = strpos($zp_cfg, '//', $i);
 		if ($i === false || $j === false) {
-			$conf = array('special_pages' => array());
+			$conf = array('special_pages' => getDefaultRewriteTokens());
 			$this->conf_vars = $conf['special_pages'];
 			$i = strpos($zp_cfg, '/** Do not edit below this line. **/');
 			if ($i === false) {
@@ -48,19 +48,16 @@ class rewriteTokens {
 			$this->zp_cfg_b = substr($zp_cfg, $j);
 			eval(substr($zp_cfg, $i, $j - $i));
 			$this->conf_vars = $conf['special_pages'];
-			foreach ($_zp_conf_vars['special_pages'] as $page => $element) {
-				if (isset($element['option'])) {
-					$this->plugin_vars[$page] = $element;
-				}
+			$this->addMissingDefaultTokens();
+		}
+		foreach ($_zp_conf_vars['special_pages'] as $page => $element) {
+			if (isset($element['option'])) {
+				$this->plugin_vars[$page] = $element;
 			}
 		}
 		if (OFFSET_PATH == 2) {
 			$old = array_keys($conf['special_pages']);
-			$zp_cfg = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto_cfg.txt');
-			$i = strpos($zp_cfg, "\$conf['special_pages']");
-			$j = strpos($zp_cfg, '//', $i);
-			eval(substr($zp_cfg, $i, $j - $i));
-			$new = array_keys($conf['special_pages']);
+			$new = array_keys(getDefaultRewriteTokens());
 			if ($old != $new) {
 				//Things have changed, need to reset to defaults;
 				setOption('rewriteTokens_restore', 1);
@@ -84,8 +81,22 @@ class rewriteTokens {
 		} else {
 			$desc = sprintf(gettext('Link for <em>%s</em> script page.'), $page);
 		}
-		return array('key'	 => 'rewriteTokens_' . $page, 'type' => OPTION_TYPE_CUSTOM,
-						'desc' => $desc);
+		return array(
+				'key' => 'rewriteTokens_' . $page,
+				'type' => OPTION_TYPE_CUSTOM,
+				'desc' => $desc);
+	}
+	
+	/**
+	 * Adds missing individual default tokens to the $conf_vars property
+	 */
+	function addMissingDefaultTokens() {
+		$tokens = array_keys(getDefaultRewriteTokens(null));
+		foreach ($tokens as $token) {
+			if (!isset($this->conf_vars[$token])) {
+				$this->conf_vars[$token] = getDefaultRewriteTokens($token);
+			}
+		}
 	}
 
 	function getOptionsSupported() {
@@ -99,11 +110,17 @@ class rewriteTokens {
 							'desc'	 => gettext('<p class="notebox">Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.</p>')
 			);
 		}
+		$options['note'] = array(
+				'key' => 'rewriteTokens_infonote',
+				'type' => OPTION_TYPE_NOTE,
+				'order' => 0,
+				'desc' => gettext('<p>* denotes default core rewrite tokens.</p>')
+		);
 		$options[gettext('Reset')] = array('key'		 => 'rewriteTokens_restore', 'type'	 => OPTION_TYPE_CHECKBOX,
 						'order'	 => 99999,
 						'desc'	 => gettext('Restore defaults.'));
 		foreach ($this->conf_vars as $page => $element) {
-			$options[$page] = self::anOption($page, $element, $_definitions);
+			$options[$page .'*'] = self::anOption($page, $element, $_definitions);
 		}
 		foreach ($this->plugin_vars as $page => $element) {
 			$options[$page] = self::anOption($page, $element, $_definitions);
@@ -171,13 +188,13 @@ class rewriteTokens {
 				$desc = sprintf(gettext('Link for <em>%s</em> script page.'), $page);
 			}
 			if (array_key_exists('rule', $element)) {
-				$rule = ",		'rule'=>'{$element['rule']}'";
+				$rule = ", 'rule'=>'{$element['rule']}'";
 			} else {
 				$rule = '';
 			}
-			$newtext .= $token = "\n														'$page'=>			array('define'=>$define,						'rewrite'=>'{$element['rewrite']}'$rule),";
+			$newtext .= $token = "\n	'$page'=> array('define'=>$define, 'rewrite'=>'{$element['rewrite']}'$rule),";
 		}
-		$newtext = substr($newtext, 0, -1) . "\n												);\n";
+		$newtext = substr($newtext, 0, -1) . "\n);\n";
 		$zp_cfg = $this->zp_cfg_a . $newtext . $this->zp_cfg_b;
 		storeConfig($zp_cfg);
 		return $notify;
@@ -186,8 +203,9 @@ class rewriteTokens {
 	static function tabs($tabs) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
-				$tabs['development'] = array('text'		 => gettext("development"),
-								'subtabs'	 => NULL);
+				$tabs['development'] = array(
+						'text' => gettext("development"),
+						'subtabs' => NULL);
 			}
 			$tabs['development']['subtabs'][gettext("tokens")] = PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=tokens&tab=' . gettext('tokens');
 			$named = array_flip($tabs['development']['subtabs']);
@@ -199,4 +217,3 @@ class rewriteTokens {
 	}
 
 }
-?>

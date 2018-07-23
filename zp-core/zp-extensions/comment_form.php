@@ -68,6 +68,7 @@ class comment_form {
 		setOptionDefault('comment_form_pagination', true);
 		setOptionDefault('comment_form_toggle', 1);
 		setOptionDefault('tinymce4_comments', null);
+		setOptionDefault('comment_form_dataconfirmation', 0);
 	}
 
 	/**
@@ -78,69 +79,125 @@ class comment_form {
 	function getOptionsSupported() {
 		global $_zp_captcha;
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce4.php');
-		$checkboxes = array(gettext('Albums') => 'comment_form_albums', gettext('Images') => 'comment_form_images');
+		$checkboxes = array(
+				gettext('Albums') => 'comment_form_albums',
+				gettext('Images') => 'comment_form_images');
 		if (extensionEnabled('zenpage')) {
-			$checkboxes = array_merge($checkboxes, array(gettext('Pages') => 'comment_form_pages', gettext('News') => 'comment_form_articles'));
+			$checkboxes = array_merge($checkboxes, array(
+					gettext('Pages') => 'comment_form_pages',
+					gettext('News') => 'comment_form_articles'));
 		}
 		$configarray = getTinyMCE4ConfigFiles('comment');
 
 		$options = array(
-						gettext('Enable comment notification')	 => array('key'		 => 'email_new_comments', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 0,
-										'desc'	 => gettext('Email the Admin when new comments are posted')),
-						gettext('Name field')										 => array('key'			 => 'comment_name_required', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 0.1,
-										'buttons'	 => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
-										'desc'		 => gettext('If the <em>Name</em> field is required, the poster must provide a name.')),
-						gettext('Email field')									 => array('key'			 => 'comment_email_required', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 0.2,
-										'buttons'	 => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
-										'desc'		 => gettext('If the <em>Email</em> field is required, the poster must provide an email address.')),
-						gettext('Website field')								 => array('key'			 => 'comment_web_required', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 0.3,
-										'buttons'	 => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
-										'desc'		 => gettext('If the <em>Website</em> field is required, the poster must provide a website.')),
-						gettext('Captcha field')								 => array('key'			 => 'Use_Captcha', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 0.4,
-										'buttons'	 => array(gettext('Omit') => 0, gettext('For guests') => 2, gettext('Require') => 1),
-										'desc'		 => ($_zp_captcha->name) ? gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
-						gettext('Address fields')								 => array('key'			 => 'comment_form_addresses', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 7,
-										'buttons'	 => array(gettext('Omit') => 0, gettext('Show') => 1, gettext('Require') => 'required'),
-										'desc'		 => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the poster must supply data in each address field.')),
-						gettext('Allow comments on')						 => array('key'				 => 'comment_form_allowed', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'order'			 => 0.9,
-										'checkboxes' => $checkboxes,
-										'desc'			 => gettext('Comment forms will be presented on the checked pages.')),
-						gettext('Toggled comment block')				 => array('key'		 => 'comment_form_toggle', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 2,
-										'desc'	 => gettext('If checked, existing comments will be initially hidden. Clicking on the provided button will show them.')),
-						gettext('Show author URL')							 => array('key'		 => 'comment_form_showURL', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 7,
-										'desc'	 => gettext('To discourage SPAM, uncheck this box and the author URL will not be revealed.')),
-						gettext('Only members can comment')			 => array('key'		 => 'comment_form_members_only', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 4,
-										'desc'	 => gettext('If checked, only logged in users will be allowed to post comments.')),
-						gettext('Allow private postings')				 => array('key'		 => 'comment_form_private', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 6,
-										'desc'	 => gettext('If checked, posters may mark their comments as private (not for publishing).')),
-						gettext('Allow anonymous posting')			 => array('key'		 => 'comment_form_anon', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 5,
-										'desc'	 => gettext('If checked, posters may exclude their personal information from the published post.')),
-						gettext('Include RSS link')							 => array('key'		 => 'comment_form_rss', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 8,
-										'desc'	 => gettext('If checked, an RSS link will be included at the bottom of the comment section.')),
-						gettext('Comments per page')						 => array('key'		 => 'comment_form_comments_per_page', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 9,
-										'desc'	 => gettext('The comments that should show per page on the admin tab and when using the jQuery pagination')),
-						gettext('Comment editor configuration')	 => array('key'						 => 'tinymce4_comments', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 1,
-										'selections'		 => $configarray,
-										'null_selection' => gettext('Disabled'),
-										'desc'					 => gettext('Configuration file for TinyMCE when used for comments. Set to <code>Disabled</code> to disable visual editing.')),
-						gettext('Pagination')										 => array('key'		 => 'comment_form_pagination', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 3,
-										'desc'	 => gettext('Uncheck to disable the jQuery pagination of comments. Enabled by default.')),
+				gettext('Enable comment notification') => array(
+						'key' => 'email_new_comments', 
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 0,
+						'desc' => gettext('Email the Admin when new comments are posted')),
+				gettext('Name field') => array(
+						'key' => 'comment_name_required',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 0.1,
+						'buttons' => array(
+								gettext('Omit') => 0,
+								gettext('Show') => 1,
+								gettext('Require') => 'required'),
+						'desc' => gettext('If the <em>Name</em> field is required, the poster must provide a name.')),
+				gettext('Email field') => array(
+						'key' => 'comment_email_required',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 0.2,
+						'buttons' => array(
+								gettext('Omit') => 0,
+								gettext('Show') => 1,
+								gettext('Require') => 'required'),
+						'desc' => gettext('If the <em>Email</em> field is required, the poster must provide an email address.')),
+				gettext('Website field') => array(
+						'key' => 'comment_web_required',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 0.3,
+						'buttons' => array(
+								gettext('Omit') => 0,
+								gettext('Show') => 1,
+								gettext('Require') => 'required'),
+						'desc' => gettext('If the <em>Website</em> field is required, the poster must provide a website.')),
+				gettext('Captcha field') => array(
+						'key' => 'Use_Captcha',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 0.4,
+						'buttons' => array(
+								gettext('Omit') => 0,
+								gettext('For guests') => 2,
+								gettext('Require') => 1),
+						'desc' => ($_zp_captcha->name) ? gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
+				gettext('Address fields') => array(
+						'key' => 'comment_form_addresses',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 7,
+						'buttons' => array(
+								gettext('Omit') => 0,
+								gettext('Show') => 1,
+								gettext('Require') => 'required'),
+						'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the poster must supply data in each address field.')),
+				gettext('Allow comments on') => array(
+						'key' => 'comment_form_allowed',
+						'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'order' => 0.9,
+						'checkboxes' => $checkboxes,
+						'desc' => gettext('Comment forms will be presented on the checked pages.')),
+				gettext('Toggled comment block') => array(
+						'key' => 'comment_form_toggle',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 2,
+						'desc' => gettext('If checked, existing comments will be initially hidden. Clicking on the provided button will show them.')),
+				gettext('Show author URL') => array(
+						'key' => 'comment_form_showURL',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 7,
+						'desc' => gettext('To discourage SPAM, uncheck this box and the author URL will not be revealed.')),
+				gettext('Only members can comment') => array(
+						'key' => 'comment_form_members_only',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 4,
+						'desc' => gettext('If checked, only logged in users will be allowed to post comments.')),
+				gettext('Allow private postings') => array(
+						'key' => 'comment_form_private',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 6,
+						'desc' => gettext('If checked, posters may mark their comments as private (not for publishing).')),
+				gettext('Allow anonymous posting') => array(
+						'key' => 'comment_form_anon',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 5,
+						'desc' => gettext('If checked, posters may exclude their personal information from the published post.')),
+				gettext('Include RSS link') => array(
+						'key' => 'comment_form_rss',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 8,
+						'desc' => gettext('If checked, an RSS link will be included at the bottom of the comment section.')),
+				gettext('Comments per page') => array(
+						'key' => 'comment_form_comments_per_page',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 9,
+						'desc' => gettext('The comments that should show per page on the admin tab and when using the jQuery pagination')),
+				gettext('Comment editor configuration') => array(
+						'key' => 'tinymce4_comments',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 1,
+						'selections' => $configarray,
+						'null_selection' => gettext('Disabled'),
+						'desc' => gettext('Configuration file for TinyMCE when used for comments. Set to <code>Disabled</code> to disable visual editing.')),
+				gettext('Pagination') => array(
+						'key' => 'comment_form_pagination',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 3,
+						'desc' => gettext('Uncheck to disable the jQuery pagination of comments. Enabled by default.')),
+				gettext('Data usage confirmation') => array(
+						'key' => 'comment_form_dataconfirmation',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 11,
+						'desc' => gettext('If checked a mandatory checkbox is added for users to confirm about data storage and handling by your site. This is recommend to comply with the European GDPR.'))
 		);
 		return $options;
 	}
@@ -155,9 +212,10 @@ class comment_form {
 			$newtabs = array();
 			foreach ($tabs as $key => $tab) {
 				if ($add && !in_array($key, array('overview', 'edit', 'upload', 'pages', 'news', 'tags', 'menu'))) {
-					$newtabs['comments'] = array('text'		 => gettext("comments"),
-									'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . 'comment_form/admin-comments.php?page=comments&tab=' . gettext('comments'),
-									'subtabs'	 => NULL);
+					$newtabs['comments'] = array(
+							'text' => gettext("comments"),
+							'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . 'comment_form/admin-comments.php?page=comments&tab=' . gettext('comments'),
+							'subtabs' => NULL);
 					$add = false;
 				}
 				$newtabs[$key] = $tab;
@@ -186,7 +244,7 @@ class comment_form {
  * @param string $addcommenttext alternate text for "Add a comment:"
  * @param bool $addheader set true to display comment count header
  * @param string $comment_commententry_mod use to add styles, classes to the comment form div
- * @param bool $desc_order default false, set to true to change the comment order to descending ( = newest to oldest)
+ * @param bool $desc_order default false, set to true to change the comment order to descending ( = newst to oldest)
  */
 function printCommentForm($showcomments = true, $addcommenttext = NULL, $addheader = true, $comment_commententry_mod = '', $desc_order = false) {
 	global $_zp_gallery_page, $_zp_current_admin_obj, $_zp_current_comment, $_zp_captcha, $_zp_authority, $_zp_HTML_cache, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
@@ -311,7 +369,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 				echo gettext('Only registered users may post comments.');
 			} else {
 				$disabled = array('name'		 => '', 'website'	 => '', 'anon'		 => '', 'private'	 => '', 'comment'	 => '',
-								'street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '');
+								'street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '', 'comment_dataconfirmation' => '');
 				$stored = array_merge(array('email' => '', 'custom' => ''), $disabled, getCommentStored());
 				$custom = getSerializedArray($stored['custom']);
 				foreach ($custom as $key => $value) {

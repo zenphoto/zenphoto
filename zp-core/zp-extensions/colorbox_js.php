@@ -18,7 +18,6 @@
  * to use a custom Colorbox theme.
  *
  * @author Stephen Billard (sbillard)
- *
  * @package plugins
  * @subpackage colorbox-js
  */

@@ -73,10 +73,14 @@ if (!defined('WEBPATH')) die(); ?>
 				printSlideShowLink();
 				echo '</span>';
 			}
+			@call_user_func('printOpenStreetMap');
 			if (function_exists('printAddToFavorites')) {
 				echo "<br />";
 				printAddToFavorites($_zp_current_album);
 			}
+			if(class_exists('ScriptlessSocialSharing')) {
+				ScriptlessSocialSharing::printButtons();
+			}	
 			if (function_exists('printCommentForm')) {
 		  	printCommentForm();
 			}	

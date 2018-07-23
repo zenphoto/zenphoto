@@ -92,6 +92,9 @@ function footer() {
 	?>
 	<div id="footer">
 		<?php
+		if(class_exists('ScriptlessSocialSharing')) {
+			ScriptlessSocialSharing::printButtons();
+		}
 		if (function_exists('printFavoritesURL') && $_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'favorites.php') {
 			printFavoritesURL(NULL, '', ' | ', '<br />');
 		}

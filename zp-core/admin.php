@@ -85,7 +85,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				/*				 * *************************************************************************** */
 				case 'restore_setup':
 					XSRFdefender('restore_setup');
-					checkSignature(true);
+					unprotectSetupFiles();
 					zp_apply_filter('log_setup', true, 'protect', gettext('enabled'));
 					setOption('setup_unprotected_by_adminrequest', 1, true, null);
 					$class = 'messagebox';
@@ -238,66 +238,67 @@ if (!zp_loggedin()) {
 					unset($buttonlist[$key]);
 				}
 			}
-			list($diff, $needs) = checkSignature(false);
-			if (hasPrimaryScripts()) {
+			if (hasPrimaryScripts() && zp_loggedin(ADMIN_RIGHTS)) {
 				//	button to restore setup files if needed
-				if (!empty($needs)) {
+				if (isSetupProtected()) {
 					$buttonlist[] = array(
-									'XSRFTag'			 => 'restore_setup',
-									'category'		 => gettext('Admin'),
-									'enable'			 => true,
-									'button_text'	 => gettext('Setup » restore scripts'),
-									'formname'		 => 'restore_setup.php',
-									'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=restore_setup',
-									'icon'				 => 'images/lock_open.png',
-									'alt'					 => '',
-									'title'				 => gettext('Restores setup files so setup can be run.'),
-									'hidden'			 => '<input type="hidden" name="action" value="restore_setup" />',
-									'rights'			 => ADMIN_RIGHTS
+							'XSRFTag' => 'restore_setup',
+							'category' => gettext('Admin'),
+							'enable' => true,
+							'button_text' => gettext('Setup » restore scripts'),
+							'formname' => 'restore_setup.php',
+							'action' => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=restore_setup',
+							'icon' => 'images/lock_open.png',
+							'alt' => '',
+							'title' => gettext('Restores setup files so setup can be run.'),
+							'hidden' => '<input type="hidden" name="action" value="restore_setup" />',
+							'rights' => ADMIN_RIGHTS
 					);
+					
 				} else {
-					if (zp_loggedin(ADMIN_RIGHTS)) {
-						?>
-						<div class="warningbox">
-							<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
-							<?php echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. Use the <strong>Setup » protect scripts</strong> button in the <em>Admin</em> section of the <em>Utility functions</em>. '); ?>
-						</div>
-						<?php
-					}
 					$buttonlist[] = array(
-									'XSRFTag'			 => 'protect_setup',
-									'category'		 => gettext('Admin'),
-									'enable'			 => true,
-									'button_text'	 => gettext('Setup » protect scripts'),
-									'formname'		 => 'restore_setup.php',
-									'action'			 => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
-									'icon'				 => 'images/lock_2.png',
-									'alt'					 => '',
-									'title'				 => gettext('Protects setup files so setup cannot be run.'),
-									'hidden'			 => '<input type="hidden" name="action" value="protect_setup" />',
-									'rights'			 => ADMIN_RIGHTS
+							'XSRFTag' => 'protect_setup',
+							'category' => gettext('Admin'),
+							'enable' => true,
+							'button_text' => gettext('Setup » protect scripts'),
+							'formname' => 'restore_setup.php',
+							'action' => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup',
+							'icon' => 'images/lock_2.png',
+							'alt' => '',
+							'title' => gettext('Protects setup files so setup cannot be run.'),
+							'hidden' => '<input type="hidden" name="action" value="protect_setup" />',
+							'rights' => ADMIN_RIGHTS
 					);
+					
 				}
 			}
-			if (empty($needs)) {
+			if (zp_loggedin(ADMIN_RIGHTS)) {
 				$buttonlist[] = array(
-								'category'		 => gettext('Admin'),
-								'enable'			 => true,
-								'button_text'	 => gettext('Run setup'),
-								'formname'		 => 'run_setup.php',
-								'action'			 => WEBPATH . '/' . ZENFOLDER . '/setup.php',
-								'icon'				 => 'images/Zp.png',
-								'alt'					 => '',
-								'title'				 => gettext('Run the setup script.'),
-								'hidden'			 => '',
-								'rights'			 => ADMIN_RIGHTS
+						'category' => gettext('Admin'),
+						'enable' => true,
+						'button_text' => gettext('Run setup'),
+						'formname' => 'run_setup.php',
+						'action' => WEBPATH . '/' . ZENFOLDER . '/setup.php',
+						'icon' => 'images/Zp.png',
+						'alt' => '',
+						'title' => gettext('Run the setup script.'),
+						'hidden' => '',
+						'rights' => ADMIN_RIGHTS
 				);
 			}
 
-			$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false);
 
+			$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false);
+			
 			if (zp_loggedin(OVERVIEW_RIGHTS)) {
-				?>
+				if ((zp_loggedin(ADMIN_RIGHTS)) && !isSetupProtected()) {
+					?>
+					<div class="warningbox">
+							<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
+							<?php echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. Use the <strong>Setup » protect scripts</strong> button in the <em>Admin</em> section of the <em>Utility functions</em>. '); ?>
+						</div>
+					<?php 
+				} ?>
 				<div id="overviewboxes">
 
 					<?php

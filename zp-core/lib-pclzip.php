@@ -1,4 +1,11 @@
 <?php
+/**
+ * PhpConcept Library - Zip Module 2.8.2
+ * 
+ * @package core
+ * @subpackage libraries\lib-pclzip
+ */
+
 // --------------------------------------------------------------------------------
 // PhpConcept Library - Zip Module 2.8.2
 // --------------------------------------------------------------------------------

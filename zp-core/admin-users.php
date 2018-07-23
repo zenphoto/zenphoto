@@ -14,6 +14,8 @@ function markUpdated() {
 }
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
+require_once SERVERPATH . '/' . ZENFOLDER . '/class-userdataexport.php';
+
 define('USERS_PER_PAGE', max(1, getOption('users_per_page')));
 
 if (isset($_GET['ticket'])) {
@@ -22,6 +24,16 @@ if (isset($_GET['ticket'])) {
 	$ticket = '';
 }
 admin_securityChecks(USER_RIGHTS, currentRelativeURL());
+
+if (isset($_GET['userdata-username'])) {
+	$username = sanitize($_GET['userdata-username']);
+	$usermail = sanitize($_GET['userdata-usermail']);
+	if (!empty($username) && (zp_loggedin(ADMIN_RIGHTS) || $_zp_current_admin_obj->getUser() == $username)) {
+		$dataformat = sanitize($_GET['userdata-format']);
+		$dataexport = new userDataExport($username, $usermail, $_zp_gallery, $_zp_authority);
+		$dataexport->processFileDownload($dataformat);
+	}
+}
 
 $newuser = array();
 if (isset($_REQUEST['show']) && is_array($_REQUEST['show'])) {
@@ -766,6 +778,7 @@ echo $refresh;
 														}
 														?>
 													</ul>
+													<?php	userDataExport::printUserAccountExportLinks($userobj); ?>
 												</td>
 
 												<td <?php if (!empty($background)) echo " style=\"$background\""; ?>>

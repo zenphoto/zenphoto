@@ -4,7 +4,7 @@
  *
  * Zenpage plugin default light configuration
  */
-global $_zp_RTL_css;
+ global $_zp_RTL_css;
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
 <script type="text/javascript">
@@ -12,7 +12,10 @@ global $_zp_RTL_css;
 	tinymce.init({
 		selector: "textarea.textarea_inputbox,textarea.texteditor_comments",
 		language: "<?php echo $locale; ?>",
-		entity_encoding: 'raw',
+		entity_encoding: '<?php echo getOption('tinymce4_entityencoding'); ?>',
+		<?php if(!empty(trim(getOption('tinymce4_entities')))) { ?>
+			entities: '<?php echo getOption('tinymce4_entities'); ?>',
+		<?php } ?>	
 		directionality: "<?php echo $_zp_RTL_css ? 'rtl' : 'ltr'; ?>",
 		relative_urls: false,
 		plugins: [

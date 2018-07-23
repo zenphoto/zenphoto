@@ -76,6 +76,7 @@ $map = function_exists('printGoogleMap');
 									if ((getNumAlbums() != 0) || !$_oneImagePage) {
 										printPageListWithNav(gettext("« prev"), gettext("next »"), $_oneImagePage);
 									}
+									@call_user_func('printOpenStreetMap');
 									if (function_exists('printAddToFavorites'))
 										printAddToFavorites($_zp_current_album);
 									@call_user_func('printRating');

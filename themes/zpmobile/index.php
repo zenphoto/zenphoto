@@ -76,6 +76,9 @@ if (!defined('WEBPATH'))
 						</ul>
 						<?php
 					}
+					if (class_exists('ScriptlessSocialSharing')) {
+						ScriptlessSocialSharing::printButtons();
+					}
 					?>
 
 				</div>

@@ -2,6 +2,7 @@
 /**
  * image processing functions
  * @package core
+ * @subpackage functions\functions-image
  *
  */
 // force UTF-8 Ø

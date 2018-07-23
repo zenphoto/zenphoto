@@ -1208,6 +1208,16 @@ text-align:center;
 padding:8px;
 }
 
+/* OpenStreetMap  */
+div#osm_map {
+	margin: 20px 0;
+}
+
+/* Scriptless Social Sharing */
+ul.scriptless_socialsharing li {
+	display: inline-block !important;
+}
+
 /* tinyZenpage title addition */
 .zenpage_wrapper_left,
 .zenpage_wrapper_right {
@@ -1381,10 +1391,17 @@ clear: both;
 
 #registration_form label,
 #commentform label,
-#mailform label {
+#mailform label{
 width: 30% !important;
 float: left; 
 display: block;
+}
+
+#registration_form label[for=admin_dataconfirmation],
+#commentform label[for=comment_dataconfirmation],
+#mailform label[for=dataconfirmation] {
+	width: 100% !important;
+	float: none;
 }
 
 form label strong {
