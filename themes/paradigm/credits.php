@@ -31,7 +31,7 @@ if (!defined('WEBPATH'))
 				<?php echo date('Y'); ?>.
 
 				<h2>ZenPhoto20</h2>
-				<p><?php echo gettext('This website is based on ZenPhoto20 the <a href="http://zenphoto20.us/" target="_blank">simple media website CMS</a>'); ?>.</p>
+				<p><?php echo gettext('This website is based on ZenPhotoGraphics the <a href="http://zenphoto20.us/" target="_blank">simple media website CMS</a>'); ?>.</p>
 				<p><?php echo gettext('Theme used:'); ?> Paradigm <?php echo gettext('by'); ?> Olivier Ffrench (<a href="http://www.france-in-photos.com">France in Photos</a>).</p>
 			</section>
 			<?php include(SERVERPATH . '/' . THEMEFOLDER . '/paradigm/includes/_sidebar.php'); ?>

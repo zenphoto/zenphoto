@@ -169,7 +169,7 @@ echo "\n" . '<div id="container">';
 				$key = strtolower(trim(substr($p, $i + 11, strpos($p, "\n", $i) - $i - 11)));
 				$keys = explode('/', $key);
 				$key = $keys[0];
-				if ($key == 'package' || $key == 'zenphoto20tools') {
+				if ($key == 'package' || $key == 'developerTools') {
 					$foreign = false;
 				}
 			}

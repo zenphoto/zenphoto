@@ -443,7 +443,7 @@ $tagsort = 'alpha';
 								<p><?php echo gettext("<em>ExtraContent:</em> Here you can enter extra content for example to be printed on the sidebar"); ?></p>
 								<p>
 									<?php
-									echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example zenphoto functions) or JavaScript code.") . ' ';
+									echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example template functions) or JavaScript code.") . ' ';
 									echo gettext("You also can use the codeblock fields as custom fields.") . '';
 									echo gettext("Note that your theme must be setup to use the codeblock functions. Note also that codeblock fields are not multi-lingual.");
 									?>
@@ -548,9 +548,9 @@ $tagsort = 'alpha';
 																 id="show"
 																 value="1" <?php checkIfChecked($result->getShow()); ?>
 																 onclick="$('#pubdate').val('');
-																		 $('#expiredate').val('');
-																		 $('#pubdate').css('color', 'black');
-																		 $('.expire').html('');"
+																			 $('#expiredate').val('');
+																			 $('#pubdate').css('color', 'black');
+																			 $('.expire').html('');"
 																 />
 													<label for="show"><?php echo gettext("Published"); ?></label>
 												</p>
@@ -642,7 +642,7 @@ $tagsort = 'alpha';
 																			 name="disclose_password"
 																			 id="disclose_password"
 																			 onclick="passwordClear('');
-																					 togglePassword('');">
+																								 togglePassword('');">
 																			 <?php echo gettext('Show'); ?>
 															</label>
 															<br />

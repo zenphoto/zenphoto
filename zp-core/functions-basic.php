@@ -1,6 +1,6 @@
 <?php
 /**
- * basic functions used by zenphoto i.php
+ * basic functions used by i.php
  * Keep this file to the minimum to allow the largest available memory for processing images!
  * Headers not sent yet!
  *
@@ -178,7 +178,7 @@ function zpShutDownFunction() {
 }
 
 /**
- * Converts a file system filename to UTF-8 for zenphoto internal storage
+ * Converts a file system filename to UTF-8 for internal storage
  *
  * @param string $filename the file name to convert
  * @return string
@@ -469,7 +469,7 @@ function mkdir_recursive($pathname, $mode) {
  * Write output to the debug log
  * Use this for debugging when echo statements would come before headers are sent
  * or would create havoc in the HTML.
- * Creates (or adds to) a file named debug.log which is located in the zenphoto core folder
+ * Creates (or adds to) a file named debug.log which is located in the core folder
  *
  * @param string $message the debug information
  * @param bool $reset set to true to reset the log to zero before writing the message
@@ -500,7 +500,7 @@ function debugLog($message, $reset = false, $log = 'debug') {
 				} else {
 					$clone = ' ' . gettext('clone');
 				}
-				$preamble = '<span class="lognotice">{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . $clone . '</span>';
+				$preamble = '<span class="lognotice">{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhotoGraphics v" . ZENPHOTO_VERSION . $clone . '</span>';
 				if ($_logCript) {
 					$preamble = $_logCript->encrypt($message);
 				}
@@ -639,7 +639,7 @@ function secureServer() {
 
 /**
  *
- * Starts a zenphoto session (perhaps a secure one)
+ * Starts a session (perhaps a secure one)
  */
 function zp_session_start() {
 	$result = session_id();
@@ -1982,7 +1982,7 @@ function _setup($action) {
 
 /**
  *
- * Computes the "installation signature" of the zenphoto install
+ * Computes the "installation signature" of the install
  * @return string
  */
 function installSignature() {

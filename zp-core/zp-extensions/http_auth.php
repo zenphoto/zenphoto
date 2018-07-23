@@ -74,7 +74,7 @@ class http_auth {
 	function getOptionsSupported() {
 		return array(gettext('User validation') => array('key' => 'http_auth_trust', 'type' => OPTION_TYPE_RADIO,
 						'buttons' => array(gettext('verify') => '0', gettext('trusted') => '1'),
-						'desc' => gettext('Set to <em>trusted</em> to presume the HTTP user is securely authorized. (This setting does not verify passwords against the zenphoto user.)')));
+						'desc' => gettext('Set to <em>trusted</em> to presume the HTTP user is securely authorized. (This setting does not verify passwords against the ZenPhotoGraphics user.)')));
 	}
 
 	function handleOption($option, $currentValue) {

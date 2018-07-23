@@ -137,7 +137,7 @@ class oAuthLogin {
 				$more = sprintf(gettext('Configuration error,%1$s login group %2$s does not exist.'), $class, $groupname);
 			}
 			if (!$more && getOption('register_user_notify')) {
-				$_notify = zp_mail(gettext('ZenPhoto20 Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+				$_notify = zp_mail(gettext('ZenPhotoGraphics Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 			}
 		}
 		session_unset(); //	need to cleanse out stuff or subsequent logins will fail[sic]

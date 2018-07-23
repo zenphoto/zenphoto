@@ -1454,7 +1454,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$err = gettext("<em>.htaccess</em> file [is empty or does not exist]");
 							$ch = -1;
 							if ($Apache) {
-								$desc = gettext('If you have the mod_rewrite module enabled an <em>.htaccess</em> file is required the root zenphoto folder to create cruft-free URLs.') .
+								$desc = gettext('If you have the mod_rewrite module enabled an <em>.htaccess</em> file is required the root folder to create cruft-free URLs.') .
 												'<br /><br />' . gettext('You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option.');
 								if (setupUserAuthorized()) {
 									$desc .= ' ' . gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup create the file</a></p><br style="clear:both" /><br />');

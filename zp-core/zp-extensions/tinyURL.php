@@ -15,7 +15,7 @@
  * @pluginCategory admin
  */
 $plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
-$plugin_description = gettext('Provides short URLs to zenphoto objects.');
+$plugin_description = gettext('Provides short URLs to gallery objects.');
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('Shortened URLs require the <code>mod_rewrite</code> option be enabled.');
 
 $option_interface = 'tinyURL';

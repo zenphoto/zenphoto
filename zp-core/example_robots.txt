@@ -1,10 +1,10 @@
-# This is an example file for creating a robots.txt file to 
-# keep webbots from finding duplicate or invalid content in 
-# your zenphoto gallery.
+# This is an example file for creating a robots.txt file to
+# keep webbots from finding duplicate or invalid content in
+# your gallery.
 #
 # See: http://www.robotstxt.org/ for details on robots.txt.
 #
-# Modify the lines below to change "zenphoto" to the folder 
+# Modify the lines below to change "zenphoto" to the folder
 # where you have installed your zenphoto gallery.
 #
 # Delete these comments and rename the file robots.txt.

@@ -100,7 +100,7 @@ class matomoStats {
 						'type' => OPTION_TYPE_TEXTAREA,
 						'order' => 5,
 						'multilingual' => false,
-						'desc' => gettext('Enter widget iframe code if you like to embed statistics to your Zenphoto backend. This enables MATOMO STATISTICS on the OVERVIEW fly-out menu. Visit <a href="https://developer.matomo.org/guides/widgets">Matomo guides</a> for more information.')),
+						'desc' => gettext('Enter widget iframe code if you like to embed statistics to your backend. This enables MATOMO STATISTICS on the OVERVIEW fly-out menu. Visit <a href="https://developer.matomo.org/guides/widgets">Matomo guides</a> for more information.')),
 				gettext('Language to track') => array(
 						'order' => 6,
 						'key' => 'matomo_language_tracking',

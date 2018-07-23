@@ -33,7 +33,7 @@
  * @pluginCategory theme
  */
 $plugin_is_filter = defaultExtension(99 | CLASS_PLUGIN);
-$plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with ZenPhoto20.");
+$plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website.");
 
 $option_interface = 'cmsFilters';
 

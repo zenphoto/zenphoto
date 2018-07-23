@@ -482,7 +482,7 @@ if (!in_array('viewers', $groupsdefined)) {
 	$groupobj = Zenphoto_Authority::newAdministrator('viewers', 0);
 	$groupobj->setName('group');
 	$groupobj->setRights(NO_RIGHTS | POST_COMMENT_RIGHTS | VIEW_ALL_RIGHTS);
-	$groupobj->set('other_credentials', gettext('Users allowed only to view zenphoto objects'));
+	$groupobj->set('other_credentials', gettext('Users allowed only to view and comment'));
 	$groupobj->setValid(0);
 	$groupobj->save();
 	$groupsdefined[] = 'viewers';

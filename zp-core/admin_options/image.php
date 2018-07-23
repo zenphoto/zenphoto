@@ -758,7 +758,7 @@ function getOptionContent() {
 						<span class="option_info">
 							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
-								<?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?>
+								<?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the default lock image is displayed."); ?>
 							</div>
 						</span>
 					</td>

@@ -54,7 +54,7 @@ class LDAP_auth_options {
 						'desc' => gettext('Base DN strings for the LDAP searches.')),
 				gettext('ID offset for LDAP usersids') => array('key' => 'ldap_id_offset', 'type' => OPTION_TYPE_NUMBER,
 						'order' => 1.4,
-						'desc' => gettext('This number is added to the LDAP <em>userid</em> to insure that there is no overlap to ZenPhoto20 <em>userids</em>.')),
+						'desc' => gettext('This number is added to the LDAP <em>userid</em> to insure that there is no overlap to ZenPhotoGraphics <em>userids</em>.')),
 				gettext('LDAP reader user') => array('key' => 'ldap_reader_user', 'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 1.2,
 						'desc' => gettext('User name for LDAP searches. If empty the searches will be anonymous.')),
@@ -65,7 +65,7 @@ class LDAP_auth_options {
 		if (extensionEnabled('user_groups')) {
 			$ldapOptions[gettext('LDAP Group map')] = array('key' => 'ldap_group_map_custom', 'type' => OPTION_TYPE_CUSTOM,
 					'order' => 1.5,
-					'desc' => gettext('Mapping of LDAP groups to ZenPhoto20 groups') . '<p class="notebox">' . gettext('<strong>Note:</strong> if the LDAP group is empty no mapping will take place.') . '</p>');
+					'desc' => gettext('Mapping of LDAP groups to ZenPhotoGraphics groups') . '<p class="notebox">' . gettext('<strong>Note:</strong> if the LDAP group is empty no mapping will take place.') . '</p>');
 			if (!extensionEnabled('LDAP_auth')) {
 				$ldapOptions['note'] = array(
 						'key' => 'LDAP_auth_note', 'type' => OPTION_TYPE_NOTE,
@@ -86,7 +86,7 @@ class LDAP_auth_options {
 			} else {
 				?>
 				<dl>
-					<dt><em><?php echo gettext('ZenPhoto20 group'); ?></em></dt>
+					<dt><em><?php echo gettext('ZenPhotoGraphics group'); ?></em></dt>
 					<dd><em><?php echo gettext('LDAP group'); ?></em></dd>
 					<?php
 					foreach ($groups as $group) {

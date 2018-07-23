@@ -53,7 +53,7 @@ class PersistentObject {
 	/**
 	  }
 	 *
-	 * Prime instantiator for zenphoto objects
+	 * Prime instantiator for objects
 	 * @param $tablename	The name of the database table
 	 * @param $unique_set	An array of unique fields
 	 * @param $cache_by
