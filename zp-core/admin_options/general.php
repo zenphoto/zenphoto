@@ -23,7 +23,7 @@ function saveOptions() {
 	$languages[''] = '';
 	$disallow = array();
 	foreach ($languages as $text => $lang) {
-		if ($lang != $newloc && !isset($_POST['language_allow_' . $lang])) {
+		if ($lang != $newloc && !isset($_POST['language_allow'][$lang])) {
 			$disallow[$lang] = $lang;
 		}
 	}
@@ -359,7 +359,7 @@ function getOptionContent() {
 									$r_attrs = ' checked="checked"';
 									$c_attrs = ' checked="checked" disabled="disabled"';
 									?>
-									<input type="hidden" name="language_allow_<?php echo $dirname; ?>" value="1" />
+									<input type="hidden" name="language_allow[<?php echo $dirname; ?>]" value="1" />
 									<script type="text/javascript">
 										window.addEventListener('load', function () {
 											$('ul.languagelist').scrollTo('li:eq(<?php echo ($c - 2); ?>)');
@@ -376,7 +376,7 @@ function getOptionContent() {
 									</label>
 									<label class="flags">
 										<span class="displayinline">
-											<input id="language_allow_<?php echo $dirname; ?>" name="language_allow_<?php echo $dirname; ?>" type="checkbox"
+											<input id="language_allow_<?php echo $dirname; ?>" name="language_allow[<?php echo $dirname; ?>]" type="checkbox"
 														 value="<?php echo $dirname; ?>"<?php echo $c_attrs; ?>
 														 onclick="enable_click('<?php echo $dirname; ?>');" />
 											<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt; ?>" width="24" height="16" />
