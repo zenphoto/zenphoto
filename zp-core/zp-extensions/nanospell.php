@@ -20,9 +20,10 @@
  * @package plugins/nanospell
  * @pluginCategory admin
  */
-$plugin_is_filter = 8 | CLASS_PLUGIN;
+$plugin_is_filter = 8 | FEATURE_PLUGIN;
 $plugin_description = gettext("Spellchecker for tinyMCE.");
 $plugin_disable = (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/nanospell/plugin.js')) ? false : 'You must download and install the nanospell spellchecker for tinymce—see the plugin documentation for details.';
+
 
 zp_register_filter('tinymce_config', 'nanospell_spellchecker');
 

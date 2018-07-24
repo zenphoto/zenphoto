@@ -12,6 +12,7 @@ list($usec, $sec) = explode(" ", microtime());
 $start = (float) $usec + (float) $sec;
 
 define('OFFSET_PATH', 2);
+define('SETUP_PLUGIN', TRUE);
 require_once('setup-functions.php');
 register_shutdown_function('shutDownFunction');
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');

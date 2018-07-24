@@ -127,9 +127,9 @@ if ($result) {
 }
 
 //original was mis-spelled
-if (extensionEnabled('reCaptche_v2')) {
+if ($priority = extensionEnabled('reCaptche_v2')) {
 	purgeOption('zp_plugin_reCaptche_v2');
-	enableExtension('reCAPTCHA_v2', 500 | CLASS_PLUGIN);
+	enableExtension('reCAPTCHA_v2', $priority);
 }
 
 //migrate rotation and GPS data

@@ -14,8 +14,10 @@
  * @pluginCategory users
  *
  */
-$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
-$plugin_description = gettext('Adds user address fields');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
+	$plugin_description = gettext('Adds user address fields');
+}
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 
@@ -28,7 +30,7 @@ class userAddressFields extends fieldExtender {
 		foreach ($tablecols as $key => $datum) {
 			if ($datum['Field'] == 'custom_data') {
 				$firstTime = true;
-				enableExtension('userAddressFields', true);
+				enableExtension('userAddressFields', 5 | CLASS_PLUGIN);
 				break;
 			}
 		}

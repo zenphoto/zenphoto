@@ -3,7 +3,7 @@
  * This plugin implements <i>tiny URLs</i> such as used by the tweet_news plugin
  *
  * <i>Tiny URLs</i> are short unique to zenphoto. They are short digital strings that
- * allow zenphoto to locate the object referenced. They are prefixed by <var>tiny/<var>
+ * allow location of the object referenced. They are prefixed by <var>tiny/<var>
  * if <i>mod_rewrite</i> is active otherwise they have the form <var>index.php?p=ddddd&t</var> .
  *
  * These can be useful if you want to minimize the length of URLs or if you want to
@@ -149,7 +149,7 @@ class tinyURL {
 	}
 
 	static function parse($success) {
-		if (isset($_GET['p']) && isset($_GET['t'])) { //	zenphoto tiny url
+		if (isset($_GET['p']) && isset($_GET['t'])) { //	tiny url
 			unset($_GET['t']);
 			$tiny = sanitize_numeric($_GET['p']);
 			$tbl = $tiny & 7;

@@ -301,7 +301,6 @@ themes/zpArdoise
 themes/zpArdoise/404.php
 themes/zpArdoise/album.php
 themes/zpArdoise/archive.php
-themes/zpArdoise/changelog.txt
 themes/zpArdoise/contact.php
 themes/zpArdoise/favorites.php
 themes/zpArdoise/functions.php
@@ -373,7 +372,6 @@ themes/zpBootstrap/album_isotope.php
 themes/zpBootstrap/album_isotope.years.php
 themes/zpBootstrap/album_standard.php
 themes/zpBootstrap/archive.php
-themes/zpBootstrap/changelog.txt
 themes/zpBootstrap/contact.php
 themes/zpBootstrap/favorites.php
 themes/zpBootstrap/functions.php
@@ -8376,4 +8374,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8378
+8376

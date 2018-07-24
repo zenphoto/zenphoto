@@ -80,13 +80,7 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 }
 
 /* zpArdoise_printRandomImages
-  /*	- use improvements of zenphoto 1.4.6 on printRandomImages
-  /*	- use improvements of zenphoto 1.4.5 on printRandomImages
-  /*	- use improvements of zenphoto 1.4.2 on printRandomImages
-  /*		- http://www.zenphoto.org/trac/ticket/1914,
-  /*		- http://www.zenphoto.org/trac/ticket/2020,
-  /*		- http://www.zenphoto.org/trac/ticket/2028
-  /*	- implements call of colorbox (http://www.zenphoto.org/trac/ticket/1908 and http://www.zenphoto.org/trac/ticket/1909)
+  /*	- implements call of colorbox
  */
 
 function zpArdoise_printRandomImages($number = 5, $class = NULL, $option = 'all', $rootAlbum = '', $width = NULL, $height = NULL, $crop = NULL, $fullimagelink = false, $a_class = NULL) {

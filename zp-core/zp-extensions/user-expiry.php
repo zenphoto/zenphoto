@@ -28,8 +28,10 @@
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 8 | CLASS_PLUGIN;
-$plugin_description = gettext("Provides management of users based on when they were created.");
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 8 | CLASS_PLUGIN;
+	$plugin_description = gettext("Provides management of users based on when they were created.");
+}
 
 $option_interface = 'user_expiry';
 

@@ -19,14 +19,14 @@ if (!defined('SEO_FULLWEBPATH')) {
 /* * *************************************** */
 
 /**
- * Returns the zenphoto version string
+ * Returns the version string
  */
 function getVersion() {
 	return ZENPHOTO_VERSION;
 }
 
 /**
- * Prints the zenphoto version string
+ * Prints the version string
  */
 function printVersion() {
 	echo getVersion();
@@ -4289,7 +4289,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 }
 
 /**
- * prints the zenphoto logo and link
+ * Prints the logo and link
  *
  */
 function printZenphotoLink() {

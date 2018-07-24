@@ -74,29 +74,24 @@ $plugin_disable = zpFunctions::pluginDisable(array(array(!extensionEnabled('clas
 
 $option_interface = 'jplayer_options';
 
-if ($plugin_disable) {
-	enableExtension('jplayer', 0);
-} else {
-	Gallery::addImageHandler('flv', 'Video');
-	Gallery::addImageHandler('fla', 'Video');
-	Gallery::addImageHandler('mp3', 'Video');
-	Gallery::addImageHandler('mp4', 'Video');
-	Gallery::addImageHandler('m4v', 'Video');
-	Gallery::addImageHandler('m4a', 'Video');
+Gallery::addImageHandler('flv', 'Video');
+Gallery::addImageHandler('fla', 'Video');
+Gallery::addImageHandler('mp3', 'Video');
+Gallery::addImageHandler('mp4', 'Video');
+Gallery::addImageHandler('m4v', 'Video');
+Gallery::addImageHandler('m4a', 'Video');
 
-	$_zp_multimedia_extension = new jPlayer(); // claim to be the flash player.
-	zp_register_filter('content_macro', 'jPlayer::macro');
-	zp_register_filter('theme_head', 'jplayer::headJS');
-	if (getOption('jplayer_playlist')) {
-		zp_register_filter('theme_head', 'jplayer::playlistJS');
-	}
+$_zp_multimedia_extension = new jPlayer(); // claim to be the flash player.
+zp_register_filter('content_macro', 'jPlayer::macro');
+zp_register_filter('theme_head', 'jplayer::headJS');
+if (getOption('jplayer_playlist')) {
+	zp_register_filter('theme_head', 'jplayer::playlistJS');
+}
 
-	// theme function wrapper for user convenience
-	function printjPlayerPlaylist($option = "playlist", $albumfolder = "") {
-		global $_zp_multimedia_extension;
-		$_zp_multimedia_extension->printjPlayerPlaylist($option, $albumfolder);
-	}
-
+// theme function wrapper for user convenience
+function printjPlayerPlaylist($option = "playlist", $albumfolder = "") {
+	global $_zp_multimedia_extension;
+	$_zp_multimedia_extension->printjPlayerPlaylist($option, $albumfolder);
 }
 
 class jplayer_options {

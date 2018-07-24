@@ -10,9 +10,12 @@
 // force UTF-8 Ø
 
 global $_zp_captcha;
-$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
-$plugin_description = gettext("ZenPhotoGraphics captcha handler.");
-$plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'zpCaptcha') ? sprintf(gettext('Only one Captcha handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_captcha->name) : '';
+
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
+	$plugin_description = gettext("ZenPhotoGraphics captcha handler.");
+	$plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'zpCaptcha') ? sprintf(gettext('Only one Captcha handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_captcha->name) : '';
+}
 
 $option_interface = 'zpCaptcha';
 
@@ -183,9 +186,4 @@ class zpCaptcha extends _zp_captcha {
 
 }
 
-if ($plugin_disable) {
-	enableExtension('zpCaptcha', 0);
-} else {
-	$_zp_captcha = new zpCaptcha();
-}
-?>
+$_zp_captcha = new zpCaptcha();

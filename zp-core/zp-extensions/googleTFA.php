@@ -29,8 +29,10 @@
  * Copyright 2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  *
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext('Two Factor Authentication.');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 5 | CLASS_PLUGIN;
+	$plugin_description = gettext('Two Factor Authentication.');
+}
 
 $option_interface = 'googleTFA';
 

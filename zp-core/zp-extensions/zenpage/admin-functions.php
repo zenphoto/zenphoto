@@ -1348,7 +1348,6 @@ function printCategoriesStatistic() {
 
 /**
  * Prints the links to JavaScript and CSS files zenpage needs.
- * Actually the same as for zenphoto but with different paths since we are in the plugins folder.
  *
  * @param bool $sortable set to true for tabs with sorts.
  *

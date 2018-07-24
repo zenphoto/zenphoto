@@ -50,7 +50,7 @@
  * 			[PAGE] (Prints the current page number)
  * 		</li>
  * 		<li>
- * 			[ZENPHOTO_VERSION] (Prints the version of the Zenphoto installation)
+ * 			[ZENPHOTO_VERSION] (Prints the version of the installation)
  * 		</li>
  * 		<li>
  * 			[PAGELINK mylinktext customscriptpage] (Provides text for a link to a "custom" script page)
@@ -67,30 +67,29 @@
 $plugin_is_filter = 15 | ADMIN_PLUGIN;
 $plugin_description = gettext('View available <code>content macros</code>.');
 
-if (OFFSET_PATH != 2 && zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS | ALBUM_RIGHTS)) {
+zp_register_filter('admin_tabs', 'macro_admin_tabs', 200);
+
+if (zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS | ALBUM_RIGHTS)) {
 	foreach (getEnabledPlugins() as $ext => $pn) {
 		$loadtype = $pn['priority'];
-		if ($loadtype & (FEATURE_PLUGIN | THEME_PLUGIN)) {
+		if ($loadtype & THEME_PLUGIN) {
 			require_once($pn['path']);
 		}
-	}
-	unset($ext);
-	unset($pn);
-	$macros = getMacros();
-	if (!empty($macros)) {
-		zp_register_filter('admin_tabs', 'macro_admin_tabs', 200);
 	}
 }
 
 function macro_admin_tabs($tabs) {
-	if (zp_loggedin(ADMIN_RIGHTS)) {
-		if (!isset($tabs['development'])) {
-			$tabs['development'] = array('text' => gettext("development"),
-					'link' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=development&tab=macros',
-					'default' => "macros",
-					'subtabs' => NULL);
+	if (zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS | ALBUM_RIGHTS)) {
+		$macros = getMacros();
+		if (!empty($macros)) {
+			if (!isset($tabs['development'])) {
+				$tabs['development'] = array('text' => gettext("development"),
+						'link' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=development&tab=macros',
+						'default' => "macros",
+						'subtabs' => NULL);
+			}
+			$tabs['development']['subtabs'][gettext("macros")] = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=development&tab=macros';
 		}
-		$tabs['development']['subtabs'][gettext("macros")] = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=development&tab=macros';
 	}
 	return $tabs;
 }

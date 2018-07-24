@@ -29,20 +29,18 @@
  * @package plugins/googleLogin
  * @pluginCategory users
  */
-$plugin_is_filter = 900 | CLASS_PLUGIN;
-$plugin_description = gettext("Handles logon via the user's <em>Google</em> account.");
-$plugin_disable = zpFunctions::pluginDisable(array(array(version_compare(PHP_VERSION, '5.6.0', '<'), gettext('PHP version 5.6 or greater is required.')), array(!extension_loaded('curl'), gettext('The PHP Curl is required.'))));
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 900 | CLASS_PLUGIN;
+	$plugin_description = gettext("Handles logon via the user's <em>Google</em> account.");
+	$plugin_disable = zpFunctions::pluginDisable(array(array(version_compare(PHP_VERSION, '5.6.0', '<'), gettext('PHP version 5.6 or greater is required.')), array(!extension_loaded('curl'), gettext('The PHP Curl is required.'))));
+}
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/oAuth/oAuthLogin.php');
 
 $option_interface = 'googleLogin';
 
-if ($plugin_disable) {
-	enableExtension('googleLogin', 0);
-} else {
-	zp_register_filter('alt_login_handler', 'googleLogin::alt_login_handler');
-	zp_register_filter('edit_admin_custom_data', 'googleLogin::edit_admin');
-}
+zp_register_filter('alt_login_handler', 'googleLogin::alt_login_handler');
+zp_register_filter('edit_admin_custom_data', 'googleLogin::edit_admin');
 
 /**
  * Option class

@@ -8,8 +8,8 @@
  * (If the User validation is set to <i>trusted</i> the <var>PHP_AUTH_PW</var> password will be ignored and
  * need not be cleartext.)
  *
- * Note that the HTTP logins are outside of zenphoto so there is no security logging of
- * them. Nor can zenphoto "log off" the user. The normal logout links will not show for
+ * Note that the HTTP logins are outside of the site software so there is no security logging of
+ * them. Nor can we "log off" the user. The normal logout links will not show for
  * users logged in via this plugin.
  *
  * Apache configuration:
@@ -19,8 +19,8 @@
  * <var>htpasswd</var> will prompt you for the password. You can repeat the process for each additional user
  * or you can simply edit the <i>passwords</i> file with a text editor.<br><br>
  * Each <i>user/password</i> must match to a ZenPhoto20 <i>user/password</i> or access to ZenPhoto20 will be at a <i>guest</i>
- * level. If a user changes his password in zenphoto someone must make the equivalent change in
- * the Apache password file for the zenphoto user access to succeed. (However, see the <i>User validation</i>
+ * level. If a user changes his site password someone must make the equivalent change in
+ * the Apache password file for the user access to succeed. (However, see the <i>User validation</i>
  * option.)</li>
  *
  * <li>Create a file named "groups" in your apache folder</li>
@@ -46,8 +46,10 @@
  * @package plugins/http_auth
  * @pluginCategory users
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext('Checks for Apache HTTP authentication of authorized users.');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 5 | CLASS_PLUGIN;
+	$plugin_description = gettext('Checks for Apache HTTP authentication of authorized users.');
+}
 
 $option_interface = 'http_auth';
 
@@ -84,7 +86,7 @@ class http_auth {
 	static function check($authorized) {
 		global $_zp_authority, $_zp_current_admin_obj;
 		if (!$authorized) {
-			// not logged in via normal zenphoto handling
+			// not logged in via normal handling
 			// PHP-CGI auth fixd
 			if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
 				$auth_params = explode(":", base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));

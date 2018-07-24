@@ -65,7 +65,7 @@ class oAuthLogin {
 	 * Will log the user on if he exists. Otherwise it will create a user accoung and log
 	 * on that account.
 	 *
-	 * Redirects into zenphoto on success presuming there is a redirect link.
+	 * Redirects on success presuming there is a redirect link.
 	 *
 	 * @param $user
 	 * @param $email

@@ -13,14 +13,14 @@
  * 		theme	"image size" option. This has a class of "textobject" so it can be styled.
  *
  * What this plugin really is for is to serve as a model of how a plugin can be made to handle file types
- * that zenphoto does not handle natively.
+ * that are not handle natively.
  *
  * Some key points to note:
  * 1. The naming convention for these plugins is class-«handler class».php.
  * 2. The statement setting the plugin_is_filter variable must be near the front of the file. This is important
  * as it is the indicator to the plugin loader to load the script at the same point that other
  * object modules are loaded.
- * 3. These objects are extension to the zenphoto "Image" class. This means they have all the properties of
+ * 3. These objects are extension to the "Image" class. This means they have all the properties of
  * an image plus whatever you add. Of course you will need to override some of the image class functions to
  * implement the functionality of your new class.
  * 4. There is one VERY IMPORTANT method that you must provide which is not part of the "Image" base class. That
@@ -30,8 +30,7 @@
  *
  * So, briefly, the first four lines of code below are the standard plugin interface to Admin. There is one small
  * wrinkle you might notice--the code for 'plugin_description' includes a test which sets the variable $disable.
- * As you might expect, there were some changes needed to zenphoto in order to get this concept to work.  $disable
- * is set to true if the revision of zenphoto that is attempting to load this plugin is lower than the one where the
+ * $disable is set to true if the revision of zenphoto that is attempting to load this plugin is lower than the one where the
  * implementation first appeared. The interface variable 'plugin_disable' is set to this value telling Admin not to
  * allow enabling of the plugin if the release level is too low.
  *
@@ -53,7 +52,7 @@
  *
  * getThumb() is responsible for generating the thumbnail image for the object. As above, if there is a similar named real
  * image, it will be used. Otherwise [for this object implementation] we will use a thumbnail image provided with the plugin.
- * The particular form of the file name used when there is no thumb stand-in image allows zenphoto to choose an image in the
+ * The particular form of the file name used when there is no thumb stand-in image allows choosing an image in the
  * plugin folder.
  *
  * @author Stephen Billard (sbillard)

@@ -28,8 +28,10 @@
  * @package plugins/favoritesAlbums
  * @pluginCategory media
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext('Publish <em>favorites</em> into albums that others can view.');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 5 | CLASS_PLUGIN;
+	$plugin_description = gettext('Publish <em>favorites</em> into albums that others can view.');
+}
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesHandler/favoritesClass.php');
 define("FAVORITESALBUM_FOLDER", ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesAlbums/');

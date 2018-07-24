@@ -33,8 +33,10 @@
  * @package plugins/ipBlocker
  * @pluginCategory admin
  */
-$plugin_is_filter = 10 | CLASS_PLUGIN;
-$plugin_description = gettext("Tools to block hacker access to your site.");
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 10 | CLASS_PLUGIN;
+	$plugin_description = gettext("Tools to block hacker access to your site.");
+}
 
 $option_interface = 'ipBlocker';
 

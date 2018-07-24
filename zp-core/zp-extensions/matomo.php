@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * This module helps you to keep track of your Zenphoto visitors through the Matomo platform (formerly known as Piwik).
+ * This module helps you to keep track of your visitors through the Matomo platform (formerly known as Piwik).
  * It places the <i>Matomo JavaScript tracking scripts</i> at the bottom of your webpages using the <i>theme_body_close</i>
  * filter. It also supports tracking for users with JavaScript disabled.
  *
@@ -12,7 +12,7 @@
  * Additionally a content macro [MATOMO_OPTOUT] is provided that embeds a facility for visitors to optout of tracking as required by the law of several countries.
  * Place this on your privacy statement page.
  *
- * You can add Matomo widget iFrame code to view your statistics via a Zenphoto backend utility.
+ * You can add Matomo widget iFrame code to view your statistics via a backend utility.
  *
  * Please visit the {@link https://matomo.org/docs/ Matomo} site for the Matomo software and installation instructions.
  *

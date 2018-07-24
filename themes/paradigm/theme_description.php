@@ -1,7 +1,7 @@
 <?php
 
 // force UTF-8 Ø
-// Zenphoto theme definition file
+// Theme definition file
 $theme_description['name'] = 'Paradigm';
 $theme_description['author'] = 'Olivier FFRENCH (offrench)';
 $theme_description['version'] = '1.1';

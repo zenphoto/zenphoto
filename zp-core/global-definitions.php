@@ -75,9 +75,9 @@ define('DEBUG_OBJECTS', strpos($_debug, 'OBJECTS')); // set to true to log objec
 unset($_debug);
 
 $_zp_DB_details = array(
-		'mysql_host' => gettext('not connected'),
-		'mysql_database' => gettext('not connected'),
-		'mysql_prefix' => gettext('not connected'),
+		'mysql_host' => 'not connected',
+		'mysql_database' => 'not connected',
+		'mysql_prefix' => 'not connected',
 		'mysql_user' => '',
 		'mysql_pass' => ''
 );

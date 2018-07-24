@@ -163,7 +163,7 @@ function getField($field, $level = 3) {
 }
 
 /**
- * Prints the mail contact form, handles checks and the mail sending. It uses zenphoto's check for valid e-mail address and website URL and also supports CAPTCHA.
+ * Prints the mail contact form, handles checks and the mail sending. It checks for valid e-mail address and website URL and also supports CAPTCHA.
  * The contact form itself is a separate file and is located within the /contact_form/form.php so that it can be style as needed.
  *
  * @param string $subject_override set to override the subject.

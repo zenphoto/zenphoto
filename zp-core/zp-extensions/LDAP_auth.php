@@ -11,10 +11,12 @@
  * @pluginCategory users
  */
 
-$plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext('Enable LDAP user authentication.');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 5 | CLASS_PLUGIN;
+	$plugin_description = gettext('Enable LDAP user authentication.');
+	$plugin_disable = function_exists('ldap_connect') ? '' : gettext('php_ldap extension is not enabled');
+}
 
-$plugin_disable = function_exists('ldap_connect') ? '' : gettext('php_ldap extension is not enabled');
 $option_interface = 'LDAP_auth_options';
 
 if (!($plugin_disable || class_exists('Zenphoto_Authority'))) {
