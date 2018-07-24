@@ -78,11 +78,11 @@ if (OFFSET_PATH != 2) {
  */
 function printLanguageSelector($flags = NULL) {
 	global $_locale_Subdomains;
-	$localeOption = getOption('locale');
+	$locale = $localeOption = getOption('locale');
 	$languages = generateLanguageList();
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
-		if ($localeOption != $locale) {
+		if ($locale && $localeOption != $locale) {
 			?>
 			<div class="errorbox">
 				<h2>
@@ -120,17 +120,28 @@ function printLanguageSelector($flags = NULL) {
 		$separator = '&';
 	}
 	if ($flags) {
-		asort($languages);
+		$languages[gettext("HTTP_Accept_Language")] = '';
+		ksort($languages);
 		?>
 		<ul class="flags">
 			<?php
 			foreach ($languages as $text => $lang) {
-				?>
-				<li<?php if ($lang == $localeOption) echo ' class="currentLanguage"'; ?>>
-					<?php
+				if ($lang) {
 					$flag = getLanguageFlag($lang);
 					$path = dynamic_locale::localLink($uri, $separator, $lang);
-					if ($lang != $localeOption) {
+				} else {
+					$flag = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
+					$path = $uri;
+					if (strpos($uri, '?') === false) {
+						$path = $uri . '?locale=';
+					} else {
+						$path = $uri . '&locale=';
+					}
+				}
+				?>
+				<li<?php if ($current = $locale && $lang == $localeOption) echo ' class="currentLanguage"'; ?>>
+					<?php
+					if (!$current) {
 						?>
 						<a href="<?php echo html_encode($path); ?>" >
 							<?php
@@ -138,7 +149,7 @@ function printLanguageSelector($flags = NULL) {
 						?>
 						<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
 						<?php
-						if ($lang != $localeOption) {
+						if (!$current) {
 							?>
 						</a>
 						<?php

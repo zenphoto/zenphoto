@@ -1366,7 +1366,7 @@ function printStandardMeta() {
  */
 function swLogo() {
 	return '<span style=\'display: inline-block;font-family: Palitino, "Times New Roman", Times, serif;vertical-align: -6%;\'>
-		<span style="font-size: 150%;">Z</span><span style="display: inline-block;vertical-align: 6%;font-size: 80%;">EN</span><span style="font-size: 150%;">P</span><span style="display: inline-block;vertical-align: 6%;font-size: 80%;">H</span><span style="display: inline-block;vertical-align: 1%;font-size: 110%;font-weight: bolder;">&#9678;</span><span style="display: inline-block;vertical-align: 6%;font-size: 80%;">TO</span><span style="font-size: 150%;">G</span><span style="display: inline-block;vertical-align: 6%;font-size: 80%;">RAPHICS</span>
+		<span style="font-size: 150%;">Z</span><span style="display: inline-block;vertical-align: 6%;font-size: 80%;">EN</span><span style="font-size: 150%;">P</span><span style="display: inline-block;vertical-align: 6%;font-size: 80%;">H</span><span style="display: inline-block;vertical-align: 0.8%;font-size: 110%;font-weight: bolder;">&#9678;</span><span style="display: inline-block;vertical-align: 6%;font-size: 80%;">TO</span><span style="font-size: 150%;">G</span><span style="display: inline-block;vertical-align: 6%;font-size: 80%;">RAPHICS</span>
 	</span>';
 }
 

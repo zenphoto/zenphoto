@@ -181,6 +181,7 @@ if (isset($_GET['action'])) {
 							$lang = sanitize($userlist[$i]['admin_language'], 3);
 							if ($lang != $userobj->getLanguage()) {
 								$userobj->setLanguage($lang);
+								zp_clearCookie('dynamic_locale');
 								markUpdated($user);
 							}
 							$rights = 0;
@@ -821,12 +822,13 @@ echo $refresh;
 														<input type="hidden" name="user[<?php echo $id ?>][admin_language]" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
 														<ul class="flags" style="margin-left: 0px;">
 															<?php
-															$_languages = generateLanguageList();
-															$_languages[gettext("HTTP_Accept_Language")] = '';
+															$languages = generateLanguageList();
+															$languages[gettext("HTTP_Accept_Language")] = '';
+															ksort($languages);
 															$flags = getLanguageFlags();
 															$flags[''] = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
 															$c = 0;
-															foreach ($_languages as $text => $lang) {
+															foreach ($languages as $text => $lang) {
 																?>
 																<li id="<?php echo $lang . '_' . $id; ?>"<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
 																	<a onclick="languageChange('<?php echo $id; ?>', '<?php echo $lang; ?>');" >
