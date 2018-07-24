@@ -30,6 +30,7 @@ $_initial_session_path = session_save_path();
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
 require_once(dirname(dirname(__FILE__)) . '/functions.php');
 require_once(dirname(__FILE__) . '/setup-functions.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/dynamic-locale.php');
 
 //allow only one setup to run
 $setupMutex = new zpMutex('sP');
@@ -1651,8 +1652,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								<?php
 								$_zp_authority->printLoginForm('', false);
 							}
-
-							setupLanguageSelector();
+							?>
+							<div class="sflags">
+								<?php
+								printLanguageSelector(true);
+								?>
+							</div>
+							<?php
 							?>
 							<br class="clearall">
 								<?php
@@ -1955,7 +1961,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						?>
 						<?php
 						if (!isset($_GET['checked'])) {
-							setupLanguageSelector();
+							?>
+							<div class="sflags">
+								<?php
+								printLanguageSelector(true);
+								?>
+							</div>
+							<?php
 						}
 						?>
 						<br class="clearall">

@@ -401,65 +401,6 @@ function setupLog($message, $anyway = false, $reset = false) {
 	}
 }
 
-function setupLanguageSelector() {
-	global $_zp_setupCurrentLocale_result;
-	$languages = generateLanguageList();
-	$unsupported = getSerializedArray(getOption('locale_unsupported'));
-	if (isset($_REQUEST['locale'])) {
-		$locale = sanitize($_REQUEST['locale']);
-		if (getOption('locale') != $locale || isset($unsupported[$locale])) {
-			?>
-			<div class="errorbox">
-				<h2>
-					<?php printf(gettext('<em>%s</em> is not available.'), html_encode($languages[$locale])); ?>
-					<?php printf(gettext('The locale %s is not supported on your server.'), html_encode($locale)); ?>
-					<br />
-					<?php echo gettext('You can use the <em>debug</em> plugin to see which locales your server supports.'); ?>
-				</h2>
-			</div>
-			<?php
-		}
-	}
-	?>
-	<ul class="sflags">
-		<?php
-		$_languages = generateLanguageList();
-		krsort($_languages, SORT_LOCALE_STRING);
-		$currentValue = getOption('locale');
-		foreach ($_languages as $text => $lang) {
-			if (i18nSetLocale($lang)) {
-				?>
-				<li<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
-					<?php
-					if ($lang != $currentValue) {
-						?>
-						<a href="?locale=<?php echo $lang; ?>">
-							<?php
-						}
-						if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png')) {
-							$flag = WEBPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png';
-						} else {
-							$flag = WEBPATH . '/' . ZENFOLDER . '/locale/missing_flag.png';
-						}
-						?>
-						<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
-						<?php
-						if ($lang != $currentValue) {
-							?>
-						</a>
-						<?php
-					}
-					?>
-				</li>
-				<?php
-			}
-		}
-		?>
-	</ul>
-	<?php
-	setupCurrentLocale($_zp_setupCurrentLocale_result);
-}
-
 function setupXSRFDefender($where) {
 	$xsrftoken = setupXSRFToken();
 	if (!isset($_REQUEST['xsrfToken']) || $xsrftoken != $_REQUEST['xsrfToken']) {
