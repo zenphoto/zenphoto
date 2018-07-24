@@ -238,6 +238,6 @@ function printCustomField($field, $label = NULL, $object = NULL) {
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
 	new customFieldExtender;
 } else {
-	customFieldExtender::register();
+	$_zp_plugin_differed_actions['customFieldExtender'] = 'customFieldExtender::register';
 }
 ?>

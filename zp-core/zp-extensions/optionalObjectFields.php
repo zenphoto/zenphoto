@@ -635,6 +635,6 @@ function optionalObjectFields_enable($enabled) {
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
 	new optionalObjectFields;
 } else {
-	optionalObjectFields::register();
+	$_zp_plugin_differed_actions['optionalObjectFields'] = 'optionalObjectFields::register';
 }
 ?>

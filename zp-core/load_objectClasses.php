@@ -8,6 +8,8 @@
  *
  * @package core
  */
+$_zp_plugin_differed_actions = array(); //	final initialization for class plugins (mostly for language translation issues)
+
 require_once(dirname(__FILE__) . '/classes.php');
 require_once(dirname(__FILE__) . '/class-gallery.php');
 require_once(dirname(__FILE__) . '/class-album.php');
@@ -56,5 +58,9 @@ if (abs(OFFSET_PATH) != 2) { // setup does not need (and might have problems wit
 	}
 } else {
 	require_once(dirname(__FILE__) . '/auth_zp.php'); // setup needs this!
+}
+define('ZENPHOTO_LOCALE', setMainDomain());
+foreach ($_zp_plugin_differed_actions as $callback) {
+	call_user_func($callback);
 }
 ?>

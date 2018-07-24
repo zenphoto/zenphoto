@@ -19,7 +19,6 @@ $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if en
 $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
-define('ZENPHOTO_LOCALE', setMainDomain());
 //encrypt/decrypt constants
 define('SECRET_KEY', getOption('secret_key_text'));
 define('SECRET_IV', getOption('secret_init_vector'));

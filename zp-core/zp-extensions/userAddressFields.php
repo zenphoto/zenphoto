@@ -121,6 +121,6 @@ function userAddressFields_enable($enabled) {
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
 	new userAddressFields;
 } else {
-	userAddressFields::register();
+	$_zp_plugin_differed_actions['userAddressField'] = 'userAddressFields::register';
 }
 ?>
