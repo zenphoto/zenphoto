@@ -80,6 +80,11 @@ function printLanguageSelector($flags = NULL) {
 	global $_locale_Subdomains;
 	$locale = $localeOption = getOption('locale');
 	$languages = generateLanguageList();
+	$disallow = getSerializedArray(getOption('locale_disallowed'));
+	if (!isset($disallow[''])) {
+		$languages = array_merge(array(gettext("HTTP_Accept_Language") => ''), $languages);
+	}
+
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
 		if ($locale && $localeOption != $locale) {
@@ -120,8 +125,6 @@ function printLanguageSelector($flags = NULL) {
 		$separator = '&';
 	}
 	if ($flags) {
-		$languages[gettext("HTTP_Accept_Language")] = '';
-		ksort($languages);
 		?>
 		<ul class="flags">
 			<?php
