@@ -9,7 +9,7 @@
  * There also must be a PNG image for the login button named <var>login_button.png</var>
  *
  * @author Stephen Billard (sbillard)
- * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  *
  * @package plugins/oAuthLogin
  */
@@ -65,7 +65,7 @@ class oAuthLogin {
 	 * Will log the user on if he exists. Otherwise it will create a user accoung and log
 	 * on that account.
 	 *
-	 * Redirects into zenphoto on success presuming there is a redirect link.
+	 * Redirects on success presuming there is a redirect link.
 	 *
 	 * @param $user
 	 * @param $email
@@ -137,7 +137,7 @@ class oAuthLogin {
 				$more = sprintf(gettext('Configuration error,%1$s login group %2$s does not exist.'), $class, $groupname);
 			}
 			if (!$more && getOption('register_user_notify')) {
-				$_notify = zp_mail(gettext('ZenPhoto20 Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+				$_notify = zp_mail(gettext('ZenPhotoGraphics Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 			}
 		}
 		session_unset(); //	need to cleanse out stuff or subsequent logins will fail[sic]

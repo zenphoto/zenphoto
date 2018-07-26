@@ -2,7 +2,7 @@
 /**
  * Backup and restore of the database tables
  *
- * This plugin provides a means to make backups of your zenphoto database and
+ * This plugin provides a means to make backups of your  database and
  * at a later time restore the database to the contents of one of these backups.
  *
  * @author Stephen Billard (sbillard)
@@ -452,7 +452,7 @@ if ($action == 'backup') {
 	if (getOption('zenphoto_install') !== $signaure) {
 		$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php">';
 		$messages .= '<div class="notebox">
-			<h2>' . sprintf(gettext('You have restored your database from a different instance of zenphoto. You should run %1$ssetup%2$s to insure proper migration.'), $l1, '</a>') . '</h2>
+			<h2>' . sprintf(gettext('You have restored your database from a different instance of the software. You should run %1$ssetup%2$s to insure proper migration.'), $l1, '</a>') . '</h2>
 			</div>';
 	}
 
@@ -614,7 +614,7 @@ if (isset($_GET['compression'])) {
 				echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
 				echo '</p><p class="notebox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
 				echo '</p><p>';
-				echo gettext('Ideally a restore should be done only on the same version on which the backup was created. If you are intending to upgrade, first do the restore on the version you were running, then install the new zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
+				echo gettext('Ideally a restore should be done only on the same version on which the backup was created. If you are intending to upgrade, first do the restore on the version you were running, then install the new version. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
 				echo '</p>'
 				?>
 			</div>

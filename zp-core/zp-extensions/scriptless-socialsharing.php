@@ -1,6 +1,6 @@
 <?php
 /**
- * A Zenphoto plugin that provides scriptless and privacy friendly sharing buttons for:
+ * A plugin that provides scriptless and privacy friendly sharing buttons for:
  *
  * <ul>
  * <li>Facebook</li>

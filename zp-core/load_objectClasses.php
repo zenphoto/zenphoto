@@ -8,6 +8,8 @@
  *
  * @package core
  */
+$_zp_plugin_differed_actions = array(); //	final initialization for class plugins (mostly for language translation issues)
+
 require_once(dirname(__FILE__) . '/classes.php');
 require_once(dirname(__FILE__) . '/class-gallery.php');
 require_once(dirname(__FILE__) . '/class-album.php');
@@ -37,6 +39,7 @@ if (abs(OFFSET_PATH) != 2) { // setup does not need (and might have problems wit
 					break;
 			}
 		}
+
 		$enabled = getEnabledPlugins();
 		foreach ($enabled as $extension => $plugin) {
 			$priority = $plugin['priority'];
@@ -52,9 +55,17 @@ if (abs(OFFSET_PATH) != 2) { // setup does not need (and might have problems wit
 				}
 			}
 		}
-		require_once(dirname(__FILE__) . '/auth_zp.php'); // loaded after CLASS_PLUGIN and before FEATURE_PLUGINS and ADMIN_PLUGIN
+		if ($mask == CLASS_PLUGIN) { // load after CLASS_PLUGIN and before FEATURE_PLUGINS and ADMIN_PLUGIN
+			require_once(dirname(__FILE__) . '/auth_zp.php');
+			define('ZENPHOTO_LOCALE', setMainDomain());
+		}
 	}
 } else {
 	require_once(dirname(__FILE__) . '/auth_zp.php'); // setup needs this!
+	define('ZENPHOTO_LOCALE', setMainDomain());
+}
+$_zp_active_languages = $_zp_all_languages = NULL; //	clear out so that they will get translated properly
+foreach ($_zp_plugin_differed_actions as $callback) {
+	call_user_func($callback);
 }
 ?>

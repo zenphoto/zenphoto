@@ -92,7 +92,7 @@ em {
 }
 
 #admin_head {
-	margin-top: 10px;
+	margin-top: 8px;
 }
 
 #logo img {
@@ -106,10 +106,9 @@ em {
 
 #links {
 	padding-right: 2em;
-	padding-top: 1em;
+	padding-top: 4em;
 	float: right;
 	font-size: 100%;
-
 }
 
 #links a {

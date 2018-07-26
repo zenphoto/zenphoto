@@ -43,11 +43,13 @@
  * @package plugins/optionalObjectFields
  * @pluginCategory admin
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  */
-$plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN); //	we want this done last so the codeblocks go at the end
-$plugin_description = gettext('Handles the "optional" object fields');
-$plugin_notice = (extensionEnabled('optionalObjectFields')) ? '' : gettext('<strong>IMPORTANT</strong>: This plugin enables the "tags" database fields. If disabled the admin <em>tags</em> tab will not be present. Click on the <em>More information</em> icon for details.');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN); //	we want this done last so the codeblocks go at the end
+	$plugin_description = gettext('Handles the "optional" object fields');
+	$plugin_notice = (extensionEnabled('optionalObjectFields')) ? '' : gettext('<strong>IMPORTANT</strong>: This plugin enables the "tags" database fields. If disabled the admin <em>tags</em> tab will not be present. Click on the <em>More information</em> icon for details.');
+}
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 
@@ -635,6 +637,6 @@ function optionalObjectFields_enable($enabled) {
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
 	new optionalObjectFields;
 } else {
-	optionalObjectFields::register();
+	$_zp_plugin_differed_actions['optionalObjectFields'] = 'optionalObjectFields::register';
 }
 ?>

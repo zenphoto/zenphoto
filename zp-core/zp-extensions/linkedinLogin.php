@@ -23,25 +23,23 @@
  * You can place a login button on your webpage by calling the function <var>flinkedinLogin::loginButton();</var>
  *
  * @author Stephen Billard (sbillard)
- * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  *
  * @package plugins/linkedinLogin
  * @pluginCategory users
  */
-$plugin_is_filter = 900 | CLASS_PLUGIN;
-$plugin_description = gettext("Handles logon via the user's <em>Linkedin</em> account.");
-$plugin_disable = zpFunctions::pluginDisable(array(array(version_compare(PHP_VERSION, '5.6.0', '<'), gettext('PHP version 5.6 or greater is required.')), array(!extension_loaded('curl'), gettext('The PHP Curl is required.'))));
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 900 | CLASS_PLUGIN;
+	$plugin_description = gettext("Handles logon via the user's <em>Linkedin</em> account.");
+	$plugin_disable = zpFunctions::pluginDisable(array(array(version_compare(PHP_VERSION, '5.6.0', '<'), gettext('PHP version 5.6 or greater is required.')), array(!extension_loaded('curl'), gettext('The PHP Curl is required.'))));
+}
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/oAuth/oAuthLogin.php');
 
 $option_interface = 'linkedinLogin';
 
-if ($plugin_disable) {
-	enableExtension('linkedinLogin', 0);
-} else {
-	zp_register_filter('alt_login_handler', 'linkedinLogin::alt_login_handler');
-	zp_register_filter('edit_admin_custom_data', 'linkedinLogin::edit_admin');
-}
+zp_register_filter('alt_login_handler', 'linkedinLogin::alt_login_handler');
+zp_register_filter('edit_admin_custom_data', 'linkedinLogin::edit_admin');
 
 /**
  * Option class

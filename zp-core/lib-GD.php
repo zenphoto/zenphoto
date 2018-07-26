@@ -52,7 +52,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		$_lib_GD_info = array();
 		$info = gd_info();
 		$_lib_GD_info['Library'] = 'GD';
-		$_lib_GD_info['Library_desc'] = sprintf(gettext('PHP GD library <em>%s</em>'), $info['GD Version']);
+		$_lib_GD_info['Library_desc'] = sprintf('PHP GD library <em>%s</em>', $info['GD Version']);
 		$_lib_GD_info['FreeType'] = $info['FreeType Support'];
 		define('GD_FREETYPE', (bool) $_lib_GD_info['FreeType']);
 		unset($_lib_GD_info['FreeType']);

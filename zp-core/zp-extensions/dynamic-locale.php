@@ -2,13 +2,11 @@
 /**
  * Allow the site viewer to select a localization.
  *
- * Only the zenphoto and theme gettext() string are localized by this facility.
- *
  * If you want to support image descriptions, etc. in multiple languages you will
  * have to enable the <i>multi-lingual</i> option found next to the language selector on
  * the admin gallery configuration page. Then you will have to provide appropriate
  * alternate translations for the fields you use. While there is a field for
- * strings for all zenphoto supported languages you need supply only those you choose.
+ * strings for all supported languages you need supply only those you choose.
  * The others language strings will default to your local language.
  *
  * Locale selection may occur in several ways:
@@ -40,8 +38,8 @@
  * (Some providers will automatically redirect undefined subdomains to the main domain. If your
  * provider does this, no subdomain creation is needed.)
  *
- * <b>NOTE:</b> the implementation of URLs requires that zenphoto parse the URL, save the
- * language request to a cookie, then redirect to the "native" URL. This means that there is an extra
+ * <b>NOTE:</b> the implementation of URLs requires that the URL be parsed, the
+ * language request saved to a cookie, then redirected to the "native" URL. This means that there is an extra
  * redirect for <b>EACH</b> page request!
  *
  * This plugiin applies only to the theme pages--not Admin. The <em>language cookie</i>, if set, will
@@ -52,8 +50,10 @@
  * @package plugins/dynamic-locale
  * @pluginCategory seo
  */
-$plugin_is_filter = 10 | CLASS_PLUGIN;
-$plugin_description = gettext("Allows viewers of your site to select the language translation of their choice.");
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 10 | CLASS_PLUGIN;
+	$plugin_description = gettext("Allows viewers of your site to select the language translation of their choice.");
+}
 
 $option_interface = 'dynamic_locale';
 
@@ -77,12 +77,17 @@ if (OFFSET_PATH != 2) {
  *
  */
 function printLanguageSelector($flags = NULL) {
-	global $_locale_Subdomains;
-	$localeOption = getOption('locale');
+	global $_locale_Subdomains, $_zp_current_locale;
+	$locale = $localeOption = getOption('locale');
 	$languages = generateLanguageList();
+	$disallow = getSerializedArray(getOption('locale_disallowed'));
+
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
-		if ($localeOption != $locale) {
+		if ($locale && $localeOption != $locale) {
+
+
+			var_dump($_REQUEST, $locale, $localeOption);
 			?>
 			<div class="errorbox">
 				<h2>
@@ -119,31 +124,24 @@ function printLanguageSelector($flags = NULL) {
 		$uri .= '?' . $request['query'];
 		$separator = '&';
 	}
+
 	if ($flags) {
-		asort($languages);
 		?>
 		<ul class="flags">
 			<?php
 			foreach ($languages as $text => $lang) {
-				?>
-				<li<?php if ($lang == $localeOption) echo ' class="currentLanguage"'; ?>>
-					<?php
-					$flag = getLanguageFlag($lang);
+				$current = $locale && $lang == $locale;
+				$flag = getLanguageFlag($lang);
+				if ($current) {
+					$path = $uri . $separator . 'locale=';
+				} else {
 					$path = dynamic_locale::localLink($uri, $separator, $lang);
-					if ($lang != $localeOption) {
-						?>
-						<a href="<?php echo html_encode($path); ?>" >
-							<?php
-						}
-						?>
+				}
+				?>
+				<li<?php if ($current) echo ' class="currentLanguage"'; ?>>
+					<a href="<?php echo html_encode($path); ?>" >
 						<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
-						<?php
-						if ($lang != $localeOption) {
-							?>
-						</a>
-						<?php
-					}
-					?>
+					</a>
 				</li>
 				<?php
 			}
@@ -151,15 +149,23 @@ function printLanguageSelector($flags = NULL) {
 		</ul>
 		<?php
 	} else {
+		$save_zp_current_locale = $_zp_current_locale;
+		$_zp_current_locale = NULL;
+		$languages = array_merge(array('' => ''), $languages);
 		?>
 		<div class="languageSelect">
 			<form id="language_change" action="#" method="post">
-				<select id="dynamic-locale" class="languageSelector" name="locale" onchange="switch_language();">
+				<select id="dynamic-locale" class="languageSelector" name="locale" onchange="window.location = $('#dynamic-locale option:selected').val()">
 					<?php
 					foreach ($languages as $text => $lang) {
-						$path = dynamic_locale::localLink($uri, $separator, $lang);
+						$current = $locale && $lang == $locale;
+						if ($lang) {
+							$path = dynamic_locale::localLink($uri, $separator, $lang);
+						} else {
+							$path = $uri . $separator . 'locale=';
+						}
 						?>
-						<option value="<?php echo html_encode(html_encode($path)); ?>"<?php if ($lang == $localeOption) echo ' selected="selected"'; ?>>
+						<option value="<?php echo html_encode($path); ?>"<?php if ($current) echo ' selected="selected"'; ?>>
 						<span class="locale_name">
 							<?php echo html_encode($text); ?>
 						</span>
@@ -172,6 +178,7 @@ function printLanguageSelector($flags = NULL) {
 			</form>
 		</div>
 		<?php
+		$_zp_current_locale = $save_zp_current_locale;
 	}
 }
 

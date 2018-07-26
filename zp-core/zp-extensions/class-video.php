@@ -15,10 +15,11 @@
  * @pluginCategory media
  */
 // force UTF-8 Ø
-
-$plugin_is_filter = defaultExtension(990 | CLASS_PLUGIN);
-$plugin_description = gettext('The <em>audio-video</em> handler.');
-$plugin_notice = gettext('This plugin handles <code>mp3</code>, <code>mp4</code>, <code>3gp</code>, and <code>mov</code> multi-media files. <strong>Note:</strong> <code>mp3</code> and <code>mp4</code> require HTML5 browser support. You should enable a multimedia player plugin to handle other media files.');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = defaultExtension(990 | CLASS_PLUGIN);
+	$plugin_description = gettext('The <em>audio-video</em> handler.');
+	$plugin_notice = gettext('This plugin handles <code>mp3</code>, <code>mp4</code>, <code>3gp</code>, and <code>mov</code> multi-media files. <strong>Note:</strong> <code>mp3</code> and <code>mp4</code> require HTML5 browser support. You should enable a multimedia player plugin to handle other media files.');
+}
 
 if (extensionEnabled('class-video')) {
 	Gallery::addImageHandler('3gp', 'Video');
@@ -134,7 +135,7 @@ class Video extends Image {
 	 * @return array
 	 *
 	 * @author Stephen Billard
-	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
 	 */
 	static function getMetadataFields() {
 		return array(
@@ -504,7 +505,7 @@ class Video extends Image {
 	 * @return string
 	 *
 	 * @author Stephen Billard
-	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
 	 */
 	static function multimediaExtension() {
 		global $_zp_multimedia_extension;

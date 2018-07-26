@@ -24,7 +24,7 @@
  * @package plugins/utf8mb4Migration
  * @pluginCategory development
  *
- * Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  */
 
 // force UTF-8 Ø
@@ -38,9 +38,8 @@ zp_register_filter('admin_utilities_buttons', 'utf8mb4Migration::buttons');
 class utf8mb4Migration {
 
 	static function buttons($buttons) {
-		global $_zp_conf_vars;
 
-		if ($_zp_conf_vars['UTF-8'] == 'utf8') {
+		if (getOption('UTF-8') == 'utf8') {
 			if (version_compare(MySQL_VERSION, '5.5.3', '>=')) {
 				$buttons[] = array(
 						'category' => gettext('Development'),

@@ -1445,7 +1445,7 @@ function read_exif_data_raw($path, $verbose) {
  * camera data. In particular, the tolarance computation is
  * completely changed.
  *
- * Changes are Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * Changes are Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  */
 function convertToFraction($v) {
 	if ($v == 0) {

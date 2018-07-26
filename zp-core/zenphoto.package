@@ -26,8 +26,6 @@ themes/basic/images/50percent.png
 themes/basic/images/admin-buttonback.jpg
 themes/basic/images/img-bg.gif
 themes/basic/images/tag.png
-themes/basic/images/zen-logo-blue.png
-themes/basic/images/zen-logo-sterile.png
 themes/basic/styles
 themes/basic/styles/dark.css
 themes/basic/styles/light.css
@@ -75,7 +73,6 @@ themes/effervescence+/images/effervescence.png
 themes/effervescence+/images/err-passwordprotected.png
 themes/effervescence+/images/imageDefault.png
 themes/effervescence+/images/search.png
-themes/effervescence+/images/zen-logo.png
 themes/effervescence+/styles
 themes/effervescence+/styles/blue and green play.txt
 themes/effervescence+/styles/effervescence.txt
@@ -127,7 +124,6 @@ themes/garland/images/menu-album.png
 themes/garland/images/menu-sub.png
 themes/garland/images/search.png
 themes/garland/images/search_bg.png
-themes/garland/images/zen-logo.png
 themes/paradigm
 themes/paradigm/404.php
 themes/paradigm/album.php
@@ -305,7 +301,6 @@ themes/zpArdoise
 themes/zpArdoise/404.php
 themes/zpArdoise/album.php
 themes/zpArdoise/archive.php
-themes/zpArdoise/changelog.txt
 themes/zpArdoise/contact.php
 themes/zpArdoise/favorites.php
 themes/zpArdoise/functions.php
@@ -363,8 +358,6 @@ themes/zpArdoise/images/map.png
 themes/zpArdoise/images/rss.png
 themes/zpArdoise/images/search-drop.png
 themes/zpArdoise/images/video-placeholder.jpg
-themes/zpArdoise/images/zen-logo-dark.png
-themes/zpArdoise/images/zen-logo-light.png
 themes/zpArdoise/js
 themes/zpArdoise/js/fadeSliderToggle.js
 themes/zpArdoise/js/jquery.galleriffic.js
@@ -379,7 +372,6 @@ themes/zpBootstrap/album_isotope.php
 themes/zpBootstrap/album_isotope.years.php
 themes/zpBootstrap/album_standard.php
 themes/zpBootstrap/archive.php
-themes/zpBootstrap/changelog.txt
 themes/zpBootstrap/contact.php
 themes/zpBootstrap/favorites.php
 themes/zpBootstrap/functions.php
@@ -501,7 +493,6 @@ themes/zpEnlighten/images/white_pixel.png
 themes/zpEnlighten/images/white_pixel_6.png
 themes/zpEnlighten/images/white_pixel_7.png
 themes/zpEnlighten/images/white_pixel_8.png
-themes/zpEnlighten/images/zen-logo.png
 themes/zpEnlighten/js
 themes/zpEnlighten/js/jquery.corner.js
 themes/zpfocus
@@ -562,7 +553,6 @@ themes/zpfocus/images/search.png
 themes/zpfocus/images/search_icon.gif
 themes/zpfocus/images/shout.png
 themes/zpfocus/images/twitter.png
-themes/zpfocus/images/zen-logo.png
 themes/zpfocus/js
 themes/zpfocus/js/index.html
 themes/zpfocus/js/superfish.js
@@ -743,7 +733,6 @@ themes/zpminimal/images/reset.gif
 themes/zpminimal/images/search.gif
 themes/zpminimal/images/slideshow-controls.png
 themes/zpminimal/images/social.png
-themes/zpminimal/images/zen-logo.png
 themes/zpminimal/images/zoom.png
 themes/zpminimal/z_disable_comment_form
 themes/zpminimal/z_disable_comment_form/comment_form.php
@@ -770,7 +759,6 @@ themes/zpmobile/themeoptions.php
 themes/zpmobile/images
 themes/zpmobile/images/admin-buttonback.jpg
 themes/zpmobile/images/rss.png
-themes/zpmobile/images/zen-logo.png
 themes/zpmobile/jquerymobile
 themes/zpmobile/jquerymobile/jquery.mobile-1.4.5.min.css
 themes/zpmobile/jquerymobile/jquery.mobile-1.4.5.min.js
@@ -1193,7 +1181,6 @@ zp-core/license.php
 zp-core/load_objectClasses.php
 zp-core/loginForm.css
 zp-core/no_uploader.php
-zp-core/oldhtaccess
 zp-core/password.php
 zp-core/pickSource.php
 zp-core/pluginDoc.php
@@ -1242,6 +1229,7 @@ zp-core/gd_fonts/cry.gdf
 zp-core/images
 zp-core/images/admin-buttonback.jpg
 zp-core/images/admin-headerback.jpg
+zp-core/images/admin-logo.png
 zp-core/images/ajax-loader.gif
 zp-core/images/calendar.png
 zp-core/images/chevron-hover.png
@@ -1273,8 +1261,6 @@ zp-core/images/shape_handles.png
 zp-core/images/stock_copy.png
 zp-core/images/thumb_standin.png
 zp-core/images/trashcan.png
-zp-core/images/zen-logo-light.png
-zp-core/images/zen-logo.png
 zp-core/images/zp.png
 zp-core/images/zp_gold.png
 zp-core/images/msdropdown
@@ -7828,9 +7814,6 @@ zp-core/zp-extensions/image_effects/reflex.txt
 zp-core/zp-extensions/image_effects/sepia.js
 zp-core/zp-extensions/image_effects/slided.txt
 zp-core/zp-extensions/image_effects/sphere.txt
-zp-core/zp-extensions/images
-zp-core/zp-extensions/images/zen-logo-light.png
-zp-core/zp-extensions/images/zen-logo.png
 zp-core/zp-extensions/instagramLogin
 zp-core/zp-extensions/instagramLogin/instagram-auth.php
 zp-core/zp-extensions/instagramLogin/instagram-login-api.php
@@ -8391,4 +8374,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8393
+8376

@@ -384,8 +384,8 @@ if (!empty($metaURL) && $postcount < $posttotalcount) {
 						<li><?php echo gettext("<strong>Posts (post_status published and draft only) => Zenpage articles</strong>"); ?></li>
 						<li><?php echo gettext("<strong>Pages (post_status published and draft only) => Zenpage pages</strong>"); ?></li>
 						<li><?php echo gettext("<strong>Post categories => Zenpage categories including assignment to their article</strong>"); ?></li>
-						<li><?php echo gettext("<strong>Post tags => zenphoto tags including assignment to their article</strong>"); ?></li>
-						<li><?php echo gettext("<strong>Post and page comments => zenphoto comments including assignment to their article</strong>"); ?></li>
+						<li><?php echo gettext("<strong>Post tags => tags including assignment to their article</strong>"); ?></li>
+						<li><?php echo gettext("<strong>Post and page comments => comments including assignment to their article</strong>"); ?></li>
 					</ul>
 					<?php
 					if (!$mysqli = extension_loaded('mysqli')) {
@@ -397,7 +397,7 @@ if (!empty($metaURL) && $postcount < $posttotalcount) {
 					}
 					?>
 					<p class="notebox">
-						<?php echo gettext("<strong>IMPORTANT: </strong>If you are not using an fresh zenphoto install it is <strong>strongly recommended to backup your database</strong> before running this importer. Make also sure that both databases use the same encoding so you do not get messed up character display."); ?>
+						<?php echo gettext("<strong>IMPORTANT: </strong>If you are not using an fresh install it is <strong>strongly recommended to backup your database</strong> before running this importer. Make also sure that both databases use the same encoding so you do not get messed up character display."); ?>
 					</p>
 					<p class="notebox">
 						<?php echo gettext("<strong>Note:</strong> <em>Wordpress page and category nesting</em> is currently not preserved but can easily be recreated by drag and drop sorting."); ?>

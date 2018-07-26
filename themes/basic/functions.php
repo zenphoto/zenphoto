@@ -61,7 +61,7 @@ function printSoftwareLink() {
 			$logo = 'sterile';
 			break;
 	}
-	printZenphotoLink($logo);
+	printZenphotoLink();
 }
 
 function switcher_head($ignore) {

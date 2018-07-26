@@ -1,7 +1,7 @@
 <?php
-// force UTF-8 Ø
 
-// Zenphoto theme definition file
+// force UTF-8 Ø
+// Theme definition file
 $theme_description['name'] = 'zenFluid';
 $theme_description['author'] = 'Jim Brown';
 $theme_description['version'] = '1.0';

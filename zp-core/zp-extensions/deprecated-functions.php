@@ -24,9 +24,11 @@
  * @package plugins/deprecated-functions
  * @pluginCategory development
  */
-$plugin_description = gettext("Provides replacements for deprecated functions.");
-$plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the distributed code.");
-$plugin_is_filter = 900 | CLASS_PLUGIN;
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 900 | CLASS_PLUGIN;
+	$plugin_description = gettext("Provides replacements for deprecated functions.");
+	$plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the distributed code.");
+}
 
 define('DEPRECATED_LOG', SERVERPATH . '/' . DATA_FOLDER . '/deprecated.log');
 

@@ -479,7 +479,7 @@ class openStreetMap {
 
 	/**
 	 * $returns coordinate informations for an image
-	 * Adapted from the offical Zenphoto GoogleMap plugin by Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
+	 * Adapted from the offical GoogleMap plugin by Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
 	 * @param $image	image object
 	 */
 	function getImageGeodata($image) {
@@ -521,7 +521,7 @@ class openStreetMap {
 
 	/**
 	 * Gathers the map data for an album
-	 * Adapted from the offical Zenphoto GoogleMap plugin by Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
+	 * Adapted from the offical GoogleMap plugin by Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
 	 * @param $album		album object
 	 */
 	function getAlbumGeodata($album) {

@@ -519,6 +519,13 @@ if (!function_exists('gettext')) {
 	}
 
 	function gettext($msgid) {
+		if (TEST_RELEASE && !defined('ZENPHOTO_LOCALE')) {
+			$bt = debug_backtrace();
+			if (!in_array($bt[1]['function'], array('getRights', 'getLanguageArray'))) {
+				echo '<br /><br /><br />';
+				var_dump($bt);
+			}
+		}
 		return _gettext($msgid);
 	}
 

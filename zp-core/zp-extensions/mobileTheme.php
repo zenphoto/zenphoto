@@ -75,7 +75,7 @@
  * @package plugins/mobileTheme
  * @pluginCategory theme
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
+$plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Select your theme based on the device connecting to your site');
 
 $option_interface = 'mobileTheme';

@@ -19,14 +19,14 @@ if (!defined('SEO_FULLWEBPATH')) {
 /* * *************************************** */
 
 /**
- * Returns the zenphoto version string
+ * Returns the version string
  */
 function getVersion() {
 	return ZENPHOTO_VERSION;
 }
 
 /**
- * Prints the zenphoto version string
+ * Prints the version string
  */
 function printVersion() {
 	echo getVersion();
@@ -724,7 +724,7 @@ function getTotalPages($_oneImagePage = false) {
  * @return int
  */
 function getPageNumURL($page, $total = null) {
-	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page, $_zp_conf_vars;
+	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page;
 	if (is_null($total)) {
 		$total = getTotalPages();
 	}
@@ -951,12 +951,12 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 				if ($firstlast) {
 					?>
 					<li class="<?php
-			if ($current == 1)
-				echo 'current';
-			else
-				echo 'first';
+					if ($current == 1)
+						echo 'current';
+					else
+						echo 'first';
 					?>">
-							<?php
+								<?php
 								if ($current == 1) {
 									echo '1';
 								} else {
@@ -3704,7 +3704,7 @@ function getCustomPageRewrite($page) {
  * @return string
  */
 function getCustomPageURL($page, $q = '', $pageno = NULL) {
-	global $_zp_current_album, $_zp_conf_vars, $_zp_gallery_page;
+	global $_zp_current_album, $_zp_gallery_page;
 	$result_r = getCustomPageRewrite($page);
 	$result = "index.php?p=$page";
 
@@ -3955,7 +3955,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 								return true;
 							});
 							function search_all() {
-								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
+								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}. All rights reserved
 								var check = $('#SEARCH_checkall').prop('checked');
 								$('.SEARCH_checkall').prop('checked', check);
 							}
@@ -4289,20 +4289,14 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 }
 
 /**
- * prints the zenphoto logo and link
- * @param string $mod set background
+ * Prints the logo and link
  *
  */
-function printZenphotoLink($mod = null) {
-	if ($mod)
-		$mod = '-' . $mod;
-	if (!$image = getPlugin('images/zen-logo' . $mod . '.png', true, true)) {
-		$image = getPlugin('images/zen-logo.png', true, true);
-	}
+function printZenphotoLink() {
 	?>
 	<span class="zen-logo">
 		<a href="https://<?php echo GITHUB; ?>" title="<?php echo gettext('A media oriented content management system'); ?>">
-			<?php printf(gettext('Powered by <img src="%s" />'), $image); ?>
+			<?php printf(gettext('Powered by %s'), swLogo()); ?>
 		</a>
 	</span>
 	<?php
