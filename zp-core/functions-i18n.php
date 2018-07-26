@@ -475,7 +475,7 @@ function setMainDomain() {
 	if (!$_zp_current_locale) {
 		$_zp_current_locale = getOption('locale');
 		if (DEBUG_LOCALE)
-			debugLog("locale from option: " . $localeOption . '; dynamic locale=' . $_zp_current_locale);
+			debugLog("locale from option: " . $_zp_current_locale);
 	}
 
 	//check the HTTP accept lang

@@ -77,17 +77,17 @@ if (OFFSET_PATH != 2) {
  *
  */
 function printLanguageSelector($flags = NULL) {
-	global $_locale_Subdomains;
+	global $_locale_Subdomains, $_zp_current_locale;
 	$locale = $localeOption = getOption('locale');
 	$languages = generateLanguageList();
 	$disallow = getSerializedArray(getOption('locale_disallowed'));
-	if (!isset($disallow[''])) {
-		$languages = array_merge(array(gettext("HTTP_Accept_Language") => ''), $languages);
-	}
 
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
 		if ($locale && $localeOption != $locale) {
+
+
+			var_dump($_REQUEST, $locale, $localeOption);
 			?>
 			<div class="errorbox">
 				<h2>
@@ -124,40 +124,24 @@ function printLanguageSelector($flags = NULL) {
 		$uri .= '?' . $request['query'];
 		$separator = '&';
 	}
+
 	if ($flags) {
 		?>
 		<ul class="flags">
 			<?php
 			foreach ($languages as $text => $lang) {
-				if ($lang) {
-					$flag = getLanguageFlag($lang);
-					$path = dynamic_locale::localLink($uri, $separator, $lang);
+				$current = $locale && $lang == $locale;
+				$flag = getLanguageFlag($lang);
+				if ($current) {
+					$path = $uri . $separator . 'locale=';
 				} else {
-					$flag = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
-					$path = $uri;
-					if (strpos($uri, '?') === false) {
-						$path = $uri . '?locale=';
-					} else {
-						$path = $uri . '&locale=';
-					}
+					$path = dynamic_locale::localLink($uri, $separator, $lang);
 				}
 				?>
-				<li<?php if ($current = $locale && $lang == $localeOption) echo ' class="currentLanguage"'; ?>>
-					<?php
-					if (!$current) {
-						?>
-						<a href="<?php echo html_encode($path); ?>" >
-							<?php
-						}
-						?>
+				<li<?php if ($current) echo ' class="currentLanguage"'; ?>>
+					<a href="<?php echo html_encode($path); ?>" >
 						<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
-						<?php
-						if (!$current) {
-							?>
-						</a>
-						<?php
-					}
-					?>
+					</a>
 				</li>
 				<?php
 			}
@@ -165,15 +149,23 @@ function printLanguageSelector($flags = NULL) {
 		</ul>
 		<?php
 	} else {
+		$save_zp_current_locale = $_zp_current_locale;
+		$_zp_current_locale = NULL;
+		$languages = array_merge(array('' => ''), $languages);
 		?>
 		<div class="languageSelect">
 			<form id="language_change" action="#" method="post">
-				<select id="dynamic-locale" class="languageSelector" name="locale" onchange="switch_language();">
+				<select id="dynamic-locale" class="languageSelector" name="locale" onchange="window.location = $('#dynamic-locale option:selected').val()">
 					<?php
 					foreach ($languages as $text => $lang) {
-						$path = dynamic_locale::localLink($uri, $separator, $lang);
+						$current = $locale && $lang == $locale;
+						if ($lang) {
+							$path = dynamic_locale::localLink($uri, $separator, $lang);
+						} else {
+							$path = $uri . $separator . 'locale=';
+						}
 						?>
-						<option value="<?php echo html_encode(html_encode($path)); ?>"<?php if ($lang == $localeOption) echo ' selected="selected"'; ?>>
+						<option value="<?php echo html_encode($path); ?>"<?php if ($current) echo ' selected="selected"'; ?>>
 						<span class="locale_name">
 							<?php echo html_encode($text); ?>
 						</span>
@@ -186,6 +178,7 @@ function printLanguageSelector($flags = NULL) {
 			</form>
 		</div>
 		<?php
+		$_zp_current_locale = $save_zp_current_locale;
 	}
 }
 
