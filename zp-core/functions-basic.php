@@ -688,7 +688,7 @@ function zp_getCookie($name) {
 	if (isset($_COOKIE[$name])) {
 		$cookiev = $_COOKIE[$name];
 	} else {
-		$cookiev = '';
+		$cookiev = NULL;
 	}
 	if (DEBUG_LOGIN) {
 		if (isset($_SESSION[$name])) {
@@ -698,7 +698,7 @@ function zp_getCookie($name) {
 		}
 		debugLog("zp_getCookie($name)::" . 'album_session=' . GALLERY_SESSION . "; SESSION[" . session_id() . "]=" . $sessionv . ", COOKIE=" . $cookiev);
 	}
-	if (defined('GALLERY_SESSION') && !GALLERY_SESSION) {
+	if ($cookiev || !defined('GALLERY_SESSION') || !GALLERY_SESSION) {
 		return zp_cookieEncode($cookiev);
 	}
 	if (isset($_SESSION[$name])) {
