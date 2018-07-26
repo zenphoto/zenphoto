@@ -698,7 +698,7 @@ function zp_getCookie($name) {
 		}
 		debugLog("zp_getCookie($name)::" . 'album_session=' . GALLERY_SESSION . "; SESSION[" . session_id() . "]=" . $sessionv . ", COOKIE=" . $cookiev);
 	}
-	if (!empty($cookiev) && (defined('GALLERY_SESSION') && !GALLERY_SESSION)) {
+	if (defined('GALLERY_SESSION') && !GALLERY_SESSION) {
 		return zp_cookieEncode($cookiev);
 	}
 	if (isset($_SESSION[$name])) {
