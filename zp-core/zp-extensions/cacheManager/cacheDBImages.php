@@ -216,9 +216,7 @@ echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
 	<?php
 	echo "\n" . '</div>';
 	echo "\n" . '</div>';
-	echo "\n" . '</div>';
-
 	printAdminFooter();
-
+	echo "\n" . '</div>';
 	echo "\n</body>";
 	?>

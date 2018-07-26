@@ -337,8 +337,8 @@ echo '</head>';
 
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
-	<?php printAdminFooter(); ?>
 </body>
 <script type="text/javascript">
 										var height = Math.floor(($('#overview_left').height() - $('.overview-list-h3').height() * 2) / 2 - 8);

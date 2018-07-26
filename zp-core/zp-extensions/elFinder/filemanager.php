@@ -86,9 +86,8 @@ if ($theme) {
 				</div>
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
-	<?php printAdminFooter(); ?>
-
 </body>
 </html>
 <?php ?>

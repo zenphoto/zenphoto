@@ -498,17 +498,16 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 					<br class="clearall">
 				</div><!-- block -->
 			</div><!-- content -->
+			<?php
+			if (!$pasteobj) {
+				?>
+				<?php
+				printAdminFooter();
+				?>
+				<?php
+			}
+			?>
 		</div><!-- main -->
-
-		<?php
-		if (!$pasteobj) {
-			?>
-			<?php
-			printAdminFooter();
-			?>
-			<?php
-		}
-		?>
 </body>
 
 </html>

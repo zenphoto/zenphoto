@@ -418,9 +418,8 @@ if (is_array($result)) {
 					</form>
 				</div>
 			</div>
+			<?php printAdminFooter(); ?>
 		</div>
 	</div>
-	<?php printAdminFooter(); ?>
-
 </body>
 </html>

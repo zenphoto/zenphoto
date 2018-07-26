@@ -34,17 +34,22 @@ define('UPLOAD_ERR_BLOCKED', -2);
 function printAdminFooter($addl = '') {
 	?>
 	<div id="footer">
-		<?php
-		echo '<span class="zenlogo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '">' . swLogo() . '</a></span> ' . sprintf(gettext('version %1$s'), ZENPHOTO_VERSION);
+		<span id="footer_left">
+			<?php printLanguageSelector(true); ?>
+		</span>
+		<span id="footer_right">
+			<?php
+			echo '<span class="zenlogo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '">' . swLogo() . '</a></span> ' . sprintf(gettext('version %1$s'), ZENPHOTO_VERSION);
 
-		if (!empty($addl)) {
-			echo ' | ' . $addl;
-		}
-		?>
-		| <a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/license.php' ?>" title="<?php echo gettext('ZenPhotoGraphics licence'); ?>"><?php echo gettext('License'); ?></a>
-		| <a href="https://<?php echo GITHUB; ?>/issues" title="<?php echo gettext('Support'); ?>"><?php echo gettext('Support'); ?></a>
-		| <a href="https://<?php echo GITHUB; ?>/commits/master" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
-		| <?php printf(gettext('Server date: %s'), date('Y-m-d H:i:s')); ?>
+			if (!empty($addl)) {
+				echo ' | ' . $addl;
+			}
+			?>
+			| <a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/license.php' ?>" title="<?php echo gettext('ZenPhotoGraphics licence'); ?>"><?php echo gettext('License'); ?></a>
+			| <a href="https://<?php echo GITHUB; ?>/issues" title="<?php echo gettext('Support'); ?>"><?php echo gettext('Support'); ?></a>
+			| <a href="https://<?php echo GITHUB; ?>/commits/master" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
+			| <?php printf(gettext('Server date: %s'), date('Y-m-d H:i:s')); ?>
+		</span>
 	</div>
 	<script type="text/javascript">
 		startingPosition = $('.navigation').position().top + 10;

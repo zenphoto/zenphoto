@@ -212,10 +212,8 @@ while ($old != $albumname) {
 </div>
 <?php
 echo "\n" . '</div>';
-echo "\n" . '</div>';
-
 printAdminFooter();
-
+echo "\n" . '</div>';
 echo "\n</body>";
 echo "\n</html>";
 ?>

@@ -239,9 +239,7 @@ echo "\n</head>";
 				</form>
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
-	<?php
-	printAdminFooter();
-	?>
 </body>
 <?php echo "\n</html>"; ?>

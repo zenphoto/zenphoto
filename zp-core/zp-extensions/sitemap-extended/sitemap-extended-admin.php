@@ -155,7 +155,7 @@ echo '</head>';
 				?>
 			</div><!-- tabbox -->
 		</div><!-- content -->
+		<?php printAdminFooter(); ?>
 	</div><!-- main -->
-	<?php printAdminFooter(); ?>
 </body>
 <?php echo "</html>"; ?>

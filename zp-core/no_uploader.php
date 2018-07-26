@@ -16,9 +16,7 @@ printLogoAndLinks();
 		</div>
 	</div>
 </div><!-- content -->
+<?php printAdminFooter(); ?>
 </div><!-- main -->
-<?php
-printAdminFooter();
-?>
 </body>
 </html>

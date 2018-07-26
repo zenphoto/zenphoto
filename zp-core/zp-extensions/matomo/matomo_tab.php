@@ -21,8 +21,7 @@ printAdminHeader('overview', 'matomo');
 			</div>
 		</div>
 		<br class="clearall" />
+		<?php printAdminFooter(); ?>
 	</div>
-
-	<?php printAdminFooter(); ?>
 </body>
 </html>

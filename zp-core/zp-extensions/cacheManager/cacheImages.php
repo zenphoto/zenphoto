@@ -389,9 +389,7 @@ if ($alb) {
 	<?php
 	echo "\n" . '</div>';
 	echo "\n" . '</div>';
-	echo "\n" . '</div>';
-
 	printAdminFooter();
-
+	echo "\n" . '</div>';
 	echo "\n</body>";
 	?>

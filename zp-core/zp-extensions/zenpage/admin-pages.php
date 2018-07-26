@@ -220,7 +220,7 @@ updatePublished('pages');
 				?>
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
-	<?php printAdminFooter(); ?>
 </body>
 </html>

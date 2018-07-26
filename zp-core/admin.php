@@ -249,7 +249,6 @@ $buttonlist = array();
 						setOption('getUpdates_latest', $item->browser_download_url);
 					}
 				} catch (Exception $e) {
-
 					debugLog('Github Api->' . $e->getMessage());
 				}
 			}
@@ -586,11 +585,11 @@ $buttonlist = array();
 				</div>
 				<?php
 			}
-			printAdminFooter();
-			/* No admin-only content allowed after point! */
 			?>
 		</div>
-		<!-- main -->
+		<br clear="all">
+		<?php printAdminFooter(); ?>
+	</div><!-- main -->
 </body>
 <?php
 // to fool the validator

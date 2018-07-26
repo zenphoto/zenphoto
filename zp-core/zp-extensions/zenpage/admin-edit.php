@@ -934,7 +934,7 @@ $tagsort = 'alpha';
 
 		</div>
 	</div>
+	<?php printAdminFooter(); ?>
 </div>
-<?php printAdminFooter(); ?>
 </body>
 </html>

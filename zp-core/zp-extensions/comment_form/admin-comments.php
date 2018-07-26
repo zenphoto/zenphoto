@@ -546,8 +546,6 @@ printLogoAndLinks();
 		<?php
 		printAdminFooter();
 		echo "\n" . '</div>'; //main
-
-
 		echo "\n</body>";
 		echo "\n</html>";
 		?>

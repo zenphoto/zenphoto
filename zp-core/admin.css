@@ -71,21 +71,31 @@ em {
 	font-size: 85%;
 	margin-top: 8px;
 	margin-right: 30px;
-	margin-bottom: 0px;
+	margin-bottom: 5px;
 	margin-left: 0px;
-	padding-top: 30px;
+	padding-top: 10px;
 	padding-bottom: 15px;
 	padding-right: 50px;
-	text-align: right;
+	padding-left: 16em;
 }
 
-#footer a {
+#footer_left {
+	display: inline-block;
+	float: left;
+}
+
+#footer_right {
+	display: inline-block;
+	float: right;
+}
+
+#footer_right a {
 	color: #4D76CF;
 	text-decoration: none;
 	border-bottom: 1px dotted #597580;
 }
 
-#footer a:hover {
+#footer_right a:hover {
 	color: #FF8A00;
 	text-decoration: none;
 	border-bottom: 1px solid #FF8A00;

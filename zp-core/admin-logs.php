@@ -244,6 +244,7 @@ echo "\n</head>";
 				?>
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
 
 	<script type="text/javascript">
@@ -252,8 +253,6 @@ echo "\n</head>";
 		}, false);
 	</script>
 	<?php
-	printAdminFooter();
-
 	// to fool the validator
 	echo "\n</body>";
 	echo "\n</html>";
