@@ -249,7 +249,6 @@ $buttonlist = array();
 						setOption('getUpdates_latest', $item->browser_download_url);
 					}
 				} catch (Exception $e) {
-
 					debugLog('Github Api->' . $e->getMessage());
 				}
 			}

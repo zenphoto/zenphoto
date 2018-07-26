@@ -822,12 +822,15 @@ echo $refresh;
 														<ul class="flags" style="margin-left: 0px;">
 															<?php
 															$_languages = generateLanguageList();
+															$_languages[gettext("HTTP_Accept_Language")] = '';
+															$flags = getLanguageFlags();
+															$flags[''] = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
 															$c = 0;
 															foreach ($_languages as $text => $lang) {
 																?>
 																<li id="<?php echo $lang . '_' . $id; ?>"<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
 																	<a onclick="languageChange('<?php echo $id; ?>', '<?php echo $lang; ?>');" >
-																		<img src="<?php echo getLanguageFlag($lang); ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
+																		<img src="<?php echo $flags[$lang]; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
 																	</a>
 																</li>
 																<?php
