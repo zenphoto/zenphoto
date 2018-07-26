@@ -823,7 +823,7 @@ echo $refresh;
 														<ul class="flags" style="margin-left: 0px;">
 															<?php
 															$languages = generateLanguageList();
-															ksort($languages);
+															asort($languages);
 															$flags = getLanguageFlags();
 															$flags[''] = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
 															$c = 0;
