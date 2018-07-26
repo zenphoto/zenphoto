@@ -78,16 +78,13 @@ if (OFFSET_PATH != 2) {
  */
 function printLanguageSelector($flags = NULL) {
 	global $_locale_Subdomains, $_zp_current_locale;
-	$locale = $localeOption = getOption('locale');
+	$locale = $localeOption = getOptionFromDB('locale');
 	$languages = generateLanguageList();
 	$disallow = getSerializedArray(getOption('locale_disallowed'));
 
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
 		if ($locale && $localeOption != $locale) {
-
-
-			var_dump($_REQUEST, $locale, $localeOption);
 			?>
 			<div class="errorbox">
 				<h2>
