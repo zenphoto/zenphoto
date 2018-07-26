@@ -30,7 +30,7 @@ function newAlbum($folder8, $cache = true, $quiet = false) {
 }
 
 /**
- * Returns true if the object is a zenphoto 'album'
+ * Returns true if the object is an 'album' object
  *
  * @param object $album
  * @return bool

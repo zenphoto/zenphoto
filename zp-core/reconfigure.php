@@ -237,7 +237,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
 	?>
 	<div class="reconfigbox">
 		<h1>
-			<?php echo gettext('ZenPhoto20 has detected a change in your installation.'); ?>
+			<?php echo gettext('A change has been detected in your installation.'); ?>
 		</h1>
 		<div id="errors">
 			<ul>
@@ -251,7 +251,7 @@ function reconfigurePage($diff, $needs, $mandatory) {
 							echo '<li>' . sprintf(gettext('Your database software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						case 'ZENPHOTO':
-							echo '<li>' . sprintf(gettext('ZenPhoto20 %1$s has been copied over %2$s.'), $rslt['new'], $rslt['old']) . '</li>';
+							echo '<li>' . sprintf(gettext('Version %1$s has been copied over %2$s.'), $rslt['new'], $rslt['old']) . '</li>';
 							break;
 						case 'FOLDER':
 							echo '<li>' . sprintf(gettext('Your installation has moved from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';

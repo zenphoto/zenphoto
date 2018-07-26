@@ -28,8 +28,10 @@
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 8 | CLASS_PLUGIN;
-$plugin_description = gettext("Provides management of users based on when they were created.");
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 8 | CLASS_PLUGIN;
+	$plugin_description = gettext("Provides management of users based on when they were created.");
+}
 
 $option_interface = 'user_expiry';
 
@@ -153,7 +155,7 @@ class user_expiry {
 							$credentials[] = 'exiry_notice';
 							$userobj->setCredentials($credentials);
 							$userobj->save();
-							$message = sprintf(gettext('Your user id for the ZenPhoto20 site %s will expire on %s.'), $_zp_gallery->getTitle(), date('Y-m-d', $expires));
+							$message = sprintf(gettext('Your user id for the site %s will expire on %s.'), $_zp_gallery->getTitle(), date('Y-m-d', $expires));
 							$notify = zp_mail(get_language_string(gettext('User id expiration')), $message, array($userobj->getName() => $mail));
 						}
 					}

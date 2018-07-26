@@ -684,7 +684,7 @@ function printMostRatedImages($number = 5, $albumfolder = '', $showtitle = false
 }
 
 /**
- * Prints the latest images by ID (the order zenphoto recognized the images on the filesystem)
+ * Prints the latest images by ID (the order the images are recognized on the filesystem)
  *
  * @param string $number the number of images to get
  * @param string $albumfolder folder of an specific album

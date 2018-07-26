@@ -75,7 +75,7 @@ class print_album_menu {
  * that was included to remain compatiblility with older installs of this menu.
  *
  * Usage: add the following to the php page where you wish to use these menus:
- * enable this extension on the zenphoto admin plugins tab.
+ * enable this extension on the admin plugins tab.
  * Call the function printAlbumMenu() at the point where you want the menu to appear.
  *
  * @param string $option
@@ -110,7 +110,7 @@ function printAlbumMenu($option, $showcount = NULL, $css_id = '', $css_class_top
  * Prints a nested html list of all albums context sensitive.
  *
  * Usage: add the following to the php page where you wish to use these menus:
- * enable this extension on the zenphoto admin plugins tab;
+ * enable this extension on the admin plugins tab;
  * Call the function printAlbumMenuList() at the point where you want the menu to appear.
  *
  * @param string $option
@@ -303,7 +303,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
  * Is used by the wrapper function printAlbumMenu() if the options "jump" is choosen. For standalone use, too.
  *
  * Usage: add the following to the php page where you wish to use these menus:
- * enable this extension on the zenphoto admin plugins tab;
+ * enable this extension on the admin plugins tab;
  * Call the function printAlbumMenuJump() at the point where you want the menu to appear.
  *
  * @param string $option "count" for a image counter in brackets behind the album name, "" = for no image numbers

@@ -1,6 +1,6 @@
 <?php
 /**
- * This is Zenphoto's unified comment handling facility
+ * This is the unified comment handling facility
  *
  * Place a call on the function <var>printCommentForm()</var> in your script where you
  * wish the comment items to appear.

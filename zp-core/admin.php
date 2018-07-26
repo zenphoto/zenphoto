@@ -235,7 +235,7 @@ $buttonlist = array();
 	if (zp_loggedin(ADMIN_RIGHTS)) {
 		if (class_exists('Milo\Github\Api') && zpFunctions::hasPrimaryScripts()) {
 			/*
-			 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20
+			 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20 and deerivitives
 			 */
 			if (getOption('getUpdates_lastCheck') + 8640 < time()) {
 				setOption('getUpdates_lastCheck', time());
@@ -265,9 +265,9 @@ $buttonlist = array();
 					$_SESSION['new_version_available'] = $newestVersion;
 					?>
 					<div class="notebox">
-						<h2><?php echo gettext('There is a new version of ZenPhoto20 available.'); ?></h2>
+						<h2><?php echo gettext('There is a new version is available.'); ?></h2>
 						<?php
-						printf(gettext('ZenPhoto20 version %s can be downloaded by the utility button.'), $newestVersion);
+						printf(gettext('The latest version %s can be downloaded by the utility button.'), $newestVersion);
 						?>
 					</div>
 					<?php
@@ -279,7 +279,7 @@ $buttonlist = array();
 						'formname' => 'getUpdates_button',
 						'action' => $newestVersionURI,
 						'icon' => ARROW_DOWN_GREEN,
-						'title' => sprintf(gettext('Download ZenPhoto20 version %s.'), $newestVersion),
+						'title' => sprintf(gettext('Download ZenPhotoGraphics version %s.'), $newestVersion),
 						'alt' => '',
 						'hidden' => '',
 						'rights' => ADMIN_RIGHTS
@@ -398,7 +398,7 @@ $buttonlist = array();
 					<div class="box overview-section overview_utilities">
 						<h2 class="h2_bordered">
 							<a href="<?php echo WEBPATH; ?>/docs/release%20notes.htm" class="doc" title="<?php echo gettext('release notes'); ?>">
-								<?php printf(gettext('ZenPhoto20 version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official); ?>
+								<?php printf(gettext('ZenPhotoGraphics version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official); ?>
 							</a>
 						</h2>
 						<?php

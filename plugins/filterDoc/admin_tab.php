@@ -21,7 +21,7 @@ printAdminHeader('development', gettext('rewriteTokens'));
 		<div id="content">
 			<div id="container">
 				<?php zp_apply_filter('admin_note', 'development', ''); ?>
-				<h1><?php echo gettext('ZenPhoto20 filters'); ?></h1>
+				<h1><?php echo gettext('Defined filters'); ?></h1>
 				<div class="tabbox">
 					<?php
 					echo '<div style="float:left;width:70%;">';

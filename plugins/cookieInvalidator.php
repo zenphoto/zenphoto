@@ -15,9 +15,11 @@
  * @package plugin/cookieInvalidator
  * @pluginCategory development
  */
-$plugin_is_filter = 99 | CLASS_PLUGIN;
-$plugin_description = gettext('Invalidates all cookies that were created earlier than the invalidate action.');
 
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 99 | CLASS_PLUGIN;
+	$plugin_description = gettext('Invalidates all cookies that were created earlier than the invalidate action.');
+}
 zp_register_filter('admin_utilities_buttons', 'cookieInvalidator::button');
 $_zp_button_actions[] = 'cookieInvalidator::setBase';
 

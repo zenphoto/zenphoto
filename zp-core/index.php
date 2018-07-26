@@ -1,7 +1,7 @@
 <?php
 
 /**
- * root script for ZenPhoto20
+ * root script for for the sote
  * @package core
  *
  */

@@ -43,11 +43,6 @@ function saveOptions() {
 				}
 			case'http':
 				setOption('server_protocol', $protocol);
-				$_configMutex->lock();
-				$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-				$zp_cfg = updateConfigItem('server_protocol', $protocol, $zp_cfg);
-				storeConfig($zp_cfg);
-				$_configMutex->unlock();
 				break;
 		}
 	}
@@ -246,7 +241,7 @@ function getOptionContent() {
 							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
 								<?php
-								echo gettext('Add encrypts the the logs.') . '<p class="notebox">' . gettext('<strong>Note</strong>: Encrypting the debug log is not recommended. See the ZenPhoto20 Version 1.7 release notes for details.');
+								echo gettext('Add encrypts the the logs.') . '<p class="notebox">' . gettext('<strong>Note</strong>: Encrypting the debug log is not recommended. See the Version 1.7 release notes for details.');
 								if ($disabled) {
 									?>
 									<p class="notebox">

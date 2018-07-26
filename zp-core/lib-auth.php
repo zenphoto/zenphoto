@@ -190,7 +190,7 @@ class _Authority {
 	}
 
 	/**
-	 * Returns the hash of the zenphoto password
+	 * Returns the hash of the password
 	 *
 	 * @param string $user
 	 * @param string $pass
@@ -741,9 +741,9 @@ class _Authority {
 					if ($_zp_captcha->checkCaptcha(trim(@$_POST['code']), sanitize(@$_POST['code_h'], 3))) {
 						require_once(dirname(__FILE__) . '/load_objectClasses.php'); // be sure that the plugins are loaded for the mail handler
 						if (empty($post_user)) {
-							$requestor = gettext('You are receiving this e-mail because of a password reset request on your ZenPhoto20 gallery.');
+							$requestor = gettext('You are receiving this e-mail because of a password reset request on your gallery.');
 						} else {
-							$requestor = sprintf(gettext("You are receiving this e-mail because of a password reset request on your ZenPhoto20 gallery from a user who tried to log in as %s."), $post_user);
+							$requestor = sprintf(gettext("You are receiving this e-mail because of a password reset request on your gallery from a user who tried to log in as %s."), $post_user);
 						}
 						$admins = $this->getAdministrators();
 						$mails = array();
@@ -788,7 +788,7 @@ class _Authority {
 							$msg = "\n" . $requestor .
 											"\n" . sprintf(gettext("To reset your Admin passwords visit: %s"), FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?ticket=$ref&user=" . $user['user']) .
 											"\n" . gettext("If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days.");
-							$err_msg = zp_mail(gettext("The ZenPhoto20 information you requested"), $msg, $mails, $cclist, NULL, NULL, sprintf(gettext('%1$s password reset request mail failed.'), $user['user']));
+							$err_msg = zp_mail(gettext("The information you requested"), $msg, $mails, $cclist, NULL, NULL, sprintf(gettext('%1$s password reset request mail failed.'), $user['user']));
 							if (empty($err_msg)) {
 								$_zp_login_error = 2;
 							} else {
@@ -866,7 +866,7 @@ class _Authority {
 	 * Print the login form for ZP. This will take into account whether mod_rewrite is enabled or not.
 	 *
 	 * @param string $redirect URL to return to after login
-	 * @param bool $logo set to true to display the ADMIN zenphoto logo.
+	 * @param bool $logo set to true to display the ADMIN logo.
 	 * @param bool $showUserField set to true to display the user input
 	 * @param bool [deprecated] $deprecated set to false to not display the forgot password captcha.
 	 * @param string $hint optional hint for the password
@@ -946,7 +946,7 @@ class _Authority {
 			if ($logo) {
 				?>
 				<p>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png" title="ZenPhoto" alt="ZenPhoto" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="ZenPhotoGraphics" alt="ZenPhotoGraphics" />
 				</p>
 				<?php
 			}
@@ -1463,7 +1463,7 @@ class _Administrator extends PersistentObject {
 	protected $objects = NULL;
 	var $master = false; //	will be set to true if this is the inherited master user
 	var $msg = NULL; //	a means of storing error messages from filter processing
-	var $logout_link = true; // for a zenphoto logout
+	var $logout_link = true; // for a logout
 	var $reset = false; // if true the user was setup by a "reset password" event
 	var $passhash; // the hash algorithm used in creating the password
 

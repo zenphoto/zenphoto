@@ -24,8 +24,10 @@
  * @package plugins/static_html_cache
  * @pluginCategory admin
  */
-$plugin_is_filter = 400 | CLASS_PLUGIN;
-$plugin_description = gettext("Adds static HTML cache functionality.");
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 400 | CLASS_PLUGIN;
+	$plugin_description = gettext("Adds static HTML cache functionality.");
+}
 
 $option_interface = 'static_html_cache';
 
@@ -182,8 +184,6 @@ class static_html_cache {
 	/**
 	 * Ends the caching: Ends the output buffering  and writes the html cache file from the buffer
 	 *
-	 * Place this function on zenphoto's root index.php file in the absolute last line
-	 *
 	 */
 	function endHTMLCache() {
 		global $_zp_script_timer, $_image_need_cache;
@@ -325,7 +325,7 @@ class static_html_cache {
 	}
 
 	/**
-	 * Cleans out the cache folder. (Adpated from the zenphoto image cache)
+	 * Cleans out the cache folder. (Adpated from the image cache)
 	 *
 	 * @param string $cachefolder the sub-folder to clean
 	 */

@@ -21,12 +21,14 @@ function saveOptions() {
 	$newloc = sanitize($_POST['locale'], 3);
 	$languages = generateLanguageList(true);
 	$languages[''] = '';
+
 	$disallow = array();
 	foreach ($languages as $text => $lang) {
-		if ($lang != $newloc && !isset($_POST['language_allow_' . $lang])) {
+		if ($lang != $newloc && !isset($_POST['language_allow']['_' . $lang])) {
 			$disallow[$lang] = $lang;
 		}
 	}
+
 	if ($newloc != $oldloc) {
 		$oldDisallow = getSerializedArray(getOption('locale_disallowed'));
 		if (!empty($newloc) && isset($oldDisallow[$newloc])) {
@@ -60,15 +62,7 @@ function saveOptions() {
 		$offset = sanitize($_POST['time_offset'], 3);
 	}
 	setOption('time_offset', $offset);
-
-	if (($new = sanitize($_POST['filesystem_charset'])) != FILESYSTEM_CHARSET) {
-		$_configMutex->lock();
-		$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-		$zp_cfg = updateConfigItem('FILESYSTEM_CHARSET', $new, $zp_cfg);
-		storeConfig($zp_cfg);
-		$_configMutex->unlock();
-	}
-
+	setOption('FILESYSTEM_CHARSET', sanitize($_POST['filesystem_charset']));
 	setOption('site_email', sanitize($_POST['site_email']), 3);
 	$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 	$_zp_gallery->save();
@@ -298,7 +292,7 @@ function getOptionContent() {
 									echo '</p>';
 								}
 								?>
-								<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
+								<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, the <em>mod_rewrite suffix</em> will be appended to the end of URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
 								<p>
 									<?php
 									printf(gettext('If <em>Unique images</em> is checked, image links will omit the image suffix. E.g. a link to the image page for <code>myalbum/myphoto.jpg</code> will appear as <code>myalbum/myphoto%s</code>'), RW_SUFFIX);
@@ -367,7 +361,7 @@ function getOptionContent() {
 									$r_attrs = ' checked="checked"';
 									$c_attrs = ' checked="checked" disabled="disabled"';
 									?>
-									<input type="hidden" name="language_allow_<?php echo $dirname; ?>" value="1" />
+									<input type="hidden" name="language_allow[_<?php echo $dirname; ?>]" value="1" />
 									<script type="text/javascript">
 										window.addEventListener('load', function () {
 											$('ul.languagelist').scrollTo('li:eq(<?php echo ($c - 2); ?>)');
@@ -384,7 +378,7 @@ function getOptionContent() {
 									</label>
 									<label class="flags">
 										<span class="displayinline">
-											<input id="language_allow_<?php echo $dirname; ?>" name="language_allow_<?php echo $dirname; ?>" type="checkbox"
+											<input id="language_allow_<?php echo $dirname; ?>" name="language_allow[_<?php echo $dirname; ?>]" type="checkbox"
 														 value="<?php echo $dirname; ?>"<?php echo $c_attrs; ?>
 														 onclick="enable_click('<?php echo $dirname; ?>');" />
 											<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt; ?>" width="24" height="16" />

@@ -5,7 +5,7 @@
  * by Stephen Billard
  *
  * @author Stephen Billard (sbillard)
- * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  *
  * @package plugins/googleLogin
  */
@@ -70,7 +70,7 @@ if ($client->getAccessToken()) {
 		$email = $userData->email;
 		$name = $userData->name;
 		$googleid = $userData->id;
-		//don't need the Google access anymore as we will be using the zenphoto user mechanism
+		//don't need the Google access anymore as we will be using the native user mechanism
 		$accessToken = $client->getAccessToken();
 		$client->revokeToken($accessToken);
 

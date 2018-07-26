@@ -193,7 +193,7 @@ function saveOptions() {
 }
 
 function getOptionContent() {
-	global $_zp_gallery, $_zp_images_classes, $_zp_exifvars, $_zp_graphics_optionhandlers, $_zp_sortby, $_zp_cachefileSuffix, $_zp_conf_vars, $_zp_UTF8;
+	global $_zp_gallery, $_zp_images_classes, $_zp_exifvars, $_zp_graphics_optionhandlers, $_zp_sortby, $_zp_cachefileSuffix, $_zp_UTF8;
 	?>
 
 	<script type="text/javascript">
@@ -728,7 +728,7 @@ function getOptionContent() {
 							echo "<select id=\"protect_full_image\" name=\"protect_full_image\">\n";
 							$protection = getOption('protect_full_image');
 							$list = array(gettext('Protected view') => 'Protected view', gettext('Download') => 'Download', gettext('No access') => 'No access');
-							if ($_zp_conf_vars['album_folder_class'] != 'external') {
+							if (getOption('album_folder_class') != 'external') {
 								$list[gettext('Unprotected')] = 'Unprotected';
 							}
 							generateListFromArray(array($protection), $list, false, true);
@@ -758,7 +758,7 @@ function getOptionContent() {
 						<span class="option_info">
 							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
-								<?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?>
+								<?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the default lock image is displayed."); ?>
 							</div>
 						</span>
 					</td>

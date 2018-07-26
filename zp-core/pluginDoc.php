@@ -23,7 +23,7 @@
  * The definitions for folder names and paths are represented by <var>%define%</var> (e.g. <var>%WEBPATH%</var>). The
  * document processor will substitute the actual value for these tags when it renders the document.
  * Image URIs are also processed. Use the appropriate definition tokens to cause the URI to point
- * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/zen-logo.png" /></var>
+ * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/admin-logo.png" /></var>
  *
  * @author Stephen Billard (sbillard)
  *

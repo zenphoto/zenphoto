@@ -5,7 +5,7 @@
  * updates as needed
  *
  * @author Stephen Billard
- * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  *
  */
 $dbSoftware = db_software();
@@ -275,7 +275,7 @@ foreach ($template as $tablename => $table) {
 				setupQuery($dropString);
 			} else {
 				if (strpos($field['Comment'], 'optional_') === false) {
-					$orphans[] = sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not in use by ZenPhoto20.'), $key, $tablename);
+					$orphans[] = sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not in use by ZenPhotoGraphics.'), $key, $tablename);
 				}
 			}
 		}
@@ -336,7 +336,7 @@ foreach ($template as $tablename => $table) {
 					$dropString = "ALTER TABLE " . prefix($tablename) . " DROP INDEX `" . $key . "`;";
 					setupQuery($dropString);
 				} else {
-					$orpahns = sprintf(gettext('Setup found the key "%1$s" in the "%2$s" table. This index is not in use by ZenPhoto20.'), $key, $tablename);
+					$orpahns = sprintf(gettext('Setup found the key "%1$s" in the "%2$s" table. This index is not in use by ZenPhotoGraphics.'), $key, $tablename);
 				}
 			}
 		}

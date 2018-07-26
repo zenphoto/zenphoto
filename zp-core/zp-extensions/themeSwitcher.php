@@ -19,7 +19,7 @@
  * @package plugins/themeSwitcher
  * @pluginCategory development
  */
-$plugin_is_filter = 500 | CLASS_PLUGIN;
+$plugin_is_filter = 500 | FEATURE_PLUGIN;
 $plugin_description = gettext('Allow a visitor to select the theme of the gallery.');
 
 $option_interface = 'themeSwitcher';

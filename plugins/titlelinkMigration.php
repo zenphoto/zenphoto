@@ -15,7 +15,7 @@
  * @package plugins/utf8mb4Migration
  * @pluginCategory development
  *
- * Copyright 2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * Copyright 2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  */
 
 $plugin_is_filter = defaultExtension(5 | ADMIN_PLUGIN);
@@ -27,7 +27,6 @@ zp_register_filter('admin_utilities_buttons', 'titlelinkMigration::buttons');
 class titlelinkMigration {
 
 	static function buttons($buttons) {
-		global $_zp_conf_vars;
 
 		$buttons[] = array(
 				'category' => gettext('Database'),

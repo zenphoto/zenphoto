@@ -48,7 +48,7 @@ class tinymceOptions {
 		$configs_zenpage = gettinymceConfigFiles('zenpage');
 		$configs_zenphoto = gettinymceConfigFiles('zenphoto');
 		$options = array(
-				gettext('Text editor configuration - zenphoto') => array('key' => 'tinymce_zenphoto', 'type' => OPTION_TYPE_SELECTOR,
+				gettext('Text editor configuration - gallery') => array('key' => 'tinymce_zenphoto', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 0,
 						'selections' => $configs_zenphoto,
 						'null_selection' => gettext('Disabled'),
