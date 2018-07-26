@@ -1654,9 +1654,11 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							}
 							?>
 							<div class="sflags">
-								<?php
-								printLanguageSelector(true);
-								?>
+								<div>
+									<?php
+									printLanguageSelector(true);
+									?>
+								</div>
 							</div>
 							<?php
 							?>
@@ -1963,9 +1965,11 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						if (!isset($_GET['checked'])) {
 							?>
 							<div class="sflags">
-								<?php
-								printLanguageSelector(true);
-								?>
+								<div>
+									<?php
+									printLanguageSelector(true);
+									?>
+								</div>
 							</div>
 							<?php
 						}

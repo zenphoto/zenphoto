@@ -243,7 +243,7 @@ li {
 .sflags img {
 	border: none;
 }
-.sflags li {
+.sflags div {
 	display: inline;
 	float:right;
 	padding: 5px;
