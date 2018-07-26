@@ -79,6 +79,9 @@ if (OFFSET_PATH != 2) {
 function printLanguageSelector($flags = NULL) {
 	global $_locale_Subdomains, $_zp_current_locale;
 	$locale = $localeOption = getOption('locale');
+	if (!$dynamic_locale = zp_getCookie('dynamic_locale')) {
+		$dynamic_locale = getOptionfromDB('locale');
+	}
 
 	$languages = generateLanguageList();
 	$disallow = getSerializedArray(getOption('locale_disallowed'));
@@ -124,11 +127,12 @@ function printLanguageSelector($flags = NULL) {
 	}
 
 	if ($flags) {
+		asort($languages);
 		?>
 		<ul class="flags">
 			<?php
 			foreach ($languages as $text => $lang) {
-				$current = $locale && $lang == $locale;
+				$current = $lang == $dynamic_locale;
 				$flag = getLanguageFlag($lang);
 				if ($current) {
 					$path = $uri . $separator . 'locale=';
@@ -156,7 +160,7 @@ function printLanguageSelector($flags = NULL) {
 				<select id="dynamic-locale" class="languageSelector" name="locale" onchange="window.location = $('#dynamic-locale option:selected').val()">
 					<?php
 					foreach ($languages as $text => $lang) {
-						$current = $locale && $lang == $locale;
+						$current = $lang == $dynamic_locale;
 						if ($lang) {
 							$path = dynamic_locale::localLink($uri, $separator, $lang);
 						} else {
