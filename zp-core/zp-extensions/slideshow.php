@@ -395,7 +395,7 @@ class slideshow {
 			$ext = slideshow::is_valid($filename, $validtypes);
 			if ($ext) {
 				$imgnr++;
-				$slideshow .= '<span class="slideimage"><h4><strong>' . $albumobj->getTitle() . gettext(":") . '</strong> ' . $image->getTitle() . ' (' . ($idx + 1) . '/' . $numberofimages . ')</h4>';
+				$slideshow .= '<span class="slideimage"><h4><strong>' . $albumobj->getTitle() . ":" . '</strong> ' . $image->getTitle() . ' (' . ($idx + 1) . '/' . $numberofimages . ')</h4>';
 
 				if ($ext == "3gp") {
 					$slideshow .= '</a>
