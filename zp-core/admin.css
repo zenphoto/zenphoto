@@ -1764,6 +1764,10 @@ button:hover:disabled,.buttons a:hover:disabled {
 
 
 /* language selector */
+#languagelist {
+	width: 400px;
+}
+
 .languagelist li {
 	background: none;
 	padding-left: 0;
@@ -1775,7 +1779,6 @@ button:hover:disabled,.buttons a:hover:disabled {
 	list-style: none;
 	height: 8em;
 	overflow: auto;
-	width: 400px;
 	background-color: white;
 }
 

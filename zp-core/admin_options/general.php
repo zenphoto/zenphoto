@@ -308,90 +308,86 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Language"); ?></td>
 					<td class="option_value">
-						<ul class="languagelist">
-							<?php
-							$unsupported = getSerializedArray(getOption('locale_unsupported'));
-							$disallow = getSerializedArray(getOption('locale_disallowed'));
-							$locales = generateLanguageList('all');
-							$locales[gettext("HTTP_Accept_Language")] = '';
-							ksort($locales, SORT_LOCALE_STRING);
-							$vers = explode('-', ZENPHOTO_VERSION);
-							$vers = explode('.', $vers[0]);
-							while (count($vers) < 3) {
-								$vers[] = 0;
-							}
-							$zpversion = $vers[0] . '.' . $vers[1] . '.' . $vers[2];
-							$c = 0;
-							foreach ($locales as $language => $dirname) {
-								$languageAlt = $language;
-								if (empty($dirname)) {
-									$languageP = '';
-								} else if (!file_exists(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES')) {
-									$languageP = '';
-								} else {
-									$stat = explode("\n", file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/statistics.txt'));
-									preg_match_all('~([\d]+)~', $stat[1], $matches);
-									$translated = $matches[0][1];
-									preg_match_all('~([\d]+)~', $stat[2], $matches);
-									$needswork = $matches[0][1];
-									$languageP = ' <span style="font-size:xx-small;">' . ($translated + $needswork) . '%</span>';
-									if ($needswork) {
-										$languageP .= ' <span style="font-size:xx-small;color: red;">[' . $needswork . '%]</span>';
-									}
+						<div id="languagelist">
+							<ul class="languagelist">
+								<?php
+								$unsupported = getSerializedArray(getOption('locale_unsupported'));
+								$disallow = getSerializedArray(getOption('locale_disallowed'));
+								$locales = generateLanguageList('all');
+								$locales[gettext("HTTP_Accept_Language")] = '';
+								ksort($locales, SORT_LOCALE_STRING);
+								$vers = explode('-', ZENPHOTO_VERSION);
+								$vers = explode('.', $vers[0]);
+								while (count($vers) < 3) {
+									$vers[] = 0;
 								}
-
-								if (empty($dirname)) {
-									$flag = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
-								} else {
-									$flag = getLanguageFlag($dirname);
-								}
-								if (isset($unsupported[$dirname])) {
-									$c_attrs = $r_attrs = ' disabled="disabled"';
-								} else {
-									if (isset($disallow[$dirname])) {
-										$c_attrs = '';
-										$r_attrs = ' disabled="disabled"';
+								$zpversion = $vers[0] . '.' . $vers[1] . '.' . $vers[2];
+								$c = 0;
+								foreach ($locales as $language => $dirname) {
+									$languageAlt = $language;
+									$languageP = '';
+									if (!empty($dirname)) {
+										$flag = getLanguageFlag($dirname);
+										if (file_exists(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES')) {
+											$po = file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/zenphoto.po');
+											preg_match_all('~^#,\sfuzzy\s+~ims', $po, $fuzzy);
+											if (count($fuzzy[0])) {
+												preg_match_all('~^#:.*?msgid~ims', $po, $msgid);
+												$needswork = round(count($fuzzy[0]) / count($msgid[0]) * 100);
+												$languageP .= ' <span style="font-size:xx-small;color: red;">[' . $needswork . '%]</span>';
+											}
+										}
 									} else {
-										$c_attrs = ' checked="checked"';
-										$r_attrs = '';
+										$flag = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
 									}
-								}
+									if (isset($unsupported[$dirname])) {
+										$c_attrs = $r_attrs = ' disabled="disabled"';
+									} else {
+										if (isset($disallow[$dirname])) {
+											$c_attrs = '';
+											$r_attrs = ' disabled="disabled"';
+										} else {
+											$c_attrs = ' checked="checked"';
+											$r_attrs = '';
+										}
+									}
 
-								if ($dirname == SITE_LOCALE) {
-									$r_attrs = ' checked="checked"';
-									$c_attrs = ' checked="checked" disabled="disabled"';
+									if ($dirname == SITE_LOCALE) {
+										$r_attrs = ' checked="checked"';
+										$c_attrs = ' checked="checked" disabled="disabled"';
+										?>
+										<input type="hidden" name="language_allow[_<?php echo $dirname; ?>]" value="1" />
+										<script type="text/javascript">
+											window.addEventListener('load', function () {
+												$('ul.languagelist').scrollTo('li:eq(<?php echo ($c - 2); ?>)');
+											}, false);
+										</script>
+										<?php
+									}
+									$c++;
 									?>
-									<input type="hidden" name="language_allow[_<?php echo $dirname; ?>]" value="1" />
-									<script type="text/javascript">
-										window.addEventListener('load', function () {
-											$('ul.languagelist').scrollTo('li:eq(<?php echo ($c - 2); ?>)');
-										}, false);
-									</script>
+									<li>
+										<label class="displayinline">
+											<input type="radio" name="locale" id="r_<?php echo $dirname; ?>" value="<?php echo $dirname; ?>"
+														 onclick="radio_click('<?php echo $dirname; ?>');" <?php echo $r_attrs; ?>/>
+										</label>
+										<label class="flags">
+											<span class="displayinline">
+												<input id="language_allow_<?php echo $dirname; ?>" name="language_allow[_<?php echo $dirname; ?>]" type="checkbox"
+															 value="<?php echo $dirname; ?>"<?php echo $c_attrs; ?>
+															 onclick="enable_click('<?php echo $dirname; ?>');" />
+												<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt; ?>" width="24" height="16" />
+												<?php echo $language; ?>
+											</span>
+											<?php echo $languageP; ?>
+										</label>
+									</li>
 									<?php
 								}
-								$c++;
 								?>
-								<li>
-									<label class="displayinline">
-										<input type="radio" name="locale" id="r_<?php echo $dirname; ?>" value="<?php echo $dirname; ?>"
-													 onclick="radio_click('<?php echo $dirname; ?>');" <?php echo $r_attrs; ?>/>
-									</label>
-									<label class="flags">
-										<span class="displayinline">
-											<input id="language_allow_<?php echo $dirname; ?>" name="language_allow[_<?php echo $dirname; ?>]" type="checkbox"
-														 value="<?php echo $dirname; ?>"<?php echo $c_attrs; ?>
-														 onclick="enable_click('<?php echo $dirname; ?>');" />
-											<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt; ?>" width="24" height="16" />
-											<?php echo $language; ?>
-										</span>
-										<?php echo $languageP; ?>
-									</label>
-								</li>
-								<?php
-							}
-							?>
-						</ul>
-						<?php echo '<span class="floatright" style="font-size:xx-small;">' . gettext('Percent mechanically translated in red.'); ?></span>
+							</ul>
+							<?php echo '<span class="floatright" style="font-size:xx-small;">' . gettext('Percent mechanically translated in red.'); ?></span
+						</div>
 						<br class="clearall">
 						<label class="checkboxlabel">
 							<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> />
