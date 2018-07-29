@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-29 07:59-0700\n"
-"PO-Revision-Date: 2018-07-29 08:28-0700\n"
+"POT-Creation-Date: 2018-07-29 11:25-0700\n"
+"PO-Revision-Date: 2018-07-29 11:35-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: pasi@pilm.se\n"
 "Language: sv_SE\n"
@@ -897,7 +897,7 @@ msgstr "Insticksmoduler"
 #: zp-core/admin-users.php:513 zp-core/admin-users.php:933
 #: zp-core/admin_options/gallery.php:66 zp-core/admin_options/gallery.php:467
 #: zp-core/admin_options/general.php:167 zp-core/admin_options/general.php:169
-#: zp-core/admin_options/general.php:827 zp-core/admin_options/image.php:245
+#: zp-core/admin_options/general.php:823 zp-core/admin_options/image.php:245
 #: zp-core/admin_options/image.php:246 zp-core/admin_options/image.php:958
 #: zp-core/admin_options/image.php:960 zp-core/admin_options/plugin.php:90
 #: zp-core/admin_options/plugin.php:236 zp-core/admin_options/search.php:102
@@ -958,7 +958,7 @@ msgstr ""
 #: zp-core/admin-tags.php:249 zp-core/admin-thumbcrop.php:302
 #: zp-core/admin-users.php:517 zp-core/admin-users.php:937
 #: zp-core/admin_options/gallery.php:69 zp-core/admin_options/gallery.php:470
-#: zp-core/admin_options/general.php:173 zp-core/admin_options/general.php:831
+#: zp-core/admin_options/general.php:173 zp-core/admin_options/general.php:827
 #: zp-core/admin_options/image.php:250 zp-core/admin_options/image.php:964
 #: zp-core/admin_options/plugin.php:94 zp-core/admin_options/plugin.php:240
 #: zp-core/admin_options/search.php:108 zp-core/admin_options/search.php:626
@@ -4770,7 +4770,7 @@ msgstr "Förhandsvisa"
 
 #: themes/zpmasonry/comment_form/comment_form.php:18
 #: themes/zpminimal/z_disable_comment_form/comment_form.php:18
-#: zp-core/admin_options/general.php:647
+#: zp-core/admin_options/general.php:643
 #: zp-core/zp-extensions/contact_form.php:102
 #: zp-core/zp-extensions/contact_form.php:104
 #: zp-core/zp-extensions/register_user/register_user_form.php:31
@@ -5973,7 +5973,7 @@ msgstr "Manuell"
 
 #: zp-core/admin-edit.php:923 zp-core/admin-edit.php:1779
 #: zp-core/admin-functions.php:1923 zp-core/admin_options/gallery.php:345
-#: zp-core/admin_options/general.php:417 zp-core/admin_options/image.php:265
+#: zp-core/admin_options/general.php:413 zp-core/admin_options/image.php:265
 #: zp-core/admin_options/search.php:388 zp-core/exif/exifTranslations.php:82
 #: zp-core/zp-extensions/favoritesHandler.php:141
 msgid "Custom"
@@ -6587,7 +6587,7 @@ msgstr "*standard"
 #, fuzzy
 #| msgid "Thumbnail"
 msgid "Thumbnails"
-msgstr "Återställ dina albumtumnaglar"
+msgstr "Albumtumnaglar"
 
 #: zp-core/admin-functions.php:2124 zp-core/zp-extensions/cacheManager.php:284
 msgid "Thumbnail"
@@ -6995,12 +6995,12 @@ msgid "setup"
 msgstr "Cookietest lyckades"
 
 #: zp-core/admin-functions.php:5154 zp-core/admin-globals.php:198
-#: zp-core/admin_options/general.php:783
+#: zp-core/admin_options/general.php:779
 #, fuzzy
 msgid "security"
 msgstr "säkerhet"
 
-#: zp-core/admin-functions.php:5154 zp-core/admin_options/general.php:783
+#: zp-core/admin-functions.php:5154 zp-core/admin_options/general.php:779
 #: zp-core/zp-extensions/debug.php:146
 #, fuzzy
 msgid "debug"
@@ -8174,7 +8174,7 @@ msgstr "Din Webbplats adress är inte giltig."
 
 #: zp-core/admin-users.php:515 zp-core/admin_options/gallery.php:67
 #: zp-core/admin_options/gallery.php:468 zp-core/admin_options/general.php:171
-#: zp-core/admin_options/general.php:829 zp-core/admin_options/image.php:248
+#: zp-core/admin_options/general.php:825 zp-core/admin_options/image.php:248
 #: zp-core/admin_options/image.php:962 zp-core/admin_options/plugin.php:92
 #: zp-core/admin_options/plugin.php:238 zp-core/admin_options/search.php:106
 #: zp-core/admin_options/search.php:624 zp-core/admin_options/security.php:83
@@ -8285,7 +8285,7 @@ msgstr "Captcha svar"
 msgid "Full name"
 msgstr "Fullständigt namn"
 
-#: zp-core/admin-users.php:783 zp-core/admin_options/general.php:648
+#: zp-core/admin-users.php:783 zp-core/admin_options/general.php:644
 #: zp-core/zp-extensions/register_user/register_user_form.php:38
 msgid "Email"
 msgstr "E-Post"
@@ -9047,23 +9047,23 @@ msgstr ""
 "<strong>Obs! Det</strong> här alternativet kräver <em>mod omskrivning som</"
 "em> ska ställas in och bild prefix måste vara unika inom ett album!"
 
-#: zp-core/admin_options/general.php:316
+#: zp-core/admin_options/general.php:317
 #, fuzzy
 msgid "HTTP_Accept_Language"
 msgstr "HTTP_ACCEPT_LANGUAGE"
 
-#: zp-core/admin_options/general.php:394
+#: zp-core/admin_options/general.php:389
 #, fuzzy
 msgid "Percent mechanically translated in red."
 msgstr "Procent mekaniskt översatt i rött."
 
-#: zp-core/admin_options/general.php:398
+#: zp-core/admin_options/general.php:394
 #, fuzzy
 #| msgid "Multi-lingual"
 msgid "multi-lingual"
 msgstr "Flerspråkig"
 
-#: zp-core/admin_options/general.php:405
+#: zp-core/admin_options/general.php:401
 #, fuzzy
 msgid ""
 "You can disable languages by unchecking their checkboxes. Only checked "
@@ -9072,7 +9072,7 @@ msgstr ""
 "Du kan inaktivera språk genom att avmarkera kryssrutorna. Endast markerade "
 "språk kommer att vara tillgängliga för installationen."
 
-#: zp-core/admin_options/general.php:406
+#: zp-core/admin_options/general.php:402
 #, fuzzy
 msgid ""
 "Select the preferred language to display text in. (Set to "
@@ -9082,7 +9082,7 @@ msgstr ""
 "Välj önskat språk för att visa text i. (Ange till <em>HTTP_Accept_Language "
 "för</em> att använda språkinställningen som anges av tittarens webbläsare.)"
 
-#: zp-core/admin_options/general.php:407
+#: zp-core/admin_options/general.php:403
 #, fuzzy
 msgid ""
 "Set <em>Multi-lingual</em> to enable multiple language input for options "
@@ -9091,169 +9091,169 @@ msgstr ""
 "Ange <em>flerspråkig för</em> att aktivera flera språkinmatningar för "
 "alternativ som ger tematekst."
 
-#: zp-core/admin_options/general.php:413
+#: zp-core/admin_options/general.php:409
 #, fuzzy
 #| msgid "Date format:"
 msgid "Date format"
 msgstr "Datumformat:"
 
-#: zp-core/admin_options/general.php:418
+#: zp-core/admin_options/general.php:414
 msgid "Preferred date representation"
 msgstr "Föredragen datumpresentation"
 
-#: zp-core/admin_options/general.php:419
+#: zp-core/admin_options/general.php:415
 msgid "02/25/08 15:30"
 msgstr "02/25/08 15:30"
 
-#: zp-core/admin_options/general.php:420
+#: zp-core/admin_options/general.php:416
 msgid "02/25/08"
 msgstr "02/25/08"
 
-#: zp-core/admin_options/general.php:421
+#: zp-core/admin_options/general.php:417
 msgid "02/25/2008 15:30"
 msgstr "02/25/2008 15:30"
 
-#: zp-core/admin_options/general.php:422
+#: zp-core/admin_options/general.php:418
 msgid "02/25/2008"
 msgstr "02/25/2008"
 
-#: zp-core/admin_options/general.php:423
+#: zp-core/admin_options/general.php:419
 msgid "02-25-08 15:30"
 msgstr "02-25-08 15:30"
 
-#: zp-core/admin_options/general.php:424
+#: zp-core/admin_options/general.php:420
 msgid "02-25-08"
 msgstr "02-25-08"
 
-#: zp-core/admin_options/general.php:425
+#: zp-core/admin_options/general.php:421
 msgid "02-25-2008 15:30"
 msgstr "02-25-2008 15:30"
 
-#: zp-core/admin_options/general.php:426
+#: zp-core/admin_options/general.php:422
 msgid "02-25-2008"
 msgstr "02-25-2008"
 
-#: zp-core/admin_options/general.php:427
+#: zp-core/admin_options/general.php:423
 msgid "2008. February 25. 15:30"
 msgstr "2008. Februari 25. 15:30"
 
-#: zp-core/admin_options/general.php:428
+#: zp-core/admin_options/general.php:424
 msgid "2008. February 25."
 msgstr "2008. Februari 25."
 
-#: zp-core/admin_options/general.php:429
+#: zp-core/admin_options/general.php:425
 msgid "2008-02-25 15:30"
 msgstr "2008-02-25 15:30"
 
-#: zp-core/admin_options/general.php:430
+#: zp-core/admin_options/general.php:426
 msgid "2008-02-25"
 msgstr "2008-02-25"
 
-#: zp-core/admin_options/general.php:431
+#: zp-core/admin_options/general.php:427
 msgid "25 Feb 2008 15:30"
 msgstr "25 Feb 2008 15:30"
 
-#: zp-core/admin_options/general.php:432
+#: zp-core/admin_options/general.php:428
 msgid "25 Feb 2008"
 msgstr "25 Feb 2008"
 
-#: zp-core/admin_options/general.php:433
+#: zp-core/admin_options/general.php:429
 msgid "25 February 2008 15:30"
 msgstr "25 Februari 2008 15:30"
 
-#: zp-core/admin_options/general.php:434
+#: zp-core/admin_options/general.php:430
 msgid "25 February 2008"
 msgstr "25 Februari 2008"
 
-#: zp-core/admin_options/general.php:435
+#: zp-core/admin_options/general.php:431
 msgid "25. Feb 2008 15:30"
 msgstr "25. Feb 2008 15:30"
 
-#: zp-core/admin_options/general.php:436
+#: zp-core/admin_options/general.php:432
 msgid "25. Feb 2008"
 msgstr "25. Feb 2008"
 
-#: zp-core/admin_options/general.php:437
+#: zp-core/admin_options/general.php:433
 msgid "25. Feb. 08 15:30"
 msgstr "25. Feb. 08 15:30"
 
-#: zp-core/admin_options/general.php:438
+#: zp-core/admin_options/general.php:434
 msgid "25. Feb. 08"
 msgstr "25. Feb. 08"
 
-#: zp-core/admin_options/general.php:439
+#: zp-core/admin_options/general.php:435
 msgid "25. February 2008 15:30"
 msgstr "25. Februari 2008 15:30"
 
-#: zp-core/admin_options/general.php:440
+#: zp-core/admin_options/general.php:436
 msgid "25. February 2008"
 msgstr "25. Februari 2008"
 
-#: zp-core/admin_options/general.php:441
+#: zp-core/admin_options/general.php:437
 msgid "25.02.08 15:30"
 msgstr "25.02.08 15:30"
 
-#: zp-core/admin_options/general.php:442
+#: zp-core/admin_options/general.php:438
 msgid "25.02.08"
 msgstr "25.02.08"
 
-#: zp-core/admin_options/general.php:443
+#: zp-core/admin_options/general.php:439
 msgid "25.02.2008 15:30"
 msgstr "25.02.2008 15:30"
 
-#: zp-core/admin_options/general.php:444
+#: zp-core/admin_options/general.php:440
 msgid "25.02.2008"
 msgstr "25.02.2008"
 
-#: zp-core/admin_options/general.php:445
+#: zp-core/admin_options/general.php:441
 msgid "25-02-08 15:30"
 msgstr "25-02-08 15:30"
 
-#: zp-core/admin_options/general.php:446
+#: zp-core/admin_options/general.php:442
 msgid "25-02-08"
 msgstr "25-02-08"
 
-#: zp-core/admin_options/general.php:447
+#: zp-core/admin_options/general.php:443
 msgid "25-02-2008 15:30"
 msgstr "25-02-2008 15:30"
 
-#: zp-core/admin_options/general.php:448
+#: zp-core/admin_options/general.php:444
 msgid "25-02-2008"
 msgstr "25-02-2008"
 
-#: zp-core/admin_options/general.php:449
+#: zp-core/admin_options/general.php:445
 msgid "25-Feb-08 15:30"
 msgstr "25-Feb-08 15:30"
 
-#: zp-core/admin_options/general.php:450
+#: zp-core/admin_options/general.php:446
 msgid "25-Feb-08"
 msgstr "25-Feb-08"
 
-#: zp-core/admin_options/general.php:451
+#: zp-core/admin_options/general.php:447
 msgid "25-Feb-2008 15:30"
 msgstr "25-Feb-2008 15:30"
 
-#: zp-core/admin_options/general.php:452
+#: zp-core/admin_options/general.php:448
 msgid "25-Feb-2008"
 msgstr "25-Feb-2008"
 
-#: zp-core/admin_options/general.php:453
+#: zp-core/admin_options/general.php:449
 msgid "Feb 25, 2008 15:30"
 msgstr "Feb 25, 2008 15:30"
 
-#: zp-core/admin_options/general.php:454
+#: zp-core/admin_options/general.php:450
 msgid "Feb 25, 2008"
 msgstr "Feb 25, 2008"
 
-#: zp-core/admin_options/general.php:455
+#: zp-core/admin_options/general.php:451
 msgid "February 25, 2008 15:30"
 msgstr "Februari 25, 2008 15:30"
 
-#: zp-core/admin_options/general.php:456
+#: zp-core/admin_options/general.php:452
 msgid "February 25, 2008"
 msgstr "Februari 25, 2008"
 
-#: zp-core/admin_options/general.php:478
+#: zp-core/admin_options/general.php:474
 #, fuzzy
 msgid ""
 "Format for dates. Select from the list or set to <code>custom</code> and "
@@ -9265,34 +9265,34 @@ msgstr ""
 "code> och ange en <a href=\"http://us2.php.net/manual/en/function.strftime."
 "php\"><span class=\"nowrap\"><code>strftime()</code></span></a> i textrutan."
 
-#: zp-core/admin_options/general.php:485
+#: zp-core/admin_options/general.php:481
 #, fuzzy
 msgid "Filesystem Charset"
 msgstr "Filsystemet Charset"
 
-#: zp-core/admin_options/general.php:506
+#: zp-core/admin_options/general.php:502
 #, fuzzy
 msgid "The character encoding to use for the filesystem."
 msgstr "Teckenkodningen som ska användas för filsystemet."
 
-#: zp-core/admin_options/general.php:513
+#: zp-core/admin_options/general.php:509
 #, fuzzy
 #| msgid "Allowed tags:"
 msgid "Allowed tags"
 msgstr "Tillåtna HTML-taggar:"
 
-#: zp-core/admin_options/general.php:519
+#: zp-core/admin_options/general.php:515
 #, fuzzy
 msgid "Reset to default"
 msgstr "Återställ till standard"
 
-#: zp-core/admin_options/general.php:552
+#: zp-core/admin_options/general.php:548
 msgid ""
 "Tags and attributes allowed in comments, descriptions, and other fields."
 msgstr ""
 "Taggar och attribut tillåtna i kommentarer, beskrivningar och andra fält."
 
-#: zp-core/admin_options/general.php:553
+#: zp-core/admin_options/general.php:549
 #, fuzzy
 #| msgid ""
 #| "Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; "
@@ -9304,7 +9304,7 @@ msgstr ""
 "Gör enligt <em>tag</em> =&gt; (<em>attribute</em> =&gt; (<em>attribute</"
 "em>=&gt; (), <em>attribute</em> =&gt; ()...)))"
 
-#: zp-core/admin_options/general.php:555
+#: zp-core/admin_options/general.php:551
 #, fuzzy
 msgid ""
 "<strong>Note:</strong> visual editing is enabled so the editor overrides "
@@ -9313,33 +9313,33 @@ msgstr ""
 "<strong>Obs!</strong> Visuell redigering är aktiverad så att redigeraren "
 "överrätter dessa inställningar på taggar där den är aktiv."
 
-#: zp-core/admin_options/general.php:562
+#: zp-core/admin_options/general.php:558
 #, fuzzy
 msgid "Usage policy"
 msgstr "användningspolicy"
 
-#: zp-core/admin_options/general.php:566
+#: zp-core/admin_options/general.php:562
 #, fuzzy
 msgid "require acknowledgement"
 msgstr "kräva bekräftelse"
 
-#: zp-core/admin_options/general.php:571
+#: zp-core/admin_options/general.php:567
 #, fuzzy
 msgid "Clear remembered acknowledgements"
 msgstr "Rensa ihåg bekräftelser"
 
-#: zp-core/admin_options/general.php:577
+#: zp-core/admin_options/general.php:573
 #, fuzzy
 msgid "Policy URL"
 msgstr "Policy URL"
 
-#: zp-core/admin_options/general.php:582
+#: zp-core/admin_options/general.php:578
 #, fuzzy
 #| msgid "Notice!"
 msgid "Notice text"
 msgstr "Notistext"
 
-#: zp-core/admin_options/general.php:594
+#: zp-core/admin_options/general.php:590
 #, fuzzy
 msgid ""
 "Require policy notice acknowledgement according to the <a href=\"https://en."
@@ -9364,26 +9364,26 @@ msgstr ""
 "besökare fortsätter det för kockens utgångsintervall (eller webbläsarsession "
 "om <em>gallerisessioner</em> är aktiverade.)"
 
-#: zp-core/admin_options/general.php:602 zp-core/zp-extensions/debug.php:187
+#: zp-core/admin_options/general.php:598 zp-core/zp-extensions/debug.php:187
 #, fuzzy
 msgid "Cookies"
 msgstr "Cookies"
 
-#: zp-core/admin_options/general.php:607
+#: zp-core/admin_options/general.php:603
 #, fuzzy
 msgid "path"
 msgstr "Tråd"
 
-#: zp-core/admin_options/general.php:612
+#: zp-core/admin_options/general.php:608
 #, fuzzy
 msgid "duration"
 msgstr "längd"
 
-#: zp-core/admin_options/general.php:622
+#: zp-core/admin_options/general.php:618
 msgid "enable gallery sessions"
 msgstr "Aktivera galleri-sessioner"
 
-#: zp-core/admin_options/general.php:633
+#: zp-core/admin_options/general.php:629
 #, fuzzy, php-format
 msgid ""
 "The <em>path</em> to use when storing cookies. (Leave empty to default to "
@@ -9392,12 +9392,12 @@ msgstr ""
 "<em>Vägen</em> att använda när du lagrar kakor. (Lämna tomma till standard "
 "till <em> %s</em> )"
 
-#: zp-core/admin_options/general.php:634
+#: zp-core/admin_options/general.php:630
 #, fuzzy
 msgid "Set to the time in seconds that cookies should be kept by browsers."
 msgstr "Ställ in tiden i sekunder om att cookies ska hållas av webbläsare."
 
-#: zp-core/admin_options/general.php:638
+#: zp-core/admin_options/general.php:634
 #, fuzzy
 msgid ""
 "If the gallery sessions option is selected <a href=\"http://www.w3schools."
@@ -9408,7 +9408,7 @@ msgstr ""
 "php/php_sessions.asp\">PHP-sessioner</a> kommer att användas istället för "
 "cookies för att göra besökarnas inställningar ihållande."
 
-#: zp-core/admin_options/general.php:639
+#: zp-core/admin_options/general.php:635
 #, fuzzy
 msgid ""
 "<strong>NOTE</strong>: Sessions will normally close when the browser closes "
@@ -9425,7 +9425,7 @@ msgstr ""
 "föredragna lagringsalternativet eftersom deras varaktighet bestäms av "
 "<em>Cookie duration-</em> alternativet."
 
-#: zp-core/admin_options/general.php:658
+#: zp-core/admin_options/general.php:654
 #, fuzzy
 msgid ""
 "This email name and address will be used as the <em>From</em> address for "
@@ -9434,18 +9434,18 @@ msgstr ""
 "Detta email namn och adress kommer att användas som <em>Från</em> adress för "
 "alla mail skickade av galleriet."
 
-#: zp-core/admin_options/general.php:665
+#: zp-core/admin_options/general.php:661
 #, fuzzy
 #| msgid "User Registration"
 msgid "Registration"
 msgstr "ZenPhoto20 Gallery registrering"
 
-#: zp-core/admin_options/general.php:673
+#: zp-core/admin_options/general.php:669
 #, fuzzy
 msgid "notify"
 msgstr "underrätta"
 
-#: zp-core/admin_options/general.php:681
+#: zp-core/admin_options/general.php:677
 #, fuzzy
 #| msgid ""
 #| "If checked, an e-mail will be sent to the gallery admin when a new user "
@@ -9457,7 +9457,7 @@ msgstr ""
 "Om det är markerat skickas ett e-postmeddelande till galleriadministratören "
 "när en ny användare har registrerat sig på webbplatsen."
 
-#: zp-core/admin_options/general.php:683
+#: zp-core/admin_options/general.php:679
 #, fuzzy
 msgid ""
 "Of course there must be some Administrator with an e-mail address for this "
@@ -9466,32 +9466,32 @@ msgstr ""
 "Självklart måste det finnas någon administratör med en e-postadress för att "
 "detta alternativ ska kunna ge mening!"
 
-#: zp-core/admin_options/general.php:691
+#: zp-core/admin_options/general.php:687
 #, fuzzy
 msgid "Admin pagination"
 msgstr "Adminpagination"
 
-#: zp-core/admin_options/general.php:697
+#: zp-core/admin_options/general.php:693
 #, fuzzy
 msgid "Users per page"
 msgstr "Användare per sida"
 
-#: zp-core/admin_options/general.php:702
+#: zp-core/admin_options/general.php:698
 #, fuzzy
 msgid "Plugins per page"
 msgstr "Plugins per sida"
 
-#: zp-core/admin_options/general.php:716
+#: zp-core/admin_options/general.php:712
 #, fuzzy
 msgid "Groups per page"
 msgstr "Antal bokcirklar per sida"
 
-#: zp-core/admin_options/general.php:732
+#: zp-core/admin_options/general.php:728
 #, fuzzy
 msgid "Articles per page"
 msgstr "Artiklar per sida (tema)"
 
-#: zp-core/admin_options/general.php:750
+#: zp-core/admin_options/general.php:746
 #, fuzzy
 msgid ""
 "These options control the number of items displayed on their tabs. If you "
@@ -9500,43 +9500,43 @@ msgstr ""
 "Dessa alternativ kontrollerar antalet objekt som visas på sina flikar. Om du "
 "har problem med att använda dessa flikar, minska det antal som visas här."
 
-#: zp-core/admin_options/general.php:757
+#: zp-core/admin_options/general.php:753
 #, fuzzy
 msgid "Dirty form check"
 msgstr "Dirty form check"
 
-#: zp-core/admin_options/general.php:762
+#: zp-core/admin_options/general.php:758
 #, fuzzy
 msgid "ignore"
 msgstr "ignorera"
 
-#: zp-core/admin_options/general.php:766
+#: zp-core/admin_options/general.php:762
 #, fuzzy
 msgid "exclude tinyMCE"
 msgstr "utesluta tinyMCE"
 
-#: zp-core/admin_options/general.php:770
+#: zp-core/admin_options/general.php:766
 #, fuzzy
 #| msgid "Reset all ratings"
 msgid "detect all changes"
 msgstr "upptäcka alla ändringar"
 
-#: zp-core/admin_options/general.php:777
+#: zp-core/admin_options/general.php:773
 #, fuzzy
 msgid "Enable checking for form changes before leaving pages."
 msgstr "Aktivera kontroll av formulärändringar innan du lämnar sidor."
 
-#: zp-core/admin_options/general.php:790
+#: zp-core/admin_options/general.php:786
 #, fuzzy, php-format
 msgid "<p>%s log limit</p>"
 msgstr "<p>  %s loggräns </p>"
 
-#: zp-core/admin_options/general.php:805
+#: zp-core/admin_options/general.php:801
 #, fuzzy
 msgid "e-mail when exceeded"
 msgstr "E-post när överskridits"
 
-#: zp-core/admin_options/general.php:817
+#: zp-core/admin_options/general.php:813
 #, fuzzy
 msgid ""
 "Logs will be \"rolled\" over when they exceed the specified size. If "
@@ -9546,7 +9546,7 @@ msgstr ""
 "storleken. Om den är markerad skickas administratören via e-post när detta "
 "inträffar."
 
-#: zp-core/admin_options/general.php:826 zp-core/admin_options/plugin.php:88
+#: zp-core/admin_options/general.php:822 zp-core/admin_options/plugin.php:88
 #: zp-core/admin_options/plugin.php:234 zp-core/admin_options/security.php:79
 #: zp-core/admin_options/security.php:324 zp-core/setup/setup-sqlform.php:110
 msgid "save"
@@ -9709,7 +9709,7 @@ msgstr "Skärpning:"
 #, fuzzy
 #| msgid "thumbnail"
 msgid "thumbnails"
-msgstr "Återställ dina albumtumnaglar"
+msgstr "Albumtumnaglar"
 
 #: zp-core/admin_options/image.php:425
 #, fuzzy
@@ -9871,7 +9871,7 @@ msgstr ""
 #: zp-core/admin_options/image.php:559
 #, fuzzy
 msgid "Cache as"
-msgstr "Cachen har raderats."
+msgstr "HTML cache"
 
 #: zp-core/admin_options/image.php:562
 #, fuzzy
@@ -16607,7 +16607,7 @@ msgstr "Sök alternativ"
 #: zp-core/template-functions.php:3972
 #, fuzzy
 msgid "fields"
-msgstr "Du kan även använda kodblock fälten som anpassade fält."
+msgstr "fält"
 
 #: zp-core/template-functions.php:4011
 #, fuzzy
@@ -20443,8 +20443,8 @@ msgstr "Artiklar"
 #: zp-core/zp-extensions/defaultCodeblocks.php:68
 #, fuzzy, php-format
 msgid ""
-"Codeblocks to be inserted when the one for the <em>%s</ object is empty."
-msgstr "Kodblocks som ska infogas när den för <em> %s</em> </ object is empty."
+"Codeblocks to be inserted when the one for the <em>%s</em> object is empty."
+msgstr "Kodblock som ska infogas när objektet för <em> %s</em> är tomt."
 
 #: zp-core/zp-extensions/deprecated-functions.php:29
 #, fuzzy
@@ -30199,2806 +30199,3 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:70
 msgid "Sample CAPTCHA image"
 msgstr "Exempel på CAPTCHA bild"
-
-#, fuzzy
-#~ msgid "A plugin to insert your Piwik JavaScript tag into your theme pages."
-#~ msgstr ""
-#~ "En plugin för att infoga din Piwik JavaScript-taggen i din tema-sidor."
-
-#, fuzzy
-#~ msgid "piwik url"
-#~ msgstr "piwik url"
-
-#, fuzzy
-#~ msgid "Enter your Piwik installation URL."
-#~ msgstr "Ange din Piwik installationsadress."
-
-#, fuzzy
-#~| msgid "Website field"
-#~ msgid "site id"
-#~ msgstr "Webbplats-ID"
-
-#, fuzzy
-#~ msgid "Enter the site id assigned by Piwik."
-#~ msgstr "Ange webbplats-id som tilldelats av Piwik."
-
-#, fuzzy
-#~| msgid "Enable Imagick"
-#~ msgid "Enable Admin tracking"
-#~ msgstr "Aktivera administratörspårning"
-
-#, fuzzy
-#~ msgid ""
-#~ "Controls if you want Piwik to track users with <code>Admin</code> rights."
-#~ msgstr ""
-#~ "Styr om du vill att Piwik spåra användare med <code>Admin</code> "
-#~ "rättigheter."
-
-#, fuzzy
-#~ msgid "LDAP server surrogate."
-#~ msgstr "LDAP-server surrogat."
-
-#, fuzzy
-#~ msgid "Checks for MyBB authentication of authorized users."
-#~ msgstr "Kontroller för MyBB autentisering av auktoriserade användare."
-
-#, fuzzy
-#~ msgid "MyBB site"
-#~ msgstr "MyBB-webbplatsen"
-
-#, fuzzy
-#~ msgid "The WEB path to the MyBB installation."
-#~ msgstr "WEBBEN sökvägen till MyBB installationen."
-
-#, fuzzy
-#~| msgid "Title"
-#~ msgid "MyBB Title"
-#~ msgstr "Titel"
-
-#, fuzzy
-#~ msgid "The name of the MyBB site."
-#~ msgstr "Namnet på webbplatsen MyBB."
-
-#, fuzzy
-#~| msgid "Database host"
-#~ msgid "MyBB database host"
-#~ msgstr "Databasvärd"
-
-#, fuzzy
-#~ msgid "The host where the MyBB database server resides."
-#~ msgstr "Den värd där MyBB databasservern finns."
-
-#, fuzzy
-#~ msgid "MyBB database"
-#~ msgstr "Databas"
-
-#, fuzzy
-#~| msgid "Database name"
-#~ msgid "The MyBB database name."
-#~ msgstr "MyBB databasens namn."
-
-#, fuzzy
-#~| msgid "Database user"
-#~ msgid "MyBB database user"
-#~ msgstr "Databasanvändare"
-
-#, fuzzy
-#~| msgid "Database user"
-#~ msgid "The MyBB database user."
-#~ msgstr "MyBB databasen användaren."
-
-#, fuzzy
-#~| msgid "Database password"
-#~ msgid "MyBB database password"
-#~ msgstr "Databaslösenord"
-
-#, fuzzy
-#~| msgid "Database password"
-#~ msgid "The MyBB database passwrod."
-#~ msgstr "MyBB databas passwrod."
-
-#, fuzzy
-#~| msgid "Database table prefix"
-#~ msgid "MyBB database prefix"
-#~ msgstr "Databas-prefix"
-
-#, fuzzy
-#~ msgid "The prefix MyBB uses for its database tables."
-#~ msgstr "Prefixet MyBB använder för dess databastabeller."
-
-#, fuzzy
-#~| msgid "Default user group"
-#~ msgid "MyBB default user group"
-#~ msgstr "MyBB användaren standardgrupp"
-
-#, fuzzy
-#~ msgid "The default group if the MyBB group has not been defined."
-#~ msgstr "Standardgruppen om gruppen MyBB inte har definierats."
-
-#, fuzzy
-#~| msgid "Graphics support: <code>%s</code>"
-#~ msgid "Example: <code>%s</code>"
-#~ msgstr "Exempel:<code>%s</code>"
-
-#, fuzzy
-#~ msgid ""
-#~ "If not empty, a user album will be created for each user. <code>%s</code> "
-#~ "in the text will be replaced with the user’s name."
-#~ msgstr ""
-#~ "Om inte tom, en användare album kommer att skapas för varje användare. "
-#~ "<code>%s</code>i texten kommer att ersättas med användarens namn."
-
-#, fuzzy
-#~ msgid ""
-#~ "<p class=\"notebox\">Note:</strong> the <code>%s</code> placeholder "
-#~ "<strong>MUST</strong> be present!</p>"
-#~ msgstr ""
-#~ "<p class=\"notebox\">Obs: den <code>%s</code> platshållare <strong>måste</"
-#~ "strong> vara närvarande!</p>"
-
-#, fuzzy
-#~ msgid "Failed to connect to the MyBB database \"%1$s:%2$s\""
-#~ msgstr "Kunde inte ansluta till databasen MyBB ”%1$s: %2$s”"
-
-#, fuzzy
-#~ msgid ""
-#~ "Redirect link <code>site/ContactLost<code> to <code>site/pages/"
-#~ "ContactLost</code>."
-#~ msgstr ""
-#~ "Omdirigera länk<code>site/ContactLost<code> to <code>site/pages/"
-#~ "ContactLost</code>.</code></code>"
-
-#, fuzzy
-#~| msgid "Select the database restore file:"
-#~ msgid "Generates the <em>databaseTemplate</em> file."
-#~ msgstr "Genererar <em>databaseTemplate-</em> filen."
-
-#, fuzzy
-#~| msgid "Database name"
-#~ msgid "Database Template"
-#~ msgstr "Databasmall"
-
-#, fuzzy
-#~| msgid "Select the database restore file:"
-#~ msgid "Creates the database structure template."
-#~ msgstr "Skapar databasstrukturmallen."
-
-#, fuzzy
-#~| msgid "ZenPhoto20 user created"
-#~ msgid "ZenPhoto20 database template created"
-#~ msgstr "ZenPhoto20 databasmall skapad"
-
-#, fuzzy
-#~ msgid "Provides support for the ZenPhoto20 website."
-#~ msgstr "Ger stöd för ZenPhoto20 webbplats."
-
-#, fuzzy
-#~ msgid "Places release notes on a page."
-#~ msgstr "Platser släpper anteckningar på en sida."
-
-#, fuzzy
-#~| msgid "Publish"
-#~ msgid "Publish %1$s"
-#~ msgstr "Publicera%1$s"
-
-#, fuzzy
-#~ msgid "Handles logon from <em>OpenID</em> credential providers."
-#~ msgstr "Hanterar inloggning från <em>OpenID-</em> behörighetsleverantörer."
-
-#, fuzzy
-#~ msgid ""
-#~ "Run the <a href=\"%s\">OpenID detect</a> script to check compatibility of "
-#~ "your server configuration."
-#~ msgstr ""
-#~ "Kör <a href=\"%s\">OpenID-detekteringsskriptet för</a> att kontrollera "
-#~ "kompatibiliteten för din serverkonfiguration."
-
-#, fuzzy
-#~ msgid "The <a href=\"%s\">OpenID detect</a> script has not been run."
-#~ msgstr "<a href=\"%s\">OpenID-detekteringsskriptet</a> har inte körts."
-
-#, fuzzy
-#~ msgid "The user group to which to map the federated login."
-#~ msgstr ""
-#~ "Användargruppen för att kunna kartlägga den federerade inloggningen."
-
-#, fuzzy
-#~ msgid "Handlers"
-#~ msgstr "Handledare"
-
-#, fuzzy
-#~ msgid "Un-check any handler you do not want to support."
-#~ msgstr "Avmarkera alla hanterare som du inte vill stödja."
-
-#, fuzzy
-#~ msgid "Group %s does not exist."
-#~ msgstr "Gruppen finns inte"
-
-#, fuzzy
-#~ msgid "Visit %s to validate your federated logon credentials."
-#~ msgstr "Besök%s för att validera dina federerade inloggningsuppgifter."
-
-#, fuzzy
-#~ msgid "Federated user confirmation"
-#~ msgstr "Förbundet användarbekräftelse"
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>NOTE:</strong> Update your profile with a valid <em>e-mail</em> "
-#~ "address and you will be sent a link to validate your access to the site."
-#~ msgstr ""
-#~ "<strong>OBS!</strong> Uppdatera din profil med en giltig <em>e-</em> "
-#~ "postadress och du kommer att skickas en länk för att validera din åtkomst "
-#~ "till webbplatsen."
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>NOTE:</strong> User’s credentials came from a Federated logon."
-#~ msgstr ""
-#~ "<strong>Obs:</strong> Användarens referenser kom från en federerad "
-#~ "inloggning."
-
-#, fuzzy
-#~| msgid "You must supply an e-mail address."
-#~ msgid "You must supply a user name or an e-mail address."
-#~ msgstr "Du måste ange ett användarnamn eller en e-postadress."
-
-#, fuzzy
-#~| msgid "you are already logged in."
-#~ msgid "%s is already logged in."
-#~ msgstr "%s är redan inloggad."
-
-#, fuzzy
-#~| msgid "you are already logged in."
-#~ msgid "Someone else is logged in."
-#~ msgstr "Någon annan är inloggad."
-
-#, fuzzy
-#~ msgid "Refered credentials proof of concept"
-#~ msgstr "Uppköparen autentiseringsuppgifter bevis på koncept"
-
-#, fuzzy
-#~ msgid "Federated logon proof of concept."
-#~ msgstr "Federerad inloggning bevis på koncept."
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>WARNING:</strong> this demonstration is NOT secure. You should "
-#~ "not leave this script on any public installation."
-#~ msgstr ""
-#~ "<strong>Varning:</strong> denna demonstration är inte säkert. Du bör inte "
-#~ "lämna detta skript på någon offentlig installation."
-
-#, fuzzy
-#~ msgid "Not logged in."
-#~ msgstr "Du måste vara inloggad för att köra installationen."
-
-#, fuzzy
-#~| msgid "Page successfully deleted!"
-#~ msgid "%s was successfully logged in"
-#~ msgstr "%s har inloggats framgångsrikt"
-
-#, fuzzy
-#~ msgid "%s is an invalid action."
-#~ msgstr "%s är en ogiltig åtgärd."
-
-#, fuzzy
-#~ msgid ""
-#~ "Could not create the FileStore directory %s. Please check the effective "
-#~ "permissions."
-#~ msgstr ""
-#~ "Kunde inte skapa katalogen FileStore %s. Vänligen kontrollera gällande "
-#~ "behörigheter."
-
-#, fuzzy
-#~ msgid "Verification cancelled."
-#~ msgstr "Verifiering annulleras."
-
-#, fuzzy
-#~ msgid "OpenID authentication failed: %s"
-#~ msgstr "OpenID autentisering misslyckades: %s"
-
-#, fuzzy
-#~ msgid ""
-#~ "You have successfully verified <a href=\"%s\">%s</a> as your identity."
-#~ msgstr "Du har verifierat <a href=\"%s\">%s</a> som din identitet."
-
-#, fuzzy
-#~ msgid "Federated logon error:<br />%s"
-#~ msgstr "Federerad Inloggningsfel:<br>%s"
-
-#, fuzzy
-#~ msgid "Identity URL:"
-#~ msgstr "Identitet URL:"
-
-#, fuzzy
-#~ msgid "Verify"
-#~ msgstr "Verifiera"
-
-#, fuzzy
-#~ msgid "Return to ZenPhoto20"
-#~ msgstr "Återgå till ZenPhoto20"
-
-#, fuzzy
-#~ msgid "Not a valid OpenID URL"
-#~ msgstr "Ej en giltig OpenID-URL"
-
-#, fuzzy
-#~ msgid "Authentication error; not a valid OpenID."
-#~ msgstr "Autentiseringsfel; inte ett giltigt OpenID."
-
-#, fuzzy
-#~ msgid "Could not redirect to server: %s"
-#~ msgstr "Kan inte omdirigera till servern: %s"
-
-#, fuzzy
-#~ msgid "ZenPhoto20 filters"
-#~ msgstr "ZenPhoto20 filter"
-
-#, fuzzy
-#~ msgid "Overlay icons over thumbnails based on album tags."
-#~ msgstr "Overlay ikoner över miniatyrer baserat på albumet taggar."
-
-#, fuzzy
-#~ msgid "Enable <strong>Flowplayer5</strong> to handle video files."
-#~ msgstr "Aktivera <strong>Flowplayer5</strong> att hantera videofiler."
-
-#, fuzzy
-#~ msgid ""
-#~ "Please see <a href='http://flowplayer.org'>flowplayer.org</a> for more "
-#~ "info about the player and its license."
-#~ msgstr ""
-#~ "Se <a href='http://flowplayer.org'>flowplayer.org</a> för mer info om "
-#~ "spelaren och dess licens."
-
-#, fuzzy
-#~ msgid ""
-#~ "Flowplayer5 not enabled, <a href=\"#%1$s\"><code>%1$s</code></a> is "
-#~ "already instantiated."
-#~ msgstr ""
-#~ "Flowplayer5 inte aktiverad, <a href=\"#%1$s\"> <code>%1$s</code> </a> är "
-#~ "redan instansierats."
-
-#, fuzzy
-#~ msgid ""
-#~ "Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/"
-#~ "CSS only there may be display issues with certain themes that require "
-#~ "manual adjustments. Place custom skin within the root plugins folder. See "
-#~ "plugin documentation for more info."
-#~ msgstr ""
-#~ "Välj hud (tema) som ska användas. <br /> OBS! Eftersom huden är ren "
-#~ "HTML / CSS kan det bara vara problem med vissa teman som kräver manuella "
-#~ "justeringar. Placera anpassad hud i mappen för root plugins. Se plugin "
-#~ "dokumentation för mer info."
-
-#, fuzzy
-#~ msgid "If the videothumb should be shown (Flowplayer calls it poster)."
-#~ msgstr "Om videothumb som ska visas (Flowplayer kallar det affisch)."
-
-#, fuzzy
-#~ msgid "This multimedia format is not supported by Flowplayer5"
-#~ msgstr "Detta multimediaformat stöds inte av Flowplayer5"
-
-#, fuzzy
-#~ msgid "Support for providing Google Analytics tracking"
-#~ msgstr "Stöd för att tillhandahålla Google Analytics-spårning"
-
-#, fuzzy
-#~ msgid "Google Analytics Web Property ID"
-#~ msgstr "Google Analytics Web egendoms-ID"
-
-#, fuzzy
-#~ msgid "If you're going to be using Google Analytics,"
-#~ msgstr "Om du ska använda Google Analytics,"
-
-#, fuzzy
-#~ msgid "get a Web Property ID</a> and enter it here."
-#~ msgstr "få en webbegendom ID och ange den här."
-
-#, fuzzy
-#~ msgid ""
-#~ "Controls if you want Google Analytics tracking for users logged in as "
-#~ "admin. Default is not selected."
-#~ msgstr ""
-#~ "Kontrollerar om du vill spåra Google Analytics för användare som är "
-#~ "inloggade som administratör. Standard är inte valt."
-
-#, fuzzy
-#~| msgid "Enter your search criteria."
-#~ msgid "Keyword search redirector."
-#~ msgstr "Keyword Search omdirigering."
-
-#, fuzzy
-#~ msgid "<em>mod_rewrite</em> must be enabled for this plugin to function."
-#~ msgstr ""
-#~ "<em>mod_rewrite</em> måste vara aktiverat för att detta plugin ska "
-#~ "fungera."
-
-#, fuzzy
-#~ msgid "Search redirect keywords"
-#~ msgstr "Sök omdirigera sökord"
-
-#, fuzzy
-#~ msgid ""
-#~ "<code>keywordRedirector</code> will process <em>keywords</em> and "
-#~ "redirect to the theme search script with the associated parameters."
-#~ msgstr ""
-#~ "<code>keywordRedirector</code> kommer att bearbeta <em>nyckelord</em> och "
-#~ "omdirigera till temasökningsskriptet med tillhörande parametrar."
-
-#, fuzzy
-#~ msgid "Search images"
-#~ msgstr "Sök bilder"
-
-#, fuzzy
-#~ msgid "Search news"
-#~ msgstr "Sök nyheter"
-
-#, fuzzy
-#~ msgid "Theme script"
-#~ msgstr "Tema skript"
-
-#, fuzzy
-#~ msgid "Enable <strong>mediaelement.js</strong> to handle multimedia files."
-#~ msgstr ""
-#~ "Aktivera <strong>mediaelement.js för</strong> att hantera multimediefiler."
-
-#, fuzzy
-#~ msgid ""
-#~ "<strong>IMPORTANT</strong>: Only one multimedia player plugin can be "
-#~ "enabled at the time and the class-video plugin must be enabled, too."
-#~ msgstr ""
-#~ "<strong>VIKTIGT</strong> : Endast ett multimediespelars plugin kan "
-#~ "aktiveras vid det tillfälle och klass-video-plugin måste också vara "
-#~ "aktiverat."
-
-#, fuzzy
-#~ msgid ""
-#~ "Please see <a href='http://http://mediaelementjs.com'>mediaelementjs.com</"
-#~ "a> for more info about the player and its license."
-#~ msgstr ""
-#~ "Vänligen se <a href='http://http://mediaelementjs.com'>mediaelementjs."
-#~ "com</a> för mer information om spelaren och dess licens."
-
-#, fuzzy
-#~ msgid ""
-#~ "mediaelementjs_player not enabled, <a href=\"#%1$s\"><code>%1$s</code></"
-#~ "a> is already instantiated."
-#~ msgstr ""
-#~ "mediaelementjs_player inte aktiverat, <a href=\"#%1$s\"><code>%1$s</"
-#~ "code></a> är redan instansierad."
-
-#, fuzzy
-#~| msgid "Contrast+"
-#~ msgid "Control bar"
-#~ msgstr "Kontrollmeny"
-
-#, fuzzy
-#~ msgid "Play/Pause"
-#~ msgstr "Spela upp/Pausa"
-
-#, fuzzy
-#~| msgid "Program"
-#~ msgid "Progress"
-#~ msgstr "Progress"
-
-#, fuzzy
-#~| msgid "Current Theme"
-#~ msgid "Current"
-#~ msgstr "Nuvarande"
-
-#, fuzzy
-#~ msgid "Duration"
-#~ msgstr "Varaktighet"
-
-#, fuzzy
-#~ msgid "Tracks (Video only)"
-#~ msgstr "Spår (endast video)"
-
-#, fuzzy
-#~ msgid "Volume"
-#~ msgstr "Volym"
-
-#, fuzzy
-#~| msgid "full screen"
-#~ msgid "Fullscreen"
-#~ msgstr "Helskärm"
-
-#, fuzzy
-#~| msgid "Map controls"
-#~ msgid "Always show controls"
-#~ msgstr "Visa alltid kontroller"
-
-#, fuzzy
-#~ msgid "Enable what should be shown in the player control bar."
-#~ msgstr "Aktivera vad som ska visas på spelarens kontrollfält."
-
-#, fuzzy
-#~| msgid "Slide width"
-#~ msgid "Video width"
-#~ msgstr "3gp videobredd"
-
-#, fuzzy
-#~ msgid "Pixel value or percent for responsive layouts"
-#~ msgstr "Pixelvärde eller procent för responsiva layouter"
-
-#, fuzzy
-#~| msgid "Slide height"
-#~ msgid "Video height"
-#~ msgstr "3gp videohöjd"
-
-#, fuzzy
-#~ msgid "Video Poster"
-#~ msgstr "Videoaffisch"
-
-#, fuzzy
-#~ msgid ""
-#~ "If a poster of the videothumb should be shown. This is cropped to fit the "
-#~ "player size as the player would distort image not fitting the player "
-#~ "dimensions otherwise."
-#~ msgstr ""
-#~ "Om en videobands affisch ska visas. Detta beskärs för att passa spelarens "
-#~ "storlek eftersom spelaren skulle snedvrida bilden som inte passar "
-#~ "spelardimensionerna annars."
-
-#, fuzzy
-#~ msgid "Video poster width"
-#~ msgstr "Videoaffisch bredd"
-
-#, fuzzy
-#~ msgid ""
-#~ "Max width of the video poster (px). Image will be sized automatially in "
-#~ "responsive layouts. Might require theme CSS changes to work correctly."
-#~ msgstr ""
-#~ "Max bredd av videoaffischen (px). Bilden kommer automatiskt att "
-#~ "formateras i responsiva layouter. Kräver att CSS-ändringar ska fungera "
-#~ "korrekt."
-
-#, fuzzy
-#~| msgid "Slide height"
-#~ msgid "Video poster height"
-#~ msgstr "Videoposthöjd"
-
-#, fuzzy
-#~ msgid ""
-#~ "Height of the video poster (px). Image will be sized automatially in "
-#~ "responsive layouts. Might require theme CSS changes to work correctly."
-#~ msgstr ""
-#~ "Höjden på videopanelen (px). Bilden kommer automatiskt att formateras i "
-#~ "responsiva layouter. Kräver att CSS-ändringar ska fungera korrekt."
-
-#, fuzzy
-#~| msgid "Crop width"
-#~ msgid "Audio width"
-#~ msgstr "Ljudbredd"
-
-#, fuzzy
-#~ msgid "Pixel value or set 100% for responsive layouts (default)."
-#~ msgstr "Pixelvärde eller 100% för responsiva layouter (standard)."
-
-#, fuzzy
-#~| msgid "Crop height"
-#~ msgid "Audio height"
-#~ msgstr "Ljudhöjd"
-
-#, fuzzy
-#~ msgid "Pixel value or 100% for responsive layouts (default)."
-#~ msgstr "Pixelvärde eller 100% för responsiva layouter (standard)."
-
-#, fuzzy
-#~ msgid "Audio poster"
-#~ msgstr "Ljudaffisch"
-
-#, fuzzy
-#~ msgid ""
-#~ "If an image of the videothumb should be shown with audio files. You need "
-#~ "to set the width/height. This is cropped to fit the size."
-#~ msgstr ""
-#~ "Om en bild av videoband ska visas med ljudfiler. Du måste ställa in "
-#~ "bredden / höjden. Detta beskärs för att passa storleken."
-
-#, fuzzy
-#~ msgid "Audio poster width"
-#~ msgstr "Audio poster bredd"
-
-#, fuzzy
-#~ msgid ""
-#~ "Max width of the audio poster (px). Image will be sized automatially in "
-#~ "responsive layouts. Might require theme CSS changes to work correctly."
-#~ msgstr ""
-#~ "Max bredd på ljudaffischen (px). Bilden kommer automatiskt att formateras "
-#~ "i responsiva layouter. Kräver att CSS-ändringar ska fungera korrekt."
-
-#, fuzzy
-#~ msgid "Audio poster height"
-#~ msgstr "Ljudaffischhöjd"
-
-#, fuzzy
-#~ msgid ""
-#~ "Height of the audio poster (px). Image will be sized automatially in "
-#~ "responsive layouts. Might require theme CSS changes to work correctly."
-#~ msgstr ""
-#~ "Höjden på ljudaffischen (px). Bilden kommer automatiskt att formateras i "
-#~ "responsiva layouter. Kräver att CSS-ändringar ska fungera korrekt."
-
-#, fuzzy
-#~ msgid ""
-#~ "If enabled the script for playlist support is loaded. For playlists "
-#~ "either use the macro or modify your theme."
-#~ msgstr ""
-#~ "Om aktiverat är skriptet för spellista stöd laddat. För spellistor "
-#~ "använder du antingen makrot eller ändrar ditt tema."
-
-#, fuzzy
-#~| msgid "upload"
-#~ msgid "Preload"
-#~ msgstr "Förladda"
-
-#, fuzzy
-#~ msgid ""
-#~ "If the files should be preloaded (Note if this works is browser dependent "
-#~ "and might not work in all!)."
-#~ msgstr ""
-#~ "Om filerna ska förinstalleras (Obs om detta fungerar är webbläsaren "
-#~ "beroende och kanske inte fungerar alls!)."
-
-#, fuzzy
-#~ msgid "This multimedia format is not supported by mediaelement.js."
-#~ msgstr "Detta multimedia format stöds inte av mediaelement.js."
-
-#, fuzzy
-#~ msgid "Sorry, no playback capabilities."
-#~ msgstr "Tyvärr, ingen uppspelningskapacitet."
-
-#, fuzzy
-#~ msgid ""
-#~ "provide the album name (%1), media file name (%2), optional width (%3) "
-#~ "and optional height (%4)"
-#~ msgstr ""
-#~ "ange albumnamnet (% 1), mediefilnamn (% 2), valfri bredd (% 3) och valfri "
-#~ "höjd (% 4)"
-
-#, fuzzy
-#~ msgid "Allow visitors to view the ZenPhoto20 Administrative pages."
-#~ msgstr "Tillåt besökare att se de administrativa sidorna i ZenPhoto20."
-
-#, fuzzy
-#~| msgid "No access"
-#~ msgid "Log access"
-#~ msgstr "Logåtkomst"
-
-#, fuzzy
-#~ msgid "Log adminisrative pages visited."
-#~ msgstr "Logg adminisrativa sidor besökta."
-
-#, fuzzy
-#~ msgid "Show admin login form"
-#~ msgstr "Visa admin inloggningsformulär"
-
-#, fuzzy
-#~ msgid ""
-#~ "Login with valid user credentials to bypass the <em>openAdmin</em> plugin."
-#~ msgstr ""
-#~ "Logga in med giltiga användaruppgifter för att kringgå <em>openAdmin-</"
-#~ "em> plugin."
-
-#, fuzzy
-#~ msgid ""
-#~ "The administrative pages are available for demonstration purposes only. "
-#~ "Actions that would change the state of the installation will be "
-#~ "suppressed."
-#~ msgstr ""
-#~ "De administrativa sidorna finns endast i demonstrationssyfte. Åtgärder "
-#~ "som skulle ändra tillståndet för installationen kommer att undertryckas."
-
-#, fuzzy
-#~ msgid "date\trequestor’s IP\tlink\tpage\ttab\taction\n"
-#~ msgstr "Datumsökarens IP-länk-sida-flikåtgärd"
-
-#, fuzzy
-#~ msgid ""
-#~ "A Zenphoto plugin for displaying OpenStreetMap based maps using LeafletJS "
-#~ "for images or images from albums with embeded geodata."
-#~ msgstr ""
-#~ "En Zenphoto plugin för att Visa OpenStreetMap baserat kartor med "
-#~ "LeafletJS för bilder eller bilder från album med bädda geodata."
-
-#, fuzzy
-#~ msgid "Pseudo mailing handler for localhost testing."
-#~ msgstr "Pseudo-posthanterare för localhost-testning."
-
-#, fuzzy
-#~ msgid "To: %s"
-#~ msgstr "Effervescence %s"
-
-#, fuzzy
-#~ msgid "Cc: %s"
-#~ msgstr "Cc:%s"
-
-#, fuzzy
-#~| msgid "Subject:"
-#~ msgid "Subject: %s"
-#~ msgstr "Ämne: %s"
-
-#, fuzzy
-#~ msgid "Allows using zenpage editing to create release notes."
-#~ msgstr ""
-#~ "Tillåter användning av zenpage-redigering för att skapa släppnoteringar."
-
-#, fuzzy
-#~ msgid "Publish Release Notes"
-#~ msgstr "Publicera Release Notes"
-
-#, fuzzy
-#~ msgid ""
-#~ "A Zenphoto plugin that provides scriptless and privacy friendly sharing "
-#~ "buttons for Facebook, Twitter, Google+, Pinterest, Linkedin, Xing, "
-#~ "Reddit, Stumbleupon, Tumblr, WhatsApp (iOS only) and e-mail. (Note: No "
-#~ "share counts because of that!)."
-#~ msgstr ""
-#~ "Ett plugin för Zenphoto som ger skriptlös och privatlivsvänlig "
-#~ "delningsknappar för Facebook, Twitter, Google+, Pinterest, Linkedin, "
-#~ "Xing, Reddit, Stumbleupon, Tumblr, WhatsApp (endast iOS) och e-post. "
-#~ "(Obs! Ingen andel räknas på grund av det!)."
-
-#, fuzzy
-#~ msgid "Generates the <em>zenphoto.package</em> file."
-#~ msgstr "Genererar filen <em>zenphoto.package</em> ."
-
-#, fuzzy
-#~ msgid "Folder"
-#~ msgstr "Fil/Mappnamn"
-
-#, fuzzy
-#~ msgid "Place the package file in this folder."
-#~ msgstr "Placera paketfilen i den här mappen."
-
-#, fuzzy
-#~ msgid "extract getAllTranslations"
-#~ msgstr "extrahera getAllTranslations"
-
-#, fuzzy
-#~ msgid "Extract \"allTranslations\" strings"
-#~ msgstr "Extrakt \"allTranslations\" strängar"
-
-#, fuzzy
-#~| msgid "Delete page"
-#~ msgid "Create package"
-#~ msgstr "Skapa paket"
-
-#, fuzzy
-#~ msgid "Download new package file"
-#~ msgstr "Hämta ny paketfil"
-
-#~ msgid "Sorry, no image matches found. Try refining your search."
-#~ msgstr "Inga bildträffar. Ändra sökbegrepp."
-
-#, fuzzy
-#~ msgid "404"
-#~ msgstr "404"
-
-#, fuzzy
-#~ msgid "404 Page Not Found"
-#~ msgstr "404 - Sidan hittas inte"
-
-#, fuzzy
-#~ msgid "Prev album"
-#~ msgstr "Föregående album"
-
-#, fuzzy
-#~ msgid "Next Album"
-#~ msgstr "Nästa album:"
-
-#~ msgid "Album RSS"
-#~ msgstr "Album-RSS"
-
-#, fuzzy
-#~| msgid "Google Map"
-#~ msgid "Show Google Map"
-#~ msgstr "Visa Google Karta"
-
-#, fuzzy
-#~ msgid "Related Albums"
-#~ msgstr "Relaterade album"
-
-#, fuzzy
-#~ msgid "total votes"
-#~ msgstr "Antal röster"
-
-#, fuzzy
-#~ msgid "Sorry, no statistical page to show..."
-#~ msgstr "Tyvärr, ingen statistisk sida att visa ..."
-
-#, fuzzy
-#~ msgid "Latest Images by ID"
-#~ msgstr "Senaste bilder av ID"
-
-#, fuzzy
-#~| msgid "latest by date"
-#~ msgid "Latest Images by Date"
-#~ msgstr "Senaste bilder efter datum"
-
-#, fuzzy
-#~| msgid "latest by mtime"
-#~ msgid "Latest Images by mTime"
-#~ msgstr "Senaste bilder av mTime"
-
-#, fuzzy
-#~ msgid "Latest Images by Publish Date"
-#~ msgstr "Senaste bilderna efter publiceringsdatum"
-
-#, fuzzy
-#~| msgid "Latest Albums"
-#~ msgid "Latest Albums by ID"
-#~ msgstr "Senaste albumen av ID"
-
-#, fuzzy
-#~ msgid "Popular Albums"
-#~ msgstr "Populära Album"
-
-#, fuzzy
-#~| msgid "latest by date"
-#~ msgid "Latest Albums by Date"
-#~ msgstr "Senaste album efter datum"
-
-#, fuzzy
-#~| msgid "latest by mtime"
-#~ msgid "Latest Albums by mTime"
-#~ msgstr "Senaste album av mTime"
-
-#, fuzzy
-#~ msgid "Latest Albums by Publish Date"
-#~ msgstr "Senaste album efter publiceringsdatum"
-
-#~ msgid "Gallery Archive"
-#~ msgstr "Galleriarkiv"
-
-#, fuzzy
-#~ msgid "News Archive"
-#~ msgstr "Nyhetsarkiv"
-
-#, fuzzy
-#~| msgid "Contact us"
-#~ msgid "Contact Us"
-#~ msgstr "Kontakta oss"
-
-#, fuzzy
-#~| msgid "Prev page"
-#~ msgid "Prev Image"
-#~ msgstr "Föregående bild"
-
-#, fuzzy
-#~ msgid "Related Images"
-#~ msgstr "Relaterade bilder"
-
-#, fuzzy
-#~ msgid "Image Sets"
-#~ msgstr "Bildsatser"
-
-#, fuzzy
-#~| msgid "Albums"
-#~ msgid "Album Sets"
-#~ msgstr "album"
-
-#, fuzzy
-#~| msgid "latest by mtime"
-#~ msgid "Latest Images by Mtime"
-#~ msgstr "Senaste bilderna av Mtime"
-
-#, fuzzy
-#~ msgid "Latest Images by Published Date"
-#~ msgstr "Senaste bilderna efter publiceringsdatum"
-
-#, fuzzy
-#~| msgid "latest by mtime"
-#~ msgid "Latest Albums by Mtime"
-#~ msgstr "Senaste album av Mtime"
-
-#, fuzzy
-#~ msgid "Latest Albums by Published Date"
-#~ msgstr "Senaste Album efter Publicerad Datum"
-
-#, fuzzy
-#~ msgid ""
-#~ "To add to a specific favorites list, type it in the input box before "
-#~ "clicking add favorite."
-#~ msgstr ""
-#~ "För att lägga till en specifik favoritlista, skriv den i inmatningsrutan "
-#~ "innan du klickar på Lägg till favorit."
-
-#, fuzzy
-#~ msgid "RSS News"
-#~ msgstr "RSS Nyheter"
-
-#, fuzzy
-#~| msgid "Pages"
-#~ msgid "RSS Pages"
-#~ msgstr "RSS-sidor"
-
-#, fuzzy
-#~| msgid "Sort Gallery"
-#~ msgid "RSS Gallery"
-#~ msgstr "Galleri"
-
-#, fuzzy
-#~ msgid "Latest News"
-#~ msgstr "Senaste nytt"
-
-#, fuzzy
-#~ msgid "Latest Images (ID)"
-#~ msgstr "Senaste bilderna (ID)"
-
-#, fuzzy
-#~ msgid "Latest Images (mTime)"
-#~ msgstr "Senaste bilderna (mTime)"
-
-#, fuzzy
-#~ msgid "Latest Images (Date)"
-#~ msgstr "Senaste bilderna (datum)"
-
-#, fuzzy
-#~ msgid "Latest Images (Pub. Date)"
-#~ msgstr "Senaste bilderna (Pub. Date)"
-
-#, fuzzy
-#~| msgid "Latest Albums"
-#~ msgid "Latest Albums (ID)"
-#~ msgstr "Senaste albumen (ID)"
-
-#, fuzzy
-#~| msgid "Latest Albums"
-#~ msgid "Latest Albums (mTime)"
-#~ msgstr "Senaste albumen (mTime)"
-
-#, fuzzy
-#~| msgid "Latest Albums"
-#~ msgid "Latest Albums (Date)"
-#~ msgstr "Senaste Album (Datum)"
-
-#, fuzzy
-#~ msgid "Facebook"
-#~ msgstr "Facebook"
-
-#, fuzzy
-#~ msgid "Twitter"
-#~ msgstr "Twitter"
-
-#, fuzzy
-#~| msgid "Google Map"
-#~ msgid "Google+"
-#~ msgstr "Visa eller göm Google Maps."
-
-#, fuzzy
-#~| msgid "Next Image"
-#~ msgid "New Image"
-#~ msgstr "Ny bild"
-
-#, fuzzy
-#~ msgid "Unpublished"
-#~ msgstr "Opublicerad"
-
-#, fuzzy
-#~| msgid "Archive"
-#~ msgid "Archive/Search"
-#~ msgstr "Arkivsökning"
-
-#, fuzzy
-#~ msgid "Scroll to top"
-#~ msgstr "Scrolla till toppen"
-
-#, fuzzy
-#~| msgid "Sharpen:"
-#~ msgid "Share: "
-#~ msgstr "Dela: "
-
-#, fuzzy
-#~ msgid "Share on Facebook"
-#~ msgstr "Dela på Facebook"
-
-#, fuzzy
-#~ msgid "Share on Twitter"
-#~ msgstr "Dela på Twitter"
-
-#, fuzzy
-#~ msgid "Share on Google+"
-#~ msgstr "Dela på Google+"
-
-#, fuzzy
-#~ msgid "Prev Article"
-#~ msgstr "Föregående artikel"
-
-#, fuzzy
-#~ msgid "Next Article"
-#~ msgstr "Nästa inlägg"
-
-#, fuzzy
-#~| msgid "Last update: %s"
-#~ msgid "Last Updated: "
-#~ msgstr "Senast uppdaterad:"
-
-#, fuzzy
-#~ msgid "You are logged in"
-#~ msgstr "Du måste vara inloggad för att köra installationen."
-
-#, fuzzy
-#~ msgid "Goto Homepage"
-#~ msgstr "startsida"
-
-#, fuzzy
-#~| msgid "Pages Rule"
-#~ msgid "Page Result"
-#~ msgstr "Sidresultat"
-
-#, fuzzy
-#~ msgid "News Result"
-#~ msgstr "Resultat"
-
-#, fuzzy
-#~ msgid "Images - Popular"
-#~ msgstr "Bilder - Populär"
-
-#, fuzzy
-#~| msgid "latest by id"
-#~ msgid "Images - Latest by ID"
-#~ msgstr "Bilder - Senaste av ID"
-
-#, fuzzy
-#~| msgid "latest by date"
-#~ msgid "Images - Latest by Date"
-#~ msgstr "Bilder - senaste datum"
-
-#, fuzzy
-#~| msgid "latest by mtime"
-#~ msgid "Images - Latest by mtime"
-#~ msgstr "Bilder - Senaste av mtime"
-
-#, fuzzy
-#~ msgid "Images - Latest by Publish Date"
-#~ msgstr "Bilder - Senaste efter publiceringsdatum"
-
-#, fuzzy
-#~| msgid "most rated"
-#~ msgid "Images - Most Rated"
-#~ msgstr "Bilder - Mest betygsatta"
-
-#, fuzzy
-#~| msgid "Images By Date"
-#~ msgid "Images - Top Rated"
-#~ msgstr "Bilder - Topprankat"
-
-#, fuzzy
-#~ msgid "Albums - Popular"
-#~ msgstr "Album - Populärt"
-
-#, fuzzy
-#~| msgid "latest by id"
-#~ msgid "Albums - Latest by ID"
-#~ msgstr "Album - Senaste av ID"
-
-#, fuzzy
-#~| msgid "latest by date"
-#~ msgid "Albums - Latest by Date"
-#~ msgstr "Album - Senaste efter datum"
-
-#, fuzzy
-#~| msgid "latest by mtime"
-#~ msgid "Albums - Latest by mtime"
-#~ msgstr "Album - senaste av mtime"
-
-#, fuzzy
-#~ msgid "Albums - Latest by Publish Date"
-#~ msgstr "Album - Senast efter Publiceringsdatum"
-
-#, fuzzy
-#~| msgid "most rated"
-#~ msgid "Albums - Most Rated"
-#~ msgstr "Album - Mest betygsatta"
-
-#, fuzzy
-#~| msgid "top rated"
-#~ msgid "Albums - Top Rated"
-#~ msgstr "Album - Topprankat"
-
-#, fuzzy
-#~| msgid "latest updated"
-#~ msgid "Albums - Latest Updated"
-#~ msgstr "Album - Senast uppdaterad"
-
-#, fuzzy
-#~| msgid "Gallery description:"
-#~ msgid "Gallery - Description"
-#~ msgstr "Galleribeskrivning:"
-
-#, fuzzy
-#~| msgid "News articles"
-#~ msgid "News - Latest"
-#~ msgstr "Nyheter - senaste"
-
-#, fuzzy
-#~ msgid "Comments - Latest"
-#~ msgstr "Kommentarer - Senaste"
-
-#, fuzzy
-#~ msgid "Max Width of Site"
-#~ msgstr "Max bredd på plats"
-
-#, fuzzy
-#~ msgid ""
-#~ "Set the max-width of site in pixels.  Site is fluid but will not expand "
-#~ "beyond this width."
-#~ msgstr ""
-#~ "Ange max-bredd på plats i pixlar.  Platsen är flytande men går inte att "
-#~ "expandera bortom denna bredd."
-
-#, fuzzy
-#~ msgid "Home Slideshow Type"
-#~ msgstr "Bildspel typ"
-
-#, fuzzy
-#~ msgid "Select what image statistic to show on the frontpage slideshow."
-#~ msgstr "Välj vilken bildstatistik som ska visas på bildspelets framsida."
-
-#, fuzzy
-#~ msgid "Home Slideshow from Album"
-#~ msgstr "Home Slideshow från Album"
-
-#, fuzzy
-#~ msgid ""
-#~ "Optionally select a specific album the Home Slideshow pulls from. Default "
-#~ "is \"Entire Gallery\", which pulls from the entire gallery. Be careful "
-#~ "with this option to ensure there are images that meet the statistic and "
-#~ "they are viewable (rights), otherwise no images will show."
-#~ msgstr ""
-#~ "Välj valfritt ett visst album som Hemspelning drar från. Standard är "
-#~ "\"Hela galleriet\", vilket drar från hela galleriet. Var försiktig med "
-#~ "det här alternativet för att se till att det finns bilder som uppfyller "
-#~ "statistiken och de kan visas (rättigheter), annars kommer inga bilder att "
-#~ "visas."
-
-#, fuzzy
-#~ msgid "Slideshow Interval"
-#~ msgstr "Bildspelsintervall."
-
-#, fuzzy
-#~ msgid "In milliseconds (default 5000)."
-#~ msgstr "I millisekunder (standard 5000)."
-
-#, fuzzy
-#~ msgid "Home Page Full-width"
-#~ msgstr "Sida-fullbredd"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check for album thumbs to full-width on home page (no sidebar statistics "
-#~ "menu with search)."
-#~ msgstr ""
-#~ "Kontrollera om albumet tummar till full bredd på startsidan (ingen "
-#~ "statistik sidomenyn med sökning)."
-
-#, fuzzy
-#~ msgid "Show Date"
-#~ msgstr "Visa datum"
-
-#, fuzzy
-#~ msgid ""
-#~ "Toggle whether to display dates in albums, images, news, and pages. On "
-#~ "\"pages\", libratus shows last updated date if checked. Note that you "
-#~ "need to show dates on images, or on news, for those to show on the "
-#~ "archive page."
-#~ msgstr ""
-#~ "Växla om att visa datum i album, bilder, nyheter och sidor. På \"sidor\" "
-#~ "visar libratus senast uppdaterat datum om det är markerat. Observera att "
-#~ "du måste visa datum på bilder, eller på nyheter, för dem som ska visas på "
-#~ "arkivsidan."
-
-#, fuzzy
-#~ msgid ""
-#~ "Check to enable users the ability to download original image from image "
-#~ "details page. If you want a save dialog, you will need to set the "
-#~ "appropriate option in options->image as well (protected, download)."
-#~ msgstr ""
-#~ "Kontrollera att användarna kan ladda ner originalbilden från "
-#~ "bildinformationssidan. Om du vill ha en räddningsdialog måste du ange det "
-#~ "lämpliga alternativet i alternativen-> bild också (skyddad, hämtning)."
-
-#, fuzzy
-#~ msgid "Simple Social Sharing?"
-#~ msgstr "Enkel Social delning?"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check to display simple links (lightweight) for users to share to their "
-#~ "Facebook, Google, and Twitter accounts. Make sure to enable the meta tags "
-#~ "plugin and enable the og entries for these sites to pull the correct "
-#~ "thumbs, titles, and descriptions upon share."
-#~ msgstr ""
-#~ "Kontrollera för att Visa enkla länkar (lightweight) för förbrukaren till "
-#~ "del deras Facebook, Google och Twitter-konton. Se till att aktivera "
-#~ "insticksmodulen meta taggar och aktivera og uppgifterna för dessa platser "
-#~ "att dra de rätta tummen, titlar och beskrivningar på aktie."
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter any custom CSS, safely carries over upon theme upgrade. Will be "
-#~ "placed between style tags in the head."
-#~ msgstr ""
-#~ "Skriv in en anpassad CSS, överförs säkert efter tematuppgradering. Kommer "
-#~ "att placeras mellan stilkoder i huvudet."
-
-#, fuzzy
-#~ msgid "Google Tracking Code"
-#~ msgstr "Spårningskod för Google"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter your Google Analytics Universal Tracking Id here to auto insert the "
-#~ "tracking code on every page (UA-...). Leave blank to omit. Note that the "
-#~ "analytics code will not be outputted for admin users, so that "
-#~ "administrator page visits will not be counted."
-#~ msgstr ""
-#~ "Ange ditt Google Analytics Universal Tracking Id här för att automatiskt "
-#~ "infoga spårningskoden på varje sida (UA -...). Lämna tomma för att "
-#~ "utelämna. Observera att analyskoden inte kommer att skickas ut för "
-#~ "administratörs användare, så att administratörs sidbesök inte räknas."
-
-#, fuzzy
-#~ msgid "Tracking Type"
-#~ msgstr "Spårningstyp:"
-
-#, fuzzy
-#~ msgid "Classic"
-#~ msgstr "Klassisk"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select what type of analytics you are using. See your Google analytics "
-#~ "account for explanations."
-#~ msgstr ""
-#~ "Välj vilken typ av analys du använder. Se ditt Google Analytics-konto för "
-#~ "förklaringar."
-
-#, fuzzy
-#~ msgid "Facebook Link"
-#~ msgstr "Facebook-länk"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter your full Facebook page link (http://....). Leave blank to omit."
-#~ msgstr ""
-#~ "Ange din fullständiga Facebook-länk (http: // ....). Lämna tomma för att "
-#~ "utelämna."
-
-#, fuzzy
-#~| msgid "TitleLink"
-#~ msgid "Twitter Link"
-#~ msgstr "Twitter-länk"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter your full Twitter page link (http://....). Leave blank to omit."
-#~ msgstr ""
-#~ "Ange din fullständiga Twitter-sida länk (http: // ....). Lämna tomma för "
-#~ "att utelämna."
-
-#, fuzzy
-#~| msgid "Google Map"
-#~ msgid "Google+ Link"
-#~ msgstr "Google+ länk"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter your full Google+ page link (http://....). Leave blank to omit."
-#~ msgstr ""
-#~ "Ange din fullständiga sida för Google+ sidor (http: // ....). Lämna tomma "
-#~ "för att utelämna."
-
-#, fuzzy
-#~| msgid "Copyright"
-#~ msgid "Copyright Text"
-#~ msgstr "Copyright-text"
-
-#, fuzzy
-#~ msgid "Edit text for footer copyright. Leave blank to omit."
-#~ msgstr ""
-#~ "Redigera text för upphovsrätt upphovsrätt. Lämna tomma för att utelämna."
-
-#, fuzzy
-#~ msgid "Statistical Pages on Archive"
-#~ msgstr "Statistiska sidor på arkivet"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select which statistical pages to show in the archive side menu and "
-#~ "homepage side menu (optional), if any."
-#~ msgstr ""
-#~ "Välj vilka statistiska sidor som ska visas i arkivsidans meny och "
-#~ "startsidans meny (valfritt), om något."
-
-#, fuzzy
-#~ msgid "Statistical Pages Number"
-#~ msgstr "Statistiska sidor nummer"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter the number of images or albums to show for each statistic on the "
-#~ "archive pages (default 30)."
-#~ msgstr ""
-#~ "Ange antal bilder eller album som ska visas för varje statistik på "
-#~ "arkivsidorna (standard 30)."
-
-#, fuzzy
-#~ msgid "Bottom Stats Items per Row"
-#~ msgstr "Bottom Stats Items per Row"
-
-#, fuzzy
-#~| msgid "10s"
-#~ msgid "1"
-#~ msgstr "<strong>1</strong> kommentar"
-
-#, fuzzy
-#~ msgid "2"
-#~ msgstr "Album %1$u av %2$u"
-
-#, fuzzy
-#~ msgid "Select how many items per row for the bottom stats, if any."
-#~ msgstr ""
-#~ "Välj hur många objekt per rad för den nedersta statistiken, om någon."
-
-#, fuzzy
-#~| msgid "Vote Status:"
-#~ msgid "Bottom Stats"
-#~ msgstr "Bottenstatistik"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select what to show in the bottom row, if not disabled above. Recommended "
-#~ "to choose multiples of the option items per row."
-#~ msgstr ""
-#~ "Välj vad som ska visas i den nedre raden, om den inte är avaktiverad "
-#~ "ovan. Rekommenderas för att välja multiplar av alternativen per rad."
-
-#, fuzzy
-#~ msgid "Number of Images in Bottom Stats"
-#~ msgstr "Antal bilder i understatistik"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter the number of images or albums to show for each selected statistic "
-#~ "in the bottom footer."
-#~ msgstr ""
-#~ "Ange antal bilder eller album som ska visas för varje vald statistik i "
-#~ "bottenfotfoten."
-
-#, fuzzy
-#~ msgid "Related Max Number"
-#~ msgstr "Relaterat Max Nummer"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter the MAX number of related albums and images to show on their "
-#~ "respective pages (if plugin is enabled)."
-#~ msgstr ""
-#~ "Ange MAX-nummer av relaterade album och bilder som ska visas på "
-#~ "respektive sidor (om plugin är aktiverat)."
-
-#, fuzzy
-#~ msgid "spellflight image display handling."
-#~ msgstr "spellflight bild visar hantering."
-
-#, fuzzy
-#~| msgid "Contact"
-#~ msgid "Contact me"
-#~ msgstr "Kontakta mig"
-
-#, fuzzy
-#~ msgid "The Zenphoto object you are requesting cannot be found."
-#~ msgstr "Zenphoto objektet du begär kan inte hittas."
-
-#, fuzzy
-#~ msgid " | "
-#~ msgstr " | "
-
-#, fuzzy
-#~| msgid "%u Album"
-#~| msgid_plural "%u Albums"
-#~ msgid "Goto Album"
-#~ msgstr "album"
-
-#, fuzzy
-#~ msgid "No valid albums or images to display..."
-#~ msgstr "Inga giltiga album eller bilder att visa ..."
-
-#, fuzzy
-#~| msgid "Image title"
-#~ msgid "Image Details"
-#~ msgstr "Bildinformation"
-
-#, fuzzy
-#~| msgid "Previous Image"
-#~ msgid "Preview Image"
-#~ msgstr "Förhandsgranska bild"
-
-#, fuzzy
-#~ msgid "Load More..."
-#~ msgstr "Ladda fler"
-
-#, fuzzy
-#~ msgid "prev set"
-#~ msgstr "prev set"
-
-#, fuzzy
-#~ msgid "next set"
-#~ msgstr "nästa uppsättning"
-
-#, fuzzy
-#~ msgid "Search and archive functions have been disabled..."
-#~ msgstr "Sökfunktioner och arkiv har inaktiverats..."
-
-#, fuzzy
-#~ msgid ""
-#~ "Disqus shortname is not being provided...please contact the admin of this "
-#~ "site"
-#~ msgstr ""
-#~ "Disqus shortname inte tillhandahålls... Vänligen kontakta admin av denna "
-#~ "webbplats"
-
-#, fuzzy
-#~| msgid "Delete album"
-#~ msgid "Select Album..."
-#~ msgstr "Markera album"
-
-#, fuzzy
-#~ msgid "Stay Connected"
-#~ msgstr "Förbli ansluten"
-
-#, fuzzy
-#~ msgid "Find us on Facebook"
-#~ msgstr "Följ oss på Facebook"
-
-#, fuzzy
-#~ msgid "Find us on Twitter"
-#~ msgstr "Hitta oss på Twitter"
-
-#, fuzzy
-#~ msgid "Find us Google+"
-#~ msgstr "Hitta oss Google +"
-
-#, fuzzy
-#~ msgid "RSS Gallery Images"
-#~ msgstr "Galleribilder"
-
-#, fuzzy
-#~ msgid "RSS Album Images"
-#~ msgstr "RSS Album Bilder"
-
-#, fuzzy
-#~ msgid "RSS News Category"
-#~ msgstr "Nyhetskategori"
-
-#, fuzzy
-#~| msgid "Password"
-#~ msgid "Enter Password"
-#~ msgstr "Ange Lösenord"
-
-#, fuzzy
-#~ msgid "404 Not Found"
-#~ msgstr "404, Sidan Hittas Ej"
-
-#, fuzzy
-#~| msgid "scroll up"
-#~ msgid "Scroll"
-#~ msgstr "bläddra up"
-
-#, fuzzy
-#~ msgid "Search/Archive"
-#~ msgstr "Sök / Arkiv"
-
-#, fuzzy
-#~ msgid "No valid images to display..."
-#~ msgstr "Inga giltiga bilder att visa..."
-
-#, fuzzy
-#~ msgid "Next �"
-#~ msgstr "framåt"
-
-#, fuzzy
-#~ msgid "� Prev"
-#~ msgstr "bakåt"
-
-#, fuzzy
-#~ msgid "No more items to load."
-#~ msgstr "Inga fler objekt att ladda."
-
-#, fuzzy
-#~ msgid "Loading..."
-#~ msgstr "Laddar..."
-
-#, fuzzy
-#~| msgid "Hide details"
-#~ msgid "image details"
-#~ msgstr "Detaljer i bilden"
-
-#, fuzzy
-#~| msgid "Page %u"
-#~| msgid_plural "Page %u"
-#~ msgid "Page Menu"
-#~ msgstr "Sida-menyn"
-
-#, fuzzy
-#~| msgid "Date:"
-#~ msgid "Date: "
-#~ msgstr "inget datum"
-
-#, fuzzy
-#~| msgid "Category"
-#~ msgid "Category: "
-#~ msgstr "Kategorier"
-
-#, fuzzy
-#~| msgid "Default rights"
-#~ msgid "Default Grid"
-#~ msgstr "Galleri - Standard"
-
-#, fuzzy
-#~ msgid "Masonry"
-#~ msgstr "Masonry"
-
-#, fuzzy
-#~ msgid "Smooth DIV Scroll"
-#~ msgstr "Lätt DIV-rullning"
-
-#, fuzzy
-#~ msgid "Header logo"
-#~ msgstr "Loggan för sidhuvud"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select a logo (files in the <em>%s</em> folder) or select to use a text "
-#~ "logo of your gallery name. You can use the built in file uploader to "
-#~ "upload your logo file and then select it here."
-#~ msgstr ""
-#~ "Välj en logotyp (filer i mappen <em>%s</em> ) eller välj att använda en "
-#~ "textlogotyp i ditt gallerinamn. Du kan använda den inbyggda "
-#~ "filuppladdaren för att ladda upp din logotypfil och välj den här."
-
-#, fuzzy
-#~ msgid ""
-#~ "Select the contrast style you would like to use as the starting base "
-#~ "style. You can always add custom css declarations below."
-#~ msgstr ""
-#~ "Välj den kontraststil du vill använda som startbasstil. Du kan alltid "
-#~ "lägga till anpassade css-deklarationer nedan."
-
-#, fuzzy
-#~ msgid "Vertical Scale Full Image"
-#~ msgstr "Vertikal skala fullbild"
-
-#, fuzzy
-#~ msgid ""
-#~ "If unchecked, the full image will scale to max-width of the site.  If "
-#~ "checked, the full image will also scale vertically to the viewport using "
-#~ "javascript to ensure it is always entirely visible on the full image page."
-#~ msgstr ""
-#~ "Om den inte är markerad, kommer den fulla bilden att skala till max bredd "
-#~ "på webbplatsen. Om den är markerad, kommer den hela bilden också att "
-#~ "skala vertikalt till visningsporten med javascript för att säkerställa "
-#~ "att den alltid är helt synlig på hela bildsidan."
-
-#, fuzzy
-#~ msgid "General Alignment"
-#~ msgstr "standardjustering"
-
-#, fuzzy
-#~| msgid "Clear theme assignment"
-#~ msgid "Header text alignment style."
-#~ msgstr "Headertextjusteringsstil."
-
-#, fuzzy
-#~ msgid "Background Image"
-#~ msgstr "Bakgrundsbild"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select an optional repeating background image from the <em>%s</em> "
-#~ "folder. Some great, free repeating backgrounds can be found at <a href="
-#~ "\"http://www.subtlepatterns.com\" target=\"_blank\">http://subtlepatterns."
-#~ "com</a>. You can also use <a href=\"http://bradjasper.com/subtle-patterns-"
-#~ "bookmarklet/\" target=\"_blank\">a great bookmarklet</a> to test out "
-#~ "their backgrounds on your site instantly!"
-#~ msgstr ""
-#~ "Välj en valfri upprepande bakgrundsbild från mappen <em>%s</em> . Några "
-#~ "bra, fria upprepande bakgrunder finns på <a href=\"http://www."
-#~ "subtlepatterns.com\" target=\"_blank\">http://subtlepatterns.com</a> . Du "
-#~ "kan också använda <a href=\"http://bradjasper.com/subtle-patterns-"
-#~ "bookmarklet/\" target=\"_blank\">en bra bokmärke för</a> att testa deras "
-#~ "bakgrund på din webbplats direkt!"
-
-#, fuzzy
-#~ msgid "Show Search/Archive"
-#~ msgstr "Visa sökning / arkiv"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check to enable gallery and news search and archive functions. Note that "
-#~ "if unchecked, tags will not be displayed as this is a search function."
-#~ msgstr ""
-#~ "Kontrollera om du vill aktivera galleri- och nyhetssökning och "
-#~ "arkivfunktioner. Observera att om ej markerade visas inte taggar eftersom "
-#~ "det här är en sökfunktion."
-
-#, fuzzy
-#~ msgid ""
-#~ "Toggle whether to display dates in albums, images, news, and pages. On "
-#~ "\"pages\", zpbase shows last updated date if checked. Note that you need "
-#~ "to show dates on images, or on news, for those to show on the archive "
-#~ "page."
-#~ msgstr ""
-#~ "Växla om du vill visa datum i album, bilder, nyheter och sidor. På "
-#~ "”sidor” visar zpbase senaste uppdaterade datum om kontrolleras. Observera "
-#~ "att du behöver visa datum på bilder eller nyheter, för dem att visa på "
-#~ "Arkiv-sidan."
-
-#, fuzzy
-#~ msgid ""
-#~ "Check to enable users ability to download original image from image "
-#~ "details page. If you want a save dialog, you will need to set the "
-#~ "appropriate option in options->image as well (protected, download)."
-#~ msgstr ""
-#~ "Kontrollera att aktivera användare möjligheten att hämta originalbild "
-#~ "från bilden informationssidan. Om du vill spara dialogrutan måste du "
-#~ "ställa in lämpligt alternativ i alternativ-> bilden också (skyddade, "
-#~ "Hämta)."
-
-#, fuzzy
-#~ msgid ""
-#~ "IF you have the Zenpage plugin enabled, you can uncheck this to NOT use "
-#~ "the news feature of the Zenpage plugin (use only pages)."
-#~ msgstr ""
-#~ "Om du har aktiverat Zenpage-plugin kan du avmarkera det här för att INTE "
-#~ "använda nyhetsfunktionen i pluginprogrammet Zenpage (använd endast sidor)."
-
-#, fuzzy
-#~ msgid "News Name"
-#~ msgstr "Nyhetsnamn"
-
-#, fuzzy
-#~ msgid ""
-#~ "Leave blank for default zenpage naming. Option to rename the title of "
-#~ "NEWS, to such as blog,for example.  Note this does not change the url "
-#~ "from news.  It changes the heading title of the news page and the menu "
-#~ "item only."
-#~ msgstr ""
-#~ "Lämna tomt för standardnamn för zenpage. Alternativ för att byta namn på "
-#~ "titeln NEWS, till t.ex. blogg, till exempel. Obs! Detta ändrar inte url "
-#~ "från nyheter. Det ändrar rubriken på nyhetssidan och menyalternativet "
-#~ "bara."
-
-#, fuzzy
-#~| msgid "%u image per page"
-#~| msgid_plural "%u images per page"
-#~ msgid "No Image Detail page"
-#~ msgstr "Ingen bilddetaljer sida"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check to NOT us an standard image details page (magnific popup (image or "
-#~ "image+ details) and galleria utilization for large image viewing only). "
-#~ "Note that if you have videos you better enable image+ details for "
-#~ "magnific or your users would have no way to view them!"
-#~ msgstr ""
-#~ "Kontrollera att inte oss en standardbild Detaljer sida (magnific popup "
-#~ "(bild eller bild + Detaljer) och galleria utnyttjande för stor "
-#~ "bildvisning endast). Observera att om du har filmklipp du möjliggöra "
-#~ "bättre bild + Detaljer för magnific eller dina användare skulle ha något "
-#~ "sätt att visa dem!"
-
-#, fuzzy
-#~ msgid "Mobile Force Default Grid"
-#~ msgstr "Mobile Force Default Grid"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check to force default grid layout on mobile devices (recommended for "
-#~ "javascript issues on mobiles with other layouts as well as reduceing "
-#~ "bandwidth load)."
-#~ msgstr ""
-#~ "Kontrollera att tvinga standard rutnätslayout på mobila enheter "
-#~ "(rekommenderas för javascript frågor på mobiler med andra layouter samt "
-#~ "reduceing bandbredd belastning)."
-
-#, fuzzy
-#~ msgid "Select Drop Box"
-#~ msgstr "Välj Drop Box"
-
-#, fuzzy
-#~ msgid "Chosen Script"
-#~ msgstr "Valda Script"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select a drop down menu option (select box) which is shown various spots "
-#~ "throughout the site. Standard is obviously the standard \"print_album_menu"
-#~ "\" output, \"Chosen\" converts this output to a searchable list, or \"none"
-#~ "\" to not display anything."
-#~ msgstr ""
-#~ "Välj en drop down menyn Alternativ (Välj box) som visas olika ställen "
-#~ "hela webbplatsen. Standard är naturligtvis standard ”print_album_menu” "
-#~ "utdata, ”valt” konverterar denna utgång till en sökbar lista eller ”none” "
-#~ "för att inte visa något."
-
-#, fuzzy
-#~ msgid "Gallery Index is Homepage"
-#~ msgstr "Galleri Index är hemsida"
-
-#, fuzzy
-#~ msgid ""
-#~ "Uncheck to have a separate homepage (Home) and Gallery index page "
-#~ "(Gallery).  If unchecked, the html (source) of the homepage comes form "
-#~ "the Gallery Description in the Gallery options."
-#~ msgstr ""
-#~ "Avmarkera för att ha en separat hemsida (Hem) och Galleriindexsida "
-#~ "(Galleri). Om den inte är markerad kommer html (källan) till hemsidan att "
-#~ "bildas Galleri Beskrivning i alternativet Galleri."
-
-#, fuzzy
-#~ msgid "<h2>Disqus Commenting</h2><hr />"
-#~ msgstr "<h2> Disqus kommenterar </h2><hr />"
-
-#, fuzzy
-#~ msgid "Use Disqus Comments"
-#~ msgstr "Disqus-kommentar"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check to use Disqus comments, free account required on <a href=\"http://"
-#~ "disqus.com\" target=\"_blank\">disqus.com</a>."
-#~ msgstr ""
-#~ "Kontrollera att du använder Disqus kommentarer, gratis konto som krävs på "
-#~ "<a href=\"http://disqus.com\" target=\"_blank\">disqus.com</a> ."
-
-#, fuzzy
-#~ msgid "Disqus Short Name"
-#~ msgstr "Disqus kort namn"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter your Disqus account short name here if you want to enable disus "
-#~ "comments (Disqus account required, see <a href=\\\"http://disqus.com\\\" "
-#~ "target=\\\"_blank\\\">Disqus</a> for more info.)"
-#~ msgstr ""
-#~ "Ange ditt Disqus konto kort namn här om du vill aktivera disus "
-#~ "kommentarer (Disqus-konto krävs, se <a href=\"\\\"http://disqus.com\\\"\" "
-#~ "target=\"\\\"_blank\\\"\">Disqus</a> för mer info.)"
-
-#, fuzzy
-#~| msgid "Allow comments on"
-#~ msgid "Allow Disqus comments on"
-#~ msgstr "Tillåt Disqus kommentarer på"
-
-#, fuzzy
-#~ msgid ""
-#~ "Disqus comment forms will be presented on the checked page types.<div "
-#~ "class=\"notebox\">Note: Toggling comments on/off is also controlled on "
-#~ "each individual image/album/article/page admin page.</div>"
-#~ msgstr ""
-#~ "Disqus kommentar formulär kommer att presenteras på incheckat sidtyper."
-#~ "<div class=\"notebox\">Obs: Växla kommentarer/på kontrolleras även på "
-#~ "varje enskild bild/album/artikel/sidan administrationssida.</div>"
-
-#, fuzzy
-#~ msgid "<h2>Multiple Layout Options/Defaults</h2><hr />"
-#~ msgstr "<h2> Flera layoutalternativ / standardinställningar </h2><hr />"
-
-#, fuzzy
-#~| msgid "Gallery Index"
-#~ msgid "Gallery Index Layout"
-#~ msgstr "Utseende på Galleriets startsida"
-
-#, fuzzy
-#~| msgid "Standard"
-#~ msgid "Standard Grid"
-#~ msgstr "Standardnät"
-
-#, fuzzy
-#~ msgid "Masonry+IS"
-#~ msgstr "Murverk + IS"
-
-#, fuzzy
-#~| msgid "Gallery"
-#~ msgid "Galleria"
-#~ msgstr "Galleria"
-
-#, fuzzy
-#~ msgid "Select the gallery index layout option."
-#~ msgstr "Välj alternativet för galleriindexlayout."
-
-#, fuzzy
-#~| msgid "Gallery Index"
-#~ msgid "Gallery Index Option"
-#~ msgstr "Galleri Index Alternativ"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select either latest images or albums to diplay on Gallery Index "
-#~ "(Galleria and SDS option only, others always show latest albums or news)."
-#~ msgstr ""
-#~ "Välj antingen senaste bilder eller album att diplay på Galleri Index "
-#~ "(Galleria och SDS alternativet endast, andra visar alltid senaste album "
-#~ "eller nyheter)."
-
-#, fuzzy
-#~ msgid "Gallery Index Latest Image Count"
-#~ msgstr "Galleri Index Senaste bildantalet"
-
-#, fuzzy
-#~ msgid ""
-#~ "If you are showing latest images on a home page Galleria or Smooth DIV "
-#~ "Scroll, enter the image count (number!) to display here."
-#~ msgstr ""
-#~ "Om du visar senaste bilderna på en startsida Galleria eller slät DIV "
-#~ "Bläddra, ange antalet bild (nummer!) att visa här."
-
-#, fuzzy
-#~ msgid "Default Album Layout"
-#~ msgstr "Standard Albumlayout"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select the default album layout.  You can also always choose individually "
-#~ "per album with the multiple layout plugin enabled."
-#~ msgstr ""
-#~ "Välj album standardlayouten.  Du kan också alltid välja individuellt per "
-#~ "album med flera layout plugin aktiverad."
-
-#, fuzzy
-#~ msgid "News Page Style"
-#~ msgstr "Sidutseende"
-
-#, fuzzy
-#~ msgid "Blog Style"
-#~ msgstr "Bloggstil"
-
-#, fuzzy
-#~ msgid "Masonry Style"
-#~ msgstr "murverkstil rader"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select the style to display the news page, affects both standard news "
-#~ "page and news gallery index page option."
-#~ msgstr ""
-#~ "Välj den formatmallen för att Visa nyhetssidan, påverkar både standard "
-#~ "nyhetssida och nyheter Galleri index sidan alternativ."
-
-#, fuzzy
-#~ msgid "Search Page Style"
-#~ msgstr "Sök sidstil"
-
-#, fuzzy
-#~| msgid "Standard Light A"
-#~ msgid "Standard Grid Style"
-#~ msgstr "Standard rutnätsstil"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select the style to display the search page, affects both search and "
-#~ "archive displays."
-#~ msgstr ""
-#~ "Välj den formatmallen för att visa sidan sökning, påverkar både söka och "
-#~ "arkiv visar."
-
-#, fuzzy
-#~ msgid "Infinite Scroll Behavior"
-#~ msgstr "Infinite Scroll beteende"
-
-#, fuzzy
-#~| msgid "Auto"
-#~ msgid "Automatic"
-#~ msgstr "Automatiskt"
-
-#, fuzzy
-#~ msgid "Manual first, then auto"
-#~ msgstr "Handbok först, sedan auto"
-
-#, fuzzy
-#~| msgid "Manual Focus"
-#~ msgid "Manual always"
-#~ msgstr "Manuell alltid"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select the infinite scroll behavior. Auto will load pages/items "
-#~ "automatically when user scrolls. Manual first will require user to click "
-#~ "next the first time then load items auto after that (allows user to get "
-#~ "to the footer first time if so chooses). Manual always requires user "
-#~ "click to load additional items."
-#~ msgstr ""
-#~ "Välj det oändliga rullningsbeteendet. Auto laddar automatiskt sidor / "
-#~ "objekt automatiskt när användaren rullar. Manuell första kommer att kräva "
-#~ "att användaren klickar nästa första gången och sedan laddar objekt "
-#~ "automatiskt efter det (tillåter användaren att komma till sidfoten första "
-#~ "gången om så väljer). Manual kräver alltid användarklick för att ladda "
-#~ "ytterligare objekt."
-
-#, fuzzy
-#~ msgid ""
-#~ "<h2>Galleria Layout and Slideshow Options - <em>Note: Options apply to "
-#~ "the custom slideshow, and both album layout and homepage layout if set.</"
-#~ "em></h2><hr />"
-#~ msgstr ""
-#~ "<h2>Galleria Layout och Bildspelsalternativ - <em>Obs: gäller alternativ "
-#~ "till anpassade bildspel, och både Albumlayout och hemsida layout om "
-#~ "inställd.</em></h2><hr>"
-
-#, fuzzy
-#~ msgid "Galleria Default Slideshow Engine"
-#~ msgstr "Galleria Standard Slideshow Engine"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check to use the custom Galleria slideshow as the default slideshow "
-#~ "engine for all layouts. Note that slideshow links will not appear on "
-#~ "layouts already using galleria, as the slideshow is already available in "
-#~ "that layout. It is recommended if using this slideshow to disable the "
-#~ "core slideshow plugin to prevent uneeded script loading."
-#~ msgstr ""
-#~ "Kontrollera att du använder det anpassade Galleria-bildspelet som "
-#~ "standard bildspelsmotor för alla layouter. Observera att bildspelslänkar "
-#~ "inte kommer att visas på layouter som redan använder galleria, eftersom "
-#~ "bildspelet redan är tillgängligt i den layouten. Det rekommenderas att du "
-#~ "använder det här bildspelet för att inaktivera pluginprogrammet för "
-#~ "bildspelet för att förhindra att skriptet laddas."
-
-#, fuzzy
-#~| msgid "Gallery description:"
-#~ msgid "Galleria Crop Option"
-#~ msgstr "Galleria Crop Option"
-
-#, fuzzy
-#~ msgid "True"
-#~ msgstr "Sant"
-
-#, fuzzy
-#~ msgid "False"
-#~ msgstr "Falskt"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select how Galleria should fit the images in the Galleria stage.  See <a "
-#~ "href=\"http://galleria.io/docs/options/imageCrop/\" target=\"_blank"
-#~ "\">Galleria options</a> for more info."
-#~ msgstr ""
-#~ "Välj hur Galleria ska passa bilderna i Galleria scenen.  Se <a href="
-#~ "\"http://galleria.io/docs/options/imageCrop/\" target=\"_blank\">Galleria "
-#~ "alternativ</a> för mer info."
-
-#, fuzzy
-#~ msgid "Galleria Image pan"
-#~ msgstr "Galleria Image pan"
-
-#, fuzzy
-#~ msgid "Check to allow image panning on cropped images."
-#~ msgstr ""
-#~ "Kontrollera om du vill tillåta panorering av bilder på beskuren bilder."
-
-#, fuzzy
-#~ msgid "Galleria Initial Caption Display"
-#~ msgstr "Galleria Initial Caption Display"
-
-#, fuzzy
-#~| msgid "Visible items"
-#~ msgid "Visible"
-#~ msgstr "Bilden är dold."
-
-#, fuzzy
-#~ msgid ""
-#~ "Select if image or album caption should be intially visible, or hidden "
-#~ "with an info link."
-#~ msgstr ""
-#~ "Välj om bilden eller album bildtext ska vara intially synliga eller dolda "
-#~ "med en info-länk."
-
-#, fuzzy
-#~ msgid "Galleria Slide Advance"
-#~ msgstr "Galleria bild förskott"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check to autoplay Galleria. In slideshow mode, galleria will always "
-#~ "autoplays regardless of this setting."
-#~ msgstr ""
-#~ "Kontrollera att du spelar upp Galleria automatiskt. I bildspelsläge "
-#~ "kommer Galleria alltid att autoplays oberoende av den här inställningen."
-
-#, fuzzy
-#~| msgid "Gallery index"
-#~ msgid "Galleria Click Next"
-#~ msgstr "Galleria Klicka på nästa"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check to advance to next slide on mouse click instead of linking to image "
-#~ "details page."
-#~ msgstr ""
-#~ "Kontrollera att avancera till nästa bild på musen klicka på istället för "
-#~ "att länka till bilden informationssida."
-
-#, fuzzy
-#~ msgid "Interval"
-#~ msgstr "Intervall"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter the slide advancement interval in milliseconds (4000 equals 4 "
-#~ "seconds)."
-#~ msgstr ""
-#~ "Ange inmatningsintervallet i millisekunder (4000 lika med 4 sekunder)."
-
-#, fuzzy
-#~ msgid "Pulse"
-#~ msgstr "Puls"
-
-#, fuzzy
-#~ msgid "Fade-Slide"
-#~ msgstr "Fade-Slide"
-
-#, fuzzy
-#~| msgid "Slideshow"
-#~ msgid "Slide"
-#~ msgstr "slide X"
-
-#, fuzzy
-#~ msgid "The transition that is used when displaying the images in Galleria."
-#~ msgstr "Övergången som används vid visning av bilder i Galleria."
-
-#, fuzzy
-#~ msgid "Transition Speed"
-#~ msgstr "Transition Speed"
-
-#, fuzzy
-#~| msgid "Speed of the transition in milliseconds."
-#~ msgid "Enter the slide transition speed in milliseconds (400 default)."
-#~ msgstr "Ange bildövergångshastigheten i millisekunder (400 standard)."
-
-#, fuzzy
-#~ msgid "Galleria History Plugin"
-#~ msgstr "Galleria History Plugin"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check to enable Galleria history plugin, giving each image a unique url. "
-#~ "Back/forward browser buttons work, able to bookmark, send direct links to "
-#~ "images in Galleria, etc. Note you cannot send links of the slideshow "
-#~ "page, as this is created on the fly with POST data."
-#~ msgstr ""
-#~ "Kontrollera om du vill aktivera Galleria History plugin, vilket ger varje "
-#~ "bild en unik webbadress. Bakåt / framåt-webbläsarknapparna fungerar, kan "
-#~ "bokmärke, skicka direktlänkar till bilder i Galleria, etc. Observera att "
-#~ "du inte kan skicka länkar på bildspelssidan eftersom det skapas i fluga "
-#~ "med POST-data."
-
-#, fuzzy
-#~ msgid "Galleria Fullscreen Image Size"
-#~ msgstr "Galleria Fullscreen Bildstorlek"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter the image pixel size to create for the large, fullscreen slideshow "
-#~ "(1200 default)."
-#~ msgstr ""
-#~ "Ange bildens pixelstorlek för att skapa för det stora skärmbildet för "
-#~ "helskärmsläge (1200 standard)."
-
-#, fuzzy
-#~ msgid "<h2>Smooth DIV Scroll Layout Options</h2><hr />"
-#~ msgstr "<h2> Lätt DIV Scroll Layout-alternativ </h2><hr />"
-
-#, fuzzy
-#~ msgid "Show All Always"
-#~ msgstr "Visa allt alltid"
-
-#, fuzzy
-#~ msgid "Show All on Home"
-#~ msgstr "Visa allt hemma"
-
-#, fuzzy
-#~ msgid "Paginate"
-#~ msgstr "Paginera"
-
-#, fuzzy
-#~ msgid ""
-#~ "Select if layout should show all items, or pagination. You can also just "
-#~ "show all on the optional home page sds layout, and paginate the albums. "
-#~ "Showing all on large galleries or albums is not recomended."
-#~ msgstr ""
-#~ "Välj om layout ska visa alla objekt eller paginering. Du kan också bara "
-#~ "visa allt på sds-layouten till valfri hemsida och paginera albumen. Visa "
-#~ "alla på stora gallerier eller album är inte rekommenderat."
-
-#, fuzzy
-#~ msgid "Max-height"
-#~ msgstr "Max höjd"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter the max height of the scrolling division. This will scale down on "
-#~ "smaller displays vias css. SDS creates new cached images for it's "
-#~ "layout.  You can recache batches using the cache manager plugin."
-#~ msgstr ""
-#~ "Ange den maximala höjden på rullningsavdelningen. Detta kommer att skala "
-#~ "ner på mindre skärmar vias css. SDS skapar nya cachade bilder för det är "
-#~ "layout. Du kan recache partier med hjälp av insticksprogrammet för "
-#~ "cacheminnet."
-
-#, fuzzy
-#~ msgid "<h2>Magnific Popup Options</h2><hr />"
-#~ msgstr "<h2> Stora popupalternativ </h2><hr />"
-
-#, fuzzy
-#~ msgid "Enable Magnific Popup on"
-#~ msgstr "Aktivera Magnific Popup på"
-
-#, fuzzy
-#~ msgid ""
-#~ "Check which layouts to enable <a target=\"_blank\" href=\"http://"
-#~ "dimsemenov.com/plugins/magnific-popup/\">Magnific popup</a>. <div class="
-#~ "\"notebox\">Note: Magnific popup will activate automatically when setting "
-#~ "the option - \"no image details page\".</div>"
-#~ msgstr ""
-#~ "Kontrollera vilka layouter som ska aktivera <a target=\"_blank\" href="
-#~ "\"http://dimsemenov.com/plugins/magnific-popup/\">Magnific popup</a> . "
-#~ "<div class=\"notebox\"> Obs! Magnific popup aktiveras automatiskt när du "
-#~ "ställer in alternativet - \"ingen bildinformation sida\". </div>"
-
-#, fuzzy
-#~ msgid "Magnific Target"
-#~ msgstr "Magnific Target"
-
-#, fuzzy
-#~ msgid "Image Only"
-#~ msgstr "Endast bild:"
-
-#, fuzzy
-#~| msgid "Image title"
-#~ msgid "Image+ Details "
-#~ msgstr "Bild + detaljer"
-
-#, fuzzy
-#~ msgid ""
-#~ "Image popup can be either just the image or a custom image detail page "
-#~ "showing (if enabled) the image, title, description, tags, rating, "
-#~ "comments. <div class=\"notebox\">Note: Image+ Details option goes very "
-#~ "well with the option above - \"no image details page\".</div>"
-#~ msgstr ""
-#~ "Bild popup kan vara antingen bara bilden eller en anpassad bilddetaljer "
-#~ "sida som visar (om den är aktiverad) bilden, titeln, beskrivningen, "
-#~ "taggarna, betygsättningen, kommentarer. <div class=\"notebox\"> Obs! "
-#~ "Alternativet Image + Details går mycket bra med alternativet ovan - "
-#~ "\"ingen bildinformation sida\". </div>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<h2>Advanced - Custom Google fonts and analytics, CSS, font size - "
-#~ "<em>Allows custom CSS styles and usage of additional Google Fonts as well."
-#~ "</em></h2><hr />"
-#~ msgstr ""
-#~ "<h2> Avancerat - Anpassade Google-teckensnitt och analys, CSS, "
-#~ "teckensnittstorlek - <em>Tillåter anpassade CSS-format och användning av "
-#~ "ytterligare Google-teckensnitt.</em> </h2><hr />"
-
-#, fuzzy
-#~ msgid "Custom font for body text"
-#~ msgstr "Anpassad typsnitt för kroppstext"
-
-#, fuzzy
-#~ msgid "NONE"
-#~ msgstr "Ingen"
-
-#, fuzzy
-#~ msgid "Josephin Slab"
-#~ msgstr "Hasses platta"
-
-#, fuzzy
-#~ msgid "Lato"
-#~ msgstr "Lato"
-
-#, fuzzy
-#~ msgid "Bree Serif"
-#~ msgstr "serif"
-
-#, fuzzy
-#~ msgid "Cabin"
-#~ msgstr "Hytt - Segelkryssning"
-
-#, fuzzy
-#~ msgid "Droid Sans"
-#~ msgstr "Droid Sans"
-
-#, fuzzy
-#~ msgid "Droid Serif"
-#~ msgstr "Droid Serif"
-
-#, fuzzy
-#~| msgid "Master"
-#~ msgid "Lobster"
-#~ msgstr "Hummer"
-
-#, fuzzy
-#~ msgid "Lobster Two"
-#~ msgstr "Hummer"
-
-#, fuzzy
-#~ msgid "Lora"
-#~ msgstr "Lora"
-
-#, fuzzy
-#~ msgid "Open Sans"
-#~ msgstr "Open Sans"
-
-#, fuzzy
-#~ msgid "Oswald"
-#~ msgstr "Oswald"
-
-#, fuzzy
-#~ msgid "Pacifico"
-#~ msgstr "Pacifico"
-
-#, fuzzy
-#~ msgid "Patua One"
-#~ msgstr "Patua en"
-
-#, fuzzy
-#~ msgid "Poly"
-#~ msgstr "Poly"
-
-#, fuzzy
-#~ msgid "PT Sans"
-#~ msgstr "PT Sans"
-
-#, fuzzy
-#~ msgid "Source Sans Pro"
-#~ msgstr "Source Sans Pro"
-
-#, fuzzy
-#~ msgid "Varela Round"
-#~ msgstr "Varela Round"
-
-#, fuzzy
-#~ msgid "Vollkorn"
-#~ msgstr "Vollkorn"
-
-#, fuzzy
-#~ msgid "Arvo"
-#~ msgstr "Arvo"
-
-#, fuzzy
-#~ msgid "Optionally select a google font to use for the body and menu text."
-#~ msgstr ""
-#~ "Välj eventuellt ett google-teckensnitt som ska användas för kropps- och "
-#~ "menytexten."
-
-#, fuzzy
-#~ msgid "Custom font for header text"
-#~ msgstr "Anpassad typsnitt för rubriktext"
-
-#, fuzzy
-#~ msgid ""
-#~ "Optionally select a google font to use for header (h1, h2, etc) text."
-#~ msgstr ""
-#~ "Välj valfritt ett google-teckensnitt som ska användas för rubrikrubrik "
-#~ "(h1, h2, etc)."
-
-#, fuzzy
-#~ msgid "Base Font Size"
-#~ msgstr "Bas teckenstorlek"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter a base font size in pixels (10-18).  All other font-sizes are taken "
-#~ "as percentages of this. Note: Any number outside this range will default "
-#~ "back to 12."
-#~ msgstr ""
-#~ "Ange en basstorlekstorlek i pixlar (10-18). Alla andra typsnittstorlekar "
-#~ "tas som procentandelar av detta. Obs! Varje nummer utanför detta "
-#~ "intervall kommer tillbaka till 12."
-
-#, fuzzy
-#~ msgid "<h2>Site Footer Options</h2><hr />"
-#~ msgstr "Sidfots inställningar"
-
-#, fuzzy
-#~ msgid "*Use Gallery Name Text"
-#~ msgstr "* Använd Galleri Namn Text"
-
-#, fuzzy
-#~| msgid "% of image"
-#~ msgid "* no bg image"
-#~ msgstr "* ingen bg-bild"
-
-#, fuzzy
-#~ msgid "Check to display the Powered by ZenPhoto20 link in the footer."
-#~ msgstr ""
-#~ "Kontrollera om du vill visa länken Powered by ZenPhoto20 i sidfoten."
-
-#, fuzzy
-#~| msgid "Subalbums"
-#~ msgid " Subalbums, "
-#~ msgstr "Undermappar"
-
-#, fuzzy
-#~ msgid " Total Images"
-#~ msgstr "Totalt antal bilder:"
-
-#, fuzzy
-#~ msgid "Sorry, please enable Javascript in your browser to view our gallery."
-#~ msgstr ""
-#~ "Tyvärr, var god aktivera Javascript i din webbläsare för att se vårt "
-#~ "galleri."
-
-#, fuzzy
-#~ msgid "Video"
-#~ msgstr "Video"
-
-#, fuzzy
-#~| msgid "Delete Page"
-#~ msgid "Detail Page: "
-#~ msgstr "Sida"
-
-#, fuzzy
-#~| msgid "Show details"
-#~ msgid " Details"
-#~ msgstr "Visa detaljer för användare %s"
-
-#, fuzzy
-#~| msgid "Download"
-#~ msgid "Download: "
-#~ msgstr "Nedladdning"
-
-#, fuzzy
-#~| msgid "Download"
-#~ msgid "Download "
-#~ msgstr "Nedladdning"
-
-#, fuzzy
-#~ msgid "Videos"
-#~ msgstr "Videor"
-
-#, fuzzy
-#~| msgid "Previous"
-#~ msgid "‹ Previous"
-#~ msgstr "Föregående"
-
-#, fuzzy
-#~ msgid "Next ›"
-#~ msgstr "framåt"
-
-#, fuzzy
-#~ msgid "Site:"
-#~ msgstr "Titel för webbplatsen."
-
-#, fuzzy
-#~ msgid "street:"
-#~ msgstr "Gata:"
-
-#, fuzzy
-#~| msgid "City:"
-#~ msgid "city:"
-#~ msgstr "Stad:"
-
-#, fuzzy
-#~ msgid "state:"
-#~ msgstr "Stat:"
-
-#, fuzzy
-#~| msgid "Country:"
-#~ msgid "country:"
-#~ msgstr "Land:"
-
-#, fuzzy
-#~| msgid "Postal code:"
-#~ msgid "postal code:"
-#~ msgstr "Postnummer:"
-
-#, fuzzy
-#~ msgid "The Contact Form plugin has not been activated."
-#~ msgstr "Kontaktformulär plugin har inte aktiverats."
-
-#, fuzzy
-#~ msgid "This Album Collection"
-#~ msgstr "Denna Albumsamling"
-
-#, fuzzy
-#~ msgid "Article RSS"
-#~ msgstr "Artikel RSS"
-
-#, fuzzy
-#~ msgid "Auto-Advance"
-#~ msgstr "Automatisk fortsättning"
-
-#, fuzzy
-#~ msgid "Stop Auto-Advance"
-#~ msgstr "Automatisk fortsättning"
-
-#, fuzzy
-#~ msgid "&larr; Prev"
-#~ msgstr "&larr; Föregående"
-
-#, fuzzy
-#~| msgid "Next Page"
-#~ msgid "Next &rarr;"
-#~ msgstr "Nästa &rarr;"
-
-#, fuzzy
-#~ msgid "Next &raquo;"
-#~ msgstr "Nästa &raquo;"
-
-#, fuzzy
-#~ msgid "&laquo; Prev"
-#~ msgstr "&laquo; föregående"
-
-#, fuzzy
-#~| msgid "unavailable"
-#~ msgid "None Available"
-#~ msgstr "Inga Tillgängliga"
-
-#, fuzzy
-#~| msgid "Login"
-#~ msgid "Login..."
-#~ msgstr "Användarnamn"
-
-#, fuzzy
-#~| msgid "All articles"
-#~ msgid "All Article"
-#~ msgstr "All artikel"
-
-#, fuzzy
-#~ msgid "Article archive"
-#~ msgstr "Artikelarkiv"
-
-#, fuzzy
-#~| msgid "Theme personality"
-#~ msgid "Theme Version"
-#~ msgstr "Temaversion"
-
-#, fuzzy
-#~ msgid "Choose a dark or light contrast style for your gallery."
-#~ msgstr "Välj en mörk eller ljus kontrast stil för ditt galleri."
-
-#, fuzzy
-#~ msgid "Primary Color"
-#~ msgstr "Primär färg"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter a Hex (with the pound (#) sign) or RGB color code (Affects mainly "
-#~ "link colors). Default is '#B45E2C'."
-#~ msgstr ""
-#~ "Ange en Hex (med pundtecknet (#)) eller RGB-färgkoden (påverkar främst "
-#~ "länk färger). Standard är '#B45E2C'."
-
-#, fuzzy
-#~ msgid "The text to include in the metatag title on the homepage."
-#~ msgstr "Texten som ska inkluderas i metatag-titeln på hemsidan."
-
-#, fuzzy
-#~ msgid "Align WebSite Left"
-#~ msgstr "Justera WebSite vänster"
-
-#, fuzzy
-#~ msgid "Check to left align the entire site, instead of centered."
-#~ msgstr ""
-#~ "Kontrollera till vänster anpassa hela webbplatsen istället för att "
-#~ "centrera."
-
-#, fuzzy
-#~ msgid "Use this File as Header Logo"
-#~ msgstr "Använd den här filen som huvudlogotyp"
-
-#, fuzzy
-#~ msgid ""
-#~ "If using an image file for the logo/title area, enter the full filename "
-#~ "(including extension) of the image file located in the images directory "
-#~ "in zpGallerifficII theme folder. <strong>Or leave blank to use a text "
-#~ "representation of your site name (recommended).</strong>"
-#~ msgstr ""
-#~ "Om du använder en bildfil för logotypen / titelområdet anger du det "
-#~ "fullständiga filnamnet (inklusive tillägget) av bildfilen i bildkatalogen "
-#~ "i templatmappen zpGallerifficII. <strong>Eller lämna tomt för att använda "
-#~ "en textrepresentation av ditt sajtnamn (rekommenderas).</strong>"
-
-#, fuzzy
-#~ msgid "ZenPage Latest Article on Home page"
-#~ msgstr "ZenPage Senaste artikeln på hemsidan"
-
-#, fuzzy
-#~ msgid ""
-#~ "If using Zenpage, number of latest news artciles to show on the gallery "
-#~ "page.  Make sure you enter a valid number here! Enter 0 to not show any "
-#~ "news and expand the width of the album list."
-#~ msgstr ""
-#~ "Om du använder Zenpage, visas de senaste nyheterna på galleriets sida. Se "
-#~ "till att du anger ett giltigt nummer här! Ange 0 för att inte visa några "
-#~ "nyheter och expandera bredden på albumlistan."
-
-#, fuzzy
-#~ msgid "   -> Latest Article Truncation"
-#~ msgstr "-> Senaste artikelavkortning"
-
-#, fuzzy
-#~ msgid ""
-#~ "If using Zenpage, and you have articles set to display on the home page, "
-#~ "set here the number of characters to show in the article snippet "
-#~ "(truncation).  Make sure you enter a valid number here!"
-#~ msgstr ""
-#~ "Om du använder Zenpage, och du har artiklar som ska visas på hemsidan, "
-#~ "anger du det antal tecken som ska visas i artikelutdraget (avkortning). "
-#~ "Se till att du anger ett giltigt nummer här!"
-
-#, fuzzy
-#~ msgid "Home Page: Galleriffic Slideshow?"
-#~ msgstr "Hemsida: Galleriffic Slideshow?"
-
-#, fuzzy
-#~ msgid "Shows mini slideshow on homepage; set options below."
-#~ msgstr "Visar mini bildspel på hemsidan; Ange alternativ nedan."
-
-#, fuzzy
-#~ msgid "   -> Home Page: Galleriffic Image Option"
-#~ msgstr "-> Hemsida: Galleriffic Image Option"
-
-#, fuzzy
-#~ msgid ""
-#~ "If Home page Mini Galleriffic option is enabled, select what you want the "
-#~ "slideshow to display."
-#~ msgstr ""
-#~ "Om startsidan Mini Galleriffic alternativet är aktiverat, Välj vad du "
-#~ "vill att bildspelet ska visas."
-
-#, fuzzy
-#~ msgid "   -> Home Page: Galleriffic Album for Specific Option"
-#~ msgstr "-> Hemsida: Galleriffic Album för specifikt alternativ"
-
-#, fuzzy
-#~ msgid ""
-#~ "If you chose specific album above, enter the album folder name/path "
-#~ "here.  If dynamic do not forget the .alb extension"
-#~ msgstr ""
-#~ "Om du väljer specifika album ovan, ange album namn/mappsökvägen här.  Om "
-#~ "dynamiska Glöm inte tillägget .alb"
-
-#, fuzzy
-#~ msgid "   -> Home Page: Galleriffic Height"
-#~ msgstr "-> Hemsida: Galleriffic Höjd"
-
-#, fuzzy
-#~ msgid ""
-#~ "Based on the length of your gallery description, you will have to adjust "
-#~ "this to increase or decrease the height of the image slideshow. Default "
-#~ "is '250'."
-#~ msgstr ""
-#~ "Baserat på längden på din galleribeskrivning måste du justera detta för "
-#~ "att öka eller minska höjden på bildspelet. Standard är '250'."
-
-#, fuzzy
-#~ msgid "   -> Home Page: Galleriffic Image Count"
-#~ msgstr "-> Hemsida: Galleriffic bild Count"
-
-#, fuzzy
-#~ msgid ""
-#~ "The number of images to display if mini galleriffic on home page is "
-#~ "enabled. Default is '12'."
-#~ msgstr ""
-#~ "Antalet bilder att visa om mini galleriffic på startsidan är aktiverad. "
-#~ "Standard är '12'."
-
-#, fuzzy
-#~ msgid "Home Page: Galleriffic enforce image count on specific album option?"
-#~ msgstr ""
-#~ "Hemsida: Galleriffic genomdriva bilden räkna alternativet specifika album?"
-
-#, fuzzy
-#~ msgid ""
-#~ "If you have a specified album selected as the option, you can uncheck "
-#~ "this box to pull all images in the album instead of the image count "
-#~ "entered above."
-#~ msgstr ""
-#~ "Om du har ett visst album valt som alternativ kan du avmarkera den här "
-#~ "rutan för att dra alla bilder i albumet i stället för bildräkningen som "
-#~ "anges ovan."
-
-#, fuzzy
-#~ msgid "Home Page: Galleriffic shuffle images on specific album option?"
-#~ msgstr "Hemsida: Galleriffic shuffle bilder på specifika album alternativ?"
-
-#, fuzzy
-#~ msgid ""
-#~ "If you have a specified album selected as the option, default (checked) "
-#~ "is to shuffle these images before display. You can uncheck this to keep "
-#~ "the image order of the album, however this may produce undesired results "
-#~ "when you are not pulling all of the images from the album (setting above)."
-#~ msgstr ""
-#~ "Om du har ett specificerat album valt som alternativ, är standard "
-#~ "(markerad) att blanda dessa bilder före visning. Du kan avmarkera det här "
-#~ "för att hålla albumets bildordning, men det kan ge oönskade resultat när "
-#~ "du inte drar alla bilder från albumet (inställning ovan)."
-
-#, fuzzy
-#~ msgid "Archive Initial Display"
-#~ msgstr "Arkiv första visningen"
-
-#, fuzzy
-#~ msgid "Set the option for what to display on the initial archive page."
-#~ msgstr "Ange alternativ för vad som ska visas på första Arkiv-sidan."
-
-#, fuzzy
-#~ msgid "   -> Archive Image Count"
-#~ msgstr "-> Arkiv bild Count"
-
-#, fuzzy
-#~ msgid ""
-#~ "The number of images to display on the initial archive page. Default is "
-#~ "'12'."
-#~ msgstr ""
-#~ "Antalet bilder att visa på den inledande arkivsidan. Standard är '12'."
-
-#, fuzzy
-#~ msgid "Album Page: Use Galleriffic Script?"
-#~ msgstr "Albumsida: Använda Galleriffic skript?"
-
-#, fuzzy
-#~ msgid ""
-#~ "Uncheck this to use the alternate album pages that do not use the "
-#~ "Galleriffic Script."
-#~ msgstr ""
-#~ "Avmarkera det här för att använda alternativa albumsidor som inte "
-#~ "använder Galleriffic Script."
-
-#, fuzzy
-#~ msgid "Galleriffic Slide Transition Delay"
-#~ msgstr "Galleriffic Slide Transition Delay"
-
-#, fuzzy
-#~| msgid "Default rights"
-#~ msgid "Default is '6000'."
-#~ msgstr "Standard är '6000'."
-
-#, fuzzy
-#~ msgid "Galleriffic # of Thumbs"
-#~ msgstr "Galleriffic # av tummen"
-
-#, fuzzy
-#~ msgid "Default is '9'."
-#~ msgstr "Standard är '9'."
-
-#, fuzzy
-#~ msgid "Galleriffic # of Images to Preload"
-#~ msgstr "Galleriffic # bilder till förspänning"
-
-#, fuzzy
-#~| msgid "Default rights"
-#~ msgid "Default is '10'."
-#~ msgstr "Standard är '10'."
-
-#, fuzzy
-#~ msgid "Galleriffic crop image"
-#~ msgstr "Galleriffic Beskär bild"
-
-#, fuzzy
-#~ msgid ""
-#~ "Choose to crop the galleriffic large image. Cropping fills the area "
-#~ "better, but some may need original proportions on images."
-#~ msgstr ""
-#~ "Välj att skära den galleriffiska stora bilden. Beskärning fyller området "
-#~ "bättre, men vissa kan behöva ursprungliga proportioner på bilder."
-
-#, fuzzy
-#~ msgid ""
-#~ "Click to enable colorbox targeting the sized image setting in the top "
-#~ "options, instead of the full original image. This is usefull if you "
-#~ "upload large images as you can set Colorbox to target a smaller, resized "
-#~ "version based on your setting above."
-#~ msgstr ""
-#~ "Klicka för att aktivera färgkorg som riktar in den stora "
-#~ "bildinställningen i de övre alternativen, istället för den fullständiga "
-#~ "originalbilden. Det här är användbart om du laddar upp stora bilder "
-#~ "eftersom du kan ställa in Colorbox för att rikta en mindre, "
-#~ "storleksändrad version baserat på din inställning ovan."
-
-#, fuzzy
-#~ msgid "Show Image EXIF Data"
-#~ msgstr "Visa bild EXIF-data"
-
-#, fuzzy
-#~ msgid "Show the Image MetaData slide on Image page."
-#~ msgstr "Visa bildmetadata bilden på bild sidan."
-
-#, fuzzy
-#~ msgid "Show Download Link"
-#~ msgstr "Visa Nerladdnings Länk"
-
-#, fuzzy
-#~ msgid "Show a download link for the image on the album and search pages."
-#~ msgstr "Visa en hämtningslänk för bilden på albumet och söksidorna."
-
-#, fuzzy
-#~ msgid "Final Image Link"
-#~ msgstr "Slutlig bildlänk"
-
-#, fuzzy
-#~ msgid ""
-#~ "Choose final link action at image.php: no link, colorbox, or default "
-#~ "zenphoto."
-#~ msgstr ""
-#~ "Välj slutlig länkåtgärd på image.php: ingen länk, färglåda eller standard "
-#~ "zenphoto."
-
-#, fuzzy
-#~ msgid "<span class=\"zenlogo\"><a href=\"https://"
-#~ msgstr "<span class=\"zenlogo\"><a href=\"https://"
-
-#, fuzzy
-#~| msgid "ZenPhoto20 Setup"
-#~ msgid "zenphoto20"
-#~ msgstr "ZenPhoto20 Gallery registrering"
-
-#, fuzzy
-#~ msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
-#~ msgstr ""
-#~ "<strong>Fel vid analys av <em>plugin_author-</em> strängen!</strong> ."
-
-#~ msgid ""
-#~ "You can download more themes from the <a href=\"http://www.zenphoto.org/"
-#~ "theme/\">zenphoto themes page</a>."
-#~ msgstr ""
-#~ "Du kan ladda ner fler teman från <a href=\"http://www.zenphoto.org/zp/"
-#~ "theme/\">ZenPhoto20 temasidor</a>."
-
-#, fuzzy
-#~ msgid "Disabled metadata Database field(s) will be dropped"
-#~ msgstr "Inaktiverad metadata Databasfältet (s) kommer att släppas"
-
-#, fuzzy
-#~ msgid "not connected"
-#~ msgstr "databasen ansluten"
-
-#~ msgid "PHP GD library <em>%s</em>"
-#~ msgstr "PHP GD bibliotek <em>%s</em>"
-
-#, fuzzy
-#~ msgid "ZenPhoto20 core files"
-#~ msgstr "ZenPhoto20 kärnfiler [Vissa filer saknas eller stämmer inte]"
-
-#~ msgid "ZenPhoto20 core file permissions"
-#~ msgstr "ZenPhoto20 kärnfilsrättigheter"
-
-#, fuzzy
-#~ msgid "<span class=\"zen-logo\"><a href=\"https://"
-#~ msgstr ""
-#~ "<span class=\"zen-logo\"><a href=\"https:// href=\"\"></a href=\"https://"
-#~ "></span>"
-
-#, fuzzy
-#~ msgid "The <em>video metadata</em> Database field(s) will be dropped"
-#~ msgstr "Databasfältet för <em>video-metadata</em> kommer att släppas"
-
-#~ msgid "ZenPhoto20 user created"
-#~ msgstr "ZenPhoto20 uppgradering"
-
-#, fuzzy
-#~ msgid ""
-#~ "Only one SEO filter plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
-#~ "code></a> is already enabled."
-#~ msgstr ""
-#~ "Endast ett SEO-plugin kan vara aktiverat. <a href=\"#%1$s\"><code>%1$s</"
-#~ "code></a> är redan aktiverat."
-
-#, fuzzy
-#~ msgid "Change frequency - ZenPhoto20 index"
-#~ msgstr "Ändra frekvens - ZenPhoto20 index"
-
-#~ msgid ":"
-#~ msgstr ":"
-
-#, fuzzy
-#~ msgid "Text editor configuration - zenphoto"
-#~ msgstr "Text editor konfiguration - zenphoto"
