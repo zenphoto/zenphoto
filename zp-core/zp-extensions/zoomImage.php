@@ -62,7 +62,7 @@ class zoomImage {
 		$options = array(
 				gettext('Default type') => array('key' => 'zoomImage_type', 'type' => OPTION_TYPE_RADIO,
 						'buttons' => array(gettext('Hover') => 'hover', gettext('Grab') => 'grab', gettext('Click') => 'click', gettext('Toggle') => 'toggle'),
-						'desc' => gettext('Select the default for how the viewer activates zooming the image.') . '<br />' . gettext('<code>Hover</code>: Mouse-over enalrges the area under the cursor.') . '<br />' . gettext('<code>Grab</code>: Mouse press enlarges the image and "grabs" it for zoom focus.') . '<br />' . gettext('<code>Click</code>: Similar to hover, but is activated by a mouse click.' . '<br />' . gettext('<code>Togle</code>: Enlarges the clicked area.'))
+						'desc' => gettext('Select the default for how the viewer activates zooming the image.') . '<br />' . gettext('<code>Hover</code>: Mouse-over enlarges the area under the cursor.') . '<br />' . gettext('<code>Grab</code>: Mouse press enlarges the image and "grabs" it for zoom focus.') . '<br />' . gettext('<code>Click</code>: Similar to hover, but is activated by a mouse click.' . '<br />' . gettext('<code>Togle</code>: Enlarges the clicked area.'))
 				)
 		);
 		return $options;
