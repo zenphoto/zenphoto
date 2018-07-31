@@ -713,7 +713,7 @@ function zp_getCookie($name) {
  * @param $value
  */
 function zp_cookieEncode($value) {
-	if (IP_TIED_COOKIES) {
+	if (defined('IP_TIED_COOKIES') && IP_TIED_COOKIES) {
 		return rc4(getUserIP() . HASH_SEED, $value);
 	} else {
 		return $value;

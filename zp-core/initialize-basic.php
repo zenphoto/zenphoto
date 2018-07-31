@@ -3,6 +3,8 @@
 /*
  * one time initialization code for basic execution
  */
+require_once(dirname(__FILE__) . '/lib-encryption.php');
+require_once(dirname(__FILE__) . '/lib-utf8.php');
 
 switch (PHP_MAJOR_VERSION) {
 	case 5:
@@ -74,8 +76,6 @@ if (OFFSET_PATH != 2) {
 		_setup(12);
 	}
 }
-
-require_once(dirname(__FILE__) . '/lib-utf8.php');
 
 if (!defined('FILESYSTEM_CHARSET')) {
 	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
@@ -173,8 +173,6 @@ foreach ($_zp_cachefileSuffix as $key => $type) {
 		$_zp_images_classes[$_zp_supported_images[] = strtolower($key)] = 'Image';
 	}
 }
-
-require_once(dirname(__FILE__) . '/lib-encryption.php');
 
 //NOTE: SERVER_PROTOCOL is the option PROTOCOL is what should be used in links!!!!
 define('SERVER_PROTOCOL', getOption('server_protocol'));
