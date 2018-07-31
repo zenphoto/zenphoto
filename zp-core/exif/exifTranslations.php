@@ -102,8 +102,8 @@ function exifTranslate($source) {
 		case '!flash; auto-mode!' : return str_replace($sw, gettext('Flash; Auto-Mode'), $source);
 		case '!flash, auto-mode, light detected!' : return str_replace($sw, gettext('Flash; Auto-Mode; Return light detected'), $source);
 		case '!flash, auto-mode, light not detected!' : return str_replace($sw, gettext('Flash; Auto-Mode; Return light not detected'), $source);
-		case '!flash, strobe, light detected!' : return str_replace($sw, gettext('Flash; strobe return str_replace($sw, light detected'), $source);
-		case '!flash, strobe, light not detected!' : return str_replace($sw, gettext('Flash; strobe return str_replace($sw, light not detected'), $source);
+		case '!flash, strobe, light detected!' : return str_replace($sw, gettext('Flash; strobe; Return light detected'), $source);
+		case '!flash, strobe, light not detected!' : return str_replace($sw, gettext('Flash; strobe; Return light not detected'), $source);
 		case '!fluorescence!' : return str_replace($sw, gettext("Fluorescence"), $source);
 		case '!fluorescent!' : return str_replace($sw, gettext('Fluorescent'), $source);
 		case '!food!' : return str_replace($sw, gettext("Food"), $source);

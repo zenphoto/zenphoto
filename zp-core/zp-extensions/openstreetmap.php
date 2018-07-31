@@ -59,7 +59,7 @@ class openStreetMapOptions {
 						'key' => 'osmap_width',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 1,
-						'desc' => gettext("Width of the map including the unit name e.g 100% (default for responsive map), 100px or 100em.")),
+						'desc' => gettext("Width of the map including the unit name e.g. 100% (default for responsive map), 100px or 100em.")),
 				gettext('Map dimensions—height') => array(
 						'key' => 'osmap_height',
 						'type' => OPTION_TYPE_TEXTBOX,

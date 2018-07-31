@@ -632,7 +632,7 @@ Standard forms which collect user data will have a policy acknowledgement checkb
 								}
 								?>
 								<p><?php echo gettext('If the gallery sessions option is selected <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> will be used instead of cookies to make visitor settings persistent.'); ?></p>
-								<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. ') ?>
+								<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the preferred storage option since their duration is determined by the <em>Cookie duration</em> option. ') ?>
 								</p>
 							</div>
 						</span>

@@ -617,7 +617,7 @@ class xmpMetadata {
 	static function getMetadataFields() {
 		return array(
 				// Database Field      => array(0:'source', 1:'Metadata Key', 2;'ZP Display Text', 3:Display?	4:size,	5:enabled, 6:type, 7:linked)
-				'XMPAperatureValue' => array('XMP', '<exif:ApertureValue>', gettext('Aperature Value'), false, 52, true, 'string', false),
+				'XMPAperatureValue' => array('XMP', '<exif:ApertureValue>', gettext('Aperture Value'), false, 52, true, 'string', false),
 				'XMPArtist' => array('XMP', '<dc:creator>', gettext('Artist'), false, 52, true, 'string', false),
 				'XMPContrast' => array('XMP', '<exif:Contrast>', gettext('Contrast Setting'), false, 52, true, 'string', false),
 				'XMPDateTimeOriginal' => array('XMP', '<exif:DateTimeOriginal>', gettext('Original Time Taken'), true, 52, true, 'time', false),

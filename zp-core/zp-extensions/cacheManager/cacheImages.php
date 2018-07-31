@@ -292,7 +292,7 @@ if ($alb) {
 							</a>
 						</span>
 						<label>
-							<input type="checkbox" name="<?php echo $theme; ?>" id="<?php echo $theme; ?>" value="" onclick="checkTheme('<?php echo $theme; ?>');"<?php echo $checked; ?> /><?php printf(gettext('all sizes for <i>%1$s</i>'), $themeid); ?>
+							<input type="checkbox" name="<?php echo $theme; ?>" id="<?php echo $theme; ?>" value="" onclick="checkTheme('<?php echo $theme; ?>');"<?php echo $checked; ?> /><?php printf(gettext('all sizes for <em>%1$s</em>'), $themeid); ?>
 						</label>
 						<span id="<?php echo $theme; ?>_list" style="display:none">
 							<ol class="no_bullets"><!-- <?php echo $last; ?> -->

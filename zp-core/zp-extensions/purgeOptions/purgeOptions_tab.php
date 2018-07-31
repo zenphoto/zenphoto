@@ -217,7 +217,7 @@ $orphaned = array();
 								<br class="clearall">
 								<div class="purgeOptions_list">
 									<span class="purgeOptionsClass"><?php echo gettext('Orphaned options'); ?></span>
-									<label title="<?php echo gettext('all: no acation'); ?>">
+									<label title="<?php echo gettext('all: no action'); ?>">
 										<?php echo BULLSEYE_BLUE; ?>
 										<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').prop('checked', false);$('.orphaned').prop('checked', false);$('#emptyOptionCheck').prop('checked', false);">
 									</label>

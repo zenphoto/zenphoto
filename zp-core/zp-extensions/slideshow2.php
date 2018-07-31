@@ -143,7 +143,7 @@ class cycle {
 								'desc' => gettext("Check if you want to enable touch screen swipe gestures.")),
 						gettext('Slideshow: Pause on hover') => array('key' => 'cycle-slideshow_pausehover', 'type' => OPTION_TYPE_CHECKBOX,
 								'order' => 9,
-								'desc' => gettext("Check if you want the slidesshow to pause on hover."))
+								'desc' => gettext("Check if you want the slideshow to pause on hover."))
 				));
 				break;
 

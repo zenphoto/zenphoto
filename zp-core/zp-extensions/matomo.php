@@ -113,7 +113,7 @@ class matomoStats {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 7,
 						'desc' => gettext('Check this so Matomo does not use cookies to track visitors (less accurate tracking).')),
-				gettext('User onsent') => array(
+				gettext('User consent') => array(
 						'key' => 'matomo_requireconsent',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => array(

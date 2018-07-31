@@ -51,7 +51,7 @@ if (isset($_SESSION['OTA'])) {
 				<form name="OTP" id="OTP" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/auth_code.php'; ?>" method="post">
 					<input type="hidden" name="authenticate" value="1" />
 					<fieldset id="logon_box">
-						<legend><?php echo gettext('Google Autenticator Token'); ?></legend>
+						<legend><?php echo gettext('Google Authenticator Token'); ?></legend>
 						<input class="textfield" name="authenticate" id="authcode" type="text" />
 						<br />
 						<br />

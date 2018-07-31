@@ -303,7 +303,7 @@ class user_expiry {
 			} else {
 				if (zp_loggedin(ADMIN_RIGHTS)) {
 					if ($_zp_authority->getAnAdmin(array('`valid`>' => 1))) {
-						$msg = gettext('You have users whose credentials are disbled.');
+						$msg = gettext('You have users whose credentials are disabled.');
 					}
 					$subscription = time() - 86400 * getOption('user_expiry_interval');
 					$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`=1 AND `date`<' . db_quote(date('Y-m-d H:i:s', $subscription));

@@ -120,7 +120,7 @@ foreach ($recentIP as $ip => $data) {
 	$ct++;
 }
 if (empty($output)) {
-	$output[] = gettext("No entries excede the noise level");
+	$output[] = gettext("No entries exceed the noise level");
 }
 
 printAdminHeader('admin');

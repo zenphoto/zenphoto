@@ -528,7 +528,7 @@ class pseudoPlayer {
 	}
 
 	function getPlayerConfig($moviepath, $imagefilename) {
-		return '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="' . gettext('No multimeida extension installed.') . '" />';
+		return '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="' . gettext('No multimedia extension installed.') . '" />';
 	}
 
 }

@@ -26,7 +26,7 @@ printTabs();
 echo "\n" . '<div id="content">';
 
 zp_apply_filter('admin_note', 'cache', '');
-echo '<h1>' . gettext('Cach images stored in the database') . '</h1>';
+echo '<h1>' . gettext('Cache images stored in the database') . '</h1>';
 ?>
 <div class="tabbox">
 	<p class="notebox">

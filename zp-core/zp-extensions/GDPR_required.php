@@ -81,7 +81,7 @@ class GDPR_required {
 		} else {
 			$options = array(
 					NULL => array('key' => 'GDPR_page', 'type' => OPTION_TYPE_NOTE,
-							'desc' => gettext('The zenpage plugin is reqired but not enabled.'))
+							'desc' => gettext('The zenpage plugin is required but not enabled.'))
 			);
 		}
 		return $options;

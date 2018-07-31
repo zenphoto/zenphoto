@@ -75,7 +75,7 @@ class themeSwitcher {
 		if (!empty($unknown)) {
 			$options['note'] = array('key' => 'themeswitcher_note', 'type' => OPTION_TYPE_NOTE,
 					'order' => 4,
-					'desc' => '<span class="notebox">' . gettext('These themes are enabled but have not got their default optons set:') . ' <em>' . implode('</em>, <em>', $unknown) . '</em></span>');
+					'desc' => '<span class="notebox">' . gettext('These themes are enabled but have not got their default options set:') . ' <em>' . implode('</em>, <em>', $unknown) . '</em></span>');
 		}
 
 		return $options;

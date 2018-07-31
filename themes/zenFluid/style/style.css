@@ -36,7 +36,7 @@ body {
 .title {
 	padding: 8px 8px 8px 8px;
 }
-.title.border.colour p {
+.title.border.color p {
 	font-size: 15px;
 	padding: 4px 0px 4px 0px;
 }
@@ -56,11 +56,11 @@ body {
 /* Footer
 -------------------------------------*/
 .footer {
-	clear: both; 
+	clear: both;
 	padding: 16px;
 }
 .sidebarfooter {
-	clear: both; 
+	clear: both;
 	padding: 16px 4px 16px 4px;
 }
 
@@ -262,7 +262,7 @@ form#confirm input, form#discard input {
 /* Google AdSense
 ------------------------------ */
 .adsense {
-	 text-align: center
+	text-align: center
 }
 
 /* Search
