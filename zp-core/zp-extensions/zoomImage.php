@@ -15,7 +15,7 @@
  * <dt><em>size</em></dt>
  * <dd>size of dispayed image (defaults to the <code>Image size</code> option)</dd>
  * <dt><em>type</em></dt>
- * <dd>zoom activation thpe (defaults to the plugin's <code>Default type</code> option)</dd>
+ * <dd>zoom activation type (defaults to the plugin's <code>Default type</code> option)</dd>
  * <dt><em>magnify</em></dt>
  * <dd>magnification of the fullsized image displayed during the zoom (defaults to <code>1</code>)</dd>
  * <dt><em>target</em></dt>
