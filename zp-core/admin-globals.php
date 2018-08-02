@@ -20,6 +20,35 @@ zp_session_start();
 require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 httpsRedirect();
 
+//load feature and admin plugins
+foreach (array(FEATURE_PLUGIN, ADMIN_PLUGIN) as $mask) {
+	if (DEBUG_PLUGINS) {
+		switch ($mask) {
+			case FEATURE_PLUGIN:
+				debugLog('Loading the "feature" plugins.');
+				break;
+			case ADMIN_PLUGIN:
+				debugLog('Loading the "admin" plugins.');
+				break;
+		}
+	}
+	$enabled = getEnabledPlugins();
+	foreach ($enabled as $extension => $plugin) {
+		$priority = $plugin['priority'];
+		if ($priority & $mask) {
+			if (DEBUG_PLUGINS) {
+				list($usec, $sec) = explode(" ", microtime());
+				$start = (float) $usec + (float) $sec;
+			}
+			require_once($plugin['path']);
+			$_zp_loaded_plugins[$extension] = $extension;
+			if (DEBUG_PLUGINS) {
+				zpFunctions::pluginDebug($extension, $priority, $start);
+			}
+		}
+	}
+}
+
 @ini_set('post_max_size', "10M");
 @ini_set('post_input_vars', "2500");
 
