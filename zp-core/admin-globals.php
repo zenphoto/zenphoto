@@ -36,15 +36,12 @@ foreach (array(FEATURE_PLUGIN, ADMIN_PLUGIN) as $mask) {
 	foreach ($enabled as $extension => $plugin) {
 		$priority = $plugin['priority'];
 		if ($priority & $mask) {
-			if (DEBUG_PLUGINS) {
-				list($usec, $sec) = explode(" ", microtime());
-				$start = (float) $usec + (float) $sec;
-			}
+			$start = microtime();
 			require_once($plugin['path']);
-			$_zp_loaded_plugins[$extension] = $extension;
 			if (DEBUG_PLUGINS) {
 				zpFunctions::pluginDebug($extension, $priority, $start);
 			}
+			$_zp_loaded_plugins[$extension] = $extension;
 		}
 	}
 }

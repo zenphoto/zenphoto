@@ -33,10 +33,7 @@ if (DEBUG_PLUGINS) {
 foreach (getEnabledPlugins() as $extension => $plugin) {
 	$loadtype = $plugin['priority'];
 	if ($loadtype & FEATURE_PLUGIN) {
-		if (DEBUG_PLUGINS) {
-			list($usec, $sec) = explode(" ", microtime());
-			$start = (float) $usec + (float) $sec;
-		}
+		$start = microtime();
 		require_once($plugin['path']);
 		if (DEBUG_PLUGINS) {
 			zpFunctions::pluginDebug($extension, $priority, $start);
@@ -88,10 +85,7 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 	foreach (getEnabledPlugins() as $extension => $plugin) {
 		$loadtype = $plugin['priority'];
 		if ($loadtype & THEME_PLUGIN) {
-			if (DEBUG_PLUGINS) {
-				list($usec, $sec) = explode(" ", microtime());
-				$start = (float) $usec + (float) $sec;
-			}
+			$start = microtime();
 			require_once($plugin['path']);
 			if (DEBUG_PLUGINS) {
 				zpFunctions::pluginDebug($extension, $priority, $start);

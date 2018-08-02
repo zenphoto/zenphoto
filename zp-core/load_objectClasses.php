@@ -27,15 +27,12 @@ if (abs(OFFSET_PATH) != 2) { // setup does not need (and might have problems wit
 	foreach ($enabled as $extension => $plugin) {
 		$priority = $plugin['priority'];
 		if ($priority & CLASS_PLUGIN) {
-			if (DEBUG_PLUGINS) {
-				list($usec, $sec) = explode(" ", microtime());
-				$start = (float) $usec + (float) $sec;
-			}
+			$start = microtime();
 			require_once($plugin['path']);
-			$_zp_loaded_plugins[$extension] = $extension;
 			if (DEBUG_PLUGINS) {
 				zpFunctions::pluginDebug($extension, $priority, $start);
 			}
+			$_zp_loaded_plugins[$extension] = $extension;
 		}
 	}
 }

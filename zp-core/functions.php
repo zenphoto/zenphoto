@@ -2899,6 +2899,8 @@ class zpFunctions {
 	}
 
 	static function pluginDebug($extension, $priority, $start) {
+		list($usec, $sec) = explode(" ", $start);
+		$start = (float) $usec + (float) $sec;
 		list($usec, $sec) = explode(" ", microtime());
 		$end = (float) $usec + (float) $sec;
 		$priority = self::getPriorityDisplay($priority);
