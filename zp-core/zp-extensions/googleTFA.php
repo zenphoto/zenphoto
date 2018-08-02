@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This plugin is a handler for authentication via the Google Authenticator App.
  * It is based on the {@link https://github.com/Dolondro/google-authenticator google-authenticator library}
@@ -43,6 +42,7 @@ require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/googleTFA/S
 zp_register_filter('admin_login_attempt', 'googleTFA::check');
 zp_register_filter('save_admin_custom_data', 'googleTFA::save');
 zp_register_filter('edit_admin_custom_data', 'googleTFA::edit', 999);
+zp_register_filter('admin_head', 'googleTFA::head');
 
 class googleTFA extends fieldExtender {
 
@@ -57,7 +57,7 @@ class googleTFA extends fieldExtender {
 	function getOptionsSupported() {
 		return array(
 				gettext('Issuer name') => array('key' => 'googleTFA_issuer', 'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext('This is the name the Google Authenticator app associate with the one time pin code.'))
+						'desc' => gettext('This is the name the Google Authenticator app associate with the onetime pin code.'))
 		);
 	}
 
@@ -97,6 +97,29 @@ class googleTFA extends fieldExtender {
 		return $updated;
 	}
 
+	static function head() {
+		?>
+		<script>
+			function googleTFA_exposeSecret(id) {
+				if ($('#secret_' + id).css('display') == 'none') {
+					$('#secret_' + id).show();
+					$('#secret_' + id).height(25);
+					$('#secret_' + id).position({
+						my: "left",
+						at: "center",
+						of: "#googleTFA_" + id
+					});
+					$('#googleTFA_QR_' + id).prop('title', '<?php echo gettext('Click to hide secret'); ?>');
+					$('#secret_' + id).select();
+				} else {
+					$('#secret_' + id).hide();
+					$('#googleTFA_QR_' + id).prop('title', '<?php echo gettext('Click to show secret'); ?>');
+				}
+			}
+		</script>
+		<?php
+	}
+
 	static function edit($html, $userobj, $id, $background, $current) {
 		if ($userobj->getOTAsecret()) {
 			$checked = ' checked="checked"';
@@ -108,13 +131,19 @@ class googleTFA extends fieldExtender {
 						. gettext("Two Factor Authentication") . "\n";
 
 		if ($checked) {
+			$secret = html_encode($userobj->getOTAsecret());
 			$result .= "<br />\n"
-							. "<fieldset>\n"
+							. '<fieldset id="googleTFA_' . $id . '">' . "\n"
 							. '<legend>' . gettext('Provide to GoogleAuthenticator') . "</legend>\n"
 							. '<div style="display: flex; justify-content: center;">' . "\n"
-							. '<img src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/qrcode/image.php?content=' . html_encode($userobj->getQRuri()) . '" title="' . html_encode($userobj->getOTAsecret()) . '" />' . "\n"
-							. "</div>\n";
-			$result .= "</fieldset>\n";
+							. '<img src="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/qrcode/image.php?content=' . html_encode($userobj->getQRuri())
+							. '" title="' . gettext('Click to show secret') . '" onclick="googleTFA_exposeSecret(\'' . $id . '\')"'
+							. ' id="googleTFA_QR_' . $id . '"'
+							. '/>' . "\n"
+							. '<br />' . "\n"
+							. '<input name="selectable" readonly="readonly" style="display: none;border: none;background: transparent;" id="secret_' . $id . '" value="' . $secret . '" >' . "\n"
+							. "</div>\n"
+							. "</fieldset>\n";
 		}
 		$result .= "</div>\n"
 						. '<br clear="all">' . "\n";
