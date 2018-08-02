@@ -270,7 +270,9 @@ class Zenpage {
 		} else {
 			$show = $currentcategory = false;
 			if ($category) {
-				$currentcategory = $category->getTitlelink();
+				if (is_object($_zp_current_category)) {
+					$currentcategory = $_zp_current_category->getTitlelink();
+				}
 				$showConjunction = ' AND ';
 				// new code to get nested cats
 				$catid = $category->getID();
@@ -474,7 +476,13 @@ class Zenpage {
 	 * @return int
 	 */
 	function getArticle($index, $published = NULL, $sortorder = NULL, $sortdirection = NULL, $sticky = true) {
-		$articles = $this->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
+		global $_zp_current_category;
+		if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+			$category = $_zp_current_category;
+		} else {
+			$category = NULL;
+		}
+		$articles = $this->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky, $category);
 		if ($index >= 0 && $index < count($articles)) {
 			$article = $articles[$index];
 			$obj = new ZenpageNews($articles[$index]['titlelink']);

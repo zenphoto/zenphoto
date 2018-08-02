@@ -116,6 +116,11 @@ $_zp_conf_vars['special_pages'][] = array(
 		'define' => false,
 		'rewrite' => '^%NEWS%/([0-9]+)/?$',
 		'rule' => '%REWRITE% index.php?p=news&page=$1 [L,QSA]');
+// new rule for news filtered by category
+$_zp_conf_vars['special_pages'][] = array(
+		'define' => false,
+		'rewrite' => '^%NEWS%/(.+)/category/(.+)/*$',
+		'rule' => '%REWRITE% index.php?p=news&title=$1&category=$2 [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array(
 		'define' => false,
 		'rewrite' => '^%NEWS%/(.+)/?$',

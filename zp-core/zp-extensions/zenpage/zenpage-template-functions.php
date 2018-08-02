@@ -332,7 +332,7 @@ function getNewsURL($titlelink = NULL) {
 		$obj = new ZenpageNews($titlelink);
 	}
 	if (!is_null($obj))
-		return $obj->getLink();
+		return $obj->getLink(true);
 }
 
 /**
@@ -1088,12 +1088,12 @@ function getNextPrevNews($option = '') {
 		switch ($option) {
 			case "prev":
 				if ($article = $_zp_current_zenpage_news->getPrevArticle()) {
-					return array("link" => $article->getLink(), "title" => $article->getTitle());
+					return array("link" => $article->getLink(true), "title" => $article->getTitle());
 				}
 				break;
 			case "next":
 				if ($article = $_zp_current_zenpage_news->getNextArticle()) {
-					return array("link" => $article->getLink(), "title" => $article->getTitle());
+					return array("link" => $article->getLink(true), "title" => $article->getTitle());
 				}
 				break;
 		}

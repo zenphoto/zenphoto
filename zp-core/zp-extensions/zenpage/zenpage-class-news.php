@@ -19,7 +19,7 @@ class ZenpageNews extends ZenpageItems {
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
 	var $view_rights = ALL_NEWS_RIGHTS;
 	var $categories = NULL;
-	var $index = NULL;
+	protected $index = array();
 
 	function __construct($titlelink, $allowCreate = NULL) {
 		if (is_array($titlelink)) {
@@ -304,11 +304,19 @@ class ZenpageNews extends ZenpageItems {
 	/**
 	 * Returns the url to a news article
 	 *
-	 *
+	 * @param bool $category_context set true to get news url within category context
 	 * @return string
 	 */
-	function getLink() {
-		return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $this->getTitlelink() . '/', '/index.php?p=news&title=' . $this->getTitlelink()), $this, NULL);
+	function getLink($category_context = false) {
+		global $_zp_current_category;
+		$context_rewrite = $context_plain = '';
+
+		if ($category_context && in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+			$context = $_zp_current_category->getTitlelink();
+			$context_rewrite = '/category/' . $context;
+			$context_plain = '&category=' . $context;
+		}
+		return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $this->getTitlelink() . $context_rewrite, '/index.php?p=news&title=' . $this->getTitlelink() . $context_plain), $this, NULL);
 	}
 
 	/**
@@ -317,18 +325,26 @@ class ZenpageNews extends ZenpageItems {
 	 * @return int
 	 */
 	function getIndex() {
-		global $_zp_zenpage, $_zp_current_zenpage_news;
-		if ($this->index == NULL) {
-			$articles = $_zp_zenpage->getArticles(0, NULL, true);
+		global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_category;
+		if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+			$category = $_zp_current_category;
+			$category_index = $_zp_current_category->getID();
+		} else {
+			$category = NULL;
+			$category_index = 0;
+		}
+		if (!isset($this->index[$category_index])) {
+			$articles = $_zp_zenpage->getArticles(0, NULL, true, NULL, NULL, NULL, $category);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
 				if ($this->getTitlelink() == $article['titlelink']) {
-					$this->index = $i;
-					break;
+					$this->index[$category_index] = $i;
+					return $i;
 				}
 			}
+			$this->index[$category_index] = NULL;
 		}
-		return $this->index;
+		return $this->index[$category_index];
 	}
 
 	/**
