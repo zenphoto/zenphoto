@@ -6,10 +6,6 @@
 // force UTF-8 Ø
 
 require_once(dirname(__FILE__) . '/functions.php');
-if (!defined('SEO_FULLWEBPATH')) {
-	define('SEO_FULLWEBPATH', FULLWEBPATH);
-	define('SEO_WEBPATH', WEBPATH);
-}
 
 //******************************************************************************
 //*** Template Functions *******************************************************
