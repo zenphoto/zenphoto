@@ -9,7 +9,7 @@
  *
  */
 list($usec, $sec) = explode(" ", microtime());
-$start = (float) $usec + (float) $sec;
+$startPO = (float) $usec + (float) $sec;
 
 define('OFFSET_PATH', 2);
 define('SETUP_PLUGIN', TRUE);
@@ -53,7 +53,7 @@ if ($option_interface) {
 
 list($usec, $sec) = explode(" ", microtime());
 $last = (float) $usec + (float) $sec;
-setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $start), $fullLog);
+setupLog(sprintf(gettext('Plugin:%1$s setup completed in %2$.4f seconds'), $extension, $last - $startPO), $fullLog);
 
 sendImage($_GET['class'], 'plugin_' . $extension);
 exitZP();
