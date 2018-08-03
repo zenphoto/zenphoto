@@ -45,6 +45,7 @@ foreach (array(FEATURE_PLUGIN, ADMIN_PLUGIN) as $mask) {
 		}
 	}
 }
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/dynamic-locale.php'); //	just incase
 
 @ini_set('post_max_size', "10M");
 @ini_set('post_input_vars', "2500");
