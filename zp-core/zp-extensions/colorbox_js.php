@@ -30,7 +30,7 @@ $option_interface = 'colorbox';
 if (OFFSET_PATH) {
 	zp_register_filter('admin_head', 'colorbox::css');
 } else {
-	if (in_array(stripSuffix($_zp_gallery_page), getSerializedArray(getOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_scripts')))) {
+	if (in_array(stripSuffix(@$_zp_gallery_page), getSerializedArray(getOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_scripts')))) {
 		zp_register_filter('theme_head', 'colorbox::css');
 	}
 }
