@@ -508,7 +508,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 <body>
 	<div id="main">
 		<h1><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="<?php echo gettext('ZenPhotoGraphics Setup'); ?>" alt="<?php echo gettext('ZenPhotoGraphics Setup'); ?>" />
-			<span><?php echo $upgrade; ?></span>
+			<span class="install_type"><?php echo $upgrade; ?></span>
 		</h1>
 		<br />
 		<div id="content">

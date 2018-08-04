@@ -257,3 +257,11 @@ li {
 .zen-logo img {
 	vertical-align: sub;
 }
+
+.install_type {
+	display: inline-block;
+	font-variant: small-caps;
+	font-weight:lighter;
+	font-family: Garamond;
+	vertical-align:5%;
+}
