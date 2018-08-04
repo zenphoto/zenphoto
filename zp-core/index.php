@@ -82,7 +82,9 @@ if (isset($_GET['p'])) {
 $_zp_script_timer['controller'] = microtime();
 
 //	Load the THEME plugins
-if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
+if (preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
+	$custom = false;
+} else {
 	if (DEBUG_PLUGINS) {
 		debugLog('Loading the "theme" plugins.');
 	}
@@ -97,15 +99,12 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 			$_zp_loaded_plugins[$extension] = $extension;
 		}
 	}
-}
-$_zp_script_timer['theme plugins'] = microtime();
-
-$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
-$custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
-if (file_exists($custom)) {
-	require_once($custom);
-} else {
-	$custom = false;
+	$_zp_script_timer['theme plugins'] = microtime();
+	$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
+	$custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
+	if (file_exists($custom)) {
+		require_once($custom);
+	}
 }
 
 //	HTML caching?
