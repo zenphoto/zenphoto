@@ -234,7 +234,7 @@ class matomoStats {
 			setupCurrentLocale($locale_to_track);
 		}
 		echo js_encode(getHeadTitle());
-		if ($original_locale != NULL) {
+		if (isset($original_locale)) {
 			setOption('locale', $original_locale, false);
 			setupCurrentLocale($original_locale);
 		}
