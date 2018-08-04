@@ -185,7 +185,7 @@ function zpShutDownFunction() {
  */
 function filesystemToInternal($filename) {
 	global $_zp_UTF8;
-	if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
+	if ($_zp_UTF8 && FILESYSTEM_CHARSET != LOCAL_CHARSET) {
 		$filename = str_replace('\\', '/', $_zp_UTF8->convert($filename, FILESYSTEM_CHARSET, LOCAL_CHARSET));
 	}
 	return $filename;
