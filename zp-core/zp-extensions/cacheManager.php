@@ -132,7 +132,7 @@ class cacheManager {
 		$options = array(gettext('Image caching sizes') => array('key' => 'cropImage_list', 'type' => OPTION_TYPE_CUSTOM,
 						'order' => 1,
 						'desc' => '<p>' .
-						gettext('Cropped images will be made in these parameters if the <em>Create image</em> box is checked. Un-check to box to remove the settings.' .
+						gettext('Cropped images will be made in these parameters if the <em>Create image</em> box is checked. Un-check to box to remove the settings. ' .
 										'You can determine the values for these fields by examining your cached images. The file names will look something like these:') .
 						'<ul>' .
 						'<li>' . gettext('<code>photo_595.jpg</code>: sized to 595 pixels') . '</li>' .
