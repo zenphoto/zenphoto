@@ -18,8 +18,8 @@ $plugin_category = gettext('Misc');
 
 if (!isset($_COOKIE['cookieconsent_status'])) {
 	zp_register_filter('theme_head', 'cookieConsent::getCSS');
-	zp_register_filter('theme_head', 'cookieConsent::getJS');
-}	
+	zp_register_filter('theme_body_close', 'cookieConsent::getJS');
+}
 class cookieConsent {
 
 	function __construct() {
@@ -104,7 +104,7 @@ class cookieConsent {
 						'type' => OPTION_TYPE_COLOR_PICKER,
 						'order' => 11,
 						'desc' => gettext('Choose the color of the button.'))
-				
+
 		);
 		return $options;
 	}
