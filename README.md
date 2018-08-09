@@ -1,4 +1,4 @@
-##ZenPhoto20 (tm)
+#ZenPhoto20 (tm)
 
 # Releases
 
