@@ -12,7 +12,6 @@ list($usec, $sec) = explode(" ", microtime());
 $startPO = (float) $usec + (float) $sec;
 
 define('OFFSET_PATH', 2);
-define('SETUP_PLUGIN', TRUE);
 require_once('setup-functions.php');
 register_shutdown_function('shutDownFunction');
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
@@ -47,9 +46,8 @@ if (extensionEnabled($extension)) {
 	setupLog(sprintf(gettext('Plugin:%s enabled (%2$s)'), $extension, $priority), $fullLog);
 	enableExtension($extension, $plugin_is_filter);
 }
-
+require_once($path ); //	If it faults the shutdown functioin will disable it
 if ($str = isolate('$option_interface', $p)) {
-	require_once($path );
 	//	prime the default options
 	eval($str);
 	setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), $fullLog);
