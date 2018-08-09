@@ -182,7 +182,7 @@ class security_logger {
 		$f = fopen($file, 'a');
 		if ($f) {
 			if (!$preexists) { // add a header
-				@chmod($file, DATA_MOD);
+				@chmod($file, LOG_MOD);
 				$message = gettext('date' . "\t" . 'requestor’s IP' . "\t" . 'type' . "\t" . 'user ID' . "\t" . 'user name' . "\t" . 'outcome' . "\t" . 'authority' . "\tadditional information");
 				fwrite($f, $message . NEWLINE);
 			}

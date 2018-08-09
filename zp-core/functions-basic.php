@@ -10,8 +10,6 @@
  *
  */
 // force UTF-8 Ø
-global $_zp_conf_vars;
-$_zp_options = array();
 
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/initialize-basic.php');
@@ -491,6 +489,7 @@ function debugLog($message, $reset = false, $log = 'debug') {
 			$_zp_mutex->lock();
 		if ($reset || ($size = @filesize($path)) == 0 || (defined('DEBUG_LOG_SIZE') && DEBUG_LOG_SIZE && $size > DEBUG_LOG_SIZE)) {
 			if (!$reset && $size > 0) {
+				$perms = fileperms($path);
 				switchLog('debug');
 			}
 			$f = fopen($path, 'w');
@@ -505,6 +504,9 @@ function debugLog($message, $reset = false, $log = 'debug') {
 					$preamble = $_logCript->encrypt($message);
 				}
 				fwrite($f, $preamble . NEWLINE);
+				if (defined('LOG_MOD')) {
+					@chmod($path, LOG_MOD);
+				}
 			}
 		} else {
 			$f = fopen($path, 'a');
@@ -523,9 +525,6 @@ function debugLog($message, $reset = false, $log = 'debug') {
 			fwrite($f, "  " . $message . NEWLINE);
 			fclose($f);
 			clearstatcache();
-			if (defined('DATA_MOD')) {
-				@chmod($path, DATA_MOD);
-			}
 		}
 		if (is_object($_zp_mutex))
 			$_zp_mutex->unlock();

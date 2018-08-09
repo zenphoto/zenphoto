@@ -3,6 +3,7 @@
 /*
  * one time initialization code for basic execution
  */
+
 require_once(dirname(__FILE__) . '/lib-encryption.php');
 require_once(dirname(__FILE__) . '/lib-utf8.php');
 
@@ -45,13 +46,18 @@ $_zp_conf_options_associations = $_zp_options = array();
 $_zp_conf_vars = array('db_software' => 'NULL', 'mysql_prefix' => '_', 'charset' => 'UTF-8', 'UTF-8' => 'utf8');
 // Including the config file more than once is OK, and avoids $conf missing.
 if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+	define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
 	@eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
 	if (!isset($_zp_conf_vars['UTF-8']) || $_zp_conf_vars['UTF-8'] === true) {
 		$_zp_conf_vars['UTF-8'] = 'utf8';
 	}
-	define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
 } else {
 	define('DATA_MOD', 0777);
+}
+if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/security.log')) {
+	define('LOG_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . '/security.log') & 0777);
+} else {
+	define('LOG_MOD', DATA_MOD);
 }
 define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
 define('LOCAL_CHARSET', $_zp_conf_vars['charset']);

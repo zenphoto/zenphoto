@@ -1,7 +1,11 @@
 <?php
 
+global $_zp_conf_vars;
+$_zp_options = array();
+
 if (!isset($_SERVER['HTTP_HOST']))
 	die();
+
 if (!function_exists("gettext")) {
 	require_once(dirname(__FILE__) . '/php-gettext/gettext.inc');
 }
