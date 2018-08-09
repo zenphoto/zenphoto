@@ -393,7 +393,7 @@ function setupLog($message, $anyway = false, $reset = false) {
 			}
 			fwrite($f, $message . NEWLINE);
 			fclose($f);
-			chmod(SETUPLOG, DATA_MOD);
+			chmod(SETUPLOG, LOG_MOD);
 			clearstatcache();
 		}
 		if (is_object($_zp_mutex))

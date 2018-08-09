@@ -21,13 +21,16 @@ $fullLog = isset($_GET['fullLog']);
 
 $extension = sanitize($_REQUEST['plugin']);
 setupLog(sprintf(gettext('Plugin:%s setup started'), $extension), $fullLog);
-$option_interface = NULL;
-$plugin_is_filter = 5 | THEME_PLUGIN;
 
-require_once($path = getPlugin($extension . '.php'));
-
+$path = getPlugin($extension . '.php');
+$p = file_get_contents($path);
 if (extensionEnabled($extension)) {
 	//	update the enabled priority
+	if ($str = isolate('$plugin_is_filter', $p)) {
+		eval($str);
+	} else {
+		$plugin_is_filter = 5 | THEME_PLUGIN;
+	}
 	$priority = $plugin_is_filter & PLUGIN_PRIORITY;
 	if ($plugin_is_filter & CLASS_PLUGIN) {
 		$priority .= ' | CLASS_PLUGIN';
@@ -45,8 +48,10 @@ if (extensionEnabled($extension)) {
 	enableExtension($extension, $plugin_is_filter);
 }
 
-if ($option_interface) {
+if ($str = isolate('$option_interface', $p)) {
+	require_once($path );
 	//	prime the default options
+	eval($str);
 	setupLog(sprintf(gettext('Plugin:%1$s option interface instantiated (%2$s)'), $extension, $option_interface), $fullLog);
 	$option_interface = new $option_interface;
 }
