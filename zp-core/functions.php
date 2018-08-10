@@ -2985,7 +2985,7 @@ function printDataUsageNotice() {
 	$data = getDataUsageNotice();
 	echo $data['notice'];
 	if(!empty($data['url'])) {
-		printLinkHTML($data['url'], $data['linktext'], $data['linktext'], null, null);
+		printLinkHTML($data['url'], ' ' . $data['linktext'], $data['linktext'], null, null);
 	}
 }
 
