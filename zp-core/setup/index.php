@@ -1736,20 +1736,23 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$updateErrors = false;
 							if (isset($_GET['create']) || isset($_REQUEST['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars, false)) {
 								if (!isset($_GET['protect_files'])) {
-
-									echo "<h3>" . gettext("About to update tables") . "....</h3>";
+									primeMark(gettext('Database update'));
 									setupLog(gettext("Begin database creation and update"), true);
-
 									require_once(SERVERPATH . '/' . ZENFOLDER . '/setup/database.php');
-									echo "<h3>";
 									if ($updateErrors) {
 										$autorun = false;
-										echo gettext('Table update completed with errors. See the <code>setup</code> log for details.');
+										$msg = gettext('Database structure update completed with errors. See the <code>setup</code> log for details.');
+									} else if ($_DB_Structure_change) {
+										$msg = gettext('Database structure updated.');
 									} else {
-										echo gettext('Table update complete.');
+										$msg = gettext('Database update is not required.');
 									}
-									echo "</h3>";
-
+									?>
+									<script type="text/javascript">
+										$("#prime<?php echo $primeid; ?>").remove();
+									</script>
+									<h3><?php echo $msg; ?></h3>
+									<?php
 									checkUnique($tbl_administrators, array('valid' => 0, 'user' => 0));
 									checkUnique($tbl_albums, array('folder' => 0));
 									checkUnique($tbl_images, array('albumid' => 0, 'filename' => 0));
