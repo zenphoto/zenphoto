@@ -1656,7 +1656,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							<br class="clearall">
 								<?php
 								echo "\n</div><!-- content -->";
-								printSetupFooter();
+								printSetupFooter($setup_checked);
 								echo "\n</div><!-- main -->";
 								echo "</body>";
 								echo "</html>";
@@ -1958,7 +1958,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						<br class="clearall">
 							</div><!-- content -->
 							<?php
-							printSetupFooter();
+							printSetupFooter($setup_checked);
 							?>
 							</div><!-- main -->
 							</body>

@@ -449,12 +449,18 @@ function configMod() {
 	}
 }
 
-function printSetupFooter() {
+function printSetupFooter($checked) {
 	?>
 	<div id="setup-footer">
-		<span id="footer_left">
-			<?php printLanguageSelector(true); ?>
-		</span>
+		<?php
+		if (!$checked) {
+			?>
+			<span id="footer_left">
+				<?php printLanguageSelector(true); ?>
+			</span>
+			<?php
+		}
+		?>
 		<span id="footer_right">
 			<?php echo '<span class="zenlogo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '">' . swLogo() . '</a></span> ' . sprintf(gettext('version %1$s'), ZENPHOTO_VERSION); ?>
 			| <a href="https://<?php echo GITHUB; ?>/issues" title="<?php echo gettext('Support'); ?>"><?php echo gettext('Support'); ?></a>
