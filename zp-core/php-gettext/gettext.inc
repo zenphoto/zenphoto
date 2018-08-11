@@ -519,9 +519,10 @@ if (!function_exists('gettext')) {
 	}
 
 	function gettext($msgid) {
-		if (TEST_RELEASE && !defined('ZENPHOTO_LOCALE')) {
+		global $default_domain;
+		if (TEST_RELEASE && is_null($default_domain)) { //	called before locale is set
 			$bt = debug_backtrace();
-			if (!in_array($bt[1]['function'], array('getRights', 'getLanguageArray'))) {
+			if (!in_array($bt[1]['function'], array('getRights', 'getLanguageArray', 'debugLogBacktrace', 'zpErrorHandler'))) {
 				echo '<br /><br /><br />';
 				var_dump($bt);
 			}
