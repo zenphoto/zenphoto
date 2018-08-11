@@ -309,6 +309,7 @@ function printLinkWithQuery($url, $query, $text) {
 
 function printLogo() {
 	global $_zp_themeroot;
+	$name = get_language_string(getOption('Theme_logo'));
 	if ($img = getOption('Graphic_logo')) {
 		$fullimg = '/' . UPLOAD_FOLDER . '/images/' . $img . '.png';
 		if (file_exists(SERVERPATH . $fullimg)) {
@@ -317,11 +318,12 @@ function printLogo() {
 			echo '<img src="' . $_zp_themeroot . '/images/effervescence.png" alt="Logo"/>';
 		}
 	} else {
-		$name = get_language_string(getOption('Theme_logo'));
 		if (empty($name)) {
 			$name = sanitize($_SERVER['HTTP_HOST']);
 		}
-		echo "<h1><a>$name</a></h1>";
+	}
+	if (!empty($name)) {
+		echo "<h1>$name</h1>";
 	}
 }
 
