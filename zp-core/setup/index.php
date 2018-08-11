@@ -669,7 +669,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						}
 						checkmark($display, gettext('PHP <code>display_errors</code>'), sprintf(gettext('PHP <code>display_errors</code> [is enabled]'), $display), gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sensitive information about your site.') . $aux, $display && !$testRelease);
 
-						checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization requires native PHP <code>gettext()</code> support"));
+						checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("PHP <code>gettext()</code> support is not enabled, the drop in replacement is being used."));
 						checkmark(function_exists('flock') ? 1 : -1, gettext('PHP <code>flock</code> support'), gettext('PHP <code>flock</code> support [is not present]'), gettext('<code>flock</code> is used for serializing critical regions of code. Without <code>flock</code> active sites may experience <em>race conditions</em> which may be causing inconsistent data.'));
 						if ($_zp_setupCurrentLocale_result === false) {
 							checkMark(-1, gettext('PHP <code>setlocale()</code>'), ' ' . gettext('PHP <code>setlocale()</code> failed'), gettext("Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work.") . '<br />');
@@ -1653,20 +1653,11 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 								$_zp_authority->printLoginForm('', false);
 							}
 							?>
-							<div class="sflags">
-								<div>
-									<?php
-									printLanguageSelector(true);
-									?>
-								</div>
-							</div>
-							<?php
-							?>
 							<br class="clearall">
 								<?php
 								echo "\n</div><!-- content -->";
-								echo "\n</div><!-- main -->";
 								printSetupFooter();
+								echo "\n</div><!-- main -->";
 								echo "</body>";
 								echo "</html>";
 								exit();
@@ -1964,25 +1955,12 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							ob_end_clean();
 						}
 						?>
-						<?php
-						if (!isset($_GET['checked'])) {
-							?>
-							<div class="sflags">
-								<div>
-									<?php
-									printLanguageSelector(true);
-									?>
-								</div>
-							</div>
-							<?php
-						}
-						?>
 						<br class="clearall">
 							</div><!-- content -->
-							</div><!-- main -->
 							<?php
 							printSetupFooter();
 							?>
+							</div><!-- main -->
 							</body>
 							</html>
 							<?php

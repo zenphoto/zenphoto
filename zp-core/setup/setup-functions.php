@@ -450,9 +450,17 @@ function configMod() {
 }
 
 function printSetupFooter() {
-	echo "<div id=\"footer\">";
-	echo'<span class="zen-logo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '">' . swLogo() . '</a></span> ';
-	echo ' | <a href="https://' . GITHUB . '/issues" title="Support">' . gettext('Support') . '</a> | <a href="https://' . GITHUB . '/commits/master" title="' . gettext('View Change log') . '">' . gettext('Change log') . "</a>\n</div>";
+	?>
+	<div id="setup-footer">
+		<span id="footer_left">
+			<?php printLanguageSelector(true); ?>
+		</span>
+		<span id="footer_right">
+			<?php echo '<span class="zenlogo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '">' . swLogo() . '</a></span> ' . sprintf(gettext('version %1$s'), ZENPHOTO_VERSION); ?>
+			| <a href="https://<?php echo GITHUB; ?>/issues" title="<?php echo gettext('Support'); ?>"><?php echo gettext('Support'); ?></a>
+		</span>
+	</div>
+	<?php
 }
 
 function setupUserAuthorized() {

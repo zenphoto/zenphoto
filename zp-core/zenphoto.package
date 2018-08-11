@@ -1512,7 +1512,6 @@ zp-core/locale/zh_TW/LC_MESSAGES
 zp-core/locale/zh_TW/LC_MESSAGES/zenphoto.mo
 zp-core/locale/zh_TW/LC_MESSAGES/zenphoto.po
 zp-core/php-gettext
-zp-core/php-gettext/COPYING
 zp-core/php-gettext/gettext.inc
 zp-core/php-gettext/gettext.php
 zp-core/php-gettext/streams.php
@@ -8355,4 +8354,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8357
+8356

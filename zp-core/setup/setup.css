@@ -265,3 +265,14 @@ li {
 	font-family: Garamond;
 	vertical-align:5%;
 }
+
+#setup-footer {
+	clear: both;
+	color: #597580;
+	margin-top: 8px;
+	margin-right: 30px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
