@@ -32,7 +32,7 @@ function getIPSizedImage($size, $image) {
 	</head>
 
 	<body>
-		<h2><?php echo gettext('ZenPhotoGraphics object insertion'); ?></h2>
+		<h2><?php echo gettext('netPhotoGraphics object insertion'); ?></h2>
 		<?php
 		if (isset($_SESSION['pick'])) {
 			$args = $_SESSION['pick'];

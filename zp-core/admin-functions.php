@@ -45,7 +45,7 @@ function printAdminFooter($addl = '') {
 				echo ' | ' . $addl;
 			}
 			?>
-			| <a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/license.php' ?>" title="<?php echo gettext('ZenPhotoGraphics license'); ?>"><?php echo gettext('License'); ?></a>
+			| <a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/license.php' ?>" title="<?php echo gettext('netPhotoGraphics license'); ?>"><?php echo gettext('License'); ?></a>
 			| <a href="https://<?php echo GITHUB; ?>/issues" title="<?php echo gettext('Support'); ?>"><?php echo gettext('Support'); ?></a>
 			| <a href="https://<?php echo GITHUB; ?>/commits/master" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
 			| <?php printf(gettext('Server date: %s'), date('Y-m-d H:i:s')); ?>
@@ -296,7 +296,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<span id="administration">
 				<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png"
 						 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($tabtext), html_encode($subtabtext)); ?>"
-						 alt="<?php echo gettext('ZenPhotoGraphics Administration'); ?>" />
+						 alt="<?php echo gettext('netPhotoGraphics Administration'); ?>" />
 			</span>
 			<span id="links">
 				<?php
@@ -5218,7 +5218,7 @@ function getPluginTabs() {
 			'seo' => gettext('seo'),
 			'theme' => gettext('theme support'),
 			'users' => gettext('users'),
-			'zenphotoGraphics' => gettext('ZenPhotoGraphics'),
+			'netPhotoGraphics' => gettext('netPhotoGraphics'),
 			'misc' => gettext('misc')
 	);
 	$classXlate = array(

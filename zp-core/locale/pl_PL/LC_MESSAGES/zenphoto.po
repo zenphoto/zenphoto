@@ -2532,10 +2532,10 @@ msgstr "Kredyty"
 #: themes/paradigm/credits.php:34
 #, fuzzy
 msgid ""
-"This website is based on ZenPhotoGraphics the <a href=\"http://zenphoto20.us/"
+"This website is based on netPhotoGraphics the <a href=\"http://zenphoto20.us/"
 "\" target=\"_blank\">simple media website CMS</a>"
 msgstr ""
-"Niniejsza strona opiera się na ZenPhotoGraphics the <a href=\"http://"
+"Niniejsza strona opiera się na netPhotoGraphics the <a href=\"http://"
 "zenphoto20.us/\" target=\"_blank\">simple media website CMS</a>."
 
 #: themes/paradigm/credits.php:35
@@ -6357,8 +6357,8 @@ msgstr "wersja %1$s"
 
 #: zp-core/admin-functions.php:48
 #, fuzzy
-msgid "ZenPhotoGraphics licence"
-msgstr "Licencja ZenPhotoGraphics"
+msgid "netPhotoGraphics licence"
+msgstr "Licencja netPhotoGraphics"
 
 #: zp-core/admin-functions.php:48
 #, fuzzy
@@ -6395,7 +6395,7 @@ msgstr "%1$s administracja:%2$s%3$s"
 
 #: zp-core/admin-functions.php:299
 #, fuzzy
-msgid "ZenPhotoGraphics Administration"
+msgid "netPhotoGraphics Administration"
 msgstr "Administracja zenPhotoGrafiką"
 
 #: zp-core/admin-functions.php:309
@@ -7081,7 +7081,7 @@ msgstr "użytkownicy"
 
 #: zp-core/admin-functions.php:5221
 #, fuzzy
-msgid "ZenPhotoGraphics"
+msgid "netPhotoGraphics"
 msgstr "ZenPhotoGrafika"
 
 #: zp-core/admin-functions.php:5222
@@ -8481,8 +8481,8 @@ msgstr "Najnowszą wersję %s można pobrać za pomocą przycisku narzędzia."
 
 #: zp-core/admin.php:281
 #, fuzzy, php-format
-msgid "Download ZenPhotoGraphics version %s."
-msgstr "Pobierz wersję ZenPhotoGraphics %s."
+msgid "Download netPhotoGraphics version %s."
+msgstr "Pobierz wersję netPhotoGraphics %s."
 
 #: zp-core/admin.php:330
 #, fuzzy
@@ -8538,8 +8538,8 @@ msgstr "informacje o wersji"
 #: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
-msgid "ZenPhotoGraphics version <strong>%1$s (%2$s)</strong>"
-msgstr "Wersja ZenPhotoGraphics <silna>%1$s (%2$s) </silna>"
+msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
+msgstr "Wersja netPhotoGraphics <silna>%1$s (%2$s) </silna>"
 
 #: zp-core/admin.php:407
 msgid "Utility functions"
@@ -12597,10 +12597,10 @@ msgstr ""
 #: zp-core/functions-db-MySQL.php:35
 #, fuzzy, php-format
 msgid ""
-"MySQL Error: ZenPhotoGraphics received the error %s when connecting to the "
+"MySQL Error: netPhotoGraphics received the error %s when connecting to the "
 "database server."
 msgstr ""
-"Błąd MySQL: ZenPhotoGraphics otrzymywał procenty błędów podczas łączenia się "
+"Błąd MySQL: netPhotoGraphics otrzymywał procenty błędów podczas łączenia się "
 "z serwerem bazy danych."
 
 #: zp-core/functions-db-MySQL.php:42
@@ -12609,10 +12609,10 @@ msgstr ""
 #| "MySQL Error: MySQL returned the error %1$s when ZenPhoto20 tried to "
 #| "select the database %2$s."
 msgid ""
-"MySQL Error: MySQL returned the error %1$s when ZenPhotoGraphics tried to "
+"MySQL Error: MySQL returned the error %1$s when netPhotoGraphics tried to "
 "select the database %2$s."
 msgstr ""
-"Błąd MySQL: MySQL zwrócił błąd %1$s gdy ZenPhotoGraphics próbował wybrać "
+"Błąd MySQL: MySQL zwrócił błąd %1$s gdy netPhotoGraphics próbował wybrać "
 "bazę danych %2$s."
 
 #: zp-core/functions-db-MySQL.php:172 zp-core/functions-db-MySQLi.php:186
@@ -12623,8 +12623,8 @@ msgstr "% niezwiązanych ze sobą"
 
 #: zp-core/functions-db-MySQLi.php:35
 #, fuzzy
-msgid "MySQLi Error: ZenPhotoGraphics could not instantiate a connection."
-msgstr "Błąd MySQLi: ZenPhotoGraphics nie mógł nawiązać połączenia."
+msgid "MySQLi Error: netPhotoGraphics could not instantiate a connection."
+msgstr "Błąd MySQLi: netPhotoGraphics nie mógł nawiązać połączenia."
 
 #: zp-core/functions-db-MySQLi.php:42
 #, fuzzy, php-format
@@ -12632,10 +12632,10 @@ msgstr "Błąd MySQLi: ZenPhotoGraphics nie mógł nawiązać połączenia."
 #| "MySQLi Error: MySQLi returned the error %1$s when ZenPhoto20 tried to "
 #| "select the database %2$s."
 msgid ""
-"MySQLi Error: MySQLi returned the error %1$s when ZenPhotoGraphics tried to "
+"MySQLi Error: MySQLi returned the error %1$s when netPhotoGraphics tried to "
 "select the database %2$s."
 msgstr ""
-"Błąd MySQLi: MySQLi zwrócił błąd %1$s gdy ZenPhotoGraphics próbował wybrać "
+"Błąd MySQLi: MySQLi zwrócił błąd %1$s gdy netPhotoGraphics próbował wybrać "
 "bazę danych %2$s."
 
 #: zp-core/functions-db-NULL.php:95
@@ -12646,10 +12646,10 @@ msgstr "Nie są włączone żadne obsługiwane rozszerzenia bazy danych PHP."
 #: zp-core/functions-db-PDO_MySQL.php:40
 #, fuzzy, php-format
 msgid ""
-"MySql Error: ZenPhotoGraphics received the error %s when connecting to the "
+"MySql Error: netPhotoGraphics received the error %s when connecting to the "
 "database server."
 msgstr ""
-"Błąd MySqla: ZenPhotoGraphics otrzymywał procenty błędów podczas łączenia "
+"Błąd MySqla: netPhotoGraphics otrzymywał procenty błędów podczas łączenia "
 "się z serwerem bazy danych."
 
 #: zp-core/functions-i18n.php:14
@@ -14417,8 +14417,8 @@ msgstr "Tajski (Windows)"
 
 #: zp-core/license.php:37
 #, fuzzy
-msgid "ZenPhotoGraphics License agreement"
-msgstr "Umowa licencyjna ZenPhotoGraphics"
+msgid "netPhotoGraphics License agreement"
+msgstr "Umowa licencyjna netPhotoGraphics"
 
 #: zp-core/license.php:40
 #, fuzzy, php-format
@@ -14433,9 +14433,9 @@ msgstr ""
 
 #: zp-core/license.php:47
 #, fuzzy
-msgid "You must accept this license to continue to use ZenPhotoGraphics."
+msgid "You must accept this license to continue to use netPhotoGraphics."
 msgstr ""
-"Aby nadal korzystać z ZenPhotoGraphics, musisz zaakceptować tę licencję."
+"Aby nadal korzystać z netPhotoGraphics, musisz zaakceptować tę licencję."
 
 #: zp-core/license.php:47
 #, fuzzy
@@ -14613,24 +14613,24 @@ msgstr ""
 #, fuzzy, php-format
 msgid ""
 "Setup found the field \"%1$s\" in the \"%2$s\" table. This field is not in "
-"use by ZenPhotoGraphics."
+"use by netPhotoGraphics."
 msgstr ""
 "Konfiguracja znalazła pole \"%1$s\" w tabeli \"%2$s\". To pole nie jest "
-"używane przez ZenPhotoGraphics."
+"używane przez netPhotoGraphics."
 
 #: zp-core/setup/database.php:339
 #, fuzzy, php-format
 msgid ""
 "Setup found the key \"%1$s\" in the \"%2$s\" table. This index is not in use "
-"by ZenPhotoGraphics."
+"by netPhotoGraphics."
 msgstr ""
 "Setup znalazł klucz \"%1$s\" w tabeli \"%2$s\". Indeks ten nie jest używany "
-"przez ZenPhotoGraphics."
+"przez netPhotoGraphics."
 
 #: zp-core/setup/index.php:24
 #, fuzzy, php-format
-msgid "ZenPhotoGraphics requires PHP version %s or greater"
-msgstr "ZenPhotoGraphics wymaga wersji PHP %s lub więcej"
+msgid "netPhotoGraphics requires PHP version %s or greater"
+msgstr "netPhotoGraphics wymaga wersji PHP %s lub więcej"
 
 #: zp-core/setup/index.php:177
 #, fuzzy
@@ -14698,8 +14698,8 @@ msgstr "Rozpoczęte "
 
 #: zp-core/setup/index.php:460
 #, fuzzy, php-format
-msgid "ZenPhotoGraphics Setup v%1$s%2$s: %3$s"
-msgstr "Konfiguracja ZenPhotoGraphics v%1$s%2$s: %3$s"
+msgid "netPhotoGraphics Setup v%1$s%2$s: %3$s"
+msgstr "Konfiguracja netPhotoGraphics v%1$s%2$s: %3$s"
 
 #: zp-core/setup/index.php:464
 msgid "Full environment"
@@ -14724,16 +14724,16 @@ msgstr "zaktualizuj"
 
 #: zp-core/setup/index.php:510
 #, fuzzy
-msgid "ZenPhotoGraphics Setup"
-msgstr "Konfiguracja ZenPhotoGraphics"
+msgid "netPhotoGraphics Setup"
+msgstr "Konfiguracja netPhotoGraphics"
 
 #: zp-core/setup/index.php:527
 #, fuzzy, php-format
 msgid ""
-"Welcome to ZenPhotoGraphics! This page will set up version %1$s on your web "
+"Welcome to netPhotoGraphics! This page will set up version %1$s on your web "
 "server."
 msgstr ""
-"Witamy w ZenPhotoGraphics! Na tej stronie zostanie skonfigurowana wersja "
+"Witamy w netPhotoGraphics! Na tej stronie zostanie skonfigurowana wersja "
 "%1$s na serwerze WWW."
 
 #: zp-core/setup/index.php:529
@@ -14751,8 +14751,8 @@ msgstr ""
 
 #: zp-core/setup/index.php:556
 #, fuzzy, php-format
-msgid "Installing ZenPhotoGraphics v%s"
-msgstr "Instalacja ZenPhotoGraphics v%s"
+msgid "Installing netPhotoGraphics v%s"
+msgstr "Instalacja netPhotoGraphics v%s"
 
 #: zp-core/setup/index.php:571
 #, fuzzy, php-format
@@ -14872,10 +14872,10 @@ msgstr "<code>Tryb bezpieczny</code> PHP [włączony]"
 #| "ZenPhoto20 functionality is reduced when PHP <code>safe mode</code> "
 #| "restrictions are in effect."
 msgid ""
-"ZenPhotoGraphics functionality is reduced when PHP <code>safe mode</code> "
+"netPhotoGraphics functionality is reduced when PHP <code>safe mode</code> "
 "restrictions are in effect."
 msgstr ""
-"Funkcjonalność ZenPhotoGraphics jest ograniczona w przypadku ograniczeń PHP "
+"Funkcjonalność netPhotoGraphics jest ograniczona w przypadku ograniczeń PHP "
 "<kod>tryb bezpieczny<kod>kod>."
 
 #: zp-core/setup/index.php:628
@@ -15614,13 +15614,13 @@ msgstr ""
 
 #: zp-core/setup/index.php:1189
 #, fuzzy
-msgid "ZenPhotoGraphics files"
-msgstr "Pliki ZenPhotoGraphics"
+msgid "netPhotoGraphics files"
+msgstr "Pliki netPhotoGraphics"
 
 #: zp-core/setup/index.php:1219
 #, fuzzy
-msgid "ZenPhotoGraphics package [missing]"
-msgstr "Pakiet ZenPhotoGraphics [brak]."
+msgid "netPhotoGraphics package [missing]"
+msgstr "Pakiet netPhotoGraphics [brak]."
 
 #: zp-core/setup/index.php:1219
 #, fuzzy
@@ -15633,8 +15633,8 @@ msgstr ""
 
 #: zp-core/setup/index.php:1225
 #, fuzzy, php-format
-msgid "Setting permissions (0%o) for ZenPhotoGraphics package."
-msgstr "Ustawianie uprawnień (0%o) dla pakietu ZenPhotoGraphics."
+msgid "Setting permissions (0%o) for netPhotoGraphics package."
+msgstr "Ustawianie uprawnień (0%o) dla pakietu netPhotoGraphics."
 
 #: zp-core/setup/index.php:1339
 #, fuzzy
@@ -15835,12 +15835,12 @@ msgstr ""
 #, fuzzy, php-format
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as "
-"the one distributed with this version of ZenPhotoGraphics. If you have made "
+"the one distributed with this version of netPhotoGraphics. If you have made "
 "changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</"
 "em> file to produce a new <em>.htaccess</em> file."
 msgstr ""
 "Plik <em>.htaccess</em> w folderze głównym nie jest taką samą wersją jak ta "
-"dystrybuowana z tą wersją ZenPhotoGraphics. Jeśli wprowadziłeś zmiany w "
+"dystrybuowana z tą wersją netPhotoGraphics. Jeśli wprowadziłeś zmiany w "
 "pliku <em>.htaccess</em>, połącz te zmiany z plikiem <em>%s/htaccess</em>, "
 "aby utworzyć nowy plik <em>.htaccess</em>."
 
@@ -15987,10 +15987,10 @@ msgstr "Foldery <em>tłumaczeń</em> [Są niekompletne]"
 #: zp-core/setup/index.php:1613
 #, fuzzy
 msgid ""
-"Be sure you have uploaded the complete ZenPhotoGraphics package. You must "
+"Be sure you have uploaded the complete netPhotoGraphics package. You must "
 "have at least the <em>en_US</em> folder."
 msgstr ""
-"Upewnij się, że przesłałeś kompletny pakiet ZenPhotoGraphics. Musisz mieć co "
+"Upewnij się, że przesłałeś kompletny pakiet netPhotoGraphics. Musisz mieć co "
 "najmniej folder <em>en_US</em>."
 
 #: zp-core/setup/index.php:1614
@@ -16282,14 +16282,14 @@ msgid ""
 "<strong>Warning:</strong> the <code>%s</code> table appears not to have a "
 "proper <em>UNIQUE</em> key. There are probably duplicate entries in the "
 "table which can cause unpredictable behavior. This can normally be corrected "
-"by creating a ZenPhotoGraphics backup, dropping the table, running setup to "
+"by creating a netPhotoGraphics backup, dropping the table, running setup to "
 "restore the table, and then restoring from the backup. Note, however, that "
 "the duplicate entries will be lost."
 msgstr ""
 "Ostrzeżenie:</strona> tabela <kod>%s</kod> wydaje się nie mieć właściwego "
 "klucza <em>UNIQUE</em>. Prawdopodobnie w tabeli występują podwójne wpisy, "
 "które mogą spowodować nieprzewidywalne zachowanie. Zazwyczaj można to "
-"skorygować, tworząc kopię zapasową ZenPhotoGraphics, upuszczając tabelę, "
+"skorygować, tworząc kopię zapasową netPhotoGraphics, upuszczając tabelę, "
 "uruchamiając konfigurację przywracania tabeli, a następnie przywracając z "
 "kopii zapasowej. Należy jednak pamiętać, że duplikaty wpisów zostaną "
 "utracone."
@@ -17541,10 +17541,10 @@ msgstr "Przesunięcie identyfikatora dla użytkowników LDAP."
 #, fuzzy
 msgid ""
 "This number is added to the LDAP <em>userid</em> to insure that there is no "
-"overlap to ZenPhotoGraphics <em>userids</em>."
+"overlap to netPhotoGraphics <em>userids</em>."
 msgstr ""
 "Liczba ta jest dodawana do LDAP <em>userid</em>, aby upewnić się, że nie "
-"pokrywa się z ZenPhotoGraphics <em>userids</em>."
+"pokrywa się z netPhotoGraphics <em>userids</em>."
 
 #: zp-core/zp-extensions/LDAP_auth.php:60
 #, fuzzy
@@ -17575,8 +17575,8 @@ msgstr "Mapa Grupy LDAP"
 
 #: zp-core/zp-extensions/LDAP_auth.php:70
 #, fuzzy
-msgid "Mapping of LDAP groups to ZenPhotoGraphics groups"
-msgstr "Mapowanie grup LDAP do grup ZenPhotoGraphics"
+msgid "Mapping of LDAP groups to netPhotoGraphics groups"
+msgstr "Mapowanie grup LDAP do grup netPhotoGraphics"
 
 #: zp-core/zp-extensions/LDAP_auth.php:70
 #, fuzzy
@@ -17596,8 +17596,8 @@ msgstr "Nie definiuje się żadnych grup ani szablonów."
 
 #: zp-core/zp-extensions/LDAP_auth.php:91
 #, fuzzy
-msgid "ZenPhotoGraphics group"
-msgstr "Grupa graficzna ZenPhotoGraphics"
+msgid "netPhotoGraphics group"
+msgstr "Grupa graficzna netPhotoGraphics"
 
 #: zp-core/zp-extensions/LDAP_auth.php:92
 #, fuzzy
@@ -19743,8 +19743,8 @@ msgstr "Błąd konfiguracji,%1$s grupa logowania %2$s nie istnieje."
 #: zp-core/zp-extensions/common/oAuth/oAuthLogin.php:140
 #: zp-core/zp-extensions/register_user.php:338
 #, fuzzy
-msgid "ZenPhotoGraphics Gallery registration"
-msgstr "ZenPhotoGraphics Rejestracja w galerii"
+msgid "netPhotoGraphics Gallery registration"
+msgstr "netPhotoGraphics Rejestracja w galerii"
 
 #: zp-core/zp-extensions/common/oAuth/oAuthLogin.php:140
 #: zp-core/zp-extensions/register_user.php:338
@@ -20674,8 +20674,8 @@ msgstr "Wtyczki użytkownika"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:60
 #, fuzzy
-msgid "In ZenPhotoGraphics code"
-msgstr "W kodzie ZenPhotoGraphics"
+msgid "In netPhotoGraphics code"
+msgstr "W kodzie netPhotoGraphics"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:66
 #, fuzzy
@@ -22466,11 +22466,11 @@ msgstr "Zaufanie"
 #, fuzzy
 msgid ""
 "Set to <em>trusted</em> to presume the HTTP user is securely authorized. "
-"(This setting does not verify passwords against the ZenPhotoGraphics user.)"
+"(This setting does not verify passwords against the netPhotoGraphics user.)"
 msgstr ""
 "Ustaw wartość <em>trusted</em>, aby domniemywać, że użytkownik HTTP jest "
 "autoryzowany w bezpieczny sposób. (To ustawienie nie weryfikuje haseł "
-"względem użytkownika ZenPhotoGraphics)."
+"względem użytkownika netPhotoGraphics)."
 
 #: zp-core/zp-extensions/image_album_statistics.php:15
 msgid ""
@@ -22703,11 +22703,11 @@ msgstr "Import listy"
 #, fuzzy, php-format
 msgid ""
 "Import an external IP list. <p class=\"notebox\"><strong>NOTE:</strong> If "
-"this list is large it may exceed the capacity of ZenPhotoGraphics and %s to "
+"this list is large it may exceed the capacity of netPhotoGraphics and %s to "
 "process and store the results."
 msgstr ""
 "Importuj listę zewnętrznych adresów IP. Klasa p=\"notebox\">>strona>NOTE:</"
-"strona> Jeśli ta lista jest duża, może przekraczać zdolność ZenPhotoGraphics "
+"strona> Jeśli ta lista jest duża, może przekraczać zdolność netPhotoGraphics "
 "i %s do przetwarzania i zapisywania wyników."
 
 #: zp-core/zp-extensions/ipBlocker.php:102
@@ -26939,7 +26939,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:88
 #, fuzzy
-msgid "ZenPhotoGraphics items"
+msgid "netPhotoGraphics items"
 msgstr "Elementy zenPhotoGrafiki"
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:90
@@ -27820,8 +27820,8 @@ msgstr ""
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:35
 #, fuzzy
-msgid "ZenPhotoGraphics object insertion"
-msgstr "Wstawianie obiektów ZenPhotoGraphics"
+msgid "netPhotoGraphics object insertion"
+msgstr "Wstawianie obiektów netPhotoGraphics"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:47
 #, fuzzy, php-format
@@ -30334,8 +30334,8 @@ msgstr ""
 
 #: zp-core/zp-extensions/zpCaptcha.php:16
 #, fuzzy
-msgid "ZenPhotoGraphics captcha handler."
-msgstr "Przewodnik ZenPhotoGraphics captcha."
+msgid "netPhotoGraphics captcha handler."
+msgstr "Przewodnik netPhotoGraphics captcha."
 
 #: zp-core/zp-extensions/zpCaptcha.php:50
 msgid "Hash key"

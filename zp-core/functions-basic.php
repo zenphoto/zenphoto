@@ -499,7 +499,7 @@ function debugLog($message, $reset = false, $log = 'debug') {
 				} else {
 					$clone = ' ' . gettext('clone');
 				}
-				$preamble = '<span class="lognotice">{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhotoGraphics v" . ZENPHOTO_VERSION . $clone . '</span>';
+				$preamble = '<span class="lognotice">{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} netPhotoGraphics v" . ZENPHOTO_VERSION . $clone . '</span>';
 				if ($_logCript) {
 					$preamble = $_logCript->encrypt($message);
 				}

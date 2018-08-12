@@ -5,7 +5,7 @@ $conf = array();
 /** Do not edit above this line. **/
 /**********************************/
 
-/*//////////   ZenPhotoGraphics Configuration Variables   ///////////////////////////////
+/*//////////   netPhotoGraphics Configuration Variables   ///////////////////////////////
 
 For most installations Setup will copy this source and make the necessary changes to it.
 Unless this fails you most likely have no need even to read this file.

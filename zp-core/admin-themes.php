@@ -216,7 +216,7 @@ if (count($themelist) == 0) {
 			if (protectedTheme($theme)) {
 				$whose = 'Official theme';
 				if (!$ico) {
-					$ico = '<img class="zp_logoicon" src="images/zp_gold.png" alt="' . gettext('logo') . '" title="' . $whose . '" />';
+					$ico = '<img class="zp_logoicon" src="images/np_gold.png" alt="' . gettext('logo') . '" title="' . $whose . '" />';
 				}
 			} else {
 				$whose = gettext('Third party theme');
@@ -250,7 +250,7 @@ if (count($themelist) == 0) {
 					<?php echo $themeinfo['author']; ?>
 					<br />
 					<?php
-					if (strpos($ico, 'images/zp_gold.png') !== false || $themeinfo['version'] === true) {
+					if (strpos($ico, 'images/np_gold.png') !== false || $themeinfo['version'] === true) {
 						$version = $zenphoto_version;
 						$date = $zenphoto_date;
 					} else {

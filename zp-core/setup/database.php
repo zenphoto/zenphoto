@@ -285,7 +285,7 @@ foreach ($template as $tablename => $table) {
 				}
 			} else {
 				if (strpos($field['Comment'], 'optional_') === false) {
-					$orphans[] = sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not in use by ZenPhotoGraphics.'), $key, $tablename);
+					$orphans[] = sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not in use by netPhotoGraphics.'), $key, $tablename);
 				}
 			}
 		}
@@ -356,7 +356,7 @@ foreach ($template as $tablename => $table) {
 						$_DB_Structure_change = TRUE;
 					}
 				} else {
-					$orpahns = sprintf(gettext('Setup found the key "%1$s" in the "%2$s" table. This index is not in use by ZenPhotoGraphics.'), $key, $tablename);
+					$orpahns = sprintf(gettext('Setup found the key "%1$s" in the "%2$s" table. This index is not in use by netPhotoGraphics.'), $key, $tablename);
 				}
 			}
 		}

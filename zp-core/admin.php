@@ -274,11 +274,11 @@ $buttonlist = array();
 				$buttonlist[] = array(
 						'category' => gettext('Admin'),
 						'enable' => 2,
-						'button_text' => 'ZenPhotoGraphics ' . $newestVersion,
+						'button_text' => 'netPhotoGraphics ' . $newestVersion,
 						'formname' => 'getUpdates_button',
 						'action' => $newestVersionURI,
 						'icon' => ARROW_DOWN_GREEN,
-						'title' => sprintf(gettext('Download ZenPhotoGraphics version %s.'), $newestVersion),
+						'title' => sprintf(gettext('Download netPhotoGraphics version %s.'), $newestVersion),
 						'alt' => '',
 						'hidden' => '',
 						'rights' => ADMIN_RIGHTS
@@ -343,7 +343,7 @@ $buttonlist = array();
 								'button_text' => gettext('Run setup'),
 								'formname' => 'run_setup',
 								'action' => FULLWEBPATH . '/' . ZENFOLDER . '/setup.php',
-								'icon' => ZP_GOLD,
+								'icon' => BADGE_GOLD,
 								'alt' => '',
 								'title' => gettext('Run the setup script.'),
 								'hidden' => '',
@@ -397,7 +397,7 @@ $buttonlist = array();
 					<div class="box overview-section overview_utilities">
 						<h2 class="h2_bordered">
 							<a href="<?php echo WEBPATH; ?>/docs/release%20notes.htm" class="doc" title="<?php echo gettext('release notes'); ?>">
-								<?php printf(gettext('ZenPhotoGraphics version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official); ?>
+								<?php printf(gettext('netPhotoGraphics version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official); ?>
 							</a>
 						</h2>
 						<?php

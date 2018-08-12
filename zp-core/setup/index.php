@@ -21,7 +21,7 @@ if (function_exists("gettext")) {
 	$noxlate = -1;
 }
 if (version_compare(PHP_VERSION, PHP_MIN_VERSION, '<')) {
-	die(sprintf(gettext('ZenPhotoGraphics requires PHP version %s or greater'), PHP_MIN_VERSION));
+	die(sprintf(gettext('netPhotoGraphics requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
 
 $chmod = fileperms(dirname(dirname(__FILE__))) & 0666;
@@ -457,7 +457,7 @@ if ($setup_checked) {
 		} else {
 			$clone = ' ' . gettext('clone');
 		}
-		setupLog(sprintf(gettext('ZenPhotoGraphics Setup v%1$s%2$s: %3$s'), ZENPHOTO_VERSION, $clone, date('r')), true, true); // initialize the log file
+		setupLog(sprintf(gettext('netPhotoGraphics Setup v%1$s%2$s: %3$s'), ZENPHOTO_VERSION, $clone, date('r')), true, true); // initialize the log file
 	}
 
 	if ($environ) {
@@ -486,7 +486,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 <html xmlns="http://www.w3.org/1999/xhtml" />
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title><?php printf('ZenPhotoGraphics %s', $upgrade); ?></title>
+	<title><?php printf('netPhotoGraphics %s', $upgrade); ?></title>
 	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?css_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
 	<?php
 	load_jQuery_CSS();
@@ -507,7 +507,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 </head>
 <body>
 	<div id="main">
-		<h1><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="<?php echo gettext('ZenPhotoGraphics Setup'); ?>" alt="<?php echo gettext('ZenPhotoGraphics Setup'); ?>" />
+		<h1><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="<?php echo gettext('netPhotoGraphics Setup'); ?>" alt="<?php echo gettext('netPhotoGraphics Setup'); ?>" />
 			<span class="install_type"><?php echo $upgrade; ?></span>
 		</h1>
 		<br />
@@ -524,7 +524,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 				}
 				?>
 				<p>
-					<?php printf(gettext('Welcome to ZenPhotoGraphics! This page will set up version %1$s on your web server.'), ZENPHOTO_VERSION); ?>
+					<?php printf(gettext('Welcome to netPhotoGraphics! This page will set up version %1$s on your web server.'), ZENPHOTO_VERSION); ?>
 				</p>
 				<h2><?php echo gettext("Systems Check:"); ?></h2>
 				<?php
@@ -553,7 +553,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						<ul>
 							<?php
 							$prevRel = false;
-							checkmark(1, sprintf(gettext('Installing ZenPhotoGraphics v%s'), ZENPHOTO_VERSION), '', '');
+							checkmark(1, sprintf(gettext('Installing netPhotoGraphics v%s'), ZENPHOTO_VERSION), '', '');
 						}
 						chdir(dirname(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
 						$test = safe_glob('*.log');
@@ -607,7 +607,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						} else {
 							$safe = true;
 						}
-						checkMark($safe, gettext("PHP <code>Safe Mode</code>"), gettext("PHP <code>Safe Mode</code> [is set]"), gettext("ZenPhotoGraphics functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."));
+						checkMark($safe, gettext("PHP <code>Safe Mode</code>"), gettext("PHP <code>Safe Mode</code> [is set]"), gettext("netPhotoGraphics functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."));
 
 						if (!extension_loaded('suhosin')) {
 							$blacklist = @ini_get("suhosin.executor.func.blacklist");
@@ -1186,7 +1186,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							}
 						}
 
-						primeMark(gettext('ZenPhotoGraphics files'));
+						primeMark(gettext('netPhotoGraphics files'));
 						@set_time_limit(120);
 						$stdExclude = Array('Thumbs.db', 'readme.md', 'data');
 
@@ -1216,13 +1216,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							$package_file_count = is_numeric($count) && ($count > 0) && ($count == count($installed_files));
 						}
 						if (!$package_file_count) {
-							checkMark(-1, '', gettext("ZenPhotoGraphics package [missing]"), gettext('The file <code>zenphoto.package</code> is either missing, not readable, or defective. Your installation may be corrupt!'));
+							checkMark(-1, '', gettext("netPhotoGraphics package [missing]"), gettext('The file <code>zenphoto.package</code> is either missing, not readable, or defective. Your installation may be corrupt!'));
 							$installed_files = array();
 						}
 						$folders = array();
 						if ($updatechmod) {
 							$permissions = 1;
-							setupLog(sprintf(gettext('Setting permissions (0%o) for ZenPhotoGraphics package.'), $chmod), true);
+							setupLog(sprintf(gettext('Setting permissions (0%o) for netPhotoGraphics package.'), $chmod), true);
 						} else {
 							$permission = 0;
 						}
@@ -1485,7 +1485,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not required.");
 									$ch = -1;
 								} else {
-									$desc = sprintf(gettext("The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of ZenPhotoGraphics. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."), ZENFOLDER);
+									$desc = sprintf(gettext("The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of netPhotoGraphics. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."), ZENFOLDER);
 									if (setupUserAuthorized()) {
 										$desc .= ' ' . gettext('<p class="buttons"><a href="?copyhtaccess" >Replace the existing <em>.htaccess</em> file with the current version</a></p><br style="clear:both" /><br />');
 									}
@@ -1610,7 +1610,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 						}
 
 						$good = folderCheck('cache', SERVERPATH . '/' . CACHEFOLDER . '/', 'std', NULL, true, $chmod | 0311, $updatechmod) && $good;
-						$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete ZenPhotoGraphics package. You must have at least the <em>en_US</em> folder.')) && $good;
+						$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete netPhotoGraphics package. You must have at least the <em>en_US</em> folder.')) && $good;
 						$good = folderCheck(gettext('uploaded'), SERVERPATH . '/' . UPLOAD_FOLDER . '/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
 						$good = folderCheck(DATA_FOLDER, SERVERPATH . '/' . DATA_FOLDER . '/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
 						@rmdir(SERVERPATH . '/' . DATA_FOLDER . '/mutex');

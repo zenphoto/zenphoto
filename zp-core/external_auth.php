@@ -75,7 +75,7 @@ class external_auth {
 								unset($result['authority']);
 								break;
 							case 'groups':
-								//	find the corresponding ZenPhotoGraphics group (if it exists)
+								//	find the corresponding netPhotoGraphics group (if it exists)
 								$rights = NO_RIGHTS;
 								$objects = array();
 								$groups = $value;
@@ -100,7 +100,7 @@ class external_auth {
 								break;
 							case 'defaultgroup':
 								if (!$member && isset($result['defaultgroup'])) {
-									//	No ZenPhotoGraphics group, use the default group
+									//	No netPhotoGraphics group, use the default group
 									$group = $result['defaultgroup'];
 									$groupobj = $_zp_authority->getAnAdmin(array('`user`=' => $group, '`valid`=' => 0));
 									if ($groupobj) {

@@ -74,7 +74,7 @@ echo '</head>';
 								} else {
 									$notes = '';
 								}
-								printf(gettext('ZenPhotoGraphics version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official);
+								printf(gettext('netPhotoGraphics version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official);
 								echo $notes . $source;
 								?>
 							</li>

@@ -8,7 +8,7 @@
  * @author Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)
  * @license GPL v3 or later
  *
- * @author Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569), Stephen Billard (ZenPhotoGraphics migration)
+ * @author Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569), Stephen Billard (netPhotoGraphics migration)
 
  * @package plugin/cookieconsent
  * @pluginCategory theme

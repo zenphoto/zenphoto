@@ -2366,7 +2366,7 @@ msgstr "Krediteringer"
 #: themes/paradigm/credits.php:34
 #, fuzzy
 msgid ""
-"This website is based on ZenPhotoGraphics the <a href=\"http://zenphoto20.us/\" "
+"This website is based on netPhotoGraphics the <a href=\"http://zenphoto20.us/\" "
 "target=\"_blank\">simple media website CMS</a>"
 msgstr ""
 "Denne hjemmeside er baseret på ZenPhoto20 den <a href=\"http://zenphoto20.us/\" "
@@ -6066,7 +6066,7 @@ msgstr ""
 
 #: zp-core/admin-functions.php:48
 #, fuzzy
-msgid "ZenPhotoGraphics licence"
+msgid "netPhotoGraphics licence"
 msgstr "ZenPhoto20 kørekort"
 
 #: zp-core/admin-functions.php:48
@@ -6103,7 +6103,7 @@ msgstr "%1$s administration:%2$s%3$s"
 
 #: zp-core/admin-functions.php:299
 #, fuzzy
-msgid "ZenPhotoGraphics Administration"
+msgid "netPhotoGraphics Administration"
 msgstr "ZenPhoto20 Administration"
 
 #: zp-core/admin-functions.php:309
@@ -6759,7 +6759,7 @@ msgstr "brugere"
 
 #: zp-core/admin-functions.php:5221
 #, fuzzy
-msgid "ZenPhotoGraphics"
+msgid "netPhotoGraphics"
 msgstr "ZenPhoto20 filer"
 
 #: zp-core/admin-functions.php:5222
@@ -8090,7 +8090,7 @@ msgstr "ZenPhoto20 version%s kan downloades med hjælpeprogramknappen."
 
 #: zp-core/admin.php:281
 #, fuzzy, php-format
-msgid "Download ZenPhotoGraphics version %s."
+msgid "Download netPhotoGraphics version %s."
 msgstr "Download ZenPhoto20 version %s."
 
 #: zp-core/admin.php:330
@@ -8138,7 +8138,7 @@ msgstr "produktbemærkninger"
 
 #: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
-msgid "ZenPhotoGraphics version <strong>%1$s (%2$s)</strong>"
+msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 msgstr "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
 
 #: zp-core/admin.php:407
@@ -12017,7 +12017,7 @@ msgstr "Konfigurationsfilen er korrupt. Du skal genoprette den fra en backup."
 #: zp-core/functions-db-MySQL.php:35
 #, fuzzy, php-format
 msgid ""
-"MySQL Error: ZenPhotoGraphics received the error %s when connecting to the database "
+"MySQL Error: netPhotoGraphics received the error %s when connecting to the database "
 "server."
 msgstr ""
 "MySQL-fejl: ZenPhoto20 modtog fejlen%s, da den blev tilsluttet til databaseserveren."
@@ -12025,7 +12025,7 @@ msgstr ""
 #: zp-core/functions-db-MySQL.php:42
 #, fuzzy, php-format
 msgid ""
-"MySQL Error: MySQL returned the error %1$s when ZenPhotoGraphics tried to select "
+"MySQL Error: MySQL returned the error %1$s when netPhotoGraphics tried to select "
 "the database %2$s."
 msgstr ""
 "MySQL-fejl: MySQL returnerede fejlen%1$s, da ZenPhoto20 forsøgte at vælge databasen"
@@ -12039,13 +12039,13 @@ msgstr "%s er ikke fobundet"
 
 #: zp-core/functions-db-MySQLi.php:35
 #, fuzzy
-msgid "MySQLi Error: ZenPhotoGraphics could not instantiate a connection."
+msgid "MySQLi Error: netPhotoGraphics could not instantiate a connection."
 msgstr "MySQLi Fejl: ZenPhoto20 kunne ikke instantiere en forbindelse."
 
 #: zp-core/functions-db-MySQLi.php:42
 #, fuzzy, php-format
 msgid ""
-"MySQLi Error: MySQLi returned the error %1$s when ZenPhotoGraphics tried to select "
+"MySQLi Error: MySQLi returned the error %1$s when netPhotoGraphics tried to select "
 "the database %2$s."
 msgstr ""
 "MySQLi Fejl: MySQLi returnerede fejlen%1$s, da ZenPhoto20 forsøgte at vælge "
@@ -12060,7 +12060,7 @@ msgstr "Ingen understøttede PHP-databaseudvidelser er aktiveret."
 #: zp-core/functions-db-PDO_MySQL.php:40
 #, fuzzy, php-format
 msgid ""
-"MySql Error: ZenPhotoGraphics received the error %s when connecting to the database "
+"MySql Error: netPhotoGraphics received the error %s when connecting to the database "
 "server."
 msgstr ""
 "MySql-fejl: ZenPhoto20 modtog fejlen%s, da den blev tilsluttet til databaseserveren."
@@ -13687,7 +13687,7 @@ msgstr "Thai (Windows)"
 
 #: zp-core/license.php:37
 #, fuzzy
-msgid "ZenPhotoGraphics License agreement"
+msgid "netPhotoGraphics License agreement"
 msgstr "ZenPhoto20 licensaftale"
 
 #: zp-core/license.php:40
@@ -13703,7 +13703,7 @@ msgstr ""
 
 #: zp-core/license.php:47
 #, fuzzy
-msgid "You must accept this license to continue to use ZenPhotoGraphics."
+msgid "You must accept this license to continue to use netPhotoGraphics."
 msgstr "Du skal acceptere denne licens for at fortsætte med at bruge ZenPhoto20."
 
 #: zp-core/license.php:47
@@ -13876,7 +13876,7 @@ msgstr ""
 #, fuzzy, php-format
 msgid ""
 "Setup found the field \"%1$s\" in the \"%2$s\" table. This field is not in use by "
-"ZenPhotoGraphics."
+"netPhotoGraphics."
 msgstr ""
 "Installationsprogrammet fandt tabellen felt \"%1$s\" i \"%2$s\". Dette felt er ikke "
 "i brug af ZenPhoto20."
@@ -13885,14 +13885,14 @@ msgstr ""
 #, fuzzy, php-format
 msgid ""
 "Setup found the key \"%1$s\" in the \"%2$s\" table. This index is not in use by "
-"ZenPhotoGraphics."
+"netPhotoGraphics."
 msgstr ""
 "Installationsprogrammet fandt tabellen nøglen \"%1$s\" i \"%2$s\". Dette indeks er "
 "ikke i brug af ZenPhoto20."
 
 #: zp-core/setup/index.php:24
 #, fuzzy, php-format
-msgid "ZenPhotoGraphics requires PHP version %s or greater"
+msgid "netPhotoGraphics requires PHP version %s or greater"
 msgstr "ZenPhoto20 kræver PHP version %s eller nyere"
 
 #: zp-core/setup/index.php:177
@@ -13954,7 +13954,7 @@ msgstr "Startet"
 
 #: zp-core/setup/index.php:460
 #, fuzzy, php-format
-msgid "ZenPhotoGraphics Setup v%1$s%2$s: %3$s"
+msgid "netPhotoGraphics Setup v%1$s%2$s: %3$s"
 msgstr "ZenPhoto20 Setup v %1$s %2$s: %3$s"
 
 #: zp-core/setup/index.php:464
@@ -13980,13 +13980,13 @@ msgstr "opdater"
 
 #: zp-core/setup/index.php:510
 #, fuzzy
-msgid "ZenPhotoGraphics Setup"
+msgid "netPhotoGraphics Setup"
 msgstr "ZenPhoto20 opsætning"
 
 #: zp-core/setup/index.php:527
 #, fuzzy, php-format
 msgid ""
-"Welcome to ZenPhotoGraphics! This page will set up version %1$s on your web server."
+"Welcome to netPhotoGraphics! This page will set up version %1$s on your web server."
 msgstr ""
 "Velkommen til ZenPhoto20! Denne side vil oprette version %1$s på din webserver."
 
@@ -14004,7 +14004,7 @@ msgstr ""
 
 #: zp-core/setup/index.php:556
 #, fuzzy, php-format
-msgid "Installing ZenPhotoGraphics v%s"
+msgid "Installing netPhotoGraphics v%s"
 msgstr "Installation af ZenPhoto20 v %s"
 
 #: zp-core/setup/index.php:571
@@ -14118,7 +14118,7 @@ msgstr "PHP <code>Safe Mode</code> [er sat]"
 #: zp-core/setup/index.php:610
 #, fuzzy
 msgid ""
-"ZenPhotoGraphics functionality is reduced when PHP <code>safe mode</code> "
+"netPhotoGraphics functionality is reduced when PHP <code>safe mode</code> "
 "restrictions are in effect."
 msgstr ""
 "ZenPhoto20 funktionalitet er reduceret når PHP <code>safe mode</code> restriktioner "
@@ -14812,12 +14812,12 @@ msgstr ""
 
 #: zp-core/setup/index.php:1189
 #, fuzzy
-msgid "ZenPhotoGraphics files"
+msgid "netPhotoGraphics files"
 msgstr "ZenPhoto20 filer"
 
 #: zp-core/setup/index.php:1219
 #, fuzzy
-msgid "ZenPhotoGraphics package [missing]"
+msgid "netPhotoGraphics package [missing]"
 msgstr "ZenPhoto20 pakke [mangler]"
 
 #: zp-core/setup/index.php:1219
@@ -14831,7 +14831,7 @@ msgstr ""
 
 #: zp-core/setup/index.php:1225
 #, fuzzy, php-format
-msgid "Setting permissions (0%o) for ZenPhotoGraphics package."
+msgid "Setting permissions (0%o) for netPhotoGraphics package."
 msgstr "Indstilling af tilladelser (0% o) for ZenPhoto20-pakken."
 
 #: zp-core/setup/index.php:1339
@@ -15007,7 +15007,7 @@ msgstr ""
 #, fuzzy, php-format
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as the one "
-"distributed with this version of ZenPhotoGraphics. If you have made changes to <em>."
+"distributed with this version of netPhotoGraphics. If you have made changes to <em>."
 "htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a "
 "new <em>.htaccess</em> file."
 msgstr ""
@@ -15145,7 +15145,7 @@ msgstr "<em>locale</em> folders [Er ikke komplette]"
 #: zp-core/setup/index.php:1613
 #, fuzzy
 msgid ""
-"Be sure you have uploaded the complete ZenPhotoGraphics package. You must have at "
+"Be sure you have uploaded the complete netPhotoGraphics package. You must have at "
 "least the <em>en_US</em> folder."
 msgstr ""
 "Vær sikker på at du har uploadet den komplette ZenPhoto20-pakke. Du skal have "
@@ -15424,7 +15424,7 @@ msgid ""
 "<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper "
 "<em>UNIQUE</em> key. There are probably duplicate entries in the table which can "
 "cause unpredictable behavior. This can normally be corrected by creating a "
-"ZenPhotoGraphics backup, dropping the table, running setup to restore the table, "
+"netPhotoGraphics backup, dropping the table, running setup to restore the table, "
 "and then restoring from the backup. Note, however, that the duplicate entries will "
 "be lost."
 msgstr ""
@@ -16613,7 +16613,7 @@ msgstr "-Id-startadressen for LDAP-usersids"
 #, fuzzy
 msgid ""
 "This number is added to the LDAP <em>userid</em> to insure that there is no overlap "
-"to ZenPhotoGraphics <em>userids</em>."
+"to netPhotoGraphics <em>userids</em>."
 msgstr ""
 "Dette nummer tilføjes til LDAP <em>userid for</em> at sikre, at der ikke er nogen "
 "overlapning til ZenPhoto20 <em>userids</em> ."
@@ -16646,7 +16646,7 @@ msgstr "LDAP-gruppe kort"
 
 #: zp-core/zp-extensions/LDAP_auth.php:70
 #, fuzzy
-msgid "Mapping of LDAP groups to ZenPhotoGraphics groups"
+msgid "Mapping of LDAP groups to netPhotoGraphics groups"
 msgstr "Kortlægning af LDAP grupper til ZenPhoto20 grupper"
 
 #: zp-core/zp-extensions/LDAP_auth.php:70
@@ -16669,7 +16669,7 @@ msgstr "Ingen grupper eller skabeloner er defineret"
 
 #: zp-core/zp-extensions/LDAP_auth.php:91
 #, fuzzy
-msgid "ZenPhotoGraphics group"
+msgid "netPhotoGraphics group"
 msgstr "ZenPhoto20 gruppe"
 
 #: zp-core/zp-extensions/LDAP_auth.php:92
@@ -18631,7 +18631,7 @@ msgstr "Konfigurationsfejl,%1$s logingruppe%2$s findes ikke."
 #: zp-core/zp-extensions/common/oAuth/oAuthLogin.php:140
 #: zp-core/zp-extensions/register_user.php:338
 #, fuzzy
-msgid "ZenPhotoGraphics Gallery registration"
+msgid "netPhotoGraphics Gallery registration"
 msgstr "ZenPhoto20 Galleri registrering"
 
 #: zp-core/zp-extensions/common/oAuth/oAuthLogin.php:140
@@ -19496,7 +19496,7 @@ msgstr "I brugerplugins"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:60
 #, fuzzy
-msgid "In ZenPhotoGraphics code"
+msgid "In netPhotoGraphics code"
 msgstr "I ZenPhoto20 kode"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:66
@@ -21080,7 +21080,7 @@ msgstr "betroet"
 #, fuzzy
 msgid ""
 "Set to <em>trusted</em> to presume the HTTP user is securely authorized. (This "
-"setting does not verify passwords against the ZenPhotoGraphics user.)"
+"setting does not verify passwords against the netPhotoGraphics user.)"
 msgstr ""
 "Sæt til at være <em>tillid</em> til at antage HTTP-brugeren er sikkert godkendt. "
 "(Denne indstilling bekræfter ikke adgangskoder mod zenphoto-brugeren.)"
@@ -21299,7 +21299,7 @@ msgstr "Importer liste"
 #, fuzzy, php-format
 msgid ""
 "Import an external IP list. <p class=\"notebox\"><strong>NOTE:</strong> If this "
-"list is large it may exceed the capacity of ZenPhotoGraphics and %s to process and "
+"list is large it may exceed the capacity of netPhotoGraphics and %s to process and "
 "store the results."
 msgstr ""
 "Importer en ekstern IP-liste. <p class=\"notebox\"> <strong>BEMÆRK:</strong> Hvis "
@@ -25229,7 +25229,7 @@ msgstr "Dette opretter individuelle statiske xml sitemap filer af følgende elem
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:88
 #, fuzzy
-msgid "ZenPhotoGraphics items"
+msgid "netPhotoGraphics items"
 msgstr "ZenPhoto20 elementer"
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:90
@@ -25996,7 +25996,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:35
 #, fuzzy
-msgid "ZenPhotoGraphics object insertion"
+msgid "netPhotoGraphics object insertion"
 msgstr "ZenPhoto20 objekt indsættelse"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:47
@@ -28328,7 +28328,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/zpCaptcha.php:16
 #, fuzzy
-msgid "ZenPhotoGraphics captcha handler."
+msgid "netPhotoGraphics captcha handler."
 msgstr "ZenPhoto20 captcha handler."
 
 #: zp-core/zp-extensions/zpCaptcha.php:50

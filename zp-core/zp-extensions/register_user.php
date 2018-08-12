@@ -335,7 +335,7 @@ function printRegistrationForm($thanks = NULL) {
 				$userobj->setGroup($group);
 				zp_apply_filter('register_user_verified', $userobj);
 				if (getOption('register_user_notify')) {
-					$_notify = zp_mail(gettext('ZenPhotoGraphics Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+					$_notify = zp_mail(gettext('netPhotoGraphics Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 				}
 				if (empty($_notify)) {
 					if (getOption('register_user_create_album')) {

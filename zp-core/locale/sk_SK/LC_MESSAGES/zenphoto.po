@@ -2352,10 +2352,10 @@ msgstr "Kredity"
 #| "This website is based on ZenPhoto20 the <a href=\"http://zenphoto20.us/\" "
 #| "target=\"_blank\">simple media website CMS</a>"
 msgid ""
-"This website is based on ZenPhotoGraphics the <a href=\"http://zenphoto20.us/"
+"This website is based on netPhotoGraphics the <a href=\"http://zenphoto20.us/"
 "\" target=\"_blank\">simple media website CMS</a>"
 msgstr ""
-"Táto webová stránka je založená na ZenPhotoGraphics <a href=\"http://"
+"Táto webová stránka je založená na netPhotoGraphics <a href=\"http://"
 "zenphoto20.us/\" target=\"_blank\">jednoduché mediálne webové stránky CMS</a>"
 
 #: themes/paradigm/credits.php:35
@@ -5844,8 +5844,8 @@ msgstr "verzia %1$s"
 #: zp-core/admin-functions.php:48
 #, fuzzy
 #| msgid "ZenPhoto20 licence"
-msgid "ZenPhotoGraphics licence"
-msgstr "Licencia ZenPhotoGraphics"
+msgid "netPhotoGraphics licence"
+msgstr "Licencia netPhotoGraphics"
 
 #: zp-core/admin-functions.php:48
 msgid "License"
@@ -5881,8 +5881,8 @@ msgstr "%1$s administrácia: %2$s%3$s"
 #: zp-core/admin-functions.php:299
 #, fuzzy
 #| msgid "ZenPhoto20 Administration"
-msgid "ZenPhotoGraphics Administration"
-msgstr "Správa ZenPhotoGraphics"
+msgid "netPhotoGraphics Administration"
+msgstr "Správa netPhotoGraphics"
 
 #: zp-core/admin-functions.php:309
 #, php-format
@@ -6504,8 +6504,8 @@ msgstr "používatelia"
 #: zp-core/admin-functions.php:5221
 #, fuzzy
 #| msgid "ZenPhoto20 files"
-msgid "ZenPhotoGraphics"
-msgstr "ZenPhotoGraphics"
+msgid "netPhotoGraphics"
+msgstr "netPhotoGraphics"
 
 #: zp-core/admin-functions.php:5222
 msgid "misc"
@@ -7813,8 +7813,8 @@ msgstr "Najnovšiu verziu %s si môžete stiahnuť pomocou tlačidla programu."
 #: zp-core/admin.php:281
 #, fuzzy, php-format
 #| msgid "Download ZenPhoto20 version %s."
-msgid "Download ZenPhotoGraphics version %s."
-msgstr "Stiahnite si ZenPhotoGraphics verziu %s."
+msgid "Download netPhotoGraphics version %s."
+msgstr "Stiahnite si netPhotoGraphics verziu %s."
 
 #: zp-core/admin.php:330
 msgid "Misc"
@@ -7859,8 +7859,8 @@ msgstr "poznámky k vydaniu"
 #: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
-msgid "ZenPhotoGraphics version <strong>%1$s (%2$s)</strong>"
-msgstr "ZenPhotoGraphics verzia <strong>%1$s (%2$s)</strong>"
+msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
+msgstr "netPhotoGraphics verzia <strong>%1$s (%2$s)</strong>"
 
 #: zp-core/admin.php:407
 msgid "Utility functions"
@@ -11576,10 +11576,10 @@ msgstr "Konfiguračný súbor je poškodený. Budete ho musieť obnoviť zo zál
 #| "MySQL Error: ZenPhoto20 received the error %s when connecting to the "
 #| "database server."
 msgid ""
-"MySQL Error: ZenPhotoGraphics received the error %s when connecting to the "
+"MySQL Error: netPhotoGraphics received the error %s when connecting to the "
 "database server."
 msgstr ""
-"MySQL Error: ZenPhotoGraphics dostala chybu %s pri pripájaní k databázovému "
+"MySQL Error: netPhotoGraphics dostala chybu %s pri pripájaní k databázovému "
 "serveru."
 
 #: zp-core/functions-db-MySQL.php:42
@@ -11588,10 +11588,10 @@ msgstr ""
 #| "MySQL Error: MySQL returned the error %1$s when ZenPhoto20 tried to "
 #| "select the database %2$s."
 msgid ""
-"MySQL Error: MySQL returned the error %1$s when ZenPhotoGraphics tried to "
+"MySQL Error: MySQL returned the error %1$s when netPhotoGraphics tried to "
 "select the database %2$s."
 msgstr ""
-"MySQL Chyba: MySQL vrátila chybu%1$s, keď sa ZenPhotoGraphics pokúsil vybrať "
+"MySQL Chyba: MySQL vrátila chybu%1$s, keď sa netPhotoGraphics pokúsil vybrať "
 "databázu%2$s."
 
 #: zp-core/functions-db-MySQL.php:172 zp-core/functions-db-MySQLi.php:186
@@ -11603,8 +11603,8 @@ msgstr "%s nie je pripojené"
 #: zp-core/functions-db-MySQLi.php:35
 #, fuzzy
 #| msgid "MySQLi Error: ZenPhoto20 could not instantiate a connection."
-msgid "MySQLi Error: ZenPhotoGraphics could not instantiate a connection."
-msgstr "Chyba služby MySQLi: ZenPhotoGraphics nemohol vytvoriť prepojenie."
+msgid "MySQLi Error: netPhotoGraphics could not instantiate a connection."
+msgstr "Chyba služby MySQLi: netPhotoGraphics nemohol vytvoriť prepojenie."
 
 #: zp-core/functions-db-MySQLi.php:42
 #, fuzzy, php-format
@@ -11612,10 +11612,10 @@ msgstr "Chyba služby MySQLi: ZenPhotoGraphics nemohol vytvoriť prepojenie."
 #| "MySQLi Error: MySQLi returned the error %1$s when ZenPhoto20 tried to "
 #| "select the database %2$s."
 msgid ""
-"MySQLi Error: MySQLi returned the error %1$s when ZenPhotoGraphics tried to "
+"MySQLi Error: MySQLi returned the error %1$s when netPhotoGraphics tried to "
 "select the database %2$s."
 msgstr ""
-"Chyba služby MySQLi: MySQLi vráti chybu%1$s, keď sa ZenPhotoGraphics pokúsil "
+"Chyba služby MySQLi: MySQLi vráti chybu%1$s, keď sa netPhotoGraphics pokúsil "
 "vybrať databázu%2$s."
 
 #: zp-core/functions-db-NULL.php:95
@@ -11628,10 +11628,10 @@ msgstr "Nie sú povolené žiadne podporované prípony databázy PHP."
 #| "MySql Error: ZenPhoto20 received the error %s when connecting to the "
 #| "database server."
 msgid ""
-"MySql Error: ZenPhotoGraphics received the error %s when connecting to the "
+"MySql Error: netPhotoGraphics received the error %s when connecting to the "
 "database server."
 msgstr ""
-"MySql Chyba: ZenPhotoGraphics dostala chybu %s pri pripájaní k databázovému "
+"MySql Chyba: netPhotoGraphics dostala chybu %s pri pripájaní k databázovému "
 "serveru."
 
 #: zp-core/functions-i18n.php:14
@@ -13256,8 +13256,8 @@ msgstr "Thaičina (Windows)"
 #: zp-core/license.php:37
 #, fuzzy
 #| msgid "ZenPhoto20 License agreement"
-msgid "ZenPhotoGraphics License agreement"
-msgstr "Licenčná zmluva ZenPhotoGraphics"
+msgid "netPhotoGraphics License agreement"
+msgstr "Licenčná zmluva netPhotoGraphics"
 
 #: zp-core/license.php:40
 #, php-format
@@ -13273,9 +13273,9 @@ msgstr ""
 #: zp-core/license.php:47
 #, fuzzy
 #| msgid "You must accept this license to continue to use ZenPhoto20."
-msgid "You must accept this license to continue to use ZenPhotoGraphics."
+msgid "You must accept this license to continue to use netPhotoGraphics."
 msgstr ""
-"Aby ste mohli pokračovať v používaní ZenPhotoGraphics, musíte túto licenciu "
+"Aby ste mohli pokračovať v používaní netPhotoGraphics, musíte túto licenciu "
 "prevziať."
 
 #: zp-core/license.php:47
@@ -13441,7 +13441,7 @@ msgstr ""
 #| "in use by ZenPhoto20."
 msgid ""
 "Setup found the field \"%1$s\" in the \"%2$s\" table. This field is not in "
-"use by ZenPhotoGraphics."
+"use by netPhotoGraphics."
 msgstr ""
 "Inštalácia našla pole \"%1$s\" v \"%2$s\" tabuľke. Toto pole nie je "
 "používané v ZenPhoto20."
@@ -13453,7 +13453,7 @@ msgstr ""
 #| "use by ZenPhoto20."
 msgid ""
 "Setup found the key \"%1$s\" in the \"%2$s\" table. This index is not in use "
-"by ZenPhotoGraphics."
+"by netPhotoGraphics."
 msgstr ""
 "Inštalácia našla kľúč \"%1$s\" v \"%2$s\" tabuľke. Tento index nie je "
 "používaný v ZenPhoto20."
@@ -13461,8 +13461,8 @@ msgstr ""
 #: zp-core/setup/index.php:24
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 requires PHP version %s or greater"
-msgid "ZenPhotoGraphics requires PHP version %s or greater"
-msgstr "ZenPhotoGraphics vyžaduje PHP verziu %s alebo vyššiu"
+msgid "netPhotoGraphics requires PHP version %s or greater"
+msgstr "netPhotoGraphics vyžaduje PHP verziu %s alebo vyššiu"
 
 #: zp-core/setup/index.php:177
 msgid "db POST handling"
@@ -13523,8 +13523,8 @@ msgstr "Zahájené"
 #: zp-core/setup/index.php:460
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 Setup v%1$s%2$s: %3$s"
-msgid "ZenPhotoGraphics Setup v%1$s%2$s: %3$s"
-msgstr "Nastavenie ZenPhotoGraphics v%1$s %2$s:%3$s"
+msgid "netPhotoGraphics Setup v%1$s%2$s: %3$s"
+msgstr "Nastavenie netPhotoGraphics v%1$s %2$s:%3$s"
 
 #: zp-core/setup/index.php:464
 msgid "Full environment"
@@ -13550,8 +13550,8 @@ msgstr "aktualizovať"
 #: zp-core/setup/index.php:510
 #, fuzzy
 #| msgid "ZenPhoto20 Setup"
-msgid "ZenPhotoGraphics Setup"
-msgstr "ZenPhotoGraphics Setup"
+msgid "netPhotoGraphics Setup"
+msgstr "netPhotoGraphics Setup"
 
 #: zp-core/setup/index.php:527
 #, fuzzy, php-format
@@ -13559,10 +13559,10 @@ msgstr "ZenPhotoGraphics Setup"
 #| "Welcome to ZenPhoto20! This page will set up version %1$s on your web "
 #| "server."
 msgid ""
-"Welcome to ZenPhotoGraphics! This page will set up version %1$s on your web "
+"Welcome to netPhotoGraphics! This page will set up version %1$s on your web "
 "server."
 msgstr ""
-"Vitajte v ZenPhotoGraphics! Táto stránka nastaví na vašom webovom serveri "
+"Vitajte v netPhotoGraphics! Táto stránka nastaví na vašom webovom serveri "
 "verziu%1$s."
 
 #: zp-core/setup/index.php:529
@@ -13580,8 +13580,8 @@ msgstr ""
 #: zp-core/setup/index.php:556
 #, fuzzy, php-format
 #| msgid "Installing ZenPhoto20 v%s"
-msgid "Installing ZenPhotoGraphics v%s"
-msgstr "Inštalácia ZenPhotoGraphics v %s"
+msgid "Installing netPhotoGraphics v%s"
+msgstr "Inštalácia netPhotoGraphics v %s"
 
 #: zp-core/setup/index.php:571
 #, php-format
@@ -13697,10 +13697,10 @@ msgstr "PHP <code>Safe Mode</code> [aktívne]"
 #| "ZenPhoto20 functionality is reduced when PHP <code>safe mode</code> "
 #| "restrictions are in effect."
 msgid ""
-"ZenPhotoGraphics functionality is reduced when PHP <code>safe mode</code> "
+"netPhotoGraphics functionality is reduced when PHP <code>safe mode</code> "
 "restrictions are in effect."
 msgstr ""
-"Funkcia ZenPhotoGraphics sa znižuje pri obmedzení <code>safe mode</code> PHP."
+"Funkcia netPhotoGraphics sa znižuje pri obmedzení <code>safe mode</code> PHP."
 
 #: zp-core/setup/index.php:628
 msgid "<code>Suhosin</code> module [is enabled]"
@@ -14384,14 +14384,14 @@ msgstr ""
 #: zp-core/setup/index.php:1189
 #, fuzzy
 #| msgid "ZenPhoto20 files"
-msgid "ZenPhotoGraphics files"
-msgstr "Súbory ZenPhotoGraphics"
+msgid "netPhotoGraphics files"
+msgstr "Súbory netPhotoGraphics"
 
 #: zp-core/setup/index.php:1219
 #, fuzzy
 #| msgid "ZenPhoto20 package [missing]"
-msgid "ZenPhotoGraphics package [missing]"
-msgstr "Balík ZenPhotoGraphics [chýba]"
+msgid "netPhotoGraphics package [missing]"
+msgstr "Balík netPhotoGraphics [chýba]"
 
 #: zp-core/setup/index.php:1219
 msgid ""
@@ -14404,8 +14404,8 @@ msgstr ""
 #: zp-core/setup/index.php:1225
 #, fuzzy, php-format
 #| msgid "Setting permissions (0%o) for ZenPhoto20 package."
-msgid "Setting permissions (0%o) for ZenPhotoGraphics package."
-msgstr "Nastavenie oprávnení (0% o) pre balík ZenPhotoGraphics."
+msgid "Setting permissions (0%o) for netPhotoGraphics package."
+msgstr "Nastavenie oprávnení (0% o) pre balík netPhotoGraphics."
 
 #: zp-core/setup/index.php:1339
 #, fuzzy
@@ -14605,7 +14605,7 @@ msgstr ""
 #| "htaccess</em> file to produce a new <em>.htaccess</em> file."
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as "
-"the one distributed with this version of ZenPhotoGraphics. If you have made "
+"the one distributed with this version of netPhotoGraphics. If you have made "
 "changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</"
 "em> file to produce a new <em>.htaccess</em> file."
 msgstr ""
@@ -14752,7 +14752,7 @@ msgstr "Zložky <em>locale</em> [nie su kompletné]"
 #| "Be sure you have uploaded the complete ZenPhoto20 package. You must have "
 #| "at least the <em>en_US</em> folder."
 msgid ""
-"Be sure you have uploaded the complete ZenPhotoGraphics package. You must "
+"Be sure you have uploaded the complete netPhotoGraphics package. You must "
 "have at least the <em>en_US</em> folder."
 msgstr ""
 "Uistite sa, že ste nahrali kompletný balík ZenPhoto20. Musíte mať aspoň "
@@ -15047,7 +15047,7 @@ msgid ""
 "<strong>Warning:</strong> the <code>%s</code> table appears not to have a "
 "proper <em>UNIQUE</em> key. There are probably duplicate entries in the "
 "table which can cause unpredictable behavior. This can normally be corrected "
-"by creating a ZenPhotoGraphics backup, dropping the table, running setup to "
+"by creating a netPhotoGraphics backup, dropping the table, running setup to "
 "restore the table, and then restoring from the backup. Note, however, that "
 "the duplicate entries will be lost."
 msgstr ""
@@ -16234,7 +16234,7 @@ msgstr "ID rozsah pre LDAP userid"
 #| "no overlap to ZenPhoto20 <em>userids</em>."
 msgid ""
 "This number is added to the LDAP <em>userid</em> to insure that there is no "
-"overlap to ZenPhotoGraphics <em>userids</em>."
+"overlap to netPhotoGraphics <em>userids</em>."
 msgstr ""
 "Toto číslo je pridané do LDAP <em>userid</em>, ako poistka, že sa nebude "
 "kryť so ZenPhoto20 <em>userids</em>."
@@ -16264,8 +16264,8 @@ msgstr "Mapa LDAP skupiny"
 #: zp-core/zp-extensions/LDAP_auth.php:70
 #, fuzzy
 #| msgid "Mapping of LDAP groups to ZenPhoto20 groups"
-msgid "Mapping of LDAP groups to ZenPhotoGraphics groups"
-msgstr "Mapovanie skupín LDAP do skupín ZenPhotoGraphics"
+msgid "Mapping of LDAP groups to netPhotoGraphics groups"
+msgstr "Mapovanie skupín LDAP do skupín netPhotoGraphics"
 
 #: zp-core/zp-extensions/LDAP_auth.php:70
 msgid ""
@@ -16283,8 +16283,8 @@ msgstr "Žiadne skupiny ani predlohy nie sú definované"
 #: zp-core/zp-extensions/LDAP_auth.php:91
 #, fuzzy
 #| msgid "ZenPhoto20 group"
-msgid "ZenPhotoGraphics group"
-msgstr "Skupina ZenPhotoGraphics"
+msgid "netPhotoGraphics group"
+msgstr "Skupina netPhotoGraphics"
 
 #: zp-core/zp-extensions/LDAP_auth.php:92
 msgid "LDAP group"
@@ -18229,8 +18229,8 @@ msgstr "Chyba konfigurácie, %1$s login skupiny %2$s neexistuje."
 #: zp-core/zp-extensions/register_user.php:338
 #, fuzzy
 #| msgid "ZenPhoto20 Gallery registration"
-msgid "ZenPhotoGraphics Gallery registration"
-msgstr "ZenPhotoGraphics Registrácia galérie"
+msgid "netPhotoGraphics Gallery registration"
+msgstr "netPhotoGraphics Registrácia galérie"
 
 #: zp-core/zp-extensions/common/oAuth/oAuthLogin.php:140
 #: zp-core/zp-extensions/register_user.php:338
@@ -19105,8 +19105,8 @@ msgstr "V zásuvných moduloch používateľa"
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:60
 #, fuzzy
 #| msgid "In ZenPhoto20 code"
-msgid "In ZenPhotoGraphics code"
-msgstr "V kóde ZenPhotoGraphics"
+msgid "In netPhotoGraphics code"
+msgstr "V kóde netPhotoGraphics"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:66
 msgid "In Codeblocks"
@@ -20677,7 +20677,7 @@ msgstr "dôveryhodný"
 #| "(This setting does not verify passwords against the zenphoto user.)"
 msgid ""
 "Set to <em>trusted</em> to presume the HTTP user is securely authorized. "
-"(This setting does not verify passwords against the ZenPhotoGraphics user.)"
+"(This setting does not verify passwords against the netPhotoGraphics user.)"
 msgstr ""
 "Nastaviť na <em>dôveryhodný</em> predpokladajúc, že HTTP používateľ je "
 "bezpečne autorizovaný. (Toto nastavenie neoveruje heslá používateľa "
@@ -20902,7 +20902,7 @@ msgstr "Načítať zoznam"
 #| "process and store the results."
 msgid ""
 "Import an external IP list. <p class=\"notebox\"><strong>NOTE:</strong> If "
-"this list is large it may exceed the capacity of ZenPhotoGraphics and %s to "
+"this list is large it may exceed the capacity of netPhotoGraphics and %s to "
 "process and store the results."
 msgstr ""
 "Importovať externý IP zoznam.<p class=\"notebox\"><strong>Poznámka:</strong> "
@@ -24849,8 +24849,8 @@ msgstr ""
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:88
 #, fuzzy
 #| msgid "ZenPhoto20 items"
-msgid "ZenPhotoGraphics items"
-msgstr "Položky ZenPhotoGraphics"
+msgid "netPhotoGraphics items"
+msgstr "Položky netPhotoGraphics"
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:90
 msgid "Index pages"
@@ -25632,8 +25632,8 @@ msgstr ""
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:35
 #, fuzzy
 #| msgid "ZenPhoto20 object insertion"
-msgid "ZenPhotoGraphics object insertion"
-msgstr "ZenPhotoGraphics vloženie objektu"
+msgid "netPhotoGraphics object insertion"
+msgstr "netPhotoGraphics vloženie objektu"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:47
 #, php-format
@@ -27947,8 +27947,8 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:16
 #, fuzzy
 #| msgid "ZenPhoto20 captcha handler."
-msgid "ZenPhotoGraphics captcha handler."
-msgstr "ZenPhotoGraphics captcha handler."
+msgid "netPhotoGraphics captcha handler."
+msgstr "netPhotoGraphics captcha handler."
 
 #: zp-core/zp-extensions/zpCaptcha.php:50
 msgid "Hash key"

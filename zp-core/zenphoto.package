@@ -1250,6 +1250,8 @@ zp-core/images/lock.png
 zp-core/images/lock_open.png
 zp-core/images/login_button.png
 zp-core/images/magnify.png
+zp-core/images/np_blue.png
+zp-core/images/np_gold.png
 zp-core/images/page_white_copy.png
 zp-core/images/pictures.png
 zp-core/images/pictures_dn.png
@@ -1261,8 +1263,6 @@ zp-core/images/shape_handles.png
 zp-core/images/stock_copy.png
 zp-core/images/thumb_standin.png
 zp-core/images/trashcan.png
-zp-core/images/zp.png
-zp-core/images/zp_gold.png
 zp-core/images/msdropdown
 zp-core/images/msdropdown/skin1
 zp-core/images/msdropdown/skin1/dd_arrow.gif

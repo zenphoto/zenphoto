@@ -2448,10 +2448,10 @@ msgstr "信用"
 #: themes/paradigm/credits.php:34
 #, fuzzy
 msgid ""
-"This website is based on ZenPhotoGraphics the <a href=\"http://zenphoto20.us/"
+"This website is based on netPhotoGraphics the <a href=\"http://zenphoto20.us/"
 "\" target=\"_blank\">simple media website CMS</a>"
 msgstr ""
-"本網站基於 ZenPhotoGraphics <a href=\"HTTP://zenphoto20.us/\" target=\"_blank"
+"本網站基於 netPhotoGraphics <a href=\"HTTP://zenphoto20.us/\" target=\"_blank"
 "\"> 簡單媒體網站 CMS </a>"
 
 #: themes/paradigm/credits.php:35
@@ -6119,8 +6119,8 @@ msgstr "Version %1$s"
 #: zp-core/admin-functions.php:48
 #, fuzzy
 #| msgid "ZenPhoto20 licence"
-msgid "ZenPhotoGraphics licence"
-msgstr "ZenPhotoGraphics 牌照"
+msgid "netPhotoGraphics licence"
+msgstr "netPhotoGraphics 牌照"
 
 #: zp-core/admin-functions.php:48
 #, fuzzy
@@ -6158,8 +6158,8 @@ msgstr "%1$s 管理：%2$s%3$s"
 #: zp-core/admin-functions.php:299
 #, fuzzy
 #| msgid "ZenPhoto20 Administration"
-msgid "ZenPhotoGraphics Administration"
-msgstr "ZenPhotoGraphics 管理"
+msgid "netPhotoGraphics Administration"
+msgstr "netPhotoGraphics 管理"
 
 #: zp-core/admin-functions.php:309
 #, php-format
@@ -6829,8 +6829,8 @@ msgstr "使用者"
 #: zp-core/admin-functions.php:5221
 #, fuzzy
 #| msgid "ZenPhoto20 files"
-msgid "ZenPhotoGraphics"
-msgstr "ZenPhotoGraphics"
+msgid "netPhotoGraphics"
+msgstr "netPhotoGraphics"
 
 #: zp-core/admin-functions.php:5222
 #, fuzzy
@@ -8177,8 +8177,8 @@ msgstr "可通過 \"公用程式\" 按鈕下載最新版本的%s。"
 
 #: zp-core/admin.php:281
 #, fuzzy, php-format
-msgid "Download ZenPhotoGraphics version %s."
-msgstr "下載 ZenPhotoGraphics 版本%s。"
+msgid "Download netPhotoGraphics version %s."
+msgstr "下載 netPhotoGraphics 版本%s。"
 
 #: zp-core/admin.php:330
 #, fuzzy
@@ -8233,8 +8233,8 @@ msgstr "发布说明"
 #: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
-msgid "ZenPhotoGraphics version <strong>%1$s (%2$s)</strong>"
-msgstr "ZenPhotoGraphics 版本 <strong>%1$s (%2$s) </strong>"
+msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
+msgstr "netPhotoGraphics 版本 <strong>%1$s (%2$s) </strong>"
 
 #: zp-core/admin.php:407
 msgid "Utility functions"
@@ -12183,9 +12183,9 @@ msgstr "設定檔已損壞。您將需要從備份中恢復它。"
 #| "MySQL Error: ZenPhoto20 received the error %s when connecting to the "
 #| "database server."
 msgid ""
-"MySQL Error: ZenPhotoGraphics received the error %s when connecting to the "
+"MySQL Error: netPhotoGraphics received the error %s when connecting to the "
 "database server."
-msgstr "MySQL 錯誤: ZenPhotoGraphics 在連接到資料庫伺服器時收到錯誤%s。"
+msgstr "MySQL 錯誤: netPhotoGraphics 在連接到資料庫伺服器時收到錯誤%s。"
 
 #: zp-core/functions-db-MySQL.php:42
 #, fuzzy, php-format
@@ -12193,10 +12193,10 @@ msgstr "MySQL 錯誤: ZenPhotoGraphics 在連接到資料庫伺服器時收到�
 #| "MySQL Error: MySQL returned the error %1$s when ZenPhoto20 tried to "
 #| "select the database %2$s."
 msgid ""
-"MySQL Error: MySQL returned the error %1$s when ZenPhotoGraphics tried to "
+"MySQL Error: MySQL returned the error %1$s when netPhotoGraphics tried to "
 "select the database %2$s."
 msgstr ""
-"mysql 錯誤: 當 ZenPhotoGraphics 試圖選擇資料庫%2 時, mysql 返回了錯誤%1$s。"
+"mysql 錯誤: 當 netPhotoGraphics 試圖選擇資料庫%2 時, mysql 返回了錯誤%1$s。"
 
 #: zp-core/functions-db-MySQL.php:172 zp-core/functions-db-MySQLi.php:186
 #: zp-core/functions-db_PDO.php:126
@@ -12206,8 +12206,8 @@ msgstr "%s 連線失敗"
 
 #: zp-core/functions-db-MySQLi.php:35
 #, fuzzy
-msgid "MySQLi Error: ZenPhotoGraphics could not instantiate a connection."
-msgstr "MySQLi 錯誤: ZenPhotoGraphics 無法具現化連接。"
+msgid "MySQLi Error: netPhotoGraphics could not instantiate a connection."
+msgstr "MySQLi 錯誤: netPhotoGraphics 無法具現化連接。"
 
 #: zp-core/functions-db-MySQLi.php:42
 #, fuzzy, php-format
@@ -12215,10 +12215,10 @@ msgstr "MySQLi 錯誤: ZenPhotoGraphics 無法具現化連接。"
 #| "MySQLi Error: MySQLi returned the error %1$s when ZenPhoto20 tried to "
 #| "select the database %2$s."
 msgid ""
-"MySQLi Error: MySQLi returned the error %1$s when ZenPhotoGraphics tried to "
+"MySQLi Error: MySQLi returned the error %1$s when netPhotoGraphics tried to "
 "select the database %2$s."
 msgstr ""
-"MySQLi 錯誤: 當 ZenPhotoGraphics 試圖選擇資料庫%2 時, MySQLi 返回錯誤%1$s。"
+"MySQLi 錯誤: 當 netPhotoGraphics 試圖選擇資料庫%2 時, MySQLi 返回錯誤%1$s。"
 
 #: zp-core/functions-db-NULL.php:95
 #, fuzzy
@@ -12231,9 +12231,9 @@ msgstr "未啟用支援的 PHP 資料庫擴展。"
 #| "MySql Error: ZenPhoto20 received the error %s when connecting to the "
 #| "database server."
 msgid ""
-"MySql Error: ZenPhotoGraphics received the error %s when connecting to the "
+"MySql Error: netPhotoGraphics received the error %s when connecting to the "
 "database server."
-msgstr "MySql 錯誤: ZenPhotoGraphics 在連接到資料庫伺服器時收到錯誤%s。"
+msgstr "MySql 錯誤: netPhotoGraphics 在連接到資料庫伺服器時收到錯誤%s。"
 
 #: zp-core/functions-i18n.php:14
 msgid "Afrikaans"
@@ -13942,8 +13942,8 @@ msgstr "泰語 (視窗)"
 
 #: zp-core/license.php:37
 #, fuzzy
-msgid "ZenPhotoGraphics License agreement"
-msgstr "ZenPhotoGraphics 授權合約"
+msgid "netPhotoGraphics License agreement"
+msgstr "netPhotoGraphics 授權合約"
 
 #: zp-core/license.php:40
 #, fuzzy, php-format
@@ -13957,8 +13957,8 @@ msgstr ""
 
 #: zp-core/license.php:47
 #, fuzzy
-msgid "You must accept this license to continue to use ZenPhotoGraphics."
-msgstr "您必須接受此許可證才能繼續使用 ZenPhotoGraphics。"
+msgid "You must accept this license to continue to use netPhotoGraphics."
+msgstr "您必須接受此許可證才能繼續使用 netPhotoGraphics。"
 
 #: zp-core/license.php:47
 #, fuzzy
@@ -14127,23 +14127,23 @@ msgstr "必須還原主安裝上的安裝檔才能運行安裝操作。"
 #, fuzzy, php-format
 msgid ""
 "Setup found the field \"%1$s\" in the \"%2$s\" table. This field is not in "
-"use by ZenPhotoGraphics."
+"use by netPhotoGraphics."
 msgstr ""
-"安裝程式在 \"%2$s\" 表中找到了欄位 \"%1$s\"。此欄位未被 ZenPhotoGraphics 使"
+"安裝程式在 \"%2$s\" 表中找到了欄位 \"%1$s\"。此欄位未被 netPhotoGraphics 使"
 "用。"
 
 #: zp-core/setup/database.php:339
 #, fuzzy, php-format
 msgid ""
 "Setup found the key \"%1$s\" in the \"%2$s\" table. This index is not in use "
-"by ZenPhotoGraphics."
+"by netPhotoGraphics."
 msgstr ""
-"安裝程式在 \"%2$s\" 表中找到了金鑰 \"%1$s\"。ZenPhotoGraphics 未使用此索引。"
+"安裝程式在 \"%2$s\" 表中找到了金鑰 \"%1$s\"。netPhotoGraphics 未使用此索引。"
 
 #: zp-core/setup/index.php:24
 #, fuzzy, php-format
-msgid "ZenPhotoGraphics requires PHP version %s or greater"
-msgstr "ZenPhotoGraphics 需要 PHP 版本%s 或更大的"
+msgid "netPhotoGraphics requires PHP version %s or greater"
+msgstr "netPhotoGraphics 需要 PHP 版本%s 或更大的"
 
 #: zp-core/setup/index.php:177
 #, fuzzy
@@ -14208,8 +14208,8 @@ msgstr "已開始"
 
 #: zp-core/setup/index.php:460
 #, fuzzy, php-format
-msgid "ZenPhotoGraphics Setup v%1$s%2$s: %3$s"
-msgstr "ZenPhotoGraphics 設置 v%1$s%2$s:%3$s"
+msgid "netPhotoGraphics Setup v%1$s%2$s: %3$s"
+msgstr "netPhotoGraphics 設置 v%1$s%2$s:%3$s"
 
 #: zp-core/setup/index.php:464
 #, fuzzy
@@ -14237,15 +14237,15 @@ msgstr "升級"
 #: zp-core/setup/index.php:510
 #, fuzzy
 #| msgid "ZenPhoto20 Setup"
-msgid "ZenPhotoGraphics Setup"
-msgstr "ZenPhotoGraphics 設置"
+msgid "netPhotoGraphics Setup"
+msgstr "netPhotoGraphics 設置"
 
 #: zp-core/setup/index.php:527
 #, fuzzy, php-format
 msgid ""
-"Welcome to ZenPhotoGraphics! This page will set up version %1$s on your web "
+"Welcome to netPhotoGraphics! This page will set up version %1$s on your web "
 "server."
-msgstr "歡迎來到 ZenPhotoGraphics!本頁將在您的 web 伺服器上設置版本%1$s。"
+msgstr "歡迎來到 netPhotoGraphics!本頁將在您的 web 伺服器上設置版本%1$s。"
 
 #: zp-core/setup/index.php:529
 msgid "Systems Check:"
@@ -14260,8 +14260,8 @@ msgstr "<strong> 注意: </strong>您正在安裝的版本已啟用調試設置!
 
 #: zp-core/setup/index.php:556
 #, fuzzy, php-format
-msgid "Installing ZenPhotoGraphics v%s"
-msgstr "安裝 ZenPhotoGraphics v%s"
+msgid "Installing netPhotoGraphics v%s"
+msgstr "安裝 netPhotoGraphics v%s"
 
 #: zp-core/setup/index.php:571
 #, fuzzy, php-format
@@ -14374,10 +14374,10 @@ msgstr "PHP <code>安全模式</code> [啟用中]"
 #| "ZenPhoto20 functionality is reduced when PHP <code>safe mode</code> "
 #| "restrictions are in effect."
 msgid ""
-"ZenPhotoGraphics functionality is reduced when PHP <code>safe mode</code> "
+"netPhotoGraphics functionality is reduced when PHP <code>safe mode</code> "
 "restrictions are in effect."
 msgstr ""
-"當 PHP <code> 安全模式 </code> 限制生效時, ZenPhotoGraphics 功能將減少。"
+"當 PHP <code> 安全模式 </code> 限制生效時, netPhotoGraphics 功能將減少。"
 
 #: zp-core/setup/index.php:628
 #, fuzzy
@@ -15067,14 +15067,14 @@ msgstr ""
 #: zp-core/setup/index.php:1189
 #, fuzzy
 #| msgid "ZenPhoto20 files"
-msgid "ZenPhotoGraphics files"
-msgstr "ZenPhotoGraphics 檔"
+msgid "netPhotoGraphics files"
+msgstr "netPhotoGraphics 檔"
 
 #: zp-core/setup/index.php:1219
 #, fuzzy
 #| msgid "ZenPhoto20 package [missing]"
-msgid "ZenPhotoGraphics package [missing]"
-msgstr "ZenPhotoGraphics 套裝軟體 [缺失]"
+msgid "netPhotoGraphics package [missing]"
+msgstr "netPhotoGraphics 套裝軟體 [缺失]"
 
 #: zp-core/setup/index.php:1219
 #, fuzzy
@@ -15085,8 +15085,8 @@ msgstr "檔 <code> zenphoto </code> 丟失、不可讀或有缺陷。您的安�
 
 #: zp-core/setup/index.php:1225
 #, fuzzy, php-format
-msgid "Setting permissions (0%o) for ZenPhotoGraphics package."
-msgstr "為 ZenPhotoGraphics 包設置許可權 (0%o)。"
+msgid "Setting permissions (0%o) for netPhotoGraphics package."
+msgstr "為 netPhotoGraphics 包設置許可權 (0%o)。"
 
 #: zp-core/setup/index.php:1339
 #, fuzzy
@@ -15274,11 +15274,11 @@ msgstr ""
 #| "htaccess</em> file to produce a new <em>.htaccess</em> file."
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as "
-"the one distributed with this version of ZenPhotoGraphics. If you have made "
+"the one distributed with this version of netPhotoGraphics. If you have made "
 "changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</"
 "em> file to produce a new <em>.htaccess</em> file."
 msgstr ""
-"根資料夾中的 <em>. htaccess </em> 檔與與此版本的 ZenPhotoGraphics 一起分發的"
+"根資料夾中的 <em>. htaccess </em> 檔與與此版本的 netPhotoGraphics 一起分發的"
 "版本不同。如果對 <em>. htaccess </em> 進行了更改, 請將這些更改與 <em>%s/"
 "htaccess </em> 檔合併, 以生成新的 <em>. htaccess </em> 檔。"
 
@@ -15416,10 +15416,10 @@ msgstr "<em>本地化</em> 資料夾 [檔案不完整]"
 #| "Be sure you have uploaded the complete ZenPhoto20 package. You must have "
 #| "at least the <em>en_US</em> folder."
 msgid ""
-"Be sure you have uploaded the complete ZenPhotoGraphics package. You must "
+"Be sure you have uploaded the complete netPhotoGraphics package. You must "
 "have at least the <em>en_US</em> folder."
 msgstr ""
-"一定要上傳完整的 ZenPhotoGraphics 包。您必須至少具有 <em> en_US </em> 資料"
+"一定要上傳完整的 netPhotoGraphics 包。您必須至少具有 <em> en_US </em> 資料"
 "夾。"
 
 #: zp-core/setup/index.php:1614
@@ -15699,13 +15699,13 @@ msgid ""
 "<strong>Warning:</strong> the <code>%s</code> table appears not to have a "
 "proper <em>UNIQUE</em> key. There are probably duplicate entries in the "
 "table which can cause unpredictable behavior. This can normally be corrected "
-"by creating a ZenPhotoGraphics backup, dropping the table, running setup to "
+"by creating a netPhotoGraphics backup, dropping the table, running setup to "
 "restore the table, and then restoring from the backup. Note, however, that "
 "the duplicate entries will be lost."
 msgstr ""
 "<strong> 警告: </strong> <code>%s </code> 表似乎沒有正確的 <em> 唯一 </em> "
 "鍵。表中可能有重複的條目, 可能導致不可預知的行為。通常可以通過創建 "
-"ZenPhotoGraphics 備份、刪除表、運行安裝程式來還原表, 然後從備份還原來糾正這一"
+"netPhotoGraphics 備份、刪除表、運行安裝程式來還原表, 然後從備份還原來糾正這一"
 "點。但是, 請注意, 重複的條目將丟失。"
 
 #: zp-core/setup/setup-functions.php:500
@@ -16909,9 +16909,9 @@ msgstr "LDAP usersids 的 ID 偏移量"
 #, fuzzy
 msgid ""
 "This number is added to the LDAP <em>userid</em> to insure that there is no "
-"overlap to ZenPhotoGraphics <em>userids</em>."
+"overlap to netPhotoGraphics <em>userids</em>."
 msgstr ""
-"此編號將添加到 LDAP <em> 使用者 id </em> 中, 以確保沒有與 ZenPhotoGraphics "
+"此編號將添加到 LDAP <em> 使用者 id </em> 中, 以確保沒有與 netPhotoGraphics "
 "<em> userids </em> 的重疊。"
 
 #: zp-core/zp-extensions/LDAP_auth.php:60
@@ -16941,8 +16941,8 @@ msgstr "LDAP 組映射"
 
 #: zp-core/zp-extensions/LDAP_auth.php:70
 #, fuzzy
-msgid "Mapping of LDAP groups to ZenPhotoGraphics groups"
-msgstr "將 LDAP 組映射到 ZenPhotoGraphics 組"
+msgid "Mapping of LDAP groups to netPhotoGraphics groups"
+msgstr "將 LDAP 組映射到 netPhotoGraphics 組"
 
 #: zp-core/zp-extensions/LDAP_auth.php:70
 #, fuzzy
@@ -16962,8 +16962,8 @@ msgstr "沒有定義任何組或範本"
 
 #: zp-core/zp-extensions/LDAP_auth.php:91
 #, fuzzy
-msgid "ZenPhotoGraphics group"
-msgstr "ZenPhotoGraphics 集團"
+msgid "netPhotoGraphics group"
+msgstr "netPhotoGraphics 集團"
 
 #: zp-core/zp-extensions/LDAP_auth.php:92
 #, fuzzy
@@ -18950,8 +18950,8 @@ msgstr "配置錯誤,%1$s 的登錄組%2 不存在。"
 #: zp-core/zp-extensions/register_user.php:338
 #, fuzzy
 #| msgid "ZenPhoto20 Gallery registration"
-msgid "ZenPhotoGraphics Gallery registration"
-msgstr "ZenPhotoGraphics 畫廊註冊"
+msgid "netPhotoGraphics Gallery registration"
+msgstr "netPhotoGraphics 畫廊註冊"
 
 #: zp-core/zp-extensions/common/oAuth/oAuthLogin.php:140
 #: zp-core/zp-extensions/register_user.php:338
@@ -19823,8 +19823,8 @@ msgstr "在使用者外掛程式中"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:60
 #, fuzzy
-msgid "In ZenPhotoGraphics code"
-msgstr "在 ZenPhotoGraphics 代碼中"
+msgid "In netPhotoGraphics code"
+msgstr "在 netPhotoGraphics 代碼中"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:66
 #, fuzzy
@@ -21514,10 +21514,10 @@ msgstr "信任"
 #, fuzzy
 msgid ""
 "Set to <em>trusted</em> to presume the HTTP user is securely authorized. "
-"(This setting does not verify passwords against the ZenPhotoGraphics user.)"
+"(This setting does not verify passwords against the netPhotoGraphics user.)"
 msgstr ""
 "設置為 <em> 可信 </em> 以假定 HTTP 使用者已被安全授權。(此設置不驗證針對 "
-"ZenPhotoGraphics 使用者的密碼。"
+"netPhotoGraphics 使用者的密碼。"
 
 #: zp-core/zp-extensions/image_album_statistics.php:15
 #, fuzzy
@@ -21755,11 +21755,11 @@ msgstr "導入清單"
 #, fuzzy, php-format
 msgid ""
 "Import an external IP list. <p class=\"notebox\"><strong>NOTE:</strong> If "
-"this list is large it may exceed the capacity of ZenPhotoGraphics and %s to "
+"this list is large it may exceed the capacity of netPhotoGraphics and %s to "
 "process and store the results."
 msgstr ""
 "導入外部 IP 清單。<p class=\"notebox\"> <strong> 注意: </strong> 如果此清單很"
-"大, 則可能超過 ZenPhotoGraphics 和%s 處理和存儲結果的容量。"
+"大, 則可能超過 netPhotoGraphics 和%s 處理和存儲結果的容量。"
 
 #: zp-core/zp-extensions/ipBlocker.php:102
 #, fuzzy
@@ -25809,8 +25809,8 @@ msgstr "這將創建以下專案的單個靜態 xml 網站地圖檔:"
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:88
 #, fuzzy
-msgid "ZenPhotoGraphics items"
-msgstr "ZenPhotoGraphics 專案"
+msgid "netPhotoGraphics items"
+msgstr "netPhotoGraphics 專案"
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:90
 #, fuzzy
@@ -26655,8 +26655,8 @@ msgstr "如果您的語言寫作方向是從右向左的, 則應檢查此選項"
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:35
 #, fuzzy
 #| msgid "ZenPhoto20 object insertion"
-msgid "ZenPhotoGraphics object insertion"
-msgstr "ZenPhotoGraphics 物件插入"
+msgid "netPhotoGraphics object insertion"
+msgstr "netPhotoGraphics 物件插入"
 
 #: zp-core/zp-extensions/tinymce/plugins/pasteobj/pasteobj.php:47
 #, fuzzy, php-format
@@ -29028,8 +29028,8 @@ msgstr "<code> 按一下 </code>: 類似于懸停, 但通過滑鼠按一下啟�
 
 #: zp-core/zp-extensions/zpCaptcha.php:16
 #, fuzzy
-msgid "ZenPhotoGraphics captcha handler."
-msgstr "ZenPhotoGraphics 驗證程式。"
+msgid "netPhotoGraphics captcha handler."
+msgstr "netPhotoGraphics 驗證程式。"
 
 #: zp-core/zp-extensions/zpCaptcha.php:50
 msgid "Hash key"

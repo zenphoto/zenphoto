@@ -31,7 +31,7 @@ function upload_extra($uploadlimit, $passedalbum) {
 
 			<noscript><?php echo gettext('This uploader requires browser javaScript support.'); ?></noscript>
 
-			<!-- ZenPhotoGraphics needed parameters -->
+			<!-- netPhotoGraphics needed parameters -->
 			<input type="hidden" name="existingfolder" id="existingfolder" value="false" />
 			<input type="hidden" name="auth" id="auth" value="<?php echo $_zp_current_admin_obj->getPass(); ?>" />
 			<input type="hidden" name="id" id="id" value="<?php echo $_zp_current_admin_obj->getID(); ?>" />

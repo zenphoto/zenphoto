@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * This plugin is the centralized Cache manager for ZenphotoGraphics.
+ * This plugin is the centralized Cache manager for netPhotoGraphics.
 
   It provides:
  * <ul>

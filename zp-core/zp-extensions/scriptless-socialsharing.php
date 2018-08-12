@@ -41,7 +41,7 @@
  * Place <code>&lt;?php ScriptlessSocialSharing::printButtons();?&gt;</code> on your theme files where you wish the buttons to appear.
  *
  * @author Malte Müller (acrylian)
- * @copyright 2018 Malte Müller, Stephen Billard (ZenPhotoGraphics migration and general cleanup)
+ * @copyright 2018 Malte Müller, Stephen Billard (netPhotoGraphics migration and general cleanup)
  * @license GPL v3 or later
  * @package plugin/scriptless-socialsharing
  * @pluginCategory theme

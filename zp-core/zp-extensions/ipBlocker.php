@@ -95,7 +95,7 @@ class ipBlocker {
 						'selections' => $files,
 						'nullselection' => '',
 						'disabled' => !extensionEnabled('ipBlocker'),
-						'desc' => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of ZenPhotoGraphics and %s to process and store the results.'), DATABASE_SOFTWARE)),
+						'desc' => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of netPhotoGraphics and %s to process and store the results.'), DATABASE_SOFTWARE)),
 				gettext('Action') => array('key' => 'ipBlocker_type', 'type' => OPTION_TYPE_RADIO,
 						'order' => 4,
 						'buttons' => $buttons,

@@ -946,7 +946,7 @@ class _Authority {
 			if ($logo) {
 				?>
 				<p>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="ZenPhotoGraphics" alt="ZenPhotoGraphics" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="netPhotoGraphics" alt="netPhotoGraphics" />
 				</p>
 				<?php
 			}

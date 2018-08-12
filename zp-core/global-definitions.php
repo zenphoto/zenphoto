@@ -200,6 +200,6 @@ define('RECYCLE_ICON', '<span class="font_icon" style="color: red;font-size: lar
 define('SOUTH_EAST_CORNER_ARROW', '<span class="font_icon" style="color: green;font-weight: bold;">&#8690;</span>');
 define('WARNING_SIGN_ORANGE', '<span class="font_icon" style="color: darkorange;font-size: large;">&#9888;</span>');
 define('WASTEBASKET', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/trashcan.png" /></span>');
-define('ZP_BLUE', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zp.png" /></span>');
-define('ZP_GOLD', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zp_gold.png" /></span>');
+define('BADGE_BLUE', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/np_blue.png" /></span>');
+define('BADGE_GOLD', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/np_gold.png" /></span>');
 ?>
