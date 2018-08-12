@@ -3,7 +3,7 @@
  *
  * Admin tab for user mailing list
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  * @package plugins/user_mailing_list
  */
 if (!defined('OFFSET_PATH'))

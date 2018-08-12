@@ -8,7 +8,7 @@
  * automatically enabled for administration fields. The plugin must be enabled for
  * the suggestions to appear on theme pages.
  *
- * Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  *
  * @author Stephen Billard (sbillard)
  *
