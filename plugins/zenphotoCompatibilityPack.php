@@ -7,12 +7,12 @@
  * for zenphoto 1.4.6 or later.
  *
  * You should udate the theme/plugin you wish to use. Use the LegacyConverter
- * development subtab to alter your scripts to use the appropriate ZenPhoto20
+ * development subtab to alter your scripts to use the appropriate 
  * methods and properties.
  *
  * @author Stephen Billard (sbillard)
  *
- * Copyright 2014-2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2014-2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  *
  * @package plugins/zenphotoCompatibilityPack
  * @pluginCategory development

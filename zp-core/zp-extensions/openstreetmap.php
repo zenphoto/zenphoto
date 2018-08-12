@@ -12,7 +12,7 @@
  * <li>{@link https://github.com/leaflet-extras/leaflet-providers leaflet-providers} plugin</li>
  * </ul>
  *
- * @author Malte Müller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569), Stephen Billard (ZenPhoto20 adaption)
+ * @author Malte Müller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569), Stephen Billard (ZenPhotoGraphics adaption)
  * @licence GPL v3 or later
  * @package plugin/openstreetmap
  * @pluginCategory theme

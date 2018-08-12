@@ -9,7 +9,7 @@
  * @package plugins/pdpqrcode
  * @pluginCategory misc
  *
- * Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  */
 
 $plugin_is_filter = 5 | FEATURE_PLUGIN;

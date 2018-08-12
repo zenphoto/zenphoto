@@ -1075,7 +1075,7 @@ function getOptionList() {
 }
 
 /**
- * Cloned installations may be using symLinks to the "standard" ZenPhoto20 files.
+ * Cloned installations may be using symLinks to the "standard" script files.
  * This can cause a problem examining the "path" to the file. __FILE__ and other functions will
  * return the actual path to the file, e.g. the path to the parent installation of
  * a clone. SERVERPATH is the path to the clone installation and will not be the same

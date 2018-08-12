@@ -690,7 +690,7 @@ class RSS extends feed {
 					<pubDate><?php echo date("r", time()); ?></pubDate>
 					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
 					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
-					<generator>ZenPhoto20 RSS Generator</generator>
+					<generator>ZenPhotoGraphics RSS Generator</generator>
 					<?php
 					foreach ($feeditems as $feeditem) {
 						switch ($this->feedtype) {

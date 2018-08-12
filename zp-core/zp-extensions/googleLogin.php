@@ -2,7 +2,7 @@
 
 /**
  *
- * The plugin provides login to ZenPhoto20 via Google OAuth2 protocol.
+ * The plugin provides login via Google OAuth2 protocol.
  *
  *
  * You must configure the plugin with your Google Developer credentials. You will
@@ -16,7 +16,7 @@
  *
  * The gmail address supplied by Google OAuth2 will become the user's <i>user ID</i>
  * if present. If no e-mail address is supplied with the login, a user ID will be created
- * from the user's Google ID. If this <i>user ID</i> does not exist as a ZenPhoto20 user,
+ * from the user's Google ID. If this <i>user ID</i> does not exist as a site user,
  * a new user will be created. The user will be assigned to the group indicated by
  * the plugin's options. If <var>Notify</var> option is checked an e-mail will be sent to
  * the site administrator informing him of the new user.

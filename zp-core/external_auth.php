@@ -25,7 +25,7 @@ class external_auth {
 	 * The check() method should return "false" if there is no valid visitor or an array of
 	 * User information if there is one.
 	 *
-	 * If there is a valid user, the user name is checked against ZenPhotoGraphics users. If such user exists
+	 * If there is a valid user, the user name is checked against site users. If such user exists
 	 * he will be automatically logged in. If no user by that userid exists a transient user will be
 	 * created and logged in. User details are filled in from the user information in the passed array.
 	 *

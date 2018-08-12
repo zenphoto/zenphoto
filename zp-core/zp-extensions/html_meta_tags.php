@@ -139,7 +139,7 @@ class htmlmetatags {
 								"name='author'" => "htmlmeta_name-author",
 								"name='copyright'" => "htmlmeta_name-copyright",
 								"name='rights'" => "htmlmeta_name-rights",
-								"name='generator' ('ZenPhoto20')" => "htmlmeta_name-generator",
+								"name='generator' ('ZenPhotoGraphics')" => "htmlmeta_name-generator",
 								"name='revisit-after'" => "htmlmeta_name-revisit-after",
 								"name='expires'" => "htmlmeta_name-expires",
 								"name='date'" => "htmlmeta_name-date",
@@ -305,7 +305,7 @@ class htmlmetatags {
 			$meta .= '<meta name="rights" content="' . $author . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-generator')) {
-			$meta .= '<meta name="generator" content="ZenPhoto20 ' . ZENPHOTO_VERSION . '">' . "\n";
+			$meta .= '<meta name="generator" content="ZenPhotoGraphics ' . ZENPHOTO_VERSION . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-revisit-after')) {
 			$meta .= '<meta name="revisit-after" content="' . getOption("htmlmeta_revisit_after") . ' days">' . "\n";

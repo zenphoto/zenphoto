@@ -6,7 +6,7 @@
  *
  * <i>utf8</i> encoding supports only <i>Basic Multilingual Plane</i> (BMP) characters. Many
  * recently defined Emoji characters are coded in with <i>trans-BMP</i> codes. For MySql to
- * handle these the data field character set must be set to <i>utf8mb4</i>. Existing ZenPhoto20
+ * handle these the data field character set must be set to <i>utf8mb4</i>. Existing 
  * installations encode all text fields as <i>utf8</i> so trying to store a <i>trans-BMP</i>
  * character will result in data truncation at that character since it is not valid
  * in <i>utf8</i>.
@@ -24,7 +24,7 @@
  * @package plugins/utf8mb4Migration
  * @pluginCategory development
  *
- * Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  */
 
 // force UTF-8 Ø

@@ -212,7 +212,7 @@ $tagsort = 'alpha';
 			if (is_AdminEditPage('newscategory')) {
 				$admintype = 'newscategory';
 				IF (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
-					$additem = gettext('newCategory');
+					$additem = gettext('New Category');
 				} else {
 					$additem = '';
 				}
@@ -548,9 +548,9 @@ $tagsort = 'alpha';
 																 id="show"
 																 value="1" <?php checkIfChecked($result->getShow()); ?>
 																 onclick="$('#pubdate').val('');
-																			 $('#expiredate').val('');
-																			 $('#pubdate').css('color', 'black');
-																			 $('.expire').html('');"
+																		 $('#expiredate').val('');
+																		 $('#pubdate').css('color', 'black');
+																		 $('.expire').html('');"
 																 />
 													<label for="show"><?php echo gettext("Published"); ?></label>
 												</p>
@@ -642,7 +642,7 @@ $tagsort = 'alpha';
 																			 name="disclose_password"
 																			 id="disclose_password"
 																			 onclick="passwordClear('');
-																								 togglePassword('');">
+																					 togglePassword('');">
 																			 <?php echo gettext('Show'); ?>
 															</label>
 															<br />

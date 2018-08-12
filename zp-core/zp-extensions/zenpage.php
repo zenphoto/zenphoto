@@ -9,7 +9,6 @@
  *
  * <b>Features</b>
  * <ol>
- * <li>Fully integrated with ZenPhoto20</li>
  * <li>Custom page management</li>
  * <li>News section with nested categories (blog)</li>
  * <li>Tags for pages and news articles</li>

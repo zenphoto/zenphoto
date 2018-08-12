@@ -19,7 +19,7 @@
  * @pluginCategory admin
  * @deprecated
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  */
 
 if (defined('SETUP_PLUGIN')) { //	gettext debugging aid

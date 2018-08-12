@@ -2,7 +2,7 @@
 
 /*
  * LDAP authorization module
- * Use to link ZenPhoto20 to an LDAP server for user verification.
+ * Use to link site to an LDAP server for user verification.
  * It assumes that your LDAP server contains posix-style users and groups.
  *
  * @author Stephen Billard (sbillard), Arie (ariep)
@@ -190,7 +190,7 @@ class Zenphoto_Authority extends _Authority {
 	}
 
 	/**
-	 * returns an array the user's of ZenPhoto20 groups
+	 * returns an array the user's of groups
 	 * @param type $ad
 	 */
 	static function getZPGroups($ad, $user) {

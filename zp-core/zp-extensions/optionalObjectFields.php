@@ -8,7 +8,7 @@
  * fields. They will be enabled in the list by default. The standard search
  * form allows a visitor to choose to disable the field for a particular search.
  *
- * The zenPhoto20 objects will still have the methods for getting and
+ * The objects will still have the methods for getting and
  * setting these fields. But if this plugin is not enabled, these fields will <b>NOT</b> be preserved
  * in the database.
  *

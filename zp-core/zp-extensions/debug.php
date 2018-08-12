@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Debugging aids for ZenPhoto20
+ * Debugging aids
  *
  * <b><i>Mark release</i> button:</b>
  *

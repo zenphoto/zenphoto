@@ -235,7 +235,7 @@ $buttonlist = array();
 	if (zp_loggedin(ADMIN_RIGHTS)) {
 		if (class_exists('Milo\Github\Api') && zpFunctions::hasPrimaryScripts()) {
 			/*
-			 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20 and deerivitives
+			 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20 and derivitives
 			 */
 			if (getOption('getUpdates_lastCheck') + 8640 < time()) {
 				setOption('getUpdates_lastCheck', time());
@@ -274,7 +274,7 @@ $buttonlist = array();
 				$buttonlist[] = array(
 						'category' => gettext('Admin'),
 						'enable' => 2,
-						'button_text' => 'ZenPhoto20 ' . $newestVersion,
+						'button_text' => 'ZenPhotoGraphics ' . $newestVersion,
 						'formname' => 'getUpdates_button',
 						'action' => $newestVersionURI,
 						'icon' => ARROW_DOWN_GREEN,

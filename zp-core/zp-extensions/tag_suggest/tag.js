@@ -21,7 +21,7 @@
 
 /*
  * Binary search optimization added and copyright 2015 by Stephen Billard for use with
- * the ZenPhoto20 software.
+ * the ZenPhotoGraphics software.
  *
  * NOTE: this presumes the taglist is sorted!
  *

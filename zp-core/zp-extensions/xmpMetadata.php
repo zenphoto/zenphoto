@@ -916,7 +916,7 @@ class xmpMetadata {
 				}
 			}
 		}
-		// direct import to ZenPhoto20 fields with no processing required
+		// direct import to fields with no processing required
 		$import = array(
 				'location' => 'XMPSubLocation',
 				'city' => 'XMPCity',

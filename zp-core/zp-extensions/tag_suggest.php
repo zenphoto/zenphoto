@@ -2,7 +2,7 @@
 /**
  * Provide javaScript tag "suggestions"
  * Based on Remy Sharp's {@link http://remysharp.com/2007/12/28/jquery-tag-suggestion/ jQuery Tag Suggestion}
- * plugin as modified for ZenPhoto20 to enhance performance.
+ * plugin as modified for ZenPhotoGraphics to enhance performance.
  *
  * This plugin provides suggestions for tag fields such as the search form. It is
  * automatically enabled for administration fields. The plugin must be enabled for

@@ -1,6 +1,6 @@
 <?php
 /*
- * utility to convert legacy zenphoto themes/plugins to ZenPhoto20 syntax.
+ * utility to convert legacy zenphoto themes/plugins to ZenPhotoGraphics syntax.
  *
  * @author Stephen Billard
  * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}

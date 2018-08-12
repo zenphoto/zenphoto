@@ -165,7 +165,7 @@ function html_encodeTagged($original, $allowScript = true) {
  * @param string $shortenindicator
  * @return string
  *
- * Algorithm copyright by Stephen Billard for use in ZenPhoto20 implementations
+ * Algorithm copyright by Stephen Billard for use in ZenPhoto20 and derivitive implementations
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 	//conservatve check if the string is too long.
@@ -1433,7 +1433,7 @@ function sortByKey($results, $sortkey, $order) {
  * @param array $removeCriteria		Fields to be removed from the array
  * @return array									The sorted array
  *
- * Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  *
  */
 function sortMultiArray($data, $field, $desc = false, $nat = true, $case = false, $preserveKeys = true, $removeCriteria = array()) {

@@ -1,6 +1,6 @@
 <?php
 /*
- * ZenPhoto20 adaptation of the upload handler
+ * adaptation of the upload handler
  */
 
 

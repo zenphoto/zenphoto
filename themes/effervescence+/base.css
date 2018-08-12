@@ -605,7 +605,7 @@ ul.pagelist li.next {
 	background: __B_23__;
 }
 #albums li:hover h4 a {
-	color: __C_51__; //albumnamnen, n�r du hovrar.
+	color: __C_51__; 
 }
 .imagethumb {
 	float: left;

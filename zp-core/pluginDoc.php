@@ -259,7 +259,7 @@ if (!defined('OFFSET_PATH')) {
 		<head>
 			<?php printStandardMeta(); ?>
 			<title><?php echo $pagetitle; ?></title>
-			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
+			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhotoGraphics_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
 			<style>
 
 				#heading {

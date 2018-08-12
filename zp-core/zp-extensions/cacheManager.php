@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * This plugin is the centralized Cache manager for Zenphoto20.
+ * This plugin is the centralized Cache manager for ZenphotoGraphics.
 
   It provides:
  * <ul>
@@ -28,7 +28,7 @@
  * <b>Notes:</b>
  * <ol>
  * 		<li>
- * 			Setting theme options or installing a new version of ZenPhoto20 will re-create these caching sizes.
+ * 			Setting theme options or installing a new version of the software will re-create these caching sizes.
  * 			Use a different <i>theme name</i> for custom versions that you create. If you set image options that
  * 			impact the default caching you will need to re-create these caching sizes by one of the above methods.
  * 		</li>

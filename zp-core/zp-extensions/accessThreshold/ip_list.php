@@ -4,7 +4,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
  *
  * @package plugins/accessThreshold
  */
@@ -31,7 +31,7 @@ if (isset($recentIP[$ip])) {
 <head>
 	<?php printStandardMeta(); ?>
 	<title><? echo $ip; ?></title>
-	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhotoGraphics_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
 	<style>
 		ul, ol {
 			list-style: none;

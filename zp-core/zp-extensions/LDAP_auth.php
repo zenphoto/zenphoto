@@ -2,7 +2,7 @@
 /*
  * LDAP authorization plugin
  *
- * This plugin will link ZenPhoto20 to an LDAP server for user verification.
+ * This plugin will link the site to an LDAP server for user verification.
  * It assumes that your LDAP server contains posix-style users and groups.
  *
  * @author Stephen Billard (sbillard)

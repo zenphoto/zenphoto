@@ -32,7 +32,7 @@ if (isset($_SERVER['SERVER_ADDR'])) {
 		$client->setHttpClient($http);
 	}
 }
-$client->setApplicationName("ZenPhoto20 Google OAuth Login");
+$client->setApplicationName("ZenPhotoGraphics Google OAuth Login");
 $client->setClientId($client_id);
 $client->setClientSecret($client_secret);
 $client->setRedirectUri($redirect_uri);
