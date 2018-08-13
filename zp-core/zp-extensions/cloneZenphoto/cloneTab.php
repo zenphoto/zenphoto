@@ -57,10 +57,11 @@ printAdminHeader('admin');
 							$config = array('mysql_host' => $_zp_conf_vars['mysql_host'], 'mysql_database' => $_zp_conf_vars['mysql_database'], 'mysql_prefix' => $_zp_conf_vars['mysql_prefix'], 'mysql_user' => $_zp_conf_vars['mysql_user'], 'mysql_pass' => $_zp_conf_vars['mysql_pass']);
 							if ($_zp_DB_connection = db_connect($config, false)) {
 								$sql = 'SELECT * FROM `' . $config['mysql_prefix'] . 'options` WHERE `name`="zenphoto_install"';
-								$result = query_single_row($sql);
-								$signature = @unserialize($result['value']);
-								if ($signature['ZENPHOTO'] != $myVersion) {
-									$version = ' (' . sprintf(gettext('Last setup run version: %s'), $signature['ZENPHOTO']) . ')';
+								if ($result = query_single_row($sql, FALSE)) {
+									$signature = @unserialize($result['value']);
+									if ($signature['ZENPHOTO'] != $myVersion) {
+										$version = ' (' . sprintf(gettext('Last setup run version: %s'), $signature['ZENPHOTO']) . ')';
+									}
 								}
 							}
 							db_close();
