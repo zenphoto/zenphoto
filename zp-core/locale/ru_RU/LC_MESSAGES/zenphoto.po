@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-13 09:14-0700\n"
+"POT-Creation-Date: 2018-08-16 13:38-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: http://www.artpixel.ru/forum/viewtopic.php?t=146 <Doctor Kru>\n"
@@ -128,8 +128,8 @@ msgstr "Галерея"
 
 #: plugins/cacheHeader.php:50 plugins/cookieInvalidator.php:32
 #: themes/zpmobile/functions.php:118 zp-core/admin-functions.php:167
-#: zp-core/admin.php:275 zp-core/admin.php:341 zp-core/admin.php:355
-#: zp-core/admin.php:371 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
+#: zp-core/admin.php:283 zp-core/admin.php:349 zp-core/admin.php:363
+#: zp-core/admin.php:379 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:605 zp-core/lib-auth.php:637
 #: zp-core/zp-extensions/site_upgrade.php:142
 #: zp-core/zp-extensions/site_upgrade.php:158
@@ -2764,7 +2764,7 @@ msgstr "9"
 #, fuzzy
 #| msgid "10s"
 msgid "10"
-msgstr "10"
+msgstr "10 последних комментариев"
 
 #: themes/paradigm/themeoptions.php:87
 #, fuzzy
@@ -6522,7 +6522,7 @@ msgstr "*по умолчанию"
 #, fuzzy
 #| msgid "Thumbnail"
 msgid "Thumbnails"
-msgstr "Миниатюры альбома:"
+msgstr "миниатюр в строке"
 
 #: zp-core/admin-functions.php:2124 zp-core/zp-extensions/cacheManager.php:284
 msgid "Thumbnail"
@@ -8327,85 +8327,85 @@ msgstr "Вы не обладаете достаточными правами д�
 msgid "You do not have proper rights to access %s."
 msgstr "Вы не имеете достаточно прав редактировать %s."
 
-#: zp-core/admin.php:267
+#: zp-core/admin.php:275
 #, fuzzy
 msgid "There is a new version is available."
 msgstr "Доступна новая версия."
 
-#: zp-core/admin.php:269
+#: zp-core/admin.php:277
 #, fuzzy, php-format
 msgid "The latest version %s can be downloaded by the utility button."
 msgstr "Последнюю версию %s можно загрузить с помощью кнопки утилиты."
 
-#: zp-core/admin.php:281
+#: zp-core/admin.php:289
 #, fuzzy, php-format
-#| msgid "Installing ZenPhoto20 v%s"
-msgid "Download netPhotoGraphics version %s."
-msgstr "Загрузить версию netphotoGraphics %s."
+#| msgid "%1$s version %2$s"
+msgid "Download %1$s version %2$s."
+msgstr "Загрузите%1$s версию%2$s."
 
-#: zp-core/admin.php:330
+#: zp-core/admin.php:338
 #, fuzzy
 msgid "Misc"
 msgstr "разное"
 
-#: zp-core/admin.php:343
+#: zp-core/admin.php:351
 #, fuzzy
 msgid "Run setup"
 msgstr "начать установку"
 
-#: zp-core/admin.php:348
+#: zp-core/admin.php:356
 #, fuzzy
 msgid "Run the setup script."
 msgstr "Запустите скрипт установки."
 
-#: zp-core/admin.php:357
+#: zp-core/admin.php:365
 #, fuzzy
 msgid "Setup » protect scripts"
 msgstr "Настройка »защищать скрипты"
 
-#: zp-core/admin.php:362
+#: zp-core/admin.php:370
 #, fuzzy
 msgid "Protects setup files so setup cannot be run."
 msgstr "Защищает файлы настроек, поэтому настройка не может быть выполнена."
 
-#: zp-core/admin.php:373
+#: zp-core/admin.php:381
 #, fuzzy
 msgid "Setup » restore scripts"
 msgstr "Setup »восстановить скрипты"
 
-#: zp-core/admin.php:378
+#: zp-core/admin.php:386
 #, fuzzy
 msgid "Restores setup files so setup can be run."
 msgstr "Восстанавливает файлы настроек, поэтому настройка может быть запущена."
 
-#: zp-core/admin.php:391 zp-core/utilities/installation_analysis.php:35
+#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:35
 msgid "<em>Debug build</em>"
 msgstr "<em>Отладочный релиз</em>"
 
-#: zp-core/admin.php:393 zp-core/utilities/installation_analysis.php:37
+#: zp-core/admin.php:401 zp-core/utilities/installation_analysis.php:37
 msgid "Official build"
 msgstr "Официальный релиз"
 
-#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:73
+#: zp-core/admin.php:407 zp-core/utilities/installation_analysis.php:73
 #, fuzzy
 msgid "release notes"
 msgstr "Примечания к данному выпуску"
 
-#: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
+#: zp-core/admin.php:408 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
 msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 msgstr "версия netPhotoGraphics <strong>%1$s (%2$s)</strong>"
 
-#: zp-core/admin.php:407
+#: zp-core/admin.php:415
 msgid "Utility functions"
 msgstr "Инструменты"
 
-#: zp-core/admin.php:480
+#: zp-core/admin.php:488
 msgid "Gallery Stats"
 msgstr "Статистика галереи"
 
-#: zp-core/admin.php:487
+#: zp-core/admin.php:495
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
@@ -8413,7 +8413,7 @@ msgstr[0] "<strong>%1$u</strong> Альбом (%2$u неопубликовано
 msgstr[1] "<strong>%1$u</strong> Альбома (%2$u неопубликовано)"
 msgstr[2] "<strong>%1$u</strong> Альбомов (%2$u неопубликовано)"
 
-#: zp-core/admin.php:489
+#: zp-core/admin.php:497
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
@@ -8421,7 +8421,7 @@ msgstr[0] "<strong>%u</strong> Альбом"
 msgstr[1] "<strong>%u</strong> Альбома"
 msgstr[2] "<strong>%u</strong> Альбомов"
 
-#: zp-core/admin.php:498
+#: zp-core/admin.php:506
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
@@ -8429,7 +8429,7 @@ msgstr[0] "<strong>%1$u</strong> Изображение (%2$u неопублик
 msgstr[1] "<strong>%1$u</strong> Изображения (%2$u неопубликовано)"
 msgstr[2] "<strong>%1$u</strong> Изображений (%2$u неопубликовано)"
 
-#: zp-core/admin.php:500
+#: zp-core/admin.php:508
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
@@ -8437,7 +8437,7 @@ msgstr[0] "<strong>%u</strong> Изображение"
 msgstr[1] "<strong>%u</strong> Изображения"
 msgstr[2] "<strong>%u</strong> Изображений"
 
-#: zp-core/admin.php:524
+#: zp-core/admin.php:532
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
@@ -8445,7 +8445,7 @@ msgstr[0] "<strong>%1$u</strong> Комментарий (%2$u в обработ�
 msgstr[1] "<strong>%1$u</strong> Комментария (%2$u в обработке)"
 msgstr[2] "<strong>%1$u</strong> Комментариев (%2$u в обработке)"
 
-#: zp-core/admin.php:526
+#: zp-core/admin.php:534
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
@@ -8453,7 +8453,7 @@ msgstr[0] "<strong>%u</strong> Комментарий"
 msgstr[1] "<strong>%u</strong> Комментария"
 msgstr[2] "<strong>%u</strong> Комментариев"
 
-#: zp-core/admin.php:541
+#: zp-core/admin.php:549
 #, fuzzy, php-format
 #| msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 #| msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
@@ -8463,7 +8463,7 @@ msgstr[0] "<strong>% 1 $ u</strong> Пользователь (% 2 $ u истек
 msgstr[1] "<strong>%1$u</strong> Изображения (%2$u неопубликовано)"
 msgstr[2] "<strong>%1$u</strong> Изображений (%2$u неопубликовано)"
 
-#: zp-core/admin.php:543
+#: zp-core/admin.php:551
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8473,7 +8473,7 @@ msgstr[0] "<strong>% u</strong> Пользователь"
 msgstr[1] "<strong>%u</strong> Изображения"
 msgstr[2] "<strong>%u</strong> Изображений"
 
-#: zp-core/admin.php:560
+#: zp-core/admin.php:568
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Album"
 #| msgid_plural "<strong>%u</strong> Albums"
@@ -8483,7 +8483,7 @@ msgstr[0] "<strong>% u</strong> Group"
 msgstr[1] "<strong>%u</strong> Альбома"
 msgstr[2] "<strong>%u</strong> Альбомов"
 
-#: zp-core/admin.php:567
+#: zp-core/admin.php:575
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8493,7 +8493,7 @@ msgstr[0] "<strong>% u</strong> Шаблон"
 msgstr[1] "<strong>%u</strong> Изображения"
 msgstr[2] "<strong>%u</strong> Изображений"
 
-#: zp-core/admin.php:584
+#: zp-core/admin.php:592
 #, fuzzy
 msgid "Your user rights do not allow access to administrative functions."
 msgstr ""
@@ -9596,7 +9596,7 @@ msgstr "Для этой опции требуется расширение PHP E
 #, fuzzy
 #| msgid "Allow upscale:"
 msgid "Allow upscale"
-msgstr "разрешить увеличение"
+msgstr "Увеличивать масштаб:"
 
 #: zp-core/admin_options/image.php:406
 #, fuzzy
@@ -9617,7 +9617,7 @@ msgstr "Увеличивать резкость:"
 #, fuzzy
 #| msgid "thumbnail"
 msgid "thumbnails"
-msgstr "Миниатюры альбома:"
+msgstr "миниатюр в строке"
 
 #: zp-core/admin_options/image.php:425
 #, fuzzy
@@ -16589,7 +16589,7 @@ msgstr "настройки поиска"
 #: zp-core/template-functions.php:3968
 #, fuzzy
 msgid "fields"
-msgstr "поменять местами значения высоты и ширины"
+msgstr "пользовательские поля:"
 
 #: zp-core/template-functions.php:4007
 msgid "Within"
@@ -18841,17 +18841,17 @@ msgstr "На сайт"
 msgid "Last setup run version: %s"
 msgstr "Последняя версия запуска установки: %s"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:71
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:72
 #, fuzzy
 msgid "No longer a clone of this installation."
 msgstr "Больше не клоун этой установки."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:85
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:86
 #, fuzzy
 msgid "Remove invalid clones."
 msgstr "Удалите недопустимые клоны."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:93
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:94
 #, fuzzy
 msgid ""
 "Create a new install with symbolic links to the current installation scripts."
@@ -18859,7 +18859,7 @@ msgstr ""
 "Создайте новую установку с символическими ссылками на текущие сценарии "
 "установки."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:116
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:117
 #, fuzzy
 msgid ""
 "<strong>Note:</strong> Existing Site scripts will be removed from the target "
@@ -18868,21 +18868,21 @@ msgstr ""
 "<strong>Примечание.</strong> Существующие скрипты сайта будут удалены из "
 "целевого объекта, если они существуют."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:196
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:197
 #, fuzzy
 msgid "No subfolders in: "
 msgstr "Нет подпапок в:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:198
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:199
 msgid "Select the destination folder:"
 msgstr "Выберите целевой каталог:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:231
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:232
 #, fuzzy
 msgid "Verify WEB link to this install:"
 msgstr "Проверьте ссылку WEB на эту установку:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:241
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:242
 msgid "Clone installation"
 msgstr "Клонировать Zenphoto"
 
@@ -30137,6 +30137,11 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:70
 msgid "Sample CAPTCHA image"
 msgstr "Пример отображения CAPTCHA"
+
+#, fuzzy
+#~| msgid "Installing ZenPhoto20 v%s"
+#~ msgid "Download netPhotoGraphics version %s."
+#~ msgstr "Загрузить версию netphotoGraphics %s."
 
 #, fuzzy
 #~ msgid "Flash; strobe return str_replace($sw, light detected"

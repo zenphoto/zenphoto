@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-13 09:40-0700\n"
-"PO-Revision-Date: 2018-08-13 10:38-0700\n"
+"POT-Creation-Date: 2018-08-16 13:42-0700\n"
+"PO-Revision-Date: 2018-08-16 13:46-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Polish <zenphoto-translate.googlegroup.com>\n"
 "Language: pl_PL\n"
@@ -133,8 +133,8 @@ msgstr "Galeria"
 
 #: plugins/cacheHeader.php:50 plugins/cookieInvalidator.php:32
 #: themes/zpmobile/functions.php:118 zp-core/admin-functions.php:167
-#: zp-core/admin.php:275 zp-core/admin.php:341 zp-core/admin.php:355
-#: zp-core/admin.php:371 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
+#: zp-core/admin.php:283 zp-core/admin.php:349 zp-core/admin.php:363
+#: zp-core/admin.php:379 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:605 zp-core/lib-auth.php:637
 #: zp-core/zp-extensions/site_upgrade.php:142
 #: zp-core/zp-extensions/site_upgrade.php:158
@@ -732,7 +732,7 @@ msgstr "Tworzy tekstowe znaki wodne."
 #: zp-core/zp-extensions/flag_thumbnail.php:120
 #, fuzzy
 msgid "Text"
-msgstr "Tekst dla logo motywu"
+msgstr "Zobacz cały tekst"
 
 #: plugins/text_watermark.php:33
 #, fuzzy
@@ -3054,7 +3054,7 @@ msgstr "Strona tematu"
 #, fuzzy
 #| msgid "Views: %u"
 msgid "View: "
-msgstr "Podgląd"
+msgstr "podgląd"
 
 #: themes/zenFluid/functions.php:266 themes/zpBootstrap/image.php:60
 #: zp-core/zp-extensions/themeSwitcher.php:183
@@ -3423,7 +3423,7 @@ msgstr ""
 #: themes/zenFluid/themeoptions.php:210
 #, fuzzy
 msgid "Description justification"
-msgstr "Uzasadnienie opisu"
+msgstr "Description/Justification"
 
 #: themes/zenFluid/themeoptions.php:215
 #, fuzzy
@@ -4074,7 +4074,7 @@ msgstr "%s"
 #: themes/zpEnlighten/search.php:125
 #, fuzzy, php-format
 msgid "%1$s "
-msgstr "Albumów (%1$s) &amp; Obrazów (%2$s)"
+msgstr "Nazwa bazy danych: <strong>%1$s</strong>"
 
 #: themes/zpEnlighten/sidebar.php:46
 #, fuzzy
@@ -4261,7 +4261,7 @@ msgstr "Galeria Losowa Obraz z Galerii Losowej"
 #: themes/zpfocus/inc-sidebar.php:52
 #, fuzzy
 msgid "More"
-msgstr "Pokaż więcej wyników"
+msgstr "Dodaj więcej pól"
 
 #: themes/zpfocus/inc-sidebar.php:75
 #, fuzzy
@@ -4919,7 +4919,7 @@ msgstr "Następna Strona"
 #: themes/zpmasonry/search.php:30 themes/zpminimal/search.php:29
 #, fuzzy
 msgid "items"
-msgstr "Zaznaczone elementy usunięte"
+msgstr "Zaznaczone elementy oznaczone jako spam"
 
 #: themes/zpmasonry/search.php:171 themes/zpminimal/search.php:109
 #, fuzzy
@@ -7234,7 +7234,7 @@ msgstr "tagi"
 #: zp-core/admin-functions.php:5729
 #, fuzzy
 msgid "Backup"
-msgstr "Zapis kopii zapasowej nieudany!"
+msgstr "Stwórz lub przywróć kopię zapasową bazy danych"
 
 #: zp-core/admin-functions.php:5736
 #, fuzzy
@@ -7766,7 +7766,7 @@ msgstr "Zarządzanie tagami"
 #: zp-core/admin-tags.php:235
 #, fuzzy
 msgid "Order by"
-msgstr "Porządek wyświetlania obrazów zapisany"
+msgstr "Porządek wyświetlania został zapisany."
 
 #: zp-core/admin-tags.php:238
 #, fuzzy
@@ -8466,87 +8466,87 @@ msgstr "Nie masz dostatecznych uprawnień do %s."
 msgid "You do not have proper rights to access %s."
 msgstr "Nie masz odpowiednich uprawnień, by uzyskać dostęp do %s."
 
-#: zp-core/admin.php:267
+#: zp-core/admin.php:275
 #, fuzzy
 msgid "There is a new version is available."
 msgstr "Dostępna jest nowa wersja."
 
-#: zp-core/admin.php:269
+#: zp-core/admin.php:277
 #, fuzzy, php-format
 msgid "The latest version %s can be downloaded by the utility button."
 msgstr "Najnowszą wersję %s można pobrać za pomocą przycisku narzędzia."
 
-#: zp-core/admin.php:281
+#: zp-core/admin.php:289
 #, fuzzy, php-format
-msgid "Download netPhotoGraphics version %s."
-msgstr "Pobierz wersję netPhotoGraphics %s."
+msgid "Download %1$s version %2$s."
+msgstr "Pobierz wersję %1$s %2$s."
 
-#: zp-core/admin.php:330
+#: zp-core/admin.php:338
 #, fuzzy
 msgid "Misc"
 msgstr "Różne"
 
-#: zp-core/admin.php:343
+#: zp-core/admin.php:351
 #, fuzzy
 msgid "Run setup"
 msgstr "Ustawienie pracy"
 
-#: zp-core/admin.php:348
+#: zp-core/admin.php:356
 #, fuzzy
 msgid "Run the setup script."
 msgstr "Uruchom skrypt instalacyjny."
 
-#: zp-core/admin.php:357
+#: zp-core/admin.php:365
 #, fuzzy
 msgid "Setup » protect scripts"
 msgstr "Konfiguracja \" chroni skrypty."
 
-#: zp-core/admin.php:362
+#: zp-core/admin.php:370
 #, fuzzy
 msgid "Protects setup files so setup cannot be run."
 msgstr ""
 "Chroni pliki konfiguracyjne, więc konfiguracja nie może być uruchomiona."
 
-#: zp-core/admin.php:373
+#: zp-core/admin.php:381
 #, fuzzy
 msgid "Setup » restore scripts"
 msgstr "Konfiguracja \" Skrypty przywracania"
 
-#: zp-core/admin.php:378
+#: zp-core/admin.php:386
 #, fuzzy
 msgid "Restores setup files so setup can be run."
 msgstr "Przywraca pliki ustawień, aby można było uruchomić konfigurację."
 
-#: zp-core/admin.php:391 zp-core/utilities/installation_analysis.php:35
+#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:35
 #, fuzzy
 msgid "<em>Debug build</em>"
 msgstr "<em>Budowa bugów</em>."
 
-#: zp-core/admin.php:393 zp-core/utilities/installation_analysis.php:37
+#: zp-core/admin.php:401 zp-core/utilities/installation_analysis.php:37
 #, fuzzy
 msgid "Official build"
 msgstr "Budowa oficjalna"
 
-#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:73
+#: zp-core/admin.php:407 zp-core/utilities/installation_analysis.php:73
 #, fuzzy
 msgid "release notes"
 msgstr "informacje o wersji"
 
-#: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
+#: zp-core/admin.php:408 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
 msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 msgstr "netPhotoGraphics wersja <strona>%1$s (%2$s) </strona>"
 
-#: zp-core/admin.php:407
+#: zp-core/admin.php:415
 msgid "Utility functions"
 msgstr "Narzędzia"
 
-#: zp-core/admin.php:480
+#: zp-core/admin.php:488
 msgid "Gallery Stats"
 msgstr "Statystyki Galerii"
 
-#: zp-core/admin.php:487
+#: zp-core/admin.php:495
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
@@ -8554,7 +8554,7 @@ msgstr[0] "<silny>%1$u</silny> Album (%2$u niepublikowany)"
 msgstr[1] "<strong>%1$u</strong> Albumy (%2$u nieopublikowane)"
 msgstr[2] "<strong>%1$u</strong> Albumów (%2$u nieopublikowanych)"
 
-#: zp-core/admin.php:489
+#: zp-core/admin.php:497
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
@@ -8562,7 +8562,7 @@ msgstr[0] "<strong>%u</strong> Album"
 msgstr[1] "<strong>%u</strong> Albumy"
 msgstr[2] "<strong>%u</strong> Albumów"
 
-#: zp-core/admin.php:498
+#: zp-core/admin.php:506
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
@@ -8570,7 +8570,7 @@ msgstr[0] "<silny>%1$u</silny> Obraz (%2$u niepublikowany)"
 msgstr[1] "<strong>%1$u</strong> strony (%2$u nieopublikowanych)"
 msgstr[2] "<strong>%1$u</strong> stron (%2$u nieopublikowanych)"
 
-#: zp-core/admin.php:500
+#: zp-core/admin.php:508
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
@@ -8578,7 +8578,7 @@ msgstr[0] "<strong>%u</strong> Obraz"
 msgstr[1] "<strong>%u</strong> Obrazy"
 msgstr[2] "<strong>%u</strong> Obrazów"
 
-#: zp-core/admin.php:524
+#: zp-core/admin.php:532
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
@@ -8586,7 +8586,7 @@ msgstr[0] "<strong>%1$u</strong> komentarz (%2$u w moderacji)"
 msgstr[1] "<strong>%1$u</strong> komentarze (%2$u w moderacji)"
 msgstr[2] "<strong>%1$u</strong> komentarzy (%2$u w moderacji)"
 
-#: zp-core/admin.php:526
+#: zp-core/admin.php:534
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
@@ -8594,7 +8594,7 @@ msgstr[0] "<strong>%u</strong> Komentarz"
 msgstr[1] "<strong>%u</strong> Komentarze"
 msgstr[2] "<strong>%u</strong> Komentarzy"
 
-#: zp-core/admin.php:541
+#: zp-core/admin.php:549
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> User (%2$u expired)"
 msgid_plural "<strong>%1$u</strong> Users (%2$u expired)"
@@ -8602,7 +8602,7 @@ msgstr[0] "<silny>%1$u</silny> Użytkownik (%2$u wygasło)"
 msgstr[1] "<strong>%1$u</strong> strony (%2$u nieopublikowanych)"
 msgstr[2] "<strong>%1$u</strong> stron (%2$u nieopublikowanych)"
 
-#: zp-core/admin.php:543
+#: zp-core/admin.php:551
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8612,7 +8612,7 @@ msgstr[0] "<silny>%u</silny> Użytkownik"
 msgstr[1] "<strong>%u</strong> Obrazy"
 msgstr[2] "<strong>%u</strong> Obrazów"
 
-#: zp-core/admin.php:560
+#: zp-core/admin.php:568
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Album"
 #| msgid_plural "<strong>%u</strong> Albums"
@@ -8622,7 +8622,7 @@ msgstr[0] "<silny>%u</silny> Grupa"
 msgstr[1] "<strong>%u</strong> Albumy"
 msgstr[2] "<strong>%u</strong> Albumów"
 
-#: zp-core/admin.php:567
+#: zp-core/admin.php:575
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8632,7 +8632,7 @@ msgstr[0] "<silny>%u</silny> Szablon"
 msgstr[1] "<strong>%u</strong> Obrazy"
 msgstr[2] "<strong>%u</strong> Obrazów"
 
-#: zp-core/admin.php:584
+#: zp-core/admin.php:592
 #, fuzzy
 msgid "Your user rights do not allow access to administrative functions."
 msgstr ""
@@ -9918,7 +9918,7 @@ msgstr ""
 #: zp-core/admin_options/image.php:559
 #, fuzzy
 msgid "Cache as"
-msgstr "pamięć podręczna HTML"
+msgstr "Pamięć podręczna została opróżniona."
 
 #: zp-core/admin_options/image.php:562
 #, fuzzy
@@ -10106,7 +10106,7 @@ msgstr ""
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:295
 #, fuzzy
 msgid "hide"
-msgstr "Ukryj szczegóły użytkownika %s"
+msgstr "Wyświetl lub ukryj Google Map."
 
 #: zp-core/admin_options/image.php:818 zp-core/admin_options/image.php:843
 #, fuzzy
@@ -14459,8 +14459,8 @@ msgstr "%1$s %2$s %3$s"
 msgid "Option:"
 msgid_plural "Options:"
 msgstr[0] ""
-"Twoje PHP posiada wsparcie dla Imagick. Zaznacz, jeśli chcesz używać tej "
-"biblioteki."
+"Jeśli zaznaczone, liczba obrazów i albumów będą wyświetlane na liście. "
+"Uwaga: motywy mogę nadpisywać tę opcję."
 msgstr[1] "Opcje"
 msgstr[2] "Opcje"
 
@@ -16719,7 +16719,7 @@ msgstr "Opcje wyszukiwania"
 #: zp-core/template-functions.php:3968
 #, fuzzy
 msgid "fields"
-msgstr "dziedziny"
+msgstr "Do wyświetlania dodatkowej zawartości możesz też użyć bloków kodu."
 
 #: zp-core/template-functions.php:4007
 #, fuzzy
@@ -17941,7 +17941,7 @@ msgstr "Próg dostępu"
 #: zp-core/zp-extensions/accessThreshold/admin_tab.php:146
 #, fuzzy
 msgid "Sort by:"
-msgstr "*układ albumów w galerii"
+msgstr "Porządek wyświetlania został zapisany."
 
 #: zp-core/zp-extensions/accessThreshold/admin_tab.php:148
 #, fuzzy
@@ -18309,7 +18309,7 @@ msgstr "Odcienie szarości"
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:193
 #, fuzzy
 msgid "Hide"
-msgstr "Ukryj szczegóły użytkownika %s"
+msgstr "Wyświetl lub ukryj Google Map."
 
 #: zp-core/zp-extensions/cacheManager.php:407
 #, fuzzy
@@ -19022,17 +19022,17 @@ msgstr "Odwiedź stronę."
 msgid "Last setup run version: %s"
 msgstr "Ostatnio uruchomiona wersja: %s"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:71
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:72
 #, fuzzy
 msgid "No longer a clone of this installation."
 msgstr "Nie jest już klonem tej instalacji."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:85
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:86
 #, fuzzy
 msgid "Remove invalid clones."
 msgstr "Usunąć niepoprawne klony."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:93
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:94
 #, fuzzy
 msgid ""
 "Create a new install with symbolic links to the current installation scripts."
@@ -19040,7 +19040,7 @@ msgstr ""
 "Tworzenie nowej instalacji z symbolicznymi linkami do bieżących skryptów "
 "instalacyjnych."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:116
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:117
 #, fuzzy
 msgid ""
 "<strong>Note:</strong> Existing Site scripts will be removed from the target "
@@ -19049,22 +19049,22 @@ msgstr ""
 "<strong>Note:</strong> Istniejące skrypty Strony zostaną usunięte z celu, "
 "jeśli istnieją."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:196
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:197
 #, fuzzy
 msgid "No subfolders in: "
 msgstr "Brak podkatalogów:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:198
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:199
 #, fuzzy
 msgid "Select the destination folder:"
 msgstr "Wybierz folder docelowy."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:231
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:232
 #, fuzzy
 msgid "Verify WEB link to this install:"
 msgstr "Sprawdź link WEB do tej instalacji:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:241
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:242
 #, fuzzy
 msgid "Clone installation"
 msgstr "Instalacja klonowania"
@@ -20517,7 +20517,7 @@ msgstr "Sesja"
 #: zp-core/zp-extensions/debug.php:183
 #, fuzzy
 msgid "SERVER"
-msgstr "Czas na serwerze: %s"
+msgstr "Serwer poczty wychodzącej"
 
 #: zp-core/zp-extensions/debug.php:184
 #, fuzzy
@@ -21605,7 +21605,7 @@ msgstr "Nakładaj ikony na miniaturki, aby wskazać stan obrazu."
 #: zp-core/zp-extensions/flag_thumbnail.php:67
 #, fuzzy
 msgid "Criteria"
-msgstr "Wpisz wyszukiwane słowa."
+msgstr "Brak obrazów spełniających kryteria."
 
 #: zp-core/zp-extensions/flag_thumbnail.php:69
 #: zp-core/zp-extensions/sitemap-extended.php:89
@@ -24951,7 +24951,7 @@ msgstr "Zastosowane zmiany w artykule dotyczącym nowości"
 #: zp-core/zp-extensions/publishContent/publishContent.php:628
 #, fuzzy
 msgid "Articles:"
-msgstr "artykuły"
+msgstr "Artykuły"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:640
 #, fuzzy
@@ -28671,7 +28671,7 @@ msgstr "przydziały"
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:145
 #, fuzzy
 msgid "Deleted"
-msgstr "Zaznaczone elementy usunięte"
+msgstr "Usuwanie wpisu menu nie powiodło się"
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:159
 #, fuzzy
@@ -30142,8 +30142,7 @@ msgstr "Jasne kategorie"
 #: zp-core/zp-extensions/zenpage/admin-news.php:304
 #, fuzzy
 msgid "Created"
-msgstr ""
-"Jeśli zaznaczone wszystkie obrazy/miniaturki będą tworzone w skali szarości."
+msgstr "Nie stworzyłeś jeszcze żadnej kopii zapasowej."
 
 #: zp-core/zp-extensions/zenpage/admin-news.php:306
 #, fuzzy
@@ -30406,6 +30405,10 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:70
 msgid "Sample CAPTCHA image"
 msgstr "Przykładowy kod CAPTCHA"
+
+#, fuzzy
+#~ msgid "Download netPhotoGraphics version %s."
+#~ msgstr "Pobierz wersję netPhotoGraphics %s."
 
 #, fuzzy
 #~ msgid "Flash; strobe return str_replace($sw, light detected"

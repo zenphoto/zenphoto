@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20 1.6.2.08\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-13 16:27-0700\n"
-"PO-Revision-Date: 2018-08-13 16:46-0700\n"
+"POT-Creation-Date: 2018-08-16 14:31-0700\n"
+"PO-Revision-Date: 2018-08-16 14:34-0700\n"
 "Last-Translator: Martin Kroul <martin.kroul@skaut.cz>\n"
 "Language-Team: Martin Kroul <martin.kroul@skaut.cz>\n"
 "Language: cs_CZ\n"
@@ -121,8 +121,8 @@ msgstr "Galerie"
 
 #: plugins/cacheHeader.php:50 plugins/cookieInvalidator.php:32
 #: themes/zpmobile/functions.php:118 zp-core/admin-functions.php:167
-#: zp-core/admin.php:275 zp-core/admin.php:341 zp-core/admin.php:355
-#: zp-core/admin.php:371 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
+#: zp-core/admin.php:283 zp-core/admin.php:349 zp-core/admin.php:363
+#: zp-core/admin.php:379 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:605 zp-core/lib-auth.php:637
 #: zp-core/zp-extensions/site_upgrade.php:142
 #: zp-core/zp-extensions/site_upgrade.php:158
@@ -5277,7 +5277,11 @@ msgstr "Velikost (630 pixelů)"
 #: themes/zpskeleton/themeoptions.php:64
 #, fuzzy
 msgid "Original Image"
-msgstr "Originální obrázek"
+msgstr ""
+"Pokud je tato možnost zaškrtnutá, IPTC data originální fotografie budou "
+"vložena do kopie  ve vyrovnávací paměti. Pokud fotografie nemá IPTC data, "
+"bude do kopie ve vyrovnávací paměti vložena poznámka o copyrightu (toto "
+"vložení proběhne i v případě, že originální fotografie neobsahuje copyright)."
 
 #: themes/zpskeleton/themeoptions.php:65
 #, fuzzy
@@ -8011,79 +8015,79 @@ msgstr "Nemáte práva k %s."
 msgid "You do not have proper rights to access %s."
 msgstr "Nemáte práva pro přístup k %s."
 
-#: zp-core/admin.php:267
+#: zp-core/admin.php:275
 #, fuzzy
 #| msgid "There is a new version of ZenPhoto20 available."
 msgid "There is a new version is available."
 msgstr "K dispozici je nová verze."
 
-#: zp-core/admin.php:269
+#: zp-core/admin.php:277
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version %s can be downloaded by the utility button."
 msgid "The latest version %s can be downloaded by the utility button."
 msgstr "Nejnovější verzi %s lze stáhnout stisknutím tlačítka Utility."
 
-#: zp-core/admin.php:281
+#: zp-core/admin.php:289
 #, fuzzy, php-format
-#| msgid "Download ZenPhoto20 version %s."
-msgid "Download netPhotoGraphics version %s."
-msgstr "Stáhnout netPhotoGraphics verze %s."
+#| msgid "%1$s version %2$s"
+msgid "Download %1$s version %2$s."
+msgstr "Stažení%1$s verze%2$s."
 
-#: zp-core/admin.php:330
+#: zp-core/admin.php:338
 msgid "Misc"
 msgstr "různé"
 
-#: zp-core/admin.php:343
+#: zp-core/admin.php:351
 msgid "Run setup"
 msgstr "Spustit instalaci"
 
-#: zp-core/admin.php:348
+#: zp-core/admin.php:356
 msgid "Run the setup script."
 msgstr "Spustit skript instalace."
 
-#: zp-core/admin.php:357
+#: zp-core/admin.php:365
 msgid "Setup » protect scripts"
 msgstr "Instalace » Ochránit soubory"
 
-#: zp-core/admin.php:362
+#: zp-core/admin.php:370
 msgid "Protects setup files so setup cannot be run."
 msgstr "Ochrání instalační soubory tak, že nemůže být spuštěna instalace."
 
-#: zp-core/admin.php:373
+#: zp-core/admin.php:381
 msgid "Setup » restore scripts"
 msgstr "Obnovení instalačních souborů"
 
-#: zp-core/admin.php:378
+#: zp-core/admin.php:386
 msgid "Restores setup files so setup can be run."
 msgstr "Obnovení instalačních souborů pro znovuspuštění instalace."
 
-#: zp-core/admin.php:391 zp-core/utilities/installation_analysis.php:35
+#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:35
 msgid "<em>Debug build</em>"
 msgstr "<em>Ladící sestavení</em>"
 
-#: zp-core/admin.php:393 zp-core/utilities/installation_analysis.php:37
+#: zp-core/admin.php:401 zp-core/utilities/installation_analysis.php:37
 msgid "Official build"
 msgstr "oficiální vydání"
 
-#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:73
+#: zp-core/admin.php:407 zp-core/utilities/installation_analysis.php:73
 msgid "release notes"
 msgstr "poznámky k vydání"
 
-#: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
+#: zp-core/admin.php:408 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
 msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 msgstr "verze netPhotoGraphics <strong>%1$s (%2$s)</strong>"
 
-#: zp-core/admin.php:407
+#: zp-core/admin.php:415
 msgid "Utility functions"
 msgstr "Užitečné funkce"
 
-#: zp-core/admin.php:480
+#: zp-core/admin.php:488
 msgid "Gallery Stats"
 msgstr "Statistika galerie"
 
-#: zp-core/admin.php:487
+#: zp-core/admin.php:495
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
@@ -8091,7 +8095,7 @@ msgstr[0] "<strong>%1$u</strong> album (%2$u nepublikováno)"
 msgstr[1] "<strong>%1$u</strong> alba (%2$u nepublikováno)"
 msgstr[2] "<strong>%1$u</strong> alb (%2$u nepublikováno)"
 
-#: zp-core/admin.php:489
+#: zp-core/admin.php:497
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
@@ -8099,7 +8103,7 @@ msgstr[0] "<strong>%u</strong> album"
 msgstr[1] "<strong>%u</strong> alba"
 msgstr[2] "<strong>%u</strong> alb"
 
-#: zp-core/admin.php:498
+#: zp-core/admin.php:506
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
@@ -8107,7 +8111,7 @@ msgstr[0] "<strong>%1$u</strong> fotografie (%2$u nepublikováno)"
 msgstr[1] "<strong>%1$u</strong> fotografie (%2$u nepublikováno)"
 msgstr[2] "<strong>%1$u</strong> fotografií (%2$u nepublikováno)"
 
-#: zp-core/admin.php:500
+#: zp-core/admin.php:508
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
@@ -8115,7 +8119,7 @@ msgstr[0] "<strong>%u</strong> fotografie"
 msgstr[1] "<strong>%u</strong> fotografie"
 msgstr[2] "<strong>%u</strong> fotografií"
 
-#: zp-core/admin.php:524
+#: zp-core/admin.php:532
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
@@ -8123,7 +8127,7 @@ msgstr[0] "<strong>%1$u</strong> komentář (%2$u ke schválení)"
 msgstr[1] "<strong>%1$u</strong> komentáře (%2$u ke schválení)"
 msgstr[2] "<strong>%1$u</strong> komentářů (%2$u ke schválení)"
 
-#: zp-core/admin.php:526
+#: zp-core/admin.php:534
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
@@ -8131,7 +8135,7 @@ msgstr[0] "<strong>%u</strong> komentář"
 msgstr[1] "<strong>%u</strong> komentáře"
 msgstr[2] "<strong>%u</strong> komentářů"
 
-#: zp-core/admin.php:541
+#: zp-core/admin.php:549
 #, php-format
 msgid "<strong>%1$u</strong> User (%2$u expired)"
 msgid_plural "<strong>%1$u</strong> Users (%2$u expired)"
@@ -8139,7 +8143,7 @@ msgstr[0] "<strong>%1$u</strong> uživatel (%2$u s vypršenou platností)"
 msgstr[1] "<strong>%1$u</strong> uživatelé (%2$u s vypršenou platností)"
 msgstr[2] "<strong>%1$u</strong> uživatelů (%2$u s vypršenou platností)"
 
-#: zp-core/admin.php:543
+#: zp-core/admin.php:551
 #, php-format
 msgid "<strong>%u</strong> User"
 msgid_plural "<strong>%u</strong> Users"
@@ -8147,7 +8151,7 @@ msgstr[0] "<strong>%u</strong> uživatel"
 msgstr[1] "<strong>%u</strong> uživatelé"
 msgstr[2] "<strong>%u</strong> uživatelů"
 
-#: zp-core/admin.php:560
+#: zp-core/admin.php:568
 #, php-format
 msgid "<strong>%u</strong> Group"
 msgid_plural "<strong>%u</strong> Groups"
@@ -8155,7 +8159,7 @@ msgstr[0] "<strong>%u</strong> skupina uživatelů"
 msgstr[1] "<strong>%u</strong> skupiny uživatelů"
 msgstr[2] "<strong>%u</strong> skupin uživatelů"
 
-#: zp-core/admin.php:567
+#: zp-core/admin.php:575
 #, php-format
 msgid "<strong>%u</strong> Template"
 msgid_plural "<strong>%u</strong> Templates"
@@ -8163,7 +8167,7 @@ msgstr[0] "<strong>%u</strong> šablona uživatelských skupin"
 msgstr[1] "<strong>%u</strong> šablony uživatelských skupin"
 msgstr[2] "<strong>%u</strong> šablon uživatelských skupin"
 
-#: zp-core/admin.php:584
+#: zp-core/admin.php:592
 msgid "Your user rights do not allow access to administrative functions."
 msgstr "Vaše uživatelská práva neumožňují přístup k funkcím administrátora."
 
@@ -26388,7 +26392,7 @@ msgstr "Kódování entit"
 #: zp-core/zp-extensions/tinymce.php:63
 #, fuzzy
 msgid "named"
-msgstr "jména"
+msgstr "Chyba: album %s nenalezeno."
 
 #: zp-core/zp-extensions/tinymce.php:63
 #, fuzzy
@@ -28842,6 +28846,11 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:70
 msgid "Sample CAPTCHA image"
 msgstr "Ukázka obrázku CAPTCHA."
+
+#, fuzzy
+#~| msgid "Download ZenPhoto20 version %s."
+#~ msgid "Download netPhotoGraphics version %s."
+#~ msgstr "Stáhnout netPhotoGraphics verze %s."
 
 #~ msgid " | "
 #~ msgstr " | "

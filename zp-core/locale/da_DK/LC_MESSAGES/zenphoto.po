@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-13 16:16-0700\n"
-"PO-Revision-Date: 2018-08-13 16:26-0700\n"
+"POT-Creation-Date: 2018-08-16 14:29-0700\n"
+"PO-Revision-Date: 2018-08-16 14:31-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: da_DK\n"
@@ -128,8 +128,8 @@ msgstr "Galleri"
 
 #: plugins/cacheHeader.php:50 plugins/cookieInvalidator.php:32
 #: themes/zpmobile/functions.php:118 zp-core/admin-functions.php:167
-#: zp-core/admin.php:275 zp-core/admin.php:341 zp-core/admin.php:355
-#: zp-core/admin.php:371 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
+#: zp-core/admin.php:283 zp-core/admin.php:349 zp-core/admin.php:363
+#: zp-core/admin.php:379 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:605 zp-core/lib-auth.php:637
 #: zp-core/zp-extensions/site_upgrade.php:142
 #: zp-core/zp-extensions/site_upgrade.php:158
@@ -4609,7 +4609,9 @@ msgstr "POP port nummer."
 #: themes/zpmasonry/album.php:40 themes/zpmasonry/favorites.php:42
 #, fuzzy
 msgid "total"
-msgstr "ialt"
+msgstr ""
+"Den maksimale størrelse for en total upload er <strong>%sB</strong>, som er "
+"fastsat af din PHP-konfiguration <code>post_max_size</code>."
 
 #: themes/zpmasonry/album.php:52 themes/zpmasonry/album.php:123
 #: themes/zpmasonry/favorites.php:54 themes/zpmasonry/favorites.php:125
@@ -4859,7 +4861,7 @@ msgstr ""
 #: themes/zpmasonry/themeoptions.php:93 themes/zpminimal/themeoptions.php:42
 #, fuzzy
 msgid "Logo Image"
-msgstr "Logo billede"
+msgstr "Logobillede"
 
 #: themes/zpmasonry/themeoptions.php:95
 #, fuzzy
@@ -6415,7 +6417,7 @@ msgstr "*standard"
 #, fuzzy
 #| msgid "Thumbnail"
 msgid "Thumbnails"
-msgstr "%s miniaturer"
+msgstr "miniaturer pr række"
 
 #: zp-core/admin-functions.php:2124 zp-core/zp-extensions/cacheManager.php:284
 msgid "Thumbnail"
@@ -8193,120 +8195,121 @@ msgstr "Du har ikke rettigheder til %s"
 msgid "You do not have proper rights to access %s."
 msgstr "Du har ikke rettigheder til at tilgå %s"
 
-#: zp-core/admin.php:267
+#: zp-core/admin.php:275
 #, fuzzy
 msgid "There is a new version is available."
 msgstr "Der er en ny version er tilgængelig."
 
-#: zp-core/admin.php:269
+#: zp-core/admin.php:277
 #, fuzzy, php-format
 msgid "The latest version %s can be downloaded by the utility button."
 msgstr "Den nyeste version %s kan downloades med hjælpeknappen."
 
-#: zp-core/admin.php:281
+#: zp-core/admin.php:289
 #, fuzzy, php-format
-msgid "Download netPhotoGraphics version %s."
-msgstr "Download netPhotoGraphics version %s."
+#| msgid "%1$s version %2$s"
+msgid "Download %1$s version %2$s."
+msgstr "Download%1$s version%2$s."
 
-#: zp-core/admin.php:330
+#: zp-core/admin.php:338
 msgid "Misc"
 msgstr "Diverse"
 
-#: zp-core/admin.php:343
+#: zp-core/admin.php:351
 #, fuzzy
 msgid "Run setup"
 msgstr "kør installation"
 
-#: zp-core/admin.php:348
+#: zp-core/admin.php:356
 #, fuzzy
 msgid "Run the setup script."
 msgstr "Kør installationsskriptet."
 
-#: zp-core/admin.php:357
+#: zp-core/admin.php:365
 msgid "Setup » protect scripts"
 msgstr "Setup » beskytte scripts"
 
-#: zp-core/admin.php:362
+#: zp-core/admin.php:370
 msgid "Protects setup files so setup cannot be run."
 msgstr "Beskytter setup-filer så setup ikke kan køres."
 
-#: zp-core/admin.php:373
+#: zp-core/admin.php:381
 msgid "Setup » restore scripts"
 msgstr "Setup » genopretter scripts"
 
-#: zp-core/admin.php:378
+#: zp-core/admin.php:386
 msgid "Restores setup files so setup can be run."
 msgstr "Genopretter setup-filer så setup kan køres."
 
-#: zp-core/admin.php:391 zp-core/utilities/installation_analysis.php:35
+#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:35
 msgid "<em>Debug build</em>"
 msgstr "<em>Debug build</em>"
 
-#: zp-core/admin.php:393 zp-core/utilities/installation_analysis.php:37
+#: zp-core/admin.php:401 zp-core/utilities/installation_analysis.php:37
 msgid "Official build"
 msgstr "Officiel Build"
 
-#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:73
+#: zp-core/admin.php:407 zp-core/utilities/installation_analysis.php:73
 #, fuzzy
 msgid "release notes"
 msgstr "produktbemærkninger"
 
-#: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
+#: zp-core/admin.php:408 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 msgstr "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 
-#: zp-core/admin.php:407
+#: zp-core/admin.php:415
 msgid "Utility functions"
 msgstr "Hjælpefunktioner"
 
-#: zp-core/admin.php:480
+#: zp-core/admin.php:488
 msgid "Gallery Stats"
 msgstr "Galleri statistikker"
 
-#: zp-core/admin.php:487
+#: zp-core/admin.php:495
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> Album (%2$u upubliceret)"
 msgstr[1] "<strong>%1$u</strong> Albums (%2$u upubliceret)"
 
-#: zp-core/admin.php:489
+#: zp-core/admin.php:497
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> Album"
 msgstr[1] "<strong>%u</strong> Albums"
 
-#: zp-core/admin.php:498
+#: zp-core/admin.php:506
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> Billede (%2$u upubliseret)"
 msgstr[1] "<strong>%1$u</strong> Billeder (%2$u upubliseret)"
 
-#: zp-core/admin.php:500
+#: zp-core/admin.php:508
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%1$u</strong> Billede"
 msgstr[1] "<strong>%1$u</strong> Billeder"
 
-#: zp-core/admin.php:524
+#: zp-core/admin.php:532
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
 msgstr[0] "<strong>%1$u</strong> Kommentar (%2$u under moderation )"
 msgstr[1] "<strong>%1$u</strong> Kommentarer (%2$u under moderation )"
 
-#: zp-core/admin.php:526
+#: zp-core/admin.php:534
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> Kommentar"
 msgstr[1] "<strong>%u</strong> Kommentarer"
 
-#: zp-core/admin.php:541
+#: zp-core/admin.php:549
 #, fuzzy, php-format
 #| msgid "<strong>%1$u</strong> Page (%2$u un-published)"
 #| msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
@@ -8315,7 +8318,7 @@ msgid_plural "<strong>%1$u</strong> Users (%2$u expired)"
 msgstr[0] "<strong>% 1 $ u</strong> bruger (% 2 $ du udløbet)"
 msgstr[1] "<strong>% 1 $ u</strong> brugere (% 2 $ du udløbet)"
 
-#: zp-core/admin.php:543
+#: zp-core/admin.php:551
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8324,7 +8327,7 @@ msgid_plural "<strong>%u</strong> Users"
 msgstr[0] "<strong>% u</strong> Bruger"
 msgstr[1] "<strong>% u</strong> brugere"
 
-#: zp-core/admin.php:560
+#: zp-core/admin.php:568
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Album"
 #| msgid_plural "<strong>%u</strong> Albums"
@@ -8333,7 +8336,7 @@ msgid_plural "<strong>%u</strong> Groups"
 msgstr[0] "<strong>% u</strong> gruppe"
 msgstr[1] "<strong>% u</strong> grupper"
 
-#: zp-core/admin.php:567
+#: zp-core/admin.php:575
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8342,7 +8345,7 @@ msgid_plural "<strong>%u</strong> Templates"
 msgstr[0] "<strong>% u</strong> skabelon"
 msgstr[1] "<strong>% u</strong> skabeloner"
 
-#: zp-core/admin.php:584
+#: zp-core/admin.php:592
 msgid "Your user rights do not allow access to administrative functions."
 msgstr "Dine brugerrettigheder giver ikke adgang til administrative funktioner."
 
@@ -9460,7 +9463,7 @@ msgstr "Gør skarpere:"
 #, fuzzy
 #| msgid "thumbnail"
 msgid "thumbnails"
-msgstr "%s miniaturer"
+msgstr "miniaturer pr række"
 
 #: zp-core/admin_options/image.php:425
 #, fuzzy
@@ -19468,7 +19471,10 @@ msgstr "Accepter"
 #, fuzzy
 #| msgid "Usage info"
 msgid "More info"
-msgstr "Mere info"
+msgstr ""
+"Deaktiver dette hvis du ike ønsker at bruge den seperate kontaktside med "
+"kontaktformular. Du kan også bruge kodeblokken for en side til dette. Se "
+"contact_form plugin dokumentationen for mere information."
 
 #: zp-core/zp-extensions/crop_image.php:26
 msgid "An image cropping tool."
@@ -19680,7 +19686,7 @@ msgstr "locales"
 #: zp-core/zp-extensions/debug.php:182
 #, fuzzy
 msgid "Session"
-msgstr "Session"
+msgstr "<code>SQL mode</code> [SET SESSION fejlede]"
 
 #: zp-core/zp-extensions/debug.php:183
 #, fuzzy
@@ -20567,7 +20573,7 @@ msgstr "Dette er din Facebook <em>App ID</em> ."
 #, fuzzy
 #| msgid "Secret"
 msgid "App Secret"
-msgstr "App Secret"
+msgstr "App-secret"
 
 #: zp-core/zp-extensions/facebookLogin.php:69
 #, fuzzy
@@ -23859,7 +23865,7 @@ msgstr "Giver mulighed for at rense muligheder for temaer og plugins."
 #: zp-core/zp-extensions/purgeOptions.php:34
 #, fuzzy
 msgid "purge"
-msgstr "udtømme"
+msgstr "Dan eller tøm sitemap cachefiler."
 
 #: zp-core/zp-extensions/purgeOptions.php:77
 #, fuzzy
@@ -28815,7 +28821,7 @@ msgstr "gribeskovl"
 #: zp-core/zp-extensions/zoomImage.php:64
 #, fuzzy
 msgid "Click"
-msgstr "(klik på artikeltitel for at inkludere et link)"
+msgstr "Klik på billedet for at ændre miniature beskæringen."
 
 #: zp-core/zp-extensions/zoomImage.php:64
 #, fuzzy
@@ -28916,6 +28922,10 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:70
 msgid "Sample CAPTCHA image"
 msgstr "CAPTCHA prøvebillede"
+
+#, fuzzy
+#~ msgid "Download netPhotoGraphics version %s."
+#~ msgstr "Download netPhotoGraphics version %s."
 
 #, fuzzy
 #~ msgid " | "

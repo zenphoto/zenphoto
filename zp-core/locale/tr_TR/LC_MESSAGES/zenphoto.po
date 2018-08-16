@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-12 15:56-0700\n"
-"PO-Revision-Date: 2018-08-12 16:15-0700\n"
+"POT-Creation-Date: 2018-08-16 13:27-0700\n"
+"PO-Revision-Date: 2018-08-16 13:32-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
 "Language: tr_TR\n"
@@ -43,7 +43,9 @@ msgstr "Önbelleklerin bu yanıtı saklamaması gerektiğini belirtmenizi sağla
 #: zp-core/zp-extensions/cacheManager.php:465 zp-core/zp-extensions/rss.php:86
 #, fuzzy
 msgid "Cache"
-msgstr "Ön Bellek"
+msgstr ""
+"cache dizini bulunamadı. Lütfen bu dizini yeniden oluşturun ve izinleri "
+"0777'ye ayarlayın."
 
 #: plugins/cacheHeader.php:45
 #, fuzzy
@@ -132,8 +134,8 @@ msgstr "Galeri"
 
 #: plugins/cacheHeader.php:50 plugins/cookieInvalidator.php:32
 #: themes/zpmobile/functions.php:118 zp-core/admin-functions.php:167
-#: zp-core/admin.php:275 zp-core/admin.php:341 zp-core/admin.php:355
-#: zp-core/admin.php:371 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
+#: zp-core/admin.php:283 zp-core/admin.php:349 zp-core/admin.php:363
+#: zp-core/admin.php:379 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:605 zp-core/lib-auth.php:637
 #: zp-core/zp-extensions/site_upgrade.php:142
 #: zp-core/zp-extensions/site_upgrade.php:158
@@ -8492,130 +8494,130 @@ msgstr "%s için gerekli izinlere sahip değilsiniz."
 msgid "You do not have proper rights to access %s."
 msgstr "%s öğesine ulaşmak için gerekli izinlere sahip değilsiniz."
 
-#: zp-core/admin.php:267
+#: zp-core/admin.php:275
 #, fuzzy
 msgid "There is a new version is available."
 msgstr "Mevcut yeni bir sürüm var."
 
-#: zp-core/admin.php:269
+#: zp-core/admin.php:277
 #, fuzzy, php-format
 msgid "The latest version %s can be downloaded by the utility button."
 msgstr "En son %s sürümü, yardımcı program düğmesiyle indirilebilir."
 
-#: zp-core/admin.php:281
+#: zp-core/admin.php:289
 #, fuzzy, php-format
-msgid "Download netPhotoGraphics version %s."
-msgstr "NetPhotoGraphics %s sürümünü indirin."
+msgid "Download %1$s version %2$s."
+msgstr "%1$s sürümünü%2$s indirin."
 
-#: zp-core/admin.php:330
+#: zp-core/admin.php:338
 #, fuzzy
 msgid "Misc"
 msgstr "Çeşitli"
 
-#: zp-core/admin.php:343
+#: zp-core/admin.php:351
 #, fuzzy
 msgid "Run setup"
 msgstr "Kurulumu başlat"
 
-#: zp-core/admin.php:348
+#: zp-core/admin.php:356
 #, fuzzy
 msgid "Run the setup script."
 msgstr "Kurulum komut dosyasını çalıştırın."
 
-#: zp-core/admin.php:357
+#: zp-core/admin.php:365
 #, fuzzy
 msgid "Setup » protect scripts"
 msgstr "Kurulum »komut dosyalarını koru"
 
-#: zp-core/admin.php:362
+#: zp-core/admin.php:370
 #, fuzzy
 msgid "Protects setup files so setup cannot be run."
 msgstr "Kurulum dosyalarını koruyun, böylece kurulum çalıştırılamaz."
 
-#: zp-core/admin.php:373
+#: zp-core/admin.php:381
 #, fuzzy
 msgid "Setup » restore scripts"
 msgstr "Kurulum »komut dosyalarını geri yükle"
 
-#: zp-core/admin.php:378
+#: zp-core/admin.php:386
 #, fuzzy
 msgid "Restores setup files so setup can be run."
 msgstr ""
 "Kurulum dosyalarını geri yükleyebilmek için kurulum dosyaları geri "
 "yüklenebilir."
 
-#: zp-core/admin.php:391 zp-core/utilities/installation_analysis.php:35
+#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:35
 #, fuzzy
 msgid "<em>Debug build</em>"
 msgstr "<em>Hata ayıklama yapısı</em>"
 
-#: zp-core/admin.php:393 zp-core/utilities/installation_analysis.php:37
+#: zp-core/admin.php:401 zp-core/utilities/installation_analysis.php:37
 #, fuzzy
 msgid "Official build"
 msgstr "Resmi yapı"
 
-#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:73
+#: zp-core/admin.php:407 zp-core/utilities/installation_analysis.php:73
 #, fuzzy
 msgid "release notes"
 msgstr "sürüm notları"
 
-#: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
+#: zp-core/admin.php:408 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
 msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 msgstr "netPhotoGraphics sürümü <strong>%1$s (%2$s)</strong>"
 
-#: zp-core/admin.php:407
+#: zp-core/admin.php:415
 msgid "Utility functions"
 msgstr "Faydalı fonksiyonlar"
 
-#: zp-core/admin.php:480
+#: zp-core/admin.php:488
 msgid "Gallery Stats"
 msgstr "Galeri İstatistikleri"
 
-#: zp-core/admin.php:487
+#: zp-core/admin.php:495
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
 msgstr[0] "<strong>% 1 $ u</strong> Albüm (% 2 $ u yayınlanmadı)"
 
-#: zp-core/admin.php:489
+#: zp-core/admin.php:497
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> Albüm"
 
-#: zp-core/admin.php:498
+#: zp-core/admin.php:506
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
 msgstr[0] "<strong>% 1 $ u</strong> Resim (% 2 $ u yayınlanmadı)"
 
-#: zp-core/admin.php:500
+#: zp-core/admin.php:508
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> Resim"
 
-#: zp-core/admin.php:524
+#: zp-core/admin.php:532
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
 msgstr[0] "<strong>%1$u</strong> Yorum (%2$u onay bekliyor)"
 
-#: zp-core/admin.php:526
+#: zp-core/admin.php:534
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> Yorum"
 
-#: zp-core/admin.php:541
+#: zp-core/admin.php:549
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> User (%2$u expired)"
 msgid_plural "<strong>%1$u</strong> Users (%2$u expired)"
 msgstr[0] "<strong>% 1 $ u</strong> Kullanıcı (% 2 $ u süresi doldu)"
 
-#: zp-core/admin.php:543
+#: zp-core/admin.php:551
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8623,7 +8625,7 @@ msgid "<strong>%u</strong> User"
 msgid_plural "<strong>%u</strong> Users"
 msgstr[0] "<strong>%</strong> Kullanıcı"
 
-#: zp-core/admin.php:560
+#: zp-core/admin.php:568
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Album"
 #| msgid_plural "<strong>%u</strong> Albums"
@@ -8631,7 +8633,7 @@ msgid "<strong>%u</strong> Group"
 msgid_plural "<strong>%u</strong> Groups"
 msgstr[0] "<strong>% u</strong> Grup"
 
-#: zp-core/admin.php:567
+#: zp-core/admin.php:575
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8639,7 +8641,7 @@ msgid "<strong>%u</strong> Template"
 msgid_plural "<strong>%u</strong> Templates"
 msgstr[0] "<strong>% u</strong> Şablon"
 
-#: zp-core/admin.php:584
+#: zp-core/admin.php:592
 #, fuzzy
 msgid "Your user rights do not allow access to administrative functions."
 msgstr "Kullanıcı haklarınız yönetim işlevlerine erişime izin vermiyor."
@@ -8783,7 +8785,7 @@ msgstr "Albümler için varsayılan küçük resim seçimi."
 #, fuzzy
 #| msgid "Sort gallery by:"
 msgid "Sort gallery by"
-msgstr "Galeriyi şuna göre sırala:"
+msgstr "Galeriyi Sırala"
 
 #: zp-core/admin_options/gallery.php:393
 #, fuzzy
@@ -9911,7 +9913,9 @@ msgstr ""
 #: zp-core/admin_options/image.php:559
 #, fuzzy
 msgid "Cache as"
-msgstr "Önbellek olarak"
+msgstr ""
+"cache dizini bulunamadı. Lütfen bu dizini yeniden oluşturun ve izinleri "
+"0777'ye ayarlayın."
 
 #: zp-core/admin_options/image.php:562
 #, fuzzy
@@ -14836,7 +14840,7 @@ msgstr "Yarat"
 #: zp-core/setup/index.php:483
 #, fuzzy
 msgid "update"
-msgstr "güncelle"
+msgstr "Dosyayı Güncelle"
 
 #: zp-core/setup/index.php:510
 #, fuzzy
@@ -15635,7 +15639,7 @@ msgstr "Ekle"
 #: zp-core/setup/index.php:1080
 #, fuzzy
 msgid "Update"
-msgstr "Güncelle"
+msgstr "Dosyayı Güncelle"
 
 #: zp-core/setup/index.php:1080
 #, fuzzy
@@ -19182,17 +19186,17 @@ msgstr "Siteyi ziyaret edin."
 msgid "Last setup run version: %s"
 msgstr "Son kurulum çalıştırma sürümü: %s"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:71
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:72
 #, fuzzy
 msgid "No longer a clone of this installation."
 msgstr "Artık bu yüklemenin bir kopyası yok."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:85
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:86
 #, fuzzy
 msgid "Remove invalid clones."
 msgstr "Geçersiz klonları kaldırın."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:93
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:94
 #, fuzzy
 msgid ""
 "Create a new install with symbolic links to the current installation scripts."
@@ -19200,7 +19204,7 @@ msgstr ""
 "Mevcut yükleme komut dosyalarına sembolik bağlantılar içeren yeni bir "
 "yükleme oluşturun."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:116
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:117
 #, fuzzy
 msgid ""
 "<strong>Note:</strong> Existing Site scripts will be removed from the target "
@@ -19209,22 +19213,22 @@ msgstr ""
 "<strong>Not:</strong> Varsa, mevcut Site komut dosyaları hedeften "
 "kaldırılacaktır."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:196
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:197
 #, fuzzy
 msgid "No subfolders in: "
 msgstr "Alt klasör yok:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:198
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:199
 #, fuzzy
 msgid "Select the destination folder:"
 msgstr "Hedef klasörü seçin:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:231
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:232
 #, fuzzy
 msgid "Verify WEB link to this install:"
 msgstr "Bu yüklemeye WEB bağlantısını doğrulayın:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:241
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:242
 #, fuzzy
 msgid "Clone installation"
 msgstr "Klon yükleme"
@@ -30790,6 +30794,10 @@ msgstr ""
 #, fuzzy
 msgid "Sample CAPTCHA image"
 msgstr "CAPTCHA resmi örneği"
+
+#, fuzzy
+#~ msgid "Download netPhotoGraphics version %s."
+#~ msgstr "NetPhotoGraphics %s sürümünü indirin."
 
 #, fuzzy
 #~ msgid "Flash; strobe return str_replace($sw, light detected"

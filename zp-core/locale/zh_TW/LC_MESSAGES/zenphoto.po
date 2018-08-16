@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-12 15:16-0700\n"
+"POT-Creation-Date: 2018-08-16 13:15-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: hit1205.org\n"
@@ -125,8 +125,8 @@ msgstr "相館"
 
 #: plugins/cacheHeader.php:50 plugins/cookieInvalidator.php:32
 #: themes/zpmobile/functions.php:118 zp-core/admin-functions.php:167
-#: zp-core/admin.php:275 zp-core/admin.php:341 zp-core/admin.php:355
-#: zp-core/admin.php:371 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
+#: zp-core/admin.php:283 zp-core/admin.php:349 zp-core/admin.php:363
+#: zp-core/admin.php:379 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:605 zp-core/lib-auth.php:637
 #: zp-core/zp-extensions/site_upgrade.php:142
 #: zp-core/zp-extensions/site_upgrade.php:158
@@ -3924,7 +3924,7 @@ msgstr "提示:%s"
 #: themes/zpEnlighten/search.php:122
 #, fuzzy, php-format
 msgid "%s "
-msgstr "%1$s 管理：%2$s%3$s"
+msgstr "%s"
 
 #: themes/zpEnlighten/search.php:125
 #, fuzzy, php-format
@@ -6974,7 +6974,7 @@ msgstr "標籤"
 #: zp-core/admin-functions.php:5729
 #, fuzzy
 msgid "Backup"
-msgstr "備份完成"
+msgstr "備份檔寫入失敗！"
 
 #: zp-core/admin-functions.php:5736
 #, fuzzy
@@ -8162,128 +8162,129 @@ msgstr "你沒有 %s 的權限。"
 msgid "You do not have proper rights to access %s."
 msgstr "你沒有權限存取 %s。"
 
-#: zp-core/admin.php:267
+#: zp-core/admin.php:275
 #, fuzzy
 msgid "There is a new version is available."
 msgstr "有一個新版本可用。"
 
-#: zp-core/admin.php:269
+#: zp-core/admin.php:277
 #, fuzzy, php-format
 msgid "The latest version %s can be downloaded by the utility button."
 msgstr "可通過 \"公用程式\" 按鈕下載最新版本的%s。"
 
-#: zp-core/admin.php:281
+#: zp-core/admin.php:289
 #, fuzzy, php-format
-msgid "Download netPhotoGraphics version %s."
-msgstr "下載 netPhotoGraphics 版本%s。"
+#| msgid "%1$s version %2$s"
+msgid "Download %1$s version %2$s."
+msgstr "下載%1$s 版本%2$s。"
 
-#: zp-core/admin.php:330
+#: zp-core/admin.php:338
 #, fuzzy
 msgid "Misc"
 msgstr "雜項"
 
-#: zp-core/admin.php:343
+#: zp-core/admin.php:351
 #, fuzzy
 msgid "Run setup"
 msgstr "運行安裝程序"
 
-#: zp-core/admin.php:348
+#: zp-core/admin.php:356
 #, fuzzy
 msgid "Run the setup script."
 msgstr "運行安裝腳本。"
 
-#: zp-core/admin.php:357
+#: zp-core/admin.php:365
 #, fuzzy
 msgid "Setup » protect scripts"
 msgstr "安裝程式»保護腳本"
 
-#: zp-core/admin.php:362
+#: zp-core/admin.php:370
 #, fuzzy
 msgid "Protects setup files so setup cannot be run."
 msgstr "保護安裝程式檔, 以便無法運行安裝程式。"
 
-#: zp-core/admin.php:373
+#: zp-core/admin.php:381
 #, fuzzy
 msgid "Setup » restore scripts"
 msgstr "安裝程式»還原腳本"
 
-#: zp-core/admin.php:378
+#: zp-core/admin.php:386
 #, fuzzy
 msgid "Restores setup files so setup can be run."
 msgstr "還原安裝程式檔, 以便可以運行安裝程式。"
 
-#: zp-core/admin.php:391 zp-core/utilities/installation_analysis.php:35
+#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:35
 #, fuzzy
 msgid "<em>Debug build</em>"
 msgstr "<em> 調試生成 </em>"
 
-#: zp-core/admin.php:393 zp-core/utilities/installation_analysis.php:37
+#: zp-core/admin.php:401 zp-core/utilities/installation_analysis.php:37
 #, fuzzy
 msgid "Official build"
 msgstr "官方版本"
 
-#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:73
+#: zp-core/admin.php:407 zp-core/utilities/installation_analysis.php:73
 #, fuzzy
 msgid "release notes"
 msgstr "发布说明"
 
-#: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
+#: zp-core/admin.php:408 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
 msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 msgstr "netPhotoGraphics 版本 <strong>%1$s (%2$s) </strong>"
 
-#: zp-core/admin.php:407
+#: zp-core/admin.php:415
 msgid "Utility functions"
 msgstr "實用工具"
 
-#: zp-core/admin.php:480
+#: zp-core/admin.php:488
 msgid "Gallery Stats"
 msgstr "相館狀態"
 
-#: zp-core/admin.php:487
+#: zp-core/admin.php:495
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> 個相本（%2$u 個未公開發佈）"
 msgstr[1] "<strong>%1$u</strong> 個相本（%2$u 個未公開發佈）"
 
-#: zp-core/admin.php:489
+#: zp-core/admin.php:497
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> 個相本"
 msgstr[1] "<strong>%u</strong> 個相本"
 
-#: zp-core/admin.php:498
+#: zp-core/admin.php:506
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> 張相片（%2$u 張未公開發佈）"
 msgstr[1] "<strong>%1$u</strong> 張相片（%2$u 張未公開發佈）"
 
-#: zp-core/admin.php:500
+#: zp-core/admin.php:508
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> 張相片"
 msgstr[1] "<strong>%u</strong> 張相片"
 
-#: zp-core/admin.php:524
+#: zp-core/admin.php:532
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
 msgstr[0] "<strong>%1$u</strong> 則留言（%2$u 則待審核）"
 msgstr[1] "<strong>%1$u</strong> 則留言（%2$u 則待審核）"
 
-#: zp-core/admin.php:526
+#: zp-core/admin.php:534
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> 則留言"
 msgstr[1] "<strong>%u</strong> 則留言"
 
-#: zp-core/admin.php:541
+#: zp-core/admin.php:549
 #, fuzzy, php-format
 #| msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 #| msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
@@ -8292,7 +8293,7 @@ msgid_plural "<strong>%1$u</strong> Users (%2$u expired)"
 msgstr[0] "<strong>%1 $ u </strong>使用者 (%2 $ u 過期)"
 msgstr[1] "<strong>%1$u</strong> 張相片（%2$u 張未公開發佈）"
 
-#: zp-core/admin.php:543
+#: zp-core/admin.php:551
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8301,7 +8302,7 @@ msgid_plural "<strong>%u</strong> Users"
 msgstr[0] "<strong>%u </strong>使用者"
 msgstr[1] "<strong>%u</strong> 張相片"
 
-#: zp-core/admin.php:560
+#: zp-core/admin.php:568
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Album"
 #| msgid_plural "<strong>%u</strong> Albums"
@@ -8310,7 +8311,7 @@ msgid_plural "<strong>%u</strong> Groups"
 msgstr[0] "<strong>%u </strong>組"
 msgstr[1] "<strong>%u</strong> 個相本"
 
-#: zp-core/admin.php:567
+#: zp-core/admin.php:575
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8319,7 +8320,7 @@ msgid_plural "<strong>%u</strong> Templates"
 msgstr[0] "<strong>%u </strong>範本"
 msgstr[1] "<strong>%u</strong> 張相片"
 
-#: zp-core/admin.php:584
+#: zp-core/admin.php:592
 #, fuzzy
 msgid "Your user rights do not allow access to administrative functions."
 msgstr "您的使用者許可權不允許訪問管理功能。"
@@ -8451,7 +8452,7 @@ msgstr "相冊的預設縮略圖選擇。"
 #, fuzzy
 #| msgid "Sort gallery by:"
 msgid "Sort gallery by"
-msgstr "相本排序方式："
+msgstr "相本排序"
 
 #: zp-core/admin_options/gallery.php:393
 msgid ""
@@ -17292,7 +17293,7 @@ msgstr "訪問閾值"
 #: zp-core/zp-extensions/accessThreshold/admin_tab.php:146
 #, fuzzy
 msgid "Sort by:"
-msgstr "*使用相館的相本排序方式"
+msgstr "相本排序方式："
 
 #: zp-core/zp-extensions/accessThreshold/admin_tab.php:148
 #, fuzzy
@@ -18286,45 +18287,45 @@ msgstr "訪問該網站。"
 msgid "Last setup run version: %s"
 msgstr "上次安裝程式運行版本:%s"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:71
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:72
 #, fuzzy
 msgid "No longer a clone of this installation."
 msgstr "不再是此安裝的克隆。"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:85
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:86
 #, fuzzy
 msgid "Remove invalid clones."
 msgstr "刪除不正確克隆。"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:93
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:94
 #, fuzzy
 msgid ""
 "Create a new install with symbolic links to the current installation scripts."
 msgstr "使用指向當前安裝腳本的符號連結創建新安裝。"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:116
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:117
 #, fuzzy
 msgid ""
 "<strong>Note:</strong> Existing Site scripts will be removed from the target "
 "if they exist."
 msgstr "<strong> 注意: </strong>現有的網站腳本如果存在, 將從目標中刪除。"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:196
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:197
 #, fuzzy
 msgid "No subfolders in: "
 msgstr "在中沒有子資料夾:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:198
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:199
 #, fuzzy
 msgid "Select the destination folder:"
 msgstr "選擇目的檔案夾:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:231
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:232
 #, fuzzy
 msgid "Verify WEB link to this install:"
 msgstr "驗證到此安裝的 WEB 連結:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:241
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:242
 #, fuzzy
 msgid "Clone installation"
 msgstr "克隆安裝"
@@ -21750,7 +21751,7 @@ msgstr "阻止駭客訪問您的網站的工具。"
 #: zp-core/zp-extensions/ipBlocker.php:80
 #, fuzzy
 msgid "Allow"
-msgstr "允許搜尋"
+msgstr "允許私密留言"
 
 #: zp-core/zp-extensions/ipBlocker.php:80
 #, fuzzy
@@ -29098,6 +29099,10 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:70
 msgid "Sample CAPTCHA image"
 msgstr "驗證碼的範例圖像"
+
+#, fuzzy
+#~ msgid "Download netPhotoGraphics version %s."
+#~ msgstr "下載 netPhotoGraphics 版本%s。"
 
 #, fuzzy
 #~ msgid "Flash; strobe return str_replace($sw, light detected"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-12 16:15-0700\n"
-"PO-Revision-Date: 2018-08-12 16:47-0700\n"
+"POT-Creation-Date: 2018-08-16 13:32-0700\n"
+"PO-Revision-Date: 2018-08-16 13:37-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: pasi@pilm.se\n"
 "Language: sv_SE\n"
@@ -129,8 +129,8 @@ msgstr "Galleri"
 
 #: plugins/cacheHeader.php:50 plugins/cookieInvalidator.php:32
 #: themes/zpmobile/functions.php:118 zp-core/admin-functions.php:167
-#: zp-core/admin.php:275 zp-core/admin.php:341 zp-core/admin.php:355
-#: zp-core/admin.php:371 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
+#: zp-core/admin.php:283 zp-core/admin.php:349 zp-core/admin.php:363
+#: zp-core/admin.php:379 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:605 zp-core/lib-auth.php:637
 #: zp-core/zp-extensions/site_upgrade.php:142
 #: zp-core/zp-extensions/site_upgrade.php:158
@@ -781,7 +781,7 @@ msgstr "Ingen <em>mod_rewrite_suffix</em> har ställts in."
 #: zp-core/zp-extensions/rating.php:246
 #, fuzzy
 msgid "Database"
-msgstr "databasen ansluten"
+msgstr "Databasuppdatering färdig"
 
 #: plugins/titlelinkMigration.php:34
 #, fuzzy
@@ -4721,7 +4721,7 @@ msgstr "404 fel"
 #: themes/zpmasonry/album.php:16 themes/zpmasonry/favorites.php:18
 #, fuzzy
 msgid "subalbum"
-msgstr "%u Underalbum"
+msgstr "\"List\" subalbum level"
 
 #: themes/zpmasonry/album.php:40 themes/zpmasonry/favorites.php:42
 #, fuzzy
@@ -5160,7 +5160,7 @@ msgstr "Tillbaka till Gallery Index →"
 #: themes/zpminimal/inc-footer.php:24
 #, fuzzy
 msgid "Subalbum"
-msgstr "%u Underalbum"
+msgstr "\"List\" subalbum level"
 
 #: themes/zpminimal/index.php:59
 #, fuzzy
@@ -8396,7 +8396,7 @@ msgstr "Återställning av installationsfiler misslyckades."
 #: zp-core/admin.php:118
 #, fuzzy
 msgid "protected"
-msgstr "Lösenordsskyddad"
+msgstr "Detta album är lösenordsskyddat."
 
 #: zp-core/admin.php:120
 #, fuzzy
@@ -8435,113 +8435,113 @@ msgstr "Du har inte behörighet till %s."
 msgid "You do not have proper rights to access %s."
 msgstr "Du har inte rätt behörighet för åtkomst till %s."
 
-#: zp-core/admin.php:267
+#: zp-core/admin.php:275
 #, fuzzy
 msgid "There is a new version is available."
 msgstr "Det finns en ny version tillgänglig."
 
-#: zp-core/admin.php:269
+#: zp-core/admin.php:277
 #, fuzzy, php-format
 msgid "The latest version %s can be downloaded by the utility button."
 msgstr "Den senaste versionen %s kan hämtas av verktygsknappen."
 
-#: zp-core/admin.php:281
+#: zp-core/admin.php:289
 #, fuzzy, php-format
-msgid "Download netPhotoGraphics version %s."
-msgstr "Hämta netPhotoGraphics version %s."
+msgid "Download %1$s version %2$s."
+msgstr "Hämta%1$s version%2$s."
 
-#: zp-core/admin.php:330
+#: zp-core/admin.php:338
 #, fuzzy
 msgid "Misc"
 msgstr "Övrigt"
 
-#: zp-core/admin.php:343
+#: zp-core/admin.php:351
 msgid "Run setup"
 msgstr "ZenPhoto20 installation"
 
-#: zp-core/admin.php:348
+#: zp-core/admin.php:356
 #, fuzzy
 msgid "Run the setup script."
 msgstr "Kör installationsskriptet."
 
-#: zp-core/admin.php:357
+#: zp-core/admin.php:365
 #, fuzzy
 msgid "Setup » protect scripts"
 msgstr "Setup »skydda skript"
 
-#: zp-core/admin.php:362
+#: zp-core/admin.php:370
 #, fuzzy
 msgid "Protects setup files so setup cannot be run."
 msgstr "Skyddar installationsfiler så att installationen inte kan köras."
 
-#: zp-core/admin.php:373
+#: zp-core/admin.php:381
 #, fuzzy
 msgid "Setup » restore scripts"
 msgstr "Setup »återställ skript"
 
-#: zp-core/admin.php:378
+#: zp-core/admin.php:386
 #, fuzzy
 msgid "Restores setup files so setup can be run."
 msgstr "Återställer installationsfiler så att installationen kan köras."
 
-#: zp-core/admin.php:391 zp-core/utilities/installation_analysis.php:35
+#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:35
 #, fuzzy
 msgid "<em>Debug build</em>"
 msgstr "<em>Debug build</em>"
 
-#: zp-core/admin.php:393 zp-core/utilities/installation_analysis.php:37
+#: zp-core/admin.php:401 zp-core/utilities/installation_analysis.php:37
 #, fuzzy
 msgid "Official build"
 msgstr "Officiell byggnad"
 
-#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:73
+#: zp-core/admin.php:407 zp-core/utilities/installation_analysis.php:73
 #, fuzzy
 msgid "release notes"
 msgstr "Viktig information"
 
-#: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
+#: zp-core/admin.php:408 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
 msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 msgstr "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 
-#: zp-core/admin.php:407
+#: zp-core/admin.php:415
 msgid "Utility functions"
 msgstr "Tilläggsfunktioner"
 
-#: zp-core/admin.php:480
+#: zp-core/admin.php:488
 msgid "Gallery Stats"
 msgstr "Galleristatistik"
 
-#: zp-core/admin.php:487
+#: zp-core/admin.php:495
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
 msgstr[0] "<strong>% 1 $ u</strong> Album (% 2 $ du är ej publicerad)"
 msgstr[1] "<strong>% 1 $ u</strong> album (% 2 $ du är ej publicerad)"
 
-#: zp-core/admin.php:489
+#: zp-core/admin.php:497
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> Album"
 msgstr[1] "<strong>%u</strong> Album"
 
-#: zp-core/admin.php:498
+#: zp-core/admin.php:506
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
 msgstr[0] "<strong>% 1 $ u</strong> Bild (% 2 $ du är ej publicerad)"
 msgstr[1] "<strong>% 1 $ u</strong> bilder (% 2 $ du är ej publicerad)"
 
-#: zp-core/admin.php:500
+#: zp-core/admin.php:508
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> Bild"
 msgstr[1] "<strong>%u</strong> Bilder"
 
-#: zp-core/admin.php:524
+#: zp-core/admin.php:532
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
@@ -8549,21 +8549,21 @@ msgstr[0] ""
 "<strong>%1$u</strong> Kommentar (<strong>%2$u</strong> för moderering)"
 msgstr[1] "<strong>%1$u</strong> Kommentarer (%2$u för moderering)"
 
-#: zp-core/admin.php:526
+#: zp-core/admin.php:534
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> Kommentar"
 msgstr[1] "<strong>%u</strong> Kommentarer"
 
-#: zp-core/admin.php:541
+#: zp-core/admin.php:549
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> User (%2$u expired)"
 msgid_plural "<strong>%1$u</strong> Users (%2$u expired)"
 msgstr[0] "<strong>% 1 $ u</strong> användare (% 2 $ du löpte ut)"
 msgstr[1] "<strong>% 1 $ u</strong> användare (% 2 $ du löpte ut)"
 
-#: zp-core/admin.php:543
+#: zp-core/admin.php:551
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8572,7 +8572,7 @@ msgid_plural "<strong>%u</strong> Users"
 msgstr[0] "<strong>% u</strong> användare"
 msgstr[1] "<strong>% u</strong> användare"
 
-#: zp-core/admin.php:560
+#: zp-core/admin.php:568
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Album"
 #| msgid_plural "<strong>%u</strong> Albums"
@@ -8581,7 +8581,7 @@ msgid_plural "<strong>%u</strong> Groups"
 msgstr[0] "<strong>% u</strong> Grupp"
 msgstr[1] "<strong>% u</strong> grupper"
 
-#: zp-core/admin.php:567
+#: zp-core/admin.php:575
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8590,7 +8590,7 @@ msgid_plural "<strong>%u</strong> Templates"
 msgstr[0] "<strong>% u</strong> Mall"
 msgstr[1] "<strong>% u</strong> Mallar"
 
-#: zp-core/admin.php:584
+#: zp-core/admin.php:592
 #, fuzzy
 msgid "Your user rights do not allow access to administrative functions."
 msgstr ""
@@ -9960,7 +9960,7 @@ msgstr "Cacha originalbilden"
 #, fuzzy
 #| msgid "password:"
 msgid "password"
-msgstr "Lösenord"
+msgstr "Lösenord:"
 
 #: zp-core/admin_options/image.php:716
 #, fuzzy
@@ -18888,17 +18888,17 @@ msgstr "besök sajt"
 msgid "Last setup run version: %s"
 msgstr "Den senaste installationsversionen: %s"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:71
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:72
 #, fuzzy
 msgid "No longer a clone of this installation."
 msgstr "Inte längre en klon av denna installation."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:85
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:86
 #, fuzzy
 msgid "Remove invalid clones."
 msgstr "Ta bort ogiltiga kloner."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:93
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:94
 #, fuzzy
 msgid ""
 "Create a new install with symbolic links to the current installation scripts."
@@ -18906,7 +18906,7 @@ msgstr ""
 "Skapa en ny installation med symboliska länkar till de nuvarande "
 "installationsskripten."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:116
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:117
 #, fuzzy
 msgid ""
 "<strong>Note:</strong> Existing Site scripts will be removed from the target "
@@ -18915,22 +18915,22 @@ msgstr ""
 "<strong>Obs!</strong> Befintliga webbplatsskript kommer att tas bort från "
 "målet om de existerar."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:196
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:197
 #, fuzzy
 msgid "No subfolders in: "
 msgstr "Inga undermappar i:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:198
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:199
 #, fuzzy
 msgid "Select the destination folder:"
 msgstr "Välj målmapp:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:231
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:232
 #, fuzzy
 msgid "Verify WEB link to this install:"
 msgstr "Verifiera WEB-länken till den här installationen:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:241
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:242
 #, fuzzy
 msgid "Clone installation"
 msgstr "Kloninstallation"
@@ -21511,7 +21511,7 @@ msgstr "Miniatyrbilder för bilder som inte <em>publiceras</em> markeras."
 #: zp-core/zp-extensions/flag_thumbnail.php:90
 #, fuzzy
 msgid "Protected"
-msgstr "Lösenordsskyddad"
+msgstr "Detta album är lösenordsskyddat."
 
 #: zp-core/zp-extensions/flag_thumbnail.php:92
 #, fuzzy
@@ -30216,6 +30216,10 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:70
 msgid "Sample CAPTCHA image"
 msgstr "Exempel på CAPTCHA bild"
+
+#, fuzzy
+#~ msgid "Download netPhotoGraphics version %s."
+#~ msgstr "Hämta netPhotoGraphics version %s."
 
 #, fuzzy
 #~ msgid "Flash; strobe return str_replace($sw, light detected"

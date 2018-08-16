@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-13 10:39-0700\n"
+"POT-Creation-Date: 2018-08-16 13:46-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
@@ -130,8 +130,8 @@ msgstr "Galerij"
 
 #: plugins/cacheHeader.php:50 plugins/cookieInvalidator.php:32
 #: themes/zpmobile/functions.php:118 zp-core/admin-functions.php:167
-#: zp-core/admin.php:275 zp-core/admin.php:341 zp-core/admin.php:355
-#: zp-core/admin.php:371 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
+#: zp-core/admin.php:283 zp-core/admin.php:349 zp-core/admin.php:363
+#: zp-core/admin.php:379 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:605 zp-core/lib-auth.php:637
 #: zp-core/zp-extensions/site_upgrade.php:142
 #: zp-core/zp-extensions/site_upgrade.php:158
@@ -5505,7 +5505,12 @@ msgstr "Grootte (630px)"
 #: themes/zpskeleton/themeoptions.php:64
 #, fuzzy
 msgid "Original Image"
-msgstr "Oorspronkelijke afbeelding"
+msgstr ""
+"Als dit is aangevinkt wordt IPTC info van originele afbeeldingen geplaatst "
+"in gecachte kopieën. Als de afbeelding géén IPTC info heeft, wordt er "
+"copyright informatie in de afbeeldings-info van gecachte kopieën geplaatst. "
+"(De opgegeven tekst wordt gebruikt als de originele afbeelding geen "
+"copyright heeft)"
 
 #: themes/zpskeleton/themeoptions.php:65
 #, fuzzy
@@ -6463,7 +6468,7 @@ msgstr "Album gastgebruiker:"
 #, fuzzy
 #| msgid "repeat password:"
 msgid "repeat password"
-msgstr "Herhaal wachtwoord"
+msgstr "Herhaal wachtwoord:"
 
 #: zp-core/admin-functions.php:1881
 #, fuzzy
@@ -8351,121 +8356,121 @@ msgstr "Je hebt niet de juiste rechten om %s."
 msgid "You do not have proper rights to access %s."
 msgstr "Je hebt niet de juiste rechten om toegang te krijgen tot %s."
 
-#: zp-core/admin.php:267
+#: zp-core/admin.php:275
 #, fuzzy
 #| msgid "Setting permissions (0%o) for ZenPhoto20 package."
 msgid "There is a new version is available."
-msgstr "Er is een nieuwe versie beschikbaar."
+msgstr "Er is een nieuwe versie beschikbaar"
 
-#: zp-core/admin.php:269
+#: zp-core/admin.php:277
 #, fuzzy, php-format
 msgid "The latest version %s can be downloaded by the utility button."
 msgstr "De laatste versie %s kan gedownload worden met de utility knop."
 
-#: zp-core/admin.php:281
+#: zp-core/admin.php:289
 #, fuzzy, php-format
-#| msgid "Installing ZenPhoto20 v%s"
-msgid "Download netPhotoGraphics version %s."
-msgstr "NetFotoGraphics-versie downloaden %s."
+#| msgid "%1$s version %2$s"
+msgid "Download %1$s version %2$s."
+msgstr "Download %1$s versie %2$s."
 
-#: zp-core/admin.php:330
+#: zp-core/admin.php:338
 msgid "Misc"
 msgstr "Diverse"
 
-#: zp-core/admin.php:343
+#: zp-core/admin.php:351
 msgid "Run setup"
 msgstr "Voer setup uit"
 
-#: zp-core/admin.php:348
+#: zp-core/admin.php:356
 msgid "Run the setup script."
 msgstr "Voer setup uit."
 
-#: zp-core/admin.php:357
+#: zp-core/admin.php:365
 msgid "Setup » protect scripts"
 msgstr "Setup » bescherm scripts"
 
-#: zp-core/admin.php:362
+#: zp-core/admin.php:370
 msgid "Protects setup files so setup cannot be run."
 msgstr "Beschermt setup bestanden zodat  setup niet gebruikt kan worden."
 
-#: zp-core/admin.php:373
+#: zp-core/admin.php:381
 msgid "Setup » restore scripts"
 msgstr "Setup » herstel scripts"
 
-#: zp-core/admin.php:378
+#: zp-core/admin.php:386
 msgid "Restores setup files so setup can be run."
 msgstr "Hertelt setup bestanden zodat setup weer gebruikt kan worden."
 
-#: zp-core/admin.php:391 zp-core/utilities/installation_analysis.php:35
+#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:35
 msgid "<em>Debug build</em>"
 msgstr "<em>Debug versie</em>"
 
-#: zp-core/admin.php:393 zp-core/utilities/installation_analysis.php:37
+#: zp-core/admin.php:401 zp-core/utilities/installation_analysis.php:37
 msgid "Official build"
 msgstr "Officiële versie"
 
-#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:73
+#: zp-core/admin.php:407 zp-core/utilities/installation_analysis.php:73
 #, fuzzy
 msgid "release notes"
 msgstr "Versie Notificaties"
 
-#: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:77
+#: zp-core/admin.php:408 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
 msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 msgstr "netPhotoGraphics versie <strong>%1$s (%2$s)</strong>"
 
-#: zp-core/admin.php:407
+#: zp-core/admin.php:415
 msgid "Utility functions"
 msgstr "Extra functies"
 
-#: zp-core/admin.php:480
+#: zp-core/admin.php:488
 msgid "Gallery Stats"
 msgstr "Galerij statistieken"
 
-#: zp-core/admin.php:487
+#: zp-core/admin.php:495
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> album (%2$u niet gepubliceerd)"
 msgstr[1] "<strong>%1$u</strong> albums (%2$u niet gepubliceerd)"
 
-#: zp-core/admin.php:489
+#: zp-core/admin.php:497
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> album"
 msgstr[1] "<strong>%u</strong> albums"
 
-#: zp-core/admin.php:498
+#: zp-core/admin.php:506
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong>afbeelding (%2$u niet gepubliceerd)"
 msgstr[1] "<strong>%1$u</strong> afbeeldingen (%2$u niet gepubliceerd)"
 
-#: zp-core/admin.php:500
+#: zp-core/admin.php:508
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> afbeelding"
 msgstr[1] "<strong>%u</strong> afbeeldingen"
 
-#: zp-core/admin.php:524
+#: zp-core/admin.php:532
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
 msgstr[0] "<strong>%1$u</strong> Reactie (%2$u voor goedkeuring)"
 msgstr[1] "<strong>%1$u</strong> Reacties (%2$u voor goedkeuring)"
 
-#: zp-core/admin.php:526
+#: zp-core/admin.php:534
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> reactie"
 msgstr[1] "<strong>%u</strong> reacties"
 
-#: zp-core/admin.php:541
+#: zp-core/admin.php:549
 #, fuzzy, php-format
 #| msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 #| msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
@@ -8474,7 +8479,7 @@ msgid_plural "<strong>%1$u</strong> Users (%2$u expired)"
 msgstr[0] "<strong>%1$u</strong> Gebruiker (%2$u vervallen)"
 msgstr[1] "<strong>%1$u</strong> Gebruikers (%2$u vervallen)"
 
-#: zp-core/admin.php:543
+#: zp-core/admin.php:551
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8483,7 +8488,7 @@ msgid_plural "<strong>%u</strong> Users"
 msgstr[0] "<strong>%u</strong> Gebruiker"
 msgstr[1] "<strong>%u</strong> Gebruikers"
 
-#: zp-core/admin.php:560
+#: zp-core/admin.php:568
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Album"
 #| msgid_plural "<strong>%u</strong> Albums"
@@ -8492,7 +8497,7 @@ msgid_plural "<strong>%u</strong> Groups"
 msgstr[0] "<strong>%u</strong> Groep"
 msgstr[1] "<strong>%u</strong> Groepen"
 
-#: zp-core/admin.php:567
+#: zp-core/admin.php:575
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8501,7 +8506,7 @@ msgid_plural "<strong>%u</strong> Templates"
 msgstr[0] "<strong>%u</strong> Sjabloon"
 msgstr[1] "<strong>%u</strong> Sjablonen"
 
-#: zp-core/admin.php:584
+#: zp-core/admin.php:592
 msgid "Your user rights do not allow access to administrative functions."
 msgstr ""
 "Je gebruikersrechten staan toegang tot administratieve functies niet toe."
@@ -16607,12 +16612,12 @@ msgid ""
 "possible the restore can still be done, but if the database fields have "
 "changed between versions, data from changed fields will not be restored."
 msgstr ""
-"In het ideale geval zou een restore alleen moeten worden uitgevoerd op "
-"dezelfde versie als waarop de back-up werd gemaakt. Als u van plan bent een "
-"upgrade uit te voeren, moet u eerst de versie herstellen die u gebruikt en "
-"vervolgens de nieuwe versie installeren. Als dit niet mogelijk is, kan het "
-"herstel nog steeds worden uitgevoerd, maar als de databasevelden tussen de "
-"versies zijn gewijzigd, worden gegevens uit gewijzigde velden niet hersteld."
+"Het is het beste dat een restore wordt uitgevoerd op dezelfde versie van "
+"Zenphoto als de backup gemaakt is. Als je van plan bent te upgraden doe dan "
+"eerst een restore op de versie van Zenphoto die je gebruikte en installeer "
+"dan pas de nieuwe versie. Als dit niet mogelijk is, is een restore nog "
+"steeds mogelijk maar het kan zijn dat database-velden intussen zijn "
+"gewijzigd. In dat geval kunnen die velden niet hersteld worden."
 
 #: zp-core/utilities/database_reference.php:52
 msgid "Database quick reference"
@@ -18548,24 +18553,24 @@ msgstr "Ga naar de website"
 msgid "Last setup run version: %s"
 msgstr "Laatste setup run versie: %s"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:71
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:72
 #, fuzzy
 msgid "No longer a clone of this installation."
 msgstr "Geen kloon meer van deze installatie."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:85
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:86
 #, fuzzy
 msgid "Remove invalid clones."
 msgstr "Verwijder ongeldige klonen."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:93
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:94
 msgid ""
 "Create a new install with symbolic links to the current installation scripts."
 msgstr ""
 "Maak een nieuwe installatie met symbolische links (symlinks) naar de huidige "
 "ZenPhoto20 installatie."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:116
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:117
 msgid ""
 "<strong>Note:</strong> Existing Site scripts will be removed from the target "
 "if they exist."
@@ -18573,20 +18578,20 @@ msgstr ""
 "<strong>Opmerking:</strong> Eventueel bestaande ZenPhoto20 bestanden worden "
 "verwijderd uit de doelmap."
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:196
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:197
 msgid "No subfolders in: "
 msgstr "Geen submappen in:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:198
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:199
 msgid "Select the destination folder:"
 msgstr "Selecteer de bestemming:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:231
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:232
 #, fuzzy
 msgid "Verify WEB link to this install:"
 msgstr "Controleer de WEB-link naar deze installatie:"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:241
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:242
 msgid "Clone installation"
 msgstr "Kloon installatie"
 
@@ -19975,7 +19980,7 @@ msgstr "Sessie"
 #: zp-core/zp-extensions/debug.php:183
 #, fuzzy
 msgid "SERVER"
-msgstr "Server datum: %s"
+msgstr "Server protocol:"
 
 #: zp-core/zp-extensions/debug.php:184
 #, fuzzy
@@ -29320,6 +29325,11 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:70
 msgid "Sample CAPTCHA image"
 msgstr "Voorbeeld van CAPTCHA"
+
+#, fuzzy
+#~| msgid "Installing ZenPhoto20 v%s"
+#~ msgid "Download netPhotoGraphics version %s."
+#~ msgstr "NetFotoGraphics-versie downloaden %s."
 
 #, fuzzy
 #~ msgid "Flash; strobe return str_replace($sw, light detected"
