@@ -12,7 +12,7 @@
  * NOTE: This plugin requires opening a url based file. Your PHP.ini settings must include <var>allow_url_fopen=On</var> or
  * Captcha's will fail.
  *
- * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  *
  * @author Stephen Billard (sbillard)

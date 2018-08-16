@@ -11,7 +11,7 @@ if (!function_exists("gettext")) {
 }
 require_once(dirname(__FILE__) . '/version.php'); // Include the version info.
 
-define('GITHUB', 'github.com/ZenPhoto20/ZenPhoto20');
+define('GITHUB', 'github.com/ZenPhoto20/netPhotoGraphics');
 define('ZP_LAST_MODIFIED', gmdate('D, d M Y H:i:s') . ' GMT');
 
 if (!defined('SORT_FLAG_CASE'))

@@ -1075,7 +1075,7 @@ function setupTheme($album = NULL) {
  * @return array
  *
  * @author Stephen Billard
- * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  */
 function getAllTagsUnique($language = NULL, $count = 1, $returnCount = NULL) {
 	global $_zp_unique_tags, $_zp_count_tags, $_zp_current_locale, $_zp_loggedin;
@@ -1433,7 +1433,7 @@ function sortByKey($results, $sortkey, $order) {
  * @param array $removeCriteria		Fields to be removed from the array
  * @return array									The sorted array
  *
- * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  */
 function sortMultiArray($data, $field, $desc = false, $nat = true, $case = false, $preserveKeys = true, $removeCriteria = array()) {
@@ -2654,7 +2654,7 @@ class zpFunctions {
 	 * initializes the $_zp_exifvars array display state
 	 *
 	 * @author Stephen Billard
-	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
 	 */
 	static function exifvars($default = false) {
 		global $_zp_images_classes;
@@ -2699,7 +2699,7 @@ class zpFunctions {
 	 * @param array $list
 	 *
 	 * @author Stephen Billard
-	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
 	 */
 	static function exifOptions($whom, $disable, $list) {
 		$reenable = false;
@@ -2913,7 +2913,7 @@ class zpFunctions {
 	 * @return boolean
 	 *
 	 * @author Stephen Billard
-	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
 	 */
 	static function pluginDisable($criteria) {
 		foreach ($criteria as $try) {

@@ -12,7 +12,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * @Copyright 2014-2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2014-2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  * @package plugins/zenphotoCompatibilityPack
  * @pluginCategory development

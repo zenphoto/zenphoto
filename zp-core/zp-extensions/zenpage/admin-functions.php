@@ -703,7 +703,7 @@ function printUnpublishedDropdown() {
  * Prints the dropdown menu for the sortorder selector for the news articles list
  *
  * @author Stephen Billard
- * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  */
 function printSortOrderDropdown() {
 	global $_zp_CMS;

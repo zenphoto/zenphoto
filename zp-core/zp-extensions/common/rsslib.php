@@ -11,7 +11,7 @@
   Modified for by s. billard
   removed unused functions
   made more resilient
-  Modifications copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20 and derivatives}
+  Modifications copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
 
   Requirements:
   - PHP 5.

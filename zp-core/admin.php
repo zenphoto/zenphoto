@@ -237,28 +237,36 @@ $buttonlist = array();
 			/*
 			 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20 and derivitives
 			 */
+			$failures = array();
 			if (getOption('getUpdates_lastCheck') + 8640 < time()) {
 				setOption('getUpdates_lastCheck', time());
-				try {
-					$api = new Github\Api;
-					$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => 'ZenPhoto20', 'repo' => 'ZenPhoto20'));
-					$fullRepoData = $api->decode($fullRepoResponse);
-					$assets = $fullRepoData->assets;
-					if (!empty($assets)) {
-						$item = array_pop($assets);
-						setOption('getUpdates_latest', $item->browser_download_url);
+				foreach (array('netPhotoGraphics', 'ZenPhoto20') as $owner) {
+					try {
+						$api = new Github\Api;
+						$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => $owner, 'repo' => 'netPhotoGraphics'));
+						$fullRepoData = $api->decode($fullRepoResponse);
+						$assets = $fullRepoData->assets;
+						if (!empty($assets)) {
+							$item = array_pop($assets);
+							setOption('getUpdates_latest', $item->browser_download_url);
+						}
+						break;
+					} catch (Exception $e) {
+						$failures[] = 'Github Api[' . $owner . ']->' . $e->getMessage();
 					}
-				} catch (Exception $e) {
-					debugLog('Github Api->' . $e->getMessage());
+				}
+				if (!isset($assets)) {
+					foreach ($failures as $msg) {
+						debugLog($msg);
+					}
 				}
 			}
 
 			$newestVersionURI = getOption('getUpdates_latest');
+			$repro = basename(dirname(dirname(dirname(dirname($newestVersionURI)))));
 			$newestVersion = preg_replace('~[^0-9,.]~', '', str_replace('setup-', '', stripSuffix(basename($newestVersionURI))));
-
 			$zenphoto_version = explode('-', ZENPHOTO_VERSION);
 			$zenphoto_version = preg_replace('~[^0-9,.]~', '', array_shift($zenphoto_version));
-
 			if (version_compare($newestVersion, $zenphoto_version, '>')) {
 				if (!isset($_SESSION['new_version_available'])) {
 					$_SESSION['new_version_available'] = $newestVersion;
@@ -274,11 +282,11 @@ $buttonlist = array();
 				$buttonlist[] = array(
 						'category' => gettext('Admin'),
 						'enable' => 2,
-						'button_text' => 'netPhotoGraphics ' . $newestVersion,
+						'button_text' => $repro . ' ' . $newestVersion,
 						'formname' => 'getUpdates_button',
 						'action' => $newestVersionURI,
 						'icon' => ARROW_DOWN_GREEN,
-						'title' => sprintf(gettext('Download netPhotoGraphics version %s.'), $newestVersion),
+						'title' => sprintf(gettext('Download %1$s version %2$s.'), $repro, $newestVersion),
 						'alt' => '',
 						'hidden' => '',
 						'rights' => ADMIN_RIGHTS
