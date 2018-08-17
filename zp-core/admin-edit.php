@@ -693,7 +693,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || $is_m
 	}
 
 	window.addEventListener('load', function () {
-		extraWidth = $('.rightcolumn').width() + 30;
+		extraWidth = $('.rightcolumn').width() + 40;
 <?php
 if ($subtab == 'imageinfo') {
 	?>
@@ -1254,7 +1254,7 @@ echo "\n</head>";
 														<?php echo gettext('<strong>Filename:</strong>'); ?>
 														<br />
 														<?php
-														echo truncate_string($image->filename, 30);
+														echo truncate_string($image->filename, 25);
 														?>
 													</p>
 													<p><?php echo gettext('<strong>Image id:</strong>'); ?> <?php echo $image->getID(); ?></p>
