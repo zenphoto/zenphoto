@@ -20,15 +20,14 @@ class showNoUserRights {
 
 	static function customDisplayRights() {
 		global $_zp_admin_tab, $_zp_admin_subtab;
-		if (!zp_loggedin(ADMIN_RIGHTS) && $_zp_admin_tab == 'admin' && $_zp_admin_subtab == 'users') {
+		if (!zp_loggedin(ADMIN_RIGHTS) && $_zp_admin_tab == 'admin' && ($_zp_admin_subtab == 'users') || is_null($_zp_admin_subtab)) {
 			?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				$(document).ready(function () {
 					$('select[name="showgroup"]').parent("th").remove(); 	// the "Show" dropdownn menu
 					$('.box-rights').remove(); 								// Rights. (the part with all the checkboxes).
-					$('.box-albums-unpadded').remove(); 					// Albums, Pages, and Categories.
-					$('label[for="admin_language_0"], ul.flags').remove(); 	// Languages
+					$('.box-albums-unpadded').remove(); 			// Albums, Pages, and Categories.
 				});
 				// ]]> -->
 			</script>
