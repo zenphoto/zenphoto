@@ -201,7 +201,7 @@ echo "\n</head>";
 								<?php echo CROSS_MARK_RED; ?>
 								<strong><?php echo gettext("Reset"); ?></strong>
 							</button>
-							<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
+							<a href="<?php echo WEBPATH . "/index.php?album=" . pathurlencode($album->getFileName()); ?>">
 								<?php echo BULLSEYE_BLUE; ?>
 								<strong><?php echo gettext('View Album'); ?></strong>
 							</a>
@@ -232,7 +232,7 @@ echo "\n</head>";
 												<?php
 												if (isImagePhoto($image)) {
 													?>
-													<a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox" title="zoom">
+													<a href="<?php echo pathurlencode($image->getFullImageURL()); ?>" class="colorbox" title="zoom">
 														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/magnify.png" alt="">
 													</a>
 													<?php
@@ -264,7 +264,7 @@ echo "\n</head>";
 									<?php echo CROSS_MARK_RED; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
-								<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
+								<a href="<?php echo WEBPATH . "/index.php?album=" . pathurlencode($album->getFileName()); ?>">
 									<?php echo BULLSEYE_BLUE; ?>
 									<strong><?php echo gettext('View Album'); ?></strong>
 								</a>

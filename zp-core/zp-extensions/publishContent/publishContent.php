@@ -312,7 +312,7 @@ echo "</head>\n";
 										<li>
 											<label>
 												<input type="checkbox" class="checkAuto" name="<?php echo postIndexEncode($analbum); ?>" value="<?php echo $albumid; ?>" class="albumcheck" />
-												<img src="<?php echo html_encode(pathurlencode($thumb)); ?>" width="60" height="60" alt="" title="album thumb" />
+												<img src="<?php echo pathurlencode($thumb); ?>" width="60" height="60" alt="" title="album thumb" />
 												<?php echo $album->name; ?>
 											</label>
 											<a href="<?php echo $album->getLink(); ?>" title="<?php echo gettext('view'); ?>"> (<?php echo gettext('view'); ?>)</a>
@@ -475,7 +475,7 @@ echo "</head>\n";
 																</td>
 																<td>
 																	<?php $image = newImage($album, $display); ?>
-																	<img src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'medium'))); ?>" alt="<?php echo $image->filename; ?>"/>
+																	<img src="<?php echo pathurlencode(getAdminThumb($image, 'medium')); ?>" alt="<?php echo $image->filename; ?>"/>
 																</td>
 																<td>
 																	<?php echo $display; ?> <a href="<?php echo html_encode($image->getLink()); ?>" title="<?php echo html_encode($image->getTitle()); ?>">(<?php echo gettext('View'); ?>) </a><a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-edit.php?page=edit&tab=imageinfo&album=<?php echo html_encode($image->album->name); ?>&singleimage=<?php echo html_encode($image->getFilename()); ?>&subpage=1">(<?php echo gettext('Edit'); ?>)</a>

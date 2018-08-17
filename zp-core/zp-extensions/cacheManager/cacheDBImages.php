@@ -133,9 +133,9 @@ echo '<h1>' . gettext('Cache images stored in the database') . '</h1>';
 										<a href="<?php echo html_encode($uri); ?>&amp;debug" title="<?php echo $title; ?>">
 											<?php
 											if (isset($args[10])) {
-												echo '<img class="iplink" src="' . html_encode(pathurlencode($uri)) . '" height="15" width="15" alt="x" />' . "\n";
+												echo '<img class="iplink" src="' . pathurlencode($uri) . '" height="15" width="15" alt="x" />' . "\n";
 											} else {
-												echo '<img class="iplink" src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
+												echo '<img class="iplink" src="' . pathurlencode($uri) . '" height="20" width="20" alt="X" />' . "\n";
 											}
 											?>
 										</a>

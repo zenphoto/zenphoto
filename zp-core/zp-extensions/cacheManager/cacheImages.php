@@ -56,7 +56,7 @@ function loadAlbum($album) {
 						?>
 						<a href="<?php echo html_encode($uri); ?>&amp;debug">
 							<?php
-							echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="30" width="30" alt="X" />' . "\n";
+							echo '<img src="' . pathurlencode($uri) . '" height="30" width="30" alt="X" />' . "\n";
 							?>
 						</a>
 						<?php
@@ -107,9 +107,9 @@ function loadAlbum($album) {
 							<a href="<?php echo html_encode($uri); ?>&amp;debug">
 								<?php
 								if ($thumbstandin) {
-									echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="15" width="15" alt="x" />' . "\n";
+									echo '<img src="' . pathurlencode($uri) . '" height="15" width="15" alt="x" />' . "\n";
 								} else {
-									echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
+									echo '<img src="' . pathurlencode($uri) . '" height="20" width="20" alt="X" />' . "\n";
 								}
 								?>
 							</a>

@@ -208,7 +208,7 @@ class htmlmetatags {
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
 					getMaxSpaceContainer($ogimage_width, $ogimage_height, $thumbimg, false);
-					$thumb = FULLHOSTPATH . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
+					$thumb = FULLHOSTPATH . pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL));
 					$twittercard_type = 'summary_large_image';
 				}
 				break;
@@ -218,7 +218,7 @@ class htmlmetatags {
 				$desc = getBareImageDesc();
 				$canonicalurl = FULLHOSTPATH . $_zp_current_image->getLink();
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
-					$thumb = FULLHOSTPATH . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
+					$thumb = FULLHOSTPATH . pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height));
 					$twittercard_type = 'summary_large_image';
 				}
 				break;

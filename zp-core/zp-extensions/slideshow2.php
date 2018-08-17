@@ -649,7 +649,7 @@ if (extensionEnabled('slideshow2') && !OFFSET_PATH) {
 								$imagetitle = html_encode(getBare($imgobj->getTitle()));
 							}
 							?>
-							<a class="slideshowlink" href="<?php echo html_encode(pathurlencode($imagelink)); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a><?php echo html_encodeTagged($after); ?>
+							<a class="slideshowlink" href="<?php echo pathurlencode($imagelink); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a><?php echo html_encodeTagged($after); ?>
 							<?php
 						}
 					}

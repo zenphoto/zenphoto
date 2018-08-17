@@ -1754,7 +1754,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					}
 					?>
-					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
+					<a href="<?php echo WEBPATH . "/index.php?album=" . pathurlencode($album->getFileName()); ?>">
 						<?php echo BULLSEYE_BLUE; ?>
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
@@ -2189,7 +2189,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													echo "\n<option";
 													if ($_zp_gallery->getThumbSelectImages()) {
 														echo " class=\"thumboption\"";
-														echo " style=\"background-image: url(" . html_encode(pathurlencode(getAdminThumb($image, 'medium'))) . "); background-repeat: no-repeat;\"";
+														echo " style=\"background-image: url(" . pathurlencode(getAdminThumb($image, 'medium')) . "); background-repeat: no-repeat;\"";
 													}
 													echo " value=\"" . $imagename . "\"";
 													if ($selected) {
@@ -2470,7 +2470,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 					}
 					?>
-					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
+					<a href="<?php echo WEBPATH . "/index.php?album=" . pathurlencode($album->getFileName()); ?>">
 						<?php echo BULLSEYE_BLUE; ?>
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
@@ -2624,11 +2624,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				if ($enableEdit) {
 					?>
-					<a href="?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
+					<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
 						<?php
 					}
 					?>
-					<img src="<?php echo html_encode(pathurlencode($thumb)); ?>" width="<?php echo ADMIN_THUMB_SMALL; ?>" height="<?php echo ADMIN_THUMB_SMALL; ?>" alt="" title="album thumb" />
+					<img src="<?php echo pathurlencode($thumb); ?>" width="<?php echo ADMIN_THUMB_SMALL; ?>" height="<?php echo ADMIN_THUMB_SMALL; ?>" alt="" title="album thumb" />
 					<?php
 					if ($enableEdit) {
 						?>
@@ -2641,7 +2641,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 				if ($enableEdit) {
 					?>
-					<a href="?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
+					<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
 						<?php
 					}
 					echo html_encode(getBare($album->getTitle()));
@@ -2664,13 +2664,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$si = sprintf('%1$s <span>(%2$u)</span>', $imgi, $ci);
 			if ($ci > 0 && !$album->isDynamic()) {
 				$si = preg_replace('~ title=".*?"~', '', $si);
-				$si = '<a href="?page=edit&amp;album=' . html_encode(pathurlencode($album->name)) . '&amp;tab=imageinfo" title="' . gettext('Images') . '">' . $si . '</a>';
+				$si = '<a href="?page=edit&amp;album=' . pathurlencode($album->name) . '&amp;tab=imageinfo" title="' . gettext('Images') . '">' . $si . '</a>';
 			}
 			$ca = $album->getNumAlbums();
 			$sa = sprintf('%1$s <span>(%2$u)</span>', $imga, $ca);
 			if ($ca > 0 && !$album->isDynamic()) {
 				$sa = preg_replace('~ title=".*?"~', '', $sa);
-				$sa = '<a href="?page=edit&amp;album=' . html_encode(pathurlencode($album->name)) . '&amp;tab=subalbuminfo" title="' . gettext('Subalbum List') . '">' . $sa . '</a>';
+				$sa = '<a href="?page=edit&amp;album=' . pathurlencode($album->name) . '&amp;tab=subalbuminfo" title="' . gettext('Subalbum List') . '">' . $sa . '</a>';
 			}
 			?>
 			<div class="page-list_iconwrapper">
@@ -2702,7 +2702,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					if ($album->getShow()) {
 						if ($enableEdit) {
 							?>
-							<a href="?action=publish&amp;value=0&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>" >
+							<a href="?action=publish&amp;value=0&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>" >
 								<?php
 							}
 							?>
@@ -2716,7 +2716,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						if ($enableEdit) {
 							?>
-							<a href="?action=publish&amp;value=1&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
+							<a href="?action=publish&amp;value=1&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
 								<?php
 							}
 							if ($album->getPublishDate() > date('Y-m-d H:i:s')) {
@@ -2741,7 +2741,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					if ($album->getCommentsAllowed()) {
 						if ($enableEdit) {
 							?>
-							<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
+							<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
 								<?php
 							}
 							?>
@@ -2755,7 +2755,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						if ($enableEdit) {
 							?>
-							<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
+							<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
 								<?php
 							}
 							?>
@@ -2770,7 +2770,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					?>
 				</div>
 				<div class="page-list_icon">
-					<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo gettext("View album"); ?>">
+					<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo pathurlencode($album->name); ?>" title="<?php echo gettext("View album"); ?>">
 						<?php echo BULLSEYE_BLUE; ?>
 					</a>
 				</div>
@@ -2782,7 +2782,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					} else {
 						?>
-						<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh') ?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
+						<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh') ?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
 							<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 						</a>
 						<?php
@@ -2800,7 +2800,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 						} else {
 							?>
-							<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;subalbum=true&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
+							<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo pathurlencode($album->name); ?>&amp;subalbum=true&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
 								<?php echo RECYCLE_ICON; ?>
 							</a>
 							<?php
@@ -2820,7 +2820,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					} else {
 						?>
-						<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
+						<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
 							<?php echo WASTEBASKET; ?>
 						</a>
 						<?php
@@ -3033,7 +3033,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		} else {
 			if ($allimagecount != $totalimages) { // need pagination links
-				adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo&amp;filter=' . $filter);
+				adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . pathurlencode($album->name), '&amp;tab=imageinfo&amp;filter=' . $filter);
 			}
 		}
 	}
@@ -3649,7 +3649,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$link = '';
 		$parents = getParentAlbumsAdmin($album);
 		foreach ($parents as $parent) {
-			$link .= "<a href='" . WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . html_encode(pathurlencode($parent->name)) . "'>" . removeParentAlbumNames($parent) . "</a>/";
+			$link .= "<a href='" . WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . pathurlencode($parent->name) . "'>" . removeParentAlbumNames($parent) . "</a>/";
 		}
 		return $link;
 	}

@@ -989,7 +989,7 @@ class _Authority {
 						<fieldset id="logon_box">
 							<input type="hidden" name="login" value="1" />
 							<input type="hidden" name="password" value="challenge" />
-							<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
+							<input type="hidden" name="redirect" value="<?php echo pathurlencode($redirect); ?>" />
 							<fieldset>
 								<legend><?php echo gettext('User') ?></legend>
 								<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
@@ -1086,10 +1086,10 @@ class _Authority {
 					}
 					$redirect = zp_apply_filter('login_redirect_link', $redirect);
 					?>
-					<form name="login" id="login" action="<?php echo html_encode(pathurlencode($redirect)); ?>" method="post">
+					<form name="login" id="login" action="<?php echo pathurlencode($redirect); ?>" method="post">
 						<input type="hidden" name="login" value="1" />
 						<input type="hidden" name="password" value="1" />
-						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
+						<input type="hidden" name="redirect" value="<?php echo pathurlencode($redirect); ?>" />
 						<fieldset id="logon_box"><legend><?php echo $legend; ?></legend>
 							<?php
 							if ($showUserField) { //	requires a "user" field
@@ -1171,7 +1171,7 @@ class _Authority {
 						?>
 						<input type="hidden" name="login" value="1" />
 						<input type="hidden" name="password" value="captcha" />
-						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
+						<input type="hidden" name="redirect" value="<?php echo pathurlencode($redirect); ?>" />
 						<fieldset id="logon_box">
 							<fieldset><legend><?php echo gettext('User name or e-mail address'); ?></legend>
 								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" onkeyup="toggleSubmit();"/>

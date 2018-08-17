@@ -206,7 +206,7 @@ function printHeadingImage($randomImage) {
 			$high = min(180, $randomImage->getHeight());
 		}
 		echo "<a href='" . $randomImageURL . "' title='" . gettext('Random picture...') . "'>";
-		$html = "<img src='" . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $wide, $high, $wide, $high, NULL, NULL, !getOption('Watermark_head_image')))) .
+		$html = "<img src='" . pathurlencode($randomImage->getCustomImage(NULL, $wide, $high, $wide, $high, NULL, NULL, !getOption('Watermark_head_image'))) .
 						"' width='$wide' height='$high' alt=" . '"' .
 						html_encode($randomAlt1) .
 						":\n" . html_encode($randomImage->getTitle()) .
@@ -313,7 +313,7 @@ function printLogo() {
 	if ($img = getOption('Graphic_logo')) {
 		$fullimg = '/' . UPLOAD_FOLDER . '/images/' . $img . '.png';
 		if (file_exists(SERVERPATH . $fullimg)) {
-			echo '<img src="' . html_encode(pathurlencode(WEBPATH . $fullimg)) . '" alt="Logo"/>';
+			echo '<img src="' . pathurlencode(WEBPATH . $fullimg) . '" alt="Logo"/>';
 		} else {
 			echo '<img src="' . $_zp_themeroot . '/images/effervescence.png" alt="Logo"/>';
 		}

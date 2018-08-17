@@ -1658,9 +1658,8 @@ function mb_parse_url($url) {
 function pathurlencode($path) {
 	$parts = mb_parse_url($path);
 	if (isset($parts['query'])) {
-//	some kind of query link
-		$pairs = parse_query($parts['query']);
-		$parts['query'] = http_build_query($pairs);
+		$pairs = array_map("htmlspecialchars", parse_query($parts['query']));
+		$parts['query'] = http_build_query($pairs, '', '&amp;');
 	}
 	if (array_key_exists('path', $parts)) {
 		$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));

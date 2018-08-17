@@ -113,7 +113,7 @@ if (class_exists('favorites')) {
 								if ($nextalbum) {
 									?>
 									<div id="nextalbum" class="slides">
-										<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album »'); ?><br /><img src="<?php echo html_encode(pathurlencode($nextalbum->getThumb())); ?>" /></a>
+										<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album »'); ?><br /><img src="<?php echo pathurlencode($nextalbum->getThumb()); ?>" /></a>
 									</div>
 									<br />
 									<?php
@@ -121,7 +121,7 @@ if (class_exists('favorites')) {
 								if ($prevalbum) {
 									?>
 									<div id="prevalbum" class="slides">
-										<a href="<?php echo html_encode(getPrevAlbumURL()); ?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('« Prev Album'); ?><br /><img src="<?php echo html_encode(pathurlencode($prevalbum->getThumb())); ?>" /></a>
+										<a href="<?php echo html_encode(getPrevAlbumURL()); ?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('« Prev Album'); ?><br /><img src="<?php echo pathurlencode($prevalbum->getThumb()); ?>" /></a>
 									</div>
 									<?php
 								}

@@ -199,7 +199,7 @@ class TextObject extends Image {
 			case 'html':
 				return '<span style="display:block;width:' . $w . 'px;height:' . $h . 'px;" class="textobject">' . @file_get_contents($this->localpath) . '</span>';
 			default: // just in case we extend and are lazy...
-				return '<img src="' . html_encode(pathurlencode($this->getThumb())) . '">';
+				return '<img src="' . pathurlencode($this->getThumb()) . '">';
 		}
 	}
 

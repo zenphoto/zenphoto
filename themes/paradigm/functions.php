@@ -276,15 +276,15 @@ function printRandomImages_zb($number = 12, $class = null, $option = 'all', $roo
 			switch ($crop) {
 				case 0:
 					$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $randomImage);
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
+					$html = '<img src="' . pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 				case 1:
 					$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $randomImage);
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
+					$html = '<img src="' . pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 				case 2:
 					$sizes = getSizeDefaultThumb($randomImage);
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" rel="lightbox" />' . "\n";
+					$html = '<img src="' . pathurlencode($randomImage->getThumb()) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" rel="lightbox" />' . "\n";
 					break;
 			}
 			echo zp_apply_filter('custom_image_html', $html, false);
@@ -319,22 +319,22 @@ function printImageMetadata_zb() {
 	<h2>
 		<?php echo (gettext('Image Info')); ?>
 	</h2>
-	<table class="table table-striped itemprop="exifData"">
-	<?php
-	foreach ($exif as $field => $value) {
-		$label = $_zp_exifvars[$field][2];
-		echo "<tr><th>$label:</th><td>";
-		switch ($_zp_exifvars[$field][6]) {
-			case 'time':
-				echo zpFormattedDate(DATE_FORMAT, strtotime($value));
-				break;
-			default:
-				echo html_encode($value);
-				break;
+	<table class="table table-striped" itemprop="exifData">
+		<?php
+		foreach ($exif as $field => $value) {
+			$label = $_zp_exifvars[$field][2];
+			echo "<tr><th>$label:</th><td>";
+			switch ($_zp_exifvars[$field][6]) {
+				case 'time':
+					echo zpFormattedDate(DATE_FORMAT, strtotime($value));
+					break;
+				default:
+					echo html_encode($value);
+					break;
+			}
+			echo "</td></tr>\n";
 		}
-		echo "</td></tr>\n";
-	}
-	?>
+		?>
 	</table>
 	<?php
 }
@@ -523,20 +523,20 @@ function printImageStatistic_zb($number, $option, $albumfolder = '', $showtitle 
 			switch ($crop) {
 				case 0:
 					$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $image);
-					echo '<img src="' . html_encode(pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";
+					echo '<img src="' . pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";
 					break;
 				case 1:
 					$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $image);
-					echo '<img src="' . html_encode(pathurlencode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" width=\"" . $width . "\" height=\"" . $height . "\" /></a>\n";
+					echo '<img src="' . pathurlencode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" width=\"" . $width . "\" height=\"" . $height . "\" /></a>\n";
 					break;
 				case 2:
 					$sizes = getSizeDefaultThumb($image);
-					echo '<img src="' . html_encode(pathurlencode($image->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";
+					echo '<img src="' . pathurlencode($image->getThumb()) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";
 					break;
 			}
 			if ($showtitle) {
 				echo '<div class="caption">';
-				echo '<a href="' . html_encode(pathurlencode($image->getLink())) . '" title="' . html_encode($image->getTitle()) . "\">\n";
+				echo '<a href="' . pathurlencode($image->getLink()) . '" title="' . html_encode($image->getTitle()) . "\">\n";
 				echo $image->getTitle() . "</a>\n";
 				echo '</div>';
 			}

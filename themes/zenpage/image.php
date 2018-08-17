@@ -87,7 +87,7 @@ if (!defined('WEBPATH'))
 						}
 						if (!empty($tburl)) {
 							?>
-							<a href="<?php echo html_encode(pathurlencode($tburl)); ?>"<?php echo $boxclass; ?> title="<?php printBareImageTitle(); ?>">
+							<a href="<?php echo pathurlencode($tburl); ?>"<?php echo $boxclass; ?> title="<?php printBareImageTitle(); ?>">
 								<?php
 							}
 							printCustomSizedImageMaxSpace(getBareImageTitle(), 580, 580);

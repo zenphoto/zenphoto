@@ -163,7 +163,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'crop') {
 	$imageobj->set('thumbH', $ch);
 	$imageobj->save();
 
-	$return = '/admin-edit.php?page=edit&album=' . html_encode(pathurlencode($albumname)) . '&saved&subpage=' . html_encode(sanitize($_REQUEST['subpage'])) . '&tagsort=' . html_encode(sanitize($_REQUEST['tagsort'])) . '&tab=imageinfo';
+	$return = '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&saved&subpage=' . html_encode(sanitize($_REQUEST['subpage'])) . '&tagsort=' . html_encode(sanitize($_REQUEST['tagsort'])) . '&tab=imageinfo';
 	if ($singleimage)
 		$return .= '&singleimage=' . html_encode($singleimage);
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . $return);
@@ -244,7 +244,7 @@ printAdminHeader('edit', 'thumbcrop');
 				<p><?php echo gettext("You can change the portion of your image which is shown in thumbnails by cropping it here."); ?></p>
 				<div style="display:block">
 					<div style="float: left; width:<?php echo $thumbcropwidth; ?>px; text-align: center;margin-right: 18px;  margin-bottom: 10px;">
-						<img src="<?php echo html_encode(pathurlencode($currentthumbimage)); ?>" style="width:<?php echo $thumbcropwidth; ?>px;height:<?php echo $thumbcropheight; ?>px; border: 4px solid gray; float: left"/>
+						<img src="<?php echo pathurlencode($currentthumbimage); ?>" style="width:<?php echo $thumbcropwidth; ?>px;height:<?php echo $thumbcropheight; ?>px; border: 4px solid gray; float: left"/>
 						<?php echo gettext("current thumbnail"); ?>
 					</div>
 
@@ -259,7 +259,7 @@ printAdminHeader('edit', 'thumbcrop');
 
 					<div style="float: left; width:<?php echo $cropwidth; ?>px; text-align: center; margin-left: 10px; margin-bottom: 10px;">
 						<div style="width:<?php echo $cropwidth; ?>px;height:<?php echo $cropheight; ?>px; overflow:hidden; border: 4px solid green; float: left">
-							<img src="<?php echo html_encode(pathurlencode($imageurl)); ?>" id="preview" />
+							<img src="<?php echo pathurlencode($imageurl); ?>" id="preview" />
 						</div>
 						<?php echo gettext("thumbnail preview"); ?>
 					</div>
@@ -301,7 +301,7 @@ printAdminHeader('edit', 'thumbcrop');
 									<?php echo CROSS_MARK_RED; ?>
 									<strong><?php echo gettext("Reset"); ?></strong>
 								</button>
-								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&subpage=<?php echo html_encode($subpage) ?><?php if ($singleimage) echo '&singleimage=' . html_encode($singleimage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
+								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo html_encode($subpage) ?><?php if ($singleimage) echo '&singleimage=' . html_encode($singleimage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
 									<span style="color:blue;font-size:large;line-height: 60%;">&lArr;</span>
 									<strong><?php echo gettext("Back"); ?></strong>
 								</button>

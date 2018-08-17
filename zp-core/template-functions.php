@@ -289,10 +289,10 @@ function adminToolbox() {
 								// set return to this image page
 								zp_apply_filter('admin_toolbox_image', $albumname, $imagename, $zf);
 							}
-							$redirect = "&amp;album=" . html_encode(pathurlencode($albumname)) . "&amp;image=" . urlencode($imagename);
+							$redirect = "&amp;album=" . pathurlencode($albumname) . "&amp;image=" . urlencode($imagename);
 						} else {
 							// set the return to this album/page
-							$redirect = "&amp;album=" . html_encode(pathurlencode($albumname));
+							$redirect = "&amp;album=" . pathurlencode($albumname);
 							if ($page > 1) {
 								$redirect .= "&amp;page=$page";
 							}
@@ -1695,7 +1695,7 @@ function printAlbumThumbImage($alt, $class = NULL, $id = NULL, $title = NULL) {
 	$sizes = getSizeDefaultThumb($thumbobj);
 	$size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . html_encode(pathurlencode($thumbobj->getThumb('album'))) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . ' />';
+		$html = '<img src="' . pathurlencode($thumbobj->getThumb('album')) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html);
 		echo $html;
 	} else {
@@ -1789,7 +1789,7 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	}
 
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . html_encode(pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy))) . '"' . $sizing . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
+		$html = '<img src="' . pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy)) . '"' . $sizing . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
 		$html = zp_apply_filter('custom_album_thumb_html', $html);
 		echo $html;
 	} else {
@@ -2747,7 +2747,7 @@ function printDefaultSizedImage($alt, $class = NULL, $id = NULL, $title = NULL) 
 	}
 
 	if (isImagePhoto()) { //Print images
-		$html = '<img src="' . html_encode(pathurlencode(getDefaultSizedImage())) . '" alt="' . html_encode($alt) . '"' .
+		$html = '<img src="' . pathurlencode(getDefaultSizedImage()) . '" alt="' . html_encode($alt) . '"' .
 						' width="' . getDefaultWidth() . '" height="' . getDefaultHeight() . '"' . $class . $id . $title . " />";
 		$html = zp_apply_filter('standard_image_html', $html);
 		echo $html;
@@ -2800,7 +2800,7 @@ function printImageThumb($alt, $class = NULL, $id = NULL, $title = NULL) {
 		$title = ' title="' . html_encode($title) . '"';
 	}
 
-	$html = '<img src="' . html_encode(pathurlencode($url)) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
+	$html = '<img src="' . pathurlencode($url) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
 	$html = zp_apply_filter('standard_image_thumb_html', $html);
 	echo $html;
 }
@@ -3070,7 +3070,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		$title = ' title="' . html_encode($title) . '"';
 	}
 	if (isImagePhoto() || $thumbStandin) {
-		$html = '<img src="' . html_encode(pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects))) . '"' .
+		$html = '<img src="' . pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects)) . '"' .
 						' alt="' . html_encode($alt) . '"' .
 						$id . $class . $sizing . $title . ' />';
 		$sizing .
@@ -3368,15 +3368,15 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 			switch ($crop) {
 				case 0:
 					$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $randomImage);
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
+					$html = '<img src="' . pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 				case 1:
 					$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $randomImage);
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
+					$html = '<img src="' . pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 				case 2:
 					$sizes = getSizeDefaultThumb($randomImage);
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
+					$html = '<img src="' . pathurlencode($randomImage->getThumb()) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 			}
 			echo zp_apply_filter('custom_image_html', $html, false);

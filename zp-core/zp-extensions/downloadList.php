@@ -628,7 +628,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 		if (!empty($linktext)) {
 			$file = $linktext;
 		}
-		echo '<a href="' . FULLWEBPATH . '/' . html_encode(pathurlencode($link)) . '?' . http_build_query($query) . '" rel="nofollow class="downloadlist_link"">' . html_encode($file) . '</a>' . $filesize;
+		echo '<a href="' . FULLWEBPATH . '/' . pathurlencode($link) . '?' . http_build_query($query) . '" rel="nofollow class="downloadlist_link"">' . html_encode($file) . '</a>' . $filesize;
 	}
 }
 
