@@ -26,6 +26,9 @@ foreach ($persona as $personality) {
 
 chdir(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/styles");
 $filelist = safe_glob('*.txt');
+chdir(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/data");
+$userlist = safe_glob('*.txt');
+$filelist = array_merge($filelist, $userlist);
 $themecolors = array();
 foreach ($filelist as $file) {
 	$themecolors[basename($file)] = stripSuffix(filesystemToInternal($file));
@@ -72,8 +75,13 @@ function EF_head($ignore) {
 	}
 	$basePath = SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/';
 	$csfile = $basePath . 'data/styles/' . $themeColor . '.css';
-	if (!file_exists($csfile) || ($mtime = filemtime($csfile) < filemtime($basePath . 'styles/' . $themeColor . '.txt')) || $mtime < filemtime($basePath . '/base.css')) {
-		eval(file_get_contents($basePath . 'styles/' . $themeColor . '.txt'));
+	$genfile = $basePath . 'styles/' . $themeColor . '.txt';
+	if (!file_exists($genfile)) {
+		$genfile = $basePath . 'data/' . $themeColor . '.txt';
+	}
+
+	if (!file_exists($csfile) || ($mtime = filemtime($csfile) < filemtime($genfile)) || $mtime < filemtime($basePath . '/base.css')) {
+		eval(file_get_contents($genfile));
 		$css = file_get_contents($basePath . '/base.css');
 		$css = strtr($css, $tr);
 		$css = preg_replace('|\.\./images/|', WEBPATH . '/' . THEMEFOLDER . '/effervescence+/images/', $css);
