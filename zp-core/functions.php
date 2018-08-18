@@ -165,7 +165,7 @@ function html_encodeTagged($original, $allowScript = true) {
  * @param string $shortenindicator
  * @return string
  *
- * Algorithm copyright by Stephen Billard for use in ZenPhoto20 and derivitive implementations
+ * Algorithm copyright by Stephen Billard for use in netPhotoGraphics and derivitive implementations
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator = '...') {
 	//conservatve check if the string is too long.
