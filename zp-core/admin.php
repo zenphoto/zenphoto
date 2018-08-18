@@ -274,7 +274,7 @@ $buttonlist = array();
 					<div class="notebox">
 						<h2><?php echo gettext('There is a new version is available.'); ?></h2>
 						<?php
-						printf(gettext('The latest version %s can be downloaded by the utility button.'), $newestVersion);
+						printf(gettext('Version %s can be downloaded by the utility button.'), $newestVersion);
 						?>
 					</div>
 					<?php
