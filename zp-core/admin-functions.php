@@ -132,11 +132,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 	}
-	if (empty($subtabtext)) {
-		if ($_zp_admin_subtab) {
-			$subtabtext = '-' . ucfirst($_zp_admin_subtab);
-		}
-	}
+
 	$multi = getOption('multi_lingual');
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
