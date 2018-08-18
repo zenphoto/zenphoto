@@ -296,7 +296,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<span id="administration">
 				<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png"
 						 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($tabtext), html_encode($subtabtext)); ?>"
-						 alt="<?php echo gettext('netPhotoGraphics Administration'); ?>" />
+						 alt="<?php printf(gettext('%1$s Administration'), html_encode($_zp_gallery->getTitle())); ?>" />
 			</span>
 			<span id="links">
 				<?php
