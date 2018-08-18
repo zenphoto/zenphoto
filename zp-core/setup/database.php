@@ -219,7 +219,7 @@ if ($utf8mb4 && $dbmigrate) {
 		$_DB_Structure_change = TRUE;
 	}
 }
-$tablePresent = array();
+$uniquekeys = $tablePresent = array();
 foreach ($template as $tablename => $table) {
 	$tablePresent[$tablename] = $exists = array_key_exists($tablename, $database);
 	if (!$exists) {
@@ -290,22 +290,23 @@ foreach ($template as $tablename => $table) {
 			}
 		}
 	}
-
 	if (isset($table['keys'])) {
 		foreach ($table['keys'] as $key => $index) {
 			$string = "ALTER TABLE " . prefix($tablename) . ' ADD ';
+			$i = $k = $index['Column_name'];
+			if (!empty($index['Sub_part'])) {
+				$k .=" (" . $index['Sub_part'] . ")";
+			}
+
 			if ($index['Non_unique']) {
 				$string .= "INDEX ";
 				$u = "KEY";
 			} else {
 				$string .="UNIQUE ";
 				$u = "UNIQUE `$key`";
+				$uniquekeys[$tablename][$key] = explode(',', $i);
 			}
 
-			$k = $index['Column_name'];
-			if (!empty($index['Sub_part'])) {
-				$k .=" (" . $index['Sub_part'] . ")";
-			}
 			$alterString = "$string`$key` ($k)";
 			if ($indexComments) {
 				$alterString.=" COMMENT 'zp20';";
@@ -360,6 +361,14 @@ foreach ($template as $tablename => $table) {
 				}
 			}
 		}
+	}
+}
+
+foreach ($uniquekeys as $table => $keys) {
+	foreach ($keys as $unique => $components) {
+		$updateErrors = $updateErrors || checkUnique(prefix($table), array_flip(array_map(function($item) {
+															return trim($item, '`');
+														}, $components)));
 	}
 }
 //if this is a new database, update the config file for the utf8 encoding

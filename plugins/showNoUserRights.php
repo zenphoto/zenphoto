@@ -29,7 +29,7 @@ class showNoUserRights {
 						$('select[name="showgroup"]').parent("th").remove(); 	// the "Show" dropdownn menu
 						$('.box-rights').remove(); 								// Rights. (the part with all the checkboxes).
 						$('.box-albums-unpadded').remove(); 			// Albums, Pages, and Categories.
-						$('td .notebox').parent().parent().remove();
+						$('td .notebox').parent().parent().remove();	//	notes and warnings he can't do anything about
 						$('.notebox').remove();
 					});
 					// ]]> -->

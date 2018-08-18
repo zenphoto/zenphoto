@@ -1728,7 +1728,6 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 							if (isset($_GET['create']) || isset($_REQUEST['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars, false)) {
 								if (!isset($_GET['protect_files'])) {
 									primeMark(gettext('Database update'));
-									setupLog(gettext("Begin database creation and update"), true);
 									require_once(SERVERPATH . '/' . ZENFOLDER . '/setup/database.php');
 									if ($updateErrors) {
 										$autorun = false;
@@ -1738,23 +1737,13 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 									} else {
 										$msg = gettext('Database update is not required.');
 									}
+									setupLog($msg, true);
 									?>
 									<script type="text/javascript">
 										$("#prime<?php echo $primeid; ?>").remove();
 									</script>
 									<h3><?php echo $msg; ?></h3>
 									<?php
-									checkUnique($tbl_administrators, array('valid' => 0, 'user' => 0));
-									checkUnique($tbl_albums, array('folder' => 0));
-									checkUnique($tbl_images, array('albumid' => 0, 'filename' => 0));
-									checkUnique($tbl_options, array('name' => 0, 'ownerid' => 0, 'theme' => 0));
-									checkUnique($tbl_news_categories, array('titlelink' => 0));
-									checkUnique($tbl_news, array('titlelink' => 0));
-									checkUnique($tbl_pages, array('titlelink' => 0));
-									checkUnique($tbl_tags, array('name' => 0));
-
-									setupLog(gettext("Done with database creation and update"), true);
-
 									// set defaults on any options that need it
 									require(dirname(__FILE__) . '/setup-option-defaults.php');
 

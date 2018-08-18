@@ -492,11 +492,15 @@ function checkUnique($table, $unique) {
 		?>
 		<p class="notebox">
 			<?php
-			printf(gettext('<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>UNIQUE</em> key. There are probably duplicate entries in the table which can cause unpredictable behavior. This can normally be corrected by creating a netPhotoGraphics backup, dropping the table, running setup to restore the table, and then restoring from the backup. Note, however, that the duplicate entries will be lost.'), trim($table, '`'));
+			$msg = sprintf(gettext('<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>UNIQUE</em> key. There are probably duplicate entries in the table which can cause unpredictable behavior. This can normally be corrected by creating a netPhotoGraphics backup, dropping the table, running setup to restore the table, and then restoring from the backup. Note, however, that the duplicate entries will be lost.'), trim($table, '`'));
+			echo $msg;
+			setupLog($msg, true);
 			?>
 		</p>
 		<?php
+		return true;
 	}
+	return false;
 }
 
 /**
