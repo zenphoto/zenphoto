@@ -26,9 +26,11 @@ foreach ($persona as $personality) {
 
 chdir(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/styles");
 $filelist = safe_glob('*.txt');
-chdir(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/data");
-$userlist = safe_glob('*.txt');
-$filelist = array_merge($filelist, $userlist);
+if (file_exists(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/data")) {
+	chdir(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/data");
+	$userlist = safe_glob('*.txt');
+	$filelist = array_merge($filelist, $userlist);
+}
 $themecolors = array();
 foreach ($filelist as $file) {
 	$themecolors[basename($file)] = stripSuffix(filesystemToInternal($file));
@@ -62,9 +64,6 @@ if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_men
 require_once(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/' . $personality . '/functions.php');
 $_oneImagePage = $handler->onePage();
 $_zp_page_check = 'my_checkPageValidity';
-
-
-
 
 define('_IMAGE_PATH', WEBPATH . '/' . THEMEFOLDER . '/effervescence+/images/');
 
