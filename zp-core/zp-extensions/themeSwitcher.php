@@ -165,7 +165,7 @@ class themeSwitcher {
 			}
 			$reloc = pathurlencode(trim(preg_replace('~themeSwitcher=.*?&~', '', getRequestURI() . '&'), '?&'));
 			if (strpos($reloc, '?')) {
-				$reloc .= '&themeSwitcher=%t';
+				$reloc .= '&amp;themeSwitcher=%t';
 			} else {
 				$reloc .= '?themeSwitcher=%t';
 			}
@@ -187,7 +187,7 @@ class themeSwitcher {
 					</a>
 				</div>
 				<?php echo $text; ?>
-				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')" title="<?php echo gettext("Themes will be disabled in this list if selecting them would result in a “not found” error."); ?>">
+				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo $reloc; ?>')" title="<?php echo gettext("Themes will be disabled in this list if selecting them would result in a “not found” error."); ?>">
 					<?php
 					foreach ($themes as $key => $item) {
 						echo '<option value="' . html_encode($key) . '"';

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenPhoto20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-16 14:09-0700\n"
-"PO-Revision-Date: 2018-08-16 14:14-0700\n"
+"POT-Creation-Date: 2018-08-19 14:12-0700\n"
+"PO-Revision-Date: 2018-08-19 14:17-0700\n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: Anxo Botana García <anxobotana@abwebdeveloper.com>\n"
 "Language: gl_ES\n"
@@ -129,7 +129,7 @@ msgid "Gallery"
 msgstr "Galería"
 
 #: plugins/cacheHeader.php:50 plugins/cookieInvalidator.php:32
-#: themes/zpmobile/functions.php:118 zp-core/admin-functions.php:167
+#: themes/zpmobile/functions.php:118 zp-core/admin-functions.php:163
 #: zp-core/admin.php:283 zp-core/admin.php:349 zp-core/admin.php:363
 #: zp-core/admin.php:379 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:605 zp-core/lib-auth.php:637
@@ -169,7 +169,7 @@ msgstr "O encabezado que se xerará"
 
 #: plugins/cacheHeader.php:72 plugins/create_album.php:144
 #: plugins/disableAction.php:119 plugins/disableWatermark.php:93
-#: plugins/showNoUserRights.php:42
+#: plugins/showNoUserRights.php:45
 #, fuzzy
 msgid "demo"
 msgstr "& ConfiguraciÃ³n"
@@ -319,8 +319,8 @@ msgstr "Activado a_data personalizada"
 #: themes/paradigm/includes/_sidebar.php:8 themes/paradigm/themeoptions.php:91
 #: themes/zpEnlighten/sidebar.php:77 themes/zpfocus/inc-header.php:111
 #: themes/zpmasonry/inc-menu.php:21 themes/zpskeleton/inc-bottom.php:51
-#: zp-core/admin-edit.php:1757 zp-core/admin-functions.php:2526
-#: zp-core/admin-functions.php:3811 zp-core/admin_options/theme.php:258
+#: zp-core/admin-edit.php:1757 zp-core/admin-functions.php:2522
+#: zp-core/admin-functions.php:3807 zp-core/admin_options/theme.php:258
 #: zp-core/allTranslations.php:11 zp-core/lib-auth.php:570
 #: zp-core/lib-auth.php:576 zp-core/lib-auth.php:587 zp-core/lib-auth.php:590
 #: zp-core/lib-auth.php:591 zp-core/lib-auth.php:594 zp-core/lib-auth.php:598
@@ -342,8 +342,8 @@ msgstr "Álbums"
 #: plugins/customData.php:129 plugins/filter-fileSearches.php:81
 #: themes/zpArdoise/inc_footer.php:23 themes/zpfocus/inc-header.php:108
 #: themes/zpmasonry/inc-menu.php:20 themes/zpskeleton/inc-bottom.php:50
-#: zp-core/admin-functions.php:572 zp-core/admin-functions.php:2090
-#: zp-core/admin-functions.php:2530 zp-core/admin-functions.php:2667
+#: zp-core/admin-functions.php:568 zp-core/admin-functions.php:2086
+#: zp-core/admin-functions.php:2526 zp-core/admin-functions.php:2663
 #: zp-core/admin_options/theme.php:300
 #: zp-core/utilities/gallery_statistics.php:73
 #: zp-core/utilities/gallery_statistics.php:571
@@ -378,7 +378,7 @@ msgstr "Categorías"
 #: themes/zpEnlighten/sidebar.php:37 themes/zpfocus/inc-header.php:220
 #: themes/zpmobile/functions.php:89 themes/zpmobile/functions.php:198
 #: themes/zpmobile/pagelist.php:26 themes/zpmobile/pages.php:26
-#: zp-core/admin-functions.php:3696 zp-core/admin-functions.php:3867
+#: zp-core/admin-functions.php:3692 zp-core/admin-functions.php:3863
 #: zp-core/allTranslations.php:13 zp-core/lib-auth.php:571
 #: zp-core/lib-auth.php:574 zp-core/lib-auth.php:589 zp-core/lib-auth.php:596
 #: zp-core/lib-auth.php:600 zp-core/lib-auth.php:616 zp-core/lib-auth.php:623
@@ -498,7 +498,7 @@ msgid "Generates and displays a Doc file for filters."
 msgstr "Xera e mostra un ficheiro Doc para filtros."
 
 #: plugins/filterDoc.php:21 plugins/zenphotoCompatibilityPack.php:44
-#: zp-core/admin-functions.php:5214 zp-core/zp-extensions/debug.php:174
+#: zp-core/admin-functions.php:5210 zp-core/zp-extensions/debug.php:174
 #: zp-core/zp-extensions/deprecated-functions.php:93
 #: zp-core/zp-extensions/macroList.php:86
 #: zp-core/zp-extensions/rewriteRules.php:26
@@ -892,7 +892,7 @@ msgstr "Plugins"
 #: zp-core/admin-edit.php:1186 zp-core/admin-edit.php:1624
 #: zp-core/admin-edit.php:1702 zp-core/admin-edit.php:1739
 #: zp-core/admin-edit.php:1823 zp-core/admin-edit.php:1876
-#: zp-core/admin-functions.php:1735 zp-core/admin-functions.php:2450
+#: zp-core/admin-functions.php:1731 zp-core/admin-functions.php:2446
 #: zp-core/admin-plugins.php:170 zp-core/admin-plugins.php:487
 #: zp-core/admin-thumbcrop.php:298 zp-core/admin-users.php:511
 #: zp-core/admin-users.php:513 zp-core/admin-users.php:933
@@ -949,8 +949,8 @@ msgstr "Aplicar"
 #: zp-core/admin-edit.php:1041 zp-core/admin-edit.php:1190
 #: zp-core/admin-edit.php:1628 zp-core/admin-edit.php:1825
 #: zp-core/admin-edit.php:1827 zp-core/admin-edit.php:1878
-#: zp-core/admin-edit.php:1880 zp-core/admin-functions.php:1739
-#: zp-core/admin-functions.php:2454 zp-core/admin-logs.php:147
+#: zp-core/admin-edit.php:1880 zp-core/admin-functions.php:1735
+#: zp-core/admin-functions.php:2450 zp-core/admin-logs.php:147
 #: zp-core/admin-plugins.php:171 zp-core/admin-plugins.php:173
 #: zp-core/admin-plugins.php:488 zp-core/admin-plugins.php:490
 #: zp-core/admin-tags.php:249 zp-core/admin-thumbcrop.php:302
@@ -1109,7 +1109,7 @@ msgstr "Ver álbum:"
 #: themes/zpmobile/favorites.php:60 themes/zpmobile/gallery.php:29
 #: themes/zpmobile/gallery.php:45 themes/zpmobile/image.php:33
 #: themes/zpmobile/news.php:55 themes/zpmobile/search.php:188
-#: themes/zpskeleton/gallery.php:55 zp-core/admin-functions.php:5081
+#: themes/zpskeleton/gallery.php:55 zp-core/admin-functions.php:5077
 #: zp-core/zp-extensions/comment_form/functions.php:118
 #: zp-core/zp-extensions/slideshow.php:596
 #: zp-core/zp-extensions/slideshow2.php:282
@@ -1151,7 +1151,7 @@ msgstr "ant."
 #: themes/zpmobile/gallery.php:29 themes/zpmobile/gallery.php:45
 #: themes/zpmobile/image.php:36 themes/zpmobile/news.php:59
 #: themes/zpmobile/search.php:188 themes/zpskeleton/gallery.php:55
-#: zp-core/admin-functions.php:5108
+#: zp-core/admin-functions.php:5104
 #: zp-core/zp-extensions/comment_form/functions.php:119
 #: zp-core/zp-extensions/jPlayer.php:478 zp-core/zp-extensions/slideshow.php:597
 #: zp-core/zp-extensions/slideshow2.php:286
@@ -1175,8 +1175,8 @@ msgstr "<strong>Etiquetas:</strong> "
 
 #: themes/basic/album.php:87 themes/zenFluid/404.php:19
 #: themes/zenpage/sidebar.php:68 themes/zpminimal/inc-footer.php:26
-#: themes/zpmobile/functions.php:53 zp-core/admin-functions.php:594
-#: zp-core/admin-functions.php:5487 zp-core/lib-auth.php:555
+#: themes/zpmobile/functions.php:53 zp-core/admin-functions.php:590
+#: zp-core/admin-functions.php:5483 zp-core/lib-auth.php:555
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:78
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:82
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:272
@@ -1217,7 +1217,7 @@ msgstr "Etiquetas Populares"
 
 #: themes/basic/contact.php:24 themes/basic/contact.php:27
 #: themes/basic/index.php:99 themes/effervescence+/contact.php:62
-#: themes/effervescence+/functions.php:419 themes/garland/contact.php:42
+#: themes/effervescence+/functions.php:427 themes/garland/contact.php:42
 #: themes/garland/functions.php:119 themes/paradigm/contact.php:19
 #: themes/paradigm/includes/_breadcrumbs.php:23 themes/zenFluid/contact.php:15
 #: themes/zenFluid/inc-sidebar.php:93 themes/zenpage/contact.php:35
@@ -1250,7 +1250,7 @@ msgstr "Eliminar"
 msgid "Default theme color scheme."
 msgstr "Esquema de cores do tema predeterminado."
 
-#: themes/basic/functions.php:89 themes/effervescence+/functions.php:145
+#: themes/basic/functions.php:89 themes/effervescence+/functions.php:153
 #: themes/zpArdoise/functions.php:66 themes/zpmasonry/functions.php:37
 #, fuzzy
 msgid "Theme Color"
@@ -1267,7 +1267,7 @@ msgstr "Cor do tema"
 #: themes/zpEnlighten/image.php:22 themes/zpfocus/inc-header.php:162
 #: themes/zpfocus/inc-header.php:176 themes/zpmasonry/inc-footer.php:40
 #: themes/zpmasonry/inc-header.php:147 themes/zpmasonry/inc-header.php:162
-#: zp-core/admin-functions.php:221 zp-core/admin-plugins.php:112
+#: zp-core/admin-functions.php:217 zp-core/admin-plugins.php:112
 #: zp-core/utilities/installation_analysis.php:65
 #: zp-core/zp-extensions/accessThreshold/admin_tab.php:93
 #: zp-core/zp-extensions/googleMap.php:528
@@ -1303,7 +1303,7 @@ msgid "Zoomed image will appear here."
 msgstr "A imaxe ampliada aparecerá aquí."
 
 #: themes/basic/index.php:104 themes/basic/password.php:41
-#: themes/effervescence+/functions.php:425 themes/garland/functions.php:125
+#: themes/effervescence+/functions.php:433 themes/garland/functions.php:125
 #: themes/paradigm/password.php:32 themes/zenpage/password.php:44
 #: themes/zenpage/sidebar.php:114 themes/zenpage/sidebar.php:116
 #: themes/zpEnlighten/password.php:42 themes/zpEnlighten/sidebar.php:114
@@ -1344,14 +1344,14 @@ msgid "Index"
 msgstr "Índice"
 
 #: themes/basic/news.php:66 themes/basic/news.php:98
-#: themes/effervescence+/functions.php:455 themes/effervescence+/news.php:90
+#: themes/effervescence+/functions.php:463 themes/effervescence+/news.php:90
 #: themes/garland/functions.php:157 themes/garland/news.php:62
 #, php-format
 msgid "Comments: %d"
 msgstr "Comentarios: %d"
 
 #: themes/basic/news.php:70 themes/basic/news.php:105
-#: themes/effervescence+/functions.php:462 themes/effervescence+/news.php:94
+#: themes/effervescence+/functions.php:470 themes/effervescence+/news.php:94
 #: themes/garland/functions.php:164 themes/garland/news.php:66
 #: themes/garland/news.php:112 themes/zenFluid/news.php:101
 #: themes/zenFluid/news.php:170 themes/zenpage/gallery.php:75
@@ -1366,7 +1366,7 @@ msgstr "Comentarios: %d"
 msgid "Categories: "
 msgstr "Categorías: "
 
-#: themes/basic/news.php:85 themes/effervescence+/functions.php:442
+#: themes/basic/news.php:85 themes/effervescence+/functions.php:450
 #: themes/garland/functions.php:144
 #: zp-core/zp-extensions/zenpage/admin-edit.php:589
 #: zp-core/zp-extensions/zenpage/admin-news.php:326
@@ -1374,7 +1374,7 @@ msgstr "Categorías: "
 msgid "sticky"
 msgstr "persistente"
 
-#: themes/basic/news.php:117 themes/effervescence+/functions.php:475
+#: themes/basic/news.php:117 themes/effervescence+/functions.php:483
 #: themes/garland/album.php:75 themes/garland/favorites.php:90
 #: themes/garland/functions.php:177 themes/garland/gallery.php:60
 #: themes/garland/search.php:223 themes/paradigm/news.php:129
@@ -1387,7 +1387,7 @@ msgstr "persistente"
 msgid "next »"
 msgstr "seg."
 
-#: themes/basic/news.php:117 themes/effervescence+/functions.php:475
+#: themes/basic/news.php:117 themes/effervescence+/functions.php:483
 #: themes/garland/album.php:75 themes/garland/favorites.php:90
 #: themes/garland/functions.php:177 themes/garland/gallery.php:60
 #: themes/garland/search.php:223 themes/paradigm/news.php:129
@@ -1604,30 +1604,30 @@ msgstr "Contacto"
 msgid "Search gallery"
 msgstr "Buscar galería"
 
-#: themes/effervescence+/functions.php:144
+#: themes/effervescence+/functions.php:152
 #, fuzzy
 msgid "Effervescence color scheme."
 msgstr "Esquema de cor de efervescencia."
 
-#: themes/effervescence+/functions.php:155
+#: themes/effervescence+/functions.php:163
 #, fuzzy
 msgid "Effervescence image display handling."
 msgstr "Manexo de visualización de imaxes de efervescencia."
 
-#: themes/effervescence+/functions.php:156 themes/garland/functions.php:60
+#: themes/effervescence+/functions.php:164 themes/garland/functions.php:60
 #, fuzzy
 msgid "Personality"
 msgstr "Escolle a personalidade do tema"
 
-#: themes/effervescence+/functions.php:189 themes/effervescence+/indexpage.php:83
+#: themes/effervescence+/functions.php:197 themes/effervescence+/indexpage.php:83
 msgid "There were no images from which to select the random heading."
 msgstr "Non hai imaxes das que seleccionar unha cabeceira aleatoria."
 
-#: themes/effervescence+/functions.php:208
+#: themes/effervescence+/functions.php:216
 msgid "Random picture..."
 msgstr "Imaxe aleatoria..."
 
-#: themes/effervescence+/functions.php:239
+#: themes/effervescence+/functions.php:247
 #: zp-core/zp-extensions/menu_manager.php:1071
 #: zp-core/zp-extensions/print_album_menu.php:253
 #, php-format
@@ -1636,7 +1636,7 @@ msgid_plural "%u albums"
 msgstr[0] "%u álbum"
 msgstr[1] "%u álbums"
 
-#: themes/effervescence+/functions.php:245
+#: themes/effervescence+/functions.php:253
 #: zp-core/zp-extensions/menu_manager.php:1077
 #: zp-core/zp-extensions/print_album_menu.php:259
 #, php-format
@@ -1645,93 +1645,93 @@ msgid_plural "%u images"
 msgstr[0] "%u imaxe"
 msgstr[1] "%u imaxes"
 
-#: themes/effervescence+/functions.php:255
+#: themes/effervescence+/functions.php:263
 #, php-format
 msgid "Album %1$u of %2$u"
 msgstr "Álbum %1$u de %2$u"
 
-#: themes/effervescence+/functions.php:257
+#: themes/effervescence+/functions.php:265
 #, php-format
 msgid "Photo %1$u of %2$u"
 msgstr "Foto %1$u de %2$u"
 
-#: themes/effervescence+/functions.php:261
+#: themes/effervescence+/functions.php:269
 #, php-format
 msgid "Albums %1$u-%2$u of %3$u"
 msgstr "Álbums %1$u-%2$u de %3$u"
 
-#: themes/effervescence+/functions.php:263
+#: themes/effervescence+/functions.php:271
 #, php-format
 msgid "Photos %1$u-%2$u of %3$u"
 msgstr "Fotos %1$u-%2$u de %3$u"
 
-#: themes/effervescence+/functions.php:297
-#: themes/effervescence+/functions.php:299
+#: themes/effervescence+/functions.php:305
+#: themes/effervescence+/functions.php:307
 #, php-format
 msgid "Effervescence %s"
 msgstr "Effervescence %s"
 
-#: themes/effervescence+/functions.php:301
+#: themes/effervescence+/functions.php:309
 #, php-format
 msgid "Effervescence %1$s %2$s"
 msgstr "Effervescence %1$s %2$s"
 
-#: themes/effervescence+/functions.php:335 zp-core/template-functions.php:1104
+#: themes/effervescence+/functions.php:343 zp-core/template-functions.php:1104
 msgid "The album is password protected."
 msgstr "O álbum esta protexido con contrasinal."
 
-#: themes/effervescence+/functions.php:338
+#: themes/effervescence+/functions.php:346
 msgid "The album is not published."
 msgstr "O álbum non está publicado."
 
-#: themes/effervescence+/functions.php:340
+#: themes/effervescence+/functions.php:348
 #, php-format
 msgid "View the Album: %s"
 msgstr "Ver o Álbum: %s"
 
-#: themes/effervescence+/functions.php:347
+#: themes/effervescence+/functions.php:355
 msgid "The image is marked not visible."
 msgstr "A imaxe está marcada coma non visible."
 
-#: themes/effervescence+/functions.php:351
+#: themes/effervescence+/functions.php:359
 #, php-format
 msgid "View the image: %s"
 msgstr "Ver a imaxe: %s"
 
-#: themes/effervescence+/functions.php:366
+#: themes/effervescence+/functions.php:374
 #, php-format
 msgid "%1$u hit on this %2$s"
 msgid_plural "%1$u hits on this %2$s"
 msgstr[0] "%1$u visita neste %2$s"
 msgstr[1] "%1$u visitas neste %2$s"
 
-#: themes/effervescence+/functions.php:366
+#: themes/effervescence+/functions.php:374
 #: zp-core/zp-extensions/comment_form/admin-comments.php:414
 msgid "page"
 msgstr "páxina"
 
-#: themes/effervescence+/functions.php:376
+#: themes/effervescence+/functions.php:384
 #, php-format
 msgid "%u Album"
 msgid_plural "%u Albums"
 msgstr[0] "%u Álbum"
 msgstr[1] "%u Álbums"
 
-#: themes/effervescence+/functions.php:380
+#: themes/effervescence+/functions.php:388
 #, php-format
 msgid "%u Subalbum"
 msgid_plural "%u Subalbums"
 msgstr[0] "%u Subálbum"
 msgstr[1] "%u Subálbums"
 
-#: themes/effervescence+/functions.php:384
+#: themes/effervescence+/functions.php:392
 #, php-format
 msgid "%u Image"
 msgid_plural "%u Images"
 msgstr[0] "%u Imaxe"
 msgstr[1] "%u Imaxes"
 
-#: themes/effervescence+/functions.php:390 themes/zenFluid/image.php:180
+#: themes/effervescence+/functions.php:398 themes/zenFluid/image.php:180
 #: themes/zenFluid/news.php:63 themes/zenFluid/news.php:152
 #: themes/zenFluid/pages.php:41 themes/zpArdoise/inc_print_comment.php:32
 #: themes/zpBootstrap/inc_print_comment.php:36
@@ -1742,7 +1742,7 @@ msgid_plural "%u Comments"
 msgstr[0] "%u Comentario"
 msgstr[1] "%u Comentarios"
 
-#: themes/effervescence+/functions.php:438 themes/garland/functions.php:140
+#: themes/effervescence+/functions.php:446 themes/garland/functions.php:140
 #: themes/paradigm/includes/_head.php:247 themes/paradigm/includes/_head.php:312
 #: themes/zpmasonry/album.php:20 themes/zpmasonry/favorites.php:22
 #: zp-core/admin-edit.php:665
@@ -1750,7 +1750,7 @@ msgstr[1] "%u Comentarios"
 msgid "album"
 msgstr "álbum"
 
-#: themes/effervescence+/functions.php:438 themes/garland/functions.php:140
+#: themes/effervescence+/functions.php:446 themes/garland/functions.php:140
 #: zp-core/admin-globals.php:233 zp-core/admin_options/theme.php:447
 #: zp-core/zp-extensions/comment_form/admin-comments.php:421
 #: zp-core/zp-extensions/image_album_statistics.php:262
@@ -1758,11 +1758,11 @@ msgstr "álbum"
 msgid "image"
 msgstr "imaxe"
 
-#: themes/effervescence+/functions.php:438 themes/garland/functions.php:140
+#: themes/effervescence+/functions.php:446 themes/garland/functions.php:140
 msgid "video"
 msgstr "vídeo"
 
-#: themes/effervescence+/functions.php:493
+#: themes/effervescence+/functions.php:501
 msgid "Add a comment"
 msgstr "Comentar"
 
@@ -2488,11 +2488,11 @@ msgstr "Créditos"
 #: themes/paradigm/credits.php:34
 #, fuzzy
 msgid ""
-"This website is based on netPhotoGraphics the <a href=\"http://zenphoto20.us/"
-"\" target=\"_blank\">simple media website CMS</a>"
+"This website is based on netPhotoGraphics the <a href=\"http://"
+"netPhotoGraphics.org/\" target=\"_blank\">simple media website CMS</a>"
 msgstr ""
-"Este sitio web está baseado en NetPhotoGraphics o <a href=\"http://zenphoto20."
-"us/\" target=\"_blank\">sitio web simple CMS</a>"
+"Este sitio web está baseado en NetPhotoGraphics o <a href=\"http://"
+"netPhotoGraphics.org/\" target=\"_blank\">sitio web simple CMS</a>"
 
 #: themes/paradigm/credits.php:35
 #, fuzzy
@@ -2998,7 +2998,7 @@ msgid "The object you are requesting cannot be found."
 msgstr "Non se pode atopar o obxecto que solicita."
 
 #: themes/zenFluid/404.php:22 themes/zpArdoise/album.php:56
-#: themes/zpEnlighten/image.php:67 zp-core/admin-functions.php:5485
+#: themes/zpEnlighten/image.php:67 zp-core/admin-functions.php:5481
 #: zp-core/zp-extensions/reCAPTCHA_v2.php:63
 msgid "Image"
 msgstr "Imaxe"
@@ -4156,7 +4156,7 @@ msgstr "Subscribirse"
 #: themes/zpfocus/inc-footer.php:44 themes/zpminimal/inc-footer.php:11
 #, fuzzy
 msgid "This Album"
-msgstr "Este álbum"
+msgstr "Álbum"
 
 #: themes/zpfocus/inc-footer.php:47 themes/zpminimal/inc-footer.php:13
 #, fuzzy
@@ -4740,8 +4740,8 @@ msgstr "Subálbums"
 #: themes/zpminimal/gallery.php:9 themes/zpskeleton/album.php:29
 #: themes/zpskeleton/album.php:61 themes/zpskeleton/favorites.php:32
 #: themes/zpskeleton/favorites.php:64 themes/zpskeleton/gallery.php:39
-#: themes/zpskeleton/search.php:135 zp-core/admin-functions.php:2657
-#: zp-core/admin-functions.php:2660 zp-core/admin_options/image.php:417
+#: themes/zpskeleton/search.php:135 zp-core/admin-functions.php:2653
+#: zp-core/admin-functions.php:2656 zp-core/admin_options/image.php:417
 #: zp-core/admin_options/image.php:455
 #: zp-core/zp-extensions/image_album_statistics.php:264
 #: zp-core/zp-extensions/tinyURL.php:80
@@ -4887,7 +4887,7 @@ msgstr "Páxina Seguinte"
 #: themes/zpmasonry/search.php:30 themes/zpminimal/search.php:29
 #, fuzzy
 msgid "items"
-msgstr "Elementos visibles"
+msgstr "Arquivos de ZenPhoto20"
 
 #: themes/zpmasonry/search.php:171 themes/zpminimal/search.php:109
 #, fuzzy
@@ -5606,7 +5606,7 @@ msgid "Set to unpublished"
 msgstr "Marcar coma non publicado"
 
 #: zp-core/admin-albumsort.php:89 zp-core/admin-edit.php:737
-#: zp-core/admin-functions.php:2744
+#: zp-core/admin-functions.php:2740
 #: zp-core/zp-extensions/zenpage/admin-functions.php:274
 #: zp-core/zp-extensions/zenpage/admin-news.php:282
 #: zp-core/zp-extensions/zenpage/admin-news.php:397
@@ -5615,7 +5615,7 @@ msgid "Disable comments"
 msgstr "Inhabilitar comentarios "
 
 #: zp-core/admin-albumsort.php:90 zp-core/admin-edit.php:738
-#: zp-core/admin-functions.php:2758
+#: zp-core/admin-functions.php:2754
 #: zp-core/zp-extensions/zenpage/admin-functions.php:280
 #: zp-core/zp-extensions/zenpage/admin-news.php:283
 #: zp-core/zp-extensions/zenpage/admin-news.php:405
@@ -5642,61 +5642,61 @@ msgstr "Editar Álbum: <em>%1$s%2$s</em>"
 msgid "Image order saved"
 msgstr "Arranxo de imaxes gardada"
 
-#: zp-core/admin-albumsort.php:142 zp-core/admin-functions.php:5532
+#: zp-core/admin-albumsort.php:142 zp-core/admin-functions.php:5528
 #: zp-core/zp-extensions/comment_form/admin-comments.php:277
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:948
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1668
 msgid "Selected items deleted"
 msgstr "Elementos eliminados escollidos"
 
-#: zp-core/admin-albumsort.php:145 zp-core/admin-functions.php:5535
+#: zp-core/admin-albumsort.php:145 zp-core/admin-functions.php:5531
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:952
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1671
 msgid "Selected items published"
 msgstr "Escolle elementos publicados"
 
-#: zp-core/admin-albumsort.php:148 zp-core/admin-functions.php:5538
+#: zp-core/admin-albumsort.php:148 zp-core/admin-functions.php:5534
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:956
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1674
 msgid "Selected items unpublished"
 msgstr "Escolle elementos sen publicar"
 
-#: zp-core/admin-albumsort.php:151 zp-core/admin-functions.php:5541
+#: zp-core/admin-albumsort.php:151 zp-core/admin-functions.php:5537
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1677
 msgid "Comments enabled for selected items"
 msgstr "Os comentarios están habilitados para os elementos seleccionados"
 
-#: zp-core/admin-albumsort.php:154 zp-core/admin-functions.php:5544
+#: zp-core/admin-albumsort.php:154 zp-core/admin-functions.php:5540
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1680
 msgid "Comments disabled for selected items"
 msgstr "Os comentarios están inhabilitados para os elementos seleccionados"
 
-#: zp-core/admin-albumsort.php:157 zp-core/admin-functions.php:5547
+#: zp-core/admin-albumsort.php:157 zp-core/admin-functions.php:5543
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1683
 msgid "Hitcounter for selected items"
 msgstr "Contador dos elementos escollidos"
 
-#: zp-core/admin-albumsort.php:160 zp-core/admin-functions.php:5550
+#: zp-core/admin-albumsort.php:160 zp-core/admin-functions.php:5546
 #, fuzzy
 msgid "Tags added for selected items"
 msgstr "Engadíronse etiquetas para elementos seleccionados"
 
-#: zp-core/admin-albumsort.php:163 zp-core/admin-functions.php:5553
+#: zp-core/admin-albumsort.php:163 zp-core/admin-functions.php:5549
 #, fuzzy
 msgid "Tags cleared for selected items"
 msgstr "Etiquetas desactivadas para elementos seleccionados"
 
-#: zp-core/admin-albumsort.php:166 zp-core/admin-functions.php:5556
+#: zp-core/admin-albumsort.php:166 zp-core/admin-functions.php:5552
 #, fuzzy
 msgid "Tags added for images of selected items"
 msgstr "Etiquetas engadidas para imaxes dos elementos seleccionados"
 
-#: zp-core/admin-albumsort.php:169 zp-core/admin-functions.php:5559
+#: zp-core/admin-albumsort.php:169 zp-core/admin-functions.php:5555
 #, fuzzy
 msgid "Tags cleared for images of selected items"
 msgstr "Borraron as etiquetas das imaxes dos elementos seleccionados"
 
-#: zp-core/admin-albumsort.php:176 zp-core/admin-functions.php:5525
+#: zp-core/admin-albumsort.php:176 zp-core/admin-functions.php:5521
 #: zp-core/zp-extensions/comment_form/admin-comments.php:286
 #: zp-core/zp-extensions/comment_form/admin-comments.php:315
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:13
@@ -5709,7 +5709,7 @@ msgstr "Nada cambiou"
 #: zp-core/admin-edit.php:964 zp-core/admin-edit.php:1033
 #: zp-core/admin-edit.php:1182 zp-core/admin-edit.php:1620
 #: zp-core/admin-edit.php:1698 zp-core/admin-edit.php:1736
-#: zp-core/admin-functions.php:1731 zp-core/admin-functions.php:2446
+#: zp-core/admin-functions.php:1727 zp-core/admin-functions.php:2442
 #: zp-core/admin-refresh-metadata.php:157 zp-core/admin-thumbcrop.php:304
 #: zp-core/admin-thumbcrop.php:306 zp-core/zp-extensions/crop_image.php:461
 #: zp-core/zp-extensions/crop_image.php:463
@@ -5725,7 +5725,7 @@ msgid "Back"
 msgstr "Atrás"
 
 #: zp-core/admin-albumsort.php:206 zp-core/admin-albumsort.php:269
-#: zp-core/admin-functions.php:1759 zp-core/admin-functions.php:2475
+#: zp-core/admin-functions.php:1755 zp-core/admin-functions.php:2471
 msgid "View Album"
 msgstr "Ver Álbum"
 
@@ -5733,8 +5733,8 @@ msgstr "Ver Álbum"
 msgid "Set the image order by dragging them to the positions you desire."
 msgstr "Establece a orde das imaxes arrastrándoas á posición que desexas."
 
-#: zp-core/admin-albumsort.php:229 zp-core/admin-functions.php:3767
-#: zp-core/admin-functions.php:3821 zp-core/admin-functions.php:3850
+#: zp-core/admin-albumsort.php:229 zp-core/admin-functions.php:3763
+#: zp-core/admin-functions.php:3817 zp-core/admin-functions.php:3846
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:34
 msgid "edit"
 msgstr "editar"
@@ -5906,12 +5906,12 @@ msgid "Show album thumb"
 msgstr "Mostrar o polgar do álbum"
 
 #: zp-core/admin-edit.php:749 zp-core/admin-edit.php:1472
-#: zp-core/admin-functions.php:2336
+#: zp-core/admin-functions.php:2332
 msgid "Move"
 msgstr "Mover"
 
 #: zp-core/admin-edit.php:750 zp-core/admin-edit.php:1475
-#: zp-core/admin-functions.php:2342
+#: zp-core/admin-functions.php:2338
 #: zp-core/zp-extensions/zenpage/admin-edit.php:682
 msgid "Copy"
 msgstr "Copiar"
@@ -5934,22 +5934,22 @@ msgstr "Arrastra os álbums na orde que desexas que se vexan."
 msgid "descending"
 msgstr "Descendente"
 
-#: zp-core/admin-edit.php:914 zp-core/admin-functions.php:1936
+#: zp-core/admin-edit.php:914 zp-core/admin-functions.php:1932
 msgid "*gallery album sort order"
 msgstr "*ordenamento da galería de álbums"
 
-#: zp-core/admin-edit.php:916 zp-core/admin-functions.php:1938
+#: zp-core/admin-edit.php:916 zp-core/admin-functions.php:1934
 msgid "*parent album subalbum sort order"
 msgstr "*ordenamento do álbum pai do subálbum"
 
 #: zp-core/admin-edit.php:921 zp-core/admin-edit.php:1131
-#: zp-core/admin-edit.php:1777 zp-core/admin-functions.php:1921
+#: zp-core/admin-edit.php:1777 zp-core/admin-functions.php:1917
 #: zp-core/admin_options/gallery.php:344 zp-core/exif/exifTranslations.php:132
 msgid "Manual"
 msgstr "Manual"
 
 #: zp-core/admin-edit.php:923 zp-core/admin-edit.php:1779
-#: zp-core/admin-functions.php:1923 zp-core/admin_options/gallery.php:345
+#: zp-core/admin-functions.php:1919 zp-core/admin_options/gallery.php:345
 #: zp-core/admin_options/general.php:413 zp-core/admin_options/image.php:265
 #: zp-core/admin_options/search.php:388 zp-core/exif/exifTranslations.php:82
 #: zp-core/zp-extensions/favoritesHandler.php:141
@@ -5978,16 +5978,16 @@ msgstr ""
 
 #: zp-core/admin-edit.php:978 zp-core/admin-edit.php:980
 #: zp-core/admin-edit.php:1044 zp-core/admin-edit.php:1046
-#: zp-core/admin-functions.php:1746 zp-core/admin-functions.php:1748
-#: zp-core/admin-functions.php:2460 zp-core/admin-functions.php:2462
+#: zp-core/admin-functions.php:1742 zp-core/admin-functions.php:1744
+#: zp-core/admin-functions.php:2456 zp-core/admin-functions.php:2458
 #: zp-core/template-functions.php:256
 msgid "New subalbum"
 msgstr "Novo subálbum"
 
 #: zp-core/admin-edit.php:983 zp-core/admin-edit.php:985
 #: zp-core/admin-edit.php:1049 zp-core/admin-edit.php:1051
-#: zp-core/admin-functions.php:1750 zp-core/admin-functions.php:1752
-#: zp-core/admin-functions.php:2465 zp-core/admin-functions.php:2467
+#: zp-core/admin-functions.php:1746 zp-core/admin-functions.php:1748
+#: zp-core/admin-functions.php:2461 zp-core/admin-functions.php:2463
 #, fuzzy
 msgid "New dynamic subalbum"
 msgstr "Novo subalbume dinámico"
@@ -6006,7 +6006,7 @@ msgstr ""
 "hai moitas imaxes."
 
 #: zp-core/admin-edit.php:1012 zp-core/admin-edit.php:1854
-#: zp-core/admin-functions.php:4393
+#: zp-core/admin-functions.php:4389
 #: zp-core/zp-extensions/comment_form/admin-comments.php:382
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:226
 #: zp-core/zp-extensions/zenpage/admin-categories.php:185
@@ -6025,8 +6025,8 @@ msgstr "Fai clic na imaxe para cambiar o recorte da miniatura."
 msgid "Image filter"
 msgstr "Filtro de imaxe"
 
-#: zp-core/admin-edit.php:1122 zp-core/admin-functions.php:1069
-#: zp-core/admin-functions.php:1109 zp-core/admin-functions.php:5225
+#: zp-core/admin-edit.php:1122 zp-core/admin-functions.php:1065
+#: zp-core/admin-functions.php:1105 zp-core/admin-functions.php:5221
 #: zp-core/admin-tags.php:262 zp-core/admin-users.php:542
 #: zp-core/admin_options/image.php:830 zp-core/admin_options/search.php:270
 #: zp-core/utilities/backup_restore.php:576
@@ -6133,7 +6133,7 @@ msgstr "Non hai nada seleccionado para amosar"
 msgid "Edit all image data"
 msgstr "Edita todos os datos da imaxe"
 
-#: zp-core/admin-edit.php:1356 zp-core/admin-functions.php:2219
+#: zp-core/admin-edit.php:1356 zp-core/admin-functions.php:2215
 #: zp-core/lib-auth.php:578 zp-core/lib-auth.php:579 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:584 zp-core/lib-auth.php:604 zp-core/lib-auth.php:605
 #: zp-core/lib-auth.php:609 zp-core/lib-auth.php:610 zp-core/lib-auth.php:611
@@ -6142,7 +6142,7 @@ msgstr "Edita todos os datos da imaxe"
 msgid "General"
 msgstr "Xeral"
 
-#: zp-core/admin-edit.php:1367 zp-core/admin-functions.php:2230
+#: zp-core/admin-edit.php:1367 zp-core/admin-functions.php:2226
 #: zp-core/admin-globals.php:73 zp-core/zp-extensions/favoritesHandler.php:147
 #: zp-core/zp-extensions/zenpage/admin-edit.php:555
 #: zp-core/zp-extensions/zenpage/admin-functions.php:692
@@ -6150,7 +6150,7 @@ msgstr "Xeral"
 msgid "Published"
 msgstr "Publicado"
 
-#: zp-core/admin-edit.php:1378 zp-core/admin-functions.php:2241
+#: zp-core/admin-edit.php:1378 zp-core/admin-functions.php:2237
 msgid "Allow Comments"
 msgstr "Permitir Comentarios"
 
@@ -6168,13 +6168,13 @@ msgid_plural "Reset rating (%u stars)"
 msgstr[0] "Restablecer clasificación (% u estrela)"
 msgstr[1] "Restablecer clasificación (% u estrelas)"
 
-#: zp-core/admin-edit.php:1410 zp-core/admin-functions.php:2273
+#: zp-core/admin-edit.php:1410 zp-core/admin-functions.php:2269
 #: zp-core/zp-extensions/zenpage/admin-edit.php:845
 #, fuzzy
 msgid "Reset rating (unrated)"
 msgstr "Restablecer clasificación (sen clasificar)"
 
-#: zp-core/admin-edit.php:1425 zp-core/admin-functions.php:2288
+#: zp-core/admin-edit.php:1425 zp-core/admin-functions.php:2284
 #: zp-core/zp-extensions/optionalObjectFields.php:469
 #: zp-core/zp-extensions/publishContent/publishContent.php:362
 #: zp-core/zp-extensions/zenpage/admin-edit.php:734
@@ -6184,22 +6184,22 @@ msgid "calendar"
 msgstr "calendario"
 
 #: zp-core/admin-edit.php:1445 zp-core/admin-edit.php:1461
-#: zp-core/admin-functions.php:2308 zp-core/admin-functions.php:2323
+#: zp-core/admin-functions.php:2304 zp-core/admin-functions.php:2319
 #, fuzzy
 msgid "Expired!"
 msgstr "Caducada"
 
-#: zp-core/admin-edit.php:1454 zp-core/admin-functions.php:2316
+#: zp-core/admin-edit.php:1454 zp-core/admin-functions.php:2312
 #, fuzzy
 msgid "Publish date"
 msgstr "Publicar a data"
 
-#: zp-core/admin-edit.php:1456 zp-core/admin-functions.php:2318
+#: zp-core/admin-edit.php:1456 zp-core/admin-functions.php:2314
 #, fuzzy
 msgid "Expiration date"
 msgstr "Data de caducidade"
 
-#: zp-core/admin-edit.php:1468 zp-core/admin-functions.php:2330
+#: zp-core/admin-edit.php:1468 zp-core/admin-functions.php:2326
 msgid "Utilities"
 msgstr "Utilidades"
 
@@ -6221,8 +6221,8 @@ msgid "to"
 msgstr "a"
 
 #: zp-core/admin-edit.php:1513 zp-core/admin-edit.php:1525
-#: zp-core/admin-edit.php:1537 zp-core/admin-functions.php:2375
-#: zp-core/admin-functions.php:2414 zp-core/admin-functions.php:2424
+#: zp-core/admin-edit.php:1537 zp-core/admin-functions.php:2371
+#: zp-core/admin-functions.php:2410 zp-core/admin-functions.php:2420
 #: zp-core/zp-extensions/comment_form/admin-comments.php:141
 #: zp-core/zp-extensions/comment_form/admin-comments.php:143
 #: zp-core/zp-extensions/googleTFA/auth_code.php:63
@@ -6335,62 +6335,62 @@ msgstr "Rexistro de modificacións"
 msgid "Server date: %s"
 msgstr "Data do servidor: %s"
 
-#: zp-core/admin-functions.php:167
+#: zp-core/admin-functions.php:163
 #, php-format
 msgid "%1$s %2$s: %3$s%4$s"
 msgstr "%1$s %2$s: %3$s%4$s"
 
-#: zp-core/admin-functions.php:298
+#: zp-core/admin-functions.php:294
 #, php-format
 msgid "%1$s administration:%2$s%3$s"
 msgstr "%1$s administración:%2$s%3$s"
 
-#: zp-core/admin-functions.php:299
-#, fuzzy
-#| msgid "ZenPhoto20 Administration"
-msgid "netPhotoGraphics Administration"
-msgstr "Administración netPhotoGraphics"
+#: zp-core/admin-functions.php:295
+#, fuzzy, php-format
+#| msgid "Administrators"
+msgid "%1$s Administration"
+msgstr "%1$s administración:%2$s%3$s"
 
-#: zp-core/admin-functions.php:309
+#: zp-core/admin-functions.php:305
 #, fuzzy, php-format
 msgid "Logged in as %1$s"
 msgstr "Conectado como %1$s"
 
-#: zp-core/admin-functions.php:311
+#: zp-core/admin-functions.php:307
 #, fuzzy, php-format
 msgid "Logged in as %1$s (last login %2$s)"
 msgstr "Iniciado como%1$s (último acceso%2$s)"
 
-#: zp-core/admin-functions.php:314
+#: zp-core/admin-functions.php:310
 #, fuzzy
 msgid "go to user profile"
 msgstr "vai ao perfil de usuario"
 
-#: zp-core/admin-functions.php:321
+#: zp-core/admin-functions.php:317
 msgid "Log Out"
 msgstr "Saír"
 
-#: zp-core/admin-functions.php:330
+#: zp-core/admin-functions.php:326
 #, php-format
 msgid "View <em>%s</em>"
 msgstr "Ver <em>%s</em>"
 
-#: zp-core/admin-functions.php:332
+#: zp-core/admin-functions.php:328
 msgid "View gallery index"
 msgstr "Ver o índice da galería"
 
-#: zp-core/admin-functions.php:338
+#: zp-core/admin-functions.php:334
 #, fuzzy
 #| msgid "Return to %s"
 msgid "return to top"
 msgstr "volver ao principio"
 
-#: zp-core/admin-functions.php:349
+#: zp-core/admin-functions.php:345
 #, fuzzy
 msgid "Your Setup scripts are not protected."
 msgstr "As túas secuencias de comandos de configuración non están protexidas."
 
-#: zp-core/admin-functions.php:351
+#: zp-core/admin-functions.php:347
 #, fuzzy
 msgid ""
 "The Setup environment is not totally secure, you should protect the scripts to "
@@ -6399,65 +6399,65 @@ msgstr ""
 "O ambiente de instalación non é totalmente seguro, debes protexer as "
 "secuencias de comandos para frustrar os hackers."
 
-#: zp-core/admin-functions.php:353
+#: zp-core/admin-functions.php:349
 #, fuzzy
 msgid "Protect the scripts."
 msgstr "Protexa os scripts."
 
-#: zp-core/admin-functions.php:578
+#: zp-core/admin-functions.php:574
 msgid "Image order"
 msgstr "Orde da imaxe"
 
-#: zp-core/admin-functions.php:584
+#: zp-core/admin-functions.php:580
 msgid "Subalbums"
 msgstr "Subálbums"
 
-#: zp-core/admin-functions.php:586
+#: zp-core/admin-functions.php:582
 #, fuzzy
 #| msgid "Sort subalbums"
 msgid "Mass-edit subalbums"
 msgstr "Sub-álbums de edición masiva"
 
-#: zp-core/admin-functions.php:821
+#: zp-core/admin-functions.php:817
 #, fuzzy
 msgid "Deprecated."
 msgstr "obsoleto"
 
-#: zp-core/admin-functions.php:1623
+#: zp-core/admin-functions.php:1619
 #, fuzzy
 msgid "add tag"
 msgstr "Engadir unha etiqueta"
 
-#: zp-core/admin-functions.php:1776
+#: zp-core/admin-functions.php:1772
 msgid "Album Title"
 msgstr "Título do Álbum"
 
-#: zp-core/admin-functions.php:1819
+#: zp-core/admin-functions.php:1815
 #, fuzzy
 #| msgid "Album Description:"
 msgid "Album Description"
 msgstr "Descrición do Álbum:"
 
-#: zp-core/admin-functions.php:1831 zp-core/admin-functions.php:1874
+#: zp-core/admin-functions.php:1827 zp-core/admin-functions.php:1870
 #, fuzzy
 #| msgid "Album password:"
 msgid "Album password"
 msgstr "Contrasinal do Álbum:"
 
-#: zp-core/admin-functions.php:1841
+#: zp-core/admin-functions.php:1837
 #, fuzzy
 msgid "No album password is currently set. Click to set one."
 msgstr ""
 "Actualmente non hai un contrasinal de álbum. Fai clic para configurar un."
 
-#: zp-core/admin-functions.php:1847 zp-core/admin_options/gallery.php:142
+#: zp-core/admin-functions.php:1843 zp-core/admin_options/gallery.php:142
 #: zp-core/admin_options/image.php:653 zp-core/admin_options/search.php:134
 #: zp-core/zp-extensions/downloadList.php:118
 #: zp-core/zp-extensions/zenpage/admin-edit.php:620
 msgid "clear password"
 msgstr "limpar contrasinal"
 
-#: zp-core/admin-functions.php:1849
+#: zp-core/admin-functions.php:1845
 #, fuzzy
 msgid ""
 "An album password is currently set. Click to clear or change the password."
@@ -6465,24 +6465,24 @@ msgstr ""
 "O contrasinal do álbum está configurado actualmente. Fai clic para borrar ou "
 "cambiar o contrasinal."
 
-#: zp-core/admin-functions.php:1859
+#: zp-core/admin-functions.php:1855
 #, fuzzy
 #| msgid "Album guest user:"
 msgid "Album guest user"
 msgstr "Usuario convidado ó álbum:"
 
-#: zp-core/admin-functions.php:1877
+#: zp-core/admin-functions.php:1873
 #, fuzzy
 msgid "repeat password"
 msgstr "Repita o contrasinal:"
 
-#: zp-core/admin-functions.php:1881
+#: zp-core/admin-functions.php:1877
 #, fuzzy
 #| msgid "Password hint:"
 msgid "Password hint"
 msgstr "Pista do Contrasinal:"
 
-#: zp-core/admin-functions.php:1898 zp-core/admin_options/gallery.php:207
+#: zp-core/admin-functions.php:1894 zp-core/admin_options/gallery.php:207
 #: zp-core/admin_options/image.php:699 zp-core/admin_options/search.php:197
 #: zp-core/lib-auth.php:1105 zp-core/lib-auth.php:1388
 #: zp-core/utilities/gallery_statistics.php:762
@@ -6501,19 +6501,19 @@ msgstr "Pista do Contrasinal:"
 msgid "Show"
 msgstr "Amosar"
 
-#: zp-core/admin-functions.php:1930
+#: zp-core/admin-functions.php:1926
 #, fuzzy
 #| msgid "Sort subalbums by:"
 msgid "Sort subalbums by"
 msgstr "Ordenar subálbums por:"
 
-#: zp-core/admin-functions.php:1958 zp-core/admin-functions.php:2015
+#: zp-core/admin-functions.php:1954 zp-core/admin-functions.php:2011
 #: zp-core/zp-extensions/favoritesHandler.php:173
 #: zp-core/zp-extensions/favoritesHandler.php:205
 msgid "Descending"
 msgstr "Descendente"
 
-#: zp-core/admin-functions.php:1976 zp-core/admin-functions.php:2034
+#: zp-core/admin-functions.php:1972 zp-core/admin-functions.php:2030
 #: zp-core/admin_options/gallery.php:381 zp-core/admin_options/image.php:299
 #: zp-core/admin_options/search.php:432 zp-core/admin_options/search.php:493
 #: zp-core/admin_options/search.php:550 zp-core/admin_options/search.php:605
@@ -6522,125 +6522,125 @@ msgstr "Descendente"
 msgid "custom fields"
 msgstr "campos personalizados:"
 
-#: zp-core/admin-functions.php:1985 zp-core/admin_options/image.php:260
+#: zp-core/admin-functions.php:1981 zp-core/admin_options/image.php:260
 #: zp-core/admin_options/search.php:452
 #: zp-core/zp-extensions/favoritesHandler.php:123
 #, fuzzy
 msgid "Sort images by"
 msgstr "Ordenar as imaxes segundo: sort images by date"
 
-#: zp-core/admin-functions.php:1991
+#: zp-core/admin-functions.php:1987
 msgid "*gallery image sort order"
 msgstr "*ordenamento da galería de imaxes"
 
-#: zp-core/admin-functions.php:1993
+#: zp-core/admin-functions.php:1989
 msgid "*parent album image sort order"
 msgstr "*ordenamento do álbum pai da imaxe"
 
-#: zp-core/admin-functions.php:2046
+#: zp-core/admin-functions.php:2042
 #, fuzzy
 #| msgid "Album theme:"
 msgid "Album theme"
 msgstr "Tema do álbum:"
 
-#: zp-core/admin-functions.php:2058
+#: zp-core/admin-functions.php:2054
 msgid "*gallery theme"
 msgstr "*tema da galería"
 
-#: zp-core/admin-functions.php:2079
+#: zp-core/admin-functions.php:2075
 #, fuzzy
 #| msgid "Album watermarks:"
 msgid "Album watermarks"
 msgstr "Marcas de augo do álbum:"
 
-#: zp-core/admin-functions.php:2083 zp-core/admin-functions.php:2098
+#: zp-core/admin-functions.php:2079 zp-core/admin-functions.php:2094
 #: zp-core/zp-extensions/optionalObjectFields.php:507
 msgid "*no watermark"
 msgstr "*sen marca de auga"
 
-#: zp-core/admin-functions.php:2084 zp-core/admin-functions.php:2099
+#: zp-core/admin-functions.php:2080 zp-core/admin-functions.php:2095
 #: zp-core/zp-extensions/optionalObjectFields.php:508
 msgid "*default"
 msgstr "*por defecto"
 
-#: zp-core/admin-functions.php:2105
+#: zp-core/admin-functions.php:2101
 #, fuzzy
 #| msgid "Thumbnail"
 msgid "Thumbnails"
 msgstr "Miniaturas por fila"
 
-#: zp-core/admin-functions.php:2124 zp-core/zp-extensions/cacheManager.php:284
+#: zp-core/admin-functions.php:2120 zp-core/zp-extensions/cacheManager.php:284
 msgid "Thumbnail"
 msgstr "Miniatura"
 
-#: zp-core/admin-functions.php:2253
+#: zp-core/admin-functions.php:2249
 #, fuzzy, php-format
 msgid "Reset hit counter (%u hit)"
 msgid_plural "Reset hit counter (%u hits)"
 msgstr[0] "Restablecer o contador de resultados (% u hit)"
 msgstr[1] "Restablecer o contador de resultados (% u hits)"
 
-#: zp-core/admin-functions.php:2266
+#: zp-core/admin-functions.php:2262
 #: zp-core/zp-extensions/zenpage/admin-edit.php:838
 #, fuzzy, php-format
 msgid "Reset rating (%u stars)"
 msgstr "Restablecer clasificación (% u estrelas)"
 
-#: zp-core/admin-functions.php:2348
+#: zp-core/admin-functions.php:2344
 msgid "Rename Folder"
 msgstr "Renomear Carpeta"
 
-#: zp-core/admin-functions.php:2365 zp-core/template-functions.php:245
+#: zp-core/admin-functions.php:2361 zp-core/template-functions.php:245
 msgid "Delete album"
 msgstr "Borrar álbum"
 
-#: zp-core/admin-functions.php:2370
+#: zp-core/admin-functions.php:2366
 msgid "Album will be deleted when changes are applied."
 msgstr "O álbum borrarase cando se garden os cambios."
 
-#: zp-core/admin-functions.php:2379 zp-core/admin-functions.php:2418
+#: zp-core/admin-functions.php:2375 zp-core/admin-functions.php:2414
 msgid "to:"
 msgstr "a:"
 
-#: zp-core/admin-functions.php:2494
+#: zp-core/admin-functions.php:2490
 #, fuzzy
 msgid "Clears the album’s cached images."
 msgstr "Limpa as imaxes na caché do álbum."
 
-#: zp-core/admin-functions.php:2497
+#: zp-core/admin-functions.php:2493
 #, fuzzy
 msgid "Clear album image cache"
 msgstr "Limpar a caché da imaxe do álbum"
 
-#: zp-core/admin-functions.php:2500
+#: zp-core/admin-functions.php:2496
 #, fuzzy
 msgid "Resets album’s hit counters."
 msgstr "Restablece os contadores de éxito do álbum."
 
-#: zp-core/admin-functions.php:2503
+#: zp-core/admin-functions.php:2499
 #, fuzzy
 msgid "Reset album hit counters"
 msgstr "Restablecer os contadores de éxito de álbums"
 
-#: zp-core/admin-functions.php:2510
+#: zp-core/admin-functions.php:2506
 #, fuzzy
 msgid "Refreshes the metadata for the album."
 msgstr "Actualiza os metadatos do álbum."
 
-#: zp-core/admin-functions.php:2513
+#: zp-core/admin-functions.php:2509
 #, fuzzy
 msgid "Refresh album metadata"
 msgstr "Actualiza os metadatos do álbum"
 
-#: zp-core/admin-functions.php:2534
+#: zp-core/admin-functions.php:2530
 msgid "Albums (dynamic)"
 msgstr "Álbums (dinámico)"
 
-#: zp-core/admin-functions.php:2538
+#: zp-core/admin-functions.php:2534
 msgid "Images (dynamic)"
 msgstr "Imaxes (dinámico)"
 
-#: zp-core/admin-functions.php:2548
+#: zp-core/admin-functions.php:2544
 #: zp-core/zp-extensions/zenpage/admin-categories.php:218
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1379
 #, fuzzy
@@ -6648,154 +6648,154 @@ msgstr "Imaxes (dinámico)"
 msgid "has/does not have password"
 msgstr "ten / non ten contrasinal"
 
-#: zp-core/admin-functions.php:2553 zp-core/admin-functions.php:5715
+#: zp-core/admin-functions.php:2549 zp-core/admin-functions.php:5711
 #: zp-core/zp-extensions/zenpage/admin-categories.php:227
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1384
 #, fuzzy
 msgid "pick source"
 msgstr "escoller fonte"
 
-#: zp-core/admin-functions.php:2559
+#: zp-core/admin-functions.php:2555
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1389
 #, fuzzy
 #| msgid "Published/Not published/Scheduled for publishing"
 msgid "published/not published/scheduled for publishing"
 msgstr "Publicado/Sen publicar/Programado para publicar"
 
-#: zp-core/admin-functions.php:2564
+#: zp-core/admin-functions.php:2560
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1394
 #, fuzzy
 #| msgid "Comments on/off"
 msgid "comments on/off"
 msgstr "Comentarios habilitados/inhabilitados"
 
-#: zp-core/admin-functions.php:2568
+#: zp-core/admin-functions.php:2564
 #, fuzzy
 #| msgid "View the album"
 msgid "view the album"
 msgstr "Vista do álbum"
 
-#: zp-core/admin-functions.php:2572
+#: zp-core/admin-functions.php:2568
 #, fuzzy
 #| msgid "Refresh metadata"
 msgid "refresh metadata"
 msgstr "Refrescar Metadata"
 
-#: zp-core/admin-functions.php:2579
+#: zp-core/admin-functions.php:2575
 #, fuzzy
 msgid "reset hit counters"
 msgstr "restablecer os contadores de éxito"
 
-#: zp-core/admin-functions.php:2586
+#: zp-core/admin-functions.php:2582
 #: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:293
 #: zp-core/zp-extensions/zenpage/admin-edit.php:686
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1411
 msgid "delete"
 msgstr "borrar"
 
-#: zp-core/admin-functions.php:2627 zp-core/admin-functions.php:2644
+#: zp-core/admin-functions.php:2623 zp-core/admin-functions.php:2640
 #, php-format
 msgid "Edit this album: %s"
 msgstr "Editar este álbum: %s"
 
-#: zp-core/admin-functions.php:2658 zp-core/admin-functions.php:2661
+#: zp-core/admin-functions.php:2654 zp-core/admin-functions.php:2657
 #: zp-core/admin-globals.php:138 zp-core/zp-extensions/tinyURL.php:76
 msgid "albums"
 msgstr "álbums"
 
-#: zp-core/admin-functions.php:2673
+#: zp-core/admin-functions.php:2669
 msgid "Subalbum List"
 msgstr "Lista do Subálbum"
 
-#: zp-core/admin-functions.php:2682
+#: zp-core/admin-functions.php:2678
 #, fuzzy
 #| msgid "Unprotected"
 msgid "un-protected"
 msgstr "sen protección"
 
-#: zp-core/admin-functions.php:2688
+#: zp-core/admin-functions.php:2684
 msgid "password protected"
 msgstr "protexido con contrasinal"
 
-#: zp-core/admin-functions.php:2705
+#: zp-core/admin-functions.php:2701
 #, php-format
 msgid "Un-publish the album %s"
 msgstr "Non publicar o álbum %s"
 
-#: zp-core/admin-functions.php:2719
+#: zp-core/admin-functions.php:2715
 #, php-format
 msgid "Publish the album %s"
 msgstr "Publicar o álbum %s"
 
-#: zp-core/admin-functions.php:2773
+#: zp-core/admin-functions.php:2769
 msgid "View album"
 msgstr "Ver álbum"
 
-#: zp-core/admin-functions.php:2785
+#: zp-core/admin-functions.php:2781
 #, php-format
 msgid "Refresh metadata for the album %s"
 msgstr "Actualizar metadatos do álbum %s"
 
-#: zp-core/admin-functions.php:2803
+#: zp-core/admin-functions.php:2799
 #, fuzzy, php-format
 msgid "Reset hit counters for album %s"
 msgstr "Restablecer contadores de éxito para o álbum %s"
 
-#: zp-core/admin-functions.php:2823
+#: zp-core/admin-functions.php:2819
 #, php-format
 msgid "Delete the album %s"
 msgstr "Borrar o álbum %s"
 
-#: zp-core/admin-functions.php:3020
+#: zp-core/admin-functions.php:3016
 #, fuzzy
 msgid "prev image"
 msgstr "imaxe anterior"
 
-#: zp-core/admin-functions.php:3027
+#: zp-core/admin-functions.php:3023
 #, fuzzy
 msgid "next image"
 msgstr "Imaxe Seguinte"
 
-#: zp-core/admin-functions.php:3049 zp-core/admin-functions.php:3057
-#: zp-core/admin-functions.php:3063 zp-core/admin-functions.php:3067
-#: zp-core/admin-functions.php:3071
+#: zp-core/admin-functions.php:3045 zp-core/admin-functions.php:3053
+#: zp-core/admin-functions.php:3059 zp-core/admin-functions.php:3063
+#: zp-core/admin-functions.php:3067
 #, php-format
 msgid "page %u"
 msgstr "páxina %u"
 
-#: zp-core/admin-functions.php:3049 zp-core/admin-functions.php:3051
+#: zp-core/admin-functions.php:3045 zp-core/admin-functions.php:3047
 msgid "Previous page"
 msgstr "Páxina anterior"
 
-#: zp-core/admin-functions.php:3071 zp-core/admin-functions.php:3073
+#: zp-core/admin-functions.php:3067 zp-core/admin-functions.php:3069
 #: zp-core/zp-extensions/zenpage/template-functions.php:875
 msgid "Next page"
 msgstr "Páxina seguinte "
 
-#: zp-core/admin-functions.php:3475 zp-core/admin-functions.php:3480
-#: zp-core/admin-functions.php:3485 zp-core/admin-functions.php:3490
+#: zp-core/admin-functions.php:3471 zp-core/admin-functions.php:3476
+#: zp-core/admin-functions.php:3481 zp-core/admin-functions.php:3486
 msgid "Cannot create new theme."
 msgstr "Non se puido crear o novo Tema."
 
-#: zp-core/admin-functions.php:3475
+#: zp-core/admin-functions.php:3471
 #, fuzzy, php-format
 msgid "Directory “%s” already exists!"
 msgstr "O directorio &quot; %s&quot; xa existe."
 
-#: zp-core/admin-functions.php:3480
+#: zp-core/admin-functions.php:3476
 #, fuzzy, php-format
 msgid "Cannot find theme directory “%s” to copy!"
 msgstr "Non se pode atopar o directorio do tema &quot; %s&quot; para copiar!"
 
-#: zp-core/admin-functions.php:3485
+#: zp-core/admin-functions.php:3481
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "Non se pode escribir na carpeta <tt>/themes</tt>!"
 
-#: zp-core/admin-functions.php:3490
+#: zp-core/admin-functions.php:3486
 msgid "Could not create directory for the new theme"
 msgstr "Non se puido crear a carpeta para o novo Tema"
 
-#: zp-core/admin-functions.php:3522
+#: zp-core/admin-functions.php:3518
 #, fuzzy, php-format
 msgid ""
 "An error occurred while copying files. Please delete manually the new theme "
@@ -6804,29 +6804,29 @@ msgstr ""
 "Produciuse un erro ao copiar ficheiros. Elimine manualmente o novo directorio "
 "do tema &quot; %s&quot; e tente ou copia arquivos manualmente."
 
-#: zp-core/admin-functions.php:3530
+#: zp-core/admin-functions.php:3526
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "O teu Tema, baseado no Tema %s"
 
-#: zp-core/admin-functions.php:3532
+#: zp-core/admin-functions.php:3528
 msgid "Your theme"
 msgstr "O teu tema"
 
-#: zp-core/admin-functions.php:3552
+#: zp-core/admin-functions.php:3548
 msgid "New custom theme created successfully!"
 msgstr "Novo Tema personalizado creado correctamente!"
 
-#: zp-core/admin-functions.php:3554
+#: zp-core/admin-functions.php:3550
 msgid "New custom theme created, but its description could not be updated"
 msgstr "Novo tema creado, pero a súa descrición non foi actualizada"
 
-#: zp-core/admin-functions.php:3686
+#: zp-core/admin-functions.php:3682
 #, fuzzy
 msgid "Rights:"
 msgstr "Sen privilexios"
 
-#: zp-core/admin-functions.php:3696 zp-core/admin-functions.php:3839
+#: zp-core/admin-functions.php:3692 zp-core/admin-functions.php:3835
 #: zp-core/allTranslations.php:55 zp-core/lib-auth.php:572
 #: zp-core/lib-auth.php:575 zp-core/lib-auth.php:588 zp-core/lib-auth.php:595
 #: zp-core/lib-auth.php:599 zp-core/lib-auth.php:615 zp-core/lib-auth.php:619
@@ -6839,54 +6839,54 @@ msgstr "Sen privilexios"
 msgid "News"
 msgstr "Novas"
 
-#: zp-core/admin-functions.php:3765
+#: zp-core/admin-functions.php:3761
 #, fuzzy
 msgid "Primary album"
 msgstr "Álbum primario"
 
-#: zp-core/admin-functions.php:3769 zp-core/zp-extensions/elFinder.php:85
+#: zp-core/admin-functions.php:3765 zp-core/zp-extensions/elFinder.php:85
 #: zp-core/zp-extensions/uploader_http.php:31
 #: zp-core/zp-extensions/uploader_jQuery.php:39
 msgid "upload"
 msgstr "subir"
 
-#: zp-core/admin-functions.php:3771 zp-core/admin-functions.php:3821
-#: zp-core/admin-functions.php:3850
+#: zp-core/admin-functions.php:3767 zp-core/admin-functions.php:3817
+#: zp-core/admin-functions.php:3846
 #, fuzzy
 msgid "view unpublished"
 msgstr "ver inéditos"
 
-#: zp-core/admin-functions.php:3810
+#: zp-core/admin-functions.php:3806
 msgid "Managed albums:"
 msgstr "Álbums administrados:"
 
-#: zp-core/admin-functions.php:3838
+#: zp-core/admin-functions.php:3834
 msgid "Managed news categories:"
 msgstr "Categorías das novas administradas:"
 
-#: zp-core/admin-functions.php:3840 zp-core/utilities/gallery_statistics.php:614
+#: zp-core/admin-functions.php:3836 zp-core/utilities/gallery_statistics.php:614
 #: zp-core/zp-extensions/multiple_layouts.php:109
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:99
 #: zp-core/zp-extensions/tweet_news.php:122
 msgid "News categories"
 msgstr "Categorías de Novas"
 
-#: zp-core/admin-functions.php:3866
+#: zp-core/admin-functions.php:3862
 msgid "Managed pages:"
 msgstr "Páxinas administradas:"
 
-#: zp-core/admin-functions.php:3873
+#: zp-core/admin-functions.php:3869
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Elixa un ou máis %1$s para que o %2$s se faga cargo."
 
-#: zp-core/admin-functions.php:3874 zp-core/admin-users.php:863
+#: zp-core/admin-functions.php:3870 zp-core/admin-users.php:863
 #: zp-core/admin-users.php:882 zp-core/admin-users.php:888
 #: zp-core/admin_options/image.php:664 zp-core/functions-basic.php:559
 msgid "user"
 msgstr "usuario"
 
-#: zp-core/admin-functions.php:3875
+#: zp-core/admin-functions.php:3871
 #, php-format
 msgid ""
 "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All "
@@ -6896,101 +6896,101 @@ msgstr ""
 "poden administrar todos/as os/as %2$s. O resto só poden administrar aqueles "
 "seleccionados."
 
-#: zp-core/admin-functions.php:3878
+#: zp-core/admin-functions.php:3874
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Podes xestionar estes %s de acordo ós dereitos de arriba."
 
-#: zp-core/admin-functions.php:4278
+#: zp-core/admin-functions.php:4274
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Amosar %u nivel no álbum"
 msgstr[1] "Amosar %u niveis no álbum"
 
-#: zp-core/admin-functions.php:4281
+#: zp-core/admin-functions.php:4277
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u imaxe por páxina"
 msgstr[1] "%u imaxes por páxina"
 
-#: zp-core/admin-functions.php:4374
+#: zp-core/admin-functions.php:4370
 #, fuzzy
 msgid "ok"
 msgstr "aceitar"
 
-#: zp-core/admin-functions.php:4446
+#: zp-core/admin-functions.php:4442
 #, fuzzy
 #| msgid "News categories"
 msgid "New categories:"
 msgstr "Novas categorías:"
 
-#: zp-core/admin-functions.php:4462
+#: zp-core/admin-functions.php:4458
 #, fuzzy
 msgid "New owner:"
 msgstr "Novo propietario:"
 
-#: zp-core/admin-functions.php:4482
+#: zp-core/admin-functions.php:4478
 #, fuzzy
 msgid "Destination"
 msgstr "Destino"
 
-#: zp-core/admin-functions.php:4770 zp-core/admin-functions.php:4805
+#: zp-core/admin-functions.php:4766 zp-core/admin-functions.php:4801
 #, fuzzy, php-format
 msgid "codeblock %u"
 msgstr "codeblock% u"
 
-#: zp-core/admin-functions.php:4771 zp-core/admin-functions.php:4811
+#: zp-core/admin-functions.php:4767 zp-core/admin-functions.php:4807
 #, fuzzy
 msgid "add codeblock"
 msgstr "engade codeblock"
 
-#: zp-core/admin-functions.php:4826
+#: zp-core/admin-functions.php:4822
 #, fuzzy
 msgid "Codeblock 0 is deprecated."
 msgstr "Codeblock 0 está desfasado."
 
-#: zp-core/admin-functions.php:4910
+#: zp-core/admin-functions.php:4906
 #, fuzzy, php-format
 msgid "“%s” Cross Site Request Forgery blocked."
 msgstr "&quot; %s&quot; Solicitude Cross Site Solicitude bloqueada."
 
-#: zp-core/admin-functions.php:5026
+#: zp-core/admin-functions.php:5022
 #, fuzzy, php-format
 msgid "%1$s:%2$s not changed to %3$s (duplicate titlelink.)"
 msgstr "%1$s:%2$s non se cambiou a%3$s (titlelink duplicado)."
 
-#: zp-core/admin-functions.php:5154
+#: zp-core/admin-functions.php:5150
 #, fuzzy
 msgid "setup"
 msgstr "A proba de configuración de cookies superouse con éxito."
 
-#: zp-core/admin-functions.php:5154 zp-core/admin-globals.php:231
+#: zp-core/admin-functions.php:5150 zp-core/admin-globals.php:231
 #: zp-core/admin_options/general.php:779
 #, fuzzy
 msgid "security"
 msgstr "seguranza"
 
-#: zp-core/admin-functions.php:5154 zp-core/admin_options/general.php:779
+#: zp-core/admin-functions.php:5150 zp-core/admin_options/general.php:779
 #: zp-core/zp-extensions/debug.php:146
 #, fuzzy
 msgid "debug"
 msgstr "Depuración"
 
-#: zp-core/admin-functions.php:5154
+#: zp-core/admin-functions.php:5150
 #: zp-core/zp-extensions/deprecated-functions.php:97
 #, fuzzy
 msgid "deprecated"
 msgstr "obsoleto"
 
-#: zp-core/admin-functions.php:5213
+#: zp-core/admin-functions.php:5209
 #, fuzzy
 #| msgid "Administrators"
 msgid "administration"
 msgstr "Administración"
 
-#: zp-core/admin-functions.php:5215
+#: zp-core/admin-functions.php:5211
 #, fuzzy
 #| msgid "Simple"
 msgid "example"
@@ -6998,107 +6998,107 @@ msgstr ""
 "<em>Contido Extra:</em> Aquí podes introducir o contido extra, por exemplo "
 "para que se amose na barra lateral"
 
-#: zp-core/admin-functions.php:5216
+#: zp-core/admin-functions.php:5212
 #, fuzzy
 msgid "mail"
 msgstr "O envío de correo fallou. Non hai un manipulador de correo configurado."
 
-#: zp-core/admin-functions.php:5217
+#: zp-core/admin-functions.php:5213
 #, fuzzy
 msgid "media"
 msgstr "medios"
 
-#: zp-core/admin-functions.php:5218
+#: zp-core/admin-functions.php:5214
 #, fuzzy
 msgid "seo"
 msgstr "Seo"
 
-#: zp-core/admin-functions.php:5219
+#: zp-core/admin-functions.php:5215
 #, fuzzy
 msgid "theme support"
 msgstr "soporte temático"
 
-#: zp-core/admin-functions.php:5220 zp-core/admin-globals.php:209
+#: zp-core/admin-functions.php:5216 zp-core/admin-globals.php:209
 #: zp-core/admin-globals.php:216 zp-core/zp-extensions/accessThreshold.php:108
 #: zp-core/zp-extensions/cloneZenphoto.php:53
 msgid "users"
 msgstr "usuarios"
 
-#: zp-core/admin-functions.php:5221
+#: zp-core/admin-functions.php:5217
 #, fuzzy
 #| msgid "ZenPhoto20 files"
 msgid "netPhotoGraphics"
 msgstr "netPhotoGraphics"
 
-#: zp-core/admin-functions.php:5222
+#: zp-core/admin-functions.php:5218
 #, fuzzy
 msgid "misc"
 msgstr "diversos"
 
-#: zp-core/admin-functions.php:5226
+#: zp-core/admin-functions.php:5222
 #, fuzzy
 msgid "<em>3rd party</em>"
 msgstr "<em>Terceiro partido</em>"
 
-#: zp-core/admin-functions.php:5227
+#: zp-core/admin-functions.php:5223
 #, fuzzy
 #| msgid "<em>none</em>"
 msgid "<em>enabled</em>"
 msgstr "<em>activado</em>"
 
-#: zp-core/admin-functions.php:5228
+#: zp-core/admin-functions.php:5224
 #, fuzzy
 #| msgid "<em>space</em>"
 msgid "<em>disabled</em>"
 msgstr "<em>desactivado</em>"
 
-#: zp-core/admin-functions.php:5229
+#: zp-core/admin-functions.php:5225
 #, fuzzy
 msgid "<em>deprecated</em>"
 msgstr "<em>obsoleto</em>"
 
-#: zp-core/admin-functions.php:5230
+#: zp-core/admin-functions.php:5226
 #, fuzzy
 #| msgid "<em>OR</em>"
 msgid "<em>class</em>"
 msgstr "<em>clase</em>"
 
-#: zp-core/admin-functions.php:5231
+#: zp-core/admin-functions.php:5227
 #, fuzzy
 msgid "<em>feature</em>"
 msgstr "<em>característica</em>"
 
-#: zp-core/admin-functions.php:5232
+#: zp-core/admin-functions.php:5228
 #, fuzzy
 msgid "<em>admin</em>"
 msgstr "<em>admin</em>"
 
-#: zp-core/admin-functions.php:5233
+#: zp-core/admin-functions.php:5229
 #, fuzzy
 msgid "<em>theme</em>"
 msgstr "<em>tema</em>"
 
-#: zp-core/admin-functions.php:5491
+#: zp-core/admin-functions.php:5487
 #, php-format
 msgid "%s failed to delete."
 msgstr "Non se puido borrar %s."
 
-#: zp-core/admin-functions.php:5493
+#: zp-core/admin-functions.php:5489
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s borrado correctamente."
 
-#: zp-core/admin-functions.php:5498 zp-core/admin-users.php:457
+#: zp-core/admin-functions.php:5494 zp-core/admin-users.php:457
 #, fuzzy
 msgid "You must supply a password."
 msgstr "Debes fornecer un contrasinal."
 
-#: zp-core/admin-functions.php:5500 zp-core/admin-options.php:153
+#: zp-core/admin-functions.php:5496 zp-core/admin-options.php:153
 #: zp-core/admin-users.php:466 zp-core/zp-extensions/register_user.php:434
 msgid "Your passwords did not match."
 msgstr "Os teus contrasinais non cadran."
 
-#: zp-core/admin-functions.php:5507
+#: zp-core/admin-functions.php:5503
 #, fuzzy
 msgid ""
 "The image edit form submission has been truncated. Try displaying fewer images "
@@ -7107,89 +7107,89 @@ msgstr ""
 "A edición da edición de imaxes foi truncada. Probe a mostrar menos imaxes "
 "nunha páxina."
 
-#: zp-core/admin-functions.php:5510
+#: zp-core/admin-functions.php:5506
 #, fuzzy
 msgid "Hit counters have been reset."
 msgstr "Os contadores de golpes foron restablecidos."
 
-#: zp-core/admin-functions.php:5513
+#: zp-core/admin-functions.php:5509
 msgid "Cache has been purged."
 msgstr "A caché foi baleirada."
 
-#: zp-core/admin-functions.php:5516 zp-core/admin-upload.php:158
+#: zp-core/admin-functions.php:5512 zp-core/admin-upload.php:158
 msgid "Your files have been uploaded."
 msgstr "Os teus ficheiros foron subidos."
 
-#: zp-core/admin-functions.php:5519
+#: zp-core/admin-functions.php:5515
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> xa existe."
 
-#: zp-core/admin-functions.php:5522
+#: zp-core/admin-functions.php:5518
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:232
 msgid "Changes applied"
 msgstr "Cambios aplicados"
 
-#: zp-core/admin-functions.php:5569
+#: zp-core/admin-functions.php:5565
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:25
 msgid "Image already exists."
 msgstr "A imaxe xa existe."
 
-#: zp-core/admin-functions.php:5572
+#: zp-core/admin-functions.php:5568
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:27
 msgid "Album already exists."
 msgstr "O álbum xa existe."
 
-#: zp-core/admin-functions.php:5575
+#: zp-core/admin-functions.php:5571
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:29
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr "Non se pode mover, copiar ou renomear a un subálbum deste álbum."
 
-#: zp-core/admin-functions.php:5578
+#: zp-core/admin-functions.php:5574
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:31
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr "Non se pode mover, copiar ou renomear a un álbum dinámico."
 
-#: zp-core/admin-functions.php:5581
+#: zp-core/admin-functions.php:5577
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:33
 msgid "Cannot rename an image to a different suffix"
 msgstr "Non se pode renomear unha imaxe a un sufixo distinto"
 
-#: zp-core/admin-functions.php:5584
+#: zp-core/admin-functions.php:5580
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:35
 msgid "Album delete failed"
 msgstr "Non se puido borrar o álbum"
 
-#: zp-core/admin-functions.php:5587
+#: zp-core/admin-functions.php:5583
 #, fuzzy, php-format
 msgid "There was an error #%d with a move, copy, or rename operation."
 msgstr "Houbo un erro #% d cun movemento, copia ou cambio de nome da operación."
 
-#: zp-core/admin-functions.php:5693
+#: zp-core/admin-functions.php:5689
 #, fuzzy
 msgid "You can also copy the link to your clipboard to paste elsewhere"
 msgstr "Tamén pode copiar a ligazón ao portapapeis para pegar noutro lugar"
 
-#: zp-core/admin-functions.php:5723
+#: zp-core/admin-functions.php:5719
 msgid "tags"
 msgstr "etiquetas"
 
-#: zp-core/admin-functions.php:5729
+#: zp-core/admin-functions.php:5725
 #, fuzzy
 msgid "Backup"
 msgstr "Fallou a escritura da Copia de seguridade!"
 
-#: zp-core/admin-functions.php:5736
+#: zp-core/admin-functions.php:5732
 #, fuzzy
 #| msgid "Refresh Database"
 msgid "Refresh database"
 msgstr "Actualizar a base de datos"
 
-#: zp-core/admin-functions.php:5740
+#: zp-core/admin-functions.php:5736
 msgid "Refresh metadata"
 msgstr "Refrescar metadatos"
 
-#: zp-core/admin-functions.php:5741
+#: zp-core/admin-functions.php:5737
 msgid "Reset album thumbs"
 msgstr "Restabelecer as miniaturas do álbum"
 
@@ -8401,8 +8401,8 @@ msgstr "Hai unha nova versión dispoñible."
 
 #: zp-core/admin.php:277
 #, fuzzy, php-format
-msgid "The latest version %s can be downloaded by the utility button."
-msgstr "A última versión %s pode ser descargada polo botón de utilidade."
+msgid "Version %s can be downloaded by the utility button."
+msgstr "A versión %s pode ser descargada polo botón de utilidade."
 
 #: zp-core/admin.php:289
 #, fuzzy, php-format
@@ -10034,7 +10034,7 @@ msgstr "agochar"
 #: zp-core/admin_options/image.php:818 zp-core/admin_options/image.php:843
 #, fuzzy
 msgid "disable"
-msgstr "Hotlinking deshabitado"
+msgstr "desactivar"
 
 #: zp-core/admin_options/image.php:831
 #, fuzzy
@@ -10709,7 +10709,7 @@ msgstr "Opcións para <em>%s</em>"
 #, fuzzy
 #| msgid "Show theme for:"
 msgid "Show theme for"
-msgstr "Amosar o tema para:"
+msgstr "Amosar Tema para: "
 
 #: zp-core/admin_options/theme.php:237 zp-core/admin_options/theme.php:240
 #: zp-core/admin_options/theme.php:569 zp-core/admin_options/theme.php:572
@@ -12475,12 +12475,12 @@ msgstr "%1$s: &quot;%2$s&quot; en%3$s na liña%4$s"
 msgid "clone"
 msgstr "clon:"
 
-#: zp-core/functions-basic.php:1729
+#: zp-core/functions-basic.php:1728
 #, fuzzy, php-format
 msgid "%s log size limit exceeded"
 msgstr "O límite do tamaño de rexistro de %s superouse"
 
-#: zp-core/functions-basic.php:1729
+#: zp-core/functions-basic.php:1728
 #, fuzzy, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr "O rexistro de%1$s superou o seu límite de tamaño e foi renomeado a%2$s."
@@ -14511,7 +14511,7 @@ msgstr ""
 "A instalación atopou o campo &quot;%1$s&quot; na táboa &quot;%2$s&quot;. Este "
 "campo non está en uso por NetPhotoGraphics."
 
-#: zp-core/setup/database.php:359
+#: zp-core/setup/database.php:360
 #, fuzzy, php-format
 msgid ""
 "Setup found the key \"%1$s\" in the \"%2$s\" table. This index is not in use "
@@ -15931,13 +15931,13 @@ msgstr ""
 msgid "Setup failed."
 msgstr "Fallou a instalación"
 
-#: zp-core/setup/index.php:1646 zp-core/setup/index.php:1897
+#: zp-core/setup/index.php:1646 zp-core/setup/index.php:1886
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
 "Precisas un <em>USUARIO ADMINISTRADOR</em> con permisos para executar a "
 "configuración."
 
-#: zp-core/setup/index.php:1648 zp-core/setup/index.php:1899
+#: zp-core/setup/index.php:1648 zp-core/setup/index.php:1888
 msgid "You must be logged in to run setup."
 msgstr "Debes identificarte para correr a configuración."
 
@@ -15951,13 +15951,7 @@ msgstr "base de datos conectada"
 msgid "Database update"
 msgstr "Actualización da base de datos"
 
-#: zp-core/setup/index.php:1731
-#, fuzzy
-#| msgid "Done with database creation and update"
-msgid "Begin database creation and update"
-msgstr "Comezar a creación e actualización da base de datos"
-
-#: zp-core/setup/index.php:1735
+#: zp-core/setup/index.php:1734
 #, fuzzy
 #| msgid "ZenPhoto20 processed a 404 error on %s. See the debug log for details."
 msgid ""
@@ -15967,23 +15961,19 @@ msgstr ""
 "Actualización da estrutura da base de datos completada con erros. Vexa o "
 "rexistro de <code>setup</code> para máis detalles."
 
-#: zp-core/setup/index.php:1737
+#: zp-core/setup/index.php:1736
 #, fuzzy
 #| msgid "latest updated"
 msgid "Database structure updated."
 msgstr "Estrutura da base de datos actualizada."
 
-#: zp-core/setup/index.php:1739
+#: zp-core/setup/index.php:1738
 #, fuzzy
 #| msgid "Database password"
 msgid "Database update is not required."
 msgstr "Non é necesario actualizar a base de datos."
 
-#: zp-core/setup/index.php:1756
-msgid "Done with database creation and update"
-msgstr "Creación e actualización da base de datos rematadas."
-
-#: zp-core/setup/index.php:1775
+#: zp-core/setup/index.php:1764
 #, fuzzy, php-format
 msgid ""
 "You may %1$sset your admin user and password%3$s or %2$srun backup-restore%3$s"
@@ -15991,22 +15981,22 @@ msgstr ""
 "Podes %1$sset o usuario de administrador eo contrasinal%3$s ou%2$srun backup-"
 "restore%3$s"
 
-#: zp-core/setup/index.php:1778
+#: zp-core/setup/index.php:1767
 #, fuzzy, php-format
 msgid "You need to %1$sset your admin user and password%2$s"
 msgstr "Precisa%1$sset o usuario de administrador eo contrasinal%2$s"
 
-#: zp-core/setup/index.php:1794
+#: zp-core/setup/index.php:1783
 #, fuzzy, php-format
 msgid "Setup <a href=\"%1$s\" target=\"_blank\">%2$s</a>"
 msgstr "Configuración <a href=\"%1$s\" target=\"_blank\">%2$s</a>"
 
-#: zp-core/setup/index.php:1800
+#: zp-core/setup/index.php:1789
 #, fuzzy, php-format
 msgid "You may now %1$sadminister your gallery%2$s."
 msgstr "Agora pode%1$sadminister a súa galería%2$s."
 
-#: zp-core/setup/index.php:1865
+#: zp-core/setup/index.php:1854
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -16016,29 +16006,29 @@ msgstr ""
 "de datos que non son facilmente reversíbeis. Asegúrate de faceres unha copia "
 "de seguridade da base datos antes de proceder."
 
-#: zp-core/setup/index.php:1869
+#: zp-core/setup/index.php:1858
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s Eu sei que o procedemento vai reestruturar a miña base de datos."
 
-#: zp-core/setup/index.php:1921
+#: zp-core/setup/index.php:1910
 msgid "run setup"
 msgstr "executar configuración"
 
-#: zp-core/setup/index.php:1921
+#: zp-core/setup/index.php:1910
 msgid "Go"
 msgstr "Ir"
 
-#: zp-core/setup/index.php:1938
+#: zp-core/setup/index.php:1927
 msgid "database did not connect"
 msgstr "Non se conectou coa base de datos."
 
-#: zp-core/setup/index.php:1940
+#: zp-core/setup/index.php:1929
 #, fuzzy
 msgid "If you have not created the database yet, now would be a good time."
 msgstr "Se aínda non creou a base de datos, agora sería un bo momento."
 
-#: zp-core/setup/index.php:1949
+#: zp-core/setup/index.php:1938
 #, fuzzy, php-format
 msgid "The %1$s file does not exist."
 msgstr "O ficheiro%1$s non existe."
@@ -16208,24 +16198,24 @@ msgstr ""
 "restaurando desde a copia de seguridade. Teña en conta, non obstante, que se "
 "perderán as entradas duplicadas."
 
-#: zp-core/setup/setup-functions.php:514
+#: zp-core/setup/setup-functions.php:518
 #, fuzzy, php-format
 #| msgid "Query failure: %s"
 msgid "Query Success: %s"
 msgstr "Éxito da consulta: %s"
 
-#: zp-core/setup/setup-functions.php:519
+#: zp-core/setup/setup-functions.php:523
 #, fuzzy, php-format
 #| msgid "Query failure: %s"
 msgid "Query Failed: %1$s "
 msgstr "Fallou a consulta:%1$s"
 
-#: zp-core/setup/setup-functions.php:550
+#: zp-core/setup/setup-functions.php:554
 #, fuzzy, php-format
 msgid "Plugin:%1$s *ERROR* \"%2$s\" in %3$s on line %4$s"
 msgstr "Complemento:%1$s * ERROR * &quot;%2$s&quot; en%3$s na liña%4$s"
 
-#: zp-core/setup/setup-functions.php:555
+#: zp-core/setup/setup-functions.php:559
 #, fuzzy, php-format
 #| msgid "TinyMCE disabled"
 msgid "Plugin:%1$s setup failed."
@@ -28376,7 +28366,7 @@ msgstr "%1$s <strong>%2$s</strong> (% 3 $ log in slast:%4$s)"
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:215
 #, fuzzy
 msgid "Disable"
-msgstr "Hotlinking deshabitado"
+msgstr "Desactivar"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:217
 #, fuzzy
@@ -30188,6 +30178,19 @@ msgstr ""
 #: zp-core/zp-extensions/zpCaptcha.php:70
 msgid "Sample CAPTCHA image"
 msgstr "Exemplo de imaxe CAPTCHA"
+
+#, fuzzy
+#~| msgid "ZenPhoto20 Administration"
+#~ msgid "netPhotoGraphics Administration"
+#~ msgstr "Administración netPhotoGraphics"
+
+#, fuzzy
+#~| msgid "Done with database creation and update"
+#~ msgid "Begin database creation and update"
+#~ msgstr "Comezar a creación e actualización da base de datos"
+
+#~ msgid "Done with database creation and update"
+#~ msgstr "Creación e actualización da base de datos rematadas."
 
 #, fuzzy
 #~ msgid "Download netPhotoGraphics version %s."
