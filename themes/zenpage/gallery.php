@@ -7,11 +7,10 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 	</head>
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
@@ -23,7 +22,7 @@ if (!defined('WEBPATH'))
 				<h1><?php printGalleryTitle(); ?></h1>
 				<?php
 				if (getOption('Allow_search')) {
-					printSearchForm("", "search", "", gettext("Search"));
+					printSearchForm("", "search", "", gettext("Search gallery"));
 				}
 				?>
 			</div>
@@ -31,7 +30,8 @@ if (!defined('WEBPATH'))
 			<div id="content">
 
 				<div id="breadcrumb">
-					<h2><?php printGalleryIndexURL(' » '); ?></h2>
+					<h2><a href="<?php echo getGalleryIndexURL(); ?>"><strong><?php echo gettext("Index"); ?></strong></a>
+					</h2>
 				</div>
 				<div id="content-left">
 					<?php
@@ -48,7 +48,7 @@ if (!defined('WEBPATH'))
 									<div class="albumdesc">
 										<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 										<?php printAlbumDate(""); ?>
-										<div><?php echo shortenContent(getAlbumDesc(), 45, '...'); ?></div>
+										<div><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 45, '...')); ?></div>
 									</div>
 								</div>
 							<?php endwhile; ?>
@@ -57,13 +57,13 @@ if (!defined('WEBPATH'))
 						<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 
 						<?php
-					} else if (ZP_NEWS_ENABLED) { // news article loop
+					} else if (getNumNews(true)) { // news article loop
 						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 						echo "<hr />";
 						while (next_news()):;
 							?>
 							<div class="newsarticle">
-								<h3><?php printNewsURL(); ?><?php echo " <span class='newstype'>[" . gettext('news') . "]</span>"; ?></h3>
+								<h3><?php printNewsURL(); ?><?php echo " <span class='newstype'>[" . NEWS_LABEL . "]</span>"; ?></h3>
 								<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php
 										printNewsDate();
 										if (function_exists('getCommentCount')) {
@@ -84,9 +84,6 @@ if (!defined('WEBPATH'))
 							<?php
 						endwhile;
 						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
-					}
-					if (class_exists('ScriptlessSocialSharing')) {
-						ScriptlessSocialSharing::printButtons();
 					}
 					?>
 

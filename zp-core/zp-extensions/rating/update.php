@@ -3,7 +3,7 @@
 /**
  * rating plugin updater - Updates the rating in the database
  * @author Stephen Billard (sbillard)
- * @package plugins
+ * @package plugins/rating
  */
 if (isset($_POST['id']) && isset($_POST['table'])) {
 	define('OFFSET_PATH', 4);
@@ -12,16 +12,13 @@ if (isset($_POST['id']) && isset($_POST['table'])) {
 	$id = sanitize_numeric($_POST['id']);
 	$table = sanitize($_POST['table'], 3);
 	$dbtable = prefix($table);
-	$ip = jquery_rating::id();
+	$ip = getUserID();
 	$unique = '_' . $table . '_' . $id;
 	if (isset($_POST['star_rating-value' . $unique])) {
 		$rating = ceil(sanitize_numeric($_POST['star_rating-value' . $unique]) / max(1, getOption('rating_split_stars')));
 
-// Make sure the incoming rating isn't higher than what is allowed
-		if ($rating > getOption('rating_stars_count')) {
-			$rating = getOption('rating_stars_count');
-		}
-
+		// Make sure the incoming rating isn't a hack
+		$rating = min(getOption('rating_stars_count'), max(0, $rating));
 		$IPlist = query_single_row("SELECT * FROM $dbtable WHERE id= $id");
 		if (is_array($IPlist)) {
 			$oldrating = jquery_rating::getRatingByIP($ip, $IPlist['used_ips'], $IPlist['rating']);

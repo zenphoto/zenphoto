@@ -2,6 +2,9 @@
 
 /**
  * handles the watermarking and protecting of the full image link
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
  */
 // force UTF-8 Ø
@@ -30,24 +33,24 @@ $image = internalToFilesystem($image8);
 /* Prevent hotlinking to the full image from other domains. */
 if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 	preg_match('|(.*)//([^/]*)|', $_SERVER['HTTP_REFERER'], $matches);
-	$checkstring = preg_replace('/^www./', '', strtolower($matches[2])); 
-	if (strpos($checkstring,":")) {
-		$checkstring = substr($checkstring,0,strpos($checkstring,":"));
+	$checkstring = preg_replace('/^www./', '', strtolower($matches[2]));
+	if (strpos($checkstring, ":")) {
+		$checkstring = substr($checkstring, 0, strpos($checkstring, ":"));
 	};
-	if (preg_replace('/^www./', '', strtolower($_SERVER['SERVER_NAME'])) != $checkstring) { 
+	if (preg_replace('/^www./', '', strtolower($_SERVER['SERVER_NAME'])) != $checkstring) {
 		/* It seems they are directly requesting the full image. */
 		header('Location: ' . FULLWEBPATH . '/index.php?album=' . $album8 . '&image=' . $image8);
 		exitZP();
 	}
 }
 
-$albumobj = newAlbum($album8);
-$imageobj = newImage($albumobj, $image8);
+$albumobj = newAlbum($album8, true, true);
+$imageobj = newImage($albumobj, $image8, true);
 $args = getImageArgs($_GET);
 $args[0] = 'FULL';
 $adminrequest = $args[12];
 
-if ($forbidden = getOption('image_processor_flooding_protection') && (!isset($_GET['check']) || $_GET['check'] != sha1(HASH_SEED . serialize($args)))) {
+if ($forbidden = getOption('image_processor_flooding_protection') && (!isset($_GET['check']) || $_GET['check'] != ipProtectTag($album, $image, $args))) {
 	// maybe it was from the tinyZenpage javascript which does not know better!
 	zp_session_start();
 	$forbidden = !isset($_SESSION['adminRequest']) || $_SESSION['adminRequest'] != @$_COOKIE['zp_user_auth'];
@@ -90,9 +93,18 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 	}
 
 	if (empty($hash) || (!empty($hash) && zp_getCookie($authType) != $hash)) {
+		require_once(SERVERPATH . "/" . ZENFOLDER . '/rewrite.php');
 		require_once(dirname(__FILE__) . "/template-functions.php");
 		require_once(SERVERPATH . "/" . ZENFOLDER . '/functions-controller.php');
 		zp_load_gallery();
+
+		foreach (getEnabledPlugins() as $extension => $plugin) {
+			if ($plugin['priority'] & THEME_PLUGIN) {
+				require_once($plugin['path']);
+				$_zp_loaded_plugins[$extension] = $extension;
+			}
+		}
+
 		$theme = setupTheme($albumobj);
 		$custom = $_zp_themeroot . '/functions.php';
 		if (file_exists($custom)) {
@@ -108,7 +120,6 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 		header("Status: 302 Found");
 		header('Last-Modified: ' . ZP_LAST_MODIFIED);
 		include(internalToFilesystem($_zp_script));
-		exposeZenPhotoInformations($_zp_script, array(), $theme);
 		exitZP();
 	}
 }
@@ -117,6 +128,7 @@ $image_path = $imageobj->localpath;
 $suffix = getSuffix($image_path);
 
 switch ($suffix) {
+	case 'wbm':
 	case 'wbmp':
 		$suffix = 'wbmp';
 		break;
@@ -156,7 +168,7 @@ if ($force_cache = getOption('cache_full_image')) {
 
 $process = $rotate = false;
 if (zp_imageCanRotate()) {
-	$rotate = getImageRotation($image_path);
+	$rotate = getImageRotation($imageobj);
 	$process = $rotate;
 }
 $watermark_use_image = getWatermarkParam($imageobj, WATERMARK_FULL);

@@ -1,0 +1,172 @@
+	h4 {
+		margin-top: 25px;	
+		font-weight: normal;
+		font-size: 14px;
+	}
+	
+	#slideshowpage {
+		position: relative;
+		padding-top: 0px;
+		margin: 0 auto;
+		width: 100%;
+		text-align:center;
+		border: 0px solid white;
+		font-size: 0.8em;
+	}
+
+	#slideshow { 
+		color: white;
+		text-align: center;
+		margin: 0 auto;
+		padding-bottom: 30px;
+	}
+	
+	#slideshow a img {
+		border: 0;
+	}
+			
+	#controls { 
+		position: relative;
+	 	background-color: transparent; 
+    border: 0px solid #ddd; 
+    text-align: center;
+    margin: 0 auto; 
+    top: 0px;
+    padding: 0; 
+    width: 217px; 
+    height: 42px;
+    font-size: 0.8em;
+	}
+	
+	
+	#controls2 { 
+	 	background-color: transparent; 
+    border: 0px solid #ddd; 
+    text-align: center;
+    margin: 0 auto; 
+    padding: 0; 
+    width: 217px; 
+    height: 42px;
+    font-size: 0.8em;
+	}
+	
+	#prev { 
+		display: block;
+		width: 46px;
+		height: 41px;
+		margin: 0px; 
+		padding: 0;
+		float: left;
+		background-image:url(slideshow-controls.png);
+		background-position: 0 0;
+	}
+	
+	#prev:hover { 
+		background-image:url(slideshow-controls.png);
+		background-position: 0 -43px;
+	}
+	#prev:active { 
+		background-image:url(slideshow-controls.png);
+		background-position: 0 -86px;
+	}
+	
+	#stop { 
+		display: block;
+		width: 41px;
+		height: 41px;
+		margin: 0px; 
+		padding: 0;
+		float: left;
+		background-image:url(slideshow-controls.png);
+		background-position: -46px 0px;
+	}
+	
+	#stop:hover { 
+		background-image:url(slideshow-controls.png);
+		background-position: -46px -43px;
+	}
+	
+	#stop:active { 
+		background-image:url(slideshow-controls.png);
+		background-position: -46px -86px;
+	}
+	
+	#pause { 
+		display: block;
+		width: 39px;
+		height: 41px;
+		margin: 0px; 
+		padding: 0;
+		float: left;
+		background-image:url(slideshow-controls.png);
+		background-position: -85px 0px;
+	}
+	
+	#pause:hover { 
+		background-image:url(slideshow-controls.png);
+		background-position: -85px -43px;
+	}
+	
+	#pause:active { 
+		background-image:url(slideshow-controls.png);
+		background-position: -85px -86px;
+	}
+	
+	#play { 
+		display: block;
+		width: 41px;
+		height: 41px;
+		margin: 0px; 
+		padding: 0;
+		float: left;
+		background-image:url(slideshow-controls.png);
+		background-position: -126px 0px;
+	}
+	
+	#play:hover { 
+		background-image:url(slideshow-controls.png);
+		background-position: -126px -43px;
+	}
+	
+	#play:active { 
+		background-image:url(slideshow-controls.png);
+		background-position: -126px -86px;
+	}
+	
+	
+	#next { 
+		display: block;
+		width: 50px;
+		height: 41px;
+		margin: 0px; 
+		padding: 0;
+		float: left;
+		background-image:url(slideshow-controls.png);
+		background-position: -167px 0px;
+	}
+	
+	#next:hover { 
+		background-image:url(slideshow-controls.png);
+		background-position: -167px -43px;
+	}
+	
+	#next:active { 
+		background-image:url(slideshow-controls.png);
+		background-position: -167px -86px;
+	}
+	
+	#slides {
+		width: 100%;
+	}
+
+	.slideimage {
+		width: 100%;
+		text-align: center;
+		margin: 0 auto;
+		position: relative;
+		left: 0px;
+	}
+	
+  #speedcontrol {
+		float:right;
+	}

@@ -6,14 +6,15 @@
  * Note: PHP version 5 states that the MySQL library is "Maintenance only, Long term deprecation announced."
  * It recommends using the PDO::MySQL or the MySQLi library instead.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
- * @subpackage database-handlers\functions-db-pdo-mysql
  */
 // force UTF-8 Ø
 
 define('DATABASE_SOFTWARE', 'PDO::MySQL');
-Define('DATABASE_MIN_VERSION', '5.0.7');
-Define('DATABASE_DESIRED_VERSION', '5.5.3');
+Define('DATABASE_MIN_VERSION', '5.0.0');
+Define('DATABASE_DESIRED_VERSION', '5.6.0');
 
 /**
  * Connect to the database server and select the database.
@@ -25,35 +26,36 @@ function db_connect($config, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_details, $_zp_DB_last_result;
 	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 	$_zp_DB_connection = $_zp_DB_last_result = NULL;
-	if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
-		$utf8 = ';charset=utf8';
-	} else {
-		$utf8 = false;
-	}
 	try {
 		$db = $config['mysql_database'];
 		$hostname = $config['mysql_host'];
 		$username = $config['mysql_user'];
 		$password = $config['mysql_pass'];
 		if (class_exists('PDO')) {
-			$_zp_DB_connection = new PDO("mysql:host=$hostname;dbname=$db$utf8", $username, $password);
+			$_zp_DB_connection = new PDO("mysql:host=$hostname;dbname=$db", $username, $password);
 		}
 	} catch (PDOException $e) {
 		$_zp_DB_last_result = $e;
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySql Error: Zenphoto received the error %s when connecting to the database server.'), $e->getMessage()));
+			zp_error(sprintf(gettext('MySql Error: netPhotoGraphics received the error %s when connecting to the database server.'), $e->getMessage()));
 		}
 		$_zp_DB_connection = NULL;
 		return false;
 	}
 	$_zp_DB_details = $config;
-	if ($utf8 && version_compare(PHP_VERSION, '5.5.3', '<')) {
-		try {
+	//set character set protocol
+	$software = db_software();
+	$version = $software['version'];
+	try {
+		if (version_compare($version, '5.5.3', '>=')) {
+			$_zp_DB_connection->query("SET NAMES 'utf8mb4'");
+		} else {
 			$_zp_DB_connection->query("SET NAMES 'utf8'");
-		} catch (PDOException $e) {
-			//	:(
 		}
+	} catch (PDOException $e) {
+		//	:(
 	}
+
 	// set the sql_mode to relaxed (if possible)
 	try {
 		$_zp_DB_connection->query('SET SESSION sql_mode="";');
@@ -79,7 +81,7 @@ function db_software() {
  */
 function db_create() {
 	global $_zp_DB_details;
-	$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $_zp_DB_details['mysql_database'] . '`' . db_collation();
+	$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $_zp_DB_details['mysql_database'] . '` CHARACTER SET utf8 COLLATE utf8_unicode_ci';
 	return query($sql, false);
 }
 
@@ -123,10 +125,6 @@ function db_getSQLmode() {
 	return false;
 }
 
-function db_collation() {
-	return ' CHARACTER SET utf8 COLLATE utf8_unicode_ci';
-}
-
 function db_create_table(&$sql) {
 	return query($sql, false);
 }
@@ -149,21 +147,22 @@ function db_show($what, $aux = '') {
 			return query_full_array($sql);
 		case 'index':
 			$sql = "SHOW INDEX FROM `" . $_zp_DB_details['mysql_database'] . '`.' . $aux;
-			return query_full_array($sql);
+			return query_full_array($sql, false);
 	}
 }
 
 function db_list_fields($table) {
-	$result = db_show('columns', $table);
-	if ($result) {
-		$fields = array();
-		while ($row = db_fetch_assoc($result)) {
-			$fields[] = $row;
+	global $tableFields;
+	if (!isset($tableFields[$table])) {
+		$tableFields[$table] = array();
+		$result = db_show('columns', $table);
+		if ($result) {
+			while ($row = db_fetch_assoc($result)) {
+				$tableFields[$table][$row['Field']] = $row;
+			}
 		}
-		return $fields;
-	} else {
-		return false;
 	}
+	return $tableFields[$table];
 }
 
 function db_truncate_table($table) {

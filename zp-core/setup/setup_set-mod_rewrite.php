@@ -5,30 +5,37 @@
  * This script is accessed via a /page/setup_set-mod_rewrite?z=setup.
  * It will not be found unless mod_rewrite is working.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package setup
  *
  */
+list($usec, $sec) = explode(" ", microtime());
+$start = (float) $usec + (float) $sec;
+
 require_once(dirname(dirname(__FILE__)) . '/functions-basic.php');
 require_once(dirname(__FILE__) . '/setup-functions.php');
+$fullLog = defined('TEST_RELEASE') && TEST_RELEASE || strpos(getOption('markRelease_state'), '-DEBUG') !== false;
+
+setupLog(sprintf(gettext('Mod_rewrite setup started')), $fullLog);
 
 $mod_rewrite = MOD_REWRITE;
 if (is_null($mod_rewrite)) {
-	$msg = gettext('The Zenphoto option “mod_rewrite” will be set to “enabled”.');
+	$msg = gettext('The option “mod_rewrite” will be set to “enabled”.');
 	setOption('mod_rewrite', 1);
 } else if ($mod_rewrite) {
-	$msg = gettext('The Zenphoto option “mod_rewrite” is “enabled”.');
+	$msg = gettext('The option “mod_rewrite” is “enabled”.');
 } else {
-	$msg = gettext('The Zenphoto option “mod_rewrite” is “disabled”.');
+	$msg = gettext('The option “mod_rewrite” is “disabled”.');
 }
 setOption('mod_rewrite_detected', 1);
-setupLog(gettext('Notice: “Module mod_rewrite” is working.') . ' ' . $msg, true);
+setupLog(gettext('Notice: “Module mod_rewrite” is working.') . ' ' . $msg, $fullLog);
 
-$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', 'rb');
-// send the right headers
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-header("Content-Type: image/png");
-header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png'));
-// dump the picture and stop the script
-fpassthru($fp);
-fclose($fp);
+list($usec, $sec) = explode(" ", microtime());
+$last = (float) $usec + (float) $sec;
+/* and record that we finished */
+setupLog(sprintf(gettext('Mod_rewrite setup completed in %1$.4f seconds'), $last - $start), $fullLog);
+
+sendImage(false, 'mod_rewrite');
+exitZP();
 ?>

@@ -7,9 +7,10 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+
+
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 		<?php jqm_loadScripts(); ?>
@@ -40,7 +41,7 @@ if (!defined('WEBPATH'))
 						<?php
 						if (isImagePhoto()) {
 							?>
-							<img src="<?php echo html_encode(pathurlencode(getDefaultSizedImage())); ?>" alt="<?php printBareImageTitle(); ?>" style="max-width:<?php echo getDefaultWidth(); ?>px"/>
+							<img src="<?php echo pathurlencode(getDefaultSizedImage()); ?>" alt="<?php printBareImageTitle(); ?>" style="max-width:<?php echo getDefaultWidth(); ?>px"/>
 							<?php
 						} else {
 							printDefaultSizedImage(getImageTitle());
@@ -78,22 +79,19 @@ if (!defined('WEBPATH'))
 							printSlideShowLink();
 							echo '</span>';
 						}
-					if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image); 
+					if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
 					if (function_exists('printRating')) {
 						echo '<div id="rating">';
 						printRating();
 						echo '</div>';
 					}
-					@call_user_func('printOpenStreetMap');
 					if (function_exists('printGoogleMap')) printGoogleMap();
-					if(class_exists('ScriptlessSocialSharing')) {
-						ScriptlessSocialSharing::printButtons();
-					}	
 					if (function_exists('printCommentForm')) {
 						echo '<hr />';
 						printCommentForm();
 					}
 					?>
+
 				</div>
 				<div class="content-secondary">
 			<?php jqm_printMenusLinks(); ?>

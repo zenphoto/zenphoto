@@ -9,22 +9,32 @@
  * contained in the fields will be discarded.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage useraddressfields
+ *
+ * @package plugins/userAddressFields
+ * @pluginCategory users
  *
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext('Adds user address fields');
-$plugin_author = "Stephen Billard (sbillard)";
-$plugin_category = gettext('Users');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
+	$plugin_description = gettext('Adds user address fields');
+}
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 
 class userAddressFields extends fieldExtender {
 
 	function __construct() {
-		global $_userAddressFields;
-		$firstTime = extensionEnabled('userAddressFields') && is_null(getOption('userAddressFields_addedFields'));
+		global $_zp_authority, $_userAddressFields;
+		$firstTime = false;
+		$tablecols = db_list_fields('administrators');
+		foreach ($tablecols as $key => $datum) {
+			if ($datum['Field'] == 'custom_data') {
+				$firstTime = true;
+				enableExtension('userAddressFields', 5 | CLASS_PLUGIN);
+				break;
+			}
+		}
+
 		parent::constructor('userAddressFields', self::fields());
 		if ($firstTime) { //	migrate the custom data user data
 			$result = query('SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`!=0');
@@ -36,23 +46,23 @@ class userAddressFields extends fieldExtender {
 						foreach ($custom as $field => $val) {
 							$sql.= '`' . $field . '`=' . db_quote($val) . ',';
 						}
-						$sql .= '`custom_data`=NULL WHERE `id`=' . $row['id'];
-						query($sql);
+						setupQuery($sql);
 					}
 				}
 				db_free_result($result);
 			}
+			setupQuery('ALTER TABLE ' . prefix('administrators') . ' DROP `custom_data`');
 		}
 	}
 
 	static function fields() {
 		return array(
-						array('table' => 'administrators', 'name' => 'street', 'desc' => gettext('Street'), 'type' => 'tinytext'),
-						array('table' => 'administrators', 'name' => 'website', 'desc' => gettext('Website'), 'type' => 'tinytext'),
-						array('table' => 'administrators', 'name' => 'city', 'desc' => gettext('City'), 'type' => 'tinytext'),
-						array('table' => 'administrators', 'name' => 'country', 'desc' => gettext('Country'), 'type' => 'tinytext'),
-						array('table' => 'administrators', 'name' => 'state', 'desc' => gettext('State'), 'type' => 'tinytext'),
-						array('table' => 'administrators', 'name' => 'postal', 'desc' => gettext('Postal code'), 'type' => 'tinytext')
+				array('table' => 'administrators', 'name' => 'website', 'desc' => gettext('Website'), 'type' => 'tinytext'),
+				array('table' => 'administrators', 'name' => 'street', 'desc' => gettext('Street'), 'type' => 'tinytext'),
+				array('table' => 'administrators', 'name' => 'city', 'desc' => gettext('City'), 'type' => 'tinytext'),
+				array('table' => 'administrators', 'name' => 'state', 'desc' => gettext('State'), 'type' => 'tinytext'),
+				array('table' => 'administrators', 'name' => 'postal', 'desc' => gettext('Postal code'), 'type' => 'tinytext'),
+				array('table' => 'administrators', 'name' => 'country', 'desc' => gettext('Country'), 'type' => 'tinytext')
 		);
 	}
 
@@ -61,11 +71,14 @@ class userAddressFields extends fieldExtender {
 	}
 
 	static function adminSave($updated, $userobj, $i, $alter) {
-		parent::_adminSave($updated, $userobj, $i, $alter, self::fields());
+		return parent::_adminSave($updated, $userobj, $i, $alter, self::fields());
 	}
 
 	static function adminEdit($html, $userobj, $i, $background, $current) {
-		return parent::_adminEdit($html, $userobj, $i, $background, $current, self::fields());
+		if ($userobj->getValid()) {
+			return parent::_adminEdit($html, $userobj, $i, $background, $current, self::fields());
+		}
+		return $html;
 	}
 
 	static function mediaItemSave($object, $i) {
@@ -77,35 +90,39 @@ class userAddressFields extends fieldExtender {
 	}
 
 	static function zenpageItemSave($custom, $object) {
-		return parent::_zenpageItemSave($custom, $object, self::fields());
+		return parent::_cmsItemSave($custom, $object, self::fields());
 	}
 
 	static function zenpageItemEdit($html, $object) {
-		return parent::_zenpageItemEdit($html, $object, self::fields());
+		return parent::_cmsItemEdit($html, $object, self::fields());
 	}
 
 	static function register() {
 		parent::_register('userAddressFields', self::fields());
 	}
 
-	static function adminNotice($tab, $subtab) {
-		parent::_adminNotice($tab, $subtab, 'userAddressFields');
+	static function getCustomDataset($obj) {
+		return parent::_getCustomDataset($obj, self::fields());
 	}
 
-	static function getCustomData($obj) {
-		return parent::_getCustomData($obj, self::fields());
-	}
-
-	static function setCustomData($obj, $values) {
-		parent::_setCustomData($obj, $values);
+	static function setCustomDataset($obj, $values) {
+		parent::_setCustomDataset($obj, $values);
 	}
 
 }
 
+function userAddressFields_enable($enabled) {
+	if ($enabled) {
+		$report = gettext('<em>user address</em> fields will be added to the Administrator object.');
+	} else {
+		$report = gettext('<em>user address</em> fields will be <span style="color:red;font-weight:bold;">dropped</span> from the Administrator object.');
+	}
+	requestSetup('userAddressFields', $report);
+}
+
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
-	setOptionDefault('zp_plugin_userAddressFields', $plugin_is_filter);
 	new userAddressFields;
 } else {
-	userAddressFields::register();
+	$_zp_plugin_differed_actions['userAddressField'] = 'userAddressFields::register';
 }
 ?>

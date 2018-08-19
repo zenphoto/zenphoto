@@ -6,7 +6,6 @@
  * Requires Imagick 3.0.0+ and ImageMagick 6.3.8+
  *
  * @package core
- * @subpackage graphic-handlers\lib-imagick
  */
 // force UTF-8 Ø
 
@@ -42,6 +41,7 @@ class lib_Imagick_Options {
 	public static $ignore_size = 0;
 
 	function __construct() {
+		setOptionDefault('use_imagick', NULL);
 		setOptionDefault('magick_max_height', self::$ignore_size);
 		setOptionDefault('magick_max_width', self::$ignore_size);
 
@@ -65,29 +65,42 @@ class lib_Imagick_Options {
 			setOption('use_imagick', 0, true);
 		}
 		$imagickOptions = array(
-						gettext('Enable Imagick') => array(
-										'key'			 => 'use_imagick',
-										'type'		 => OPTION_TYPE_CHECKBOX,
-										'order'		 => 0,
-										'disabled' => $disabled,
-										'desc'		 => ($disabled) ? '<p class="notebox">' . $disabled . '</p>' : gettext('Your PHP has support for Imagick. Check this option if you wish to use the Imagick graphics library.')
-						)
+				gettext('Enable Imagick') => array(
+						'key' => 'use_imagick',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 0,
+						'disabled' => $disabled,
+						'desc' => ($disabled) ? '<p class="notebox">' . $disabled . '</p>' : gettext('Your PHP has support for Imagick. Check this option if you wish to use the Imagick graphics library.')
+				)
 		);
 
 		if (!$disabled) {
 			$imagickOptions += array(
-							gettext('Max height')	 => array(
-											'key'		 => 'magick_max_height',
-											'type'	 => OPTION_TYPE_TEXTBOX,
-											'order'	 => 1,
-											'desc'	 => sprintf(gettext('The maximum height used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>'), self::$ignore_size, self::$ignore_size)
+					gettext('Max height') => array(
+							'key' => 'magick_max_height',
+							'type' => OPTION_TYPE_TEXTBOX,
+							'order' => 1,
+							'desc' => sprintf(gettext('The maximum height used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>'), self::$ignore_size, self::$ignore_size)
+					),
+					gettext('Max width') => array(
+							'key' => 'magick_max_width',
+							'type' => OPTION_TYPE_TEXTBOX,
+							'order' => 2,
+							'desc' => sprintf(gettext('The maximum width used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>.'), self::$ignore_size, self::$ignore_size)
+					),
+					gettext('Chroma sampling') => array(
+							'key' => 'magick_sampling_factor',
+							'type' => OPTION_TYPE_ORDERED_SELECTOR,
+							'null_selection' => '',
+							'selections' => array(
+									gettext('no sampling') => '1x1 1x1 1x1',
+									gettext('horizontally halved') => '4x1 2x1 2x1',
+									gettext('vertically halved') => '1x4 1x2 1x2',
+									gettext('horizontally and vertically halved') => '4x4 2x2 2x2'
 							),
-							gettext('Max width')	 => array(
-											'key'		 => 'magick_max_width',
-											'type'	 => OPTION_TYPE_TEXTBOX,
-											'order'	 => 2,
-											'desc'	 => sprintf(gettext('The maximum width used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>.'), self::$ignore_size, self::$ignore_size)
-							)
+							'order' => 3,
+							'desc' => gettext('Select a Chroma sampling pattern. Leave empty for the image default.')
+					)
 			);
 		}
 
@@ -115,7 +128,7 @@ class lib_Imagick_Options {
 }
 
 /**
- * Zenphoto image manipulation functions using the Imagick library
+ * Image manipulation functions using the Imagick library
  */
 if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd'))) {
 	$_lib_Imagick_info = array();
@@ -123,20 +136,28 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	$_lib_Imagick_info['Library_desc'] = sprintf(gettext('PHP Imagick library <em>%s</em>') . '<br /><em>%s</em>', $_imagick_version, $_imagemagick_version['versionString']);
 
 	$_imagick_format_whitelist = array(
-					'BMP'		 => 'jpg', 'BMP2'	 => 'jpg', 'BMP3'	 => 'jpg',
-					'GIF'		 => 'gif', 'GIF87'	 => 'gif',
-					'JPG'		 => 'jpg', 'JPEG'	 => 'jpg',
-					'PNG'		 => 'png', 'PNG8'	 => 'png', 'PNG24'	 => 'png', 'PNG32'	 => 'png',
-					'TIFF'	 => 'jpg', 'TIFF64' => 'jpg'
+			'BMP' => 'jpg', 'BMP2' => 'jpg', 'BMP3' => 'jpg',
+			'GIF' => 'gif', 'GIF87' => 'gif',
+			'JPG' => 'jpg', 'JPEG' => 'jpg',
+			'PNG' => 'png', 'PNG8' => 'png', 'PNG24' => 'png', 'PNG32' => 'png',
+			'TIFF' => 'jpg', 'TIFF64' => 'jpg'
 	);
 
 	$_imagick = new Imagick();
 	$_imagick_formats = $_imagick->queryFormats();
+
 	foreach ($_imagick_formats as $format) {
 		if (array_key_exists($format, $_imagick_format_whitelist)) {
 			$_lib_Imagick_info[$format] = $_imagick_format_whitelist[$format];
 		}
 	}
+	// set chroma sampling from option if exists
+	$_chromaSampling = getOption('magick_sampling_factor');
+	if (!empty($_chromaSampling)) {
+		$_imagick->setSamplingFactors(explode(' ', $_chromaSampling));
+	}
+
+	unset($_chromaSampling);
 	unset($_imagick_format_whitelist);
 	unset($_imagick_formats);
 	unset($_imagick);
@@ -165,7 +186,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 				$image->setOption('jpeg:size', $maxWidth . 'x' . $maxHeight);
 			}
 
-			$image->readImage(filesystemToInternal($imgfile));
+			$image->readImage(imgSrcURI($imgfile));
 
 			//Generic CMYK to RGB conversion
 			if ($image->getImageColorspace() == Imagick::COLORSPACE_CMYK) {
@@ -234,7 +255,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			return print $im->getImagesBlob();
 		}
 
-		return $im->writeImages(filesystemToInternal($filename), true);
+		return $im->writeImages(imgSrcURI($filename), true);
 	}
 
 	/**
@@ -279,6 +300,19 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	}
 
 	/**
+	 * removes metadata (except ICC profile) from an image.
+	 * @param object $img
+	 */
+	function zp_stripMetadata($img) {
+		$profiles = $img->getImageProfiles("icc", true);
+		$img->stripImage();
+		if (!empty($profiles)) {
+			$img->profileImage("icc", $profiles['icc']);
+		}
+		return $img;
+	}
+
+	/**
 	 * Copies an image canvas
 	 *
 	 * @param Imagick $imgCanvas destination canvas
@@ -293,10 +327,15 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 */
 	function zp_copyCanvas($imgCanvas, $img, $dest_x, $dest_y, $src_x, $src_y, $w, $h) {
 		$img->cropImage($w, $h, $src_x, $src_y);
+
 		$result = true;
+
+		$imgCanvas = $imgCanvas->coalesceImages();
+
 		foreach ($imgCanvas as $frame) {
 			$result &= $frame->compositeImage($img, Imagick::COMPOSITE_OVER, $dest_x, $dest_y);
 		}
+
 		return $result;
 	}
 
@@ -319,11 +358,19 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		foreach ($src_image->getImageProfiles() as $name => $profile) {
 			$dst_image->profileImage($name, $profile);
 		}
+
 		$result = true;
+
 		$src_image = $src_image->coalesceImages();
+
 		foreach ($src_image as $frame) {
 			$frame->cropImage($src_w, $src_h, $src_x, $src_y);
 			$frame->setImagePage(0, 0, 0, 0);
+		}
+
+		$src_image = $src_image->coalesceImages();
+
+		foreach ($src_image as $frame) {
 			$frame->resizeImage($dst_w, $dst_h, Imagick::FILTER_LANCZOS, 1);
 
 			$dst_image->setImageDelay($frame->getImageDelay());
@@ -332,10 +379,12 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			if ($dst_image->getNumberImages() < $src_image->getNumberImages()) {
 				$result &= $dst_image->addImage(zp_createImage($dst_image->getImageWidth(), $dst_image->getImageHeight()));
 			}
+
 			if (!$result) {
 				break;
 			}
 		}
+
 		return $result;
 	}
 
@@ -385,7 +434,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @return Imagick
 	 */
 	function zp_rotateImage($im, $rotate) {
-		$im->rotateImage('none', 360 - $rotate);
+		$im->rotateImage('none', $rotate);
 		return $im;
 	}
 
@@ -399,7 +448,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	function zp_imageDims($filename) {
 		$ping = new Imagick();
 
-		if ($ping->pingImage(filesystemToInternal($filename))) {
+		if ($ping->pingImage(imgSrcURI($filename))) {
 			return array('width' => $ping->getImageWidth(), 'height' => $ping->getImageHeight());
 		}
 
@@ -415,7 +464,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	function zp_imageIPTC($filename) {
 		$ping = new Imagick();
 
-		if ($ping->pingImage(filesystemToInternal($filename))) {
+		if ($ping->pingImage(imgSrcURI($filename))) {
 			try {
 				return $ping->getImageProfile('iptc');
 			} catch (ImagickException $e) {
@@ -515,10 +564,10 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param ImagickPixel $color
 	 * @return bool
 	 */
-	function zp_writeString($image, $font, $x, $y, $string, $color) {
+	function zp_writeString($image, $font, $x, $y, $string, $color, $angle = 0) {
 		$font->setStrokeColor($color);
 
-		return $image->annotateImage($font, $x, $y + $image->getImageHeight() / 2, 0, $string);
+		return $image->annotateImage($font, $x, $y + $image->getImageHeight() / 2, $angle, $string);
 	}
 
 	/**
@@ -559,18 +608,18 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			@$_imagick_fontlist = Imagick::queryFonts();
 			$_imagick_fontlist = array('system' => '') + array_combine($_imagick_fontlist, $_imagick_fontlist);
 
-			$basefile = SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/imagick_fonts/';
+			$paths = array(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/imagick_fonts', SERVERPATH . '/' . ZENFOLDER . '/FreeSerif');
+			foreach ($paths as $basefile) {
+				if (is_dir($basefile)) {
+					chdir($basefile);
+					$filelist = safe_glob('*.ttf');
 
-			if (is_dir($basefile)) {
-				chdir($basefile);
-				$filelist = safe_glob('*.ttf');
-
-				foreach ($filelist as $file) {
-					$key = filesystemToInternal(str_replace('.ttf', '', $file));
-					$_imagick_fontlist[$key] = getcwd() . '/' . $file;
+					foreach ($filelist as $file) {
+						$key = filesystemToInternal(str_replace('.ttf', '', $file));
+						$_imagick_fontlist[$key] = getcwd() . '/' . $file;
+					}
 				}
 			}
-
 			chdir(dirname(__FILE__));
 		}
 

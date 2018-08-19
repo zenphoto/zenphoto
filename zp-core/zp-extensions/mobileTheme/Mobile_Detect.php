@@ -23,9 +23,8 @@
  *              HOWTO:        https://github.com/serbanghita/Mobile-Detect/wiki/Code-examples
  *
  * @version     2.8.25
- * @package plugins
- * @subpackage mobiletheme
  */
+
 class Mobile_Detect
 {
     /**

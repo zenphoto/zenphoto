@@ -9,16 +9,12 @@
  *
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)
- * @package plugins
- * @subpackage bxslider-thumb-nav
+ * @package plugins/bxslider_thumb_nav
+ * @pluginCategory theme
  */
 $plugin_description = gettext("Responsive jQuery bxSlider thumb nav plugin based on <a href='http://bxslider.com'>http://bxslider.com</a>");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)";
-$plugin_disable = (extensionEnabled('jcarousel_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'jcarousel_thumb_nav') : '';
-$plugin_category = gettext('Media');
+$plugin_disable = (extensionEnabled('jCarousel_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'jCarousel_thumb_nav') : '';
 $option_interface = 'bxslider';
-
-
 
 /**
  * Plugin option handling class
@@ -37,6 +33,22 @@ class bxslider {
 			setOptionDefault('bxslider_speed', '500');
 			setOptionDefault('bxslider_fullimagelink', '');
 			setOptionDefault('bxslider_mode', 'horizontal');
+			$found = array();
+			$result = getOptionsLike('bxslider_');
+			foreach ($result as $option) {
+
+				preg_match('/bxslider_(.*)_(.*)/', $option, $matches);
+				if (count($matches) == 3 && $matches[2] != 'scripts') {
+					if ($value) {
+						$found[$matches[1]][] = $matches[2];
+					}
+					purgeOption('bxslider_' . $matches[1] . '_' . $matches[2]);
+				}
+			}
+
+			foreach ($found as $theme => $scripts) {
+				setOptionDefault('bxslider_' . $theme . '_scripts', serialize($scripts));
+			}
 			if (class_exists('cacheManager')) {
 				cacheManager::deleteThemeCacheSizes('bxslider_thumb_nav');
 				cacheManager::addThemeCacheSize('bxslider_thumb_nav', NULL, getOption('bxslider_width'), getOption('bxslider_height'), getOption('bxslider_cropw'), getOption('bxslider_croph'), NULL, NULL, true, NULL, NULL, NULL);
@@ -47,70 +59,82 @@ class bxslider {
 	function getOptionsSupported() {
 		global $_zp_gallery;
 		$options = array(
-						gettext('Minimum items')	 => array('key'		 => 'bxslider_minitems', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'desc'	 => gettext("The minimum number of slides to be shown. Slides will be sized down if carousel becomes smaller than the original size."),
-										'order'	 => 1),
-						gettext('Maximum items')	 => array('key'		 => 'bxslider_maxitems', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'desc'	 => gettext("The maximum number of slides to be shown. Slides will be sized up if carousel becomes larger than the original size."),
-										'order'	 => 2),
-						gettext('Width')					 => array('key'		 => 'bxslider_width', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'desc'	 => gettext("Width of the thumb. Note that the CSS might need to be adjusted."),
-										'order'	 => 3),
-						gettext('Height')					 => array('key'		 => 'bxslider_height', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'desc'	 => gettext("Height of the thumb. Note that the CSS might need to be adjusted."),
-										'order'	 => 4),
-						gettext('Crop width')			 => array('key'		 => 'bxslider_cropw', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'desc'	 => "",
-										'order'	 => 5),
-						gettext('Crop height')		 => array('key'		 => 'bxslider_croph', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'desc'	 => "",
-										'order'	 => 6),
-						gettext('Speed')					 => array('key'		 => 'bxslider_speed', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'desc'	 => gettext("The speed in miliseconds the slides advance when clicked.)"),
-										'order'	 => 7),
-						gettext('Full image link') => array('key'		 => 'bxslider_fullimagelink', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'desc'	 => gettext("If checked the thumbs link to the full image instead of the image page."),
-										'order'	 => 8),
-						gettext('Mode')						 => array('key'				 => 'bxslider_mode', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => array(
-														gettext('Horizontal')	 => "horizontal",
-														gettext('Vertical')		 => "vertical",
-														gettext('Fade')				 => "fade"),
-										'desc'			 => gettext("The mode of the thumb nav. Note this might require theme changes."),
-										'order'			 => 9)
+				gettext('Minimum items') => array('key' => 'bxslider_minitems', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => gettext("The minimum number of slides to be shown. Slides will be sized down if carousel becomes smaller than the original size."),
+						'order' => 1),
+				gettext('Maximum items') => array('key' => 'bxslider_maxitems', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => gettext("The maximum number of slides to be shown. Slides will be sized up if carousel becomes larger than the original size."),
+						'order' => 2),
+				gettext('Width') => array('key' => 'bxslider_width', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => gettext("Width of the thumb. Note that the CSS might need to be adjusted."),
+						'order' => 3),
+				gettext('Height') => array('key' => 'bxslider_height', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => gettext("Height of the thumb. Note that the CSS might need to be adjusted."),
+						'order' => 4),
+				gettext('Crop width') => array('key' => 'bxslider_cropw', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => "",
+						'order' => 5),
+				gettext('Crop height') => array('key' => 'bxslider_croph', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => "",
+						'order' => 6),
+				gettext('Speed') => array('key' => 'bxslider_speed', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => gettext("The speed in milliseconds the slides advance when clicked."),
+						'order' => 7),
+				gettext('Full image link') => array('key' => 'bxslider_fullimagelink', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext("If checked the thumbs link to the full image instead of the image page."),
+						'order' => 8),
+				gettext('Mode') => array('key' => 'bxslider_mode', 'type' => OPTION_TYPE_SELECTOR,
+						'selections' => array(
+								gettext('Horizontal') => "horizontal",
+								gettext('Vertical') => "vertical",
+								gettext('Fade') => "fade"),
+						'desc' => gettext("The mode of the thumb nav. Note this might require theme changes."),
+						'order' => 9)
+		);
+		$c = 30;
+		$options['note'] = array('key' => 'bxslider_note', 'type' => OPTION_TYPE_NOTE,
+				'order' => $c,
+				'desc' => gettext('<strong>NOTE:</strong> the plugin will automatically set the following options based on actual script page use. They may also be set by the themes themselves. It is unnecessary to set them here, but the first time used the JavaScript and CSS files may not be loaded and the thumb slider not shown. Refreshing the page will then show the thumb slider.')
 		);
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
 			$list = array();
 			foreach ($scripts as $script) {
-				$list[$script] = 'bxslider_' . $theme . '_' . stripSuffix($script);
+				$list[$script] = stripSuffix($script);
 			}
-			$options[$theme] = array('key'				 => 'bxslider_' . $theme . '_scripts', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-							'checkboxes' => $list,
-							'desc'			 => gettext('The scripts for which BxSlider is enabled. {If themes require it they might set this, otherwise you need to do it manually!}')
+			$options[$theme] = array('key' => 'bxslider_' . $theme . '_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAYLIST,
+					'order' => $c++,
+					'checkboxes' => $list,
+					'desc' => gettext('The scripts for which BxSlider is enabled.')
 			);
 		}
 		return $options;
 	}
 
-	static function themeJS() {
+	/**
+	 * Use by themes to declare which scripts should have the colorbox CSS loaded
+	 *
+	 * @param string $theme
+	 * @param array $scripts list of the scripts
+	 * @deprecated
+	 */
+	static function registerScripts($scripts, $theme = NULL) {
+
+	}
+
+	static function js() {
+		global $_bxslider_scripts;
 		$theme = getCurrentTheme();
-		$css = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($theme) . '/jquery.bxslider.css';
-		if (file_exists($css)) {
-			$css = WEBPATH . '/' . THEMEFOLDER . '/' . $theme . '/jquery.bxslider.css';
-		} else {
-			$css = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/bxslider_thumb_nav/jquery.bxslider.css';
-		}
+		$_bxslider_scripts = getPlugin('bxslider_thumb_nav/jquery.bxslider.min.css', getCurrentTheme(), true);
 		?>
 
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/bxslider_thumb_nav/jquery.bxslider.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="<?php echo html_encode($css); ?>" />
+		<link rel="stylesheet" type="text/css" href="<?php echo html_encode($_bxslider_scripts); ?>" />
 		<?php
 	}
 
 }
 
-if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
-	zp_register_filter('theme_head', 'bxslider::themeJS');
+if (extensionEnabled('bxslider_thumb_nav') && !OFFSET_PATH) {
 
 	/** Prints the jQuery bxslider HTML setup to be replaced by JS
 	 *
@@ -123,12 +147,14 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 	 * @param bool $crop TRUE for cropped thumbs, FALSE for un-cropped thumbs. $width and $height then will be used as maxspace. Set to NULL if you want to use the backend plugin options.
 	 * @param bool $fullimagelink Set to TRUE if you want the thumb link to link to the full image instead of the image page. Set to NULL if you want to use the backend plugin options.
 	 * @param string $mode 'horizontal','vertical', 'fade'
-	 * @param int $speed The speed in miliseconds the slides advance when clicked
+	 * @param int $speed The speed in milliseconds the slides advance when clicked
 	 */
 	function printThumbNav($minitems = NULL, $maxitems = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $fullimagelink = NULL, $mode = NULL, $speed = NULL) {
-		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page;
+		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_bxslider_scripts;
 		//	Just incase the theme has not set the option, at least second try will work!
-		setOptionDefault('bxslider_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
+		if (is_null($_bxslider_scripts)) {
+			bxslider::js();
+		}
 		$items = array();
 		if (is_object($_zp_current_album) && $_zp_current_album->getNumImages() >= 2) {
 			if (is_null($minitems)) {
@@ -165,13 +191,9 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			}
 			if (is_null($fullimagelink)) {
 				$fullimagelink = getOption('bxslider_fullimagelink');
-			} else {
-				$fullimagelink = sanitize($fullimagelink);
 			}
 			if (is_null($mode)) {
 				$mode = getOption('bxslider_mode');
-			} else {
-				$mode = sanitize($mode);
 			}
 			if (is_null($speed)) {
 				$speed = getOption('bxslider_speed');
@@ -187,23 +209,14 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 			} else {
 				$searchimages = false;
 			}
-			if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED) && $searchimages) {
+			if (in_context(ZP_SEARCH_LINKED) && $searchimages) {
 				$bxslider_items = $_zp_current_search->getImages();
 			} else {
 				$bxslider_items = $_zp_current_album->getImages();
 			}
 			if (count($bxslider_items) >= 2) {
 				foreach ($bxslider_items as $item) {
-					if (is_array($item)) {
-						if (in_context(ZP_SEARCH_LINKED)) {
-							$albumobj = newAlbum($item['folder']);
-						} else {
-							$albumobj = $_zp_current_album;
-						}
-						$imgobj = newImage($albumobj, $item['filename']);
-					} else {
-						$imgobj = newImage($_zp_current_album, $item);
-					}
+					$imgobj = newImage($_zp_current_album, $item);
 					if ($fullimagelink) {
 						$link = $imgobj->getFullImageURL();
 					} else {
@@ -231,7 +244,6 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 				}
 			}
 			$albumid = $_zp_current_album->get('id');
-			//$items = substr($items, 0, -2);
 			$numimages = getNumImages();
 			if (!is_null($_zp_current_image)) {
 				$imgnumber = (imageNumber() - 1);
@@ -248,7 +260,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 				?>
 			</ul>
 			<script type="text/javascript">
-				$(document).ready(function() {
+				window.addEventListener('load', function () {
 					var index = $('.bxslider<?php echo $albumid; ?> li.activeimg').index();
 					index = ++index;
 					currentPager = parseInt(index / <?php echo $maxitems; ?>)
@@ -265,7 +277,7 @@ if (!$plugin_disable && !OFFSET_PATH && getOption('bxslider_' . $_zp_gallery->ge
 						useCSS: false,
 						startSlide: currentPager
 					});
-				});
+				}, false);
 			</script>
 			<?php
 		}

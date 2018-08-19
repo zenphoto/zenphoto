@@ -5,14 +5,14 @@
  * Configure the plugin options as necessary for your e-mail server.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage phpmailer
+ *
+ * @package plugins/PHPMailer
+ * @pluginCategory mail
  */
-$plugin_is_filter = 800 | CLASS_PLUGIN;
-$plugin_description = gettext("Zenphoto outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");
-$plugin_author = "Stephen Billard (sbillard)";
+$plugin_is_filter = 800 | FEATURE_PLUGIN;
+$plugin_description = gettext("Outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");
 $plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('PHPMailer')) ? sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('sendmail'))) : '';
-$plugin_category = gettext('Mail');
+
 $option_interface = 'zp_PHPMailer';
 
 if ($plugin_disable) {
@@ -33,13 +33,15 @@ class zp_PHPMailer {
 	 * @return zp_PHPMailer
 	 */
 	function __construct() {
-		setOptionDefault('PHPMailer_mail_protocol', 'sendmail');
-		setOptionDefault('PHPMailer_server', '');
-		setOptionDefault('PHPMailer_pop_port', '110');
-		setOptionDefault('PHPMailer_smtp_port', '25');
-		setOptionDefault('PHPMailer_user', '');
-		setOptionDefault('PHPMailer_password', '');
-		setOptionDefault('PHPMailer_secure', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('PHPMailer_mail_protocol', 'sendmail');
+			setOptionDefault('PHPMailer_server', '');
+			setOptionDefault('PHPMailer_pop_port', '110');
+			setOptionDefault('PHPMailer_smtp_port', '25');
+			setOptionDefault('PHPMailer_user', '');
+			setOptionDefault('PHPMailer_password', '');
+			setOptionDefault('PHPMailer_secure', 0);
+		}
 		if (getOption('PHPMailer_secure') == 1)
 			setOption('PHPMailer_secure', 'ssl');
 	}
@@ -50,22 +52,22 @@ class zp_PHPMailer {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Mail protocol')				 => array('key'			 => 'PHPMailer_mail_protocol', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array('POP3' => 'pop3', 'SMTP' => 'smtp', 'SendMail' => 'sendmail'),
-										'desc'		 => gettext('Select the mail protocol you wish to be used.')),
-						gettext('Outgoing mail server')	 => array('key'	 => 'PHPMailer_server', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('Outgoing mail server.')),
-						gettext('Secure mail')					 => array('key'			 => 'PHPMailer_secure', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('no') => 0, gettext('SSL') => 'ssl', gettext('TLS') => 'tls'),
-										'desc'		 => gettext('Set to use a secure protocol.')),
-						gettext('Mail user')						 => array('key'	 => 'PHPMailer_user', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('<em>User ID</em> for mail server.')),
-						gettext('Mail password')				 => array('key'	 => 'PHPMailer_password', 'type' => OPTION_TYPE_CUSTOM,
-										'desc' => gettext('<em>Password</em> for mail server.')),
-						gettext('POP port')							 => array('key'	 => 'PHPMailer_pop_port', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('POP port number.')),
-						gettext('SMTP port')						 => array('key'	 => 'PHPMailer_smtp_port', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('SMTP port number.'))
+		return array(gettext('Mail protocol') => array('key' => 'PHPMailer_mail_protocol', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array('POP3' => 'pop3', 'SMTP' => 'smtp', 'SendMail' => 'sendmail'),
+						'desc' => gettext('Select the mail protocol you wish to be used.')),
+				gettext('Outgoing mail server') => array('key' => 'PHPMailer_server', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Outgoing mail server.')),
+				gettext('Secure mail') => array('key' => 'PHPMailer_secure', 'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(gettext('no') => 0, gettext('SSL') => 'ssl', gettext('TLS') => 'tls'),
+						'desc' => gettext('Set to use a secure protocol.')),
+				gettext('Mail user') => array('key' => 'PHPMailer_user', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('<em>User ID</em> for mail server.')),
+				gettext('Mail password') => array('key' => 'PHPMailer_password', 'type' => OPTION_TYPE_CUSTOM,
+						'desc' => gettext('<em>Password</em> for mail server.')),
+				gettext('POP port') => array('key' => 'PHPMailer_pop_port', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('POP port number.')),
+				gettext('SMTP port') => array('key' => 'PHPMailer_smtp_port', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('SMTP port number.'))
 		);
 	}
 
@@ -85,7 +87,8 @@ class zp_PHPMailer {
 
 }
 
-function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
+function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $bcc_addresses, $replyTo, $html = false) {
+	require_once(dirname(__FILE__) . '/PHPMailer/class.phpmailer.php');
 	require_once(dirname(__FILE__) . '/PHPMailer/PHPMailerAutoload.php');
 	switch (getOption('PHPMailer_mail_protocol')) {
 		case 'pop3':
@@ -117,23 +120,37 @@ function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $
 	$mail->Subject = $subject;
 	$mail->Body = $message;
 	$mail->AltBody = '';
-	$mail->IsHTML(false);
+	$mail->IsHTML($html);
 
 	foreach ($email_list as $to_name => $to_mail) {
 		if (is_numeric($to_name)) {
-			$mail->AddAddress($to_mail);
+			$mail->addAddress($to_mail);
 		} else {
-			$mail->AddAddress($to_mail, $to_name);
+			$mail->addAddress($to_mail, $to_name);
 		}
 	}
 	if (count($cc_addresses) > 0) {
 		foreach ($cc_addresses as $cc_name => $cc_mail) {
-			$mail->AddCC($cc_mail);
+			if (is_numeric($cc_mail)) {
+				$mail->addCC($cc_mail);
+			} else {
+				$mail->addCC($cc_mail, $cc_name);
+			}
 		}
 	}
+	if (count($bcc_addresses) > 0) {
+		foreach ($bcc_addresses as $bcc_name => $bcc_mail) {
+			if (is_numeric($bcc_name)) {
+				$mail->addBCC($bcc_mail);
+			} else {
+				$mail->addBCC($bcc_mail, $bcc_name);
+			}
+		}
+	}
+
 	if ($replyTo) {
 		$names = array_keys($replyTo);
-		$mail->AddReplyTo(array_shift($replyTo), array_shift($names));
+		$mail->addReplyTo(array_shift($replyTo), array_shift($names));
 	}
 	if (!$mail->Send()) {
 		if (!empty($msg))

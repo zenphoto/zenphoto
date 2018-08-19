@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Use this plugin to handle filetypes as "images" that are not otherwise provided for by Zenphoto.
+ * Use this plugin to handle filetypes as "images" that are not otherwise provided for by zenphoto.
  *
  * Default thumbnail images may be created in the <var>%USER_PLUGIN_FOLDER%/class-AnyFile</var> folder. The naming convention is
  * <i>suffix</i><var>Default.png</var>. If no such file is found, the class object default thumbnail will be used.
@@ -9,15 +9,15 @@
  * The plugin is an extension of <var>TextObject</var>. For more details see the <i>class-textobject</i> plugin.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage class-anyfile
+ *
+ * @package plugins/class-AnyFile
+ * @pluginCategory media
  *
  */
-$plugin_is_filter = 990 | CLASS_PLUGIN;
-$plugin_description = gettext('Provides a means for handling arbitrary file types. (No rendering provided!)');
-$plugin_author = "Stephen Billard (sbillard)";
-$plugin_category = gettext('Media');
-
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 990 | CLASS_PLUGIN;
+	$plugin_description = gettext('Provides a means for handling arbitrary file types. (No rendering provided!)');
+}
 
 foreach (get_AnyFile_suffixes() as $suffix) {
 	Gallery::addImageHandler($suffix, 'AnyFile');
@@ -36,12 +36,12 @@ class AnyFile_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Watermark default images')	 => array('key'	 => 'AnyFile_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Check to place watermark image on default thumbnail images.')),
-						gettext('Handled files')						 => array('key'	 => 'AnyFile_file_list', 'type' => OPTION_TYPE_CUSTOM,
-										'desc' => gettext('File suffixes to be handled.')),
-						gettext('Add file suffix')					 => array('key'	 => 'AnyFile_file_new', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('Add a file suffix to be handled by the plugin'))
+		return array(gettext('Watermark default images') => array('key' => 'AnyFile_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Check to place watermark image on default thumbnail images.')),
+				gettext('Handled files') => array('key' => 'AnyFile_file_list', 'type' => OPTION_TYPE_CUSTOM,
+						'desc' => gettext('File suffixes to be handled.')),
+				gettext('Add file suffix') => array('key' => 'AnyFile_file_new', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Add a file suffix to be handled by the plugin'))
 		);
 	}
 
@@ -50,25 +50,22 @@ class AnyFile_Options {
 		?>
 		<ul class="customchecklist">
 			<?php
-			generateUnorderedListFromArray($list, $list, 'AnyFile_file_list_', false, false, false);
+			generateUnorderedListFromArray($list, $list, 'AnyFile_file_', false, false, false, NULL, NULL, true);
 			?>
 		</ul>
 		<?php
 	}
 
 	function handleOptionSave($themename, $themealbum) {
-		$mysetoptions = array();
-		foreach ($_POST as $key => $option) {
-			if (strpos($key, 'AnyFile_file_list_') === 0) {
-				$mysetoptions[] = str_replace('AnyFile_file_list_', '', $key);
-				purgeOption($key);
-			}
+		if (isset($_POST['AnyFile_file_list'])) {
+			$mysetoptions = sanitize($_POST['AnyFile_file_list']);
+		} else {
+			$mysetoptions = array();
 		}
-		if ($_POST['AnyFile_file_new']) {
-			$mysetoptions[] = sanitize($_POST['AnyFile_file_new']);
-			$suffix = getOption('AnyFile_file_new');
-			purgeOption('AnyFile_file_new');
+		if ($new = getOption('AnyFile_file_new')) {
+			$mysetoptions[] = $new;
 		}
+		purgeOption('AnyFile_file_new');
 		setOption('AnyFileSuffixList', serialize($mysetoptions));
 		return false;
 	}
@@ -143,7 +140,7 @@ class AnyFile extends TextObject {
 		 * just return the thumbnail as we do not know how to
 		 * render the file.
 		 */
-		return '<img src="' . html_encode(pathurlencode($this->getThumb())) . '">';
+		return '<img src="' . pathurlencode($this->getThumb()) . '">';
 	}
 
 }

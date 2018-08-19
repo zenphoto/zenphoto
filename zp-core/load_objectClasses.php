@@ -1,8 +1,15 @@
 <?php
 
-/* * *****************************************************************************
- * Load the base classes (Image, Album, Gallery, etc.)                          *
- * ***************************************************************************** */
+/**
+ *
+ * Load the base classes (Image, Album, Gallery, etc.)
+ * and any enabled "class" plugins
+ *
+ * @author Stephen Billard (sbillard)
+ *
+ * @package core
+ */
+$_zp_plugin_differed_actions = array(); //	final initialization for class plugins (mostly for language translation issues)
 
 require_once(dirname(__FILE__) . '/classes.php');
 require_once(dirname(__FILE__) . '/class-gallery.php');
@@ -12,40 +19,29 @@ require_once(dirname(__FILE__) . '/class-search.php');
 
 $_zp_loaded_plugins = array();
 // load the class & filter plugins
-if (OFFSET_PATH != 2) { // setup does not need (and might have problems with) plugins
-	$masks[] = CLASS_PLUGIN;
-	if (OFFSET_PATH) {
-		$masks[] = ADMIN_PLUGIN | FEATURE_PLUGIN;
-	}
+if (abs(OFFSET_PATH) != 2) { // setup does not need (and might have problems with) plugins
 	if (DEBUG_PLUGINS) {
-		if (OFFSET_PATH) {
-			debugLog('Loading the "class" "feature" and "admin" plugins.');
-		} else {
-			debugLog('Loading the "class" plugins.');
-		}
+		debugLog('Loading the "class" plugins.');
 	}
-	foreach ($masks as $mask) {
-		foreach (getEnabledPlugins() as $extension => $plugin) {
-			$priority = $plugin['priority'];
-			if ($priority & $mask) {
-				if (DEBUG_PLUGINS) {
-					list($usec, $sec) = explode(" ", microtime());
-					$start = (float) $usec + (float) $sec;
-				}
-				require_once($plugin['path']);
-				$_zp_loaded_plugins[$extension] = $extension;
-				if (DEBUG_PLUGINS) {
-					pluginDebug($extension, $priority, $start);
-				}
+	$enabled = getEnabledPlugins();
+	foreach ($enabled as $extension => $plugin) {
+		$priority = $plugin['priority'];
+		if ($priority & CLASS_PLUGIN) {
+			$start = microtime();
+			require_once($plugin['path']);
+			if (DEBUG_PLUGINS) {
+				zpFunctions::pluginDebug($extension, $priority, $start);
 			}
+			$_zp_loaded_plugins[$extension] = $extension;
 		}
-		require_once(dirname(__FILE__) . '/auth_zp.php'); // loaded after CLASS_PLUGIN and before ADMIN_PLUGIN
 	}
-} else {
-	require_once(dirname(__FILE__) . '/auth_zp.php'); // setup needs this!
 }
-
-if (GALLERY_SESSION || zp_loggedin()) {
-	zp_session_start();
-} 
+//	check for logged in users and set up the locale
+require_once(dirname(__FILE__) . '/auth_zp.php');
+define('ZENPHOTO_LOCALE', setMainDomain());
+//	process any differred language strings
+$_zp_active_languages = $_zp_all_languages = NULL; //	clear out so that they will get translated properly
+foreach ($_zp_plugin_differed_actions as $callback) {
+	call_user_func($callback);
+}
 ?>

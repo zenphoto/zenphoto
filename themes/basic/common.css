@@ -4,6 +4,12 @@ shared css so we need make them only once.
 
 */
 
+/* start with a clean slate */
+
+* {
+  margin: 0;
+  padding: 0;
+}
 /* Pretty Buttons
 ------------------------------------- */
 .buttons a,.buttons button {
@@ -112,55 +118,82 @@ button.positive,.buttons a.positive {
 	text-align: left;
 }
 
-/* Login
------------------------------- */
+/* logon form */
 #loginform {
-	text-align: left;
-	padding: 10px;
-	width: 350px;
-	margin: 25px auto;
-	margin-top: 15%;
-	margin-left: 0;
-	font-size: 100%;
-	background: #F7F8F9;
+	background-color: #F7F8F9;
 	border-top: 1px solid #BAC9CF;
 	border-left: 1px solid #BAC9CF;
 	border-right: 1px solid #BAC9CF;
 	border-bottom: 5px solid #BAC9CF;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
 }
-
 #loginform fieldset {
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
 	border: 1px solid lightgray;
-	padding:10px;
-	text-align:left;
 }
 
-#loginform input.textfield {
-	margin: 0px;
-	width:270px;
-	font-size: 100%;
-	padding: 4px;
+#loginform .show_checkbox {
+	background-color: #F7F8F9;
 }
 
-.logon_form_text {
-	padding: 4px;
-	text-align:left;
-	margin-left: 10px;
-	margin-left: 5px;
+#loginform input[type="text"], #loginform input[type="password"] {
+	background-color : #F7F8F9;
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 1px solid #BAC9CF;
 }
 
-.logon_link {
-	text-align:center;
+#loginform .logon_form_text {
+	background-color: #F7F8F9;
 }
 
+#loginform button[type] {
+	background-color: #F7F8F9;
+}
+
+.g-recaptcha > div{
+	margin: 10px auto !important;
+	text-align: center;
+	width: auto !important;
+	height: auto !important;
+}
+
+.disclose_password_show {
+	padding-right: 70px !important;
+}
+.singlenews_prev {
+	float: left;
+}
+.singlenews_next {
+	float: right;
+}
+.zp_link {
+	padding-right: 10px;
+	white-space: nowrap;
+	font-size: 14px;
+}
+.zp_link a {
+	text-decoration: none;
+}
+
+#archive {
+	padding: 0;
+}
+.image_header {
+	margin:20px 0;
+	background: #fff;
+	font-size: 18px;
+	font-weight:bold;
+	text-align: center;
+	border: 1px black;
+}
+.news_header {
+	margin:20px 0;
+	background: #fff;
+	border-top: 3px solid #E6E6DF;
+	font-size: 18px;
+	font-weight:bold;
+	text-align: center;
+}
 #commentcontent {
 	clear: both;
 }

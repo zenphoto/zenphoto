@@ -7,9 +7,10 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+
+
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	</head>
 
@@ -20,22 +21,22 @@ if (!defined('WEBPATH'))
 
 			<div id="header">
 				<h1><?php printGalleryTitle(); ?></h1>
-				<?php
-				if (getOption('Allow_search')) {
-					printSearchForm("", "search", "", gettext("Search"));
-				}
-				?>
 			</div>
 
 			<div id="content">
 				<div id="breadcrumb">
-					<h2><?php printGalleryIndexURL(' » '); echo gettext("A password is required for the page you requested"); ?></strong></h2>
+					<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a>
+						<?php if (isset($hint)) {
+							?> » <strong><?php echo gettext("A password is required for the page you requested"); ?></strong>
+							<?php
+						}
+						?></h2>
 				</div>
 
 				<div id="content-error">
 
 					<div class="errorbox">
-						<?php printPasswordForm('', true, false); ?>
+						<?php printPasswordForm(isset($hint) ? $hint : NULL, isset($show) ? $show : TRUE, false, isset($hint) ? WEBPATH : NULL); ?>
 					</div>
 
 					<?php

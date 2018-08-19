@@ -4,21 +4,19 @@
  * PHP sendmail mailing handler
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage zenphoto-sendmail
+ *
+ * @package plugins/zenphoto_sendmail
+ * @pluginCategory mail
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext("Zenphoto outgoing mail handler based on the PHP <em>mail</em> facility.");
-$plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('zenphoto_sendmail')) ? sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('sendmail'))) : '';
-$plugin_category = gettext('Mail');
-if ($plugin_disable) {
-	enableExtension('zenphoto_sendmail', 0);
-} else {
-	zp_register_filter('sendmail', 'zenphoto_sendmail');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
+	$plugin_description = gettext("Outgoing mail handler based on the PHP <em>mail</em> facility.");
+	$plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('zenphoto_sendmail')) ? sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('sendmail'))) : '';
 }
 
-function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
+zp_register_filter('sendmail', 'zenphoto_sendmail');
+
+function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $bcc_addresses, $replyTo, $html = false) {
 	$headers = sprintf('From: %1$s <%2$s>', $from_name, $from_mail) . "\n";
 	if (count($cc_addresses) > 0) {
 		$cclist = '';
@@ -30,9 +28,11 @@ function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $f
 	if ($replyTo) {
 		$headers .= 'Reply-To: ' . array_shift($replyTo) . "\n";
 	}
+	$sendList = array_merge($email_list, $bcc_addresses);
+
 	$result = true;
-	foreach ($email_list as $to_mail) {
-		$result = $result && utf8::send_mail($to_mail, $subject, $message, $headers);
+	foreach ($sendList as $to_mail) {
+		$result = $result && utf8::send_mail($to_mail, $subject, $message, $headers, '', $html);
 	}
 	if (!$result) {
 		if (!empty($msg))

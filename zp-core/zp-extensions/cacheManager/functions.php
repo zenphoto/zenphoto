@@ -1,10 +1,8 @@
 <?php
-/**
- * Cache manage functions
- * @package plugins
- * @subpackge cachemanager
- */
 
+/**
+ * @package plugins/cacheManager
+ */
 define("CACHE_HASH_LENGTH", strlen(sha1(HASH_SEED)));
 
 function getImageProcessorURIFromCacheName($match, $watermarks) {
@@ -77,7 +75,9 @@ function getTitle($table, $row) {
 function recordMissing($table, $row, $image) {
 	global $missingImages;
 	$obj = getItemByID($table, $row['id']);
-	$missingImages[] = '<a href="' . $obj->getLink() . '">' . $obj->getTitle() . '</a> (' . html_encode($image) . ')<br />';
+	if ($obj) {
+		$missingImages[] = '<a href="' . $obj->getLink() . '">' . $obj->getTitle() . '</a> (' . html_encode($image) . ')<br />';
+	}
 }
 
 /**

@@ -1,21 +1,22 @@
 <?php
 /**
  * provides the Options tab of admin
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 // force UTF-8 Ø
 
 define('OFFSET_PATH', 1);
 
-function markUpdated() {
+function markUpdated($user) {
 	global $updated;
 	$updated = true;
 //for finding out who did it!	debugLogBacktrace('updated');
 }
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
-require_once SERVERPATH . '/' . ZENFOLDER . '/class-userdataexport.php';
-
 define('USERS_PER_PAGE', max(1, getOption('users_per_page')));
 
 if (isset($_GET['ticket'])) {
@@ -24,16 +25,6 @@ if (isset($_GET['ticket'])) {
 	$ticket = '';
 }
 admin_securityChecks(USER_RIGHTS, currentRelativeURL());
-
-if (isset($_GET['userdata-username'])) {
-	$username = sanitize($_GET['userdata-username']);
-	$usermail = sanitize($_GET['userdata-usermail']);
-	if (!empty($username) && (zp_loggedin(ADMIN_RIGHTS) || $_zp_current_admin_obj->getUser() == $username)) {
-		$dataformat = sanitize($_GET['userdata-format']);
-		$dataexport = new userDataExport($username, $usermail, $_zp_gallery, $_zp_authority);
-		$dataexport->processFileDownload($dataformat);
-	}
-}
 
 $newuser = array();
 if (isset($_REQUEST['show']) && is_array($_REQUEST['show'])) {
@@ -44,7 +35,7 @@ if (isset($_REQUEST['show']) && is_array($_REQUEST['show'])) {
 
 
 if (isset($_GET['subpage'])) {
-	$subpage = sanitize_numeric($_GET['subpage']);
+	$subpage = sanitize($_GET['subpage']);
 } else {
 	if (isset($_POST['subpage'])) {
 		$subpage = sanitize_numeric($_POST['subpage']);
@@ -52,9 +43,13 @@ if (isset($_GET['subpage'])) {
 		$subpage = 0;
 	}
 }
+if ($subpage !== 0) {
+	$ticket .= '&subpage=' . $subpage;
+}
 
-if (!isset($_GET['page']))
-	$_GET['page'] = 'users';
+if (!isset($_GET['page'])) {
+	$_GET['page'] = 'admin';
+}
 $_current_tab = sanitize($_GET['page'], 3);
 
 /* handle posts */
@@ -76,7 +71,7 @@ if (isset($_GET['action'])) {
 			} else {
 				$notify = '&migration_error';
 			}
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&subpage=" . $subpage . $notify);
+			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=admin&subpage=" . $subpage . $notify);
 			exitZP();
 			break;
 		case 'deleteadmin':
@@ -84,17 +79,20 @@ if (isset($_GET['action'])) {
 			$adminobj = Zenphoto_Authority::newAdministrator(sanitize($_GET['adminuser']), 1);
 			zp_apply_filter('save_user', '', $adminobj, 'delete');
 			$adminobj->remove();
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&subpage=" . $subpage);
+			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=admin&deleted&subpage=" . $subpage);
 			exitZP();
 			break;
 		case 'saveoptions':
 			XSRFdefender('saveadmin');
+
 			$notify = $returntab = $msg = '';
+			$newuserid = @$_POST['newuser'];
 			if (isset($_POST['saveadminoptions'])) {
 				if (isset($_POST['checkForPostTruncation'])) {
+					$userlist = $_POST['user'];
 					if (isset($_POST['alter_enabled']) || sanitize_numeric($_POST['totaladmins']) > 1 ||
-									trim(sanitize($_POST['adminuser0'])) != $_zp_current_admin_obj->getUser() ||
-									isset($_POST['0-newuser'])) {
+									trim($userlist[0]['adminuser']) != $_zp_current_admin_obj->getUser() ||
+									$newuserid === 0) {
 						if (!$_zp_current_admin_obj->reset) {
 							admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 						}
@@ -107,16 +105,17 @@ if (isset($_GET['action'])) {
 						$updated = false;
 						$error = false;
 						$userobj = NULL;
-						$pass = trim(sanitize($_POST['pass' . $i]));
-						$user = trim(sanitize($_POST['adminuser' . $i]));
+						$pass = trim(sanitize($userlist[$i]['pass'], 0));
+						$user = trim(sanitize($userlist[$i]['adminuser']));
 						if (empty($user) && !empty($pass)) {
 							$notify = '?mismatch=nothing';
+							$error = true;
 						}
 						if (!empty($user)) {
 							$nouser = false;
-							if (isset($_POST[$i . '-newuser'])) {
+							if ($i === $newuserid) {
 								$newuser = $user;
-								$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+								$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 								if (is_object($userobj)) {
 									$notify = '?exists';
 									break;
@@ -124,42 +123,38 @@ if (isset($_GET['action'])) {
 									$what = 'new';
 									$userobj = Zenphoto_Authority::newAdministrator('');
 									$userobj->setUser($user);
-									markUpdated();
+									markUpdated($user);
 								}
 							} else {
 								$what = 'update';
 								$userobj = Zenphoto_Authority::newAdministrator($user);
-								markUpdated();
 							}
 
-							if (isset($_POST[$i . '-admin_name'])) {
-								$admin_n = trim(sanitize($_POST[$i . '-admin_name']));
+							if (isset($userlist[$i]['admin_name'])) {
+								$admin_n = trim(sanitize($userlist[$i]['admin_name']));
 								if ($admin_n != $userobj->getName()) {
-									markUpdated();
+									markUpdated($user);
 									$userobj->setName($admin_n);
 								}
 							}
-							if (isset($_POST[$i . '-admin_email'])) {
-								$admin_e = trim(sanitize($_POST[$i . '-admin_email']));
-								$mail_duplicate = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
-								if($mail_duplicate) {
-									$msg = sprintf(gettext('%s email is already used by another user!'), $admin_n);
-								} else {
-									if ($admin_e != $userobj->getEmail()) {
-										markUpdated();
-										$userobj->setEmail($admin_e);
-									}
+							if (isset($userlist[$i]['admin_email'])) {
+								$admin_e = trim(sanitize($userlist[$i]['admin_email']));
+								if ($admin_e != $userobj->getEmail()) {
+									markUpdated($user);
+									$userobj->setEmail($admin_e);
 								}
 							}
 							if (empty($pass)) {
-								if ($newuser || @$_POST['passrequired' . $i]) {
+								if ($newuser || @$userlist[$i]['passrequired']) {
 									$msg = sprintf(gettext('%s password may not be empty!'), $admin_n);
+									$notify = '?mismatch=format&error=' . urlencode($msg);
+									$error = true;
 								}
 							} else {
-								if (isset($_POST['disclose_password' . $i]) && $_POST['disclose_password' . $i] == 'on') {
+								if (isset($userlist[$i]['disclose_password']) && $userlist[$i]['disclose_password'] == 'on') {
 									$pass2 = $pass;
 								} else {
-									$pass2 = trim(sanitize(@$_POST['pass_r' . $i]));
+									$pass2 = trim(sanitize(@$userlist[$i]['pass_r'], 0));
 								}
 								if ($pass == $pass2) {
 									$pass2 = $userobj->getPass($pass);
@@ -167,70 +162,77 @@ if (isset($_GET['action'])) {
 										$notify = '?mismatch=format&error=' . urlencode($msg);
 									} else {
 										$userobj->setPass($pass);
-										markUpdated();
+										markUpdated($user);
 									}
 								} else {
-									$notify = '?mismatch=password';
+									$notify = '?mismatch=password&whom=' . $user . $pass;
 									$error = true;
 								}
 							}
-							if (isset($_POST[$i . '-challengephrase'])) {
-								$challenge = sanitize($_POST[$i . '-challengephrase']);
-								$response = sanitize($_POST[$i . '-challengeresponse']);
+							if (isset($userlist[$i]['challengephrase'])) {
+								$challenge = sanitize($userlist[$i]['challengephrase']);
+								$response = sanitize($userlist[$i]['challengeresponse']);
 								$info = $userobj->getChallengePhraseInfo();
 								if ($challenge != $info['challenge'] || $response != $info['response']) {
 									$userobj->setChallengePhraseInfo($challenge, $response);
-									markUpdated();
+									markUpdated($user);
 								}
 							}
-							$lang = sanitize($_POST[$i . '-admin_language'], 3);
+							$lang = sanitize($userlist[$i]['admin_language'], 3);
 							if ($lang != $userobj->getLanguage()) {
 								$userobj->setLanguage($lang);
-								markUpdated();
+								zp_clearCookie('dynamic_locale');
+								markUpdated($user);
 							}
 							$rights = 0;
-							$oldobjects = sortMultiArray($userobj->getObjects(), 'data');
-							$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
-							if (isset($_POST['delinkAlbum_' . $i])) {
-								$delink_primealbum = $userobj->getAlbum()->name;
-								foreach($objects as $key => $val) {
-									if($val['type'] == 'album' && $val['name'] == $delink_primealbum) {
-										unset($objects[$key]);
+							if ($alter && (!isset($userlist[$i]['group']) || $userlist[$i]['group'] == array(''))) {
+								if (isset($userlist[$i]['rightsenabled'])) {
+									$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
+									$rights = processRights($i);
+
+									if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
+										$userobj->setRights($rights | NO_RIGHTS);
+										markUpdated($user);
 									}
 								}
-								$userobj->setAlbum(NULL);
-								markUpdated();
-								$alter = true;
-							}
-							if ($alter) {
-								$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
-								$rights = processRights($i);
-								if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
-									$userobj->setRights($rights | NO_RIGHTS);
-									markUpdated();
-								}
-								if ($objects != $oldobjects) {
+								$oldobjects = $userobj->getObjects();
+								$oldrights = $rights;
+								$objects = processManagedObjects($i, $rights);
+								if (compareObjects($objects, $oldobjects)) {
+									$userobj->setObjects(NULL); //	indicates no change
+								} else {
 									$userobj->setObjects($objects);
-									markUpdated();
+									markUpdated($user);
+								}
+								if ($rights != $oldrights) {
+									$userobj->setRights($rights | NO_RIGHTS);
+									markUpdated($user);
 								}
 							} else {
-								$oldobjects = $userobj->setObjects(NULL); // indicates no change
+								$userobj->setObjects($oldobjects = NULL); // indicates no change
+							}
+							if (isset($userlist[$i]['delinkAlbum'])) {
+								$userobj->setAlbum(NULL);
+								markUpdated($user);
+							}
+							if (isset($userlist[$i]['createAlbum'])) {
+								$userobj->createPrimealbum();
+								markUpdated($user);
 							}
 							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
-							if (isset($_POST['createAlbum_' . $i])) {
-								$userobj->createPrimealbum();
-								markUpdated();
-							}
-							if ($updated) {
-								$returntab .= '&show[]=' . $user;
-								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
-								if (empty($msg)) {
-									if (!$notify)
-										$userobj->transient = false;
+							if (!($error && !$_zp_current_admin_obj->getID())) { //	new install and password problems, leave with no admin
+								if ($updated) {
+									$returntab .= '&show[]=' . $user;
+									$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
+									if (!empty($msg)) {
+										$notify = '?mismatch=format&error=' . urlencode($msg);
+									}
+									$userobj->transient = false;
 									$userobj->save();
-								} else {
-									$notify = '?mismatch=format&error=' . urlencode($msg);
-									$error = true;
+									if (!$_zp_current_admin_obj->getID()) {
+										// avoid the logon screen for first user established
+										Zenphoto_Authority::logUser($userobj);
+									}
 								}
 							}
 						}
@@ -244,7 +246,7 @@ if (isset($_GET['action'])) {
 			}
 			break;
 	}
-	$returntab .= "&page=users";
+	$returntab .= "&page=admin&tab=users";
 	if (!empty($newuser)) {
 		$returntab .= '&show[]=' . $newuser;
 	}
@@ -272,9 +274,6 @@ if (!$_zp_current_admin_obj && $_zp_current_admin_obj->getID()) {
 printAdminHeader($_current_tab);
 echo $refresh;
 ?>
-<script type="text/javascript" src="js/farbtastic.js"></script>
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
-<link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
 <script type='text/javascript'>
 	var visible = false;
 	function getVisible(id, category, show, hide) {
@@ -296,13 +295,19 @@ echo $refresh;
 		<?php printTabs(); ?>
 		<div id="content">
 			<?php
-			if ($_zp_current_admin_obj->reset && !$refresh) {
+			if ($_zp_current_admin_obj->exists && $_zp_current_admin_obj->reset && !$refresh) {
 				echo "<div class=\"errorbox space\">";
-				echo "<h2>" . gettext("Password reset request.<br />You may now set admin usernames and passwords.") . "</h2>";
+				echo "<h2>" . gettext("Password reset request.") . "</h2>";
 				echo "</div>";
 			}
-
-			/* Page code */
+			zp_apply_filter('admin_note', 'admin', 'users');
+			if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset || !$_zp_current_admin_obj->getID()) {
+				echo '<h1>' . gettext('Users') . '</h1>';
+				$alterrights = false;
+			} else {
+				echo '<h1>' . gettext('Profile') . '</h1>';
+				$alterrights = ' disabled="disabled"';
+			}
 			?>
 			<div id="container">
 				<?php
@@ -324,27 +329,37 @@ echo $refresh;
 				}
 				?>
 				<?php
-				printSubtabs();
 				global $_zp_authority;
 				?>
 				<div id="tab_admin" class="tabbox">
 					<?php
-					zp_apply_filter('admin_note', 'users', 'users');
-
 					$pages = 0;
 					$clearPass = false;
 					if (!$_zp_current_admin_obj->getID() && $_zp_current_admin_obj->reset) {
 						$clearPass = true;
 					}
 					$alladmins = array();
+					$seenGroups = array();
+					$nogroup = $pending = false;
 					if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset || !$_zp_current_admin_obj->getID()) {
 						$admins = $_zp_authority->getAdministrators('allusers');
 						foreach ($admins as $key => $user) {
 							$alladmins[] = $user['user'];
 							if ($user['valid'] > 1) {
 								unset($admins[$key]);
+							} else {
+								if (empty($user['group'])) {
+									$nogroup = true;
+								} else {
+									$groups = explode(',', $user['group']);
+									$seenGroups = array_merge($seenGroups, $groups);
+								}
+								if ($user['rights'] == 0) {
+									$pending = true;
+								}
 							}
 						}
+						$seenGroups = array_unique($seenGroups);
 						if (empty($admins) || !$_zp_current_admin_obj->getID()) {
 							$rights = ALL_RIGHTS;
 							$groupname = 'administrators';
@@ -373,7 +388,7 @@ echo $refresh;
 									}
 								}
 							}
-							$admins = sortMultiArray($admins, 'user');
+							$admins = sortMultiArray($admins, 'user', false, true, true);
 							$rights = DEFAULT_RIGHTS;
 							$groupname = 'default';
 							$list = array();
@@ -383,32 +398,43 @@ echo $refresh;
 							$rangeset = getPageSelector($list, USERS_PER_PAGE);
 						}
 						$newuser = array('id' => -1, 'user' => '', 'pass' => '', 'name' => '', 'email' => '', 'rights' => $rights, 'custom_data' => NULL, 'valid' => 1, 'group' => $groupname);
-						$alterrights = '';
 					} else {
-						$alterrights = ' disabled="disabled"';
 						$rangeset = array();
 						if ($_zp_current_admin_obj) {
 							$admins = array($_zp_current_admin_obj->getUser() =>
-											array('id'					 => $_zp_current_admin_obj->getID(),
-															'user'				 => $_zp_current_admin_obj->getUser(),
-															'pass'				 => $_zp_current_admin_obj->getPass(),
-															'name'				 => $_zp_current_admin_obj->getName(),
-															'email'				 => $_zp_current_admin_obj->getEmail(),
-															'rights'			 => $_zp_current_admin_obj->getRights(),
-															'custom_data'	 => $_zp_current_admin_obj->getCustomData(),
-															'valid'				 => 1,
-															'group'				 => $_zp_current_admin_obj->getGroup()));
+									array('id' => $_zp_current_admin_obj->getID(),
+											'user' => $_zp_current_admin_obj->getUser(),
+											'pass' => $_zp_current_admin_obj->getPass(),
+											'name' => $_zp_current_admin_obj->getName(),
+											'email' => $_zp_current_admin_obj->getEmail(),
+											'rights' => $_zp_current_admin_obj->getRights(),
+											'valid' => 1,
+											'group' => $_zp_current_admin_obj->getGroup()));
 							$showset = array($_zp_current_admin_obj->getUser());
 						} else {
 							$admins = $showset = array();
 						}
 					}
+
 					$max = floor((count($admins) - 1) / USERS_PER_PAGE);
 					if ($subpage > $max) {
 						$subpage = $max;
 					}
 					$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
-
+					if (isset($_GET['user'])) {
+						$user = sanitize($_GET['user']);
+						foreach ($admins as $u) {
+							if ($u['user'] == $user && $u['valid'] == 1) {
+								$userlist = array($u['id'] => $u);
+								$newuser = NULL;
+								break;
+							}
+						}
+					}
+					if (count($userlist) == 1) {
+						$u = reset($userlist);
+						$showset = array($u['user']);
+					}
 					if (isset($_GET['deleted'])) {
 						echo '<div class="messagebox fade-message">';
 						echo "<h2>Deleted</h2>";
@@ -460,9 +486,18 @@ echo $refresh;
 								$('#admin_language_' + id).val(lang);
 							}
 						}
+						function closePasswords() {
+							$('.disclose_password').each(function () {
+								if ($(this).prop('checked')) {
+									id = $(this).attr('id').replace('disclose_password', '');
+									togglePassword(id);
+								}
+							});
+						}
 					</script>
-					<form class="dirty-check" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();">
-						<?php XSRFToken('saveadmin'); ?>
+					<form class="dirtylistening" onReset="closePasswords();
+							setClean('user_form');" id="user_form" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
+								<?php XSRFToken('saveadmin'); ?>
 						<input type="hidden" name="saveadminoptions" value="yes" />
 						<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 						<?php
@@ -473,56 +508,69 @@ echo $refresh;
 						}
 						?>
 						<p class="buttons">
-							<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" value="<?php echo gettext('reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+							<button type="submit" value="<?php echo gettext('Apply') ?>">
+								<?php echo CHECKMARK_GREEN; ?>
+								<strong><?php echo gettext("Apply"); ?></strong>
+							</button>
+							<button type="reset" value="<?php echo gettext('reset') ?>">
+								<?php echo CROSS_MARK_RED; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
 						</p>
-						<br class="clearall" /><br />
-						<table class="bordered"> <!-- main table -->
-
+						<br class="clearall"><br />
+						<table class="unbordered"> <!-- main table -->
 							<tr>
-								<?php
-								if ($subpage || count($userlist) > 1) {
-									?>
-									<th>
-										<span style="font-weight: normal">
-											<a href="javascript:toggleExtraInfo('','user',true);"><?php echo gettext('Expand all'); ?></a>
+								<td style="width: 48en;">
+									<?php
+									if (count($userlist) != 1) {
+										?>
+										<span class="nowrap" style="font-weight: normal;">
+											<a onclick="toggleExtraInfo('', 'user', true);"><?php echo gettext('Expand all'); ?></a>
 											|
-											<a href="javascript:toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all'); ?></a>
+											<a onclick="toggleExtraInfo('', 'user', false);"><?php echo gettext('Collapse all'); ?></a>
 										</span>
-									</th>
-									<th>
-										<?php echo gettext('show'); ?>
-										<select name="showgroup" id="showgroup" class="dirtyignore" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-users.php', ['showgroup=' + $('#showgroup').val()]);" >
+										<?php
+									}
+									?>
+								</td>
+								<td>
+									<?php
+									if (count($userlist) != 1 && ($pending || count($seenGroups) > 0)) {
+										echo gettext('show');
+										?>
+										<select name="showgroup" id="showgroup" class="ignoredirty" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-users.php', ['showgroup=' + $('#showgroup').val()]);" >
 											<option value=""<?php if (!$showgroup) echo ' selected="selected"'; ?>><?php echo gettext('all'); ?></option>
-											<option value="*"<?php if ($showgroup == '*') echo ' selected="selected"'; ?>><?php echo gettext('pending verification'); ?></option>
 											<?php
-											if (extensionEnabled('user_groups')) {
+											if ($pending) {
 												?>
-												<option value="$"<?php if ($showgroup == '$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
+												<option value = "*"<?php if ($showgroup == '*') echo ' selected="selected"'; ?>><?php echo gettext('pending verification'); ?></option>
 												<?php
-												$groups = $_zp_authority->getAdministrators('groups');
-												foreach ($groups as $group) {
-													if ($group['name'] != 'template') {
-														?>
-														<option value="<?php echo $group['user']; ?>"<?php if ($showgroup == $group['user']) echo ' selected="selected"'; ?>><?php printf('%s group', $group['user']); ?></option>
-														<?php
-													}
+											}
+											if (!empty($seenGroups)) {
+												if ($nogroup) {
+													?>
+													<option value="$"<?php if ($showgroup == '$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
+													<?php
+												}
+												foreach ($seenGroups as $group) {
+													?>
+													<option value="<?php echo $group; ?>"<?php if ($showgroup == $group) echo ' selected="selected"'; ?>><?php printf('%s group', $group); ?></option>
+													<?php
 												}
 											}
 											?>
 										</select>
-									</th>
-									<th>
-										<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
-									</th>
-									<?php
-								} else {
+										<?php
+									}
 									?>
-									<th colspan=3>&nbsp;</th>
-									<?php
-								}
-								?>
+								</td>
+								<td>
+									<span class="floatright padded">
+										<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+									</span>
+								</td>
 							</tr>
+
 							<?php
 							$id = 0;
 							$albumlist = array();
@@ -541,11 +589,13 @@ echo $refresh;
 								$local_alterrights = $alterrights;
 								$userid = $user['user'];
 								$current = in_array($userid, $showset);
-
 								if ($userid == $_zp_current_admin_obj->getuser()) {
 									$userobj = $_zp_current_admin_obj;
 								} else {
-									$userobj = Zenphoto_Authority::newAdministrator($userid);
+									$userobj = Zenphoto_Authority::newAdministrator($userid, 1, false);
+									if ($userid && $userobj->transient) {
+										continue;
+									}
 								}
 								if (empty($userid)) {
 									$userobj->setGroup($user['group']);
@@ -568,7 +618,7 @@ echo $refresh;
 								if ($background) {
 									$background = "";
 								} else {
-									$background = "background-color:#ECF1F2;";
+									$background = "background-color:#f0f4f5;";
 								}
 								if ($_zp_current_admin_obj->reset) {
 									$custom_row = NULL;
@@ -585,10 +635,10 @@ echo $refresh;
 								?>
 								<!-- finished with filters -->
 								<tr>
-									<td colspan="3" style="margin: 0pt; padding: 0pt;border-top: 4px solid #D1DBDF;<?php echo $background; ?>">
-										<table class="bordered" style="border: 0" id='user-<?php echo $id; ?>'>
+									<td colspan="100%" style="margin: 0pt; padding: 0pt;<?php echo $background; ?>">
+										<table class="unbordered" id='user-<?php echo $id; ?>'>
 											<tr>
-												<td style="margin-top: 0px; width:20em;<?php echo $background; ?>" valign="top">
+												<td style="margin-top: 0px; width: 48en;<?php echo $background; ?>" valign="top">
 													<?php
 													if (empty($userid)) {
 														$displaytitle = gettext("Show details");
@@ -598,26 +648,29 @@ echo $refresh;
 														$hidetitle = sprintf(gettext('Hide details for user %s'), $userid);
 													}
 													?>
-													<a id="toggle_<?php echo $id; ?>" href="javascript:visible=getVisible('<?php echo $id; ?>','user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-														 $('#show_<?php echo $id; ?>').val(visible);toggleExtraInfo('<?php echo $id; ?>','user',visible);" title="<?php echo $displaytitle; ?>" >
+													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
+																$('#show_<?php echo $id; ?>').val(visible);
+																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
 															 <?php
 															 if (empty($userid)) {
 																 ?>
-															<input type="hidden" name="<?php echo $id ?>-newuser" value="1" />
+															<input type="hidden" name="newuser" value="<?php echo $id ?>" />
 
 															<em><?php echo gettext("New User"); ?></em>
-															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
+															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="user[<?php echo $id; ?>][adminuser]" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
 																						 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
 															?>
-															<input type="hidden" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id ?>" value="<?php echo $userid ?>" />
+															<input type="hidden" id="adminuser<?php echo $id; ?>" name="user[<?php echo $id; ?>][adminuser]" value="<?php echo $userid ?>" />
 															<?php
-															echo '<strong>' . $userid . '</strong> ';
-															if (!empty($userid)) {
-																echo $master;
+															if (empty($alterrights)) {
+																echo '<strong>' . $userid . '</strong> ';
+																if (!empty($userid)) {
+																	echo $master;
+																}
 															}
 														}
 														?>
@@ -627,7 +680,7 @@ echo $refresh;
 													if (!$alterrights || !$userobj->getID()) {
 														if ($pending) {
 															?>
-															<input type="checkbox" name="<?php echo $id ?>-confirmed" value="<?php
+															<input type="checkbox" name="user[<?php echo $id ?>][confirmed]" value="<?php
 															echo NO_RIGHTS;
 															echo $alterrights;
 															?>" />
@@ -635,7 +688,7 @@ echo $refresh;
 																		 <?php
 																	 } else {
 																		 ?>
-															<input type = "hidden" name="<?php echo $id ?>-confirmed"	value="<?php echo NO_RIGHTS; ?>" />
+															<input type = "hidden" name="user[<?php echo $id ?>][confirmed]"	value="<?php echo NO_RIGHTS; ?>" />
 															<?php
 														}
 														?>
@@ -652,7 +705,8 @@ echo $refresh;
 															<span class="floatright">
 																<a href="javascript:if(confirm(<?php echo "'" . js_encode($msg) . "'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin') ?>'; }"
 																	 title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;">
-																	<img src="images/fail.png" style="border: 0px;" alt="Delete" /></a>
+																		 <?php echo WASTEBASKET; ?>
+																</a>
 															</span>
 															<?php
 														}
@@ -670,10 +724,9 @@ echo $refresh;
 											<?php
 											$no_change = array();
 											if (!zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset) {
-												$no_change = $userobj->getCredentials();
 												?>
 												<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
-													<td <?php if (!empty($background)) echo " style=\"$background\""; ?> colspan="2">
+													<td <?php if (!empty($background)) echo " style=\"$background\""; ?> colspan="100%">
 														<p class="notebox">
 															<?php echo gettext('<strong>Note:</strong> You must have ADMIN rights to alter anything but your personal information.'); ?>
 														</p>
@@ -683,157 +736,190 @@ echo $refresh;
 											}
 											?>
 											<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
-												<td <?php if (!empty($background)) echo " style=\"$background\""; ?> valign="top">
-													<p>
-														<?php
-														$pad = false;
-														if (!empty($userid) && !$clearPass) {
-															$x = $userobj->getPass();
-															if (!empty($x)) {
-																$pad = true;
+												<td <?php if (!empty($background)) echo " style=\"$background\""; ?> valign="top" colspan="100%">
+													<div class="user_left">
+														<p>
+															<?php
+															$pad = false;
+															$pwd = $userobj->getPass();
+															if (!empty($userid) && !$clearPass) {
+																if (!empty($pwd)) {
+																	$pad = true;
+																}
 															}
-														}
-														if (in_array('password', $no_change)) {
-															$password_disable = ' disabled="disabled"';
-														} else {
-															$password_disable = '';
-														}
-														Zenphoto_Authority::printPasswordForm($id, $pad, $password_disable, $clearPass);
-														?>
-													</p>
-													<?php
-													if (in_array('challenge_phrase', $no_change)) {
-														$_disable = ' disabled="disabled"';
-													} else {
-														$_disable = '';
-													}
-													$challenge = $userobj->getChallengePhraseInfo();
-													?>
-													<p>
-														<?php echo gettext('Challenge phrase') ?>
-														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="<?php echo $id ?>-challengephrase"
-																	 value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
-														<br />
-														<?php echo gettext('Challenge response') ?>
-														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengeresponse-<?php echo $id ?>" name="<?php echo $id ?>-challengeresponse"
-																	 value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
+															if (!empty($pwd) && in_array('password', $no_change)) {
+																$password_disable = ' disabled="disabled"';
+															} else {
+																$password_disable = '';
+															}
+															Zenphoto_Authority::printPasswordForm($id, $pad, $password_disable, $clearPass);
+															?>
+														</p>
+														<?php
+														if (getOption('challenge_foil_enabled')) {
+															if (in_array('challenge_phrase', $no_change)) {
+																$_disable = ' disabled="disabled"';
+															} else {
+																$_disable = '';
+															}
+															$challenge = $userobj->getChallengePhraseInfo();
+															?>
+															<p>
+																<?php echo gettext('Challenge phrase') ?><br />
+																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="user[<?php echo $id ?>][challengephrase]" value="<?php echo html_encode($challenge['challenge']); ?>"<?php echo $_disable; ?> />
+																<br />
+																<?php echo gettext('Challenge response') ?><br />
+																<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="<?php echo $id ?>-challengeresponse" name="user[<?php echo $id ?>][challengeresponse]" value="<?php echo html_encode($challenge['response']); ?>"<?php echo $_disable; ?> />
 
-													</p>
-													<?php echo gettext("Full name"); ?>
-													<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
-																 value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
-													<p>
-														<?php echo gettext("Email"); ?>
-														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
-																	 value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
-													</p>
-													<?php
-													$primeAlbum = $userobj->getAlbum();
-													if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-														if (empty($primeAlbum)) {
-															if (!($userobj->getRights() & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {
+															</p>
+															<?php
+														}
+														?>
+														<?php echo gettext("Full name"); ?><br />
+														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="user[<?php echo $id ?>][admin_name]"
+																	 value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
+
+														<p>
+															<?php echo gettext("Email"); ?><br />
+															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="user[<?php echo $id ?>][admin_email]"
+																		 value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
+														</p>
+														<?php
+														$primeAlbum = $userobj->getAlbum();
+														if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+															if (empty($primeAlbum)) {
+																if (!($userobj->getRights() & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {
+																	?>
+																	<p>
+																		<label>
+																			<input type="checkbox" name="user[<?php echo $id ?>][createAlbum]" id="createAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
+																			<?php echo gettext('create primary album'); ?>
+																		</label>
+																	</p>
+																	<?php
+																}
+															} else {
 																?>
 																<p>
 																	<label>
-																		<input type="checkbox" name="createAlbum_<?php echo $id ?>" id="createAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
-																		<?php echo gettext('create primary album'); ?>
+																		<input type="checkbox" name="user[<?php echo $id ?>][delinkAlbum]" id="delinkAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
+																		<?php printf(gettext('delink primary album <strong>%1$s</strong>(<em>%2$s</em>)'), $primeAlbum->getTitle(), $primeAlbum->name); ?>
 																	</label>
+																</p>
+																<p class="notebox">
+																	<?php echo gettext('The primary album was created in association with the user. It will be removed if the user is deleted. Delinking the album removes this association.'); ?>
 																</p>
 																<?php
 															}
-														} else {
-															?>
-															<p>
-																<label>
-																	<input type="checkbox" name="delinkAlbum_<?php echo $id ?>" id="delinkAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
-																	<?php printf(gettext('delink primary album <strong>%1$s</strong>(<em>%2$s</em>)'), $primeAlbum->getTitle(), $primeAlbum->name); ?>
-																</label>
-															</p>
-															<p class="notebox">
-																<?php echo gettext('The primary album was created in association with the user. It will be removed if the user is deleted. Delinking the album removes this association.'); ?>
-															</p>
-															<?php
 														}
-													}
-													$currentValue = $userobj->getLanguage();
-													?>
-													<p>
-														<label for="admin_language_<?php echo $id ?>"><?php echo gettext('Language:'); ?></label></p>
-													<input type="hidden" name="<?php echo $id ?>-admin_language" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
-													<ul class="flags" style="margin-left: 0px;">
-														<?php
-														$_languages = generateLanguageList();
-														$c = 0;
-														foreach ($_languages as $text => $lang) {
-															?>
-															<li id="<?php echo $lang . '_' . $id; ?>"<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
-																<a onclick="javascript:languageChange('<?php echo $id; ?>', '<?php echo $lang; ?>');" >
-																	<img src="<?php echo getLanguageFlag($lang); ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
-																</a>
-															</li>
+														$currentValue = $userobj->getLanguage();
+														?>
+														<p>
+															<label for="admin_language_<?php echo $id ?>">
+																<?php echo gettext('Language:'); ?>
+															</label>
+														</p>
+														<input type="hidden" name="user[<?php echo $id ?>][admin_language]" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
+														<ul class="flags" style="margin-left: 0px;">
 															<?php
-															$c++;
-															if (($c % 7) == 0)
-																echo '<br class="clearall" />';
+															$languages = generateLanguageList();
+															asort($languages);
+															$flags = getLanguageFlags();
+															$flags[''] = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
+															$c = 0;
+															foreach ($languages as $text => $lang) {
+																$current = $lang == $currentValue;
+																?>
+																<li id="<?php echo $lang . '_' . $id; ?>"<?php if ($current) echo ' class="currentLanguage"'; ?>>
+																	<a onclick="languageChange('<?php echo $id; ?>', '<?php echo $lang; ?>');" >
+																		<img src="<?php echo $flags[$lang]; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
+																	</a>
+																</li>
+																<?php
+																$c++;
+																if (($c % 7) == 0)
+																	echo '<br class="clearall">';
+															}
+															?>
+														</ul>
+													</div>
+
+													<div class="user_right">
+														<?php
+														printAdminRightsTable($id, $background, $local_alterrights, $userobj->getRights());
+														if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+															$alter_rights = $local_alterrights;
+														} else {
+															$alter_rights = ' disabled="disabled"';
+														}
+														if ($ismaster) {
+															echo '<p>' . gettext("The <em>master</em> account has full rights to all objects.") . '</p>';
+														} else {
+															if (is_object($primeAlbum)) {
+																$flag = array($primeAlbum->name);
+															} else {
+																$flag = array();
+															}
+															printManagedObjects('albums', $albumlist, $alter_rights, $userobj, $id, gettext('user'), $flag);
+															if (extensionEnabled('zenpage')) {
+																$pagelist = array();
+																if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
+																	$alter_rights = $local_alterrights;
+																} else {
+																	$alter_rights = ' disabled="disabled"';
+																}
+																$pages = $_zp_CMS->getPages(false);
+																foreach ($pages as $page) {
+																	if (!$page['parentid']) {
+																		$pagelist[get_language_string($page['title'])] = $page['titlelink'];
+																	}
+																}
+																$newslist = array('"' . gettext('un-categorized') . '"' => '`');
+																$categories = $_zp_CMS->getAllCategories(false);
+																foreach ($categories as $category) {
+																	$newslist[get_language_string($category['title'])] = $category['titlelink'];
+																}
+																printManagedObjects('news_categories', $newslist, $alter_rights, $userobj, $id, gettext('user'), NULL);
+																if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+																	$alter_rights = $local_alterrights;
+																} else {
+																	$alter_rights = ' disabled="disabled"';
+																}
+																printManagedObjects('pages', $pagelist, $alter_rights, $userobj, $id, gettext('user'), NULL);
+															}
 														}
 														?>
-													</ul>
-													<?php	userDataExport::printUserAccountExportLinks($userobj); ?>
-												</td>
-
-												<td <?php if (!empty($background)) echo " style=\"$background\""; ?>>
-													<?php printAdminRightsTable($id, $background, $local_alterrights, $userobj->getRights()); ?>
-
-													<?php
-													if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-														$album_alter_rights = $local_alterrights;
-													} else {
-														$album_alter_rights = ' disabled="disabled"';
-													}
-													if ($ismaster) {
-														echo '<p>' . gettext("The <em>master</em> account has full rights to all objects.") . '</p>';
-													} else {
-														if (is_object($primeAlbum)) {
-															$flag = array($primeAlbum->name);
-														} else {
-															$flag = array();
+													</div>
+													<br class="clearall">
+													<div class="userextrainfo">
+														<?php
+														if ($custom_row) {
+															echo stripTableRows($custom_row);
 														}
-														printManagedObjects('albums', $albumlist, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
-														if (extensionEnabled('zenpage')) {
-															$pagelist = array();
-															$pages = $_zp_zenpage->getPages(false);
-															foreach ($pages as $page) {
-																if (!$page['parentid']) {
-																	$pagelist[get_language_string($page['title'])] = $page['titlelink'];
-																}
-															}
-															printManagedObjects('pages', $pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
-															$newslist = array();
-															$categories = $_zp_zenpage->getAllCategories(false);
-															foreach ($categories as $category) {
-																$newslist[get_language_string($category['title'])] = $category['titlelink'];
-															}
-															printManagedObjects('news', $newslist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
-														}
-													}
-													?>
+														?>
+													</div>
+													<br class="clearall">
 												</td>
 											</tr>
-											<?php echo $custom_row; ?>
+
 										</table> <!-- end individual admin table -->
 									</td>
 								</tr>
 								<?php
 								$id++;
 							}
+							if ($subpage || count($userlist) > 1) {
+								?>
+								<tr>
+									<td colspan="100%">
+										<span class="floatright padded">
+											<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users', 'showgroup' => $showgroup)); ?>
+										</span>
+									</td>
+								</tr>
+								<?php
+							}
 							?>
-							<tr>
-								<th></th>
-								<th></th>
-								<th>
-									<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
-								</th>
-							</tr>
 						</table> <!-- main admin table end -->
 
 						<input type="hidden" name="totaladmins" value="<?php echo $id; ?>" />
@@ -843,8 +929,13 @@ echo $refresh;
 						if (!$_zp_current_admin_obj->transient) {
 							?>
 							<p class="buttons">
-								<button type="submit"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+								<button type="submit"><?php echo CHECKMARK_GREEN; ?>
+									<strong><?php echo gettext("Apply"); ?></strong>
+								</button>
+								<button type="reset">
+									<?php echo CROSS_MARK_RED; ?>
+									<strong><?php echo gettext("Reset"); ?></strong>
+								</button>
 							</p>
 							<?php
 						}
@@ -854,29 +945,29 @@ echo $refresh;
 					if (zp_loggedin(ADMIN_RIGHTS)) {
 						if (Zenphoto_Authority::getVersion() < Zenphoto_Authority::$supports_version) {
 							?>
-							<br class="clearall" />
+							<br class="clearall">
 							<p class="notebox">
 								<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'), Zenphoto_Authority::getVersion(), Zenphoto_Authority::$supports_version); ?>
-								<br class="clearall" />
+								<br class="clearall">
 								<span class="buttons">
 									<a onclick="launchScript('', ['action=migrate_rights', 'XSRFToken=<?php echo getXSRFToken('migrate_rights') ?>']);"><?php echo gettext('Migrate rights'); ?></a>
 								</span>
-								<br class="clearall" />
+								<br class="clearall">
 							</p>
-							<br class="clearall" />
+							<br class="clearall">
 							<?php
 						} else if (Zenphoto_Authority::getVersion() > Zenphoto_Authority::$preferred_version) {
 							?>
-							<br class="clearall" />
+							<br class="clearall">
 							<p class="notebox">
-								<?php printf(gettext('You may wish to revert the <em>Zenphoto_Authority</em> user rights to version %s for backwards compatibility with prior Zenphoto releases.'), Zenphoto_Authority::getVersion() - 1); ?>
-								<br class="clearall" />
+								<?php printf(gettext('You may wish to revert the <em>Zenphoto_Authority</em> user rights to version %s for backwards compatibility with prior releases.'), Zenphoto_Authority::getVersion() - 1); ?>
+								<br class="clearall">
 								<span class="buttons">
 									<a onclick="launchScript('', ['action=migrate_rights', 'revert=true', 'XSRFToken=<?php echo getXSRFToken('migrate_rights') ?>']);"><?php echo gettext('Revert rights'); ?></a>
 								</span>
-								<br class="clearall" />
+								<br class="clearall">
 							</p>
-							<br class="clearall" />
+							<br class="clearall">
 							<?php
 						}
 					}
@@ -885,8 +976,8 @@ echo $refresh;
 						//<!-- <![CDATA[
 						var admins = ["<?php echo implode('","', $alladmins); ?>"];
 						function checkNewuser() {
-							var newuserid = <?php echo ($id - 1); ?>;
-							var newuser = $('#adminuser' + newuserid).val().replace(/^\s+|\s+$/g, "");
+							newuserid = <?php echo ($id - 1); ?>;
+							newuser = $('#adminuser' + newuserid).val().replace(/^\s+|\s+$/g, "");
 							if (newuser == '')
 								return true;
 							if (newuser.indexOf('?') >= 0 || newuser.indexOf('&') >= 0 || newuser.indexOf('"') >= 0 || newuser.indexOf('\'') >= 0) {
@@ -904,16 +995,14 @@ echo $refresh;
 						// ]]> -->
 					</script>
 
-					<br class="clearall" />
-					<br />
+					<br class="clearall">
+
 				</div><!-- end of tab_admin div -->
 
 			</div><!-- end of container -->
 		</div><!-- end of content -->
+		<?php printAdminFooter(); ?>
 	</div><!-- end of main -->
-	<?php
-	printAdminFooter();
-	?>
 </body>
 </html>
 

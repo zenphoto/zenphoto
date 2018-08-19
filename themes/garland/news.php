@@ -1,13 +1,12 @@
 <?php
 if (!defined('WEBPATH'))
 	die();
+if (class_exists('CMS')) {
 	?>
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 			<?php if (class_exists('RSS')) printRSSHeaderLink("News", "Zenpage news", ""); ?>
 		</head>
@@ -19,9 +18,7 @@ if (!defined('WEBPATH'))
 					<div id="header">
 						<div id="logo-floater">
 							<div>
-								<h1 class="title">
-									<a href="<?php echo html_encode(getSiteHomeURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
-								</h1>
+								<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
 								<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
 							</div>
 						</div>
@@ -40,8 +37,10 @@ if (!defined('WEBPATH'))
 									<!-- begin content -->
 									<div class="main section" id="main">
 										<h2 id="gallerytitle">
-											<?php printHomeLink('', ' » ');
-											printGalleryIndexURL(' » ');
+											<?php printHomeLink('', ' » '); ?>
+											<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
+											<?php
+											printNewsIndexURL(NULL, ' » ');
 											printZenpageItemsBreadcrumb(' » ', '');
 											printCurrentNewsCategory(" » ");
 											printNewsTitle(" » ");
@@ -55,20 +54,26 @@ if (!defined('WEBPATH'))
 											<div class="newsarticlecredit">
 												<span class="newsarticlecredit-left">
 													<?php
+													$cat = getNewsCategories();
 													$count = @call_user_func('getCommentCount');
 													printNewsDate();
 													if ($count > 0) {
 														echo ' | ';
 														printf(gettext("Comments: %d"), $count);
 													}
+													if (!empty($cat)) {
+														echo ' | ';
+														printNewsCategories(", ", gettext("Categories: "), "newscategories");
+													}
 													?>
 												</span>
+												<br />
+
 												<?php printCodeblock(1); ?>
 												<?php printNewsContent(); ?>
 												<?php printCodeblock(2); ?>
 											</div>
 											<?php
-											@call_user_func('printRating');
 											@call_user_func('printCommentForm');
 										} else { // news article loop
 											commonNewsLoop(true);
@@ -89,7 +94,7 @@ if (!defined('WEBPATH'))
 							if (is_NewsArticle()) {
 								if (getPrevNewsURL()) {
 									?>
-									<div class="singlenews_prev"><?php printPrevNewsLink(); ?></div>
+									<div class="singlenews_prev"><?php printPrevNewsLink(); ?>&nbsp;&nbsp; </div>
 									<?php
 								}
 								if (getNextNewsURL()) {
@@ -99,14 +104,14 @@ if (!defined('WEBPATH'))
 								}
 								if (getPrevNewsURL() || getNextNewsURL()) {
 									?>
-									<br class="clearall" />
+									<br class="clearall">
 									<?php
 								}
 								$cat = getNewsCategories();
 								if (!empty($cat)) {
 									printNewsCategories(", ", gettext("Categories: "), "newscategories");
 									?>
-									<br class="clearall" />
+									<br class="clearall">
 									<?php
 								}
 								printTags('links', gettext('Tags: '), NULL, '');
@@ -121,3 +126,8 @@ if (!defined('WEBPATH'))
 			?>
 		</body>
 	</html>
+	<?php
+} else {
+	include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
+}
+?>

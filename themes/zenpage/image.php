@@ -7,14 +7,15 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+
+
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				$(document).ready(function () {
+				window.addEventListener('load', function () {
 					$(".colorbox").colorbox({
 						inline: true,
 						href: "#imagemetadata",
@@ -29,7 +30,7 @@ if (!defined('WEBPATH'))
 							$(window).resize(resizeColorBoxImage);
 						}
 					});
-				});
+				}, false);
 				// ]]> -->
 			</script>
 		<?php } ?>
@@ -53,8 +54,7 @@ if (!defined('WEBPATH'))
 			<div id="content">
 
 				<div id="breadcrumb">
-					<h2><?php
-						printGalleryIndexURL(' » ');
+					<h2><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <?php
 						printParentBreadcrumb("", " » ", " » ");
 						printAlbumBreadcrumb("  ", " » ");
 						?>
@@ -68,8 +68,8 @@ if (!defined('WEBPATH'))
 					//
 					if (function_exists('printThumbNav')) {
 						printThumbNav(3, 6, 50, 50, 50, 50, FALSE);
-					} else {
-						@call_user_func('printPagedThumbsNav', 6, FALSE, gettext('« prev thumbs'), gettext('next thumbs »'), 40, 40);
+					} else if (function_exists('printPagedThumbsNav')) {
+						printPagedThumbsNav(6, FALSE, gettext('« prev thumbs'), gettext('next thumbs »'), 40, 40);
 					}
 					?>
 
@@ -87,7 +87,7 @@ if (!defined('WEBPATH'))
 						}
 						if (!empty($tburl)) {
 							?>
-							<a href="<?php echo html_encode(pathurlencode($tburl)); ?>"<?php echo $boxclass; ?> title="<?php printBareImageTitle(); ?>">
+							<a href="<?php echo pathurlencode($tburl); ?>"<?php echo $boxclass; ?> title="<?php printBareImageTitle(); ?>">
 								<?php
 							}
 							printCustomSizedImageMaxSpace(getBareImageTitle(), 580, 580);
@@ -129,21 +129,19 @@ if (!defined('WEBPATH'))
 						@call_user_func('printRating');
 						@call_user_func('printGoogleMap');
 						@call_user_func('printOpenStreetMap');
-						if (class_exists('ScriptlessSocialSharing')) {
-							ScriptlessSocialSharing::printButtons();
-						}
 						?>
+
 					</div>
-<?php @call_user_func('printCommentForm'); ?>
+					<?php @call_user_func('printCommentForm'); ?>
 
 				</div><!-- content-left -->
 
 				<div id="sidebar">
-<?php include("sidebar.php"); ?>
+					<?php include("sidebar.php"); ?>
 				</div>
 
 				<div id="footer">
-<?php include("footer.php"); ?>
+					<?php include("footer.php"); ?>
 				</div>
 
 

@@ -1,62 +1,65 @@
 <?php
 /**
- * A Zenphoto plugin that provides scriptless and privacy friendly sharing buttons for:
- * 
- * - Facebook
- * - Twitter
- * - Google+
- * - Pinterest 
- * - Linkedin
- * - Xing
- * - Reddit
- * - Stumbleupon
- * - Tumblr
- * - WhatsApp (iOS only)
- * - Digg
- * - Livejournal 
- * - Buffer
- * - Delicious
- * - Evernote
- * - WordPress(.com)
- * - Pocket
- * - e-mail (static link to open the visitor's mail client)
- * 
+ * A plugin that provides scriptless and privacy friendly sharing buttons for:
+ *
+ * <ul>
+ * <li>Facebook</li>
+ * <li>Twitter</li>
+ * <li>Google+</li>
+ * <li>Pinterest</li>
+ * <li>Linkedin</li>
+ * <li>Xing</li>
+ * <li>Reddit</li>
+ * <li>Stumbleupon</li>
+ * <li>Tumblr</li>
+ * <li>WhatsApp (iOS only)</li>
+ * <li>Digg</li>
+ * <li>Livejournal</li>
+ * <li>Buffer</li>
+ * <li>Delicious</li>
+ * <li>Evernote</li>
+ * <li>WordPress(.com)</li>
+ * <li>Pocket</li>
+ * <li>e-mail (static link to open the visitor's mail client)</li>
+ * </ul>
+ *
  * Note: Since no scripts are involved no share counts!
- * 
- * To have it work correctly you should to enable the html_meta_tags plugin 
+ *
+ * To have it work correctly you should to enable the html_meta_tags plugin
  * and the Open Graph (og:) meta data elements.
  *
- * The plugin loads an default CSS styling using an icon font optionally. If you wish to use theme based custom icons 
+ * The plugin loads an default CSS styling using an icon font optionally. If you wish to use theme based custom icons
  * and css to avoid extra loading you can disable it.
  *
  * Icon font created using the icomoon app: http://icomoon.io/#icons-icomoon
  * Fonts used:
  * - Brankic 1979 (buffer/stack icon) http://brankic1979.com/icons/ (free for personal and commercial use)
  * - Entypo+ (evernote icon) http://www.entypo.com – CC BY-SA 4.0
- * - fontawesome (all other icons) http://fontawesome.io – SIL OFL 1.1 
+ * - fontawesome (all other icons) http://fontawesome.io – SIL OFL 1.1
  *
  * Usage:
- * Place `<?php ScriptlessSocialSharing::printButtons(); ?>` on your theme files where you wish the buttons to appear.
+ * Place <code>&lt;?php ScriptlessSocialSharing::printButtons();?&gt;</code> on your theme files where you wish the buttons to appear.
  *
  * @author Malte Müller (acrylian)
- * @copyright 2018 Malte Müller
+ * @copyright 2018 Malte Müller, Stephen Billard (netPhotoGraphics migration and general cleanup)
  * @license GPL v3 or later
- * @package plugins
- * @subpackage scriptless-socialsharing
+ * @package plugin/scriptless-socialsharing
+ * @pluginCategory theme
  */
 $plugin_is_filter = 9 | THEME_PLUGIN;
-$plugin_description = gettext('A Zenphoto plugin that provides scriptless and privacy friendly sharing buttons for Facebook, Twitter, Google+, Pinterest, Linkedin, Xing, Reddit, Stumbleupon, Tumblr, WhatsApp (iOS only) and e-mail. (Note: No share counts because of that!).');
-$plugin_author = 'Malte Müller (acrylian)';
-$plugin_category = gettext('Misc');
-$option_interface = 'scriptlessSocialsharingOptions';
+$plugin_description = gettext('Provides scriptless and privacy friendly sharing buttons.');
+$option_interface = 'scriptlessSocialsharing';
+
 if (getOption('scriptless_socialsharing_iconfont')) {
 	zp_register_filter('theme_head', 'scriptlessSocialsharing::CSS');
 }
 
-class scriptlessSocialsharingOptions {
+class scriptlessSocialsharing {
 
 	function __construct() {
-		
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('scriptless_socialsharing_iconfont', 1);
+		}
 	}
 
 	function getOptionsSupported() {
@@ -75,7 +78,7 @@ class scriptlessSocialsharingOptions {
 								'Reddit' => 'scriptless_socialsharing_reddit',
 								'StumbleUpon' => 'scriptless_socialsharing_stumbleupon',
 								'Tumblr' => 'scriptless_socialsharing_tumblr',
-								'Whatsapp' => 'scriptless_socialsharing_whatsapp',
+								'Whatsapp (' . gettext('iOS only') . ')' => 'scriptless_socialsharing_whatsapp',
 								'Digg' => 'scriptless_socialsharing_digg',
 								'Livejournal' => 'scriptless_socialsharing_livejournal',
 								'Buffer' => 'scriptless_socialsharing_buffer',
@@ -85,7 +88,7 @@ class scriptlessSocialsharingOptions {
 								'Pocket' => 'scriptless_socialsharing_pocket',
 								gettext('E-mail') => 'scriptless_socialsharing_email',
 						),
-						'desc' => gettext('Select the social networks you wish buttons to appear for. Note: WhatsApp iOS only.')),
+						'desc' => gettext('Select the social networks for which you wish buttons.')),
 				gettext('Icon font and default CSS') => array(
 						'key' => 'scriptless_socialsharing_iconfont',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -105,30 +108,22 @@ class scriptlessSocialsharingOptions {
 		return $options;
 	}
 
-}
-
-/**
- * Static class wrapper
- * 
- * @since 1.5
- */
-class scriptlessSocialsharing {
-
 	static function CSS() {
+		$css = getPlugin('scriptless-socialsharing/style.min.css', true, WEBPATH);
 		?>
-			<link rel="stylesheet" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/scriptless-socialsharing/style.min.css" type="text/css">
+		<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css">
 		<?php
 	}
-	
+
 	/**
 	 * Gets an array with the buttons information
-	 *  
+	 *
 	 * @param string $beforetext Text to be displayed before the sharing list. HTML code allowed. Default empty
 	 * @param string $customtext Custom text to share to override the internalt share text generation via current page
 	 * @return array
 	 */
 	static function getButtons($beforetext = '', $customtext = null) {
-		global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+		global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_article, $_zp_current_page, $_zp_current_category;
 		$title = '';
 		$desc = '';
 		$url = '';
@@ -152,21 +147,21 @@ class scriptlessSocialsharing {
 			case 'news.php':
 				if (function_exists("is_NewsArticle")) {
 					if (is_NewsArticle()) {
-						$url = $_zp_current_zenpage_news->getLink();
-						$title = (empty($customtext)) ? $_zp_current_zenpage_news->getTitle() : $customtext;
+						$url = $_zp_current_article->getLink();
+						$title = (empty($customtext)) ? $_zp_current_article->getTitle() : $customtext;
 					} else if (is_NewsCategory()) {
 						$url = $_zp_current_category->getLink();
 						$title = (empty($customtext)) ? $_zp_current_category->getTitle() : $customtext;
 					} else {
 						$url = getNewsIndexURL();
-						$title = (empty($customtext)) ? getBareGalleryTitle() . ' - ' . gettext('News') : $customtext;
+						$title = (empty($customtext)) ? getBareGalleryTitle() . ' - ' . NEWS_LABEL : $customtext;
 					}
 				}
 				break;
 			case 'pages.php':
 				if (function_exists("is_Pages")) {
-					$url = $_zp_current_zenpage_page->getLink();
-					$title = (empty($customtext)) ? $_zp_current_zenpage_page->getTitle() : $customtext;
+					$url = $_zp_current_page->getLink();
+					$title = (empty($customtext)) ? $_zp_current_page->getTitle() : $customtext;
 				}
 				break;
 			default: //static custom pages
@@ -189,7 +184,7 @@ class scriptlessSocialsharing {
 						default:
 							$title = strtoupper(stripSuffix($_zp_gallery_page));
 							break;
-					} 
+					}
 				} else {
 					$title = $customtext;
 				}
@@ -341,42 +336,43 @@ class scriptlessSocialsharing {
 
 	/**
 	 * Place this where you wish the buttons to appear. The plugin includes also jQUery calls to set the buttons up to allow multiple button sets per page.
-	 *  
+	 *
 	 * @param string $text Text to be displayed before the sharing list. HTML code allowed. Default empty
 	 * @param string $customtext Custom text to share to override the internalt share text generation via current page
-*/
+	 */
 	static function printButtons($text = '', $customtext = null, $iconsonly = null) {
 		$buttons = self::getButtons($text, '', $customtext);
 		if (is_null($iconsonly)) {
 			$iconsonly = getOption('scriptless_socialsharing_iconsonly');
 		}
 		?>
-			<ul class="scriptless_socialsharing">
-				<?php
-				foreach ($buttons as $button) {
-					$li_class = '';
-					if ($button['class'] == 'sharingicon-whatsapp') {
-						$li_class = ' class="whatsappLink hidden"';
-					}
-					?>
-					<li<?php echo $li_class; ?>>
-						<a class="<?php echo $button['class']; ?>" href="<?php echo $button['url']; ?>" title="<?php echo $button['title']; ?>" target="_blank">
-							<?php
-							if (!$iconsonly) {
-								echo $button['title'];
-							}
-							?>
-						</a>
-					</li>
-					<?php 
-					if ($button['class'] == 'sharingicon-whatsapp') { ?>
-						<script>
-							(navigator.userAgent.match(/(iPhone)/g)) ? $('.whatsappLink').removeClass('hidden') : null;
-						</script>
-					<?php 
-					} 
-				} ?>
-			</ul>
+		<ul class="scriptless_socialsharing">
+			<?php
+			foreach ($buttons as $button) {
+				$li_class = '';
+				if ($button['class'] == 'sharingicon-whatsapp') {
+					$li_class = ' class="whatsappLink hidden"';
+				}
+				?>
+				<li<?php echo $li_class; ?>>
+					<a class="<?php echo $button['class']; ?>" href="<?php echo $button['url']; ?>" title="<?php echo $button['title']; ?>" target="_blank">
+						<?php
+						if (!$iconsonly) {
+							echo $button['title'];
+						}
+						?>
+					</a>
+				</li>
+				<?php if ($button['class'] == 'sharingicon-whatsapp') { ?>
+					<script>
+						(navigator.userAgent.match(/(iPhone)/g)) ? $('.whatsappLink').removeClass('hidden') : null;
+					</script>
+					<?php
+				}
+			}
+			?>
+		</ul>
 		<?php
 	}
+
 }

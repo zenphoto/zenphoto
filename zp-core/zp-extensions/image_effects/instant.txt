@@ -1,0 +1,4 @@
+<source><a href="http://www.netzgesta.de/cvi/">Astonishing image effects through JS and Canvas/VML</a></source>
+<head><script type="text/javascript" src="%WEBPATH%/%USER_PLUGIN_FOLDER%/image_effects/instant.js"></script></head>
+<class>instant isize20</class>
+<validate>%SERVERPATH%/%USER_PLUGIN_FOLDER%/image_effects/instant.js</validate>

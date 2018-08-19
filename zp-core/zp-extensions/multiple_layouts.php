@@ -3,16 +3,17 @@
 /**
  *
  * Provides functionality to select different templates for the standard theme pages <i>album.php</i>, <i>image.php</i>
- * and for Zenpage <i>pages.php</i> and <i>news.php</i>.
+ * and for zenpage <i>pages.php</i> and <i>news.php</i>.
  *
  * The additional template files have to be clones of the standard theme pages which must be kept as default ones.
  * The file names of these additional template files must match these patterns and should not include special characters or characters with diacritical marks:
  *
- * Zenphoto gallery items:
- * <ul>
+ * Gallery items:
+ * <hr>
+ * <ol>
  * <li>For albums: album<var>customname</var>.php</li>
  * <li>For images : image<var>customname</var>.php</li>
- * <ul/>
+ * <ol/>
  *
  * "Select album layout" checkbox:
  * If you want to avoid to manually select a specific layout for all images in an album you can check this option
@@ -36,13 +37,11 @@
  * if no specific layout is seleced. News articles don't inherit anything because they don't directly belong to any parent item.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage multiple-layouts
+ * @package plugins/multiple_layouts
+ * @pluginCategory theme
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Multiple <em>Theme</em> layouts");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
-$plugin_category = gettext('Misc');
 
 $option_interface = 'multipleLayoutOptions';
 
@@ -82,11 +81,26 @@ if (extensionEnabled('zenpage')) {
 class multipleLayoutOptions {
 
 	function __construct() {
-		setOptionDefault('multiple_layouts_images', 0);
-		setOptionDefault('multiple_layouts_albums', 0);
-		setOptionDefault('multiple_layouts_pages', 1);
-		setOptionDefault('multiple_layouts_news', 1);
-		setOptionDefault('multiple_layouts_news_categories', 1);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('multiple_layouts_images', 0);
+			setOptionDefault('multiple_layouts_albums', 0);
+			setOptionDefault('multiple_layouts_pages', 1);
+			setOptionDefault('multiple_layouts_news', 1);
+			setOptionDefault('multiple_layouts_news_categories', 1);
+
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="multiple_layouts",`subtype`="images" WHERE `type`="multiple_layouts_images"';
+			query($sql);
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="multiple_layouts",`subtype`="albums" WHERE `type`="multiple_layouts_albums"';
+			query($sql);
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="multiple_layouts",`subtype`="albums_images" WHERE `type`="multiple_layouts_albums_images"';
+			query($sql);
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="multiple_layouts",`subtype`="pages" WHERE `type`= "multiple_layouts_pages"';
+			query($sql);
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="multiple_layouts",`subtype`="news" WHERE `type`= "multiple_layouts_news"';
+			query($sql);
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="multiple_layouts",`subtype`="news_categories" WHERE `type`= "multiple_layouts_news_categories"';
+			query($sql);
+		}
 	}
 
 	function getOptionsSupported() {
@@ -94,9 +108,9 @@ class multipleLayoutOptions {
 		if (extensionEnabled('zenpage')) {
 			$checkboxes = array_merge($checkboxes, array(gettext('Pages') => 'multiple_layouts_pages', gettext('News') => 'multiple_layouts_news', gettext('News categories') => 'multiple_layouts_news_categories'));
 		}
-		$options = array(gettext('Enable multiple layouts for') => array('key'				 => 'multiple_layouts_allowed', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'checkboxes' => $checkboxes,
-										'desc'			 => '')
+		$options = array(gettext('Enable multiple layouts for') => array('key' => 'multiple_layouts_allowed', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'checkboxes' => $checkboxes,
+						'desc' => '')
 		);
 		return $options;
 	}
@@ -111,13 +125,13 @@ class multipleLayoutOptions {
  * Gets the selected layout page for this item. Returns false if nothing is selected.
  *
  * @param object $obj the object being selected
- * @param string $type For Zenphoto gallery items "multiple_layouts_albums", "multiple_layouts_images"
- * 										 For Zenpage CMS items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
+ * @param string $type For Gallery items "albums", "images"
+ * 										 For zenpage items "pages", , "news" , "news_categories"
  * @return result
  */
 function getSelectedLayout($obj, $type) {
 	if ($obj && $obj->exists) {
-		$assignedlayout = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
+		$assignedlayout = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux`=' . $obj->getID() . ' AND `type`="multiple_layouts" AND `subtype`=' . db_quote($type));
 		if (!$assignedlayout || empty($assignedlayout['data'])) {
 			$assignedlayout = checkParentLayouts($obj, $type);
 		}
@@ -130,44 +144,44 @@ function getSelectedLayout($obj, $type) {
  * Checks if there is a layout inherited from a parent items (album, page or category) and returns it. Returns false otherwise.
  *
  * @param object $obj the object being selected
- * @param string $type For Zenphoto gallery items "multiple_layouts_albums"
- * 										 For Zenpage CMS items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
+ * @param string $type For gallery items "albums"
+ * 										 For zenpage items , "pages", , "news" , "news_categories"
  * @return result
  */
 function checkParentLayouts($obj, $type) {
 	$parents = array();
 	switch ($type) {
-		case 'multiple_layouts_images':
-			$type = 'multiple_layouts_albums_images';
+		case 'images':
+			$type = 'albums_images';
 			$obj = $obj->getAlbum();
 			array_unshift($parents, $obj);
-		case 'multiple_layouts_albums':
-		case 'multiple_layouts_albums_images':
+		case 'albums':
+		case 'albums_images':
 			while (!is_null($obj = $obj->getParent())) {
 				array_unshift($parents, $obj);
 			}
 			if (count($parents) > 0) {
 				$parents = array_reverse($parents); //reverse so we can check the direct parent first.
 				foreach ($parents as $parentobj) {
-					$parentlayouts = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parentobj->getID() . ' AND `type` = "' . $type . '"');
+					$parentlayouts = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parentobj->getID() . ' AND `type`="multiple_layouts" AND `subtype`=' . db_quote($type));
 					if ($parentlayouts && $parentlayouts['data']) {
 						return $parentlayouts;
 					}
 				}
 			}
 			break;
-		case 'multiple_layouts_pages':
-		case 'multiple_layouts_news_categories':
+		case 'pages':
+		case 'news_categories':
 			$parents = $obj->getParents();
 			if (count($parents) > 0) {
 				$parents = array_reverse($parents); //reverse so we can check the direct parent first.
 				foreach ($parents as $parent) {
-					if ($type === 'multiple_layouts_pages') {
-						$parentobj = new ZenpagePage($parent);
+					if ($type === 'pages') {
+						$parentobj = newPage($parent);
 					} else {
-						$parentobj = new ZenpageCategory($parent);
+						$parentobj = newCategory($parent);
 					}
-					$parentlayouts = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parentobj->getID() . ' AND `type` = "' . $type . '"');
+					$parentlayouts = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parentobj->getID() . ' AND `type`="multiple_layouts" AND `subtype`=' . db_quote($type));
 					if ($parentlayouts && $parentlayouts['data']) {
 						return $parentlayouts;
 					}
@@ -185,7 +199,7 @@ function checkParentLayouts($obj, $type) {
  * @return results
  */
 function checkLayoutUseForImages($obj) {
-	$albumimagelayout = query_single_row("SELECT id, `data` FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "multiple_layouts_albums_images"');
+	$albumimagelayout = query_single_row("SELECT id, `data` FROM " . prefix('plugin_storage') . ' WHERE `aux`=' . $obj->getID() . ' AND `type` = "multiple_layouts" AND `subtype`="albums_images"');
 	if ($albumimagelayout) {
 		return $albumimagelayout;
 	} else {
@@ -196,7 +210,7 @@ function checkLayoutUseForImages($obj) {
 		if (count($parents) > 0) {
 			$parents = array_reverse($parents);
 			foreach ($parents as $parent) {
-				$parentimagelayouts = query_full_array('SELECT id, `data` FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parent->getID() . ' AND `type` = "multiple_layouts_albums_images"');
+				$parentimagelayouts = query_full_array('SELECT id, `data` FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parent->getID() . ' AND `type` = "multiple_layouts" AND `subtype`="albums_images"');
 				if ($parentimagelayouts && $parentimagelayouts['data']) {
 					return $parentimagelayouts;
 				}
@@ -213,8 +227,8 @@ function checkLayoutUseForImages($obj) {
  * @param object $obj
  */
 function layoutSelector($html, $obj, $prefix = '') {
-	$type = 'multiple_layouts_' . $obj->table;
-	if (getOption($type)) {
+	$type = $obj->table;
+	if (getOption('multiple_layouts_' . $type)) {
 		$html .= getLayoutSelector($obj, $type, '<hr /><p>' . gettext('Select layout:') . '</p>', $prefix);
 	}
 	return $html;
@@ -228,8 +242,8 @@ function layoutSelector($html, $obj, $prefix = '') {
  */
 function layoutSelector_album($html, $obj, $prefix) {
 	if (getOption('multiple_layouts_albums')) {
-		$albumhtml = getLayoutSelector($obj, 'multiple_layouts_albums', '<hr /><p>' . gettext('Select album layout:') . '</p>', $prefix);
-		$imagehtml = getLayoutSelector($obj, 'multiple_layouts_albums_images', '<p>' . gettext('Select default album image layout:') . '</p>', $prefix, true);
+		$albumhtml = getLayoutSelector($obj, 'albums', '<hr /><p>' . gettext('Select album layout:') . '</p>', $prefix);
+		$imagehtml = getLayoutSelector($obj, 'albums_images', '<p>' . gettext('Select default album image layout:') . '</p>', $prefix, true);
 		if (!$obj->isDynamic() && strpos($imagehtml, '<p class="no_extra">') === false) {
 			$imagehtml .= '<br /><input type="checkbox" id="layout_selector_resetimagelayouts" name="layout_selector_resetimagelayouts" /><label for="layout_selector_resetimagelayouts">' . gettext('Reset individual image layouts') . '</label>';
 		}
@@ -283,8 +297,8 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
 			$categories = $obj->getCategories();
 			if ($categories) {
 				foreach ($categories as $cat) {
-					$cat = new ZenpageCategory($cat['titlelink']);
-					$getlayout = getSelectedLayout($cat, 'multiple_layouts_news_categories');
+					$cat = newCategory($cat['titlelink']);
+					$getlayout = getSelectedLayout($cat, 'news_categories');
 					if ($getlayout && $getlayout['data']) { //	in at least one news category with an alternate page
 						$defaulttext = gettext('inherited');
 						$defaultlayout = gettext('from category');
@@ -318,7 +332,7 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
 	if ($obj->transient) {
 		$getlayout = false;
 	} else {
-		$getlayout = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
+		$getlayout = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type`="multiple_layouts" AND `subtype`=' . db_quote($type));
 	}
 	if (!$child && ($key = array_search($filesmask . '.php', $files)) !== false) {
 		unset($files[$key]);
@@ -331,7 +345,7 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
 
 	$html = $text;
 	if (count($files) != 0) {
-		$html .= '<select id="' . $type . $prefix . '" name="' . $prefix . $type . '">' . "\n";
+		$html .= '<select id="' . $type . $prefix . '" name="' . $prefix . 'multiple_layouts_' . $type . '">' . "\n";
 		if (is_array($getlayout)) {
 			$selectedlayout = $getlayout['data'];
 		} else {
@@ -356,14 +370,14 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
  * @return string
  */
 function getLayout($path) {
-	global $_zp_gallery, $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category, $_zp_current_search;
+	global $_zp_gallery, $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_page, $_zp_current_article, $_zp_current_category, $_zp_current_search;
 	if ($path) {
 		$themepath = THEMEFOLDER . '/' . $_zp_gallery->getCurrentTheme() . '/';
 		$getlayout = false;
 		switch ($_zp_gallery_page) {
 			case 'album.php':
 				if (getOption('multiple_layouts_albums')) {
-					$getlayout = getSelectedLayout($_zp_current_album, 'multiple_layouts_albums');
+					$getlayout = getSelectedLayout($_zp_current_album, 'albums');
 				}
 				break;
 			case 'image.php':
@@ -374,7 +388,7 @@ function getLayout($path) {
 							$album = $_zp_current_album;
 						}
 					} else {
-						$getlayout = getSelectedLayout($_zp_current_image, 'multiple_layouts_images');
+						$getlayout = getSelectedLayout($_zp_current_image, 'images');
 						$album = $_zp_current_album;
 					}
 					if ($album && !$getlayout) {
@@ -384,14 +398,14 @@ function getLayout($path) {
 				break;
 			case 'pages.php':
 				if (getOption('multiple_layouts_pages')) {
-					$getlayout = getSelectedLayout($_zp_current_zenpage_page, 'multiple_layouts_pages');
+					$getlayout = getSelectedLayout($_zp_current_page, 'pages');
 				}
 				break;
 			case 'news.php':
 				if (getOption('multiple_layouts_news_categories') && in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-					$getlayout = getSelectedLayout($_zp_current_category, 'multiple_layouts_news_categories');
+					$getlayout = getSelectedLayout($_zp_current_category, 'news_categories');
 				} elseif (getOption('multiple_layouts_news') && in_context(ZP_ZENPAGE_SINGLE)) {
-					$getlayout = getSelectedLayout($_zp_current_zenpage_news, 'multiple_layouts_news');
+					$getlayout = getSelectedLayout($_zp_current_article, 'news');
 				}
 				break;
 		}
@@ -411,25 +425,23 @@ function getLayout($path) {
  * @return string
  */
 function saveLayoutSelection($message, $obj) {
-	$selectedlayout = '';
-	$type = 'multiple_layouts_' . $obj->table;
-	if (isset($_POST[$type])) {
-		$selectedlayout = sanitize($_POST[$type]);
-		$table = $obj->table;
-		$exists = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
+	$table = $obj->table;
+	if (isset($_POST['multiple_layouts_' . $table])) {
+		$selectedlayout = sanitize($_POST['multiple_layouts_' . $table]);
 		if ($selectedlayout) { // not default
-			if ($exists) {
-				$query = query('UPDATE ' . prefix('plugin_storage') . ' SET `aux`=' . $obj->getID() . ', `data`=' . db_quote($selectedlayout) . ' WHERE `id`=' . $exists['id']);
+			$sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="multiple_layouts" AND `subtype`=' . db_quote($table) . ' AND `aux`=' . $obj->getID();
+			$exists = query_single_row($sql);
+			if (empty($exists)) {
+				$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,subtype,aux,data) VALUES ("multiple_layouts",' . db_quote($table) . ',' . $obj->getID() . ',' . db_quote($selectedlayout) . ')');
 			} else {
-				$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES (' . db_quote($type) . ', ' . $obj->getID() . ', ' . db_quote($selectedlayout) . ')');
+				$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `data`=' . db_quote($selectedlayout) . ' WHERE `type`="multiple_layouts" AND `subtype`=' . db_quote($table) . ' AND `aux`=' . $obj->getID();
+				$query = query($sql);
 			}
 		} else {
-			if ($exists) { //	got to get rid of the record
-				$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $exists['id']);
-			} else {
-				$query = true; //	no harm, no foul
-			}
+			//	got to get rid of the record
+			$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $obj->getID() . ' AND `type`= "multiple_layouts" AND `subtype`=' . db_quote($table), false);
 		}
+
 		if (!$query) {
 			$message .= '<p class="errorbox">' . sprintf(gettext('Query failure: %s'), db_error()) . '</p>';
 		}
@@ -448,48 +460,44 @@ function saveZenphotoLayoutSelection($obj, $prefix) {
 	$selectedlayout = '';
 	$titlelink = '';
 	$table = $obj->table;
-	$type = 'multiple_layouts_' . $table;
-	if (isset($_POST[$prefix . $type])) {
-		$selectedlayout = sanitize($_POST[$prefix . $type]);
-		$exists = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
+	if (isset($_POST[$prefix . 'multiple_layouts_' . $table])) {
+		$selectedlayout = sanitize($_POST[$prefix . 'multiple_layouts_' . $table]);
 		if ($selectedlayout) { // not default
-			if ($exists) {
-				$query = query('UPDATE ' . prefix('plugin_storage') . ' SET `aux`=' . $obj->getID() . ', `data`=' . db_quote($selectedlayout) . ' WHERE `id`=' . $exists['id']);
+			$sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="multiple_layouts" AND `subtype`=' . db_quote($table) . ' AND `aux`=' . $obj->getID();
+			$exists = query_single_row($sql);
+			if (empty($exists)) {
+				$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,subtype,aux,data) VALUES ("multiple_layouts",' . db_quote($table) . ',' . $obj->getID() . ',' . db_quote($selectedlayout) . ')');
 			} else {
-				$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES ("' . $type . '", ' . $obj->getID() . ', ' . db_quote($selectedlayout) . ')');
+				$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `data`=' . db_quote($selectedlayout) . ' WHERE `type`="multiple_layouts" AND `subtype`=' . db_quote($table) . ' AND `aux`=' . $obj->getID();
+				$query = query($sql, false);
 			}
 		} else {
-			if ($exists) { //	got to get rid of the record
-				$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $exists['id']);
-			} else {
-				$query = true; //	no harm, no foul
-			}
+			query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $obj->getID() . ' AND `type`= "multiple_layouts" AND `subtype`=' . db_quote($table), false);
 		}
 		if ($table == 'albums') { //	deal with the default images selection, clear image selections
 			if (isset($_POST['layout_selector_resetimagelayouts'])) {
 				$result = query_full_array('SELECT `id` FROM ' . prefix('images') . ' WHERE `albumid`=' . $obj->getID());
 				if ($result) {
-					$imagelist = '';
+					$imagelist = array();
 					foreach ($result as $row) {
-						$imagelist .= '`aux`=' . $row['id'] . ' OR ';
+						$imagelist[] = $row['id'];
 					}
-					$query = query($sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="multiple_layouts_images" AND (' . substr($imagelist, 0, -4) . ')', false);
+					$query = query($sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="multiple_layouts" AND `subtype`="images" AND `aux` IN (' . implode(',', $imagelist) . ')', false);
 				}
 			}
-			$exists = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "multiple_layouts_albums_images"');
+
 			$selectedlayout = isset($_POST[$prefix . 'multiple_layouts_albums_images']) ? sanitize($_POST[$prefix . 'multiple_layouts_albums_images']) : NULL;
 			if ($selectedlayout) { // not default
-				if ($exists) {
-					$query = query('UPDATE ' . prefix('plugin_storage') . ' SET `aux`=' . $obj->getID() . ', `data`=' . db_quote($selectedlayout) . ' WHERE `id`=' . $exists['id']);
+				$sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="multiple_layouts" AND `subtype`="albums_images" AND `aux`=' . $obj->getID();
+				$exists = query_single_row($sql);
+				if (empty($exists)) {
+					$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,subtype,aux,data) VALUES ("multiple_layouts","albums_images",' . $obj->getID() . ',' . db_quote($selectedlayout) . ')');
 				} else {
-					$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES ("multiple_layouts_albums_images", ' . $obj->getID() . ', ' . db_quote($selectedlayout) . ')');
+					$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `data`=' . db_quote($selectedlayout) . ' WHERE `type`="multiple_layouts" AND `subtype`="albums_images" AND `aux`=' . $obj->getID();
+					$query = query($sql, false);
 				}
 			} else {
-				if ($exists) { //	got to get rid of the record
-					$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $exists['id']);
-				} else {
-					$query = true; //	no harm, no foul
-				}
+				query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $obj->getID() . ' AND `type`= "multiple_layouts" AND `subtype`="albums_images"', false);
 			}
 		}
 	}
@@ -504,11 +512,11 @@ function saveZenphotoLayoutSelection($obj, $prefix) {
  * @return bool
  */
 function deleteLayoutSelection($allow, $obj) {
-	$type = 'multiple_layouts_' . $obj->table;
-	if (getOption($type)) {
+	$type = $obj->table;
+	if (getOption('multiple_layouts_' . $type)) {
 		$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "' . $type . '"', false);
 		if (isAlbumClass($obj)) {
-			$result = query_single_row('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "multiple_layouts_albums_images"', false);
+			$result = query_single_row('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "multiple_layouts" AND `subtype`="albums_images"', false);
 		}
 	}
 	return $allow;
@@ -521,16 +529,16 @@ function deleteLayoutSelection($allow, $obj) {
  * @param $obj
  */
 function copyLayoutSelection($newid, $obj) {
-	$type = 'multiple_layouts_' . $obj->table;
-	if (getOption($type)) {
-		$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "' . $type . '"', false);
+	$type = $obj->table;
+	if (getOption('multiple_layouts_' . $type)) {
+		$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type`="multiple_layouts" AND `subtype`=' . db_quote($type), false);
 		if ($result) {
-			$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES ("' . $result['type'] . '", ' . $newid . ', ' . db_quote($result['data']) . ')');
+			$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,subtype,aux,data) VALUES ("multiple_layouyt",' . db_quote($result['type']) . ', ' . $newid . ', ' . db_quote($result['data']) . ')');
 		}
 		if (isAlbumClass($obj)) {
-			$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "multiple_layouts_albums_images"', false);
+			$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type="multiple_layouts" AND `subtype`="albums_images"', false);
 			if ($result) {
-				$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES ("multiple_layouts_albums_images", ' . $newid . ', ' . db_quote($result['data']) . ')');
+				$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,subtype,aux,data) VALUES ("multiple_layouts","albums_images", ' . $newid . ', ' . db_quote($result['data']) . ')');
 			}
 		}
 	}

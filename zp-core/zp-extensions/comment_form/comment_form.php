@@ -1,3 +1,8 @@
+<?php
+/**
+ * @package plugins/comment_form
+ */
+?>
 <form id="commentform" action="#commentform" method="post">
 	<input type="hidden" name="comment" value="1" />
 	<input type="hidden" name="remember" value="1" />
@@ -23,8 +28,11 @@
 			?>
 			<p>
 				<label for="anon"> (<?php echo gettext("<em>anonymous</em>"); ?>)</label>
-				<input type="checkbox" name="anon" id="anon" value="1"<?php if ($stored['anon']) echo ' checked="checked"';
-		echo $disabled['anon']; ?> />
+				<input type="checkbox" name="anon" id="anon" value="1"<?php
+				if ($stored['anon'])
+					echo ' checked="checked"';
+				echo $disabled['anon'];
+				?> />
 			</p>
 			<?php
 		}
@@ -71,9 +79,14 @@
 		</p>
 		<?php
 	}
+	$class = $buttonExtra = '';
 	if (commentFormUseCaptcha()) {
 		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
 		$required = true;
+		if (isset($captcha['submitButton'])) {
+			$class = ' ' . $captcha['submitButton']['class'];
+			$buttonExtra = ' ' . $captcha['submitButton']['extra'];
+		}
 		?>
 		<p>
 			<?php
@@ -87,16 +100,6 @@
 		</p>
 		<?php
 	}
-	if (getOption('comment_form_dataconfirmation')) {
-		?>
-		<p>
-			<label for="comment_dataconfirmation">
-				<input type="checkbox" id="comment_dataconfirmation" name="comment_dataconfirmation" value="1"<?php if ($stored['comment_dataconfirmation']) echo ' checked="checked"'; ?> />
-				<?php printDataUsageNotice(); echo '<strong>*</strong>'; ?>
-			</label>
-		</p>
-		<?php
-	}
 	if ($required) {
 		?>
 		<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>
@@ -105,16 +108,20 @@
 	if (getOption('comment_form_private') && !$disabled['private']) {
 		?>
 		<p>
-			<label for="private"><?php echo gettext("Private comment (do not publish)"); ?></label>
+			<label for="private">
+				<?php echo gettext("Private comment (do not publish)"); ?>
+			</label>
 			<input type="checkbox" id="private" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ?> />
 		</p>
 		<?php
 	}
 	?>
+	<br clear="all">
+	<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php
+		echo $stored['comment'];
+		echo $disabled['comment'];
+		?></textarea>
+	<br clear="all">
 	<br />
-	<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php echo $stored['comment'];
-	echo $disabled['comment'];
-	?></textarea>
-	<br />
-	<input type="submit" class="button buttons"  value="<?php echo gettext('Add Comment'); ?>" />
+	<?php policySubmitButton(gettext('Add Comment'), $class, $buttonExtra); ?>
 </form>

@@ -9,14 +9,13 @@
  * Test mode allows you to run your standard desktop client but simulate being either a <i>phone</i> or
  * a <i>tablet</i>.
  *
- * You may place a call on <var>mobileTheme::controlLink();</var> in your theme(s) to allow the client viewer
- * to override the switch and view your standard gallery theme. If the same call is placed in your gallery
- * theme he will be able to switch back as well.
- * <b>NOTE:</b> This link is present only when the browsing client
- * is a mobile device!
+ * You may place a call on <var>mobileTheme::controlLink();</var> in your theme(s) to allow the
+ * client viewer to override the switch and view your standard gallery theme. If the same call is
+ * placed in your gallery theme he will be able to switch back as well.
+ * <b>NOTE:</b> This link is present only when the browsing client is a mobile device!
  *
  * Class <var>mobile</var> methods you can use in your theme:
- * <ul>
+ * <ol>
  * 	<li>phone is connected.
  * 	<ul>
  * 		<li>isiPhone()</li>
@@ -69,48 +68,48 @@
  * 		<li>isMidori()</li>
  * 	</ul>
  * </li>
- * </ul>
+ * </ol>
  *
- * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage mobiletheme
+ * @author "Stephen Billard (sbillard)
+ *
+ * @package plugins/mobileTheme
+ * @pluginCategory theme
  */
-
-$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Select your theme based on the device connecting to your site');
-$plugin_author = "Stephen Billard (sbillard)";
-$plugin_category = gettext('Misc');
 
 $option_interface = 'mobileTheme';
 
 class mobileTheme {
 
 	function __construct() {
+
 	}
 
 	function getOptionsSupported() {
 		global $_zp_gallery;
 		$themes = array();
-		foreach ($_zp_gallery->getThemes() as $theme=>$details) {
+		foreach ($_zp_gallery->getThemes() as $theme => $details) {
 			$themes[$details['name']] = $theme;
 		}
 		$options = array(gettext('Phone theme') => array('key' => 'mobileTheme_phone', 'type' => OPTION_TYPE_SELECTOR,
-																				'selections'=>$themes,
-																				'null_selection' => gettext('gallery theme'),
-																				'desc' => gettext('Select the theme to be used when a phone device connects.')),
-															gettext('Tablet theme') => array('key' => 'mobileTheme_tablet', 'type' => OPTION_TYPE_SELECTOR,
-																				'selections'=>$themes,
-																				'null_selection' => gettext('gallery theme'),
-																				'desc' => gettext('Select the theme to be used when a tablet device connects.')),
-															gettext('Test mode') => array('key' => 'mobileTheme_test', 'type' => OPTION_TYPE_SELECTOR,
-																				'selections'=>array(gettext('Phone')=>'phone',gettext('Tablet')=>'tablet'),
-																				'null_selection' => gettext('live'),
-																				'desc' => gettext('Put the plugin in <em>test mode</em> and it will simulate the selected device. If <em>live</em> is selected operations are normal.'))
+						'selections' => $themes,
+						'null_selection' => gettext('gallery theme'),
+						'desc' => gettext('Select the theme to be used when a phone device connects.')),
+				gettext('Tablet theme') => array('key' => 'mobileTheme_tablet', 'type' => OPTION_TYPE_SELECTOR,
+						'selections' => $themes,
+						'null_selection' => gettext('gallery theme'),
+						'desc' => gettext('Select the theme to be used when a tablet device connects.')),
+				gettext('Test mode') => array('key' => 'mobileTheme_test', 'type' => OPTION_TYPE_SELECTOR,
+						'selections' => array(gettext('Phone') => 'phone', gettext('Tablet') => 'tablet'),
+						'null_selection' => gettext('live'),
+						'desc' => gettext('Put the plugin in <em>test mode</em> and it will simulate the selected device. If <em>live</em> is selected operations are normal.'))
 		);
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
+
 	}
 
 	/**
@@ -143,7 +142,7 @@ class mobileTheme {
 	 * places a link on the theme page to switch to or from the mobile theme
 	 * @param string $text link text
 	 */
-	static function controlLink($text=NULL, $before=NULL, $after=Null) {
+	static function controlLink($text = NULL, $before = NULL, $after = Null) {
 		$detect = new mobile();
 		if ($detect->isMobile()) {
 			if (zp_getCookie('mobileTheme_disable')) {
@@ -158,18 +157,18 @@ class mobileTheme {
 				$enable = 'off';
 			}
 			if ($before) {
-				echo '<span class="beforetext">'.html_encode($before).'</span>';
+				echo '<span class="beforetext">' . html_encode($before) . '</span>';
 			}
 			if (MOD_REWRITE) {
 				$link = '?mobileTheme=' . $enable;
 			} else {
-				global $_zp_gallery_page, $_zp_current_images, $_zp_current_album, $_zp_current_zenpage_news, $_zp_current_category, $_zp_current_zenpage_page;
+				global $_zp_gallery_page, $_zp_current_images, $_zp_current_album, $_zp_current_article, $_zp_current_category, $_zp_current_page;
 				switch ($_zp_gallery_page) {
 					case 'index.php':
 						$link = 'index.php?mobileTheme=' . $enable;
 						break;
-					case getCustomGalleryIndexPage():
-						$link = 'index.php?p=' . stripSuffix(getCustomGalleryIndexPage()) . '&amp;mobileTheme=' . $enable;
+					case 'gallery.php':
+						$link = 'index.php?p=gallery&amp;mobileTheme=' . $enable;
 						break;
 					case 'album.php':
 						$link = $_zp_current_album->getLink(null) . '&amp;mobileTheme=' . $enable;
@@ -179,7 +178,7 @@ class mobileTheme {
 						break;
 					case 'news.php':
 						if (is_NewsArticle()) {
-							$link = html_encode($_zp_current_zenpage_news->getLink(null)) . '&amp;mobileTheme=' . $enable;
+							$link = html_encode($_zp_current_article->getLink(null)) . '&amp;mobileTheme=' . $enable;
 						} else if (is_NewsCategory()) {
 							$link = html_encode($_zp_current_category->getLink(null)) . '&amp;mobileTheme=' . $enable;
 						} else {
@@ -187,30 +186,29 @@ class mobileTheme {
 						}
 						break;
 					case 'pages.php':
-						$link = html_encode($_zp_current_zenpage_page->getLink()) . '&amp;mobileTheme=' . $enable;
+						$link = html_encode($_zp_current_page->getLink()) . '&amp;mobileTheme=' . $enable;
 						break;
 					default:
 						$link = html_encode($_zp_gallery_page) . '?mobileTheme=' . $enable;
 						break;
 				}
 			}
-?>
+			?>
 			<span class="mobileThemeControlLink">
-
 				<a href="<?php echo $link; ?>" rel="external">
 					<?php echo html_encode($text); ?>
 				</a>
 			</span>
 			<?php
 			if ($after) {
-				echo '<span class="aftertext">'.html_encode($after).'</span>';
+				echo '<span class="aftertext">' . html_encode($after) . '</span>';
 			}
 		}
 	}
 
 }
 
-require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/mobileTheme/Mobile_Detect.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/mobileTheme/Mobile_Detect.php');
 
 class mobile extends Mobile_Detect {
 
@@ -223,7 +221,7 @@ class mobile extends Mobile_Detect {
 	 * @see Mobile_Detect::isMobile()
 	 */
 	function isMobile($userAgent = NULL, $httpHeaders = NULL) {
-		if (getOption('mobileTheme_test')) {
+		if (getOption('mobileTheme_test') || isset($_GET['mobile'])) {
 			return true;
 		}
 		return parent::isMobile();
@@ -234,7 +232,7 @@ class mobile extends Mobile_Detect {
 	 * @see Mobile_Detect::isTablet()
 	 */
 	function isTablet($userAgent = NULL, $httpHeaders = NULL) {
-		if (getOption('mobileTheme_test')=='tablet') {
+		if (getOption('mobileTheme_test') == 'tablet' || isset($_GET['mobile']) && $_GET['mobile'] == 'tablet') {
 			return true;
 		}
 		return parent::isTablet();
@@ -242,13 +240,13 @@ class mobile extends Mobile_Detect {
 
 }
 
-if (isset($_GET['mobileTheme'])) {
-	switch ($_GET['mobileTheme']) {
-		case 'on':
-			zp_setCookie('mobileTheme_disable', 0);
+if (isset($_GET['mobile'])) {
+	switch ($_GET['mobile']) {
+		default:
+			zp_setCookie('mobileTheme_disable', 0, false);
 			break;
 		case 'off':
-			zp_setCookie('mobileTheme_disable', 1);
+			zp_setCookie('mobileTheme_disable', 1, false);
 			break;
 	}
 }
@@ -256,5 +254,4 @@ if (isset($_GET['mobileTheme'])) {
 if (!zp_getCookie('mobileTheme_disable')) {
 	zp_register_filter('setupTheme', 'mobileTheme::theme');
 }
-
 ?>

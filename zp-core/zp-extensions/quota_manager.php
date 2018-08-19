@@ -23,15 +23,14 @@
  * to users with upload limits.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage quota-manager
+ *
+ * @package plugins/quota_manager
+ * @pluginCategory users
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides a quota management system to limit the sum of sizes of images a user uploads.");
 $plugin_notice = gettext("<strong>Note:</strong> if FTP is used to upload images, manual user assignment is necessary. ZIP file upload is disabled by default as quotas are not applied to the files contained therein.");
-$plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('get_upload_header_text') && !extensionEnabled('quota_manager')) ? sprintf(gettext('<a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('get_upload_header_text'))) : '';
-$plugin_category = gettext('Users');
 
 $option_interface = 'quota_manager';
 
@@ -61,8 +60,10 @@ class quota_manager {
 	 * @return filter_zenphoto_seo
 	 */
 	function __construct() {
-		setOptionDefault('quota_default', 250000);
-		setOptionDefault('quota_allowZIP', 1);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('quota_default', 250000);
+			setOptionDefault('quota_allowZIP', 1);
+		}
 	}
 
 	/**
@@ -71,10 +72,10 @@ class quota_manager {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Default quota')	 => array('key'	 => 'quota_default', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('Default size limit in kilobytes.')),
-						gettext('Allow ZIP files') => array('key'	 => 'quota_allowZIP', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('The size of a ZIP file may be slightly smaller than the sum of the <em>image</em> files it contains. Un-check this box if you wish to disable uploading of ZIP files.'))
+		return array(gettext('Default quota') => array('key' => 'quota_default', 'type' => OPTION_TYPE_NUMBER,
+						'desc' => gettext('Default size limit in kilobytes.')),
+				gettext('Allow ZIP files') => array('key' => 'quota_allowZIP', 'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('The size of a ZIP file may be slightly smaller than the sum of the <em>image</em> files it contains. Un-check this box if you wish to disable uploading of ZIP files.'))
 		);
 	}
 
@@ -93,9 +94,9 @@ class quota_manager {
 	 * @return bool
 	 */
 	static function save_admin($updated, $userobj, $i, $alter) {
-		if (isset($_POST[$i . 'quota']) && $alter) {
+		if (isset($_POST['user'][$i]['quota']) && $alter) {
 			$oldquota = $userobj->getQuota();
-			$userobj->setQuota(sanitize_numeric($_POST[$i . 'quota']));
+			$userobj->setQuota(sanitize_numeric($_POST['user'][$i]['quota']));
 			if ($oldquota != $userobj->getQuota()) {
 				$updated = true;
 			}
@@ -127,14 +128,13 @@ class quota_manager {
 		} else {
 			$used = '';
 		}
-		$result =
-						'<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
-				<td colspan="2"' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" width="345">' . gettext("Image storage quota:") . '&nbsp;' .
-						sprintf(gettext('Allowed: %s kb'), '<input type="text" size="10" name="' . $i . 'quota" value="' . $quota . '" ' . $local_alterrights . ' />') . ' ' .
-						$used .
-						"\n" .
-						'</td>' .
-						'</tr>' . "\n";
+		$result = '<div class="user_left">' . "\n"
+						. gettext("Image storage quota:") . '&nbsp;' .
+						sprintf(gettext('Allowed: %s kb'), '<input type="text" size="10" name="user[' . $i . '][quota]" value="' . $quota . '" ' . $local_alterrights . ' />') . ' ' .
+						$used . "\n"
+						. '</div>' . "\n"
+						. '<br class="clearall">' . "\n";
+
 		return $html . $result;
 	}
 

@@ -3,7 +3,6 @@
 /**
  * library for image handling using the GD library of functions
  * @package core
- * @subpackage graphic-handlers\lib-gd
  */
 // force UTF-8 Ø
 
@@ -26,8 +25,8 @@ class lib_GD_Options {
 	 */
 	function getOptionsSupported() {
 		if (defined('GD_FREETYPE') && GD_FREETYPE) {
-			return array(gettext('GD TypeFace path') => array('key'	 => 'GD_FreeType_Path', 'type' => OPTION_TYPE_TEXTBOX,
-											'desc' => gettext('Supply the full path to your TrueType fonts.')));
+			return array(gettext('GD TypeFace path') => array('key' => 'GD_FreeType_Path', 'type' => OPTION_TYPE_TEXTBOX,
+							'desc' => gettext('Supply the full path to your TrueType fonts.')));
 		} else {
 			return array();
 		}
@@ -46,14 +45,14 @@ class lib_GD_Options {
 if (!function_exists('zp_graphicsLibInfo')) {
 
 	/**
-	 * Zenphoto image manipulation functions using the PHP GD library
+	 * Image manipulation functions using the PHP GD library
 	 *
 	 */
 	if (extension_loaded('gd')) { // only define the functions if we have the proper versions
 		$_lib_GD_info = array();
 		$info = gd_info();
 		$_lib_GD_info['Library'] = 'GD';
-		$_lib_GD_info['Library_desc'] = sprintf(gettext('PHP GD library <em>%s</em>'), $info['GD Version']);
+		$_lib_GD_info['Library_desc'] = sprintf('PHP GD library <em>%s</em>', $info['GD Version']);
 		$_lib_GD_info['FreeType'] = $info['FreeType Support'];
 		define('GD_FREETYPE', (bool) $_lib_GD_info['FreeType']);
 		unset($_lib_GD_info['FreeType']);
@@ -66,6 +65,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		$_lib_GD_info['JPG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
 		$_lib_GD_info['JPEG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
 		$_lib_GD_info['PNG'] = ($imgtypes & IMG_PNG) ? 'png' : false;
+		$_lib_GD_info['WBM'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
 		$_lib_GD_info['WBMP'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
 		unset($imgtypes);
 		unset($info);
@@ -85,6 +85,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			switch ($ext) {
 				case 'png':
 					return imagecreatefrompng($imgfile);
+				case 'wbm':
 				case 'wbmp':
 					return imagecreatefromwbmp($imgfile);
 				case 'jpeg':
@@ -113,6 +114,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 				case 'png':
 					$qual = max(0, 9 - round($qual / 10));
 					return imagepng($im, $filename, $qual);
+				case 'wbm':
 				case 'wbmp':
 					return imagewbmp($im, $filename);
 				case 'jpeg':
@@ -157,6 +159,15 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 */
 		function zp_imageColorTransparent($image, $color) {
 			return imagecolortransparent($image, $color);
+		}
+
+		/**
+		 * would remove metadata (except ICC profile) from an image.
+		 * But since GD drops these anyway, it does nothing.
+		 * @param object $img
+		 */
+		function zp_stripMetadata($img) {
+			return $img;
 		}
 
 		/**
@@ -341,7 +352,8 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 * @return resource
 		 */
 		function zp_rotateImage($im, $rotate) {
-			$newim_rot = imagerotate($im, $rotate, 0);
+			//GD rotates anti-clockwise
+			$newim_rot = imagerotate($im, 360 - $rotate, 0);
 			imagedestroy($im);
 			return $newim_rot;
 		}
@@ -467,7 +479,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 * @param int $color
 		 * @return bool
 		 */
-		function zp_writeString($image, $font, $x, $y, $string, $color) {
+		function zp_writeString($image, $font, $x, $y, $string, $color, $angle = 0) {
 			global $_gd_freetype_fonts;
 			if ($font > 0) {
 				return imagestring($image, $font, $x, $y, $string, $color);
@@ -478,7 +490,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 				$bbox = imagettfbbox($_gd_freetype_fonts[$font]['size'], 0, $_gd_freetype_fonts[$font]['path'], GD_FREETYPE_SAMPLE);
 				$w = (int) (($bbox[2] - $bbox[0]) / GD_FREETYPE_SAMPLE_CHARS);
 				$h = $bbox[1] - $bbox[7];
-				$rslt = imagettftext($image, $size, 0, $x + $w, $y + $h, $color, $fontfile, $string);
+				$rslt = imagettftext($image, $size, $angle, $x + $w, $y + $h, $color, $fontfile, $string);
 				return is_array($rslt);
 			}
 		}
@@ -518,32 +530,31 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			if (!is_array($_gd_fontlist)) {
 				$_gd_fontlist = array('system' => '');
 				$curdir = getcwd();
-				$basefile = SERVERPATH . '/' . USER_PLUGIN_FOLDER . 'gd_fonts/';
-				if (is_dir($basefile)) {
-					chdir($basefile);
-					$filelist = safe_glob('*.gdf');
-					foreach ($filelist as $file) {
-						$key = filesystemToInternal(str_replace('.gdf', '', $file));
-						$_gd_fontlist[$key] = $basefile . '/' . $file;
+				$paths = array(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts/', SERVERPATH . '/' . ZENFOLDER . '/gd_fonts');
+				if (GD_FREETYPE) {
+					array_push($paths, SERVERPATH . '/' . ZENFOLDER . '/FreeSerif');
+					if (($basefile = getOption('GD_FreeType_Path')) != SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts') {
+						array_push($paths, $basefile);
 					}
 				}
-				chdir($basefile = SERVERPATH . '/' . ZENFOLDER . '/gd_fonts');
-				$filelist = safe_glob('*.gdf');
-				foreach ($filelist as $file) {
-					$key = filesystemToInternal(preg_replace('/\.gdf/i', '', $file));
-					$_gd_fontlist[$key] = $basefile . '/' . $file;
-				}
-				if (GD_FREETYPE) {
-					$basefile = rtrim(getOption('GD_FreeType_Path') . '/');
+				foreach ($paths as $basefile) {
 					if (is_dir($basefile)) {
 						chdir($basefile);
-						$filelist = safe_glob('*.ttf');
+						$filelist = safe_glob('*.gdf');
+						if (GD_FREETYPE) {
+							$filelist_ttf = safe_glob('*.ttf');
+							$filelist = array_merge($filelist, $filelist_ttf);
+						}
 						foreach ($filelist as $file) {
-							$key = filesystemToInternal($file);
+							$key = filesystemToInternal(stripSuffix($file));
+							if (getSuffix($file) != 'gdf') {
+								$key .= ' (' . strtoupper(getSuffix($file)) . ')';
+							}
 							$_gd_fontlist[$key] = $basefile . '/' . $file;
 						}
 					}
 				}
+
 				chdir($curdir);
 			}
 			return $_gd_fontlist;
@@ -625,9 +636,9 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			for ($i = 0; $i < $radius; $i++) {
 				if (function_exists('imageconvolution')) { // PHP >= 5.1
 					$matrix = array(
-									array(1, 2, 1),
-									array(2, 4, 2),
-									array(1, 2, 1)
+							array(1, 2, 1),
+							array(2, 4, 2),
+							array(1, 2, 1)
 					);
 					imageconvolution($imgCanvas, $matrix, 16, 0);
 				}

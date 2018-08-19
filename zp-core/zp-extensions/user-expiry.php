@@ -22,19 +22,20 @@
  * <b>NOTE:</b> This plugin does not expire users with <var>ADMIN_RIGHTS</var>!
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage user-expiry
+ *
+ * @package plugins/user-expiry
+ * @pluginCategory users
  */
 // force UTF-8 Ø
 
-$plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext("Provides management of users based on when they were created.");
-$plugin_author = "Stephen Billard (sbillard)";
-$plugin_category = gettext('Users');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 8 | CLASS_PLUGIN;
+	$plugin_description = gettext("Provides management of users based on when they were created.");
+}
 
 $option_interface = 'user_expiry';
 
-zp_register_filter('admin_tabs', 'user_expiry::admin_tabs', 0);
+zp_register_filter('admin_tabs', 'user_expiry::admin_tabs', -99999); //	we want to be last so we can hijack the tabs if needed
 zp_register_filter('authorization_cookie', 'user_expiry::checkcookie');
 zp_register_filter('admin_login_attempt', 'user_expiry::checklogon');
 zp_register_filter('federated_login_attempt', 'user_expiry::checklogon');
@@ -55,10 +56,15 @@ class user_expiry {
 	 *
 	 */
 	function __construct() {
-		setOptionDefault('user_expiry_interval', 365);
-		setOptionDefault('user_expiry_warn_interval', 7);
-		setOptionDefault('user_expiry_auto_renew', 0);
-		setOptionDefault('user_expiry_password_cycle', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('user_expiry_interval', 365);
+			setOptionDefault('user_expiry_warn_interval', 7);
+			setOptionDefault('user_expiry_auto_renew', 0);
+			setOptionDefault('user_expiry_password_cycle', 0);
+
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="user-expiry" WHERE `type`="user_expiry_usedPasswords"';
+			query($sql);
+		}
 	}
 
 	/**
@@ -68,18 +74,18 @@ class user_expiry {
 	 */
 	function getOptionsSupported() {
 		return
-						array(gettext('Days until expiration') => array('key'		 => 'user_expiry_interval', 'type'	 => OPTION_TYPE_CLEARTEXT,
-														'order'	 => 1,
-														'desc'	 => gettext('The number of days until a user is flagged as expired. Set to zero for no expiry.')),
-										gettext('Warning interval')			 => array('key'		 => 'user_expiry_warn_interval', 'type'	 => OPTION_TYPE_CLEARTEXT,
-														'order'	 => 2,
-														'desc'	 => gettext('The period in days before the expiry during which a warning message will be sent to the user. (If set to zero, no warning occurs.)')),
-										gettext('Auto renew')						 => array('key'		 => 'user_expiry_auto_renew', 'type'	 => OPTION_TYPE_CHECKBOX,
-														'order'	 => 3,
-														'desc'	 => gettext('Automatically renew the subscription if the user visits during the warning period.')),
-										gettext('Password cycle')				 => array('key'		 => 'user_expiry_password_cycle', 'type'	 => OPTION_TYPE_CLEARTEXT,
-														'order'	 => 4,
-														'desc'	 => gettext('Number of days between required password changes. Set to zero for no required changes.'))
+						array(gettext('Days until expiration') => array('key' => 'user_expiry_interval', 'type' => OPTION_TYPE_NUMBER,
+										'order' => 1,
+										'desc' => gettext('The number of days until a user is flagged as expired. Set to zero for no expiry.')),
+								gettext('Warning interval') => array('key' => 'user_expiry_warn_interval', 'type' => OPTION_TYPE_NUMBER,
+										'order' => 2,
+										'desc' => gettext('The period in days before the expiry during which a warning message will be sent to the user. (If set to zero, no warning occurs.)')),
+								gettext('Auto renew') => array('key' => 'user_expiry_auto_renew', 'type' => OPTION_TYPE_CHECKBOX,
+										'order' => 3,
+										'desc' => gettext('Automatically renew the subscription if the user visits during the warning period.')),
+								gettext('Password cycle') => array('key' => 'user_expiry_password_cycle', 'type' => OPTION_TYPE_NUMBER,
+										'order' => 4,
+										'desc' => gettext('Number of days between required password changes. Set to zero for no required changes.'))
 		);
 	}
 
@@ -91,22 +97,22 @@ class user_expiry {
 		global $_zp_current_admin_obj, $_zp_loggedin;
 		if (user_expiry::checkPasswordRenew()) {
 			$_zp_current_admin_obj->setRights($_zp_loggedin = USER_RIGHTS | NO_RIGHTS);
-			$tabs = array('users' => array('text'		 => gettext("users"),
-											'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users',
-											'subtabs'	 => NULL));
-		}
-		if (zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID()) {
-			if (isset($tabs['users']['subtabs'])) {
-				$subtabs = $tabs['users']['subtabs'];
-			} else {
-				$subtabs = array();
+			$tabs = array('admin' => array('text' => gettext("admin"),
+							'link' => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=admin&tab=users',
+							'subtabs' => NULL));
+		} else {
+			if (zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID()) {
+				$subtabs = $tabs['admin']['subtabs'];
+				$c = 0;
+				foreach ($subtabs as $key => $link) {
+					if (!in_array($key, array('users', 'groups', 'assignments'))) {
+						break;
+					}
+					$c++;
+				}
+				$first_array = array_splice($subtabs, 0, $c);
+				$tabs['admin']['subtabs'] = array_merge($first_array, array(gettext('expiry') => PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=admin&tab=expiry'), $subtabs);
 			}
-			$subtabs[gettext('users')] = 'admin-users.php?page=users&tab=users';
-			$subtabs[gettext('expiry')] = PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=users&tab=expiry';
-			$tabs['users'] = array('text'		 => gettext("admin"),
-							'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users&tab=users',
-							'subtabs'	 => $subtabs,
-							'default'	 => 'users');
 		}
 		return $tabs;
 	}
@@ -149,7 +155,7 @@ class user_expiry {
 							$credentials[] = 'exiry_notice';
 							$userobj->setCredentials($credentials);
 							$userobj->save();
-							$message = sprintf(gettext('Your user id for the Zenphoto site %s will expire on %s.'), $_zp_gallery->getTitle(), date('Y-m-d', $expires));
+							$message = sprintf(gettext('Your user id for the site %s will expire on %s.'), $_zp_gallery->getTitle(), date('Y-m-d', $expires));
 							$notify = zp_mail(get_language_string(gettext('User id expiration')), $message, array($userobj->getName() => $mail));
 						}
 					}
@@ -170,7 +176,7 @@ class user_expiry {
 	static function checkPasswordRenew() {
 		global $_zp_current_admin_obj;
 		$threshold = getOption('user_expiry_password_cycle') * 86400;
-		if ($threshold && is_object($_zp_current_admin_obj) && !($_zp_current_admin_obj->getRights() & ADMIN_RIGHTS)) {
+		if ($threshold && is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->transient && !($_zp_current_admin_obj->getRights() & ADMIN_RIGHTS)) {
 			if (strtotime($_zp_current_admin_obj->get('passupdate')) + $threshold < time()) {
 				return true;
 			}
@@ -179,12 +185,12 @@ class user_expiry {
 	}
 
 	static function cleanup($user) {
-		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`=' . db_quote('user_expiry_usedPasswords') . ' AND `aux`=' . $user->getID());
+		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="user_expiry" AND `aux`=' . $user->getID());
 	}
 
 	static function passwordAllowed($msg, $pwd, $user) {
 		if ($id = $user->getID() > 0) {
-			$store = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`=' . db_quote('user_expiry_usedPasswords') . ' AND `aux`=' . $id);
+			$store = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="user_expiry" AND `aux`=' . $id);
 			if ($store) {
 				$used = getSerializedArray($store['data']);
 				if (in_array($pwd, $used)) {
@@ -202,9 +208,9 @@ class user_expiry {
 			}
 			array_push($used, $pwd);
 			if ($store) {
-				query('UPDATE ' . prefix('plugin_storage') . 'SET `data`=' . db_quote(serialize($used)) . ' WHERE `type`=' . db_quote('user_expiry_usedPasswords') . ' AND `aux`=' . $id);
+				query('UPDATE ' . prefix('plugin_storage') . 'SET `data`=' . db_quote(serialize($used)) . ' WHERE `type`="user_expiry" AND `aux`=' . $id);
 			} else {
-				query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`, `data`) VALUES (' . db_quote('user_expiry_usedPasswords') . ',' . $id . ',' . db_quote(serialize($used)) . ')');
+				query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`, `data`) VALUES ("user_expiry",' . $id . ',' . db_quote(serialize($used)) . ')');
 			}
 		}
 		return $msg;
@@ -219,9 +225,10 @@ class user_expiry {
 	}
 
 	static function checklogon($loggedin, $user) {
+		global $_zp_authority;
 		if ($loggedin) {
 			if (!($loggedin & ADMIN_RIGHTS)) {
-				if ($userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1))) {
+				if ($userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1))) {
 					$loggedin = user_expiry::checkexpires($loggedin, $userobj);
 				}
 			}
@@ -235,11 +242,12 @@ class user_expiry {
 	 * @return string
 	 */
 	static function reverify($path) {
+		global $_zp_authority;
 		//process any verifications posted
 		if (isset($_GET['user_expiry_reverify'])) {
 			$params = unserialize(pack("H*", trim(sanitize($_GET['user_expiry_reverify']), '.')));
 			if ((time() - $params['date']) < 2592000) {
-				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`email`=' => $params['email'], '`valid`>' => 0));
+				$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $params['user'], '`email`=' => $params['email'], '`valid`>' => 0));
 				if ($userobj) {
 					$credentials = $userobj->getCredentials();
 					$credentials[] = 'expiry';
@@ -257,7 +265,7 @@ class user_expiry {
 			}
 		}
 		if (user_expiry::checkPasswordRenew()) {
-			header("Location: " . FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users&tab=users');
+			header("Location: " . FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=admin&tab=users');
 			exitZP();
 		}
 		return $path;
@@ -277,23 +285,41 @@ class user_expiry {
 				$expires_display = '<span style="color:red" class="tooltip" title="' . gettext('Expires soon') . '">' . $expires_display . '</span>';
 			}
 			$msg = sprintf(gettext('Your subscription expires on %s'), $expires_display);
-			$myhtml = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
-					<td' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top" colspan="2">' . "\n" .
-							'<p class="notebox">' . $msg . '</p>' . "\n" .
-							'</td>
-				</tr>' . "\n";
+			$myhtml = '<div class="user_left">' . "\n"
+							. '<p class="notebox">' . $msg . '</p>' . "\n"
+							. '</div>' . "\n"
+							. '<br class="clearall">' . "\n";
 			$html = $myhtml . $html;
 		}
 		return $html;
 	}
 
 	static function notify($tab, $subtab) {
-		if ($tab == 'users' && $subtab = 'users') {
+		global $_zp_authority;
+		if ($tab == 'admin' && $subtab = 'users') {
+			$msg = '';
 			if (user_expiry::checkPasswordRenew()) {
 				echo '<p class="errorbox">' . gettext('You must change your password.'), '</p>';
 			} else {
-				if (Zenphoto_Authority::getAnAdmin(array('`valid`>' => 1))) {
-					echo '<p class="notebox">' . gettext('You have users whose credentials have expired.'), '</p>';
+				if (zp_loggedin(ADMIN_RIGHTS)) {
+					if ($_zp_authority->getAnAdmin(array('`valid`>' => 1))) {
+						$msg = gettext('You have users whose credentials are disabled.');
+					}
+					$subscription = time() - 86400 * getOption('user_expiry_interval');
+					$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`=1 AND `date`<' . db_quote(date('Y-m-d H:i:s', $subscription));
+					$result = query_full_array($sql);
+					foreach ($result as $admin) {
+						if (!($admin['rights'] & ADMIN_RIGHTS)) {
+							if ($msg) {
+								$msg .= '<br />';
+							}
+							$msg .= gettext('You have users whose credentials have expired.');
+							break;
+						}
+					}
+					if ($msg) {
+						echo '<p class="notebox">' . $msg . '</p>';
+					}
 				}
 			}
 		}

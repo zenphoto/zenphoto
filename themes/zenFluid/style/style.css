@@ -1,0 +1,351 @@
+* {
+	margin: 0; padding: 0;
+}
+html, body {
+	height: 99%;
+	margin: 2px 4px 0px 0px;
+}
+body {
+	font-size: 100%;
+}
+
+/* Layout */
+.border, #search_input, #search_submit, #searchextrashow, .inputbox, .textarea_inputbox, .zenpage_customimage,
+#passwordform, form#confirm input, form#discard input {
+	margin: 0px 0px 4px 4px;
+}
+#container {
+	overflow:hidden;
+	padding-left: 200px;
+}
+#contents {
+	width: 100%;
+	border-left: 200px;
+	margin-left: -200px;
+	float: right;
+}
+.header {
+	padding: 10px 10px 10px 10px;
+}
+.sidebartitle {
+	margin: 0px 0px 4px 0px;
+}
+
+/* Generic elements
+--------------------------------------*/
+.title {
+	padding: 8px 8px 8px 8px;
+}
+.title.border.color p {
+	font-size: 15px;
+	padding: 4px 0px 4px 0px;
+}
+.content p {
+	padding: 4px 0px 4px 0px;
+}
+.thumbstage {
+	text-align: left;
+	font-size: 0px;
+}
+.thumbs {
+	text-align: left;
+	display: inline-block;
+	font-size: 13px;
+}
+
+/* Footer
+-------------------------------------*/
+.footer {
+	clear: both;
+	padding: 16px;
+}
+.sidebarfooter {
+	clear: both;
+	padding: 16px 4px 16px 4px;
+}
+
+/* Sidebar
+------------------------------- */
+#sidebar {
+	float: left;
+	margin-left: -200px;
+	width: 200px;
+}
+.menu {
+	padding: 4px 4px 4px 4px;
+	font-size: 13px;
+}
+.menutitle {
+	font-style: italic;
+	padding: 0px 0px 4px 0px;
+}
+.menu ul {
+	list-style-type: none;
+}
+.submenu {
+	margin: 0px 0px 0px 8px;
+}
+.menuupper {
+	text-transform: uppercase;
+}
+
+/* Album
+-------------------------------*/
+.thumbimage {
+	float: left;
+	margin: 4px 4px 0px 0px;
+	position: relative;
+}
+.thumbtitle {
+	width: 192px;
+	float: right;
+	padding: 0px 0px 0px 4px;
+	font-size: 13px;
+}
+.thumbtitle p {
+	margin: 8px 0px 0px 0px;
+	font-size: 12px;
+}
+.videoplay {
+	width: 30px;
+	position: absolute;
+	top: -2px;
+	left: 2px;
+}
+
+/* Image or Video
+-------------------------------*/
+.imagedesc {
+	padding: 0px 8px 0px 8px;
+}
+.videocontainer {
+	margin: 0px 0px 4px 4px;
+}
+
+/* Page and News
+-------------------------------*/
+.pagetext {
+	padding: 8px 8px 8px 8px;
+}
+.newsdate {
+	font-size: 13px;
+	font-style: italic;
+}
+.zenpage_customimage {
+	margin: 0px 0px 0px 0px;
+	max-width: -webkit-fill-available;
+}
+
+/* Pagelist Nav
+-------------------------------*/
+.disabled_nav {
+	display: none;
+}
+.disabledlink {
+	display: none;
+}
+
+/* Buttons
+-------------------------------*/
+.albumbuttons {
+	text-align: left;
+	margin: 0px 0px 5px 4px;
+}
+.imagebuttons {
+	text-align: left;
+	margin: 0px 0px 5px 4px;
+}
+.button {
+	margin: 0px 0px 0px 0px;
+	text-align: center;
+	font-size: 13px;
+	padding: 5px 5px 5px 5px;
+	display: inline-block;
+}
+.button.fb-button {
+	padding: 3px 4px 3px 4px;
+	position: relative;
+	top: 5px;
+}
+.sideshowlink {
+	display: inline-block;
+	float: none;
+}
+
+/* Comments and forms
+-------------------------------*/
+.comment {
+	padding: 8px 8px 8px 8px;
+	text-align: left;
+}
+.commentinfo {
+	text-align: left;
+	margin-bottom: 8px;
+}
+.commentinfo h4 {
+	font-size: 18px;
+	font-weight: normal;
+}
+.beforetext {
+	margin-right: 4px;
+}
+.commenttext {
+	font-size: 15px;
+}
+#commententry {
+	font-size: 13px;
+}
+#commentform {
+	padding: 8px 8px 8px 8px;
+	text-align: left;
+}
+#commentform label {
+	width: 220px;
+	float: left;
+	padding: 4px 0px 4px 0px;
+}
+.contactbox {
+	padding: 8px 8px 8px 8px;
+}
+#mailform label {
+	width: 220px;
+	float: left;
+	padding: 4px 0px 4px 0px;
+}
+.inputbox {
+	padding: 4px 8px 4px 8px;
+	margin: 0px 0px 4px 0px;
+	width: 273px;
+}
+#private {
+	margin: 5px 0px 0px 0px;
+}
+.textarea_inputbox {
+	width: 97.5% !important;
+	height: 150px;
+	margin: 0px 0px 0px 0px;
+	padding: 8px 8px 8px 8px;
+}
+
+/* Registration form
+-------------------------------*/
+#registration_form label {
+	width: 273px;
+	float: left;
+	padding: 4px 0px 4px 0px;
+}
+#pass {
+	margin: -4px 0px 0px 0px;
+}
+.disclose_password_show {
+	display: none;
+}
+form#confirm input, form#discard input {
+	padding: 8px 8px 8px 8px;
+}
+
+/* Tag list
+-------------------------------*/
+.taglist {
+	display: inline;
+}
+.taglist li {
+	display: inline;
+}
+
+/* Clear floats
+------------------------------ */
+.clearing {
+	clear: both;
+}
+
+/* Google AdSense
+------------------------------ */
+.adsense {
+	text-align: center
+}
+
+/* Search
+------------------------------ */
+#search_input, #search_submit {
+	width: 150px;
+	padding: 4px 0px 4px 0px;
+}
+#searchextrashow {
+	padding: 4px 4px 4px 4px;
+}
+.searchresults {
+	list-style-type: none;
+}
+#articlethumb {
+	width: 298px;
+	height: 100px;
+	padding: 4px 4px 4px 4px;
+	font-size: 13px;
+}
+#articlethumb p {
+	margin: 8px 0px 0px 0px;
+}
+
+/* Login form
+-------------------------------*/
+#passwordform {
+	padding: 8px 8px 8px 8px;
+	margin: 0px 0px 0px 0px;
+}
+#logon_box {
+	border: none;
+}
+#logon_box fieldset {
+	border: none;
+	margin: 4px 0px 0px 0px;
+}
+
+/* Link Styles
+------------------------------ */
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+
+/* Error Messages
+------------------------------ */
+#content-error {
+	padding: 45px 25px 45px 25px;
+}
+.errorbox {
+	padding: 20px;
+	border-top: 1px solid #FAA;
+	border-left: 1px solid #FAA;
+	border-right: 1px solid #FAA;
+	border-bottom: 5px solid #FAA;
+}
+.errorbox h2 {
+	margin: 0px;
+}
+.errorlist {
+	list-style-type: none;
+}
+
+/* Admin Toolbox
+------------------------------ */
+#admin_tb, #admin_tb_data {
+	font-size: 13px;
+}
+#admin_tb, .themeSwitcherMenuMain, .themeSwitcherControlLink {
+	margin-right: 0px;
+	padding-bottom: 10px;
+	padding-right: 5px;
+}
+#admin_tb_data {
+	padding-left: 15px;
+	line-height: 16px;
+}

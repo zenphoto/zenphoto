@@ -1,23 +1,19 @@
 <?php
 /**
- * This plugin will edit the tokens in the <var>%DATA_FOLDER%/zenphoto.cfg</var> file
- *
+ * This plugin will edit the tokens
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage rewritetokens
+ *
+ * @package plugins/rewriteTokens
+ * @pluginCategory development
  */
-$plugin_is_filter = 950 | ADMIN_PLUGIN;
-$plugin_description = gettext('Utility to alter the rewrite token substitutions array in the configuration file.');
-$plugin_author = "Stephen Billard (sbillard)";
+$plugin_is_filter = defaultExtension(950 | ADMIN_PLUGIN);
+$plugin_description = gettext('Utility to alter the rewrite token substitutions.');
 $plugin_disable = (MOD_REWRITE) ? '' : gettext('Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.');
-$plugin_category = gettext('Admin');
+
 $option_interface = 'rewriteTokens';
 
-if (OFFSET_PATH == 2) {
-	setOptionDefault('zp_plugin_rewriteTokens', $plugin_is_filter);
-}
-zp_register_filter('admin_tabs', 'rewriteTokens::tabs');
+zp_register_filter('admin_tabs', 'rewriteTokens::tabs', 100);
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
 
@@ -35,11 +31,10 @@ class rewriteTokens {
 		$i = strpos($zp_cfg, "\$conf['special_pages']");
 		$j = strpos($zp_cfg, '//', $i);
 		if ($i === false || $j === false) {
-			$conf = array('special_pages' => getDefaultRewriteTokens());
-			$this->conf_vars = $conf['special_pages'];
+			$this->conf_vars = $_zp_conf_vars['special_pages'];
 			$i = strpos($zp_cfg, '/** Do not edit below this line. **/');
 			if ($i === false) {
-				zp_error(gettext('The Zenphoto configuration file is corrupt. You will need to restore it from a backup.'));
+				zp_error(gettext('The Configuration file is corrupt. You will need to restore it from a backup.'));
 			}
 			$this->zp_cfg_a = substr($zp_cfg, 0, $i);
 			$this->zp_cfg_b = "//\n" . substr($zp_cfg, $i);
@@ -48,16 +43,20 @@ class rewriteTokens {
 			$this->zp_cfg_b = substr($zp_cfg, $j);
 			eval(substr($zp_cfg, $i, $j - $i));
 			$this->conf_vars = $conf['special_pages'];
-			$this->addMissingDefaultTokens();
-		}
-		foreach ($_zp_conf_vars['special_pages'] as $page => $element) {
-			if (isset($element['option'])) {
-				$this->plugin_vars[$page] = $element;
+			foreach ($_zp_conf_vars['special_pages'] as $page => $element) {
+				if (isset($element['option'])) {
+					$this->plugin_vars[$page] = $element;
+				}
 			}
 		}
+
 		if (OFFSET_PATH == 2) {
 			$old = array_keys($conf['special_pages']);
-			$new = array_keys(getDefaultRewriteTokens());
+			$zp_cfg = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto_cfg.txt');
+			$i = strpos($zp_cfg, "\$conf['special_pages']");
+			$j = strpos($zp_cfg, '//', $i);
+			eval(substr($zp_cfg, $i, $j - $i));
+			$new = array_keys($conf['special_pages']);
 			if ($old != $new) {
 				//Things have changed, need to reset to defaults;
 				setOption('rewriteTokens_restore', 1);
@@ -77,26 +76,16 @@ class rewriteTokens {
 	protected static function anOption($page, $element, &$_definitions) {
 		if ($define = $element['define']) {
 			$_definitions[$element['define']] = strtr($element['rewrite'], $_definitions);
-			$desc = sprintf(gettext('The <code>%1$s</code> rule defines <strong>%2$s</strong> as <em>%3$s</em>.'), $page, $define, strtr($element['rewrite'], $_definitions));
+			$rewrite = strtr($element['rewrite'], $_definitions);
+			if (!$rewrite) {
+				$rewrite = '<strong>' . gettext('disabled') . '</strong>';
+			}
+			$desc = sprintf(gettext('The <code>%1$s</code> rule defines <strong>%2$s</strong> as <em>%3$s</em>.'), $page, $define, $rewrite);
 		} else {
 			$desc = sprintf(gettext('Link for <em>%s</em> script page.'), $page);
 		}
-		return array(
-				'key' => 'rewriteTokens_' . $page,
-				'type' => OPTION_TYPE_CUSTOM,
+		return array('key' => 'rewriteTokens_' . $page, 'type' => OPTION_TYPE_CUSTOM,
 				'desc' => $desc);
-	}
-	
-	/**
-	 * Adds missing individual default tokens to the $conf_vars property
-	 */
-	function addMissingDefaultTokens() {
-		$tokens = array_keys(getDefaultRewriteTokens(null));
-		foreach ($tokens as $token) {
-			if (!isset($this->conf_vars[$token])) {
-				$this->conf_vars[$token] = getDefaultRewriteTokens($token);
-			}
-		}
 	}
 
 	function getOptionsSupported() {
@@ -104,23 +93,17 @@ class rewriteTokens {
 		$options = array();
 		if (!MOD_REWRITE) {
 			$options['note'] = array(
-							'key'		 => 'rewriteTokens_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 0,
-							'desc'	 => gettext('<p class="notebox">Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.</p>')
+					'key' => 'rewriteTokens_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 0,
+					'desc' => gettext('<p class="notebox">Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is enabled.</p>')
 			);
 		}
-		$options['note'] = array(
-				'key' => 'rewriteTokens_infonote',
-				'type' => OPTION_TYPE_NOTE,
-				'order' => 0,
-				'desc' => gettext('<p>* denotes default core rewrite tokens.</p>')
-		);
-		$options[gettext('Reset')] = array('key'		 => 'rewriteTokens_restore', 'type'	 => OPTION_TYPE_CHECKBOX,
-						'order'	 => 99999,
-						'desc'	 => gettext('Restore defaults.'));
+		$options[gettext('Reset')] = array('key' => 'rewriteTokens_restore', 'type' => OPTION_TYPE_CHECKBOX,
+				'order' => 99999,
+				'desc' => gettext('Restore defaults.'));
 		foreach ($this->conf_vars as $page => $element) {
-			$options[$page .'*'] = self::anOption($page, $element, $_definitions);
+			$options[$page] = self::anOption($page, $element, $_definitions);
 		}
 		foreach ($this->plugin_vars as $page => $element) {
 			$options[$page] = self::anOption($page, $element, $_definitions);
@@ -168,12 +151,12 @@ class rewriteTokens {
 				foreach ($this->plugin_vars as $page => $element) {
 					if (isset($element['option'])) {
 						$rewrite = sanitize($_POST['rewriteTokens_' . $page]);
-						if (empty($rewrite)) {
-							$notify = '&custom=' . gettext('Rewrite tokens may not be empty.');
-						} else {
-							$this->plugin_vars[$page]['rewrite'] = $rewrite;
-							setOption($element['option'], $rewrite);
-						}
+//						if (empty($rewrite)) {
+//							$notify = '&custom=' . gettext('Rewrite tokens may not be empty.');
+//						} else {
+						$this->plugin_vars[$page]['rewrite'] = $rewrite;
+						setOption($element['option'], $rewrite);
+//						}
 					}
 				}
 			}
@@ -188,13 +171,13 @@ class rewriteTokens {
 				$desc = sprintf(gettext('Link for <em>%s</em> script page.'), $page);
 			}
 			if (array_key_exists('rule', $element)) {
-				$rule = ", 'rule'=>'{$element['rule']}'";
+				$rule = ",		'rule'=>'{$element['rule']}'";
 			} else {
 				$rule = '';
 			}
-			$newtext .= $token = "\n	'$page'=> array('define'=>$define, 'rewrite'=>'{$element['rewrite']}'$rule),";
+			$newtext .= $token = "\n														'$page'=>			array('define'=>$define,						'rewrite'=>'{$element['rewrite']}'$rule),";
 		}
-		$newtext = substr($newtext, 0, -1) . "\n);\n";
+		$newtext = substr($newtext, 0, -1) . "\n												);\n";
 		$zp_cfg = $this->zp_cfg_a . $newtext . $this->zp_cfg_b;
 		storeConfig($zp_cfg);
 		return $notify;
@@ -203,17 +186,15 @@ class rewriteTokens {
 	static function tabs($tabs) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
-				$tabs['development'] = array(
-						'text' => gettext("development"),
+				$tabs['development'] = array('text' => gettext("development"),
+						'link' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=development&tab=tokens',
+						'default' => "tokens",
 						'subtabs' => NULL);
 			}
-			$tabs['development']['subtabs'][gettext("tokens")] = PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=tokens&tab=' . gettext('tokens');
-			$named = array_flip($tabs['development']['subtabs']);
-			natcasesort($named);
-			$tabs['development']['subtabs'] = $named = array_flip($named);
-			$tabs['development']['link'] = array_shift($named);
+			$tabs['development']['subtabs'][gettext("tokens")] = PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=development&tab=tokens';
 		}
 		return $tabs;
 	}
 
 }
+?>

@@ -1,6 +1,6 @@
 <?php
 // force UTF-8 Ø
-
+$pages = $news = NULL;
 if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 	?>
 	<div class="menu">
@@ -8,19 +8,20 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 	</div>
 	<?php
 } else {
-	if (ZP_NEWS_ENABLED) {
+	if (extensionEnabled('zenpage') && ($news = getNumNews(true))) {
 		?>
 		<div class="menu">
-			<h3><?php echo gettext("News articles"); ?></h3>
+			<h3><?php echo NEWS_LABEL; ?></h3>
 			<?php
-			printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active", true, "submenu", "menu-active");
+			printAllNewsCategories(gettext("All"), TRUE, "", "menu-active", true, "submenu", "menu-active");
 			?>
 		</div>
 	<?php } ?>
 
 	<?php if (function_exists("printAlbumMenu")) { ?>
 		<div class="menu">
-		<?php if (ZP_NEWS_ENABLED || ZP_PAGES_ENABLED) {
+			<?php
+			if (extensionEnabled('zenpage')) {
 				if ($_zp_gallery_page == 'index.php' || $_zp_gallery_page != 'gallery.php') {
 					?>
 					<h3>
@@ -42,7 +43,7 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 		</div>
 	<?php } ?>
 
-	<?php if (ZP_PAGES_ENABLED) { ?>
+	<?php if (extensionEnabled('zenpage') && (getNumPages(true))) { ?>
 		<div class="menu">
 			<h3><?php echo gettext("Pages"); ?></h3>
 			<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active"); ?>
@@ -53,23 +54,7 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 ?>
 
 <div class="menu">
-	<h3><?php echo gettext("Archive"); ?></h3>
-	<ul>
-		<?php
-  if(ZP_NEWS_ENABLED) {
-    $archivelinktext = gettext("Gallery And News");
-  } else {
-    $archivelinktext = gettext("Gallery");
-  }
-		if ($_zp_gallery_page == "archive.php") {
-			echo "<li class='menu-active'>" . $archivelinktext . "</li>";
-		} else {
-			echo "<li>";
-			printCustomPageURL($archivelinktext, "archive");
-			echo "</li>";
-		}
-		?>
-	</ul>
+	<h3><?php printCustomPageURL(gettext('Archive'), "archive"); ?></h3>
 </div>
 
 <?php
@@ -80,7 +65,7 @@ if (class_exists('RSS') && (getOption('RSS_album_image') || getOption('RSS_artic
 		<ul>
 			<?php
 			if (!is_null($_zp_current_album)) {
-				printRSSLink('Album', '<li>', gettext('Album RSS'), '</li>');
+				printRSSLink('Album', '<li>', gettext('Album'), '</li>');
 				?>
 				<?php
 			}
@@ -89,8 +74,8 @@ if (class_exists('RSS') && (getOption('RSS_album_image') || getOption('RSS_artic
 			printRSSLink('Gallery', '<li>', gettext('Gallery'), '</li>');
 			?>
 			<?php
-			if (ZP_NEWS_ENABLED) {
-				printRSSLink("News", "<li>", gettext("News"), '</li>');
+			if ($news) {
+				printRSSLink("News", "<li>", NEWS_LABEL, '</li>');
 			}
 			?>
 		</ul>

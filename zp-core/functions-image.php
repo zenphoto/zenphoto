@@ -2,7 +2,6 @@
 /**
  * image processing functions
  * @package core
- * @subpackage functions\functions-image
  *
  */
 // force UTF-8 Ø
@@ -18,15 +17,20 @@
 function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.png') {
 	global $newfilename, $album, $image;
 	$debug = isset($_GET['debug']);
+	$err = sprintf(gettext('Image Processing Error: %s'), $errormessage);
 	if ($debug) {
-		echo('<strong>' . sprintf(gettext('Zenphoto Image Processing Error: %s'), $errormessage) . '</strong>'
-		. '<br /><br />' . sprintf(gettext('Request URI: [ <code>%s</code> ]'), html_encode(getRequestURI()))
-		. '<br />PHP_SELF: [ <code>' . html_encode($_SERVER['PHP_SELF']) . '</code> ]'
-		. (empty($newfilename) ? '' : '<br />' . sprintf(gettext('Cache: [<code>%s</code>]'), '/' . CACHEFOLDER . '/' . html_encode(sanitize($newfilename, 3))) . ' ')
-		. (empty($image) || empty($album) ? '' : ' <br />' . sprintf(gettext('Image: [<code>%s</code>]'), html_encode(sanitize($album . '/' . $image, 3))) . ' <br />'));
+		echo '<strong>' . $err . '</strong>';
 	} else {
-		if (DEBUG_IMAGE_ERR) {
-			trigger_error($errormessage, E_USER_NOTICE);
+		if (DEBUG_IMAGE) {
+			$msg = $err . "\n\t\t" . sprintf(gettext('Request URI: [%s]'), getRequestURI())
+							. "\n\t\t" . 'PHP_SELF: [' . sanitize($_SERVER['PHP_SELF'], 3) . ']';
+			if ($newfilename) {
+				$msg .= "\n\t\t" . sprintf(gettext('Cache: [%s]'), '/' . CACHEFOLDER . '/' . sanitize($newfilename, 3));
+			}
+			if ($image || $album) {
+				$msg.= "\n\t\t" . sprintf(gettext('Image: [%s]'), sanitize($album . '/' . $image, 3));
+			}
+			debugLog($msg);
 		}
 		header("HTTP/1.0 $status_text");
 		header("Status: $status_text");
@@ -45,7 +49,7 @@ function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.p
  */
 function imageDebug($album, $image, $args, $imgfile) {
 	list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop) = $args;
-	echo "Album: [ " . $album . " ], Image: [ " . $image . " ]<br /><br />";
+	echo "Album: [ " . html_encode($album) . " ], Image: [ " . html_encode($image) . " ]<br /><br />";
 	if (file_exists($imgfile)) {
 		echo "Image filesize: " . filesize($imgfile);
 	} else {
@@ -55,16 +59,16 @@ function imageDebug($album, $image, $args, $imgfile) {
 	echo "<strong>" . gettext("Debug") . " <code>i.php</code> | " . gettext("Arguments:") . "</strong><br />\n\n"
 	?>
 	<ul>
-		<li><?php echo gettext("size ="); ?>   <strong> <?php echo sanitize($size, 3) ?> </strong></li>
-		<li><?php echo gettext("width =") ?>   <strong> <?php echo sanitize($width, 3) ?> </strong></li>
-		<li><?php echo gettext("height =") ?>  <strong> <?php echo sanitize($height, 3) ?> </strong></li>
-		<li><?php echo gettext("cw =") ?>      <strong> <?php echo sanitize($cw, 3) ?> </strong></li>
-		<li><?php echo gettext("ch =") ?>      <strong> <?php echo sanitize($ch, 3) ?> </strong></li>
-		<li><?php echo gettext("cx =") ?>      <strong> <?php echo sanitize($cx, 3) ?> </strong></li>
-		<li><?php echo gettext("cy =") ?>      <strong> <?php echo sanitize($cy, 3) ?> </strong></li>
-		<li><?php echo gettext("quality =") ?> <strong> <?php echo sanitize($quality, 3) ?> </strong></li>
-		<li><?php echo gettext("thumb =") ?>   <strong> <?php echo sanitize($thumb, 3) ?> </strong></li>
-		<li><?php echo gettext("crop =") ?>    <strong> <?php echo sanitize($crop, 3) ?> </strong></li>
+		<li><?php echo gettext("size ="); ?>   <strong> <?php echo $size ?> </strong></li>
+		<li><?php echo gettext("width =") ?>   <strong> <?php echo $width ?> </strong></li>
+		<li><?php echo gettext("height =") ?>  <strong> <?php echo $height ?> </strong></li>
+		<li><?php echo gettext("cw =") ?>      <strong> <?php echo $cw ?> </strong></li>
+		<li><?php echo gettext("ch =") ?>      <strong> <?php echo $ch ?> </strong></li>
+		<li><?php echo gettext("cx =") ?>      <strong> <?php echo $cx ?> </strong></li>
+		<li><?php echo gettext("cy =") ?>      <strong> <?php echo $cy ?> </strong></li>
+		<li><?php echo gettext("quality =") ?> <strong> <?php echo $quality ?> </strong></li>
+		<li><?php echo gettext("thumb =") ?>   <strong> <?php echo $thumb ?> </strong></li>
+		<li><?php echo gettext("crop =") ?>    <strong> <?php echo $crop ?> </strong></li>
 	</ul>
 	<?php
 }
@@ -110,7 +114,7 @@ function propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim
 	}
 	if (DEBUG_IMAGE)
 		debugLog("propSizes(\$size=$size, \$width=$width, \$height=$height, \$w=$w, \$h=$h, \$thumb=$thumb, \$image_use_side=$image_use_side, \$dim=$dim):: \$wprop=$wprop; \$hprop=$hprop; \$neww=$neww; \$newh=$newh");
-	return array($neww, $newh);
+	return array((int) $neww, (int) $newh);
 }
 
 /**
@@ -217,7 +221,6 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		if (!empty($size)) {
 			$dim = $size;
 			if ($crop) {
-				$dim = $size;
 				if (!$ch)
 					$ch = $size;
 				if (!$cw)
@@ -249,7 +252,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			$size = $width = false;
 		} else {
 			// There's a problem up there somewhere...
-			imageError('404 Not Found', sprintf(gettext('Unknown error processing %s! Please report to the developers at <a href="http://www.zenphoto.org/">www.zenphoto.org</a>'), filesystemToInternal($imgfile)), 'err-imagegeneral.png');
+			imageError('404 Not Found', sprintf(gettext('Unknown error processing %s! Please report to the <a href="' . GITHUB . '/issues">developers</a>'), filesystemToInternal($imgfile)), 'err-imagegeneral.png');
 		}
 
 		$sizes = propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim);
@@ -321,6 +324,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					}
 				}
 			}
+			$sizes = propSizes($size, $neww, $newh, $w, $h, $thumb, $image_use_side, $dim);
+			list($neww, $newh) = $sizes;
+
 			if (is_null($cx) && is_null($cy)) { // scale crop to max of image
 				// set crop scale factor
 				$cf = 1;
@@ -328,15 +334,15 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					$cf = min($cf, $cw / $neww);
 				if ($ch)
 					$cf = min($cf, $ch / $newh);
-				//	set the image area of the crop (use the most image possible, rule of thirds positioning)
+				//	set the image area of the crop (use the most image possible)
 				if (!$cw || $w / $cw * $ch > $h) {
 					$cw = round($h / $ch * $cw * $cf);
 					$ch = round($h * $cf);
-					$cx = round(($w - $cw) / 3);
+					$cx = round(($w - $cw) / 2);
 				} else {
 					$ch = round($w / $cw * $ch * $cf);
 					$cw = round($w * $cf);
-					$cy = round(($h - $ch) / 3);
+					$cy = round(($h - $ch) / 2);
 				}
 			} else { // custom crop
 				if (!$cw || $cw > $w)
@@ -385,6 +391,10 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			if (DEBUG_IMAGE)
 				debugLog("cacheImage:no crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
 			$newim = zp_createImage($neww, $newh);
+			if ($thumb) {
+				$im = zp_stripMetadata($im);
+			}
+
 			if (!zp_resampleImage($newim, $im, 0, 0, 0, 0, $neww, $newh, $w, $h)) {
 				imageError('404 Not Found', sprintf(gettext('Image %s not renderable (resample).'), filesystemToInternal($imgfile)), 'err-failimage.png');
 			}
@@ -441,13 +451,11 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		@chmod($newfile, 0777);
 		if (zp_imageOutput($newim, getSuffix($newfile), $newfile, $quality)) { //	successful save of cached image
 			if (getOption('ImbedIPTC') && getSuffix($newfilename) == 'jpg' && GRAPHICS_LIBRARY != 'Imagick') { // the imbed function works only with JPEG images
-				global $_zp_extra_filetypes; //	because we are doing the require in a function!
-				if (!$_zp_extra_filetypes)
-					$_zp_extra_filetypes = array();
+				global $_zp_images_classes; //	because we are doing the require in a function!
 				require_once(dirname(__FILE__) . '/functions.php'); //	it is ok to increase memory footprint now since the image processing is complete
 				$iptc = array(
-								'1#090'	 => chr(0x1b) . chr(0x25) . chr(0x47), //	character set is UTF-8
-								'2#115'	 => $_zp_gallery->getTitle() //	source
+						'1#090' => chr(0x1b) . chr(0x25) . chr(0x47), //	character set is UTF-8
+						'2#115' => $_zp_gallery->getTitle() //	source
 				);
 				$iptc_data = zp_imageIPTC($imgfile);
 				if ($iptc_data) {
@@ -517,35 +525,47 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
  * rotation that get close to that flip. But I don't think any camera will
  * fill a flipped value in the tag.
  */
-function getImageRotation($imgfile) {
-	$rotation = false;
-	$imgfile_db = substr(filesystemToInternal($imgfile), strlen(ALBUM_FOLDER_SERVERPATH));
-	$result = query_single_row('SELECT EXIFOrientation FROM ' . prefix('images') . ' AS i JOIN ' . prefix('albums') . ' as a ON i.albumid = a.id WHERE ' . db_quote($imgfile_db) . ' = CONCAT(a.folder,"/",i.filename)');
-	if (is_null($result)) {
-		//try the file directly as this might be an image not in the database
-		if (in_array(getSuffix($imgfile), array('jpg', 'jpeg', 'tif', 'tiff'))) {
-			$result = exif_read_data($imgfile);
-			if (is_array($result) && array_key_exists('Orientation', $result)) {
-				$rotation = $result['Orientation'];
+
+function getImageRotation($img) {
+	if (is_object($img)) {
+		$rotation = $img->get('rotation');
+	} else {
+		$result = NULL;
+		$rotation = 0;
+		if (strpos($img, ALBUM_FOLDER_SERVERPATH) === 0) { // then we have possible image object
+			$imgfile = substr(filesystemToInternal($img), strlen(ALBUM_FOLDER_SERVERPATH));
+			$album = trim(dirname($imgfile), '/');
+			$image = basename($imgfile);
+			$a = query_single_row($sql = 'SELECT `id` FROM ' . prefix('albums') . ' WHERE `folder`=' . db_quote($album));
+			if ($a) {
+				$result = query_single_row($sql = 'SELECT rotation FROM ' . prefix('images') . '  WHERE `albumid`=' . $a['id'] . ' AND `filename`=' . db_quote($image));
 			}
 		}
-	} else if (is_array($result) && array_key_exists('EXIFOrientation', $result)) {
-		$splits = preg_split('/!([(0-9)])/', $result['EXIFOrientation']);
-		$rotation = $splits[0];
-	}
-	if ($rotation) {
-		switch ($rotation) {
-			case 1 : return false; // none
-			case 2 : return false; // mirrored
-			case 3 : return 180; // upside-down (not 180 but close)
-			case 4 : return 180; // upside-down mirrored
-			case 5 : return 270; // 90 CW mirrored (not 270 but close)
-			case 6 : return 270; // 90 CCW
-			case 7 : return 90; // 90 CCW mirrored (not 90 but close)
-			case 8 : return 90; // 90 CW
+		if (is_array($result)) {
+			if (array_key_exists('rotation', $result)) {
+				$rotation = $result['rotation'];
+			}
+		} else {
+			//try the file directly as this might be an image not in the database
+			if (in_array(getSuffix($img), array('jpg', 'jpeg', 'tif', 'tiff'))) {
+				$result = exif_read_data($img);
+				if (is_array($result) && array_key_exists('Orientation', $result)) {
+					$rotation = $result['Orientation'];
+				}
+			}
 		}
 	}
-	return false;
+	switch (substr(trim($rotation, '!'), 0, 1)) {
+		case 0:
+		case 1: // none
+		case 2: return 0; // mirrored
+		case 3: // upside-down
+		case 4: return 180; // upside-down mirrored
+		case 5: // 90 CW mirrored
+		case 6: return 90; // 90 CCW
+		case 7: // 90 CCW mirrored
+		case 8: return 270; // 90 CW
+	}
+	return 0;
 }
-
-	?>
+?>

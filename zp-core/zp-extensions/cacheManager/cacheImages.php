@@ -3,8 +3,7 @@
  * This template is used to generate cache images. Running it will process the entire gallery,
  * supplying an album name (ex: loadAlbums.php?album=newalbum) will only process the album named.
  * Passing clear=on will purge the designated cache before generating cache images
- * @package plugins
- * @subpackage cachemanager
+ * @package plugins/cacheManager
  */
 // force UTF-8 Ø
 define('OFFSET_PATH', 3);
@@ -57,7 +56,7 @@ function loadAlbum($album) {
 						?>
 						<a href="<?php echo html_encode($uri); ?>&amp;debug">
 							<?php
-							echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="30" width="30" alt="X" />' . "\n";
+							echo '<img src="' . pathurlencode($uri) . '" height="30" width="30" alt="X" />' . "\n";
 							?>
 						</a>
 						<?php
@@ -97,6 +96,7 @@ function loadAlbum($album) {
 						$args = getImageParameters($args, $album->name);
 						$uri = getImageURI($args, $album->name, $_zp_current_image->filename, $_zp_current_image->filemtime);
 						if (strpos($uri, 'i.php?') !== false) {
+							$uri = str_replace('check=', '', $uri);
 							if (!($count + $countit)) {
 								echo "{ ";
 							} else {
@@ -107,9 +107,9 @@ function loadAlbum($album) {
 							<a href="<?php echo html_encode($uri); ?>&amp;debug">
 								<?php
 								if ($thumbstandin) {
-									echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="15" width="15" alt="x" />' . "\n";
+									echo '<img src="' . pathurlencode($uri) . '" height="15" width="15" alt="x" />' . "\n";
 								} else {
-									echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
+									echo '<img src="' . pathurlencode($uri) . '" height="20" width="20" alt="X" />' . "\n";
 								}
 								?>
 							</a>
@@ -149,26 +149,24 @@ if ($alb) {
 	}
 } else {
 	$object = '<em>' . gettext('Gallery') . '</em>';
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page = overview&tab=images',
-					gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
 }
 $custom = array();
 
-$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type` = "cacheManager" ORDER BY `aux`');
+$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type` = "cacheManager"');
 while ($row = db_fetch_assoc($result)) {
 	$row = getSerializedArray($row['data']);
 	$custom[] = $row;
 }
-$custom = sortMultiArray($custom, array('theme', 'thumb', 'image_size', 'image_width', 'image_height'));
+$custom = sortMultiArray($custom, array('theme', 'album', 'thumb', 'image_size', 'image_width', 'image_height'), false, true, true);
 
-if (isset($_GET['select'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'select') {
 	XSRFdefender('cacheImages');
 	$enabled = @$_POST['enable'];
 } else {
 	$enabled = false;
 }
 
-printAdminHeader('overview', 'images');
+printAdminHeader('admin', 'images');
 echo "\n</head>";
 echo "\n<body>";
 
@@ -176,24 +174,20 @@ printLogoAndLinks();
 echo "\n" . '<div id = "main">';
 printTabs();
 echo "\n" . '<div id = "content">';
+zp_apply_filter('admin_note', 'cache', '');
+$clear = sprintf(gettext('Refresh cache for %s'), $object);
+$count = 0;
+
+if ($alb) {
+	$r = '/admin-edit.php?page = edit&album = ' . $alb;
+	echo "\n<h1>" . $clear . "</h1>";
+} else {
+	$r = '/admin.php';
+	echo "\n<h1>" . $clear . "</h1>";
+}
 ?>
-<?php printSubtabs(); ?>
 <div class="tabbox">
-
-
 	<?php
-	zp_apply_filter('admin_note', 'cache', '');
-	$clear = sprintf(gettext('Refreshing cache for %s'), $object);
-	$count = 0;
-
-	if ($alb) {
-		$r = '/admin-edit.php?page = edit&album = ' . $alb;
-		echo "\n<h2>" . $clear . "</h2>";
-	} else {
-		$r = '/admin.php';
-		echo "\n<h2>" . $clear . "</h2>";
-	}
-
 	$cachesizes = 0;
 	$currenttheme = $_zp_gallery->getCurrentTheme();
 	$themes = array();
@@ -201,29 +195,10 @@ echo "\n" . '<div id = "content">';
 		$themes[$theme] = $data['name'];
 	}
 	$last = '';
+	cacheManager::printShowHide();
 	?>
-	<script type="text/javascript">
-		//<!-- <![CDATA[
-		function checkTheme(theme) {
-			$('.' + theme).prop('checked', $('#' + theme).prop('checked'));
-		}
-		function showTheme(theme) {
-			html = $('#' + theme + '_arrow').html();
-			if (html.match(/down/)) {
-				html = html.replace(/_down/, '_up');
-				html = html.replace(/title = "<?php echo gettext('Show'); ?>/, 'title="<?php echo gettext('Hide');
-	?>"');
-				$('#' + theme + '_list').show();
-			} else {
-				html = html.replace(/_up/, '_down');
-				html = html.replace(/title="<?php echo gettext('Hide'); ?>/, 'title="<?php echo gettext('Show'); ?>"');
-				$('#' + theme + '_list').hide();
-			}
-			$('#' + theme + '_arrow').html(html);
-		}
-		//]]> -->
-	</script>
-	<form class="dirty-check" name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
+
+	<form class="dirtylistening" onReset="setClean('size_selections');" id="size_selections" name="size_selections" action="?tab=images&action=select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
 		<?php XSRFToken('cacheImages') ?>
 		<ol class="no_bullets">
 			<?php
@@ -241,7 +216,7 @@ echo "\n" . '<div id = "content">';
 					if (!is_array($enabled)) {
 						?>
 						<span class="icons" id="<?php echo $theme; ?>_arrow">
-							<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/place_holder_icon.png'; ?>" alt="" />
+							<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/placeholder.png'; ?>" alt="" />
 						</span>
 						<?php
 					}
@@ -253,14 +228,25 @@ echo "\n" . '<div id = "content">';
 				</li>
 				<?php
 			}
-
 			$seen = array();
 			foreach ($custom as $key => $cacheimage) {
 				if (!is_array($enabled) || in_array($key, $enabled)) {
+					$themeid = $cacheimage['theme'];
+					$theme = preg_replace('/[^A-Za-z0-9\-_]/', '', $themeid);
+					if (isset($themes[$theme])) {
+						$themeid = $themes[$theme];
+					}
+					if (isset($cacheimage['album']) && $cacheimage['album']) {
+						$theme .= '_' . $cacheimage['album'];
+						$themeid .= ' (' . $cacheimage['album'] . ')';
+					} else {
+						$cacheimage['album'] = NULL;
+					}
+
 					if (is_array($enabled)) {
 						$checked = ' checked="checked" disabled="disabled"';
 					} else {
-						if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin') {
+						if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin' || $cacheimage['album']) {
 							$checked = ' checked="checked"';
 						} else {
 							$checked = '';
@@ -288,30 +274,28 @@ echo "\n" . '<div id = "content">';
 							$checked = ' disabled="disabled"';
 						}
 					}
-					$themeid = $theme = $cacheimage['theme'];
-					if (isset($themes[$theme])) {
-						$themeid = $themes[$theme];
-					}
+
 					if ($theme != $last && !is_array($enabled)) {
 						if ($last) {
 							?>
 						</ol>
+						</span>
 						</li>
 						<?php
 					}
 					$last = $theme;
 					?>
 					<li>
-						<span class="icons" id="<?php echo $theme; ?>_arrow">
-							<a href="javascript:showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
-								<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/arrow_down.png'; ?>" alt="" />
+						<span class="icons upArrow" id="<?php echo $theme; ?>_arrow">
+							<a onclick="showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
+								<?php echo ARROW_DOWN_GREEN; ?>
 							</a>
 						</span>
 						<label>
-							<input type="checkbox" name="<?php echo $theme; ?>" id="<?php echo $theme; ?>" value="" onclick="checkTheme('<?php echo $theme; ?>');"<?php echo $checked; ?> /><?php printf(gettext('all sizes for <i>%1$s</i>'), $themeid); ?>
+							<input type="checkbox" name="<?php echo $theme; ?>" id="<?php echo $theme; ?>" value="" onclick="checkTheme('<?php echo $theme; ?>');"<?php echo $checked; ?> /><?php printf(gettext('all sizes for <em>%1$s</em>'), $themeid); ?>
 						</label>
 						<span id="<?php echo $theme; ?>_list" style="display:none">
-							<ol class="no_bullets">
+							<ol class="no_bullets"><!-- <?php echo $last; ?> -->
 								<?php
 							}
 							$show = true;
@@ -324,7 +308,7 @@ echo "\n" . '<div id = "content">';
 							}
 							if ($show) {
 								?>
-								<li>
+								<li class="no_bullets">
 									<?php
 									if (is_array($enabled)) {
 										?>
@@ -386,33 +370,26 @@ echo "\n" . '<div id = "content">';
 			$button = array('text' => gettext("Cache the images"), 'title' => gettext('Executes the caching of the selected image sizes.'));
 		}
 		?>
-		<p class="buttons">
-			<a title="<?php echo gettext('Back to the overview'); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER . $r; ?>"> <img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" />
-				<strong><?php echo gettext("Back"); ?> </strong>
-			</a>
-		</p>
+
 		<?php
 		if ($button) {
 			?>
 			<p class="buttons">
 				<button class="tooltip" type="submit" title="<?php echo $button['title']; ?>" >
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" />
+					<?php echo CURVED_UPWARDS_AND_RIGHTWARDS_ARROW_BLUE; ?>
 					<?php echo $button['text']; ?>
 				</button>
 			</p>
 			<?php
 		}
 		?>
-		<br class="clearall" />
+		<br class="clearall">
 	</form>
 
 	<?php
 	echo "\n" . '</div>';
 	echo "\n" . '</div>';
-	echo "\n" . '</div>';
-
 	printAdminFooter();
-
+	echo "\n" . '</div>';
 	echo "\n</body>";
-	echo "\n</head>";
 	?>

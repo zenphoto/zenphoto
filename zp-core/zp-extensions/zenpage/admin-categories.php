@@ -3,46 +3,44 @@
  * zenpage admin-categories.php
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package plugins/zenpage
  */
 define("OFFSET_PATH", 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-require_once("zenpage-admin-functions.php");
+require_once("admin-functions.php");
 
 admin_securityChecks(ZENPAGE_NEWS_RIGHTS, currentRelativeURL());
 
 $reports = array();
-if (isset($_GET['bulkaction'])) {
-	$reports[] = zenpageBulkActionMessage(sanitize($_GET['bulkaction']));
-}
+
 if (isset($_POST['action'])) {
 	XSRFdefender('checkeditems');
-	if ($_POST['checkallaction'] == 'noaction') {
-		if (updateItemSortorder('categories', $reports)) {
-			$reports[] = "<p class='messagebox fade-message'>" . gettext("Sort order saved.") . "</p>";
-		} else {
+	if (updateItemSortorder('categories', $reports)) {
+		$reports[] = "<p class='messagebox fade-message'>" . gettext("Sort order saved.") . "</p>";
+	}
+	$action = processZenpageBulkActions('Category');
+	if ($report = zenpageBulkActionMessage($action)) {
+		$reports[] = $report;
+	} else {
+		if (empty($reports)) {
 			$reports[] = "<p class='notebox fade-message'>" . gettext("Nothing changed.") . "</p>";
 		}
-	} else {
-		$action = processZenpageBulkActions('Category');
-		bulkActionRedirect($action);
 	}
 }
 if (isset($_GET['delete'])) {
 	XSRFdefender('delete_category');
-	$reports[] = deleteCategory(sanitize($_GET['delete']));
+	$reports[] = deleteZenpageObj(newCategory(sanitize($_GET['delete'])));
 }
 if (isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	$x = $_zp_zenpage->getCategory(sanitize_numeric($_GET['id']));
-	$obj = new ZenpageCategory($x['titlelink']);
+	$x = $_zp_CMS->getCategory(sanitize_numeric($_GET['id']));
+	$obj = newCategory($x['titlelink']);
 	$obj->set('hitcounter', 0);
 	$obj->save();
 }
 if (isset($_GET['publish'])) {
 	XSRFdefender('update');
-	$obj = new ZenpageCategory(sanitize($_GET['titlelink']));
+	$obj = newCategory(sanitize($_GET['titlelink']));
 	$obj->setShow(sanitize_numeric($_GET['publish']));
 	$obj->save();
 }
@@ -50,15 +48,22 @@ if (isset($_GET['save'])) {
 	XSRFdefender('save_categories');
 	updateCategory($reports, true);
 }
-if (isset($_GET['id'])) {
-	$x = $_zp_zenpage->getCategory(sanitize_numeric($_GET['id']));
-	$result = new ZenpageCategory($x['titlelink']);
-} else if (isset($_GET['update'])) {
-	XSRFdefender('update_categories');
-	$result = updateCategory($reports);
+
+if (empty($reports)) {
+	if (isset($_SESSION['reports'])) {
+		$reports = $_SESSION['reports'];
+		unset($_SESSION['reports']);
+	}
 } else {
-	$result = new ZenpageCategory('');
+	$_SESSION['reports'] = $reports;
+
+	var_dump($reports);
+	$uri = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-categories.php';
+	header('Location: ' . $uri);
+	exitZP();
 }
+
+$_zp_CMS = new CMS();
 
 printAdminHeader('news', 'categories');
 zp_apply_filter('texteditor_config', 'zenpage');
@@ -83,14 +88,14 @@ zenpageJSCSS();
 		}
 	}
 
-	$(document).ready(function() {
-		$('form [name=checkeditems] #checkallaction').change(function() {
+	window.addEventListener('load', function () {
+		$('form [name=checkeditems] #checkallaction').change(function () {
 			if ($(this).val() == 'deleteall') {
 				// general text about "items" so it can be reused!
 				alert('<?php echo js_encode(gettext('Are you sure you want to delete all selected items? THIS CANNOT BE UNDONE!')); ?>');
 			}
 		});
-	});
+	}, false);
 	// ]]> -->
 </script>
 </head>
@@ -104,11 +109,15 @@ zenpageJSCSS();
 		?>
 		<div id="content">
 			<?php
-			$subtab = printSubtabs();
+			$subtab = getCurrentTab();
+			zp_apply_filter('admin_note', 'categories', $subtab);
 			?>
-			<div id="tab_articles" class="tabbox">
+			<h1>
+				<?php echo gettext('Categories'); ?>
+			</h1>
+
+			<div class="tabbox">
 				<?php
-				zp_apply_filter('admin_note', 'categories', $subtab);
 				if ($reports) {
 					$show = array();
 					preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports), $matches);
@@ -119,92 +128,131 @@ zenpageJSCSS();
 						echo '<p class="' . $type . '">' . implode('<br />', $list) . '</p>';
 					}
 				}
-				?>
-				<h1>
-					<?php echo gettext('Categories'); ?><span class="zenpagestats"><?php printCategoriesStatistic(); ?></span></h1>
-				<form class="dirty-check" action="admin-categories.php?page=news&amp;tab=categories" method="post" id="checkeditems" name="checkeditems" onsubmit="return confirmAction();" autocomplete="off">
-					<?php XSRFToken('checkeditems'); ?>
-					<input	type="hidden" name="action" id="action" value="update" />
-					<p class="buttons">
-						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
-						</button>
-						<?php
-						if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+				$categories = $_zp_CMS->getAllCategories();
+				foreach ($categories as $key => $cat) {
+					$catobj = newCategory($cat['titlelink']);
+					if (!($catobj->subRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+						unset($categories[$key]);
+					}
+				}
+
+				if (!empty($categories) || zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+					?>
+					<span class="zenpagestats"><?php printCategoriesStatistic(); ?></span>
+					<form class="dirtylistening" onReset="setClean('checkeditems');" action="admin-categories.php?page=news&amp;tab=categories" method="post" id="checkeditems" name="checkeditems" onsubmit="return confirmAction();" autocomplete="off">
+						<?php XSRFToken('checkeditems'); ?>
+						<input	type="hidden" name="action" id="action" value="update" />
+						<p class="buttons">
+							<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
+								<?php echo CHECKMARK_GREEN; ?> <?php echo gettext('Apply'); ?></strong>
+							</button>
+							<?php
+							if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+								?>
+								<span class="floatright">
+									<a href="admin-edit.php?newscategory&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo gettext('New category'); ?>">
+										<?php echo PLUS_ICON; ?>
+										<strong>
+											<?php echo gettext('New category'); ?>
+										</strong>
+									</a>
+								</span>
+								<?php
+							}
 							?>
-							<span class="floatright">
-								<strong><a href="admin-edit.php?newscategory&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add') ?>" title="<?php echo gettext('New category'); ?>"><img src="images/add.png" alt="" /> <?php echo gettext('New category'); ?></a></strong>
-							</span>
+						</p>
+						<br class="clearall">
+						<br />
+						<div class="headline">
 							<?php
-						}
-						?>
-					</p>
-					<br class="clearall" /><br />
-					<div class="bordered">
-						<div class="headline"><?php echo gettext('Edit this Category'); ?>
-							<?php
+							echo gettext('Edit this Category');
 							$checkarray = array(
-											gettext('Set to published')				 => 'showall',
-											gettext('Set to unpublished')			 => 'hideall',
-											gettext('*Bulk actions*')					 => 'noaction',
-											gettext('Delete')									 => 'deleteall',
-											gettext('Add tags to articles')		 => 'alltags',
-											gettext('Clear tags of articles')	 => 'clearalltags'
+									gettext('Set to published') => 'showall',
+									gettext('Set to unpublished') => 'hideall',
+									gettext('*Bulk actions*') => 'noaction',
+									gettext('Delete') => 'deleteall',
 							);
 							if (extensionEnabled('hitcounter')) {
 								$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
 							}
+							$checkarray = zp_apply_filter('bulk_category_actions', $checkarray);
 							printBulkActions($checkarray);
 							?>
 						</div>
-						<div class="subhead" >
-							<label style="float: right"><?php echo gettext("Check All"); ?>
-								<input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
-							</label>
-						</div>
-						<ul class="page-list">
-							<?php $toodeep = printNestedItemsList('cats-sortablelist', '', ''); ?>
-						</ul>
-					</div>
-					<?php
-					if ($toodeep) {
-						echo '<div class="errorbox">';
-						echo '<h2>' . gettext('The sort position of the indicated items cannot be recorded because the nesting is too deep. Please move them to a higher level and save your order.') . '</h2>';
-						echo '</div>';
-					}
-					?>
-					<span id="serializeOutput"></span>
-					<input name="update" type="hidden" value="Save Order" />
-					<p class="buttons">
-						<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
-							<img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
-						</button>
-					</p>
-					<ul class="iconlegend">
-						<?php
-						if (GALLERY_SECURITY == 'public') {
-							?>
-							<li><img src="../../images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>
-							<?php
-						}
-						?>
-						<li><img src="images/view.png" alt="" /><?php echo gettext('View'); ?></li>
-						<?php
-						if (extensionEnabled('hitcounter')) {
-							?>
-							<li><img src="../../images/reset.png" alt="" /><?php echo gettext('Reset hitcounter'); ?></li>
-							<?php
-						}
-						?>
-						<li><img src="../../images/fail.png" alt="" /><?php echo gettext('Delete category'); ?></li>
-					</ul>
-				</form>
+						<div class="bordered">
 
-				<br style="clear: both" /><br />
+							<div class="subhead">
+								<label style="float: right;"><?php echo gettext("Check All"); ?>
+									<input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+								</label>
+							</div>
+
+							<ul class="page-list">
+								<?php $toodeep = printNestedItemsList('cats-sortablelist', '', ''); ?>
+							</ul>
+						</div>
+						<?php
+						if ($toodeep) {
+							echo '<div class="errorbox">';
+							echo '<h2>' . gettext('The sort position of the indicated items cannot be recorded because the nesting is too deep. Please move them to a higher level and save your order.') . '</h2>';
+							echo '</div>';
+						}
+						?>
+						<span id="serializeOutput"></span>
+						<input name="update" type="hidden" value="Save Order" />
+						<p class="buttons">
+							<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
+								<?php echo CHECKMARK_GREEN; ?> <?php echo gettext('Apply'); ?></strong>
+							</button>
+						</p>
+						<ul class="iconlegend">
+							<?php
+							if (GALLERY_SECURITY == 'public') {
+								?>
+								<li>
+									<?php
+									if (true) {
+										?>
+										<?php echo LOCK; ?>
+										<?php echo LOCK_OPEN; ?>
+										<?php echo gettext("has/does not have password"); ?>
+										<?php
+									}
+									?>
+								<li>
+									<?php
+								}
+								?>
+							<li>
+								<?php echo CLIPBOARD . ' ' . gettext("pick source"); ?>
+							</li>
+							<li>
+								<?php echo BULLSEYE_BLUE; ?> <?php echo gettext('view'); ?>
+							</li>
+							<?php
+							if (extensionEnabled('hitcounter')) {
+								?>
+								<li>
+									<?php echo RECYCLE_ICON; ?>
+									<?php echo gettext('reset hitcounter'); ?>
+								</li>
+								<?php
+							}
+							?>
+							<li>
+								<?php echo WASTEBASKET; ?>
+								<?php echo gettext('Delete'); ?>
+							</li>
+						</ul>
+					</form>
+					<?php
+				} else {
+					echo gettext('There are no categories for you to edit.');
+				}
+				?>
 			</div> <!-- tab_articles -->
 		</div> <!-- content -->
-
+		<?php printAdminFooter(); ?>
 	</div> <!-- main -->
-	<?php printAdminFooter(); ?>
 </body>
 </html>

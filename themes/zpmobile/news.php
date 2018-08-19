@@ -2,13 +2,15 @@
 // force UTF-8 Ø
 if (!defined('WEBPATH'))
 	die();
+if (class_exists('CMS')) {
 	?>
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
+
+
+
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 			<?php jqm_loadScripts(); ?>
@@ -24,14 +26,12 @@ if (!defined('WEBPATH'))
 
 				<div class="ui-content" role="main">
 					<div class="content-primary">
-						<h2 class="breadcrumb">
-							<?php
+						<h2 class="breadcrumb"><?php printNewsIndexURL(); ?><strong><?php
 								printZenpageItemsBreadcrumb(' ', '');
 								printCurrentNewsCategory(" ");
 								printNewsTitle(" ");
 								printCurrentNewsArchive(" | ");
-							?>
-						</h2>
+								?></strong></h2>
 						<?php
 // single news article
 						if (is_NewsArticle()) {
@@ -40,17 +40,15 @@ if (!defined('WEBPATH'))
 							printNewsContent();
 							printCodeblock(1);
 							?>
-							<br class="clearall" /><br />
+							<br class="clearall"><br />
 							<?php printNewsCategories(', ', gettext('Categories: '), 'catlist'); ?>
-							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'catlist', ', '); 
-							if(class_exists('ScriptlessSocialSharing')) {
-								ScriptlessSocialSharing::printButtons();
-							}
+							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'catlist', ', '); ?>
+							<?php
 							if (function_exists('printCommentForm')) {
 								printCommentForm();
 							}
 							?>
-							<br class="clearall" />
+							<br class="clearall">
 							<?php
 							if (getPrevNewsURL()) {
 								$prevnews = getPrevNewsURL();
@@ -62,37 +60,42 @@ if (!defined('WEBPATH'))
 							<?php if (getPrevNewsURL() || getNextNewsURL()) { ?><?php } ?>
 
 
-								<?php
-							} else {
-								printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true, 7);
-								?>
+							<?php
+						} else {
+							printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true, 7);
+							?>
 							<ul data-role="listview" data-inset="true" data-theme="a" class="ui-listview ui-group-theme-a">
-		<?php while (next_news()): ?>
+								<?php while (next_news()): ?>
 									<li>
 										<a href="<?php echo html_encode(jqm_getLink()); ?>" title="<?php printBareNewsTitle(); ?>">
-									<?php printNewsTitle(); ?> <small>(<?php printNewsDate(); ?>)</small>
-											<div class="albumdesc"><?php echo shortenContent(getBare(getNewsContent()), 57, '(...)', false); ?></div>
+											<?php printNewsTitle(); ?> <small>(<?php printNewsDate(); ?>)</small>
+											<div class="albumdesc"><?php echo html_encodeTagged(shortenContent(getNewsContent(), 57, '(...)', false)); ?></div>
 										</a>
 									</li>
-								<?php
-							endwhile;
-							?>
+									<?php
+								endwhile;
+								?>
 							</ul>
-		<?php
-		printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true, 7);
-	}
-	?>
+							<?php
+							printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true, 7);
+						}
+						?>
 
 					</div>
 					<div class="content-secondary">
-				<?php jqm_printMenusLinks(); ?>
+						<?php jqm_printMenusLinks(); ?>
 					</div>
 				</div><!-- /content -->
-			<?php jqm_printBacktoTopLink(); ?>
-			<?php jqm_printFooterNav(); ?>
+				<?php jqm_printBacktoTopLink(); ?>
+				<?php jqm_printFooterNav(); ?>
 			</div><!-- /page -->
 
-	<?php zp_apply_filter('theme_body_close');
-	?>
+			<?php zp_apply_filter('theme_body_close');
+			?>
 		</body>
 	</html>
+	<?php
+} else {
+	include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
+}
+?>

@@ -1,237 +1,153 @@
 <?php
-/**
- * @package plugins
- * @subpackage deprecated-functions
- */
 
 /**
- * Zenphoto general deprecated functions
- *
- * @package plugins
- * @subpackage deprecated-functions
+ * General deprecated functions
+ * @package plugins/deprecated-functions
  */
 class internal_deprecations {
+# all methods must be declared static
+#
+# example deprecated method
+#	/**
+#	 * @deprecated
+#	 * @since 1.0.0
+#	 */
+#	static function PersistentObject() {
+#		deprecated_functions::notify(gettext('Use the instantiate method instead'));
+#	}
+#
+# example of method with deprecated parameters
+#	/**
+#	 * @deprecated
+#	 * @since 1.0.0
+#	 */
+#	public static function next_album() {
+#		deprecated_functions::notify(gettext('Sort parameter options should be set instead with the setSortType() and setSortDirection() object methods at the head of your script.'));
+#	}
+	/**
+	 * @deprecated
+	 * @since 1.4.0
+	 */
 
-	/**
-	 * @deprecated 2.0 Use getLanguageSubdomains() instead
-	 * @since 1.5
-	 */
-	static function LanguageSubdomains() {
-		deprecated_functions::notify(gettext('Use getLanguageSubdomains() instead'));
-	}
-	/**
-	 * @deprecated 2.0 Use getLanguageText() instead
-	 * @since 1.5
-	 */
-	static function getLanguageText() {
-		deprecated_functions::notify(gettext('Use getLanguageText() instead'));
-	}
-	/**
-	 * @deprecated 2.0 Use setexifvars() instead
-	 * @since 1.5
-	 */
-	static function setexifvars() {
-		deprecated_functions::notify(gettext('Use setexifvars() instead'));
-	}
-	/**
-	 * @deprecated 2.0 Use hasPrimaryScripts() instead
-	 * @since 1.5
-	 */
-	static function hasPrimaryScripts() {
-		deprecated_functions::notify(gettext('Use removeTrailingSlash() instead'));
-	}
-	/**
-	 * @deprecated 2.0 Use removeDir() instead
-	 * @since 1.5
-	 */
-	static function removeDir() {
-		deprecated_functions::notify(gettext('Use removeDir() instead'));
-	}
-	/**
-	 * @deprecated 2.0 Use tagURLs() instead
-	 * @since 1.5
-	 */
-	static function tagURLs() {
-		deprecated_functions::notify(gettext('Use tagURLs() instead'));
-	}
-	/**
-	 * @deprecated 2.0 Use unTagURLs() instead
-	 * @since 1.5
-	 */
-	static function unTagURLs() {
-		deprecated_functions::notify(gettext('Use unTagURLs() instead'));
+	static function getCustomData() {
+		deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
 	}
 
 	/**
-	 * @deprecated 2.0 Use updateImageProcessorLink() instead
-	 * @since 1.5
+	 * @deprecated
+	 * @since 1.4.0
 	 */
-	static function updateImageProcessorLink() {
-		deprecated_functions::notify(gettext('Use updateImageProcessorLink() instead'));
-	}
-	/**
-	 * @deprecated 2.0 Use pluginDebug() instead
-	 * @since 1.5
-	 */
-	static function pluginDebug() {
-		deprecated_functions::notify(gettext('Use pluginDebug() instead'));
+	static function setCustomData($val) {
+		deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
 	}
 
-	/**
-	 * @deprecated 2.0 Use removeTrailingSlash() instead
-	 * @since 1.5
-	 */
-	static function removeTrailingSlash($string) {
-		deprecated_functions::notify(gettext('Use removeTrailingSlash() instead'));
-	}
+}
 
-	/**
-	 * @deprecated 2.0 Use htmlTidy() instead
-	 * @since 1.5
-	 */
-	static function tidyHTML() {
-		deprecated_functions::notify(gettext('Use tidyHTML() instead'));
-	}
+# For other deprecated functions simply move them here.
+#
+#
+#/**
+# * @deprecated
+# * @since 1.0.0
+# */
+#function printCustomSizedImageMaxHeight($maxheight) {
+#	deprecated_functions::notify(gettext('Use printCustomSizedImageMaxSpace().'));
+#	if (getFullWidth() === getFullHeight() OR getDefaultHeight() > $maxheight) {
+#		printCustomSizedImage(getImageTitle(), null, null, $maxheight, null, null, null, null, null, null);
+#	} else {
+#		printDefaultSizedImage(getImageTitle());
+#	}
+#}
 
-	/**
-	 * @deprecated 2.0 Use instantiate() method
-	 * @since 1.4.6
-	 */
-	static function PersistentObject() {
-		deprecated_functions::notify(gettext('Use the instantiate method instead'));
-	}
-
+/**
+ * @deprecated
+ * @since 1.0.0
+ */
+function printHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
+	deprecated_functions::notify(gettext('This feature is handled in the "theme_head" filter. For parameters set the theme options.'));
 }
 
 /**
- *
- * fixes unbalanced HTML tags. Used by shortenContent when PHP tidy is not present
- *
- * @deprecated 2.0 Use tidyHTML() instead
- * @since 1.5
- *
- * @param string $html
- * @return string
+ * @deprecated
+ * @since 1.0.1
  */
-function cleanHTML($html) {
-	deprecated_functions::notify(gettext("Use tidyHTML() instead"));
-	return tidyHTML($html);
+function getAllTagsCount($language = NULL) {
+	deprecated_functions::notify(gettext('Use getAllTagsUnique()'));
+	return getAllTagsUnique($language, 1, true);
 }
 
 /**
- * @deprecated 2.0
- * @since 1.5
+ * @deprecated
+ * @since 1.4.0
  */
-class zpFunctions {
-
-	/**
-	 * @deprecated 2.0 Use getLanguageSubdomains()
-	 * @since 1.5
-	 * @see getLanguageSubdomains()
-	 */
-	static function LanguageSubdomains() {
-		internal_deprecations::LanguageSubdomains();
-		return getLanguageSubdomains();
-	}
-
-	/**
-	 * @deprecated 2.0 Use getLanguageText()
-	 * @since 1.5
-	 * @see getLanguageText()
-	 */
-	static function getLanguageText($loc = NULL, $separator = NULL) {
-		internal_deprecations::getLanguageText();
-		return getLanguageText($loc, $separator);
-	}
-
-	/**
-	 * @deprecated 2.0 Use setexifvars()
-	 * @since 1.5
-	 * @see setexifvars()
-	 */
-	static function setexifvars() {
-		internal_deprecations::setexifvars();
-		setexifvars();
-	}
-
-	/**
-	 * @deprecated 2.0 Use hasPrimaryScripts()
-	 * @since 1.5
-	 * @see hasPrimaryScripts()
-	 */
-	static function hasPrimaryScripts() {
-		internal_deprecations::hasPrimaryScripts();
-		return hasPrimaryScripts();
-	}
-
-	/**
-	 * @deprecated 2.0 Use removeDir()
-	 * @since 1.5
-	 * @see removeDir()
-	 */
-	static function removeDir($path, $within = false) {
-		internal_deprecations::removeDir();
-		return removeDir($path, $within);
-	}
-
-	/**
-	 * @deprecated 2.0 Use tagURLs()
-	 * @since 1.5
-	 * @see tagURLs()
-	 */
-	static function tagURLs($text) {
-		internal_deprecations::tagURLs();
-		return tagURLs($text);
-	}
-
-	/**
-	 * @deprecated 2.0 Use untagURLs()
-	 * @since 1.5
-	 * @see untagURLs()
-	 */
-	static function unTagURLs($text) {
-		internal_deprecations::unTagURLs();
-		return unTagURLs($text);
-	}
-
-	/**
-	 * @deprecated 2.0 Use updateImageProcessorLink()
-	 * @since 1.5
-	 * @see updateImageProcessorLink()
-	 */
-	static function updateImageProcessorLink($text) {
-		internal_deprecations::updateImageProcessorLink();
-		return updateImageProcessorLink($text);
-	}
-
-	/**
-	 * @deprecated 2.0 Use pluginDebug()
-	 * @since 1.5
-	 * @see pluginDebug()
-	 */
-	static function pluginDebug($extension, $priority, $start) {
-		internal_deprecations::pluginDebug();
-		pluginDebug($extension, $priority, $start);
-	}
-
-	/**
-	 * @deprecated 2.0 Use removeTrailingSlash()
-	 * @since 1.5
-	 * @see removeTrailingSlash()
-	 */
-	static function removeTrailingSlash($string) {
-		internal_deprecations::removeTrailingSlash();
-		return removeTrailingSlash($string);
-	}
-
-	/**
-	 * @deprecated 2.0 Use tidyHTML()
-	 * @since 1.5
-	 * @see tidyHTML()
-	 */
-	static function tidyHTML($html) {
-		internal_deprecations::tidyHTML();
-		return tidyHTML($html);
-	}
-
+function getAlbumCustomData() {
+	global $_zp_current_album;
+	deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+	return $_zp_current_album->getCustomData();
 }
+
+/**
+ * @deprecated
+ * @since 1.4.0
+ */
+function printAlbumCustomData() {
+	deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+	echo html_encodeTagged(getAlbumCustomData());
+}
+
+/**
+ * @deprecated
+ * @since 1.4.0
+ */
+function getImageCustomData() {
+	global $_zp_current_image;
+	deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+	return $_zp_current_image->getCustomData();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.0
+ */
+function printImageCustomData() {
+	deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
+	$data = getImageCustomData();
+	$data = str_replace("\r\n", "\n", $data);
+	$data = str_replace("\n", "<br />", $data);
+	echo $data;
+}
+
+/**
+ * @deprecated
+ * @since 1.4.1
+ */
+function printSubtabs() {
+	deprecated_functions::notify(gettext('Subtabs are no longer separate from tabs. If you need the current subtab use getCurrentTab() otherwise remove the call'));
+	$current = getCurrentTab();
+	return $current;
+}
+
+/**
+ * @deprecated
+ * @since 1.4.1
+ */
+function getSubtabs() {
+	deprecated_functions::notify(gettext('Subtabs are no longer separate from tabs. If you need the current subtab use getCurrentTab() otherwise remove the call'));
+	$current = getCurrentTab();
+	return $current;
+}
+
+/**
+ * @deprecated
+ * @since 1.6.2
+ */
+function filterImageQuery($result, $source, $limit = 1, $photo = true) {
+	deprecated_functions::notify(gettext('Use array_shift(filterImageQueryList())'));
+	$list = filterImageQueryList($result, $source, $limit, $photo);
+	if (!empty($list)) {
+		return array_shift($list);
+	}
+	return NULL;
+}
+
+?>

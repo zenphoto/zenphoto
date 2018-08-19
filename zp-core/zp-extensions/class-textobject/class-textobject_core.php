@@ -13,14 +13,14 @@
  * 		theme	"image size" option. This has a class of "textobject" so it can be styled.
  *
  * What this plugin really is for is to serve as a model of how a plugin can be made to handle file types
- * that zenphoto does not handle natively.
+ * that are not handle natively.
  *
  * Some key points to note:
  * 1. The naming convention for these plugins is class-«handler class».php.
  * 2. The statement setting the plugin_is_filter variable must be near the front of the file. This is important
- * as it is the indicator to the Zenphoto plugin loader to load the script at the same point that other
+ * as it is the indicator to the plugin loader to load the script at the same point that other
  * object modules are loaded.
- * 3. These objects are extension to the zenphoto "Image" class. This means they have all the properties of
+ * 3. These objects are extension to the "Image" class. This means they have all the properties of
  * an image plus whatever you add. Of course you will need to override some of the image class functions to
  * implement the functionality of your new class.
  * 4. There is one VERY IMPORTANT method that you must provide which is not part of the "Image" base class. That
@@ -30,8 +30,7 @@
  *
  * So, briefly, the first four lines of code below are the standard plugin interface to Admin. There is one small
  * wrinkle you might notice--the code for 'plugin_description' includes a test which sets the variable $disable.
- * As you might expect, there were some changes needed to zenphoto in order to get this concept to work.  $disable
- * is set to true if the revision of zenphoto that is attempting to load this plugin is lower than the one where the
+ * $disable is set to true if the revision of zenphoto that is attempting to load this plugin is lower than the one where the
  * implementation first appeared. The interface variable 'plugin_disable' is set to this value telling Admin not to
  * allow enabling of the plugin if the release level is too low.
  *
@@ -49,16 +48,15 @@
  * this property.
  *
  * Since text files have no natural height and width, we set them based on the image size option. This happens after the call
- * PersistentObject(). The rest of the code there sets up the default title.
+ * common_instantiate(). The rest of the code there sets up the default title.
  *
  * getThumb() is responsible for generating the thumbnail image for the object. As above, if there is a similar named real
  * image, it will be used. Otherwise [for this object implementation] we will use a thumbnail image provided with the plugin.
- * The particular form of the file name used when there is no thumb stand-in image allows zenphoto to choose an image in the
+ * The particular form of the file name used when there is no thumb stand-in image allows choosing an image in the
  * plugin folder.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage class-textobject
+ * @package plugins/class-textobject
  *
  */
 class TextObject extends Image {
@@ -82,22 +80,28 @@ class TextObject extends Image {
 	}
 
 	/**
+	 * returns the database fields used by the object
+	 * @return array
+	 *
+	 * @author Stephen Billard
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+	 */
+	static function getMetadataFields() {
+		return array();
+	}
+
+	/**
 	 * Handles class common instantiation
 	 * @param $album
 	 * @param $filename
 	 */
 	function common_instantiate($album, $filename, $quiet = false) {
 		global $_zp_supported_images;
-		$msg = false;
-		if (!is_object($album) || !$album->exists) {
-			$msg = gettext('Invalid Textobject instantiation: Album does not exist');
-		} else if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
-			$msg = gettext('Invalid Textobject instantiation: file does not exist');
-		}
+		$msg = $this->invalid($album, $filename);
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
+				debugLogBacktrace($msg);
 			}
 			return;
 		}
@@ -107,7 +111,8 @@ class TextObject extends Image {
 		$new = $this->instantiate('images', array('filename' => $filename, 'albumid' => $this->album->getID()), 'filename');
 		if ($new || $this->filemtime != $this->get('mtime')) {
 			if ($new)
-				$this->setTitle($this->displayname); $title = $this->displayname;
+				$this->setTitle($this->displayname);
+			$title = $this->displayname;
 			$this->updateMetaData();
 			$this->set('mtime', $this->filemtime);
 			$this->save();
@@ -150,15 +155,16 @@ class TextObject extends Image {
 	 * @param string $type 'image' or 'album'
 	 * @return string
 	 */
-	function getThumb($type = 'image') {
+	function getThumb($type = 'image', $wmt = NULL) {
 		$ts = getOption('thumb_size');
 		$sw = getOption('thumb_crop_width');
 		$sh = getOption('thumb_crop_height');
 		list($custom, $cw, $ch, $cx, $cy) = $this->getThumbCropping($ts, $sw, $sh);
-		$wmt = $this->watermark;
-		if (empty($wmt)) {
+		if (empty($wmt))
+			$wmt = $this->watermark;
+		if (empty($wmt))
 			$wmt = getWatermarkParam($this, WATERMARK_THUMB);
-		}
+
 		if (is_null($this->objectsThumb)) {
 			$mtime = $cx = $cy = NULL;
 			$filename = makeSpecialImageName($this->getThumbImageFile());
@@ -193,7 +199,7 @@ class TextObject extends Image {
 			case 'html':
 				return '<span style="display:block;width:' . $w . 'px;height:' . $h . 'px;" class="textobject">' . @file_get_contents($this->localpath) . '</span>';
 			default: // just in case we extend and are lazy...
-				return '<img src="' . html_encode(pathurlencode($this->getThumb())) . '">';
+				return '<img src="' . pathurlencode($this->getThumb()) . '">';
 		}
 	}
 

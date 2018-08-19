@@ -5,20 +5,21 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+
+
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 		<?php jqm_loadScripts(); ?>
-<?php printZDSearchToggleJS(); ?>
+		<?php printZDSearchToggleJS(); ?>
 	</head>
 
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 		<div data-role="page" id="mainpage">
 
-<?php jqm_printMainHeaderNav(); ?>
+			<?php jqm_printMainHeaderNav(); ?>
 
 			<div class="ui-content" role="main">
 				<div class="content-primary">
@@ -43,14 +44,14 @@ if (!defined('WEBPATH'))
 						$categorylist = $_zp_current_search->getCategoryList();
 						if (is_array($categorylist)) {
 							$catlist = array('news' => $categorylist, 'albums' => '0', 'images' => '0', 'pages' => '0');
-							printSearchForm(NULL, 'search', NULL, gettext('Search'), NULL, NULL, $catlist);
+							printSearchForm(NULL, 'search', NULL, gettext('Search category'), NULL, NULL, $catlist);
 						} else {
 							$albumlist = $_zp_current_search->getAlbumList();
 							if (is_array($albumlist)) {
 								$album_list = array('albums' => $albumlist, 'pages' => '0', 'news' => '0');
-								printSearchForm(NULL, 'search', NULL, gettext('Search'), NULL, NULL, $album_list);
+								printSearchForm(NULL, 'search', NULL, gettext('Search album'), NULL, NULL, $album_list);
 							} else {
-								printSearchForm("", "search", NULL, gettext("Search"));
+								printSearchForm("", "search", NULL, gettext("Search gallery"));
 							}
 						}
 					}
@@ -71,8 +72,8 @@ if (!defined('WEBPATH'))
 						</h3>
 						<?php
 					}
-					if ($zenpage && $_zp_page == 1) { //test of zenpage searches
-						if ($numpages > 0 && ZP_PAGES_ENABLED) {
+					if ($_zp_page == 1) { //test of zenpage searches
+						if ($numpages > 0) {
 							$number_to_show = 5;
 							$c = 0;
 							?>
@@ -85,7 +86,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 										<h4><?php printPageURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo shortenContent(getBare(getPageContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getPageContent(), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -93,7 +94,7 @@ if (!defined('WEBPATH'))
 							</ul>
 							<?php
 						}
-						if ($numnews > 0 && ZP_NEWS_ENABLED) {
+						if ($numnews > 0) {
 							$number_to_show = 5;
 							$c = 0;
 							?>
@@ -105,7 +106,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 										<h4><?php printNewsURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo shortenContent(getBare(getNewsContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getNewsContent(), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -132,48 +133,50 @@ if (!defined('WEBPATH'))
 						}
 						?>
 					</h3>
-						<?php if (getNumAlbums() != 0) { ?>
+					<?php if (getNumAlbums() != 0) { ?>
 						<ul data-role="listview" data-inset="true">
-	<?php while (next_album()): ?>
-							<li>
-								<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album:'); ?>">
-									<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL,NULL); ?>
-									<h3><?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small></h3>
-									<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 100,'(...)',false); ?></div>
-									<small class="ui-li-aside ui-li-count"><?php jqm_printImageAlbumCount()?></small>
-								</a>
-							</li>
+							<?php while (next_album()): ?>
+								<li>
+									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:');
+						printAnnotatedAlbumTitle();
+								?>">
+		<?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 79, 79, 79, 79, NULL, null, NULL, NULL); ?>
+										<h3><?php printAlbumTitle(); ?><small> (<?php printAlbumDate(''); ?>)</small></h3>
+										<div class="albumdesc"><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 100, '(...)', false)); ?></div>
+										<small class="ui-li-aside ui-li-count"><?php jqm_printImageAlbumCount() ?></small>
+									</a>
+								</li>
 						<?php endwhile; ?>
 						</ul>
 					<?php } ?>
 						<?php if (getNumImages() > 0) { ?>
 						<div class="ui-grid-c">
-	<?php
-	$count = '';
-	while (next_image()) {
-		$count++;
-				switch($count) {
-					case 1:
-						$imgclass = ' ui-block-a';
-						break;
-					case 2:
-						$imgclass = ' ui-block-b';
-						break;
-					case 3:
-						$imgclass = ' ui-block-c';
-						break;
-					case 4:
-						$imgclass = ' ui-block-d';
-						$count = ''; // reset to start with a again;
-						break;
-				}
-	?>
-				<a class="image<?php echo $imgclass; ?>" href="<?php echo html_encode(getImageURL());?>" title="<?php printBareImageTitle();?>">
-					<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL,230, 230, 230, 230, NULL, NULL, NULL, NULL, true, NULL); ?>
-				</a>
+							<?php
+							$count = '';
+							while (next_image()) {
+								$count++;
+								switch ($count) {
+									case 1:
+										$imgclass = ' ui-block-a';
+										break;
+									case 2:
+										$imgclass = ' ui-block-b';
+										break;
+									case 3:
+										$imgclass = ' ui-block-c';
+										break;
+									case 4:
+										$imgclass = ' ui-block-d';
+										$count = ''; // reset to start with a again;
+										break;
+								}
+								?>
+								<a class="image<?php echo $imgclass; ?>" href="<?php echo html_encode(getImageURL()); ?>" title="<?php printBareImageTitle(); ?>">
+								<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL, 230, 230, 230, 230, NULL, NULL, NULL, NULL, true, NULL); ?>
+								</a>
 	<?php } ?>
 						</div>
-						<br class="clearall" />
+						<br class="clearall">
 					<?php } ?>
 					<?php
 					if (function_exists('printSlideShowLink'))

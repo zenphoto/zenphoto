@@ -31,23 +31,24 @@ if (isset($_GET['album'])) {
 			$action = processImageBulkActions($album);
 			if (!empty($action))
 				$_GET['bulkmessage'] = $action;
-		} else {
-			parse_str($_POST['sortableList'], $inputArray);
-			if (isset($inputArray['id'])) {
-				$orderArray = $inputArray['id'];
-				if (!empty($orderArray)) {
-					foreach ($orderArray as $key => $id) {
-						$sql = 'UPDATE ' . prefix('images') . ' SET `sort_order`=' . db_quote(sprintf('%03u', $key)) . ' WHERE `id`=' . sanitize_numeric($id);
-						query($sql);
-					}
-					$album->setSortType("manual");
-					$album->setSortDirection(false, 'image');
-					$album->save();
-					$_GET['saved'] = 1;
+		}
+		parse_str($_POST['sortableList'], $inputArray);
+		if (isset($inputArray['id'])) {
+			$orderArray = $inputArray['id'];
+			if (!empty($orderArray)) {
+				foreach ($orderArray as $key => $id) {
+					$sql = 'UPDATE ' . prefix('images') . ' SET `sort_order`=' . db_quote(sprintf('%03u', $key)) . ' WHERE `id`=' . sanitize_numeric($id);
+					query($sql);
 				}
+				$album->setSortType("manual");
+				$album->setSortDirection(false, 'image');
+				$album->save();
+				$_GET['saved'] = 1;
 			}
 		}
 	}
+} else {
+	$album = $_zp_missing_album;
 }
 
 // Print the admin header
@@ -56,9 +57,20 @@ printAdminHeader('edit', 'sort');
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
-	$(function() {
-		$('#images').sortable();
+	$(function () {
+		$('#images').sortable({
+			change: function (event, ui) {
+				$('#sortableListForm').addClass('dirty');
+			}
+		});
 	});
+	function postSort(form) {
+		$('#sortableList').val($('#images').sortable('serialize'));
+		form.submit();
+	}
+	function cancelSort() {
+		$('#images').sortable('cancel');
+	}
 	// ]]> -->
 </script>
 <?php
@@ -70,53 +82,48 @@ echo "\n</head>";
 
 	<?php
 	$checkarray_images = array(
-					gettext('*Bulk actions*')			 => 'noaction',
-					gettext('Delete')							 => 'deleteall',
-					gettext('Set to published')		 => 'showall',
-					gettext('Set to unpublished')	 => 'hideall',
-					gettext('Add tags')						 => 'addtags',
-					gettext('Clear tags')					 => 'cleartags',
-					gettext('Disable comments')		 => 'commentsoff',
-					gettext('Enable comments')		 => 'commentson',
-					gettext('Change owner')				 => 'changeowner'
+			gettext('*Bulk actions*') => 'noaction',
+			gettext('Delete') => 'deleteall',
+			gettext('Set to published') => 'showall',
+			gettext('Set to unpublished') => 'hideall',
+			gettext('Disable comments') => 'commentsoff',
+			gettext('Enable comments') => 'commentson'
 	);
 	if (extensionEnabled('hitcounter')) {
 		$checkarray_images[gettext('Reset hitcounter')] = 'resethitcounter';
 	}
 	$checkarray_images = zp_apply_filter('bulk_image_actions', $checkarray_images);
 
-// Create our album
-	if (!isset($_GET['album'])) {
-		zp_error(gettext("No album provided to sort."));
-	} else {
-		// Layout the page
-		printLogoAndLinks();
-		?>
+	// Layout the page
+	printLogoAndLinks();
+	?>
 
-		<div id="main">
-			<?php printTabs(); ?>
-			<div id="content">
-				<?php
-				zp_apply_filter('admin_note', 'albums', 'sort');
-				if ($album->getParent()) {
-					$link = getAlbumBreadcrumbAdmin($album);
-				} else {
-					$link = '';
-				}
-				$alb = removeParentAlbumNames($album);
-				?>
-				<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'), $link, $alb); ?></h1>
-				<?php
-				$images = $album->getImages();
-				$subtab = printSubtabs();
+	<div id="main">
+		<?php printTabs(); ?>
+		<div id="content">
+			<?php
+			if ($album->getParent()) {
+				$link = getAlbumBreadcrumbAdmin($album);
+			} else {
+				$link = '';
+			}
+			$alb = removeParentAlbumNames($album);
 
-				$parent = dirname($album->name);
-				if ($parent == '/' || $parent == '.' || empty($parent)) {
-					$parent = '';
-				} else {
-					$parent = '&amp;album=' . $parent . '&amp;tab=subalbuminfo';
-				}
-				?>
+			zp_apply_filter('admin_note', 'albums', 'sort');
+			?>
+			<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'), $link, $alb); ?></h1>
+			<?php
+			$images = $album->getImages();
+			$subtab = getCurrentTab();
+
+			$parent = dirname($album->name);
+			if ($parent == '/' || $parent == '.' || empty($parent)) {
+				$parent = '';
+			} else {
+				$parent = '&amp;album=' . $parent . '&amp;tab=subalbuminfo';
+			}
+			?>
+			<div id="container">
 
 				<div class="tabbox">
 					<?php
@@ -176,93 +183,102 @@ echo "\n</head>";
 						}
 					}
 					?>
-					<form class="dirty-check" action="?page=edit&amp;album=<?php echo $album->getFileName(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm" autocomplete="off">
-						<?php XSRFToken('save_sort'); ?>
-						<?php printBulkActions($checkarray_images, true); ?>
-						<script type="text/javascript">
-							// <!-- <![CDATA[
-							function postSort(form) {
-								$('#sortableList').val($('#images').sortable('serialize'));
-								form.submit();
-							}
-							// ]]> -->
-						</script>
+					<form class="dirtylistening" onReset="setClean('sortableListForm');
+							cancelSort();" action="?page=edit&amp;album=<?php echo $album->getFileName(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm" >
+								<?php XSRFToken('save_sort'); ?>
+								<?php printBulkActions($checkarray_images, true); ?>
 
 						<p class="buttons">
-							<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>"><img	src="images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong></a>
+							<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
+								<?php echo BACK_ARROW_BLUE; ?>
+								<strong><?php echo gettext("Back"); ?></strong>
+							</a>
 							<button type="submit" onclick="postSort(this.form);" >
-								<img	src="images/pass.png" alt="" />
+								<?php echo CHECKMARK_GREEN; ?>
 								<strong><?php echo gettext("Apply"); ?></strong>
 							</button>
-							<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-								<img src="images/view.png" alt="" />
+							<button type="reset">
+								<?php echo CROSS_MARK_RED; ?>
+								<strong><?php echo gettext("Reset"); ?></strong>
+							</button>
+							<a href="<?php echo WEBPATH . "/index.php?album=" . pathurlencode($album->getFileName()); ?>">
+								<?php echo BULLSEYE_BLUE; ?>
 								<strong><?php echo gettext('View Album'); ?></strong>
 							</a>
 						</p>
-						<br class="clearall" /><br />
+						<br class="clearall">
 						<p><?php echo gettext("Set the image order by dragging them to the positions you desire."); ?></p>
-
 						<ul id="images">
 							<?php
 							$images = $album->getImages();
 							foreach ($images as $imagename) {
 								$image = newImage($album, $imagename);
-								?>
-								<li id="id_<?php echo $image->getID(); ?>">
-									<img class="imagethumb"
-											 src="<?php echo getAdminThumb($image, 'large'); ?>"
-											 alt="<?php echo html_encode($image->getTitle()); ?>"
-											 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
-											 width="80" height="80"  />
-									<p>
-										<input type="checkbox" name="ids[]" value="<?php echo $image->filename; ?>">
-										<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt=""></a>
-										<?php
-										if (isImagePhoto($image)) {
-											?>
-											<a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox" title="zoom"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/magnify.png" alt=""></a>
-											<?php
-										}
-										?>
-									</p>
+								if ($image->exists) {
+									?>
+									<li id="id_<?php echo $image->getID(); ?>">
+										<label>
+											<img class="imagethumb"
+													 src="<?php echo getAdminThumb($image, 'large'); ?>"
+													 alt="<?php echo html_encode($image->getTitle()); ?>"
+													 title="<?php
+													 echo html_encode($image->getTitle()) . ' (' . html_encode($album->name) . ')';
+													 ?>"
+													 width="<?php echo ADMIN_THUMB_LARGE; ?>" height="<?php echo ADMIN_THUMB_LARGE; ?>"  />
+											<p>
+												<input type="checkbox" name="ids[]" value="<?php echo $imagename; ?>">
+												<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>">
+													<?php echo PENCIL_ICON; ?>
+												</a>
+												<?php
+												if (isImagePhoto($image)) {
+													?>
+													<a href="<?php echo pathurlencode($image->getFullImageURL()); ?>" class="colorbox" title="zoom">
+														<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/magnify.png" alt="">
+													</a>
+													<?php
+												}
+												linkPickerIcon($image);
+												?>
+											</p>
+										</label>
+									</li>
 									<?php
 								}
-								?>
-							</li>
+							}
+							?>
 						</ul>
-						<br class="clearall" />
+						<br class="clearall">
 
 						<div>
 							<input type="hidden" id="sortableList" name="sortableList" value="" />
 							<p class="buttons">
 								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-									<img	src="images/arrow_left_blue_round.png" alt="" />
+									<?php echo BACK_ARROW_BLUE; ?>
 									<strong><?php echo gettext("Back"); ?></strong>
 								</a>
 								<button type="submit" onclick="postSort(this.form);" >
-									<img	src="images/pass.png" alt="" />
+									<?php echo CHECKMARK_GREEN; ?>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
-								<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-									<img src="images/view.png" alt="" />
+								<button type="reset">
+									<?php echo CROSS_MARK_RED; ?>
+									<strong><?php echo gettext("Reset"); ?></strong>
+								</button>
+								<a href="<?php echo WEBPATH . "/index.php?album=" . pathurlencode($album->getFileName()); ?>">
+									<?php echo BULLSEYE_BLUE; ?>
 									<strong><?php echo gettext('View Album'); ?></strong>
 								</a>
 							</p>
 						</div>
 					</form>
-					<br class="clearall" />
-
+					<br class="clearall">
 				</div>
-
 			</div>
-
 		</div>
-
 		<?php
 		printAdminFooter();
-	}
-	?>
-
+		?>
+	</div>
 </body>
 
 <?php

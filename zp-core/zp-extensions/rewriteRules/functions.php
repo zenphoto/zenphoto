@@ -1,17 +1,9 @@
 <?php
-/**
- * 
- * @package plugins
- * @subpackage rewriterules
- */
 
 /**
- * 
- * @global type $_zp_conf_vars
- * @return type
+ * @package plugins/rewriteRules
  */
 function rulesList() {
-	global $_zp_conf_vars;
 	list($pluginDefinitions, $rules) = getRules();
 	$definitions = $pluginDefinitions;
 	$list = array();

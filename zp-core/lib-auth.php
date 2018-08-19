@@ -1,57 +1,13 @@
 <?php
 /**
- * Zenphoto USER credentials handlers
+ * USER credentials library
  *
- * An alternate authorization script may be provided to override this script. To do so, make a script that
- * implements the classes declared below. Place the new script inthe <ZENFOLDER>/plugins/alt/ folder. Zenphoto
- * will then will be automatically loaded the alternate script in place of this one.
- *
- * Replacement libraries must implement two classes:
- * 		"Authority" class: Provides the methods used for user authorization and management
- * 			store an instantiation of this class in $_zp_authority.
- *
- * 		Administrator: supports the basic Zenphoto needs for object manipulation of administrators.
- * (You can include this script and extend the classes if that suits your needs.)
- *
- * The global $_zp_current_admin_obj represents the current admin with.
- * The library must instantiate its authority class and store the object in the global $_zp_authority
- * (Note, this library does instantiate the object as described. This is so its classes can
- * be used as parent classes for lib-auth implementations. If auth_zp.php decides to use this
- * library it will instantiate the class and store it into $_zp_authority.
- *
- * The following elements need to be present in any alternate implementation in the
- * array returned by getAdministrators().
- *
- * 		In particular, there should be array elements for:
- * 				'id' (unique), 'user' (unique),	'pass',	'name', 'email', 'rights', 'valid',
- * 				'group', and 'custom_data'
- *
- * 		So long as all these indices are populated it should not matter when and where
- * 		the data is stored.
- *
- * 		Administrator class methods are required for these elements as well.
- *
- * 		The getRights() method must define at least the rights defined by the method in
- * 		this library.
- *
- * 		The checkAuthorization() method should promote the "most privileged" Admin to
- * 		ADMIN_RIGHTS to insure that there is some user capable of adding users or
- * 		modifying user rights.
- *
- * @package core
- * @subpackage classes\authorization
+ * @package classes
  */
 // force UTF-8 Ø
 require_once(dirname(__FILE__) . '/classes.php');
 
-/**
- * Provides the methods used for user authorization and management
- * store an instantiation of this class in `$_zp_authority`.
- *
- * @package core
- * @subpackage classes\authorization
- */
-class Zenphoto_Authority {
+class _Authority {
 
 	var $admin_users = NULL;
 	var $admin_groups = NULL;
@@ -59,6 +15,7 @@ class Zenphoto_Authority {
 	var $admin_all = NULL;
 	var $rightsset = NULL;
 	protected $master_user = NULL;
+	protected $master_userObj = NULL;
 	static $preferred_version = 4;
 	static $supports_version = 4;
 	static $hashList = array('pbkdf2' => 3, 'pbkdf2*' => 2, 'sha1' => 1, 'md5' => 0);
@@ -69,7 +26,15 @@ class Zenphoto_Authority {
 	 * @return lib_auth_options
 	 */
 	function __construct() {
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('password_strength', 10);
+			setOptionDefault('min_password_lenght', 6);
+			setOptionDefault('user_album_edit_default', 1);
+			setOptionDefault('challenge_foil_enabled', 1);
+			setOptionDefault('libauth_version', self::$preferred_version);
+		}
 		$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
+
 		$sql = 'SELECT * FROM ' . prefix('administrators') . ' ORDER BY `rights` DESC, `id`';
 		$admins = query($sql, false);
 		if ($admins) {
@@ -93,12 +58,23 @@ class Zenphoto_Authority {
 		}
 	}
 
+	function addOtherUser($adminObj) {
+		$this->admin_users[$adminObj->getID()] = $adminObj->getData();
+	}
+
 	function getMasterUser() {
-		return new Zenphoto_Administrator($this->master_user, 1);
+		if (!is_object($this->master_userObj)) {
+			$this->master_userObj = new Zenphoto_Administrator($this->master_user, 1);
+		}
+		return $this->master_userObj;
 	}
 
 	function isMasterUser($user) {
 		return $user == $this->master_user;
+	}
+
+	function validID($id) {
+		return array_key_exists($id, $this->admin_all);
 	}
 
 	/**
@@ -112,14 +88,26 @@ class Zenphoto_Authority {
 		if (!function_exists('hash')) {
 			unset($encodings['pbkdf2']);
 		}
-		return array(gettext('Primary album edit')				 => array('key'	 => 'user_album_edit_default', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created.')),
-						gettext('Minimum password strength') => array('key'	 => 'password_strength', 'type' => OPTION_TYPE_CUSTOM,
-										'desc' => sprintf(gettext('Users must provide passwords a strength of at least %s. The repeat password field will be disabled until this floor is met.'), '<span id="password_strength_display">' . getOption('password_strength') . '</span>')),
-						gettext('Password hash algorithm')	 => array('key'				 => 'strong_hash', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => $encodings,
-										'desc'			 => sprintf(gettext('The hashing algorithm used by Zenphoto. In order of robustness the choices are %s'), '<code>' . implode('</code> > <code>', array_flip($encodings)) . '</code>'))
+		$options = array(gettext('Primary album edit') => array('key' => 'user_album_edit_default', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 0,
+						'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created.')),
+				gettext('Minimum password strength') => array('key' => 'password_strength', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 1,
+						'desc' => sprintf(gettext('Users must provide passwords a strength of at least %s. The repeat password field will be disabled until this floor is met.'), '<span id="password_strength_display">' . getOption('password_strength') . '</span>')),
+				gettext('Password hash algorithm') => array('key' => 'strong_hash', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 3,
+						'selections' => $encodings,
+						'desc' => sprintf(gettext('The hashing algorithm to be used. In order of robustness the choices are %s'), '<code>' . implode('</code> > <code>', array_flip($encodings)) . '</code>')),
+				gettext('Enable Challenge phrase') => array('key' => 'challenge_foil_enabled', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 3,
+						'desc' => gettext('Check to allow password reset by challenge phrase responses.'))
 		);
+		if (getOption('challenge_foil_enabled')) {
+			$options[gettext('Challenge phrase foils')] = array('key' => 'challenge_foil', 'type' => OPTION_TYPE_CUSTOM,
+					'order' => 4,
+					'desc' => gettext('These <em>foil</em> challenge phrases will be presented randomly. This list should not be empty, otherwise hackers can discover valid user IDs and know that there is an answer to any presented challenge phrase.'));
+		}
+		return $options;
 	}
 
 	/**
@@ -137,14 +125,19 @@ class Zenphoto_Authority {
 						var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
 						$('#slider-password_strength').css('background-image', url);
 					}
-					$(function() {
+					$(function () {
+						var handle = $("#strength-handle");
 						$("#slider-password_strength").slider({
 				<?php $v = getOption('password_strength'); ?>
 							startValue: <?php echo $v; ?>,
 							value: <?php echo $v; ?>,
 							min: 1,
 							max: 30,
-							slide: function(event, ui) {
+							create: function () {
+								handle.text($(this).slider("value"));
+							},
+							slide: function (event, ui) {
+								handle.text(ui.value);
 								$("#password_strength").val(ui.value);
 								$('#password_strength_display').html(ui.value);
 								sliderColor(ui.value);
@@ -157,10 +150,34 @@ class Zenphoto_Authority {
 					});
 					// ]]> -->
 				</script>
-				<div id="slider-password_strength"></div>
+				<div id="slider-password_strength">
+					<div id="strength-handle" class="ui-slider-handle"></div>
+				</div>
 				<?php
 				break;
+			case 'challenge_foil':
+				$questions = getSerializedArray(getOption('challenge_foils'));
+				$questions[] = array('');
+				foreach ($questions as $key => $question) {
+					?>
+					<?php print_language_string_list($question, 'challenge_foil_' . $key, false, NULL, '100%'); ?>	<br/>
+					<?php
+				}
+				break;
 		}
+	}
+
+	function handleOptionSave($themename, $themealbum) {
+		$questions = array();
+		foreach ($_POST as $key => $value) {
+			if (!empty($value)) {
+				preg_match('~challenge_foil_(\d+)_(.*)~', $key, $matches);
+				if (!empty($matches)) {
+					$questions[$matches[1]][$matches[2]] = sanitize($value);
+				}
+			}
+		}
+		setOption('challenge_foils', serialize($questions));
 	}
 
 	static function getVersion() {
@@ -173,7 +190,7 @@ class Zenphoto_Authority {
 	}
 
 	/**
-	 * Returns the hash of the zenphoto password
+	 * Returns the hash of the password
 	 *
 	 * @param string $user
 	 * @param string $pass
@@ -188,7 +205,7 @@ class Zenphoto_Authority {
 				$hash = sha1($user . $pass . HASH_SEED);
 				break;
 			case 2:
-				//	deprecated beause of possible "+" in the text
+				//	deprecated because of possible "+" in the text
 				$hash = base64_encode(self::pbkdf2($pass, $user . HASH_SEED));
 				break;
 			case 3:
@@ -230,17 +247,42 @@ class Zenphoto_Authority {
 	 * @param array $criteria [ match => criteria ]
 	 * @return Zenphoto_Administrator
 	 */
-	static function getAnAdmin($criteria) {
-		$selector = array();
+	function getAnAdmin($criteria) {
+		$find = array();
 		foreach ($criteria as $match => $value) {
-			if (is_numeric($value)) {
-				$selector[] = $match . $value;
-			} else {
-				$selector[] = $match . db_quote($value);
+			preg_match('/(.*)([<>=!])/', $match, $detail);
+			$find[trim($detail[1], '`')] = array('field' => trim($detail[1]), 'op' => trim($detail[2]), 'value' => $value);
+		}
+		if (isset($find['id'])) {
+			$id = $find['id']['value'];
+			if (isset($this->admin_all[$id])) {
+				$admin = $this->admin_all[$id];
+				foreach ($find as $field => $select) {
+					if ($r = strcmp($admin[$field], $select['value']) == 0) {
+						$ops = array('=', '>=', '<=');
+					} else if ($r > 0) {
+						$ops = array('>', '>=', '!=');
+					} else {
+						$ops = array('<', '<=', '!=');
+					}
+					if (!in_array($select['op'], $ops)) {
+						unset($admin);
+						break;
+					}
+				}
 			}
 		}
-		$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE ' . implode(' AND ', $selector) . ' LIMIT 1';
-		$admin = query_single_row($sql, false);
+		if (!isset($admin)) {
+			$selector = array();
+			foreach ($find as $field => $select) {
+				if (!is_numeric($value = $select['value'])) {
+					$value = db_quote($value);
+				}
+				$selector[] = $select['field'] . $select['op'] . $value;
+			}
+			$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE ' . implode(' AND ', $selector) . ' LIMIT 1';
+			$admin = query_single_row($sql);
+		}
 		if ($admin) {
 			return self::newAdministrator($admin['user'], $admin['valid']);
 		} else {
@@ -263,7 +305,6 @@ class Zenphoto_Authority {
 			debugLogBacktrace("checkAuthorization($authCode, $id)");
 		}
 
-
 		$admins = $this->getAdministrators();
 		if (count($admins) == 0) {
 			if (DEBUG_LOGIN) {
@@ -281,19 +322,15 @@ class Zenphoto_Authority {
 			return $_zp_current_admin_obj->getRights();
 		}
 
-
 		$_zp_current_admin_obj = NULL;
-		if (empty($authCode))
+		if (empty($authCode) || empty($id))
 			return 0; //  so we don't "match" with an empty password
 		if (DEBUG_LOGIN) {
 			debugLogVar("checkAuthorization: admins", $admins);
 		}
 		$rights = 0;
-		$criteria = array('`pass`=' => $authCode, '`valid`=' => 1);
-		if (!empty($id)) {
-			$criteria['`id`='] = $id;
-		}
-		$user = self::getAnAdmin($criteria);
+		$criteria = array('`pass`=' => $authCode, '`id`=' => (int) $id, '`valid`=' => 1);
+		$user = $this->getAnAdmin($criteria);
 		if (is_object($user)) {
 			$_zp_current_admin_obj = $user;
 			$rights = $user->getRights();
@@ -319,7 +356,7 @@ class Zenphoto_Authority {
 	 * @return object
 	 */
 	function checkLogon($user, $pass) {
-		$userobj = self::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+		$userobj = $this->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 		if ($userobj) {
 			$hash = self::passwordHash($user, $pass, $userobj->get('passhash'));
 			if ($hash != $userobj->getPass()) {
@@ -382,7 +419,7 @@ class Zenphoto_Authority {
 	 */
 	function migrateAuth($to) {
 		if ($to > self::$supports_version || $to < self::$preferred_version - 1) {
-			trigger_error(sprintf(gettext('Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)'), $to, self::$supports_version, self::$preferred_version), E_USER_NOTICE);
+			zp_error(sprintf(gettext('Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)'), $to, self::$supports_version, self::$preferred_version), E_USER_NOTICE);
 			return false;
 		}
 		$success = true;
@@ -491,8 +528,8 @@ class Zenphoto_Authority {
 	 * @param $valid
 	 * @return object
 	 */
-	static function newAdministrator($name, $valid = 1) {
-		$user = new Zenphoto_Administrator($name, $valid);
+	static function newAdministrator($name, $valid = 1, $allowCreate = true) {
+		$user = new Zenphoto_Administrator($name, $valid, $allowCreate);
 		return $user;
 	}
 
@@ -509,98 +546,103 @@ class Zenphoto_Authority {
 		}
 		switch ($v) {
 			case 1:
-				$rightsset = array('NO_RIGHTS'								 => array('value' => 2, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
-								'OVERVIEW_RIGHTS'					 => array('value' => 4, 'name' => gettext('Overview'), 'set' => '', 'display' => true, 'hint' => ''),
-								'VIEW_ALL_RIGHTS'					 => array('value' => 8, 'name' => gettext('View all'), 'set' => '', 'display' => true, 'hint' => ''),
-								'UPLOAD_RIGHTS'						 => array('value' => 16, 'name' => gettext('Upload'), 'set' => '', 'display' => true, 'hint' => ''),
-								'POST_COMMENT_RIGHTS'			 => array('value' => 32, 'name' => gettext('Post comments'), 'set' => '', 'display' => true, 'hint' => ''),
-								'COMMENT_RIGHTS'					 => array('value' => 64, 'name' => gettext('Comments'), 'set' => '', 'display' => true, 'hint' => ''),
-								'ALBUM_RIGHTS'						 => array('value' => 256, 'name' => gettext('Album'), 'set' => '', 'display' => true, 'hint' => ''),
-								'MANAGE_ALL_ALBUM_RIGHTS'	 => array('value' => 512, 'name' => gettext('Manage all albums'), 'set' => '', 'display' => true, 'hint' => ''),
-								'THEMES_RIGHTS'						 => array('value' => 1024, 'name' => gettext('Themes'), 'set' => '', 'display' => true, 'hint' => ''),
-								'ZENPAGE_RIGHTS'					 => array('value' => 2049, 'name' => gettext('Zenpage'), 'set' => '', 'display' => true, 'hint' => ''),
-								'TAGS_RIGHTS'							 => array('value' => 4096, 'name' => gettext('Tags'), 'set' => '', 'display' => true, 'hint' => ''),
-								'OPTIONS_RIGHTS'					 => array('value' => 8192, 'name' => gettext('Options'), 'set' => '', 'display' => true, 'hint' => ''),
-								'ADMIN_RIGHTS'						 => array('value' => 65536, 'name' => gettext('Admin'), 'set' => '', 'display' => true, 'hint' => ''));
+				$rightsset = array('NO_RIGHTS' => array('value' => 2, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
+						'OVERVIEW_RIGHTS' => array('value' => 4, 'name' => gettext('Overview'), 'set' => '', 'display' => true, 'hint' => ''),
+						'VIEW_ALL_RIGHTS' => array('value' => 8, 'name' => gettext('View all'), 'set' => '', 'display' => true, 'hint' => ''),
+						'UPLOAD_RIGHTS' => array('value' => 16, 'name' => gettext('Upload'), 'set' => '', 'display' => true, 'hint' => ''),
+						'POST_COMMENT_RIGHTS' => array('value' => 32, 'name' => gettext('Post comments'), 'set' => '', 'display' => true, 'hint' => ''),
+						'COMMENT_RIGHTS' => array('value' => 64, 'name' => gettext('Comments'), 'set' => '', 'display' => true, 'hint' => ''),
+						'ALBUM_RIGHTS' => array('value' => 256, 'name' => gettext('Album'), 'set' => '', 'display' => true, 'hint' => ''),
+						'MANAGE_ALL_ALBUM_RIGHTS' => array('value' => 512, 'name' => gettext('Manage all albums'), 'set' => '', 'display' => true, 'hint' => ''),
+						'THEMES_RIGHTS' => array('value' => 1024, 'name' => gettext('Themes'), 'set' => '', 'display' => true, 'hint' => ''),
+						'ZENPAGE_RIGHTS' => array('value' => 2049, 'name' => gettext('Zenpage'), 'set' => '', 'display' => true, 'hint' => ''),
+						'TAGS_RIGHTS' => array('value' => 4096, 'name' => gettext('Tags'), 'set' => '', 'display' => true, 'hint' => ''),
+						'OPTIONS_RIGHTS' => array('value' => 8192, 'name' => gettext('Options'), 'set' => '', 'display' => true, 'hint' => ''),
+						'ADMIN_RIGHTS' => array('value' => 65536, 'name' => gettext('Admin'), 'set' => '', 'display' => true, 'hint' => ''));
 				break;
 			case 2:
-				$rightsset = array('NO_RIGHTS'								 => array('value' => 1, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
-								'OVERVIEW_RIGHTS'					 => array('value' => pow(2, 2), 'name' => gettext('Overview'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view the admin overview page.')),
-								'VIEW_ALL_RIGHTS'					 => array('value' => pow(2, 4), 'name' => gettext('View all'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view all of the gallery regardless of protection of the page. Without this right, the user can view only public ones and those checked in his managed object lists or as granted by View Search or View Gallery.')),
-								'UPLOAD_RIGHTS'						 => array('value' => pow(2, 6), 'name' => gettext('Upload'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may upload to the albums for which they have management rights.')),
-								'POST_COMMENT_RIGHTS'			 => array('value' => pow(2, 8), 'name' => gettext('Post comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
-								'COMMENT_RIGHTS'					 => array('value' => pow(2, 10), 'name' => gettext('Comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make comments tab changes.')),
-								'ALBUM_RIGHTS'						 => array('value' => pow(2, 12), 'name' => gettext('Albums'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may access the “albums” tab to make changes.')),
-								'ZENPAGE_PAGES_RIGHTS'		 => array('value' => pow(2, 14), 'name' => gettext('Pages'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users with this right may edit and manage Zenpage pages.')),
-								'ZENPAGE_NEWS_RIGHTS'			 => array('value' => pow(2, 16), 'name' => gettext('News'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users with this right may edit and manage Zenpage articles and categories.')),
-								'FILES_RIGHTS'						 => array('value' => pow(2, 18), 'name' => gettext('Files'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Allows the user access to the “filemanager” located on the upload: files sub-tab.')),
-								'MANAGE_ALL_PAGES_RIGHTS'	 => array('value' => pow(2, 20), 'name' => gettext('Manage all pages'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
-								'MANAGE_ALL_NEWS_RIGHTS'	 => array('value' => pow(2, 22), 'name' => gettext('Manage all news'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
-								'MANAGE_ALL_ALBUM_RIGHTS'	 => array('value' => pow(2, 24), 'name' => gettext('Manage all albums'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
-								'THEMES_RIGHTS'						 => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
-								'TAGS_RIGHTS'							 => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
-								'OPTIONS_RIGHTS'					 => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options tabs.')),
-								'ADMIN_RIGHTS'						 => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
+				$rightsset = array('NO_RIGHTS' => array('value' => 1, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
+						'OVERVIEW_RIGHTS' => array('value' => pow(2, 2), 'name' => gettext('Overview'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view the admin overview page.')),
+						'VIEW_ALL_RIGHTS' => array('value' => pow(2, 4), 'name' => gettext('View all'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view all of the gallery regardless of protection of the page. Without this right, the user can view only public ones and those checked in his managed object lists or as granted by View Search or View Gallery.')),
+						'UPLOAD_RIGHTS' => array('value' => pow(2, 6), 'name' => gettext('Upload'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may upload to the albums for which they have management rights.')),
+						'POST_COMMENT_RIGHTS' => array('value' => pow(2, 8), 'name' => gettext('Post comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
+						'COMMENT_RIGHTS' => array('value' => pow(2, 10), 'name' => gettext('Comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make comments tab changes.')),
+						'ALBUM_RIGHTS' => array('value' => pow(2, 12), 'name' => gettext('Albums'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may access the “albums” tab to make changes.')),
+						'ZENPAGE_PAGES_RIGHTS' => array('value' => pow(2, 14), 'name' => gettext('Pages'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users with this right may edit and manage Zenpage pages.')),
+						'ZENPAGE_NEWS_RIGHTS' => array('value' => pow(2, 16), 'name' => gettext('News'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users with this right may edit and manage Zenpage articles and categories.')),
+						'FILES_RIGHTS' => array('value' => pow(2, 18), 'name' => gettext('Files'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Allows the user access to the “filemanager” located on the upload: files sub-tab.')),
+						'MANAGE_ALL_PAGES_RIGHTS' => array('value' => pow(2, 20), 'name' => gettext('Manage all pages'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
+						'MANAGE_ALL_NEWS_RIGHTS' => array('value' => pow(2, 22), 'name' => gettext('Manage all news'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
+						'MANAGE_ALL_ALBUM_RIGHTS' => array('value' => pow(2, 24), 'name' => gettext('Manage all albums'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
+						'THEMES_RIGHTS' => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
+						'TAGS_RIGHTS' => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
+						'OPTIONS_RIGHTS' => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options.')),
+						'ADMIN_RIGHTS' => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
 				break;
 			case 3:
-				$rightsset = array('NO_RIGHTS'								 => array('value' => 1, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
-								'OVERVIEW_RIGHTS'					 => array('value' => pow(2, 2), 'name' => gettext('Overview'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may view the admin overview page.')),
-								'VIEW_GALLERY_RIGHTS'			 => array('value' => pow(2, 4), 'name' => gettext('View gallery'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view otherwise protected generic gallery pages.')),
-								'VIEW_SEARCH_RIGHTS'			 => array('value' => pow(2, 5), 'name' => gettext('View search'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view search pages even if password protected.')),
-								'VIEW_FULLIMAGE_RIGHTS'		 => array('value' => pow(2, 6), 'name' => gettext('View fullimage'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may view all full sized (raw) images.')),
-								'ALL_NEWS_RIGHTS'					 => array('value' => pow(2, 7), 'name' => gettext('Access all'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users with this right have access to all zenpage news articles.')),
-								'ALL_PAGES_RIGHTS'				 => array('value' => pow(2, 8), 'name' => gettext('Access all'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users with this right have access to all zenpage pages.')),
-								'ALL_ALBUMS_RIGHTS'				 => array('value' => pow(2, 9), 'name' => gettext('Access all'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right have access to all albums.')),
-								'VIEW_UNPUBLISHED_RIGHTS'	 => array('value' => pow(2, 10), 'name' => gettext('View unpublished'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right will see all unpublished items.')),
-								'POST_COMMENT_RIGHTS'			 => array('value' => pow(2, 11), 'name' => gettext('Post comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
-								'COMMENT_RIGHTS'					 => array('value' => pow(2, 12), 'name' => gettext('Comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make comments tab changes.')),
-								'UPLOAD_RIGHTS'						 => array('value' => pow(2, 13), 'name' => gettext('Upload'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may upload to the albums for which they have management rights.')),
-								'ZENPAGE_NEWS_RIGHTS'			 => array('value' => pow(2, 15), 'name' => gettext('News'), 'set' => gettext('News'), 'display' => false, 'hint' => gettext('Users with this right may edit and manage Zenpage articles and categories.')),
-								'ZENPAGE_PAGES_RIGHTS'		 => array('value' => pow(2, 16), 'name' => gettext('Pages'), 'set' => gettext('Pages'), 'display' => false, 'hint' => gettext('Users with this right may edit and manage Zenpage pages.')),
-								'FILES_RIGHTS'						 => array('value' => pow(2, 17), 'name' => gettext('Files'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Allows the user access to the “filemanager” located on the upload: files sub-tab.')),
-								'ALBUM_RIGHTS'						 => array('value' => pow(2, 18), 'name' => gettext('Albums'), 'set' => gettext('Albums'), 'display' => false, 'hint' => gettext('Users with this right may access the “albums” tab to make changes.')),
-								'MANAGE_ALL_NEWS_RIGHTS'	 => array('value' => pow(2, 21), 'name' => gettext('Manage all'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
-								'MANAGE_ALL_PAGES_RIGHTS'	 => array('value' => pow(2, 22), 'name' => gettext('Manage all'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
-								'MANAGE_ALL_ALBUM_RIGHTS'	 => array('value' => pow(2, 23), 'name' => gettext('Manage all'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
-								'THEMES_RIGHTS'						 => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
-								'TAGS_RIGHTS'							 => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
-								'OPTIONS_RIGHTS'					 => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options tabs.')),
-								'ADMIN_RIGHTS'						 => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
+				$rightsset = array('NO_RIGHTS' => array('value' => 1, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
+						'OVERVIEW_RIGHTS' => array('value' => pow(2, 2), 'name' => gettext('Overview'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may view the admin overview page.')),
+						'VIEW_GALLERY_RIGHTS' => array('value' => pow(2, 4), 'name' => gettext('View gallery'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view otherwise protected generic gallery pages.')),
+						'VIEW_SEARCH_RIGHTS' => array('value' => pow(2, 5), 'name' => gettext('View search'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view search pages even if password protected.')),
+						'VIEW_FULLIMAGE_RIGHTS' => array('value' => pow(2, 6), 'name' => gettext('View fullimage'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may view all full sized (raw) images.')),
+						'ALL_NEWS_RIGHTS' => array('value' => pow(2, 7), 'name' => gettext('Access all'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users with this right have access to all zenpage news articles.')),
+						'ALL_PAGES_RIGHTS' => array('value' => pow(2, 8), 'name' => gettext('Access all'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users with this right have access to all zenpage pages.')),
+						'ALL_ALBUMS_RIGHTS' => array('value' => pow(2, 9), 'name' => gettext('Access all'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right have access to all albums.')),
+						'VIEW_UNPUBLISHED_RIGHTS' => array('value' => pow(2, 10), 'name' => gettext('View unpublished'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right will see all unpublished items.')),
+						'POST_COMMENT_RIGHTS' => array('value' => pow(2, 11), 'name' => gettext('Post comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
+						'COMMENT_RIGHTS' => array('value' => pow(2, 12), 'name' => gettext('Comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make comments tab changes.')),
+						'UPLOAD_RIGHTS' => array('value' => pow(2, 13), 'name' => gettext('Upload'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may upload to the albums for which they have management rights.')),
+						'ZENPAGE_NEWS_RIGHTS' => array('value' => pow(2, 15), 'name' => gettext('News'), 'set' => gettext('News'), 'display' => false, 'hint' => gettext('Users with this right may edit and manage Zenpage articles and categories.')),
+						'ZENPAGE_PAGES_RIGHTS' => array('value' => pow(2, 16), 'name' => gettext('Pages'), 'set' => gettext('Pages'), 'display' => false, 'hint' => gettext('Users with this right may edit and manage Zenpage pages.')),
+						'FILES_RIGHTS' => array('value' => pow(2, 17), 'name' => gettext('Files'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Allows the user access to the “filemanager” located on the upload: files sub-tab.')),
+						'ALBUM_RIGHTS' => array('value' => pow(2, 18), 'name' => gettext('Albums'), 'set' => gettext('Albums'), 'display' => false, 'hint' => gettext('Users with this right may access the “albums” tab to make changes.')),
+						'MANAGE_ALL_NEWS_RIGHTS' => array('value' => pow(2, 21), 'name' => gettext('Manage all'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
+						'MANAGE_ALL_PAGES_RIGHTS' => array('value' => pow(2, 22), 'name' => gettext('Manage all'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
+						'MANAGE_ALL_ALBUM_RIGHTS' => array('value' => pow(2, 23), 'name' => gettext('Manage all'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
+						'THEMES_RIGHTS' => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
+						'TAGS_RIGHTS' => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
+						'OPTIONS_RIGHTS' => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options.')),
+						'ADMIN_RIGHTS' => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
 				break;
 			case 4:
-				$rightsset = array('NO_RIGHTS'								 => array('value' => 1, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
-								'OVERVIEW_RIGHTS'					 => array('value' => pow(2, 2), 'name' => gettext('Overview'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may view the admin overview page.')),
-								'USER_RIGHTS'							 => array('value' => pow(2, 3), 'name' => gettext('User'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users must have this right to change their credentials.')),
-								'VIEW_GALLERY_RIGHTS'			 => array('value' => pow(2, 5), 'name' => gettext('View gallery'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view otherwise protected generic gallery pages.')),
-								'VIEW_SEARCH_RIGHTS'			 => array('value' => pow(2, 6), 'name' => gettext('View search'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view search pages even if password protected.')),
-								'VIEW_FULLIMAGE_RIGHTS'		 => array('value' => pow(2, 7), 'name' => gettext('View fullimage'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may view all full sized (raw) images.')),
-								'ALL_NEWS_RIGHTS'					 => array('value' => pow(2, 8), 'name' => gettext('Access all'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users with this right have access to all zenpage news articles.')),
-								'ALL_PAGES_RIGHTS'				 => array('value' => pow(2, 9), 'name' => gettext('Access all'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users with this right have access to all zenpage pages.')),
-								'ALL_ALBUMS_RIGHTS'				 => array('value' => pow(2, 10), 'name' => gettext('Access all'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right have access to all albums.')),
-								'VIEW_UNPUBLISHED_RIGHTS'	 => array('value' => pow(2, 11), 'name' => gettext('View unpublished'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right will see all unpublished items.')),
-								'POST_COMMENT_RIGHTS'			 => array('value' => pow(2, 13), 'name' => gettext('Post comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
-								'COMMENT_RIGHTS'					 => array('value' => pow(2, 14), 'name' => gettext('Comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make comments tab changes.')),
-								'UPLOAD_RIGHTS'						 => array('value' => pow(2, 15), 'name' => gettext('Upload'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may upload to the albums for which they have management rights.')),
-								'ZENPAGE_NEWS_RIGHTS'			 => array('value' => pow(2, 17), 'name' => gettext('News'), 'set' => gettext('News'), 'display' => false, 'hint' => gettext('Users with this right may edit and manage Zenpage articles and categories.')),
-								'ZENPAGE_PAGES_RIGHTS'		 => array('value' => pow(2, 18), 'name' => gettext('Pages'), 'set' => gettext('Pages'), 'display' => false, 'hint' => gettext('Users with this right may edit and manage Zenpage pages.')),
-								'FILES_RIGHTS'						 => array('value' => pow(2, 19), 'name' => gettext('Files'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Allows the user access to the “filemanager” located on the upload: files sub-tab.')),
-								'ALBUM_RIGHTS'						 => array('value' => pow(2, 20), 'name' => gettext('Albums'), 'set' => gettext('Albums'), 'display' => false, 'hint' => gettext('Users with this right may access the “albums” tab to make changes.')),
-								'MANAGE_ALL_NEWS_RIGHTS'	 => array('value' => pow(2, 21), 'name' => gettext('Manage all'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
-								'MANAGE_ALL_PAGES_RIGHTS'	 => array('value' => pow(2, 22), 'name' => gettext('Manage all'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
-								'MANAGE_ALL_ALBUM_RIGHTS'	 => array('value' => pow(2, 23), 'name' => gettext('Manage all'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
-								'CODEBLOCK_RIGHTS'				 => array('value' => pow(2, 25), 'name' => gettext('Codeblock'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may edit Codeblocks.')),
-								'THEMES_RIGHTS'						 => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
-								'TAGS_RIGHTS'							 => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
-								'OPTIONS_RIGHTS'					 => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options tabs.')),
-								'ADMIN_RIGHTS'						 => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
+				$rightsset = array('NO_RIGHTS' => array('value' => 1, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
+						'OVERVIEW_RIGHTS' => array('value' => pow(2, 2), 'name' => gettext('Overview'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may view the admin overview page.')),
+						'USER_RIGHTS' => array('value' => pow(2, 3), 'name' => gettext('User'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users must have this right to change their credentials.')),
+						'DEBUG_RIGHTS' => array('value' => pow(2, 4), 'name' => gettext('Debug'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Allows viewing of the debug tab items.')),
+						'VIEW_GALLERY_RIGHTS' => array('value' => pow(2, 5), 'name' => gettext('View gallery'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view otherwise protected generic gallery pages.')),
+						'VIEW_SEARCH_RIGHTS' => array('value' => pow(2, 6), 'name' => gettext('View search'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view search pages even if password protected.')),
+						'VIEW_FULLIMAGE_RIGHTS' => array('value' => pow(2, 7), 'name' => gettext('View fullimage'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may view all full sized (raw) images.')),
+						'ALL_NEWS_RIGHTS' => array('value' => pow(2, 8), 'name' => gettext('Access all'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users with this right have access to all zenpage news articles.')),
+						'ALL_PAGES_RIGHTS' => array('value' => pow(2, 9), 'name' => gettext('Access all'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users with this right have access to all zenpage pages.')),
+						'ALL_ALBUMS_RIGHTS' => array('value' => pow(2, 10), 'name' => gettext('Access all'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right have access to all albums.')),
+						'VIEW_UNPUBLISHED_RIGHTS' => array('value' => pow(2, 11), 'name' => gettext('View unpublished'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right will see all unpublished items.')),
+						'VIEW_UNPUBLISHED_NEWS_RIGHTS' => array('value' => pow(2, 12), 'name' => gettext('View unpublished'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users with this right will see all unpublished items.')),
+						'POST_COMMENT_RIGHTS' => array('value' => pow(2, 13), 'name' => gettext('Post comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
+						'COMMENT_RIGHTS' => array('value' => pow(2, 14), 'name' => gettext('Comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make comments tab changes.')),
+						'UPLOAD_RIGHTS' => array('value' => pow(2, 15), 'name' => gettext('Upload'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may upload to the albums for which they have management rights.')),
+						'VIEW_UNPUBLISHED_PAGE_RIGHTS' => array('value' => pow(2, 16), 'name' => gettext('View unpublished'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users with this right will see all unpublished items.')),
+						'ZENPAGE_NEWS_RIGHTS' => array('value' => pow(2, 17), 'name' => gettext('News'), 'set' => gettext('News'), 'display' => false, 'hint' => gettext('Users with this right may edit and manage Zenpage articles and categories.')),
+						'ZENPAGE_PAGES_RIGHTS' => array('value' => pow(2, 18), 'name' => gettext('Pages'), 'set' => gettext('Pages'), 'display' => false, 'hint' => gettext('Users with this right may edit and manage Zenpage pages.')),
+						'FILES_RIGHTS' => array('value' => pow(2, 19), 'name' => gettext('Files'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Allows the user access to the “filemanager” located on the upload: files sub-tab.')),
+						'ALBUM_RIGHTS' => array('value' => pow(2, 20), 'name' => gettext('Albums'), 'set' => gettext('Albums'), 'display' => false, 'hint' => gettext('Users with this right may access the “albums” tab to make changes.')),
+						'MANAGE_ALL_NEWS_RIGHTS' => array('value' => pow(2, 21), 'name' => gettext('Manage all'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
+						'MANAGE_ALL_PAGES_RIGHTS' => array('value' => pow(2, 22), 'name' => gettext('Manage all'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
+						'MANAGE_ALL_ALBUM_RIGHTS' => array('value' => pow(2, 23), 'name' => gettext('Manage all'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
+						//2**24
+						'CODEBLOCK_RIGHTS' => array('value' => pow(2, 25), 'name' => gettext('Codeblock'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may edit Codeblocks.')),
+						'THEMES_RIGHTS' => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
+						//2*27
+						'TAGS_RIGHTS' => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
+						'OPTIONS_RIGHTS' => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options.')),
+						'ADMIN_RIGHTS' => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
 				break;
 		}
 		$allrights = 0;
 		foreach ($rightsset as $key => $right) {
 			$allrights = $allrights | $right['value'];
 		}
-		$rightsset['ALL_RIGHTS'] = array('value' => $allrights, 'name' => gettext('All rights'), 'display' => false);
-		$rightsset['DEFAULT_RIGHTS'] = array('value' => $rightsset['OVERVIEW_RIGHTS']['value'] + $rightsset['POST_COMMENT_RIGHTS']['value'], 'name' => gettext('Default rights'), 'display' => false);
+		$rightsset['ALL_RIGHTS'] = array('value' => $allrights, 'name' => gettext('All rights'), 'set' => '', 'display' => false, 'hint' => '');
+		$rightsset['DEFAULT_RIGHTS'] = array('value' => $rightsset['OVERVIEW_RIGHTS']['value'] + $rightsset['POST_COMMENT_RIGHTS']['value'], 'name' => gettext('Default rights'), 'set' => '', 'display' => false, 'hint' => '');
 		if (isset($rightsset['VIEW_ALL_RIGHTS']['value'])) {
 			$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']['value'] | $rightsset['VIEW_ALL_RIGHTS']['value'];
 		} else {
@@ -608,7 +650,7 @@ class Zenphoto_Authority {
 							$rightsset['ALL_PAGES_RIGHTS']['value'] | $rightsset['ALL_NEWS_RIGHTS']['value'] |
 							$rightsset['VIEW_SEARCH_RIGHTS']['value'] | $rightsset['VIEW_GALLERY_RIGHTS']['value'];
 		}
-		$rightsset = sortMultiArray($rightsset, 'value', true, false, false);
+		$rightsset = sortMultiArray($rightsset, 'value', false, true, false, true);
 		return $rightsset;
 	}
 
@@ -649,7 +691,7 @@ class Zenphoto_Authority {
 		$user->set('lastloggedin', $user->get('loggedin'));
 		$user->set('loggedin', date('Y-m-d H:i:s'));
 		$user->save();
-		zp_setCookie('zp_user_auth', $user->getPass() . '.' . $user->getID(), NULL, NULL, secureServer(), true);
+		zp_setCookie("zp_user_auth", $user->getPass() . '.' . $user->getID());
 	}
 
 	/**
@@ -658,27 +700,29 @@ class Zenphoto_Authority {
 	function handleLogon() {
 		global $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha, $_zp_loggedin;
 		if (isset($_POST['login'])) {
-			$post_user = sanitize(@$_POST['user']);
+			$post_user = sanitize(@$_POST['user'], 0);
 			$post_pass = sanitize(@$_POST['pass'], 0);
 			$_zp_loggedin = false;
 
 			switch (@$_POST['password']) {
 				default:
-					$user = self::checkLogon($post_user, $post_pass);
-					if ($user) {
-						$_zp_loggedin = $user->getRights();
-					}
-					$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
-					if ($_zp_loggedin) {
-						self::logUser($user);
-						$_zp_current_admin_obj = $user;
-					} else {
-						zp_clearCookie('zp_user_auth', null, secureServer(), true ); // Clear the cookie, just in case
-						$_zp_login_error = 1;
+					if (isset($_POST['user'])) { //	otherwise must be a guest logon, don't even try admin path
+						$user = self::checkLogon($post_user, $post_pass);
+						if ($user) {
+							$_zp_loggedin = $user->getRights();
+						}
+						$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass, $user);
+						if ($_zp_loggedin) {
+							self::logUser($user);
+							$_zp_current_admin_obj = $user;
+						} else {
+							zp_clearCookie("zp_user_auth"); // Clear the cookie, just in case
+							$_zp_login_error = 1;
+						}
 					}
 					break;
 				case 'challenge':
-					$user = self::getAnAdmin(array('`user`=' => $post_user, '`valid`=' => 1));
+					$user = $this->getAnAdmin(array('`user`=' => $post_user, '`valid`=' => 1));
 					if (is_object($user)) {
 						$info = $user->getChallengePhraseInfo();
 						if ($post_pass && $info['response'] == $post_pass) {
@@ -687,16 +731,19 @@ class Zenphoto_Authority {
 							exitZP();
 						}
 					}
-					if ( !empty($info['challenge']) && !empty($_POST['pass'])) { $_zp_login_error = gettext('Sorry, that is not the answer.'); }
+					$_zp_login_error = gettext('Sorry, that is not the answer.');
 					$_REQUEST['logon_step'] = 'challenge';
 					break;
 				case 'captcha':
+
+					debugLogVar('$_zp_captcha', $_zp_captcha);
+
 					if ($_zp_captcha->checkCaptcha(trim(@$_POST['code']), sanitize(@$_POST['code_h'], 3))) {
 						require_once(dirname(__FILE__) . '/load_objectClasses.php'); // be sure that the plugins are loaded for the mail handler
 						if (empty($post_user)) {
-							$requestor = gettext('You are receiving this e-mail because of a password reset request on your Zenphoto gallery.');
+							$requestor = gettext('You are receiving this e-mail because of a password reset request on your gallery.');
 						} else {
-							$requestor = sprintf(gettext("You are receiving this e-mail because of a password reset request on your Zenphoto gallery from a user who tried to log in as %s."), $post_user);
+							$requestor = sprintf(gettext("You are receiving this e-mail because of a password reset request on your gallery from a user who tried to log in as %s."), $post_user);
 						}
 						$admins = $this->getAdministrators();
 						$mails = array();
@@ -739,17 +786,18 @@ class Zenphoto_Authority {
 						} else {
 							$ref = self::getResetTicket($user['user'], $user['pass']);
 							$msg = "\n" . $requestor .
-											"\n" . sprintf(gettext("To reset your Zenphoto Admin passwords visit: %s"), FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?ticket=$ref&user=" . $user['user']) .
+											"\n" . sprintf(gettext("To reset your Admin passwords visit: %s"), FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?ticket=$ref&user=" . $user['user']) .
 											"\n" . gettext("If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days.");
-							$err_msg = zp_mail(gettext("The Zenphoto information you requested"), $msg, $mails, $cclist);
+							$err_msg = zp_mail(gettext("The information you requested"), $msg, $mails, $cclist, NULL, NULL, sprintf(gettext('%1$s password reset request mail failed.'), $user['user']));
 							if (empty($err_msg)) {
 								$_zp_login_error = 2;
 							} else {
-								$_zp_login_error = $err_msg;
+								debugLog($err_msg);
+								$_zp_login_error = gettext('Reset request failed.');
 							}
 						}
 					} else {
-						$_zp_login_error = gettext('Your input did not match the captcha');
+						$_zp_login_error = gettext('CAPTCHA verification failed.');
 						$_REQUEST['logon_step'] = 'captcha';
 					}
 					break;
@@ -787,15 +835,17 @@ class Zenphoto_Authority {
 	 * Cleans up on logout
 	 *
 	 */
-	static function handleLogout() {
+	static function handleLogout($location) {
 		global $_zp_loggedin, $_zp_pre_authorization, $_zp_current_admin_obj;
+		$location = zp_apply_filter('zp_logout', $location, $_zp_current_admin_obj);
 		foreach (self::getAuthCookies() as $cookie => $value) {
-			zp_clearCookie($cookie, null, secureServer(), true);
+			zp_clearCookie($cookie);
 		}
+		zp_clearCookie('zenphoto_ssl');
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
 		zp_session_destroy();
-		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);
+		return $location;
 	}
 
 	/**
@@ -803,34 +853,37 @@ class Zenphoto_Authority {
 	 */
 	function checkCookieCredentials() {
 		list($auth, $id) = explode('.', zp_getCookie('zp_user_auth') . '.');
-		$loggedin = $this->checkAuthorization($auth, $id);
+		$loggedin = $this->checkAuthorization($auth, (int) $id);
 		$loggedin = zp_apply_filter('authorization_cookie', $loggedin, $auth, $id);
 		if ($loggedin) {
 			return $loggedin;
-		} else {
-			zp_clearCookie('zp_user_auth', null, secureServer(), true);
-			return NULL;
 		}
+		zp_clearCookie("zp_user_auth");
+		return NULL;
 	}
 
 	/**
 	 * Print the login form for ZP. This will take into account whether mod_rewrite is enabled or not.
 	 *
 	 * @param string $redirect URL to return to after login
-	 * @param bool $logo set to true to display the ADMIN zenphoto logo.
+	 * @param bool $logo set to true to display the ADMIN logo.
 	 * @param bool $showUserField set to true to display the user input
-	 * @param bool $showCaptcha set to false to not display the forgot password captcha.
+	 * @param bool [deprecated] $deprecated set to false to not display the forgot password captcha.
 	 * @param string $hint optional hint for the password
 	 *
 	 */
-	function printLoginForm($redirect = null, $logo = true, $showUserField = true, $showCaptcha = true, $hint = '') {
+	function printLoginForm($redirect = null, $logo = true, $showUserField = true, $deprecated = NULL, $hint = '') {
 		global $_zp_login_error, $_zp_captcha, $_zp_gallery;
 		if (is_null($redirect)) {
 			$redirect = getRequestURI();
 		}
+		if (is_null($showUserField)) {
+			$showUserField = $_zp_gallery->getUserLogonField();
+		}
 
+		$cycle = sanitize_numeric(@$_GET['cycle']) + 1;
 		if (isset($_POST['user'])) {
-			$requestor = sanitize($_POST['user'], 3);
+			$requestor = sanitize($_POST['user'], 0);
 		} else {
 			$requestor = '';
 		}
@@ -840,18 +893,40 @@ class Zenphoto_Authority {
 			}
 		}
 		$alt_handlers = zp_apply_filter('alt_login_handler', array());
+		ksort($alt_handlers);
+
 		$star = false;
 		$mails = array();
 		$info = array('challenge' => '', 'response' => '');
-		$username_is_valid = false;
 		if (!empty($requestor)) {
-			$admin = self::getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1));
-			if (is_object($admin)) {
-				if ($admin->getEmail()) {
-					$star = $showCaptcha;
-				}
+			if ($admin = $this->getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1))) {
 				$info = $admin->getChallengePhraseInfo();
-				$username_is_valid = true;
+			} else {
+				$info = array('challenge' => '');
+			}
+			if (empty($info['challenge']) || ($cycle > 2 && ($cycle % 5) != 1)) {
+				$locale = getUserLocale();
+				$questions = array();
+				foreach (getSerializedArray(getOption('challenge_foils')) as $question) {
+					$questions[] = get_language_string($question);
+				}
+				$rslt = query('SELECT `challenge_phrase`,`language` FROM ' . prefix('administrators') . ' WHERE `challenge_phrase` IS NOT NULL');
+				while ($row = db_fetch_assoc($rslt)) {
+					if (is_null($row['language']) || $row['language'] == $locale) {
+						$q = getSerializedArray($row['challenge_phrase']);
+						$questions[] = $q['challenge'];
+					}
+				}
+				db_free_result($rslt);
+				$questions = array_unique($questions);
+				if (!empty($questions)) {
+					shuffle($questions);
+					$info = array('challenge' => $questions[$cycle % count($questions)], 'response' => 0x00);
+				}
+			} else {
+				if ($admin->getEmail()) {
+					$star = true;
+				}
 			}
 		}
 		if (!$star) {
@@ -859,18 +934,19 @@ class Zenphoto_Authority {
 			while (count($admins) > 0) {
 				$user = array_shift($admins);
 				if ($user['email']) {
-					$star = $showCaptcha;
+					$star = true;
 				}
 			}
 		}
 		$whichForm = sanitize(@$_REQUEST['logon_step']);
 		?>
+
 		<div id="loginform">
 			<?php
 			if ($logo) {
 				?>
 				<p>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png" title="ZenPhoto" alt="ZenPhoto" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="netPhotoGraphics" alt="netPhotoGraphics" />
 				</p>
 				<?php
 			}
@@ -905,25 +981,23 @@ class Zenphoto_Authority {
 					}
 					break;
 			}
+
 			switch ($whichForm) {
 				case 'challenge':
 					?>
-					<form name="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
+					<form name="login" id="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
 						<fieldset id="logon_box">
 							<input type="hidden" name="login" value="1" />
 							<input type="hidden" name="password" value="challenge" />
-							<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
+							<input type="hidden" name="redirect" value="<?php echo pathurlencode($redirect); ?>" />
 							<fieldset>
 								<legend><?php echo gettext('User') ?></legend>
 								<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
 							</fieldset>
 							<?php
-							if ($requestor && $admin) {
-							if (!empty($info['challenge'])) {
+							if ($requestor) {
 								?>
-								<p class="logon_form_text"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?>
-								<?php if ( $admin->getEmail() ) { echo gettext('<br />You may also use the link below to request a reset by e-mail.'); } ?>
-								</p>
+								<p class="logon_form_text"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?></p>
 								<fieldset><legend><?php echo gettext('Challenge question:') ?></legend>
 									<?php
 									echo html_encode($info['challenge']);
@@ -933,19 +1007,12 @@ class Zenphoto_Authority {
 									<input class="textfield" name="pass" id="pass" type="text" size="35" />
 								</fieldset>
 								<br />
-								<?php } else {
-										if ( $username_is_valid && !$admin->getEmail() ) { ?>
-											<fieldset><p class="logon_form_text errorbox"><?php echo gettext('A password reset is not possible.'); ?></p></fieldset>
-									<?php } else { ?>
-											<p class="logon_form_text"><?php echo gettext('Please request a reset by e-mail by clicking the link below.'); ?></p>
 								<?php
-									}
-								}
 							} else {
 								?>
 								<p class="logon_form_text">
 									<?php
-									echo gettext('Enter your User ID and press <code>Refresh</code> to get your challenge question and/or get a link to request a reset by e-mail.');
+									echo gettext('Enter your User ID and press <code>Refresh</code> to get your challenge question.');
 									?>
 								</p>
 								<?php
@@ -953,23 +1020,26 @@ class Zenphoto_Authority {
 							?>
 							<div class="buttons">
 								<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> >
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?>
+									<?php echo CHECKMARK_GREEN; ?>
+									<?php echo gettext("Submit"); ?>
 								</button>
-								<a id="logonstep_challenge_js" class="button" title="<?php echo gettext("Refresh"); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?>
-								</a>
-								<a id="logonstep_return_js" class="button" title="<?php echo gettext("Return"); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?>
-								</a>
+								<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="window.location = '?logon_step=challenge&amp;ref=' + $('#user').val();" >
+									<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
+									<?php echo gettext("Refresh"); ?>
+								</button>
+								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '?logon_step=&amp;ref=' + $('#user').val();" >
+									<?php echo BACK_ARROW_BLUE; ?>
+									<?php echo gettext("Return"); ?>
+								</button>
 							</div>
-							<br class="clearall" />
+							<br class="clearall">
 						</fieldset>
 						<br />
 						<?php
-						if ( $star && (!empty($requestor) && $username_is_valid && $admin->getEmail()) ) {
+						if ($star) {
 							?>
 							<p class="logon_link">
-								<a id="logonstep_captcha_js" class="button" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=captcha&amp;ref=">
+								<a onclick="window.location = '?logon_step=captcha&amp;ref=' + $('#user').val();" >
 									<?php echo gettext('Request reset by e-mail'); ?>
 								</a>
 							</p>
@@ -979,19 +1049,137 @@ class Zenphoto_Authority {
 					</form>
 					<?php
 					break;
-				case 'captcha':
-					$captcha = $_zp_captcha->getCaptcha(NULL);
+				default:
+					Zenphoto_Authority::printPasswordFormJS();
+					if (empty($alt_handlers)) {
+						$legend = gettext('Login');
+					} else {
+						?>
+						<script type="text/javascript">
+							// <!-- <![CDATA[
+							var handlers = [];
+					<?php
+					$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">' .
+									'<option value="0">' . html_encode(get_language_string($_zp_gallery->getTitle())) . "</option>\n";
+					$c = 0;
+					foreach ($alt_handlers as $handler => $details) {
+						$c++;
+						$details['params'][] = 'redirect=' . $redirect;
+						if (!empty($requestor)) {
+							$details['params'][] = 'requestor=' . $requestor;
+						}
+						echo "handlers[" . $c . "]=['" . $details['script'] . "','" . implode("','", $details['params']) . "'];\n";
+
+						$list .= '<option value="' . $c . '">' . $handler . "</option>\n";
+					}
+					$list .= '</select>';
+					$legend = sprintf(gettext('Logon using:%s'), $list);
 					?>
-					<form name="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
-						<?php if (isset($captcha['hidden'])) echo $captcha['hidden']; ?>
+							function changeHandler(handler) {
+								handler.push('user=' + $('#user').val());
+								var script = handler.shift();
+								window.location = script + '?' + handler.join('&');
+							}
+							// ]]> -->
+						</script>
+						<?php
+					}
+					$redirect = zp_apply_filter('login_redirect_link', $redirect);
+					?>
+					<form name="login" id="login" action="<?php echo pathurlencode($redirect); ?>" method="post">
+						<input type="hidden" name="login" value="1" />
+						<input type="hidden" name="password" value="1" />
+						<input type="hidden" name="redirect" value="<?php echo pathurlencode($redirect); ?>" />
+						<fieldset id="logon_box"><legend><?php echo $legend; ?></legend>
+							<?php
+							if ($showUserField) { //	requires a "user" field
+								?>
+								<fieldset class="login_input"><legend><?php echo gettext("User"); ?></legend>
+									<input class="textfield" name="user" id="user" type="text"  value="<?php echo html_encode($requestor); ?>" />
+								</fieldset>
+								<?php
+							}
+							?>
+							<label class="show_checkbox">
+								<input type="checkbox" name="disclose_password" id="disclose_password" onclick="togglePassword('');" />
+								<?php echo gettext('Show') ?>
+							</label>
+							<fieldset class="login_input"><legend><?php echo gettext("Password"); ?></legend>
+								<input class="textfield" name="pass" id="pass" type="password"  />
+							</fieldset>
+							<br />
+							<div class="buttons">
+								<button type="submit" value="<?php echo gettext("Log in"); ?>" >
+									<?php echo CHECKMARK_GREEN; ?>
+									<?php echo gettext("Log in"); ?>
+								</button>
+								<button type="reset" value="<?php echo gettext("Reset"); ?>" >
+									<?php echo CROSS_MARK_RED; ?>
+									<?php echo gettext("Reset"); ?>
+								</button>
+							</div>
+							<br class="clearall">
+						</fieldset>
+					</form>
+
+					<?php
+					if ($hint) {
+						echo '<p>' . $hint . '</p>';
+					}
+					if ($showUserField && OFFSET_PATH != 2) {
+						if (getOption('challenge_foil_enabled')) {
+							?>
+							<p class="logon_link">
+								<a onclick="window.location = '?logon_step=challenge&amp;ref=' + $('#user').val();" >
+									<?php echo gettext('I forgot my <strong>User ID</strong>/<strong>Password</strong>'); ?>
+								</a>
+							</p>
+							<?php
+						} else {
+							if ($star) {
+								?>
+								<p class="logon_link">
+									<a onclick="window.location = '?logon_step=captcha&amp;ref=' + $('#user').val();" >
+										<?php echo gettext('I forgot my <strong>User ID</strong>/<strong>Password</strong>'); ?>
+									</a>
+								</p>
+								<?php
+							}
+						}
+					}
+					break;
+				case 'captcha':
+					$extra = $class = $buttonExtra = '';
+					$captcha = $_zp_captcha->getCaptcha(NULL);
+					if (isset($captcha['submitButton'])) {
+						$extra = ' class="' . $captcha['submitButton']['class'] . '" ' . $captcha['submitButton']['extra'];
+					}
+					?>
+					<script type="text/javascript">
+						function toggleSubmit() {
+							if ($('#user').val()) {
+								$('#submitButton').prop('disabled', false);
+							} else {
+								$('#submitButton').prop('disabled', 'disabled');
+							}
+						}
+					</script>
+					<form name="login" id="login" action="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php" method="post">
+						<?php
+						if (isset($captcha['hidden']))
+							echo $captcha['hidden'];
+						?>
 						<input type="hidden" name="login" value="1" />
 						<input type="hidden" name="password" value="captcha" />
-						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
+						<input type="hidden" name="redirect" value="<?php echo pathurlencode($redirect); ?>" />
 						<fieldset id="logon_box">
-							<fieldset><legend><?php echo gettext('User'); ?></legend>
-								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" />
+							<fieldset><legend><?php echo gettext('User name or e-mail address'); ?></legend>
+								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" onkeyup="toggleSubmit();"/>
 							</fieldset>
-							<?php if (isset($captcha['html'])) echo $captcha['html']; ?>
+							<?php
+							if (isset($captcha['html']))
+								echo $captcha['html'];
+							?>
 							<?php
 							if (isset($captcha['input'])) {
 								?>
@@ -1003,205 +1191,150 @@ class Zenphoto_Authority {
 							?>
 							<br />
 							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
-									<?php echo gettext("Request password reset"); ?>
+								<button type="submit"  id="submitButton"<?php
+								echo $extra;
+								if (empty($requestor))
+									echo ' disabled="disabled"';
+								?>>
+													<?php echo CHECKMARK_GREEN; ?>
+													<?php echo gettext("Request password reset"); ?>
 								</button>
-								<a id="logonstep_return_js" class="button" title="<?php echo gettext("Return"); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=&amp;ref=">
-									<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?>
-								</a>
+								<button type="button" value="<?php echo gettext("Return"); ?>" onclick="window.location = '?logon_step=&amp;ref=' + $('#user').val();" >
+									<?php echo BACK_ARROW_BLUE; ?>
+									<?php echo gettext("Return"); ?>
+								</button>
 							</div>
-							<br class="clearall" />
+							<br class="clearall">
 						</fieldset>
 					</form>
 					<?php
 					break;
-				default:
-					if (empty($alt_handlers)) {
-						$legend = gettext('Login');
-					} else {
-						?>
-						<script type="text/javascript">
-							// <!-- <![CDATA[
-							var handlers = [];
-					<?php
-					$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">' .
-									'<option value="0">' . html_encode(get_language_string($_zp_gallery->getTitle())) . '</option>';
-					$c = 0;
-					foreach ($alt_handlers as $handler => $details) {
-						$c++;
-						$details['params'][] = 'redirect=' . $redirect;
-						if (!empty($requestor)) {
-							$details['params'][] = 'requestor=' . $requestor;
-						}
-						echo "handlers[" . $c . "]=['" . $details['script'] . "','" . implode("','", $details['params']) . "'];";
-
-						$list .= '<option value="' . $c . '">' . $handler . '</option>';
-					}
-					$list .= '</select>';
-					$legend = sprintf(gettext('Logon using:%s'), $list);
-					?>
-							function changeHandler(handler) {
-								handler.push('user=' + $('#user').val());
-								var script = handler.shift();
-								window.location = script+'?'+handler.join('&');
-							}
-							// ]]> -->
-						</script>
-						<?php
-					}
-					$redirect = zp_apply_filter('login_redirect_link', $redirect);
-					?>
-					<form name="login" action="<?php echo html_encode(pathurlencode($redirect)); ?>" method="post">
-						<input type="hidden" name="login" value="1" />
-						<input type="hidden" name="password" value="1" />
-						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
-						<fieldset id="logon_box"><legend><?php echo $legend; ?></legend>
-							<?php
-							if ($showUserField) { //	requires a "user" field
-								?>
-								<fieldset><legend><?php echo gettext("User"); ?></legend>
-									<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
-								</fieldset>
-								<?php
-							}
-							?>
-							<fieldset><legend><?php echo gettext("Password"); ?></legend>
-								<input class="textfield" name="pass" id="pass" type="password" size="35" /><br />
-								<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="togglePassword('');" /><?php echo gettext('Show password') ?></label>
-							</fieldset>
-							<br />
-							<div class="buttons">
-								<button type="submit" value="<?php echo gettext("Log in"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Log in"); ?></button>
-								<button type="reset" value="<?php echo gettext("Reset"); ?>" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset"); ?></button>
-							</div>
-							<br class="clearall" />
-						</fieldset>
-					</form>
-					<?php
-					if ($hint) {
-						echo '<p>' . $hint . '</p>';
-					}
-					if ($showUserField && OFFSET_PATH != 2) {
-						?>
-						<p class="logon_link">
-							<a id="logonstep_challenge_js" class="button" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.php?logon_step=challenge&amp;ref=">
-								<?php echo gettext('I forgot my <strong>User ID</strong>/<strong>Password</strong>'); ?>
-							</a>
-						</p>
-						<?php
-					}
-					break;
-
 			}
-			Zenphoto_Authority::printPasswordFormJS()
 			?>
 		</div>
-
 		<?php
+	}
+
+	static function loginButton() {
+		if (!zp_loggedin()) {
+			?>
+			<span class="button">
+				<a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/zenphotoLogin.php?request=zenphoto&amp;redirect=/dev/index.php?userlog=1">
+					<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/images/login_button.png" alt="login">
+				</a>
+			</span>
+			<?php
+		}
 	}
 
 	/**
 	 *
 	 * Javascript for password change input handling
 	 */
-	static function printPasswordFormJS() {
+	static function printPasswordFormJS($all = false) {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			function passwordStrength(id) {
-				var inputa = '#pass' + id;
-				var inputb = '#pass_r' + id;
-				var displaym = '#match' + id;
-				var displays = '#strength' + id;
-				var numeric = 0;
-				var special = 0;
-				var upper = 0;
-				var lower = 0;
-				var str = $(inputa).val();
-				var len = str.length;
-				var strength = 0;
-				for (c = 0; c < len; c++) {
-					if (str[c].match(/[0-9]/)) {
-						numeric++;
-					} else if (str[c].match(/[^A-Za-z0-9]/)) {
-						special++;
-					} else if (str[c].toUpperCase() == str[c]) {
-						upper++;
-					} else {
-						lower++;
-					}
-				}
-				if (upper != len) {
-					upper = upper * 2;
-				}
-				if (lower == len) {
-					lower = lower * 0.75;
-				}
-				if (numeric != len) {
-					numeric = numeric * 4;
-				}
-				if (special != len) {
-					special = special * 5;
-				}
-				len = Math.max(0, (len - 6) * .35);
-				strength = Math.min(30, Math.round(upper + lower + numeric + special + len));
-				if (str.length == 0) {
-					$(displays).css('color', 'black');
-					$(displays).html('<?php echo gettext('Password'); ?>');
-					$(inputa).css('background-image', 'none');
-				} else {
-					if (strength < 15) {
-						$(displays).css('color', '#ff0000');
-						$(displays).html('<?php echo gettext('password strength weak'); ?>');
-					} else if (strength < 25) {
-						$(displays).css('color', '#ff0000');
-						$(displays).html('<?php echo gettext('password strength good'); ?>');
-					} else {
-						$(displays).css('color', '#008000');
-						$(displays).html('<?php echo gettext('password strength strong'); ?>');
-					}
-					if (strength < <?php echo (int) getOption('password_strength'); ?>) {
-						$(inputb).prop('disabled',true);
-						$(displays).css('color', '#ff0000');
-						$(displays).html('<?php echo gettext('password strength too weak'); ?>');
-					} else {
-      $(inputb).parent().removeClass('ui-state-disabled');
-      $(inputb).prop('disabled',false);
-						passwordMatch(id);
-					}
-					var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
-					$(inputa).css('background-image', url);
-					$(inputa).css('background-size', '100%');
-				}
-			}
-
-			function passwordMatch(id) {
-				var inputa = '#pass' + id;
-				var inputb = '#pass_r' + id;
-				var display = '#match' + id;
-				if ($('#disclose_password' + id).prop('checked')) {
-					if ($(inputa).val() === $(inputb).val()) {
-						if ($(inputa).val().trim() !== '') {
-							$(display).css('color', '#008000');
-							$(display).html('<?php echo gettext('passwords match'); ?>');
+		<?php
+		if (OFFSET_PATH || $all) {
+			?>
+				function passwordStrength(id) {
+					var inputa = '#pass' + id;
+					var inputb = '#pass_r' + id;
+					var displaym = '#match' + id;
+					var displays = '#strength' + id;
+					var numeric = 0;
+					var special = 0;
+					var upper = 0;
+					var lower = 0;
+					var str = $(inputa).val();
+					var len = str.length;
+					var strength = 0;
+					for (c = 0; c < len; c++) {
+						if (str[c].match(/[0-9]/)) {
+							numeric++;
+						} else if (str[c].match(/[^A-Za-z0-9]/)) {
+							special++;
+						} else if (str[c].toUpperCase() == str[c]) {
+							upper++;
+						} else {
+							lower++;
 						}
+					}
+					if (upper != len) {
+						upper = upper * 2;
+					}
+					if (lower == len) {
+						lower = lower * 0.75;
+					}
+					if (numeric != len) {
+						numeric = numeric * 4;
+					}
+					if (special != len) {
+						special = special * 5;
+					}
+					len = Math.max(0, (len - 6) * .35);
+					strength = Math.min(30, Math.round(upper + lower + numeric + special + len));
+					if (str.length == 0) {
+						$(displays).css('color', 'black');
+						$(displays).html('<?php echo gettext('Password'); ?>');
+						$(inputa).css('background-image', 'none');
 					} else {
-						$(display).css('color', '#ff0000');
-						$(display).html('<?php echo gettext('passwords do not match'); ?>');
+						if (strength < 15) {
+							$(displays).css('color', '#ff0000');
+							$(displays).html('<?php echo gettext('password strength weak'); ?>');
+						} else if (strength < 25) {
+							$(displays).css('color', '#ff0000');
+							$(displays).html('<?php echo gettext('password strength good'); ?>');
+						} else {
+							$(displays).css('color', '#008000');
+							$(displays).html('<?php echo gettext('password strength strong'); ?>');
+						}
+						if (strength < <?php echo (int) getOption('password_strength'); ?>) {
+							$(inputb).prop('disabled', true);
+							$(displays).css('color', '#ff0000');
+							$(displays).html('<?php echo gettext('password strength too weak'); ?>');
+						} else {
+							$(inputb).parent().removeClass('ui-state-disabled');
+							$(inputb).prop('disabled', false);
+							passwordMatch(id);
+						}
+						var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
+						$(inputa).css('background-image', url);
+						$(inputa).css('background-size', '100%');
 					}
 				}
-			}
 
-			function passwordClear(id) {
-				var inputa = '#pass' + id;
-				var inputb = '#pass_r' + id;
-				if ($(inputa).val().trim() === '') {
-					$(inputa).val('');
+				function passwordMatch(id) {
+					var inputa = '#pass' + id;
+					var inputb = '#pass_r' + id;
+					var display = '#match' + id;
+					if ($('#disclose_password' + id).prop('checked')) {
+						if ($(inputa).val() === $(inputb).val()) {
+							if ($(inputa).val().trim() !== '') {
+								$(display).css('color', '#008000');
+								$(display).html('<?php echo gettext('passwords match'); ?>');
+							}
+						} else {
+							$(display).css('color', '#ff0000');
+							$(display).html('<?php echo gettext('passwords do not match'); ?>');
+						}
+					}
 				}
-				if ($(inputb).val().trim() === '') {
-					$(inputb).val('');
+
+				function passwordClear(id) {
+					var inputa = '#pass' + id;
+					var inputb = '#pass_r' + id;
+					if ($(inputa).val().trim() === '') {
+						$(inputa).val('');
+					}
+					if ($(inputb).val().trim() === '') {
+						$(inputb).val('');
+					}
 				}
-			}
+			<?php
+		}
+		?>
 			function togglePassword(id) {
 				if ($('#pass' + id).attr('type') == 'password') {
 					var oldp = $('#pass' + id);
@@ -1219,61 +1352,71 @@ class Zenphoto_Authority {
 					$('.password_field_' + id).show();
 				}
 			}
-
-			var logonsteps = {
-				'logonstep_challenge_js' : $('#logonstep_challenge_js').attr('href'),
-				'logonstep_captcha_js' : $('#logonstep_captcha_js').attr('href'),
-				'logonstep_return_js' : $('#logonstep_return_js').attr('href')
-			};
-			setLogonStepURL(logonsteps)
-			$( "#user" ).keyup(function() {
-				setLogonStepURL(logonsteps);
-			});
-
-			function setLogonStepURL(logonsteps) {
-				var user = $('#user').val();
-				$.each( logonsteps, function( key, value ) {
-					if($('#'+key).length) {
-						$('#'+key).attr('href', value + user);
-					}
-				});
-			}
 			// ]]> -->
 		</script>
 		<?php
 	}
 
+	/**
+	 * provides the form for password handling
+	 *
+	 * @param int $id id number for when there are multiple forms on a page
+	 * @param bool $pad if true the password will have dummy asterix filled in
+	 * @param bool $disable for disabling the field
+	 * @param bool $required if a password is required
+	 * @param string $flag to "flag" the field as required
+	 */
 	static function printPasswordForm($id = '', $pad = false, $disable = NULL, $required = false, $flag = '') {
 		if ($pad) {
 			$x = '          ';
 		} else {
 			$x = '';
 		}
+		if (is_numeric($id)) {
+			$format = 'user[%2$s][%1$s]';
+		} else {
+			$format = '%1$s%2$s';
+		}
 		?>
-		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" />
+		<input type="hidden" name="<?php printf($format, 'passrequired', $id); ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" class="inputbox"/>
 		<p>
-			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>"><?php echo gettext("Password") . $flag; ?></label>
-			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-						 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
-						 id="pass<?php echo $id; ?>"
-						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
-						 onclick="passwordClear('<?php echo $id; ?>');"
-						 onkeyup="passwordStrength('<?php echo $id; ?>');"
-						 <?php echo $disable; ?> />
+			<label for="pass<?php echo $id; ?>_text" id="strength<?php echo $id; ?>">
+				<?php echo gettext("Password") . $flag; ?>
+			</label>
+			<span class="disclose_password_show" style="float: right !important; padding-right: 15px;">
+				<label>
+					<?php echo gettext('Show'); ?>
+					<input type="checkbox"
+								 class="disclose_password"
+								 style="float: right !important;"
+								 name="<?php printf($format, 'disclose_password', $id); ?>"
+								 id="disclose_password<?php echo $id; ?>"
+								 onclick="passwordClear('<?php echo $id; ?>');
+												 togglePassword('<?php echo $id; ?>');">
+				</label>
+			</span>
+			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">
+				<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+							 name="<?php printf($format, 'pass', $id); ?>" value="<?php echo $x; ?>"
+							 id="pass<?php echo $id; ?>"
+							 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
+							 onclick="passwordClear('<?php echo $id; ?>');"
+							 onkeyup="passwordStrength('<?php echo $id; ?>');"
+							 <?php echo $disable; ?> class="password_input inputbox"/>
+			</label>
+			<br clear="all">
 		</p>
-		<p>
-			<label for="disclose_password<?php echo $id; ?>"><?php echo gettext('Show password'); ?></label>
-			<input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');
-					togglePassword('<?php echo $id; ?>');">
-		</p>
-		<p class="password_field_<?php echo $id; ?>">
-			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>"><?php echo gettext("Repeat password") . $flag; ?></label>
+		<p class="password_field password_field_<?php echo $id; ?>">
+			<label for="pass_r<?php echo $id; ?>" id="match<?php echo $id; ?>">
+				<?php echo gettext("Repeat password") . $flag; ?>
+			</label>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-						 name="pass_r<?php echo $id ?>" value="<?php echo $x; ?>"
-						 id="pass_r<?php echo $id; ?>" disabled="disabled"
+						 name="<?php printf($format, 'pass_r', $id); ?>" value="<?php echo $x; ?>"
+						 id="pass_r<?php echo $id; ?>"
+						 disabled="disabled"
 						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 						 onkeydown="passwordClear('<?php echo $id; ?>');"
-						 onkeyup="passwordMatch('<?php echo $id; ?>');" />
+						 onkeyup="passwordMatch('<?php echo $id; ?>');" class="inputbox"/>
 		</p>
 		<?php
 	}
@@ -1306,31 +1449,9 @@ class Zenphoto_Authority {
 		return substr($dk, 0, $kl);
 	}
 
-	/**
-	 * Checks if the email address being set is already used by another user
-	 *
-	 * @param string $email_to_check email address to check
-	 * @param type $current_user user id of the user trying to set this email address
-	 * @return boolean
-	 */
-	function checkUniqueMailaddress($email_to_check, $current_user) {
-		$all_users = $this->getAdministrators('users');
-		foreach ($all_users as $user) {
-			if ($user['user'] != $current_user && $user['email'] == $email_to_check) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 }
-/**
- * Supports the basic Zenphoto needs for object manipulation of administrators.
- *
- * @package core
- * @subpackage classes\authorization
- */
-class Zenphoto_Administrator extends PersistentObject {
+
+class _Administrator extends PersistentObject {
 
 	/**
 	 * This is a simple class so that we have a convienient "handle" for manipulating Administrators.
@@ -1339,10 +1460,10 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * an administrator object
 	 *
 	 */
-	var $objects = NULL;
+	protected $objects = NULL;
 	var $master = false; //	will be set to true if this is the inherited master user
 	var $msg = NULL; //	a means of storing error messages from filter processing
-	var $logout_link = true; // for a Zenphoto logout
+	var $logout_link = true; // for a logout
 	var $reset = false; // if true the user was setup by a "reset password" event
 	var $passhash; // the hash algorithm used in creating the password
 
@@ -1354,14 +1475,14 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * @return Administrator
 	 */
 
-	function __construct($user, $valid) {
+	function __construct($user, $valid, $create = true) {
 		global $_zp_authority;
 		$this->passhash = (int) getOption('strong_hash');
-		$this->instantiate('administrators', array('user' => $user, 'valid' => $valid), NULL, false, empty($user));
+		$this->instantiate('administrators', array('user' => $user, 'valid' => $valid), NULL, false, empty($user), $create);
 		if (empty($user)) {
 			$this->set('id', -1);
 		}
-		if ($valid) {
+		if ($this->loaded) {
 			$rights = $this->getRights();
 			$new_rights = 0;
 			if ($_zp_authority->isMasterUser($user)) {
@@ -1381,22 +1502,23 @@ class Zenphoto_Administrator extends PersistentObject {
 				$this->getObjects();
 				foreach ($this->objects as $object) {
 					switch ($object['type']) {
-						case 'album':
-							if ($object['edit'] && MANAGED_OBJECT_RIGHTS_EDIT) {
+						case 'albums':
+							if ($object['edit'] & MANAGED_OBJECT_RIGHTS_EDIT) {
 								$new_rights = $new_rights | ALBUM_RIGHTS;
 							}
 							break;
 						case 'pages':
-							$new_rights = $new_rights | ZENPAGE_PAGES_RIGHTS;
+							if ($object['edit'] & MANAGED_OBJECT_RIGHTS_EDIT) {
+								$new_rights = $new_rights | ZENPAGE_PAGES_RIGHTS;
+							}
 							break;
-						case 'news':
-							$new_rights = $new_rights | ZENPAGE_NEWS_RIGHTS;
+						case 'news_categories':
+							if ($object['edit'] & MANAGED_OBJECT_RIGHTS_EDIT) {
+								$new_rights = $new_rights | ZENPAGE_NEWS_RIGHTS;
+							}
 							break;
 					}
 				}
-			}
-			if($this->getGroup()) {
-				$this->preservePrimeAlbum();
 			}
 			if ($new_rights) {
 				$this->setRights($rights | $new_rights);
@@ -1410,7 +1532,11 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * @return date
 	 */
 	function getDateTime() {
-		return $this->get('date');
+		$d = $this->get('date');
+		if ($d && $d != '0000-00-00 00:00:00') {
+			return $d;
+		}
+		return false;
 	}
 
 	/**
@@ -1436,7 +1562,7 @@ class Zenphoto_Administrator extends PersistentObject {
 		$this->set('pass', $pwd);
 		$this->set('passupdate', date('Y-m-d H:i:s'));
 		$this->set('passhash', $hash_type);
-		return $this->get('pass');
+		return $pwd;
 	}
 
 	/**
@@ -1489,19 +1615,33 @@ class Zenphoto_Administrator extends PersistentObject {
 	}
 
 	/**
-	 * Returns local copy of managed objects.
+	 * Stores local copy of managed objects.
+	 * NOTE: The database is NOT updated by this, the user object MUST be saved to
+	 * cause an update
+	 * use setObjects(NULL) to indicate no change in the objects
+	 *
+	 * @param array $objects the object list.
 	 */
 	function setObjects($objects) {
+		if (DEBUG_OBJECTS) {
+			if (!function_exists('compareObjects') || !compareObjects($this->objects, $objects)) {
+				$name = $this->getName();
+				if ($name) {
+					$name = ' (' . $name . ')';
+				}
+				debugLogBacktrace($this->getUser() . $name . "->setObjects()");
+				debuglogVar('old', $this->objects);
+				debuglogVar('new', $objects);
+			}
+		}
 		$this->objects = $objects;
 	}
 
 	/**
-	 * Saves local copy of managed objects.
-	 * NOTE: The database is NOT updated by this, the user object MUST be saved to
-	 * cause an update
+	 * Returns local copy of managed objects.
 	 */
-	function getObjects($what = NULL) {
-		if (is_null($this->objects)) {
+	function getObjects($what = NULL, $full = NULL) {
+		if (!is_array($this->objects)) {
 			if ($this->transient) {
 				$this->objects = array();
 			} else {
@@ -1514,24 +1654,14 @@ class Zenphoto_Administrator extends PersistentObject {
 		$result = array();
 		foreach ($this->objects as $object) {
 			if ($object['type'] == $what) {
-				$result[get_language_string($object['name'])] = $object['data'];
+				if ($full) {
+					$result[$object['data']] = $object;
+				} else {
+					$result[$object['name']] = $object['data'];
+				}
 			}
 		}
 		return $result;
-	}
-
-	/**
-	 * Stores custom data
-	 */
-	function setCustomData($custom_data) {
-		$this->set('custom_data', $custom_data);
-	}
-
-	/**
-	 * Returns custom data
-	 */
-	function getCustomData() {
-		return $this->get('custom_data');
 	}
 
 	/**
@@ -1613,47 +1743,49 @@ class Zenphoto_Administrator extends PersistentObject {
 		if (DEBUG_LOGIN) {
 			debugLogVar("Zenphoto_Administrator->save()", $this);
 		}
-		$objects = $this->getObjects();
 		if (is_null($this->get('date'))) {
 			$this->set('date', date('Y-m-d H:i:s'));
 		}
 		parent::save();
-		$id = $this->getID();
-		if (is_array($objects)) {
+
+		if (is_array($this->objects)) {
+			if (DEBUG_OBJECTS) {
+				$name = $this->getName();
+				if ($name) {
+					$name = ' (' . $name . ')';
+				}
+				debugLogBacktrace($this->getUser() . $name . "->save()");
+				debugLogVar('objects', $this->objects);
+			}
+			$id = $this->getID();
 			$sql = "DELETE FROM " . prefix('admin_to_object') . ' WHERE `adminid`=' . $id;
 			$result = query($sql, false);
-			foreach ($objects as $object) {
+			foreach ($this->objects as $object) {
+				$edit = MANAGED_OBJECT_MEMBER;
 				if (array_key_exists('edit', $object)) {
-					$edit = $object['edit'] | 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW);
-				} else {
-					$edit = 32767;
+					$edit = $object['edit'] | MANAGED_OBJECT_MEMBER;
 				}
-				switch ($object['type']) {
-					case 'album':
-						$album = newAlbum($object['data']);
-						$albumid = $album->getID();
-						$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $albumid, 'albums', $edit)";
-						$result = query($sql);
+				$table = $object['type'];
+				switch ($table) {
+					case 'albums':
+						$obj = newAlbum($object['data']);
+						$objectid = $obj->getID();
 						break;
 					case 'pages':
-						$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`=' . db_quote($object['data']);
-						$result = query_single_row($sql);
-						if (is_array($result)) {
-							$objectid = $result['id'];
-							$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, 'pages', $edit)";
-							$result = query($sql);
-						}
+						$obj = newPage($object['data']);
+						$objectid = $obj->getID();
 						break;
-					case 'news':
-						$sql = 'SELECT * FROM ' . prefix('news_categories') . ' WHERE `titlelink`=' . db_quote($object['data']);
-						$result = query_single_row($sql);
-						if (is_array($result)) {
-							$objectid = $result['id'];
-							$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, 'news', $edit)";
-							$result = query($sql);
+					case 'news_categories':
+						if ($object['data'] == '`') { //uncategorized
+							$objectid = 0;
+						} else {
+							$obj = newCategory($object['data']);
+							$objectid = $obj->getID();
 						}
 						break;
 				}
+				$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, '$table', $edit)";
+				$result = query($sql);
 			}
 		}
 	}
@@ -1668,6 +1800,13 @@ class Zenphoto_Administrator extends PersistentObject {
 		if (parent::remove()) {
 			if (!empty($album)) { //	Remove users album as well
 				$album->remove();
+			}
+			if (DEBUG_OBJECTS) {
+				$name = $this->getName();
+				if ($name) {
+					$name = ' (' . $name . ')';
+				}
+				debugLogBacktrace($this->getUser() . $name . "->remove()");
 			}
 			$sql = "DELETE FROM " . prefix('admin_to_object') . " WHERE `adminid`=$id";
 			$result = query($sql);
@@ -1752,7 +1891,7 @@ class Zenphoto_Administrator extends PersistentObject {
 				$subrights = $subrights | MANAGED_OBJECT_RIGHTS_UPLOAD;
 			}
 			$objects = $this->getObjects();
-			$objects[] = array('data' => $albumname, 'name' => $albumname, 'type' => 'album', 'edit' => $subrights);
+			$objects[] = array('data' => $albumname, 'name' => $albumname, 'type' => 'albums', 'edit' => $subrights);
 			$this->setObjects($objects);
 		}
 	}
@@ -1779,30 +1918,20 @@ class Zenphoto_Administrator extends PersistentObject {
 	}
 
 	/**
-	 * Preserves the user's prime album as managed album even if he is in a group the album is actually set as managed
+	 * retrieves the state of the user policy acknowledgement
+	 * @return int
 	 */
-	function preservePrimeAlbum() {
-		$primeAlbum = $this->getAlbum();
-		if (is_object($primeAlbum)) {
-			$primealbum_name = $primeAlbum->name;
-			$objects = $this->getObjects();
-			$primealbum_managed = false;
-			foreach ($objects as $key => $val) {
-				if ($val['type'] == 'album' && $val['name'] == $primealbum_name) {
-					$primealbum_managed = true;
-					break;
-				}
-			}
-			if (!$primealbum_managed) {
-				$objects[] = array(
-						'data' => $primealbum_name,
-						'name' => $primealbum_name,
-						'type' => 'album',
-						'edit' => 32765
-				);
-			}
-			$this->setObjects($objects);
-		}
+	function getPolicyACK() {
+		return $this->get('policyAck');
+	}
+
+	/**
+	 * sets the state of the user policy acknowledgement
+	 *
+	 * @param int $v the state
+	 */
+	function setPolicyACK($v) {
+		$this->set('policyAck', (int) $v);
 	}
 
 }

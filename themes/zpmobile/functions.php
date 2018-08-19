@@ -10,11 +10,20 @@ function jqm_loadScripts() {
 	global $_zp_themeroot;
 	?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.css" />
+	<?php
+	if (!getOption('jQuery_Migrate_theme')) { //	until such time as jquery.mobile works with jQuery 3.3
+		?>
+		<!-- because there is some issue with jQuery 3.3.x -->
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
+		<?php
+	}
+	?>
 	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#zp__admin_data a, a.downloadlist_link").attr('data-ajax','false');
-		});
+		window.addEventListener('load', function () {
+			$("#admin_tb_data a, a.downloadlist_link").attr('data-ajax', 'false');
+		}, false);
 	</script>
 	<?php
 	printZDSearchToggleJS();
@@ -24,16 +33,16 @@ function jqm_loadScripts() {
  * Prints the rss links for use in the sidebar/bottom nav
  */
 function jqm_printRSSlinks() {
-	global $_zp_gallery_page, $_zp_themeroot, $zp_zenpage;
+	global $_zp_gallery_page, $_zp_themeroot;
 	if (class_exists('RSS')) {
 		?>
 		<h3><?php echo gettext('RSS'); ?></h3>
 		<ul>
 			<?php
 			// these links must change to ones with rel="external" so they are actually loaded via jquerymobile!
-			if (ZP_NEWS_ENABLED) {
+			if (extensionEnabled('zenpage') && getNumNews(true)) {
 				?>
-				<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
+				<li class="rsslink"><a href="<?php echo html_encode(getRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo NEWS_LABEL; ?></a></li>
 				<?php
 			}
 			?>
@@ -58,23 +67,29 @@ function getPagesLink() {
  * Prints the image/subalbum count for the album loop
  */
 function jqm_printMainHeaderNav() {
-	global $_zp_gallery_page, $_zp_zenpage, $_zp_current_album, $_zp_themeroot;
+	global $_zp_gallery_page, $_zp_current_album, $_zp_themeroot;
 	?>
 	<div data-role="header" data-position="inline" data-theme="b">
 		<h1><?php printGalleryTitle(); ?></h1>
-		<a href="<?php echo html_encode(getSiteHomeURL()); ?>" data-icon="home" data-iconpos="notext"><?php echo gettext('Home'); ?></a>
-		<?php if (getOption('Allow_search')) { ?>
+		<a href="<?php echo WEBPATH; ?>/" data-icon="home" data-iconpos="notext"><?php echo gettext('Home'); ?></a>
+		<?php if (getOption('Allow_search') && $_zp_gallery_page != 'search.php') { ?>
 			<a href="<?php echo getCustomPageURL('search'); ?>" data-icon="search" data-iconpos="notext"><?php echo gettext('Search'); ?></a>
 		<?php } ?>
 		<div data-role="navbar">
 			<ul>
 				<li><a href="<?php echo getCustomPageURL('gallery'); ?>"><?php echo gettext('Gallery'); ?></a></li>
-				<?php if (ZP_NEWS_ENABLED) { ?>
-					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a></li>
-    <?php if(ZP_PAGES_ENABLED) { ?>
-					<li><a href="<?php echo getPagesLink(); ?>"><?php echo gettext('Pages'); ?></a></li>
-    <?php } ?>
-				<?php } ?>
+				<?php
+				if (extensionEnabled('zenpage') && getNumNews(true)) {
+					?>
+					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo NEWS_LABEL; ?></a></li>
+					<?php
+				}
+				if (extensionEnabled('zenpage') && getNumPages(true)) {
+					?>
+					<li><a href="<?php echo getCustomPageURL('pagelist'); ?>"><?php echo gettext('Pages'); ?></a></li>
+					<?php
+				}
+				?>
 				<li><a href="<?php echo getCustomPageURL('archive'); ?>"><?php echo gettext('Archive'); ?></a></li>
 			</ul>
 		</div><!-- /navbar -->
@@ -93,14 +108,16 @@ function jqm_printFooterNav() {
 		@call_user_func('printLanguageSelector');
 		?>
 		<ul id="footerlist">
-			<li><?php echo gettext('Powered by'); ?> <a href="http://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
+			<li><?php printZenphotoLink(); ?> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 			<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
 		</ul>
 		<?php
 		$adminlink = '';
 		$favoriteslink = '';
-		if (!zp_loggedin() && function_exists('printRegisterURL')) {
-			if ($_zp_gallery_page != 'register.php') {
+		if (zp_loggedin()) {
+			$adminlink = '<li><a rel="external" href="' . PROTOCOL . '://' . html_encode($_SERVER['HTTP_HOST'] . WEBPATH . '/' . ZENFOLDER) . '/admin.php">' . gettext('Admin') . '</a></li>';
+		} else {
+			if ($_zp_gallery_page != 'register.php' && function_exists('printRegisterURL')) {
 				$_linktext = get_language_string(getOption('register_user_page_link'));
 				$adminlink = '<li><a rel="external" href="' . html_encode(register_user::getLink()) . '">' . $_linktext . '</a></li>';
 			}
@@ -115,13 +132,15 @@ function jqm_printFooterNav() {
 					<?php
 					echo $adminlink . $favoriteslink;
 					if (function_exists("printUserLogin_out")) {
-						echo "<li>"; printUserLogin_out("", "", 0); echo "</li>";
+						echo "<li>";
+						printUserLogin_out("", "", 0);
+						echo "</li>";
 					}
 					?>
 				</ul>
 			</div>
 			<!-- /navbar -->
-	<?php } ?>
+		<?php } ?>
 	</div><!-- footer -->
 	<?php
 }
@@ -139,7 +158,7 @@ function jqm_printNewsCategories($separator = '', $class = '') {
 		$count = 0;
 		foreach ($categories as $cat) {
 			$count++;
-			$catobj = new ZenpageCategory($cat['titlelink']);
+			$catobj = new Category($cat['titlelink']);
 			if ($count >= $catcount) {
 				$separator = "";
 			}
@@ -153,29 +172,37 @@ function jqm_printNewsCategories($separator = '', $class = '') {
  * Prints the foldout (sidebar/bottom) menu links
  */
 function jqm_printMenusLinks() {
-	global $_zp_gallery_page, $_zp_zenpage;
+	global $_zp_gallery_page;
 	?>
 	<div id="collapsible-lists" data-collapsed="false">
-	<?php if (ZP_NEWS_ENABLED) { ?>
+		<?php
+		if (extensionEnabled('zenpage') && getNumNews(true)) {
+			?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'news.php') echo ' data-collapsed="false"'; ?>>
-				<h3><?php echo gettext('News'); ?></h3>
-			<?php printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
+				<h3><?php echo NEWS_LABEL; ?></h3>
+				<?php printAllNewsCategories(gettext("All"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
 			</div>
-		<?php } ?>
-	<?php if (function_exists('printAlbumMenu')) { ?>
+			<?php
+		}
+		if (function_exists('printAlbumMenu')) {
+			?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'gallery.php' || $_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'image.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Gallery'); ?></h3>
-			<?php printAlbumMenu('list', true, '', '', '', '', 'Gallery Index', false, false, false); ?>
+				<?php printAlbumMenu('list', true, '', '', '', '', 'Gallery Index', false, false, false); ?>
 			</div>
-		<?php } ?>
-	<?php if (ZP_PAGES_ENABLED) { ?>
+			<?php
+		}
+		if (extensionEnabled('zenpage') && getNumPages(true)) {
+			?>
 			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_zp_gallery_page == 'pages.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Pages'); ?></h3>
-			<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active", NULL, true, true, NULL); ?>
+				<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active", NULL, true, true, NULL); ?>
 			</div>
-			<?php } ?>
+			<?php
+		}
+		?>
 		<div data-role="collapsible" data-content-theme="c" data-theme="b">
-	<?php jqm_printRSSlinks(); ?>
+			<?php jqm_printRSSlinks(); ?>
 		</div>
 	</div>
 	<?php

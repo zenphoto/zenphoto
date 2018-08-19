@@ -1,0 +1,13 @@
+<source><a href="http://www.netzgesta.de/cvi/">Astonishing image effects through JS and Canvas/VML</a></source>
+<head>
+<script type="text/javascript"> 
+var mask2load = new Array(); 
+mask2load[0] = "%WEBPATH%/%USER_PLUGIN_FOLDER%/image_effects/crippleedge.png"; 
+</script> 
+<script type="text/javascript" src="%WEBPATH%/%USER_PLUGIN_FOLDER%/image_effects/edge.js"></script>
+</head>
+<class>edges crippleedge</class>
+<validate>
+%SERVERPATH%/%USER_PLUGIN_FOLDER%/image_effects/edge.js;
+%SERVERPATH%/%USER_PLUGIN_FOLDER%/image_effects/crippleedge.png;
+</validate>

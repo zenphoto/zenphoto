@@ -29,7 +29,8 @@
 	height: 15px;
 }
 .statistic_short_title {
-	width: 150px;
+	overflow-x: hidden;
+	width: 25% !important;
 	height: 15px;
 }
 

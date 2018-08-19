@@ -1,0 +1,42 @@
+.missing_owner{
+	color: red;
+}
+
+.active {
+	color: darkred;
+}
+
+.empty_name {
+	color:red;
+	text-decoration:line-through;
+}
+
+.emptyOption {
+	color: darkmagenta;
+}
+
+.hiddenOrphanHighlight {
+	color: blue;
+}
+
+.purgeOptions_list {
+	padding: 20px;
+	float: left;
+}
+
+.purgeOptions_list ul {
+	margin-left: 10px;
+	margin-right: 5px;
+	list-style-type: none;
+	padding: 0px;
+}
+
+.purgeOptions_list ul li {
+	margin-bottom: 0em;
+	margin-left: 0px;
+	padding: 4px 4px 3px 4px;
+}
+
+.purgeOptionsClass {
+	font-size: large;
+}

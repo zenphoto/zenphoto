@@ -1,7 +1,7 @@
 <?php
 
 /**
- * i.php: Zenphoto image processor
+ * i.php: the image processor
  * All *uncached* image requests go through this file
  * (As of 1.0.8 images are requested directly from the cache if they exist)
  * ******************************************************************************
@@ -39,10 +39,6 @@ $debug = isset($_GET['debug']);
 
 // Check for minimum parameters.
 if (!isset($_GET['a']) || !isset($_GET['i'])) {
-	if (TEST_RELEASE) {
-		debugLogVar('i.php too few arguments _GET', $_GET);
-		debugLogVar('i.php too few arguments _SERVER', $_SERVER);
-	}
 	imageError('404 Not Found', gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
 }
 
@@ -53,20 +49,21 @@ list($ralbum, $rimage) = rewrite_get_album_image('a', 'i');
 $ralbum = internalToFilesystem($ralbum);
 $rimage = internalToFilesystem($rimage);
 $album = sanitize_path($ralbum);
-$image = sanitize_path($rimage);
-$theme = themeSetup(filesystemToInternal($album)); // loads the theme based image options.
+$image = sanitize($rimage);
+$theme = imageThemeSetup(filesystemToInternal($album)); // loads the theme based image options.
 if (getOption('secure_image_processor')) {
 	require_once(dirname(__FILE__) . '/functions.php');
 	$albumobj = newAlbum(filesystemToInternal($album));
 	if (!$albumobj->checkAccess()) {
 		imageError('403 Forbidden', gettext("Forbidden(1)"));
 	}
+	unset($albumobj);
 }
 
 $args = getImageArgs($_GET);
 $adminrequest = $args[12];
 
-if ($forbidden = getOption('image_processor_flooding_protection') && (!isset($_GET['check']) || $_GET['check'] != sha1(HASH_SEED . serialize($args)))) {
+if ($forbidden = getOption('image_processor_flooding_protection') && (!isset($_GET['check']) || $_GET['check'] != ipProtectTag($album, $image, $args))) {
 	// maybe it was from the tinyZenpage javascript which does not know better!
 	zp_session_start();
 	$forbidden = !isset($_SESSION['adminRequest']) || $_SESSION['adminRequest'] != @$_COOKIE['zp_user_auth'];
@@ -125,7 +122,7 @@ if (!file_exists($imgfile)) {
 	if (!file_exists($imgfile)) {
 		if (DEBUG_IMAGE)
 			debugLogVar('image not found', $args);
-		imageError('404 Not Found', sprintf(gettext("Image not found; file %s does not exist."), filesystemToInternal($image)), 'err-imagenotfound.png');
+		imageError('404 Not Found', sprintf(gettext("Image not found; file %s does not exist."), html_encode(filesystemToInternal($album . '/' . $image))), 'err-imagenotfound.png');
 	}
 }
 
@@ -143,6 +140,7 @@ if (!SAFE_MODE) {
 			@chmod($dir, FOLDER_MOD);
 		}
 	}
+	unset($dir);
 }
 $process = true;
 // If the file exists, check its modification time and update as needed.
@@ -173,26 +171,33 @@ if ($process) { // If the file hasn't been cached yet, create it.
 $protocol = FULLWEBPATH;
 $path = $protocol . '/' . CACHEFOLDER . pathurlencode(imgSrcURI($newfilename));
 
-if (!$debug) {
+if ($debug) {
+	//	i.php is being accessed directly via an image debug link
+	echo "\n<p>Image: <img src=\"" . $path . "\" /></p>";
+} else {
 	// ... and redirect the browser to it.
 	$suffix = getSuffix($newfilename);
 	switch ($suffix) {
-		case 'wbmp':
-			$suffix = 'wbmp';
-			break;
 		case 'jpg':
 			$suffix = 'jpeg';
+			break;
+		case 'wbm':
+			$suffix = 'wbmp';
 			break;
 		case 'png':
 		case 'gif':
 		case 'jpeg':
+		case 'wbmp':
+			// these are the correct content type
 			break;
 		default:
 			imageError(405, 'Method Not Allowed', sprintf(gettext("Suffix Not Allowed: %s"), filesystemToInternal(basename($newfilename))));
 	}
 	if (OPEN_IMAGE_CACHE) {
+		// send the right headers
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt) . ' GMT');
 		header('Content-Type: image/' . $suffix);
+		//redirect to the cached image
 		header('Location: ' . $path, true, 301);
 	} else {
 		$fp = fopen($newfile, 'rb');
@@ -200,11 +205,9 @@ if (!$debug) {
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 		header("Content-Type: image/$suffix");
 		header("Content-Length: " . filesize($newfile));
-		// dump the picture and stop the script
+		// dump the picture
 		fpassthru($fp);
 		fclose($fp);
 	}
-} else {
-	echo "\n<p>Image: <img src=\"" . $path . "\" /></p>";
 }
 ?>

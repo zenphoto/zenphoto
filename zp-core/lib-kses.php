@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Note: Zenphoto does not want html entities encoded. This script has been modified
- * to prevent the encodings. 
- * 
+ * Note: zenphoto does not want html entities encoded. This script has been modified
+ * to prevent the encodings.
+ *
  * Additionally it has been modified so css properties within style attributes are not mistaken
  * as "bad protocols" and cleared.
- * 
+ *
  * Also some re-formatting has been done and function documentation has been changed to follow standard phpdoc blocks
- * 
- * Search for Zenphoto for changes.
- * 
+ *
+ * Search for zenphoto for changes.
+ *
  * -------------------------------------------------
- * 
+ *
  * kses 0.2.2 - HTML/XHTML filter that only allows some elements and attributes
  * Copyright (C) 2002, 2003, 2005  Ulf Harnhammar
  *
@@ -41,9 +41,7 @@
  *              SWEDEN
  *
  * [kses strips evil scripts!]
- * 
- * @package core
- * @subpackage libraries\lib-kses
+ *
  */
 
 /**
@@ -51,7 +49,7 @@
  * names and attribute values plus only sane HTML entities will occur in
  * $string. You have to remove any slashes from PHP's magic quotes before you
  * call this function.
- * 
+ *
  * @param type $string
  * @param type $allowed_html
  * @param type $allowed_protocols
@@ -61,9 +59,9 @@ function kses($string, $allowed_html, $allowed_protocols = array('http', 'https'
 		'gopher', 'mailto')) {
 	$string = kses_no_null($string);
 	$string = kses_js_entities($string);
-// $string = kses_normalize_entities($string); Zenphoto does not want & encoded
+// $string = kses_normalize_entities($string); zenphoto does not want & encoded
 	$string = kses_hook($string);
-// $allowed_html = kses_array_lc($allowed_html); Zenphoto insures that these are already lowercase
+// $allowed_html = kses_array_lc($allowed_html); zenphoto insures that these are already lowercase
 	return kses_split($string, $allowed_html, $allowed_protocols);
 }
 
@@ -87,7 +85,7 @@ function kses_version() {
  */
 function kses_split($string, $allowed_html, $allowed_protocols) {
 	global $_allowed_html, $_allowed_protocols;
-	//Zenphoto:preg_replace with the "e" modifier is deprecated, use callback
+	//zenphoto:preg_replace with the "e" modifier is deprecated, use callback
 	$_allowed_html = $allowed_html;
 	$_allowed_protocols = $allowed_protocols;
 
@@ -103,14 +101,14 @@ function kses_split($string, $allowed_html, $allowed_protocols) {
  * like <:::>. It returns an empty string, if the element isn't allowed (look
  * ma, no strip_tags()!). Otherwise it splits the tag into an element and an
  * attribute list.
- * 
+ *
  * @global type $_allowed_html
  * @global type $_allowed_protocols
  * @param type $matches
  * @return string
  */
 function kses_split2($matches) {
-	//Zenphoto:preg_replace with the "e" modifier is deprecated, this is the callback
+	//zenphoto:preg_replace with the "e" modifier is deprecated, this is the callback
 	global $_allowed_html, $_allowed_protocols;
 	$allowed_html = $_allowed_html;
 	$allowed_protocols = $_allowed_protocols;
@@ -147,7 +145,7 @@ function kses_split2($matches) {
  * removes "<" and ">" characters, if there are any left. One more thing it
  * does is to check if the tag has a closing XHTML slash, and if it does,
  * it puts one in the returned code as well.
- * 
+ *
  * @param type $element
  * @param type $attr
  * @param type $allowed_html
@@ -213,7 +211,7 @@ function kses_attr($element, $attr, $allowed_html, $allowed_protocols) {
  * or apostrophes around them, to make it easier to produce HTML code that will
  * conform to W3C's HTML specification. It will also remove bad URL protocols
  * from attribute values.
- * 
+ *
  * @param type $attr
  * @param type $allowed_protocols
  * @return type
@@ -343,7 +341,7 @@ function kses_hair($attr, $allowed_protocols) {
  * This function performs different checks for attribute values. The currently
  * implemented checks are "maxlen", "minlen", "maxval", "minval" and "valueless"
  * with even more checks to come soon.
- * 
+ *
  * @param type $value
  * @param type $vless
  * @param type $checkname
@@ -417,7 +415,7 @@ function kses_check_attr_val($value, $vless, $checkname, $checkvalue) {
  * $string. It ignores whitespace and the case of the letters, and it does
  * understand HTML entities. It does its work in a while loop, so it won't be
  * fooled by a string like "javascript:javascript:alert(57)".
- * 
+ *
  * @param type $string
  * @param type $allowed_protocols
  * @return type
@@ -435,7 +433,7 @@ function kses_bad_protocol($string, $allowed_protocols) {
 
 /**
  * This function removes any NULL characters in $string.
- * 
+ *
  * @param type $string
  * @return type
  */
@@ -449,7 +447,7 @@ function kses_no_null($string) {
  * This function changes the character sequence  \"  to just  "
  * It leaves all other slashes alone. It's really weird, but the quoting from
  * preg_replace(//e) seems to require this.
- * 
+ *
  * @param type $string
  * @return type
  */
@@ -476,7 +474,7 @@ function kses_array_lc($inarray) {
 /**
  * This function removes the HTML JavaScript entities found in early versions of
  * Netscape 4.
- * 
+ *
  * @param type $string
  * @return type
  */
@@ -488,7 +486,7 @@ function kses_js_entities($string) {
  * This function deals with parsing errors in kses_hair(). The general plan is
  * to remove everything to and including some whitespace, but it deals with
  * quotes and apostrophes as well.
- * 
+ *
  * @param type $string
  * @return type
  */
@@ -499,7 +497,7 @@ function kses_html_error($string) {
 /**
  * This function searches for URL protocols at the beginning of $string, while
  * handling whitespace and HTML entities.
- * 
+ *
  * @global type $_allowed_protocols
  * @param type $string
  * @param type $allowed_protocols
@@ -507,7 +505,7 @@ function kses_html_error($string) {
  */
 function kses_bad_protocol_once($string, $allowed_protocols) {
 	global $_allowed_protocols;
-	//Zenphoto:preg_replace with the "e" modifier is deprecated, use callback
+	//zenphoto:preg_replace with the "e" modifier is deprecated, use callback
 	$_allowed_protocols = $allowed_protocols;
 	return preg_replace_callback('/^((&[^;]*;|[\sA-Za-z0-9])*)' .
 					'(:|&#58;|&#[Xx]3[Aa];)\s*/', 'kses_bad_protocol_once2', $string);
@@ -516,13 +514,13 @@ function kses_bad_protocol_once($string, $allowed_protocols) {
 /**
  * This function processes URL protocols, checks to see if they're in the white-
  * list or not, and returns different data depending on the answer.
- * 
+ *
  * @global type $_allowed_protocols
  * @param type $matches
  * @return string
  */
 function kses_bad_protocol_once2($matches) {
-	//Zenphoto:preg_replace with the "e" modifier is deprecated, this is the callback
+	//zenphoto:preg_replace with the "e" modifier is deprecated, this is the callback
 	global $_allowed_protocols;
 	$allowed_protocols = $_allowed_protocols;
 
@@ -548,7 +546,7 @@ function kses_bad_protocol_once2($matches) {
 /**
  * This function normalizes HTML entities. It will convert "AT&T" to the correct
  * "AT&amp;T", "&#00058;" to "&#58;", "&#XYZZY;" to "&amp;#XYZZY;" and so on.
- * 
+ *
  * @param type $string
  * @return type
  */
@@ -566,7 +564,7 @@ function kses_normalize_entities($string) {
 /**
  * This function helps kses_normalize_entities() to only accept 16 bit values
  * and nothing more for &#number; entities.
- * 
+ *
  * @param type $matches
  * @return type
  */
@@ -578,7 +576,7 @@ function kses_normalize_entities2($matches) {
  * This function decodes numeric HTML entities (&#65; and &#x41;). It doesn't
  * do anything with other entities like &auml;, but we don't need them in the
  * URL protocol whitelisting system anyway.
- * 
+ *
  * @param type $string
  * @return type
  */

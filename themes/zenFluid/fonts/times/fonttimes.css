@@ -1,0 +1,45 @@
+body {
+	font-family: "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
+}
+.content {
+	font-size: 13px;
+}
+.headertitle {
+	font-family: Times,"Times New Roman",Georgia,serif;
+	font-size: 27px;
+	font-style: italic;
+	font-weight: bold;
+}
+.headersubtitle {
+	font-size: 10px;
+}
+.sidebartitle {
+	font-family: Times,"Times New Roman",Georgia,serif;
+	font-size: 27px;
+	font-style: italic;
+	font-weight: bold;
+}
+.sidebarsubtitle, .sidebarfooter, .footer, .zen-logo {
+	font-size: 10px;
+}
+.title {
+	font-family: Times,"Times New Roman",Georgia,serif;
+	font-size: 18px;
+}
+.zen-logo {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.zen-logo img {
+	margin-bottom: -3px;
+}
+.imagedesc {
+	font-family: Times,"Times New Roman",Georgia,serif;
+	font-size: 15px;
+}
+.pagetext {
+	font-family: Times,"Times New Roman",Georgia,serif;
+	font-size: 15px;
+}
+.textarea_inputbox {
+	font-family: "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
+}
