@@ -8,7 +8,7 @@
  * fields. They will be enabled in the list by default. The standard search
  * form allows a visitor to choose to disable the field for a particular search.
  *
- * The zenPhoto20 objects will still have the methods for getting and
+ * The objects will still have the methods for getting and
  * setting these fields. But if this plugin is not enabled, these fields will <b>NOT</b> be preserved
  * in the database.
  *
@@ -43,11 +43,13 @@
  * @package plugins/optionalObjectFields
  * @pluginCategory admin
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  */
-$plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN); //	we want this done last so the codeblocks go at the end
-$plugin_description = gettext('Handles the "optional" object fields');
-$plugin_notice = (extensionEnabled('optionalObjectFields')) ? '' : gettext('<strong>IMPORTANT</strong>: This plugin enables the "tags" database fields. If disabled the admin <em>tags</em> tab will not be present. Click on the <em>More information</em> icon for details.');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN); //	we want this done last so the codeblocks go at the end
+	$plugin_description = gettext('Handles the "optional" object fields');
+	$plugin_notice = (extensionEnabled('optionalObjectFields')) ? '' : gettext('<strong>IMPORTANT</strong>: This plugin enables the "tags" database fields. If disabled the admin <em>tags</em> tab will not be present. Click on the <em>More information</em> icon for details.');
+}
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 
@@ -629,12 +631,12 @@ class optionalObjectFields extends fieldExtender {
 }
 
 function optionalObjectFields_enable($enabled) {
-	requestSetup('optionalObjectFields', $enabled ? NULL : gettext('The "owner", "date", "location", "watermark", "credit", "copyright", "extra content", and "codeblocks" Databaase fields will be dropped'));
+	requestSetup('optionalObjectFields', $enabled ? NULL : gettext('The "owner", "date", "location", "watermark", "credit", "copyright", "extra content", and "codeblocks" Database fields will be dropped'));
 }
 
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
 	new optionalObjectFields;
 } else {
-	optionalObjectFields::register();
+	$_zp_plugin_differed_actions['optionalObjectFields'] = 'optionalObjectFields::register';
 }
 ?>

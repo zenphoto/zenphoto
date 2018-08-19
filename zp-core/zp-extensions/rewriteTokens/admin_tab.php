@@ -53,8 +53,7 @@ $_definitions = array();
 				</div>
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
-	<?php printAdminFooter(); ?>
-
 </body>
 </html>

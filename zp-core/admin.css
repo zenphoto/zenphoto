@@ -68,31 +68,41 @@ em {
 #footer {
 	clear: both;
 	color: #597580;
-	font-size: 85%;
 	margin-top: 8px;
 	margin-right: 30px;
-	margin-bottom: 0px;
+	margin-bottom: 5px;
 	margin-left: 0px;
-	padding-top: 30px;
+	padding-top: 10px;
 	padding-bottom: 15px;
 	padding-right: 50px;
-	text-align: right;
+	padding-left: 16em;
 }
 
-#footer a {
+#footer_left {
+	display: inline-block;
+	float: left;
+}
+
+#footer_right {
+	display: inline-block;
+	float: right;
+	font-size: 8pt;
+}
+
+#footer_right a {
 	color: #4D76CF;
 	text-decoration: none;
 	border-bottom: 1px dotted #597580;
 }
 
-#footer a:hover {
+#footer_right a:hover {
 	color: #FF8A00;
 	text-decoration: none;
 	border-bottom: 1px solid #FF8A00;
 }
 
 #admin_head {
-	margin-top: 10px;
+	margin-top: 8px;
 }
 
 #logo img {
@@ -106,10 +116,9 @@ em {
 
 #links {
 	padding-right: 2em;
-	padding-top: 1em;
+	padding-top: 4em;
 	float: right;
 	font-size: 100%;
-
 }
 
 #links a {
@@ -1755,6 +1764,10 @@ button:hover:disabled,.buttons a:hover:disabled {
 
 
 /* language selector */
+#languagelist {
+	width: 400px;
+}
+
 .languagelist li {
 	background: none;
 	padding-left: 0;
@@ -1766,7 +1779,6 @@ button:hover:disabled,.buttons a:hover:disabled {
 	list-style: none;
 	height: 8em;
 	overflow: auto;
-	width: 400px;
 	background-color: white;
 }
 

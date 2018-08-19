@@ -23,7 +23,7 @@
  * The definitions for folder names and paths are represented by <var>%define%</var> (e.g. <var>%WEBPATH%</var>). The
  * document processor will substitute the actual value for these tags when it renders the document.
  * Image URIs are also processed. Use the appropriate definition tokens to cause the URI to point
- * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/zen-logo.png" /></var>
+ * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/admin-logo.png" /></var>
  *
  * @author Stephen Billard (sbillard)
  *
@@ -236,14 +236,14 @@ if (!defined('OFFSET_PATH')) {
 					$sublink = $subpackage . '/';
 				}
 				$whose = 'Supplemental plugin';
-				$ico = 'images/zp.png';
+				$ico = 'images/np_blue.png';
 				break;
 			default:
 				if ($subpackage) {
 					$sublink = $subpackage . '/';
 				}
 				$whose = 'Official plugin';
-				$ico = 'images/zp_gold.png';
+				$ico = 'images/np_gold.png';
 				break;
 		}
 
@@ -259,7 +259,7 @@ if (!defined('OFFSET_PATH')) {
 		<head>
 			<?php printStandardMeta(); ?>
 			<title><?php echo $pagetitle; ?></title>
-			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
+			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?netPhotoGraphics_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
 			<style>
 
 				#heading {

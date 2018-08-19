@@ -1,9 +1,9 @@
 <?php
 /*
- * utility to convert legacy zenphoto themes/plugins to ZenPhoto20 syntax.
+ * utility to convert legacy zenphoto themes/plugins to netPhotoGraphics syntax.
  *
  * @author Stephen Billard
- * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  * @package plugins/zenphotoCompatibilityPack
  */
@@ -169,7 +169,7 @@ echo "\n" . '<div id="container">';
 				$key = strtolower(trim(substr($p, $i + 11, strpos($p, "\n", $i) - $i - 11)));
 				$keys = explode('/', $key);
 				$key = $keys[0];
-				if ($key == 'package' || $key == 'zenphoto20tools') {
+				if ($key == 'package' || $key == 'developerTools') {
 					$foreign = false;
 				}
 			}

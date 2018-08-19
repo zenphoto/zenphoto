@@ -45,7 +45,7 @@ zp_apply_filter('theme_file_top')
 				}
 				$tburl = getFullImageURL();
 				if (!empty($tburl)) {
-					echo '<a href="' . html_encode(pathurlencode($tburl)) . '" ' . $boxclass . ' title="' . getBareImageTitle() . '">' . "\n";
+					echo '<a href="' . pathurlencode($tburl) . '" ' . $boxclass . ' title="' . getBareImageTitle() . '">' . "\n";
 				}
 				printCustomSizedImageMaxSpace(getBareImageTitle(),null,null,"imgheight border");
 				if (!empty($tburl)) {

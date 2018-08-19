@@ -1,6 +1,6 @@
 <?php
 /**
- * basic functions used by zenphoto i.php
+ * basic functions used by i.php
  * Keep this file to the minimum to allow the largest available memory for processing images!
  * Headers not sent yet!
  *
@@ -10,8 +10,6 @@
  *
  */
 // force UTF-8 Ø
-global $_zp_conf_vars;
-$_zp_options = array();
 
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/initialize-basic.php');
@@ -178,14 +176,14 @@ function zpShutDownFunction() {
 }
 
 /**
- * Converts a file system filename to UTF-8 for zenphoto internal storage
+ * Converts a file system filename to UTF-8 for internal storage
  *
  * @param string $filename the file name to convert
  * @return string
  */
 function filesystemToInternal($filename) {
 	global $_zp_UTF8;
-	if (FILESYSTEM_CHARSET != LOCAL_CHARSET) {
+	if ($_zp_UTF8 && FILESYSTEM_CHARSET != LOCAL_CHARSET) {
 		$filename = str_replace('\\', '/', $_zp_UTF8->convert($filename, FILESYSTEM_CHARSET, LOCAL_CHARSET));
 	}
 	return $filename;
@@ -417,8 +415,7 @@ function query($sql, $errorstop = true) {
  */
 
 function db_name() {
-	global $_zp_conf_vars;
-	return $_zp_conf_vars['mysql_database'];
+	return getOption('mysql_database');
 }
 
 function db_count($table, $clause = NULL, $field = "*") {
@@ -470,7 +467,7 @@ function mkdir_recursive($pathname, $mode) {
  * Write output to the debug log
  * Use this for debugging when echo statements would come before headers are sent
  * or would create havoc in the HTML.
- * Creates (or adds to) a file named debug.log which is located in the zenphoto core folder
+ * Creates (or adds to) a file named debug.log which is located in the core folder
  *
  * @param string $message the debug information
  * @param bool $reset set to true to reset the log to zero before writing the message
@@ -492,6 +489,7 @@ function debugLog($message, $reset = false, $log = 'debug') {
 			$_zp_mutex->lock();
 		if ($reset || ($size = @filesize($path)) == 0 || (defined('DEBUG_LOG_SIZE') && DEBUG_LOG_SIZE && $size > DEBUG_LOG_SIZE)) {
 			if (!$reset && $size > 0) {
+				$perms = fileperms($path);
 				switchLog('debug');
 			}
 			$f = fopen($path, 'w');
@@ -501,11 +499,14 @@ function debugLog($message, $reset = false, $log = 'debug') {
 				} else {
 					$clone = ' ' . gettext('clone');
 				}
-				$preamble = '<span class="lognotice">{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} ZenPhoto20 v" . ZENPHOTO_VERSION . $clone . '</span>';
+				$preamble = '<span class="lognotice">{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT} netPhotoGraphics v" . ZENPHOTO_VERSION . $clone . '</span>';
 				if ($_logCript) {
 					$preamble = $_logCript->encrypt($message);
 				}
 				fwrite($f, $preamble . NEWLINE);
+				if (defined('LOG_MOD')) {
+					@chmod($path, LOG_MOD);
+				}
 			}
 		} else {
 			$f = fopen($path, 'a');
@@ -524,9 +525,6 @@ function debugLog($message, $reset = false, $log = 'debug') {
 			fwrite($f, "  " . $message . NEWLINE);
 			fclose($f);
 			clearstatcache();
-			if (defined('DATA_MOD')) {
-				@chmod($path, DATA_MOD);
-			}
 		}
 		if (is_object($_zp_mutex))
 			$_zp_mutex->unlock();
@@ -640,10 +638,9 @@ function secureServer() {
 
 /**
  *
- * Starts a zenphoto session (perhaps a secure one)
+ * Starts a session (perhaps a secure one)
  */
 function zp_session_start() {
-	global $_zp_conf_vars;
 	$result = session_id();
 	if ($result) {
 		return $result;
@@ -651,7 +648,7 @@ function zp_session_start() {
 		session_name('Session_' . str_replace('.', '_', ZENPHOTO_VERSION));
 		@ini_set('session.use_strict_mode', 1);
 		//	insure that the session data has a place to be saved
-		if (isset($_zp_conf_vars['session_save_path'])) {
+		if (getOption('session_save_path')) {
 			session_save_path($_zp_conf_vars['session_save_path']);
 		}
 		$_session_path = session_save_path();
@@ -690,7 +687,7 @@ function zp_getCookie($name) {
 	if (isset($_COOKIE[$name])) {
 		$cookiev = $_COOKIE[$name];
 	} else {
-		$cookiev = '';
+		$cookiev = NULL;
 	}
 	if (DEBUG_LOGIN) {
 		if (isset($_SESSION[$name])) {
@@ -700,7 +697,7 @@ function zp_getCookie($name) {
 		}
 		debugLog("zp_getCookie($name)::" . 'album_session=' . GALLERY_SESSION . "; SESSION[" . session_id() . "]=" . $sessionv . ", COOKIE=" . $cookiev);
 	}
-	if (!empty($cookiev) && (defined('GALLERY_SESSION') && !GALLERY_SESSION)) {
+	if ($cookiev || !defined('GALLERY_SESSION') || !GALLERY_SESSION) {
 		return zp_cookieEncode($cookiev);
 	}
 	if (isset($_SESSION[$name])) {
@@ -715,7 +712,7 @@ function zp_getCookie($name) {
  * @param $value
  */
 function zp_cookieEncode($value) {
-	if (IP_TIED_COOKIES) {
+	if (defined('IP_TIED_COOKIES') && IP_TIED_COOKIES) {
 		return rc4(getUserIP() . HASH_SEED, $value);
 	} else {
 		return $value;
@@ -897,8 +894,6 @@ class zpMutex {
 
 function primeOptions() {
 	global $_zp_options;
-	$_zp_options = array();
-
 	$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`="" AND `ownerid`=0 ORDER BY `name`';
 	$rslt = query($sql, false);
 	if ($rslt) {
@@ -950,7 +945,8 @@ function getOptionsLike($pattern) {
  * otherwise it is preserved in the database
  */
 function setOption($key, $value, $persistent = true) {
-	global $_zp_options;
+	global $_zp_options, $_zp_conf_options_associations, $_zp_conf_vars, $_configMutex;
+	$_zp_options[$key = strtolower($key)] = $value;
 	if ($persistent) {
 		list($theme, $creator) = getOptionOwner();
 		if (is_null($value)) {
@@ -964,14 +960,23 @@ function setOption($key, $value, $persistent = true) {
 		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`value`,`ownerid`,`theme`,`creator`) VALUES (' . db_quote($key) . ',' . $v . ',0,' . db_quote($theme) . ',' . db_quote($creator) . ')' . ' ON DUPLICATE KEY UPDATE `value`=' . $v;
 		;
 		$result = query($sql, false);
+		if ($result) {
+			if (array_key_exists($key, $_zp_conf_options_associations)) {
+				$configKey = $_zp_conf_options_associations[$key];
+				if ($_zp_conf_vars[$configKey] !== $value) {
+					//	it is stored in the config file, update that too
+					require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
+					$_configMutex->lock();
+					$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+					$zp_cfg = updateConfigItem($configKey, $value, $zp_cfg);
+					storeConfig($zp_cfg);
+					$_configMutex->unlock();
+				}
+			}
+		}
+		return $result;
 	} else {
-		$result = true;
-	}
-	if ($result) {
-		$_zp_options[strtolower($key)] = $value;
 		return true;
-	} else {
-		return false;
 	}
 }
 
@@ -1070,7 +1075,7 @@ function getOptionList() {
 }
 
 /**
- * Cloned installations may be using symLinks to the "standard" ZenPhoto20 files.
+ * Cloned installations may be using symLinks to the "standard" script files.
  * This can cause a problem examining the "path" to the file. __FILE__ and other functions will
  * return the actual path to the file, e.g. the path to the parent installation of
  * a clone. SERVERPATH is the path to the clone installation and will not be the same
@@ -1653,9 +1658,8 @@ function mb_parse_url($url) {
 function pathurlencode($path) {
 	$parts = mb_parse_url($path);
 	if (isset($parts['query'])) {
-//	some kind of query link
-		$pairs = parse_query($parts['query']);
-		$parts['query'] = http_build_query($pairs);
+		$pairs = array_map("htmlspecialchars", parse_query($parts['query']));
+		$parts['query'] = http_build_query($pairs, '', '&amp;');
 	}
 	if (array_key_exists('path', $parts)) {
 		$parts['path'] = implode("/", array_map("rawurlencode", explode("/", $parts['path'])));
@@ -1670,25 +1674,25 @@ function pathurlencode($path) {
  * @return sting
  */
 function getAlbumFolder($root = SERVERPATH) {
-	global $_zp_album_folder, $_zp_conf_vars;
+	global $_zp_album_folder;
 	if (is_null($_zp_album_folder)) {
-		if (!isset($_zp_conf_vars['external_album_folder']) || empty($_zp_conf_vars['external_album_folder'])) {
-			if (!isset($_zp_conf_vars['album_folder']) || empty($_zp_conf_vars['album_folder'])) {
-				$_zp_album_folder = $_zp_conf_vars['album_folder'] = '/' . ALBUMFOLDER . '/';
+		if (empty(getOption('external_album_folder'))) {
+			if (empty(getOption('album_folder'))) {
+				setOption('album_folder', $_zp_album_folder = '/' . ALBUMFOLDER . '/');
 			} else {
-				$_zp_album_folder = str_replace('\\', '/', $_zp_conf_vars['album_folder']);
+				$_zp_album_folder = str_replace('\\', '/', getOption('album_folder'));
 			}
 		} else {
-			$_zp_conf_vars['album_folder_class'] = 'external';
-			$_zp_album_folder = str_replace('\\', '/', $_zp_conf_vars['external_album_folder']);
+			setOption('album_folder_class', 'external');
+			$_zp_album_folder = str_replace('\\', '/', getOption('external_album_folder'));
 		}
 		if (substr($_zp_album_folder, -1) != '/')
 			$_zp_album_folder .= '/';
 	}
 	$root = str_replace('\\', '/', $root);
-	switch (@$_zp_conf_vars['album_folder_class']) {
+	switch (getOption('album_folder_class')) {
 		default:
-			$_zp_conf_vars['album_folder_class'] = 'std';
+			setOption('album_folder_class', 'std');
 		case 'std':
 			return $root . $_zp_album_folder;
 		case 'in_webpath':
@@ -1949,7 +1953,7 @@ function checkInstall() {
  * @param string $addl additional information for request message
  *
  * @author Stephen Billard
- * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  */
 function requestSetup($whom, $addl = NULL) {
 	$sig = getSerializedArray(getOption('zenphoto_install'));
@@ -1967,7 +1971,7 @@ function requestSetup($whom, $addl = NULL) {
  * @param int $action if positive the setup is mandatory
  *
  * @author Stephen Billard
- * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  */
 function _setup($action) {
 	require_once(dirname(__FILE__) . '/reconfigure.php');
@@ -1976,7 +1980,7 @@ function _setup($action) {
 
 /**
  *
- * Computes the "installation signature" of the zenphoto install
+ * Computes the "installation signature" of the install
  * @return string
  */
 function installSignature() {

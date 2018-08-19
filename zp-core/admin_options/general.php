@@ -21,12 +21,14 @@ function saveOptions() {
 	$newloc = sanitize($_POST['locale'], 3);
 	$languages = generateLanguageList(true);
 	$languages[''] = '';
+
 	$disallow = array();
 	foreach ($languages as $text => $lang) {
-		if ($lang != $newloc && !isset($_POST['language_allow_' . $lang])) {
+		if ($lang != $newloc && !isset($_POST['language_allow']['_' . $lang])) {
 			$disallow[$lang] = $lang;
 		}
 	}
+
 	if ($newloc != $oldloc) {
 		$oldDisallow = getSerializedArray(getOption('locale_disallowed'));
 		if (!empty($newloc) && isset($oldDisallow[$newloc])) {
@@ -60,15 +62,7 @@ function saveOptions() {
 		$offset = sanitize($_POST['time_offset'], 3);
 	}
 	setOption('time_offset', $offset);
-
-	if (($new = sanitize($_POST['filesystem_charset'])) != FILESYSTEM_CHARSET) {
-		$_configMutex->lock();
-		$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-		$zp_cfg = updateConfigItem('FILESYSTEM_CHARSET', $new, $zp_cfg);
-		storeConfig($zp_cfg);
-		$_configMutex->unlock();
-	}
-
+	setOption('FILESYSTEM_CHARSET', sanitize($_POST['filesystem_charset']));
 	setOption('site_email', sanitize($_POST['site_email']), 3);
 	$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 	$_zp_gallery->save();
@@ -298,7 +292,7 @@ function getOptionContent() {
 									echo '</p>';
 								}
 								?>
-								<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
+								<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, the <em>mod_rewrite suffix</em> will be appended to the end of URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
 								<p>
 									<?php
 									printf(gettext('If <em>Unique images</em> is checked, image links will omit the image suffix. E.g. a link to the image page for <code>myalbum/myphoto.jpg</code> will appear as <code>myalbum/myphoto%s</code>'), RW_SUFFIX);
@@ -314,90 +308,86 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Language"); ?></td>
 					<td class="option_value">
-						<ul class="languagelist">
-							<?php
-							$unsupported = getSerializedArray(getOption('locale_unsupported'));
-							$disallow = getSerializedArray(getOption('locale_disallowed'));
-							$locales = generateLanguageList('all');
-							$locales[gettext("HTTP_Accept_Language")] = '';
-							ksort($locales, SORT_LOCALE_STRING);
-							$vers = explode('-', ZENPHOTO_VERSION);
-							$vers = explode('.', $vers[0]);
-							while (count($vers) < 3) {
-								$vers[] = 0;
-							}
-							$zpversion = $vers[0] . '.' . $vers[1] . '.' . $vers[2];
-							$c = 0;
-							foreach ($locales as $language => $dirname) {
-								$languageAlt = $language;
-								if (empty($dirname)) {
-									$languageP = '';
-								} else if (!file_exists(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES')) {
-									$languageP = '';
-								} else {
-									$stat = explode("\n", file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/statistics.txt'));
-									preg_match_all('~([\d]+)~', $stat[1], $matches);
-									$translated = $matches[0][1];
-									preg_match_all('~([\d]+)~', $stat[2], $matches);
-									$needswork = $matches[0][1];
-									$languageP = ' <span style="font-size:xx-small;">' . ($translated + $needswork) . '%</span>';
-									if ($needswork) {
-										$languageP .= ' <span style="font-size:xx-small;color: red;">[' . $needswork . '%]</span>';
-									}
+						<div id="languagelist">
+							<ul class="languagelist">
+								<?php
+								$unsupported = getSerializedArray(getOption('locale_unsupported'));
+								$disallow = getSerializedArray(getOption('locale_disallowed'));
+								$locales = generateLanguageList('all');
+								$locales[gettext("HTTP_Accept_Language")] = '';
+								ksort($locales, SORT_LOCALE_STRING);
+								$vers = explode('-', ZENPHOTO_VERSION);
+								$vers = explode('.', $vers[0]);
+								while (count($vers) < 3) {
+									$vers[] = 0;
 								}
-
-								if (empty($dirname)) {
-									$flag = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
-								} else {
-									$flag = getLanguageFlag($dirname);
-								}
-								if (isset($unsupported[$dirname])) {
-									$c_attrs = $r_attrs = ' disabled="disabled"';
-								} else {
-									if (isset($disallow[$dirname])) {
-										$c_attrs = '';
-										$r_attrs = ' disabled="disabled"';
+								$zpversion = $vers[0] . '.' . $vers[1] . '.' . $vers[2];
+								$c = 0;
+								foreach ($locales as $language => $dirname) {
+									$languageAlt = $language;
+									$languageP = '';
+									if (!empty($dirname)) {
+										$flag = getLanguageFlag($dirname);
+										if (file_exists(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES')) {
+											$po = file_get_contents(SERVERPATH . "/" . ZENFOLDER . "/locale/" . $dirname . '/LC_MESSAGES/zenphoto.po');
+											preg_match_all('~^#,\sfuzzy\s+~ims', $po, $fuzzy);
+											if (count($fuzzy[0])) {
+												preg_match_all('~^#:.*?msgid~ims', $po, $msgid);
+												$needswork = round(count($fuzzy[0]) / count($msgid[0]) * 100);
+												$languageP .= ' <span style="font-size:xx-small;color: red;">[' . $needswork . '%]</span>';
+											}
+										}
 									} else {
-										$c_attrs = ' checked="checked"';
-										$r_attrs = '';
+										$flag = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
 									}
-								}
+									if (isset($unsupported[$dirname])) {
+										$c_attrs = $r_attrs = ' disabled="disabled"';
+									} else {
+										if (isset($disallow[$dirname])) {
+											$c_attrs = '';
+											$r_attrs = ' disabled="disabled"';
+										} else {
+											$c_attrs = ' checked="checked"';
+											$r_attrs = '';
+										}
+									}
 
-								if ($dirname == SITE_LOCALE) {
-									$r_attrs = ' checked="checked"';
-									$c_attrs = ' checked="checked" disabled="disabled"';
+									if ($dirname == SITE_LOCALE) {
+										$r_attrs = ' checked="checked"';
+										$c_attrs = ' checked="checked" disabled="disabled"';
+										?>
+										<input type="hidden" name="language_allow[_<?php echo $dirname; ?>]" value="1" />
+										<script type="text/javascript">
+											window.addEventListener('load', function () {
+												$('ul.languagelist').scrollTo('li:eq(<?php echo ($c - 2); ?>)');
+											}, false);
+										</script>
+										<?php
+									}
+									$c++;
 									?>
-									<input type="hidden" name="language_allow_<?php echo $dirname; ?>" value="1" />
-									<script type="text/javascript">
-										window.addEventListener('load', function () {
-											$('ul.languagelist').scrollTo('li:eq(<?php echo ($c - 2); ?>)');
-										}, false);
-									</script>
+									<li>
+										<label class="displayinline">
+											<input type="radio" name="locale" id="r_<?php echo $dirname; ?>" value="<?php echo $dirname; ?>"
+														 onclick="radio_click('<?php echo $dirname; ?>');" <?php echo $r_attrs; ?>/>
+										</label>
+										<label class="flags">
+											<span class="displayinline">
+												<input id="language_allow_<?php echo $dirname; ?>" name="language_allow[_<?php echo $dirname; ?>]" type="checkbox"
+															 value="<?php echo $dirname; ?>"<?php echo $c_attrs; ?>
+															 onclick="enable_click('<?php echo $dirname; ?>');" />
+												<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt; ?>" width="24" height="16" />
+												<?php echo $language; ?>
+											</span>
+											<?php echo $languageP; ?>
+										</label>
+									</li>
 									<?php
 								}
-								$c++;
 								?>
-								<li>
-									<label class="displayinline">
-										<input type="radio" name="locale" id="r_<?php echo $dirname; ?>" value="<?php echo $dirname; ?>"
-													 onclick="radio_click('<?php echo $dirname; ?>');" <?php echo $r_attrs; ?>/>
-									</label>
-									<label class="flags">
-										<span class="displayinline">
-											<input id="language_allow_<?php echo $dirname; ?>" name="language_allow_<?php echo $dirname; ?>" type="checkbox"
-														 value="<?php echo $dirname; ?>"<?php echo $c_attrs; ?>
-														 onclick="enable_click('<?php echo $dirname; ?>');" />
-											<img src="<?php echo $flag; ?>" alt="<?php echo $languageAlt; ?>" width="24" height="16" />
-											<?php echo $language; ?>
-										</span>
-										<?php echo $languageP; ?>
-									</label>
-								</li>
-								<?php
-							}
-							?>
-						</ul>
-						<?php echo '<span class="floatright" style="font-size:xx-small;">' . gettext('Percent mechanically translated in red.'); ?></span>
+							</ul>
+							<?php echo '<span class="floatright" style="font-size:xx-small;">' . gettext('Percent mechanically translated in red.'); ?></span
+						</div>
 						<br class="clearall">
 						<label class="checkboxlabel">
 							<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> />
@@ -642,7 +632,7 @@ Standard forms which collect user data will have a policy acknowledgement checkb
 								}
 								?>
 								<p><?php echo gettext('If the gallery sessions option is selected <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> will be used instead of cookies to make visitor settings persistent.'); ?></p>
-								<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. ') ?>
+								<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the preferred storage option since their duration is determined by the <em>Cookie duration</em> option. ') ?>
 								</p>
 							</div>
 						</span>

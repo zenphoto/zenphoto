@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * This plugin is the centralized Cache manager for Zenphoto20.
+ * This plugin is the centralized Cache manager for netPhotoGraphics.
 
   It provides:
  * <ul>
@@ -28,7 +28,7 @@
  * <b>Notes:</b>
  * <ol>
  * 		<li>
- * 			Setting theme options or installing a new version of ZenPhoto20 will re-create these caching sizes.
+ * 			Setting theme options or installing a new version of the software will re-create these caching sizes.
  * 			Use a different <i>theme name</i> for custom versions that you create. If you set image options that
  * 			impact the default caching you will need to re-create these caching sizes by one of the above methods.
  * 		</li>
@@ -132,7 +132,7 @@ class cacheManager {
 		$options = array(gettext('Image caching sizes') => array('key' => 'cropImage_list', 'type' => OPTION_TYPE_CUSTOM,
 						'order' => 1,
 						'desc' => '<p>' .
-						gettext('Cropped images will be made in these parameters if the <em>Create image</em> box is checked. Un-check to box to remove the settings.' .
+						gettext('Cropped images will be made in these parameters if the <em>Create image</em> box is checked. Un-check to box to remove the settings. ' .
 										'You can determine the values for these fields by examining your cached images. The file names will look something like these:') .
 						'<ul>' .
 						'<li>' . gettext('<code>photo_595.jpg</code>: sized to 595 pixels') . '</li>' .

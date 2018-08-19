@@ -6,7 +6,7 @@
  *
  * <i>utf8</i> encoding supports only <i>Basic Multilingual Plane</i> (BMP) characters. Many
  * recently defined Emoji characters are coded in with <i>trans-BMP</i> codes. For MySql to
- * handle these the data field character set must be set to <i>utf8mb4</i>. Existing ZenPhoto20
+ * handle these the data field character set must be set to <i>utf8mb4</i>. Existing 
  * installations encode all text fields as <i>utf8</i> so trying to store a <i>trans-BMP</i>
  * character will result in data truncation at that character since it is not valid
  * in <i>utf8</i>.
@@ -24,7 +24,7 @@
  * @package plugins/utf8mb4Migration
  * @pluginCategory development
  *
- * Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  */
 
 // force UTF-8 Ø
@@ -38,9 +38,8 @@ zp_register_filter('admin_utilities_buttons', 'utf8mb4Migration::buttons');
 class utf8mb4Migration {
 
 	static function buttons($buttons) {
-		global $_zp_conf_vars;
 
-		if ($_zp_conf_vars['UTF-8'] == 'utf8') {
+		if (getOption('UTF-8') == 'utf8') {
 			if (version_compare(MySQL_VERSION, '5.5.3', '>=')) {
 				$buttons[] = array(
 						'category' => gettext('Development'),
@@ -48,7 +47,7 @@ class utf8mb4Migration {
 						'button_text' => gettext('Migrate to utf8mb4'),
 						'formname' => 'utf8button',
 						'action' => FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/utf8mb4Migration/migrate.php',
-						'icon' => ZP_BLUE,
+						'icon' => BADGE_BLUE,
 						'title' => gettext('A utility to migrate TEXT and LONGTEXT database fields to utf8mb4 so as to allow 4-byte unicode characters.'),
 						'alt' => '',
 						'hidden' => '',

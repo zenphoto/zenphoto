@@ -212,7 +212,7 @@ $tagsort = 'alpha';
 			if (is_AdminEditPage('newscategory')) {
 				$admintype = 'newscategory';
 				IF (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
-					$additem = gettext('newCategory');
+					$additem = gettext('New Category');
 				} else {
 					$additem = '';
 				}
@@ -443,7 +443,7 @@ $tagsort = 'alpha';
 								<p><?php echo gettext("<em>ExtraContent:</em> Here you can enter extra content for example to be printed on the sidebar"); ?></p>
 								<p>
 									<?php
-									echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example zenphoto functions) or JavaScript code.") . ' ';
+									echo gettext("<em>Codeblocks:</em> Use these fields if you need to enter php code (for example template functions) or JavaScript code.") . ' ';
 									echo gettext("You also can use the codeblock fields as custom fields.") . '';
 									echo gettext("Note that your theme must be setup to use the codeblock functions. Note also that codeblock fields are not multi-lingual.");
 									?>
@@ -934,7 +934,7 @@ $tagsort = 'alpha';
 
 		</div>
 	</div>
+	<?php printAdminFooter(); ?>
 </div>
-<?php printAdminFooter(); ?>
 </body>
 </html>

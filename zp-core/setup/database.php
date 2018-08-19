@@ -5,7 +5,7 @@
  * updates as needed
  *
  * @author Stephen Billard
- * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  */
 $dbSoftware = db_software();
@@ -23,11 +23,13 @@ if (isset($_SESSION['admin']['db_admin_fields'])) { //	we are in a clone install
 		}
 	}
 }
+$_DB_Structure_change = FALSE;
 
 /* rename Comment table custom_data since it is really address data */
 $sql = "ALTER TABLE " . prefix('comments') . " CHANGE `custom_data` `address_data` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT 'zp20';";
-setupQuery($sql, false);
-
+if (setupQuery($sql, false)) {
+	$_DB_Structure_change = TRUE;
+}
 foreach (getDBTables() as $table) {
 	$tablecols = db_list_fields($table);
 	foreach ($tablecols as $key => $datum) {
@@ -213,9 +215,11 @@ if (is_array($result)) {
 }
 if ($utf8mb4 && $dbmigrate) {
 	$sql = 'ALTER DATABASE `' . db_name() . '` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;';
-	setupQuery($sql);
+	if (setupQuery($sql)) {
+		$_DB_Structure_change = TRUE;
+	}
 }
-$tablePresent = array();
+$uniquekeys = $tablePresent = array();
 foreach ($template as $tablename => $table) {
 	$tablePresent[$tablename] = $exists = array_key_exists($tablename, $database);
 	if (!$exists) {
@@ -252,10 +256,14 @@ foreach ($template as $tablename => $table) {
 			if ($exists) {
 				if (array_key_exists($key, $database[$tablename]['fields'])) {
 					if ($field != $database[$tablename]['fields'][$key]) {
-						setupQuery($changeString);
+						if (setupQuery($changeString)) {
+							$_DB_Structure_change = TRUE;
+						}
 					}
 				} else {
-					setupQuery($addString);
+					if (setupQuery($addString)) {
+						$_DB_Structure_change = TRUE;
+					}
 				}
 			} else {
 				$x = preg_split('/%s /', $string);
@@ -272,30 +280,33 @@ foreach ($template as $tablename => $table) {
 			// drop fields no longer used
 			if ($field['Comment'] === 'zp20' || $field['Comment'] === 'optional_metadata') {
 				$dropString = "ALTER TABLE " . prefix($tablename) . " DROP `" . $field['Field'] . "`;";
-				setupQuery($dropString);
+				if (setupQuery($dropString)) {
+					$_DB_Structure_change = TRUE;
+				}
 			} else {
 				if (strpos($field['Comment'], 'optional_') === false) {
-					$orphans[] = sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not in use by ZenPhoto20.'), $key, $tablename);
+					$orphans[] = sprintf(gettext('Setup found the field "%1$s" in the "%2$s" table. This field is not in use by netPhotoGraphics.'), $key, $tablename);
 				}
 			}
 		}
 	}
-
 	if (isset($table['keys'])) {
 		foreach ($table['keys'] as $key => $index) {
 			$string = "ALTER TABLE " . prefix($tablename) . ' ADD ';
+			$i = $k = $index['Column_name'];
+			if (!empty($index['Sub_part'])) {
+				$k .=" (" . $index['Sub_part'] . ")";
+			}
+
 			if ($index['Non_unique']) {
 				$string .= "INDEX ";
 				$u = "KEY";
 			} else {
 				$string .="UNIQUE ";
 				$u = "UNIQUE `$key`";
+				$uniquekeys[$tablename][$key] = explode(',', $i);
 			}
 
-			$k = $index['Column_name'];
-			if (!empty($index['Sub_part'])) {
-				$k .=" (" . $index['Sub_part'] . ")";
-			}
 			$alterString = "$string`$key` ($k)";
 			if ($indexComments) {
 				$alterString.=" COMMENT 'zp20';";
@@ -306,11 +317,17 @@ foreach ($template as $tablename => $table) {
 				if (isset($database[$tablename]['keys'][$key])) {
 					if ($index != $database[$tablename]['keys'][$key]) {
 						$dropString = "ALTER TABLE " . prefix($tablename) . " DROP INDEX `" . $index['Key_name'] . "`;";
-						setupQuery($dropString);
-						setupQuery($alterString);
+						if (setupQuery($dropString)) {
+							$_DB_Structure_change = TRUE;
+						}
+						if (setupQuery($alterString)) {
+							$_DB_Structure_change = TRUE;
+						}
 					}
 				} else {
-					setupQuery($alterString);
+					if (setupQuery($alterString)) {
+						$_DB_Structure_change = TRUE;
+					}
 				}
 			} else {
 				$tableString = "  $u ($k)";
@@ -326,7 +343,9 @@ foreach ($template as $tablename => $table) {
 		$create[] = "  PRIMARY KEY (`id`)";
 		$create[] = ")  CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
 		$create = implode("\n", $create);
-		setupQuery($create);
+		if (setupQuery($create)) {
+			$_DB_Structure_change = TRUE;
+		}
 	} else {
 		//handle surplus fields
 		if (array_key_exists('keys', $database[$tablename]) && !empty($database[$tablename]['keys'])) {
@@ -334,12 +353,22 @@ foreach ($template as $tablename => $table) {
 				$key = $index['Key_name'];
 				if (isset($index['Index_comment']) && $index['Index_comment'] === 'zp20') {
 					$dropString = "ALTER TABLE " . prefix($tablename) . " DROP INDEX `" . $key . "`;";
-					setupQuery($dropString);
+					if (setupQuery($dropString)) {
+						$_DB_Structure_change = TRUE;
+					}
 				} else {
-					$orpahns = sprintf(gettext('Setup found the key "%1$s" in the "%2$s" table. This index is not in use by ZenPhoto20.'), $key, $tablename);
+					$orpahns = sprintf(gettext('Setup found the key "%1$s" in the "%2$s" table. This index is not in use by netPhotoGraphics.'), $key, $tablename);
 				}
 			}
 		}
+	}
+}
+
+foreach ($uniquekeys as $table => $keys) {
+	foreach ($keys as $unique => $components) {
+		$updateErrors = $updateErrors || checkUnique(prefix($table), array_flip(array_map(function($item) {
+															return trim($item, '`');
+														}, $components)));
 	}
 }
 //if this is a new database, update the config file for the utf8 encoding

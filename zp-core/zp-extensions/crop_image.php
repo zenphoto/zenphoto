@@ -398,7 +398,7 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 
 							<div style="width: <?php echo $sizedwidth; ?>px; height: <?php echo $sizedheight; ?>px; margin-bottom: 10px; border: 4px solid gray;">
 								<!-- This is the image we're attaching Jcrop to -->
-								<img src="<?php echo html_encode(pathurlencode($imageurl)); ?>" id="cropbox" />
+								<img src="<?php echo pathurlencode($imageurl); ?>" id="cropbox" />
 								<span class="floatright">
 									<?php echo sprintf(gettext('(<span id="new-width">%1$u</span> x <span id="new-height">%2$u</span> pixels)'), round($iW * ($width / $sizedwidth)), round($iH * ($height / $sizedheight)));
 									?>
@@ -498,17 +498,16 @@ if ($pasteobj && isset($_REQUEST['size'])) {
 					<br class="clearall">
 				</div><!-- block -->
 			</div><!-- content -->
+			<?php
+			if (!$pasteobj) {
+				?>
+				<?php
+				printAdminFooter();
+				?>
+				<?php
+			}
+			?>
 		</div><!-- main -->
-
-		<?php
-		if (!$pasteobj) {
-			?>
-			<?php
-			printAdminFooter();
-			?>
-			<?php
-		}
-		?>
 </body>
 
 </html>

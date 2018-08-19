@@ -5,7 +5,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  * @package plugins/favoritesAlbums
  */
@@ -212,10 +212,8 @@ while ($old != $albumname) {
 </div>
 <?php
 echo "\n" . '</div>';
-echo "\n" . '</div>';
-
 printAdminFooter();
-
+echo "\n" . '</div>';
 echo "\n</body>";
 echo "\n</html>";
 ?>

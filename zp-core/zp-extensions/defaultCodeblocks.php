@@ -65,7 +65,7 @@ class defaultCodeblocks {
 		foreach ($this->blocks as $object => $block) {
 			$options [$xlate[$object]] = array('key' => 'defaultCodeblocks_' . $object, 'type' => OPTION_TYPE_CUSTOM,
 					'order' => 2,
-					'desc' => sprintf(gettext('Codeblocks to be inserted when the one for the <em>%s</ object is empty.'), $xlate[$object])
+					'desc' => sprintf(gettext('Codeblocks to be inserted when the one for the <em>%s</em> object is empty.'), $xlate[$object])
 			);
 		}
 		codeblocktabsJS();

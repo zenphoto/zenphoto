@@ -107,8 +107,7 @@ echo "\n</head>";
 				</div>
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
-	<?php printAdminFooter(); ?>
-
 </body>
 </html>

@@ -395,7 +395,7 @@ class slideshow {
 			$ext = slideshow::is_valid($filename, $validtypes);
 			if ($ext) {
 				$imgnr++;
-				$slideshow .= '<span class="slideimage"><h4><strong>' . $albumobj->getTitle() . gettext(":") . '</strong> ' . $image->getTitle() . ' (' . ($idx + 1) . '/' . $numberofimages . ')</h4>';
+				$slideshow .= '<span class="slideimage"><h4><strong>' . $albumobj->getTitle() . ":" . '</strong> ' . $image->getTitle() . ' (' . ($idx + 1) . '/' . $numberofimages . ')</h4>';
 
 				if ($ext == "3gp") {
 					$slideshow .= '</a>
@@ -430,7 +430,7 @@ class slideshow {
 						getMaxSpaceContainer($maxwidth, $maxheight, $image);
 						$img = $image->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, NULL, NULL);
 					}
-					$slideshow .= '<img src="' . html_encode(pathurlencode($img)) . '" alt="" />';
+					$slideshow .= '<img src="' . pathurlencode($img) . '" alt="" />';
 					if ($linkslides)
 						$slideshow .= '</a>';
 				}
@@ -645,7 +645,7 @@ if (extensionEnabled('slideshow') && !OFFSET_PATH) {
 								$imagetitle = html_encode(getBare($imgobj->getTitle()));
 							}
 							?>
-							<a href="<?php echo html_encode(pathurlencode($imagelink)); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a><?php echo html_encodeTagged($after); ?>
+							<a href="<?php echo pathurlencode($imagelink); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a><?php echo html_encodeTagged($after); ?>
 							<?php
 						}
 					}

@@ -2,8 +2,8 @@
 /*
  * This plugin implements <i>tiny URLs</i> such as used by the tweet_news plugin
  *
- * <i>Tiny URLs</i> are short unique to zenphoto. They are short digital strings that
- * allow zenphoto to locate the object referenced. They are prefixed by <var>tiny/<var>
+ * <i>Tiny URLs</i> are short digital strings that
+ * allow location of the object referenced. They are prefixed by <var>tiny/<var>
  * if <i>mod_rewrite</i> is active otherwise they have the form <var>index.php?p=ddddd&t</var> .
  *
  * These can be useful if you want to minimize the length of URLs or if you want to
@@ -14,9 +14,10 @@
  * @package plugins/tinyURL
  * @pluginCategory admin
  */
-$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
-$plugin_description = gettext('Provides short URLs to zenphoto objects.');
-$plugin_disable = (MOD_REWRITE) ? '' : gettext('Shortened URLs require the <code>mod_rewrite</code> option be enabled.');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
+	$plugin_description = gettext('Provides short URLs to gallery objects.');
+}
 
 $option_interface = 'tinyURL';
 
@@ -25,9 +26,7 @@ if (getOption('tinyURL_agressive'))
 
 switch (OFFSET_PATH) {
 	case 0:
-		if (!$plugin_disable) {
-			zp_register_filter('load_request', 'tinyURL::parse');
-		}
+		zp_register_filter('load_request', 'tinyURL::parse');
 		break;
 	case 2:
 		setOptionDefault('tinyURL_agressive', 0);
@@ -149,7 +148,7 @@ class tinyURL {
 	}
 
 	static function parse($success) {
-		if (isset($_GET['p']) && isset($_GET['t'])) { //	zenphoto tiny url
+		if (isset($_GET['p']) && isset($_GET['t'])) { //	tiny url
 			unset($_GET['t']);
 			$tiny = sanitize_numeric($_GET['p']);
 			$tbl = $tiny & 7;

@@ -80,13 +80,7 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 }
 
 /* zpArdoise_printRandomImages
-  /*	- use improvements of zenphoto 1.4.6 on printRandomImages
-  /*	- use improvements of zenphoto 1.4.5 on printRandomImages
-  /*	- use improvements of zenphoto 1.4.2 on printRandomImages
-  /*		- http://www.zenphoto.org/trac/ticket/1914,
-  /*		- http://www.zenphoto.org/trac/ticket/2020,
-  /*		- http://www.zenphoto.org/trac/ticket/2028
-  /*	- implements call of colorbox (http://www.zenphoto.org/trac/ticket/1908 and http://www.zenphoto.org/trac/ticket/1909)
+  /*	- implements call of colorbox
  */
 
 function zpArdoise_printRandomImages($number = 5, $class = NULL, $option = 'all', $rootAlbum = '', $width = NULL, $height = NULL, $crop = NULL, $fullimagelink = false, $a_class = NULL) {
@@ -128,13 +122,13 @@ function zpArdoise_printRandomImages($number = 5, $class = NULL, $option = 'all'
 			echo '<a href="' . html_encode($randomImageURL) . '"' . $aa_class . ' title="' . html_encode($randomImage->getTitle()) . '">';
 			switch ($crop) {
 				case 0:
-					$html = "<img src=\"" . html_encode(pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+					$html = "<img src=\"" . pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 					break;
 				case 1:
-					$html = "<img src=\"" . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" width=\"" . $width . "\" height=\"" . $height . "\" />\n";
+					$html = "<img src=\"" . pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE)) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" width=\"" . $width . "\" height=\"" . $height . "\" />\n";
 					break;
 				case 2:
-					$html = "<img src=\"" . html_encode(pathurlencode($randomImage->getThumb())) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+					$html = "<img src=\"" . pathurlencode($randomImage->getThumb()) . "\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 					break;
 			}
 			echo zp_apply_filter('custom_image_html', $html, false);
@@ -180,20 +174,20 @@ function zpArdoise_printImageStatistic($number, $option, $albumfolder = '', $sho
 				$aa_class = NULL;
 				$imagelink = $image->getLink();
 			}
-			echo "<li><a href=\"" . html_encode(pathurlencode($imagelink)) . "\"" . $aa_class . " title=\"" . html_encode($image->getTitle()) . "\">\n";
+			echo "<li><a href=\"" . pathurlencode($imagelink) . "\"" . $aa_class . " title=\"" . html_encode($image->getTitle()) . "\">\n";
 			switch ($crop) {
 				case 0:
-					echo "<img src=\"" . html_encode(pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($image->getTitle()) . "\" /></a>\n";
+					echo "<img src=\"" . pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . "\" alt=\"" . html_encode($image->getTitle()) . "\" /></a>\n";
 					break;
 				case 1:
-					echo "<img src=\"" . html_encode(pathurlencode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . "\" alt=\"" . html_encode($image->getTitle()) . "\" width=\"" . $width . "\" height=\"" . $height . "\" /></a>\n";
+					echo "<img src=\"" . pathurlencode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE)) . "\" alt=\"" . html_encode($image->getTitle()) . "\" width=\"" . $width . "\" height=\"" . $height . "\" /></a>\n";
 					break;
 				case 2:
-					echo "<img src=\"" . html_encode(pathurlencode($image->getThumb())) . "\" alt=\"" . html_encode($image->getTitle()) . "\" /></a>\n<br />";
+					echo "<img src=\"" . pathurlencode($image->getThumb()) . "\" alt=\"" . html_encode($image->getTitle()) . "\" /></a>\n<br />";
 					break;
 			}
 			if ($showtitle) {
-				echo "<h3><a href=\"" . html_encode(pathurlencode($image->getLink())) . "\" title=\"" . html_encode($image->getTitle()) . "\">\n";
+				echo "<h3><a href=\"" . pathurlencode($image->getLink()) . "\" title=\"" . html_encode($image->getTitle()) . "\">\n";
 				echo $image->getTitle() . "</a></h3>\n";
 			}
 			if ($showdate) {

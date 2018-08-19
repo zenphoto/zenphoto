@@ -2,13 +2,13 @@
 /**
  * Provide javaScript tag "suggestions"
  * Based on Remy Sharp's {@link http://remysharp.com/2007/12/28/jquery-tag-suggestion/ jQuery Tag Suggestion}
- * plugin as modified for ZenPhoto20 to enhance performance.
+ * plugin as modified for netPhotoGraphics to enhance performance.
  *
  * This plugin provides suggestions for tag fields such as the search form. It is
  * automatically enabled for administration fields. The plugin must be enabled for
  * the suggestions to appear on theme pages.
  *
- * Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  * @author Stephen Billard (sbillard)
  *

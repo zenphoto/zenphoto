@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * This module helps you to keep track of your Zenphoto visitors through the Matomo platform (formerly known as Piwik).
+ * This module helps you to keep track of your visitors through the Matomo platform (formerly known as Piwik).
  * It places the <i>Matomo JavaScript tracking scripts</i> at the bottom of your webpages using the <i>theme_body_close</i>
  * filter. It also supports tracking for users with JavaScript disabled.
  *
@@ -12,7 +12,7 @@
  * Additionally a content macro [MATOMO_OPTOUT] is provided that embeds a facility for visitors to optout of tracking as required by the law of several countries.
  * Place this on your privacy statement page.
  *
- * You can add Matomo widget iFrame code to view your statistics via a Zenphoto backend utility.
+ * You can add Matomo widget iFrame code to view your statistics via a backend utility.
  *
  * Please visit the {@link https://matomo.org/docs/ Matomo} site for the Matomo software and installation instructions.
  *
@@ -100,7 +100,7 @@ class matomoStats {
 						'type' => OPTION_TYPE_TEXTAREA,
 						'order' => 5,
 						'multilingual' => false,
-						'desc' => gettext('Enter widget iframe code if you like to embed statistics to your Zenphoto backend. This enables MATOMO STATISTICS on the OVERVIEW fly-out menu. Visit <a href="https://developer.matomo.org/guides/widgets">Matomo guides</a> for more information.')),
+						'desc' => gettext('Enter widget iframe code if you like to embed statistics to your backend. This enables MATOMO STATISTICS on the OVERVIEW fly-out menu. Visit <a href="https://developer.matomo.org/guides/widgets">Matomo guides</a> for more information.')),
 				gettext('Language to track') => array(
 						'order' => 6,
 						'key' => 'matomo_language_tracking',
@@ -113,7 +113,7 @@ class matomoStats {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 7,
 						'desc' => gettext('Check this so Matomo does not use cookies to track visitors (less accurate tracking).')),
-				gettext('User onsent') => array(
+				gettext('User consent') => array(
 						'key' => 'matomo_requireconsent',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => array(
@@ -234,7 +234,7 @@ class matomoStats {
 			setupCurrentLocale($locale_to_track);
 		}
 		echo js_encode(getHeadTitle());
-		if ($original_locale != NULL) {
+		if (isset($original_locale)) {
 			setOption('locale', $original_locale, false);
 			setupCurrentLocale($original_locale);
 		}

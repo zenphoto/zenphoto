@@ -4,7 +4,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  * @package plugins/accessThreshold
  */
@@ -120,7 +120,7 @@ foreach ($recentIP as $ip => $data) {
 	$ct++;
 }
 if (empty($output)) {
-	$output[] = gettext("No entries excede the noise level");
+	$output[] = gettext("No entries exceed the noise level");
 }
 
 printAdminHeader('admin');
@@ -177,9 +177,8 @@ echo "\n</head>";
 				</div>
 			</div>
 		</div>
+		<?php printAdminFooter();
+		?>
 	</div>
-	<?php printAdminFooter();
-	?>
-
 </body>
 </html>

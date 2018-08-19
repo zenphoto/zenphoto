@@ -89,7 +89,7 @@ if (!defined('WEBPATH'))
 
 						if (empty($fullimage)) {
 							?>
-							<a href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php printBareImageTitle(); ?>" class="fullimage">
+							<a href="<?php echo pathurlencode($fullimage); ?>" title="<?php printBareImageTitle(); ?>" class="fullimage">
 								<?php
 							}
 							if (function_exists('printUserSizeImage') && isImagePhoto()) {

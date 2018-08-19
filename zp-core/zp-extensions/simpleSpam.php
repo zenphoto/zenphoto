@@ -9,7 +9,7 @@
  * @package plugins/simpleSpam
  * @pluginCategory admin
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
+$plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Simple SPAM filter.");
 $plugin_disable = (isset($_zp_spamFilter) && !extensionEnabled('simpleSpam')) ? sprintf(gettext('Only one SPAM handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_spamFilter->name) : '';
 

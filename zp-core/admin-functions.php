@@ -34,17 +34,22 @@ define('UPLOAD_ERR_BLOCKED', -2);
 function printAdminFooter($addl = '') {
 	?>
 	<div id="footer">
-		<?php
-		echo gettext('<span class="zenlogo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zen-logo-light.png" /></a></span> ') . sprintf(gettext('version %1$s'), ZENPHOTO_VERSION);
+		<span id="footer_left">
+			<?php printLanguageSelector(true); ?>
+		</span>
+		<span id="footer_right">
+			<?php
+			echo '<span class="zenlogo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '">' . swLogo() . '</a></span> ' . sprintf(gettext('version %1$s'), ZENPHOTO_VERSION);
 
-		if (!empty($addl)) {
-			echo ' | ' . $addl;
-		}
-		?>
-		| <a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/license.php' ?>" title="<?php echo gettext('ZenPhoto20 licence'); ?>"><?php echo gettext('License'); ?></a>
-		| <a href="https://<?php echo GITHUB; ?>/issues" title="<?php echo gettext('Support'); ?>"><?php echo gettext('Support'); ?></a>
-		| <a href="https://<?php echo GITHUB; ?>/commits/master" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
-		| <?php printf(gettext('Server date: %s'), date('Y-m-d H:i:s')); ?>
+			if (!empty($addl)) {
+				echo ' | ' . $addl;
+			}
+			?>
+			| <a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/license.php' ?>" title="<?php echo gettext('netPhotoGraphics license'); ?>"><?php echo gettext('License'); ?></a>
+			| <a href="https://<?php echo GITHUB; ?>/issues" title="<?php echo gettext('Support'); ?>"><?php echo gettext('Support'); ?></a>
+			| <a href="https://<?php echo GITHUB; ?>/commits/master" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
+			| <?php printf(gettext('Server date: %s'), date('Y-m-d H:i:s')); ?>
+		</span>
 	</div>
 	<script type="text/javascript">
 		startingPosition = $('.navigation').position().top + 10;
@@ -127,11 +132,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 	}
-	if (empty($subtabtext)) {
-		if ($_zp_admin_subtab) {
-			$subtabtext = '-' . ucfirst($_zp_admin_subtab);
-		}
-	}
+
 	$multi = getOption('multi_lingual');
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
@@ -144,7 +145,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			printStandardMeta();
 			load_jQuery_CSS();
 			?>
-			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?ZenPhoto20_<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
+			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?the images<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/loginForm.css" type="text/css" />
 			<?php
 			if ($_zp_RTL_css) {
@@ -289,9 +290,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 		<div id="admin_head">
 			<span id="administration">
-				<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
+				<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png"
 						 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($tabtext), html_encode($subtabtext)); ?>"
-						 alt="<?php echo gettext('ZenPhoto20 Administration'); ?>" />
+						 alt="<?php printf(gettext('%1$s Administration'), html_encode($_zp_gallery->getTitle())); ?>" />
 			</span>
 			<span id="links">
 				<?php
@@ -1749,7 +1750,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					}
 					?>
-					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
+					<a href="<?php echo WEBPATH . "/index.php?album=" . pathurlencode($album->getFileName()); ?>">
 						<?php echo BULLSEYE_BLUE; ?>
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
@@ -1889,7 +1890,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 														 name="disclose_password<?php echo $suffix; ?>"
 														 id="disclose_password<?php echo $suffix; ?>"
 														 onclick="passwordClear('<?php echo $suffix; ?>');
-																 togglePassword('<?php echo $suffix; ?>');" />
+																		 togglePassword('<?php echo $suffix; ?>');" />
 														 <?php echo addslashes(gettext('Show')); ?>
 										</label>
 
@@ -2184,7 +2185,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 													echo "\n<option";
 													if ($_zp_gallery->getThumbSelectImages()) {
 														echo " class=\"thumboption\"";
-														echo " style=\"background-image: url(" . html_encode(pathurlencode(getAdminThumb($image, 'medium'))) . "); background-repeat: no-repeat;\"";
+														echo " style=\"background-image: url(" . pathurlencode(getAdminThumb($image, 'medium')) . "); background-repeat: no-repeat;\"";
 													}
 													echo " value=\"" . $imagename . "\"";
 													if ($selected) {
@@ -2218,9 +2219,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 name="<?php echo $prefix; ?>Published"
 										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
 										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
-												 $('#<?php echo $prefix; ?>expirationdate').val('');
-												 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
-												 $('.<?php echo $prefix; ?>expire').html('');"
+													 $('#<?php echo $prefix; ?>expirationdate').val('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+													 $('.<?php echo $prefix; ?>expire').html('');"
 										 />
 										 <?php echo gettext("Published"); ?>
 						</label>
@@ -2353,7 +2354,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2465,7 +2466,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 					}
 					?>
-					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
+					<a href="<?php echo WEBPATH . "/index.php?album=" . pathurlencode($album->getFileName()); ?>">
 						<?php echo BULLSEYE_BLUE; ?>
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
@@ -2619,11 +2620,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 				}
 				if ($enableEdit) {
 					?>
-					<a href="?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
+					<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
 						<?php
 					}
 					?>
-					<img src="<?php echo html_encode(pathurlencode($thumb)); ?>" width="<?php echo ADMIN_THUMB_SMALL; ?>" height="<?php echo ADMIN_THUMB_SMALL; ?>" alt="" title="album thumb" />
+					<img src="<?php echo pathurlencode($thumb); ?>" width="<?php echo ADMIN_THUMB_SMALL; ?>" height="<?php echo ADMIN_THUMB_SMALL; ?>" alt="" title="album thumb" />
 					<?php
 					if ($enableEdit) {
 						?>
@@ -2636,7 +2637,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 				if ($enableEdit) {
 					?>
-					<a href="?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
+					<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
 						<?php
 					}
 					echo html_encode(getBare($album->getTitle()));
@@ -2659,13 +2660,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$si = sprintf('%1$s <span>(%2$u)</span>', $imgi, $ci);
 			if ($ci > 0 && !$album->isDynamic()) {
 				$si = preg_replace('~ title=".*?"~', '', $si);
-				$si = '<a href="?page=edit&amp;album=' . html_encode(pathurlencode($album->name)) . '&amp;tab=imageinfo" title="' . gettext('Images') . '">' . $si . '</a>';
+				$si = '<a href="?page=edit&amp;album=' . pathurlencode($album->name) . '&amp;tab=imageinfo" title="' . gettext('Images') . '">' . $si . '</a>';
 			}
 			$ca = $album->getNumAlbums();
 			$sa = sprintf('%1$s <span>(%2$u)</span>', $imga, $ca);
 			if ($ca > 0 && !$album->isDynamic()) {
 				$sa = preg_replace('~ title=".*?"~', '', $sa);
-				$sa = '<a href="?page=edit&amp;album=' . html_encode(pathurlencode($album->name)) . '&amp;tab=subalbuminfo" title="' . gettext('Subalbum List') . '">' . $sa . '</a>';
+				$sa = '<a href="?page=edit&amp;album=' . pathurlencode($album->name) . '&amp;tab=subalbuminfo" title="' . gettext('Subalbum List') . '">' . $sa . '</a>';
 			}
 			?>
 			<div class="page-list_iconwrapper">
@@ -2697,7 +2698,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					if ($album->getShow()) {
 						if ($enableEdit) {
 							?>
-							<a href="?action=publish&amp;value=0&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>" >
+							<a href="?action=publish&amp;value=0&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>" >
 								<?php
 							}
 							?>
@@ -2711,7 +2712,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						if ($enableEdit) {
 							?>
-							<a href="?action=publish&amp;value=1&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
+							<a href="?action=publish&amp;value=1&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
 								<?php
 							}
 							if ($album->getPublishDate() > date('Y-m-d H:i:s')) {
@@ -2736,7 +2737,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					if ($album->getCommentsAllowed()) {
 						if ($enableEdit) {
 							?>
-							<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
+							<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
 								<?php
 							}
 							?>
@@ -2750,7 +2751,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					} else {
 						if ($enableEdit) {
 							?>
-							<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
+							<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
 								<?php
 							}
 							?>
@@ -2765,7 +2766,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					?>
 				</div>
 				<div class="page-list_icon">
-					<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo gettext("View album"); ?>">
+					<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo pathurlencode($album->name); ?>" title="<?php echo gettext("View album"); ?>">
 						<?php echo BULLSEYE_BLUE; ?>
 					</a>
 				</div>
@@ -2777,7 +2778,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					} else {
 						?>
-						<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh') ?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
+						<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh') ?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
 							<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 						</a>
 						<?php
@@ -2795,7 +2796,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<?php
 						} else {
 							?>
-							<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;subalbum=true&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
+							<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo pathurlencode($album->name); ?>&amp;subalbum=true&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
 								<?php echo RECYCLE_ICON; ?>
 							</a>
 							<?php
@@ -2815,7 +2816,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					} else {
 						?>
-						<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
+						<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
 							<?php echo WASTEBASKET; ?>
 						</a>
 						<?php
@@ -3028,7 +3029,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		} else {
 			if ($allimagecount != $totalimages) { // need pagination links
-				adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . html_encode(pathurlencode($album->name)), '&amp;tab=imageinfo&amp;filter=' . $filter);
+				adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . pathurlencode($album->name), '&amp;tab=imageinfo&amp;filter=' . $filter);
 			}
 		}
 	}
@@ -3416,23 +3417,23 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	/**
-	 * Returns true if the theme is distributed by ZenPhoto20
-	 * @global array $_ZP20_themes
+	 * Returns true if the theme is part of t;he distribution
+	 * @global array $_distributed_themes
 	 * @param string $theme
 	 * @return bool
 	 */
 	function protectedTheme($theme) {
-		global $_ZP20_themes;
-		if (is_null($_ZP20_themes)) {
+		global $_distributed_themes;
+		if (is_null($_distributed_themes)) {
 			$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto.package');
 			preg_match_all('~' . THEMEFOLDER . '/(.*)/theme_description.php~', $package, $matches);
-			$_ZP20_themes = $matches[1];
+			$_distributed_themes = $matches[1];
 		}
-		return(in_array($theme, $_ZP20_themes));
+		return(in_array($theme, $_distributed_themes));
 	}
 
 	/**
-	 * Returns true if the USER_PLUGINS_FOLDER plugin is part of the ZenPhoto20 distribution
+	 * Returns true if the USER_PLUGINS_FOLDER plugin is part of the distribution
 	 * NOTE: plugins in the PLUGIN_FOLDER should be presumed to be distributed plugins,
 	 * not checked by this function
 	 *
@@ -3644,7 +3645,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$link = '';
 		$parents = getParentAlbumsAdmin($album);
 		foreach ($parents as $parent) {
-			$link .= "<a href='" . WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . html_encode(pathurlencode($parent->name)) . "'>" . removeParentAlbumNames($parent) . "</a>/";
+			$link .= "<a href='" . WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . pathurlencode($parent->name) . "'>" . removeParentAlbumNames($parent) . "</a>/";
 		}
 		return $link;
 	}
@@ -4345,30 +4346,30 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
-			var sel = obj.options[obj.selectedIndex].value;
-							var mark;
-							switch (sel) {
+				var sel = obj.options[obj.selectedIndex].value;
+				var mark;
+				switch (sel) {
 		<?php
 		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-				case '<?php echo $key; ?>':
-								mark = '<?php echo $mark; ?>';
-								break;
+					case '<?php echo $key; ?>':
+									mark = '<?php echo $mark; ?>';
+									break;
 			<?php
 		}
 		?>
-			default:
-							mark = false;
-							break;
+				default:
+								mark = false;
+								break;
 			}
 			if (mark) {
-			$.colorbox({
-			href: '#' + mark,
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-			});
-			}
+				$.colorbox({
+					href: '#' + mark,
+					inline: true,
+					open: true,
+					close: '<?php echo gettext("ok"); ?>'
+				});
+				}
 			}
 			// ]]> -->
 		</script>
@@ -4747,27 +4748,27 @@ function stripTableRows($custom) {
 function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
-						// <!-- <![CDATA[
-						$(function () {
-						var tabContainers = $('div.tabs > div');
-										$('.first').addClass('selected');
-						});
-						function cbclick(num, id) {
-						$('.cbx-' + id).hide();
-										$('#cb' + num + '-' + id).show();
-										$('.cbt-' + id).removeClass('selected');
-										$('#cbt' + num + '-' + id).addClass('selected');
-						}
+		// <!-- <![CDATA[
+		$(function () {
+			var tabContainers = $('div.tabs > div');
+			$('.first').addClass('selected');
+		});
+		function cbclick(num, id) {
+			$('.cbx-' + id).hide();
+			$('#cb' + num + '-' + id).show();
+			$('.cbt-' + id).removeClass('selected');
+			$('#cbt' + num + '-' + id).addClass('selected');
+		}
 
 		function cbadd(id, offset) {
-		var num = $('#cbu-' + id + ' li').length - offset;
-						$('li:last', $('#cbu-' + id)).remove();
-						$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-						$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
-						$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
-						'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
-						'</div>');
-						cbclick(num, id);
+			var num = $('#cbu-' + id + ' li').length - offset;
+			$('li:last', $('#cbu-' + id)).remove();
+			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
+							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
+							'</div>');
+			cbclick(num, id);
 		}
 		// ]]> -->
 	</script>
@@ -5213,7 +5214,7 @@ function getPluginTabs() {
 			'seo' => gettext('seo'),
 			'theme' => gettext('theme support'),
 			'users' => gettext('users'),
-			'zenphoto20' => gettext('zenphoto20'),
+			'netPhotoGraphics' => gettext('netPhotoGraphics'),
 			'misc' => gettext('misc')
 	);
 	$classXlate = array(
@@ -5707,7 +5708,7 @@ function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
 	}
 	?>
 	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
-										$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
 			 <?php echo CLIPBOARD; ?>
 	</a>
 	<?php

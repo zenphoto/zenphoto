@@ -6,10 +6,6 @@
 // force UTF-8 Ø
 
 require_once(dirname(__FILE__) . '/functions.php');
-if (!defined('SEO_FULLWEBPATH')) {
-	define('SEO_FULLWEBPATH', FULLWEBPATH);
-	define('SEO_WEBPATH', WEBPATH);
-}
 
 //******************************************************************************
 //*** Template Functions *******************************************************
@@ -19,14 +15,14 @@ if (!defined('SEO_FULLWEBPATH')) {
 /* * *************************************** */
 
 /**
- * Returns the zenphoto version string
+ * Returns the version string
  */
 function getVersion() {
 	return ZENPHOTO_VERSION;
 }
 
 /**
- * Prints the zenphoto version string
+ * Prints the version string
  */
 function printVersion() {
 	echo getVersion();
@@ -293,10 +289,10 @@ function adminToolbox() {
 								// set return to this image page
 								zp_apply_filter('admin_toolbox_image', $albumname, $imagename, $zf);
 							}
-							$redirect = "&amp;album=" . html_encode(pathurlencode($albumname)) . "&amp;image=" . urlencode($imagename);
+							$redirect = "&amp;album=" . pathurlencode($albumname) . "&amp;image=" . urlencode($imagename);
 						} else {
 							// set the return to this album/page
-							$redirect = "&amp;album=" . html_encode(pathurlencode($albumname));
+							$redirect = "&amp;album=" . pathurlencode($albumname);
 							if ($page > 1) {
 								$redirect .= "&amp;page=$page";
 							}
@@ -724,7 +720,7 @@ function getTotalPages($_oneImagePage = false) {
  * @return int
  */
 function getPageNumURL($page, $total = null) {
-	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page, $_zp_conf_vars;
+	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page;
 	if (is_null($total)) {
 		$total = getTotalPages();
 	}
@@ -951,12 +947,12 @@ function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nex
 				if ($firstlast) {
 					?>
 					<li class="<?php
-			if ($current == 1)
-				echo 'current';
-			else
-				echo 'first';
+					if ($current == 1)
+						echo 'current';
+					else
+						echo 'first';
 					?>">
-							<?php
+								<?php
 								if ($current == 1) {
 									echo '1';
 								} else {
@@ -1368,7 +1364,7 @@ function getParentBreadcrumb() {
 
 	$n = count($parents);
 	if ($n > 0) {
-		//the following loop code is @Copyright 2016 by Stephen L Billard for use in ZenPhoto20 (https://github.com/ZenPhoto20/ZenPhoto20)
+		//the following loop code is @Copyright 2016 by Stephen L Billard for use in ZenPhoto20 and derivitoves (https://github.com/ZenPhoto20/ZenPhoto20)
 		array_push($parents, $_zp_current_album);
 		$parent = array_shift($parents);
 		while ($parent != $_zp_current_album) {
@@ -1699,7 +1695,7 @@ function printAlbumThumbImage($alt, $class = NULL, $id = NULL, $title = NULL) {
 	$sizes = getSizeDefaultThumb($thumbobj);
 	$size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . html_encode(pathurlencode($thumbobj->getThumb('album'))) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . ' />';
+		$html = '<img src="' . pathurlencode($thumbobj->getThumb('album')) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html);
 		echo $html;
 	} else {
@@ -1793,7 +1789,7 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	}
 
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . html_encode(pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy))) . '"' . $sizing . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
+		$html = '<img src="' . pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy)) . '"' . $sizing . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
 		$html = zp_apply_filter('custom_album_thumb_html', $html);
 		echo $html;
 	} else {
@@ -2751,7 +2747,7 @@ function printDefaultSizedImage($alt, $class = NULL, $id = NULL, $title = NULL) 
 	}
 
 	if (isImagePhoto()) { //Print images
-		$html = '<img src="' . html_encode(pathurlencode(getDefaultSizedImage())) . '" alt="' . html_encode($alt) . '"' .
+		$html = '<img src="' . pathurlencode(getDefaultSizedImage()) . '" alt="' . html_encode($alt) . '"' .
 						' width="' . getDefaultWidth() . '" height="' . getDefaultHeight() . '"' . $class . $id . $title . " />";
 		$html = zp_apply_filter('standard_image_html', $html);
 		echo $html;
@@ -2804,7 +2800,7 @@ function printImageThumb($alt, $class = NULL, $id = NULL, $title = NULL) {
 		$title = ' title="' . html_encode($title) . '"';
 	}
 
-	$html = '<img src="' . html_encode(pathurlencode($url)) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
+	$html = '<img src="' . pathurlencode($url) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
 	$html = zp_apply_filter('standard_image_thumb_html', $html);
 	echo $html;
 }
@@ -3074,7 +3070,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		$title = ' title="' . html_encode($title) . '"';
 	}
 	if (isImagePhoto() || $thumbStandin) {
-		$html = '<img src="' . html_encode(pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects))) . '"' .
+		$html = '<img src="' . pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects)) . '"' .
 						' alt="' . html_encode($alt) . '"' .
 						$id . $class . $sizing . $title . ' />';
 		$sizing .
@@ -3372,15 +3368,15 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 			switch ($crop) {
 				case 0:
 					$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $randomImage);
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
+					$html = '<img src="' . pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 				case 1:
 					$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $randomImage);
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
+					$html = '<img src="' . pathurlencode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 				case 2:
 					$sizes = getSizeDefaultThumb($randomImage);
-					$html = '<img src="' . html_encode(pathurlencode($randomImage->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
+					$html = '<img src="' . pathurlencode($randomImage->getThumb()) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 			}
 			echo zp_apply_filter('custom_image_html', $html, false);
@@ -3704,7 +3700,7 @@ function getCustomPageRewrite($page) {
  * @return string
  */
 function getCustomPageURL($page, $q = '', $pageno = NULL) {
-	global $_zp_current_album, $_zp_conf_vars, $_zp_gallery_page;
+	global $_zp_current_album, $_zp_gallery_page;
 	$result_r = getCustomPageRewrite($page);
 	$result = "index.php?p=$page";
 
@@ -3928,39 +3924,39 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<script type="text/javascript">
-							// <!-- <![CDATA[
-							var within = <?php echo (int) $within; ?>;
-							function search_(way) {
-								within = way;
-								if (way) {
-									$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
-								} else {
-									lastsearch = '';
-									$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-								}
-								$('#search_input').val('');
-							}
-							$('#search_form').submit(function () {
-								if (within) {
-									var newsearch = $.trim($('#search_input').val());
-									if (newsearch.substring(newsearch.length - 1) == ',') {
-										newsearch = newsearch.substr(0, newsearch.length - 1);
-									}
-									if (newsearch.length > 0) {
-										$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
-									} else {
-										$('#search_input').val('<?php echo $searchwords; ?>');
-									}
-								}
-								return true;
-							});
-							function search_all() {
-								//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}. All rights reserved
-								var check = $('#SEARCH_checkall').prop('checked');
-								$('.SEARCH_checkall').prop('checked', check);
-							}
+													// <!-- <![CDATA[
+													var within = <?php echo (int) $within; ?>;
+													function search_(way) {
+														within = way;
+														if (way) {
+															$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+														} else {
+															lastsearch = '';
+															$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+														}
+														$('#search_input').val('');
+													}
+													$('#search_form').submit(function () {
+														if (within) {
+															var newsearch = $.trim($('#search_input').val());
+															if (newsearch.substring(newsearch.length - 1) == ',') {
+																newsearch = newsearch.substr(0, newsearch.length - 1);
+															}
+															if (newsearch.length > 0) {
+																$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+															} else {
+																$('#search_input').val('<?php echo $searchwords; ?>');
+															}
+														}
+														return true;
+													});
+													function search_all() {
+														//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}. All rights reserved
+														var check = $('#SEARCH_checkall').prop('checked');
+														$('.SEARCH_checkall').prop('checked', check);
+													}
 
-							// ]]> -->
+													// ]]> -->
 		</script>
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<?php echo $prevtext; ?>
@@ -4289,20 +4285,14 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 }
 
 /**
- * prints the zenphoto logo and link
- * @param string $mod set background
+ * Prints the logo and link
  *
  */
-function printZenphotoLink($mod = null) {
-	if ($mod)
-		$mod = '-' . $mod;
-	if (!$image = getPlugin('images/zen-logo' . $mod . '.png', true, true)) {
-		$image = getPlugin('images/zen-logo.png', true, true);
-	}
+function printZenphotoLink() {
 	?>
 	<span class="zen-logo">
 		<a href="https://<?php echo GITHUB; ?>" title="<?php echo gettext('A media oriented content management system'); ?>">
-			<?php printf(gettext('Powered by <img src="%s" />'), $image); ?>
+			<?php printf(gettext('Powered by %s'), swLogo()); ?>
 		</a>
 	</span>
 	<?php
@@ -4349,7 +4339,7 @@ function policySubmitButton($buttonText, $buttonClass = NULL, $buttonExtra = NUL
 		?>
 		<span id="GDPR_acknowledge">
 			<input type="checkbox" name="policy_acknowledge" onclick="$('#submitbutton').show();
-					$('#GDPR_acknowledge').hide();" value="<?php echo md5(getUserID() . getOption('GDPR_cookie')); ?>">
+							$('#GDPR_acknowledge').hide();" value="<?php echo md5(getUserID() . getOption('GDPR_cookie')); ?>">
 						 <?php
 						 echo sprintf(get_language_string(getOption('GDPR_text')), getOption('GDPR_URL'));
 						 ?>

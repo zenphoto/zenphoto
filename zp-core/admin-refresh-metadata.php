@@ -68,14 +68,14 @@ if (isset($_REQUEST['return'])) {
 	if ($return == '*') {
 		$backurl = 'admin-edit.php';
 	} else {
-		$r = '?page=edit&amp;album=' . html_encode(pathurlencode($ret = sanitize_path($return)));
+		$r = '?page=edit&amp;album=' . pathurlencode($ret = sanitize_path($return));
 		if (strpos($return, '*') === 0) {
 			$r .= '&amp;tab=subalbuminfo';
 			$star = '*';
 		} else {
 			$star = '';
 		}
-		$backurl = 'admin-edit.php' . $r . '&amp;return=' . $star . html_encode(pathurlencode($ret));
+		$backurl = 'admin-edit.php' . $r . '&amp;return=' . $star . pathurlencode($ret);
 	}
 }
 
@@ -196,10 +196,8 @@ printTabs();
 
 		echo "\n" . '</div>';
 		echo "\n" . '</div>';
-		echo "\n" . '</div>';
-
 		printAdminFooter();
-
+		echo "\n" . '</div>';
 		echo "\n</body>";
 		echo "\n</html>";
 		?>

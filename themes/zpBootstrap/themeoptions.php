@@ -67,7 +67,7 @@ class ThemeOptions {
 						'selections' => $albums,
 						'multilingual' => 0,
 						'desc' =>
-						gettext('Select the Album to use for the homepage slider (Dynamic albums may used).') . '<br />' .
+						gettext('Select the Album to use for the homepage slider (Dynamic albums may be used).') . '<br />' .
 						gettext('If Gallery is selected, the whole gallery will be used for the slider.')),
 				gettext('Random pictures for homepage slider') => array('order' => 4, 'key' => 'zpB_homepage_random_pictures', 'type' => OPTION_TYPE_TEXTBOX, 'multilingual' => 0, 'desc' => gettext('Number of random pictures to use for the homepage slider.')),
 				gettext('Use isotope for all albums pages') => array(
@@ -76,8 +76,8 @@ class ThemeOptions {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'multilingual' => 0,
 						'desc' =>
-						gettext('Use <a href="https://isotope.metafizzy.co/" target="_blank">isotope jQuery plugin</a> for all albums pages rather than standard albums page. This album layout allows to filter pictures based on their tags.') . '<br />' .
-						gettext('This album layout does not manage sub-albums (in that case, only pictures of the album are shown and you cant not access on sub-albums!).') . '<br />' .
+						gettext('Use <a href="https://isotope.metafizzy.co/" target="_blank">isotope jQuery plugin</a> for all albums pages rather than standard albums page. This album layout allows filtering pictures based on their tags.') . '<br />' .
+						gettext('This album layout does not manage sub-albums (in that case, only pictures of the album are shown and you can not access on sub-albums!).') . '<br />' .
 						gettext('Rather than use isotope layout for all albums, you may also allow "multiple_layouts" plugin and then choice "album_isotope" as layout for specific albums of your gallery.')),
 				gettext('Social Links') => array('order' => 8, 'key' => 'zpB_social_links', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to show some social links.')),
 				gettext('Allow search') => array('order' => 10, 'key' => 'zpB_allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),

@@ -181,6 +181,7 @@ if (isset($_GET['action'])) {
 							$lang = sanitize($userlist[$i]['admin_language'], 3);
 							if ($lang != $userobj->getLanguage()) {
 								$userobj->setLanguage($lang);
+								zp_clearCookie('dynamic_locale');
 								markUpdated($user);
 							}
 							$rights = 0;
@@ -648,8 +649,8 @@ echo $refresh;
 													}
 													?>
 													<a id="toggle_<?php echo $id; ?>" onclick="visible = getVisible('<?php echo $id; ?>', 'user', '<?php echo $displaytitle; ?>', '<?php echo $hidetitle; ?>');
-															$('#show_<?php echo $id; ?>').val(visible);
-															toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
+																$('#show_<?php echo $id; ?>').val(visible);
+																toggleExtraInfo('<?php echo $id; ?>', 'user', visible);" title="<?php echo $displaytitle; ?>" >
 															 <?php
 															 if (empty($userid)) {
 																 ?>
@@ -658,7 +659,7 @@ echo $refresh;
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="user[<?php echo $id; ?>][adminuser]" value=""
 																		 onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
-																				 $('#adminuser<?php echo $id; ?>').focus();" />
+																						 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
 														} else {
@@ -821,13 +822,17 @@ echo $refresh;
 														<input type="hidden" name="user[<?php echo $id ?>][admin_language]" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
 														<ul class="flags" style="margin-left: 0px;">
 															<?php
-															$_languages = generateLanguageList();
+															$languages = generateLanguageList();
+															asort($languages);
+															$flags = getLanguageFlags();
+															$flags[''] = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
 															$c = 0;
-															foreach ($_languages as $text => $lang) {
+															foreach ($languages as $text => $lang) {
+																$current = $lang == $currentValue;
 																?>
-																<li id="<?php echo $lang . '_' . $id; ?>"<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
+																<li id="<?php echo $lang . '_' . $id; ?>"<?php if ($current) echo ' class="currentLanguage"'; ?>>
 																	<a onclick="languageChange('<?php echo $id; ?>', '<?php echo $lang; ?>');" >
-																		<img src="<?php echo getLanguageFlag($lang); ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
+																		<img src="<?php echo $flags[$lang]; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
 																	</a>
 																</li>
 																<?php
@@ -996,10 +1001,8 @@ echo $refresh;
 
 			</div><!-- end of container -->
 		</div><!-- end of content -->
+		<?php printAdminFooter(); ?>
 	</div><!-- end of main -->
-	<?php
-	printAdminFooter();
-	?>
 </body>
 </html>
 

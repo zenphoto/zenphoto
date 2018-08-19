@@ -34,7 +34,7 @@
  * direct him to your site index.
  *
  * @author Stephen Billard (sbillard)
- * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  * @package plugins/GDPR_required
  * @pluginCategory theme
@@ -81,7 +81,7 @@ class GDPR_required {
 		} else {
 			$options = array(
 					NULL => array('key' => 'GDPR_page', 'type' => OPTION_TYPE_NOTE,
-							'desc' => gettext('The zenpage plugin is reqired but not enabled.'))
+							'desc' => gettext('The zenpage plugin is required but not enabled.'))
 			);
 		}
 		return $options;

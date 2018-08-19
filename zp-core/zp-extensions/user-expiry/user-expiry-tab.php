@@ -245,7 +245,7 @@ echo '</head>' . "\n";
 				</form>
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
-	<?php printAdminFooter(); ?>
 </body>
 </html>

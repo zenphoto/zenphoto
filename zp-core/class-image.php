@@ -63,7 +63,7 @@ function newImage($album, $filename = NULL, $quiet = false) {
 }
 
 /**
- * Returns true if the object is a zenphoto 'image'
+ * Returns true if the object is an 'image' object
  *
  * @param object $image
  * @return bool
@@ -169,7 +169,7 @@ class Image extends MediaObject {
 	 * @return array
 	 *
 	 * @author Stephen Billard
-	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
 	 */
 	static function getMetadataFields() {
 		return array(
@@ -481,10 +481,10 @@ class Image extends MediaObject {
 			}
 			/* "import" metadata into database fields as makes sense */
 
-			/* ZenPhoto20 Image Rotation */
+			/* Image Rotation */
 			$this->set('rotation', substr(trim(self::fetchMetadata('EXIFOrientation'), '!'), 0, 1));
 
-			/* ZenPhoto20 "date" field population */
+			/* "date" field population */
 			if ($date = self::fetchMetadata('IPTCDateCreated')) {
 				if (strlen($date) > 8) {
 					$time = substr($date, 8);
@@ -512,7 +512,7 @@ class Image extends MediaObject {
 				$this->setDateTime($date);
 			}
 
-			/* ZenPhoto20 "title" field population */
+			/* "title" field population */
 			$title = self::fetchMetadata('IPTCObjectName');
 			if (empty($title)) {
 				$title = self::fetchMetadata('IPTCImageHeadline');
@@ -528,7 +528,7 @@ class Image extends MediaObject {
 				$this->setTitle($title);
 			}
 
-			/* ZenPhoto20 "description" field population */
+			/* "description" field population */
 			$desc = self::fetchMetadata('IPTCImageCaption');
 			if (!empty($desc)) {
 				if (getoption('transform_newlines')) {
@@ -571,7 +571,7 @@ class Image extends MediaObject {
 				$this->set($key, $data);
 			}
 
-			/* ZenPhoto20 "credit" field population */
+			/* "credit" field population */
 			$credit = self::fetchMetadata('IPTCByLine');
 			if (empty($credit)) {
 				$credit = self::fetchMetadata('IPTCImageCredit');
@@ -1085,8 +1085,7 @@ class Image extends MediaObject {
 	 * @return string
 	 */
 	protected function getFullImage($path = WEBPATH) {
-		global $_zp_conf_vars;
-		if ($path == WEBPATH && $_zp_conf_vars['album_folder_class'] == 'external') {
+		if ($path == WEBPATH && getOption('album_folder_class') == 'external') {
 			return false;
 		}
 		if (is_array($this->filename)) {
@@ -1192,7 +1191,7 @@ class Image extends MediaObject {
 			$neww = $w;
 			$newh = $h;
 		}
-		$html = '<img src="' . html_encode(pathurlencode($this->getSizedImage($size))) . '" alt="' . html_encode($this->getTitle()) . '"' .
+		$html = '<img src="' . pathurlencode($this->getSizedImage($size)) . '" alt="' . html_encode($this->getTitle()) . '"' .
 						' width="' . $neww . '" height="' . $newh . '"' .
 						(($class) ? " class=\"$class\"" : "") . " />";
 		$html = zp_apply_filter('standard_image_html', $html);

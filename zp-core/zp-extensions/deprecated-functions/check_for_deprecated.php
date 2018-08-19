@@ -57,7 +57,7 @@ echo '</head>' . "\n";
 						if (TEST_RELEASE) {
 							?>
 							<option value=3<?php if ($selected == 3) echo ' selected="selected"'; ?>>
-								<?php echo gettext('In ZenPhoto20 code'); ?>
+								<?php echo gettext('In netPhotoGraphics code'); ?>
 							</option>
 							<?php
 						}
@@ -152,7 +152,7 @@ echo '</head>' . "\n";
 				?>
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
-	<?php printAdminFooter(); ?>
 </body>
 </html>

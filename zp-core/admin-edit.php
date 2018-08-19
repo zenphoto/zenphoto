@@ -693,7 +693,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || $is_m
 	}
 
 	window.addEventListener('load', function () {
-		extraWidth = $('.rightcolumn').width() + 30;
+		extraWidth = $('.rightcolumn').width() + 40;
 <?php
 if ($subtab == 'imageinfo') {
 	?>
@@ -1001,7 +1001,7 @@ echo "\n</head>";
 								</div>
 								<div class="subhead">
 									<label class="buttons" style="float: left;padding-top:3px;">
-										<a href="admin-edit.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;tab=subalbuminfo&amp;showthumbs=<?php echo $thumbshow ?>" title="<?php echo addslashes(gettext('Thumbnail generation may be time consuming on slow servers or when there are a lot of images.')); ?>">
+										<a href="admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;tab=subalbuminfo&amp;showthumbs=<?php echo $thumbshow ?>" title="<?php echo addslashes(gettext('Thumbnail generation may be time consuming on slow servers or when there are a lot of images.')); ?>">
 											<?php echo $thumbmsg; ?>
 										</a>
 									</label>
@@ -1141,7 +1141,7 @@ echo "\n</head>";
 								<?php
 							} else {
 								if (isset($_GET['subpage'])) {
-									$parent .= '&album=' . html_encode(pathurlencode($album->name)) . '&tab=imageinfo&subpage=' . html_encode(sanitize($_GET['subpage']));
+									$parent .= '&album=' . pathurlencode($album->name) . '&tab=imageinfo&subpage=' . html_encode(sanitize($_GET['subpage']));
 								}
 							}
 							?>
@@ -1150,7 +1150,7 @@ echo "\n</head>";
 						<?php
 						if ($allimagecount) {
 							?>
-							<form class="dirtylistening" onReset="setClean('form_imageedit');$('.resetHide').hide();" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>"	method="post" autocomplete="off" >
+							<form class="dirtylistening" onReset="setClean('form_imageedit');$('.resetHide').hide();" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" autocomplete="off" >
 								<?php XSRFToken('albumedit'); ?>
 								<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
 								<input type="hidden" name="totalimages" value="<?php echo $totalimages; ?>" />
@@ -1223,12 +1223,12 @@ echo "\n</head>";
 														<?php
 														if ($close = (isImagePhoto($image) || !is_null($image->objectsThumb))) {
 															?>
-															<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;singleimage=<?php echo urlencode($image->filename); ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" title="<?php html_encode(printf(gettext('crop %s'), $image->filename)); ?>">
+															<a href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;singleimage=<?php echo urlencode($image->filename); ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" title="<?php html_encode(printf(gettext('crop %s'), $image->filename)); ?>">
 																<?php
 															}
 															?>
 
-															<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'medium'))); ?>" alt="<?php echo html_encode($image->filename); ?>" />
+															<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo pathurlencode(getAdminThumb($image, 'medium')); ?>" alt="<?php echo html_encode($image->filename); ?>" />
 															<?php
 															if ($close) {
 																?>
@@ -1240,7 +1240,7 @@ echo "\n</head>";
 													<?php
 													if (isImagePhoto($image)) {
 														?>
-														<p class="buttons"><a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox"><img src="images/magnify.png" alt="" /><strong><?php echo gettext('Zoom'); ?></strong></a></p><br style="clear: both" />
+														<p class="buttons"><a href="<?php echo pathurlencode($image->getFullImageURL()); ?>" class="colorbox"><img src="images/magnify.png" alt="" /><strong><?php echo gettext('Zoom'); ?></strong></a></p><br style="clear: both" />
 														<?php
 													}
 													?>
@@ -1254,7 +1254,7 @@ echo "\n</head>";
 														<?php echo gettext('<strong>Filename:</strong>'); ?>
 														<br />
 														<?php
-														echo truncate_string($image->filename, 30);
+														echo truncate_string($image->filename, 25);
 														?>
 													</p>
 													<p><?php echo gettext('<strong>Image id:</strong>'); ?> <?php echo $image->getID(); ?></p>
@@ -1360,9 +1360,9 @@ echo "\n</head>";
 																		 name="<?php echo $currentimage; ?>-Visible"
 																		 value="1" <?php if ($image->getShow()) echo ' checked = "checked"'; ?>
 																		 onclick="$('#publishdate-<?php echo $currentimage; ?>').val('');
-																				 $('#expirationdate-<?php echo $currentimage; ?>').val('');
-																				 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
-																				 $('.expire-<?php echo $currentimage; ?>').html('');"
+																									 $('#expirationdate-<?php echo $currentimage; ?>').val('');
+																									 $('#publishdate-<?php echo $currentimage; ?>').css('color', 'black ');
+																									 $('.expire-<?php echo $currentimage; ?>').html('');"
 																		 />
 																		 <?php echo gettext("Published"); ?>
 														</label>
@@ -1479,7 +1479,7 @@ echo "\n</head>";
 														</label>
 														<label class="checkboxlabel">
 															<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete" onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');
-																	deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
+																						deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>', '<?php echo addslashes(gettext("Are you sure you want to select this image for deletion?")); ?>')" /> <?php echo gettext("Delete image") ?>
 														</label>
 														<br class="clearall">
 														<div id="movecopydiv-<?php echo $currentimage; ?>" class="resetHide" style="padding-top: .5em; padding-left: .5em; padding-bottom: .5em; display: none;">
@@ -1585,7 +1585,7 @@ echo "\n</head>";
 														<br class="clearall">
 														<hr />
 														<div class="button buttons tooltip" title="<?php printf(gettext('Refresh %s metadata'), $image->filename); ?>">
-															<a href="admin-edit.php?action=refresh&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
+															<a href="admin-edit.php?action=refresh&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
 																<?php echo CIRCLED_BLUE_STAR; ?>
 																<?php echo gettext("Refresh Metadata"); ?>
 															</a>
@@ -1595,7 +1595,7 @@ echo "\n</head>";
 														if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
 															?>
 															<div class="button buttons tooltip" title="<?php printf(gettext('crop %s'), $image->filename); ?>">
-																<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
+																<a href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum . $singleimagelink; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
 																	<img src="images/shape_handles.png" alt="" /><?php echo gettext("Crop thumbnail"); ?>
 																</a>
 																<br class="clearall">
@@ -1917,8 +1917,9 @@ echo "\n</head>";
 			}
 			?>
 		</div><!-- content -->
+
+		<?php printAdminFooter(); ?>
 	</div><!-- main -->
-	<?php printAdminFooter(); ?>
 </body>
 <?php
 // to fool the validator

@@ -12,7 +12,7 @@
  * <li>{@link https://github.com/leaflet-extras/leaflet-providers leaflet-providers} plugin</li>
  * </ul>
  *
- * @author Malte Müller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569), Stephen Billard (ZenPhoto20 adaption)
+ * @author Malte Müller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569), Stephen Billard (netPhotoGraphics adaption)
  * @licence GPL v3 or later
  * @package plugin/openstreetmap
  * @pluginCategory theme
@@ -59,7 +59,7 @@ class openStreetMapOptions {
 						'key' => 'osmap_width',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 1,
-						'desc' => gettext("Width of the map including the unit name e.g 100% (default for responsive map), 100px or 100em.")),
+						'desc' => gettext("Width of the map including the unit name e.g. 100% (default for responsive map), 100px or 100em.")),
 				gettext('Map dimensions—height') => array(
 						'key' => 'osmap_height',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -479,7 +479,7 @@ class openStreetMap {
 
 	/**
 	 * $returns coordinate informations for an image
-	 * Adapted from the offical Zenphoto GoogleMap plugin by Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
+	 * Adapted from the offical GoogleMap plugin by Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
 	 * @param $image	image object
 	 */
 	function getImageGeodata($image) {
@@ -521,7 +521,7 @@ class openStreetMap {
 
 	/**
 	 * Gathers the map data for an album
-	 * Adapted from the offical Zenphoto GoogleMap plugin by Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
+	 * Adapted from the offical GoogleMap plugin by Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
 	 * @param $album		album object
 	 */
 	function getAlbumGeodata($album) {

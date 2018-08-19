@@ -28,13 +28,15 @@
  * IP addresses may be supplied in a text file, one IP per line. Upload the text file to the <i>%UPLOAD_FOLDER%</i> folder.
 
  * @author Stephen Billard (sbillard)
- * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  * @package plugins/ipBlocker
  * @pluginCategory admin
  */
-$plugin_is_filter = 10 | CLASS_PLUGIN;
-$plugin_description = gettext("Tools to block hacker access to your site.");
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 10 | CLASS_PLUGIN;
+	$plugin_description = gettext("Tools to block hacker access to your site.");
+}
 
 $option_interface = 'ipBlocker';
 
@@ -93,7 +95,7 @@ class ipBlocker {
 						'selections' => $files,
 						'nullselection' => '',
 						'disabled' => !extensionEnabled('ipBlocker'),
-						'desc' => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of zenphoto and %s to process and store the results.'), DATABASE_SOFTWARE)),
+						'desc' => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of netPhotoGraphics and %s to process and store the results.'), DATABASE_SOFTWARE)),
 				gettext('Action') => array('key' => 'ipBlocker_type', 'type' => OPTION_TYPE_RADIO,
 						'order' => 4,
 						'buttons' => $buttons,

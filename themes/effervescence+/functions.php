@@ -26,6 +26,11 @@ foreach ($persona as $personality) {
 
 chdir(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/styles");
 $filelist = safe_glob('*.txt');
+if (file_exists(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/data")) {
+	chdir(SERVERPATH . "/themes/" . basename(dirname(__FILE__)) . "/data");
+	$userlist = safe_glob('*.txt');
+	$filelist = array_merge($filelist, $userlist);
+}
 $themecolors = array();
 foreach ($filelist as $file) {
 	$themecolors[basename($file)] = stripSuffix(filesystemToInternal($file));
@@ -60,9 +65,6 @@ require_once(SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/' . $personality 
 $_oneImagePage = $handler->onePage();
 $_zp_page_check = 'my_checkPageValidity';
 
-
-
-
 define('_IMAGE_PATH', WEBPATH . '/' . THEMEFOLDER . '/effervescence+/images/');
 
 function EF_head($ignore) {
@@ -72,8 +74,13 @@ function EF_head($ignore) {
 	}
 	$basePath = SERVERPATH . '/' . THEMEFOLDER . '/effervescence+/';
 	$csfile = $basePath . 'data/styles/' . $themeColor . '.css';
-	if (!file_exists($csfile) || ($mtime = filemtime($csfile) < filemtime($basePath . 'styles/' . $themeColor . '.txt')) || $mtime < filemtime($basePath . '/base.css')) {
-		eval(file_get_contents($basePath . 'styles/' . $themeColor . '.txt'));
+	$genfile = $basePath . 'styles/' . $themeColor . '.txt';
+	if (!file_exists($genfile)) {
+		$genfile = $basePath . 'data/' . $themeColor . '.txt';
+	}
+
+	if (!file_exists($csfile) || ($mtime = filemtime($csfile) < filemtime($genfile)) || $mtime < filemtime($basePath . '/base.css')) {
+		eval(file_get_contents($genfile));
 		$css = file_get_contents($basePath . '/base.css');
 		$css = strtr($css, $tr);
 		$css = preg_replace('|\.\./images/|', WEBPATH . '/' . THEMEFOLDER . '/effervescence+/images/', $css);
@@ -186,7 +193,7 @@ function printHeadingImage($randomImage) {
 	}
 	echo '<div id="randomhead">';
 	if (is_null($randomImage)) {
-		echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zen-logo.png" title="' . gettext('There were no images from which to select the random heading.') . '" />';
+		echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/admin-logo.png" title="' . gettext('There were no images from which to select the random heading.') . '" />';
 	} else {
 		$randomAlbum = $randomImage->getAlbum();
 		$randomAlt1 = $randomAlbum->getTitle();
@@ -206,7 +213,7 @@ function printHeadingImage($randomImage) {
 			$high = min(180, $randomImage->getHeight());
 		}
 		echo "<a href='" . $randomImageURL . "' title='" . gettext('Random picture...') . "'>";
-		$html = "<img src='" . html_encode(pathurlencode($randomImage->getCustomImage(NULL, $wide, $high, $wide, $high, NULL, NULL, !getOption('Watermark_head_image')))) .
+		$html = "<img src='" . pathurlencode($randomImage->getCustomImage(NULL, $wide, $high, $wide, $high, NULL, NULL, !getOption('Watermark_head_image'))) .
 						"' width='$wide' height='$high' alt=" . '"' .
 						html_encode($randomAlt1) .
 						":\n" . html_encode($randomImage->getTitle()) .
@@ -309,19 +316,21 @@ function printLinkWithQuery($url, $query, $text) {
 
 function printLogo() {
 	global $_zp_themeroot;
+	$name = get_language_string(getOption('Theme_logo'));
 	if ($img = getOption('Graphic_logo')) {
 		$fullimg = '/' . UPLOAD_FOLDER . '/images/' . $img . '.png';
 		if (file_exists(SERVERPATH . $fullimg)) {
-			echo '<img src="' . html_encode(pathurlencode(WEBPATH . $fullimg)) . '" alt="Logo"/>';
+			echo '<img src="' . pathurlencode(WEBPATH . $fullimg) . '" alt="Logo"/>';
 		} else {
 			echo '<img src="' . $_zp_themeroot . '/images/effervescence.png" alt="Logo"/>';
 		}
 	} else {
-		$name = get_language_string(getOption('Theme_logo'));
 		if (empty($name)) {
 			$name = sanitize($_SERVER['HTTP_HOST']);
 		}
-		echo "<h1><a>$name</a></h1>";
+	}
+	if (!empty($name)) {
+		echo "<h1>$name</h1>";
 	}
 }
 

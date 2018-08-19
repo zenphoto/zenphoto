@@ -9,7 +9,7 @@
  *
  */
 list($usec, $sec) = explode(" ", microtime());
-$start = (float) $usec + (float) $sec;
+$startTO = (float) $usec + (float) $sec;
 
 define('OFFSET_PATH', 2);
 require_once('setup-functions.php');
@@ -38,7 +38,7 @@ standardThemeOptions($theme, NULL);
 list($usec, $sec) = explode(" ", microtime());
 $last = (float) $usec + (float) $sec;
 /* and record that we finished */
-setupLog(sprintf(gettext('Theme:%s setup completed in %2$.4f seconds'), $theme, $last - $start), $fullLog);
+setupLog(sprintf(gettext('Theme:%s setup completed in %2$.4f seconds'), $theme, $last - $startTO), $fullLog);
 
 sendImage($_GET['class'], 'theme_' . $theme);
 exitZP();

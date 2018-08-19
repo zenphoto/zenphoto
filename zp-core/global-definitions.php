@@ -1,13 +1,17 @@
 <?php
 
+global $_zp_conf_vars;
+$_zp_options = array();
+
 if (!isset($_SERVER['HTTP_HOST']))
 	die();
+
 if (!function_exists("gettext")) {
 	require_once(dirname(__FILE__) . '/php-gettext/gettext.inc');
 }
 require_once(dirname(__FILE__) . '/version.php'); // Include the version info.
 
-define('GITHUB', 'github.com/ZenPhoto20/ZenPhoto20');
+define('GITHUB', 'github.com/ZenPhoto20/netPhotoGraphics');
 define('ZP_LAST_MODIFIED', gmdate('D, d M Y H:i:s') . ' GMT');
 
 if (!defined('SORT_FLAG_CASE'))
@@ -75,9 +79,9 @@ define('DEBUG_OBJECTS', strpos($_debug, 'OBJECTS')); // set to true to log objec
 unset($_debug);
 
 $_zp_DB_details = array(
-		'mysql_host' => gettext('not connected'),
-		'mysql_database' => gettext('not connected'),
-		'mysql_prefix' => gettext('not connected'),
+		'mysql_host' => 'not connected',
+		'mysql_database' => 'not connected',
+		'mysql_prefix' => 'not connected',
 		'mysql_user' => '',
 		'mysql_pass' => ''
 );
@@ -196,6 +200,6 @@ define('RECYCLE_ICON', '<span class="font_icon" style="color: red;font-size: lar
 define('SOUTH_EAST_CORNER_ARROW', '<span class="font_icon" style="color: green;font-weight: bold;">&#8690;</span>');
 define('WARNING_SIGN_ORANGE', '<span class="font_icon" style="color: darkorange;font-size: large;">&#9888;</span>');
 define('WASTEBASKET', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/trashcan.png" /></span>');
-define('ZP_BLUE', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zp.png" /></span>');
-define('ZP_GOLD', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zp_gold.png" /></span>');
+define('BADGE_BLUE', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/np_blue.png" /></span>');
+define('BADGE_GOLD', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/np_gold.png" /></span>');
 ?>

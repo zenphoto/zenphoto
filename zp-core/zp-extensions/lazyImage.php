@@ -8,11 +8,11 @@
  * @package plugins/lazyImage
  * @pluginCategory media
  *
- * Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  */
 
 $plugin_is_filter = 9 | THEME_PLUGIN;
-$plugin_description = gettext('A plugin to turn <i>img src</i> links into lazy loading images.');
+$plugin_description = gettext('A plugin to turn <em>img src</em> links into lazy loading images.');
 
 $option_interface = 'lazyImage';
 

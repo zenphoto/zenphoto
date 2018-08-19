@@ -1,7 +1,7 @@
 <?php
 
 /**
- * root script for ZenPhoto20
+ * root script for for the sote
  * @package core
  *
  */
@@ -23,6 +23,8 @@ if (function_exists('openssl_encrypt')) {
 	$_themeCript->set_secret_iv(SECRET_IV);
 	$_themeCript->set_cipher(INCRIPTION_METHOD);
 }
+$_zp_script_timer['basic requirements'] = microtime();
+
 zp_apply_filter('feature_plugin_load');
 if (DEBUG_PLUGINS) {
 	debugLog('Loading the "feature" plugins.');
@@ -31,10 +33,7 @@ if (DEBUG_PLUGINS) {
 foreach (getEnabledPlugins() as $extension => $plugin) {
 	$loadtype = $plugin['priority'];
 	if ($loadtype & FEATURE_PLUGIN) {
-		if (DEBUG_PLUGINS) {
-			list($usec, $sec) = explode(" ", microtime());
-			$start = (float) $usec + (float) $sec;
-		}
+		$start = microtime();
 		require_once($plugin['path']);
 		if (DEBUG_PLUGINS) {
 			zpFunctions::pluginDebug($extension, $priority, $start);
@@ -42,14 +41,20 @@ foreach (getEnabledPlugins() as $extension => $plugin) {
 		$_zp_loaded_plugins[$extension] = $extension;
 	}
 }
+$_zp_script_timer['feature plugins'] = microtime();
 
 require_once(SERVERPATH . "/" . ZENFOLDER . '/rewrite.php');
 require_once(dirname(__FILE__) . '/template-functions.php');
+if (!defined('SEO_FULLWEBPATH')) {
+	define('SEO_FULLWEBPATH', FULLWEBPATH);
+	define('SEO_WEBPATH', WEBPATH);
+}
 checkInstall();
 // who cares if MOD_REWRITE is set. If we somehow got redirected here, handle the rewrite
 rewriteHandler();
 recordPolicyACK();
-//$_zp_script_timer['require'] = microtime();
+$_zp_script_timer['general functions'] = microtime();
+
 /**
  * Invoke the controller to handle requests
  */
@@ -58,7 +63,7 @@ require_once(SERVERPATH . "/" . ZENFOLDER . '/controller.php');
 
 $_index_theme = $_zp_script = '';
 $_zp_page_check = 'checkPageValidity';
-//$_zp_script_timer['controller'] = microtime();
+
 // Display an arbitrary theme-included PHP page
 if (isset($_GET['p'])) {
 	$_index_theme = prepareCustomPage();
@@ -74,37 +79,32 @@ if (isset($_GET['p'])) {
 } else {
 	$_index_theme = setupTheme();
 }
+$_zp_script_timer['controller'] = microtime();
 
-//$_zp_script_timer['theme setup'] = microtime();
 //	Load the THEME plugins
-if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
+if (preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
+	$custom = false;
+} else {
 	if (DEBUG_PLUGINS) {
 		debugLog('Loading the "theme" plugins.');
 	}
 	foreach (getEnabledPlugins() as $extension => $plugin) {
 		$loadtype = $plugin['priority'];
 		if ($loadtype & THEME_PLUGIN) {
-			if (DEBUG_PLUGINS) {
-				list($usec, $sec) = explode(" ", microtime());
-				$start = (float) $usec + (float) $sec;
-			}
+			$start = microtime();
 			require_once($plugin['path']);
 			if (DEBUG_PLUGINS) {
 				zpFunctions::pluginDebug($extension, $priority, $start);
 			}
 			$_zp_loaded_plugins[$extension] = $extension;
-			//		$_zp_script_timer['load '.$extension] = microtime();
 		}
 	}
-}
-
-
-$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
-$custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
-if (file_exists($custom)) {
-	require_once($custom);
-} else {
-	$custom = false;
+	$_zp_script_timer['theme plugins'] = microtime();
+	$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
+	$custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
+	if (file_exists($custom)) {
+		require_once($custom);
+	}
 }
 
 //	HTML caching?
@@ -126,7 +126,6 @@ if ($_zp_page < 0) {
 	}
 }
 
-//$_zp_script_timer['theme scripts'] = microtime();
 if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (!checkAccess($hint, $show)) { // not ok to view
 		//	don't cache the logon page or you can never see the real one
@@ -167,21 +166,23 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 	$_zp_HTML_cache->abortHTMLCache(false);
 	include(SERVERPATH . "/" . ZENFOLDER . '/404.php');
 }
-//$_zp_script_timer['theme script load'] = microtime();
+
+$_zp_script_timer['theme load'] = microtime();
 zp_apply_filter('zenphoto_information', $_zp_script, $_zp_loaded_plugins, $_index_theme);
-//$_zp_script_timer['expose information'] = microtime();
 db_close(); // close the database as we are done
-echo "\n";
-list($usec, $sec) = explode(' ', array_shift($_zp_script_timer));
-$first = $last = (float) $usec + (float) $sec;
-$_zp_script_timer['end'] = microtime();
-foreach ($_zp_script_timer as $step => $time) {
-	list($usec, $sec) = explode(" ", $time);
-	$cur = (float) $usec + (float) $sec;
-	printf("<!-- " . gettext('Script processing %1$s:%2$.4f seconds') . " -->\n", $step, $cur - $last);
-	$last = $cur;
+if (TEST_RELEASE) {
+	echo "\n";
+	list($usec, $sec) = explode(' ', array_shift($_zp_script_timer));
+	$first = $last = (float) $usec + (float) $sec;
+
+	foreach ($_zp_script_timer as $step => $time) {
+		list($usec, $sec) = explode(" ", $time);
+		$cur = (float) $usec + (float) $sec;
+		printf("<!-- " . gettext('Script processing %1$s:%2$.4f seconds') . " -->\n", $step, $cur - $last);
+		$last = $cur;
+	}
+	if (count($_zp_script_timer) > 1)
+		printf("<!-- " . gettext('Script processing total:%.4f seconds') . " -->\n", $last - $first);
 }
-if (count($_zp_script_timer) > 1)
-	printf("<!-- " . gettext('Script processing total:%.4f seconds') . " -->\n", $last - $first);
 $_zp_HTML_cache->endHTMLCache();
 ?>

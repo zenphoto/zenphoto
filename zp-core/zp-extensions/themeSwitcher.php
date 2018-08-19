@@ -19,7 +19,7 @@
  * @package plugins/themeSwitcher
  * @pluginCategory development
  */
-$plugin_is_filter = 500 | CLASS_PLUGIN;
+$plugin_is_filter = 500 | FEATURE_PLUGIN;
 $plugin_description = gettext('Allow a visitor to select the theme of the gallery.');
 
 $option_interface = 'themeSwitcher';
@@ -75,7 +75,7 @@ class themeSwitcher {
 		if (!empty($unknown)) {
 			$options['note'] = array('key' => 'themeswitcher_note', 'type' => OPTION_TYPE_NOTE,
 					'order' => 4,
-					'desc' => '<span class="notebox">' . gettext('These themes are enabled but have not got their default optons set:') . ' <em>' . implode('</em>, <em>', $unknown) . '</em></span>');
+					'desc' => '<span class="notebox">' . gettext('These themes are enabled but have not got their default options set:') . ' <em>' . implode('</em>, <em>', $unknown) . '</em></span>');
 		}
 
 		return $options;
@@ -165,7 +165,7 @@ class themeSwitcher {
 			}
 			$reloc = pathurlencode(trim(preg_replace('~themeSwitcher=.*?&~', '', getRequestURI() . '&'), '?&'));
 			if (strpos($reloc, '?')) {
-				$reloc .= '&themeSwitcher=%t';
+				$reloc .= '&amp;themeSwitcher=%t';
 			} else {
 				$reloc .= '?themeSwitcher=%t';
 			}
@@ -187,7 +187,7 @@ class themeSwitcher {
 					</a>
 				</div>
 				<?php echo $text; ?>
-				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')" title="<?php echo gettext("Themes will be disabled in this list if selecting them would result in a “not found” error."); ?>">
+				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo $reloc; ?>')" title="<?php echo gettext("Themes will be disabled in this list if selecting them would result in a “not found” error."); ?>">
 					<?php
 					foreach ($themes as $key => $item) {
 						echo '<option value="' . html_encode($key) . '"';

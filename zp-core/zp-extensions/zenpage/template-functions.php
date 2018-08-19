@@ -1860,7 +1860,7 @@ function getPageContent($titlelink = NULL, $published = true) {
 	if (is_Pages() AND empty($titlelink)) {
 		return $_zp_current_page->getContent();
 	}
-	// print content of a page directly on a normal zenphoto theme page or any other page for example
+	// print content of a page directly on a normal theme page or any other page for example
 	if (!empty($titlelink)) {
 		$page = newPage($titlelink);
 		if ($page->getShow() || (!$page->getShow() && !$published)) {
@@ -1895,7 +1895,7 @@ function getPageExtraContent($titlelink = '', $published = true) {
 	if (is_Pages() AND empty($titlelink)) {
 		return $_zp_current_page->getExtracontent();
 	}
-	// print content of a page directly on a normal zenphoto theme page for example
+	// print content of a page directly on a normal theme page for example
 	if (!empty($titlelink)) {
 		$page = newPage($titlelink);
 		if ($page->getShow() || (!$page->getShow() && !$published)) {

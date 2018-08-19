@@ -492,7 +492,7 @@ updatePublished('news');
 				</div> <!-- tab_articles -->
 			</div> <!-- content -->
 		</div> <!-- container -->
+		<?php printAdminFooter(); ?>
 	</div> <!-- main -->
-	<?php printAdminFooter(); ?>
 </body>
 </html>

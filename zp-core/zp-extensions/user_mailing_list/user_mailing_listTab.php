@@ -3,7 +3,7 @@
  *
  * Admin tab for user mailing list
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  * @package plugins/user_mailing_list
  */
 if (!defined('OFFSET_PATH'))
@@ -113,7 +113,7 @@ printAdminHeader('admin', 'Mailing');
 
 			</div>
 		</div><!-- content -->
+		<?php printAdminFooter(); ?>
 	</div><!-- main -->
-	<?php printAdminFooter(); ?>
 </body>
 </html>

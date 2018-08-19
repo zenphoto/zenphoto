@@ -37,8 +37,10 @@
  * @pluginCategory example
  *
  */
-$plugin_is_filter = /* defaultExtension( */ 5 | CLASS_PLUGIN /* ) */; //	if you have such a plugin you probably want to use it
-$plugin_description = gettext('Adds user defined fields to database tables');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = /* defaultExtension( */ 5 | CLASS_PLUGIN /* ) */; //	if you have such a plugin you probably want to use it
+	$plugin_description = gettext('Adds user defined fields to database tables');
+}
 
 if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php')) {
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
@@ -238,6 +240,6 @@ function printCustomField($field, $label = NULL, $object = NULL) {
 if (OFFSET_PATH == 2) { // setup call: add the fields into the database
 	new customFieldExtender;
 } else {
-	customFieldExtender::register();
+	$_zp_plugin_differed_actions['customFieldExtender'] = 'customFieldExtender::register';
 }
 ?>

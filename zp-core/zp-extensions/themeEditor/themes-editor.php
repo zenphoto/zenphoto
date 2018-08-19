@@ -184,9 +184,8 @@ if (!empty($messages)) {
 
 <?php
 echo "\n" . '</div>'; //content
-echo "\n" . '</div>'; //main
-
 printAdminFooter();
+echo "\n" . '</div>'; //main
 echo "\n</body>";
 echo "\n</html>";
 ?>

@@ -703,7 +703,7 @@ function printUnpublishedDropdown() {
  * Prints the dropdown menu for the sortorder selector for the news articles list
  *
  * @author Stephen Billard
- * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  */
 function printSortOrderDropdown() {
 	global $_zp_CMS;
@@ -1348,7 +1348,6 @@ function printCategoriesStatistic() {
 
 /**
  * Prints the links to JavaScript and CSS files zenpage needs.
- * Actually the same as for zenphoto but with different paths since we are in the plugins folder.
  *
  * @param bool $sortable set to true for tabs with sorts.
  *

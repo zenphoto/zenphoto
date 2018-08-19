@@ -3,9 +3,8 @@
 /**
  * USER credentials handlers
  *
- * Class Plugins may override the stand class-auth authentication library. ZenPhoto20 supplies
- * LDAP_auth, an authentication plugin that authenticates via an LDAP server. It
- * also provides a good example of how to implement alternative Authorities.
+ * Class Plugins may override the stand class-auth authentication library. See for example
+ * LDAP_auth, an authentication plugin that authenticates via an LDAP server. 
  *
  *
  * Replacement libraries must implement two classes:

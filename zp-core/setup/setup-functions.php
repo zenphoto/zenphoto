@@ -393,71 +393,12 @@ function setupLog($message, $anyway = false, $reset = false) {
 			}
 			fwrite($f, $message . NEWLINE);
 			fclose($f);
-			chmod(SETUPLOG, DATA_MOD);
+			chmod(SETUPLOG, LOG_MOD);
 			clearstatcache();
 		}
 		if (is_object($_zp_mutex))
 			$_zp_mutex->unlock();
 	}
-}
-
-function setupLanguageSelector() {
-	global $_zp_setupCurrentLocale_result;
-	$languages = generateLanguageList();
-	$unsupported = getSerializedArray(getOption('locale_unsupported'));
-	if (isset($_REQUEST['locale'])) {
-		$locale = sanitize($_REQUEST['locale']);
-		if (getOption('locale') != $locale || isset($unsupported[$locale])) {
-			?>
-			<div class="errorbox">
-				<h2>
-					<?php printf(gettext('<em>%s</em> is not available.'), html_encode($languages[$locale])); ?>
-					<?php printf(gettext('The locale %s is not supported on your server.'), html_encode($locale)); ?>
-					<br />
-					<?php echo gettext('You can use the <em>debug</em> plugin to see which locales your server supports.'); ?>
-				</h2>
-			</div>
-			<?php
-		}
-	}
-	?>
-	<ul class="sflags">
-		<?php
-		$_languages = generateLanguageList();
-		krsort($_languages, SORT_LOCALE_STRING);
-		$currentValue = getOption('locale');
-		foreach ($_languages as $text => $lang) {
-			if (i18nSetLocale($lang)) {
-				?>
-				<li<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
-					<?php
-					if ($lang != $currentValue) {
-						?>
-						<a href="?locale=<?php echo $lang; ?>">
-							<?php
-						}
-						if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png')) {
-							$flag = WEBPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png';
-						} else {
-							$flag = WEBPATH . '/' . ZENFOLDER . '/locale/missing_flag.png';
-						}
-						?>
-						<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
-						<?php
-						if ($lang != $currentValue) {
-							?>
-						</a>
-						<?php
-					}
-					?>
-				</li>
-				<?php
-			}
-		}
-		?>
-	</ul>
-	<?php
-	setupCurrentLocale($_zp_setupCurrentLocale_result);
 }
 
 function setupXSRFDefender($where) {
@@ -508,10 +449,24 @@ function configMod() {
 	}
 }
 
-function printSetupFooter() {
-	echo "<div id=\"footer\">";
-	echo gettext('<span class="zen-logo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/zen-logo-light.png" /></a></span> ');
-	echo ' | <a href="https://' . GITHUB . '/issues" title="Support">' . gettext('Support') . '</a> | <a href="https://' . GITHUB . '/commits/master" title="' . gettext('View Change log') . '">' . gettext('Change log') . "</a>\n</div>";
+function printSetupFooter($checked) {
+	?>
+	<div id="setup-footer">
+		<?php
+		if (!$checked) {
+			?>
+			<span id="footer_left">
+				<?php printLanguageSelector(true); ?>
+			</span>
+			<?php
+		}
+		?>
+		<span id="footer_right">
+			<?php echo '<span class="zenlogo"><a href="https://' . GITHUB . '" title="' . gettext('A simpler media content management system') . '">' . swLogo() . '</a></span> ' . sprintf(gettext('version %1$s'), ZENPHOTO_VERSION); ?>
+			| <a href="https://<?php echo GITHUB; ?>/issues" title="<?php echo gettext('Support'); ?>"><?php echo gettext('Support'); ?></a>
+		</span>
+	</div>
+	<?php
 }
 
 function setupUserAuthorized() {
@@ -537,11 +492,15 @@ function checkUnique($table, $unique) {
 		?>
 		<p class="notebox">
 			<?php
-			printf(gettext('<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>UNIQUE</em> key. There are probably duplicate entries in the table which can cause unpredictable behavior. This can normally be corrected by creating a ZenPhoto20 backup, dropping the table, running setup to restore the table, and then restoring from the backup. Note, however, that the duplicate entries will be lost.'), trim($table, '`'));
+			$msg = sprintf(gettext('<strong>Warning:</strong> the <code>%s</code> table appears not to have a proper <em>UNIQUE</em> key. There are probably duplicate entries in the table which can cause unpredictable behavior. This can normally be corrected by creating a netPhotoGraphics backup, dropping the table, running setup to restore the table, and then restoring from the backup. Note, however, that the duplicate entries will be lost.'), trim($table, '`'));
+			echo $msg;
+			setupLog($msg, true);
 			?>
 		</p>
 		<?php
+		return true;
 	}
+	return false;
 }
 
 /**
@@ -549,7 +508,7 @@ function checkUnique($table, $unique) {
  * @param string $sql
  *
  * @author Stephen Billard
- * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  */
 function setupQuery($sql, $failNotify = true, $log = true) {
 	global $updateErrors;

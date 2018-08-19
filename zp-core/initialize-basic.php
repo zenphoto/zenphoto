@@ -4,6 +4,9 @@
  * one time initialization code for basic execution
  */
 
+require_once(dirname(__FILE__) . '/lib-encryption.php');
+require_once(dirname(__FILE__) . '/lib-utf8.php');
+
 switch (PHP_MAJOR_VERSION) {
 	case 5:
 		switch (PHP_MINOR_VERSION) {
@@ -39,16 +42,22 @@ register_shutdown_function('zpShutDownFunction');
 $_configMutex = new zpMutex('cF');
 $_zp_mutex = new zpMutex();
 
+$_zp_conf_options_associations = $_zp_options = array();
 $_zp_conf_vars = array('db_software' => 'NULL', 'mysql_prefix' => '_', 'charset' => 'UTF-8', 'UTF-8' => 'utf8');
 // Including the config file more than once is OK, and avoids $conf missing.
 if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+	define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
 	@eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
 	if (!isset($_zp_conf_vars['UTF-8']) || $_zp_conf_vars['UTF-8'] === true) {
 		$_zp_conf_vars['UTF-8'] = 'utf8';
 	}
-	define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
 } else {
 	define('DATA_MOD', 0777);
+}
+if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/security.log')) {
+	define('LOG_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . '/security.log') & 0777);
+} else {
+	define('LOG_MOD', DATA_MOD);
 }
 define('DATABASE_PREFIX', $_zp_conf_vars['mysql_prefix']);
 define('LOCAL_CHARSET', $_zp_conf_vars['charset']);
@@ -74,8 +83,6 @@ if (OFFSET_PATH != 2) {
 	}
 }
 
-require_once(dirname(__FILE__) . '/lib-utf8.php');
-
 if (!defined('FILESYSTEM_CHARSET')) {
 	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
 		define('FILESYSTEM_CHARSET', $_zp_conf_vars['FILESYSTEM_CHARSET']);
@@ -87,6 +94,13 @@ if (!defined('FILESYSTEM_CHARSET')) {
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) {
 	$_zp_conf_vars['server_protocol'] = 'http';
+}
+
+foreach ($_zp_conf_vars as $name => $value) {
+	if (!is_array($value)) {
+		$_zp_conf_options_associations[strtolower($name)] = $name;
+		$_zp_options[strtolower($name)] = $value;
+	}
 }
 
 if (!defined('DATABASE_SOFTWARE') && (extension_loaded(strtolower($_zp_conf_vars['db_software'])) || $_zp_conf_vars['db_software'] == 'NULL')) {
@@ -165,8 +179,6 @@ foreach ($_zp_cachefileSuffix as $key => $type) {
 		$_zp_images_classes[$_zp_supported_images[] = strtolower($key)] = 'Image';
 	}
 }
-
-require_once(dirname(__FILE__) . '/lib-encryption.php');
 
 //NOTE: SERVER_PROTOCOL is the option PROTOCOL is what should be used in links!!!!
 define('SERVER_PROTOCOL', getOption('server_protocol'));

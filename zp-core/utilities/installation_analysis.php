@@ -74,7 +74,7 @@ echo '</head>';
 								} else {
 									$notes = '';
 								}
-								printf(gettext('ZenPhoto20 version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official);
+								printf(gettext('netPhotoGraphics version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official);
 								echo $notes . $source;
 								?>
 							</li>
@@ -337,12 +337,12 @@ echo '</head>';
 
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
-	<?php printAdminFooter(); ?>
 </body>
 <script type="text/javascript">
-								var height = Math.floor(($('#overview_left').height() - $('.overview-list-h3').height() * 2) / 2 - 8);
-								$('.overview_list').height(height);
+										var height = Math.floor(($('#overview_left').height() - $('.overview-list-h3').height() * 2) / 2 - 8);
+										$('.overview_list').height(height);
 </script>
 
 <?php

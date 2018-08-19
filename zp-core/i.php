@@ -1,7 +1,7 @@
 <?php
 
 /**
- * i.php: zenphoto image processor
+ * i.php: the image processor
  * All *uncached* image requests go through this file
  * (As of 1.0.8 images are requested directly from the cache if they exist)
  * ******************************************************************************

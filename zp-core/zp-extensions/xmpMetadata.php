@@ -32,8 +32,10 @@
  * @package plugins/xmpMetadata
  * @pluginCategory media
  */
-$plugin_is_filter = 9 | CLASS_PLUGIN;
-$plugin_description = gettext('Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar files.');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 9 | CLASS_PLUGIN;
+	$plugin_description = gettext('Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar files.');
+}
 
 $option_interface = 'xmpMetadata';
 
@@ -610,12 +612,12 @@ class xmpMetadata {
 	 * @return array
 	 *
 	 * @author Stephen Billard
-	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
 	 */
 	static function getMetadataFields() {
 		return array(
 				// Database Field      => array(0:'source', 1:'Metadata Key', 2;'ZP Display Text', 3:Display?	4:size,	5:enabled, 6:type, 7:linked)
-				'XMPAperatureValue' => array('XMP', '<exif:ApertureValue>', gettext('Aperature Value'), false, 52, true, 'string', false),
+				'XMPAperatureValue' => array('XMP', '<exif:ApertureValue>', gettext('Aperture Value'), false, 52, true, 'string', false),
 				'XMPArtist' => array('XMP', '<dc:creator>', gettext('Artist'), false, 52, true, 'string', false),
 				'XMPContrast' => array('XMP', '<exif:Contrast>', gettext('Contrast Setting'), false, 52, true, 'string', false),
 				'XMPDateTimeOriginal' => array('XMP', '<exif:DateTimeOriginal>', gettext('Original Time Taken'), true, 52, true, 'time', false),
@@ -914,7 +916,7 @@ class xmpMetadata {
 				}
 			}
 		}
-		// direct import to ZenPhoto20 fields with no processing required
+		// direct import to fields with no processing required
 		$import = array(
 				'location' => 'XMPSubLocation',
 				'city' => 'XMPCity',

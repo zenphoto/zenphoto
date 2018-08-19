@@ -24,9 +24,9 @@
  *
  * The following tokens are available to represent paths:
  * 	<ul>
- * 		<li><var>%WEBPATH%</v> to represent the WEB path to the zenphoto installation.</li>
- * 		<li><var>%SERVERPATH%</var> to represent the server path to the zenphoto installation.</li>
- * 		<li><var>%PLUGIN_FOLDER%</var> to represent the zenphoto "extensions" folder.</li>
+ * 		<li><var>%WEBPATH%</v> to represent the WEB path to the installation.</li>
+ * 		<li><var>%SERVERPATH%</var> to represent the server path to the installation.</li>
+ * 		<li><var>%PLUGIN_FOLDER%</var> to represent the "extensions" folder.</li>
  * 		<li><var>%USER_PLUGIN_FOLDER%</var> to represent the root "plugin" folder.</li>
  * 		<li><var>%ZENFOLDER%</var> to represent the zp-core folder.</li>
  * </ul>
@@ -44,7 +44,7 @@
  * 	files and place in the image_effects folder (in the global plugins folder.)
  *
  * 	For instance, to add the <i>Reflex effect</i>, download <var>reflex.zip</var>, unzip it, and place <var>reflex.js</var>
- * 	in the folder. Check the image_effects foder in the zenphoto extensions to see if there is already
+ * 	in the folder. Check the image_effects foder in the extensions to see if there is already
  * 	header file. If not create one in the <var>plugins/image_effects</var> folder. Use as a model one of the other
  * 	Effenberger effects header files.
  *
@@ -203,9 +203,6 @@ class image_effects {
 			$effectdata = image_effects::getEffect($_image_effects_random);
 			$invalid_effect = $effectdata && array_key_exists('error', $effectdata);
 		} while ($_image_effects_random && $invalid_effect);
-
-		if (!$_image_effects_random)
-			echo "<br />random effect empty!";
 
 		$selected_effects = array_unique(array(getOption('image_std_images'), getOption('image_custom_images'),
 				getOption('image_std_album_thumbs'), getOption('image_std_image_thumbs'),

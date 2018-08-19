@@ -11,7 +11,7 @@
  * @package plugins/tag_extras
  * @pluginCategory theme
  */
-$plugin_description = gettext("Provides functions to print a tag cloud of all tags from a zenphoto object.");
+$plugin_description = gettext("Provides functions to print a tag cloud of all tags from an object.");
 
 /**
  * Prints a tag cloud list of the tags in one album and optionally its subalbums. Returns FALSE if no value.

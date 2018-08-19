@@ -14,9 +14,10 @@
  * @pluginCategory media
  *
  */
-$plugin_is_filter = 990 | CLASS_PLUGIN;
-$plugin_description = gettext('Provides a means for handling arbitrary file types. (No rendering provided!)');
-
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 990 | CLASS_PLUGIN;
+	$plugin_description = gettext('Provides a means for handling arbitrary file types. (No rendering provided!)');
+}
 
 foreach (get_AnyFile_suffixes() as $suffix) {
 	Gallery::addImageHandler($suffix, 'AnyFile');
@@ -139,7 +140,7 @@ class AnyFile extends TextObject {
 		 * just return the thumbnail as we do not know how to
 		 * render the file.
 		 */
-		return '<img src="' . html_encode(pathurlencode($this->getThumb())) . '">';
+		return '<img src="' . pathurlencode($this->getThumb()) . '">';
 	}
 
 }

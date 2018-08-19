@@ -76,12 +76,6 @@ if (isset($_POST['login'])) { //	Handle the login form.
 		}
 		unset($cloneid);
 	}
-	if ($_zp_loggedin) {
-		$locale = $_zp_current_admin_obj->getLanguage();
-		if (!empty($locale)) { //	set his prefered language
-			setupCurrentLocale($locale);
-		}
-	}
 }
 if ($_zp_loggedin) {
 	if (secureServer()) {

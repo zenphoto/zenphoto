@@ -56,7 +56,7 @@ function loadAlbum($album) {
 						?>
 						<a href="<?php echo html_encode($uri); ?>&amp;debug">
 							<?php
-							echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="30" width="30" alt="X" />' . "\n";
+							echo '<img src="' . pathurlencode($uri) . '" height="30" width="30" alt="X" />' . "\n";
 							?>
 						</a>
 						<?php
@@ -107,9 +107,9 @@ function loadAlbum($album) {
 							<a href="<?php echo html_encode($uri); ?>&amp;debug">
 								<?php
 								if ($thumbstandin) {
-									echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="15" width="15" alt="x" />' . "\n";
+									echo '<img src="' . pathurlencode($uri) . '" height="15" width="15" alt="x" />' . "\n";
 								} else {
-									echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
+									echo '<img src="' . pathurlencode($uri) . '" height="20" width="20" alt="X" />' . "\n";
 								}
 								?>
 							</a>
@@ -292,7 +292,7 @@ if ($alb) {
 							</a>
 						</span>
 						<label>
-							<input type="checkbox" name="<?php echo $theme; ?>" id="<?php echo $theme; ?>" value="" onclick="checkTheme('<?php echo $theme; ?>');"<?php echo $checked; ?> /><?php printf(gettext('all sizes for <i>%1$s</i>'), $themeid); ?>
+							<input type="checkbox" name="<?php echo $theme; ?>" id="<?php echo $theme; ?>" value="" onclick="checkTheme('<?php echo $theme; ?>');"<?php echo $checked; ?> /><?php printf(gettext('all sizes for <em>%1$s</em>'), $themeid); ?>
 						</label>
 						<span id="<?php echo $theme; ?>_list" style="display:none">
 							<ol class="no_bullets"><!-- <?php echo $last; ?> -->
@@ -389,9 +389,7 @@ if ($alb) {
 	<?php
 	echo "\n" . '</div>';
 	echo "\n" . '</div>';
-	echo "\n" . '</div>';
-
 	printAdminFooter();
-
+	echo "\n" . '</div>';
 	echo "\n</body>";
 	?>

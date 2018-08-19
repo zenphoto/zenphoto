@@ -19,7 +19,6 @@ $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if en
 $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
-define('ZENPHOTO_LOCALE', setMainDomain());
 //encrypt/decrypt constants
 define('SECRET_KEY', getOption('secret_key_text'));
 define('SECRET_IV', getOption('secret_init_vector'));
@@ -37,14 +36,16 @@ if (function_exists('openssl_encrypt')) {
 
 require_once(dirname(__FILE__) . '/load_objectClasses.php');
 
-$_zp_current_context_stack = array();
-
 $_zp_albumthumb_selector = array(array('field' => '', 'direction' => '', 'desc' => 'random'),
 		array('field' => 'id', 'direction' => 'DESC', 'desc' => gettext('most recent')),
 		array('field' => 'mtime', 'direction' => '', 'desc' => gettext('oldest')),
 		array('field' => 'title', 'direction' => '', 'desc' => gettext('first alphabetically')),
 		array('field' => 'hitcounter', 'direction' => 'DESC', 'desc' => gettext('most viewed'))
 );
+
+$_zp_UTF8 = new utf8();
+
+$_zp_current_context_stack = array();
 
 $_zp_missing_album = new TransientAlbum(gettext('missing'));
 $_zp_missing_image = new Transientimage($_zp_missing_album, SERVERPATH . '/' . ZENFOLDER . '/images/err-imagenotfound.png');

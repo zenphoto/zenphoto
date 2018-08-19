@@ -56,7 +56,7 @@ class ThemeOptions {
 
 		return array(
 				gettext('Fluid') => array('key' => 'full_width', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 0, 'desc' => gettext('Check to enable fluid full width layout.')),
-				gettext('Homepage slideshow') => array('key' => 'homepage_slideshow', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 1, 'desc' => gettext('Check to include a slideshow on the hompepage.')),
+				gettext('Homepage slideshow') => array('key' => 'homepage_slideshow', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 1, 'desc' => gettext('Check to include a slideshow on the homepage.')),
 				gettext('Slideshow Type') => array('key' => 'carousel_type', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 2,
 						'selections' => array(
@@ -72,7 +72,7 @@ class ThemeOptions {
 				gettext('Album to choose from') => array('key' => 'carousel_album', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 3,
 						'selections' => $albumlist,
-						'desc' => gettext('Choose a specific album to display its images. Album needs to be published. Images are preferrably in panoramic format: 1920px wide')),
+						'desc' => gettext('Choose a specific album to display its images. Album needs to be published. Images are preferably in panoramic format: 1920px wide')),
 				gettext('Number of slides') => array('key' => 'carousel_number', 'type' => OPTION_TYPE_SELECTOR,
 						'order' => 4,
 						'selections' => array(

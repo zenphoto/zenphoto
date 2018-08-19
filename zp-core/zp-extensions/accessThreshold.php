@@ -13,7 +13,7 @@
  * that flooding is not prematurely indicated.
  *
  * @author Stephen Billard (sbillard)
- * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  * @package plugins/accessThreshold
  * @pluginCategory admin

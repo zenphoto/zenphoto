@@ -16,8 +16,9 @@ li {
 }
 
 h1 {
-	font-weight: normal;
-	font-size: 24px;
+	font-weight: 100;
+	font-size: 34px;
+	font-family: Palitino, "Times New Roman", Times, serif;
 }
 
 h1.img {
@@ -25,7 +26,8 @@ h1.img {
 }
 h1 span {
 	position: relative;
-	bottom: 14px;
+	bottom: 10px;
+	color: black;
 }
 h1,h2,h3,h4,h5 {
 	padding: 0px;
@@ -241,7 +243,7 @@ li {
 .sflags img {
 	border: none;
 }
-.sflags li {
+.sflags div {
 	display: inline;
 	float:right;
 	padding: 5px;
@@ -254,4 +256,23 @@ li {
 
 .zen-logo img {
 	vertical-align: sub;
+}
+
+.install_type {
+	display: inline-block;
+	font-variant: small-caps;
+	font-weight:lighter;
+	font-family: Garamond;
+	vertical-align:5%;
+}
+
+#setup-footer {
+	clear: both;
+	color: #597580;
+	margin-top: 8px;
+	margin-right: 30px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	padding-top: 10px;
+	padding-bottom: 15px;
 }

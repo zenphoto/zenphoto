@@ -67,36 +67,33 @@
  * @package plugins/jPlayer
  * @pluginCategory media
  */
-$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
-$plugin_description = gettext("This plugin handles <code>flv</code>, <code>fla</code>, <code>mp3</code>, <code>mp4</code>, <code>m4v</code>, and <code>m4a</code> multi-media files.");
-gettext("Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license.");
-$plugin_disable = zpFunctions::pluginDisable(array(array(!extensionEnabled('class-video'), gettext('This plugin requires the <em>class-video</em> plugin')), array(class_exists('Video') && Video::multimediaExtension() != 'jPlayer' && Video::multimediaExtension() != 'pseudoPlayer', sprintf(gettext('jPlayer not enabled, %s is already instantiated.'), class_exists('Video') ? Video::multimediaExtension() : false)), array(getOption('album_folder_class') === 'external', (gettext('This player does not support <em>External Albums</em>.')))));
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = defaultExtension(5 | CLASS_PLUGIN);
+	$plugin_description = gettext("This plugin handles <code>flv</code>, <code>fla</code>, <code>mp3</code>, <code>mp4</code>, <code>m4v</code>, and <code>m4a</code> multi-media files.");
+	gettext("Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license.");
+	$plugin_disable = zpFunctions::pluginDisable(array(array(!extensionEnabled('class-video'), gettext('This plugin requires the <em>class-video</em> plugin')), array(class_exists('Video') && Video::multimediaExtension() != 'jPlayer' && Video::multimediaExtension() != 'pseudoPlayer', sprintf(gettext('jPlayer not enabled, %s is already instantiated.'), class_exists('Video') ? Video::multimediaExtension() : false)), array(getOption('album_folder_class') === 'external', (gettext('This player does not support <em>External Albums</em>.')))));
+}
 
 $option_interface = 'jplayer_options';
 
-if ($plugin_disable) {
-	enableExtension('jplayer', 0);
-} else {
-	Gallery::addImageHandler('flv', 'Video');
-	Gallery::addImageHandler('fla', 'Video');
-	Gallery::addImageHandler('mp3', 'Video');
-	Gallery::addImageHandler('mp4', 'Video');
-	Gallery::addImageHandler('m4v', 'Video');
-	Gallery::addImageHandler('m4a', 'Video');
+Gallery::addImageHandler('flv', 'Video');
+Gallery::addImageHandler('fla', 'Video');
+Gallery::addImageHandler('mp3', 'Video');
+Gallery::addImageHandler('mp4', 'Video');
+Gallery::addImageHandler('m4v', 'Video');
+Gallery::addImageHandler('m4a', 'Video');
 
-	$_zp_multimedia_extension = new jPlayer(); // claim to be the flash player.
-	zp_register_filter('content_macro', 'jPlayer::macro');
-	zp_register_filter('theme_head', 'jplayer::headJS');
-	if (getOption('jplayer_playlist')) {
-		zp_register_filter('theme_head', 'jplayer::playlistJS');
-	}
+$_zp_multimedia_extension = new jPlayer(); // claim to be the flash player.
+zp_register_filter('content_macro', 'jPlayer::macro');
+zp_register_filter('theme_head', 'jplayer::headJS');
+if (getOption('jplayer_playlist')) {
+	zp_register_filter('theme_head', 'jplayer::playlistJS');
+}
 
-	// theme function wrapper for user convenience
-	function printjPlayerPlaylist($option = "playlist", $albumfolder = "") {
-		global $_zp_multimedia_extension;
-		$_zp_multimedia_extension->printjPlayerPlaylist($option, $albumfolder);
-	}
-
+// theme function wrapper for user convenience
+function printjPlayerPlaylist($option = "playlist", $albumfolder = "") {
+	global $_zp_multimedia_extension;
+	$_zp_multimedia_extension->printjPlayerPlaylist($option, $albumfolder);
 }
 
 class jplayer_options {
@@ -157,10 +154,10 @@ class jplayer_options {
 								gettext('jp-video-480p (720x405px)*') => "jp-video-480p",
 								gettext('jp-video-720p (1280x720px)*') => "jp-video-720p",
 								gettext('jp-video-1080p (1920x1080px)*') => "jp-video-1080p"),
-						'desc' => gettext("jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a <strong>*</strong> are supported by the two zenphoto custom skins only (these two skins are also responsive in width). If you need different sizes you need to modify a skin or make your own and also need to change values in the plugin class method getPlayerSize().")),
+						'desc' => gettext("jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a <strong>*</strong> are supported by the two custom skins only (these two skins are also responsive in width). If you need different sizes you need to modify a skin or make your own and also need to change values in the plugin class method getPlayerSize().")),
 				gettext('Player skin') => array('key' => 'jplayer_skin', 'type' => OPTION_TYPE_SELECTOR,
 						'selections' => $skins,
-						'desc' => gettext("Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS only there may be display issues with certain themes that require manual adjustments. The two zenphoto custom skins are responsive regarding the player width. Place custom skin within the root plugins folder. See plugin documentation for more info."))
+						'desc' => gettext("Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS only there may be display issues with certain themes that require manual adjustments. The two custom skins are responsive regarding the player width. Place custom skin within the root plugins folder. See plugin documentation for more info."))
 		);
 	}
 
@@ -688,7 +685,7 @@ class jPlayer {
 					<?php if (getOption('jplayer_download')) { ?>
 							free:true,
 					<?php } ?>
-					<?php echo $this->supplied; ?>:"<?php echo html_encode(pathurlencode($url = $video->getFullImageURL(FULLWEBPATH))); ?>"
+					<?php echo $this->supplied; ?>:"<?php echo pathurlencode($url = $video->getFullImageURL(FULLWEBPATH)); ?>"
 					<?php echo $this->getCounterpartFiles($url, $ext); ?>
 					<?php echo $videoThumb; ?>
 						}

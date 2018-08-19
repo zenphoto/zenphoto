@@ -1,10 +1,10 @@
 <?php
 /**
- * ZenPhoto20 object paster for tinyMCE
+ * Object paster for tinyMCE
  *
  * @author Stephen Billard (sbillard)
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  */
 // force UTF-8 Ø
@@ -32,7 +32,7 @@ function getIPSizedImage($size, $image) {
 	</head>
 
 	<body>
-		<h2><?php echo gettext('ZenPhoto20 object insertion'); ?></h2>
+		<h2><?php echo gettext('netPhotoGraphics object insertion'); ?></h2>
 		<?php
 		if (isset($_SESSION['pick'])) {
 			$args = $_SESSION['pick'];
@@ -360,7 +360,7 @@ function getIPSizedImage($size, $image) {
 				<?php echo gettext('No object source has been chosen.'); ?>
 			</p>
 			<p>
-				<?php printf(gettext('You can pick a ZenPhoto20 object for insertion by browsing to the object and clicking on the %s icon. This icon will be just below the <em>Title</em> of the object. You can quickly select objects from admin pages that list objects (e.g. the <em>albums</em>, <em>news</em>, <em>categories</em>, or <em>pages</em> tabs or the <em>image order</em> album subtab.) A <em>pick</em> icon is provided for each item in the list.'), PLUS_ICON); ?>
+				<?php printf(gettext('You can pick an object for insertion by browsing to the object and clicking on the %s icon. This icon will be just below the <em>Title</em> of the object. You can quickly select objects from admin pages that list objects (e.g. the <em>albums</em>, <em>news</em>, <em>categories</em>, or <em>pages</em> tabs or the <em>image order</em> album subtab.) A <em>pick</em> icon is provided for each item in the list.'), PLUS_ICON); ?>
 			</p>
 			<?php
 		}

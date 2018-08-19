@@ -553,7 +553,7 @@ class RSS extends feed {
 			$totalimages = $albumobj->getNumImages();
 			$itemlink = $this->host . $albumobj->getLink();
 			$thumb = $albumobj->getAlbumThumbImage();
-			$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($albumobj->getTitle($this->locale)) . '" />';
+			$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" alt="' . html_encode($albumobj->getTitle($this->locale)) . '" />';
 			$title = $albumobj->getTitle($this->locale);
 			if ($this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumobj->name));
@@ -581,15 +581,15 @@ class RSS extends feed {
 			$ext = getSuffix($item->localpath);
 			$albumobj = $item->getAlbum();
 			$itemlink = $this->host . $item->getLink();
-			$fullimagelink = $this->host . html_encode(pathurlencode($item->getFullImageURL()));
-			$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $item->getTitle($this->locale) . '" /><br />';
+			$fullimagelink = $this->host . pathurlencode($item->getFullImageURL());
+			$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" alt="' . $item->getTitle($this->locale) . '" /><br />';
 			$title = $item->getTitle($this->locale);
 			$albumtitle = $albumobj->getTitle($this->locale);
 			$datecontent = '<br />Date: ' . zpFormattedDate(DATE_FORMAT, $item->get('mtime'));
 			if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") || ($ext == "3gp") || ($ext == "mov")) AND $this->mode != "album") {
 				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . PROTOCOL . '://' . $itemlink . '">' . $thumburl . '</a>' . $item->getDesc($this->locale) . $datecontent;
 			} else {
-				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . PROTOCOL . '://' . $itemlink . '"><img src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($title) . '" /></a>' . $item->getDesc($this->locale) . $datecontent;
+				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . PROTOCOL . '://' . $itemlink . '"><img src="' . PROTOCOL . '://' . $this->host . pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" alt="' . html_encode($title) . '" /></a>' . $item->getDesc($this->locale) . $datecontent;
 			}
 		}
 // title
@@ -690,7 +690,7 @@ class RSS extends feed {
 					<pubDate><?php echo date("r", time()); ?></pubDate>
 					<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
 					<docs>http://blogs.law.harvard.edu/tech/rss</docs>
-					<generator>ZenPhoto20 RSS Generator</generator>
+					<generator>netPhotoGraphics RSS Generator</generator>
 					<?php
 					foreach ($feeditems as $feeditem) {
 						switch ($this->feedtype) {

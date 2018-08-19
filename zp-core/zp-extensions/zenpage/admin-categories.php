@@ -252,7 +252,7 @@ zenpageJSCSS();
 				?>
 			</div> <!-- tab_articles -->
 		</div> <!-- content -->
+		<?php printAdminFooter(); ?>
 	</div> <!-- main -->
-	<?php printAdminFooter(); ?>
 </body>
 </html>

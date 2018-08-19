@@ -9,7 +9,7 @@
  * @package plugins/singleAlbum
  * @pluginCategory example
  */
-$plugin_is_filter = 5 | CLASS_PLUGIN;
+$plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Forces a defined album as the index page.');
 
 zp_register_filter('load_request', 'forceAlbum');

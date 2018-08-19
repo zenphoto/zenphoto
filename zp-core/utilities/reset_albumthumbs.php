@@ -76,8 +76,8 @@ echo '</head>';
 				</form>
 			</div>
 		</div><!-- content -->
+		<?php printAdminFooter(); ?>
 	</div><!-- main -->
-	<?php printAdminFooter(); ?>
 </body>
 <?php echo "</html>"; ?>
 

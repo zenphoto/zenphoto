@@ -7,19 +7,20 @@
  * for zenphoto 1.4.6 or later.
  *
  * You should udate the theme/plugin you wish to use. Use the LegacyConverter
- * development subtab to alter your scripts to use the appropriate ZenPhoto20
+ * development subtab to alter your scripts to use the appropriate 
  * methods and properties.
  *
  * @author Stephen Billard (sbillard)
  *
- * Copyright 2014-2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2014-2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  * @package plugins/zenphotoCompatibilityPack
  * @pluginCategory development
  */
-
-$plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN);
-$plugin_description = gettext("Zenphoto compatibility.");
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = defaultExtension(1 | CLASS_PLUGIN);
+	$plugin_description = gettext("Zenphoto compatibility.");
+}
 
 class zenPhotoCompatibilityPack {
 

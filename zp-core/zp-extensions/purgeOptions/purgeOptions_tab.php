@@ -4,7 +4,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  * @package plugins/purgeOptions
  */
@@ -217,9 +217,9 @@ $orphaned = array();
 								<br class="clearall">
 								<div class="purgeOptions_list">
 									<span class="purgeOptionsClass"><?php echo gettext('Orphaned options'); ?></span>
-									<label title="<?php echo gettext('all: no acation'); ?>">
+									<label title="<?php echo gettext('all: no action'); ?>">
 										<?php echo BULLSEYE_BLUE; ?>
-										<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').prop('checked',false);$('.orphaned').prop('checked',false);$('#emptyOptionCheck').prop('checked',false);">
+										<input type="radio" name="orphaned" id="orphanedIgnore" onclick="$('.orphanedDelete').prop('checked', false);$('.orphaned').prop('checked', false);$('#emptyOptionCheck').prop('checked', false);">
 									</label>
 									<label title="<?php echo gettext('all: delete'); ?>">
 										<?php echo WASTEBASKET; ?>
@@ -227,7 +227,7 @@ $orphaned = array();
 									</label>
 									<label title="<?php echo gettext('all: hide'); ?>">
 										<?php echo HIDE_ICON; ?>
-										<input type="radio" name="orphaned" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));$('#emptyOptionCheck').prop('checked',false);">
+										<input type="radio" name="orphaned" id="orphaned" onclick="$('.orphaned').prop('checked', $('#orphaned').prop('checked'));$('#emptyOptionCheck').prop('checked', false);">
 									</label>
 									<?php
 									if ($empty) {
@@ -331,6 +331,7 @@ $orphaned = array();
 				</div>
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
 
 	<script type="text/javascript">
@@ -343,6 +344,5 @@ if (!isset($highlighted)) {
 }
 ?>
 	</script>
-	<?php printAdminFooter(); ?>
 </body>
 </html>

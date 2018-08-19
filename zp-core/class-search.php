@@ -9,7 +9,7 @@
  */
 // force UTF-8 Ø
 //*************************************************************
-//*ZENPHOTO SEARCH ENGINE CLASS *******************************
+//*SEARCH ENGINE CLASS *******************************
 //*************************************************************
 
 define('EXACT_TAG_MATCH', getOption('exact_tag_match'));
@@ -221,7 +221,7 @@ class SearchEngine {
 	 * @return string
 	 *
 	 * @author Stephen Billard
-	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
 	 */
 	static function encode($words) {
 		$words = bin2hex($words);

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Debugging aids for ZenPhoto20
+ * Debugging aids
  *
  * <b><i>Mark release</i> button:</b>
  *
@@ -23,7 +23,7 @@
  *
  * @author Stephen Billard (sbillard)
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  *
  * @package plugins/debug
  * @pluginCategory development

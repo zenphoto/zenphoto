@@ -14,7 +14,7 @@
  * @pluginCategory seo
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
-$plugin_description = gettext("Provides a utility SEO file/folder name clenser.");
+$plugin_description = gettext("Provides a utility SEO file/folder name cleanser.");
 
 if (zp_loggedin(ADMIN_RIGHTS)) {
 	zp_register_filter('admin_tabs', 'seo_cleanup_admin_tabs', -1900);

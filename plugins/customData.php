@@ -19,13 +19,14 @@
  * @pluginCategory admin
  * @deprecated
  *
- * Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
  */
 
-
-$plugin_is_filter = 5 | CLASS_PLUGIN;
-$plugin_description = gettext('This plugin exposes the "custom_data" field on objects.');
-$plugin_notice = gettext('This plugin is for legacy use. You should make a custom field extender plugin.');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 5 | CLASS_PLUGIN;
+	$plugin_description = gettext('This plugin exposes the "custom_data" field on objects.');
+	$plugin_notice = gettext('This plugin is for legacy use. You should make a custom field extender plugin.');
+}
 
 $option_interface = 'customData';
 

@@ -17,8 +17,10 @@
  * @package plugins/security-logger
  * @pluginCategory admin
  */
-$plugin_is_filter = defaultExtension(100 | CLASS_PLUGIN);
-$plugin_description = gettext('Logs selected security events.');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = defaultExtension(100 | CLASS_PLUGIN);
+	$plugin_description = gettext('Logs selected security events.');
+}
 
 $option_interface = 'security_logger';
 
@@ -180,7 +182,7 @@ class security_logger {
 		$f = fopen($file, 'a');
 		if ($f) {
 			if (!$preexists) { // add a header
-				@chmod($file, DATA_MOD);
+				@chmod($file, LOG_MOD);
 				$message = gettext('date' . "\t" . 'requestor’s IP' . "\t" . 'type' . "\t" . 'user ID' . "\t" . 'user name' . "\t" . 'outcome' . "\t" . 'authority' . "\tadditional information");
 				fwrite($f, $message . NEWLINE);
 			}

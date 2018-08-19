@@ -6,8 +6,8 @@
  * The data extracted from image metadata is created with "tags" that can later
  * be translated into the current active language when displayed.
  *
- * Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/ZenPhoto20 ZenPhoto20}
- * for use with ZenPhoto20 CMS software.
+ * @Copyright 2015, 2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+ * for use with ZenPhotoGrapphics CMS software.
  */
 
 function exifTranslate($source) {
@@ -102,8 +102,8 @@ function exifTranslate($source) {
 		case '!flash; auto-mode!' : return str_replace($sw, gettext('Flash; Auto-Mode'), $source);
 		case '!flash, auto-mode, light detected!' : return str_replace($sw, gettext('Flash; Auto-Mode; Return light detected'), $source);
 		case '!flash, auto-mode, light not detected!' : return str_replace($sw, gettext('Flash; Auto-Mode; Return light not detected'), $source);
-		case '!flash, strobe, light detected!' : return str_replace($sw, gettext('Flash; strobe return str_replace($sw, light detected'), $source);
-		case '!flash, strobe, light not detected!' : return str_replace($sw, gettext('Flash; strobe return str_replace($sw, light not detected'), $source);
+		case '!flash, strobe, light detected!' : return str_replace($sw, gettext('Flash; strobe; Return light detected'), $source);
+		case '!flash, strobe, light not detected!' : return str_replace($sw, gettext('Flash; strobe; Return light not detected'), $source);
 		case '!fluorescence!' : return str_replace($sw, gettext("Fluorescence"), $source);
 		case '!fluorescent!' : return str_replace($sw, gettext('Fluorescent'), $source);
 		case '!food!' : return str_replace($sw, gettext("Food"), $source);

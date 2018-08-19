@@ -143,7 +143,7 @@ class cycle {
 								'desc' => gettext("Check if you want to enable touch screen swipe gestures.")),
 						gettext('Slideshow: Pause on hover') => array('key' => 'cycle-slideshow_pausehover', 'type' => OPTION_TYPE_CHECKBOX,
 								'order' => 9,
-								'desc' => gettext("Check if you want the slidesshow to pause on hover."))
+								'desc' => gettext("Check if you want the slideshow to pause on hover."))
 				));
 				break;
 
@@ -649,7 +649,7 @@ if (extensionEnabled('slideshow2') && !OFFSET_PATH) {
 								$imagetitle = html_encode(getBare($imgobj->getTitle()));
 							}
 							?>
-							<a class="slideshowlink" href="<?php echo html_encode(pathurlencode($imagelink)); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a><?php echo html_encodeTagged($after); ?>
+							<a class="slideshowlink" href="<?php echo pathurlencode($imagelink); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a><?php echo html_encodeTagged($after); ?>
 							<?php
 						}
 					}

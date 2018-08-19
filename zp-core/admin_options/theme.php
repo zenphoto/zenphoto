@@ -69,7 +69,7 @@ function saveOptions() {
 		$alb = urldecode(sanitize_path($_POST['themealbum']));
 		$_set_theme_album = newAlbum($alb);
 		if ($_set_theme_album->exists) {
-			$returntab .= '&themealbum=' . html_encode(pathurlencode($alb)) . '&tab=theme';
+			$returntab .= '&themealbum=' . pathurlencode($alb) . '&tab=theme';
 			$themeswitch = $alb != urldecode(sanitize_path($_POST['old_themealbum']));
 		} else {
 			$_set_theme_album = NULL;

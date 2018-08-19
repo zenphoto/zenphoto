@@ -100,8 +100,7 @@ class ThemeOptions {
 						'desc' => gettext('If using a logo image above, you must enter the height of the image in pixels here.')),
 				gettext('Final Image Link Option') => array('key' => 'zpmas_finallink', 'type' => OPTION_TYPE_CUSTOM,
 						'order' => 9,
-						'desc' => gettext('Choose the option for the final image link on image.php.  Can either link to full image using standard zenphoto
-				process (with core options), colorbox (if plugin enabled), or no link (default).')),
+						'desc' => gettext('Choose the option for the final image link on image.php.  You can either link to full image using standard process (with core options), colorbox (if plugin enabled), or no link (default).')),
 				gettext('Disable MetaData Display?') => array('key' => 'zpmas_disablemeta', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 10,
 						'desc' => gettext('Check to disable the metadata (EXIF,IPTC) display on the image page.')),

@@ -194,10 +194,10 @@ zp_apply_filter('admin_note', 'plugins', '');
 				switch ($details['thridparty']) {
 					case 0:
 						$whose = gettext('Official plugin');
-						$ico = 'images/zp_gold.png';
+						$ico = 'images/np_gold.png';
 						break;
 					case 1:
-						$ico = 'images/zp.png';
+						$ico = 'images/np_blue.png';
 						$whose = gettext('Supplemental plugin');
 						$plugin_URL .= '&type=supplemental';
 						break;
@@ -447,11 +447,11 @@ zp_apply_filter('admin_note', 'plugins', '');
 		<br />
 		<ul class="iconlegend">
 			<li>
-				<img src="images/zp_gold.png" alt="">
+				<img src="images/np_gold.png" alt="">
 				<?php echo gettext('Official plugin'); ?>
 			</li>
 			<li>
-				<img src="images/zp.png" alt="">
+				<img src="images/np_blue.png" alt="">
 				<?php echo gettext('Supplemental plugin'); ?>
 			</li>
 			<li>

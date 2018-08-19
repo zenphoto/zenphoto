@@ -193,7 +193,7 @@ function saveOptions() {
 }
 
 function getOptionContent() {
-	global $_zp_gallery, $_zp_images_classes, $_zp_exifvars, $_zp_graphics_optionhandlers, $_zp_sortby, $_zp_cachefileSuffix, $_zp_conf_vars, $_zp_UTF8;
+	global $_zp_gallery, $_zp_images_classes, $_zp_exifvars, $_zp_graphics_optionhandlers, $_zp_sortby, $_zp_cachefileSuffix, $_zp_UTF8;
 	?>
 
 	<script type="text/javascript">
@@ -695,7 +695,7 @@ function getOptionContent() {
 														 name="disclose_password"
 														 id="disclose_password"
 														 onclick="passwordClear('');
-																		 togglePassword('');" />
+																 togglePassword('');" />
 														 <?php echo gettext('Show'); ?>
 										</label>
 
@@ -728,7 +728,7 @@ function getOptionContent() {
 							echo "<select id=\"protect_full_image\" name=\"protect_full_image\">\n";
 							$protection = getOption('protect_full_image');
 							$list = array(gettext('Protected view') => 'Protected view', gettext('Download') => 'Download', gettext('No access') => 'No access');
-							if ($_zp_conf_vars['album_folder_class'] != 'external') {
+							if (getOption('album_folder_class') != 'external') {
 								$list[gettext('Unprotected')] = 'Unprotected';
 							}
 							generateListFromArray(array($protection), $list, false, true);
@@ -758,7 +758,7 @@ function getOptionContent() {
 						<span class="option_info">
 							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
-								<?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?>
+								<?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the default lock image is displayed."); ?>
 							</div>
 						</span>
 					</td>
@@ -890,7 +890,7 @@ function getOptionContent() {
 								<p>
 									<?php echo gettext('Hint: you can drag down the <em>drag handle</em> in the lower right corner to show more selections.') ?>
 								</p>
-								<p><?php echo gettext('If <em>restore fields to defaults</em> is selected the default values for <code>show</code>, <code>hide</code>, and <code>Do not process</code> willl be restored.'); ?></p>
+								<p><?php echo gettext('If <em>restore fields to defaults</em> is selected the default values for <code>show</code>, <code>hide</code>, and <code>Do not process</code> will be restored.'); ?></p>
 								<?php echo gettext('Columns for fields marked <em>do not process</em> will be removed from the database on the next <code>setup</code> execution. Selecting the <em>Mark unused fields do not process</em> will cause metadata fields that have no values to be marked <em>do not process</em> allowing them to be removed from the database.') ?>
 								</p>
 								<p><?php echo gettext('If <em>replace newlines</em> is selected <code>&lt;br /&gt;</code> will replace <em>newline</em> characters from image metadata destined for <em>titles</em> and <em>descriptions</em>. This happens only when the metadata is imported so you may need to refresh your metadata to see the results.'); ?></p>
@@ -926,7 +926,7 @@ function getOptionContent() {
 					$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded cached copies.');
 				} else {
 					$optionText = gettext('replicate IPTC metadata');
-					$desc = gettext('If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded. (The text supplied will be used if the orginal image has no copyright.)');
+					$desc = gettext('If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded. (The text supplied will be used if the original image has no copyright.)');
 				}
 				?>
 				<tr>
