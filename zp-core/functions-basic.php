@@ -220,7 +220,11 @@ function getSuffix($filename) {
  * @return unknown
  */
 function stripSuffix($filename) {
-	return str_replace(strrchr($filename, "."), '', $filename);
+	$split = explode('/', $filename);
+	$base = array_pop($split);
+	$base = substr($base, 0, strrpos($base, '.'));
+	array_push($split, $base);
+	return implode('/', $split);
 }
 
 /**

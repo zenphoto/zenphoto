@@ -1362,7 +1362,7 @@ class Album extends AlbumBase {
 			query("DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
 			query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
 			$success = true;
-			$filestoremove = safe_glob(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
+			$filestoremove = safe_glob(stripSuffix($this->localpath) . '.*');
 			foreach ($filestoremove as $file) {
 				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
 					@chmod($file, 0777);
