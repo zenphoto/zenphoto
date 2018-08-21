@@ -817,13 +817,11 @@ class Gallery {
 
 		//	albums are now in the correct order
 		$albums_ordered = array();
-		foreach ($results as $row) { // check for visible
-			$folder = $row['folder'];
+		foreach ($results as $folder => $row) { // check for visible
 			$album = newAlbum($folder);
 			$subrights = $album->subrights();
-
 			if ($mine ||
-							($row['show'] || $viewUnpublished) // published or overridden by parameter
+							($album->getShow() || $viewUnpublished) // published or overridden by parameter
 							|| $subrights && is_null($album->getParent()) // is the user's managed album
 							|| $subrights && ($subrights & MANAGED_OBJECT_RIGHTS_VIEW ) //	managed subalbum and  user has unpublished rights
 			) {
