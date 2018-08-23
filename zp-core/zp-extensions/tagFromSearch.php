@@ -13,7 +13,7 @@
  * @package plugins/tagFromSearch
  * @pluginCategory media
  *
- * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
  */
 $plugin_is_filter = 9 | FEATURE_PLUGIN;
 $plugin_description = gettext('Facilitates assigning unique tags to related objects.');

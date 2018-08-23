@@ -11,7 +11,6 @@ if (!function_exists("gettext")) {
 }
 require_once(dirname(__FILE__) . '/version.php'); // Include the version info.
 
-define('GITHUB', 'github.com/ZenPhoto20/netPhotoGraphics');
 define('ZP_LAST_MODIFIED', gmdate('D, d M Y H:i:s') . ' GMT');
 
 if (!defined('SORT_FLAG_CASE'))
@@ -202,4 +201,3 @@ define('WARNING_SIGN_ORANGE', '<span class="font_icon" style="color: darkorange;
 define('WASTEBASKET', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/trashcan.png" /></span>');
 define('BADGE_BLUE', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/np_blue.png" /></span>');
 define('BADGE_GOLD', '<span class="font_icon"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/np_gold.png" /></span>');
-?>

@@ -5,7 +5,7 @@
  * updates as needed
  *
  * @author Stephen Billard
- * @Copyright 2016 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+ * @Copyright 2016 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
  *
  */
 $dbSoftware = db_software();

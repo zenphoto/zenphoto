@@ -235,30 +235,22 @@ $buttonlist = array();
 	if (zp_loggedin(ADMIN_RIGHTS)) {
 		if (class_exists('Milo\Github\Api') && zpFunctions::hasPrimaryScripts()) {
 			/*
-			 * Update check Copyright 2017 by Stephen L Billard for use in https://github.com/ZenPhoto20/ZenPhoto20 and derivitives
+			 * Update check Copyright 2017 by Stephen L Billard for use in https://%GITHUB%/netPhotoGraphics and derivitives
 			 */
 			$failures = array();
 			if (getOption('getUpdates_lastCheck') + 8640 < time()) {
 				setOption('getUpdates_lastCheck', time());
-				foreach (array('netPhotoGraphics', 'ZenPhoto20') as $owner) {
-					try {
-						$api = new Github\Api;
-						$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => $owner, 'repo' => 'netPhotoGraphics'));
-						$fullRepoData = $api->decode($fullRepoResponse);
-						$assets = $fullRepoData->assets;
-						if (!empty($assets)) {
-							$item = array_pop($assets);
-							setOption('getUpdates_latest', $item->browser_download_url);
-						}
-						break;
-					} catch (Exception $e) {
-						$failures[] = 'Github Api[' . $owner . ']->' . $e->getMessage();
+				try {
+					$api = new Github\Api;
+					$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => GITHUB_ORG, 'repo' => 'netPhotoGraphics'));
+					$fullRepoData = $api->decode($fullRepoResponse);
+					$assets = $fullRepoData->assets;
+					if (!empty($assets)) {
+						$item = array_pop($assets);
+						setOption('getUpdates_latest', $item->browser_download_url);
 					}
-				}
-				if (!isset($assets)) {
-					foreach ($failures as $msg) {
-						debugLog($msg);
-					}
+				} catch (Exception $e) {
+					debugLog(gettext('GitHub repository not accessable. ') . $e);
 				}
 			}
 

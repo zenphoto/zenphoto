@@ -56,7 +56,7 @@
  * @author Stephen Billard (sbillard)
  * @package plugins/fieldExtender
  *
- * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
  */
 
 class fieldExtender {

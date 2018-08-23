@@ -246,3 +246,20 @@ define('MAX_SIZE', getOption('image_max_size'));
 
 define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
 define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
+
+
+
+/**
+ * TODO: This code should eventually be replaced by a simple define of GOTHUB_ORG once
+ * the organization has been changed.
+ */
+if (getOption('GitHubOwner') == 'netPhotoGraphics') {
+	define('GITHUB_ORG', 'netPhotoGraphics');
+} else {
+	if (version_compare(PHP_VERSION, '5.5.0', '>=')) {
+		require_once(dirname(__FILE__) . '/github_locator.php');
+	} else {
+		define('GITHUB_ORG', 'ZenPhoto20');
+	}
+}
+define('GITHUB', 'github.com/' . GITHUB_ORG . '/netPhotoGraphics');

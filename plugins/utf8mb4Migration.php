@@ -24,7 +24,7 @@
  * @package plugins/utf8mb4Migration
  * @pluginCategory development
  *
- * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
  */
 
 // force UTF-8 Ø

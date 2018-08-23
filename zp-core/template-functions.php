@@ -1364,7 +1364,7 @@ function getParentBreadcrumb() {
 
 	$n = count($parents);
 	if ($n > 0) {
-		//the following loop code is @Copyright 2016 by Stephen L Billard for use in ZenPhoto20 and derivitoves (https://github.com/ZenPhoto20/ZenPhoto20)
+		//the following loop code is @Copyright 2016 by Stephen L Billard for use in netPhotoGraphics and derivitoves 
 		array_push($parents, $_zp_current_album);
 		$parent = array_shift($parents);
 		while ($parent != $_zp_current_album) {
@@ -3951,7 +3951,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 														return true;
 													});
 													function search_all() {
-														//search all is Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}. All rights reserved
+														//search all is Copyright 2014 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}. All rights reserved
 														var check = $('#SEARCH_checkall').prop('checked');
 														$('.SEARCH_checkall').prop('checked', check);
 													}
