@@ -17,6 +17,7 @@ if (getOption('GitHubOwner_lastCheck') + 8640 < time()) {
 			$api = new Github\Api;
 			$fullRepoResponse = $api->get('/repos/:owner/:repo/releases/latest', array('owner' => $owner, 'repo' => 'netPhotoGraphics'));
 			$fullRepoData = $api->decode($fullRepoResponse);
+			setOption('GitHubOwner', $owner);
 			break;
 		} catch (Exception $e) {
 
@@ -26,4 +27,3 @@ if (getOption('GitHubOwner_lastCheck') + 8640 < time()) {
 	$owner = getOption('GitHubOwner');
 }
 define('GITHUB_ORG', $owner);
-setOption('GitHubOwner', $owner);
