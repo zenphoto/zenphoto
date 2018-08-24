@@ -2,7 +2,7 @@
 
 # Releases
 
-The current "official" release (and all previous ones) may be found at [Releases] (https://github.com/ZenPhoto20/ZenPhoto20/releases)
+The current "official" release (and all previous ones) may be found at [Releases](https://github.com/ZenPhoto20/ZenPhoto20/releases)
 
 Tagged releases include one or more single file install packages for ease of installation. Instructions for its use are included in the download. (Interim install packages are created to incorporate minor updates to the software.)
 
