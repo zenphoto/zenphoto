@@ -28,7 +28,7 @@ the we modernized the software, the support process, and the integration of thir
 
 Problems may be reported and features requested via repository [__issues__](https://github.com/ZenPhoto20/ZenPhoto20/issues)
 
-Discussions are hosted on the [ZenPhoto20 __Google Group__](https://groups.google.com/forum/#!forum/zenphoto20)
+Discussions are hosted on the [netPhotoGraphics Forum](https://netphotographics.org/forum/)
 
 # Also of interest
-[WIKI](https://github.com/ZenPhoto20/ZenPhoto20/wiki)
+[WIKI](https://github.com/ZenPhoto20/netphotographics/wiki)
