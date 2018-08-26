@@ -1400,14 +1400,22 @@ function shuffle_assoc(&$array) {
  * @param string $order
  */
 function sortByKey($results, $sortkey, $order) {
+	if (empty($results)) { //	order does not matter if nothing is there
+		return $results;
+	}
 	$sortkey = str_replace('`', '', $sortkey);
 	switch ($sortkey) {
 		case 'title':
 		case 'desc':
 			return sortByMultilingual($results, $sortkey, $order);
 		case 'RAND()':
-			shuffle($results);
-			return $results;
+			$new = array();
+			$keys = array_keys($results);
+			shuffle($keys);
+			foreach ($keys as $key) {
+				$new[$key] = $results[$key];
+			}
+			return $new;
 		default:
 			if (preg_match('`[\/\(\)\*\+\-!\^\%\<\>\ = \&\|]`', $sortkey)) {
 				return $results; //	We cannot deal with expressions
