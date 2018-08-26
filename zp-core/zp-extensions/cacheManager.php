@@ -305,9 +305,13 @@ class cacheManager {
 		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager"');
 		foreach ($_POST['cacheManager'] as $cacheimage) {
 			if (!isset($cacheimage['delete']) && count($cacheimage) > 1) {
+				$subtype = $cacheimage['subtype'];
+				unset($cacheimage['subtype']);
 				$cacheimage['theme'] = preg_replace("/[\s\"\']+/", "-", $cacheimage['theme']);
-				$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`, `data`) VALUES ("cacheManager",' . db_quote(@$cacheimage['subtype']) . ',' . db_quote($cacheimage['theme']) . ',' . db_quote(serialize($cacheimage)) . ')';
-				query($sql);
+				if (!empty($cacheimage['theme'])) {
+					$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`, `data`) VALUES ("cacheManager",' . db_quote($subtype) . ',' . db_quote($cacheimage['theme']) . ',' . db_quote(serialize($cacheimage)) . ')';
+					query($sql);
+				}
 			}
 		}
 		return false;

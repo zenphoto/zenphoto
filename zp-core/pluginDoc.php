@@ -35,7 +35,7 @@
 global $_zp_CMS;
 
 function processCommentBlock($commentBlock) {
-	global $plugin_author, $subpackage;
+	global $plugin_author, $plugin_copyright, $subpackage;
 	$markup = array(
 			'&lt;i&gt;' => '<em>',
 			'&lt;/i&gt;' => '</em>',
@@ -75,7 +75,9 @@ function processCommentBlock($commentBlock) {
 			'%STATIC_CACHE_FOLDER%' => STATIC_CACHE_FOLDER,
 			'%FULLWEBPATH%' => FULLWEBPATH,
 			'%WEBPATH%' => WEBPATH,
-			'%RW_SUFFIX%' => RW_SUFFIX
+			'%RW_SUFFIX%' => RW_SUFFIX,
+			'%GITHUB_ORG%' => GITHUB_ORG,
+			'%GITHUB%' => GITHUB
 	);
 	$body = $doc = '';
 	$par = false;
@@ -95,9 +97,24 @@ function processCommentBlock($commentBlock) {
 			if (strpos($line, '@') === 0) {
 				preg_match('/@(.*?)\s/', $line, $matches);
 				if (!empty($matches)) {
-					switch ($matches[1]) {
+					switch (strtolower($matches[1])) {
 						case 'author':
 							$plugin_author = trim(substr($line, 8));
+							break;
+						case 'copyright':
+							$plugin_copyright = trim(substr($line, 10));
+							preg_match('~{@link(.*)}~', $plugin_copyright, $matches);
+							if (!empty($matches)) {
+								$line = trim($matches[1]);
+								$l = strpos($line, ' ');
+								if ($l === false) {
+									$text = $line;
+								} else {
+									$text = substr($line, $l + 1);
+									$line = substr($line, 0, $l);
+								}
+								$plugin_copyright = str_replace($matches[0], '<a href="' . $line . '">' . $text . '</a>', $plugin_copyright);
+							}
 							break;
 						case 'subpackage':
 							$subpackage = trim(substr($line, 11));
@@ -148,6 +165,7 @@ function processCommentBlock($commentBlock) {
 			}
 		}
 	}
+
 	if ($par) {
 		$doc .= '</p>';
 		$body .= $doc;
@@ -182,6 +200,7 @@ if (!defined('OFFSET_PATH')) {
 	$plugin_notice = '';
 	$plugin_disable = '';
 	$plugin_author = '';
+	$plugin_copyright = '';
 	$plugin_version = '';
 	$plugin_is_filter = '';
 	$plugin_URL = '';
@@ -214,8 +233,6 @@ if (!defined('OFFSET_PATH')) {
 	$pluginStream = str_replace('/* LegacyConverter was here */', '', @file_get_contents($pluginToBeDocPath));
 	$i = strpos($pluginStream, '/*');
 	$j = strpos($pluginStream, '*/');
-
-	$links = array();
 
 	if ($i !== false && $j !== false) {
 		$commentBlock = substr($pluginStream, $i + 2, $j - $i - 2);
@@ -380,10 +397,10 @@ if (!defined('OFFSET_PATH')) {
 						<h3><?php printf('Author: %s', html_encode($plugin_author)); ?></h3>
 						<?php
 					}
-					foreach ($links as $key => $link) {
-						if ($key)
-							echo "<br />";
-						echo '<a href="' . html_encode($link['link']) . '">' . html_encode($link['text']) . '</a>';
+					if ($plugin_copyright) {
+						?>
+						<h3><?php echo '© ' . html_encodeTagged($plugin_copyright); ?></h3>
+						<?php
 					}
 					?>
 					<div>

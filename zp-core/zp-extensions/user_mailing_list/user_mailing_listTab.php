@@ -3,7 +3,7 @@
  *
  * Admin tab for user mailing list
  *
- * @Copyright 2014 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+ * @Copyright 2014 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
  * @package plugins/user_mailing_list
  */
 if (!defined('OFFSET_PATH'))

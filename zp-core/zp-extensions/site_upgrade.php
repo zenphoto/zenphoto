@@ -45,7 +45,7 @@ $_site_filelist = array(
 
 class site_upgrade {
 
-	static function notice($html) {
+	static function notice() {
 		?>
 		<div style="width: 100%; position: fixed; top: 0px; left: 0px; z-index: 1000;" >
 			<p style="text-align: center;">
@@ -82,8 +82,7 @@ class site_upgrade {
 			case 'closed_for_test';
 				?>
 				<p class="notebox">
-					<strong><?php echo gettext('Site is available for testing only.');
-				?></strong>
+					<strong><?php echo gettext('Site is available for testing only.'); ?></strong>
 				</p>
 				<?php
 				break;
@@ -282,7 +281,7 @@ switch (OFFSET_PATH) {
 				exit();
 			}
 		} else if ($state == 'closed_for_test') {
-			zp_register_filter('theme_body_open', 'site_upgrade_notice');
+			zp_register_filter('theme_body_open', 'site_upgrade::notice');
 		}
 		break;
 	default:

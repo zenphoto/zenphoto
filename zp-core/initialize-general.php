@@ -43,8 +43,6 @@ $_zp_albumthumb_selector = array(array('field' => '', 'direction' => '', 'desc' 
 		array('field' => 'hitcounter', 'direction' => 'DESC', 'desc' => gettext('most viewed'))
 );
 
-$_zp_UTF8 = new utf8();
-
 $_zp_current_context_stack = array();
 
 $_zp_missing_album = new TransientAlbum(gettext('missing'));

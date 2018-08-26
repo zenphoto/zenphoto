@@ -2,7 +2,7 @@
 /**
  * script for netPhotoGraphics logon button action.
  *
- * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
  * @author Stephen Billard (sbillard)
  *
  * @package admin

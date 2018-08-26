@@ -1158,6 +1158,7 @@ zp-core/functions-filter.php
 zp-core/functions-i18n.php
 zp-core/functions-image.php
 zp-core/functions.php
+zp-core/github_locator.php
 zp-core/global-definitions.php
 zp-core/gpl-2.0-standalone.htm
 zp-core/htaccess
@@ -8354,4 +8355,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8356
+8357

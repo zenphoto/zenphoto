@@ -154,8 +154,10 @@ $custom = array();
 
 $result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type` = "cacheManager"');
 while ($row = db_fetch_assoc($result)) {
-	$row = getSerializedArray($row['data']);
-	$custom[] = $row;
+	$datarow = getSerializedArray($row['data']);
+	if ($datarow['theme']) {
+		$custom[] = $datarow;
+	}
 }
 $custom = sortMultiArray($custom, array('theme', 'album', 'thumb', 'image_size', 'image_width', 'image_height'), false, true, true);
 
@@ -229,6 +231,7 @@ if ($alb) {
 				<?php
 			}
 			$seen = array();
+
 			foreach ($custom as $key => $cacheimage) {
 				if (!is_array($enabled) || in_array($key, $enabled)) {
 					$themeid = $cacheimage['theme'];
@@ -270,9 +273,13 @@ if ($alb) {
 							$postfix = str_replace('_w', '_wMax', $postfix);
 							$postfix = str_replace('_h', '_hMax', $postfix);
 						} else {
-							$postfix = '_' . gettext('invalid_MaxSpace');
+							$postfix = '_' . gettext('invalid MaxSpace');
 							$checked = ' disabled="disabled"';
 						}
+					}
+					if (empty($postfix)) {
+						$postfix = gettext('invalid Cache Set');
+						$checked = ' disabled="disabled"';
 					}
 
 					if ($theme != $last && !is_array($enabled)) {

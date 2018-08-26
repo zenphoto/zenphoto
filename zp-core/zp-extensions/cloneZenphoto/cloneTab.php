@@ -36,9 +36,6 @@ printAdminHeader('admin');
 				<div class="tabbox">
 					<?php
 					$clones = cloneZenphoto::clones(false);
-					if (isset($folder)) {
-						unset($clones[rtrim($folder, '/')]);
-					}
 					$invalid = false;
 					foreach ($clones as $clone => $data) {
 						$version = '';
@@ -47,26 +44,28 @@ printAdminHeader('admin');
 						if ($data['valid']) {
 							$title = gettext('Visit the site.');
 							$strike = '';
-							$old = $_zp_conf_vars;
-							unset($_zp_conf_vars);
-							require ($clone . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+							if (file_exists($clone . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+								$old = $_zp_conf_vars;
+								unset($_zp_conf_vars);
+								require ($clone . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 
-							$saveDB = $_zp_DB_details;
-							db_close();
-							//	Setup for the MyBB database
-							$config = array('mysql_host' => $_zp_conf_vars['mysql_host'], 'mysql_database' => $_zp_conf_vars['mysql_database'], 'mysql_prefix' => $_zp_conf_vars['mysql_prefix'], 'mysql_user' => $_zp_conf_vars['mysql_user'], 'mysql_pass' => $_zp_conf_vars['mysql_pass']);
-							if ($_zp_DB_connection = db_connect($config, false)) {
-								$sql = 'SELECT * FROM `' . $config['mysql_prefix'] . 'options` WHERE `name`="zenphoto_install"';
-								if ($result = query_single_row($sql, FALSE)) {
-									$signature = @unserialize($result['value']);
-									if ($signature['ZENPHOTO'] != $myVersion) {
-										$version = ' (' . sprintf(gettext('Last setup run version: %s'), $signature['ZENPHOTO']) . ')';
+								$saveDB = $_zp_DB_details;
+								db_close();
+								//	Setup for the MyBB database
+								$config = array('mysql_host' => $_zp_conf_vars['mysql_host'], 'mysql_database' => $_zp_conf_vars['mysql_database'], 'mysql_prefix' => $_zp_conf_vars['mysql_prefix'], 'mysql_user' => $_zp_conf_vars['mysql_user'], 'mysql_pass' => $_zp_conf_vars['mysql_pass']);
+								if ($_zp_DB_connection = db_connect($config, false)) {
+									$sql = 'SELECT * FROM `' . $config['mysql_prefix'] . 'options` WHERE `name`="zenphoto_install"';
+									if ($result = query_single_row($sql, FALSE)) {
+										$signature = @unserialize($result['value']);
+										if ($signature['ZENPHOTO'] != $myVersion) {
+											$version = ' (' . sprintf(gettext('Last setup run version: %s'), $signature['ZENPHOTO']) . ')';
+										}
 									}
 								}
+								db_close();
+								$_zp_DB_connection = db_connect($saveDB);
+								$_zp_conf_vars = $old;
 							}
-							db_close();
-							$_zp_DB_connection = db_connect($saveDB);
-							$_zp_conf_vars = $old;
 						} else { // no longer a clone of this installation
 							$strike = ' style="text-decoration: line-through;"';
 							$title = gettext('No longer a clone of this installation.');

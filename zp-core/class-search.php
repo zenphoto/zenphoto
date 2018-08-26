@@ -221,7 +221,7 @@ class SearchEngine {
 	 * @return string
 	 *
 	 * @author Stephen Billard
-	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
 	 */
 	static function encode($words) {
 		$words = bin2hex($words);

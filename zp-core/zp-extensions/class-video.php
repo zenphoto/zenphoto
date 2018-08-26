@@ -135,7 +135,7 @@ class Video extends Image {
 	 * @return array
 	 *
 	 * @author Stephen Billard
-	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
 	 */
 	static function getMetadataFields() {
 		return array(
@@ -505,7 +505,7 @@ class Video extends Image {
 	 * @return string
 	 *
 	 * @author Stephen Billard
-	 * @Copyright 2015 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+	 * @Copyright 2015 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
 	 */
 	static function multimediaExtension() {
 		global $_zp_multimedia_extension;

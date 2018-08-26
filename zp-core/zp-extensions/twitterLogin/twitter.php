@@ -5,7 +5,7 @@
  * by Stephen Billard
  *
  * @author Stephen Billard (sbillard)
- * @Copyright 2017 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+ * @Copyright 2017 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
  *
  * @package plugins/twitterLogin
  */

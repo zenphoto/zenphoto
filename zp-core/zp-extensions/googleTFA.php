@@ -25,7 +25,7 @@
  * @package plugins/googleTFA
  * @pluginCategory admin
  *
- * @Copyright 2018 by Stephen L Billard for use in {@link https://github.com/ZenPhoto20/netPhotoGraphics netPhotoGraphics and derivatives}
+ * @Copyright 2018 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
  *
  */
 if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
