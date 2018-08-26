@@ -6,6 +6,7 @@
 
 require_once(dirname(__FILE__) . '/lib-encryption.php');
 require_once(dirname(__FILE__) . '/lib-utf8.php');
+$_zp_UTF8 = new utf8();
 
 switch (PHP_MAJOR_VERSION) {
 	case 5:
