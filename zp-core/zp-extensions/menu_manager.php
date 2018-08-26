@@ -158,8 +158,9 @@ function getItem($id) {
 function checkChosenMenuset() {
 	if (isset($_REQUEST['menuset'])) {
 		$menuset = sanitize($_REQUEST['menuset']);
+		setOption('menu_lastChanged', $menuset);
 	} else {
-		$menuset = NULL;
+		$menuset = getOption('menu_lastChanged');
 	}
 	return $menuset;
 }
