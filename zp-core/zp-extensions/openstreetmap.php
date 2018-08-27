@@ -34,7 +34,6 @@ class openStreetMapOptions {
 		setOptionDefault('osmap_minzoom', 2);
 		setOptionDefault('osmap_maxzoom', 18);
 		if (getOption('osmap_controlpos')) {
-
 			setOption('osmap_zoomcontrolpos', getOption('osmap_controlpos'));
 			purgeOption('osmap_controlpos');
 		}
@@ -70,7 +69,6 @@ class openStreetMapOptions {
 	function getOptionsSupported() {
 		$providers = array_combine(openStreetMap::getTitleProviders(), openStreetMap::getTitleProviders());
 		foreach ($providers as $provider) {
-			// requested because option names may not contain '.'
 			$provider_dbname = str_replace(".", "_", $provider);
 			$layerslist[$provider] = 'osmap_layer_' . $provider_dbname;
 		}
@@ -220,7 +218,6 @@ class openStreetMapOptions {
 				gettext('Mapbox - Access token') => array(
 						'key' => 'osmap_mapbox_accesstoken',
 						'type' => OPTION_TYPE_TEXTBOX,
-
 						'order' => 24,
 						'desc' => ''),
 				gettext('Thunderforest - ApiKey') => array(
@@ -554,8 +551,8 @@ class openStreetMap {
 	 */
 	function getImageGeodata($image) {
 		global $_zp_current_image;
-		$result = array();
 
+		$result = array();
 		if (isImageClass($image)) {
 			$exif = $image->getMetaData();
 			if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
@@ -597,7 +594,6 @@ class openStreetMap {
 	 */
 	function getAlbumGeodata($album) {
 		$result = array();
-
 		$images = $album->getImages(0, 0, null, null, false);
 		foreach ($images as $an_image) {
 			$image = newImage($album, $an_image);
@@ -851,14 +847,12 @@ class openStreetMap {
 				if ($this->showmarkers) {
 					switch ($this->mode) {
 						case 'single':
-
 							?>
 							var marker = L.marker([geodata[0]['lat'], geodata[0]['long']]).addTo(map); // from image
 							<?php
 							break;
 						case 'single-cluster':
 						case 'cluster':
-
 							?>
 							var markers_cluster = new L.MarkerClusterGroup({
 								maxClusterRadius: <?php echo $this->clusterradius; ?>,
@@ -888,7 +882,6 @@ class openStreetMap {
 							break;
 					}
 				}
-
 				?>
 			</script>
 			<?php
