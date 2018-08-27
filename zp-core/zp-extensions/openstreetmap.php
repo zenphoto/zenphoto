@@ -107,7 +107,7 @@ class openStreetMapOptions {
 						'order' => 7,
 						'selections' => $providers,
 						'desc' => gettext('The default map tile provider to use. Only free providers are included.'
-										. ' Some providers (Here, Mapbox, Thunderforest,  Geoportail) require access credentials and registration.'
+										. ' Some providers (Here, Mapbox, Thunderforest, Geoportail) require access credentials and registration.'
 										. ' More info on <a href="https://github.com/leaflet-extras/leaflet-providers">leaflet-providers</a>')),
 				gettext('Zoom controls position') => array(
 						'key' => 'osmap_zoomcontrolpos',
@@ -797,13 +797,13 @@ class openStreetMap {
 					echo $this->getTileLayerJS($this->defaultlayer) . '.addTo(map);';
 
 				} else {
-				    $defaultlayer = $this->defaultlayer;
+					$defaultlayer = $this->defaultlayer;
 					$layerslist = $this->layerslist;
 					$layerslist[$defaultlayer] = $defaultlayer;
 					ksort($layerslist);
 					$baselayers = "";
 					foreach ($layerslist as $layer) {
-						if ($layer ==  $defaultlayer) {
+						if ($layer == $defaultlayer) {
 							$baselayers = $baselayers . "'" . $defaultlayer . "': defaultLayer,\n";
 						} else {
 							$baselayers = $baselayers . "'" . $layer . "': " . $this->getTileLayerJS($layer) . ",\n";
