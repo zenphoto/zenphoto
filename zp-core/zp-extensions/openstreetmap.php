@@ -26,18 +26,34 @@ zp_register_filter('theme_head', 'openStreetMap::scripts');
 class openStreetMapOptions {
 
 	function __construct() {
+		$providers = array_combine(openStreetMap::getTitleProviders(), openStreetMap::getTitleProviders());
+
 		setOptionDefault('osmap_width', '100%'); //responsive by default!
 		setOptionDefault('osmap_height', '300px');
 		setOptionDefault('osmap_zoom', 4);
 		setOptionDefault('osmap_minzoom', 2);
 		setOptionDefault('osmap_maxzoom', 18);
-		setOptionDefault('osmap_controlpos', 'topleft');
-		setOptionDefault('osmap_maptiles', 'OpenStreetMap_Mapnik');
+		if (getOption('osmap_controlpos')) {
+
+			setOption('osmap_zoomcontrolpos', getOption('osmap_controlpos'));
+			purgeOption('osmap_controlpos');
+		}
+		if (getOption('osmap_maptiles')) {
+			setOption('osmap_defaultlayer', getOption('osmap_maptiles'));
+			purgeOption('osmap_maptiles');
+		}
 		setOptionDefault('osmap_clusterradius', 40);
 		setOptionDefault('osmap_markerpopup', 1);
 		setOptionDefault('osmap_markerpopup_title', 1);
 		setOptionDefault('osmap_markerpopup_desc', 1);
 		setOptionDefault('osmap_markerpopup_thumb', 1);
+		setOptionDefault('osmap_showlayerscontrol', 0);
+		setOptionDefault('osmap_layerscontrolpos', 'topright');
+		foreach ($providers as $provider) {
+			// requested because option names may not contain '.'
+			$provider = str_replace(".", "_", $provider);
+			setOptionDefault('osmap_layer_' . $provider, 0);
+		}
 		setOptionDefault('osmap_showscale', 1);
 		setOptionDefault('osmap_showalbummarkers', 0);
 		setOptionDefault('osmap_showminimap', 0);
@@ -53,7 +69,13 @@ class openStreetMapOptions {
 
 	function getOptionsSupported() {
 		$providers = array_combine(openStreetMap::getTitleProviders(), openStreetMap::getTitleProviders());
-		return array(
+		foreach ($providers as $provider) {
+			// requested because option names may not contain '.'
+			$provider_dbname = str_replace(".", "_", $provider);
+			$layerslist[$provider] = 'osmap_layer_' . $provider_dbname;
+		}
+
+		$options = array(
 				gettext('Map dimensions—width') => array(
 						'key' => 'osmap_width',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -78,17 +100,17 @@ class openStreetMapOptions {
 						'key' => 'osmap_maxzoom',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 6,
-						'desc' => gettext("Default maximum zoom level possible.")),
-				gettext('Map tiles') => array(
-						'key' => 'osmap_maptiles',
+						'desc' => gettext("Default maximum zoom level possible. If no value is defined, use the maximum zoom level of the map used (may be different for each map).")),
+				gettext('Default layer') => array(
+						'key' => 'osmap_defaultlayer',
 						'type' => OPTION_TYPE_SELECTOR,
 						'order' => 7,
 						'selections' => $providers,
-						'desc' => gettext('The map tile provider to use. Only free providers are included.'
-										. ' HERE, Mapbox and Thunderforest map tiles require access credentials and Esri requires registration.'
+						'desc' => gettext('The default map tile provider to use. Only free providers are included.'
+										. ' Some providers (Here, Mapbox, Thunderforest,  Geoportail) require access credentials and registration.'
 										. ' More info on <a href="https://github.com/leaflet-extras/leaflet-providers">leaflet-providers</a>')),
-				gettext('Controls position') => array(
-						'key' => 'osmap_controlpos',
+				gettext('Zoom controls position') => array(
+						'key' => 'osmap_zoomcontrolpos',
 						'type' => OPTION_TYPE_SELECTOR,
 						'order' => 8,
 						'selections' => array(
@@ -97,7 +119,7 @@ class openStreetMapOptions {
 								gettext('Bottom left') => 'bottomleft',
 								gettext('Bottom right') => 'bottomright'
 						),
-						'desc' => gettext('Position of the map controls')),
+						'desc' => gettext('Position of the zoom controls')),
 				gettext('Cluster radius') => array(
 						'key' => 'osmap_clusterradius',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -128,6 +150,28 @@ class openStreetMapOptions {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 14,
 						'desc' => gettext("Enable if you want to show desc of images in the marker popups. Only for album context.")),
+				gettext('Show layers controls') => array(
+						'key' => 'osmap_showlayerscontrol',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 14.2,
+						'desc' => gettext("Enable if you want to show layers controls with selected layers list below.")),
+				gettext('Layers list') => array(
+						'key' => 'osmap_layerslist',
+						'type' => OPTION_TYPE_CHECKBOX_UL,
+						'order' => 14.4,
+						'checkboxes' => $layerslist,
+						'desc' => gettext("Choose layers list to show in layers controls. No need to select the default layer again, otherwise it will be deduplicated.")),
+				gettext('Layers controls position') => array(
+						'key' => 'osmap_layerscontrolpos',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 14.6,
+						'selections' => array(
+								gettext('Top left') => 'topleft',
+								gettext('Top right') => 'topright',
+								gettext('Bottom left') => 'bottomleft',
+								gettext('Bottom right') => 'bottomright'
+						),
+						'desc' => gettext('Position of the layers controls')),
 				gettext('Show scale') => array(
 						'key' => 'osmap_showscale',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -176,14 +220,21 @@ class openStreetMapOptions {
 				gettext('Mapbox - Access token') => array(
 						'key' => 'osmap_mapbox_accesstoken',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 25,
+
+						'order' => 24,
 						'desc' => ''),
 				gettext('Thunderforest - ApiKey') => array(
 						'key' => 'osmap_thunderforest_apikey',
 						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 25,
+						'desc' => ''),
+				gettext('GeoportailFrance - ApiKey') => array(
+						'key' => 'osmap_geoportailfrance_apikey',
+						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 26,
 						'desc' => ''),
 		);
+		return $options;
 	}
 
 }
@@ -260,7 +311,7 @@ class openStreetMap {
 	 * Default taken from plugin options
 	 * @var string
 	 */
-	var $width = '100%';
+	var $width = NULL;
 
 	/**
 	 * Values like "100px" or "100em"
@@ -279,13 +330,14 @@ class openStreetMap {
 	var $maxzoom = NULL;
 
 	/**
-	 * The tile provider to use. Select from the $tileprovider property like $this->maptiles = $this->tileprover['<desired provier']
-	 * Default taken from plugin options
+	 * The tile providers to use. Select from the $tileproviders property like $this->maptiles = $this->tileproviders['<desired provider>']
+
 	 * Must be like array('<map provider url>','<attribution as requested>')
 	 * Default taken from plugin options
 	 * @var array
 	 */
-	var $maptiles = NULL;
+	var $defaultlayer = NULL;
+	var $layerslist = array();
 
 	/**
 	 * Radius when clusters should be created on more than one marker
@@ -318,16 +370,16 @@ class openStreetMap {
 	 * @var string
 	 */
 	var $showminimap = false;
-	var $minimap_width = 100;
-	var $minimap_height = 100;
-	var $minimap_zoom = -5;
+	var $minimap_width = NULL;
+	var $minimap_height = NULL;
+	var $minimap_zoom = NULL;
 
 	/**
 	 * Position of the map controls: "topleft", "topright", "bottomleft", "bottomright"
 	 * Default taken from plugin options
 	 * @var string
 	 */
-	var $controlpos = NULL;
+	var $zoomcontrolpos = NULL;
 	var $showscale = NULL;
 	var $showcursorpos = NULL;
 
@@ -338,7 +390,7 @@ class openStreetMap {
 	var $obj = NULL;
 
 	/**
-	 * Gers the predefined array of all free map tile providers for Open Street Map
+	 * The predefined array of all free map tile providers for Open Street Map
 	 * @var array
 	 */
 	var $tileproviders = array();
@@ -373,7 +425,8 @@ class openStreetMap {
 	 * @param obj Image or album object If set this object is used and $geodatat is ignored if set as well
 	 */
 	function __construct($geodata = NULL, $obj = NULL) {
-		global $_zp_gallery_page, $_zp_current_image, $_zp_current_album;
+		global $_zp_gallery_page, $_zp_current_album, $_zp_current_image;
+
 		$this->showalbummarkers = getOption('osmap_showalbummarkers');
 		$this->tileproviders = self::getTitleProviders();
 		if (is_object($obj)) {
@@ -427,14 +480,28 @@ class openStreetMap {
 		$this->zoom = getOption('osmap_zoom');
 		$this->minzoom = getOption('osmap_minzoom');
 		$this->maxzoom = getOption('osmap_maxzoom');
-		$this->maptiles = $this->setMapTiles(getOption('osmap_maptiles'));
+		$this->zoomcontrolpos = getOption('osmap_zoomcontrolpos');
+		$this->defaultlayer = $this->setMapTiles(getOption('osmap_defaultlayer'));
 		$this->clusterradius = getOption('osmap_clusterradius');
 		$this->cluster_showcoverage_on_hover = getOption('osmap_cluster_showcoverage_on_hover');
 		$this->markerpopup = getOption('osmap_markerpopup');
 		$this->markerpopup_title = getOption('osmap_markerpopup_title');
 		$this->markerpopup_desc = getOption('osmap_markerpopup_desc');
 		$this->markerpopup_thumb = getOption('osmap_markerpopup_thumb');
-		$this->controlpos = getOption('osmap_controlpos');
+		$this->showlayerscontrol = getOption('osmap_showlayerscontrol');
+		// generate an array of selected layers
+		$providers = $this->tileproviders;
+		foreach ($providers as $provider) {
+			$provider_dbname = str_replace(".", "_", $provider);
+			$provider_dbname = 'osmap_layer_' . $provider_dbname;
+			if (getOption($provider_dbname)) {
+				$layerslist[$provider] = $provider;
+			}
+		}
+		// deduplicate default Layer from layers list
+		unset($layerslist[array_search($this->defaultlayer, $layerslist)]);
+		$this->layerslist = $layerslist;
+		$this->layerscontrolpos = getOption('osmap_layerscontrolpos');
 		$this->showscale = getOption('osmap_showscale');
 		$this->showcursorpos = getOption('osmap_showcursorpos');
 		$this->showminimap = getOption('osmap_showminimap');
@@ -488,6 +555,7 @@ class openStreetMap {
 	function getImageGeodata($image) {
 		global $_zp_current_image;
 		$result = array();
+
 		if (isImageClass($image)) {
 			$exif = $image->getMetaData();
 			if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
@@ -529,6 +597,7 @@ class openStreetMap {
 	 */
 	function getAlbumGeodata($album) {
 		$result = array();
+
 		$images = $album->getImages(0, 0, null, null, false);
 		foreach ($images as $an_image) {
 			$image = newImage($album, $an_image);
@@ -547,6 +616,7 @@ class openStreetMap {
 	 */
 	function getGeoData() {
 		global $_zp_current_image, $_zp_current_album;
+
 		$geodata = array();
 		if (!is_null($this->geodata)) {
 			return $this->geodata;
@@ -589,13 +659,14 @@ class openStreetMap {
 			foreach ($geodata as $geo) {
 				$count++;
 				$js_geodata .= ' geodata[' . $count . '] = {
-                  lat : "' . $geo['lat'] . '",
-                  long : "' . $geo['long'] . '",
-                  title : "' . js_encode(shortenContent($geo['title'], 50, '...')) . '",
-                  desc : "' . js_encode(shortenContent($geo['desc'], 100, '...')) . '",
-                  thumb : "' . $geo['thumb'] . '",
-                  current : "' . $geo['current'] . '"
-                };';
+					lat : "' . $geo['lat'] . '",
+					long : "' . $geo['long'] . '",
+					title : "' . js_encode(shortenContent($geo['title'], 50, '...')) . '",
+					desc : "' . js_encode(shortenContent($geo['desc'], 100, '...')) . '",
+					thumb : "' . $geo['thumb'] . '",
+					current : "' . $geo['current'] . '"
+
+				};';
 			}
 			return $this->geodatajs = $js_geodata;
 		}
@@ -663,28 +734,36 @@ class openStreetMap {
 	 * Return the map tile js definition for leaflet and its leaflet-providers plugin. 
 	 * For certain map providers it include the access credentials.
 	 * 
+	 * @param $layer		string
 	 * @return string
 	 */
-	function getTileLayerJS() {
-		$maptile = explode('.', $this->maptiles);
+	function getTileLayerJS($layer) {
+		$maptile = explode('.', $layer);
 		switch ($maptile[0]) {
 			case 'MapBox':
-			    // should be Mapbox but follow leaflet-providers behavior
+				// should be Mapbox but follow leaflet-providers behavior
 				return "L.tileLayer.provider('" . $maptile[0] . "', {"
-								. "id: '" . strtolower($this->maptiles) . "',"
+								. "id: '" . strtolower($layer) . "', "
 								. "accessToken: '" . getOption('osmap_mapbox_accesstoken') . "'"
-								. "}).addTo(map);";
+
+								. "})";
 			case 'HERE':
-				return "L.tileLayer.provider('" . $this->maptiles . "', {"
-								. "app_id: '" . getOption('osmap_here_appid') . "',"
+				return "L.tileLayer.provider('" . $layer . "', {"
+								. "app_id: '" . getOption('osmap_here_appid') . "', "
 								. "app_code: '" . getOption('osmap_here_appcode') . "'"
-								. "}).addTo(map);";
+
+								. "})";
 			case 'Thunderforest':
-				return "L.tileLayer.provider('" . $this->maptiles . "', {"
+				return "L.tileLayer.provider('" . $layer . "', {"
 								. "apikey: '" . getOption('osmap_thunderforest_apikey') . "'"
-								. "}).addTo(map);";
+
+								. "})";
+			case 'GeoportailFrance':
+				return "L.tileLayer.provider('" . $layer . "', {"
+								. "apikey: '" . getOption('osmap_geoportailfrance_apikey') . "'"
+								. "})";
 			default:
-				return "L.tileLayer.provider('" . $this->maptiles . "').addTo(map);";
+				return "L.tileLayer.provider('" . $layer . "')";
 		}
 	}
 
@@ -702,22 +781,50 @@ class openStreetMap {
 			<div id="osm_map<?php echo $this->mapnumber; ?>"<?php echo $class; ?> style="width:<?php echo $this->width; ?>; height:<?php echo $this->height; ?>;"></div>
 			<script>
 				var geodata = new Array();
-			<?php echo $geodataJS; ?>
+				<?php echo $geodataJS; ?>
 				var map = L.map('osm_map<?php echo $this->mapnumber; ?>', {
-					center: [<?php echo $this->center[0]; ?>,<?php echo $this->center[1]; ?>],
+					center: [<?php echo $this->center[0]; ?>, <?php echo $this->center[1]; ?>],
 					zoom: <?php echo $this->zoom; ?>, //option
 					zoomControl: false, // disable so we can position it below
 					minZoom: <?php echo $this->minzoom; ?>,
-					maxZoom: <?php echo $this->maxzoom; ?>
+					<?php if (!empty($this->maxzoom)) { ?>
+						maxZoom: <?php echo $this->maxzoom; ?>
+					<?php } ?>
 				});
-			<?php
-			echo $this->getTileLayerJS();
-			if ($this->mode == 'cluster' && $this->fitbounds) {
+
+				<?php
+				if (!$this->showlayerscontrol) {
+					echo $this->getTileLayerJS($this->defaultlayer) . '.addTo(map);';
+
+				} else {
+				    $defaultlayer = $this->defaultlayer;
+					$layerslist = $this->layerslist;
+					$layerslist[$defaultlayer] = $defaultlayer;
+					ksort($layerslist);
+					$baselayers = "";
+					foreach ($layerslist as $layer) {
+						if ($layer ==  $defaultlayer) {
+							$baselayers = $baselayers . "'" . $defaultlayer . "': defaultLayer,\n";
+						} else {
+							$baselayers = $baselayers . "'" . $layer . "': " . $this->getTileLayerJS($layer) . ",\n";
+						}
+					}
+				?>
+					var defaultLayer = <?php echo $this->getTileLayerJS($this->defaultlayer)?>.addTo(map);
+					var baseLayers = {
+						<?php echo $baselayers; ?>
+						};
+
+					L.control.layers(baseLayers, null, {position: '<?php echo $this->layerscontrolpos; ?>'}).addTo(map);
+				<?php
+				}
+				if ($this->mode == 'cluster' && $this->fitbounds) {
 				?>
 					map.fitBounds([<?php echo $this->fitbounds; ?>]);
 				<?php
-			}
-			if ($this->showminimap) {
+
+				}
+				if ($this->showminimap) {
 				?>
 					var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 					var osm2 = new L.TileLayer(osmUrl);
@@ -727,45 +834,49 @@ class openStreetMap {
 						width: <?php echo $this->minimap_width; ?>,
 						height: <?php echo $this->minimap_height; ?>
 					}).addTo(map);
-			<?php
-			}
-			if ($this->showscale) {
+				<?php
+
+				}
+				if ($this->showscale) {
 				?>
 					L.control.scale().addTo(map);
-			<?php } ?>
+				<?php } ?>
 
-				L.control.zoom({position: '<?php echo $this->controlpos; ?>'}).addTo(map);
-			<?php if ($this->showcursorpos) { ?>
+				L.control.zoom({position: '<?php echo $this->zoomcontrolpos; ?>'}).addTo(map);
+				<?php if ($this->showcursorpos) { ?>
 					L.control.mousePosition().addTo(map);
 				<?php
-			}
-			if ($this->showmarkers) {
-				switch ($this->mode) {
-					case 'single':
-						?>
+
+				}
+				if ($this->showmarkers) {
+					switch ($this->mode) {
+						case 'single':
+
+							?>
 							var marker = L.marker([geodata[0]['lat'], geodata[0]['long']]).addTo(map); // from image
-						<?php
-						break;
-					case 'single-cluster':
-					case 'cluster':
-						?>
+							<?php
+							break;
+						case 'single-cluster':
+						case 'cluster':
+
+							?>
 							var markers_cluster = new L.MarkerClusterGroup({
 								maxClusterRadius: <?php echo $this->clusterradius; ?>,
 								showCoverageOnHover: <?php echo $this->cluster_showcoverage_on_hover; ?>
-								}); //radius > Option
+							}); //radius > Option
 							$.each(geodata, function (index, value) {
 								var text = '';
-						<?php if ($this->markerpopup) { ?>
-							<?php if ($this->markerpopup_title) { ?>
+								<?php if ($this->markerpopup) { ?>
+									<?php if ($this->markerpopup_title) { ?>
 										text = value.title;
-							<?php } ?>
-							<?php if ($this->markerpopup_thumb) { ?>
+									<?php } ?>
+									<?php if ($this->markerpopup_thumb) { ?>
 										text += value.thumb;
-							<?php } ?>
-							<?php if ($this->markerpopup_desc) { ?>
+									<?php } ?>
+									<?php if ($this->markerpopup_desc) { ?>
 										text += value.desc;
-							<?php } ?>
-						<?php } ?>
+									<?php } ?>
+								<?php } ?>
 								if (text === '') {
 									markers_cluster.addLayer(L.marker([value.lat, value.long]));
 								} else {
@@ -773,14 +884,15 @@ class openStreetMap {
 								}
 							});
 							map.addLayer(markers_cluster);
-						<?php
-						break;
+							<?php
+							break;
+					}
 				}
-			}
+
+				?>
+			</script>
+			<?php
 		}
-		?>
-		</script>
-		<?php
 	}
 
 	/**
@@ -909,12 +1021,12 @@ class openStreetMap {
 				'JusticeMap.multi',
 				'JusticeMap.nonWhite',
 				'JusticeMap.white',
-				'JusticeMap.plurality'
+				'JusticeMap.plurality',
+				'GeoportailFrance.ignMaps',
+				'GeoportailFrance.orthos'
 		);
 	}
-
 }
-
 // osm class end
 
 /**
