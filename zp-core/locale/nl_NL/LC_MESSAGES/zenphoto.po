@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-26 09:59+0200\n"
+"POT-Creation-Date: 2018-08-26 10:39+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -4883,8 +4883,8 @@ msgid ""
 "By using this form you agree with the storage and handling of your data by "
 "this website."
 msgstr ""
-"Door dit formulier te gebruiken stem ik in met de wijze waarop deze website "
-"met mijn gegevens omgaat."
+"<em>”Door dit formulier te gebruiken stem ik in met de wijze waarop deze "
+"website met mijn gegevens omgaat.”</em>"
 
 #: zp-core/admin-options.php:3368
 msgid "Data privacy policy page"
@@ -6449,12 +6449,10 @@ msgid "Centimeter"
 msgstr "Centimeter"
 
 #: zp-core/exif/exif.php:505 zp-core/exif/exif.php:1218
-#| msgid "Centimeter"
 msgid "Millimeter"
 msgstr "Millimeter"
 
 #: zp-core/exif/exif.php:506 zp-core/exif/exif.php:1221
-#| msgid "Centimeter"
 msgid "Micrometer"
 msgstr "Micrometer"
 
@@ -21393,12 +21391,6 @@ msgstr ""
 "nieuwscategorie pagina.<br />Laat leeg voor de volledige tekst."
 
 #: zp-core/zp-extensions/zenpage.php:185
-#, fuzzy
-#| msgid ""
-#| "You can also set a custom article shorten length for the news loop "
-#| "excerpts by using the standard TinyMCE <em>page break</em> plugin button "
-#| "(or manually using the html comment snippet <code>&lt;!-- pagebreak --&gt;"
-#| "</code>. If set, this will override this option."
 msgid ""
 "You can also set a custom article shorten length for the news loop excerpts "
 "by using the standard TinyMCE <em>page break</em> plugin button (or manually "
