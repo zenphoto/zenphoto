@@ -17,6 +17,7 @@ function saveOptions() {
 	$_zp_gallery->setTitle(process_language_string_save('gallery_title', 2));
 	$_zp_gallery->setDesc(process_language_string_save('Gallery_description', EDITOR_SANITIZE_LEVEL));
 	$_zp_gallery->setWebsiteTitle(process_language_string_save('website_title', 2));
+	$_zp_gallery->setLogonWelcome(process_language_string_save('logon_welcome', EDITOR_SANITIZE_LEVEL));
 	$web = sanitize($_POST['website_url'], 3);
 	$_zp_gallery->setWebsiteURL($web);
 	$_zp_gallery->setAlbumUseImagedate((int) isset($_POST['album_use_new_image_date']));
@@ -246,6 +247,20 @@ function getOptionContent() {
 					<?php
 				}
 				?>
+				<tr>
+					<td class="option_name"><?php echo gettext('Logon welcome'); ?></td>
+					<td class="option_value">
+						<?php print_language_string_list($_zp_gallery->getLogonWelcome('all'), 'logon_welcome', false, null, '', '100%'); ?>
+					</td>
+					<td class="option_desc">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
+							<div class="option_desc_hidden">
+								<?php echo gettext('If you place a message here it will be shown on the login form above the password pad box.'); ?>
+							</div>
+						</span>
+					</td>
+				</tr>
 				<tr>
 					<td class="option_name"><?php echo gettext('Unprotected pages'); ?></td>
 					<td class="option_value">
