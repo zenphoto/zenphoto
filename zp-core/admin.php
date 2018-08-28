@@ -233,6 +233,8 @@ $buttonlist = array();
 	<?php
 	/* Admin-only content safe from here on. */
 	if (zp_loggedin(ADMIN_RIGHTS)) {
+		printLogoAndLinks();
+
 		if (class_exists('Milo\Github\Api') && zpFunctions::hasPrimaryScripts()) {
 			/*
 			 * Update check Copyright 2017 by Stephen L Billard for use in https://%GITHUB%/netPhotoGraphics and derivitives
@@ -263,7 +265,7 @@ $buttonlist = array();
 				if (!isset($_SESSION['new_version_available'])) {
 					$_SESSION['new_version_available'] = $newestVersion;
 					?>
-					<div class="notebox">
+					<div class="notebox" style="width:100%">
 						<h2><?php echo gettext('There is a new version is available.'); ?></h2>
 						<?php
 						printf(gettext('Version %s can be downloaded by the utility button.'), $newestVersion);
@@ -286,7 +288,6 @@ $buttonlist = array();
 			}
 		}
 	}
-	printLogoAndLinks();
 	?>
 	<div id="main">
 		<?php printTabs(); ?>

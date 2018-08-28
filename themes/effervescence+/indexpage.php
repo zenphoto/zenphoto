@@ -80,7 +80,7 @@ if (!isset($zenpage)) {
 					</a>
 					<?php
 				} else {
-					echo '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/admin-logo.png" width="310" height="90" alt="' . gettext('There were no images from which to select the random heading.') . '" />';
+					printSiteLogoImage(gettext('There were no images from which to select the random heading.'));
 				}
 				?>
 			</div>

@@ -104,6 +104,42 @@ class Gallery {
 	}
 
 	/**
+	 * saves barnding logo
+	 *
+	 * @param string $logo path to logo image
+	 */
+	function setSiteLogo($logo) {
+		$this->set('sitelogoimage', $logo);
+	}
+
+	/**
+	 * Retrieves branding logo title
+	 *
+	 * @return string title
+	 */
+	function getSiteLogo() {
+		return $this->get('sitelogoimage');
+	}
+
+	/**
+	 * saves barnding logo
+	 *
+	 * @param string $logo path to logo image
+	 */
+	function setSiteLogoTitle($logo) {
+		$this->set('sitelogotitle', $logo);
+	}
+
+	/**
+	 * Retrieves branding logo title
+	 *
+	 * @return string path to logo image
+	 */
+	function getSiteLogoTitle() {
+		return $this->get('sitelogotitle');
+	}
+
+	/**
 	 * sets the website logon welcome message
 	 *
 	 * @param $msg string

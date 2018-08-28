@@ -36,7 +36,7 @@ if (isset($_SESSION['OTA'])) {
 		<body style="background-image: none">
 			<div id="loginform">
 				<p>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="ZenPhoto" alt="ZenPhoto" />
+					<?php printSiteLogoImage(); ?>
 				</p>
 
 				<?php
