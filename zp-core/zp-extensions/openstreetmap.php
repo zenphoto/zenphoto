@@ -50,8 +50,8 @@ class openStreetMapOptions {
 		setOptionDefault('osmap_layerscontrolpos', 'topright');
 		foreach ($providers as $provider) {
 			// requested because option names may not contain '.'
-			$provider = str_replace(".", "_", $provider);
-			setOptionDefault('osmap_layer_' . $provider, 0);
+			$provider_dbname = 'osmap_layer_' . str_replace(".", "_", $provider);
+			setOptionDefault($provider_dbname, 0);
 		}
 		setOptionDefault('osmap_showscale', 1);
 		setOptionDefault('osmap_showalbummarkers', 0);
@@ -68,10 +68,7 @@ class openStreetMapOptions {
 
 	function getOptionsSupported() {
 		$providers = array_combine(openStreetMap::getTitleProviders(), openStreetMap::getTitleProviders());
-		foreach ($providers as $provider) {
-			$provider_dbname = str_replace(".", "_", $provider);
-			$layerslist[$provider] = 'osmap_layer_' . $provider_dbname;
-		}
+		$layerslist = openStreetMap::getLayersList($providers);
 
 		$options = array(
 				gettext('Map dimensions—width') => array(
@@ -268,7 +265,7 @@ class openStreetMap {
 	var $center = NULL;
 
 	/**
-	 * Optional lass name to attach to the map html
+	 * Optional class name to attach to the map html
 	 * @var string
 	 */
 	var $class = '';
@@ -334,7 +331,8 @@ class openStreetMap {
 	 * @var array
 	 */
 	var $defaultlayer = NULL;
-	var $layerslist = array();
+	var $layerslist = NULL;
+	var $layer = NULL;
 
 	/**
 	 * Radius when clusters should be created on more than one marker
@@ -390,7 +388,7 @@ class openStreetMap {
 	 * The predefined array of all free map tile providers for Open Street Map
 	 * @var array
 	 */
-	var $tileproviders = array();
+	var $tileproviders = NULL;
 
 	/**
 	 * If no $geodata array is passed the function gets geodata from the current image or the images of the current album
@@ -487,17 +485,15 @@ class openStreetMap {
 		$this->markerpopup_thumb = getOption('osmap_markerpopup_thumb');
 		$this->showlayerscontrol = getOption('osmap_showlayerscontrol');
 		// generate an array of selected layers
-		$providers = $this->tileproviders;
-		foreach ($providers as $provider) {
-			$provider_dbname = str_replace(".", "_", $provider);
-			$provider_dbname = 'osmap_layer_' . $provider_dbname;
-			if (getOption($provider_dbname)) {
-				$layerslist[$provider] = $provider;
+		$layerslist = self::getLayersList($this->tileproviders);
+		foreach ($layerslist as $layer => $layer_dbname) {
+			if (getOption($layer_dbname)) {
+				$selectedlayerslist[$layer] = $layer;
 			}
 		}
 		// deduplicate default Layer from layers list
-		unset($layerslist[array_search($this->defaultlayer, $layerslist)]);
-		$this->layerslist = $layerslist;
+		unset($selectedlayerslist[array_search($this->defaultlayer, $selectedlayerslist)]);
+		$this->layerslist = $selectedlayerslist;
 		$this->layerscontrolpos = getOption('osmap_layerscontrolpos');
 		$this->showscale = getOption('osmap_showscale');
 		$this->showcursorpos = getOption('osmap_showcursorpos');
@@ -730,36 +726,35 @@ class openStreetMap {
 	 * Return the map tile js definition for leaflet and its leaflet-providers plugin. 
 	 * For certain map providers it include the access credentials.
 	 * 
-	 * @param $layer		string
 	 * @return string
 	 */
-	function getTileLayerJS($layer) {
-		$maptile = explode('.', $layer);
+	function getTileLayerJS() {
+		$maptile = explode('.', $this->layer);
 		switch ($maptile[0]) {
 			case 'MapBox':
 				// should be Mapbox but follow leaflet-providers behavior
 				return "L.tileLayer.provider('" . $maptile[0] . "', {"
-								. "id: '" . strtolower($layer) . "', "
+								. "id: '" . strtolower($this->layer) . "', "
 								. "accessToken: '" . getOption('osmap_mapbox_accesstoken') . "'"
 
 								. "})";
 			case 'HERE':
-				return "L.tileLayer.provider('" . $layer . "', {"
+				return "L.tileLayer.provider('" . $this->layer . "', {"
 								. "app_id: '" . getOption('osmap_here_appid') . "', "
 								. "app_code: '" . getOption('osmap_here_appcode') . "'"
 
 								. "})";
 			case 'Thunderforest':
-				return "L.tileLayer.provider('" . $layer . "', {"
+				return "L.tileLayer.provider('" . $this->layer . "', {"
 								. "apikey: '" . getOption('osmap_thunderforest_apikey') . "'"
 
 								. "})";
 			case 'GeoportailFrance':
-				return "L.tileLayer.provider('" . $layer . "', {"
+				return "L.tileLayer.provider('" . $this->layer . "', {"
 								. "apikey: '" . getOption('osmap_geoportailfrance_apikey') . "'"
 								. "})";
 			default:
-				return "L.tileLayer.provider('" . $layer . "')";
+				return "L.tileLayer.provider('" . $this->layer . "')";
 		}
 	}
 
@@ -790,23 +785,25 @@ class openStreetMap {
 
 				<?php
 				if (!$this->showlayerscontrol) {
-					echo $this->getTileLayerJS($this->defaultlayer) . '.addTo(map);';
+					$this->layer = $this->defaultlayer;
+					echo $this->getTileLayerJS() . '.addTo(map);';
 
 				} else {
 					$defaultlayer = $this->defaultlayer;
 					$layerslist = $this->layerslist;
 					$layerslist[$defaultlayer] = $defaultlayer;
-					ksort($layerslist);
+					ksort($layerslist);	// order layers list including default layer
 					$baselayers = "";
 					foreach ($layerslist as $layer) {
 						if ($layer == $defaultlayer) {
 							$baselayers = $baselayers . "'" . $defaultlayer . "': defaultLayer,\n";
 						} else {
-							$baselayers = $baselayers . "'" . $layer . "': " . $this->getTileLayerJS($layer) . ",\n";
+							$this->layer = $layer;
+							$baselayers = $baselayers . "'" . $layer . "': " . $this->getTileLayerJS() . ",\n";
 						}
 					}
 				?>
-					var defaultLayer = <?php echo $this->getTileLayerJS($this->defaultlayer)?>.addTo(map);
+					var defaultLayer = <?php $this->layer = $this->defaultlayer; echo $this->getTileLayerJS(); ?>.addTo(map);
 					var baseLayers = {
 						<?php echo $baselayers; ?>
 						};
@@ -886,6 +883,21 @@ class openStreetMap {
 			</script>
 			<?php
 		}
+	}
+
+	/**
+	 * It returns an array of layer option db name
+	 * 
+	 * @param array $providers provider list
+	 * @return array
+	 */
+	static function getLayersList($providers) {
+		foreach ($providers as $provider) {
+			// requested because option names may not contain '.'
+			$provider_dbname = 'osmap_layer_' . str_replace(".", "_", $provider);
+			$layers_list[$provider] = $provider_dbname;
+		}
+		return $layers_list;
 	}
 
 	/**
@@ -1016,9 +1028,10 @@ class openStreetMap {
 				'JusticeMap.white',
 				'JusticeMap.plurality',
 				'GeoportailFrance.ignMaps',
-				'GeoportailFrance.orthos'
+				'GeoportailFrance.orthos',
 		);
 	}
+
 }
 // osm class end
 
