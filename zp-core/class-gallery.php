@@ -89,6 +89,31 @@ class Gallery {
 	}
 
 	/**
+	 * Returns the website logon welcome message
+	 *
+	 * @return string
+	 */
+	function getLogonWelcome($locale = NULL) {
+		$text = $this->get('logon_welcome');
+		if ($locale == 'all') {
+			return zpFunctions::unTagURLs($text);
+		} else {
+			return applyMacros(zpFunctions::unTagURLs(get_language_string($text, $locale)));
+		}
+		return $text;
+	}
+
+	/**
+	 * sets the website logon welcome message
+	 *
+	 * @param $msg string
+	 */
+	function setLogonWelcome($msg) {
+		$msg = zpFunctions::tagURLs($msg);
+		$this->set('logon_welcome', $msg);
+	}
+
+	/**
 	 * Returns the hashed password for guest gallery access
 	 *
 	 */

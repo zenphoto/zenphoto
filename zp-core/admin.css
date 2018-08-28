@@ -2115,6 +2115,14 @@ fieldset,
 	border: 1px solid lightgray;
 }
 
+.logon_welcome {
+	padding: 5px 10px 5px 10px;
+	margin-bottom: 10px;
+	font-size: 100%;
+	width: 94%;
+	font-weight: normal;
+}
+
 #loginform .show_checkbox {
 	background-color: #F7F8F9;
 }

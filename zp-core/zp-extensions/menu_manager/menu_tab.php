@@ -47,7 +47,7 @@ if (isset($_GET['deletemenuset'])) {
 	XSRFdefender('delete_menu');
 	$sql = 'DELETE FROM ' . prefix('menu') . ' WHERE `menuset`=' . db_quote(sanitize($_GET['deletemenuset']));
 	query($sql);
-	$_menu_manager_items = array();
+	purgeOption('menu_lastChanged');
 	$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Menu “%s” deleted"), html_encode(sanitize($_GET['deletemenuset']))) . "</p>";
 }
 if (isset($_GET['dupmenuset'])) {
@@ -71,7 +71,7 @@ if (isset($_GET['publish'])) {
 	publishItem($_GET['id'], $_GET['show'], $_GET['menuset']);
 }
 
-$menuset = checkChosenMenuset('');
+$menuset = checkChosenMenuset();
 if (empty($menuset)) { //	setup default menuset
 	$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu') . ' ORDER BY `menuset`');
 	if (is_array($result)) { // default to the first one
