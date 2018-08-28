@@ -26,8 +26,6 @@ zp_register_filter('theme_head', 'openStreetMap::scripts');
 class openStreetMapOptions {
 
 	function __construct() {
-		$providers = array_combine(openStreetMap::getTitleProviders(), openStreetMap::getTitleProviders());
-
 		setOptionDefault('osmap_width', '100%'); //responsive by default!
 		setOptionDefault('osmap_height', '300px');
 		setOptionDefault('osmap_zoom', 4);
@@ -48,10 +46,9 @@ class openStreetMapOptions {
 		setOptionDefault('osmap_markerpopup_thumb', 1);
 		setOptionDefault('osmap_showlayerscontrol', 0);
 		setOptionDefault('osmap_layerscontrolpos', 'topright');
-		foreach ($providers as $provider) {
-			// requested because option names may not contain '.'
-			$provider_dbname = 'osmap_layer_' . str_replace(".", "_", $provider);
-			setOptionDefault($provider_dbname, 0);
+		$layerslist = openStreetMap::getLayersList();
+		foreach ($layerslist as $layer_dbname) {
+			setOptionDefault($layer_dbname, 0);
 		}
 		setOptionDefault('osmap_showscale', 1);
 		setOptionDefault('osmap_showalbummarkers', 0);
@@ -68,7 +65,7 @@ class openStreetMapOptions {
 
 	function getOptionsSupported() {
 		$providers = array_combine(openStreetMap::getTitleProviders(), openStreetMap::getTitleProviders());
-		$layerslist = openStreetMap::getLayersList($providers);
+		$layerslist = openStreetMap::getLayersList();
 
 		$options = array(
 				gettext('Map dimensions—width') => array(
@@ -325,7 +322,6 @@ class openStreetMap {
 
 	/**
 	 * The tile providers to use. Select from the $tileproviders property like $this->maptiles = $this->tileproviders['<desired provider>']
-
 	 * Must be like array('<map provider url>','<attribution as requested>')
 	 * Default taken from plugin options
 	 * @var array
@@ -485,7 +481,7 @@ class openStreetMap {
 		$this->markerpopup_thumb = getOption('osmap_markerpopup_thumb');
 		$this->showlayerscontrol = getOption('osmap_showlayerscontrol');
 		// generate an array of selected layers
-		$layerslist = self::getLayersList($this->tileproviders);
+		$layerslist = self::getLayersList();
 		foreach ($layerslist as $layer => $layer_dbname) {
 			if (getOption($layer_dbname)) {
 				$selectedlayerslist[$layer] = $layer;
@@ -736,18 +732,15 @@ class openStreetMap {
 				return "L.tileLayer.provider('" . $maptile[0] . "', {"
 								. "id: '" . strtolower($this->layer) . "', "
 								. "accessToken: '" . getOption('osmap_mapbox_accesstoken') . "'"
-
 								. "})";
 			case 'HERE':
 				return "L.tileLayer.provider('" . $this->layer . "', {"
 								. "app_id: '" . getOption('osmap_here_appid') . "', "
 								. "app_code: '" . getOption('osmap_here_appcode') . "'"
-
 								. "})";
 			case 'Thunderforest':
 				return "L.tileLayer.provider('" . $this->layer . "', {"
 								. "apikey: '" . getOption('osmap_thunderforest_apikey') . "'"
-
 								. "})";
 			case 'GeoportailFrance':
 				return "L.tileLayer.provider('" . $this->layer . "', {"
@@ -891,7 +884,8 @@ class openStreetMap {
 	 * @param array $providers provider list
 	 * @return array
 	 */
-	static function getLayersList($providers) {
+	static function getLayersList() {
+		$providers = openStreetMap::getTitleProviders();
 		foreach ($providers as $provider) {
 			// requested because option names may not contain '.'
 			$provider_dbname = 'osmap_layer_' . str_replace(".", "_", $provider);
