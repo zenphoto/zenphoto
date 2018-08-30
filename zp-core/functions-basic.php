@@ -224,7 +224,7 @@ function stripSuffix($filename) {
 	$base = array_pop($split);
 	$i = strrpos($base, '.');
 	if ($i !== FALSE) {
-		$base = substr($base, 0, strrpos($base, '.'));
+		$base = substr($base, 0, $i);
 	}
 	array_push($split, $base);
 	return implode('/', $split);
