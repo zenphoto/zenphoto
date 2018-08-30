@@ -97,22 +97,28 @@ $orphaned = array();
 						$plugin = str_replace('zp_plugin_', '', $row['name']);
 						$file = str_replace(SERVERPATH, '', getPlugin($plugin . '.php', false));
 						if ($file) {
-							if (strpos($file, PLUGIN_FOLDER) === false) {
+							if (strpos($file, USER_PLUGIN_FOLDER) !== false) {
 								$owners[USER_PLUGIN_FOLDER][strtolower($plugin)] = $plugin;
+							} else if (strpos($file, PLUGIN_FOLDER) !== false) {
+								$file = FALSE;
 							}
-						} else {
+						}
+						if (!$file) {
 							purgeOption($row['name']);
 						}
 					}
+
 					$sql = 'SELECT DISTINCT `type` FROM ' . prefix('plugin_storage');
 					$result = query_full_array($sql);
 					foreach ($result as $row) {
 						$plugin = $row['type'];
 						$file = str_replace(SERVERPATH, '', getPlugin($plugin . '.php', false));
-						if ($file && strpos($file, PLUGIN_FOLDER) !== false) {
-							$owners[ZENFOLDER . '/' . PLUGIN_FOLDER][strtolower($plugin)] = $plugin;
-						} else {
-							$owners[USER_PLUGIN_FOLDER][strtolower($plugin)] = $plugin;
+						if ($file) {
+							if (strpos($file, PLUGIN_FOLDER) !== false) {
+								$owners[ZENFOLDER . '/' . PLUGIN_FOLDER][strtolower($plugin)] = $plugin;
+							} else if (strpos($file, USER_PLUGIN_FOLDER) !== false) {
+								$owners[USER_PLUGIN_FOLDER][strtolower($plugin)] = $plugin;
+							}
 						}
 					}
 
@@ -144,6 +150,7 @@ $orphaned = array();
 					ksort($owners[ZENFOLDER . '/' . PLUGIN_FOLDER]);
 					ksort($owners[USER_PLUGIN_FOLDER]);
 					ksort($owners[THEMEFOLDER]);
+
 
 					$empty = $hiddenOptions = false;
 					$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `creator` is NULL || `creator` LIKE "%purgeOptions%" ORDER BY `name`';
