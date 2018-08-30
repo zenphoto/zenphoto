@@ -507,7 +507,8 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 </head>
 <body>
 	<div id="main">
-		<h1><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="<?php echo gettext('netPhotoGraphics Setup'); ?>" alt="<?php echo gettext('netPhotoGraphics Setup'); ?>" />
+		<h1>
+			<?php printSiteLogoImage(gettext('netPhotoGraphics Setup')); ?>
 			<span class="install_type"><?php echo $upgrade; ?></span>
 		</h1>
 		<br />

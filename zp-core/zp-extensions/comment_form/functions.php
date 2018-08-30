@@ -148,54 +148,58 @@ function comment_form_visualEditor() {
  * Admin overview summary
  */
 function comment_form_print10Most() {
-	?>
-	<div class="box overview-section">
-		<h2 class="h2_bordered"><?php echo gettext("10 Most Recent Comments"); ?></h2>
-		<ul>
-			<?php
-			$comments = fetchComments(10);
-			foreach ($comments as $comment) {
-				$id = $comment['id'];
-				$author = $comment['name'];
-				$email = $comment['email'];
-				$link = gettext('<strong>database error</strong> '); // incase of such
-				switch ($comment['type']) {
-					case "albums":
-						$album = getItemByID('albums', $comment['ownerid']);
-						if ($album) {
-							$link = "<a href=\"" . $album->getlink() . "\">" . $album->gettitle() . "</a>";
-						}
-						break;
-					case "news": // ZENPAGE: if plugin is installed
-						if (extensionEnabled('zenpage')) {
-							$news = getItemByID('news', $comment['ownerid']);
-							if ($news) {
-								$link = "<a href=\"" . $news->getLink() . "\">" . $news->getTitle() . "</a> " . gettext("[news]");
+	$comments = fetchComments(10);
+	$count = count($comments);
+	if (!empty($comments)) {
+		?>
+		<div class="box overview-section">
+			<h2 class="h2_bordered"><?php printf(ngettext("Most Recent Comment", "%d Most Recent Comments", $count), $count); ?></h2>
+			<ul>
+				<?php
+				$comments = fetchComments(10);
+				foreach ($comments as $comment) {
+					$id = $comment['id'];
+					$author = $comment['name'];
+					$email = $comment['email'];
+					$link = gettext('<strong>database error</strong> '); // incase of such
+					switch ($comment['type']) {
+						case "albums":
+							$album = getItemByID('albums', $comment['ownerid']);
+							if ($album) {
+								$link = "<a href=\"" . $album->getlink() . "\">" . $album->gettitle() . "</a>";
 							}
-						}
-						break;
-					case "pages": // ZENPAGE: if plugin is installed
-						if (extensionEnabled('zenpage')) {
-							$page = getItemByID('pages', $comment['ownerid']);
-							if ($page) {
-								$link = "<a href=\"" . $page->getlink() . "\">" . $page->getTitle() . "</a> " . gettext("[page]");
+							break;
+						case "news": // ZENPAGE: if plugin is installed
+							if (extensionEnabled('zenpage')) {
+								$news = getItemByID('news', $comment['ownerid']);
+								if ($news) {
+									$link = "<a href=\"" . $news->getLink() . "\">" . $news->getTitle() . "</a> " . gettext("[news]");
+								}
 							}
-						}
-						break;
-					default: // all of the image types
-						$image = getItemByID('images', $comment['ownerid']);
-						if ($image) {
-							$link = "<a href=\"" . $image->getLink() . "\">" . $image->getTitle() . "</a>";
-						}
-						break;
+							break;
+						case "pages": // ZENPAGE: if plugin is installed
+							if (extensionEnabled('zenpage')) {
+								$page = getItemByID('pages', $comment['ownerid']);
+								if ($page) {
+									$link = "<a href=\"" . $page->getlink() . "\">" . $page->getTitle() . "</a> " . gettext("[page]");
+								}
+							}
+							break;
+						default: // all of the image types
+							$image = getItemByID('images', $comment['ownerid']);
+							if ($image) {
+								$link = "<a href=\"" . $image->getLink() . "\">" . $image->getTitle() . "</a>";
+							}
+							break;
+					}
+					$comment = shortenContent($comment['comment'], 123, '...');
+					echo "<li><div class=\"commentmeta\">" . sprintf(gettext('<em>%1$s</em> commented on %2$s:'), $author, $link) . "</div><div class=\"commentbody\">$comment</div></li>";
 				}
-				$comment = shortenContent($comment['comment'], 123, '...');
-				echo "<li><div class=\"commentmeta\">" . sprintf(gettext('<em>%1$s</em> commented on %2$s:'), $author, $link) . "</div><div class=\"commentbody\">$comment</div></li>";
-			}
-			?>
-		</ul>
-	</div>
-	<?php
+				?>
+			</ul>
+		</div>
+		<?php
+	}
 }
 
 /**

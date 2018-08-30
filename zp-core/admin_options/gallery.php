@@ -18,6 +18,8 @@ function saveOptions() {
 	$_zp_gallery->setDesc(process_language_string_save('Gallery_description', EDITOR_SANITIZE_LEVEL));
 	$_zp_gallery->setWebsiteTitle(process_language_string_save('website_title', 2));
 	$_zp_gallery->setLogonWelcome(process_language_string_save('logon_welcome', EDITOR_SANITIZE_LEVEL));
+	$_zp_gallery->setSiteLogo(sanitize($_POST['sitelogoimage']));
+	$_zp_gallery->setSiteLogoTitle(process_language_string_save('sitelogotitle', EDITOR_SANITIZE_LEVEL));
 	$web = sanitize($_POST['website_url'], 3);
 	$_zp_gallery->setWebsiteURL($web);
 	$_zp_gallery->setAlbumUseImagedate((int) isset($_POST['album_use_new_image_date']));
@@ -56,7 +58,7 @@ function getOptionContent() {
 	?>
 	<div id="tab_gallery" class="tabbox">
 		<form class="dirtylistening" onReset="toggle_passwords('', false);
-				setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+					setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 					<?php XSRFToken('saveoptions'); ?>
 			<input	type="hidden" name="saveoptions" value="gallery" />
 			<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -100,6 +102,40 @@ function getOptionContent() {
 						</span>
 					</td>
 				</tr>
+				<tr>
+					<td class="option_name"><?php echo gettext("Branding logo"); ?></td>
+					<td class="option_value">
+						<input type="text" style="width:100%;" name="sitelogoimage" value="<?php echo $sitelogo = $_zp_gallery->getSiteLogo(); ?>" />
+					</td>
+					<td class="option_desc">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
+							<div class="option_desc_hidden">
+								<?php echo gettext("A relative link to a logo image. If this is set, the image will replace the netPhotoGraphics logo. For best results the image should be 78 pixels high."); ?>
+							</div>
+						</span>
+					</td>
+				</tr>
+				<?php
+				if (!empty($sitelogo)) {
+					?>
+					<tr>
+						<td class="option_name"><?php echo gettext("Branding logo title"); ?></td>
+						<td class="option_value">
+							<?php print_language_string_list($_zp_gallery->getSiteLogoTitle('all'), 'sitelogotitle', false, null, '', '100%'); ?>
+						</td>
+						<td class="option_desc">
+							<span class="option_info">
+								<?php echo INFORMATION_BLUE; ?>
+								<div class="option_desc_hidden">
+									<?php echo gettext("Enter the title text for your branding logo."); ?>
+								</div>
+							</span>
+						</td>
+					</tr>
+					<?php
+				}
+				?>
 				<tr>
 					<td class="option_name"><?php echo gettext('Gallery type'); ?></td>
 					<td class="option_value">
@@ -205,7 +241,7 @@ function getOptionContent() {
 											 name="disclose_password"
 											 id="disclose_password"
 											 onclick="passwordClear('');
-													 togglePassword('');" /><?php echo gettext('Show'); ?>
+															 togglePassword('');" /><?php echo gettext('Show'); ?>
 							</label>
 
 							<br />

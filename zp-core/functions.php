@@ -1371,6 +1371,28 @@ function swLogo() {
 }
 
 /**
+ *
+ * @global object $_zp_gallery
+ * @param string $title title for the image
+ */
+function printSiteLogoImage($title = NULL) {
+	global $_zp_gallery;
+	if (empty($title)) {
+		$title = $_zp_gallery->getSiteLogoTitle();
+		if (empty($title)) {
+			$title = 'netPhotoGraphics';
+		}
+	}
+	$image = $_zp_gallery->getSiteLogo();
+	if (empty($image)) {
+		$image = WEBPATH . '/' . ZENFOLDER . '/images/admin-logo.png"';
+	} else {
+		$image = WEBPATH . '/' . $image;
+	}
+	echo '<img src="' . $image . '" alt="site logo" title="' . $title . '" />';
+}
+
+/**
  * shuffles an array maintaining the keys
  *
  * @param array $array

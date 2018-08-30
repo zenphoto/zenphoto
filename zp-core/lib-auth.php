@@ -946,7 +946,7 @@ class _Authority {
 			if ($logo) {
 				?>
 				<p>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/admin-logo.png" title="netPhotoGraphics" alt="netPhotoGraphics" />
+					<?php printSiteLogoImage(); ?>
 				</p>
 				<?php
 			}
@@ -1400,7 +1400,7 @@ class _Authority {
 								 name="<?php printf($format, 'disclose_password', $id); ?>"
 								 id="disclose_password<?php echo $id; ?>"
 								 onclick="passwordClear('<?php echo $id; ?>');
-										 togglePassword('<?php echo $id; ?>');">
+												 togglePassword('<?php echo $id; ?>');">
 				</label>
 			</span>
 			<label for="pass<?php echo $id; ?>" id="strength<?php echo $id; ?>">

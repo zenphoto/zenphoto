@@ -48,7 +48,6 @@ printAdminHeader('admin');
 								$old = $_zp_conf_vars;
 								unset($_zp_conf_vars);
 								require ($clone . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-
 								$saveDB = $_zp_DB_details;
 								db_close();
 								//	Setup for the MyBB database

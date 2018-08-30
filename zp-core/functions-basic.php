@@ -222,7 +222,10 @@ function getSuffix($filename) {
 function stripSuffix($filename) {
 	$split = explode('/', $filename);
 	$base = array_pop($split);
-	$base = substr($base, 0, strrpos($base, '.'));
+	$i = strrpos($base, '.');
+	if ($i !== FALSE) {
+		$base = substr($base, 0, strrpos($base, '.'));
+	}
 	array_push($split, $base);
 	return implode('/', $split);
 }
