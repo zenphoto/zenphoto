@@ -224,7 +224,7 @@ function stripSuffix($filename) {
 	$base = array_pop($split);
 	$i = strrpos($base, '.');
 	if ($i !== FALSE) {
-		$base = substr($base, 0, strrpos($base, '.'));
+		$base = substr($base, 0, $i);
 	}
 	array_push($split, $base);
 	return implode('/', $split);
@@ -953,7 +953,7 @@ function getOptionsLike($pattern) {
  */
 function setOption($key, $value, $persistent = true) {
 	global $_zp_options, $_zp_conf_options_associations, $_zp_conf_vars, $_configMutex;
-	$_zp_options[$key = strtolower($key)] = $value;
+	$_zp_options[$keylc = strtolower($key)] = $value;
 	if ($persistent) {
 		list($theme, $creator) = getOptionOwner();
 		if (is_null($value)) {
@@ -968,8 +968,8 @@ function setOption($key, $value, $persistent = true) {
 		;
 		$result = query($sql, false);
 		if ($result) {
-			if (array_key_exists($key, $_zp_conf_options_associations)) {
-				$configKey = $_zp_conf_options_associations[$key];
+			if (array_key_exists($keylc, $_zp_conf_options_associations)) {
+				$configKey = $_zp_conf_options_associations[$keylc];
 				if ($_zp_conf_vars[$configKey] !== $value) {
 					//	it is stored in the config file, update that too
 					require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');

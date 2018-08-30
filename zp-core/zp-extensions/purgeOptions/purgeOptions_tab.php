@@ -12,6 +12,7 @@
 
 define('OFFSET_PATH', 1);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/purgeOptions.php');
 
 admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
 
@@ -95,11 +96,11 @@ $orphaned = array();
 					$result = query_full_array($sql);
 					foreach ($result as $row) {
 						$plugin = str_replace('zp_plugin_', '', $row['name']);
-						$file = str_replace(SERVERPATH, '', getPlugin($plugin . '.php', false));
+						$file = str_replace(SERVERPATH, '', $f = getPlugin($plugin . '.php', false));
 						if ($file) {
 							if (strpos($file, USER_PLUGIN_FOLDER) !== false) {
 								$owners[USER_PLUGIN_FOLDER][strtolower($plugin)] = $plugin;
-							} else if (strpos($file, PLUGIN_FOLDER) !== false) {
+							} else if (strpos($file, PLUGIN_FOLDER) === false) {
 								$file = FALSE;
 							}
 						}

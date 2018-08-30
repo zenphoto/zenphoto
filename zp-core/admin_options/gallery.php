@@ -10,7 +10,6 @@ function saveOptions() {
 	$notify = $returntab = NULL;
 	$_zp_gallery->setAlbumPublish((int) isset($_POST['album_default']));
 	$_zp_gallery->setImagePublish((int) isset($_POST['image_default']));
-
 	setOption('AlbumThumbSelect', sanitize_numeric($_POST['thumbselector']));
 	$_zp_gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
 	$_zp_gallery->setSecondLevelThumbs((int) isset($_POST['multilevel_thumb_select_images']));
@@ -105,7 +104,7 @@ function getOptionContent() {
 				<tr>
 					<td class="option_name"><?php echo gettext("Branding logo"); ?></td>
 					<td class="option_value">
-						<input type="text" style="width:100%;" name="sitelogoimage" value="<?php echo $sitelogo = $_zp_gallery->getSiteLogo(); ?>" />
+						<input type="text" style="width:100%;" name="sitelogoimage" value="<?php echo $sitelogo = $_zp_gallery->getSiteLogo(); ?>"   onchange="$('#sitelogotitle').show();"/>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
@@ -116,26 +115,20 @@ function getOptionContent() {
 						</span>
 					</td>
 				</tr>
-				<?php
-				if (!empty($sitelogo)) {
-					?>
-					<tr>
-						<td class="option_name"><?php echo gettext("Branding logo title"); ?></td>
-						<td class="option_value">
-							<?php print_language_string_list($_zp_gallery->getSiteLogoTitle('all'), 'sitelogotitle', false, null, '', '100%'); ?>
-						</td>
-						<td class="option_desc">
-							<span class="option_info">
-								<?php echo INFORMATION_BLUE; ?>
-								<div class="option_desc_hidden">
-									<?php echo gettext("Enter the title text for your branding logo."); ?>
-								</div>
-							</span>
-						</td>
-					</tr>
-					<?php
-				}
-				?>
+				<tr id="sitelogotitle"<?php if (empty($sitelogo)) echo ' style="display: none;"'; ?>>
+					<td class="option_name"><?php echo gettext("Branding logo title"); ?></td>
+					<td class="option_value">
+						<?php print_language_string_list($_zp_gallery->getSiteLogoTitle('all'), 'sitelogotitle', false, null, '', '100%'); ?>
+					</td>
+					<td class="option_desc">
+						<span class="option_info">
+							<?php echo INFORMATION_BLUE; ?>
+							<div class="option_desc_hidden">
+								<?php echo gettext("Enter the title text for your branding logo."); ?>
+							</div>
+						</span>
+					</td>
+				</tr>
 				<tr>
 					<td class="option_name"><?php echo gettext('Gallery type'); ?></td>
 					<td class="option_value">
