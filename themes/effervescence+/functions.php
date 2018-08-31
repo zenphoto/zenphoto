@@ -287,25 +287,27 @@ function getPersonality() {
 }
 
 function printThemeInfo() {
-	list($personality, $themeColor) = getPersonality();
-	if ($themeColor == 'effervescence') {
-		$themeColor = '';
-	}
-	if ($personality == 'Image page') {
-		$personality = '';
-	} else if (($personality == 'Simpleviewer' && !class_exists('simpleviewer')) ||
-					($personality == 'Colorbox' && !zp_has_filter('admin_head', 'colorbox::css'))) {
-		$personality = "<strike>$personality</strike>";
-	}
-	$personality = str_replace('_', ' ', $personality);
-	if (empty($themeColor) && empty($personality)) {
-		echo '<p><small>Effervescence</small></p>';
-	} else if (empty($themeColor)) {
-		echo '<p><small>' . sprintf(gettext('Effervescence %s'), $personality) . '</small></p>';
-	} else if (empty($personality)) {
-		echo '<p><small>' . sprintf(gettext('Effervescence %s'), $themeColor) . '</small></p>';
-	} else {
-		echo '<p><small>' . sprintf(gettext('Effervescence %1$s %2$s'), $themeColor, $personality) . '</small></p>';
+	if (getThemeOption('display_theme_info')) {
+		list($personality, $themeColor) = getPersonality();
+		if ($themeColor == 'effervescence') {
+			$themeColor = '';
+		}
+		if ($personality == 'Image page') {
+			$personality = '';
+		} else if (($personality == 'Simpleviewer' && !class_exists('simpleviewer')) ||
+						($personality == 'Colorbox' && !zp_has_filter('admin_head', 'colorbox::css'))) {
+			$personality = "<strike>$personality</strike>";
+		}
+		$personality = str_replace('_', ' ', $personality);
+		if (empty($themeColor) && empty($personality)) {
+			echo '<p><small>Effervescence</small></p>';
+		} else if (empty($themeColor)) {
+			echo '<p><small>' . sprintf(gettext('Effervescence %s'), $personality) . '</small></p>';
+		} else if (empty($personality)) {
+			echo '<p><small>' . sprintf(gettext('Effervescence %s'), $themeColor) . '</small></p>';
+		} else {
+			echo '<p><small>' . sprintf(gettext('Effervescence %1$s %2$s'), $themeColor, $personality) . '</small></p>';
+		}
 	}
 }
 

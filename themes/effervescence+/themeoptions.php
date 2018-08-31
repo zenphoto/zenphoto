@@ -38,6 +38,7 @@ class ThemeOptions {
 		setThemeOptionDefault('gallery_index', 1);
 		setThemeOptionDefault('effervescence_daily_album_image', 1);
 		setThemeOptionDefault('effervescence_daily_album_image_effect', '');
+		setThemeOptionDefault('display_theme_info', 1);
 		if (class_exists('colorbox')) {
 			colorbox::registerScripts(array('album', 'favorites', 'image', 'search'));
 		}
@@ -95,6 +96,7 @@ class ThemeOptions {
 				gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 3.5, 'desc' => gettext('Check to enable search form.')),
 				gettext('Slideshow') => array('key' => 'Slideshow', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 6, 'desc' => gettext('Check to enable slideshow for the <em>Smoothgallery</em> personality.')),
 				gettext('Graphic logo') => array('key' => 'Graphic_logo', 'type' => OPTION_TYPE_CUSTOM, 'order' => 4, 'desc' => sprintf(gettext('Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty for text logo.'), UPLOAD_FOLDER)),
+				gettext('Display theme info') => array('key' => 'display_theme_info', 'type' => OPTION_TYPE_CHECKBOX, 'order' => 10.9, 'desc' => gettext('If checked the theme settings summary will be displayed in the footer.')),
 				gettext('Theme personality') => array('key' => 'effervescence_personality', 'type' => OPTION_TYPE_SELECTOR,
 						'selections' => $personalities,
 						'order' => 9,
