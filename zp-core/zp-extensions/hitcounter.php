@@ -17,33 +17,6 @@ $option_interface = 'hitcounter';
 zp_register_filter('load_theme_script', 'hitcounter::load_script');
 zp_register_filter('admin_utilities_buttons', 'hitcounter::button');
 
-if (!defined('OFFSET_PATH')) {
-	define('OFFSET_PATH', 3);
-	require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
-	if (isset($_GET['action'])) {
-		if (sanitize($_GET['action']) == 'reset_all_hitcounters') {
-			if (!zp_loggedin(ADMIN_RIGHTS)) {
-				// prevent nefarious access to this page.
-				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
-				exitZP();
-			}
-			zp_session_start();
-			XSRFdefender('hitcounter');
-			$_zp_gallery->set('hitcounter', 0);
-			$_zp_gallery->save();
-			query('UPDATE ' . prefix('albums') . ' SET `hitcounter`= 0');
-			query('UPDATE ' . prefix('images') . ' SET `hitcounter`= 0');
-			query('UPDATE ' . prefix('news') . ' SET `hitcounter`= 0');
-			query('UPDATE ' . prefix('pages') . ' SET `hitcounter`= 0');
-			query('UPDATE ' . prefix('news_categories') . ' SET `hitcounter`= 0');
-			purgeOption('page_hitcounters');
-			query("DELETE FROM " . prefix('plugin_storage') . " WHERE `type` = 'hitcounter' AND `subtype`='rss'");
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=' . gettext('All hitcounters have been set to zero.'));
-			exitZP();
-		}
-	}
-}
-
 $_scriptpage_hitcounters = getSerializedArray(getOption('page_hitcounters'));
 
 /**
@@ -234,7 +207,7 @@ class hitcounter {
 				'enable' => true,
 				'button_text' => gettext('Reset all hitcounters'),
 				'formname' => 'reset_all_hitcounters.php',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/hitcounter.php?action=reset_all_hitcounters',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/hitcounter/reset_hitcounts.php?action=reset_all_hitcounters',
 				'icon' => RECYCLE_ICON,
 				'alt' => '',
 				'title' => gettext('Reset all hitcounters to zero'),
