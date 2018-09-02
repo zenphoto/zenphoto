@@ -40,7 +40,7 @@ if (isset($_POST['purge'])) {
 						$purgedActive[$plugin] = true;
 					}
 					purgeOption('zp_plugin_' . $plugin);
-					//invoke the enable method if it exists
+//invoke the enable method if it exists
 					$f = str_replace('-', '_', $plugin) . '_enable';
 					if (function_exists($f)) {
 						$f(false);
@@ -91,7 +91,7 @@ $orphaned = array();
 				<h1><?php echo gettext('purge options'); ?></h1>
 				<div class="tabbox">
 					<?php
-					$owners = array(ZENFOLDER . '/' . PLUGIN_FOLDER => array(), USER_PLUGIN_FOLDER => array(), THEMEFOLDER => array());
+					$owners = array(THEMEFOLDER => array(), ZENFOLDER . '/' . PLUGIN_FOLDER => array(), USER_PLUGIN_FOLDER => array());
 					$sql = 'SELECT `name` FROM ' . prefix('options') . ' WHERE `name` LIKE "zp\_plugin\_%"';
 					$result = query_full_array($sql);
 					foreach ($result as $row) {
@@ -123,35 +123,26 @@ $orphaned = array();
 						}
 					}
 
-					$sql = 'SELECT `creator` FROM ' . prefix('options') . ' ORDER BY `creator`';
+					$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options') . ' ORDER BY `creator`';
 					$result = query_full_array($sql);
 					foreach ($result as $owner) {
 						$highlight = '';
-						$structure = explode('/', preg_replace('~\[.*\]$~', '', $owner['creator']));
-						switch ($structure[0]) {
-							case NULL:
-								break;
-							case THEMEFOLDER:
-								$owners[THEMEFOLDER][strtolower($structure[1])] = $structure[1];
-								break;
-							case USER_PLUGIN_FOLDER:
-								unset($structure[0]);
-								$creator = stripSuffix(implode('/', $structure));
-								$owners[USER_PLUGIN_FOLDER][strtolower($creator)] = $creator;
-								break;
-							case ZENFOLDER:
-								if ($structure[1] == PLUGIN_FOLDER) {
-									unset($structure[0], $structure[1]);
-									$creator = stripSuffix(implode('/', $structure));
-									$owners[ZENFOLDER . '/' . PLUGIN_FOLDER][strtolower($creator)] = $creator;
-								}
-								break;
+						if (preg_match('~' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/([^\[]*)~', $owner['creator'], $matches)) {
+							$creator = stripSuffix($matches[1]);
+							$owners[ZENFOLDER . '/' . PLUGIN_FOLDER][strtolower($creator)] = $creator;
+						} else
+						if (preg_match('~' . THEMEFOLDER . '/([^/|^\[]*)~', $owner['creator'], $matches)) {
+							$creator = $matches[1];
+							$owners[THEMEFOLDER][strtolower($creator)] = $creator;
+						} else
+						if (preg_match('~' . USER_PLUGIN_FOLDER . '/([^/|^\[]*)~', $owner['creator'], $matches)) {
+							$creator = stripSuffix($matches[1]);
+							$owners[USER_PLUGIN_FOLDER][strtolower($creator)] = $creator;
 						}
 					}
 					ksort($owners[ZENFOLDER . '/' . PLUGIN_FOLDER]);
 					ksort($owners[USER_PLUGIN_FOLDER]);
 					ksort($owners[THEMEFOLDER]);
-
 
 					$empty = $hiddenOptions = false;
 					$sql = 'SELECT * FROM ' . prefix('options') . ' WHERE `creator` is NULL || `creator` LIKE "%purgeOptions%" ORDER BY `name`';
@@ -176,8 +167,6 @@ $orphaned = array();
 							}
 						}
 					}
-
-
 
 					if (empty($owners) && empty($orpahaned)) {
 						echo gettext('No option owners have been located.');

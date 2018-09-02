@@ -795,11 +795,9 @@ class openStreetMap {
 						$baselayers = $baselayers . "'" . $layer . "': " . $this->getTileLayerJS() . ",\n";
 					}
 				}
-				?>
-					var defaultLayer = <?php
 				$this->layer = $this->defaultlayer;
-				echo $this->getTileLayerJS();
-				?>.addTo(map);
+				?>
+					var defaultLayer = <?php echo $this->getTileLayerJS(); ?>.addTo(map);
 					var baseLayers = {
 				<?php echo $baselayers; ?>
 					};

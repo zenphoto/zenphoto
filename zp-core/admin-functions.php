@@ -2491,13 +2491,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<?php echo gettext('Clear album image cache'); ?></a>
 				<br class="clearall">
 			</div>
-			<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
-				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
-					<?php echo RECYCLE_ICON; ?>
-					<?php echo gettext('Reset album hit counters'); ?></a>
-				<br class="clearall">
-			</div>
 			<?php
+			if (extensionEnabled('hitcounter')) {
+				?>
+				<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
+					<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
+						<?php echo RECYCLE_ICON; ?>
+						<?php echo gettext('Reset album hit counters'); ?></a>
+					<br class="clearall">
+				</div>
+				<?php
+			}
 		}
 		if ($imagcount || (!$album->isDynamic() && $album->getNumAlbums())) {
 			?>
