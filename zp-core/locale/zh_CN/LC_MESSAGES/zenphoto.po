@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: ZenPhoto20\n"
+"Project-Id-Version: netPhotoGraphics\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-19 12:35-0700\n"
+"POT-Creation-Date: 2018-09-03 11:08-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Stephen <stephen@sbillard.org>\n"
 "Language-Team: \n"
@@ -34,10 +34,10 @@ msgid "Lets you specify that caches should not store this response."
 msgstr "允许您指定缓存不应存储此响应。"
 
 #: plugins/cacheHeader.php:43 plugins/cacheHeader.php:49
-#: zp-core/zp-extensions/cacheManager.php:425
-#: zp-core/zp-extensions/cacheManager.php:439
-#: zp-core/zp-extensions/cacheManager.php:451
-#: zp-core/zp-extensions/cacheManager.php:465 zp-core/zp-extensions/rss.php:86
+#: zp-core/zp-extensions/cacheManager.php:429
+#: zp-core/zp-extensions/cacheManager.php:443
+#: zp-core/zp-extensions/cacheManager.php:455
+#: zp-core/zp-extensions/cacheManager.php:469 zp-core/zp-extensions/rss.php:86
 #, fuzzy
 msgid "Cache"
 msgstr "快取已经清除."
@@ -125,13 +125,13 @@ msgstr "相馆"
 
 #: plugins/cacheHeader.php:50 plugins/cookieInvalidator.php:32
 #: themes/zpmobile/functions.php:118 zp-core/admin-functions.php:163
-#: zp-core/admin.php:283 zp-core/admin.php:349 zp-core/admin.php:363
-#: zp-core/admin.php:379 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
+#: zp-core/admin.php:277 zp-core/admin.php:342 zp-core/admin.php:356
+#: zp-core/admin.php:372 zp-core/lib-auth.php:561 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:605 zp-core/lib-auth.php:637
-#: zp-core/zp-extensions/site_upgrade.php:142
-#: zp-core/zp-extensions/site_upgrade.php:158
-#: zp-core/zp-extensions/site_upgrade.php:174
-#: zp-core/zp-extensions/site_upgrade.php:201
+#: zp-core/zp-extensions/site_upgrade.php:141
+#: zp-core/zp-extensions/site_upgrade.php:157
+#: zp-core/zp-extensions/site_upgrade.php:173
+#: zp-core/zp-extensions/site_upgrade.php:200
 msgid "Admin"
 msgstr "管理"
 
@@ -279,152 +279,6 @@ msgstr "文件夹％s已存在。"
 msgid "Unable to create %s."
 msgstr "无法创建 '%s'。"
 
-#: plugins/customData.php:27
-#, fuzzy
-msgid "This plugin exposes the \"custom_data\" field on objects."
-msgstr "此插件公开对象上的“custom_data”字段。"
-
-#: plugins/customData.php:28
-#, fuzzy
-msgid ""
-"This plugin is for legacy use. You should make a custom field extender "
-"plugin."
-msgstr "此插件适用于传统用途。你应该制作一个自定义字段扩展插件。"
-
-#: plugins/customData.php:126
-#, fuzzy
-#| msgid "Enable comments"
-msgid "Enabled custom_data"
-msgstr "启用custom_data"
-
-#: plugins/customData.php:128 plugins/filter-fileSearches.php:78
-#: themes/effervescence+/sidebar.php:60 themes/garland/sidebar.php:105
-#: themes/paradigm/gallery.php:19 themes/paradigm/includes/_breadcrumbs.php:8
-#: themes/paradigm/includes/_breadcrumbs.php:11
-#: themes/paradigm/includes/_breadcrumbs.php:14
-#: themes/paradigm/includes/_footer.php:13
-#: themes/paradigm/includes/_gallery.php:36
-#: themes/paradigm/includes/_head.php:120
-#: themes/paradigm/includes/_header.php:34
-#: themes/paradigm/includes/_homepage.php:110
-#: themes/paradigm/includes/_sidebar.php:8 themes/paradigm/themeoptions.php:91
-#: themes/zpEnlighten/sidebar.php:77 themes/zpfocus/inc-header.php:111
-#: themes/zpmasonry/inc-menu.php:21 themes/zpskeleton/inc-bottom.php:51
-#: zp-core/admin-edit.php:1757 zp-core/admin-functions.php:2522
-#: zp-core/admin-functions.php:3807 zp-core/admin_options/theme.php:258
-#: zp-core/allTranslations.php:11 zp-core/lib-auth.php:570
-#: zp-core/lib-auth.php:576 zp-core/lib-auth.php:587 zp-core/lib-auth.php:590
-#: zp-core/lib-auth.php:591 zp-core/lib-auth.php:594 zp-core/lib-auth.php:598
-#: zp-core/lib-auth.php:601 zp-core/lib-auth.php:614 zp-core/lib-auth.php:617
-#: zp-core/lib-auth.php:618 zp-core/lib-auth.php:622 zp-core/lib-auth.php:627
-#: zp-core/lib-auth.php:630 zp-core/template-functions.php:115
-#: zp-core/utilities/gallery_statistics.php:69
-#: zp-core/utilities/gallery_statistics.php:580
-#: zp-core/zp-extensions/cacheManager.php:153
-#: zp-core/zp-extensions/comment_form.php:85
-#: zp-core/zp-extensions/defaultCodeblocks.php:63
-#: zp-core/zp-extensions/galleryArticles.php:64
-#: zp-core/zp-extensions/multiple_layouts.php:107
-#: zp-core/zp-extensions/related_items.php:154
-#: zp-core/zp-extensions/tweet_news.php:95
-msgid "Albums"
-msgstr "相簿"
-
-#: plugins/customData.php:129 plugins/filter-fileSearches.php:81
-#: themes/zpArdoise/inc_footer.php:23 themes/zpfocus/inc-header.php:108
-#: themes/zpmasonry/inc-menu.php:20 themes/zpskeleton/inc-bottom.php:50
-#: zp-core/admin-functions.php:568 zp-core/admin-functions.php:2086
-#: zp-core/admin-functions.php:2526 zp-core/admin-functions.php:2663
-#: zp-core/admin_options/theme.php:300
-#: zp-core/utilities/gallery_statistics.php:73
-#: zp-core/utilities/gallery_statistics.php:571
-#: zp-core/zp-extensions/cacheManager.php:153
-#: zp-core/zp-extensions/comment_form.php:85
-#: zp-core/zp-extensions/defaultCodeblocks.php:63
-#: zp-core/zp-extensions/galleryArticles.php:64
-#: zp-core/zp-extensions/multiple_layouts.php:107
-#: zp-core/zp-extensions/related_items.php:154
-#: zp-core/zp-extensions/tweet_news.php:95
-msgid "Images"
-msgstr "图片"
-
-#: plugins/customData.php:130 zp-core/utilities/gallery_statistics.php:606
-msgid "News articles"
-msgstr "新闻文章"
-
-#: plugins/customData.php:131 themes/zpBootstrap/archive.php:54
-#: themes/zpfocus/inc-sidebar.php:91 themes/zpmasonry/news.php:17
-#: themes/zpskeleton/news.php:105 zp-core/class-search.php:123
-#: zp-core/zp-extensions/wordpress_import/admin_tab.php:461
-#: zp-core/zp-extensions/zenpage/admin-categories.php:116
-#: zp-core/zp-extensions/zenpage/admin-edit.php:859
-#: zp-core/zp-extensions/zenpage/admin-functions.php:1291
-#: zp-core/zp-extensions/zenpage/admin-news.php:299
-msgid "Categories"
-msgstr "类别"
-
-#: plugins/customData.php:132 themes/effervescence+/sidebar.php:76
-#: themes/garland/sidebar.php:122 themes/paradigm/includes/_sidebar.php:38
-#: themes/zenFluid/inc-sidebar.php:48 themes/zenpage/sidebar.php:48
-#: themes/zpEnlighten/sidebar.php:37 themes/zpfocus/inc-header.php:220
-#: themes/zpmobile/functions.php:89 themes/zpmobile/functions.php:198
-#: themes/zpmobile/pagelist.php:26 themes/zpmobile/pages.php:26
-#: zp-core/admin-functions.php:3692 zp-core/admin-functions.php:3863
-#: zp-core/allTranslations.php:13 zp-core/lib-auth.php:571
-#: zp-core/lib-auth.php:574 zp-core/lib-auth.php:589 zp-core/lib-auth.php:596
-#: zp-core/lib-auth.php:600 zp-core/lib-auth.php:616 zp-core/lib-auth.php:623
-#: zp-core/lib-auth.php:625 zp-core/lib-auth.php:629
-#: zp-core/utilities/gallery_statistics.php:77
-#: zp-core/utilities/gallery_statistics.php:598
-#: zp-core/zp-extensions/cacheManager.php:156
-#: zp-core/zp-extensions/comment_form.php:87
-#: zp-core/zp-extensions/defaultCodeblocks.php:63
-#: zp-core/zp-extensions/externalFeed.php:76
-#: zp-core/zp-extensions/multiple_layouts.php:109
-#: zp-core/zp-extensions/related_items.php:154
-#: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:100
-#: zp-core/zp-extensions/tweet_news.php:98
-#: zp-core/zp-extensions/zenpage.php:121 zp-core/zp-extensions/zenpage.php:300
-#: zp-core/zp-extensions/zenpage/admin-functions.php:1288
-#: zp-core/zp-extensions/zenpage/admin-pages.php:111
-msgid "Pages"
-msgstr "页"
-
-#: plugins/customData.php:134
-#, fuzzy
-msgid ""
-"Expose the <code>custom_data</code> field on the admin pages for these "
-"objects."
-msgstr "在这些对象的管理页面上公开<code>custom_data</code>字段。"
-
-#: plugins/customData.php:142
-msgid "Custom data:"
-msgstr "自定资料:"
-
-#: plugins/customData.php:157
-#, fuzzy
-msgid "Custom:"
-msgstr "自定"
-
-#: plugins/customData.php:171
-msgid "Custom data"
-msgstr "自定资料"
-
-#: plugins/customData.php:191
-#, fuzzy
-msgid ""
-"The \"custom\" fields are <span style=\"color:red;font-weight:bold;"
-"\">deprecated</span>. You should use create a custom field extender plugin "
-"instead."
-msgstr ""
-"“自定义”字段已<span style=\"color:red;font-weight:bold;\">弃用</span> 。您应"
-"该使用创建自定义字段扩展程序插件。"
-
-#: plugins/customData.php:193
-#, fuzzy
-msgid "The \"custom\" fields defined by the plugin dropped"
-msgstr "插件定义的“自定义”字段已删除"
-
 #: plugins/customFieldExtender.php:42
 #, fuzzy
 msgid "Adds user defined fields to database tables"
@@ -467,11 +321,61 @@ msgid ""
 "Filter out files from albums and image searches that we do not want shown."
 msgstr "在搜寻中过滤不想出现的相簿和图片.  设定请到外挂选项."
 
+#: plugins/filter-fileSearches.php:78 themes/effervescence+/sidebar.php:60
+#: themes/garland/sidebar.php:105 themes/paradigm/gallery.php:19
+#: themes/paradigm/includes/_breadcrumbs.php:8
+#: themes/paradigm/includes/_breadcrumbs.php:11
+#: themes/paradigm/includes/_breadcrumbs.php:14
+#: themes/paradigm/includes/_footer.php:13
+#: themes/paradigm/includes/_gallery.php:36
+#: themes/paradigm/includes/_head.php:120
+#: themes/paradigm/includes/_header.php:34
+#: themes/paradigm/includes/_homepage.php:110
+#: themes/paradigm/includes/_sidebar.php:8 themes/paradigm/themeoptions.php:91
+#: themes/zpEnlighten/sidebar.php:77 themes/zpfocus/inc-header.php:111
+#: themes/zpmasonry/inc-menu.php:21 themes/zpskeleton/inc-bottom.php:51
+#: zp-core/admin-edit.php:1757 zp-core/admin-functions.php:2524
+#: zp-core/admin-functions.php:3809 zp-core/admin_options/theme.php:258
+#: zp-core/allTranslations.php:11 zp-core/lib-auth.php:570
+#: zp-core/lib-auth.php:576 zp-core/lib-auth.php:587 zp-core/lib-auth.php:590
+#: zp-core/lib-auth.php:591 zp-core/lib-auth.php:594 zp-core/lib-auth.php:598
+#: zp-core/lib-auth.php:601 zp-core/lib-auth.php:614 zp-core/lib-auth.php:617
+#: zp-core/lib-auth.php:618 zp-core/lib-auth.php:622 zp-core/lib-auth.php:627
+#: zp-core/lib-auth.php:630 zp-core/template-functions.php:115
+#: zp-core/utilities/gallery_statistics.php:69
+#: zp-core/utilities/gallery_statistics.php:580
+#: zp-core/zp-extensions/cacheManager.php:153
+#: zp-core/zp-extensions/comment_form.php:85
+#: zp-core/zp-extensions/defaultCodeblocks.php:63
+#: zp-core/zp-extensions/galleryArticles.php:64
+#: zp-core/zp-extensions/multiple_layouts.php:107
+#: zp-core/zp-extensions/related_items.php:154
+#: zp-core/zp-extensions/tweet_news.php:95
+msgid "Albums"
+msgstr "相簿"
+
 #: plugins/filter-fileSearches.php:80
 #, fuzzy
 #| msgid "Error: The album named %s cannot be found."
 msgid "Check album names to be ignored."
 msgstr "检查要忽略的相册名称。"
+
+#: plugins/filter-fileSearches.php:81 themes/zpArdoise/inc_footer.php:23
+#: themes/zpfocus/inc-header.php:108 themes/zpmasonry/inc-menu.php:20
+#: themes/zpskeleton/inc-bottom.php:50 zp-core/admin-functions.php:566
+#: zp-core/admin-functions.php:2084 zp-core/admin-functions.php:2528
+#: zp-core/admin-functions.php:2665 zp-core/admin_options/theme.php:300
+#: zp-core/utilities/gallery_statistics.php:73
+#: zp-core/utilities/gallery_statistics.php:571
+#: zp-core/zp-extensions/cacheManager.php:153
+#: zp-core/zp-extensions/comment_form.php:85
+#: zp-core/zp-extensions/defaultCodeblocks.php:63
+#: zp-core/zp-extensions/galleryArticles.php:64
+#: zp-core/zp-extensions/multiple_layouts.php:107
+#: zp-core/zp-extensions/related_items.php:154
+#: zp-core/zp-extensions/tweet_news.php:95
+msgid "Images"
+msgstr "图片"
 
 #: plugins/filter-fileSearches.php:83
 #, fuzzy
@@ -484,7 +388,7 @@ msgid "Generates and displays a Doc file for filters."
 msgstr "生成并显示过滤器的Doc文件。"
 
 #: plugins/filterDoc.php:21 plugins/zenphotoCompatibilityPack.php:44
-#: zp-core/admin-functions.php:5210 zp-core/zp-extensions/debug.php:174
+#: zp-core/admin-functions.php:5212 zp-core/zp-extensions/debug.php:174
 #: zp-core/zp-extensions/deprecated-functions.php:93
 #: zp-core/zp-extensions/macroList.php:86
 #: zp-core/zp-extensions/rewriteRules.php:26
@@ -740,7 +644,7 @@ msgid "watermark created"
 msgstr "水印创造"
 
 #: plugins/text_watermark.php:102 plugins/text_watermark.php:104
-#: zp-core/setup/index.php:1079
+#: zp-core/setup/index.php:1080
 msgid "Create"
 msgstr "Create"
 
@@ -754,8 +658,8 @@ msgstr "迁移titlelinks以包含<em>mod_rewrite_suffix</em> 。"
 msgid "No <em>mod_rewrite_suffix</em> has been set."
 msgstr "没有设置<em>mod_rewrite_suffix</em> 。"
 
-#: plugins/titlelinkMigration.php:32 zp-core/setup/index.php:953
-#: zp-core/zp-extensions/hitcounter.php:233
+#: plugins/titlelinkMigration.php:32 zp-core/setup/index.php:954
+#: zp-core/zp-extensions/hitcounter.php:206
 #: zp-core/zp-extensions/rating.php:246
 #, fuzzy
 msgid "Database"
@@ -843,7 +747,7 @@ msgstr[1] "最近更新"
 #: plugins/zenphotoCompatibilityPack/legacyConverter.php:195
 #: zp-core/lib-auth.php:557 zp-core/lib-auth.php:577 zp-core/lib-auth.php:602
 #: zp-core/lib-auth.php:633 zp-core/template-functions.php:152
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:18
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 msgid "Themes"
 msgstr "布景主题"
 
@@ -864,11 +768,11 @@ msgstr "外挂"
 #: zp-core/admin-edit.php:1186 zp-core/admin-edit.php:1624
 #: zp-core/admin-edit.php:1702 zp-core/admin-edit.php:1739
 #: zp-core/admin-edit.php:1823 zp-core/admin-edit.php:1876
-#: zp-core/admin-functions.php:1731 zp-core/admin-functions.php:2446
+#: zp-core/admin-functions.php:1729 zp-core/admin-functions.php:2444
 #: zp-core/admin-plugins.php:170 zp-core/admin-plugins.php:487
 #: zp-core/admin-thumbcrop.php:298 zp-core/admin-users.php:511
 #: zp-core/admin-users.php:513 zp-core/admin-users.php:933
-#: zp-core/admin_options/gallery.php:66 zp-core/admin_options/gallery.php:467
+#: zp-core/admin_options/gallery.php:68 zp-core/admin_options/gallery.php:511
 #: zp-core/admin_options/general.php:167 zp-core/admin_options/general.php:169
 #: zp-core/admin_options/general.php:823 zp-core/admin_options/image.php:245
 #: zp-core/admin_options/image.php:246 zp-core/admin_options/image.php:958
@@ -879,8 +783,8 @@ msgstr "外挂"
 #: zp-core/admin_options/security.php:326 zp-core/admin_options/theme.php:233
 #: zp-core/admin_options/theme.php:235 zp-core/admin_options/theme.php:565
 #: zp-core/admin_options/theme.php:567
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:226
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:321
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:228
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:328
 #: zp-core/zp-extensions/comment_form/admin-comments.php:137
 #: zp-core/zp-extensions/comment_form/admin-comments.php:341
 #: zp-core/zp-extensions/comment_form/admin-comments.php:509
@@ -889,10 +793,10 @@ msgstr "外挂"
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:249
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:411
 #: zp-core/zp-extensions/publishContent/publishContent.php:249
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:182
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:184
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:317
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:319
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:179
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:181
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:314
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:316
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:130
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:237
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:207
@@ -921,26 +825,26 @@ msgstr "实施"
 #: zp-core/admin-edit.php:1041 zp-core/admin-edit.php:1190
 #: zp-core/admin-edit.php:1628 zp-core/admin-edit.php:1825
 #: zp-core/admin-edit.php:1827 zp-core/admin-edit.php:1878
-#: zp-core/admin-edit.php:1880 zp-core/admin-functions.php:1735
-#: zp-core/admin-functions.php:2450 zp-core/admin-logs.php:147
+#: zp-core/admin-edit.php:1880 zp-core/admin-functions.php:1733
+#: zp-core/admin-functions.php:2448 zp-core/admin-logs.php:147
 #: zp-core/admin-plugins.php:171 zp-core/admin-plugins.php:173
 #: zp-core/admin-plugins.php:488 zp-core/admin-plugins.php:490
 #: zp-core/admin-tags.php:249 zp-core/admin-thumbcrop.php:302
 #: zp-core/admin-users.php:517 zp-core/admin-users.php:937
-#: zp-core/admin_options/gallery.php:69 zp-core/admin_options/gallery.php:470
+#: zp-core/admin_options/gallery.php:71 zp-core/admin_options/gallery.php:514
 #: zp-core/admin_options/general.php:173 zp-core/admin_options/general.php:827
 #: zp-core/admin_options/image.php:250 zp-core/admin_options/image.php:964
 #: zp-core/admin_options/plugin.php:94 zp-core/admin_options/plugin.php:240
 #: zp-core/admin_options/search.php:108 zp-core/admin_options/search.php:626
 #: zp-core/admin_options/security.php:85 zp-core/admin_options/security.php:330
 #: zp-core/admin_options/theme.php:244 zp-core/admin_options/theme.php:576
-#: zp-core/lib-auth.php:1116 zp-core/lib-auth.php:1118
+#: zp-core/lib-auth.php:1124 zp-core/lib-auth.php:1126
 #: zp-core/zp-extensions/contact_form/form.php:142
 #: zp-core/zp-extensions/crop_image.php:492
 #: zp-core/zp-extensions/debug/admin_tab.php:313
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:414
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:188
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:323
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:185
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:320
 #: zp-core/zp-extensions/rewriteTokens.php:102
 #: zp-core/zp-extensions/tagFromSearch/tag.php:232
 #: zp-core/zp-extensions/themeEditor/themes-editor.php:161
@@ -1083,7 +987,7 @@ msgstr "观看相簿:"
 #: themes/zpmobile/favorites.php:60 themes/zpmobile/gallery.php:29
 #: themes/zpmobile/gallery.php:45 themes/zpmobile/image.php:33
 #: themes/zpmobile/news.php:55 themes/zpmobile/search.php:188
-#: themes/zpskeleton/gallery.php:55 zp-core/admin-functions.php:5077
+#: themes/zpskeleton/gallery.php:55 zp-core/admin-functions.php:5079
 #: zp-core/zp-extensions/comment_form/functions.php:118
 #: zp-core/zp-extensions/slideshow.php:596
 #: zp-core/zp-extensions/slideshow2.php:282
@@ -1126,7 +1030,7 @@ msgstr "上一页"
 #: themes/zpmobile/gallery.php:29 themes/zpmobile/gallery.php:45
 #: themes/zpmobile/image.php:36 themes/zpmobile/news.php:59
 #: themes/zpmobile/search.php:188 themes/zpskeleton/gallery.php:55
-#: zp-core/admin-functions.php:5104
+#: zp-core/admin-functions.php:5106
 #: zp-core/zp-extensions/comment_form/functions.php:119
 #: zp-core/zp-extensions/jPlayer.php:478
 #: zp-core/zp-extensions/slideshow.php:597
@@ -1151,8 +1055,8 @@ msgstr "<strong>标签:</strong>"
 
 #: themes/basic/album.php:87 themes/zenFluid/404.php:19
 #: themes/zenpage/sidebar.php:68 themes/zpminimal/inc-footer.php:26
-#: themes/zpmobile/functions.php:53 zp-core/admin-functions.php:590
-#: zp-core/admin-functions.php:5483 zp-core/lib-auth.php:555
+#: themes/zpmobile/functions.php:53 zp-core/admin-functions.php:588
+#: zp-core/admin-functions.php:5485 zp-core/lib-auth.php:555
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:78
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:82
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:272
@@ -1195,7 +1099,7 @@ msgstr "常见标签"
 
 #: themes/basic/contact.php:24 themes/basic/contact.php:27
 #: themes/basic/index.php:99 themes/effervescence+/contact.php:62
-#: themes/effervescence+/functions.php:427 themes/garland/contact.php:42
+#: themes/effervescence+/functions.php:428 themes/garland/contact.php:42
 #: themes/garland/functions.php:119 themes/paradigm/contact.php:19
 #: themes/paradigm/includes/_breadcrumbs.php:23 themes/zenFluid/contact.php:15
 #: themes/zenFluid/inc-sidebar.php:93 themes/zenpage/contact.php:35
@@ -1228,7 +1132,7 @@ msgstr "移除"
 msgid "Default theme color scheme."
 msgstr "默认主题配色方案。"
 
-#: themes/basic/functions.php:89 themes/effervescence+/functions.php:153
+#: themes/basic/functions.php:89 themes/effervescence+/functions.php:152
 #: themes/zpArdoise/functions.php:66 themes/zpmasonry/functions.php:37
 #, fuzzy
 msgid "Theme Color"
@@ -1280,7 +1184,7 @@ msgid "Zoomed image will appear here."
 msgstr "缩放图像将出现在此处。"
 
 #: themes/basic/index.php:104 themes/basic/password.php:41
-#: themes/effervescence+/functions.php:433 themes/garland/functions.php:125
+#: themes/effervescence+/functions.php:434 themes/garland/functions.php:125
 #: themes/paradigm/password.php:32 themes/zenpage/password.php:44
 #: themes/zenpage/sidebar.php:114 themes/zenpage/sidebar.php:116
 #: themes/zpEnlighten/password.php:42 themes/zpEnlighten/sidebar.php:114
@@ -1316,19 +1220,19 @@ msgstr "登记为用户"
 #: themes/zpEnlighten/news.php:25 themes/zpEnlighten/news.php:30
 #: themes/zpEnlighten/pages.php:23 themes/zpEnlighten/password.php:22
 #: themes/zpEnlighten/register.php:22 themes/zpEnlighten/search.php:34
-#: zp-core/404.php:73 zp-core/setup/index.php:1080
+#: zp-core/404.php:73 zp-core/setup/index.php:1081
 msgid "Index"
 msgstr "Index"
 
 #: themes/basic/news.php:66 themes/basic/news.php:98
-#: themes/effervescence+/functions.php:463 themes/effervescence+/news.php:90
+#: themes/effervescence+/functions.php:464 themes/effervescence+/news.php:90
 #: themes/garland/functions.php:157 themes/garland/news.php:62
 #, php-format
 msgid "Comments: %d"
 msgstr "留言: %d"
 
 #: themes/basic/news.php:70 themes/basic/news.php:105
-#: themes/effervescence+/functions.php:470 themes/effervescence+/news.php:94
+#: themes/effervescence+/functions.php:471 themes/effervescence+/news.php:94
 #: themes/garland/functions.php:164 themes/garland/news.php:66
 #: themes/garland/news.php:112 themes/zenFluid/news.php:101
 #: themes/zenFluid/news.php:170 themes/zenpage/gallery.php:75
@@ -1343,7 +1247,7 @@ msgstr "留言: %d"
 msgid "Categories: "
 msgstr "类别:"
 
-#: themes/basic/news.php:85 themes/effervescence+/functions.php:450
+#: themes/basic/news.php:85 themes/effervescence+/functions.php:451
 #: themes/garland/functions.php:144
 #: zp-core/zp-extensions/zenpage/admin-edit.php:589
 #: zp-core/zp-extensions/zenpage/admin-news.php:326
@@ -1351,7 +1255,7 @@ msgstr "类别:"
 msgid "sticky"
 msgstr "固定"
 
-#: themes/basic/news.php:117 themes/effervescence+/functions.php:483
+#: themes/basic/news.php:117 themes/effervescence+/functions.php:484
 #: themes/garland/album.php:75 themes/garland/favorites.php:90
 #: themes/garland/functions.php:177 themes/garland/gallery.php:60
 #: themes/garland/search.php:223 themes/paradigm/news.php:129
@@ -1364,7 +1268,7 @@ msgstr "固定"
 msgid "next »"
 msgstr "下一页"
 
-#: themes/basic/news.php:117 themes/effervescence+/functions.php:483
+#: themes/basic/news.php:117 themes/effervescence+/functions.php:484
 #: themes/garland/album.php:75 themes/garland/favorites.php:90
 #: themes/garland/functions.php:177 themes/garland/gallery.php:60
 #: themes/garland/search.php:223 themes/paradigm/news.php:129
@@ -1509,7 +1413,7 @@ msgstr ""
 "最简单的主题有4种不同的风格。选择此主题后，您可以通过转到“管理员选项”选项卡并"
 "更改“ <em>主题颜色”</em>选项来选择<em>主题颜色</em> 。"
 
-#: themes/basic/themeoptions.php:44 themes/effervescence+/themeoptions.php:95
+#: themes/basic/themeoptions.php:44 themes/effervescence+/themeoptions.php:96
 #: themes/garland/themeoptions.php:81 themes/paradigm/themeoptions.php:95
 #: themes/zenFluid/themeoptions.php:113 themes/zenpage/themeoptions.php:65
 #: themes/zpArdoise/themeoptions.php:70 themes/zpBootstrap/themeoptions.php:83
@@ -1518,7 +1422,7 @@ msgstr ""
 msgid "Allow search"
 msgstr "容许搜寻"
 
-#: themes/basic/themeoptions.php:44 themes/effervescence+/themeoptions.php:95
+#: themes/basic/themeoptions.php:44 themes/effervescence+/themeoptions.php:96
 #: themes/paradigm/themeoptions.php:95 themes/zenpage/themeoptions.php:65
 #: themes/zpArdoise/themeoptions.php:70 themes/zpBootstrap/themeoptions.php:83
 #: themes/zpEnlighten/themeoptions.php:21 themes/zpfocus/themeoptions.php:69
@@ -1526,11 +1430,11 @@ msgstr "容许搜寻"
 msgid "Check to enable search form."
 msgstr "剔选以使用搜寻."
 
-#: themes/basic/themeoptions.php:45 themes/effervescence+/themeoptions.php:102
+#: themes/basic/themeoptions.php:45 themes/effervescence+/themeoptions.php:104
 msgid "Theme colors"
 msgstr "布景主题颜色"
 
-#: themes/basic/themeoptions.php:45 themes/effervescence+/themeoptions.php:102
+#: themes/basic/themeoptions.php:45 themes/effervescence+/themeoptions.php:104
 msgid "Select the colors of the theme"
 msgstr "选择布景主题颜色."
 
@@ -1581,32 +1485,32 @@ msgstr "联络"
 msgid "Search gallery"
 msgstr "搜寻相馆"
 
-#: themes/effervescence+/functions.php:152
+#: themes/effervescence+/functions.php:151
 #, fuzzy
 msgid "Effervescence color scheme."
 msgstr "泡腾配色方案。"
 
-#: themes/effervescence+/functions.php:163
+#: themes/effervescence+/functions.php:162
 #, fuzzy
 msgid "Effervescence image display handling."
 msgstr "泡腾图像显示处理。"
 
-#: themes/effervescence+/functions.php:164 themes/garland/functions.php:60
+#: themes/effervescence+/functions.php:163 themes/garland/functions.php:60
 #, fuzzy
 msgid "Personality"
 msgstr "选取布景主题个性"
 
-#: themes/effervescence+/functions.php:197
+#: themes/effervescence+/functions.php:196
 #: themes/effervescence+/indexpage.php:83
 msgid "There were no images from which to select the random heading."
 msgstr "没有图片可以选择作为随机标题."
 
-#: themes/effervescence+/functions.php:216
+#: themes/effervescence+/functions.php:215
 msgid "Random picture..."
 msgstr "随机图片..."
 
-#: themes/effervescence+/functions.php:247
-#: zp-core/zp-extensions/menu_manager.php:1071
+#: themes/effervescence+/functions.php:246
+#: zp-core/zp-extensions/menu_manager.php:1072
 #: zp-core/zp-extensions/print_album_menu.php:253
 #, php-format
 msgid "%u album"
@@ -1614,8 +1518,8 @@ msgid_plural "%u albums"
 msgstr[0] "%u 个相簿"
 msgstr[1] "%u 个相簿"
 
-#: themes/effervescence+/functions.php:253
-#: zp-core/zp-extensions/menu_manager.php:1077
+#: themes/effervescence+/functions.php:252
+#: zp-core/zp-extensions/menu_manager.php:1078
 #: zp-core/zp-extensions/print_album_menu.php:259
 #, php-format
 msgid "%u image"
@@ -1623,22 +1527,22 @@ msgid_plural "%u images"
 msgstr[0] "%u 张图片"
 msgstr[1] "%u 张图片"
 
-#: themes/effervescence+/functions.php:263
+#: themes/effervescence+/functions.php:262
 #, php-format
 msgid "Album %1$u of %2$u"
 msgstr "相簿 %2$u 之 %1$u "
 
-#: themes/effervescence+/functions.php:265
+#: themes/effervescence+/functions.php:264
 #, php-format
 msgid "Photo %1$u of %2$u"
 msgstr "相片 %2$u 之 %1$u "
 
-#: themes/effervescence+/functions.php:269
+#: themes/effervescence+/functions.php:268
 #, php-format
 msgid "Albums %1$u-%2$u of %3$u"
 msgstr "Albums %3$u 之 %1$u-%2$u"
 
-#: themes/effervescence+/functions.php:271
+#: themes/effervescence+/functions.php:270
 #, php-format
 msgid "Photos %1$u-%2$u of %3$u"
 msgstr "相片 %3$u 之 %1$u-%2$u "
@@ -1654,62 +1558,62 @@ msgstr "Effervescence %s"
 msgid "Effervescence %1$s %2$s"
 msgstr "Effervescence %1$s %2$s"
 
-#: themes/effervescence+/functions.php:343 zp-core/template-functions.php:1104
+#: themes/effervescence+/functions.php:344 zp-core/template-functions.php:1104
 msgid "The album is password protected."
 msgstr "这相簿受密码保护."
 
-#: themes/effervescence+/functions.php:346
+#: themes/effervescence+/functions.php:347
 msgid "The album is not published."
 msgstr "相簿未发表."
 
-#: themes/effervescence+/functions.php:348
+#: themes/effervescence+/functions.php:349
 #, php-format
 msgid "View the Album: %s"
 msgstr "观看相簿: %s"
 
-#: themes/effervescence+/functions.php:355
+#: themes/effervescence+/functions.php:356
 msgid "The image is marked not visible."
 msgstr "图片标示为不可见."
 
-#: themes/effervescence+/functions.php:359
+#: themes/effervescence+/functions.php:360
 #, php-format
 msgid "View the image: %s"
 msgstr "观看图片: %s"
 
-#: themes/effervescence+/functions.php:374
+#: themes/effervescence+/functions.php:375
 #, php-format
 msgid "%1$u hit on this %2$s"
 msgid_plural "%1$u hits on this %2$s"
 msgstr[0] "在 %2$s 有 %1$u 观看次数"
 msgstr[1] "在 %2$s 有 %1$u 观看次数"
 
-#: themes/effervescence+/functions.php:374
+#: themes/effervescence+/functions.php:375
 #: zp-core/zp-extensions/comment_form/admin-comments.php:414
 msgid "page"
 msgstr "页"
 
-#: themes/effervescence+/functions.php:384
+#: themes/effervescence+/functions.php:385
 #, php-format
 msgid "%u Album"
 msgid_plural "%u Albums"
 msgstr[0] "%u 个相簿"
 msgstr[1] "%u 个相簿"
 
-#: themes/effervescence+/functions.php:388
+#: themes/effervescence+/functions.php:389
 #, php-format
 msgid "%u Subalbum"
 msgid_plural "%u Subalbums"
 msgstr[0] "%u 个子相簿"
 msgstr[1] "%u 个子相簿"
 
-#: themes/effervescence+/functions.php:392
+#: themes/effervescence+/functions.php:393
 #, php-format
 msgid "%u Image"
 msgid_plural "%u Images"
 msgstr[0] "%u 张图片"
 msgstr[1] "%u 张图片"
 
-#: themes/effervescence+/functions.php:398 themes/zenFluid/image.php:180
+#: themes/effervescence+/functions.php:399 themes/zenFluid/image.php:180
 #: themes/zenFluid/news.php:63 themes/zenFluid/news.php:152
 #: themes/zenFluid/pages.php:41 themes/zpArdoise/inc_print_comment.php:32
 #: themes/zpBootstrap/inc_print_comment.php:36
@@ -1720,7 +1624,7 @@ msgid_plural "%u Comments"
 msgstr[0] "%u 个留言"
 msgstr[1] "%u 个留言"
 
-#: themes/effervescence+/functions.php:446 themes/garland/functions.php:140
+#: themes/effervescence+/functions.php:447 themes/garland/functions.php:140
 #: themes/paradigm/includes/_head.php:247
 #: themes/paradigm/includes/_head.php:312 themes/zpmasonry/album.php:20
 #: themes/zpmasonry/favorites.php:22 zp-core/admin-edit.php:665
@@ -1728,7 +1632,7 @@ msgstr[1] "%u 个留言"
 msgid "album"
 msgstr "相簿"
 
-#: themes/effervescence+/functions.php:446 themes/garland/functions.php:140
+#: themes/effervescence+/functions.php:447 themes/garland/functions.php:140
 #: zp-core/admin-globals.php:233 zp-core/admin_options/theme.php:447
 #: zp-core/zp-extensions/comment_form/admin-comments.php:421
 #: zp-core/zp-extensions/image_album_statistics.php:262
@@ -1736,11 +1640,11 @@ msgstr "相簿"
 msgid "image"
 msgstr "图片"
 
-#: themes/effervescence+/functions.php:446 themes/garland/functions.php:140
+#: themes/effervescence+/functions.php:447 themes/garland/functions.php:140
 msgid "video"
 msgstr "影片"
 
-#: themes/effervescence+/functions.php:501
+#: themes/effervescence+/functions.php:502
 msgid "Add a comment"
 msgstr "加入留言"
 
@@ -1851,6 +1755,32 @@ msgstr "对不起, 没有符合 <em>%s</em> 结果.  请再以不同条件搜寻
 msgid "Both"
 msgstr "两者"
 
+#: themes/effervescence+/sidebar.php:76 themes/garland/sidebar.php:122
+#: themes/paradigm/includes/_sidebar.php:38 themes/zenFluid/inc-sidebar.php:48
+#: themes/zenpage/sidebar.php:48 themes/zpEnlighten/sidebar.php:37
+#: themes/zpfocus/inc-header.php:220 themes/zpmobile/functions.php:89
+#: themes/zpmobile/functions.php:198 themes/zpmobile/pagelist.php:26
+#: themes/zpmobile/pages.php:26 zp-core/admin-functions.php:3694
+#: zp-core/admin-functions.php:3865 zp-core/allTranslations.php:13
+#: zp-core/lib-auth.php:571 zp-core/lib-auth.php:574 zp-core/lib-auth.php:589
+#: zp-core/lib-auth.php:596 zp-core/lib-auth.php:600 zp-core/lib-auth.php:616
+#: zp-core/lib-auth.php:623 zp-core/lib-auth.php:625 zp-core/lib-auth.php:629
+#: zp-core/utilities/gallery_statistics.php:77
+#: zp-core/utilities/gallery_statistics.php:598
+#: zp-core/zp-extensions/cacheManager.php:156
+#: zp-core/zp-extensions/comment_form.php:87
+#: zp-core/zp-extensions/defaultCodeblocks.php:63
+#: zp-core/zp-extensions/externalFeed.php:76
+#: zp-core/zp-extensions/multiple_layouts.php:109
+#: zp-core/zp-extensions/related_items.php:154
+#: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:100
+#: zp-core/zp-extensions/tweet_news.php:98
+#: zp-core/zp-extensions/zenpage.php:121 zp-core/zp-extensions/zenpage.php:300
+#: zp-core/zp-extensions/zenpage/admin-functions.php:1288
+#: zp-core/zp-extensions/zenpage/admin-pages.php:111
+msgid "Pages"
+msgstr "页"
+
 #: themes/effervescence+/sidebar.php:89 themes/effervescence+/sidebar.php:93
 #: themes/paradigm/themeoptions.php:96 themes/zenpage/sidebar.php:57
 #: themes/zpfocus/archive.php:5 themes/zpfocus/inc-header.php:234
@@ -1885,7 +1815,7 @@ msgid ""
 "added."
 msgstr "基于Effervescence 1.1，添加了多种配色方案和个性。"
 
-#: themes/effervescence+/themeoptions.php:85
+#: themes/effervescence+/themeoptions.php:86
 #, fuzzy
 msgid ""
 "<strong>Note:</strong> This option is valid only if the Zenpage plugin is "
@@ -1895,7 +1825,7 @@ msgstr ""
 "<strong>注意：</strong>仅当启用Zenpage插件或选中“分隔图库索引”选项时，此选项"
 "才有效。当然还必须启用<em>menu_manager</em>插件。"
 
-#: themes/effervescence+/themeoptions.php:88 themes/garland/themeoptions.php:73
+#: themes/effervescence+/themeoptions.php:89 themes/garland/themeoptions.php:73
 #, fuzzy, php-format
 msgid ""
 "<strong>Note:</strong> The <em>%s</em> custom menu makes use of the "
@@ -1904,52 +1834,52 @@ msgstr ""
 "<strong>注意：</strong> <em>％s</em>自定义菜单使用<em>print_album_menu</em>插"
 "件。"
 
-#: themes/effervescence+/themeoptions.php:91
+#: themes/effervescence+/themeoptions.php:92
 #, fuzzy
 msgid "Separate gallery index"
 msgstr "单独的画廊索引"
 
-#: themes/effervescence+/themeoptions.php:91
+#: themes/effervescence+/themeoptions.php:92
 #, fuzzy
 msgid "Check to move the gallery index from the home page to gallery.php."
 msgstr "选中将图库索引从主页移动到gallery.php。"
 
-#: themes/effervescence+/themeoptions.php:91
+#: themes/effervescence+/themeoptions.php:92
 #, fuzzy
 msgid ""
 "<strong>Note:</strong> this is assumed if the zenpage plugin is enabled."
 msgstr "<strong>注意：</strong>如果启用了zenpage插件，则会采用此方法。"
 
-#: themes/effervescence+/themeoptions.php:92
+#: themes/effervescence+/themeoptions.php:93
 msgid "Theme logo"
 msgstr "布景主题标志"
 
-#: themes/effervescence+/themeoptions.php:92
+#: themes/effervescence+/themeoptions.php:93
 msgid "The text for the theme logo"
 msgstr "布景主题标志文字"
 
-#: themes/effervescence+/themeoptions.php:93
+#: themes/effervescence+/themeoptions.php:94
 msgid "Watermark head image"
 msgstr "标题图像水印"
 
-#: themes/effervescence+/themeoptions.php:93
+#: themes/effervescence+/themeoptions.php:94
 msgid ""
 "Check to place a watermark on the heading image. (Image watermarking must be "
 "set.)"
 msgstr "剔选以在标题图像加入水印. (图像水印功能必须开启.)"
 
-#: themes/effervescence+/themeoptions.php:94
+#: themes/effervescence+/themeoptions.php:95
 #, fuzzy
 msgid "Daily image"
 msgstr "每日图片"
 
-#: themes/effervescence+/themeoptions.php:94
+#: themes/effervescence+/themeoptions.php:95
 #, fuzzy
 msgid ""
 "If checked the heading image will change daily rather than on each page load."
 msgstr "如果选中，标题图像将每天更改，而不是每次加载页面。"
 
-#: themes/effervescence+/themeoptions.php:96 themes/zpArdoise/album.php:11
+#: themes/effervescence+/themeoptions.php:97 themes/zpArdoise/album.php:11
 #: themes/zpArdoise/favorites.php:14 themes/zpArdoise/image.php:24
 #: themes/zpArdoise/inc_header.php:156 themes/zpArdoise/search.php:65
 #: themes/zpArdoise/slideshow.php:6 themes/zpBootstrap/album_standard.php:24
@@ -1964,68 +1894,78 @@ msgstr "如果选中，标题图像将每天更改，而不是每次加载页面
 msgid "Slideshow"
 msgstr "幻灯片播放"
 
-#: themes/effervescence+/themeoptions.php:96
+#: themes/effervescence+/themeoptions.php:97
 msgid "Check to enable slideshow for the <em>Smoothgallery</em> personality."
 msgstr "剔选以使<em>Smoothgallery</em>个性可以使用幻灯片."
 
-#: themes/effervescence+/themeoptions.php:97
+#: themes/effervescence+/themeoptions.php:98
 msgid "Graphic logo"
 msgstr "图形标志"
 
-#: themes/effervescence+/themeoptions.php:97
+#: themes/effervescence+/themeoptions.php:98
 #, fuzzy, php-format
 msgid ""
 "Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty "
 "for text logo."
 msgstr "选择徽标（ <em>％s / images</em>文件夹中的PNG文件）或留空文本徽标。"
 
-#: themes/effervescence+/themeoptions.php:98 themes/garland/themeoptions.php:78
+#: themes/effervescence+/themeoptions.php:99
+#, fuzzy
+msgid "Display theme info"
+msgstr "在页脚中显示归档链接。"
+
+#: themes/effervescence+/themeoptions.php:99
+msgid "If checked the theme settings summary will be displayed in the footer."
+msgstr ""
+
+#: themes/effervescence+/themeoptions.php:100
+#: themes/garland/themeoptions.php:78
 msgid "Theme personality"
 msgstr "布景主题个性"
 
-#: themes/effervescence+/themeoptions.php:101
+#: themes/effervescence+/themeoptions.php:103
 #: themes/garland/themeoptions.php:80
 msgid "Select the theme personality"
 msgstr "选取布景主题个性"
 
-#: themes/effervescence+/themeoptions.php:103
+#: themes/effervescence+/themeoptions.php:105
 #: themes/garland/themeoptions.php:83
 msgid "Custom menu"
 msgstr "自定选单"
 
-#: themes/effervescence+/themeoptions.php:103
+#: themes/effervescence+/themeoptions.php:105
 #: themes/garland/themeoptions.php:83
 #, fuzzy
 msgid "Set this to the <em>menu_manager</em> menu you wish to use."
 msgstr "将其设置为您要使用的<em>menu_manager</em>菜单。"
 
-#: themes/effervescence+/themeoptions.php:107
+#: themes/effervescence+/themeoptions.php:109
 #: themes/garland/themeoptions.php:102
 #, fuzzy
 msgid "Image gallery transition"
 msgstr "图库转换"
 
-#: themes/effervescence+/themeoptions.php:108
+#: themes/effervescence+/themeoptions.php:110
 #: themes/garland/themeoptions.php:103 zp-core/exif/exifTranslations.php:149
 #: zp-core/zp-extensions/googleMap.php:93
 #: zp-core/zp-extensions/user_login-out.php:38
 msgid "None"
 msgstr "没有"
 
-#: themes/effervescence+/themeoptions.php:108
+#: themes/effervescence+/themeoptions.php:110
 #: themes/garland/themeoptions.php:103
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:90
 #, fuzzy
 msgid "Fade"
 msgstr "淡入淡出"
 
-#: themes/effervescence+/themeoptions.php:108
+#: themes/effervescence+/themeoptions.php:110
 #: themes/garland/themeoptions.php:103
 #, fuzzy
 msgid "Shrink/grow"
 msgstr "收缩/成长"
 
-#: themes/effervescence+/themeoptions.php:108
+#: themes/effervescence+/themeoptions.php:110
 #: themes/garland/themeoptions.php:103
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:88
 #: zp-core/zp-extensions/googleMap.php:96
@@ -2034,7 +1974,7 @@ msgstr "收缩/成长"
 msgid "Horizontal"
 msgstr "水平"
 
-#: themes/effervescence+/themeoptions.php:108
+#: themes/effervescence+/themeoptions.php:110
 #: themes/garland/themeoptions.php:103
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:89
 #: zp-core/zp-extensions/jCarousel_thumb_nav.php:75
@@ -2042,31 +1982,31 @@ msgstr "水平"
 msgid "Vertical"
 msgstr "垂直"
 
-#: themes/effervescence+/themeoptions.php:110
+#: themes/effervescence+/themeoptions.php:112
 #: themes/garland/themeoptions.php:105
 #, fuzzy
 msgid "Transition effect for Image gallery"
 msgstr "图库的过渡效果"
 
-#: themes/effervescence+/themeoptions.php:111
+#: themes/effervescence+/themeoptions.php:113
 #: themes/garland/themeoptions.php:106
 #, fuzzy
 msgid "Image gallery caption"
 msgstr "图库标题"
 
-#: themes/effervescence+/themeoptions.php:112
+#: themes/effervescence+/themeoptions.php:114
 #: themes/garland/themeoptions.php:107
 #, fuzzy
 msgid "On image"
 msgstr "% 的图片"
 
-#: themes/effervescence+/themeoptions.php:112
+#: themes/effervescence+/themeoptions.php:114
 #: themes/garland/themeoptions.php:107
 #, fuzzy
 msgid "Separate"
 msgstr "分离"
 
-#: themes/effervescence+/themeoptions.php:112
+#: themes/effervescence+/themeoptions.php:114
 #: themes/garland/themeoptions.php:107
 #: zp-core/zp-extensions/comment_form.php:97
 #: zp-core/zp-extensions/comment_form.php:101
@@ -2077,20 +2017,20 @@ msgstr "分离"
 msgid "Omit"
 msgstr "忽略"
 
-#: themes/effervescence+/themeoptions.php:114
+#: themes/effervescence+/themeoptions.php:116
 #: themes/garland/themeoptions.php:109
 #, fuzzy
 msgid "Location for Image gallery picture caption"
 msgstr "图库图片标题的位置"
 
-#: themes/effervescence+/themeoptions.php:124
-#: themes/effervescence+/themeoptions.php:129
-#: themes/effervescence+/themeoptions.php:130
+#: themes/effervescence+/themeoptions.php:126
+#: themes/effervescence+/themeoptions.php:131
+#: themes/effervescence+/themeoptions.php:132
 #, fuzzy
 msgid "Index Image"
 msgstr "索引图像"
 
-#: themes/effervescence+/themeoptions.php:125
+#: themes/effervescence+/themeoptions.php:127
 #: themes/garland/themeoptions.php:98 themes/zenpage/themeoptions.php:68
 #: themes/zpArdoise/inc_header.php:331 themes/zpArdoise/themeoptions.php:130
 #: themes/zpArdoise/themeoptions.php:132 themes/zpEnlighten/themeoptions.php:45
@@ -2111,26 +2051,26 @@ msgstr "索引图像"
 msgid "none"
 msgstr "没有"
 
-#: themes/effervescence+/themeoptions.php:127
+#: themes/effervescence+/themeoptions.php:129
 #, fuzzy
 msgid "Apply this effect to the index page image."
 msgstr "将此效果应用于索引页面图像。"
 
-#: themes/effervescence+/themeoptions.php:130
+#: themes/effervescence+/themeoptions.php:132
 #, fuzzy
 msgid "This option requires the <em>image_effects</em> plugin to be enabled."
 msgstr "此选项需要启用<em>image_effects</em>插件。"
 
-#: themes/effervescence+/themeoptions.php:160
+#: themes/effervescence+/themeoptions.php:162
 #: themes/garland/themeoptions.php:128
 msgid "*standard menu"
 msgstr "*标准选单"
 
-#: themes/effervescence+/themeoptions.php:167
+#: themes/effervescence+/themeoptions.php:169
 msgid "*no logo selected"
 msgstr "* 没有选择标志"
 
-#: themes/effervescence+/themeoptions.php:168
+#: themes/effervescence+/themeoptions.php:170
 #, fuzzy
 msgid "Effervescence"
 msgstr "Effervescence %s"
@@ -2482,7 +2422,7 @@ msgid "Theme used:"
 msgstr "使用的主题："
 
 #: themes/paradigm/credits.php:35 zp-core/class-feed.php:545
-#: zp-core/zp-extensions/comment_form/functions.php:900
+#: zp-core/zp-extensions/comment_form/functions.php:904
 msgid "by"
 msgstr "由"
 
@@ -2594,7 +2534,7 @@ msgstr "博客"
 #: themes/zpminimal/password.php:4 themes/zpminimal/register.php:4
 #: themes/zpminimal/search.php:29 themes/zpmobile/functions.php:74
 #: themes/zpskeleton/inc-header.php:173 zp-core/template-functions.php:1446
-#: zp-core/zp-extensions/menu_manager.php:807
+#: zp-core/zp-extensions/menu_manager.php:808
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:481
 msgid "Home"
 msgstr "主页"
@@ -2963,7 +2903,7 @@ msgid "The object you are requesting cannot be found."
 msgstr "找不到您要求的对象。"
 
 #: themes/zenFluid/404.php:22 themes/zpArdoise/album.php:56
-#: themes/zpEnlighten/image.php:67 zp-core/admin-functions.php:5481
+#: themes/zpEnlighten/image.php:67 zp-core/admin-functions.php:5483
 #: zp-core/zp-extensions/reCAPTCHA_v2.php:63
 msgid "Image"
 msgstr "图片"
@@ -3788,6 +3728,17 @@ msgstr "未有未发表的页面"
 msgid "Google Map"
 msgstr "Google地图"
 
+#: themes/zpBootstrap/archive.php:54 themes/zpfocus/inc-sidebar.php:91
+#: themes/zpmasonry/news.php:17 themes/zpskeleton/news.php:105
+#: zp-core/class-search.php:123
+#: zp-core/zp-extensions/wordpress_import/admin_tab.php:461
+#: zp-core/zp-extensions/zenpage/admin-categories.php:116
+#: zp-core/zp-extensions/zenpage/admin-edit.php:859
+#: zp-core/zp-extensions/zenpage/admin-functions.php:1291
+#: zp-core/zp-extensions/zenpage/admin-news.php:299
+msgid "Categories"
+msgstr "类别"
+
 #: themes/zpBootstrap/inc_header.php:65
 #, fuzzy
 msgid "Password Required..."
@@ -3804,7 +3755,7 @@ msgstr "最新图片RSS"
 #: themes/zpmasonry/inc-menu.php:36 themes/zpminimal/inc-header.php:88
 #: themes/zpminimal/inc-sidemenu.php:47 themes/zpminimal/login.php:4
 #: themes/zpskeleton/inc-footer.php:15 themes/zpskeleton/inc-header.php:91
-#: themes/zpskeleton/login.php:6 zp-core/lib-auth.php:1055
+#: themes/zpskeleton/login.php:6 zp-core/lib-auth.php:1063
 #: zp-core/zp-extensions/user_login-out.php:115
 msgid "Login"
 msgstr "用户名称"
@@ -3927,13 +3878,13 @@ msgstr "播放幻灯片"
 msgid "Send me a message of Love"
 msgstr "给我发一条爱的消息"
 
-#: themes/zpEnlighten/password_form.php:17 zp-core/lib-auth.php:1107
-#: zp-core/lib-auth.php:1280 zp-core/lib-auth.php:1384
+#: themes/zpEnlighten/password_form.php:17 zp-core/lib-auth.php:1115
+#: zp-core/lib-auth.php:1288 zp-core/lib-auth.php:1392
 msgid "Password"
 msgstr "密码"
 
-#: themes/zpEnlighten/password_form.php:22 zp-core/lib-auth.php:1022
-#: zp-core/lib-auth.php:1024 zp-core/zp-extensions/googleTFA/auth_code.php:61
+#: themes/zpEnlighten/password_form.php:22 zp-core/lib-auth.php:1030
+#: zp-core/lib-auth.php:1032 zp-core/zp-extensions/googleTFA/auth_code.php:61
 #: zp-core/zp-extensions/register_user/register_user_form.php:111
 msgid "Submit"
 msgstr "送出"
@@ -4621,8 +4572,8 @@ msgstr "子相簿"
 #: themes/zpminimal/gallery.php:9 themes/zpskeleton/album.php:29
 #: themes/zpskeleton/album.php:61 themes/zpskeleton/favorites.php:32
 #: themes/zpskeleton/favorites.php:64 themes/zpskeleton/gallery.php:39
-#: themes/zpskeleton/search.php:135 zp-core/admin-functions.php:2653
-#: zp-core/admin-functions.php:2656 zp-core/admin_options/image.php:417
+#: themes/zpskeleton/search.php:135 zp-core/admin-functions.php:2655
+#: zp-core/admin-functions.php:2658 zp-core/admin_options/image.php:417
 #: zp-core/admin_options/image.php:455
 #: zp-core/zp-extensions/image_album_statistics.php:264
 #: zp-core/zp-extensions/tinyURL.php:80
@@ -4662,13 +4613,13 @@ msgstr "网站"
 
 #: themes/zpmasonry/comment_form/comment_form.php:43
 #: themes/zpminimal/z_disable_comment_form/comment_form.php:43
-#: zp-core/zp-extensions/comment_form/functions.php:1004
+#: zp-core/zp-extensions/comment_form/functions.php:1008
 msgid "Anonymous"
 msgstr "匿名"
 
 #: themes/zpmasonry/comment_form/comment_form.php:66
 #: themes/zpminimal/z_disable_comment_form/comment_form.php:63
-#: zp-core/lib-auth.php:1186
+#: zp-core/lib-auth.php:1194
 msgid "Enter CAPTCHA"
 msgstr "输入 验证码"
 
@@ -4762,7 +4713,7 @@ msgstr "没有图像存在..."
 
 #: themes/zpmasonry/index.php:105 zp-core/template-functions.php:843
 #: zp-core/template-functions.php:1042
-#: zp-core/zp-extensions/menu_manager.php:633
+#: zp-core/zp-extensions/menu_manager.php:634
 msgid "Next Page"
 msgstr "下一页"
 
@@ -5416,7 +5367,7 @@ msgstr "*批量功能*"
 #: zp-core/admin-edit.php:744 zp-core/admin-edit.php:748
 #: zp-core/admin-edit.php:1706 zp-core/admin-edit.php:1743
 #: zp-core/admin-logs.php:139 zp-core/admin-themes.php:328
-#: zp-core/setup/index.php:1080 zp-core/zp-extensions/cacheManager.php:257
+#: zp-core/setup/index.php:1081 zp-core/zp-extensions/cacheManager.php:257
 #: zp-core/zp-extensions/comment_form/admin-comments.php:149
 #: zp-core/zp-extensions/comment_form/admin-comments.php:151
 #: zp-core/zp-extensions/comment_form/admin-comments.php:370
@@ -5449,7 +5400,7 @@ msgid "Set to unpublished"
 msgstr "预定为未发表"
 
 #: zp-core/admin-albumsort.php:89 zp-core/admin-edit.php:737
-#: zp-core/admin-functions.php:2740
+#: zp-core/admin-functions.php:2742
 #: zp-core/zp-extensions/zenpage/admin-functions.php:274
 #: zp-core/zp-extensions/zenpage/admin-news.php:282
 #: zp-core/zp-extensions/zenpage/admin-news.php:397
@@ -5458,7 +5409,7 @@ msgid "Disable comments"
 msgstr "关闭留言"
 
 #: zp-core/admin-albumsort.php:90 zp-core/admin-edit.php:738
-#: zp-core/admin-functions.php:2754
+#: zp-core/admin-functions.php:2756
 #: zp-core/zp-extensions/zenpage/admin-functions.php:280
 #: zp-core/zp-extensions/zenpage/admin-news.php:283
 #: zp-core/zp-extensions/zenpage/admin-news.php:405
@@ -5485,61 +5436,61 @@ msgstr "编辑相簿: <em>%1$s%2$s</em>"
 msgid "Image order saved"
 msgstr "图片次序已储存"
 
-#: zp-core/admin-albumsort.php:142 zp-core/admin-functions.php:5528
+#: zp-core/admin-albumsort.php:142 zp-core/admin-functions.php:5530
 #: zp-core/zp-extensions/comment_form/admin-comments.php:277
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:948
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1668
 msgid "Selected items deleted"
 msgstr "已选项目已删除"
 
-#: zp-core/admin-albumsort.php:145 zp-core/admin-functions.php:5531
+#: zp-core/admin-albumsort.php:145 zp-core/admin-functions.php:5533
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:952
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1671
 msgid "Selected items published"
 msgstr "选取项目已发表"
 
-#: zp-core/admin-albumsort.php:148 zp-core/admin-functions.php:5534
+#: zp-core/admin-albumsort.php:148 zp-core/admin-functions.php:5536
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:956
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1674
 msgid "Selected items unpublished"
 msgstr "选取项目未发表"
 
-#: zp-core/admin-albumsort.php:151 zp-core/admin-functions.php:5537
+#: zp-core/admin-albumsort.php:151 zp-core/admin-functions.php:5539
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1677
 msgid "Comments enabled for selected items"
 msgstr "选取项目的留言功能已开启."
 
-#: zp-core/admin-albumsort.php:154 zp-core/admin-functions.php:5540
+#: zp-core/admin-albumsort.php:154 zp-core/admin-functions.php:5542
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1680
 msgid "Comments disabled for selected items"
 msgstr "已选取的项目已关闭留言"
 
-#: zp-core/admin-albumsort.php:157 zp-core/admin-functions.php:5543
+#: zp-core/admin-albumsort.php:157 zp-core/admin-functions.php:5545
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1683
 msgid "Hitcounter for selected items"
 msgstr "选取项目的观看次数"
 
-#: zp-core/admin-albumsort.php:160 zp-core/admin-functions.php:5546
+#: zp-core/admin-albumsort.php:160 zp-core/admin-functions.php:5548
 #, fuzzy
 msgid "Tags added for selected items"
 msgstr "为所选项目添加的标签"
 
-#: zp-core/admin-albumsort.php:163 zp-core/admin-functions.php:5549
+#: zp-core/admin-albumsort.php:163 zp-core/admin-functions.php:5551
 #, fuzzy
 msgid "Tags cleared for selected items"
 msgstr "已清除所选项目的标签"
 
-#: zp-core/admin-albumsort.php:166 zp-core/admin-functions.php:5552
+#: zp-core/admin-albumsort.php:166 zp-core/admin-functions.php:5554
 #, fuzzy
 msgid "Tags added for images of selected items"
 msgstr "为所选项目的图像添加了标签"
 
-#: zp-core/admin-albumsort.php:169 zp-core/admin-functions.php:5555
+#: zp-core/admin-albumsort.php:169 zp-core/admin-functions.php:5557
 #, fuzzy
 msgid "Tags cleared for images of selected items"
 msgstr "为所选项目的图像清除标签"
 
-#: zp-core/admin-albumsort.php:176 zp-core/admin-functions.php:5521
+#: zp-core/admin-albumsort.php:176 zp-core/admin-functions.php:5523
 #: zp-core/zp-extensions/comment_form/admin-comments.php:286
 #: zp-core/zp-extensions/comment_form/admin-comments.php:315
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:13
@@ -5552,7 +5503,7 @@ msgstr "没有改变"
 #: zp-core/admin-edit.php:964 zp-core/admin-edit.php:1033
 #: zp-core/admin-edit.php:1182 zp-core/admin-edit.php:1620
 #: zp-core/admin-edit.php:1698 zp-core/admin-edit.php:1736
-#: zp-core/admin-functions.php:1727 zp-core/admin-functions.php:2442
+#: zp-core/admin-functions.php:1725 zp-core/admin-functions.php:2440
 #: zp-core/admin-refresh-metadata.php:157 zp-core/admin-thumbcrop.php:304
 #: zp-core/admin-thumbcrop.php:306 zp-core/zp-extensions/crop_image.php:461
 #: zp-core/zp-extensions/crop_image.php:463
@@ -5568,7 +5519,7 @@ msgid "Back"
 msgstr "回原处"
 
 #: zp-core/admin-albumsort.php:206 zp-core/admin-albumsort.php:269
-#: zp-core/admin-functions.php:1755 zp-core/admin-functions.php:2471
+#: zp-core/admin-functions.php:1753 zp-core/admin-functions.php:2469
 msgid "View Album"
 msgstr "观看相簿"
 
@@ -5576,8 +5527,8 @@ msgstr "观看相簿"
 msgid "Set the image order by dragging them to the positions you desire."
 msgstr "拖动相片到想到的位置去改变的次序..."
 
-#: zp-core/admin-albumsort.php:229 zp-core/admin-functions.php:3763
-#: zp-core/admin-functions.php:3817 zp-core/admin-functions.php:3846
+#: zp-core/admin-albumsort.php:229 zp-core/admin-functions.php:3765
+#: zp-core/admin-functions.php:3819 zp-core/admin-functions.php:3848
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:34
 msgid "edit"
 msgstr "编辑"
@@ -5744,12 +5695,12 @@ msgid "Show album thumb"
 msgstr "显示专辑拇指"
 
 #: zp-core/admin-edit.php:749 zp-core/admin-edit.php:1472
-#: zp-core/admin-functions.php:2332
+#: zp-core/admin-functions.php:2330
 msgid "Move"
 msgstr "移动"
 
 #: zp-core/admin-edit.php:750 zp-core/admin-edit.php:1475
-#: zp-core/admin-functions.php:2338
+#: zp-core/admin-functions.php:2336
 #: zp-core/zp-extensions/zenpage/admin-edit.php:682
 msgid "Copy"
 msgstr "复制"
@@ -5764,29 +5715,29 @@ msgid "Drag the albums into the order you wish them displayed."
 msgstr "拖动相簿到你想要显示的次序.  "
 
 #: zp-core/admin-edit.php:908 zp-core/admin-edit.php:1769
-#: zp-core/admin_options/gallery.php:376 zp-core/admin_options/image.php:293
+#: zp-core/admin_options/gallery.php:420 zp-core/admin_options/image.php:293
 #: zp-core/admin_options/search.php:414 zp-core/admin_options/search.php:474
 #: zp-core/admin_options/search.php:531 zp-core/admin_options/search.php:586
 #, fuzzy
 msgid "descending"
 msgstr "递减"
 
-#: zp-core/admin-edit.php:914 zp-core/admin-functions.php:1932
+#: zp-core/admin-edit.php:914 zp-core/admin-functions.php:1930
 msgid "*gallery album sort order"
 msgstr "* 相馆相簿排序"
 
-#: zp-core/admin-edit.php:916 zp-core/admin-functions.php:1934
+#: zp-core/admin-edit.php:916 zp-core/admin-functions.php:1932
 msgid "*parent album subalbum sort order"
 msgstr "*母相簿的子相簿排序"
 
 #: zp-core/admin-edit.php:921 zp-core/admin-edit.php:1131
-#: zp-core/admin-edit.php:1777 zp-core/admin-functions.php:1917
-#: zp-core/admin_options/gallery.php:344 zp-core/exif/exifTranslations.php:132
+#: zp-core/admin-edit.php:1777 zp-core/admin-functions.php:1915
+#: zp-core/admin_options/gallery.php:388 zp-core/exif/exifTranslations.php:132
 msgid "Manual"
 msgstr "手动"
 
 #: zp-core/admin-edit.php:923 zp-core/admin-edit.php:1779
-#: zp-core/admin-functions.php:1919 zp-core/admin_options/gallery.php:345
+#: zp-core/admin-functions.php:1917 zp-core/admin_options/gallery.php:389
 #: zp-core/admin_options/general.php:413 zp-core/admin_options/image.php:265
 #: zp-core/admin_options/search.php:388 zp-core/exif/exifTranslations.php:82
 #: zp-core/zp-extensions/favoritesHandler.php:141
@@ -5813,16 +5764,16 @@ msgstr "选择相册以编辑其说明和数据。"
 
 #: zp-core/admin-edit.php:978 zp-core/admin-edit.php:980
 #: zp-core/admin-edit.php:1044 zp-core/admin-edit.php:1046
-#: zp-core/admin-functions.php:1742 zp-core/admin-functions.php:1744
-#: zp-core/admin-functions.php:2456 zp-core/admin-functions.php:2458
+#: zp-core/admin-functions.php:1740 zp-core/admin-functions.php:1742
+#: zp-core/admin-functions.php:2454 zp-core/admin-functions.php:2456
 #: zp-core/template-functions.php:256
 msgid "New subalbum"
 msgstr "新子相簿"
 
 #: zp-core/admin-edit.php:983 zp-core/admin-edit.php:985
 #: zp-core/admin-edit.php:1049 zp-core/admin-edit.php:1051
-#: zp-core/admin-functions.php:1746 zp-core/admin-functions.php:1748
-#: zp-core/admin-functions.php:2461 zp-core/admin-functions.php:2463
+#: zp-core/admin-functions.php:1744 zp-core/admin-functions.php:1746
+#: zp-core/admin-functions.php:2459 zp-core/admin-functions.php:2461
 #, fuzzy
 msgid "New dynamic subalbum"
 msgstr "新的动态subalbum"
@@ -5839,7 +5790,7 @@ msgid ""
 msgstr "在慢速服务器上或有大量图像时，缩略图生成可能非常耗时。"
 
 #: zp-core/admin-edit.php:1012 zp-core/admin-edit.php:1854
-#: zp-core/admin-functions.php:4389
+#: zp-core/admin-functions.php:4391
 #: zp-core/zp-extensions/comment_form/admin-comments.php:382
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:226
 #: zp-core/zp-extensions/zenpage/admin-categories.php:185
@@ -5857,8 +5808,8 @@ msgstr "点击图片以改变绘图裁切."
 msgid "Image filter"
 msgstr "图像筛选"
 
-#: zp-core/admin-edit.php:1122 zp-core/admin-functions.php:1065
-#: zp-core/admin-functions.php:1105 zp-core/admin-functions.php:5221
+#: zp-core/admin-edit.php:1122 zp-core/admin-functions.php:1063
+#: zp-core/admin-functions.php:1103 zp-core/admin-functions.php:5223
 #: zp-core/admin-tags.php:262 zp-core/admin-users.php:542
 #: zp-core/admin_options/image.php:830 zp-core/admin_options/search.php:270
 #: zp-core/utilities/backup_restore.php:576
@@ -5965,7 +5916,7 @@ msgstr "未有选择以显示"
 msgid "Edit all image data"
 msgstr "编辑所有图像数据"
 
-#: zp-core/admin-edit.php:1356 zp-core/admin-functions.php:2215
+#: zp-core/admin-edit.php:1356 zp-core/admin-functions.php:2213
 #: zp-core/lib-auth.php:578 zp-core/lib-auth.php:579 zp-core/lib-auth.php:580
 #: zp-core/lib-auth.php:584 zp-core/lib-auth.php:604 zp-core/lib-auth.php:605
 #: zp-core/lib-auth.php:609 zp-core/lib-auth.php:610 zp-core/lib-auth.php:611
@@ -5974,7 +5925,7 @@ msgstr "编辑所有图像数据"
 msgid "General"
 msgstr "普通"
 
-#: zp-core/admin-edit.php:1367 zp-core/admin-functions.php:2226
+#: zp-core/admin-edit.php:1367 zp-core/admin-functions.php:2224
 #: zp-core/admin-globals.php:73 zp-core/zp-extensions/favoritesHandler.php:147
 #: zp-core/zp-extensions/zenpage/admin-edit.php:555
 #: zp-core/zp-extensions/zenpage/admin-functions.php:692
@@ -5982,7 +5933,7 @@ msgstr "普通"
 msgid "Published"
 msgstr "发表"
 
-#: zp-core/admin-edit.php:1378 zp-core/admin-functions.php:2237
+#: zp-core/admin-edit.php:1378 zp-core/admin-functions.php:2235
 msgid "Allow Comments"
 msgstr "容许留言"
 
@@ -6000,13 +5951,13 @@ msgid_plural "Reset rating (%u stars)"
 msgstr[0] "重置等级（％u星）"
 msgstr[1] "重设观评级 (评级: %1$s)"
 
-#: zp-core/admin-edit.php:1410 zp-core/admin-functions.php:2269
+#: zp-core/admin-edit.php:1410 zp-core/admin-functions.php:2267
 #: zp-core/zp-extensions/zenpage/admin-edit.php:845
 #, fuzzy
 msgid "Reset rating (unrated)"
 msgstr "重置评级（未评级）"
 
-#: zp-core/admin-edit.php:1425 zp-core/admin-functions.php:2284
+#: zp-core/admin-edit.php:1425 zp-core/admin-functions.php:2282
 #: zp-core/zp-extensions/optionalObjectFields.php:469
 #: zp-core/zp-extensions/publishContent/publishContent.php:362
 #: zp-core/zp-extensions/zenpage/admin-edit.php:734
@@ -6016,22 +5967,22 @@ msgid "calendar"
 msgstr "日历"
 
 #: zp-core/admin-edit.php:1445 zp-core/admin-edit.php:1461
-#: zp-core/admin-functions.php:2304 zp-core/admin-functions.php:2319
+#: zp-core/admin-functions.php:2302 zp-core/admin-functions.php:2317
 #, fuzzy
 msgid "Expired!"
 msgstr "已失效"
 
-#: zp-core/admin-edit.php:1454 zp-core/admin-functions.php:2312
+#: zp-core/admin-edit.php:1454 zp-core/admin-functions.php:2310
 #, fuzzy
 msgid "Publish date"
 msgstr "发布日期"
 
-#: zp-core/admin-edit.php:1456 zp-core/admin-functions.php:2314
+#: zp-core/admin-edit.php:1456 zp-core/admin-functions.php:2312
 #, fuzzy
 msgid "Expiration date"
 msgstr "到期日期:"
 
-#: zp-core/admin-edit.php:1468 zp-core/admin-functions.php:2326
+#: zp-core/admin-edit.php:1468 zp-core/admin-functions.php:2324
 msgid "Utilities"
 msgstr "工具"
 
@@ -6053,8 +6004,8 @@ msgid "to"
 msgstr "给"
 
 #: zp-core/admin-edit.php:1513 zp-core/admin-edit.php:1525
-#: zp-core/admin-edit.php:1537 zp-core/admin-functions.php:2371
-#: zp-core/admin-functions.php:2410 zp-core/admin-functions.php:2420
+#: zp-core/admin-edit.php:1537 zp-core/admin-functions.php:2369
+#: zp-core/admin-functions.php:2408 zp-core/admin-functions.php:2418
 #: zp-core/zp-extensions/comment_form/admin-comments.php:141
 #: zp-core/zp-extensions/comment_form/admin-comments.php:143
 #: zp-core/zp-extensions/googleTFA/auth_code.php:63
@@ -6170,113 +6121,113 @@ msgstr "伺服器日期: %s"
 msgid "%1$s %2$s: %3$s%4$s"
 msgstr "%1$s%2$s%3$s%4$s"
 
-#: zp-core/admin-functions.php:294
-#, fuzzy, php-format
-msgid "%1$s administration:%2$s%3$s"
-msgstr "%1$s管理：%2$s%3$s"
-
-#: zp-core/admin-functions.php:295
+#: zp-core/admin-functions.php:293
 #, fuzzy, php-format
 #| msgid "Administrators"
 msgid "%1$s Administration"
 msgstr "%1$s管理"
 
-#: zp-core/admin-functions.php:305
+#: zp-core/admin-functions.php:293
+#, fuzzy, php-format
+msgid "%1$s administration:%2$s%3$s"
+msgstr "%1$s管理：%2$s%3$s"
+
+#: zp-core/admin-functions.php:303
 #, fuzzy, php-format
 msgid "Logged in as %1$s"
 msgstr "已经以%1$s身份登录"
 
-#: zp-core/admin-functions.php:307
+#: zp-core/admin-functions.php:305
 #, fuzzy, php-format
 msgid "Logged in as %1$s (last login %2$s)"
 msgstr "以%1$s登录（最后登录%2$s）"
 
-#: zp-core/admin-functions.php:310
+#: zp-core/admin-functions.php:308
 #, fuzzy
 msgid "go to user profile"
 msgstr "转到用户配置文件"
 
-#: zp-core/admin-functions.php:317
+#: zp-core/admin-functions.php:315
 msgid "Log Out"
 msgstr "登出"
 
-#: zp-core/admin-functions.php:326
+#: zp-core/admin-functions.php:324
 #, php-format
 msgid "View <em>%s</em>"
 msgstr "显示 <em>%s</em>"
 
-#: zp-core/admin-functions.php:328
+#: zp-core/admin-functions.php:326
 msgid "View gallery index"
 msgstr "显示相馆主页"
 
-#: zp-core/admin-functions.php:334
+#: zp-core/admin-functions.php:332
 #, fuzzy
 #| msgid "Return to %s"
 msgid "return to top"
 msgstr "回到顶部"
 
-#: zp-core/admin-functions.php:345
+#: zp-core/admin-functions.php:343
 #, fuzzy
 msgid "Your Setup scripts are not protected."
 msgstr "您的安装脚本不受保护。"
 
-#: zp-core/admin-functions.php:347
+#: zp-core/admin-functions.php:345
 #, fuzzy
 msgid ""
 "The Setup environment is not totally secure, you should protect the scripts "
 "to thwart hackers."
 msgstr "安装环境并不完全安全，您应该保护脚本以阻止黑客。"
 
-#: zp-core/admin-functions.php:349
+#: zp-core/admin-functions.php:347
 #, fuzzy
 msgid "Protect the scripts."
 msgstr "保护脚本。"
 
-#: zp-core/admin-functions.php:574
+#: zp-core/admin-functions.php:572
 msgid "Image order"
 msgstr "相片次序"
 
-#: zp-core/admin-functions.php:580
+#: zp-core/admin-functions.php:578
 msgid "Subalbums"
 msgstr "子相簿"
 
-#: zp-core/admin-functions.php:582
+#: zp-core/admin-functions.php:580
 #, fuzzy
 msgid "Mass-edit subalbums"
 msgstr "批量编辑subalbums"
 
-#: zp-core/admin-functions.php:817
+#: zp-core/admin-functions.php:815
 #, fuzzy
 msgid "Deprecated."
 msgstr "Description"
 
-#: zp-core/admin-functions.php:1619
+#: zp-core/admin-functions.php:1617
 #, fuzzy
 msgid "add tag"
 msgstr "添加标记"
 
-#: zp-core/admin-functions.php:1772
+#: zp-core/admin-functions.php:1770
 msgid "Album Title"
 msgstr "相簿标题:"
 
-#: zp-core/admin-functions.php:1815
+#: zp-core/admin-functions.php:1813
 #, fuzzy
 #| msgid "Album Description:"
 msgid "Album Description"
 msgstr "相册描述："
 
-#: zp-core/admin-functions.php:1827 zp-core/admin-functions.php:1870
+#: zp-core/admin-functions.php:1825 zp-core/admin-functions.php:1868
 #, fuzzy
 #| msgid "Album password:"
 msgid "Album password"
 msgstr "相册密码 ："
 
-#: zp-core/admin-functions.php:1837
+#: zp-core/admin-functions.php:1835
 #, fuzzy
 msgid "No album password is currently set. Click to set one."
 msgstr "目前没有设置相册密码。点击设置一个。"
 
-#: zp-core/admin-functions.php:1843 zp-core/admin_options/gallery.php:142
+#: zp-core/admin-functions.php:1841 zp-core/admin_options/gallery.php:172
 #: zp-core/admin_options/image.php:653 zp-core/admin_options/search.php:134
 #: zp-core/zp-extensions/downloadList.php:118
 #: zp-core/zp-extensions/zenpage/admin-edit.php:620
@@ -6284,37 +6235,37 @@ msgstr "目前没有设置相册密码。点击设置一个。"
 msgid "clear password"
 msgstr "清除密码"
 
-#: zp-core/admin-functions.php:1845
+#: zp-core/admin-functions.php:1843
 #, fuzzy
 msgid ""
 "An album password is currently set. Click to clear or change the password."
 msgstr "目前设置了专辑密码。单击以清除或更改密码。"
 
-#: zp-core/admin-functions.php:1855
+#: zp-core/admin-functions.php:1853
 #, fuzzy
 #| msgid "Album guest user:"
 msgid "Album guest user"
 msgstr "相册访客用户"
 
-#: zp-core/admin-functions.php:1873
+#: zp-core/admin-functions.php:1871
 #, fuzzy
 msgid "repeat password"
 msgstr "重复输入密码"
 
-#: zp-core/admin-functions.php:1877
+#: zp-core/admin-functions.php:1875
 #, fuzzy
 #| msgid "Password hint:"
 msgid "Password hint"
 msgstr "密码提示:"
 
-#: zp-core/admin-functions.php:1894 zp-core/admin_options/gallery.php:207
+#: zp-core/admin-functions.php:1892 zp-core/admin_options/gallery.php:237
 #: zp-core/admin_options/image.php:699 zp-core/admin_options/search.php:197
-#: zp-core/lib-auth.php:1105 zp-core/lib-auth.php:1388
+#: zp-core/lib-auth.php:1113 zp-core/lib-auth.php:1396
 #: zp-core/utilities/gallery_statistics.php:762
 #: zp-core/zp-extensions/cacheManager.php:215
-#: zp-core/zp-extensions/cacheManager.php:372
-#: zp-core/zp-extensions/cacheManager.php:377
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:290
+#: zp-core/zp-extensions/cacheManager.php:376
+#: zp-core/zp-extensions/cacheManager.php:381
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:297
 #: zp-core/zp-extensions/comment_form.php:97
 #: zp-core/zp-extensions/comment_form.php:101
 #: zp-core/zp-extensions/comment_form.php:105
@@ -6326,20 +6277,20 @@ msgstr "密码提示:"
 msgid "Show"
 msgstr "显示"
 
-#: zp-core/admin-functions.php:1926
+#: zp-core/admin-functions.php:1924
 #, fuzzy
 #| msgid "Sort subalbums by:"
 msgid "Sort subalbums by"
 msgstr "子相簿排序以:"
 
-#: zp-core/admin-functions.php:1954 zp-core/admin-functions.php:2011
+#: zp-core/admin-functions.php:1952 zp-core/admin-functions.php:2009
 #: zp-core/zp-extensions/favoritesHandler.php:173
 #: zp-core/zp-extensions/favoritesHandler.php:205
 msgid "Descending"
 msgstr "递减"
 
-#: zp-core/admin-functions.php:1972 zp-core/admin-functions.php:2030
-#: zp-core/admin_options/gallery.php:381 zp-core/admin_options/image.php:299
+#: zp-core/admin-functions.php:1970 zp-core/admin-functions.php:2028
+#: zp-core/admin_options/gallery.php:425 zp-core/admin_options/image.php:299
 #: zp-core/admin_options/search.php:432 zp-core/admin_options/search.php:493
 #: zp-core/admin_options/search.php:550 zp-core/admin_options/search.php:605
 #, fuzzy
@@ -6347,127 +6298,127 @@ msgstr "递减"
 msgid "custom fields"
 msgstr "自定义栏目"
 
-#: zp-core/admin-functions.php:1981 zp-core/admin_options/image.php:260
+#: zp-core/admin-functions.php:1979 zp-core/admin_options/image.php:260
 #: zp-core/admin_options/search.php:452
 #: zp-core/zp-extensions/favoritesHandler.php:123
 #, fuzzy
 msgid "Sort images by"
 msgstr "图片排序方式"
 
-#: zp-core/admin-functions.php:1987
+#: zp-core/admin-functions.php:1985
 msgid "*gallery image sort order"
 msgstr "*相馆图片排序"
 
-#: zp-core/admin-functions.php:1989
+#: zp-core/admin-functions.php:1987
 msgid "*parent album image sort order"
 msgstr "*母相簿图片排序"
 
-#: zp-core/admin-functions.php:2042
+#: zp-core/admin-functions.php:2040
 #, fuzzy
 #| msgid "Album theme:"
 msgid "Album theme"
 msgstr "专辑主题"
 
-#: zp-core/admin-functions.php:2054
+#: zp-core/admin-functions.php:2052
 msgid "*gallery theme"
 msgstr "*相馆布景主题"
 
-#: zp-core/admin-functions.php:2075
+#: zp-core/admin-functions.php:2073
 #, fuzzy
 msgid "Album watermarks"
 msgstr "专辑水印"
 
-#: zp-core/admin-functions.php:2079 zp-core/admin-functions.php:2094
+#: zp-core/admin-functions.php:2077 zp-core/admin-functions.php:2092
 #: zp-core/zp-extensions/optionalObjectFields.php:507
 msgid "*no watermark"
 msgstr "*没有水印"
 
-#: zp-core/admin-functions.php:2080 zp-core/admin-functions.php:2095
+#: zp-core/admin-functions.php:2078 zp-core/admin-functions.php:2093
 #: zp-core/zp-extensions/optionalObjectFields.php:508
 msgid "*default"
 msgstr "*预设"
 
-#: zp-core/admin-functions.php:2101
+#: zp-core/admin-functions.php:2099
 #, fuzzy
 #| msgid "Thumbnail"
 msgid "Thumbnails"
 msgstr "重设相簿缩图."
 
-#: zp-core/admin-functions.php:2120 zp-core/zp-extensions/cacheManager.php:284
+#: zp-core/admin-functions.php:2118 zp-core/zp-extensions/cacheManager.php:284
 msgid "Thumbnail"
 msgstr "缩图"
 
-#: zp-core/admin-functions.php:2249
+#: zp-core/admin-functions.php:2247
 #, fuzzy, php-format
 msgid "Reset hit counter (%u hit)"
 msgid_plural "Reset hit counter (%u hits)"
 msgstr[0] "重置点击计数器（％u命中）"
 msgstr[1] "重设观看次数 (次数: %u)"
 
-#: zp-core/admin-functions.php:2262
+#: zp-core/admin-functions.php:2260
 #: zp-core/zp-extensions/zenpage/admin-edit.php:838
 #, fuzzy, php-format
 msgid "Reset rating (%u stars)"
 msgstr "重置等级（％u星）"
 
-#: zp-core/admin-functions.php:2344
+#: zp-core/admin-functions.php:2342
 msgid "Rename Folder"
 msgstr "再命名资料夹"
 
-#: zp-core/admin-functions.php:2361 zp-core/template-functions.php:245
+#: zp-core/admin-functions.php:2359 zp-core/template-functions.php:245
 msgid "Delete album"
 msgstr "删除相簿"
 
-#: zp-core/admin-functions.php:2366
+#: zp-core/admin-functions.php:2364
 #, fuzzy
 msgid "Album will be deleted when changes are applied."
 msgstr "应用更改时，将删除相册。"
 
-#: zp-core/admin-functions.php:2375 zp-core/admin-functions.php:2414
+#: zp-core/admin-functions.php:2373 zp-core/admin-functions.php:2412
 msgid "to:"
 msgstr "到:"
 
-#: zp-core/admin-functions.php:2490
+#: zp-core/admin-functions.php:2488
 #, fuzzy
 msgid "Clears the album’s cached images."
 msgstr "清除相册的缓存图像。"
 
-#: zp-core/admin-functions.php:2493
+#: zp-core/admin-functions.php:2491
 #, fuzzy
 msgid "Clear album image cache"
 msgstr "清除相册图像缓存"
 
-#: zp-core/admin-functions.php:2496
+#: zp-core/admin-functions.php:2497
 #, fuzzy
 msgid "Resets album’s hit counters."
 msgstr "重置专辑的点击计数器。"
 
-#: zp-core/admin-functions.php:2499
+#: zp-core/admin-functions.php:2500
 #, fuzzy
 msgid "Reset album hit counters"
 msgstr "重置专辑点击计数器"
 
-#: zp-core/admin-functions.php:2506
+#: zp-core/admin-functions.php:2508
 #, fuzzy
 msgid "Refreshes the metadata for the album."
 msgstr "刷新相册的元数据。"
 
-#: zp-core/admin-functions.php:2509
+#: zp-core/admin-functions.php:2511
 #, fuzzy
 msgid "Refresh album metadata"
 msgstr "刷新相册元数据"
 
-#: zp-core/admin-functions.php:2530
+#: zp-core/admin-functions.php:2532
 #, fuzzy
 msgid "Albums (dynamic)"
 msgstr "专辑（动态）"
 
-#: zp-core/admin-functions.php:2534
+#: zp-core/admin-functions.php:2536
 #, fuzzy
 msgid "Images (dynamic)"
 msgstr "图像（动态）"
 
-#: zp-core/admin-functions.php:2544
+#: zp-core/admin-functions.php:2546
 #: zp-core/zp-extensions/zenpage/admin-categories.php:218
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1379
 #, fuzzy
@@ -6475,155 +6426,155 @@ msgstr "图像（动态）"
 msgid "has/does not have password"
 msgstr "有/没有密码"
 
-#: zp-core/admin-functions.php:2549 zp-core/admin-functions.php:5711
+#: zp-core/admin-functions.php:2551 zp-core/admin-functions.php:5713
 #: zp-core/zp-extensions/zenpage/admin-categories.php:227
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1384
 #, fuzzy
 msgid "pick source"
 msgstr "选择来源"
 
-#: zp-core/admin-functions.php:2555
+#: zp-core/admin-functions.php:2557
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1389
 #, fuzzy
 #| msgid "Published/Not published/Scheduled for publishing"
 msgid "published/not published/scheduled for publishing"
 msgstr "出版/未出版/计划出版"
 
-#: zp-core/admin-functions.php:2560
+#: zp-core/admin-functions.php:2562
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1394
 #, fuzzy
 #| msgid "Comments on/off"
 msgid "comments on/off"
 msgstr "评论开/关"
 
-#: zp-core/admin-functions.php:2564
+#: zp-core/admin-functions.php:2566
 #, fuzzy
 #| msgid "View the album"
 msgid "view the album"
 msgstr "观看相簿: %s"
 
-#: zp-core/admin-functions.php:2568
+#: zp-core/admin-functions.php:2570
 #, fuzzy
 #| msgid "Refresh metadata"
 msgid "refresh metadata"
 msgstr "更新诠释资料"
 
-#: zp-core/admin-functions.php:2575
+#: zp-core/admin-functions.php:2577
 #, fuzzy
 msgid "reset hit counters"
 msgstr "重置命中计数器"
 
-#: zp-core/admin-functions.php:2582
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:293
+#: zp-core/admin-functions.php:2584
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:290
 #: zp-core/zp-extensions/zenpage/admin-edit.php:686
 #: zp-core/zp-extensions/zenpage/admin-functions.php:1411
 msgid "delete"
 msgstr "删除 "
 
-#: zp-core/admin-functions.php:2623 zp-core/admin-functions.php:2640
+#: zp-core/admin-functions.php:2625 zp-core/admin-functions.php:2642
 #, php-format
 msgid "Edit this album: %s"
 msgstr "编辑相簿: %s"
 
-#: zp-core/admin-functions.php:2654 zp-core/admin-functions.php:2657
+#: zp-core/admin-functions.php:2656 zp-core/admin-functions.php:2659
 #: zp-core/admin-globals.php:138 zp-core/zp-extensions/tinyURL.php:76
 msgid "albums"
 msgstr "相簿"
 
-#: zp-core/admin-functions.php:2669
+#: zp-core/admin-functions.php:2671
 msgid "Subalbum List"
 msgstr "子相簿列表"
 
-#: zp-core/admin-functions.php:2678
+#: zp-core/admin-functions.php:2680
 #, fuzzy
 #| msgid "Unprotected"
 msgid "un-protected"
 msgstr "联合国保护"
 
-#: zp-core/admin-functions.php:2684
+#: zp-core/admin-functions.php:2686
 #, fuzzy
 msgid "password protected"
 msgstr "密码受保护"
 
-#: zp-core/admin-functions.php:2701
+#: zp-core/admin-functions.php:2703
 #, php-format
 msgid "Un-publish the album %s"
 msgstr "取消发表相簿 %s"
 
-#: zp-core/admin-functions.php:2715
+#: zp-core/admin-functions.php:2717
 #, php-format
 msgid "Publish the album %s"
 msgstr "发表相簿 %s"
 
-#: zp-core/admin-functions.php:2769
+#: zp-core/admin-functions.php:2771
 msgid "View album"
 msgstr "观看相簿"
 
-#: zp-core/admin-functions.php:2781
+#: zp-core/admin-functions.php:2783
 #, php-format
 msgid "Refresh metadata for the album %s"
 msgstr "更新相簿 %s 的诠释资料"
 
-#: zp-core/admin-functions.php:2799
+#: zp-core/admin-functions.php:2801
 #, fuzzy, php-format
 msgid "Reset hit counters for album %s"
 msgstr "重置专辑％s的点击计数器"
 
-#: zp-core/admin-functions.php:2819
+#: zp-core/admin-functions.php:2821
 #, php-format
 msgid "Delete the album %s"
 msgstr "删除相簿 %s"
 
-#: zp-core/admin-functions.php:3016
+#: zp-core/admin-functions.php:3018
 #, fuzzy
 msgid "prev image"
 msgstr "上一张图片"
 
-#: zp-core/admin-functions.php:3023
+#: zp-core/admin-functions.php:3025
 #, fuzzy
 msgid "next image"
 msgstr "下一张"
 
-#: zp-core/admin-functions.php:3045 zp-core/admin-functions.php:3053
-#: zp-core/admin-functions.php:3059 zp-core/admin-functions.php:3063
-#: zp-core/admin-functions.php:3067
+#: zp-core/admin-functions.php:3047 zp-core/admin-functions.php:3055
+#: zp-core/admin-functions.php:3061 zp-core/admin-functions.php:3065
+#: zp-core/admin-functions.php:3069
 #, php-format
 msgid "page %u"
 msgstr "页 %u"
 
-#: zp-core/admin-functions.php:3045 zp-core/admin-functions.php:3047
+#: zp-core/admin-functions.php:3047 zp-core/admin-functions.php:3049
 msgid "Previous page"
 msgstr "上一页"
 
-#: zp-core/admin-functions.php:3067 zp-core/admin-functions.php:3069
+#: zp-core/admin-functions.php:3069 zp-core/admin-functions.php:3071
 #: zp-core/zp-extensions/zenpage/template-functions.php:875
 msgid "Next page"
 msgstr "下一页"
 
-#: zp-core/admin-functions.php:3471 zp-core/admin-functions.php:3476
-#: zp-core/admin-functions.php:3481 zp-core/admin-functions.php:3486
+#: zp-core/admin-functions.php:3473 zp-core/admin-functions.php:3478
+#: zp-core/admin-functions.php:3483 zp-core/admin-functions.php:3488
 msgid "Cannot create new theme."
 msgstr "不能建立新布景主题."
 
-#: zp-core/admin-functions.php:3471
+#: zp-core/admin-functions.php:3473
 #, fuzzy, php-format
 msgid "Directory “%s” already exists!"
 msgstr "目录“％s”已经存在！"
 
-#: zp-core/admin-functions.php:3476
+#: zp-core/admin-functions.php:3478
 #, fuzzy, php-format
 msgid "Cannot find theme directory “%s” to copy!"
 msgstr "找不到主题目录“％s”来复制！"
 
-#: zp-core/admin-functions.php:3481
+#: zp-core/admin-functions.php:3483
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "<tt>/themes</tt> 资料夹不能写入!"
 
-#: zp-core/admin-functions.php:3486
+#: zp-core/admin-functions.php:3488
 msgid "Could not create directory for the new theme"
 msgstr "不能建立为新布景主题建立资料夹."
 
-#: zp-core/admin-functions.php:3518
+#: zp-core/admin-functions.php:3520
 #, fuzzy, php-format
 msgid ""
 "An error occurred while copying files. Please delete manually the new theme "
@@ -6631,29 +6582,29 @@ msgid ""
 msgstr ""
 "复制文件时发生错误。请手动删除新主题目录“％s”，然后手动重试或复制文件。"
 
-#: zp-core/admin-functions.php:3526
+#: zp-core/admin-functions.php:3528
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "你的布景主题, 建基于布景主题 %s"
 
-#: zp-core/admin-functions.php:3528
+#: zp-core/admin-functions.php:3530
 msgid "Your theme"
 msgstr "你的布景主题"
 
-#: zp-core/admin-functions.php:3548
+#: zp-core/admin-functions.php:3550
 msgid "New custom theme created successfully!"
 msgstr "新自定布景主题建立成功!"
 
-#: zp-core/admin-functions.php:3550
+#: zp-core/admin-functions.php:3552
 msgid "New custom theme created, but its description could not be updated"
 msgstr "新的自定布景主题已建立, 但它的描述不能更新"
 
-#: zp-core/admin-functions.php:3682
+#: zp-core/admin-functions.php:3684
 #, fuzzy
 msgid "Rights:"
 msgstr "没有权限"
 
-#: zp-core/admin-functions.php:3692 zp-core/admin-functions.php:3835
+#: zp-core/admin-functions.php:3694 zp-core/admin-functions.php:3837
 #: zp-core/allTranslations.php:55 zp-core/lib-auth.php:572
 #: zp-core/lib-auth.php:575 zp-core/lib-auth.php:588 zp-core/lib-auth.php:595
 #: zp-core/lib-auth.php:599 zp-core/lib-auth.php:615 zp-core/lib-auth.php:619
@@ -6667,32 +6618,32 @@ msgstr "没有权限"
 msgid "News"
 msgstr "新闻"
 
-#: zp-core/admin-functions.php:3761
+#: zp-core/admin-functions.php:3763
 #, fuzzy
 msgid "Primary album"
 msgstr "主要专辑"
 
-#: zp-core/admin-functions.php:3765 zp-core/zp-extensions/elFinder.php:85
+#: zp-core/admin-functions.php:3767 zp-core/zp-extensions/elFinder.php:85
 #: zp-core/zp-extensions/uploader_http.php:31
 #: zp-core/zp-extensions/uploader_jQuery.php:39
 msgid "upload"
 msgstr "上载"
 
-#: zp-core/admin-functions.php:3767 zp-core/admin-functions.php:3817
-#: zp-core/admin-functions.php:3846
+#: zp-core/admin-functions.php:3769 zp-core/admin-functions.php:3819
+#: zp-core/admin-functions.php:3848
 #, fuzzy
 msgid "view unpublished"
 msgstr "查看未发表"
 
-#: zp-core/admin-functions.php:3806
+#: zp-core/admin-functions.php:3808
 msgid "Managed albums:"
 msgstr "可管理相簿:"
 
-#: zp-core/admin-functions.php:3834
+#: zp-core/admin-functions.php:3836
 msgid "Managed news categories:"
 msgstr "管理的新闻类别:"
 
-#: zp-core/admin-functions.php:3836
+#: zp-core/admin-functions.php:3838
 #: zp-core/utilities/gallery_statistics.php:614
 #: zp-core/zp-extensions/multiple_layouts.php:109
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:99
@@ -6700,23 +6651,23 @@ msgstr "管理的新闻类别:"
 msgid "News categories"
 msgstr "新闻类别"
 
-#: zp-core/admin-functions.php:3862
+#: zp-core/admin-functions.php:3864
 msgid "Managed pages:"
 msgstr "管理的页面:"
 
-#: zp-core/admin-functions.php:3869
+#: zp-core/admin-functions.php:3871
 #, fuzzy, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "为要管理的%2$s选择一个或多个%1$s。"
 
-#: zp-core/admin-functions.php:3870 zp-core/admin-users.php:863
+#: zp-core/admin-functions.php:3872 zp-core/admin-users.php:863
 #: zp-core/admin-users.php:882 zp-core/admin-users.php:888
-#: zp-core/admin_options/image.php:664 zp-core/functions-basic.php:559
+#: zp-core/admin_options/image.php:664 zp-core/functions-basic.php:566
 #, fuzzy
 msgid "user"
 msgstr "相馆的访客用户名称"
 
-#: zp-core/admin-functions.php:3871
+#: zp-core/admin-functions.php:3873
 #, fuzzy, php-format
 msgid ""
 "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All "
@@ -6725,298 +6676,298 @@ msgstr ""
 "拥有“Admin”或“Manage all%1$s”权限的用户可以管理所有%2$s。所有其他人可能只管理"
 "那些被选中的人。"
 
-#: zp-core/admin-functions.php:3874
+#: zp-core/admin-functions.php:3876
 #, fuzzy, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "您可以根据上述权利管理这些％s。"
 
-#: zp-core/admin-functions.php:4274
+#: zp-core/admin-functions.php:4276
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "显示 %u 相簿层"
 msgstr[1] "显示 %u 相簿层"
 
-#: zp-core/admin-functions.php:4277
+#: zp-core/admin-functions.php:4279
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "每页 %u 张图片"
 msgstr[1] "每页 %u 张图片"
 
-#: zp-core/admin-functions.php:4370
+#: zp-core/admin-functions.php:4372
 #, fuzzy
 msgid "ok"
 msgstr "ok"
 
-#: zp-core/admin-functions.php:4442
+#: zp-core/admin-functions.php:4444
 #, fuzzy
 #| msgid "News categories"
 msgid "New categories:"
 msgstr "新的分类"
 
-#: zp-core/admin-functions.php:4458
+#: zp-core/admin-functions.php:4460
 #, fuzzy
 msgid "New owner:"
 msgstr "新主人："
 
-#: zp-core/admin-functions.php:4478
+#: zp-core/admin-functions.php:4480
 #, fuzzy
 msgid "Destination"
 msgstr "目的地"
 
-#: zp-core/admin-functions.php:4766 zp-core/admin-functions.php:4801
+#: zp-core/admin-functions.php:4768 zp-core/admin-functions.php:4803
 #, fuzzy, php-format
 msgid "codeblock %u"
 msgstr "代码块％u"
 
-#: zp-core/admin-functions.php:4767 zp-core/admin-functions.php:4807
+#: zp-core/admin-functions.php:4769 zp-core/admin-functions.php:4809
 #, fuzzy
 msgid "add codeblock"
 msgstr "添加代码块"
 
-#: zp-core/admin-functions.php:4822
+#: zp-core/admin-functions.php:4824
 #, fuzzy
 msgid "Codeblock 0 is deprecated."
 msgstr "不推荐使用代码块0。"
 
-#: zp-core/admin-functions.php:4906
+#: zp-core/admin-functions.php:4908
 #, fuzzy, php-format
 msgid "“%s” Cross Site Request Forgery blocked."
 msgstr "“％s”跨站点请求伪造被阻止。"
 
-#: zp-core/admin-functions.php:5022
+#: zp-core/admin-functions.php:5024
 #, fuzzy, php-format
 msgid "%1$s:%2$s not changed to %3$s (duplicate titlelink.)"
 msgstr "%1$s：%2$s未更改为%3$s（重复titlelink。）"
 
-#: zp-core/admin-functions.php:5150
+#: zp-core/admin-functions.php:5152
 #, fuzzy
 msgid "setup"
 msgstr "设定 cookie 测试成功."
 
-#: zp-core/admin-functions.php:5150 zp-core/admin-globals.php:231
+#: zp-core/admin-functions.php:5152 zp-core/admin-globals.php:231
 #: zp-core/admin_options/general.php:779
 #, fuzzy
 msgid "security"
 msgstr "安全"
 
-#: zp-core/admin-functions.php:5150 zp-core/admin_options/general.php:779
+#: zp-core/admin-functions.php:5152 zp-core/admin_options/general.php:779
 #: zp-core/zp-extensions/debug.php:146
 #, fuzzy
 msgid "debug"
 msgstr "除错"
 
-#: zp-core/admin-functions.php:5150
+#: zp-core/admin-functions.php:5152
 #: zp-core/zp-extensions/deprecated-functions.php:97
 #, fuzzy
 msgid "deprecated"
 msgstr "落伍的"
 
-#: zp-core/admin-functions.php:5209
+#: zp-core/admin-functions.php:5211
 #, fuzzy
 #| msgid "Administrators"
 msgid "administration"
 msgstr "管理安排"
 
-#: zp-core/admin-functions.php:5211
+#: zp-core/admin-functions.php:5213
 #, fuzzy
 #| msgid "Simple"
 msgid "example"
 msgstr "<em>额外内容:</em> 在这里可以加入额外内容, 比如在sidebar显示."
 
-#: zp-core/admin-functions.php:5212
+#: zp-core/admin-functions.php:5214
 #, fuzzy
 msgid "mail"
 msgstr "发出电邮失败.  没有设定电邮处理器."
 
-#: zp-core/admin-functions.php:5213
+#: zp-core/admin-functions.php:5215
 #, fuzzy
 msgid "media"
 msgstr "媒体"
 
-#: zp-core/admin-functions.php:5214
+#: zp-core/admin-functions.php:5216
 #, fuzzy
 msgid "seo"
 msgstr "SEO"
 
-#: zp-core/admin-functions.php:5215
+#: zp-core/admin-functions.php:5217
 #, fuzzy
 msgid "theme support"
 msgstr "主题联系"
 
-#: zp-core/admin-functions.php:5216 zp-core/admin-globals.php:209
+#: zp-core/admin-functions.php:5218 zp-core/admin-globals.php:209
 #: zp-core/admin-globals.php:216 zp-core/zp-extensions/accessThreshold.php:108
 #: zp-core/zp-extensions/cloneZenphoto.php:53
 msgid "users"
 msgstr "用户"
 
-#: zp-core/admin-functions.php:5217
+#: zp-core/admin-functions.php:5219
 #, fuzzy
 #| msgid "ZenPhoto20 files"
 msgid "netPhotoGraphics"
 msgstr "netPhotoGraphics"
 
-#: zp-core/admin-functions.php:5218
+#: zp-core/admin-functions.php:5220
 #, fuzzy
 msgid "misc"
 msgstr "杂项"
 
-#: zp-core/admin-functions.php:5222
+#: zp-core/admin-functions.php:5224
 #, fuzzy
 msgid "<em>3rd party</em>"
 msgstr "<em>第三方</em>"
 
-#: zp-core/admin-functions.php:5223
+#: zp-core/admin-functions.php:5225
 #, fuzzy
 #| msgid "<em>none</em>"
 msgid "<em>enabled</em>"
 msgstr "<em>启用</em>"
 
-#: zp-core/admin-functions.php:5224
+#: zp-core/admin-functions.php:5226
 #, fuzzy
 #| msgid "<em>space</em>"
 msgid "<em>disabled</em>"
 msgstr "<em>残</em>"
 
-#: zp-core/admin-functions.php:5225
+#: zp-core/admin-functions.php:5227
 #, fuzzy
 msgid "<em>deprecated</em>"
 msgstr "<em>弃用</em>"
 
-#: zp-core/admin-functions.php:5226
+#: zp-core/admin-functions.php:5228
 #, fuzzy
 #| msgid "<em>OR</em>"
 msgid "<em>class</em>"
 msgstr "<em>类</em>"
 
-#: zp-core/admin-functions.php:5227
+#: zp-core/admin-functions.php:5229
 #, fuzzy
 msgid "<em>feature</em>"
 msgstr "<em>特征</em>"
 
-#: zp-core/admin-functions.php:5228
+#: zp-core/admin-functions.php:5230
 #, fuzzy
 msgid "<em>admin</em>"
 msgstr "<em>管理</em>"
 
-#: zp-core/admin-functions.php:5229
+#: zp-core/admin-functions.php:5231
 #, fuzzy
 msgid "<em>theme</em>"
 msgstr "<em>主题</em>"
 
-#: zp-core/admin-functions.php:5487
+#: zp-core/admin-functions.php:5489
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s 删除失败."
 
-#: zp-core/admin-functions.php:5489
+#: zp-core/admin-functions.php:5491
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s 删除成功."
 
-#: zp-core/admin-functions.php:5494 zp-core/admin-users.php:457
+#: zp-core/admin-functions.php:5496 zp-core/admin-users.php:457
 #, fuzzy
 msgid "You must supply a password."
 msgstr "您必须提供密码。"
 
-#: zp-core/admin-functions.php:5496 zp-core/admin-options.php:153
+#: zp-core/admin-functions.php:5498 zp-core/admin-options.php:153
 #: zp-core/admin-users.php:466 zp-core/zp-extensions/register_user.php:434
 msgid "Your passwords did not match."
 msgstr "你的密码不符."
 
-#: zp-core/admin-functions.php:5503
+#: zp-core/admin-functions.php:5505
 #, fuzzy
 msgid ""
 "The image edit form submission has been truncated. Try displaying fewer "
 "images on a page."
 msgstr "图像编辑表单提交已被截断。尝试在页面上显示较少的图像。"
 
-#: zp-core/admin-functions.php:5506
+#: zp-core/admin-functions.php:5508
 #, fuzzy
 msgid "Hit counters have been reset."
 msgstr "命中计数器已重置。"
 
-#: zp-core/admin-functions.php:5509
+#: zp-core/admin-functions.php:5511
 msgid "Cache has been purged."
 msgstr "快取已经清除."
 
-#: zp-core/admin-functions.php:5512 zp-core/admin-upload.php:158
+#: zp-core/admin-functions.php:5514 zp-core/admin-upload.php:158
 msgid "Your files have been uploaded."
 msgstr "你的档案已经上传."
 
-#: zp-core/admin-functions.php:5515
+#: zp-core/admin-functions.php:5517
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> 已经存在."
 
-#: zp-core/admin-functions.php:5518
+#: zp-core/admin-functions.php:5520
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:232
 #, fuzzy
 msgid "Changes applied"
 msgstr "应用更改。"
 
-#: zp-core/admin-functions.php:5565
+#: zp-core/admin-functions.php:5567
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:25
 msgid "Image already exists."
 msgstr "图片已经存在."
 
-#: zp-core/admin-functions.php:5568
+#: zp-core/admin-functions.php:5570
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:27
 msgid "Album already exists."
 msgstr "相簿已经存在."
 
-#: zp-core/admin-functions.php:5571
+#: zp-core/admin-functions.php:5573
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:29
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr "这相簿中的子相簿不能移动、复制或重新命名."
 
-#: zp-core/admin-functions.php:5574
+#: zp-core/admin-functions.php:5576
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:31
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr "动态相簿不能移动、复制或重新命名."
 
-#: zp-core/admin-functions.php:5577
+#: zp-core/admin-functions.php:5579
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:33
 msgid "Cannot rename an image to a different suffix"
 msgstr "图片不能重新命名为不同字尾"
 
-#: zp-core/admin-functions.php:5580
+#: zp-core/admin-functions.php:5582
 #: zp-core/zp-extensions/seo_cleanup/admin_tab.php:35
 #, fuzzy
 msgid "Album delete failed"
 msgstr "相册删除失败"
 
-#: zp-core/admin-functions.php:5583
+#: zp-core/admin-functions.php:5585
 #, fuzzy, php-format
 msgid "There was an error #%d with a move, copy, or rename operation."
 msgstr "带有移动，复制或重命名操作的错误＃％d。"
 
-#: zp-core/admin-functions.php:5689
+#: zp-core/admin-functions.php:5691
 #, fuzzy
 msgid "You can also copy the link to your clipboard to paste elsewhere"
 msgstr "您还可以将链接复制到剪贴板以粘贴到其他位置"
 
-#: zp-core/admin-functions.php:5719
+#: zp-core/admin-functions.php:5721
 msgid "tags"
 msgstr "标签"
 
-#: zp-core/admin-functions.php:5725
+#: zp-core/admin-functions.php:5727
 #, fuzzy
 msgid "Backup"
 msgstr "不能写入备份!"
 
-#: zp-core/admin-functions.php:5732
+#: zp-core/admin-functions.php:5734
 #, fuzzy
 #| msgid "Refresh Database"
 msgid "Refresh database"
 msgstr "刷新资料库"
 
-#: zp-core/admin-functions.php:5736
+#: zp-core/admin-functions.php:5738
 msgid "Refresh metadata"
 msgstr "更新诠释资料"
 
-#: zp-core/admin-functions.php:5737
+#: zp-core/admin-functions.php:5739
 msgid "Reset album thumbs"
 msgstr "重设相簿缩图"
 
@@ -7052,7 +7003,7 @@ msgid "Owner"
 msgstr "所有者"
 
 #: zp-core/admin-globals.php:81 zp-core/admin-globals.php:206
-#: zp-core/pluginDoc.php:254 zp-core/zp-extensions/accessThreshold.php:112
+#: zp-core/pluginDoc.php:271 zp-core/zp-extensions/accessThreshold.php:112
 #: zp-core/zp-extensions/cloneZenphoto.php:57
 #: zp-core/zp-extensions/user-expiry.php:100
 msgid "admin"
@@ -7104,7 +7055,7 @@ msgstr "相馆"
 msgid "plugin"
 msgstr "外挂"
 
-#: zp-core/admin-globals.php:242 zp-core/functions-basic.php:562
+#: zp-core/admin-globals.php:242 zp-core/functions-basic.php:569
 msgid "theme"
 msgstr "布景主题"
 
@@ -7896,7 +7847,7 @@ msgstr "上载至:"
 msgid "Make a new Album"
 msgstr "建立新相簿"
 
-#: zp-core/admin-upload.php:275 zp-core/setup/index.php:1088
+#: zp-core/admin-upload.php:275 zp-core/setup/index.php:1089
 msgid "and"
 msgstr "和"
 
@@ -7937,16 +7888,16 @@ msgstr "没有用户名称"
 msgid "Your Website URL is not valid"
 msgstr "你的网站URL不正确"
 
-#: zp-core/admin-users.php:515 zp-core/admin_options/gallery.php:67
-#: zp-core/admin_options/gallery.php:468 zp-core/admin_options/general.php:171
+#: zp-core/admin-users.php:515 zp-core/admin_options/gallery.php:69
+#: zp-core/admin_options/gallery.php:512 zp-core/admin_options/general.php:171
 #: zp-core/admin_options/general.php:825 zp-core/admin_options/image.php:248
 #: zp-core/admin_options/image.php:962 zp-core/admin_options/plugin.php:92
 #: zp-core/admin_options/plugin.php:238 zp-core/admin_options/search.php:106
 #: zp-core/admin_options/search.php:624 zp-core/admin_options/security.php:83
 #: zp-core/admin_options/security.php:328 zp-core/admin_options/theme.php:242
 #: zp-core/admin_options/theme.php:574
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:186
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:321
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:183
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:318
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:303
 msgid "reset"
 msgstr "重设"
@@ -8191,134 +8142,138 @@ msgstr "你没有相应权限去 %s."
 msgid "You do not have proper rights to access %s."
 msgstr "你没有相应权限去存取 %s."
 
-#: zp-core/admin.php:275
+#: zp-core/admin.php:255
+msgid "GitHub repository not accessable. "
+msgstr ""
+
+#: zp-core/admin.php:269
 #, fuzzy
 msgid "There is a new version is available."
 msgstr "有一个可用的更新。"
 
-#: zp-core/admin.php:277
+#: zp-core/admin.php:271
 #, fuzzy, php-format
 msgid "Version %s can be downloaded by the utility button."
 msgstr "可以通过实用程序按钮下载版本％s。"
 
-#: zp-core/admin.php:289
+#: zp-core/admin.php:283
 #, fuzzy, php-format
 msgid "Download %1$s version %2$s."
 msgstr "下载%1$s版本%2$s。"
 
-#: zp-core/admin.php:338
+#: zp-core/admin.php:331
 #, fuzzy
 msgid "Misc"
 msgstr "杂项"
 
-#: zp-core/admin.php:351
+#: zp-core/admin.php:344
 msgid "Run setup"
 msgstr "ZenPhoto20 设定"
 
-#: zp-core/admin.php:356
+#: zp-core/admin.php:349
 #, fuzzy
 msgid "Run the setup script."
 msgstr "运行安装脚本。"
 
-#: zp-core/admin.php:365
+#: zp-core/admin.php:358
 #, fuzzy
 msgid "Setup » protect scripts"
 msgstr "设置»保护脚本"
 
-#: zp-core/admin.php:370
+#: zp-core/admin.php:363
 #, fuzzy
 msgid "Protects setup files so setup cannot be run."
 msgstr "保护设置文件，以便无法运行安装程序。"
 
-#: zp-core/admin.php:381
+#: zp-core/admin.php:374
 #, fuzzy
 msgid "Setup » restore scripts"
 msgstr "设置»恢复脚本"
 
-#: zp-core/admin.php:386
+#: zp-core/admin.php:379
 #, fuzzy
 msgid "Restores setup files so setup can be run."
 msgstr "恢复安装文件，以便运行安装程序。"
 
-#: zp-core/admin.php:399 zp-core/utilities/installation_analysis.php:35
+#: zp-core/admin.php:392 zp-core/utilities/installation_analysis.php:35
 #, fuzzy
 msgid "<em>Debug build</em>"
 msgstr "调试版本"
 
-#: zp-core/admin.php:401 zp-core/utilities/installation_analysis.php:37
+#: zp-core/admin.php:394 zp-core/utilities/installation_analysis.php:37
 #, fuzzy
 msgid "Official build"
 msgstr "官方建设"
 
-#: zp-core/admin.php:407 zp-core/utilities/installation_analysis.php:73
+#: zp-core/admin.php:400 zp-core/utilities/installation_analysis.php:73
 #, fuzzy
 msgid "release notes"
 msgstr "发行说明"
 
-#: zp-core/admin.php:408 zp-core/utilities/installation_analysis.php:77
+#: zp-core/admin.php:401 zp-core/utilities/installation_analysis.php:77
 #, fuzzy, php-format
 #| msgid "ZenPhoto20 version <strong>%1$s (%2$s)</strong>"
 msgid "netPhotoGraphics version <strong>%1$s (%2$s)</strong>"
 msgstr "netPhotoGraphics版本<strong>%1$s（%2$s）</strong>"
 
-#: zp-core/admin.php:415
+#: zp-core/admin.php:408
 msgid "Utility functions"
 msgstr "工具功能"
 
-#: zp-core/admin.php:488
+#: zp-core/admin.php:481
 msgid "Gallery Stats"
 msgstr "相馆统计"
 
-#: zp-core/admin.php:495
+#: zp-core/admin.php:488
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
 msgstr[0] "<strong>％1 $ u</strong>专辑（％2 $ u未发布）"
 msgstr[1] "<strong>%1$u</strong> 个相簿(%2$u 未发布)"
 
-#: zp-core/admin.php:497
+#: zp-core/admin.php:490
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> 个相簿"
 msgstr[1] "<strong>%u</strong> 个相簿"
 
-#: zp-core/admin.php:506
+#: zp-core/admin.php:499
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
 msgstr[0] "<strong>％1 $ u</strong>图片（％2 $ u未发布）"
 msgstr[1] "<strong>%1$u</strong> 页面(%2$u 未发表)"
 
-#: zp-core/admin.php:508
+#: zp-core/admin.php:501
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> 张图片"
 msgstr[1] "<strong>%u</strong> 张图片"
 
-#: zp-core/admin.php:532
+#: zp-core/admin.php:525
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
 msgstr[0] "<strong>%1$u</strong> 个留言 (%2$u 在审核中)"
 msgstr[1] "<strong>%1$u</strong> 个留言 (%2$u 在审核中)"
 
-#: zp-core/admin.php:534
+#: zp-core/admin.php:527
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> 个留言"
 msgstr[1] "<strong>%u</strong> 个留言"
 
-#: zp-core/admin.php:549
+#: zp-core/admin.php:542
 #, fuzzy, php-format
 msgid "<strong>%1$u</strong> User (%2$u expired)"
 msgid_plural "<strong>%1$u</strong> Users (%2$u expired)"
 msgstr[0] "<strong>％1 $ u</strong>用户（％2 $ u已过期）"
 msgstr[1] "<strong>%1$u</strong> 页面(%2$u 未发表)"
 
-#: zp-core/admin.php:551
+#: zp-core/admin.php:544
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8327,7 +8282,7 @@ msgid_plural "<strong>%u</strong> Users"
 msgstr[0] "<strong>％u</strong>用户"
 msgstr[1] "<strong>%u</strong> 张图片"
 
-#: zp-core/admin.php:568
+#: zp-core/admin.php:561
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Album"
 #| msgid_plural "<strong>%u</strong> Albums"
@@ -8336,7 +8291,7 @@ msgid_plural "<strong>%u</strong> Groups"
 msgstr[0] "<strong>％u</strong>组"
 msgstr[1] "<strong>%u</strong> 个相簿"
 
-#: zp-core/admin.php:575
+#: zp-core/admin.php:568
 #, fuzzy, php-format
 #| msgid "<strong>%u</strong> Image"
 #| msgid_plural "<strong>%u</strong> Images"
@@ -8345,146 +8300,177 @@ msgid_plural "<strong>%u</strong> Templates"
 msgstr[0] "<strong>％u</strong>模板"
 msgstr[1] "<strong>%u</strong> 张图片"
 
-#: zp-core/admin.php:592
+#: zp-core/admin.php:585
 #, fuzzy
 msgid "Your user rights do not allow access to administrative functions."
 msgstr "您的用户权限不允许访问管理功能。"
 
-#: zp-core/admin_options/gallery.php:75 zp-core/zp-extensions/rss.php:97
+#: zp-core/admin_options/gallery.php:77 zp-core/zp-extensions/rss.php:97
 #, fuzzy
 msgid "Gallery title"
 msgstr "图库标题"
 
-#: zp-core/admin_options/gallery.php:83
+#: zp-core/admin_options/gallery.php:85
 #, fuzzy
 msgid "What you want to call your site."
 msgstr "你想称呼你的网站。"
 
-#: zp-core/admin_options/gallery.php:89
+#: zp-core/admin_options/gallery.php:91
 #, fuzzy
 #| msgid "Gallery description:"
 msgid "Gallery description"
 msgstr "图库描述"
 
-#: zp-core/admin_options/gallery.php:97
+#: zp-core/admin_options/gallery.php:99
 msgid "A brief description of your gallery. Some themes may display this text."
 msgstr "请写一些简单描述关于你的相馆. 有些布景主题会显示这段文字."
 
-#: zp-core/admin_options/gallery.php:103
+#: zp-core/admin_options/gallery.php:105
+#, fuzzy
+#| msgid "Graphic logo"
+msgid "Branding logo"
+msgstr "图形标志"
+
+#: zp-core/admin_options/gallery.php:113
+msgid ""
+"A relative link to a logo image. If this is set, the image will replace the "
+"netPhotoGraphics logo. For best results the image should be 78 pixels high."
+msgstr ""
+
+#: zp-core/admin_options/gallery.php:119
+msgid "Branding logo title"
+msgstr ""
+
+#: zp-core/admin_options/gallery.php:127
+msgid "Enter the title text for your branding logo."
+msgstr ""
+
+#: zp-core/admin_options/gallery.php:133
 #, fuzzy
 msgid "Gallery type"
 msgstr "图库类型"
 
-#: zp-core/admin_options/gallery.php:106 zp-core/admin_options/gallery.php:107
+#: zp-core/admin_options/gallery.php:136 zp-core/admin_options/gallery.php:137
 #, fuzzy
 msgid "public"
 msgstr "公共"
 
-#: zp-core/admin_options/gallery.php:110 zp-core/admin_options/gallery.php:111
+#: zp-core/admin_options/gallery.php:140 zp-core/admin_options/gallery.php:141
 #, fuzzy
 msgid "private"
 msgstr "私人"
 
-#: zp-core/admin_options/gallery.php:118
+#: zp-core/admin_options/gallery.php:148
 #, fuzzy
 msgid "Private galleries are viewable only by registered users."
 msgstr "私人画廊只能由注册用户查看。"
 
-#: zp-core/admin_options/gallery.php:129 zp-core/admin_options/gallery.php:186
+#: zp-core/admin_options/gallery.php:159 zp-core/admin_options/gallery.php:216
 #, fuzzy
 #| msgid "Gallery password:"
 msgid "Gallery password"
 msgstr "图库密码"
 
-#: zp-core/admin_options/gallery.php:154
+#: zp-core/admin_options/gallery.php:184
 msgid ""
 "Master password for the gallery. Click on <em>Gallery password</em> to "
 "change."
 msgstr "相馆主要密码.  点击 <em>相馆密码</em> 以更改."
 
-#: zp-core/admin_options/gallery.php:163
+#: zp-core/admin_options/gallery.php:193
 #, fuzzy
 #| msgid "Gallery guest user:"
 msgid "Gallery guest user"
 msgstr "图库访客用户"
 
-#: zp-core/admin_options/gallery.php:178
+#: zp-core/admin_options/gallery.php:208
 msgid "User ID for the gallery guest user"
 msgstr "相馆的访客用户名称"
 
-#: zp-core/admin_options/gallery.php:190 zp-core/admin_options/image.php:682
+#: zp-core/admin_options/gallery.php:220 zp-core/admin_options/image.php:682
 #: zp-core/admin_options/search.php:181
 #: zp-core/zp-extensions/downloadList.php:152
 #: zp-core/zp-extensions/zenpage/admin-edit.php:659
 msgid "(repeat)"
 msgstr "(重覆)"
 
-#: zp-core/admin_options/gallery.php:225
+#: zp-core/admin_options/gallery.php:255
 msgid ""
 "Master password for the gallery. If this is set, visitors must know this "
 "password to view the gallery."
 msgstr "相馆的主密码.  设定后访客一定要知道这密码来观看相馆."
 
-#: zp-core/admin_options/gallery.php:232
+#: zp-core/admin_options/gallery.php:262
 #, fuzzy
 #| msgid "Gallery password hint:"
 msgid "Gallery password hint"
 msgstr "图库密码提示"
 
-#: zp-core/admin_options/gallery.php:241 zp-core/admin_options/search.php:231
+#: zp-core/admin_options/gallery.php:271 zp-core/admin_options/search.php:231
 msgid "A reminder hint for the password."
 msgstr "一个回忆你密码的提示."
 
-#: zp-core/admin_options/gallery.php:250
+#: zp-core/admin_options/gallery.php:280
+#, fuzzy
+msgid "Logon welcome"
+msgstr "Logo图片"
+
+#: zp-core/admin_options/gallery.php:288
+msgid ""
+"If you place a message here it will be shown on the login form above the "
+"password pad box."
+msgstr ""
+
+#: zp-core/admin_options/gallery.php:294
 #, fuzzy
 #| msgid "Unprotected pages:"
 msgid "Unprotected pages"
 msgstr "未受保护的页面"
 
-#: zp-core/admin_options/gallery.php:283
+#: zp-core/admin_options/gallery.php:327
 #, fuzzy
 msgid ""
 "Place a checkmark on any page scripts which should not be protected by the "
 "gallery password."
 msgstr "勾选不受图库密码保护的任何页面脚本。"
 
-#: zp-core/admin_options/gallery.php:289 zp-core/zp-extensions/rss.php:97
+#: zp-core/admin_options/gallery.php:333 zp-core/zp-extensions/rss.php:97
 #, fuzzy
 msgid "Website title"
 msgstr "网站标题"
 
-#: zp-core/admin_options/gallery.php:297
+#: zp-core/admin_options/gallery.php:341
 msgid "Your web site title."
 msgstr "你的网站的标题."
 
-#: zp-core/admin_options/gallery.php:303
+#: zp-core/admin_options/gallery.php:347
 #, fuzzy
 #| msgid "Website url:"
 msgid "Website url"
 msgstr "网址"
 
-#: zp-core/admin_options/gallery.php:310
+#: zp-core/admin_options/gallery.php:354
 msgid ""
 "This is used to link back to your main site, but your theme must support it."
 msgstr "用以连结回你的主站, 但须要你的布景主题支援."
 
-#: zp-core/admin_options/gallery.php:316
+#: zp-core/admin_options/gallery.php:360
 #, fuzzy
 msgid "Album thumbnails"
 msgstr "相簿缩图:"
 
-#: zp-core/admin_options/gallery.php:334
+#: zp-core/admin_options/gallery.php:378
 #, fuzzy
 msgid "Default thumbnail selection for albums."
 msgstr "相册的默认缩略图选择。"
 
-#: zp-core/admin_options/gallery.php:340
+#: zp-core/admin_options/gallery.php:384
 #, fuzzy
 #| msgid "Sort gallery by:"
 msgid "Sort gallery by"
 msgstr "排序相馆"
 
-#: zp-core/admin_options/gallery.php:393
+#: zp-core/admin_options/gallery.php:437
 msgid ""
 "Sort order for the albums on the index of the gallery. Custom sort values "
 "must be database field names. You can have multiple fields separated by "
@@ -8493,37 +8479,37 @@ msgstr ""
 "相馆主页相簿的排列次序.  自定排序必须为资料库栏位.  可以用逗号分隔多个栏.  这"
 "选项同时是相簿及子相簿的预设排序."
 
-#: zp-core/admin_options/gallery.php:400
+#: zp-core/admin_options/gallery.php:444
 #, fuzzy
 #| msgid "Gallery behavior:"
 msgid "Gallery behavior"
 msgstr "画廊行为"
 
-#: zp-core/admin_options/gallery.php:404
+#: zp-core/admin_options/gallery.php:448
 #, fuzzy
 #| msgid "Publish albums by default"
 msgid "publish albums by default"
 msgstr "预设为相簿自动发表"
 
-#: zp-core/admin_options/gallery.php:409
+#: zp-core/admin_options/gallery.php:453
 #, fuzzy
 msgid "publish images by default"
 msgstr "默认发布图像"
 
-#: zp-core/admin_options/gallery.php:415
+#: zp-core/admin_options/gallery.php:459
 msgid "use latest image date as album date"
 msgstr "用最新图片日期为相簿日期"
 
-#: zp-core/admin_options/gallery.php:421
+#: zp-core/admin_options/gallery.php:465
 msgid "visual thumb selection"
 msgstr "形象化缩图选择"
 
-#: zp-core/admin_options/gallery.php:427
+#: zp-core/admin_options/gallery.php:471
 #, fuzzy
 msgid "show subalbum thumbs"
 msgstr "显示subalbum拇指"
 
-#: zp-core/admin_options/gallery.php:435
+#: zp-core/admin_options/gallery.php:479
 #, fuzzy
 msgid ""
 "<em>publish albums by default</em> sets the default behavior for when an "
@@ -8533,7 +8519,7 @@ msgstr ""
 "<em>默认情况下，发布相册会</em>设置发现相册时的默认行为。如果选中，则将发布相"
 "册，如果未选中，则将取消发布。"
 
-#: zp-core/admin_options/gallery.php:437
+#: zp-core/admin_options/gallery.php:481
 #, fuzzy
 msgid ""
 "<em>publish images by default</em> sets the default behavior for when an "
@@ -8543,7 +8529,7 @@ msgstr ""
 "<em>默认情况下，发布图像会</em>设置发现图像时的默认行为。如果选中，则将发布图"
 "像，如果未选中，则将取消发布。"
 
-#: zp-core/admin_options/gallery.php:440
+#: zp-core/admin_options/gallery.php:484
 #, fuzzy
 #| msgid ""
 #| "If you wish your album date to reflect the date of the latest image "
@@ -8557,7 +8543,7 @@ msgstr ""
 "如果您希望您的相册日期反映最新图像上传<em>日期，请使用最新图像日期作为相册日"
 "期</em> 。否则，日期将初始设置为创建相册的日期。"
 
-#: zp-core/admin_options/gallery.php:443
+#: zp-core/admin_options/gallery.php:487
 #, fuzzy
 msgid ""
 "<strong>NOTE</strong>: The album date will be updated only if an image is "
@@ -8566,7 +8552,7 @@ msgstr ""
 "<strong>注</strong> ：仅当发现的图像比相册的当前日期更新时，才会更新相册日"
 "期。"
 
-#: zp-core/admin_options/gallery.php:446
+#: zp-core/admin_options/gallery.php:490
 #, fuzzy
 msgid ""
 "Setting <em>visual thumb selection</em> places thumbnails in the album "
@@ -8582,7 +8568,7 @@ msgstr ""
 "（即使加载了拇指！）。在装有许多图像的相册中，这些拇指需要花费很多时间，而且"
 "在浏览器不显示它们时是不必要的。取消选中此选项，将不会加载图像。"
 
-#: zp-core/admin_options/gallery.php:448
+#: zp-core/admin_options/gallery.php:492
 #, fuzzy
 msgid ""
 "Setting <em>subalbum thumb selection</em> allows selecting images from "
@@ -8592,7 +8578,7 @@ msgstr ""
 "设置<em>subalbum thumb选项</em>允许从subalbum和相册中选择图像。自然地填充这些"
 "图像会增加开销。如果您的相册编辑标签加载速度太慢，请不要选择此选项。"
 
-#: zp-core/admin_options/gallery.php:456
+#: zp-core/admin_options/gallery.php:500
 #: zp-core/zp-extensions/optionalObjectFields.php:112
 #: zp-core/zp-extensions/optionalObjectFields.php:226
 #: zp-core/zp-extensions/optionalObjectFields.php:260
@@ -8613,7 +8599,7 @@ msgstr "<em>%s</em> 不能使用."
 msgid "The locale %s is not supported on your server."
 msgstr "在你的伺服器中不支援  locale %s."
 
-#: zp-core/admin_options/general.php:156 zp-core/setup/index.php:676
+#: zp-core/admin_options/general.php:156 zp-core/setup/index.php:677
 #: zp-core/zp-extensions/dynamic-locale.php:98
 #, fuzzy
 msgid ""
@@ -9716,7 +9702,7 @@ msgstr ""
 #: zp-core/admin_options/image.php:814 zp-core/admin_options/image.php:839
 #: zp-core/zp-extensions/googleMap.php:88
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:116
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:295
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:292
 #, fuzzy
 msgid "hide"
 msgstr "隐藏用户  %s 详细资料"
@@ -10780,36 +10766,36 @@ msgstr "随机专辑"
 msgid "Bad "
 msgstr "在 newImage(%s) 出现有问题的相簿物件参数"
 
-#: zp-core/class-gallery.php:234
+#: zp-core/class-gallery.php:295
 #, fuzzy, php-format
 msgid "Error: The “albums” directory (%s) cannot be found."
 msgstr "错误：找不到“相册”目录（％s）。"
 
-#: zp-core/class-gallery.php:236
+#: zp-core/class-gallery.php:297
 #, fuzzy, php-format
 msgid "Error: The “albums” directory (%s) is not readable."
 msgstr "错误：“相册”目录（％s）无法读取。"
 
-#: zp-core/class-gallery.php:301 zp-core/exif/exifTranslations.php:231
+#: zp-core/class-gallery.php:362 zp-core/exif/exifTranslations.php:231
 #: zp-core/setup/setup-functions.php:342
 msgid "Unknown"
 msgstr "未知"
 
-#: zp-core/class-gallery.php:301
+#: zp-core/class-gallery.php:362
 msgid "<strong>Missing theme info file!</strong>"
 msgstr "<strong>找不到布景主题资料档案!</strong>"
 
-#: zp-core/class-gallery.php:523
+#: zp-core/class-gallery.php:584
 #, fuzzy, php-format
 msgid "Invalid album folder: %1$s %2$s"
 msgstr "无效的相册文件夹：%1$s%2$s"
 
-#: zp-core/class-gallery.php:523
+#: zp-core/class-gallery.php:584
 #, fuzzy
 msgid "fixed"
 msgstr "固定"
 
-#: zp-core/class-gallery.php:523
+#: zp-core/class-gallery.php:584
 #, fuzzy
 msgid "discarded"
 msgstr "丢弃"
@@ -12106,7 +12092,7 @@ msgstr "严格通知："
 msgid "%1$s: \"%2$s\" in %3$s on line %4$s"
 msgstr "%1$s：“%2$s”在%4$s的%3$s上"
 
-#: zp-core/functions-basic.php:500 zp-core/setup/index.php:448
+#: zp-core/functions-basic.php:507 zp-core/setup/index.php:448
 #: zp-core/setup/index.php:458 zp-core/utilities/installation_analysis.php:43
 #: zp-core/zp-extensions/cloneZenphoto.php:56
 #: zp-core/zp-extensions/security-logger.php:134
@@ -12114,12 +12100,12 @@ msgstr "%1$s：“%2$s”在%4$s的%3$s上"
 msgid "clone"
 msgstr "复制:"
 
-#: zp-core/functions-basic.php:1728
+#: zp-core/functions-basic.php:1735
 #, fuzzy, php-format
 msgid "%s log size limit exceeded"
 msgstr "已超出％s日志大小限制"
 
-#: zp-core/functions-basic.php:1728
+#: zp-core/functions-basic.php:1735
 #, fuzzy, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr "%1$s日志已超出其大小限制，并已重命名为%2$s。"
@@ -12847,61 +12833,61 @@ msgid ""
 "installation."
 msgstr "找不到主题脚本。请检查安装的<em>％s</em>文件夹。"
 
-#: zp-core/functions.php:1688
+#: zp-core/functions.php:1718
 #, fuzzy
 msgid "0 Bytes"
 msgstr "字节"
 
-#: zp-core/functions.php:2439
+#: zp-core/functions.php:2469
 #, fuzzy, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "<em>[%1$s]</em>参数％2 $ d应为数字。"
 
-#: zp-core/functions.php:2447
+#: zp-core/functions.php:2477
 #, fuzzy, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "<em>[%1$s]</em>参数％2 $ d应为字符串。"
 
-#: zp-core/functions.php:2460
+#: zp-core/functions.php:2490
 #, fuzzy, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
 "code>."
 msgstr "<em>[%1$s]</em>参数％2 $ d应为<code>true</code>或<code>false</code> 。"
 
-#: zp-core/functions.php:2479
+#: zp-core/functions.php:2509
 #, fuzzy, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
 msgstr "<em>[%1$s]</em>参数％2 $ d定义错误。"
 
-#: zp-core/functions.php:2485
+#: zp-core/functions.php:2515
 #, fuzzy, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "缺少<em>[%1$s]</em>参数％2 $ d。"
 
-#: zp-core/functions.php:2494
+#: zp-core/functions.php:2524
 #, fuzzy, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "<em>[%1$s]</em>宏不带参数"
 
-#: zp-core/functions.php:2520 zp-core/functions.php:2547
+#: zp-core/functions.php:2550 zp-core/functions.php:2577
 #, fuzzy, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>[%1$s]</em>没有重新调整数据"
 
-#: zp-core/functions.php:2525
+#: zp-core/functions.php:2555
 #, fuzzy, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>[%1$s]</em> <code>%2$s</code>不可调用"
 
-#: zp-core/functions.php:2552
+#: zp-core/functions.php:2582
 #, fuzzy, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>[%1$s]</em>需要％2 $ d参数"
 msgstr[1] "<em>%1$s</em> 资料夹 %2$s"
 
-#: zp-core/functions.php:2937 zp-core/zp-extensions/comment_form.php:110
+#: zp-core/functions.php:2967 zp-core/zp-extensions/comment_form.php:110
 #: zp-core/zp-extensions/contact_form.php:131
 #: zp-core/zp-extensions/register_user.php:80
 #, fuzzy
@@ -12972,7 +12958,7 @@ msgstr "首字母"
 msgid "most viewed"
 msgstr "最多观看"
 
-#: zp-core/initialize-general.php:50
+#: zp-core/initialize-general.php:48
 #, fuzzy
 msgid "missing"
 msgstr "找不到"
@@ -13394,7 +13380,7 @@ msgstr "拥有此权限的用户将看到所有未发布的项目。"
 msgid "Manage all"
 msgstr "管理所有新闻"
 
-#: zp-core/lib-auth.php:610 zp-core/lib-auth.php:994 zp-core/lib-auth.php:1097
+#: zp-core/lib-auth.php:610 zp-core/lib-auth.php:1002 zp-core/lib-auth.php:1105
 #: zp-core/zp-extensions/favoritesHandler.php:272
 #, fuzzy
 msgid "User"
@@ -13485,126 +13471,126 @@ msgid "Reset request failed."
 msgstr "重置请求失败。"
 
 #: zp-core/lib-auth.php:800
-#: zp-core/zp-extensions/comment_form/functions.php:376
+#: zp-core/zp-extensions/comment_form/functions.php:380
 #: zp-core/zp-extensions/register_user.php:466
 msgid "CAPTCHA verification failed."
 msgstr "验证码查证失败."
 
-#: zp-core/lib-auth.php:956
+#: zp-core/lib-auth.php:964
 msgid "There was an error logging in."
 msgstr "登入时发生错误."
 
-#: zp-core/lib-auth.php:959
+#: zp-core/lib-auth.php:967
 msgid "Check your username and password and try again."
 msgstr "检查你的用户名称及密码并再尝试."
 
-#: zp-core/lib-auth.php:961
+#: zp-core/lib-auth.php:969
 #, fuzzy
 msgid "Check password and try again."
 msgstr "检查密码，然后重试。"
 
-#: zp-core/lib-auth.php:970
+#: zp-core/lib-auth.php:978
 msgid "A reset request has been sent."
 msgstr "重设要求已送出."
 
-#: zp-core/lib-auth.php:1000
+#: zp-core/lib-auth.php:1008
 #, fuzzy
 msgid ""
 "Supply the correct response to the question below and you will be directed "
 "to a page where you can change your password."
 msgstr "提供对下面问题的正确回答，您将转到可以更改密码的页面。"
 
-#: zp-core/lib-auth.php:1001
+#: zp-core/lib-auth.php:1009
 #, fuzzy
 msgid "Challenge question:"
 msgstr "挑战问题："
 
-#: zp-core/lib-auth.php:1006
+#: zp-core/lib-auth.php:1014
 #, fuzzy
 msgid "Your response"
 msgstr "你的回应"
 
-#: zp-core/lib-auth.php:1015
+#: zp-core/lib-auth.php:1023
 #, fuzzy
 msgid ""
 "Enter your User ID and press <code>Refresh</code> to get your challenge "
 "question."
 msgstr "输入您的用户ID并按“ <code>Refresh</code>以获取您的质询问题。"
 
-#: zp-core/lib-auth.php:1026 zp-core/lib-auth.php:1028
-#: zp-core/setup/index.php:1635
+#: zp-core/lib-auth.php:1034 zp-core/lib-auth.php:1036
+#: zp-core/setup/index.php:1636
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:210
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:359
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:366
 #, fuzzy
 msgid "Refresh"
 msgstr "更新相簿 %s 的诠释资料"
 
-#: zp-core/lib-auth.php:1030 zp-core/lib-auth.php:1032
-#: zp-core/lib-auth.php:1202 zp-core/lib-auth.php:1204
+#: zp-core/lib-auth.php:1038 zp-core/lib-auth.php:1040
+#: zp-core/lib-auth.php:1210 zp-core/lib-auth.php:1212
 #, fuzzy
 msgid "Return"
 msgstr "返回"
 
-#: zp-core/lib-auth.php:1043
+#: zp-core/lib-auth.php:1051
 #, fuzzy
 msgid "Request reset by e-mail"
 msgstr "通过电子邮件重置请求"
 
-#: zp-core/lib-auth.php:1076
+#: zp-core/lib-auth.php:1084
 #, fuzzy, php-format
 msgid "Logon using:%s"
 msgstr "使用以下命令登录：％s"
 
-#: zp-core/lib-auth.php:1112 zp-core/lib-auth.php:1114
+#: zp-core/lib-auth.php:1120 zp-core/lib-auth.php:1122
 msgid "Log in"
 msgstr "登入"
 
-#: zp-core/lib-auth.php:1134 zp-core/lib-auth.php:1143
+#: zp-core/lib-auth.php:1142 zp-core/lib-auth.php:1151
 #, fuzzy
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr "我忘记了<strong>用户名</strong> / <strong>密码</strong>"
 
-#: zp-core/lib-auth.php:1176
+#: zp-core/lib-auth.php:1184
 #, fuzzy
 msgid "User name or e-mail address"
 msgstr "姓名或电子邮箱地址"
 
-#: zp-core/lib-auth.php:1200
+#: zp-core/lib-auth.php:1208
 #, fuzzy
 msgid "Request password reset"
 msgstr "申请密码重置"
 
-#: zp-core/lib-auth.php:1285
+#: zp-core/lib-auth.php:1293
 #, fuzzy
 msgid "password strength weak"
 msgstr "密码强度：弱"
 
-#: zp-core/lib-auth.php:1288
+#: zp-core/lib-auth.php:1296
 #, fuzzy
 msgid "password strength good"
 msgstr "密码强度好"
 
-#: zp-core/lib-auth.php:1291
+#: zp-core/lib-auth.php:1299
 #, fuzzy
 msgid "password strength strong"
 msgstr "密码强度：强"
 
-#: zp-core/lib-auth.php:1296
+#: zp-core/lib-auth.php:1304
 #, fuzzy
 msgid "password strength too weak"
 msgstr "密码强度太弱"
 
-#: zp-core/lib-auth.php:1316
+#: zp-core/lib-auth.php:1324
 #, fuzzy
 msgid "passwords match"
 msgstr "密码匹配"
 
-#: zp-core/lib-auth.php:1320
+#: zp-core/lib-auth.php:1328
 #, fuzzy
 msgid "passwords do not match"
 msgstr "密码不匹配"
 
-#: zp-core/lib-auth.php:1411
+#: zp-core/lib-auth.php:1419
 #, fuzzy
 msgid "Repeat password"
 msgstr "重复密码"
@@ -13919,29 +13905,29 @@ msgstr "我同意这些条款和条件"
 msgid "There are no upload handlers enabled that can service your request."
 msgstr "没有启用可以为您的请求提供服务的上传处理程序。"
 
-#: zp-core/pluginDoc.php:253
+#: zp-core/pluginDoc.php:270
 #, fuzzy
 msgid "Plugin usage information"
 msgstr "插件使用信息"
 
-#: zp-core/pluginDoc.php:254
+#: zp-core/pluginDoc.php:271
 #, fuzzy, php-format
 msgid "%1$s %2$s: %3$s"
 msgstr "%1$s，%2$s，%3$s"
 
-#: zp-core/pluginDoc.php:448
+#: zp-core/pluginDoc.php:465
 #, fuzzy
 msgid "Option:"
 msgid_plural "Options:"
 msgstr[0] "ZenPhoto20 选项 \"mod_rewrite\"  会设为  \"启动\"."
 msgstr[1] "选项"
 
-#: zp-core/pluginDoc.php:470
+#: zp-core/pluginDoc.php:487
 #, fuzzy
 msgid "Notes:"
 msgstr "备注："
 
-#: zp-core/pluginDoc.php:561
+#: zp-core/pluginDoc.php:578
 #, fuzzy
 msgid "Macro defined:"
 msgid_plural "Macros defined:"
@@ -14177,46 +14163,46 @@ msgstr "建立"
 msgid "update"
 msgstr "更新"
 
-#: zp-core/setup/index.php:510
+#: zp-core/setup/index.php:511
 #, fuzzy
 #| msgid "ZenPhoto20 Setup"
 msgid "netPhotoGraphics Setup"
 msgstr "netPhotoGraphics设置"
 
-#: zp-core/setup/index.php:527
+#: zp-core/setup/index.php:528
 #, fuzzy, php-format
 msgid ""
 "Welcome to netPhotoGraphics! This page will set up version %1$s on your web "
 "server."
 msgstr "欢迎来到netPhotoGraphics！此页面将在您的Web服务器上设置版本%1$s。"
 
-#: zp-core/setup/index.php:529
+#: zp-core/setup/index.php:530
 msgid "Systems Check:"
 msgstr "系统检查:"
 
-#: zp-core/setup/index.php:544
+#: zp-core/setup/index.php:545
 #, fuzzy
 msgid ""
 "<strong>Note:</strong> The release you are installing has debugging settings "
 "enabled!"
 msgstr "<strong>注意：</strong>您正在安装的版本已启用调试设置！"
 
-#: zp-core/setup/index.php:556
+#: zp-core/setup/index.php:557
 #, fuzzy, php-format
 msgid "Installing netPhotoGraphics v%s"
 msgstr "安装netPhotoGraphics v％s"
 
-#: zp-core/setup/index.php:571
+#: zp-core/setup/index.php:572
 #, fuzzy, php-format
 msgid "<em>%s</em> security"
 msgstr "<em>％s的</em>安全性"
 
-#: zp-core/setup/index.php:571
+#: zp-core/setup/index.php:572
 #, fuzzy, php-format
 msgid "<em>%s</em> security [is compromised]"
 msgstr "<em>％s</em>安全[受到损害]"
 
-#: zp-core/setup/index.php:571
+#: zp-core/setup/index.php:572
 #, fuzzy, php-format
 msgid ""
 "You should make the sensitive files in the %1$s folder accessible by "
@@ -14226,12 +14212,12 @@ msgstr ""
 "您应该只允许<em>所有者</em>访问%1$s文件夹中的敏感文件（permissions = "
 "0600）。 <em>%2$s</em>的文件权限是%3$s，这可能允许未经授权的访问。"
 
-#: zp-core/setup/index.php:579
+#: zp-core/setup/index.php:580
 #, php-format
 msgid "PHP version %s"
 msgstr "PHP版本 %s"
 
-#: zp-core/setup/index.php:579
+#: zp-core/setup/index.php:580
 #, fuzzy, php-format
 msgid ""
 "PHP Version %1$s or greater is required. Version %2$s or greater is strongly "
@@ -14243,17 +14229,17 @@ msgstr ""
 "href=\"http://php.net/supported-versions.php\">主动支持</a>早期版本。使用早期"
 "版本需要您自担风险。"
 
-#: zp-core/setup/index.php:581
+#: zp-core/setup/index.php:582
 #, fuzzy
 msgid "PHP <code>Sessions</code>."
 msgstr "PHP <code>Sessions</code> 。"
 
-#: zp-core/setup/index.php:581
+#: zp-core/setup/index.php:582
 #, fuzzy
 msgid "PHP <code>Sessions</code> [appear to not be working]."
 msgstr "PHP <code>Sessions</code> [似乎不起作用]。"
 
-#: zp-core/setup/index.php:581
+#: zp-core/setup/index.php:582
 #, fuzzy, php-format
 msgid ""
 "PHP Sessions are required for administrative functions. Check your "
@@ -14263,18 +14249,18 @@ msgstr ""
 "管理功能需要PHP会话。检查您的<code>session.save_path</code> （ <code>%1$s</"
 "code> ）和PHP配置<code>[session]</code>设置"
 
-#: zp-core/setup/index.php:589
+#: zp-core/setup/index.php:590
 #, fuzzy
 msgid "PHP <code>session.use_strict_mode</code>"
 msgstr "PHP <code>session.use_strict_mode</code>"
 
-#: zp-core/setup/index.php:589
+#: zp-core/setup/index.php:590
 #, fuzzy
 #| msgid "PHP <code>Safe Mode</code> [is set]"
 msgid "PHP <code>session.use_strict_mode</code> [is not set]"
 msgstr "PHP <code>session.use_strict_mode</code> [未设置]"
 
-#: zp-core/setup/index.php:589
+#: zp-core/setup/index.php:590
 #, fuzzy
 msgid ""
 "Enabling <code>session.use_strict_mode</code> is mandatory for general "
@@ -14284,17 +14270,17 @@ msgstr ""
 "启用<code>session.use_strict_mode</code>对于常规会话安全性是必需的。将PHP.ini"
 "设置更改为<code>session.use_strict_mode = on</code> 。"
 
-#: zp-core/setup/index.php:603
+#: zp-core/setup/index.php:604
 #, fuzzy
 msgid "PHP <code>Register Globals</code>"
 msgstr "PHP <code>Register Globals</code>"
 
-#: zp-core/setup/index.php:603
+#: zp-core/setup/index.php:604
 #, fuzzy
 msgid "PHP <code>Register Globals</code> [is set]"
 msgstr "PHP <code>Register Globals</code> [已设置]"
 
-#: zp-core/setup/index.php:603
+#: zp-core/setup/index.php:604
 #, fuzzy
 msgid ""
 "PHP Register globals presents a security risk to any PHP application. See <a "
@@ -14306,27 +14292,27 @@ msgstr ""
 "php.net/manual/en/security.globals.php\"><em>使用Register Globals</em></a> 。"
 "将PHP.ini设置更改为<code>register_globals = off</code> 。"
 
-#: zp-core/setup/index.php:610
+#: zp-core/setup/index.php:611
 msgid "PHP <code>Safe Mode</code>"
 msgstr "PHP <code>Safe Mode</code>"
 
-#: zp-core/setup/index.php:610
+#: zp-core/setup/index.php:611
 msgid "PHP <code>Safe Mode</code> [is set]"
 msgstr "PHP <code>Safe Mode</code> [已设定]"
 
-#: zp-core/setup/index.php:610
+#: zp-core/setup/index.php:611
 #, fuzzy
 msgid ""
 "netPhotoGraphics functionality is reduced when PHP <code>safe mode</code> "
 "restrictions are in effect."
 msgstr "当PHP <code>safe mode</code>限制生效时，netPhotoGraphics功能会减少。"
 
-#: zp-core/setup/index.php:628
+#: zp-core/setup/index.php:629
 #, fuzzy
 msgid "<code>Suhosin</code> module [is enabled]"
 msgstr "<code>Suhosin</code>模块[已启用]"
 
-#: zp-core/setup/index.php:628
+#: zp-core/setup/index.php:629
 #, fuzzy, php-format
 msgid ""
 "The following PHP functions are blocked: %s. Flagged functions are required. "
@@ -14336,70 +14322,70 @@ msgstr ""
 "以下PHP函数被阻止：％s。标记的功能是必需的。可以使用列表中的其他功能，可能导"
 "致功能或故障减少。"
 
-#: zp-core/setup/index.php:633
+#: zp-core/setup/index.php:634
 #, fuzzy
 msgid "Magic_quotes"
 msgstr "magic_quotes的"
 
-#: zp-core/setup/index.php:639
+#: zp-core/setup/index.php:640
 msgid "PHP <code>magic_quotes_gpc</code>"
 msgstr "PHP <code>magic_quotes_gpc</code>"
 
-#: zp-core/setup/index.php:639
+#: zp-core/setup/index.php:640
 msgid "PHP <code>magic_quotes_gpc</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_gpc</code> [已启用]"
 
-#: zp-core/setup/index.php:639
+#: zp-core/setup/index.php:640
 #, fuzzy
 msgid "You must disable <code>magic_quotes_gpc</code>."
 msgstr "您必须禁用<code>magic_quotes_gpc</code> 。"
 
-#: zp-core/setup/index.php:645
+#: zp-core/setup/index.php:646
 #, fuzzy
 msgid "PHP <code>magic_quotes_runtime</code>"
 msgstr "PHP <code>magic_quotes_runtime</code>"
 
-#: zp-core/setup/index.php:645
+#: zp-core/setup/index.php:646
 #, fuzzy
 msgid "PHP <code>magic_quotes_runtime</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_runtime</code> [已启用]"
 
-#: zp-core/setup/index.php:645
+#: zp-core/setup/index.php:646
 #, fuzzy
 msgid "You must disable <code>magic_quotes_runtime</code>."
 msgstr "您必须禁用<code>magic_quotes_runtime</code> 。"
 
-#: zp-core/setup/index.php:646
+#: zp-core/setup/index.php:647
 #, fuzzy
 msgid "PHP <code>magic_quotes_sybase</code>"
 msgstr "PHP <code>magic_quotes_sybase</code>"
 
-#: zp-core/setup/index.php:646
+#: zp-core/setup/index.php:647
 #, fuzzy
 msgid "PHP <code>magic_quotes_sybase</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_sybase</code> [已启用]"
 
-#: zp-core/setup/index.php:646
+#: zp-core/setup/index.php:647
 #, fuzzy
 msgid "You must disable <code>magic_quotes_sybase</code>."
 msgstr "您必须禁用<code>magic_quotes_sybase</code> 。"
 
-#: zp-core/setup/index.php:649
+#: zp-core/setup/index.php:650
 #, fuzzy
 msgid "Display_errors"
 msgstr "的display_errors"
 
-#: zp-core/setup/index.php:670
+#: zp-core/setup/index.php:671
 #, fuzzy
 msgid "PHP <code>display_errors</code>"
 msgstr "PHP <code>display_errors</code>"
 
-#: zp-core/setup/index.php:670
+#: zp-core/setup/index.php:671
 #, fuzzy, php-format
 msgid "PHP <code>display_errors</code> [is enabled]"
 msgstr "PHP <code>display_errors</code> [已启用]"
 
-#: zp-core/setup/index.php:670
+#: zp-core/setup/index.php:671
 #, fuzzy
 msgid ""
 "This setting may result in PHP error messages being displayed on WEB pages. "
@@ -14408,15 +14394,15 @@ msgstr ""
 "此设置可能导致在WEB页面上显示PHP错误消息。这些显示可能包含有关您网站的敏感信"
 "息。"
 
-#: zp-core/setup/index.php:672
+#: zp-core/setup/index.php:673
 msgid "PHP <code>gettext()</code> support"
 msgstr "PHP <code>gettext()</code> 支援"
 
-#: zp-core/setup/index.php:672
+#: zp-core/setup/index.php:673
 msgid "PHP <code>gettext()</code> support [is not present]"
 msgstr "PHP <code>gettext()</code> 支援 [不存在]"
 
-#: zp-core/setup/index.php:672
+#: zp-core/setup/index.php:673
 #, fuzzy
 #| msgid "PHP <code>gettext()</code> support [is not present]"
 msgid ""
@@ -14424,17 +14410,17 @@ msgid ""
 "is being used."
 msgstr "PHP <code>gettext()</code>支持未启用，正在使用drop in replacement。"
 
-#: zp-core/setup/index.php:673
+#: zp-core/setup/index.php:674
 #, fuzzy
 msgid "PHP <code>flock</code> support"
 msgstr "PHP <code>flock</code>支持"
 
-#: zp-core/setup/index.php:673
+#: zp-core/setup/index.php:674
 #, fuzzy
 msgid "PHP <code>flock</code> support [is not present]"
 msgstr "PHP <code>flock</code>支持[不存在]"
 
-#: zp-core/setup/index.php:673
+#: zp-core/setup/index.php:674
 #, fuzzy
 msgid ""
 "<code>flock</code> is used for serializing critical regions of code. Without "
@@ -14444,26 +14430,26 @@ msgstr ""
 "<code>flock</code>用于序列化关键的代码区域。没有<code>flock</code>活动站点可"
 "能会遇到可能导致数据不一致的<em>竞争条件</em> 。"
 
-#: zp-core/setup/index.php:675
+#: zp-core/setup/index.php:676
 msgid "PHP <code>setlocale()</code>"
 msgstr "PHP <code>setlocale()</code>"
 
-#: zp-core/setup/index.php:675
+#: zp-core/setup/index.php:676
 msgid "PHP <code>setlocale()</code> failed"
 msgstr "PHP <code>setlocale()</code> 失败"
 
-#: zp-core/setup/index.php:675
+#: zp-core/setup/index.php:676
 msgid ""
 "Locale functionality is not implemented on your platform or the specified "
 "locale does not exist. Language translation may not work."
 msgstr "你的平台不支援Locale功能或都指定的Locale不存在.  语言翻译不能生效."
 
-#: zp-core/setup/index.php:678
+#: zp-core/setup/index.php:679
 #, fuzzy
 msgid "mb_strings"
 msgstr "mb_strings"
 
-#: zp-core/setup/index.php:685
+#: zp-core/setup/index.php:686
 #, fuzzy, php-format
 msgid ""
 "Setting <em>mbstring.internal_encoding</em> to <strong>%s</strong> in your "
@@ -14473,11 +14459,11 @@ msgstr ""
 "建议在<em>php.ini</em>文件中将<em>mbstring.internal_encoding</em>设置为"
 "<strong>％s</strong> ，以确保重音和多字节字符正常运行。"
 
-#: zp-core/setup/index.php:686
+#: zp-core/setup/index.php:687
 msgid "PHP <code>mbstring</code> package"
 msgstr "PHP <code>mbstring</code> 支援"
 
-#: zp-core/setup/index.php:686
+#: zp-core/setup/index.php:687
 #, php-format
 msgid ""
 "PHP <code>mbstring</code> package [Your internal character set is <strong>"
@@ -14485,34 +14471,34 @@ msgid ""
 msgstr ""
 "PHP <code>mbstring</code> 套件 [你内部的字符编码为 <strong>%s</strong>]"
 
-#: zp-core/setup/index.php:695
+#: zp-core/setup/index.php:696
 #, fuzzy
 msgid ""
 "You need to install the <code>mbstring</code> package or correct the issue "
 "with <code>iconv()</code>"
 msgstr "您需要安装<code>mbstring</code>包或使用<code>iconv()</code>更正问题"
 
-#: zp-core/setup/index.php:696
+#: zp-core/setup/index.php:697
 msgid ""
 "PHP <code>mbstring</code> package [is not present and <code>iconv()</code> "
 "is not working]"
 msgstr "PHP <code>mbstring</code> 套件 [不存在及<code>iconv()</code> 不能运作]"
 
-#: zp-core/setup/index.php:698
+#: zp-core/setup/index.php:699
 msgid ""
 "Strings generated internally by PHP may not display correctly. (e.g. dates)"
 msgstr "PHP内部产生的字串可能显示错误.(e.g. 日期)"
 
-#: zp-core/setup/index.php:699
+#: zp-core/setup/index.php:700
 msgid "PHP <code>mbstring</code> package [is not present]"
 msgstr "PHP <code>mbstring</code> 套件 [不存在]"
 
-#: zp-core/setup/index.php:707
+#: zp-core/setup/index.php:708
 #, fuzzy
 msgid "PHP <code>default_charset</code>"
 msgstr "PHP <code>default_charset</code>"
 
-#: zp-core/setup/index.php:707
+#: zp-core/setup/index.php:708
 #, fuzzy, php-format
 msgid ""
 "PHP <code>default_charset</code> [Your default character set is <strong>%s</"
@@ -14520,7 +14506,7 @@ msgid ""
 msgstr ""
 "PHP <code>default_charset</code> [您的默认字符集是<strong>％s</strong> ]"
 
-#: zp-core/setup/index.php:707
+#: zp-core/setup/index.php:708
 #, fuzzy, php-format
 msgid ""
 "Setting <em>default_charset</em> to <strong>%s</strong> in your <em>php.ini</"
@@ -14530,91 +14516,91 @@ msgstr ""
 "建议在<em>php.ini</em>文件中将<em>default_charset</em>设置为<strong>％s</"
 "strong> ，以确保重音和多字节字符正常运行。"
 
-#: zp-core/setup/index.php:711
+#: zp-core/setup/index.php:712
 #, fuzzy
 msgid "Graphics library"
 msgstr "图形库"
 
-#: zp-core/setup/index.php:719
+#: zp-core/setup/index.php:720
 #, php-format
 msgid "Graphics support: <code>%s</code>"
 msgstr "图像支援: <code>%s</code>"
 
-#: zp-core/setup/index.php:719
+#: zp-core/setup/index.php:720
 msgid "Graphics support [is not installed]"
 msgstr "图像支援 [没有安装]"
 
-#: zp-core/setup/index.php:719
+#: zp-core/setup/index.php:720
 msgid ""
 "You need to install a graphics support library such as the <em>GD library</"
 "em> in your PHP"
 msgstr "你要安装图像支援程式库 (如 GD 程式库) 到你的PHP中."
 
-#: zp-core/setup/index.php:734
+#: zp-core/setup/index.php:735
 #, php-format
 msgid "Your PHP graphics library does not support %1$s or %2$s"
 msgstr "你的PHP 图像程式库不能支援 %1$s 或 %2$s"
 
-#: zp-core/setup/index.php:736
+#: zp-core/setup/index.php:737
 #, php-format
 msgid "Your PHP graphics library does not support %1$s"
 msgstr "你的PHP 图像程式库不能支援 %1$s"
 
-#: zp-core/setup/index.php:739
+#: zp-core/setup/index.php:740
 msgid ""
 "To correct this you should install a graphics library with appropriate image "
 "support in your PHP"
 msgstr "要改正它应该要在 PHP 安装相应图像支援程式库"
 
-#: zp-core/setup/index.php:741
+#: zp-core/setup/index.php:742
 #, php-format
 msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
 msgstr "你的PHP 图像程式库不能支援 %1$s, %2$s, or %3$s"
 
-#: zp-core/setup/index.php:744
+#: zp-core/setup/index.php:745
 msgid ""
 "To correct this you need to install GD with appropriate image support in "
 "your PHP"
 msgstr "要改正它须要在 PHP 安装 GD 相应图像支援"
 
-#: zp-core/setup/index.php:746
+#: zp-core/setup/index.php:747
 msgid "PHP graphics image support"
 msgstr "PHP 图像支援"
 
-#: zp-core/setup/index.php:747
+#: zp-core/setup/index.php:748
 msgid "The unsupported image types will not be viewable in your albums."
 msgstr "你的相簿不能看到不支援的图像格式"
 
-#: zp-core/setup/index.php:751
+#: zp-core/setup/index.php:752
 msgid "Graphics Library rotation support [is not present]"
 msgstr "图像程式库旋转支援 [不存在]"
 
-#: zp-core/setup/index.php:751
+#: zp-core/setup/index.php:752
 msgid ""
 "The graphics support library does not provide support for image rotation."
 msgstr "图像程式库不支援支援图片旋转"
 
-#: zp-core/setup/index.php:759
+#: zp-core/setup/index.php:760
 msgid "Graphics support [configuration error]"
 msgstr "图像支援 [设定错误]"
 
-#: zp-core/setup/index.php:759
+#: zp-core/setup/index.php:760
 msgid ""
 "No image handling library was loaded. Be sure that your PHP has a graphics "
 "support."
 msgstr "没有 ZenPhoto20 图像处程式库载入.  请确定你的PHP有图像支援."
 
-#: zp-core/setup/index.php:770
+#: zp-core/setup/index.php:771
 #, fuzzy, php-format
 msgid "<em>%1$s</em> file"
 msgstr "<em>%1$s</em>文件"
 
-#: zp-core/setup/index.php:770
+#: zp-core/setup/index.php:771
 #, fuzzy, php-format
 msgid "<em>%1$s</em> file [does not exist]"
 msgstr "<em>%1$s</em>文件[不存在]"
 
-#: zp-core/setup/index.php:770
+#: zp-core/setup/index.php:771
 #, fuzzy, php-format
 msgid ""
 "Setup was not able to create this file. You will need to copy the <code>%1$s/"
@@ -14624,31 +14610,31 @@ msgstr ""
 "安装程序无法创建此文件。您需要将<code>%1$s/zenphoto_cfg.txt</code>文件复制到"
 "<code>%2$s/%3$s</code>然后按照文件注释中的说明进行编辑。"
 
-#: zp-core/setup/index.php:772
+#: zp-core/setup/index.php:773
 msgid "File permissions"
 msgstr "ZenPhoto20 核心档案权限"
 
-#: zp-core/setup/index.php:775
+#: zp-core/setup/index.php:776
 #, fuzzy, php-format
 msgid "Set File permissions to %s."
 msgstr "将文件权限设置为％s。"
 
-#: zp-core/setup/index.php:781
+#: zp-core/setup/index.php:782
 #, php-format
 msgid "<em>%1$s</em> (<code>0%2$o</code>)"
 msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
 
-#: zp-core/setup/index.php:783
+#: zp-core/setup/index.php:784
 #, php-format
 msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>未知</em> (<code>%o</code>)"
 
-#: zp-core/setup/index.php:794
+#: zp-core/setup/index.php:795
 #, fuzzy, php-format
 msgid "File Permissions [are %s]"
 msgstr "文件权限是 <strong>%s</strong>"
 
-#: zp-core/setup/index.php:795
+#: zp-core/setup/index.php:796
 msgid ""
 "If file permissions are not set to <em>strict</em> or tighter there could be "
 "a security risk. However, on some servers the software does not function "
@@ -14659,24 +14645,24 @@ msgstr ""
 "但是, 在某些伺服器 ZenPhoto20 不能正确使用严密的档案/资料夹权限.  如果 "
 "Zenphoto 有权限错误, 重新执行安装并选择一个比较宽松选项."
 
-#: zp-core/setup/index.php:802
+#: zp-core/setup/index.php:803
 #, fuzzy
 msgid "Your filesystem is Macintosh"
 msgstr "您的文件系统是Macintosh"
 
-#: zp-core/setup/index.php:802
+#: zp-core/setup/index.php:803
 #, fuzzy
 msgid ""
 "Macintosh file names containing diacritical marks are beyond the scope of "
 "this software. You should avoid these."
 msgstr "包含变音符号的Macintosh文件名超出了本软件的范围。你应该避免这些。"
 
-#: zp-core/setup/index.php:807
+#: zp-core/setup/index.php:808
 #, fuzzy
 msgid "Character set"
 msgstr "字符集设置"
 
-#: zp-core/setup/index.php:848
+#: zp-core/setup/index.php:849
 #, fuzzy, php-format
 msgid ""
 "If your server filesystem character set is different from <code>%s</code> "
@@ -14686,32 +14672,32 @@ msgstr ""
 "如果您的服务器文件系统字符集与<code>%s</code>不同，并且您创建包含带变音标记的"
 "字符的专辑或图像文件名，则可能会遇到这些对象的问题。"
 
-#: zp-core/setup/index.php:850
+#: zp-core/setup/index.php:851
 #, fuzzy, php-format
 msgid "Change the filesystem character set define to %1$s"
 msgstr "将文件系统字符集定义更改为%1$s"
 
-#: zp-core/setup/index.php:868
+#: zp-core/setup/index.php:869
 #, fuzzy, php-format
 msgid "The filesystem character define is %1$s [confirmed]"
 msgstr "文件系统字符定义是%1$s [已确认]"
 
-#: zp-core/setup/index.php:873
+#: zp-core/setup/index.php:874
 #, fuzzy
 msgid "The filesystem character define is UTF-8 [assumed]"
 msgstr "文件系统字符定义是UTF-8 [假设]"
 
-#: zp-core/setup/index.php:878
+#: zp-core/setup/index.php:879
 #, fuzzy, php-format
 msgid "The filesystem character define is %1$s [which seems wrong]"
 msgstr "文件系统字符定义是%1$s [看似错误]"
 
-#: zp-core/setup/index.php:883
+#: zp-core/setup/index.php:884
 #, fuzzy, php-format
 msgid "The filesystem character define is %1$s [no test performed]"
 msgstr "文件系统字符定义是%1$s [未执行测试]"
 
-#: zp-core/setup/index.php:884
+#: zp-core/setup/index.php:885
 #, fuzzy, php-format
 msgid ""
 "Setup did not perform a test of the filesystem character set. You can cause "
@@ -14723,27 +14709,27 @@ msgstr ""
 "<strong><code>charset_tést</code></strong> <code>%1$s</code>文件夹中创建文件"
 "并重新运行安装程序，使安装程序测试正确的定义。"
 
-#: zp-core/setup/index.php:903
+#: zp-core/setup/index.php:904
 #, fuzzy
 msgid "Image URIs appear to require the <em>UTF-8</em> character set."
 msgstr "图像URI似乎需要<em>UTF-8</em>字符集。"
 
-#: zp-core/setup/index.php:910
+#: zp-core/setup/index.php:911
 #, fuzzy
 msgid "Image URIs appear require the <em>filesystem</em> character set."
 msgstr "出现的图像URI需要<em>文件系统</em>字符集。"
 
-#: zp-core/setup/index.php:917
+#: zp-core/setup/index.php:918
 #, fuzzy
 msgid "Image URIs with diacritical marks appear to fail."
 msgstr "带有变音标记的图像URI似乎失败。"
 
-#: zp-core/setup/index.php:957
+#: zp-core/setup/index.php:958
 #, fuzzy, php-format
 msgid "PHP <code>%s</code> support for configured Database"
 msgstr "PHP <code>%s</code>支持已配置的数据库"
 
-#: zp-core/setup/index.php:966
+#: zp-core/setup/index.php:967
 #, fuzzy, php-format
 msgid ""
 " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle()\" "
@@ -14751,27 +14737,27 @@ msgid ""
 msgstr ""
 "<code>%1$s</code>支持（ <a onclick=\"$('#%1$s').toggle()\" >实验性</a> ）"
 
-#: zp-core/setup/index.php:976
+#: zp-core/setup/index.php:977
 #, fuzzy, php-format
 msgid "PHP <code>%s</code> support"
 msgstr "PHP <code>%s</code>支持"
 
-#: zp-core/setup/index.php:984
+#: zp-core/setup/index.php:985
 #, fuzzy, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
 msgstr "PHP <code>%s</code>支持[未安装]"
 
-#: zp-core/setup/index.php:995
+#: zp-core/setup/index.php:996
 #, fuzzy
 msgid "No database selected"
 msgstr "未选中数据库"
 
-#: zp-core/setup/index.php:1007
+#: zp-core/setup/index.php:1008
 #, fuzzy, php-format
 msgid "%1$s version %2$s"
 msgstr "%1$s版本%2$s"
 
-#: zp-core/setup/index.php:1007
+#: zp-core/setup/index.php:1008
 #, fuzzy, php-format
 msgid ""
 "%1$s Version %2$s or greater is required. Version %3$s or greater is "
@@ -14780,22 +14766,22 @@ msgstr ""
 "%1$s版本%2$s或更高是必需的。版本%3$s或更高是首选。使用较低版本需要您自担风"
 "险。"
 
-#: zp-core/setup/index.php:1009
+#: zp-core/setup/index.php:1010
 #, fuzzy
 msgid "Database connection"
 msgstr "数据库连接"
 
-#: zp-core/setup/index.php:1015
+#: zp-core/setup/index.php:1016
 #, fuzzy
 msgid "Database credentials in configuration file"
 msgstr "配置文件中的数据库凭据"
 
-#: zp-core/setup/index.php:1015
+#: zp-core/setup/index.php:1016
 #, fuzzy, php-format
 msgid "<em>%1$s</em> reported: %2$s"
 msgstr "<em>%1$s</em>报告：%2$s"
 
-#: zp-core/setup/index.php:1022
+#: zp-core/setup/index.php:1023
 #, fuzzy
 msgid ""
 "You have not correctly set your <strong>Database</strong> <code>user</code>, "
@@ -14805,177 +14791,177 @@ msgstr ""
 "您没有在配置文件中正确设置<strong>数据库</strong> <code>user</code> ， "
 "<code>password</code>等，并且<strong>安装</strong>程序无法写入文件。"
 
-#: zp-core/setup/index.php:1024
+#: zp-core/setup/index.php:1025
 #, fuzzy
 msgid "Database setup in configuration file"
 msgstr "配置文件中的数据库设置"
 
-#: zp-core/setup/index.php:1027
+#: zp-core/setup/index.php:1028
 #, fuzzy, php-format
 msgid "Connect to %s"
 msgstr "连接到 %s"
 
-#: zp-core/setup/index.php:1027
+#: zp-core/setup/index.php:1028
 #, fuzzy
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
 msgstr "连接数据库[ <code>CONNECT</code>查询失败]"
 
-#: zp-core/setup/index.php:1034
+#: zp-core/setup/index.php:1035
 #, php-format
 msgid "Database <code>%s</code> created"
 msgstr "资料库 <code>%s</code> 建立"
 
-#: zp-core/setup/index.php:1042
+#: zp-core/setup/index.php:1043
 #, php-format
 msgid "Click here to attempt to create <a href=\"?Create_Database\" >%s</a>."
 msgstr "点击以尝试建立 <a href=\"?Create_Database\" >%s</a>."
 
-#: zp-core/setup/index.php:1047
+#: zp-core/setup/index.php:1048
 #, php-format
 msgid ""
 "Database <code>%s</code> not created [<code>CREATE DATABASE</code> query "
 "failed]"
 msgstr "资料库<code>%s</code> 未建立 [<code>CREATE DATABASE</code> 查询失败]"
 
-#: zp-core/setup/index.php:1053
+#: zp-core/setup/index.php:1054
 #, fuzzy
 msgid ""
 "You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
 "configuration."
 msgstr "您可能需要在数据库配置中将<code>SQL mode</code>设置为<em>空</em> 。"
 
-#: zp-core/setup/index.php:1057
+#: zp-core/setup/index.php:1058
 #, fuzzy, php-format
 msgid "<code>SQL mode</code> [query failed]"
 msgstr "<code>SQL mode</code> [查询失败]"
 
-#: zp-core/setup/index.php:1060
+#: zp-core/setup/index.php:1061
 #, fuzzy, php-format
 msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
 msgstr "<code>SQL mode</code> [ <em>％s</em>覆盖]"
 
-#: zp-core/setup/index.php:1060
+#: zp-core/setup/index.php:1061
 #, fuzzy
 msgid "Consider setting it <em>empty</em> in your Database configuration."
 msgstr "考虑在数据库配置中将其设置为<em>空</em> 。"
 
-#: zp-core/setup/index.php:1067
+#: zp-core/setup/index.php:1068
 #, fuzzy
 msgid "<code>SQL mode</code>"
 msgstr "SQL模式"
 
-#: zp-core/setup/index.php:1067
+#: zp-core/setup/index.php:1068
 #, fuzzy, php-format
 msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
 msgstr "<code>SQL mode</code> [设置为<em>％s</em> ]"
 
-#: zp-core/setup/index.php:1067
+#: zp-core/setup/index.php:1068
 #, fuzzy
 msgid "Consider setting it <em>empty</em> if you get Database errors."
 msgstr "如果出现数据库错误，请考虑将其设置为<em>空</em> 。"
 
-#: zp-core/setup/index.php:1071
+#: zp-core/setup/index.php:1072
 #, fuzzy
 msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr "<code>SQL mode</code> [SET SESSION失败]"
 
-#: zp-core/setup/index.php:1079
+#: zp-core/setup/index.php:1080
 msgid "Select"
 msgstr "Select"
 
-#: zp-core/setup/index.php:1079
+#: zp-core/setup/index.php:1080
 msgid "Drop"
 msgstr "Drop"
 
-#: zp-core/setup/index.php:1079
+#: zp-core/setup/index.php:1080
 msgid "Insert"
 msgstr "Insert"
 
-#: zp-core/setup/index.php:1080
+#: zp-core/setup/index.php:1081
 msgid "Update"
 msgstr "Update"
 
-#: zp-core/setup/index.php:1080
+#: zp-core/setup/index.php:1081
 msgid "Alter"
 msgstr "Alter"
 
-#: zp-core/setup/index.php:1090
+#: zp-core/setup/index.php:1091
 msgid "Grants found:"
 msgstr "找到的授权:"
 
-#: zp-core/setup/index.php:1118
+#: zp-core/setup/index.php:1119
 msgid "The <em>SHOW GRANTS</em> query failed."
 msgstr "<em>SHOW GRANTS</em>查询失败."
 
-#: zp-core/setup/index.php:1120
+#: zp-core/setup/index.php:1121
 #, fuzzy, php-format
 msgid "Database <code>access rights</code> for <em>%s</em>"
 msgstr "<em>％s的</em>数据库<code>access rights</code>"
 
-#: zp-core/setup/index.php:1120
+#: zp-core/setup/index.php:1121
 #, fuzzy, php-format
 msgid "Database <code>access rights</code> for <em>%1$s</em> [%2$s]"
 msgstr "<em>%1$s</em> [%2$s]的数据库<code>access rights</code>"
 
-#: zp-core/setup/index.php:1120
+#: zp-core/setup/index.php:1121
 #, fuzzy, php-format
 msgid "Your Database user must have %s rights."
 msgstr "您的数据库用户必须具有％s权限。"
 
-#: zp-core/setup/index.php:1137
+#: zp-core/setup/index.php:1138
 #, fuzzy
 msgid "<em>SHOW TABLES</em> [found no tables]"
 msgstr "<em>SHOW TABLES</em> [找不到桌子]"
 
-#: zp-core/setup/index.php:1140
+#: zp-core/setup/index.php:1141
 #, fuzzy, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
 msgstr "<em>SHOW TABLES</em>发现：％s"
 
-#: zp-core/setup/index.php:1143
+#: zp-core/setup/index.php:1144
 #, fuzzy
 msgid "<em>SHOW TABLES</em> [Failed]"
 msgstr "<em>显示表格</em> [失败]"
 
-#: zp-core/setup/index.php:1143
+#: zp-core/setup/index.php:1144
 #, fuzzy, php-format
 msgid ""
 "The database did not return a list of the database tables for <code>%s</"
 "code>."
 msgstr "数据库未返回<code>%s</code>的数据库表列表。"
 
-#: zp-core/setup/index.php:1144
+#: zp-core/setup/index.php:1145
 msgid ""
 "<strong>Setup</strong> will attempt to create all tables. This will not over "
 "write any existing tables."
 msgstr "<strong>安装程式</strong>会尝试建立所有表格.  这不会破坏任何现在表格."
 
-#: zp-core/setup/index.php:1170
+#: zp-core/setup/index.php:1171
 #, fuzzy
 msgid "Database <code>field collations</code> [Image table]"
 msgstr "数据库<code>field collations</code> [图像表]"
 
-#: zp-core/setup/index.php:1173
+#: zp-core/setup/index.php:1174
 #, fuzzy
 msgid "Database <code>field collations</code> [Album table]"
 msgstr "数据库<code>field collations</code> [相册表]"
 
-#: zp-core/setup/index.php:1176
+#: zp-core/setup/index.php:1177
 #, fuzzy
 msgid "Database <code>field collations</code> [Image and Album tables]"
 msgstr "数据库<code>field collations</code> [图像和专辑表]"
 
-#: zp-core/setup/index.php:1179
+#: zp-core/setup/index.php:1180
 #, fuzzy
 msgid "Database <code>field collations</code> [SHOW COLUMNS query failed]"
 msgstr "数据库<code>field collations</code> [SHOW COLUMNS查询失败]"
 
-#: zp-core/setup/index.php:1182
+#: zp-core/setup/index.php:1183
 #, fuzzy
 msgid "Database <code>field collations</code>"
 msgstr "数据库<code>field collations</code>"
 
-#: zp-core/setup/index.php:1182
+#: zp-core/setup/index.php:1183
 #, php-format
 msgid ""
 "%s is not UTF-8. You should consider porting your data to UTF-8 and changing "
@@ -14990,12 +14976,12 @@ msgstr[1] ""
 "%s 并非 UTF-8.  你应考虑把资料转为 UTF-8 及资料库栏位规则转为 "
 "<code>utf8_unicode_ci</code>"
 
-#: zp-core/setup/index.php:1184
+#: zp-core/setup/index.php:1185
 #, fuzzy
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
 msgstr "数据库<code>$conf[&quot;UTF-8&quot;]</code> [未设置为<em>true</em> ]"
 
-#: zp-core/setup/index.php:1184
+#: zp-core/setup/index.php:1185
 #, fuzzy
 msgid ""
 "You should consider porting your data to UTF-8 and changing the collation of "
@@ -15005,18 +14991,18 @@ msgstr ""
 "您应该考虑将数据移植到UTF-8并将数据库字段的排序更改为<code>utf8_unicode_ci</"
 "code>并将其设置为<em>true</em> 。"
 
-#: zp-core/setup/index.php:1189
+#: zp-core/setup/index.php:1190
 #, fuzzy
 #| msgid "ZenPhoto20 files"
 msgid "netPhotoGraphics files"
 msgstr "netPhotoGraphics文件"
 
-#: zp-core/setup/index.php:1219
+#: zp-core/setup/index.php:1220
 #, fuzzy
 msgid "netPhotoGraphics package [missing]"
 msgstr "netPhotoGraphics包[缺失]"
 
-#: zp-core/setup/index.php:1219
+#: zp-core/setup/index.php:1220
 #, fuzzy
 msgid ""
 "The file <code>zenphoto.package</code> is either missing, not readable, or "
@@ -15024,12 +15010,12 @@ msgid ""
 msgstr ""
 "文件<code>zenphoto.package</code>丢失，不可读或有缺陷。您的安装可能已损坏！"
 
-#: zp-core/setup/index.php:1225
+#: zp-core/setup/index.php:1226
 #, fuzzy, php-format
 msgid "Setting permissions (0%o) for netPhotoGraphics package."
 msgstr "为netPhotoGraphics包设置权限（0％o）。"
 
-#: zp-core/setup/index.php:1339
+#: zp-core/setup/index.php:1340
 #, fuzzy
 #| msgid ""
 #| "ZenPhoto20 core files [This is a <em>debug</em> build. Some files are "
@@ -15039,24 +15025,24 @@ msgid ""
 "wrong]"
 msgstr "ZenPhoto20 核心档案 [这些不是正式版本. 有些档案不见了或 可能出现变异]"
 
-#: zp-core/setup/index.php:1341
+#: zp-core/setup/index.php:1342
 #, fuzzy
 #| msgid "ZenPhoto20 core files [Some files are missing or seem wrong]"
 msgid "Core files [Some files are missing or seem wrong]"
 msgstr "ZenPhoto20 核心档案 [有些档案不见了或可能出现变异]"
 
-#: zp-core/setup/index.php:1343
+#: zp-core/setup/index.php:1344
 msgid ""
 "Perhaps there was a problem with the upload. You should check the following "
 "files: "
 msgstr "上载时可能发生错误.  请检查下列档案:"
 
-#: zp-core/setup/index.php:1348
+#: zp-core/setup/index.php:1349
 #, fuzzy
 msgid "Core files [Could not update the root <em>index.php</em> file.]"
 msgstr "核心文件[无法更新根<em>index.php</em>文件。]"
 
-#: zp-core/setup/index.php:1349
+#: zp-core/setup/index.php:1350
 #, fuzzy, php-format
 msgid ""
 "Perhaps there is a permissions issue. You should manually copy the %s "
@@ -15066,92 +15052,92 @@ msgstr ""
 "也许存在权限问题。您应该手动将％s的<em>root_index.php</em>文件复制到安装根目"
 "录并将其重命名为<em>index.php</em> 。"
 
-#: zp-core/setup/index.php:1354
+#: zp-core/setup/index.php:1355
 #, fuzzy
 #| msgid "ZenPhoto20 core files [This is a <em>debug</em> build]"
 msgid "Core files [This is a <em>debug</em> build]"
 msgstr "ZenPhoto20 核心档案 [这些不是官方版本]"
 
-#: zp-core/setup/index.php:1361
+#: zp-core/setup/index.php:1362
 #, fuzzy
 #| msgid "ZenPhoto20 core files [This is a <em>debug</em> build]"
 msgid "Core files [This is a <em>clone</em> installation]"
 msgstr "核心文件[这是一个<em>克隆</em>安装]"
 
-#: zp-core/setup/index.php:1366
+#: zp-core/setup/index.php:1367
 #, fuzzy
 #| msgid "files"
 msgid "Core files"
 msgstr "核心文件"
 
-#: zp-core/setup/index.php:1369
+#: zp-core/setup/index.php:1370
 #, fuzzy
 msgid "Installation files"
 msgstr "安装文件"
 
-#: zp-core/setup/index.php:1384
+#: zp-core/setup/index.php:1385
 #, fuzzy, php-format
 msgid ".svn [%s instance]"
 msgid_plural ".svn [%s instances]"
 msgstr[0] ".svn [％s实例]"
 msgstr[1] ""
 
-#: zp-core/setup/index.php:1387
+#: zp-core/setup/index.php:1388
 #, fuzzy, php-format
 msgid "php.ini [%s instance]"
 msgid_plural "php.ini [%s instances]"
 msgstr[0] "php.ini [％s实例]"
 msgstr[1] ""
 
-#: zp-core/setup/index.php:1428 zp-core/setup/index.php:1431
+#: zp-core/setup/index.php:1429 zp-core/setup/index.php:1432
 #, fuzzy
 #| msgid "ZenPhoto20 core folders [Some unknown files were found]"
 msgid "Core folders [Some unknown files were found]"
 msgstr "ZenPhoto20 核心档案 [有些档案不见了或可能出现变异]"
 
-#: zp-core/setup/index.php:1428
+#: zp-core/setup/index.php:1429
 #, fuzzy
 msgid "The following files could not be deleted."
 msgstr "无法删除以下文件。"
 
-#: zp-core/setup/index.php:1431
+#: zp-core/setup/index.php:1432
 #, fuzzy
 msgid "You should remove the following files: "
 msgstr "您应该删除以下文件："
 
-#: zp-core/setup/index.php:1432
+#: zp-core/setup/index.php:1433
 #, fuzzy
 msgid "Delete extra files"
 msgstr "删除额外的文件"
 
-#: zp-core/setup/index.php:1435
+#: zp-core/setup/index.php:1436
 #, fuzzy
 #| msgid "File permissions"
 msgid "Core file permissions"
 msgstr "ZenPhoto20 核心档案权限 [不正确]"
 
-#: zp-core/setup/index.php:1435
+#: zp-core/setup/index.php:1436
 #, fuzzy
 #| msgid "ZenPhoto20 core file permissions [not correct]"
 msgid "Core file permissions [not correct]"
 msgstr "ZenPhoto20 核心档案权限 [不正确]"
 
-#: zp-core/setup/index.php:1435
+#: zp-core/setup/index.php:1436
 #, fuzzy
 msgid ""
 "Setup could not set the one or more components to the selected permissions "
 "level. You will have to set the permissions manually."
 msgstr "安装程序无法将一个或多个组件设置为所选的权限级别。您必须手动设置权限。"
 
-#: zp-core/setup/index.php:1438
+#: zp-core/setup/index.php:1439
 msgid "<em>.htaccess</em> file"
 msgstr "<em>.htaccess</em> 档案"
 
-#: zp-core/setup/index.php:1455
+#: zp-core/setup/index.php:1456
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "<em>.htaccess</em> 档案 [是空白或不存在]"
 
-#: zp-core/setup/index.php:1458
+#: zp-core/setup/index.php:1459
 #, fuzzy
 #| msgid ""
 #| "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
@@ -15163,13 +15149,13 @@ msgstr ""
 "如果启动了 mod_rewrite 模组, zenphoto 根资料夹中必须有<code>.htaccess</code>"
 "档案, 以使得到更好看的URL."
 
-#: zp-core/setup/index.php:1459 zp-core/setup/index.php:1467
+#: zp-core/setup/index.php:1460 zp-core/setup/index.php:1468
 msgid ""
 "You can ignore this warning if you do not intend to set the "
 "<code>mod_rewrite</code> option."
 msgstr "如果你不想设定<code>mod_rewrite</code>, 你可以忽略这些警告."
 
-#: zp-core/setup/index.php:1461
+#: zp-core/setup/index.php:1462
 #, fuzzy
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</"
@@ -15178,12 +15164,12 @@ msgstr ""
 "<p class=\"buttons\"> <a href=\"?copyhtaccess\" >设置创建文件</a> </p><br "
 "style=\"clear:both\" /><br />"
 
-#: zp-core/setup/index.php:1464
+#: zp-core/setup/index.php:1465
 #, fuzzy
 msgid "Server seems to be <em>nginx</em>"
 msgstr "服务器似乎是<em>nginx</em>"
 
-#: zp-core/setup/index.php:1466
+#: zp-core/setup/index.php:1467
 #, fuzzy
 msgid ""
 "If you wish to create cruft-free URLs, you will need to configuring "
@@ -15194,7 +15180,7 @@ msgstr ""
 "如果您希望创建无残留的URL，则需要为NGINX服务器配置<em>重写</em> ，以便任何不"
 "直接转到文件的链接转到安装根<code>index.php</code>脚本。"
 
-#: zp-core/setup/index.php:1470
+#: zp-core/setup/index.php:1471
 #, fuzzy
 msgid ""
 "Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, "
@@ -15203,13 +15189,13 @@ msgstr ""
 "服务器似乎不是<em>Apache</em>或<em>Apache兼容的</em> ， <code>mod_rewrite</"
 "code>可能不可用。"
 
-#: zp-core/setup/index.php:1485
+#: zp-core/setup/index.php:1486
 msgid ""
 "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> "
 "not required."
 msgstr "伺服器可能不是Apache或Apache兼容, 不须要<code>.htaccess</code>."
 
-#: zp-core/setup/index.php:1488
+#: zp-core/setup/index.php:1489
 #, fuzzy, php-format
 #| msgid ""
 #| "The <em>.htaccess</em> file in your root folder is not the same version "
@@ -15226,7 +15212,7 @@ msgstr ""
 "本不同。如果您对<em>.htaccess进行了</em>更改，请将这些更改与<em>％s / "
 "htaccess</em>文件合并以生成新的<em>.htaccess</em>文件。"
 
-#: zp-core/setup/index.php:1490
+#: zp-core/setup/index.php:1491
 #, fuzzy
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>."
@@ -15236,44 +15222,44 @@ msgstr ""
 "<p class=\"buttons\"> <a href=\"?copyhtaccess\" >用当前版本替换现有的<em>."
 "htaccess</em>文件</a> </p><br style=\"clear:both\" /><br />"
 
-#: zp-core/setup/index.php:1493
+#: zp-core/setup/index.php:1494
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "<em>.htaccess</em> 档案 [版本错误]"
 
-#: zp-core/setup/index.php:1504
+#: zp-core/setup/index.php:1505
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr ""
 " <em>.htaccess</em> 档案 (<em>RewriteEngine</em> 是 <strong>%s</strong>)"
 
-#: zp-core/setup/index.php:1515
+#: zp-core/setup/index.php:1516
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr "<em>.htaccess</em> RewriteBase 是 <code>%s</code>"
 
-#: zp-core/setup/index.php:1516
+#: zp-core/setup/index.php:1517
 #, php-format
 msgid ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
 "folder]"
 msgstr "<em>.htaccess</em> RewriteBase 是 <code>%s</code> [和安装资料夹不符合]"
 
-#: zp-core/setup/index.php:1520
+#: zp-core/setup/index.php:1521
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr "<em>.htaccess</em> RewriteBase [是 <em>不存在</em>]"
 
-#: zp-core/setup/index.php:1532
+#: zp-core/setup/index.php:1533
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr "<em>.htaccess</em> RewriteBase 是 <code>%s</code> (已更正)"
 
-#: zp-core/setup/index.php:1556
+#: zp-core/setup/index.php:1557
 msgid ""
 "Setup was not able to write to the file change RewriteBase match the install "
 "folder."
 msgstr "安装程式不能写入档案以修改 RewriteBase 去符合安装的资料夹."
 
-#: zp-core/setup/index.php:1557
+#: zp-core/setup/index.php:1558
 #, php-format
 msgid ""
 "Either make the file writeable or set <code>RewriteBase</code> in your "
@@ -15282,62 +15268,62 @@ msgstr ""
 "使到档案可以写入或在<code>.htaccess</code>档案里设定<code>RewriteBase</code>"
 "为 <code>%s</code>."
 
-#: zp-core/setup/index.php:1559
+#: zp-core/setup/index.php:1560
 #, fuzzy
 msgid "Rewrite rules updated"
 msgstr "重写规则已更新"
 
-#: zp-core/setup/index.php:1559
+#: zp-core/setup/index.php:1560
 #, fuzzy
 msgid "Rewrite rules updated [not updated]"
 msgstr "重写规则已更新[未更新]"
 
-#: zp-core/setup/index.php:1559
+#: zp-core/setup/index.php:1560
 #, fuzzy
 msgid ""
 "Setup was not able to write to the file change the rewrite rules for site "
 "upgrades."
 msgstr "安装程序无法写入文件更改站点升级的重写规则。"
 
-#: zp-core/setup/index.php:1565 zp-core/setup/index.php:1568
-#: zp-core/setup/index.php:1580
+#: zp-core/setup/index.php:1566 zp-core/setup/index.php:1569
+#: zp-core/setup/index.php:1581
 msgid "<em>robots.txt</em> file"
 msgstr "<em>robots.txt</em> 档案"
 
-#: zp-core/setup/index.php:1565 zp-core/setup/index.php:1568
-#: zp-core/setup/index.php:1580
+#: zp-core/setup/index.php:1566 zp-core/setup/index.php:1569
+#: zp-core/setup/index.php:1581
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "<em>robots.txt</em> 档案[未建立]"
 
-#: zp-core/setup/index.php:1565
+#: zp-core/setup/index.php:1566
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr "安装程式  <em>example_robots.txt</em> 档案."
 
-#: zp-core/setup/index.php:1568
+#: zp-core/setup/index.php:1569
 msgid ""
 "Setup did not create a <em>robots.txt</em> file because one already exists."
 msgstr "安装程式不能建立<em>robots.txt</em> 档案, 原因为档案已存在."
 
-#: zp-core/setup/index.php:1580
+#: zp-core/setup/index.php:1581
 msgid "Setup could not create a <em>robots.txt</em> file."
 msgstr "安装程式不能建立 <em>robots.txt</em> 档案."
 
-#: zp-core/setup/index.php:1585
+#: zp-core/setup/index.php:1586
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
 msgstr "相簿 [<code>$conf['external_album_folder']</code> 已不支援]"
 
-#: zp-core/setup/index.php:1585 zp-core/setup/index.php:1609
+#: zp-core/setup/index.php:1586 zp-core/setup/index.php:1610
 #, fuzzy, php-format
 msgid ""
 "You should update your configuration file to conform to the current %1$s "
 "example file."
 msgstr "您应该更新配置文件以符合当前的%1$s示例文件。"
 
-#: zp-core/setup/index.php:1609
+#: zp-core/setup/index.php:1610
 msgid "<em>albums</em> folder"
 msgstr "<em>相簿</em> 资料夹"
 
-#: zp-core/setup/index.php:1609
+#: zp-core/setup/index.php:1610
 #, fuzzy
 msgid ""
 "<em>albums</em> folder [The line <code>\\$conf['album_folder']</code> is "
@@ -15346,15 +15332,15 @@ msgstr ""
 "<em>相册</em>文件夹[配置文件中缺少<code>\\$conf[&#39;album_folder&#39;]</"
 "code> line <code>\\$conf[&#39;album_folder&#39;]</code> ]"
 
-#: zp-core/setup/index.php:1613
+#: zp-core/setup/index.php:1614
 msgid "<em>locale</em> folders"
 msgstr "<em>locale</em> 资料夹"
 
-#: zp-core/setup/index.php:1613
+#: zp-core/setup/index.php:1614
 msgid "<em>locale</em> folders [Are not complete]"
 msgstr "<em>locale</em> 资料夹 [不完整]"
 
-#: zp-core/setup/index.php:1613
+#: zp-core/setup/index.php:1614
 #, fuzzy
 #| msgid ""
 #| "Be sure you have uploaded the complete ZenPhoto20 package. You must have "
@@ -15365,89 +15351,89 @@ msgid ""
 msgstr ""
 "确保您已上传完整的netPhotoGraphics包。您必须至少具有<em>en_US</em>文件夹。"
 
-#: zp-core/setup/index.php:1614
+#: zp-core/setup/index.php:1615
 msgid "uploaded"
 msgstr "已上载"
 
-#: zp-core/setup/index.php:1619
+#: zp-core/setup/index.php:1620
 msgid "HTML cache"
 msgstr "HTML 快取"
 
-#: zp-core/setup/index.php:1620
+#: zp-core/setup/index.php:1621
 msgid "Third party plugins"
 msgstr "第三方外挂"
 
-#: zp-core/setup/index.php:1630
+#: zp-core/setup/index.php:1631
 #, fuzzy
 msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
 msgstr "您需要解决上面指出的问题，然后再次运行<code>setup</code> 。"
 
-#: zp-core/setup/index.php:1633
+#: zp-core/setup/index.php:1634
 msgid "Setup failed."
 msgstr "安装失败"
 
-#: zp-core/setup/index.php:1646 zp-core/setup/index.php:1886
+#: zp-core/setup/index.php:1647 zp-core/setup/index.php:1887
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "你要<em>用户管理</em>权去执行安装."
 
-#: zp-core/setup/index.php:1648 zp-core/setup/index.php:1888
+#: zp-core/setup/index.php:1649 zp-core/setup/index.php:1889
 msgid "You must be logged in to run setup."
 msgstr "你必须登入以执行安装."
 
-#: zp-core/setup/index.php:1666
+#: zp-core/setup/index.php:1667
 msgid "database connected"
 msgstr "资料库已连接"
 
-#: zp-core/setup/index.php:1730
+#: zp-core/setup/index.php:1731
 #, fuzzy
 #| msgid "Database user"
 msgid "Database update"
 msgstr "数据库更新"
 
-#: zp-core/setup/index.php:1734
+#: zp-core/setup/index.php:1735
 #, fuzzy
 msgid ""
 "Database structure update completed with errors. See the <code>setup</code> "
 "log for details."
 msgstr "数据库结构更新完成但有错误。有关详细信息，请参阅<code>setup</code>日志"
 
-#: zp-core/setup/index.php:1736
+#: zp-core/setup/index.php:1737
 #, fuzzy
 #| msgid "latest updated"
 msgid "Database structure updated."
 msgstr "数据库结构已更新"
 
-#: zp-core/setup/index.php:1738
+#: zp-core/setup/index.php:1739
 #, fuzzy
 #| msgid "Database password"
 msgid "Database update is not required."
 msgstr "不需要数据库更新。"
 
-#: zp-core/setup/index.php:1764
+#: zp-core/setup/index.php:1765
 #, fuzzy, php-format
 msgid ""
 "You may %1$sset your admin user and password%3$s or %2$srun backup-restore"
 "%3$s"
 msgstr "您可以%1$sset您的管理员用户和密码%3$s或%2$srun backup-restore%3$s"
 
-#: zp-core/setup/index.php:1767
+#: zp-core/setup/index.php:1768
 #, fuzzy, php-format
 msgid "You need to %1$sset your admin user and password%2$s"
 msgstr "您需要%1$sset您的管理员用户和密码%2$s"
 
-#: zp-core/setup/index.php:1783
+#: zp-core/setup/index.php:1784
 #, fuzzy, php-format
 msgid "Setup <a href=\"%1$s\" target=\"_blank\">%2$s</a>"
 msgstr "设置<a href=\"%1$s\" target=\"_blank\">%2$s</a>"
 
-#: zp-core/setup/index.php:1789
+#: zp-core/setup/index.php:1790
 #, fuzzy, php-format
 msgid "You may now %1$sadminister your gallery%2$s."
 msgstr "你现在可能％1 $悲伤你的画廊%2$s。"
 
-#: zp-core/setup/index.php:1854
+#: zp-core/setup/index.php:1855
 #, fuzzy
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
@@ -15457,29 +15443,29 @@ msgstr ""
 "<strong>警告！</strong>此升级对数据库进行结构更改，这些更改不容易逆转。在继续"
 "之前，请确保您有数据库备份。"
 
-#: zp-core/setup/index.php:1858
+#: zp-core/setup/index.php:1859
 #, fuzzy, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "％s我承认诉讼将重组我的数据库。"
 
-#: zp-core/setup/index.php:1910
+#: zp-core/setup/index.php:1911
 msgid "run setup"
 msgstr "ZenPhoto20 设定"
 
-#: zp-core/setup/index.php:1910
+#: zp-core/setup/index.php:1911
 msgid "Go"
 msgstr "开始"
 
-#: zp-core/setup/index.php:1927
+#: zp-core/setup/index.php:1928
 msgid "database did not connect"
 msgstr "资料库未连接"
 
-#: zp-core/setup/index.php:1929
+#: zp-core/setup/index.php:1930
 #, fuzzy
 msgid "If you have not created the database yet, now would be a good time."
 msgstr "如果您尚未创建数据库，那么现在是个好时机。"
 
-#: zp-core/setup/index.php:1938
+#: zp-core/setup/index.php:1939
 #, fuzzy, php-format
 msgid "The %1$s file does not exist."
 msgstr "%1$s文件不存在。"
@@ -15977,20 +15963,20 @@ msgid "Logout"
 msgstr "登出"
 
 #: zp-core/template-functions.php:841 zp-core/template-functions.php:936
-#: zp-core/zp-extensions/menu_manager.php:593
+#: zp-core/zp-extensions/menu_manager.php:594
 msgid "Previous Page"
 msgstr "上一页"
 
 #: zp-core/template-functions.php:959
-#: zp-core/zp-extensions/menu_manager.php:599
+#: zp-core/zp-extensions/menu_manager.php:600
 msgid "Page 1"
 msgstr "页 1"
 
 #: zp-core/template-functions.php:974 zp-core/template-functions.php:983
 #: zp-core/template-functions.php:1013 zp-core/template-functions.php:1020
 #: zp-core/template-functions.php:1030
-#: zp-core/zp-extensions/menu_manager.php:604
-#: zp-core/zp-extensions/menu_manager.php:622
+#: zp-core/zp-extensions/menu_manager.php:605
+#: zp-core/zp-extensions/menu_manager.php:623
 #: zp-core/zp-extensions/zenpage/template-functions.php:935
 #: zp-core/zp-extensions/zenpage/template-functions.php:951
 #, php-format
@@ -16000,7 +15986,7 @@ msgstr[0] "页 %u"
 msgstr[1] "页 %u"
 
 #: zp-core/template-functions.php:994
-#: zp-core/zp-extensions/menu_manager.php:614
+#: zp-core/zp-extensions/menu_manager.php:615
 #: zp-core/zp-extensions/zenpage/template-functions.php:944
 #, php-format
 msgid "Page %1$u"
@@ -16552,6 +16538,10 @@ msgstr "上传的文件夹大小： <strong>％s</strong>"
 #, fuzzy, php-format
 msgid "Core scripts size: <strong>%s</strong>"
 msgstr "核心脚本大小： <strong>％s</strong>"
+
+#: zp-core/utilities/gallery_statistics.php:606
+msgid "News articles"
+msgstr "新闻文章"
 
 #: zp-core/utilities/gallery_statistics.php:620
 #, fuzzy
@@ -17563,73 +17553,73 @@ msgstr "MaxSpace"
 msgid "Grayscale"
 msgstr "灰度"
 
-#: zp-core/zp-extensions/cacheManager.php:372
-#: zp-core/zp-extensions/cacheManager.php:377
+#: zp-core/zp-extensions/cacheManager.php:376
+#: zp-core/zp-extensions/cacheManager.php:381
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:193
 #, fuzzy
 msgid "Hide"
 msgstr "隐藏用户  %s 详细资料"
 
-#: zp-core/zp-extensions/cacheManager.php:407
+#: zp-core/zp-extensions/cacheManager.php:411
 #, fuzzy
 msgid "Cache images"
 msgstr "快取圖片"
 
-#: zp-core/zp-extensions/cacheManager.php:408
+#: zp-core/zp-extensions/cacheManager.php:412
 #, fuzzy
 msgid "Cache stored images"
 msgstr "缓存存储的图像"
 
-#: zp-core/zp-extensions/cacheManager.php:416
-#: zp-core/zp-extensions/cacheManager.php:484
+#: zp-core/zp-extensions/cacheManager.php:420
+#: zp-core/zp-extensions/cacheManager.php:488
 #, fuzzy
 msgid "Finds images that have not been cached and creates the cached versions."
 msgstr "查找尚未缓存的图像并创建缓存版本。"
 
-#: zp-core/zp-extensions/cacheManager.php:419
-#: zp-core/zp-extensions/cacheManager.php:487
+#: zp-core/zp-extensions/cacheManager.php:423
+#: zp-core/zp-extensions/cacheManager.php:491
 #, fuzzy
 msgid "You must first set the plugin options for cached image parameters."
 msgstr "您必须首先为缓存的图像参数设置插件选项。"
 
-#: zp-core/zp-extensions/cacheManager.php:427
+#: zp-core/zp-extensions/cacheManager.php:431
 msgid "Purge RSS cache"
 msgstr "清除 RSS 快取"
 
-#: zp-core/zp-extensions/cacheManager.php:432
+#: zp-core/zp-extensions/cacheManager.php:436
 #, fuzzy
 msgid "Delete all files from the RSS cache"
 msgstr "从RSS缓存中删除所有文件"
 
-#: zp-core/zp-extensions/cacheManager.php:441
+#: zp-core/zp-extensions/cacheManager.php:445
 msgid "Purge Image cache"
 msgstr "清除图片快取"
 
-#: zp-core/zp-extensions/cacheManager.php:446
+#: zp-core/zp-extensions/cacheManager.php:450
 #, fuzzy
 msgid "Delete all files from the Image cache"
 msgstr "从图像缓存中删除所有文件"
 
-#: zp-core/zp-extensions/cacheManager.php:453
+#: zp-core/zp-extensions/cacheManager.php:457
 msgid "Purge HTML cache"
 msgstr "清除 HTML 快取"
 
-#: zp-core/zp-extensions/cacheManager.php:457
+#: zp-core/zp-extensions/cacheManager.php:461
 msgid ""
 "Clear the static HTML cache. HTML pages will be re-cached as they are viewed."
 msgstr "清除静态 HTML 快取.  当 HTML 被观看时会再放到快取. "
 
-#: zp-core/zp-extensions/cacheManager.php:467
+#: zp-core/zp-extensions/cacheManager.php:471
 #, fuzzy
 msgid "Purge search cache"
 msgstr "清除搜索缓存"
 
-#: zp-core/zp-extensions/cacheManager.php:471
+#: zp-core/zp-extensions/cacheManager.php:475
 #, fuzzy
 msgid "Clear the static search cache."
 msgstr "清除静态搜索缓存。"
 
-#: zp-core/zp-extensions/cacheManager.php:489
+#: zp-core/zp-extensions/cacheManager.php:493
 #, fuzzy
 msgid "Cache album images"
 msgstr "缓存相册图片"
@@ -17721,66 +17711,71 @@ msgid_plural "[%u images]"
 msgstr[0] "[%u 张图片]"
 msgstr[1] "[%u 张图片]"
 
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:178
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:180
 #, fuzzy, php-format
 #| msgid "Refreshing cache for %s"
 msgid "Refresh cache for %s"
 msgstr "刷新％s的缓存"
 
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:226
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:228
 #, fuzzy
 msgid "Full Image"
 msgstr "全尺寸图片"
 
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:273
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:276
 #, fuzzy
-msgid "invalid_MaxSpace"
+msgid "invalid MaxSpace"
 msgstr "invalid_MaxSpace"
 
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:295
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:281
+#, fuzzy
+msgid "invalid Cache Set"
+msgstr "invalid_MaxSpace"
+
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:302
 #, fuzzy, php-format
 msgid "all sizes for <em>%1$s</em>"
 msgstr "<em>%1$s的</em>所有尺寸"
 
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:341
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:348
 #, fuzzy, php-format
 msgid "%u cache size to apply."
 msgid_plural "%u cache sizes to apply."
 msgstr[0] "要应用的％u缓存大小。"
 msgstr[1] ""
 
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:356
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:363
 #, fuzzy, php-format
 msgid "%u cache size requested"
 msgid_plural "%u cache sizes requested"
 msgstr[0] "请求％u缓存大小"
 msgstr[1] ""
 
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:357
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:364
 #, fuzzy, php-format
 msgid "Finished processing %1$u image (%2$s)."
 msgid_plural "Finished processing %1$u images (%2$s)."
 msgstr[0] "完成处理％1 $ u图像（%2$s）。"
 msgstr[1] "完成: 总共 %u 张图片."
 
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:359
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:366
 #, fuzzy
 msgid ""
 "Refresh the caching of the selected image sizes if some images did not "
 "render."
 msgstr "如果某些图像未渲染，请刷新所选图像大小的缓存。"
 
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:366
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:373
 #, fuzzy
 msgid "No cache sizes enabled."
 msgstr "没有启用缓存大小。"
 
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:370
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:377
 #, fuzzy
 msgid "Cache the images"
 msgstr "缓存图像"
 
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:370
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:377
 #, fuzzy
 msgid "Executes the caching of the selected image sizes."
 msgstr "执行所选图像大小的缓存。"
@@ -18219,56 +18214,56 @@ msgstr "克隆到<code>%s</code>失败"
 msgid "Site clones"
 msgstr "网站克隆"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:48
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:45
 #, fuzzy
 #| msgid "Visible items"
 msgid "Visit the site."
 msgstr "访问该网站。"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:63
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:60
 #, fuzzy, php-format
 msgid "Last setup run version: %s"
 msgstr "上次安装运行版本：％s"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:72
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:70
 #, fuzzy
 msgid "No longer a clone of this installation."
 msgstr "不再是此安装的克隆。"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:86
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:84
 #, fuzzy
 msgid "Remove invalid clones."
 msgstr "删除无效克隆。"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:94
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:92
 #, fuzzy
 msgid ""
 "Create a new install with symbolic links to the current installation scripts."
 msgstr "使用指向当前安装脚本的符号链接创建新安装。"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:117
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:115
 #, fuzzy
 msgid ""
 "<strong>Note:</strong> Existing Site scripts will be removed from the target "
 "if they exist."
 msgstr "<strong>注意：</strong>如果存在，现有站点脚本将从目标中删除。"
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:197
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:195
 #, fuzzy
 msgid "No subfolders in: "
 msgstr "没有子文件夹："
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:199
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:197
 #, fuzzy
 msgid "Select the destination folder:"
 msgstr "选择目标文件夹："
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:232
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:230
 #, fuzzy
 msgid "Verify WEB link to this install:"
 msgstr "验证此安装的WEB链接："
 
-#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:242
+#: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:240
 #, fuzzy
 msgid "Clone installation"
 msgstr "克隆安装"
@@ -18734,109 +18729,113 @@ msgstr "编辑留言"
 msgid "E-mail comment author"
 msgstr "电邮留言作者"
 
-#: zp-core/zp-extensions/comment_form/functions.php:153
-msgid "10 Most Recent Comments"
-msgstr "10个最新留言"
+#: zp-core/zp-extensions/comment_form/functions.php:156
+#, fuzzy, php-format
+#| msgid "10 Most Recent Comments"
+msgid "Most Recent Comment"
+msgid_plural "%d Most Recent Comments"
+msgstr[0] "10个最新留言"
+msgstr[1] "10个最新留言"
 
-#: zp-core/zp-extensions/comment_form/functions.php:161
+#: zp-core/zp-extensions/comment_form/functions.php:164
 msgid "<strong>database error</strong> "
 msgstr "<strong>资料库错误</strong> "
 
-#: zp-core/zp-extensions/comment_form/functions.php:173
+#: zp-core/zp-extensions/comment_form/functions.php:176
 msgid "[news]"
 msgstr "[新闻]"
 
-#: zp-core/zp-extensions/comment_form/functions.php:181
+#: zp-core/zp-extensions/comment_form/functions.php:184
 msgid "[page]"
 msgstr "[页]"
 
-#: zp-core/zp-extensions/comment_form/functions.php:193
+#: zp-core/zp-extensions/comment_form/functions.php:196
 #, php-format
 msgid "<em>%1$s</em> commented on %2$s:"
 msgstr "<em>%1$s</em> 留言在 %2$s:"
 
-#: zp-core/zp-extensions/comment_form/functions.php:250
+#: zp-core/zp-extensions/comment_form/functions.php:254
 #, fuzzy
 msgid "Mail send failed"
 msgstr "邮件发送失败"
 
-#: zp-core/zp-extensions/comment_form/functions.php:256
+#: zp-core/zp-extensions/comment_form/functions.php:260
 #, fuzzy
 msgid "Error posting comment:"
 msgid_plural "Errors posting comment:"
 msgstr[0] "发表评论时出错："
 msgstr[1] "张贴留言"
 
-#: zp-core/zp-extensions/comment_form/functions.php:360
+#: zp-core/zp-extensions/comment_form/functions.php:364
 msgid "You must supply an e-mail address."
 msgstr "必须提供电邮地址."
 
-#: zp-core/zp-extensions/comment_form/functions.php:365
+#: zp-core/zp-extensions/comment_form/functions.php:369
 msgid "You must enter your name."
 msgstr "必须输入你的名称."
 
-#: zp-core/zp-extensions/comment_form/functions.php:370
+#: zp-core/zp-extensions/comment_form/functions.php:374
 msgid "You must supply a WEB page URL."
 msgstr "必须提供网页的URL."
 
-#: zp-core/zp-extensions/comment_form/functions.php:382
+#: zp-core/zp-extensions/comment_form/functions.php:386
 msgid "You must enter something in the comment text."
 msgstr "必须埴写留言."
 
-#: zp-core/zp-extensions/comment_form/functions.php:391
+#: zp-core/zp-extensions/comment_form/functions.php:395
 #, php-format
 msgid "Your comment was rejected by the <em>%s</em> SPAM filter."
 msgstr "你的留言被<em>%s</em>垃圾过滤器拒绝接受."
 
-#: zp-core/zp-extensions/comment_form/functions.php:395
+#: zp-core/zp-extensions/comment_form/functions.php:399
 #, php-format
 msgid ""
 "Your comment has been marked for moderation by the <em>%s</em> SPAM filter."
 msgstr "你的留言已被<em>%s</em>垃圾过滤器放入审核中."
 
-#: zp-core/zp-extensions/comment_form/functions.php:429
+#: zp-core/zp-extensions/comment_form/functions.php:433
 #, fuzzy, php-format
 msgid "A comment has been placed in moderation on your album “%1$s”."
 msgstr "您的专辑“%1$s”已对评论进行了审核。"
 
-#: zp-core/zp-extensions/comment_form/functions.php:431
+#: zp-core/zp-extensions/comment_form/functions.php:435
 #, fuzzy, php-format
 msgid "A comment has been posted on your album “%1$s”."
 msgstr "您的相册“%1$s”上发布了评论。"
 
-#: zp-core/zp-extensions/comment_form/functions.php:437
+#: zp-core/zp-extensions/comment_form/functions.php:441
 #, fuzzy, php-format
 msgid "A comment has been placed in moderation on your article “%1$s”."
 msgstr "评论已适用于您的文章“%1$s”。"
 
-#: zp-core/zp-extensions/comment_form/functions.php:439
+#: zp-core/zp-extensions/comment_form/functions.php:443
 #, fuzzy, php-format
 msgid "A comment has been posted on your article “%1$s”."
 msgstr "您的文章“%1$s”上发布了评论。"
 
-#: zp-core/zp-extensions/comment_form/functions.php:445
+#: zp-core/zp-extensions/comment_form/functions.php:449
 #, fuzzy, php-format
 msgid "A comment has been placed in moderation on your page “%1$s”."
 msgstr "评论已在您的网页“%1$s”上进行了审核。"
 
-#: zp-core/zp-extensions/comment_form/functions.php:447
+#: zp-core/zp-extensions/comment_form/functions.php:451
 #, fuzzy, php-format
 msgid "A comment has been posted on your page “%1$s”."
 msgstr "评论已发布在您的“%1$s”页面上。"
 
-#: zp-core/zp-extensions/comment_form/functions.php:455
+#: zp-core/zp-extensions/comment_form/functions.php:459
 #, fuzzy, php-format
 msgid ""
 "A comment has been placed in moderation on your image “%1$s” in the album "
 "“%2$s”."
 msgstr "评论已经适度放在专辑“%2$s”中的图片“%1$s”上。"
 
-#: zp-core/zp-extensions/comment_form/functions.php:457
+#: zp-core/zp-extensions/comment_form/functions.php:461
 #, fuzzy, php-format
 msgid "A comment has been posted on your image “%1$s” in the album “%2$s”."
 msgstr "评论已发布在相册“%2$s”中的图片“%1$s”上。"
 
-#: zp-core/zp-extensions/comment_form/functions.php:463
+#: zp-core/zp-extensions/comment_form/functions.php:467
 #, php-format
 msgid ""
 "Author: %1$s\n"
@@ -18853,7 +18852,7 @@ msgstr ""
 "\n"
 "%4$s"
 
-#: zp-core/zp-extensions/comment_form/functions.php:464
+#: zp-core/zp-extensions/comment_form/functions.php:468
 #, php-format
 msgid ""
 "You can view all comments about this item here:\n"
@@ -18862,7 +18861,7 @@ msgstr ""
 "你可以查阅所有关放这项目留言在:\n"
 "%1$s"
 
-#: zp-core/zp-extensions/comment_form/functions.php:465
+#: zp-core/zp-extensions/comment_form/functions.php:469
 #, php-format
 msgid ""
 "You can edit the comment here:\n"
@@ -18871,23 +18870,23 @@ msgstr ""
 "你可以在这里编辑留言:\n"
 "%1$s"
 
-#: zp-core/zp-extensions/comment_form/functions.php:494
+#: zp-core/zp-extensions/comment_form/functions.php:498
 msgid "Comment posted"
 msgstr "留言已贴上"
 
-#: zp-core/zp-extensions/comment_form/functions.php:567
+#: zp-core/zp-extensions/comment_form/functions.php:571
 #, fuzzy
 msgid "Comment posted on unknown page!"
 msgstr "在未知页面上发表评论！"
 
-#: zp-core/zp-extensions/comment_form/functions.php:697
+#: zp-core/zp-extensions/comment_form/functions.php:701
 #, fuzzy
 #| msgid "Anonymous"
 msgid "anonymous "
 msgstr "匿名"
 
-#: zp-core/zp-extensions/comment_form/functions.php:925
-#: zp-core/zp-extensions/comment_form/functions.php:932
+#: zp-core/zp-extensions/comment_form/functions.php:929
+#: zp-core/zp-extensions/comment_form/functions.php:936
 #: zp-core/zp-extensions/zenpage/admin-edit.php:195
 #, fuzzy
 msgid "Article"
@@ -19334,14 +19333,16 @@ msgid "Top"
 msgstr "顶部"
 
 #: zp-core/zp-extensions/cookieconsent.php:88
-#: zp-core/zp-extensions/openstreetmap.php:96
+#: zp-core/zp-extensions/openstreetmap.php:113
+#: zp-core/zp-extensions/openstreetmap.php:165
 #, fuzzy
 #| msgid "scroll left"
 msgid "Top left"
 msgstr "左上角"
 
 #: zp-core/zp-extensions/cookieconsent.php:89
-#: zp-core/zp-extensions/openstreetmap.php:97
+#: zp-core/zp-extensions/openstreetmap.php:114
+#: zp-core/zp-extensions/openstreetmap.php:166
 #, fuzzy
 #| msgid "No rights"
 msgid "Top right"
@@ -19354,14 +19355,16 @@ msgid "Bottom"
 msgstr "底部"
 
 #: zp-core/zp-extensions/cookieconsent.php:91
-#: zp-core/zp-extensions/openstreetmap.php:98
+#: zp-core/zp-extensions/openstreetmap.php:115
+#: zp-core/zp-extensions/openstreetmap.php:167
 #, fuzzy
 #| msgid "Vote Status:"
 msgid "Bottom left"
 msgstr "左下角"
 
 #: zp-core/zp-extensions/cookieconsent.php:92
-#: zp-core/zp-extensions/openstreetmap.php:99
+#: zp-core/zp-extensions/openstreetmap.php:116
+#: zp-core/zp-extensions/openstreetmap.php:168
 #, fuzzy
 #| msgid "Vote Status:"
 msgid "Bottom right"
@@ -21265,65 +21268,65 @@ msgid ""
 "<em>visitor</em>."
 msgstr "当\"访客\"观看 ZenPhoto20 的项目时会自动增加观看次数."
 
-#: zp-core/zp-extensions/hitcounter.php:41
-#, fuzzy
-msgid "All hitcounters have been set to zero."
-msgstr "所有的接收器都设置为零。"
-
-#: zp-core/zp-extensions/hitcounter.php:80
+#: zp-core/zp-extensions/hitcounter.php:53
 msgid "IP Address list"
 msgstr "IP地址列表"
 
-#: zp-core/zp-extensions/hitcounter.php:84
+#: zp-core/zp-extensions/hitcounter.php:57
 msgid "Comma-separated list of IP addresses to ignore."
 msgstr "忽略的 IP 地址列表 (以逗号分开)."
 
-#: zp-core/zp-extensions/hitcounter.php:86
+#: zp-core/zp-extensions/hitcounter.php:59
 msgid "Filter"
 msgstr "过滤器"
 
-#: zp-core/zp-extensions/hitcounter.php:90
+#: zp-core/zp-extensions/hitcounter.php:63
 msgid "IP addresses"
 msgstr "IP地址"
 
-#: zp-core/zp-extensions/hitcounter.php:90
+#: zp-core/zp-extensions/hitcounter.php:63
 msgid "Search Crawlers"
 msgstr "搜寻爬行器"
 
-#: zp-core/zp-extensions/hitcounter.php:91
+#: zp-core/zp-extensions/hitcounter.php:64
 msgid ""
 "Check to enable. If a filter is enabled, viewers from in its associated list "
 "will not count hits."
 msgstr "剔选以启动. 如果过滤器启动, 来自这列表中的浏览者不会计算观看次数."
 
-#: zp-core/zp-extensions/hitcounter.php:93
+#: zp-core/zp-extensions/hitcounter.php:66
 msgid "Search Crawler list"
 msgstr "搜寻爬行器列表"
 
-#: zp-core/zp-extensions/hitcounter.php:98
+#: zp-core/zp-extensions/hitcounter.php:71
 msgid "Comma-separated list of search bot user agent names."
 msgstr "搜寻机器人用户代理列表 (以逗号分开)."
 
-#: zp-core/zp-extensions/hitcounter.php:104
+#: zp-core/zp-extensions/hitcounter.php:77
 msgid "Reset options to their default settings."
 msgstr "重设选项为预设."
 
-#: zp-core/zp-extensions/hitcounter.php:125
+#: zp-core/zp-extensions/hitcounter.php:98
 msgid "Defaults"
 msgstr "预设"
 
-#: zp-core/zp-extensions/hitcounter.php:150
+#: zp-core/zp-extensions/hitcounter.php:123
 msgid "Insert my IP"
 msgstr "加入我的IP"
 
-#: zp-core/zp-extensions/hitcounter.php:235
+#: zp-core/zp-extensions/hitcounter.php:208
 msgid "Reset all hitcounters"
 msgstr "重设所观看次数"
 
-#: zp-core/zp-extensions/hitcounter.php:240
+#: zp-core/zp-extensions/hitcounter.php:213
 #, fuzzy
 msgid "Reset all hitcounters to zero"
 msgstr "将所有接收器重置为零"
+
+#: zp-core/zp-extensions/hitcounter/reset_hitcounts.php:27
+#, fuzzy
+msgid "All hitcounters have been set to zero."
+msgstr "所有的接收器都设置为零。"
 
 #: zp-core/zp-extensions/html_meta_tags.php:20
 #, fuzzy
@@ -22418,14 +22421,14 @@ msgstr ""
 msgid "menu"
 msgstr "选单"
 
-#: zp-core/zp-extensions/menu_manager.php:612
+#: zp-core/zp-extensions/menu_manager.php:613
 #, php-format
 msgid "Page %1$u (Current Page)"
 msgid_plural "Page %1$u (Current Page)"
 msgstr[0] "页  %1$u (本页)"
 msgstr[1] "页  %1$u (本页)"
 
-#: zp-core/zp-extensions/menu_manager.php:628
+#: zp-core/zp-extensions/menu_manager.php:629
 #: zp-core/zp-extensions/zenpage/template-functions.php:959
 #, php-format
 msgid "Page {%u}"
@@ -22433,45 +22436,45 @@ msgid_plural "Page {%u}"
 msgstr[0] "页 {%u}"
 msgstr[1] "页 {%u}"
 
-#: zp-core/zp-extensions/menu_manager.php:812
+#: zp-core/zp-extensions/menu_manager.php:813
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:485
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:278
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:97
 msgid "News index"
 msgstr "新闻主页"
 
-#: zp-core/zp-extensions/menu_manager.php:836
-#: zp-core/zp-extensions/menu_manager.php:850
-#: zp-core/zp-extensions/menu_manager.php:864
+#: zp-core/zp-extensions/menu_manager.php:837
+#: zp-core/zp-extensions/menu_manager.php:851
+#: zp-core/zp-extensions/menu_manager.php:865
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty link."
 msgstr "createMenuIfNotExists 项目 %s 有空白连结."
 
-#: zp-core/zp-extensions/menu_manager.php:843
-#: zp-core/zp-extensions/menu_manager.php:858
-#: zp-core/zp-extensions/menu_manager.php:878
-#: zp-core/zp-extensions/menu_manager.php:886
+#: zp-core/zp-extensions/menu_manager.php:844
+#: zp-core/zp-extensions/menu_manager.php:859
+#: zp-core/zp-extensions/menu_manager.php:879
+#: zp-core/zp-extensions/menu_manager.php:887
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty title."
 msgstr "createMenuIfNotExists 项目 %s 有空白标题."
 
-#: zp-core/zp-extensions/menu_manager.php:871
-#: zp-core/zp-extensions/menu_manager.php:894
+#: zp-core/zp-extensions/menu_manager.php:872
+#: zp-core/zp-extensions/menu_manager.php:895
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty title or link."
 msgstr "createMenuIfNotExists 项目 %s 有空白标题或连结."
 
-#: zp-core/zp-extensions/menu_manager.php:899
+#: zp-core/zp-extensions/menu_manager.php:900
 #, php-format
 msgid "createMenuIfNotExists item %s has an invalid type."
 msgstr "createMenuIfNotExists 项目 %s 有无效种类."
 
-#: zp-core/zp-extensions/menu_manager.php:916
+#: zp-core/zp-extensions/menu_manager.php:917
 #, fuzzy, php-format
 msgid "createMenuIfNotExists item %1$s query (%2$s) failed: %3$s."
 msgstr "createMenuIfNotExists项%1$s查询（%2$s）失败：%3$s。"
 
-#: zp-core/zp-extensions/menu_manager.php:924
+#: zp-core/zp-extensions/menu_manager.php:925
 msgid "createMenuIfNotExists has posted processing errors to your debug log."
 msgstr "createMenuIfNotExists 在除错日志中有贴出处理错误."
 
@@ -23133,25 +23136,25 @@ msgstr "Spellchecker for tinyMCE。"
 msgid "A plugin for displaying OpenStreetMap based maps."
 msgstr "一个用于显示基于OpenStreetMap的地图的插件。"
 
-#: zp-core/zp-extensions/openstreetmap.php:58
+#: zp-core/zp-extensions/openstreetmap.php:75
 #, fuzzy
 msgid "Map dimensions—width"
 msgstr "地图尺寸 - 宽度"
 
-#: zp-core/zp-extensions/openstreetmap.php:62
+#: zp-core/zp-extensions/openstreetmap.php:79
 #, fuzzy
 msgid ""
-"Width of the map including the unit name e.g. 100% (default for responsive "
+"Width of the map including the unit name e.g 100% (default for responsive "
 "map), 100px or 100em."
 msgstr ""
 "地图的宽度，包括单位名称，例如100％（响应地图的默认值），100px或100em。"
 
-#: zp-core/zp-extensions/openstreetmap.php:63
+#: zp-core/zp-extensions/openstreetmap.php:80
 #, fuzzy
 msgid "Map dimensions—height"
 msgstr "地图尺寸 - 高度"
 
-#: zp-core/zp-extensions/openstreetmap.php:67
+#: zp-core/zp-extensions/openstreetmap.php:84
 #, fuzzy
 msgid ""
 "Height of the map including the unit name e.g 100% (default for responsive "
@@ -23159,93 +23162,94 @@ msgid ""
 msgstr ""
 "地图的高度，包括单位名称，例如100％（响应地图的默认值），100px或100em。"
 
-#: zp-core/zp-extensions/openstreetmap.php:68
+#: zp-core/zp-extensions/openstreetmap.php:85
 #, fuzzy
 #| msgid "zoom"
 msgid "Map zoom"
 msgstr "地图缩放"
 
-#: zp-core/zp-extensions/openstreetmap.php:72
+#: zp-core/zp-extensions/openstreetmap.php:89
 #, fuzzy
 msgid "Default zoom level."
 msgstr "默认缩放级别"
 
-#: zp-core/zp-extensions/openstreetmap.php:73
+#: zp-core/zp-extensions/openstreetmap.php:90
 #, fuzzy
 msgid "Map minimum zoom"
 msgstr "映射最小缩放"
 
-#: zp-core/zp-extensions/openstreetmap.php:77
+#: zp-core/zp-extensions/openstreetmap.php:94
 #, fuzzy
 msgid "Default minimum zoom level possible."
 msgstr "可能的默认最小缩放级别。"
 
-#: zp-core/zp-extensions/openstreetmap.php:78
+#: zp-core/zp-extensions/openstreetmap.php:95
 #, fuzzy
 msgid "Map maximum zoom"
 msgstr "映射最大缩放"
 
-#: zp-core/zp-extensions/openstreetmap.php:82
-#, fuzzy
-msgid "Default maximum zoom level possible."
-msgstr "可能的默认最大缩放级别。"
+#: zp-core/zp-extensions/openstreetmap.php:99
+msgid ""
+"Default maximum zoom level possible. If no value is defined, use the maximum "
+"zoom level of the map used (may be different for each map)."
+msgstr ""
 
-#: zp-core/zp-extensions/openstreetmap.php:83
+#: zp-core/zp-extensions/openstreetmap.php:100
 #, fuzzy
-#| msgid "Map controls"
-msgid "Map tiles"
-msgstr "地图瓷砖"
+#| msgid "Default size"
+msgid "Default layer"
+msgstr "默认类型"
 
-#: zp-core/zp-extensions/openstreetmap.php:88
+#: zp-core/zp-extensions/openstreetmap.php:105
 #, fuzzy
 msgid ""
-"The map tile provider to use. Only free providers are included. HERE, Mapbox "
-"and Thunderforest map tiles require access credentials and Esri requires "
-"registration. More info on <a href=\"https://github.com/leaflet-extras/"
-"leaflet-providers\">leaflet-providers</a>"
+"The default map tile provider to use. Only free providers are included. Some "
+"providers (Here, Mapbox, Thunderforest, Geoportail) require access "
+"credentials and registration. More info on <a href=\"https://github.com/"
+"leaflet-extras/leaflet-providers\">leaflet-providers</a>"
 msgstr ""
 "要使用的地图图块提供程序。仅包括免费提供商。 HERE，Mapbox和Thunderforest地图"
 "图块需要访问凭据，Esri需要注册。 <a href=\"https://github.com/leaflet-extras/"
 "leaflet-providers\">传单提供者的</a>更多信息"
 
-#: zp-core/zp-extensions/openstreetmap.php:91
+#: zp-core/zp-extensions/openstreetmap.php:108
 #, fuzzy
 #| msgid "Comment posted"
-msgid "Controls position"
+msgid "Zoom controls position"
 msgstr "控制面板位置"
 
-#: zp-core/zp-extensions/openstreetmap.php:101
+#: zp-core/zp-extensions/openstreetmap.php:118
 #, fuzzy
-msgid "Position of the map controls"
+msgid "Position of the zoom controls"
 msgstr "地图控件的位置"
 
-#: zp-core/zp-extensions/openstreetmap.php:102
+#: zp-core/zp-extensions/openstreetmap.php:119
 #, fuzzy
 msgid "Cluster radius"
 msgstr "簇半径"
 
-#: zp-core/zp-extensions/openstreetmap.php:106
+#: zp-core/zp-extensions/openstreetmap.php:123
 #, fuzzy
 #| msgid "If the browser cache should be used."
 msgid "The radius when marker clusters should be used."
 msgstr "应使用标记簇的半径。"
 
-#: zp-core/zp-extensions/openstreetmap.php:107
+#: zp-core/zp-extensions/openstreetmap.php:124
 #, fuzzy
 msgid "Show cluster coverage on hover"
 msgstr "在悬停时显示群集覆盖范围"
 
-#: zp-core/zp-extensions/openstreetmap.php:111
+#: zp-core/zp-extensions/openstreetmap.php:128
 #, fuzzy
 msgid "Enable if you want to the bounds of a marker cluster on hover."
 msgstr "如果要在悬停时想要标记簇的边界，请启用。"
 
-#: zp-core/zp-extensions/openstreetmap.php:112
+#: zp-core/zp-extensions/openstreetmap.php:129
 #, fuzzy
 msgid "Marker popups"
 msgstr "标记弹出窗口"
 
-#: zp-core/zp-extensions/openstreetmap.php:116
+#: zp-core/zp-extensions/openstreetmap.php:133
 #, fuzzy
 msgid ""
 "Enable this if you wish info popups on the map markers. Only for album "
@@ -23254,71 +23258,106 @@ msgstr ""
 "如果您希望在地图标记上弹出信息，请启用此选项。仅适用于专辑上下文或自定义地理"
 "数据。"
 
-#: zp-core/zp-extensions/openstreetmap.php:117
+#: zp-core/zp-extensions/openstreetmap.php:134
 #, fuzzy
 #| msgid "previous thumbs"
 msgid "Marker popups with thumbs"
 msgstr "标记用拇指弹出"
 
-#: zp-core/zp-extensions/openstreetmap.php:121
+#: zp-core/zp-extensions/openstreetmap.php:138
 #, fuzzy
 msgid ""
 "Enable if you want to show thumb of images in the marker popups. Only for "
 "album context."
 msgstr "如果要在标记弹出窗口中显示图像的拇指，则启用。仅适用于专辑背景。"
 
-#: zp-core/zp-extensions/openstreetmap.php:122
+#: zp-core/zp-extensions/openstreetmap.php:139
 #, fuzzy
 msgid "Marker popups with title"
 msgstr "标记弹出标题"
 
-#: zp-core/zp-extensions/openstreetmap.php:126
+#: zp-core/zp-extensions/openstreetmap.php:143
 #, fuzzy
 msgid ""
 "Enable if you want to show title of images in the marker popups. Only for "
 "album context."
 msgstr "如果要在标记弹出窗口中显示图像标题，请启用。仅适用于专辑背景。"
 
-#: zp-core/zp-extensions/openstreetmap.php:127
+#: zp-core/zp-extensions/openstreetmap.php:144
 #, fuzzy
 #| msgid "Gallery description:"
 msgid "Marker popups with description"
 msgstr "标记弹出与描述"
 
-#: zp-core/zp-extensions/openstreetmap.php:131
+#: zp-core/zp-extensions/openstreetmap.php:148
 #, fuzzy
 msgid ""
 "Enable if you want to show desc of images in the marker popups. Only for "
 "album context."
 msgstr "如果要在标记弹出窗口中显示图像的desc，请启用。仅适用于专辑背景。"
 
-#: zp-core/zp-extensions/openstreetmap.php:132
+#: zp-core/zp-extensions/openstreetmap.php:149
+#, fuzzy
+#| msgid "Show counts"
+msgid "Show layers controls"
+msgstr "显示数量"
+
+#: zp-core/zp-extensions/openstreetmap.php:153
+#, fuzzy
+msgid ""
+"Enable if you want to show layers controls with selected layers list below."
+msgstr "如果要显示播放列表条目的播放时间，请启用。"
+
+#: zp-core/zp-extensions/openstreetmap.php:154
+#, fuzzy
+#| msgid "Page list"
+msgid "Layers list"
+msgstr "页列表"
+
+#: zp-core/zp-extensions/openstreetmap.php:159
+msgid ""
+"Choose layers list to show in layers controls. No need to select the default "
+"layer again, otherwise it will be deduplicated."
+msgstr ""
+
+#: zp-core/zp-extensions/openstreetmap.php:160
+#, fuzzy
+#| msgid "Comment posted"
+msgid "Layers controls position"
+msgstr "控制面板位置"
+
+#: zp-core/zp-extensions/openstreetmap.php:170
+#, fuzzy
+msgid "Position of the layers controls"
+msgstr "地图控件的位置"
+
+#: zp-core/zp-extensions/openstreetmap.php:171
 #, fuzzy
 msgid "Show scale"
 msgstr "显示比例"
 
-#: zp-core/zp-extensions/openstreetmap.php:136
+#: zp-core/zp-extensions/openstreetmap.php:175
 #, fuzzy
 msgid "Enable if you want to show scale overlay (kilometers and miles)."
 msgstr "如果要显示比例叠加（公里和英里），请启用。"
 
-#: zp-core/zp-extensions/openstreetmap.php:137
+#: zp-core/zp-extensions/openstreetmap.php:176
 #, fuzzy
 msgid "Show cursor position"
 msgstr "显示光标位置"
 
-#: zp-core/zp-extensions/openstreetmap.php:141
+#: zp-core/zp-extensions/openstreetmap.php:180
 #, fuzzy
 msgid ""
 "Enable if you want to show the coordinates if moving the cursor over the map."
 msgstr "如果要在地图上移动光标时显示坐标，请启用。"
 
-#: zp-core/zp-extensions/openstreetmap.php:142
+#: zp-core/zp-extensions/openstreetmap.php:181
 #, fuzzy
 msgid "Show album markers"
 msgstr "显示专辑标记"
 
-#: zp-core/zp-extensions/openstreetmap.php:146
+#: zp-core/zp-extensions/openstreetmap.php:185
 #, fuzzy
 msgid ""
 "Enable if you want to show the map on the single image page not only the "
@@ -23328,45 +23367,45 @@ msgstr ""
 "如果要在单个图像页面上显示地图，不仅要显示当前图像的标记，还要显示相册中的所"
 "有标记。将突出显示当前位置。"
 
-#: zp-core/zp-extensions/openstreetmap.php:147
+#: zp-core/zp-extensions/openstreetmap.php:186
 #, fuzzy
 msgid "Mini map"
 msgstr "小地图"
 
-#: zp-core/zp-extensions/openstreetmap.php:151
+#: zp-core/zp-extensions/openstreetmap.php:190
 #, fuzzy
 msgid ""
 "Enable if you want to show an overview mini map in the lower right corner."
 msgstr "如果要在右下角显示概览迷你地图，请启用。"
 
-#: zp-core/zp-extensions/openstreetmap.php:152
+#: zp-core/zp-extensions/openstreetmap.php:191
 #, fuzzy
 msgid "Mini map: width"
 msgstr "迷你地图：宽度"
 
-#: zp-core/zp-extensions/openstreetmap.php:156
+#: zp-core/zp-extensions/openstreetmap.php:195
 #, fuzzy
 #| msgid "Slide width"
 msgid "Pixel width"
 msgstr "像素宽度"
 
-#: zp-core/zp-extensions/openstreetmap.php:157
+#: zp-core/zp-extensions/openstreetmap.php:196
 #, fuzzy
 msgid "Mini map: height"
 msgstr "迷你地图：高度"
 
-#: zp-core/zp-extensions/openstreetmap.php:161
+#: zp-core/zp-extensions/openstreetmap.php:200
 #, fuzzy
 #| msgid "Slide height"
 msgid "Pixel height"
 msgstr "像素高度"
 
-#: zp-core/zp-extensions/openstreetmap.php:162
+#: zp-core/zp-extensions/openstreetmap.php:201
 #, fuzzy
 msgid "Mini map: Zoom level"
 msgstr "迷你地图：缩放级别"
 
-#: zp-core/zp-extensions/openstreetmap.php:166
+#: zp-core/zp-extensions/openstreetmap.php:205
 #, fuzzy
 msgid ""
 "The offset applied to the zoom in the minimap compared to the zoom of the "
@@ -23374,25 +23413,29 @@ msgid ""
 msgstr ""
 "与主地图的缩放相比，应用于小地图中缩放的偏移量。可以是正数或负数，默认为-5。"
 
-#: zp-core/zp-extensions/openstreetmap.php:167
+#: zp-core/zp-extensions/openstreetmap.php:206
 #, fuzzy
 msgid "HERE - App id"
 msgstr "这里 - 应用程序ID"
 
-#: zp-core/zp-extensions/openstreetmap.php:172
+#: zp-core/zp-extensions/openstreetmap.php:211
 #, fuzzy
 msgid "HERE - App code"
 msgstr "这里 - 应用程序代码"
 
-#: zp-core/zp-extensions/openstreetmap.php:177
+#: zp-core/zp-extensions/openstreetmap.php:216
 #, fuzzy
 msgid "Mapbox - Access token"
 msgstr "Mapbox  - 访问令牌"
 
-#: zp-core/zp-extensions/openstreetmap.php:182
+#: zp-core/zp-extensions/openstreetmap.php:221
 #, fuzzy
 msgid "Thunderforest - ApiKey"
 msgstr "Thunderforest  -  ApiKey"
+
+#: zp-core/zp-extensions/openstreetmap.php:226
+msgid "GeoportailFrance - ApiKey"
+msgstr ""
 
 #: zp-core/zp-extensions/optionalObjectFields.php:50
 #, fuzzy
@@ -23959,71 +24002,71 @@ msgstr "以认错赎罪，偿还"
 msgid "Active Extension"
 msgstr "有效扩展"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:18
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 #, fuzzy
 msgid "User plugins"
 msgstr "用户插件"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:18
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:19
 #, fuzzy
 msgid "Extensions"
 msgstr "扩展"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:72
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:73
 #, fuzzy
 msgid "Active plugins have been disabled."
 msgstr "活动插件已被禁用。"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:90
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:91
 #, fuzzy
 #| msgid "options"
 msgid "purge options"
 msgstr "清除选项"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:175
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:172
 #, fuzzy
 msgid "No option owners have been located."
 msgstr "没有找到期权所有者。"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:195
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:192
 #, fuzzy
 msgid "Check an item to purge options associated with it."
 msgstr "检查项目以清除与其关联的选项。"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:198
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:195
 #, fuzzy
 msgid ""
 "Items that are <span class = \"missing_owner\">highlighted</span> appear to "
 "no longer to exist."
 msgstr "<span class = \"missing_owner\">突出</span>显示的项目似乎不再存在。"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:204
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:201
 #, fuzzy
 msgid "highlighted"
 msgstr "突出的"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:219
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:216
 #, fuzzy
 msgid "Orphaned options"
 msgstr "孤儿选择"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:220
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:217
 #, fuzzy
 msgid "all: no action"
 msgstr "全部：没有动作"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:224
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:221
 #, fuzzy
 #| msgid "delete"
 msgid "all: delete"
 msgstr "全部：删除"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:228
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:225
 #, fuzzy
 msgid "all: hide"
 msgstr "全部：隐藏"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:235
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:232
 #, fuzzy
 msgid ""
 "all: delete. It is generally safe to remove an orphaned option whose value "
@@ -24032,33 +24075,33 @@ msgstr ""
 "全部：删除。通常可以安全地删除其值为空的孤立选项，因为引用不存在的选项将返回"
 "空值。"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:237
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:234
 #, fuzzy
 msgid "<span class=\"emptyOption\">empty</span>"
 msgstr "<span class=\"emptyOption\">空</span>"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:274
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:271
 #, fuzzy
 #| msgid "hidden items"
 msgid "hidden"
 msgstr "隐藏及可见项目"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:280
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:277
 #, fuzzy
 msgid "empty"
 msgstr "空"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:291
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:288
 #, fuzzy
 msgid "no action"
 msgstr "行动"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:299
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:296
 #, fuzzy
 msgid "<span class=\"emptyOption\">Denotes</span> an empty option value."
 msgstr "<span class=\"emptyOption\">表示</span>空选项值。"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:303
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:300
 #, fuzzy
 msgid ""
 " <span class=\"hiddenOrphan\"><span class=\"hiddenOrphanHighlight\">Denotes</"
@@ -24067,7 +24110,7 @@ msgstr ""
 "<span class=\"hiddenOrphan\"><span class=\"hiddenOrphanHighlight\">表示</"
 "span> “隐藏”选项。</span>"
 
-#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:308
+#: zp-core/zp-extensions/purgeOptions/purgeOptions_tab.php:305
 #, fuzzy
 msgid " Show hidden orphans."
 msgstr "显示隐藏的孤儿。"
@@ -25452,34 +25495,34 @@ msgstr "网站仅供测试。"
 
 #: zp-core/zp-extensions/site_upgrade.php:71
 #: zp-core/zp-extensions/site_upgrade.php:78
-#: zp-core/zp-extensions/site_upgrade.php:99
+#: zp-core/zp-extensions/site_upgrade.php:98
 #, fuzzy
 msgid "The site is closed!"
 msgstr "该网站已关闭！"
 
-#: zp-core/zp-extensions/site_upgrade.php:99
-#: zp-core/zp-extensions/site_upgrade.php:106
-#: zp-core/zp-extensions/site_upgrade.php:113
+#: zp-core/zp-extensions/site_upgrade.php:98
+#: zp-core/zp-extensions/site_upgrade.php:105
+#: zp-core/zp-extensions/site_upgrade.php:112
 #, fuzzy
 msgid "Site status:"
 msgstr "站点状态"
 
-#: zp-core/zp-extensions/site_upgrade.php:106
+#: zp-core/zp-extensions/site_upgrade.php:105
 #, fuzzy
 msgid "The site is in test mode!"
 msgstr "该网站处于测试模式！"
 
-#: zp-core/zp-extensions/site_upgrade.php:113
+#: zp-core/zp-extensions/site_upgrade.php:112
 #, fuzzy
 msgid "The site is opened"
 msgstr "该网站已打开"
 
-#: zp-core/zp-extensions/site_upgrade.php:144
+#: zp-core/zp-extensions/site_upgrade.php:143
 #, fuzzy
 msgid "Restore site_upgrade files"
 msgstr "恢复site_upgrade文件"
 
-#: zp-core/zp-extensions/site_upgrade.php:148
+#: zp-core/zp-extensions/site_upgrade.php:147
 #, fuzzy
 msgid ""
 "Restores the files in the \"plugins/site_upgrade\" folder to their default "
@@ -25488,68 +25531,68 @@ msgstr ""
 "将“plugins / site_upgrade”文件夹中的文件还原为其默认状态。注意：这将覆盖您可"
 "能进行的任何自定义编辑。"
 
-#: zp-core/zp-extensions/site_upgrade.php:160
+#: zp-core/zp-extensions/site_upgrade.php:159
 #, fuzzy
 msgid "Site » test mode"
 msgstr "网站»测试模式"
 
-#: zp-core/zp-extensions/site_upgrade.php:164
+#: zp-core/zp-extensions/site_upgrade.php:163
 #, fuzzy
 msgid "Make the site available for viewing administrators only."
 msgstr "使网站仅供查看管理员使用。"
 
-#: zp-core/zp-extensions/site_upgrade.php:176
+#: zp-core/zp-extensions/site_upgrade.php:175
 #, fuzzy
 msgid "Site » open"
 msgstr "网站»开放"
 
-#: zp-core/zp-extensions/site_upgrade.php:180
+#: zp-core/zp-extensions/site_upgrade.php:179
 #, fuzzy
 msgid "Make site available for viewing."
 msgstr "使网站可供查看。"
 
-#: zp-core/zp-extensions/site_upgrade.php:191
+#: zp-core/zp-extensions/site_upgrade.php:190
 #, fuzzy
 msgid "Your setup scripts are not protected!"
 msgstr "您的设置脚本不受保护！"
 
-#: zp-core/zp-extensions/site_upgrade.php:203
+#: zp-core/zp-extensions/site_upgrade.php:202
 #, fuzzy
 msgid "Site » close"
 msgstr "网站»关闭"
 
-#: zp-core/zp-extensions/site_upgrade.php:207
+#: zp-core/zp-extensions/site_upgrade.php:206
 #, fuzzy
 msgid ""
 "Make site unavailable for viewing by redirecting to the \"closed.html\" page."
 msgstr "通过重定向到“closed.html”页面使网站无法查看。"
 
-#: zp-core/zp-extensions/site_upgrade.php:237
+#: zp-core/zp-extensions/site_upgrade.php:236
 #, fuzzy, php-format
 msgid "%s upgrade"
 msgstr "％s升级"
 
-#: zp-core/zp-extensions/site_upgrade.php:237
+#: zp-core/zp-extensions/site_upgrade.php:236
 #, fuzzy, php-format
 msgid "<strong><em>%s</em></strong> is undergoing an upgrade"
 msgstr "<strong><em>％s</em></strong>正在升级"
 
-#: zp-core/zp-extensions/site_upgrade.php:237
+#: zp-core/zp-extensions/site_upgrade.php:236
 #, fuzzy
 msgid "Please return later"
 msgstr "请稍后再回来"
 
-#: zp-core/zp-extensions/site_upgrade.php:245
+#: zp-core/zp-extensions/site_upgrade.php:244
 #, fuzzy, php-format
 msgid "%s suspended"
 msgstr "％s暂停"
 
-#: zp-core/zp-extensions/site_upgrade.php:252
+#: zp-core/zp-extensions/site_upgrade.php:251
 #, fuzzy, php-format
 msgid "The %s feed is currently not available."
 msgstr "％s Feed目前无法使用。"
 
-#: zp-core/zp-extensions/site_upgrade.php:295
+#: zp-core/zp-extensions/site_upgrade.php:294
 #, fuzzy
 msgid "site_upgrade files Restored to original."
 msgstr "site_upgrade文件恢复为原始文件。"
@@ -29054,47 +29097,3 @@ msgstr "字体可缩放时使用的大小（ <em>TTF</em>和<em>Imagick</em>字�
 #: zp-core/zp-extensions/zpCaptcha.php:70
 msgid "Sample CAPTCHA image"
 msgstr "验证码图片例子 "
-
-#, fuzzy
-#~ msgid "netPhotoGraphics Administration"
-#~ msgstr "netPhotoGraphics 管理"
-
-#, fuzzy
-#~ msgid "Begin database creation and update"
-#~ msgstr "开始创建和更新数据库"
-
-#~ msgid "Done with database creation and update"
-#~ msgstr "完成资料库表格更新及建立 "
-
-#, fuzzy
-#~ msgid "Download netPhotoGraphics version %s."
-#~ msgstr "下载 netPhotoGraphics 版本%s。"
-
-#, fuzzy
-#~ msgid "Flash; strobe return str_replace($sw, light detected"
-#~ msgstr "闪存闪光灯返回 str_replace ($sw, 检测到光"
-
-#, fuzzy
-#~ msgid "Flash; strobe return str_replace($sw, light not detected"
-#~ msgstr "闪存闪光灯返回 str_replace ($sw, 未检测到指示灯"
-
-#, fuzzy
-#~ msgid "Localization requires native PHP <code>gettext()</code> support"
-#~ msgstr "本地化需要本机 PHP <code> gettext () </code> 支持"
-
-#~ msgid "About to update tables"
-#~ msgstr "关于更新资料库表格"
-
-#, fuzzy
-#~| msgid "backup completed"
-#~ msgid "Table update complete."
-#~ msgstr "表更新完成。"
-
-#, fuzzy
-#~ msgid ""
-#~ "Shortened URLs require the <code>mod_rewrite</code> option be enabled."
-#~ msgstr "缩短的 url 要求启用 <code> mod_rewrite </code> 选项。"
-
-#, fuzzy
-#~ msgid "newCategory"
-#~ msgstr "newCategory"
