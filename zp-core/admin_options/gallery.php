@@ -57,7 +57,7 @@ function getOptionContent() {
 	?>
 	<div id="tab_gallery" class="tabbox">
 		<form class="dirtylistening" onReset="toggle_passwords('', false);
-					setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
+				setClean('form_options');" id="form_options" action="?action=saveoptions" method="post" autocomplete="off" >
 					<?php XSRFToken('saveoptions'); ?>
 			<input	type="hidden" name="saveoptions" value="gallery" />
 			<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -105,12 +105,20 @@ function getOptionContent() {
 					<td class="option_name"><?php echo gettext("Branding logo"); ?></td>
 					<td class="option_value">
 						<input type="text" style="width:100%;" name="sitelogoimage" value="<?php echo $sitelogo = $_zp_gallery->getSiteLogo(); ?>"   onchange="$('#sitelogotitle').show();"/>
+						<?php
+						if ($sitelogo && !file_exists(SERVERPATH . '/' . $sitelogo)) {
+							?>
+							<br />
+							<span style="color: red"><?php echo gettext('The image cannot be found.'); ?></span>
+							<?php
+						}
+						?>
 					</td>
 					<td class="option_desc">
 						<span class="option_info">
 							<?php echo INFORMATION_BLUE; ?>
 							<div class="option_desc_hidden">
-								<?php echo gettext("A relative link to a logo image. If this is set, the image will replace the netPhotoGraphics logo. For best results the image should be 78 pixels high."); ?>
+								<?php echo gettext("A relative link to a logo image (e.g. <code>" . UPLOAD_FOLDER . "/custom_logo.png</code> for an image you have uploaded to your <em>UPLOAD_FOLDER</em> folder.) If this is set, your image will replace the netPhotoGraphics logo. For best results the image should be 78 pixels high."); ?>
 							</div>
 						</span>
 					</td>
@@ -234,7 +242,7 @@ function getOptionContent() {
 											 name="disclose_password"
 											 id="disclose_password"
 											 onclick="passwordClear('');
-															 togglePassword('');" /><?php echo gettext('Show'); ?>
+													 togglePassword('');" /><?php echo gettext('Show'); ?>
 							</label>
 
 							<br />
