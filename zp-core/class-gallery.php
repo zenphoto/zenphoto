@@ -100,7 +100,6 @@ class Gallery {
 		} else {
 			return applyMacros(zpFunctions::unTagURLs(get_language_string($text, $locale)));
 		}
-		return $text;
 	}
 
 	/**
@@ -127,7 +126,8 @@ class Gallery {
 	 * @param string $logo path to logo image
 	 */
 	function setSiteLogoTitle($logo) {
-		$this->set('sitelogotitle', $logo);
+		$msg = zpFunctions::tagURLs($logo);
+		$this->set('sitelogotitle', $msg);
 	}
 
 	/**
@@ -135,8 +135,13 @@ class Gallery {
 	 *
 	 * @return string path to logo image
 	 */
-	function getSiteLogoTitle() {
-		return $this->get('sitelogotitle');
+	function getSiteLogoTitle($locale = NULL) {
+		$text = $this->get('sitelogotitle');
+		if ($locale == 'all') {
+			return zpFunctions::unTagURLs($text);
+		} else {
+			return applyMacros(zpFunctions::unTagURLs(get_language_string($text, $locale)));
+		}
 	}
 
 	/**

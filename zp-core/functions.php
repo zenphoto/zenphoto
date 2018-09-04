@@ -1384,7 +1384,7 @@ function printSiteLogoImage($title = NULL) {
 		}
 	}
 	$image = $_zp_gallery->getSiteLogo();
-	if (empty($image)) {
+	if (empty($image) || !file_exists(SERVERPATH . '/' . $image)) {
 		$image = WEBPATH . '/' . ZENFOLDER . '/images/admin-logo.png"';
 	} else {
 		$image = WEBPATH . '/' . $image;
