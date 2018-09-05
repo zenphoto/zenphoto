@@ -1857,15 +1857,14 @@ function printPageLastChangeDate($before) {
  */
 function getPageContent($titlelink = NULL, $published = true) {
 	global $_zp_current_page;
-	if (is_Pages() AND empty($titlelink)) {
-		return $_zp_current_page->getContent();
-	}
-	// print content of a page directly on a normal theme page or any other page for example
-	if (!empty($titlelink)) {
+	$page = NULL;
+	if (empty($titlelink) && is_Pages()) {
+		$page = $_zp_current_page;
+	} else {
 		$page = newPage($titlelink);
-		if ($page->getShow() || (!$page->getShow() && !$published)) {
-			return $page->getContent();
-		}
+	}
+	if ($page && $page->checkAccess()) {
+		return $_zp_current_page->getContent();
 	}
 	return false;
 }
@@ -2218,20 +2217,20 @@ function zenpageAlbumImage($albumname, $imagename = NULL, $size = NULL, $linkalb
 		} else {
 			?>
 			<span style="background:red;color:black;">
-				<?php
-				printf(gettext('<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s'), $albumname, $imagename);
-				?>
+			<?php
+			printf(gettext('<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s'), $albumname, $imagename);
+			?>
 			</span>
+				<?php
+			}
+		} else {
+			?>
+		<span style="background:red;color:black;">
+		<?php
+		printf(gettext('<code>zenpageAlbumImage()</code> did not find the album %1$s'), $albumname);
+		?>
+		</span>
 			<?php
 		}
-	} else {
-		?>
-		<span style="background:red;color:black;">
-			<?php
-			printf(gettext('<code>zenpageAlbumImage()</code> did not find the album %1$s'), $albumname);
-			?>
-		</span>
-		<?php
 	}
-}
-?>
+	?>
