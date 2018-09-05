@@ -274,7 +274,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_tabs</strong></span>(<em>zenphoto_tabs</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_tabs --><p>Allows plugins to add <em>Tabs</em> to the administrative pages.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/rewriterules.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/admin-globals.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin-globals.php</li>
@@ -291,7 +291,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_utilities_buttons</strong></span>(<em>buttonlist</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_utilities_buttons --><p>Allows plugins to add buttons to the admin utilities box on the <em>overview</em> page.</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/hitcounter.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/site_upgrade.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/admin.php</li>
@@ -350,7 +350,7 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>seoFriendly_js</strong></span>(<em></em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>seoFriendly_js</strong></span>(<em>string</em>)</p>
 					<!-- description(Admin.Miscellaneous)-seoFriendly_js --><p>Allows a plugin to provide a JavaScript function to names that might contain diacritical marks into text that does not.</p><!--e-->
 					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/seo_null.php</p>
 					<p class="calls">Invoked from:</p>
@@ -605,7 +605,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>load_theme_script</strong></span>(<em>_zp_script, zp_request</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-load_theme_script --><p>Allows for overriding the script loaded for a particular theme page</p><!--e-->
-					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/hitcounter.php</p>
+					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">d:/test_sites/dev/zp-core/index.php</li>
@@ -935,12 +935,12 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>search_statistics</strong></span>(<em>searchstring, string, string</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>search_statistics</strong></span>(<em>searchstring, string, string, this-&gt;dynalbumname, this-&gt;search_instance</em>)</p>
 					<!-- description(Object.Search)-search_statistics --><p>Allows a plugin to record statistics about searches.</p><!--e-->
 					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/search_statistics.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">d:/test_sites/dev/zp-core/class-search.php (4)</li>
+						<li class="call_list">d:/test_sites/dev/zp-core/class-search.php (8)</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -1249,7 +1249,7 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>admin_login_attempt</strong></span>(<em>_zp_loggedin, post_user, post_pass</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>admin_login_attempt</strong></span>(<em>_zp_loggedin, post_user, post_pass, user</em>)</p>
 					<!-- description(User_management.Miscellaneous)-admin_login_attempt --><p>Reports logon attempts.</p><!--e-->
 					<p class="handlers">For example see d:/test_sites/dev/zp-core/zp-extensions/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
