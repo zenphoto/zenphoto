@@ -1863,7 +1863,7 @@ function getPageContent($titlelink = NULL, $published = true) {
 	} else {
 		$page = newPage($titlelink);
 	}
-	if ($page && $page->checkAccess()) {
+	if ($page && (!$published || $page->checkAccess())) {
 		return $_zp_current_page->getContent();
 	}
 	return false;
@@ -2217,20 +2217,20 @@ function zenpageAlbumImage($albumname, $imagename = NULL, $size = NULL, $linkalb
 		} else {
 			?>
 			<span style="background:red;color:black;">
-			<?php
-			printf(gettext('<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s'), $albumname, $imagename);
-			?>
-			</span>
 				<?php
-			}
-		} else {
-			?>
-		<span style="background:red;color:black;">
-		<?php
-		printf(gettext('<code>zenpageAlbumImage()</code> did not find the album %1$s'), $albumname);
-		?>
-		</span>
+				printf(gettext('<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s'), $albumname, $imagename);
+				?>
+			</span>
 			<?php
 		}
+	} else {
+		?>
+		<span style="background:red;color:black;">
+			<?php
+			printf(gettext('<code>zenpageAlbumImage()</code> did not find the album %1$s'), $albumname);
+			?>
+		</span>
+		<?php
 	}
-	?>
+}
+?>
