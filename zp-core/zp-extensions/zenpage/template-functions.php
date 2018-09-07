@@ -1867,7 +1867,7 @@ function getPageContent($titlelink = NULL, $published = true) {
 		$page = newPage($titlelink);
 	}
 	if ($page && (!$published || $page->checkAccess())) {
-		return $_zp_current_page->getContent();
+		return $page->getContent();
 	}
 	return false;
 }
