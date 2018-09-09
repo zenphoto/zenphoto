@@ -2999,7 +2999,4 @@ class _zp_HTML_cache {
 	}
 
 }
-
-$_zp_exifvars = zpFunctions::exifvars();
-$_locale_Subdomains = zpFunctions::LanguageSubdomains();
 ?>

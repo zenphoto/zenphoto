@@ -134,9 +134,9 @@ $disable = getSerializedArray(getOption('metadata_disabled'));
 
 
 //Add in the enabled image metadata fields
-$metadataProviders = array('image', 'class-video' => 'Video', 'xmpMetadata' => 'xmpMetadata');
+$metadataProviders = array('class-image' => 'image', 'class-video' => 'Video', 'xmpMetadata' => 'xmpMetadata');
 foreach ($metadataProviders as $source => $handler) {
-	if ($handler == 'image') {
+	if ($source == 'class-image') {
 		$enabled = true;
 	} else {
 		$enabled = extensionEnabled($source);
@@ -166,14 +166,10 @@ foreach ($metadataProviders as $source => $handler) {
 		if ($exifvar[EXIF_FIELD_ENABLED] && $enabled) {
 			switch ($exifvar[EXIF_FIELD_TYPE]) {
 				case 'string':
-					if ($s < 255) {
-						$s = "varchar($s)";
-					} else {
-						$s = 'text';
-					}
+					$s = "text";
 					break;
 				case 'number':
-					$s = 'varchar(52)';
+					$s = 'tinytext';
 					break;
 				case 'time':
 					$s = 'datetime';
