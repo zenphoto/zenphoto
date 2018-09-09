@@ -1857,15 +1857,17 @@ function printPageLastChangeDate($before) {
  */
 function getPageContent($titlelink = NULL, $published = true) {
 	global $_zp_current_page;
-	if (is_Pages() AND empty($titlelink)) {
-		return $_zp_current_page->getContent();
-	}
-	// print content of a page directly on a normal theme page or any other page for example
-	if (!empty($titlelink)) {
-		$page = newPage($titlelink);
-		if ($page->getShow() || (!$page->getShow() && !$published)) {
-			return $page->getContent();
+	$page = NULL;
+	if (empty($titlelink)) {
+		if (is_Pages()) {
+			$page = $_zp_current_page;
+			$published = false; //if you got to the page you must have had a link or the appropriate rights
 		}
+	} else {
+		$page = newPage($titlelink);
+	}
+	if ($page && (!$published || $page->checkAccess())) {
+		return $page->getContent();
 	}
 	return false;
 }
@@ -1895,7 +1897,7 @@ function getPageExtraContent($titlelink = '', $published = true) {
 	if (is_Pages() AND empty($titlelink)) {
 		return $_zp_current_page->getExtracontent();
 	}
-	// print content of a page directly on a normal theme page for example
+// print content of a page directly on a normal theme page for example
 	if (!empty($titlelink)) {
 		$page = newPage($titlelink);
 		if ($page->getShow() || (!$page->getShow() && !$published)) {
