@@ -1894,15 +1894,17 @@ function printPageContent($titlelink = NULL, $published = true) {
  */
 function getPageExtraContent($titlelink = '', $published = true) {
 	global $_zp_current_page;
-	if (is_Pages() AND empty($titlelink)) {
-		return $_zp_current_page->getExtracontent();
-	}
-// print content of a page directly on a normal theme page for example
-	if (!empty($titlelink)) {
-		$page = newPage($titlelink);
-		if ($page->getShow() || (!$page->getShow() && !$published)) {
-			return $page->getExtracontent();
+	$page = NULL;
+	if (empty($titlelink)) {
+		if (is_Pages()) {
+			$page = $_zp_current_page;
+			$published = false; //if you got to the page you must have had a link or the appropriate rights
 		}
+	} else {
+		$page = newPage($titlelink);
+	}
+	if ($page && (!$published || $page->checkAccess())) {
+		return $page->getExtracontent();
 	}
 	return false;
 }
