@@ -1800,7 +1800,12 @@ function getPageTitle() {
  * @return string
  */
 function printPageTitle($before = NULL) {
-	echo html_encodeTagged($before) . html_encode(getPageTitle());
+	if ($title = getPageTitle()) {
+		if ($before) {
+			echo '<span class="beforetext">' . html_encode($before) . '</span>';
+		}
+		echo html_encode($title);
+	}
 }
 
 /**
