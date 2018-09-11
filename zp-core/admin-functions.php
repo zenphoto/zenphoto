@@ -444,22 +444,23 @@ function printAdminHeader($tab, $subtab = NULL) {
 												}
 											}
 										}
-										switch ($link[0]) {
-											case'/':
-												$link = WEBPATH . $link;
-												break;
-											case '?':
-												$request = mb_parse_url(getRequestURI());
-												if (isset($request['query'])) {
-													$link .= '&' . $request['query'];
-												}
-												$link = $request['path'] . $link;
-												break;
-											default:
-												$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-												break;
+										if ($link) {
+											switch ($link[0]) {
+												case'/':
+													$link = ' href="' . WEBPATH . html_encode($link) . '" 1';
+													break;
+												case '?':
+													$request = mb_parse_url(getRequestURI());
+													if (isset($request['query'])) {
+														$link .= '&' . $request['query'];
+													}
+													$link = ' href="' . $request['path'] . html_encode($link) . '" 2';
+													break;
+												default:
+													$link = ' href="' . WEBPATH . '/' . ZENFOLDER . '/' . html_encode($link) . '" 3';
+													break;
+											}
 										}
-
 										if (in_array($subkey, $alert)) {
 											$subclass = ' class="' . $subclass . 'nav-alert"';
 										} else if ($subclass) {
@@ -467,7 +468,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 										}
 										?>
 										<li>
-											<a href="<?php echo html_encode($link); ?>"<?php echo $subclass; ?>><?php echo html_encodeTagged(ucfirst($subkey)); ?></a>
+											<a<?php echo $link; ?><?php echo $subclass; ?>>
+												<?php echo html_encodeTagged(ucfirst($subkey)); ?>
+											</a>
 										</li>
 										<?php
 									} // foreach end
@@ -5207,30 +5210,42 @@ function getLogTabs() {
  */
 function getPluginTabs() {
 	/* subpackages */
-	$_subpackages = array(
-			'admin' => gettext('administration'),
+	$pluginCategoryNames = array(
+			'admin' => gettext('admin support'),
 			'development' => gettext('development'),
 			'example' => gettext('example'),
 			'mail' => gettext('mail'),
 			'media' => gettext('media'),
-			'seo' => gettext('seo'),
-			'theme' => gettext('theme support'),
-			'users' => gettext('users'),
+			'misc' => gettext('misc'),
 			'netPhotoGraphics' => gettext('netPhotoGraphics'),
-			'misc' => gettext('misc')
+			'theme' => gettext('theme support'),
+			'tools' => gettext('tools'),
+			'users' => gettext('users')
 	);
 	$classXlate = array(
 			'all' => gettext('all'),
 			'thirdparty' => gettext('<em>3rd party</em>'),
-			'enabled' => gettext('<em>enabled</em>'),
-			'disabled' => gettext('<em>disabled</em>'),
-			'deprecated' => gettext('<em>deprecated</em>'),
-			'class_plugin' => gettext('<em>class</em>'),
-			'feature_plugin' => gettext('<em>feature</em>'),
-			'admin_plugin' => gettext('<em>admin</em>'),
-			'theme_plugin' => gettext('<em>theme</em>')
+			'enabled' => gettext('<em>Enabled</em>'),
+			'disabled' => gettext('<em>Disabled</em>'),
+			'deprecated' => gettext('<em>Deprecated</em>'),
+			'class_plugin' => gettext('<em>Class</em>'),
+			'feature_plugin' => gettext('<em>Feature</em>'),
+			'admin_plugin' => gettext('<em>Admin</em>'),
+			'theme_plugin' => gettext('<em>Theme</em>')
 	);
-	$classXlate = array_merge($classXlate, $_subpackages);
+
+	$classLinks = array(
+			'enabled' => 'admin-plugins.php?page=plugins&tab=enabled',
+			'disabled' => 'admin-plugins.php?page=plugins&tab=disabled',
+			'deprecated' => 'admin-plugins.php?page=plugins&tab=deprecated',
+			'thirdparty' => 'admin-plugins.php?page=plugins&tab=thirdparty',
+			'class_plugin' => 'admin-plugins.php?page=plugins&tab=class_plugin',
+			'feature_plugin' => 'admin-plugins.php?page=plugins&tab=feature_plugin',
+			'admin_plugin' => 'admin-plugins.php?page=plugins&tab=admin_plugin',
+			'theme_plugin' => 'admin-plugins.php?page=plugins&tab=theme_plugin'
+	);
+
+	$Xlate = array_merge($classXlate, $pluginCategoryNames);
 
 	if (isset($_GET['tab'])) {
 		$default = sanitize($_GET['tab']);
@@ -5239,9 +5254,9 @@ function getPluginTabs() {
 	}
 	$plugin_lc = array();
 	$paths = getPluginFiles('*.php');
-	zp_apply_filter('plugin_tabs', $classXlate);
+	zp_apply_filter('plugin_tabs', $Xlate);
 
-	$class = $feature = $admin = $theme = $details = $active = $inactive = $disabled = $deprecated = $classes = $member = $thirdparty = array();
+	$class = $feature = $admin = $theme = $details = $enabled = $disabled = $deprecated = $classes = $member = $thirdparty = array();
 	foreach ($paths as $plugin => $path) {
 		if (!isset($plugin_lc[strtolower($plugin)])) {
 			$plugin_lc[strtolower($plugin)] = true;
@@ -5290,109 +5305,70 @@ function getPluginTabs() {
 			}
 			$details[$plugin]['plugin_is_filter'] = $plugin_is_filter;
 			if ($plugin_is_filter & THEME_PLUGIN) {
-				$theme[$plugin] = $path;
+				$theme_plugin[$plugin] = $path;
 			}
 			if ($plugin_is_filter & ADMIN_PLUGIN) {
-				$admin[$plugin] = $path;
+				$admin_plugin[$plugin] = $path;
 			}
 			if ($plugin_is_filter & CLASS_PLUGIN) {
-				$class[$plugin] = $path;
+				$class_plugin[$plugin] = $path;
 			}
 			if ($plugin_is_filter & FEATURE_PLUGIN) {
-				$feature[$plugin] = $path;
+				$feature_plugin[$plugin] = $path;
 			}
 			unset($plugin_is_filter);
 
 			$classes[$key][] = $plugin;
 			if (extensionEnabled($plugin)) {
-				$active[$plugin] = $path;
+				$enabled[$plugin] = $path;
 			} else {
-				$inactive[$plugin] = $path;
+				$disabled[$plugin] = $path;
 			}
 			$tpp = 0;
 			if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
 				$tpp = 2;
 				$thirdparty[$plugin] = $path;
-				if ($str = isolate('@category', $p)) {
-					preg_match('~@category\s+([^\/|^\s]*)~', $str, $matches);
-					if (isset($matches[1]) || $matches[1] == 'package') {
-						$tpp = 1;
-						unset($thirdparty[$plugin]);
-					}
+				if (distributedPlugin($plugin)) {
+					$tpp = 1;
+					unset($thirdparty[$plugin]);
 				}
 			}
 			$details[$plugin]['thridparty'] = $tpp;
 
-			if (array_key_exists($key, $classXlate)) {
-				$local = $classXlate[$key];
+			if (array_key_exists($key, $Xlate)) {
+				$local = $Xlate[$key];
 			} else {
-				$local = $classXlate[$key] = $key;
+				$local = $Xlate[$key] = $key;
 			}
 			$member[$plugin] = $local;
 		}
 	}
 
-	if (!empty($thirdparty))
-		$tabs[$classXlate['thirdparty']] = 'admin-plugins.php?page=plugins&tab=thirdparty';
-	if (!empty($active))
-		$tabs[$classXlate['enabled']] = 'admin-plugins.php?page=plugins&tab=enabled';
-	if (!empty($inactive))
-		$tabs[$classXlate['disabled']] = 'admin-plugins.php?page=plugins&tab=disabled';
-	if (!empty($deprecated))
-		$tabs[$classXlate['deprecated']] = 'admin-plugins.php?page=plugins&tab=deprecated';
-	if (!empty($class))
-		$tabs[$classXlate['class_plugin']] = 'admin-plugins.php?page=plugins&tab=class_plugin';
-	if (!empty($feature))
-		$tabs[$classXlate['feature_plugin']] = 'admin-plugins.php?page=plugins&tab=feature_plugin';
-	if (!empty($admin))
-		$tabs[$classXlate['admin_plugin']] = 'admin-plugins.php?page=plugins&tab=admin_plugin';
-	if (!empty($theme))
-		$tabs[$classXlate['theme_plugin']] = 'admin-plugins.php?page=plugins&tab=theme_plugin';
-	if (!empty($deprecated))
-		$tabs[$classXlate['deprecated']] = 'admin-plugins.php?page=plugins&tab=deprecated';
-
-	switch ($default) {
-		case 'all':
-			$currentlist = array_keys($paths);
-			break;
-		case 'enabled':
-			$currentlist = array_keys($active);
-			break;
-		case 'disabled':
-			$currentlist = array_keys($inactive);
-			break;
-		case 'class_plugin':
-			$currentlist = array_keys($class);
-			break;
-		case 'feature_plugin':
-			$currentlist = array_keys($feature);
-			break;
-		case 'admin_plugin':
-			$currentlist = array_keys($admin);
-			break;
-		case 'theme_plugin':
-			$currentlist = array_keys($theme);
-			break;
-		case 'deprecated':
-			$currentlist = array_keys($deprecated);
-			break;
-		case'thirdparty':
-			$currentlist = array_keys($thirdparty);
-			break;
-		default:
-			$currentlist = array();
-			break;
+	$currentlist = array_keys($paths);
+	$hr = false;
+	foreach ($classLinks as $class => $list) {
+		if (!empty($$class)) {
+			$hr = true;
+			$tabs[$Xlate[$class]] = 'admin-plugins.php?page=plugins&tab=' . $class;
+			if ($class == $default) {
+				$currentlist = array_keys($$class);
+			}
+		}
+	}
+	if ($hr) {
+		$tabs['<hr />'] = '';
 	}
 
-
+	$categorys = array();
 	foreach ($classes as $class => $list) {
-		$tabs[$classXlate[$class]] = 'admin-plugins.php?page=plugins&tab=' . $class;
+		$categorys[$Xlate[$class]] = 'admin-plugins.php?page=plugins&tab=' . $class;
 		if ($class == $default) {
 			$currentlist = $list;
 		}
 	}
+	ksort($categorys, SORT_NATURAL);
 
-	return array($tabs, $default, $currentlist, $paths, $member, $classXlate, $details);
+	return array(array_merge($tabs, $categorys), $default, $currentlist, $paths, $member, $Xlate, $details);
 }
 
 function getAdminThumb($image, $size) {

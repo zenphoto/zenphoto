@@ -881,17 +881,11 @@ $plugins = array_keys($plugins);
 		$class = 0;
 		$path = getPlugin($extension . '.php');
 		if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
-			$pluginStream = file_get_contents($path);
-			if ($str = isolate('@category', $pluginStream)) {
-				preg_match('~@category\s+([^\/^\s]*)~', $str, $matches);
-				if (!isset($matches[1]) || $matches[1] != 'package') {
-					$deprecate = true;
-					$class = 1;
-				} else {
-					unset($plugins[$key]);
-				}
+			if (distributedPlugin($plugin)) {
+				unset($plugins[$key]);
 			} else {
 				$deprecate = true;
+				$class = 1;
 			}
 		} else {
 			unset($plugins[$key]);
@@ -900,9 +894,9 @@ $plugins = array_keys($plugins);
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>&class=<?php echo $class . $fullLog; ?>&from=<?php echo $from; ?>&unique=<?php echo time(); ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
 		</span>
-		<?php
-	}
-	?>
+	<?php
+}
+?>
 </p>
 
 <?php

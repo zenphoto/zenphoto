@@ -259,7 +259,9 @@ if (@$_zp_loggedin) {
 			list($plugin_subtabs, $plugin_default, $pluginlist, $plugin_paths, $plugin_member, $classXlate, $pluginDetails) = getPluginTabs();
 			$zenphoto_tabs['plugins'] = array('text' => gettext("plugins"),
 					'link' => WEBPATH . "/" . ZENFOLDER . '/admin-plugins.php',
-					'subtabs' => $plugin_subtabs);
+					'subtabs' => $plugin_subtabs,
+					'ordered' => true,
+			);
 			zp_register_filter('admin_tabs', 'backup_subtab', -200);
 			$zenphoto_tabs['overview']['subtabs'][gettext('Installation information')] = '/' . ZENFOLDER . '/utilities/installation_analysis.php?tab=installstats';
 		}

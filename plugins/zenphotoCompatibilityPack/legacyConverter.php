@@ -162,18 +162,7 @@ echo "\n" . '<div id="container">';
 	$paths = getPluginFiles('*.php');
 	foreach ($paths as $plugin => $path) {
 		if (strpos($path, USER_PLUGIN_FOLDER) !== false) {
-			$p = file_get_contents($path);
-			$i = strpos($p, '* @category');
-			$foreign = true;
-			if (($key = $i) !== false) {
-				$key = strtolower(trim(substr($p, $i + 11, strpos($p, "\n", $i) - $i - 11)));
-				$keys = explode('/', $key);
-				$key = $keys[0];
-				if ($key == 'package' || $key == 'developerTools') {
-					$foreign = false;
-				}
-			}
-			if ($foreign) {
+			if (!distributedPlugin($plugin)) {
 				$name = stripSuffix(basename($path));
 				$plugins[] = $name;
 				if (checkIfProcessed('plugin', $name)) {

@@ -5,9 +5,8 @@
  * follow the rule.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage example
- * @category package
+ * @package plugins/galleryToken
+ * @pluginCategory example
  */
 
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
