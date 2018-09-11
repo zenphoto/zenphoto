@@ -8,10 +8,10 @@ if (function_exists('printContactForm')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<?php zp_apply_filter('theme_head'); ?>
-			
-			
-			 
+			<?php
+			zp_apply_filter('theme_head');
+			printHeadTitle();
+			?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		</head>
 		<body>
@@ -62,4 +62,4 @@ if (function_exists('printContactForm')) {
 } else {
 	include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
 }
-	?>
+?>
