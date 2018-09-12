@@ -156,7 +156,7 @@ class openStreetMapOptions {
 						'type' => OPTION_TYPE_CHECKBOX_UL,
 						'order' => 14.4,
 						'checkboxes' => $layerslist,
-						'desc' => gettext("Choose layers list to show in layers controls. No need to select the default layer again, otherwise it will be deduplicated.")),
+						'desc' => gettext("Choose layers list to show in layers controls. No need to select the default layer again, otherwise it will be duplicated.")),
 				gettext('Layers controls position') => array(
 						'key' => 'osmap_layerscontrolpos',
 						'type' => OPTION_TYPE_SELECTOR,
