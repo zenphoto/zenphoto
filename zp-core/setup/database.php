@@ -162,27 +162,28 @@ foreach ($metadataProviders as $source => $handler) {
 			}
 		}
 
-		$s = $exifvar[EXIF_FIELD_SIZE];
+		$size = $exifvar[EXIF_FIELD_SIZE];
 		if ($exifvar[EXIF_FIELD_ENABLED] && $enabled) {
 			switch ($exifvar[EXIF_FIELD_TYPE]) {
+				default:
 				case 'string':
-					$s = "text";
+					$type = "text";
 					break;
 				case 'number':
-					$s = 'tinytext';
+					$type = 'tinytext';
 					break;
 				case 'time':
-					$s = 'datetime';
+					$type = 'datetime';
 					break;
 			}
 			$field = array(
 					'Field' => $key,
-					'Type' => $s,
+					'Type' => $type,
 					'Null' => 'YES',
 					'Default' => null,
 					'Comment' => 'optional_metadata'
 			);
-			if ($s != 'varchar(0)') {
+			if ($size > 0) {
 				$template['images']['fields'][$key] = $field;
 			}
 		} else {
