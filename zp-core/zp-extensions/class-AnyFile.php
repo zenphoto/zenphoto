@@ -73,7 +73,6 @@ class AnyFile_Options {
 }
 
 function get_AnyFile_suffixes() {
-	$mysetoptions = array();
 	return getSerializedArray(getOption('AnyFileSuffixList'));
 }
 
