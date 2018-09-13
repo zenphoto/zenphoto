@@ -64,7 +64,7 @@ class openStreetMapOptions {
 	}
 
 	function getOptionsSupported() {
-		$providers = array_combine(openStreetMap::getTitleProviders(), openStreetMap::getTitleProviders());
+		$providers = array_combine(openStreetMap::getTileProviders(), openStreetMap::getTileProviders());
 		$layerslist = openStreetMap::getLayersList();
 
 		$options = array(
@@ -419,7 +419,7 @@ class openStreetMap {
 		global $_zp_gallery_page, $_zp_current_album, $_zp_current_image;
 
 		$this->showalbummarkers = getOption('osmap_showalbummarkers');
-		$this->tileproviders = self::getTitleProviders();
+		$this->tileproviders = self::getTileProviders();
 		if (is_object($obj)) {
 			if (isImageClass($obj)) {
 				$this->obj = $obj;
@@ -885,7 +885,7 @@ class openStreetMap {
 	 * @return array
 	 */
 	static function getLayersList() {
-		$providers = openStreetMap::getTitleProviders();
+		$providers = openStreetMap::getTileProviders();
 		foreach ($providers as $provider) {
 			// requested because option names may not contain '.'
 			$provider_dbname = 'osmap_layer_' . str_replace(".", "_", $provider);
@@ -913,7 +913,7 @@ class openStreetMap {
 	 * 
 	 * @return array
 	 */
-	static function getTitleProviders() {
+	static function getTileProviders() {
 		return array(
 				'OpenStreetMap.Mapnik',
 				'OpenStreetMap.BlackAndWhite',
