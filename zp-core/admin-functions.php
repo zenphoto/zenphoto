@@ -1051,7 +1051,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										}
 									}
 									if ($v) {
-										$cvarray[] = $checkbox;
+										$cvarray[$checkbox] = $checkbox;
 									} else {
 										$all = false;
 									}
