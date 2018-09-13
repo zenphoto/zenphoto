@@ -976,6 +976,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<div class="checkbox_array">
 									<?php
 									foreach ($row['checkboxes'] as $display => $checkbox) {
+										if (is_numeric($display)) {
+											$display = $checkbox;
+										}
 										if ($theme) {
 											$v = getThemeOption($checkbox, $album, $theme);
 										} else {
@@ -1014,7 +1017,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<?php
 									$setOptions = getSerializedArray($v);
 									foreach ($row['checkboxes'] as $display => $checkbox) {
-
+										if (is_numeric($display)) {
+											$display = $checkbox;
+										}
 										$display = str_replace(' ', '&nbsp;', $display);
 										?>
 										<label class="checkboxlabel">
@@ -1036,6 +1041,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 								$all = true;
 								$rest = $cvarray = array();
 								foreach ($row['checkboxes'] as $display => $checkbox) {
+									if (is_numeric($display)) {
+										$display = $checkbox;
+									}
 									?>
 									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
 									<?php
@@ -1091,7 +1099,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<ul class="customchecklist">
 									<?php
 									foreach ($row['checkboxes'] as $display => $checkbox) {
-
+										if (is_numeric($display)) {
+											$display = $checkbox;
+										}
 										$display = str_replace(' ', '&nbsp;', $display);
 										?>
 										<li>
@@ -1359,7 +1369,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$cv = array_flip($currentValue);
 		foreach ($list as $key => $item) {
 			$listitem = preg_replace('~[\[\]]~', '_', $prefix) . postIndexEncode($item);
-			if ($localize) {
+			if ($localize && !is_numeric($key)) {
 				$display = $key;
 			} else {
 				$display = $item;
