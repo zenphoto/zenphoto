@@ -5363,8 +5363,8 @@ function getPluginTabs() {
 		}
 	}
 	if ($hr) {
-		$tabs['<hr /><span class="navigation_small_text">&nbsp;&nbsp;' . gettext('CATEGORIES') . '</span>'] = '';
-		$tabs = array_merge(array('<span class="navigation_small_text">&nbsp;&nbsp;' . gettext('CLASSES') . '</span>' => ''), $tabs);
+		$tabs['<hr /><span class="navigation_small_text">&nbsp;&nbsp;' . gettext('CATEGORY') . '</span>'] = '';
+		$tabs = array_merge(array('<span class="navigation_small_text">&nbsp;&nbsp;' . gettext('CLASS') . '</span>' => ''), $tabs);
 	}
 
 	$categorys = array();
