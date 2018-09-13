@@ -460,19 +460,26 @@ function printAdminHeader($tab, $subtab = NULL) {
 													$link = ' href="' . WEBPATH . '/' . ZENFOLDER . '/' . html_encode($link) . '" 3';
 													break;
 											}
+
+											if (in_array($subkey, $alert)) {
+												$subclass = ' class="' . $subclass . 'nav-alert"';
+											} else if ($subclass) {
+												$subclass = ' class="' . trim($subclass) . '"';
+											}
+											?>
+											<li>
+												<a<?php echo $link; ?><?php echo $subclass; ?>>
+													<?php echo html_encodeTagged(ucfirst($subkey)); ?>
+												</a>
+											</li>
+											<?php
+										} else {
+											?>
+											<li>
+												<?php echo $subkey; ?>
+											</li>
+											<?php
 										}
-										if (in_array($subkey, $alert)) {
-											$subclass = ' class="' . $subclass . 'nav-alert"';
-										} else if ($subclass) {
-											$subclass = ' class="' . trim($subclass) . '"';
-										}
-										?>
-										<li>
-											<a<?php echo $link; ?><?php echo $subclass; ?>>
-												<?php echo html_encodeTagged(ucfirst($subkey)); ?>
-											</a>
-										</li>
-										<?php
 									} // foreach end
 									?>
 								</ul>
@@ -5356,7 +5363,8 @@ function getPluginTabs() {
 		}
 	}
 	if ($hr) {
-		$tabs['<hr />'] = '';
+		$tabs['<hr /><span class="navigation_small_text">&nbsp;&nbsp;' . gettext('CATEGORIES') . '</span>'] = '';
+		$tabs = array_merge(array('<span class="navigation_small_text">&nbsp;&nbsp;' . gettext('CLASSES') . '</span>' => ''), $tabs);
 	}
 
 	$categorys = array();

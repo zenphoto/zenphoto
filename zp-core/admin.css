@@ -352,20 +352,21 @@ code {
 	background-color: lightblue !important;
 }
 
+.navigation ul li.has-sub > ul,
 .navigation > ul > li a:hover,
 .navigation > ul > li:hover a {
-	background: #e6e6e6 !important;
+	background-color: #e6e6e6 !important;
 	color: black;
 }
 
 .navigation ul ul a:hover,
 .navigation ul ul li:hover > a {
-	background: lightskyblue !important;
+	background-color: lightskyblue !important;
 	color: black;
 }
 
 .navigation a.active:hover {
-	background: lightskyblue !important;
+	background-color: lightskyblue !important;
 	color: black;
 }
 
@@ -419,6 +420,11 @@ code {
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
+}
+
+.navigation_small_text {
+	font-size: 8pt;
+	color: #999;
 }
 
 /* Messages
@@ -2903,3 +2909,4 @@ form.tinyDirty input[type=submit]:active {
 .deprecated {
 	text-decoration: line-through;
 }
+
