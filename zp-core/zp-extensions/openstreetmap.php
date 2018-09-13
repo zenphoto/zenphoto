@@ -236,6 +236,7 @@ class openStreetMapOptions {
 			window.addEventListener('load', function () {
 				$('#<?php echo $id; ?>').prop('checked', 'checked');					//show it as selected
 				$('#<?php echo $id; ?>').prop('disabled', 'disabled');				// but do not allow user to deselect it
+				$('#<?php echo $id; ?>_element').parent().prepend($('#<?php echo $id; ?>_element'));	// move it to top of UL
 				$('[name="_ZP_CUSTOM_chkbox-<?php echo $id; ?>"]').remove();	// disable changing the DB setting of this option
 			});
 		</script>
@@ -776,17 +777,17 @@ class openStreetMap {
 			?>
 			<div id="osm_map<?php echo $this->mapnumber; ?>"<?php echo $class; ?> style="width:<?php echo $this->width; ?>; height:<?php echo $this->height; ?>;"></div>
 			<script>
-			var geodata = new Array();
+				var geodata = new Array();
 			<?php echo $geodataJS; ?>
-			var map = L.map('osm_map<?php echo $this->mapnumber; ?>', {
-				center: [<?php echo $this->center[0]; ?>,<?php echo $this->center[1]; ?>],
-				zoom: <?php echo $this->zoom; ?>, //option
-				zoomControl: false, // disable so we can position it below
-				minZoom: <?php echo $this->minzoom; ?>,
+				var map = L.map('osm_map<?php echo $this->mapnumber; ?>', {
+					center: [<?php echo $this->center[0]; ?>,<?php echo $this->center[1]; ?>],
+					zoom: <?php echo $this->zoom; ?>, //option
+					zoomControl: false, // disable so we can position it below
+					minZoom: <?php echo $this->minzoom; ?>,
 			<?php if (!empty($this->maxzoom)) { ?>
-					maxZoom: <?php echo $this->maxzoom; ?>
+						maxZoom: <?php echo $this->maxzoom; ?>
 			<?php } ?>
-			});
+				});
 			<?php
 			if (!$this->showlayerscontrol) {
 				$this->layer = $this->defaultlayer;
@@ -807,74 +808,74 @@ class openStreetMap {
 				}
 				$this->layer = $this->defaultlayer;
 				?>
-				var defaultLayer = <?php echo $this->getTileLayerJS(); ?>.addTo(map);
-				var baseLayers = {
+					var defaultLayer = <?php echo $this->getTileLayerJS(); ?>.addTo(map);
+					var baseLayers = {
 				<?php echo $baselayers; ?>
-				};
-				L.control.layers(baseLayers, null, {position: '<?php echo $this->layerscontrolpos; ?>'}).addTo(map);
+					};
+					L.control.layers(baseLayers, null, {position: '<?php echo $this->layerscontrolpos; ?>'}).addTo(map);
 				<?php
 			}
 			if ($this->mode == 'cluster' && $this->fitbounds) {
 				?>
-				map.fitBounds([<?php echo $this->fitbounds; ?>]);
+					map.fitBounds([<?php echo $this->fitbounds; ?>]);
 				<?php
 			}
 			if ($this->showminimap) {
 				?>
-				var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-				var osm2 = new L.TileLayer(osmUrl);
-				var miniMap = new L.Control.MiniMap(osm2, {
-					toggleDisplay: true,
-					zoomLevelOffset: <?php echo $this->minimap_zoom; ?>,
-					width: <?php echo $this->minimap_width; ?>,
-					height: <?php echo $this->minimap_height; ?>
-				}).addTo(map);
+					var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+					var osm2 = new L.TileLayer(osmUrl);
+					var miniMap = new L.Control.MiniMap(osm2, {
+						toggleDisplay: true,
+						zoomLevelOffset: <?php echo $this->minimap_zoom; ?>,
+						width: <?php echo $this->minimap_width; ?>,
+						height: <?php echo $this->minimap_height; ?>
+					}).addTo(map);
 				<?php
 			}
 			if ($this->showscale) {
 				?>
-				L.control.scale().addTo(map);
+					L.control.scale().addTo(map);
 			<?php } ?>
 
-			L.control.zoom({position: '<?php echo $this->zoomcontrolpos; ?>'}).addTo(map);
+				L.control.zoom({position: '<?php echo $this->zoomcontrolpos; ?>'}).addTo(map);
 			<?php if ($this->showcursorpos) { ?>
-				L.control.mousePosition().addTo(map);
+					L.control.mousePosition().addTo(map);
 				<?php
 			}
 			if ($this->showmarkers) {
 				switch ($this->mode) {
 					case 'single':
 						?>
-						var marker = L.marker([geodata[0]['lat'], geodata[0]['long']]).addTo(map); // from image
+							var marker = L.marker([geodata[0]['lat'], geodata[0]['long']]).addTo(map); // from image
 						<?php
 						break;
 					case 'single-cluster':
 					case 'cluster':
 						?>
-						var markers_cluster = new L.MarkerClusterGroup({
-							maxClusterRadius: <?php echo $this->clusterradius; ?>,
-							showCoverageOnHover: <?php echo $this->cluster_showcoverage_on_hover; ?>
-						}); //radius > Option
-						$.each(geodata, function (index, value) {
-							var text = '';
+							var markers_cluster = new L.MarkerClusterGroup({
+								maxClusterRadius: <?php echo $this->clusterradius; ?>,
+								showCoverageOnHover: <?php echo $this->cluster_showcoverage_on_hover; ?>
+							}); //radius > Option
+							$.each(geodata, function (index, value) {
+								var text = '';
 						<?php if ($this->markerpopup) { ?>
 							<?php if ($this->markerpopup_title) { ?>
-									text = value.title;
+										text = value.title;
 							<?php } ?>
 							<?php if ($this->markerpopup_thumb) { ?>
-									text += value.thumb;
+										text += value.thumb;
 							<?php } ?>
 							<?php if ($this->markerpopup_desc) { ?>
-									text += value.desc;
+										text += value.desc;
 							<?php } ?>
 						<?php } ?>
-							if (text === '') {
-								markers_cluster.addLayer(L.marker([value.lat, value.long]));
-							} else {
-								markers_cluster.addLayer(L.marker([value.lat, value.long]).bindPopup(text));
-							}
-						});
-						map.addLayer(markers_cluster);
+								if (text === '') {
+									markers_cluster.addLayer(L.marker([value.lat, value.long]));
+								} else {
+									markers_cluster.addLayer(L.marker([value.lat, value.long]).bindPopup(text));
+								}
+							});
+							map.addLayer(markers_cluster);
 						<?php
 						break;
 				}
