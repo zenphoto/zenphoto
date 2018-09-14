@@ -975,33 +975,37 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<td class="option_value">
 								<div class="checkbox_array">
 									<?php
-									foreach ($row['checkboxes'] as $display => $checkbox) {
-										if (is_numeric($display)) {
-											$display = $checkbox;
-										}
-										if ($theme) {
-											$v = getThemeOption($checkbox, $album, $theme);
-										} else {
-											$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
-											$db = query_single_row($sql);
-											if ($db) {
-												$v = $db['value'];
+									foreach (array(1, 0) as $checked) {
+										foreach ($row['checkboxes'] as $display => $checkbox) {
+											if ($theme) {
+												$v = getThemeOption($checkbox, $album, $theme);
 											} else {
-												$v = 0;
+												$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
+												$db = query_single_row($sql);
+												if ($db) {
+													$v = (int) $db['value'];
+												} else {
+													$v = 0;
+												}
+											}
+											if ($v === $checked) {
+												if (is_numeric($display)) {
+													$display = $checkbox;
+												}
+												$display = str_replace(' ', '&nbsp;', $display);
+												?>
+												<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
+												<label class="checkboxlabel">
+													<?php if ($behind) echo($display); ?>
+													<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php
+													checked('1', $v);
+													echo $disabled;
+													?> />
+																 <?php if (!$behind) echo($display); ?>
+												</label>
+												<?php
 											}
 										}
-										$display = str_replace(' ', '&nbsp;', $display);
-										?>
-										<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
-										<label class="checkboxlabel">
-											<?php if ($behind) echo($display); ?>
-											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php
-											checked('1', $v);
-											echo $disabled;
-											?> />
-														 <?php if (!$behind) echo($display); ?>
-										</label>
-										<?php
 									}
 									?>
 								</div>
@@ -1016,18 +1020,22 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
 									<?php
 									$setOptions = getSerializedArray($v);
-									foreach ($row['checkboxes'] as $display => $checkbox) {
-										if (is_numeric($display)) {
-											$display = $checkbox;
+									foreach (array(true, false) as $checked) {
+										foreach ($row['checkboxes'] as $display => $checkbox) {
+											if (in_array($checkbox, $setOptions) === $checked) {
+												if (is_numeric($display)) {
+													$display = $checkbox;
+												}
+												$display = str_replace(' ', '&nbsp;', $display);
+												?>
+												<label class="checkboxlabel">
+													<?php if ($behind) echo($display); ?>
+													<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if ($checked) echo ' checked="checked"' . $disabled; ?> />
+													<?php if (!$behind) echo($display); ?>
+												</label>
+												<?php
+											}
 										}
-										$display = str_replace(' ', '&nbsp;', $display);
-										?>
-										<label class="checkboxlabel">
-											<?php if ($behind) echo($display); ?>
-											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo ' checked="checked"' . $disabled; ?> />
-											<?php if (!$behind) echo($display); ?>
-										</label>
-										<?php
 									}
 									?>
 								</div>
