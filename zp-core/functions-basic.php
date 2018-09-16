@@ -297,6 +297,7 @@ define('UTF8_IMAGE_URI', getOption('UTF8_image_URI'));
 define('MEMBERS_ONLY_COMMENTS', getOption('comment_form_members_only'));
 
 define('HASH_SEED', getOption('extra_auth_hash_text'));
+define("CACHE_HASH_LENGTH", strlen(sha1(HASH_SEED))); //Zenphoto 1.5.1 moved from cacheManager/functions.php 
 define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
 
 define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));
@@ -785,7 +786,6 @@ function getImageParameters($args, $album = NULL) {
  */
 function getImageProcessorURI($args, $album, $image) {
 	list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
-	$args[8] = NULL; // not used by image processor
 	$uri = WEBPATH . '/' . ZENFOLDER . '/i.php?a=' . $album;
 	if (is_array($image)) {
 		$uri .= '&i=' . $image['name'] . '&z=' . ($z = $image['source']);
@@ -932,6 +932,63 @@ function getImageArgs($set) {
 	}
 
 	return $args;
+}
+
+/**
+ * Extracts the image processor URI from an existing cache filename
+ * 
+ * @param string $match
+ * @param array $watermarks
+ * @return array
+ * 
+ * @since Zenphoto 1.5.1 Moved from cacheManager/functions.php
+ */
+function getImageProcessorURIFromCacheName($match, $watermarks) {
+	$set = array();
+	$done = false;
+	$params = explode('_', stripSuffix($match));
+	while (!$done && count($params) > 1) {
+		$check = array_pop($params);
+		if (is_numeric($check)) {
+			$set['s'] = $check;
+			break;
+		}
+		$c = substr($check, 0, 1);
+		if ($c == 'w' || $c == 'h') {
+			if (is_numeric($v = substr($check, 1))) {
+				$set[$c] = (int) $v;
+				continue;
+			}
+		}
+		if ($c == 'c') {
+			$c = substr($check, 0, 2);
+			if (is_numeric($v = substr($check, 2))) {
+				$set[$c] = (int) $v;
+				continue;
+			}
+		}
+		if (!isset($set['w']) && !isset($set['h']) && !isset($set['s'])) {
+			if (!isset($set['wm']) && in_array($check, $watermarks)) {
+				$set['wmk'] = $check;
+			} else if ($check == 'thumb') {
+				$set['t'] = true;
+			} else {
+				$set['effects'] = $check;
+			}
+		} else {
+			array_push($params, $check);
+			break;
+		}
+	}
+	if (!isset($set['wmk'])) {
+		$set['wmk'] = '!';
+	}
+	$image = preg_replace('~.*/' . CACHEFOLDER . '/~', '', implode('_', $params)) . '.' . getSuffix($match);
+	//	strip out the obfustication
+	$album = dirname($image);
+	$image = preg_replace('~^[0-9a-f]{' . CACHE_HASH_LENGTH . '}\.~', '', basename($image));
+	$image = $album . '/' . $image;
+	return array($image, getImageArgs($set));
 }
 
 /**
@@ -1643,6 +1700,41 @@ function addMissingDefaultRewriteTokens() {
 			$_zp_conf_vars['special_pages'][$token] = getDefaultRewriteTokens($token);
 		}
 	}
+}
+
+/**
+ * Sends a cURL request to i.php to generate the image requested without printing it.
+ * Returns the uri to the cache version of the image on success or false. 
+ * It also returns false if cURL is not available.
+ * 
+ * @param string $imageuri The image processor uri to this image
+ * @return mixed
+ */
+function generateImageCacheFile($imageuri) {
+	$uri = $imageuri;
+	if (strpos($imageuri, SERVER_HTTP_HOST) === false) {
+		$uri = SERVER_HTTP_HOST . pathurlencode($uri) . '&returnmode';
+	}
+	if (function_exists('curl_init')) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $uri);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 2000);
+		$curl_exec = curl_exec($ch);
+		if ($curl_exec === false) {
+			debuglog(gettext('ERROR: Image generation via cURL failed: ') . curl_error($ch));
+			return false;
+		} else if (empty(trim($curl_exec))) {
+			debuglog(gettext('ERROR: Image generation returned no image url.'));
+			return false;
+		} else {
+			// this should be the cache image uri if all worked out…
+			return $curl_exec;
+		}
+		curl_close($ch);
+	}
+	debuglog(gettext('ERROR: generateImage() does not work because the PHP extension cURL is not available.'));
+	return false;
 }
 
 /**

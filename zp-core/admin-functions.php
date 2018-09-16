@@ -473,12 +473,24 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		return $default;
 	}
-
+	/**
+	 * Used for checkbox and radiobox form elements to compare the $checked value with the $current.
+	 * Echos the attribute `checked="checked`
+	 * @param mixed $checked
+	 * @param mixed $current
+	 */
 	function checked($checked, $current) {
 		if ($checked == $current)
 			echo ' checked="checked"';
 	}
-
+	
+	/**
+	 * Populatest $list with an one dimensional list with album name and title of all albums or the subalbums of a specific album
+	 * @global obj $_zp_gallery
+	 * @param array $list The array to fill with the album list
+	 * @param obj $curAlbum Optional object of the album to start with
+	 * @param int $rights Rights constant to filter album access by.
+	 */
 	function genAlbumList(&$list, $curAlbum = NULL, $rights = UPLOAD_RIGHTS) {
 		global $_zp_gallery;
 		if (is_null($curAlbum)) {

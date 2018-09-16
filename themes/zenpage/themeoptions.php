@@ -39,11 +39,11 @@ class ThemeOptions {
 			setThemeOption('custom_index_page', '', NULL, 'zenpage', false);
 		}
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes($me);		
+			cacheManager::deleteCacheSizes($me);		
 			$img_wmk = getOption('fullimage_watermark') ? getOption('fullimage_watermark') : null;
-			$img_effect = getThemeOption('image_gray') ? 'gray' : null;
-			cacheManager::addThemeCacheSize($me, NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, $img_wmk, $img_effect, true);
-			cacheManager::addThemeDefaultThumbSize($me);
+			$img_effect = getOption('image_gray') ? 'gray' : null;
+			cacheManager::addCacheSize($me, NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, $img_wmk, $img_effect, true);
+			cacheManager::addDefaultThumbSize($me);
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(

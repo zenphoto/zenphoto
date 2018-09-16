@@ -38,8 +38,8 @@ class bxslider {
 			setOptionDefault('bxslider_fullimagelink', '');
 			setOptionDefault('bxslider_mode', 'horizontal');
 			if (class_exists('cacheManager')) {
-				cacheManager::deleteThemeCacheSizes('bxslider_thumb_nav');
-				cacheManager::addThemeCacheSize('bxslider_thumb_nav', NULL, getOption('bxslider_width'), getOption('bxslider_height'), getOption('bxslider_cropw'), getOption('bxslider_croph'), NULL, NULL, true, NULL, NULL, NULL);
+				cacheManager::deleteCacheSizes('bxslider_thumb_nav');
+				cacheManager::addCacheSize('bxslider_thumb_nav', NULL, getOption('bxslider_width'), getOption('bxslider_height'), getOption('bxslider_cropw'), getOption('bxslider_croph'), NULL, NULL, true, NULL, NULL, NULL);
 			}
 		}
 	}

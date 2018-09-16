@@ -8,7 +8,6 @@
  * If it is not present, no theme options are displayed.
  *
  */
-
 class ThemeOptions {
 
 	function __construct() {
@@ -28,11 +27,11 @@ class ThemeOptions {
 		setThemeOptionDefault('images_per_page', 24);
 		setThemeOptionDefault('images_per_row', 6);
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('zpMobile');
-			cacheManager::addThemeDefaultSizedImageSize('zpMobile');
+			cacheManager::deleteCacheSizes('zpMobile');
+			cacheManager::addDefaultSizedImageSize('zpMobile');
 			$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
 			$thumb_effect = getThemeOption('thumb_gray') ? 'gray' : null;
-			cacheManager::addThemeCacheSize('zpMobile', NULL, 79, 79, 79, 79, NULL, NULL, true, $thumb_wmk, $thumb_effect, NULL);
+			cacheManager::addCacheSize('zpMobile', NULL, 79, 79, 79, 79, NULL, NULL, true, $thumb_wmk, $thumb_effect, NULL);
 		}
 	}
 

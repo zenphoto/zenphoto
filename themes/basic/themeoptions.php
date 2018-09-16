@@ -33,9 +33,10 @@ class ThemeOptions {
 		setOptionDefault('colorbox_' . $me . '_search', 1);
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
-			cacheManager::deleteThemeCacheSizes($me);
-			cacheManager::addThemeDefaultThumbSize($me);
-			cacheManager::addThemeDefaultSizedImageSize($me);
+			cacheManager::deleteCacheSizes($me);
+			cacheManager::addDefaultThumbSize();
+			cacheManager::addDefaultSizedImageSize();
+			cacheManager::addCacheSize($me, 200, 80, 160, 80, 160, null, null, true, false);
 		}
 	}
 

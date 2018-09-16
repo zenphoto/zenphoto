@@ -113,11 +113,6 @@ class jplayer_options {
 			setOptionDefault('jplayer_size', 'jp-video-270p');
 			setOptionDefault('jplayer_skin', 'zenphotolight');
 			setOptionDefault('jplayer_counterparts', 0);
-			/* TODO: what are these sizes?
-			  $player = new jPlayer();
-			  cacheManager::deleteThemeCacheSizes('jplayer');
-			  cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-			 */
 		}
 	}
 
