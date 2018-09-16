@@ -43,10 +43,10 @@ class ThemeOptions {
 			colorbox::registerScripts(array('album', 'favorites', 'image', 'search'));
 		}
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes($me);
-			cacheManager::addThemeCacheSize($me, 595, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize($me, NULL, 180, 80, NUll, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::deleteCacheSizes($me);
+			cacheManager::addCacheSize($me, 595, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
+			cacheManager::addCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::addCacheSize($me, NULL, 180, 80, NUll, NULL, NULL, NULL, true, NULL, NULL, NULL);
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(

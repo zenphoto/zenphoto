@@ -39,9 +39,9 @@ class ThemeOptions {
 
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
-			cacheManager::deleteThemeCacheSizes($me);
-			cacheManager::addThemeCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, NULL, NULL, NULL, NULL, true);
-			cacheManager::addThemeCacheSize($me, getThemeOption('image_size'), NULL, NULL, NULL, NULL, NULL, NULL, false);
+			cacheManager::deleteCacheSizes($me);
+			cacheManager::addCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, NULL, NULL, NULL, NULL, true);
+			cacheManager::addCacheSize($me, getThemeOption('image_size'), NULL, NULL, NULL, NULL, NULL, NULL, false);
 		}
 	}
 

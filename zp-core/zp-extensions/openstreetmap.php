@@ -52,8 +52,8 @@ class openStreetMapOptions {
 		setOptionDefault('osmap_minimap_zoom', -5);
 		setOptionDefault('osmap_cluster_showcoverage_on_hover', 0);
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('openstreetmap');
-			cacheManager::addThemeCacheSize('openstreetmap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::deleteCacheSizes('openstreetmap');
+			cacheManager::addCacheSize('openstreetmap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
 		}
 
 		/* clean up old options */

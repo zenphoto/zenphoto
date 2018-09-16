@@ -2910,3 +2910,6 @@ form.tinyDirty input[type=submit]:active {
 	text-decoration: line-through;
 }
 
+.hidden {
+	display: none;
+}

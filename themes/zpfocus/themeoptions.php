@@ -52,11 +52,11 @@ class ThemeOptions {
 		setOptionDefault('jcarousel_zpfocus_image', 1);
 
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('zpfocus');
-			cacheManager::addThemeCacheSize('zpfocus', null, 600, 900, null, null, null, null, false, getOption('fullimage_watermark'), false, true);
-			cacheManager::addThemeCacheSize('zpfocus', null, 300, 300, 300, 300, null, null, true, getOption('fullimage_watermark'), false, false);
+			cacheManager::deleteCacheSizes('zpfocus');
+			cacheManager::addCacheSize('zpfocus', null, 600, 900, null, null, null, null, false, getOption('fullimage_watermark'), false, true);
+			cacheManager::addCacheSize('zpfocus', null, 300, 300, 300, 300, null, null, true, getOption('fullimage_watermark'), false, false);
 			if ((getOption('zpfocus_use_colorbox')) && (getOption('zpfocus_cbtarget'))) {
-				cacheManager::addThemeCacheSize('zpfocus', 800, null, null, null, null, null, null, false, getOption('fullimage_watermark'), false, false);
+				cacheManager::addCacheSize('zpfocus', 800, null, null, null, null, null, null, false, getOption('fullimage_watermark'), false, false);
 			}
 		}
 	}

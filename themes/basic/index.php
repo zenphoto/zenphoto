@@ -32,7 +32,7 @@ if (!defined('WEBPATH'))
 				<div id="albums">
 					<?php
 					printCodeblock(1);
-					while (next_album()):
+					while (next_album()) {
 						?>
 						<div class="album">
 							<div class="thumb">
@@ -45,7 +45,7 @@ if (!defined('WEBPATH'))
 							</div>
 							<p style="clear: both; "></p>
 						</div>
-<?php endwhile; ?>
+					<?php } ?>
 
 				</div>
 				<br class="clearall">
@@ -104,7 +104,7 @@ if (!defined('WEBPATH'))
 				printRegisterURL(gettext('Register for this site'), '', ' | ');
 			}
 			?>
-		<?php printSoftwareLink(); ?>
+			<?php printSoftwareLink(); ?>
 		</div>
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<?php @call_user_func('printLanguageSelector'); ?>
