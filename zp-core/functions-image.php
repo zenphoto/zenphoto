@@ -30,8 +30,6 @@
  * @param string $album
  * @param string $newfilename
  */
-
-
 function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.png', $image = '', $album='', $newfilename = '') {
 	//global $newfilename, $album, $image; // sometime these globals need to be properly named…
 	$debug = isset($_GET['debug']);

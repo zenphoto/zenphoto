@@ -373,7 +373,7 @@ class cacheManager {
 				'gray' => $effects,
 				'maxspace' => $maxspace,
 				'valid' => 1));
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($theme) . ',' . db_quote($cacheSize) . ')';
+		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($owner) . ',' . db_quote($cacheSize) . ')';
 		query($sql);
 	}
 
