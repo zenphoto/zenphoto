@@ -544,5 +544,15 @@ class cacheManager {
 		return $html;
 	}
 
+	/**
+	 * Catch redundant legacy zenphoto static functions if they happen to be used by a third party theme or plugin
+	 *
+	 * @param string $method
+	 * @param misc $args
+	 */
+	public static function __callStatic($method, $args) {
+		cachemanager_internal_deprecations::generalDeprecation($method);
+	}
+
 }
 ?>

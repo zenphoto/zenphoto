@@ -18,4 +18,12 @@ class cachemanager_internal_deprecations {
 		deprecated_functions::notify(gettext('Use cacheManager::deleteCacheSizes()'), E_USER_NOTICE);
 	}
 
+	/**
+	 * Used to notify of legacy zenphoto cachemanager functions which are redundant in a properly implemented cache manager
+	 * @param string $what the "missing" function name
+	 */
+	static function generalDeprecation($what) {
+		deprecated_functions::notify_call($what, gettext('The method is redundant with netPhotoGraphics. Remove the function call.'), E_USER_NOTICE);
+	}
+
 }

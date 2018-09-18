@@ -894,9 +894,9 @@ $plugins = array_keys($plugins);
 		<span>
 			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension . $debug; ?>&class=<?php echo $class . $fullLog; ?>&from=<?php echo $from; ?>&unique=<?php echo time(); ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
 		</span>
-	<?php
-}
-?>
+		<?php
+	}
+	?>
 </p>
 
 <?php
@@ -910,13 +910,13 @@ if ($deprecate) {
 	if ($listed != getOption('deprecated_functions_signature')) {
 		setOption('deprecated_functions_signature', $listed);
 		enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
-		setupLog(gettext('There has been a change in function deprecation. The deprecated-functions plugin has been enabled.'), true);
+		setupLog('<span class="logwarning">' . gettext('There has been a change in function deprecation. The deprecated-functions plugin has been enabled.') . '</span>', true);
 	}
 	$compatibilityWas = getSerializedArray(getOption('zenphotoCompatibilityPack_signature'));
 	if ($compatibilityIs != $compatibilityWas) {
 		setOption('zenphotoCompatibilityPack_signature', serialize($compatibilityIs));
 		enableExtension('zenphotoCompatibilityPack', 1 | CLASS_PLUGIN);
-		setupLog(gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
+		setupLog('<span class="logwarning">' . gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.') . '</span>', true);
 	}
 }
 
