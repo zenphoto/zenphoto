@@ -673,35 +673,6 @@ class ThemeObject extends PersistentObject {
 	}
 
 	/**
-	 * returns the custom data field
-	 *
-	 * @return string
-	 */
-	function getCustomData($locale = NULL) {
-		if (class_exists('deprecated_functions')) {
-			deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
-		}
-		$text = $this->get('custom_data');
-		if ($locale !== 'all') {
-			$text = get_language_string($text, $locale);
-		}
-		$text = zpFunctions::unTagURLs($text);
-		return $text;
-	}
-
-	/**
-	 * Sets the custom data field
-	 *
-	 * @param string $val the value to be put in custom_data
-	 */
-	function setCustomData($val) {
-		if (class_exists('deprecated_functions')) {
-			deprecated_functions::notify(gettext('Use customFieldExtender to define unique fields'));
-		}
-		$this->set('custom_data', zpFunctions::tagURLs($val));
-	}
-
-	/**
 	 * Retuns true if comments are allowed
 	 *
 	 * @return bool
