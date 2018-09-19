@@ -46,6 +46,12 @@ $legacyReplacements = array(
 		'getSubtabs' => 'getCurrentTab	/* TODO:replaced printSubtabs. Remove this if you do not use the return value */',
 		'printSubtabs' => 'getCurrentTab	/* TODO:replaced printSubtabs. Remove this if you do not use the return value */',
 		'gettext\(\'news\'\)' => 'NEWS_LABEL', 'gettext("news")' => 'NEWS_LABEL',
+		'addThemeCacheSize' => 'addCacheSize',
+		'deleteThemeCacheSizes' => 'deleteCacheSizes',
+		'addDefaultThumbSize\(.*?\)' => '/*addDefaultThumbSize removed*/',
+		'addThemeDefaultThumbSize\(.*?\)' => '/*addThemeDefaultThumbSize removed*/',
+		'addDefaultSizedImageSize\(.*?\)' => '/*addDefaultSizedImageSize removed*/',
+		'addThemeDefaultSizedImageSize\(.*?\)' => 'addThemeDefaultSizedImageSize/*addThemeDefaultSizedImageSize removed*/'
 );
 
 /**
