@@ -6,14 +6,15 @@
  * Note: PHP version 5 states that the MySQL library is "Maintenance only, Long term deprecation announced."
  * It recommends using the PDO::MySQL or the MySQLi library instead.
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
- * @subpackage database-handlers\functions-db-mysql
  */
 // force UTF-8 Ø
 
 define('DATABASE_SOFTWARE', 'MySQL');
 Define('DATABASE_MIN_VERSION', '5.0.7');
-Define('DATABASE_DESIRED_VERSION', '5.5.3');
+Define('DATABASE_DESIRED_VERSION', '5.6.0');
 
 /**
  * Connect to the database server and select the database.
@@ -31,19 +32,25 @@ function db_connect($config, $errorstop = true) {
 	}
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQL Error: Zenphoto received the error %s when connecting to the database server.'), mysql_error()));
+			zp_error(sprintf(gettext('MySQL Error: netPhotoGraphics received the error %s when connecting to the database server.'), mysql_error()));
 		}
 		return false;
 	}
 	$_zp_DB_details['mysql_host'] = $config['mysql_host'];
 	if (!@mysql_select_db($config['mysql_database'])) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQL Error: MySQL returned the error %1$s when Zenphoto tried to select the database %2$s.'), mysql_error(), $config['mysql_database']));
+			zp_error(sprintf(gettext('MySQL Error: MySQL returned the error %1$s when netPhotoGraphics tried to select the database %2$s.'), mysql_error(), $config['mysql_database']));
 		}
 		return false;
 	}
 	$_zp_DB_details = $config;
-	if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
+
+	//set character set protocol
+	$software = db_software();
+	$version = $software['version'];
+	if (version_compare($version, '5.5.3', '>=')) {
+		mysql_set_charset('utf8mb4', $_zp_DB_connection);
+	} else {
 		mysql_set_charset('utf8', $_zp_DB_connection);
 	}
 	// set the sql_mode to relaxed (if possible)
@@ -58,15 +65,15 @@ function db_connect($config, $errorstop = true) {
  * @return results of the sql statements
  * @since 0.6
  */
-function query($sql, $errorstop = true) {
+function db_query($sql, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_details;
-	if ($result = @mysql_query($sql, $_zp_DB_connection)) {
-		return $result;
+	if ($_zp_DB_connection) {
+		if ($result = @mysql_query($sql, $_zp_DB_connection)) {
+			return $result;
+		}
 	}
 	if ($errorstop) {
-		$sql = str_replace('`' . $_zp_DB_details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
-		$sql = str_replace($_zp_DB_details['mysql_database'], '[' . gettext('DB') . ']', $sql);
-		trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, db_error()), E_USER_ERROR);
+		dbErrorReport($sql);
 	}
 	return false;
 }
@@ -124,13 +131,12 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
  * @param string $string
  * @return string
  */
-function db_quote($string, $addquotes = true) {
+function db_escape($string) {
 	global $_zp_DB_connection;
-	$escaped = mysql_real_escape_string($string, $_zp_DB_connection);
-	if ($addquotes) {
-		return "'" . $escaped . "'";
+	if ($_zp_DB_connection) {
+		return mysql_real_escape_string($string, $_zp_DB_connection);
 	} else {
-		return $escaped;
+		return addslashes($string);
 	}
 }
 
@@ -223,7 +229,7 @@ function db_software() {
  */
 function db_create() {
 	global $_zp_DB_details;
-	$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $_zp_DB_details['mysql_database'] . '`' . db_collation();
+	$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $_zp_DB_details['mysql_database'] . '` CHARACTER SET utf8 COLLATE utf8_unicode_ci';
 	return query($sql, false);
 }
 
@@ -267,11 +273,6 @@ function db_getSQLmode() {
 	return false;
 }
 
-function db_collation() {
-	$collation = ' CHARACTER SET utf8 COLLATE utf8_unicode_ci';
-	return $collation;
-}
-
 function db_create_table(&$sql) {
 	return query($sql, false);
 }
@@ -288,27 +289,28 @@ function db_show($what, $aux = '') {
 			return query($sql, false);
 		case 'columns':
 			$sql = 'SHOW FULL COLUMNS FROM `' . $_zp_DB_details['mysql_prefix'] . $aux . '`';
-			return query($sql, true);
+			return query($sql, false);
 		case 'variables':
 			$sql = "SHOW VARIABLES LIKE '$aux'";
 			return query_full_array($sql);
 		case 'index':
 			$sql = "SHOW INDEX FROM `" . $_zp_DB_details['mysql_database'] . '`.' . $aux;
-			return query_full_array($sql);
+			return query_full_array($sql, false);
 	}
 }
 
 function db_list_fields($table) {
-	$result = db_show('columns', $table);
-	if (is_resource($result)) {
-		$fields = array();
-		while ($row = db_fetch_assoc($result)) {
-			$fields[] = $row;
+	global $tableFields;
+	if (!isset($tableFields[$table])) {
+		$tableFields[$table] = array();
+		$result = db_show('columns', $table);
+		if (is_resource($result)) {
+			while ($row = db_fetch_assoc($result)) {
+				$tableFields[$table][$row['Field']] = $row;
+			}
 		}
-		return $fields;
-	} else {
-		return false;
 	}
+	return $tableFields[$table];
 }
 
 function db_truncate_table($table) {

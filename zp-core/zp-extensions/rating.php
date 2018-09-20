@@ -10,29 +10,38 @@
  *
  * <b>Legal note:</b> Use the <i>Disguise IP</i> option if your country considers IP tracking a privacy violation.
  *
- * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage rating
+ * @author Stephen Billard (sbillard)and Malte Müller (acrylian)
+ * @package plugins/rating
+ * @pluginCategory theme
  */
+$plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;
+$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. ");
+
+$option_interface = 'jquery_rating';
+
+zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');
+zp_register_filter('save_album_utilities_data', 'jquery_rating::optionVoteStatusSave');
+zp_register_filter('admin_utilities_buttons', 'jquery_rating::rating_purgebutton');
+
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)) . '/functions.php');
 
 	if (isset($_GET['action']) && $_GET['action'] == 'clear_rating') {
 		if (!zp_loggedin(ADMIN_RIGHTS)) {
-			// prevent nefarious access to this page.
+// prevent nefarious access to this page.
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
 			exitZP();
 		}
 
 		require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 		if (session_id() == '') {
-			// force session cookie to be secure when in https
+// force session cookie to be secure when in https
 			if (secureServer()) {
 				$CookieInfo = session_get_cookie_params();
 				session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], TRUE);
 			}
-			session_start();
+			zp_session_start();
 		}
 		XSRFdefender('clear_rating');
 		query('UPDATE ' . prefix('images') . ' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
@@ -43,16 +52,6 @@ if (!defined('OFFSET_PATH')) {
 		exitZP();
 	}
 }
-
-$plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;
-$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. ");
-$plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
-$plugin_category = gettext('Statistics');
-$option_interface = 'jquery_rating';
-
-zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');
-zp_register_filter('save_album_utilities_data', 'jquery_rating::optionVoteStatusSave');
-zp_register_filter('admin_utilities_buttons', 'jquery_rating::rating_purgebutton');
 
 if (getOption('rating_image_individual_control')) {
 	zp_register_filter('edit_image_utilities', 'jquery_rating::optionVoteStatus');
@@ -78,11 +77,15 @@ class jquery_rating {
 	 * @return jquery_rating
 	 */
 	function __construct() {
-		setOptionDefault('rating_recast', 1);
-		setOptionDefault('rating_stars_count', 5);
-		setOptionDefault('rating_split_stars', 2);
-		setOptionDefault('rating_status', 3);
-		setOptionDefault('rating_image_individual_control', 0);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('rating_recast', 1);
+			setOptionDefault('rating_stars_count', 5);
+			setOptionDefault('rating_split_stars', 2);
+			setOptionDefault('rating_star_size', 24);
+			setOptionDefault('rating_status', 3);
+			setOptionDefault('rating_image_individual_control', 0);
+			setOptionDefault('rating_like-dislike', 0);
+		}
 		$this->ratingstate = array(gettext('open') => 3, gettext('members &amp; guests') => 2, gettext('members only') => 1, gettext('closed') => 0);
 	}
 
@@ -93,26 +96,87 @@ class jquery_rating {
 	 */
 	function getOptionsSupported() {
 		$stars = ceil(getOption('rating_stars_count'));
-		return array(gettext('Voting state')							 => array('key'			 => 'rating_status', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => $this->ratingstate,
-										'desc'		 => gettext('<em>Enable</em> state of voting.')),
-						gettext('Stars')										 => array('key'	 => 'rating_stars_count', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => sprintf(ngettext('Rating will use %u star.', 'Rating will use %u stars.', $stars), $stars)),
-						gettext('Split stars')							 => array('key'			 => 'rating_split_stars', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('full') => 1, gettext('half') => 2, gettext('third') => 3),
-										'desc'		 => gettext('Show fractional stars based on rating. May cause performance problems for pages with large numbers of rating elements.')),
-						gettext('Individual image control')	 => array('key'	 => 'rating_image_individual_control', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Enable to allow voting status control on individual images.')),
-						gettext('Recast vote')							 => array('key'			 => 'rating_recast', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('No') => 0, gettext('Show rating') => 1, gettext('Show previous vote') => 2),
-										'desc'		 => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.')),
-						gettext('Disguise IP')							 => array('key'	 => 'rating_hash_ip', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues. If not set the IP is anonymized as defined on the general Zenphoto option <em>Anonymize IP</em>.'))
+		return array(gettext('Voting state') => array('key' => 'rating_status', 'type' => OPTION_TYPE_RADIO,
+						'order' => 7,
+						'buttons' => $this->ratingstate,
+						'desc' => gettext('<em>Enable</em> state of voting.')),
+				gettext('Stars') => array('key' => 'rating_stars_count', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 6,
+						'desc' => sprintf(ngettext('Rating will use %u star.', 'Rating will use %u stars.', $stars), $stars)),
+				gettext('Split stars') => array('key' => 'rating_split_stars', 'type' => OPTION_TYPE_RADIO,
+						'order' => 4,
+						'buttons' => array(gettext('full') => 1, gettext('half') => 2, gettext('third') => 3),
+						'desc' => gettext('Show fractional stars based on rating. May cause performance problems for pages with large numbers of rating elements.')),
+				gettext('Icon size') => array('key' => 'rating_star_size', 'type' => OPTION_TYPE_RADIO,
+						'order' => 4.5,
+						'buttons' => array(gettext('large') => 32, gettext('medium') => 24, gettext('small') => 16),
+						'desc' => gettext('The size of the icon used for voting.')),
+				gettext('Individual image control') => array('key' => 'rating_image_individual_control', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 2,
+						'desc' => gettext('Enable to allow voting status control on individual images.')),
+				gettext('Recast vote') => array('key' => 'rating_recast', 'type' => OPTION_TYPE_RADIO,
+						'order' => 3,
+						'buttons' => array(gettext('No') => 0, gettext('Show rating') => 1, gettext('Show previous vote') => 2),
+						'desc' => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.')),
+				gettext('Like/Dislike') => array('key' => 'rating_like', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 3.5,
+						'desc' => gettext('Use like/dislike rather than stars.')),
+				gettext('Allow zero') => array('key' => 'rating_zero_ok', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 5,
+						'desc' => gettext('Allows rating to be zero.')),
+				'' => array('key' => 'rating_js', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 9999,
+						'desc' => '')
 		);
 	}
 
 	function handleOption($option, $currentValue) {
+		switch ($option) {
+			case 'rating_like':
+				?>
+				<input type="checkbox" id="__rating_like" name="rating_like-dislike" value="1"<?php if (getOption('rating_like-dislike')) echo ' checked="checked"'; ?> onclick="ratinglikebox();"/>
+				<?php
+				break;
+			case 'rating_js':
+				?>
+				<script type="text/javascript">
+					function ratinglikebox() {
+						if ($('#__rating_like').prop('checked')) {
+							$('#__rating_split_stars-1').prop('checked', 'checked');
+							$('#__rating_split_stars-3').prop('disabled', true);
+							$('#__rating_split_stars-2').prop('disabled', true);
+							$('#__rating_split_stars-1').prop('disabled', true);
+							$('#__rating_zero_ok').prop('checked', 'checked');
+							$('#__rating_zero_ok').prop('disabled', true);
+							$('#__rating_stars_count').val(1);
+							$('#__rating_stars_count').prop('disabled', true);
+						} else {
+							$('#__rating_split_stars-1').prop('disabled', false);
+							$('#__rating_split_stars-2').prop('disabled', false);
+							$('#__rating_split_stars-3').prop('disabled', false);
+							$('#__rating_zero_ok').prop('disabled', false);
+							$('#__rating_stars_count').prop('disabled', false);
+						}
+					}
 
+					ratinglikebox();
+
+				</script>
+				<?php
+				break;
+		}
+	}
+
+	function handleOptionSave($themename, $themealbum) {
+		if (isset($_POST['rating_like-dislike'])) {
+			setOption('rating_like-dislike', 1);
+			setOption('rating_stars_count', 1);
+			setOption('rating_split_stars', 1);
+			setOption('rating_zero_ok', 1);
+		} else {
+			setOption('rating_like-dislike', 0);
+		}
+		return false;
 	}
 
 	static function ratingJS() {
@@ -121,13 +185,21 @@ class jquery_rating {
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $ME; ?>/jquery.MetaData.js"></script>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $ME; ?>/jquery.rating.js"></script>
 		<?php
-		$css = getPlugin('rating/jquery.rating.css', true, true);
+		$size = getOption('rating_star_size');
+		if (getOption('rating_like-dislike')) {
+			$css = getPlugin('rating/jquery.rating_like-' . $size . '.css', true, true);
+		} else {
+			$css = getPlugin('rating/jquery.rating-' . $size . '.css', true, true);
+		}
 		?>
 		<link rel="stylesheet" href="<?php echo pathurlencode($css); ?>" type="text/css" />
+		<?php
+		?>
+
 		<script type="text/javascript">
-			// <!-- <![CDATA[
-			$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>'};
-			// ]]> -->
+					// <!-- <![CDATA[
+					$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>', starWidth: <?php echo $size; ?>};
+					// ]]> -->
 		</script>
 		<?php
 	}
@@ -171,17 +243,17 @@ class jquery_rating {
 
 	static function rating_purgebutton($buttons) {
 		$buttons[] = array(
-						'category'		 => gettext('Database'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Reset all ratings'),
-						'formname'		 => 'clearrating_button',
-						'action'			 => PLUGIN_FOLDER . '/rating.php?action=clear_rating',
-						'icon'				 => 'images/reset.png',
-						'title'				 => gettext('Sets all ratings to unrated.'),
-						'alt'					 => '',
-						'hidden'			 => '<input type="hidden" name="action" value="clear_rating" />',
-						'rights'			 => ADMIN_RIGHTS,
-						'XSRFTag'			 => 'clear_rating'
+				'category' => gettext('Database'),
+				'enable' => true,
+				'button_text' => gettext('Reset all ratings'),
+				'formname' => 'clearrating_button',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rating.php?action=clear_rating',
+				'icon' => RECYCLE_ICON,
+				'title' => gettext('Sets all ratings to unrated.'),
+				'alt' => '',
+				'hidden' => '<input type="hidden" name="action" value="clear_rating" />',
+				'rights' => ADMIN_RIGHTS,
+				'XSRFTag' => 'clear_rating'
 		);
 		return $buttons;
 	}
@@ -216,30 +288,18 @@ class jquery_rating {
 	 * @return object
 	 */
 	static function getCurrentPageObject() {
-		global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+		global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_article, $_zp_current_page;
 		switch ($_zp_gallery_page) {
 			case 'album.php':
 				return $_zp_current_album;
 			case 'image.php':
 				return $_zp_current_image;
 			case 'news.php':
-				return $_zp_current_zenpage_news;
+				return $_zp_current_article;
 			case 'pages.php':
-				return $_zp_current_zenpage_page;
+				return $_zp_current_page;
 			default:
 				return NULL;
-		}
-	}
-
-	/**
-	 *
-	 * returns an "ID" tag for rating records
-	 */
-	static function id() {
-		if (getOption('rating_hash_ip')) {
-			return sha1(getUserIP());
-		} else {
-			return getUserIP();
 		}
 	}
 
@@ -308,7 +368,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 	$id = $object->getID();
 	$unique = '_' . $table . '_' . $id;
 
-	$ip = jquery_rating::id();
+	$ip = getUserID();
 	$oldrating = jquery_rating::getRatingByIP($ip, $object->get('used_ips'), $object->get('rating'));
 	if ($vote && $recast == 2 && $oldrating) {
 		$starselector = round($oldrating * $split_stars);
@@ -329,6 +389,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 		$split = '';
 		$step = 1;
 	}
+	$like = getOption('rating_like-dislike');
 	?>
 	<form name="star_rating<?php echo $unique; ?>" id="star_rating<?php echo $unique; ?>" action="submit">
 		<?php
@@ -337,13 +398,20 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 			$v = ceil($i);
 			$j++;
 			?>
-			<input type="radio" class="star<?php echo $split; ?>" name="star_rating-value<?php echo $unique; ?>" value="<?php echo $j; ?>" title="<?php printf(ngettext('%u star', '%u stars', $v), $v); ?>" />
-			<?php
+			<input type="radio" class="star<?php echo $split; ?>" name="star_rating-value<?php echo $unique; ?>" value="<?php echo $j; ?>" title="<?php
+		if ($like) {
+			echo gettext('like');
+		} else {
+			printf(ngettext('%u star', '%u stars', $v), $v);
 		}
-		if (!$disable) {
-			?>
+			?>" />
+						 <?php
+					 }
+					 if (!$disable) {
+						 ?>
 			<span id="submit_button<?php echo $unique; ?>">
-				<input type="button" class="button buttons" value="<?php echo gettext('Submit »'); ?>" onclick="cast<?php echo $unique; ?>();" />
+				<input type="button" class="rating_button" value="<?php echo gettext('Submit »'); ?>" onclick="cast<?php echo $unique; ?>();" />
+				<br class="clearall">
 			</span>
 			<?php
 		}
@@ -356,7 +424,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		var recast<?php echo $unique; ?> = <?php printf('%u', $recast && $oldrating); ?>;
-		$(document).ready(function() {
+		window.addEventListener('load', function () {
 			$('#star_rating<?php echo $unique; ?> :radio.star').rating('select', '<?php echo $starselector; ?>');
 	<?php
 	if ($disable) {
@@ -365,10 +433,14 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 		<?php
 	}
 	?>
-		});
+		}, false);
 
 		function cast<?php echo $unique; ?>() {
 			var dataString = $('#star_rating<?php echo $unique; ?>').serialize();
+			if (!dataString && <?php echo getOption('rating_like-dislike') ? 'TRUE' : 'FALSE'; ?>) {
+				dataString = 'star_rating-value<?php echo $unique; ?>=0';
+			}
+
 			if (dataString || recast<?php echo $unique; ?>) {
 	<?php
 	if ($recast) {

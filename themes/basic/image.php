@@ -7,15 +7,15 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
+
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				$(document).ready(function () {
+				window.addEventListener('load', function () {
 					$(".colorbox").colorbox({
 						inline: true,
 						href: "#imagemetadata",
@@ -30,11 +30,11 @@ if (!defined('WEBPATH'))
 							$(window).resize(resizeColorBoxImage);
 						}
 					});
-				});
+				}, false);
 				// ]]> -->
 			</script>
 		<?php } ?>
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 	</head>
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
@@ -55,69 +55,110 @@ if (!defined('WEBPATH'))
 				</div>
 				<h2>
 					<span>
+						<?php printHomeLink('', ' | '); ?>
+						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
 						<?php
-						printHomeLink('', ' | ');
-						printGalleryIndexURL(' | ', getGalleryTitle());
 						printParentBreadcrumb("", " | ", " | ");
 						printAlbumBreadcrumb("", " | ");
 						?>
 					</span>
-<?php printImageTitle(); ?>
+					<?php printImageTitle(); ?>
 				</h2>
 			</div>
 			<!-- The Image -->
 			<div id="image">
-				<strong>
+				<?php
+				if (function_exists('printZoomImage') && isImagePhoto()) {
+					$size = getOption('image_size') / 5;
+					$zoom = floor($size * 3);
+					printZoomImage(floor($size * 2), NULL, NULL, 'zoom_window');
+					?>
+					<span id="zoom_window" style="display:inline-block; height:<?php echo $zoom; ?>px; width:<?php echo $zoom; ?>px;  background-color:lightgray; text-align: center;">
+						<p style="padding-top: 45%;"><?php echo gettext('Zoomed image will appear here.'); ?></p>
+					</span>
 					<?php
-					if (isImagePhoto()) {
-						$fullimage = getFullImageURL();
-					} else {
-						$fullimage = NULL;
-					}
-					if (!empty($fullimage)) {
-						?>
-						<a href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php printBareImageTitle(); ?>" class="fullimage">
+				} else {
+					?>
+					<strong>
+						<?php
+						if (isImagePhoto()) {
+							$fullimage = getFullImageURL();
+						} else {
+							$fullimage = NULL;
+						}
+
+						if (empty($fullimage)) {
+							?>
+							<a href="<?php echo pathurlencode($fullimage); ?>" title="<?php printBareImageTitle(); ?>" class="fullimage">
+								<?php
+							}
+							if (function_exists('printUserSizeImage') && isImagePhoto()) {
+								printUserSizeImage(getImageTitle());
+							} else {
+								printDefaultSizedImage(getImageTitle());
+							}
+							if (empty($fullimage)) {
+								?>
+							</a>
 							<?php
 						}
-						if (function_exists('printUserSizeImage') && isImagePhoto()) {
-							printUserSizeImage(getImageTitle());
-						} else {
-							printDefaultSizedImage(getImageTitle());
-						}
-						if (!empty($fullimage)) {
-							?>
-						</a>
-						<?php
+						?>
+					</strong>
+					<?php
+					if (isImagePhoto()) {
+						@call_user_func('printUserSizeSelector');
 					}
-					?>
-				</strong>
+				}
+				?>
 			</div>
 			<div id="narrow">
-				<?php printImageDesc(); ?>
-				<hr /><br />
 				<?php
-				If (function_exists('printAddToFavorites'))
+				printImageDesc();
+				?>
+				<hr />
+				<br class="clearall" />
+				<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ''); ?>
+				<br class="clearall" />
+				<?php
+				If (function_exists('printAddToFavorites')) {
 					printAddToFavorites($_zp_current_image);
-				@call_user_func('printSlideShowLink');
-
-				if (getImageMetaData()) {
-					printImageMetadata(NULL, 'colorbox_meta');
 					?>
-					<br class="clearall" />
+					&nbsp;&nbsp;
 					<?php
 				}
-				printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
+				If (function_exists('printSlideShowLink')) {
+					printSlideShowLink(NULL, NULL, '&nbsp;&nbsp;');
+				}
+
+				if (function_exists('printGoogleMap')) {
+					printGoogleMap();
+					?>
+					&nbsp;&nbsp;
+					<?php
+				}
+				if (getImageMetaData()) {
+					printImageMetadata(NULL, 'colorbox');
+				}
 				?>
 				<br class="clearall" />
-
 				<?php
-				@call_user_func('printOpenStreetMap');
-				@call_user_func('printGoogleMap');
 				@call_user_func('printRating');
 				@call_user_func('printCommentForm');
 				?>
 			</div>
 		</div>
-<?php include 'inc-footer.php'; ?>
+		<div id="credit">
+			<?php
+			if (function_exists('printFavoritesURL')) {
+				printFavoritesURL(NULL, '', ' | ', '<br />');
+			}
+			?>
+			<?php if (class_exists('RSS')) printRSSLink('Gallery', '', 'RSS', ' | '); ?>
+			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> | <?php printSoftwareLink(); ?>
+			<?php @call_user_func('printUserLogin_out', " | "); ?>
+		</div>
+		<?php
+		zp_apply_filter('theme_body_close');
+		?>
 	</body>
 </html>

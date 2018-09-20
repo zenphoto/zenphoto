@@ -7,9 +7,7 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 	</head>
@@ -22,7 +20,8 @@ if (!defined('WEBPATH'))
 				<h1><?php printGalleryTitle(); ?></h1>
 				<?php
 				if (getOption('Allow_search')) {
-					printSearchForm("", "search", "", gettext("Search"));
+					$album_list = array('albums' => array($_zp_current_album->name), 'pages' => '0', 'news' => '0');
+					printSearchForm(NULL, 'search', gettext('Search within album'), gettext('Search'), NULL, NULL, $album_list);
 				}
 				?>
 			</div>
@@ -30,7 +29,7 @@ if (!defined('WEBPATH'))
 			<div id="content">
 
 				<div id="breadcrumb">
-					<h2><?php printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » "); ?><strong><?php printAlbumTitle(); ?></strong></h2>
+					<h2><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a><?php printParentBreadcrumb(" » ", " » ", ""); ?> » <strong><?php printAlbumTitle(); ?></strong></h2>
 				</div>
 
 				<div id="content-left">
@@ -42,12 +41,12 @@ if (!defined('WEBPATH'))
 						<?php while (next_album()): ?>
 							<div class="album">
 								<div class="thumb">
-									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php getBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
+									<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
 								</div>
 								<div class="albumdesc">
 									<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 									<?php printAlbumDate(""); ?>
-									<div><?php echo shortenContent(getAlbumDesc(), 45, '...'); ?></div>
+									<div><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 45, '...')); ?></div>
 									<?php
 									if (function_exists('printAddToFavorites')) {
 										echo "<br />";
@@ -70,9 +69,9 @@ if (!defined('WEBPATH'))
 					</div>
 					<p style="clear: both; "></p>
 					<?php
-      printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
-      printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
-     ?>
+					printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
+					printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', ');
+					?>
 					<br style="clear:both;" /><br />
 					<?php
 					if (function_exists('printGoogleMap')) {
@@ -81,11 +80,8 @@ if (!defined('WEBPATH'))
 						echo '</p>';
 					}
 					@call_user_func('printOpenStreetMap');
-					
-					if(class_exists('ScriptlessSocialSharing')) {
-						ScriptlessSocialSharing::printButtons();
-					}	
-					
+					?>
+					<?php
 					if (function_exists('printSlideShowLink')) {
 						echo '<span id="slideshowlink">';
 						printSlideShowLink();
@@ -94,15 +90,20 @@ if (!defined('WEBPATH'))
 					?>
 					<br style="clear:both;" />
 					<?php
-      if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album);
-      @call_user_func('printRating');
-      @call_user_func('printCommentForm');
-     ?>
+					if (function_exists('printAddToFavorites'))
+						printAddToFavorites($_zp_current_album);
+					@call_user_func('printRating');
+					@call_user_func('printCommentForm');
+					?>
 				</div><!-- content left-->
+
+
 
 				<div id="sidebar">
 					<?php include("sidebar.php"); ?>
 				</div><!-- sidebar -->
+
+
 
 				<div id="footer">
 					<?php include("footer.php"); ?>

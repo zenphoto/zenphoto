@@ -4,7 +4,7 @@
  *
  * Tool to generate sitemaps
  *
- * @package admin
+ * @package admin/sitemap-extended
  */
 define('OFFSET_PATH', 3);
 
@@ -23,8 +23,6 @@ if (isset($_GET['clearsitemapcache'])) {
 	exitZP();
 }
 
-$webpath = WEBPATH . '/' . ZENFOLDER . '/';
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Sitemap') => '');
 printAdminHeader('overview', 'sitemap');
 if (isset($_GET['generatesitemaps'])) {
 	$_zp_loggedin = NULL;
@@ -33,14 +31,13 @@ if (isset($_GET['generatesitemaps'])) {
 	$sitemap_albums = sitemap::getAlbums();
 	$sitemap_images = sitemap::getImages();
 	if (extensionEnabled('zenpage')) {
-		$sitemap_newsindex = sitemap::getZenpageNewsIndex();
-		$sitemap_articles = sitemap::getZenpageNewsArticles();
-		$sitemap_categories = sitemap::getZenpageNewsCategories();
-		$sitemap_pages = sitemap::getZenpagePages();
+		$sitemap_newsindex = sitemap::getNewsIndex();
+		$sitemap_articles = sitemap::getNewsArticles();
+		$sitemap_categories = sitemap::getNewsCategories();
+		$sitemap_pages = sitemap::getPages();
 	}
 	$numberAppend = '';
-	if (isset($_GET['generatesitemaps']) &&
-					(!empty($sitemap_index) || !empty($sitemap_albums) || !empty($sitemap_images) || !empty($sitemap_newsindex) || !empty($sitemap_articles) || !empty($sitemap_categories) || !empty($sitemap_pages))) {
+	if (isset($_GET['generatesitemaps']) && (!empty($sitemap_index) || !empty($sitemap_albums) || !empty($sitemap_images) || !empty($sitemap_newsindex) || !empty($sitemap_articles) || !empty($sitemap_categories) || !empty($sitemap_pages))) {
 		$numberAppend = '-' . $_sitemap_number;
 		$metaURL = 'sitemap-extended-admin.php?generatesitemaps&amp;number=' . ($_sitemap_number + SITEMAP_CHUNK);
 	} else {
@@ -56,7 +53,7 @@ if (isset($_GET['generatesitemaps'])) {
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />
 <script type="text/javascript">
 	// <!-- <![CDATA[
-	$(document).ready(function() {
+	window.addEventListener('load', function () {
 		/*	$(".colorbox").colorbox({
 		 iframe: false,
 		 inline:true,
@@ -65,7 +62,7 @@ if (isset($_GET['generatesitemaps'])) {
 		 photo: false,
 		 close: '<?php echo gettext("close"); ?>'
 		 }); */
-	});
+	}, false);
 	// ]]> -->
 </script>
 <?php
@@ -81,15 +78,14 @@ echo '</head>';
 		<?php printTabs();
 		?>
 		<div id="content">
-			<?php printSubtabs(); ?>
+			<?php zp_apply_filter('admin_note', 'sitemap', ''); ?>
+			<h1><?php echo gettext('Sitemap tools'); ?></h1>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'sitemap', ''); ?>
-				<h1><?php echo gettext('Sitemap tools'); ?></h1>
 				<?php if (!isset($_GET['generatesitemaps']) && !isset($_GET['clearsitemapcache'])) { ?>
 					<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> If your theme uses different custom settings instead of the backend options the sitemaps may not match your site.'); ?></p>
 					<p><?php echo gettext('This creates individual static xml sitemap files of the following items:'); ?></p>
 					<ul>
-						<li><strong><?php echo gettext('Zenphoto items'); ?></strong>
+						<li><strong><?php echo gettext('netPhotoGraphics items'); ?></strong>
 							<ul>
 								<li><em><?php echo gettext('Index pages'); ?></em></li>
 								<li><?php echo gettext('<em>Albums</em>: These are split into multiple sitemaps.'); ?></li>
@@ -105,11 +101,22 @@ echo '</head>';
 							</ul>
 						</li>
 					</ul>
-					<p><?php echo gettext('Additionally a sitemapindex file is created that points to the separate ones above. You can reference this sitemapindex file in your robots.txt file or submit its url to services like Google via <code>www.yourdomain.com/zenphoto/index.php?sitemap</code>'); ?></p>
+					<p><?php echo sprintf(gettext('Additionally a sitemapindex file is created that points to the separate ones above. You can reference this sitemapindex file in your robots.txt file or submit its url to services like Google via <code>%1$s/index.php?sitemap</code>'), FULLWEBPATH); ?></p>
 					<p><?php printf(gettext('The sitemap cache is cleared if you create new ones. All files are stored in the <code>/%s/sitemap/</code> folder.'), STATIC_CACHE_FOLDER); ?></p>
-					<p class="buttons"><a href="sitemap-extended-admin.php?generatesitemaps&amp;number=1"><?php echo gettext("Generate sitemaps"); ?></a></p>
-					<p class="buttons"><a href="sitemap-extended-admin.php?clearsitemapcache"><?php echo gettext("Clear sitemap cache"); ?></a></p>
-					<br style="clear: both" /><br />
+					<p class="buttons">
+						<a href="sitemap-extended-admin.php?generatesitemaps&amp;number=1">
+							<?php echo CHECKMARK_GREEN; ?>
+							<?php echo gettext("Generate sitemaps"); ?>
+						</a>
+					</p>
+					<p class="buttons">
+						<a href="sitemap-extended-admin.php?clearsitemapcache">
+							<?php echo RECYCLE_ICON; ?>
+							<?php echo gettext("Clear sitemap cache"); ?>
+						</a>
+					</p>
+					<br style="clear: both" />
+					<br />
 					<?php
 					sitemap::printAvailableSitemaps();
 				} // isset generate sitemaps / clearsitemap cache
@@ -131,15 +138,15 @@ echo '</head>';
 					}
 					echo '</ul>';
 					if (!empty($metaURL)) {
-						echo '<p><img src="../../images/ajax-loader.gif" alt="" /><br /><br />' . gettext('Sitemap files are being generated...Patience please.') . '</p>';
+						echo '<p><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/ajax-loader.gif" alt="" /><br /><br />' . gettext('Sitemap files are being generated...Patience please.') . '</p>';
 					} else {
 						sitemap::generateIndexCacheFile();
 						?>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
-							$(document).ready(function() {
+							window.addEventListener('load', function () {
 								window.location = "<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/sitemap-extended/sitemap-extended-admin.php";
-							});
+							}, false);
 							// ]]> -->
 						</script>
 						<?php
@@ -148,7 +155,7 @@ echo '</head>';
 				?>
 			</div><!-- tabbox -->
 		</div><!-- content -->
+		<?php printAdminFooter(); ?>
 	</div><!-- main -->
-	<?php printAdminFooter(); ?>
 </body>
 <?php echo "</html>"; ?>

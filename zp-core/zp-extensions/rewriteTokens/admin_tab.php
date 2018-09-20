@@ -1,12 +1,12 @@
 <?php
 /**
- * This is the "files" upload tab
+ * This is the "tokens" upload tab
  *
- * @package plugins
- * @subpackage admin
+ * @package plugins/rewriteTokens
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
+admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
 printAdminHeader('development', gettext('rewriteTokens'));
 
 echo "\n</head>";
@@ -21,9 +21,14 @@ $_definitions = array();
 		<?php printTabs(); ?>
 		<div id="content">
 			<div id="container">
-				<?php printSubtabs(); ?>
-				<div class="tabbox">
-					<h1><?php echo gettext('Rewrite Tokens'); ?></h1>
+				<?php
+				zp_apply_filter('admin_note', 'development', '');
+				?>
+				<h1>
+					<?php
+					echo gettext('Rewrite Tokens');
+					?>
+				</h1>				<div class="tabbox">
 					<dl class="code">
 						<?php
 						foreach ($_zp_conf_vars['special_pages'] as $page => $element) {
@@ -31,15 +36,15 @@ $_definitions = array();
 								$_definitions[$element['define']] = strtr($element['rewrite'], $_definitions);
 								?>
 								<dt>
-								<?php
-								echo $element['define'];
-								?>
+									<?php
+									echo $element['define'];
+									?>
 								</dt>
-								<dt>
-								<?php
-								echo strtr($element['rewrite'], $_definitions);
-								?>
-								</dt>
+								<dd>
+									<?php
+									echo strtr($element['rewrite'], $_definitions);
+									?>
+								</dd>
 								<?php
 							}
 						}
@@ -48,9 +53,7 @@ $_definitions = array();
 				</div>
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
-	<br class="clearall" />
-	<?php printAdminFooter(); ?>
-
 </body>
 </html>

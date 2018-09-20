@@ -8,9 +8,10 @@ if (function_exists('printRegistrationForm')) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php zp_apply_filter('theme_head'); ?>
-			<?php printHeadTitle(); ?>
+			
+			
+			 
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		</head>
 		<body>
@@ -21,17 +22,13 @@ if (function_exists('printRegistrationForm')) {
 				<div id="header">
 
 					<h1><?php printGalleryTitle(); ?></h1>
-					<?php
-					if (getOption('Allow_search')) {
-						printSearchForm("", "search", "", gettext("Search"));
-					}
-					?>
 				</div>
 
 				<div id="content">
 
 					<div id="breadcrumb">
-						<h2><?php printGalleryIndexURL(' » '); ?></h2>
+						<h2><a href="<?php echo getGalleryIndexURL(); ?>"><strong><?php echo gettext("Index"); ?></strong></a>
+						</h2>
 					</div>
 
 					<div id="content-left">

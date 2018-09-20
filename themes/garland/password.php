@@ -5,24 +5,21 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 	</head>
 	<body class="sidebars">
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="navigation"></div>
 		<div id="wrapper">
 			<div id="container">
 				<div id="header">
 					<div id="logo-floater">
 						<div>
-							<h1 class="title">
-								<a href="<?php echo html_encode(getSiteHomeURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
-							</h1>
-							<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
+							<h1 class="title"><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a></h1>
 						</div>
 					</div>
 				</div>
@@ -38,11 +35,23 @@ if (!defined('WEBPATH'))
 								<!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-										<?php printHomeLink('', ' » ');  printGalleryIndexURL(' » '); echo "<em>" . gettext('Password required') . "</em>"; ?>
+										<?php printHomeLink('', ' » '); ?>
+										<a href="<?php echo getGalleryIndexURL(); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>	<?php
+										if (isset($hint)) {
+											?>
+											»	<?php
+											echo "<em>" . gettext('Password required') . "</em>";
+										}
+										?>
 									</h2>
-									<h3><?php echo gettext('A password is required to access this page.') ?></h3>
-									<?php printPasswordForm('', true, false); ?>
-<?php footer(); ?>
+									<?php if (isset($hint)) {
+										?>
+										<h3><?php echo gettext('A password is required to access this page.') ?></h3>
+										<?php
+									}
+									printPasswordForm(isset($hint) ? $hint : NULL, isset($show) ? $show : TRUE, false, isset($hint) ? WEBPATH : NULL);
+									footer();
+									?>
 									<p style="clear: both;"></p>
 								</div>
 								<!-- end content -->

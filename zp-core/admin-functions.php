@@ -1,8 +1,10 @@
 <?php
 /**
  * support functions for Admin
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
- * @subpackage admin-functions
  */
 // force UTF-8 Ø
 
@@ -15,6 +17,13 @@ define('TEXT_INPUT_SIZE_SHORT', 30);
 if (!defined('EDITOR_SANITIZE_LEVEL'))
 	define('EDITOR_SANITIZE_LEVEL', 1);
 
+define('ADMIN_THUMB_LARGE', 160);
+define('ADMIN_THUMB_MEDIUM', 80);
+define('ADMIN_THUMB_SMALL', 40);
+
+define('UPLOAD_ERR_QUOTA', -1);
+define('UPLOAD_ERR_BLOCKED', -2);
+
 /**
  * Print the footer <div> for the bottom of all admin pages.
  *
@@ -25,34 +34,61 @@ if (!defined('EDITOR_SANITIZE_LEVEL'))
 function printAdminFooter($addl = '') {
 	?>
 	<div id="footer">
-		<?php
-		printf(gettext('<a href="http://www.zenphoto.org" title="The simpler media website CMS">Zen<strong>photo</strong></a> version %1$s'), ZENPHOTO_VERSION);
-		if (!empty($addl)) {
-			echo ' | ' . $addl;
-		}
-		?>
-		| <a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/license.php' ?>" title="<?php echo gettext('Zenphoto licence'); ?>"><?php echo gettext('License'); ?></a>
-		| <a href="http://www.zenphoto.org/news/category/user-guide" title="<?php echo gettext('User guide'); ?>"><?php echo gettext('User guide'); ?></a>
-		| <a href="http://www.zenphoto.org/support/" title="<?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
-		| <a href="https://github.com/zenphoto/zenphoto/issues" title="<?php echo gettext('Bugtracker'); ?>"><?php echo gettext('Bugtracker'); ?></a>
-		| <a href="http://www.zenphoto.org/news/category/changelog" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
-		| <?php printf(gettext('Server date: %s'), date('Y-m-d H:i:s')); ?>
+		<span id="footer_left">
+			<?php printLanguageSelector(true); ?>
+		</span>
+		<span id="footer_right">
+			<?php
+			echo '<span class="zenlogo"><a href="https://netPhotoGraphics.org" title="' . gettext('A simpler media content management system') . '">' . swLogo() . '</a></span> ' . sprintf(gettext('version %1$s'), ZENPHOTO_VERSION);
+
+			if (!empty($addl)) {
+				echo ' | ' . $addl;
+			}
+			?>
+			| <a href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/license.php' ?>" title="<?php echo gettext('netPhotoGraphics license'); ?>"><?php echo gettext('License'); ?></a>
+			| <a href="https://<?php echo GITHUB; ?>/issues" title="<?php echo gettext('Support'); ?>"><?php echo gettext('Support'); ?></a>
+			| <a href="https://<?php echo GITHUB; ?>/commits/master" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
+			| <?php printf(gettext('Server date: %s'), date('Y-m-d H:i:s')); ?>
+		</span>
 	</div>
+	<script type="text/javascript">
+		startingPosition = $('.navigation').position().top + 10;
+		// ===== Scroll to Top ====
+		$(window).scroll(function () {
+			var scroll = $(this).scrollTop()
+			if (scroll > startingPosition) {
+				$('.navigation').offset({top: scroll});
+			} else {
+				$('.navigation').offset({top: startingPosition});
+			}
+
+			if (scroll >= 50) {        // If page is scrolled more than 50px
+				$('#return-to-top').fadeIn(200); // Fade in the arrow
+			} else {
+				$('#return-to-top').fadeOut(200); // Else fade out the arrow
+			}
+		});
+		$('#return-to-top').click(function () {      // When arrow is clicked
+			$('body,html').animate({
+				scrollTop: 0                       // Scroll to top of body
+			}, 400);
+		});
+	</script>
 	<?php
 	db_close(); //	close the database as we are done
 }
 
 function datepickerJS() {
 	$lang = str_replace('_', '-', getOption('locale'));
-	if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/jquery.ui.datepicker-' . $lang . '.js')) {
+	if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/datepicker-' . $lang . '.js')) {
 		$lang = substr($lang, 0, 2);
-		if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/jquery.ui.datepicker-' . $lang . '.js')) {
+		if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/datepicker-' . $lang . '.js')) {
 			$lang = '';
 		}
 	}
 	if (!empty($lang)) {
 		?>
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/i18n/jquery.ui.datepicker-<?php echo $lang; ?>.js" type="text/javascript"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/i18n/datepicker-<?php echo $lang; ?>.js" type="text/javascript"></script>
 		<?php
 	}
 }
@@ -65,18 +101,18 @@ function datepickerJS() {
  * @param string $subtab the sub-tab if any
  */
 function printAdminHeader($tab, $subtab = NULL) {
-	global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $zenphoto_tabs, $_zp_RTL_css;
+	global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $zenphoto_tabs, $_zp_RTL_css, $tabtext, $subtabtext;
 	$_zp_admin_tab = $tab;
 	if (isset($_GET['tab'])) {
 		$_zp_admin_subtab = sanitize($_GET['tab'], 3);
 	} else {
 		$_zp_admin_subtab = $subtab;
 	}
-	$tabtext = $_zp_admin_tab;
+	$tabtext = ucfirst($_zp_admin_tab);
 	$tabrow = NULL;
 	foreach ($zenphoto_tabs as $key => $tabrow) {
 		if ($key == $_zp_admin_tab) {
-			$tabtext = $tabrow['text'];
+			$tabtext = ucfirst($tabrow['text']);
 			break;
 		}
 		$tabrow = NULL;
@@ -87,21 +123,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 	$subtabtext = '';
 	if ($_zp_admin_subtab && $tabrow && array_key_exists('subtabs', $tabrow) && $tabrow['subtabs']) {
 		foreach ($tabrow['subtabs'] as $key => $link) {
-			$i = strpos($link, '&tab=');
-			if ($i !== false) {
-				$text = substr($link, $i + 9);
-				if ($text == $_zp_admin_subtab) {
-					$subtabtext = '-' . $key;
+			preg_match('~tab=(.*?)(&|$)~', $link, $matches);
+			if (isset($matches[1])) {
+				if ($matches[1] == $_zp_admin_subtab) {
+					$subtabtext = '-' . ucfirst($key);
 					break;
 				}
 			}
 		}
 	}
-	if (empty($subtabtext)) {
-		if ($_zp_admin_subtab) {
-			$subtabtext = '-' . $_zp_admin_subtab;
-		}
-	}
+
+	$multi = getOption('multi_lingual');
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	zp_apply_filter('admin_headers');
@@ -109,83 +141,102 @@ function printAdminHeader($tab, $subtab = NULL) {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/toggleElements.css" type="text/css" />
-			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
-			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
+			<?php
+			printStandardMeta();
+			load_jQuery_CSS();
+			?>
+			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css?v<?PHP ECHO ZENPHOTO_VERSION; ?>" type="text/css" />
+			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/loginForm.css" type="text/css" />
 			<?php
 			if ($_zp_RTL_css) {
 				?>
 				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-rtl.css" type="text/css" />
 				<?php
 			}
-			?>
-			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.dirtyforms.min.js" type="text/javascript"></script>
-			<script type="text/javascript">
-				// <!-- <![CDATA[
-
-				$(document).ready(function() {
-				<?php
-				if (zp_has_filter('admin_head', 'colorbox::css')) {
-					?>
-									$("a.colorbox").colorbox({
-										maxWidth: "98%",
-										maxHeight: "98%",
-										close: '<?php echo addslashes(gettext("close")); ?>'
-									});
-
-					<?php
-				}
+			if ($multi) {
 				?>
-				$('form.dirty-check').dirtyForms({ 
-					message: '<?php echo addslashes(gettext('You have unsaved changes!')); ?>',
-					ignoreSelector: '.dirtyignore'
+				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/msdropdown/dd.css" type="text/css" />
+				<?php
+			}
+			?>
+
+			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('Admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
+			<?php load_jQuery_scripts('admin'); ?>
+
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.min.js" type="text/javascript"></script>
+
+			<?php
+			if (extensionEnabled('touchPunch')) {
+				?>
+				<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.ui.touch-punch.min.js"></script>
+				<?php
+			}
+			if ($multi) {
+				?>
+				<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/msdropdown/jquery.dd.min.js" type="text/javascript"></script>
+				<?php
+			}
+			if (getOption('dirtyform_enable')) {
+				?>
+				<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/dirtyforms/jquery.dirtyforms.min.js" type="text/javascript"></script>
+				<?php
+			}
+			?>
+			<script type="text/javascript">
+		// <!-- <![CDATA[
+		function setClean(id) {
+			$('form#' + id).removeClass('tinyDirty');
+		}
+	<?php
+	if ($multi) {
+		?>
+			function lsclick(key, id) {
+				$('.lbx-' + id).hide();
+				$('#lb' + key + '-' + id).show();
+				$('.lbt-' + id).removeClass('selected');
+				$('#lbt-' + key + '-' + id).addClass('selected');
+			}
+		<?php
+	}
+	?>
+		jQuery(function ($) {
+			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
+		});
+		window.addEventListener('load', function () {
+			var high = $('.navigation').height() - 65;
+			$('#container').css('min-height', high);
+			$('.tabbox').css('min-height', high);
+
+	<?php
+	if (zp_has_filter('admin_head', 'colorbox::css')) {
+		?>
+				$("a.colorbox").colorbox({
+					maxWidth: "98%",
+					maxHeight: "98%",
+					close: '<?php echo addslashes(gettext("close")); ?>'
 				});
-				});
-				$(function() {
-					$(".tooltip ").tooltip({
-						show: 1000,
-						hide: 1000,
-						position: {
-							my: "center bottom-20",
-							at: "center top",
-							using: function(position, feedback) {
-								$(this).css(position);
-								$("<div>")
-												.addClass("arrow")
-												.addClass(feedback.vertical)
-												.addClass(feedback.horizontal)
-												.appendTo(this);
-							}
-						}
-					});
-					$(".page-list_icon").tooltip({
-						show: 1000,
-						hide: 1000,
-						position: {
-							my: "center bottom-20",
-							at: "center top",
-							using: function(position, feedback) {
-								$(this).css(position);
-								$("<div>")
-												.addClass("arrow")
-												.addClass(feedback.vertical)
-												.addClass(feedback.horizontal)
-												.appendTo(this);
-							}
-						}
-					});
-				});
-				jQuery(function($) {
-					$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
-				})
-				// ]]> -->
+		<?php
+	}
+	if ($multi) {
+		?>
+				try {
+					$('.languageSelector').msDropDown();
+				} catch (e) {
+					alert(e.message);
+				}
+		<?php
+	}
+	if (getOption('dirtyform_enable')) {
+		?>
+				$.DirtyForms.ignoreClass = 'ignoredirty';
+				$('form.dirtylistening').dirtyForms({debug: true});
+		<?php
+	}
+	?>
+
+		}, false);
+		// ]]> -->
 			</script>
 			<?php
 			zp_apply_filter('admin_head');
@@ -194,33 +245,35 @@ function printAdminHeader($tab, $subtab = NULL) {
 		function printSortableHead() {
 			?>
 			<!--Nested Sortables-->
-			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.ui.nestedSortable.js"></script>
+			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.mjs.nestedSortable.js"></script>
 			<script type="text/javascript">
-				//<!-- <![CDATA[
-				$(document).ready(function() {
+		//<!-- <![CDATA[
+		window.addEventListener('load', function () {
 
-					$('ul.page-list').nestedSortable({
-						disableNesting: 'no-nest',
-						forcePlaceholderSize: true,
-						handle: 'div',
-						items: 'li',
-						opacity: .6,
-						placeholder: 'placeholder',
-						tabSize: 25,
-						tolerance: 'intersect',
-						toleranceElement: '> div',
-						listType: 'ul'
-					});
-
-					$('.serialize').click(function() {
-						serialized = $('ul.page-list').nestedSortable('serialize');
-						if (serialized != original_order) {
-							$('#serializeOutput').html('<input type="hidden" name="order" size="30" maxlength="1000" value="' + serialized + '" />');
-						}
-					})
-					var original_order = $('ul.page-list').nestedSortable('serialize');
-				});
-				// ]]> -->
+			$('ul.page-list').nestedSortable({
+				disableNesting: 'no-nest',
+				forcePlaceholderSize: true,
+				handle: 'div',
+				items: 'li',
+				opacity: .6,
+				placeholder: 'placeholder',
+				tabSize: 25,
+				tolerance: 'intersect',
+				toleranceElement: '> div',
+				listType: 'ul',
+				change: function (event, ui) {
+					$('#sortableListForm').addClass('dirty');
+				}
+			});
+			$('.serialize').click(function () {
+				serialized = $('ul.page-list').nestedSortable('serialize');
+				if (serialized != original_order) {
+					$('#serializeOutput').html('<input type="hidden" name="order" size="30" maxlength="1000" value="' + serialized + '" />');
+				}
+			})
+			var original_order = $('ul.page-list').nestedSortable('serialize');
+		}, false);
+		// ]]> -->
 			</script>
 			<!--Nested Sortables End-->
 			<?php
@@ -233,43 +286,74 @@ function printAdminHeader($tab, $subtab = NULL) {
 		 * @since  1.0.0
 		 */
 		function printLogoAndLinks() {
-			global $_zp_current_admin_obj, $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery;
-			if ($_zp_admin_subtab) {
-				$subtab = '-' . $_zp_admin_subtab;
-			} else {
-				$subtab = '';
-			}
+			global $_zp_current_admin_obj, $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $tabtext, $subtabtext;
 			?>
-		<span id="administration">
-			<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
-					 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_tab), html_encode($subtab)); ?>"
-					 alt="<?php echo gettext('Zenphoto Administration'); ?>" align="bottom" />
-		</span>
+		<div id="admin_head">
+			<span id="administration">
+				<?php printSiteLogoImage(sprintf(gettext('%1$s Administration'), html_encode($_zp_gallery->getTitle())), sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($tabtext), html_encode($subtabtext))); ?>
+			</span>
+			<span id="links">
+				<?php
+				if (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->reset) {
+					$last = $_zp_current_admin_obj->getLastlogon();
+					?>
+
+					<?php
+					if (empty($last)) {
+						$msg = gettext('Logged in as %1$s');
+					} else {
+						$msg = gettext('Logged in as %1$s (last login %2$s)');
+					}
+					$user = $_zp_current_admin_obj->getUser();
+					printf($msg, '<a href = "admin-users.php?user=' . $user . '&page=admin&tab=users" title = "' . gettext('go to user profile') . '">' . $user . '</a>', $last);
+					?>
+					</a>
+					<?php
+					if ($_zp_current_admin_obj->logout_link) {
+						$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . (int) ((SERVER_PROTOCOL == 'https') & true);
+						?>
+						&nbsp; | &nbsp; <a href="<?php echo $link; ?>" id="admin_logout"><?php echo gettext("Log Out"); ?></a> &nbsp; | &nbsp;
+						<?php
+					}
+				}
+				?>
+				<a href="<?php echo FULLWEBPATH; ?>/">
+					<?php
+					$t = $_zp_gallery->getTitle();
+					if (!empty($t)) {
+						printf(gettext("View <em>%s</em>"), $t);
+					} else {
+						echo gettext("View gallery index");
+					}
+					?>
+				</a>
+			</span>
+		</div>
+		<a href="javascript:" id="return-to-top" class="ignoredirty" title="<?php echo gettext('return to top'); ?>"></a>
 		<?php
-		echo "\n<div id=\"links\">";
-		echo "\n  ";
-		if (!is_null($_zp_current_admin_obj)) {
-			$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
-			$last = $_zp_current_admin_obj->getLastlogon();
-			if (empty($last)) {
-				printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
-			} else {
-				printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
+	}
+
+	function printSetupWarning() {
+		list($diff, $needs, $found, $present) = checkSignature(0);
+		if (zp_loggedin(ADMIN_RIGHTS) && $present && (zpFunctions::hasPrimaryScripts() || empty($needs))) {
+			//	button to restore setup files if needed
+			if (empty($needs)) {
+				?>
+				<div class="warningbox">
+					<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
+					<?php
+					echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers.') . ' ';
+					if (zpFunctions::hasPrimaryScripts()) {
+						echo '<a href="' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=protect_setup&XSRFToken=' . getXSRFToken('protect_setup') . '">' . gettext('Protect the scripts.') . '</a>';
+					}
+					?>
+				</div>
+				<?php
+				return 2;
 			}
-			if ($_zp_current_admin_obj->logout_link) {
-				$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . $sec;
-				echo " &nbsp; | &nbsp; <a href=\"" . $link . "\">" . gettext("Log Out") . "</a> &nbsp; | &nbsp; ";
-			}
+			return 1;
 		}
-		echo ' <a href="' . FULLWEBPATH . '/">';
-		$t = $_zp_gallery->getTitle();
-		if (!empty($t)) {
-			printf(gettext("View <em>%s</em>"), $t);
-		} else {
-			echo gettext("View gallery index");
-		}
-		echo "</a>";
-		echo "\n</div>";
+		return 0;
 	}
 
 	/**
@@ -279,62 +363,161 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @author Todd Papaioannou (lucky@luckyspin.org)
 	 * @since  1.0.0
 	 */
-	function printTabs() {
-		global $subtabs, $zenphoto_tabs, $main_tab_space, $_zp_admin_tab;
-		$chars = 0;
-		foreach ($zenphoto_tabs as $atab) {
-			$chars = $chars + mb_strlen($atab['text']);
-		}
-		switch (getOption('locale')) {
-			case 'zh_CN':
-			case 'zh_TW':
-			case 'ja_JP':
-				$main_tab_space = count($zenphoto_tabs) * 3 + $chars;
-				break;
-			default:
-				$main_tab_space = round((count($zenphoto_tabs) * 32 + round($chars * 7.5)) / 11.5);
-				break;
-		}
+	function printTabs($tab = NULL) {
+		global $zenphoto_tabs, $_zp_admin_tab;
+		$_SESSION['navigation_tabs'] = $zenphoto_tabs; //	mostly for refresh_metadata which cannot load plugins
 		?>
-		<ul class="nav" style="width: <?php echo $main_tab_space; ?>em">
-			<?php
-			foreach ($zenphoto_tabs as $key => $atab) {
-				?>
-				<li <?php if ($_zp_admin_tab == $key) echo 'class="current"' ?>>
-					<a href="<?php echo html_encode($atab['link']); ?>"><?php echo html_encode(ucfirst($atab['text'])); ?></a>
-					<?php
-					$subtabs = $zenphoto_tabs[$key]['subtabs'];
-					if (is_array($subtabs)) { // don't print <ul> if there is nothing
-						if ($_zp_admin_tab != $key) { // don't print sublist if already on the main tab
-							?>
-							<ul class="subdropdown">
-								<?php
-								foreach ($subtabs as $key => $link) {
-									if (strpos($link, '/') !== 0) { // zp_core relative
-										$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-									} else {
-										$link = WEBPATH . $link;
-									}
-									?>
-									<li><a href="<?php echo html_encode($link); ?>"><?php echo html_encode(ucfirst($key)); ?></a></li>
-									<?php
-								} // foreach end
-								?>
-							</ul>
-							<?php
-						} // if $subtabs end
-					} // if array
-					?>
-				</li>
+		<div class="navigation">
+			<ul>
 				<?php
-			}
-			?>
-		</ul>
-		<br class="clearall" /><!-- needed so the nav sits correctly -->
+				$bottom = count($zenphoto_tabs);
+				$loc = -1;
+				foreach ($zenphoto_tabs as $key => $atab) {
+					if (isset($atab['link'])) {
+						if (array_key_exists('alert', $zenphoto_tabs[$key])) {
+							$alert = $zenphoto_tabs[$key]['alert'];
+						} else {
+							$alert = array();
+						}
+						$class = '';
+						$activeTab = $_zp_admin_tab == $key;
+						if ($activeTab) {
+							$class = ' class="active"';
+						} else {
+							if (!empty($alert)) {
+								$class = ' class="nav-alert"';
+							}
+						}
+						$subtabs = $zenphoto_tabs[$key]['subtabs'];
+						$hasSubtabs = !empty($subtabs) && is_array($subtabs);
+						$loc++;
+						?>
+						<li<?php if ($hasSubtabs) echo ' class="has-sub"'; ?>>
+							<a href="<?php echo html_encode($atab['link']); ?>" <?php echo $class; ?>><?php echo html_encodeTagged(ucfirst($atab['text'])); ?></a>
+							<?php
+							if ($hasSubtabs) { // don't print <ul> if there is nothing
+								if (!(isset($atab['ordered']) && $atab['ordered'])) {
+									ksort($subtabs, SORT_NATURAL);
+								}
+								$high = count($subtabs);
+								if ($high > 2) {
+									$_top = $loc - floor(0.5 * $high);
+									$_bottom = $loc + ceil(0.5 * $high);
+									if ($_top >= 0 && $_bottom <= $bottom) { //	fits within the bounds
+										$position = floor(0.5 * $high);
+									} else {
+										if ($_bottom > $bottom) { //	overflows at bottom
+											if ($loc - $high + 1 > 0) { //	won't overflow at top
+												$position = $high - 1; //	align to the bottom
+											} else {
+												$position = $loc; //	align to top and let the bottom overflow
+											}
+										} else { //	overflows at the top only
+											$position = $loc; //	align to the top
+										}
+									}
+								} else {
+									$position = 0; //	align to self
+								}
+								?>
+								<ul<?php if ($position) echo ' style="margin-top: -' . ($position * 32) . 'px;"' ?>>
+									<?php
+									if ($activeTab) {
+										if (isset($_GET['tab'])) {
+											$subtab = sanitize($_GET['tab']);
+										} else {
+											if (isset($zenphoto_tabs[$key]['default'])) {
+												$subtab = $zenphoto_tabs[$key]['default'];
+											} else {
+												$subtab = NULL;
+											}
+										}
+									}
+
+									foreach ($subtabs as $subkey => $link) {
+										$subclass = '';
+										if ($activeTab) {
+											preg_match('~tab=(.*?)(&|$)~', $link, $matches);
+											if (isset($matches[1])) {
+												if ($matches[1] == $subtab) {
+													$subclass = 'active ';
+												}
+											}
+										}
+										if ($link) {
+											switch ($link[0]) {
+												case'/':
+													$link = ' href="' . WEBPATH . html_encode($link) . '" 1';
+													break;
+												case '?':
+													$request = mb_parse_url(getRequestURI());
+													if (isset($request['query'])) {
+														$link .= '&' . $request['query'];
+													}
+													$link = ' href="' . $request['path'] . html_encode($link) . '" 2';
+													break;
+												default:
+													$link = ' href="' . WEBPATH . '/' . ZENFOLDER . '/' . html_encode($link) . '" 3';
+													break;
+											}
+
+											if (in_array($subkey, $alert)) {
+												$subclass = ' class="' . $subclass . 'nav-alert"';
+											} else if ($subclass) {
+												$subclass = ' class="' . trim($subclass) . '"';
+											}
+											?>
+											<li>
+												<a<?php echo $link; ?><?php echo $subclass; ?>>
+													<?php echo html_encodeTagged(ucfirst($subkey)); ?>
+												</a>
+											</li>
+											<?php
+										} else {
+											?>
+											<li>
+												<?php echo $subkey; ?>
+											</li>
+											<?php
+										}
+									} // foreach end
+									?>
+								</ul>
+								<?php
+							} // subtabs
+							?>
+						</li>
+						<?php
+					}
+				}
+				?>
+			</ul>
+		</div>
+		<br class="clearall"><!-- needed so the nav sits correctly -->
 		<?php
 	}
 
-	function getSubtabs() {
+	function getTabName($page, $tab) {
+		global $zenphoto_tabs;
+		foreach ($zenphoto_tabs[$page]['subtabs'] as $text => $link) {
+			if (strpos($link, 'tab=' . $tab) !== false) {
+				return $text;
+			}
+		}
+		return str_replace('_', ' ', $tab);
+	}
+
+	function getTabLink($page, $tab) {
+		global $zenphoto_tabs;
+		foreach ($zenphoto_tabs[$page]['subtabs'] as $text => $link) {
+			if (strpos($link, 'tab=' . $tab) !== false) {
+				return $link;
+			}
+		}
+		return false;
+	}
+
+	function getCurrentTab() {
 		global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
 		$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
 		if (!is_array($tabs))
@@ -343,13 +526,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (isset($_GET['tab'])) {
 			$test = sanitize($_GET['tab']);
 			foreach ($tabs as $link) {
-				$i = strrpos($link, 'tab=');
-				$amp = strrpos($link, '&');
-				if ($i !== false) {
-					if ($amp > $i) {
-						$link = substr($link, 0, $amp);
-					}
-					if ($test == substr($link, $i + 4)) {
+				preg_match('~tab=(.*?)(&|$)~', $link, $matches);
+				if (isset($matches[1])) {
+					if ($test == $matches[1]) {
 						$current = $test;
 						break;
 					}
@@ -378,88 +557,41 @@ function printAdminHeader($tab, $subtab = NULL) {
 		return $current;
 	}
 
-	function printSubtabs() {
-		global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
-		$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
-		$current = getSubtabs();
-		if (!empty($tabs)) {
-			$chars = 0;
-			foreach ($tabs as $atab => $val) {
-				$chars = $chars + mb_strlen($atab);
-			}
-			switch (getOption('locale')) {
-				case 'zh_CN':
-				case 'zh_TW':
-				case 'ja_JP':
-					$sub_tab_space = count($tabs) * 3 + $chars;
-					break;
-				default:
-					$sub_tab_space = round((count($tabs) * 32 + round($chars * 7.5)) / 11.5);
-					break;
-			}
-			?>
-			<ul class="subnav" style="width: <?php echo $sub_tab_space; ?>em">
-				<?php
-				foreach ($tabs as $key => $link) {
-					$i = strrpos($link, 'tab=');
-					$amp = strrpos($link, '&');
-					if ($i === false) {
-						$tab = $_zp_admin_subtab;
-					} else {
-						if ($amp > $i) {
-							$source = substr($link, 0, $amp);
-						} else {
-							$source = $link;
-						}
-						$tab = substr($source, $i + 4);
-					}
-					if (!$link) {
-						$bt = debug_backtrace();
-						$bt = array_shift($bt);
-						if (isset($bt['file'])) {
-							$link = str_replace(SERVERPATH, '', str_replace('\\', '/', $bt['file']));
-						}
-					}
-					if (strpos($link, '/') !== 0) { // zp_core relative
-						$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-					} else {
-						$link = WEBPATH . $link;
-					}
-					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a href="' . html_encode($link) . '">' . html_encode(ucfirst($key)) . '</a></li>' . "\n";
-				}
-				?>
-			</ul>
-			<?php
-		}
-		return $current;
-	}
-
 	function setAlbumSubtabs($album) {
 		global $zenphoto_tabs;
 		$albumlink = '?page=edit&album=' . urlencode($album->name);
 		$default = NULL;
-		if (!is_array($zenphoto_tabs['edit']['subtabs'])) {
-			$zenphoto_tabs['edit']['subtabs'] = array();
+		$zenphoto_tabs['edit']['subtabs'] = array();
+		$subrights = $album->subRights();
+		if (isset($_GET['tab'])) {
+			$tab = sanitize($_GET['tab']);
+		} else {
+			$tab = false;
 		}
-		$subrights = $album->albumSubRights();
-		if (!$album->isDynamic() && $album->getNumImages()) {
-			if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
-				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Images') => 'admin-edit.php' . $albumlink . '&tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
-				);
-				$default = 'imageinfo';
+
+		if (!$album->isDynamic()) {
+			if ($c = $album->getNumImages()) {
+				if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
+					$zenphoto_tabs['edit']['subtabs'] = array_merge(
+									array(gettext('Images') => 'admin-edit.php' . $albumlink . '&tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
+					);
+					$default = 'imageinfo';
+				}
+				if ($c > 1 && $subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
+					$zenphoto_tabs['edit']['subtabs'] = array_merge(
+									array(gettext('Image order') => 'admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
+					);
+				}
 			}
-			if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
-				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Image order') => 'admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
-				);
+			$subalbums = $album->getAlbums();
+			if (!empty($subalbums)) {
+				$add[gettext('Subalbums')] = 'admin-edit.php' . $albumlink . '&tab=subalbuminfo';
+				if ($tab == 'subalbuminfo' && count($subalbums) > 1 || $tab == 'massedit') {
+					$add[gettext('Mass-edit subalbums')] = "/" . ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=massedit';
+				}
+				$zenphoto_tabs['edit']['subtabs'] = array_merge($add, $zenphoto_tabs['edit']['subtabs']);
+				$default = 'subalbuminfo';
 			}
-		}
-		if (!$album->isDynamic() && $album->getNumAlbums()) {
-			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-							array(gettext('Subalbums') => 'admin-edit.php' . $albumlink . '&tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
-			);
-			$default = 'subalbuminfo';
 		}
 		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
@@ -467,9 +599,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 			);
 			$default = 'albuminfo';
 		}
+		$extra = zp_apply_filter('album_page_subtabs', array(), $album);
+		if (!empty($extra)) {
+			$zenphoto_tabs['edit']['subtabs'] = array_merge($zenphoto_tabs['edit']['subtabs'], $extra);
+		}
+
 		$zenphoto_tabs['edit']['default'] = $default;
 		if (isset($_GET['tab'])) {
 			return sanitize($_GET['tab']);
+		}
+		if ($tab) {
+			return $tab;
 		}
 		return $default;
 	}
@@ -520,6 +660,59 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 	}
 
+	/**
+	 *
+	 * @param string $text
+	 * @param string $key
+	 * @param int $min
+	 * @param int $max
+	 * @param int $v current value
+	 */
+	function putSlider($text, $postkey, $min, $max, $v) {
+		?>
+		<style>
+			#<?php echo $postkey; ?>-handle {
+				width: 3em;
+				height: 1.6em;
+				top: 50%;
+				margin-top: -.8em;
+				text-align: center;
+				line-height: 1.6em;
+			}
+		</style>
+		<span id="slider_display-<?php echo $postkey; ?>" class="nowrap">
+			<?php echo $text; ?>
+			<input type="hidden" id="<?php echo $postkey; ?>" name="<?php echo $postkey; ?>" size="2" value="<?php echo $v; ?>" onchange="$('#slider-<?php echo $postkey; ?>').slider('value', $('#<?php echo $postkey; ?>').val());"/>
+		</span>
+
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			$(function () {
+				var handle = $("#<?php echo $postkey; ?>-handle");
+				$("#slider-<?php echo $postkey; ?>").slider({
+					startValue: <?php echo (int) $v; ?>,
+					value: <?php echo (int) $v; ?>,
+					min: <?php echo (int) $min; ?>,
+					max: <?php echo (int) $max; ?>,
+					create: function () {
+						handle.text($(this).slider("value"));
+					},
+					slide: function (event, ui) {
+						handle.text(ui.value);
+						$("#<?php echo $postkey; ?>").val(ui.value);
+					}
+				});
+				$("#<?php echo $postkey; ?>").val($("#slider-<?php echo $postkey; ?>").slider("value"));
+			});
+			// ]]> -->
+		</script>
+		<div id="slider-<?php echo $postkey; ?>">
+			<div id="<?php echo $postkey; ?>-handle" class="ui-slider-handle"></div>
+		</div>
+		<br />
+		<?php
+	}
+
 	define('CUSTOM_OPTION_PREFIX', '_ZP_CUSTOM_');
 	/**
 	 * Generates the HTML for custom options (e.g. theme options, plugin options, etc.)
@@ -535,21 +728,27 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $initial initila show/hide state
 	 *
 	 * Custom options:
-	 *    OPTION_TYPE_TEXTBOX:          A textbox
-	 *    OPTION_TYPE_PASSWORD:         A passowrd textbox
-	 *    OPTION_TYPE_CLEARTEXT:     	  A textbox, but no sanitization on save
-	 *    OPTION_TYPE_CHECKBOX:         A checkbox
-	 *    OPTION_TYPE_CUSTOM:           Handled by $optionHandler->handleOption()
-	 *    OPTION_TYPE_TEXTAREA:         A textarea
-	 *    OPTION_TYPE_RICHTEXT:         A textarea with WYSIWYG editor attached
-	 *    OPTION_TYPE_RADIO:            Radio buttons (button names are in the 'buttons' index of the supported options array)
-	 *    OPTION_TYPE_SELECTOR:         Selector (selection list is in the 'selections' index of the supported options array
-	 *                                  null_selection contains the text for the empty selection. If not present there
-	 *                                  will be no empty selection)
-	 *    OPTION_TYPE_CHECKBOX_ARRAY:   Checkbox array (checkbox list is in the 'checkboxes' index of the supported options array.)
-	 *    OPTION_TYPE_CHECKBOX_UL:      Checkbox UL (checkbox list is in the 'checkboxes' index of the supported options array.)
-	 *    OPTION_TYPE_COLOR_PICKER:     Color picker
-	 *    OPTION_TYPE_NOTE:             Places a note in the options area. The note will span all three columns
+	 *    OPTION_TYPE_TEXTBOX:							A textbox
+	 *    OPTION_TYPE_PASSWORD:							A passowrd textbox
+	 *    OPTION_TYPE_CLEARTEXT:						A textbox, but no sanitization on save
+	 * 		OPTION_TYPE_NUMBER:								A small textbox for numbers. NOTE: the default allows only positive integers
+	 * 																				(i.e. 'step' defaults to 1.) If you need	other values supply a "limits" element, e.g:
+	 * 																				'limits' => array('min' => -25, 'max'=> 25, 'step' => 0.5)
+	 * 		OPTION_TYPE_SLIDER								A number but with a slider that changes the value
+	 *    OPTION_TYPE_CHECKBOX:							A checkbox
+	 *    OPTION_TYPE_CUSTOM:								Handled by $optionHandler->handleOption()
+	 *    OPTION_TYPE_TEXTAREA:							A textarea
+	 *    OPTION_TYPE_RICHTEXT:							A textarea with WYSIWYG editor attached
+	 *    OPTION_TYPE_RADIO:								Radio buttons (button names are in the 'buttons' index of the supported options array)
+	 *    OPTION_TYPE_SELECTOR:							Selector (selection list is in the 'selections' index of the supported options array
+	 * 																				null_selection contains the text for the empty selection. If not present there
+	 * 																				will be no empty selection)
+	 *    OPTION_TYPE_CHECKBOX_ARRAY:				Checkbox array (checkbox list is in the 'checkboxes' index of the supported options array.)
+	 * 		OPTION_TYPE_CHECKBOX_ARRAYLIST:		Same as OPTION_TYPE_CHECKBOX_ARRAY but the set values will be stored as an array
+	 *    OPTION_TYPE_CHECKBOX_UL:					Checkbox UL (checkbox list is in the 'checkboxes' index of the supported options array.)
+	 * 		OPTION_TYPE_CHECKBOX_ULLIST:			Same as OPTION_TYPE_CHECKBOX_UL but the set values will be stored as an array
+	 *    OPTION_TYPE_COLOR_PICKER:					Color picker
+	 *    OPTION_TYPE_NOTE:									Places a note in the options area. The note will span all three columns
 	 *
 	 *    Types 0 and 5 support multi-lingual strings.
 	 */
@@ -566,8 +765,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 	define('OPTION_TYPE_NOTE', 10);
 	define('OPTION_TYPE_PASSWORD', 11);
 	define('OPTION_TYPE_RICHTEXT', 12);
+	define('OPTION_TYPE_NUMBER', 13);
+	define('OPTION_TYPE_SLIDER', 14);
+	define('OPTION_TYPE_ORDERED_SELECTOR', 15);
+	define('OPTION_TYPE_CHECKBOX_ARRAYLIST', 16);
+	define('OPTION_TYPE_CHECKBOX_ULLIST', 17);
+	define('OPTION_TYPE_HIDDEN', 18);
 
-	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $extension = NULL) {
+	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $plugin = NULL) {
 		if (is_null($supportedOptions)) {
 			$supportedOptions = $optionHandler->getOptionsSupported();
 		}
@@ -582,27 +787,41 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$options = array_keys($supportedOptions);
 				natcasesort($options);
 			}
+
 			if (method_exists($optionHandler, 'handleOptionSave')) {
 				?>
-				<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $extension; ?>" />
+				<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom; ?>" value="<?php echo $plugin; ?>" />
 				<?php
 			}
+
+
 			foreach ($options as $option) {
+				$descending = NULL;
 				$row = $supportedOptions[$option];
 				if (false !== $i = stripos($option, chr(0))) {
 					$option = substr($option, 0, $i);
 				}
 
 				$type = $row['type'];
-				$desc = $row['desc'];
 				$key = @$row['key'];
+				$postkey = postIndexEncode($key);
 				$optionID = $whom . '_' . $key;
+
+				if ($type == OPTION_TYPE_HIDDEN) {
+					?>
+					<input type="hidden" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>" value="<?php echo html_encode($row['value']); ?>" />
+					<?php
+					continue;
+				}
+
+				$desc = $row['desc'];
+
 				if (isset($row['multilingual'])) {
 					$multilingual = $row['multilingual'];
 				} else {
 					$multilingual = $type == OPTION_TYPE_TEXTAREA;
 				}
-				if (isset($row['texteditor']) && $row['texteditor']) {
+				if ($type == OPTION_TYPE_RICHTEXT || isset($row['texteditor']) && $row['texteditor']) {
 					$editor = 'texteditor';
 				} else {
 					$editor = '';
@@ -642,47 +861,71 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					if ($type != OPTION_TYPE_NOTE) {
 						?>
-						<td width="175"><?php if ($option) echo $indent . $option; ?></td>
+						<td class="option_name"><?php if ($option) echo $indent . $option; ?></td>
 						<?php
 					}
 					switch ($type) {
 						case OPTION_TYPE_NOTE:
 							?>
-							<td colspan="3"><?php echo $desc; ?></td>
+							<td colspan="100%"><?php echo $desc; ?></td>
 							<?php
 							break;
+						case OPTION_TYPE_NUMBER:
 						case OPTION_TYPE_CLEARTEXT:
-							$multilingual = false;
 						case OPTION_TYPE_PASSWORD:
 						case OPTION_TYPE_TEXTBOX:
 						case OPTION_TYPE_TEXTAREA:
 						case OPTION_TYPE_RICHTEXT;
-							if ($type == OPTION_TYPE_CLEARTEXT) {
-								$clear = 'clear';
-							} else {
-								$clear = '';
-							}
-							if ($type == OPTION_TYPE_PASSWORD) {
-								$inputtype = 'password';
-								$multilingual = false;
-							} else {
-								$inputtype = 'text';
+							$clear = '';
+							$wide = 'width: 100%';
+							switch ($type) {
+								case OPTION_TYPE_CLEARTEXT:
+									$clear = 'clear';
+									$multilingual = false;
+								default:
+									$inputtype = 'text';
+									break;
+								case OPTION_TYPE_PASSWORD:
+									$inputtype = 'password" autocomplete="off';
+									$multilingual = false;
+									break;
+								case OPTION_TYPE_NUMBER:
+									$multilingual = false;
+									$clear = 'numeric';
+									if (!is_numeric($v))
+										$v = 0;
+									$wide = 'width: 100px';
+									if (isset($row['limits'])) {
+										$inputtype = 'number';
+										if (isset($row['limits']['min']))
+											$inputtype .= '" min="' . $row['limits']['min'];
+										if (isset($row['limits']['max']))
+											$inputtype .= '" max="' . $row['limits']['max'];
+										if (isset($row['limits']['step'])) {
+											$inputtype .= '" step="' . $row['limits']['step'];
+										} else {
+											$inputtype .= '" step="1';
+										}
+									} else {
+										$inputtype = 'number" min="0" step="1';
+									}
+									break;
 							}
 							?>
-							<td width="350">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . $clear . 'text-' . $key; ?>" value="1" />
+							<td class="option_value">
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . $clear . 'text-' . $postkey; ?>" value="1" />
 								<?php
 								if ($multilingual) {
-									print_language_string_list($v, $key, $type, NULL, $editor);
+									print_language_string_list($v, $postkey, $type, NULL, $editor, '100%');
 								} else {
 									if ($type == OPTION_TYPE_TEXTAREA || $type == OPTION_TYPE_RICHTEXT) {
 										$v = get_language_string($v); // just in case....
 										?>
-										<textarea id="<?php echo $key; ?>"<?php if ($type == OPTION_TYPE_RICHTEXT) echo ' class="texteditor"'; ?> name="<?php echo $key; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
+										<textarea id="__<?php echo $key; ?>"<?php if ($type == OPTION_TYPE_RICHTEXT) echo ' class="texteditor"'; ?> name="<?php echo $postkey; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	 rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
 										<?php
 									} else {
 										?>
-										<input type="<?php echo $inputtype; ?>" size="40" id="<?php echo $key; ?>" name="<?php echo $key; ?>" style="width: 338px" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
+										<input type="<?php echo $inputtype; ?>" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>" style="<?php echo $wide; ?>" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
 										<?php
 									}
 								}
@@ -692,16 +935,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 							break;
 						case OPTION_TYPE_CHECKBOX:
 							?>
-							<td width="350">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . $key; ?>" value="1" />
-								<input type="checkbox" id="<?php echo $key; ?>" name="<?php echo $key; ?>" value="1" <?php checked('1', $v); ?><?php echo $disabled; ?> />
+							<td class="option_value">
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . $postkey; ?>" value="1" />
+								<input type="checkbox" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>" value="1" <?php checked('1', $v); ?><?php echo $disabled; ?> />
 							</td>
 							<?php
 							break;
 						case OPTION_TYPE_CUSTOM:
 							?>
-							<td width="350">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'custom-' . $key; ?>" value="0" />
+							<td class="option_value">
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'custom-' . $postkey; ?>" value="0" />
 								<?php $optionHandler->handleOption($key, $v); ?>
 							</td>
 							<?php
@@ -709,25 +952,31 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_RADIO:
 							$behind = (isset($row['behind']) && $row['behind']);
 							?>
-							<td width="350">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'radio-' . $key; ?>" value="1"<?php echo $disabled; ?> />
-								<?php generateRadiobuttonsFromArray($v, $row['buttons'], $key, $behind, 'checkboxlabel', $disabled); ?>
+							<td class="option_value">
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'radio-' . $postkey; ?>" value="1"<?php echo $disabled; ?> />
+								<?php generateRadiobuttonsFromArray($v, $row['buttons'], $postkey, $key, $behind, 'checkboxlabel', $disabled); ?>
 							</td>
 							<?php
 							break;
 						case OPTION_TYPE_SELECTOR:
+							$descending = false;
+						case OPTION_TYPE_ORDERED_SELECTOR:
 							?>
-							<td width="350">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'selector-' . $key ?>" value="1" />
-								<select id="<?php echo $key; ?>" name="<?php echo $key; ?>"<?php echo $disabled; ?> >
+							<td class="option_value">
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'selector-' . $postkey ?>" value="1" />
+								<select id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>"<?php echo $disabled; ?> >
 									<?php
 									if (array_key_exists('null_selection', $row)) {
 										?>
 										<option value=""<?php if (empty($v)) echo ' selected="selected"'; ?> style="background-color:LightGray;"><?php echo $row['null_selection']; ?></option>
 										<?php
 									}
+									$list = array();
+									foreach ($row['selections'] as $rowkey => $rowvalue) {
+										$list[$rowkey] = $rowvalue;
+									}
+									generateListFromArray(array($v), $list, $descending, true);
 									?>
-									<?php generateListFromArray(array($v), $row['selections'], false, true); ?>
 								</select>
 							</td>
 							<?php
@@ -735,44 +984,85 @@ function printAdminHeader($tab, $subtab = NULL) {
 						case OPTION_TYPE_CHECKBOX_ARRAY:
 							$behind = (isset($row['behind']) && $row['behind']);
 							?>
-							<td width="350">
-								<?php
-								foreach ($row['checkboxes'] as $display => $checkbox) {
-									if ($theme) {
-										$v = getThemeOption($checkbox, $album, $theme);
-									} else {
-										$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
-										$db = query_single_row($sql);
-										if ($db) {
-											$v = $db['value'];
-										} else {
-											$v = 0;
+							<td class="option_value">
+								<div class="checkbox_array">
+									<?php
+									foreach (array(1, 0) as $checked) {
+										foreach ($row['checkboxes'] as $display => $checkbox) {
+											if ($theme) {
+												$v = getThemeOption($checkbox, $album, $theme);
+											} else {
+												$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
+												$db = query_single_row($sql);
+												if ($db) {
+													$v = (int) $db['value'];
+												} else {
+													$v = 0;
+												}
+											}
+											if ($v === $checked) {
+												if (is_numeric($display)) {
+													$display = $checkbox;
+												}
+												$display = str_replace(' ', '&nbsp;', $display);
+												?>
+												<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
+												<label class="checkboxlabel">
+													<?php if ($behind) echo($display); ?>
+													<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo postIndexEncode($checkbox); ?>" value="1"<?php
+													checked('1', $v);
+													echo $disabled;
+													?> />
+																 <?php if (!$behind) echo($display); ?>
+												</label>
+												<?php
+											}
 										}
 									}
-									$display = str_replace(' ', '&nbsp;', $display);
 									?>
-									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . $checkbox; ?>" value="1" />
-
-									<label class="checkboxlabel">
-										<?php if ($behind) echo($display); ?>
-										<input type="checkbox" id="<?php echo $checkbox; ?>" name="<?php echo $checkbox; ?>" value="1"<?php checked('1', $v); ?><?php echo $disabled; ?> />
-										<?php if (!$behind) echo($display); ?>
-									</label>
-									<?php
-								}
-								?>
+								</div>
 							</td>
 							<?php
 							break;
-						case OPTION_TYPE_CHECKBOX_UL:
+						case OPTION_TYPE_CHECKBOX_ARRAYLIST:
+							$behind = (isset($row['behind']) && $row['behind']);
 							?>
-							<td width="350">
-								<?php
-								$all = true;
-								$cvarray = array();
-								foreach ($row['checkboxes'] as $display => $checkbox) {
+							<td class="option_value">
+								<div class="checkbox_array">
+									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
+									<?php
+									$setOptions = getSerializedArray($v);
+									foreach ($row['checkboxes'] as $display => $checkbox) {
+										$checked = in_array($checkbox, $setOptions);
+										if (is_numeric($display)) {
+											$display = $checkbox;
+										}
+										$display = str_replace(' ', '&nbsp;', $display);
+										?>
+										<label class="checkboxlabel">
+											<?php if ($behind) echo($display); ?>
+											<input type="checkbox" id="__<?php echo $checkbox; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if ($checked) echo ' checked="checked"' . $disabled; ?> />
+											<?php if (!$behind) echo($display); ?>
+										</label>
+										<?php
+									}
 									?>
-									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . $checkbox; ?>" value="1" />
+								</div>
+							</td>
+					<?php
+					break;
+				case OPTION_TYPE_CHECKBOX_UL:
+					?>
+							<td class="option_value">
+							<?php
+							$all = true;
+							$rest = $cvarray = array();
+							foreach ($row['checkboxes'] as $display => $checkbox) {
+								if (is_numeric($display)) {
+									$display = $checkbox;
+								}
+								?>
+									<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'chkbox-' . postIndexEncode($checkbox); ?>" value="1" />
 									<?php
 									if ($theme) {
 										$v = getThemeOption($checkbox, $album, $theme);
@@ -786,14 +1076,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 										}
 									}
 									if ($v) {
-										$cvarray[] = $checkbox;
+										$cvarray[$display] = $checkbox;
 									} else {
+										$rest[$display] = $checkbox;
 										$all = false;
 									}
 								}
 								?>
 								<ul class="customchecklist">
-									<?php generateUnorderedListFromArray($cvarray, $row['checkboxes'], '', '', true, true, 'all_' . $key); ?>
+								<?php
+								generateUnorderedListFromArray($cvarray, $cvarray, '', '', true, true, 'all_' . $key);
+								generateUnorderedListFromArray(array(), $rest, '', '', true, true, 'all_' . $key);
+								?>
 								</ul>
 								<script type="text/javascript">
 									// <!-- <![CDATA[
@@ -805,684 +1099,916 @@ function printAdminHeader($tab, $subtab = NULL) {
 								</script>
 								<label>
 									<input type="checkbox" name="all_<?php echo $key; ?>" id="all_<?php echo $key; ?>" class="all_<?php echo $key; ?>" onclick="<?php echo $key; ?>_all();" <?php if ($all) echo ' checked="checked"'; ?>/>
-									<?php echo gettext('all'); ?>
+					<?php echo gettext('all'); ?>
 								</label>
 							</td>
-							<?php
-							break;
-						case OPTION_TYPE_COLOR_PICKER:
-							if (empty($v))
-								$v = '#000000';
-							?>
-							<td width="350" style="margin:0; padding:0">
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $key; ?>" value="1" />
-								<script type="text/javascript">
-									// <!-- <![CDATA[
-									$(document).ready(function() {
-										$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
-									});
-									// ]]> -->
-								</script>
-								<table style="margin:0; padding:0" >
-									<tr>
-										<td><input type="text" id="<?php echo $key; ?>" name="<?php echo $key; ?>"	value="<?php echo $v; ?>" style="height:100px; width:100px; float:right;" /></td>
-										<td><div id="<?php echo $key; ?>_colorpicker"></div></td>
-									</tr>
-								</table>
-							</td>
-							<?php
-							break;
-					}
-					if ($type != OPTION_TYPE_NOTE) {
+					<?php
+					break;
+				case OPTION_TYPE_CHECKBOX_ULLIST:
+					?>
+							<td class="option_value">
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
+					<?php
+					$setOptions = getSerializedArray($v);
+					$all = empty($setOptions);
+					?>
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'array-' . $postkey; ?>" value="1" />
+								<ul class="customchecklist">
+					<?php
+					foreach ($row['checkboxes'] as $display => $checkbox) {
+						if (is_numeric($display)) {
+							$display = $checkbox;
+						}
+						$display = str_replace(' ', '&nbsp;', $display);
 						?>
-						<td><?php echo $desc; ?></td>
+										<li>
+											<label class="displayinline">
+												<input type="checkbox" id="__<?php echo $checkbox; ?>" class="all_<?php echo $key; ?>" name="<?php echo $postkey; ?>[]" value="<?php echo $checkbox; ?>"<?php if (in_array($checkbox, $setOptions)) echo ' checked="checked"'; ?><?php echo $disabled; ?> />
+						<?php echo($display); ?>
+											</label>
+										</li>
 						<?php
 					}
 					?>
-				</tr>
+								</ul>
+								<script type="text/javascript">
+									// <!-- <![CDATA[
+									function <?php echo $key; ?>_all() {
+										var check = $('#all_<?php echo $key; ?>').prop('checked');
+										$('.all_<?php echo $key; ?>').prop('checked', check);
+									}
+									// ]]> -->
+								</script>
+								<label>
+									<input type="checkbox" name="all_<?php echo $key; ?>" id="all_<?php echo $key; ?>" class="all_<?php echo $key; ?>" onclick="<?php echo $key; ?>_all();" <?php if ($all) echo ' checked="checked"'; ?>/>
+					<?php echo gettext('all'); ?>
+								</label>
+							</td>
+					<?php
+					break;
+				case OPTION_TYPE_COLOR_PICKER:
+					if (empty($v))
+						$v = '#000000';
+					?>
+							<td class="option_value">
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $postkey; ?>" value="1" />
+								<script type="text/javascript">
+									// <!-- <![CDATA[
+									window.addEventListener('load', function () {
+										$('#__<?php echo $key; ?>').spectrum({
+											preferredFormat: "hex",
+											color: $('#__<?php echo $key; ?>').val()
+										});
+									}, false);
+									// ]]> -->
+								</script>
+								<input type="text" id="__<?php echo $key; ?>" name="<?php echo $postkey; ?>"	value="<?php echo $v; ?>" />
+							</td>
+					<?php
+					break;
+				case OPTION_TYPE_SLIDER:
+					$min = $row['min'];
+					$max = $row['max'];
+					?>
+							<td class="option_value" style="margin:0; padding:0">
+								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'slider-' . $postkey; ?>" value="1" />
+					<?php putSlider('', $postkey, $min, $max, $v); ?>
+							</td>
+								<?php
+								break;
+						}
+						if ($desc && $type != OPTION_TYPE_NOTE) {
+							?>
+						<td class="option_desc">
+							<span class="option_info">
+				<?php echo INFORMATION_BLUE; ?>
+								<div class="option_desc_hidden">
+								<?php echo $desc; ?>
+								</div>
+							</span>
+						</td>
 				<?php
 			}
-		}
-	}
-
-	function processCustomOptionSave($returntab, $themename = NULL, $themealbum = NULL) {
-  $customHandlers = array();
-  foreach ($_POST as $postkey => $value) {
-    if (preg_match('/^' . CUSTOM_OPTION_PREFIX . '/', $postkey)) { // custom option!
-      $key = substr($postkey, strpos($postkey, '-') + 1);
-      $switch = substr($postkey, strlen(CUSTOM_OPTION_PREFIX), -strlen($key) - 1);
-      switch ($switch) {
-        case 'text':
-          $value = process_language_string_save($key, 1);
-          break;
-        case 'cleartext':
-          if (isset($_POST[$key])) {
-            $value = sanitize($_POST[$key], 0);
-          } else {
-            $value = '';
-          }
-          break;
-        case 'chkbox':
-          $value = (int) isset($_POST[$key]);
-          break;
-        case 'save':
-          $customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$postkey]));
-          continue;
-          break;
-        default:
-          if (isset($_POST[$key])) {
-            $value = sanitize($_POST[$key], 1);
-          } else {
-            $value = '';
-          }
-          break;
-      }
-      if ($themename) {
-        setThemeOption($key, $value, $themealbum, $themename);
-      } else {
-        $creator = NULL;
-        if(isset($_GET['single'])) { // single plugin save
-          $ext = sanitize($_GET['single'],1);
-          $pl = getPlugin($ext . '.php',false,true);
-          $creator = str_replace(WEBPATH.'/','',$pl);
-        } 
-        setOption($key, $value, true, $creator);
-      }
-    } else {
-      if (strpos($postkey, 'show-') === 0) {
-        if ($value)
-          $returntab .= '&' . $postkey;
-      }
-    }
-  }
-  foreach ($customHandlers as $custom) {
-    if ($extension = $custom['extension']) {
-			$getplugin = getPlugin($extension . '.php');
-			if($getplugin) {
-				require_once($getplugin);
-			}
-    }
-		if(class_exists($custom['whom'])) {
-			$whom = new $custom['whom']();
-			$returntab = $whom->handleOptionSave($themename, $themealbum) . $returntab;
-		}
-  }
-  return $returntab;
-}
-
-/**
-	 *
-	 * Set defaults for standard theme options incase the theme has not done so
-	 * @param string $theme
-	 * @param int $albumid zero or the album "owning" the theme
-	 */
-	function standardThemeOptions($theme, $album) {
-		setThemeOption('albums_per_page', 6, $album, $theme, true);
-		setThemeOption('albums_per_row', 3, $album, $theme, true);
-		setThemeOption('images_per_page', 20, $album, $theme, true);
-		setThemeOption('images_per_row', 5, $album, $theme, true);
-		setThemeOption('image_size', 595, $album, $theme, true);
-		setThemeOption('image_use_side', 'longest', $album, $theme, true);
-		setThemeOption('thumb_size', 100, $album, $theme, true);
-		setThemeOption('thumb_crop_width', 100, $album, $theme, true);
-		setThemeOption('thumb_crop_height', 100, $album, $theme, true);
-		setThemeOption('thumb_crop', 1, $album, $theme, true);
-		setThemeOption('thumb_transition', 1, $album, $theme, true);
-	}
-
-	/**
-	 * Encodes for use as a $_POST index
-	 *
-	 * @param string $str
-	 */
-	function postIndexEncode($str) {
-		return strtr(urlencode($str), array('.' => '__2E__', '+' => '__20__', '%' => '__25__', '&' => '__26__', "'" => '__27__', '(' => '__28__', ')' => '__29__'));
-	}
-
-	/**
-	 * Decodes encoded $_POST index
-	 *
-	 * @param string $str
-	 * @return string
-	 */
-	function postIndexDecode($str) {
-		return urldecode(strtr($str, array('__2E__' => '.', '__20__' => '+', '__25__' => '%', '__26__' => '&', '__27__' => "'", '__28__' => '(', '__29__' => ')')));
-	}
-
-	/**
-	 * Prints radio buttons from an array
-	 *
-	 * @param string $currentvalue The current selected value
-	 * @param string $list the array of the list items form is localtext => buttonvalue
-	 * @param string $option the name of the option for the input field name
-	 * @param bool $behind set true to have the "text" before the button
-	 */
-	function generateRadiobuttonsFromArray($currentvalue, $list, $option, $behind = false, $class = 'checkboxlabel', $disabled = NULL) {
-		foreach ($list as $text => $value) {
-			$checked = "";
-			if ($value == $currentvalue) {
-				$checked = ' checked="checked" '; //the checked() function uses quotes the other way round...
-			}
 			?>
+				</tr>
+					<?php
+				}
+			}
+		}
+
+		/**
+		 * Helper tool to fetch a post entry for a custom option
+		 * Specially useful for OPTION_TYPE_HIDDEN
+		 *
+		 * @param string $name
+		 * @return mixed
+		 */
+		function getOptionPost($name) {
+			return $_POST[postIndexEncode($name)];
+		}
+
+		function processCustomOptionSave($returntab, $themename = NULL, $themealbum = NULL) {
+			$customHandlers = array();
+			foreach ($_POST as $posted => $value) {
+				if (preg_match('/^' . CUSTOM_OPTION_PREFIX . '/', $posted)) { // custom option!
+					$key = $postkey = substr($posted, strpos($posted, '-') + 1);
+					$l = strlen($postkey);
+					if (!($l % 2) && preg_match('/[0-9a-f]{' . strlen($postkey) . '}/i', $postkey)) {
+						$key = postIndexDecode($postkey);
+					}
+					$switch = explode('-', $posted);
+					$switch = substr($switch[0], strlen(CUSTOM_OPTION_PREFIX));
+					switch ($switch) {
+						case 'text':
+							$value = process_language_string_save($postkey, 1);
+							break;
+						case'numerictext':
+							if (isset($_POST[$postkey])) {
+								if (is_numeric($_POST[$postkey])) {
+									$value = $_POST[$postkey];
+								} else {
+									$value = 0;
+								}
+							}
+							break;
+						case 'cleartext':
+							if (isset($_POST[$postkey])) {
+								$value = sanitize($_POST[$postkey], 0);
+							} else {
+								$value = '';
+							}
+							break;
+						case 'chkbox':
+							$value = (int) isset($_POST[$postkey]);
+							break;
+						case 'array':
+							if (isset($_POST[$postkey])) {
+								$value = serialize($_POST[$postkey]);
+							} else {
+								$value = serialize(array());
+							}
+							break;
+						case 'save':
+							$customHandlers[] = array('whom' => $key, 'extension' => sanitize_path($_POST[$posted]));
+							continue 2;
+						default:
+							if (isset($_POST[$postkey])) {
+								$value = sanitize($_POST[$postkey], 1);
+							} else if (isset($_POST[$key])) {
+								$value = sanitize($_POST[$key], 1);
+							} else {
+								$value = NULL;
+							}
+							if (is_string($value)) {
+								break;
+							}
+							continue 2;
+					}
+					if ($themename) {
+						setThemeOption($key, $value, $themealbum, $themename);
+					} else {
+						setOption($key, $value);
+					}
+				} else {
+					if (strpos($posted, 'show-') === 0) {
+						if ($value)
+							$returntab .= '&' . $posted;
+					}
+				}
+			}
+			foreach ($customHandlers as $custom) {
+				if (($extension = $custom['extension'] . '.php') != '.php') {
+					if ($extension = getPlugin($extension)) {
+						require_once($extension);
+					}
+					if (class_exists($custom['whom'])) {
+						$whomobj = new $custom['whom']();
+						$returntab = $whomobj->handleOptionSave($themename, $themealbum) . $returntab;
+					}
+				}
+			}
+			return $returntab;
+		}
+
+		/**
+		 *
+		 * Set defaults for standard theme options incase the theme has not done so
+		 * @param string $theme
+		 * @param int $albumid zero or the album "owning" the theme
+		 */
+		function standardThemeOptions($theme, $album) {
+			setThemeOption('albums_per_page', 6, $album, $theme, true);
+			setThemeOption('albums_per_row', 3, $album, $theme, true);
+			setThemeOption('images_per_page', 20, $album, $theme, true);
+			setThemeOption('images_per_row', 5, $album, $theme, true);
+			setThemeOption('image_size', 595, $album, $theme, true);
+			setThemeOption('image_use_side', 'longest', $album, $theme, true);
+			setThemeOption('thumb_size', 100, $album, $theme, true);
+			setThemeOption('thumb_crop_width', 100, $album, $theme, true);
+			setThemeOption('thumb_crop_height', 100, $album, $theme, true);
+			setThemeOption('thumb_crop', 1, $album, $theme, true);
+			setThemeOption('thumb_transition', 1, $album, $theme, true);
+
+			$knownThemes = getSerializedArray(getOptionFromDB('known_themes'));
+			$knownThemes[$theme] = $theme;
+			setOption('known_themes', serialize($knownThemes));
+		}
+
+		/**
+		 * Encodes for use as a $_POST index
+		 *
+		 * @param string $str
+		 */
+		function postIndexEncode($str) {
+			return bin2hex($str);
+		}
+
+		/**
+		 * Decodes encoded $_POST index
+		 *
+		 * @param string $str
+		 * @return string
+		 */
+		function postIndexDecode($str) {
+			return hex2bin($str);
+		}
+
+		/**
+		 * Prints radio buttons from an array
+		 *
+		 * @param string $currentvalue The current selected value
+		 * @param string $list the array of the list items form is localtext => buttonvalue
+		 * @param string $option the name of the option for the input field name
+		 * @param string $radioid the base ID value for the radio buttons
+		 * @param bool $behind set true to have the "text" before the button
+		 */
+		function generateRadiobuttonsFromArray($currentvalue, $list, $option, $radioid, $behind = false, $class = 'checkboxlabel', $disabled = NULL) {
+			foreach ($list as $text => $value) {
+				$checked = "";
+				if ($value == $currentvalue) {
+					$checked = ' checked="checked" '; //the checked() function uses quotes the other way round...
+				}
+				?>
 			<label<?php if ($class) echo ' class="' . $class . '"'; ?>>
-				<?php if ($behind) echo $text; ?>
-				<input type="radio" name="<?php echo $option; ?>" id="<?php echo $option . '-' . $value; ?>" value="<?php echo $value; ?>"<?php echo $checked; ?><?php echo $disabled; ?> />
+			<?php if ($behind) echo $text; ?>
+				<input type="radio" name="<?php echo $option; ?>" id="__<?php echo $radioid . '-' . $value; ?>" value="<?php echo $value; ?>"<?php echo $checked . $disabled; ?> />
 				<?php if (!$behind) echo $text; ?>
 			</label>
-			<?php
+				<?php
+			}
 		}
-	}
 
-	/**
-	 * Creates the body of an unordered list with checkbox label/input fields (scrollable sortables)
-	 *
-	 * @param array $currentValue list of items to be flagged as checked
-	 * @param array $list the elements of the select list
-	 * @param string $prefix prefix of the input item
-	 * @param string $alterrights are the items changable.
-	 * @param bool $sort true for sorted list
-	 * @param string $class optional class for items
-	 * @param bool $localize true if the list local key is text for the item
-	 */
-	function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrights, $sort, $localize, $class = NULL, $extra = NULL) {
-		if (is_null($extra))
-			$extra = array();
-		if (!empty($class))
-			$class = ' class="' . $class . '" ';
-		if ($sort) {
-			if ($localize) {
-				$list = array_flip($list);
-				natcasesort($list);
-				$list = array_flip($list);
-			} else {
-				natcasesort($list);
+		/**
+		 * Creates the body of an unordered list with checkbox label/input fields (scrollable sortables)
+		 *
+		 * @param array $currentValue list of items to be flagged as checked
+		 * @param array $list the elements of the select list
+		 * @param string $prefix prefix of the input item
+		 * @param string $alterrights are the items changable.
+		 * @param bool $sort true for sorted list
+		 * @param string $class optional class for items
+		 * @param bool $localize true if the list local key is text for the item
+		 */
+		function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrights, $sort, $localize, $class = NULL, $extra = NULL, $postArray = 0) {
+			if (is_null($extra))
+				$extra = array();
+			if (!empty($class))
+				$class = ' class="' . $class . '" ';
+			if ($sort) {
+				if ($localize) {
+					$list = array_flip($list);
+					natcasesort($list);
+					$list = array_flip($list);
+				} else {
+					natcasesort($list);
+				}
 			}
-		}
-		$cv = array_flip($currentValue);
-		foreach ($list as $key => $item) {
-			$listitem = postIndexEncode($prefix . $item);
-			if ($localize) {
-				$display = $key;
-			} else {
-				$display = $item;
-			}
-			?>
-			<li id="<?php echo strtolower($listitem); ?>_element">
+			$cv = array_flip($currentValue);
+			foreach ($list as $key => $item) {
+				$listitem = preg_replace('~[\[\]]~', '_', $prefix) . postIndexEncode($item);
+				if ($localize && !is_numeric($key)) {
+					$display = $key;
+				} else {
+					$display = $item;
+				}
+				switch ((int) $postArray) {
+					case 0:
+						$namechecked = $name = $listitem;
+						break;
+					case 1:
+						$namechecked = $name = $prefix . 'list[]';
+						break;
+					case 2:
+						$name = $prefix . '[' . postIndexEncode($item) . ']';
+						$namechecked = $name . '[checked]';
+						break;
+				}
+				if (isset($cv[$item])) {
+					$checked = ' checked="checked"';
+				} else {
+					$checked = '';
+				}
+				?>
+			<li id="<?php echo $listitem; ?>_element">
 				<label class="displayinline">
-					<input id="<?php echo strtolower($listitem); ?>"<?php echo $class; ?> name="<?php echo $listitem; ?>" type="checkbox"
+					<input id="<?php echo $listitem; ?>"<?php echo $class; ?> name="<?php echo $namechecked; ?>" type="checkbox"<?php echo $checked; ?> value="<?php echo $item; ?>" <?php echo $alterrights; ?> />
+		<?php echo html_encode($display); ?>
+				</label>
 					<?php
-					if (isset($cv[$item])) {
+					if (array_key_exists($item, $extra)) {
+						$unique = '';
+						foreach (array_reverse($extra[$item]) as $box) {
+							if ($box['display']) {
+								if (isset($box['disable'])) {
+									$disable = ' disabled="disabled"';
+								} else {
+									$disable = $alterrights;
+								}
+								if (isset($box['type'])) {
+									$type = $box['type'];
+									if ($type == 'radio')
+										$unique++;
+								} else {
+									$type = 'checkbox';
+								}
+								?>
+							<label class="displayinlineright">
+								<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem) . '_' . $box['name'] . $unique; ?>"<?php echo $class; ?> name="<?php echo $name . '[' . $box['name'] . ']'; ?>"
+											 value="<?php echo html_encode($box['value']); ?>" <?php
+					if ($box['checked']) {
 						echo ' checked="checked"';
 					}
-					?> value="1" <?php echo $alterrights; ?> />
-								 <?php echo html_encode($display); ?>
-				</label>
-				<?php
-				if (array_key_exists($item, $extra)) {
-					$unique = '';
-					foreach (array_reverse($extra[$item]) as $box) {
-						if ($box['display']) {
-							if (isset($box['disable'])) {
-								$disable = ' disabled="disabled"';
-							} else {
-								$disable = $alterrights;
-							}
-							if (isset($box['type'])) {
-								$type = $box['type'];
-								if ($type == 'radio')
-									$unique++;
-							} else {
-								$type = 'checkbox';
-							}
-							?>
-							<label class="displayinlineright">
-								<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem) . '_' . $box['name'] . $unique; ?>"<?php echo $class; ?> name="<?php echo $listitem . '_' . $box['name']; ?>"
-											 value="<?php echo html_encode($box['value']); ?>" <?php
-											 if ($box['checked']) {
-												 echo ' checked="checked"';
-											 }
-											 ?>
+								?>
 											 <?php echo $disable; ?> /> <?php echo $box['display']; ?>
 							</label>
-							<?php
-						} else {
-							?>
-							<input type="hidden" id="<?php echo strtolower($listitem . '_' . $box['name']); ?>" name="<?php echo $listitem . '_' . $box['name']; ?>"<?php echo $class; ?>
+											 <?php
+										 } else {
+											 ?>
+							<input type="hidden" id="<?php echo strtolower($listitem . '_' . $box['name']); ?>" name="<?php echo $name . '[' . $box['name'] . ']'; ?>"<?php echo $class; ?>
 										 value="<?php echo html_encode($box['value']); ?>" />
-										 <?php
-									 }
-								 }
+					<?php
+				}
+			}
+			?>
+					<br clear="right">
+								 <?php
 							 }
 							 ?>
 			</li>
-			<?php
+				<?php
+			}
 		}
+
+		function addTags($tags, $obj) {
+			$mytags = array_unique(array_merge($tags, $obj->getTags(false)));
+			$obj->setTags($mytags);
+		}
+
+		/**
+		 * returns an array of language flag images
+		 *
+		 * @global type $_zp_language_flags
+		 * @return array
+		 */
+		function getLanguageFlags() {
+			global $_zp_language_flags;
+			if (is_null($_zp_language_flags)) {
+				$_zp_language_flags = array('' => WEBPATH . '/' . ZENFOLDER . '/locale/UN.png');
+				foreach (generateLanguageList('all') as $dirname) {
+					$_zp_language_flags[$dirname] = getLanguageFlag($dirname);
+				}
+			}
+			return $_zp_language_flags;
+		}
+
+		/**
+		 * Creates sorted tag list(s)
+		 *
+		 * @global type $_zp_admin_ordered_taglist
+		 * @param type $tagsort
+		 * @return array
+		 */
+		function sortTagList($tagsort = 'alpha') {
+			global $_zp_admin_ordered_taglist, $_zp_admin_ordered_taglist_order;
+			if (zp_loggedin(TAGS_RIGHTS)) {
+				$private = '';
+			} else {
+				$private = ' AND (tags.private=0)';
+			}
+
+			if (is_null($_zp_admin_ordered_taglist) || $tagsort != $_zp_admin_ordered_taglist_order) {
+				$_zp_admin_ordered_taglist_order = $tagsort;
+				switch ($tagsort) {
+					case 'language':
+						$order = '`language` DESC,`name`';
+						break;
+					case 'recent':
+						$order = '`id` DESC';
+						break;
+					case 'mostused':
+						$order = '`count` DESC';
+						break;
+					case 'private':
+						$order = '`private` DESC, `name`';
+						break;
+					default:
+						$order = '`name`';
+						break;
+				}
+				$masters = $translations = $_zp_admin_ordered_taglist = $languages = array();
+				$sql = "SELECT DISTINCT tags.id, tags.name, tags.masterid, tags.language, tags.private, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') .
+								' as object WHERE (object.tagid=tags.id)' . $private . ') AS count FROM ' . prefix('tags') . " as tags ORDER BY $order, `masterid`";
+				$tagresult = query($sql);
+				if ($tagresult) {
+					while ($tag = db_fetch_assoc($tagresult)) {
+						$tagname = mb_strtolower($tag['name']);
+						$lang = $tag['language'];
+						$_zp_admin_ordered_taglist[$lang . $tagname] = array('tag' => $tag['name'], 'lang' => $lang, 'count' => $tag['count'], 'subtags' => NULL, 'private' => $tag['private']);
+						if (is_null($tag['masterid'])) {
+							$masters[$tag['id']] = $lang . $tagname;
+						} else {
+							$translations[$tag['masterid']][$lang] = $tagname;
+						}
+					}
+					db_free_result($tagresult);
+					foreach ($translations as $master => $list) {
+						$subtags = array();
+						foreach ($list as $lang => $tagname) {
+							$subtags[$lang] = $_zp_admin_ordered_taglist[$lang . $tagname];
+							unset($_zp_admin_ordered_taglist[$lang . $tagname]);
+						}
+						$_zp_admin_ordered_taglist[$masters[$master]]['subtags'] = $subtags;
+					}
+				}
+			}
+			return $_zp_admin_ordered_taglist;
+		}
+
+		function tagListElement($postit, $class, $tagLC, $item, $lang, $private, $count, $indent, $checked = false) {
+			global $_zp_language_flags, $_tagListIndex;
+			$listitem = $postit . postIndexEncode($item);
+			$flag = $_zp_language_flags[$lang];
+			?>
+		<li id="<?php echo $listitem; ?>_element">
+			<label class="displayinline">
+	<?php
+	if ($indent) {
+		echo '&nbsp;
+			&nbsp';
+		$indent = ' ' . $indent;
+	}
+	if (empty($indent)) {
+		$auto = ' onclick = "$(\'.' . 'subto_' . $listitem . '\').prop(\'checked\', $(\'#' . $listitem . '\').prop(\'checked\'));"';
+	} else {
+		$auto = '';
+	}
+	?>
+				<input id="<?php echo $listitem; ?>" class="<?php echo $class . $indent; ?>" name="<?php echo 'tag_list_' . $postit . '[' . ++$_tagListIndex . ']'; ?>" type="checkbox" value="<?php echo html_encode($item); ?>"<?php
+				echo $auto;
+				if ($checked) {
+					echo ' checked = "checked";
+			';
+				}
+				?> />
+				<?php
+							 if ($lang) {
+								 ?>
+					<input type="hidden" name="<?php echo 'lang_list_' . $postit . '[' . $_tagListIndex . ']'; ?>" value="<?php echo html_encode($lang); ?>" />
+								 <?php
+							 }
+							 if (!$checked && $lang) {
+								 ?>
+					<img src="<?php echo $flag; ?>" height="10" width="15" />
+					<?php
+				}
+
+				if ($private) {
+					echo '<span class="privatetag">' . html_encode($item) . '</span>';
+				} else {
+					echo html_encode($item);
+				}
+				if ($count !== false) {
+					echo ' {' . $count . '}';
+				}
+				?>
+			</label>
+		</li>
+	<?php
+}
+
+/**
+ * Creates an unordered checklist of the tags
+ *
+ * @param object $that Object for which to get the tags
+ * @param string $postit prefix to prepend for posting
+ * @param bool $showCounts set to true to get tag count displayed
+ * @param string $tagsort set true to sort alphabetically
+ * @param bool $addnew true enables adding tags, ==2 for "additive" tags
+ * @param bool $resizeable set true to allow the box to be resized
+ * @param string $class class of the selections
+ */
+function tagSelector($that, $postit, $showCounts = false, $tagsort = 'alpha', $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
+	$admin = zp_loggedin(TAGS_RIGHTS);
+	if ((int) $addnew == 2) {
+		$them = array();
+	} else {
+		$them = sortTagList($tagsort);
+	}
+	$flags = getLanguageFlags();
+
+	if (is_null($that)) {
+		$tags = array();
+	} else {
+		$tags = readTags($that->getID(), $that->table, false, true);
+		$tags = sortMultiArray($tags, array('name'));
 	}
 
-	/**
-	 * Creates an unordered checklist of the tags
-	 *
-	 * @param object $that Object for which to get the tags
-	 * @param string $postit prefix to prepend for posting
-	 * @param bool $showCounts set to true to get tag count displayed
-	 */
-	function tagSelector($that, $postit, $showCounts = false, $mostused = false, $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
-		global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist;
-		if (is_null($_zp_admin_ordered_taglist)) {
-			if ($mostused || $showCounts) {
-				$counts = getAllTagsCount();
-				if ($mostused)
-					arsort($counts, SORT_NUMERIC);
-				$them = array();
-				foreach ($counts as $tag => $count) {
-					$them[] = $tag;
-				}
-			} else {
-				$them = getAllTagsUnique();
-			}
-			$_zp_admin_ordered_taglist = $them;
-			$_zp_admin_LC_taglist = array();
-			foreach ($them as $tag) {
-				$_zp_admin_LC_taglist[] = mb_strtolower($tag);
-			}
-		} else {
-			$them = $_zp_admin_ordered_taglist;
-		}
-		if (is_null($that)) {
-			$tags = array();
-		} else {
-			$tags = $that->getTags();
-		}
-
-		if (count($tags) > 0) {
-			foreach ($tags as $tag) {
-				$tagLC = mb_strtolower($tag);
-				$key = array_search($tagLC, $_zp_admin_LC_taglist);
-				if ($key !== false) {
-					unset($them[$key]);
-				}
-			}
-		}
-		if ($resizeable) {
+	if (count($tags) > 0) {
+		$them = array_diff_key($them, $tags);
+	}
+	$total = count($tags) + count($them);
+	if ($resizeable) {
+		if ($total > 0) {
 			$tagclass = 'resizeable_tagchecklist';
-			?>
-			<script>
-				$(function() {
-					$("#resizable_<?php echo $postit; ?>").resizable({
-		<?php
+		} else {
+			$tagclass = 'resizeable_empty_tagchecklist';
+		}
 		if (is_bool($resizeable)) {
-			?>
-						maxWidth: 250,
-			<?php
+			$tagclass .= ' resizeable_tagchecklist_fixed_width';
 		}
 		?>
-					minWidth: 250,
-									minHeight: 120,
-									resize: function(event, ui) {
-									$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height());
-									}
-				});
+			<script>
+				$(function () {
+					$("#resizable_<?php echo $postit; ?>").resizable({
+						minHeight: 120,
+						resize: function (event, ui) {
+							$(this).css("width", '');
+							$('#list_<?php echo $postit;
+		?>').height($('#resizable_<?php echo $postit; ?>').height());
+						}
+					})
 				});</script>
-			<?php
-		} else {
-			$tagclass = 'tagchecklist';
-		}
-		if ($addnew) {
-			?>
+		<?php
+	} else {
+		$tagclass = 'tagchecklist';
+	}
+	if ($addnew) {
+		?>
 			<span class="new_tag displayinline" >
-				<a href="javascript:addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
-					<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
+				<a onclick="addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
+		<?php echo PLUS_ICON; ?>
 				</a>
 				<span class="tagSuggestContainer">
-					<input class="tagsuggest <?php echo $class; ?> " type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
+					<input class="tagsuggest <?php echo $class; ?>" type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
 				</span>
 			</span>
-
-			<?php
+		<?php
+		if ((int) $addnew == 2) {
+			?>
+				<input type="hidden" value="1" name="additive_<?php echo $postit; ?>" id="additive_<?php echo $postit; ?>" />
+				<?php
+			}
 		}
 		?>
 		<div id="resizable_<?php echo $postit; ?>" class="tag_div">
 			<ul id="list_<?php echo $postit; ?>" class="<?php echo $tagclass; ?>">
-				<?php
-				if ($showCounts) {
-					$displaylist = array();
-					foreach ($them as $tag) {
-						$displaylist[$tag . ' [' . $counts[$tag] . ']'] = $tag;
-					}
-				} else {
-					$displaylist = $them;
-				}
-				if (count($tags) > 0) {
-					generateUnorderedListFromArray($tags, $tags, $postit, false, !$mostused, $showCounts, $class);
-					?>
+	<?php
+	if (count($tags) > 0) {
+		foreach ($tags as $tag) {
+			if ($admin || empty($tag['private'])) {
+				tagListElement($postit, $class, mb_strtolower($tag['name']), $tag['name'], '', $tag['private'], false, false, true);
+			}
+		}
+		?>
 					<li><hr /></li>
 					<?php
 				}
-				generateUnorderedListFromArray(array(), $displaylist, $postit, false, !$mostused, $showCounts, $class);
+				foreach ($them as $tagitem) {
+					$item = $tagitem['tag'];
+					if ($admin || empty($tagitem['private'])) {
+						$tagLC = mb_strtolower($item);
+						tagListElement($postit, $class, $tagLC, $item, $tagitem['lang'], $tagitem['private'], $showCounts ? $tagitem['count'] : false, false);
+						if (is_array($tagitem['subtags'])) {
+							$itemarray = $tagitem['subtags'];
+							ksort($itemarray);
+							foreach ($itemarray as $lang => $tagitem) {
+								$tag = $tagitem['tag'];
+								$LCtag = mb_strtolower($tag);
+								tagListElement($postit, $class, $LCtag, $tag, $lang, $tagitem['private'], $showCounts ? $tagitem['count'] : false, 'subto_' . $postit . postIndexEncode($item));
+							}
+						}
+					}
+				}
 				?>
 			</ul>
 		</div>
-		<?php
-	}
+	<?php
+}
 
-	/**
-	 * emits the html for editing album information
-	 * called in edit album and mass edit
-	 * @param string $index the index of the entry in mass edit or '0' if single album
-	 * @param object $album the album object
-	 * @param bool $buttons set true for "apply" buttons
-	 * @since 1.1.3
-	 */
-	function printAlbumEditForm($index, $album, $buttons = true) {
-		global $_zp_sortby, $_zp_gallery, $mcr_albumlist, $_zp_albumthumb_selector, $_zp_current_admin_obj;
-		$isPrimaryAlbum = '';
-		if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-			$myalbum = $_zp_current_admin_obj->getAlbum();
-			if ($myalbum && $album->getID() == $myalbum->getID()) {
-				$isPrimaryAlbum = ' disabled="disabled"';
-			}
+/**
+ * emits the html for editing album information
+ * called in edit album and mass edit
+ * @param string $index the index of the entry in mass edit or '0' if single album
+ * @param object $album the album object
+ * @param bool $buttons set true for "apply" buttons
+ * @since 1.1.3
+ */
+function printAlbumEditForm($index, $album, $buttons = true) {
+	global $_zp_sortby, $_zp_gallery, $mcr_albumlist, $_zp_albumthumb_selector, $_zp_current_admin_obj;
+	$isPrimaryAlbum = '';
+	if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+		$myalbum = $_zp_current_admin_obj->getAlbum();
+		if ($myalbum && $album->getID() == $myalbum->getID()) {
+			$isPrimaryAlbum = ' disabled="disabled"';
 		}
-		$tagsort = getTagOrder();
-		if ($index == 0) {
-			$suffix = $prefix = '';
-		} else {
-			$prefix = "$index-";
-			$suffix = "_$index";
-			echo "<p><em><strong>" . $album->name . "</strong></em></p>";
+	}
+	$tagsort = 'alpha';
+
+	if ($index == 0) {
+		$suffix = $prefix = '';
+	} else {
+		$prefix = "$index-";
+		$suffix = "_$index";
+	}
+	if (isset($_GET['subpage'])) {
+		?>
+			<input type="hidden" name="subpage" value="<?php echo html_encode(sanitize($_GET['subpage'])); ?>" />
+			<?php
 		}
 		?>
 		<input type="hidden" name="<?php echo $prefix; ?>folder" value="<?php echo $album->name; ?>" />
 		<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
-		<input	type="hidden" name="password_enabled<?php echo $suffix; ?>" id="password_enabled<?php echo $suffix; ?>" value="0" />
-		<?php
-		if ($buttons) {
-			?>
+		<input type="hidden" name="password_enabled<?php echo $suffix; ?>" id="password_enabled<?php echo $suffix; ?>" value="0" />
+	<?php
+	if ($buttons) {
+		?>
 			<span class="buttons">
-				<?php
-				$parent = dirname($album->name);
-				if ($parent == '/' || $parent == '.' || empty($parent)) {
-					$parent = '';
+			<?php
+			$parent = dirname($album->name);
+			if ($parent == '/' || $parent == '.' || empty($parent)) {
+				$parent = '';
+			} else {
+				$parent = '&amp;album=' . $parent . '&tab=subalbuminfo';
+			}
+			if (isset($_GET['subpage']) && !is_numeric($_GET['subpage'])) {
+				if (isset($_GET['i'])) {
+					$image = newImage($album, sanitize($_GET['i']));
+					$backbutton = $image->getLink();
 				} else {
-					$parent = '&amp;album=' . $parent . '&tab=subalbuminfo';
+					$backbutton = $album->getLink();
 				}
-				?>
-				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-					<img	src="images/arrow_left_blue_round.png" alt="" />
+			} else {
+				$backbutton = WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent;
+			}
+			?>
+				<a href="<?php echo $backbutton ?>">
+				<?php echo BACK_ARROW_BLUE; ?>
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
 				<button type="submit">
-					<img	src="images/pass.png" alt="" />
+		<?php echo CHECKMARK_GREEN; ?>
 					<strong><?php echo gettext("Apply"); ?></strong>
 				</button>
-				<button type="reset" onclick="javascript:$('.deletemsg').hide();" >
-					<img	src="images/fail.png" alt="" />
+				<button type="reset" onclick="$('.deletemsg').hide();" >
+		<?php echo CROSS_MARK_RED; ?>
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
+
 				<div class="floatright">
-					<?php
-					if (!$album->isDynamic()) {
-						?>
-						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+		<?php
+		if (!$album->isDynamic()) {
+			?>
+						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
-      <?php if(!$album->isDynamic()) { ?>
-         <button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
-           <img src="images/folder.png" alt="" />
-											<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
-								 </button>
-       <?php 
-      } 
-					}
-					?>
-					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-						<img src="images/view.png" alt="" />
-						<strong><?php echo gettext('View Album'); ?></strong>
-					</a>
-				</div>
-			</span>
+						<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', true);">
+							<img src="images/folder.png" alt="" />
+							<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+						</button>
 			<?php
 		}
 		?>
-		<br class="clearall" /><br />
-		<table class="formlayout">
-			<tr>
-				<td valign="top">
+					<a href="<?php echo WEBPATH . "/index.php?album=" . pathurlencode($album->getFileName()); ?>">
+					<?php echo BULLSEYE_BLUE; ?>
+						<strong><?php echo gettext('View Album'); ?></strong>
+					</a>
+				</div>
+
+			</span>
+			<br class="clearall">
+			<br />
+		<?php
+	}
+	$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
+	?>
+		<div class="formlayout">
+			<div class="floatleft">
+				<div>
 					<table class="width100percent">
 						<tr>
-							<td class="leftcolumn"><?php echo gettext("Owner"); ?></td>
+							<td class="leftcolumn">
+	<?php echo gettext("Album Title"); ?>
+							</td>
 							<td class="middlecolumn">
-								<?php
-								if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-									?>
-									<select name="<?php echo $prefix; ?>owner">
-										<?php echo admin_album_list($album->getOwner()); ?>
-									</select>
-									<?php
-								} else {
-									echo $album->getOwner();
-								}
-								?>
+	<?php print_language_string_list($album->getTitle('all'), $prefix . "albumtitle", false, null, '', '100%'); ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="leftcolumn">
-								<?php echo gettext("Album Title"); ?>:
+								<span class="floatright">
+	<?php echo linkPickerIcon($album, 'pick_link'); ?>
+								</span>
 							</td>
 							<td class="middlecolumn">
-								<?php print_language_string_list($album->getTitle('all'), $prefix . "albumtitle", false, null, '', '100%'); ?>
+	<?php echo linkPickerItem($album, 'pick_link'); ?>
 							</td>
 						</tr>
+	<?php
+	if ($album->isDynamic()) {
+		?>
+							<tr>
+								<td align="left" valign="top" width="150"><em><?php echo get_class($album); ?></em></td>
+								<td class="noinput">
+		<?php
+		switch ($album->isDynamic()) {
+			case 'alb':
+				echo html_encode(str_replace(',', ', ', urldecode($album->getSearchParams())));
+				break;
+			case'fav':
+				echo html_encode($album->owner);
+				if ($album->instance) {
+					echo ' [' . html_encode($album->instance) . ']';
+				}
+				break;
+		}
+		?>
+								</td>
+							</tr>
 
+		<?php
+	}
+	?>
 						<tr>
 							<td class="leftcolumn">
-								<?php echo gettext("Album Description:"); ?>
+	<?php echo gettext("Album Description"); ?>
 							</td>
 							<td>
-								<?php print_language_string_list($album->getDesc('all'), $prefix . "albumdesc", true, NULL, 'texteditor', '100%'); ?>
+	<?php print_language_string_list($album->getDesc('all'), $prefix . "albumdesc", true, NULL, 'texteditor', '100%'); ?>
 							</td>
 						</tr>
-						<?php
-						if (GALLERY_SECURITY == 'public') {
-							?>
+	<?php
+	if (GALLERY_SECURITY == 'public') {
+		?>
 							<tr class="password<?php echo $suffix; ?>extrashow">
 								<td class="leftcolumn">
-									<p>
-										<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',true);">
-											<?php echo gettext("Album password:"); ?>
-										</a>
-									</p>
+									<a onclick="toggle_passwords('<?php echo $suffix; ?>', true);">
+		<?php echo gettext("Album password"); ?>
+									</a>
 								</td>
 								<td class="middlecolumn">
-									<p>
-									<?php
-									$x = $album->getPassword();
-									if (empty($x)) {
+		<?php
+		$x = $album->getPassword();
+		if (empty($x)) {
+			?>
+										<a onclick="toggle_passwords('<?php echo $suffix; ?>', true);">
+										<?php echo LOCK_OPEN; ?>
+											<?php echo gettext('No album password is currently set. Click to set one.'); ?>
+										</a>
+											<?php
+										} else {
+											$x = '          ';
+											?>
+										<a onclick="resetPass('<?php echo $suffix; ?>');" title="<?php echo addslashes(gettext('clear password')); ?>">
+										<?php echo LOCK; ?>
+											<?php echo gettext('An album password is currently set. Click to clear or change the password.'); ?>
+										</a>
+											<?php
+										}
 										?>
-										<img src="images/lock_open.png" />
-										<?php
-									} else {
-										$x = '          ';
-										?>
-										<a onclick="resetPass('<?php echo $suffix; ?>');" title="<?php echo addslashes(gettext('clear password')); ?>"><img src="images/lock.png" /></a>
-										<?php
-									}
-									?>
-									</p>
 								</td>
 							</tr>
 							<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
 								<td class="leftcolumn">
-									<p>
-										<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',false);">
-											<?php echo gettext("Album guest user:"); ?>
-										</a>
-									</p>
+									<a onclick="toggle_passwords('<?php echo $suffix; ?>', false);">
+		<?php echo gettext("Album guest user"); ?>
+									</a>
 								</td>
 								<td>
-									<p>
-										<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-												 class="dirtyignore"  
+									<input type="text"
+												 class="passignore<?php echo $suffix; ?> ignoredirty" autocomplete="off"
+												 size="<?php echo TEXT_INPUT_SIZE; ?>"
 												 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 												 id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
-												 value="<?php echo $album->getUser(); ?>" autocomplete="off" />
-									</p>
+												 value="<?php echo $album->getUser(); ?>" />
 								</td>
 							</tr>
 							<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
 								<td class="leftcolumn">
 									<p>
-										<span id="strength<?php echo $suffix; ?>"><?php echo gettext("Album password:"); ?></span>
+										<span id="strength<?php echo $suffix; ?>"><?php echo gettext("Album password"); ?></span>
+										<br />
+										<span id="match<?php echo $suffix; ?>" class="password_field_<?php echo $suffix; ?>">
+		<?php echo gettext("repeat password"); ?>
+										</span>
 									</p>
 									<p>
-										<span id="match<?php echo $suffix; ?>" class="password_field_<?php echo $suffix; ?>">
-											<?php echo gettext("Repeat password:"); ?>
-										</span>
+		<?php echo gettext("Password hint"); ?>
 									</p>
 								</td>
 								<td>
-									<p> <?php
-										// Autofill honeypot hack (hidden password input),
-										// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
-										// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
-										?>
-										<input class="dirtyignore" type="password" name="pass" style="display:none;" />
-										<input type="password" 
-													 class="dirtyignore" 
+									<p>
+										<input type="password"
+													 class="passignore<?php echo $suffix; ?> ignoredirty" autocomplete="off"
 													 id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
-													 onkeydown="passwordClearZ('<?php echo $suffix; ?>');"
+													 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 													 onkeyup="passwordStrength('<?php echo $suffix; ?>');"
-													 value="<?php echo $x; ?>" autocomplete="off" />
-										<label><input class="dirtyignore" type="checkbox" name="disclose_password<?php echo $suffix; ?>"
-																id="disclose_password<?php echo $suffix; ?>"
-																onclick="passwordClear('<?php echo $suffix; ?>');
-																		togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+													 value="<?php echo $x; ?>" />
+										<label>
+											<input type="checkbox"
+														 name="disclose_password<?php echo $suffix; ?>"
+														 id="disclose_password<?php echo $suffix; ?>"
+														 onclick="passwordClear('<?php echo $suffix; ?>');
+																		 togglePassword('<?php echo $suffix; ?>');" />
+														 <?php echo addslashes(gettext('Show')); ?>
+										</label>
+
 										<br />
 										<span class="password_field_<?php echo $suffix; ?>">
-											<input class="dirtyignore" type="password"
+											<input type="password"
+														 class="passignore<?php echo $suffix; ?> ignoredirty" autocomplete="off"
 														 id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
 														 onkeydown="passwordClear('<?php echo $suffix; ?>');"
 														 onkeyup="passwordMatch('<?php echo $suffix; ?>');"
-														 value="<?php echo $x; ?>" autocomplete="off" />
+														 value="<?php echo $x; ?>" />
 										</span>
 									</p>
-								</td>
-							</tr>
-							<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
-								<td>
 									<p>
-										<?php echo gettext("Password hint:"); ?>
-									</p>
-								</td>
-								<td>
-									<p>
-										<?php print_language_string_list($album->getPasswordHint('all'), "hint" . $suffix, false, NULL, 'hint', '100%'); ?>
+		<?php print_language_string_list($album->getPasswordHint('all'), "hint" . $suffix, false, NULL, 'hint', '100%'); ?>
 									</p>
 								</td>
 							</tr>
-							<?php
-						}
-						$d = $album->getDateTime();
-						if ($d == "0000-00-00 00:00:00") {
-							$d = "";
-						}
-						?>
+		<?php
+	}
 
+	$sort = $_zp_sortby;
+	if (!$album->isDynamic()) {
+		$sort[gettext('Manual')] = 'manual';
+	}
+	$sort[gettext('Custom')] = 'custom';
+	/*
+	 * not recommended--screws with peoples minds during pagination!
+	  $sort[gettext('Random')] = 'random';
+	 */
+	?>
 						<tr>
-							<td class="leftcolumn"><?php echo gettext("Date:"); ?> </td>
-							<td>
-								<script type="text/javascript">
-									// <!-- <![CDATA[
-									$(function() {
-										$("#datepicker<?php echo $suffix; ?>").datepicker({
-											dateFormat: 'yy-mm-dd',
-											showOn: 'button',
-											buttonImage: 'images/calendar.png',
-											buttonText: '<?php echo addslashes(gettext('calendar')); ?>',
-											buttonImageOnly: true
-										});
-									});
-									// ]]> -->
-								</script>
-								<input type="text" id="datepicker<?php echo $suffix; ?>" size="20" name="<?php echo $prefix; ?>albumdate" value="<?php echo $d; ?>" />
-							</td>
-						</tr>
-						<tr>
-							<td class="leftcolumn"><?php echo gettext("Location:"); ?> </td>
-							<td class="middlecolumn">
-								<?php print_language_string_list($album->getLocation(), $prefix . "albumlocation", false, NULL, 'hint', '100%'); ?>
-							</td>
-						</tr>
-						<?php
-						$custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
-						if (empty($custom)) {
-							?>
-							<tr>
-								<td class="leftcolumn"><?php echo gettext("Custom data:"); ?></td>
-								<td><?php print_language_string_list($album->getCustomData('all'), $prefix . "album_custom_data", true, NULL, 'texteditor_albumcustomdata', '100%'); ?></td>
-							</tr>
-							<?php
-						} else {
-							echo $custom;
-						}
-						$sort = $_zp_sortby;
-						if (!$album->isDynamic()) {
-							$sort[gettext('Manual')] = 'manual';
-						}
-						$sort[gettext('Custom')] = 'custom';
-						/*
-						 * not recommended--screws with peoples minds during pagination!
-							$sort[gettext('Random')] = 'random';
-						 */
-						?>
-						<tr>
-							<td class="leftcolumn"><?php echo gettext("Sort subalbums by:"); ?> </td>
+							<td class="leftcolumn"><?php echo gettext("Sort subalbums by"); ?> </td>
 							<td>
 								<span class="nowrap">
 									<select id="albumsortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>subalbumsortby" onchange="update_direction(this, 'album_direction_div<?php echo $suffix; ?>', 'album_custom_div<?php echo $suffix; ?>');">
-										<?php
-										if (is_null($album->getParent())) {
-											$globalsort = gettext("*gallery album sort order");
-										} else {
-											$globalsort = gettext("*parent album subalbum sort order");
-										}
-										echo "\n<option value =''>$globalsort</option>";
-										$cvt = $type = strtolower($album->get('subalbum_sort_type'));
-										if ($type && !in_array($type, $sort)) {
-											$cv = array('custom');
-										} else {
-											$cv = array($type);
-										}
-										generateListFromArray($cv, $sort, false, true);
-										?>
+	<?php
+	if (is_null($album->getParent())) {
+		$globalsort = gettext("*gallery album sort order");
+	} else {
+		$globalsort = gettext("*parent album subalbum sort order");
+	}
+	echo "\n<option value =''>$globalsort</option>";
+	$cvt = $type = strtolower($album->get('subalbum_sort_type'));
+	if ($type && !in_array($type, $sort)) {
+		$cv = array('custom');
+	} else {
+		$cv = array($type);
+	}
+	generateListFromArray($cv, $sort, false, true);
+	?>
 									</select>
-									<?php
-									if (($type == 'manual') || ($type == 'random') || ($type == '')) {
-										$dsp = 'none';
-									} else {
-										$dsp = 'inline';
-									}
-									?>
+										<?php
+										if (($type == 'manual') || ($type == 'random') || ($type == '')) {
+											$dsp = 'none';
+										} else {
+											$dsp = 'inline';
+										}
+										?>
 									<label id="album_direction_div<?php echo $suffix; ?>" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-										<?php echo gettext("Descending"); ?>
+									<?php echo gettext("Descending"); ?>
 										<input type="checkbox" name="<?php echo $prefix; ?>album_sortdirection" value="1" <?php
 										if ($album->getSortDirection('album')) {
-											echo "CHECKED";
+											echo ' checked="checked"';
 										};
 										?> />
 									</label>
 								</span>
-								<?php
-								$flip = array_flip($sort);
-								if (empty($type) || isset($flip[$type])) {
-									$dsp = 'none';
-								} else {
-									$dsp = 'block';
-								}
-								?>
+	<?php
+	$flip = array_flip($sort);
+	if (empty($type) || isset($flip[$type])) {
+		$dsp = 'none';
+	} else {
+		$dsp = 'block';
+	}
+	?>
 								<span id="album_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 									<br />
-									<?php echo gettext('custom fields:') ?>
+	<?php echo gettext('custom fields') ?>
 									<span class="tagSuggestContainer">
 										<input id="customalbumsort<?php echo $suffix; ?>" class="customalbumsort" name="<?php echo $prefix; ?>customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
 									</span>
@@ -1495,13 +2021,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<td>
 								<span class="nowrap">
 									<select id="imagesortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>sortby" onchange="update_direction(this, 'image_direction_div<?php echo $suffix; ?>', 'image_custom_div<?php echo $suffix; ?>')">
-										<?php
-										if (is_null($album->getParent())) {
-											$globalsort = gettext("*gallery image sort order");
-										} else {
-											$globalsort = gettext("*parent album image sort order");
-										}
-										?>
+	<?php
+	if (is_null($album->getParent())) {
+		$globalsort = gettext("*gallery image sort order");
+	} else {
+		$globalsort = gettext("*parent album image sort order");
+	}
+	?>
 										<option value =""><?php echo $globalsort; ?></option>
 										<?php
 										$cvt = $type = strtolower($album->get('sort_type'));
@@ -1513,15 +2039,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 										generateListFromArray($cv, $sort, false, true);
 										?>
 									</select>
-									<?php
-									if (($type == 'manual') || ($type == 'random') || ($type == '')) {
-										$dsp = 'none';
-									} else {
-										$dsp = 'inline';
-									}
-									?>
+										<?php
+										if (($type == 'manual') || ($type == 'random') || ($type == '')) {
+											$dsp = 'none';
+										} else {
+											$dsp = 'inline';
+										}
+										?>
 									<label id="image_direction_div<?php echo $suffix; ?>" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-										<?php echo gettext("Descending"); ?>
+									<?php echo gettext("Descending"); ?>
 										<input type="checkbox" name="<?php echo $prefix; ?>image_sortdirection" value="1"
 										<?php
 										if ($album->getSortDirection('image')) {
@@ -1530,17 +2056,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 										?> />
 									</label>
 								</span>
-								<?php
-								$flip = array_flip($sort);
-								if (empty($type) || isset($flip[$type])) {
-									$dsp = 'none';
-								} else {
-									$dsp = 'block';
-								}
-								?>
+	<?php
+	$flip = array_flip($sort);
+	if (empty($type) || isset($flip[$type])) {
+		$dsp = 'none';
+	} else {
+		$dsp = 'block';
+	}
+	?>
 								<span id="image_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 									<br />
-									<?php echo gettext('custom fields:') ?>
+	<?php echo gettext('custom fields') ?>
 									<span class="tagSuggestContainer">
 										<input id="customimagesort<?php echo $suffix; ?>" class="customimagesort" name="<?php echo $prefix; ?>customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
 									</span>
@@ -1548,22 +2074,22 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</td>
 						</tr>
 
-						<?php
-						if (is_null($album->getParent())) {
-							?>
+	<?php
+	if (is_null($album->getParent())) {
+		?>
 							<tr>
-								<td class="leftcolumn"><?php echo gettext("Album theme:"); ?> </td>
+								<td class="leftcolumn"><?php echo gettext("Album theme"); ?> </td>
 								<td>
 									<select id="album_theme" class="album_theme" name="<?php echo $prefix; ?>album_theme"	<?php if (!zp_loggedin(THEMES_RIGHTS)) echo 'disabled="disabled" '; ?>	>
-										<?php
-										$themes = $_zp_gallery->getThemes();
-										$oldtheme = $album->getAlbumTheme();
-										if (empty($oldtheme)) {
-											$selected = 'selected="selected"';
-										} else {
-											$selected = '';
-										}
-										?>
+		<?php
+		$themes = $_zp_gallery->getThemes();
+		$oldtheme = $album->getAlbumTheme();
+		if (empty($oldtheme)) {
+			$selected = 'selected="selected"';
+		} else {
+			$selected = '';
+		}
+		?>
 										<option value="" style="background-color:LightGray" <?php echo $selected; ?> ><?php echo gettext('*gallery theme'); ?></option>
 										<?php
 										foreach ($themes as $theme => $themeinfo) {
@@ -1580,21 +2106,21 @@ function printAdminHeader($tab, $subtab = NULL) {
 									</select>
 								</td>
 							</tr>
-							<?php
-						}
-						if (!$album->isDynamic()) {
-							?>
+		<?php
+	}
+	if (!$album->isDynamic()) {
+		?>
 							<tr>
-								<td class="leftcolumn"><?php echo gettext("Album watermarks:"); ?> </td>
+								<td class="leftcolumn"><?php echo gettext("Album watermarks"); ?> </td>
 								<td>
-									<?php $current = $album->getWatermark(); ?>
+		<?php $current = $album->getWatermark(); ?>
 									<select id="album_watermark<?php echo $suffix; ?>" name="<?php echo $prefix; ?>album_watermark">
 										<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
 										<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
-										<?php
-										$watermarks = getWatermarks();
-										generateListFromArray(array($current), $watermarks, false, false);
-										?>
+		<?php
+		$watermarks = getWatermarks();
+		generateListFromArray(array($current), $watermarks, false, false);
+		?>
 									</select>
 									<em><?php echo gettext('Images'); ?></em>
 								</td>
@@ -1602,187 +2128,194 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<tr>
 								<td class="leftcolumn"></td>
 								<td>
-									<?php $current = $album->getWatermarkThumb(); ?>
+		<?php $current = $album->getWatermarkThumb(); ?>
 									<select id="album_watermark_thumb<?php echo $suffix; ?>" name="<?php echo $prefix; ?>album_watermark_thumb">
 										<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current == NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
 										<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
-										<?php
-										$watermarks = getWatermarks();
-										generateListFromArray(array($current), $watermarks, false, false);
-										?>
+		<?php
+		$watermarks = getWatermarks();
+		generateListFromArray(array($current), $watermarks, false, false);
+		?>
 									</select>
-									<em><?php echo gettext('Thumbs'); ?></em>
+									<em><?php echo gettext('Thumbnails'); ?></em>
 								</td>
 							</tr>
-							<?php
-						}
-						if ($index == 0) { // suppress for mass-edit
-							$showThumb = $_zp_gallery->getThumbSelectImages();
-							$album->getAlbumThumbImage(); //	prime the thumbnail since we will get the field below
-							$thumb = $album->get('thumb');
-							$selections = array();
-							$selected = array();
-							foreach ($_zp_albumthumb_selector as $key => $selection) {
-								$selections[$selection['desc']] = $key;
-								if ($key == $thumb) {
-									$selected[] = $key;
-								}
-							}
-							?>
+		<?php
+	}
+	if ($index == 0) { // suppress for mass-edit
+		$showThumb = $_zp_gallery->getThumbSelectImages();
+		$album->getAlbumThumbImage(); //	prime the thumbnail since we will get the field below
+		$thumb = $album->get('thumb');
+		$selections = array();
+		$selected = array();
+		foreach ($_zp_albumthumb_selector as $key => $selection) {
+			$selections[$selection['desc']] = $key;
+			if ($key == $thumb) {
+				$selected[] = $key;
+			}
+		}
+		?>
 							<tr>
-								<td class="leftcolumn"><?php echo gettext("Thumbnail:"); ?> </td>
+								<td class="leftcolumn"><?php echo gettext("Thumbnail"); ?> </td>
 								<td>
-									<?php
-									if ($showThumb) {
-										?>
+		<?php
+		if ($showThumb) {
+			?>
 										<script type="text/javascript">
 											// <!-- <![CDATA[
 											updateThumbPreview(document.getElementById('thumbselect'));
 											// ]]> -->
 										</script>
-										<?php
+			<?php
+		}
+		?>
+									<select style="width:320px" <?php if ($showThumb) { ?>class="thumbselect" onchange="updateThumbPreview(this);" <?php } ?> name="<?php echo $prefix; ?>thumb">
+									<?php
+									generateListFromArray($selected, $selections, false, true);
+									$imagelist = $album->getImages(0);
+									$subalbums = $album->getAlbums(0);
+									foreach ($subalbums as $folder) {
+										$newalbum = newAlbum($folder);
+										if ($images = $_zp_gallery->getSecondLevelThumbs()) {
+											$images = $newalbum->getImages(0);
+											foreach ($images as $filename) {
+												if (is_array($filename)) {
+													$imagelist[] = $filename;
+												} else {
+													$imagelist[] = '/' . $folder . '/' . $filename;
+												}
+											}
+										}
+										if (empty($images)) {
+											$t = $newalbum->getAlbumThumbImage();
+											if (strtolower(get_class($t)) !== 'transientimage' && $t->exists) {
+												$imagelist[] = '/' . $t->getAlbumName() . '/' . $t->filename;
+											}
+										}
+									}
+
+									if ($thumb && !is_numeric($thumb)) {
+										// check for current thumb being in the list. If not, add it
+										$target = $thumb;
+										$targetA = array('folder' => dirname($thumb), 'filename' => basename($thumb));
+										if (!in_array($target, $imagelist) && !in_array($targetA, $imagelist)) {
+											array_unshift($imagelist, $target);
+										}
+									}
+									if (!empty($imagelist)) {
+										// there are some images to choose from
+										foreach ($imagelist as $imagename) {
+											if (is_array($imagename)) {
+												$image = newImage($imagename);
+												$imagename = '/' . $imagename['folder'] . '/' . $imagename['filename'];
+												$filename = basename($imagename);
+											} else {
+												$albumname = trim(dirname($imagename), '/');
+												if (empty($albumname) || $albumname == '.') {
+													$thumbalbum = $album;
+												} else {
+													$thumbalbum = newAlbum($albumname);
+												}
+												$filename = basename($imagename);
+												$image = newImage($thumbalbum, $filename);
+											}
+											$selected = ($imagename == $thumb);
+											if (Gallery::imageObjectClass($filename) == 'Image' || !is_null($image->objectsThumb)) {
+												echo "\n<option";
+												if ($_zp_gallery->getThumbSelectImages()) {
+													echo " class=\"thumboption\"";
+													echo " style=\"background-image: url(" . pathurlencode(getAdminThumb($image, 'medium')) . "); background-repeat: no-repeat;\"";
+												}
+												echo " value=\"" . $imagename . "\"";
+												if ($selected) {
+													echo " selected=\"selected\"";
+												}
+												echo ">" . $image->getTitle();
+												if ($filename != $image->getTitle()) {
+													echo " ($filename)";
+												}
+												echo "</option>";
+											}
+										}
 									}
 									?>
-									<select style="width:320px" <?php if ($showThumb) { ?>class="thumbselect" onchange="updateThumbPreview(this);" <?php } ?> name="<?php echo $prefix; ?>thumb">
-										<?php
-										generateListFromArray($selected, $selections, false, true);
-										$imagelist = $album->getImages(0);
-										$subalbums = $album->getAlbums(0);
-										foreach ($subalbums as $folder) {
-											$newalbum = newAlbum($folder);
-											if ($_zp_gallery->getSecondLevelThumbs()) {
-												$images = $newalbum->getImages(0);
-												foreach ($images as $filename) {
-													if (is_array($filename)) {
-														$imagelist[] = $filename;
-													} else {
-														$imagelist[] = '/' . $folder . '/' . $filename;
-													}
-												}
-											} else {
-												$t = $newalbum->getAlbumThumbImage();
-												if (strtolower(get_class($t)) !== 'transientimage' && $t->exists) {
-													$imagelist[] = '/' . $t->getAlbumName() . '/' . $t->filename;
-												}
-											}
-										}
-
-										if ($thumb && !is_numeric($thumb)) {
-											// check for current thumb being in the list. If not, add it
-											$target = $thumb;
-											$targetA = array('folder' => dirname($thumb), 'filename' => basename($thumb));
-											if (!in_array($target, $imagelist) && !in_array($targetA, $imagelist)) {
-												array_unshift($imagelist, $target);
-											}
-										}
-										if (!empty($imagelist)) {
-											// there are some images to choose from
-											foreach ($imagelist as $imagename) {
-												if (is_array($imagename)) {
-													$image = newImage(NULL, $imagename);
-													$imagename = '/' . $imagename['folder'] . '/' . $imagename['filename'];
-													$filename = basename($imagename);
-												} else {
-													$albumname = trim(dirname($imagename), '/');
-													if (empty($albumname) || $albumname == '.') {
-														$thumbalbum = $album;
-													} else {
-														$thumbalbum = newAlbum($albumname);
-													}
-													$filename = basename($imagename);
-													$image = newImage($thumbalbum, $filename);
-												}
-												$selected = ($imagename == $thumb);
-												if (Gallery::validImage($filename) || !is_null($image->objectsThumb)) {
-													echo "\n<option";
-													if ($_zp_gallery->getThumbSelectImages()) {
-														echo " class=\"thumboption\"";
-														echo " style=\"background-image: url(" . html_encode(pathurlencode(getAdminThumb($image, 'large'))) . "); background-repeat: no-repeat;\"";
-													}
-													echo " value=\"" . $imagename . "\"";
-													if ($selected) {
-														echo " selected=\"selected\"";
-													}
-													echo ">" . $image->getTitle();
-													if ($filename != $image->getTitle()) {
-														echo " ($filename)";
-													}
-													echo "</option>";
-												}
-											}
-										}
-										?>
 									</select>
 								</td>
 							</tr>
-							<?php
-						}
-						?>
-						<tr valign="top">
-							<td class="leftcolumn topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
-							<td>
-								<br />
-								<?php printCodeblockEdit($album, (int) $suffix); ?>
-							</td>
-						</tr>
+		<?php
+	}
+	echo $custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
+	?>
 					</table>
-				</td>
-				<?php $bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8'); ?>
-				<td class="rightcolumn" valign="top">
+				</div>
+			</div>
+			<div class="floatleft">
+				<div class="rightcolumn" valign="top">
 					<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 					<div class="box-edit">
 						<label class="checkboxlabel">
-							<input type="checkbox" name="<?php echo $prefix; ?>Published" value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?> />
-							<?php echo gettext("Published"); ?>
+							<input type="checkbox"
+										 name="<?php echo $prefix; ?>Published"
+										 value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?>
+										 onclick="$('#<?php echo $prefix; ?>publishdate').val('');
+													 $('#<?php echo $prefix; ?>expirationdate').val('');
+													 $('#<?php echo $prefix; ?>publishdate').css('color', 'black');
+													 $('.<?php echo $prefix; ?>expire').html('');"
+										 />
+										 <?php echo gettext("Published"); ?>
 						</label>
-						<label class="checkboxlabel">
-							<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
-							if ($album->getCommentsAllowed()) {
-								echo ' checked="checked"';
-							}
-							?> />
-										 <?php echo gettext("Allow Comments"); ?>
-						</label>
-						<?php
-						if (extensionEnabled('hitcounter')) {
-							$hc = $album->get('hitcounter');
-							if (empty($hc)) {
-								$hc = '0';
-							}
-							?>
+										 <?php
+										 if (extensionEnabled('comment_form')) {
+											 ?>
+							<label class="checkboxlabel">
+								<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
+					if ($album->getCommentsAllowed()) {
+						echo ' checked="checked"';
+					}
+											 ?> />
+								<?php echo gettext("Allow Comments"); ?>
+							</label>
+											 <?php
+										 }
+										 if (extensionEnabled('hitcounter')) {
+											 $hc = $album->get('hitcounter');
+											 if (empty($hc)) {
+												 $hc = '0';
+											 }
+											 ?>
 							<label class="checkboxlabel">
 								<input type="checkbox" name="reset_hitcounter<?php echo $prefix; ?>"<?php if (!$hc) echo ' disabled="disabled"'; ?> />
-								<?php echo sprintf(ngettext("Reset hit counter (%u hit)", "Reset hit counter (%u hits)", $hc), $hc); ?>
+		<?php echo sprintf(ngettext("Reset hit counter (%u hit)", "Reset hit counter (%u hits)", $hc), $hc); ?>
 							</label>
-							<?php
-						}
-						if (extensionEnabled('rating')) {
-							$tv = $album->get('total_value');
-							$tc = $album->get('total_votes');
-
-							if ($tc > 0) {
-								$hc = $tv / $tc;
-								?>
-								<label class="checkboxlabel">
-									<input type="checkbox" id="reset_rating<?php echo $suffix; ?>" name="<?php echo $prefix; ?>reset_rating" value="1" />
-									<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
-								</label>
-								<?php
-							} else {
-								?>
-								<label class="checkboxlabel">
-									<input type="checkbox" name="<?php echo $prefix; ?>reset_rating" value="1" disabled="disabled"/>
-									<?php echo gettext('Reset rating (unrated)'); ?>
-								</label>
 								<?php
 							}
-						}
-						$publishdate = $album->getPublishDate();
-						$expirationdate = $album->getExpireDate();
-						?>
+							if (extensionEnabled('rating')) {
+								$tv = $album->get('total_value');
+								$tc = $album->get('total_votes');
+
+								if ($tc > 0) {
+									$hc = $tv / $tc;
+									?>
+								<label class="checkboxlabel">
+									<input type="checkbox" id="reset_rating<?php echo $suffix; ?>" name="<?php echo $prefix; ?>reset_rating" value="1" />
+			<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
+								</label>
+									<?php
+								} else {
+									?>
+								<label class="checkboxlabel">
+									<input type="checkbox" name="<?php echo $prefix; ?>reset_rating" value="1" disabled="disabled"/>
+			<?php echo gettext('Reset rating (unrated)'); ?>
+								</label>
+									<?php
+								}
+							}
+							$publishdate = $album->getPublishDate();
+							$expirationdate = $album->getExpireDate();
+							?>
 						<script type="text/javascript">
 							// <!-- <![CDATA[
-							$(function() {
+							$(function () {
 								$("#<?php echo $prefix; ?>publishdate,#<?php echo $prefix; ?>expirationdate").datepicker({
 									dateFormat: 'yy-mm-dd',
 									showOn: 'button',
@@ -1790,16 +2323,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 									buttonText: '<?php echo addslashes(gettext("calendar")); ?>',
 									buttonImageOnly: true
 								});
-								$('#<?php echo $prefix; ?>publishdate').change(function() {
+								$('#<?php echo $prefix; ?>publishdate').change(function () {
 									var today = new Date();
 									var pub = $('#<?php echo $prefix; ?>publishdate').datepicker('getDate');
 									if (pub.getTime() > today.getTime()) {
-										$(".<?php echo $prefix; ?>scheduledpublishing").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
+										$("<?php echo $prefix; ?>Published").prop('checked', false);
+										$('#<?php echo $prefix; ?>publishdate').css('color', 'blue');
 									} else {
-										$(".<?php echo $prefix; ?>scheduledpublishing").html('');
+										$("<?php echo $prefix; ?>Published").prop('checked', true);
+										$('#<?php echo $prefix; ?>publishdate').css('color', 'black');
 									}
 								});
-								$('#<?php echo $prefix; ?>expirationdate').change(function() {
+								$('#<?php echo $prefix; ?>expirationdate').change(function () {
 									var today = new Date();
 									var expiry = $('#<?php echo $prefix; ?>expirationdate').datepicker('getDate');
 									if (expiry.getTime() > today.getTime()) {
@@ -1811,27 +2346,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 							});
 							// ]]> -->
 						</script>
-						<br class="clearall" />
-						<hr />
+						<br class="clearall">
 						<p>
 							<label for="<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
-							<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>publishdate" />
-							<strong class="scheduledpublishing-<?php echo $prefix; ?>" style="color:red">
-								<?php
-								if (!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
-									echo '<br />' . gettext('Future publishing date.');
-								}
-								?>
-							</strong>
-							<br /><br />
-							<label for="<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
+							<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>publishdate" <?php if ($publishdate > date('Y-m-d H:i:s')) echo 'style="color:blue"'; ?> />
+							<br /><label for="<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
 							<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>expirationdate" />
 							<strong class="<?php echo $prefix; ?>expire" style="color:red">
-								<?php
-								if (!empty($expirationdate) && ($expirationdate <= date('Y-m-d H:i:s'))) {
-									echo '<br />' . gettext('Expired!');
-								}
-								?>
+	<?php
+	if (!empty($expirationdate) && ($expirationdate <= date('Y-m-d H:i:s'))) {
+		echo '<br />' . gettext('Expired!');
+	}
+	?>
 							</strong>
 						</p>
 					</div>
@@ -1842,53 +2368,55 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<label class="checkboxlabel">
 							<input type="radio" id="a-<?php echo $prefix; ?>move" name="a-<?php echo $prefix; ?>MoveCopyRename" value="move"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'move');"<?php echo $isPrimaryAlbum; ?> />
-										 <?php echo gettext("Move"); ?>
+	<?php echo gettext("Move"); ?>
 						</label>
 
 						<label class="checkboxlabel">
 							<input type="radio" id="a-<?php echo $prefix; ?>copy" name="a-<?php echo $prefix; ?>MoveCopyRename" value="copy"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'copy');"/>
-										 <?php echo gettext("Copy"); ?>
+	<?php echo gettext("Copy"); ?>
 						</label>
 
 						<label class="checkboxlabel">
 							<input type="radio" id="a-<?php echo $prefix; ?>rename" name="a-<?php echo $prefix; ?>MoveCopyRename" value="rename"
 										 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'rename');" <?php echo $isPrimaryAlbum; ?> />
-										 <?php echo gettext("Rename Folder"); ?>
+	<?php echo gettext("Rename Folder"); ?>
 						</label>
 
 						<label class="checkboxlabel">
 							<input type="radio" id="Delete-<?php echo $prefix; ?>" name="a-<?php echo $prefix; ?>MoveCopyRename" value="delete"
-							<?php
-							if ($isPrimaryAlbum) {
-								?>
+	<?php
+	if ($isPrimaryAlbum) {
+		?>
 											 disabled="disabled"
-											 <?php
-										 } else {
-											 ?>
+								<?php
+							} else {
+								?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
 										 <?php echo gettext("Delete album"); ?>
 						</label>
 
-						<br class="clearall" />
-						<div class="deletemsg" id="deletemsg<?php echo $prefix; ?>"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
-							<?php echo gettext('Album will be deleted when changes are applied.'); ?>
-							<br class="clearall" />
+						<br class="clearall">
+						<div class="deletemsg" id="deletemsg<?php echo $prefix; ?>" class="resetHide"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
+	<?php echo gettext('Album will be deleted when changes are applied.'); ?>
+
 							<p class="buttons">
-								<a	href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
+								<a	onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');">
+	<?php echo CROSS_MARK_RED; ?>
+									<?php echo addslashes(gettext("Cancel")); ?></a>
 							</p>
 						</div>
-						<div id="a-<?php echo $prefix; ?>movecopydiv" style="padding-top: .5em; padding-left: .5em; display: none;">
-							<?php echo gettext("to:"); ?>
+						<div id="a-<?php echo $prefix; ?>movecopydiv" class="resetHide" style="padding-top: .5em; padding-left: .5em; display: none;">
+	<?php echo gettext("to:"); ?>
 							<select id="a-<?php echo $prefix; ?>albumselectmenu" name="a-<?php echo $prefix; ?>albumselect" onchange="">
-								<?php
-								$exclude = $album->name;
-								if (count(explode('/', $exclude)) > 1 && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-									?>
+							<?php
+							$exclude = $album->name;
+							if (count(explode('/', $exclude)) > 1 && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+								?>
 									<option value="" selected="selected">/</option>
 									<?php
 								}
@@ -1914,99 +2442,79 @@ function printAdminHeader($tab, $subtab = NULL) {
 								}
 								?>
 							</select>
-							<br class="clearall" /><br />
-							<p class="buttons">
-								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
-							</p>
-						</div>
-						<div id="a-<?php echo $prefix; ?>renamediv" style="padding-top: .5em; padding-left: .5em; display: none;">
-							<?php echo gettext("to:"); ?>
-							<input name="a-<?php echo $prefix; ?>renameto" type="text" value="<?php echo basename($album->name); ?>"/><br />
-							<br class="clearall" />
-							<p class="buttons">
-								<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo addslashes(gettext("Cancel")); ?></a>
-							</p>
-						</div>
-						<span class="clearall" ></span>
-						<?php
-						echo zp_apply_filter('edit_album_utilities', '', $album, $prefix);
-						printAlbumButtons($album);
-						?>
-						<span class="clearall" ></span>
-					</div>
-					<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?></h2>
-					<div class="box-edit-unpadded">
-						<?php
-						$tagsort = getTagOrder();
-						tagSelector($album, 'tags_' . $prefix, false, $tagsort, true, true);
-						?>
-					</div>
-				</td>
-			</tr>
-		</table>
-		<?php
-		if ($album->isDynamic()) {
-			?>
-			<table>
-				<tr>
-					<td align="left" valign="top" width="150"><?php echo gettext("Dynamic album search:"); ?></td>
-					<td>
-						<table class="noinput">
-							<tr>
-								<td><?php echo html_encode(urldecode($album->getSearchParams())); ?></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-			<?php
-		}
-		?>
 
-		<br class="clearall" />
-		<?php
-		if ($buttons) {
-			?>
+							<p class="buttons">
+								<a onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');">
+	<?php echo CROSS_MARK_RED; ?>
+									<?php echo addslashes(gettext("Cancel")); ?></a>
+							</p>
+						</div>
+						<div id="a-<?php echo $prefix; ?>renamediv" class="resetHide" style="padding-top: .5em; padding-left: .5em; display: none;">
+	<?php echo gettext("to:"); ?>
+							<input name="a-<?php echo $prefix; ?>renameto" type="text" value="<?php echo basename($album->name); ?>"/>
+
+							<p class="buttons">
+								<a onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');">
+	<?php echo CROSS_MARK_RED; ?>
+									<?php echo addslashes(gettext("Cancel")); ?></a>
+							</p>
+						</div>
+						<div class="clearall" ></div>
+	<?php
+	echo zp_apply_filter('edit_album_utilities', '', $album, $prefix);
+	printAlbumButtons($album);
+	?>
+						<span class="clearall" ></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br class="clearall">
+		<br />
+	<?php
+	if ($buttons) {
+		?>
 			<span class="buttons">
-				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $parent; ?>">
-					<img	src="images/arrow_left_blue_round.png" alt="" />
+				<a href="<?php echo $backbutton; ?>">
+		<?php echo BACK_ARROW_BLUE; ?>
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
 				<button type="submit">
-					<img	src="images/pass.png" alt="" />
+		<?php echo CHECKMARK_GREEN; ?>
 					<strong><?php echo gettext("Apply"); ?></strong>
 				</button>
-				<button type="reset" onclick="javascript:$('.deletemsg').hide();">
-					<img	src="images/fail.png" alt="" />
+				<button type="reset" onclick="$('.deletemsg').hide();">
+		<?php echo CROSS_MARK_RED; ?>
 					<strong><?php echo gettext("Reset"); ?></strong>
 				</button>
 				<div class="floatright">
-					<?php
-					if (!$album->isDynamic()) {
-						?>
-						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>', true);">
+		<?php
+		if (!$album->isDynamic()) {
+			?>
+						<button type="button" title="<?php echo addslashes(gettext('New subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', false);">
 							<img src="images/folder.png" alt="" />
 							<strong><?php echo gettext('New subalbum'); ?></strong>
 						</button>
-					<?php if(!$album->isDynamic()) { ?>
-         <button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="javascript:newDynAlbum('<?php echo pathurlencode($album->name); ?>', false);">
-           <img src="images/folder.png" alt="" />
-											<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
-								 </button>
-       <?php 
-      } 
-					}
-					?>
-					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
-						<img src="images/view.png" alt="" />
+			<?php if (!$album->isDynamic()) { ?>
+							<button type="button" title="<?php echo addslashes(gettext('New dynamic subalbum')); ?>" onclick="newAlbumJS('<?php echo pathurlencode($album->name); ?>', true);">
+								<img src="images/folder.png" alt="" />
+								<strong><?php echo gettext('New dynamic subalbum'); ?></strong>
+							</button>
+				<?php
+			}
+		}
+		?>
+					<a href="<?php echo WEBPATH . "/index.php?album=" . pathurlencode($album->getFileName()); ?>">
+					<?php echo BULLSEYE_BLUE; ?>
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
 				</div>
 			</span>
-			<?php
-		}
-		?>
-		<br class="clearall" />
+			<br class="clearall">
+		<?php
+	}
+	?>
 		<?php
 	}
 
@@ -2020,792 +2528,747 @@ function printAdminHeader($tab, $subtab = NULL) {
 			?>
 			<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the album’s cached images.")); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=clear_cache&amp;album=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_cache'); ?>">
-					<img src="images/edit-delete.png" /><?php echo gettext('Clear album image cache'); ?></a>
-				<br class="clearall" />
+		<?php echo WASTEBASKET; ?>
+					<?php echo gettext('Clear album image cache'); ?></a>
+				<br class="clearall">
 			</div>
-			<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
-				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
-					<img src="images/reset.png" /><?php echo gettext('Reset album hit counters'); ?></a>
-				<br class="clearall" />
-			</div>
+		<?php
+		if (extensionEnabled('hitcounter')) {
+			?>
+				<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
+					<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
+			<?php echo RECYCLE_ICON; ?>
+						<?php echo gettext('Reset album hit counters'); ?></a>
+					<br class="clearall">
+				</div>
 			<?php
 		}
-		if ($imagcount || (!$album->isDynamic() && $album->getNumAlbums())) {
-			?>
+	}
+	if ($imagcount || (!$album->isDynamic() && $album->getNumAlbums())) {
+		?>
 			<div class="button buttons tooltip" title="<?php echo gettext("Refreshes the metadata for the album."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-refresh-metadata.php?album=' . html_encode($album->name) . '&amp;return=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh'); ?>">
-					<img src="images/cache.png" /><?php echo gettext('Refresh album metadata'); ?></a>
-				<br class="clearall" />
+		<?php echo CIRCLED_BLUE_STAR; ?>
+					<?php echo gettext('Refresh album metadata'); ?>
+				</a>
+				<br class="clearall">
 			</div>
-			<?php
-		}
-	}
-
-	function printAlbumLegend() {
-		?>
-		<ul class="iconlegend-l">
-			<li><img src="images/folder_picture.png" alt="" /><?php echo gettext("Albums"); ?></li>
-			<li><img src="images/pictures.png" alt="" /><?php echo gettext("Images"); ?></li>
-			<li><img src="images/folder_picture_dn.png" alt="" /><?php echo gettext("Albums (dynamic)"); ?></li>
-			<li><img src="images/pictures_dn.png" alt="I" /><?php echo gettext("Images (dynamic)"); ?></li>
-		</ul>
-		<ul class="iconlegend">
-			<?php
-			if (GALLERY_SECURITY == 'public') {
-				?>
-				<li><img src="images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>
-				<?php
-			}
-			?>
-			<li><img src="images/pass.png" alt="Published" /><img src="images/action.png" alt="" /><?php echo gettext("Published/Un-published"); ?></li>
-			<li><img src="images/comments-on.png" alt="" /><img src="images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
-			<li><img src="images/view.png" alt="" /><?php echo gettext("View the album"); ?></li>
-			<li><img src="images/refresh.png" alt="" /><?php echo gettext("Refresh metadata"); ?></li>
-			<?php
-			if (extensionEnabled('hitcounter')) {
-				?>
-				<li><img src="images/reset.png" alt="" /><?php echo gettext("Reset hit counters"); ?></li>
-				<?php
-			}
-			?>
-			<li><img src="images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
-		</ul>
 		<?php
 	}
+}
 
-	/**
-	 * puts out a row in the edit album table
-	 *
-	 * @param object $album is the album being emitted
-	 * @param bool $show_thumb set to false to show thumb standin image rather than album thumb
-	 * @param object $owner the parent album (or NULL for gallery)
-	 *
-	 * */
-	function printAlbumEditRow($album, $show_thumb, $owner) {
-		global $_zp_current_admin_obj;
-		$enableEdit = $album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT;
-		if (is_object($owner)) {
-			$owner = $owner->name;
-		}
+function printAlbumLegend() {
+	?>
+		<ul class="iconlegend-l">
+			<li>
+				<img src="images/folder_picture.png" alt="" />
+	<?php echo gettext("Albums"); ?>
+			</li>
+			<li>
+				<img src="images/pictures.png" alt="" />
+	<?php echo gettext("Images"); ?>
+			</li>
+			<li>
+				<img src="images/folder_picture_dn.png" alt="" />
+	<?php echo gettext("Albums (dynamic)"); ?>
+			</li>
+			<li>
+				<img src="images/pictures_dn.png" alt="I" />
+	<?php echo gettext("Images (dynamic)"); ?>
+			</li>
+		</ul>
+		<ul class="iconlegend">
+	<?php
+	if (GALLERY_SECURITY == 'public') {
 		?>
-		<div class='page-list_row'>
-
-			<div class="page-list_albumthumb">
-				<?php
-				if ($show_thumb) {
-					$thumbimage = $album->getAlbumThumbImage();
-					$thumb = getAdminThumb($thumbimage, 'small');
-				} else {
-					$thumb = 'images/thumb_standin.png';
-				}
-				if ($enableEdit) {
-					?>
-					<a href="?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
-						<?php
-					}
-					?>
-					<img src="<?php echo html_encode(pathurlencode($thumb)); ?>" width="40" height="40" alt="" title="album thumb" />
-					<?php
-					if ($enableEdit) {
-						?>
-					</a>
+				<li>
+				<?php echo LOCK; ?>
+					<?php echo LOCK_OPEN; ?>
+					<?php echo gettext("has/does not have password"); ?></li>
 					<?php
 				}
 				?>
-			</div>
-			<div class="page-list_albumtitle">
-				<?php
-				if ($enableEdit) {
-					?>
-					<a href="?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
-						<?php
-					}
-					echo getBare($album->getTitle());
-					if ($enableEdit) {
-						?>
-					</a>
-					<?php
-				}
-				?>
-			</div>
-			<?php
-			if ($album->isDynamic()) {
-				$imgi = '<img src="images/pictures_dn.png" alt="" title="' . gettext('images') . '" />';
-				$imga = '<img src="images/folder_picture_dn.png" alt="" title="' . gettext('albums') . '" />';
-			} else {
-				$imgi = '<img src="images/pictures.png" alt="" title="' . gettext('images') . '" />';
-				$imga = '<img src="images/folder_picture.png" alt="" title="' . gettext('albums') . '" />';
-			}
-			$ci = count($album->getImages());
-			$si = sprintf('%1$s <span>(%2$u)</span>', $imgi, $ci);
-			if ($ci > 0 && !$album->isDynamic()) {
-				$si = '<a href="?page=edit&amp;album=' . html_encode(pathurlencode($album->name)) . '&amp;tab=imageinfo" title="' . gettext('Subalbum List') . '">' . $si . '</a>';
-			}
-			$ca = $album->getNumAlbums();
-			$sa = sprintf('%1$s <span>(%2$u)</span>', $imga, $ca);
-			if ($ca > 0 && !$album->isDynamic()) {
-				$sa = '<a href="?page=edit&amp;album=' . html_encode(pathurlencode($album->name)) . '&amp;tab=subalbuminfo" title="' . gettext('Subalbum List') . '">' . $sa . '</a>';
-			}
-			?>
-			<div class="page-list_extra">
-				<?php echo $sa; ?>
-			</div>
-			<div class="page-list_extra">
-				<?php echo $si; ?>
-			</div>
-			<?php $wide = '40px'; ?>
-			<div class="page-list_iconwrapperalbum">
-				<div class="page-list_icon">
-					<?php
-					$pwd = $album->getPassword();
-					if (!empty($pwd)) {
-						echo '<a title="' . gettext('Password protected') . '"><img src="images/lock.png" style="border: 0px;" alt="" title="' . gettext('Password protected') . '" /></a>';
-					}
-					?>
-				</div>
-				<div class="page-list_icon">
-					<?php
-					if ($album->getShow()) {
-						if ($enableEdit) {
-							?>
-							<a href="?action=publish&amp;value=0&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>" >
-								<?php
-							}
-							?>
-							<img src="images/pass.png" style="border: 0px;" alt="" title="<?php echo gettext('Published'); ?>" />
-							<?php
-							if ($enableEdit) {
-								?>
-							</a>
-							<?php
-						}
-					} else {
-						if ($enableEdit) {
-							?>
-							<a href="?action=publish&amp;value=1&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
-								<?php
-							}
-							?>
-							<img src="images/action.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Unpublished'), $album->name); ?>" />
-							<?php
-							if ($enableEdit) {
-								?>
-							</a>
-							<?php
-						}
-					}
-					?>
-				</div>
-				<div class="page-list_icon">
-					<?php
-					if ($album->getCommentsAllowed()) {
-						if ($enableEdit) {
-							?>
-							<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
-								<?php
-							}
-							?>
-							<img src="images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
-							<?php
-							if ($enableEdit) {
-								?>
-							</a>
-							<?php
-						}
-					} else {
-						if ($enableEdit) {
-							?>
-							<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
-								<?php
-							}
-							?>
-							<img src="images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
-							<?php
-							if ($enableEdit) {
-								?>
-							</a>
-							<?php
-						}
-					}
-					?>
-				</div>
-				<div class="page-list_icon">
-					<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo gettext("View album"); ?>">
-						<img src="images/view.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('View album %s'), $album->name); ?>" />
-					</a>
-				</div>
-				<div class="page-list_icon">
-					<?php
-					if ($album->isDynamic() || !$enableEdit) {
-						?>
-						<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
-						<?php
-					} else {
-						?>
-						<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh') ?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
-							<img src="images/refresh.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Refresh metadata in the album %s'), $album->name); ?>" />
-						</a>
-						<?php
-					}
-					?>
-				</div>
+			<li>
+			<?php echo CLIPBOARD . ' ' . gettext("pick source"); ?>
+			</li>
+			<li>
+	<?php echo CHECKMARK_GREEN; ?>
+				<?php echo EXCLAMATION_RED; ?>
+				<?php echo CLOCKFACE . '&nbsp;'; ?>
+				<?php echo gettext("published/not published/scheduled for publishing"); ?>
+			</li>
+			<li>
+	<?php echo BULLSEYE_GREEN; ?>
+				<?php echo BULLSEYE_RED; ?>
+				<?php echo gettext("comments on/off"); ?>
+			</li>
+			<li>
+	<?php echo BULLSEYE_BLUE; ?>
+				<?php echo gettext("view the album"); ?>
+			</li>
+			<li>
+	<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
+				<?php echo gettext("refresh metadata"); ?>
+			</li>
 				<?php
 				if (extensionEnabled('hitcounter')) {
 					?>
-					<div class="page-list_icon">
+				<li>
+				<?php echo RECYCLE_ICON; ?>
+					<?php echo gettext("reset hit counters"); ?>
+				</li>
+					<?php
+				}
+				?>
+			<li>
+			<?php echo WASTEBASKET; ?>
+				<?php echo gettext("delete"); ?>
+			</li>
+		</ul>
+	<?php
+}
+
+/**
+ * puts out a row in the edit album table
+ *
+ * @param object $album is the album being emitted
+ * @param bool $show_thumb set to false to show thumb standin image rather than album thumb
+ * @param object $owner the parent album (or NULL for gallery)
+ * @param bool $toodeep set true if nesting level is too deep
+ *
+ * */
+function printAlbumEditRow($album, $show_thumb, $owner, $toodeep) {
+	global $_zp_current_admin_obj;
+	$enableEdit = $album->subRights() & MANAGED_OBJECT_RIGHTS_EDIT;
+	if (is_object($owner)) {
+		$owner = $owner->name;
+	}
+	if ($toodeep) {
+		$handle = DRAG_HANDLE_ALERT;
+	} else {
+		$handle = DRAG_HANDLE;
+	}
+	?>
+		<div class="page-list_row">
+			<div class="page-list_handle">
+	<?php echo $handle; ?>
+			</div>
+			<div class="page-list_albumthumb">
+	<?php
+	if ($show_thumb) {
+		$thumbimage = $album->getAlbumThumbImage();
+		$thumb = getAdminThumb($thumbimage, 'small');
+	} else {
+		$thumb = 'images/thumb_standin.png';
+	}
+	if ($enableEdit) {
+		?>
+					<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
+					<?php
+				}
+				?>
+					<img src="<?php echo pathurlencode($thumb); ?>" width="<?php echo ADMIN_THUMB_SMALL; ?>" height="<?php echo ADMIN_THUMB_SMALL; ?>" alt="" title="album thumb" />
+					<?php
+					if ($enableEdit) {
+						?>
+					</a>
 						<?php
-						if (!$enableEdit) {
-							?>
-							<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
+					}
+					?>
+			</div>
+			<div class="page-list_albumtitle">
+	<?php
+	if ($enableEdit) {
+		?>
+					<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
+					<?php
+				}
+				echo html_encode(getBare($album->getTitle()));
+				if ($enableEdit) {
+					?>
+					</a>
+						<?php
+					}
+					?>
+			</div>
+				<?php
+				if ($album->isDynamic()) {
+					$imgi = '<img src="images/pictures_dn.png" alt="' . gettext('images') . '" title="' . gettext('images') . '" />';
+					$imga = '<img src="images/folder_picture_dn.png" alt="' . gettext('albums') . '" title="' . gettext('albums') . '" />';
+				} else {
+					$imgi = '<img src="images/pictures.png" alt="' . gettext('images') . '" title="' . gettext('images') . '" />';
+					$imga = '<img src="images/folder_picture.png" alt="' . gettext('albums') . '" title="' . gettext('albums') . '" />';
+				}
+				$ci = count($album->getImages());
+				$si = sprintf('%1$s <span>(%2$u)</span>', $imgi, $ci);
+				if ($ci > 0 && !$album->isDynamic()) {
+					$si = preg_replace('~ title=".*?"~', '', $si);
+					$si = '<a href="?page=edit&amp;album=' . pathurlencode($album->name) . '&amp;tab=imageinfo" title="' . gettext('Images') . '">' . $si . '</a>';
+				}
+				$ca = $album->getNumAlbums();
+				$sa = sprintf('%1$s <span>(%2$u)</span>', $imga, $ca);
+				if ($ca > 0 && !$album->isDynamic()) {
+					$sa = preg_replace('~ title=".*?"~', '', $sa);
+					$sa = '<a href="?page=edit&amp;album=' . pathurlencode($album->name) . '&amp;tab=subalbuminfo" title="' . gettext('Subalbum List') . '">' . $sa . '</a>';
+				}
+				?>
+			<div class="page-list_iconwrapper">
+				<div class="page-list_icon">
+	<?php
+	$pwd = $album->getPassword();
+	if (empty($pwd)) {
+		?>
+						<a title="<?php echo gettext('un-protected'); ?>">
+						<?php echo LOCK_OPEN; ?>
+						</a>
 							<?php
 						} else {
 							?>
-							<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;subalbum=true&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
-								<img src="images/reset.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Reset hit counters for the album %s'), $album->name); ?>" />
-							</a>
+						<a title="<?php echo gettext('password protected'); ?>">
+						<?php echo LOCK; ?>
+						</a>
 							<?php
 						}
 						?>
-					</div>
-					<?php
-				}
-				?>
+				</div>
 				<div class="page-list_icon">
-					<?php
-					$myalbum = $_zp_current_admin_obj->getAlbum();
-					$supress = !zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS) && $myalbum && $album->getID() == $myalbum->getID();
-					if (!$enableEdit || $supress) {
+	<?php
+	echo linkPickerIcon($album);
+	?>
+				</div>
+				<div class="page-list_icon">
+	<?php
+	if ($album->getShow()) {
+		if ($enableEdit) {
+			?>
+							<a href="?action=publish&amp;value=0&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>" >
+							<?php
+						}
 						?>
-						<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
+							<?php echo CHECKMARK_GREEN; ?>
+							<?php
+							if ($enableEdit) {
+								?>
+							</a>
+								<?php
+							}
+						} else {
+							if ($enableEdit) {
+								?>
+							<a href="?action=publish&amp;value=1&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
+							<?php
+						}
+						if ($album->getPublishDate() > date('Y-m-d H:i:s')) {
+							?>
+								<?php echo CLOCKFACE; ?>
+								<?php
+							} else {
+								?>
+								<?php echo EXCLAMATION_RED; ?>
+								<?php
+							}
+							if ($enableEdit) {
+								?>
+							</a>
+								<?php
+							}
+						}
+						?>
+				</div>
+				<div class="page-list_icon">
+	<?php
+	if ($album->getCommentsAllowed()) {
+		if ($enableEdit) {
+			?>
+							<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
+							<?php
+						}
+						?>
+							<?php echo BULLSEYE_GREEN; ?>
+							<?php
+							if ($enableEdit) {
+								?>
+							</a>
+								<?php
+							}
+						} else {
+							if ($enableEdit) {
+								?>
+							<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
+							<?php
+						}
+						?>
+							<?php echo BULLSEYE_RED; ?>
+							<?php
+							if ($enableEdit) {
+								?>
+							</a>
+								<?php
+							}
+						}
+						?>
+				</div>
+				<div class="page-list_icon">
+					<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo pathurlencode($album->name); ?>" title="<?php echo gettext("View album"); ?>">
+	<?php echo BULLSEYE_BLUE; ?>
+					</a>
+				</div>
+				<div class="page-list_icon">
+	<?php
+	if ($album->isDynamic() || !$enableEdit) {
+		?>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/placeholder.png"  style="border: 0px;" />
 						<?php
 					} else {
 						?>
-						<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=<?php echo html_encode(pathurlencode(dirname($album->name))); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
-							<img src="images/fail.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Delete the album %s'), js_encode($album->name)); ?>" />
+						<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh') ?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
+						<?php echo CLOCKWISE_OPEN_CIRCLE_ARROW_GREEN; ?>
 						</a>
+							<?php
+						}
+						?>
+				</div>
+					<?php
+					if (extensionEnabled('hitcounter')) {
+						?>
+					<div class="page-list_icon">
+					<?php
+					if (!$enableEdit) {
+						?>
+							<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/placeholder.png"  style="border: 0px;" />
+							<?php
+						} else {
+							?>
+							<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo pathurlencode($album->name); ?>&amp;subalbum=true&amp;return=*<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
+							<?php echo RECYCLE_ICON; ?>
+							</a>
+								<?php
+							}
+							?>
+					</div>
 						<?php
 					}
 					?>
-				</div>
+				<div class="page-list_icon">
 				<?php
-				if ($enableEdit) {
+				$myalbum = $_zp_current_admin_obj->getAlbum();
+				$supress = !zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS) && $myalbum && $album->getID() == $myalbum->getID();
+				if (!$enableEdit || $supress) {
 					?>
+						<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/placeholder.png"  style="border: 0px;" />
+						<?php
+					} else {
+						?>
+						<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=<?php echo pathurlencode($owner); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
+						<?php echo WASTEBASKET; ?>
+						</a>
+							<?php
+						}
+						?>
+				</div>
+					<?php
+					if ($enableEdit) {
+						?>
 					<div class="page-list_icon">
-						<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $album->getFileName(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" <?php if ($supress) echo ' disabled="disabled"'; ?> />
+						<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $album->getFileName(); ?>"<?php if ($supress) echo ' disabled="disabled"'; ?> />
 					</div>
+		<?php
+	}
+	?>
+			</div>
+				<?php
+				if ($sa || $si) {
+					?>
+				<div class="page-list_extra page-list_right">
+				<?php echo $si; ?>
+				</div>
+				<div class="page-list_extra page-list_right">
+		<?php echo $sa; ?>
+				</div>
 					<?php
 				}
 				?>
-			</div>
 		</div>
-		<?php
-	}
 
-	/**
-	 * processes the post from the above
-	 * @param int $index the index of the entry in mass edit or 0 if single album
-	 * @param object $album the album object
-	 * @param string $redirectto used to redirect page refresh on move/copy/rename
-	 * @return string error flag if passwords don't match
-	 * @since 1.1.3
-	 */
-	function processAlbumEdit($index, $album, &$redirectto) {
-		$redirectto = NULL; // no redirection required
-		if ($index == 0) {
-			$prefix = $suffix = '';
-		} else {
-			$prefix = "$index-";
-			$suffix = "_$index";
-		}
-		$tagsprefix = 'tags_' . $prefix;
-		$notify = '';
-		$album->setTitle(process_language_string_save($prefix . 'albumtitle', 2));
-		$album->setDesc(process_language_string_save($prefix . 'albumdesc', EDITOR_SANITIZE_LEVEL));
-		$tags = array();
-		$l = strlen($tagsprefix);
-		foreach ($_POST as $key => $value) {
-			$key = postIndexDecode($key);
-			if (substr($key, 0, $l) == $tagsprefix) {
-				if ($value) {
-					$tags[] = sanitize(substr($key, $l));
-				}
-			}
-		}
-		$tags = array_unique($tags);
-		$album->setTags($tags);
-		$album->setDateTime(sanitize($_POST[$prefix . "albumdate"]));
-		$album->setLocation(process_language_string_save($prefix . 'albumlocation', 3));
-		if (isset($_POST[$prefix . 'thumb']))
-			$album->setThumb(sanitize($_POST[$prefix . 'thumb']));
-		$album->setShow((int) isset($_POST[$prefix . 'Published']));
-		$album->setCommentsAllowed(isset($_POST[$prefix . 'allowcomments']));
-		$sorttype = strtolower(sanitize($_POST[$prefix . 'sortby'], 3));
-		if ($sorttype == 'custom') {
-			$sorttype = unquote(strtolower(sanitize($_POST[$prefix . 'customimagesort'], 3)));
-		}
-		$album->setSortType($sorttype);
-		if (($sorttype == 'manual') || ($sorttype == 'random')) {
-			$album->setSortDirection(false, 'image');
-		} else {
-			if (empty($sorttype)) {
-				$direction = false;
-			} else {
-				$direction = isset($_POST[$prefix . 'image_sortdirection']);
-			}
-			$album->setSortDirection($direction, 'image');
-		}
-		$sorttype = strtolower(sanitize($_POST[$prefix . 'subalbumsortby'], 3));
-		if ($sorttype == 'custom')
-			$sorttype = strtolower(sanitize($_POST[$prefix . 'customalbumsort'], 3));
-		$album->setSortType($sorttype, 'album');
-		if (($sorttype == 'manual') || ($sorttype == 'random')) {
-			$album->setSortDirection(false, 'album');
-		} else {
-			$album->setSortDirection(isset($_POST[$prefix . 'album_sortdirection']), 'album');
-		}
-		if (isset($_POST['reset_hitcounter' . $prefix])) {
-			$album->set('hitcounter', 0);
-		}
-		if (isset($_POST[$prefix . 'reset_rating'])) {
-			$album->set('total_value', 0);
-			$album->set('total_votes', 0);
-			$album->set('used_ips', 0);
-		}
-		$album->setPublishDate(sanitize($_POST['publishdate-' . $prefix]));
-		$album->setExpireDate(sanitize($_POST['expirationdate-' . $prefix]));
-		$fail = '';
-		processCredentials($album, $suffix);
-		$oldtheme = $album->getAlbumTheme();
-		if (isset($_POST[$prefix . 'album_theme'])) {
-			$newtheme = sanitize($_POST[$prefix . 'album_theme']);
-			if ($oldtheme != $newtheme) {
-				$album->setAlbumTheme($newtheme);
-			}
-		}
-		if (isset($_POST[$prefix . 'album_watermark'])) {
-			$album->setWatermark(sanitize($_POST[$prefix . 'album_watermark'], 3));
-			$album->setWatermarkThumb(sanitize($_POST[$prefix . 'album_watermark_thumb'], 3));
-		}
-		if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-			$album->setCodeblock(processCodeblockSave((int) $prefix));
-		}
-		if (isset($_POST[$prefix . 'owner']))
-			$album->setOwner(sanitize($_POST[$prefix . 'owner']));
-
-		$custom = process_language_string_save($prefix . 'album_custom_data', 1);
-		$album->setCustomData(zp_apply_filter('save_album_custom_data', $custom, $prefix));
-		zp_apply_filter('save_album_utilities_data', $album, $prefix);
-		$album->save();
-
-		// Move/Copy/Rename the album after saving.
-		$movecopyrename_action = '';
-		if (isset($_POST['a-' . $prefix . 'MoveCopyRename'])) {
-			$movecopyrename_action = sanitize($_POST['a-' . $prefix . 'MoveCopyRename'], 3);
-		}
-
-		if ($movecopyrename_action == 'delete') {
-			$dest = dirname($album->name);
-			if ($album->remove()) {
-				if ($dest == '/' || $dest == '.')
-					$dest = '';
-				$redirectto = $dest;
-			} else {
-				$notify = "&mcrerr=7";
-			}
-		}
-		if ($movecopyrename_action == 'move') {
-			$dest = sanitize_path($_POST['a' . $prefix . '-albumselect']);
-			// Append the album name.
-			$dest = ($dest ? $dest . '/' : '') . (strpos($album->name, '/') === FALSE ? $album->name : basename($album->name));
-			if ($dest && $dest != $album->name) {
-				if ($suffix = $album->isDynamic()) { // be sure there is a .alb suffix
-					if (substr($dest, -4) != '.' . $suffix) {
-						$dest .= '.' . suffix;
-					}
-				}
-				if ($e = $album->move($dest)) {
-					$notify = "&mcrerr=" . $e;
-					SearchEngine::clearSearchCache();
-				} else {
-					$redirectto = $dest;
-				}
-			} else {
-				// Cannot move album to same album.
-				$notify = "&mcrerr=3";
-			}
-		} else if ($movecopyrename_action == 'copy') {
-			$dest = sanitize_path($_POST['a' . $prefix . '-albumselect']);
-			if ($dest && $dest != $album->name) {
-				if ($e = $album->copy($dest)) {
-					$notify = "&mcrerr=" . $e;
-				}
-			} else {
-				// Cannot copy album to existing album.
-				// Or, copy with rename?
-				$notify = '&mcrerr=3';
-			}
-		} else if ($movecopyrename_action == 'rename') {
-			$renameto = sanitize_path($_POST['a' . $prefix . '-renameto']);
-			$renameto = str_replace(array('/', '\\'), '', $renameto);
-			if (dirname($album->name) != '.') {
-				$renameto = dirname($album->name) . '/' . $renameto;
-			}
-			if ($renameto != $album->name) {
-				if ($suffix = $album->isDynamic()) { // be sure there is a .alb suffix
-					if (substr($renameto, -4) != '.' . $suffix) {
-						$renameto .= '.' . $suffix;
-					}
-				}
-				if ($e = $album->rename($renameto)) {
-					$notify = "&mcrerr=" . $e;
-				} else {
-					$redirectto = $renameto;
-				}
-			} else {
-				$notify = "&mcrerr=3";
-			}
-		}
-		return $notify;
-	}
-
- /**
-  * Process the image edit form posted
-  * @param obj $image Image object
-  * @param type $index Index of the image if within the images list or 0 if single image edit
-  * @param boolean $massedit Whether editing single image (false) or multiple images at once (true). Note: to determine whether to process additional fields in single image edit mode.
-  */
- function processImageEdit($image, $index, $massedit=true) {
-
-  $notify = '';
-  if (isset($_POST[$index . '-MoveCopyRename'])) {
-    $movecopyrename_action = sanitize($_POST[$index . '-MoveCopyRename'], 3);
-  } else {
-    $movecopyrename_action = '';
-  }
-  if ($movecopyrename_action == 'delete') {
-    $image->remove();
-  } else {
-    if ($thumbnail = sanitize($_POST['album_thumb-' . $index])) { //selected as an album thumb
-      $talbum = newAlbum($thumbnail);
-      if ($image->imagefolder == $thumbnail) {
-        $talbum->setThumb($image->filename);
-      } else {
-        $talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
-      }
-      $talbum->save();
-    }
-    if (isset($_POST[$index . '-reset_rating'])) {
-      $image->set('total_value', 0);
-      $image->set('total_votes', 0);
-      $image->set('used_ips', 0);
-    }
-    $image->setPublishDate(sanitize($_POST['publishdate-' . $index]));
-    $image->setExpireDate(sanitize($_POST['expirationdate-' . $index]));
-    $image->setTitle(process_language_string_save("$index-title", 2));
-    $image->setDesc(process_language_string_save("$index-desc", EDITOR_SANITIZE_LEVEL));
-    if (isset($_POST[$index . '-oldrotation']) && isset($_POST[$index . '-rotation'])) {
-      $oldrotation = (int) $_POST[$index . '-oldrotation'];
-      $rotation = (int) $_POST[$index . '-rotation'];
-      if ($rotation != $oldrotation) {
-        $image->set('EXIFOrientation', $rotation);
-        $image->updateDimensions();
-        $album = $image->getAlbum();
-        Gallery::clearCache(SERVERCACHE . '/' . $album->name);
-      }
-    }
-	if (!$massedit) {
-		$image->setLocation(process_language_string_save("$index-location", 3));
-		$image->setCity(process_language_string_save("$index-city", 3));
-		$image->setState(process_language_string_save("$index-state", 3));
-		$image->setCountry(process_language_string_save("$index-country", 3));
-		$image->setCredit(process_language_string_save("$index-credit", 1));
-		$image->setCopyright(process_language_string_save("$index-copyright", 1));
-		$tagsprefix = 'tags_' . $index . '-';
-		$tags = array();
-		$l = strlen($tagsprefix);
-		foreach ($_POST as $key => $value) {
-			$key = postIndexDecode($key);
-			if (substr($key, 0, $l) == $tagsprefix) {
-				if ($value) {
-					$tags[] = sanitize(substr($key, $l));
-				}
-			}
-		}
-		$tags = array_unique($tags);
-		$image->setTags($tags);
-		if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-			$image->setCodeblock(processCodeblockSave($index));
-		}
-		$custom = process_language_string_save("$index-custom_data", 1);
-		$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $index));
-	}
-    $image->setDateTime(sanitize($_POST["$index-date"]));
-    $image->setShow(isset($_POST["$index-Visible"]));
-    $image->setCommentsAllowed(isset($_POST["$index-allowcomments"]));
-    if (isset($_POST["reset_hitcounter$index"])) {
-      $image->set('hitcounter', 0);
-    }
-    $wmt = sanitize($_POST["$index-image_watermark"], 3);
-    $image->setWatermark($wmt);
-    $wmuse = 0;
-    if (isset($_POST['wm_image-' . $index]))
-      $wmuse = $wmuse | WATERMARK_IMAGE;
-    if (isset($_POST['wm_thumb-' . $index]))
-      $wmuse = $wmuse | WATERMARK_THUMB;
-    if (isset($_POST['wm_full-' . $index]))
-      $wmuse = $wmuse | WATERMARK_FULL;
-    $image->setWMUse($wmuse);
-    
-    if (isset($_POST[$index . '-owner']))
-      $image->setOwner(sanitize($_POST[$index . '-owner']));
-    $image->set('filesize', filesize($image->localpath));
-
-    zp_apply_filter('save_image_utilities_data', $image, $index);
-    $image->save();
-
-    // Process move/copy/rename
-    $folder = $image->getAlbumName();
-    if ($movecopyrename_action == 'move') {
-      $dest = sanitize_path($_POST[$index . '-albumselect']);
-      if ($dest && $dest != $folder) {
-        if ($e = $image->move($dest)) {
-					SearchEngine::clearSearchCache();
-          $notify = "&mcrerr=" . $e;
-        }
-      } else {
-        // Cannot move image to same album.
-        $notify = "&mcrerr=2";
-      }
-    } else if ($movecopyrename_action == 'copy') {
-      $dest = sanitize_path($_POST[$index . '-albumselect']);
-      if ($dest && $dest != $folder) {
-        if ($e = $image->copy($dest)) {
-          $notify = "&mcrerr=" . $e;
-        }
-      } else {
-        // Cannot copy image to existing album.
-        // Or, copy with rename?
-        $notify = "&mcrerr=2";
-      }
-    } else if ($movecopyrename_action == 'rename') {
-      $renameto = sanitize_path($_POST[$index . '-renameto']);
-      if ($e = $image->rename($renameto)) {
-				SearchEngine::clearSearchCache();
-        $notify = "&mcrerr=" . $e;
-      }
-    }
-  }
-  return $notify;
+	<?php
 }
 
-function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
-		if (empty($parms)) {
-			$url = '?';
+/**
+ * processes the post from the above
+ * @param int $index the index of the entry in mass edit or 0 if single album
+ * @param object $album the album object
+ * @param string $redirectto used to redirect page refresh on move/copy/rename
+ * @return string error flag if passwords don't match
+ * @since 1.1.3
+ */
+function processAlbumEdit($index, &$album, &$redirectto) {
+	$redirectto = NULL; // no redirection required
+	if ($index == 0) {
+		$prefix = $suffix = '';
+	} else {
+		$prefix = "$index-";
+		$suffix = "_$index";
+	}
+	$notify = '';
+	$album->setTitle(process_language_string_save($prefix . 'albumtitle', 2));
+	$album->setDesc(process_language_string_save($prefix . 'albumdesc', EDITOR_SANITIZE_LEVEL));
+
+	if (isset($_POST['tag_list_tags_' . $prefix])) {
+		$tags = sanitize($_POST['tag_list_tags_' . $prefix]);
+	} else {
+		$tags = array();
+	}
+	$tags = array_unique($tags);
+	$album->setTags($tags);
+	if (isset($_POST[$prefix . 'thumb']))
+		$album->setThumb(sanitize($_POST[$prefix . 'thumb']));
+	$album->setCommentsAllowed(isset($_POST[$prefix . 'allowcomments']));
+	$sorttype = strtolower(sanitize($_POST[$prefix . 'sortby'], 3));
+	if ($sorttype == 'custom') {
+		$sorttype = unquote(strtolower(sanitize($_POST[$prefix . 'customimagesort'], 3)));
+	}
+	$album->setSortType($sorttype);
+	if (($sorttype == 'manual') || ($sorttype == 'random')) {
+		$album->setSortDirection(false, 'image');
+	} else {
+		if (empty($sorttype)) {
+			$direction = false;
 		} else {
-			$url = $parms . '&amp;';
+			$direction = isset($_POST[$prefix . 'image_sortdirection']);
 		}
-		echo '<ul class="pagelist"><li class="prev">';
-		if ($pagenum > 1) {
-			echo '<a href="' . $url . 'subpage=' . ($p = $pagenum - 1) . $tab . '" title="' . sprintf(gettext('page %u'), $p) . '">' . '&laquo; ' . gettext("Previous page") . '</a>';
-		} else {
-			echo '<span class="disabledlink">&laquo; ' . gettext("Previous page") . '</span>';
+		$album->setSortDirection($direction, 'image');
+	}
+	$sorttype = strtolower(sanitize($_POST[$prefix . 'subalbumsortby'], 3));
+	if ($sorttype == 'custom')
+		$sorttype = strtolower(sanitize($_POST[$prefix . 'customalbumsort'], 3));
+	$album->setSortType($sorttype, 'album');
+	if (($sorttype == 'manual') || ($sorttype == 'random')) {
+		$album->setSortDirection(false, 'album');
+	} else {
+		$album->setSortDirection(isset($_POST[$prefix . 'album_sortdirection']), 'album');
+	}
+	if (isset($_POST['reset_hitcounter' . $prefix])) {
+		$album->set('hitcounter', 0);
+	}
+	if (isset($_POST[$prefix . 'reset_rating'])) {
+		$album->set('total_value', 0);
+		$album->set('total_votes', 0);
+		$album->set('used_ips', 0);
+	}
+	$pubdate = $album->setPublishDate(sanitize($_POST['publishdate-' . $prefix]));
+	$album->setExpireDate(sanitize($_POST['expirationdate-' . $prefix]));
+	$fail = '';
+	processCredentials($album, $suffix);
+	$oldtheme = $album->getAlbumTheme();
+	if (isset($_POST[$prefix . 'album_theme'])) {
+		$newtheme = sanitize($_POST[$prefix . 'album_theme']);
+		if ($oldtheme != $newtheme) {
+			$album->setAlbumTheme($newtheme);
 		}
-		echo "</li>";
-		$start = max(1, $pagenum - 7);
-		$total = min($start + 15, $totalpages + 1);
-		if ($start != 1) {
-			echo "\n <li><a href=" . $url . 'subpage=' . ($p = max($start - 8, 1)) . $tab . ' title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
-		}
-		for ($i = $start; $i < $total; $i++) {
-			if ($i == $pagenum) {
-				echo "<li class=\"current\">" . $i . '</li>';
-			} else {
-				echo '<li><a href="' . $url . 'subpage=' . $i . $tab . '" title="' . sprintf(gettext('page %u'), $i) . '">' . $i . '</a></li>';
-			}
-		}
-		if ($i < $totalpages) {
-			echo "\n <li><a href=" . $url . 'subpage=' . ($p = min($pagenum + 22, $totalpages + 1)) . $tab . ' title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
-		}
-		echo "<li class=\"next\">";
-		if ($pagenum < $totalpages) {
-			echo '<a href="' . $url . 'subpage=' . ($p = $pagenum + 1) . $tab . '" title="' . sprintf(gettext('page %u'), $p) . '">' . gettext("Next page") . ' &raquo;' . '</a>';
-		} else {
-			echo '<span class="disabledlink">' . gettext("Next page") . ' &raquo;</span>';
-		}
-		echo '</li></ul>';
+	}
+	if (isset($_POST[$prefix . 'album_watermark'])) {
+		$album->setWatermark(sanitize($_POST[$prefix . 'album_watermark'], 3));
+		$album->setWatermarkThumb(sanitize($_POST[$prefix . 'album_watermark_thumb'], 3));
+	}
+	$album->setShow(isset($_POST[$prefix . 'Published']));
+
+	zp_apply_filter('save_album_custom_data', NULL, $prefix, $album);
+	zp_apply_filter('save_album_utilities_data', $album, $prefix);
+	$album->save();
+
+	// Move/Copy/Rename the album after saving.
+	$movecopyrename_action = '';
+	if (isset($_POST['a-' . $prefix . 'MoveCopyRename'])) {
+		$movecopyrename_action = sanitize($_POST['a-' . $prefix . 'MoveCopyRename'], 3);
 	}
 
-	$_zp_current_locale = NULL;
+	if ($movecopyrename_action == 'delete') {
+		$dest = dirname($album->name);
+		if ($album->remove()) {
+			if ($dest == '/' || $dest == '.')
+				$dest = '';
+			$redirectto = $dest;
+		} else {
+			$notify = "&mcrerr=7";
+		}
+	}
+	if ($movecopyrename_action == 'move') {
+		$dest = sanitize_path($_POST['a' . $prefix . '-albumselect']);
+		// Append the album name.
+		$dest = ($dest ? $dest . '/' : '') . (strpos($album->name, '/') === FALSE ? $album->name : basename($album->name));
+		if ($dest && $dest != $album->name) {
+			if ($suffix = $album->isDynamic()) { // be sure there is a .alb suffix
+				if (substr($dest, -4) != '.' . $suffix) {
+					$dest .= '.' . suffix;
+				}
+			}
+			if ($e = $album->move($dest)) {
+				$notify = "&mcrerr=" . $e;
+			} else {
+				$redirectto = $dest;
+			}
+		} else {
+			// Cannot move album to same album.
+			$notify = "&mcrerr=3";
+		}
+	} else if ($movecopyrename_action == 'copy') {
+		$dest = sanitize_path($_POST['a' . $prefix . '-albumselect']);
+		if ($dest && $dest != $album->name) {
+			if ($e = $album->copy($dest)) {
+				$notify = "&mcrerr=" . $e;
+			}
+		} else {
+			// Cannot copy album to existing album.
+			// Or, copy with rename?
+			$notify = '&mcrerr=3';
+		}
+	} else if ($movecopyrename_action == 'rename') {
+		$renameto = sanitize_path($_POST['a' . $prefix . '-renameto']);
+		$renameto = str_replace(array('/', '\\'), '', $renameto);
+		if (dirname($album->name) != '.') {
+			$renameto = dirname($album->name) . '/' . $renameto;
+		}
+		if ($renameto != $album->name) {
+			if ($suffix = $album->isDynamic()) { // be sure there is a .alb suffix
+				if (substr($renameto, -4) != '.' . $suffix) {
+					$renameto .= '.' . $suffix;
+				}
+			}
+			if ($e = $album->rename($renameto)) {
+				$notify = "&mcrerr=" . $e;
+			} else {
+				$redirectto = $renameto;
+			}
+		} else {
+			$notify = "&mcrerr=3";
+		}
+	}
+	return $notify;
+}
 
-	/**
-	 * Generates an editable list of language strings
-	 *
-	 * @param string $dbstring either a serialized languag string array or a single string
-	 * @param string $name the prefix for the label, id, and name tags
-	 * @param bool $textbox set to true for a textbox rather than a text field
-	 * @param string $locale optional locale of the translation desired
-	 * @param string $edit optional class
-	 * @param int $wide column size. true or false for the standard or short sizes. Or pass a column size
-	 * @param string $ulclass set to the class for the UL element
-	 * @param int $rows set to the number of rows to show.
-	 */
-	function print_language_string_list($dbstring, $name, $textbox = false, $locale = NULL, $edit = '', $wide = TEXT_INPUT_SIZE, $ulclass = 'language_string_list', $rows = 6) {
-		global $_zp_active_languages, $_zp_current_locale;
-		$dbstring = unTagURLs($dbstring);
-		if (!empty($edit))
-			$edit = ' class="' . $edit . '"';
-		if (is_null($locale)) {
-			$locale = getUserLocale();
-		}
-		$strings = getSerializedArray($dbstring);
-		if (count($strings) == 1) {
-			$keys = array_keys($strings);
-			$lang = array_shift($keys);
-			if (!is_string($lang)) {
-				$strings = array($locale => array_shift($strings));
-			}
-		}
-		$activelang = generateLanguageList();
-		$inactivelang = array();
-		$activelang_locales = array_values($activelang);
-		foreach ($strings as $key => $content) {
-			if (!in_array($key, $activelang_locales)) {
-				$inactivelang[$key] = $content;
-			}
-		}
-	
-		if (getOption('multi_lingual') && !empty($activelang)) {
-			if ($textbox) {
-				if (strpos($wide, '%') === false) {
-					$width = ' cols="' . $wide . '"';
-				} else {
-					$width = ' style="width:' . ((int) $wide - 1) . '%;"';
+function printImagePagination($album, $image, $singleimage, $allimagecount, $totalimages, $pagenum, $totalpages, $filter) {
+	if ($singleimage) {
+		$images = $album->getImages(0);
+		if ($count = count($images) > 1) {
+			?>
+				<span class="floatright">
+				<?php
+				$i = array_search($image->filename, $images);
+				if ($i > 0) {
+					?>
+						<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i - 1]); ?>"><?php echo gettext('prev image'); ?></a>
+						<?php
+					}
+					if (array_key_exists($i + 1, $images)) {
+						if ($i > 0)
+							echo ' | ';
+						?>
+						<a href="?page=edit&tab=imageinfo&album=<?php echo pathurlencode($image->album->name); ?>&singleimage=<?php echo html_encode($images[$i + 1]); ?>"><?php echo gettext('next image'); ?></a>
+						<?php
+					}
+					?>
+				</span>
+					<?php
 				}
 			} else {
-				if (strpos($wide, '%') === false) {
-					$width = ' size="' . $wide . '"';
+				if ($allimagecount != $totalimages) { // need pagination links
+					adminPageNav($pagenum, $totalpages, 'admin-edit.php', '?page=edit&amp;album=' . pathurlencode($album->name), '&amp;tab=imageinfo&amp;filter=' . $filter);
+				}
+			}
+		}
+
+		function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
+			if (empty($parms)) {
+				$url = '?';
+			} else {
+				$url = $parms . '&amp;';
+			}
+			echo '<ul class="pagelist"><li class="prev">';
+			if ($pagenum > 1) {
+				echo '<a href="' . $url . 'subpage=' . ($p = $pagenum - 1) . $tab . '" title="' . sprintf(gettext('page %u'), $p) . '">' . '&laquo; ' . gettext("Previous page") . '</a>';
+			} else {
+				echo '<span class="disabledlink">&laquo; ' . gettext("Previous page") . '</span>';
+			}
+			echo "</li>";
+			$start = max(1, $pagenum - 7);
+			$total = min($start + 15, $totalpages + 1);
+			if ($start != 1) {
+				echo "\n <li><a href=" . $url . 'subpage=' . ($p = max($start - 8, 1)) . $tab . ' title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
+			}
+			for ($i = $start; $i < $total; $i++) {
+				if ($i == $pagenum) {
+					echo "<li class=\"current\">" . $i . '</li>';
 				} else {
-					$width = ' style="width:' . ((int) $wide - 2) . '%;"';
+					echo '<li><a href="' . $url . 'subpage=' . $i . $tab . '" title="' . sprintf(gettext('page %u'), $i) . '">' . $i . '</a></li>';
 				}
 			}
+			if ($i < $totalpages) {
+				echo "\n <li><a href=" . $url . 'subpage=' . ($p = min($pagenum + 22, $totalpages + 1)) . $tab . ' title="' . sprintf(gettext('page %u'), $p) . '">. . .</a></li>';
+			}
+			echo "<li class=\"next\">";
+			if ($pagenum < $totalpages) {
+				echo '<a href="' . $url . 'subpage=' . ($p = $pagenum + 1) . $tab . '" title="' . sprintf(gettext('page %u'), $p) . '">' . gettext("Next page") . ' &raquo;' . '</a>';
+			} else {
+				echo '<span class="disabledlink">' . gettext("Next page") . ' &raquo;</span>';
+			}
+			echo '</li></ul>';
+		}
 
-			// put the language list in perferred order
-			$preferred = array($_zp_current_locale);
-			foreach (parseHttpAcceptLanguage() as $lang) {
-				$preferred[] = str_replace('-', '_', $lang['fullcode']);
-			}
-			$preferred = array_unique($preferred);
-			$emptylang = array();
-
-			foreach ($preferred as $lang) {
-				foreach ($activelang as $key => $active) {
-					if ($active == $lang) {
-						$emptylang[$active] = $key;
-						unset($activelang[$key]);
-						continue 2;
-					}
+		/**
+		 * Generates an editable list of language strings
+		 *
+		 * @param string $dbstring either a serialized languag string array or a single string
+		 * @param string $name the prefix for the label, id, and name tags
+		 * @param bool $textbox set to true for a textbox rather than a text field
+		 * @param string $locale optional locale of the translation desired
+		 * @param string $edit optional class
+		 * @param int $wide column size. true or false for the standard or short sizes. Or pass a column size
+		 * @param int $rows set to the number of rows to show.
+		 * @param deprecated xrows %ulclass parameter was deprecated promoting rows to that positon. This allows for migration
+		 */
+		function print_language_string_list($dbstring, $name, $textbox = false, $locale = NULL, $edit = '', $wide = TEXT_INPUT_SIZE, $rows = 6, $xrows = 6) {
+			global $_zp_active_languages, $_zp_current_locale, $_lsInstance;
+			if (!is_numeric($rows)) { //	deprecation of $ulclass parameter
+				if (class_exists('deprecated_functions')) {
+					deprecated_functions::notify(gettext("The \$ulclass parameter is deprecated. You should remove '$rows' from your print_language_string_list() function calls."));
 				}
-				if (strlen($lang) == 2) { //	"wild card language"
-					foreach ($activelang as $key => $active) {
-						if (substr($active, 0, 2) == $lang) {
-							$emptylang[$active] = $key;
-						}
-					}
+				$rows = $xrows;
+			}
+			$dbstring = zpFunctions::unTagURLs($dbstring);
+			if (!empty($edit))
+				$edit = ' class="' . $edit . '"';
+			if (is_null($locale)) {
+				$locale = getUserLocale();
+			}
+			$strings = getSerializedArray($dbstring);
+			if (count($strings) == 1) {
+				$keys = array_keys($strings);
+				$lang = array_shift($keys);
+				if (!is_string($lang)) {
+					$strings = array($locale => array_shift($strings));
 				}
 			}
-			foreach ($activelang as $key => $active) {
-				$emptylang[$active] = $key;
+			$activelang = generateLanguageList();
+			$allLang = array_flip(generateLanguageList('all'));
+			$multi = getOption('multi_lingual');
+			foreach ($strings as $lang => $v) {
+				if (!array_key_exists($lang, $activelang)) {
+					$activelang[$allLang[$lang]] = $lang;
+				}
 			}
 
 			if ($textbox) {
 				$class = 'box';
-			} else {
-				$class = '';
-			}
-			echo '<ul class="' . $ulclass . $class . '"' . ">\n";
-			$empty = true;
-
-			foreach ($emptylang as $key => $lang) {
-				if (isset($strings[$key])) {
-					$string = $strings[$key];
-					if (!empty($string)) {
-						unset($emptylang[$key]);
-						$empty = false;
-						?>
-						<li>
-							<label for="<?php echo $name . '_' . $key; ?>"><?php echo $lang; ?></label>
-							<?php
-							if ($textbox) {
-								echo "\n" . '<textarea name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($string) . '</textarea>';
-							} else {
-								echo '<br /><input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="text" value="' . html_encode($string) . '"' . $width . ' />';
-							}
-							?>
-						</li>
-						<?php
-					}
-				}
-			}
-			foreach ($emptylang as $key => $lang) {
-				?>
-				<li>
-					<label for="<?php echo $name . '_' . $key; ?>"><?php echo $lang; ?></label>
-					<?php
-					if ($textbox) {
-						echo "\n" . '<textarea name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '"></textarea>';
-					} else {
-						echo '<br /><input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="text" value=""' . $width . ' />';
-					}
-					?>
-				</li>
-				<?php
-			}
-			// print hidden lang content here so all is re-submitted and no meanwhile or accidentally inactive language content gets lost
-			foreach ($inactivelang as $key => $content) {
-				if ($key !== $locale) {
-					if ($textbox) {
-						echo "\n" . '<textarea class="textarea_hidden" name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($content) . '</textarea>';
-					} else {
-						echo '<br /><input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="hidden" value="' . html_encode($content) . '"' . $width . ' />';
-					}
-				}
-			}
-			echo "</ul>\n";
-		} else {
-			if ($textbox) {
 				if (strpos($wide, '%') === false) {
 					$width = ' cols="' . $wide . '"';
 				} else {
-					$width = ' style="width:' . $wide . ';"';
+					$width = ' style="width:' . ((int) $wide - (int) ($multi && !empty($activelang))) . '%;"';
 				}
 			} else {
+				$class = '';
 				if (strpos($wide, '%') === false) {
 					$width = ' size="' . $wide . '"';
 				} else {
-					$width = ' style="width:' . $wide . ';"';
+					$width = ' style="width:' . ((int) $wide) . '%;"';
 				}
 			}
-			if (empty($locale))
-				$locale = 'en_US';
-			if (isset($strings[$locale])) {
-				$dbstring = $strings[$locale];
-			} else {
-				$dbstring = array_shift($strings);
-			}
-			if ($textbox) {
-				echo '<textarea name="' . $name . '_' . $locale . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($dbstring) . '</textarea>';
-			} else {
-				echo '<input name="' . $name . '_' . $locale . '"' . $edit . ' type="text" value="' . html_encode($dbstring) . '"' . $width . ' />';
-			}
-			
-			// print hidden lang content here so all is re-submitted and no meanwhile or accidentally inactive language content gets lost
-			foreach($strings as $key => $content ) {
-				if($key !== $locale) {
-					if ($textbox) {
-						echo '<textarea class="textarea_hidden" name="' . $name . '_' . $key . '"' . $edit . $width . '	rows="' . $rows . '">'. html_encode($content) .' </textarea>';
-					} else {
-						echo '<input id="' . $name . '_' . $key . '" name="' . $name . '_' . $key . '"' . $edit . ' type="hidden" value="'.html_encode($content).'"' . $width . ' />';
+
+			if ($multi && !empty($activelang)) {
+				// put the language list in perferred order
+				$preferred = array();
+				if ($_zp_current_locale) {
+					$preferred[] = $_zp_current_locale;
+				}
+				foreach (parseHttpAcceptLanguage() as $lang) {
+					$preferred[] = str_replace('-', '_', $lang['fullcode']);
+				}
+				$preferred = array_unique($preferred);
+				$emptylang = array();
+
+				foreach ($preferred as $lang) {
+					foreach ($activelang as $key => $active) {
+						if ($active == $lang) {
+							$emptylang[$active] = $key;
+							unset($activelang[$key]);
+							continue 2;
+						}
 					}
+					if (strlen($lang) == 2) { //	"wild card language"
+						foreach ($activelang as $key => $active) {
+							if (substr($active, 0, 2) == $lang) {
+								$emptylang[$active] = $key;
+							}
+						}
+					}
+				}
+
+				foreach ($activelang as $key => $active) {
+					$emptylang[$active] = $key;
+				}
+
+				$editHidden = '';
+				?>
+			<div id="ls_<?php echo ++$_lsInstance; ?>">
+				<select class="languageSelector ignoredirty" onchange="lsclick(this.value,<?php echo $_lsInstance; ?>);">
+		<?php
+		foreach ($emptylang as $key => $lang) {
+			$flag = getLanguageFlag($key);
+			?>
+						<option value="<?php echo $key; ?>" data-image="<?php echo $flag; ?>" alt="<?php echo $key; ?>"<?php if ($key == $locale) echo ' selected="selected"' ?>>
+						<?php echo $lang; ?>
+						</option>
+							<?php
+						}
+						?>
+				</select>
+
+		<?php
+		foreach ($emptylang as $key => $lang) {
+			if (isset($strings[$key])) {
+				$string = $strings[$key];
+			} else {
+				$string = '';
+			}
+			?>
+
+					<div id="lb<?php echo $key . '-' . $_lsInstance ?>" class="lbx-<?php echo $_lsInstance ?>"<?php echo $editHidden; ?>>
+			<?php
+			if ($textbox) {
+				?>
+							<textarea name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?>	rows="<?php echo $rows ?>"><?php echo html_encode($string); ?></textarea>
+							<?php
+						} else {
+							?>
+							<input name="<?php echo $name . '_' . $key ?>"<?php echo $edit . $width; ?> type="text" value="<?php echo html_encode($string); ?>"  />
+							<?php
+						}
+						?>
+					</div>
+						<?php
+						$editHidden = ' style="display:none;"';
+					}
+					?>
+			</div>
+				<?php
+			} else {
+				if (empty($locale))
+					$locale = 'en_US';
+				if (isset($strings[$locale])) {
+					$dbstring = $strings[$locale];
+					unset($strings[$locale]);
+				} else {
+					$dbstring = array_shift($strings);
+				}
+				if ($textbox) {
+					echo '<textarea name="' . $name . '_' . $locale . '"' . $edit . $width . '	rows="' . $rows . '">' . html_encode($dbstring) . '</textarea>';
+				} else {
+					echo '<input name="' . $name . '_' . $locale . '"' . $edit . ' type="text" value="' . html_encode($dbstring) . '"' . $width . ' />';
+				}
+				foreach ($strings as $key => $dbstring) {
+					if (!empty($dbstring)) {
+						?>
+					<input type="hidden" name="<?php echo $name . '_' . $key; ?>" value="<?php echo html_encode($dbstring); ?>" />
+					<?php
 				}
 			}
 		}
@@ -2819,15 +3282,17 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 	 * @return string
 	 */
 	function process_language_string_save($name, $sanitize_level = 3) {
-		$languages = generateLanguageList();
+		$languages = generateLanguageList('all');
 		$l = strlen($name) + 1;
 		$strings = array();
 		foreach ($_POST as $key => $value) {
-			if ($value && preg_match('/^' . $name . '_[a-z]{2}_[A-Z]{2}$/', $key)) {
+			if (preg_match('/^' . $name . '_[a-z]{2}_[A-Z]{2}$/', $key)) {
 				$key = substr($key, $l);
-				//if (in_array($key, $languages)) { // disabled as we want to keep even inactive lang content savely
-					$strings[$key] = sanitize($value, $sanitize_level);
-				//}
+				if (in_array($key, $languages)) {
+					$value = sanitize($value, $sanitize_level);
+					if (!empty($value))
+						$strings[$key] = $value;
+				}
 			}
 		}
 		switch (count($strings)) {
@@ -2836,6 +3301,10 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 					return sanitize($_POST[$name], $sanitize_level);
 				} else {
 					return '';
+				}
+			case 1:
+				if (!getOption('multi_lingual')) {
+					return array_shift($strings);
 				}
 			default:
 				return serialize($strings);
@@ -2850,11 +3319,45 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 	function getTagOrder() {
 		if (isset($_REQUEST['tagsort'])) {
 			$tagsort = sanitize($_REQUEST['tagsort']);
-			setOption('tagsort', (int) ($tagsort && true));
+			setOption('tagsort', $tagsort);
 		} else {
 			$tagsort = getOption('tagsort');
 		}
 		return $tagsort;
+	}
+
+	/**
+	 * Outputs a file for zip download
+	 * @param string $zipname name of the zip file
+	 * @param string $file the file to zip
+	 */
+	function putZip($zipname, $file) {
+		//we are dealing with file system items, convert the names
+		$fileFS = internalToFilesystem($file);
+		if (class_exists('ZipArchive')) {
+			$zipfileFS = tempnam('', 'zip');
+			$zip = new ZipArchive;
+			$zip->open($zipfileFS, ZipArchive::CREATE);
+			$zip->addFile($fileFS, basename($fileFS));
+			$zip->close();
+			ob_get_clean();
+			header("Pragma: public");
+			header("Expires: 0");
+			header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+			header("Cache-Control: private", false);
+			header("Content-Type: application/zip");
+			header("Content-Disposition: attachment; filename=" . basename($zipname) . ";");
+			header("Content-Transfer-Encoding: binary");
+			header("Content-Length: " . filesize($zipfileFS));
+			readfile($zipfileFS);
+			// remove zip file from temp path
+			unlink($zipfileFS);
+		} else {
+			include_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
+			$zip = new ZipStream(internalToFilesystem(basename($zipname)));
+			$zip->add_file_from_path(basename($fileFS), $fileFS);
+			$zip->finish();
+		}
 	}
 
 	/**
@@ -2863,34 +3366,12 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 	 * @param file $file the archive
 	 * @param string $dir where the images go
 	 */
-	function unzip($file, $dir) { //check if zziplib is installed
-		if (function_exists('zip_open')) {
-			$zip = zip_open($file);
-			if ($zip) {
-				while ($zip_entry = zip_read($zip)) { // Skip non-images in the zip file.
-					$fname = zip_entry_name($zip_entry);
-					$seoname = internalToFilesystem(seoFriendly($fname));
-					if (Gallery::validImage($seoname) || Gallery::validImageAlt($seoname)) {
-						if (zip_entry_open($zip, $zip_entry, "r")) {
-							$buf = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
-							$path_file = str_replace("/", DIRECTORY_SEPARATOR, $dir . '/' . $seoname);
-							$fp = fopen($path_file, "w");
-							fwrite($fp, $buf);
-							fclose($fp);
-							clearstatcache();
-							zip_entry_close($zip_entry);
-							$albumname = substr($dir, strlen(ALBUM_FOLDER_SERVERPATH));
-							$album = newAlbum($albumname);
-							$image = newImage($album, $seoname);
-							if ($fname != $seoname) {
-								$image->setTitle($fname);
-								$image->save();
-							}
-						}
-					}
-				}
-				zip_close($zip);
-			}
+	function unzip($file, $dir) {
+		if (class_exists('ZipArchive')) {
+			$zip = new ZipArchive;
+			$zip->open($file);
+			$zip->extractTo($dir);
+			$zip->close();
 		} else {
 			require_once(dirname(__FILE__) . '/lib-pclzip.php');
 			$zip = new PclZip($file);
@@ -2920,7 +3401,7 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 	 * @return string
 	 */
 	function isolate($target, $str) {
-		if (preg_match('|' . preg_quote($target) . '\s*?=(.+?);[ \f\v\t]*[\n\r]|s', $str, $matches)) {
+		if (preg_match('|' . preg_quote($target) . '\s*?=*(.+?);[ \f\v\t]*[\n\r]|s', $str, $matches)) {
 			return $matches[0];
 		}
 		return false;
@@ -2972,16 +3453,45 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 			$link = '';
 		}
 		if (empty($link) || str_replace('\\', '/', $link) == SERVERPATH . '/' . THEMEFOLDER . '/' . $theme) {
-			$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
-			return (!in_array($theme, $zplist));
+			return !protectedTheme($theme);
 		} else {
 			return false;
 		}
 	}
 
-	function zenPhotoTheme($theme) {
-		$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
-		return (in_array($theme, $zplist));
+	/**
+	 * Returns true if the theme is part of t;he distribution
+	 * @global array $_distributed_themes
+	 * @param string $theme
+	 * @return bool
+	 */
+	function protectedTheme($theme) {
+		global $_distributed_themes;
+		if (is_null($_distributed_themes)) {
+			$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto.package');
+			preg_match_all('~' . THEMEFOLDER . '/(.*)/theme_description.php~', $package, $matches);
+			$_distributed_themes = $matches[1];
+		}
+		return(in_array($theme, $_distributed_themes));
+	}
+
+	/**
+	 * Returns true if the USER_PLUGINS_FOLDER plugin is part of the distribution
+	 * NOTE: plugins in the PLUGIN_FOLDER should be presumed to be distributed plugins,
+	 * not checked by this function
+	 *
+	 * @global array $_ZP20_plugins
+	 * @param string $plugin
+	 * @return bool
+	 */
+	function distributedPlugin($plugin) {
+		global $_ZP20_plugins;
+		if (is_null($_ZP20_plugins)) {
+			$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto.package');
+			preg_match_all('~' . USER_PLUGIN_FOLDER . '/([^/]*).php~', $package, $matches);
+			$_ZP20_plugins = $matches[1];
+		}
+		return(in_array($plugin, $_ZP20_plugins));
 	}
 
 	/**
@@ -3066,7 +3576,7 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 		$theme_description['date'] = date('Y-m-d H:m:s', time());
 
 		$description = sprintf('<' . '?php
-				// Zenphoto theme definition file
+				// Theme definition file
 				$theme_description["name"] = "%s";
 				$theme_description["author"] = "%s";
 				$theme_description["version"] = "%s";
@@ -3178,7 +3688,7 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 		$link = '';
 		$parents = getParentAlbumsAdmin($album);
 		foreach ($parents as $parent) {
-			$link .= "<a href='" . WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . html_encode(pathurlencode($parent->name)) . "'>" . removeParentAlbumNames($parent) . "</a>/";
+			$link .= "<a href='" . WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . pathurlencode($parent->name) . "'>" . removeParentAlbumNames($parent) . "</a>/";
 		}
 		return $link;
 	}
@@ -3213,37 +3723,45 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 		?>
 		<div class="box-rights">
 			<strong><?php echo gettext("Rights:"); ?></strong>
+	<?php
+	$element = 3;
+	$activeset = false;
+	$format = 'user[%2$s][%1$s]';
+	?>
+			<input type="checkbox" name="<?php printf($format, 'rightsenabled', $id); ?>" class="user-<?php echo $id; ?>" value="1" checked="checked" <?php echo $alterrights; ?> style="display:none" />
 			<?php
-			$element = 3;
-			$activeset = false;
 			foreach ($rightslist as $rightselement => $right) {
-				if ($right['display']) {
-					if (($right['set'] != gettext('Pages') && $right['set'] != gettext('News')) || extensionEnabled('zenpage')) {
+				if (!empty($right['set'])) {
+					if ($right['display'] && (($right['set'] != gettext('Pages') && $right['set'] != gettext('News')) || extensionEnabled('zenpage'))) {
 						if ($activeset != $right['set']) {
 							if ($activeset) {
 								?>
 							</fieldset>
-							<?php
-						}
-						$activeset = $right['set'];
-						?>
+								<?php
+							}
+							$activeset = $right['set'];
+							?>
 						<fieldset><legend><?php echo $activeset; ?></legend>
+						<?php
+					}
+					?>
+
+						<label style="padding-right: 15px;" title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
+							<input type="checkbox" name="<?php printf($format, $rightselement, $id); ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>" value="<?php echo $right['value']; ?>"<?php
+				if ($rights & $right['value'])
+					echo ' checked="checked"';
+				echo $alterrights;
+					?> />
+							<?php echo $right['name']; ?>
+						</label>
+
+				<?php
+			} else {
+				if ($rights & $right['value']) {
+					?>
+							<input type="hidden" name="<?php printf($format, $rightselement, $id); ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>" />
 							<?php
 						}
-						?>
-						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
-							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>"
-										 value="<?php echo $right['value']; ?>"<?php
-										 if ($rights & $right['value'])
-											 echo ' checked="checked"';
-										 echo $alterrights;
-										 ?> /> <?php echo $right['name']; ?>
-						</label>
-						<?php
-					} else {
-						?>
-						<input type="hidden" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" value="<?php echo $right['value']; ?>" />
-						<?php
 					}
 				}
 			}
@@ -3267,29 +3785,31 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id, $kind, $flag) {
 	$rest = $extra = $extra2 = array();
 	$rights = $userobj->getRights();
+	$full = $userobj->getObjects();
+
 	$legend = '';
+	$icon_edit = PENCIL_ICON;
+	$icon_view = EXCLAMATION_RED;
+	$icon_upload = ARROW_UP_GREEN;
+	$icon_upload_disabled = ARROW_UP_GRAY;
+
 	switch ($type) {
 		case 'albums':
 			if ($rights & (MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) {
 				$cv = $objlist;
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$full = $userobj->getObjects();
-				$cv = $extra = array();
-				$icon_edit_album = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/options.png" class="icon-position-top3" alt="" title="' . gettext('edit rights') . '" />';
-				$icon_view_image = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/action.png" class="icon-position-top3" alt="" title="' . gettext('view unpublished items') . '" />';
-				$icon_upload = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/arrow_up.png" class="icon-position-top3"  alt="" title="' . gettext('upload rights') . '"/>';
-				$icon_upload_disabled = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/arrow_up.png" class="icon-position-top3"  alt="" title="' . gettext('the album is dynamic') . '"/>';
+				$cv = $extra = $extra2 = array();
 				if (!empty($flag)) {
 					$legend .= '* ' . gettext('Primary album') . ' ';
 				}
-				$legend .= $icon_edit_album . ' ' . gettext('edit') . ' ';
+				$legend .= $icon_edit . ' ' . gettext('edit') . ' ';
 				if ($rights & UPLOAD_RIGHTS)
 					$legend .= $icon_upload . ' ' . gettext('upload') . ' ';
 				if (!($rights & VIEW_UNPUBLISHED_RIGHTS))
-					$legend .= $icon_view_image . ' ' . gettext('view unpublished') . ' ';
+					$legend .= $icon_view . ' ' . gettext('view unpublished');
 				foreach ($full as $item) {
-					if ($item['type'] == 'album') {
+					if ($item['type'] == 'albums') {
 						if (in_array($item['data'], $flag)) {
 							$note = '*';
 						} else {
@@ -3297,7 +3817,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 						}
 						$cv[$item['name'] . $note] = $item['data'];
 						$extra[$item['data']][] = array('name' => 'name', 'value' => $item['name'], 'display' => '', 'checked' => 0);
-						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit_album, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
+						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
 						if (($rights & UPLOAD_RIGHTS)) {
 							if (hasDynamicAlbumSuffix($item['data']) && !is_dir(ALBUM_FOLDER_SERVERPATH . $item['data'])) {
 								$extra[$item['data']][] = array('name' => 'upload', 'value' => MANAGED_OBJECT_RIGHTS_UPLOAD, 'display' => $icon_upload_disabled, 'checked' => 0, 'disable' => true);
@@ -3306,14 +3826,14 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 							}
 						}
 						if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
-							$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view_image, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
+							$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
 						}
 					}
 				}
 				$rest = array_diff($objlist, $cv);
 				foreach ($rest as $unmanaged) {
 					$extra2[$unmanaged][] = array('name' => 'name', 'value' => $unmanaged, 'display' => '', 'checked' => 0);
-					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit_album, 'checked' => 1);
+					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => 1);
 					if (($rights & UPLOAD_RIGHTS)) {
 						if (hasDynamicAlbumSuffix($unmanaged) && !is_dir(ALBUM_FOLDER_SERVERPATH . $unmanaged)) {
 							$extra2[$unmanaged][] = array('name' => 'upload', 'value' => MANAGED_OBJECT_RIGHTS_UPLOAD, 'display' => $icon_upload_disabled, 'checked' => 0, 'disable' => true);
@@ -3322,27 +3842,41 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 						}
 					}
 					if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
-						$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view_image, 'checked' => 1);
+						$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
 					}
 				}
 			}
 			$text = gettext("Managed albums:");
 			$simplename = $objectname = gettext('Albums');
-			$prefix = 'managed_albums_list_' . $prefix_id . '_';
 			break;
-		case 'news':
+		case 'news_categories':
 			if ($rights & (MANAGE_ALL_NEWS_RIGHTS | ADMIN_RIGHTS)) {
 				$cv = $objlist;
 				$rest = array();
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$cv = $userobj->getObjects('news');
+				$cv = $extra = $extra2 = array();
 				$rest = array_diff($objlist, $cv);
+				$legend = $icon_edit . ' ' . gettext('edit') . ' ' . $icon_view . ' ' . gettext('view unpublished');
+
+				foreach ($full as $item) {
+					if ($item['type'] == 'news_categories') {
+						$cv[$item['name']] = $item['data'];
+						$extra[$item['data']][] = array('name' => 'name', 'value' => $item['name'], 'display' => '', 'checked' => 0);
+						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
+						$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
+					}
+				}
+				$rest = array_diff($objlist, $cv);
+				foreach ($rest as $unmanaged) {
+					$extra2[$unmanaged][] = array('name' => 'name', 'value' => $unmanaged, 'display' => '', 'checked' => 0);
+					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => 1);
+					$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
+				}
 			}
 			$text = gettext("Managed news categories:");
 			$simplename = gettext('News');
 			$objectname = gettext('News categories');
-			$prefix = 'managed_news_list_' . $prefix_id . '_';
 			break;
 		case 'pages':
 			if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
@@ -3350,14 +3884,30 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 				$rest = array();
 				$alterrights = ' disabled="disabled"';
 			} else {
-				$cv = $userobj->getObjects('pages');
+				$cv = $extra = $extra2 = array();
 				$rest = array_diff($objlist, $cv);
+				$legend = $icon_edit . ' ' . gettext('edit') . ' ' . $icon_view . ' ' . gettext('view unpublished');
+				foreach ($full as $item) {
+					if ($item['type'] == 'pages') {
+						$cv[$item['name']] = $item['data'];
+						$extra[$item['data']][] = array('name' => 'name', 'value' => $item['name'], 'display' => '', 'checked' => 0);
+						$extra[$item['data']][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_EDIT);
+						$extra[$item['data']][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => $item['edit'] & MANAGED_OBJECT_RIGHTS_VIEW);
+					}
+				}
+				$rest = array_diff($objlist, $cv);
+				foreach ($rest as $unmanaged) {
+					$extra2[$unmanaged][] = array('name' => 'name', 'value' => $unmanaged, 'display' => '', 'checked' => 0);
+					$extra2[$unmanaged][] = array('name' => 'edit', 'value' => MANAGED_OBJECT_RIGHTS_EDIT, 'display' => $icon_edit, 'checked' => 1);
+					$extra2[$unmanaged][] = array('name' => 'view', 'value' => MANAGED_OBJECT_RIGHTS_VIEW, 'display' => $icon_view, 'checked' => 1);
+				}
 			}
 			$text = gettext("Managed pages:");
 			$simplename = $objectname = gettext('Pages');
-			$prefix = 'managed_pages_list_' . $prefix_id . '_';
+
 			break;
 	}
+	$prefix = 'managed_' . $type . '_list_' . $prefix_id . '_';
 	if (empty($alterrights)) {
 		$hint = sprintf(gettext('Select one or more %1$s for the %2$s to manage.'), $simplename, $kind) . ' ';
 		if ($kind == gettext('user')) {
@@ -3372,20 +3922,21 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 		$itemcount = '';
 	}
 	?>
-
 	<div class="box-albums-unpadded">
 		<h2 class="h2_bordered_albums">
-			<a href="javascript:toggle('<?php echo $prefix ?>');" title="<?php echo html_encode($hint); ?>" ><?php echo $text . $itemcount; ?></a>
+			<a onclick="$('#<?php echo $prefix ?>').toggle();" title="<?php echo html_encode($hint); ?>" ><?php echo $text . $itemcount; ?></a>
 		</h2>
 		<div id="<?php echo $prefix ?>" style="display:none;">
 			<ul class="albumchecklist">
-				<?php
-				generateUnorderedListFromArray($cv, $cv, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra);
-				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true, 'user-' . $prefix_id, $extra2);
-				?>
+	<?php
+	generateUnorderedListFromArray($cv, $cv, 'user[' . $prefix_id . '][managed][' . $type . ']', $alterrights, true, true, 'user-' . $prefix_id, $extra, 2);
+	if (empty($alterrights)) {
+		generateUnorderedListFromArray(array(), $rest, 'user[' . $prefix_id . '][managed][' . $type . ']', $alterrights, true, true, 'user-' . $prefix_id, $extra2, 2);
+	}
+	?>
 			</ul>
 			<span class="floatright"><?php echo $legend; ?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-			<br class="clearall" />
+			<br class="clearall">
 		</div>
 	</div>
 	<?php
@@ -3398,13 +3949,14 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
  * @return bit
  */
 function processRights($i) {
-	if (isset($_POST[$i . '-confirmed'])) {
+	$userdata = $_POST['user'][$i];
+	if (isset($userdata['confirmed'])) {
 		$rights = NO_RIGHTS;
 	} else {
 		$rights = 0;
 	}
 	foreach (Zenphoto_Authority::getRights() as $name => $right) {
-		if (isset($_POST[$i . '-' . $name])) {
+		if (isset($userdata[$name])) {
 			$rights = $rights | $right['value'] | NO_RIGHTS;
 		}
 	}
@@ -3420,86 +3972,106 @@ function processRights($i) {
 	return $rights;
 }
 
+/**
+ * Compares two lists of objects
+ *
+ * @param type $objectsA
+ * @param type $objectsB
+ * @return boolean true if they are the same list
+ */
+function compareObjects($objectsA, $objectsB) {
+	if (is_array($objectsA) & is_array($objectsB)) {
+		if (count($objectsA) == count($objectsB)) {
+			$objectsA = sortMultiArray($objectsA, array('type', 'data', 'name'), false, true, false, false);
+			$objectsB = sortMultiArray($objectsB, array('type', 'data', 'name'), false, true, false, false);
+			return $objectsA == $objectsB;
+		}
+	}
+
+	return false;
+}
+
 function processManagedObjects($i, &$rights) {
 	$objects = array();
+
 	$albums = array();
 	$pages = array();
-	$news = array();
-	$l_a = strlen($prefix_a = 'managed_albums_list_' . $i . '_');
-	$l_p = strlen($prefix_p = 'managed_pages_list_' . $i . '_');
-	$l_n = strlen($prefix_n = 'managed_news_list_' . $i . '_');
-	foreach ($_POST as $key => $value) {
-		$key = postIndexDecode($key);
-		if (substr($key, 0, $l_a) == $prefix_a) {
-			$key = substr($key, $l_a);
-			if (preg_match('/(.*)(_edit|_view|_upload|_name)$/', $key, $matches)) {
-				$key = $matches[1];
-				if (array_key_exists($key, $albums)) {
-					switch ($matches[2]) {
-						case '_edit':
-							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
-							break;
-						case '_upload':
-							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD;
-							break;
-						case '_view':
-							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
-							break;
-						case '_name':
-							$albums[$key]['name'] = $value;
-							break;
+	$news_categories = array();
+
+	if (isset($_POST['user'][$i]['managed'])) {
+		$managedlist = $_POST['user'][$i]['managed'];
+
+		foreach (array('albums', 'pages', 'news_categories') as $class) {
+			if (isset($managedlist[$class])) {
+				$container = array();
+				foreach ($managedlist[$class] as $postkey => $managed) {
+					if (isset($managed['checked'])) {
+						$key = postIndexDecode($postkey);
+						$container[$key] = array('data' => $key, 'name' => $managed['name'], 'type' => $class, 'edit' => MANAGED_OBJECT_MEMBER);
+						if (array_key_exists('edit', $managed)) {
+							$container[$key]['edit'] = $container[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
+						}
+						if (array_key_exists('upload', $managed)) {
+							$container[$key]['edit'] = $container[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD;
+						}
+						if (array_key_exists('view', $managed)) {
+							$container[$key]['edit'] = $container[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
+						}
 					}
 				}
-			} else if ($value) {
-				$albums[$key] = array('data' => $key, 'name' => '', 'type' => 'album', 'edit' => 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW));
+			}
+
+			switch ($class) {
+				case 'albums':
+					$albums = $container;
+					break;
+				case 'pages':
+					$pages = $container;
+					break;
+				case 'news_categories':
+					$news_categories = $container;
+					break;
 			}
 		}
-		if (substr($key, 0, $l_p) == $prefix_p) {
-			if ($value) {
-				$pages[] = array('data' => substr($key, $l_p), 'type' => 'pages');
+
+		foreach ($albums as $key => $analbum) {
+			unset($albums[$key]);
+			$albums[] = $analbum;
+		}
+		if (empty($albums)) {
+			if (!($rights & MANAGE_ALL_ALBUM_RIGHTS)) {
+				$rights = $rights & ~ALBUM_RIGHTS;
+			}
+		} else {
+			$rights = $rights | ALBUM_RIGHTS;
+			if ($rights & (MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) {
+				$albums = array();
 			}
 		}
-		if (substr($key, 0, $l_n) == $prefix_n) {
-			if ($value) {
-				$news[] = array('data' => substr($key, $l_n), 'type' => 'news');
+		if (empty($pages)) {
+			if (!($rights & MANAGE_ALL_PAGES_RIGHTS)) {
+				$rights = $rights & ~ZENPAGE_PAGES_RIGHTS;
+			}
+		} else {
+			$rights = $rights | ZENPAGE_PAGES_RIGHTS;
+			if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
+				$pages = array();
 			}
 		}
+
+		if (empty($news_categories)) {
+			if (!($rights & MANAGE_ALL_NEWS_RIGHTS)) {
+				$rights = $rights & ~ZENPAGE_NEWS_RIGHTS;
+			}
+		} else {
+			$rights = $rights | ZENPAGE_NEWS_RIGHTS;
+			if ($rights & (MANAGE_ALL_NEWS_RIGHTS | ADMIN_RIGHTS)) {
+				$news_categories = array();
+			}
+		}
+
+		$objects = array_merge($albums, $pages, $news_categories);
 	}
-	foreach ($albums as $key => $analbum) {
-		unset($albums[$key]);
-		$albums[] = $analbum;
-	}
-	if (empty($albums)) {
-		if (!($rights & MANAGE_ALL_ALBUM_RIGHTS)) {
-			$rights = $rights & ~ALBUM_RIGHTS;
-		}
-	} else {
-		$rights = $rights | ALBUM_RIGHTS;
-		if ($rights & (MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) {
-			$albums = array();
-		}
-	}
-	if (empty($pages)) {
-		if (!($rights & MANAGE_ALL_PAGES_RIGHTS)) {
-			$rights = $rights & ~ZENPAGE_PAGES_RIGHTS;
-		}
-	} else {
-		$rights = $rights | ZENPAGE_PAGES_RIGHTS;
-		if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
-			$pages = array();
-		}
-	}
-	if (empty($news)) {
-		if (!($rights & MANAGE_ALL_NEWS_RIGHTS)) {
-			$rights = $rights & ~ZENPAGE_NEWS_RIGHTS;
-		}
-	} else {
-		$rights = $rights | ZENPAGE_NEWS_RIGHTS;
-		if ($rights & (MANAGE_ALL_NEWS_RIGHTS | ADMIN_RIGHTS)) {
-			$news = array();
-		}
-	}
-	$objects = array_merge($albums, $pages, $news);
 	return $objects;
 }
 
@@ -3523,7 +4095,7 @@ function getCheckboxState($id) {
  * @return array
  */
 function standardScripts() {
-	$standardlist = array('themeoptions', 'password', 'theme_description', '404', 'slideshow', 'search', 'image', 'index', 'album', 'customfunctions', 'functions');
+	$standardlist = array('themeoptions', 'theme_description', '404', 'slideshow', 'search', 'image', 'index', 'album', 'functions');
 	if (extensionEnabled('zenpage'))
 		$standardlist = array_merge($standardlist, array('news', 'pages'));
 	return $standardlist;
@@ -3593,52 +4165,52 @@ function processOrder($orderstr) {
  *
  */
 function postAlbumSort($parentid) {
-  if (isset($_POST['order']) && !empty($_POST['order'])) {
-    $order = processOrder(sanitize($_POST['order']));
-    $sortToID = array();
-    foreach ($order as $id => $orderlist) {
-      $id = str_replace('id_', '', $id);
-      $sortToID[implode('-', $orderlist)] = $id;
-    }
-    foreach ($order as $item => $orderlist) {
-      $item = str_replace('id_', '', $item);
-      $currentalbum = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $item);
-      $sortorder = array_pop($orderlist);
-      if (count($orderlist) > 0) {
-        $newparent = $sortToID[implode('-', $orderlist)];
-      } else {
-        $newparent = $parentid;
-      }
-      if ($newparent == $currentalbum['parentid']) {
-        $sql = 'UPDATE ' . prefix('albums') . ' SET `sort_order`=' . db_quote($sortorder) . ' WHERE `id`=' . $item;
-        query($sql);
-      } else { // have to do a move
-        $albumname = $currentalbum['folder'];
-        $album = newAlbum($albumname);
-        if (strpos($albumname, '/') !== false) {
-          $albumname = basename($albumname);
-        }
-        if (is_null($newparent)) {
-          $dest = $albumname;
-        } else {
-          $parent = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $newparent);
-          if ($parent['dynamic']) {
-            return "&mcrerr=5";
-          } else {
-            $dest = $parent['folder'] . '/' . $albumname;
-          }
-        }
-        if ($e = $album->move($dest)) {
-          return "&mcrerr=" . $e;
-        } else {
-          $album->setSortOrder($sortorder);
-          $album->save();
-        }
-      }
-    }
-    return true;
-  }
-  return false;
+	if (isset($_POST['order']) && !empty($_POST['order'])) {
+		$order = processOrder(sanitize($_POST['order']));
+		$sortToID = array();
+		foreach ($order as $id => $orderlist) {
+			$id = str_replace('id_', '', $id);
+			$sortToID[implode('-', $orderlist)] = $id;
+		}
+		foreach ($order as $item => $orderlist) {
+			$item = str_replace('id_', '', $item);
+			$currentalbum = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $item);
+			$sortorder = array_pop($orderlist);
+			if (count($orderlist) > 0) {
+				$newparent = $sortToID[implode('-', $orderlist)];
+			} else {
+				$newparent = $parentid;
+			}
+			if ($newparent == $currentalbum['parentid']) {
+				$sql = 'UPDATE ' . prefix('albums') . ' SET `sort_order`=' . db_quote(sprintf('%03u', $sortorder)) . ' WHERE `id`=' . $item;
+				query($sql);
+			} else { // have to do a move
+				$albumname = $currentalbum['folder'];
+				$album = newAlbum($albumname);
+				if (strpos($albumname, '/') !== false) {
+					$albumname = basename($albumname);
+				}
+				if (is_null($newparent)) {
+					$dest = $albumname;
+				} else {
+					$parent = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $newparent);
+					if ($parent['dynamic']) {
+						return "&mcrerr=5";
+					} else {
+						$dest = $parent['folder'] . '/' . $albumname;
+					}
+				}
+				if ($e = $album->move($dest)) {
+					return "&mcrerr=" . $e;
+				} else {
+					$album->setSortOrder(sprintf('%03u', $sortorder));
+					$album->save();
+				}
+			}
+		}
+		return true;
+	}
+	return false;
 }
 
 /**
@@ -3690,7 +4262,7 @@ function printNestedAlbumsList($albums, $show_thumb, $owner) {
 			$nonest = '';
 		}
 		echo str_pad("\t", $indent - 1, "\t") . "<li id=\"id_" . $albumobj->getID() . "\"$nonest >";
-		printAlbumEditRow($albumobj, $show_thumb, $owner);
+		printAlbumEditRow($albumobj, $show_thumb, $owner, $rslt);
 		$open[$indent] ++;
 	}
 	while ($indent > 1) {
@@ -3711,7 +4283,7 @@ function printNestedAlbumsList($albums, $show_thumb, $owner) {
  * Prints the dropdown menu for the nesting level depth for the album sorting
  *
  */
-function printEditDropdown($subtab, $nestinglevels, $nesting) {
+function printEditDropdown($subtab, $nestinglevels, $nesting, $query = NULL) {
 	switch ($subtab) {
 		case '':
 			$link = '?selection=';
@@ -3729,28 +4301,28 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 			break;
 	}
 	?>
-	<form name="AutoListBox2" style="float: right;" action="#" >
+	<form name="AutoListBox2" style="float: right;padding-right: 14px;" action="#" >
 		<select name="ListBoxURL" size="1" onchange="zp_gotoLink(this.form);">
-			<?php
-			foreach ($nestinglevels as $nestinglevel) {
-				if ($nesting == $nestinglevel) {
-					$selected = 'selected="selected"';
-				} else {
-					$selected = "";
-				}
-				echo '<option ' . $selected . ' value="admin-edit.php' . $link . $nestinglevel . '">';
-				switch ($subtab) {
-					case '':
-					case 'subalbuminfo':
-						printf(ngettext('Show %u album level', 'Show %u album levels', $nestinglevel), $nestinglevel);
-						break;
-					case 'imageinfo':
-						printf(ngettext('%u image per page', '%u images per page', $nestinglevel), $nestinglevel);
-						break;
-				}
-				echo '</option>';
-			}
-			?>
+	<?php
+	foreach ($nestinglevels as $nestinglevel) {
+		if ($nesting == $nestinglevel) {
+			$selected = 'selected="selected"';
+		} else {
+			$selected = "";
+		}
+		echo '<option ' . $selected . ' value="admin-edit.php' . $link . $nestinglevel . $query . '">';
+		switch ($subtab) {
+			case '':
+			case 'subalbuminfo':
+				printf(ngettext('Show %u album level', 'Show %u album levels', $nestinglevel), $nestinglevel);
+				break;
+			case 'imageinfo':
+				printf(ngettext('%u image per page', '%u images per page', $nestinglevel), $nestinglevel);
+				break;
+		}
+		echo '</option>';
+	}
+	?>
 		</select>
 	</form>
 	<?php
@@ -3796,66 +4368,51 @@ function processEditSelection($subtab) {
  * @param bool $checkAll set true to include check all box
  */
 function printBulkActions($checkarray, $checkAll = false) {
-	$tags = in_array('addtags', $checkarray) || in_array('alltags', $checkarray);
-	$movecopy = in_array('moveimages', $checkarray) || in_array('copyimages', $checkarray);
-	$categories = in_array('addcats', $checkarray) || in_array('clearcats', $checkarray);
-	$changeowner = in_array('changeowner', $checkarray);
-	if ($tags || $movecopy || $categories || $changeowner) {
+	$customInfo = $colorboxBookmark = array();
+
+	foreach ($checkarray as $key => $value) {
+		if (is_array($value)) {
+			$checkarray[$key] = $value['name'];
+			switch ($action = $value['action']) {
+				case 'mass_customTextarea_data':
+					$data['size'] = -1;
+				case 'mass_customText_data':
+					$customInfo[$value['name']] = $value;
+					$action = 'mass_' . $value['name'] . '_data';
+					break;
+			}
+			$colorboxBookmark[$value['name']] = $action;
+		}
+	}
+	if (!empty($colorboxBookmark)) {
 		?>
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkFor(obj) {
 				var sel = obj.options[obj.selectedIndex].value;
+				var mark;
+				switch (sel) {
 		<?php
-		if ($tags) {
+		foreach ($colorboxBookmark as $key => $mark) {
 			?>
-					if (sel == 'addtags' || sel == 'alltags') {
-						$.colorbox({
-							href: "#mass_tags_data",
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
-			<?php
-		}
-		if ($movecopy) {
-			?>
-					if (sel == 'moveimages' || sel == 'copyimages') {
-						$.colorbox({
-							href: "#mass_movecopy_data",
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
-			<?php
-		}
-		if ($categories) {
-			?>
-					if (sel == 'addcats') {
-						$.colorbox({
-							href: "#mass_cats_data",
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
-			<?php
-		}
-		if ($changeowner) {
-			?>
-					if (sel == 'changeowner') {
-						$.colorbox({
-							href: "#mass_owner_data",
-							inline: true,
-							open: true,
-							close: '<?php echo gettext("ok"); ?>'
-						});
-					}
+					case '<?php echo $key; ?>':
+									mark = '<?php echo $mark; ?>';
+									break;
 			<?php
 		}
 		?>
+				default:
+								mark = false;
+								break;
+			}
+			if (mark) {
+				$.colorbox({
+					href: '#' + mark,
+					inline: true,
+					open: true,
+					close: '<?php echo gettext("ok"); ?>'
+				});
+				}
 			}
 			// ]]> -->
 		</script>
@@ -3863,107 +4420,131 @@ function printBulkActions($checkarray, $checkAll = false) {
 	}
 	?>
 	<span style="float:right">
-		<select class="dirtyignore" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+		<select class="ignoredirty" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
+	<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
-		<?php
-		if ($checkAll) {
-			?>
+			<?php
+			if ($checkAll) {
+				?>
 			<br />
-			<?php
-			echo gettext("Check All");
-			?>
-			<input class="dirtyignore" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
-			<?php
-		}
-		?>
+			<label>
+				<span style="float:right">
+		<?php echo gettext("Check All"); ?>
+					<input class="ignoredirty" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			</label>
+		</span>
+		<?php
+	}
+	?>
 	</span>
 	<?php
-	if ($tags) {
+	foreach ($customInfo as $key => $data) {
 		?>
-		<div id="mass_tags" style="display:none;">
-			<div id="mass_tags_data">
-				<?php
-				tagSelector(NULL, 'mass_tags_', false, false, true, false, 'checkTagsAuto dirtyignore');
+		<div id="mass_<?php echo $key; ?>" style="display:none;
+				 ">
+			<div id="mass_<?php echo $key; ?>_data">
+		<?php
+		printf('Value for %s:', $data['desc']);
+		if ($data['action'] == 'mass_customText_data') {
+			if (isset($data['size']) && $data['size'] >= 0) {
+				$size = max(5, min($data['size'], 200));
+			} else {
+				$size = 100;
+			}
+			?>
+					<input type="text" name="<?php echo $key; ?>" size="<?php echo $size; ?>" value="">
+					<?php
+				} else {
+					?>
+					<textarea name="<?php echo $key; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"></textarea>
+					<?php
+				}
 				?>
 			</div>
 		</div>
 		<?php
 	}
-	if ($categories) {
+
+	if (in_array('mass_tags_data', $colorboxBookmark)) {
+		?>
+		<div id="mass_tags" style="display:none;">
+			<div id="mass_tags_data">
+		<?php
+		$tagsort = 'alpha';
+		tagSelector(NULL, 'mass_tags_', false, $tagsort, true, false, 'checkTagsAuto ignoredirty');
+		?>
+			</div>
+		</div>
+		<?php
+	}
+	if (in_array('mass_cats_data', $colorboxBookmark)) {
 		?>
 		<div id="mass_cats" style="display:none;">
-			<ul id="mass_cats_data">
+			<div id="mass_cats_data">
+		<?php
+		echo gettext('New categories:');
+		?>
+				<ul>
 				<?php
-				printNestedItemsList('cats-checkboxlist', '', 'all', 'dirtyignore');
+				printNestedItemsList('cats-checkboxlist', '', 'all', 'ignoredirty');
 				?>
-			</ul>
+				</ul>
+			</div>
 		</div>
 		<?php
 	}
-	if ($changeowner) {
+	if (in_array('mass_owner_data', $colorboxBookmark)) {
 		?>
 		<div id="mass_owner" style="display:none;">
-			<ul id="mass_owner_data">
-				<select class="dirtyignore" id="massownermenu" name="massownerselect" onchange="">
-					<?php
-					echo admin_album_list(NULL);
-					?>
-				</select>
-			</ul>
+			<div id="mass_owner_data">
+		<?php
+		echo gettext('New owner:');
+		?>
+				<ul>
+					<select class="ignoredirty" id="massownermenu" name="massownerselect" onchange="">
+		<?php
+		echo admin_album_list(NULL);
+		?>
+					</select>
+				</ul>
+			</div>
 		</div>
 		<?php
 	}
-	if ($movecopy) {
+	if (in_array('mass_movecopy_data', $colorboxBookmark)) {
 		global $mcr_albumlist, $album, $bglevels;
 		?>
 		<div id="mass_movecopy_copy" style="display:none;">
 			<div id="mass_movecopy_data">
 				<input type="hidden" name="massfolder" value="<?php echo $album->name; ?>" />
+		<?php
+		echo gettext('Destination');
+		?>
+				<select class="ignoredirty" id="massalbumselectmenu" name="massalbumselect" onchange="">
 				<?php
-				echo gettext('Destination');
-				?>
-				<select class="dirtyignore" id="massalbumselectmenu" name="massalbumselect" onchange="">
-					<?php
-					foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
-						$singlefolder = $fullfolder;
-						$saprefix = "";
-						$salevel = 0;
-						$selected = "";
-						if ($album->name == $fullfolder) {
-							$selected = " selected=\"selected\" ";
-						}
-						// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
-						while (strstr($singlefolder, '/') !== false) {
-							$singlefolder = substr(strstr($singlefolder, '/'), 1);
-							$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
-							$salevel++;
-						}
-						echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . ';"' : '')
-						. "$selected>" . $saprefix . $singlefolder . "</option>\n";
+				foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
+					$singlefolder = $fullfolder;
+					$saprefix = "";
+					$salevel = 0;
+					$selected = "";
+					if ($album->name == $fullfolder) {
+						$selected = " selected=\"selected\" ";
 					}
-					?>
+					// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
+					while (strstr($singlefolder, '/') !== false) {
+						$singlefolder = substr(strstr($singlefolder, '/'), 1);
+						$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
+						$salevel++;
+					}
+					echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . ';"' : '')
+					. "$selected>" . $saprefix . $singlefolder . "</option>\n";
+				}
+				?>
 				</select>
 			</div>
 		</div>
 		<?php
 	}
-}
-
-/**
- *
- * common redirector for bulk action handling return
- * @param string $action
- */
-function bulkActionRedirect($action) {
-	$uri = getRequestURI();
-	if (strpos($uri, '?')) {
-		$uri .= '&bulkaction=' . $action;
-	} else {
-		$uri .= '?bulkaction=' . $action;
-	}
-	header('Location: ' . $uri);
-	exitZP();
 }
 
 /**
@@ -3972,12 +4553,10 @@ function bulkActionRedirect($action) {
  * @return array
  */
 function bulkTags() {
-	$tags = array();
-	foreach ($_POST as $key => $value) {
-		$key = postIndexDecode($key);
-		if ($value && substr($key, 0, 10) == 'mass_tags_') {
-			$tags[] = sanitize(substr($key, 10));
-		}
+	if (isset($_POST['tag_list_mass_tags_'])) {
+		$tags = sanitize($_POST['tag_list_mass_tags_']);
+	} else {
+		$tags = array();
 	}
 	return $tags;
 }
@@ -3990,6 +4569,7 @@ function processAlbumBulkActions() {
 	if (isset($_POST['ids'])) {
 		$ids = sanitize($_POST['ids']);
 		$action = sanitize($_POST['checkallaction']);
+		$result = zp_apply_filter('processBulkAlbumsSave', NULL, $action);
 		$total = count($ids);
 		if ($action != 'noaction' && $total > 0) {
 			if ($action == 'addtags' || $action == 'alltags') {
@@ -4002,56 +4582,57 @@ function processAlbumBulkActions() {
 			foreach ($ids as $albumname) {
 				$n++;
 				$albumobj = newAlbum($albumname);
-				switch ($action) {
-					case 'deleteallalbum':
-						$albumobj->remove();
-						SearchEngine::clearSearchCache();
-						break;
-					case 'showall':
-						$albumobj->setShow(1);
-						break;
-					case 'hideall':
-						$albumobj->setShow(0);
-						break;
-					case 'commentson':
-						$albumobj->setCommentsAllowed(1);
-						break;
-					case 'commentsoff':
-						$albumobj->setCommentsAllowed(0);
-						break;
-					case 'resethitcounter':
-						$albumobj->set('hitcounter', 0);
-						break;
-					case 'addtags':
-						$mytags = array_unique(array_merge($tags, $albumobj->getTags()));
-						$albumobj->setTags($mytags);
-						break;
-					case 'cleartags':
-						$albumobj->setTags(array());
-						break;
-					case 'alltags':
-						$images = $albumobj->getImages();
-						foreach ($images as $imagename) {
-							$imageobj = newImage($albumobj, $imagename);
-							$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
-							$imageobj->setTags($mytags);
-							$imageobj->save();
-						}
-						break;
-					case 'clearalltags':
-						$images = $albumobj->getImages();
-						foreach ($images as $imagename) {
-							$imageobj = newImage($albumobj, $imagename);
-							$imageobj->setTags(array());
-							$imageobj->save();
-						}
-						break;
-					case 'changeowner':
-						$albumobj->setOwner($newowner);
-						break;
-					default:
-						$action = call_user_func($action, $albumobj);
-						break;
+				if (is_null($result)) {
+					switch ($action) {
+						case 'deleteallalbum':
+							$albumobj->remove();
+							break;
+						case 'showall':
+							$albumobj->setShow(1);
+							break;
+						case 'hideall':
+							$albumobj->setShow(0);
+							break;
+						case 'commentson':
+							$albumobj->setCommentsAllowed(1);
+							break;
+						case 'commentsoff':
+							$albumobj->setCommentsAllowed(0);
+							break;
+						case 'resethitcounter':
+							$albumobj->set('hitcounter', 0);
+							break;
+						case 'addtags':
+							addTags($tags, $albumobj);
+							break;
+						case 'cleartags':
+							$albumobj->setTags(array());
+							break;
+						case 'alltags':
+							$images = $albumobj->getImages();
+							foreach ($images as $imagename) {
+								$imageobj = newImage($albumobj, $imagename);
+								addTags($tags, $imageobj);
+								$imageobj->save();
+							}
+							break;
+						case 'clearalltags':
+							$images = $albumobj->getImages();
+							foreach ($images as $imagename) {
+								$imageobj = newImage($albumobj, $imagename);
+								$imageobj->setTags(array());
+								$imageobj->save();
+							}
+							break;
+						case 'changeowner':
+							$albumobj->setOwner($newowner);
+							break;
+						default:
+							$action = call_user_func($action, $albumobj);
+							break;
+					}
+				} else {
+					$albumobj->set($action, $result);
 				}
 				$albumobj->save();
 			}
@@ -4067,6 +4648,8 @@ function processAlbumBulkActions() {
  */
 function processImageBulkActions($album) {
 	$action = sanitize($_POST['checkallaction']);
+	$result = zp_apply_filter('processBulkImageSave', NULL, $action, $album);
+
 	$ids = sanitize($_POST['ids']);
 	$total = count($ids);
 	if ($action != 'noaction') {
@@ -4088,56 +4671,58 @@ function processImageBulkActions($album) {
 			foreach ($ids as $filename) {
 				$n++;
 				$imageobj = newImage($album, $filename);
-				switch ($action) {
-					case 'deleteall':
-						$imageobj->remove();
-						SearchEngine::clearSearchCache();
-						break;
-					case 'showall':
-						$imageobj->set('show', 1);
-						break;
-					case 'hideall':
-						$imageobj->set('show', 0);
-						break;
-					case 'commentson':
-						$imageobj->set('commentson', 1);
-						break;
-					case 'commentsoff':
-						$imageobj->set('commentson', 0);
-						break;
-					case 'resethitcounter':
-						$imageobj->set('hitcounter', 0);
-						break;
-					case 'addtags':
-						$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
-						$imageobj->setTags($mytags);
-						break;
-					case 'cleartags':
-						$imageobj->setTags(array());
-						break;
-					case 'copyimages':
-						if ($e = $imageobj->copy($dest)) {
-							return "&mcrerr=" . $e;
-						}
-						break;
-					case 'moveimages':
-						if ($e = $imageobj->move($dest)) {
-							SearchEngine::clearSearchCache();
-							return "&mcrerr=" . $e;
-						}
-						break;
-					case 'changeowner':
-						$imageobj->setOwner($newowner);
-						break;
-					default:
-						$action = call_user_func($action, $imageobj);
-						break;
+				if (is_null($result)) {
+					switch ($action) {
+						case 'deleteall':
+							$imageobj->remove();
+							break;
+						case 'showall':
+							$imageobj->setShow(1);
+							break;
+						case 'hideall':
+							$imageobj->setShow(0);
+							break;
+						case 'commentson':
+							$imageobj->set('commentson', 1);
+							break;
+						case 'commentsoff':
+							$imageobj->set('commentson', 0);
+							break;
+						case 'resethitcounter':
+							$imageobj->set('hitcounter', 0);
+							break;
+						case 'addtags':
+							addTags($tags, $imageobj);
+							break;
+						case 'cleartags':
+							$imageobj->setTags(array());
+							break;
+						case 'copyimages':
+							if ($e = $imageobj->copy($dest)) {
+								return "&mcrerr=" . $e;
+							}
+							break;
+						case 'moveimages':
+							if ($e = $imageobj->move($dest)) {
+								return "&mcrerr=" . $e;
+							}
+							break;
+						case 'changeowner':
+							$imageobj->setOwner($newowner);
+							break;
+						default:
+							$action = call_user_func($action, $imageobj);
+							break;
+					}
+				} else {
+					$imageobj->set($action, $result);
 				}
 				$imageobj->save();
 			}
+			return $action;
 		}
-		return $action;
 	}
+	return false;
 }
 
 /**
@@ -4147,34 +4732,56 @@ function processImageBulkActions($album) {
 function processCommentBulkActions() {
 	if (isset($_POST['ids'])) { // these is actually the folder name here!
 		$action = sanitize($_POST['checkallaction']);
+		$result = zp_apply_filter('processBulkCommentSave', NULL, $action);
 		if ($action != 'noaction') {
 			$ids = sanitize($_POST['ids']);
 			if (count($ids) > 0) {
 				foreach ($ids as $id) {
 					$comment = new Comment(sanitize_numeric($id));
-					switch ($action) {
-						case 'deleteall':
-							$comment->remove();
-							break;
-						case 'spam':
-							if (!$comment->getInModeration()) {
-								$comment->setInModeration(1);
-								zp_apply_filter('comment_disapprove', $comment);
-							}
-							break;
-						case 'approve':
-							if ($comment->getInModeration()) {
-								$comment->setInModeration(0);
-								zp_apply_filter('comment_approve', $comment);
-							}
-							break;
+					if (is_null($result)) {
+						switch ($action) {
+							case 'deleteall':
+								$comment->remove();
+								break;
+							case 'spam':
+								if (!$comment->getInModeration()) {
+									$comment->setInModeration(1);
+									zp_apply_filter('comment_disapprove', $comment);
+								}
+								break;
+							case 'approve':
+								if ($comment->getInModeration()) {
+									$comment->setInModeration(0);
+									zp_apply_filter('comment_approve', $comment);
+								}
+								break;
+						}
+					} else {
+						$comment->set($action, $result);
 					}
 					$comment->save();
 				}
+				return $action;
 			}
 		}
 	}
-	return $action;
+	return false;
+}
+
+/**
+ * strips out tablerow stuff created by old edit_amin_custm_data plugins
+ * replaces it with appropriate DIV structure
+ *
+ * @param string $custom the custom html from plugins
+ * @return type
+ */
+function stripTableRows($custom) {
+//remove the table row stuff since we are in a DIV and replace with user_right class DIVs
+	$custom = preg_replace('~<tr[^>]*>~i', '', $custom);
+	$custom = preg_replace('~<td[^>]*>~i', 'div class="user_right">', $custom);
+	$custom = preg_replace('~</td[^>]*>~i', '</div>', $custom);
+	$custom = preg_replace('~</tr[^>]*>~i', '<br class="clearall">', $custom);
+	return $custom;
 }
 
 /**
@@ -4185,11 +4792,10 @@ function codeblocktabsJS() {
 	?>
 	<script type="text/javascript" charset="utf-8">
 		// <!-- <![CDATA[
-		$(function() {
+		$(function () {
 			var tabContainers = $('div.tabs > div');
 			$('.first').addClass('selected');
 		});
-
 		function cbclick(num, id) {
 			$('.cbx-' + id).hide();
 			$('#cb' + num + '-' + id).show();
@@ -4198,10 +4804,10 @@ function codeblocktabsJS() {
 		}
 
 		function cbadd(id, offset) {
-			var num = $('#cbu-' + id + ' li').size() - offset;
+			var num = $('#cbu-' + id + ' li').length - offset;
 			$('li:last', $('#cbu-' + id)).remove();
-			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" href="javascript:cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
-			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" href="javascript:cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+			$('#cbu-' + id).append('<li><a class="cbt-' + id + '" id="cbt' + num + '-' + id + '" onclick="cbclick(' + num + ',' + id + ');" title="' + '<?php echo gettext('codeblock %u'); ?>'.replace(/%u/, num) + '">&nbsp;&nbsp;' + num + '&nbsp;&nbsp;</a></li>');
+			$('#cbu-' + id).append('<li><a id="cbp-' + id + '" onclick="cbadd(' + id + ',' + offset + ');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
 			$('#cbd-' + id).append('<div class="cbx-' + id + '" id="cb' + num + '-' + id + '" style="display:none">' +
 							'<textarea name="codeblock' + num + '-' + id + '" class="codeblock" id="codeblock' + num + '-' + id + '" rows="40" cols="60"></textarea>' +
 							'</div>');
@@ -4232,16 +4838,16 @@ function printCodeblockEdit($obj, $id) {
 	?>
 	<div id="cbd-<?php echo $id; ?>" class="tabs">
 		<ul id="<?php echo 'cbu' . '-' . $id; ?>" class="tabNavigation">
-			<?php
-			for ($i = $start; $i < $codeblockCount; $i++) {
-				?>
-				<li><a class="<?php if ($i == 1) echo 'first '; ?>cbt-<?php echo $id; ?>" id="<?php echo 'cbt' . $i . '-' . $id; ?>" href="javascript:cbclick(<?php echo $i . ',' . $id; ?>);" title="<?php printf(gettext('codeblock %u'), $i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
+	<?php
+	for ($i = $start; $i < $codeblockCount; $i++) {
+		?>
+				<li><a class="<?php if ($i == 1) echo 'first '; ?>cbt-<?php echo $id; ?>" id="<?php echo 'cbt' . $i . '-' . $id; ?>" onclick="cbclick(<?php echo $i . ',' . $id; ?>);" title="<?php printf(gettext('codeblock %u'), $i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
 				<?php
 			}
 			if (zp_loggedin(CODEBLOCK_RIGHTS)) {
 				$disabled = '';
 				?>
-				<li><a id="<?php echo 'cbp' . '-' . $id; ?>" href="javascript:cbadd(<?php echo $id; ?>,<?php echo 1 - $start; ?>);" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>
+				<li><a id="<?php echo 'cbp' . '-' . $id; ?>" onclick="cbadd(<?php echo $id; ?>,<?php echo 1 - $start; ?>);" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>
 				<?php
 			} else {
 				$disabled = ' disabled="disabled"';
@@ -4249,216 +4855,268 @@ function printCodeblockEdit($obj, $id) {
 			?>
 		</ul>
 
-		<?php
-		for ($i = $start; $i < $codeblockCount; $i++) {
-			?>
+	<?php
+	for ($i = $start; $i < $codeblockCount; $i++) {
+		?>
 			<div class="cbx-<?php echo $id; ?>" id="cb<?php echo $i . '-' . $id; ?>"<?php if ($i != 1) echo ' style="display:none"'; ?>>
-				<?php
-				if (!$i) {
-					?>
+			<?php
+			if (!$i) {
+				?>
 					<span class="notebox"><?php echo gettext('Codeblock 0 is deprecated.') ?></span>
 					<?php
 				}
 				?>
 				<textarea name="codeblock<?php echo $i; ?>-<?php echo $id; ?>" class="codeblock" id="codeblock<?php echo $i; ?>-<?php echo $id; ?>" rows="40" cols="60"<?php echo $disabled; ?>><?php echo html_encode(@$codeblock[$i]); ?></textarea>
 			</div>
-			<?php
-		}
-		?>
+		<?php
+	}
+	?>
 	</div>
-	<?php
-}
+		<?php
+	}
 
-/**
- *
- * handles saveing of codeblock edits
- * @param object $object
- * @param int $id
- * @return string
- */
-function processCodeblockSave($id) {
-	$codeblock = array();
-	$i = (int) !isset($_POST['codeblock0-' . $id]);
-	while (isset($_POST['codeblock' . $i . '-' . $id])) {
-		$v = sanitize($_POST['codeblock' . $i . '-' . $id], 0);
-		if ($v) {
-			$codeblock[$i] = $v;
+	/**
+	 *
+	 * handles saveing of codeblock edits
+	 * @param object $object
+	 * @param int $id
+	 * @return string
+	 */
+	function processCodeblockSave($id, $obj) {
+		$codeblock = array();
+		$found = false;
+		$i = (int) !isset($_POST['codeblock0-' . $id]);
+		while (isset($_POST['codeblock' . $i . '-' . $id])) {
+			$found = true;
+			$v = sanitize($_POST['codeblock' . $i . '-' . $id], 0);
+			if ($v) {
+				$codeblock[$i] = $v;
+			}
+			$i++;
 		}
-		$i++;
-	}
-	return serialize($codeblock);
-}
-
-/**
- * Standard admin pages checks
- * @param bit $rights
- * @param string $return--where to go after login
- */
-function admin_securityChecks($rights, $return) {
-	global $_zp_current_admin_obj, $_zp_loggedin;
-	checkInstall();
-	httpsRedirect();
-
-	if ($_zp_current_admin_obj && $_zp_current_admin_obj->reset) {
-		$_zp_loggedin = USER_RIGHTS;
-	}
-	if (!zp_loggedin($rights)) {
-		// prevent nefarious access to this page.
-		$returnurl = urldecode($return);
-		if (!zp_apply_filter('admin_allow_access', false, $returnurl)) {
-			$uri = explode('?', $returnurl);
-			header("HTTP/1.0 302 Found");
-			header("Status: 302 Found");
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
-			exitZP();
+		if ($found) {
+			$obj->setCodeblock(serialize($codeblock));
 		}
 	}
-}
 
-/**
- *
- * Checks if protocol not https and redirects if https required
- */
-function httpsRedirect() {
-	if (SERVER_PROTOCOL == 'https_admin' || SERVER_PROTOCOL == 'https') {
-		// force https login
-		if (!secureServer()) {
-			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
-			header("Location:$redirect");
-			exitZP();
+	/**
+	 * Standard admin pages checks
+	 * @param bit $rights
+	 * @param string $return--where to go after login
+	 */
+	function admin_securityChecks($rights, $return) {
+		global $_zp_current_admin_obj, $_zp_loggedin;
+		checkInstall();
+
+		if (is_null($rights)) {
+			$rights = ADMIN_RIGHTS;
 		}
-	}
-}
-
-/**
- * getPageSelector "diff" function
- *
- * returns the shortest string difference
- * @param string $string1
- * @param string2 $string2
- */
-function minDiff($string1, $string2) {
-	if ($string1 == $string2) {
-		return $string2;
-	}
-	if (empty($string1)) {
-		return substr($string2, 0, 10);
-	}
-	if (empty($string2)) {
-		return substr($string1, 0, 10);
-	}
-	if (strlen($string2) > strlen($string1)) {
-		$base = $string2;
-	} else {
-		$base = $string1;
-	}
-	for ($i = 0; $i < min(strlen($string1), strlen($string2)); $i++) {
-		if ($string1[$i] != $string2[$i]) {
-			$base = substr($string2, 0, max($i + 1, 10));
-			break;
-		}
-	}
-	return rtrim($base, '-_');
-}
-
-/**
- * getPageSelector "diff" function
- *
- * Used when you want getPgeSelector to show the full text of the items
- * @param string $string1
- * @param string $string2
- * @return string
- */
-function fullText($string1, $string2) {
-	return $string2;
-}
-
-/**
- * getPageSelector "diff" function
- *
- * returns the shortest "date" difference
- * @param string $date1
- * @param string $date2
- * @return string
- */
-function dateDiff($date1, $date2) {
-	$separators = array('', '-', '-', ' ', ':', ':');
-	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date1, $matches1);
-	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date2, $matches2);
-	if (empty($matches1)) {
-		$matches1 = array(0, 0, 0, 0, 0, 0, 0);
-	}
-	if (empty($matches2)) {
-		$matches2 = array(0, 0, 0, 0, 0, 0, 0);
-	}
-
-	$date = '';
-	for ($i = 1; $i <= 6; $i++) {
-		if (@$matches1[$i] != @$matches2[$i]) {
-			break;
-		}
-	}
-	switch ($i) {
-		case 7:
-		case 6:
-			$date = ':' . $matches2[6];
-		case 5:
-		case 4:
-			$date = ' ' . $matches2[4] . ':' . $matches2[5] . $date;
-		default:
-			$date = $matches2[1] . '-' . $matches2[2] . '-' . $matches2[3] . $date;
-	}
-	return rtrim($date, ':-');
-}
-
-/**
- * returns a selector list based on the "names" of the list items
- *
- *
- * @param array $list
- * @param int $itmes_per_page
- * @param string $diff
- * 									"fullText" for the complete names
- * 									"minDiff" for a truncated string showing just the unique characters of the names
- * 									"dateDiff" it the "names" are really dates.
- * @return array
- */
-function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
-	$rangeset = array();
-	$pages = round(ceil(count($list) / (int) $itmes_per_page));
-	$list = array_values($list);
-	if ($pages > 1) {
-		$ranges = array();
-		for ($page = 0; $page < $pages; $page++) {
-			$ranges[$page]['start'] = strtolower(get_language_string($list[$page * $itmes_per_page]));
-			$last = (int) ($page * $itmes_per_page + $itmes_per_page - 1);
-			if (array_key_exists($last, $list)) {
-				$ranges[$page]['end'] = strtolower(get_language_string($list[$last]));
-			} else {
-				$ranges[$page]['end'] = strtolower(get_language_string(@array_pop($list)));
+		if ($_zp_current_admin_obj) {
+			if ($_zp_current_admin_obj->reset) {
+				$_zp_loggedin = USER_RIGHTS;
 			}
 		}
-		$last = '';
-		foreach ($ranges as $page => $range) {
-			$next = @$ranges[$page + 1]['start'];
-			$rangeset[$page] = $diff($last, $range['start']) . ' » ' . $diff($next, $range['end']);
-			$last = $range['end'];
+		$returnurl = urldecode($return);
+		$rights = zp_apply_filter('admin_allow_access', $rights, $returnurl);
+		if (!($rights & $_zp_loggedin)) {
+			// prevent nefarious access to this page.
+			$uri = explode('?', $returnurl);
+			if ($uri[0] == WEBPATH . '/' . ZENFOLDER . '/admin.php') {
+				$redirect = FULLWEBPATH;
+			} else {
+				$redirect = FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0];
+			}
+
+			header("HTTP/1.0 302 Found");
+			header("Status: 302 Found");
+			header('Location: ' . $redirect);
+			exitZP();
 		}
 	}
-	return $rangeset;
-}
 
-function printPageSelector($subpage, $rangeset, $script, $queryParams) {
-	global $instances;
-	$pages = count($rangeset);
-	$jump = $query = '';
-	foreach ($queryParams as $param => $value) {
-		$query .= html_encode($param) . '=' . html_encode($value) . '&amp;';
-		$jump .= "'" . html_encode($param) . "=" . html_encode($value) . "',";
+	/**
+	 * Checks for Cross Site Request Forgeries
+	 * @param string $action
+	 * @param string $modifier optional extra data. Used, for instance to include
+	 * 																							parts of URL being used for more security
+	 */
+	function XSRFdefender($action, $modifier = NULL) {
+		$token = getXSRFToken($action, $modifier);
+		if (!isset($_REQUEST['XSRFToken']) || $_REQUEST['XSRFToken'] != $token) {
+			zp_apply_filter('admin_XSRF_access', false, $action);
+			header("HTTP/1.0 302 Found");
+			header("Status: 302 Found");
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
+			exitZP();
+		}
+		unset($_REQUEST['XSRFToken']);
+		unset($_POST['XSRFToken']);
+		unset($_GET['XSRFToken']);
 	}
-	$query = '?' . $query;
-	if ($subpage > 0) {
-		?>
+
+	/**
+	 * getPageSelector "diff" function
+	 *
+	 * returns the shortest string difference
+	 * @param string $string1
+	 * @param string2 $string2
+	 */
+	function minDiff($string1, $string2) {
+		if ($string1 == $string2) {
+			return $string2;
+		}
+		if (empty($string1)) {
+			return substr($string2, 0, 10);
+		}
+		if (empty($string2)) {
+			return substr($string1, 0, 10);
+		}
+		if (strlen($string2) > strlen($string1)) {
+			$base = $string2;
+		} else {
+			$base = $string1;
+		}
+		for ($i = 0; $i < min(strlen($string1), strlen($string2)); $i++) {
+			if ($string1[$i] != $string2[$i]) {
+				$base = substr($string2, 0, max($i + 1, 10));
+				break;
+			}
+		}
+		return rtrim($base, '-_');
+	}
+
+	/**
+	 * getPageSelector "diff" function
+	 *
+	 * Used when you want getPgeSelector to show the full text of the items
+	 * @param string $string1
+	 * @param string $string2
+	 * @return string
+	 */
+	function fullText($string1, $string2) {
+		return $string2;
+	}
+
+	/**
+	 * getPageSelector "diff" function
+	 *
+	 * returns the shortest "date" difference
+	 * @param string $date1
+	 * @param string $date2
+	 * @return string
+	 */
+	function dateDiff($date1, $date2) {
+		$separators = array('', '-', '-', ' ', ':', ':');
+		preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date1, $matches1);
+		preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date2, $matches2);
+		if (empty($matches1)) {
+			$matches1 = array(0, 0, 0, 0, 0, 0, 0);
+		}
+		if (empty($matches2)) {
+			$matches2 = array(0, 0, 0, 0, 0, 0, 0);
+		}
+
+		$date = '';
+		for ($i = 1; $i <= 6; $i++) {
+			if (@$matches1[$i] != @$matches2[$i]) {
+				break;
+			}
+		}
+		switch ($i) {
+			case 7:
+			case 6:
+				$date = ':' . $matches2[6];
+			case 5:
+			case 4:
+				$date = ' ' . $matches2[4] . ':' . $matches2[5] . $date;
+			default:
+				$date = $matches2[1] . '-' . $matches2[2] . '-' . $matches2[3] . $date;
+		}
+
+		if ($date == '0-0-0 0:0:0') {
+			return '&bull; &bull; &bull; ';
+		}
+
+		return rtrim($date, ':-');
+	}
+
+	/**
+	 * changes zenpage titlelink suffixes from $old to $new
+	 *
+	 * @param type $old
+	 * @param type $new
+	 */
+	function migrateTitleLinks($old, $new) {
+		if ($old) {
+			$sql2 = ' WHERE `titlelink` LIKE ' . db_quote('%' . db_LIKE_escape($old));
+		} else {
+			$sql2 = ' WHERE `titlelink` NOT LIKE ' . db_quote('%' . db_LIKE_escape($new));
+		}
+		foreach (array('pages', 'news') as $table) {
+			$sql = 'SELECT `id`,`titlelink` FROM ' . prefix($table) . $sql2;
+			$result = query($sql);
+			if ($result) {
+				while ($row = db_fetch_assoc($result)) {
+					$oldlink = $titlelink = $row['titlelink'];
+					$titlelink = substr($titlelink, 0, strlen($titlelink) - strlen($old)) . $new;
+					$sql = 'UPDATE ' . prefix($table) . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $row['id'];
+					if (!query($sql, false)) {
+//there may be duplicated titlelinks, if so no change
+						debugLog(sprintf(gettext('%1$s:%2$s not changed to %3$s (duplicate titlelink.)'), $table, $oldlink, $titlelink));
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * returns a selector list based on the "names" of the list items
+	 *
+	 *
+	 * @param array $list
+	 * @param int $itmes_per_page
+	 * @param string $diff
+	 * 									"fullText" for the complete names
+	 * 									"minDiff" for a truncated string showing just the unique characters of the names
+	 * 									"dateDiff" it the "names" are really dates.
+	 * @return array
+	 */
+	function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
+		$rangeset = array();
+		$pages = round(ceil(count($list) / (int) $itmes_per_page));
+		$list = array_values($list);
+		if ($pages > 1) {
+			$ranges = array();
+			for ($page = 0; $page < $pages; $page++) {
+				$ranges[$page]['start'] = strtolower($list[$page * $itmes_per_page]);
+				$last = (int) ($page * $itmes_per_page + $itmes_per_page - 1);
+				if (array_key_exists($last, $list)) {
+					$ranges[$page]['end'] = strtolower($list[$last]);
+				} else {
+					$ranges[$page]['end'] = strtolower(@array_pop($list));
+				}
+			}
+			$last = '';
+			foreach ($ranges as $page => $range) {
+				$next = @$ranges[$page + 1]['start'];
+				$rangeset[$page] = $diff($last, $range['start']) . ' » ' . $diff($next, $range['end']);
+				$last = $range['end'];
+			}
+		}
+		return $rangeset;
+	}
+
+	function printPageSelector($subpage, $rangeset, $script, $queryParams) {
+		global $instances;
+		$pages = count($rangeset);
+		$jump = $query = '';
+		foreach ($queryParams as $param => $value) {
+			$query .= html_encode($param) . '=' . html_encode($value) . '&amp;';
+			$jump .= "'" . html_encode($param) . "=" . html_encode($value) . "',";
+		}
+		$query = '?' . $query;
+		if ($subpage > 0) {
+			?>
 		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage - 1); ?>" >« <?php echo gettext('prev'); ?></a>
 		<?php
 	}
@@ -4469,21 +5127,20 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 			<?php
 		}
 		?>
-		<select name="subpage" class="dirtyignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-								[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
-							<?php
-							foreach ($rangeset as $page => $range) {
-								?>
+		<select name="subpage" class="ignoredirty" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>', [<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+		<?php
+		foreach ($rangeset as $page => $range) {
+			?>
 				<option value="<?php echo $page; ?>" <?php if ($page == $subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
 				<?php
 			}
 			?>
 		</select>
-		<?php
-	}
-	if ($pages > $subpage + 1) {
-		if ($pages > 2) {
-			?>
+			<?php
+		}
+		if ($pages > $subpage + 1) {
+			if ($pages > 2) {
+				?>
 			|
 		<?php }
 		?>
@@ -4516,7 +5173,7 @@ function admin_album_list($owner) {
 	$adminlist = '';
 	$admins = $_zp_authority->getAdministrators();
 	foreach ($admins as $user) {
-		if (($user['rights'] & (UPLOAD_RIGHTS | ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {
+		if (($user['rights'] & (UPLOAD_RIGHTS | ADMIN_RIGHTS | ALBUM_RIGHTS))) {
 			$adminlist .= '<option value="' . $user['user'] . '"';
 			if ($owner == $user['user']) {
 				$adminlist .= ' SELECTED="SELECTED"';
@@ -4531,25 +5188,50 @@ function admin_album_list($owner) {
  * Figures out which log tabs to display
  */
 function getLogTabs() {
-	$subtabs = array();
-	$default = NULL;
-	$localizer = array('setup' => gettext('setup'), 'security' => gettext('security'), 'debug' => gettext('debug'));
+	$new = $subtabs = array();
+	$default_viewed = $default = NULL;
+	$localizer = array('setup' => gettext('setup'), 'security' => gettext('security'), 'debug' => gettext('debug'), 'deprecated' => gettext('deprecated'));
 	$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.log');
 	if (count($filelist) > 0) {
-		$tab = sanitize(@$_GET['tab'], 3);
+		if (isset($_GET['tab'])) {
+			$tab = sanitize($_GET['tab'], 3);
+		} else {
+			$tab = false;
+		}
 		foreach ($filelist as $logfile) {
 			$log = substr(basename($logfile), 0, -4);
+			if (filemtime($logfile) > getOption('logviewed_' . $log)) {
+				$new[$log] = $log;
+			}
 			if ($log == $tab) {
 				$default = $tab;
 			}
+
+			preg_match('~(.*)_(.*)~', $log, $matches);
+			if (isset($matches[2])) {
+				$log = $matches[1];
+				$num = ' ' . $matches[2];
+			} else {
+				$num = NULL;
+			}
+
+
 			if (array_key_exists($log, $localizer)) {
 				$logfiletext = $localizer[$log];
 			} else {
 				$logfiletext = str_replace('_', ' ', $log);
 			}
-			$subtabs = array_merge($subtabs, array($logfiletext => 'admin-logs.php?page=logs&tab=' . $log));
+
+			$subtabs = array_merge($subtabs, array($logfiletext . $num => '/' . ZENFOLDER . '/admin-logs.php?page=logs&tab=' . $log));
 			if (filesize($logfile) > 0 && empty($default)) {
-				$default = $log;
+				$default_viewed = $log;
+			}
+		}
+		if (empty($default)) {
+			if (empty($new)) {
+				$default = $default_viewed;
+			} else {
+				$default = reset($new);
 			}
 		}
 	}
@@ -4558,84 +5240,184 @@ function getLogTabs() {
 	natcasesort($names);
 	$subtabs = array_flip($names);
 
-	return array($subtabs, $default);
+	return array($subtabs, $default, $new);
 }
 
 /**
  * Figures out which plugin tabs to display
  */
 function getPluginTabs() {
-  if (isset($_GET['tab'])) {
-    $default = sanitize($_GET['tab']);
-  } else {
-    $default = 'all';
-  }
-  $paths = getPluginFiles('*.php');
-  $currentlist = $classes = $member = array();
-	$plugin_category = '';
-  foreach ($paths as $plugin => $path) {
-    $p = file_get_contents($path);
-		$i = sanitize(isolate('$plugin_category', $p));
-		if ($i !== false) {
-			eval($i); // populates variable $plugin_category - ugly but otherwise gettext does not work…
-			$member[$plugin] = strtolower($plugin_category);
-		} else {
-			// fallback for older plugins using @package for category without gettext
-			$i = strpos($p, '* @subpackage');
-			if (($key = $i) !== false) {
-				$plugin_category = strtolower(trim(substr($p, $i + 13, strpos($p, "\n", $i) - $i - 13)));
-			}
-			if (empty($plugin_category)) {
-				$plugin_category = gettext('Misc');
-			}
-			$classXlate = array(
-					'active' => gettext('Active'),
-					'all' => gettext('All'),
-					'admin' => gettext('Admin'),
-					'demo' => gettext('Demo'),
-					'development' => gettext('Development'),
-					'feed' => gettext('Feed'),
-					'mail' => gettext('Mail'),
-					'media' => gettext('Media'),
-					'misc' => gettext('Misc'),
-					'spam' => gettext('Spam'),
-					'statistics' => gettext('Statistics'),
-					'seo' => gettext('SEO'),
-					'uploader' => gettext('Uploader'),
-					'users' => gettext('Users')
-			);
-			zp_apply_filter('plugin_tabs', $classXlate);
-			if (array_key_exists($plugin_category, $classXlate)) {
-				$local = $classXlate[$plugin_category];
-			} else {
-				$local = $plugin_category;
-			}
-			$member[$plugin] = strtolower($local);
-		}
-    $classes[strtolower($plugin_category)]['list'][] = $plugin;
-    if(extensionEnabled($plugin)) {
-      $classes['active']['list'][] = $plugin;
-    }
-  }
-  ksort($classes);
-  $tabs[gettext('all')] = 'admin-plugins.php?page=plugins&tab=all';
-  $currentlist = array_keys($paths);
+	/* subpackages */
+	$pluginCategoryNames = array (
+			'admin'	=>	gettext('admin support'),
+			'development'	=>	gettext('development'),
+			'example'	=>	gettext('example'),
+			'mail'	=>	gettext('mail'),
+			'media'	=>	gettext('media'),
+			'misc'	=>	gettext('misc'),
+			'netPhotoGraphics'	=>	gettext('netPhotoGraphics'),
+			'theme'	=>	gettext('theme support'),
+			'tools'	=>	gettext('tools'),
+			'users'	=>	gettext('users')
+	);
+	$classXlate = array(
+			'all' => gettext('all'),
+			'thirdparty' => gettext('<em>3rd party</em>'),
+			'enabled' => gettext('<em>Enabled</em>'),
+			'disabled' => gettext('<em>Disabled</em>'),
+			'deprecated' => gettext('<em>Deprecated</em>'),
+			'class_plugin' => gettext('<em>Class</em>'),
+			'feature_plugin' => gettext('<em>Feature</em>'),
+			'admin_plugin' => gettext('<em>Admin</em>'),
+			'theme_plugin' => gettext('<em>Theme</em>')
+	);
 
-  foreach ($classes as $class => $list) {
-    $tabs[$class] = 'admin-plugins.php?page=plugins&tab=' . $class;
-    if ($class == $default) {
-      $currentlist = $list['list'];
-    }
-  }
-  return array($tabs, $default, $currentlist, $paths, $member);
+	$classLinks = array(
+			'enabled' => 'admin-plugins.php?page=plugins&tab=enabled',
+			'disabled' => 'admin-plugins.php?page=plugins&tab=disabled',
+			'deprecated' => 'admin-plugins.php?page=plugins&tab=deprecated',
+			'thirdparty' => 'admin-plugins.php?page=plugins&tab=thirdparty',
+			'class_plugin' => 'admin-plugins.php?page=plugins&tab=class_plugin',
+			'feature_plugin' => 'admin-plugins.php?page=plugins&tab=feature_plugin',
+			'admin_plugin' => 'admin-plugins.php?page=plugins&tab=admin_plugin',
+			'theme_plugin' => 'admin-plugins.php?page=plugins&tab=theme_plugin'
+	);
+
+	$Xlate = array_merge($classXlate, $pluginCategoryNames);
+
+	if (isset($_GET['tab'])) {
+		$default = sanitize($_GET['tab']);
+	} else {
+		$default = 'all';
+	}
+	$plugin_lc = array();
+	$paths = getPluginFiles('*.php');
+	zp_apply_filter('plugin_tabs', $Xlate);
+
+	$class = $feature = $admin = $theme = $details = $enabled = $disabled = $deprecated = $classes = $member = $thirdparty = array();
+	foreach ($paths as $plugin => $path) {
+		if (!isset($plugin_lc[strtolower($plugin)])) {
+			$plugin_lc[strtolower($plugin)] = true;
+			$p = file_get_contents($path);
+			preg_match('~/\*(.*?)\*/~s', $p, $matches);
+			if (isset($matches[1])) {
+				$d = $matches[1];
+			} else {
+				$d = '';
+			}
+
+			if ($str = isolate('$plugin_description', $p)) {
+				$details[$plugin]['plugin_description'] = $str;
+			}
+
+			if ($str = isolate('$plugin_notice', $p)) {
+				$details[$plugin]['plugin_notice'] = $str;
+			}
+
+			if ($str = isolate('$plugin_version', $p)) {
+				$details[$plugin]['plugin_version'] = $str;
+			}
+
+			if ($str = isolate('$plugin_disable', $p)) {
+				$details[$plugin]['plugin_disable'] = $str;
+			}
+
+			$details[$plugin]['option_interface'] = isolate('$option_interface', $p);
+
+			$key = 'misc';
+			if ($str = isolate('@pluginCategory', $p)) {
+				preg_match('|@pluginCategory\s+(.*)\s|', $str, $matches);
+				if (isset($matches[1])) {
+					$key = strtolower(trim($matches[1]));
+				}
+			}
+			$details[$plugin]['category'] = $key;
+
+			if (preg_match('~@deprecated~', $d)) {
+				$details[$plugin]['deprecated'] = 'deprecated';
+				$deprecated[$plugin] = $path;
+			}
+			$plugin_is_filter = 1 | THEME_PLUGIN;
+			if ($str = isolate('$plugin_is_filter', $p)) {
+				eval($str);
+			}
+			$details[$plugin]['plugin_is_filter'] = $plugin_is_filter;
+			if ($plugin_is_filter & THEME_PLUGIN) {
+				$theme_plugin[$plugin] = $path;
+			}
+			if ($plugin_is_filter & ADMIN_PLUGIN) {
+				$admin_plugin[$plugin] = $path;
+			}
+			if ($plugin_is_filter & CLASS_PLUGIN) {
+				$class_plugin[$plugin] = $path;
+			}
+			if ($plugin_is_filter & FEATURE_PLUGIN) {
+				$feature_plugin[$plugin] = $path;
+			}
+			unset($plugin_is_filter);
+
+			$classes[$key][] = $plugin;
+			if (extensionEnabled($plugin)) {
+				$enabled[$plugin] = $path;
+			} else {
+				$disabled[$plugin] = $path;
+			}
+			$tpp = 0;
+			if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
+				$tpp = 2;
+				$thirdparty[$plugin] = $path;
+				if (distributedPlugin($plugin)) {
+					$tpp = 1;
+					unset($thirdparty[$plugin]);
+				}
+			}
+			$details[$plugin]['thridparty'] = $tpp;
+
+			if (array_key_exists($key, $Xlate)) {
+				$local = $Xlate[$key];
+			} else {
+				$local = $Xlate[$key] = $key;
+			}
+			$member[$plugin] = $local;
+		}
+	}
+
+	$currentlist = array_keys($paths);
+	$hr = false;
+	foreach ($classLinks as $class => $list) {
+		if (!empty($$class)) {
+			$hr = true;
+			$tabs[$Xlate[$class]] = 'admin-plugins.php?page=plugins&tab=' . $class;
+			if ($class == $default) {
+				$currentlist = array_keys($$class);
+			}
+		}
+	}
+	if ($hr) {
+		$tabs['<hr /><span class="navigation_small_text">&nbsp;&nbsp;' . gettext('CATEGORY') . '</span>'] = '';
+		$tabs = array_merge(array('<span class="navigation_small_text">&nbsp;&nbsp;' . gettext('CLASS') . '</span>' => ''), $tabs);
+	}
+
+	$categorys = array();
+	foreach ($classes as $class => $list) {
+		$categorys[$Xlate[$class]] = 'admin-plugins.php?page=plugins&tab=' . $class;
+		if ($class == $default) {
+			$currentlist = $list;
+		}
+	}
+	ksort($categorys, SORT_NATURAL);
+
+	return array(array_merge($tabs, $categorys), $default, $currentlist, $paths, $member, $Xlate, $details);
 }
 
 function getAdminThumb($image, $size) {
 	switch ($size) {
+		case 'medium':
+			return $image->getCustomImage(ADMIN_THUMB_MEDIUM, NULL, NULL, ADMIN_THUMB_MEDIUM, ADMIN_THUMB_MEDIUM, NULL, NULL, -1);
 		case 'large':
-			return $image->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1);
+			return $image->getCustomImage(ADMIN_THUMB_LARGE, NULL, NULL, ADMIN_THUMB_LARGE, ADMIN_THUMB_LARGE, NULL, NULL, -1);
 		default:
-			return $image->getCustomImage(40, NULL, NULL, 40, 40, NULL, NULL, -1);
+			return $image->getCustomImage(ADMIN_THUMB_SMALL, NULL, NULL, ADMIN_THUMB_SMALL, ADMIN_THUMB_SMALL, NULL, NULL, -1);
 	}
 }
 
@@ -4677,7 +5459,7 @@ function processCredentials($object, $suffix = '') {
 			}
 			if (empty($pwd)) {
 				if (strlen($_POST['pass' . $suffix]) == 0) {
-					// clear the  password
+// clear the  password
 					if (is_object($object)) {
 						$object->setPassword(NULL);
 					} else {
@@ -4709,8 +5491,7 @@ function processCredentials($object, $suffix = '') {
 }
 
 function consolidatedEditMessages($subtab) {
-	zp_apply_filter('admin_note', 'albums', $subtab);
-	$messagebox = $errorbox = $notebox = array();
+	global $messagebox, $errorbox, $notebox;
 	if (isset($_GET['ndeleted'])) {
 		$ntdel = sanitize_numeric($_GET['ndeleted']);
 		if ($ntdel <= 2) {
@@ -4823,103 +5604,155 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-			<?php echo implode('<br />', $errorbox); ?>
+		<?php echo implode('<br />', $errorbox); ?>
 		</div>
-		<?php
-	}
-	if (!empty($notebox)) {
-		?>
+			<?php
+		}
+		if (!empty($notebox)) {
+			?>
 		<div class="notebox fade-message">
-			<?php echo implode('<br />', $notebox); ?>
+		<?php echo implode('<br />', $notebox); ?>
 		</div>
-		<?php
-	}
-	if (!empty($messagebox)) {
-		?>
+			<?php
+		}
+		if (!empty($messagebox)) {
+			?>
 		<div class="messagebox fade-message">
-			<?php echo implode('<br />', $messagebox); ?>
+		<?php echo implode('<br />', $messagebox); ?>
 		</div>
-		<?php
+			<?php
+		}
 	}
-}
 
-/**
- * returns an array of the theme scripts not in the exclude array
- * @param array $exclude those scripts to ignore
- * @return array
- */
-function getThemeFiles($exclude) {
-	global $_zp_gallery;
-	$files = array();
-	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-		$curdir = getcwd();
-		$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/';
-		chdir($root);
-		$filelist = safe_glob('*.php');
-		$list = array();
-		foreach ($filelist as $file) {
-			if (!in_array($file, $exclude)) {
-				$files[$theme][] = filesystemToInternal($file);
+	/**
+	 * returns an array of the theme scripts not in the exclude array
+	 * @param array $exclude those scripts to ignore
+	 * @return array
+	 */
+	function getThemeFiles($exclude) {
+		global $_zp_gallery;
+		$files = array();
+		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
+			$curdir = getcwd();
+			$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme . '/';
+			chdir($root);
+			$filelist = safe_glob('*.php');
+			$list = array();
+			foreach ($filelist as $file) {
+				if (!in_array($file, $exclude)) {
+					$files[$theme][] = filesystemToInternal($file);
+				}
+			}
+			chdir($curdir);
+		}
+		return $files;
+	}
+
+	/**
+	 *
+	 * Checks for bad parentIDs from old move/copy bug
+	 * @param unknown_type $albumname
+	 * @param unknown_type $id
+	 */
+	function checkAlbumParentid($albumname, $id, $recorder) {
+		$album = newAlbum($albumname);
+		$oldid = $album->getParentID();
+		if ($oldid != $id) {
+			$album->set('parentid', $id);
+			$album->save();
+			if (is_null($oldid))
+				$oldid = '<em>NULL</em>';
+			if (is_null($id))
+				$id = '<em>NULL</em>';
+			$msg = sprintf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname, $oldid, $id);
+			$recorder($msg, true);
+		}
+		$id = $album->getID();
+		if (!$album->isDynamic()) {
+			$albums = $album->getAlbums();
+			foreach ($albums as $albumname) {
+				checkAlbumParentid($albumname, $id, $recorder);
 			}
 		}
-		chdir($curdir);
 	}
-	return $files;
-}
 
-/**
- *
- * Checks for bad parentIDs from old move/copy bug
- * @param unknown_type $albumname
- * @param unknown_type $id
- */
-function checkAlbumParentid($albumname, $id, $recorder) {
-	$album = newAlbum($albumname);
-	$oldid = $album->getParentID();
-	if ($oldid != $id) {
-		$album->set('parentid', $id);
-		$album->save();
-		if (is_null($oldid))
-			$oldid = '<em>NULL</em>';
-		if (is_null($id))
-			$id = '<em>NULL</em>';
-		$msg = sprintf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname, $oldid, $id);
-		$recorder($msg, true);
-		echo $msg;
-	}
-	$id = $album->getID();
-	if (!$album->isDynamic()) {
-		$albums = $album->getAlbums();
-		foreach ($albums as $albumname) {
-			checkAlbumParentid($albumname, $id, $recorder);
+	function clonedFrom() {
+		if (PRIMARY_INSTALLATION) {
+			return false;
+		} else {
+			$zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER));
+			return dirname($zen);
 		}
 	}
-}
 
-function clonedFrom() {
-	if (PRIMARY_INSTALLATION) {
-		return false;
-	} else {
-		$zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER));
-		return dirname($zen);
+	function pickSource($obj) {
+		$params = '';
+		switch ($obj->table) {
+			case 'albums':
+				$params = 'pick[album]=' . $obj->getFileName();
+				break;
+			case 'images':
+				$params = 'pick[album]=' . $obj->album->getFileName() . '&pick[image]=' . $obj->getFileName();
+				break;
+			default:
+				$params = 'pick[' . $obj->table . ']=' . $obj->getTitleLink();
+				break;
+		}
+		return $params;
 	}
+
+	function linkPickerItem($obj, $id) {
+		?>
+	<input type="text" name="<?php echo $id; ?>" id="<?php echo $id; ?>" value="<?php echo $obj->getLink(); ?>" READONLY title="<?php echo gettext('You can also copy the link to your clipboard to paste elsewhere'); ?>" style="width:90%;" />
+	<?php
 }
 
-/**
- * Make sure the albumimagesort is only an allowed value. Otherwise returns nothing.
- * @global array $_zp_sortby
- * @param string $val
- * @return string
- */
-function checkAlbumimagesort($val) {
-  global $_zp_sortby;
-	$sortcheck = $_zp_sortby;
-	$sortcheck[gettext('Manual')] = 'manual';
-  foreach ($sortcheck as $sort) {
-    if ($val == $sort || $val == $sort . '_desc') {
-      return $val;
-    }
-  }
+function linkPickerPick($obj, $id = NULL, $extra = NULL) {
+	?>$.ajax({
+	type: 'POST',
+	cache: false,
+	data: '<?php echo addslashes(pickSource($obj)); ?>'<?php echo $extra; ?>,
+	url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/pickSource.php'
+	});	<?php
 }
 
-?>
+function linkPickerIcon($obj, $id = NULL, $extra = NULL) {
+	$iconid = uniqid();
+	if ($id) {
+		$clickid = "$('#$id').select();";
+	} else {
+		$clickid = '';
+	}
+	?>
+	<a onclick="<?php echo $clickid; ?>$('.pickedObject').removeClass('pickedObject');
+				$('#<?php echo $iconid; ?>').addClass('pickedObject');<?php linkPickerPick($obj, $id, $extra); ?>" title="<?php echo gettext('pick source'); ?>">
+		 <?php echo CLIPBOARD; ?>
+	</a>
+			 <?php
+		 }
+
+		 function tags_subtab($tabs) {
+			 if (zp_loggedin(TAGS_RIGHTS)) {
+				 $tabs['admin']['subtabs'][gettext('tags')] = 'admin-tags.php?page=admin&tab=tags';
+			 }
+			 return $tabs;
+		 }
+
+		 function backup_subtab($tabs) {
+			 $tabs['admin']['subtabs'][gettext('Backup')] = "/" . ZENFOLDER . '/utilities/backup_restore.php?tab=backup';
+			 return $tabs;
+		 }
+
+		 function refresh_subtabs($tabs) {
+			 global $_zp_loggedin;
+			 if ($_zp_loggedin & ADMIN_RIGHTS) {
+				 $tabs['admin']['subtabs'][gettext('Refresh database')] = '/' . ZENFOLDER . '/admin-refresh-metadata.php?tab=prune&XSRFToken=' . getXSRFToken('refresh');
+			 }
+
+			 if ($_zp_loggedin & MANAGE_ALL_ALBUM_RIGHTS) {
+				 $tabs['admin']['subtabs'][gettext('Refresh metadata')] = '/' . ZENFOLDER . '/admin-refresh-metadata.php?tab=refresh&XSRFToken=' . getXSRFToken('refresh');
+				 $tabs['admin']['subtabs'][gettext('Reset album thumbs')] = "/" . ZENFOLDER . '/utilities/reset_albumthumbs.php?tab=resetthumbs';
+			 }
+			 return $tabs;
+		 }
+		 ?>

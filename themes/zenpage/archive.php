@@ -7,11 +7,10 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 	</head>
 
 	<body>
@@ -23,31 +22,32 @@ if (!defined('WEBPATH'))
 				<h1><?php printGalleryTitle(); ?></h1>
 				<?php
 				if (getOption('Allow_search')) {
-					printSearchForm("", "search", "", gettext("Search"));
+					printSearchForm("", "search", "", gettext("Search gallery"));
 				}
 				?>
 			</div>
 
 
 			<div id="breadcrumb">
-				<h2><?php printGalleryIndexURL(' » '); ?><strong><?php echo gettext("Archive View"); ?></strong></h2>
+				<h2><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <strong><?php echo gettext("Archive View"); ?></strong>
+				</h2>
 			</div>
 
 			<div id="content">
 				<div id="content-left">
 					<div id="archive">
-						<h3><?php echo gettext('Gallery archive'); ?></h3>
+						<h3><?php echo gettext('Gallery'); ?></h3>
 						<?php printAllDates(); ?>
 						<hr />
-						<?php if (ZP_NEWS_ENABLED) { ?>
-							<h3><?php echo gettext('News archive'); ?></h3>
+						<?php if (extensionEnabled('zenpage') && getNumNews(true)) { ?>
+							<h3><?php echo NEWS_LABEL; ?></h3>
 							<?php printNewsArchive("archive"); ?>
 							<hr />
-      <?php } ?>
+						<?php } ?>
 
 						<h3><?php echo gettext('Popular Tags'); ?></h3>
 						<div id="tag_cloud">
-<?php printAllTagsAs('cloud', 'tags'); ?>
+							<?php printAllTagsAs('cloud', 'tags'); ?>
 						</div>
 					</div>
 				</div><!-- content left-->
@@ -55,11 +55,11 @@ if (!defined('WEBPATH'))
 
 
 				<div id="sidebar">
-<?php include("sidebar.php"); ?>
+					<?php include("sidebar.php"); ?>
 				</div><!-- sidebar -->
 
 				<div id="footer">
-<?php include("footer.php"); ?>
+					<?php include("footer.php"); ?>
 				</div>
 			</div><!-- content -->
 

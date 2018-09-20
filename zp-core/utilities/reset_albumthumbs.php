@@ -2,25 +2,14 @@
 /**
  * Use this utility to reset your album thumbnails to either "random" or from an ordered field query
  *
+ * @author Stephen Billard (sbillard)
+ *
  * @package admin
  */
 define('OFFSET_PATH', 3);
 
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
-
-$buttonlist[] = array(
-				'category'		 => gettext('Database'),
-				'enable'			 => true,
-				'button_text'	 => gettext('Reset album thumbs'),
-				'formname'		 => 'reset_albumthumbs.php',
-				'action'			 => 'utilities/reset_albumthumbs.php',
-				'icon'				 => 'images/reset.png',
-				'title'				 => gettext('Reset album thumbnails to either random or most recent'),
-				'alt'					 => '',
-				'hidden'			 => '',
-				'rights'			 => MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS
-);
 
 admin_securityChecks(MANAGE_ALL_ALBUM_RIGHTS, $return = currentRelativeURL());
 
@@ -29,11 +18,8 @@ if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
 }
 
 $buffer = '';
-$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Thumbs') => '');
-
-printAdminHeader('overview', 'thumbs');
+printAdminHeader('admin', 'thumbs');
 echo '</head>';
 ?>
 
@@ -42,10 +28,9 @@ echo '</head>';
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php printSubtabs(); ?>
+			<?php zp_apply_filter('admin_note', 'reste_thumbs', ''); ?>
+			<h1><?php echo (gettext('Reset your album thumbnails')); ?></h1>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'reste_thumbs', ''); ?>
-				<h1><?php echo (gettext('Reset your album thumbnails')); ?></h1>
 				<?php
 				if (isset($_REQUEST['thumbtype'])) {
 					$key = sanitize_numeric($_REQUEST['thumbtype'], 3);
@@ -75,11 +60,11 @@ echo '</head>';
 				}
 				?>
 				<form name="set_random" action="">
+					<input type="hidden" name="tab" value="resetthumbs">
 					<?php XSRFToken('reset_thumbs') ?>
 					<div class="buttons pad_button" id="set_all">
-						<button class="fixedwidth" type="submit"
-										title="<?php echo gettext("Sets all album thumbs to the selected criteria"); ?>">
-							<img src="<?php echo $webpath; ?>images/burst.png" alt="" />
+						<button class="fixedwidth" type="submit" title="<?php echo gettext("Sets all album thumbs to the selected criteria"); ?>">
+							<?php echo BURST_BLUE; ?>
 							<?php echo gettext("Set all albums to"); ?>
 						</button>
 						<select id="thumbtype" name="thumbtype">
@@ -88,14 +73,11 @@ echo '</head>';
 							?>
 						</select>
 					</div>
-					<br class="clearall" /> <br />
 				</form>
-				<br class="clearall" /> <br />
 			</div>
-		</div>
-	</div><!-- content -->
-</div><!-- main -->
-<?php printAdminFooter(); ?>
+		</div><!-- content -->
+		<?php printAdminFooter(); ?>
+	</div><!-- main -->
 </body>
 <?php echo "</html>"; ?>
 

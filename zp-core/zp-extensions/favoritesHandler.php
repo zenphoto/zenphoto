@@ -1,6 +1,6 @@
 <?php
 /**
- * Allows registered users to select and manage "favorite" Zenphoto objects.
+ * Allows registered users to select and manage "favorite" objects.
  * Currently just images & albums are supported.
  *
  * <b>Note:</b>
@@ -40,37 +40,35 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage favoriteshandler
+ *
+ * @package plugins/favoritesHandler
+ * @pluginCategory media
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');
-$plugin_author = "Stephen Billard (sbillard)";
-$plugin_category = gettext('Media');
 
-$option_interface = 'favoritesOptions';
+$option_interface = 'favoritesHandler';
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesHandler/favoritesClass.php');
 
-class favoritesOptions {
+class favoritesHandler {
 
 	function __construct() {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('favorites_multi', 0);
 			setOptionDefault('favorites_link', '_PAGE_/favorites');
-			gettext($str = 'My favorites');
-			setOptionDefault('favorites_title', getAllTranslations($str));
-			setOptionDefault('favorites_linktext', getAllTranslations($str));
-			gettext($str = 'The albums and images selected as favorites.');
-			setOptionDefault('favorites_desc', getAllTranslations($str));
-			gettext($str = 'Add favorite');
-			setOptionDefault('favorites_add_button', getAllTranslations($str));
-			gettext($str = 'Remove favorite');
-			setOptionDefault('favorites_remove_button', getAllTranslations($str));
+			setOptionDefault('favorites_title', getAllTranslations('My favorites'));
+			setOptionDefault('favorites_linktext', getAllTranslations('My favorites'));
+			setOptionDefault('favorites_desc', getAllTranslations('The albums and images selected as favorites.'));
+			setOptionDefault('favorites_add_button', getAllTranslations('Add favorite'));
+			setOptionDefault('favorites_remove_button', getAllTranslations('Remove favorite'));
 			setOptionDefault('favorites_album_sort_type', 'title');
 			setOptionDefault('favorites_image_sort_type', 'title');
 			setOptionDefault('favorites_album_sort_direction', '');
 			setOptionDefault('favorites_image_sort_direction', '');
+
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="favoritesHandler" WHERE `type`="favorites"';
+			query($sql);
 		}
 	}
 
@@ -86,44 +84,52 @@ class favoritesOptions {
 			$file = filesystemToInternal($file);
 			$list[$file] = str_replace('.php', '', $file);
 		}
-		$list = array_diff($list, standardScripts());
 
-		$options = array(gettext('Link text')			 => array('key'					 => 'favorites_linktext', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'multilingual' => true,
-										'order'				 => 2,
-										'desc'				 => gettext('The text for the link to the favorites page.')),
-						gettext('Multiple sets')	 => array('key'		 => 'favorites_multi', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 6,
-										'desc'	 => gettext('If enabled a user may have multiple (named) favorites.')),
-						gettext('Add button')			 => array('key'					 => 'favorites_add_button', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'multilingual' => true,
-										'order'				 => 6,
-										'desc'				 => gettext('Default text for the <em>add to favorites</em> button.')),
-						gettext('Remove button')	 => array('key'					 => 'favorites_remove_button', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'multilingual' => true,
-										'order'				 => 7,
-										'desc'				 => gettext('Default text for the <em>remove from favorites</em> button.')),
-						gettext('Title')					 => array('key'					 => 'favorites_title', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'multilingual' => true,
-										'order'				 => 3,
-										'desc'				 => gettext('The favorites page title text.')),
-						gettext('Description')		 => array('key'					 => 'favorites_desc', 'type'				 => OPTION_TYPE_TEXTAREA,
-										'multilingual' => true,
-										'order'				 => 5,
-										'desc'				 => gettext('The favorites page description text.')),
-						gettext('Sort albums by')	 => array('key'		 => 'favorites_albumsort', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 9,
-										'desc'	 => ''),
-						gettext('Sort images by')	 => array('key'		 => 'favorites_imagesort', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 10,
-										'desc'	 => '')
+		$text = gettext('If enabled a user may have multiple (named) favorites.');
+		$list = array_diff($list, standardScripts());
+		$all = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favoritesHandler" AND `subtype`>"" LIMIT 1');
+		if ($disable = !empty($all)) {
+			setOption('favorites_multi', 1);
+			$text .= '<br /><span class = "warningbox">' . gettext('Named favorites are present.') . '</span>';
+		}
+
+		$options = array(gettext('Link text') => array('key' => 'favorites_linktext', 'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => true,
+						'order' => 2,
+						'desc' => gettext('The text for the link to the favorites page.')),
+				gettext('Multiple sets') => array('key' => 'favorites_multi', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 6,
+						'disabled' => $disable,
+						'desc' => $text),
+				gettext('Add button') => array('key' => 'favorites_add_button', 'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => true,
+						'order' => 6,
+						'desc' => gettext('Default text for the <em>add to favorites</em> button.')),
+				gettext('Remove button') => array('key' => 'favorites_remove_button', 'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => true,
+						'order' => 7,
+						'desc' => gettext('Default text for the <em>remove from favorites</em> button.')),
+				gettext('Title') => array('key' => 'favorites_title', 'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => true,
+						'order' => 3,
+						'desc' => gettext('The favorites page title text.')),
+				gettext('Description') => array('key' => 'favorites_desc', 'type' => OPTION_TYPE_TEXTAREA,
+						'multilingual' => true,
+						'order' => 5,
+						'desc' => gettext('The favorites page description text.')),
+				gettext('Sort albums by') => array('key' => 'favorites_albumsort', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 9,
+						'desc' => ''),
+				gettext('Sort images by') => array('key' => 'favorites_imagesort', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 10,
+						'desc' => '')
 		);
 		if (!MOD_REWRITE) {
 			$options['note'] = array(
-							'key'		 => 'favorites_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 0,
-							'desc'	 => gettext('<p class="notebox">Favorites requires the <code>mod_rewrite</code> option be enabled.</p>')
+					'key' => 'favorites_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 0,
+					'desc' => gettext('<p class = "notebox">Favorites requires the <code>mod_rewrite</code> option be enabled.</p>')
 			);
 		}
 
@@ -131,14 +137,14 @@ class favoritesOptions {
 	}
 
 	function handleOption($option, $currentValue) {
-		$sort = array(gettext('Filename')	 => 'filename',
-						gettext('Custom')		 => 'custom',
-						gettext('Date')			 => 'date',
-						gettext('Title')		 => 'title',
-						gettext('ID')				 => 'id',
-						gettext('Filemtime') => 'mtime',
-						gettext('Owner')		 => 'owner',
-						gettext('Published') => 'show'
+		$sort = array(gettext('Filename') => 'filename',
+				gettext('Custom') => 'custom',
+				gettext('Date') => 'date',
+				gettext('Title') => 'title',
+				gettext('ID') => 'id',
+				gettext('Filemtime') => 'mtime',
+				gettext('Owner') => 'owner',
+				gettext('Published') => 'show'
 		);
 
 		switch ($option) {
@@ -165,10 +171,9 @@ class favoritesOptions {
 					?>
 					<label id="album_direction_div" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 						<?php echo gettext("Descending"); ?>
-						<input type="checkbox" name="album_sortdirection" value="1"
-						<?php
+						<input type="checkbox" name="album_sortdirection" value="1"<?php
 						if (getOption('favorites_album_sort_direction')) {
-							echo "CHECKED";
+							echo ' checked = "checked"';
 						};
 						?> />
 					</label>
@@ -201,7 +206,7 @@ class favoritesOptions {
 						<input type="checkbox" name="image_sortdirection" value="1"
 						<?php
 						if (getOption('favorites_image_sort_direction')) {
-							echo ' checked="checked"';
+							echo ' checked = "checked"';
 						}
 						?> />
 					</label>
@@ -240,27 +245,78 @@ class favoritesOptions {
 		return false;
 	}
 
+	static function showWatchers($html, $obj, $prefix) {
+		if (!trim($prefix, '-')) {
+			//	only on single item tabs
+			$watchers = favorites::getWatchers($obj);
+			$multi = false;
+			foreach ($watchers as $key => $aux) {
+				$array = getSerializedArray($aux);
+				if (array_key_exists(1, $array)) {
+					$multi = true;
+					break;
+				}
+			}
+			if (!empty($watchers)) {
+				?>
+				<tr>
+					<td>
+						<?php echo gettext('Users watching:'); ?>
+					</td>
+					<td class="top">
+						<?php
+						if ($multi) {
+							?>
+							<dl class="userlist">
+								<dh>
+									<dt><em><?php echo gettext('User'); ?></em></dt>
+									<dd><em><?php echo gettext('instance'); ?></em></dd>
+								</dh>
+								<?php favorites::listWatchers($obj, array('<dt>', '</dt><dd>', '</dd>')); ?>
+							</dl>
+							<?php
+						} else {
+							?>
+							<ul class="userlist">
+								<?php favorites::listWatchers($obj, array('<li>', '', '</li>')); ?>
+							</ul>
+							<?php
+						}
+						?>
+					</td>
+				</tr>
+				<?php
+			}
+		}
+		return $html;
+	}
+
+	static function toolbox($zf) {
+		printFavoritesURL(gettext('Favorites'), '<li>', '</li><li>', '</li>');
+		return $zf;
+	}
+
 }
 
-$_zp_conf_vars['special_pages']['favorites'] = array('define'	 => '_FAVORITES_', 'rewrite'	 => getOption('favorites_link'),
-				'option'	 => 'favorites_link', 'default'	 => '_PAGE_/favorites');
+$_zp_conf_vars['special_pages']['favorites'] = array('define' => '_FAVORITES_', 'rewrite' => getOption('favorites_link'),
+		'option' => 'favorites_link', 'default' => '_PAGE_/favorites');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%FAVORITES%', 'rewrite' => '_FAVORITES_');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/(.+)/([0-9]+)/?$',
-				'rule'		 => '%REWRITE% index.php?p=favorites&instance=$1&page=$2 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/([0-9]+)/?$',
-				'rule'		 => '%REWRITE% index.php?p=favorites&page=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/(.+)/?$',
-				'rule'		 => '%REWRITE% index.php?p=favorites&instance=$1 [L,QSA]');
-$_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%FAVORITES%/*$',
-				'rule'		 => '%REWRITE% index.php?p=favorites [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%FAVORITES%/(.+)/([0-9]+)/* $',
+		'rule' => '%REWRITE% index.php?p=favorites&instance=$1&page=$2 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%FAVORITES%/([0-9]+)/*$',
+		'rule' => '%REWRITE% index.php?p=favorites&page=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%FAVORITES%/(.+)/*$',
+		'rule' => '%REWRITE% index.php?p=favorites&instance=$1 [L,QSA]');
+$_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%FAVORITES%/*$',
+		'rule' => '%REWRITE% index.php?p=favorites [L,QSA]');
 
 if (OFFSET_PATH) {
-	zp_register_filter('edit_album_custom_data', 'favorites::showWatchers');
-	zp_register_filter('edit_image_custom_data', 'favorites::showWatchers');
+	zp_register_filter('edit_album_custom_data', 'favoritesHandler::showWatchers');
+	zp_register_filter('edit_image_custom_data', 'favoritesHandler::showWatchers');
 } else {
 	zp_register_filter('load_theme_script', 'favorites::loadScript');
 	zp_register_filter('checkPageValidity', 'favorites::pageCount');
-	zp_register_filter('admin_toolbox_global', 'favorites::toolbox', 21);
+	zp_register_filter('admin_toolbox_global', 'favoritesHandler::toolbox', 21);
 	if (zp_loggedin()) {
 		if (isset($_POST['addToFavorites'])) {
 			$___Favorites = new favorites($_zp_current_admin_obj->getUser());
@@ -271,7 +327,7 @@ if (OFFSET_PATH) {
 			$id = sanitize($_POST['id']);
 			switch ($_POST['type']) {
 				case 'images':
-					$img = newImage(NULL, array('folder' => dirname($id), 'filename' => basename($id)));
+					$img = newImage(array('folder' => dirname($id), 'filename' => basename($id)));
 					if ($_POST['addToFavorites']) {
 						if ($img->loaded) {
 							$___Favorites->addImage($img);
@@ -320,7 +376,7 @@ if (OFFSET_PATH) {
 				$multi = false;
 				$list = array($_myFavorites->instance);
 			} else {
-				if ($multi = getOption('favorites_multi')) {
+				if ($multi = $_myFavorites->multi) {
 					$list = $_myFavorites->list;
 				} else {
 					$list = array('');
@@ -332,7 +388,7 @@ if (OFFSET_PATH) {
 					<script type="text/javascript">
 						// <!-- <![CDATA[
 						var _favList = ['<?php echo implode("','", $favList); ?>'];
-						$(function() {
+						$(function () {
 							$('.favorite_instance').tagSuggest({tags: _favList})
 						});
 						// ]]> -->
@@ -377,7 +433,7 @@ if (OFFSET_PATH) {
 						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
 					break;
 				default:
-//We do not handle these.
+					//We do not handle these.
 					return;
 			}
 		}
@@ -394,25 +450,32 @@ if (OFFSET_PATH) {
 		 * @param type $text
 		 */
 		function printFavoritesURL($text = NULL, $before = NULL, $between = NULL, $after = NULL) {
-			global $_myFavorites;
+			global $_myFavorites, $_zp_gallery_page;
 			if (zp_loggedin()) {
 				if (is_null($text)) {
 					$text = get_language_string(getOption('favorites_linktext'));
 				}
-				$list = $_myFavorites->getList();
+				if ($_zp_gallery_page == 'favorites.php') {
+					$current = $_myFavorites->instance;
+				} else {
+					$current = NULL;
+				}
+
 				$betwixt = NULL;
 				echo $before;
-				foreach ($_myFavorites->getList()as $instance) {
-					$link = $_myFavorites->getLink(NULL, $instance);
-					$display = $text;
-					if ($instance) {
-						$display .= '[' . $instance . ']';
+				foreach ($_myFavorites->getList() as $instance) {
+					if ($instance !== $current) {
+						$link = $_myFavorites->getLink(NULL, $instance);
+						$display = $text;
+						if ($instance) {
+							$display .= '[' . $instance . ']';
+						}
+						echo $betwixt;
+						$betwixt = $between;
+						?>
+						<a href="<?php echo $link; ?>" class="favorite_link"><?php echo html_encode($display); ?> </a>
+						<?php
 					}
-					echo $betwixt;
-					$betwixt = $between;
-					?>
-					<a href="<?php echo $link; ?>" class="favorite_link"><?php echo html_encode($display); ?> </a>
-					<?php
 				}
 				echo $after;
 			}

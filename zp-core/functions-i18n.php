@@ -1,142 +1,138 @@
 <?php
-if(!defined('SITE_LOCALE')) {
-	if(function_exists('getOptionFromDB')) {
-		define('SITE_LOCALE', getOptionFromDB('locale'));
-	} else {
-		define('SITE_LOCALE', 'en_US');
-	}
-}
 
 /**
  * functions-i18n.php -- support functions for internationalization
+ *
+ * @author Stephen Billard (sbillard)
+ *
  * @package core
- * @subpackage functions\functions-i18n
  */
 // force UTF-8 Ø
+
 function getLanguageArray() {
 	return array(
-					'af'		 => gettext('Afrikaans'),
-					'sq_AL'	 => gettext('Albanian'),
-					'ar_AE'	 => gettext('Arabic (United Arab Emirates)'),
-					'ar_BH'	 => gettext('Arabic (Bahrain)'),
-					'ar_DZ'	 => gettext('Arabic (Algeria)'),
-					'ar_EG'	 => gettext('Arabic (Egypt)'),
-					'ar_IN'	 => gettext('Arabic (Iran)'),
-					'ar_IQ'	 => gettext('Arabic (Iraq)'),
-					'ar_JO'	 => gettext('Arabic (Jordan)'),
-					'ar_KW'	 => gettext('Arabic (Kuwait)'),
-					'ar_LB'	 => gettext('Arabic (Lebanon)'),
-					'ar_LY'	 => gettext('Arabic (Libya)'),
-					'ar_MA'	 => gettext('Arabic (Morocco)'),
-					'ar_OM'	 => gettext('Arabic (Oman)'),
-					'ar_QA'	 => gettext('Arabic (Qatar)'),
-					'ar_SA'	 => gettext('Arabic (Saudi Arabia)'),
-					'ar_SD'	 => gettext('Arabic (Sudan)'),
-					'ar_SY'	 => gettext('Arabic (Syria)'),
-					'ar_TN'	 => gettext('Arabic (Tunisia)'),
-					'ar_YE'	 => gettext('Arabic (Yemen)'),
-					'eu_ES'	 => gettext('Basque (Basque)'),
-					'be_BY'	 => gettext('Belarusian'),
-					'bn_BD'	 => gettext('Bengali'),
-					'bg_BG'	 => gettext('Bulgarian'),
-					'ca_ES'	 => gettext('Catalan'),
-					'zh_CN'	 => gettext('Chinese (People’s Republic of China)'),
-					'zh_HK'	 => gettext('Chinese (Hong Kong)'),
-					'zh_TW'	 => gettext('Chinese (Taiwan)'),
-					'hr_HR'	 => gettext('Croatian'),
-					'cs_CZ'	 => gettext('Czech'),
-					'km_KH'	 => gettext('Cambodian'),
-					'da_DK'	 => gettext('Danish'),
-					'nl_BE'	 => gettext('Dutch (Belgium)'),
-					'nl_NL'	 => gettext('Dutch (The Netherlands)'),
-					'en_AU'	 => gettext('English (Australia)'),
-					'en_CA'	 => gettext('English (Canada)'),
-					'en_GB'	 => gettext('English (United Kingdom)'),
-					'en_IN'	 => gettext('English (India)'),
-					'en_NZ'	 => gettext('English (New Zealand)'),
-					'en_PH'	 => gettext('English (Philippines)'),
-					'en_US'	 => gettext('English (United States)'),
-					'en_ZA'	 => gettext('English (South Africa)'),
-					'en_ZW'	 => gettext('English (Zimbabwe)'),
-					'eo'		 => gettext('Esperanto'),
-					'et_EE'	 => gettext('Estonian'),
-					'fi_FI'	 => gettext('Finnish'),
-					'fo_FO'	 => gettext('Faroese'),
-					'fr_BE'	 => gettext('French (Belgium)'),
-					'fr_CA'	 => gettext('French (Canada)'),
-					'fr_CH'	 => gettext('French (Switzerland)'),
-					'fr_FR'	 => gettext('French (France)'),
-					'fr_LU'	 => gettext('French (Luxembourg)'),
-					'gl_ES'	 => gettext('Galician'),
-					'gu_IN'	 => gettext('Gujarati'),
-					'el'		 => gettext('Greek'),
-					'de_AT'	 => gettext('German (Austria)'),
-					'de_BE'	 => gettext('German (Belgium)'),
-					'de_CH'	 => gettext('German (Switzerland)'),
-					'de_DE'	 => gettext('German (Germany)'),
-					'de_LU'	 => gettext('German (Luxembourg)'),
-					'he_IL'	 => gettext('Hebrew'),
-					'hi_IN'	 => gettext('Hindi'),
-					'hu_HU'	 => gettext('Hungarian'),
-					'id_ID'	 => gettext('Indonesian'),
-					'is_IS'	 => gettext('Icelandic'),
-					'it_CH'	 => gettext('Italian (Switzerland)'),
-					'it_IT'	 => gettext('Italian (Italy)'),
-					'ja_JP'	 => gettext('Japanese'),
-					'ko_KR'	 => gettext('Korean'),
-					'lt_LT'	 => gettext('Lithuanian'),
-					'lv_LV'	 => gettext('Latvian'),
-					'mk_MK'	 => gettext('Macedonian'),
-					'mn_MN'	 => gettext('Mongolian'),
-					'ms_MY'	 => gettext('Malay'),
-					'mg_MG'	 => gettext('Malagasy'),
-					'nb_NO'	 => gettext('Norwegian (Bokmål)'),
-					'no_NO'	 => gettext('Norwegian'),
-					'ni_ID'	 => gettext('Nias'),
-					'fa_IR'	 => gettext('Persian'),
-					'pl_PL'	 => gettext('Polish'),
-					'pt_BR'	 => gettext('Portuguese (Brazil)'),
-					'pt_PT'	 => gettext('Portuguese (Portugal)'),
-					'ro_RO'	 => gettext('Romanian'),
-					'ru_RU'	 => gettext('Russian (Russia)'),
-					'ru_UA'	 => gettext('Russian (Ukraine)'),
-					'si_LK'	 => gettext('Sinhala'),
-					'sk_SK'	 => gettext('Slovak'),
-					'sl_SI'	 => gettext('Slovenian'),
-					'es_AR'	 => gettext('Spanish (Argentina)'),
-					'es_BO'	 => gettext('Spanish (Bolivia)'),
-					'es_CL'	 => gettext('Spanish (Chile)'),
-					'es_CO'	 => gettext('Spanish (Columbia)'),
-					'es_CR'	 => gettext('Spanish (Costa Rica)'),
-					'es_DO'	 => gettext('Spanish (Dominican Republic)'),
-					'es_EC'	 => gettext('Spanish (Ecuador)'),
-					'es_ES'	 => gettext('Spanish (Spain)'),
-					'es_GT'	 => gettext('Spanish (Guatemala)'),
-					'es_HN'	 => gettext('Spanish (Honduras)'),
-					'es_MX'	 => gettext('Spanish (Mexico)'),
-					'es_NI'	 => gettext('Spanish (Nicaragua)'),
-					'es_PA'	 => gettext('Spanish (Panama)'),
-					'es_PE'	 => gettext('Spanish (Peru)'),
-					'es_PR'	 => gettext('Spanish (Puerto Rico)'),
-					'es_PY'	 => gettext('Spanish (Paraguay)'),
-					'es_SV'	 => gettext('Spanish (El Salvador)'),
-					'es_US'	 => gettext('Spanish (United States)'),
-					'es_UY'	 => gettext('Spanish (Uruguay)'),
-					'es_VE'	 => gettext('Spanish (Venezuela)'),
-					'es_LA'	 => gettext('Spanish (Latin America)'),
-					'sr_YU'	 => gettext('Serbian'),
-					'sr_RS'	 => gettext('Serbian'),
-					'sv_FI'	 => gettext('Swedish (Finland)'),
-					'sv_SE'	 => gettext('Swedish (Sweden)'),
-					'ta_IN'	 => gettext('Tamil'),
-					'te_IN'	 => gettext('Telugu'),
-					'th_TH'	 => gettext('Thai'),
-					'tr_TR'	 => gettext('Turkish'),
-					'uk_UA'	 => gettext('Ukrainian'),
-					'uz_UZ'	 => gettext('Uzbek'),
-					'ur_PK'	 => gettext('Urdu (Pakistan)'),
-					'vi_VN'	 => gettext('Vietnamese'),
-					'cy'		 => gettext('Welsh')
+			'af' => gettext('Afrikaans'),
+			'sq_AL' => gettext('Albanian'),
+			'ar_AE' => gettext('Arabic (United Arab Emirates)'),
+			'ar_BH' => gettext('Arabic (Bahrain)'),
+			'ar_DZ' => gettext('Arabic (Algeria)'),
+			'ar_EG' => gettext('Arabic (Egypt)'),
+			'ar_IN' => gettext('Arabic (Iran)'),
+			'ar_IQ' => gettext('Arabic (Iraq)'),
+			'ar_JO' => gettext('Arabic (Jordan)'),
+			'ar_KW' => gettext('Arabic (Kuwait)'),
+			'ar_LB' => gettext('Arabic (Lebanon)'),
+			'ar_LY' => gettext('Arabic (Libya)'),
+			'ar_MA' => gettext('Arabic (Morocco)'),
+			'ar_OM' => gettext('Arabic (Oman)'),
+			'ar_QA' => gettext('Arabic (Qatar)'),
+			'ar_SA' => gettext('Arabic (Saudi Arabia)'),
+			'ar_SD' => gettext('Arabic (Sudan)'),
+			'ar_SY' => gettext('Arabic (Syria)'),
+			'ar_TN' => gettext('Arabic (Tunisia)'),
+			'ar_YE' => gettext('Arabic (Yemen)'),
+			'eu_ES' => gettext('Basque (Basque)'),
+			'be_BY' => gettext('Belarusian'),
+			'bn_BD' => gettext('Bengali'),
+			'bg_BG' => gettext('Bulgarian'),
+			'ca_ES' => gettext('Catalan'),
+			'zh_CN' => gettext('Chinese (People’s Republic of China)'),
+			'zh_HK' => gettext('Chinese (Hong Kong)'),
+			'zh_TW' => gettext('Chinese (Taiwan)'),
+			'hr_HR' => gettext('Croatian'),
+			'cs_CZ' => gettext('Czech'),
+			'km_KH' => gettext('Cambodian'),
+			'da_DK' => gettext('Danish'),
+			'nl_BE' => gettext('Dutch (Belgium)'),
+			'nl_NL' => gettext('Dutch (The Netherlands)'),
+			'en_AU' => gettext('English (Australia)'),
+			'en_CA' => gettext('English (Canada)'),
+			'en_GB' => gettext('English (United Kingdom)'),
+			'en_IN' => gettext('English (India)'),
+			'en_NZ' => gettext('English (New Zealand)'),
+			'en_PH' => gettext('English (Philippines)'),
+			'en_US' => gettext('English (United States)'),
+			'en_ZA' => gettext('English (South Africa)'),
+			'en_ZW' => gettext('English (Zimbabwe)'),
+			'eo' => gettext('Esperanto'),
+			'et_EE' => gettext('Estonian'),
+			'fi_FI' => gettext('Finnish'),
+			'fo_FO' => gettext('Faroese'),
+			'fr_BE' => gettext('French (Belgium)'),
+			'fr_CA' => gettext('French (Canada)'),
+			'fr_CH' => gettext('French (Switzerland)'),
+			'fr_FR' => gettext('French (France)'),
+			'fr_LU' => gettext('French (Luxembourg)'),
+			'gl_ES' => gettext('Galician'),
+			'gu_IN' => gettext('Gujarati'),
+			'el' => gettext('Greek'),
+			'de_AT' => gettext('German (Austria)'),
+			'de_BE' => gettext('German (Belgium)'),
+			'de_CH' => gettext('German (Switzerland)'),
+			'de_DE' => gettext('German (Germany)'),
+			'de_LU' => gettext('German (Luxembourg)'),
+			'he_IL' => gettext('Hebrew'),
+			'hi_IN' => gettext('Hindi'),
+			'hu_HU' => gettext('Hungarian'),
+			'id_ID' => gettext('Indonesian'),
+			'is_IS' => gettext('Icelandic'),
+			'it_CH' => gettext('Italian (Switzerland)'),
+			'it_IT' => gettext('Italian (Italy)'),
+			'ja_JP' => gettext('Japanese'),
+			'ko_KR' => gettext('Korean'),
+			'lt_LT' => gettext('Lithuanian'),
+			'lv_LV' => gettext('Latvian'),
+			'mk_MK' => gettext('Macedonian'),
+			'mn_MN' => gettext('Mongolian'),
+			'ms_MY' => gettext('Malay'),
+			'mg_MG' => gettext('Malagasy'),
+			'nb_NO' => gettext('Norwegian (Bokmål)'),
+			'no_NO' => gettext('Norwegian'),
+			'ni_ID' => gettext('Nias'),
+			'fa_IR' => gettext('Persian'),
+			'pl_PL' => gettext('Polish'),
+			'pt_BR' => gettext('Portuguese (Brazil)'),
+			'pt_PT' => gettext('Portuguese (Portugal)'),
+			'ro_RO' => gettext('Romanian'),
+			'ru_RU' => gettext('Russian (Russia)'),
+			'ru_UA' => gettext('Russian (Ukraine)'),
+			'si_LK' => gettext('Sinhala'),
+			'sk_SK' => gettext('Slovak'),
+			'sl_SI' => gettext('Slovenian'),
+			'es_AR' => gettext('Spanish (Argentina)'),
+			'es_BO' => gettext('Spanish (Bolivia)'),
+			'es_CL' => gettext('Spanish (Chile)'),
+			'es_CO' => gettext('Spanish (Columbia)'),
+			'es_CR' => gettext('Spanish (Costa Rica)'),
+			'es_DO' => gettext('Spanish (Dominican Republic)'),
+			'es_EC' => gettext('Spanish (Ecuador)'),
+			'es_ES' => gettext('Spanish (Spain)'),
+			'es_GT' => gettext('Spanish (Guatemala)'),
+			'es_HN' => gettext('Spanish (Honduras)'),
+			'es_MX' => gettext('Spanish (Mexico)'),
+			'es_NI' => gettext('Spanish (Nicaragua)'),
+			'es_PA' => gettext('Spanish (Panama)'),
+			'es_PE' => gettext('Spanish (Peru)'),
+			'es_PR' => gettext('Spanish (Puerto Rico)'),
+			'es_PY' => gettext('Spanish (Paraguay)'),
+			'es_SV' => gettext('Spanish (El Salvador)'),
+			'es_US' => gettext('Spanish (United States)'),
+			'es_UY' => gettext('Spanish (Uruguay)'),
+			'es_VE' => gettext('Spanish (Venezuela)'),
+			'es_LA' => gettext('Spanish (Latin America)'),
+			'sr_YU' => gettext('Serbian'),
+			'sr_RS' => gettext('Serbian'),
+			'sv_FI' => gettext('Swedish (Finland)'),
+			'sv_SE' => gettext('Swedish (Sweden)'),
+			'ta_IN' => gettext('Tamil'),
+			'te_IN' => gettext('Telugu'),
+			'th_TH' => gettext('Thai'),
+			'tr_TR' => gettext('Turkish'),
+			'uk_UA' => gettext('Ukrainian'),
+			'uz_UZ' => gettext('Uzbek'),
+			'ur_PK' => gettext('Urdu (Pakistan)'),
+			'vi_VN' => gettext('Vietnamese'),
+			'cy' => gettext('Welsh')
 	);
 }
 
@@ -148,6 +144,7 @@ function getLanguageArray() {
  */
 function generateLanguageList($all = false) {
 	global $_zp_active_languages, $_zp_all_languages;
+	$disallow = getSerializedArray(getOption('locale_disallowed'));
 	if (is_null($_zp_all_languages)) {
 		$zp_languages = getLanguageArray();
 		$dir = @opendir(SERVERPATH . "/" . ZENFOLDER . "/locale/");
@@ -164,7 +161,7 @@ function generateLanguageList($all = false) {
 						$language = $dirname;
 					}
 					$_zp_all_languages[$language] = $dirname;
-					if (!getOption('disallow_' . $dirname)) {
+					if (!isset($disallow[$dirname])) {
 						$_zp_active_languages[$language] = $dirname;
 					}
 				}
@@ -179,16 +176,6 @@ function generateLanguageList($all = false) {
 	} else {
 		return $_zp_active_languages;
 	}
-}
-
-/**
- * Sets the locale, etc. to the zenphoto domain details.
- * Returns the result of setupCurrentLocale()
- *
- */
-function setMainDomain() {
-	$locale = getUserLocale();
-	return setupCurrentLocale($locale);
 }
 
 /**
@@ -263,19 +250,27 @@ function ngettext_pl($msgid1, $msgid2, $n, $plugin) {
  */
 function i18nSetLocale($locale) {
 	global $_zp_RTL_css;
-	$en1 = LOCAL_CHARSET;
-	$en2 = str_replace('ISO-', 'ISO', $en1);
+	$en2 = str_replace('ISO-', 'ISO', LOCAL_CHARSET);
 	$locale_hyphen = str_replace('_', '-', $locale);
 	$simple = explode('-', $locale_hyphen);
 	$try[$locale . '.UTF8'] = $locale . '.UTF8';
 	$try[$locale . '.UTF-8'] = $locale . '.UTF-8';
 	$try[$locale . '.@euro'] = $locale . '.@euro';
 	$try[$locale . '.' . $en2] = $locale . '.' . $en2;
-	$try[$locale . '.' . $en1] = $locale . '.' . $en1;
+	$try[$locale . '.' . LOCAL_CHARSET] = $locale . '.' . LOCAL_CHARSET;
 	$try[$locale] = $locale;
 	$try[$simple[0]] = $simple[0];
 	$try['NULL'] = NULL;
 	$rslt = setlocale(LC_ALL, $try);
+
+	@putenv("LC_ALL=$locale");
+	@putenv("LANG=$locale");
+	@putenv("LANGUAGE=$locale");
+
+	if (function_exists('T_setlocale')) { //	using php-gettext
+		T_setlocale(LC_ALL, $locale);
+	}
+
 	$_zp_RTL_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
 	if (DEBUG_LOCALE) {
 		debugLog("setlocale(" . implode(',', $try) . ") returned: $rslt");
@@ -286,7 +281,7 @@ function i18nSetLocale($locale) {
 /**
  * Sets the translation domain and type for optional theme or plugin based translations
  * @param $domaine If $type "plugin" or "theme" the file/folder name of the theme or plugin
- * @param $type NULL (Zenphoto main translation), "theme" or "plugin"
+ * @param $type NULL (main translation), "theme" or "plugin"
  */
 function setupDomain($domain = NULL, $type = NULL) {
 	global $_zp_active_languages, $_zp_all_languages;
@@ -325,18 +320,17 @@ function setupCurrentLocale($override = NULL) {
 	} else {
 		$locale = $override;
 	}
-	if (getOption('disallow_' . $locale)) {
+	$disallow = getSerializedArray(getOption('locale_disallowed'));
+	if (isset($disallow[$locale])) {
 		if (DEBUG_LOCALE)
 			debugLogBacktrace("setupCurrentLocale($override): $locale denied by option.");
 		$locale = getOption('locale');
-		if (empty($locale) || getOption('disallow_' . $locale)) {
+		if (empty($locale) || isset($disallow[$locale])) {
 			$languages = generateLanguageList();
 			$locale = array_shift($languages);
 		}
 	}
 	// gettext setup
-	@putenv("LANG=$locale"); // Windows ???
-	@putenv("LANGUAGE=$locale"); // Windows ???
 	$result = i18nSetLocale($locale);
 	if (!$result) {
 		if (isset($_REQUEST['locale']) || is_null($override)) { // and it was chosen via locale
@@ -413,6 +407,7 @@ function validateLocale($userlocale, $source) {
 		debugLog("validateLocale($userlocale,$source)");
 	$userlocale = strtoupper(str_replace('-', '_', $userlocale));
 	$languageSupport = generateLanguageList();
+
 	$locale = NULL;
 	if (!empty($userlocale)) {
 		foreach ($languageSupport as $key => $value) {
@@ -433,75 +428,98 @@ function validateLocale($userlocale, $source) {
 }
 
 /**
+ * Sets the locale, etc. to the domain details.
+ * Returns the result of setupCurrentLocale()
+ *
+ */
+function setMainDomain() {
+	global $_zp_current_admin_obj, $_zp_current_locale;
+	if (DEBUG_LOCALE)
+		debugLogBackTrace("setMainDomain()");
+
+	//	check url language for language
+	if (isset($_REQUEST['locale'])) {
+		$_zp_current_locale = validateLocale(sanitize($_REQUEST['locale']), (isset($_POST['locale'])) ? 'POST' : 'URI string');
+		if ($_zp_current_locale) {
+			zp_setCookie('dynamic_locale', $_zp_current_locale);
+		} else {
+			zp_clearCookie('dynamic_locale');
+		}
+		if (DEBUG_LOCALE)
+			debugLog("dynamic_locale from URL: " . sanitize($_REQUEST['locale']) . "=>$_zp_current_locale");
+	} else {
+		$matches = explode('.', @$_SERVER['HTTP_HOST']);
+		$_zp_current_locale = validateLocale($matches[0], 'HTTP_HOST');
+		if ($_zp_current_locale && zp_getCookie('dynamic_locale')) {
+			zp_clearCookie('dynamic_locale');
+		}
+		if (DEBUG_LOCALE)
+			debugLog("dynamic_locale from HTTP_HOST: " . sanitize($matches[0]) . "=>$_zp_current_locale");
+	}
+
+	//	check for a language cookie
+	if (!$_zp_current_locale) {
+		$_zp_current_locale = zp_getCookie('dynamic_locale');
+		if (DEBUG_LOCALE)
+			debugLog("locale from cookie: " . $_zp_current_locale . ';');
+	}
+
+	//	check if the user has a language selected
+	if (!$_zp_current_locale && is_object($_zp_current_admin_obj)) {
+		$_zp_current_locale = $_zp_current_admin_obj->getLanguage();
+		if (DEBUG_LOCALE)
+			debugLog("locale from user: " . $_zp_current_locale);
+	}
+
+	//	check the language option
+	if (!$_zp_current_locale) {
+		$_zp_current_locale = getOption('locale');
+		if (DEBUG_LOCALE)
+			debugLog("locale from option: " . $_zp_current_locale);
+	}
+
+	//check the HTTP accept lang
+	if (empty($_zp_current_locale)) { // if one is not set, see if there is a match from 'HTTP_ACCEPT_LANGUAGE'
+		$languageSupport = generateLanguageList();
+		$userLang = parseHttpAcceptLanguage();
+		foreach ($userLang as $lang) {
+			$l = strtoupper($lang['fullcode']);
+			$_zp_current_locale = validateLocale($l, 'HTTP Accept Language');
+			if ($_zp_current_locale)
+				break;
+		}
+	}
+
+	if (empty($_zp_current_locale)) {
+		// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
+		$languageSupport = generateLanguageList();
+		if (defined('BASE_LOCALE') && BASE_LOCALE) {
+			$loc = BASE_LOCALE;
+		} else {
+			$loc = 'en_US';
+		}
+		if (empty($languageSupport) || in_array($loc, $languageSupport)) {
+			$_zp_current_locale = $loc;
+		} else {
+			$_zp_current_locale = array_shift($languageSupport);
+		}
+		if (DEBUG_LOCALE)
+			debugLog("locale from language list: " . $_zp_current_locale);
+	} else {
+		setOption('locale', $_zp_current_locale, false);
+	}
+	if (DEBUG_LOCALE)
+		debugLog("getUserLocale Returning locale: " . $_zp_current_locale);
+	return setupCurrentLocale($_zp_current_locale);
+}
+
+/**
  * Returns a saved (or posted) locale. Posted locales are stored as a cookie.
  *
  * Sets the 'locale' option to the result (non-persistent)
  */
 function getUserLocale() {
-	global $_zp_current_admin_obj, $_zp_current_locale;
-	if (!$_zp_current_locale) {
-		if (DEBUG_LOCALE)
-			debugLogBackTrace("getUserLocale()");
-		if (isset($_REQUEST['locale'])) {
-			if (isset($_POST['locale'])) {
-				$_zp_current_locale = validateLocale(sanitize($_POST['locale']), 'POST');
-			} else {
-				$_zp_current_locale = validateLocale(sanitize($_GET['locale']), 'URI string');
-			}
-			if ($_zp_current_locale) {
-				zp_setCookie('dynamic_locale', $_zp_current_locale);
-			}
-			if (DEBUG_LOCALE)
-				debugLog("dynamic_locale from URL: " . sanitize($_REQUEST['locale']) . "=>$_zp_current_locale");
-		} else {
-			$matches = explode('.', @$_SERVER['HTTP_HOST']);
-			if ($_zp_current_locale = validateLocale($matches[0], 'HTTP_HOST')) {
-				zp_clearCookie('dynamic_locale');
-			}
-		}
-
-		if (!$_zp_current_locale && is_object($_zp_current_admin_obj)) {
-			$_zp_current_locale = $_zp_current_admin_obj->getLanguage();
-			if (DEBUG_LOCALE)
-				debugLog("locale from user: " . $_zp_current_locale);
-		}
-
-		if (!$_zp_current_locale) {
-			$localeOption = getOption('locale');
-			$_zp_current_locale = zp_getCookie('dynamic_locale');
-
-			if (DEBUG_LOCALE)
-				debugLog("locale from option: " . $localeOption . '; dynamic locale=' . $_zp_current_locale);
-			if (empty($localeOption) && empty($_zp_current_locale)) { // if one is not set, see if there is a match from 'HTTP_ACCEPT_LANGUAGE'
-				$languageSupport = generateLanguageList();
-				$userLang = parseHttpAcceptLanguage();
-				foreach ($userLang as $lang) {
-					$l = strtoupper($lang['fullcode']);
-					$_zp_current_locale = validateLocale($l, 'HTTP Accept Language');
-					if ($_zp_current_locale)
-						break;
-				}
-			} else {
-				if (empty($_zp_current_locale)) {
-					$_zp_current_locale = $localeOption;
-				}
-			}
-		}
-
-		if (empty($_zp_current_locale)) {
-			// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
-			$languageSupport = generateLanguageList();
-			if (in_array('en_US', $languageSupport)) {
-				$_zp_current_locale = 'en_US';
-			} else {
-				$_zp_current_locale = array_shift($languageSupport);
-			}
-		} else {
-			setOption('locale', $_zp_current_locale, false);
-		}
-		if (DEBUG_LOCALE)
-			debugLog("getUserLocale Returning locale: " . $_zp_current_locale);
-	}
+	global $_zp_current_locale;
 	return $_zp_current_locale;
 }
 
@@ -515,17 +533,16 @@ function getUserLocale() {
  */
 function get_language_string($dbstring, $locale = NULL) {
 	$strings = getSerializedArray($dbstring);
-	$actual_local = getOption('locale');
-	if (is_null($locale))
-		$locale = $actual_local;
-	if (isset($strings[$locale])) {
-		return $strings[$locale];
-	}
-	if (isset($strings[$actual_local])) {
-		return $strings[$actual_local];
-	}
-	if (isset($strings['en_US'])) {
-		return $strings['en_US'];
+	if (count($strings) > 1) {
+		if (!empty($locale) && isset($strings[$locale])) {
+			return $strings[$locale];
+		}
+		if (isset($strings[$locale = getOption('locale')])) {
+			return $strings[$locale];
+		}
+		if (isset($strings['en_US'])) {
+			return $strings['en_US'];
+		}
 	}
 	return array_shift($strings);
 }
@@ -595,6 +612,8 @@ function getAllTranslations($text) {
 	$entry_locale = getUserLocale();
 	$result = array('en_US' => $text);
 	$languages = generateLanguageList();
+	$key = array_search('en_US', $languages);
+	unset($languages[$key]);
 	foreach ($languages as $language) {
 		setupCurrentLocale($language);
 		$xlated = gettext($text);
@@ -603,61 +622,7 @@ function getAllTranslations($text) {
 		}
 	}
 	setupCurrentLocale($entry_locale);
-	if (count($result) == 1) {
-		return $text;
-	}
 	return serialize($result);
-}
-
-/**
- * creates an SEO language prefix list
- */
-function getLanguageSubdomains() {
-	$domains = array();
-	$langs = generateLanguageList();
-	$domains = array();
-	foreach ($langs as $value) {
-		$domains[substr($value, 0, 2)][] = $value;
-	}
-	$langs = array();
-	foreach ($domains as $simple => $full) {
-		if (count($full) > 1) {
-			foreach ($full as $loc) {
-				$langs[$loc] = $loc;
-			}
-		} else {
-			$langs[$full[0]] = $simple;
-		}
-	}
-	if (isset($langs[SITE_LOCALE])) {
-		$langs[SITE_LOCALE] = '';
-	}
-	return $langs;
-}
-
-/**
- * Returns a canonical language name string for the location
- *
- * @param string $loc the location. If NULL use the current cookie
- * @param string separator will be used between the major and qualifier parts, e.g. en_US
- *
- * @return string
- */
-function getLanguageText($loc = NULL, $separator = NULL) {
-	global $_locale_Subdomains;
-	if (is_null($loc)) {
-		$text = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
-	} else {
-		$text = @$_locale_Subdomains[$loc];
-		//en_US always is always empty here so so urls in dynamic locale or html_meta_tags are wrong (Quickfix)
-		if (empty($text)) {
-			$text = $loc;
-		}
-	}
-	if (!is_null($separator)) {
-		$text = str_replace('_', $separator, $text);
-	}
-	return $text;
 }
 
 if (function_exists('date_default_timezone_set')) { // insure a correct time zone
@@ -670,5 +635,4 @@ if (function_exists('date_default_timezone_set')) { // insure a correct time zon
 	}
 	unset($tz);
 }
-
-$_locale_Subdomains = getLanguageSubdomains();
+?>

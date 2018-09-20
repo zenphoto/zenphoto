@@ -6,28 +6,39 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+
+
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
-<?php jqm_loadScripts(); ?>
+		<?php jqm_loadScripts(); ?>
 	</head>
 
 	<body>
-<?php zp_apply_filter('theme_body_open'); ?>
+		<?php zp_apply_filter('theme_body_open'); ?>
 
 		<div data-role="page" id="mainpage">
 
-<?php jqm_printMainHeaderNav(); ?>
+			<?php jqm_printMainHeaderNav(); ?>
 
 			<div class="ui-content" role="main">
 				<div class="content-primary">
-					<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a> » <strong><strong><?php echo gettext("A password is required for the page you requested"); ?></strong></strong></h2>
+					<?php if (isset($hint)) {
+						?>
+						<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a>
+							<?php if (isset($hint)) {
+								?>» <strong><strong><?php echo gettext("A password is required for the page you requested"); ?></strong></strong>
+								<?php
+							}
+							?></h2>
+						<?php
+					}
+					?>
 
 					<div id="content-error">
 						<div class="errorbox">
-						<?php printPasswordForm('', true, false); ?>
+							<?php printPasswordForm(isset($hint) ? $hint : NULL, isset($show) ? $show : TRUE, false, isset($hint) ? WEBPATH : NULL); ?>
 						</div>
 						<?php
 						if (!zp_loggedin() && function_exists('printRegisterURL') && $_zp_gallery->isUnprotectedPage('register')) {
@@ -41,7 +52,7 @@ if (!defined('WEBPATH'))
 
 			</div><!-- /content -->
 			<?php jqm_printBacktoTopLink(); ?>
-<?php jqm_printFooterNav(); ?>
+			<?php jqm_printFooterNav(); ?>
 		</div><!-- /page -->
 
 		<?php zp_apply_filter('theme_body_close');

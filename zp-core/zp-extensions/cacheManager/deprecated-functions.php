@@ -3,59 +3,51 @@
 class cachemanager_internal_deprecations {
 
 	/**
-	 * @deprecated Zenphoto 1.6 - Use cacheManager::addCacheSize() instead
-	 * @since Zenphoto 1.5.1
+	 * @deprecated
+	 * @since 1.8.0.11
 	 */
-	static function addThemeCacheSize() {
-		deprecated_functions::notify(gettext('Use cacheManager::addCacheSize() instead'), E_USER_NOTICE);
+	static function addThemeCacheSize($owner, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects, $maxspace) {
+		deprecated_functions::notify(gettext('Use cacheManager::addCacheSize()'), E_USER_NOTICE);
+		cacheManager::addCacheSize($owner, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects, $maxspace);
 	}
 
 	/**
-	 * @deprecated Zenphoto 1.6 - Use cacheManager::addDefaultThumbSize()
-	 * @since Zenphoto 1.5.1
+	 * @deprecated
+	 * @since 1.8.0.11
 	 */
-	static function addThemeDefaultThumbSize() {
-		deprecated_functions::notify(gettext("Use cacheManager::addDefaultThumbSize()"), E_USER_NOTICE);
-	}
-
-	/**
-	 * @deprecated Zenphoto 1.6 - Use cacheManager::addDefaultSizedImageSize()
-	 * @since Zenphoto 1.5.1
-	 */
-	static function addThemeDefaultSizedImageSize() {
-		deprecated_functions::notify(gettext("Use cacheManager::addDefaultSizedImageSize()"), E_USER_NOTICE);
-	}
-
-	/**
-	 * @deprecated Zenphoto 1.6 - Use cacheManager::deleteCacheSizes()
-	 * @since Zenphoto 1.5.1
-	 */
-	static function deleteThemeCacheSizes() {
+	static function deleteThemeCacheSizes($owner) {
 		deprecated_functions::notify(gettext('Use cacheManager::deleteCacheSizes()'), E_USER_NOTICE);
+		cacheManager::deleteCacheSizes($owner);
 	}
 
-}
+	/**
+	 * Used to notify of legacy zenphoto cachemanager functions which are redundant in a properly implemented cache manager
+	 * @param string $what the "missing" function name
+	 */
+	static function generalDeprecation($method) {
+		$thumb = false;
+		switch ($method) {
+			case 'addDefaultThumbSize':
+			case 'addThemeDefaultThumbSize' :
+				$thumb = true;
+			case 'addDefaultSizedImageSize':
+			case 'addThemeDefaultSizedImageSize':
+				$bt = debug_backtrace();
 
-/**
- * @deprecated Zenphoto 1.6 - Use cacheManager::getTitle()
- * @since Zenphoto 1.5.1
- */
-function getTitle($table, $row) {
-	return cacheManager::getTitle($table, $row);
-}
+				if (isset($bt[1]['file'])) {
+					$whom = stripSuffix(basename($bt[1]['file']));
+					if (strtolower($whom) == 'themeoptions') {
+						$whom = basename(dirname($bt[1]['file']));
+					}
+				} else {
+					$whom = 'unknown';
+				}
+				deprecated_functions::notify_call($method, gettext('Use cacheManager::addCacheSize().'), E_USER_NOTICE);
+				cacheManager::addCacheSize($whom, NULL, NULL, NULL, NULL, NULL, NULL, NULL, $thumb);
+				break;
+			default:
+				trigger_error(sprintf(gettext('Call to undefined method cachemanager::%1$s()'), $method), E_USER_ERROR);
+		}
+	}
 
-/**
- * @deprecated Zenphoto 1.6 - Use cacheManager::recordMissing()
- * @since Zenphoto 1.5.1
- */
-function recordMissing($table, $row, $image) {
-	cacheManager::recordMissing($table, $row, $image);
-}
-
-/**
- * @deprecated Zenphoto 1.6 - Use cacheManager::updateCacheName()
- * @since Zenphoto 1.5.1
- */
-function updateCacheName($text, $target, $update) {
-	return cacheManager::updateCacheName($text, $target, $update);
 }

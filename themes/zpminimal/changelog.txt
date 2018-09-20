@@ -1,0 +1,14 @@
+Changelog
+--------------------
+1.4.4.3
+	Added support for zpDisqus
+	Added support for gSlideshow plugin (replaced slideshow.php)
+	Set reCaptcha theme to Clean
+1.4.4
+	Fixed character encoding due to change many versions ago...
+	Fixed undeclared variables that was throwing low level php warnings
+	Changed default to use colorbox when initially installed (caused confusion, go figure...)
+	Fixed ability to use colorbox links in search results (how this wasn't reported I don't know...)
+1.4.2.2
+	Removed built in theme social tools, replaced with support for AddThis plugin
+	Fixed low security risk of not encoding searchwords output in search.php

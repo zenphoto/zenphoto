@@ -15,19 +15,17 @@
  *
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage print-album-menu
+ * @package plugins/print_album_menu
+ * @pluginCategory theme
  */
 $plugin_description = gettext("Adds a theme function to print an album menu either as a nested list or as a dropdown menu.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
-$plugin_category = gettext('Media');
 
 $option_interface = 'print_album_menu';
 
 define('ALBUM_MENU_COUNT', getOption('print_album_menu_count'));
 define('ALBUM_MENU_SHOWSUBS', getOption('print_album_menu_showsubs'));
 
-$_recursion_limiter = array();
+$_zp_albums_visited_albumMenu = array();
 
 /**
  * Plugin option handling class
@@ -36,38 +34,32 @@ $_recursion_limiter = array();
 class print_album_menu {
 
 	function __construct() {
-		setOptionDefault('print_album_menu_showsubs', 0);
-		setOptionDefault('print_album_menu_count', 1);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('print_album_menu_showsubs', 0);
+			setOptionDefault('print_album_menu_count', 1);
+		}
 	}
 
 	function getOptionsSupported() {
-		global $_common_truncate_handler;
-		$options = array(gettext('"List" subalbum level') => array('key'		 => 'print_album_menu_showsubs', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 0,
-										'desc'	 => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> “List” option. Note: themes may override this default.')),
-						gettext('Show counts')					 => array('key'		 => 'print_album_menu_count', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('If checked, image and album counts will be included in the list. Note: Themes may override this option.')),
-						gettext('Truncate titles*')			 => array('key'			 => 'menu_truncate_string', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'disabled' => $_common_truncate_handler,
-										'order'		 => 6,
-										'desc'		 => gettext('Limit titles to this many characters. Zero means no limit.')),
-						gettext('Truncate indicator*')	 => array('key'			 => 'menu_truncate_indicator', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'disabled' => $_common_truncate_handler,
-										'order'		 => 7,
-										'desc'		 => gettext('Append this string to truncated titles.'))
+		$options = array(gettext('"List" subalbum level') => array('key' => 'print_album_menu_showsubs', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 0,
+						'desc' => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> “List” option. Note: themes may override this default.')),
+				gettext('Show counts') => array('key' => 'print_album_menu_count', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 1,
+						'desc' => gettext('If checked, image and album counts will be included in the list. Note: Themes may override this option.')),
+				gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 6,
+						'desc' => gettext('Limit titles to this many characters. Zero means no limit.')),
+				gettext('Truncate indicator*') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 7,
+						'desc' => gettext('Append this string to truncated titles.'))
 		);
-		if ($_common_truncate_handler) {
-			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => '<p class="notebox">' . $_common_truncate_handler . '</p>');
-		} else {
-			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'print_album_menu\');"><em>print_album_menu</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'menu_truncate_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options may be shared with other plugins.</p>'));
-		}
+
+		$options['note'] = array('key' => 'menu_truncate_note',
+				'type' => OPTION_TYPE_NOTE,
+				'order' => 8,
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> These options are shared among <em>menu_manager</em>, <em>print_album_menu</em>, and <em>zenpage</em>.</p>'));
+
 		return $options;
 	}
 
@@ -83,7 +75,7 @@ class print_album_menu {
  * that was included to remain compatiblility with older installs of this menu.
  *
  * Usage: add the following to the php page where you wish to use these menus:
- * enable this extension on the zenphoto admin plugins tab.
+ * enable this extension on the admin plugins tab.
  * Call the function printAlbumMenu() at the point where you want the menu to appear.
  *
  * @param string $option
@@ -108,7 +100,7 @@ class print_album_menu {
  */
 function printAlbumMenu($option, $showcount = NULL, $css_id = '', $css_class_topactive = '', $css_class = '', $css_class_active = '', $indexname = "Gallery Index", $showsubs = NULL, $firstimagelink = false, $keeptopactive = false) {
 	if ($option == "jump") {
-		printAlbumMenuJump($showcount, $indexname, $firstimagelink,$showsubs);
+		printAlbumMenuJump($showcount, $indexname, $firstimagelink, $showsubs);
 	} else {
 		printAlbumMenuList($option, $showcount, $css_id, $css_class_topactive, $css_class, $css_class_active, $indexname, $showsubs, $firstimagelink, $keeptopactive);
 	}
@@ -118,7 +110,7 @@ function printAlbumMenu($option, $showcount = NULL, $css_id = '', $css_class_top
  * Prints a nested html list of all albums context sensitive.
  *
  * Usage: add the following to the php page where you wish to use these menus:
- * enable this extension on the zenphoto admin plugins tab;
+ * enable this extension on the admin plugins tab;
  * Call the function printAlbumMenuList() at the point where you want the menu to appear.
  *
  * @param string $option
@@ -152,7 +144,7 @@ function printAlbumMenuList($option, $showcount = NULL, $css_id = '', $css_class
 	} else {
 		$currentfolder = $_zp_current_album->name;
 	}
-	
+
 	if (is_null($css_id)) {
 		$css_id = 'menu_albums';
 	}
@@ -165,10 +157,10 @@ function printAlbumMenuList($option, $showcount = NULL, $css_id = '', $css_class
 	if (is_null($css_class_active)) {
 		$css_class_active = 'menu-active';
 	}
-	
+
 	$startlist = $startlist && !($option == 'omit-top' || $option == 'list-sub');
 	if ($startlist)
-		echo '<ul id="'. $css_id . '">'."\n"; // top level list
+		echo '<ul id="' . $css_id . '">' . "\n"; // top level list
 		/*		 * ** Top level start with Index link  *** */
 	if ($option === "list" OR $option === "list-top") {
 		if (!empty($indexname)) {
@@ -204,19 +196,19 @@ function printAlbumMenuList($option, $showcount = NULL, $css_id = '', $css_class
  * @param int $limit truncation of display text
  */
 function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, $keeptopactive, $limit = NULL) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_recursion_limiter;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_zp_albums_visited_albumMenu;
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
 	if (is_null($showcount)) {
 		$showcount = ALBUM_MENU_COUNT;
- }
+	}
 	if (is_null($showsubs)) {
 		$showsubs = ALBUM_MENU_SHOWSUBS;
- }
+	}
 	if ($showsubs && !is_numeric($showsubs)) {
 		$showsubs = 9999999999;
- }
+	}
 	$pagelevel = count(explode('/', $folder));
 	$currenturalbumname = "";
 
@@ -230,13 +222,12 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 						);
 
 		if ($process && hasDynamicAlbumSuffix($album) && !is_dir(ALBUM_FOLDER_SERVERPATH . $album)) {
-			if (in_array($album, $_recursion_limiter))
+			if (in_array($album, $_zp_albums_visited_albumMenu))
 				$process = false; // skip already seen dynamic albums
 		}
-		$topalbum = '';
 		$albumobj = newAlbum($album, true);
 		$has_password = '';
-		if($albumobj->isProtected()) {
+		if ($albumobj->isProtected()) {
 			$has_password = ' has_password';
 		}
 		if ($level > 1 || ($option != 'omit-top')) { // listing current level album
@@ -294,10 +285,10 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 		if ($process) { // listing subalbums
 			$subalbums = $albumobj->getAlbums();
 			if (!empty($subalbums)) {
-				echo "\n".'<ul class="' . $css_class . '">'."\n";
-				array_push($_recursion_limiter, $album);
+				echo "\n" . '<ul class="' . $css_class . '">' . "\n";
+				array_push($_zp_albums_visited_albumMenu, $album);
 				printAlbumMenuListAlbum($subalbums, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, false, $limit);
-				array_pop($_recursion_limiter);
+				array_pop($_zp_albums_visited_albumMenu);
 				echo "\n</ul>\n";
 			}
 		}
@@ -312,77 +303,72 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
  * Is used by the wrapper function printAlbumMenu() if the options "jump" is choosen. For standalone use, too.
  *
  * Usage: add the following to the php page where you wish to use these menus:
- * enable this extension on the zenphoto admin plugins tab;
+ * enable this extension on the admin plugins tab;
  * Call the function printAlbumMenuJump() at the point where you want the menu to appear.
  *
  * @param string $option "count" for a image counter in brackets behind the album name, "" = for no image numbers
  * @param string $indexname insert the name (default "Gallery Index") how you want to call the link to the gallery index, insert "" if you don't use it, it is not printed then.
  * @param bool $firstimagelink If set to TRUE and if the album has images the link will point to page of the first image instead the album thumbnail page
  * @param string $css_class see printAlbumMenuList
-* @param bool $skipform If set to false this prints a full form option select list (default), if set to true it will only print the options
+ * @param bool $skipform If set to false this prints a full form option select list (default), if set to true it will only print the options
  */
 function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $firstimagelink = false, $showsubs = NULL, $skipform = false) {
 	global $_zp_gallery, $_zp_current_album, $_zp_gallery_page;
 	if (!is_null($_zp_current_album) || $_zp_gallery_page == 'album.php') {
 		$currentfolder = $_zp_current_album->name;
 	}
- if (is_null($showsubs)) {
+	if (is_null($showsubs)) {
 		$showsubs = ALBUM_MENU_SHOWSUBS;
- }
+	}
 	if ($showsubs && !is_numeric($showsubs)) {
 		$showsubs = 9999999999;
- }
- if(!$skipform) {
-	?>
-	<script type="text/javaScript">
-		// <!-- <![CDATA[
-		function gotoLink(form) {
-		var OptionIndex=form.ListBoxURL.selectedIndex;
-		parent.location = form.ListBoxURL.options[OptionIndex].value;
-		}
-		// ]]> -->
-	</script>
-	<form name="AutoListBox" action="#">
-		<p>
-			<select name="ListBoxURL" size="1" onchange="gotoLink(this.form);">
-				<?php
-				if (!empty($indexname)) {
-					$selected = checkSelectedAlbum("", "index");
-					?>
-					<option <?php echo $selected; ?> value="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php echo $indexname; ?></option>
+	}
+	$albums = getNestedAlbumList(null, $showsubs);
+
+	if (!$skipform) {
+		?>
+		<form name="AutoListBox" action="#">
+			<p>
+				<select name="ListBoxURL" size="1" onchange="zp_gotoLink(this.form);">
 					<?php
+					if (!empty($indexname)) {
+						$selected = checkSelectedAlbum("", "index");
+						?>
+						<option <?php echo $selected; ?> value="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php echo $indexname; ?></option>
+						<?php
+					}
 				}
-		}
-    $albums = getNestedAlbumList(null, $showsubs, false);
-    foreach($albums as $album) {
-      $albumobj = newAlbum($album['name'], true);
-      $count = '';
-      if ($option == "count") {
-        $numimages = $albumobj->getNumImages();
-        if($numimages != 0) {
-          $count = " (" . $numimages . ")";
-        } 
-      }
-      $sortorder = count($album['sort_order']);
-      $arrow = '';
-      if($sortorder > 1) {
-        for($c = 1; $c != $sortorder; $c++) {
-          $arrow .= '» '; 
-        }
-      }
-      $selected = checkSelectedAlbum($albumobj->name, "album");
-      if ($firstimagelink && $numimages != 0) {
-        $link = "<option $selected value='" . html_encode($albumobj->getImage(0)->getLink()) . "'>" . $arrow . getBare($albumobj->getTitle()) . $count . "</option>";
-      } else {
-        $link = "<option $selected value='" . html_encode($albumobj->getLink(1)) . "'>" . $arrow . getBare($albumobj->getTitle()) . $count . "</option>";
-      }
-      echo $link;
-    }
-if(!$skipform) {		?>
-			</select>
-		</p>
-	</form>
-	<?php
+
+				foreach ($albums as $album) {
+					$albumobj = newAlbum($album['name'], true);
+					$count = '';
+					if ($option == "count") {
+						$numimages = $albumobj->getNumImages();
+						if ($numimages != 0) {
+							$count = " (" . $numimages . ")";
+						}
+					}
+					$sortorder = count($album['sort_order']);
+					$arrow = '';
+					if ($sortorder > 1) {
+						for ($c = 1; $c != $sortorder; $c++) {
+							$arrow .= '» ';
+						}
+					}
+					$selected = checkSelectedAlbum($albumobj->name, "album");
+					if ($firstimagelink && $numimages != 0) {
+						$link = "<option $selected value='" . html_encode($albumobj->getImage(0)->getLink()) . "'>" . $arrow . getBare($albumobj->getTitle()) . $count . "</option>";
+					} else {
+						$link = "<option $selected value='" . html_encode($albumobj->getLink(1)) . "'>" . $arrow . getBare($albumobj->getTitle()) . $count . "</option>";
+					}
+					echo $link;
+				}
+				if (!$skipform) {
+					?>
+				</select>
+			</p>
+		</form>
+		<?php
 	}
 }
 

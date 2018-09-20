@@ -56,9 +56,9 @@
  * 	</li>
  * </ul>
  *
+ * @author Stephen Billard (sbillard)
  *
- * @package core
- * @subpackage classes\objects
+ * @package classes
  */
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
 
@@ -163,7 +163,7 @@ class feed {
 	 * @param string $cachefolder the sub-folder to clean
 	 */
 	function clearCache($cachefolder = NULL) {
-		removeDir(SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/' . strtolower($this->feed) . '/' . $cachefolder, true);
+		zpFunctions::removeDir(SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/' . strtolower($this->feed) . '/' . $cachefolder, true);
 	}
 
 	function __construct($options) {
@@ -208,7 +208,7 @@ class feed {
 				}
 				$this->catlink = $this->getCategory();
 				if (!empty($this->catlink)) {
-					$catobj = new ZenpageCategory($this->catlink);
+					$catobj = new Category($this->catlink);
 					$this->cattitle = $catobj->getTitle();
 					$this->newsoption = 'category';
 				} else {
@@ -233,8 +233,8 @@ class feed {
 	}
 
 	/**
-	 * Validates and gets the "lang" parameter option value 
-	 * 
+	 * Validates and gets the "lang" parameter option value
+	 *
 	 * @global array $_zp_active_languages
 	 * @return string
 	 */
@@ -250,8 +250,8 @@ class feed {
 	}
 
 	/**
-	 * Validates and gets the "sortdir" parameter option value 
-	 * 
+	 * Validates and gets the "sortdir" parameter option value
+	 *
 	 * @return bool
 	 */
 	protected function getSortdir() {
@@ -260,12 +260,12 @@ class feed {
 			return strtolower($this->options['sortdir']) != 'asc';
 		}
 		$this->options['sortdir'] = 'desc'; // make sure this is a valid default name
-		return true;
+		return TRUE;
 	}
 
 	/**
-	 * Validates and gets the "sortorder" parameter option value 
-	 * 
+	 * Validates and gets the "sortorder" parameter option value
+	 *
 	 * @return string
 	 */
 	protected function getSortorder() {
@@ -278,19 +278,21 @@ class feed {
 				$this->unsetOptions(array('sortorder'));
 			}
 		}
-		return null;
+		return NULL;
 	}
 
 	/**
 	 * Validates and gets the "type" parameter option value for comment feeds
-	 * 
+	 *
 	 * @return string
 	 */
 	protected function getCommentFeedType() {
 		$valid = false;
 		if (isset($this->options['type'])) {
-			$valid = array('albums', 'images', 'pages', 'news', 'all');
-			if (in_array($this->options['type'], $valid)) {
+			if ($this->options['type'] == 'image' || $this->options['type'] == 'album') {
+				$this->options['type'] = $this->options['type'] . 's'; //	some old feeds have the singular
+			}
+			if (in_array($this->options['type'], array('albums', 'images', 'pages', 'news', 'all'))) {
 				return $this->options['type'];
 			}
 		}
@@ -299,7 +301,7 @@ class feed {
 
 	/**
 	 * Validates and gets the "id" parameter option value for comments feeds of a specific item
-	 * 
+	 *
 	 * @return int
 	 */
 	protected function getID() {
@@ -314,7 +316,7 @@ class feed {
 			}
 		}
 		$this->unsetOptions(array('id'));
-		return '';
+		return NULL;
 	}
 
 	/**
@@ -330,12 +332,12 @@ class feed {
 			}
 		}
 		$this->unsetOptions(array($option));
-		return '';
+		return NULL;
 	}
 
 	/**
 	 * Validates and gets the "category" parameter option value
-	 * 
+	 *
 	 * @return int
 	 */
 	protected function getCategory() {
@@ -346,42 +348,7 @@ class feed {
 			}
 		}
 		$this->unsetOptions(array('category'));
-		return '';
-	}
-
-	/**
-	 * Helper function that gets the images size of the "size" get parameter
-	 *
-	 * @return string
-	 */
-	protected function getImageSize() {
-		if (isset($this->options['size'])) {
-			$imagesize = (int) $this->options['size'];
-		} else {
-			$imagesize = NULL;
-		}
-		if ($this->mode == 'albums') {
-			if (is_null($imagesize) || $imagesize > getOption($this->feed . '_imagesize_albums')) {
-				$imagesize = getOption($this->feed . '_imagesize_albums'); // un-cropped image size
-			}
-		} else {
-			if (is_null($imagesize) || $imagesize > getOption($this->feed . '_imagesize')) {
-				$imagesize = getOption($this->feed . '_imagesize'); // un-cropped image size
-			}
-		}
-		return $imagesize;
-	}
-
-	/**
-	 * Unsets certain option name indices from the $options property.
-	 * @param array $options Array of option (parameter) names to be unset
-	 */
-	protected function unsetOptions($options = null) {
-		if (!empty($options)) {
-			foreach ($options as $option) {
-				unset($this->options[$option]);
-			}
-		}
+		return NULL;
 	}
 
 	protected function getChannelTitleExtra() {
@@ -426,16 +393,51 @@ class feed {
 	}
 
 	/**
+	 * Helper function that gets the images size of the "size" get parameter
+	 *
+	 * @return string
+	 */
+	protected function getImageSize() {
+		if (isset($this->options['size'])) {
+			$imagesize = (int) $this->options['size'];
+		} else {
+			$imagesize = NULL;
+		}
+		if ($this->mode == 'albums') {
+			if (is_null($imagesize) || $imagesize > getOption($this->feed . '_imagesize_albums')) {
+				$imagesize = getOption($this->feed . '_imagesize_albums'); // un-cropped image size
+			}
+		} else {
+			if (is_null($imagesize) || $imagesize > getOption($this->feed . '_imagesize')) {
+				$imagesize = getOption($this->feed . '_imagesize'); // un-cropped image size
+			}
+		}
+		return $imagesize;
+	}
+
+	/**
+	 * Unsets certain option name indices from the $options property.
+	 * @param array $options Array of option (parameter) names to be unset
+	 */
+	protected function unsetOptions($options = null) {
+		if (!empty($options)) {
+			foreach ($options as $option) {
+				unset($this->options[$option]);
+			}
+		}
+	}
+
+	/**
 	 * Gets the feed items
 	 *
 	 * @return array
 	 */
 	public function getitems() {
-		global $_zp_zenpage;
+		global $_zp_CMS;
 		switch ($this->feedtype) {
 			case 'gallery':
 				if ($this->mode == "albums") {
-					$items = getAlbumStatistic($this->itemnumber, $this->sortorder, $this->albumfolder, $this->sortdirection);
+					$items = getAlbumStatistic($this->itemnumber, $this->sortorder, $this->albumfolder, 0, $this->sortdirection);
 				} else {
 					$items = getImageStatistic($this->itemnumber, $this->sortorder, $this->albumfolder, $this->collection, 0, $this->sortdirection);
 				}
@@ -464,7 +466,7 @@ class feed {
 				if ($this->sortorder) {
 					$items = getZenpageStatistic($this->itemnumber, 'pages', $this->sortorder, $this->sortdirection);
 				} else {
-					$items = $_zp_zenpage->getPages(NULL, false, $this->itemnumber);
+					$items = $_zp_CMS->getPages(NULL, false, $this->itemnumber);
 				}
 				break;
 			case 'comments':
@@ -472,10 +474,10 @@ class feed {
 					case 'gallery':
 						$items = getLatestComments($this->itemnumber, 'all');
 						break;
-					case 'album':
+					case 'albums':
 						$items = getLatestComments($this->itemnumber, 'album', $this->id);
 						break;
-					case 'image':
+					case 'images':
 						$items = getLatestComments($this->itemnumber, 'image', $this->id);
 						break;
 					case 'zenpage':
@@ -502,8 +504,8 @@ class feed {
 		if (isset($items)) {
 			return $items;
 		}
-		if (TEST_RELEASE) {
-			trigger_error(gettext('Bad ' . $this->feed . ' feed respectively no items available:' . $this->feedtype), E_USER_WARNING);
+		if (DEBUG_FEED) {
+			debugLogBacktrace(gettext('Bad ' . $this->feed . ' feed:' . $this->feedtype . (isset($type) ? '»' . $type : '')), E_USER_WARNING);
 		}
 		return NULL;
 	}
@@ -515,7 +517,7 @@ class feed {
 	 * @return array
 	 */
 	protected function getitemPages($item, $len) {
-		$obj = new ZenpagePage($item['titlelink']);
+		$obj = newPage($item['titlelink']);
 		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
 		$feeditem['link'] = $obj->getLink();
 		$desc = $obj->getContent($this->locale);
@@ -526,7 +528,7 @@ class feed {
 		$feeditem['category'] = '';
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
-		$feeditem['pubdate'] = date("r", strtotime($obj->getDatetime()));
+		$feeditem['pubdate'] = date("r", strtotime($obj->getPublishDate()));
 		return $feeditem;
 	}
 
@@ -546,7 +548,7 @@ class feed {
 		switch ($item['type']) {
 			case 'images':
 				$title = get_language_string($item['title']);
-				$obj = newImage(NULL, array('folder' => $item['folder'], 'filename' => $item['filename']));
+				$obj = newImage(array('folder' => $item['folder'], 'filename' => $item['filename']));
 				$link = $obj->getlink();
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$category = get_language_string($item['albumtitle']);
@@ -565,16 +567,15 @@ class feed {
 			case 'news':
 			case 'pages':
 				if (extensionEnabled('zenpage')) {
-					$album = '';
 					$feeditem['pubdate'] = date("r", strtotime($item['date']));
 					$category = '';
 					$title = get_language_string($item['title']);
 					$titlelink = $item['titlelink'];
 					$website = $item['website'];
 					if ($item['type'] == 'news') {
-						$obj = new ZenpageNews($titlelink);
+						$obj = newArticle($titlelink);
 					} else {
-						$obj = new ZenpagePage($titlelink);
+						$obj = newPage($titlelink);
 					}
 					$commentpath = PROTOCOL . '://' . $this->host . html_encode($obj->getLink()) . "#" . $item['id'];
 				} else {
@@ -590,10 +591,10 @@ class feed {
 	}
 
 	static protected function feed404() {
-		header("HTTP/1.0 404 Not Found");
-		header("Status: 404 Not Found");
 		include(SERVERPATH . '/' . ZENFOLDER . '/404.php');
 		exitZP();
 	}
 
 }
+
+?>

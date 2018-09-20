@@ -2,19 +2,24 @@
 /**
  * Check for use of deprecated functions
  * @author Stephen Billard (sbillard)
- * @package plugins
+ * @package plugins/deprecated-functions
  */
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(dirname(__FILE__) . '/functions.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 $path = '';
 $selected = 0;
 if (isset($_GET['action'])) {
 	XSRFdefender('deprecated');
-	$zplist = getSerializedArray(getOption('Zenphoto_theme_list'));
+	$zplist = array();
+	foreach ($_zp_gallery->getThemes() as $theme => $data) {
+		if (protectedTheme($theme)) {
+			$zplist[] = $theme;
+		}
+	}
 	$deprecated = new deprecated_functions();
 	$list = array();
 	foreach ($deprecated->listed_functions as $details) {
@@ -26,9 +31,7 @@ if (isset($_GET['action'])) {
 	$report = array();
 	$selected = sanitize_numeric($_POST['target']);
 }
-
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Deprecated') => '');
-printAdminHeader('overview', 'deprecated');
+printAdminHeader('development', 'deprecated');
 ?>
 <?php
 echo '</head>' . "\n";
@@ -38,10 +41,10 @@ echo '</head>' . "\n";
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php printSubtabs(); ?>
+			<?php zp_apply_filter('admin_note', 'development', ''); ?>
+			<h1><?php echo gettext("Locate calls on deprecated functions."); ?></h1>
 			<div id="tab_deprecated" class="tabbox">
-				<h1><?php echo gettext("Locate calls on deprecated functions."); ?></h1>
-				<form action="?action=search" method="post">
+				<form action="?action=search&tab=checkdeprecated" method="post">
 					<?php XSRFToken('deprecated'); ?>
 					<select name="target">
 						<option value=1<?php if ($selected <= 1) echo ' selected="selected"'; ?>>
@@ -54,7 +57,7 @@ echo '</head>' . "\n";
 						if (TEST_RELEASE) {
 							?>
 							<option value=3<?php if ($selected == 3) echo ' selected="selected"'; ?>>
-								<?php echo gettext('In Zenphoto code'); ?>
+								<?php echo gettext('In netPhotoGraphics code'); ?>
 							</option>
 							<?php
 						}
@@ -63,14 +66,14 @@ echo '</head>' . "\n";
 							<?php echo gettext('In Codeblocks'); ?>
 						</option>
 					</select>
-					<br class="clearall" /><br />
+					<br class="clearall"><br />
 					<span class="buttons">
-						<button type="submit" title="<?php echo gettext("Search"); ?>" onclick="$('#outerbox').html('');" ><img src="../../images/magnify.png" alt="" /><strong><?php echo gettext("Search"); ?></strong></button>
+						<button type="submit" title="<?php echo gettext("Search"); ?>" onclick="$('#outerbox').html('');" ><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/magnify.png" alt="" /><strong><?php echo gettext("Search"); ?></strong></button>
 					</span>
 					<span id="progress"></span>
 				</form>
 
-				<br class="clearall" />
+				<br class="clearall">
 				<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> This search will have false positives for instance when the function name appears in a comment or quoted string. Functions flagged with an "*" are class methods. Ones flagged "+" have deprecated parameters.'); ?></p>
 				<?php
 				if (isset($_GET['action'])) {
@@ -83,15 +86,49 @@ echo '</head>' . "\n";
 								listUses(getPHPFiles($path, $zplist), $path, $pattern);
 								break;
 							case '2':
+								$zplist = array();
+								$paths = getPluginFiles('*.php');
+								foreach ($paths as $plugin => $path) {
+									if (strpos($path, USER_PLUGIN_FOLDER) !== false) {
+										if (distributedPlugin($plugin)) {
+											$zplist[] = stripSuffix(str_replace(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/', '', $path));
+										}
+									}
+								}
 								$path = SERVERPATH . '/' . USER_PLUGIN_FOLDER;
-								listUses(getPHPFiles($path, array()), $path, $pattern);
+								listUses(getPHPFiles($path, $zplist), $path, $pattern);
 								break;
 							case '3':
+								$paths = getPluginFiles('*.php');
+								foreach ($paths as $plugin => $path) {
+									if (strpos($path, USER_PLUGIN_FOLDER) == false) {
+										unset($paths[$plugin]);
+									} else {
+										if (distributedPlugin($plugin)) {
+											unset($paths[$plugin]);
+										}
+									}
+								}
+								$userfiles = array();
+								foreach ($paths as $path) {
+									$userfiles[] = stripSuffix(basename($path));
+								}
+
 								$path = SERVERPATH . '/' . ZENFOLDER;
-								listUses(getPHPFiles($path, array()), $path, $pattern);
+								echo "<em><strong>" . ZENFOLDER . "</strong></em><br />\n";
+								if (listUses(getPHPFiles($path, array()), $path, $pattern)) {
+									echo '<br />';
+								}
+								$path = SERVERPATH . '/' . USER_PLUGIN_FOLDER;
+								echo "<em><strong>" . USER_PLUGIN_FOLDER . "</strong></em><br />\n";
+								if (listUses(getPHPFiles($path, $userfiles), $path, $pattern)) {
+									echo '<br />';
+								}
+								echo "<em><strong>" . THEMEFOLDER . "</strong></em><br /><br />\n";
 								foreach ($zplist as $theme) {
 									$path = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme;
-									$output || listUses(getPHPFiles($path, array()), SERVERPATH, $pattern);
+									echo "<em>" . $theme . "</em><br />\n";
+									listUses(getPHPFiles($path, array()), $path, $pattern);
 								}
 								break;
 							case 4:
@@ -105,6 +142,7 @@ echo '</head>' . "\n";
 				?>
 			</div>
 		</div>
+		<?php printAdminFooter(); ?>
 	</div>
 </body>
 </html>

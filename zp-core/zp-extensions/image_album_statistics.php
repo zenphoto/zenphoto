@@ -5,20 +5,19 @@
  *
  * Supports such statistics as "most popular", "latest", "top rated", etc.
  *
- * <b>CAUTION:</b> The way to get a specific album has changed. You now have to pass the foldername of an album instead the album title.
+ * <b>CAUTION:</b> The way to get a specific album has changed. You now have to pass
+ * the foldername of an album instead the album title.
  *
- * @author Malte Müller (acrylian), Stephen Billard (sbillard), gjr
- * @package plugins
- * @subpackage image-album-statistiscs
+ * @author Malte Müller (acrylian), Stephen Billard (sbillard)
+ * @package plugins/image_album_statistics
+ * @pluginCategory theme
  */
 $plugin_description = gettext("Functions that provide various statistics about images and albums in the gallery.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), gjr";
-$plugin_category = gettext('Statistics');
 
 require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
 
 /**
- * Returns a array of album objects of album statistic accordingly to $option
+ * Returns an array of album objects accordingly to $option
  *
  * @param int $number the number of albums to get
  * @param string $option
@@ -31,112 +30,110 @@ require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
  * 		"toprated" for the best voted
  * 		"latestupdated" for the latest updated
  * 		"random" for random order (yes, strictly no statistical order...)
- * @param string $albumfolder The name of an album to get only the statistc for its direct subalbums
+ * @param string $albumfolder The name of an album to get only the statistc for its subalbums
  * @param integer $threshold the minimum number of ratings (for rating options) or hits (for popular option) an album must have to be included in the list. (Default 0)
+ * @param mixed $sortdirection "asc" for ascending order otherwise order is descending
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics to include all subalbum levels
  * @return array
  */
 function getAlbumStatistic($number = 5, $option, $albumfolder = '', $threshold = 0, $sortdirection = 'desc', $collection = false) {
-  global $_zp_gallery;
-  if ($albumfolder) {
-    $obj = newAlbum($albumfolder);
-    $albumWhere = ' WHERE parentid = ' . $obj->getID();
-    if ($collection) {
-      $albumWhere = '';
-      $ids = getAllSubAlbumIDs($albumfolder);
-      if (!empty($ids)) {
-        foreach ($ids as $id) {
-          $getids[] = $id['id'];
-        }
-        $getids = implode(', ', $getids);
-        $albumWhere = ' WHERE id IN (' . $getids . ')';
-      } else {
-        $albumWhere = ' WHERE parentid = ' . $obj->getID();
-      }
-    }
-  } else {
-    $obj = $_zp_gallery;
-    $albumWhere = '';
-  }
-  switch (strtolower($sortdirection)) {
-    case 'desc':
-    default:
-      $sortdir = 'DESC';
-      break;
-    case 'asc':
-      $sortdir = 'ASC';
-      break;
-  }
-  if (($option == 'toprated' || $option == 'mostrated' || $option == 'popular') && $threshold > 0) {
-    if (empty($albumWhere)) {
-      $albumWhere = ' WHERE ';
-    } else {
-      $albumWhere .= ' AND ';
-    }
-    if (($option == 'toprated' || $option == 'mostrated') && $threshold > 0) {
-      $albumWhere .= 'total_votes >= ' . $threshold;
-    }
-    if ($option == 'popular' && $threshold > 0) {
-      $albumWhere .= 'hitcounter >= ' . $threshold;
-    }
-  }
-  switch ($option) {
-    case "popular":
-      $sortorder = "hitcounter";
-      break;
-    default:
-    case "latest":
-      $sortorder = "id";
-      break;
-    case "latest-mtime":
-      $sortorder = "mtime";
-      break;
-    case "latest-date":
-      $sortorder = "date";
-      break;
-    case "latest-publishdate":
-      $sortorder = "IFNULL(publishdate,date)";
-      break;
-    case "mostrated":
-      $sortorder = "total_votes";
-      break;
-    case "toprated":
-      $sortorder = "(total_value/total_votes) DESC, total_value";
-      break;
-    case "latestupdated":
-      $sortorder = 'updateddate';
-      break;
-    case "random":
-      $sortorder = "RAND()";
-      break;
-  }
-  $albumArray = array();
-  if ($obj->table == 'albums' && $obj->isDynamic()) {
-    $albums = $obj->getAlbums(0, $sortorder, $sortdir);
-    foreach ($albums as $album) {
-      $album = newAlbum($album);
-      if ($album->checkAccess() && ($album->getShow() || zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))) {
-        $albumArray[] = $album;
-        if (count($albumArray) >= $number) { // got enough
-          break;
-        }
-      }
-    }
-  } else {
-    $result = query("SELECT id, title, folder, thumb FROM " . prefix('albums') . $albumWhere . " ORDER BY " . $sortorder . " " . $sortdir);
-    while ($row = db_fetch_assoc($result)) {
-      $album = newAlbum($row['folder'], true, true);
-      if ($album->exists && $album->checkAccess() && ($album->getShow() || zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))) {
-        //actually we only use "folder" but keep for backward compatibility in case someone uses those for now …
-        $albumArray[] = $album;
-        if (count($albumArray) >= $number) { // got enough
-          break;
-        }
-      }
-    }
-    db_free_result($result);
-  }
-  return $albumArray;
+	global $_zp_gallery;
+	$where = '';
+	if ($albumfolder) {
+		$obj = newAlbum($albumfolder);
+		$where = ' WHERE parentid = ' . $obj->getID();
+		if ($collection) {
+			$ids = getAllSubAlbumIDs($albumfolder);
+			if (!empty($ids)) {
+				foreach ($ids as $id) {
+					$getids[] = $id['id'];
+				}
+				$getids = implode(', ', $getids);
+				$where = ' WHERE id IN (' . $getids . ')';
+			}
+		}
+	} else {
+		$obj = $_zp_gallery;
+	}
+	switch (strtolower($sortdirection)) {
+		case false:
+		case 'asc':
+			$sortdir = ' ASC';
+			break;
+		default:
+			$sortdir = ' DESC';
+	}
+
+	$opt = '';
+	switch ($option) {
+		case "popular":
+			$sortorder = "hitcounter";
+			$opt = 'hitcounter >= ' . $threshold;
+			break;
+		default:
+		case "latest":
+			$sortorder = "id";
+			break;
+		case "latest-mtime":
+			$sortorder = "mtime";
+			break;
+		case "latest-date":
+			$sortorder = "date";
+			break;
+		case "latest-publishdate":
+			$sortorder = "IFNULL(publishdate,date)";
+			break;
+		case "mostrated":
+			$sortorder = "total_votes";
+			break;
+		case "toprated":
+			$sortorder = "(total_value/total_votes) DESC, total_value";
+			$opt = 'total_votes >= ' . $threshold;
+			break;
+		case "latestupdated":
+			$sortorder = 'updateddate';
+			break;
+		case "random":
+			$sortorder = "RAND()";
+			break;
+	}
+	if ($opt) {
+		if ($where) {
+			$where .= ' AND ' . $opt;
+		} else {
+			$where = ' WHERE ' . $opt;
+		}
+	}
+	$albums = array();
+	if ($albumfolder && $obj->isDynamic()) {
+		$albums = $obj->getAlbums(0, $sortorder, $sortdir);
+		foreach ($albums as $album) {
+			$album = newAlbum($album);
+			if ($album->checkAccess()) {
+				$albums[] = $album;
+				if (count($albums) >= $number) { // got enough
+					break;
+				}
+			}
+		}
+	} else {
+		$result = query('SELECT id, title, folder, thumb FROM ' . prefix('albums') . $where . ' ORDER BY ' . $sortorder . $sortdir);
+		if ($result) {
+			while ($row = db_fetch_assoc($result)) {
+				if (empty($albumfolder) || strpos($row['folder'], $albumfolder) === 0) {
+					$obj = newAlbum($row['folder'], true);
+					if ($obj->exists && $obj->checkAccess()) {
+						$albums[] = newAlbum($row['folder']);
+						if (count($albums) >= $number) { // got enough
+							break;
+						}
+					}
+				}
+			}
+			db_free_result($result);
+		}
+	}
+	return $albums;
 }
 
 /**
@@ -182,7 +179,7 @@ function printAlbumStatistic($number, $option, $showtitle = false, $showdate = f
  * A helper function that only prints a item of the loop within printAlbumStatistic()
  * Not for standalone use.
  *
- * @param array $album the array with album objects that getAlbumsStatistic() submitted
+ * @param array $tempalbum object
  * @param string $option
  * 		"popular" for the most popular albums,
  * 		"latest" for the latest uploaded by id (Discovery)
@@ -224,7 +221,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 			$crop = (int) $crop && true;
 		}
 	}
-	$tempalbum = $album;
+
 	if ($firstimglink && $tempimage = $tempalbum->getImage(0)) {
 		$albumpath = $tempimage->getLink();
 	} else {
@@ -235,20 +232,19 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 	switch ($crop) {
 		case 0:
 			$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $albumthumb);
-			echo '<img src="' . html_encode(pathurlencode($albumthumb->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" /></a>' . "\n";
+			echo '<img src="' . pathurlencode($albumthumb->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" /></a>' . "\n";
 			break;
 		case 1;
-    if(isImagePhoto($albumthumb)) {
-      $sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $albumthumb);
-    } else {
-      $sizes[0] = $width;
-      $sizes[1] = $height;
-    }
-			echo '<img src="' . html_encode(pathurlencode($albumthumb->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" /></a>' . "\n";
+			if (isImagePhoto($albumthumb)) {
+				$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $albumthumb);
+			} else {
+				$sizes = array($width, $height);
+			}
+			echo '<img src="' . pathurlencode($albumthumb->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" /></a>' . "\n";
 			break;
 		case 2:
 			$sizes = getSizeDefaultThumb($albumthumb);
-			echo '<img src="' . html_encode(pathurlencode($albumthumb->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" /></a>' . "\n";
+			echo '<img src="' . pathurlencode($albumthumb->getThumb()) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" /></a>' . "\n";
 			break;
 	}
 	if ($showtitle) {
@@ -289,7 +285,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 		echo "<p>" . sprintf(gettext("Views: %u"), $hitcounter) . "</p>";
 	}
 	if ($showdesc) {
-		echo shortenContent($tempalbum->getDesc(), $desclength, ' (...)');
+		echo html_encodeTagged(shortenContent($tempalbum->getDesc(), $desclength, ' (...)'));
 	}
 	echo "</li>";
 }
@@ -408,7 +404,9 @@ function printLatestUpdatedAlbums($number = 5, $showtitle = false, $showdate = f
 }
 
 /**
- * Returns a array of image objects of image statistic according to $option
+ * Returns an array of image objects according to $option
+ *
+ * NOTE: for performance reasons this function will NOT discover new images.
  *
  * @param string $number the number of images to get
  * @param string $option "popular" for the most popular images,
@@ -424,99 +422,95 @@ function printLatestUpdatedAlbums($number = 5, $showtitle = false, $showdate = f
  * @param string $albumfolder foldername of an specific album
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
  * @param integer $threshold the minimum number of ratings (for rating options) or hits (for popular option) an image must have to be included in the list. (Default 0)
- * @return string
+ * @param mixed $sortdirection "asc" for ascending order otherwise order is descending
+ * @return array
  */
-function getImageStatistic($number, $option, $albumfolder = '', $collection = false, $threshold = 0, $sortdirection = 'desc') {
-  global $_zp_gallery;
-  if ($albumfolder) {
-    $obj = newAlbum($albumfolder);
-    $albumWhere = ' AND albums.id = ' . $obj->getID();
-    if ($collection) {
-      $albumWhere = '';
-      $ids = getAllSubAlbumIDs($albumfolder);
-      if (!empty($ids)) {
-        foreach ($ids as $id) {
-          $getids[] = $id['id'];
-        }
-        $getids = implode(', ', $getids);
-        $albumWhere = ' AND albums.id IN (' . $getids . ')';
-      }
-    } else {
-      $albumWhere = ' AND albums.id = ' . $obj->getID();
-    }
-  } else {
-    $obj = $_zp_gallery;
-    $albumWhere = '';
-  }
-  if (($option == 'toprated' || $option == 'mostrated') && $threshold > 0) {
-    $albumWhere .= 'AND images.total_votes >= ' . $threshold;
-  }
-  if ($option == 'popular' && $threshold > 0) {
-    $albumWhere .= 'AND images.hitcounter >= ' . $threshold;
-  }
-  switch (strtolower($sortdirection)) {
-    case 'desc':
-    default:
-      $sortdir = 'DESC';
-      break;
-    case 'asc':
-      $sortdir = 'ASC';
-      break;
-  }
-  switch ($option) {
-    case "popular":
-      $sortorder = "images.hitcounter";
-      break;
-    case "latest-date":
-      $sortorder = "images.date";
-      break;
-    case "latest-mtime":
-      $sortorder = "images.mtime";
-      break;
-    default:
-    case "latest":
-      $sortorder = "images.id";
-      break;
-    case "latest-publishdate":
-      $sortorder = "IFNULL(images.publishdate,images.date)";
-      break;
-    case "mostrated":
-      $sortorder = "images.total_votes";
-      break;
-    case "toprated":
-      $sortorder = "(images.total_value/images.total_votes) DESC, images.total_value";
-      break;
-    case "random":
-      $sortorder = "RAND()";
-      break;
-  }
-  $imageArray = array();
-  if (!empty($albumfolder) && $obj->isDynamic()) {
-    $sorttype = str_replace('images.', '', $sortorder);
-    $images = $obj->getImages(0, 0, $sorttype, $sortdir);
-    foreach ($images as $image) {
-      $image = newImage($obj, $image);
-      if ($image->exists && $image->checkAccess() && ($image->getShow() || zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))) {
-        $imageArray[] = $image;
-        if (count($imageArray) >= $number) { // got enough
-          break;
-        }
-      }
-    }
-  } else {
-    $result = query("SELECT images.filename AS filename, albums.folder AS folder FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums " . "WHERE (images.albumid = albums.id) " . $albumWhere . " ORDER BY " . $sortorder . " " . $sortdir);
-    while ($row = db_fetch_assoc($result)) {
-      $image = newImage(NULL, $row, true);
-      if ($image->exists && $image->checkAccess() && ($image->getShow() || zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))) {
-        $imageArray[] = $image;
-        if (count($imageArray) >= $number) { // got enough
-          break;
-        }
-      }
-    }
-    db_free_result($result);
-  }
-  return $imageArray;
+function getImageStatistic($number, $option, $albumfolder = NULL, $collection = false, $threshold = 0, $sortdirection = 'desc') {
+	global $_zp_gallery;
+	$where = '';
+	$obj = NULL;
+	if ($albumfolder) {
+		$obj = newAlbum($albumfolder);
+		$where = 'albumid = ' . $obj->getID();
+		if ($collection) {
+			$ids = getAllSubAlbumIDs($albumfolder);
+			if (!empty($ids)) {
+				foreach ($ids as $id) {
+					$getids[] = $id['id'];
+				}
+				$getids = implode(', ', $getids);
+				$where = 'albumid IN (' . $getids . ')';
+			}
+		}
+	}
+
+	switch (strtolower($sortdirection)) {
+		case false:
+		case 'asc':
+			$sortdir = 'ASC';
+			break;
+		default:
+			$sortdir = 'DESC';
+			break;
+	}
+	switch ($option) {
+		case "popular":
+			$sortorder = "hitcounter";
+			$where .= ' AND hitcounter >= ' . $threshold;
+			break;
+		case "latest-date":
+			$sortorder = "date";
+			break;
+		case "latest-mtime":
+			$sortorder = "mtime";
+			break;
+		default:
+		case "latest":
+			$sortorder = "id";
+			break;
+		case "latest-publishdate":
+			$sortorder = "IFNULL(publishdate,date)";
+			break;
+		case "mostrated":
+			$sortorder = "total_votes";
+			break;
+		case "toprated":
+			$sortorder = "(total_value/total_votes) DESC, total_value";
+			$where .= ' AND total_votes >= ' . $threshold;
+			break;
+		case "random":
+			$row = query_single_row('SELECT COUNT(*) FROM ' . prefix('images'));
+			if (5000 < $count = array_shift($row)) {
+				$sample = ceil((max(1000, $number * 100) / $count) * 100);
+				$where .= ' AND CAST((RAND() * 100 * `id`) % 100 as UNSIGNED) < ' . $sample;
+			}
+			$sortorder = "RAND()";
+			$sortdir = NULL;
+			break;
+	}
+	if ($where) {
+		$where = ' WHERE ' . ltrim($where, ' AND');
+	}
+
+	$imageArray = array();
+	if (!empty($albumfolder) && $obj->isDynamic()) {
+		$sorttype = str_replace('images.', '', $sortorder);
+		$images = $obj->getImages(0, 0, $sorttype, $sortdir);
+		foreach ($images as $image) {
+			$image = newImage($obj, $image);
+			if ($image->checkAccess()) {
+				$imageArray[] = $image;
+				if (count($imageArray) >= $number) { // got enough
+					break;
+				}
+			}
+		}
+	} else {
+		$sql = "SELECT `id` FROM " . prefix('images') . $where . " ORDER BY " . $sortorder . " " . $sortdir;
+		$result = query($sql);
+		$imageArray = filterImageQueryList($result, $obj, $number, false);
+	}
+	return $imageArray;
 }
 
 /**
@@ -548,9 +542,8 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
  * @param bool $fullimagelink 'false' (default) for the image page link , 'true' for the unprotected full image link (to use Colorbox for example)
  * @param integer $threshold the minimum number of ratings (for rating options) or hits (for popular option) an image must have to be included in the list. (Default 0)
- * @return string
  */
-function printImageStatistic($number, $option, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
+function printImageStatistic($number, $option, $albumfolder = NULL, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
 	$images = getImageStatistic($number, $option, $albumfolder, $collection, $threshold);
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
@@ -577,15 +570,15 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 		switch ($crop) {
 			case 0:
 				$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $image);
-				echo '<img src="' . html_encode(pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";
+				echo '<img src="' . pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";
 				break;
 			case 1:
 				$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $image);
-				echo '<img src="' . html_encode(pathurlencode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";
+				echo '<img src="' . pathurlencode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE)) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";
 				break;
 			case 2:
 				$sizes = getSizeDefaultThumb($image);
-				echo '<img src="' . html_encode(pathurlencode($image->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n<br />";
+				echo '<img src="' . pathurlencode($image->getThumb()) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n<br />";
 				break;
 		}
 		if ($showtitle) {
@@ -611,7 +604,7 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 			echo "<p>" . sprintf(gettext("Views: %u"), $hitcounter) . "</p>";
 		}
 		if ($showdesc) {
-			echo shortenContent($image->getDesc(), $desclength, ' (...)');
+			echo html_encodeTagged(shortenContent($image->getDesc(), $desclength, ' (...)'));
 		}
 		echo "</li>";
 	}
@@ -691,7 +684,7 @@ function printMostRatedImages($number = 5, $albumfolder = '', $showtitle = false
 }
 
 /**
- * Prints the latest images by ID (the order zenphoto recognized the images on the filesystem)
+ * Prints the latest images by ID (the order the images are recognized on the filesystem)
  *
  * @param string $number the number of images to get
  * @param string $albumfolder folder of an specific album
@@ -809,4 +802,5 @@ function getNumAllSubalbums($albumobj, $pre = '') {
 		return false;
 	}
 }
+
 ?>

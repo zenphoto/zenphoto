@@ -7,11 +7,12 @@ if (!defined('WEBPATH'))
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php printHeadTitle(); ?>
+
+
+
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery')); ?>
 		<?php printZDSearchToggleJS(); ?>
 	</head>
 	<body>
@@ -38,14 +39,14 @@ if (!defined('WEBPATH'))
 					$categorylist = $_zp_current_search->getCategoryList();
 					if (is_array($categorylist)) {
 						$catlist = array('news' => $categorylist, 'albums' => '0', 'images' => '0', 'pages' => '0');
-						printSearchForm(NULL, 'search', NULL, gettext('Search'), NULL, NULL, $catlist);
+						printSearchForm(NULL, 'search', NULL, gettext('Search category'), NULL, NULL, $catlist);
 					} else {
 						$albumlist = $_zp_current_search->getAlbumList();
 						if (is_array($albumlist)) {
 							$album_list = array('albums' => $albumlist, 'pages' => '0', 'news' => '0');
-							printSearchForm(NULL, 'search', NULL, gettext('Search'), NULL, NULL, $album_list);
+							printSearchForm(NULL, 'search', NULL, gettext('Search album'), NULL, NULL, $album_list);
 						} else {
-							printSearchForm("", "search", "", gettext("Search"));
+							printSearchForm("", "search", "", gettext("Search gallery"));
 						}
 					}
 				}
@@ -53,7 +54,7 @@ if (!defined('WEBPATH'))
 			</div>
 
 			<div id="breadcrumb">
-				<h2><?php printGalleryIndexURL(' » '); printSearchBreadcrumb(" » "); ?>
+				<h2><a href="<?php echo getGalleryIndexURL(); ?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext('Index'); ?> » </a><?php printSearchBreadcrumb(" » "); ?>
 				</h2>
 			</div>
 
@@ -77,8 +78,8 @@ if (!defined('WEBPATH'))
 						</h3>
 						<?php
 					}
-					if ($zenpage && $_zp_page == 1) { //test of zenpage searches
-						if ($numpages > 0 && ZP_PAGES_ENABLED) {
+					if ($_zp_page == 1) { //test of zenpage searches
+						if ($numpages > 0) {
 							$number_to_show = 5;
 							$c = 0;
 							?>
@@ -91,7 +92,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
 										<h4><?php printPageURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo shortenContent(getBare(getPageContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getPageContent(), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -99,7 +100,7 @@ if (!defined('WEBPATH'))
 							</ul>
 							<?php
 						}
-						if ($numnews > 0 && ZP_NEWS_ENABLED) {
+						if ($numnews > 0) {
 							$number_to_show = 5;
 							$c = 0;
 							?>
@@ -111,7 +112,7 @@ if (!defined('WEBPATH'))
 									?>
 									<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
 										<h4><?php printNewsURL(); ?></h4>
-										<p class="zenpageexcerpt"><?php echo shortenContent(getBare(getNewsContent()), 80, getOption("zenpage_textshorten_indicator")); ?></p>
+										<p class="zenpageexcerpt"><?php echo html_encodeTagged(shortenContent(getNewsContent(), 80, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</li>
 									<?php
 								}
@@ -148,7 +149,7 @@ if (!defined('WEBPATH'))
 									<div class="albumdesc">
 										<h3><a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printBareAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 										<?php printAlbumDate(""); ?>
-										<p><?php echo shortenContent(getBare(getAlbumDesc()), 45, '...'); ?></p>
+										<p><?php echo html_encodeTagged(shortenContent(getAlbumDesc(), 45, getOption("zenpage_textshorten_indicator"))); ?></p>
 									</div>
 								</div>
 							<?php endwhile; ?>
@@ -162,7 +163,7 @@ if (!defined('WEBPATH'))
 								</div>
 							<?php } ?>
 						</div>
-						<br class="clearall" />
+						<br class="clearall">
 					<?php } ?>
 					<?php
 					@call_user_func('printSlideShowLink');

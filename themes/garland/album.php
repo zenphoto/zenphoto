@@ -6,11 +6,9 @@ $map = function_exists('printGoogleMap');
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="<?php echo LOCAL_CHARSET; ?>">
-		<?php
-		zp_apply_filter('theme_head');
-		?>
-		<?php printHeadTitle(); ?>
+
+		<?php zp_apply_filter('theme_head'); ?>
+
 		<?php $handler->theme_head($_zp_themeroot); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
@@ -25,9 +23,8 @@ $map = function_exists('printGoogleMap');
 					<div id="logo-floater">
 						<div>
 							<h1 class="title">
-								<a href="<?php echo html_encode(getSiteHomeURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
+								<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle(); ?></a>
 							</h1>
-							<span id="galleryDescription"><?php printGalleryDesc(); ?></span>
 						</div>
 					</div>
 				</div><!-- header -->
@@ -42,7 +39,8 @@ $map = function_exists('printGoogleMap');
 							<div class="left-corner"><!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-										<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » "); echo html_encode(getAlbumTitle()); ?>
+										<?php printHomeLink('', ' » '); ?>
+										<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a> » <?php printParentBreadcrumb("", " » ", " » "); ?><?php echo html_encode(getAlbumTitle()); ?>
 									</h2>
 									<?php printAlbumDesc(); ?>
 									<?php printCodeblock(1); ?>
@@ -51,12 +49,12 @@ $map = function_exists('printGoogleMap');
 										while (next_album()) {
 											?>
 											<div class="album">
-												<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
+												<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), html_encode(getBareAlbumTitle())); ?>">
 													<?php printCustomAlbumThumbImage(getAlbumTitle(), 85, NULL, NULL, 85, 85); ?>
 												</a>
 												<div class="albumdesc">
 													<h3>
-														<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
+														<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), html_encode(getBareAlbumTitle())); ?>">
 															<?php printAlbumTitle(); ?>
 														</a>
 													</h3>
@@ -76,7 +74,6 @@ $map = function_exists('printGoogleMap');
 									if ((getNumAlbums() != 0) || !$_oneImagePage) {
 										printPageListWithNav(gettext("« prev"), gettext("next »"), $_oneImagePage);
 									}
-									@call_user_func('printOpenStreetMap');
 									if (function_exists('printAddToFavorites'))
 										printAddToFavorites($_zp_current_album);
 									@call_user_func('printRating');
@@ -103,7 +100,7 @@ $map = function_exists('printGoogleMap');
 							if ($nextalbum) {
 								?>
 								<div id="nextalbum" class="slides">
-									<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album »'); ?><br /><img src="<?php echo html_encode(pathurlencode($nextalbum->getThumb())); ?>" /></a>
+									<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album »'); ?><br /><img src="<?php echo pathurlencode($nextalbum->getThumb()); ?>" /></a>
 								</div>
 								<br />
 								<?php
@@ -111,7 +108,7 @@ $map = function_exists('printGoogleMap');
 							if ($prevalbum) {
 								?>
 								<div id="prevalbum" class="slides">
-									<a href="<?php echo html_encode(getPrevAlbumURL()); ?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('« Prev Album'); ?><br /><img src="<?php echo html_encode(pathurlencode($prevalbum->getThumb())); ?>" /></a>
+									<a href="<?php echo html_encode(getPrevAlbumURL()); ?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('« Prev Album'); ?><br /><img src="<?php echo pathurlencode($prevalbum->getThumb()); ?>" /></a>
 								</div>
 								<?php
 							}
@@ -127,7 +124,7 @@ $map = function_exists('printGoogleMap');
 								printGoogleMap(NULL, NULL, NULL, 'album_page', 'gMapOptionsAlbum');
 								?>
 							</div>
-							<br class="clearall" />
+							<br class="clearall">
 							<?php
 						}
 						?>

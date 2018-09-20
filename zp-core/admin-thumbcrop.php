@@ -1,4 +1,11 @@
 <?php
+/**
+ * Thumb crop handler
+ *
+ * @author Stephen Billard (sbillard)
+ *
+ * @package admin
+ */
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(dirname(__FILE__) . '/functions-image.php');
@@ -6,14 +13,20 @@ require_once(dirname(__FILE__) . '/functions-image.php');
 admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 
 $albumname = sanitize_path($_REQUEST['a']);
-$imagename = sanitize_path($_REQUEST['i']);
+$imagename = sanitize($_REQUEST['i']);
 $subpage = sanitize($_REQUEST['subpage']);
 $tagsort = sanitize($_REQUEST['tagsort']);
 
 $albumobj = newAlbum($albumname);
+
+if (isset($_REQUEST['singleimage'])) {
+	$singleimage = sanitize($_REQUEST['singleimage']);
+} else {
+	$singleimage = '';
+}
 if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
+		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return . ($singleimage) ? '&singleimage=' . html_encode($singleimage) : '');
 		exitZP();
 	}
 }
@@ -22,7 +35,7 @@ if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this pa
 $use_side = getOption('image_use_side');
 // get full width and height
 $imageobj = newImage($albumobj, $imagename);
-$currentthumbimage = $imageobj->getThumb();
+$currentthumbimage = $imageobj->getThumb('image', '!');
 setOption('image_use_side', 'longest', false);
 $cropwidth = getOption("thumb_crop_width");
 $cropheight = getOption("thumb_crop_height");
@@ -119,7 +132,7 @@ if (is_null($isCrop)) {
 	$iH = round($imageobj->get('thumbH') * $sr);
 }
 
-if (isset($_REQUEST['crop'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'crop') {
 	XSRFdefender('thumb_crop');
 	$cw = $_REQUEST['w'];
 	$ch = $_REQUEST['h'];
@@ -150,18 +163,20 @@ if (isset($_REQUEST['crop'])) {
 	$imageobj->set('thumbH', $ch);
 	$imageobj->save();
 
-	$return = '/admin-edit.php?page=edit&album=' . html_encode(pathurlencode($albumname)) . '&saved&subpage=' . html_encode(sanitize($_REQUEST['subpage'])) . '&tagsort=' . html_encode(sanitize($_REQUEST['tagsort'])) . '&tab=imageinfo';
+	$return = '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&saved&subpage=' . html_encode(sanitize($_REQUEST['subpage'])) . '&tagsort=' . html_encode(sanitize($_REQUEST['tagsort'])) . '&tab=imageinfo';
+	if ($singleimage)
+		$return .= '&singleimage=' . html_encode($singleimage);
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . $return);
 	exitZP();
 }
 printAdminHeader('edit', 'thumbcrop');
 ?>
-<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
-<link rel="stylesheet" href="js/jquery.Jcrop.css" type="text/css" />
+<script src="js/Jcrop/jquery.Jcrop.js" type="text/javascript"></script>
+<link rel="stylesheet" href="js/Jcrop/jquery.Jcrop.css" type="text/css" />
 <script type="text/javascript" >
 	//<!-- <![CDATA[
 	var jcrop_api;
-	jQuery(window).load(function() {
+	jQuery(window).on("load", function () {
 		initJcrop();
 		function initJcrop() {
 			jcrop_api = jQuery.Jcrop('#cropbox');
@@ -225,23 +240,40 @@ printAdminHeader('edit', 'thumbcrop');
 		<?php printTabs(); ?>
 		<div id="content">
 			<h1><?php echo gettext("Custom thumbnail cropping") . ": <em>" . $albumobj->name . " (" . $albumobj->getTitle() . ") /" . $imageobj->filename . " (" . $imageobj->getTitle() . ")</em>"; ?></h1>
-			<p><?php echo gettext("You can change the portion of your image which is shown in thumbnails by cropping it here."); ?></p>
-			<div style="display:block">
-				<div style="float: left; width:<?php echo $thumbcropwidth; ?>px; text-align: center;margin-right: 18px;  margin-bottom: 10px;">
-					<img src="<?php echo html_encode(pathurlencode($currentthumbimage)); ?>" style="width:<?php echo $thumbcropwidth; ?>px;height:<?php echo $thumbcropheight; ?>px; border: 4px solid gray; float: left"/>
-					<?php echo gettext("current thumbnail"); ?>
-				</div>
-
-				<div style="text-align:left; float: left;">
-
-					<div style="width: <?php echo $sizedwidth; ?>px; height: <?php echo $sizedheight; ?>px; margin-bottom: 10px; border: 4px solid gray;">
-						<!-- This is the image we're attaching Jcrop to -->
-						<img src="<?php echo $imageurl; ?>" id="cropbox" />
+			<div class="tabbox">
+				<p><?php echo gettext("You can change the portion of your image which is shown in thumbnails by cropping it here."); ?></p>
+				<div style="display:block">
+					<div style="float: left; width:<?php echo $thumbcropwidth; ?>px; text-align: center;margin-right: 18px;  margin-bottom: 10px;">
+						<img src="<?php echo pathurlencode($currentthumbimage); ?>" style="width:<?php echo $thumbcropwidth; ?>px;height:<?php echo $thumbcropheight; ?>px; border: 4px solid gray; float: left"/>
+						<?php echo gettext("current thumbnail"); ?>
 					</div>
 
+					<div style="text-align:left; float: left;">
+
+						<div style="width: <?php echo $sizedwidth; ?>px; height: <?php echo $sizedheight; ?>px; margin-bottom: 10px; border: 4px solid gray;">
+							<!-- This is the image we're attaching Jcrop to -->
+							<img src="<?php echo $imageurl; ?>" id="cropbox" />
+						</div>
+
+					</div>
+
+					<div style="float: left; width:<?php echo $cropwidth; ?>px; text-align: center; margin-left: 10px; margin-bottom: 10px;">
+						<div style="width:<?php echo $cropwidth; ?>px;height:<?php echo $cropheight; ?>px; overflow:hidden; border: 4px solid green; float: left">
+							<img src="<?php echo pathurlencode($imageurl); ?>" id="preview" />
+						</div>
+						<?php echo gettext("thumbnail preview"); ?>
+					</div>
+					<br clear="all">
 					<!-- This is the form that our event handler fills -->
-					<form class="dirty-check" name="crop" id="crop" action="?crop" onsubmit="return checkCoords();">
+					<form class="dirtylistening" onReset="setClean('crop');" name="crop" id="crop" method="post" action="?action=crop" onsubmit="return checkCoords();">
 						<?php XSRFToken('thumb_crop'); ?>
+						<?php
+						if ($singleimage) {
+							?>
+							<input type="hidden" name="singleimage" value="<?php echo html_encode($singleimage); ?>" />
+							<?php
+						}
+						?>
 						<input type="hidden" size="4" id="x" name="x" value="<?php echo $iX ?>" />
 						<input type="hidden" size="4" id="y" name="y" value="<?php echo $iY ?>" />
 						<input type="hidden" size="4" id="x2" name="x2" value="<?php echo $iX + $iW ?>" />
@@ -261,15 +293,16 @@ printAdminHeader('edit', 'thumbcrop');
 							<input name="clear_crop" id="clear_crop" type="checkbox" value="1"  onclick="resetCheck();" /> <?php echo gettext("Reset to the default cropping"); ?><br />
 							<br />
 							<p class="buttons">
-								<button type="button" onclick="resetBoundingBox();" >
-									<img src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
-								</button>
 								<button type="submit" id="submit" name="submit" value="<?php echo gettext('Apply the cropping') ?>">
-									<img src="images/pass.png" alt="" />
+									<?php echo CHECKMARK_GREEN; ?>
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
-								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&subpage=<?php echo html_encode($subpage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
-									<img src="images/arrow_left_blue_round.png" alt="" />
+								<button type="button" onclick="resetBoundingBox();" >
+									<?php echo CROSS_MARK_RED; ?>
+									<strong><?php echo gettext("Reset"); ?></strong>
+								</button>
+								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo html_encode($subpage) ?><?php if ($singleimage) echo '&singleimage=' . html_encode($singleimage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
+									<span style="color:blue;font-size:large;line-height: 60%;">&lArr;</span>
 									<strong><?php echo gettext("Back"); ?></strong>
 								</button>
 							</p><br />
@@ -281,29 +314,20 @@ printAdminHeader('edit', 'thumbcrop');
 						?>
 					</form>
 
-				</div>
-
-				<div style="float: left; width:<?php echo $cropwidth; ?>px; text-align: center; margin-left: 10px; margin-bottom: 10px;">
-					<div style="width:<?php echo $cropwidth; ?>px;height:<?php echo $cropheight; ?>px; overflow:hidden; border: 4px solid green; float: left">
-						<img src="<?php echo html_encode(pathurlencode($imageurl)); ?>" id="preview" />
-					</div>
-					<?php echo gettext("thumbnail preview"); ?>
-				</div>
-
-				<!-- set the initial view for the preview -->
-				<script type="text/javascript" >
-					// <!-- <![CDATA[
-					jQuery('#preview').css({
-						width: '<?php echo round($cropwidth / $iW * $sizedwidth); ?>px',
-						height: '<?php echo round($cropheight / $iH * $sizedheight); ?>px',
-						marginLeft: '-<?php echo round($cropwidth / $iW * $iX); ?>px',
-						marginTop: '-<?php echo round($cropheight / $iH * $iY); ?>px'
-					});
-					// ]]> -->
-				</script>
-				<br style="clear: both" />
-			</div><!-- block -->
-
+					<!-- set the initial view for the preview -->
+					<script type="text/javascript" >
+						// <!-- <![CDATA[
+						jQuery('#preview').css({
+							width: '<?php echo round($cropwidth / $iW * $sizedwidth); ?>px',
+							height: '<?php echo round($cropheight / $iH * $sizedheight); ?>px',
+							marginLeft: '-<?php echo round($cropwidth / $iW * $iX); ?>px',
+							marginTop: '-<?php echo round($cropheight / $iH * $iY); ?>px'
+						});
+						// ]]> -->
+					</script>
+					<br class="clearall">
+				</div><!-- block -->
+			</div>
 		</div><!-- content -->
 
 		<?php printAdminFooter(); ?>

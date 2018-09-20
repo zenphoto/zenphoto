@@ -6,18 +6,17 @@
  *
  * Use the <var>Menu</var> tab to create your menus. Use <var>printCustomMenu()</var> to place them on your pages.
  *
- * This plugin is recommend for customized themes only that do not use the standard Zenphoto
- * display structure. Standard Zenphoto functions like the breadcrumb functions or the <var>next_album()</var>
+ * This plugin is recommend for customized themes only that do not use the standard
+ * display structure. Standard functions like the breadcrumb functions or the <var>next_album()</var>
  * loop for example will <b>NOT</b> take care of this menu's structure!
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage menu-manager
+ *
+ * @package plugins/menu_manager
+ * @pluginCategory theme
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("A menu creation facility. The <em>Menu</em> tab admin interface lets you create arbitrary menu trees.");
-$plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
-$plugin_category = gettext('Media');
 
 $option_interface = 'menu_manager';
 
@@ -36,37 +35,22 @@ if (OFFSET_PATH) {
  */
 class menu_manager {
 
-	/**
-	 *
-	 * class instantiator
-	 */
-	function __construct() {
-		
-	}
-
 	function getOptionsSupported() {
-		global $_common_truncate_handler;
 
 		$options = array(
-						gettext('Truncate indicator*') => array('key'			 => 'menu_truncate_indicator', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'order'		 => 2,
-										'disabled' => $_common_truncate_handler,
-										'desc'		 => gettext('Append this string to truncated titles.')),
-						gettext('Truncate titles*')		 => array('key'		 => 'menu_truncate_string', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('Limit titles to this many characters. Zero means no limit.'))
+				gettext('Truncate indicator*') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'desc' => gettext('Append this string to truncated titles.')),
+				gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'desc' => gettext('Limit titles to this many characters. Zero means no limit.'))
 		);
-		if ($_common_truncate_handler) {
-			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => '<p class="notebox">' . $_common_truncate_handler . '</p>');
-		} else {
-			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'menu_manager\');"><em>menu_manager</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'menu_truncate_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
-		}
+
+		$options['note'] = array('key' => 'menu_truncate_note',
+				'type' => OPTION_TYPE_NOTE,
+				'order' => 8,
+				'desc' => gettext('<p class="notebox">*<strong>Note:</strong> These options are shared among <em>menu_manager</em>, <em>print_album_menu</em>, and <em>zenpage</em>.</p>'));
+
 		return $options;
 	}
 
@@ -96,18 +80,12 @@ function menu_admin_toolbox_global($zf) {
  * @return unknown
  */
 function menu_tabs($tabs) {
-	if (zp_loggedin()) {
-		$newtabs = array();
-		foreach ($tabs as $key => $tab) {
-			if ($key == 'tags') {
-				$newtabs['menu'] = array('text'		 => gettext("menu"),
-								'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/menu_manager/menu_tab.php?page=menu&amp;tab=menu',
-								'default'	 => 'menu',
-								'subtabs'	 => NULL);
-			}
-			$newtabs[$key] = $tab;
-		}
-		return $newtabs;
+	if (zp_loggedin(ADMIN_RIGHTS)) {
+		$tabs['menu'] = array('text' => gettext("menu"),
+				'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/menu_manager/menu_tab.php?page=menu&amp;tab=menu',
+				'default' => 'menu',
+				'subtabs' => NULL
+		);
 	}
 	return $tabs;
 }
@@ -133,6 +111,7 @@ function getMenuItems($menuset, $visible) {
 					array_key_exists($visible, $_menu_manager_items[$menuset])) {
 		return $_menu_manager_items[$menuset][$visible];
 	}
+	$_menu_manager_items[$menuset][$visible] = array();
 	switch ($visible) {
 		case 'visible':
 			$where = " WHERE `show` = 1 AND menuset = " . db_quote($menuset);
@@ -145,8 +124,17 @@ function getMenuItems($menuset, $visible) {
 			$visible = 'all';
 			break;
 	}
-	$result = query_full_array("SELECT * FROM " . prefix('menu') . $where . " ORDER BY sort_order", false, 'sort_order');
-	$_menu_manager_items[$menuset][$visible] = $result;
+	$result = query("SELECT * FROM " . prefix('menu') . $where . " ORDER BY sort_order", false, 'sort_order');
+	if ($result) {
+		while ($row = db_fetch_assoc($result)) {
+			$row['type'] = strtolower($row['type']);
+			if (strpos($row['type'], 'zenpage') !== false)
+				$row['type'] = str_replace('zenpage', '', $row['type']);
+			$_menu_manager_items[$menuset][$visible][] = $row;
+		}
+		db_free_result($result);
+	}
+
 	return $_menu_manager_items[$menuset][$visible];
 }
 
@@ -167,13 +155,12 @@ function getItem($id) {
  *
  * @return string
  */
-function checkChosenMenuset($default = 'default') {
-	if (isset($_GET['menuset'])) {
-		$menuset = sanitize($_GET['menuset']);
-	} else if (isset($_POST['menuset'])) {
-		$menuset = sanitize($_POST['menuset']);
+function checkChosenMenuset() {
+	if (isset($_REQUEST['menuset'])) {
+		$menuset = sanitize($_REQUEST['menuset']);
+		setOption('menu_lastChanged', $menuset);
 	} else {
-		$menuset = $default;
+		$menuset = getOption('menu_lastChanged');
 	}
 	return $menuset;
 }
@@ -199,7 +186,7 @@ function checkChosenItemStatus() {
 function getItemTitleAndURL($item) {
 	global $_zp_gallery;
 	$themename = $_zp_gallery->getCurrentTheme();
-	$array = array("title" => '', "url" => '', "name" => '', 'protected' => false, 'theme' => $themename);
+	$array = array();
 	$valid = true;
 	$title = get_language_string($item['title']);
 	switch ($item['type']) {
@@ -223,45 +210,44 @@ function getItemTitleAndURL($item) {
 			}
 			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
 			break;
-		case "zenpagepage":
-			if(class_exists('zenpage')) {
-				$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`="' . $item['link'] . '"';
-				$result = query_single_row($sql);
-				if (is_array($result)) {
-					$obj = new ZenpagePage($item['link']);
-					$url = $obj->getLink(0);
-					$protected = $obj->isProtected();
-					$title = $obj->getTitle();
-				} else {
-					$valid = false;
-					$url = '';
-					$protected = 0;
-				}
-				$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
+		case "page":
+			$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`="' . $item['link'] . '"';
+			$result = query_single_row($sql);
+			if (is_array($result) && extensionEnabled('zenpage')) {
+				$obj = newPage($item['link']);
+				$url = $obj->getLink(0);
+				$protected = $obj->isProtected();
+				$title = $obj->getTitle();
+			} else {
+				$valid = false;
+				$url = '';
+				$protected = 0;
 			}
+			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected,);
 			break;
-		case "zenpagenewsindex":
-			if(class_exists('zenpage')) {
+		case "newsindex":
+			if ($valid = extensionEnabled('zenpage')) {
 				$url = getNewsIndexURL();
-				$array = array("title" => get_language_string($item['title']), "url" => $url, "name" => $url, 'protected' => false);
+			} else {
+				$url = '';
 			}
+			$array = array("title" => get_language_string($item['title']), "url" => $url, "name" => $url, 'protected' => false);
 			break;
-		case "zenpagecategory":
-			if(class_exists('zenpage')) {
-				$sql = "SELECT title FROM " . prefix('news_categories') . " WHERE titlelink = '" . $item['link'] . "'";
-				$obj = query_single_row($sql, false);
-				if ($obj) {
-					$obj = new ZenpageCategory($item['link']);
-					$title = $obj->getTitle();
-					$protected = $obj->isProtected();
-					$url = $obj->getLink(0);
-				} else {
-					$valid = false;
-					$url = '';
-					$protected = 0;
-				}
-				$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
+		case "category":
+			$valid = extensionEnabled('zenpage');
+			$sql = "SELECT title FROM " . prefix('news_categories') . " WHERE titlelink = '" . $item['link'] . "'";
+			$obj = query_single_row($sql, false);
+			if ($obj && $valid) {
+				$obj = newCategory($item['link']);
+				$title = $obj->getTitle();
+				$protected = $obj->isProtected();
+				$url = $obj->getLink(0);
+			} else {
+				$valid = false;
+				$url = '';
+				$protected = 0;
 			}
+			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected);
 			break;
 		case "custompage":
 			$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $themename . '/';
@@ -273,6 +259,7 @@ function getItemTitleAndURL($item) {
 			}
 			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => false, 'theme' => $themename);
 			break;
+		case "dynamiclink":
 		case "customlink":
 			$array = array("title" => get_language_string($item['title']), "url" => $item['link'], "name" => $item['link'], 'protected' => false, 'theme' => $themename);
 			break;
@@ -319,7 +306,7 @@ function getMenuVisibility() {
  */
 function inventMenuItem($menuset, $visibility) {
 	global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_menu_manager_items,
-	$_zp_current_zenpage_news, $_zp_current_zenpage_page;
+	$_zp_current_article, $_zp_current_page;
 	$currentkey = $insertpoint = NULL;
 	$newitems = array();
 	switch ($_zp_gallery_page) {
@@ -349,9 +336,9 @@ function inventMenuItem($menuset, $visibility) {
 				}
 			}
 			if (!empty($currentkey)) {
-				$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'image',
-								'include_li' => true, 'title'			 => $_zp_current_image->getTitle(),
-								'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
+				$item = array('id' => 9999, 'sort_order' => $currentkey, 'parentid' => $item['id'], 'type' => 'image',
+						'include_li' => true, 'title' => $_zp_current_image->getTitle(),
+						'show' => 1, 'link' => '', 'menuset' => $menuset);
 			}
 			break;
 		case 'news.php':
@@ -365,7 +352,7 @@ function inventMenuItem($menuset, $visibility) {
 				}
 			} else {
 				foreach ($_menu_manager_items[$menuset][$visibility] as $key => $item) {
-					if ($item['type'] == 'zenpagenewsindex') {
+					if ($item['type'] == 'newsindex') {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
 						break;
@@ -374,9 +361,9 @@ function inventMenuItem($menuset, $visibility) {
 			}
 			if (!empty($currentkey)) {
 				if (is_NewsArticle()) {
-					$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'zenpagenews',
-									'include_li' => true, 'title'			 => $_zp_current_zenpage_news->getTitle(),
-									'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
+					$item = array('id' => 9999, 'sort_order' => $currentkey, 'parentid' => $item['id'], 'type' => 'article',
+							'include_li' => true, 'title' => $_zp_current_article->getTitle(),
+							'show' => 1, 'link' => '', 'menuset' => $menuset);
 				} else {
 					$currentkey = false; // not a news page, must be the index?
 				}
@@ -388,9 +375,9 @@ function inventMenuItem($menuset, $visibility) {
 					if ($item['type'] == 'custompage' && $item['link'] == 'search') {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
-						$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'zenpagepage',
-										'include_li' => true, 'title'			 => $_zp_current_zenpage_page->getTitle(),
-										'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
+						$item = array('id' => 9999, 'sort_order' => $currentkey, 'parentid' => $item['id'], 'type' => 'page',
+								'include_li' => true, 'title' => $_zp_current_page->getTitle(),
+								'show' => 1, 'link' => '', 'menuset' => $menuset);
 						break;
 					}
 				}
@@ -687,8 +674,7 @@ function getParentMenuItems($menuset = 'default') {
 				}
 			}
 			if (!empty($parents)) {
-				sortMultiArray($parents, 'sort_order', $descending = false, $natsort = false, $case_sensitive = false);
-				return $parents;
+				return sortMultiArray($parents, 'sort_order', $descending = false, $natsort = false, $case_sensitive = false);
 			}
 		}
 	}
@@ -824,7 +810,7 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					if (extensionEnabled('zenpage')) {
 						$orders[$nesting] ++;
 						query("INSERT INTO " . prefix('menu') . " (title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
-										"VALUES ('" . gettext('News index') . "', '" . getNewsIndexURL() . "','zenpagenewsindex','1'," . db_quote($menuset) . ',' . db_quote(sprintf('%03u', $base + 1)), true);
+										"VALUES ('" . gettext('News index') . "', '" . getNewsIndexURL() . "','newsindex','1'," . db_quote($menuset) . ',' . db_quote(sprintf('%03u', $base + 1)), true);
 						$orders[$nesting] = addPagesToDatabase($menuset, $orders) + 1;
 						$orders[$nesting] = addCategoriesToDatabase($menuset, $orders);
 					}
@@ -835,61 +821,62 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					$orders[$nesting] = addAlbumsToDatabase($menuset, $orders);
 					$type = false;
 					break;
-				case 'all_zenpagepages':
+				case 'all_Pages':
 					$orders[$nesting] ++;
 					$orders[$nesting] = addPagesToDatabase($menuset, $orders);
 					$type = false;
 					break;
-				case 'all_zenpagecategorys':
+				case 'all_categories':
 					$orders[$nesting] ++;
 					$orders[$nesting] = addCategoriesToDatabase($menuset, $orders);
 					$type = false;
 					break;
 				case 'album':
-					$result['title'] = NULL;
 					if (empty($result['link'])) {
 						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key));
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key), $result);
 					}
+					$result['link'] = NULL;
 					break;
 				case 'galleryindex':
+					if (empty($result['title'])) {
+						$success = -1;
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key), $result);
+					}
+					$result['link'] = NULL;
+					break;
+				case 'Page':
+					if (empty($result['link'])) {
+						$success = -1;
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key), $result);
+					}
+					$result['link'] = NULL;
+					break;
+				case 'newsindex':
 					$result['link'] = NULL;
 					if (empty($result['title'])) {
 						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key), $result);
 					}
 					break;
-				case 'zenpagepage':
-					$result['title'] = NULL;
+				case 'category':
 					if (empty($result['link'])) {
 						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key));
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key), $result);
 					}
-					break;
-				case 'zenpagenewsindex':
 					$result['link'] = NULL;
-					if (empty($result['title'])) {
-						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
-					}
-					break;
-				case 'zenpagecategory':
-					$result['title'] = NULL;
-					if (empty($result['link'])) {
-						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key));
-					}
 					break;
 				case 'custompage':
 					if (empty($result['title']) || empty($result['link'])) {
 						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title or link.'), $key));
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty title or link.'), $key), $result);
 					}
 					break;
+				case 'dynamiclink':
 				case 'customlink':
 					if (empty($result['title'])) {
 						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key), $result);
 					} else if (empty($result['link'])) {
 						$result['link'] = seoFriendly(get_language_string($result['title']));
 					}
@@ -897,25 +884,20 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 				case 'menulabel':
 					if (empty($result['title'])) {
 						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key), $result);
 					}
 					$result['link'] = sha1($result['title']);
 					break;
 				case 'menufunction':
-					if (empty($result['title']) || empty($result['link'])) {
-						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title or link.'), $key));
-					}
-					break;
 				case 'html':
 					if (empty($result['title']) || empty($result['link'])) {
 						$success = -1;
-						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title or link.'), $key));
+						debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an empty title or link.'), $key), $result);
 					}
 					break;
 				default:
 					$success = -1;
-					debugLog(sprintf(gettext('createMenuIfNotExists item %s has an invalid type.'), $key));
+					debugLogVar(sprintf(gettext('createMenuIfNotExists item %s has an invalid type.'), $key), $result);
 					break;
 			}
 			if ($success > 0 && $type) {
@@ -940,7 +922,7 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 		$success = 0;
 	}
 	if ($success < 0) {
-		trigger_error(gettext('createMenuIfNotExists has posted processing errors to your debug log.'), E_USER_NOTICE);
+		zp_error(gettext('createMenuIfNotExists has posted processing errors to your debug log.'), E_USER_NOTICE);
 	}
 	return $success;
 }
@@ -948,40 +930,40 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 /**
  * Gets the direct child menu items of the current menu item. Returns the array of the items or false.
  * @param string $menuset current menu set
- * @param bool $allchilds Set to false (default) for the next level childs, true for childs of all further levels
+ * @param bool $all Set to false (default) for the next level children, true for children of all further levels
  * @return array|false
  */
-function getMenuItemChilds($menuset = 'default', $allchilds = false) {
-  $sortorder = getCurrentMenuItem($menuset);
-  $items = getMenuItems($menuset, getMenuVisibility());
-  if (count($items) > 0) {
-    if ($sortorder) {
-      $length = strlen($sortorder);
-      $level = explode('-', $sortorder);
-      $level = count($level);
-      $childs = array();
-      foreach ($items as $item) {
-        $itemlevel = explode('-', $item['sort_order']);
-        $itemlevel = count($itemlevel);
-        if ($allchilds) {
-          $is_validchild = true;
-        } else {
-          if ($itemlevel == $level + 1) {
-            $is_validchild = true;
-          } else {
-            $is_validchild = false;
-          }
-        }
-        if (substr($item['sort_order'], 0, $length) == $sortorder && $item['sort_order'] != $sortorder && $is_validchild) {
-          array_push($childs, $item);
-        }
-      }
-      if (!empty($childs)) {
-        return $childs;
-      }
-    }
-  }
-  return false;
+function getMenuItemChildren($menuset = 'default', $all = false) {
+	$sortorder = getCurrentMenuItem($menuset);
+	$items = getMenuItems($menuset, getMenuVisibility());
+	if (count($items) > 0) {
+		if ($sortorder) {
+			$length = strlen($sortorder);
+			$level = explode('-', $sortorder);
+			$level = count($level);
+			$children = array();
+			foreach ($items as $item) {
+				$itemlevel = explode('-', $item['sort_order']);
+				$itemlevel = count($itemlevel);
+				if ($all) {
+					$is_validchild = true;
+				} else {
+					if ($itemlevel == $level + 1) {
+						$is_validchild = true;
+					} else {
+						$is_validchild = false;
+					}
+				}
+				if (substr($item['sort_order'], 0, $length) == $sortorder && $item['sort_order'] != $sortorder && $is_validchild) {
+					array_push($children, $item);
+				}
+			}
+			if (!empty($children)) {
+				return $children;
+			}
+		}
+	}
+	return false;
 }
 
 /**
@@ -1004,7 +986,6 @@ function getMenuItemChilds($menuset = 'default', $allchilds = false) {
  * @return string
  */
 function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $css_class_topactive = '', $css_class = '', $css_class_active = '', $showsubs = 0, $counter = false) {
-	global $_zp_zenpage, $_zp_gallery_page, $_zp_current_zenpage_page, $_zp_current_category;
 	$itemcounter = '';
 	if ($css_id != "") {
 		$css_id = " id='" . $css_id . "'";
@@ -1036,7 +1017,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 	foreach ($items as $item) {
 		$itemarray = getItemTitleAndURL($item);
 		$itemURL = $itemarray['url'];
-		$itemtitle = $itemarray['title'];
+		$itemtitle = get_language_string($itemarray['title']);
 		$level = max(1, count(explode('-', $item['sort_order'])));
 		$process = (($level <= $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
 						|| ($option == 'list' || $option == 'list-top') && $level == 1 // show the top level
@@ -1047,7 +1028,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 						) || ($option == 'list-sub' && ($item['parentid'] == $pageid) // offspring of the current page
 						)
 						);
-		if ($process) {
+		if ($process && $itemarray['valid']) {
 			if ($level > $indent) {
 				echo "\n" . str_pad("\t", $indent, "\t") . "<ul class=\"$css_class menu_{$item['type']}\">\n";
 				$indent++;
@@ -1099,13 +1080,13 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 						$itemcounter .= ')</small></span>';
 
 						break;
-					case'zenpagecategory':
+					case'category':
 						if ((zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS))) {
 							$published = "all";
 						} else {
 							$published = "published";
 						}
-						$catobj = new ZenpageCategory($item['link']);
+						$catobj = newCategory($item['link']);
 						$catcount = count($catobj->getArticles(0, $published));
 						$itemcounter = "<small> (" . $catcount . ")</small>";
 						break;
@@ -1150,11 +1131,15 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 					case 'menulabel':
 						echo $itemtitle;
 						break;
+					case'dynamiclink':
+						eval('$itemURL=' . $itemURL . ';');
+						echo '<a href="' . $itemURL . '" title="' . html_encode(getBare($itemtitle)) . '">' . $itemtitle . '</a>' . $itemcounter;
+						break;
 					default:
 						if (empty($itemURL)) {
 							$itemURL = FULLWEBPATH;
 						}
-						echo '<a href="' . $itemURL . '" title="' . getBare($itemtitle) . '">' . $itemtitle . '</a>' . $itemcounter;
+						echo '<a href="' . $itemURL . '" title="' . html_encode(getBare($itemtitle)) . '">' . $itemtitle . '</a>' . $itemcounter;
 						break;
 				}
 				if ($item['span_id'] || $item['span_class']) {

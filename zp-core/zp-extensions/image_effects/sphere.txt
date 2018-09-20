@@ -1,0 +1,10 @@
+<source><a href="http://www.netzgesta.de/cvi/">Astonishing image effects through JS and Canvas/VML</a></source>
+<head>
+<script type="text/javascript" src="%WEBPATH%/%USER_PLUGIN_FOLDER%/image_effects/sphere.js"></script>
+<script type="text/javascript" src="%WEBPATH%/%USER_PLUGIN_FOLDER%/image_effects/cvi_sphere_lib.js"></script>
+</head>
+<class>sphere icolor0000ff igradient00ffff</class>
+<validate>
+%SERVERPATH%/%USER_PLUGIN_FOLDER%/image_effects/sphere.js;
+%SERVERPATH%/%USER_PLUGIN_FOLDER%/image_effects/cvi_sphere_lib.js
+</validate>

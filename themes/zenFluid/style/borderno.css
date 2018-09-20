@@ -1,0 +1,4 @@
+.border, #search_input, #search_submit, #searchextrashow, .button, .inputbox, input.button, .textarea_inputbox, .zenpage_customimage,
+#passwordform, form#confirm input, form#discard input, #admin_tb, #admin_tb_data, .themeSwitcherMenuMain, .themeSwitcherControlLink {
+	border-width: 0px;
+}

@@ -1,0 +1,33 @@
+Changelog
+--------------------
+TO DO:
+Review Combinews support
+
+1.4.4.3b
+	Added support for zpDisqus
+	Fixed breadcrumb on image.php for dynamic albums (eliminated .alb display)
+	Quick fix on custom titlebreadcrumb function, will revisit.  For now, no album breadcrumb for meta title on dynamic albums until I can look into it further.
+1.4.4.3
+	Fixed custom theme calls for reCaptcha
+	Added gslideshow support
+1.4.4
+	Fixed some undeclared variables causing low level php notices.
+	Fixed custom function getTitleBreadcrumb() - was throwing a fatal error when coming from a search.
+	1.4.3
+	General compatability fixes.
+	Fixed bug on front page slideshow when there were not enough images to supply the option count.  For example, now if the option is set to "5" and there are only "2" published or available, the setting will be "2".
+	Theme options page update, improvement, addition of new features in Zenphoto.
+	Added theme option to disable news feature of Zenpage.
+	Fixed addthis display, css tweaks for chrome.
+	Pre-caching plugin support in theme options for all sized of theme.
+	Fixed colorbox paths since renamed in core.
+	Targeted built in colorbox themes since they are now part of the core, removed them from theme files.
+	Adjusted search function to match new "Within" and "New" options in search box, adjusted css styles.
+	synchronized RSS options to RSS links displayed (always showed before).
+	encoding with print functions (> < and the like)
+	Added printCodeblock() to gallery, news, pages, albums, and images.
+	Page number added to titles for paginated content for SEO reasons
+	Fixed broken recaptcha layout, also added custom themes (light/dark) for recaptcha.
+1.4.2.2
+	Removed built in theme social tools, replaced with support for AddThis plugin
+	Fixed low security risk of not encoding searchwords output in search.php

@@ -1,25 +1,15 @@
 <?php
-/**
- * 
- * @package plugins
- * @subpackage deprecated-functions
-*/
 
 /**
- * 
- * @global type $files
- * @param type $folder
- * @param type $exclude
- * @return string
+ * @package plugins/deprecated-functions
  */
-function getPHPFiles($folder, $exclude) {
-	global $files;
+function getPHPFiles($folder, $exclude, &$files = array()) {
 	$dir = opendir($folder);
 	while (($file = readdir($dir)) !== false) {
 		$file = str_replace('\\', '/', $file);
-		if ($file != '.' && $file != '..') {
+		if (strpos($file, '.') !== 0) {
 			if (is_dir($folder . '/' . $file) && !in_array($file, $exclude)) {
-				getPHPFiles($folder . '/' . $file, $exclude);
+				getPHPFiles($folder . '/' . $file, $exclude, $files);
 			} else {
 				if (getSuffix($file) == 'php') {
 					$entry = $folder . '/' . $file;
@@ -31,18 +21,11 @@ function getPHPFiles($folder, $exclude) {
 	closedir($dir);
 	return $files;
 }
-/**
- * 
- * @global type $deprecated
- * @param type $title
- * @param type $subject
- * @param type $pattern
- * @return boolean
- */
-function formatList($title, $subject, $pattern) {
+
+function formatList($title, $subject, $pattern, $started = FALSE) {
 	global $deprecated;
+	$emitted = false;
 	preg_match_all($pattern, $subject, $matches);
-	$started = false;
 	if ($matches && !empty($matches[0])) {
 		foreach (array_unique($matches[2]) as $key => $match) {
 			$details = $deprecated->unique_functions[strtolower($match)];
@@ -77,64 +60,55 @@ function formatList($title, $subject, $pattern) {
 						break;
 					}
 			}
-			if (!$started) {
-				$started = true;
-				echo '<li class="warningbox nobullet"> ' . $title;
-				echo '<ul>';
+			if (!$emitted) {
+				if ($started) {
+					echo "</ul>\n";
+				} else {
+					echo '<ul class="ulclean">' . "\n";
+				}
+				echo "<li>\n<h3>$title</h3>\n<ul class=\"ulclean\">\n";
+				$started = $emitted = true;
 			}
-			echo '<li>' . $match . $class . '</li>';
+			echo '<li>' . $match . $class . "</li>\n";
 		}
 	}
-	if ($started)
-		echo '</ul></li>';
-
+	if ($emitted) {
+		echo "</li>\n";
+	}
 	return $started;
 }
-/**
- * 
- * @param type $files
- * @param type $base
- * @param type $pattern
- * @return type
- */
+
 function listUses($files, $base, $pattern) {
-	if (is_array($files)) {
-		$open = $output = false;
-		$oldLocation = '';
-		foreach ($files as $file) {
-			if (basename($file) != 'deprecated-functions.php') {
-				@set_time_limit(120);
-				$subject = file_get_contents($file);
-				$location = str_replace($base . '/', '', dirname($file));
-				$folders = explode('/', $location);
-				if ($folders[0] != $oldLocation) {
-					$oldLocation = $folders[0];
-					echo '<br /><strong>' . $location . '</strong>';
-				}
-				if ($open) {
-					echo '</ul>';
-				}
-				$script_location = $base . '/' . $location . '/';
-				$script = str_replace($script_location, '', $file);
-				$open = $output = formatList($script, $subject, $pattern);
-			} 
+	$open = $output = false;
+	$oldLocation = '';
+	foreach ($files as $file) {
+		if (basename($file) != 'deprecated-functions.php') {
+			@set_time_limit(120);
+			$subject = file_get_contents($file);
+			$location = ltrim(str_replace($base, '', dirname($file)), '/');
+			$folders = explode('/', $location);
+			if ($folders[0] != $oldLocation) {
+				$oldLocation = $folders[0];
+			}
+			$script_location = trim($base . '/' . $location, '/') . '/';
+			$script = str_replace($script_location, '', $file);
+			$open = formatList($script, $subject, $pattern, $open);
+			if ($open) {
+				$output = true;
+			}
 		}
-		if ($open) {
-			echo '</ul>';
-		}
-		if ($output) {
-			?>
-			<p class="messagebox"><?php echo gettext('No calls on deprecated functions were found.'); ?></p>
-			<?php
-		}
-		return $output;
 	}
+	if ($open) {
+		echo "</ul>\n</li>\n</ul>\n";
+	}
+	if (!$output) {
+		?>
+		<p class="messagebox"><?php echo gettext('No calls on deprecated functions were found.'); ?></p>
+		<?php
+	}
+	return $output;
 }
-/**
- * 
- * @param type $pattern
- * @return boolean
- */
+
 function listDBUses($pattern) {
 	$lookfor = array('images', 'albums', 'news', 'pages');
 	$found = array();
@@ -153,7 +127,7 @@ function listDBUses($pattern) {
 						break;
 					case 'images':
 						$album = getItemByID('albums', $row['albumid']);
-						$what = $album->name . ':' . $row['filename'] . '::' . $key;
+						$what = @$album->name . ':' . $row['filename'] . '::' . $key;
 						break;
 					case 'albums':
 						$what = $row['folder'] . '::' . $key;
@@ -164,7 +138,7 @@ function listDBUses($pattern) {
 			}
 		}
 		if ($output) {
-			echo '</ul>';
+			echo '</ul>,!-- 4 -->';
 		} else {
 			?>
 			<p class="messagebox"><?php echo gettext('No calls on deprecated functions were found.'); ?></p>

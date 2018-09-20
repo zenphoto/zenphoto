@@ -1,0 +1,70 @@
+/*!
+ * Bootstrap v3 icons 
+ * Based on regular Bootstrap icons
+ */
+ 
+.the-icons {
+	margin-left: 0;
+	list-style: none;
+	font-size:0.9em;
+}
+
+.the-icons li {
+float: left;
+width: 25%;
+line-height: 25px;
+}
+
+section > ul li {
+margin-bottom: 5px;
+}
+ 
+[class^="social-icon-"],
+[class*=" social-icon-"] {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  *margin-right: .3em;
+  line-height: 32px;
+  vertical-align: text-top;
+  background-image: url("../img/social-icons.png");
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  margin-top: 1px;
+}
+
+.social-icon-googleplus {background-position: 0px 0px;}
+.social-icon-facebook {background-position: -40px 0px;}
+.social-icon-twitter {background-position: -80px 0px;}
+.social-icon-rss {background-position: -120px 0px;}
+.social-icon-email {background-position: -160px 0px;}
+.social-icon-delicious {background-position: -0px -40px;}
+.social-icon-stumbleupon {background-position: -40px -40px;}
+.social-icon-digg {background-position: -80px -40px;}
+.social-icon-vimeo {background-position: -120px -40px;}
+.social-icon-youtube {background-position: -160px -40px;}
+.social-icon-flickr {background-position: -0px -80px;}
+.social-icon-instagram {background-position: -40px -80px;}
+.social-icon-picasa {background-position: -80px -80px;}
+.social-icon-pinterest {background-position: -120px -80px;}
+.social-icon-500px {background-position: -160px -80px;}
+.social-icon-viadeo {background-position: -0px -120px;}
+.social-icon-linkedin {background-position: -40px -120px;}
+.social-icon-deviantart {background-position: -80px -120px;}
+.social-icon-tumblr {background-position: -120px -120px;}
+.social-icon-twitpic {background-position: -160px -120px;}
+.social-icon-paypal {background-position: -0px -160px;}
+.social-icon-openid {background-position: -40px -160px;}
+.social-icon-newsvine {background-position: -80px -160px;}
+.social-icon-reddit {background-position: -120px -160px;}
+.social-icon-blinklist {background-position: -160px -160px;}
+.social-icon-squidoo {background-position: -0px -200px;}
+.social-icon-blogger {background-position: -40px -200px;}
+.social-icon-myspace {background-position: -80px -200px;}
+.social-icon-evernote {background-position: -120px -200px;}
+.social-icon-baidu {background-position: -160px -200px;}
+.social-icon-foursquare {background-position: -0px -240px;}
+.social-icon-feedburner {background-position: -40px -240px;}
+.social-icon-wordpress {background-position: -80px -240px;}
+.social-icon-yelp {background-position: -120px -240px;}
+.social-icon-apple {background-position: -160px -240px;}

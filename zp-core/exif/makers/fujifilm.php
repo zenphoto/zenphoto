@@ -1,6 +1,8 @@
 <?php
+
 /**
- * Exifer
+ * Fijifilm Exifer
+ *
  * Extracts EXIF information from digital photos.
  *
  * Copyright © 2003 Jake Olefsky
@@ -8,11 +10,11 @@
  * jake@olefsky.com
  *
  * Please see exif.php for the complete information about this software.
- *
+
  * This program is free software; you can redistribute it and/or modify it under the terms of
  * the GNU General Public License as published by the Free Software Foundation; either version 2
  * of the License, or (at your option) any later version.
- *
+
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details. http://www.gnu.org/copyleft/gpl.html
@@ -26,26 +28,44 @@
  */
 function lookup_Fujifilm_tag($tag) {
 
-	switch($tag) {
-		case "0000": $tag = "Version";break;
-		case "1000": $tag = "Quality";break;
-		case "1001": $tag = "Sharpness";break;
-		case "1002": $tag = "WhiteBalance";break;
-		case "1003": $tag = "Color";break;
-		case "1004": $tag = "Tone";break;
-		case "1010": $tag = "FlashMode";break;
-		case "1011": $tag = "FlashStrength";break;
-		case "1020": $tag = "Macro";break;
-		case "1021": $tag = "FocusMode";break;
-		case "1030": $tag = "SlowSync";break;
-		case "1031": $tag = "PictureMode";break;
-		case "1100": $tag = "ContinuousTakingBracket";break;
-		case "1200": $tag = "Unknown";break;
-		case "1300": $tag = "BlurWarning";break;
-		case "1301": $tag = "FocusWarning";break;
-		case "1302": $tag = "AEWarning";break;
+	switch ($tag) {
+		case "0000": $tag = "Version";
+			break;
+		case "1000": $tag = "Quality";
+			break;
+		case "1001": $tag = "Sharpness";
+			break;
+		case "1002": $tag = "WhiteBalance";
+			break;
+		case "1003": $tag = "Color";
+			break;
+		case "1004": $tag = "Tone";
+			break;
+		case "1010": $tag = "FlashMode";
+			break;
+		case "1011": $tag = "FlashStrength";
+			break;
+		case "1020": $tag = "Macro";
+			break;
+		case "1021": $tag = "FocusMode";
+			break;
+		case "1030": $tag = "SlowSync";
+			break;
+		case "1031": $tag = "PictureMode";
+			break;
+		case "1100": $tag = "ContinuousTakingBracket";
+			break;
+		case "1200": $tag = "Unknown";
+			break;
+		case "1300": $tag = "BlurWarning";
+			break;
+		case "1301": $tag = "FocusWarning";
+			break;
+		case "1302": $tag = "AEWarning";
+			break;
 
-		default: $tag = "unknown:".$tag;break;
+		default: $tag = 'Unknown:' . $tag;
+			break;
 	}
 
 	return $tag;
@@ -75,147 +95,147 @@ function formatFujifilmData($type, $tag, $intel, $data) {
 
 		if ($tag == "1001") { //Sharpness
 			if ($data == 1)
-				$data = gettext("Soft");
+				$data = '!soft!';
 			else if ($data == 2)
-				$data = gettext("Soft");
+				$data = '!soft!';
 			else if ($data == 3)
-				$data = gettext("Normal");
+				$data = '!normal!';
 			else if ($data == 4)
-				$data = gettext("Hard");
+				$data = '!hard!';
 			else if ($data == 5)
-				$data = gettext("Hard");
+				$data = '!hard!';
 			else
-				$data = gettext("Unknown") . ": " . $data;
+				$data = '!unknown!' . ": " . $data;
 		}
 		if ($tag == "1002") { //WhiteBalance
 			if ($data == 0)
-				$data = gettext("Auto");
+				$data = '!auto!';
 			else if ($data == 256)
-				$data = gettext("Daylight");
+				$data = '!daylight!';
 			else if ($data == 512)
-				$data = gettext("Cloudy");
+				$data = '!cloudy!';
 			else if ($data == 768)
-				$data = gettext("DaylightColor-fluorescence");
+				$data = '!daylightcolor-fluorescence!';
 			else if ($data == 769)
-				$data = gettext("DaywhiteColor-fluorescence");
+				$data = '!daywhitecolor-fluorescence!';
 			else if ($data == 770)
-				$data = gettext("White-fluorescence");
+				$data = '!white-fluorescence!';
 			else if ($data == 1024)
-				$data = gettext("Incandescence");
+				$data = '!incandescence!';
 			else if ($data == 3840)
-				$data = gettext("Custom");
+				$data = '!custom!';
 			else
-				$data = gettext("Unknown") . ": " . $data;
+				$data = '!unknown!' . ": " . $data;
 		}
 		if ($tag == "1003") { //Color
 			if ($data == 0)
-				$data = gettext("Chroma Saturation Normal(STD)");
+				$data = '!chroma saturation normal(std)!';
 			else if ($data == 256)
-				$data = gettext("Chroma Saturation High");
+				$data = '!chroma saturation high!';
 			else if ($data == 512)
-				$data = gettext("Chroma Saturation Low(ORG)");
+				$data = '!chroma saturation low(org)!';
 			else
-				$data = gettext("Unknown: ") . $data;
+				$data = '!unknown!' . ':' . $data;
 		}
 		if ($tag == "1004") { //Tone
 			if ($data == 0)
-				$data = gettext("Contrast Normal(STD)");
+				$data = '!contrast normal(std)!';
 			else if ($data == 256)
-				$data = gettext("Contrast High(HARD)");
+				$data = '!contrast high(hard)!';
 			else if ($data == 512)
-				$data = gettext("Contrast Low(ORG)");
+				$data = '!contrast low(org)!';
 			else
-				$data = gettext("Unknown: ") . $data;
+				$data = '!unknown!' . ':' . $data;
 		}
 		if ($tag == "1010") { //FlashMode
 			if ($data == 0)
-				$data = gettext("Auto");
+				$data = '!auto!';
 			else if ($data == 1)
-				$data = gettext("On");
+				$data = '!on!';
 			else if ($data == 2)
-				$data = gettext("Off");
+				$data = '!off!';
 			else if ($data == 3)
-				$data = gettext("Red-Eye Reduction");
+				$data = '!red-eye reduction!';
 			else
-				$data = gettext("Unknown: ") . $data;
+				$data = '!unknown!' . ':' . $data;
 		}
 		if ($tag == "1020") { //Macro
 			if ($data == 0)
-				$data = gettext("Off");
+				$data = '!off!';
 			else if ($data == 1)
-				$data = gettext("On");
+				$data = '!on!';
 			else
-				$data = gettext("Unknown: ") . $data;
+				$data = '!unknown!' . ':' . $data;
 		}
 		if ($tag == "1021") { //FocusMode
 			if ($data == 0)
-				$data = gettext("Auto");
+				$data = '!auto!';
 			else if ($data == 1)
-				$data = gettext("Manual");
+				$data = '!manual!';
 			else
-				$data = gettext("Unknown: ") . $data;
+				$data = '!unknown!' . ':' . $data;
 		}
 		if ($tag == "1030") { //SlowSync
 			if ($data == 0)
-				$data = gettext("Off");
+				$data = '!off!';
 			else if ($data == 1)
-				$data = gettext("On");
+				$data = '!on!';
 			else
-				$data = gettext("Unknown: ") . $data;
+				$data = '!unknown!' . ':' . $data;
 		}
 		if ($tag == "1031") { //PictureMode
 			if ($data == 0)
-				$data = gettext("Auto");
+				$data = '!auto!';
 			else if ($data == 1)
-				$data = gettext("Portrait");
+				$data = '!portrait!';
 			else if ($data == 2)
-				$data = gettext("Landscape");
+				$data = '!landscape!';
 			else if ($data == 4)
-				$data = gettext("Sports");
+				$data = '!sports!';
 			else if ($data == 5)
-				$data = gettext("Night");
+				$data = '!night!';
 			else if ($data == 6)
-				$data = gettext("Program AE");
+				$data = '!program ae!';
 			else if ($data == 256)
-				$data = gettext("Aperture Priority AE");
+				$data = '!aperture priority ae!';
 			else if ($data == 512)
-				$data = gettext("Shutter Priority");
+				$data = '!shutter priority!';
 			else if ($data == 768)
-				$data = gettext("Manual Exposure");
+				$data = '!manual exposure!';
 			else
-				$data = gettext("Unknown: ") . $data;
+				$data = '!unknown!' . ':' . $data;
 		}
 		if ($tag == "1100") { //ContinuousTakingBracket
 			if ($data == 0)
-				$data = gettext("Off");
+				$data = '!off!';
 			else if ($data == 1)
-				$data = gettext("On");
+				$data = '!on!';
 			else
-				$data = gettext("Unknown: ") . $data;
+				$data = '!unknown!' . ':' . $data;
 		}
 		if ($tag == "1300") { //BlurWarning
 			if ($data == 0)
-				$data = gettext("No Warning");
+				$data = '!no warning!';
 			else if ($data == 1)
-				$data = gettext("Warning");
+				$data = '!warning!';
 			else
-				$data = gettext("Unknown: ") . $data;
+				$data = '!unknown!' . ':' . $data;
 		}
 		if ($tag == "1301") { //FocusWarning
 			if ($data == 0)
-				$data = gettext("Auto Focus Good");
+				$data = '!auto focus good!';
 			else if ($data == 1)
-				$data = gettext("Out of Focus");
+				$data = '!out of focus!';
 			else
-				$data = gettext("Unknown: ") . $data;
+				$data = '!unknown!' . ':' . $data;
 		}
 		if ($tag == "1302") { //AEWarning
 			if ($data == 0)
-				$data = gettext("AE Good");
+				$data = '!ae good!';
 			else if ($data == 1)
-				$data = gettext("Over Exposure");
+				$data = '!over exposure!';
 			else
-				$data = gettext("Unknown: ") . $data;
+				$data = '!unknown!' . ':' . $data;
 		}
 	} else if ($type == "UNDEFINED") {
 
@@ -239,18 +259,22 @@ function parseFujifilm($block, &$result) {
 	//if($result['Endien']=="Intel") $intel=1;
 	//else $intel=0;
 	$intel = 1;
+
 	$model = $result['IFD0']['Model'];
+
 	$place = 8; //current place
 	$offset = 8;
+
+
 	$num = bin2hex(substr($block, $place, 4));
-	$place += 4;
+	$place+=4;
 	if ($intel == 1)
 		$num = intel2Moto($num);
 	$result['SubIFD']['MakerNote']['Offset'] = hexdec($num);
 
 	//Get number of tags (2 bytes)
 	$num = bin2hex(substr($block, $place, 2));
-	$place += 2;
+	$place+=2;
 	if ($intel == 1)
 		$num = intel2Moto($num);
 	$result['SubIFD']['MakerNote']['MakerNoteNumTags'] = hexdec($num);
@@ -260,28 +284,28 @@ function parseFujifilm($block, &$result) {
 
 		//2 byte tag
 		$tag = bin2hex(substr($block, $place, 2));
-		$place += 2;
+		$place+=2;
 		if ($intel == 1)
 			$tag = intel2Moto($tag);
 		$tag_name = lookup_Fujifilm_tag($tag);
 
 		//2 byte type
 		$type = bin2hex(substr($block, $place, 2));
-		$place += 2;
+		$place+=2;
 		if ($intel == 1)
 			$type = intel2Moto($type);
 		lookup_type($type, $size);
 
 		//4 byte count of number of data units
 		$count = bin2hex(substr($block, $place, 4));
-		$place += 4;
+		$place+=4;
 		if ($intel == 1)
 			$count = intel2Moto($count);
 		$bytesofdata = validSize($size * hexdec($count));
 
 		//4 byte value of data or pointer to data
 		$value = substr($block, $place, 4);
-		$place += 4;
+		$place+=4;
 
 
 		if ($bytesofdata <= 4) {
@@ -309,3 +333,5 @@ function parseFujifilm($block, &$result) {
 		}
 	}
 }
+
+?>

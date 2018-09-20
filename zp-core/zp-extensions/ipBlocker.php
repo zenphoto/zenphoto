@@ -1,10 +1,10 @@
 <?php
 /**
  * The plugin provides two services:
- * <ul>
+ * <ol>
  * 	<li>IP address filtering</li>
  * 	<li>Detection of <i>password probing</i> attempts
- * </ul>
+ * </ol>
  *
  * <b>IP address filtering:</b>
  *
@@ -22,23 +22,27 @@
  * This plugin can help to throttle these attacks. It works by monitoring failed logon attempts.
  * If a defined threashold is exceeded by requests from a particular IP
  * address, further access attempts from that IP accress will be ignored until a timeout has expired.
+ *
+ * <b>IP list importing</b>
+ *
+ * IP addresses may be supplied in a text file, one IP per line. Upload the text file to the <i>%UPLOAD_FOLDER%</i> folder.
 
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage ipblocker
+ * @Copyright 2015 by Stephen L Billard for use in {@link https://%GITHUB% netPhotoGraphics and derivatives}
+ *
+ * @package plugins/ipBlocker
+ * @pluginCategory admin
  */
-$plugin_is_filter = 8 | CLASS_PLUGIN;
-$plugin_description = gettext("Tools to block hacker access to your site.");
-$plugin_author = "Stephen Billard (sbillard)";
-$plugin_category = gettext('Admin');
+if (defined('SETUP_PLUGIN')) { //	gettext debugging aid
+	$plugin_is_filter = 10 | CLASS_PLUGIN;
+	$plugin_description = gettext("Tools to block hacker access to your site.");
+}
 
 $option_interface = 'ipBlocker';
 
-zp_register_filter('load_theme_script', 'ipBlocker::load');
-zp_register_filter('admin_allow_access', 'ipBlocker::adminGate');
-zp_register_filter('admin_login_attempt', 'ipBlocker::login');
-zp_register_filter('federated_login_attempt', 'ipBlocker::login');
-zp_register_filter('guest_login_attempt', 'ipBlocker::login');
+zp_register_filter('admin_login_attempt', 'ipBlocker::login', 9999);
+zp_register_filter('federated_login_attempt', 'ipBlocker::login', 9999);
+zp_register_filter('guest_login_attempt', 'ipBlocker::login', 9999);
 
 /**
  * Option handler class
@@ -52,10 +56,19 @@ class ipBlocker {
 	 * @return security_logger
 	 */
 	function __construct() {
-		setOptionDefault('ipBlocker_list', serialize(array()));
-		setOptionDefault('ipBlocker_type', 'block');
-		setOptionDefault('ipBlocker_threshold', 10);
-		setOptionDefault('ipBlocker_timeout', 60);
+		if (OFFSET_PATH == 2) {
+			setOptionDefault('ipBlocker_list', serialize(array()));
+			setOptionDefault('ipBlocker_type', 'block');
+			setOptionDefault('ipBlocker_threshold', 10);
+			setOptionDefault('ipBlocker_404_threshold', 10);
+			setOptionDefault('ipBlocker_timeout', 60);
+			setOptionDefault('ipBlocker_forbidden', NULL);
+
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="ipBlocker", `subtype`="404" WHERE `type`="ipBlocker_404"';
+			query($sql);
+			$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `type`="ipBlocker", `subtype`="logon" WHERE `type`="ipBlocker_logon"';
+			query($sql);
+		}
 	}
 
 	/**
@@ -74,30 +87,33 @@ class ipBlocker {
 		foreach ($list as $file) {
 			$files[$file] = $file;
 		}
-		$options = array(gettext('IP list')				 => array('key'		 => 'ipBlocker_IP', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 4,
-										'desc'	 => sprintf(gettext('List of IP ranges to %s.'), $text[getOption('ipBlocker_type')])),
-						gettext('Import list')		 => array('key'						 => 'ipBlocker_import', 'type'					 => OPTION_TYPE_SELECTOR,
-										'order'					 => 5,
-										'selections'		 => $files,
-										'nullselection'	 => '',
-										'disabled'			 => !extensionEnabled('ipBlocker'),
-										'desc'					 => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of Zenphoto and %s to process and store the results.'), DATABASE_SOFTWARE)),
-						gettext('Action')					 => array('key'			 => 'ipBlocker_type', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 3,
-										'buttons'	 => $buttons,
-										'desc'		 => gettext('How the plugin will interpret the IP list.')),
-						gettext('Logon threshold') => array('key'		 => 'ipBlocker_threshold', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('Admin page requests will be ignored after this many failed tries.')),
-						gettext('Logon cool off')	 => array('key'		 => 'ipBlocker_timeout', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2,
-										'desc'	 => gettext('The block will be removed after this many minutes.'))
+		$options = array(gettext('IP list') => array('key' => 'ipBlocker_IP', 'type' => OPTION_TYPE_CUSTOM,
+						'order' => 5,
+						'desc' => sprintf(gettext('List of IP ranges to %s.'), $text[getOption('ipBlocker_type')])),
+				gettext('Import list') => array('key' => 'ipBlocker_import', 'type' => OPTION_TYPE_SELECTOR,
+						'order' => 6,
+						'selections' => $files,
+						'nullselection' => '',
+						'disabled' => !extensionEnabled('ipBlocker'),
+						'desc' => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may exceed the capacity of netPhotoGraphics and %s to process and store the results.'), DATABASE_SOFTWARE)),
+				gettext('Action') => array('key' => 'ipBlocker_type', 'type' => OPTION_TYPE_RADIO,
+						'order' => 4,
+						'buttons' => $buttons,
+						'desc' => gettext('How the plugin will interpret the IP list.')),
+				gettext('Logon threshold') => array('key' => 'ipBlocker_threshold', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'desc' => gettext('Admin page requests will be ignored after this many failed tries.')),
+				gettext('404 threshold') => array('key' => 'ipBlocker_404_threshold', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 1,
+						'desc' => gettext('Access will be suspended after this many 404 errors.')),
+				gettext('Cool off') => array('key' => 'ipBlocker_timeout', 'type' => OPTION_TYPE_NUMBER,
+						'order' => 3,
+						'desc' => gettext('The block will be removed after this many minutes.'))
 		);
 		if (!extensionEnabled('ipBlocker')) {
-			$options['note'] = array('key'		 => 'ipBlocker_note', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 0,
-							'desc'	 => '<p class="notebox">' . gettext('IP list ranges cannot be managed with the plugin disabled') . '</p>');
+			$options['note'] = array('key' => 'ipBlocker_note', 'type' => OPTION_TYPE_NOTE,
+					'order' => 0,
+					'desc' => '<p class="notebox">' . gettext('IP list ranges cannot be managed with the plugin disabled') . '</p>');
 		}
 		return $options;
 	}
@@ -115,10 +131,10 @@ class ipBlocker {
 				$key = 0;
 				foreach ($list as $key => $range) {
 					?>
-					<input id="ipholder_<?php echo $key; ?>a" type="textbox" size="20" name="ipBlocker_ip_start_<?php echo $key; ?>"
+					<input id="ipholder_<?php echo $key; ?>a" type="textbox" size="15" name="ipBlocker_ip_start_<?php echo $key; ?>"
 								 value="<?php echo html_encode($range['start']); ?>" <?php echo $disabled; ?> />
 					-
-					<input id="ipholder_<?php echo $key; ?>b" type="textbox" size="20" name="ipBlocker_ip_end_<?php echo $key; ?>"
+					<input id="ipholder_<?php echo $key; ?>b" type="textbox" size="15" name="ipBlocker_ip_end_<?php echo $key; ?>"
 								 value="<?php echo html_encode($range['end']); ?>" <?php echo $disabled; ?> />
 					<br />
 					<?php
@@ -127,10 +143,10 @@ class ipBlocker {
 				while ($i < $key + 4) {
 					$i++;
 					?>
-					<input id="ipholder_<?php echo $i; ?>a" type="textbox" size="20" name="ipBlocker_ip_start_<?php echo $i; ?>"
+					<input id="ipholder_<?php echo $i; ?>a" type="textbox" size="15" name="ipBlocker_ip_start_<?php echo $i; ?>"
 								 value="" <?php echo $disabled; ?> />
 					-
-					<input id="ipholder_<?php echo $i; ?>b" type="textbox" size="20" name="ipBlocker_ip_end_<?php echo $i; ?>"
+					<input id="ipholder_<?php echo $i; ?>b" type="textbox" size="15" name="ipBlocker_ip_end_<?php echo $i; ?>"
 								 value="" <?php echo $disabled; ?> />
 					<br />
 					<?php
@@ -151,7 +167,7 @@ class ipBlocker {
 					//-->
 				</script>
 				<p class="buttons">
-					<a href="javascript:clearips();"><?php echo gettext('clear list'); ?></a>
+					<a onclick="clearips();"><?php echo gettext('clear list'); ?></a>
 				</p>
 				<?php
 				break;
@@ -273,18 +289,81 @@ class ipBlocker {
 	}
 
 	/**
-	 * Monitors Login attempts
-	 * @param bit $loggedin will be "false" if the login failed
+	 * Monitors Login attempts and suspends of past failure threshold
+	 * @param bit true if login is successful
 	 * @param string $user ignored
 	 * @param string $pass ignored
 	 */
-	static function login($loggedin, $user, $pass = NULL) {
-		if (!$loggedin) {
-			self::adminGate('', '');
-		}
+	static function login($loggedin, $user, $pass = NULL, $auth = NULL) {
+		if (!$loggedin)
+			self::ipGate('logon');
 		return $loggedin;
 	}
 
+	/**
+	 * monitors 404 results and suspends if past threshold
+	 * @return type
+	 */
+	static function notFound() {
+		self::ipGate('404');
+	}
+
+	/**
+	 * Checks if ip should be suspended
+	 * @param bool $allow ignored
+	 * @param string $page ignored
+	 */
+	static function ipGate($type) {
+		//	clean out expired attempts
+		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="ipBlocker" AND `aux` < "' . (time() - getOption('ipBlocker_timeout') * 60) . '"';
+		query($sql);
+		//	add this attempt
+		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`,`data`) VALUES ("ipBlocker",' . db_quote($type) . ', ' . db_quote(time()) . ',' . db_quote(getUserIP()) . ')';
+		query($sql);
+		//	check how many times this has happened recently
+		$count = db_count('plugin_storage', 'WHERE `type`="ipBlocker" AND `subtype`=' . db_quote($type) . ' AND `data`="' . getUserIP() . '"');
+		if ($count >= ($threshold = getOption('ipBlocker_threshold'))) {
+			$ip = getUserIP();
+			zp_apply_filter('security_misc', 2, $type, 'ipBlocker', gettext('Suspended'));
+
+			$block = getOption('ipBlocker_forbidden');
+			if ($block) {
+				$block = getSerializedArray($block);
+			} else {
+				$block = array();
+			}
+			$block[$ip] = time();
+			setOption('ipBlocker_forbidden', serialize($block));
+			$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type` ="ipBlocker" AND `data`=' . db_quote($ip);
+			query($sql);
+		}
+	}
+
+	/**
+	 * Checks if ip is in the ipBlocker_list list and responds as per ipBlocker_type
+	 * @return type
+	 */
+	static function blocked() {
+		$list = getSerializedArray(getOption('ipBlocker_list'));
+		$allow = getOption('ipBlocker_type') == 'allow';
+		$gate = $allow;
+		if (!empty($list)) {
+			$ipa = explode('.', getUserIP());
+			$ip = sprintf('%03u.%03u.%03u.%03u', @$ipa[0], @$ipa[1], @$ipa[2], @$ipa[3]);
+			foreach ($list as $range) {
+				if ($ip >= $range['start'] && $ip <= $range['end']) {
+					$gate = !$allow;
+					break;
+				}
+			}
+		}
+		return $gate;
+	}
+
+	/**
+	 * Checks the suspension list for the ip
+	 * @return boolean
+	 */
 	static function suspended() {
 		if ($block = getOption('ipBlocker_forbidden')) {
 			$block = getSerializedArray($block);
@@ -306,66 +385,18 @@ class ipBlocker {
 	}
 
 	/**
-	 * Monitors blocked accesses to Admin pages
-	 * @param bool $allow ignored
-	 * @param string $page ignored
-	 */
-	static function adminGate($allow, $page) {
-		//	clean out expired attempts
-		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="ipBlocker" AND `aux` < "' . (time() - getOption('ipBlocker_timeout') * 60) . '"';
-		query($sql);
-		//	add this attempt
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("ipBlocker", "' . time() . '","' . getUserIP() . '")';
-		query($sql);
-		//	check how many times this has happened recently
-		$count = db_count('plugin_storage', 'WHERE `type`="ipBlocker" AND `data`="' . getUserIP() . '"');
-		if ($count >= getOption('ipBlocker_threshold')) {
-			$block = getOption('ipBlocker_forbidden');
-			if ($block) {
-				$block = getSerializedArray($block);
-			} else {
-				$block = array();
-			}
-			$block[getUserIP()] = time();
-			setOption('ipBlocker_forbidden', serialize($block));
-		}
-		return $allow;
-	}
-
-	/**
-	 *
-	 * Monitors front end access and excludes access as defined by the options
+	 * Monitors front end access and excludes access if appropriate
 	 * @param string $path
 	 * @return string
 	 */
-	static function load($path) {
-		$list = getSerializedArray(getOption('ipBlocker_list'));
-		$allow = getOption('ipBlocker_type') == 'allow';
-		$gate = $allow;
-		if (!empty($list)) {
-			$ipa = explode('.', getUserIP());
-			$ip = sprintf('%03u.%03u.%03u.%03u', @$ipa[0], @$ipa[1], @$ipa[2], @$ipa[3]);
-			foreach ($list as $range) {
-				if ($ip >= $range['start'] && $ip <= $range['end']) {
-					$gate = !$allow;
-					break;
-				}
-			}
-		}
-		if ($gate) {
+	static function load() {
+		if (self::blocked() || self::suspended()) {
+			sleep(30);
 			header("HTTP/1.0 403 " . gettext("Forbidden"));
 			header("Status: 403 " . gettext("Forbidden"));
 			exitZP(); //	terminate the script with no output
-		} else {
-			return $path;
 		}
 	}
 
-}
-
-if (extensionEnabled('ibBlocker') && ipBlocker::suspended()) {
-	header("HTTP/1.0 403 " . gettext("Forbidden"));
-	header("Status: 403 " . gettext("Forbidden"));
-	exitZP(); //	terminate the script with no output
 }
 ?>

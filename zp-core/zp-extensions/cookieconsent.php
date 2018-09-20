@@ -7,19 +7,21 @@
  *
  * @author Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)
  * @license GPL v3 or later
- * @package plugins
- * @subpackage cookieconsent
+ *
+ * @author Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569), Stephen Billard (netPhotoGraphics migration)
+
+ * @package plugin/cookieconsent
+ * @pluginCategory theme
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A plugin to add a cookie notify dialog to comply with the EU cookie law and Google's request regarding usages of Google Adwords, Analytics and more");
-$plugin_author = "Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)";
 $option_interface = 'cookieConsent';
-$plugin_category = gettext('Misc');
 
 if (!isset($_COOKIE['cookieconsent_status'])) {
 	zp_register_filter('theme_head', 'cookieConsent::getCSS');
 	zp_register_filter('theme_head', 'cookieConsent::getJS');
-}	
+}
+
 class cookieConsent {
 
 	function __construct() {
@@ -28,6 +30,7 @@ class cookieConsent {
 		setOptionDefault('zpcookieconsent_position', 'bottom');
 		setOptionDefault('zpcookieconsent_colorpopup', '#000');
 		setOptionDefault('zpcookieconsent_colorbutton', '#f1d600');
+		setOptionDefault('zpcookieconsent_buttonlearnmorelink', getOption('GDPR_URL'));
 	}
 
 	function getOptionsSupported() {
@@ -104,14 +107,14 @@ class cookieConsent {
 						'type' => OPTION_TYPE_COLOR_PICKER,
 						'order' => 11,
 						'desc' => gettext('Choose the color of the button.'))
-				
 		);
 		return $options;
 	}
 
 	static function getCSS() {
+		$css = getPlugin('cookieconsent/cookieconsent.min.css', true, FULLWEBPATH);
 		?>
-		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cookieconsent/cookieconsent.min.css" />
+		<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css">
 		<?php
 	}
 
@@ -132,11 +135,6 @@ class cookieConsent {
 		$theme = 'block';
 		if (getOption('zpcookieconsent_theme')) {
 			$theme = getOption('zpcookieconsent_theme');
-			//fix old option
-			if (!in_array($theme, array('block', 'edgeless', 'classic', 'custom'))) {
-				$theme = 'block';
-				setOption('zpcookieconsent_theme', $theme, true);
-			}
 		}
 		$domain = '';
 		if (getOption('zpcookieconsent_domain')) {
@@ -151,7 +149,7 @@ class cookieConsent {
 		$color_popup = getOption('zpcookieconsent_colorpopup');
 		$color_button = getOption('zpcookieconsent_colorbutton');
 		?>
-		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cookieconsent/cookieconsent.min.js"></script>
+		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cookieconsent/cookieconsent.min.js'; ?>"></script>
 		<script>
 			window.addEventListener("load", function () {
 				window.cookieconsent.initialise({
@@ -176,7 +174,7 @@ class cookieConsent {
 						"link": "<?php echo js_encode($learnmore); ?>",
 						"href": "<?php echo html_encode($link); ?>"
 					},
-					onStatusChange: function(status) {
+					onStatusChange: function (status) {
 						this.element.parentNode.removeChild(this.element);
 					}
 				})

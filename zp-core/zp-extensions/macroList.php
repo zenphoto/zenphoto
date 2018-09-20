@@ -50,7 +50,7 @@
  * 			[PAGE] (Prints the current page number)
  * 		</li>
  * 		<li>
- * 			[ZENPHOTO_VERSION] (Prints the version of the Zenphoto installation)
+ * 			[ZENPHOTO_VERSION] (Prints the version of the installation)
  * 		</li>
  * 		<li>
  * 			[PAGELINK mylinktext customscriptpage] (Provides text for a link to a "custom" script page)
@@ -60,42 +60,38 @@
  * <b>Note</b> the <var>spaces<var> after the <var>[<var> and before the <var>]<var> square brackets. They are used in these examples to prevent the code from actually executing. They should not be present in your real code.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage macrolist
+ *
+ * @package plugins/macroList
+ * @pluginCategory development
  */
-$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_is_filter = 15 | ADMIN_PLUGIN;
 $plugin_description = gettext('View available <code>content macros</code>.');
-$plugin_author = "Stephen Billard (sbillard)";
-$plugin_category = gettext('Development');
 
-if (OFFSET_PATH != 2 && zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS | ALBUM_RIGHTS)) {
+zp_register_filter('admin_tabs', 'macro_admin_tabs', 200);
+
+if (zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS | ALBUM_RIGHTS)) {
 	foreach (getEnabledPlugins() as $ext => $pn) {
 		$loadtype = $pn['priority'];
-		if ($loadtype & (FEATURE_PLUGIN | THEME_PLUGIN)) {
+		if ($loadtype & THEME_PLUGIN) {
 			require_once($pn['path']);
 		}
-	}
-	unset($ext);
-	unset($pn);
-	$macros = getMacros();
-	if (!empty($macros)) {
-		zp_register_filter('admin_tabs', 'macro_admin_tabs');
 	}
 }
 
 function macro_admin_tabs($tabs) {
-	if (zp_loggedin(ADMIN_RIGHTS)) {
-		if (!isset($tabs['development'])) {
-			$tabs['development'] = array('text' => gettext("development"),
-					'subtabs' => NULL);
+	if (zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS | ALBUM_RIGHTS)) {
+		$macros = getMacros();
+		if (!empty($macros)) {
+			if (!isset($tabs['development'])) {
+				$tabs['development'] = array('text' => gettext("development"),
+						'link' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=development&tab=macros',
+						'default' => "macros",
+						'subtabs' => NULL);
+			}
+			$tabs['development']['subtabs'][gettext("macros")] = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=development&tab=macros';
 		}
-		$tabs['development']['subtabs'][gettext("macros")] = PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=macros&tab=' . gettext('macros');
-		$named = array_flip($tabs['development']['subtabs']);
-		natcasesort($named);
-		$tabs['development']['subtabs'] = $named = array_flip($named);
-		$tabs['development']['link'] = array_shift($named);
-		return $tabs;
 	}
+	return $tabs;
 }
 
 function macroList_show($macro, $detail) {
@@ -154,7 +150,7 @@ function macroList_show($macro, $detail) {
 			$params .= "<em>}</em>";
 		echo $params;
 	}
-	echo ']</code> <em>(' . @$detail['owner'] . ')</em></dt><dd class="top">' . $detail['desc'] . '</dd>';
+	echo ']</code> <em>' . @$detail['owner'] . '</em></dt><dd class="top">' . $detail['desc'] . '</dd>';
 	if (count($warn)) {
 		echo '<div class="notebox"><strong>Warning:</strong>';
 		foreach ($warn as $warning) {

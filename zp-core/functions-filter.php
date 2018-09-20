@@ -13,8 +13,7 @@
  *
  * This API is heavily inspired by the plugin API used in WordPress.
  *
- * @package core
- * @subpackage functions\functions-filter
+ * @package functions
  * @author Ozh
  * @since 1.3
  */
@@ -28,14 +27,14 @@ $_zp_filters = array();
 
 /**
  * Registers a filtering function
- * Filtering functions are used to post process zenphoto elements or to trigger functions when a filter occur
+ * Filtering functions are used to post process elements or to trigger functions when a filter occur
  *
  * Typical use:
  *
  * 		zp_register_filter('some_hook', 'function_handler_for_hook');
  *
  * global array $_zp_filters Storage for all of the filters
- * @param string $hook the name of the zenphoto element to be filtered
+ * @param string $hook the name of the element to be filtered
  * @param callback $function_name the name of the function that is to be called.
  * @param integer $priority optional. Used to specify the order in which the functions associated with a particular
  * 																		action are executed (default=5, higher=earlier execution, and functions with
@@ -47,8 +46,8 @@ function zp_register_filter($hook, $function_name, $priority = NULL) {
 	if (is_array($bt)) {
 		$b = array_shift($bt);
 		$base = basename($b['file']);
-		if (is_null($priority) && isset($_EnabledPlugins[stripSuffix($base)])) {
-			$priority = $_EnabledPlugins[stripSuffix($base)]['priority'] & PLUGIN_PRIORITY;
+		if (is_null($priority) && isset($_EnabledPlugins[$b = stripSuffix($base)])) {
+			$priority = $_EnabledPlugins[$b]['priority'] & PLUGIN_PRIORITY;
 		}
 	} else {
 		$base = 'unknown';
@@ -62,8 +61,8 @@ function zp_register_filter($hook, $function_name, $priority = NULL) {
 	$id = zp_filter_unique_id($hook, $function_name, $priority);
 
 	$_zp_filters[$hook][$priority][$id] = array(
-					'function' => $function_name,
-					'script'	 => $base
+			'function' => $function_name,
+			'script' => $base
 	);
 	if (DEBUG_FILTERS)
 		debugLog($base . '=>' . $function_name . ' registered to ' . $hook . ' at priority ' . $priority);
@@ -108,9 +107,9 @@ function zp_filter_unique_id($hook, $function, $priority) {
 }
 
 /**
- * Performs a filtering operation on a zenphoto element or event.
- * This function is called for each zenphoto element which supports
- * plugin filtering. It is called after any zenphoto specific actions are
+ * Performs a filtering operation on a element or event.
+ * This function is called for each element which supports
+ * plugin filtering. It is called after any specific actions are
  * completed and before the element is used.
  *
  * Typical use:
@@ -125,11 +124,11 @@ function zp_filter_unique_id($hook, $function, $priority) {
  * Returns an element which may have been filtered by a filter.
  *
  * global array $_zp_filters storage for all of the filters
- * @param string $hook the name of the zenphoto element
+ * @param string $hook the name of the element
  * @param mixed $value the value of the element before filtering
  * @return mixed
  */
-function zp_apply_filter($hook, $value = '') {
+function zp_apply_filter($hook, $value = NULL) {
 	global $_zp_filters;
 	if (!isset($_zp_filters[$hook])) {
 		return $value;

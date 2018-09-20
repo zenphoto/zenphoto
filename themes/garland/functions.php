@@ -3,28 +3,20 @@
 require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 zp_register_filter('themeSwitcher_head', 'switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
-zp_register_filter('load_theme_script', 'fourOhFour');
 
 $cwd = getcwd();
 chdir(dirname(__FILE__));
 $persona = safe_glob('*', GLOB_ONLYDIR);
 chdir($cwd);
-$persona = array_diff($persona, array('images', 'contact_form'));
 $personalities = array();
 foreach ($persona as $personality) {
-	$personalities[ucfirst(str_replace('_', ' ', $personality))] = $personality;
+	if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/garland/' . $personality . '/functions.php'))
+		$personalities[ucfirst(str_replace('_', ' ', $personality))] = $personality;
 }
 
 if (!OFFSET_PATH) {
-	if (extensionEnabled('themeSwitcher')) {
-		$personality = getOption('themeSwitcher_garland_personality');
-		if (isset($_GET['themePersonality'])) {
-			$new = $_GET['themePersonality'];
-			if (in_array($new, $personalities)) {
-				setOption('themeSwitcher_garland_personality', $new);
-				$personality = $new;
-			}
-		}
+	if (class_exists('themeSwitcher')) {
+		$personality = themeSwitcher::themeSelection('themePersonality', $personalities);
 		if ($personality) {
 			setOption('garland_personality', $personality, false);
 		} else {
@@ -58,8 +50,7 @@ function switcher_head($ignore) {
 }
 
 function switcher_controllink($html) {
-	global $personalities, $_zp_gallery_page;
-	$personality = getOption('themeSwitcher_garland_personality');
+	global $personality, $personalities, $_zp_gallery_page;
 	if (!$personality) {
 		$personality = getOption('garland_personality');
 	}
@@ -92,9 +83,6 @@ function footer() {
 	?>
 	<div id="footer">
 		<?php
-		if(class_exists('ScriptlessSocialSharing')) {
-			ScriptlessSocialSharing::printButtons();
-		}
 		if (function_exists('printFavoritesURL') && $_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'favorites.php') {
 			printFavoritesURL(NULL, '', ' | ', '<br />');
 		}
@@ -149,9 +137,9 @@ function footer() {
 }
 
 function commonNewsLoop($paged) {
-	$newstypes = array('album' => gettext('album'), 'image' => gettext('image'), 'video' => gettext('video'), 'news' => gettext('news'));
+	$newstypes = array('album' => gettext('album'), 'image' => gettext('image'), 'video' => gettext('video'), 'news' => NEWS_LABEL);
 	while (next_news()) {
-		$newstypedisplay = gettext('news');
+		$newstypedisplay = NEWS_LABEL;
 		if (stickyNews()) {
 			$newstypedisplay .= ' <small><em>' . gettext('sticky') . '</em></small>';
 		}
@@ -177,11 +165,11 @@ function commonNewsLoop($paged) {
 				}
 				?>
 			</div> <!-- newsarticlecredit -->
-			<br class="clearall" />
+			<br class="clearall">
 			<?php printCodeblock(1); ?>
 			<?php printNewsContent(); ?>
 			<?php printCodeblock(2); ?>
-			<br class="clearall" />
+			<br class="clearall">
 		</div>
 		<?php
 	}
@@ -190,8 +178,8 @@ function commonNewsLoop($paged) {
 	}
 }
 
-function exerpt($content, $length) {
-	return shortenContent(getBare($content), $length, getOption("zenpage_textshorten_indicator"));
+function exerpt($content) {
+	return shortenContent($content, TRUNCATE_LENGTH, getOption("zenpage_textshorten_indicator"));
 }
 
 function my_checkPageValidity($request, $gallery_page, $page) {
@@ -209,6 +197,7 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 			}
 		case 'news.php':
 		case 'album.php':
+		case 'favorites.php';
 		case 'search.php':
 			break;
 	}
