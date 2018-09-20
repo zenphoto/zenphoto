@@ -34,13 +34,13 @@ class ThemeOptions {
 		setThemeOptionDefault('zpskel_archive', true);
 		setThemeOptionDefault('zenpage_homepage', 'none');
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('zpskeleton');
-			cacheManager::addThemeCacheSize('zpskeleton', null, 420, 200, 420, 200, null, null, null, true, getOption('Image_watermark'), false, false); // album thumbs
-			cacheManager::addThemeCacheSize('zpskeleton', 220, null, null, null, null, null, null, true, getOption('Image_watermark'), false, false); // image thumbs: uncropped large
-			cacheManager::addThemeCacheSize('zpskeleton', 190, null, null, null, null, null, null, true, getOption('Image_watermark'), false, false); // image thumbs: uncropped small
-			cacheManager::addThemeCacheSize('zpskeleton', null, 190, 190, 190, 190, null, null, true, getOption('Image_watermark'), false, false); // bottom image strip
-			cacheManager::addThemeCacheSize('zpskeleton', 420, null, null, null, null, null, null, false, getOption('fullimage_watermark'), null, null); // mobile full
-			cacheManager::addThemeCacheSize('zpskeleton', 630, null, null, null, null, null, null, false, getOption('fullimage_watermark'), null, null); // desktop full
+			cacheManager::deleteCacheSizes('zpskeleton');
+			cacheManager::addCacheSize('zpskeleton', null, 420, 200, 420, 200, null, null, null, true, getOption('Image_watermark'), false, false); // album thumbs
+			cacheManager::addCacheSize('zpskeleton', 220, null, null, null, null, null, null, true, getOption('Image_watermark'), false, false); // image thumbs: uncropped large
+			cacheManager::addCacheSize('zpskeleton', 190, null, null, null, null, null, null, true, getOption('Image_watermark'), false, false); // image thumbs: uncropped small
+			cacheManager::addCacheSize('zpskeleton', null, 190, 190, 190, 190, null, null, true, getOption('Image_watermark'), false, false); // bottom image strip
+			cacheManager::addCacheSize('zpskeleton', 420, null, null, null, null, null, null, false, getOption('fullimage_watermark'), null, null); // mobile full
+			cacheManager::addCacheSize('zpskeleton', 630, null, null, null, null, null, null, false, getOption('fullimage_watermark'), null, null); // desktop full
 		}
 	}
 

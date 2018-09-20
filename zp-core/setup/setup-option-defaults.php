@@ -881,17 +881,11 @@ $plugins = array_keys($plugins);
 		$class = 0;
 		$path = getPlugin($extension . '.php');
 		if (strpos($path, SERVERPATH . '/' . USER_PLUGIN_FOLDER) === 0) {
-			$pluginStream = file_get_contents($path);
-			if ($str = isolate('@category', $pluginStream)) {
-				preg_match('~@category\s+([^\/^\s]*)~', $str, $matches);
-				if (!isset($matches[1]) || $matches[1] != 'package') {
-					$deprecate = true;
-					$class = 1;
-				} else {
-					unset($plugins[$key]);
-				}
+			if (distributedPlugin($plugin)) {
+				unset($plugins[$key]);
 			} else {
 				$deprecate = true;
+				$class = 1;
 			}
 		} else {
 			unset($plugins[$key]);
@@ -916,13 +910,13 @@ if ($deprecate) {
 	if ($listed != getOption('deprecated_functions_signature')) {
 		setOption('deprecated_functions_signature', $listed);
 		enableExtension('deprecated-functions', 900 | CLASS_PLUGIN);
-		setupLog(gettext('There has been a change in function deprecation. The deprecated-functions plugin has been enabled.'), true);
+		setupLog('<span class="logwarning">' . gettext('There has been a change in function deprecation. The deprecated-functions plugin has been enabled.') . '</span>', true);
 	}
 	$compatibilityWas = getSerializedArray(getOption('zenphotoCompatibilityPack_signature'));
 	if ($compatibilityIs != $compatibilityWas) {
 		setOption('zenphotoCompatibilityPack_signature', serialize($compatibilityIs));
 		enableExtension('zenphotoCompatibilityPack', 1 | CLASS_PLUGIN);
-		setupLog(gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.'), true);
+		setupLog('<span class="logwarning">' . gettext('There has been a change of themes or plugins. The zenphotoCompatibilityPack plugin has been enabled.') . '</span>', true);
 	}
 }
 

@@ -7,7 +7,7 @@
  * for zenphoto 1.4.6 or later.
  *
  * You should udate the theme/plugin you wish to use. Use the LegacyConverter
- * development subtab to alter your scripts to use the appropriate 
+ * development subtab to alter your scripts to use the appropriate
  * methods and properties.
  *
  * @author Stephen Billard (sbillard)
@@ -88,4 +88,3 @@ define('SERVER_HTTP_HOST', FULLHOSTPATH);
 zp_register_filter('load_theme_script', 'zenphotoCompatibilityPack::filter');
 zp_register_filter('next_object_loop', 'zenphotoCompatibilityPack::filter');
 zp_register_filter('admin_tabs', 'zenphotoCompatibilityPack::admin_tabs');
-?>

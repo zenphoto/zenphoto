@@ -122,13 +122,14 @@ class deprecated_functions {
 	 * used to provided deprecated function notification.
 	 */
 
-	static function notify($use) {
-		$traces = @debug_backtrace();
+	static function notify_handler($message, $traces) {
 		$fcn = $traces[1]['function'];
-		if (empty($fcn))
+		if (empty($fcn)) {
 			$fcn = gettext('function');
-		if (!empty($use))
-			$use = ' ' . $use;
+		}
+
+		if (!empty($message))
+			$message = ' ' . $message;
 		//get the container folder
 		if (isset($traces[0]['file']) && isset($traces[0]['line'])) {
 			$script = basename(dirname($traces[0]['file']));
@@ -140,6 +141,7 @@ class deprecated_functions {
 		} else {
 			$plugin = $script;
 		}
+
 		if (isset($traces[1]['file']) && isset($traces[1]['line'])) {
 
 			$path = explode('/', replaceScriptPath($traces[1]['file']));
@@ -161,7 +163,7 @@ class deprecated_functions {
 		} else {
 			$script = $line = gettext('unknown');
 		}
-		$output = sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated.'), $fcn, $script, $line) . "\n" . $use . "\n";
+		$output = sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated.'), $fcn, $script, $line) . "\n" . $message . "\n";
 
 		if (file_exists(DEPRECATED_LOG)) {
 			$content = file_get_contents(DEPRECATED_LOG);
@@ -179,6 +181,8 @@ class deprecated_functions {
 			$prefix = '  ';
 			$line = '';
 			$caller = '';
+
+			array_shift($traces);
 			foreach ($traces as $b) {
 				$caller = (isset($b['class']) ? $b['class'] : '') . (isset($b['type']) ? $b['type'] : '') . $b['function'];
 				if (!empty($line)) { // skip first output to match up functions with line where they are used.
@@ -199,6 +203,21 @@ class deprecated_functions {
 			}
 			self::log($output);
 		}
+	}
+
+	static function notify($message) {
+		$traces = debug_backtrace();
+		array_shift($traces);
+		$traces = array_values($traces);
+		self::notify_handler($message, $traces);
+	}
+
+	static function notify_call($method, $message) {
+		$traces = debug_backtrace();
+		array_shift($traces);
+		$traces = array_values($traces);
+		$traces[1]['function'] = $method; //	replace __call or __callStatic with the method that was invoked
+		self::notify_handler($message, $traces, $method);
 	}
 
 }

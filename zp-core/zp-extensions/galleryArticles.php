@@ -42,8 +42,8 @@ class galleryArticles {
 			setOptionDefault('galleryArticles_size', 80);
 			setOptionDefault('galleryArticles_protected', 0);
 			if (class_exists('cacheManager')) {
-				cacheManager::deleteThemeCacheSizes('galleryArticles');
-				cacheManager::addThemeCacheSize('galleryArticles', getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
+				cacheManager::deleteCacheSizes('galleryArticles');
+				cacheManager::addCacheSize('galleryArticles', getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL);
 			}
 		}
 	}

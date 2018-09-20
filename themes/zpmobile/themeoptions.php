@@ -28,8 +28,8 @@ class ThemeOptions {
 			colorbox::registerScripts(array('album', 'favorites', 'image', 'search'));
 		}
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('zpMobile');
-			cacheManager::addThemeCacheSize('zpMobile', NULL, 79, 79, 79, 79, NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::deleteCacheSizes('zpMobile');
+			cacheManager::addCacheSize('zpMobile', NULL, 79, 79, 79, 79, NULL, NULL, true, NULL, NULL, NULL);
 		}
 	}
 

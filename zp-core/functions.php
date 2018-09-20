@@ -1792,21 +1792,18 @@ function getBare($content) {
 
 /**
  *
- * Sanitizes a "redirect" post
+ * Sanitizes a "redirect" post Note: redirects are forced to be within the site
+ *
  * @param string $redirectTo
  * @return string
  */
-function sanitizeRedirect($redirectTo, $forceHost = false) {
+function sanitizeRedirect($redirectTo, $forceHost = true) {
 	$redirect = NULL;
 	if ($redirectTo && $redir = mb_parse_url($redirectTo)) {
-		if (isset($redir['scheme']) && isset($redir['host'])) {
-			$redirect .= $redir['scheme'] . '://' . sanitize($redir['host']);
-		} else {
-			if ($forceHost) {
-				$redirect .= FULLHOSTPATH;
-				if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
-					$redirect .= WEBPATH;
-				}
+		if ($forceHost) {
+			$redirect .= FULLHOSTPATH;
+			if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
+				$redirect .= WEBPATH;
 			}
 		}
 		if (isset($redir['path'])) {
@@ -1948,19 +1945,19 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
 
 			if ($success) {
-// Correct auth info. Set the cookie.
+				// Correct auth info. Set the cookie.
 				if (DEBUG_LOGIN)
 					debugLog("zp_handle_password: valid credentials");
 				zp_setCookie($authType, $auth);
 				if (isset($_POST['redirect'])) {
-					$redirect_to = sanitizeRedirect($_POST['redirect'], true);
+					$redirect_to = sanitizeRedirect($_POST['redirect']);
 					if (!empty($redirect_to)) {
 						header("Location: " . $redirect_to);
 						exitZP();
 					}
 				}
 			} else {
-// Clear the cookie, just in case
+				// Clear the cookie, just in case
 				if (DEBUG_LOGIN)
 					debugLog("zp_handle_password: invalid credentials");
 				zp_clearCookie($authType);
@@ -2999,7 +2996,4 @@ class _zp_HTML_cache {
 	}
 
 }
-
-$_zp_exifvars = zpFunctions::exifvars();
-$_locale_Subdomains = zpFunctions::LanguageSubdomains();
 ?>

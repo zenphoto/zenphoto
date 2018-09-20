@@ -1098,11 +1098,9 @@ plugins/text_watermark/createwatermark.php
 plugins/text_watermark/text_watermark.htm
 plugins/text_watermark.php
 plugins/titlelinkMigration/
-plugins/titlelinkMigration/logo.png
 plugins/titlelinkMigration/migrate.php
 plugins/titlelinkMigration.php
 plugins/utf8mb4Migration/
-plugins/utf8mb4Migration/logo.png
 plugins/utf8mb4Migration/migrate.php
 plugins/utf8mb4Migration.php
 plugins/zenphotoCompatibilityPack/
@@ -1651,6 +1649,7 @@ zp-core/zp-extensions/bxslider_thumb_nav/plugins/jquery.fitvids.js
 zp-core/zp-extensions/cacheManager
 zp-core/zp-extensions/cacheManager/cacheDBImages.php
 zp-core/zp-extensions/cacheManager/cacheImages.php
+zp-core/zp-extensions/cacheManager/deprecated-functions.php
 zp-core/zp-extensions/cacheManager/functions.php
 zp-core/zp-extensions/class-AnyFile
 zp-core/zp-extensions/class-AnyFile/anyFileDefault.png
@@ -8357,4 +8356,4 @@ zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
 zp-core/setup/setupComplete.php:*
-8359
+8358

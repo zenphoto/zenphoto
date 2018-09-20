@@ -118,9 +118,9 @@ class cacheManager {
 	function __construct() {
 		if (OFFSET_PATH == 2) {
 			query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `subtype`!="_custom_"');
-			self::addThemeCacheSize('admin', ADMIN_THUMB_LARGE, NULL, NULL, ADMIN_THUMB_LARGE, ADMIN_THUMB_LARGE, NULL, NULL, -1);
-			self::addThemeCacheSize('admin', ADMIN_THUMB_MEDIUM, NULL, NULL, ADMIN_THUMB_MEDIUM, ADMIN_THUMB_MEDIUM, NULL, NULL, -1);
-			self::addThemeCacheSize('admin', ADMIN_THUMB_SMALL, NULL, NULL, ADMIN_THUMB_SMALL, ADMIN_THUMB_SMALL, NULL, NULL, -1);
+			self::addCacheSize('admin', ADMIN_THUMB_LARGE, NULL, NULL, ADMIN_THUMB_LARGE, ADMIN_THUMB_LARGE, NULL, NULL, -1);
+			self::addCacheSize('admin', ADMIN_THUMB_MEDIUM, NULL, NULL, ADMIN_THUMB_MEDIUM, ADMIN_THUMB_MEDIUM, NULL, NULL, -1);
+			self::addCacheSize('admin', ADMIN_THUMB_SMALL, NULL, NULL, ADMIN_THUMB_SMALL, ADMIN_THUMB_SMALL, NULL, NULL, -1);
 		}
 	}
 
@@ -180,7 +180,7 @@ class cacheManager {
 		$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" ORDER BY `aux`');
 		$key = 0;
 		while ($row = db_fetch_assoc($result)) {
-			$theme = $row['aux'];
+			$owner = $row['aux'];
 			$data = getSerializedArray($row['data']);
 			$index = $data['theme'];
 			if (array_key_exists('album', $data) && $data['album']) {
@@ -194,32 +194,32 @@ class cacheManager {
 		$c = 0;
 		self::printShowHide();
 
-		foreach ($custom as $themedata) {
-			$a = reset($themedata);
-			$themeid = $theme = $a['theme'];
+		foreach ($custom as $ownerdata) {
+			$a = reset($ownerdata);
+			$ownerid = $owner = $a['theme'];
 			if (array_key_exists('album', $a) && $a['album']) {
 				$album = $a['album'];
-				$themeid = $theme . '__' . $album;
+				$ownerid = $owner . '__' . $album;
 				$albumdisp = ' (' . $album . ')';
 			} else {
 				$albumdisp = $album = NULL;
 			}
-			$themeid = preg_replace('/[^A-Za-z0-9\-_]/', '', $themeid);
+			$ownerid = preg_replace('/[^A-Za-z0-9\-_]/', '', $ownerid);
 
-			$themedata = sortMultiArray($themedata, array('thumb', 'image_size', 'image_width', 'image_height'));
-			if (!$theme) {
+			$ownerdata = sortMultiArray($ownerdata, array('thumb', 'image_size', 'image_width', 'image_height'));
+			if (!$owner) {
 				echo '<br />';
 			}
 			?>
-			<span class="icons upArrow" id="<?php echo $themeid; ?>_arrow">
-				<a onclick="showTheme('<?php echo $themeid; ?>');" title="<?php echo gettext('Show'); ?>">
+			<span class="icons upArrow" id="<?php echo $ownerid; ?>_arrow">
+				<a onclick="showTheme('<?php echo $ownerid; ?>');" title="<?php echo gettext('Show'); ?>">
 					<?php echo ARROW_DOWN_GREEN; ?>
 				</a>
 				<?php
-				if ($theme) {
+				if ($owner) {
 					$inputclass = 'hidden';
-					echo '<em>' . $theme . $albumdisp . '</em> (' . count($themedata), ')';
-					$subtype = @$themedata['album'];
+					echo '<em>' . $owner . $albumdisp . '</em> (' . count($ownerdata), ')';
+					$subtype = @$ownerdata['album'];
 				} else {
 					$inputclass = 'textbox';
 					$subtype = '_custom_';
@@ -228,10 +228,10 @@ class cacheManager {
 				?>
 			</span>
 			<br />
-			<div id="<?php echo $themeid; ?>_list" style="display:none">
+			<div id="<?php echo $ownerid; ?>_list" style="display:none">
 				<br />
 				<?php
-				foreach ($themedata as $cache) {
+				foreach ($ownerdata as $cache) {
 					$key++;
 					if ($c % 2) {
 						$class = 'boxb';
@@ -249,10 +249,10 @@ class cacheManager {
 						}
 						?>
 						<div class="<?php echo $class; ?>">
-							<input type="<?php echo $inputclass; ?>" size="25" name="cacheManager[<?php echo $key; ?>][theme]" value="<?php echo $theme; ?>" />
+							<input type="<?php echo $inputclass; ?>" size="25" name="cacheManager[<?php echo $key; ?>][theme]" value="<?php echo $owner; ?>" />
 							<input type="hidden" name="cacheManager[<?php echo $key; ?>][subtype]" value="<?php echo $subtype; ?>" />
 							<?php
-							if ($theme) {
+							if ($owner) {
 								?>
 								<span class="displayinlineright"><?php echo gettext('Delete'); ?> <input type="checkbox" name="cacheManager[<?php echo $key; ?>][delete]" value="1" /></span>
 								<?php
@@ -289,7 +289,7 @@ class cacheManager {
 					<?php
 				}
 				?>
-			</div><!-- <?php echo $theme . $album; ?>_list -->
+			</div><!-- <?php echo $owner . $album; ?>_list -->
 			<?php
 		}
 	}
@@ -297,11 +297,11 @@ class cacheManager {
 	/**
 	 *
 	 * process custom option saves
-	 * @param string $themename
-	 * @param string $themealbum
+	 * @param string $ownername
+	 * @param string $owneralbum
 	 * @return string
 	 */
-	static function handleOptionSave($themename, $themealbum) {
+	static function handleOptionSave($ownername, $themealbum) {
 		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager"');
 		foreach ($_POST['cacheManager'] as $cacheimage) {
 			if (!isset($cacheimage['delete']) && count($cacheimage) > 1) {
@@ -317,32 +317,49 @@ class cacheManager {
 		return false;
 	}
 
-	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = NULL) {
+	/**
+	 *
+	 * @global type $_set_theme_album
+	 * @global type $_zp_gallery
+	 * @param string $owner
+	 * @param int $size	standard image parameters
+	 * @param int $width
+	 * @param int $height
+	 * @param int $cw
+	 * @param int $ch
+	 * @param int $cx
+	 * @param int $cy
+	 * @param int $thumb
+	 * @param int $watermark
+	 * @param int $effects
+	 * @param int $maxspace
+	 */
+	static function addCacheSize($owner, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = NULL) {
 		global $_set_theme_album, $_zp_gallery;
-		$themeList = array_map('strtolower', array_keys($_zp_gallery->getThemes()));
+		$ownerList = array_map('strtolower', array_keys($_zp_gallery->getThemes()));
 
 		$albumName = '';
-		if (in_array(strtolower($theme), $themeList)) {
+		if (in_array(strtolower($owner), $ownerList)) {
 			//from a theme, so there are standard options
 			if (is_null($watermark)) {
-				$watermark = getThemeOption('image_watermark', $_set_theme_album, $theme);
+				$watermark = getThemeOption('image_watermark', $_set_theme_album, $owner);
 			}
 			if (is_null($effects)) {
 				if ($thumb) {
-					if (getThemeOption('thumb_gray', $_set_theme_album, $theme)) {
+					if (getThemeOption('thumb_gray', $_set_theme_album, $owner)) {
 						$effects = 'gray';
 					}
 				} else {
-					if (getThemeOption('image_gray', $_set_theme_album, $theme)) {
+					if (getThemeOption('image_gray', $_set_theme_album, $owner)) {
 						$effects = 'gray';
 					}
 				}
 			}
 			if ($thumb) {
-				if (getThemeOption('thumb_crop', $_set_theme_album, $theme)) {
+				if (getThemeOption('thumb_crop', $_set_theme_album, $owner)) {
 					if (is_null($cw) && is_null($ch)) {
-						$ch = getThemeOption('thumb_crop_height', $_set_theme_album, $theme);
-						$cw = getThemeOption('thumb_crop_width', $_set_theme_album, $theme);
+						$ch = getThemeOption('thumb_crop_height', $_set_theme_album, $owner);
+						$cw = getThemeOption('thumb_crop_width', $_set_theme_album, $owner);
 					}
 				} else {
 					$ch = $cw = NULL;
@@ -352,10 +369,41 @@ class cacheManager {
 				$albumName = $_set_theme_album->name;
 			}
 		}
-		$cacheSize = serialize(array('theme' => $theme, 'album' => $albumName, 'apply' => false, 'image_size' => $size, 'image_width' => $width, 'image_height' => $height,
+		$cacheSize = serialize(array('theme' => $owner, 'album' => $albumName, 'apply' => false, 'image_size' => $size, 'image_width' => $width, 'image_height' => $height,
 				'crop_width' => $cw, 'crop_height' => $ch, 'crop_x' => $cx, 'crop_y' => $cy, 'thumb' => $thumb, 'wmk' => $watermark, 'gray' => $effects, 'maxspace' => $maxspace));
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($albumName) . ',' . db_quote($theme) . ',' . db_quote($cacheSize) . ')';
+		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `subtype`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($albumName) . ',' . db_quote($owner) . ',' . db_quote($cacheSize) . ')';
 		query($sql);
+	}
+
+	/**
+	 *
+	 * @global type $_set_theme_album
+	 * @param string $owner
+	 */
+	static function deleteCacheSizes($owner) {
+		global $_set_theme_album;
+		$albumName = '';
+		if (!is_null($_set_theme_album)) {
+			$albumName = $_set_theme_album->name;
+		}
+		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `subtype`=' . db_quote($albumName) . ' AND `aux`=' . db_quote($owner);
+		query($sql);
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.8.0.11
+	 */
+	static function addThemeCacheSize($owner, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = NULL) {
+		cachemanager_internal_deprecations::addThemeCacheSize();
+	}
+
+	/**
+	 * @deprecated
+	 * @since 1.8.0.11
+	 */
+	static function deleteThemeCacheSizes($owner) {
+		cachemanager_internal_deprecations::deleteThemeCacheSizes();
 	}
 
 	/**
@@ -494,14 +542,14 @@ class cacheManager {
 		return $html;
 	}
 
-	static function deleteThemeCacheSizes($theme) {
-		global $_set_theme_album;
-		$albumName = '';
-		if (!is_null($_set_theme_album)) {
-			$albumName = $_set_theme_album->name;
-		}
-		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `subtype`=' . db_quote($albumName) . ' AND `aux`=' . db_quote($theme);
-		query($sql);
+	/**
+	 * Catch redundant legacy zenphoto static functions if they happen to be used by a third party theme or plugin
+	 *
+	 * @param string $method
+	 * @param misc $args
+	 */
+	public static function __callStatic($method, $args) {
+		cachemanager_internal_deprecations::generalDeprecation($method, $args);
 	}
 
 }

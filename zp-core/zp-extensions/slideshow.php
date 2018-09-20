@@ -85,8 +85,8 @@ class slideshow {
 			setOptionDefault('slideshow_colorbox_imagetype', 'sizedimage');
 			setOptionDefault('slideshow_colorbox_imagetitle', 1);
 			if (class_exists('cacheManager')) {
-				cacheManager::deleteThemeCacheSizes('slideshow');
-				cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+				cacheManager::deleteCacheSizes('slideshow');
+				cacheManager::addCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
 			}
 		}
 	}

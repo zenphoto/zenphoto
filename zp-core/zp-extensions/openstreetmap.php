@@ -33,7 +33,7 @@ class openStreetMapOptions {
 		setOptionDefault('osmap_minzoom', 2);
 		setOptionDefault('osmap_maxzoom', 18);
 		setOptionDefault('osmap_zoomcontrolpos', 'topleft');
-		setOptionDefault('osmap_defaultlayer', 'OpenStreetMap_Mapnik');
+		setOptionDefault('osmap_defaultlayer', 'OpenStreetMap.Mapnik');
 		setOptionDefault('osmap_clusterradius', 40);
 		setOptionDefault('osmap_markerpopup', 1);
 		setOptionDefault('osmap_markerpopup_title', 1);
@@ -52,8 +52,8 @@ class openStreetMapOptions {
 		setOptionDefault('osmap_minimap_zoom', -5);
 		setOptionDefault('osmap_cluster_showcoverage_on_hover', 0);
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('openstreetmap');
-			cacheManager::addThemeCacheSize('openstreetmap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::deleteCacheSizes('openstreetmap');
+			cacheManager::addCacheSize('openstreetmap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
 		}
 
 		/* clean up old options */
@@ -70,7 +70,6 @@ class openStreetMapOptions {
 	function getOptionsSupported() {
 		$providers = array_combine(openStreetMap::getTitleProviders(), openStreetMap::getTitleProviders());
 		$layerslist = openStreetMap::getLayersList();
-
 		$options = array(
 				gettext('Map dimensions—width') => array(
 						'key' => 'osmap_width',
@@ -156,7 +155,7 @@ class openStreetMapOptions {
 						'type' => OPTION_TYPE_CHECKBOX_UL,
 						'order' => 14.4,
 						'checkboxes' => $layerslist,
-						'desc' => gettext("Choose layers list to show in layers controls. No need to select the default layer again, otherwise it will be deduplicated.")),
+						'desc' => gettext("Choose layers list to show in layers controls.")),
 				gettext('Layers controls position') => array(
 						'key' => 'osmap_layerscontrolpos',
 						'type' => OPTION_TYPE_SELECTOR,
@@ -229,6 +228,19 @@ class openStreetMapOptions {
 						'order' => 26,
 						'desc' => ''),
 		);
+
+		// the default layer is selected, well, by default!
+		$id = postIndexEncode($layerslist[getOption('osmap_defaultlayer')]);
+		?>
+		<script type="text/javascript">
+			window.addEventListener('load', function () {
+				$('#<?php echo $id; ?>').prop('checked', 'checked');					//show it as selected
+				$('#<?php echo $id; ?>').prop('disabled', 'disabled');				// but do not allow user to deselect it
+				$('#<?php echo $id; ?>_element').parent().prepend($('#<?php echo $id; ?>_element'));	// move it to top of UL
+				$('[name="_ZP_CUSTOM_chkbox-<?php echo $id; ?>"]').remove();	// disable changing the DB setting of this option
+			});
+		</script>
+		<?php
 		return $options;
 	}
 
@@ -491,7 +503,7 @@ class openStreetMap {
 				$selectedlayerslist[$layer] = $layer;
 			}
 		}
-		// deduplicate default Layer from layers list
+		// remove default Layer from layers list
 		unset($selectedlayerslist[array_search($this->defaultlayer, $selectedlayerslist)]);
 		$this->layerslist = $selectedlayerslist;
 		$this->layerscontrolpos = getOption('osmap_layerscontrolpos');
@@ -776,7 +788,6 @@ class openStreetMap {
 						maxZoom: <?php echo $this->maxzoom; ?>
 			<?php } ?>
 				});
-
 			<?php
 			if (!$this->showlayerscontrol) {
 				$this->layer = $this->defaultlayer;
@@ -801,7 +812,6 @@ class openStreetMap {
 					var baseLayers = {
 				<?php echo $baselayers; ?>
 					};
-
 					L.control.layers(baseLayers, null, {position: '<?php echo $this->layerscontrolpos; ?>'}).addTo(map);
 				<?php
 			}

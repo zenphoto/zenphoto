@@ -735,9 +735,6 @@ class _Authority {
 					$_REQUEST['logon_step'] = 'challenge';
 					break;
 				case 'captcha':
-
-					debugLogVar('$_zp_captcha', $_zp_captcha);
-
 					if ($_zp_captcha->checkCaptcha(trim(@$_POST['code']), sanitize(@$_POST['code_h'], 3))) {
 						require_once(dirname(__FILE__) . '/load_objectClasses.php'); // be sure that the plugins are loaded for the mail handler
 						if (empty($post_user)) {

@@ -49,18 +49,18 @@ class ThemeOptions {
 		setThemeOptionDefault('zpmas_ssspeed', '4000');
 		setThemeOptionDefault('jcarousel_zpmasonry_image', 1);
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('zpmasonry');
-			cacheManager::addThemeCacheSize('zpmasonry', null, 108, 108, 108, 108, null, null, null, true, getOption('Image_watermark'), false, false); // image thumbs - small
-			cacheManager::addThemeCacheSize('zpmasonry', null, 248, 248, 248, 248, null, null, true, getOption('Image_watermark'), false, false); // album thumbs - small - square
-			cacheManager::addThemeCacheSize('zpmasonry', null, 248, 125, 248, 125, null, null, true, getOption('Image_watermark'), false, false); // album thumbs - small - landscape
-			cacheManager::addThemeCacheSize('zpmasonry', null, 528, 528, 528, 528, null, null, true, getOption('Image_watermark'), false, false); // fp slideshow - small - square
-			cacheManager::addThemeCacheSize('zpmasonry', null, 528, 270, 528, 270, null, null, true, getOption('Image_watermark'), false, false); // fp slideshow - small - landscape
-			cacheManager::addThemeCacheSize('zpmasonry', null, 168, 168, 168, 168, null, null, null, true, getOption('Image_watermark'), false, false); // image thumbs - large
-			cacheManager::addThemeCacheSize('zpmasonry', null, 368, 368, 368, 368, null, null, true, getOption('Image_watermark'), false, false); // album thumbs - large - square
-			cacheManager::addThemeCacheSize('zpmasonry', null, 368, 200, 368, 200, null, null, true, getOption('Image_watermark'), false, false); // album thumbs - large - landscape
-			cacheManager::addThemeCacheSize('zpmasonry', null, 768, 768, 768, 768, null, null, true, getOption('Image_watermark'), false, false); // fp slideshow - large - square
-			cacheManager::addThemeCacheSize('zpmasonry', null, 768, 360, 768, 360, null, null, true, getOption('Image_watermark'), false, false); // fp slideshow - large - landscape
-			cacheManager::addThemeCacheSize('zpmasonry', 1200, null, null, null, null, null, null, false, getOption('fullimage_watermark'), null, null); // full image
+			cacheManager::deleteCacheSizes('zpmasonry');
+			cacheManager::addCacheSize('zpmasonry', null, 108, 108, 108, 108, null, null, null, true, getOption('Image_watermark'), false, false); // image thumbs - small
+			cacheManager::addCacheSize('zpmasonry', null, 248, 248, 248, 248, null, null, true, getOption('Image_watermark'), false, false); // album thumbs - small - square
+			cacheManager::addCacheSize('zpmasonry', null, 248, 125, 248, 125, null, null, true, getOption('Image_watermark'), false, false); // album thumbs - small - landscape
+			cacheManager::addCacheSize('zpmasonry', null, 528, 528, 528, 528, null, null, true, getOption('Image_watermark'), false, false); // fp slideshow - small - square
+			cacheManager::addCacheSize('zpmasonry', null, 528, 270, 528, 270, null, null, true, getOption('Image_watermark'), false, false); // fp slideshow - small - landscape
+			cacheManager::addCacheSize('zpmasonry', null, 168, 168, 168, 168, null, null, null, true, getOption('Image_watermark'), false, false); // image thumbs - large
+			cacheManager::addCacheSize('zpmasonry', null, 368, 368, 368, 368, null, null, true, getOption('Image_watermark'), false, false); // album thumbs - large - square
+			cacheManager::addCacheSize('zpmasonry', null, 368, 200, 368, 200, null, null, true, getOption('Image_watermark'), false, false); // album thumbs - large - landscape
+			cacheManager::addCacheSize('zpmasonry', null, 768, 768, 768, 768, null, null, true, getOption('Image_watermark'), false, false); // fp slideshow - large - square
+			cacheManager::addCacheSize('zpmasonry', null, 768, 360, 768, 360, null, null, true, getOption('Image_watermark'), false, false); // fp slideshow - large - landscape
+			cacheManager::addCacheSize('zpmasonry', 1200, null, null, null, null, null, null, false, getOption('fullimage_watermark'), null, null); // full image
 		}
 	}
 

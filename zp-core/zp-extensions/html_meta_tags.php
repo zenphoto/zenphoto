@@ -70,8 +70,8 @@ class htmlmetatags {
 			setOptionDefault('htmlmeta_ogimage_height', 900);
 
 			if (class_exists('cacheManager')) {
-				cacheManager::deleteThemeCacheSizes('html_meta_tags');
-				cacheManager::addThemeCacheSize('html_meta_tags', NULL, getOption('htmlmeta_ogimage_width'), getOption('htmlmeta_ogimage_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+				cacheManager::deleteCacheSizes('html_meta_tags');
+				cacheManager::addCacheSize('html_meta_tags', NULL, getOption('htmlmeta_ogimage_width'), getOption('htmlmeta_ogimage_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
 			}
 		}
 	}

@@ -90,13 +90,8 @@ echo '</head>' . "\n";
 								$paths = getPluginFiles('*.php');
 								foreach ($paths as $plugin => $path) {
 									if (strpos($path, USER_PLUGIN_FOLDER) !== false) {
-										$p = file_get_contents($path);
-										$i = strpos($p, '* @category');
-										if (($key = $i) !== false) {
-											$key = strtolower(trim(substr($p, $i + 11, strpos($p, "\n", $i) - $i - 11)));
-											if ($key == 'package') {
-												$zplist[] = stripSuffix(str_replace(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/', '', $path));
-											}
+										if (distributedPlugin($plugin)) {
+											$zplist[] = stripSuffix(str_replace(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/', '', $path));
 										}
 									}
 								}
@@ -109,13 +104,8 @@ echo '</head>' . "\n";
 									if (strpos($path, USER_PLUGIN_FOLDER) == false) {
 										unset($paths[$plugin]);
 									} else {
-										$p = file_get_contents($path);
-										$i = strpos($p, '* @category');
-										if (($key = $i) !== false) {
-											$key = strtolower(trim(substr($p, $i + 11, strpos($p, "\n", $i) - $i - 11)));
-											if ($key == 'package') {
-												unset($paths[$plugin]);
-											}
+										if (distributedPlugin($plugin)) {
+											unset($paths[$plugin]);
 										}
 									}
 								}
