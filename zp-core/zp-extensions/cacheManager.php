@@ -395,7 +395,7 @@ class cacheManager {
 	 * @since 1.8.0.11
 	 */
 	static function addThemeCacheSize($owner, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = NULL) {
-		cachemanager_internal_deprecations::addThemeCacheSize();
+		cachemanager_internal_deprecations::addThemeCacheSize($owner, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects, $maxspace);
 	}
 
 	/**
@@ -403,7 +403,7 @@ class cacheManager {
 	 * @since 1.8.0.11
 	 */
 	static function deleteThemeCacheSizes($owner) {
-		cachemanager_internal_deprecations::deleteThemeCacheSizes();
+		cachemanager_internal_deprecations::deleteThemeCacheSizes($owner);
 	}
 
 	/**

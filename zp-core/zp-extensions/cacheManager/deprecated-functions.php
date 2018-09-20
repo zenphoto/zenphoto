@@ -6,7 +6,7 @@ class cachemanager_internal_deprecations {
 	 * @deprecated
 	 * @since 1.8.0.11
 	 */
-	static function addThemeCacheSize() {
+	static function addThemeCacheSize($owner, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects, $maxspace) {
 		deprecated_functions::notify(gettext('Use cacheManager::addCacheSize()'), E_USER_NOTICE);
 		cacheManager::addCacheSize($owner, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects, $maxspace);
 	}
@@ -15,7 +15,7 @@ class cachemanager_internal_deprecations {
 	 * @deprecated
 	 * @since 1.8.0.11
 	 */
-	static function deleteThemeCacheSizes() {
+	static function deleteThemeCacheSizes($owner) {
 		deprecated_functions::notify(gettext('Use cacheManager::deleteCacheSizes()'), E_USER_NOTICE);
 		cacheManager::deleteCacheSizes($owner);
 	}
