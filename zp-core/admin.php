@@ -187,8 +187,7 @@ if (zp_loggedin() && !empty($zenphoto_tabs)) {
 	}
 } else {
 	if (isset($_GET['from'])) {
-		$from = sanitize($_GET['from']);
-		$from = urldecode($from);
+		$from = sanitizeRedirect($_GET['from']);
 	} else {
 		$from = urldecode(currentRelativeURL());
 	}
