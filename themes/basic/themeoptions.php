@@ -32,7 +32,6 @@ class ThemeOptions {
 		setOptionDefault('colorbox_' . $me . '_image', 1);
 		setOptionDefault('colorbox_' . $me . '_search', 1);
 		if (class_exists('cacheManager')) {
-			$me = basename(dirname(__FILE__));
 			cacheManager::deleteCacheSizes($me);
 			cacheManager::addDefaultThumbSize();
 			cacheManager::addDefaultSizedImageSize();
