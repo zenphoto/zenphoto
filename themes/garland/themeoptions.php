@@ -34,7 +34,6 @@ class ThemeOptions {
 			setThemeOption('custom_index_page', '', NULL, 'garland', false);
 		}
 		if (class_exists('cacheManager')) {
-			$me = basename(dirname(__FILE__));
 			cacheManager::deleteCacheSizes($me);
 			$img_wmk = getOption('fullimage_watermark') ? getOption('fullimage_watermark') : null;
 			$img_effect = getThemeOption('image_gray') ? 'gray' : null;
