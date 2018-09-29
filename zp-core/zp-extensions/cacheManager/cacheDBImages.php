@@ -9,7 +9,6 @@
 define('OFFSET_PATH', 3);
 require_once("../../admin-globals.php");
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/functions.php');
 
 admin_securityChecks(NULL, $return = currentRelativeURL());
 
