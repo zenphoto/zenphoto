@@ -1762,23 +1762,21 @@ function restore_context() {
 }
 
 /**
- *
- * Sanitizes a "redirect" post
+ * Sanitizes a "redirect" post to always be within the site
  * @param string $redirectTo
  * @return string
  */
-function sanitizeRedirect($redirectTo, $forceHost = false) {
+function sanitizeRedirect($redirectTo) {
 	$redirect = NULL;
 	if ($redirectTo && $redir = parse_url($redirectTo)) {
 		if (isset($redir['scheme']) && isset($redir['host'])) {
-			$redirect .= $redir['scheme'] . '://' . sanitize($redir['host']);
-		} else {
-			if ($forceHost) {
-				$redirect .= SERVER_HTTP_HOST;
-				if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
-					$redirect .= WEBPATH;
-				}
-			}
+			$redirect = $redir['scheme'] . '://' . sanitize($redir['host']);
+		}
+		if ($redirect != SERVER_HTTP_HOST) {
+			$redirect = SERVER_HTTP_HOST;
+		}
+		if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
+			$redirect .= WEBPATH . '/';
 		}
 		if (isset($redir['path'])) {
 			$redirect .= urldecode(sanitize($redir['path']));
@@ -1937,7 +1935,7 @@ function zp_handle_password_single($authType = NULL, $check_auth = NULL, $check_
 				debugLog("zp_handle_password: valid credentials");
 			zp_setCookie($authType, $auth);
 			if (isset($_POST['redirect'])) {
-				$redirect_to = sanitizeRedirect($_POST['redirect'], true);
+				$redirect_to = sanitizeRedirect($_POST['redirect']);
 				if (!empty($redirect_to)) {
 					header("Location: " . $redirect_to);
 					exitZP();

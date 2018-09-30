@@ -27,6 +27,7 @@ if (isset($_GET['action'])) {
 					$result = sprintf(gettext('%s log could not be emptied.'), $what);
 				}
 				fclose($f);
+				@chmod($file, LOGS_MOD);
 				clearstatcache();
 				$_zp_mutex->unlock();
 				if (basename($file) == 'security.log') {

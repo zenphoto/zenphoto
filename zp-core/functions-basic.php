@@ -24,7 +24,6 @@ global $_zp_conf_vars;
 $const_webpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 $const_serverpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME']));
 
-
 /**
  * see if we are executing out of any of the known script folders. If so we know how to adjust the paths
  * if not we presume the script is in the root of the installation. If it is not the script better have set
@@ -172,7 +171,11 @@ if (!defined('CHMOD_VALUE')) {
 define('FOLDER_MOD', CHMOD_VALUE | 0311);
 define('FILE_MOD', CHMOD_VALUE & 0666);
 define('DATA_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777);
-
+if(file_exists(SERVERPATH . '/' . DATA_FOLDER . '/setup.log')) {
+	define('LOGS_MOD', fileperms(SERVERPATH . '/' . DATA_FOLDER . '/setup.log') & 0600);
+} else {
+	define('LOGS_MOD', DATA_MOD);
+}
 if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
 	require_once(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php');
 	$data = db_connect(array_intersect_key($_zp_conf_vars, array('db_software' => '', 'mysql_user' => '', 'mysql_pass' => '', 'mysql_host' => '', 'mysql_database' => '', 'mysql_prefix' => '', 'UTF-8' => '')), false);
@@ -1308,8 +1311,8 @@ function debugLog($message, $reset = false) {
 			fwrite($f, "  " . $message . "\n");
 			fclose($f);
 			clearstatcache();
-			if (defined('DATA_MOD')) {
-				@chmod($path, DATA_MOD);
+			if (defined('LOGS_MOD')) {
+				@chmod($path, LOGS_MOD);
 			}
 		}
 		if (is_object($_zp_mutex))
