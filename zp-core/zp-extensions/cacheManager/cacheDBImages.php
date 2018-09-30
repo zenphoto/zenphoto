@@ -33,8 +33,8 @@ printAdminHeader('overview', 'DB'); ?>
 		<p><?php echo gettext('This utility scans the database for images references that have been stored there (e.g. embedded within text content).'); ?></p>
 		<p><?php echo gettext('The following database fields are checked:');?></p>
 		<ul>
-			<li><?php echo ('<code>desc</code> (description) of albums and images'); ?></li>
-			<li><?php echo ('<code>content</code>  and <code>extracontent</code> of Zenpage news articles and pages.'); ?></li>
+			<li><?php echo gettext('<code>desc</code> (description) of albums and images'); ?></li>
+			<li><?php echo gettext('<code>content</code> and <code>extracontent</code> of Zenpage news articles and pages.'); ?></li>
 		</ul>
 		<p>
 		<?php 
@@ -101,7 +101,7 @@ printAdminHeader('overview', 'DB'); ?>
 										$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($text) . ' WHERE `id`=' . $row['id'];
 										$success = query($sql);
 										if($success) { 
-											echo '<li><strong>'. $title . '</strong> – <em>' .$field . '</em>: ' . sprintf(ngettext('%u image processor reference updated', '%u image processor references updated.', $imageprocessor_item ), $imageprocessor_item ) . '</li>';
+											echo '<li><strong>'. $title . '</strong> – <em>' . $field . '</em>: ' . sprintf(ngettext('%u image processor reference updated', '%u image processor references updated.', $imageprocessor_item), $imageprocessor_item) . '</li>';
 										}
 									} 
 								}
@@ -154,7 +154,7 @@ printAdminHeader('overview', 'DB'); ?>
 								$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($row[$field]) . ' WHERE `id`=' . $row['id'];
 								$success = query($sql);
 								if($success) {
-									echo '<li><strong>'. $title . '</strong> – <em>' .$field . '</em>: ' . sprintf(ngettext('%1$u of %2$u found cached image required re-caching.', '%1$u of %2$u found cached images required re-caching.', $found_item ), $fixed_item, $found_item ) . '</li>';
+									echo '<li><strong>'. $title . '</strong> – <em>' . $field . '</em>: ' . sprintf(ngettext('%1$u of %2$u found cached image required re-caching.', '%1$u of %2$u found cached images required re-caching.', $found_item), $fixed_item, $found_item) . '</li>';
 								}
 							} else {
 								$refresh++;
@@ -205,7 +205,7 @@ printAdminHeader('overview', 'DB'); ?>
 			<li>
 				<?php 
 					if($searchmode) { 
-						printf(ngettext('%1$u of %2$u found cached image requires re-caching.', '%1$u of %2$u found cached images require re-caching.', $found_total ), $fixed_total, $found_total );
+						printf(ngettext('%1$u of %2$u found cached image requires re-caching.', '%1$u of %2$u found cached images require re-caching.', $found_total), $fixed_total, $found_total);
 					} else {
 						printf(ngettext('%1$u of %2$u found cached image re-cached.', '%1$u of %2$u found cached images re-cached.', $found_total ), $fixed_total, $found_total );
 					}

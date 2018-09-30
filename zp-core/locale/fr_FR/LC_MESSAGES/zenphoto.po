@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-28 23:54+0200\n"
-"PO-Revision-Date: 2018-09-28 23:54+0200\n"
+"POT-Creation-Date: 2018-09-30 22:15+0200\n"
+"PO-Revision-Date: 2018-09-30 22:50+0200\n"
 "Last-Translator: Vincent Bourganel <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569)\n"
@@ -209,21 +209,21 @@ msgstr ""
 "> Options (ou en cliquant le lien ci-dessous) et en modifiant l’option "
 "<em>Couleurs du thème</em>."
 
-#: themes/basic/themeoptions.php:44 themes/garland/themeoptions.php:79
+#: themes/basic/themeoptions.php:43 themes/garland/themeoptions.php:78
 #: themes/zenpage/themeoptions.php:68 themes/zpmobile/themeoptions.php:40
 msgid "Allow search"
 msgstr "Autoriser la recherche"
 
-#: themes/basic/themeoptions.php:44 themes/zenpage/themeoptions.php:68
+#: themes/basic/themeoptions.php:43 themes/zenpage/themeoptions.php:68
 #: themes/zpmobile/themeoptions.php:40
 msgid "Check to enable search form."
 msgstr "Cocher pour activer le formulaire de recherche."
 
-#: themes/basic/themeoptions.php:45
+#: themes/basic/themeoptions.php:44
 msgid "Theme colors"
 msgstr "Couleurs du thème"
 
-#: themes/basic/themeoptions.php:45
+#: themes/basic/themeoptions.php:44
 msgid "Select the colors of the theme"
 msgstr "Choisir les couleurs du thème"
 
@@ -450,7 +450,7 @@ msgstr "Albums (%1$s) et images (%2$s)"
 msgid "News articles"
 msgstr "Articles d’actualité"
 
-#: themes/garland/sidebar.php:29 themes/garland/themeoptions.php:49
+#: themes/garland/sidebar.php:29 themes/garland/themeoptions.php:48
 #: themes/zenpage/sidebar.php:16 themes/zenpage/themeoptions.php:51
 #: themes/zpmobile/functions.php:162
 msgid "All news"
@@ -462,7 +462,7 @@ msgid "Album index"
 msgstr "Racine des albums"
 
 #: themes/garland/sidebar.php:46 themes/garland/sidebar.php:52
-#: themes/garland/themeoptions.php:53 themes/zenpage/sidebar.php:27
+#: themes/garland/themeoptions.php:52 themes/zenpage/sidebar.php:27
 #: themes/zenpage/sidebar.php:32 themes/zenpage/sidebar.php:37
 #: themes/zenpage/sidebar.php:62 themes/zenpage/sidebar.php:89
 #: themes/zenpage/themeoptions.php:52 themes/zpmobile/album.php:27
@@ -504,7 +504,7 @@ msgstr "Galerie"
 msgid "Albums"
 msgstr "Albums"
 
-#: themes/garland/sidebar.php:80 themes/garland/themeoptions.php:56
+#: themes/garland/sidebar.php:80 themes/garland/themeoptions.php:55
 #: themes/zenpage/sidebar.php:47 themes/zenpage/themeoptions.php:55
 #: themes/zpmobile/functions.php:75 themes/zpmobile/functions.php:173
 #: themes/zpmobile/pages.php:27 themes/zpmobile/pages.php:33
@@ -534,35 +534,35 @@ msgstr ""
 "Développé à partir du thème <a href=\"http://garlandtheme.blogspot.com/"
 "\">Garland</a> de Wordpress"
 
-#: themes/garland/themeoptions.php:48 themes/zenpage/themeoptions.php:50
+#: themes/garland/themeoptions.php:47 themes/zenpage/themeoptions.php:50
 #: zp-core/utilities/gallery_statistics.php:84
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:102
 msgid "News Articles"
 msgstr "Articles d’actualité"
 
-#: themes/garland/themeoptions.php:52
+#: themes/garland/themeoptions.php:51
 msgid "News Articles Rule"
 msgstr "Règle pour les articles d’actualité"
 
-#: themes/garland/themeoptions.php:54 themes/zenpage/themeoptions.php:54
+#: themes/garland/themeoptions.php:53 themes/zenpage/themeoptions.php:54
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:76
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:245
 msgid "All Albums"
 msgstr "Tous les albums"
 
-#: themes/garland/themeoptions.php:55
+#: themes/garland/themeoptions.php:54
 msgid "Gallery Rule"
 msgstr "Règle pour la galerie"
 
-#: themes/garland/themeoptions.php:57 themes/zenpage/themeoptions.php:56
+#: themes/garland/themeoptions.php:56 themes/zenpage/themeoptions.php:56
 msgid "All pages"
 msgstr "Toutes les pages"
 
-#: themes/garland/themeoptions.php:58
+#: themes/garland/themeoptions.php:57
 msgid "Pages Rule"
 msgstr "Règle pour les pages"
 
-#: themes/garland/themeoptions.php:71
+#: themes/garland/themeoptions.php:70
 #, php-format
 msgid ""
 "<strong>Note:</strong> The <em>%s</em> custom menu makes use of the "
@@ -571,40 +571,40 @@ msgstr ""
 "<strong>Note. </strong> Le menu personnalisé <em>%s</em> utilise l’extension "
 "<em>print_album_menu</em>."
 
-#: themes/garland/themeoptions.php:76
+#: themes/garland/themeoptions.php:75
 msgid "Theme personality"
 msgstr "Présentation du thème"
 
-#: themes/garland/themeoptions.php:78
+#: themes/garland/themeoptions.php:77
 msgid "Select the theme personality"
 msgstr "Choisir la présentation du thème"
 
-#: themes/garland/themeoptions.php:79
+#: themes/garland/themeoptions.php:78
 msgid "Set to enable search form."
 msgstr "Cocher pour activer le formulaire de recherche."
 
-#: themes/garland/themeoptions.php:80
+#: themes/garland/themeoptions.php:79
 msgid "Allow cloud"
 msgstr "Autoriser le nuage de tags"
 
-#: themes/garland/themeoptions.php:80
+#: themes/garland/themeoptions.php:79
 msgid "Set to enable tag cloud for album page."
 msgstr "Active le nuage de tags pour la page de l’album."
 
-#: themes/garland/themeoptions.php:81
+#: themes/garland/themeoptions.php:80
 msgid "Custom menu"
 msgstr "Menu personnalisé"
 
-#: themes/garland/themeoptions.php:81
+#: themes/garland/themeoptions.php:80
 msgid "Set this to the <em>menu_manager</em> menu you wish to use."
 msgstr ""
 "Choisir le jeu de menus du <em>menu_manager</em> que vous voulez utiliser."
 
-#: themes/garland/themeoptions.php:89
+#: themes/garland/themeoptions.php:88
 msgid "Custom Homepage"
 msgstr "Page d’accueil personnalisée"
 
-#: themes/garland/themeoptions.php:91 themes/zenpage/themeoptions.php:71
+#: themes/garland/themeoptions.php:90 themes/zenpage/themeoptions.php:71
 #: zp-core/admin-edit.php:1221 zp-core/admin-options.php:2203
 #: zp-core/admin-options.php:2216 zp-core/admin-options.php:2244
 #: zp-core/admin-options.php:2963 zp-core/zp-extensions/slideshow2.php:102
@@ -612,7 +612,7 @@ msgstr "Page d’accueil personnalisée"
 msgid "none"
 msgstr "aucune"
 
-#: themes/garland/themeoptions.php:92
+#: themes/garland/themeoptions.php:91
 msgid ""
 "Select the <em>pages</em> titlelink for the home page. Only unpublished "
 "pages are offered for selection."
@@ -620,54 +620,54 @@ msgstr ""
 "Sélectionner le titre-lien de la <em>page</em> utilisée comme page "
 "d’accueil. La sélection s’effectue parmi les pages non publiées."
 
-#: themes/garland/themeoptions.php:95
+#: themes/garland/themeoptions.php:94
 msgid "Image gallery transition"
 msgstr "Transition entre les images de la galerie"
 
-#: themes/garland/themeoptions.php:96 zp-core/admin-options.php:3378
+#: themes/garland/themeoptions.php:95 zp-core/admin-options.php:3378
 #: zp-core/exif/makers/canon.php:155 zp-core/exif/makers/nikon.php:216
 #: zp-core/zp-extensions/GoogleMap.php:103
 #: zp-core/zp-extensions/user_login-out.php:37
 msgid "None"
 msgstr "Aucun"
 
-#: themes/garland/themeoptions.php:96
+#: themes/garland/themeoptions.php:95
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:78
 msgid "Fade"
 msgstr "Fondu"
 
-#: themes/garland/themeoptions.php:96
+#: themes/garland/themeoptions.php:95
 msgid "Shrink/grow"
 msgstr "Ajuster (réduire ou agrandir)"
 
-#: themes/garland/themeoptions.php:96 zp-core/zp-extensions/GoogleMap.php:106
+#: themes/garland/themeoptions.php:95 zp-core/zp-extensions/GoogleMap.php:106
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:76
 msgid "Horizontal"
 msgstr "Horizontal"
 
-#: themes/garland/themeoptions.php:96
+#: themes/garland/themeoptions.php:95
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:77
 #: zp-core/zp-extensions/slideshow2.php:117
 msgid "Vertical"
 msgstr "Vertical"
 
-#: themes/garland/themeoptions.php:98
+#: themes/garland/themeoptions.php:97
 msgid "Transition effect for Image gallery"
 msgstr "Effet de transition appliqué entre les images de la galerie"
 
-#: themes/garland/themeoptions.php:99
+#: themes/garland/themeoptions.php:98
 msgid "Image gallery caption"
 msgstr "Légende de la galerie d’images"
 
-#: themes/garland/themeoptions.php:100
+#: themes/garland/themeoptions.php:99
 msgid "On image"
 msgstr "Sur l’image"
 
-#: themes/garland/themeoptions.php:100
+#: themes/garland/themeoptions.php:99
 msgid "Separate"
 msgstr "À part"
 
-#: themes/garland/themeoptions.php:100
+#: themes/garland/themeoptions.php:99
 #: zp-core/zp-extensions/comment_form.php:103
 #: zp-core/zp-extensions/comment_form.php:112
 #: zp-core/zp-extensions/comment_form.php:121
@@ -677,11 +677,11 @@ msgstr "À part"
 msgid "Omit"
 msgstr "Aucun"
 
-#: themes/garland/themeoptions.php:102
+#: themes/garland/themeoptions.php:101
 msgid "Location for Image gallery picture caption"
 msgstr "Localisation des bas de vignettes des images de la galerie"
 
-#: themes/garland/themeoptions.php:121
+#: themes/garland/themeoptions.php:120
 msgid "*standard menu"
 msgstr "*menu standard"
 
@@ -999,7 +999,7 @@ msgstr "*Actions en lot*"
 
 #: zp-core/admin-albumsort.php:74 zp-core/admin-edit.php:565
 #: zp-core/admin-edit.php:578 zp-core/admin-edit.php:582
-#: zp-core/admin-functions.php:2071 zp-core/admin-logs.php:144
+#: zp-core/admin-functions.php:2071 zp-core/admin-logs.php:145
 #: zp-core/admin-themes.php:302 zp-core/setup/index.php:1084
 #: zp-core/zp-extensions/cacheManager.php:252
 #: zp-core/zp-extensions/comment_form/admin-comments.php:132
@@ -1160,7 +1160,7 @@ msgstr "Aucun changement"
 #: zp-core/admin-refresh-metadata.php:154 zp-core/admin-themes-editor.php:115
 #: zp-core/admin-thumbcrop.php:271 zp-core/admin-thumbcrop.php:273
 #: zp-core/zp-extensions/cacheManager.php:928
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:218
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:217
 #: zp-core/zp-extensions/crop_image.php:353
 #: zp-core/zp-extensions/crop_image.php:354
 #: zp-core/zp-extensions/crop_image.php:359
@@ -1482,7 +1482,7 @@ msgstr "Afficher les images par :"
 #: zp-core/admin-edit.php:943 zp-core/admin-edit.php:1516
 #: zp-core/admin-edit.php:1607 zp-core/admin-edit.php:1638
 #: zp-core/admin-functions.php:1219 zp-core/admin-functions.php:1981
-#: zp-core/admin-logs.php:151 zp-core/admin-options.php:625
+#: zp-core/admin-logs.php:152 zp-core/admin-options.php:625
 #: zp-core/admin-options.php:1102 zp-core/admin-options.php:1126
 #: zp-core/admin-options.php:1471 zp-core/admin-options.php:1494
 #: zp-core/admin-options.php:1940 zp-core/admin-options.php:1969
@@ -2564,7 +2564,7 @@ msgid "Spam"
 msgstr "Spam"
 
 #: zp-core/admin-functions.php:4602 zp-core/utilities/gallery_statistics.php:36
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:174
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:173
 #: zp-core/zp-extensions/hitcounter.php:38
 #: zp-core/zp-extensions/image_album_statistics.php:16
 #: zp-core/zp-extensions/matomo.php:36 zp-core/zp-extensions/rating.php:50
@@ -2785,7 +2785,7 @@ msgstr "thèmes"
 msgid "plugins"
 msgstr "extensions"
 
-#: zp-core/admin-globals.php:146 zp-core/admin-logs.php:98
+#: zp-core/admin-globals.php:146 zp-core/admin-logs.php:99
 msgid "logs"
 msgstr "journaux"
 
@@ -2803,27 +2803,27 @@ msgstr "Le jounal %s a été vidé."
 msgid "%s log could not be emptied."
 msgstr "Le journal %s n’a pu être vidé."
 
-#: zp-core/admin-logs.php:41
+#: zp-core/admin-logs.php:42
 #, php-format
 msgid "%s log was removed."
 msgstr "Le journal %s a été enlevé."
 
-#: zp-core/admin-logs.php:44
+#: zp-core/admin-logs.php:45
 #, php-format
 msgid "%s log could not be removed."
 msgstr "Le journal %s n’a pu être enlevé."
 
-#: zp-core/admin-logs.php:126
+#: zp-core/admin-logs.php:127
 msgid "View logs:"
 msgstr "Voir les journaux :"
 
-#: zp-core/admin-logs.php:155 zp-core/admin-options.php:2472
+#: zp-core/admin-logs.php:156 zp-core/admin-options.php:2472
 #: zp-core/utilities/user-data-export.php:87
 #: zp-core/zp-extensions/downloadList/download_statistics.php:24
 msgid "Download"
 msgstr "Télécharger"
 
-#: zp-core/admin-logs.php:235
+#: zp-core/admin-logs.php:236
 msgid "There are no logs to view."
 msgstr "Aucun journal à visualiser."
 
@@ -4925,7 +4925,7 @@ msgstr ""
 "certains pays comme l’UE et son RGPD. Laisser vide pour utiliser le texte "
 "par défaut :"
 
-#: zp-core/admin-options.php:3360 zp-core/functions.php:2958
+#: zp-core/admin-options.php:3360 zp-core/functions.php:2956
 msgid ""
 "By using this form you agree with the storage and handling of your data by "
 "this website."
@@ -5832,56 +5832,56 @@ msgstr ""
 msgid "The user “%s” already exists."
 msgstr "L’utilisateur « %s » existe déjà."
 
-#: zp-core/admin.php:52
+#: zp-core/admin.php:69
 msgid "Image cache cleared."
 msgstr "Cache d’images vidé."
 
-#: zp-core/admin.php:63
+#: zp-core/admin.php:80
 msgid "RSS cache cleared."
 msgstr "Cache RSS vidé."
 
-#: zp-core/admin.php:74
+#: zp-core/admin.php:91
 msgid "HTML cache cleared."
 msgstr "Cache HTML vidé."
 
-#: zp-core/admin.php:82
+#: zp-core/admin.php:99
 msgid "Search cache cleared."
 msgstr "Cache de recherche vidé."
 
-#: zp-core/admin.php:89
+#: zp-core/admin.php:106
 msgid "enabled"
 msgstr "activé"
 
-#: zp-core/admin.php:92
+#: zp-core/admin.php:109
 msgid "Setup files restored."
 msgstr "Fichiers d’installation restaurés."
 
-#: zp-core/admin.php:102
+#: zp-core/admin.php:119
 msgid "Setup files protected."
 msgstr "Fichiers d’installation protégés."
 
-#: zp-core/admin.php:126
+#: zp-core/admin.php:143
 msgid "purge Image cache"
 msgstr "purger le cache d’images"
 
-#: zp-core/admin.php:127
+#: zp-core/admin.php:144
 msgid "purge RSS cache"
 msgstr "purger le cache RSS"
 
-#: zp-core/admin.php:128
+#: zp-core/admin.php:145
 msgid "reset all hitcounters"
 msgstr "remettre les compteurs à zéro"
 
-#: zp-core/admin.php:129
+#: zp-core/admin.php:146
 msgid "purge search cache"
 msgstr "vider le cache de recherche"
 
-#: zp-core/admin.php:136
+#: zp-core/admin.php:153
 #, php-format
 msgid "You do not have proper rights to %s."
 msgstr "Vous n’avez pas les droits suffisants pour %s."
 
-#: zp-core/admin.php:141
+#: zp-core/admin.php:158
 #, php-format
 msgid "You do not have proper rights to access %s."
 msgstr "Vous n’avez pas les droits suffisants pour accéder à %s."
@@ -5942,7 +5942,7 @@ msgstr "<em>Version de développement</em>"
 msgid "Official build"
 msgstr "Version officielle"
 
-#: zp-core/admin.php:320 zp-core/functions-basic.php:1297
+#: zp-core/admin.php:320 zp-core/functions-basic.php:1300
 #: zp-core/setup/index.php:407 zp-core/zp-extensions/security-logger.php:133
 msgid "clone"
 msgstr "clone"
@@ -6310,7 +6310,7 @@ msgstr "Données personnalisées"
 msgid "Location/Place"
 msgstr "Lieu"
 
-#: zp-core/class-search.php:106 zp-core/functions.php:2711
+#: zp-core/class-search.php:106 zp-core/functions.php:2709
 #: zp-core/zp-extensions/contact_form.php:147
 #: zp-core/zp-extensions/contact_form.php:152
 #: zp-core/zp-extensions/userAddressFields.php:52
@@ -7085,7 +7085,7 @@ msgstr "Mode DEP automatique"
 msgid "Flash Did Not Fire"
 msgstr "Le flash ne s’est pas déclenché"
 
-#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2697
+#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2695
 msgid "Flash Fired"
 msgstr "Flash déclenché"
 
@@ -7487,27 +7487,27 @@ msgstr "Pas assez d’arguments ! Image non trouvée."
 msgid "Forbidden(2)"
 msgstr "Interdit (2)"
 
-#: zp-core/functions-basic.php:1268
+#: zp-core/functions-basic.php:1271
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "La taille maximale du fichier de journalisation %s est dépassée"
 
-#: zp-core/functions-basic.php:1268
+#: zp-core/functions-basic.php:1271
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr ""
 "Le fichier de journalisation %1$s a excédé sa taille maximale et a été "
 "renommé %2$s."
 
-#: zp-core/functions-basic.php:1725
+#: zp-core/functions-basic.php:1728
 msgid "ERROR: Image generation via cURL failed: "
 msgstr "Erreur : la génération d'images via cURL a échoué : "
 
-#: zp-core/functions-basic.php:1728
+#: zp-core/functions-basic.php:1731
 msgid "ERROR: Image generation returned no image url."
 msgstr "Erreur : la génération d'images n'a renvoyé aucune URL d'image."
 
-#: zp-core/functions-basic.php:1736
+#: zp-core/functions-basic.php:1739
 msgid ""
 "ERROR: generateImage() does not work because the PHP extension cURL is not "
 "available."
@@ -8318,37 +8318,37 @@ msgstr ""
 msgid "0 Bytes"
 msgstr "0 octet"
 
-#: zp-core/functions.php:2241
+#: zp-core/functions.php:2239
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr ""
 "Zenphoto a produit une erreur 404 sur %s. Voir le journal de déboggage pour "
 "plus de détails."
 
-#: zp-core/functions.php:2268
+#: zp-core/functions.php:2266
 #, php-format
 msgid "“%s” Cross Site Request Forgery blocked."
 msgstr "« %s » tentative d’hameçonnage bloquée."
 
-#: zp-core/functions.php:2432
+#: zp-core/functions.php:2430
 msgid "Click to show content"
 msgstr "Cliquer pour afficher le contenu"
 
-#: zp-core/functions.php:2437
+#: zp-core/functions.php:2435
 msgid "Click to hide content"
 msgstr "Cliquer pour masquer le contenu"
 
-#: zp-core/functions.php:2487
+#: zp-core/functions.php:2485
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "<em>[%1$s]</em> le paramètre %2$d doit être numérique."
 
-#: zp-core/functions.php:2495
+#: zp-core/functions.php:2493
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "<em>[%1$s]</em> le paramètre %2$d doit être une chaine de caractère."
 
-#: zp-core/functions.php:2508
+#: zp-core/functions.php:2506
 #, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
@@ -8357,349 +8357,349 @@ msgstr ""
 "<em>[%1$s]</em> le paramètre %2$d doit avoir les valeurs <code>true</code> "
 "ou <code>false</code>."
 
-#: zp-core/functions.php:2527
+#: zp-core/functions.php:2525
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
 msgstr "<em>[%1$s]</em> le paramètre %2$d n’est pas correctement défini."
 
-#: zp-core/functions.php:2533
+#: zp-core/functions.php:2531
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "<em>[%1$s]</em> le paramètre %2$d est manquant."
 
-#: zp-core/functions.php:2542
+#: zp-core/functions.php:2540
 #, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "La macro <em>[%1$s]</em> ne prend aucun paramètre."
 
-#: zp-core/functions.php:2565 zp-core/functions.php:2592
+#: zp-core/functions.php:2563 zp-core/functions.php:2590
 #, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>[%1$s]</em> n’a retourné aucune donnée"
 
-#: zp-core/functions.php:2570
+#: zp-core/functions.php:2568
 #, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>[%1$s]</em> <code>%2$s</code> ne peut être lancée"
 
-#: zp-core/functions.php:2597
+#: zp-core/functions.php:2595
 #, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>[%1$s]</em> requiert %2$d paramètre"
 msgstr[1] "<em>[%1$s]</em> requiert %2$d paramètres"
 
-#: zp-core/functions.php:2669
+#: zp-core/functions.php:2667
 msgid "Camera Maker"
 msgstr "Fabricant de l’appareil"
 
-#: zp-core/functions.php:2670
+#: zp-core/functions.php:2668
 msgid "Camera Model"
 msgstr "Modèle d’appareil"
 
-#: zp-core/functions.php:2671
+#: zp-core/functions.php:2669
 msgid "Image Title"
 msgstr "Titre de l’image"
 
-#: zp-core/functions.php:2672
+#: zp-core/functions.php:2670
 msgid "Object Name"
 msgstr "Nom de l’objet"
 
-#: zp-core/functions.php:2673
+#: zp-core/functions.php:2671
 msgid "Image Headline"
 msgstr "Fait saillant de l’image"
 
-#: zp-core/functions.php:2674
+#: zp-core/functions.php:2672
 msgid "Image Caption"
 msgstr "Légende de l’image"
 
-#: zp-core/functions.php:2675
+#: zp-core/functions.php:2673
 msgid "Image Caption Writer"
 msgstr "Auteur de la légende de l’image"
 
-#: zp-core/functions.php:2676
+#: zp-core/functions.php:2674
 msgid "Time Taken"
 msgstr "Heure de prise de vue"
 
-#: zp-core/functions.php:2677
+#: zp-core/functions.php:2675
 msgid "Original Time Taken"
 msgstr "Heure de prise de vue originale"
 
-#: zp-core/functions.php:2678
+#: zp-core/functions.php:2676
 msgid "Time Digitized"
 msgstr "Heure de la numérisation"
 
-#: zp-core/functions.php:2679
+#: zp-core/functions.php:2677
 msgid "Date Created"
 msgstr "Date de création"
 
-#: zp-core/functions.php:2680
+#: zp-core/functions.php:2678
 msgid "Time Created"
 msgstr "Heure de création"
 
-#: zp-core/functions.php:2681
+#: zp-core/functions.php:2679
 msgid "Digital Creation Date"
 msgstr "Date de création numérique"
 
-#: zp-core/functions.php:2682
+#: zp-core/functions.php:2680
 msgid "Digital Creation Time"
 msgstr "Heure de création numérique"
 
-#: zp-core/functions.php:2683
+#: zp-core/functions.php:2681
 msgid "Artist"
 msgstr "Artiste"
 
-#: zp-core/functions.php:2684
+#: zp-core/functions.php:2682
 msgid "Image Credit"
 msgstr "Crédits de l’image"
 
-#: zp-core/functions.php:2685
+#: zp-core/functions.php:2683
 msgid "Byline"
 msgstr "Accroche"
 
-#: zp-core/functions.php:2686
+#: zp-core/functions.php:2684
 msgid "Byline Title"
 msgstr "Titre de l’accroche"
 
-#: zp-core/functions.php:2687
+#: zp-core/functions.php:2685
 msgid "Image Source"
 msgstr "Source de l’image"
 
-#: zp-core/functions.php:2688 zp-core/template-functions.php:444
+#: zp-core/functions.php:2686 zp-core/template-functions.php:444
 #: zp-core/zp-extensions/html_meta_tags.php:326
 #: zp-core/zp-extensions/scriptless-socialsharing.php:178
 msgid "Contact"
 msgstr "Contact"
 
-#: zp-core/functions.php:2689
+#: zp-core/functions.php:2687
 msgid "Copyright Holder"
 msgstr "Titulaire du copyright"
 
-#: zp-core/functions.php:2690
+#: zp-core/functions.php:2688
 msgid "Copyright Notice"
 msgstr "Informations de copyright"
 
-#: zp-core/functions.php:2691
+#: zp-core/functions.php:2689
 msgid "Keywords"
 msgstr "Mots-clés"
 
-#: zp-core/functions.php:2692
+#: zp-core/functions.php:2690
 msgid "Shutter Speed"
 msgstr "Vitesse d’obturation"
 
-#: zp-core/functions.php:2693
+#: zp-core/functions.php:2691
 msgid "Aperture"
 msgstr "Ouverture"
 
-#: zp-core/functions.php:2694
+#: zp-core/functions.php:2692
 msgid "ISO Sensitivity"
 msgstr "Sensibilité ISO"
 
-#: zp-core/functions.php:2695
+#: zp-core/functions.php:2693
 msgid "Exposure Compensation"
 msgstr "Correction de l’exposition"
 
-#: zp-core/functions.php:2696
+#: zp-core/functions.php:2694
 msgid "Metering Mode"
 msgstr "Mode de mesure"
 
-#: zp-core/functions.php:2698
+#: zp-core/functions.php:2696
 msgid "Original Width"
 msgstr "Largeur de l’image pleine grandeur"
 
-#: zp-core/functions.php:2699
+#: zp-core/functions.php:2697
 msgid "Original Height"
 msgstr "Hauteur de l’image pleine grandeur"
 
-#: zp-core/functions.php:2700
+#: zp-core/functions.php:2698
 msgid "Orientation"
 msgstr "Orientation"
 
-#: zp-core/functions.php:2701
+#: zp-core/functions.php:2699
 msgid "Software"
 msgstr "Logiciel"
 
-#: zp-core/functions.php:2702
+#: zp-core/functions.php:2700
 msgid "Contrast Setting"
 msgstr "Réglage du contraste"
 
-#: zp-core/functions.php:2703
+#: zp-core/functions.php:2701
 msgid "Sharpness Setting"
 msgstr "Réglage du renforcement"
 
-#: zp-core/functions.php:2704
+#: zp-core/functions.php:2702
 msgid "Saturation Setting"
 msgstr "Réglage de la saturation"
 
-#: zp-core/functions.php:2705
+#: zp-core/functions.php:2703
 msgid "White Balance"
 msgstr "Balance des blancs"
 
-#: zp-core/functions.php:2706
+#: zp-core/functions.php:2704
 msgid "Subject Distance"
 msgstr "Distance du sujet"
 
-#: zp-core/functions.php:2707
+#: zp-core/functions.php:2705
 msgid "Focal Length"
 msgstr "Longueur de focale"
 
-#: zp-core/functions.php:2708
+#: zp-core/functions.php:2706
 msgid "Lens Type"
 msgstr "Type d’objectif"
 
-#: zp-core/functions.php:2709
+#: zp-core/functions.php:2707
 msgid "Lens Info"
 msgstr "Détails sur l’objectif"
 
-#: zp-core/functions.php:2710
+#: zp-core/functions.php:2708
 msgid "35mm Focal Length Equivalent"
 msgstr "Longueur focale équivalente pour pellicule 35 mm"
 
-#: zp-core/functions.php:2712
+#: zp-core/functions.php:2710
 msgid "Sub-location"
 msgstr "Lieu (très précis)"
 
-#: zp-core/functions.php:2713
+#: zp-core/functions.php:2711
 msgid "Province/State"
 msgstr "État, province"
 
-#: zp-core/functions.php:2714
+#: zp-core/functions.php:2712
 msgid "Country/Primary Location Code"
 msgstr "Code du pays/de la localisation primaire"
 
-#: zp-core/functions.php:2715
+#: zp-core/functions.php:2713
 msgid "Country/Primary Location Name"
 msgstr "Nom du pays/de la localisation primaire"
 
-#: zp-core/functions.php:2716
+#: zp-core/functions.php:2714
 msgid "Content Location Code"
 msgstr "Code du lieu du contenu"
 
-#: zp-core/functions.php:2717
+#: zp-core/functions.php:2715
 msgid "Content Location Name"
 msgstr "Lieu du contenu"
 
-#: zp-core/functions.php:2718
+#: zp-core/functions.php:2716
 msgid "Latitude"
 msgstr "Latitude"
 
-#: zp-core/functions.php:2719
+#: zp-core/functions.php:2717
 msgid "Latitude Reference"
 msgstr "Latitude de référence"
 
-#: zp-core/functions.php:2720
+#: zp-core/functions.php:2718
 msgid "Longitude"
 msgstr "Longitude"
 
-#: zp-core/functions.php:2721
+#: zp-core/functions.php:2719
 msgid "Longitude Reference"
 msgstr "Longitude de référence"
 
-#: zp-core/functions.php:2722
+#: zp-core/functions.php:2720
 msgid "Altitude"
 msgstr "Altitude"
 
-#: zp-core/functions.php:2723
+#: zp-core/functions.php:2721
 msgid "Altitude Reference"
 msgstr "Altitude de référence"
 
-#: zp-core/functions.php:2724
+#: zp-core/functions.php:2722
 msgid "Originating Program "
 msgstr "Programme d’origine"
 
-#: zp-core/functions.php:2725
+#: zp-core/functions.php:2723
 msgid "Program Version"
 msgstr "Version du programme"
 
-#: zp-core/functions.php:2726
+#: zp-core/functions.php:2724
 msgid "Video File Format"
 msgstr "Format de fichier vidéo"
 
-#: zp-core/functions.php:2727
+#: zp-core/functions.php:2725
 msgid "Video File Size"
 msgstr "Taille du fichier vidéo"
 
-#: zp-core/functions.php:2728
+#: zp-core/functions.php:2726
 msgid "Video Artist"
 msgstr "Artiste de la vidéo"
 
-#: zp-core/functions.php:2729
+#: zp-core/functions.php:2727
 msgid "Video Title"
 msgstr "Titre de la vidéo"
 
-#: zp-core/functions.php:2730
+#: zp-core/functions.php:2728
 msgid "Bitrate"
 msgstr "Débit"
 
-#: zp-core/functions.php:2731
+#: zp-core/functions.php:2729
 msgid "Bitrate_Mode"
 msgstr "Bitrate_Mode"
 
-#: zp-core/functions.php:2732
+#: zp-core/functions.php:2730
 msgid "Bits per sample"
 msgstr "Bits par échantillon"
 
-#: zp-core/functions.php:2733
+#: zp-core/functions.php:2731
 msgid "Codec"
 msgstr "Codec"
 
-#: zp-core/functions.php:2734
+#: zp-core/functions.php:2732
 msgid "Compression Ratio"
 msgstr "Taux de compression"
 
-#: zp-core/functions.php:2735
+#: zp-core/functions.php:2733
 msgid "Video Dataformat"
 msgstr "Format des données vidéos"
 
-#: zp-core/functions.php:2736
+#: zp-core/functions.php:2734
 msgid "File Encoder"
 msgstr "Encodeur de fichiers"
 
-#: zp-core/functions.php:2737
+#: zp-core/functions.php:2735
 msgid "Sample rate"
 msgstr "Taux d’échantillonage"
 
-#: zp-core/functions.php:2738
+#: zp-core/functions.php:2736
 msgid "Channel mode"
 msgstr "Mode de canaux"
 
-#: zp-core/functions.php:2739
+#: zp-core/functions.php:2737
 msgid "Format"
 msgstr "Format"
 
-#: zp-core/functions.php:2740
+#: zp-core/functions.php:2738
 msgid "Channels"
 msgstr "Canaux"
 
-#: zp-core/functions.php:2741
+#: zp-core/functions.php:2739
 msgid "Frame rate"
 msgstr "Nombre de cadres / seconde"
 
-#: zp-core/functions.php:2742
+#: zp-core/functions.php:2740
 msgid "X Resolution"
 msgstr "Résolution en X"
 
-#: zp-core/functions.php:2743
+#: zp-core/functions.php:2741
 msgid "Y Resolution"
 msgstr "Résolution en Y"
 
-#: zp-core/functions.php:2744
+#: zp-core/functions.php:2742
 msgid "Aspect ratio"
 msgstr "Ratio d’aspect"
 
-#: zp-core/functions.php:2745
+#: zp-core/functions.php:2743
 msgid "Play Time"
 msgstr "Robustesse minimale du mot de passe"
 
-#: zp-core/functions.php:2746
+#: zp-core/functions.php:2744
 msgid "XMP Rating"
 msgstr "Vote XMP"
 
-#: zp-core/functions.php:2973
+#: zp-core/functions.php:2971
 msgid "More info on our data privacy policy."
 msgstr "Plus d'information sur notre politique de confidentialité des données."
 
-#: zp-core/functions.php:3000 zp-core/zp-extensions/comment_form.php:133
+#: zp-core/functions.php:2998 zp-core/zp-extensions/comment_form.php:133
 #: zp-core/zp-extensions/contact_form.php:187
 #: zp-core/zp-extensions/register_user.php:116
 msgid "No captcha handler is enabled."
@@ -13139,8 +13139,8 @@ msgid ""
 "Removes old stored image cache sizes of themes and plugins not existing on "
 "this site. It also removes sizes from inactive plugins."
 msgstr ""
-"Supprime les anciennes tailles de cache d'images stockées de thèmes et de "
-"plugins qui ne sont pas disponibles sur ce site. Il supprime également les "
+"Supprime les anciennes tailles de cache d'images stockées pour des thèmes et "
+"des plugins qui ne sont pas présents sur ce site. Il supprime également les "
 "tailles des plugins inactifs."
 
 #: zp-core/zp-extensions/cacheManager.php:862
@@ -13157,7 +13157,7 @@ msgstr ""
 "extension."
 
 #: zp-core/zp-extensions/cacheManager.php:927
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:217
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:216
 msgid "Back to the overview"
 msgstr "Retour à l’aperçu"
 
@@ -13166,19 +13166,19 @@ msgstr "Retour à l’aperçu"
 msgid "New cache size selection"
 msgstr "Nouvelle sélection de taille de cache"
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:19
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:18
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:54
 msgid "Cache images"
 msgstr "Mettre les images en cache"
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:20
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:220
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:222
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:19
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:219
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:221
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:55
 msgid "Cache stored images"
 msgstr "Mettre en cache les images du site"
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:34
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:33
 msgid ""
 "This utility scans the database for images references that have been stored "
 "there (e.g. embedded within text content)."
@@ -13187,11 +13187,23 @@ msgstr ""
 "d’images qui y ont été enregistrées (par exemple, incorporées dans le "
 "contenu du texte)."
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:35
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:34
 msgid "The following database fields are checked:"
-msgstr "Les champs de base de données suivants sont cochés:"
+msgstr "Les champs de base de données suivants sont vérifiés :"
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:42
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:36
+msgid "<code>desc</code> (description) of albums and images"
+msgstr "<code>desc</code> (description) des albums et des images"
+
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:37
+msgid ""
+"<code>content</code> and <code>extracontent</code> of Zenpage news articles "
+"and pages."
+msgstr ""
+"<code>contenu</code> et <code>contenu boni</code> des articles d'actualité "
+"et des pages Zenpage."
+
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:41
 msgid ""
 "If an image processor URI is discovered it will be converted to a cache file "
 "URI."
@@ -13199,46 +13211,46 @@ msgstr ""
 "Si un URI d’image utilisant un processeur d’image est découvert, il sera "
 "converti en URI pointant vers l’image en cache."
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:43
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:42
 msgid ""
 "If the cache file for the image does not exist, a caching image reference "
 "will be made for the image."
 msgstr "Si le fichier de cache pour l’image n’existe pas, il sera créé."
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:53
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:52
 msgid ""
 "Since this tool modifies the database directly, it is strongely recommended "
 "to perform a database backup before executing!"
 msgstr ""
 "Comme cet outil modifie la base de données directement, il est fortement "
-"recommandé d'effectuer une sauvegarde de base de données avant de "
-"l'exécuter !"
+"recommandé d'effectuer une sauvegarde de la base de données avant "
+"l'exécution !"
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:72
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:71
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:267
 msgid "Caching log"
 msgstr "Journal de mise en cache"
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:105
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:104
 #, php-format
 msgid "%u image processor reference updated"
 msgid_plural "%u image processor references updated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u référence au processeur d'image mise à jour"
+msgstr[1] "%u références au processeur d'image mises à jour"
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:132
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:131
 #, php-format
 msgid "%s is missing"
-msgstr ""
+msgstr "%s est manquant"
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:158
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:157
 #, php-format
 msgid "%1$u of %2$u found cached image required re-caching."
 msgid_plural "%1$u of %2$u found cached images required re-caching."
 msgstr[0] ""
 msgstr[1] ""
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:181
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:180
 msgid ""
 "<strong>Note:</strong> the following objects have images that appear to no "
 "longer exist."
@@ -13246,33 +13258,35 @@ msgstr ""
 "<strong>Note  :</strong> les objets suivants ont des images qui semblent ne "
 "plus exister."
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:200
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:199
 #, php-format
 msgid "%u image processor reference found."
 msgid_plural "%u image processor references found."
 msgstr[0] "%u référence au processeur d’images trouvée."
 msgstr[1] "%u références au processeur d’images trouvées."
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:202
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:201
 msgid ""
 "You should use the refresh button to convert these to cached image references"
 msgstr ""
 "Vous devez utiliser le bouton Actualiser pour les convertir en références "
 "vers les images mises en cache"
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:209
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:208
 #, php-format
 msgid "%1$u of %2$u found cached image requires re-caching."
 msgid_plural "%1$u of %2$u found cached images require re-caching."
 msgstr[0] ""
+"%1$u de %2$u a trouvé une image mise en cache nécessitant un nouveau cache."
 msgstr[1] ""
+"%1$u de %2$u a trouvé des images mises en cache nécessitant un nouveau cache."
 
-#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:211
+#: zp-core/zp-extensions/cacheManager/cacheDBImages.php:210
 #, php-format
 msgid "%1$u of %2$u found cached image re-cached."
 msgid_plural "%1$u of %2$u found cached images re-cached."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$u de %2$u a remis en cache une image déjà mise en cache."
+msgstr[1] "%1$u de %2$u a remis en cache des images déjà mises en cache."
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:28
 msgid "Image cache sizes cleaned up."
