@@ -85,21 +85,29 @@ class zp_PHPMailer {
 
 }
 
+//Import the PHPMailer class into the global namespace
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\POP3;
+use PHPMailer\PHPMailer\Exception;
+
 function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
-	require_once(dirname(__FILE__) . '/PHPMailer/PHPMailerAutoload.php');
+	require_once(dirname(__FILE__) . '/PHPMailer/PHPMailer.php');
+	require_once(dirname(__FILE__) . '/PHPMailer/POP3.php');
+	require_once(dirname(__FILE__) . '/PHPMailer/SMTP.php');
+	require_once(dirname(__FILE__) . '/PHPMailer/Exception.php');
 	switch (getOption('PHPMailer_mail_protocol')) {
 		case 'pop3':
 			$pop = new POP3();
-			$authorized = $pop->Authorise(getOption('PHPMailer_server'), getOption('PHPMailer_pop_port'), 30, getOption('PHPMailer_user'), getOption('PHPMailer_password'), 0);
+			$authorized = $pop->authorise(getOption('PHPMailer_server'), getOption('PHPMailer_pop_port'), 30, getOption('PHPMailer_user'), getOption('PHPMailer_password'), 0);
 			$mail = new PHPMailer();
-			$mail->IsSMTP();
+			$mail->isSMTP();
 			$mail->Port = getOption('PHPMailer_smtp_port');
 			$mail->Host = getOption('PHPMailer_server');
 			break;
 		case 'smtp':
 			$mail = new PHPMailer();
 			$mail->SMTPAuth = true; // enable SMTP authentication
-			$mail->IsSMTP();
+			$mail->isSMTP();
 			$mail->Username = getOption('PHPMailer_user');
 			$mail->Password = getOption('PHPMailer_password');
 			$mail->Host = getOption('PHPMailer_server');
@@ -107,7 +115,7 @@ function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $
 			break;
 		case 'sendmail':
 			$mail = new PHPMailer();
-			$mail->IsSendmail();
+			$mail->isSendmail();
 			break;
 	}
 	$mail->SMTPSecure = getOption('PHPMailer_secure');
@@ -117,23 +125,23 @@ function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $
 	$mail->Subject = $subject;
 	$mail->Body = $message;
 	$mail->AltBody = '';
-	$mail->IsHTML(false);
+	$mail->isHTML(false);
 
 	foreach ($email_list as $to_name => $to_mail) {
 		if (is_numeric($to_name)) {
-			$mail->AddAddress($to_mail);
+			$mail->addAddress($to_mail);
 		} else {
-			$mail->AddAddress($to_mail, $to_name);
+			$mail->addAddress($to_mail, $to_name);
 		}
 	}
 	if (count($cc_addresses) > 0) {
 		foreach ($cc_addresses as $cc_name => $cc_mail) {
-			$mail->AddCC($cc_mail);
+			$mail->addCC($cc_mail);
 		}
 	}
 	if ($replyTo) {
 		$names = array_keys($replyTo);
-		$mail->AddReplyTo(array_shift($replyTo), array_shift($names));
+		$mail->addReplyTo(array_shift($replyTo), array_shift($names));
 	}
 	if (!$mail->Send()) {
 		if (!empty($msg))
