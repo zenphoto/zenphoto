@@ -879,7 +879,7 @@ class cacheManager {
 	 */
 	static function deleteThemeCacheSizes($theme) {
 		cachemanager_internal_deprecations::deleteThemeCacheSizes();
-		self::deleteTCacheSizes($owner);
+		self::deleteCacheSizes($owner);
 	}
 
 	/**
