@@ -828,7 +828,7 @@ class Zenphoto_Authority {
 		if (is_null($redirect)) {
 			$redirect = getRequestURI();
 		}
-
+		$redirect = sanitizeRedirect($redirect);
 		if (isset($_POST['user'])) {
 			$requestor = sanitize($_POST['user'], 3);
 		} else {

@@ -1063,7 +1063,9 @@ class Image extends MediaObject {
 	function getThumbCropping($ts, $sw, $sh) {
 		$cy = $this->get('thumbY');
 		if (is_null($cy)) {
-			$custom = $cx = $cw = $ch = NULL;
+			$custom = $cx = NULL;
+			$cw = $sw;
+			$ch = $sh;
 		} else {
 			$custom = true;
 			$cx = $this->get('thumbX');
@@ -1086,7 +1088,7 @@ class Image extends MediaObject {
 		}
 		return array($custom, $cw, $ch, $cx, $cy);
 	}
-
+	
 	/**
 	 * Get a default-sized thumbnail of this image.
 	 *
@@ -1095,20 +1097,16 @@ class Image extends MediaObject {
 	function getThumb($type = 'image') {
 		$ts = getOption('thumb_size');
 		if (getOption('thumb_crop')) {
-			$crop = true;
 			$sw = getOption('thumb_crop_width');
 			$sh = getOption('thumb_crop_height');
 			list($custom, $cw, $ch, $cx, $cy) = $this->getThumbCropping($ts, $sw, $sh);
 			if ($custom) {
-				return $this->getCustomImage(null, $sw, $sh, $cw, $ch, $cx, $cy, true);
+				$ts = null;
 			}
 		} else {
-			$crop = false;
 			$sw = $sh = $cw = $ch = $cx = $cy = null;
 		}
-		$wmt = getWatermarkParam($this, WATERMARK_THUMB);
-		$args = getImageParameters(array($ts, $sw, $sh, $cw, $ch, $cx, $cy, null, true, $crop, true, $wmt, null, null), $this->album->name);
-		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);
+		return $this->getCustomImage($ts, $sw, $sh, $cw, $ch, $cx, $cy, true);
 	}
 
 	/**

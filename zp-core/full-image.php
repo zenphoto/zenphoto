@@ -10,6 +10,8 @@ if (!defined('OFFSET_PATH'))
 require_once(dirname(__FILE__) . "/functions.php");
 require_once(dirname(__FILE__) . "/functions-image.php");
 
+$returnmode = isset($_GET['returnmode']);
+
 $disposal = getOption('protect_full_image');
 if ($disposal == 'No access') { // illegal use of the script!
 	imageError('403 Forbidden', gettext("Forbidden"));
@@ -205,7 +207,7 @@ if ($disposal == 'Download') {
 
 if (is_null($cache_path) || !file_exists($cache_path)) { //process the image
 	if ($forbidden) {
-		imageError('403 Forbidden', gettext("Forbidden(2)"));
+		imageError('403 Forbidden', gettext("Forbidden(2)"), 'err-imagegeneral.png', $image, $album);
 	}
 	if ($force_cache && !$process) {
 		// we can just use the original!
@@ -261,21 +263,25 @@ if (is_null($cache_path) || !file_exists($cache_path)) { //process the image
 }
 
 if (!is_null($cache_path)) {
-	if ($disposal == 'Download' || !OPEN_IMAGE_CACHE) {
-		require_once(dirname(__FILE__) . '/lib-MimeTypes.php');
-		$mimetype = getMimeString($suffix);
-		$fp = fopen($cache_path, 'rb');
-		// send the right headers
-		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-		header("Content-Type: $mimetype");
-		header("Content-Length: " . filesize($image_path));
-		// dump the picture and stop the script
-		fpassthru($fp);
-		fclose($fp);
+	if ($returnmode) {
+		echo FULLWEBPATH . '/' . CACHEFOLDER . pathurlencode(imgSrcURI($cache_file));
 	} else {
-		header('Location: ' . FULLWEBPATH . '/' . CACHEFOLDER . pathurlencode(imgSrcURI($cache_file)), true, 301);
+		if ($disposal == 'Download' || !OPEN_IMAGE_CACHE) {
+			require_once(dirname(__FILE__) . '/lib-MimeTypes.php');
+			$mimetype = getMimeString($suffix);
+			$fp = fopen($cache_path, 'rb');
+			// send the right headers
+			header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+			header("Content-Type: $mimetype");
+			header("Content-Length: " . filesize($image_path));
+			// dump the picture and stop the script
+			fpassthru($fp);
+			fclose($fp);
+		} else {
+			header('Location: ' . FULLWEBPATH . '/' . CACHEFOLDER . pathurlencode(imgSrcURI($cache_file)), true, 301);
+		}
+		exitZP();
 	}
-	exitZP();
 }
 ?>
 

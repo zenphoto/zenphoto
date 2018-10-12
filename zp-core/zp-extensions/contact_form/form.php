@@ -127,10 +127,16 @@
 		<label for="message"><?php echo gettext("Message<strong>*</strong>"); ?></label>
 		<textarea id="message" name="message" <?php if ($_processing_post) echo ' disabled="disabled"'; ?>><?php echo $mailcontent['message']; ?></textarea>
 	</p>
-	<?php if(getOption('contactform_dataconfirmation')) { ?>
+	<?php 
+	if(getOption('contactform_dataconfirmation')) { 
+		$dataconfirmation_checked = '';
+		if(!empty($mailcontent['dataconfirmation'])) {
+			$dataconfirmation_checked = ' checked="checked"';
+		} 
+		?>
 		<p>
 			<label for="dataconfirmation">
-				<input type="checkbox" name="dataconfirmation" id="dataconfirmation" value="1">
+				<input type="checkbox" name="dataconfirmation" id="dataconfirmation" value="1"<?php echo $dataconfirmation_checked; if ($_processing_post) echo ' disabled="disabled"'; ?>>
 				<?php printDataUsageNotice(); echo '<strong>*</strong>'; ?>
 			</label>
 		</p>

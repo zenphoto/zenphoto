@@ -472,7 +472,7 @@ if (isset($_GET['action'])) {
 			setOption('anonymize_ip', sanitize_numeric($_POST['anonymize_ip']));
 			setOption('dataprivacy_policy_notice', process_language_string_save('dataprivacy_policy_notice', 3));
 			setOption('dataprivacy_policy_custompage', sanitize($_POST['dataprivacy_policy_custompage']));
-			if(extensionEnabled('zenpage')) {
+			if(extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
 				setOption('dataprivacy_policy_zenpage', sanitize($_POST['dataprivacy_policy_zenpage']));
 			}
 			setOption('dataprivacy_policy_customlinktext', process_language_string_save('dataprivacy_policy_customlinktext', 3));

@@ -2710,3 +2710,17 @@ form.dirty input[type=submit]:active{
 	border: 1px solid green !important;
 	background: #eff6d5;
 }
+
+.hidden {
+	display: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " " !important;
+  display: table !important; 
+}
+
+.clearfix:after {
+  clear: both !important; 
+}

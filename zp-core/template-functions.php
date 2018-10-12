@@ -1893,31 +1893,8 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	}
 	$class = trim($class);
 	/* set the HTML image width and height parameters in case this image was "imageDefault.png" substituted for no thumbnail then the thumb layout is preserved */
-	$sizing = '';
-	if (is_null($width)) {
-		if (!is_null($cropw) && !is_null($croph)) {
-			if (empty($height)) {
-				$height = $size;
-			}
-			$s = round($height * ($cropw / $croph));
-			if (!empty($s))
-				$sizing = ' width="' . $s . '"';
-		}
-	} else {
-		$sizing = ' width="' . $width . '"';
-	}
-	if (is_null($height)) {
-		if (!is_null($cropw) && !is_null($croph)) {
-			if (empty($width)) {
-				$width = $size;
-			}
-			$s = round($width * ($croph / $cropw));
-			if (!empty($s))
-				$sizing = $sizing . ' height="' . $s . '"';
-		}
-	} else {
-		$sizing = $sizing . ' height="' . $height . '"';
-	}
+	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy);
+	$sizing = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	if($class) {
 		$class = ' class="' . $class . '"';
 	}
@@ -2975,20 +2952,13 @@ function getSizeDefaultThumb($image = NULL) {
 	if (getOption('thumb_crop')) {
 		$w = getOption('thumb_crop_width');
 		$h = getOption('thumb_crop_height');
-		if ($w > $h) {
-			//landscape
-			$h = round($h * $s / $w);
-			$w = $s;
-		} else {
-			//portrait
-			$w = round($w * $s / $h);
-			$h = $s;
-		}
+		$sizes = getSizeCustomImage($s, $w, $h, $w, $h, NULL, NULL, $image);
 	} else {
 		$w = $h = $s;
 		getMaxSpaceContainer($w, $h, $image, true);
+		$sizes = array($w, $h);
 	}
-	return array($w, $h);
+	return $sizes;
 }
 
 /**

@@ -33,6 +33,23 @@ if (isset($_GET['report'])) {
 if (extensionEnabled('zenpage')) {
 	require_once(dirname(__FILE__) . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-admin-functions.php');
 }
+$redirected_from = NULL;
+if (zp_loggedin() && !empty($zenphoto_tabs)) {
+	if (!$_zp_current_admin_obj->getID() || empty($msg) && !zp_loggedin(OVERVIEW_RIGHTS)) {
+		// admin access without overview rights, redirect to first tab
+		$tab = array_shift($zenphoto_tabs);
+		$link = $tab['link'];
+		header('location:' . $link);
+		exitZP();
+	}
+} else {
+	if (isset($_GET['from'])) {
+		$redirected_from = sanitizeRedirect($_GET['from']);
+	} else {
+		$redirected_from = urldecode(currentRelativeURL());
+	}
+}
+
 if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 	if (isset($_GET['action'])) {
 		$action = sanitize($_GET['action']);
@@ -136,32 +153,15 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 			$msg = sprintf(gettext('You do not have proper rights to %s.'), $msg);
 		}
 	} else {
-		if (isset($_GET['from'])) {
+		if (!is_null($redirected_from)) {
 			$class = 'errorbox';
-			$msg = sprintf(gettext('You do not have proper rights to access %s.'), html_encode(sanitize($_GET['from'])));
+			$msg = sprintf(gettext('You do not have proper rights to access %s.'), html_encode(sanitize($redirected_from)));
 		}
 	}
 
 	/*	 * ********************************************************************************* */
 	/** End Action Handling ************************************************************ */
 	/*	 * ********************************************************************************* */
-}
-$from = NULL;
-if (zp_loggedin() && !empty($zenphoto_tabs)) {
-	if (!$_zp_current_admin_obj->getID() || empty($msg) && !zp_loggedin(OVERVIEW_RIGHTS)) {
-		// admin access without overview rights, redirect to first tab
-		$tab = array_shift($zenphoto_tabs);
-		$link = $tab['link'];
-		header('location:' . $link);
-		exitZP();
-	}
-} else {
-	if (isset($_GET['from'])) {
-		$from = sanitize($_GET['from']);
-		$from = urldecode($from);
-	} else {
-		$from = urldecode(currentRelativeURL());
-	}
 }
 
 // Print our header
@@ -185,7 +185,7 @@ if (!zp_loggedin()) {
 	// If they are not logged in, display the login form and exit
 	?>
 	<body style="background-image: none">
-		<?php $_zp_authority->printLoginForm($from); ?>
+		<?php $_zp_authority->printLoginForm($redirected_from); ?>
 	</body>
 	<?php
 	echo "\n</html>";

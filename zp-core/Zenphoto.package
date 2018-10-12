@@ -793,10 +793,10 @@ zp-core/zp-extensions/GoogleMap/overlappingMarkerSpiderfier
 zp-core/zp-extensions/GoogleMap/overlappingMarkerSpiderfier/oms.min.js
 zp-core/zp-extensions/PHPMailer
 zp-core/zp-extensions/PHPMailer.php
-zp-core/zp-extensions/PHPMailer/PHPMailerAutoload.php
-zp-core/zp-extensions/PHPMailer/class.phpmailer.php
-zp-core/zp-extensions/PHPMailer/class.pop3.php
-zp-core/zp-extensions/PHPMailer/class.smtp.php
+zp-core/zp-extensions/PHPMailer/Exception.php
+zp-core/zp-extensions/PHPMailer/PHPMailer.php
+zp-core/zp-extensions/PHPMailer/POP3.php
+zp-core/zp-extensions/PHPMailer/SMTP.php
 zp-core/zp-extensions/admin-approval.php
 zp-core/zp-extensions/auto_backup.php
 zp-core/zp-extensions/bxslider_thumb_nav
@@ -814,7 +814,7 @@ zp-core/zp-extensions/cacheManager
 zp-core/zp-extensions/cacheManager.php
 zp-core/zp-extensions/cacheManager/cacheDBImages.php
 zp-core/zp-extensions/cacheManager/cacheImages.php
-zp-core/zp-extensions/cacheManager/functions.php
+zp-core/zp-extensions/cacheManager/deprecated-functions.php
 zp-core/zp-extensions/check_for_update.php
 zp-core/zp-extensions/class-AnyFile
 zp-core/zp-extensions/class-AnyFile.php
@@ -888,7 +888,7 @@ zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-my.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-nl.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-no.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-pl.js
-zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-pt-br.js
+zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-pt-BR.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-ro.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-ru.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-si.js
@@ -1175,7 +1175,6 @@ zp-core/zp-extensions/openstreetmap/leaflet.css
 zp-core/zp-extensions/openstreetmap/leaflet.js
 zp-core/zp-extensions/openstreetmap/leaflet.markercluster.js
 zp-core/zp-extensions/openstreetmap/openstreetmap.css
-zp-core/zp-extensions/openstreetmap/tile-definitions.js
 zp-core/zp-extensions/paged_thumbs_nav.php
 zp-core/zp-extensions/print_album_menu.php
 zp-core/zp-extensions/publishContent
@@ -1575,4 +1574,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1577
+1576

@@ -36,6 +36,7 @@ require_once(dirname(__FILE__) . '/functions-basic.php');
 require_once(dirname(__FILE__) . '/functions-image.php');
 
 $debug = isset($_GET['debug']);
+$returnmode = isset($_GET['returnmode']);
 
 // Check for minimum parameters.
 if (!isset($_GET['a']) || !isset($_GET['i'])) {
@@ -59,7 +60,7 @@ if (getOption('secure_image_processor')) {
 	require_once(dirname(__FILE__) . '/functions.php');
 	$albumobj = newAlbum(filesystemToInternal($album));
 	if (!$albumobj->checkAccess()) {
-		imageError('403 Forbidden', gettext("Forbidden(1)"));
+		imageError('403 Forbidden', gettext("Forbidden(1)"), 'err-imagegeneral.png', $image, $album);
 	}
 }
 
@@ -81,6 +82,7 @@ if (!isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 }
 
 $args = getImageParameters($args, filesystemToInternal($album));
+
 list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 if (DEBUG_IMAGE)
 	debugLog("i.php($ralbum, $rimage): \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$thumbstandin=$thumbstandin, \$passedWM=$passedWM, \$adminrequest=$adminrequest, \$effects=$effects");
@@ -106,12 +108,12 @@ if (!is_dir(SERVERCACHE)) {
 	@mkdir(SERVERCACHE, FOLDER_MOD);
 	@chmod(SERVERCACHE, FOLDER_MOD);
 	if (!is_dir(SERVERCACHE))
-		imageError('404 Not Found', gettext("The cache directory does not exist. Please create it and set the permissions to 0777."), 'err-cachewrite.png');
+		imageError('404 Not Found', gettext("The cache directory does not exist. Please create it and set the permissions to 0777."), 'err-cachewrite.png', $image, $album, $newfilename);
 }
 if (!is_writable(SERVERCACHE)) {
 	@chmod(SERVERCACHE, FOLDER_MOD);
 	if (!is_writable(SERVERCACHE))
-		imageError('404 Not Found', gettext("The cache directory is not writable! Attempts to chmod did not work."), 'err-cachewrite.png');
+		imageError('404 Not Found', gettext("The cache directory is not writable! Attempts to chmod did not work."), 'err-cachewrite.png', $image, $album, $newfilename);
 }
 if (!file_exists($imgfile)) {
 	if (isset($_GET['z'])) { //	flagged as a special image
@@ -125,7 +127,7 @@ if (!file_exists($imgfile)) {
 	if (!file_exists($imgfile)) {
 		if (DEBUG_IMAGE)
 			debugLogVar('image not found', $args);
-		imageError('404 Not Found', sprintf(gettext("Image not found; file %s does not exist."), filesystemToInternal($image)), 'err-imagenotfound.png');
+		imageError('404 Not Found', sprintf(gettext("Image not found; file %s does not exist."), filesystemToInternal($image)), 'err-imagenotfound.png', $image, $album, $newfilename);
 	}
 }
 
@@ -157,7 +159,7 @@ if (file_exists($newfile) & !$adminrequest) {
 
 if ($process) { // If the file hasn't been cached yet, create it.
 	if ($forbidden) {
-		imageError('403 Forbidden', gettext("Forbidden(2)"));
+		imageError('403 Forbidden', gettext("Forbidden(2)"), 'err-imagegeneral.png', $image, $album, $newfilename);
 	}
 
 	$iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
@@ -166,45 +168,50 @@ if ($process) { // If the file hasn't been cached yet, create it.
 	$iMutex->unlock();
 
 	if (!$result) {
-		imageError('404 Not Found', sprintf(gettext('Image processing of %s resulted in a fatal error.'), filesystemToInternal($image)));
+		imageError('404 Not Found', sprintf(gettext('Image processing of %s resulted in a fatal error.'), filesystemToInternal($image)), 'err-imagegeneral.png', $image, $album, $newfilename);
 	}
 	$fmt = filemtime($newfile);
 }
 $protocol = FULLWEBPATH;
 $path = $protocol . '/' . CACHEFOLDER . pathurlencode(imgSrcURI($newfilename));
 
-if (!$debug) {
-	// ... and redirect the browser to it.
-	$suffix = getSuffix($newfilename);
-	switch ($suffix) {
-		case 'wbmp':
-			$suffix = 'wbmp';
-			break;
-		case 'jpg':
-			$suffix = 'jpeg';
-			break;
-		case 'png':
-		case 'gif':
-		case 'jpeg':
-			break;
-		default:
-			imageError(405, 'Method Not Allowed', sprintf(gettext("Suffix Not Allowed: %s"), filesystemToInternal(basename($newfilename))));
-	}
-	if (OPEN_IMAGE_CACHE) {
-		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt) . ' GMT');
-		header('Content-Type: image/' . $suffix);
-		header('Location: ' . $path, true, 301);
-	} else {
-		$fp = fopen($newfile, 'rb');
-		// send the right headers
-		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-		header("Content-Type: image/$suffix");
-		header("Content-Length: " . filesize($newfile));
-		// dump the picture and stop the script
-		fpassthru($fp);
-		fclose($fp);
-	}
+if ($returnmode) {
+	echo $path;
 } else {
-	echo "\n<p>Image: <img src=\"" . $path . "\" /></p>";
+
+	if (!$debug) {
+		// ... and redirect the browser to it.
+		$suffix = getSuffix($newfilename);
+		switch ($suffix) {
+			case 'wbmp':
+				$suffix = 'wbmp';
+				break;
+			case 'jpg':
+				$suffix = 'jpeg';
+				break;
+			case 'png':
+			case 'gif':
+			case 'jpeg':
+				break;
+			default:
+				imageError('405 Method Not Allowed', sprintf(gettext("Suffix Not Allowed: %s"), filesystemToInternal(basename($newfilename))), 'err-imagegeneral.png', $image, $album, $newfilename);
+		}
+		if (OPEN_IMAGE_CACHE) {
+			header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt) . ' GMT');
+			header('Content-Type: image/' . $suffix);
+			header('Location: ' . $path, true, 301);
+		} else {
+			$fp = fopen($newfile, 'rb');
+			// send the right headers
+			header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+			header("Content-Type: image/$suffix");
+			header("Content-Length: " . filesize($newfile));
+			// dump the picture and stop the script
+			fpassthru($fp);
+			fclose($fp);
+		}
+	} else {
+		echo "\n<p>Image: <img src=\"" . $path . "\" /></p>";
+	}
 }
 ?>

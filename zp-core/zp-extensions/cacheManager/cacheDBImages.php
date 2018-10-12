@@ -9,133 +9,170 @@
 define('OFFSET_PATH', 3);
 require_once("../../admin-globals.php");
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/functions.php');
 
 admin_securityChecks(NULL, $return = currentRelativeURL());
 
 XSRFdefender('cacheDBImages');
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
-				gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
-printAdminHeader('overview', 'DB');
-echo "\n</head>";
-echo "\n<body>";
-
-printLogoAndLinks();
-echo "\n" . '<div id="main">';
-printTabs();
-echo "\n" . '<div id="content">';
-?>
+$zenphoto_tabs['overview']['subtabs'] = array(
+		gettext('Cache images') => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
+		gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages')
+);
+printAdminHeader('overview', 'DB'); ?>
+</head>
+<body>
+<?php printLogoAndLinks(); ?>
+<div id="main">
+<?php printTabs(); ?>
+<div id="content">
 <?php printSubtabs('Cache'); ?>
 <div class="tabbox">
 	<?php
 	zp_apply_filter('admin_note', 'cache', '');
 	?>
-	<p class="notebox">
-		<?php
-		echo gettext('This utility scans the database for images references that have been stored there.') . ' ';
-		echo gettext('If an image processor URI is discovered it will be converted to a cache file URI.') . ' ';
+		<p><?php echo gettext('This utility scans the database for images references that have been stored there (e.g. embedded within text content).'); ?></p>
+		<p><?php echo gettext('The following database fields are checked:');?></p>
+		<ul>
+			<li><?php echo gettext('<code>desc</code> (description) of albums and images'); ?></li>
+			<li><?php echo gettext('<code>content</code> and <code>extracontent</code> of Zenpage news articles and pages.'); ?></li>
+		</ul>
+		<p>
+		<?php 
+		echo gettext('If an image processor URI is discovered it will be converted to a cache file URI.'); 
 		echo gettext('If the cache file for the image does not exist, a caching image reference will be made for the image.');
 		?>
-	</p>
-	<?php
-	$tables = array('albums' => array('desc'),
-					'images' => array('desc'),
-					'pages'	 => array('content', 'extracontent'),
-					'news'	 => array('content', 'extracontent'));
+		</p>
+		<?php
+		$searchmode = true;
+		if (isset($_GET['select'])) { // form submitted for processing
+			$searchmode = false;
+		}
+		if($searchmode) { ?>
+			<p class="warningbox">
+			<?php echo gettext('Since this tool modifies the database directly, it is strongely recommended to perform a database backup before executing!'); ?>
+			</p>
+		<?php
+		}
+	cacheManager::printCurlNote();
+	$tables = array(
+			'albums' => array('desc'),
+			'images' => array('desc'),
+			'pages' => array('content', 'extracontent'),
+			'news' => array('content', 'extracontent'));
 	?>
 	<form name="size_selections" action="?select" method="post">
 		<?php
-		$refresh = $imageprocessor = $found = $fixed = $fixedFolder = 0;
+		$_zp_cachemanager_missingimages = NULL;
+		$refresh = $imageprocessor_total = $imageprocessor_item = $found_total = $found_item = $fixed_item = $fixed_total = 0;
 		XSRFToken('cacheDBImages');
 		$watermarks = getWatermarks();
-		$missingImages = NULL;
+		if(!$searchmode) { 
+			?>
+			<h2><?php echo gettext('Caching log'); ?></h2>
+			<?php
+		}
 		foreach ($tables as $table => $fields) {
+			if(!$searchmode) { 
+				?>
+				<ul>
+				<?php
+			}
 			foreach ($fields as $field) {
 				$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `' . $field . '` REGEXP "<img.*src\s*=\s*\".*i.php((\\.|[^\"])*)"';
 				$result = query($sql);
+				$title = '';
 				if ($result) {
+					$imageprocessor_item = '';
 					while ($row = db_fetch_assoc($result)) {
-						$imageprocessor++;
-						preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $row[$field], $matches);
+						$title = cacheManager::getTitle($table, $row);
+						$imageprocessor_total++;
+						$imageprocessor_item++;
+						preg_match_all('|\<\s*img.*?\ssrc\s*=\s*"(.*i\.php\?([^"]*)).*/\>|', $row[$field], $matches); 
 						foreach ($matches[1] as $uri) {
+							$imageprocessor_item = '';
 							$params = parse_url(html_entity_decode($uri));
 							if (array_key_exists('query', $params)) {
 								parse_str($params['query'], $query);
 								if (!file_exists(getAlbumFolder() . $query['a'] . '/' . $query['i'])) {
-									recordMissing($table, $row, $query['a'] . '/' . $query['i']);
+									cacheManager::recordMissing($table, $row, $query['a'] . '/' . $query['i']);
 								} else {
-									$text = updateImageProcessorLink($uri);
-									if (strpos($text, 'i.php') !== false) {
-										$url = '<img src="' . $uri . '" height="20" width="20" alt="X" />';
-										$title = getTitle($table, $row) . ' ' . gettext('image processor reference');
-										?>
-										<a href="<?php echo $uri; ?>&amp;debug" title="<?php echo $title; ?>">
-											<?php echo $url . "\n"; ?>
-										</a>
-										<?php
-									}
 									$text = updateImageProcessorLink($row[$field]);
-									if ($text != $row[$field]) {
+									if ($text != $row[$field] && !$searchmode) {
 										$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($text) . ' WHERE `id`=' . $row['id'];
-										query($sql);
-									} else {
-										$refresh++;
-									}
+										$success = query($sql);
+										if($success) { 
+											echo '<li><strong>'. $title . '</strong> – <em>' . $field . '</em>: ' . sprintf(ngettext('%u image processor reference updated', '%u image processor references updated.', $imageprocessor_item), $imageprocessor_item) . '</li>';
+										}
+									} 
 								}
-							}
+							} 
 						}
 					}
-				}
-
+				} 
+		
 				$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `' . $field . '` REGEXP "<img.*src\s*=\s*\".*' . CACHEFOLDER . '((\\.|[^\"])*)"';
 				$result = query($sql);
 
 				if ($result) {
 					while ($row = db_fetch_assoc($result)) {
 						preg_match_all('~\<img.*src\s*=\s*"((\\.|[^"])*)~', $row[$field], $matches);
+						$found_item = $fixed_item = '';
 						foreach ($matches[1] as $key => $match) {
 							$updated = false;
 							if (preg_match('~/' . CACHEFOLDER . '/~', $match)) {
-								$found++;
+								$found_total++;
+								$found_item++;
+								$match = unTagURLs($match);
+								$cached_appendix = strstr($match, '?cached=');
+								$match = str_replace($cached_appendix, '', $match);
+								$image_cleared = getImageProcessorURIFromCacheName($match, $watermarks);
 								list($image, $args) = getImageProcessorURIFromCacheName($match, $watermarks);
 								if (!file_exists(getAlbumFolder() . $image)) {
-									recordMissing($table, $row, $image);
+									printf(gettext('%s is missing'), getAlbumFolder() . $image);
+									cacheManager::recordMissing($table, $row, $image);
 								} else {
 									$uri = getImageURI($args, dirname($image), basename($image), NULL);
-									if (strpos($uri, 'i.php?') !== false) {
-										$fixed++;
-										$title = getTitle($table, $row);
-										?>
-										<a href="<?php echo html_encode($uri); ?>&amp;debug" title="<?php echo $title; ?>">
-											<?php
-											if (isset($args[10])) {
-												echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="15" width="15" alt="x" />' . "\n";
-											} else {
-												echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
-											}
-											?>
-										</a>
-										<?php
-									}
+									$title = cacheManager::getTitle($table, $row);
+									if (strpos($uri, 'i.php?') !== false) {		
+										$fixed_total++;
+										if (!$searchmode) {
+											$fixed_item++;
+											cacheManager::generateImage($uri);
+										}
+									} 
 								}
 								$cache_file = '{*WEBPATH*}/' . CACHEFOLDER . getImageCacheFilename(dirname($image), basename($image), $args);
 								if ($match != $cache_file) {
 									//need to update the record.
-									$row[$field] = updateCacheName($row[$field], $match, $cache_file);
+									$row[$field] = cacheManager::updateCacheName($row[$field], $match, $cache_file);
 									$updated = true;
 								}
-							}
+							} 
 						}
-						if ($updated) {
-							$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($row[$field]) . ' WHERE `id`=' . $row['id'];
-							query($sql);
+						if (!$searchmode) {
+							if ($updated) {
+								$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($row[$field]) . ' WHERE `id`=' . $row['id'];
+								$success = query($sql);
+								if($success) {
+									echo '<li><strong>'. $title . '</strong> – <em>' . $field . '</em>: ' . sprintf(ngettext('%1$u of %2$u found cached image required re-caching.', '%1$u of %2$u found cached images required re-caching.', $found_item), $fixed_item, $found_item) . '</li>';
+								}
+							} else {
+								$refresh++;
+							}
 						}
 					}
 				}
 			}
+		if(!$searchmode) { 
+			?>
+			</ul>
+			<?php
 		}
-		if (!empty($missingImages)) {
+		}
+		?>
+		<h2><?php echo gettext('Statistics'); ?></h2>
+		<?php
+		if (!empty($_zp_cachemanager_missingimages)) {
 			?>
 			<div class="errorbox">
 				<p>
@@ -143,66 +180,53 @@ echo "\n" . '<div id="content">';
 					echo gettext('<strong>Note:</strong> the following objects have images that appear to no longer exist.');
 					?>
 				</p>
+				<ol>
 				<?php
-				foreach ($missingImages as $missing) {
-					echo $missing;
+				foreach ($_zp_cachemanager_missingimages as $missing) {
+					?><li>
+						<?php echo $missing; ?>
+					</li><?php
 				}
 				?>
+				</ol>
 			</div>
 			<?php
 		}
-
-		$button = array('text' => gettext("Refresh"), 'title' => gettext('Refresh the caching of the images stored in the database if some images did not render.'));
 		?>
-		<p>
-			<?php
-			printf(ngettext('%u image processor reference found.', '%u image processor references found.', $imageprocessor), $imageprocessor);
-			if ($refresh) {
-				echo ' ' . gettext('You should use the refresh button to convert these to cached image references');
-			}
-			?>
-			<br />
-			<?php
-			printf(ngettext('%u cached image reference found.', '%u cached image references found.', $found), $found);
-			?>
-			<br />
-			<?php
-			printf(ngettext('%s reference re-cached.', '%s references re-cached.', $fixed), $fixed);
-			?>
-			<br />
-			<?php
-			if ($fixedFolder) {
-				printf(ngettext('%s cache folder reference fixed.', '%s cache folder references fixed.', $fixedFolder), $fixedFolder);
-			}
-			?>
-		</p>
-		<p class="buttons">
+		<ul>
+			<li>
+				<?php
+				printf(ngettext('%u image processor reference found.', '%u image processor references found.', $imageprocessor_total), $imageprocessor_total);
+				if ($refresh) {
+					echo ' ' . gettext('You should use the refresh button to convert these to cached image references');
+				}
+				?>
+			</li>
+			<li>
+				<?php 
+					if($searchmode) { 
+						printf(ngettext('%1$u of %2$u found cached image requires re-caching.', '%1$u of %2$u found cached images require re-caching.', $found_total), $fixed_total, $found_total);
+					} else {
+						printf(ngettext('%1$u of %2$u found cached image re-cached.', '%1$u of %2$u found cached images re-cached.', $found_total ), $fixed_total, $found_total );
+					}
+					?>
+			</li>
+		</ul>
+		<p class="buttons clearfix">
 			<a title="<?php echo gettext('Back to the overview'); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin.php'; ?>"> <img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" />
 				<strong><?php echo gettext("Back"); ?> </strong>
 			</a>
+			<button class="tooltip" type="submit" title="<?php echo gettext('Cache stored images'); ?>" >
+				<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+				<?php echo gettext('Cache stored images'); ?>
+			</button>
 		</p>
-		<?php
-		if ($button) {
-			?>
-			<p class="buttons">
-				<button class="tooltip" type="submit" title="<?php echo $button['title']; ?>" >
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" />
-					<?php echo $button['text']; ?>
-				</button>
-			</p>
-			<?php
-		}
-		?>
-		<br class="clearall" />
 	</form>
 
-	<?php
-	echo "\n" . '</div>';
-	echo "\n" . '</div>';
-	echo "\n" . '</div>';
+</div>
+</div>
+</div>
+<?php printAdminFooter(); ?>
 
-	printAdminFooter();
-
-	echo "\n</body>";
-	echo "\n</head>";
-	?>
+</body>
+</html>
