@@ -108,7 +108,7 @@ class deprecated_functions {
 				$tabs['development'] = array('text'		 => gettext("development"),
 								'subtabs'	 => NULL);
 			}
-			$tabs['development']['subtabs'][gettext("deprecated")] = PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated');
+			$tabs['development']['subtabs'][gettext("deprecated")] = WEBPATH . "/" . ZENFOLDER .  "/" . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated');
 			$named = array_flip($tabs['development']['subtabs']);
 			natcasesort($named);
 			$tabs['development']['subtabs'] = $named = array_flip($named);

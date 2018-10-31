@@ -29,7 +29,7 @@ function httpUploadHandler($uploadHandlers) {
 
 function httpUploadHandler_admin_tabs($tabs) {
 	$me = sprintf(gettext('images (%s)'), 'http');
-	$mylink = 'admin-upload.php?page=upload&tab=http&type=' . gettext('images');
+	$mylink = WEBPATH . "/" . ZENFOLDER . '/admin-upload.php?page=upload&tab=http&type=' . gettext('images');
 	if (is_null($tabs['upload'])) {
 		$tabs['upload'] = array('text'		 => gettext("upload"),
 						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
