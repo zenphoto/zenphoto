@@ -5,7 +5,7 @@
  * stores all the default values for options
  * @package setup
  */
-setupLog(gettext('Set Zenphoto default options'), true);
+setup::Log(gettext('Set Zenphoto default options'), true);
 
 require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 require_once(dirname(dirname(__FILE__)) . '/' . PLUGIN_FOLDER . '/security-logger.php');
@@ -29,7 +29,6 @@ for ($i = 0; $i < 30; $i++) {
 	$lib_auth_extratext = $lib_auth_extratext . $salt{$list[$i]};
 }
 
-
 purgeOption('zenphoto_release');
 purgeOption('zenphoto_version');
 purgeOption('zenphoto_install');
@@ -48,7 +47,7 @@ if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version
 		$msg .= ': ' . gettext('failed');
 	}
 	echo $msg;
-	setupLog($msg, true);
+	setup::Log($msg, true);
 }
 $admins = $_zp_authority->getAdministrators('all');
 
@@ -76,24 +75,21 @@ $conf = $_zp_conf_vars;
 setOptionDefault('time_offset', 0);
 setOption('mod_rewrite_detected', 0);
 if (isset($_GET['mod_rewrite'])) {
-	?>
-	<script type="text/javascript">
-		$(function() {
-			$('img').error(function() {
-				var link = $(this).attr('src');
-				var title = $(this).attr('title');
-				$(this).parent().html('<a href="' + link + '"><img src="../images/fail.png" title="' + title + '"></a>');
-				imageErr = true;
+	if (!function_exists('curl_init')) {
+		?>
+		<script type="text/javascript">
+			$(function() {
+				$('img').error(function() {
+					var link = $(this).attr('src');
+					var title = $(this).attr('title');
+					$(this).parent().html('<a href="' + link + '"><img src="../images/fail.png" title="' + title + '"></a>');
+					imageErr = true;
+				});
 			});
-		});
-	</script>
-	<p>
-		<?php echo gettext('Mod_Rewrite check:'); ?>
-		<br />
-		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . $_zp_conf_vars['special_pages']['page']['rewrite']; ?>/setup_set-mod_rewrite?z=setup" title="<?php echo gettext('Mod_rewrite'); ?>" alt="<?php echo gettext('Mod_rewrite'); ?>" height="16px" width="16px" />
-		</span>
-	</p>
+		</script>
+	<?php } ?>
+	<p><?php echo gettext('Mod_Rewrite check:'); ?></p>
+	<?php setup::defaultOptionsRequest(gettext('Mod_rewrite'), 'modrewrite'); ?>
 	<?php
 }
 
@@ -327,13 +323,9 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package')) {
 <p>
 	<?php
 	natcasesort($themes);
-	echo gettext('Theme setup:') . '<br />';
+	echo '<p>' . gettext('Setting theme default options') . '</p>';
 	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-		?>
-		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_themeOptions.php?theme=' . $theme; ?>" title="<?php echo $theme; ?>" alt="<?php echo $theme; ?>" height="16px" width="16px" />
-		</span>
-		<?php
+		setup::defaultOptionsRequest($theme, 'theme');
 	}
 	?>
 </p>
@@ -606,7 +598,7 @@ foreach ($_languages as $language => $dirname) {
 		if (is_null(getOption('disallow_' . $dirname)) && $version < $zpversion) {
 			setOptionDefault('disallow_' . $dirname, 1);
 		}
-		if (setupLocale($dirname)) {
+		if (setup::Locale($dirname)) {
 			purgeOption('unsupported_' . $dirname);
 		} else {
 			setOption('unsupported_' . $dirname, 1);
@@ -622,13 +614,9 @@ $plugins = getPluginFiles('*.php');
 	<?php
 	$plugins = array_keys($plugins);
 	natcasesort($plugins);
-	echo gettext('Plugin setup:') . '<br />';
+	echo '<p>' . gettext('Plugin setup:') . '</p>';
 	foreach ($plugins as $extension) {
-		?>
-		<span>
-			<img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $extension; ?>" title="<?php echo $extension; ?>" alt="<?php echo $extension; ?>" height="16px" width="16px" />
-		</span>
-		<?php
+		setup::defaultOptionsRequest($extension, 'plugin');
 	}
 	?>
 </p>

@@ -62,7 +62,7 @@ class rewriteTokens {
 				//Things have changed, need to reset to defaults;
 				setOption('rewriteTokens_restore', 1);
 				$this->handleOptionSave(NULL, NULL);
-				setupLog(gettext('rewriteTokens restored to default'), true);
+				setup::Log(gettext('rewriteTokens restored to default'), true);
 			}
 		} else {
 			enableExtension('rewriteTokens', 97 | ADMIN_PLUGIN); //	plugin must be enabled for saving options

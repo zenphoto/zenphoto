@@ -9,8 +9,9 @@
  *
  */
 require_once(dirname(dirname(__FILE__)) . '/functions-basic.php');
-require_once(dirname(__FILE__) . '/setup-functions.php');
+require_once(dirname(__FILE__) . '/setup-classes.php');
 
+$returnmode = isset($_REQUEST['returnmode']);
 $mod_rewrite = MOD_REWRITE;
 if (is_null($mod_rewrite)) {
 	$msg = gettext('The Zenphoto option “mod_rewrite” will be set to “enabled”.');
@@ -21,14 +22,18 @@ if (is_null($mod_rewrite)) {
 	$msg = gettext('The Zenphoto option “mod_rewrite” is “disabled”.');
 }
 setOption('mod_rewrite_detected', 1);
-setupLog(gettext('Notice: “Module mod_rewrite” is working.') . ' ' . $msg, true);
+setup::Log(gettext('Notice: “Module mod_rewrite” is working.') . ' ' . $msg, true);
 
-$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', 'rb');
-// send the right headers
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-header("Content-Type: image/png");
-header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png'));
-// dump the picture and stop the script
-fpassthru($fp);
-fclose($fp);
+if($returnmode) {
+	echo FULLWEBPATH . '/' . ZENFOLDER . '/images/pass.png';
+} else {
+	$fp = fopen(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png', 'rb');
+	// send the right headers
+	header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+	header("Content-Type: image/png");
+	header("Content-Length: " . filesize(SERVERPATH . '/' . ZENFOLDER . '/images/pass.png'));
+	// dump the picture and stop the script
+	fpassthru($fp);
+	fclose($fp);
+}
 ?>

@@ -1706,6 +1706,48 @@ function addMissingDefaultRewriteTokens() {
 }
 
 /**
+ * Sends a simple cURL request to the $uri specified.
+ * 
+ * @param string $uri The uri to send the request to. Sets `curl_setopt($ch, CURLOPT_URL, $uri);`
+ * @param array $options An array of cURL options to set (uri is set via the separate parameter)
+ * Default is if nothing is set:
+ *	array(
+ *		CURLOPT_RETURNTRANSFER => true,
+ *		CURLOPT_TIMEOUT => 2000
+ * )
+ * See http://php.net/manual/en/function.curl-setopt.php for more info
+ * @return boolean
+ */
+function curlRequest($uri, $options = array()) {
+	if (function_exists('curl_init')) {
+		$defaultoptions = array(
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_TIMEOUT => 2000,
+		);
+		if (empty($options) || !is_array($options)) {
+			$options = $defaultoptions;
+		}
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $uri);
+		curl_setopt_array($ch, $options);
+		$curl_exec = curl_exec($ch);
+		if ($curl_exec === false) {
+			debuglog(gettext('ERROR: cURL request failed: ') . curl_error($ch));
+			$result = false;
+		} else if (empty(trim($curl_exec))) {
+			debuglogVar(gettext('NOTICE: cURL request not successful.'), curl_getinfo());
+			$result = false;
+		} else {
+			$result = $curl_exec;
+		}
+		curl_close($ch);
+		return $result;
+	}
+	debuglog(gettext('ERROR: Your server does not support cURL.'));
+	return false;
+}
+
+/**
  * Sends a cURL request to i.php to generate the image requested without printing it.
  * Returns the uri to the cache version of the image on success or false. 
  * It also returns false if cURL is not available.
@@ -1718,26 +1760,7 @@ function generateImageCacheFile($imageuri) {
 	if (strpos($imageuri, SERVER_HTTP_HOST) === false) {
 		$uri = SERVER_HTTP_HOST . pathurlencode($uri) . '&returnmode';
 	}
-	if (function_exists('curl_init')) {
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $uri);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 2000);
-		$curl_exec = curl_exec($ch);
-		if ($curl_exec === false) {
-			debuglog(gettext('ERROR: Image generation via cURL failed: ') . curl_error($ch));
-			return false;
-		} else if (empty(trim($curl_exec))) {
-			debuglog(gettext('ERROR: Image generation returned no image url.'));
-			return false;
-		} else {
-			// this should be the cache image uri if all worked out…
-			return $curl_exec;
-		}
-		curl_close($ch);
-	}
-	debuglog(gettext('ERROR: generateImage() does not work because the PHP extension cURL is not available.'));
-	return false;
+	return curlRequest($uri);
 }
 
 /**

@@ -888,7 +888,7 @@ zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-my.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-nl.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-no.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-pl.js
-zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-pt-BR.js
+zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-pt-br.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-ro.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-ru.js
 zp-core/zp-extensions/colorbox_js/i18n/jquery.colorbox-si.js
@@ -1564,8 +1564,9 @@ zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/version.php:*
 zp-core/setup:*
+zp-core/setup/class-setup.php:*
+zp-core/setup/class-setupmutex.php:*
 zp-core/setup/index.php:*
-zp-core/setup/setup-functions.php:*
 zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
@@ -1574,4 +1575,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1576
+1577

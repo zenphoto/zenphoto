@@ -45,6 +45,7 @@ h3 span {
 	-khtml-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
+	overflow: auto;
 }
 
 A:link,A:visited {
