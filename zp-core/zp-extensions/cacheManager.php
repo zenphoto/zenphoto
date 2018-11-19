@@ -384,7 +384,7 @@ class cacheManager {
 	 * @since Zenphoto 1.5.1
 	 */
 	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = false) {
-		cachemanager_internal_deprecations::addThemeCacheSize();
+		if(class_exists('cachemanager_internal_deprecations')) cachemanager_internal_deprecations::addThemeCacheSize();
 		self::addCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects, $maxspace);
 	}
 	
@@ -401,7 +401,7 @@ class cacheManager {
 	 * @since Zenphoto 1.5.1
 	 */
 	static function addThemeDefaultThumbSize() {
-		cachemanager_internal_deprecations::addThemeDefaultThumbSize();
+		if(class_exists('cachemanager_internal_deprecations')) cachemanager_internal_deprecations::addThemeDefaultThumbSize();
 		cacheManager::addDefaultThumbSize();
 	}
 	
@@ -417,7 +417,7 @@ class cacheManager {
 	 * @since Zenphoto 1.5.1
 	 */
 	static function addThemeDefaultSizedImageSize() {
-		cachemanager_internal_deprecations::addThemeDefaultSizedImageSize();
+		if(class_exists('cachemanager_internal_deprecations')) cachemanager_internal_deprecations::addThemeDefaultSizedImageSize();
 		cacheManager::addDefaultSizedImageSize();;
 	}
 
@@ -652,13 +652,13 @@ class cacheManager {
 			}
 			if ($data['sizes_count'] === 0 && !$countmode) {
 				?>
-				<li><?php echo gettext('All already cached.'); ?></li>
+				<li><p class="messagebox"><?php echo gettext('All already cached.'); ?></p></li>
 				<?php
 			}
 		} else {
 			if (!$countmode) {
 				?>
-				<li><em><?php echo gettext('This album does not have any images.'); ?></em></li>
+				<li><p class="notebox"><em><?php echo gettext('This album does not have any images.'); ?></p></li>
 				<?php
 			}
 		}
@@ -875,10 +875,10 @@ class cacheManager {
 	/**
 	 * @deprecated Zenphoto 1.6 - Use cachemanager::deleteCacheSizes() instead
 	 * @since Zenphoto 1.5.1
-	 * @param string $theme Owner of the cache size (theme or extension)
+	 * @param string $owner Owner of the cache size (theme or extension)
 	 */
-	static function deleteThemeCacheSizes($theme) {
-		cachemanager_internal_deprecations::deleteThemeCacheSizes();
+	static function deleteThemeCacheSizes($owner) {
+		if(class_exists('cachemanager_internal_deprecations')) cachemanager_internal_deprecations::deleteThemeCacheSizes();
 		self::deleteCacheSizes($owner);
 	}
 
