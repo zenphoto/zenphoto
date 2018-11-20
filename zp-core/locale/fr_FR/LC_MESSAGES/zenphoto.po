@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-19 16:54+0100\n"
-"PO-Revision-Date: 2018-11-19 16:54+0100\n"
+"POT-Creation-Date: 2018-11-20 17:06+0100\n"
+"PO-Revision-Date: 2018-11-20 18:39+0100\n"
 "Last-Translator: Vincent Bourganel <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569)\n"
@@ -4083,7 +4083,7 @@ msgstr "couvre"
 #: zp-core/admin-options.php:2263
 #, no-php-format
 msgid "% of image"
-msgstr "% de l’image <br />"
+msgstr "% de l’image"
 
 #: zp-core/admin-options.php:2266
 msgid "allow upscale"
@@ -7570,24 +7570,24 @@ msgstr ""
 "Erreur MySQL : MySQL a renvoyé l’erreur <em>%1$s</em> quand Zenphoto a tenté "
 "de sélectionner la base %2$s."
 
-#: zp-core/functions-db-MySQL.php:67 zp-core/functions-db-MySQLi.php:88
+#: zp-core/functions-db-MySQL.php:67 zp-core/functions-db-MySQLi.php:91
 #: zp-core/functions-db_PDO.php:26
 msgid "prefix"
 msgstr "Préfixe"
 
-#: zp-core/functions-db-MySQL.php:68 zp-core/functions-db-MySQLi.php:89
+#: zp-core/functions-db-MySQL.php:68 zp-core/functions-db-MySQLi.php:92
 #: zp-core/functions-db_PDO.php:27
 msgid "DB"
 msgstr "BD"
 
-#: zp-core/functions-db-MySQL.php:69 zp-core/functions-db-MySQLi.php:90
+#: zp-core/functions-db-MySQL.php:69 zp-core/functions-db-MySQLi.php:93
 #: zp-core/functions-db_PDO.php:28
 #, php-format
 msgid "%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s"
 msgstr ""
 "Erreur %1$s : <em>%2$s</em> a échoué. %1$s a renvoyé l’erreur <em>%3$s</em>"
 
-#: zp-core/functions-db-MySQL.php:166 zp-core/functions-db-MySQLi.php:190
+#: zp-core/functions-db-MySQL.php:166 zp-core/functions-db-MySQLi.php:193
 #: zp-core/functions-db_PDO.php:120
 #, php-format
 msgid "%s not connected"
@@ -7597,7 +7597,7 @@ msgstr "%s non connecté(e)"
 msgid "MySQLi Error: Zenphoto could not instantiate a connection."
 msgstr "Erreur MySQLi : Zenphoto a été incapable d’instancier une connexion."
 
-#: zp-core/functions-db-MySQLi.php:44
+#: zp-core/functions-db-MySQLi.php:47
 #, php-format
 msgid ""
 "MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select "
@@ -8763,7 +8763,7 @@ msgstr "L’extension <strong><em>GD</em></strong> n’est pas disponible."
 #: zp-core/lib-GD.php:56
 #, php-format
 msgid "PHP GD library <em>%s</em>"
-msgstr "Version <em>%s</em> de la bibliothèque GD pour PHP"
+msgstr "Version <em>%s</em> de la bibliothèque GD de PHP"
 
 #: zp-core/lib-Imagick.php:68
 msgid "Enable Imagick"
@@ -8827,7 +8827,7 @@ msgstr "L’extension <strong><em>Imagick</em></strong> n’est pas disponible."
 #: zp-core/lib-Imagick.php:123
 #, php-format
 msgid "PHP Imagick library <em>%s</em>"
-msgstr "Version <em>%s</em> de la bibliothèque Imagick pour PHP"
+msgstr "Version <em>%s</em> de la bibliothèque Imagick de PHP"
 
 #: zp-core/lib-NoGraphics.php:41
 msgid "There is no PHP Graphics support."
@@ -10056,7 +10056,7 @@ msgstr "Mode <code>Sessions</code> de PHP"
 
 #: zp-core/setup/index.php:604 zp-core/setup/index.php:606
 msgid "PHP <code>Sessions</code> [appear to not be working]."
-msgstr "Le mode <code>Sessions</em> de PHP [ne semble pas fonctionner]."
+msgstr "Le mode <code>Sessions</em> de PHP ne semble pas fonctionner"
 
 #: zp-core/setup/index.php:606
 msgid "PHP Sessions are required for Zenphoto administrative functions."
@@ -10066,11 +10066,11 @@ msgstr ""
 
 #: zp-core/setup/index.php:621
 msgid "PHP <code>Register Globals</code>"
-msgstr "Directive <code>Register Globals</code> de PHP"
+msgstr "Module <code>Register Globals</code> de PHP"
 
 #: zp-core/setup/index.php:621
 msgid "PHP <code>Register Globals</code> [is set]"
-msgstr "La directive <code>Register Globals</code> de PHP [est activée]"
+msgstr "Le module <code>Register Globals</code> de PHP est activé"
 
 #: zp-core/setup/index.php:621
 msgid ""
@@ -10171,7 +10171,7 @@ msgstr ""
 
 #: zp-core/setup/index.php:685
 msgid "PHP <code>display_errors</code>"
-msgstr "Directive <code>display_errors</code> de PHP"
+msgstr "Module <code>display_errors</code> de PHP"
 
 #: zp-core/setup/index.php:685
 #, php-format
@@ -10204,11 +10204,11 @@ msgstr ""
 
 #: zp-core/setup/index.php:688
 msgid "PHP <code>flock</code> support"
-msgstr "Fonction <code>flock</code> de PHP"
+msgstr "Support de <code>flock</code> de PHP"
 
 #: zp-core/setup/index.php:688
 msgid "PHP <code>flock</code> support [is not present]"
-msgstr "La fonction <code>flock</code> de PHP n’est pas supportée"
+msgstr "Le support de <code>flock</code> de PHP n’est pas présent"
 
 #: zp-core/setup/index.php:688
 msgid ""
@@ -10223,11 +10223,11 @@ msgstr ""
 
 #: zp-core/setup/index.php:690
 msgid "PHP <code>cURL</code> support"
-msgstr "PHP supporte <code>cURL</code>"
+msgstr "Support de <code>cURL</code> de PHP"
 
 #: zp-core/setup/index.php:690
 msgid "PHP <code>cURL</code> support [is not present]"
-msgstr "PHP ne supporte pas <code>cURL</code>"
+msgstr "Le support de <code>cURL</code> de PHP n’est pas présent"
 
 #: zp-core/setup/index.php:690
 msgid "<code>cURL</code> support is not critical but strongely recommended."
@@ -10237,11 +10237,11 @@ msgstr ""
 
 #: zp-core/setup/index.php:691
 msgid "PHP <code>tidy</code> support"
-msgstr "PHP supporte <code>tidy</code>"
+msgstr "Support de <code>tidy</em> de PHP"
 
 #: zp-core/setup/index.php:691
 msgid "PHP <code>tidy</code> support [is not present]"
-msgstr "PHP ne supporte pas <code>tidy</code>"
+msgstr "Le support de <code>tidy</em> de PHP  n’est pas présent"
 
 #: zp-core/setup/index.php:691
 msgid ""
@@ -10587,7 +10587,7 @@ msgstr "Base de données"
 #: zp-core/setup/index.php:974
 #, php-format
 msgid "PHP <code>%s</code> support for configured Database"
-msgstr "<code>Support de %s</em> de PHP pour la base de données configurée"
+msgstr "Support de <code>%s</code> de PHP pour la base de données configurée"
 
 #: zp-core/setup/index.php:979
 #, php-format
@@ -10606,7 +10606,7 @@ msgstr "Support de <code>%s</em> de PHP"
 #: zp-core/setup/index.php:994
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
-msgstr "Le support de <code>%s</em> de PHP [n’est pas installé]"
+msgstr "Le support de <code>%s</code> de PHP n’est pas installé"
 
 #: zp-core/setup/index.php:1004
 msgid "No database selected"
@@ -13472,7 +13472,8 @@ msgstr ""
 #: zp-core/zp-extensions/check_for_update.php:13
 #: zp-core/zp-extensions/zenphoto_news.php:13
 msgid "PHP <em>DOM Object Model</em> is required."
-msgstr "Le module DOM (modèle objet de documents) de PHP est requis."
+msgstr ""
+"Le module <code>DOM</code> (modèle objet de documents) de PHP est requis"
 
 #: zp-core/zp-extensions/check_for_update.php:32
 #: zp-core/zp-extensions/check_for_update.php:79
@@ -15209,7 +15210,7 @@ msgstr "la fonction"
 #: zp-core/zp-extensions/deprecated-functions.php:156
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated"
-msgstr "%1$s (appelée depuis la ligne %3$s de %2$s) est obsolète."
+msgstr "%1$s (appelée depuis la ligne %3$s de %2$s) est obsolète"
 
 #: zp-core/zp-extensions/deprecated-functions.php:156
 #, php-format
@@ -17566,7 +17567,7 @@ msgstr "Fusionne plusieurs flux RSS en un seul."
 
 #: zp-core/zp-extensions/mergedRSS.php:21
 msgid "PHP <em>SimpleXML</em> is required."
-msgstr "Le module <em>SimpleXML</em> de PHP est requis."
+msgstr "Le module <code>SimpleXML</code> de PHP est requis."
 
 #: zp-core/zp-extensions/mergedRSS.php:64
 msgid "RSS feeds to merge"
