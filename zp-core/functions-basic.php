@@ -463,6 +463,29 @@ function loadLocalOptions($albumid, $theme) {
 	}
 }
 
+/**
+ * Replaces/renames an option. If the old option exits, it creates the new option with the old option's value as the default 
+ * unless the new option has already been set otherwise. Independently it always deletes the old option.
+ * 
+ * @param string $oldkey Old option name
+ * @param string $newkey New option name
+ * 
+ * @since Zenphoto 1.5.1
+ */
+function replaceOption($oldkey, $newkey) {
+	$oldoption = getOption($oldkey);
+	if ($oldoption) {
+		setOptionDefault($newkey, $oldoption);
+		purgeOption($oldkey);
+	}
+}
+
+/**
+ * Deletes an option from the database 
+ * 
+ * @global array $_zp_options
+ * @param string $key
+ */
 function purgeOption($key) {
 	global $_zp_options;
 	unset($_zp_options[strtolower($key)]);
@@ -734,7 +757,7 @@ function getImageParameters($args, $album = NULL) {
 			}
 			break;
 	}
-
+	
 	// Round each numeric variable, or set it to false if not a number.
 	list($width, $height, $cw, $ch, $quality) = array_map('sanitize_numeric', array($width, $height, $cw, $ch, $quality));
 	if (!is_null($cx)) {

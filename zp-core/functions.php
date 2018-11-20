@@ -2014,6 +2014,49 @@ function setThemeOption($key, $value, $album, $theme, $default = false) {
 }
 
 /**
+ * Replaces/renames an option. If the old option exits, it creates the new option with the old option's value as the default 
+ * unless the new option has already been set otherwise. Independently it always deletes the old option.
+ * 
+ * @param string $oldkey Old option name
+ * @param string $newkey New option name
+ * 
+ * @since Zenphoto 1.5.1
+ */
+function replaceThemeOption($oldkey, $newkey) {
+	$oldoption = getThemeOption($oldkey);
+	if ($oldoption) {
+		setThemeOptionDefault($newkey, $oldoption);
+		purgeOption($oldkey);
+	}
+}
+
+/**
+ * Deletes an option from the database 
+ * 
+ * @global array $_zp_options
+ * @param string $key
+ * 
+ * @since Zenphoto 1.5.1
+ */
+function purgeThemeOption($key, $album = NULL, $theme = NULL) {
+	global $_set_theme_album, $_zp_gallery;
+	if (is_null($album)) {
+		$album = $_set_theme_album;
+	}
+	if (is_null($album)) {
+		$id = 0;
+	} else {
+		$id = $album->getID();
+		$theme = $album->getAlbumTheme();
+	}
+	if (empty($theme)) {
+		$theme = $_zp_gallery->getCurrentTheme();
+	}
+	$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name`=' . db_quote($key) . ' AND `ownerid`=' . $id . ' AND `theme`=' . db_quote($theme);
+	query($sql, false);
+}
+
+/**
  * Used to set default values for theme specific options
  *
  * @param string $key
@@ -2025,6 +2068,8 @@ function setThemeOptionDefault($key, $value) {
 	$theme = basename(dirname($b['file']));
 	setThemeOption($key, $value, NULL, $theme, true);
 }
+
+
 
 /**
  * Returns the value of a theme option
