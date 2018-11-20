@@ -416,7 +416,7 @@ class pseudoPlayer {
 	function getPlayerConfig($obj, $movietitle = NULL, $count = NULL) {
 		$movie = $obj->getFullImage(FULLWEBPATH);
 		$suffix = getSuffix($movie);
-		$poster =  $obj->getCustomImage(null, $obj->width, $obj->height, $obj->width, $obj->height, null, null, true);
+		$poster =  $obj->getCustomImage(null, $obj->getWidth(), $obj->getHeight(), $obj->getWidth(), $obj->getHeight(), null, null, true);
 		$content = '';
 		switch ($suffix) {
 			case 'mp4':

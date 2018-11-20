@@ -2676,12 +2676,13 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
 
   $h = $image->getHeight();
   $w = $image->getWidth();
-  if (isImageVideo($image)) { // size is determined by the player
-    return array($w, $h);
-  }
+
   //if we set width/height we are cropping and those are the sizes already
-  if (is_null($size) && !is_null($width) && !is_null($height)) {
+  if (!is_null($size) && !is_null($width) && !is_null($height)) {
     return array($width, $height);
+  }
+	if (isImageVideo($image)) { // size is determined by the player
+    return array($w, $h);
   }
   $side = getOption('image_use_side');
   $us = getOption('image_allow_upscale');
@@ -2952,7 +2953,7 @@ function getSizeDefaultThumb($image = NULL) {
 	if (getOption('thumb_crop')) {
 		$w = getOption('thumb_crop_width');
 		$h = getOption('thumb_crop_height');
-		$sizes = getSizeCustomImage($s, $w, $h, $w, $h, NULL, NULL, $image);
+		$sizes = getSizeCustomImage($s, $w, $h, $w, $h, null, null, $image);
 	} else {
 		$w = $h = $s;
 		getMaxSpaceContainer($w, $h, $image, true);
