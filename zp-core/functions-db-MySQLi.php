@@ -39,6 +39,9 @@ function db_connect($config, $errorstop = true) {
 		}
 	} 
 	$_zp_DB_details['mysql_host'] = $config['mysql_host'];
+	if(!is_object($_zp_DB_connection)) {
+		return false;
+	}
 	if (!$_zp_DB_connection->select_db($config['mysql_database'])) {
 		if ($errorstop) {
 			zp_error(sprintf(gettext('MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select the database %2$s.'), $_zp_DB_connection->error, $config['mysql_database']));
