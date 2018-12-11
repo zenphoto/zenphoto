@@ -4131,11 +4131,11 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
         <li><label><input type="checkbox" name="checkall_searchfields" id="checkall_searchfields" checked="checked">* <?php echo gettext('Check/uncheck all'); ?> *</label></li>
 								<?php
 								foreach ($fields as $display => $key) {
-									echo '<li><label><input id="SEARCH_' . $key . '" name="SEARCH_' . $key . '" type="checkbox"';
+									echo '<li><label><input id="SEARCH_' . html_encode($key) . '" name="SEARCH_' . html_encode($key) . '" type="checkbox"';
 									if (in_array($key, $query_fields)) {
 										echo ' checked="checked" ';
 									}
-									echo ' value="' . $key . '"  /> ' . $display . "</label></li>" . "\n";
+									echo ' value="' . html_encode($key) . '"  /> ' . $display . "</label></li>" . "\n";
 								}
 								?>
 							</ul>
