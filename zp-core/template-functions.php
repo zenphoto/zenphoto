@@ -4135,7 +4135,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 									if (in_array($key, $query_fields)) {
 										echo ' checked="checked" ';
 									}
-									echo ' value="' . html_encode($key) . '"  /> ' . $display . "</label></li>" . "\n";
+									echo ' value="' . html_encode($key) . '"  /> ' . html_encode($display) . "</label></li>" . "\n";
 								}
 								?>
 							</ul>
