@@ -126,20 +126,6 @@
 				}
 			}
 		},
-		OpenInfraMap: {
-			url: 'https://tiles-{s}.openinframap.org/{variant}/{z}/{x}/{y}.png',
-			options: {
-				maxZoom: 18,
-				attribution:
-					'{attribution.OpenStreetMap}, <a href="http://www.openinframap.org/about.html">About OpenInfraMap</a>'
-			},
-			variants: {
-				Power: 'power',
-				Telecom: 'telecoms',
-				Petroleum: 'petroleum',
-				Water: 'water'
-			}
-		},
 		OpenSeaMap: {
 			url: 'https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png',
 			options: {
@@ -255,7 +241,7 @@
 					'Imagery from <a href="http://mapbox.com/about/maps/">MapBox</a> &mdash; ' +
 					'Map data {attribution.OpenStreetMap}',
 				subdomains: 'abcd',
-				id: 'streets',
+				id: 'mapbox.streets',
 				accessToken: '<insert your access token here>',
 			}
 		},
@@ -283,6 +269,7 @@
 					url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/{variant}/{z}/{x}/{y}.{ext}',
 					options: {
 						variant: 'watercolor',
+						ext: 'jpg',
 						minZoom: 1,
 						maxZoom: 16
 					}
@@ -428,19 +415,15 @@
 			/*
 			 * HERE maps, formerly Nokia maps.
 			 * These basemaps are free, but you need an API key. Please sign up at
-			 * http://developer.here.com/getting-started
-			 *
-			 * Note that the base urls contain '.cit' whichs is HERE's
-			 * 'Customer Integration Testing' environment. Please remove for production
-			 * envirionments.
+			 * https://developer.here.com/plans
 			 */
 			url:
-				'https://{s}.{base}.maps.cit.api.here.com/maptile/2.1/' +
+				'https://{s}.{base}.maps.api.here.com/maptile/2.1/' +
 				'{type}/{mapID}/{variant}/{z}/{x}/{y}/{size}/{format}?' +
 				'app_id={app_id}&app_code={app_code}&lg={language}',
 			options: {
 				attribution:
-					'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+					'Map &copy; 1987-' + new Date().getFullYear() + ' <a href="http://developer.here.com">HERE</a>',
 				subdomains: '1234',
 				mapID: 'newest',
 				'app_id': '<insert your app_id here>',
@@ -467,8 +450,8 @@
 				normalNightGreyMobile: 'normal.night.grey.mobile',
 				normalNightTransit: 'normal.night.transit',
 				normalNightTransitMobile: 'normal.night.transit.mobile',
-				redcuedDay: 'reduced.day',
-				redcuedNight: 'reduced.night',
+				reducedDay: 'reduced.day',
+				reducedNight: 'reduced.night',
 				basicMap: {
 					options: {
 						type: 'basetile'
@@ -552,9 +535,9 @@
 			}
 		},
 		CartoDB: {
-			url: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/{variant}/{z}/{x}/{y}{r}.png',
+			url: 'https://{s}.basemaps.cartocdn.com/{variant}/{z}/{x}/{y}{r}.png',
 			options: {
-				attribution: '{attribution.OpenStreetMap} &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+				attribution: '{attribution.OpenStreetMap} &copy; <a href="https://carto.com/attributions">CARTO</a>',
 				subdomains: 'abcd',
 				maxZoom: 19,
 				variant: 'light_all'
@@ -786,7 +769,7 @@
 				minZoom: 11,
 				maxZoom: 18,
 				bounds: [[1.56073, 104.11475], [1.16, 103.502]],
-				attribution: 'New OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
+				attribution: '<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> New OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
 			},
 			variants: {
 				Default: 'Default',
