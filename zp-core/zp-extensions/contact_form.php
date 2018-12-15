@@ -317,7 +317,6 @@ function printContactForm($subject_override = '') {
 			?>
 			<div class="errorbox">
 				<?php
-				if (count($error) != 0) {
 					$err = $error;
 					if($error_dataconfirmation) { 
 						echo '<p>' . $error_dataconfirmation . '</p>';
@@ -342,7 +341,6 @@ function printContactForm($subject_override = '') {
 							}
 							break;
 					}
-				}
 				?>
 			</div>
 			<?php
