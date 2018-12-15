@@ -1436,3 +1436,7 @@ clear: left !important;
 .clearright {
 clear: right !important;
 }
+
+.bx-wrapper{
+	margin: 0 auto;
+}
