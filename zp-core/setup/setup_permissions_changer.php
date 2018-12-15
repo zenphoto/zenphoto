@@ -24,38 +24,3 @@ if ($_POST['key'] == sha1(filemtime(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFI
 	setup::Log(sprintf(gettext('Notice: illegal call for permissions setting for %s.'), basename($folder)), true);
 }
 clearstatcache();
-
-function folderPermissions($folder) {
-	$files = array();
-	if (($dir = opendir($folder)) !== false) {
-		while (($file = readdir($dir)) !== false) {
-			if ($file != '.' && $file != '..') {
-				$files[] = $file;
-			}
-		}
-		closedir($dir);
-	}
-	foreach ($files as $file) {
-		$path = $folder . '/' . $file;
-		if (is_dir($path)) {
-			@chmod($path, FOLDER_MOD);
-			clearstatcache();
-			if (setup::checkPermissions(fileperms($path) & 0777, FOLDER_MOD)) {
-				if (!setup::folderPermissions($path)) {
-					return false;
-				}
-			} else {
-				return false;
-			}
-		} else {
-			@chmod($path, FILE_MOD);
-			clearstatcache();
-			if (!setup::checkPermissions(fileperms($path) & 0777, FILE_MOD)) {
-				return false;
-			}
-		}
-	}
-	return true;
-}
-
-?>

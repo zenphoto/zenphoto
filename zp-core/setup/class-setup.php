@@ -568,6 +568,39 @@ class setup {
 			return ($actual & 0770) == ($expected & 0770); //	We do not care about the execute permissions
 		}
 	}
+	
+	static function folderPermissions($folder) {
+		$files = array();
+		if (($dir = opendir($folder)) !== false) {
+			while (($file = readdir($dir)) !== false) {
+				if ($file != '.' && $file != '..') {
+					$files[] = $file;
+				}
+			}
+			closedir($dir);
+		}
+		foreach ($files as $file) {
+			$path = $folder . '/' . $file;
+			if (is_dir($path)) {
+				@chmod($path, FOLDER_MOD);
+				clearstatcache();
+				if (setup::checkPermissions(fileperms($path) & 0777, FOLDER_MOD)) {
+					if (!setup::folderPermissions($path)) {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			} else {
+				@chmod($path, FILE_MOD);
+				clearstatcache();
+				if (!setup::checkPermissions(fileperms($path) & 0777, FILE_MOD)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 
 	/*
 	 * check if site is closed for proper update of .htaccess
