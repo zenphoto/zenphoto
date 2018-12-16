@@ -72,11 +72,12 @@ if (getOption('elFinder_tinymce')) {
 
 function elFinder_admin_tabs($tabs) {
 	$me = sprintf(gettext('files (%s)'), 'elFinder');
-	$mylink =  WEBPATH . "/" . ZENFOLDER .  "/" . PLUGIN_FOLDER . '/elFinder/filemanager.php?page=upload&tab=elFinder&type=' . gettext('files');
+	$mylink =  FULLWEBPATH  . '/'.  ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/filemanager.php?page=upload&tab=elFinder&type=' . gettext('files');
 	if (is_null($tabs['upload'])) {
-		$tabs['upload'] = array('text'		 => gettext("upload"),
-						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
-						'subtabs'	 => NULL);
+		$tabs['upload'] = array(
+				'text' => gettext("upload"),
+				'link' => FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php',
+				'subtabs' => NULL);
 	}
 	$tabs['upload']['subtabs'][$me] = $mylink;
 	if (zp_getcookie('uploadtype') == 'elFinder')

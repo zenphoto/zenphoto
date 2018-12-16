@@ -93,11 +93,12 @@ class deprecated_functions {
 		foreach ($this->listed_functions as $funct => $details) {
 			$list[$funct] = $details['option'];
 		}
-
-		$options[gettext('Functions')] = array('key'				 => 'deprecated_Function_list', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-						'checkboxes' => $list,
-						'order'			 => 1,
-						'desc'			 => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation. Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters.'));
+		$options[gettext('Functions')] = array(
+				'key' => 'deprecated_Function_list',
+				'type' => OPTION_TYPE_CHECKBOX_UL,
+				'checkboxes' => $list,
+				'order' => 1,
+				'desc' => gettext('Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation. Functions flagged with an asterisk are class methods. Ones flagged with two asterisks have deprecated parameters.'));
 
 		return $options;
 	}
@@ -105,10 +106,11 @@ class deprecated_functions {
 	static function tabs($tabs) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
-				$tabs['development'] = array('text'		 => gettext("development"),
-								'subtabs'	 => NULL);
+				$tabs['development'] = array(
+						'text' => gettext("development"),
+						'subtabs' => NULL);
 			}
-			$tabs['development']['subtabs'][gettext("deprecated")] = WEBPATH . "/" . ZENFOLDER .  "/" . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated');
+			$tabs['development']['subtabs'][gettext("deprecated")] = FULLWEBPATH . "/" . ZENFOLDER .  "/" . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated');
 			$named = array_flip($tabs['development']['subtabs']);
 			natcasesort($named);
 			$tabs['development']['subtabs'] = $named = array_flip($named);

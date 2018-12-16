@@ -207,7 +207,7 @@ class rewriteTokens {
 						'text' => gettext("development"),
 						'subtabs' => NULL);
 			}
-			$tabs['development']['subtabs'][gettext("tokens")] = PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=tokens&tab=' . gettext('tokens');
+			$tabs['development']['subtabs'][gettext("tokens")] = FULLWEBPATH . '/'. ZENFOLDER . '/'. PLUGIN_FOLDER . '/rewriteTokens/admin_tab.php?page=tokens&tab=' . gettext('tokens');
 			$named = array_flip($tabs['development']['subtabs']);
 			natcasesort($named);
 			$tabs['development']['subtabs'] = $named = array_flip($named);

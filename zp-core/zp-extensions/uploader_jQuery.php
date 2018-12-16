@@ -35,16 +35,15 @@ function jQueryUploadHandler($uploadHandlers) {
 
 function jQueryUploadHandler_admin_tabs($tabs) {
 	$me = sprintf(gettext('images (%s)'), 'jQuery');
-	$mylink = WEBPATH . "/" . ZENFOLDER . '/admin-upload.php?page=upload&tab=jQuery&type=' . gettext('images');
+	$mylink = FULLWEBPATH . "/" . ZENFOLDER . '/admin-upload.php?page=upload&tab=jQuery&type=' . gettext('images');
 	if (is_null($tabs['upload'])) {
-		$tabs['upload'] = array('text'		 => gettext("upload"),
-						'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
-						'subtabs'	 => NULL);
+		$tabs['upload'] = array(
+				'text' => gettext("upload"),
+				'link' => FULLWEBPATH . "/" . ZENFOLDER . '/admin-upload.php',
+				'subtabs' => NULL);
 	}
 	$tabs['upload']['subtabs'][$me] = $mylink;
 	if (zp_getcookie('uploadtype') == 'jQuery')
 		$tabs['upload']['link'] = $mylink;
 	return $tabs;
 }
-
-?>

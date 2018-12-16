@@ -310,11 +310,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<ul class="subdropdown">
 								<?php
 								foreach ($subtabs as $key => $link) {
-									if (strpos($link, '/') !== 0) { // zp_core relative
-										$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-									} else {
-										$link = WEBPATH . $link;
-									}
+								
 									?>
 									<li><a href="<?php echo html_encode($link); ?>"><?php echo html_encode(ucfirst($key)); ?></a></li>
 									<?php
@@ -335,7 +331,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	function getSubtabs() {
-		global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
+		global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab; 
 		$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
 		if (!is_array($tabs))
 			return $_zp_admin_subtab;
@@ -419,11 +415,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 						if (isset($bt['file'])) {
 							$link = str_replace(SERVERPATH, '', str_replace('\\', '/', $bt['file']));
 						}
-					}
-					if (strpos($link, '/') !== 0) { // zp_core relative
-						$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-					} else {
-						$link = WEBPATH . $link;
 					}
 					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a href="' . html_encode($link) . '">' . html_encode(ucfirst($key)) . '</a></li>' . "\n";
 				}
