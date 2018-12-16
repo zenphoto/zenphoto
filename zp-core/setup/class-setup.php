@@ -340,7 +340,7 @@ class setup {
 		if (($dir = opendir($path)) !== false) {
 			$glob = array();
 			while (($file = readdir($dir)) !== false) {
-				if (fnmatch($match, $file)) {
+				if (setup::fnmatch($match, $file)) {
 					if ((is_dir("$path/$file")) || (!($flags & GLOB_ONLYDIR))) {
 						if ($flags & GLOB_MARK)
 							$file .= '/';
@@ -354,6 +354,21 @@ class setup {
 			return $glob;
 		} else {
 			return array();
+		}
+	}
+	
+		/**
+	 * pattern match function in case it is not included in PHP
+	 *
+	 * @param string $pattern pattern
+	 * @param string $string haystack
+	 * @return bool
+	 */
+	static function fnmatch($pattern, $string) {
+		if (!function_exists('fnmatch')) {
+			return @preg_match('/^' . strtr(addcslashes($pattern, '\\.+^$(){}=!<>|'), array('*' => '.*', '?' => '.?')) . '$/i', $string);
+		} else {
+			return fnmatch($pattern, $string);
 		}
 	}
 

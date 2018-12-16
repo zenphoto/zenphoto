@@ -428,7 +428,10 @@ if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_resu
 		debugLog('$_zp_setupCurrentLocale_result = ' . $_zp_setupCurrentLocale_result);
 }
 
-$taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"));
+$taskDisplay = array(
+		'create' => gettext("create"),
+		'update' => gettext("update")
+);
 if ($i = getOption('zenphoto_install')) {
 	$install = unserialize($i);
 	$prevRel = $install['ZENPHOTO'];
@@ -439,11 +442,22 @@ if ($i = getOption('zenphoto_install')) {
 if (empty($prevRel)) {
 	// pre 1.4.2 release, compute the version
 	$prevRel = getOption('zenphoto_release');
-	$zp_versions = array('1.2'		 => '2213', '1.2.1'	 => '2635', '1.2.2'	 => '2983', '1.2.3'	 => '3427', '1.2.4'	 => '3716', '1.2.5'	 => '4022',
-					'1.2.6'	 => '4335', '1.2.7'	 => '4741', '1.2.8'	 => '4881', '1.2.9'	 => '5088',
-					'1.3.0'	 => '5088', '1.3.1'	 => '5736',
-					'1.4'		 => '6454', '1.4.1'	 => '6506',
-					'x.x.x'	 => '99999999');
+	$zp_versions = array(
+			'1.2' => '2213',
+			'1.2.1' => '2635',
+			'1.2.2' => '2983',
+			'1.2.3' => '3427',
+			'1.2.4' => '3716',
+			'1.2.5' => '4022',
+			'1.2.6' => '4335',
+			'1.2.7' => '4741',
+			'1.2.8' => '4881',
+			'1.2.9' => '5088',
+			'1.3.0' => '5088',
+			'1.3.1' => '5736',
+			'1.4' => '6454',
+			'1.4.1' => '6506',
+			'x.x.x' => '99999999');
 	if (empty($prevRel)) {
 		$release = gettext('Upgrade from before Zenphoto v1.2');
 		$prevRel = '1.x';
@@ -499,7 +513,7 @@ if ($c <= 0) {
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 	<head>
 
@@ -556,11 +570,11 @@ if ($c <= 0) {
 					</p>
 					<h2><?php echo gettext("Systems Check:"); ?></h2>
 					<?php
-					/*					 * ***************************************************************************
+					/*****************************************************************************
 					 *                                                                           *
 					 *                             SYSTEMS CHECK                                 *
 					 *                                                                           *
-					 * *************************************************************************** */
+					 *****************************************************************************/
 
 					global $_zp_conf_vars;
 					$good = true;
@@ -1337,7 +1351,7 @@ if ($c <= 0) {
 							foreach ($installed_files as $extra) {
 								$filelist .= filesystemToInternal(str_replace($base, '', $extra) . '<br />');
 							}
-							if (class_exists('zpFunctions') && hasPrimaryScripts() && count($installed_files) > 0) {
+							if (hasPrimaryScripts() && count($installed_files) > 0) {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {
 									$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 								} else {
@@ -1692,14 +1706,21 @@ if ($c <= 0) {
 								db_free_result($result);
 							}
 							$expected_tables = array(
-											$_zp_conf_vars['mysql_prefix'] . 'options', $_zp_conf_vars['mysql_prefix'] . 'albums',
-											$_zp_conf_vars['mysql_prefix'] . 'images', $_zp_conf_vars['mysql_prefix'] . 'comments',
-											$_zp_conf_vars['mysql_prefix'] . 'administrators', $_zp_conf_vars['mysql_prefix'] . 'admin_to_object',
-											$_zp_conf_vars['mysql_prefix'] . 'tags', $_zp_conf_vars['mysql_prefix'] . 'obj_to_tag',
+											$_zp_conf_vars['mysql_prefix'] . 'options', 
+											$_zp_conf_vars['mysql_prefix'] . 'albums',
+											$_zp_conf_vars['mysql_prefix'] . 'images', 
+											$_zp_conf_vars['mysql_prefix'] . 'comments',
+											$_zp_conf_vars['mysql_prefix'] . 'administrators', 
+											$_zp_conf_vars['mysql_prefix'] . 'admin_to_object',
+											$_zp_conf_vars['mysql_prefix'] . 'tags', 
+											$_zp_conf_vars['mysql_prefix'] . 'obj_to_tag',
 											$_zp_conf_vars['mysql_prefix'] . 'captcha',
-											$_zp_conf_vars['mysql_prefix'] . 'pages', $_zp_conf_vars['mysql_prefix'] . 'news2cat',
-											$_zp_conf_vars['mysql_prefix'] . 'news_categories', $_zp_conf_vars['mysql_prefix'] . 'news',
-											$_zp_conf_vars['mysql_prefix'] . 'menu', $_zp_conf_vars['mysql_prefix'] . 'plugin_storage',
+											$_zp_conf_vars['mysql_prefix'] . 'pages', 
+											$_zp_conf_vars['mysql_prefix'] . 'news2cat',
+											$_zp_conf_vars['mysql_prefix'] . 'news_categories', 
+											$_zp_conf_vars['mysql_prefix'] . 'news',
+											$_zp_conf_vars['mysql_prefix'] . 'menu', 
+											$_zp_conf_vars['mysql_prefix'] . 'plugin_storage',
 											$_zp_conf_vars['mysql_prefix'] . 'search_cache'
 							);
 
@@ -1754,10 +1775,10 @@ if ($c <= 0) {
 						$sql_statements = array();
 						$collation = db_collation();
 
-						/*						 * *********************************************************************************
+						/***********************************************************************************
 						  Add new fields in the upgrade section. This section should remain static except for new
 						  tables. This tactic keeps all changes in one place so that noting gets accidentaly omitted.
-						 * ********************************************************************************** */
+						 *********************************************************************************** */
 
 						//v1.2
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'captcha'])) {
@@ -2086,13 +2107,12 @@ if ($c <= 0) {
 		) $collation;";
 						}
 
-
-						/*						 * **************************************************************************************
+						/****************************************************************************************
 						 * *****                             UPGRADE SECTION                                ******
 						 * *****                                                                            ******
 						 * *****                          Add all new fields below                          ******
 						 * *****                                                                            ******
-						 * ************************************************************************************** */
+						 * ***************************************************************************************/
 
 						//v1.3.2
 						$sql_statements[] = "RENAME TABLE " . prefix('zenpage_news') . " TO $tbl_news," .
@@ -2412,15 +2432,7 @@ if ($c <= 0) {
 								$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `$key` $size default NULL";
 								$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `$key` `$key` $size default NULL";
 							}
-							/*if ($s = $exifvar[4]) {
-								if ($s < 255) {
-									$size = "varchar($s)";
-								} else {
-									$size = 'MEDIUMTEXT';
-								}
-								$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `$key` $size default NULL";
-								$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `$key` `$key` $size default NULL";
-							} */
+							
 						}
 
 
