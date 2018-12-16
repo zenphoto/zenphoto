@@ -436,25 +436,25 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (!$album->isDynamic() && $album->getNumImages()) {
 			if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
 				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Images') => 'admin-edit.php' . $albumlink . '&tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
+								array(gettext('Images') => FULLWEBPATH . '/'. ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
 				);
 				$default = 'imageinfo';
 			}
 			if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
 				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Image order') => 'admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
+								array(gettext('Image order') => FULLWEBPATH . '/'. ZENFOLDER . '/admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
 				);
 			}
 		}
 		if (!$album->isDynamic() && $album->getNumAlbums()) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-							array(gettext('Subalbums') => 'admin-edit.php' . $albumlink . '&tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
+							array(gettext('Subalbums') => FULLWEBPATH . '/'. ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
 			);
 			$default = 'subalbuminfo';
 		}
 		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-							array(gettext('Album') => 'admin-edit.php' . $albumlink . '&tab=albuminfo'), $zenphoto_tabs['edit']['subtabs']
+							array(gettext('Album') => FULLWEBPATH . '/'. ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=albuminfo'), $zenphoto_tabs['edit']['subtabs']
 			);
 			$default = 'albuminfo';
 		}
