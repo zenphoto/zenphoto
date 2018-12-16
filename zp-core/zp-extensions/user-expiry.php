@@ -110,7 +110,7 @@ class user_expiry {
 				$subtabs = array();
 			}
 			$subtabs[gettext('users')] = 'admin-users.php?page=users&tab=users';
-			$subtabs[gettext('expiry')] = PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=users&tab=expiry';
+			$subtabs[gettext('expiry')] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=users&tab=expiry';
 			$tabs['users'] = array(
 					'text' => gettext("admin"),
 					'link' => FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users&tab=users',

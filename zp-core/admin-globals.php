@@ -66,23 +66,23 @@ if ($_zp_loggedin) {
 	if ($_zp_loggedin & ALBUM_RIGHTS) {
 		$zenphoto_tabs['edit'] = array(
 				'text' => gettext("albums"),
-				'link' => FULLWEBPATH . "/" . ZENFOLDER . '/admin-edit.php',
+				'link' => FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php',
 				'subtabs' => NULL);
 	}
 	if (extensionEnabled('zenpage')) {
 		if ($_zp_loggedin & ZENPAGE_PAGES_RIGHTS && (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'pages')) {
 			$zenphoto_tabs['pages'] = array(
 					'text' => gettext("pages"),
-					'link' => FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php',
+					'link' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php',
 					'subtabs' => NULL);
 		}
 		if ($_zp_loggedin & ZENPAGE_NEWS_RIGHTS && (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'news')) {
 			$zenphoto_tabs['news'] = array(
 					'text' => gettext("news"),
-					'link' => FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php',
+					'link' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php',
 					'subtabs' => array(
-							gettext('articles') => PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?page=news&tab=articles',
-							gettext('categories') => PLUGIN_FOLDER . '/zenpage/admin-categories.php?page=news&tab=categories'),
+							gettext('articles') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?page=news&tab=articles',
+							gettext('categories') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-categories.php?page=news&tab=categories'),
 					'default' => 'articles');
 		}
 	}
@@ -90,14 +90,14 @@ if ($_zp_loggedin) {
 	if ($_zp_loggedin & TAGS_RIGHTS) {
 		$zenphoto_tabs['tags'] = array(
 				'text' => gettext("tags"),
-				'link' => FULLWEBPATH . "/" . ZENFOLDER . '/admin-tags.php',
+				'link' => FULLWEBPATH . '/' . ZENFOLDER . '/admin-tags.php',
 				'subtabs' => NULL);
 	}
 
 	if ($_zp_loggedin & USER_RIGHTS) {
 		$zenphoto_tabs['users'] = array(
 				'text' => gettext("users"),
-				'link' => FULLWEBPATH . "/" . ZENFOLDER . '/admin-users.php?page=users',
+				'link' => FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users',
 				'subtabs' => NULL);
 	}
 
