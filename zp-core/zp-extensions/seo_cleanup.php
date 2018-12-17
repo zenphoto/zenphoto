@@ -27,7 +27,7 @@ if (defined('OFFSET_PATH')) {
 						'button_text'	 => gettext('SEO Cleaner'),
 						'formname'		 => 'seo_cleanup.php',
 						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/seo_cleanup.php',
-						'icon'				 => FULLWEBPATH . '/' . ZENFOLDER . '/' . '/images/redo.png',
+						'icon'				 => FULLWEBPATH . '/' . ZENFOLDER . '/images/redo.png',
 						'title'				 => gettext('Make file and folder names in the Gallery SEO friendly.'),
 						'alt'					 => '',
 						'hidden'			 => '',

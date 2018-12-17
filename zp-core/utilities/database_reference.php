@@ -7,24 +7,24 @@
 
 define('OFFSET_PATH', 3);
 
-require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
+require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 
 $buttonlist[] = $mybutton = array(
-																	'category'=>gettext('Info'),
-																	'enable'=>true,
-																	'button_text'=>gettext('Database quick reference'),
-																	'formname'=>'database_reference.php',
-																	'action'=>'utilities/database_reference.php',
-																	'icon'=>'images/info.png',
-																	'title'=>gettext('Shows all database table and field info for quick reference.'),
-																	'alt'=>'',
-																	'hidden'=>'',
-																	'rights'=> ADMIN_RIGHTS
-																	);
+		'category' => gettext('Info'),
+		'enable' => true,
+		'button_text' => gettext('Database quick reference'),
+		'formname' => 'database_reference.php',
+		'action' => FULLWEBPATH .'/'. ZENFOLDER .'/'. UTILITIES_FOLDER . '/database_reference.php',
+		'icon' => FULLWEBPATH .'/'. ZENFOLDER .'/images/info.png',
+		'title' => gettext('Shows all database table and field info for quick reference.'),
+		'alt' => '',
+		'hidden' => '',
+		'rights' => ADMIN_RIGHTS
+);
 
 admin_securityChecks(NULL, currentRelativeURL());
 
-if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass']) || isset($_POST['dbhost'])) {
+if (isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass']) || isset($_POST['dbhost'])) {
 	XSRFdefender('databaseinfo');
 }
 

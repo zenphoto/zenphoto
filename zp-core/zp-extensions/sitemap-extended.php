@@ -250,7 +250,7 @@ class sitemap {
 				'enable' => true,
 				'button_text' => gettext('Sitemap tools'),
 				'formname' => 'sitemap_button',
-				'action' => FULLWEBPATH . '/' . PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php',
+				'action' => FULLWEBPATH .'/'. ZENFOLDER .'/' . PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php',
 				'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/cache.png',
 				'title' => gettext('Generate or purge sitemap cache files.'),
 				'alt' => '',

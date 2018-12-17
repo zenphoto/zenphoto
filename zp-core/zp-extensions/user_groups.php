@@ -211,7 +211,7 @@ class user_groups {
 			} else {
 				$subtabs = array();
 			}
-			$subtabs[gettext('users')] = 'admin-users.php?page=users&tab=users';
+			$subtabs[gettext('users')] = FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users&tab=users';
 			$subtabs[gettext('assignments')] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=assignments';
 			$subtabs[gettext('groups')] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=groups';
 			$tabs['users'] = array(

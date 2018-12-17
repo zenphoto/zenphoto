@@ -81,7 +81,7 @@ class search_statistics {
 				'enable' => true,
 				'button_text' => gettext('Search statistics'),
 				'formname' => 'search_statistics_button',
-				'action' => FULLWEBPATH . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php',
+				'action' => FULLWEBPATH . '/'. ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php',
 				'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
 				'title' => gettext('Analyze searches'),
 				'alt' => '',
