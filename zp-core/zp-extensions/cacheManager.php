@@ -155,7 +155,7 @@ class cacheManager {
 				)
 		);
 		$list = array(
-				'<em>' . gettext('Albums') . '</em>' => 'cacheManager_albums', 
+				'<em>' . gettext('Albums') . '</em>' => 'cacheManager_albums',
 				'<em>' . gettext('Images') . '</em>' => 'cacheManager_images');
 		if (extensionEnabled('zenpage')) {
 			$list['<em>' . gettext('News') . '</em>'] = 'cacheManager_news';
@@ -340,7 +340,7 @@ class cacheManager {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Adds a custom image cache size for themes and – despite the method name – also for plugins
 	 * 
@@ -384,11 +384,12 @@ class cacheManager {
 	 * @since Zenphoto 1.5.1
 	 */
 	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = false) {
-		if(class_exists('cachemanager_internal_deprecations')) cachemanager_internal_deprecations::addThemeCacheSize();
+		if (class_exists('cachemanager_internal_deprecations'))
+			cachemanager_internal_deprecations::addThemeCacheSize();
 		self::addCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects, $maxspace);
 	}
-	
-		/**
+
+	/**
 	 * Adds the default theme thumb cache size
 	 */
 	static function addDefaultThumbSize() {
@@ -401,24 +402,27 @@ class cacheManager {
 	 * @since Zenphoto 1.5.1
 	 */
 	static function addThemeDefaultThumbSize() {
-		if(class_exists('cachemanager_internal_deprecations')) cachemanager_internal_deprecations::addThemeDefaultThumbSize();
+		if (class_exists('cachemanager_internal_deprecations'))
+			cachemanager_internal_deprecations::addThemeDefaultThumbSize();
 		cacheManager::addDefaultThumbSize();
 	}
-	
+
 	/**
 	 * Adds default sized image size for the cachemanger
 	 */
 	static function addDefaultSizedImageSize() {
 		setOption('cachemanager_defaultsizedimage', 1);
 	}
-	
+
 	/**
 	 * @deprecated Zenphoto 1.6 - Better use cacheManager::addDefaultSizedImageSize();
 	 * @since Zenphoto 1.5.1
 	 */
 	static function addThemeDefaultSizedImageSize() {
-		if(class_exists('cachemanager_internal_deprecations')) cachemanager_internal_deprecations::addThemeDefaultSizedImageSize();
-		cacheManager::addDefaultSizedImageSize();;
+		if (class_exists('cachemanager_internal_deprecations'))
+			cachemanager_internal_deprecations::addThemeDefaultSizedImageSize();
+		cacheManager::addDefaultSizedImageSize();
+		;
 	}
 
 	/**
@@ -448,8 +452,8 @@ class cacheManager {
 		switch ($table) {
 			case 'images':
 				$album = query_single_row('SELECT `folder` FROM ' . prefix('albums') . ' WHERE `id`=' . $row[albumid]);
-				$title = gettext('Missing album'); 
-				if($album) {
+				$title = gettext('Missing album');
+				if ($album) {
 					$title = sprintf(gettext('%1$s: image %2$s'), $album['folder'], $row[$filename]);
 				}
 				break;
@@ -522,14 +526,14 @@ class cacheManager {
 		}
 		$sizes = sortMultiArray($sizes, array('theme', 'thumb', 'image_size', 'image_width', 'image_height'));
 		$sizes_filtered = array();
-		if($mode ==  'active' || $mode == 'inactive') {
+		if ($mode == 'active' || $mode == 'inactive') {
 			foreach ($sizes as $size) {
-				if($mode ==  'active') {
+				if ($mode == 'active') {
 					if (cacheManager::isValid($size['theme'])) {
 						$sizes_filtered[] = $size;
 					}
 				}
-				if($mode == 'inactive') {
+				if ($mode == 'inactive') {
 					if (!cacheManager::isValid($size['theme'])) {
 						$sizes_filtered[] = $size;
 					}
@@ -571,8 +575,8 @@ class cacheManager {
 					if (array_key_exists('*', $_zp_cachemanager_enabledsizes)) {
 						$uri = getFullImageURL($imageobj);
 						if (strpos($uri, 'full-image.php?') !== false) {
-							$data['sizes_count']++;
-							if(!$countmode) {
+							$data['sizes_count'] ++;
+							if (!$countmode) {
 								$results[] = cacheManager::generateImage($uri);
 							}
 						}
@@ -580,8 +584,8 @@ class cacheManager {
 					if (array_key_exists('defaultthumb', $_zp_cachemanager_enabledsizes)) {
 						$thumb = $imageobj->getThumb();
 						if (strpos($thumb, 'i.php?') !== false) {
-							$data['sizes_count']++;
-							if(!$countmode) {
+							$data['sizes_count'] ++;
+							if (!$countmode) {
 								$results[] = cacheManager::generateImage($thumb);
 							}
 						}
@@ -589,8 +593,8 @@ class cacheManager {
 					if (array_key_exists('defaultsizedimage', $_zp_cachemanager_enabledsizes)) {
 						$defaultimage = $imageobj->getSizedImage(getOption('image_size'));
 						if (strpos($defaultimage, 'i.php?') !== false) {
-							$data['sizes_count']++;
-							if(!$countmode) {
+							$data['sizes_count'] ++;
+							if (!$countmode) {
 								$results[] = cacheManager::generateImage($defaultimage);
 							}
 						}
@@ -627,8 +631,8 @@ class cacheManager {
 							$args = getImageParameters($args, $albumobj->name);
 							$uri = getImageURI($args, $albumobj->name, $imageobj->filename, $imageobj->filemtime);
 							if (strpos($uri, 'i.php?') !== false) {
-								$data['sizes_count']++;
-								if(!$countmode) {
+								$data['sizes_count'] ++;
+								if (!$countmode) {
 									$results[] = cacheManager::generateImage($uri);
 								}
 							}
@@ -645,7 +649,6 @@ class cacheManager {
 								echo $result;
 							}
 							echo '</li>';
-							
 						}
 					}
 				}
@@ -676,9 +679,9 @@ class cacheManager {
 		if (function_exists('curl_init')) {
 			$success = generateImageCacheFile($imageuri);
 			if ($success) {
-				return '<a href="'. html_encode(pathurlencode($imageuri)) .'&amp;debug"><img class="icon-position-top4" src="' . WEBPATH . '/' . ZENFOLDER . '/images/pass.png" alt="" title="' . html_encode($imageuri) . '"></a>';
+				return '<a href="' . html_encode(pathurlencode($imageuri)) . '&amp;debug"><img class="icon-position-top4" src="' . WEBPATH . '/' . ZENFOLDER . '/images/pass.png" alt="" title="' . html_encode($imageuri) . '"></a>';
 			} else {
-				return '<a href="'. html_encode(pathurlencode($imageuri)) .'&amp;debug"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/fail.png" alt=""></a>';
+				return '<a href="' . html_encode(pathurlencode($imageuri)) . '&amp;debug"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/fail.png" alt=""></a>';
 			}
 		} else {
 			?>
@@ -711,7 +714,7 @@ class cacheManager {
 		$themes = $_zp_gallery->getThemes();
 		if (in_array($owner, $themes)) {
 			return true;
-		} 
+		}
 		//allow only sizes from active plugins
 		if (extensionEnabled($owner)) {
 			return true;
@@ -719,12 +722,12 @@ class cacheManager {
 		//Sizes that don't apply above and are not from an inactive plugin 
 		//are most certainly custom sizes set via cachemanager itself so better allow them
 		$allplugins = array_keys(getPluginFiles('*.php'));
-		if(!in_array($owner, $allplugins)) {
+		if (!in_array($owner, $allplugins)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Prints the form elements to select a cache size to process
 	 * 
@@ -737,7 +740,7 @@ class cacheManager {
 	static function printSizesListEntry($value, $checked, $text, $class = null) {
 		global $_zp_cachemanager_enabledsizes;
 		$arrayindex = $value;
-		if(in_array($value, array('*', 'defaultthumb', 'defaultsizedimage'))) {
+		if (in_array($value, array('*', 'defaultthumb', 'defaultsizedimage'))) {
 			$arrayindex = $value;
 		}
 		if (!is_null($class)) {
@@ -752,12 +755,12 @@ class cacheManager {
 		<li>
 			<label>
 				<input type="checkbox" name="enable[<?php echo $arrayindex; ?>]"<?php echo $class; ?> value="<?php echo $value; ?>"<?php echo $checked; ?> />
-				<?php echo gettext('Apply'); ?> <code><?php echo $text; ?></code>
+		<?php echo gettext('Apply'); ?> <code><?php echo $text; ?></code>
 			</label>
 		</li>
 		<?php
 	}
-	
+
 	static function overviewbutton($buttons) {
 		if (query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" LIMIT 1')) {
 			$enable = true;
@@ -786,7 +789,7 @@ class cacheManager {
 					'enable' => true,
 					'button_text' => gettext('Purge RSS cache'),
 					'formname' => 'purge_rss_cache.php',
-					'action' => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
+					'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
 					'icon' => 'images/edit-delete.png',
 					'alt' => '',
 					'title' => gettext('Delete all files from the RSS cache'),
@@ -800,7 +803,7 @@ class cacheManager {
 				'enable' => true,
 				'button_text' => gettext('Purge Image cache'),
 				'formname' => 'purge_image_cache.php',
-				'action' => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=action=clear_cache',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=action=clear_cache',
 				'icon' => 'images/edit-delete.png',
 				'alt' => '',
 				'title' => gettext('Delete all files from the Image cache'),
@@ -812,7 +815,7 @@ class cacheManager {
 				'enable' => true,
 				'button_text' => gettext('Purge HTML cache'),
 				'formname' => 'clearcache_button',
-				'action' => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
 				'icon' => 'images/edit-delete.png',
 				'title' => gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
 				'alt' => '',
@@ -826,7 +829,7 @@ class cacheManager {
 				'enable' => true,
 				'button_text' => gettext('Purge search cache'),
 				'formname' => 'clearcache_button',
-				'action' => WEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_search_cache',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_search_cache',
 				'icon' => 'images/edit-delete.png',
 				'title' => gettext('Clear the static search cache.'),
 				'alt' => '',
@@ -839,7 +842,7 @@ class cacheManager {
 				'enable' => true,
 				'button_text' => gettext('Cleanup image cache sizes'),
 				'formname' => 'clearcache_button',
-				'action' => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?action=cleanup_cache_sizes',
+				'action' => FULLWEBPATH . '/' . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?action=cleanup_cache_sizes',
 				'icon' => 'images/edit-delete.png',
 				'title' => gettext('Removes old stored image cache sizes of themes and plugins not existing on this site. It also removes sizes from inactive plugins.'),
 				'alt' => '',
@@ -862,9 +865,8 @@ class cacheManager {
 		$html .= '<div class="button buttons tooltip" title="' . $title . '"><a href="' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?album=' . html_encode($object->name) . '&amp;XSRFToken=' . getXSRFToken('cacheImages') . '"' . $disable . '><img src="images/cache.png" />' . gettext('Cache album images') . '</a><br class="clearall" /></div>';
 		return $html;
 	}
-	
-	
-	/** 
+
+	/**
 	 * Deletes theme cache sizes of the owner 
 	 * @param string $owner) Owner of the cache size (theme or extension)
 	 */
@@ -878,7 +880,8 @@ class cacheManager {
 	 * @param string $owner Owner of the cache size (theme or extension)
 	 */
 	static function deleteThemeCacheSizes($owner) {
-		if(class_exists('cachemanager_internal_deprecations')) cachemanager_internal_deprecations::deleteThemeCacheSizes();
+		if (class_exists('cachemanager_internal_deprecations'))
+			cachemanager_internal_deprecations::deleteThemeCacheSizes();
 		self::deleteCacheSizes($owner);
 	}
 
@@ -898,6 +901,7 @@ class cacheManager {
 			$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `aux` IN (' . $delete . ')');
 		}
 	}
+
 	/**
 	 * Just prints a note if the PHP extension cURL is not available
 	 */
@@ -908,6 +912,7 @@ class cacheManager {
 			<?php
 		}
 	}
+
 	/**
 	 * Prints the buttons after you cached image sizes
 	 * 
@@ -918,20 +923,20 @@ class cacheManager {
 	 */
 	static function printButtons($returnpage, $alb = '', $hidden = false) {
 		global $_zp_cachemanager_enabledsizes;
-		$class= '';
-		if($hidden) {
-			$class= ' hidden';
+		$class = '';
+		if ($hidden) {
+			$class = ' hidden';
 		}
 		?>
 		<p class="buttons buttons_cachefinished clearfix<?php echo $class; ?>">
 			<a title="<?php echo gettext('Back to the overview'); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER . $returnpage; ?>"> <img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" />
 				<strong><?php echo gettext("Back"); ?> </strong>
 			</a>
-			<?php if (is_array($_zp_cachemanager_enabledsizes)) { ?>
-			<a title="<?php echo gettext('New cache size selection'); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cacheManager/cacheImages.php?page=overview&tab=images&album=<?php echo $alb; ?>"> <img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
-				<strong><?php echo gettext("New cache size selection"); ?> </strong>
-			</a>
-			<?php } ?>
+		<?php if (is_array($_zp_cachemanager_enabledsizes)) { ?>
+				<a title="<?php echo gettext('New cache size selection'); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cacheManager/cacheImages.php?page=overview&tab=images&album=<?php echo $alb; ?>"> <img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+					<strong><?php echo gettext("New cache size selection"); ?> </strong>
+				</a>
+		<?php } ?>
 		</p>
 		<?php
 	}

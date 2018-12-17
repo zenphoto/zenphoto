@@ -77,12 +77,12 @@ class deprecated_functions {
 
 					setOptionDefault($option, 1);
 					$this->unique_functions[strtolower($function)] = $this->listed_functions[$name] = array(
-									'plugin'	 => $plugin,
-									'function' => $function,
-									'class'		 => trim($functions[1][$key]),
-									'since'		 => @$versions[1][$key],
-									'option'	 => $option,
-									'multiple' => array_key_exists($function, $this->unique_functions));
+							'plugin' => $plugin,
+							'function' => $function,
+							'class' => trim($functions[1][$key]),
+							'since' => @$versions[1][$key],
+							'option' => $option,
+							'multiple' => array_key_exists($function, $this->unique_functions));
 				}
 			}
 		}
@@ -110,7 +110,7 @@ class deprecated_functions {
 						'text' => gettext("development"),
 						'subtabs' => NULL);
 			}
-			$tabs['development']['subtabs'][gettext("deprecated")] = FULLWEBPATH . "/" . ZENFOLDER .  "/" . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated');
+			$tabs['development']['subtabs'][gettext("deprecated")] = FULLWEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated');
 			$named = array_flip($tabs['development']['subtabs']);
 			natcasesort($named);
 			$tabs['development']['subtabs'] = $named = array_flip($named);
@@ -161,16 +161,16 @@ class deprecated_functions {
 
 	static function button($buttons) {
 		$buttons[] = array(
-						'category'		 => gettext('Development'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Check deprecated use'),
-						'formname'		 => 'deprecated_functions_check.php',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php',
-						'icon'				 => 'images/magnify.png',
-						'title'				 => gettext("Searches PHP scripts for use of deprecated functions."),
-						'alt'					 => gettext('Check for update'),
-						'hidden'			 => '',
-						'rights'			 => ADMIN_RIGHTS
+				'category' => gettext('Development'),
+				'enable' => true,
+				'button_text' => gettext('Check deprecated use'),
+				'formname' => 'deprecated_functions_check.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php',
+				'icon' => 'images/magnify.png',
+				'title' => gettext("Searches PHP scripts for use of deprecated functions."),
+				'alt' => gettext('Check for update'),
+				'hidden' => '',
+				'rights' => ADMIN_RIGHTS
 		);
 		return $buttons;
 	}

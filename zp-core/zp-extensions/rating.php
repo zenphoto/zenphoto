@@ -93,21 +93,39 @@ class jquery_rating {
 	 */
 	function getOptionsSupported() {
 		$stars = ceil(getOption('rating_stars_count'));
-		return array(gettext('Voting state')							 => array('key'			 => 'rating_status', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => $this->ratingstate,
-										'desc'		 => gettext('<em>Enable</em> state of voting.')),
-						gettext('Stars')										 => array('key'	 => 'rating_stars_count', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => sprintf(ngettext('Rating will use %u star.', 'Rating will use %u stars.', $stars), $stars)),
-						gettext('Split stars')							 => array('key'			 => 'rating_split_stars', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('full') => 1, gettext('half') => 2, gettext('third') => 3),
-										'desc'		 => gettext('Show fractional stars based on rating. May cause performance problems for pages with large numbers of rating elements.')),
-						gettext('Individual image control')	 => array('key'	 => 'rating_image_individual_control', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Enable to allow voting status control on individual images.')),
-						gettext('Recast vote')							 => array('key'			 => 'rating_recast', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('No') => 0, gettext('Show rating') => 1, gettext('Show previous vote') => 2),
-										'desc'		 => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.')),
-						gettext('Disguise IP')							 => array('key'	 => 'rating_hash_ip', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues. If not set the IP is anonymized as defined on the general Zenphoto option <em>Anonymize IP</em>.'))
+		return array(gettext('Voting state') => array(
+						'key' => 'rating_status',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => $this->ratingstate,
+						'desc' => gettext('<em>Enable</em> state of voting.')),
+				gettext('Stars') => array(
+						'key' => 'rating_stars_count',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => sprintf(ngettext('Rating will use %u star.', 'Rating will use %u stars.', $stars), $stars)),
+				gettext('Split stars') => array(
+						'key' => 'rating_split_stars',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(
+								gettext('full') => 1,
+								gettext('half') => 2,
+								gettext('third') => 3),
+						'desc' => gettext('Show fractional stars based on rating. May cause performance problems for pages with large numbers of rating elements.')),
+				gettext('Individual image control') => array(
+						'key' => 'rating_image_individual_control',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Enable to allow voting status control on individual images.')),
+				gettext('Recast vote') => array(
+						'key' => 'rating_recast',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(
+								gettext('No') => 0,
+								gettext('Show rating') => 1,
+								gettext('Show previous vote') => 2),
+						'desc' => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.')),
+				gettext('Disguise IP') => array(
+						'key' => 'rating_hash_ip',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues. If not set the IP is anonymized as defined on the general Zenphoto option <em>Anonymize IP</em>.'))
 		);
 	}
 
@@ -175,8 +193,8 @@ class jquery_rating {
 						'enable'			 => true,
 						'button_text'	 => gettext('Reset all ratings'),
 						'formname'		 => 'clearrating_button',
-						'action'			 => PLUGIN_FOLDER . '/rating.php?action=clear_rating',
-						'icon'				 => 'images/reset.png',
+						'action'			 => FULLWEBPATH . '/' .PLUGIN_FOLDER . '/rating.php?action=clear_rating',
+						'icon'				 => FULLWEBPATH . '/' . ZENFOLDER . '/images/reset.png',
 						'title'				 => gettext('Sets all ratings to unrated.'),
 						'alt'					 => '',
 						'hidden'			 => '<input type="hidden" name="action" value="clear_rating" />',
