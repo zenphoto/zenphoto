@@ -310,7 +310,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<ul class="subdropdown">
 								<?php
 								foreach ($subtabs as $key => $link) {
-								
 									?>
 									<li><a href="<?php echo html_encode($link); ?>"><?php echo html_encode(ucfirst($key)); ?></a></li>
 									<?php
@@ -415,6 +414,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 						if (isset($bt['file'])) {
 							$link = str_replace(SERVERPATH, '', str_replace('\\', '/', $bt['file']));
 						}
+					}
+					if (strpos($link, FULLWEBPATH) !== 0) {
+						$link = FULLWEBPATH . $link;
 					}
 					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a href="' . html_encode($link) . '">' . html_encode(ucfirst($key)) . '</a></li>' . "\n";
 				}
@@ -4613,7 +4615,7 @@ function getPluginTabs() {
   $currentlist = array_keys($paths);
 
   foreach ($classes as $class => $list) {
-    $tabs[$class] = 'admin-plugins.php?page=plugins&tab=' . $class;
+    $tabs[$class] = FULLWEBPATH . '/' . ZENFOLDER . '/admin-plugins.php?page=plugins&tab=' . $class;
     if ($class == $default) {
       $currentlist = $list['list'];
     }

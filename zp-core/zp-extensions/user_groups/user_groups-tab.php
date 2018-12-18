@@ -166,6 +166,7 @@ echo '</head>' . "\n";
 						$adminlist = $adminordered;
 						$users = array();
 						$groups = array();
+						$list = array();
 						foreach ($adminlist as $user) {
 							if ($user['valid']) {
 								$users[] = $user['user'];
