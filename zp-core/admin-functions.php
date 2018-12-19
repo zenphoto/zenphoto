@@ -4540,7 +4540,7 @@ function getLogTabs() {
 			} else {
 				$logfiletext = str_replace('_', ' ', $log);
 			}
-			$subtabs = array_merge($subtabs, array($logfiletext => 'admin-logs.php?page=logs&tab=' . $log));
+			$subtabs = array_merge($subtabs, array($logfiletext => FULLWEBPATH . '/'. ZENFOLDER . '/admin-logs.php?page=logs&tab=' . $log));
 			if (filesize($logfile) > 0 && empty($default)) {
 				$default = $log;
 			}
@@ -4611,7 +4611,7 @@ function getPluginTabs() {
     }
   }
   ksort($classes);
-  $tabs[gettext('all')] = 'admin-plugins.php?page=plugins&tab=all';
+  $tabs[gettext('all')] = FULLWEBPATH . '/' . ZENFOLDER . '/admin-plugins.php?page=plugins&tab=all';
   $currentlist = array_keys($paths);
 
   foreach ($classes as $class => $list) {

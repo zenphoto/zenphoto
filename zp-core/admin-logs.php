@@ -97,7 +97,7 @@ if (isset($_GET['action'])) {
 
 list($subtabs, $default) = getLogTabs();
 $zenphoto_tabs['logs'] = array('text'		 => gettext("logs"),
-				'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-logs.php?page=logs',
+				'link'		 => FULLWEBPATH . '/' . ZENFOLDER . '/admin-logs.php?page=logs',
 				'subtabs'	 => $subtabs,
 				'default'	 => $default);
 
