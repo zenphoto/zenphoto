@@ -134,7 +134,7 @@ function writeHeader($type, $value) {
 if ($_zp_current_admin_obj->reset) {
 	printAdminHeader('restore');
 } else {
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Backup') => '');
+	/*$zenphoto_tabs['overview']['subtabs'] = array(gettext('Backup') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php');*/
 	printAdminHeader('overview', 'backup');
 }
 

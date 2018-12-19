@@ -23,7 +23,7 @@ $buttonlist[] = array(
 
 admin_securityChecks(NULL, currentRelativeURL());
 
-$zenphoto_tabs['overview']['subtabs']=array(gettext('PHP Info')=>'');
+$zenphoto_tabs['overview']['subtabs'] = array(gettext('PHP Info') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/phpInfo.php');
 printAdminHeader('overview','phpInfo');
 
 ?>

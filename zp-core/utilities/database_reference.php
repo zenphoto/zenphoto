@@ -14,8 +14,8 @@ $buttonlist[] = $mybutton = array(
 		'enable' => true,
 		'button_text' => gettext('Database quick reference'),
 		'formname' => 'database_reference.php',
-		'action' => FULLWEBPATH .'/'. ZENFOLDER .'/'. UTILITIES_FOLDER . '/database_reference.php',
-		'icon' => FULLWEBPATH .'/'. ZENFOLDER .'/images/info.png',
+		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/database_reference.php',
+		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/info.png',
 		'title' => gettext('Shows all database table and field info for quick reference.'),
 		'alt' => '',
 		'hidden' => '',
@@ -28,10 +28,11 @@ if (isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass']
 	XSRFdefender('databaseinfo');
 }
 
+$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
-$webpath = WEBPATH.'/'.ZENFOLDER.'/';
-$zenphoto_tabs['overview']['subtabs']=array(gettext('Database')=>'');
+$zenphoto_tabs['overview']['subtabs'] = array(gettext('Database') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/database_reference.php');
 printAdminHeader('overview','Database');
+
 ?>
 <link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
 <style>

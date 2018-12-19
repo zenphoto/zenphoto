@@ -31,9 +31,9 @@ if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
 $buffer = '';
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Thumbs') => '');
-
+$zenphoto_tabs['overview']['subtabs'] = array(gettext('Thumbs') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/reset_albumthumbs.php');
 printAdminHeader('overview', 'thumbs');
+
 echo '</head>';
 ?>
 
