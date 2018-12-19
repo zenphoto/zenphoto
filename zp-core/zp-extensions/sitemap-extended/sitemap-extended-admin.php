@@ -24,7 +24,7 @@ if (isset($_GET['clearsitemapcache'])) {
 }
 
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Sitemap') => '');
+/*$zenphoto_tabs['overview']['subtabs'] = array(gettext('Sitemap') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php');*/
 printAdminHeader('overview', 'sitemap');
 if (isset($_GET['generatesitemaps'])) {
 	$_zp_loggedin = NULL;
