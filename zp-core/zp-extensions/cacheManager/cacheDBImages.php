@@ -128,7 +128,6 @@ printAdminHeader('overview', 'DB'); ?>
 								$image_cleared = getImageProcessorURIFromCacheName($match, $watermarks);
 								list($image, $args) = getImageProcessorURIFromCacheName($match, $watermarks);
 								if (!file_exists(getAlbumFolder() . $image)) {
-									printf(gettext('%s is missing'), getAlbumFolder() . $image);
 									cacheManager::recordMissing($table, $row, $image);
 								} else {
 									$uri = getImageURI($args, dirname($image), basename($image), NULL);
