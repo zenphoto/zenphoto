@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.5.1\n"
+"Project-Id-Version: Zenphoto 1.5.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-22 09:31+0100\n"
 "PO-Revision-Date: \n"
@@ -12170,7 +12170,7 @@ msgstr "Stel alle albums in op"
 
 #: zp-core/utilities/user-data-export.php:15
 msgid "User data export"
-msgstr "Gerbruiker data export"
+msgstr "Gebruiker data export"
 
 #: zp-core/utilities/user-data-export.php:19
 msgid "Lists and exports data stored about a specific user and email address."
