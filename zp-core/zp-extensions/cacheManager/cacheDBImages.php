@@ -62,7 +62,7 @@ printAdminHeader('overview', 'DB'); ?>
 	?>
 	<form name="size_selections" action="?select" method="post">
 		<?php
-		$_zp_cachemanager_missingimages = NULL;
+		cacheManager::$missingimages = NULL;
 		$refresh = $imageprocessor_total = $imageprocessor_item = $found_total = $found_item = $fixed_item = $fixed_total = 0;
 		XSRFToken('cacheDBImages');
 		$watermarks = getWatermarks();
@@ -171,7 +171,7 @@ printAdminHeader('overview', 'DB'); ?>
 		?>
 		<h2><?php echo gettext('Statistics'); ?></h2>
 		<?php
-		if (!empty($_zp_cachemanager_missingimages)) {
+		if (!empty(cacheManager::$missingimages)) {
 			?>
 			<div class="errorbox">
 				<p>
@@ -181,7 +181,7 @@ printAdminHeader('overview', 'DB'); ?>
 				</p>
 				<ol>
 				<?php
-				foreach ($_zp_cachemanager_missingimages as $missing) {
+				foreach (cacheManager::$missingimages as $missing) {
 					?><li>
 						<?php echo $missing; ?>
 					</li><?php

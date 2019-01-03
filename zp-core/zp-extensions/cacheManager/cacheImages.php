@@ -55,7 +55,7 @@ if ($alb) {
 			gettext('Cache images') => FULLWEBPATH .'/'. ZENFOLDER .'/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
 			gettext('Cache stored images') => FULLWEBPATH .'/'. ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
 }
-$_zp_cachemanager_sizes = cacheManager::getSizes('active');
+cacheManager::$sizes = cacheManager::getSizes('active');
 
 if (isset($_GET['select']) && isset($_POST['enable'])) {
 	XSRFdefender('cacheImages');
@@ -63,9 +63,9 @@ if (isset($_GET['select']) && isset($_POST['enable'])) {
 	if(!is_array($enabled_sizes) || empty($enabled_sizes)) {
 		$enabled_sizes = array();
 	}
-	$_zp_cachemanager_enabledsizes = $enabled_sizes;
+	cacheManager::$enabledsizes = $enabled_sizes;
 } else {
-	$_zp_cachemanager_enabledsizes = array();
+	cacheManager::$enabledsizes = array();
 }
 printAdminHeader('overview', 'images'); ?>
 </head>
@@ -97,7 +97,15 @@ printAdminHeader('overview', 'images'); ?>
 	$last = '';
 	cacheManager::printJS();
 	cacheManager::printCurlNote();
-	echo gettext('This tool searches uncached image sizes from your albums or within theme or plugin. If uncached images sizes you can have this tool generate these. Note that this is a quite time consuming measure depending on the size of your albums and the power of your server.')
+	if (empty(cacheManager::$enabledsizes)) {
+		?>
+		<p>
+			<?php echo gettext('This tool searches uncached image sizes from your albums or within a theme or plugin if they are registered to the cacheManager properly. If uncached images sizes exist you can have this tool generate these. If you like to re-generate existing cache image sizes, you have to clear the image cache manually first.'); ?>
+		</p>
+		<p class="notebox"><?php echo gettext('Note that this is a quite time and server power consuming measure depending on the number of images to pre-cache, their dimensions and the power of your server.'); ?>
+		</p>
+		<?php
+	}
 	?>
 	<form class="dirty-check clearfix" name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
 			<?php XSRFToken('cacheImages') ?>
@@ -118,8 +126,8 @@ printAdminHeader('overview', 'images'); ?>
 							'text' => gettext('Default sized image size'))
 			);
 			foreach($defaultsizes as $defaultsize) {
-				if (getOption($defaultsize['option']) && (empty($_zp_cachemanager_enabledsizes) || array_key_exists($defaultsize['key'], $_zp_cachemanager_enabledsizes))) {
-					if (!empty($_zp_cachemanager_enabledsizes)) {
+				if (getOption($defaultsize['option']) && (empty(cacheManager::$enabledsizes) || array_key_exists($defaultsize['key'], cacheManager::$enabledsizes))) {
+					if (!empty(cacheManager::$enabledsizes)) {
 						$checked = ' checked="checked" disabled="disabled"';
 					} else {
 						if(in_array($defaultsize['key'], array('defaultthumb', 'defaultsizedimage'))) {
@@ -133,10 +141,10 @@ printAdminHeader('overview', 'images'); ?>
 				}
 			}
 			$seen = array();
-			foreach ($_zp_cachemanager_sizes as $key => $cacheimage) {
-				if ((empty($_zp_cachemanager_enabledsizes) || array_key_exists($key, $_zp_cachemanager_enabledsizes))) {
+			foreach (cacheManager::$sizes as $key => $cacheimage) {
+				if ((empty(cacheManager::$enabledsizes) || array_key_exists($key, cacheManager::$enabledsizes))) {
 					$checked = '';
-					if (array_key_exists($key, $_zp_cachemanager_enabledsizes)) {
+					if (array_key_exists($key, cacheManager::$enabledsizes)) {
 						$checked = ' checked="checked" disabled="disabled"';
 					} else {
 						if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin') {
@@ -169,7 +177,7 @@ printAdminHeader('overview', 'images'); ?>
 					if (isset($themes[$theme])) {
 						$themeid = $themes[$theme];
 					}
-					if ($theme != $last && empty($_zp_cachemanager_enabledsizes)) {
+					if ($theme != $last && empty(cacheManager::$enabledsizes)) {
 						if ($last) {
 							?>
 						</ol>
@@ -192,10 +200,10 @@ printAdminHeader('overview', 'images'); ?>
 								<?php
 							}
 							$show = true;
-							if (!empty($_zp_cachemanager_enabledsizes)) {
+							if (!empty(cacheManager::$enabledsizes)) {
 								if (array_key_exists($postfix, $seen)) {
 									$show = false;
-									unset($_zp_cachemanager_sizes[$key]);
+									unset(cacheManager::$sizes[$key]);
 								}
 								$seen[$postfix] = true;
 							}
@@ -204,7 +212,7 @@ printAdminHeader('overview', 'images'); ?>
 							}
 						}
 					}
-					if (empty($_zp_cachemanager_enabledsizes)) {
+					if (empty(cacheManager::$enabledsizes)) {
 						?>
 					</ol>
 				</span>
@@ -215,40 +223,37 @@ printAdminHeader('overview', 'images'); ?>
 		</ol>
 		<?php
 		$button = false;
-		if (!empty($_zp_cachemanager_enabledsizes)) {
+		if (!empty(cacheManager::$enabledsizes)) {
 			if ($cachesizes) {
-				?>
-				<p><?php printf(ngettext('%u cache size to apply.', '%u cache sizes to apply.', $cachesizes), $cachesizes); ?></p>
-				<script>
-						var starttime = Date.now();
-						var endtime = 0;
-						var totaltime = 0;
-				</script>
-				<hr>
-				<?php
 				$allalbums = array();
 				if($alb) {
-					$currentalbum = newAlbum($alb);
-					genAlbumList($allalbums, $currentalbum); //get subalbums if available
-					$allalbums[$alb] = $currentalbum->getTitle(); // album itself
+					$allalbums[] = $alb;
 				} else {
-					genAlbumList($allalbums);
+					$allalbums = $_zp_gallery->getAlbums();
 				}
-				$images_count_total = 0;
-				$images_sizes_total = 0;
-				$albums_count_total = 0;
-				foreach ($allalbums as $key => $value) {
-					$album = newAlbum($key);
-					if (!$album->isDynamic()) {
-						$data = cacheManager::loadAlbum($album, true); 
-						if($data['images_count'] !== 0) {
-							$albums_count_total++;
-						}
-						$images_count_total = $images_count_total + $data['images_count'];
-						$images_sizes_total = $images_sizes_total + $data['sizes_count'];
-					}
+
+				//progress count
+				cacheManager::$albums_cached = 0;
+				cacheManager::$images_cached = 0;
+				cacheManager::$imagesizes_cached = 0;
+				cacheManager::$imagesizes_failed = 0; 
+				
+				// general counts
+				if ($alb) {
+					$albobj = newAlbum($alb);
+					$images_total = $albobj->getNumAllImages();
+					$imagesizes_total = $images_total * $cachesizes;
+					$albums_total = $albobj->getNumAllAlbums() + 1; // the album itself counts, too ;)
+					unset($albobj);
+				} else {
+					$images_total = $_zp_gallery->getNumImages();
+					$imagesizes_total = $_zp_gallery->getNumImages() * $cachesizes;
+					$albums_total = $_zp_gallery->getNumAlbums(true);
 				}
 				?>
+				<p><?php printf(ngettext('%1$u cache size to apply for %2$u images (%3$u cache size images in total*)', '%1$u cache sizes to apply for %2$u images (%3$u cache size images in total*)', $imagesizes_total), $cachesizes, $images_total, $imagesizes_total); ?><br>
+				<em><?php echo gettext('* Approximate number not counting already existing cache sizes.'); ?></em></p>
+				<hr>
 				<div class="imagecaching_progress">
 					<h2 class="imagecaching_headline"><?php echo gettext('Image caching in progress.'); ?></h2>
 					<div class="notebox">
@@ -257,9 +262,12 @@ printAdminHeader('overview', 'images'); ?>
 					</div>
 					<img class="imagecaching_loader" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/ajax-loader.gif" alt="">
 					<ul>	
-						<li><?php echo gettext('Image cache sizes generated: '); ?><span class="imagecaching_imagesizes">0</span>/<span><?php echo $images_sizes_total; ?></span></li>
-						<li><?php echo gettext('Images processed: '); ?><span class="imagecaching_imagecount">0</span>/<span><?php echo $images_count_total; ?></span></li>
-						<li><?php echo gettext('Albums processed: '); ?><span class="imagecaching_albumcount">0</span>/<span><?php echo $albums_count_total; ?></span></li>
+						<li><?php echo gettext('Image cache sizes generated: '); ?><span class="imagecaching_imagesizes"><?php echo cacheManager::$imagesizes_cached; ?></li>
+						<?php if (function_exists('curl_init')) { ?>
+							<li><?php echo gettext('Image cache sizes failed: '); ?><span class="imagecaching_imagesizes_failed">0</span></li>
+						<?php } ?>
+						<li><?php echo gettext('Images processed: '); ?><span class="imagecaching_imagecount">0</span>/<span><?php echo $images_total; ?></span></li>
+						<li><?php echo gettext('Albums processed: '); ?><span class="imagecaching_albumcount">0</span>/<span><?php echo $albums_total; ?></span></li>
 						<li><?php echo gettext('Processing time: '); ?><span class="imagecaching_time">0</span> <?php echo gettext('minutes'); ?></li>
 					</ul>
 				</div>
@@ -267,45 +275,21 @@ printAdminHeader('overview', 'images'); ?>
 				<hr>
 				<h2><?php echo gettext('Caching log'); ?></h2>
 				<?php
-				$starttime = time();
-				$images_count = 0;
-				$images_sizes = 0;
-				$albums_count = 0;
+				cacheManager::$starttime = time();
 				?>
 				<ol>
 				<?php
-				foreach ($allalbums as $key => $value) {
-					$album = newAlbum($key);
-					if (!$album->isDynamic()) {
-						?>
-						<li><strong><?php echo html_encode($value); ?></strong> (<?php echo html_encode($key); ?>)
-							<ul>
-								<?php 
-								$data = cacheManager::loadAlbum($album); 
-								if($data['images_count'] !== 0) {
-									$albums_count++;
-								}
-								$images_count = $images_count + $data['images_count'];
-								$images_sizes = $images_sizes + $data['sizes_count'];
-								$endtime_temp = time();
-								$time_total_temp = ($endtime_temp - $starttime) / 60;
-								?>
-							</ul>
-						</li>
-						<script>
-							$('.imagecaching_imagecount').text(<?php echo $images_count; ?>);
-							$('.imagecaching_imagesizes').text(<?php echo $images_sizes; ?>);
-							$('.imagecaching_albumcount').text(<?php echo $albums_count; ?>);
-							$('.imagecaching_time').text(<?php echo round($time_total_temp, 2); ?>);
-						</script>
-						<?php
+				foreach ($allalbums as $album) {
+					$albumobj = newAlbum($album);
+					if (!$albumobj->isDynamic()) {
+						cacheManager::loadAlbums($albumobj);
 					}
 				}
 				?>
 				</ol>
 				<?php
 				$endtime = time();
-				$time_total = ($endtime - $starttime) / 60;
+				$time_total = ($endtime - cacheManager::$starttime) / 60;
 				?>
 				<p><strong><?php echo gettext('Caching done!'); ?></strong></p>
 				<script>
@@ -313,9 +297,10 @@ printAdminHeader('overview', 'images'); ?>
 						$('.imagecaching_progress').addClass('messagebox');
 						$('.imagecaching_headline').text('<?php echo gettext('Caching done!'); ?>');
 						$('.imagecaching_progress .notebox, .imagecaching_loader').remove();
-						$('.imagecaching_imagecount').text(<?php echo $images_count; ?>);
-						$('.imagecaching_imagesizes').text(<?php echo $images_sizes; ?>);
-						$('.imagecaching_albumcount').text(<?php echo $albums_count; ?>);
+						$('.imagecaching_imagecount').text(<?php echo cacheManager::$images_cached; ?>);
+						$('.imagecaching_imagesizes').text(<?php echo cacheManager::$imagesizes_cached; ?>);
+						$('.imagecaching_imagesizes_failed').text(<?php echo cacheManager::$imagesizes_failed; ?>);
+						$('.imagecaching_albumcount').text(<?php echo cacheManager::$albums_cached; ?>);
 						$('.imagecaching_time').text(<?php echo round($time_total, 2); ?>);
 						$('.buttons_cachefinished').removeClass('hidden');
 					});
