@@ -397,13 +397,13 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @return array
 	 */
 	function zp_imageDims($filename) {
-		$ping = new Imagick();
-
-		if ($ping->pingImage(filesystemToInternal($filename))) {
-			return array('width' => $ping->getImageWidth(), 'height' => $ping->getImageHeight());
+		$imageinfo = NULL;
+		$rslt = getimagesize($filename, $imageinfo);
+		if (is_array($rslt)) {
+			return array('width' => $rslt[0], 'height' => $rslt[1]);
+		} else {
+			return false;
 		}
-
-		return false;
 	}
 
 	/**
@@ -413,17 +413,13 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @return string
 	 */
 	function zp_imageIPTC($filename) {
-		$ping = new Imagick();
-
-		if ($ping->pingImage(filesystemToInternal($filename))) {
-			try {
-				return $ping->getImageProfile('iptc');
-			} catch (ImagickException $e) {
-				// IPTC profile does not exist
-			}
+		$imageinfo = NULL;
+		$rslt = getimagesize($filename, $imageinfo);
+		if (is_array($rslt) && isset($imageinfo['APP13'])) {
+			return $imageinfo['APP13'];
+		} else {
+			return false;
 		}
-
-		return false;
 	}
 
 	/**
