@@ -119,6 +119,14 @@ if (!defined('SERVERPATH')) {
 }
 unset($const_serverpath);
 
+// Including the config file more than once is OK, and avoids $conf missing.
+if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+	require_once(dirname(__FILE__) . '/reconfigure.php');
+	reconfigureAction(1);
+} else {
+	eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+}
+
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) {
 	$_zp_conf_vars['server_protocol'] = 'http';
@@ -137,14 +145,6 @@ switch (SERVER_PROTOCOL) {
 			define('PROTOCOL', 'http');
 		}
 		break;
-}
-
-// Including the config file more than once is OK, and avoids $conf missing.
-if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
-	reconfigureAction(1);
-} else {
-	eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
 }
 
 // Silently setup default rewrite tokens if missing completely or partly from current config file
