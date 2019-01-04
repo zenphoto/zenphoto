@@ -860,7 +860,6 @@ function printAdminHeader($tab, $subtab = NULL) {
           break;
         case 'save':
           $customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$postkey]));
-          continue;
           break;
         default:
           if (isset($_POST[$key])) {
