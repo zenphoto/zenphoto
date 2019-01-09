@@ -181,6 +181,7 @@ printAdminHeader('overview', 'images'); ?>
 						if ($last) {
 							?>
 						</ol>
+						</span>
 						</li>
 						<?php
 					}
