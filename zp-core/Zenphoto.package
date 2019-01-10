@@ -1546,6 +1546,7 @@ zp-core/zp-extensions/zenpage/admin-categories.php
 zp-core/zp-extensions/zenpage/admin-edit.php
 zp-core/zp-extensions/zenpage/admin-news-articles.php
 zp-core/zp-extensions/zenpage/admin-pages.php
+zp-core/zp-extensions/zenpage/deprecated-functions.php
 zp-core/zp-extensions/zenpage/images
 zp-core/zp-extensions/zenpage/images/add.png
 zp-core/zp-extensions/zenpage/images/clock.png
@@ -1581,4 +1582,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1583
+1584

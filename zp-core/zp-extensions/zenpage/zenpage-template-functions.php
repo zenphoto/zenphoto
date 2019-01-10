@@ -86,35 +86,6 @@ function stickyNews($newsobj = NULL) {
 	return false;
 }
 
-/**
- * Wrapper function to get the author of a news article or page: Used by getNewsAuthor() and getPageAuthor().
- *
- * @param bool $fullname False for the user name, true for the full name
- *
- * @return string
- */
-function getAuthor($fullname = false) {
-	global $_zp_current_zenpage_page, $_zp_current_zenpage_news;
-
-	if (is_Pages()) {
-		$obj = $_zp_current_zenpage_page;
-	} else if (is_News()) {
-		$obj = $_zp_current_zenpage_news;
-	} else {
-		$obj = false;
-	}
-	if ($obj) {
-		if ($fullname) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $obj->getAuthor(), '`valid`=' => 1));
-			if (is_object($admin) && $admin->getName()) {
-				return $admin->getName();
-			}
-		}
-		return $obj->getAuthor();
-	}
-	return false;
-}
-
 /* * ********************************************* */
 /* News article functions
 	/*********************************************** */
@@ -503,30 +474,6 @@ function getNewsCustomData() {
  */
 function printNewsCustomData() {
 	echo getNewsCustomData();
-}
-
-/**
- * Gets the author of a news article (if in Combinews mode for gallery items the owner)
- *
- * @return string
- */
-function getNewsAuthor($fullname = false) {
-	global $_zp_current_zenpage_news;
-	if (is_News()) {
-		return getAuthor($fullname);
-	}
-	return false;
-}
-
-/**
- * Prints the author of a news article
- *
- * @return string
- */
-function printNewsAuthor($fullname = false) {
-	if (getNewsTitle()) {
-		echo html_encode(getNewsAuthor($fullname));
-	}
 }
 
 /**
@@ -2018,32 +1965,6 @@ function getPageCustomData() {
  */
 function printPageCustomData() {
 	echo getPageCustomData();
-}
-
-/**
- * Returns the author of a page
- *
- * @param bool $fullname True if you want to get the full name if set, false if you want the login/screenname
- *
- * @return string
- */
-function getPageAuthor($fullname = false) {
-	if (is_Pages()) {
-		return getAuthor($fullname);
-	}
-	return false;
-}
-
-/**
- * Prints the author of a page
- *
- * @param bool $fullname True if you want to get the full name if set, false if you want the login/screenname
- * @return string
- */
-function printPageAuthor($fullname = false) {
-	if (getNewsTitle()) {
-		echo html_encode(getPageAuthor($fullname));
-	}
 }
 
 /**
