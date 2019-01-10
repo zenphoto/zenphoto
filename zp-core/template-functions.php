@@ -4638,13 +4638,13 @@ function getOwnerAuthor($fullname = false) {
 	} else if (in_context(ZP_ALBUM)) {
 		$ownerauthor = $_zp_current_album->getOwner();
 	} 
-	if (extensionEnable('zenpagae')) {
+	if (extensionEnabled('zenpage')) {
 		if (is_Pages()) {
 			$ownerauthor = $_zp_current_zenpage_page->getAuthor();
 		} else if (is_NewsArticle()) {
 			$ownerauthor = $_zp_current_zenpage_news->getAuthor();
 		} 
-	}
+	} 
 	if ($ownerauthor) {
 		if ($fullname) {
 			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $ownerauthor, '`valid`=' => 1));
@@ -4653,7 +4653,7 @@ function getOwnerAuthor($fullname = false) {
 			}
 		}
 		return $ownerauthor;
-	}
+	} 
 	return false;
 }
 
@@ -4711,7 +4711,7 @@ function printOwnerAuthorURL($fullname = false, $resulttype = 'all', $class = nu
 		if(is_null($title)) {
 			$title = $linktext;
 		}
-		printUserLink($author, $linktext, $resulttype, $class, $id, $title);
+		printUserURL($author, $resulttype, $linktext, $class, $id, $title);
 	} 
 }
 
