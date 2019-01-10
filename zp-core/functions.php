@@ -707,6 +707,17 @@ function enableExtension($extension, $priority, $persistent = true) {
 }
 
 /**
+ * Disables an extension
+ * @param string $extension
+ * @param bool $persistent
+ * 
+ * @since ZenphotoCMS 1.5.2
+ */
+function disableExtension($extension, $persistent = true) {
+	setOption('zp_plugin_' . $extension, 0, $persistent);
+}
+
+/**
  * Gets an array of comments for the current admin
  *
  * @param int $number how many comments desired
