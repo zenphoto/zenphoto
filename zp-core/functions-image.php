@@ -41,7 +41,7 @@ function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.p
 		$debugnote .= (empty($newfilename) ? '' : '<br />' . sprintf(gettext('Cache: [<code>%s</code>]'), '/' . CACHEFOLDER . '/' . html_encode(sanitize($newfilename, 3))) . ' ');
 		$debugnote .= (empty($image) || empty($album) ? '' : ' <br />' . sprintf(gettext('Image: [<code>%s</code>]'), html_encode(sanitize($album . '/' . $image, 3))) . ' <br />');
 		if($debuglog_errors) {
-			debuglog($debugnote);
+			debugLog($debugnote);
 		} else {
 			echo $debugnote;
 		}

@@ -1755,10 +1755,10 @@ function curlRequest($uri, $options = array()) {
 		curl_setopt_array($ch, $options);
 		$curl_exec = curl_exec($ch);
 		if ($curl_exec === false) {
-			debuglog(gettext('ERROR: cURL request failed: ') . curl_error($ch));
+			debugLog(gettext('ERROR: cURL request failed: ') . curl_error($ch));
 			$result = false;
 		} else if (empty(trim($curl_exec))) {
-			debuglogVar(gettext('NOTICE: cURL request not successful.'), curl_getinfo());
+			debugLogVar(gettext('NOTICE: cURL request not successful.'), curl_getinfo());
 			$result = false;
 		} else {
 			$result = $curl_exec;
@@ -1766,7 +1766,7 @@ function curlRequest($uri, $options = array()) {
 		curl_close($ch);
 		return $result;
 	}
-	debuglog(gettext('ERROR: Your server does not support cURL.'));
+	debugLog(gettext('ERROR: Your server does not support cURL.'));
 	return false;
 }
 
