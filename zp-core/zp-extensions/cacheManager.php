@@ -223,7 +223,7 @@ class cacheManager {
 				<?php
 				if ($theme) {
 					$inputclass = 'hidden';
-					echo '<em>' . $theme . '</em> (' . count($themedata), ')';
+					echo '<em>' . $theme . '</em> (' . count($themedata) . ')';
 				} else {
 					$inputclass = 'textbox';
 					echo '<br />' . gettext('add');
