@@ -699,7 +699,7 @@ class cacheManager {
 			}
 		} else {
 			?>
-			<li><p class="notebox"><em><?php echo gettext('This album does not have any images.'); ?></p></li>
+			<li><p class="notebox"><em><?php echo gettext('This album does not have any images.'); ?></em></p></li>
 			<?php
 		}
 	}
