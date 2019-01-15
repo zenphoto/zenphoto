@@ -147,18 +147,6 @@ class Video extends Image {
 				case "m4a": // specific suffix for mp4/AAC audio
 					$img = '/m4aDefault.png';
 					break;
-				case "flv": // suffix for flash video container
-					$img = '/flvDefault.png';
-					break;
-				case "fla": // suffix for flash audio container
-					$img = '/flaDefault.png';
-					break;
-				case "mov":
-					$img = '/movDefault.png';
-					break;
-				case "3gp":
-					$img = '/3gpDefault.png';
-					break;
 				default: // just in case we extend and are lazy...
 					$img = '/multimediaDefault.png';
 					break;
@@ -319,7 +307,7 @@ class Video extends Image {
 	 */
 	private function getMetaDataID3() {
 		$suffix = getSuffix($this->localpath);
-		if (in_array($suffix, array('m4a', 'm4v', 'mp3', 'mp4', 'flv', 'fla', 'mov', '3gp'))) {
+		if (in_array($suffix, array('m4a', 'm4v', 'mp3', 'mp4'))) {
 			$getID3 = new getID3;
 			@set_time_limit(30);
 			$ThisFileInfo = $getID3->analyze($this->localpath);
