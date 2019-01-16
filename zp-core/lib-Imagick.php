@@ -242,13 +242,18 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 *
 	 * @param int $w the width of the image
 	 * @param int $h the height of the image
+	 * @param bool $truecolor True to create a true color image, false for usage with palette images like gifs
 	 * @return Imagick
 	 */
-	function zp_createImage($w, $h) {
+	function zp_createImage($w, $h, $truecolor = true) {
 		$im = new Imagick();
 		$im->newImage($w, $h, 'none');
-		$im->setImageType(Imagick::IMGTYPE_TRUECOLORMATTE);
-
+		if($truecolor) {
+			$im->setImageType(Imagick::IMGTYPE_TRUECOLORMATTE);
+		} else {
+			$imagetype = $im->getImageType();
+			$im->setImageType($imagetype);
+		}
 		return $im;
 	}
 
@@ -364,8 +369,19 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 */
 	function zp_imageResizeAlpha($src, $w, $h) {
 		$src->scaleImage($w, $h);
-
 		return $src;
+	}
+	
+	/**
+	 * Uses zp_imageResizeAlpha() internally as Imagick does not make a difference
+	 * 
+	 * @param type $src
+	 * @param type $w
+	 * @param type $h
+	 * @return type
+	 */
+	function zp_imageResizeTransparent($src, $w, $h) {
+		return zp_imageResizeAlpha($src, $w, $h);
 	}
 
 	/**

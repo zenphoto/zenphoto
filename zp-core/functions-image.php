@@ -382,7 +382,12 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			}
 			if (DEBUG_IMAGE)
 				debugLog("cacheImage:crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate");
-				$newim = zp_createImage($neww, $newh);
+				if(getSuffix($newfilename) == 'gif') {
+					$newim = zp_createImage($neww, $newh, false);
+					$newim = zp_imageResizeTransparent($newim, $neww, $newh);
+				} else {
+					$newim = zp_createImage($neww, $newh);
+				}
 				if(getSuffix($newfilename) == 'png') {
 					$newim = zp_imageResizeAlpha($newim, $neww, $newh);
 				} 
@@ -410,7 +415,12 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			}
 			if (DEBUG_IMAGE)
 				debugLog("cacheImage:no crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
-			$newim = zp_createImage($neww, $newh);
+			if(getSuffix($newfilename) == 'gif') {
+				$newim = zp_createImage($neww, $newh, false);
+				$newim = zp_imageResizeTransparent($newim, $neww, $newh);
+			} else {
+				$newim = zp_createImage($neww, $newh);
+			}
 			if(getSuffix($newfilename) == 'png') {
 				$newim = zp_imageResizeAlpha($newim, $neww, $newh);
 			} 
@@ -449,6 +459,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			}
 			$nw = round($watermark_width * $r);
 			$nh = round($watermark_height * $r);
+			$watermark_new = false;
 			if (($nw != $watermark_width) || ($nh != $watermark_height)) {
 				$watermark_new = zp_imageResizeAlpha($watermark, $nw, $nh);
 				if (!zp_resampleImage($watermark_new, $watermark, 0, 0, 0, 0, $nw, $nh, $watermark_width, $watermark_height)) {
@@ -464,7 +475,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 				imageError('404 Not Found', sprintf(gettext('Image %s not renderable (copycanvas).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 			}
 			zp_imageKill($watermark);
-			zp_imageKill($watermark_new);
+			if($watermark_new) {
+				zp_imageKill($watermark_new);
+			}
 		} 
 
 		// Create the cached file (with lots of compatibility)...
