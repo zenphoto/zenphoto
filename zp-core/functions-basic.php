@@ -1758,7 +1758,7 @@ function curlRequest($uri, $options = array()) {
 			debugLog(gettext('ERROR: cURL request failed: ') . curl_error($ch));
 			$result = false;
 		} else if (empty(trim($curl_exec))) {
-			debugLogVar(gettext('NOTICE: cURL request not successful.'), curl_getinfo());
+			debugLogVar(gettext('NOTICE: cURL request not successful.'), curl_getinfo($ch));
 			$result = false;
 		} else {
 			$result = $curl_exec;
