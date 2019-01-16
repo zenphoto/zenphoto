@@ -382,10 +382,13 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			}
 			if (DEBUG_IMAGE)
 				debugLog("cacheImage:crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate");
-			$newim = zp_createImage($neww, $newh);
-			if (!zp_resampleImage($newim, $im, 0, 0, $cx, $cy, $neww, $newh, $cw, $ch)) {
-				imageError('404 Not Found', sprintf(gettext('Image %s not renderable (resample).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
-			}
+				$newim = zp_createImage($neww, $newh);
+				if(getSuffix($newfilename) == 'png') {
+					$newim = zp_imageResizeAlpha($newim, $neww, $newh);
+				} 
+				if (!zp_resampleImage($newim, $im, 0, 0, $cx, $cy, $neww, $newh, $cw, $ch)) {
+					imageError('404 Not Found', sprintf(gettext('Image %s not renderable (resample).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
+				}
 		} else {
 			if ($newh >= $h && $neww >= $w && !$rotate && !$effects && !$watermark_image && (!$upscale || $newh == $h && $neww == $w)) {
 				// we can just use the original!
@@ -408,6 +411,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			if (DEBUG_IMAGE)
 				debugLog("cacheImage:no crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
 			$newim = zp_createImage($neww, $newh);
+			if(getSuffix($newfilename) == 'png') {
+				$newim = zp_imageResizeAlpha($newim, $neww, $newh);
+			} 
 			if (!zp_resampleImage($newim, $im, 0, 0, 0, 0, $neww, $newh, $w, $h)) {
 				imageError('404 Not Found', sprintf(gettext('Image %s not renderable (resample).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 			}
@@ -444,8 +450,8 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			$nw = round($watermark_width * $r);
 			$nh = round($watermark_height * $r);
 			if (($nw != $watermark_width) || ($nh != $watermark_height)) {
-				$watermark = zp_imageResizeAlpha($watermark, $nw, $nh);
-				if (!$watermark) {
+				$watermark_new = zp_imageResizeAlpha($watermark, $nw, $nh);
+				if (!zp_resampleImage($watermark_new, $watermark, 0, 0, 0, 0, $nw, $nh, $watermark_width, $watermark_height)) {
 					imageError('404 Not Found', sprintf(gettext('Watermark %s not resizeable.'), $watermark_image), 'err-failimage.png');
 				}
 			}
@@ -454,11 +460,12 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			$dest_y = max(0, floor(($imh - $nh) * $offset_h));
 			if (DEBUG_IMAGE)
 				debugLog("Watermark:" . basename($imgfile) . ": \$offset_h=$offset_h, \$offset_w=$offset_w, \$watermark_height=$watermark_height, \$watermark_width=$watermark_width, \$imw=$imw, \$imh=$imh, \$percent=$percent, \$r=$r, \$nw=$nw, \$nh=$nh, \$dest_x=$dest_x, \$dest_y=$dest_y");
-			if (!zp_copyCanvas($newim, $watermark, $dest_x, $dest_y, 0, 0, $nw, $nh)) {
+			if (!zp_copyCanvas($newim, $watermark_new, $dest_x, $dest_y, 0, 0, $nw, $nh)) {
 				imageError('404 Not Found', sprintf(gettext('Image %s not renderable (copycanvas).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 			}
 			zp_imageKill($watermark);
-		}
+			zp_imageKill($watermark_new);
+		} 
 
 		// Create the cached file (with lots of compatibility)...
 		@chmod($newfile, 0777);

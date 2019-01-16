@@ -293,32 +293,24 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			}
 			return $img;
 		}
-
+		
 		/**
 		 * Resize a PNG file with transparency to given dimensions
 		 * and still retain the alpha channel information
-		 * Author:  Alex Le - http://www.alexle.net
-		 *
-		 *
+		 * 
+		 * Note: You have to apply zp_resampleImage() afterwards as the function does not handle this internally
+		 * 
 		 * @param image $src
 		 * @param int $w
 		 * @param int $h
 		 * @return image
 		 */
 		function zp_imageResizeAlpha(&$src, $w, $h) {
-			/* create a new image with the new width and height */
 			if ($temp = @imagecreatetruecolor($w, $h)) {
-
-				/* making the new image transparent */
-				$background = imagecolorallocate($temp, 0, 0, 0);
-				imagecolortransparent($temp, $background); // make the new temp image all transparent
-				imagealphablending($temp, false); // turn off the alpha blending to keep the alpha channel
-
-				/* Resize the PNG file */
-				/* use imagecopyresized to gain some performance but loose some quality */
-				imagecopyresampled($temp, $src, 0, 0, 0, 0, $w, $h, imagesx($src), imagesy($src));
-				/* use imagecopyresampled if you concern more about the quality */
-				//imagecopyresampled($temp, $src, 0, 0, 0, 0, $w, $h, imagesx($src), imagesy($src));
+				imagealphablending($temp, false);
+				imagesavealpha($temp, true);
+				$transparentindex = imagecolorallocatealpha($temp, 255, 255, 255, 127);
+				imagefill($temp, 0, 0, $transparentindex);
 			}
 			return $temp;
 		}
