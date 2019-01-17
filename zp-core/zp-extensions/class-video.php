@@ -21,6 +21,7 @@ $plugin_category = gettext('Media');
 
 Gallery::addImageHandler('mp4', 'Video');
 Gallery::addImageHandler('m4v', 'Video');
+Gallery::addImageHandler('m4a', 'Video');
 Gallery::addImageHandler('mp3', 'Video');
 
 $option_interface = 'VideoObject_Options';
@@ -413,6 +414,7 @@ class pseudoPlayer {
 				$content .= '<p>' . gettext('Your browser sadly does not support this video format.') . '</p>';
 				$content .= '</video>';
 				break;
+			case 'm4a':
 			case 'mp3':
 				$content = '<audio src="' . html_encode($movie) . '" controls>';
 				$content .= '<p>' . gettext('Your browser sadly does not support this audio format.') . '</p>';
