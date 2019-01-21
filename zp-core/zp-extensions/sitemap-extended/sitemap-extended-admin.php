@@ -41,7 +41,7 @@ if (isset($_GET['generatesitemaps'])) {
 	$numberAppend = '';
 	if (isset($_GET['generatesitemaps']) &&
 					(!empty($sitemap_index) || !empty($sitemap_albums) || !empty($sitemap_images) || !empty($sitemap_newsindex) || !empty($sitemap_articles) || !empty($sitemap_categories) || !empty($sitemap_pages))) {
-		$numberAppend = '-' . $_sitemap_number;
+		$numberAppend = '-' . floor( ($_sitemap_number / SITEMAP_CHUNK) + 1 );
 		$metaURL = 'sitemap-extended-admin.php?generatesitemaps&amp;number=' . ($_sitemap_number + SITEMAP_CHUNK);
 	} else {
 		$metaURL = '';
