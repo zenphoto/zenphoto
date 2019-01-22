@@ -252,7 +252,7 @@ printAdminHeader('overview', 'images'); ?>
 					$albums_total = $_zp_gallery->getNumAlbums(true);
 				}
 				?>
-				<p><?php printf(ngettext('%1$u cache size to apply for %2$u images (%3$u cache size images in total*)', '%1$u cache sizes to apply for %2$u images (%3$u cache size images in total*)', $cachesizes), $cachesizes, $images_total, $imagesizes_total); ?><br>
+				<p><?php printf(ngettext('%1$u cache size to apply for %2$u images (%3$u cache size images in total*)', '%1$u cache sizes to apply for %2$u images (%3$u cache size images in total*)', $imagesizes_total), $cachesizes, $images_total, $imagesizes_total); ?><br>
 				<em><?php echo gettext('* Approximate number not counting already existing cache sizes.'); ?></em></p>
 				<hr>
 				<div class="imagecaching_progress">
@@ -280,6 +280,7 @@ printAdminHeader('overview', 'images'); ?>
 				?>
 				<ol>
 				<?php
+				@set_time_limit(3000);
 				foreach ($allalbums as $album) {
 					$albumobj = newAlbum($album);
 					if (!$albumobj->isDynamic()) {

@@ -605,9 +605,9 @@ class cacheManager {
 	 */
 	static function loadImages($albumobj) {
 		$images = $albumobj->getImages(0);
-		$sizes_count = 0;
 		if (is_array($images) && count($images) > 0) {
 			foreach ($images as $image) {
+				$sizes_count = 0;
 				$sizeuris = array();
 				$results = array();
 				$imageobj = newImage($albumobj, $image);
@@ -670,11 +670,16 @@ class cacheManager {
 							}
 						}
 					}
-					if ($sizes_count !== 0) {
-						cacheManager::$images_cached;
+					$imagetitle = html_encode($imageobj->getTitle()) . ' (' . html_encode($imageobj->filename) . '): ';
+					echo '<li>';
+					if ($sizes_count == 0) {
+						echo $imagetitle;
+						?>
+						<em style="color:green"><?php echo gettext('All already cached.'); ?></em>
+						<?php
+					} else {
 						cacheManager::$images_cached++;
-						echo '<li>';
-						echo html_encode($imageobj->getTitle()) . ' (' . html_encode($imageobj->filename) . '): ';
+						echo $imagetitle;
 						foreach ($sizeuris as $sizeuri) {
 							cacheManager::generateImage($sizeuri);
 							$endtime_temp = time();
@@ -688,18 +693,13 @@ class cacheManager {
 							</script>
 							<?php
 						}
-						echo '</li>';
 					}
+					echo '</li>';
 				}
-			}
-			if ($sizes_count === 0) {
-				?>
-				<li><p class="messagebox"><?php echo gettext('All already cached.'); ?></p></li>
-				<?php
 			}
 		} else {
 			?>
-			<li><p class="notebox"><em><?php echo gettext('This album does not have any images.'); ?></em></p></li>
+			<li><p class="notebox"><em><?php echo gettext('This album does not have any images.'); ?></p></li>
 			<?php
 		}
 	}
