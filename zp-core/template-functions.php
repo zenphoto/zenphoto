@@ -2096,25 +2096,6 @@ function getNumImages() {
 }
 
 /**
- * Returns the count of all the images in the album and any subalbums
- *
- * @param object $album The album whose image count you want
- * @return int
- * @since 1.1.4
- */
-function getTotalImagesIn($album) {
-	global $_zp_gallery;
-	$sum = $album->getNumImages();
-	$subalbums = $album->getAlbums(0);
-	while (count($subalbums) > 0) {
-		$albumname = array_pop($subalbums);
-		$album = newAlbum($albumname);
-		$sum = $sum + getTotalImagesIn($album);
-	}
-	return $sum;
-}
-
-/**
  * Returns the next image on a page.
  * sets $_zp_current_image to the next image in the album.
 

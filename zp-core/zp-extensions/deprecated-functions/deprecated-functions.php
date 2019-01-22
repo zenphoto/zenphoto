@@ -1,11 +1,15 @@
 <?php
 /**
+ * The version number within @deprecated indicates the version these will be removed completely
+ * 
  * @package plugins
  * @subpackage deprecated-functions
  */
 
 /**
  * Zenphoto general deprecated functions
+ * 
+ * 
  *
  * @package plugins
  * @subpackage deprecated-functions
@@ -116,6 +120,19 @@ class internal_deprecations {
 function cleanHTML($html) {
 	deprecated_functions::notify(gettext("Use tidyHTML() instead"));
 	return tidyHTML($html);
+}
+
+/**
+ * Returns the count of all the images in the album and any subalbums
+ * @deprecated 2.0
+ * @since 1.5.2
+ * 
+ * @param object $album The album whose image count you want
+ * @return int
+ */
+function getTotalImagesIn($album) {
+	deprecated_functions::notify(gettext("Use AlbumBase class method getNumAllImages() instead"));
+	return $album->getNumAllImages();
 }
 
 /**

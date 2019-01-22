@@ -327,7 +327,7 @@ class AlbumBase extends MediaObject {
 			foreach ($subalbums as $folder) {
 				$subalbum = newAlbum($folder);
 				if (!$subalbum->isDynamic()) {
-					$count += $subalbum->getNumAlbums();
+					$count += $subalbum->getNumAllAlbums();
 				}
 			}
 			return $count;
@@ -397,7 +397,7 @@ class AlbumBase extends MediaObject {
 			foreach ($subalbums as $folder) {
 				$subalbum = newAlbum($folder);
 				if (!$subalbum->isDynamic()) {
-					$count += $subalbum->getNumImages();
+					$count += $subalbum->getNumAllImages();
 				}
 			}
 			return $count;
