@@ -203,8 +203,8 @@ class cacheManager {
 				),
 				'desc' => gettext('Choose the way how the cachemanager generates the cache sizes via its utility.')
 				. '<ul>'
-				. '<li>' . gettext('<em>Classic</em> (default) outputs the image sizes to generate directly. This is faster and works basically all servers but is not always reliably creating all sizes so may have been repeated.') . '</li>'
-				. '<li>' . gettext('<em>cURL</em> uses PHP cURL requests to generate the images without output. Although this is taking similar time and server load like the classic mode, it is actually more reliable in creating the sizes especially if you have lots of images and albums. However this does not work properly on all servers.') . '</li>'
+				. '<li>' . gettext('<em>Classic</em> (default) outputs the image sizes to generate directly. This is faster and works basically on all servers but is not always creating all sizes reliably so the process may have to be repeated.') . '</li>'
+				. '<li>' . gettext('<em>cURL</em> uses PHP cURL requests to generate the images without output. Although processing time and server load is similar to the classic mode, it is actually more reliable in creating the sizes, especially if you have lots of images and albums. However this does not work properly on all servers.') . '</li>'
 				. '</ul>'
 		);
 
