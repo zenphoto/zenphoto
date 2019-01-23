@@ -103,6 +103,7 @@ printAdminHeader('overview', 'images'); ?>
 			<?php echo gettext('This tool searches uncached image sizes from your albums or within a theme or plugin if they are registered to the cacheManager properly. If uncached images sizes exist you can have this tool generate these. If you like to re-generate existing cache image sizes, you have to clear the image cache manually first.'); ?>
 		</p>
 		<p class="notebox"><?php echo gettext('Note that this is a quite time and server power consuming measure depending on the number of images to pre-cache, their dimensions and the power of your server.'); ?>
+			<?php echo gettext('If your server is not able to process all albums and images try one album after another from each album edit page. Also remember that Zenphoto will create any size on the fly right when needed.'); ?>
 		</p>
 		<?php
 	}
@@ -286,7 +287,7 @@ printAdminHeader('overview', 'images'); ?>
 					if (!$albumobj->isDynamic()) {
 						cacheManager::loadAlbums($albumobj);
 					}
-				}
+				} 
 				?>
 				</ol>
 				<?php

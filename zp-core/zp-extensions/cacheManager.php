@@ -133,6 +133,7 @@ class cacheManager {
 		self::addCacheSize('admin', 80, NULL, NULL, 80, 80, NULL, NULL, -1);
 		setOptionDefault('cachemanager_defaultthumb', 1);
 		setOptionDefault('cachemanager_defaultsizedimage', 1);
+		setOptionDefault('cachemanager_generationmode', 'classic');
 	}
 
 	/**
@@ -192,6 +193,21 @@ class cacheManager {
 				),
 				'desc' => gettext('If enabled the default thumb size (or if set a manual crop) and/or the default sized image as set on the theme options are enabled for caching. Themes or plugins can request to override this option being disabled by defining <code>addThemeDefaultThumbSize()</code> and/or <code>addThemeDefaultSizedImageSize()</code> on their option definitions.')
 		);
+		$options[gettext('Pre-caching generation mode')] = array(
+				'key' => 'cachemanager_generationmode',
+				'type' => OPTION_TYPE_RADIO,
+				'order' => 0,
+				'buttons' => array(
+						gettext('Classic') => 'classic',
+						gettext('cURL') => 'curl'
+				),
+				'desc' => gettext('Choose the way how the cachemanager generates the cache sizes via its utility.')
+				. '<ul>'
+				. '<li>' . gettext('<em>Classic</em> (default) outputs the image sizes to generate directly. This is faster and works basically all servers but is not always reliably creating all sizes so may have been repeated.') . '</li>'
+				. '<li>' . gettext('<em>cURL</em> uses PHP cURL requests to generate the images without output. Although this is taking similar time and server load like the classic mode, it is actually more reliable in creating the sizes especially if you have lots of images and albums. However this does not work properly on all servers.') . '</li>'
+				. '</ul>'
+		);
+
 		return $options;
 	}
 
@@ -711,7 +727,7 @@ class cacheManager {
 	 * @return mixed
 	 */
 	static function generateImage($imageuri) {
-		if (function_exists('curl_init')) {
+		if (function_exists('curl_init') && getOption('cachemanager_generationmode') == 'curl') {
 			$success = generateImageCacheFile($imageuri);
 			if ($success) {
 				echo '<a href="' . html_encode(pathurlencode($imageuri)) . '&amp;debug"><img class="icon-position-top4" src="' . WEBPATH . '/' . ZENFOLDER . '/images/pass.png" alt="" title="' . html_encode($imageuri) . '"></a>';
@@ -939,7 +955,7 @@ class cacheManager {
 	 * Just prints a note if the PHP extension cURL is not available
 	 */
 	static function printCurlNote() {
-		if (!function_exists('curl_init')) {
+		if (!function_exists('curl_init') && getOption('cachemanager_generationmode') == 'curl') {
 			?>
 			<p class='warningbox'><?php echo gettext('Your server does not support the native PHP extension <code>cURL</code>. Pre-caching images is much more effective using it. '); ?></p>
 			<?php
