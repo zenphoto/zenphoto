@@ -28,19 +28,19 @@ $plugin_author = 'Stephen Billard (sbillard)';
 $plugin_category = gettext('Media');
 $option_interface = 'colorbox';
 
-if (OFFSET_PATH) {
-	zp_register_filter('admin_head', 'colorbox::css');
-} else {
-	global $_zp_gallery, $_zp_gallery_page;
-	if (getOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
-		zp_register_filter('theme_head', 'colorbox::css');
-	}
-}
+
+global $_zp_gallery, $_zp_gallery_page;
+zp_register_filter('theme_head', 'colorbox::css');
 
 class colorbox {
 
 	function __construct() {
 		//	These are best set by the theme itself!
+		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
+			foreach ($scripts as $script) {
+				purgeOption('colorbox_' . $theme . '_' . stripSuffix($script));
+			}
+		}
 		setOptionDefault('colorbox_theme', 'example1');
 	}
 
@@ -52,29 +52,18 @@ class colorbox {
 			$theme = stripSuffix(basename($theme));
 			$list[ucfirst($theme)] = $theme;
 		}
-		$opts = array(gettext('Colorbox theme') => array('key'				 => 'colorbox_theme', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 0,
-										'selections' => $list,
-										'desc'			 => gettext("The Colorbox script comes with 5 example themes you can select here. If you select <em>custom (within theme)</em> you need to place a folder <em>colorbox_js</em> containing a <em>colorbox.css</em> file and a folder <em>images</em> within the current theme to override to use a custom Colorbox theme."))
+		$opts = array(gettext('Colorbox theme') => array(
+						'key' => 'colorbox_theme',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => $list,
+						'desc' => gettext("The Colorbox script comes with 5 example themes you can select here. If you select <em>custom (within theme)</em> you need to place a folder <em>colorbox_js</em> containing a <em>colorbox.css</em> file and a folder <em>images</em> within the current theme to override to use a custom Colorbox theme."))
 		);
-		$c = 1;
-		foreach (getThemeFiles(array('404.php', 'functions.php', 'themeoptions.php', 'theme_description.php')) as $theme => $scripts) {
-			$list = array();
-			foreach ($scripts as $script) {
-				$list[$script] = 'colorbox_' . $theme . '_' . stripSuffix($script);
-			}
-			$opts[$theme] = array('key'				 => 'colorbox_' . $theme . '_scripts', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-							'order'			 => $c++,
-							'checkboxes' => $list,
-							'desc'			 => gettext('The scripts for which Colorbox is enabled. {Should have been set by the themes!}')
-			);
-		}
-
 		return $opts;
 	}
 
 	function handleOption($option, $currentValue) {
-
+		
 	}
 
 	static function css() {
@@ -106,7 +95,7 @@ class colorbox {
 			function resizeColorBoxImage() {
 				if (resizeTimer)
 					clearTimeout(resizeTimer);
-					resizeTimer = setTimeout(function() {
+				resizeTimer = setTimeout(function () {
 					if (jQuery('#cboxOverlay').is(':visible')) {
 						jQuery.colorbox.resize({width: '90%'});
 						jQuery('#cboxLoadedContent img').css('max-width', '100%').css('height', 'auto');
@@ -117,17 +106,20 @@ class colorbox {
 			function resizeColorBoxMap() {
 				if (resizeTimer)
 					clearTimeout(resizeTimer);
-					resizeTimer = setTimeout(function() {
+				resizeTimer = setTimeout(function () {
 					var mapw = $(window).width() * 0.8;
-        			var maph = $(window).height() * 0.7;
-						if (jQuery('#cboxOverlay').is(':visible')) {
-							$.colorbox.resize({innerWidth: mapw, innerHeight: maph});
-							$('#cboxLoadedContent iframe').contents().find('#map_canvas').css('width', '100%').css('height', maph-20);
-						}
-					}, 500)
+					var maph = $(window).height() * 0.7;
+					if (jQuery('#cboxOverlay').is(':visible')) {
+						$.colorbox.resize({innerWidth: mapw, innerHeight: maph});
+						$('#cboxLoadedContent iframe').contents().find('#map_canvas').css('width', '100%').css('height', maph - 20);
+					}
+				}, 500)
 			}
 			// Resize Colorbox when changing mobile device orientation
-			window.addEventListener("orientationchange", function(){resizeColorBoxImage();parent.resizeColorBoxMap()}, false);
+			window.addEventListener("orientationchange", function () {
+				resizeColorBoxImage();
+				parent.resizeColorBoxMap()
+			}, false);
 		</script>
 
 		<?php
