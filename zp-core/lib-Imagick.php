@@ -6,6 +6,7 @@
  * Requires Imagick 3.0.0+ and ImageMagick 6.3.8+
  *
  * @package core
+ * @subpackage graphic-handlers\lib-imagick
  */
 // force UTF-8 Ø
 
@@ -241,13 +242,18 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 *
 	 * @param int $w the width of the image
 	 * @param int $h the height of the image
+	 * @param bool $truecolor True to create a true color image, false for usage with palette images like gifs
 	 * @return Imagick
 	 */
-	function zp_createImage($w, $h) {
+	function zp_createImage($w, $h, $truecolor = true) {
 		$im = new Imagick();
 		$im->newImage($w, $h, 'none');
-		$im->setImageType(Imagick::IMGTYPE_TRUECOLORMATTE);
-
+		if($truecolor) {
+			$im->setImageType(Imagick::IMGTYPE_TRUECOLORMATTE);
+		} else {
+			$imagetype = $im->getImageType();
+			$im->setImageType($imagetype);
+		}
 		return $im;
 	}
 
@@ -363,8 +369,19 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 */
 	function zp_imageResizeAlpha($src, $w, $h) {
 		$src->scaleImage($w, $h);
-
 		return $src;
+	}
+	
+	/**
+	 * Uses zp_imageResizeAlpha() internally as Imagick does not make a difference
+	 * 
+	 * @param type $src
+	 * @param type $w
+	 * @param type $h
+	 * @return type
+	 */
+	function zp_imageResizeTransparent($src, $w, $h) {
+		return zp_imageResizeAlpha($src, $w, $h);
 	}
 
 	/**
@@ -396,13 +413,13 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @return array
 	 */
 	function zp_imageDims($filename) {
-		$ping = new Imagick();
-
-		if ($ping->pingImage(filesystemToInternal($filename))) {
-			return array('width' => $ping->getImageWidth(), 'height' => $ping->getImageHeight());
+		$imageinfo = NULL;
+		$rslt = getimagesize($filename, $imageinfo);
+		if (is_array($rslt)) {
+			return array('width' => $rslt[0], 'height' => $rslt[1]);
+		} else {
+			return false;
 		}
-
-		return false;
 	}
 
 	/**
@@ -412,17 +429,13 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @return string
 	 */
 	function zp_imageIPTC($filename) {
-		$ping = new Imagick();
-
-		if ($ping->pingImage(filesystemToInternal($filename))) {
-			try {
-				return $ping->getImageProfile('iptc');
-			} catch (ImagickException $e) {
-				// IPTC profile does not exist
-			}
+		$imageinfo = NULL;
+		$rslt = getimagesize($filename, $imageinfo);
+		if (is_array($rslt) && isset($imageinfo['APP13'])) {
+			return $imageinfo['APP13'];
+		} else {
+			return false;
 		}
-
-		return false;
 	}
 
 	/**

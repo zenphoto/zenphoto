@@ -27,6 +27,7 @@ if (isset($_GET['action'])) {
 					$result = sprintf(gettext('%s log could not be emptied.'), $what);
 				}
 				fclose($f);
+				@chmod($file, LOGS_MOD);
 				clearstatcache();
 				$_zp_mutex->unlock();
 				if (basename($file) == 'security.log') {
@@ -96,7 +97,7 @@ if (isset($_GET['action'])) {
 
 list($subtabs, $default) = getLogTabs();
 $zenphoto_tabs['logs'] = array('text'		 => gettext("logs"),
-				'link'		 => WEBPATH . "/" . ZENFOLDER . '/admin-logs.php?page=logs',
+				'link'		 => FULLWEBPATH . '/' . ZENFOLDER . '/admin-logs.php?page=logs',
 				'subtabs'	 => $subtabs,
 				'default'	 => $default);
 

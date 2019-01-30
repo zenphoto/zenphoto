@@ -24,7 +24,7 @@ if (isset($_GET['clearsitemapcache'])) {
 }
 
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Sitemap') => '');
+$zenphoto_tabs['overview']['subtabs'] = array(gettext('Sitemap') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php');
 printAdminHeader('overview', 'sitemap');
 if (isset($_GET['generatesitemaps'])) {
 	$_zp_loggedin = NULL;
@@ -41,7 +41,7 @@ if (isset($_GET['generatesitemaps'])) {
 	$numberAppend = '';
 	if (isset($_GET['generatesitemaps']) &&
 					(!empty($sitemap_index) || !empty($sitemap_albums) || !empty($sitemap_images) || !empty($sitemap_newsindex) || !empty($sitemap_articles) || !empty($sitemap_categories) || !empty($sitemap_pages))) {
-		$numberAppend = '-' . $_sitemap_number;
+		$numberAppend = '-' . floor( ($_sitemap_number / SITEMAP_CHUNK) + 1 );
 		$metaURL = 'sitemap-extended-admin.php?generatesitemaps&amp;number=' . ($_sitemap_number + SITEMAP_CHUNK);
 	} else {
 		$metaURL = '';

@@ -2,6 +2,7 @@
 /**
  * Functions used to display content in themes.
  * @package functions
+ * @subpackage template-functions
  */
 // force UTF-8 Ø
 
@@ -1892,31 +1893,8 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	}
 	$class = trim($class);
 	/* set the HTML image width and height parameters in case this image was "imageDefault.png" substituted for no thumbnail then the thumb layout is preserved */
-	$sizing = '';
-	if (is_null($width)) {
-		if (!is_null($cropw) && !is_null($croph)) {
-			if (empty($height)) {
-				$height = $size;
-			}
-			$s = round($height * ($cropw / $croph));
-			if (!empty($s))
-				$sizing = ' width="' . $s . '"';
-		}
-	} else {
-		$sizing = ' width="' . $width . '"';
-	}
-	if (is_null($height)) {
-		if (!is_null($cropw) && !is_null($croph)) {
-			if (empty($width)) {
-				$width = $size;
-			}
-			$s = round($width * ($croph / $cropw));
-			if (!empty($s))
-				$sizing = $sizing . ' height="' . $s . '"';
-		}
-	} else {
-		$sizing = $sizing . ' height="' . $height . '"';
-	}
+	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy);
+	$sizing = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	if($class) {
 		$class = ' class="' . $class . '"';
 	}
@@ -2115,25 +2093,6 @@ function getNumImages() {
 	} else {
 		return $_zp_current_album->getNumImages();
 	}
-}
-
-/**
- * Returns the count of all the images in the album and any subalbums
- *
- * @param object $album The album whose image count you want
- * @return int
- * @since 1.1.4
- */
-function getTotalImagesIn($album) {
-	global $_zp_gallery;
-	$sum = $album->getNumImages();
-	$subalbums = $album->getAlbums(0);
-	while (count($subalbums) > 0) {
-		$albumname = array_pop($subalbums);
-		$album = newAlbum($albumname);
-		$sum = $sum + getTotalImagesIn($album);
-	}
-	return $sum;
 }
 
 /**
@@ -2698,12 +2657,13 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
 
   $h = $image->getHeight();
   $w = $image->getWidth();
-  if (isImageVideo($image)) { // size is determined by the player
-    return array($w, $h);
-  }
+
   //if we set width/height we are cropping and those are the sizes already
-  if (is_null($size) && !is_null($width) && !is_null($height)) {
+  if (!is_null($size) && !is_null($width) && !is_null($height)) {
     return array($width, $height);
+  }
+	if (isImageVideo($image)) { // size is determined by the player
+    return array($w, $h);
   }
   $side = getOption('image_use_side');
   $us = getOption('image_allow_upscale');
@@ -2974,20 +2934,13 @@ function getSizeDefaultThumb($image = NULL) {
 	if (getOption('thumb_crop')) {
 		$w = getOption('thumb_crop_width');
 		$h = getOption('thumb_crop_height');
-		if ($w > $h) {
-			//landscape
-			$h = round($h * $s / $w);
-			$w = $s;
-		} else {
-			//portrait
-			$w = round($w * $s / $h);
-			$h = $s;
-		}
+		$sizes = getSizeCustomImage($s, $w, $h, $w, $h, null, null, $image);
 	} else {
 		$w = $h = $s;
 		getMaxSpaceContainer($w, $h, $image, true);
+		$sizes = array($w, $h);
 	}
-	return array($w, $h);
+	return $sizes;
 }
 
 /**
@@ -4159,11 +4112,11 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
         <li><label><input type="checkbox" name="checkall_searchfields" id="checkall_searchfields" checked="checked">* <?php echo gettext('Check/uncheck all'); ?> *</label></li>
 								<?php
 								foreach ($fields as $display => $key) {
-									echo '<li><label><input id="SEARCH_' . $key . '" name="SEARCH_' . $key . '" type="checkbox"';
+									echo '<li><label><input id="SEARCH_' . html_encode($key) . '" name="SEARCH_' . html_encode($key) . '" type="checkbox"';
 									if (in_array($key, $query_fields)) {
 										echo ' checked="checked" ';
 									}
-									echo ' value="' . $key . '"  /> ' . $display . "</label></li>" . "\n";
+									echo ' value="' . html_encode($key) . '"  /> ' . html_encode($display) . "</label></li>" . "\n";
 								}
 								?>
 							</ul>
@@ -4643,6 +4596,162 @@ function print404status($album, $image, $obj) {
 	}
 	if (isset($_zp_page) && $_zp_page > 1) {
 		echo '/' . $_zp_page;
+	}
+}
+
+/**
+ * Gets current item's owner (gallery images and albums) or author (Zenpage articles and pages)
+ * 
+ * @since ZenphotoCMS 1.5.2
+ * 
+ * @global obj $_zp_current_album
+ * @global obj $_zp_current_image
+ * @global obj $_zp_current_zenpage_page
+ * @global obj $_zp_current_zenpage_news
+ * @param boolean $fullname If the owner/author has a real user account and there is a full name set it is returned
+ * @return boolean
+ */
+function getOwnerAuthor($fullname = false) {
+	global $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	$ownerauthor = false;
+	if (in_context(ZP_IMAGE)) {
+		$ownerauthor = $_zp_current_image->getOwner();
+	} else if (in_context(ZP_ALBUM)) {
+		$ownerauthor = $_zp_current_album->getOwner();
+	} 
+	if (extensionEnabled('zenpage')) {
+		if (is_Pages()) {
+			$ownerauthor = $_zp_current_zenpage_page->getAuthor();
+		} else if (is_NewsArticle()) {
+			$ownerauthor = $_zp_current_zenpage_news->getAuthor();
+		} 
+	} 
+	if ($ownerauthor) {
+		if ($fullname) {
+			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $ownerauthor, '`valid`=' => 1));
+			if (is_object($admin) && $admin->getName()) {
+				return $admin->getName();
+			}
+		}
+		return $ownerauthor;
+	} 
+	return false;
+}
+
+/**
+ * Prints current item's owner (gallery images and albums) or author (Zenpage articles and pages)
+ * 
+ * @since ZenphotoCMS 1.5.2
+ * 
+ * @param type $fullname
+ */
+function printOwnerAuthor($fullname = false) {
+	echo html_encode(getOwnerAuthor($fullname));
+}
+
+/**
+ * Returns the search url for items the current item's owner (gallery) or author (Zenpage) is assigned to
+ * 
+ * This eventually may return the url to an actual user profile page in the future.
+ * 
+ * @since ZenphotoCMS 1.5.2
+ * 
+ * @return type
+ */
+function getOwnerAuthorURL() {
+	$ownerauthor = getOwnerAuthor(false); 
+	if($ownerauthor) {
+		if (in_context(ZP_IMAGE) || in_context(ZP_ALBUM)) {
+			return getUserURL($ownerauthor, 'gallery');
+		} 
+		if (extensionEnable('zenpagae') && (is_Pages() || is_NewsArticle())) {
+			return getUserURL($ownerauthor, 'zenpage');
+		} 
+	}
+}
+
+/**
+ * Prints the link to the search engine for results of all items the current item's owner (gallery) or author (Zenpage) is assigned to
+ * 
+ * This eventually may return the url to an actual user profile page in the future.
+ * 
+ * @since ZenphotoCMS 1.5.2
+ * 
+ * @param type $fullname
+ * @param type $resulttype
+ * @param type $class
+ * @param type $id
+ * @param type $title
+ */
+function printOwnerAuthorURL($fullname = false, $resulttype = 'all', $class = null, $id = null, $title = null) {
+	$author = $linktext = $title = getOwnerAuthor(false);
+	if ($author) {
+		if ($fullname) {
+			$linktext = getOwnerAuthor(true);
+		}
+		if(is_null($title)) {
+			$title = $linktext;
+		}
+		printUserURL($author, $resulttype, $linktext, $class, $id, $title);
+	} 
+}
+
+/**
+ * Returns a an url for the search engine for results of all items the user with $username is assigned to either as owner (gallery) or author (Zenpage)
+ *  Note there is no check if the user name is actually a vaild user account name, owner or author! Use the *OwerAuthor() function for that instead
+ * 
+ * This eventually may return the url to an actual user profile page in the future.
+ * 
+ * @since ZenphotoCMS 1.5.2
+ * 
+ * @param string $username The user name of a user. Note there is no check if the user name is actually valid!
+ * @param string $resulttype  'all' for owner and author, 'gallery' for owner of images/albums only, 'zenpage' for author of news articles and pages
+ * @return string|null
+ */
+function getUserURL($username, $resulttype = 'all') {
+	if (empty($username)) {
+		return null;
+	}
+	switch ($resulttype) {
+		case 'all':
+		default:
+			$fields = array('owner', 'author');
+			break;
+		case 'gallery':
+			$fields = array('owner');
+			break;
+		case 'zenpage':
+			$fields = array('author');
+			break;
+	}
+	return getSearchURL(search_quote($username), '', $fields, 1, null);
+}
+
+/**
+ * Prints the link to the search engine for results of all items $username is assigned to either as owner (gallery) or author (Zenpage)
+ * Note there is no check if the user name is actually a vaild user account name, owner or author! Use the *OwerAuthor() function for that instead
+ * 
+ * This eventually may point to an actual user profile page in the future.
+ * 
+ * @since ZenphotoCMS 1.5.2
+ * 
+ * @param string $username The user name of a user. 
+ * @param string $resulttype  'all' for owner and author, 'gallery' for owner of images/albums only, 'zenpage' for author of news articles and pages
+ * @param string $linktext The link text. If null the user name will be used
+ * @param string $class The CSS class to attach, default null.
+ * @param type $id The CSS id to attach, default null.
+ * @param type $title The title attribute to attach, default null so the user name is used
+ */
+function printUserURL($username, $resulttype = 'all', $linktext = null, $class = null, $id = null, $title = null) {
+	if ($username) {
+		$url = getUserURL($username, $resulttype);
+		if (is_null($linktext)) {
+			$linktext = $username;
+		}
+		if (is_null($title)) {
+			$title = $username;
+		}
+		printLinkHTML($url, $linktext, $title, $class, $id);
 	}
 }
 

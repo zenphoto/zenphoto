@@ -15,7 +15,7 @@
 	if (!zp_loggedin() && function_exists('printRegisterURL')) {
 		printRegisterURL(gettext('Register for this site'), '', ' | ');
 	}
-	@call_user_func('printUserLogin_out', " | ");
+	@call_user_func('printUserLogin_out', '', ' | ');
 	printPrivacyPageLink(' | ', ' | '); 
 	printZenphotoLink(); 
 	?>

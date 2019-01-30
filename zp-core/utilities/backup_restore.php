@@ -19,16 +19,16 @@ require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
 $signaure = getOption('zenphoto_install');
 
 $buttonlist[] = array(
-				'category'		 => gettext('Admin'),
-				'enable'			 => true,
-				'button_text'	 => gettext('Backup/Restore'),
-				'formname'		 => 'backup_restore.php',
-				'action'			 => 'utilities/backup_restore.php',
-				'icon'				 => 'images/folder.png',
-				'title'				 => gettext('Backup and restore your gallery database.'),
-				'alt'					 => '',
-				'hidden'			 => '',
-				'rights'			 => ADMIN_RIGHTS
+		'category' => gettext('Admin'),
+		'enable' => true,
+		'button_text' => gettext('Backup/Restore'),
+		'formname' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php',
+		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php',
+		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/folder.png',
+		'title' => gettext('Backup and restore your gallery database.'),
+		'alt' => '',
+		'hidden' => '',
+		'rights' => ADMIN_RIGHTS
 );
 
 if (!$_zp_current_admin_obj || $_zp_current_admin_obj->getID()) {
@@ -134,7 +134,7 @@ function writeHeader($type, $value) {
 if ($_zp_current_admin_obj->reset) {
 	printAdminHeader('restore');
 } else {
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Backup') => '');
+	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Backup') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php');
 	printAdminHeader('overview', 'backup');
 }
 
@@ -525,12 +525,12 @@ if (isset($_GET['compression'])) {
 				if (!$_zp_current_admin_obj->reset) {
 					echo '<p>';
 					echo gettext('The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. ' .
-											'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
+									'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
 					echo '</p>';
 				}
 				if (!$_zp_current_admin_obj->reset) {
 					?>
-				 <hr>
+					<hr>
 					<form name="backup_gallery" action="">
 						<?php XSRFToken('backup'); ?>
 						<h2><?php echo gettext('Create backup'); ?></h2>
@@ -549,7 +549,7 @@ if (isset($_GET['compression'])) {
 								?>
 							</select> <?php echo gettext('Compression level'); ?>
 						</div>
-			
+
 					</form>
 					<br />
 					<?php
@@ -562,15 +562,15 @@ if (isset($_GET['compression'])) {
 					<hr>
 					<h2><?php echo gettext('Backup restore'); ?></h2>
 					<?php
-						echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
-						echo '</p><p class="warningbox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
-						echo '</p><p class="notebox">';
-						echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
-						echo '</p>';
-						?>
+					echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
+					echo '</p><p class="warningbox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
+					echo '</p><p class="notebox">';
+					echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
+					echo '</p>';
+					?>
 					<form name="restore_gallery" action="">
 						<?php XSRFToken('backup'); ?>
-						
+
 						<?php echo gettext('Select the database restore file:'); ?>
 						<br />
 						<select id="backupfile" name="backupfile">
@@ -578,11 +578,12 @@ if (isset($_GET['compression'])) {
 						</select>
 						<input type="hidden" name="restore" value="true" />
 						<script>
-							$( document ).ready(function() {
-								$( "#restore_button" ).click(function() {
-									if(!confirm('<?php echo gettext('Do you really want to restore the database? Restoring the wrong backup might result in data loss!'); ?>')) {
+							$(document).ready(function () {
+								$("#restore_button").click(function () {
+									if (!confirm('<?php echo gettext('Do you really want to restore the database? Restoring the wrong backup might result in data loss!'); ?>')) {
 										return false;
-									};
+									}
+									;
 								});
 							});
 						</script>
@@ -596,7 +597,6 @@ if (isset($_GET['compression'])) {
 					</form>
 					<?php
 				}
-
 				?>
 			</div>
 		</div><!-- content -->

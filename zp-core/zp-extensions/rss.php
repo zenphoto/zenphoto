@@ -450,7 +450,6 @@ class RSS extends feed {
 
 // individual feedtype setup
 		switch ($this->feedtype) {
-
 			case 'gallery':
 				if (!getOption('RSS_album_image')) {
 					self::feed404();
@@ -460,17 +459,13 @@ class RSS extends feed {
 					$alb = newAlbum($this->albumfolder, true, true);
 					if ($alb->exists) {
 						$albumtitle = $alb->getTitle();
-						if ($this->mode == 'albums' || $this->collection) {
-							$albumname = ' - ' . html_encode($albumtitle) . $this->getChannelTitleExtra();
-						}
+						$albumname = ' - ' . html_encode($albumtitle) . $this->getChannelTitleExtra();
 					} else {
 						self::feed404();
 					}
 				} else {
 					$albumtitle = '';
 				}
-				$albumname = $this->getChannelTitleExtra();
-
 				$this->channel_title = html_encode($this->channel_title . ' ' . getBare($albumname));
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 				break;
@@ -748,8 +743,9 @@ class RSS extends feed {
 				<lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
 				<docs>http://blogs.law.harvard.edu/tech/rss</docs>
 				<generator>Zenphoto RSS Generator</generator>
+				
 				<?php
-				if (is_array($feeditems)) {
+				if (is_array($feeditems) && !empty($feeditems)) {
 					foreach ($feeditems as $feeditem) {
 						switch ($this->feedtype) {
 							case 'gallery':
@@ -794,6 +790,12 @@ class RSS extends feed {
 						</item>
 						<?php
 					} // foreach
+				} else {
+					?>
+					<item>
+						<title><![CDATA[<?php echo gettext('No items available.'); ?>]]></title>
+					</item>
+					<?php
 				}
 				?>
 			</channel>

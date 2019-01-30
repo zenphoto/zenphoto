@@ -1,12 +1,14 @@
 <?php
 
-/*
+/**
 htmLawed 1.2.4.1, 12 September 2017
 Copyright Santosh Patnaik
 Dual licensed with LGPL 3 and GPL 2+
 A PHP Labware internal utility - www.bioinformatics.org/phplabware/internal_utilities/htmLawed
 
 See htmLawed_README.txt/htm
+@package core
+@subpackage libraries\lib-htmlawed
 */
 
 function htmLawed($t, $C=1, $S=array()){

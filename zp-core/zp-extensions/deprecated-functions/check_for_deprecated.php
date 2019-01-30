@@ -27,7 +27,7 @@ if (isset($_GET['action'])) {
 	$selected = sanitize_numeric($_POST['target']);
 }
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Deprecated') => '');
+$zenphoto_tabs['overview']['subtabs'] = array(gettext('Deprecated') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php');
 printAdminHeader('overview', 'deprecated');
 ?>
 <?php

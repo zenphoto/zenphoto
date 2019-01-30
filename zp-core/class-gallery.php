@@ -2,7 +2,8 @@
 
 /**
  * Gallery Class
- * @package classes
+ * @package core
+ * @subpackage classes\objects
  */
 // force UTF-8 Ø
 $_zp_gallery = new Gallery();

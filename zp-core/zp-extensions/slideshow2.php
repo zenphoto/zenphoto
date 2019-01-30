@@ -40,9 +40,7 @@ $plugin_category = gettext('Media');
 $option_interface = 'cycle';
 
 global $_zp_gallery, $_zp_gallery_page;
-if (($_zp_gallery_page == 'slideshow.php' && getOption('cycle-slideshow_mode') == 'cycle') || getOption('cycle_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) {
-	zp_register_filter('theme_head', 'cycle::cycleJS');
-}
+zp_register_filter('theme_head', 'cycle::cycleJS');
 zp_register_filter('content_macro', 'cycle::macro');
 
 /**
@@ -53,7 +51,13 @@ class cycle {
 
 	function __construct() {
 		global $_zp_gallery;
+		
 		if (OFFSET_PATH == 2) {
+			foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
+				foreach ($scripts as $script) {
+					purgeOption('cycle_' . $theme . '_' . stripSuffix($script));
+				}
+			}
 			//normal slideshow
 			setOptionDefault('cycle-slideshow_width', '595');
 			setOptionDefault('cycle-slideshow_height', '595');
@@ -67,8 +71,8 @@ class cycle {
 			setOptionDefault('cycle-slideshow_colorbox_imagetype', 'sizedimage');
 			setOptionDefault('cycle-slideshow_colorbox_imagetitle', 1);
 			if (class_exists('cacheManager')) {
-				cacheManager::deleteThemeCacheSizes('cycle');
-				cacheManager::addThemeCacheSize('cycle', NULL, getOption('cycle-slideshow_width'), getOption('cycle-slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+				cacheManager::deleteCacheSizes('cycle');
+				cacheManager::addCacheSize('cycle', NULL, getOption('cycle-slideshow_width'), getOption('cycle-slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
 			}
 		}
 	}
@@ -79,101 +83,119 @@ class cycle {
 		 * 	slideshow options
 		 * ********************* */
 		$options = array(
-						gettext('Slideshow: Mode')	 => array('key'				 => 'cycle-slideshow_mode', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 0,
-										'selections' => array(gettext("jQuery Cycle") => "cycle", gettext("jQuery Colorbox") => "colorbox"),
-										'desc'			 => gettext('<em>jQuery Cycle</em> for slideshow using the jQuery Cycle2 plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.')),
-						gettext('Slideshow: Speed')	 => array('key'		 => 'cycle-slideshow_speed', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext("Speed of the transition in milliseconds."))
+				gettext('Slideshow: Mode') => array(
+						'key' => 'cycle-slideshow_mode',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 0,
+						'selections' => array(
+								gettext("jQuery Cycle") => "cycle",
+								gettext("jQuery Colorbox") => "colorbox"),
+						'desc' => gettext('<em>jQuery Cycle</em> for slideshow using the jQuery Cycle2 plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.')),
+				gettext('Slideshow: Speed') => array(
+						'key' => 'cycle-slideshow_speed',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext("Speed of the transition in milliseconds."))
 		);
 
 		switch (getOption('cycle-slideshow_mode')) {
 			case 'cycle':
-				$options = array_merge($options, array(gettext('Slideshow: Slide width')					 => array('key'		 => 'cycle-slideshow_width', 'type'	 => OPTION_TYPE_TEXTBOX,
-												'order'	 => 5,
-												'desc'	 => gettext("Width of the images in the slideshow.")),
-								gettext('Slideshow: Slide height')				 => array('key'		 => 'cycle-slideshow_height', 'type'	 => OPTION_TYPE_TEXTBOX,
-												'order'	 => 6,
-												'desc'	 => gettext("Height of the images in the slideshow.")),
-								gettext('Slideshow: Effect')							 => array('key'				 => 'cycle-slideshow_effect', 'type'			 => OPTION_TYPE_SELECTOR,
-												'order'			 => 2,
-												'selections' => array(
-																gettext('none')							 => "none",
-																gettext('fade')							 => "fade",
-																gettext('fadeOut')					 => "fadeOut",
-																gettext('shuffle')					 => "shuffle",
-																gettext('Scroll horizontal') => "scrollHorz",
-																gettext('Scroll vertical')	 => "scrollVert",
-																gettext('Flip horizontal')	 => "flipHorz",
-																gettext('Flip vertical')		 => "flipVert",
-																gettext('Tile slide')				 => "tileSlide",
-																gettext('Tile blind')				 => "tileBlind"),
-												'desc'			 => gettext("The cycle slide effect to be used. Flip transitions are only supported on browsers that support CSS3 3D transforms. (IE10+, current Chrome, Firefox, Opera and Safari.)")),
-								gettext('Slideshow: Tile Effect - Extra')	 => array('key'				 => 'cycle-slideshow_tileeffect', 'type'			 => OPTION_TYPE_SELECTOR,
-												'order'			 => 3,
-												'selections' => array(
-																gettext('Horziontal')	 => "tileVert",
-																gettext('Vertical')		 => "tileHorz"),
-												'desc'			 => gettext("If one of the tile effects is selected, this is its orientation.")),
-								gettext('Slideshow: Timeout')							 => array('key'		 => 'cycle-slideshow_timeout', 'type'	 => OPTION_TYPE_TEXTBOX,
-												'order'	 => 4,
-												'desc'	 => gettext("Milliseconds between slide transitions (0 to disable auto advance.)")),
-								gettext('Slideshow: Description')					 => array('key'		 => 'cycle-slideshow_showdesc', 'type'	 => OPTION_TYPE_CHECKBOX,
-												'order'	 => 7,
-												'desc'	 => gettext("Check if you want to show the image’s description below the slideshow.")),
-								gettext('Slideshow: Swipe gestures')			 => array('key'		 => 'cycle-slideshow_swipe', 'type'	 => OPTION_TYPE_CHECKBOX,
-												'order'	 => 8,
-												'desc'	 => gettext("Check if you want to enable touch screen swipe gestures.")),
-								gettext('Slideshow: Pause on hover')			 => array('key'		 => 'cycle-slideshow_pausehover', 'type'	 => OPTION_TYPE_CHECKBOX,
-												'order'	 => 9,
-												'desc'	 => gettext("Check if you want the slidesshow to pause on hover."))
+				$options = array_merge($options, array(
+						gettext('Slideshow: Slide width') => array(
+								'key' => 'cycle-slideshow_width',
+								'type' => OPTION_TYPE_TEXTBOX,
+								'order' => 5,
+								'desc' => gettext("Width of the images in the slideshow.")),
+						gettext('Slideshow: Slide height') => array(
+								'key' => 'cycle-slideshow_height',
+								'type' => OPTION_TYPE_TEXTBOX,
+								'order' => 6,
+								'desc' => gettext("Height of the images in the slideshow.")),
+						gettext('Slideshow: Effect') => array(
+								'key' => 'cycle-slideshow_effect',
+								'type' => OPTION_TYPE_SELECTOR,
+								'order' => 2,
+								'selections' => array(
+										gettext('none') => "none",
+										gettext('fade') => "fade",
+										gettext('fadeOut') => "fadeOut",
+										gettext('shuffle') => "shuffle",
+										gettext('Scroll horizontal') => "scrollHorz",
+										gettext('Scroll vertical') => "scrollVert",
+										gettext('Flip horizontal') => "flipHorz",
+										gettext('Flip vertical') => "flipVert",
+										gettext('Tile slide') => "tileSlide",
+										gettext('Tile blind') => "tileBlind"),
+								'desc' => gettext("The cycle slide effect to be used. Flip transitions are only supported on browsers that support CSS3 3D transforms. (IE10+, current Chrome, Firefox, Opera and Safari.)")),
+						gettext('Slideshow: Tile Effect - Extra') => array(
+								'key' => 'cycle-slideshow_tileeffect',
+								'type' => OPTION_TYPE_SELECTOR,
+								'order' => 3,
+								'selections' => array(
+										gettext('Horziontal') => "tileVert",
+										gettext('Vertical') => "tileHorz"),
+								'desc' => gettext("If one of the tile effects is selected, this is its orientation.")),
+						gettext('Slideshow: Timeout') => array(
+								'key' => 'cycle-slideshow_timeout',
+								'type' => OPTION_TYPE_TEXTBOX,
+								'order' => 4,
+								'desc' => gettext("Milliseconds between slide transitions (0 to disable auto advance.)")),
+						gettext('Slideshow: Description') => array(
+								'key' => 'cycle-slideshow_showdesc',
+								'type' => OPTION_TYPE_CHECKBOX,
+								'order' => 7,
+								'desc' => gettext("Check if you want to show the image’s description below the slideshow.")),
+						gettext('Slideshow: Swipe gestures') => array(
+								'key' => 'cycle-slideshow_swipe',
+								'type' => OPTION_TYPE_CHECKBOX,
+								'order' => 8,
+								'desc' => gettext("Check if you want to enable touch screen swipe gestures.")),
+						gettext('Slideshow: Pause on hover') => array(
+								'key' => 'cycle-slideshow_pausehover',
+								'type' => OPTION_TYPE_CHECKBOX,
+								'order' => 9,
+								'desc' => gettext("Check if you want the slidesshow to pause on hover."))
 				));
 				break;
 
 			case 'colorbox':
-				$options = array_merge($options, array(gettext('Colorbox: Transition')	 => array('key'				 => 'cycle-slideshow_colorbox_transition', 'type'			 => OPTION_TYPE_SELECTOR,
-												'order'			 => 2,
-												'selections' => array(
-																gettext('elastic') => "elastic",
-																gettext('fade')		 => "fade",
-																gettext('none')		 => "none"),
-												'desc'			 => gettext("The Colorbox transition slide effect to be used.")),
-								gettext('Colorbox: Image type')	 => array('key'				 => 'cycle-slideshow_colorbox_imagetype', 'type'			 => OPTION_TYPE_SELECTOR,
-												'order'			 => 3,
-												'selections' => array(gettext('full image') => "fullimage", gettext("sized image") => "sizedimage"),
-												'desc'			 => gettext("The image type you wish to use for the Colorbox. If you choose “sized image” the slideshow width value will be used for the longest side of the image.")),
-								gettext('Colorbox: Image title') => array('key'		 => 'cycle-slideshow_colorbox_imagetitle', 'type'	 => OPTION_TYPE_CHECKBOX,
-												'order'	 => 4,
-												'desc'	 => gettext("If the image title should be shown at the bottom of the Colorbox."))
+				$options = array_merge($options, array(gettext('Colorbox: Transition') => array('key' => 'cycle-slideshow_colorbox_transition', 'type' => OPTION_TYPE_SELECTOR,
+								'order' => 2,
+								'selections' => array(
+										gettext('elastic') => "elastic",
+										gettext('fade') => "fade",
+										gettext('none') => "none"),
+								'desc' => gettext("The Colorbox transition slide effect to be used.")),
+						gettext('Colorbox: Image type') => array(
+								'key' => 'cycle-slideshow_colorbox_imagetype',
+								'type' => OPTION_TYPE_SELECTOR,
+								'order' => 3,
+								'selections' => array(
+										gettext('full image') => "fullimage",
+										gettext("sized image") => "sizedimage"),
+								'desc' => gettext("The image type you wish to use for the Colorbox. If you choose “sized image” the slideshow width value will be used for the longest side of the image.")),
+						gettext('Colorbox: Image title') => array(
+								'key' => 'cycle-slideshow_colorbox_imagetitle',
+								'type' => OPTION_TYPE_CHECKBOX,
+								'order' => 4,
+								'desc' => gettext("If the image title should be shown at the bottom of the Colorbox."))
 				));
 				if (getOption('cycle-slideshow_colorbox_imagetype') == 'sizedimage') {
-					$options = array_merge($options, array(gettext('Colorbox: Slide width') => array('key'		 => 'cycle-slideshow_width', 'type'	 => OPTION_TYPE_TEXTBOX,
-													'order'	 => 3.5,
-													'desc'	 => gettext("Width of the images in the slideshow."))
+					$options = array_merge($options, array(
+							gettext('Colorbox: Slide width') => array(
+									'key' => 'cycle-slideshow_width',
+									'type' => OPTION_TYPE_TEXTBOX,
+									'order' => 3.5,
+									'desc' => gettext("Width of the images in the slideshow."))
 					));
 				}
 				break;
 		}
-
-		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
-			$list = array();
-			foreach ($scripts as $script) {
-				$list[$script] = 'cycle_' . $theme . '_' . stripSuffix($script);
-			}
-			$options2[$theme] = array('key'				 => 'cycle_' . $theme . '_scripts', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-							'checkboxes' => $list,
-							'desc'			 => gettext('The scripts for which the cycle2 plugin is enabled. {If themes require it they might set this, otherwise you need to do it manually!}')
-			);
-		}
-
-		$options = array_merge($options, $options2);
-
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
-
+		
 	}
 
 	static function getSlideshowPlayer($album, $controls = false, $width = NULL, $height = NULL) {
@@ -190,134 +212,134 @@ class cycle {
 	}
 
 	static function getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber) {
-    global $_zp_gallery, $_zp_gallery_page;
-    setOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
-    if (!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj)) {
-      return '<div class="errorbox" id="message"><h2>' . gettext('This album is password protected!') . '</h2></div>';
-    }
-    // setting the image size
-    if (empty($width) || empty($height)) {
-      $width = getOption('cycle-slideshow_width');
-      $height = getOption('cycle-slideshow_height');
-    }
-    if ($crop) {
-      $cropw = $width;
-      $croph = $height;
-    } else {
-      $cropw = NULL;
-      $croph = NULL;
-    }
-    //echo $imagenumber;
-    $slides = $albumobj->getImages(0);
-    $numslides = $albumobj->getNumImages();
-    if ($shuffle) { // means random order, not the effect!
-      shuffle($slides);
-    }
-    //echo "<pre>";
-    // print_r($slides);
-    //echo "</pre>";
-    //cycle2 in progressive loading mode cannot start with specific slides as it does not "know" them.
-    //The start slide needs to be set manually so I remove and append those before the desired start slide at the end
-    if ($imagenumber != 0) { // if start slide not the first
-      $count = -1; //cycle2 starts with 0
-      $extractslides = array();
-      foreach ($slides as $slide) {
-        $count++;
-        if ($count < $imagenumber) {
-          $extractslides[] = $slide;
-          unset($slides[$count]);
-        }
-      }
-      $slides = array_merge($slides, $extractslides);
-    }
-    //echo "<pre>";
-    // print_r($slides);
-    //echo "</pre>";
-    //$albumid = $albumobj->getID();
-    if (getOption('cycle-slideshow_swipe')) {
-      $option_swipe = 'true';
-    } else {
-      $option_swipe = 'false';
-    }
-    if (getOption('cycle-slideshow_pausehover')) {
-      $option_pausehover = 'true';
-    } else {
-      $option_pausehover = 'false';
-    }
-    $option_fx = getOption('cycle-slideshow_effect');
-    $option_tilevertical = '';
-    if ($option_fx == 'tileSlide' || $option_fx == 'tileBlind') {
-      $option_tileextra = getOption('cycle-slideshow_tileeffect');
-      switch ($option_tileextra) {
-        case 'tileVert':
-          $option_tilevertical = 'data-cycle-tile-vertical=true';
-          break;
-        case 'tileHorz':
-          $option_tilevertical = 'data-cycle-tile-vertical=false';
-          break;
-        default:
-          $option_tilevertical = '';
-          break;
-      }
-    }
-    if ($numslides == 0) {
-      return '<div class="errorbox" id="message"><h2>' . gettext('No images for the slideshow!') . '</h2></div>';
-    }
-    $slideshow = '<section class="slideshow"><!-- extra class with album id so we can address slides! -->' . "\n";
-    if ($controls) {
-      $slideshow .= '<ul class="slideshow_controls">' . "\n";
-      $slideshow .= '<li><a href="#" data-cycle-cmd="prev" class="cycle-slideshow-prev icon-backward" title="' . gettext('prev') . '"></a></li>' . "\n";
-      $slideshow .= '<li><a href="' . $returnpath . '" class="cycle-slideshow-stop icon-stop" title="' . gettext('stop') . '"></a></li>' . "\n";
-      $slideshow .= '<li><a href="#" data-cycle-cmd="pause" class="cycle-slideshow-pause icon-pause" title="' . gettext('pause') . '"></a></li>' . "\n";
-      $slideshow .= '<li><a href="#" data-cycle-cmd="resume" class="cycle-slideshow-resume icon-play" title="' . gettext('play') . '"></a></li>' . "\n";
-      $slideshow .= '<li><a href="#" data-cycle-cmd="next" class="cycle-slideshow-next icon-forward" title="' . gettext('next') . '"></a></li>' . "\n";
-      $slideshow .= '</ul>' . "\n";
-    }
-    //class cylce-slideshow is mandatory!
-    $slideshow .= '<div class="cycle-slideshow"' . "\n";
-    $slideshow .= 'data-cycle-pause-on-hover=' . $option_pausehover . "\n";
-    $slideshow .= 'data-cycle-fx="' . $option_fx . '"' . "\n";
-    $slideshow .= $option_tilevertical . "\n";
-    $slideshow .= 'data-cycle-speed=' . getOption('cycle-slideshow_speed') . "\n";
-    $slideshow .= 'data-cycle-timeout=' . getOption('cycle-slideshow_timeout') . "\n";
-    $slideshow .= 'data-cycle-slides=".slide"' . "\n";
-    $slideshow .= 'data-cycle-auto-height=true' . "\n";
-    $slideshow .= 'data-cycle-center-horz=true' . "\n";
-    $slideshow .= 'data-cycle-center-vert=true' . "\n";
-    $slideshow .= 'data-cycle-swipe=' . $option_swipe . "\n";
-    $slideshow .= 'data-cycle-loader=true' . "\n";
-    $slideshow .= 'data-cycle-progressive=".slides"' . "\n";
-    $slideshow .= '>';
-    // first slide manually for progressive slide loading
-    $firstslide = array_shift($slides);
-    /*
-     * This obj stuff could be done within printslides but we
-     * might need to exclude types although cycle2 should display all
-     * In that case we need the filename before printSlide as
-     * otherwise the slides count is disturbed as it is done on all
-     */
-    $slideobj = cycle::getSlideObj($firstslide, $albumobj);
-    //$ext = slideshow::is_valid($slideobj->filename, $validtypes);
-    //if ($ext) {
-    $slideshow .= cycle::getSlide($albumobj, $slideobj, $width, $height, $cropw, $croph, $linkslides, false);
-    //}
-    $slideshow .= '<script class="slides" type="text/cycle" data-cycle-split="---">' . "\n";
-    $count = '';
-    foreach ($slides as $slide) {
-      $count++;
-      $slideobj = cycle::getSlideObj($slide, $albumobj);
-      $slideshow .= cycle::getSlide($albumobj, $slideobj, $width, $height, $cropw, $croph, $linkslides, false);
-      if ($count != $numslides) {
-        $slideshow .= "---\n"; // delimiter for the progressive slide loading
-      }
-    }
-    $slideshow .='</script>' . "\n";
-    $slideshow .='</div>' . "\n";
-    $slideshow .='</section>' . "\n";
-    return $slideshow;
-  }
+		global $_zp_gallery, $_zp_gallery_page;
+		setOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
+		if (!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj)) {
+			return '<div class="errorbox" id="message"><h2>' . gettext('This album is password protected!') . '</h2></div>';
+		}
+		// setting the image size
+		if (empty($width) || empty($height)) {
+			$width = getOption('cycle-slideshow_width');
+			$height = getOption('cycle-slideshow_height');
+		}
+		if ($crop) {
+			$cropw = $width;
+			$croph = $height;
+		} else {
+			$cropw = NULL;
+			$croph = NULL;
+		}
+		//echo $imagenumber;
+		$slides = $albumobj->getImages(0);
+		$numslides = $albumobj->getNumImages();
+		if ($shuffle) { // means random order, not the effect!
+			shuffle($slides);
+		}
+		//echo "<pre>";
+		// print_r($slides);
+		//echo "</pre>";
+		//cycle2 in progressive loading mode cannot start with specific slides as it does not "know" them.
+		//The start slide needs to be set manually so I remove and append those before the desired start slide at the end
+		if ($imagenumber != 0) { // if start slide not the first
+			$count = -1; //cycle2 starts with 0
+			$extractslides = array();
+			foreach ($slides as $slide) {
+				$count++;
+				if ($count < $imagenumber) {
+					$extractslides[] = $slide;
+					unset($slides[$count]);
+				}
+			}
+			$slides = array_merge($slides, $extractslides);
+		}
+		//echo "<pre>";
+		// print_r($slides);
+		//echo "</pre>";
+		//$albumid = $albumobj->getID();
+		if (getOption('cycle-slideshow_swipe')) {
+			$option_swipe = 'true';
+		} else {
+			$option_swipe = 'false';
+		}
+		if (getOption('cycle-slideshow_pausehover')) {
+			$option_pausehover = 'true';
+		} else {
+			$option_pausehover = 'false';
+		}
+		$option_fx = getOption('cycle-slideshow_effect');
+		$option_tilevertical = '';
+		if ($option_fx == 'tileSlide' || $option_fx == 'tileBlind') {
+			$option_tileextra = getOption('cycle-slideshow_tileeffect');
+			switch ($option_tileextra) {
+				case 'tileVert':
+					$option_tilevertical = 'data-cycle-tile-vertical=true';
+					break;
+				case 'tileHorz':
+					$option_tilevertical = 'data-cycle-tile-vertical=false';
+					break;
+				default:
+					$option_tilevertical = '';
+					break;
+			}
+		}
+		if ($numslides == 0) {
+			return '<div class="errorbox" id="message"><h2>' . gettext('No images for the slideshow!') . '</h2></div>';
+		}
+		$slideshow = '<section class="slideshow"><!-- extra class with album id so we can address slides! -->' . "\n";
+		if ($controls) {
+			$slideshow .= '<ul class="slideshow_controls">' . "\n";
+			$slideshow .= '<li><a href="#" data-cycle-cmd="prev" class="cycle-slideshow-prev icon-backward" title="' . gettext('prev') . '"></a></li>' . "\n";
+			$slideshow .= '<li><a href="' . $returnpath . '" class="cycle-slideshow-stop icon-stop" title="' . gettext('stop') . '"></a></li>' . "\n";
+			$slideshow .= '<li><a href="#" data-cycle-cmd="pause" class="cycle-slideshow-pause icon-pause" title="' . gettext('pause') . '"></a></li>' . "\n";
+			$slideshow .= '<li><a href="#" data-cycle-cmd="resume" class="cycle-slideshow-resume icon-play" title="' . gettext('play') . '"></a></li>' . "\n";
+			$slideshow .= '<li><a href="#" data-cycle-cmd="next" class="cycle-slideshow-next icon-forward" title="' . gettext('next') . '"></a></li>' . "\n";
+			$slideshow .= '</ul>' . "\n";
+		}
+		//class cylce-slideshow is mandatory!
+		$slideshow .= '<div class="cycle-slideshow"' . "\n";
+		$slideshow .= 'data-cycle-pause-on-hover=' . $option_pausehover . "\n";
+		$slideshow .= 'data-cycle-fx="' . $option_fx . '"' . "\n";
+		$slideshow .= $option_tilevertical . "\n";
+		$slideshow .= 'data-cycle-speed=' . getOption('cycle-slideshow_speed') . "\n";
+		$slideshow .= 'data-cycle-timeout=' . getOption('cycle-slideshow_timeout') . "\n";
+		$slideshow .= 'data-cycle-slides=".slide"' . "\n";
+		$slideshow .= 'data-cycle-auto-height=true' . "\n";
+		$slideshow .= 'data-cycle-center-horz=true' . "\n";
+		$slideshow .= 'data-cycle-center-vert=true' . "\n";
+		$slideshow .= 'data-cycle-swipe=' . $option_swipe . "\n";
+		$slideshow .= 'data-cycle-loader=true' . "\n";
+		$slideshow .= 'data-cycle-progressive=".slides"' . "\n";
+		$slideshow .= '>';
+		// first slide manually for progressive slide loading
+		$firstslide = array_shift($slides);
+		/*
+		 * This obj stuff could be done within printslides but we
+		 * might need to exclude types although cycle2 should display all
+		 * In that case we need the filename before printSlide as
+		 * otherwise the slides count is disturbed as it is done on all
+		 */
+		$slideobj = cycle::getSlideObj($firstslide, $albumobj);
+		//$ext = slideshow::is_valid($slideobj->filename, $validtypes);
+		//if ($ext) {
+		$slideshow .= cycle::getSlide($albumobj, $slideobj, $width, $height, $cropw, $croph, $linkslides, false);
+		//}
+		$slideshow .= '<script class="slides" type="text/cycle" data-cycle-split="---">' . "\n";
+		$count = '';
+		foreach ($slides as $slide) {
+			$count++;
+			$slideobj = cycle::getSlideObj($slide, $albumobj);
+			$slideshow .= cycle::getSlide($albumobj, $slideobj, $width, $height, $cropw, $croph, $linkslides, false);
+			if ($count != $numslides) {
+				$slideshow .= "---\n"; // delimiter for the progressive slide loading
+			}
+		}
+		$slideshow .= '</script>' . "\n";
+		$slideshow .= '</div>' . "\n";
+		$slideshow .= '</section>' . "\n";
+		return $slideshow;
+	}
 
-  /**
+	/**
 	 * Helper function to print the individual slides
 	 *
 	 * @param obj $albumobj Album object
@@ -331,71 +353,71 @@ class cycle {
 	 * @param bool $crop True or false to crop the image
 	 * @param bool $carousel if the slideshow is a carousel so we can enable full image linking (only images allowed!)
 	 */
- static function getSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop = false, $carousel = false) {
-    global $_zp_current_image;
-    if ($crop) {
-      $imageurl = $imgobj->getCustomImage(NULL, $width, $height, $cropw, $croph, NULL, NULL, true, NULL);
-    } else {
-      $maxwidth = $width;
-      $maxheight = $height;
-      getMaxSpaceContainer($maxwidth, $maxheight, $imgobj);
-      $imageurl = $imgobj->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, NULL, NULL);
-    }
-    $slidecontent = '<div class="slide">' . "\n";
-    // no space in carousels for titles!
-    if (!$carousel) {
-      $slidecontent .= '<h4>' . html_encode($albumobj->getTitle()) . ': ' . html_Encode($imgobj->getTitle()) . '</h4>' . "\n";
-    }
-    if ($carousel) {
-      // on the carousel this means fullimage as they are always linked anyway
-      if ($linkslides) {
-        $url = pathurlencode($imgobj->getFullImageURL());
-      } else {
-        $url = $imgobj->getLink();
-      }
-      $slidecontent .= '<a href="' . $url . '">' . "\n";
-    } else if (!$carousel && $linkslides) {
-      $slidecontent .= '<a href="' . $imgobj->getLink() . '">' . "\n";
-    }
-    $active = '';
-    if ($carousel && !is_null($_zp_current_image)) {
-      if ($_zp_current_image->filename == $imgobj->filename) {
-        $active = ' class="activeslide"';
-      } else {
-        $active = '';
-      }
-    }
-    $slidecontent .='<img src="' . pathurlencode($imageurl) . '" alt=""' . $active . '>' . "\n";
-    if ($linkslides || $carousel) {
-      $slidecontent .= '</a>' . "\n";
-    }
-    // no space in carousels for this!
-    if (getOption("cycle-slideshow_showdesc") && !$carousel) {
-      $slidecontent .= '<div class="slide_desc">' . html_encodeTagged($imgobj->getDesc()) . '</div>' . "\n";
-    }
-    $slidecontent .= '</div>' . "\n";
-    return $slidecontent;
-  }
+	static function getSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop = false, $carousel = false) {
+		global $_zp_current_image;
+		if ($crop) {
+			$imageurl = $imgobj->getCustomImage(NULL, $width, $height, $cropw, $croph, NULL, NULL, true, NULL);
+		} else {
+			$maxwidth = $width;
+			$maxheight = $height;
+			getMaxSpaceContainer($maxwidth, $maxheight, $imgobj);
+			$imageurl = $imgobj->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, NULL, NULL);
+		}
+		$slidecontent = '<div class="slide">' . "\n";
+		// no space in carousels for titles!
+		if (!$carousel) {
+			$slidecontent .= '<h4>' . html_encode($albumobj->getTitle()) . ': ' . html_Encode($imgobj->getTitle()) . '</h4>' . "\n";
+		}
+		if ($carousel) {
+			// on the carousel this means fullimage as they are always linked anyway
+			if ($linkslides) {
+				$url = pathurlencode($imgobj->getFullImageURL());
+			} else {
+				$url = $imgobj->getLink();
+			}
+			$slidecontent .= '<a href="' . $url . '">' . "\n";
+		} else if (!$carousel && $linkslides) {
+			$slidecontent .= '<a href="' . $imgobj->getLink() . '">' . "\n";
+		}
+		$active = '';
+		if ($carousel && !is_null($_zp_current_image)) {
+			if ($_zp_current_image->filename == $imgobj->filename) {
+				$active = ' class="activeslide"';
+			} else {
+				$active = '';
+			}
+		}
+		$slidecontent .= '<img src="' . pathurlencode($imageurl) . '" alt=""' . $active . '>' . "\n";
+		if ($linkslides || $carousel) {
+			$slidecontent .= '</a>' . "\n";
+		}
+		// no space in carousels for this!
+		if (getOption("cycle-slideshow_showdesc") && !$carousel) {
+			$slidecontent .= '<div class="slide_desc">' . html_encodeTagged($imgobj->getDesc()) . '</div>' . "\n";
+		}
+		$slidecontent .= '</div>' . "\n";
+		return $slidecontent;
+	}
 
-  /**
-   * Helper function to print the individual slides
-   *
-   * @param obj $albumobj Album object
-   * @param obj $imgobj Current slide obj
-   * @param int $width Slide image width
-   * @param int $height Slide image height
-   * @param int $cropw Slide image crop width
-   * @param int $croph Slide image crop height
-   * @param bool $linkslides True or false if the slides should be linked to their image page.
-   *                          Note: In carousel mode this means full image links as here slides are always linked to the image page.
-   * @param bool $crop True or false to crop the image
-   * @param bool $carousel if the slideshow is a carousel so we can enable full image linking (only images allowed!)
-   */
-  static function printSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop = false, $carousel = false) {
-    echo getSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop, $carousel);
-  }
+	/**
+	 * Helper function to print the individual slides
+	 *
+	 * @param obj $albumobj Album object
+	 * @param obj $imgobj Current slide obj
+	 * @param int $width Slide image width
+	 * @param int $height Slide image height
+	 * @param int $cropw Slide image crop width
+	 * @param int $croph Slide image crop height
+	 * @param bool $linkslides True or false if the slides should be linked to their image page.
+	 *                          Note: In carousel mode this means full image links as here slides are always linked to the image page.
+	 * @param bool $crop True or false to crop the image
+	 * @param bool $carousel if the slideshow is a carousel so we can enable full image linking (only images allowed!)
+	 */
+	static function printSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop = false, $carousel = false) {
+		echo getSlide($albumobj, $imgobj, $width, $height, $cropw, $croph, $linkslides, $crop, $carousel);
+	}
 
-  /**
+	/**
 	 * We might need this to exclude file types or not…
 	 *
 	 * @param type $slide
@@ -408,11 +430,11 @@ class cycle {
 
 	static function macro($macros) {
 		$macros['SLIDESHOW'] = array(
-						'class'	 => 'function',
-						'params' => array('string', 'bool*', 'int*', 'int*'),
-						'value'	 => 'cycle::getSlideshowPlayer',
-						'owner'	 => 'cycle',
-						'desc'	 => gettext('provide the album name as %1 and (optionally) <code>true</code> (or <code>false</code>) as %2 to show (hide) controls. Hiding the controls is the default. Width(%3) and height(%4) may also be specified to override the defaults.')
+				'class' => 'function',
+				'params' => array('string', 'bool*', 'int*', 'int*'),
+				'value' => 'cycle::getSlideshowPlayer',
+				'owner' => 'cycle',
+				'desc' => gettext('provide the album name as %1 and (optionally) <code>true</code> (or <code>false</code>) as %2 to show (hide) controls. Hiding the controls is the default. Width(%3) and height(%4) may also be specified to override the defaults.')
 		);
 		return $macros;
 	}
@@ -449,7 +471,8 @@ class cycle {
 		<?php if (getOption('cycle-slideshow_swipe')) { ?>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.swipe.min.js" type="text/javascript"></script>
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/ios6fix.js" type="text/javascript"></script>
-		<?php }
+			<?php
+		}
 		$theme = getCurrentTheme();
 		$css = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($theme) . '/slideshow2.css';
 		if (file_exists($css)) {
@@ -584,23 +607,23 @@ if (extensionEnabled('slideshow2')) {
 					$count = '';
 					?>
 					<script type="text/javascript">
-					$(document).ready(function() {
-						$("a[rel='slideshow']").colorbox({
-							slideshow: true,
-							loop: true,
-							transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
-							slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
-							slideshowStart: '<?php echo gettext("start slideshow"); ?>',
-							slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-							previous: '<?php echo gettext("prev"); ?>',
-							next: '<?php echo gettext("next"); ?>',
-							close: '<?php echo gettext("close"); ?>',
-							current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
-							maxWidth: '98%',
-							maxHeight: '98%',
-							photo: true
+						$(document).ready(function () {
+							$("a[rel='slideshow']").colorbox({
+								slideshow: true,
+								loop: true,
+								transition: '<?php echo getOption('cycle-slideshow_colorbox_transition'); ?>',
+								slideshowSpeed: <?php echo getOption('cycle-slideshow_speed'); ?>,
+								slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+								slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+								previous: '<?php echo gettext("prev"); ?>',
+								next: '<?php echo gettext("next"); ?>',
+								close: '<?php echo gettext("close"); ?>',
+								current: '<?php printf(gettext('image %1$s of %2$s'), '{current}', '{total}'); ?>',
+								maxWidth: '98%',
+								maxHeight: '98%',
+								photo: true
+							});
 						});
-					});
 					</script>
 					<?php
 					foreach ($images as $image) {

@@ -9,6 +9,7 @@
 // force UTF-8 Ø
 define('OFFSET_PATH', 3);
 require_once("../../admin-globals.php");
+require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-image.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
 
 
@@ -19,114 +20,15 @@ if (isset($_REQUEST['album'])) {
 }
 admin_securityChecks($localrights, $return = currentRelativeURL());
 
-function loadAlbum($album) {
-	global $_zp_current_album, $_zp_current_image, $_zp_gallery, $custom, $enabled;
-	$subalbums = $album->getAlbums();
-	$started = false;
-	$tcount = $count = 0;
-	foreach ($subalbums as $folder) {
-		$subalbum = newAlbum($folder);
-		if (!$subalbum->isDynamic()) {
-			$tcount = $tcount + loadAlbum($subalbum);
-		}
+if (isset($_GET['action'])) {
+	$action = sanitize($_GET['action']);
+	if ($action == 'cleanup_cache_sizes') {
+		XSRFdefender('CleanupCacheSizes');
+		cacheManager::cleanupCacheSizes();
+		$report = gettext('Image cache sizes cleaned up.');
+		header('location:' . FULLWEBPATH .'/'. ZENFOLDER. '/admin.php?action=external&msg=' . $report);
+		exitZP();
 	}
-	$theme = $_zp_gallery->getCurrentTheme();
-	$id = 0;
-	$parent = getUrAlbum($album);
-	$albumtheme = $parent->getAlbumTheme();
-	if (!empty($albumtheme)) {
-		$theme = $albumtheme;
-		$id = $parent->getID();
-	}
-	loadLocalOptions($id, $theme);
-	$_zp_current_album = $album;
-	if ($album->getNumImages() > 0) {
-		echo "<br />" . $album->name . ' ';
-		while (next_image(true)) {
-			if (isImagePhoto($_zp_current_image)) {
-				$countit = 0;
-				if (in_array('*', $enabled)) {
-					$uri = getFullImageURL(NULL, 'Protected view');
-					if (strpos($uri, 'full-image.php?') !== false) {
-						if (!($count + $countit)) {
-							echo "{ ";
-						} else {
-							echo ' | ';
-						}
-						$countit = 1;
-						?>
-						<a href="<?php echo html_encode($uri); ?>&amp;debug">
-							<?php
-							echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="30" width="30" alt="X" />' . "\n";
-							?>
-						</a>
-						<?php
-					}
-				}
-
-				foreach ($custom as $key => $cacheimage) {
-					if (in_array($key, $enabled)) {
-						$size = isset($cacheimage['image_size']) ? $cacheimage['image_size'] : NULL;
-						$width = isset($cacheimage['image_width']) ? $cacheimage['image_width'] : NULL;
-						$height = isset($cacheimage['image_height']) ? $cacheimage['image_height'] : NULL;
-						$thumbstandin = isset($cacheimage['thumb']) ? $cacheimage['thumb'] : NULL;
-						if ($special = ($thumbstandin === true)) {
-							list($special, $cw, $ch, $cx, $cy) = $_zp_current_image->getThumbCropping($size, $width, $height);
-						}
-						if (!$special) {
-							$cw = isset($cacheimage['crop_width']) ? $cacheimage['crop_width'] : NULL;
-							$ch = isset($cacheimage['crop_height']) ? $cacheimage['crop_height'] : NULL;
-							$cx = isset($cacheimage['crop_x']) ? $cacheimage['crop_x'] : NULL;
-							$cy = isset($cacheimage['crop_y']) ? $cacheimage['crop_y'] : NULL;
-						}
-						$effects = isset($cacheimage['gray']) ? $cacheimage['gray'] : NULL;
-						if (isset($cacheimage['wmk'])) {
-							$passedWM = $cacheimage['wmk'];
-						} else {
-							if ($thumbstandin) {
-								$passedWM = getWatermarkParam($_zp_current_image, WATERMARK_THUMB);
-							} else {
-								$passedWM = getWatermarkParam($_zp_current_image, WATERMARK_IMAGE);
-							}
-						}
-
-						if (isset($cacheimage['maxspace'])) {
-							getMaxSpaceContainer($width, $height, $_zp_current_image, $thumbstandin);
-						}
-						$args = array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, $thumbstandin, NULL, $thumbstandin, $passedWM, NULL, $effects);
-						$args = getImageParameters($args, $album->name);
-						$uri = getImageURI($args, $album->name, $_zp_current_image->filename, $_zp_current_image->filemtime);
-						if (strpos($uri, 'i.php?') !== false) {
-							if (!($count + $countit)) {
-								echo "{ ";
-							} else {
-								echo ' | ';
-							}
-							$countit = 1;
-							?>
-							<a href="<?php echo html_encode($uri); ?>&amp;debug">
-								<?php
-								if ($thumbstandin) {
-									echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="15" width="15" alt="x" />' . "\n";
-								} else {
-									echo '<img src="' . html_encode(pathurlencode($uri)) . '" height="20" width="20" alt="X" />' . "\n";
-								}
-								?>
-							</a>
-							<?php
-						}
-					}
-				}
-				$count = $count + $countit;
-			}
-		}
-		if ($count)
-			echo '
-						} ';
-		printf(ngettext('[%u image]', '[%u images]', $count), $count);
-		echo "<br />\n";
-	}
-	return $count + $tcount;
 }
 
 if (isset($_GET['album'])) {
@@ -149,48 +51,40 @@ if ($alb) {
 	}
 } else {
 	$object = '<em>' . gettext('Gallery') . '</em>';
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Cache images')				 => PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page = overview&tab=images',
-					gettext('Cache stored images') => PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
+	$zenphoto_tabs['overview']['subtabs'] = array(
+			gettext('Cache images') => FULLWEBPATH .'/'. ZENFOLDER .'/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
+			gettext('Cache stored images') => FULLWEBPATH .'/'. ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
 }
-$custom = array();
+cacheManager::$sizes = cacheManager::getSizes('active');
 
-$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type` = "cacheManager" ORDER BY `aux`');
-while ($row = db_fetch_assoc($result)) {
-	$row = getSerializedArray($row['data']);
-	$custom[] = $row;
-}
-$custom = sortMultiArray($custom, array('theme', 'thumb', 'image_size', 'image_width', 'image_height'));
-
-if (isset($_GET['select'])) {
+if (isset($_GET['select']) && isset($_POST['enable'])) {
 	XSRFdefender('cacheImages');
-	$enabled = @$_POST['enable'];
+	$enabled_sizes = sanitize($_POST['enable']);
+	if(!is_array($enabled_sizes) || empty($enabled_sizes)) {
+		$enabled_sizes = array();
+	}
+	cacheManager::$enabledsizes = $enabled_sizes;
 } else {
-	$enabled = false;
+	cacheManager::$enabledsizes = array();
 }
-
-printAdminHeader('overview', 'images');
-echo "\n</head>";
-echo "\n<body>";
-
-printLogoAndLinks();
-echo "\n" . '<div id = "main">';
-printTabs();
-echo "\n" . '<div id = "content">';
-?>
+printAdminHeader('overview', 'images'); ?>
+</head>
+<body>
+<?php printLogoAndLinks(); ?>
+<div id = "main">
+<?php printTabs(); ?>
+<div id = "content">
 <?php printSubtabs(); ?>
 <div class="tabbox">
-
-
 	<?php
 	zp_apply_filter('admin_note', 'cache', '');
 	$clear = sprintf(gettext('Refreshing cache for %s'), $object);
-	$count = 0;
 
 	if ($alb) {
-		$r = '/admin-edit.php?page = edit&album = ' . $alb;
+		$returnpage = '/admin-edit.php?page = edit&album = ' . $alb;
 		echo "\n<h2>" . $clear . "</h2>";
 	} else {
-		$r = '/admin.php';
+		$returnpage = '/admin.php';
 		echo "\n<h2>" . $clear . "</h2>";
 	}
 
@@ -201,70 +95,62 @@ echo "\n" . '<div id = "content">';
 		$themes[$theme] = $data['name'];
 	}
 	$last = '';
+	cacheManager::printJS();
+	cacheManager::printCurlNote();
+	if (empty(cacheManager::$enabledsizes)) {
+		?>
+		<p>
+			<?php echo gettext('This tool searches uncached image sizes from your albums or within a theme or plugin if they are registered to the cacheManager properly. If uncached images sizes exist you can have this tool generate these. If you like to re-generate existing cache image sizes, you have to clear the image cache manually first.'); ?>
+		</p>
+		<p class="notebox"><?php echo gettext('Note that this is a quite time and server power consuming measure depending on the number of images to pre-cache, their dimensions and the power of your server.'); ?>
+			<?php echo gettext('If your server is not able to process all albums and images try one album after another from each album edit page. Also remember that Zenphoto will create any size on the fly right when needed.'); ?>
+		</p>
+		<?php
+	}
 	?>
-	<script type="text/javascript">
-		//<!-- <![CDATA[
-		function checkTheme(theme) {
-			$('.' + theme).prop('checked', $('#' + theme).prop('checked'));
-		}
-		function showTheme(theme) {
-			html = $('#' + theme + '_arrow').html();
-			if (html.match(/down/)) {
-				html = html.replace(/_down/, '_up');
-				html = html.replace(/title = "<?php echo gettext('Show'); ?>/, 'title="<?php echo gettext('Hide');
-	?>"');
-				$('#' + theme + '_list').show();
-			} else {
-				html = html.replace(/_up/, '_down');
-				html = html.replace(/title="<?php echo gettext('Hide'); ?>/, 'title="<?php echo gettext('Show'); ?>"');
-				$('#' + theme + '_list').hide();
-			}
-			$('#' + theme + '_arrow').html(html);
-		}
-		//]]> -->
-	</script>
-	<form class="dirty-check" name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
-		<?php XSRFToken('cacheImages') ?>
+	<form class="dirty-check clearfix" name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post" autocomplete="off">
+			<?php XSRFToken('cacheImages') ?>
 		<ol class="no_bullets">
 			<?php
-			if (getOption('cache_full_image') && (!is_array($enabled) || in_array('*', $enabled))) {
-				if (is_array($enabled)) {
-					unset($enabled[array_search('*', $enabled)]);
-					$checked = ' checked="checked" disabled="disabled"';
-				} else {
-					$checked = '';
-				}
-				$cachesizes++;
-				?>
-				<li>
-					<?php
-					if (!is_array($enabled)) {
-						?>
-						<span class="icons" id="<?php echo $theme; ?>_arrow">
-							<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/place_holder_icon.png'; ?>" alt="" />
-						</span>
-						<?php
-					}
-					?>
-					<label>
-						<input type="checkbox" name="enable[]" value="*" <?php echo $checked; ?> />
-						<?php echo gettext('Apply'); ?> <code><?php echo gettext('Full Image'); ?></code>
-					</label>
-				</li>
-				<?php
-			}
-
-			$seen = array();
-			foreach ($custom as $key => $cacheimage) {
-				if (!is_array($enabled) || in_array($key, $enabled)) {
-					if (is_array($enabled)) {
+			$defaultsizes = array(
+					array(
+							'option' => 'cache_full_image', 
+							'key' => '*', 
+							'text' => gettext('Full Image')),
+					array(
+							'option' => 'cachemanager_defaultthumb', 
+							'key' => 'defaultthumb', 
+							'text' => gettext('Default thumb size (or manual crop)')),
+					array(
+							'option' => 'cachemanager_defaultsizedimage', 
+							'key' => 'defaultsizedimage', 
+							'text' => gettext('Default sized image size'))
+			);
+			foreach($defaultsizes as $defaultsize) {
+				if (getOption($defaultsize['option']) && (empty(cacheManager::$enabledsizes) || array_key_exists($defaultsize['key'], cacheManager::$enabledsizes))) {
+					if (!empty(cacheManager::$enabledsizes)) {
 						$checked = ' checked="checked" disabled="disabled"';
 					} else {
-						if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin') {
+						if(in_array($defaultsize['key'], array('defaultthumb', 'defaultsizedimage'))) {
 							$checked = ' checked="checked"';
 						} else {
 							$checked = '';
 						}
+					}
+					$cachesizes++;
+					cacheManager::printSizesListEntry($defaultsize['key'], $checked, $defaultsize['text']);
+				}
+			}
+			$seen = array();
+			foreach (cacheManager::$sizes as $key => $cacheimage) {
+				if ((empty(cacheManager::$enabledsizes) || array_key_exists($key, cacheManager::$enabledsizes))) {
+					$checked = '';
+					if (array_key_exists($key, cacheManager::$enabledsizes)) {
+						$checked = ' checked="checked" disabled="disabled"';
+					} else {
+						if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin') {
+							$checked = ' checked="checked"';
+						} 
 					}
 					$cachesizes++;
 					$size = isset($cacheimage['image_size']) ? $cacheimage['image_size'] : NULL;
@@ -285,17 +171,18 @@ echo "\n" . '<div id = "content">';
 							$postfix = str_replace('_h', '_hMax', $postfix);
 						} else {
 							$postfix = '_' . gettext('invalid_MaxSpace');
-							$checked = ' disabled="disabled"';
+							$checked .= ' disabled="disabled"';
 						}
 					}
 					$themeid = $theme = $cacheimage['theme'];
 					if (isset($themes[$theme])) {
 						$themeid = $themes[$theme];
 					}
-					if ($theme != $last && !is_array($enabled)) {
+					if ($theme != $last && empty(cacheManager::$enabledsizes)) {
 						if ($last) {
 							?>
 						</ol>
+						</span>
 						</li>
 						<?php
 					}
@@ -308,40 +195,26 @@ echo "\n" . '<div id = "content">';
 							</a>
 						</span>
 						<label>
-							<input type="checkbox" name="<?php echo $theme; ?>" id="<?php echo $theme; ?>" value="" onclick="checkTheme('<?php echo $theme; ?>');"<?php echo $checked; ?> /><?php printf(gettext('all sizes for <i>%1$s</i>'), $themeid); ?>
+							<input type="checkbox" name="<?php echo $theme; ?>" id="<?php echo $theme; ?>" value="" onclick="checkTheme('<?php echo $theme; ?>');"<?php echo $checked; ?> /> <?php printf(gettext('all sizes for <i>%1$s</i>'), $themeid); ?>
 						</label>
 						<span id="<?php echo $theme; ?>_list" style="display:none">
 							<ol class="no_bullets">
 								<?php
 							}
 							$show = true;
-							if (is_array($enabled)) {
+							if (!empty(cacheManager::$enabledsizes)) {
 								if (array_key_exists($postfix, $seen)) {
 									$show = false;
-									unset($custom[$key]);
+									unset(cacheManager::$sizes[$key]);
 								}
 								$seen[$postfix] = true;
 							}
 							if ($show) {
-								?>
-								<li>
-									<?php
-									if (is_array($enabled)) {
-										?>
-										<input type="hidden" name="enable[]" value="<?php echo $key; ?>" />
-										<?php
-									}
-									?>
-									<label>
-										<input type="checkbox" name="enable[]" class="<?php echo $theme; ?>" value="<?php echo $key; ?>" <?php echo $checked; ?> />
-										<?php echo gettext('Apply'); ?> <code><?php echo ltrim($postfix, '_'); ?></code>
-									</label>
-								</li>
-								<?php
+								cacheManager::printSizesListEntry($key, $checked, ltrim($postfix, '_'), $theme);
 							}
 						}
 					}
-					if (!is_array($enabled)) {
+					if (empty(cacheManager::$enabledsizes)) {
 						?>
 					</ol>
 				</span>
@@ -351,68 +224,120 @@ echo "\n" . '<div id = "content">';
 		?>
 		</ol>
 		<?php
-		if (is_array($enabled)) {
+		$button = false;
+		if (!empty(cacheManager::$enabledsizes)) {
 			if ($cachesizes) {
-				echo '<p>';
-				printf(ngettext('%u cache size to apply.', '%u cache sizes to apply.', $cachesizes), $cachesizes);
-				echo '</p>';
+				$allalbums = array();
+				if($alb) {
+					$allalbums[] = $alb;
+				} else {
+					$allalbums = $_zp_gallery->getAlbums();
+				}
+
+				//progress count
+				cacheManager::$albums_cached = 0;
+				cacheManager::$images_cached = 0;
+				cacheManager::$imagesizes_cached = 0;
+				cacheManager::$imagesizes_failed = 0; 
+				
+				// general counts
 				if ($alb) {
-					$album = newAlbum($folder);
-					$count = loadAlbum($album);
+					$albobj = newAlbum($alb);
+					$images_total = $albobj->getNumAllImages();
+					$imagesizes_total = $images_total * $cachesizes;
+					$albums_total = $albobj->getNumAllAlbums() + 1; // the album itself counts, too ;)
+					unset($albobj);
 				} else {
-					$albums = $_zp_gallery->getAlbums();
-					shuffle($albums);
-					foreach ($albums as $folder) {
-						$album = newAlbum($folder);
-						if (!$album->isDynamic()) {
-							$count = $count + loadAlbum($album);
-						}
+					$images_total = $_zp_gallery->getNumImages();
+					$imagesizes_total = $_zp_gallery->getNumImages() * $cachesizes;
+					$albums_total = $_zp_gallery->getNumAlbums(true);
+				}
+				?>
+				<p><?php printf(ngettext('%1$u cache size to apply for %2$u images (%3$u cache size images in total*)', '%1$u cache sizes to apply for %2$u images (%3$u cache size images in total*)', $imagesizes_total), $cachesizes, $images_total, $imagesizes_total); ?><br>
+				<em><?php echo gettext('* Approximate number not counting already existing cache sizes.'); ?></em></p>
+				<hr>
+				<div class="imagecaching_progress">
+					<h2 class="imagecaching_headline"><?php echo gettext('Image caching in progress.'); ?></h2>
+					<div class="notebox">
+						<p><?php echo gettext('Please be patient as this might take quite a while! It depends on the number of images to pre-cache, their dimensions and the power of your server.'); ?></p>
+						<p><?php echo gettext('If you move away from this page before this loader disapeared, the caching will be incomplete but you can re-start any time later.'); ?></p>
+					</div>
+					<img class="imagecaching_loader" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/ajax-loader.gif" alt="">
+					<ul>	
+						<li><?php echo gettext('Image cache sizes generated: '); ?><span class="imagecaching_imagesizes"><?php echo cacheManager::$imagesizes_cached; ?></li>
+						<?php if (function_exists('curl_init')) { ?>
+							<li><?php echo gettext('Image cache sizes failed: '); ?><span class="imagecaching_imagesizes_failed">0</span></li>
+						<?php } ?>
+						<li><?php echo gettext('Images processed: '); ?><span class="imagecaching_imagecount">0</span>/<span><?php echo $images_total; ?></span></li>
+						<li><?php echo gettext('Albums processed: '); ?><span class="imagecaching_albumcount">0</span>/<span><?php echo $albums_total; ?></span></li>
+						<li><?php echo gettext('Processing time: '); ?><span class="imagecaching_time">0</span> <?php echo gettext('minutes'); ?></li>
+					</ul>
+				</div>
+				<?php cacheManager::printButtons($returnpage, $alb, true); ?>
+				<hr>
+				<h2><?php echo gettext('Caching log'); ?></h2>
+				<?php
+				cacheManager::$starttime = time();
+				?>
+				<ol>
+				<?php
+				@set_time_limit(3000);
+				foreach ($allalbums as $album) {
+					$albumobj = newAlbum($album);
+					if (!$albumobj->isDynamic()) {
+						cacheManager::loadAlbums($albumobj);
 					}
-				}
-				$partb = sprintf(ngettext('%u cache size requested', '%u cache sizes requested', $count * $cachesizes), $count * $cachesizes);
-				echo "\n" . "<br />" . sprintf(ngettext('Finished processing %1$u image (%2$s).', 'Finished processing %1$u images (%2$s).', $count), $count, $partb);
-				if ($count) {
-					$button = array('text' => gettext("Refresh"), 'title' => gettext('Refresh the caching of the selected image sizes if some images did not render.'));
-				} else {
-					$button = false;
-				}
+				} 
+				?>
+				</ol>
+				<?php
+				$endtime = time();
+				$time_total = ($endtime - cacheManager::$starttime) / 60;
+				?>
+				<p><strong><?php echo gettext('Caching done!'); ?></strong></p>
+				<script>
+					$( document ).ready(function() {
+						$('.imagecaching_progress').addClass('messagebox');
+						$('.imagecaching_headline').text('<?php echo gettext('Caching done!'); ?>');
+						$('.imagecaching_progress .notebox, .imagecaching_loader').remove();
+						$('.imagecaching_imagecount').text(<?php echo cacheManager::$images_cached; ?>);
+						$('.imagecaching_imagesizes').text(<?php echo cacheManager::$imagesizes_cached; ?>);
+						$('.imagecaching_imagesizes_failed').text(<?php echo cacheManager::$imagesizes_failed; ?>);
+						$('.imagecaching_albumcount').text(<?php echo cacheManager::$albums_cached; ?>);
+						$('.imagecaching_time').text(<?php echo round($time_total, 2); ?>);
+						$('.buttons_cachefinished').removeClass('hidden');
+					});
+				</script>
+				<?php
 			} else {
 				$button = false;
 				?>
-				<p><?php echo gettext('No cache sizes enabled.'); ?></p>';
+				<p><?php echo gettext('No cache sizes enabled.'); ?></p>
 				<?php
 			}
 		} else {
 			$button = array('text' => gettext("Cache the images"), 'title' => gettext('Executes the caching of the selected image sizes.'));
 		}
-		?>
-		<p class="buttons">
-			<a title="<?php echo gettext('Back to the overview'); ?>" href="<?php echo WEBPATH . '/' . ZENFOLDER . $r; ?>"> <img src="<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/images/cache.png" alt="" />
-				<strong><?php echo gettext("Back"); ?> </strong>
-			</a>
-		</p>
-		<?php
+		cacheManager::printButtons($returnpage, $alb, true);
 		if ($button) {
 			?>
-			<p class="buttons">
+			<p class="buttons clearfix">
 				<button class="tooltip" type="submit" title="<?php echo $button['title']; ?>" >
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" />
-					<?php echo $button['text']; ?>
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" />
+			<?php echo $button['text']; ?>
 				</button>
 			</p>
 			<?php
 		}
 		?>
-		<br class="clearall" />
 	</form>
 
-	<?php
-	echo "\n" . '</div>';
-	echo "\n" . '</div>';
-	echo "\n" . '</div>';
+</div>
+</div>
+</div>
+<?php printAdminFooter(); ?>
 
-	printAdminFooter();
+</body>
+</html>
 
-	echo "\n</body>";
-	echo "\n</head>";
-	?>
+

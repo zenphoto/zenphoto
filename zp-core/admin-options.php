@@ -472,7 +472,9 @@ if (isset($_GET['action'])) {
 			setOption('anonymize_ip', sanitize_numeric($_POST['anonymize_ip']));
 			setOption('dataprivacy_policy_notice', process_language_string_save('dataprivacy_policy_notice', 3));
 			setOption('dataprivacy_policy_custompage', sanitize($_POST['dataprivacy_policy_custompage']));
-			setOption('dataprivacy_policy_zenpage', sanitize($_POST['dataprivacy_policy_zenpage']));
+			if(extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+				setOption('dataprivacy_policy_zenpage', sanitize($_POST['dataprivacy_policy_zenpage']));
+			}
 			setOption('dataprivacy_policy_customlinktext', process_language_string_save('dataprivacy_policy_customlinktext', 3));
 			$returntab = "&tab=security";
 		}
@@ -999,7 +1001,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												<?php
 												echo gettext('Duration');
 												?>
-												<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PESISTENCE; ?>" />
+												<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PERSISTENCE; ?>" />
 											</p>
 											<?php
 										}
@@ -3223,13 +3225,15 @@ Zenphoto_Authority::printPasswordFormJS();
 										</select>
 									</td>
 									<td>
-										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
+										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages. However, if your server supports <em>https</em> there is no reason to use for the admin only!"); ?></p>
 										<p class="notebox"><?php
-											echo gettext("<strong>Note:</strong>" .
-															"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected." .
-															"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  " .
-															"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! " .
-															'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.');
+											echo gettext('<strong>Note:</strong> Login from the front-end user login form is secure only if <em>https</em> is selected.');
+											?>
+										</p>
+										<p class="warningbox"><?php
+											echo gettext('<strong>Warning:</strong> If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  ' .
+															'If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! ' .
+															'Your only possibility then is to set or add <code>$conf["server_protocol"] = "http";</code> to your <code>zenphoto.cfg.php</code> file .');
 											?>
 										</p>
 									</td>
@@ -3369,13 +3373,24 @@ Zenphoto_Authority::printPasswordFormJS();
 										if(extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
 											$datapolicy_zenpage = getOption('dataprivacy_policy_zenpage');
 											$zenpageobj = new Zenpage();
-											$zenpagepages = $zenpageobj->getPages(true);
+											$zenpagepages = $zenpageobj->getPages(false, false, null, 'sortorder', false);
 											$privacypages = array();
 											$privacypages[gettext('None')] = 'none'; 
 											foreach($zenpagepages as $zenpagepage) {
 												$pageobj = new Zenpagepage($zenpagepage['titlelink']);
 												if(!$pageobj->isProtected()) {
-													$privacypages[get_language_string($zenpagepage['title'])] = $zenpagepage['titlelink'];
+													$unpublished_note = '';
+													if(!$pageobj->getShow()) {
+														$unpublished_note = '*';
+													}
+													$sublevel = '';
+													$level = count(explode('-', $pageobj->getSortorder()));
+													if($level != 1) {
+														for($l = 1; $l < $level; $l++) {
+															$sublevel .= '-'; 
+														}
+													}
+													$privacypages[$sublevel . get_language_string($zenpagepage['title']) . $unpublished_note] = $zenpagepage['titlelink'];
 												}
 											}
 											if($privacypages) {
@@ -3383,13 +3398,13 @@ Zenphoto_Authority::printPasswordFormJS();
 												?>
 												<label>
 													<select id="dataprivacy_policy_zenpage" name="dataprivacy_policy_zenpage">
-													<?php	generateListFromArray(array($datapolicy_zenpage), $privacypages, false, true); ?>
+													<?php	generateListFromArray(array($datapolicy_zenpage), $privacypages, null, true); ?>
 													</select>
-													<br><?php echo gettext('Select a Zenpage page.'); ?>
+													<br><?php echo gettext('Select a Zenpage page. * denotes unpublished page.'); ?>
 												</label>
 												<?php 
 											}  else {
-												echo '<p><em>' . gettext('No public Zenpage pages available') . '</em></p>';
+												echo '<p><em>' . gettext('No suitable Zenpage pages available') . '</em></p>';
 											}
 										} 
 									  ?>	

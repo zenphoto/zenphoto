@@ -219,10 +219,7 @@ class ZenpageCategory extends ZenpageRoot {
 				array_push($subcategories, $catobj->getTitlelink());
 			}
 		}
-		if (count($subcategories) != 0) {
-			return $subcategories;
-		}
-		return FALSE;
+		return $subcategories;
 	}
 
 	/**

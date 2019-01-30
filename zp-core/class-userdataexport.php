@@ -5,6 +5,9 @@
  * 
  * @author Malte Müller (acrylian)
  * @since ZenphotoCMS 1.5
+ * 
+ * @package core
+ * @subpackage classes\helpers
  */
 class userDataExport {
 
@@ -33,7 +36,7 @@ class userDataExport {
 	 */
 	function getAllData() {
 		if (!empty($this->data)) {
-			//return $this->data;
+			return $this->data;
 		}
 		$generaldata = $this->getGeneralData();
 		$this->data = array_merge($this->getUserData(), $this->getSecurityLogData(), $this->getGalleryData(), $this->getCommentData());
@@ -124,28 +127,30 @@ class userDataExport {
 								<h2><?php echo html_encode($sectionheadline); ?></h2>
 								<ul>
 									<?php
-									foreach ($section as $headline => $entries) {
-										if (is_array($entries)) {
-											?>
-											<h3><?php echo html_encode($headline); ?></h3>
-											<ul>
-												<?php
-												foreach ($entries as $key => $val) {
-													?>
-													<li><strong><?php echo html_encode($key); ?>: </strong> 
-														<?php
-														self::printList($val);
-														?>
-													</li>
-													<?php
-												}
+									if ($section) {
+										foreach ($section as $headline => $entries) {
+											if (is_array($entries)) {
 												?>
-											</ul>
-											<?php
-										} else {
-											?>
-											<li><strong><?php echo html_encode($headline); ?>:</strong> <?php self::printLink($entries); ?></li>
-											<?php
+												<h3><?php echo html_encode($headline); ?></h3>
+												<ul>
+													<?php
+													foreach ($entries as $key => $val) {
+														?>
+														<li><strong><?php echo html_encode($key); ?>: </strong> 
+															<?php
+															self::printList($val);
+															?>
+														</li>
+														<?php
+													}
+													?>
+												</ul>
+												<?php
+											} else {
+												?>
+												<li><strong><?php echo html_encode($headline); ?>:</strong> <?php self::printLink($entries); ?></li>
+												<?php
+											}
 										}
 									}
 									?>

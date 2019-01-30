@@ -211,7 +211,7 @@ define('COMMENT_DATACONFIRMATION', 64);
  * @param bool $anon set to true if the poster wishes to remain anonymous
  * @param string $customdata
  * @param bit $check bitmask of which fields must be checked. If set overrides the options
- * @param bool $dataconfirmation 
+ * @param bool $dataconfirmation True if data privacy confirmation required
  * @return object
  */
 function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $customdata, $check = false, $dataconfirmation = null) {
@@ -224,8 +224,6 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 			$whattocheck = $whattocheck | COMMENT_NAME_REQUIRED;
 		if (getOption('comment_web_required') == 'required')
 			$whattocheck = $whattocheck | COMMENT_WEB_REQUIRED;
-		if(getOption('comment_form_dataconfirmation')) 
-			$whattocheck = $whattocheck | COMMENT_DATACONFIRMATION;
 		switch (getOption('Use_Captcha')) {
 			case 0:
 				break;
@@ -239,8 +237,10 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		}
 		if (getOption('comment_body_requiired'))
 			$whattocheck = $whattocheck | COMMENT_BODY_REQUIRED;
-		IF (getOption('email_new_comments'))
+		if (getOption('email_new_comments'))
 			$whattocheck = $whattocheck | COMMENT_SEND_EMAIL;
+		if(getOption('comment_form_dataconfirmation')) 
+			$whattocheck = $whattocheck | COMMENT_DATACONFIRMATION;
 	} else {
 		$whattocheck = $check;
 	}
@@ -546,7 +546,6 @@ function comment_form_handle_comment() {
 							'saved'		 => isset($_POST['remember']),
 							'private'	 => $commentadded->getPrivate(),
 							'anon'		 => $commentadded->getAnon(),
-							'custom'	 => $commentadded->getCustomData(),
 							'custom'	 => $commentadded->getCustomData()
 			);
 

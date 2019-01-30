@@ -9,21 +9,21 @@ define ('OFFSET_PATH', 3);
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
 $buttonlist[] = array(
-									'category'=>gettext('Info'),
-									'enable'=>true,
-									'button_text'=>gettext('Show PHP Information'),
-									'formname'=>'cloneZenphoto',
-									'action'=> 'utilities/phpInfo.php',
-									'icon'=>'images/info.png',
-									'title'=>gettext('Display PHP information.'),
-									'alt'=>gettext('PHPInfo'),
-									'hidden'=>'',
-									'rights'=> ADMIN_RIGHTS
-									);
+		'category' => gettext('Info'),
+		'enable' => true,
+		'button_text' => gettext('Show PHP Information'),
+		'formname' => 'cloneZenphoto',
+		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/phpInfo.php',
+		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/info.png',
+		'title' => gettext('Display PHP information.'),
+		'alt' => gettext('PHPInfo'),
+		'hidden' => '',
+		'rights' => ADMIN_RIGHTS
+);
 
 admin_securityChecks(NULL, currentRelativeURL());
 
-$zenphoto_tabs['overview']['subtabs']=array(gettext('PHP Info')=>'');
+$zenphoto_tabs['overview']['subtabs'] = array(gettext('PHP Info') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/phpInfo.php');
 printAdminHeader('overview','phpInfo');
 
 ?>

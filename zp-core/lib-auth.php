@@ -38,11 +38,19 @@
  * 		ADMIN_RIGHTS to insure that there is some user capable of adding users or
  * 		modifying user rights.
  *
- * @package classes
+ * @package core
+ * @subpackage classes\authorization
  */
 // force UTF-8 Ø
 require_once(dirname(__FILE__) . '/classes.php');
 
+/**
+ * Provides the methods used for user authorization and management
+ * store an instantiation of this class in `$_zp_authority`.
+ *
+ * @package core
+ * @subpackage classes\authorization
+ */
 class Zenphoto_Authority {
 
 	var $admin_users = NULL;
@@ -820,7 +828,7 @@ class Zenphoto_Authority {
 		if (is_null($redirect)) {
 			$redirect = getRequestURI();
 		}
-
+		$redirect = sanitizeRedirect($redirect);
 		if (isset($_POST['user'])) {
 			$requestor = sanitize($_POST['user'], 3);
 		} else {
@@ -1316,7 +1324,12 @@ class Zenphoto_Authority {
 	}
 
 }
-
+/**
+ * Supports the basic Zenphoto needs for object manipulation of administrators.
+ *
+ * @package core
+ * @subpackage classes\authorization
+ */
 class Zenphoto_Administrator extends PersistentObject {
 
 	/**

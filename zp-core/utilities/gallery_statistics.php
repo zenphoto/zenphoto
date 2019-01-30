@@ -16,16 +16,16 @@ if (extensionEnabled('zenpage')) {
 }
 
 $buttonlist[] = array(
-				'category'		 => gettext('Info'),
-				'enable'			 => true,
-				'button_text'	 => gettext('Gallery Statistics'),
-				'formname'		 => 'gallery_statistics.php',
-				'action'			 => 'utilities/gallery_statistics.php',
-				'icon'				 => 'images/bar_graph.png',
-				'title'				 => gettext('Shows statistical graphs and info about your gallery’s images and albums.'),
-				'alt'					 => '',
-				'hidden'			 => '',
-				'rights'			 => ADMIN_RIGHTS
+		'category' => gettext('Info'),
+		'enable' => true,
+		'button_text' => gettext('Gallery Statistics'),
+		'formname' => 'gallery_statistics.php',
+		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/gallery_statistics.php',
+		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
+		'title' => gettext('Shows statistical graphs and info about your gallery’s images and albums.'),
+		'alt' => '',
+		'hidden' => '',
+		'rights' => ADMIN_RIGHTS
 );
 
 admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
@@ -33,8 +33,9 @@ admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
 $_zp_gallery->garbageCollect();
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Statistics') => '');
+$zenphoto_tabs['overview']['subtabs'] = array(gettext('Statistics') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/gallery_statistics.php');
 printAdminHeader('overview', 'statistics');
+
 ?>
 <link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
 <?php

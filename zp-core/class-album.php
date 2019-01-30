@@ -2,7 +2,8 @@
 
 /**
  * Album Class
- * @package classes
+ * @package core
+ * @subpackage classes\objects
  */
 // force UTF-8 Ø
 
@@ -63,6 +64,8 @@ class AlbumBase extends MediaObject {
 	protected $lastsubalbumsort = NULL;
 	protected $albumthumbnail = NULL; // remember the album thumb for the duration of the script
 	protected $subrights = NULL; //	cache for album subrights
+	protected $num_allalbums = null; // count of all subalbums of all sublevels
+	protected $num_allimages = null; // count of all images of all sublevels
 
 	function __construct($folder8, $cache = true) {
 		$this->linkname = $this->name = $folder8;
@@ -301,12 +304,34 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
-	 * Returns the count of subalbums
+	 * Returns the count of direct child subalbums
 	 *
 	 * @return int
 	 */
 	function getNumAlbums() {
 		return count($this->getAlbums(0, NULL, NULL, false));
+	}
+	
+	/**
+	 * Returns the count of all subalbums of all sublevels
+	 * Note that dynamic albums are not counted
+	 * 
+	 * @since Zenphoto 1.5.2
+	 */
+	function getNumAllAlbums() {
+		if (!is_null($this->num_allalbums)) {
+			return $this->num_allalbums;
+		} else {
+			$count = $this->getNumAlbums();
+			$subalbums = $this->getAlbums();
+			foreach ($subalbums as $folder) {
+				$subalbum = newAlbum($folder);
+				if (!$subalbum->isDynamic()) {
+					$count += $subalbum->getNumAllAlbums();
+				}
+			}
+			return $count;
+		}
 	}
 
 	/**
@@ -355,6 +380,28 @@ class AlbumBase extends MediaObject {
 			return count($this->getImages(0, 0, NULL, NULL, false));
 		}
 		return count($this->images);
+	}
+	
+	/**
+	 * Returns the number of images in this album and subalbums of all levels
+	 * Note that dynamic albums are not counted.
+	 * 
+	 * @since Zenphoto 1.5.2
+	 */
+	function getNumAllImages() {
+		if (!is_null($this->num_allimages)) {
+			return $this->num_allimages;
+		} else {
+			$count = $this->getNumImages();
+			$subalbums = $this->getAlbums();
+			foreach ($subalbums as $folder) {
+				$subalbum = newAlbum($folder);
+				if (!$subalbum->isDynamic()) {
+					$count += $subalbum->getNumAllImages();
+				}
+			}
+			return $count;
+		}
 	}
 
 	/**

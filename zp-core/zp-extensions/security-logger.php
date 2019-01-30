@@ -209,13 +209,13 @@ class security_logger {
 			fclose($f);
 			clearstatcache();
 			if (!$preexists) {
-				@chmod($file, 0660 & CHMOD_VALUE);
+				@chmod($file, LOGS_MOD);
 				if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
 					$permission = fileperms($file) & 0700; //	on Windows owner==group==public
-					$check = $permission != 0600 & CHMOD_VALUE;
+					$check = $permission != LOGS_MOD;
 				} else {
 					$permission = fileperms($file) & 0777;
-					$check = $permission != 0660 & CHMOD_VALUE;
+					$check = $permission != LOGS_MOD;
 				}
 				if ($check) {
 					$f = fopen($file, 'a');

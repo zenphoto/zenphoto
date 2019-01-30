@@ -14,8 +14,8 @@ $buttonlist[] = $mybutton = array(
 		'enable' => true,
 		'button_text' => gettext('User data export'),
 		'formname' => 'user-data-export.php',
-		'action' => 'utilities/user-data-export.php',
-		'icon' => 'images/bar_graph.png',
+		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/user-data-export.php',
+		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
 		'title' => gettext('Lists and exports data stored about a specific user and email address.'),
 		'alt' => '',
 		'hidden' => '',
@@ -31,8 +31,8 @@ $error = '';
 if (isset($_REQUEST['userdata-username'])) {
 	$username = sanitize($_REQUEST['userdata-username']);
 	$usermail = sanitize($_REQUEST['userdata-usermail']);
-	if (empty($username)) {
-		$error = '<p class="errorbox fade-message">' . gettext('You must supply a user name.') . '</p>';
+	if (empty($username) && empty($usermail)) {
+		$error = '<p class="errorbox fade-message">' . gettext('You must supply a user name and/or mail address.') . '</p>';
 	} else {
 		$dataformat = sanitize($_REQUEST['userdata-format']);
 		$dataexport = new userDataExport($username, $usermail, $_zp_gallery, $_zp_authority);
@@ -76,10 +76,10 @@ printAdminHeader('overview', 'User data export');
 				<form id="userdata-export-form" name="userdata-export-form" method="post">
 					<?php XSRFToken('userdata-export'); ?>
 					<p>
-						<label><input type="text" id="userdata-username" name="userdata-username" value="<?php echo html_encode($username); ?>"> <?php echo gettext('User name'); ?>*</label>
+						<label><input type="text" id="userdata-username" name="userdata-username" value="<?php echo html_encode($username); ?>"> <?php echo gettext('User name'); ?></label>
 						<label><input type="email" id="userdata-usermail" name="userdata-usermail" value=""> <?php echo gettext('User email address'); ?></label>
 					</p>
-					<p><?php echo gettext('*User name is required but it is recommended to also enter an email address for more reliable results on some queries.'); ?></p>
+					<p><?php echo gettext('You can supply either user name or user email address or both. For more reliable results on users registered to your site both are recommended. For just getting commenters there might be no user name or no mail address provided depending on your comment_form plugin settings.'); ?></p>
 					<p>
 						<label><input type="radio" id="userdata-format" name="userdata-format" value="html" checked="checked"> HTML</label>
 						<label><input type="radio" id="userdata-format" name="userdata-format" value="json"> JSON</label>

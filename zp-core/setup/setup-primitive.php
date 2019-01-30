@@ -14,17 +14,17 @@ require_once(dirname(dirname(__FILE__)).'/functions-common.php');
 require_once(dirname(dirname(__FILE__)).'/lib-kses.php');
 
 $const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
-$serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
+$_zp_setup_serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
 preg_match('~(.*)/('.ZENFOLDER.')~',$const_webpath, $matches);
 if (empty($matches)) {
 	$const_webpath = '';
 } else {
 	$const_webpath = $matches[1];
-	$serverpath = substr($serverpath,0,strrpos($serverpath,'/'.ZENFOLDER));
+	$_zp_setup_serverpath = substr($_zp_setup_serverpath,0,strrpos($_zp_setup_serverpath,'/'.ZENFOLDER));
 }
 
 if (!defined('WEBPATH')) { define('WEBPATH', $const_webpath); }
-if (!defined('SERVERPATH')) { define('SERVERPATH', $serverpath); }
+if (!defined('SERVERPATH')) { define('SERVERPATH', $_zp_setup_serverpath); }
 define('LOCAL_CHARSET','UTF-8');
 define('FILESYSTEM_CHARSET', 'UTF-8');
 define('ADMIN_RIGHTS',1);
@@ -61,7 +61,7 @@ function setOptionDefault($key, $value) {
 }
 
 function debugLog($message, $reset=false) {
-	setupLog($message, true);
+	setup::Log($message, true);
 }
 
 function getRequestURI() {

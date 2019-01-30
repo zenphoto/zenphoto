@@ -253,7 +253,7 @@ class scriptlessSocialsharing {
 		}
 		if (getOption('scriptless_socialsharing_reddit')) {
 			$buttons[] = array(
-					'class' => 'sharingicon-reddit',
+					'class' => 'sharingicon-reddit-alien',
 					'title' => 'Reddit',
 					'url' => 'https://reddit.com/submit?url=' . $url . '/?socialshare&amp;title=' . $title
 			);
@@ -371,7 +371,7 @@ class scriptlessSocialsharing {
 					<?php 
 					if ($button['class'] == 'sharingicon-whatsapp') { ?>
 						<script>
-							(navigator.userAgent.match(/(iPhone)/g)) ? $(“.whatsappLink”).removeClass('hidden') : null;
+							(navigator.userAgent.match(/(iPhone)/g)) ? $('.whatsappLink').removeClass('hidden') : null;
 						</script>
 					<?php 
 					} 

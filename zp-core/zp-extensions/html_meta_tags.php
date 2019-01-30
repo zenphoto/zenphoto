@@ -35,6 +35,7 @@ if (in_context(ZP_INDEX)) {
 class htmlmetatags {
 
 	function __construct() {
+		replaceOption('google-site-verification','htmlmeta_google-site-verification');
 		setOptionDefault('htmlmeta_cache_control', 'no-cache');
 		setOptionDefault('htmlmeta_pragma', 'no-cache');
 		setOptionDefault('htmlmeta_robots', 'index');
@@ -42,14 +43,8 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_expires', '43200');
 		setOptionDefault('htmlmeta_tags', '');
 
-		if(getOption('google-site-verification')) { // import existing old option
-			$verify = getOption('google-site-verification');
-			setOptionDefault('htmlmeta_google-site-verification', $verify);
-			purgeOption('google-site-verification'); // remove obsolete option
-		} else {
-			setOptionDefault('htmlmeta_google-site-verification', '');
-		}
-
+		setOptionDefault('htmlmeta_google-site-verification', '');
+	
 		if(getOption('htmlmeta_og-title')) { // assume this will be set
 			setOptionDefault('htmlmeta_opengraph', 1);
 		}
@@ -84,8 +79,8 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_ogimage_width', 1280);
 		setOptionDefault('htmlmeta_ogimage_height', 900);
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('html_meta_tags');
-			cacheManager::addThemeCacheSize('html_meta_tags', NULL, getOption('htmlmeta_ogimage_width'), getOption('htmlmeta_ogimage_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
+			cacheManager::deleteCacheSizes('html_meta_tags');
+			cacheManager::addCacheSize('html_meta_tags', NULL, getOption('htmlmeta_ogimage_width'), getOption('htmlmeta_ogimage_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
 		}
 	}
 
@@ -409,7 +404,7 @@ class htmlmetatags {
 
 		// Facebook app id
 		if (getOption('htmlmeta_fb-app_id')) {
-			$meta .= '<meta property="fb:app_id"  content="' . sanitize_numeric(getOption('htmlmeta_fb-app_id')) . '" />' . "\n";
+			$meta .= '<meta property="fb:app_id"  content="' . getOption('htmlmeta_fb-app_id') . '" />' . "\n";
 		}
 
 		// dissalow users to pin images on Pinterest

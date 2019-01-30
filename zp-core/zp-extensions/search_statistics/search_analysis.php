@@ -18,7 +18,7 @@ if (isset($_GET['reset'])) {
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
 	exitZP();
 }
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Analysis') => '');
+$zenphoto_tabs['overview']['subtabs'] = array(gettext('Analysis') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
 printAdminHeader('overview', 'analysis');
 echo '</head>';
 

@@ -113,11 +113,6 @@ class jplayer_options {
 			setOptionDefault('jplayer_size', 'jp-video-270p');
 			setOptionDefault('jplayer_skin', 'zenphotolight');
 			setOptionDefault('jplayer_counterparts', 0);
-			/* TODO: what are these sizes?
-			  $player = new jPlayer();
-			  cacheManager::deleteThemeCacheSizes('jplayer');
-			  cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-			 */
 		}
 	}
 
@@ -129,33 +124,53 @@ class jplayer_options {
 		  If you need different sizes than you need to make your own skin (see the skin option for info about that)
 		 */
 
-		return array(gettext('Autoplay')									 => array('key'	 => 'jplayer_autoplay', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("Disabled automatically if several players on one page")),
-						gettext('Poster (Videothumb)')			 => array('key'	 => 'jplayer_poster', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If the videothumb should be shown (jplayer calls it poster).")),
-						gettext('Audio poster (Videothumb)') => array('key'	 => 'jplayer_audioposter', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If the poster should be shown for audio files (mp3,m4a,fla) (does not apply for playlists which are all or none).")),
-						gettext('Show title')								 => array('key'	 => 'jplayer_showtitle', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If the title should be shown below the player in single player mode (not needed on normal themes) (ignored in playlists naturally).")),
-						gettext('Playlist support')					 => array('key'	 => 'jplayer_playlist', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("Enable this if you wish to use the playlist mode this loads the scripts needed. NOTE: You have to add the function printjPlayerPlaylist() to your theme yourself. See the documentation for info.")),
-						gettext('Playlist numbered')				 => array('key'	 => 'jplayer_playlist_numbered', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("Enable this if you wish the playlist to be numbered.")),
-						gettext('Playlist playtime')				 => array('key'	 => 'jplayer_playlist_playtime', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("Enable if you want to show the playtime of playlist entries.")),
-						gettext('Enable download')					 => array('key'	 => 'jplayer_download', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("Enables direct file downloads (playlists only).")),
-						gettext('Player size')							 => array('key'				 => 'jplayer_size', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => array(
-														gettext('jp-video-270p (480x270px)')		 => "jp-video-270p",
-														gettext('jp-video-360p (640x360px)')		 => "jp-video-360p",
-														gettext('jp-video-480p (720x405px)*')		 => "jp-video-480p",
-														gettext('jp-video-720p (1280x720px)*')	 => "jp-video-720p",
-														gettext('jp-video-1080p (1920x1080px)*') => "jp-video-1080p"),
-										'desc'			 => gettext("jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a <strong>*</strong> are supported by the two Zenphoto custom skins only (these two skins are also responsive in width). If you need different sizes you need to modify a skin or make your own and also need to change values in the plugin class method getPlayerSize().")),
-						gettext('Player skin')							 => array('key'				 => 'jplayer_skin', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => $skins,
-										'desc'			 => gettext("Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS only there may be display issues with certain themes that require manual adjustments. The two Zenphoto custom skins are responsive regarding the player width. Place custom skin within the root plugins folder. See plugin documentation for more info."))
+		return array(gettext('Autoplay') => array(
+						'key' => 'jplayer_autoplay',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext("Disabled automatically if several players on one page")),
+				gettext('Poster (Videothumb)') => array(
+						'key' => 'jplayer_poster',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext("If the videothumb should be shown (jplayer calls it poster).")),
+				gettext('Audio poster (Videothumb)') => array(
+						'key' => 'jplayer_audioposter',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext("If the poster should be shown for audio files (mp3,m4a,fla) (does not apply for playlists which are all or none).")),
+				gettext('Show title') => array(
+						'key' => 'jplayer_showtitle',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext("If the title should be shown below the player in single player mode (not needed on normal themes) (ignored in playlists naturally).")),
+				gettext('Playlist support') => array(
+						'key' => 'jplayer_playlist',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext("Enable this if you wish to use the playlist mode this loads the scripts needed. NOTE: You have to add the function printjPlayerPlaylist() to your theme yourself. See the documentation for info.")),
+				gettext('Playlist numbered') => array(
+						'key' => 'jplayer_playlist_numbered',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext("Enable this if you wish the playlist to be numbered.")),
+				gettext('Playlist playtime') => array(
+						'key' => 'jplayer_playlist_playtime',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext("Enable if you want to show the playtime of playlist entries.")),
+				gettext('Enable download') => array(
+						'key' => 'jplayer_download',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext("Enables direct file downloads (playlists only).")),
+				gettext('Player size') => array(
+						'key' => 'jplayer_size',
+						'type' => OPTION_TYPE_SELECTOR,
+						'selections' => array(
+								gettext('jp-video-270p (480x270px)') => "jp-video-270p",
+								gettext('jp-video-360p (640x360px)') => "jp-video-360p",
+								gettext('jp-video-480p (720x405px)*') => "jp-video-480p",
+								gettext('jp-video-720p (1280x720px)*') => "jp-video-720p",
+								gettext('jp-video-1080p (1920x1080px)*') => "jp-video-1080p"),
+						'desc' => gettext("jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a <strong>*</strong> are supported by the two Zenphoto custom skins only (these two skins are also responsive in width). If you need different sizes you need to modify a skin or make your own and also need to change values in the plugin class method getPlayerSize().")),
+				gettext('Player skin') => array(
+						'key' => 'jplayer_skin',
+						'type' => OPTION_TYPE_SELECTOR,
+						'selections' => $skins,
+						'desc' => gettext("Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS only there may be display issues with certain themes that require manual adjustments. The two Zenphoto custom skins are responsive regarding the player width. Place custom skin within the root plugins folder. See plugin documentation for more info."))
 		);
 	}
 

@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Config functions
+ * 
+ * @package core
+ * @subpackage functions\functions-config
+ */
 /**
  * Updates an item in the configuration file
  * @param unknown_type $item

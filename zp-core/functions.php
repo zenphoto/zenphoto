@@ -3,6 +3,7 @@
  * basic functions used by zenphoto
  *
  * @package core
+ * @subpackage functions\functions-main
  *
  */
 // force UTF-8 Ø
@@ -24,7 +25,6 @@ if (!class_exists('tidy')) {
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
 $_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
 //setup session before checking for logon cookie
-define('SITE_LOCALE', getOptionFromDB('locale'));
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
 if (GALLERY_SESSION) {
@@ -213,14 +213,14 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 			$shorten = $l1;
 		}
 		$short = truncate_string($articlecontent, $shorten, '');
-		if ($short != $articlecontent) { //	we actually did remove some stuff
+		if ($short != $articlecontent || $forceindicator) { //	we actually did remove some stuff
 			// drop open tag strings
-			$open = mb_strrpos($short, '<');
-			if ($open > mb_strrpos($short, '>')) {
+			$open = mb_strrpos($short, '</');
+			if ($open) {
 				$short = mb_substr($short, 0, $open);
 			}
 			$short = tidyHTML($short . $shortenindicator);
-		}
+		} 
 		$articlecontent = $short;
 	}
 	if (isset($matches)) {
@@ -704,6 +704,17 @@ function extensionEnabled($extension) {
  */
 function enableExtension($extension, $priority, $persistent = true) {
 	setOption('zp_plugin_' . $extension, $priority, $persistent);
+}
+
+/**
+ * Disables an extension
+ * @param string $extension
+ * @param bool $persistent
+ * 
+ * @since ZenphotoCMS 1.5.2
+ */
+function disableExtension($extension, $persistent = true) {
+	setOption('zp_plugin_' . $extension, 0, $persistent);
 }
 
 /**
@@ -1320,23 +1331,27 @@ function readTags($id, $tbl) {
  *
  * @param array $currentValue list of items to be flagged as checked
  * @param array $list the elements of the select list
- * @param bool $descending set true for a reverse order sort
+ * @param bool $descending set true for a ascending order sort. Set to null to keep the array as it is passed.
  * @param bool $localize set true if the keys as description should be listed instead of the plain values
  */
 function generateListFromArray($currentValue, $list, $descending, $localize) {
 	if ($localize) {
 		$list = array_flip($list);
-		if ($descending) {
-			arsort($list);
-		} else {
-			natcasesort($list);
+		if(!is_null($descending)) {
+			if ($descending) {
+				arsort($list);
+			} else {
+				natcasesort($list);
+			}
 		}
 		$list = array_flip($list);
 	} else {
-		if ($descending) {
-			rsort($list);
-		} else {
-			natcasesort($list);
+		if(!is_null($descending)) {
+			if ($descending) {
+				rsort($list);
+			} else {
+				natcasesort($list);
+			}
 		}
 	}
 	
@@ -1359,7 +1374,7 @@ function generateListFromArray($currentValue, $list, $descending, $localize) {
  * @param strig $currentValue the current value of the selector
  * @param string $root directory path to search
  * @param string $suffix suffix to select for
- * @param bool $descending set true to get a reverse order sort
+ * @param bool $descending set true to get a reverse order sort. Set to null to keep the array as it is passed.
  */
 function generateListFromFiles($currentValue, $root, $suffix, $descending = false) {
 	if (is_dir($root)) {
@@ -1758,23 +1773,21 @@ function restore_context() {
 }
 
 /**
- *
- * Sanitizes a "redirect" post
+ * Sanitizes a "redirect" post to always be within the site
  * @param string $redirectTo
  * @return string
  */
-function sanitizeRedirect($redirectTo, $forceHost = false) {
+function sanitizeRedirect($redirectTo) {
 	$redirect = NULL;
 	if ($redirectTo && $redir = parse_url($redirectTo)) {
 		if (isset($redir['scheme']) && isset($redir['host'])) {
-			$redirect .= $redir['scheme'] . '://' . sanitize($redir['host']);
-		} else {
-			if ($forceHost) {
-				$redirect .= SERVER_HTTP_HOST;
-				if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
-					$redirect .= WEBPATH;
-				}
-			}
+			$redirect = $redir['scheme'] . '://' . sanitize($redir['host']);
+		}
+		if ($redirect != SERVER_HTTP_HOST) {
+			$redirect = SERVER_HTTP_HOST;
+		}
+		if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
+			$redirect .= WEBPATH . '/';
 		}
 		if (isset($redir['path'])) {
 			$redirect .= urldecode(sanitize($redir['path']));
@@ -1933,7 +1946,7 @@ function zp_handle_password_single($authType = NULL, $check_auth = NULL, $check_
 				debugLog("zp_handle_password: valid credentials");
 			zp_setCookie($authType, $auth);
 			if (isset($_POST['redirect'])) {
-				$redirect_to = sanitizeRedirect($_POST['redirect'], true);
+				$redirect_to = sanitizeRedirect($_POST['redirect']);
 				if (!empty($redirect_to)) {
 					header("Location: " . $redirect_to);
 					exitZP();
@@ -2012,6 +2025,49 @@ function setThemeOption($key, $value, $album, $theme, $default = false) {
 }
 
 /**
+ * Replaces/renames an option. If the old option exits, it creates the new option with the old option's value as the default 
+ * unless the new option has already been set otherwise. Independently it always deletes the old option.
+ * 
+ * @param string $oldkey Old option name
+ * @param string $newkey New option name
+ * 
+ * @since Zenphoto 1.5.1
+ */
+function replaceThemeOption($oldkey, $newkey) {
+	$oldoption = getThemeOption($oldkey);
+	if ($oldoption) {
+		setThemeOptionDefault($newkey, $oldoption);
+		purgeOption($oldkey);
+	}
+}
+
+/**
+ * Deletes an option from the database 
+ * 
+ * @global array $_zp_options
+ * @param string $key
+ * 
+ * @since Zenphoto 1.5.1
+ */
+function purgeThemeOption($key, $album = NULL, $theme = NULL) {
+	global $_set_theme_album, $_zp_gallery;
+	if (is_null($album)) {
+		$album = $_set_theme_album;
+	}
+	if (is_null($album)) {
+		$id = 0;
+	} else {
+		$id = $album->getID();
+		$theme = $album->getAlbumTheme();
+	}
+	if (empty($theme)) {
+		$theme = $_zp_gallery->getCurrentTheme();
+	}
+	$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name`=' . db_quote($key) . ' AND `ownerid`=' . $id . ' AND `theme`=' . db_quote($theme);
+	query($sql, false);
+}
+
+/**
  * Used to set default values for theme specific options
  *
  * @param string $key
@@ -2023,6 +2079,8 @@ function setThemeOptionDefault($key, $value) {
 	$theme = basename(dirname($b['file']));
 	setThemeOption($key, $value, NULL, $theme, true);
 }
+
+
 
 /**
  * Returns the value of a theme option
@@ -2661,7 +2719,7 @@ function setexifvars() {
 	 * is displayed
 	 */
 	$_zp_exifvars = array(
-			// Database Field       		 => array('source', 'Metadata Key', 'ZP Display Text', Display?	size,	enabled, type)
+			// Database Field       		 => array('source', 'Metadata Key', 'ZP Display Text', Display?,	size (ignored!), enabled, type)
 			'EXIFMake' => array('IFD0', 'Make', gettext('Camera Maker'), true, 52, true, 'string'),
 			'EXIFModel' => array('IFD0', 'Model', gettext('Camera Model'), true, 52, true, 'string'),
 			'EXIFDescription' => array('IFD0', 'ImageDescription', gettext('Image Title'), false, 52, true, 'string'),
@@ -2981,7 +3039,7 @@ function printDataUsageNotice() {
 	$data = getDataUsageNotice();
 	echo $data['notice'];
 	if(!empty($data['url'])) {
-		printLinkHTML($data['url'], $data['linktext'], $data['linktext'], null, null);
+		printLinkHTML($data['url'], ' ' . $data['linktext'], $data['linktext'], null, null);
 	}
 }
 

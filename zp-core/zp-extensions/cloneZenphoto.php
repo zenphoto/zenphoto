@@ -35,17 +35,17 @@ class cloneZenphoto {
 
 	static function button($buttons) {
 		$buttons[] = array(
-											'category'=>gettext('Admin'),
-											'enable'=>true,
-											'button_text'=>gettext('Clone installation'),
-											'formname'=>'cloneZenphoto',
-											'action'=>PLUGIN_FOLDER.'/cloneZenphoto/cloneTab.php',
-											'icon'=>'images/folder.png',
-											'title'=>gettext('Create a new installation using links to the current install files.'),
-											'alt'=>gettext('Clone'),
-											'hidden'=>'',
-											'rights'=> ADMIN_RIGHTS
-											);
+				'category' => gettext('Admin'),
+				'enable' => true,
+				'button_text' => gettext('Clone installation'),
+				'formname' => 'cloneZenphoto',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php',
+				'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/folder.png',
+				'title' => gettext('Create a new installation using links to the current install files.'),
+				'alt' => gettext('Clone'),
+				'hidden' => '',
+				'rights' => ADMIN_RIGHTS
+		);
 		return $buttons;
 	}
 

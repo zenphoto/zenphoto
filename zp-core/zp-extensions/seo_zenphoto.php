@@ -77,7 +77,6 @@ class zenphoto_seo {
 					"Ẳ"	 => "A",
 					"Ẵ"	 => "A",
 					"Ặ"	 => "A",
-					"Å"	 => "A",
 					"Ä"	 => "AE",
 					"Æ"	 => "AE",
 					"Ǽ"	 => "AE",
@@ -165,7 +164,6 @@ class zenphoto_seo {
 					"Į"	 => "I",
 					"Ȋ"	 => "I",
 					"Ḭ"	 => "I",
-					"Ḭ"	 => "I",
 					"Ɨ"	 => "I",
 					"Ḯ"	 => "I",
 					"Ĵ"	 => "J",
@@ -176,7 +174,6 @@ class zenphoto_seo {
 					"Ḳ"	 => "K",
 					"Ķ"	 => "K",
 					"Ḻ"	 => "L",
-					"Ḷ"	 => "L",
 					"Ḷ"	 => "L",
 					"Ļ"	 => "L",
 					"Ḽ"	 => "L",
@@ -230,7 +227,6 @@ class zenphoto_seo {
 					"Ǭ"	 => "O",
 					"Ộ"	 => "O",
 					"Ɔ"	 => "O",
-					"Ø"	 => "OE",
 					"Ǿ"	 => "OE",
 					"Œ"	 => "OE",
 					"Ṕ"	 => "P",
@@ -576,7 +572,6 @@ class zenphoto_seo {
 					"ǖ"	 => "u",
 					"ǜ"	 => "u",
 					"ǘ"	 => "u",
-					"ǖ"	 => "u",
 					"ǚ"	 => "u",
 					"ừ"	 => "u",
 					"ứ"	 => "u",
@@ -868,9 +863,6 @@ class zenphoto_seo {
 					"ῥ"	 => "r",
 					"რ"	 => "r",
 					"Ῥ"	 => "R",
-					"ŕ"	 => "r",
-					"ř"	 => "r",
-					"ŗ"	 => "r",
 					"ს"	 => "s",
 					"შ"	 => "sh",
 					"ſ"	 => "ss",
@@ -879,9 +871,6 @@ class zenphoto_seo {
 					"ც"	 => "ts",
 					"წ"	 => "ts",
 					"უ"	 => "u",
-					"ü"	 => "u",
-					"ü"	 => "u",
-					"Ü"	 => "Ue",
 					"ვ"	 => "v",
 					"ὐ"	 => "y",
 					"ὑ"	 => "y",
@@ -1086,7 +1075,7 @@ class zenphoto_seo {
 			$string = strtolower($string);
 		$string = preg_replace("/\s+/", "-", $string);
 		$string = preg_replace("/[^a-zA-Z0-9_.-]/", "-", $string);
-		$string = str_replace(array('---', '--'), '-', $string);
+		$string = preg_replace("/--+/", "-", $string);
 		return $string;
 	}
 
@@ -1122,5 +1111,3 @@ class zenphoto_seo {
 	}
 
 }
-
-?>

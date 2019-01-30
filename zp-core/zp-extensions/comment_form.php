@@ -214,7 +214,7 @@ class comment_form {
 				if ($add && !in_array($key, array('overview', 'edit', 'upload', 'pages', 'news', 'tags', 'menu'))) {
 					$newtabs['comments'] = array(
 							'text' => gettext("comments"),
-							'link' => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . 'comment_form/admin-comments.php?page=comments&tab=' . gettext('comments'),
+							'link' => FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . 'comment_form/admin-comments.php?page=comments&tab=' . gettext('comments'),
 							'subtabs' => NULL);
 					$add = false;
 				}

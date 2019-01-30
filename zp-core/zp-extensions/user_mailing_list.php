@@ -24,8 +24,8 @@ if (defined('OFFSET_PATH')) {
 						'enable'			 => false,
 						'button_text'	 => gettext('User mailing list'),
 						'formname'		 => 'user_mailing_list.php',
-						'action'			 => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list.php',
-						'icon'				 => 'images/icon_mail.png',
+						'action'			 => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list.php',
+						'icon'				 => FULLWEBPATH . '/' . ZENFOLDER . '/images/icon_mail.png',
 						'title'				 => gettext('There are no other registered users who have provided an e-mail address.'),
 						'alt'					 => '',
 						'hidden'			 => '',
@@ -59,7 +59,7 @@ if (defined('OFFSET_PATH')) {
 
 	$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 	$admins = $_zp_authority->getAdministrators();
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Mailing') => '');
+	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Mailing') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list.php');
 
 	printAdminHeader('overview', 'Mailing');
 	?>

@@ -48,30 +48,37 @@ class menu_manager {
 		global $_common_truncate_handler;
 
 		$options = array(
-						gettext('Truncate indicator*') => array('key'			 => 'menu_truncate_indicator', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'order'		 => 2,
-										'disabled' => $_common_truncate_handler,
-										'desc'		 => gettext('Append this string to truncated titles.')),
-						gettext('Truncate titles*')		 => array('key'		 => 'menu_truncate_string', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('Limit titles to this many characters. Zero means no limit.'))
+				gettext('Truncate indicator*') => array(
+						'key' => 'menu_truncate_indicator',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2,
+						'disabled' => $_common_truncate_handler,
+						'desc' => gettext('Append this string to truncated titles.')),
+				gettext('Truncate titles*') => array(
+						'key' => 'menu_truncate_string',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => gettext('Limit titles to this many characters. Zero means no limit.'))
 		);
 		if ($_common_truncate_handler) {
-			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => '<p class="notebox">' . $_common_truncate_handler . '</p>');
+			$options['note'] = array(
+					'key' => 'menu_truncate_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 8,
+					'desc' => '<p class="notebox">' . $_common_truncate_handler . '</p>');
 		} else {
 			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'menu_manager\');"><em>menu_manager</em></a> plugin options.');
-			$options['note'] = array('key'		 => 'menu_truncate_note',
-							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 8,
-							'desc'	 => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
+			$options['note'] = array(
+					'key' => 'menu_truncate_note',
+					'type' => OPTION_TYPE_NOTE,
+					'order' => 8,
+					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
 		}
 		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
-
+		
 	}
 
 }
@@ -100,10 +107,11 @@ function menu_tabs($tabs) {
 		$newtabs = array();
 		foreach ($tabs as $key => $tab) {
 			if ($key == 'tags') {
-				$newtabs['menu'] = array('text'		 => gettext("menu"),
-								'link'		 => WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/menu_manager/menu_tab.php?page=menu&amp;tab=menu',
-								'default'	 => 'menu',
-								'subtabs'	 => NULL);
+				$newtabs['menu'] = array(
+						'text' => gettext("menu"),
+						'link' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/menu_manager/menu_tab.php?page=menu&amp;tab=menu',
+						'default' => 'menu',
+						'subtabs' => NULL);
 			}
 			$newtabs[$key] = $tab;
 		}

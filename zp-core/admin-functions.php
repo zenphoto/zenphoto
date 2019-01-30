@@ -2,6 +2,7 @@
 /**
  * support functions for Admin
  * @package admin
+ * @subpackage admin-functions
  */
 // force UTF-8 Ø
 
@@ -124,7 +125,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.min.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.dirtyforms.min.js" type="text/javascript"></script>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
@@ -309,11 +310,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<ul class="subdropdown">
 								<?php
 								foreach ($subtabs as $key => $link) {
-									if (strpos($link, '/') !== 0) { // zp_core relative
-										$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-									} else {
-										$link = WEBPATH . $link;
-									}
 									?>
 									<li><a href="<?php echo html_encode($link); ?>"><?php echo html_encode(ucfirst($key)); ?></a></li>
 									<?php
@@ -334,7 +330,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	function getSubtabs() {
-		global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
+		global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab; 
 		$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
 		if (!is_array($tabs))
 			return $_zp_admin_subtab;
@@ -419,10 +415,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 							$link = str_replace(SERVERPATH, '', str_replace('\\', '/', $bt['file']));
 						}
 					}
-					if (strpos($link, '/') !== 0) { // zp_core relative
-						$link = WEBPATH . '/' . ZENFOLDER . '/' . $link;
-					} else {
-						$link = WEBPATH . $link;
+					if (strpos($link, FULLWEBPATH) !== 0) {
+						$link = FULLWEBPATH . $link;
 					}
 					echo '<li' . (($current == $tab) ? ' class="current"' : '') . '><a href="' . html_encode($link) . '">' . html_encode(ucfirst($key)) . '</a></li>' . "\n";
 				}
@@ -444,25 +438,25 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (!$album->isDynamic() && $album->getNumImages()) {
 			if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
 				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Images') => 'admin-edit.php' . $albumlink . '&tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
+								array(gettext('Images') => FULLWEBPATH . '/'. ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
 				);
 				$default = 'imageinfo';
 			}
 			if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
 				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Image order') => 'admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
+								array(gettext('Image order') => FULLWEBPATH . '/'. ZENFOLDER . '/admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
 				);
 			}
 		}
 		if (!$album->isDynamic() && $album->getNumAlbums()) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-							array(gettext('Subalbums') => 'admin-edit.php' . $albumlink . '&tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
+							array(gettext('Subalbums') => FULLWEBPATH . '/'. ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
 			);
 			$default = 'subalbuminfo';
 		}
 		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-							array(gettext('Album') => 'admin-edit.php' . $albumlink . '&tab=albuminfo'), $zenphoto_tabs['edit']['subtabs']
+							array(gettext('Album') => FULLWEBPATH . '/'. ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=albuminfo'), $zenphoto_tabs['edit']['subtabs']
 			);
 			$default = 'albuminfo';
 		}
@@ -472,12 +466,24 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		return $default;
 	}
-
+	/**
+	 * Used for checkbox and radiobox form elements to compare the $checked value with the $current.
+	 * Echos the attribute `checked="checked`
+	 * @param mixed $checked
+	 * @param mixed $current
+	 */
 	function checked($checked, $current) {
 		if ($checked == $current)
 			echo ' checked="checked"';
 	}
-
+	
+	/**
+	 * Populatest $list with an one dimensional list with album name and title of all albums or the subalbums of a specific album
+	 * @global obj $_zp_gallery
+	 * @param array $list The array to fill with the album list
+	 * @param obj $curAlbum Optional object of the album to start with
+	 * @param int $rights Rights constant to filter album access by.
+	 */
 	function genAlbumList(&$list, $curAlbum = NULL, $rights = UPLOAD_RIGHTS) {
 		global $_zp_gallery;
 		if (is_null($curAlbum)) {
@@ -854,7 +860,6 @@ function printAdminHeader($tab, $subtab = NULL) {
           break;
         case 'save':
           $customHandlers[] = array('whom' => $key, 'extension' => sanitize($_POST[$postkey]));
-          continue;
           break;
         default:
           if (isset($_POST[$key])) {
@@ -4307,9 +4312,9 @@ function admin_securityChecks($rights, $return) {
  * Checks if protocol not https and redirects if https required
  */
 function httpsRedirect() {
-	if (SERVER_PROTOCOL == 'https_admin') {
+	if (SERVER_PROTOCOL == 'https_admin' || SERVER_PROTOCOL == 'https') {
 		// force https login
-		if (!isset($_SERVER["HTTPS"])) {
+		if (!secureServer()) {
 			$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
 			header("Location:$redirect");
 			exitZP();
@@ -4534,7 +4539,7 @@ function getLogTabs() {
 			} else {
 				$logfiletext = str_replace('_', ' ', $log);
 			}
-			$subtabs = array_merge($subtabs, array($logfiletext => 'admin-logs.php?page=logs&tab=' . $log));
+			$subtabs = array_merge($subtabs, array($logfiletext => FULLWEBPATH . '/'. ZENFOLDER . '/admin-logs.php?page=logs&tab=' . $log));
 			if (filesize($logfile) > 0 && empty($default)) {
 				$default = $log;
 			}
@@ -4605,11 +4610,11 @@ function getPluginTabs() {
     }
   }
   ksort($classes);
-  $tabs[gettext('all')] = 'admin-plugins.php?page=plugins&tab=all';
+  $tabs[gettext('all')] = FULLWEBPATH . '/' . ZENFOLDER . '/admin-plugins.php?page=plugins&tab=all';
   $currentlist = array_keys($paths);
 
   foreach ($classes as $class => $list) {
-    $tabs[$class] = 'admin-plugins.php?page=plugins&tab=' . $class;
+    $tabs[$class] = FULLWEBPATH . '/' . ZENFOLDER . '/admin-plugins.php?page=plugins&tab=' . $class;
     if ($class == $default) {
       $currentlist = $list['list'];
     }

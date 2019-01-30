@@ -3,6 +3,7 @@
 /**
  * library for image handling using the GD library of functions
  * @package core
+ * @subpackage graphic-handlers\lib-nographics
  */
 // force UTF-8 Ø
 
@@ -74,7 +75,11 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		return false;
 	}
 
-	function zp_imageResizeAlpha(&$src, $w, $h) {
+	function zp_imageResizeAlpha($src, $w, $h) {
+		return false;
+	}
+	
+	function zp_imageResizeTransparent($src, $w, $h) {
 		return false;
 	}
 

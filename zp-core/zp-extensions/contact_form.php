@@ -310,15 +310,19 @@ function printContactForm($subject_override = '') {
 		}
 		// CAPTCHA end
 		if (getOption('contactform_dataconfirmation') && empty($mailcontent['dataconfirmation'])) {
-			$error_dataconfirmation = gettext('Please agree to storage and handling of your data by this website.');
+			$error_dataconfirmation = $error[13] = gettext('Please agree to storage and handling of your data by this website.');
 		}
 		// If required fields are empty or not valide print note
-		if (count($error) != 0 || !is_null($error_dataconfirmation)) {
+		if (count($error) != 0) {
 			?>
 			<div class="errorbox">
 				<?php
-				if (count($error) != 0) {
 					$err = $error;
+					if($error_dataconfirmation) { 
+						echo '<p>' . $error_dataconfirmation . '</p>';
+						// remove data confirmation error so we re-print it with the wrong generic text below
+						unset($err[13]);
+					}
 					switch (count($err)) {
 						case 1:
 							printf(gettext('Please enter %s. Thanks.'), array_shift($err));
@@ -327,18 +331,16 @@ function printContactForm($subject_override = '') {
 							printf(gettext('Please enter %1$s and %2$s. Thanks.'), array_shift($err), array_shift($err));
 							break;
 						default:
-							$list = '<ul class="errorlist">';
-							foreach ($err as $item) {
-								$list .= '<li>' . $item . '</li>';
+							if(!empty($err)) { // no data confirmation may result in this although there is one error
+								$list = '<ul class="errorlist">';
+								foreach ($err as $item) {
+									$list .= '<li>' . $item . '</li>';
+								}
+								$list .= '</ul>';
+								printf(gettext('Please enter: %sThanks.'), $list);
 							}
-							$list .= '</ul>';
-							printf(gettext('Please enter: %sThanks.'), $list);
 							break;
 					}
-				}
-				if (!is_null($error_dataconfirmation)) {
-					echo '<p>' . $error_dataconfirmation . '</p>';
-				}
 				?>
 			</div>
 			<?php
@@ -382,7 +384,7 @@ function printContactForm($subject_override = '') {
 			}
 			$message .= "\n\n" . $mailcontent['message'];
 			if (!empty($mailcontent['dataconfirmation'])) {
-				$message .= gettext('I agree to storage and handling of my data by this website.') . "\n";
+				$message .=  "\n\n" . gettext('I agree to storage and handling of my data by this website.') . "\n";
 			}
 			$message .= "\n\n";
 
