@@ -1,5 +1,4 @@
 <?php
-
 /**
  * zenpage news class
  *
