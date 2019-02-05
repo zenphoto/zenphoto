@@ -53,7 +53,7 @@ class PersistentObject {
 
 	/**
 	 *
-	 * @deprecated 2.0
+	 * @deprecated 1.6
 	 * @since 1.4.6
 	 */
 	function __construct($tablename, $unique_set, $cache_by = NULL, $use_cache = true, $is_transient = false, $allowCreate = true) {
