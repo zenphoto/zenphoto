@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-23 16:17+0100\n"
+"POT-Creation-Date: 2019-02-05 20:48+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,3092,-1,-1,-1,-1\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SearchPath-0: zp-core\n"
 "X-Poedit-SearchPath-1: themes\n"
 "X-Poedit-SearchPathExcluded-0: plugins\n"
@@ -54,8 +54,8 @@ msgstr "Bekijk album:"
 #: themes/zpmobile/news.php:57 themes/zpmobile/search.php:185
 #: zp-core/admin-functions.php:4454
 #: zp-core/zp-extensions/comment_form/functions.php:34
-#: zp-core/zp-extensions/slideshow2.php:269
-#: zp-core/zp-extensions/slideshow2.php:595
+#: zp-core/zp-extensions/slideshow2.php:291
+#: zp-core/zp-extensions/slideshow2.php:618
 msgid "prev"
 msgstr "vorige"
 
@@ -72,9 +72,9 @@ msgstr "vorige"
 #: themes/zpmobile/news.php:61 themes/zpmobile/search.php:185
 #: zp-core/admin-functions.php:4482
 #: zp-core/zp-extensions/comment_form/functions.php:35
-#: zp-core/zp-extensions/jplayer.php:471
-#: zp-core/zp-extensions/slideshow2.php:273
-#: zp-core/zp-extensions/slideshow2.php:596
+#: zp-core/zp-extensions/jplayer.php:491
+#: zp-core/zp-extensions/slideshow2.php:295
+#: zp-core/zp-extensions/slideshow2.php:619
 msgid "next"
 msgstr "volgende"
 
@@ -139,7 +139,7 @@ msgstr "Themakleur"
 #: themes/zenpage/image.php:27 zp-core/admin-functions.php:140
 #: zp-core/admin-plugins.php:81 zp-core/zp-extensions/GoogleMap.php:518
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:66
-#: zp-core/zp-extensions/slideshow2.php:597
+#: zp-core/zp-extensions/slideshow2.php:620
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:33
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:39
 #: zp-core/zp-extensions/user_login-out.php:153
@@ -448,7 +448,7 @@ msgid "Albums (%1$s) &amp; Images (%2$s)"
 msgstr "Albums (%1$s) &amp; Afbeeldingen (%2$s)"
 
 #: themes/garland/sidebar.php:27 themes/zenpage/sidebar.php:14
-#: zp-core/class-userdataexport.php:439
+#: zp-core/class-userdataexport.php:441
 #: zp-core/utilities/gallery_statistics.php:616
 msgid "News articles"
 msgstr "Nieuwsartikelen"
@@ -512,7 +512,7 @@ msgstr "Albums"
 #: themes/zpmobile/functions.php:75 themes/zpmobile/functions.php:173
 #: themes/zpmobile/pages.php:27 themes/zpmobile/pages.php:33
 #: zp-core/admin-functions.php:3213 zp-core/admin-functions.php:3349
-#: zp-core/class-userdataexport.php:447 zp-core/lib-auth.php:534
+#: zp-core/class-userdataexport.php:449 zp-core/lib-auth.php:534
 #: zp-core/lib-auth.php:537 zp-core/lib-auth.php:552 zp-core/lib-auth.php:559
 #: zp-core/lib-auth.php:563 zp-core/lib-auth.php:578 zp-core/lib-auth.php:585
 #: zp-core/lib-auth.php:589 zp-core/utilities/gallery_statistics.php:81
@@ -523,7 +523,7 @@ msgstr "Albums"
 #: zp-core/zp-extensions/related_items.php:155
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:104
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:482
-#: zp-core/zp-extensions/zenpage.php:364
+#: zp-core/zp-extensions/zenpage.php:366
 #: zp-core/zp-extensions/zenpage/admin-pages.php:105
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1315
 msgid "Pages"
@@ -610,8 +610,8 @@ msgstr "Custom homepage"
 #: themes/garland/themeoptions.php:90 themes/zenpage/themeoptions.php:71
 #: zp-core/admin-edit.php:1221 zp-core/admin-options.php:2203
 #: zp-core/admin-options.php:2216 zp-core/admin-options.php:2244
-#: zp-core/admin-options.php:2963 zp-core/zp-extensions/slideshow2.php:102
-#: zp-core/zp-extensions/slideshow2.php:140
+#: zp-core/admin-options.php:2963 zp-core/zp-extensions/slideshow2.php:119
+#: zp-core/zp-extensions/slideshow2.php:167
 msgid "none"
 msgstr "geen"
 
@@ -635,7 +635,7 @@ msgid "None"
 msgstr "Geen"
 
 #: themes/garland/themeoptions.php:95
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:78
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:99
 msgid "Fade"
 msgstr "Vervagen"
 
@@ -644,13 +644,13 @@ msgid "Shrink/grow"
 msgstr "Klein/groot"
 
 #: themes/garland/themeoptions.php:95 zp-core/zp-extensions/GoogleMap.php:106
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:76
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:97
 msgid "Horizontal"
 msgstr "Horizontaal"
 
 #: themes/garland/themeoptions.php:95
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:77
-#: zp-core/zp-extensions/slideshow2.php:117
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:98
+#: zp-core/zp-extensions/slideshow2.php:136
 msgid "Vertical"
 msgstr "Verticaal"
 
@@ -702,7 +702,7 @@ msgstr "*standaard menu"
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-core/zp-extensions/html_meta_tags.php:321
 #: zp-core/zp-extensions/scriptless-socialsharing.php:187
-#: zp-core/zp-extensions/slideshow2.php:733
+#: zp-core/zp-extensions/slideshow2.php:756
 msgid "Search"
 msgstr "Zoeken"
 
@@ -771,7 +771,7 @@ msgstr "Album RSS"
 #: zp-core/zp-extensions/related_items.php:155
 #: zp-core/zp-extensions/related_items.php:190
 #: zp-core/zp-extensions/scriptless-socialsharing.php:162
-#: zp-core/zp-extensions/zenpage.php:361
+#: zp-core/zp-extensions/zenpage.php:363
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:790
 msgid "News"
 msgstr "Nieuws"
@@ -949,7 +949,7 @@ msgstr "Laatste afbeeldingen"
 msgid "Latest news"
 msgstr "Laatste nieuws"
 
-#: themes/zpmobile/search.php:180 zp-core/zp-extensions/slideshow2.php:510
+#: themes/zpmobile/search.php:180 zp-core/zp-extensions/slideshow2.php:533
 msgid "View Slideshow"
 msgstr "slideshow"
 
@@ -1725,7 +1725,7 @@ msgstr "*standaard"
 msgid "thumb"
 msgstr "thumbnail"
 
-#: zp-core/admin-edit.php:1360 zp-core/zp-extensions/slideshow2.php:144
+#: zp-core/admin-edit.php:1360 zp-core/zp-extensions/slideshow2.php:174
 msgid "full image"
 msgstr "volledige afbeelding"
 
@@ -1865,7 +1865,7 @@ msgstr "Server datum: %s"
 msgid "%1$s %2$s: %3$s%4$s"
 msgstr "%1$s %2$s: %3$s%4$s"
 
-#: zp-core/admin-functions.php:123 zp-core/pluginDoc.php:133
+#: zp-core/admin-functions.php:123 zp-core/pluginDoc.php:135
 #: zp-core/zp-extensions/user-expiry.php:115
 #: zp-core/zp-extensions/user_groups.php:218
 msgid "admin"
@@ -2197,7 +2197,7 @@ msgstr "Maak publicatie van het album %s ongedaan"
 msgid "Publish the album %s"
 msgstr "Publiceerd het album %s"
 
-#: zp-core/admin-functions.php:2181 zp-core/class-userdataexport.php:482
+#: zp-core/admin-functions.php:2181 zp-core/class-userdataexport.php:484
 #, php-format
 msgid "Unpublished"
 msgstr "Niet gepubliceerd"
@@ -2364,7 +2364,7 @@ msgstr "Beheerde albums:"
 msgid "Managed news categories:"
 msgstr "Beheerde nieuwscategorieën."
 
-#: zp-core/admin-functions.php:3336 zp-core/class-userdataexport.php:443
+#: zp-core/admin-functions.php:3336 zp-core/class-userdataexport.php:445
 #: zp-core/utilities/gallery_statistics.php:624
 #: zp-core/zp-extensions/multiple_layouts.php:95
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:103
@@ -2690,15 +2690,15 @@ msgid "Filename"
 msgstr "bestandsnaam"
 
 #: zp-core/admin-globals.php:27 zp-core/admin-options.php:1825
-#: zp-core/class-search.php:103 zp-core/class-userdataexport.php:228
+#: zp-core/class-search.php:103 zp-core/class-userdataexport.php:230
 #: zp-core/zp-extensions/favoritesHandler.php:136
 #: zp-core/zp-extensions/zenpage/admin-edit.php:586
 msgid "Date"
 msgstr "datum"
 
 #: zp-core/admin-globals.php:28 zp-core/admin-options.php:1822
-#: zp-core/class-search.php:98 zp-core/zp-extensions/contact_form.php:123
-#: zp-core/zp-extensions/contact_form.php:128
+#: zp-core/class-search.php:98 zp-core/zp-extensions/contact_form.php:125
+#: zp-core/zp-extensions/contact_form.php:130
 #: zp-core/zp-extensions/favoritesHandler.php:106
 #: zp-core/zp-extensions/favoritesHandler.php:137
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:58
@@ -4317,7 +4317,7 @@ msgstr "Metadata"
 #: zp-core/admin-options.php:2529 zp-core/admin-options.php:2544
 #: zp-core/admin-options.php:2545 zp-core/admin-options.php:2546
 #: zp-core/admin-users.php:494 zp-core/zp-extensions/GoogleMap.php:97
-#: zp-core/zp-extensions/contact_form.php:80
+#: zp-core/zp-extensions/contact_form.php:82
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:115
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:116
 msgid "show"
@@ -4788,7 +4788,7 @@ msgstr ""
 "Voegt een veiligheidsparameter toe aan de afbeeldings-processor URI’s. Dit "
 "om <em>denial of service</em> (DoS) aanvallen te voorkomen."
 
-#: zp-core/admin-options.php:3283 zp-core/class-userdataexport.php:225
+#: zp-core/admin-options.php:3283 zp-core/class-userdataexport.php:227
 #: zp-core/utilities/user-data-export.php:79
 msgid "User name"
 msgstr "Gebruikersnaam"
@@ -6248,20 +6248,20 @@ msgid "Location/Place"
 msgstr "Locatie/Plaats"
 
 #: zp-core/class-search.php:106 zp-core/functions.php:2765
-#: zp-core/zp-extensions/contact_form.php:147
-#: zp-core/zp-extensions/contact_form.php:152
+#: zp-core/zp-extensions/contact_form.php:149
+#: zp-core/zp-extensions/contact_form.php:154
 #: zp-core/zp-extensions/userAddressFields.php:52
 msgid "City"
 msgstr "Plaats"
 
-#: zp-core/class-search.php:107 zp-core/zp-extensions/contact_form.php:153
-#: zp-core/zp-extensions/contact_form.php:158
+#: zp-core/class-search.php:107 zp-core/zp-extensions/contact_form.php:155
+#: zp-core/zp-extensions/contact_form.php:160
 #: zp-core/zp-extensions/userAddressFields.php:54
 msgid "State"
 msgstr "Provincie"
 
-#: zp-core/class-search.php:108 zp-core/zp-extensions/contact_form.php:165
-#: zp-core/zp-extensions/contact_form.php:170
+#: zp-core/class-search.php:108 zp-core/zp-extensions/contact_form.php:167
+#: zp-core/zp-extensions/contact_form.php:172
 #: zp-core/zp-extensions/userAddressFields.php:53
 msgid "Country"
 msgstr "Land"
@@ -6296,105 +6296,105 @@ msgstr "Laatste bewerker"
 msgid "Categories"
 msgstr "Categorieën"
 
-#: zp-core/class-userdataexport.php:112
+#: zp-core/class-userdataexport.php:114
 #, php-format
 msgid "Personal user data export for %1$s"
 msgstr "Persoonlijke data export voor %1$s"
 
-#: zp-core/class-userdataexport.php:114
+#: zp-core/class-userdataexport.php:116
 #, php-format
 msgid "Personal user data export for %1$s and %2$s"
 msgstr "Persoonlijke data export voor %1$s en %2$s"
 
-#: zp-core/class-userdataexport.php:208
+#: zp-core/class-userdataexport.php:210
 msgid "Export user data"
 msgstr "Exporteer data gebruiker"
 
-#: zp-core/class-userdataexport.php:210
+#: zp-core/class-userdataexport.php:212
 msgid "Export as HTML"
 msgstr "Exporteer als HTML"
 
-#: zp-core/class-userdataexport.php:211
+#: zp-core/class-userdataexport.php:213
 msgid "Export as JSON"
 msgstr "Exporteer als JSON"
 
-#: zp-core/class-userdataexport.php:223
+#: zp-core/class-userdataexport.php:225
 msgid "Report for"
 msgstr "Rapport voor"
 
-#: zp-core/class-userdataexport.php:226
+#: zp-core/class-userdataexport.php:228
 msgid "User mail"
 msgstr "E-mail gebruiker"
 
-#: zp-core/class-userdataexport.php:227
-#: zp-core/zp-extensions/contact_form.php:177
-#: zp-core/zp-extensions/contact_form.php:182
+#: zp-core/class-userdataexport.php:229
+#: zp-core/zp-extensions/contact_form.php:179
+#: zp-core/zp-extensions/contact_form.php:184
 #: zp-core/zp-extensions/userAddressFields.php:51
 msgid "Website"
 msgstr "Website"
 
-#: zp-core/class-userdataexport.php:240
+#: zp-core/class-userdataexport.php:242
 msgid "Gallery guest user"
 msgstr "Gastgebruiker galerij"
 
-#: zp-core/class-userdataexport.php:257
+#: zp-core/class-userdataexport.php:259
 msgid "User account data"
 msgstr "Data gebruikersaccount"
 
-#: zp-core/class-userdataexport.php:281
+#: zp-core/class-userdataexport.php:283
 msgid "Security log entries"
 msgstr "Beveiligingslog inhoud"
 
-#: zp-core/class-userdataexport.php:292 zp-core/lib-auth.php:517
+#: zp-core/class-userdataexport.php:294 zp-core/lib-auth.php:517
 #: zp-core/lib-auth.php:532 zp-core/lib-auth.php:556 zp-core/lib-auth.php:582
 #: zp-core/zp-extensions/comment_form.php:232
 #: zp-core/zp-extensions/comment_form/admin-comments.php:261
 msgid "Comments"
 msgstr "Reacties"
 
-#: zp-core/class-userdataexport.php:326
+#: zp-core/class-userdataexport.php:328
 msgid "Album owner"
 msgstr "Eigenaar album(s)"
 
-#: zp-core/class-userdataexport.php:330
+#: zp-core/class-userdataexport.php:332
 msgid "Album guest user"
 msgstr "Gastgebruiker album(s)"
 
-#: zp-core/class-userdataexport.php:341 zp-core/class-userdataexport.php:393
+#: zp-core/class-userdataexport.php:343 zp-core/class-userdataexport.php:395
 msgid "unpublished"
 msgstr "niet-gepubliceerd"
 
-#: zp-core/class-userdataexport.php:344 zp-core/class-userdataexport.php:396
-#: zp-core/class-userdataexport.php:485 zp-core/reconfigure.php:260
+#: zp-core/class-userdataexport.php:346 zp-core/class-userdataexport.php:398
+#: zp-core/class-userdataexport.php:487 zp-core/reconfigure.php:260
 msgid "protected"
 msgstr "beschermd"
 
-#: zp-core/class-userdataexport.php:368
+#: zp-core/class-userdataexport.php:370
 msgid "Image owner"
 msgstr "Eigenaar afbeelding(en)"
 
-#: zp-core/class-userdataexport.php:372
+#: zp-core/class-userdataexport.php:374
 msgid "Image guest user"
 msgstr "Gastgebruiker afbeelding(en)"
 
-#: zp-core/class-userdataexport.php:398
+#: zp-core/class-userdataexport.php:400
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:120
 msgid "Full image"
 msgstr "Volledige afbeelding"
 
-#: zp-core/class-userdataexport.php:413
+#: zp-core/class-userdataexport.php:415
 msgid "Cached images"
 msgstr "Gecachte afbeeldingen"
 
-#: zp-core/class-userdataexport.php:453
+#: zp-core/class-userdataexport.php:455
 msgid "author"
 msgstr "auteur"
 
-#: zp-core/class-userdataexport.php:457
+#: zp-core/class-userdataexport.php:459
 msgid "last change author"
 msgstr "laatste verandering(en)"
 
-#: zp-core/class-userdataexport.php:461
+#: zp-core/class-userdataexport.php:463
 msgid "guest user"
 msgstr "Gastgebruiker"
 
@@ -8621,7 +8621,7 @@ msgid "More info on our data privacy policy."
 msgstr "Meer informatie over ons privacybeleid."
 
 #: zp-core/functions.php:3054 zp-core/zp-extensions/comment_form.php:133
-#: zp-core/zp-extensions/contact_form.php:187
+#: zp-core/zp-extensions/contact_form.php:189
 #: zp-core/zp-extensions/register_user.php:116
 msgid "No captcha handler is enabled."
 msgstr "Er is geen CAPTCHA plugin geactiveerd."
@@ -9454,27 +9454,30 @@ msgstr ""
 msgid "Translate this page."
 msgstr "Vertaal deze pagina"
 
-#: zp-core/pluginDoc.php:130
-#, php-format
-msgid "See also the Zenphoto online documentation: <a href=\"%1$s\">%2$s</a>"
-msgstr "Zie ook de online Zenphoto documentatie: <a href=\"%1$s\">%2$s</a>"
-
 #: zp-core/pluginDoc.php:132
+msgid ""
+"Also review the in-file documentation of the plugin file(s) itself for more "
+"detailed function usage."
+msgstr ""
+"Kijk ook naar de documentatie in de bestanden van de plugin voor meer "
+"informatie."
+
+#: zp-core/pluginDoc.php:134
 msgid "Plugin usage information"
 msgstr "Plugin gebruiksinformatie"
 
-#: zp-core/pluginDoc.php:133
+#: zp-core/pluginDoc.php:135
 #, php-format
 msgid "%1$s %2$s: %3$s"
 msgstr "%1$s %2$s: %3$s"
 
-#: zp-core/pluginDoc.php:269
+#: zp-core/pluginDoc.php:271
 msgid "Option:"
 msgid_plural "Options:"
 msgstr[0] "Optie:"
 msgstr[1] "Opties:"
 
-#: zp-core/pluginDoc.php:374
+#: zp-core/pluginDoc.php:376
 msgid "Macro defined:"
 msgid_plural "Macros defined:"
 msgstr[0] "Gedefiniëerde macro:"
@@ -12639,93 +12642,85 @@ msgstr ""
 "Er mag maar één Carousel plugin geactiveerd zijn. <a href=\"#%1$s\"><code>"
 "%1$s</code></a> is al geactiveerd."
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:50
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:53
 msgid "Minimum items"
 msgstr "Minimum aantal onderdelen"
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:51
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:56
 msgid ""
 "The minimum number of slides to be shown. Slides will be sized down if "
 "carousel becomes smaller than the original size."
 msgstr "Het minimum aantal slides om te tonen."
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:53
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:58
 msgid "Maximum items"
 msgstr "Maximum aantal onderdelen"
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:54
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:61
 msgid ""
 "The maximum number of slides to be shown. Slides will be sized up if "
 "carousel becomes larger than the original size."
 msgstr "Het maximum aantal slides om te tonen."
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:56
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:63
 #: zp-core/zp-extensions/cacheManager.php:285
 msgid "Width"
 msgstr "Breedte"
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:57
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:66
 msgid "Width of the thumb. Note that the CSS might need to be adjusted."
 msgstr ""
 "Breedte van de thumbnail. De CSS moet hiervoor misschien aangepast worden."
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:59
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:68
 #: zp-core/zp-extensions/cacheManager.php:285
 msgid "Height"
 msgstr "Hoogte"
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:60
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:71
 msgid "Height of the thumb. Note that the CSS might need to be adjusted."
 msgstr ""
 "Hoogte van de thumbnail. De CSS moet hiervoor misschien aangepast worden."
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:62
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:73
 #: zp-core/zp-extensions/cacheManager.php:286
 #: zp-core/zp-extensions/paged_thumbs_nav.php:53
 msgid "Crop width"
 msgstr "Uitsnede-breedte"
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:65
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:78
 #: zp-core/zp-extensions/cacheManager.php:286
 #: zp-core/zp-extensions/paged_thumbs_nav.php:55
 msgid "Crop height"
 msgstr "Uitsnede-hoogte"
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:68
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:83
 msgid "Speed"
 msgstr "Snelheid"
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:69
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:86
 msgid "The speed in miliseconds the slides advance when clicked.)"
 msgstr "Snelheid waarmee de thumbnails bewegen in miliseconden."
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:71
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:88
 msgid "Full image link"
 msgstr "Link naar volledige afbeelding"
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:72
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:91
 msgid "If checked the thumbs link to the full image instead of the image page."
 msgstr ""
 "Indien aangevinkt linken de thumbnails naar het volledige beeld in plaats "
 "van de image-pagina."
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:74
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:93
 msgid "Mode"
 msgstr "Methode"
 
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:79
+#: zp-core/zp-extensions/bxslider_thumb_nav.php:100
 msgid "The mode of the thumb nav. Note this might require theme changes."
 msgstr ""
 "De modus van de thumb nav. Hiervoor zijn waarschijnlijk aanpassingen in het "
 "thema nodig."
-
-#: zp-core/zp-extensions/bxslider_thumb_nav.php:89
-msgid ""
-"The scripts for which BxSlider is enabled. {If themes require it they might "
-"set this, otherwise you need to do it manually!}"
-msgstr ""
-"De scripts waarvoor bxSlider is geactiveerd. {Als thema’s dit nodig hebben "
-"is het al ingesteld. Zo niet, dan moet je het zelf instellen.}"
 
 #: zp-core/zp-extensions/cacheManager.php:85
 msgid "Provides cache management utilities for Image, HTML, and RSS caches."
@@ -13668,11 +13663,11 @@ msgstr ""
 "Let wel dat deze plugin Colorbox nog niet koppelt aan een element. Dat moet "
 "je zelf doen in je thema."
 
-#: zp-core/zp-extensions/colorbox_js.php:55
+#: zp-core/zp-extensions/colorbox_js.php:59
 msgid "Colorbox theme"
 msgstr "Colorbox thema"
 
-#: zp-core/zp-extensions/colorbox_js.php:58
+#: zp-core/zp-extensions/colorbox_js.php:64
 msgid ""
 "The Colorbox script comes with 5 example themes you can select here. If you "
 "select <em>custom (within theme)</em> you need to place a folder "
@@ -13684,14 +13679,6 @@ msgstr ""
 "selecteert moet je een map met de naam <em>colorbox_js</em> in je themamap "
 "plaatsen met daarin een bestand <em>colorbox.css</em> en een map <em>images</"
 "em>. "
-
-#: zp-core/zp-extensions/colorbox_js.php:69
-msgid ""
-"The scripts for which Colorbox is enabled. {Should have been set by the "
-"themes!}"
-msgstr ""
-"De scripts waarvoor Colorbox is geactiveerd. {Zou ingesteld moeten zijn door "
-"de thema’s!}"
 
 #: zp-core/zp-extensions/comment_form.php:18
 msgid "Provides a unified comment handling facility."
@@ -13884,13 +13871,13 @@ msgid ""
 msgstr "Vink uit om de jQuery paginering uit te zetten. Normaal staat dit aan."
 
 #: zp-core/zp-extensions/comment_form.php:196
-#: zp-core/zp-extensions/contact_form.php:194
+#: zp-core/zp-extensions/contact_form.php:196
 #: zp-core/zp-extensions/register_user.php:117
 msgid "Data usage confirmation"
 msgstr "Bevestiging gebruik gegevens"
 
 #: zp-core/zp-extensions/comment_form.php:200
-#: zp-core/zp-extensions/contact_form.php:198
+#: zp-core/zp-extensions/contact_form.php:200
 #: zp-core/zp-extensions/register_user.php:121
 msgid ""
 "If checked a mandatory checkbox is added for users to confirm about data "
@@ -14262,7 +14249,7 @@ msgid "You must enter something in the comment text."
 msgstr "Je bent vergeten een bericht te schrijven."
 
 #: zp-core/zp-extensions/comment_form/functions.php:308
-#: zp-core/zp-extensions/contact_form.php:313
+#: zp-core/zp-extensions/contact_form.php:315
 msgid "Please agree to storage and handling of your data by this website."
 msgstr ""
 "U dient nog in te stemmen met het opslaan en verwerken van uw gegevens door "
@@ -14402,7 +14389,7 @@ msgstr ""
 "Print een e-mail contactformulier zodat bezoekers een bericht naar de "
 "beheerder kunnen sturen."
 
-#: zp-core/zp-extensions/contact_form.php:40
+#: zp-core/zp-extensions/contact_form.php:42
 msgid ""
 "<p>Fields with <strong>*</strong> are required. HTML or any other code is "
 "not allowed.</p>"
@@ -14410,19 +14397,19 @@ msgstr ""
 "<p>Velden met een <strong>*</strong> zijn verplicht. HTML of andere code is "
 "niet toegestaan.</p>"
 
-#: zp-core/zp-extensions/contact_form.php:42
+#: zp-core/zp-extensions/contact_form.php:44
 msgid "<p>Please confirm that you really want to send this email. Thanks.</p>"
 msgstr "<p>Bevestig dat je dit bericht wilt versturen.</p>"
 
-#: zp-core/zp-extensions/contact_form.php:44
+#: zp-core/zp-extensions/contact_form.php:46
 msgid "<p>Thanks for your message.</p>"
 msgstr "<p>Bedankt voor je bericht.</p>"
 
-#: zp-core/zp-extensions/contact_form.php:46
+#: zp-core/zp-extensions/contact_form.php:48
 msgid "Send another message."
 msgstr "Stuur nog een bericht."
 
-#: zp-core/zp-extensions/contact_form.php:62
+#: zp-core/zp-extensions/contact_form.php:64
 msgid ""
 "<p>A copy of your e-mail will automatically be sent to the address you "
 "provided for your own records.</p>"
@@ -14430,15 +14417,15 @@ msgstr ""
 "<p>Een kopie van je bericht wordt verzonden naar het opgegeven e-mailadres.</"
 "p>"
 
-#: zp-core/zp-extensions/contact_form.php:80
+#: zp-core/zp-extensions/contact_form.php:82
 msgid "required"
 msgstr "verplicht"
 
-#: zp-core/zp-extensions/contact_form.php:80
+#: zp-core/zp-extensions/contact_form.php:82
 msgid "omitted"
 msgstr "niet tonen"
 
-#: zp-core/zp-extensions/contact_form.php:81
+#: zp-core/zp-extensions/contact_form.php:83
 #, php-format
 msgid ""
 "Set if the <code>%s</code> field should be required, just shown or omitted"
@@ -14446,19 +14433,19 @@ msgstr ""
 "Geef aan of <code>%s</code> verplicht is, alleen zichtbaar moet zijn of "
 "helemaal niet getoond moet worden."
 
-#: zp-core/zp-extensions/contact_form.php:83
+#: zp-core/zp-extensions/contact_form.php:85
 msgid "Intro text"
 msgstr "Introductietekst"
 
-#: zp-core/zp-extensions/contact_form.php:87
+#: zp-core/zp-extensions/contact_form.php:89
 msgid "The intro text for your contact form"
 msgstr "De introductietekst voor het contactformulier"
 
-#: zp-core/zp-extensions/contact_form.php:88
+#: zp-core/zp-extensions/contact_form.php:90
 msgid "Confirm text"
 msgstr "Bevestigingstekst"
 
-#: zp-core/zp-extensions/contact_form.php:92
+#: zp-core/zp-extensions/contact_form.php:94
 msgid ""
 "The text that asks the visitor to confirm that he really wants to send the "
 "message."
@@ -14466,20 +14453,20 @@ msgstr ""
 "De tekst die de gebruiker vraagt om te bevestigen het bericht daadwerkelijk "
 "te versturen."
 
-#: zp-core/zp-extensions/contact_form.php:93
+#: zp-core/zp-extensions/contact_form.php:95
 msgid "Thanks text"
 msgstr "Bedankt tekst"
 
-#: zp-core/zp-extensions/contact_form.php:97
+#: zp-core/zp-extensions/contact_form.php:99
 msgid "The text that is shown after a message has been confirmed and sent."
 msgstr ""
 "De tekst die getoond wordt nadat een bericht bevestigd en verstuurd is."
 
-#: zp-core/zp-extensions/contact_form.php:98
+#: zp-core/zp-extensions/contact_form.php:100
 msgid "New message link text"
 msgstr "Nieuw-bericht-link tekst"
 
-#: zp-core/zp-extensions/contact_form.php:102
+#: zp-core/zp-extensions/contact_form.php:104
 msgid ""
 "The text for the link after the thanks text to return to the contact page to "
 "send another message."
@@ -14487,11 +14474,11 @@ msgstr ""
 "De tekst voor de link om terug te keren naar de contactpagina voor een nieuw "
 "bericht."
 
-#: zp-core/zp-extensions/contact_form.php:103
+#: zp-core/zp-extensions/contact_form.php:105
 msgid "Require confirmation"
 msgstr "Bevestiging vereist"
 
-#: zp-core/zp-extensions/contact_form.php:107
+#: zp-core/zp-extensions/contact_form.php:109
 msgid ""
 "If checked, a confirmation form will be presented before sending the contact "
 "message."
@@ -14499,11 +14486,11 @@ msgstr ""
 "Indien aangevinkt, zal een bevestiging gevraagd worden voordat het bericht "
 "wordt verzonden."
 
-#: zp-core/zp-extensions/contact_form.php:108
+#: zp-core/zp-extensions/contact_form.php:110
 msgid "Send copy"
 msgstr "Stuur kopie"
 
-#: zp-core/zp-extensions/contact_form.php:112
+#: zp-core/zp-extensions/contact_form.php:114
 msgid ""
 "If checked, a copy of the message will be sent to the address provided. <p "
 "class='notebox'><strong>Caution: </strong> If you check this option it is "
@@ -14519,11 +14506,11 @@ msgstr ""
 "dit formulier kan misbruiken voor spam! In een aantal landen kun je daarvoor "
 "zelf verantwoordelijk worden gehouden.</p>"
 
-#: zp-core/zp-extensions/contact_form.php:113
+#: zp-core/zp-extensions/contact_form.php:115
 msgid "Send copy note text"
 msgstr "Begeleidende tekst voor kopie"
 
-#: zp-core/zp-extensions/contact_form.php:117
+#: zp-core/zp-extensions/contact_form.php:119
 msgid ""
 "The text for the note about sending a copy to the address provided in case "
 "that option is set."
@@ -14531,11 +14518,11 @@ msgstr ""
 "De tekst die uitlegt dat er een kopie naar het opgegeven e-mailadres wordt "
 "verzonden."
 
-#: zp-core/zp-extensions/contact_form.php:118
+#: zp-core/zp-extensions/contact_form.php:120
 msgid "Contact recipients"
 msgstr "Ontvanger(s) van het bericht"
 
-#: zp-core/zp-extensions/contact_form.php:122
+#: zp-core/zp-extensions/contact_form.php:124
 msgid ""
 "The e-mail address the messages should be sent to. Enter one or more address "
 "separated by semicolons."
@@ -14543,144 +14530,148 @@ msgstr ""
 "Het e-mailadres waarnaar het bericht wordt verzonden. Meerdere adressen "
 "moeten, zonder spaties, worden gescheiden door een puntkomma."
 
-#: zp-core/zp-extensions/contact_form.php:129
-#: zp-core/zp-extensions/contact_form.php:134
+#: zp-core/zp-extensions/contact_form.php:131
+#: zp-core/zp-extensions/contact_form.php:136
 #: zp-core/zp-extensions/register_user/register_user_form.php:32
 msgid "Name"
 msgstr "Naam"
 
-#: zp-core/zp-extensions/contact_form.php:135
-#: zp-core/zp-extensions/contact_form.php:140
+#: zp-core/zp-extensions/contact_form.php:137
+#: zp-core/zp-extensions/contact_form.php:142
 msgid "Company"
 msgstr "Bedrijf"
 
-#: zp-core/zp-extensions/contact_form.php:141
-#: zp-core/zp-extensions/contact_form.php:146
+#: zp-core/zp-extensions/contact_form.php:143
+#: zp-core/zp-extensions/contact_form.php:148
 #: zp-core/zp-extensions/userAddressFields.php:50
 msgid "Street"
 msgstr "Straat"
 
-#: zp-core/zp-extensions/contact_form.php:159
-#: zp-core/zp-extensions/contact_form.php:164
+#: zp-core/zp-extensions/contact_form.php:161
+#: zp-core/zp-extensions/contact_form.php:166
 #: zp-core/zp-extensions/userAddressFields.php:55
 msgid "Postal code"
 msgstr "Postcode"
 
-#: zp-core/zp-extensions/contact_form.php:171
-#: zp-core/zp-extensions/contact_form.php:176
+#: zp-core/zp-extensions/contact_form.php:173
+#: zp-core/zp-extensions/contact_form.php:178
 #: zp-core/zp-extensions/scriptless-socialsharing.php:86
 msgid "E-mail"
 msgstr "E-mail"
 
-#: zp-core/zp-extensions/contact_form.php:183
+#: zp-core/zp-extensions/contact_form.php:185
 #: zp-core/zp-extensions/register_user.php:112
 msgid "CAPTCHA"
 msgstr "CAPTCHA"
 
-#: zp-core/zp-extensions/contact_form.php:187
+#: zp-core/zp-extensions/contact_form.php:189
 #: zp-core/zp-extensions/register_user.php:116
 msgid "If checked, the form will include a Captcha verification."
 msgstr "Indien aangevinkt, zal het formulier een Captcha verificatie tonen."
 
-#: zp-core/zp-extensions/contact_form.php:188
+#: zp-core/zp-extensions/contact_form.php:190
 #: zp-core/zp-extensions/mobileTheme.php:106
 msgid "Phone"
 msgstr "Telefoon"
 
-#: zp-core/zp-extensions/contact_form.php:193
+#: zp-core/zp-extensions/contact_form.php:195
 msgid "Phone number"
 msgstr "Telefoonnummer"
 
-#: zp-core/zp-extensions/contact_form.php:259
+#: zp-core/zp-extensions/contact_form.php:261
 msgid "a title"
 msgstr "een title"
 
-#: zp-core/zp-extensions/contact_form.php:262
+#: zp-core/zp-extensions/contact_form.php:264
 msgid "a name"
 msgstr "een naam"
 
-#: zp-core/zp-extensions/contact_form.php:265
+#: zp-core/zp-extensions/contact_form.php:267
 msgid "a company"
 msgstr "een bedrijf"
 
-#: zp-core/zp-extensions/contact_form.php:268
+#: zp-core/zp-extensions/contact_form.php:270
 msgid "a street"
 msgstr "een straat"
 
-#: zp-core/zp-extensions/contact_form.php:271
+#: zp-core/zp-extensions/contact_form.php:273
 msgid "a city"
 msgstr "een plaats"
 
-#: zp-core/zp-extensions/contact_form.php:274
+#: zp-core/zp-extensions/contact_form.php:276
 msgid "a state"
 msgstr "een staat"
 
-#: zp-core/zp-extensions/contact_form.php:277
+#: zp-core/zp-extensions/contact_form.php:279
 msgid "a postal code"
 msgstr "een postcode"
 
-#: zp-core/zp-extensions/contact_form.php:280
+#: zp-core/zp-extensions/contact_form.php:282
 msgid "a country"
 msgstr "een land"
 
-#: zp-core/zp-extensions/contact_form.php:283
+#: zp-core/zp-extensions/contact_form.php:285
 msgid "a valid email address"
 msgstr "een geldig e-mailadres"
 
-#: zp-core/zp-extensions/contact_form.php:286
+#: zp-core/zp-extensions/contact_form.php:288
 msgid "a website"
 msgstr "een website"
 
-#: zp-core/zp-extensions/contact_form.php:295
+#: zp-core/zp-extensions/contact_form.php:297
 msgid "a phone number"
 msgstr "een telefoonnummer"
 
-#: zp-core/zp-extensions/contact_form.php:298
+#: zp-core/zp-extensions/contact_form.php:300
 msgid "a subject"
 msgstr "een onderwerp"
 
-#: zp-core/zp-extensions/contact_form.php:301
+#: zp-core/zp-extensions/contact_form.php:303
 msgid "a message"
 msgstr "een bericht"
 
-#: zp-core/zp-extensions/contact_form.php:308
+#: zp-core/zp-extensions/contact_form.php:310
 msgid "the correct CAPTCHA verification code"
 msgstr "de juiste CAPTCHA code"
 
-#: zp-core/zp-extensions/contact_form.php:328
+#: zp-core/zp-extensions/contact_form.php:330
 #, php-format
 msgid "Please enter %s. Thanks."
 msgstr "Vul alsjeblieft %s in."
 
-#: zp-core/zp-extensions/contact_form.php:331
+#: zp-core/zp-extensions/contact_form.php:333
 #, php-format
 msgid "Please enter %1$s and %2$s. Thanks."
 msgstr "Vul alsjeblieft %1$s en %2$s in."
 
-#: zp-core/zp-extensions/contact_form.php:340
+#: zp-core/zp-extensions/contact_form.php:342
 #, php-format
 msgid "Please enter: %sThanks."
 msgstr "De volgende velden zijn niet of onjuist ingevuld: %s"
 
-#: zp-core/zp-extensions/contact_form.php:387
+#: zp-core/zp-extensions/contact_form.php:389
 msgid "I agree to storage and handling of my data by this website."
 msgstr ""
 "I ga akkoord met het opslaan en verwerken van mijn gegevens door deze "
 "website."
 
-#: zp-core/zp-extensions/contact_form.php:409
+#: zp-core/zp-extensions/contact_form.php:411
 msgid "Confirm"
 msgstr "Bevestig"
 
-#: zp-core/zp-extensions/contact_form.php:413
+#: zp-core/zp-extensions/contact_form.php:415
 msgid "Discard"
 msgstr "Annuleer"
 
-#: zp-core/zp-extensions/contact_form.php:451
+#: zp-core/zp-extensions/contact_form.php:453
 msgid "Error sending mail:"
 msgid_plural "Errors sending mail:"
 msgstr[0] "Fout bij het verzenden van de e-mail"
 msgstr[1] "Fouten bij het verzenden van de e-mails"
+
+#: zp-core/zp-extensions/contact_form.php:568
+msgid "Set %1 to optionally override the subject."
+msgstr "Stel %1 in om te bepalen wat het <em>Onderwerp</em> is."
 
 #: zp-core/zp-extensions/contact_form/form.php:15
 #, php-format
@@ -14896,10 +14887,6 @@ msgstr ""
 #: zp-core/zp-extensions/cookieconsent.php:123
 msgid "Agree"
 msgstr "Akkoord"
-
-#: zp-core/zp-extensions/cookieconsent.php:127
-msgid "More info"
-msgstr "Meer informatie"
 
 #: zp-core/zp-extensions/crop_image.php:22
 msgid "An image cropping tool."
@@ -16298,25 +16285,25 @@ msgstr "jPlayer is niet geactiveerd, %s wordt al gebruikt."
 msgid "Autoplay"
 msgstr "Automatisch starten"
 
-#: zp-core/zp-extensions/jplayer.php:128
+#: zp-core/zp-extensions/jplayer.php:130
 msgid "Disabled automatically if several players on one page"
 msgstr ""
 "Wordt automatisch uitgezet als er meerdere players op één pagina aanwezig "
 "zijn."
 
-#: zp-core/zp-extensions/jplayer.php:129
+#: zp-core/zp-extensions/jplayer.php:131
 msgid "Poster (Videothumb)"
 msgstr "Poster (video-thumbnail)"
 
-#: zp-core/zp-extensions/jplayer.php:130
+#: zp-core/zp-extensions/jplayer.php:134
 msgid "If the videothumb should be shown (jplayer calls it poster)."
 msgstr "Of de video-thumbnail getoond moet worden (jPlayer noemt dit poster)"
 
-#: zp-core/zp-extensions/jplayer.php:131
+#: zp-core/zp-extensions/jplayer.php:135
 msgid "Audio poster (Videothumb)"
 msgstr "Audio poster (video-thumbnail)"
 
-#: zp-core/zp-extensions/jplayer.php:132
+#: zp-core/zp-extensions/jplayer.php:138
 msgid ""
 "If the poster should be shown for audio files (mp3,m4a,fla) (does not apply "
 "for playlists which are all or none)."
@@ -16324,23 +16311,23 @@ msgstr ""
 "Of de poster getoond moet worden voor audio bestanden(mp3,m4a,fla) (is niet "
 "van toepassing op playlists)"
 
-#: zp-core/zp-extensions/jplayer.php:133
+#: zp-core/zp-extensions/jplayer.php:139
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:129
 msgid "Show title"
 msgstr "Toon titel"
 
-#: zp-core/zp-extensions/jplayer.php:134
+#: zp-core/zp-extensions/jplayer.php:142
 msgid ""
 "If the title should be shown below the player in single player mode (not "
 "needed on normal themes) (ignored in playlists naturally)."
 msgstr ""
 "Of de titel onder de player getoond moet worden in single-player modus."
 
-#: zp-core/zp-extensions/jplayer.php:135
+#: zp-core/zp-extensions/jplayer.php:143
 msgid "Playlist support"
 msgstr "Playlist ondersteuning"
 
-#: zp-core/zp-extensions/jplayer.php:136
+#: zp-core/zp-extensions/jplayer.php:146
 msgid ""
 "Enable this if you wish to use the playlist mode this loads the scripts "
 "needed. NOTE: You have to add the function printjPlayerPlaylist() to your "
@@ -16350,55 +16337,55 @@ msgstr ""
 "functie <code> printjPlayerPlaylist() </code> aan je thema toevoegen. Zie de "
 "documentatie voor informatie."
 
-#: zp-core/zp-extensions/jplayer.php:137
+#: zp-core/zp-extensions/jplayer.php:147
 msgid "Playlist numbered"
 msgstr "Playlist (genummerd)"
 
-#: zp-core/zp-extensions/jplayer.php:138
+#: zp-core/zp-extensions/jplayer.php:150
 msgid "Enable this if you wish the playlist to be numbered."
 msgstr "Vink aan als je een genummerde playlist wilt."
 
-#: zp-core/zp-extensions/jplayer.php:139
+#: zp-core/zp-extensions/jplayer.php:151
 msgid "Playlist playtime"
 msgstr "Playlist speeltijd"
 
-#: zp-core/zp-extensions/jplayer.php:140
+#: zp-core/zp-extensions/jplayer.php:154
 msgid "Enable if you want to show the playtime of playlist entries."
 msgstr "Vink aan om de speeltijd van playlist onderdelen te tonen."
 
-#: zp-core/zp-extensions/jplayer.php:141
+#: zp-core/zp-extensions/jplayer.php:155
 msgid "Enable download"
 msgstr "Maak downloaden mogelijk"
 
-#: zp-core/zp-extensions/jplayer.php:142
+#: zp-core/zp-extensions/jplayer.php:158
 msgid "Enables direct file downloads (playlists only)."
 msgstr "Maakt direct downloaden mogelijk (alleen playlists)"
 
-#: zp-core/zp-extensions/jplayer.php:143
+#: zp-core/zp-extensions/jplayer.php:159
 msgid "Player size"
 msgstr "Player grootte"
 
-#: zp-core/zp-extensions/jplayer.php:145
+#: zp-core/zp-extensions/jplayer.php:163
 msgid "jp-video-270p (480x270px)"
 msgstr "jp-video-270p (480x270px)"
 
-#: zp-core/zp-extensions/jplayer.php:146
+#: zp-core/zp-extensions/jplayer.php:164
 msgid "jp-video-360p (640x360px)"
 msgstr "jp-video-360p (640x360px)"
 
-#: zp-core/zp-extensions/jplayer.php:147
+#: zp-core/zp-extensions/jplayer.php:165
 msgid "jp-video-480p (720x405px)*"
 msgstr "jp-video-480p (720x405px)*"
 
-#: zp-core/zp-extensions/jplayer.php:148
+#: zp-core/zp-extensions/jplayer.php:166
 msgid "jp-video-720p (1280x720px)*"
 msgstr "jp-video-720p (1280x720px)*"
 
-#: zp-core/zp-extensions/jplayer.php:149
+#: zp-core/zp-extensions/jplayer.php:167
 msgid "jp-video-1080p (1920x1080px)*"
 msgstr "jp-video-1080p (1920x1080px)*"
 
-#: zp-core/zp-extensions/jplayer.php:150
+#: zp-core/zp-extensions/jplayer.php:168
 msgid ""
 "jPlayer is dependent on their HTML and CSS based skin. Sizes marked with a "
 "<strong>*</strong> are supported by the two Zenphoto custom skins only "
@@ -16412,11 +16399,11 @@ msgstr ""
 "formaat wilt, moet je de skin aanpassen of er zelf een maken. Je moet ook "
 "waardes veranderen in de plugin class methode <code>getPlayerSize()</code>."
 
-#: zp-core/zp-extensions/jplayer.php:151
+#: zp-core/zp-extensions/jplayer.php:169
 msgid "Player skin"
 msgstr "Player skin"
 
-#: zp-core/zp-extensions/jplayer.php:153
+#: zp-core/zp-extensions/jplayer.php:173
 msgid ""
 "Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS "
 "only there may be display issues with certain themes that require manual "
@@ -16429,12 +16416,12 @@ msgstr ""
 "zelfgemaakte skin in de <em>plugins</em> map (in de root van de "
 "installatie). Zie de plugin documentatie voor meer informatie."
 
-#: zp-core/zp-extensions/jplayer.php:235
+#: zp-core/zp-extensions/jplayer.php:255
 #, php-format
 msgid "%1$s::%2$s not found."
 msgstr "%1$s::%2$s niet gevonden."
 
-#: zp-core/zp-extensions/jplayer.php:245
+#: zp-core/zp-extensions/jplayer.php:265
 msgid ""
 "provide the album name (%1), media file name (%2) and a unique number (%3). "
 "(If there is only player instance on the page the parameter may be omitted.)"
@@ -16443,53 +16430,53 @@ msgstr ""
 ">Als er slechts één speler op de pagina is, kan de laatste parameter "
 "weggelaten worden."
 
-#: zp-core/zp-extensions/jplayer.php:286
+#: zp-core/zp-extensions/jplayer.php:306
 msgid "This multimedia format is not supported by jPlayer"
 msgstr "Dit multimedia format wordt niet ondersteund door jPlayer."
 
-#: zp-core/zp-extensions/jplayer.php:360 zp-core/zp-extensions/jplayer.php:469
-#: zp-core/zp-extensions/jplayer.php:738
-#: zp-core/zp-extensions/slideshow2.php:272
+#: zp-core/zp-extensions/jplayer.php:380 zp-core/zp-extensions/jplayer.php:489
+#: zp-core/zp-extensions/jplayer.php:758
+#: zp-core/zp-extensions/slideshow2.php:294
 msgid "play"
 msgstr "play"
 
-#: zp-core/zp-extensions/jplayer.php:374 zp-core/zp-extensions/jplayer.php:411
-#: zp-core/zp-extensions/jplayer.php:751 zp-core/zp-extensions/jplayer.php:787
+#: zp-core/zp-extensions/jplayer.php:394 zp-core/zp-extensions/jplayer.php:431
+#: zp-core/zp-extensions/jplayer.php:771 zp-core/zp-extensions/jplayer.php:807
 msgid "mute"
 msgstr "mute"
 
-#: zp-core/zp-extensions/jplayer.php:375 zp-core/zp-extensions/jplayer.php:412
-#: zp-core/zp-extensions/jplayer.php:752 zp-core/zp-extensions/jplayer.php:788
+#: zp-core/zp-extensions/jplayer.php:395 zp-core/zp-extensions/jplayer.php:432
+#: zp-core/zp-extensions/jplayer.php:772 zp-core/zp-extensions/jplayer.php:808
 msgid "max volume"
 msgstr "max volume"
 
-#: zp-core/zp-extensions/jplayer.php:467
+#: zp-core/zp-extensions/jplayer.php:487
 msgid "previous"
 msgstr "vorige"
 
-#: zp-core/zp-extensions/jplayer.php:473
-#: zp-core/zp-extensions/slideshow2.php:270
+#: zp-core/zp-extensions/jplayer.php:493
+#: zp-core/zp-extensions/slideshow2.php:292
 msgid "stop"
 msgstr "stop"
 
-#: zp-core/zp-extensions/jplayer.php:479
+#: zp-core/zp-extensions/jplayer.php:499
 msgid "repeat"
 msgstr "repeat"
 
-#: zp-core/zp-extensions/jplayer.php:481
-#: zp-core/zp-extensions/slideshow2.php:105
+#: zp-core/zp-extensions/jplayer.php:501
+#: zp-core/zp-extensions/slideshow2.php:122
 msgid "shuffle"
 msgstr "shuffle"
 
-#: zp-core/zp-extensions/jplayer.php:484
+#: zp-core/zp-extensions/jplayer.php:504
 msgid "full screen"
 msgstr "volledig scherm"
 
-#: zp-core/zp-extensions/jplayer.php:491
+#: zp-core/zp-extensions/jplayer.php:511
 msgid "Update Required"
 msgstr "Update vereist"
 
-#: zp-core/zp-extensions/jplayer.php:492
+#: zp-core/zp-extensions/jplayer.php:512
 msgid ""
 "To play the media you will need to either update your browser to a recent "
 "version or update your <a href=\"http://get.adobe.com/flashplayer/\" target="
@@ -16751,25 +16738,25 @@ msgstr ""
 
 #: zp-core/zp-extensions/menu_manager.php:51
 #: zp-core/zp-extensions/print_album_menu.php:55
-#: zp-core/zp-extensions/zenpage.php:203
+#: zp-core/zp-extensions/zenpage.php:205
 msgid "Truncate indicator*"
 msgstr "Inkortings-indicator*"
 
 #: zp-core/zp-extensions/menu_manager.php:56
 #: zp-core/zp-extensions/print_album_menu.php:58
-#: zp-core/zp-extensions/zenpage.php:208
+#: zp-core/zp-extensions/zenpage.php:210
 msgid "Append this string to truncated titles."
 msgstr "Voeg deze string toe aan ingekorte titels."
 
 #: zp-core/zp-extensions/menu_manager.php:57
 #: zp-core/zp-extensions/print_album_menu.php:51
-#: zp-core/zp-extensions/zenpage.php:197
+#: zp-core/zp-extensions/zenpage.php:199
 msgid "Truncate titles*"
 msgstr "Inkorten titels*"
 
 #: zp-core/zp-extensions/menu_manager.php:61
 #: zp-core/zp-extensions/print_album_menu.php:54
-#: zp-core/zp-extensions/zenpage.php:202
+#: zp-core/zp-extensions/zenpage.php:204
 msgid "Limit titles to this many characters. Zero means no limit."
 msgstr "Beperkt titels tot dit aantal karakters. Nul betekent ongelimiteerd."
 
@@ -16782,7 +16769,7 @@ msgstr ""
 "gotoName('menu_manager');\"><em>menu_manager</em></a> plugin opties."
 
 #: zp-core/zp-extensions/menu_manager.php:75
-#: zp-core/zp-extensions/zenpage.php:222
+#: zp-core/zp-extensions/zenpage.php:224
 msgid ""
 "<p class=\"notebox\">*<strong>Note:</strong> The setting of these options "
 "are shared with other plugins.</p>"
@@ -20081,19 +20068,19 @@ msgstr ""
 "Er mag maar één slideshow plugin geactiveerd zijn. <a href=\"#%1$s\"><code>"
 "%1$s</code></a> is al geactiveerd."
 
-#: zp-core/zp-extensions/slideshow2.php:82
+#: zp-core/zp-extensions/slideshow2.php:86
 msgid "Slideshow: Mode"
 msgstr "Slideshow: Modus"
 
-#: zp-core/zp-extensions/slideshow2.php:84
+#: zp-core/zp-extensions/slideshow2.php:91
 msgid "jQuery Cycle"
 msgstr "jQuery Cycle"
 
-#: zp-core/zp-extensions/slideshow2.php:84
+#: zp-core/zp-extensions/slideshow2.php:92
 msgid "jQuery Colorbox"
 msgstr "jQuery Colorbox"
 
-#: zp-core/zp-extensions/slideshow2.php:85
+#: zp-core/zp-extensions/slideshow2.php:93
 msgid ""
 "<em>jQuery Cycle</em> for slideshow using the jQuery Cycle2 plugin<br /"
 "><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin "
@@ -20108,69 +20095,69 @@ msgstr ""
 "link die geprint wordt door de printSlideShowLink() functie ! <br />Hij kan "
 "niet rechtstreeks of op slideshow.php aangeroepen worden.</p>"
 
-#: zp-core/zp-extensions/slideshow2.php:86
+#: zp-core/zp-extensions/slideshow2.php:94
 msgid "Slideshow: Speed"
 msgstr "Slideshow: Snelheid"
 
-#: zp-core/zp-extensions/slideshow2.php:88
+#: zp-core/zp-extensions/slideshow2.php:98
 msgid "Speed of the transition in milliseconds."
 msgstr "Snelheid van de overgang in milliseconde."
 
-#: zp-core/zp-extensions/slideshow2.php:93
+#: zp-core/zp-extensions/slideshow2.php:104
 msgid "Slideshow: Slide width"
 msgstr "Slideshow: Slide breedte"
 
-#: zp-core/zp-extensions/slideshow2.php:95
-#: zp-core/zp-extensions/slideshow2.php:153
+#: zp-core/zp-extensions/slideshow2.php:108
+#: zp-core/zp-extensions/slideshow2.php:189
 msgid "Width of the images in the slideshow."
 msgstr "Breedte van de afbeeldingen in de slideshow."
 
-#: zp-core/zp-extensions/slideshow2.php:96
+#: zp-core/zp-extensions/slideshow2.php:109
 msgid "Slideshow: Slide height"
 msgstr "Slideshow: Slide hoogte"
 
-#: zp-core/zp-extensions/slideshow2.php:98
+#: zp-core/zp-extensions/slideshow2.php:113
 msgid "Height of the images in the slideshow."
 msgstr "Hoogte van de afbeeldingen in de slideshow."
 
-#: zp-core/zp-extensions/slideshow2.php:99
+#: zp-core/zp-extensions/slideshow2.php:114
 msgid "Slideshow: Effect"
 msgstr "Slideshow: Effect"
 
-#: zp-core/zp-extensions/slideshow2.php:103
-#: zp-core/zp-extensions/slideshow2.php:139
+#: zp-core/zp-extensions/slideshow2.php:120
+#: zp-core/zp-extensions/slideshow2.php:166
 msgid "fade"
 msgstr "vervagen"
 
-#: zp-core/zp-extensions/slideshow2.php:104
+#: zp-core/zp-extensions/slideshow2.php:121
 msgid "fadeOut"
 msgstr "fadeOut"
 
-#: zp-core/zp-extensions/slideshow2.php:106
+#: zp-core/zp-extensions/slideshow2.php:123
 msgid "Scroll horizontal"
 msgstr "Scroll horizontaal"
 
-#: zp-core/zp-extensions/slideshow2.php:107
+#: zp-core/zp-extensions/slideshow2.php:124
 msgid "Scroll vertical"
 msgstr "Scroll verticaal"
 
-#: zp-core/zp-extensions/slideshow2.php:108
+#: zp-core/zp-extensions/slideshow2.php:125
 msgid "Flip horizontal"
 msgstr "Flip horizontaal"
 
-#: zp-core/zp-extensions/slideshow2.php:109
+#: zp-core/zp-extensions/slideshow2.php:126
 msgid "Flip vertical"
 msgstr "Flip verticaal"
 
-#: zp-core/zp-extensions/slideshow2.php:110
+#: zp-core/zp-extensions/slideshow2.php:127
 msgid "Tile slide"
 msgstr "Tile slide"
 
-#: zp-core/zp-extensions/slideshow2.php:111
+#: zp-core/zp-extensions/slideshow2.php:128
 msgid "Tile blind"
 msgstr "Tile blind"
 
-#: zp-core/zp-extensions/slideshow2.php:112
+#: zp-core/zp-extensions/slideshow2.php:129
 msgid ""
 "The cycle slide effect to be used. Flip transitions are only supported on "
 "browsers that support CSS3 3D transforms. (IE10+, current Chrome, Firefox, "
@@ -20180,75 +20167,75 @@ msgstr ""
 "die CSS3 3D overgangen ondersteunen. (IE10+, huidige Chrome, Firefox, Opera "
 "and Safari.)"
 
-#: zp-core/zp-extensions/slideshow2.php:113
+#: zp-core/zp-extensions/slideshow2.php:130
 msgid "Slideshow: Tile Effect - Extra"
 msgstr "Slideshow: Tile-effect - Extra"
 
-#: zp-core/zp-extensions/slideshow2.php:116
+#: zp-core/zp-extensions/slideshow2.php:135
 msgid "Horziontal"
 msgstr "Horziontaal"
 
-#: zp-core/zp-extensions/slideshow2.php:118
+#: zp-core/zp-extensions/slideshow2.php:137
 msgid "If one of the tile effects is selected, this is its orientation."
 msgstr "Dit is de oriëntatie als één van de tile-effecten is geselecteerd."
 
-#: zp-core/zp-extensions/slideshow2.php:119
+#: zp-core/zp-extensions/slideshow2.php:138
 msgid "Slideshow: Timeout"
 msgstr "Slideshow: Vertraging"
 
-#: zp-core/zp-extensions/slideshow2.php:121
+#: zp-core/zp-extensions/slideshow2.php:142
 msgid "Milliseconds between slide transitions (0 to disable auto advance.)"
 msgstr ""
 "Milliseconden tussen slide-overgangen (zet op 0 (nul) om autoplay uit te "
 "zetten)."
 
-#: zp-core/zp-extensions/slideshow2.php:122
+#: zp-core/zp-extensions/slideshow2.php:143
 msgid "Slideshow: Description"
 msgstr "Slideshow: Beschrijving"
 
-#: zp-core/zp-extensions/slideshow2.php:124
+#: zp-core/zp-extensions/slideshow2.php:147
 msgid "Check if you want to show the image’s description below the slideshow."
 msgstr ""
 "Vink aan als je de beschrijving van de afbeelding wilt tonen onder de "
 "slideshow."
 
-#: zp-core/zp-extensions/slideshow2.php:125
+#: zp-core/zp-extensions/slideshow2.php:148
 msgid "Slideshow: Swipe gestures"
 msgstr "Slideshow: Swipe gebaren"
 
-#: zp-core/zp-extensions/slideshow2.php:127
+#: zp-core/zp-extensions/slideshow2.php:152
 msgid "Check if you want to enable touch screen swipe gestures."
 msgstr "Vink aan als je swipe gebaren op touch-screens mogelijk wilt maken."
 
-#: zp-core/zp-extensions/slideshow2.php:128
+#: zp-core/zp-extensions/slideshow2.php:153
 msgid "Slideshow: Pause on hover"
 msgstr "Slideshow: Pauzeer bij mouseover"
 
-#: zp-core/zp-extensions/slideshow2.php:130
+#: zp-core/zp-extensions/slideshow2.php:157
 msgid "Check if you want the slidesshow to pause on hover."
 msgstr "Vink aan als je wilt dat de slideshow pauzeert bij mouseover."
 
-#: zp-core/zp-extensions/slideshow2.php:135
+#: zp-core/zp-extensions/slideshow2.php:162
 msgid "Colorbox: Transition"
 msgstr "Colorbox: Overgang"
 
-#: zp-core/zp-extensions/slideshow2.php:138
+#: zp-core/zp-extensions/slideshow2.php:165
 msgid "elastic"
 msgstr "elastisch"
 
-#: zp-core/zp-extensions/slideshow2.php:141
+#: zp-core/zp-extensions/slideshow2.php:168
 msgid "The Colorbox transition slide effect to be used."
 msgstr "Het Colorbox overgangseffect dat wordt gebruikt."
 
-#: zp-core/zp-extensions/slideshow2.php:142
+#: zp-core/zp-extensions/slideshow2.php:169
 msgid "Colorbox: Image type"
 msgstr "Colorbox: Type afbeelding"
 
-#: zp-core/zp-extensions/slideshow2.php:144
+#: zp-core/zp-extensions/slideshow2.php:175
 msgid "sized image"
 msgstr "ingesteld formaat"
 
-#: zp-core/zp-extensions/slideshow2.php:145
+#: zp-core/zp-extensions/slideshow2.php:176
 msgid ""
 "The image type you wish to use for the Colorbox. If you choose “sized image” "
 "the slideshow width value will be used for the longest side of the image."
@@ -20257,43 +20244,35 @@ msgstr ""
 "afbeeldingen op een “ingesteld formaat” wordt de slideshow <em>Breedte</em> "
 "gebruikt als langste zijde van de afbeelding."
 
-#: zp-core/zp-extensions/slideshow2.php:146
+#: zp-core/zp-extensions/slideshow2.php:177
 msgid "Colorbox: Image title"
 msgstr "Colorbox: Afbeeldingstitel"
 
-#: zp-core/zp-extensions/slideshow2.php:148
+#: zp-core/zp-extensions/slideshow2.php:181
 msgid "If the image title should be shown at the bottom of the Colorbox."
 msgstr "Of de afbeeldingstitel getoond moet worden onderaan de Colorbox."
 
-#: zp-core/zp-extensions/slideshow2.php:151
+#: zp-core/zp-extensions/slideshow2.php:185
 msgid "Colorbox: Slide width"
 msgstr "Colorbox: Slide breedte"
 
-#: zp-core/zp-extensions/slideshow2.php:166
-msgid ""
-"The scripts for which the cycle2 plugin is enabled. {If themes require it "
-"they might set this, otherwise you need to do it manually!}"
-msgstr ""
-"De scripts waarvoor cycle2 is geactiveerd. {Als thema’s dit nodig hebben is "
-"het al ingesteld. Zo niet, dan moet je het zelf instellen.}"
-
-#: zp-core/zp-extensions/slideshow2.php:188
+#: zp-core/zp-extensions/slideshow2.php:210
 msgid "Invalid slideshow album name!"
 msgstr "Ongeldige albumnaam voor de slideshow!"
 
-#: zp-core/zp-extensions/slideshow2.php:196
+#: zp-core/zp-extensions/slideshow2.php:218
 msgid "This album is password protected!"
 msgstr "Dit is album is beveiligd met een wachtwoord!"
 
-#: zp-core/zp-extensions/slideshow2.php:264
+#: zp-core/zp-extensions/slideshow2.php:286
 msgid "No images for the slideshow!"
 msgstr "Er zijn geen afbeeldingen voor de slideshow!"
 
-#: zp-core/zp-extensions/slideshow2.php:271
+#: zp-core/zp-extensions/slideshow2.php:293
 msgid "pause"
 msgstr "pause"
 
-#: zp-core/zp-extensions/slideshow2.php:415
+#: zp-core/zp-extensions/slideshow2.php:437
 msgid ""
 "provide the album name as %1 and (optionally) <code>true</code> (or "
 "<code>false</code>) as %2 to show (hide) controls. Hiding the controls is "
@@ -20305,7 +20284,7 @@ msgstr ""
 "zijn de controls niet zichtbaar.<br /> Breedte (%3) en Hoogte (%4) kunnen "
 "ook ingesteld worden."
 
-#: zp-core/zp-extensions/slideshow2.php:574
+#: zp-core/zp-extensions/slideshow2.php:597
 #, php-format
 msgid ""
 "Slideshow not available because colorbox is not enabled on %1$s <em>%2$s</"
@@ -20314,20 +20293,20 @@ msgstr ""
 "Slideshow is niet beschikbaar omdat Colorbox niet geactiveerd is in %1$s <em>"
 "%2$s</em> pagina’s."
 
-#: zp-core/zp-extensions/slideshow2.php:593
+#: zp-core/zp-extensions/slideshow2.php:616
 msgid "start slideshow"
 msgstr "start slideshow"
 
-#: zp-core/zp-extensions/slideshow2.php:594
+#: zp-core/zp-extensions/slideshow2.php:617
 msgid "stop slideshow"
 msgstr "stop slideshow"
 
-#: zp-core/zp-extensions/slideshow2.php:598
+#: zp-core/zp-extensions/slideshow2.php:621
 #, php-format
 msgid "image %1$s of %2$s"
 msgstr "Afbeelding %1$s van %2$s"
 
-#: zp-core/zp-extensions/slideshow2.php:686
+#: zp-core/zp-extensions/slideshow2.php:709
 msgid "Invalid linking to the slideshow page."
 msgstr "Ongeldige verwijzing naar de slideshowpagina."
 
@@ -21661,27 +21640,27 @@ msgstr ""
 "deze mogelijkheid gebruik te maken. Het wordt niet ondersteund door het "
 "<em>basic</em> thema."
 
-#: zp-core/zp-extensions/zenpage.php:153 zp-core/zp-extensions/zenpage.php:191
+#: zp-core/zp-extensions/zenpage.php:155 zp-core/zp-extensions/zenpage.php:193
 msgid "Read more"
 msgstr "Lees meer"
 
-#: zp-core/zp-extensions/zenpage.php:164
+#: zp-core/zp-extensions/zenpage.php:166
 msgid "Enabled Zenpage items"
 msgstr "Geactiveerde Zenpage onderedelen"
 
-#: zp-core/zp-extensions/zenpage.php:169
+#: zp-core/zp-extensions/zenpage.php:171
 msgid "Enable news articles and pages"
 msgstr "Activeer nieuws en pagina's"
 
-#: zp-core/zp-extensions/zenpage.php:170
+#: zp-core/zp-extensions/zenpage.php:172
 msgid "Enable news"
 msgstr "Activeer nieuws"
 
-#: zp-core/zp-extensions/zenpage.php:171
+#: zp-core/zp-extensions/zenpage.php:173
 msgid "Enable pages"
 msgstr "Activeer pagina's"
 
-#: zp-core/zp-extensions/zenpage.php:173
+#: zp-core/zp-extensions/zenpage.php:175
 msgid ""
 "This enables or disables the admin tabs for pages and/or news articles. To "
 "hide news and/or pages content on the front end as well, themes must be "
@@ -21696,11 +21675,11 @@ msgstr ""
 "thema's gebruik maken van <br><code>if(ZP_NEWS_ENABLED) { … }</code> of "
 "<br><code>if(ZP_PAGES_ENABLED) { … }</code><br>"
 
-#: zp-core/zp-extensions/zenpage.php:175
+#: zp-core/zp-extensions/zenpage.php:177
 msgid "Articles per page (theme)"
 msgstr "Artikelen per pagina"
 
-#: zp-core/zp-extensions/zenpage.php:179
+#: zp-core/zp-extensions/zenpage.php:181
 msgid ""
 "How many news articles you want to show per page on the news or news "
 "category pages."
@@ -21708,11 +21687,11 @@ msgstr ""
 "Hoeveel nieuwsartikelen je wilt laten zien per pagina op de nieuws of "
 "nieuwscategorie pagina’s."
 
-#: zp-core/zp-extensions/zenpage.php:180
+#: zp-core/zp-extensions/zenpage.php:182
 msgid "News article text length"
 msgstr "Lengte van een nieuwsartikel"
 
-#: zp-core/zp-extensions/zenpage.php:184
+#: zp-core/zp-extensions/zenpage.php:186
 msgid ""
 "The length of news article excerpts in news or news category pages. Leave "
 "empty for full text."
@@ -21720,7 +21699,7 @@ msgstr ""
 "Tekstengte van de verkorte weergave van een nieuwsartikel in nieuws of "
 "nieuwscategorie pagina.<br />Laat leeg voor de volledige tekst."
 
-#: zp-core/zp-extensions/zenpage.php:185
+#: zp-core/zp-extensions/zenpage.php:187
 msgid ""
 "You can also set a custom article shorten length for the news loop excerpts "
 "by using the standard TinyMCE <em>page break</em> plugin button (or manually "
@@ -21732,11 +21711,11 @@ msgstr ""
 "pagebreak —&gt;</code> gebruiken)<br />Deze mogelijkheid heeft voorrang op "
 "de plugin optie."
 
-#: zp-core/zp-extensions/zenpage.php:186
+#: zp-core/zp-extensions/zenpage.php:188
 msgid "News article text shorten indicator"
 msgstr "Ingekorte tekst indicator"
 
-#: zp-core/zp-extensions/zenpage.php:190
+#: zp-core/zp-extensions/zenpage.php:192
 msgid ""
 "Something that indicates that the article text is shortened, “ (...)” by "
 "default."
@@ -21744,11 +21723,11 @@ msgstr ""
 "Iets dat aangeeft dat de tekst is ingekort.<br />Standaard wordt “(...)” "
 "gebruikt."
 
-#: zp-core/zp-extensions/zenpage.php:196
+#: zp-core/zp-extensions/zenpage.php:198
 msgid "The text for the link to the full article."
 msgstr "De tekst voor de link naar het volledige artikel."
 
-#: zp-core/zp-extensions/zenpage.php:217
+#: zp-core/zp-extensions/zenpage.php:219
 msgid ""
 "* These options may be set via the <a href=\"javascript:gotoName('zenpage');"
 "\"><em>Zenpage</em></a> plugin options."
@@ -21756,11 +21735,11 @@ msgstr ""
 "* Deze optie(s) worden gedeeld met de <a href=\"javascript:"
 "gotoName('zenpage');\"><em>Zenpage</em></a> plugin opties."
 
-#: zp-core/zp-extensions/zenpage.php:272
+#: zp-core/zp-extensions/zenpage.php:274
 msgid "Enable Zenpage CMS plugin"
 msgstr "Activeer de Zenpage plugin."
 
-#: zp-core/zp-extensions/zenpage.php:371
+#: zp-core/zp-extensions/zenpage.php:373
 #: zp-core/zp-extensions/zenpage/admin-edit.php:133
 #: zp-core/zp-extensions/zenpage/admin-pages.php:74
 msgid "Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"
@@ -21768,27 +21747,27 @@ msgstr ""
 "Weet je zeker dat je deze pagina wilt verwijderen? DIT KAN NIET HERSTELD "
 "WORDEN!"
 
-#: zp-core/zp-extensions/zenpage.php:373
+#: zp-core/zp-extensions/zenpage.php:375
 msgid "Edit Page"
 msgstr "Bewerk pagina"
 
-#: zp-core/zp-extensions/zenpage.php:376
+#: zp-core/zp-extensions/zenpage.php:378
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:297
 msgid "Delete page"
 msgstr "Verwijder pagina"
 
-#: zp-core/zp-extensions/zenpage.php:376
+#: zp-core/zp-extensions/zenpage.php:378
 msgid "Delete Page"
 msgstr "Verwijder pagina"
 
-#: zp-core/zp-extensions/zenpage.php:379
+#: zp-core/zp-extensions/zenpage.php:381
 #: zp-core/zp-extensions/zenpage/admin-edit.php:218
 #: zp-core/zp-extensions/zenpage/admin-edit.php:236
 #: zp-core/zp-extensions/zenpage/admin-pages.php:129
 msgid "New Page"
 msgstr "Nieuwe pagina"
 
-#: zp-core/zp-extensions/zenpage.php:388
+#: zp-core/zp-extensions/zenpage.php:390
 #: zp-core/zp-extensions/zenpage/admin-edit.php:132
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:67
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:383
@@ -21798,28 +21777,28 @@ msgstr ""
 "Weet je zeker dat je dit artikel wilt verwijderen? DIT KAN NIET HERSTELD "
 "WORDEN!"
 
-#: zp-core/zp-extensions/zenpage.php:390
+#: zp-core/zp-extensions/zenpage.php:392
 msgid "Edit Article"
 msgstr "Bewerk Artikel"
 
-#: zp-core/zp-extensions/zenpage.php:393
+#: zp-core/zp-extensions/zenpage.php:395
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:383
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:384
 msgid "Delete article"
 msgstr "Verwijder artikel"
 
-#: zp-core/zp-extensions/zenpage.php:393
+#: zp-core/zp-extensions/zenpage.php:395
 msgid "Delete Article"
 msgstr "Verwijder artikel"
 
-#: zp-core/zp-extensions/zenpage.php:396
+#: zp-core/zp-extensions/zenpage.php:398
 #: zp-core/zp-extensions/zenpage/admin-edit.php:195
 #: zp-core/zp-extensions/zenpage/admin-edit.php:226
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:209
 msgid "New Article"
 msgstr "Nieuw artikel"
 
-#: zp-core/zp-extensions/zenpage.php:401
+#: zp-core/zp-extensions/zenpage.php:403
 #: zp-core/zp-extensions/zenpage/admin-categories.php:70
 #: zp-core/zp-extensions/zenpage/admin-edit.php:134
 msgid "Are you sure you want to delete this category? THIS CANNOT BE UNDONE!"
@@ -21827,17 +21806,17 @@ msgstr ""
 "Weet je zeker dat je deze categorie wilt verwijderen? DIT KAN NIET ONGEDAAN "
 "GEMAAKT WORDEN!"
 
-#: zp-core/zp-extensions/zenpage.php:403
+#: zp-core/zp-extensions/zenpage.php:405
 msgid "Edit Category"
 msgstr "Bewerk categorie"
 
-#: zp-core/zp-extensions/zenpage.php:404
+#: zp-core/zp-extensions/zenpage.php:406
 #: zp-core/zp-extensions/zenpage/admin-edit.php:207
 #: zp-core/zp-extensions/zenpage/admin-edit.php:231
 msgid "New Category"
 msgstr "Nieuwe categorie"
 
-#: zp-core/zp-extensions/zenpage.php:407
+#: zp-core/zp-extensions/zenpage.php:409
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1039
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1041
 msgid "Delete Category"
@@ -22670,6 +22649,34 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid ""
+#~ "See also the Zenphoto online documentation: <a href=\"%1$s\">%2$s</a>"
+#~ msgstr "Zie ook de online Zenphoto documentatie: <a href=\"%1$s\">%2$s</a>"
+
+#~ msgid ""
+#~ "The scripts for which BxSlider is enabled. {If themes require it they "
+#~ "might set this, otherwise you need to do it manually!}"
+#~ msgstr ""
+#~ "De scripts waarvoor bxSlider is geactiveerd. {Als thema’s dit nodig "
+#~ "hebben is het al ingesteld. Zo niet, dan moet je het zelf instellen.}"
+
+#~ msgid ""
+#~ "The scripts for which Colorbox is enabled. {Should have been set by the "
+#~ "themes!}"
+#~ msgstr ""
+#~ "De scripts waarvoor Colorbox is geactiveerd. {Zou ingesteld moeten zijn "
+#~ "door de thema’s!}"
+
+#~ msgid "More info"
+#~ msgstr "Meer informatie"
+
+#~ msgid ""
+#~ "The scripts for which the cycle2 plugin is enabled. {If themes require it "
+#~ "they might set this, otherwise you need to do it manually!}"
+#~ msgstr ""
+#~ "De scripts waarvoor cycle2 is geactiveerd. {Als thema’s dit nodig hebben "
+#~ "is het al ingesteld. Zo niet, dan moet je het zelf instellen.}"
 
 #~ msgid "You must supply a user name."
 #~ msgstr "Je moet een gebruikersnaam opgeven."
