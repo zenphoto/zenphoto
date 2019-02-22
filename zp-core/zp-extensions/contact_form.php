@@ -400,12 +400,13 @@ function printContactForm($subject_override = '') {
 					<?PHP
 					$_processing_post = true;
 					include(getPlugin('contact_form/form.php', true));
+					$message = str_replace("\n", '|', $message);
 					?>
 					<form id="confirm" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8" style="float: left">
 						<input type="hidden" id="confirm" name="confirm" value="confirm" />
 						<input type="hidden" id="name" name="name"	value="<?php echo html_encode($name); ?>" />
 						<input type="hidden" id="subject" name="subject"	value="<?php echo html_encode($subject); ?>" />
-						<input type="hidden" id="message"	name="message" value="<?php echo html_encode($message); ?>" />
+						<input type="hidden" id="message"	name="message" value="<?php echo $message; ?>" />
 						<input type="hidden" id="mailaddress" name="mailaddress" value="<?php echo html_encode($mailaddress); ?>" />
 						<input type="text" id="username" name="username" value="<?php echo html_encode($mailcontent['honeypot']); ?>" style="display: none" />
 						<input type="submit" value="<?php echo gettext("Confirm"); ?>" />
@@ -429,7 +430,7 @@ function printContactForm($subject_override = '') {
 	}
 	if (isset($_POST['confirm'])) {
 		$subject = sanitize($_POST['subject']);
-		$message = sanitize($_POST['message'], 1);
+		$message = str_replace('|', "\n", sanitize($_POST['message'], 1));
 		$mailaddress = sanitize($_POST['mailaddress']);
 		$honeypot = sanitize($_POST['username']);
 		$name = sanitize($_POST['name']);
