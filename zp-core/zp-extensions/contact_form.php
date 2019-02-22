@@ -400,7 +400,7 @@ function printContactForm($subject_override = '') {
 					<?PHP
 					$_processing_post = true;
 					include(getPlugin('contact_form/form.php', true));
-					$message = str_replace("\n", '|', $message);
+					$message = str_replace("\n", '<br>', $message);
 					?>
 					<form id="confirm" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8" style="float: left">
 						<input type="hidden" id="confirm" name="confirm" value="confirm" />
@@ -430,7 +430,7 @@ function printContactForm($subject_override = '') {
 	}
 	if (isset($_POST['confirm'])) {
 		$subject = sanitize($_POST['subject']);
-		$message = str_replace('|', "\n", sanitize($_POST['message'], 1));
+		$message = str_replace('<br>', "\n", sanitize($_POST['message'], 1));
 		$mailaddress = sanitize($_POST['mailaddress']);
 		$honeypot = sanitize($_POST['username']);
 		$name = sanitize($_POST['name']);
