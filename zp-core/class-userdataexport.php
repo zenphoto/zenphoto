@@ -23,10 +23,12 @@ class userDataExport {
 		$this->galleryobj = $galleryobj;
 		$this->authorityobj = $authorityobj;
 		// in case the plugin is not active data may still exists
-		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class.php';
-		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class-news.php';
-		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class-page.php';
-		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-class-category.php';
+		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-zenpage.php';
+		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-zenpageroot.php';
+		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-zenpageitems.php';
+		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-zenpagenews.php';
+		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-zenpagepage.php';
+		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-zenpagecategory.php';
 	}
 
 	/**

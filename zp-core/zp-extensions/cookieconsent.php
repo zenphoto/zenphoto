@@ -124,11 +124,17 @@ class cookieConsent {
 		if (getOption('zpcookieconsent_buttonagree')) {
 			$dismiss = get_language_string(getOption('zpcookieconsent_buttonagree'));
 		}
-		$learnmore = gettext('More info');
+		$dataprivacy_info = getDataUsageNotice();
 		if (getOption('zpcookieconsent_buttonlearnmore')) {
 			$learnmore = get_language_string(getOption('zpcookieconsent_buttonlearnmore'));
+		}  else {
+			$learnmore = $dataprivacy_info['linktext'];
 		}
-		$link = getOption('zpcookieconsent_buttonlearnmorelink');
+		if(getOption('zpcookieconsent_buttonlearnmorelink')) {
+			$link = getOption('zpcookieconsent_buttonlearnmorelink');
+		} else {
+			$link = $dataprivacy_info['url'];
+		}
 		$theme = 'block';
 		if (getOption('zpcookieconsent_theme')) {
 			$theme = getOption('zpcookieconsent_theme');

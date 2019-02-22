@@ -24,6 +24,8 @@ $_zp_conf_vars['special_pages']['contact'] = array('define' => '_CONTACT_', 'rew
 $_zp_conf_vars['special_pages'][] = array('definition' => '%CONTACT%', 'rewrite' => '_CONTACT_');
 $_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%CONTACT%', 'rule' => '^%REWRITE%/*$		index.php?p=contact [L,QSA]');
 
+zp_register_filter('content_macro', 'getContactFormMacros');
+
 /**
  * Plugin option handling class
  *
@@ -536,4 +538,34 @@ function checkRequiredField($option) {
 	} else {
 		return "";
 	}
+}
+
+/**
+ * Buffers the contact form print out so it can be passed to its content macro
+ * @param type $subject_override
+ * @return type
+ */
+function printContactFormMacro($subject_override = '') {
+	ob_start();
+	printContactForm($subject_override);
+	$content = ob_get_contents();
+	ob_end_clean();
+	return $content;
+}
+
+/**
+ * Registers the content macro(s)
+ * 
+ * @param array $macros Passes through the array of already registered 
+ * @return array
+ */
+function getContactFormMacros($macros) {
+	$macros['CONTACTFORM'] = array(
+			'class' => 'function',
+			'params' => array('string*'),
+			'value' => 'printContactFormMacro',
+			'owner' => 'contact_form',
+			'desc' => gettext('Set %1 to optionally override the subject.')
+	);
+	return $macros;
 }

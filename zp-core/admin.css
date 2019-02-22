@@ -2724,3 +2724,9 @@ form.dirty input[type=submit]:active{
 .clearfix:after {
   clear: both !important; 
 }
+
+.language_string_listbox,
+.zenpage_language_string_listbox {
+	resize: vertical !important;
+	overflow: scroll;
+}

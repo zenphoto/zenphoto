@@ -30,7 +30,11 @@ $option_interface = 'colorbox';
 
 
 global $_zp_gallery, $_zp_gallery_page;
-zp_register_filter('theme_head', 'colorbox::css');
+if (OFFSET_PATH) {
+	zp_register_filter('admin_head', 'colorbox::css');
+} else {
+	zp_register_filter('theme_head', 'colorbox::css');
+}
 
 class colorbox {
 

@@ -126,8 +126,10 @@ if (!defined('OFFSET_PATH')) {
 				$doclink = sprintf('See also the <a href="%1$s">%2$s</a>', $plugin_URL, $extension);
 			}
 		} else {
-			$plugin_URL = 'http://docs.zenphoto.org/package-plugins.' . $sublink . '.html';
-			$doclink = sprintf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'), $plugin_URL, $extension);
+			//removed for now as doc generators don't group by package/subpackge anymore
+			//$plugin_URL = 'http://docs.zenphoto.org/package-plugins.' . $sublink . '.html';
+			//$doclink = sprintf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'), $plugin_URL, $extension);
+			$doclink = '<p>' . gettext('Also review the in-file documentation of the plugin file(s) itself for more detailed function usage.') . '</p>';
 		}
 		$pluginusage = gettext('Plugin usage information');
 		$pagetitle = sprintf(gettext('%1$s %2$s: %3$s'), html_encode($_zp_gallery->getTitle()), gettext('admin'), html_encode($extension));

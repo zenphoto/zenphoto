@@ -1542,6 +1542,12 @@ zp-core/zp-extensions/zenpage/admin-categories.php
 zp-core/zp-extensions/zenpage/admin-edit.php
 zp-core/zp-extensions/zenpage/admin-news-articles.php
 zp-core/zp-extensions/zenpage/admin-pages.php
+zp-core/zp-extensions/zenpage/class-zenpage.php
+zp-core/zp-extensions/zenpage/class-zenpagecategory.php
+zp-core/zp-extensions/zenpage/class-zenpageitems.php
+zp-core/zp-extensions/zenpage/class-zenpagenews.php
+zp-core/zp-extensions/zenpage/class-zenpagepage.php
+zp-core/zp-extensions/zenpage/class-zenpageroot.php
 zp-core/zp-extensions/zenpage/deprecated-functions.php
 zp-core/zp-extensions/zenpage/images
 zp-core/zp-extensions/zenpage/images/add.png
@@ -1554,10 +1560,6 @@ zp-core/zp-extensions/zenpage/images/view.png
 zp-core/zp-extensions/zenpage/images/zenpage-logo.gif
 zp-core/zp-extensions/zenpage/index.php
 zp-core/zp-extensions/zenpage/zenpage-admin-functions.php
-zp-core/zp-extensions/zenpage/zenpage-class-category.php
-zp-core/zp-extensions/zenpage/zenpage-class-news.php
-zp-core/zp-extensions/zenpage/zenpage-class-page.php
-zp-core/zp-extensions/zenpage/zenpage-class.php
 zp-core/zp-extensions/zenpage/zenpage-template-functions.php
 zp-core/zp-extensions/zenpage/zenpage.css
 zp-core/zp-extensions/zenphotoDonate.php
@@ -1578,4 +1580,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1580
+1582
