@@ -1251,10 +1251,7 @@ function get35mmEquivFocalLength(&$result) {
 		// Calculate 35mm diagonal using Pythagoras' theorem
 		$diag35mm = sqrt(1872);   // 36² + 24² = 1872
 		$cropfactor = $diag35mm / $diagccd;
-		// Workaround for locale-unaware floatval() that cannot deal with a comma as a decimal separator
-		// (cp. https://stackoverflow.com/questions/7302834/)
-		$decicomma = ((string)3.1415)[1] === ',';
-		$equivfl = floatval($decicomma ? str_replace(',', '.', $fl) : $fl) * $cropfactor;
+		$equivfl = intval($fl) * $cropfactor;
 		return $equivfl;
 	}
 	return null;
