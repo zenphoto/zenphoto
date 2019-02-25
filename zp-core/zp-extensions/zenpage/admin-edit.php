@@ -309,7 +309,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								<input type="hidden" name="id" value="<?php echo $result->getID(); ?>" />
 								<input type="hidden" name="titlelink-old" id="titlelink-old" value="<?php echo html_encode($result->getTitlelink()); ?>" />
 								<input type="hidden" name="lastchange" id="lastchange" value="<?php echo date('Y-m-d H:i:s'); ?>" />
-								<input type="hidden" name="lastchangeauthor" id="lastchangeauthor" value="<?php echo $_zp_current_admin_obj->getUser(); ?>" />
+								<input type="hidden" name="lastchangeuser" id="lastchangeuser" value="<?php echo $_zp_current_admin_obj->getUser(); ?>" />
 								<input type="hidden" name="hitcounter" id="hitcounter" value="<?php echo $result->getHitcounter(); ?>" />
 
 								<?php
@@ -546,6 +546,9 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<?php
 														}
 													}
+													if (is_AdminEditPage("newscategory")) {
+														printLastChangeNote($result);
+													}
 													if (!$result->transient && !is_AdminEditPage('newscategory')) {
 														?>
 														<label class="checkboxlabel">
@@ -644,14 +647,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																?>
 															</strong>
 														</p>
-														<?php
-														if ($result->getLastchangeAuthor() != "") {
-															?>
-															<hr /><p><?php printf(gettext('Last change:<br />%1$s<br />by %2$s'), $result->getLastchange(), $result->getLastchangeauthor()); ?>
-															</p>
-															<?php
-														}
-														?>
+														<?php printLastChangeNote($result);	?>
 													</div>
 
 													<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>

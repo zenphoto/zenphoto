@@ -45,7 +45,7 @@ class ZenpageItems extends ZenpageRoot {
 			return applyMacros(unTagURLs(get_language_string($text, $locale)));
 		}
 	}
-
+	
 	/**
 	 *
 	 * Set the content datum
@@ -55,46 +55,26 @@ class ZenpageItems extends ZenpageRoot {
 		$c = tagURLs($c);
 		$this->set("content", $c);
 	}
-
-	/**
-	 * Returns the last change date
-	 *
-	 * @return string
-	 */
-	function getLastchange() {
-		return $this->get("lastchange");
-	}
-
-	/**
-	 *
-	 * sets the last change date
-	 */
-	function setLastchange($d) {
-		if ($d) {
-			$newtime = dateTimeConvert($d);
-			if ($newtime === false)
-				return;
-			$this->set('lastchange', $newtime);
-		} else {
-			$this->set('lastchange', NULL);
-		}
-	}
-
+	
 	/**
 	 * Returns the last change author
+	 * 
+	 * @deprecated 1.6 - Use getLastChangeUser() instead
 	 *
 	 * @return string
 	 */
 	function getLastchangeAuthor() {
-		return $this->get("lastchangeauthor");
+		return $this->getLastChangeUser();
 	}
 
 	/**
 	 *
 	 * stores the last change author
+	 * 
+	 * @deprecated 1.6 - Use setLastChangeUser() instead
 	 */
 	function setLastchangeAuthor($a) {
-		$this->set("lastchangeauthor", $a);
+		$this->setLastchangeUser($a);
 	}
 
 	/**

@@ -410,6 +410,49 @@ class PersistentObject {
 	public function __toString() {
 		return $this->table . " (" . $this->id . ")";
 	}
+	
+	/**
+	 * Returns the last change user
+	 * 
+	 * @return string
+	 */
+	function getLastChange() {
+		return $this->get("lastchange");
+	}
+
+	/**
+	 *
+	 * stores the last change author
+	 */
+	function setLastChange($d) {
+		if ($d) {
+			$newtime = dateTimeConvert($d);
+			if ($newtime === false)
+				return;
+			$this->set('lastchange', $newtime);
+		} else {
+			$this->set('lastchange', NULL);
+		}
+	}
+	
+	/**
+	 * Returns the last change user
+	 *
+	 * @since ZenphotoCMS 1.5.2
+	 * @return string
+	 */
+	function getLastChangeUser() {
+		return $this->get("lastchangeuser");
+	}
+
+	/**
+	 * stores the last change user
+	 * 
+	 * @since ZenphotoCMS 1.5.2
+	 */
+	function setLastchangeUser($a) {
+		$this->set("lastchangeuser", $a);
+	}
 
 }
 

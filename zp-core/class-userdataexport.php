@@ -48,11 +48,11 @@ class userDataExport {
 		foreach (array('owner', 'user') as $field) {
 			$this->data = array_merge($this->data, $this->getImageData($field));
 		}
-		foreach (array('author', 'lastchangeauthor') as $field) {
+		foreach (array('author', 'lastchangeuser') as $field) {
 			$this->data = array_merge($this->data, $this->getZenpageData('news', $field));
 		}
 		$this->data = array_merge($this->data, $this->getZenpageData('newscategories', 'user'));
-		foreach (array('author', 'lastchangeauthor', 'user') as $field) {
+		foreach (array('author', 'lastchangeuser', 'user') as $field) {
 			$this->data = array_merge($this->data, $this->getZenpageData('pages', $field));
 		}
 		if (!empty($this->data)) {
@@ -427,13 +427,13 @@ class userDataExport {
 	/**
 	 * Gets the album data 
 	 * 
-	 * @param string $field "author", "lastchangeauthor", "user" (Note that on some items there are not all of these existing)
+	 * @param string $field "author", "lastchangeuser", "user" (Note that on some items there are not all of these existing)
 	 * @param string $username The user name to search for
 	 * @return array
 	 */
 	function getZenpageData($itemtype, $field) {
 		// only pages support all three fields
-		if (!in_array($itemtype, array('news', 'newscategories', 'pages')) || !in_array($field, array('author', 'lastchangeauthor', 'user')) || ($itemtype == 'news' && $field == 'user') || ($itemtype == 'newscategories' && $field != 'user')) {
+		if (!in_array($itemtype, array('news', 'newscategories', 'pages')) || !in_array($field, array('author', 'lastchangeuser', 'user')) || ($itemtype == 'news' && $field == 'user') || ($itemtype == 'newscategories' && $field != 'user')) {
 			return array();
 		}
 		switch ($itemtype) {
@@ -455,9 +455,9 @@ class userDataExport {
 				$sectiontitle .= ' ' . gettext('author');
 				$dbquery .= " WHERE author = " . db_quote($this->username);
 				break;
-			case 'lastchangeauthor':
-				$sectiontitle .= ' ' . gettext('last change author');
-				$dbquery .= " WHERE lastchangeauthor = " . db_quote($this->username);
+			case 'lastchangeuser':
+				$sectiontitle .= ' ' . gettext('last change user');
+				$dbquery .= " WHERE lastchangeuser = " . db_quote($this->username);
 				break;
 			case 'user':
 				$sectiontitle .= ' ' . gettext('guest user');

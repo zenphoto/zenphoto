@@ -44,5 +44,5 @@ class ZenpageRoot extends ThemeObject {
 	function setTitlelink($v) {
 		$this->set("titlelink", $v);
 	}
-
+	
 }

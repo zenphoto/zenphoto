@@ -2410,6 +2410,19 @@ if ($c <= 0) {
 						$sql_statements[] = "ALTER TABLE $tbl_albums ADD UNIQUE `folder` (`folder`)";
 						$sql_statements[] = "ALTER TABLE $tbl_images DROP INDEX `filename`";
 						$sql_statements[] = "ALTER TABLE $tbl_images ADD UNIQUE `filename` (`filename`, `albumid`)";
+			
+						//1.5.2
+						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `lastchange` datetime default NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `lastchange` datetime default NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `lastchange` datetime default NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastchange` datetime default NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
+						
+						$sql_statements[] = "ALTER TABLE $tbl_news CHANGE `lastchangeauthor` `lastchangeuser` varchar(64) NOT NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `lastchangeauthor` `lastchangeuser` varchar(64) NOT NULL";
 
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {

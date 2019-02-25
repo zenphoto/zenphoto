@@ -65,7 +65,7 @@ function updatePage(&$reports, $newpage = false) {
 	$show = getcheckboxState('show');
 	$date = sanitize($_POST['date']);
 	$lastchange = sanitize($_POST['lastchange']);
-	$lastchangeauthor = sanitize($_POST['lastchangeauthor']);
+	$lastchangeuser = sanitize($_POST['lastchangeuser']);
 	$expiredate = getExpiryDatePost();
 	$commentson = getcheckboxState('commentson');
 	$permalink = getcheckboxState('permalink');
@@ -133,7 +133,7 @@ function updatePage(&$reports, $newpage = false) {
 	}
 	$page->setAuthor($author);
 	$page->setLastchange($lastchange);
-	$page->setLastchangeauthor($lastchangeauthor);
+	$page->setLastChangeUser($lastchangeuser);
 	$page->setPermalink($permalink);
 	$page->setLocked($locked);
 	$page->setExpiredate($expiredate);
@@ -340,7 +340,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	$expiredate = getExpiryDatePost();
 	$permalink = getcheckboxState('permalink');
 	$lastchange = sanitize($_POST['lastchange']);
-	$lastchangeauthor = sanitize($_POST['lastchangeauthor']);
+	$lastchangeuser = sanitize($_POST['lastchangeuser']);
 	$commentson = getcheckboxState('commentson');
 	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
 		$codeblock = processCodeblockSave(0);
@@ -406,7 +406,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	}
 	$article->setAuthor($author);
 	$article->setLastchange($lastchange);
-	$article->setLastchangeauthor($lastchangeauthor);
+	$article->setLastChangeUser($lastchangeuser);
 	$article->setPermalink($permalink);
 	$article->setLocked($locked);
 	$article->setExpiredate($expiredate);
@@ -848,7 +848,8 @@ function updateCategory(&$reports, $newcategory = false) {
 	$title = process_language_string_save("title", 2);
 	$desc = process_language_string_save("desc", EDITOR_SANITIZE_LEVEL);
 	$custom = process_language_string_save("custom_data", 1);
-
+	$lastchange = sanitize($_POST['lastchange']);
+	$lastchangeuser = sanitize($_POST['lastchangeuser']);
 	if ($newcategory) {
 		$titlelink = seoFriendly(get_language_string($title));
 		if (empty($titlelink))
@@ -899,6 +900,8 @@ function updateCategory(&$reports, $newcategory = false) {
 	$cat->setDesc($desc);
 	$cat->setCustomData(zp_apply_filter('save_category_custom_data', $custom, $cat));
 	$cat->setShow($show);
+	$cat->setLastchange($lastchange);
+	$cat->setLastChangeUser($lastchangeuser);
 	if (getcheckboxState('resethitcounter')) {
 		$cat->set('hitcounter', 0);
 	}

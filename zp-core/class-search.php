@@ -109,12 +109,12 @@ class SearchEngine {
 		$this->search_structure['copyright'] = gettext('Copyright');
 		$this->search_structure['owner'] = gettext('Owner');
 		$this->search_structure['credit'] = gettext('Credit');
+		$this->search_structure['lastchangeuser'] = gettext('Last change user');
 		if (extensionEnabled('zenpage') && !$dynamic_album) {
 //zenpage fields
 			$this->search_structure['content'] = gettext('Content');
 			$this->search_structure['extracontent'] = gettext('ExtraContent');
 			$this->search_structure['author'] = gettext('Author');
-			$this->search_structure['lastchangeauthor'] = gettext('Last Editor');
 			$this->search_structure['titlelink'] = gettext('TitleLink');
 			$this->search_structure['news_categories'] = gettext('Categories');
 		}
