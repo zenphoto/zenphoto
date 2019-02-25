@@ -84,7 +84,7 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 			if (empty($tagWhere)) {
 				return FALSE;
 			} else {
-				$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND type = 'images') AS count FROM  " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
+				return query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND type = 'images') AS count FROM  " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
 			}
 			break;
 		case "albums":
@@ -103,11 +103,10 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 			if (empty($tagWhere)) {
 				return FALSE;
 			} else {
-				$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = 'albums') AS count FROM " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
+				return query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = 'albums') AS count FROM " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
 			}
 			break;
 	}
-	return $tags;
 }
 
 /**
@@ -167,9 +166,8 @@ function getAllTagsFromZenpage($mode = 'news') {
 	if (empty($tagWhere)) {
 		return FALSE;
 	} else {
-		$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = '" . $type . "') AS count FROM " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
+		return query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = '" . $type . "') AS count FROM " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
 	}
-	return $tags;
 }
 
 /**
