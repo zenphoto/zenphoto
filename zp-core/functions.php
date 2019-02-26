@@ -963,7 +963,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			$_zp_loggedin = $save_logon;
 			foreach ($search_album_list as $searchalbum) {
 				if (strpos($albumname, $searchalbum) !== false) {
-					if($searchparent == 'searchresults_album' && $_zp_last_album == $albumname) {
+					if($searchparent == 'searchresults_album') {
 						$context = $context | ZP_SEARCH_LINKED | ZP_ALBUM_LINKED;
 					} else {
 						$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
