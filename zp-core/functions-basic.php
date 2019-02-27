@@ -133,7 +133,11 @@ if (!isset($_zp_conf_vars['server_protocol'])) {
 }
 
 //NOTE: SERVER_PROTOCOL is the option, PROTOCOL is what should be used in links
-define('SERVER_PROTOCOL', $_zp_conf_vars['server_protocol']);
+if (isset($_zp_conf_vars['server_protocol'])) {
+	define('SERVER_PROTOCOL', $_zp_conf_vars['server_protocol']);
+} else {
+	define('SERVER_PROTOCOL', 'http');
+}
 switch (SERVER_PROTOCOL) {
 	case 'https':
 		define('PROTOCOL', 'https');

@@ -33,6 +33,13 @@ function reconfigureAction($mandatory) {
 			}
 			$dir = rtrim($dir, '/');
 			unprotectSetupFiles();
+			if (!defined('PROTOCOL')) {
+				if (secureServer()) {
+					define('PROTOCOL', 'https');
+				} else {
+					define('PROTOCOL', 'http');
+				}
+			}
 			$location = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $dir . "/" . ZENFOLDER . "/setup/index.php?autorun=$where";
 			header("Location: $location");
 			exitZP();
