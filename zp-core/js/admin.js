@@ -322,3 +322,24 @@ function zp_gotoLink(form) {
 	var OptionIndex = form.ListBoxURL.selectedIndex;
 	parent.location = form.ListBoxURL.options[OptionIndex].value;
 }
+
+$( document ).ready(function() {
+/* 
+	 * backtop button 
+	 * */
+	var offset = 120;
+	var duration = 500;
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > offset) {
+			$('.scrollup').fadeIn(duration).removeClass('hidden');
+		} else {
+			$('.scrollup').fadeOut(duration).addClass('hidden');
+		}
+	});
+	$('.scrollup').click(function (event) {
+		event.preventDefault();
+		$('html, body').animate({scrollTop: 0}, duration);
+		return false;
+	});
+	
+});

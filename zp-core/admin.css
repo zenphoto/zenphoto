@@ -80,6 +80,30 @@ em {
 	border-bottom: 1px solid #FF8A00;
 }
 
+.scrollup {
+	position:fixed;
+	bottom:45px;
+	right:5px;
+	display:block;
+	background: #191818;
+	color:#fff;
+	outline: none !important;
+	z-index:10000;
+	border-radius:45px;
+	padding: 0.3em 0.8em 0.3em 0.8em;
+	border: 0;
+	font-size: 1.4em;
+}
+
+.scrollup:hover,
+.scrollup:active,
+.scrollup:focus {
+	border: 0;
+	color: black;
+	text-decoration:none;
+	background: lightgray;
+}
+
 #links {
 	float: right;
 	font-size: 100%;
@@ -2730,3 +2754,4 @@ form.dirty input[type=submit]:active{
 	resize: vertical !important;
 	overflow: scroll;
 }
+

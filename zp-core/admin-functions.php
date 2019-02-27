@@ -25,6 +25,7 @@ if (!defined('EDITOR_SANITIZE_LEVEL'))
 function printAdminFooter($addl = '') {
 	?>
 	<div id="footer">
+		<button type="button" class="scrollup hidden" title="<?php echo gettext('Scroll to top'); ?>"><?php echo gettext('Top'); ?></button>
 		<?php
 		printf(gettext('<a href="http://www.zenphoto.org" title="The simpler media website CMS">Zen<strong>photo</strong></a> version %1$s'), ZENPHOTO_VERSION);
 		if (!empty($addl)) {
