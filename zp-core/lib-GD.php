@@ -310,14 +310,14 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 * @param int $h
 		 * @return image
 		 */
-		function zp_imageResizeAlpha(&$src, $w, $h) {
-			if ($temp = @imagecreatetruecolor($h, $w)) {
-				imagealphablending($temp, false);
-				imagesavealpha($temp, true);
-				$transparentindex = imagecolorallocatealpha($temp, 255, 255, 255, 127);
-				imagefill($temp, 0, 0, $transparentindex);
+		function zp_imageResizeAlpha($src, $w, $h) {
+			if ($src) {
+				imagealphablending($src, false);
+				imagesavealpha($src, true);
+				$transparentindex = imagecolorallocatealpha($src, 255, 255, 255, 127);
+				imagefill($src, 0, 0, $transparentindex);
 			}
-			return $temp;
+			return $src;
 		}
 
 		/**
@@ -333,12 +333,12 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		 * @param int $h
 		 * @return image
 		 */
-		function zp_imageResizeTransparent(&$src, $w, $h) {
-			if ($temp = @imagecreate($h, $w)) {
-				$transparent = zp_colorAllocate($temp, 255, 255, 255);
-				zp_imageColorTransparent($temp, $transparent);
+		function zp_imageResizeTransparent($src, $w, $h) {
+			if ($src) {
+				$transparent = zp_colorAllocate($src, 255, 255, 255);
+				zp_imageColorTransparent($src, $transparent);
 			}
-			return $temp;
+			return $src;
 		}
 
 		/**

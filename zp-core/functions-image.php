@@ -382,16 +382,20 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			}
 			if (DEBUG_IMAGE)
 				debugLog("cacheImage:crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate");
-				if(getSuffix($newfilename) == 'gif') {
+			switch (getSuffix($newfilename)) {
+				case 'gif':
 					$newim = zp_createImage($neww, $newh, false);
 					$newim = zp_imageResizeTransparent($newim, $neww, $newh);
-				} else {
+					break;
+				case 'png':
+				default:
 					$newim = zp_createImage($neww, $newh);
-				}
-				if(getSuffix($newfilename) == 'png') {
-					$newim = zp_imageResizeAlpha($newim, $neww, $newh);
-				} 
-				if (!zp_resampleImage($newim, $im, 0, 0, $cx, $cy, $neww, $newh, $cw, $ch)) {
+					if (getSuffix($newfilename) == 'png') {
+						$newim = zp_imageResizeAlpha($newim, $neww, $newh);
+					}
+					break;
+			}
+			if (!zp_resampleImage($newim, $im, 0, 0, $cx, $cy, $neww, $newh, $cw, $ch)) {
 					imageError('404 Not Found', sprintf(gettext('Image %s not renderable (resample).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 				}
 		} else {
@@ -415,15 +419,20 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			}
 			if (DEBUG_IMAGE)
 				debugLog("cacheImage:no crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
-			if(getSuffix($newfilename) == 'gif') {
-				$newim = zp_createImage($neww, $newh, false);
-				$newim = zp_imageResizeTransparent($newim, $neww, $newh);
-			} else {
-				$newim = zp_createImage($neww, $newh);
+
+			switch (getSuffix($newfilename)) {
+				case 'gif':
+					$newim = zp_createImage($neww, $newh, false);
+					$newim = zp_imageResizeTransparent($newim, $neww, $newh);
+					break;
+				case 'png':
+				default:
+					$newim = zp_createImage($neww, $newh);
+					if (getSuffix($newfilename) == 'png') {
+						$newim = zp_imageResizeAlpha($newim, $neww, $newh);
+					}
+					break;
 			}
-			if(getSuffix($newfilename) == 'png') {
-				$newim = zp_imageResizeAlpha($newim, $neww, $newh);
-			} 
 			if (!zp_resampleImage($newim, $im, 0, 0, 0, 0, $neww, $newh, $w, $h)) {
 				imageError('404 Not Found', sprintf(gettext('Image %s not renderable (resample).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 			}
