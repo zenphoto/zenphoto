@@ -209,6 +209,18 @@ echo "\n</head>";
 								$image = newImage($album, $imagename);
 								?>
 								<li id="id_<?php echo $image->getID(); ?>">
+									<div  class="images_publishstatus">
+										<?php 
+										if($image->getShow()) { 
+											$publishstatus_text = gettext('Published');
+											$publishstatus_icon = '/images/pass.png';
+										} else {
+											$publishstatus_text = gettext('Unpublished');
+											$publishstatus_icon = '/images/action.png';
+										}
+										?>
+										<img src="<?php echo WEBPATH . '/' . ZENFOLDER . $publishstatus_icon; ?>" alt="<?php echo $publishstatus_text; ?>">
+									</div>
 									<img class="imagethumb"
 											 src="<?php echo getAdminThumb($image, 'large'); ?>"
 											 alt="<?php echo html_encode($image->getTitle()); ?>"

@@ -2674,11 +2674,21 @@ Tooltip styling
 	list-style-type: none;
 	float: left;
 	margin: 0 8px 8px 0;
+	position: relative;
 }
 
 #images li p {
 	margin: -5px 0 0 0 !important;
 	padding: 0;
+}
+
+#images .images_publishstatus {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	background: rgba(0,0,0,0.5);
+	padding: 0 1px 0 1px;
+	line-height: 1em;
 }
 
 /* definition lists */
