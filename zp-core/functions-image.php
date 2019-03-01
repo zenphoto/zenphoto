@@ -427,6 +427,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					$newim = zp_imageResizeTransparent($newim, $neww, $newh);
 					break;
 				case 'png':
+				case 'webp':
 				default:
 					$newim = zp_createImage($neww, $newh);
 					if (in_array(getSuffix($newfilename), array('png', 'webp'))) {
