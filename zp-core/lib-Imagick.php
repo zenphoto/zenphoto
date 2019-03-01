@@ -123,11 +123,20 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	$_lib_Imagick_info['Library_desc'] = sprintf(gettext('PHP Imagick library <em>%s</em>') . '<br /><em>%s</em>', $_imagick_version, $_imagemagick_version['versionString']);
 
 	$_imagick_format_whitelist = array(
-					'BMP'		 => 'jpg', 'BMP2'	 => 'jpg', 'BMP3'	 => 'jpg',
-					'GIF'		 => 'gif', 'GIF87'	 => 'gif',
-					'JPG'		 => 'jpg', 'JPEG'	 => 'jpg',
-					'PNG'		 => 'png', 'PNG8'	 => 'png', 'PNG24'	 => 'png', 'PNG32'	 => 'png',
-					'TIFF'	 => 'jpg', 'TIFF64' => 'jpg'
+			'BMP' => 'jpg',
+			'BMP2' => 'jpg',
+			'BMP3' => 'jpg',
+			'GIF' => 'gif',
+			'GIF87' => 'gif',
+			'JPG' => 'jpg',
+			'JPEG' => 'jpg',
+			'PNG' => 'png',
+			'PNG8' => 'png',
+			'PNG24' => 'png',
+			'PNG32' => 'png',
+			'TIFF' => 'jpg',
+			'TIFF64' => 'jpg',
+			'WEBP' => 'webp'
 	);
 
 	$_imagick = new Imagick();
@@ -197,32 +206,25 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			case 'gif':
 				$im->setImageCompression(Imagick::COMPRESSION_LZW);
 				$im->setImageCompressionQuality($qual);
-
 				if ($interlace) {
 					$im->setInterlaceScheme(Imagick::INTERLACE_GIF);
 				}
-
 				break;
-
 			case 'jpeg':
 			case 'jpg':
 				$im->setImageCompression(Imagick::COMPRESSION_JPEG);
 				$im->setImageCompressionQuality($qual);
-
 				if ($interlace) {
 					$im->setInterlaceScheme(Imagick::INTERLACE_JPEG);
 				}
-
 				break;
-
 			case 'png':
+			case 'webp': // apparently there are no interlace and compression constants for webp so we just use the png setting
 				$im->setImageCompression(Imagick::COMPRESSION_ZIP);
 				$im->setImageCompressionQuality($qual);
-
 				if ($interlace) {
 					$im->setInterlaceScheme(Imagick::INTERLACE_PNG);
 				}
-
 				break;
 		}
 

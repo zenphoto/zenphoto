@@ -388,9 +388,10 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					$newim = zp_imageResizeTransparent($newim, $neww, $newh);
 					break;
 				case 'png':
+				case 'webp':
 				default:
 					$newim = zp_createImage($neww, $newh);
-					if (getSuffix($newfilename) == 'png') {
+					if (in_array(getSuffix($newfilename), array('png', 'webp'))) {
 						$newim = zp_imageResizeAlpha($newim, $neww, $newh);
 					}
 					break;
@@ -428,7 +429,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 				case 'png':
 				default:
 					$newim = zp_createImage($neww, $newh);
-					if (getSuffix($newfilename) == 'png') {
+					if (in_array(getSuffix($newfilename), array('png', 'webp'))) {
 						$newim = zp_imageResizeAlpha($newim, $neww, $newh);
 					}
 					break;

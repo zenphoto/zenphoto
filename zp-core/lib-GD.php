@@ -67,6 +67,8 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		$_lib_GD_info['JPEG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
 		$_lib_GD_info['PNG'] = ($imgtypes & IMG_PNG) ? 'png' : false;
 		$_lib_GD_info['WBMP'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
+		$_lib_GD_info['WBMP'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
+		$_lib_GD_info['WEBP'] = ($imgtypes & IMG_WEBP) ? 'webp' : false;
 		unset($imgtypes);
 		unset($info);
 
@@ -92,6 +94,8 @@ if (!function_exists('zp_graphicsLibInfo')) {
 					return imagecreatefromjpeg($imgfile);
 				case 'gif':
 					return imagecreatefromgif($imgfile);
+				case 'webp':
+					return imagecreatefromwebp($imgfile);
 			}
 			return false;
 		}
@@ -120,6 +124,8 @@ if (!function_exists('zp_graphicsLibInfo')) {
 					return imagejpeg($im, $filename, $qual);
 				case 'gif':
 					return imagegif($im, $filename);
+				case 'webp':
+					return imagewebp($im, $filename, $qual);
 			}
 			return false;
 		}
