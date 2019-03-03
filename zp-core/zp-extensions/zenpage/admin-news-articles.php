@@ -47,12 +47,14 @@ if (isset($_GET['commentson'])) {
 	XSRFdefender('update');
 	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
 	$obj->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
+	$obj->setLastchangeUser($_zp_current_admin_obj->getUser());
 	$obj->save();
 }
 if (isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
 	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
 	$obj->set('hitcounter', 0);
+	$obj->setLastchangeUser($_zp_current_admin_obj->getUser());
 	$obj->save();
 	$reports[] = '<p class="messagebox fade-message">' . gettext("Hitcounter reset") . '</p>';
 }

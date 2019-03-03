@@ -328,6 +328,7 @@ class PersistentObject {
 	 * true if successful, false if not.
 	 */
 	function save() {
+		global $_zp_current_admin_obj;
 		if ($this->transient)
 			return false; // If this object isn't supposed to be persisted, don't save it.
 		if (!$this->unique_set) { // If we don't have a unique set, then this is incorrect. Don't attempt to save.
@@ -373,6 +374,10 @@ class PersistentObject {
 			if (empty($this->updates)) {
 				return true;
 			} else {
+				$this->setLastChange();
+				if(!isset($this->updates['lastchangeuser'])) {
+					$this->setLastChangeUser('');
+				}
 				$sql = 'UPDATE ' . prefix($this->table) . ' SET';
 				$i = 0;
 				foreach ($this->updates as $col => $value) {
@@ -421,18 +426,10 @@ class PersistentObject {
 	}
 
 	/**
-	 *
-	 * stores the last change author
+	 * stores the current date in the format 'Y-m-d H:i:s' as the last change date
 	 */
-	function setLastChange($d) {
-		if ($d) {
-			$newtime = dateTimeConvert($d);
-			if ($newtime === false)
-				return;
-			$this->set('lastchange', $newtime);
-		} else {
-			$this->set('lastchange', NULL);
-		}
+	function setLastChange() {
+		$this->set('lastchange', date('Y-m-d H:i:s'));
 	}
 	
 	/**

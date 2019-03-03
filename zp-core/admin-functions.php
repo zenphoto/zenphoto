@@ -1829,6 +1829,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								?>
 							</strong>
 						</p>
+						<?php	printLastChangeNote($album); ?>
 					</div>
 					<!-- **************** Move/Copy/Rename ****************** -->
 					<h2 class="h2_bordered_edit"><?php echo gettext("Utilities"); ?></h2>
@@ -2305,6 +2306,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @since 1.1.3
 	 */
 	function processAlbumEdit($index, $album, &$redirectto) {
+		global $_zp_current_admin_obj;
 		$redirectto = NULL; // no redirection required
 		if ($index == 0) {
 			$prefix = $suffix = '';
@@ -2389,6 +2391,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 		$custom = process_language_string_save($prefix . 'album_custom_data', 1);
 		$album->setCustomData(zp_apply_filter('save_album_custom_data', $custom, $prefix));
+		$album->setLastChangeUser($_zp_current_admin_obj->getUser());
 		zp_apply_filter('save_album_utilities_data', $album, $prefix);
 		$album->save();
 
@@ -2470,7 +2473,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param boolean $massedit Whether editing single image (false) or multiple images at once (true). Note: to determine whether to process additional fields in single image edit mode.
 	 */
 	function processImageEdit($image, $index, $massedit = true) {
-
+		global $_zp_current_admin_obj;
 		$notify = '';
 		if (isset($_POST[$index . '-MoveCopyRename'])) {
 			$movecopyrename_action = sanitize($_POST[$index . '-MoveCopyRename'], 3);
@@ -2554,7 +2557,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			if (isset($_POST[$index . '-owner']))
 				$image->setOwner(sanitize($_POST[$index . '-owner']));
 			$image->set('filesize', filesize($image->localpath));
-
+			$image->setLastchangeUser($_zp_current_admin_obj->getUser());
 			zp_apply_filter('save_image_utilities_data', $image, $index);
 			$image->save();
 
@@ -3982,6 +3985,7 @@ function bulkTags() {
  *
  */
 function processAlbumBulkActions() {
+	global $_zp_current_admin_obj;
 	if (isset($_POST['ids'])) {
 		$ids = sanitize($_POST['ids']);
 		$action = sanitize($_POST['checkallaction']);
@@ -4030,6 +4034,7 @@ function processAlbumBulkActions() {
 							$imageobj = newImage($albumobj, $imagename);
 							$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
 							$imageobj->setTags($mytags);
+							$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
 							$imageobj->save();
 						}
 						break;
@@ -4038,6 +4043,7 @@ function processAlbumBulkActions() {
 						foreach ($images as $imagename) {
 							$imageobj = newImage($albumobj, $imagename);
 							$imageobj->setTags(array());
+							$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
 							$imageobj->save();
 						}
 						break;
@@ -4048,6 +4054,7 @@ function processAlbumBulkActions() {
 						$action = call_user_func($action, $albumobj);
 						break;
 				}
+				$albumobj->setLastchangeUser($_zp_current_admin_obj->getUser());
 				$albumobj->save();
 			}
 			return $action;
@@ -4061,6 +4068,7 @@ function processAlbumBulkActions() {
  * @param $album
  */
 function processImageBulkActions($album) {
+	global $_zp_current_admin_obj;
 	$action = sanitize($_POST['checkallaction']);
 	$ids = sanitize($_POST['ids']);
 	$total = count($ids);
@@ -4128,6 +4136,7 @@ function processImageBulkActions($album) {
 						$action = call_user_func($action, $imageobj);
 						break;
 				}
+				$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
 				$imageobj->save();
 			}
 		}
@@ -4140,6 +4149,7 @@ function processImageBulkActions($album) {
  *
  */
 function processCommentBulkActions() {
+	global $_zp_current_admin_obj;
 	if (isset($_POST['ids'])) { // these is actually the folder name here!
 		$action = sanitize($_POST['checkallaction']);
 		if ($action != 'noaction') {
@@ -4164,6 +4174,7 @@ function processCommentBulkActions() {
 							}
 							break;
 					}
+					$comment->setLastchangeUser($_zp_current_admin_obj->getUser());
 					$comment->save();
 				}
 			}
@@ -4926,7 +4937,15 @@ function checkAlbumimagesort($val) {
 function printLastChangeNote($obj) {
 	if ($obj->getLastchangeUser() !== "") {
 		?>
-		<p><?php printf(gettext('Last change:<br />%1$s<br />by %2$s'), $obj->getLastchange(), $obj->getLastchangeuser()); ?></p>
+		<hr>
+		<p><?php printf(gettext('Last change: %s'), $obj->getLastchange()); ?></p>
+		<p><?php
+		$lastchangeuser = $obj->getLastchangeuser();
+		if(empty($lastchangeuser )) {
+			$lastchangeuser = gettext('Code request');
+		} 
+		printf(gettext('Last changed by: %s'), $lastchangeuser ); 
+		?></p>
 		<?php
 	}
 }

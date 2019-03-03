@@ -102,6 +102,7 @@ if (isset($_GET['action'])) {
 					$album = newAlbum($folder);
 					$album->setSortType('manual', 'album');
 					$album->setSortDirection(false, 'album');
+					$album->setLastchangeUser($_zp_current_admin_obj->getUser());
 					$album->save();
 				} else {
 					$notify = '&noaction';
@@ -146,6 +147,7 @@ if (isset($_GET['action'])) {
 			XSRFdefender('albumedit');
 			$album = newAlbum($folder);
 			$album->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
+			$album->setLastchangeUser($_zp_current_admin_obj->getUser());
 			$album->save();
 			$return = sanitize_path($r = $_GET['return']);
 			if (!empty($return)) {
@@ -164,6 +166,7 @@ if (isset($_GET['action'])) {
       XSRFdefender('albumedit');
       $album = newAlbum($folder);
       $album->setShow($_GET['value']);
+			$album->setLastchangeUser($_zp_current_admin_obj->getUser());
       $album->save();
       $return = sanitize_path($r = $_GET['return']);
       if (!empty($return)) {
@@ -221,6 +224,7 @@ if (isset($_GET['action'])) {
       $imagename = sanitize_path($_REQUEST['image']);
       $image = newImage(NULL, array('folder' => $albumname, 'filename' => $imagename));
       $image->updateMetaData();
+			$image->setLastchangeUser($_zp_current_admin_obj->getUser());
       $image->save();
       if (isset($_GET['album'])) {
         $return = pathurlencode(sanitize_path($_GET['album']));
@@ -889,7 +893,7 @@ echo "\n</head>";
 								<input type="hidden" name="totalimages" value="<?php echo $totalimages; ?>" />
 								<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
 								<input type="hidden" name="oldalbumimagesort" value="<?php echo html_encode($oldalbumimagesort); ?>" />
-        						<input type="hidden" name="albumimagesort" value="" />
+        				<input type="hidden" name="albumimagesort" value="" />
 
 								<?php $totalpages = ceil(($allimagecount / $imagesTab_imageCount)); ?>
 								<table class="bordered">
@@ -1133,6 +1137,7 @@ echo "\n</head>";
 																		?>
 																	</strong>
 																</p>
+																<?php	printLastChangeNote($image); ?>
 															</div>
 
 															<h2 class="h2_bordered_edit"><?php echo gettext("Utilities"); ?></h2>

@@ -2420,6 +2420,8 @@ if ($c <= 0) {
 						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastchange` datetime default NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_comments ADD COLUMN `lastchange` datetime default NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_comments ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
 						
 						$sql_statements[] = "ALTER TABLE $tbl_news CHANGE `lastchangeauthor` `lastchangeuser` varchar(64) NOT NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `lastchangeauthor` `lastchangeuser` varchar(64) NOT NULL";

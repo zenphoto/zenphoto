@@ -308,10 +308,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								?>
 								<input type="hidden" name="id" value="<?php echo $result->getID(); ?>" />
 								<input type="hidden" name="titlelink-old" id="titlelink-old" value="<?php echo html_encode($result->getTitlelink()); ?>" />
-								<input type="hidden" name="lastchange" id="lastchange" value="<?php echo date('Y-m-d H:i:s'); ?>" />
-								<input type="hidden" name="lastchangeuser" id="lastchangeuser" value="<?php echo $_zp_current_admin_obj->getUser(); ?>" />
 								<input type="hidden" name="hitcounter" id="hitcounter" value="<?php echo $result->getHitcounter(); ?>" />
-
 								<?php
 								if (is_AdminEditPage("newsarticle")) {
 									$backurl = 'admin-news-articles.php?' . $page;

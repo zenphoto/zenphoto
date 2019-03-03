@@ -34,6 +34,7 @@ if (isset($_GET['action'])) {
 			$comment = new Comment(sanitize_numeric($_GET['id']));
 			$comment->setInModeration(1);
 			zp_apply_filter('comment_disapprove', $comment);
+			$comment->setLastchangeUser($_zp_current_admin_obj->getUser());
 			$comment->save();
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php');
 			exitZP();
@@ -43,6 +44,7 @@ if (isset($_GET['action'])) {
 			$comment = new Comment(sanitize_numeric($_GET['id']));
 			$comment->setInModeration(0);
 			zp_apply_filter('comment_approve', $comment);
+			$comment->setLastchangeUser($_zp_current_admin_obj->getUser());
 			$comment->save();
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php');
 			exitZP();
@@ -81,6 +83,7 @@ if (isset($_GET['action'])) {
 			$comment->setDateTime(sanitize($_POST['date'], 3));
 			$comment->setComment(sanitize($_POST['comment'], 1));
 			$comment->setCustomData($_comment_form_save_post = serialize(getCommentAddress(0)));
+			$comment->setLastchangeUser($_zp_current_admin_obj->getUser());
 			$comment->save();
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?saved&page=editcomment&id=' . $comment->getID());
 			exitZP();
@@ -227,6 +230,10 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 						<hr />
 						<p><?php echo $status_private; ?></p>
 						<p><?php echo $status_anon; ?></p>
+						<?php 
+							$commentobj = new Comment($id);
+							printLastChangeNote($commentobj);
+						?>
 					</div><!-- div box-edit-unpadded end -->
 				</div>
 			</form>
