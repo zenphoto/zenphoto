@@ -41,19 +41,24 @@ class userDataExport {
 			return $this->data;
 		}
 		$generaldata = $this->getGeneralData();
-		$this->data = array_merge($this->getUserData(), $this->getSecurityLogData(), $this->getGalleryData(), $this->getCommentData());
-		foreach (array('owner', 'user') as $field) {
+		$this->data = array_merge($this->getUserData(), $this->getSecurityLogData(), $this->getGalleryData());
+		foreach (array('owner', 'user', 'lastchangeuser') as $field) {
 			$this->data = array_merge($this->data, $this->getAlbumData($field));
 		}
-		foreach (array('owner', 'user') as $field) {
+		foreach (array('owner', 'user', 'lastchangeuser') as $field) {
 			$this->data = array_merge($this->data, $this->getImageData($field));
 		}
 		foreach (array('author', 'lastchangeuser') as $field) {
 			$this->data = array_merge($this->data, $this->getZenpageData('news', $field));
 		}
-		$this->data = array_merge($this->data, $this->getZenpageData('newscategories', 'user'));
+		foreach (array('user', 'lastchangeuser') as $field) {
+			$this->data = array_merge($this->data, $this->getZenpageData('newscategories', $field));
+		}
 		foreach (array('author', 'lastchangeuser', 'user') as $field) {
 			$this->data = array_merge($this->data, $this->getZenpageData('pages', $field));
+		}
+		foreach (array('name', 'email', 'lastchangeuser') as $field) {
+			$this->data = array_merge($this->data, $this->getCommentData($field));
 		}
 		if (!empty($this->data)) {
 			$this->data = array_merge($generaldata, $this->data);
@@ -287,14 +292,26 @@ class userDataExport {
 
 	/**
 	 * Gets comment data
-	 * 
+	 * @param string $field "owner", "user", "lastchangeuser"
 	 * @return array
 	 */
-	function getCommentData() {
+	function getCommentData($field) {
+		if (!in_array($field, array('name', 'lastchangeuser'))) {
+			return array();
+		}
 		$sectiontitle = gettext('Comments');
-		$dbquery = "SELECT * FROM " . prefix('comments') . " WHERE name = " . db_quote($this->username);
-		if (!empty($this->usermail)) {
-			$dbquery .= "AND email = " . db_quote($this->usermail);
+		switch ($field) {
+			case 'name': 
+				$dbquery = "SELECT * FROM " . prefix('comments') . " WHERE name = " . db_quote($this->username);
+				break;
+			case 'lastchangeuser':
+				$dbquery = "SELECT * FROM " . prefix('comments') . " WHERE lastchangeuser = " . db_quote($this->username);
+				break;
+			case 'email':
+				if (!empty($this->usermail)) {
+					$dbquery = "SELECT * FROM " . prefix('comments') . " WHERE email = " . db_quote($this->usermail);
+				}
+				break;
 		}
 		$result = query($dbquery);
 		$tempdata = array();
@@ -316,11 +333,11 @@ class userDataExport {
 	/**
 	 * Gets the album data 
 	 * 
-	 * @param string $field "owner" or "user"
+	 * @param string $field "owner", "user", "lastchangeuser"
 	 * @return array
 	 */
 	function getAlbumData($field) {
-		if (!in_array($field, array('owner', 'user'))) {
+		if (!in_array($field, array('owner', 'user', 'lastchangeuser'))) {
 			return array();
 		}
 		switch ($field) {
@@ -331,6 +348,10 @@ class userDataExport {
 			case 'user':
 				$sectiontitle = gettext('Album guest user');
 				$dbquery = "SELECT folder FROM " . prefix('albums') . " WHERE user = " . db_quote($this->username);
+				break;
+			case 'lastchangeuser':
+				$sectiontitle = gettext('Album last change user');
+				$dbquery = "SELECT folder FROM " . prefix('albums') . " WHERE lastchangeuser = " . db_quote($this->username);
 				break;
 		}
 		$result = query($dbquery);
@@ -362,7 +383,7 @@ class userDataExport {
 	 * @return array
 	 */
 	function getImageData($field) {
-		if (!in_array($field, array('owner', 'user'))) {
+		if (!in_array($field, array('owner', 'user', 'lastchangeuser'))) {
 			return array();
 		}
 		switch ($field) {
@@ -373,6 +394,10 @@ class userDataExport {
 			case 'user':
 				$sectiontitle = gettext('Image guest user');
 				$dbquery = "SELECT filename, albumid FROM " . prefix('images') . " WHERE user = " . db_quote($this->username) . ' ORDER By albumid ASC';
+				break;
+			case 'lastchangeuser':
+				$sectiontitle = gettext('Image last change user');
+				$dbquery = "SELECT filename, albumid FROM " . prefix('images') . " WHERE lastchangeuser = " . db_quote($this->username) . ' ORDER By albumid ASC';
 				break;
 		}
 		$result = query($dbquery);
@@ -433,7 +458,7 @@ class userDataExport {
 	 */
 	function getZenpageData($itemtype, $field) {
 		// only pages support all three fields
-		if (!in_array($itemtype, array('news', 'newscategories', 'pages')) || !in_array($field, array('author', 'lastchangeuser', 'user')) || ($itemtype == 'news' && $field == 'user') || ($itemtype == 'newscategories' && $field != 'user')) {
+		if (!in_array($itemtype, array('news', 'newscategories', 'pages')) || !in_array($field, array('author', 'lastchangeuser', 'user')) || ($itemtype == 'news' && $field == 'user') || ($itemtype == 'newscategories' && !in_array($field, array('user', 'lastchangeuser')))) {
 			return array();
 		}
 		switch ($itemtype) {
