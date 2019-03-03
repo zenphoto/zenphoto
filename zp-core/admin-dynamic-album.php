@@ -56,6 +56,7 @@ if (isset($_POST['savealbum'])) {
 				if ($unpublished || $albumobj->getShow()) {
 					$tags = array_unique(array_merge($albumobj->getTags(), array($words)));
 					$albumobj->setTags($tags);
+					$albumobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 					$albumobj->save();
 				}
 			}
@@ -67,6 +68,7 @@ if (isset($_POST['savealbum'])) {
 				if ($unpublished || $image->getShow()) {
 					$tags = array_unique(array_merge($image->getTags(), array($words)));
 					$image->setTags($tags);
+					$image->setLastChangeUser($_zp_current_admin_obj->getUser());
 					$image->save();
 				}
 			}

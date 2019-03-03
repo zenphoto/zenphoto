@@ -65,6 +65,7 @@ if (isset($_GET['action'])) {
 						$group->set('other_credentials', trim(sanitize($_POST[$i . '-desc'], 3)));
 						$group->setName(trim(sanitize($_POST[$i . '-type'], 3)));
 						$group->setValid(0);
+						$group->setLastChangeUser($_zp_current_admin_obj->getUser());
 						zp_apply_filter('save_admin_custom_data', true, $group, $i, true);
 						$group->save();
 
@@ -77,6 +78,7 @@ if (isset($_GET['action'])) {
 									if (in_array($groupname, $hisgroups)) {
 										$user = Zenphoto_Authority::newAdministrator($admin['user'], $admin['valid']);
 										user_groups::merge_rights($user, $hisgroups);
+										$user->setLastChangeUser($_zp_current_admin_obj->getUser());
 										$user->save();
 									}
 								}
@@ -94,6 +96,7 @@ if (isset($_GET['action'])) {
 									$user->setObjects($group->getObjects());
 									$user->setGroup($groupname);
 									$user->setCustomData($group->getCustomData());
+									$userj->setLastChangeUser($_zp_current_admin_obj->getUser());
 									$user->save();
 								}
 							}
@@ -114,6 +117,7 @@ if (isset($_GET['action'])) {
 						$username = trim(sanitize($_POST[$i . '-user'], 3));
 						$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 						user_groups::merge_rights($userobj, $newgroups);
+						$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 						$userobj->save();
 					}
 				}

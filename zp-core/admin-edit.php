@@ -1137,7 +1137,7 @@ echo "\n</head>";
 																		?>
 																	</strong>
 																</p>
-																<?php	printLastChangeNote($image); ?>
+																<?php	printLastChangeInfo($image); ?>
 															</div>
 
 															<h2 class="h2_bordered_edit"><?php echo gettext("Utilities"); ?></h2>

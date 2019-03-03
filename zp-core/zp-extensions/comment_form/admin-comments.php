@@ -232,7 +232,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 						<p><?php echo $status_anon; ?></p>
 						<?php 
 							$commentobj = new Comment($id);
-							printLastChangeNote($commentobj);
+							printLastChangeInfo($commentobj);
 						?>
 					</div><!-- div box-edit-unpadded end -->
 				</div>

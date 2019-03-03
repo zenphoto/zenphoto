@@ -227,7 +227,7 @@ if (isset($_GET['action'])) {
 								if (empty($msg)) {
 									if (!$notify)
 										$userobj->transient = false;
-									$userobj->setLastChangeAuthor($_zp_current_admin_obj->getUser());
+									$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 									$userobj->save();
 								} else {
 									$notify = '?mismatch=format&error=' . urlencode($msg);
@@ -779,7 +779,10 @@ echo $refresh;
 														}
 														?>
 													</ul>
-													<?php	userDataExport::printUserAccountExportLinks($userobj); ?>
+													<?php	
+														printLastChangeInfo($userobj);
+														userDataExport::printUserAccountExportLinks($userobj); 
+													?>
 												</td>
 
 												<td <?php if (!empty($background)) echo " style=\"$background\""; ?>>

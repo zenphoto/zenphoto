@@ -39,10 +39,12 @@ if (isset($_GET['action'])) {
 							break;
 						case 'disable':
 							$userobj->setValid(2);
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 							$userobj->save();
 							break;
 						case 'enable':
 							$userobj->setValid(1);
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 							$userobj->save();
 							break;
 						case 'renew':
@@ -52,10 +54,12 @@ if (isset($_GET['action'])) {
 							}
 							$userobj->setDateTime(date('Y-m-d H:i:s', $newdate));
 							$userobj->setValid(1);
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 							$userobj->save();
 							break;
 						case 'force':
 							$userobj->set('passupdate', NULL);
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 							$userobj->save();
 							break;
 						case 'revalidate':

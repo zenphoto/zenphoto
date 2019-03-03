@@ -164,6 +164,7 @@ class quota_manager {
 			$image->set('owner', $_zp_current_admin_obj->getUser());
 		}
 		$image->set('filesize', filesize($image->localpath));
+		$image->setLastChangeUser($_zp_current_admin_obj->getUser());
 		$image->save();
 		return $image;
 	}
@@ -174,7 +175,9 @@ class quota_manager {
 	 * @return object
 	 */
 	static function image_refresh($image) {
+		global $_zp_current_admin_obj;
 		$image->set('filesize', filesize($image->localpath));
+		$image->setLastChangeUser($_zp_current_admin_obj->getUser());
 		$image->save();
 		return $image;
 	}

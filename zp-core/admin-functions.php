@@ -1829,7 +1829,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								?>
 							</strong>
 						</p>
-						<?php	printLastChangeNote($album); ?>
+						<?php	printLastChangeInfo($album); ?>
 					</div>
 					<!-- **************** Move/Copy/Rename ****************** -->
 					<h2 class="h2_bordered_edit"><?php echo gettext("Utilities"); ?></h2>
@@ -2490,6 +2490,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				} else {
 					$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
 				}
+				$talbum->setLastChangeUser($_zp_current_admin_obj->getUser());
 				$talbum->save();
 			}
 			if (isset($_POST[$index . '-reset_rating'])) {
@@ -2862,6 +2863,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param string $dir where the images go
 	 */
 	function unzip($file, $dir) { //check if zziplib is installed
+		global $_zp_current_admin_obj;
 		if (function_exists('zip_open')) {
 			$zip = zip_open($file);
 			if ($zip) {
@@ -2882,6 +2884,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							$image = newImage($album, $seoname);
 							if ($fname != $seoname) {
 								$image->setTitle($fname);
+								$image->setLastChangeUser($_zp_current_admin_obj->getUser());
 								$image->save();
 							}
 						}
@@ -3591,6 +3594,7 @@ function processOrder($orderstr) {
  *
  */
 function postAlbumSort($parentid) {
+	global $_zp_current_admin_obj;
 	if (isset($_POST['order']) && !empty($_POST['order'])) {
 		$order = processOrder(sanitize($_POST['order']));
 		$sortToID = array();
@@ -3630,6 +3634,7 @@ function postAlbumSort($parentid) {
 					return "&mcrerr=" . $e;
 				} else {
 					$album->setSortOrder($sortorder);
+					$album->setLastChangeUser($_zp_current_admin_obj->getUser());
 					$album->save();
 				}
 			}
@@ -4934,7 +4939,7 @@ function checkAlbumimagesort($val) {
  * 
  * @param obj $obj Object of any item type
  */
-function printLastChangeNote($obj) {
+function printLastChangeInfo($obj) {
 	if ($obj->getLastchangeUser() !== "") {
 		?>
 		<hr>

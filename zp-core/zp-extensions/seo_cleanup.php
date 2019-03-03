@@ -65,7 +65,7 @@ if (defined('OFFSET_PATH')) {
 	}
 
 	function cleanAlbum($obj) {
-		global $albumcount;
+		global $albumcount, $_zp_current_admin_obj;
 		$subalbum = $obj->name;
 		$file = basename($subalbum);
 		$seoname = seoFriendly($file);
@@ -82,6 +82,7 @@ if (defined('OFFSET_PATH')) {
 				printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $subalbum, $newname, $error);
 				echo "<br />\n";
 			} else {
+				$obj->setLastChangeUser($_zp_current_admin_obj->getUser());
 				$obj->save();
 				clearstatcache();
 				printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $subalbum, $newname);
@@ -100,7 +101,7 @@ if (defined('OFFSET_PATH')) {
 	}
 
 	function checkFolder($album, $album_cleaned) {
-		global $count, $albumcount;
+		global $count, $albumcount, $_zp_current_admin_obj;
 		$subalbums = $album->getAlbums(0);
 		foreach ($subalbums as $subalbum) {
 			$obj = newAlbum($subalbum);
@@ -117,6 +118,7 @@ if (defined('OFFSET_PATH')) {
 					printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $folder . $filename, $seoname, $error);
 					echo "<br />\n";
 				} else {
+					$image->setLastChangeUser($_zp_current_admin_obj->getUser());
 					$image->save();
 					clearstatcache();
 					echo '&nbsp;&nbsp;';

@@ -544,7 +544,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														}
 													}
 													if (is_AdminEditPage("newscategory")) {
-														printLastChangeNote($result);
+														printLastChangeInfo($result);
 													}
 													if (!$result->transient && !is_AdminEditPage('newscategory')) {
 														?>
@@ -644,7 +644,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																?>
 															</strong>
 														</p>
-														<?php printLastChangeNote($result);	?>
+														<?php printLastChangeInfo($result);	?>
 													</div>
 
 													<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>

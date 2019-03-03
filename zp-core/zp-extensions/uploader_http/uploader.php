@@ -69,6 +69,7 @@ if (isset($_POST['processed'])) {
 					$album->setShow((int) !empty($_POST['publishalbum']));
 					$album->setOwner($_zp_current_admin_obj->getUser());
 				}
+				$album->setLastChangeUser($_zp_current_admin_obj->getUser());
 				$album->save();
 			} else {
 				$AlbumDirName = str_replace(SERVERPATH, '', $_zp_gallery->albumdir);
@@ -101,6 +102,7 @@ if (isset($_POST['processed'])) {
 								if ($name != $soename) {
 									$image->setTitle(stripSuffix($name));
 								}
+								$image->setLastChangeUser($_zp_current_admin_obj->getUser());
 								$image->save();
 							}
 						} else if (is_zip($name)) {

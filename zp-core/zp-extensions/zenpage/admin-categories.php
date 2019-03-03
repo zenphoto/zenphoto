@@ -38,12 +38,14 @@ if (isset($_GET['hitcounter'])) {
 	$x = $_zp_zenpage->getCategory(sanitize_numeric($_GET['id']));
 	$obj = new ZenpageCategory($x['titlelink']);
 	$obj->set('hitcounter', 0);
+	$obj->setLastChangeUser($_zp_current_admin_obj->getUser());
 	$obj->save();
 }
 if (isset($_GET['publish'])) {
 	XSRFdefender('update');
 	$obj = new ZenpageCategory(sanitize($_GET['titlelink']));
 	$obj->setShow(sanitize_numeric($_GET['publish']));
+	$obj->setLastChangeUser($_zp_current_admin_obj->getUser());
 	$obj->save();
 }
 if (isset($_GET['save'])) {
