@@ -80,15 +80,19 @@ class sitemapOptions {
 						'key' => 'sitemap_lastmod_albums',
 						'type' => OPTION_TYPE_SELECTOR,
 						'order' => 0,
-						'selections' => array(gettext("date") => "date",
-								gettext("mtime") => "mtime"),
+						'selections' => array(
+								gettext("date") => "date",
+								gettext("mtime") => "mtime",
+								gettext("lastchange date") => 'lastchange'),
 						'desc' => gettext('Field to use for the last modification date of albums.')),
 				gettext('Image date') => array(
 						'key' => 'sitemap_lastmod_images',
 						'type' => OPTION_TYPE_SELECTOR,
 						'order' => 1,
-						'selections' => array(gettext("date") => "date",
-								gettext("mtime") => "mtime"),
+						'selections' => array(
+								gettext("date") => "date",
+								gettext("mtime") => "mtime",
+								gettext("last change date") => 'lastchange'),
 						'desc' => gettext('Field to use for the last modification date of images.')),
 				gettext('Change frequency - Zenphoto index') => array(
 						'key' => 'sitemap_changefreq_index',
@@ -357,6 +361,9 @@ class sitemap {
 					// For more streamlined but PHP5-only equivalent, remove the above line and uncomment the following:
 					// return gmstrftime(DATE_ISO8601, $timestamp);
 				}
+				break;
+			case 'lastchange':
+				$date = sitemap::getLastChangeDate($obj, true);
 				break;
 		}
 		return sitemap::getISO8601Date($date);
@@ -762,12 +769,7 @@ class sitemap {
 				$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 				foreach ($pages as $page) {
 					$pageobj = new ZenpagePage($page['titlelink']);
-					$date = substr($pageobj->getDatetime(), 0, 10);
-					$lastchange = '';
-					if (!is_null($pageobj->getLastchange()))
-						$lastchange = substr($pageobj->getLastchange(), 0, 10);
-					if ($date > $lastchange && !empty($lastchangedate))
-						$date = $lastchange;
+					$date = sitemap::getLastChangeDate($pageobj, false);
 					if (!$pageobj->isProtected()) {
 						switch (SITEMAP_LOCALE_TYPE) {
 							case 1:
@@ -883,12 +885,7 @@ class sitemap {
 				$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 				foreach ($articles as $article) {
 					$articleobj = new ZenpageNews($article['titlelink']);
-					$date = substr($articleobj->getDatetime(), 0, 10);
-					$lastchange = '';
-					if (!is_null($articleobj->getLastchange()))
-						$lastchange = substr($articleobj->getLastchange(), 0, 10);
-					if ($date > $lastchange && !empty($lastchangedate))
-						$date = $lastchange;
+					$date = sitemap::getLastChangeDate($articleobj, false);
 					if (!$articleobj->inProtectedCategory()) {
 						switch (SITEMAP_LOCALE_TYPE) {
 							case 1:
@@ -1053,6 +1050,30 @@ class sitemap {
 			}
 			echo '</ol>';
 		}
+	}
+	/**
+	 * Gets the date as Y-m-d or if available last change date of $obj
+	 * 
+	 * @param obj $obj
+	 * @param bool $fulldate True to return the full date incl. time, otherwise the date only
+	 * @return string
+	 */
+	static function getLastChangeDate($obj, $fulldate = false) {
+		$date = $obj->getDatetime();
+		if (!$fulldate) {
+			$date = substr($date, 0, 10);
+		}
+		$lastchange = '';
+		if (!is_null($obj->getLastchange())) {
+			$lastchange = $obj->getLastchange();
+			if (!$fulldate) {
+				$lastchange = substr($lastchange, 0, 10);
+			}
+		}
+		if ($date > $lastchange && !empty($lastchange)) {
+			return $lastchange;
+		}
+		return $date;
 	}
 
 }
