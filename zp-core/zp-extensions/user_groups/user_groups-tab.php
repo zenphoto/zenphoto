@@ -96,7 +96,7 @@ if (isset($_GET['action'])) {
 									$user->setObjects($group->getObjects());
 									$user->setGroup($groupname);
 									$user->setCustomData($group->getCustomData());
-									$userj->setLastChangeUser($_zp_current_admin_obj->getUser());
+									$user->setLastChangeUser($_zp_current_admin_obj->getUser());
 									$user->save();
 								}
 							}
