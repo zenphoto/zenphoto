@@ -264,8 +264,8 @@ printAdminHeader('overview', 'images'); ?>
 					</div>
 					<img class="imagecaching_loader" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/ajax-loader.gif" alt="">
 					<ul>	
-						<li><?php echo gettext('Image cache sizes generated: '); ?><span class="imagecaching_imagesizes"><?php echo cacheManager::$imagesizes_cached; ?></li>
-						<?php if (function_exists('curl_init')) { ?>
+						<?php if (function_exists('curl_init') && getOption('cachemanager_generationmode') == 'curl') { ?>
+							<li><?php echo gettext('Image cache sizes generated: '); ?><span class="imagecaching_imagesizes"><?php echo cacheManager::$imagesizes_cached; ?></li>
 							<li><?php echo gettext('Image cache sizes failed: '); ?><span class="imagecaching_imagesizes_failed">0</span></li>
 						<?php } ?>
 						<li><?php echo gettext('Images processed: '); ?><span class="imagecaching_imagecount">0</span>/<span><?php echo $images_total; ?></span></li>

@@ -740,6 +740,7 @@ class cacheManager {
 			?>
 			<a href="<?php echo html_encode(pathurlencode($imageuri)); ?>&amp;debug"><img src="<?php echo html_encode(pathurlencode($imageuri)); ?>" height="25" alt="x" /></a>';
 			<?php
+			cacheManager::$imagesizes_cached++;
 		}
 	}
 
