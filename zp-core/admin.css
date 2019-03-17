@@ -88,7 +88,7 @@ em {
 	background: #191818;
 	color:#fff;
 	outline: none !important;
-	z-index:10000;
+	z-index:1000;
 	border-radius:45px;
 	padding: 0.3em 0.8em 0.3em 0.8em;
 	border: 0;
