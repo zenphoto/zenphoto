@@ -84,7 +84,7 @@ if (isset($_GET['action'])) {
 			$comment->setComment(sanitize($_POST['comment'], 1));
 			$comment->setCustomData($_comment_form_save_post = serialize(getCommentAddress(0)));
 			$comment->setLastchangeUser($_zp_current_admin_obj->getUser());
-			$comment->save();
+			$comment->save(true);
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?saved&page=editcomment&id=' . $comment->getID());
 			exitZP();
 	}

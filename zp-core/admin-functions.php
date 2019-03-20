@@ -4040,7 +4040,7 @@ function processAlbumBulkActions() {
 							$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
 							$imageobj->setTags($mytags);
 							$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
-							$imageobj->save();
+							$imageobj->save(true);
 						}
 						break;
 					case 'clearalltags':
@@ -4049,7 +4049,7 @@ function processAlbumBulkActions() {
 							$imageobj = newImage($albumobj, $imagename);
 							$imageobj->setTags(array());
 							$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
-							$imageobj->save();
+							$imageobj->save(true);
 						}
 						break;
 					case 'changeowner':
@@ -4060,7 +4060,7 @@ function processAlbumBulkActions() {
 						break;
 				}
 				$albumobj->setLastchangeUser($_zp_current_admin_obj->getUser());
-				$albumobj->save();
+				$albumobj->save(true);
 			}
 			return $action;
 		}
@@ -4142,7 +4142,7 @@ function processImageBulkActions($album) {
 						break;
 				}
 				$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
-				$imageobj->save();
+				$imageobj->save(true);
 			}
 		}
 		return $action;
@@ -4180,7 +4180,7 @@ function processCommentBulkActions() {
 							break;
 					}
 					$comment->setLastchangeUser($_zp_current_admin_obj->getUser());
-					$comment->save();
+					$comment->save(true);
 				}
 			}
 		}

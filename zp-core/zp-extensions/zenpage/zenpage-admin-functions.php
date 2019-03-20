@@ -1668,7 +1668,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 									$mytags = array_unique(array_merge($tags, $newsobj->getTags()));
 									$newsobj->setTags($mytags);
 									$newsobj->setLastchangeUser($_zp_current_admin_obj->getUser());
-									$newsobj->save();
+									$newsobj->save(true);
 								}
 								break;
 							case 'clearalltags':
@@ -1677,7 +1677,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 									$newsobj = new ZenpageNews($article['titlelink']);
 									$newsobj->setTags(array());
 									$newsobj->setLastchangeUser($_zp_current_admin_obj->getUser());
-									$newsobj->save();
+									$newsobj->save(true);
 								}
 								break;
 							case 'addcats':
@@ -1714,7 +1714,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 								break;
 						}
 						$obj->setLastchangeUser($_zp_current_admin_obj->getUser());
-						$obj->save();
+						$obj->save(true);
 					}
 				}
 			}
