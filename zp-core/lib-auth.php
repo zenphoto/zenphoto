@@ -1607,8 +1607,10 @@ class Zenphoto_Administrator extends PersistentObject {
 
 	/**
 	 * Uptates the database with all changes
+	 * 
+	 * @param bool $checkupdates Default false. If true the internal $updates property is checked for actual changes so unnecessary saving is skipped. Applies to already existing objects only.
 	 */
-	function save() {
+	function save($checkupdates = false) {
 		global $_zp_gallery;
 		if (DEBUG_LOGIN) {
 			debugLogVar("Zenphoto_Administrator->save()", $this);
@@ -1617,7 +1619,7 @@ class Zenphoto_Administrator extends PersistentObject {
 		if (is_null($this->get('date'))) {
 			$this->set('date', date('Y-m-d H:i:s'));
 		}
-		parent::save();
+		parent::save($checkupdates);
 		$id = $this->getID();
 		if (is_array($objects)) {
 			$sql = "DELETE FROM " . prefix('admin_to_object') . ' WHERE `adminid`=' . $id;

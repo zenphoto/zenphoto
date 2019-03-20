@@ -9,7 +9,8 @@
  *
  */
 require_once(dirname(dirname(__FILE__)) . '/functions-basic.php');
-require_once(dirname(__FILE__) . '/setup-classes.php');
+require_once(dirname(__FILE__) . '/class-setup.php');
+require_once(dirname(__FILE__) . '/class-setupmutex.php');
 
 $returnmode = isset($_REQUEST['returnmode']);
 $mod_rewrite = MOD_REWRITE;

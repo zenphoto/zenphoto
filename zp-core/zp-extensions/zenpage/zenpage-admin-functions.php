@@ -169,7 +169,11 @@ function updatePage(&$reports, $newpage = false) {
 			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Page <em>%s</em> updated"), $titlelink) . '</p>';
 		}
 	}
-	$page->save();
+	$checkupdates = true;
+	if ($newpage) { 
+		$checkupdates = false;
+	}
+	$page->save($checkupdates);
 	if ($msg) {
 		$reports[] = $msg;
 	}
@@ -442,8 +446,11 @@ function updateArticle(&$reports, $newarticle = false) {
 			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated"), $titlelink) . '</p>';
 		}
 	}
-	$article->save();
-
+	$checkupdates = true;
+	if($newarticle) {
+		$checkupdates = false;
+	}
+	$article->save($checkupdates);
 	if ($msg) {
 		$reports[] = $msg;
 	}
@@ -931,7 +938,11 @@ function updateCategory(&$reports, $newcategory = false) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("A category with the title/titlelink <em>%s</em> already exists!"), html_encode($cat->getTitle())) . "</p>";
 		}
 	}
-	$cat->save();
+	$checkupdates = true;
+	if ($newcategory) { 
+		$checkupdates = false;
+	}
+	$cat->save($checkupdates);
 	if ($msg) {
 		$reports[] = $msg;
 	}

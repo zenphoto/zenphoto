@@ -228,7 +228,7 @@ if (isset($_GET['action'])) {
 									if (!$notify)
 										$userobj->transient = false;
 									$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
-									$userobj->save();
+									$userobj->save(true);
 								} else {
 									$notify = '?mismatch=format&error=' . urlencode($msg);
 									$error = true;

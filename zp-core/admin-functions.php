@@ -2393,7 +2393,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$album->setCustomData(zp_apply_filter('save_album_custom_data', $custom, $prefix));
 		$album->setLastChangeUser($_zp_current_admin_obj->getUser());
 		zp_apply_filter('save_album_utilities_data', $album, $prefix);
-		$album->save();
+		$album->save(true);
 
 		// Move/Copy/Rename the album after saving.
 		$movecopyrename_action = '';
@@ -2560,7 +2560,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$image->set('filesize', filesize($image->localpath));
 			$image->setLastchangeUser($_zp_current_admin_obj->getUser());
 			zp_apply_filter('save_image_utilities_data', $image, $index);
-			$image->save();
+			$image->save(true);
 
 			// Process move/copy/rename
 			$folder = $image->getAlbumName();
