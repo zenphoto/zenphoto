@@ -1267,13 +1267,26 @@ class Image extends MediaObject {
 		$album = $this->getAlbum();
 		return $album->checkforGuest($hint, $show);
 	}
-
+	
 	/**
 	 *
 	 * returns true if there is any protection on the image
 	 */
 	function isProtected() {
 		return $this->checkforGuest() != 'zp_public_access';
+	}
+	
+	/**
+	 * Returns the filesize in bytes of the full image
+	 * 
+	 * @since ZenphotoCMS 1.5.2
+	 * 
+	 * @return int|false
+	 */
+	function getFilesize() {
+		$album = $this->getAlbum();
+		$filesize = filesize($this->getFullImage(SERVERPATH));
+		return $filesize;
 	}
 
 }
