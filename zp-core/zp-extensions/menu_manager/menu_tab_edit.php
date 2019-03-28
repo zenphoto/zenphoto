@@ -63,10 +63,18 @@ $menuset = checkChosenMenuset();
 							$('#selector').html('<?php echo js_encode(gettext("All menu items")); ?>');
 							$('#description').html('<?php echo js_encode(gettext('This adds menu items for all Zenphoto objects. (It creates a "default" menuset.)')); ?>');
 							break;
+						case "homepage":
+							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
+							$('#selector').html('<?php echo js_encode(gettext("Home page")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("This is the normal Zenphoto home page. This may also be the gallery index if you have no separate gallery index page defined.")); ?>');
+							$('#link').attr('disabled', true);
+							$('#titleinput').show();
+							$('#link').val('<?php echo WEBPATH; ?>/');
+							break;	
 						case "galleryindex":
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Gallery index")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("This is the normal Zenphoto gallery Index page.")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("This is the normal Zenphoto gallery Index page. It may also be the home page if you have no separate gallery index page defined.")); ?>');
 							$('#link').attr('disabled', true);
 							$('#titleinput').show();
 							$('#link').val('<?php echo WEBPATH; ?>/');
@@ -128,7 +136,7 @@ $menuset = checkChosenMenuset();
 							});
 							break;
 						case 'custompage':
-							$('#albumselector,#pageselector,#categoryselector,#link,').hide();
+							$('#albumselector,#pageselector,#categoryselector, #link').hide();
 							$('#custompageselector').show();
 							$('#selector').html('<?php echo js_encode(gettext("Custom page")); ?>');
 							$('#description').html('<?php echo js_encode(gettext('Creates a link to a custom theme page as described in the theming tutorial.')); ?>');
@@ -241,6 +249,7 @@ if (is_array($result)) {
 					<select id="typeselector" name="typeselector">
 						<option value=""><?php echo gettext("*Select the type of the menus item you wish to add*"); ?></option>
 						<option value="all_items"><?php echo gettext("All menu items"); ?></option>
+						<option value="homepage"><?php echo gettext("Home page"); ?></option>
 						<option value="galleryindex"><?php echo gettext("Gallery index"); ?></option>
 						<option value="all_albums"><?php echo gettext("All Albums"); ?></option>
 						<option value="album"><?php echo gettext("Album"); ?></option>

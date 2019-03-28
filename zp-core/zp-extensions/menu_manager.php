@@ -207,12 +207,30 @@ function checkChosenItemStatus() {
 function getItemTitleAndURL($item) {
 	global $_zp_gallery;
 	$themename = $_zp_gallery->getCurrentTheme();
-	$array = array("title" => '', "url" => '', "name" => '', 'protected' => false, 'theme' => $themename);
+	$array = array(
+			"title" => '', 
+			"url" => '', 
+			"name" => '', 
+			'protected' => false, 
+			'theme' => $themename);
 	$valid = true;
 	$title = get_language_string($item['title']);
 	switch ($item['type']) {
+		case 'homepage':
+			$array = array(
+					"title" => get_language_string($item['title']), 
+					"url" => WEBPATH, 
+					"name" => WEBPATH, 
+					'protected' => false, 
+					'theme' => $themename);
+			break;
 		case "galleryindex":
-			$array = array("title" => get_language_string($item['title']), "url" => WEBPATH, "name" => WEBPATH, 'protected' => false, 'theme' => $themename);
+			$array = array(
+					"title" => get_language_string($item['title']), 
+					"url" => getGalleryIndexURL(), 
+					"name" => WEBPATH, 
+					'protected' => false, 
+					'theme' => $themename);
 			break;
 		case "album":
 			$folderFS = internalToFilesystem($item['link']);
@@ -229,7 +247,12 @@ function getItemTitleAndURL($item) {
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
 			}
-			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
+			$array = array(
+					"title" => $title, 
+					"url" => $url, 
+					"name" => $item['link'], 
+					'protected' => $protected, 
+					'theme' => $themename);
 			break;
 		case "zenpagepage":
 			if(class_exists('zenpage')) {
@@ -245,13 +268,22 @@ function getItemTitleAndURL($item) {
 					$url = '';
 					$protected = 0;
 				}
-				$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
+				$array = array(
+						"title" => $title, 
+						"url" => $url, 
+						"name" => $item['link'], 
+						'protected' => $protected, 
+						'theme' => $themename);
 			}
 			break;
 		case "zenpagenewsindex":
 			if(class_exists('zenpage')) {
 				$url = getNewsIndexURL();
-				$array = array("title" => get_language_string($item['title']), "url" => $url, "name" => $url, 'protected' => false);
+				$array = array(
+						"title" => get_language_string($item['title']), 
+						"url" => $url, 
+						"name" => $url, 
+						'protected' => false);
 			}
 			break;
 		case "zenpagecategory":
@@ -268,7 +300,12 @@ function getItemTitleAndURL($item) {
 					$url = '';
 					$protected = 0;
 				}
-				$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => $protected, 'theme' => $themename);
+				$array = array(
+						"title" => $title, 
+						"url" => $url, 
+						"name" => $item['link'], 
+						'protected' => $protected, 
+						'theme' => $themename);
 			}
 			break;
 		case "custompage":
@@ -279,16 +316,36 @@ function getItemTitleAndURL($item) {
 				$valid = false;
 				$url = '';
 			}
-			$array = array("title" => $title, "url" => $url, "name" => $item['link'], 'protected' => false, 'theme' => $themename);
+			$array = array(
+					"title" => $title, 
+					"url" => $url, 
+					"name" => $item['link'], 
+					'protected' => false, 
+					'theme' => $themename);
 			break;
 		case "customlink":
-			$array = array("title" => get_language_string($item['title']), "url" => $item['link'], "name" => $item['link'], 'protected' => false, 'theme' => $themename);
+			$array = array(
+					"title" => get_language_string($item['title']), 
+					"url" => $item['link'], 
+					"name" => $item['link'], 
+					'protected' => false, 
+					'theme' => $themename);
 			break;
 		case 'menulabel':
-			$array = array("title" => get_language_string($item['title']), "url" => NULL, 'name' => $item['title'], 'protected' => false, 'theme' => $themename);
+			$array = array(
+					"title" => get_language_string($item['title']), 
+					"url" => NULL, 
+					'name' => $item['title'], 
+					'protected' => false, 
+					'theme' => $themename);
 			break;
 		default:
-			$array = array("title" => get_language_string($item['title']), "url" => $item['link'], "name" => $item['link'], 'protected' => false, 'theme' => $themename);
+			$array = array(
+					"title" => get_language_string($item['title']), 
+					"url" => $item['link'], 
+					"name" => $item['link'], 
+					'protected' => false, 
+					'theme' => $themename);
 			break;
 	}
 	$limit = MENU_TRUNCATE_STRING;

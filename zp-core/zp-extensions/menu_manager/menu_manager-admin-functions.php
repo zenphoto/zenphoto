@@ -492,6 +492,15 @@ function addItem(&$reports) {
 			}
 			$successmsg = sprintf(gettext("Album menu item <em>%s</em> added"), $result['link']);
 			break;
+		case 'homepage':
+			$result['title'] = process_language_string_save("title", 2);
+			$result['link'] = NULL;
+			if (empty($result['title'])) {
+				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
+				return $result;
+			}
+			$successmsg = sprintf(gettext("Home page menu item <em>%s</em> added"), $result['link']);
+			break;
 		case 'galleryindex':
 			$result['title'] = process_language_string_save("title", 2);
 			$result['link'] = NULL;
@@ -616,9 +625,7 @@ function addItem(&$reports) {
  * Updates a menu item (custom link, custom page only) set via POST
  *
  */
-function updateMenuItem(&
-
-$reports) {
+function updateMenuItem(&$reports) {
 	$menuset = checkChosenMenuset();
 	$result = array();
 	$result['id'] = sanitize($_POST['id']);
@@ -638,6 +645,14 @@ $reports) {
 			$result['title'] = $result['link'] = sanitize($_POST['albumselect']);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to select an album.") . " </p>";
+				return $result;
+			}
+			break;
+		case 'homepage':
+			$result['title'] = process_language_string_save("title", 2);
+			$result['link'] = NULL;
+			if (empty($result['title'])) {
+				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
 			}
 			break;
@@ -752,9 +767,7 @@ $reports) {
  * Deletes a menu item set via GET
  *
  */
-function deleteItem(&
-
-$reports) {
+function deleteItem(&$reports) {
 	if (isset($_GET['delete'])) {
 		$delete = sanitize_numeric($_GET['delete'], 3);
 		query("DELETE FROM " . prefix('menu') . " WHERE `id` = $delete");
@@ -888,6 +901,7 @@ function printCustomPageSelector($current) {
 		chdir($root);
 		$filelist = safe_glob('*.php');
 		$list = array();
+		$include = array('functions.php');
 		foreach ($filelist as $file) {
 			$file = filesystemToInternal($file);
 			$list[$file] = str_replace('.php', '', $file);
