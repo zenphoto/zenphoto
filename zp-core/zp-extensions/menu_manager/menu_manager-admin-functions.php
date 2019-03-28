@@ -901,10 +901,30 @@ function printCustomPageSelector($current) {
 		chdir($root);
 		$filelist = safe_glob('*.php');
 		$list = array();
-		$include = array('functions.php');
+		$exclude = array(
+				'404.php',
+				'index.php',
+				'gallery.php',
+				'album.php',
+				'image.php',
+				'pages.php',
+				'news.php',
+				'functions.php',
+				'inc-footer.php',
+				'footer.php',
+				'inc-header.php',
+				'header.php',
+				'inc-sidebar.php',
+				'sidebar.php',
+				'slideshow.php',
+				'theme_description.php',
+				'themeoptions.php'
+		);
 		foreach ($filelist as $file) {
-			$file = filesystemToInternal($file);
-			$list[$file] = str_replace('.php', '', $file);
+			if(!in_array($file, $exclude)) {
+				$file = filesystemToInternal($file);
+				$list[$file] = str_replace('.php', '', $file);
+			}
 		}
 		generateListFromArray(array($current), $list, false, true);
 		chdir($curdir);
