@@ -1005,7 +1005,6 @@ function getMenuItemChilds($menuset = 'default', $allchilds = false) {
  * @param string $css_class_topactive class of the active item in the top level list
  * @param string $css_class CSS class of the sub level list(s)
  * @param string $css_class_active CSS class of the sub level list(s)
- * @param string $indexname insert the name (default "Gallery Index") how you want to call the link to the gallery index, insert "" (default) if you don't use it, it is not printed then.
  * @param int $showsubs Set to depth of sublevels that should be shown always. 0 by default. To show all, set to a true! Only valid if option=="list".
  * @param bool $counter TRUE (FALSE default) if you want the count of articles for Zenpage news categories or images/subalbums for albums.
 
