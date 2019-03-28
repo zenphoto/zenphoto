@@ -15,8 +15,17 @@ $menuset = checkChosenMenuset('');
 if (empty($menuset)) { //	setup default menuset
 	$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu'));
 	if (is_array($result)) { // default to the first one
-		$set = array_shift($result);
-		$menuset = $set['menuset'];
+		$currenttheme = $_zp_gallery->getCurrentTheme();
+		foreach($result as $key => $val) {
+			if($val['menuset'] == $currenttheme) {
+				$menuset = $currenttheme;
+				break;
+			} 
+		}
+		if(empty($menuset)) {
+			$set = array_shift($result);
+			$menuset = $set['menuset'];
+		}
 	} else {
 		$menuset = 'default';
 	}
@@ -160,7 +169,7 @@ printSortableHead();
 						<a href="javascript:newMenuSet();">
 							<img src="../../images/add.png" alt="" /> <strong><?php echo gettext("New Menu"); ?></strong>
 						</a>
-						<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;show-menu_manager#menu_manager">
+						<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?page=options&tab=plugin&single=menu_manager">
 							<img src="../../images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
 						</a>
 					</div>
