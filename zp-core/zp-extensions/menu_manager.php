@@ -414,9 +414,16 @@ function inventMenuItem($menuset, $visibility) {
 				}
 			}
 			if (!empty($currentkey)) {
-				$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'image',
-								'include_li' => true, 'title'			 => $_zp_current_image->getTitle(),
-								'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
+				$item = array(
+						'id' => 9999,
+						'sort_order' => $currentkey,
+						'parentid' => $item['id'],
+						'type' => 'image',
+						'include_li' => true,
+						'title' => $_zp_current_image->getTitle(),
+						'show' => 1,
+						'link' => '',
+						'menuset' => $menuset);
 			}
 			break;
 		case 'news.php':
@@ -439,9 +446,16 @@ function inventMenuItem($menuset, $visibility) {
 			}
 			if (!empty($currentkey)) {
 				if (is_NewsArticle()) {
-					$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'zenpagenews',
-									'include_li' => true, 'title'			 => $_zp_current_zenpage_news->getTitle(),
-									'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
+					$item = array(
+							'id' => 9999,
+							'sort_order' => $currentkey,
+							'parentid' => $item['id'],
+							'type' => 'zenpagenews',
+							'include_li' => true,
+							'title' => $_zp_current_zenpage_news->getTitle(),
+							'show' => 1,
+							'link' => '',
+							'menuset' => $menuset);
 				} else {
 					$currentkey = false; // not a news page, must be the index?
 				}
@@ -453,9 +467,16 @@ function inventMenuItem($menuset, $visibility) {
 					if ($item['type'] == 'custompage' && $item['link'] == 'search') {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
-						$item = array('id'				 => 9999, 'sort_order' => $currentkey, 'parentid'	 => $item['id'], 'type'			 => 'zenpagepage',
-										'include_li' => true, 'title'			 => $_zp_current_zenpage_page->getTitle(),
-										'show'			 => 1, 'link'			 => '', 'menuset'		 => $menuset);
+						$item = array(
+								'id' => 9999,
+								'sort_order' => $currentkey,
+								'parentid' => $item['id'],
+								'type' => 'zenpagepage',
+								'include_li' => true,
+								'title' => $_zp_current_zenpage_page->getTitle(),
+								'show' => 1,
+								'link' => '',
+								'menuset' => $menuset);
 						break;
 					}
 				}

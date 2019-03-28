@@ -904,6 +904,7 @@ function printCustomPageSelector($current) {
 		$exclude = array(
 				'404.php',
 				'index.php',
+				'main.php',
 				'gallery.php',
 				'album.php',
 				'image.php',
