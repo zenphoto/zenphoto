@@ -311,7 +311,7 @@ function getItemTitleAndURL($item) {
 		case "custompage":
 			$root = SERVERPATH . '/' . THEMEFOLDER . '/' . $themename . '/';
 			if (file_exists($root . $item['link'] . '.php')) {
-				$url = zp_apply_filter('getLink', rewrite_path(_PAGE_ . '/' . $item['link'], "/index.php?p=" . $item['link']), $item['link'] . '.php', NULL);
+				$url = getCustomPageURL($item['link']);
 			} else {
 				$valid = false;
 				$url = '';
