@@ -144,6 +144,23 @@ echo "\n" . '<div id="content">';
 		$gallerydefault = false;
 	}
 
+	
+	if (count($themelist) == 0) {
+		echo '<div class="errorbox" id="no_themes">';
+		echo  "<h2>".gettext("There are no themes for which you have rights to administer.")."</h2>";
+		echo '</div>';
+	} else {
+
+	echo "<h1>".sprintf(gettext('Current theme for <code><strong>%1$s</strong></code>: <em>%2$s</em>'),$albumtitle,$themenamedisplay). "</h1>\n";
+	if (!empty($alb) && !empty($themename)) {
+		?>
+		<p class="buttons clearfix">
+			<a class="reset" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-themes.php?action=settheme&amp;themealbum=<?php echo pathurlencode($album->name); ?>&amp;theme=&amp;XSRFToken=<?php echo getXSRFToken('admin-themes'); ?>" title="<?php printf(gettext('Clear theme assignment for %s'),$album->name); ?>">
+				<img src="images/fail.png" style="border: 0px;" alt="<?php echo gettext('Clear theme assignment'); ?>" /> <?php printf(gettext('Clear theme assignment for %s'),$album->name); ?>
+			</a>
+		</p>
+		<?php
+	}
 	if (count($themelist) > 1) {
 		echo '<form action="#" method="post">';
 		echo gettext("Show theme for: ");
@@ -152,25 +169,7 @@ echo "\n" . '<div id="content">';
 		echo '</select>';
 		echo '</form>';
 	}
-	if (count($themelist) == 0) {
-		echo '<div class="errorbox" id="no_themes">';
-		echo  "<h2>".gettext("There are no themes for which you have rights to administer.")."</h2>";
-		echo '</div>';
-	} else {
-
-	echo "<h1>".sprintf(gettext('Current theme for <code><strong>%1$s</strong></code>: <em>%2$s</em>'),$albumtitle,$themenamedisplay);
-	if (!empty($alb) && !empty($themename)) {
-		?>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a class="reset" onclick="launchScript('',['action=settheme','themealbum=<?php echo pathurlencode($album->name); ?>','theme=','XSRFToken=<?php echo getXSRFToken('admin-themes'); ?>']);" title="<?php printf(gettext('Clear theme assignment for %s'),$album->name); ?>">
-			<img src="images/fail.png" style="border: 0px;" alt="<?php echo gettext('Clear theme assignment'); ?>" />
-		</a>
-		<?php
-	}
-	echo "</h1>\n";
-?>
-
-<?php if ($message) {
+ if ($message) {
 	echo '<div class="messagebox fade-message">';
 	echo  "<h2>$message</h2>";
 	echo '</div>';
@@ -261,7 +260,7 @@ foreach($themes as $theme => $themeinfo) {
 				?>
 				<li>
 				<p class="buttons">
-					<a onclick="launchScript('admin-themes.php',['action=settheme','themealbum=<?php echo pathurlencode($alb); ?>','theme=<?php echo $theme; ?>','XSRFToken=<?php echo getXSRFToken('admin-themes')?>']);">
+					<a href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-themes.php?action=settheme&amp;themealbum=<?php echo pathurlencode($alb); ?>&amp;theme=<?php echo $theme; ?>&amp;XSRFToken=<?php echo getXSRFToken('admin-themes')?>">
 						<img src="images/pass.png" alt="" /><?php echo gettext("Activate"); ?>
 					</a>
 				</p>
@@ -273,7 +272,7 @@ foreach($themes as $theme => $themeinfo) {
 					?>
 					<li>
 					<p class="buttons">
-						<a onclick="launchScript('admin-themes.php',['action=settheme','themealbum=<?php echo pathurlencode($alb); ?>','theme=<?php echo $theme; ?>','XSRFToken=<?php echo getXSRFToken('admin-themes')?>']);">
+						<a href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-themes.php?action=settheme&amp;themealbum=<?php echo pathurlencode($alb); ?>&amp;theme=<?php echo $theme; ?>&amp;XSRFToken=<?php echo getXSRFToken('admin-themes')?>">
 							<img src="images/pass.png" alt="" /><?php echo gettext("Assign"); ?>
 						</a>
 					</p>
@@ -288,19 +287,21 @@ foreach($themes as $theme => $themeinfo) {
 				?>
 				<li>
 				<p class="buttons">
-					<a onclick="launchScript('admin-themes-editor.php',['theme=<?php echo $theme; ?>']);">
+					<a href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-themes-editor.php?theme=<?php echo $theme; ?>">
 						<img src="images/pencil.png" alt="" /><?php echo gettext("Edit"); ?>
 					</a>
 				</p><br />
 				</li>
 				<?php
 				if ($theme != $current_theme) {
+					$delete_url = 'admin-themes.php?action=deletetheme&amp;themealbum='. pathurlencode($alb). '&amp;theme=' . $theme.'&amp;XSRFToken=' . getXSRFToken('admin-themes');
+					$delete_msg = gettext('Do you really want to delete this theme?');
 					?>
 					<li>
 					<p class="buttons">
-						<a onclick="launchScript('admin-themes.php',['action=deletetheme','themealbum=<?php echo pathurlencode($alb); ?>','theme=<?php echo $theme; ?>','XSRFToken=<?php echo getXSRFToken('admin-themes')?>']);">
+						<button onclick="javascript:confirmDelete('<?php echo $delete_url; ?>','<?php echo $delete_msg; ?>');">							
 							<img src="images/edit-delete.png" alt="" /><?php echo gettext("Delete"); ?>
-						</a>
+						</button>
 					</p>
 					</li>
 					<?php
@@ -309,9 +310,9 @@ foreach($themes as $theme => $themeinfo) {
 				?>
 				<li class="zp_copy_theme">
 				<p class="buttons">
-					<a onclick="copyClick('<?php echo $theme; ?>');">
+					<button onclick="copyClick('<?php echo $theme; ?>');">
 						<img src="images/page_white_copy.png" alt="" /><?php echo gettext("Duplicate"); ?>
-					</a>
+					</button>
 				</p>
 				</li>
 				<?php
