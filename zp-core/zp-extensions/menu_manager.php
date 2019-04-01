@@ -938,6 +938,13 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key));
 					}
 					break;
+				case 'homepage':
+					$result['link'] = NULL;
+					if (empty($result['title'])) {
+						$success = -1;
+						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
+					}
+					break;
 				case 'galleryindex':
 					$result['link'] = NULL;
 					if (empty($result['title'])) {
