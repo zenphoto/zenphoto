@@ -3021,10 +3021,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		@chmod($target, FOLDER_MOD);
 
-		// Get a list of files to copy: get all files from the directory, remove those containing '/.svn/'
-		$source_files = array_filter(listDirectoryFiles($source), create_function('$str', 'return strpos($str, "/.svn/") === false;'));
+		// Get a list of files to copy: get all files from the directory, remove those containing '/.svn/'		
+		$source_files = array_filter(listDirectoryFiles($source), function($str) { return strpos($str, "/.svn/") === false; });
 
-		// Determine nested (sub)directories structure to create: go through each file, explode path on "/"
+	// Determine nested (sub)directories structure to create: go through each file, explode path on "/"
 		// and collect every unique directory
 		$dirs_to_create = array();
 		foreach ($source_files as $path) {
