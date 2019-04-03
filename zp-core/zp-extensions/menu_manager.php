@@ -153,7 +153,7 @@ function getMenuItems($menuset, $visible) {
 			$visible = 'all';
 			break;
 	}
-	$result = query_full_array("SELECT * FROM " . prefix('menu') . $where . " ORDER BY sort_order", false, 'sort_order');
+	$result = query_full_array("SELECT * FROM " . prefix('menu') . $where . " ORDER BY sort_order", false);
 	$_menu_manager_items[$menuset][$visible] = $result;
 	return $_menu_manager_items[$menuset][$visible];
 }

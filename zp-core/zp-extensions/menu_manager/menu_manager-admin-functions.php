@@ -379,7 +379,11 @@ function addPagesToDatabase($menuset, $base = NULL) {
 	$parents = array('NULL');
 	$result = query_full_array("SELECT * FROM " . prefix('pages') . " ORDER BY sort_order");
 	foreach ($result as $key => $item) {
-		$sorts = explode('-', $item['sort_order']);
+		if(empty($item['sort_order'])) {
+			$sorts = array($key);
+		} else {
+			$sorts = explode('-', $item['sort_order']);
+		}
 		$level = count($sorts);
 		$sorts[0] = sprintf('%03u', $result = $sorts[0] + $pagebase);
 		$order = $sortbase . implode('-', $sorts);
@@ -416,17 +420,23 @@ function addCategoriesToDatabase($menuset, $base = NULL) {
 	}
 	$result = $categorybase;
 	$parents = array('NULL');
-	$result = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER BY sort_order");
-	foreach ($result as $key => $item) {
-		$sorts = explode('-', $item['sort_order']);
+	$cats = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER BY sort_order");
+	foreach ($cats as $key => $item) {
+		if(empty($item['sort_order'])) {
+			$sorts = array($key);
+		} else {
+			$sorts = explode('-', $item['sort_order']);
+		}
 		$level = count($sorts);
-		$sorts[0] = sprintf('%03u', $result = $sorts[0] + $categorybase);
+		$result = $sorts[0] + $categorybase;
+		$sorts[0] = sprintf('%03u', $result);
 		$order = $sortbase . implode('-', $sorts);
 		$link = $item['titlelink'];
 		$parent = $parents[$level - 1];
 		$sql = "INSERT INTO " . prefix('menu') . " (`title`, `link`, `type`, `show`,`menuset`,`sort_order`,`parentid`) " .
 						'VALUES (' . db_quote($item['title']) . ',' . db_quote($link) . ',"zenpagecategory", 1,' . db_quote($menuset) . ',' . db_quote($order) . ',' . $parent . ')';
 		if (query($sql, false)) {
+			echo "enry for " . $item['title'] . " added <br>";
 			$id = db_insert_id();
 		} else {
 			$rslt = query_single_row('SELECT `id` FROM' . prefix('menu') . ' WHERE `type`="zenpagecategory" AND `link`="' . $link . '"');
@@ -954,10 +964,8 @@ function unpublishedZenphotoItemCheck($obj, $dropdown = true) {
  */
 function processMenuBulkActions() {
 	$report = NULL;
-	if (isset($_POST[
-									'ids'])) {
-		$action = sanitize(
-						$_POST['checkallaction']);
+	if (isset($_POST['ids'])) {
+		$action = sanitize($_POST['checkallaction']);
 		$ids = $_POST['ids'];
 		$total = count($ids);
 		$message = NULL;
