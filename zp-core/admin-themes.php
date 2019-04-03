@@ -299,7 +299,7 @@ foreach($themes as $theme => $themeinfo) {
 					?>
 					<li>
 					<p class="buttons">
-						<button onclick="javascript:confirmDelete('<?php echo $delete_url; ?>','<?php echo $delete_msg; ?>');">							
+						<button type="button" onclick="javascript:confirmDelete('<?php echo $delete_url; ?>','<?php echo $delete_msg; ?>');">							
 							<img src="images/edit-delete.png" alt="" /><?php echo gettext("Delete"); ?>
 						</button>
 					</p>
@@ -310,7 +310,7 @@ foreach($themes as $theme => $themeinfo) {
 				?>
 				<li class="zp_copy_theme">
 				<p class="buttons">
-					<button onclick="copyClick('<?php echo $theme; ?>');">
+					<button type="button" onclick="copyClick('<?php echo $theme; ?>');">
 						<img src="images/page_white_copy.png" alt="" /><?php echo gettext("Duplicate"); ?>
 					</button>
 				</p>
