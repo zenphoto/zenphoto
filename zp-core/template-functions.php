@@ -175,7 +175,7 @@ function adminToolbox() {
 							</li>
 							<?php
 						}
-						if (zp_loggedin(UPLOAD_RIGHTS)) {
+						if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 							// admin has upload rights, provide an upload link for a new album
 							?>
 							<li>
