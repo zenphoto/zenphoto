@@ -749,9 +749,16 @@ class setup {
 
 	static function defaultOptionsRequest($name, $type = 'plugin') {
 		global $_zp_conf_vars;
+		$curloptions = array();
 		switch ($type) {
 			case 'modrewrite':
 				$uri = FULLWEBPATH . '/' . $_zp_conf_vars['special_pages']['page']['rewrite'] . '/setup_set-mod_rewrite?z=setup';
+				$curloptions = array(
+						CURLOPT_RETURNTRANSFER => true,
+						CURLOPT_TIMEOUT => 2000,
+						CURLOPT_FOLLOWLOCATION => true,
+						CURLOPT_POSTREDIR => 3
+				);
 				break;
 			case 'plugin':
 				$uri = FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $name;
@@ -762,7 +769,7 @@ class setup {
 		}
 		if (function_exists('curl_init')) {
 			$uri .= '&returnmode';
-			$success = curlRequest($uri);
+			$success = curlRequest($uri, $curloptions);
 			if ($success) {
 				$image = FULLWEBPATH . '/' . ZENFOLDER . '/images/pass.png';
 			} else {
