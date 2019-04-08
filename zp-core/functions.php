@@ -215,8 +215,8 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		$short = truncate_string($articlecontent, $shorten, '');
 		if ($short != $articlecontent || $forceindicator) { //	we actually did remove some stuff
 			// drop open tag strings
-			$open = mb_strrpos($short, '</');
-			if ($open) {
+			$open = mb_strrpos($short, '<');
+			if ($open > mb_strrpos($short, '>')) {
 				$short = mb_substr($short, 0, $open);
 			}
 			$short = tidyHTML($short . $shortenindicator);
