@@ -38,7 +38,6 @@ class rss_options {
 			setOptionDefault('RSS_truncate_length', getOption('zenpage_rss_length'));
 			setOptionDefault('RSS_zenpage_items', getOption('zenpage_rss_items'));
 
-
 			purgeOption('feed_items');
 			purgeOption('feed_imagesize');
 			purgeOption('feed_sortorder');
@@ -53,7 +52,12 @@ class rss_options {
 			purgeOption('feed_title');
 			purgeOption('zenpage_rss_length');
 			purgeOption('zenpage_rss_items');
-
+			
+			setOptionDefault('RSS_album_image', 1);
+			setOptionDefault('RSS_comments', 1);
+			setOptionDefault('RSS_articles', 1);
+			setOptionDefault('RSS_pages', 1);
+			setOptionDefault('RSS_article_comments', 1);
 			setOptionDefault('RSS_truncate_length', '100');
 			setOptionDefault('RSS_zenpage_items', '10');
 			setOptionDefault('RSS_items', 10); // options for standard images rss

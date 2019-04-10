@@ -51,7 +51,7 @@ class comment_form {
 		setOptionDefault('email_new_comments', 1);
 		setOptionDefault('comment_name_required', 'required');
 		setOptionDefault('comment_email_required', 'required');
-		setOptionDefault('comment_web_required', 'show');
+		setOptionDefault('comment_web_required', 1);
 		setOptionDefault('Use_Captcha', false);
 		setOptionDefault('comment_form_addresses', 0);
 		setOptionDefault('comment_form_require_addresses', 0);

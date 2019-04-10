@@ -295,18 +295,9 @@ if (!in_array('newuser', $groupsdefined)) {
 }
 setOption('defined_groups', serialize($groupsdefined)); // record that these have been set once (and never again)
 
-setOptionDefault('RSS_album_image', 1);
-setOptionDefault('RSS_comments', 1);
-setOptionDefault('RSS_articles', 1);
-setOptionDefault('RSS_pages', 1);
-setOptionDefault('RSS_article_comments', 1);
-
 setOptionDefault('AlbumThumbSelect', 1);
 purgeOption('AlbumThumbSelectField');
 purgeOption('AlbumThumbSelectDirection');
-
-setOptionDefault('menu_truncate_string', 0);
-setOptionDefault('menu_truncate_indicator', '');
 
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
 setOptionDefault('site_email_name', 'Zenphoto');
@@ -342,19 +333,7 @@ if (!file_exists(SERVERPATH . '/favicon.ico')) {
 }
 
 setOptionDefault('default_copyright', sprintf(gettext('Copyright %1$u: %2$s'), date('Y'), $_SERVER["HTTP_HOST"]));
-
-if (getOption('comment_name_required') == 1) {
-	setOption('comment_name_required', 'required');
-}
-if (getOption('comment_email_required') == 1) {
-	setOption('comment_email_required', 'required');
-}
-if (getOption('comment_web_required') == 1) {
-	setOption('comment_web_required', 'required');
-}
-
 setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
-
 
 $data = getOption('gallery_data');
 if ($data) {
