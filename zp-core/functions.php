@@ -1613,6 +1613,22 @@ function safe_fnmatch($pattern, $string) {
 }
 
 /**
+ * Returns true if the mail address passed is valid. 
+ * It uses PHP's internal `filter_var` functions to validate the syntax but not the existence.
+ * 
+ * @since ZenphotoCMS 1.5.2
+ * 
+ * @param string $email An email address
+ * @return boolean
+ */
+function isValidEmail($email) {
+	if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		return true;
+	}
+	return false;
+}
+
+/**
  * returns a list of comment record 'types' for "images"
  * @param string $quote quotation mark to use
  *

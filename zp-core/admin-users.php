@@ -141,15 +141,17 @@ if (isset($_GET['action'])) {
 							}
 							if (isset($_POST[$i . '-admin_email'])) {
 								$admin_e = trim(sanitize($_POST[$i . '-admin_email']));
-								$mail_duplicate = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
-								if($mail_duplicate) {
-									$msg = sprintf(gettext('%s email is already used by another user!'), $admin_n);
-								} else {
-									if ($admin_e != $userobj->getEmail()) {
-										markUpdated();
-										$userobj->setEmail($admin_e);
+								if(!empty($admin_e) && isValidEmail($admin_e)) {				
+									$mail_duplicate = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
+									if($mail_duplicate) {
+										$msg = sprintf(gettext('%s email is already used by another user!'), $admin_n);
+									} else {
+										if ($admin_e != $userobj->getEmail()) {
+											markUpdated();
+											$userobj->setEmail($admin_e);
+										}
 									}
-								}
+								} 
 							}
 							if (empty($pass)) {
 								if ($newuser || @$_POST['passrequired' . $i]) {

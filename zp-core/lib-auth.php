@@ -1308,16 +1308,19 @@ class Zenphoto_Authority {
 
 	/**
 	 * Checks if the email address being set is already used by another user
+	 * Returns true if it is, false if not
 	 *
 	 * @param string $email_to_check email address to check
 	 * @param type $current_user user id of the user trying to set this email address
 	 * @return boolean
 	 */
 	function checkUniqueMailaddress($email_to_check, $current_user) {
-		$all_users = $this->getAdministrators('users');
-		foreach ($all_users as $user) {
-			if ($user['user'] != $current_user && $user['email'] == $email_to_check) {
-				return true;
+		if (!empty($email_to_check) && isValidEmail($email_to_check)) {
+			$all_users = $this->getAdministrators('users');
+			foreach ($all_users as $user) {
+				if ($user['user'] != $current_user && !empty($user['email']) && $user['email'] == $email_to_check) {
+					return true;
+				}
 			}
 		}
 		return false;
