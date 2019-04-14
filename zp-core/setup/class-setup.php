@@ -356,8 +356,8 @@ class setup {
 			return array();
 		}
 	}
-	
-		/**
+
+	/**
 	 * pattern match function in case it is not included in PHP
 	 *
 	 * @param string $pattern pattern
@@ -583,7 +583,7 @@ class setup {
 			return ($actual & 0770) == ($expected & 0770); //	We do not care about the execute permissions
 		}
 	}
-	
+
 	static function folderPermissions($folder) {
 		$files = array();
 		if (($dir = opendir($folder)) !== false) {
@@ -662,9 +662,18 @@ class setup {
 	}
 
 	static function printFooter() {
-		echo "<div id=\"footer\">";
-		echo "\n  <a href=\"http://www.zenphoto.org\" title=\"" . gettext('The simpler media website CMS') . "\">zen<strong>photo</strong></a>";
-		echo " | <a href=\"http://www.zenphoto.org/support/\" title=\"" . gettext('Forum') . '">' . gettext('Forum') . "</a> | <a href=\"https://github.com/zenphoto/zenphoto/issues\" title=\"Bugtracker\">Bugtracker </a> | <a href=\"http://www.zenphoto.org/news/category/changelog\" title=\"" . gettext('View Change log') . "\">" . gettext('Change log') . "</a>\n</div>";
+		?>
+		<br class="clearall" />
+		</div><!-- content -->
+		</div><!-- main -->
+		<div id="footer">
+			<a href="http://www.zenphoto.org" title="<?php echo gettext('ZenphotoCMS - The simpler media website CMS'); ?>">zen<strong>photo</strong></a>
+			| <a href="http://www.zenphoto.org/support" title=" <?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
+			| <a href="https://github.com/zenphoto/zenphoto/issues" title="Bugtracker">Bugtracker </a> | <a href="http://www.zenphoto.org/news/category/changelog" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('View Change log'); ?></a>
+		</div>
+		</body>
+		</html>
+		<?php
 	}
 
 	static function userAuthorized() {

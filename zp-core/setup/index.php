@@ -1215,7 +1215,10 @@ if ($c <= 0) {
 									}
 								}
 							}
-
+							if(!$good) {
+								setup::printFooter();
+								exit();
+							}
 							setup::primeMark(gettext('Zenphoto files'));
 							@set_time_limit(120);
 							$lcFilesystem = file_exists(strtoupper(__FILE__));
@@ -2797,12 +2800,6 @@ if ($c <= 0) {
 					if ($noxlate > 0 && !isset($_GET['checked'])) {
 						setup::languageSelector();
 					}
-					?>
-					<br class="clearall" />
-			</div><!-- content -->
-		</div><!-- main -->
-		<?php setup::printFooter(); ?>
-	</body>
-</html>
-<?php
+					setup::printFooter(); 
+	
 $setupMutex->unlock();
