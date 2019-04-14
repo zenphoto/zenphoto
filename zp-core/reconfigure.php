@@ -86,7 +86,7 @@ function checkSignature($auto) {
 	$_configMutex->lock();
 	if (file_exists(SERVERPATH . '/' .ZENFOLDER . '/setup/')) {
 		$found = isSetupProtected();
-		if(!empty($found) && $auto && zp_loggedin(ADMIN_RIGHTS)) {
+		if(!empty($found) && $auto && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS))) {
 			unprotectSetupFiles();
 		}
 		$found = safe_glob('*.*');
