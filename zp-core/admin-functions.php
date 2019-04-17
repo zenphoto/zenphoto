@@ -881,7 +881,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						if(!empty(WEBPATH)) {
 							$creator = str_replace(WEBPATH . '/', '', $pl);
 						} else {
-							$creator = $pl;
+							$creator = substr($pl, 1); //remove trailing slash
 						}
 					}
 					setOption($key, $value, true, $creator);
