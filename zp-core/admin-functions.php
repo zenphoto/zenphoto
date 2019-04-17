@@ -878,7 +878,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 					if (isset($_GET['single'])) { // single plugin save
 						$ext = sanitize($_GET['single'], 1);
 						$pl = getPlugin($ext . '.php', false, true);
-						$creator = str_replace(WEBPATH . '/', '', $pl);
+						if(!empty(WEBPATH)) {
+							$creator = str_replace(WEBPATH . '/', '', $pl);
+						} else {
+							$creator = $pl;
+						}
 					}
 					setOption($key, $value, true, $creator);
 				}
