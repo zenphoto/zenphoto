@@ -100,4 +100,3 @@ printAdminHeader('overview', 'List locales');
 	<?php printAdminFooter(); ?>
 </body>
 </html>
-?>
