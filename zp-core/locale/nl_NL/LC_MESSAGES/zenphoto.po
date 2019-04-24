@@ -2702,7 +2702,7 @@ msgstr "Laatste verandering: %s"
 #: zp-core/admin-functions.php:4954
 #| msgid "New requestor:"
 msgid "Code request"
-msgstr "Code request"
+msgstr "Zenphoto"
 
 #: zp-core/admin-functions.php:4956
 #, php-format
@@ -12158,7 +12158,7 @@ msgstr "Locale informatie"
 
 #: zp-core/utilities/list_locales.php:16
 msgid "Display information about installed locales."
-msgstr ""
+msgstr "Toon informatie over geïnstalleerde locales."
 
 #: zp-core/utilities/list_locales.php:17 zp-core/utilities/phpInfo.php:19
 msgid "PHPInfo"
@@ -12178,7 +12178,7 @@ msgstr "HTTP Accept Languages"
 
 #: zp-core/utilities/list_locales.php:50
 msgid "The locales your browser has defined to accept."
-msgstr ""
+msgstr "De locales (talen) die door je browser worden herkend."
 
 #: zp-core/utilities/list_locales.php:82
 msgid "Supported system locales"
@@ -17259,12 +17259,16 @@ msgid ""
 "This is the normal Zenphoto home page. This may also be the gallery index if "
 "you have no separate gallery index page defined."
 msgstr ""
+"Dit is de normale homepage. Het kan ook de galerij-index zijn wanneer je "
+"geen aparte index-pagina hebt gedefiniëerd."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:77
 msgid ""
 "This is the normal Zenphoto gallery Index page. It may also be the home page "
 "if you have no separate gallery index page defined."
 msgstr ""
+"Dit is de normale galerij-index. Het kan ook de homepage zijn wanneer je "
+"geen aparte index-pagina hebt gedefiniëerd."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:85
 msgid "This adds menu items for all Zenphoto albums."
