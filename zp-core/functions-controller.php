@@ -400,6 +400,8 @@ function prepareCustomPage() {
 /**
  * Redirection handler for http to https urls.
  * Optionally provides the filter hook "redirection_handler" to perform custom redirections
+ * 
+ * @since ZenphotoCMS 1.5.2
  */
 function redirectionHandler() {
 	$redirect_url = '';
