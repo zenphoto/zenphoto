@@ -397,6 +397,25 @@ function prepareCustomPage() {
 	return $theme;
 }
 
+/**
+ * Redirection handler for http to https urls.
+ * Optionally provides the filter hook "redirection_handler" to perform custom redirections
+ */
+function redirectionHandler() {
+	$redirect_url = '';
+	$request_uri = getRequestURI();
+	if((PROTOCOL == 'https' && !secureServer()) || (PROTOCOL == 'http' && secureServer())) {
+		$redirect_url = SERVER_HTTP_HOST . $request_uri;
+	}
+	if(!empty($redirect_url)) {
+		$redirect_url = zp_apply_filter('redirection_handler', $redirect_url);
+		header("HTTP/1.0 301 Moved Permanently");
+	  header("Status: 301 Moved Permanently");
+	  header('Location: ' . $redirect_url);
+	  exitZP();
+	}
+}
+
 //force license page if not acknowledged
 if (!getOption('license_accepted')) {
 	if (isset($_GET['z']) && $_GET['z'] != 'setup') {
