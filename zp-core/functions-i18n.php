@@ -674,24 +674,30 @@ if (function_exists('date_default_timezone_set')) { // insure a correct time zon
 /**
  * Gets all locales suppported on the current server as a multidimensional array
  * 
+ * @param bool $plainarray Default false for a multidimensial array grouped by locale base. Set to true to generate a single dimensional array with all locales. 
+ * 
  * @author Stephen Billard (sbillard), Malte Müller (acrylian) - adapted from the old former unsupported tool `list_locales.php`
  * @since ZenphotoCMS 1.5.2
  * @return array
  */
-function getSystemLocales() {
+function getSystemLocales($plainarray = false) {
 	ob_start();
 	system('locale -a');
 	$str = ob_get_contents();
 	ob_end_clean();
 	$locales = explode("\n", $str);
 	$array = array();
-	foreach ($locales as $locale) {
-		$localebase = substr($locale, 0, 3);
-		if(!empty($localebase)) {
-			$array[$localebase][] = $locale;
+	if ($plainarray) {
+		return $locales;
+	} else {
+		foreach ($locales as $locale) {
+			$localebase = substr($locale, 0, 3);
+			if (!empty($localebase)) {
+				$array[$localebase][] = $locale;
+			}
 		}
+		return $array;
 	}
-	return $array;
 }
 
 $_locale_Subdomains = getLanguageSubdomains();
