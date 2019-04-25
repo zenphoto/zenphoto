@@ -40,9 +40,9 @@ function getLanguageArray() {
 					'bn_BD'	 => gettext('Bengali'),
 					'bg_BG'	 => gettext('Bulgarian'),
 					'ca_ES'	 => gettext('Catalan'),
-					'zh_CN'	 => gettext('Chinese (People’s Republic of China)'),
-					'zh_HK'	 => gettext('Chinese (Hong Kong)'),
-					'zh_TW'	 => gettext('Chinese (Taiwan)'),
+					'zh_Hans_CN'	 => gettext('Chinese (People’s Republic of China)'),
+					'zh_Hans_HK'	 => gettext('Chinese (Hong Kong)'),
+					'zh_Hant_TW'	 => gettext('Chinese (Taiwan)'),
 					'hr_HR'	 => gettext('Croatian'),
 					'cs_CZ'	 => gettext('Czech'),
 					'km_KH'	 => gettext('Cambodian'),
@@ -681,23 +681,22 @@ if (function_exists('date_default_timezone_set')) { // insure a correct time zon
  * @return array
  */
 function getSystemLocales($plainarray = false) {
-	ob_start();
-	system('locale -a');
-	$str = ob_get_contents();
-	ob_end_clean();
-	$locales = explode("\n", $str);
-	$array = array();
-	if ($plainarray) {
-		return $locales;
-	} else {
-		foreach ($locales as $locale) {
-			$localebase = substr($locale, 0, 3);
-			if (!empty($localebase)) {
-				$array[$localebase][] = $locale;
+	if (class_exists('ResourceBundle')) {
+		$locales = ResourceBundle::getLocales('');
+		$array = array();
+		if ($plainarray) {
+			return $locales;
+		} else {
+			foreach ($locales as $locale) {
+				$localebase = substr($locale, 0, 3);
+				if (!empty($localebase)) {
+					$array[$localebase][] = $locale;
+				}
 			}
+			return $array;
 		}
-		return $array;
 	}
+	return false;
 }
 
 $_locale_Subdomains = getLanguageSubdomains();

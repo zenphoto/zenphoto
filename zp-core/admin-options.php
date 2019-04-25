@@ -720,7 +720,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											foreach ($locales as $language => $dirname) {
 												$languageAlt = $language;
 												$class = '';
-												if(!in_array($dirname, $systemlocales)) {
+												if(!empty($systemlocales) && !in_array($dirname, $systemlocales) && $language != 'HTTP_Accept_Language') {
 													$language = '<img src="'. WEBPATH . '/'. ZENFOLDER .'/images/action.png" alt="'. gettext('Locale not installed'). '"> ' . $language;
 												}
 												if (!empty($dirname) && $dirname != 'en_US') {
