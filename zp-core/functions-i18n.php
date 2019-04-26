@@ -691,7 +691,6 @@ function getSystemLocales($plainarray = false) {
 				$expl = explode('_', $locale);
 				$array[$expl[0]][] = $locale;				
 			}
-			echo "<pre>"; print_r($array); echo "</pre>";
 			return $array;
 		}
 	}
