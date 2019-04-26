@@ -699,4 +699,26 @@ function getSystemLocales($plainarray = false) {
 	return false;
 }
 
+/**
+ * Returns the real language name to the locale passed.
+ * 
+ * If available it will use the native PHP Locale class. It returns the name in the language/locale currently set.
+ * Otherwise the far more limited internal Zenphoto catalogue stored in getLanguageArray() will be used.
+ * 
+ * @since ZenphotoCMS 1.5.2
+ * 
+ * @param string $locale A vaild locale.
+ * @return string
+ */
+function getLanguageDisplayName($locale) {
+	if (class_exists('Locale')) {
+		return Locale::getDisplayName($locale);
+	} else {
+		$languages = getLanguageArray();
+		if (array_key_exists($locale, $languages)) {
+			return $languages[$locale];
+		}
+	}
+}
+
 $_locale_Subdomains = getLanguageSubdomains();

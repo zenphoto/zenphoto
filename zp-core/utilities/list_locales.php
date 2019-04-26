@@ -65,12 +65,16 @@ printAdminHeader('overview', 'List locales');
 							<tr>
 								<td><?php echo $key; ?></td>
 								<?php
-								foreach ($accept as $value) {
+								foreach ($accept as $key2 => $value) {
 									?>
-									<td><?php echo $value; ?></td>
+									<td>
+										<?php echo $value; 
+										if($key2 == 'fullcode') {
+											echo ' – ' . getLanguageDisplayName($value);
+										}
+										?></td>
 									<?php
-								}
-								?>
+								} ?>
 							</tr>
 							<?php
 						}
@@ -81,19 +85,31 @@ printAdminHeader('overview', 'List locales');
 				?>
 				<h2><?php echo gettext('Supported system locales'); ?></h2>
 				<p><?php echo gettext('These are the locales that are installed and supported on your server.'); ?></p>
-				<ul class="localelist">
-					<?php
-					foreach ($locales as $locale) {
-						if (!empty($locale)) {
-							echo '<li><ul>';
-							foreach ($locale as $loc) {
-								echo '<li>' . $loc . '</li>';
-							}
-							echo '</ul></li>';
-						}
-					}
+				<?php
+				if (empty($locales)) {
 					?>
-				</ul>
+					<p class="notebox"><?php printf(gettext('Sorry, the locales cannot be listed as the <a href="%s">native PHP class ResourceBundle</a> is required is not available on your system. We suggest you contact your host about this.'), 'https://www.php.net/manual/en/class.resourcebundle.php'); ?></p>
+					<?php
+				} else {
+					?>
+					<ul class="localelist">
+						<?php
+						foreach ($locales as $locale) {
+							if (!empty($locale)) {
+								echo '<li><ul>';
+								foreach ($locale as $loc) {
+									$langname = '';
+									if($langname = getLanguageDisplayName($loc)) {
+										$langname = ' – ' . $langname;
+									}
+									echo '<li><strong>' . $loc . '</strong>' . $langname . '</li>';
+								}
+								echo '</ul></li>';
+							}
+						}
+						?>
+					</ul>
+				<?php } ?>
 			</div>
 		</div><!-- content -->
 	</div><!-- main -->

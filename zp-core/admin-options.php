@@ -814,8 +814,9 @@ Zenphoto_Authority::printPasswordFormJS();
 															});</script>
 										<br class="clearall" />
 										<p class="notebox"><?php printf(gettext('Highlighted languages are not current with Zenphoto Version %1$s. (The version Zenphoto of the out-of-date language is shown in braces.) Please check the <a href="%2$s">translation repository</a> for new and updated language translations.'), $zpversion, 'https://github.com/zenphoto/zenphoto/tree/master/zp-core/locale'); ?></p>
-										<p class="notebox"><?php printf(gettext('Languages marked with the %1$s icon have no matching locale installed on the server and therefore will not work. This is a technical requirement by native <a href="%2$s">PHP gettext</a>.'), '<img src="'. WEBPATH . '/'. ZENFOLDER .'/images/action.png" alt="'. gettext('Locale not installed'). '">', 'https://www.php.net/manual/en/book.gettext.php'); ?></p>
-
+										<?php if(!empty($systemlocales)) { // if class ResourceBundle does not exist this has no meaning ?>
+											<p class="notebox"><?php printf(gettext('Languages marked with the %1$s icon have no matching locale installed on the server and therefore will not work. This is a technical requirement by native <a href="%2$s">PHP gettext</a>.'), '<img src="'. WEBPATH . '/'. ZENFOLDER .'/images/action.png" alt="'. gettext('Locale not installed'). '">', 'https://www.php.net/manual/en/book.gettext.php'); ?></p>
+										<?php } ?>
 										
 										<label class="checkboxlabel">
 											<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('Multi-lingual'); ?>
