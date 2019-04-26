@@ -88,7 +88,7 @@ printAdminHeader('overview', 'List locales');
 				<?php
 				if (empty($locales)) {
 					?>
-					<p class="notebox"><?php printf(gettext('Sorry, the locales cannot be listed as the <a href="%s">native PHP class ResourceBundle</a> is required is not available on your system. We suggest you contact your host about this.'), 'https://www.php.net/manual/en/class.resourcebundle.php'); ?></p>
+					<p class="notebox"><?php printf(gettext('Sorry, the locales cannot be listed as the required <a href="%s">PHP class ResourceBundle</a> is not available on your system. We suggest you contact your host about this.'), 'https://www.php.net/manual/en/class.resourcebundle.php'); ?></p>
 					<?php
 				} else {
 					?>
