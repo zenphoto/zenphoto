@@ -98,7 +98,6 @@ printAdminHeader('overview', 'List locales');
 							if (!empty($locale)) {
 								echo '<li><ul>';
 								foreach ($locale as $loc) {
-									$langname = '';
 									if($langname = getLanguageDisplayName($loc)) {
 										$langname = ' – ' . $langname;
 									}
