@@ -688,11 +688,10 @@ function getSystemLocales($plainarray = false) {
 			return $locales;
 		} else {
 			foreach ($locales as $locale) {
-				$localebase = substr($locale, 0, 3);
-				if (!empty($localebase)) {
-					$array[$localebase][] = $locale;
-				}
+				$expl = explode('_', $locale);
+				$array[$expl[0]][] = $locale;				
 			}
+			echo "<pre>"; print_r($array); echo "</pre>";
 			return $array;
 		}
 	}
