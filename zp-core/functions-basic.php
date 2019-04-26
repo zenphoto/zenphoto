@@ -1791,6 +1791,33 @@ function generateImageCacheFile($imageuri) {
 }
 
 /**
+ * Checks if protocol not https and redirects if https required
+ * @param string $type Tpye to redirect "backend" (default) or "frontend"
+ */
+function httpsRedirect($type = 'backend') {
+	$redirect_url = SERVER_HTTP_HOST . getRequestURI();
+	switch ($type) {
+		case 'backend':
+			if (SERVER_PROTOCOL == 'https_admin' || SERVER_PROTOCOL == 'https') {
+				// force https login
+				if (!secureServer()) {
+					header('Location: ' . $redirect_url);
+					exitZP();
+				}
+			}
+			break;
+		case 'frontend':
+			if ((PROTOCOL == 'https' && !secureServer()) || (PROTOCOL == 'http' && secureServer())) {
+				header("HTTP/1.0 301 Moved Permanently");
+				header("Status: 301 Moved Permanently");
+				header('Location: ' . $redirect_url);
+				exitZP();
+			}
+			break;
+	}
+}
+
+/**
  * Zenphoto Mutex class
  * @author Stephen
  *

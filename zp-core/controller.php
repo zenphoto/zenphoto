@@ -30,5 +30,4 @@ $_zp_comment_error = zp_apply_filter('handle_comment', false);
 // This is mostly helpful for SEO, but also for users. Consistent URLs are a Good Thing.
 
 fix_path_redirect();
-redirectionHandler();
-?>
+httpsRedirect('frontend');
