@@ -398,23 +398,16 @@ function prepareCustomPage() {
 }
 
 /**
- * Redirection handler for http to https urls.
- * Optionally provides the filter hook "redirection_handler" to perform custom redirections
+ * Handles redirections via filter hook "redirection_handler".
+ * It is meant to perform redirections of pages that have been removed or renamed.
  * 
  * @since ZenphotoCMS 1.5.2
  */
 function redirectionHandler() {
-	$redirect_url = '';
-	$request_uri = getRequestURI();
-	if((PROTOCOL == 'https' && !secureServer()) || (PROTOCOL == 'http' && secureServer())) {
-		$redirect_url = SERVER_HTTP_HOST . $request_uri;
-	}
-	if(!empty($redirect_url)) {
-		$redirect_url = zp_apply_filter('redirection_handler', $redirect_url);
-		header("HTTP/1.0 301 Moved Permanently");
-	  header("Status: 301 Moved Permanently");
-	  header('Location: ' . $redirect_url);
-	  exitZP();
+	$url = SERVER_HTTP_HOST . getRequestURI();
+	$redirect_url = zp_apply_filter('redirection_handler', $url);
+	if($redirect_url != $url) {
+		redirectURL($redirect_url, '301');
 	}
 }
 
