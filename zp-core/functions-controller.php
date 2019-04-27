@@ -404,10 +404,12 @@ function prepareCustomPage() {
  * @since ZenphotoCMS 1.5.2
  */
 function redirectionHandler() {
-	$url = SERVER_HTTP_HOST . getRequestURI();
-	$redirect_url = zp_apply_filter('redirection_handler', $url);
-	if($redirect_url != $url) {
-		redirectURL($redirect_url, '301');
+	if (zp_has_filter('redirection_handler')) {
+		$url = SERVER_HTTP_HOST . getRequestURI();
+		$redirect_url = zp_apply_filter('redirection_handler', $url);
+		if ($redirect_url != $url) {
+			redirectURL($redirect_url, '301');
+		}
 	}
 }
 
