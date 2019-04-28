@@ -246,8 +246,8 @@ function adminToolbox() {
 							$imagename = $_zp_current_image->filename;
 								if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
 									if ($_zp_current_album->isDynamic()) { // get folder of the corresponding static album
-										$_staticAlbum = $_zp_current_image->getAlbum();
-										$albumname = $_staticAlbum->getFileName();
+										$albumobj = $_zp_current_image->getAlbum();
+										$albumname = $albumobj->name;
 									} else {
 										$delete_image = gettext("Are you sure you want to delete this image? THIS CANNOT BE UNDONE!");
 										// if admin has edit rights on this album, provide a delete link for the image.
