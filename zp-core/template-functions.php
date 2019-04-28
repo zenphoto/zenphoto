@@ -244,21 +244,26 @@ function adminToolbox() {
 						if ($inImage) {
 							// script is image.php
 							$imagename = $_zp_current_image->filename;
-							if (!$_zp_current_album->isDynamic()) { // don't provide links when it is a dynamic album
 								if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
-									$delete_image = gettext("Are you sure you want to delete this image? THIS CANNOT BE UNDONE!");
-									// if admin has edit rights on this album, provide a delete link for the image.
+									if ($_zp_current_album->isDynamic()) { // get folder of the corresponding static album
+										$_staticAlbum = $_zp_current_image->getAlbum();
+										$albumname = $_staticAlbum->getFileName();
+									} else {
+										$delete_image = gettext("Are you sure you want to delete this image? THIS CANNOT BE UNDONE!");
+										// if admin has edit rights on this album, provide a delete link for the image.
+										?>
+										<li>
+											<a href="javascript:confirmDelete('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deleteimage&amp;album=<?php echo urlencode(pathurlencode($albumname)); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>','<?php echo $delete_image; ?>');"
+												 title="<?php echo gettext("Delete the image"); ?>"><?php echo gettext("Delete image"); ?></a>
+										</li>
+										<?php
+									}
 									?>
-									<li>
-										<a href="javascript:confirmDelete('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deleteimage&amp;album=<?php echo urlencode(pathurlencode($albumname)); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>','<?php echo $delete_image; ?>');"
-											 title="<?php echo gettext("Delete the image"); ?>"><?php echo gettext("Delete image"); ?></a>
-									</li>
 									<li>
 										<a href="<?php echo $zf; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($albumname); ?>&amp;singleimage=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo&amp;nopagination"
 											 title="<?php echo gettext('Edit image'); ?>"><?php echo gettext('Edit image'); ?></a>
 									</li>
 									<?php
-								}
 								// set return to this image page
 								zp_apply_filter('admin_toolbox_image', $albumname, $imagename, $zf);
 							}
