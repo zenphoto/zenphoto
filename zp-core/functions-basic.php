@@ -1825,38 +1825,36 @@ function httpsRedirect($type = 'backend') {
  * @param bool $allowexternal True to allow redirections outside of the current domain (includes subdomains!). Default false.
  */
 function redirectURL($url, $statuscode = null, $allowexternal = false) {
-	if (strpos($url, FULLWEBPATH) !== false && !$allowexternal) {
-		if (filter_var($url, FILTER_VALIDATE_URL)) {
-			$redirect_url = sanitize($url);
-			switch ($statuscode) {
-				case '200':
-					header("HTTP/1.0 200 OK");
-					header("Status: 200 OK");
-					break;
-				case '301':
-					header("HTTP/1.1 301 Moved Permanently");
-					header("Status: 301 Moved Permanently");
-					break;
-				case '302':
-					header("HTTP/1.1 302 Found");
-					header("Status: 302 Found");
-					break;
-				case '401':
-					header("HTTP/1.1 401 Unauthorized");
-					header("Status: 401 Unauthorized");
-					break;
-				case '403':
-					header("HTTP/1.1 403 Forbidden");
-					header("Status: 403 Forbidden");
-					break;
-				case '404':
-					header("HTTP/1.1 404 Not found");
-					header("Status: 404 Not found");
-					break;
-			}
-			header('Location: ' . $redirect_url);
-			exitZP();
+	$redirect_url = sanitize($url);
+	if (strpos($redirect_url, FULLWEBPATH) !== false && !$allowexternal) {
+		switch ($statuscode) {
+			case '200':
+				header("HTTP/1.0 200 OK");
+				header("Status: 200 OK");
+				break;
+			case '301':
+				header("HTTP/1.1 301 Moved Permanently");
+				header("Status: 301 Moved Permanently");
+				break;
+			case '302':
+				header("HTTP/1.1 302 Found");
+				header("Status: 302 Found");
+				break;
+			case '401':
+				header("HTTP/1.1 401 Unauthorized");
+				header("Status: 401 Unauthorized");
+				break;
+			case '403':
+				header("HTTP/1.1 403 Forbidden");
+				header("Status: 403 Forbidden");
+				break;
+			case '404':
+				header("HTTP/1.1 404 Not found");
+				header("Status: 404 Not found");
+				break;
 		}
+		header('Location: ' . $redirect_url);
+		exitZP();
 	}
 }
 
