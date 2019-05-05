@@ -13,8 +13,7 @@ $tagsort = sanitize($_REQUEST['tagsort']);
 $albumobj = newAlbum($albumname);
 if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
-		exitZP();
+		redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
 	}
 }
 
@@ -152,8 +151,7 @@ if (isset($_REQUEST['crop'])) {
 	$imageobj->save();
 
 	$return = '/admin-edit.php?page=edit&album=' . html_encode(pathurlencode($albumname)) . '&saved&subpage=' . html_encode(sanitize($_REQUEST['subpage'])) . '&tagsort=' . html_encode(sanitize($_REQUEST['tagsort'])) . '&tab=imageinfo';
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . $return);
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . $return);
 }
 printAdminHeader('edit', 'thumbcrop');
 ?>

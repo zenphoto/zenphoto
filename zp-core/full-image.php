@@ -38,8 +38,7 @@ if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 	};
 	if (preg_replace('/^www./', '', strtolower($_SERVER['SERVER_NAME'])) != $checkstring) { 
 		/* It seems they are directly requesting the full image. */
-		header('Location: ' . FULLWEBPATH . '/index.php?album=' . $album8 . '&image=' . $image8);
-		exitZP();
+		redirectURL(FULLWEBPATH . '/index.php?album=' . $album8 . '&image=' . $image8);
 	}
 }
 
@@ -178,11 +177,11 @@ if (!($process || $force_cache)) { // no processing needed
 	if (getOption('album_folder_class') != 'external' && $disposal != 'Download') { // local album system, return the image directly
 		header('Content-Type: image/' . $suffix);
 		if (UTF8_IMAGE_URI) {
-			header("Location: " . getAlbumFolder(FULLWEBPATH) . pathurlencode($album8) . "/" . rawurlencode($image8));
+			$utf9_image_uri = getAlbumFolder(FULLWEBPATH) . pathurlencode($album8) . "/" . rawurlencode($image8);
 		} else {
-			header("Location: " . getAlbumFolder(FULLWEBPATH) . pathurlencode($album) . "/" . rawurlencode($image));
+			$utf9_image_uri = getAlbumFolder(FULLWEBPATH) . pathurlencode($album) . "/" . rawurlencode($image);
 		}
-		exitZP();
+		redirectURL($utf9_image_uri);
 	} else { // the web server does not have access to the image, have to supply it
 		$fp = fopen($image_path, 'rb');
 		// send the right headers

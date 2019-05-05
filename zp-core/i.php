@@ -76,8 +76,7 @@ if ($forbidden = getOption('image_processor_flooding_protection') && (!isset($_G
 if (!isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 	// No image parameters specified
 	if (getOption('album_folder_class') !== 'external') {
-		header("Location: " . getAlbumFolder(FULLWEBPATH) . pathurlencode(filesystemToInternal($album)) . "/" . rawurlencode(filesystemToInternal($image)));
-		return;
+		redirectURL(getAlbumFolder(FULLWEBPATH) . pathurlencode(filesystemToInternal($album)) . "/" . rawurlencode(filesystemToInternal($image)));
 	}
 }
 

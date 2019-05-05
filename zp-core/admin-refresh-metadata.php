@@ -83,8 +83,7 @@ if (isset($_REQUEST['album'])) {
 		$album = newAlbum($folder);
 		if (!$album->isMyItem(ALBUM_RIGHTS)) {
 			if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-				exitZP();
+				redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 			}
 		}
 	}
@@ -105,8 +104,7 @@ if (isset($_GET['refresh'])) {
 			$album = newAlbum($folder);
 			if (!$album->isMyItem(ALBUM_RIGHTS)) {
 				if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-					exitZP();
+					redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 				}
 			}
 			$sql = "SELECT `id` FROM " . prefix('albums') . " WHERE `folder`=" . db_quote($folder);

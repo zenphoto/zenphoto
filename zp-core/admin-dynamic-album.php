@@ -98,8 +98,7 @@ if (isset($_POST['savealbum'])) {
 			fclose($f);
 			clearstatcache();
 			// redirct to edit of this album
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit&album=" . pathurlencode($redirect));
-			exitZP();
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit&album=" . pathurlencode($redirect));
 		}
 	}
 }

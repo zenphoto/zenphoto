@@ -1966,6 +1966,7 @@ function zp_handle_password_single($authType = NULL, $check_auth = NULL, $check_
 				if (!empty($redirect_to)) {
 					header("Location: " . $redirect_to);
 					exitZP();
+					redirectURL($redirect_to);
 				}
 			}
 		} else {
@@ -2333,10 +2334,7 @@ function XSRFdefender($action) {
 	$token = getXSRFToken($action);
 	if (!isset($_REQUEST['XSRFToken']) || $_REQUEST['XSRFToken'] != $token) {
 		zp_apply_filter('admin_XSRF_access', false, $action);
-		header("HTTP/1.0 302 Found");
-		header("Status: 302 Found");
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action));
-		exitZP();
+		redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action), '302');
 	}
 	unset($_REQUEST['XSRFToken']);
 	unset($_POST['XSRFToken']);

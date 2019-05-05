@@ -57,8 +57,7 @@ if (isset($_GET['action'])) {
 		} else {
 			$notify = '&post_error';
 		}
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=" . html_encode($subtab) . "&subpage=" . html_encode($subpage) . $notify);
-		exitZP();
+		redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=" . html_encode($subtab) . "&subpage=" . html_encode($subpage) . $notify);
 	}
 }
 $saved = isset($_GET['saved']);

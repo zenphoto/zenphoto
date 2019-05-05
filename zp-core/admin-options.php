@@ -485,8 +485,7 @@ if (isset($_GET['action'])) {
 
 		if (empty($notify))
 			$notify = '?saved';
-		header("Location: " . $notify . $returntab);
-		exitZP();
+		redirectURL($notify . $returntab);
 	}
 }
 printAdminHeader($_current_tab);

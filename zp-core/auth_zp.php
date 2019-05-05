@@ -45,8 +45,7 @@ $_zp_loggedin = false;
 // but we need to redirect to ssl to retrive the auth cookie (set as secure).
 if (zp_getCookie('zenphoto_ssl') && !secureServer()) {
 	$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
-	header("Location:$redirect");
-	exitZP();
+	redirectURL($redirect);
 }
 
 if (isset($_POST['login'])) { //	Handle the login form.
@@ -59,8 +58,7 @@ if (isset($_POST['login'])) { //	Handle the login form.
 		if (isset($_POST['redirect'])) {
 			$redirect = sanitizeRedirect($_POST['redirect']);
 			if (!empty($redirect)) {
-				header("Location: " . $redirect);
-				exitZP();
+				redirectURL($redirect);
 			}
 		}
 	}
@@ -118,7 +116,6 @@ if (isset($_REQUEST['logout'])) {
 		}
 		$location = $rd_protocol . "://" . $_SERVER['HTTP_HOST'] . WEBPATH . '/index.php' . $redirect;
 	}
-	header("Location: " . $location);
-	exitZP();
+	redirectURL($location);
 }
 ?>

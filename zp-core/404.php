@@ -10,18 +10,12 @@ if (array_key_exists(0, $folders) && $folders[0] == CACHEFOLDER) {
 	list($image, $args) = getImageProcessorURIFromCacheName(implode('/', $folders).'/'.$image, getWatermarks());
 	if (file_exists(getAlbumFolder() . $image)) {
 		$uri = getImageURI($args, dirname($image), basename($image), NULL);
-		header("HTTP/1.0 302 Found");
-		header("Status: 302 Found");
-		header('Location: ' . $uri);
-		exitZP();
+		redirectURL($uri, '302');
 	}
 }
 
 if (isset($_GET['fromlogout'])) {
-	header("HTTP/1.0 302 Found");
-	header("Status: 302 Found");
-	header('Location: ' . WEBPATH . '/index.php');
-	exitZP();
+	redirectURL(WEBPATH . '/index.php', '302');
 }
 
 $obj = @$_zp_gallery_page;

@@ -12,8 +12,7 @@ require_once(dirname(__FILE__) . '/admin-globals.php');
 admin_securityChecks(THEMES_RIGHTS, currentRelativeURL());
 
 if (!isset($_GET['theme'])) {
-	header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php");
-	exitZP();
+	redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php");
 }
 
 function isTextFile($file, $ok_extensions = array('css', 'php', 'js', 'txt', 'inc')) {

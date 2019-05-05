@@ -22,8 +22,7 @@ $handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers', arra
 if (!zp_loggedin(UPLOAD_RIGHTS) || empty($handlers)) {
 	//	redirect to the files page if present
 	if (isset($zenphoto_tabs['upload']['subtabs'][0])) {
-		header('location: ' . $zenphoto_tabs['upload']['subtabs'][0]);
-		exitZP();
+		redirectURL($zenphoto_tabs['upload']['subtabs'][0]);
 	}
 	$handlers = array();
 }

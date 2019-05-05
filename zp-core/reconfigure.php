@@ -41,8 +41,7 @@ function reconfigureAction($mandatory) {
 				}
 			}
 			$location = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $dir . "/" . ZENFOLDER . "/setup/index.php?autorun=$where";
-			header("Location: $location");
-			exitZP();
+			redirectURL($location);
 		} else {
 			reconfigurePage($diff, $needs, $mandatory);
 		}

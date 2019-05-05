@@ -76,16 +76,14 @@ if (isset($_GET['action'])) {
 			} else {
 				$notify = '&migration_error';
 			}
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&subpage=" . $subpage . $notify);
-			exitZP();
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&subpage=" . $subpage . $notify);
 			break;
 		case 'deleteadmin':
 			XSRFdefender('deleteadmin');
 			$adminobj = Zenphoto_Authority::newAdministrator(sanitize($_GET['adminuser']), 1);
 			zp_apply_filter('save_user', '', $adminobj, 'delete');
 			$adminobj->remove();
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&subpage=" . $subpage);
-			exitZP();
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&subpage=" . $subpage);
 			break;
 		case 'saveoptions':
 			XSRFdefender('saveadmin');
@@ -254,8 +252,7 @@ if (isset($_GET['action'])) {
 	if (empty($notify)) {
 		$notify = '?saved';
 	}
-	header("Location: " . $notify . $returntab . $ticket);
-	exitZP();
+	redirectURL($notify . $returntab . $ticket);
 }
 $refresh = false;
 
@@ -266,10 +263,7 @@ if ($_zp_current_admin_obj->reset) {
 }
 
 if (!$_zp_current_admin_obj && $_zp_current_admin_obj->getID()) {
-	header("HTTP/1.0 302 Found");
-	header("Status: 302 Found");
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php','302');
 }
 
 printAdminHeader($_current_tab);

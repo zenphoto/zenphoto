@@ -3971,8 +3971,7 @@ function bulkActionRedirect($action) {
 	} else {
 		$uri .= '?bulkaction=' . $action;
 	}
-	header('Location: ' . $uri);
-	exitZP();
+	redirectURL($uri);
 }
 
 /**
@@ -4324,10 +4323,7 @@ function admin_securityChecks($rights, $return) {
 		$returnurl = urldecode($return);
 		if (!zp_apply_filter('admin_allow_access', false, $returnurl)) {
 			$uri = explode('?', $returnurl);
-			header("HTTP/1.0 302 Found");
-			header("Status: 302 Found");
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0], '302');
 		}
 	}
 }

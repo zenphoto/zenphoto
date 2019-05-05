@@ -39,8 +39,7 @@ if (zp_loggedin() && !empty($zenphoto_tabs)) {
 		// admin access without overview rights, redirect to first tab
 		$tab = array_shift($zenphoto_tabs);
 		$link = $tab['link'];
-		header('location:' . $link);
-		exitZP();
+		redirectURL($link);
 	}
 } else {
 	if (isset($_GET['from'])) {

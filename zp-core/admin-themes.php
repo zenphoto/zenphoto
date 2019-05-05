@@ -39,8 +39,7 @@ if (isset($_GET['action'])) {
 				}
 				/* set any "standard" options that may not have been covered by the theme */
 				standardThemeOptions($newtheme, $_set_theme_album);
-				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php?themealbum=" . sanitize($_GET['themealbum']));
-				exitZP();
+				redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php?themealbum=" . sanitize($_GET['themealbum']));
 			}
 			break;
 		// Duplicate a theme

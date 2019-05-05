@@ -35,8 +35,7 @@ if (isset($_GET['album'])) {
 		$allow = $album->isMyItem(ALBUM_RIGHTS);
 		if (!$allow) {
 			if (isset($_GET['uploaded'])) { // it was an upload to an album which we cannot edit->return to sender
-				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?uploaded=1');
-				exitZP();
+				redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?uploaded=1');
 			}
 		}
 	} else {
@@ -45,8 +44,7 @@ if (isset($_GET['album'])) {
 	}
 }
 if (!zp_apply_filter('admin_managed_albums_access', $allow, $return)) {
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
 }
 
 $tagsort = getTagOrder();
@@ -86,8 +84,7 @@ if (isset($_GET['action'])) {
 					$notify = '&bulkmessage=' . $notify;
 				}
 			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $notify);
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $notify);
 			break;
 		case 'savesubalbumorder':
 			XSRFdefender('savealbumorder');
@@ -115,8 +112,7 @@ if (isset($_GET['action'])) {
 					$notify = '&bulkmessage=' . $notify;
 				}
 			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . $folder . '&tab=subalbuminfo' . $notify);
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . $folder . '&tab=subalbuminfo' . $notify);
 			break;
 		case 'sorttags':
 			if (isset($_GET['subpage'])) {
@@ -126,8 +122,7 @@ if (isset($_GET['action'])) {
 				$pg = '';
 				$tab = '';
 			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . $folder . $pg . '&tagsort=' . html_encode($tagsort) . $tab);
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . $folder . $pg . '&tagsort=' . html_encode($tagsort) . $tab);
 			break;
 
 		/** clear the cache ********************************************************** */
@@ -140,8 +135,7 @@ if (isset($_GET['action'])) {
 				$album = sanitize_path($_POST['album']);
 			}
 			Gallery::clearCache(SERVERCACHE . '/' . $album);
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&cleared&album=' . $album);
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&cleared&album=' . $album);
 			break;
 		case 'comments':
 			XSRFdefender('albumedit');
@@ -156,8 +150,7 @@ if (isset($_GET['action'])) {
 					$return .= '&tab=subalbuminfo';
 				}
 			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return);
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return);
 			break;
 
 		/** Publish album  *********************************************************** */
@@ -175,8 +168,7 @@ if (isset($_GET['action'])) {
           $return .= '&tab=subalbuminfo';
         }
       }
-      header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return);
-      exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return);
       break;
 
     /** Reset hitcounters ********************************************************** */
@@ -195,8 +187,7 @@ if (isset($_GET['action'])) {
       }
       query("UPDATE " . prefix('albums') . " SET `hitcounter`= 0" . $where);
       query("UPDATE " . prefix('images') . " SET `hitcounter`= 0" . $imgwhere);
-      header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return . '&counters_reset');
-      exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return . '&counters_reset');
       break;
 
 //** DELETEIMAGE **************************************************************/
@@ -213,8 +204,7 @@ if (isset($_GET['action'])) {
       } else {
         $nd = 2;
       }
-      header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&ndeleted=' . $nd);
-      exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&ndeleted=' . $nd);
       break;
 
     /** REFRESH IMAGE METADATA */
@@ -233,8 +223,7 @@ if (isset($_GET['action'])) {
       }
 
       $return = '?page=edit&tab=imageinfo&album=' . $return . '&metadata_refresh';
-      header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $return);
-      exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $return);
       break;
 
     /** SAVE ********************************************************************* */
@@ -347,8 +336,7 @@ if (isset($_GET['action'])) {
         if (empty($notify))
           $notify = '&saved';
       }
-      header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $notify . $pg . $returntab);
-      exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $qs_albumsuffix . $notify . $pg . $returntab);
       break;
 
     /** DELETION ***************************************************************** */
@@ -376,8 +364,7 @@ if (isset($_GET['action'])) {
 			} else {
 				$albumdir = '';
 			}
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit" . $albumdir . "&ndeleted=" . $nd);
-			exitZP();
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit" . $albumdir . "&ndeleted=" . $nd);
 			break;
 		case 'newalbum':
 			XSRFdefender('newalbum');
@@ -404,8 +391,7 @@ if (isset($_GET['action'])) {
 				} else {
 					$tab = '&tab=albuminfo';
 				}
-				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit$albumdir&exists=" . urlencode($name) . $tab);
-				exitZP();
+				redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit$albumdir&exists=" . urlencode($name) . $tab);
 			} else {
 				mkdir_recursive($uploaddir, FOLDER_MOD);
 			}
@@ -415,8 +401,7 @@ if (isset($_GET['action'])) {
 			if ($album->exists) {
 				$album->setTitle($name);
 				$album->save();
-				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit" . "&album=" . pathurlencode($folder));
-				exitZP();
+				redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit" . "&album=" . pathurlencode($folder));
 			} else {
 				$AlbumDirName = str_replace(SERVERPATH, '', $_zp_gallery->albumdir);
 				zp_error(gettext("The album couldn’t be created in the “albums” folder. This is usually a permissions problem. Try setting the permissions on the albums and cache folders to be world-writable using a shell:") . " <code>chmod 777 " . $AlbumDirName . '/' . CACHEFOLDER . '/' . "</code>, "

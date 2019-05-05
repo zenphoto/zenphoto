@@ -20,8 +20,7 @@ if (isset($_GET['licenseAccept'])) {
 		$return_to = 'admin.php';
 	}
 	setOption('license_accepted', ZENPHOTO_VERSION );
-	header('Location: '.$return_to);
-	exitZP();
+	redirectURL($return_to);
 }
 
 printAdminHeader('license');

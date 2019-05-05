@@ -106,10 +106,7 @@ function fix_path_redirect() {
 			parse_str($parts['query'], $query);
 			$redirectURL = zpRewriteURL($query);
 			if ($redirectURL) {
-				header("HTTP/1.0 301 Moved Permanently");
-				header("Status: 301 Moved Permanently");
-				header('Location: ' . FULLWEBPATH . '/' . $redirectURL);
-				exitZP();
+				redirectURL($redirectURL, '301');
 			}
 		}
 	}

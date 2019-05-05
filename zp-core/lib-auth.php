@@ -683,8 +683,7 @@ class Zenphoto_Authority {
 						$info = $user->getChallengePhraseInfo();
 						if ($post_pass && $info['response'] == $post_pass) {
 							$ref = self::getResetTicket($post_user, $user->getPass());
-							header('location:' . WEBPATH . '/' . ZENFOLDER . '/admin-users.php?ticket=' . $ref . '&user=' . $post_user);
-							exitZP();
+							redirectURL(WEBPATH . '/' . ZENFOLDER . '/admin-users.php?ticket=' . $ref . '&user=' . $post_user);
 						}
 					}
 					if ( !empty($info['challenge']) && !empty($_POST['pass'])) { $_zp_login_error = gettext('Sorry, that is not the answer.'); }
