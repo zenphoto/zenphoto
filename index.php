@@ -32,6 +32,8 @@ if ($_contents) {
 		$root = $protocol . '://' . $_SERVER['HTTP_HOST'] . str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
 		if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
 			if (file_exists(dirname($_zp_script) . '/plugins/site_upgrade/closed.php')) {
+				header("HTTP/1.1 302 Found");
+				header("Status: 302 Found");
 				header('location: ' . $root . 'plugins/site_upgrade/closed.php');
 			}
 			exit();
