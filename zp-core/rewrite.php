@@ -85,7 +85,7 @@ function rewriteHandler() {
 								if (array_key_exists('R', $flags)) {
 									header('Status: ' . $flags['R']);
 								}
-								redirectURL(WEBPATH . '/' . $action[1] . $qs);
+								redirectURL(FULLWEBPATH . '/' . $action[1] . $qs);
 							}
 							$_zp_rewritten = true;
 							break;

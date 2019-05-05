@@ -485,7 +485,7 @@ if (isset($_GET['action'])) {
 
 		if (empty($notify))
 			$notify = '?saved';
-		redirectURL($notify . $returntab);
+		redirectURL(FULLWEBPATH  . '/' . ZENFOLDER . '/admin-options.php' . $notify . $returntab);
 	}
 }
 printAdminHeader($_current_tab);

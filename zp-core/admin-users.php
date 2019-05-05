@@ -252,7 +252,7 @@ if (isset($_GET['action'])) {
 	if (empty($notify)) {
 		$notify = '?saved';
 	}
-	redirectURL($notify . $returntab . $ticket);
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php' . $notify . $returntab . $ticket);
 }
 $refresh = false;
 
