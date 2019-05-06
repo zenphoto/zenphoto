@@ -41,7 +41,7 @@
 	if ($req = getOption('comment_web_required')) {
 		?>
 		<p>
-			<label for="website"><?php printf(gettext("Site%s"), ($req == 'required' ? $star : '')); ?></label>
+			<label for="website"><?php printf(gettext("Website%s"), ($req == 'required' ? $star : '')); ?></label>
 			<input <?php if ($disabled['website']) echo 'READONLY'; ?> type="text" id="website" name="website" size="22" value="<?php echo html_encode($stored['website']); ?>" class="inputbox" />
 		</p>
 		<?php
