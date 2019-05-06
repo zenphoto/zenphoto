@@ -3368,7 +3368,7 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
 	if (empty($alterrights)) {
 		$hint = sprintf(gettext('Select one or more %1$s for the %2$s to manage.'), $simplename, $kind) . ' ';
 		if ($kind == gettext('user')) {
-			$hint .= sprintf(gettext('Users with "Admin" or "Manage all %1$s" rights can manage all %2$s. All others may manage only those that are selected.'), $type, $objectname);
+			$hint .= sprintf(gettext('Users with "Admin" or "Manage all %1$s" rights can manage all %2$s. All others may manage only those that are selected.'), $simplename, $objectname);
 		}
 	} else {
 		$hint = sprintf(gettext('You may manage these %s subject to the above rights.'), $simplename);
