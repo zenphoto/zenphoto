@@ -14,8 +14,7 @@ if (!defined('OFFSET_PATH')) {
 		if (sanitize($_GET['action']) == 'reset_all_hitcounters') {
 			if (!zp_loggedin(ADMIN_RIGHTS)) {
 				// prevent nefarious access to this page.
-				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
-				exitZP();
+				redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
 			}
 			zp_session_start();
 			XSRFdefender('hitcounter');
@@ -26,8 +25,7 @@ if (!defined('OFFSET_PATH')) {
 			query('UPDATE ' . prefix('news_categories') . ' SET `hitcounter`= 0');
 			query('DELETE FROM ' . prefix('options') . ' WHERE `name` LIKE "Page-Hitcounter-%"');
 			query("DELETE FROM " . prefix('plugin_storage') . " WHERE `type` = 'rsshitcounter'");
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=' . gettext('All hitcounters have been set to zero.'));
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=' . gettext('All hitcounters have been set to zero.'));
 		}
 	}
 }

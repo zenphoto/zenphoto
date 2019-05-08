@@ -279,8 +279,7 @@ class favorites extends AlbumBase {
 			if ($count < $page && isset($_POST['addToFavorites']) && !$_POST['addToFavorites']) {
 //We've deleted last item on page, need a place to land when we return
 				global $_zp_page;
-				header('location: ' . FULLWEBPATH . '/' . $this->getLink($_zp_page - 1));
-				exitZP();
+				redirectURL(FULLWEBPATH . '/' . $this->getLink($_zp_page - 1));
 			}
 		}
 		return $count;

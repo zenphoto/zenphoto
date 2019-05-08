@@ -96,8 +96,7 @@ if (isset($_POST['set_defaults'])) {
 	}
 }
 if ($report) {
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/publishContent/publishContent.php?report=' . $report);
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/publishContent/publishContent.php?report=' . $report);
 } else {
 	if (isset($_GET['report'])) {
 		$report = sanitize($_GET['report']);

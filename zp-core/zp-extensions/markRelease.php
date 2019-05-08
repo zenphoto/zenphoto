@@ -38,9 +38,7 @@ if (isset($_REQUEST['markRelease'])) {
 	}
 	$v = preg_replace("~define\('ZENPHOTO_VERSION.*\n~", $version . "\n", $v);
 	file_put_contents(SERVERPATH . '/' . ZENFOLDER . '/version.php', $v);
-	header('location:' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 }
 
 function markRelease_button($buttons) {

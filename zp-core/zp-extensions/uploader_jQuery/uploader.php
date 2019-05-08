@@ -44,15 +44,13 @@ if (!empty($folder)) {
 	if ($rightsalbum->exists) {
 		if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 			if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-				exitZP();
+				redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 			}
 		}
 	} else {
 		// upload to the root
 		if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 		}
 	}
 	if ($new) {

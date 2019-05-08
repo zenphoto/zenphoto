@@ -14,13 +14,11 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
 }
 if (isset($_GET['clearsitemapcache'])) {
 	sitemap::clearCache();
-	header('location:' . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php');
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/sitemap-extended/sitemap-extended-admin.php');
 }
 
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';

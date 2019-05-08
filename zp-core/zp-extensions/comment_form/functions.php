@@ -565,8 +565,7 @@ function comment_form_handle_comment() {
 				//use $redirectTo to send users back to where they came from instead of booting them back to the gallery index. (default behaviour)
 				if (!isset($_SERVER['SERVER_SOFTWARE']) || strpos(strtolower($_SERVER['SERVER_SOFTWARE']), 'microsoft-iis') === false) {
 					// but not for Microsoft IIS because that server fails if we redirect!
-					header('Location: ' . $redirectTo . '#zp_comment_id_' . $commentadded->getId());
-					exitZP();
+					redirectURL($redirectTo . '#zp_comment_id_' . $commentadded->getId());
 				}
 			}
 		}

@@ -48,8 +48,7 @@ switch (OFFSET_PATH) {
 				$page = 'page';
 			}
 			if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
-				header('location: ' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
-				exit();
+				redirectURL(WEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php', '302');
 			}
 		}
 		break;

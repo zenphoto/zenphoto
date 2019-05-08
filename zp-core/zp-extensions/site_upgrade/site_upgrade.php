@@ -21,8 +21,7 @@ switch (isset($_GET['siteState']) ? $_GET['siteState'] : NULL) {
 		break;
 }
 
-header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?report=' . $report);
-exitZP();
+redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?report=' . $report);
 
 /**
  * updates the site status

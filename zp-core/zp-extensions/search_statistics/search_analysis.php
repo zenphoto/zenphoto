@@ -15,8 +15,7 @@ if (isset($_GET['reset'])) {
 	XSRFdefender('search_statistics');
 	$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="search_statistics"';
 	query($sql);
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
 }
 $zenphoto_tabs['overview']['subtabs'] = array(gettext('Analysis') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
 printAdminHeader('overview', 'analysis');

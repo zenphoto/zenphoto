@@ -21,8 +21,7 @@ if (!defined('OFFSET_PATH')) {
 	if (isset($_GET['action']) && $_GET['action'] == 'clear_rating') {
 		if (!zp_loggedin(ADMIN_RIGHTS)) {
 			// prevent nefarious access to this page.
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
 		}
 
 		require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
@@ -39,8 +38,7 @@ if (!defined('OFFSET_PATH')) {
 		query('UPDATE ' . prefix('albums') . ' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
 		query('UPDATE ' . prefix('news') . ' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
 		query('UPDATE ' . prefix('pages') . ' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=' . gettext('All ratings have been set to <em>unrated</em>.'));
-		exitZP();
+		redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=' . gettext('All ratings have been set to <em>unrated</em>.'));
 	}
 }
 

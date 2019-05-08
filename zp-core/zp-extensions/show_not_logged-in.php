@@ -35,8 +35,7 @@ class show_not_loggedin {
 
 	static function adminLoginAttempt($success, $user, $pass, $athority) {
 		if ($athority == 'zp_admin_auth' && $success) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 		}
 		return $success;
 	}

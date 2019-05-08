@@ -26,8 +26,7 @@ if (isset($_GET['action'])) {
 		XSRFdefender('CleanupCacheSizes');
 		cacheManager::cleanupCacheSizes();
 		$report = gettext('Image cache sizes cleaned up.');
-		header('location:' . FULLWEBPATH .'/'. ZENFOLDER. '/admin.php?action=external&msg=' . $report);
-		exitZP();
+		redirectURL(FULLWEBPATH .'/'. ZENFOLDER. '/admin.php?action=external&msg=' . $report);
 	}
 }
 
@@ -45,8 +44,7 @@ if ($alb) {
 	$album = newAlbum($folder);
 	if (!$album->isMyItem(ALBUM_RIGHTS)) {
 		if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 		}
 	}
 } else {

@@ -193,8 +193,7 @@ function deletePage($titlelink) {
 	$result = $obj->remove();
 	if ($result) {
 		if (is_object($titlelink)) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php?deleted');
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php?deleted');
 		}
 		SearchEngine::clearSearchCache();
 		return "<p class='messagebox fade-message'>" . gettext("Page successfully deleted!") . "</p>";
@@ -470,8 +469,7 @@ function deleteArticle($titlelink) {
 	$result = $obj->remove();
 	if ($result) {
 		if (is_object($titlelink)) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?deleted');
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?deleted');
 		}
 		SearchEngine::clearSearchCache();
 		return "<p class='messagebox fade-message'>" . gettext("Article successfully deleted!") . "</p>";

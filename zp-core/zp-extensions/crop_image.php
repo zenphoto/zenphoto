@@ -69,8 +69,7 @@ $imagename = sanitize_path($_REQUEST['i']);
 $album = newAlbum($albumname);
 if (!$album->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
-		exitZP();
+		redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
 	}
 }
 
@@ -193,9 +192,7 @@ if (isset($_REQUEST['crop'])) {
 	} else {
 		$return = FULLWEBPATH . $imageobj->getLink();
 	}
-
-	header('Location: ' . $return);
-	exitZP();
+	redirectURL($return);
 }
 if (isset($_REQUEST['subpage'])) {
 	$subpage = sanitize($_REQUEST['subpage']);

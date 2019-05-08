@@ -77,10 +77,7 @@ class seo_locale {
 			if (isset($parts[1])) {
 				$uri .= '?' . $parts[1];
 			}
-			header("HTTP/1.0 302 Found");
-			header("Status: 302 Found");
-			header('Location: ' . $uri);
-			exitZP();
+			redirectURL($uri, '302');
 		}
 		return $allow;
 	}
