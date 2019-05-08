@@ -1964,8 +1964,6 @@ function zp_handle_password_single($authType = NULL, $check_auth = NULL, $check_
 			if (isset($_POST['redirect'])) {
 				$redirect_to = sanitizeRedirect($_POST['redirect']);
 				if (!empty($redirect_to)) {
-					header("Location: " . $redirect_to);
-					exitZP();
 					redirectURL($redirect_to);
 				}
 			}

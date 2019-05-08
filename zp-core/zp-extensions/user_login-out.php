@@ -92,8 +92,7 @@ if (in_context(ZP_INDEX)) {
 				}
 				$location = FULLWEBPATH . '/index.php?fromlogout' . $params;
 			}
-			header("Location: " . $location);
-			exitZP();
+			redirectURL($location);
 		}
 	}
 }
