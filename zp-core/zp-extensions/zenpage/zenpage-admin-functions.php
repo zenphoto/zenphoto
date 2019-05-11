@@ -72,18 +72,15 @@ function updatePage(&$reports, $newpage = false) {
 		$codeblock = processCodeblockSave(0);
 	}
 	$locked = getcheckboxState('locked');
-	$date = sanitize($_POST['date']);
 	if ($newpage) {
-		$titlelink = seoFriendly(get_language_string($title));
-		if (empty($titlelink)) {
-			$titlelink = seoFriendly($date);
+		$titlelink = createTitlelink($title, $date);
+		if(getOption('zenpage_titlelinkdate_pages')) {
+			$titlelink = addDateToTitlelink($titlelink);
 		}
-		$sql = 'SELECT `id` FROM ' . prefix('pages') . ' WHERE `titlelink`=' . db_quote($titlelink);
-		$rslt = query_single_row($sql, false);
-		if ($rslt) {
+		$duplicate = checkTitlelinkDuplicate($titlelink, 'page');
+		if ($duplicate) {
 			//already exists
-			$time = explode(' ', microtime());
-			$titlelink = $titlelink . '_' . ($time[1] + $time[0]);
+			$titlelink = addDateToTitlelink($titlelink);
 			$reports[] = "<p class='warningbox fade-message'>" . gettext('Duplicate page title') . '</p>';
 		}
 		$oldtitlelink = $titlelink;
@@ -93,10 +90,7 @@ function updatePage(&$reports, $newpage = false) {
 	if (getcheckboxState('edittitlelink')) {
 		$titlelink = sanitize($_POST['titlelink'], 3);
 		if (empty($titlelink)) {
-			$titlelink = seoFriendly(get_language_string($title));
-			if (empty($titlelink)) {
-				$titlelink = seoFriendly($date);
-			}
+			$titlelink = createTitlelink($title, $date);
 		}
 	} else {
 		if (!$permalink) { //	allow the link to change
@@ -347,16 +341,14 @@ function updateArticle(&$reports, $newarticle = false) {
 	}
 	$locked = getcheckboxState('locked');
 	if ($newarticle) {
-		$titlelink = seoFriendly(get_language_string($title));
-		if (empty($titlelink)) {
-			$titlelink = seoFriendly($date);
+		$titlelink = createTitlelink($title, $date);
+		if(getOption('zenpage_titlelinkdate_articles')) {
+			$titlelink = addDateToTitlelink($titlelink);
 		}
-		$sql = 'SELECT `id` FROM ' . prefix('news') . ' WHERE `titlelink`=' . db_quote($titlelink);
-		$rslt = query_single_row($sql, false);
-		if ($rslt) {
+		$duplicate = checkTitlelinkDuplicate($titlelink, 'article');
+		if ($duplicate) {
 			//already exists
-			$time = explode(' ', microtime());
-			$titlelink = $titlelink . '_' . ($time[1] + $time[0]);
+			$titlelink = addDateToTitlelink($titlelink);
 			$reports[] = "<p class='warningbox fade-message'>" . gettext('Duplicate article title') . '</p>';
 		}
 		$oldtitlelink = $titlelink;
@@ -369,10 +361,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	if (getcheckboxState('edittitlelink')) {
 		$titlelink = sanitize($_POST['titlelink'], 3);
 		if (empty($titlelink)) {
-			$titlelink = seoFriendly(get_language_string($title));
-			if (empty($titlelink)) {
-				$titlelink = seoFriendly($date);
-			}
+			$titlelink = createTitlelink($title, $date);
 		}
 	} else {
 		if (!$permalink) { //	allow the title link to change.
@@ -851,15 +840,14 @@ function updateCategory(&$reports, $newcategory = false) {
 	$desc = process_language_string_save("desc", EDITOR_SANITIZE_LEVEL);
 	$custom = process_language_string_save("custom_data", 1);
 	if ($newcategory) {
-		$titlelink = seoFriendly(get_language_string($title));
-		if (empty($titlelink))
-			$titlelink = seoFriendly($date);
-		$sql = 'SELECT `id` FROM ' . prefix('news_categories') . ' WHERE `titlelink`=' . db_quote($titlelink);
-		$rslt = query_single_row($sql, false);
-		if ($rslt) {
+		$titlelink = createTitlelink($title, $date);
+		if(getOption('zenpage_titlelinkdate_categories')) {
+			$titlelink = addDateToTitlelink($titlelink);
+		}
+		$duplicate = checkTitlelinkDuplicate($titlelink, 'category');
+		if ($duplicate) {
 			//already exists
-			$time = explode(' ', microtime());
-			$titlelink = $titlelink . '_' . ($time[1] + $time[0]);
+			$titlelink = addDateToTitlelink($titlelink);
 			$reports[] = "<p class='warningbox fade-message'>" . gettext('Duplicate category title') . '</p>';
 		}
 		$oldtitlelink = $titlelink;
@@ -868,10 +856,7 @@ function updateCategory(&$reports, $newcategory = false) {
 		if (getcheckboxState('edittitlelink')) {
 			$titlelink = sanitize($_POST['titlelink'], 3);
 			if (empty($titlelink)) {
-				$titlelink = seoFriendly(get_language_string($title));
-				if (empty($titlelink)) {
-					$titlelink = seoFriendly($date);
-				}
+				$titlelink = createTitlelink($title, $date);
 			}
 		} else {
 			if (!$permalink) { //	allow the link to change
@@ -1766,4 +1751,83 @@ function printPublishIconLink($object, $type, $linkback = '') {
 		}
 		return false;
 	}
-	?>
+	
+	/**
+	 * Creates the titlelink from the title passed.
+	 * 
+	 * @since ZenphotoCMS 1.5.2
+	 * 
+	 * @param string|array $title The title respectively language array of titles
+	 * @param string $date The date the article is saved
+	 * @return type
+	 */
+	function createTitlelink($title, $date) {
+		$titlelink = seoFriendly(get_language_string($title));
+		if (empty($titlelink)) {
+			$titlelink = seoFriendly($date);
+		}
+		return $titlelink;
+	}
+
+	/**
+	 * Checks if a title link of this itemtype already exists
+	 * 
+	 * @since ZenphotoCMS 1.5.2
+	 * 
+	 * @param string $titlelink The titlelink to check
+	 * @param string $itemtype
+	 * @return bool
+	 */
+	function checkTitlelinkDuplicate($titlelink, $itemtype) {
+		switch ($itemtype) {
+			case 'article':
+				$table = prefix('news');
+				break;
+			case 'category':
+				$table = prefix('news_categories');
+				break;
+			case 'page':
+				$table = prefix('pages');
+				break;
+		}
+		$sql = 'SELECT `id` FROM ' . $table . ' WHERE `titlelink`=' . db_quote($titlelink);
+		$rslt = query_single_row($sql, false);
+		return $rslt;
+	}
+
+	/**
+	 * Append or prepends a date string to a titlelink as defined.
+	 * Note: This does not check the item type option and will add to any string passed!
+	 * 
+	 * @since ZenphotoCMS 1.5.2
+	 * 
+	 * @param string $titlelink The titleink (e.g. as created by createTitleink())
+	 * @return string
+	 */
+	function addDateToTitlelink($titlelink) {
+		$addwhere = getOption('zenpage_titlelinkdate_location');
+		$dateformat = getOption('zenpage_titlelinkdate_dateformat');
+		switch($dateformat) {
+			case 'Y-m-d':
+			case 'Ymd':
+			case 'Y-m-d_H-i-s':
+			case 'YmdHis':
+				$date = date($dateformat);
+				break;
+			default:
+			case 'timestamp':
+				$date = time();
+				break;
+		}
+		switch ($addwhere) {
+			case 'before':
+				$titlelink = $date . '-' . $titlelink;
+				break;
+			default:
+			case 'after':
+				$titlelink = $titlelink . '-' . $date;
+				break;
+		}
+		return $titlelink;
+	}
+	
