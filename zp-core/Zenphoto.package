@@ -1197,6 +1197,7 @@ zp-core/zp-extensions/rating/jquery.rating.js
 zp-core/zp-extensions/rating/star.png
 zp-core/zp-extensions/rating/update.php
 zp-core/zp-extensions/reCaptcha.php
+zp-core/zp-extensions/redirector.php
 zp-core/zp-extensions/register_user
 zp-core/zp-extensions/register_user.php
 zp-core/zp-extensions/register_user/register_user_form.php
@@ -1584,4 +1585,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1586
+1587
