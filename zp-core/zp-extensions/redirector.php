@@ -56,7 +56,7 @@ class redirectorOptions {
 						'key' => 'redirector_debugmode',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 1,
-						'desc' => gettext('If enabled valid redirections will not be executed but logged in the debuglog'))
+						'desc' => gettext('If enabled valid redirections will not be executed but logged in the debug log.'))
 		);
 	}
 
