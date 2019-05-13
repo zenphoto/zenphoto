@@ -184,7 +184,7 @@ datepickerJS();
 						$offset = Zenpage::getOffset($articles_page);
 						$list = array();
 						foreach ($result as $article) {
-							$list[] = $article[$sortorder];
+							$list[] = $article;
 						}
 						if ($sortorder == 'date') {
 							$rangeset = getPageSelector($list, $articles_page, 'dateDiff');
