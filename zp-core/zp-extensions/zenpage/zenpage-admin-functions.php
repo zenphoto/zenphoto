@@ -690,6 +690,12 @@ function printSortOrderDropdown() {
 					case "title-asc":
 						$ordertitle_asc = "selected='selected'";
 						break;
+					case "lastchange-desc":
+						$orderlastchange_desc = "selected='selected'";
+						break;
+					case "lastchange-asc":
+						$orderlastchange_asc = "selected='selected'";
+						break;
 				}
 			} else {
 				$orderdate_desc = "selected='selected'";
@@ -699,6 +705,8 @@ function printSortOrderDropdown() {
 			echo "<option $orderdate_asc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'date-asc'), $option)) . "'>" . gettext("Order by date ascending") . "</option>\n";
 			echo "<option $ordertitle_desc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'title-desc'), $option)) . "'>" . gettext("Order by title descending") . "</option>\n";
 			echo "<option $ordertitle_asc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'title-asc'), $option)) . "'>" . gettext("Order by title ascending") . "</option>\n";
+			echo "<option $orderlastchange_desc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'lastchange-desc'), $option)) . "'>" . gettext("Order by last change date descending") . "</option>\n";
+			echo "<option $orderlastchange_asc value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('sortorder' => 'lastchange-asc'), $option)) . "'>" . gettext("Order by last change date ascending") . "</option>\n";
 			?>
 		</select>
 	</form>
