@@ -136,7 +136,9 @@ function updatePage(&$reports, $newpage = false) {
 		$page->set('total_votes', 0);
 		$page->set('used_ips', 0);
 	}
-	$page->setLastchangeUser($_zp_current_admin_obj->getUser());
+	if(!$newpage) {
+		$page->setLastchangeUser($_zp_current_admin_obj->getUser());
+	}
 	processTags($page);
 	if ($newpage) {
 		$msg = zp_apply_filter('new_page', '', $page);
@@ -416,7 +418,9 @@ function updateArticle(&$reports, $newarticle = false) {
 		}
 	}
 	$article->setCategories($categories);
-	$article->setLastchangeUser($_zp_current_admin_obj->getUser());
+	if (!$newarticle) {
+		$article->setLastchangeUser($_zp_current_admin_obj->getUser());
+	}
 	if ($newarticle) {
 		$msg = zp_apply_filter('new_article', '', $article);
 		if (empty($title)) {
@@ -903,7 +907,9 @@ function updateCategory(&$reports, $newcategory = false) {
 		$cat->set('total_votes', 0);
 		$cat->set('used_ips', 0);
 	}
-	$cat->setLastchangeUser($_zp_current_admin_obj->getUser());
+	if (!$newcategory) {
+		$cat->setLastchangeUser($_zp_current_admin_obj->getUser());
+	}
 	if ($newcategory) {
 		$msg = zp_apply_filter('new_category', '', $cat);
 		if (empty($title)) {

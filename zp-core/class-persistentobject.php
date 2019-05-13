@@ -358,19 +358,21 @@ class PersistentObject {
 			}
 			$this->data['id'] = $this->id = (int) db_insert_id(); // so 'get' will retrieve it!
 			$this->loaded = true;
-			$this->updates = array();
-			$this->tempdata = array();
+			$this->updates = null;
+			$this->tempdata = array(); 
 		} else {
 			if ($checkupdates) {
 				$this->checkChanges();
-			}
+			} 
 			// Save the existing object (updates only) based on the existing id.
 			if (empty($this->updates)) {
 				return true;
 			} else {
-				$this->setLastChange();
-				if (!isset($this->updates['lastchangeuser'])) {
-					$this->setLastChangeUser('');
+				if($checkupdates) {
+					$this->setLastChange();
+					if (!isset($this->updates['lastchangeuser'])) {
+						$this->setLastChangeUser('');
+					}
 				}
 				$sql = 'UPDATE ' . prefix($this->table) . ' SET';
 				$i = 0;

@@ -4937,7 +4937,7 @@ function checkAlbumimagesort($val, $type = 'albumimagesort') {
  */
 function printLastChangeInfo($obj) {
 	$lastchangeuser = $obj->getLastchangeuser();
-	if ($lastchangeuser !== "") {
+	if ($lastchangeuser) {
 		?>
 		<hr>
 		<p><?php printf(gettext('Last change: %s'), $obj->getLastchange()); ?></p>
