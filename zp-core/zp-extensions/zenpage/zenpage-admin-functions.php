@@ -676,6 +676,8 @@ function printSortOrderDropdown() {
 			$orderdate_asc = '';
 			$ordertitle_desc = '';
 			$ordertitle_asc = '';
+			$orderlastchange_desc = '';
+			$orderlastchange_asc = '';
 			if (isset($_GET['sortorder'])) {
 				switch ($_GET['sortorder']) {
 					case "date-desc":
