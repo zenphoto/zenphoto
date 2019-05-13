@@ -25,6 +25,10 @@
  * 
  * To use such a catalogue file create a folder `redirector` within the root `plugins` folder of your install and place the file within.
  * You can upload several and enable the one to use on the plugin options.
+ * 
+ * @author Malte Müller (acrylian)
+ * @package plugins
+ * @subpackage redirector
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('A plugin to redirect internal URLs. Primarily intended for URLs that otherwise would cause 404 not found errors.');
