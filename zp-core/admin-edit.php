@@ -259,10 +259,12 @@ if (isset($_GET['action'])) {
             if (isset($_POST['checkForPostTruncation'])) {
 							$returntab = '&tagsort=' . $tagsort . '&tab=imageinfo';
 							$oldsort = checkAlbumimagesort(sanitize($_POST['oldalbumimagesort'], 3));
+							$oldsort_status = checkAlbumimagesort(sanitize($_POST['oldalbumimagesort_status'], 3), 'albumimagesort_status');
 							if (getOption('albumimagedirection'))
 								$oldsort = $oldsort . '_desc';
 							$newsort = checkAlbumimagesort(sanitize($_POST['albumimagesort'], 3));
-							if ($oldsort == $newsort) {
+							$newsort_status = checkAlbumimagesort(sanitize($_POST['albumimagesort_status'], 3), 'albumimagesort_status');
+							if ($oldsort == $newsort && $oldsort_status == $newsort_status) {
 								for ($i = 0; $i < $_POST['totalimages']; $i++) {
 									$filename = sanitize($_POST["$i-filename"]);
 									// The file might no longer exist
@@ -279,6 +281,7 @@ if (isset($_GET['action'])) {
 									setOption('albumimagesort', $newsort);
 									setOption('albumimagedirection', '');
 								}
+								setOption('albumimagesort_status', $newsort_status);
 								$notify = '&';
 							}
 							if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
@@ -412,6 +415,7 @@ if (isset($_GET['action'])) {
 } else {
 	if (isset($_GET['albumimagesort'])) {
 		$newsort = checkAlbumimagesort(sanitize($_GET['albumimagesort'],3));
+		$newsort_status = checkAlbumimagesort(sanitize($_GET['albumimagesort_status'],3),'albumimagesort_status');
 		if (strpos($newsort, '_desc')) {
 			setOption('albumimagesort', substr($newsort, 0, -5), false);
 			setOption('albumimagedirection', 'DESC', false);
@@ -419,6 +423,7 @@ if (isset($_GET['action'])) {
 			setOption('albumimagesort', $newsort, false);
 			setOption('albumimagedirection', '', false);
 		}
+		setOption('albumimagesort_status',$newsort_status, false);
 	}
 }
 
@@ -586,6 +591,7 @@ echo "\n</head>";
 				genAlbumList($mcr_albumlist);
 
 				$oldalbumimagesort = getOption('albumimagesort');
+				$oldalbumimagesort_status = getOption('albumimagesort_status');
 				$direction = getOption('albumimagedirection');
 				if ($album->isDynamic()) {
 					$subalbums = array();
@@ -593,6 +599,21 @@ echo "\n</head>";
 				} else {
 					$subalbums = getNestedAlbumList($album, $subalbum_nesting);
 					$allimages = $album->getImages(0, 0, $oldalbumimagesort, $direction);
+					if($oldalbumimagesort_status !== 'all') {
+						$allimages_edit = array();
+						foreach($allimages as $filename) {
+							$imgobj = newImage($album, $filename);
+							if($oldalbumimagesort_status == 'published' && $imgobj->getShow()) {
+								$allimages_edit[] = $filename;
+							} 
+							if($oldalbumimagesort_status == 'unpublished' && !$imgobj->getShow()) {
+								$allimages_edit[] = $filename;
+							}
+						}
+						if(!empty($allimages_edit)) {
+							$allimages = $allimages_edit;
+						}
+					} 
 					if (!($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
 						$allimages = array();
 						$requestor = $_zp_current_admin_obj->getUser();
@@ -602,7 +623,14 @@ echo "\n</head>";
 						} else {
 							$retunNull = '';
 						}
-						$sql = 'SELECT * FROM ' . prefix('images') . ' WHERE (`albumid`=' . $album->getID() . ') AND (' . $retunNull . ' `owner`="' . $requestor . '") ORDER BY `' . $oldalbumimagesort . '` ' . $direction;
+						$status = '';
+						if($oldalbumimagesort_status == 'published') {
+							$status = ' (`show` = 1)';
+						}
+						if($oldalbumimagesort_status == 'unpublished') {
+							$status = ' (`show` = 0)';
+						}
+						$sql = 'SELECT * FROM ' . prefix('images') . ' WHERE (`albumid`=' . $album->getID() . ') AND (' . $retunNull . ' `owner`="' . $requestor . '")' . $status . ' ORDER BY `' . $oldalbumimagesort . '` ' . $direction;
 						$result = query($sql);
 						if ($result) {
 							while ($row = db_fetch_assoc($result)) {
@@ -878,7 +906,8 @@ echo "\n</head>";
 								<input type="hidden" name="totalimages" value="<?php echo $totalimages; ?>" />
 								<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
 								<input type="hidden" name="oldalbumimagesort" value="<?php echo html_encode($oldalbumimagesort); ?>" />
-        				<input type="hidden" name="albumimagesort" value="" />
+								<input type="hidden" name="oldalbumimagesort_status" value="<?php echo html_encode($oldalbumimagesort_status); ?>" />
+        				<!-- <input type="hidden" name="albumimagesort" value="" /> -->
 
 								<?php $totalpages = ceil(($allimagecount / $imagesTab_imageCount)); ?>
 								<table class="bordered">
@@ -898,11 +927,15 @@ echo "\n</head>";
 												ksort($sort, SORT_LOCALE_STRING);
 												if ($direction)
 													$oldalbumimagesort = $oldalbumimagesort . '_desc';
-												echo gettext("Display images by:");
 												echo '<select id="albumimagesort" name="albumimagesort" onchange="this.form.submit()">';
 												generateListFromArray(array($oldalbumimagesort), $sort, false, true);
 												echo '</select>';
+												
+												echo '<select id="albumimagesort_status" name="albumimagesort_status" onchange="this.form.submit()">';
+												generateListFromArray(array($oldalbumimagesort_status), $_zp_sortby_status, false, true);
+												echo '</select>';
 												?>
+				
 											</td>
 										</tr>
 										<?php

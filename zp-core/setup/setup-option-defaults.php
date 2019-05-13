@@ -195,6 +195,7 @@ setOptionDefault('multi_lingual', 0);
 setOptionDefault('tagsort', 0);
 setOptionDefault('albumimagesort', 'ID');
 setOptionDefault('albumimagedirection', 'DESC');
+setOptionDefault('albumimagesort_status', 'all');
 setOptionDefault('cache_full_image', 0);
 setOptionDefault('custom_index_page', '');
 setOptionDefault('picture_of_the_day', serialize(array('day' => NULL, 'folder' => NULL, 'filename' => NULL)));

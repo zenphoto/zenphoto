@@ -4907,14 +4907,24 @@ function clonedFrom() {
  * Make sure the albumimagesort is only an allowed value. Otherwise returns nothing.
  * @global array $_zp_sortby
  * @param string $val
+ * @param string $type 'albumimagesort' or 'albumimagesort_status'
  * @return string
  */
-function checkAlbumimagesort($val) {
-	global $_zp_sortby;
-	$sortcheck = $_zp_sortby;
-	$sortcheck[gettext('Manual')] = 'manual';
+function checkAlbumimagesort($val, $type = 'albumimagesort') {
+	global $_zp_sortby, $_zp_sortby_status;
+	switch ($type) {
+		case 'albumimagesort':
+			$sortcheck = $_zp_sortby;
+			$sortcheck[gettext('Manual')] = 'manual';
+			$direction_check = true;
+			break;
+		case 'albumimagesort_status':
+			$sortcheck = $_zp_sortby_status;
+			$direction_check = false;
+			break;
+	}
 	foreach ($sortcheck as $sort) {
-		if ($val == $sort || $val == $sort . '_desc') {
+		if ($val == $sort || ($direction_check && $val == $sort . '_desc')) {
 			return $val;
 		}
 	}

@@ -29,9 +29,14 @@ $_zp_sortby = array(
 		gettext('ID') => 'id',
 		gettext('Filemtime') => 'mtime',
 		gettext('Owner') => 'owner',
-		gettext('Published') => 'show',
 		gettext('Last change date') => 'lastchange',
 		gettext('Last change user') => 'lastchangeuser'
+);
+
+$_zp_sortby_status = array(
+		gettext('All') => 'all',
+		gettext('Published') => 'published',
+		gettext('Unpublished') => 'unpublished'
 );
 
 // setup sub-tab arrays for use in dropdown
