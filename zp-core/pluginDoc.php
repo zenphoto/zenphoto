@@ -123,7 +123,7 @@ if (!defined('OFFSET_PATH')) {
 		}
 		if ($thirdparty) {
 			if ($plugin_URL) {
-				$doclink = sprintf('See also the <a href="%1$s">%2$s</a>', $plugin_URL, $extension);
+				$doclink = sprintf(gettext('See also the <a href="%1$s">%2$s</a> third party plugin page for more info.'), $plugin_URL, $extension);
 			}
 		} else {
 			//removed for now as doc generators don't group by package/subpackge anymore
