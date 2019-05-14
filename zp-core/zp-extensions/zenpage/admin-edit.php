@@ -26,7 +26,6 @@ if (is_AdminEditPage('page')) {
 		$result = new ZenpagePage(urldecode(sanitize($_GET['titlelink'])));
 	} else if (isset($_GET['update'])) {
 		XSRFdefender('update');
-		debuglog("page update");
 		$result = updatePage($reports);
 		if (getCheckboxState('copy_delete_object')) {
 			switch (sanitize($_POST['copy_delete_object'])) {
