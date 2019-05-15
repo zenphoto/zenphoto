@@ -2416,19 +2416,19 @@ if ($c <= 0) {
 			
 						//1.5.2
 						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `lastchange` datetime default NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `lastchangeuser` varchar(64)";
 						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `lastchange` datetime default NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `lastchangeuser` varchar(64)";
 						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `lastchange` datetime default NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `lastchangeuser` varchar(64)";
 						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastchange` datetime default NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastchangeuser` varchar(64)";
 						$sql_statements[] = "ALTER TABLE $tbl_comments ADD COLUMN `lastchange` datetime default NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_comments ADD COLUMN `lastchangeuser` varchar(64) NOT NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_comments ADD COLUMN `lastchangeuser` varchar(64)";
 						
-						$sql_statements[] = "ALTER TABLE $tbl_news CHANGE `lastchangeauthor` `lastchangeuser` varchar(64) NOT NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `lastchangeauthor` `lastchangeuser` varchar(64) NOT NULL";
-
+						$sql_statements[] = "ALTER TABLE $tbl_news CHANGE `lastchangeauthor` `lastchangeuser` varchar(64)";
+						$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `lastchangeauthor` `lastchangeuser` varchar(64)";
+	
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
 							if ($s = $exifvar[6]) {
