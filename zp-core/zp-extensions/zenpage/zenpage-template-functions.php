@@ -1860,7 +1860,7 @@ function printPageDate() {
 function getPageLastChangeDate() {
 	global $_zp_current_zenpage_page;
 	if (!is_null($_zp_current_zenpage_page)) {
-		$d = $_zp_current_zenpage_page->getLastchange();
+		$d = $_zp_current_zenpage_page->getLastChange();
 		return zpFormattedDate(DATE_FORMAT, strtotime($d));
 	}
 	return false;
