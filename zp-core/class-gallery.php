@@ -178,24 +178,33 @@ class Gallery {
 	 *
 	 * @param int $page An option parameter that can be used to return a slice of the array.
 	 * @param string $sorttype the kind of sort desired
-	 * @param string $direction set to a direction to override the default option
+	 * @param string $sortdirection set to a direction to override the default option
 	 * @param bool $care set to false if the order of the albums does not matter
 	 * @param bool $mine set true/false to override ownership
 	 *
 	 * @return  array
 	 */
-	function getAlbums($page = 0, $sorttype = null, $direction = null, $care = true, $mine = NULL) {
+	function getAlbums($page = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
 
 		// Have the albums been loaded yet?
-		if ($mine || is_null($this->albums) || $care && $sorttype . $direction !== $this->lastalbumsort) {
-
+		if ($mine || is_null($this->albums) || $care && $sorttype . $sortdirection !== $this->lastalbumsort) {
+			if (is_null($sorttype)) {
+				$sorttype = $this->getSortType();
+			}
+			if (is_null($sortdirection)) {
+				if ($this->getSortDirection()) {
+					$sortdirection = 'DESC';
+				} else {
+					$sortdirection = '';
+				}
+			}
 			$albumnames = $this->loadAlbumNames();
 			$key = $this->getAlbumSortKey($sorttype);
-			$albums = $this->sortAlbumArray(NULL, $albumnames, $key, $direction, $mine);
+			$albums = $this->sortAlbumArray(NULL, $albumnames, $key, $sortdirection, $mine);
 
 			// Store the values
 			$this->albums = $albums;
-			$this->lastalbumsort = $sorttype . $direction;
+			$this->lastalbumsort = $sorttype . $sortdirection;
 		}
 
 		if ($page == 0) {
