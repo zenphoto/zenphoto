@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-20 15:36+0200\n"
-"PO-Revision-Date: 2019-05-20 15:45+0200\n"
+"POT-Creation-Date: 2019-05-27 10:36+0200\n"
+"PO-Revision-Date: 2019-05-27 10:37+0200\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -27,10 +27,10 @@ msgstr "Objekt nicht gefunden"
 #: themes/basic/favorites.php:40 themes/basic/favorites.php:43
 #: themes/basic/index.php:37 themes/basic/index.php:40
 #: themes/basic/search.php:55 themes/basic/search.php:58
-#: themes/zenpage/album.php:46 themes/zenpage/album.php:49
+#: themes/zenpage/album.php:45 themes/zenpage/album.php:48
 #: themes/zenpage/favorites.php:45 themes/zenpage/favorites.php:48
-#: themes/zenpage/gallery.php:47 themes/zenpage/gallery.php:50
-#: themes/zenpage/search.php:147 themes/zenpage/search.php:150
+#: themes/zenpage/gallery.php:46 themes/zenpage/gallery.php:49
+#: themes/zenpage/search.php:146 themes/zenpage/search.php:149
 #: themes/zpmobile/album.php:33 themes/zpmobile/favorites.php:34
 #: themes/zpmobile/gallery.php:31 themes/zpmobile/search.php:139
 msgid "View album:"
@@ -38,11 +38,11 @@ msgstr "Album ansehen:"
 
 #: themes/basic/album.php:64 themes/basic/favorites.php:71
 #: themes/basic/image.php:47 themes/basic/index.php:49
-#: themes/basic/search.php:86 themes/zenpage/album.php:41
-#: themes/zenpage/album.php:74 themes/zenpage/favorites.php:40
-#: themes/zenpage/favorites.php:72 themes/zenpage/gallery.php:42
-#: themes/zenpage/gallery.php:58 themes/zenpage/image.php:46
-#: themes/zenpage/search.php:174 themes/zpmobile/album.php:29
+#: themes/basic/search.php:86 themes/zenpage/album.php:40
+#: themes/zenpage/album.php:73 themes/zenpage/favorites.php:40
+#: themes/zenpage/favorites.php:72 themes/zenpage/gallery.php:41
+#: themes/zenpage/gallery.php:57 themes/zenpage/image.php:46
+#: themes/zenpage/search.php:173 themes/zpmobile/album.php:29
 #: themes/zpmobile/album.php:70 themes/zpmobile/favorites.php:30
 #: themes/zpmobile/favorites.php:57 themes/zpmobile/gallery.php:27
 #: themes/zpmobile/gallery.php:40 themes/zpmobile/image.php:32
@@ -56,11 +56,11 @@ msgstr "zurück"
 
 #: themes/basic/album.php:64 themes/basic/favorites.php:71
 #: themes/basic/image.php:51 themes/basic/index.php:49
-#: themes/basic/search.php:86 themes/zenpage/album.php:41
-#: themes/zenpage/album.php:74 themes/zenpage/favorites.php:40
-#: themes/zenpage/favorites.php:72 themes/zenpage/gallery.php:42
-#: themes/zenpage/gallery.php:58 themes/zenpage/image.php:48
-#: themes/zenpage/search.php:174 themes/zpmobile/album.php:29
+#: themes/basic/search.php:86 themes/zenpage/album.php:40
+#: themes/zenpage/album.php:73 themes/zenpage/favorites.php:40
+#: themes/zenpage/favorites.php:72 themes/zenpage/gallery.php:41
+#: themes/zenpage/gallery.php:57 themes/zenpage/image.php:48
+#: themes/zenpage/search.php:173 themes/zpmobile/album.php:29
 #: themes/zpmobile/album.php:70 themes/zpmobile/favorites.php:30
 #: themes/zpmobile/favorites.php:57 themes/zpmobile/gallery.php:27
 #: themes/zpmobile/gallery.php:40 themes/zpmobile/image.php:35
@@ -74,8 +74,8 @@ msgid "next"
 msgstr "weiter"
 
 #: themes/basic/album.php:66 themes/basic/image.php:109
-#: themes/zenpage/album.php:75 themes/zenpage/favorites.php:73
-#: themes/zenpage/gallery.php:82 themes/zenpage/image.php:107
+#: themes/zenpage/album.php:74 themes/zenpage/favorites.php:73
+#: themes/zenpage/gallery.php:81 themes/zenpage/image.php:107
 #: themes/zenpage/news.php:63 themes/zenpage/news.php:100
 #: themes/zenpage/pages.php:50 themes/zpmobile/news.php:45
 #: themes/zpmobile/pages.php:56
@@ -249,8 +249,8 @@ msgstr "Album %s ansehen"
 
 #: themes/garland/album.php:77 themes/garland/favorites.php:91
 #: themes/garland/functions.php:189 themes/garland/gallery.php:62
-#: themes/garland/search.php:225 themes/zenpage/gallery.php:62
-#: themes/zenpage/gallery.php:87 themes/zenpage/news.php:70
+#: themes/garland/search.php:225 themes/zenpage/gallery.php:61
+#: themes/zenpage/gallery.php:86 themes/zenpage/news.php:70
 #: themes/zenpage/news.php:107 themes/zpmobile/news.php:67
 #: themes/zpmobile/news.php:82
 msgid "« prev"
@@ -258,8 +258,8 @@ msgstr "« zurück"
 
 #: themes/garland/album.php:77 themes/garland/favorites.php:91
 #: themes/garland/functions.php:189 themes/garland/gallery.php:62
-#: themes/garland/search.php:225 themes/zenpage/gallery.php:62
-#: themes/zenpage/gallery.php:87 themes/zenpage/news.php:70
+#: themes/garland/search.php:225 themes/zenpage/gallery.php:61
+#: themes/zenpage/gallery.php:86 themes/zenpage/news.php:70
 #: themes/zenpage/news.php:107 themes/zpmobile/news.php:67
 #: themes/zpmobile/news.php:82
 msgid "next »"
@@ -327,7 +327,7 @@ msgid "video"
 msgstr "Video"
 
 #: themes/garland/functions.php:152 themes/garland/functions.php:154
-#: themes/zenpage/gallery.php:67 zp-core/admin-globals.php:88
+#: themes/zenpage/gallery.php:66 zp-core/admin-globals.php:88
 #: zp-core/zp-extensions/tinyURL.php:81
 msgid "news"
 msgstr "Neuigkeiten"
@@ -345,7 +345,7 @@ msgid "Comments: %d"
 msgstr "Kommentare: %d"
 
 #: themes/garland/functions.php:176 themes/garland/news.php:107
-#: themes/zenpage/gallery.php:76 themes/zenpage/news.php:58
+#: themes/zenpage/gallery.php:75 themes/zenpage/news.php:58
 #: themes/zenpage/news.php:93 themes/zpmobile/news.php:44
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/zoom.php:48
 msgid "Categories: "
@@ -390,7 +390,7 @@ msgstr "Passwortgeschützt"
 msgid "A password is required to access this page."
 msgstr "Sie benötigen ein Passwort, um auf diese Seite zugreifen zu können."
 
-#: themes/garland/search.php:93 themes/zenpage/search.php:76
+#: themes/garland/search.php:93 themes/zenpage/search.php:75
 #: themes/zpmobile/search.php:69
 #, php-format
 msgid "%1$u Hit for <em>%2$s</em>"
@@ -402,7 +402,7 @@ msgstr[1] "%1$u Ergebnisse für <em>%2$s</em>"
 msgid "Sorry, no matches for your search."
 msgstr "Leider keine Treffer für Ihre Suche."
 
-#: themes/garland/search.php:112 themes/zenpage/search.php:87
+#: themes/garland/search.php:112 themes/zenpage/search.php:86
 #: themes/zpmobile/search.php:80
 #, php-format
 msgid "Pages (%s)"
@@ -418,25 +418,25 @@ msgstr "Mehr Ergebnisse anzeigen"
 msgid "Show fewer results"
 msgstr "Weniger Ergebnisse anzeigen"
 
-#: themes/garland/search.php:145 themes/zenpage/search.php:107
+#: themes/garland/search.php:145 themes/zenpage/search.php:106
 #: themes/zpmobile/search.php:100
 #, php-format
 msgid "Articles (%s)"
 msgstr "Artikel (%s)"
 
-#: themes/garland/search.php:182 themes/zenpage/search.php:129
+#: themes/garland/search.php:182 themes/zenpage/search.php:128
 #: themes/zpmobile/search.php:122
 #, php-format
 msgid "Images (%s)"
 msgstr "Bilder (%s)"
 
-#: themes/garland/search.php:186 themes/zenpage/search.php:134
+#: themes/garland/search.php:186 themes/zenpage/search.php:133
 #: themes/zpmobile/search.php:127
 #, php-format
 msgid "Albums (%s)"
 msgstr "Alben (%s)"
 
-#: themes/garland/search.php:188 themes/zenpage/search.php:137
+#: themes/garland/search.php:188 themes/zenpage/search.php:136
 #: themes/zpmobile/search.php:130
 #, php-format
 msgid "Albums (%1$s) &amp; Images (%2$s)"
@@ -711,7 +711,7 @@ msgid ""
 msgstr ""
 "Zenpage Theme Design von <a href=\"http://www.maltem.de\">Malte Müller</a>"
 
-#: themes/zenpage/gallery.php:71 themes/zenpage/news.php:57
+#: themes/zenpage/gallery.php:70 themes/zenpage/news.php:57
 #: themes/zenpage/news.php:85
 msgid "Comments:"
 msgstr "Kommentare:"
@@ -724,7 +724,7 @@ msgstr "« vorige Thumbnails"
 msgid "next thumbs »"
 msgstr "nächste Thumbnails »"
 
-#: themes/zenpage/search.php:171 themes/zpmobile/search.php:182
+#: themes/zenpage/search.php:170 themes/zpmobile/search.php:182
 msgid "Sorry, no matches found. Try refining your search."
 msgstr "Leider keine Treffer. Versuchen Sie Ihre Suche zu verfeinern."
 
@@ -6232,17 +6232,17 @@ msgstr "Schlecht "
 msgid "by"
 msgstr "von"
 
-#: zp-core/class-gallery.php:219
+#: zp-core/class-gallery.php:228
 #, php-format
 msgid "Error: The “albums” directory (%s) cannot be found."
 msgstr "Fehler: Das „albums“-Verzeichnis (%s) wurde nicht gefunden."
 
-#: zp-core/class-gallery.php:221
+#: zp-core/class-gallery.php:230
 #, php-format
 msgid "Error: The “albums” directory (%s) is not readable."
 msgstr "Fehler: Das „albums“-Verzeichnis (%s) ist nicht lesbar."
 
-#: zp-core/class-gallery.php:292 zp-core/exif/exif.php:525
+#: zp-core/class-gallery.php:301 zp-core/exif/exif.php:525
 #: zp-core/exif/exif.php:537 zp-core/exif/exif.php:549
 #: zp-core/exif/exif.php:575 zp-core/exif/exif.php:606
 #: zp-core/exif/exif.php:621 zp-core/exif/exif.php:633
@@ -6275,20 +6275,20 @@ msgstr "Fehler: Das „albums“-Verzeichnis (%s) ist nicht lesbar."
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: zp-core/class-gallery.php:292
+#: zp-core/class-gallery.php:301
 msgid "<strong>Missing theme info file!</strong>"
 msgstr "<strong>Die Theme-Infodatei fehlt!</strong>"
 
-#: zp-core/class-gallery.php:502
+#: zp-core/class-gallery.php:511
 #, php-format
 msgid "Invalid album folder: %1$s %2$s"
 msgstr "Ungültiger Album-Ordner: %1$s %2$s"
 
-#: zp-core/class-gallery.php:502
+#: zp-core/class-gallery.php:511
 msgid "fixed"
 msgstr "behoben"
 
-#: zp-core/class-gallery.php:502
+#: zp-core/class-gallery.php:511
 msgid "discarded"
 msgstr "verworfen"
 
@@ -12279,7 +12279,7 @@ msgstr "Sprachumgebungsinformation."
 
 #: zp-core/utilities/list_locales.php:41
 msgid "You system has support for the following locales:"
-msgstr "Ihr System unterstützt die folgenden Sprachumgebungen: "
+msgstr "Ihr System unterstützt die folgenden Sprachumgebungen:"
 
 #: zp-core/utilities/list_locales.php:49
 msgid "Http Accept Languages"
@@ -13088,7 +13088,7 @@ msgstr ""
 "<em>Klassisch</em> (Standard) gibt die Bildgrößen direkt aus, um sie zu "
 "erstellen. Dies ist schneller und funktioniert auf praktisch allen Server, "
 "ist jedoch nicht zuverlässig beim Erstellen aller Größen, so dass der "
-"Prozess mitunter wiederholt werden muss. "
+"Prozess mitunter wiederholt werden muss."
 
 #: zp-core/zp-extensions/cacheManager.php:207
 msgid ""
@@ -15391,7 +15391,7 @@ msgstr "Verwenden Sie stattdessen die Instanz-Klassenmethode"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:134
 msgid "Use AlbumBase class method getNumAllImages() instead"
-msgstr "Verwenden Sie stattdessen die Album-Klassenmethode getNumAllImages() ."
+msgstr "Verwenden Sie stattdessen die Album-Klassenmethode getNumAllImages()."
 
 #: zp-core/zp-extensions/deprecated-functions/functions.php:127
 #: zp-core/zp-extensions/deprecated-functions/functions.php:170
@@ -22687,7 +22687,7 @@ msgstr "Verwenden Sie stattdessen getOwnerAuthor()"
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:41
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:69
 msgid "Use printOwnerAuthor() instead"
-msgstr "Verwenden Sie stattdessen printOwnerAuthor("
+msgstr "Verwenden Sie stattdessen printOwnerAuthor()"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:84
 msgid "Duplicate page title"
