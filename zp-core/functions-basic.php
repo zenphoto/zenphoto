@@ -1827,7 +1827,7 @@ function httpsRedirect($type = 'backend') {
 function redirectURL($url, $statuscode = null, $allowexternal = false) {
 	$redirect_url = sanitize($url);
 	if (!$allowexternal) {
-		sanitizeRedirect($redirectURL);
+		sanitizeRedirect($redirect_url);
 	}
 	switch ($statuscode) {
 		case '200':

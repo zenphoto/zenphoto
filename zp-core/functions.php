@@ -1799,7 +1799,7 @@ function sanitizeRedirect($redirectTo) {
 		if (isset($redir['scheme']) && isset($redir['host'])) {
 			$redirect = $redir['scheme'] . '://' . sanitize($redir['host']);
 		}
-		if ($redirect != SERVER_HTTP_HOST) {
+		if (SERVER_HTTP_HOST && $redirect != SERVER_HTTP_HOST) {
 			$redirect = SERVER_HTTP_HOST;
 		}
 		if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
