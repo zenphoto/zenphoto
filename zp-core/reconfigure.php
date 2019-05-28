@@ -236,6 +236,9 @@ function unprotectSetupFiles() {
 	$found = isSetupProtected();
 	if ($found) {
 		foreach ($found as $script) {
+			if(!defined('FILE_MOD')) {
+				define('FILE_MOD', 0666);
+			}
 			chmod($script, 0777);
 			if (@rename($script, stripSuffix($script))) {
 				chmod(stripSuffix($script), FILE_MOD);

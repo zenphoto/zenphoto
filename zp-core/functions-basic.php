@@ -1822,40 +1822,42 @@ function httpsRedirect($type = 'backend') {
  * @param string $statuscode Default null (no status header). Enter the status header code to send. Currently supported: 
  *			200, 301, 302, 401, 403, 404 (more may be added if needed later on)
  *			If you need custom headers not supported just set to null and add them separately before calling this function.
- * @param bool $allowexternal True to allow redirections outside of the current domain (includes subdomains!). Default false.
+ * @param bool $allowexternal True to allow redirections outside of the current domain (does not cover subdomains!). Default false.
  */
 function redirectURL($url, $statuscode = null, $allowexternal = false) {
 	$redirect_url = sanitize($url);
-	if (strpos($redirect_url, FULLWEBPATH) !== false && !$allowexternal) {
-		switch ($statuscode) {
-			case '200':
-				header("HTTP/1.0 200 OK");
-				header("Status: 200 OK");
-				break;
-			case '301':
-				header("HTTP/1.1 301 Moved Permanently");
-				header("Status: 301 Moved Permanently");
-				break;
-			case '302':
-				header("HTTP/1.1 302 Found");
-				header("Status: 302 Found");
-				break;
-			case '401':
-				header("HTTP/1.1 401 Unauthorized");
-				header("Status: 401 Unauthorized");
-				break;
-			case '403':
-				header("HTTP/1.1 403 Forbidden");
-				header("Status: 403 Forbidden");
-				break;
-			case '404':
-				header("HTTP/1.1 404 Not found");
-				header("Status: 404 Not found");
-				break;
-		}
-		header('Location: ' . $redirect_url);
-		exitZP();
+	debuglog('redirecturl: '. $redirect_url);
+	if (!$allowexternal) {
+		sanitizeRedirect($redirectURL);
 	}
+	switch ($statuscode) {
+		case '200':
+			header("HTTP/1.0 200 OK");
+			header("Status: 200 OK");
+			break;
+		case '301':
+			header("HTTP/1.1 301 Moved Permanently");
+			header("Status: 301 Moved Permanently");
+			break;
+		case '302':
+			header("HTTP/1.1 302 Found");
+			header("Status: 302 Found");
+			break;
+		case '401':
+			header("HTTP/1.1 401 Unauthorized");
+			header("Status: 401 Unauthorized");
+			break;
+		case '403':
+			header("HTTP/1.1 403 Forbidden");
+			header("Status: 403 Forbidden");
+			break;
+		case '404':
+			header("HTTP/1.1 404 Not found");
+			header("Status: 404 Not found");
+			break;
+	}
+	header('Location: ' . $redirect_url);
+	exitZP();
 }
 
 /**
