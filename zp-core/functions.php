@@ -1789,36 +1789,6 @@ function restore_context() {
 }
 
 /**
- * Sanitizes a "redirect" post to always be within the site
- * @param string $redirectTo
- * @return string
- */
-function sanitizeRedirect($redirectTo) {
-	$redirect = NULL;
-	if ($redirectTo && $redir = parse_url($redirectTo)) {
-		if (isset($redir['scheme']) && isset($redir['host'])) {
-			$redirect = $redir['scheme'] . '://' . sanitize($redir['host']);
-		}
-		if (defined('SERVER_HTTP_HOST') && $redirect != SERVER_HTTP_HOST) {
-			$redirect = SERVER_HTTP_HOST;
-		}
-		if (defined('WEBPATH') && strpos($redirectTo, WEBPATH) === false) {
-			$redirect .= WEBPATH . '/';
-		}
-		if (isset($redir['path'])) {
-			$redirect .= urldecode(sanitize($redir['path']));
-		}
-		if (isset($redir['query'])) {
-			$redirect .= '?' . sanitize($redir['query']);
-		}
-		if (isset($redir['fragment'])) {
-			$redirect .= '#' . sanitize($redir['fragment']);
-		}
-	}
-	return $redirect;
-}
-
-/**
  * checks password posting
  *
  * @param string $authType override of athorization type
