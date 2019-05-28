@@ -1799,10 +1799,10 @@ function sanitizeRedirect($redirectTo) {
 		if (isset($redir['scheme']) && isset($redir['host'])) {
 			$redirect = $redir['scheme'] . '://' . sanitize($redir['host']);
 		}
-		if (SERVER_HTTP_HOST && $redirect != SERVER_HTTP_HOST) {
+		if (defined('SERVER_HTTP_HOST') && $redirect != SERVER_HTTP_HOST) {
 			$redirect = SERVER_HTTP_HOST;
 		}
-		if (WEBPATH && strpos($redirectTo, WEBPATH) === false) {
+		if (defined('WEBPATH') && strpos($redirectTo, WEBPATH) === false) {
 			$redirect .= WEBPATH . '/';
 		}
 		if (isset($redir['path'])) {
