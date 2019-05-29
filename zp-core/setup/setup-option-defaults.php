@@ -127,8 +127,7 @@ setOptionDefault('hotlink_protection', '1');
 
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
 
-$a = "a => (href =>() title =>() target=>() class=>() id=>() rel=>())\n" .
-				"abbr =>(class=>() id=>() title =>())\n" .
+$style_tags = "abbr =>(class=>() id=>() title =>())\n" .
 				"acronym =>(class=>() id=>() title =>())\n" .
 				"b => (class=>() id=>() )\n" .
 				"blockquote =>(class=>() id=>() cite =>())\n" .
@@ -138,6 +137,11 @@ $a = "a => (href =>() title =>() target=>() class=>() id=>() rel=>())\n" .
 				"i => (class=>() id=>()) \n" .
 				"strike => (class=>() id=>())\n" .
 				"strong => (class=>() id=>())\n" .
+				"sup => (class=>() id=>())\n" .
+				"sub => (class=>() id=>())\n"
+;
+
+$general_tags = "a => (href =>() title =>() target=>() class=>() id=>() rel=>())\n" .
 				"ul => (class=>() id=>())\n" .
 				"ol => (class=>() id=>())\n" .
 				"li => (class=>() id=>())\n" .
@@ -152,20 +156,32 @@ $a = "a => (href =>() title =>() target=>() class=>() id=>() rel=>())\n" .
 				"address=>(class=>() id=>() style=>())\n" .
 				"span=>(class=>() id=>() style=>())\n" .
 				"div=>(class=>() id=>() style=>())\n" .
-				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>())\n" .
-				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>())\n"
+				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>() size=>() srcset=>())\n" .
+				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>())\n" .
+				"figure=>(class=>() id=>() style=>())\n" .
+				"figcaption=>(class=>() id=>() style=>())\n" .
+				"article=>(class=>() id=>() style=>())\n" .
+				"section => (class=>() id=>() style=>())\n" .
+				"nav => (class=>() id=>() style=>())\n" .
+				"video => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() poster=>())\n" .
+				"audio => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() volume=>())\n" .
+				"picture=>(class=>() id=>())\n" .
+				"source=>(src=>() scrset=>() size=>() type=>() media=>())\n" .
+				"track=>(src=>() kind=>() scrlang=>() label=>() default=>())\n" .
+				"table => (class=>() id=>())\n" .
+				"caption => (class=>() id=>())\n" .
+				"th => (class=>() id=>())\n" .
+				"tr => (class=>() id=>())\n" .
+				"td => (class=>() id=>() colspan=>())\n" .
+				"thead => (class=>() id=>())\n" .
+				"tbody => (class=>() id=>())\n" .
+				"tfoot => (class=>() id=>())\n" .
+				"colgroup => (class=>() id=>())\n" .
+				"col => (class=>() id=>())\n"
 ;
-setOption('allowed_tags_default', $a);
-setOptionDefault('allowed_tags', $a);
-setOptionDefault('style_tags', "abbr => (title => ())\n" .
-				"acronym => (title => ())\n" .
-				"b => ()\n" .
-				"em => ()\n" .
-				"i => () \n" .
-				"strike => ()\n" .
-				"strong => ()\n");
-//	insure tags are in lower case!
-setOption('allowed_tags', strtolower(getOption('allowed_tags')));
+setOption('allowed_tags_default', $style_tags . $general_tags);
+setOptionDefault('allowed_tags', $style_tags . $general_tags);
+setOptionDefault('style_tags', strtolower($style_tags));
 
 setOptionDefault('full_image_quality', 75);
 
