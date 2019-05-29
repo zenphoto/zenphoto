@@ -1750,6 +1750,8 @@ function curlRequest($uri, $options = array()) {
 		$defaultoptions = array(
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_TIMEOUT => 2000,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_MAXREDIRS => 3
 		);
 		if (empty($options) || !is_array($options)) {
 			$options = $defaultoptions;
