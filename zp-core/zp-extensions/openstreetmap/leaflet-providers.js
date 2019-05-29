@@ -56,7 +56,7 @@
 				if (attr.indexOf('{attribution.') === -1) {
 					return attr;
 				}
-				return attr.replace(/\{attribution.(\w*)\}/,
+				return attr.replace(/\{attribution.(\w*)\}/g,
 					function (match, attributionName) {
 						return attributionReplacer(providers[attributionName].options.attribution);
 					}
@@ -81,16 +81,10 @@
 			options: {
 				maxZoom: 19,
 				attribution:
-					'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			},
 			variants: {
 				Mapnik: {},
-				BlackAndWhite: {
-					url: 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
-					options: {
-						maxZoom: 18
-					}
-				},
 				DE: {
 					url: 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',
 					options: {
@@ -114,7 +108,10 @@
 				HOT: {
 					url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
 					options: {
-						attribution: '{attribution.OpenStreetMap}, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+						attribution:
+							'{attribution.OpenStreetMap}, ' +
+							'Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> ' +
+							'hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
 					}
 				},
 				BZH: {
@@ -199,24 +196,51 @@
 			}
 		},
 		OpenMapSurfer: {
-			url: 'https://korona.geog.uni-heidelberg.de/tiles/{variant}/x={x}&y={y}&z={z}',
+			url: 'https://maps.heigit.org/openmapsurfer/tiles/{variant}/webmercator/{z}/{x}/{y}.png',
 			options: {
-				maxZoom: 20,
+				maxZoom: 19,
 				variant: 'roads',
-				attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data {attribution.OpenStreetMap}'
+				attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> | Map data '
 			},
 			variants: {
-				Roads: 'roads',
+				Roads: {
+					options: {
+						variant: 'roads',
+						attribution: '{attribution.OpenMapSurfer}{attribution.OpenStreetMap}'
+					}
+				},
+				Hybrid: {
+					options: {
+						variant: 'hybrid',
+						attribution: '{attribution.OpenMapSurfer}{attribution.OpenStreetMap}'
+					}
+				},
 				AdminBounds: {
 					options: {
 						variant: 'adminb',
-						maxZoom: 19
+						maxZoom: 18,
+						attribution: '{attribution.OpenMapSurfer}{attribution.OpenStreetMap}'
 					}
 				},
-				Grayscale: {
+				ContourLines: {
 					options: {
-						variant: 'roadsg',
-						maxZoom: 19
+						variant: 'asterc',
+						maxZoom: 18,
+						minZoom: 13,
+						attribution: '{attribution.OpenMapSurfer} <a href="https://lpdaac.usgs.gov/products/aster_policies">ASTER GDEM</a>'
+					}
+				},
+				Hillshade: {
+					options: {
+						variant: 'asterh',
+						maxZoom: 18,
+						attribution: '{attribution.OpenMapSurfer} <a href="https://lpdaac.usgs.gov/products/aster_policies">ASTER GDEM</a>, <a href="http://srtm.csi.cgiar.org/">SRTM</a>'
+					}
+				},
+				ElementsAtRisk: {
+					options: {
+						variant: 'elements_at_risk',
+						attribution: '{attribution.OpenMapSurfer}{attribution.OpenStreetMap}'
 					}
 				}
 			}
@@ -238,8 +262,9 @@
 			url: 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}{r}.png?access_token={accessToken}',
 			options: {
 				attribution:
-					'Imagery from <a href="http://mapbox.com/about/maps/">MapBox</a> &mdash; ' +
-					'Map data {attribution.OpenStreetMap}',
+					'<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox</a> ' +
+					'{attribution.OpenStreetMap} ' +
+					'<a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>',
 				subdomains: 'abcd',
 				id: 'mapbox.streets',
 				accessToken: '<insert your access token here>',
@@ -556,7 +581,7 @@
 			}
 		},
 		HikeBike: {
-			url: 'http://{s}.tiles.wmflabs.org/{variant}/{z}/{x}/{y}.png',
+			url: 'https://tiles.wmflabs.org/{variant}/{z}/{x}/{y}.png',
 			options: {
 				maxZoom: 19,
 				attribution: '{attribution.OpenStreetMap}',
