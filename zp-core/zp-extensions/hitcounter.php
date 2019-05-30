@@ -1,7 +1,7 @@
 <?php
 /**
  * Provides automatic hitcounter counting for Zenphoto objects
- * @author Stephen Billard (sbillard)
+ * @author Stephen Billard (sbillard), Malte Müller (acrylian)
  * @package plugins
  * @subpackage hitcounter
  */
@@ -56,32 +56,34 @@ class hitcounter {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('IP Address list')		 => array(
-										'order'	 => 1,
-										'key'		 => 'hitcounter_ignoreIPList',
-										'type'	 => OPTION_TYPE_CUSTOM,
-										'desc'	 => gettext('Comma-separated list of IP addresses to ignore.'),
-						),
-						gettext('Filter')							 => array(
-										'order'			 => 0,
-										'key'				 => 'hitcounter_ignore',
-										'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'checkboxes' => array(gettext('IP addresses') => 'hitcounter_ignoreIPList_enable', gettext('Search Crawlers') => 'hitcounter_ignoreSearchCrawlers_enable'),
-										'desc'			 => gettext('Check to enable. If a filter is enabled, viewers from in its associated list will not count hits.'),
-						),
-						gettext('Search Crawler list') => array(
-										'order'				 => 2,
-										'key'					 => 'hitcounter_searchCrawlerList',
-										'type'				 => OPTION_TYPE_TEXTAREA,
-										'multilingual' => false,
-										'desc'				 => gettext('Comma-separated list of search bot user agent names.'),
-						),
-						' '														 => array(
-										'order'	 => 3,
-										'key'		 => 'hitcounter_set_defaults',
-										'type'	 => OPTION_TYPE_CUSTOM,
-										'desc'	 => gettext('Reset options to their default settings.')
-						)
+		return array(gettext('IP Address list') => array(
+						'order' => 1,
+						'key' => 'hitcounter_ignoreIPList',
+						'type' => OPTION_TYPE_CUSTOM,
+						'desc' => gettext('Comma-separated list of IP addresses to ignore.'),
+				),
+				gettext('Filter') => array(
+						'order' => 0,
+						'key' => 'hitcounter_ignore',
+						'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'checkboxes' => array(
+								gettext('IP addresses') => 'hitcounter_ignoreIPList_enable', 
+								gettext('Search Crawlers') => 'hitcounter_ignoreSearchCrawlers_enable'),
+						'desc' => gettext('Check to enable. If a filter is enabled, viewers from in its associated list will not count hits.'),
+				),
+				gettext('Search Crawler list') => array(
+						'order' => 2,
+						'key' => 'hitcounter_searchCrawlerList',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'multilingual' => false,
+						'desc' => gettext('Comma-separated list of search bot user agent names.'),
+				),
+				' ' => array(
+						'order' => 3,
+						'key' => 'hitcounter_set_defaults',
+						'type' => OPTION_TYPE_CUSTOM,
+						'desc' => gettext('Reset options to their default settings.')
+				)
 		);
 	}
 
@@ -122,7 +124,7 @@ class hitcounter {
 						}
 						$('#hitcounter_ip_button').attr('disabled', 'disabled');
 					}
-					jQuery(window).load(function() {
+					jQuery(window).load(function () {
 						var current = $('#hitcounter_ignoreIPList').val();
 						if (current.indexOf('<?php echo getUserIP(); ?>') < 0) {
 							$('#hitcounter_ip_button').removeAttr('disabled');
@@ -206,17 +208,17 @@ class hitcounter {
 
 	static function button($buttons) {
 		$buttons[] = array(
-						'XSRFTag'			 => 'hitcounter',
-						'category'		 => gettext('Database'),
-						'enable'			 => true,
-						'button_text'	 => gettext('Reset all hitcounters'),
-						'formname'		 => 'reset_all_hitcounters.php',
-						'action'			 => FULLWEBPATH .'/'. ZENFOLDER .'/' . PLUGIN_FOLDER . '/hitcounter.php?action=reset_all_hitcounters',
-						'icon'				 => FULLWEBPATH . '/' . ZENFOLDER . '/images/reset.png',
-						'alt'					 => '',
-						'title'				 => gettext('Reset all hitcounters to zero'),
-						'hidden'			 => '<input type="hidden" name="action" value="reset_all_hitcounters" />',
-						'rights'			 => ADMIN_RIGHTS
+				'XSRFTag' => 'hitcounter',
+				'category' => gettext('Database'),
+				'enable' => true,
+				'button_text' => gettext('Reset all hitcounters'),
+				'formname' => 'reset_all_hitcounters.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/hitcounter.php?action=reset_all_hitcounters',
+				'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/reset.png',
+				'alt' => '',
+				'title' => gettext('Reset all hitcounters to zero'),
+				'hidden' => '<input type="hidden" name="action" value="reset_all_hitcounters" />',
+				'rights' => ADMIN_RIGHTS
 		);
 		return $buttons;
 	}
@@ -260,4 +262,46 @@ function getHitcounter($obj = NULL) {
 	}
 	return $obj->getHitcounter();
 }
-?>
+
+/**
+ * Gets the total hitcounter sum of one or several items
+ * 
+ * @author Malte Müller (acrylian)
+ * @since ZenphotoCMS 1.5.3
+ * 
+ * @param array $items an array with one or more item table names, e.g. array('albums', 'images', 'news', 'news_categories', 'pages')
+ * @return int
+ */
+function getTotalHitcounter(array $items = array()) {
+	$totalhitcount = 0;
+	if (!empty($items)) {
+		$items_valid = array();
+		$tables = array('albums', 'images', 'news', 'news_categories', 'pages');
+		$basequery = 'SELECT SUM(hitcounter) as hitcounter_total FROM ';
+		$query = '';
+		foreach ($items as $item) {
+			if (in_array($item, $tables)) {
+				$items_valid[] = $item;
+			}
+		}
+		if (!empty($items_valid)) {
+			if (count($items_valid) == 1) {
+				$query = $basequery . prefix($items_valid[0]);
+			} else if (count($items_valid) > 1) {
+				$unionqueries = array();
+				foreach ($items_valid as $item) {
+					$unionqueries[] = 'SELECT SUM(hitcounter) as hitcounter FROM ' . prefix($item);
+				}
+				$query = $basequery . '(' . implode(' UNION ', $unionqueries) . ') as hitcount';
+			}
+			$result = query($query);
+			if ($result) {
+				while ($row = db_fetch_assoc($result)) {
+					$totalhitcount = $row['hitcounter_total'];
+				}
+			}
+			db_free_result($result);
+		}
+	}
+	return $totalhitcount;
+}
