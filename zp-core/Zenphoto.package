@@ -674,6 +674,11 @@ zp-core/locale/de_DE/LC_MESSAGES/zenphoto.po
 zp-core/locale/de_DE/flag.png
 zp-core/locale/en_US
 zp-core/locale/en_US/flag.png
+zp-core/locale/es_AR
+zp-core/locale/es_AR/LC_MESSAGES
+zp-core/locale/es_AR/LC_MESSAGES/zenphoto.mo
+zp-core/locale/es_AR/LC_MESSAGES/zenphoto.po
+zp-core/locale/es_AR/flag.png
 zp-core/locale/es_ES
 zp-core/locale/es_ES/LC_MESSAGES
 zp-core/locale/es_ES/LC_MESSAGES/zenphoto.mo
@@ -1585,4 +1590,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1587
+1592
