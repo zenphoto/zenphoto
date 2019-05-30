@@ -679,11 +679,21 @@ zp-core/locale/es_AR/LC_MESSAGES
 zp-core/locale/es_AR/LC_MESSAGES/zenphoto.mo
 zp-core/locale/es_AR/LC_MESSAGES/zenphoto.po
 zp-core/locale/es_AR/flag.png
+zp-core/locale/es_BO
+zp-core/locale/es_BO/LC_Messages
+zp-core/locale/es_BO/LC_Messages/zenphoto.mo
+zp-core/locale/es_BO/LC_Messages/zenphoto.po
+zp-core/locale/es_BO/flag.png
 zp-core/locale/es_ES
 zp-core/locale/es_ES/LC_MESSAGES
 zp-core/locale/es_ES/LC_MESSAGES/zenphoto.mo
 zp-core/locale/es_ES/LC_MESSAGES/zenphoto.po
 zp-core/locale/es_ES/flag.png
+zp-core/locale/es_UY
+zp-core/locale/es_UY/LC_MESSAGES
+zp-core/locale/es_UY/LC_MESSAGES/zenphoto.mo
+zp-core/locale/es_UY/LC_MESSAGES/zenphoto.po
+zp-core/locale/es_UY/flag.png
 zp-core/locale/fr_FR
 zp-core/locale/fr_FR/LC_MESSAGES
 zp-core/locale/fr_FR/LC_MESSAGES/zenphoto.mo
@@ -1590,4 +1600,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1592
+1602
