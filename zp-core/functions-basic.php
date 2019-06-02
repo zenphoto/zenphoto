@@ -1875,11 +1875,16 @@ function sanitizeRedirect($redirectTo) {
 		if (defined('SERVER_HTTP_HOST') && $redirect != SERVER_HTTP_HOST) {
 			$redirect = SERVER_HTTP_HOST;
 		}
-		if (defined('WEBPATH') && strpos($redirectTo, WEBPATH) === false) {
-			$redirect .= WEBPATH . '/';
-		}
+		if (defined('WEBPATH') && !empty(WEBPATH) && strpos($redirectTo, WEBPATH) === false) {
+			$redirect .= WEBPATH .'/';
+		} 
 		if (isset($redir['path'])) {
-			$redirect .= urldecode(sanitize($redir['path']));
+			$path = urldecode(sanitize($redir['path']));
+			//fix double slashes with WEBPATH on subfolder installs
+			if(substr($path, 0,1) == '/') {
+				$path = substr($path, 1);
+			}
+			$redirect .= $path;
 		}
 		if (isset($redir['query'])) {
 			$redirect .= '?' . sanitize($redir['query']);
