@@ -1266,10 +1266,8 @@ class Album extends AlbumBase {
 			}
 			if (is_null($sortdirection)) {
 				if ($this->getSortDirection('album')) {
-					$sortdirection = $this->getSortDirection('album');	
-				} else {
 					$sortdirection = 'DESC';
-				}
+				} 
 			}
 			$dirs = $this->loadFileNames(true);
 			$subalbums = array();
@@ -1307,10 +1305,8 @@ class Album extends AlbumBase {
 			}
 			if (is_null($sortdirection)) {
 				if ($this->getSortDirection('image')) {
-					$sortdirection = $this->getSortDirection('image'); 
-				} else {
 					$sortdirection = 'DESC';
-				}
+				} 
 			}
 			$images = $this->loadFileNames();
 			$this->images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);

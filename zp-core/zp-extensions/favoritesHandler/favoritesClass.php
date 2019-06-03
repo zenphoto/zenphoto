@@ -162,10 +162,8 @@ class favorites extends AlbumBase {
 				}
 				if (is_null($sortdirection)) {
 					if ($this->getSortDirection('album')) {
-						$sortdirection = $this->getSortDirection('album');
-					} else {
 						$sortdirection = 'DESC';
-					}
+					} 
 				}
 				$sortkey = $this->getAlbumSortKey($sorttype);
 				if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
