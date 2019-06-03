@@ -162,9 +162,9 @@ class favorites extends AlbumBase {
 				}
 				if (is_null($sortdirection)) {
 					if ($this->getSortDirection('album')) {
-						$sortdirection = 'DESC';
+						$sortdirection = $this->getSortDirection('album');
 					} else {
-						$sortdirection = '';
+						$sortdirection = 'DESC';
 					}
 				}
 				$sortkey = $this->getAlbumSortKey($sorttype);
@@ -216,6 +216,7 @@ class favorites extends AlbumBase {
 					}
 				}
 				db_free_result($result);
+				
 				if (is_null($sorttype)) {
 					$sorttype = $this->getSortType();
 				}
@@ -235,7 +236,7 @@ class favorites extends AlbumBase {
 				foreach ($images as $data) {
 					$this->images[] = array('folder' => $data['folder'], 'filename' => $data['filename']);
 				}
-				$this->lastimagesort = $sorttype . $sortdirection;
+				$this->lastimagesort = $sorttype . $sortdirection; 
 			}
 		}
 		return parent::getImages($page, $firstPageCount);

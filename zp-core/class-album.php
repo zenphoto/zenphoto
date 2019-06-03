@@ -171,8 +171,8 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Returns either the subalbum sort direction or the image sort direction of the album
 	 *
-	 * @param string $what 'image_sortdirection' if you want the image direction,
-	 *        'album_sortdirection' if you want it for the album
+	 * @param string $what 'image_' if you want the image direction,
+	 *        'album' if you want it for the album
 	 *
 	 * @return string
 	 */
@@ -1266,9 +1266,9 @@ class Album extends AlbumBase {
 			}
 			if (is_null($sortdirection)) {
 				if ($this->getSortDirection('album')) {
-					$sortdirection = 'DESC';
+					$sortdirection = $this->getSortDirection('album');	
 				} else {
-					$sortdirection = '';
+					$sortdirection = 'DESC';
 				}
 			}
 			$dirs = $this->loadFileNames(true);
@@ -1307,6 +1307,8 @@ class Album extends AlbumBase {
 			}
 			if (is_null($sortdirection)) {
 				if ($this->getSortDirection('image')) {
+					$sortdirection = $this->getSortDirection('image'); 
+				} else {
 					$sortdirection = 'DESC';
 				}
 			}
