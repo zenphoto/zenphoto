@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.5.2\n"
+"Project-Id-Version: Zenphoto 1.5.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-20 10:02+0200\n"
-"PO-Revision-Date: 2019-05-20 10:02+0200\n"
+"POT-Creation-Date: 2019-06-04 20:53+0200\n"
+"PO-Revision-Date: 2019-06-04 20:54+0200\n"
 "Last-Translator: Antonio <ranesi@tiscali.it>\n"
 "Language-Team: Antonio Ranesi [bic]\n"
 "Language: it_IT\n"
@@ -476,8 +476,8 @@ msgstr "Indice album"
 #: zp-core/lib-auth.php:565 zp-core/lib-auth.php:566 zp-core/lib-auth.php:574
 #: zp-core/lib-auth.php:575 zp-core/lib-auth.php:581 zp-core/lib-auth.php:582
 #: zp-core/lib-auth.php:586 zp-core/lib-auth.php:592 zp-core/lib-auth.php:593
-#: zp-core/setup/setup-option-defaults.php:367
-#: zp-core/setup/setup-option-defaults.php:368
+#: zp-core/setup/setup-option-defaults.php:383
+#: zp-core/setup/setup-option-defaults.php:384
 #: zp-core/template-functions.php:448 zp-core/template-functions.php:629
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:51
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
@@ -906,7 +906,7 @@ msgid "zpMobile theme by"
 msgstr "Tema zpMobile di"
 
 #: themes/zpmobile/functions.php:109
-#: zp-core/zp-extensions/favoritesHandler/favoritesClass.php:289
+#: zp-core/zp-extensions/favoritesHandler/favoritesClass.php:288
 msgid "Favorites"
 msgstr "Preferiti"
 
@@ -4962,7 +4962,7 @@ msgstr ""
 "giurisdizioni, come la UE con il suo GDPR, se il sito usa moduli per l’invio "
 "di dati. Lasciare in bianco per usare il testo predefinito:"
 
-#: zp-core/admin-options.php:3367 zp-core/functions.php:3024
+#: zp-core/admin-options.php:3367 zp-core/functions.php:2994
 msgid ""
 "By using this form you agree with the storage and handling of your data by "
 "this website."
@@ -6163,26 +6163,26 @@ msgid "An album object was instantiated without using the newAlbum() function."
 msgstr ""
 "Un oggetto album è stato inizializzato senza usare la funzione newAlbum()."
 
-#: zp-core/class-album.php:1195 zp-core/class-album.php:1649
+#: zp-core/class-album.php:1195 zp-core/class-album.php:1647
 msgid "Invalid album instantiation: No album name"
 msgstr "Istanza non valida per l’album: manca il nome dell’album"
 
-#: zp-core/class-album.php:1198 zp-core/class-album.php:1652
+#: zp-core/class-album.php:1198 zp-core/class-album.php:1650
 #, php-format
 msgid "Invalid album instantiation: %1$s!=%2$s"
 msgstr "Istanza non valida per l’album: %1$s!=%2$s"
 
-#: zp-core/class-album.php:1200 zp-core/class-album.php:1654
+#: zp-core/class-album.php:1200 zp-core/class-album.php:1652
 #, php-format
 msgid "Invalid album instantiation: %s does not exist."
 msgstr "Istanza non valida per l’album: %s non esiste."
 
-#: zp-core/class-album.php:1526
+#: zp-core/class-album.php:1524
 #, php-format
 msgid "Error: The album %s is not readable."
 msgstr "Errore: l’album %s non è leggibile."
 
-#: zp-core/class-album.php:1528
+#: zp-core/class-album.php:1526
 #, php-format
 msgid "Error: The album named %s cannot be found."
 msgstr "Errore: l’album %s non può essere trovato.’"
@@ -6228,17 +6228,17 @@ msgstr "Difettoso "
 msgid "by"
 msgstr "di"
 
-#: zp-core/class-gallery.php:219
+#: zp-core/class-gallery.php:228
 #, php-format
 msgid "Error: The “albums” directory (%s) cannot be found."
 msgstr "Errore: la cartella \"albums\" (%s) non è stata trovata."
 
-#: zp-core/class-gallery.php:221
+#: zp-core/class-gallery.php:230
 #, php-format
 msgid "Error: The “albums” directory (%s) is not readable."
 msgstr "Errore: la cartella \"albums\" (%s) non è leggibile."
 
-#: zp-core/class-gallery.php:292 zp-core/exif/exif.php:525
+#: zp-core/class-gallery.php:301 zp-core/exif/exif.php:525
 #: zp-core/exif/exif.php:537 zp-core/exif/exif.php:549
 #: zp-core/exif/exif.php:575 zp-core/exif/exif.php:606
 #: zp-core/exif/exif.php:621 zp-core/exif/exif.php:633
@@ -6271,20 +6271,20 @@ msgstr "Errore: la cartella \"albums\" (%s) non è leggibile."
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: zp-core/class-gallery.php:292
+#: zp-core/class-gallery.php:301
 msgid "<strong>Missing theme info file!</strong>"
 msgstr "<strong>File delle informazioni del tema mancante!</strong>"
 
-#: zp-core/class-gallery.php:502
+#: zp-core/class-gallery.php:511
 #, php-format
 msgid "Invalid album folder: %1$s %2$s"
 msgstr "Cartella dell’album non valida: %1$s %2$s"
 
-#: zp-core/class-gallery.php:502
+#: zp-core/class-gallery.php:511
 msgid "fixed"
 msgstr "sistemato"
 
-#: zp-core/class-gallery.php:502
+#: zp-core/class-gallery.php:511
 msgid "discarded"
 msgstr "scartato"
 
@@ -6323,7 +6323,7 @@ msgstr "Dati personalizzati"
 msgid "Location/Place"
 msgstr "Località/Posto"
 
-#: zp-core/class-search.php:106 zp-core/functions.php:2777
+#: zp-core/class-search.php:106 zp-core/functions.php:2747
 #: zp-core/zp-extensions/contact_form.php:149
 #: zp-core/zp-extensions/contact_form.php:154
 #: zp-core/zp-extensions/userAddressFields.php:52
@@ -6442,7 +6442,7 @@ msgid "unpublished"
 msgstr "non pubblicato"
 
 #: zp-core/class-userdataexport.php:367 zp-core/class-userdataexport.php:423
-#: zp-core/class-userdataexport.php:512 zp-core/reconfigure.php:266
+#: zp-core/class-userdataexport.php:512 zp-core/reconfigure.php:269
 msgid "protected"
 msgstr "protetto"
 
@@ -7098,7 +7098,7 @@ msgstr "Auto-DEP"
 msgid "Flash Did Not Fire"
 msgstr "Il flash non è scattato"
 
-#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2763
+#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2733
 msgid "Flash Fired"
 msgstr "Flash"
 
@@ -7512,15 +7512,15 @@ msgstr ""
 "Il %1$s log ha superato la sua dimensione massima ed è stato rinominato in "
 "%2$s."
 
-#: zp-core/functions-basic.php:1762
+#: zp-core/functions-basic.php:1764
 msgid "ERROR: cURL request failed: "
 msgstr "ERRORE: richiesta cURL fallita:"
 
-#: zp-core/functions-basic.php:1765
+#: zp-core/functions-basic.php:1767
 msgid "NOTICE: cURL request not successful."
 msgstr "AVVISO: richiesta cURL non riuscita."
 
-#: zp-core/functions-basic.php:1773
+#: zp-core/functions-basic.php:1775
 msgid "ERROR: Your server does not support cURL."
 msgstr "ERRORE: Il tuo server non supporta cURL."
 
@@ -8328,40 +8328,40 @@ msgstr ""
 msgid "0 Bytes"
 msgstr "0 Byte"
 
-#: zp-core/functions.php:2310
+#: zp-core/functions.php:2280
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr ""
 "Zenphoto ha prodotto un errore 404 in %s. Vedere il log di debug per i "
 "dettagli."
 
-#: zp-core/functions.php:2335
+#: zp-core/functions.php:2305
 #, php-format
 msgid "“%s” Cross Site Request Forgery blocked."
 msgstr "È stato bloccato un tentativo di Cross Site Request Forgery “%s”."
 
-#: zp-core/functions.php:2498
+#: zp-core/functions.php:2468
 msgid "Click to show content"
 msgstr "Fare clic per mostrare il contenuto"
 
-#: zp-core/functions.php:2503
+#: zp-core/functions.php:2473
 msgid "Click to hide content"
 msgstr "Fare clic per nascondere il contenuto"
 
 # verificare
-#: zp-core/functions.php:2553
+#: zp-core/functions.php:2523
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "Il parametro %2$d per <em>[%1$s]</em> dovrebbe essere un numero."
 
 # verificare
-#: zp-core/functions.php:2561
+#: zp-core/functions.php:2531
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "Il parametro %2$d per <em>[%1$s]</em> dovrebbe essere una stringa."
 
 # verificare
-#: zp-core/functions.php:2574
+#: zp-core/functions.php:2544
 #, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
@@ -8371,354 +8371,354 @@ msgstr ""
 "<code>false</code>."
 
 # verificare
-#: zp-core/functions.php:2593
+#: zp-core/functions.php:2563
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
 msgstr "Il parametro %2$d per <em>[%1$s]</em> non è definito correttamente."
 
 # verificare
-#: zp-core/functions.php:2599
+#: zp-core/functions.php:2569
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "Il parametro %2$d per <em>[%1$s]</em> è mancante."
 
 # verificare
-#: zp-core/functions.php:2608
+#: zp-core/functions.php:2578
 #, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "La macro <em>[%1$s]</em> non accetta parametri"
 
 # verificare
-#: zp-core/functions.php:2631 zp-core/functions.php:2658
+#: zp-core/functions.php:2601 zp-core/functions.php:2628
 #, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>[%1$s]</em> non ha restituito dati"
 
 # verificare
-#: zp-core/functions.php:2636
+#: zp-core/functions.php:2606
 #, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>[%1$s]</em> <code>%2$s</code> non è chiamabile"
 
 # verificare
-#: zp-core/functions.php:2663
+#: zp-core/functions.php:2633
 #, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>[%1$s]</em> accetta il parametro %2$d"
 msgstr[1] "<em>[%1$s]</em> accetta i parametri %2$d"
 
-#: zp-core/functions.php:2735
+#: zp-core/functions.php:2705
 msgid "Camera Maker"
 msgstr "Produttore fotocamera"
 
-#: zp-core/functions.php:2736
+#: zp-core/functions.php:2706
 msgid "Camera Model"
 msgstr "Modello fotocamera"
 
-#: zp-core/functions.php:2737
+#: zp-core/functions.php:2707
 msgid "Image Title"
 msgstr "Titolo immagine"
 
-#: zp-core/functions.php:2738
+#: zp-core/functions.php:2708
 msgid "Object Name"
 msgstr "Nome oggetto"
 
-#: zp-core/functions.php:2739
+#: zp-core/functions.php:2709
 msgid "Image Headline"
 msgstr "Titolo immagine"
 
-#: zp-core/functions.php:2740
+#: zp-core/functions.php:2710
 msgid "Image Caption"
 msgstr "Didascalia immagine"
 
-#: zp-core/functions.php:2741
+#: zp-core/functions.php:2711
 msgid "Image Caption Writer"
 msgstr "Didascalia autore immagine"
 
-#: zp-core/functions.php:2742
+#: zp-core/functions.php:2712
 msgid "Time Taken"
 msgstr "Data scatto"
 
-#: zp-core/functions.php:2743
+#: zp-core/functions.php:2713
 msgid "Original Time Taken"
 msgstr "Ora originale dello scatto"
 
-#: zp-core/functions.php:2744
+#: zp-core/functions.php:2714
 msgid "Time Digitized"
 msgstr "Ora di digitalizzazione"
 
-#: zp-core/functions.php:2745
+#: zp-core/functions.php:2715
 msgid "Date Created"
 msgstr "Data di creazione"
 
-#: zp-core/functions.php:2746
+#: zp-core/functions.php:2716
 msgid "Time Created"
 msgstr "Ora di creazione"
 
-#: zp-core/functions.php:2747
+#: zp-core/functions.php:2717
 msgid "Digital Creation Date"
 msgstr "Data di creazione digitale"
 
-#: zp-core/functions.php:2748
+#: zp-core/functions.php:2718
 msgid "Digital Creation Time"
 msgstr "Ora di creazione digitale"
 
-#: zp-core/functions.php:2749
+#: zp-core/functions.php:2719
 msgid "Artist"
 msgstr "Artista"
 
-#: zp-core/functions.php:2750
+#: zp-core/functions.php:2720
 msgid "Image Credit"
 msgstr "Riconoscimenti immagine"
 
-#: zp-core/functions.php:2751
+#: zp-core/functions.php:2721
 msgid "Byline"
 msgstr "Informazioni sull’autore"
 
-#: zp-core/functions.php:2752
+#: zp-core/functions.php:2722
 msgid "Byline Title"
 msgstr "Titolo informazioni sull’autore"
 
-#: zp-core/functions.php:2753
+#: zp-core/functions.php:2723
 msgid "Image Source"
 msgstr "Sorgente immagine"
 
-#: zp-core/functions.php:2754 zp-core/template-functions.php:449
+#: zp-core/functions.php:2724 zp-core/template-functions.php:449
 #: zp-core/zp-extensions/html_meta_tags.php:321
 #: zp-core/zp-extensions/scriptless-socialsharing.php:176
 msgid "Contact"
 msgstr "Contatti"
 
-#: zp-core/functions.php:2755
+#: zp-core/functions.php:2725
 msgid "Copyright Holder"
 msgstr "Detentore copyright"
 
-#: zp-core/functions.php:2756
+#: zp-core/functions.php:2726
 msgid "Copyright Notice"
 msgstr "Informazioni copyright"
 
-#: zp-core/functions.php:2757
+#: zp-core/functions.php:2727
 msgid "Keywords"
 msgstr "Parole chiave"
 
-#: zp-core/functions.php:2758
+#: zp-core/functions.php:2728
 msgid "Shutter Speed"
 msgstr "Velocità otturatore"
 
-#: zp-core/functions.php:2759
+#: zp-core/functions.php:2729
 msgid "Aperture"
 msgstr "Apertura"
 
-#: zp-core/functions.php:2760
+#: zp-core/functions.php:2730
 msgid "ISO Sensitivity"
 msgstr "ISO"
 
-#: zp-core/functions.php:2761
+#: zp-core/functions.php:2731
 msgid "Exposure Compensation"
 msgstr "Compensazione esposizione"
 
-#: zp-core/functions.php:2762
+#: zp-core/functions.php:2732
 msgid "Metering Mode"
 msgstr "Modalità esposimetro"
 
-#: zp-core/functions.php:2764
+#: zp-core/functions.php:2734
 msgid "Original Width"
 msgstr "Larghezza originale"
 
-#: zp-core/functions.php:2765
+#: zp-core/functions.php:2735
 msgid "Original Height"
 msgstr "Altezza originale"
 
-#: zp-core/functions.php:2766
+#: zp-core/functions.php:2736
 msgid "Orientation"
 msgstr "Orientazione"
 
-#: zp-core/functions.php:2767
+#: zp-core/functions.php:2737
 msgid "Software"
 msgstr "Software"
 
-#: zp-core/functions.php:2768
+#: zp-core/functions.php:2738
 msgid "Contrast Setting"
 msgstr "Impostazioni contrasto"
 
-#: zp-core/functions.php:2769
+#: zp-core/functions.php:2739
 msgid "Sharpness Setting"
 msgstr "Impostazioni nitidezza"
 
-#: zp-core/functions.php:2770
+#: zp-core/functions.php:2740
 msgid "Saturation Setting"
 msgstr "Impostazioni saturazione"
 
-#: zp-core/functions.php:2771
+#: zp-core/functions.php:2741
 msgid "White Balance"
 msgstr "Bilanciamento del bianco"
 
-#: zp-core/functions.php:2772
+#: zp-core/functions.php:2742
 msgid "Subject Distance"
 msgstr "Distanza del soggetto"
 
-#: zp-core/functions.php:2773
+#: zp-core/functions.php:2743
 msgid "Focal Length"
 msgstr "Lunghezza focale"
 
-#: zp-core/functions.php:2774
+#: zp-core/functions.php:2744
 msgid "Lens Type"
 msgstr "Tipo di lente"
 
-#: zp-core/functions.php:2775
+#: zp-core/functions.php:2745
 msgid "Lens Info"
 msgstr "Informazioni lente"
 
-#: zp-core/functions.php:2776
+#: zp-core/functions.php:2746
 msgid "35mm Focal Length Equivalent"
 msgstr "Lunghezza focale equivalente ai 35mm"
 
-#: zp-core/functions.php:2778
+#: zp-core/functions.php:2748
 msgid "Sub-location"
 msgstr "Sotto-località"
 
-#: zp-core/functions.php:2779
+#: zp-core/functions.php:2749
 msgid "Province/State"
 msgstr "Provincia/Stato"
 
-#: zp-core/functions.php:2780
+#: zp-core/functions.php:2750
 msgid "Country/Primary Location Code"
 msgstr "Nazione/Codice località primaria"
 
-#: zp-core/functions.php:2781
+#: zp-core/functions.php:2751
 msgid "Country/Primary Location Name"
 msgstr "Nazione/Nome località primaria"
 
-#: zp-core/functions.php:2782
+#: zp-core/functions.php:2752
 msgid "Content Location Code"
 msgstr "Codice località contenuto"
 
-#: zp-core/functions.php:2783
+#: zp-core/functions.php:2753
 msgid "Content Location Name"
 msgstr "Nome località contenuto"
 
-#: zp-core/functions.php:2784
+#: zp-core/functions.php:2754
 msgid "Latitude"
 msgstr "Latitudine"
 
-#: zp-core/functions.php:2785
+#: zp-core/functions.php:2755
 msgid "Latitude Reference"
 msgstr "Riferimento latitudine"
 
-#: zp-core/functions.php:2786
+#: zp-core/functions.php:2756
 msgid "Longitude"
 msgstr "Longitudine"
 
-#: zp-core/functions.php:2787
+#: zp-core/functions.php:2757
 msgid "Longitude Reference"
 msgstr "Riferimento longitudine"
 
-#: zp-core/functions.php:2788
+#: zp-core/functions.php:2758
 msgid "Altitude"
 msgstr "Altitudine"
 
-#: zp-core/functions.php:2789
+#: zp-core/functions.php:2759
 msgid "Altitude Reference"
 msgstr "Riferimento altitudine"
 
-#: zp-core/functions.php:2790
+#: zp-core/functions.php:2760
 msgid "Originating Program "
 msgstr "Programma di origine"
 
-#: zp-core/functions.php:2791
+#: zp-core/functions.php:2761
 msgid "Program Version"
 msgstr "Versione programma"
 
-#: zp-core/functions.php:2792
+#: zp-core/functions.php:2762
 msgid "Video File Format"
 msgstr "Formato file video"
 
-#: zp-core/functions.php:2793
+#: zp-core/functions.php:2763
 msgid "Video File Size"
 msgstr "Dimensione file video"
 
-#: zp-core/functions.php:2794
+#: zp-core/functions.php:2764
 msgid "Video Artist"
 msgstr "Artista video"
 
-#: zp-core/functions.php:2795
+#: zp-core/functions.php:2765
 msgid "Video Title"
 msgstr "Titolo video"
 
-#: zp-core/functions.php:2796
+#: zp-core/functions.php:2766
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: zp-core/functions.php:2797
+#: zp-core/functions.php:2767
 msgid "Bitrate_Mode"
 msgstr "Modalità_Bitrate"
 
-#: zp-core/functions.php:2798
+#: zp-core/functions.php:2768
 msgid "Bits per sample"
 msgstr "Bit per campione"
 
-#: zp-core/functions.php:2799
+#: zp-core/functions.php:2769
 msgid "Codec"
 msgstr "Codec"
 
-#: zp-core/functions.php:2800
+#: zp-core/functions.php:2770
 msgid "Compression Ratio"
 msgstr "Rapporto di compressione"
 
-#: zp-core/functions.php:2801
+#: zp-core/functions.php:2771
 msgid "Video Dataformat"
 msgstr "Formato dati video"
 
-#: zp-core/functions.php:2802
+#: zp-core/functions.php:2772
 msgid "File Encoder"
 msgstr "Codificatore file"
 
-#: zp-core/functions.php:2803
+#: zp-core/functions.php:2773
 msgid "Sample rate"
 msgstr "Velocità campione"
 
-#: zp-core/functions.php:2804
+#: zp-core/functions.php:2774
 msgid "Channel mode"
 msgstr "Modalità canale"
 
-#: zp-core/functions.php:2805
+#: zp-core/functions.php:2775
 msgid "Format"
 msgstr "Formato"
 
-#: zp-core/functions.php:2806
+#: zp-core/functions.php:2776
 msgid "Channels"
 msgstr "Canali"
 
-#: zp-core/functions.php:2807
+#: zp-core/functions.php:2777
 msgid "Frame rate"
 msgstr "Velocità frame"
 
-#: zp-core/functions.php:2808
+#: zp-core/functions.php:2778
 msgid "X Resolution"
 msgstr "Risoluzione X"
 
-#: zp-core/functions.php:2809
+#: zp-core/functions.php:2779
 msgid "Y Resolution"
 msgstr "Risoluzione Y"
 
-#: zp-core/functions.php:2810
+#: zp-core/functions.php:2780
 msgid "Aspect ratio"
 msgstr "Proporzioni"
 
-#: zp-core/functions.php:2811
+#: zp-core/functions.php:2781
 msgid "Play Time"
 msgstr "Tempo di esecuzione"
 
-#: zp-core/functions.php:2812
+#: zp-core/functions.php:2782
 msgid "XMP Rating"
 msgstr "Giudizio XMP"
 
-#: zp-core/functions.php:3039
+#: zp-core/functions.php:3009
 msgid "More info on our data privacy policy."
 msgstr "Altre informazioni sulla nostra politica di privacy dei dati."
 
-#: zp-core/functions.php:3066 zp-core/zp-extensions/comment_form.php:133
+#: zp-core/functions.php:3036 zp-core/zp-extensions/comment_form.php:133
 #: zp-core/zp-extensions/contact_form.php:189
 #: zp-core/zp-extensions/register_user.php:116
 msgid "No captcha handler is enabled."
@@ -10589,7 +10589,7 @@ msgstr "<a href=\"javascript:uri(false)\">Disabilita</a>"
 #: zp-core/utilities/refresh_database.php:5
 #: zp-core/utilities/refresh_metadata.php:5
 #: zp-core/utilities/reset_albumthumbs.php:13
-#: zp-core/zp-extensions/hitcounter.php:210
+#: zp-core/zp-extensions/hitcounter.php:212
 #: zp-core/zp-extensions/rating.php:190
 msgid "Database"
 msgstr "Database"
@@ -11385,47 +11385,47 @@ msgstr "Controllo Mod_Rewrite:"
 msgid "Mod_rewrite"
 msgstr "Mod_rewrite"
 
-#: zp-core/setup/setup-option-defaults.php:247
+#: zp-core/setup/setup-option-defaults.php:263
 msgid "Users with full privileges"
 msgstr "Utenti con tutti i privilegi"
 
-#: zp-core/setup/setup-option-defaults.php:256
+#: zp-core/setup/setup-option-defaults.php:272
 msgid "Users allowed only to view zenphoto objects"
 msgstr "Utenti abilitati solamente a vedere gli oggetti di zenphoto"
 
-#: zp-core/setup/setup-option-defaults.php:265
+#: zp-core/setup/setup-option-defaults.php:281
 msgid "Banned users"
 msgstr "Utenti bannati"
 
-#: zp-core/setup/setup-option-defaults.php:274
+#: zp-core/setup/setup-option-defaults.php:290
 msgid "Managers of one or more albums"
 msgstr "Gestori di uno o più album"
 
-#: zp-core/setup/setup-option-defaults.php:283
+#: zp-core/setup/setup-option-defaults.php:299
 msgid "Default user settings"
 msgstr "Impostazioni utente predefinite"
 
-#: zp-core/setup/setup-option-defaults.php:292
+#: zp-core/setup/setup-option-defaults.php:308
 msgid "Newly registered and verified users"
 msgstr "Utenti registrati e verificati di recente"
 
-#: zp-core/setup/setup-option-defaults.php:318
+#: zp-core/setup/setup-option-defaults.php:334
 msgid "Setting theme default options"
 msgstr "Impostazione opzioni predefinite dei temi"
 
-#: zp-core/setup/setup-option-defaults.php:336
+#: zp-core/setup/setup-option-defaults.php:352
 #, php-format
 msgid "Copyright %1$u: %2$s"
 msgstr "Copyright %1$u: %2$s"
 
-#: zp-core/setup/setup-option-defaults.php:374
+#: zp-core/setup/setup-option-defaults.php:390
 msgid ""
 "You can insert your Gallery description on the Admin Options Gallery tab."
 msgstr ""
 "È possibile inserire la descrizione della galleria usando la scheda Opzioni "
 "galleria nell’amministrazione."
 
-#: zp-core/setup/setup-option-defaults.php:597
+#: zp-core/setup/setup-option-defaults.php:613
 msgid "Plugin setup:"
 msgstr "Setup plug-in:"
 
@@ -16194,15 +16194,15 @@ msgstr "Lista separata da virgole di indirizzi IP da ignorare."
 msgid "Filter"
 msgstr "Filtro"
 
-#: zp-core/zp-extensions/hitcounter.php:69
+#: zp-core/zp-extensions/hitcounter.php:70
 msgid "IP addresses"
 msgstr "Indirizzi IP"
 
-#: zp-core/zp-extensions/hitcounter.php:69
+#: zp-core/zp-extensions/hitcounter.php:71
 msgid "Search Crawlers"
 msgstr "Crawler di ricerca"
 
-#: zp-core/zp-extensions/hitcounter.php:70
+#: zp-core/zp-extensions/hitcounter.php:72
 msgid ""
 "Check to enable. If a filter is enabled, viewers from in its associated list "
 "will not count hits."
@@ -16210,31 +16210,31 @@ msgstr ""
 "Spuntare per abilitare. Se è abilitato un filtro, i visitatori presenti "
 "nella lista associata non incrementeranno il contatore delle visite."
 
-#: zp-core/zp-extensions/hitcounter.php:72
+#: zp-core/zp-extensions/hitcounter.php:74
 msgid "Search Crawler list"
 msgstr "Lista crawler di ricerca"
 
-#: zp-core/zp-extensions/hitcounter.php:77
+#: zp-core/zp-extensions/hitcounter.php:79
 msgid "Comma-separated list of search bot user agent names."
 msgstr "Lista separata da virgole di nomi di user agent di bot di ricerca."
 
-#: zp-core/zp-extensions/hitcounter.php:83
+#: zp-core/zp-extensions/hitcounter.php:85
 msgid "Reset options to their default settings."
 msgstr "Ripristina le opzioni ai valori predefiniti."
 
-#: zp-core/zp-extensions/hitcounter.php:108
+#: zp-core/zp-extensions/hitcounter.php:110
 msgid "Defaults"
 msgstr "Predefiniti"
 
-#: zp-core/zp-extensions/hitcounter.php:133
+#: zp-core/zp-extensions/hitcounter.php:135
 msgid "Insert my IP"
 msgstr "Inserisci il mio IP"
 
-#: zp-core/zp-extensions/hitcounter.php:212
+#: zp-core/zp-extensions/hitcounter.php:214
 msgid "Reset all hitcounters"
 msgstr "Azzera tutti i contatori delle visite"
 
-#: zp-core/zp-extensions/hitcounter.php:217
+#: zp-core/zp-extensions/hitcounter.php:219
 msgid "Reset all hitcounters to zero"
 msgstr "Imposta tutti i contatori delle visite a zero"
 
