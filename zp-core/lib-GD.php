@@ -62,13 +62,20 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		$_gd_freetype_fonts = array(0);
 
 		$imgtypes = imagetypes();
-		$_lib_GD_info['GIF'] = ($imgtypes & IMG_GIF) ? 'gif' : false;
-		$_lib_GD_info['JPG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
-		$_lib_GD_info['JPEG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
-		$_lib_GD_info['PNG'] = ($imgtypes & IMG_PNG) ? 'png' : false;
-		$_lib_GD_info['WBMP'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
-		$_lib_GD_info['WBMP'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
-		$_lib_GD_info['WEBP'] = ($imgtypes & IMG_WEBP) ? 'webp' : false;
+		$gd_imgtypes['GIF'] = ($imgtypes & IMG_GIF) ? 'gif' : false;
+		$gd_imgtypes['JPG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
+		$gd_imgtypes['JPEG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
+		$gd_imgtypes['PNG'] = ($imgtypes & IMG_PNG) ? 'png' : false;
+		$gd_imgtypes['WBMP'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
+		$gd_imgtypes['WEBP'] = ($imgtypes & IMG_WEBP) ? 'webp' : false;
+		
+		//Fix that unsupported types may be listed without suffix and then confuse e.g. the "cache as" option
+		foreach($gd_imgtypes as $key => $value) {
+			if($value) {
+				$_lib_GD_info[$key] = $value;
+			}
+		}
+		unset($gd_imgtypes);
 		unset($imgtypes);
 		unset($info);
 
