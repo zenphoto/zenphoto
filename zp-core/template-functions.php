@@ -2680,7 +2680,7 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
   $w = $image->getWidth();
 
   //if we set width/height we are cropping and those are the sizes already
-  if (!is_null($size) && !is_null($width) && !is_null($height)) {
+  if (!is_null($width) && !is_null($height)) {
     return array($width, $height);
   }
 	if (isImageVideo($image)) { // size is determined by the player
