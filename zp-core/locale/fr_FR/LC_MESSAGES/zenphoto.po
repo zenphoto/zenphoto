@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: zenphoto 1.5.2a\n"
+"Project-Id-Version: zenphoto 1.5.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-29 08:31+0200\n"
-"PO-Revision-Date: 2019-05-29 08:32+0200\n"
+"POT-Creation-Date: 2019-06-07 17:56+0200\n"
+"PO-Revision-Date: 2019-06-07 17:57+0200\n"
 "Last-Translator: Vincent Bourganel <vincent_bourganel@yahoo.fr>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569)\n"
@@ -478,8 +478,8 @@ msgstr "Racine des albums"
 #: zp-core/lib-auth.php:565 zp-core/lib-auth.php:566 zp-core/lib-auth.php:574
 #: zp-core/lib-auth.php:575 zp-core/lib-auth.php:581 zp-core/lib-auth.php:582
 #: zp-core/lib-auth.php:586 zp-core/lib-auth.php:592 zp-core/lib-auth.php:593
-#: zp-core/setup/setup-option-defaults.php:367
-#: zp-core/setup/setup-option-defaults.php:368
+#: zp-core/setup/setup-option-defaults.php:383
+#: zp-core/setup/setup-option-defaults.php:384
 #: zp-core/template-functions.php:448 zp-core/template-functions.php:629
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:51
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
@@ -906,7 +906,7 @@ msgid "zpMobile theme by"
 msgstr "Thème zpMobile par"
 
 #: themes/zpmobile/functions.php:109
-#: zp-core/zp-extensions/favoritesHandler/favoritesClass.php:289
+#: zp-core/zp-extensions/favoritesHandler/favoritesClass.php:288
 msgid "Favorites"
 msgstr "Favoris"
 
@@ -6199,26 +6199,26 @@ msgstr ""
 msgid "An album object was instantiated without using the newAlbum() function."
 msgstr "Un objet album a été instancié sans utiliser la fonction newAlbum()."
 
-#: zp-core/class-album.php:1195 zp-core/class-album.php:1649
+#: zp-core/class-album.php:1195 zp-core/class-album.php:1647
 msgid "Invalid album instantiation: No album name"
 msgstr "Instanciation invalide de l’album : l’album n’a pas de nom"
 
-#: zp-core/class-album.php:1198 zp-core/class-album.php:1652
+#: zp-core/class-album.php:1198 zp-core/class-album.php:1650
 #, php-format
 msgid "Invalid album instantiation: %1$s!=%2$s"
 msgstr "Instanciation invalide de l’album : %1$s!=%2$s"
 
-#: zp-core/class-album.php:1200 zp-core/class-album.php:1654
+#: zp-core/class-album.php:1200 zp-core/class-album.php:1652
 #, php-format
 msgid "Invalid album instantiation: %s does not exist."
 msgstr "Instanciation invalide de l’album : %s n’existe pas"
 
-#: zp-core/class-album.php:1526
+#: zp-core/class-album.php:1524
 #, php-format
 msgid "Error: The album %s is not readable."
 msgstr "Erreur : l’album %s n’est pas lisible."
 
-#: zp-core/class-album.php:1528
+#: zp-core/class-album.php:1526
 #, php-format
 msgid "Error: The album named %s cannot be found."
 msgstr "Erreur : l’album %s est introuvable."
@@ -7552,15 +7552,15 @@ msgstr ""
 "Le fichier de journalisation %1$s a excédé sa taille maximale et a été "
 "renommé %2$s."
 
-#: zp-core/functions-basic.php:1762
+#: zp-core/functions-basic.php:1764
 msgid "ERROR: cURL request failed: "
 msgstr "ERREUR : la requête cURL a échoué : "
 
-#: zp-core/functions-basic.php:1765
+#: zp-core/functions-basic.php:1767
 msgid "NOTICE: cURL request not successful."
 msgstr "NOTICE : la requête cURL, n'a pas réussi correctement."
 
-#: zp-core/functions-basic.php:1773
+#: zp-core/functions-basic.php:1775
 msgid "ERROR: Your server does not support cURL."
 msgstr "ERREUR : Votre serveur ne supporte pas cURL."
 
@@ -10641,7 +10641,7 @@ msgstr "<a href=\"javascript:uri(false)\">Veuillez le faire</a>"
 #: zp-core/utilities/refresh_database.php:5
 #: zp-core/utilities/refresh_metadata.php:5
 #: zp-core/utilities/reset_albumthumbs.php:13
-#: zp-core/zp-extensions/hitcounter.php:210
+#: zp-core/zp-extensions/hitcounter.php:212
 #: zp-core/zp-extensions/rating.php:190
 msgid "Database"
 msgstr "Base de données"
@@ -11471,47 +11471,47 @@ msgstr "Vérification du fonctionnement du module Mod_Rewrite :"
 msgid "Mod_rewrite"
 msgstr "Mod_rewrite"
 
-#: zp-core/setup/setup-option-defaults.php:247
+#: zp-core/setup/setup-option-defaults.php:263
 msgid "Users with full privileges"
 msgstr "Utilisateurs avec tous les droits"
 
-#: zp-core/setup/setup-option-defaults.php:256
+#: zp-core/setup/setup-option-defaults.php:272
 msgid "Users allowed only to view zenphoto objects"
 msgstr "Utilisateurs autorisés seulement à voir les éléments Zenphoto"
 
-#: zp-core/setup/setup-option-defaults.php:265
+#: zp-core/setup/setup-option-defaults.php:281
 msgid "Banned users"
 msgstr "Utilisateurs bannis"
 
-#: zp-core/setup/setup-option-defaults.php:274
+#: zp-core/setup/setup-option-defaults.php:290
 msgid "Managers of one or more albums"
 msgstr "Gestionnaires d’un ou de plusieurs albums"
 
-#: zp-core/setup/setup-option-defaults.php:283
+#: zp-core/setup/setup-option-defaults.php:299
 msgid "Default user settings"
 msgstr "Paramètres par défaut des utilisateurs"
 
-#: zp-core/setup/setup-option-defaults.php:292
+#: zp-core/setup/setup-option-defaults.php:308
 msgid "Newly registered and verified users"
 msgstr "Utilisateurs récemment inscrits et vérifiés"
 
-#: zp-core/setup/setup-option-defaults.php:318
+#: zp-core/setup/setup-option-defaults.php:334
 msgid "Setting theme default options"
 msgstr "Configuration des options par défaut des thèmes"
 
-#: zp-core/setup/setup-option-defaults.php:336
+#: zp-core/setup/setup-option-defaults.php:352
 #, php-format
 msgid "Copyright %1$u: %2$s"
 msgstr "©%1$u : %2$s"
 
-#: zp-core/setup/setup-option-defaults.php:374
+#: zp-core/setup/setup-option-defaults.php:390
 msgid ""
 "You can insert your Gallery description on the Admin Options Gallery tab."
 msgstr ""
 "Vous pouvez saisir la description de votre galerie dans l’onglet « Options "
 "d’administration »."
 
-#: zp-core/setup/setup-option-defaults.php:597
+#: zp-core/setup/setup-option-defaults.php:613
 msgid "Plugin setup:"
 msgstr "Paramétrage des extensions :"
 
@@ -16296,15 +16296,15 @@ msgstr "Liste des IP à ignorer (séparées par des virgules)."
 msgid "Filter"
 msgstr "Filtre"
 
-#: zp-core/zp-extensions/hitcounter.php:69
+#: zp-core/zp-extensions/hitcounter.php:70
 msgid "IP addresses"
 msgstr "Adresses IP"
 
-#: zp-core/zp-extensions/hitcounter.php:69
+#: zp-core/zp-extensions/hitcounter.php:71
 msgid "Search Crawlers"
 msgstr "Robots de recherche"
 
-#: zp-core/zp-extensions/hitcounter.php:70
+#: zp-core/zp-extensions/hitcounter.php:72
 msgid ""
 "Check to enable. If a filter is enabled, viewers from in its associated list "
 "will not count hits."
@@ -16312,31 +16312,31 @@ msgstr ""
 "Cocher pour activer. Si un filtre est activé, les visiteurs qui proviennent "
 "de ces adresses ne seront pas comptabilisés."
 
-#: zp-core/zp-extensions/hitcounter.php:72
+#: zp-core/zp-extensions/hitcounter.php:74
 msgid "Search Crawler list"
 msgstr "Liste des robots de recherche"
 
-#: zp-core/zp-extensions/hitcounter.php:77
+#: zp-core/zp-extensions/hitcounter.php:79
 msgid "Comma-separated list of search bot user agent names."
 msgstr "Liste des robots des moteurs de recherche séparés par une virgule."
 
-#: zp-core/zp-extensions/hitcounter.php:83
+#: zp-core/zp-extensions/hitcounter.php:85
 msgid "Reset options to their default settings."
 msgstr "Réinitialise les options."
 
-#: zp-core/zp-extensions/hitcounter.php:108
+#: zp-core/zp-extensions/hitcounter.php:110
 msgid "Defaults"
 msgstr "Valeurs par défaut"
 
-#: zp-core/zp-extensions/hitcounter.php:133
+#: zp-core/zp-extensions/hitcounter.php:135
 msgid "Insert my IP"
 msgstr "Insérer mon adresse IP"
 
-#: zp-core/zp-extensions/hitcounter.php:212
+#: zp-core/zp-extensions/hitcounter.php:214
 msgid "Reset all hitcounters"
 msgstr "Remettre les compteurs à zéro"
 
-#: zp-core/zp-extensions/hitcounter.php:217
+#: zp-core/zp-extensions/hitcounter.php:219
 msgid "Reset all hitcounters to zero"
 msgstr "Remet à zéro tous les compteurs d’affichage."
 

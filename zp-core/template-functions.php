@@ -1898,7 +1898,7 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	}
 	$class = trim($class);
 	/* set the HTML image width and height parameters in case this image was "imageDefault.png" substituted for no thumbnail then the thumb layout is preserved */
-	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy);
+	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $_zp_current_album->getAlbumThumbImage());
 	$sizing = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	if($class) {
 		$class = ' class="' . $class . '"';
@@ -2680,7 +2680,7 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
   $w = $image->getWidth();
 
   //if we set width/height we are cropping and those are the sizes already
-  if (!is_null($size) && !is_null($width) && !is_null($height)) {
+  if (!is_null($width) && !is_null($height)) {
     return array($width, $height);
   }
 	if (isImageVideo($image)) { // size is determined by the player
