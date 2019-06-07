@@ -1898,7 +1898,7 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	}
 	$class = trim($class);
 	/* set the HTML image width and height parameters in case this image was "imageDefault.png" substituted for no thumbnail then the thumb layout is preserved */
-	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy);
+	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $_zp_current_album->getAlbumThumbImage());
 	$sizing = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	if($class) {
 		$class = ' class="' . $class . '"';
