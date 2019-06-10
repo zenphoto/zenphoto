@@ -113,7 +113,7 @@ if (getOption('perform_watermark')) {
 setOptionDefault('watermark_h_offset', 90);
 setOptionDefault('watermark_w_offset', 90);
 setOptionDefault('watermark_scale', 5);
-setOptionDefault('watermark_allow_upscale', 1);
+purgeDefault('watermark_allow_upscale');
 setOptionDefault('perform_video_watermark', 0);
 
 if (getOption('perform_video_watermark')) {
@@ -452,6 +452,10 @@ $data['unprotected_pages'] = $unprotected;
 setOption('gallery_data', serialize($data));
 
 $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
+
+/*
+ * Purge options being removed
+ */
 
 /* TODO:enable on the 1.4.7 release
  *

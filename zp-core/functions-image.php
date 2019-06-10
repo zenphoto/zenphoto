@@ -449,47 +449,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		if (in_array('gray', $imgEffects)) {
 			zp_imageGray($newim);
 		}
-
-		if ($watermark_image) {
-			$offset_h = getOption('watermark_h_offset') / 100;
-			$offset_w = getOption('watermark_w_offset') / 100;
-			$percent = getOption('watermark_scale') / 100;
-			$watermark = zp_imageGet($watermark_image);
-			if (!$watermark) {
-				imageError('404 Not Found', sprintf(gettext('Watermark %s not renderable.'), $watermark_image), 'err-failimage.png');
-			}
-			$watermark_width = zp_imageWidth($watermark);
-			$watermark_height = zp_imageHeight($watermark);
-			$imw = zp_imageWidth($newim);
-			$imh = zp_imageHeight($newim);
-			$nw = sqrt(($imw * $imh * $percent) * ($watermark_width / $watermark_height));
-			$nh = $nw * ($watermark_height / $watermark_width);
-			$r = sqrt(($imw * $imh * $percent) / ($watermark_width * $watermark_height));
-			if (!getOption('watermark_allow_upscale')) {
-				$r = min(1, $r);
-			}
-			$nw = round($watermark_width * $r);
-			$nh = round($watermark_height * $r);
-			$watermark_new = false;
-			if (($nw != $watermark_width) || ($nh != $watermark_height)) {
-				$watermark_new = zp_imageResizeAlpha($watermark, $nw, $nh);
-				if (!zp_resampleImage($watermark_new, $watermark, 0, 0, 0, 0, $nw, $nh, $watermark_width, $watermark_height)) {
-					imageError('404 Not Found', sprintf(gettext('Watermark %s not resizeable.'), $watermark_image), 'err-failimage.png');
-				}
-			}
-			// Position Overlay in Bottom Right
-			$dest_x = max(0, floor(($imw - $nw) * $offset_w));
-			$dest_y = max(0, floor(($imh - $nh) * $offset_h));
-			if (DEBUG_IMAGE)
-				debugLog("Watermark:" . basename($imgfile) . ": \$offset_h=$offset_h, \$offset_w=$offset_w, \$watermark_height=$watermark_height, \$watermark_width=$watermark_width, \$imw=$imw, \$imh=$imh, \$percent=$percent, \$r=$r, \$nw=$nw, \$nh=$nh, \$dest_x=$dest_x, \$dest_y=$dest_y");
-			if (!zp_copyCanvas($newim, $watermark_new, $dest_x, $dest_y, 0, 0, $nw, $nh)) {
-				imageError('404 Not Found', sprintf(gettext('Image %s not renderable (copycanvas).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
-			}
-			zp_imageKill($watermark);
-			if($watermark_new) {
-				zp_imageKill($watermark_new);
-			}
-		} 
+		$newim = addWatermark($newim, $watermark_image, $imgfile);
 
 		// Create the cached file (with lots of compatibility)...
 		@chmod($newfile, 0777);
@@ -600,4 +560,69 @@ function getImageRotation($imgfile) {
 		}
 	}
 	return false;
+}
+
+/**
+ * Adds a watermark to a resized image. If no watermark is set it just returns the image
+ * 
+ * @since ZenphotoCMS 1.5.3 - consolidated from cacheImage() and full-image.php
+ * 
+ * @param resource|object $newim GD image resource or Imagick object
+ * @param string $watermark_image The path to the watermark to use
+ * @param string $imgfile Path to the image being processed (optionally for debugging only)
+ * @return resource|object
+ */
+function addWatermark($newim, $watermark_image, $imgfile = null) {
+	if ($watermark_image) {
+		$watermark = zp_imageGet($watermark_image);
+		if (!$watermark) {
+			imageError('404 Not Found', sprintf(gettext('Watermark %s not renderable.'), $watermark_image), 'err-failimage.png');
+		}
+		$offset_h = getOption('watermark_h_offset') / 100;
+		$offset_w = getOption('watermark_w_offset') / 100;
+		$percent = getOption('watermark_scale') / 100;
+		$watermark_width = zp_imageWidth($watermark);
+		$watermark_height = zp_imageHeight($watermark);
+		$imw = zp_imageWidth($newim);
+		$imh = zp_imageHeight($newim);
+		$nw = sqrt(($imw * $imh * $percent) * ($watermark_width / $watermark_height));
+		$nh = $nw * ($watermark_height / $watermark_width);
+		$r = sqrt(($imw * $imh * $percent) / ($watermark_width * $watermark_height));
+		//if (!getOption('watermark_allow_upscale')) {
+			$r = min(1, $r);
+		//}
+		$nw = round($watermark_width * $r);
+		$nh = round($watermark_height * $r);
+		$watermark_new = false;
+		if ($nw != $watermark_width || $nh != $watermark_height) {
+			$watermark_new = zp_imageResizeAlpha($watermark, $nw, $nh);
+			if (!zp_resampleImage($watermark_new, $watermark, 0, 0, 0, 0, $nw, $nh, $watermark_width, $watermark_height)) {
+				imageError('404 Not Found', sprintf(gettext('Watermark %s not resizeable.'), $watermark_image), 'err-failimage.png');
+			}
+		}
+		
+		// If upscaling is not allowed or it did not occur just use the original at least
+		if ($watermark_new === false) {
+			$watermark_new = $watermark;
+		}
+		// Position Overlay in Bottom Right
+		$dest_x = max(0, floor(($imw - $nw) * $offset_w));
+		$dest_y = max(0, floor(($imh - $nh) * $offset_h));
+		if (!is_null($imgfile) && DEBUG_IMAGE) {
+			debugLog("Watermark:" . basename($imgfile) . ": \$offset_h=$offset_h, \$offset_w=$offset_w, \$watermark_height=$watermark_height, \$watermark_width=$watermark_width, \$imw=$imw, \$imh=$imh, \$percent=$percent, \$r=$r, \$nw=$nw, \$nh=$nh, \$dest_x=$dest_x, \$dest_y=$dest_y");
+		}
+		if (!zp_copyCanvas($newim, $watermark_new, $dest_x, $dest_y, 0, 0, $nw, $nh)) {
+			imageError('404 Not Found', sprintf(gettext('Image %s not renderable (copycanvas).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
+		}
+		zp_imageKill($watermark);
+		/*
+		 * GD special behaviour:
+		 * If no resizing happened killing $watermark also already kills $watermark_new being the same
+		 */
+		if (GRAPHICS_LIBRARY != 'GD' || (GRAPHICS_LIBRARY == 'GD' && get_resource_type($watermark_new) == 'gd')) { 
+			debugLog('watermark new killed');
+			zp_imageKill($watermark_new);
+		} 
+	}
+	return $newim;
 }
