@@ -454,35 +454,35 @@ setOption('gallery_data', serialize($data));
 $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
 
 /*
- * Purge options being removed
- */
-
-/* TODO:enable on the 1.4.7 release
  *
-  The following options have been relocated to methods of the gallery object. They will be purged form installations
-  on the Zenphoto 1.5 release.
-
-  gallery_page_unprotected_xxx
-  gallery_sortdirection
-  gallery_sorttype
-  gallery_title
-  Gallery_description
-  gallery_password
-  gallery_user
-  gallery_hint
-  current_theme
-  website_title
-  website_url
-  gallery_security
-  login_user_field
-  album_use_new_image_date
-  thumb_select_images
-  album_default
-  image_default
-
- * these may have been used in third party themes. Themes should cease using these options and instead use the
-  appropriate gallery methods.
+ * The following options have been relocated in 1.4.7 to methods of the gallery object. They will be purged form installations
+ * on the Zenphoto 1.5 release.
+ * 
+ * these may have been used in third party themes. Themes should cease using these options and instead use the appropriate gallery methods.
  */
+$unprotectedpages = query_full_array("SELECT name FROM " . prefix('options') . " WHERE name LIKE 'gallery_page_unprotected_%' ");
+if ($unprotectedpages) {
+	foreach ($unprotectedpages as $unprotectedpage) {
+		purgeOption($unprotectedpage['name']);
+	}
+}
+purgeOption('gallery_sortdirection');
+purgeOption('gallery_sorttype');
+purgeOption('gallery_title');
+purgeOption('Gallery_description');
+purgeOption('gallery_password');
+purgeOption('gallery_user');
+purgeOption('gallery_hint');
+purgeOption('current_theme');
+purgeOption('website_title');
+purgeOption('website_url');
+purgeOption('gallery_security');
+purgeOption('login_user_field');
+purgeOption('album_use_new_image_date');
+purgeOption('thumb_select_images');
+purgeOption('album_default');
+purgeOption('image_default');
+
 if (TEST_RELEASE) {
 	foreach ($data as $key => $option) {
 		purgeOption($key);
