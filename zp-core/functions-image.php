@@ -588,9 +588,7 @@ function addWatermark($newim, $watermark_image, $imgfile = null) {
 		$nw = sqrt(($imw * $imh * $percent) * ($watermark_width / $watermark_height));
 		$nh = $nw * ($watermark_height / $watermark_width);
 		$r = sqrt(($imw * $imh * $percent) / ($watermark_width * $watermark_height));
-		//if (!getOption('watermark_allow_upscale')) {
-			$r = min(1, $r);
-		//}
+		$r = min(1, $r);
 		$nw = round($watermark_width * $r);
 		$nh = round($watermark_height * $r);
 		$watermark_new = false;
