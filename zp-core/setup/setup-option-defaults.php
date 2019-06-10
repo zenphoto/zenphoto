@@ -113,7 +113,7 @@ if (getOption('perform_watermark')) {
 setOptionDefault('watermark_h_offset', 90);
 setOptionDefault('watermark_w_offset', 90);
 setOptionDefault('watermark_scale', 5);
-purgeDefault('watermark_allow_upscale');
+purgeOption('watermark_allow_upscale');
 setOptionDefault('perform_video_watermark', 0);
 
 if (getOption('perform_video_watermark')) {
