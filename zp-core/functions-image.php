@@ -618,7 +618,6 @@ function addWatermark($newim, $watermark_image, $imgfile = null) {
 		 * If no resizing happened killing $watermark also already kills $watermark_new being the same
 		 */
 		if (GRAPHICS_LIBRARY != 'GD' || (GRAPHICS_LIBRARY == 'GD' && get_resource_type($watermark_new) == 'gd')) { 
-			debugLog('watermark new killed');
 			zp_imageKill($watermark_new);
 		} 
 	}
