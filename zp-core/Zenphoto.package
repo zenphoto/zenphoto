@@ -680,9 +680,9 @@ zp-core/locale/es_AR/LC_MESSAGES/zenphoto.mo
 zp-core/locale/es_AR/LC_MESSAGES/zenphoto.po
 zp-core/locale/es_AR/flag.png
 zp-core/locale/es_BO
-zp-core/locale/es_BO/LC_Messages
-zp-core/locale/es_BO/LC_Messages/zenphoto.mo
-zp-core/locale/es_BO/LC_Messages/zenphoto.po
+zp-core/locale/es_BO/LC_MESSAGES
+zp-core/locale/es_BO/LC_MESSAGES/zenphoto.mo
+zp-core/locale/es_BO/LC_MESSAGES/zenphoto.po
 zp-core/locale/es_BO/flag.png
 zp-core/locale/es_ES
 zp-core/locale/es_ES/LC_MESSAGES
