@@ -1876,14 +1876,14 @@ function sanitizeRedirect($redirectTo) {
 			$redirect = SERVER_HTTP_HOST;
 		}
 		if (defined('WEBPATH') && !empty(WEBPATH) && strpos($redirectTo, WEBPATH) === false) {
-			$redirect .= WEBPATH .'/';
+			$redirect .= WEBPATH;
 		} 
 		if (isset($redir['path'])) {
 			$path = urldecode(sanitize($redir['path']));
-			//fix double slashes with WEBPATH on subfolder installs
-			if(substr($path, 0,1) == '/') {
-				$path = substr($path, 1);
-			}
+			//Prevent double slashes or missing slash with WEBPATH on subfolder installs
+			if(substr($path , 0, 1) != '/') {
+				$path = '/' . $path;
+			} 
 			$redirect .= $path;
 		}
 		if (isset($redir['query'])) {
