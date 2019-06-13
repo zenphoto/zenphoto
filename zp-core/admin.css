@@ -1383,7 +1383,7 @@ button.positive,.buttons a.positive {
 .resizeable_tagchecklist {
 	border: 1px solid #ccc;
 	list-style: none;
-	height: 120px;
+	height: 24em;
 	overflow: auto;
 	background-color: white;
 }
