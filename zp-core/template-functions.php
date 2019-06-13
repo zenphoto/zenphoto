@@ -4415,21 +4415,25 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 	?>
 	<div id="passwordform">
 		<?php
-		if ($_password_showProtected && !$_zp_login_error) {
-			?>
-			<p>
-				<?php echo gettext("The page you are trying to view is password protected."); ?>
-			</p>
-			<?php
-		}
-		if ($loginlink = zp_apply_filter('login_link', NULL)) {
-			$logintext = gettext('login');
-			?>
-			<a href="<?php echo $loginlink; ?>" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
-			<?php
-		} else {
-			$_zp_authority->printLoginForm($_password_redirect, false, $_password_showuser, false, $_password_hint);
-		}
+			if(zp_loggedin()) {
+				echo '<p><strong>' . gettext('You are successfully logged in.') . '</strong></p>';
+			} else {
+				if ($_password_showProtected && !$_zp_login_error) {
+					?>
+					<p>
+						<?php echo gettext("The page you are trying to view is password protected."); ?>
+					</p>
+					<?php
+				}
+				if ($loginlink = zp_apply_filter('login_link', NULL)) {
+					$logintext = gettext('login');
+					?>
+					<a href="<?php echo $loginlink; ?>" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
+					<?php
+				} else {
+					$_zp_authority->printLoginForm($_password_redirect, false, $_password_showuser, false, $_password_hint);
+				}
+			}
 		?>
 	</div>
 	<?php
