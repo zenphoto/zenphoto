@@ -1470,6 +1470,7 @@ button.positive,.buttons a.positive {
 	height: 1%;
 }
 
+
 /* CSS for tag new lists
 -----------------------------*/
 .tagnewlist {
@@ -1504,7 +1505,7 @@ button.positive,.buttons a.positive {
 .searchchecklist {
 	border: 1px solid #ccc;
 	list-style: none;
-	height: 120px;
+	height: 18em;
 	width: 350px;
 	overflow: auto;
 	background-color: white;
@@ -1664,7 +1665,8 @@ button.positive,.buttons a.positive {
 .languagelist {
 	border: 1px solid #ccc;
 	list-style: none;
-	height: 8em;
+	height: 16em;
+	resize: vertical;
 	overflow: auto;
 	width: 350px;
 	background-color: white;
@@ -2026,6 +2028,7 @@ fieldset,
 .shortchecklist {
 	border: 1px solid #ccc;
 	list-style: none;
+	resize: vertical;
 	height: 10em;
 	width: 19.5em;
 	overflow: auto;
