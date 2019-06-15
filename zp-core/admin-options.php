@@ -767,9 +767,6 @@ Zenphoto_Authority::printPasswordFormJS();
 												if ($dirname == $currentValue) {
 													$r_attrs = ' checked="checked"';
 													$c_attrs = ' checked="checked" disabled="disabled"';
-													?>
-													<input type="hidden" name="language_allow_<?php echo $dirname; ?>" value="1" />
-													<?php
 													$ci = $c;
 												}
 												$c++;
