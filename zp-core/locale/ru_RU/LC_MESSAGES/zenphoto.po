@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Bookmarks: 910,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: themes\n"
 "X-Poedit-SearchPath-2: zp-core\n"
@@ -1375,7 +1375,7 @@ msgstr "Альбом"
 
 #: themes/zpmobile/functions.php:96
 msgid "Powered by"
-msgstr ""
+msgstr "Powered by <a href=\"https://xlioness.com/\" >.</a>"
 
 #: themes/zpmobile/functions.php:97
 #, fuzzy
@@ -11556,7 +11556,6 @@ msgid "login"
 msgstr "вход"
 
 #: zp-core/template-functions.php:4443
-#, fuzzy
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
 "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
@@ -11564,8 +11563,8 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web photo "
 "album\"><font face=\"Arial Narrow\" size=\"4\">zen</font><span style=\"font-"
 "variant: small-caps; font-weight: 700\"><font face=\"Arial Black\" size="
-"\"1\">photo</font></span></a> (<a href=\"http://www.1nc.ru/blog/category/"
-"zenphoto/\" title=\"Zenphoto по-русски\">по-русски</a>)"
+"\"1\">photo</font></span></a> (<a href=\"https://xlioness.com/\" title="
+"\"Zenphoto по-русски\">по-русски</a>)"
 
 #: zp-core/template-functions.php:4608
 msgid "Zenphoto Error:</strong> the requested object was not found."
