@@ -46,9 +46,9 @@ class favorites extends AlbumBase {
 		return $this->list;
 	}
 
- function getOwner() {
-   return $this->owner;
- }
+	function getOwner() {
+		return $this->owner;
+	}
 
 	function addImage($img) {
 		$folder = $img->imagefolder;
@@ -146,7 +146,7 @@ class favorites extends AlbumBase {
 		if ($mine || is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
 			$results = array();
 			$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"albums\";%"');
-   if ($result) {
+			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$data = getSerializedArray($row['data']);
 					$albumobj = newAlbum($data['id'], true, true);
@@ -163,7 +163,7 @@ class favorites extends AlbumBase {
 				if (is_null($sortdirection)) {
 					if ($this->getSortDirection('album')) {
 						$sortdirection = 'DESC';
-					} 
+					}
 				}
 				$sortkey = $this->getAlbumSortKey($sorttype);
 				if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
@@ -172,7 +172,7 @@ class favorites extends AlbumBase {
 					if (!is_null($sortdirection)) {
 						$order = strtoupper($sortdirection) == 'DESC';
 					} else {
-						$order = $obj->getSortDirection('album');
+						$order = $this->getSortDirection('album');
 					}
 				}
 				$results = sortByKey($results, $sortkey, $order);
@@ -214,7 +214,7 @@ class favorites extends AlbumBase {
 					}
 				}
 				db_free_result($result);
-				
+
 				if (is_null($sorttype)) {
 					$sorttype = $this->getSortType();
 				}
@@ -234,7 +234,7 @@ class favorites extends AlbumBase {
 				foreach ($images as $data) {
 					$this->images[] = array('folder' => $data['folder'], 'filename' => $data['filename']);
 				}
-				$this->lastimagesort = $sorttype . $sortdirection; 
+				$this->lastimagesort = $sorttype . $sortdirection;
 			}
 		}
 		return parent::getImages($page, $firstPageCount);
