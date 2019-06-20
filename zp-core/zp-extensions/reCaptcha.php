@@ -97,7 +97,7 @@ class reCaptcha extends _zp_captcha {
 	 * @return type
 	 */
 	function getCaptchaHTML($publicKey, $theme, $type, $size) {
-		return '<span class="g-recaptcha" data-sitekey="' . $publicKey . '" data-theme="' . $theme . '" data-type="' . $type . '" data-size="' . $size . '"></span>
+		return '<div class="g-recaptcha" data-sitekey="' . $publicKey . '" data-theme="' . $theme . '" data-type="' . $type . '" data-size="' . $size . '"></div>
 				<script src="https://www.google.com/recaptcha/api.js"></script>';
 	}
 
