@@ -542,10 +542,10 @@ function getTimezones() {
 		foreach ($timezones as $key => $zones) {
 			foreach ($zones as $id => $zone) {
 				/**
-				 * Only get timezones explicitely not part of "Others".
+				 * Only get timezones explicitely not part of "Others" except UTC
 				 * @see http://www.php.net/manual/en/timezones.others.php
 				 */
-				if (preg_match('/^(Africa|America|Antarctica|Arctic|Asia|Atlantic|Australia|Europe|Indian|Pacific)\//', $zone['timezone_id'])) {
+				if ($zone['timezone_id'] == 'UTC' || preg_match('/^(Africa|America|Antarctica|Arctic|Asia|Atlantic|Australia|Europe|Indian|Pacific)\//', $zone['timezone_id'])) {
 					$cities[] = $zone['timezone_id'];
 				}
 			}
