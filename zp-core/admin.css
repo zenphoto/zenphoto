@@ -2344,13 +2344,17 @@ div.tabs>div h2 {
 	top: 8px;
 }
 
+.flags {
+	padding: 0;
+}
+
 .flags img {
 	border: none;
 	vertical-align: -15%;
 }
 
 .flags li {
-	display: inline;
+	display: inline-block;
 	padding: 5px;
 }
 

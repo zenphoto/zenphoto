@@ -306,12 +306,16 @@ li {
 	height: 2.2em;
 }
 
+.sflags {
+	text-align: right;
+}
+
 .sflags img {
 	border: none;
 }
+
 .sflags li {
-	display: inline;
-	float:right;
+	display: inline-block;
 	padding: 5px;
 }
 

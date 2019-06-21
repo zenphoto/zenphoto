@@ -474,7 +474,7 @@ class setup {
 		<ul class="sflags">
 			<?php
 			$_languages = generateLanguageList();
-			krsort($_languages, SORT_LOCALE_STRING);
+			ksort($_languages, SORT_LOCALE_STRING);
 			$currentValue = getOption('locale');
 			foreach ($_languages as $text => $lang) {
 				if (setup::locale($lang)) {
