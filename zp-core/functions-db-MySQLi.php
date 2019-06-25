@@ -25,17 +25,19 @@ function db_connect($config, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_details;
 	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 	if (function_exists('mysqli_connect')) {
-		try {
-			$_zp_DB_connection = mysqli_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass']);
-		} catch (mysqli_sql_exception $e) {
-			$_zp_DB_connection = NULL;
-			$connection_error = gettext('MySQLi Error: Zenphoto could not instantiate a connection.') . PHP_EOL;
-			$connection_error .= $e->getMessage();
-			debugLogBacktrace($connection_error);
-			if ($errorstop) {
-				zp_error($connection_error);
-			} 
-			return false;
+		if(!$_zp_DB_connection) {
+			try {
+				$_zp_DB_connection = mysqli_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass']);
+			} catch (mysqli_sql_exception $e) {
+				$_zp_DB_connection = NULL;
+				$connection_error = gettext('MySQLi Error: Zenphoto could not instantiate a connection.') . PHP_EOL;
+				$connection_error .= $e->getMessage();
+				debugLogBacktrace($connection_error);
+				if ($errorstop) {
+					zp_error($connection_error);
+				} 
+				return false;
+			}
 		}
 	} 
 	$_zp_DB_details['mysql_host'] = $config['mysql_host'];
