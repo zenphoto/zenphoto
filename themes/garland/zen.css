@@ -1146,3 +1146,9 @@ clear: left !important;
 .clearright {
 clear: right !important;
 }
+
+/* reCaptcha
+------------------------------ */
+.g-recaptcha {
+	display: inline-block;
+}
