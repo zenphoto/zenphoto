@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-23 09:31+0200\n"
+"POT-Creation-Date: 2019-07-27 14:17+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -7545,33 +7545,33 @@ msgstr ""
 "MySQL fout: MySQL gaf de foutmelding: %1$s toen Zenphoto de database %2$s "
 "probeerde te selecteren."
 
-#: zp-core/functions-db-MySQL.php:67 zp-core/functions-db-MySQLi.php:91
+#: zp-core/functions-db-MySQL.php:67 zp-core/functions-db-MySQLi.php:93
 #: zp-core/functions-db_PDO.php:26
 msgid "prefix"
 msgstr "prefix"
 
-#: zp-core/functions-db-MySQL.php:68 zp-core/functions-db-MySQLi.php:92
+#: zp-core/functions-db-MySQL.php:68 zp-core/functions-db-MySQLi.php:94
 #: zp-core/functions-db_PDO.php:27
 msgid "DB"
 msgstr "DB"
 
-#: zp-core/functions-db-MySQL.php:69 zp-core/functions-db-MySQLi.php:93
+#: zp-core/functions-db-MySQL.php:69 zp-core/functions-db-MySQLi.php:95
 #: zp-core/functions-db_PDO.php:28
 #, php-format
 msgid "%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s"
 msgstr "%1$s Fout: (%2$s) mislukt. %1$s gaf de foutmelding: %3$s."
 
-#: zp-core/functions-db-MySQL.php:166 zp-core/functions-db-MySQLi.php:193
+#: zp-core/functions-db-MySQL.php:166 zp-core/functions-db-MySQLi.php:195
 #: zp-core/functions-db_PDO.php:120
 #, php-format
 msgid "%s not connected"
 msgstr "%s niet verbonden"
 
-#: zp-core/functions-db-MySQLi.php:32 zp-core/functions-db_NULL.php:26
+#: zp-core/functions-db-MySQLi.php:33 zp-core/functions-db_NULL.php:26
 msgid "MySQLi Error: Zenphoto could not instantiate a connection."
 msgstr "KMySQLi fout: Zenphoto kon geen verbinding maken."
 
-#: zp-core/functions-db-MySQLi.php:47
+#: zp-core/functions-db-MySQLi.php:49
 #, php-format
 msgid ""
 "MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select "
@@ -20517,7 +20517,7 @@ msgid ""
 "or index.php.<br /> If you want to exclude a page completely enter <em>page-"
 "filename.php/</em>. <br />If you want to exclude a page by a specific title, "
 "image filename, or album folder name enter <em>pagefilename.php/titlelink or "
-"image filename or album folder</em>. Separate several entries by comma."
+"image filename or album folder</em>. Separate several entries by comma.<br />"
 msgstr ""
 "De lijst van pagina’s die uitgesloten worden voor caching. Pagina’s die "
 "uitgesloten kunnen worden zijn aangepaste thema-pagina’s, Zenpage pagina’s "
@@ -20528,6 +20528,16 @@ msgstr ""
 "naam.php/titlelink, afbeeldings-bestandsnaam of album-naam</em>.Er kunnen "
 "meerdere uitsluitingen ingevuld worden. Deze moeten dan gescheiden worden "
 "door een <em>komma</em>."
+
+#: zp-core/zp-extensions/static_html_cache.php:351
+msgid ""
+"<strong>NOTE:</strong> In order to work correctly, the following theme pages "
+"must be excluded from cache generation: <em>search.php, contact.php, "
+"register.php</em> and <em>favorites.php</em>"
+msgstr ""
+"<strong>NOTE:</strong> Om goed te werken moeten de volgende themapagina’s "
+"voor caching uitgesloten worden: <em>search.php, contact.php, register.php</"
+"em> en <em>favorites.php</em>"
 
 #: zp-core/zp-extensions/tag_extras.php:13
 msgid ""
