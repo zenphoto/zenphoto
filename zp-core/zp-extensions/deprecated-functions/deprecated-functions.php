@@ -42,7 +42,7 @@ class internal_deprecations {
 	 * @since 1.5
 	 */
 	static function hasPrimaryScripts() {
-		deprecated_functions::notify(gettext('Use removeTrailingSlash() instead'));
+		deprecated_functions::notify(gettext('Use hasPrimaryScripts() instead'));
 	}
 	/**
 	 * @deprecated 2.0 Use removeDir() instead
