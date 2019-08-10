@@ -122,6 +122,7 @@ if (isset($_GET['action'])) {
 									$what = 'new';
 									$userobj = Zenphoto_Authority::newAdministrator('');
 									$userobj->setUser($user);
+									$userobj->setLastChange();
 									markUpdated();
 								}
 							} else {

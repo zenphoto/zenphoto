@@ -120,6 +120,7 @@ function updatePage(&$reports, $newpage = false) {
 	$page->setCustomData(zp_apply_filter('save_page_custom_data', $custom, $page));
 	$page->setShow($show);
 	$page->setDateTime($date);
+	$page->setLastChange($date);
 	$page->setCommentsAllowed($commentson);
 	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
 		$page->setCodeblock($codeblock);
@@ -391,6 +392,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	$article->setCustomData(zp_apply_filter('save_article_custom_data', $custom, $article));
 	$article->setShow($show);
 	$article->setDateTime($date);
+	$article->setLastChange($date);
 	$article->setCommentsAllowed($commentson);
 	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
 		$article->setCodeblock($codeblock);
@@ -897,6 +899,7 @@ function updateCategory(&$reports, $newcategory = false) {
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title', $title);
 	$cat->setDesc($desc);
+	$cat->setLastChange();
 	$cat->setCustomData(zp_apply_filter('save_category_custom_data', $custom, $cat));
 	$cat->setShow($show);
 	if (getcheckboxState('resethitcounter')) {

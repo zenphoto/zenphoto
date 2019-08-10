@@ -171,6 +171,7 @@ class Image extends MediaObject {
 		global $_zp_gallery;
 		$this->setShow($_zp_gallery->getImagePublish());
 		$this->set('mtime', $this->filemtime);
+		$this->setLastChange();
 		$this->updateDimensions(); // deal with rotation issues
 	}
 

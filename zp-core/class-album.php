@@ -97,6 +97,7 @@ class AlbumBase extends MediaObject {
 		$parentalbum = NULL;
 		$this->setShow($_zp_gallery->getAlbumPublish());
 		$this->set('mtime', time());
+		$this->setLastChange();
 		$title = trim($this->name);
 		$this->set('title', sanitize($title, 2));
 		return true;
