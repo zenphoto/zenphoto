@@ -71,7 +71,7 @@ class Zenpage {
 				}
 				return $this->categoryStructure;
 			}
-			$this->categoryStructure = array();
+			return $this->categoryStructure = array();
 		} else {
 			return $this->categoryStructure;
 		}	
