@@ -9,12 +9,15 @@
  */
 class ZenpageCategory extends ZenpageRoot {
 
-	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
-	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
-	var $view_rights = ALL_NEWS_RIGHTS;
+	public $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
+	public $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
+	public $view_rights = ALL_NEWS_RIGHTS;
+	public $parent = null;
+	public $parents = null;
 	protected $sortorder = 'date';
 	protected $sortdirection = true;
 	protected $sortSticky = true;
+	
 
 	function __construct($catlink, $create = NULL) {
 		if (is_array($catlink)) {
@@ -243,36 +246,46 @@ class ZenpageCategory extends ZenpageRoot {
 			return false;
 		}
 	}
+	
+		/**
+	 * Gets the parent category object based on the parentid set
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return obj|null
+	 */
+	function getParent() {
+		if (is_null($this->parent)) {
+			$parentid = $this->getParentID();
+			$obj = getItembyID('news_categories', $parentid);
+			if ($obj) {
+				return $this->parent = $obj;
+			}
+		} else {
+			return $this->parent;
+		}
+		return null;
+	}
 
 	/**
-	 * Gets the parent categories recursivly to the category whose parentid is passed or the current object
-	 *
-	 * @param int $parentid The parentid of the category to get the parents of
-	 * @param bool $initparents
-	 * @return array
+	 * Gets the parent categories' titlelinks recursivly to the category
+	 * 
+	 * @return array|null
 	 */
-	function getParents(&$parentid = '', $initparents = true) {
-		global $parentcats, $_zp_zenpage;
-		$allitems = $_zp_zenpage->getAllCategories(false);
-		if ($initparents) {
-			$parentcats = array();
+	function getParents() {
+		if (func_num_args() != 0) {
+			degbuglog(gettext('class ZenpageCategory getParents(): The parameters $parentid and $initparents have been removed in Zenphoto 1.5.5.'));
 		}
-		if (empty($parentid)) {
-			$currentparentid = $this->getParentID();
-		} else {
-			$currentparentid = $parentid;
-		}
-		foreach ($allitems as $item) {
-			$obj = new ZenpageCategory($item['titlelink']);
-			$itemtitlelink = $obj->getTitlelink();
-			$itemid = $obj->getID();
-			$itemparentid = $obj->getParentID();
-			if ($itemid == $currentparentid) {
-				array_unshift($parentcats, $itemtitlelink);
-				$obj->getParents($itemparentid, false);
+		if (is_null($this->parents)) {
+			$parents = array();
+			$cat = $this;
+			while (!is_null($cat = $cat->getParent())) {
+				array_unshift($parents, $cat->getTitlelink());
 			}
+			return $this->parents = $parents;
+		} else {
+			return $this->parents;
 		}
-		return $parentcats;
 	}
 
 	/**

@@ -20,7 +20,7 @@ define('ZP_ARTICLES_PER_PAGE', getOption("zenpage_articles_per_page"));
 
 class Zenpage {
 
-	public $categoryStructure = array();
+	public $categoryStructure = null;
 	// article defaults (mirrors category vars)
 	protected $sortorder = 'date';
 	protected $sortdirection = true;
@@ -32,11 +32,7 @@ class Zenpage {
 	 * Class instantiator
 	 */
 	function __construct() {
-		$allcategories = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER by sort_order");
-		$this->categoryStructure = array();
-		foreach ($allcategories as $cat) {
-			$this->categoryStructure[$cat['id']] = $cat;
-		}
+		
 	}
 
 	static function expiry() {
@@ -66,7 +62,19 @@ class Zenpage {
 	 * @return array
 	 */
 	private function getCategoryStructure() {
-		return $this->categoryStructure;
+		if (is_null($this->categoryStructure)) {
+			$allcategories = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER by sort_order");
+			if ($allcategories) {
+				$this->categoryStructure = array();
+				foreach ($allcategories as $cat) {
+					$this->categoryStructure[$cat['id']] = $cat;
+				}
+				return $this->categoryStructure;
+			}
+			$this->categoryStructure = array();
+		} else {
+			return $this->categoryStructure;
+		}	
 	}
 
 	/*	 * ********************************* */
@@ -74,7 +82,8 @@ class Zenpage {
 	/*	 * ********************************* */
 
 	function visibleCategory($cat) {
-		return $this->categoryStructure[$cat['cat_id']]['show'];
+		$categorystructure = $this->getCategoryStructure();
+		return $categorystructure[$cat['cat_id']]['show'];
 	}
 
 	/**

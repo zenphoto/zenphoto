@@ -9,9 +9,11 @@
  */
 class ZenpagePage extends ZenpageItems {
 
-	var $manage_rights = MANAGE_ALL_PAGES_RIGHTS;
-	var $manage_some_rights = ZENPAGE_PAGES_RIGHTS;
-	var $view_rights = ALL_PAGES_RIGHTS;
+	public $manage_rights = MANAGE_ALL_PAGES_RIGHTS;
+	public $manage_some_rights = ZENPAGE_PAGES_RIGHTS;
+	public $view_rights = ALL_PAGES_RIGHTS;
+	public $parent = null;
+	public $parents = null;
 
 	function __construct($titlelink, $allowCreate = NULL) {
 		if (is_array($titlelink)) {
@@ -151,36 +153,46 @@ class ZenpagePage extends ZenpageItems {
 		}
 		return $success;
 	}
+	
+	/**
+	 * Gets the parent page object based on the parentid set
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return obj|null
+	 */
+	function getParent() {
+		if (is_null($this->parent)) {
+			$parentid = $this->getParentID();
+			$obj = getItembyID('pages', $parentid);
+			if ($obj) {
+				return $obj;
+			}
+		} else {
+			return $this->parent;
+		}
+		return null;
+	}
 
 	/**
-	 * Gets the parent pages recursivly to the page whose parentid is passed or the current object
+	 * Gets the parent pages' titlelinks recursivly to the page
 	 *
-	 * @param int $parentid The parentid of the page to get the parents of
-	 * @param bool $initparents
 	 * @return array
 	 */
-	function getParents(&$parentid = '', $initparents = true) {
-		global $parentpages, $_zp_zenpage;
-		$allitems = $_zp_zenpage->getPages();
-		if ($initparents) {
-			$parentpages = array();
+	function getParents() {
+		if (func_num_args() != 0) {
+			debuglog(gettext('class ZenpagePage getParents(): The parameters $parentid and $initparents have been removed in Zenphoto 1.5.5.'));
 		}
-		if (empty($parentid)) {
-			$currentparentid = $this->getParentID();
-		} else {
-			$currentparentid = $parentid;
-		}
-		foreach ($allitems as $item) {
-			$obj = new ZenpagePage($item['titlelink']);
-			$itemtitlelink = $obj->getTitlelink();
-			$itemid = $obj->getID();
-			$itemparentid = $obj->getParentID();
-			if ($itemid == $currentparentid) {
-				array_unshift($parentpages, $itemtitlelink);
-				$obj->getParents($itemparentid, false);
+		if (is_null($this->parents)) {
+			$parents = array();
+			$page = $this;
+			while (!is_null($page = $page->getParent())) {
+				array_unshift($parents, $page->getTitlelink());
 			}
+			return $this->parents = $parents;
+		} else {
+			return $this->parents;
 		}
-		return $parentpages;
 	}
 
 	/**

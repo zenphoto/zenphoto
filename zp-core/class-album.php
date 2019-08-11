@@ -47,17 +47,18 @@ function isAlbumClass($album = NULL) {
 
 class AlbumBase extends MediaObject {
 
-	var $name; // Folder name of the album (full path from the albums folder)
-	var $linkname; // may have the .alb suffix stripped off
-	var $localpath; // Latin1 full server path to the album
-	var $exists = true; // Does the folder exist?
-	var $images = null; // Full images array storage.
-	var $parent = null; // The parent album name
-	var $parentalbum = null; // The parent album's album object (lazy)
-	var $sidecars = array(); // keeps the list of suffixes associated with this album
-	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
-	var $manage_some_rights = ALBUM_RIGHTS;
-	var $view_rights = ALL_ALBUMS_RIGHTS;
+	public $name; // Folder name of the album (full path from the albums folder)
+	public $linkname; // may have the .alb suffix stripped off
+	public $localpath; // Latin1 full server path to the album
+	public $exists = true; // Does the folder exist?
+	public $images = null; // Full images array storage.
+	public $parent = null; // The parent album name
+	public $parentalbum = null; // The parent album's album object (lazy)
+	public $parentalbums = null; // Array of objects of parent albums (lazy)
+	public $sidecars = array(); // keeps the list of suffixes associated with this album
+	public $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
+	public $manage_some_rights = ALBUM_RIGHTS;
+	public $view_rights = ALL_ALBUMS_RIGHTS;
 	protected $subalbums = null; // Full album array storage.
 	protected $index;
 	protected $lastimagesort = NULL; // remember the order for the last album/image sorts
@@ -140,6 +141,26 @@ class AlbumBase extends MediaObject {
 			return $this->parentalbum;
 		}
 		return NULL;
+	}
+	
+	/**
+	 * Gets an array of parent album objects
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return array|null
+	 */
+	function getParents() {
+		if (is_null($this->parentalbums)) {
+			$parents = array();
+			$album = $this;
+			while (!is_null($album = $album->getParent())) {
+				array_unshift($parents, $album);
+			}
+			return $this->parentalbums = $parents;
+		} else {
+			return $this->parentalbums;
+		}
 	}
 
 	function getParentID() {
@@ -1576,7 +1597,7 @@ class Album extends AlbumBase {
 
 class dynamicAlbum extends AlbumBase {
 
-	var $searchengine; // cache the search engine for dynamic albums
+	public $searchengine; // cache the search engine for dynamic albums
 
 	function __construct($folder8, $cache = true, $quiet = false) {
 		$folder8 = trim($folder8, '/');
