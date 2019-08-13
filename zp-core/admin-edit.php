@@ -415,7 +415,10 @@ if (isset($_GET['action'])) {
 } else {
 	if (isset($_GET['albumimagesort'])) {
 		$newsort = checkAlbumimagesort(sanitize($_GET['albumimagesort'],3));
-		$newsort_status = checkAlbumimagesort(sanitize($_GET['albumimagesort_status'],3),'albumimagesort_status');
+		$newsort_status = '';
+		if(isset($_GET['albumimagesort_status'])) {
+			$newsort_status = checkAlbumimagesort(sanitize($_GET['albumimagesort_status'],3),'albumimagesort_status');
+		}
 		if (strpos($newsort, '_desc')) {
 			setOption('albumimagesort', substr($newsort, 0, -5), false);
 			setOption('albumimagedirection', 'DESC', false);
@@ -423,7 +426,9 @@ if (isset($_GET['action'])) {
 			setOption('albumimagesort', $newsort, false);
 			setOption('albumimagedirection', '', false);
 		}
-		setOption('albumimagesort_status',$newsort_status, false);
+		if(!empty($newsort_status)) {
+			setOption('albumimagesort_status',$newsort_status, false);
+		}
 	}
 }
 
