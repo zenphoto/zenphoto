@@ -4932,16 +4932,23 @@ function checkAlbumimagesort($val, $type = 'albumimagesort') {
 
 /**
  * Prints the last change date and last change user notice on backend edit pages
+ * Also for albums it prints the updateddate 
+ * 
  * @since ZenphotoCMS 1.5.2
  * @param obj $obj Object of any item type
  */
 function printLastChangeInfo($obj) {
-	$lastchangeuser = $obj->getLastchangeuser();
-	if ($lastchangeuser) {
+	if(isAlbumClass($obj) && $obj->getUpdatedDate()) {
 		?>
 		<hr>
-		<p><?php printf(gettext('Last change: %s'), $obj->getLastchange()); ?></p>
-		<p><?php
+		<p><?php printf(gettext('Last updated: %s'), $obj->getUpdatedDate()); ?></p>
+		<?php
+	}
+	if ($obj->getLastchangeuser()) {
+		?>
+		<hr>
+		<p><?php printf(gettext('Last change: %s'), $obj->getLastchange()); ?><br>
+			<?php
 			if (empty($lastchangeuser)) {
 				$lastchangeuser = gettext('ZenphotoCMS internal request');
 			}
