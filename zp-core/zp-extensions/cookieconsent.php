@@ -16,7 +16,7 @@ $plugin_author = "Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourg
 $option_interface = 'cookieConsent';
 $plugin_category = gettext('Misc');
 
-if (!isset($_COOKIE['cookieconsent_status'])) {
+if (!zp_loggedin() && !isset($_COOKIE['cookieconsent_status'])) {
 	zp_register_filter('theme_head', 'cookieConsent::getCSS');
 	zp_register_filter('theme_head', 'cookieConsent::getJS');
 }	
