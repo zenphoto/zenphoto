@@ -152,8 +152,9 @@ class Image extends MediaObject {
 		$album_name = $album->name;
 		$new = $this->instantiate('images', array('filename' => $filename, 'albumid' => $this->album->getID()), 'filename', false, empty($album_name));
 		if ($new || $this->filemtime != $this->get('mtime')) {
-			if ($new)
+			if ($new) {
 				$this->setTitle($this->displayname);
+			}
 			$this->updateMetaData(); // extract info from image
 			$this->updateDimensions(); // deal with rotation issues
 			$this->set('mtime', $this->filemtime);
@@ -490,8 +491,9 @@ class Image extends MediaObject {
 				$this->setOwner($alb->getOwner());
 			}
 			$save = false;
-			if (strtotime($alb->getUpdatedDate()) < strtotime($this->getDateTime())) {
-				$alb->setUpdatedDate($this->getDateTime());
+			if (strtotime($alb->getUpdatedDate()) < strtotime(date('Y-m-d H:i:s'))) {
+				$alb->setUpdatedDate();
+				$alb->setUpdatedDateParents();
 				$save = true;
 			}
 			if (is_null($albdate = $alb->getDateTime()) || ($_zp_gallery->getAlbumUseImagedate() && strtotime($albdate) < strtotime($this->getDateTime()))) {
@@ -789,6 +791,7 @@ class Image extends MediaObject {
         $result = $result && @unlink($file);
       }
       if ($result) {
+				$this->setUpdatedDateAlbum();
         query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='images' AND `objectid`=" . $this->id);
         query("DELETE FROM " . prefix('comments') . "WHERE `type` ='images' AND `ownerid`=" . $this->id);
         $cachepath = SERVERCACHE . '/' . pathurlencode($this->album->name) . '/' . $this->filename;
@@ -797,6 +800,7 @@ class Image extends MediaObject {
           @chmod($file, 0777);
           @unlink($file);
         }
+				
       }
     }
     clearstatcache();
@@ -847,6 +851,10 @@ class Image extends MediaObject {
 		}
 		if ($result) {
 			if (parent::move(array('filename' => $newfilename, 'albumid' => $newalbum->getID()))) {
+				$this->setUpdatedDateAlbum();
+				$newalbum->setUpdatedDate();
+				$newalbum->save();
+				$newalbum->setUpdatedDateParents(); 
 				$this->set('mtime', filemtime($newpath));
 				$this->save();
 				return 0;
@@ -897,6 +905,9 @@ class Image extends MediaObject {
 			if ($newID = parent::copy(array('filename' => $filename, 'albumid' => $newalbum->getID()))) {
 				storeTags(readTags($this->getID(), 'images'), $newID, 'images');
 				query('UPDATE ' . prefix('images') . ' SET `mtime`=' . filemtime($newpath) . ' WHERE `filename`="' . $filename . '" AND `albumid`=' . $newalbum->getID());
+				$newalbum->setUpdatedDate(); 
+				$newalbum->save();
+				$newalbum->setUpdatedDateParents();
 				return 0;
 			}
 		}
@@ -1025,11 +1036,11 @@ class Image extends MediaObject {
 		}
 
 		if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w))) {
-// Scale the height
+			// Scale the height
 			$newh = $dim;
 			$neww = $wprop;
 		} else {
-// Scale the width
+			// Scale the width
 			$neww = $dim;
 			$newh = $hprop;
 		}
@@ -1288,6 +1299,19 @@ class Image extends MediaObject {
 		$album = $this->getAlbum();
 		$filesize = filesize($this->getFullImage(SERVERPATH));
 		return $filesize;
+	}
+	
+	/**
+	 * Sets the current date to the images'album and all of its parent albums recursively
+	 * @since Zenphoto 1.5.5
+	 */
+	function setUpdatedDateAlbum() {
+		$album = $this->album;
+		if($album) {
+			$album->setUpdatedDate();
+			$album->save();
+			$album->setUpdatedDateParents();
+		}
 	}
 
 }
