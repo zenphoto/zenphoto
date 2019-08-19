@@ -1440,6 +1440,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<span class="nowrap">
 									<select id="albumsortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>subalbumsortby" onchange="update_direction(this, 'album_direction_div<?php echo $suffix; ?>', 'album_custom_div<?php echo $suffix; ?>');">
 										<?php
+										$sort[gettext('Last updated date')] = 'updateddate';
 										if (is_null($album->getParent())) {
 											$globalsort = gettext("*gallery album sort order");
 										} else {
@@ -1495,6 +1496,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<span class="nowrap">
 									<select id="imagesortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>sortby" onchange="update_direction(this, 'image_direction_div<?php echo $suffix; ?>', 'image_custom_div<?php echo $suffix; ?>')">
 										<?php
+										unset($sort[gettext('Last updated date')]); // not for images!
 										if (is_null($album->getParent())) {
 											$globalsort = gettext("*gallery image sort order");
 										} else {

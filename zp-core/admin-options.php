@@ -1330,6 +1330,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td>
 										<?php
 										$sort = $_zp_sortby;
+										$sort[gettext('Last updated date')] = 'updateddate';
 										$sort[gettext('Manual')] = 'manual';
 										$sort[gettext('Custom')] = 'custom';
 										/*
