@@ -4946,17 +4946,17 @@ function printLastChangeInfo($obj) {
 		<p><?php printf(gettext('Last updated: %s'), $obj->getUpdatedDate()); ?></p>
 		<?php
 	}
-	if ($obj->getLastchangeuser()) {
-		?>
-		<hr>
-		<p><?php printf(gettext('Last change: %s'), $obj->getLastchange()); ?><br>
-			<?php
-			if (empty($lastchangeuser)) {
-				$lastchangeuser = gettext('ZenphotoCMS internal request');
-			}
-			printf(gettext('Last changed by: %s'), $lastchangeuser);
-			?></p>
-		<?php
+	?>
+	<hr>
+	<p><?php printf(gettext('Last change: %s'), $obj->getLastchange()); ?><br>
+	<?php
+	$lastchangeuser = $obj->getLastchangeUser();
+	if (empty($lastchangeuser)) {
+			$lastchangeuser = gettext('ZenphotoCMS internal request');
 	}
+	printf(gettext('Last changed by: %s'), $lastchangeuser);
+	?>
+	</p>
+	<?php
 }
 ?>
