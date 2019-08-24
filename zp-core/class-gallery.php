@@ -431,9 +431,9 @@ class Gallery {
 			$this->commentClean('albums');
 			$this->commentClean('news');
 			$this->commentClean('pages');
-// clean up obj_to_tag
+			// clean up obj_to_tag
 			$dead = array();
-			$result = query("SELECT * FROM " . prefix('obj_to_tag'));
+			$result = query("SELECT `id`, `type`, `tagid`, `objectid` FROM " . prefix('obj_to_tag'));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$tbl = $row['type'];
@@ -452,12 +452,12 @@ class Gallery {
 				$dead = array_unique($dead);
 				query('DELETE FROM ' . prefix('obj_to_tag') . ' WHERE `id`=' . implode(' OR `id`=', $dead));
 			}
-// clean up admin_to_object
+			// clean up admin_to_object
 			$dead = array();
-			$result = query("SELECT * FROM " . prefix('admin_to_object'));
+			$result = query("SELECT `id`, `type`, `adminid`, `objectid` FROM " . prefix('admin_to_object'));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
-					$dbtag = query_single_row("SELECT * FROM " . prefix('administrators') . " WHERE `id`='" . $row['adminid'] . "'", false);
+					$dbtag = query_single_row("SELECT `id` FROM " . prefix('administrators') . " WHERE `id`='" . $row['adminid'] . "'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
@@ -471,11 +471,11 @@ class Gallery {
 			}
 			if (!empty($dead)) {
 				$dead = array_unique($dead);
-				query('DELETE FROM ' . prefix('admin_to_object') . ' WHERE `id`=' . implode(' OR `id`=', $dead));
+				query('DELETE FROM ' . prefix('admin_to_object') . ' WHERE `id` IN(' . implode(',', $dead) . ')');
 			}
-// clean up news2cat
+			// clean up news2cat
 			$dead = array();
-			$result = query("SELECT * FROM " . prefix('news2cat'));
+			$result = query("SELECT `id`, `news_id`, `cat_id` FROM " . prefix('news2cat'));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$dbtag = query_single_row("SELECT `id` FROM " . prefix('news') . " WHERE `id`='" . $row['news_id'] . "'", false);
@@ -491,15 +491,16 @@ class Gallery {
 			}
 			if (!empty($dead)) {
 				$dead = array_unique($dead);
-				query('DELETE FROM ' . prefix('news2cat') . ' WHERE `id`=' . implode(' OR `id`=', $dead));
+				query('DELETE FROM ' . prefix('news2cat') . ' WHERE `id` IN(' . implode(',', $dead) . ')');
 			}
 
-// Check for the existence albums
+			// Check for the existence albums
+			$set_updateddate = false;
 			$dead = array();
 			$live = array(''); // purge the root album if it exists
 			$deadalbumthemes = array();
-// Load the albums from disk
-			$result = query("SELECT * FROM " . prefix('albums'));
+			// Load the albums from disk
+			$result = query("SELECT `id`, `folder`, `album_theme` FROM " . prefix('albums'));
 			while ($row = db_fetch_assoc($result)) {
 				$albumpath = internalToFilesystem($row['folder']);
 				$albumpath_valid = preg_replace('~/\.*/~', '/', $albumpath);
@@ -524,7 +525,6 @@ class Gallery {
 			if (count($dead) > 0) { /* delete the dead albums from the DB */
 				asort($dead);
 				$criteria = '(' . implode(',', $dead) . ')';
-				$first = array_pop($dead);
 				$sql1 = "DELETE FROM " . prefix('albums') . " WHERE `id` IN $criteria";
 				$n = query($sql1);
 				if (!$complete && $n && $cascade) {
@@ -542,6 +542,18 @@ class Gallery {
 					query($sql, false);
 				}
 			}
+			if (count($dead) > 0) {
+				// Set updateddate on possible parent albums of deleted ones
+				$result = query("SELECT `parentid`, `folder` FROM " . prefix('albums') . ' WHERE `id` IN(' . implode(',', $dead) . ')');
+				while ($row = db_fetch_assoc($result)) {
+					if($row['parentid'] != 0) {
+						$parentalbum = getItemByID('albums', $row['parentid']);
+						$parentalbum->setUpdateddate();
+						$parentalbum->save();
+						$parentalbum->setUpdatedDateParents();
+					}
+				}
+			}
 		}
 
 		if ($complete) {
@@ -557,7 +569,7 @@ class Gallery {
 				if ($albumids) {
 					while ($analbum = db_fetch_assoc($albumids)) {
 						if (($mtime = filemtime(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($analbum['folder']))) > $analbum['mtime']) {
-// refresh
+							// refresh
 							$album = newAlbum($analbum['folder']);
 							$album->set('mtime', $mtime);
 							if ($this->getAlbumUseImagedate()) {
@@ -601,7 +613,6 @@ class Gallery {
 				}
 
 				/* Delete all image entries that don't belong to an album at all. */
-
 				$albumids = query("SELECT `id` FROM " . prefix('albums')); /* all the album IDs */
 				$idsofalbums = array();
 				if ($albumids) {
@@ -628,7 +639,7 @@ class Gallery {
 					}
 					query($sql);
 
-// Then go into existing albums recursively to clean them... very invasive.
+					// Then go into existing albums recursively to clean them... very invasive.
 					foreach ($this->getAlbums(0) as $folder) {
 						$album = newAlbum($folder);
 						if (!$album->isDynamic()) {

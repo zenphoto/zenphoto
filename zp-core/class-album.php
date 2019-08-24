@@ -1508,9 +1508,10 @@ class Album extends AlbumBase {
 	 * @param bool $deep set to true for a thorough cleansing
 	 */
 	function garbageCollect($deep = false) {
+		$set_updateddate = false;
 		if (is_null($this->images))
 			$this->getImages();
-		$result = query("SELECT * FROM " . prefix('images') . " WHERE `albumid` = '" . $this->id . "'");
+		$result = query("SELECT `id`, `filename` FROM " . prefix('images') . " WHERE `albumid` = '" . $this->id . "'");
 		$dead = array();
 		$live = array();
 
@@ -1532,18 +1533,15 @@ class Album extends AlbumBase {
 		db_free_result($result);
 
 		if (count($dead) > 0) {
-			$sql = "DELETE FROM " . prefix('images') . " WHERE `id` = '" . array_pop($dead) . "'";
-			$sql2 = "DELETE FROM " . prefix('comments') . " WHERE `type`='albums' AND `ownerid` = '" . array_pop($dead) . "'";
-			foreach ($dead as $id) {
-				$sql .= " OR `id` = '$id'";
-				$sql2 .= " OR `ownerid` = '$id'";
-			}
+			$sql = "DELETE FROM " . prefix('images') . " WHERE `id` IN(" . implode(',', $dead) . ")";
+			$sql2 = "DELETE FROM " . prefix('comments') . " WHERE `type`='albums' AND `ownerid` IN(" . implode(',', $dead) . ")";
 			query($sql);
 			query($sql2);
+			$set_updateddate = true;
 		}
 
 		// Get all sub-albums and make sure they exist.
-		$result = query("SELECT * FROM " . prefix('albums') . " WHERE `folder` LIKE " . db_quote(db_LIKE_escape($this->name) . '%'));
+		$result = query("SELECT `id`, `folder` FROM " . prefix('albums') . " WHERE `folder` LIKE " . db_quote(db_LIKE_escape($this->name) . '%'));
 		$dead = array();
 		$live = array();
 		// Does the dirname from the db row exist on disk?
@@ -1556,15 +1554,17 @@ class Album extends AlbumBase {
 		}
 		db_free_result($result);
 		if (count($dead) > 0) {
-			$sql = "DELETE FROM " . prefix('albums') . " WHERE `id` = '" . array_pop($dead) . "'";
-			$sql2 = "DELETE FROM " . prefix('comments') . " WHERE `type`='albums' AND `ownerid` = '" . array_pop($dead) . "'";
-			foreach ($dead as $albumid) {
-				$sql .= " OR `id` = '$albumid'";
-				$sql2 .= " OR `ownerid` = '$albumid'";
-			}
+			$sql = "DELETE FROM " . prefix('albums') . " WHERE `id` IN(" . implode(',', $dead) . ")";
+			$sql2 = "DELETE FROM " . prefix('comments') . " WHERE `type`='albums' AND `ownerid` IN(" . implode(',', $dead) . ")";
 			query($sql);
 			query($sql2);
+			$set_updateddate = true;
 		}
+		if($set_updateddate) {
+			$this->setUpdateddate();
+			$this->save();
+			$this->setUpdatedDateParents();
+		} 
 
 		if ($deep) {
 			foreach ($this->getAlbums(0) as $dir) {
