@@ -44,8 +44,7 @@ if (isset($_POST['savealbum'])) {
 		}
 	}
 	if ($_POST['create_tagged'] == 'static') {
-		$unpublished = isset($_POST['return_unpublished']);
-		$_POST['return_unpublished'] = true; //	state is frozen at this point, so unpublishing should not impact
+		$return_unpublished = isset($_POST['return_unpublished']);
 		$words = sanitize($_POST['album_tag']);
 		$searchfields[] = 'tags_exact';
 		// now tag each element
@@ -53,7 +52,7 @@ if (isset($_POST['savealbum'])) {
 			$subalbums = $search->getAlbums(0);
 			foreach ($subalbums as $analbum) {
 				$albumobj = newAlbum($analbum);
-				if ($unpublished || $albumobj->getShow()) {
+				if ($return_unpublished || $albumobj->getShow()) { 
 					$tags = array_unique(array_merge($albumobj->getTags(), array($words)));
 					$albumobj->setTags($tags);
 					$albumobj->setLastChangeUser($_zp_current_admin_obj->getUser());
@@ -65,7 +64,7 @@ if (isset($_POST['savealbum'])) {
 			$images = $search->getImages();
 			foreach ($images as $animage) {
 				$image = newImage(newAlbum($animage['folder']), $animage['filename']);
-				if ($unpublished || $image->getShow()) {
+				if ($return_unpublished || $image->getShow()) { 
 					$tags = array_unique(array_merge($image->getTags(), array($words)));
 					$image->setTags($tags);
 					$image->setLastChangeUser($_zp_current_admin_obj->getUser());
