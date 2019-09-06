@@ -60,11 +60,9 @@ class Zenpage {
 	 * Provides the complete category structure regardless of permissions.
 	 * This is needed for quick checking of status of a category and is used only internally to the Zenpage core.
 	 * 
-	 * @deprecated Zenphoto 2.0 There is no replacement
 	 * @return array
 	 */
 	private function getCategoryStructure() {
-		Zenpage_internal_deprecations::getCategoryStructure();
 		if (is_null($this->categoryStructure)) {
 			$allcategories = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER by sort_order");
 			if ($allcategories) {

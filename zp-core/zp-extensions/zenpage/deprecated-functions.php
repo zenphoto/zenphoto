@@ -15,14 +15,6 @@ class Zenpage_internal_deprecations {
 	}
 	
 	/**
-	 * @deprecated ZenphotoCMS 2.0
-	 * @since ZenphotoCMS 1.5.5
-	 */
-	public static function getCategoryStructure() {
-		deprecated_functions::notify(gettext('There is no replacement for this method.'));
-	}
-	
-	/**
 	 * @deprecated ZenphotoCMS 2.0 Use if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … } for a equivalent check instead.
 	 * @since ZenphotoCMS 1.5.5
 	 */
