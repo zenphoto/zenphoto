@@ -739,7 +739,8 @@ echo "\n</head>";
 										} else {
 											$dir = '';
 										}
-										$sortNames = array_flip($_zp_sortby);
+										$sortNames = getSortByOptions('albums');
+										$sortNames = array_flip($sortNames);
 										$sorttype = $sortNames[$sorttype];
 									} else {
 										$dir = '';
@@ -924,20 +925,16 @@ echo "\n</head>";
 
 											<td align="right">
 												<?php
-												$sort = $_zp_sortby;
-												foreach ($sort as $key => $value) {
-													$sort[sprintf(gettext('%s (descending)'), $key)] = $value . '_desc';
-												}
-												$sort[gettext('Manual')] = 'manual';
+												$sort = getSortByOptions('images-edit');
 												ksort($sort, SORT_LOCALE_STRING);
 												if ($direction)
 													$oldalbumimagesort = $oldalbumimagesort . '_desc';
 												echo '<select id="albumimagesort" name="albumimagesort" onchange="this.form.submit()">';
 												generateListFromArray(array($oldalbumimagesort), $sort, false, true);
 												echo '</select>';
-												
+												$sort_status = getSortByStatusOptions();
 												echo '<select id="albumimagesort_status" name="albumimagesort_status" onchange="this.form.submit()">';
-												generateListFromArray(array($oldalbumimagesort_status), $_zp_sortby_status, false, true);
+												generateListFromArray(array($oldalbumimagesort_status), $sort_status, false, true);
 												echo '</select>';
 												?>
 				
@@ -1683,14 +1680,14 @@ echo "\n</head>";
 							} else {
 								$dir = '';
 							}
-							$sortNames = array_flip($_zp_sortby);
+							$sortNames = getSortByOptions('albums');
 							$sorttype = $sortNames[$sorttype];
 						} else {
 							$dir = '';
 						}
 						?>
 						<p>
-							<?php printf(gettext('Current sort: <em>%1$s%2$s</em>.'), $sorttype, $dir); ?>
+							<?php printf(gettext('Current sort: <em>%1s%2$s</em>.'), $sorttype, $dir); ?>
 						</p>
 						<p>
 							<?php echo gettext('Drag the albums into the order you wish them displayed.'); ?>

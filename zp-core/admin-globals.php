@@ -22,23 +22,6 @@ if (OFFSET_PATH != 2 && !getOption('license_accepted')) {
 	require_once(dirname(__FILE__) . '/license.php');
 }
 
-$_zp_sortby = array(
-		gettext('Filename') => 'filename',
-		gettext('Date') => 'date',
-		gettext('Title') => 'title',
-		gettext('ID') => 'id',
-		gettext('Filemtime') => 'mtime',
-		gettext('Owner') => 'owner',
-		gettext('Last change date') => 'lastchange',
-		gettext('Last change user') => 'lastchangeuser'
-);
-
-$_zp_sortby_status = array(
-		gettext('All') => 'all',
-		gettext('Published') => 'published',
-		gettext('Unpublished') => 'unpublished'
-);
-
 // setup sub-tab arrays for use in dropdown
 if ($_zp_loggedin) {
 	if ($_zp_current_admin_obj->reset) {

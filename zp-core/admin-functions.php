@@ -1173,7 +1173,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @since 1.1.3
 	 */
 	function printAlbumEditForm($index, $album, $buttons = true) {
-		global $_zp_sortby, $_zp_gallery, $mcr_albumlist, $_zp_albumthumb_selector, $_zp_current_admin_obj;
+		global $_zp_gallery, $mcr_albumlist, $_zp_albumthumb_selector, $_zp_current_admin_obj;
 		$isPrimaryAlbum = '';
 		if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$myalbum = $_zp_current_admin_obj->getAlbum();
@@ -1424,15 +1424,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						} else {
 							echo $custom;
 						}
-						$sort = $_zp_sortby;
-						if (!$album->isDynamic()) {
-							$sort[gettext('Manual')] = 'manual';
-						}
-						$sort[gettext('Custom')] = 'custom';
-						/*
-						 * not recommended--screws with peoples minds during pagination!
-						  $sort[gettext('Random')] = 'random';
-						 */
+						
 						?>
 						<tr>
 							<td class="leftcolumn"><?php echo gettext("Sort subalbums by:"); ?> </td>
@@ -1440,7 +1432,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<span class="nowrap">
 									<select id="albumsortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>subalbumsortby" onchange="update_direction(this, 'album_direction_div<?php echo $suffix; ?>', 'album_custom_div<?php echo $suffix; ?>');">
 										<?php
-										$sort[gettext('Last updated date')] = 'updateddate';
+										if ($album->isDynamic()) {
+											$sort = getSortByOptions('albums-dynamic');
+										} else {
+											$sort = getSortByOptions('albums');
+										}
 										if (is_null($album->getParent())) {
 											$globalsort = gettext("*gallery album sort order");
 										} else {
@@ -1496,7 +1492,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<span class="nowrap">
 									<select id="imagesortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>sortby" onchange="update_direction(this, 'image_direction_div<?php echo $suffix; ?>', 'image_custom_div<?php echo $suffix; ?>')">
 										<?php
-										unset($sort[gettext('Last updated date')]); // not for images!
+										$sort = getSortByOptions('images');
 										if (is_null($album->getParent())) {
 											$globalsort = gettext("*gallery image sort order");
 										} else {
@@ -4907,21 +4903,19 @@ function clonedFrom() {
 
 /**
  * Make sure the albumimagesort is only an allowed value. Otherwise returns nothing.
- * @global array $_zp_sortby
+
  * @param string $val
  * @param string $type 'albumimagesort' or 'albumimagesort_status'
  * @return string
  */
 function checkAlbumimagesort($val, $type = 'albumimagesort') {
-	global $_zp_sortby, $_zp_sortby_status;
 	switch ($type) {
 		case 'albumimagesort':
-			$sortcheck = $_zp_sortby;
-			$sortcheck[gettext('Manual')] = 'manual';
+			$sortcheck = getSortByOptions('images');
 			$direction_check = true;
 			break;
 		case 'albumimagesort_status':
-			$sortcheck = $_zp_sortby_status;
+			$sortcheck = getSortByStatusOptions();
 			$direction_check = false;
 			break;
 	}
@@ -4959,4 +4953,71 @@ function printLastChangeInfo($obj) {
 	</p>
 	<?php
 }
-?>
+
+/**
+ * Returns the option array for the sort by selectors for gallery, albums and images
+ * 
+ * @since ZenphotoCMS 1.5.5 Replaces the global $_zp_sortby
+ * 
+ * @param string $type "albums" (also for gallery), "albums-dynamic", 'images' 
+ *										 "image-edit" (the images edit tab backend only ordering)
+ *										 "pages" and "news" for Zenpage items
+ * @return array
+ */
+function getSortByOptions($type) {
+	// base option for all item types
+	$orders = array(
+			gettext('Title') => 'title',
+			gettext('ID') => 'id',
+			gettext('Date') => 'date',
+			gettext('Published') => 'show',
+			gettext('Last change date') => 'lastchange',
+			gettext('Last change user') => 'lastchangeuser'
+	);
+	switch($type) {
+		case 'albums':
+		case 'albums-dynamic':
+		case 'images':
+			$orders[gettext('Filename')] = 'filename';
+			$orders[gettext('Filemtime')] = 'mtime';
+			$orders[gettext('Owner')] = 'owner';
+			$orders[gettext('Custom')] = 'custom';
+			if($type == 'albums') {
+				$orders[gettext('Last updated date')] = 'updateddate';
+			}
+			// manual naturally never has descending extra option
+			if($type != 'albums-dynamic') {
+				$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
+			}
+			return $orders;
+		case 'images-edit':
+			foreach ($orders as $key => $value) {
+				$orders[sprintf(gettext('%s (descending)'), $key)] = $value . '_desc';
+			}
+			$orders[gettext('Manual')] = 'manual';
+			return $orders;
+		case 'pages':
+		case 'news':
+			$orders[gettext('TitleLink')] = 'titlelink';
+			$orders[gettext('Author')] = 'author';
+			if($type == 'pages') {
+				$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
+			}
+			return $orders;
+	}
+}
+
+/**
+ * Returns an array of the status order options for all items
+ * 
+ * @since ZenphotoCMS 1.5.5 Replaces the global $_zp_sortby_status
+ * 
+ * @return array
+ */
+function getSortByStatusOptions() {
+	return array(
+			gettext('All') => 'all',
+			gettext('Published') => 'published',
+			gettext('Unpublished') => 'unpublished'
+	);
+}

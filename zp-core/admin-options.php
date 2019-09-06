@@ -1329,10 +1329,8 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext("Sort gallery by:"); ?></td>
 									<td>
 										<?php
-										$sort = $_zp_sortby;
-										$sort[gettext('Last updated date')] = 'updateddate';
-										$sort[gettext('Manual')] = 'manual';
-										$sort[gettext('Custom')] = 'custom';
+										$sort = getSortByOptions('albums');
+
 										/*
 										 * not recommended--screws with peoples minds during pagination!
 
@@ -1716,17 +1714,15 @@ Zenphoto_Authority::printPasswordFormJS();
 										<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
 									</td>
 								</tr>
-								<?php 
-									$sort = $_zp_sortby;
-									$sort[gettext('Custom')] = 'custom'; 
-									$sort[gettext('Manual')] = 'sort_order'; 
-								?>
+				
 								<tr>
 									<td class="leftcolumn"><?php echo gettext("Sort albums by"); ?> </td>
 									<td colspan="2">
 										<span class="nowrap">
 											<select id="album_sort_select" name="search_album_sort_type" onchange="update_direction(this, 'album_direction_div', 'album_custom_div');">
 												<?php
+												$sort = getSortByOptions('albums'); 
+												$sort[gettext('Manual')] = 'sort_order'; 
 												$cvt = $type = strtolower(getOption('search_album_sort_type'));
 												if ($type && !in_array($type, $sort)) {
 													$cv = array('custom');
@@ -1778,6 +1774,8 @@ Zenphoto_Authority::printPasswordFormJS();
 										<span class="nowrap">
 											<select id="image_sort_select" name="search_image_sort_type" onchange="update_direction(this, 'image_direction_div', 'image_custom_div')">
 												<?php
+												$sort = getSortByOptions('images'); 
+												$sort[gettext('Manual')] = 'sort_order'; 
 												$cvt = $type = strtolower(getOption('search_image_sort_type'));
 												if ($type && !in_array($type, $sort)) {
 													$cv = array('custom');
@@ -1822,14 +1820,6 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 								</tr>
 								<?php
-								$zenpage_sort = array(
-										gettext('Title') => 'title',
-										gettext('TitleLink') => 'titlelink',
-										gettext('ID') => 'id',
-										gettext('Date') => 'date',
-										gettext('Published') => 'show',
-										gettext('Author') => 'author'
-								);
 								if (ZP_NEWS_ENABLED) {
 								?>
 									<tr>
@@ -1838,13 +1828,14 @@ Zenphoto_Authority::printPasswordFormJS();
 											<span class="nowrap">
 												<select id="newsarticle_sort_select" name="search_newsarticle_sort_type" onchange="update_direction(this, 'newsarticle_direction_div', 'newsarticle_custom_div')">
 													<?php
+													$zenpage_sort_news = getSortByOptions('news');
 													$cvt = $type = strtolower(getOption('search_newsarticle_sort_type'));
-													if ($type && !in_array($type, $zenpage_sort)) {
+													if ($type && !in_array($type, $zenpage_sort_news)) {
 														$cv = array('custom');
 													} else {
 														$cv = array($type);
 													}
-													generateListFromArray($cv, $zenpage_sort, false, true);
+													generateListFromArray($cv, $zenpage_sort_news, false, true);
 													?>
 												</select>
 												<?php
@@ -1865,7 +1856,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												</label>
 											</span>
 											<?php
-											$flip = array_flip($zenpage_sort);
+											$flip = array_flip($zenpage_sort_news);
 											if (empty($type) || isset($flip[$type])) {
 												$dsp = 'none';
 											} else {
@@ -1884,7 +1875,8 @@ Zenphoto_Authority::printPasswordFormJS();
 								<?php 
 								} 
 								if (ZP_PAGES_ENABLED) {
-									$zenpage_sort[gettext('Manual')] = 'sort_order';
+									$zenpage_sort_pages = getSortByOptions('pages');
+									$zenpage_sort_pages[gettext('Manual')] = 'sort_order';
 								?>
 									<tr>
 										<td class="leftcolumn"><?php echo gettext("Sort pages by"); ?> </td>
@@ -1893,12 +1885,12 @@ Zenphoto_Authority::printPasswordFormJS();
 												<select id="page_sort_select" name="search_page_sort_type" onchange="update_direction(this, 'page_direction_div', 'page_custom_div')">
 													<?php
 													$cvt = $type = strtolower(getOption('search_page_sort_type'));
-													if ($type && !in_array($type, $zenpage_sort)) {
+													if ($type && !in_array($type, $zenpage_sort_pages)) {
 														$cv = array('custom');
 													} else {
 														$cv = array($type);
 													}
-													generateListFromArray($cv, $zenpage_sort, false, true);
+													generateListFromArray($cv, $zenpage_sort_pages, false, true);
 													?>
 												</select>
 												<?php
@@ -1919,7 +1911,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												</label>
 											</span>
 											<?php
-											$flip = array_flip($zenpage_sort);
+											$flip = array_flip($zenpage_sort_pages);
 											if (empty($type) || isset($flip[$type])) {
 												$dsp = 'none';
 											} else {
@@ -1983,9 +1975,9 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext("Sort images by"); ?></td>
 									<td>
 										<?php
-										$sort = $_zp_sortby;
+										$sort = getSortByOptions('images');
 										$cvt = $cv = IMAGE_SORT_TYPE;
-										$sort[gettext('Custom')] = 'custom';
+										//$sort[gettext('Custom')] = 'custom';
 
 										/*
 										 * not recommended--screws with peoples minds during pagination!
