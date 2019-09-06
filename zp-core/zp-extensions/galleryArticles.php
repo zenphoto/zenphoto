@@ -139,7 +139,7 @@ class galleryArticles {
 	private static function publishArticlesWithCheck($obj) {
 		$type = $obj->table;
 		if (getOption('galleryArticles_' . $type)) {
-			if ($obj->getShow()) {
+			if ($obj->isPublic()) {
 				if (getOption('galleryArticles_protected') || !$obj->isProtected()) {
 					switch ($type = $obj->table) {
 

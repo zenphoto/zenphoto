@@ -1406,7 +1406,7 @@ class SearchEngine {
 									case 2:
 										$row['show'] = 0;
 								}
-								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS)) || (checkAlbumPassword($albumname) && ($row['show'] || $viewUnpublished))) {
+								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS)) || (checkAlbumPassword($albumname) && ($album->checkAccess() || $viewUnpublished))) {
 									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
 										$result[] = array('title' => $row['title'], 'name' => $albumname, 'weight' => $weights[$row['id']]);
 									}
@@ -1431,7 +1431,6 @@ class SearchEngine {
 		}
 		$this->albums = $albums;
 		$this->searches['albums'] = $criteria;
-		
 		return $albums;
 	}
 
@@ -1521,7 +1520,6 @@ class SearchEngine {
 	 * @return array
 	 */
 	private function getSearchImages($sorttype, $sortdirection, $mine = NULL) {
-		
 		if (getOption('search_no_images') || $this->search_no_images) {
 			return array();
 		}
@@ -1534,12 +1532,13 @@ class SearchEngine {
 		if (empty($searchstring) && empty($searchdate)) {
 			return array();
 		} // nothing to find
-
+		
 		$criteria = $this->getCacheTag('images', serialize($searchstring) . ' ' . $searchdate, $sorttype . ' ' . $sortdirection . ' '.$mine);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
 		}
 		$images = $this->getCachedSearch($criteria);
+		
 		if (is_null($images)) {
 			if (empty($searchdate)) {
 				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $sortdirection);
@@ -1568,16 +1567,16 @@ class SearchEngine {
 							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 							switch (checkPublishDates($row)) {
 								case 1:
-									$imageobj = newImage($this, $row['filename']);
-									$imageobj->setShow(0);
+									$imageobj = newImage($album, $row['filename']);
 									$imageobj->save();
 								case 2:
 									$row['show'] = 0;
 									break;
 							}
-							if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && ($album->getShow() || $viewUnpublished))) {
+							$viewUnpublished = ($mine || is_null($mine)) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && ($album->isPublic() || $viewUnpublished));
+							if ($viewUnpublished) {
 								$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
-							}
+							} 
 							$albums_seen[$albumid] = $albumrow = array('allow' => $allow, 'viewUnpublished' => $viewUnpublished, 'folder' => $albumname, 'localpath' => ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname) . '/');
 						} else {
 							$albums_seen[$albumid] = $albumrow = array('allow' => false, 'viewUnpublished' => false, 'folder' => '', 'localpath' => '');
@@ -1758,11 +1757,14 @@ class SearchEngine {
 			}
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
-					if (isset($weights)) {
-						$data['weight'] = $weights[$row['id']];
+					$pageobj = new ZenpagePage($row['titlelink']);
+					if((zp_loggedin() && $pageobj->isMyItem(LIST_RIGHTS)) || ($pageobj->isPublic() || $this->search_unpublished)) {
+						$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
+						if (isset($weights)) {
+							$data['weight'] = $weights[$row['id']];
+						}
+						$result[] = $data;
 					}
-					$result[] = $data;
 				}
 				db_free_result($search_result);
 			}
@@ -1770,7 +1772,7 @@ class SearchEngine {
 				$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
 			}
 			if ($sorttype == '`title`') {
-				$images = sortByMultilingual($result, 'title', $sortdirection);
+				$result = sortByMultilingual($result, 'title', $sortdirection);
 			}
 			foreach ($result as $page) {
 				$pages[] = $page['titlelink'];
@@ -1843,11 +1845,14 @@ class SearchEngine {
 			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($search_result), false, $this->iteration++);
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
-					if (isset($weights)) {
-						$data['weight'] = $weights[$row['id']];
+					$articleobj = new ZenpageNews($row['titlelink']);
+					if((zp_loggedin() && $articleobj->isMyItem(LIST_RIGHTS)) || ($articleobj->isPublic() || $this->search_unpublished)) {
+						$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
+						if (isset($weights)) {
+							$data['weight'] = $weights[$row['id']];
+						}
+						$result[] = $data;
 					}
-					$result[] = $data;
 				}
 				db_free_result($search_result);
 			}

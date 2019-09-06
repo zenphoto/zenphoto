@@ -4,6 +4,34 @@
  * These are the Zenpage functions which have been deprecated
  */
 
+class Zenpage_internal_deprecations {
+	
+	/**
+	 * @deprecated ZenphotoCMS 2.0
+	 * @since ZenphotoCMS 1.5.5
+	 */
+	public static function visibleCategory() {
+		deprecated_functions::notify(gettext('Use the method isPublic() of the ZenpageCategory class instead.'));
+	}
+	
+	/**
+	 * @deprecated ZenphotoCMS 2.0
+	 * @since ZenphotoCMS 1.5.5
+	 */
+	public static function getCategoryStructure() {
+		deprecated_functions::notify(gettext('There is no replacement for this method.'));
+	}
+	
+	/**
+	 * @deprecated ZenphotoCMS 2.0 Use if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … } for a equivalent check instead.
+	 * @since ZenphotoCMS 1.5.5
+	 */
+	public static function categoryIsVisible() {
+		deprecated_functions::notify(gettext('Use if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … } for a equivalent check instead.'));
+	}
+	
+}
+
 /**
  * Wrapper function to get the author of a news article or page: Used by getNewsAuthor() and getPageAuthor().
  * 

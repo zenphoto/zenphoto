@@ -67,6 +67,7 @@ class AlbumBase extends MediaObject {
 	protected $subrights = NULL; //	cache for album subrights
 	protected $num_allalbums = null; // count of all subalbums of all sublevels
 	protected $num_allimages = null; // count of all images of all sublevels
+	protected $is_public = null;
 
 	function __construct($folder8, $cache = true) {
 		$this->linkname = $this->name = $folder8;
@@ -162,6 +163,7 @@ class AlbumBase extends MediaObject {
 			return $this->parentalbums;
 		}
 	}
+
 
 	function getParentID() {
 		return $this->get('parentid');
@@ -908,6 +910,29 @@ class AlbumBase extends MediaObject {
 	 */
 	function isProtected() {
 		return $this->checkforGuest() != 'zp_public_access';
+	}
+	
+		
+	/**
+	 * Returns true if this album is published and also all of its parents.
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return bool
+	 */
+	function isPublic() {
+		if (is_null($this->is_public)) {
+			if (!$this->getShow()) {
+				return $this->is_public = false;
+			}
+			$parent = $this->getParent();
+			if($parent && !$parent->isPublic()) {
+				return $this->is_public = false;
+			}
+			return $this->is_public = true;
+		} else {
+			return $this->is_public;
+		}
 	}
 
 	/**

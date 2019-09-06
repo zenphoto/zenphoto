@@ -14,6 +14,7 @@ class ZenpagePage extends ZenpageItems {
 	public $view_rights = ALL_PAGES_RIGHTS;
 	public $parent = null;
 	public $parents = null;
+	protected $is_public = null;
 
 	function __construct($titlelink, $allowCreate = NULL) {
 		if (is_array($titlelink)) {
@@ -265,6 +266,28 @@ class ZenpagePage extends ZenpageItems {
 	function isProtected() {
 		return $this->checkforGuest() != 'zp_public_access';
 	}
+	
+	/**
+	 * Returns true if this page is published and also all of its parents.
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return bool
+	 */
+	function isPublic() {
+		if (is_null($this->is_public)) {
+			if (!$this->getShow()) {
+				return $this->is_public = false;
+			}
+			$parent = $this->getParent();
+			if($parent && !$parent->isPublic()) {
+				return $this->is_public = false;
+			} 
+			return $this->is_public = true;
+		} else {
+			return $this->is_public;
+		}
+	}
 
 	/**
 	 * Checks if user is author of page
@@ -278,7 +301,7 @@ class ZenpagePage extends ZenpageItems {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
+			if (GALLERY_SECURITY != 'public' && $this->isPublic() && $action == LIST_RIGHTS) {
 				return LIST_RIGHTS;
 			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {

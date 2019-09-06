@@ -14,11 +14,12 @@ if (!defined('NEWS_POSITION_NORMAL')) { // No idea why this is needed, but clone
 
 class ZenpageNews extends ZenpageItems {
 
-	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
-	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
-	var $view_rights = ALL_NEWS_RIGHTS;
-	var $categories = NULL;
-	var $index = NULL;
+	public $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
+	public $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
+	public $view_rights = ALL_NEWS_RIGHTS;
+	public $categories = NULL;
+	public $index = NULL;
+	protected $is_public = null;
 
 	function __construct($titlelink, $allowCreate = NULL) {
 		if (is_array($titlelink)) {
@@ -156,25 +157,46 @@ class ZenpageNews extends ZenpageItems {
 	function isProtected() {
 		return $this->inProtectedCategory(true);
 	}
+	
+	/**
+	 * Returns true if this article is published and in any published category
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return bool
+	 */
+	function isPublic() {
+		if (is_null($this->is_public)) {
+			if(!$this->getShow()) {
+				return $this->is_public = false;
+			}
+			$categories = $this->getCategories();
+			$catcheck = true;
+			if (count($categories) > 0) {
+				foreach ($categories as $cat) {
+					$catobj = new ZenpageCategory($cat);
+					if (!$catobj->isPublic()) {
+						$catcheck = $catcheck && false;
+					}
+				}
+				return $this->is_public = $catcheck;
+			}
+			return $this->is_public = true;
+		} else {
+			return $this->is_public;
+		}
+	}
 
 	/**
 	 *
 	 * returns true if the article exists in any published category (or in no categories)
+	 * 
+	 * @deprecated Zenphoto 2.0 Use if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … } for a equivalent check instead.
 	 */
 	function categoryIsVisible() {
 		if (zp_loggedin(ALL_NEWS_RIGHTS))
 			return true;
-		global $_zp_zenpage;
-		$categories = $this->getCategories(false);
-		if (count($categories) > 0) {
-			foreach ($categories as $cat) {
-				if ($_zp_zenpage->visibleCategory($cat)) {
-					return true;
-				}
-			}
-			return false;
-		}
-		return true;
+		return $this->isPublic();
 	}
 	
 	
@@ -223,13 +245,13 @@ class ZenpageNews extends ZenpageItems {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
+			if (GALLERY_SECURITY != 'public' && $this->isPublic() && $action == LIST_RIGHTS) { //$this->getShow() && $action == LIST_RIGHTS) {
 				return LIST_RIGHTS;
 			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true; //	he is the author
 			}
-			if ($this->getShow() && $action == LIST_RIGHTS && !$this->isProtected() && $this->categoryIsVisible()) {
+			if ($action == LIST_RIGHTS && !$this->isProtected() && $this->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) {   //$this->categoryIsVisible()
 				return true;
 			}
 			// A user actually cannot have rights for an article without categories assigned

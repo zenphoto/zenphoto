@@ -97,25 +97,26 @@ function isImageClass($image = NULL) {
  */
 class Image extends MediaObject {
 
-	var $filename; // true filename of the image.
-	var $exists = true; // Does the image exist?
-	var $webpath; // The full URL path to the original image.
-	var $localpath; // Latin1 full SERVER path to the original image.
-	var $displayname; // $filename with the extension stripped off.
-	var $album; // An album object for the album containing this image.
-	var $albumname; // The name of the album for which this image was instantiated. (MAY NOT be $this->album->name!!!!).
-	var $albumnamealbum; //	An album object representing the above;
-	var $albumlink; // "rewrite" verwion of the album name, eg. may not have the .alb
-	var $imagefolder; // The album folder containing the image (May be different from the albumname!!!!)
+	public $filename; // true filename of the image.
+	public $exists = true; // Does the image exist?
+	public $webpath; // The full URL path to the original image.
+	public $localpath; // Latin1 full SERVER path to the original image.
+	public $displayname; // $filename with the extension stripped off.
+	public $album; // An album object for the album containing this image.
+	public $albumname; // The name of the album for which this image was instantiated. (MAY NOT be $this->album->name!!!!).
+	public $albumnamealbum; //	An album object representing the above;
+	public $albumlink; // "rewrite" verwion of the album name, eg. may not have the .alb
+	public $imagefolder; // The album folder containing the image (May be different from the albumname!!!!)
 	protected $index; // The index of the current image in the album array.
 	protected $sortorder; // The position that this image should be shown in the album
-	var $filemtime; // Last modified time of this image
-	var $sidecars = array(); // keeps the list of suffixes associated with this image
-	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
-	var $manage_some_rights = ALBUM_RIGHTS;
-	var $view_rights = ALL_ALBUMS_RIGHTS;
+	public $filemtime; // Last modified time of this image
+	public $sidecars = array(); // keeps the list of suffixes associated with this image
+	public $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
+	public $manage_some_rights = ALBUM_RIGHTS;
+	public $view_rights = ALL_ALBUMS_RIGHTS;
 	// Plugin handler support
-	var $objectsThumb = NULL; // Thumbnail image for the object
+	public $objectsThumb = NULL; // Thumbnail image for the object
+	protected $is_public = null;
 
 	/**
 	 * Constructor for class-image
@@ -1286,6 +1287,28 @@ class Image extends MediaObject {
 	 */
 	function isProtected() {
 		return $this->checkforGuest() != 'zp_public_access';
+	}
+	
+	/**
+	 * Returns true if this image is published and also its album and all of its parents.
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return bool
+	 */
+	function isPublic() {
+		if (is_null($this->is_public)) {
+			if (!$this->getShow()) {
+				return $this->is_public = false;
+			}
+			$album = $this->getAlbum();
+			if(!$album->isPublic()) {
+				return $this->is_public = false;
+			}
+			return $this->is_public = true;
+		} else {
+			return $this->is_public;
+		}
 	}
 	
 	/**

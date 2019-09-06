@@ -9,10 +9,10 @@
 class ThemeObject extends PersistentObject {
 
 	private $commentcount; //Contains the number of comments
-	var $comments = NULL; //Contains an array of the comments of the object
-	var $manage_rights = ADMIN_RIGHTS;
-	var $manage_some_rights = ADMIN_RIGHTS;
-	var $view_rights = VIEW_ALL_RIGHTS;
+	public $comments = NULL; //Contains an array of the comments of the object
+	public $manage_rights = ADMIN_RIGHTS;
+	public $manage_some_rights = ADMIN_RIGHTS;
+	public $view_rights = VIEW_ALL_RIGHTS;
 
 	/**
 	 * Class instantiator

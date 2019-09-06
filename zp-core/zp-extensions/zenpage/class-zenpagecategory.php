@@ -17,6 +17,7 @@ class ZenpageCategory extends ZenpageRoot {
 	protected $sortorder = 'date';
 	protected $sortdirection = true;
 	protected $sortSticky = true;
+	protected $is_public = null;
 	
 
 	function __construct($catlink, $create = NULL) {
@@ -335,14 +336,42 @@ class ZenpageCategory extends ZenpageRoot {
 	function isProtected() {
 		return $this->checkforGuest() != 'zp_public_access';
 	}
-
+	
+	/**
+	 * Returns true if this category is published and also all of its parents.
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return bool
+	 */
+	function isPublic() {
+		if (is_null($this->is_public)) {
+			if (!$this->getShow()) {
+				return $this->is_public = false;
+			}
+			$parent = $this->getParent();
+			if($parent && !$parent->isPublic()) {
+				return $this->is_public = false;
+			}
+			return $this->is_public = true;
+		} else {
+			return $this->is_public;
+		}
+	}
+	
+	/**
+	 * Checks if user is news author
+	 * @param bit $action what the caller wants to do
+	 *
+	 * returns true of access is allowed
+	 */
 	function isMyItem($action) {
 		global $_zp_current_admin_obj;
 		if (parent::isMyItem($action)) {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if ($action == LIST_RIGHTS && $this->getShow()) {
+			if ($action == LIST_RIGHTS && $this->isPublic()) {
 				return true;
 			}
 			$mycategories = $_zp_current_admin_obj->getObjects('news');

@@ -59,9 +59,12 @@ class Zenpage {
 	/**
 	 * Provides the complete category structure regardless of permissions.
 	 * This is needed for quick checking of status of a category and is used only internally to the Zenpage core.
+	 * 
+	 * @deprecated Zenphoto 2.0 There is no replacement
 	 * @return array
 	 */
 	private function getCategoryStructure() {
+		Zenpage_internal_deprecations::getCategoryStructure();
 		if (is_null($this->categoryStructure)) {
 			$allcategories = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER by sort_order");
 			if ($allcategories) {
@@ -80,8 +83,15 @@ class Zenpage {
 	/*	 * ********************************* */
 	/* general page functions   */
 	/*	 * ********************************* */
-
+	/**
+	 * Checks if a category itself is published.
+	 * 
+	 * @deprecated Zenphoto 2.0 Use the method isPublic() of the ZenpageCategory class instead.
+	 * @param type $cat
+	 * @return type
+	 */
 	function visibleCategory($cat) {
+		Zenpage_internal_deprecations::visibleCategory();
 		$categorystructure = $this->getCategoryStructure();
 		return $categorystructure[$cat['cat_id']]['show'];
 	}
@@ -202,7 +212,7 @@ class Zenpage {
 				$_zp_not_viewable_pages_list = array();
 				foreach ($items as $item) {
 					$obj = new ZenpageNews($item['titlelink']);
-					if (!$obj->isProtected()) {
+					if ($obj->isProtected() && !$obj->isPublic()) {
 						$_zp_not_viewable_pages_list[] = $obj->getID();
 					}
 				}
@@ -414,7 +424,7 @@ class Zenpage {
 			if ($resource) {
 				while ($item = db_fetch_assoc($resource)) {
 					$article = new ZenpageNews($item['titlelink']); 
-					if ($getUnpublished && $article->isMyItem(LIST_RIGHTS) || ($currentcategory && $article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+					if ($getUnpublished && $article->isMyItem(LIST_RIGHTS) || ($currentcategory && $article->inNewsCategory($currentcategory)) || ($article->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS))) { //|| $article->categoryIsVisible()
 						$result[] = $item;
 					}
 				}
@@ -466,7 +476,7 @@ class Zenpage {
 				$_zp_not_viewable_news_list = array();
 				foreach ($items as $item) {
 					$obj = new ZenpageNews($item['titlelink']);
-					if ($obj->isProtected()) {
+					if (!$obj->isProtected() && $obj->isPublic()) {
 						$_zp_not_viewable_news_list[] = $obj->getID();
 					}
 				}
@@ -591,7 +601,7 @@ class Zenpage {
 			while ($item = db_fetch_assoc($resource)) {
 				if ($item['type'] == 'news') {
 					$article = new ZenpageNews($item['titlelink']);
-					if (!$article->categoryIsVisible()) {
+					if (!$article->isPublic() && !zp_loggedin(ALL_NEWS_RIGHTS)) { 
 						continue;
 					}
 				}
@@ -660,7 +670,7 @@ class Zenpage {
 		if ($visible) {
 			foreach ($structure as $key => $cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
-				if ($catobj->getShow() || $catobj->isMyItem(LIST_RIGHTS)) {
+				if ($catobj->isPublic() || $catobj->isMyItem(LIST_RIGHTS)) {
 					$structure[$key]['show'] = 1;
 				} else {
 					unset($structure[$key]);
