@@ -158,7 +158,7 @@ class ipBlocker {
 		}
 	}
 
-	static function handleOptionSave($themename, $themealbum) {
+	function handleOptionSave($themename, $themealbum) {
 		$notify = '';
 		$list = array();
 		foreach ($_POST as $key => $param) {

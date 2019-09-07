@@ -348,7 +348,7 @@ class cacheManager {
 	 * @param string $themealbum
 	 * @return string
 	 */
-	static function handleOptionSave($themename, $themealbum) {
+	function handleOptionSave($themename, $themealbum) {
 		$cache = array();
 		foreach ($_POST as $key => $value) {
 			preg_match('/^cacheManager_(.*)_(.*)/', $key, $matches);

@@ -195,7 +195,7 @@ class register_user {
 		}
 	}
 
-	static function handleOptionSave($themename, $themealbum) {
+	function handleOptionSave($themename, $themealbum) {
 		if (!class_exists('user_groups')) {
 			$saved_rights = NO_RIGHTS;
 			$rightslist = sortMultiArray(Zenphoto_Authority::getRights(), array('set', 'value'));

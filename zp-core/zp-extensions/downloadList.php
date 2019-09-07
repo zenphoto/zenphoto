@@ -158,7 +158,7 @@ class DownloadList {
 		<?php
 	}
 
-	static function handleOptionSave($themename, $themealbum) {
+	function handleOptionSave($themename, $themealbum) {
 		$notify = processCredentials('downloadList', '_downloadList');
 		if ($notify == '?mismatch=user') {
 			return '&custom=' . gettext('You must supply a password for the DownloadList user');
