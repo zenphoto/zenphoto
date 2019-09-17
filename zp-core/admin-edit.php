@@ -741,7 +741,9 @@ echo "\n</head>";
 										}
 										$sortNames = getSortByOptions('albums');
 										$sortNames = array_flip($sortNames);
-										$sorttype = $sortNames[$sorttype];
+										if(array_key_exists($sorttype, $sortNames)) {
+											$sorttype = $sortNames[$sorttype];
+										} 
 									} else {
 										$dir = '';
 									}
@@ -1681,7 +1683,9 @@ echo "\n</head>";
 								$dir = '';
 							}
 							$sortNames = getSortByOptions('albums');
-							$sorttype = $sortNames[$sorttype];
+							if(array_key_exists($sorttype, $sortNames)) {
+								$sorttype = $sortNames[$sorttype];
+							} 
 						} else {
 							$dir = '';
 						}
