@@ -2428,7 +2428,11 @@ if ($c <= 0) {
 						
 						$sql_statements[] = "ALTER TABLE $tbl_news CHANGE `lastchangeauthor` `lastchangeuser` varchar(64)";
 						$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `lastchangeauthor` `lastchangeuser` varchar(64)";
-	
+						
+						//1.5.5
+						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `sort_type` `sort_type` varchar(128)";
+						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `subalbum_sort_type` `subalbum_sort_type` varchar(128)";
+
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
 							if ($s = $exifvar[6]) {
