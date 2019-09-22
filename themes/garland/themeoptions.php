@@ -44,17 +44,59 @@ class ThemeOptions {
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
-							array('type' => 'menulabel', 'title' => gettext('News Articles'), 'link' => '', 'show' => 1, 'nesting' => 0),
-							array('type'			 => 'menufunction', 'title'			 => gettext('All news'),
-											'link'			 => 'printAllNewsCategories("All news",TRUE,"","menu-active",false,"inner_ul",false,"list",false,getOption("menu_manager_truncate_string"));',
-											'show'			 => 1, 'include_li' => 0, 'nesting'		 => 1),
-							array('type' => 'html', 'title' => gettext('News Articles Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
-							array('type' => 'custompage', 'title' => gettext('Gallery'), 'link' => 'gallery', 'show' => 1, 'nesting' => 0),
-							array('type' => 'menufunction', 'title' => gettext('All Albums'), 'link' => 'printAlbumMenuList("list",NULL,"","menu-active","inner_ul","menu-active","",false,false,false,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1),
-							array('type' => 'html', 'title' => gettext('Gallery Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
-							array('type' => 'menulabel', 'title' => gettext('Pages'), 'link' => '', 'show' => 1, 'nesting' => 0),
-							array('type' => 'menufunction', 'title' => gettext('All pages'), 'link' => 'printPageMenu("list","","menu-active","inner_ul","menu-active","",0,false,getOption("menu_manager_truncate_string"));', 'show' => 1, 'include_li' => 0, 'nesting' => 1, getOption("menu_manager_truncate_string")),
-							array('type' => 'html', 'title' => gettext('Pages Rule'), 'link' => '<li class="menu_rule menu_menulabel"></li>', 'show' => 1, 'include_li' => 0, 'nesting' => 0),
+					array(
+							'type' => 'menulabel',
+							'title' => gettext('News Articles'),
+							'link' => '',
+							'show' => 1,
+							'nesting' => 0),
+					array(
+							'type' => 'menufunction',
+							'title' => gettext('All news'),
+							'link' => 'printAllNewsCategories("All news",TRUE,"","menu-active",false,"inner_ul",false,"list",false,getOption("menu_manager_truncate_string"));',
+							'show' => 1,
+							'include_li' => 0,
+							'nesting' => 1),
+					array('type' => 'html',
+							'title' => gettext('News Articles Rule'),
+							'link' => '<li class="menu_rule menu_menulabel"></li>',
+							'show' => 1,
+							'include_li' => 0,
+							'nesting' => 0),
+					array('type' => 'custompage',
+							'title' => gettext('Gallery'),
+							'link' => 'gallery',
+							'show' => 1,
+							'nesting' => 0),
+					array('type' => 'menufunction',
+							'title' => gettext('All Albums'),
+							'link' => 'printAlbumMenuList("list",NULL,"","menu-active","inner_ul","menu-active","",false,false,false,false,getOption("menu_manager_truncate_string"));',
+							'show' => 1,
+							'include_li' => 0,
+							'nesting' => 1),
+					array('type' => 'html',
+							'title' => gettext('Gallery Rule'),
+							'link' => '<li class="menu_rule menu_menulabel"></li>',
+							'show' => 1,
+							'include_li' => 0,
+							'nesting' => 0),
+					array('type' => 'menulabel',
+							'title' => gettext('Pages'),
+							'link' => '',
+							'show' => 1,
+							'nesting' => 0),
+					array('type' => 'menufunction',
+							'title' => gettext('All pages'),
+							'link' => 'printPageMenu("list","","menu-active","inner_ul","menu-active","",0,false,getOption("menu_manager_truncate_string"));',
+							'show' => 1,
+							'include_li' => 0,
+							'nesting' => 1, getOption("menu_manager_truncate_string")),
+					array('type' => 'html',
+							'title' => gettext('Pages Rule'),
+							'link' => '<li class="menu_rule menu_menulabel"></li>',
+							'show' => 1,
+							'include_li' => 0,
+							'nesting' => 0),
 			);
 			createMenuIfNotExists($menuitems, 'garland');
 		}
@@ -72,12 +114,23 @@ class ThemeOptions {
 			$note = '';
 		}
 		$options = array(
-						gettext('Theme personality') => array('key'				 => 'garland_personality', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => $personalities,
-										'desc'			 => gettext('Select the theme personality')),
-						gettext('Allow search')			 => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable search form.')),
-						gettext('Allow cloud')			 => array('key' => 'Allow_cloud', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable tag cloud for album page.')),
-						gettext('Custom menu')			 => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.') . $note)
+				gettext('Theme personality') => array(
+						'key' => 'garland_personality',
+						'type' => OPTION_TYPE_SELECTOR,
+						'selections' => $personalities,
+						'desc' => gettext('Select the theme personality')),
+				gettext('Allow search') => array(
+						'key' => 'Allow_search',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Set to enable search form.')),
+				gettext('Allow cloud') => array(
+						'key' => 'Allow_cloud',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Set to enable tag cloud for album page.')),
+				gettext('Custom menu') => array(
+						'key' => 'garland_menu',
+						'type' => OPTION_TYPE_CUSTOM,
+						'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.') . $note)
 		);
 		if (extensionEnabled('zenpage')) {
 			$unpublishedpages = query_full_array("SELECT title,titlelink FROM " . prefix('pages') . " WHERE `show` != 1 ORDER by `sort_order`");
@@ -85,20 +138,34 @@ class ThemeOptions {
 			foreach ($unpublishedpages as $page) {
 				$list[get_language_string($page['title'])] = $page['titlelink'];
 			}
-			$options[gettext('Custom Homepage')] = array('key'						 => 'garland_customHome', 'type'					 => OPTION_TYPE_SELECTOR,
-							'selections'		 => $list,
-							'null_selection' => gettext('none'),
-							'desc'					 => gettext('Select the <em>pages</em> titlelink for the home page. Only unpublished pages are offered for selection.'));
+			$options[gettext('Custom Homepage')] = array(
+					'key' => 'garland_customHome',
+					'type' => OPTION_TYPE_SELECTOR,
+					'selections' => $list,
+					'null_selection' => gettext('none'),
+					'desc' => gettext('Select the <em>pages</em> titlelink for the home page. Only unpublished pages are offered for selection.'));
 		}
 		if (getOption('garland_personality') == 'image_gallery') {
-			$options[gettext('Image gallery transition')] = array('key'				 => 'garland_transition', 'type'			 => OPTION_TYPE_SELECTOR,
-							'selections' => array(gettext('None') => '', gettext('Fade') => 'fade', gettext('Shrink/grow') => 'resize', gettext('Horizontal') => 'slide-hori', gettext('Vertical') => 'slide-vert'),
-							'order'			 => 10,
-							'desc'			 => gettext('Transition effect for Image gallery'));
-			$options[gettext('Image gallery caption')] = array('key'			 => 'garland_caption_location', 'type'		 => OPTION_TYPE_RADIO,
-							'buttons'	 => array(gettext('On image') => 'image', gettext('Separate') => 'separate', gettext('Omit') => 'none'),
-							'order'		 => 10.5,
-							'desc'		 => gettext('Location for Image gallery picture caption'));
+			$options[gettext('Image gallery transition')] = array(
+					'key' => 'garland_transition',
+					'type' => OPTION_TYPE_SELECTOR,
+					'selections' => array(
+							gettext('None') => '',
+							gettext('Fade') => 'fade',
+							gettext('Shrink/grow') => 'resize',
+							gettext('Horizontal') => 'slide-hori',
+							gettext('Vertical') => 'slide-vert'),
+					'order' => 10,
+					'desc' => gettext('Transition effect for Image gallery'));
+			$options[gettext('Image gallery caption')] = array(
+					'key' => 'garland_caption_location',
+					'type' => OPTION_TYPE_RADIO,
+					'buttons' => array(
+							gettext('On image') => 'image',
+							gettext('Separate') => 'separate',
+							gettext('Omit') => 'none'),
+					'order' => 10.5,
+					'desc' => gettext('Location for Image gallery picture caption'));
 		}
 		return $options;
 	}
