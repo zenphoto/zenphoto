@@ -105,6 +105,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
+	header("Content-Security-Policy: default-src " . FULLWEBPATH . "/ 'unsafe-inline'");
+	header('X-Frame-Options: deny');
+	header('X-Content-Type-Options: nosniff');
+	header('Referrer-Policy: origin');
 	zp_apply_filter('admin_headers');
 	?>
 	<!DOCTYPE html>
@@ -3880,7 +3884,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 			<?php
 			echo gettext("Check All");
 			?>
-			<input class="dirtyignore" type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			<input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 			<?php
 		}
 		?>
