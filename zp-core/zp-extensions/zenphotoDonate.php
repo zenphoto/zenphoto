@@ -20,15 +20,10 @@ class zenphotoDonate {
 		<div class="box overview-utility">
 			<h2 class="h2_bordered"><?php echo gettext("Like using Zenphoto? Donate!"); ?></h2>
 			<br />
-			<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-				<input type="hidden" name="cmd" value="_xclick">
-				<input type="hidden" name="business" value="tharward@berkeley.edu">
-				<input type="hidden" name="item_name" value="Zenphoto">
-				<input type="hidden" name="no_note" value="1"> <input type="hidden" name="currency_code" value="USD">
-				<input type="hidden" name="tax" value="0">
-				<input type="hidden" name="bn" value="PP-DonationsBF">
-				<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it is fast, free and secure!">
-				<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="FZFKU5UYSGEYE">
+				<input type="submit" name="submit" alt="PayPal - The safer, easier way to pay online!" value="Donate via PayPal"
 			</form>
 			<br class="clearall" />
 			<div style="padding-left:10px;">
