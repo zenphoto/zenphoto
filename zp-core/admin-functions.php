@@ -104,6 +104,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 	}
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
+	header('Cache-Control: no-cache; private; max-age=600; must-revalidate');
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	header("Content-Security-Policy: default-src " . FULLWEBPATH . "/ 'unsafe-inline'");
 	header('X-Frame-Options: deny');
