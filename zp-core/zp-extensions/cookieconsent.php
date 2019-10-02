@@ -3,7 +3,7 @@
  * A plugin to add a cookie notify dialog to comply with the EU cookie law and Google's requirement for Google Ads and more
  * https://www.cookiechoices.org
  *
- * Adapted of https://cookieconsent.insites.com
+ * Adapted of https://cookieconsent.osano.com/
  *
  * @author Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)
  * @license GPL v3 or later
@@ -11,7 +11,7 @@
  * @subpackage cookieconsent
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
-$plugin_description = gettext("A plugin to add a cookie notify dialog to comply with the EU cookie law and Google's request regarding usages of Google Adwords, Analytics and more");
+$plugin_description = gettext("A plugin to add a cookie notify dialog to comply with the EU cookie law and Google's request regarding usages of Google Adwords, Analytics and more. Based on <a href='https://cookieconsent.osano.com/'>https://cookieconsent.osano.com/</a>");
 $plugin_author = "Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)";
 $option_interface = 'cookieConsent';
 $plugin_category = gettext('Misc');
