@@ -788,6 +788,7 @@ zp-core/utilities
 zp-core/utilities/backup_restore.php
 zp-core/utilities/database_reference.php
 zp-core/utilities/gallery_statistics.php
+zp-core/utilities/http_header_inspector.php
 zp-core/utilities/list_locales.php
 zp-core/utilities/phpInfo.php
 zp-core/utilities/refresh_database.php
@@ -1196,6 +1197,7 @@ zp-core/zp-extensions/galleryArticles.php
 zp-core/zp-extensions/galleryArticles/combiNews.php
 zp-core/zp-extensions/hitcounter.php
 zp-core/zp-extensions/html_meta_tags.php
+zp-core/zp-extensions/http_security_headers.php
 zp-core/zp-extensions/image_album_statistics.php
 zp-core/zp-extensions/ipBlocker.php
 zp-core/zp-extensions/jplayer
@@ -1690,4 +1692,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1692
+1694
