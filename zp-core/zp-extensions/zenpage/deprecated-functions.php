@@ -19,7 +19,7 @@ class Zenpage_internal_deprecations {
 	 * @since ZenphotoCMS 1.5.5
 	 */
 	public static function categoryIsVisible() {
-		deprecated_functions::notify(gettext('Use if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … } for a equivalent check instead.'));
+		deprecated_functions::notify(gettext('Use <code>if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … }</code> for a equivalent check instead.'));
 	}
 	
 }
