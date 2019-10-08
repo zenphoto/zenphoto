@@ -421,7 +421,7 @@ class securityheadersOptions {
 		if ($csptext) {
 			$desc .= '<p>' . gettext('<em>nonce-</em> uses the internal XSRFtoken automatically. Caution: A nonce attribute with <code>getXSRFToken("security_http_headers")</code> must be present on all inline script calls as they otherwise break. Inline handlers (e.g. onclick="") will not work in any case.') . '</p>';
 		}
-		$desc .= '<p>' . gettext('For detailed info please see <a href="' . $link . '" target="_blank">' . $link . '</a>.') . '</p>';
+		$desc .= '<p>' . sprintf(gettext('For detailed info please see <a href="%1$s" target="_blank">%2$s</a>.'), $link, $link) . '</p>';
 		return $desc;
 	}
 	

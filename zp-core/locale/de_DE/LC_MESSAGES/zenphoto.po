@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-08 16:28+0200\n"
-"PO-Revision-Date: 2019-10-08 17:05+0200\n"
+"POT-Creation-Date: 2019-10-08 17:14+0200\n"
+"PO-Revision-Date: 2019-10-08 17:15+0200\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -16632,8 +16632,12 @@ msgstr ""
 "in keinem Fall funktionieren."
 
 #: zp-core/zp-extensions/http_security_headers.php:424
-msgid "For detailed info please see <a href=\""
-msgstr "Detailierte Info dazu finden Sie unter <a href=\""
+#, php-format
+msgid ""
+"For detailed info please see <a href=\"%1$s\" target=\"_blank\">%2$s</a>."
+msgstr ""
+"Detailierte Info dazu finden Sie unter <a href=„%1$s“ target=„_blank“>%2$s</"
+"a>."
 
 #: zp-core/zp-extensions/http_security_headers.php:429
 msgid ""
