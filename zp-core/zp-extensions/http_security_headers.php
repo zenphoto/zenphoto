@@ -426,7 +426,7 @@ class securityheadersOptions {
 	}
 	
 	static function getCOntentSecurityPolicyHostSourceDoc() {
-		return '<p>' . gettext('Define one or more domains, e.g. http:://yourdomain1.com http:://yourdomain2.com, to allow content from') . '</p>';
+		return '<p>' . gettext('Define one or more domains, e.g. http://yourdomain1.com http://yourdomain2.com, to allow content from') . '</p>';
 	}
 
 	/**
