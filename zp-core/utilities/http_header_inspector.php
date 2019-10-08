@@ -34,7 +34,7 @@ printAdminHeader('overview', 'http_header_inspector');
 			<?php printSubtabs(); ?>
 			<div class="tabbox">
 				<h1><?php echo (gettext('HTTP header inspector')); ?></h1>
-				<p><?php echo gettext('Interspect which HTTP headers your site generally sends.'); ?></p>
+				<p><?php echo gettext('Inspect which HTTP headers your site generally sends.'); ?></p>
 				<?php
 				$check_headers = array(
 						array(
