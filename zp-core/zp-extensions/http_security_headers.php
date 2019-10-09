@@ -262,7 +262,7 @@ class securityheadersOptions {
 						'type' => OPTION_TYPE_CHECKBOX_UL,
 						'checkboxes' => self::getContentSecurityPolicyFrameAncestorsSources(),
 						'order' => 17,
-						'desc' => '<p>' . gettext('Specifices parents for frame, iframe, object, embed and applet. Helps prevent clickhijjacking and the site being loading within other sites.') . '</p>'
+						'desc' => '<p>' . gettext('Specifices parents for frame, iframe, object, embed and applet. Helps prevent clickjacking and the site being loading within other sites.') . '</p>'
 						. self::getStandardDesc('https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors')
 				),
 				'Content-Security-Policy: frame-ancestors - host-source' => array(
