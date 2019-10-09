@@ -2757,7 +2757,7 @@ function setexifvars() {
 			'EXIFGPSLongitudeRef' => array('GPS', 'Longitude Reference', gettext('Longitude Reference'), false, 52, true, 'string'),
 			'EXIFGPSAltitude' => array('GPS', 'Altitude', gettext('Altitude'), false, 52, true, 'number'),
 			'EXIFGPSAltitudeRef' => array('GPS', 'Altitude Reference', gettext('Altitude Reference'), false, 52, true, 'string'),
-			'IPTCOriginatingProgram' => array('IPTC', 'OriginatingProgram', gettext('Originating Program '), false, 32, true, 'string'),
+			'IPTCOriginatingProgram' => array('IPTC', 'OriginatingProgram', gettext('Originating Program'), false, 32, true, 'string'),
 			'IPTCProgramVersion' => array('IPTC', 'ProgramVersion', gettext('Program Version'), false, 10, true, 'string'),
 			'VideoFormat' => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),
 			'VideoSize' => array('VIDEO', 'filesize', gettext('Video File Size'), false, 32, true, 'number'),

@@ -146,7 +146,7 @@ echo "\n" . '<div id="content">';
 	
 	if (count($themelist) == 0) {
 		echo '<div class="errorbox" id="no_themes">';
-		echo  "<h2>".gettext("There are no themes for which you have rights to administer.")."</h2>";
+		echo "<h2>".gettext("There are no themes for which you have rights to administer.")."</h2>";
 		echo '</div>';
 	} else {
 
@@ -170,7 +170,7 @@ echo "\n" . '<div id="content">';
 	}
  if ($message) {
 	echo '<div class="messagebox fade-message">';
-	echo  "<h2>$message</h2>";
+	echo "<h2>$message</h2>";
 	echo '</div>';
 } ?>
 

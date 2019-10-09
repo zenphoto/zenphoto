@@ -484,7 +484,7 @@ if (isset($_GET['action'])) {
 
 		if (empty($notify))
 			$notify = '?saved';
-		redirectURL(FULLWEBPATH  . '/' . ZENFOLDER . '/admin-options.php' . $notify . $returntab);
+		redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php' . $notify . $returntab);
 	}
 }
 printAdminHeader($_current_tab);
@@ -999,7 +999,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										if (!GALLERY_SESSION) {
 											echo gettext('Path');
 											?>
-											<input type="text" size="48" id="zenphoto_cookie_path" name="zenphoto_cookie_path"  value="<?php echo getOption('zenphoto_cookie_path'); ?>" />
+											<input type="text" size="48" id="zenphoto_cookie_path" name="zenphoto_cookie_path" value="<?php echo getOption('zenphoto_cookie_path'); ?>" />
 											<p>
 												<?php
 												echo gettext('Duration');
@@ -1036,7 +1036,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td width="350">
 										<p><?php print_language_string_list(getOption('site_email_name'), 'site_email_name'); ?></p>
-										<p><input type="text" size="48" id="site_email" name="site_email"  value="<?php echo getOption('site_email'); ?>" /></p>
+										<p><input type="text" size="48" id="site_email" name="site_email" value="<?php echo getOption('site_email'); ?>" /></p>
 									</td>
 									<td><?php echo gettext("This email name and address will be used as the <em>From</em> address for all mails sent by Zenphoto."); ?></td>
 								</tr>
@@ -1053,14 +1053,14 @@ Zenphoto_Authority::printPasswordFormJS();
 										?>
 									</td>
 									<td width="350">
-										<input type="text" size="5" id="users_per_page" name="users_per_page"  value="<?php echo getOption('users_per_page'); ?>" />
+										<input type="text" size="5" id="users_per_page" name="users_per_page" value="<?php echo getOption('users_per_page'); ?>" />
 										<br />
-										<input type="text" size="5" id="plugins_per_page" name="plugins_per_page"  value="<?php echo getOption('plugins_per_page'); ?>" />
+										<input type="text" size="5" id="plugins_per_page" name="plugins_per_page" value="<?php echo getOption('plugins_per_page'); ?>" />
 										<?php
 										if (extensionEnabled('zenpage')) {
 											?>
 											<br />
-											<input type="text" size="5" id="articles_per_page" name="articles_per_page"  value="<?php echo getOption('articles_per_page'); ?>" />
+											<input type="text" size="5" id="articles_per_page" name="articles_per_page" value="<?php echo getOption('articles_per_page'); ?>" />
 											<?php
 										}
 										?>
@@ -1201,7 +1201,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														 class="dirtyignore" 
 														 onkeydown="passwordClear('');"
-														 id="user_name"  name="user"
+														 id="user_name" name="user"
 														 value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
 											</p>
 
@@ -1446,7 +1446,7 @@ Zenphoto_Authority::printPasswordFormJS();
 
 										<p><?php echo gettext("<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual thumb selection</em>"); ?></p>
 										<div id="visualthumb" style="display: none">
-											<p><?php echo gettext("Setting this option places thumbnails in the album thumbnail selection list (the dropdown list on each album’s edit page). In Firefox the dropdown shows the thumbs, but in IE and Safari only the names are displayed (even if the thumbs are loaded!). In albums with many images loading these thumbs takes much time and is unnecessary when the browser will not display them. Uncheck this option and the images will not be loaded. "); ?></p>
+											<p><?php echo gettext("Setting this option places thumbnails in the album thumbnail selection list (the dropdown list on each album’s edit page). In Firefox the dropdown shows the thumbs, but in IE and Safari only the names are displayed (even if the thumbs are loaded!). In albums with many images loading these thumbs takes much time and is unnecessary when the browser will not display them. Uncheck this option and the images will not be loaded."); ?></p>
 										</div>
 
 										<p><?php echo gettext("<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum thumb selection</em>"); ?></p>
@@ -1537,7 +1537,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														 class="dirtyignore" 
 														 onkeydown="passwordClear('');"
-														 id="user_name"  name="user"
+														 id="user_name" name="user"
 														 value="<?php echo html_encode(getOption('search_user')); ?>" autocomplete="off" />
 											<br />
 
@@ -2099,7 +2099,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<p><?php echo gettext("Compression quality for images and thumbnails generated by Zenphoto."); ?></p>
-										<p><?php echo gettext("Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, biggest file). "); ?></p>
+										<p><?php echo gettext("Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, biggest file)."); ?></p>
 									</td>
 								</tr>
 								<tr>
@@ -2404,7 +2404,7 @@ Zenphoto_Authority::printPasswordFormJS();
 														<input type="text" size="30"
 																	 class="dirtyignore" 
 																	 onkeydown="passwordClear('');"
-																	 id="user_name"  name="user"
+																	 id="user_name" name="user"
 																	 value="<?php echo html_encode(getOption('protected_image_user')); ?>" autocomplete="off" />
 
 													</td>
@@ -2585,7 +2585,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td>
 										<?php echo $desc; ?>
 										<p class="notebox">
-											<?php echo gettext('<strong>NOTE:</strong> This option  applies only to JPEG format cached images.'); ?>
+											<?php echo gettext('<strong>NOTE:</strong> This option applies only to JPEG format cached images.'); ?>
 										</p>
 									</td>
 								</tr>
@@ -2761,7 +2761,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												?>
 												<p class="notebox">
 													<?php
-													echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.') . ' ';
+													echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to the next multiple of it.') . ' ';
 													printf(gettext('For album pages there will be %1$u rows of thumbnails.'), ceil(getThemeOption('albums_per_page', $album, $themename) / getThemeOption('albums_per_row', $album, $themename)));
 													?>
 												</p>
@@ -2798,7 +2798,7 @@ Zenphoto_Authority::printPasswordFormJS();
 												?>
 												<p class="notebox">
 													<?php
-													echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.') . ' ';
+													echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to the next multiple of it.') . ' ';
 													printf(gettext('For pages containing images there will be %1$u rows of thumbnails.'), ceil(getThemeOption('images_per_page', $album, $themename) / getThemeOption('images_per_row', $album, $themename)));
 													?>
 												</p>
@@ -3223,7 +3223,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											?>
 										</p>
 										<p class="warningbox"><?php
-											echo gettext('<strong>Warning:</strong> If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  ' .
+											echo gettext('<strong>Warning:</strong> If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>. ' .
 															'If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! ' .
 															'Your only possibility then is to set or add <code>$conf["server_protocol"] = "http";</code> to your <code>zenphoto.cfg.php</code> file .');
 											?>
@@ -3242,7 +3242,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											if (!getOption('IP_tied_cookies')) {
 												echo ' ' . gettext('<strong>Note</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled.') . ' ';
 											}
-											echo gettext(' You <strong>WILL</strong> have to login after changing this option.');
+											echo gettext('You <strong>WILL</strong> have to login after changing this option.');
 											if (!getOption('IP_tied_cookies')) {
 												echo ' ' . gettext('If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first.');
 											}
@@ -3395,7 +3395,7 @@ Zenphoto_Authority::printPasswordFormJS();
 													<br><?php echo gettext('Select a Zenpage page. * denotes unpublished page.'); ?>
 												</label>
 												<?php 
-											}  else {
+											} else {
 												echo '<p><em>' . gettext('No suitable Zenpage pages available') . '</em></p>';
 											}
 										} 

@@ -161,7 +161,7 @@ $subtab = printSubtabs();
 				if ($str = isolate('$plugin_description', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
-						$plugin_description = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>.');
+						$plugin_description = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>');
 					}
 				} else {
 					$plugin_description = '';
@@ -169,7 +169,7 @@ $subtab = printSubtabs();
 				if ($str = isolate('$plugin_deprecated', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
-						$plugin_deprecated = gettext('<strong>Error parsing <em>plugin_deprecated</em> string!</strong>.');
+						$plugin_deprecated = gettext('<strong>Error parsing <em>plugin_deprecated</em> string!</strong>');
 					}
 				} else {
 					$plugin_deprecated = '';
@@ -177,7 +177,7 @@ $subtab = printSubtabs();
 				if ($str = isolate('$plugin_notice', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
-						$plugin_notice = gettext('<strong>Error parsing <em>plugin_notice</em> string!</strong>.');
+						$plugin_notice = gettext('<strong>Error parsing <em>plugin_notice</em> string!</strong>');
 					}
 				} else {
 					$plugin_notice = '';
@@ -185,7 +185,7 @@ $subtab = printSubtabs();
 				if ($str = isolate('$plugin_author', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 2;
-						$plugin_author = gettext('<strong>Error parsing <em>plugin_author</em> string!</strong>.');
+						$plugin_author = gettext('<strong>Error parsing <em>plugin_author</em> string!</strong>');
 					}
 				} else {
 					$plugin_author = '';
@@ -193,7 +193,7 @@ $subtab = printSubtabs();
 				if ($str = isolate('$plugin_version', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 4;
-						$plugin_version = ' ' . gettext('<strong>Error parsing <em>plugin_version</em> string!</strong>.');
+						$plugin_version = ' ' . gettext('<strong>Error parsing <em>plugin_version</em> string!</strong>');
 					}
 				} else {
 					$plugin_version = '';
@@ -201,7 +201,7 @@ $subtab = printSubtabs();
 				if ($str = isolate('$plugin_disable', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 8;
-						$plugin_URL = gettext('<strong>Error parsing <em>plugin_disable</em> string!</strong>.');
+						$plugin_URL = gettext('<strong>Error parsing <em>plugin_disable</em> string!</strong>');
 					} else {
 						if ($plugin_disable) {
 							setOption($opt, 0);

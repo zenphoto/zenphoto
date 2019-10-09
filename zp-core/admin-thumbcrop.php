@@ -226,7 +226,7 @@ printAdminHeader('edit', 'thumbcrop');
 			<h1><?php echo gettext("Custom thumbnail cropping") . ": <em>" . $albumobj->name . " (" . $albumobj->getTitle() . ") /" . $imageobj->filename . " (" . $imageobj->getTitle() . ")</em>"; ?></h1>
 			<p><?php echo gettext("You can change the portion of your image which is shown in thumbnails by cropping it here."); ?></p>
 			<div style="display:block">
-				<div style="float: left; width:<?php echo $thumbcropwidth; ?>px; text-align: center;margin-right: 18px;  margin-bottom: 10px;">
+				<div style="float: left; width:<?php echo $thumbcropwidth; ?>px; text-align: center;margin-right: 18px; margin-bottom: 10px;">
 					<img src="<?php echo html_encode(pathurlencode($currentthumbimage)); ?>" style="width:<?php echo $thumbcropwidth; ?>px;height:<?php echo $thumbcropheight; ?>px; border: 4px solid gray; float: left"/>
 					<?php echo gettext("current thumbnail"); ?>
 				</div>
@@ -246,7 +246,7 @@ printAdminHeader('edit', 'thumbcrop');
 						<input type="hidden" size="4" id="x2" name="x2" value="<?php echo $iX + $iW ?>" />
 						<input type="hidden" size="4" id="y2" name="y2" value="<?php echo $iY + $iH ?>" />
 						<input type="hidden" size="4" id="w" name="w" value="<?php echo $iW ?>" />
-						<input type="hidden" size="4" id="h" name="h" value="<?php echo $iH ?>"  />
+						<input type="hidden" size="4" id="h" name="h" value="<?php echo $iH ?>" />
 						<input type="hidden" id="cropw" name="cropw" value="<?php echo $cropwidth; ?>" />
 						<input type="hidden" id="croph" name="croph" value="<?php echo $cropheight; ?>" />
 						<input type="hidden" id="a" name="a" value="<?php echo html_encode($albumname); ?>" />
@@ -257,7 +257,7 @@ printAdminHeader('edit', 'thumbcrop');
 						<?php
 						if (getOption('thumb_crop')) {
 							?>
-							<input name="clear_crop" id="clear_crop" type="checkbox" value="1"  onclick="resetCheck();" /> <?php echo gettext("Reset to the default cropping"); ?><br />
+							<input name="clear_crop" id="clear_crop" type="checkbox" value="1" onclick="resetCheck();" /> <?php echo gettext("Reset to the default cropping"); ?><br />
 							<br />
 							<p class="buttons">
 								<button type="button" onclick="resetBoundingBox();" >
