@@ -262,7 +262,7 @@ class securityheadersOptions {
 						'type' => OPTION_TYPE_CHECKBOX_UL,
 						'checkboxes' => self::getContentSecurityPolicyFrameAncestorsSources(),
 						'order' => 17,
-						'desc' => '<p>' . gettext('Specifices parents for frame, iframe, object, embed and applet. Helps prevent clickjacking and the site being loading within other sites.') . '</p>'
+						'desc' => '<p>' . gettext('Specifices parents for frame, iframe, object, embed and applet. Helps prevent clickjacking and the site being loaded within other sites.') . '</p>'
 						. self::getStandardDesc('https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors')
 				),
 				'Content-Security-Policy: frame-ancestors - host-source' => array(
@@ -285,7 +285,7 @@ class securityheadersOptions {
 						'key' => 'securityheaders_csp_upgradeinsecurerequests',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 19,
-						'desc' => '<p>' . gettext('Advises the browser to replace insecure http URLs with https ones.') . '</p>'
+						'desc' => '<p>' . gettext('Instructs the browser to treat insecure http URLs like https ones.') . '</p>'
 						. self::getStandardDesc('https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests')
 				),
 				/**
@@ -301,7 +301,7 @@ class securityheadersOptions {
 						'key' => 'securityheaders_hsts',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 27,
-						'desc' => '<p>' . gettext('Enter the max age in seconds. Advises the browser that the site should be access via https.') . '</p>'
+						'desc' => '<p>' . gettext('Enter the max age in seconds. Instructs the browser that the site should be accessed via https only') . '</p>'
 						. self::getStandardDesc('https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security')
 				),
 				'Strict-Transport-Security - includeSubdomains' => array(
@@ -419,7 +419,7 @@ class securityheadersOptions {
 	static function getStandardDesc($link, $csptext = false) {
 		$desc = '';
 		if ($csptext) {
-			$desc .= '<p>' . gettext('<em>nonce-</em> uses the internal XSRFtoken automatically. Caution: A nonce attribute with <code>getXSRFToken("security_http_headers")</code> must be present on all inline script calls as they otherwise break. Inline handlers (e.g. onclick="") will not work in any case.') . '</p>';
+			$desc .= '<p>' . gettext('<em>nonce-</em> uses the internal XSRFToken automatically. Caution: A nonce attribute with <code>getXSRFToken("security_http_headers")</code> must be present on all inline script calls as they otherwise break. Inline handlers (e.g. onclick="") will not work in any case.') . '</p>';
 		}
 		$desc .= '<p>' . sprintf(gettext('For detailed info please see <a href="%1$s" target="_blank">%2$s</a>.'), $link, $link) . '</p>';
 		return $desc;
