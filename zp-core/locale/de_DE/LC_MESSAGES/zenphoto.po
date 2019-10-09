@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-08 17:14+0200\n"
-"PO-Revision-Date: 2019-10-08 17:15+0200\n"
+"POT-Creation-Date: 2019-10-09 10:39+0200\n"
+"PO-Revision-Date: 2019-10-09 10:40+0200\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -12283,7 +12283,7 @@ msgid "Displays which HTTP headers your site sends."
 msgstr "Zeigt, welche HTTP Header Ihre Site übermittelt."
 
 #: zp-core/utilities/http_header_inspector.php:37
-msgid "Interspect which HTTP headers your site generally sends."
+msgid "Inspect which HTTP headers your site generally sends."
 msgstr "Untersuchen Sie, welche HTTP Header Ihre Site generell übermittelt."
 
 #: zp-core/utilities/http_header_inspector.php:41
@@ -16641,11 +16641,11 @@ msgstr ""
 
 #: zp-core/zp-extensions/http_security_headers.php:429
 msgid ""
-"Define one or more domains, e.g. http:://yourdomain1.com http:://yourdomain2."
+"Define one or more domains, e.g. http://yourdomain1.com http://yourdomain2."
 "com, to allow content from"
 msgstr ""
-"Definieren Sie eine oder mehrere Domains, z.B. http:://yourdomain1.com "
-"http:://yourdomain2.com, um Inhalte von dort zu erlauben"
+"Definieren Sie eine oder mehrere Domains, z.B. http://yourdomain1.com http://"
+"yourdomain2.com, um Inhalte von dort zu erlauben"
 
 #: zp-core/zp-extensions/image_album_statistics.php:14
 msgid ""
@@ -22990,11 +22990,11 @@ msgstr "Verwenden Sie die Methode isPublic() der ZenpageCategory-Klasse."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:22
 msgid ""
-"Use if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … } for a "
-"equivalent check instead."
+"Use <code>if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … }</code> "
+"for a equivalent check instead."
 msgstr ""
-"Verwenden Sie stattdessen if($obj->isPublic() || "
-"zp_loggedin(ALL_NEWS_RIGHTS)) { … } für einen equivalenten Check."
+"Verwenden Sie stattdessen <code>if($obj->isPublic() || "
+"zp_loggedin(ALL_NEWS_RIGHTS)) { … }</code> für einen equivalenten Check."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:37
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:50
