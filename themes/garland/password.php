@@ -38,7 +38,7 @@ if (!defined('WEBPATH'))
 								<!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-										<?php printHomeLink('', ' » ');  printGalleryIndexURL(' » '); echo "<em>" . gettext('Password required') . "</em>"; ?>
+										<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); echo "<em>" . gettext('Password required') . "</em>"; ?>
 									</h2>
 									<h3><?php echo gettext('A password is required to access this page.') ?></h3>
 									<?php printPasswordForm('', true, false); ?>
