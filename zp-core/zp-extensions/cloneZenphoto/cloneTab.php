@@ -126,7 +126,7 @@ printAdminHeader('overview', 'clone');
 			<input type="hidden" name="path" id="newDir" value = "" />
 			<?php
 			if (empty($folderlist)) {
-				echo gettext('No subfolders in: ') . ' ';
+				echo gettext('No subfolders in:') . ' ';
 			} else {
 				echo gettext('Select the destination folder:') . ' ';
 			}

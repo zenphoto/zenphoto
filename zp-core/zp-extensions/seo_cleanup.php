@@ -176,7 +176,7 @@ if (defined('OFFSET_PATH')) {
 							<p>
 								<?php
 								if ($albumcount) {
-									printf(ngettext('%d album cleaned.', '%d albums cleaned', $albumcount), $albumcount);
+									printf(ngettext('%d album cleaned.', '%d albums cleaned.', $albumcount), $albumcount);
 								} else {
 									echo gettext('No albums cleaned.');
 								}
@@ -185,7 +185,7 @@ if (defined('OFFSET_PATH')) {
 							<p>
 								<?php
 								if ($count) {
-									printf(ngettext('%d image cleaned.', '%d images cleaned', $count), $count);
+									printf(ngettext('%d image cleaned.', '%d images cleaned.', $count), $count);
 								} else {
 									echo gettext('No images cleaned.');
 								}

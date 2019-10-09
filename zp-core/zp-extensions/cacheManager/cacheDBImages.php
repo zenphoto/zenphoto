@@ -101,7 +101,7 @@ printAdminHeader('overview', 'DB'); ?>
 										$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($text) . ' WHERE `id`=' . $row['id'];
 										$success = query($sql);
 										if($success) { 
-											echo '<li><strong>'. $title . '</strong> – <em>' . $field . '</em>: ' . sprintf(ngettext('%u image processor reference updated', '%u image processor references updated.', $imageprocessor_item), $imageprocessor_item) . '</li>';
+											echo '<li><strong>'. $title . '</strong> – <em>' . $field . '</em>: ' . sprintf(ngettext('%u image processor reference updated.', '%u image processor references updated.', $imageprocessor_item), $imageprocessor_item) . '</li>';
 										}
 									} 
 								}

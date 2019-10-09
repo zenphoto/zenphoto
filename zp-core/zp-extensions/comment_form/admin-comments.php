@@ -372,7 +372,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 				$id = $comment['id'];
 				$author = $comment['name'];
 				$email = $comment['email'];
-				$link = '<a title="' . gettext('The item upon which this comment was posted no longer exists.') . '">' . gettext('<strong>Missing Object</strong> ') . '</a>'; // in case of such
+				$link = '<a title="' . gettext('The item upon which this comment was posted no longer exists.') . '">' . gettext('<strong>Missing Object</strong>') . '</a>'; // in case of such
 				$image = '';
 				$albumtitle = '';
 

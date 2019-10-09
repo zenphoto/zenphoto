@@ -211,7 +211,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 												<?php echo gettext("<strong>Multimedia item</strong>: This embeds the content macro MEDIAPLAYER into the text. This generates a video or audio player on the front end if any suitable multimedia player plugin for the file type is enabled and also has registered to the macro."); ?>
 											</li>
 											<li><?php echo gettext("Custom size (un-cropped)."); ?></li>
-											<li><?php echo gettext("Full image: The original image directly. NOTE: Full image protection options do not apply!."); ?></li>
+											<li><?php echo gettext("Full image: The original image directly. NOTE: Full image protection options do not apply!"); ?></li>
 										</ul>
 										<p>
 											<?php echo gettext("If you additionally check <em>Show title</em> or <em>Show description</em> the title/description of the image or album (if you checked <em>link to album</em>) will be printed below the image. Only if <em>Image</em> is chosen as type."); ?>

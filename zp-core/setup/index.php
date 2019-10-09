@@ -1360,7 +1360,7 @@ if ($c <= 0) {
 								} else {
 									$msg1 = gettext("Zenphoto core files [Some files are missing or seem wrong]");
 								}
-								$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files: ') . '<br /><code>' . substr($filelist, 0, -6) . '</code>';
+								$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files:') . '<br /><code>' . substr($filelist, 0, -6) . '</code>';
 								$mark = -1;
 							} else {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {
@@ -2590,7 +2590,7 @@ if ($c <= 0) {
 										}
 									}
 								} else {
-									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery.</a>'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
+									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery</a>.'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 								}
 								setOption('setup_unprotected_by_adminrequest', 0, true, null);
 								?>

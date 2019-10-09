@@ -958,7 +958,7 @@ class cacheManager {
 	static function printCurlNote() {
 		if (!function_exists('curl_init') && getOption('cachemanager_generationmode') == 'curl') {
 			?>
-			<p class='warningbox'><?php echo gettext('Your server does not support the native PHP extension <code>cURL</code>. Pre-caching images is much more effective using it. '); ?></p>
+			<p class='warningbox'><?php echo gettext('Your server does not support the native PHP extension <code>cURL</code>. Pre-caching images is much more effective using it.'); ?></p>
 			<?php
 		}
 	}
