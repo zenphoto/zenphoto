@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-09 20:47+0200\n"
+"POT-Creation-Date: 2019-10-10 10:48+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -249,7 +249,7 @@ msgstr "Pagina niet gevonden"
 #: themes/garland/gallery.php:46 themes/garland/gallery.php:51
 #: themes/garland/search.php:203 themes/garland/search.php:208
 #, php-format
-msgid "View album:  %s"
+msgid "View album: %s"
 msgstr "Bekijk album: %s"
 
 #: themes/garland/album.php:77 themes/garland/favorites.php:91
@@ -3684,7 +3684,7 @@ msgid ""
 "the thumbs, but in IE and Safari only the names are displayed (even if the "
 "thumbs are loaded!). In albums with many images loading these thumbs takes "
 "much time and is unnecessary when the browser will not display them. Uncheck "
-"this option and the images will not be loaded. "
+"this option and the images will not be loaded."
 msgstr ""
 "Deze optie zorgt ervoor dat thumbnails getoond worden in de album thumbnail "
 "selectielijst (de dropdownlijst op de bewerkingspagina van elk album). In "
@@ -3984,7 +3984,7 @@ msgstr "JPEG compressiekwaliteit voor afbeeldingen en thumbnails."
 #: zp-core/admin-options.php:2102
 msgid ""
 "Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, "
-"biggest file). "
+"biggest file)."
 msgstr ""
 "De kwaliteit loopt van 0 (slechtste, kleinste bestandsformaat) tot 100 "
 "(beste, grootste bestandsformaat)"
@@ -4460,8 +4460,7 @@ msgstr "IPTC invoeging:"
 
 #: zp-core/admin-options.php:2588
 msgid ""
-"<strong>NOTE:</strong> This option  applies only to JPEG format cached "
-"images."
+"<strong>NOTE:</strong> This option applies only to JPEG format cached images."
 msgstr ""
 "<strong>Opmerking:</strong> Deze optie geldt alleen voor als JPEG gecachte "
 "afbeeldingen."
@@ -4538,7 +4537,7 @@ msgstr ""
 msgid ""
 "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The "
 "actual number of thumbnails that are displayed on a page will be rounded up "
-"to  the next multiple of it."
+"to the next multiple of it."
 msgstr ""
 "<strong>Opmerking:</strong> Als het <em>aantal thumbnails per rij</em> "
 "groter is dan 1, wordt het aantal thumbnails naar boven afgerond tot een "
@@ -4767,7 +4766,7 @@ msgstr ""
 #: zp-core/admin-options.php:3226
 msgid ""
 "<strong>Warning:</strong> If you select <em>https</em> or <em>secure admin</"
-"em> your server <strong>MUST</strong> support <em>https</em>.  If you set "
+"em> your server <strong>MUST</strong> support <em>https</em>. If you set "
 "either of these on a server which does not support <em>https</em> you will "
 "not be able to access the <code>admin</code> pages to reset the option! Your "
 "only possibility then is to set or add <code>$conf[\"server_protocol\"] = "
@@ -4800,7 +4799,7 @@ msgstr ""
 "IP-adres heeft kun je mogelijk niet inloggen als deze optie geactiveerd is!"
 
 #: zp-core/admin-options.php:3245
-msgid " You <strong>WILL</strong> have to login after changing this option."
+msgid "You <strong>WILL</strong> have to login after changing this option."
 msgstr "Je <strong>MOET</strong> inloggen als je deze optie hebt veranderd."
 
 #: zp-core/admin-options.php:3247
@@ -5042,40 +5041,38 @@ msgid "Description"
 msgstr "Beschrijving"
 
 #: zp-core/admin-plugins.php:164
-msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>"
 msgstr ""
 "<strong>Fout bij het verwerken van de <em>plugin_description</em> string!</"
-"strong>."
+"strong>"
 
 #: zp-core/admin-plugins.php:172
-msgid "<strong>Error parsing <em>plugin_deprecated</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_deprecated</em> string!</strong>"
 msgstr ""
 "<strong>Fout bij het verwerken van de <em>plugin_deprecated</em> string!</"
-"strong>."
+"strong>"
 
 #: zp-core/admin-plugins.php:180
-msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>"
 msgstr ""
-"<strong>Fout bij het verwerken van de <em>plugin_notice</em> string!</"
-"strong>."
+"<strong>Fout bij het verwerken van de <em>plugin_notice</em> string!</strong>"
 
 #: zp-core/admin-plugins.php:188
-msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>"
 msgstr ""
-"<strong>Fout bij het verwerken van de <em>plugin_author</em> string!</"
-"strong>."
+"<strong>Fout bij het verwerken van de <em>plugin_author</em> string!</strong>"
 
 #: zp-core/admin-plugins.php:196
-msgid "<strong>Error parsing <em>plugin_version</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_version</em> string!</strong>"
 msgstr ""
 "<strong>Fout bij het verwerken van de <em>plugin_version</em> string!</"
-"strong>."
+"strong>"
 
 #: zp-core/admin-plugins.php:204
-msgid "<strong>Error parsing <em>plugin_disable</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_disable</em> string!</strong>"
 msgstr ""
 "<strong>Fout bij het verwerken van de <em>plugin_disable</em> string!</"
-"strong>."
+"strong>"
 
 #: zp-core/admin-plugins.php:262
 msgid "third party plugin"
@@ -5916,11 +5913,11 @@ msgstr "Je setup-scripts zijn niet beschermd."
 msgid ""
 "The Setup environment is not totally secure, you should protect the scripts "
 "to thwart hackers. Use the <strong>Setup » protect scripts</strong> button "
-"in the <em>Admin</em> section of the <em>Utility functions</em>. "
+"in the <em>Admin</em> section of the <em>Utility functions</em>."
 msgstr ""
 "Deze setup omgeving is niet helemaal veilig. Je zou de setup-scripts moeten "
 "beveiligen om hackers te dwarbomen. Gebruik hiervoor de <strong>Setup » "
-"bescherm scripts</strong> knop op de <em>overzicht</em> pagina. "
+"bescherm scripts</strong> knop op de <em>overzicht</em> pagina."
 
 #: zp-core/admin.php:307
 msgid "Installation information"
@@ -8583,7 +8580,7 @@ msgid "Altitude Reference"
 msgstr "Hoogtegraad verwijzing"
 
 #: zp-core/functions.php:2760
-msgid "Originating Program "
+msgid "Originating Program"
 msgstr "Gebruikt programma"
 
 #: zp-core/functions.php:2761
@@ -10815,10 +10812,10 @@ msgstr ""
 #: zp-core/setup/index.php:1363
 msgid ""
 "Perhaps there was a problem with the upload. You should check the following "
-"files: "
+"files:"
 msgstr ""
 "Misschien was er een probleem met de upload. Je moet de volgende bestanden "
-"controleren:&nbsp;"
+"controleren:"
 
 #: zp-core/setup/index.php:1368
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
@@ -11221,8 +11218,8 @@ msgstr ""
 
 #: zp-core/setup/index.php:2593
 #, php-format
-msgid "You can now <a href=\"%1$s\">administer your gallery.</a>"
-msgstr "Je kunt nu <a href=\"%1$s\">de galerij beheren.</a>"
+msgid "You can now <a href=\"%1$s\">administer your gallery</a>."
+msgstr "Je kunt nu <a href=\"%1$s\">de galerij beheren.</a>."
 
 #: zp-core/setup/index.php:2654
 #, php-format
@@ -13162,7 +13159,7 @@ msgstr "Cache album afbeeldingen"
 #: zp-core/zp-extensions/cacheManager.php:961
 msgid ""
 "Your server does not support the native PHP extension <code>cURL</code>. Pre-"
-"caching images is much more effective using it. "
+"caching images is much more effective using it."
 msgstr ""
 "Je server ondersteunt niet de <code>cURL</code> PHP extensie. Pre-caching "
 "van afbeeldingen gaat hiermee veel effectiever."
@@ -13244,7 +13241,7 @@ msgstr "Cache log"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:104
 #, php-format
-msgid "%u image processor reference updated"
+msgid "%u image processor reference updated."
 msgid_plural "%u image processor references updated."
 msgstr[0] "%u afbeeldings-processor referentie ge-update."
 msgstr[1] "%u afbeeldings-processor referenties ge-update."
@@ -13776,7 +13773,7 @@ msgstr ""
 "verwijderd uit de doelmap."
 
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:129
-msgid "No subfolders in: "
+msgid "No subfolders in:"
 msgstr "Geen submappen in:"
 
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:131
@@ -14203,8 +14200,8 @@ msgid "The item upon which this comment was posted no longer exists."
 msgstr "Het onderdeel waarop deze reactie gepost is bestaat niet meer."
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:375
-msgid "<strong>Missing Object</strong> "
-msgstr "<strong>Ontbrekend object</strong> "
+msgid "<strong>Missing Object</strong>"
+msgstr "<strong>Ontbrekend object</strong>"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:391
 #: zp-core/zp-extensions/comment_form/functions.php:91
@@ -19925,7 +19922,7 @@ msgstr "Map- en bestandsnamen zoekmachine-vriendelijk maken"
 #: zp-core/zp-extensions/seo_cleanup.php:179
 #, php-format
 msgid "%d album cleaned."
-msgid_plural "%d albums cleaned"
+msgid_plural "%d albums cleaned."
 msgstr[0] "%d albumnaam netjes gemaakt."
 msgstr[1] "%d albumnamen netjes gemaakt."
 
@@ -19936,7 +19933,7 @@ msgstr "Geen albumnamen netjes gemaakt."
 #: zp-core/zp-extensions/seo_cleanup.php:188
 #, php-format
 msgid "%d image cleaned."
-msgid_plural "%d images cleaned"
+msgid_plural "%d images cleaned."
 msgstr[0] "%d afbeeldingsnaam netjes gemaakt."
 msgstr[1] "%d afbeeldingsnamen netjes gemaakt."
 
@@ -21307,10 +21304,10 @@ msgstr "Aangepast formaat (geen uitsnede)."
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:214
 msgid ""
 "Full image: The original image directly. NOTE: Full image protection options "
-"do not apply!."
+"do not apply!"
 msgstr ""
 "Volledige afbeelding: De originele afbeelding. Opmerking: Bescherming voor "
-"de volledige afbeelding werkt hier niet."
+"de volledige afbeelding werkt hier niet!"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:217
 msgid ""
@@ -23203,6 +23200,10 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#, php-format
+#~ msgid "View album:  %s"
+#~ msgstr "Bekijk album: %s"
 
 #~ msgid "allow upscale"
 #~ msgstr "vergroten toestaan"
@@ -25935,9 +25936,6 @@ msgstr ""
 
 #~ msgid "Recently Updated Galleries"
 #~ msgstr "Recent ge-update Galerijen"
-
-#~ msgid "View album: %s"
-#~ msgstr "Bekijk album: %s"
 
 #~ msgid "Recent images"
 #~ msgstr "recente afbeeldingen"
