@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-09 20:37+0200\n"
-"PO-Revision-Date: 2019-10-09 20:37+0200\n"
+"POT-Creation-Date: 2019-10-10 10:44+0200\n"
+"PO-Revision-Date: 2019-10-10 10:59+0200\n"
 "Last-Translator: Antonio <ranesi@tiscali.it>\n"
 "Language-Team: Antonio Ranesi [bic]\n"
 "Language: it_IT\n"
@@ -244,8 +244,8 @@ msgstr "Pagina non trovata"
 #: themes/garland/gallery.php:46 themes/garland/gallery.php:51
 #: themes/garland/search.php:203 themes/garland/search.php:208
 #, php-format
-msgid "View album:  %s"
-msgstr "Visualizza album: %s"
+msgid "View album: %s"
+msgstr "Visualizza l'album: %s"
 
 #: themes/garland/album.php:77 themes/garland/favorites.php:91
 #: themes/garland/functions.php:189 themes/garland/gallery.php:62
@@ -3700,7 +3700,7 @@ msgid ""
 "the thumbs, but in IE and Safari only the names are displayed (even if the "
 "thumbs are loaded!). In albums with many images loading these thumbs takes "
 "much time and is unnecessary when the browser will not display them. Uncheck "
-"this option and the images will not be loaded. "
+"this option and the images will not be loaded."
 msgstr ""
 "Impostando questa opzione le miniature vengono caricate nella lista di "
 "selezione miniature dell’album (il menu a tendina nella  pagina di modifica "
@@ -4009,7 +4009,7 @@ msgstr ""
 #: zp-core/admin-options.php:2102
 msgid ""
 "Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, "
-"biggest file). "
+"biggest file)."
 msgstr ""
 "La qualità varia tra 0 (qualità peggiore, file più piccolo) e 100 (qualità "
 "migliore, file più grande)."
@@ -4495,8 +4495,7 @@ msgstr "Integrazione IPTC:"
 
 #: zp-core/admin-options.php:2588
 msgid ""
-"<strong>NOTE:</strong> This option  applies only to JPEG format cached "
-"images."
+"<strong>NOTE:</strong> This option applies only to JPEG format cached images."
 msgstr ""
 "<strong>NOTA:</strong> quest’opzione si applica solo alle immagini in cache "
 "nel formato JPEG."
@@ -4574,7 +4573,7 @@ msgstr ""
 msgid ""
 "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The "
 "actual number of thumbnails that are displayed on a page will be rounded up "
-"to  the next multiple of it."
+"to the next multiple of it."
 msgstr ""
 "<strong>Nota:</strong> se <em>miniature per riga</em> è maggiore di 1, il "
 "numero effettivo di miniature che sono mostrate in una pagina verrà "
@@ -4803,7 +4802,7 @@ msgstr ""
 #: zp-core/admin-options.php:3226
 msgid ""
 "<strong>Warning:</strong> If you select <em>https</em> or <em>secure admin</"
-"em> your server <strong>MUST</strong> support <em>https</em>.  If you set "
+"em> your server <strong>MUST</strong> support <em>https</em>. If you set "
 "either of these on a server which does not support <em>https</em> you will "
 "not be able to access the <code>admin</code> pages to reset the option! Your "
 "only possibility then is to set or add <code>$conf[\"server_protocol\"] = "
@@ -4836,7 +4835,7 @@ msgstr ""
 "quando questa opzione è abilitata."
 
 #: zp-core/admin-options.php:3245
-msgid " You <strong>WILL</strong> have to login after changing this option."
+msgid "You <strong>WILL</strong> have to login after changing this option."
 msgstr ""
 " Si <strong>DOVRÀ</strong> effettuare l'accesso dopo aver cambiato questa "
 "opzione."
@@ -5084,36 +5083,36 @@ msgid "Description"
 msgstr "Descrizione"
 
 #: zp-core/admin-plugins.php:164
-msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>"
 msgstr ""
-"<strong>Errore nell’analisi della stringa <em>plugin_description</em></"
-"strong>."
+"<strong>Errore nell’analisi della stringa <em>plugin_description</em>!</"
+"strong>"
 
 #: zp-core/admin-plugins.php:172
-msgid "<strong>Error parsing <em>plugin_deprecated</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_deprecated</em> string!</strong>"
 msgstr ""
-"<strong>Errore nell’analisi della stringa <em>plugin_deprecated</em></"
-"strong>."
+"<strong>Errore nell’analisi della stringa <em>plugin_deprecated</em>!</"
+"strong>"
 
 #: zp-core/admin-plugins.php:180
-msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>"
 msgstr ""
-"<strong>Errore nell’analisi della stringa <em>plugin_notice</em></strong>."
+"<strong>Errore nell’analisi della stringa <em>plugin_notice</em>!</strong>"
 
 #: zp-core/admin-plugins.php:188
-msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>"
 msgstr ""
-"<strong>Errore nell’analisi della stringa <em>plugin_author</em></strong>."
+"<strong>Errore nell’analisi della stringa <em>plugin_author</em>!</strong>"
 
 #: zp-core/admin-plugins.php:196
-msgid "<strong>Error parsing <em>plugin_version</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_version</em> string!</strong>"
 msgstr ""
-"<strong>Errore nell’analisi della stringa <em>plugin_version</em></strong>."
+"<strong>Errore nell’analisi della stringa <em>plugin_version</em>!</strong>"
 
 #: zp-core/admin-plugins.php:204
-msgid "<strong>Error parsing <em>plugin_disable</em> string!</strong>."
+msgid "<strong>Error parsing <em>plugin_disable</em> string!</strong>"
 msgstr ""
-"<strong>Errore nell’analisi della stringa <em>plugin_disable</em></strong>."
+"<strong>Errore nell’analisi della stringa <em>plugin_disable</em>!</strong>"
 
 #: zp-core/admin-plugins.php:262
 msgid "third party plugin"
@@ -5946,7 +5945,7 @@ msgstr "Gli script di setup non sono portetti."
 msgid ""
 "The Setup environment is not totally secure, you should protect the scripts "
 "to thwart hackers. Use the <strong>Setup » protect scripts</strong> button "
-"in the <em>Admin</em> section of the <em>Utility functions</em>. "
+"in the <em>Admin</em> section of the <em>Utility functions</em>."
 msgstr ""
 "L'ambiente d'installazione non è del tutto sicuro, è preferibile proteggere "
 "gli script per ostacolare gli hacker. Usare il pulsante <strong>Setup » "
@@ -8630,7 +8629,7 @@ msgid "Altitude Reference"
 msgstr "Riferimento altitudine"
 
 #: zp-core/functions.php:2760
-msgid "Originating Program "
+msgid "Originating Program"
 msgstr "Programma di origine"
 
 #: zp-core/functions.php:2761
@@ -10906,10 +10905,10 @@ msgstr ""
 #: zp-core/setup/index.php:1363
 msgid ""
 "Perhaps there was a problem with the upload. You should check the following "
-"files: "
+"files:"
 msgstr ""
 "Potrebbe essersi verificato un errore nel caricamento. Verificare i seguenti "
-"file: "
+"file:"
 
 #: zp-core/setup/index.php:1368
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
@@ -11314,8 +11313,8 @@ msgstr ""
 
 #: zp-core/setup/index.php:2593
 #, php-format
-msgid "You can now <a href=\"%1$s\">administer your gallery.</a>"
-msgstr "È ora possibile <a href=\"%1$s\">amministrare la galleria.</a>"
+msgid "You can now <a href=\"%1$s\">administer your gallery</a>."
+msgstr "È ora possibile <a href=\"%1$s\">amministrare la galleria</a>."
 
 #: zp-core/setup/index.php:2654
 #, php-format
@@ -13289,7 +13288,7 @@ msgstr "Crea cache per le immagini dell’album"
 #: zp-core/zp-extensions/cacheManager.php:961
 msgid ""
 "Your server does not support the native PHP extension <code>cURL</code>. Pre-"
-"caching images is much more effective using it. "
+"caching images is much more effective using it."
 msgstr ""
 "Il server non supporta l’estensione nativa <code>cURL</code> del PHP. Con "
 "questa estensione il pre-caching delle immagini è molto più efficiente."
@@ -13369,7 +13368,7 @@ msgstr "Caching log"
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:104
 #, php-format
-msgid "%u image processor reference updated"
+msgid "%u image processor reference updated."
 msgid_plural "%u image processor references updated."
 msgstr[0] "Aggiornato %u riferimento all’elaboratore di immagini."
 msgstr[1] "Aggiornati %u riferimenti all’elaboratore di immagini."
@@ -13908,8 +13907,8 @@ msgstr ""
 "dalla destinazione se ci sono."
 
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:129
-msgid "No subfolders in: "
-msgstr "Nessuna sotto-cartella in: "
+msgid "No subfolders in:"
+msgstr "Nessuna sotto-cartella in:"
 
 #: zp-core/zp-extensions/cloneZenphoto/cloneTab.php:131
 msgid "Select the destination folder:"
@@ -14341,7 +14340,7 @@ msgid "The item upon which this comment was posted no longer exists."
 msgstr "L’elemento nel quale questo commento era stato scritto non esiste più."
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:375
-msgid "<strong>Missing Object</strong> "
+msgid "<strong>Missing Object</strong>"
 msgstr "<strong>Oggetto mancante</strong>"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:391
@@ -16559,7 +16558,7 @@ msgstr "Limita gli URL di destinazione per le azioni dei moduli."
 #: zp-core/zp-extensions/http_security_headers.php:265
 msgid ""
 "Specifices parents for frame, iframe, object, embed and applet. Helps "
-"prevent clickjacking and the site being loading within other sites."
+"prevent clickjacking and the site being loaded within other sites."
 msgstr ""
 "Specifica i parent per frame, iframe, object, embed e applet. Aiuta a "
 "prevenire il clickjacking e il caricamento del sito in altri siti."
@@ -16570,9 +16569,9 @@ msgstr ""
 "Previene che il contenuto http sia caricato se il sito è in modalità https."
 
 #: zp-core/zp-extensions/http_security_headers.php:288
-msgid "Advises the browser to replace insecure http URLs with https ones."
+msgid "Instructs the browser to treat insecure http URLs like https ones."
 msgstr ""
-"Notifica al browser di sostituire gli URL http non sicuri con quelli https."
+"Indica al browser di trattare gli URL http non sicuri come quelli https."
 
 #: zp-core/zp-extensions/http_security_headers.php:298
 msgid "<h2>Strict-Transport-Security</h2><hr>"
@@ -16580,11 +16579,11 @@ msgstr "<h2>Strict-Transport-Security</h2><hr>"
 
 #: zp-core/zp-extensions/http_security_headers.php:304
 msgid ""
-"Enter the max age in seconds. Advises the browser that the site should be "
-"access via https."
+"Enter the max age in seconds. Instructs the browser that the site should be "
+"accessed via https only"
 msgstr ""
-"Inserire la max age in secondi. Notifica al browser che l'accesso al sito "
-"deve avvenire tramite https."
+"Inserire la max age in secondi. Indica al browser che l'accesso al sito deve "
+"avvenire solo tramite https."
 
 #: zp-core/zp-extensions/http_security_headers.php:311
 msgid "Optional to include sub domains"
@@ -16636,16 +16635,16 @@ msgstr "Controlla quanta informazione sui referrer deve essere inviata."
 
 #: zp-core/zp-extensions/http_security_headers.php:422
 msgid ""
-"<em>nonce-</em> uses the internal XSRFtoken automatically. Caution: A nonce "
+"<em>nonce-</em> uses the internal XSRFToken automatically. Caution: A nonce "
 "attribute with <code>getXSRFToken(\"security_http_headers\")</code> must be "
 "present on all inline script calls as they otherwise break. Inline handlers "
 "(e.g. onclick=\"\") will not work in any case."
 msgstr ""
-"<em>nonce-</em> usa lo XSRFtoken interno automaticamente. Attenzione: Un "
+"<em>nonce-</em> usa lo XSRFToken interno automaticamente. Attenzione: Un "
 "attributo nonce con <code>getXSRFToken(\"security_http_headers\")</code> "
-"deve essere presente su tutte le chiamate di script inline poiché altrimenti "
-"si interrompono. Gli inline handlers (es onclick=\"\") non funzioneranno in "
-"nessun caso."
+"deve essere presente su tutte le chiamate di script in linea poiché "
+"altrimenti si interrompono. I gestori inline (es onclick=\"\") non "
+"funzioneranno in nessun caso."
 
 #: zp-core/zp-extensions/http_security_headers.php:424
 #, php-format
@@ -20126,7 +20125,7 @@ msgstr "Pulizia dei nomi di album e immagini per ragioni di SEO"
 #: zp-core/zp-extensions/seo_cleanup.php:179
 #, php-format
 msgid "%d album cleaned."
-msgid_plural "%d albums cleaned"
+msgid_plural "%d albums cleaned."
 msgstr[0] "%d album pulito."
 msgstr[1] "%d album puliti."
 
@@ -20137,9 +20136,9 @@ msgstr "Nessun album pulito."
 #: zp-core/zp-extensions/seo_cleanup.php:188
 #, php-format
 msgid "%d image cleaned."
-msgid_plural "%d images cleaned"
+msgid_plural "%d images cleaned."
 msgstr[0] "%d immagine pulita."
-msgstr[1] "%d immagini pulite"
+msgstr[1] "%d immagini pulite."
 
 #: zp-core/zp-extensions/seo_cleanup.php:190
 msgid "No images cleaned."
@@ -21531,7 +21530,7 @@ msgstr "Dimensione personalizzata (non ritagliata)."
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:214
 msgid ""
 "Full image: The original image directly. NOTE: Full image protection options "
-"do not apply!."
+"do not apply!"
 msgstr ""
 "Immagine originale: l’immagine originale, direttamente. NOTA: la protezione "
 "per le immagini originali non si applica!"
@@ -23454,6 +23453,9 @@ msgid ""
 msgstr ""
 "<code>zenphoto_sendmail</code> non è riuscito a inviare <em>%s</em> a uno o "
 "più destinatari."
+
+#~ msgid "View album:  %s"
+#~ msgstr "Visualizza album: %s"
 
 #~ msgid "There is no replacement for this method."
 #~ msgstr "Non è possibile sostituire questo metodo."
@@ -26981,9 +26983,6 @@ msgstr ""
 
 #~ msgid "Recently Updated Galleries"
 #~ msgstr "Gallerie caricate di recente"
-
-#~ msgid "View album: %s"
-#~ msgstr "Visualizza l'album: %s"
 
 #~ msgid "1 album,&nbsp;%u image"
 #~ msgid_plural "1 album,&nbsp;%u images"
