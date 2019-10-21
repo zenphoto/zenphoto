@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-16 17:32+0200\n"
-"PO-Revision-Date: 2019-10-16 17:37+0200\n"
+"POT-Creation-Date: 2019-10-21 15:55+0200\n"
+"PO-Revision-Date: 2019-10-21 15:57+0200\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -11301,7 +11301,7 @@ msgstr ""
 #: zp-core/setup/index.php:2593
 #, php-format
 msgid "You can now <a href=\"%1$s\">administer your gallery</a>."
-msgstr "Sie können nun <a href=\"%1$s\">Ihre Galerie verwalten</a>"
+msgstr "Sie können nun <a href=\"%1$s\">Ihre Galerie verwalten</a>."
 
 #: zp-core/setup/index.php:2654
 #, php-format
@@ -13367,7 +13367,7 @@ msgstr "Caching-Protokoll"
 #, php-format
 msgid "%u image processor reference updated."
 msgid_plural "%u image processor references updated."
-msgstr[0] "%u Bildprozessor-Referenz aktualisiert"
+msgstr[0] "%u Bildprozessor-Referenz aktualisiert."
 msgstr[1] "%u Bildprozessor-Referenzen aktualisiert."
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:156
@@ -16566,7 +16566,7 @@ msgid ""
 "accessed via https only"
 msgstr ""
 "Geben Sie das maximal Alter in Sekunden ein. Weist den Browser an, dass auf "
-"die Site nur über https zugegriffen werden soll."
+"die Site nur über https zugegriffen werden soll"
 
 #: zp-core/zp-extensions/http_security_headers.php:311
 msgid "Optional to include sub domains"
@@ -20128,7 +20128,7 @@ msgstr "Säubert Album- und Bildnamen, so dass sie suchmaschinenfreundlich sind"
 msgid "%d album cleaned."
 msgid_plural "%d albums cleaned."
 msgstr[0] "%d Album bereinigt."
-msgstr[1] "%d Alben bereinigt"
+msgstr[1] "%d Alben bereinigt."
 
 #: zp-core/zp-extensions/seo_cleanup.php:181
 msgid "No albums cleaned."
@@ -20139,7 +20139,7 @@ msgstr "Keine Alben bereinigt."
 msgid "%d image cleaned."
 msgid_plural "%d images cleaned."
 msgstr[0] "%d Bild bereinigt."
-msgstr[1] "%d Bilder bereinigt"
+msgstr[1] "%d Bilder bereinigt."
 
 #: zp-core/zp-extensions/seo_cleanup.php:190
 msgid "No images cleaned."
@@ -20625,11 +20625,11 @@ msgstr "Sitemap-Werkzeuge"
 msgid "Generate or purge sitemap cache files."
 msgstr "Sitemap-Dateien erstellen oder Sitemap-Cache löschen."
 
-#: zp-core/zp-extensions/sitemap-extended.php:1038
+#: zp-core/zp-extensions/sitemap-extended.php:1054
 msgid "Available sitemap files:"
 msgstr "Verfügbare Sitemap-Dateien:"
 
-#: zp-core/zp-extensions/sitemap-extended.php:1040
+#: zp-core/zp-extensions/sitemap-extended.php:1056
 msgid "No sitemap files available."
 msgstr "Keine Sitemap-Dateien verfügbar."
 
