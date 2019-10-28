@@ -480,10 +480,13 @@ class openStreetMap {
 		$this->markerpopup_thumb = getOption('osmap_markerpopup_thumb');
 		$this->showlayerscontrol = getOption('osmap_showlayerscontrol');
 		// generate an array of selected layers
+		$selectedlayerslist = array();
 		$layerslist = self::getLayersList();
-		foreach ($layerslist as $layer => $layer_dbname) {
-			if (getOption($layer_dbname)) {
-				$selectedlayerslist[$layer] = $layer;
+		if ($layerslist) {
+			foreach ($layerslist as $layer => $layer_dbname) {
+				if (getOption($layer_dbname)) {
+					$selectedlayerslist[$layer] = $layer;
+				}
 			}
 		}
 		// deduplicate default Layer from layers list
@@ -915,7 +918,6 @@ class openStreetMap {
 	static function getTileProviders() {
 		return array(
 				'OpenStreetMap.Mapnik',
-				'OpenStreetMap.BlackAndWhite',
 				'OpenStreetMap.DE',
 				'OpenStreetMap.France',
 				'OpenStreetMap.HOT',
