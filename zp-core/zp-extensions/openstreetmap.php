@@ -10,14 +10,14 @@
  * - Leaflet-MiniMap plugin: https://github.com/Norkart/Leaflet-MiniMap
  * - leaflet-providers plugin: https://github.com/leaflet-extras/leaflet-providers
  * 
- * @author Malte MŸller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569)
+ * @author Malte MÃ¼ller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569)
  * @licence GPL v3 or later
  * @package plugins
  * @subpackage openstreetmap
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A Zenphoto plugin for displaying OpenStreetMap based maps using LeafletJS for images or images from albums with embeded geodata.");
-$plugin_author = "Malte MŸller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569)";
+$plugin_author = "Malte MÃ¼ller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569)";
 $option_interface = 'openStreetMapOptions';
 $plugin_category = gettext('Misc');
 
@@ -67,12 +67,12 @@ class openStreetMapOptions {
 		$layerslist = openStreetMap::getLayersList();
 
 		$options = array(
-				gettext('Map dimensionsÑwidth') => array(
+				gettext('Map dimensionsâ€”width') => array(
 						'key' => 'osmap_width',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 1,
 						'desc' => gettext("Width of the map including the unit name e.g 100% (default for responsive map), 100px or 100em.")),
-				gettext('Map dimensionsÑheight') => array(
+				gettext('Map dimensionsâ€”height') => array(
 						'key' => 'osmap_height',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 2,
@@ -480,13 +480,10 @@ class openStreetMap {
 		$this->markerpopup_thumb = getOption('osmap_markerpopup_thumb');
 		$this->showlayerscontrol = getOption('osmap_showlayerscontrol');
 		// generate an array of selected layers
-		$selectedlayerslist = array();
 		$layerslist = self::getLayersList();
-		if ($layerslist) {
-			foreach ($layerslist as $layer => $layer_dbname) {
-				if (getOption($layer_dbname)) {
-					$selectedlayerslist[$layer] = $layer;
-				}
+		foreach ($layerslist as $layer => $layer_dbname) {
+			if (getOption($layer_dbname)) {
+				$selectedlayerslist[$layer] = $layer;
 			}
 		}
 		// deduplicate default Layer from layers list
@@ -918,6 +915,7 @@ class openStreetMap {
 	static function getTileProviders() {
 		return array(
 				'OpenStreetMap.Mapnik',
+				'OpenStreetMap.BlackAndWhite',
 				'OpenStreetMap.DE',
 				'OpenStreetMap.France',
 				'OpenStreetMap.HOT',
