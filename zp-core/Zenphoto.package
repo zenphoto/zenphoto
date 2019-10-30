@@ -1287,6 +1287,7 @@ zp-core/zp-extensions/openstreetmap/leaflet-providers.js
 zp-core/zp-extensions/openstreetmap/leaflet.css
 zp-core/zp-extensions/openstreetmap/leaflet.js
 zp-core/zp-extensions/openstreetmap/leaflet.markercluster.js
+zp-core/zp-extensions/openstreetmap/leaflet.markercluster.js.map
 zp-core/zp-extensions/openstreetmap/openstreetmap.css
 zp-core/zp-extensions/paged_thumbs_nav.php
 zp-core/zp-extensions/print_album_menu.php
@@ -1692,4 +1693,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1694
+1695
