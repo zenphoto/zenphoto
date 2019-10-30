@@ -199,7 +199,7 @@ class scriptlessSocialsharing {
 		}
 		//$text = getContentShorten($title, 100, ' (…)', false);
 		$title = urlencode($title);
-		$url = urlencode(FULLWEBPATH . html_encode($url));
+		$url = urlencode(SERVER_HTTP_HOST . html_encode($url));
 		if ($beforetext) {
 			echo $beforetext;
 		}
