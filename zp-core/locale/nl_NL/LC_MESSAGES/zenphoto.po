@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.5.5\n"
+"Project-Id-Version: Zenphoto 1.5.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-10 10:48+0200\n"
+"POT-Creation-Date: 2019-11-07 19:36+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -4927,7 +4927,7 @@ msgstr ""
 "Je kunt hier je eigen privacybeleid waarschuwing invullen. Laat leeg voor de "
 "standaard tekst:"
 
-#: zp-core/admin-options.php:3352 zp-core/functions.php:2994
+#: zp-core/admin-options.php:3352 zp-core/functions.php:2997
 msgid ""
 "By using this form you agree with the storage and handling of your data by "
 "this website."
@@ -6297,7 +6297,7 @@ msgstr "Custom data"
 msgid "Location/Place"
 msgstr "Locatie/Plaats"
 
-#: zp-core/class-search.php:106 zp-core/functions.php:2747
+#: zp-core/class-search.php:106 zp-core/functions.php:2750
 #: zp-core/zp-extensions/contact_form.php:149
 #: zp-core/zp-extensions/contact_form.php:154
 #: zp-core/zp-extensions/userAddressFields.php:52
@@ -7071,7 +7071,7 @@ msgstr "Auto-DEP"
 msgid "Flash Did Not Fire"
 msgstr "Geen Flits"
 
-#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2733
+#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2736
 msgid "Flash Fired"
 msgstr "Flits"
 
@@ -8295,36 +8295,36 @@ msgstr ""
 msgid "0 Bytes"
 msgstr "0 Bytes"
 
-#: zp-core/functions.php:2280
+#: zp-core/functions.php:2283
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr ""
 "Zenphoto heeft een 404 fout verwerkt in %s. Zie het debug log voor details."
 
-#: zp-core/functions.php:2305
+#: zp-core/functions.php:2308
 #, php-format
 msgid "“%s” Cross Site Request Forgery blocked."
 msgstr "“%s” Cross Site Request Forgery geblokkeerd."
 
-#: zp-core/functions.php:2468
+#: zp-core/functions.php:2471
 msgid "Click to show content"
 msgstr "Klik om inhoud te tonen"
 
-#: zp-core/functions.php:2473
+#: zp-core/functions.php:2476
 msgid "Click to hide content"
 msgstr "Klik om inhoud te verbergen"
 
-#: zp-core/functions.php:2523
+#: zp-core/functions.php:2526
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "<em>[%1$s]</em> parameter %2$d moet een getal zijn."
 
-#: zp-core/functions.php:2531
+#: zp-core/functions.php:2534
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "<em>[%1$s]</em> parameter %2$d moet een string zijn."
 
-#: zp-core/functions.php:2544
+#: zp-core/functions.php:2547
 #, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
@@ -8333,349 +8333,349 @@ msgstr ""
 "<em>[%1$s]</em> parameter %2$d moet <code>true</code> of <code>false</code> "
 "zijn."
 
-#: zp-core/functions.php:2563
+#: zp-core/functions.php:2566
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
 msgstr "<em>[%1$s]</em> parameter %2$d is niet goed gedefinieërd."
 
-#: zp-core/functions.php:2569
+#: zp-core/functions.php:2572
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "<em>[%1$s]</em> parameter %2$d ontbreekt."
 
-#: zp-core/functions.php:2578
+#: zp-core/functions.php:2581
 #, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "<em>[%1$s]</em> macro mag geen parameters hebben."
 
-#: zp-core/functions.php:2601 zp-core/functions.php:2628
+#: zp-core/functions.php:2604 zp-core/functions.php:2631
 #, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>[%1$s]</em> kan niks weergeven."
 
-#: zp-core/functions.php:2606
+#: zp-core/functions.php:2609
 #, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>[%1$s]</em> <code>%2$s</code> kan niet aangeroepen worden."
 
-#: zp-core/functions.php:2633
+#: zp-core/functions.php:2636
 #, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>[%1$s]</em> moet %2$d parameter hebben."
 msgstr[1] "<em>[%1$s]</em> moet %2$d parameters hebben."
 
-#: zp-core/functions.php:2705
+#: zp-core/functions.php:2708
 msgid "Camera Maker"
 msgstr "Cameraproducent"
 
-#: zp-core/functions.php:2706
+#: zp-core/functions.php:2709
 msgid "Camera Model"
 msgstr "Cameramodel"
 
-#: zp-core/functions.php:2707
+#: zp-core/functions.php:2710
 msgid "Image Title"
 msgstr "Titel van de foto"
 
-#: zp-core/functions.php:2708
+#: zp-core/functions.php:2711
 msgid "Object Name"
 msgstr "Objectnaam"
 
-#: zp-core/functions.php:2709
+#: zp-core/functions.php:2712
 msgid "Image Headline"
 msgstr "Kopregel"
 
-#: zp-core/functions.php:2710
+#: zp-core/functions.php:2713
 msgid "Image Caption"
 msgstr "Beschrijving"
 
-#: zp-core/functions.php:2711
+#: zp-core/functions.php:2714
 msgid "Image Caption Writer"
 msgstr "Auteur van beschrijving"
 
-#: zp-core/functions.php:2712
+#: zp-core/functions.php:2715
 msgid "Time Taken"
 msgstr "Datum/tijd"
 
-#: zp-core/functions.php:2713
+#: zp-core/functions.php:2716
 msgid "Original Time Taken"
 msgstr "Oorspronkelijke datum/tijd"
 
-#: zp-core/functions.php:2714
+#: zp-core/functions.php:2717
 msgid "Time Digitized"
 msgstr "Gedigitaliseerde datum/tijd"
 
-#: zp-core/functions.php:2715
+#: zp-core/functions.php:2718
 msgid "Date Created"
 msgstr "Datum van de foto"
 
-#: zp-core/functions.php:2716
+#: zp-core/functions.php:2719
 msgid "Time Created"
 msgstr "Tijd van de foto"
 
-#: zp-core/functions.php:2717
+#: zp-core/functions.php:2720
 msgid "Digital Creation Date"
 msgstr "Digitale datum van de foto"
 
-#: zp-core/functions.php:2718
+#: zp-core/functions.php:2721
 msgid "Digital Creation Time"
 msgstr "Digitale tijd van de foto"
 
-#: zp-core/functions.php:2719
+#: zp-core/functions.php:2722
 msgid "Artist"
 msgstr "Auteur"
 
-#: zp-core/functions.php:2720
+#: zp-core/functions.php:2723
 msgid "Image Credit"
 msgstr "Auteur afbeelding"
 
-#: zp-core/functions.php:2721
+#: zp-core/functions.php:2724
 msgid "Byline"
 msgstr "Bijschrift"
 
-#: zp-core/functions.php:2722
+#: zp-core/functions.php:2725
 msgid "Byline Title"
 msgstr "Titel bijschrift"
 
-#: zp-core/functions.php:2723
+#: zp-core/functions.php:2726
 msgid "Image Source"
 msgstr "Bron"
 
-#: zp-core/functions.php:2724 zp-core/template-functions.php:449
+#: zp-core/functions.php:2727 zp-core/template-functions.php:449
 #: zp-core/zp-extensions/html_meta_tags.php:321
 #: zp-core/zp-extensions/scriptless-socialsharing.php:176
 msgid "Contact"
 msgstr "Contact"
 
-#: zp-core/functions.php:2725
+#: zp-core/functions.php:2728
 msgid "Copyright Holder"
 msgstr "Copyright houder"
 
-#: zp-core/functions.php:2726
+#: zp-core/functions.php:2729
 msgid "Copyright Notice"
 msgstr "Copyright vermelding"
 
-#: zp-core/functions.php:2727
+#: zp-core/functions.php:2730
 msgid "Keywords"
 msgstr "Trefwoorden"
 
-#: zp-core/functions.php:2728
+#: zp-core/functions.php:2731
 msgid "Shutter Speed"
 msgstr "Sluitertijd"
 
-#: zp-core/functions.php:2729
+#: zp-core/functions.php:2732
 msgid "Aperture"
 msgstr "Diafragma"
 
-#: zp-core/functions.php:2730
+#: zp-core/functions.php:2733
 msgid "ISO Sensitivity"
 msgstr "ISO gevoeligheid"
 
-#: zp-core/functions.php:2731
+#: zp-core/functions.php:2734
 msgid "Exposure Compensation"
 msgstr "Belichtingscompensatie"
 
-#: zp-core/functions.php:2732
+#: zp-core/functions.php:2735
 msgid "Metering Mode"
 msgstr "Methode lichtmeting"
 
-#: zp-core/functions.php:2734
+#: zp-core/functions.php:2737
 msgid "Original Width"
 msgstr "Originele breedte"
 
-#: zp-core/functions.php:2735
+#: zp-core/functions.php:2738
 msgid "Original Height"
 msgstr "Originele hoogte"
 
-#: zp-core/functions.php:2736
+#: zp-core/functions.php:2739
 msgid "Orientation"
 msgstr "Oriëntatie"
 
-#: zp-core/functions.php:2737
+#: zp-core/functions.php:2740
 msgid "Software"
 msgstr "Software"
 
-#: zp-core/functions.php:2738
+#: zp-core/functions.php:2741
 msgid "Contrast Setting"
 msgstr "Contrast"
 
-#: zp-core/functions.php:2739
+#: zp-core/functions.php:2742
 msgid "Sharpness Setting"
 msgstr "Scherpte"
 
-#: zp-core/functions.php:2740
+#: zp-core/functions.php:2743
 msgid "Saturation Setting"
 msgstr "Verzadiging"
 
-#: zp-core/functions.php:2741
+#: zp-core/functions.php:2744
 msgid "White Balance"
 msgstr "Witbalans"
 
-#: zp-core/functions.php:2742
+#: zp-core/functions.php:2745
 msgid "Subject Distance"
 msgstr "Onderwerpsafstand"
 
-#: zp-core/functions.php:2743
+#: zp-core/functions.php:2746
 msgid "Focal Length"
 msgstr "Brandpuntsafstand"
 
-#: zp-core/functions.php:2744
+#: zp-core/functions.php:2747
 msgid "Lens Type"
 msgstr "Lenstype"
 
-#: zp-core/functions.php:2745
+#: zp-core/functions.php:2748
 msgid "Lens Info"
 msgstr "Lensinformatie"
 
-#: zp-core/functions.php:2746
+#: zp-core/functions.php:2749
 msgid "35mm Focal Length Equivalent"
 msgstr "Brandpuntsafstand equivalent voor 35mm film"
 
-#: zp-core/functions.php:2748
+#: zp-core/functions.php:2751
 msgid "Sub-location"
 msgstr "Sublocatie"
 
-#: zp-core/functions.php:2749
+#: zp-core/functions.php:2752
 msgid "Province/State"
 msgstr "Provincie/Staat"
 
-#: zp-core/functions.php:2750
+#: zp-core/functions.php:2753
 msgid "Country/Primary Location Code"
 msgstr "Land/locatiecode"
 
-#: zp-core/functions.php:2751
+#: zp-core/functions.php:2754
 msgid "Country/Primary Location Name"
 msgstr "Land/ locatienaam"
 
-#: zp-core/functions.php:2752
+#: zp-core/functions.php:2755
 msgid "Content Location Code"
 msgstr "Content locatiecode"
 
-#: zp-core/functions.php:2753
+#: zp-core/functions.php:2756
 msgid "Content Location Name"
 msgstr "Content locatienaam"
 
-#: zp-core/functions.php:2754
+#: zp-core/functions.php:2757
 msgid "Latitude"
 msgstr "Breedtegraad"
 
-#: zp-core/functions.php:2755
+#: zp-core/functions.php:2758
 msgid "Latitude Reference"
 msgstr "Breedtegraad verwijzing"
 
-#: zp-core/functions.php:2756
+#: zp-core/functions.php:2759
 msgid "Longitude"
 msgstr "Lengtegraad"
 
-#: zp-core/functions.php:2757
+#: zp-core/functions.php:2760
 msgid "Longitude Reference"
 msgstr "Lengtegraad verwijzing"
 
-#: zp-core/functions.php:2758
+#: zp-core/functions.php:2761
 msgid "Altitude"
 msgstr "Hoogtegraad"
 
-#: zp-core/functions.php:2759
+#: zp-core/functions.php:2762
 msgid "Altitude Reference"
 msgstr "Hoogtegraad verwijzing"
 
-#: zp-core/functions.php:2760
+#: zp-core/functions.php:2763
 msgid "Originating Program"
 msgstr "Gebruikt programma"
 
-#: zp-core/functions.php:2761
+#: zp-core/functions.php:2764
 msgid "Program Version"
 msgstr "Programmaversie"
 
-#: zp-core/functions.php:2762
+#: zp-core/functions.php:2765
 msgid "Video File Format"
 msgstr "Video format"
 
-#: zp-core/functions.php:2763
+#: zp-core/functions.php:2766
 msgid "Video File Size"
 msgstr "Video bestandsgrootte"
 
-#: zp-core/functions.php:2764
+#: zp-core/functions.php:2767
 msgid "Video Artist"
 msgstr "Video artiest"
 
-#: zp-core/functions.php:2765
+#: zp-core/functions.php:2768
 msgid "Video Title"
 msgstr "Video titel"
 
-#: zp-core/functions.php:2766
+#: zp-core/functions.php:2769
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: zp-core/functions.php:2767
+#: zp-core/functions.php:2770
 msgid "Bitrate_Mode"
 msgstr "Bitrate type"
 
-#: zp-core/functions.php:2768
+#: zp-core/functions.php:2771
 msgid "Bits per sample"
 msgstr "Bits per sample"
 
-#: zp-core/functions.php:2769
+#: zp-core/functions.php:2772
 msgid "Codec"
 msgstr "Codec"
 
-#: zp-core/functions.php:2770
+#: zp-core/functions.php:2773
 msgid "Compression Ratio"
 msgstr "Compressieverhouding"
 
-#: zp-core/functions.php:2771
+#: zp-core/functions.php:2774
 msgid "Video Dataformat"
 msgstr "Video type"
 
-#: zp-core/functions.php:2772
+#: zp-core/functions.php:2775
 msgid "File Encoder"
 msgstr "Encoder"
 
-#: zp-core/functions.php:2773
+#: zp-core/functions.php:2776
 msgid "Sample rate"
 msgstr "Sample rate"
 
-#: zp-core/functions.php:2774
+#: zp-core/functions.php:2777
 msgid "Channel mode"
 msgstr "Channel mode"
 
-#: zp-core/functions.php:2775
+#: zp-core/functions.php:2778
 msgid "Format"
 msgstr "Type"
 
-#: zp-core/functions.php:2776
+#: zp-core/functions.php:2779
 msgid "Channels"
 msgstr "Channels"
 
-#: zp-core/functions.php:2777
+#: zp-core/functions.php:2780
 msgid "Frame rate"
 msgstr "Frame rate"
 
-#: zp-core/functions.php:2778
+#: zp-core/functions.php:2781
 msgid "X Resolution"
 msgstr "X resolutie"
 
-#: zp-core/functions.php:2779
+#: zp-core/functions.php:2782
 msgid "Y Resolution"
 msgstr "Y resolutie"
 
-#: zp-core/functions.php:2780
+#: zp-core/functions.php:2783
 msgid "Aspect ratio"
 msgstr "Verhouding lengte/breedte"
 
-#: zp-core/functions.php:2781
+#: zp-core/functions.php:2784
 msgid "Play Time"
 msgstr "Speeltijd"
 
-#: zp-core/functions.php:2782
+#: zp-core/functions.php:2785
 msgid "XMP Rating"
 msgstr "XMP waardering"
 
-#: zp-core/functions.php:3009
+#: zp-core/functions.php:3012
 msgid "More info on our data privacy policy."
 msgstr "Meer informatie over ons privacybeleid."
 
-#: zp-core/functions.php:3036 zp-core/zp-extensions/comment_form.php:133
+#: zp-core/functions.php:3039 zp-core/zp-extensions/comment_form.php:133
 #: zp-core/zp-extensions/contact_form.php:189
 #: zp-core/zp-extensions/register_user.php:116
 msgid "No captcha handler is enabled."
@@ -20420,11 +20420,11 @@ msgstr "Sitemap"
 msgid "Generate or purge sitemap cache files."
 msgstr "Maak of verwijder sitemap-cache bestanden."
 
-#: zp-core/zp-extensions/sitemap-extended.php:1038
+#: zp-core/zp-extensions/sitemap-extended.php:1054
 msgid "Available sitemap files:"
 msgstr "Beschikbare sitemap-bestanden:"
 
-#: zp-core/zp-extensions/sitemap-extended.php:1040
+#: zp-core/zp-extensions/sitemap-extended.php:1056
 msgid "No sitemap files available."
 msgstr "Geen sitemap-bestanden beschikbaar."
 
