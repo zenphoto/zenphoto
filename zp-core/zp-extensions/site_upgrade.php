@@ -25,7 +25,7 @@
  *
  *
  * The plugin works best if <var>mod_rewrite</var> is active and the <var>.htaccess</var> file exists. If this is not the case
- * the plugin will still work in most cases. However if you the release you are upgrading to has significant changes involving
+ * the plugin will still work in most cases. However if the release you are upgrading to has significant changes involving
  * plugin loading of the front-end site there may be PHP failures due if the site is accessed while the files
  * being uploaded are in a mixed release state.
  *
