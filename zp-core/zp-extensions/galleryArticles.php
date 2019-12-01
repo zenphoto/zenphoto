@@ -214,11 +214,11 @@ class galleryArticles {
     $article->setTitle($text);
     $imglink = $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1);
     if (getOption('multi_lingual')) {
-      $desc = '';
+      $desc_temp = array();
       foreach ($option_text as $key => $val) {
-        $desc[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc($key) . '</p>';
+        $desc_temp[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc($key) . '</p>';
       }
-      $desc = serialize($desc);
+      $desc = serialize($desc_temp);
     } else {
       $desc = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc() . '</p>';
     }
