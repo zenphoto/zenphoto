@@ -1596,7 +1596,7 @@ class SearchEngine {
 				if (is_null($sorttype) && isset($weights)) {
 					$images = sortMultiArray($images, 'weight', true, true, false, false, array('weight'));
 				}
-				if ($sorttype == '`title`') {
+				if ($sorttype == 'title') {
 					$images = sortByMultilingual($images, 'title', $sortdirection);
 				}
 			}
