@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.5.6\n"
+"Project-Id-Version: Zenphoto 1.5.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-07 19:36+0100\n"
+"POT-Creation-Date: 2019-12-01 20:46+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -22,6 +22,7 @@ msgstr ""
 "js\n"
 "X-Poedit-SearchPathExcluded-2: zp-core/zp-extensions/tinymce4/plugins/lists/"
 "plugin.min.js\n"
+"X-Poedit-SearchPathExcluded-3: zp-core/zp-extensions/elFinder/js/i18n/help\n"
 
 #: themes/basic/404.php:27 themes/zpmobile/404.php:26
 #: zp-core/template-functions.php:443
