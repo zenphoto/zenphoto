@@ -124,7 +124,6 @@ echo "\n</head>";
 
 				<div class="tabbox">
 					<?php
-					echo "<pre>"; print_r($_GET); echo "</pre>";
 					if (isset($_GET['saved'])) {
 						if (sanitize_numeric($_GET['saved'])) {
 							consolidatedEditMessages($subtab);
