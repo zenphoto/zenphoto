@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-01 20:46+0100\n"
+"POT-Creation-Date: 2019-12-04 13:45+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -988,7 +988,7 @@ msgstr "Index"
 msgid "Return to %s"
 msgstr "Keer terug naar %s"
 
-#: zp-core/admin-albumsort.php:73 zp-core/admin-edit.php:563
+#: zp-core/admin-albumsort.php:77 zp-core/admin-edit.php:563
 #: zp-core/zp-extensions/comment_form/admin-comments.php:352
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:190
 #: zp-core/zp-extensions/zenpage/admin-categories.php:151
@@ -997,7 +997,7 @@ msgstr "Keer terug naar %s"
 msgid "*Bulk actions*"
 msgstr "*Bulk acties*"
 
-#: zp-core/admin-albumsort.php:74 zp-core/admin-edit.php:564
+#: zp-core/admin-albumsort.php:78 zp-core/admin-edit.php:564
 #: zp-core/admin-edit.php:577 zp-core/admin-edit.php:581
 #: zp-core/admin-functions.php:2074 zp-core/admin-logs.php:145
 #: zp-core/admin-themes.php:302 zp-core/setup/index.php:1109
@@ -1018,34 +1018,34 @@ msgstr "*Bulk acties*"
 msgid "Delete"
 msgstr "Verwijder"
 
-#: zp-core/admin-albumsort.php:75 zp-core/admin-edit.php:565
+#: zp-core/admin-albumsort.php:79 zp-core/admin-edit.php:565
 #: zp-core/zp-extensions/zenpage/admin-categories.php:149
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:243
 #: zp-core/zp-extensions/zenpage/admin-pages.php:146
 msgid "Set to published"
 msgstr "Publiceren"
 
-#: zp-core/admin-albumsort.php:76 zp-core/admin-edit.php:566
+#: zp-core/admin-albumsort.php:80 zp-core/admin-edit.php:566
 #: zp-core/zp-extensions/zenpage/admin-categories.php:150
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:244
 #: zp-core/zp-extensions/zenpage/admin-pages.php:147
 msgid "Set to unpublished"
 msgstr "Niet publiceren"
 
-#: zp-core/admin-albumsort.php:77 zp-core/admin-edit.php:567
+#: zp-core/admin-albumsort.php:81 zp-core/admin-edit.php:567
 #: zp-core/admin-tags.php:224 zp-core/admin-tags.php:225
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:245
 #: zp-core/zp-extensions/zenpage/admin-pages.php:148
 msgid "Add tags"
 msgstr "Bewaar nieuwe tags"
 
-#: zp-core/admin-albumsort.php:78 zp-core/admin-edit.php:568
+#: zp-core/admin-albumsort.php:82 zp-core/admin-edit.php:568
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:246
 #: zp-core/zp-extensions/zenpage/admin-pages.php:149
 msgid "Clear tags"
 msgstr "Verwijder tags"
 
-#: zp-core/admin-albumsort.php:79 zp-core/admin-edit.php:569
+#: zp-core/admin-albumsort.php:83 zp-core/admin-edit.php:569
 #: zp-core/admin-functions.php:2207
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:247
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:334
@@ -1054,7 +1054,7 @@ msgstr "Verwijder tags"
 msgid "Disable comments"
 msgstr "Reacties uitschakelen"
 
-#: zp-core/admin-albumsort.php:80 zp-core/admin-edit.php:570
+#: zp-core/admin-albumsort.php:84 zp-core/admin-edit.php:570
 #: zp-core/admin-functions.php:2221
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:248
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:342
@@ -1063,11 +1063,11 @@ msgstr "Reacties uitschakelen"
 msgid "Enable comments"
 msgstr "Reacties inschakelen"
 
-#: zp-core/admin-albumsort.php:81 zp-core/admin-edit.php:571
+#: zp-core/admin-albumsort.php:85 zp-core/admin-edit.php:571
 msgid "Change owner"
 msgstr "Verander eigenaar"
 
-#: zp-core/admin-albumsort.php:84 zp-core/admin-edit.php:574
+#: zp-core/admin-albumsort.php:88 zp-core/admin-edit.php:574
 #: zp-core/zp-extensions/zenpage/admin-categories.php:157
 #: zp-core/zp-extensions/zenpage/admin-categories.php:197
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:253
@@ -1082,77 +1082,16 @@ msgstr "Verander eigenaar"
 msgid "Reset hitcounter"
 msgstr "Reset hit-teller"
 
-#: zp-core/admin-albumsort.php:90
+#: zp-core/admin-albumsort.php:94
 msgid "No album provided to sort."
 msgstr "Geen album om te sorteren."
 
-#: zp-core/admin-albumsort.php:108 zp-core/admin-edit.php:702
+#: zp-core/admin-albumsort.php:112 zp-core/admin-edit.php:702
 #, php-format
 msgid "Edit Album: <em>%1$s%2$s</em>"
 msgstr "Bewerk album: <em>%1$s%2$s</em>"
 
-#: zp-core/admin-albumsort.php:127
-msgid "Image order saved"
-msgstr "Afbeeldingsvolgorde opgeslagen"
-
-#: zp-core/admin-albumsort.php:135 zp-core/admin-functions.php:4765
-#: zp-core/zp-extensions/comment_form/admin-comments.php:272
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:978
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1730
-msgid "Selected items deleted"
-msgstr "Geselecteerde onderdelen verwijderd"
-
-#: zp-core/admin-albumsort.php:138 zp-core/admin-functions.php:4768
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:982
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1733
-msgid "Selected items published"
-msgstr "Geselecteerde onderdelen gepubliceerd"
-
-#: zp-core/admin-albumsort.php:141 zp-core/admin-functions.php:4771
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:986
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1736
-msgid "Selected items unpublished"
-msgstr "Geselecteerde onderdelen niet gepubliceerd"
-
-#: zp-core/admin-albumsort.php:144 zp-core/admin-functions.php:4774
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1739
-msgid "Comments enabled for selected items"
-msgstr "Reacties geactiveerd voor de geselecteerde onderdelen"
-
-#: zp-core/admin-albumsort.php:147 zp-core/admin-functions.php:4777
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1742
-msgid "Comments disabled for selected items"
-msgstr "Reacties niet geactiveerd voor de geselecteerde onderdelen"
-
-#: zp-core/admin-albumsort.php:150 zp-core/admin-functions.php:4780
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1745
-msgid "Hitcounter for selected items"
-msgstr "Hit-teller voor geselecteerd onderdeel"
-
-#: zp-core/admin-albumsort.php:153 zp-core/admin-functions.php:4783
-msgid "Tags added for selected items"
-msgstr "Tags toegevoegd aan geselecteerde onderdelen."
-
-#: zp-core/admin-albumsort.php:156 zp-core/admin-functions.php:4786
-msgid "Tags cleared for selected items"
-msgstr "Tags verwijderd uit de geselecteerde onderdelen."
-
-#: zp-core/admin-albumsort.php:159 zp-core/admin-functions.php:4789
-msgid "Tags added for images of selected items"
-msgstr "Tags toegevoegd aan afbeeldingen van de geselecteerde onderdelen."
-
-#: zp-core/admin-albumsort.php:162 zp-core/admin-functions.php:4792
-msgid "Tags cleared for images of selected items"
-msgstr "Tags verwijderd uit afbeeldingen van de geselecteerde onderdelen."
-
-#: zp-core/admin-albumsort.php:169 zp-core/admin-functions.php:4758
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:14
-#: zp-core/zp-extensions/menu_manager/menu_tab.php:45
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1766
-msgid "Nothing changed"
-msgstr "Er is niets veranderd"
-
-#: zp-core/admin-albumsort.php:192 zp-core/admin-albumsort.php:252
+#: zp-core/admin-albumsort.php:151 zp-core/admin-albumsort.php:211
 #: zp-core/admin-edit.php:772 zp-core/admin-edit.php:837
 #: zp-core/admin-edit.php:961 zp-core/admin-edit.php:1535
 #: zp-core/admin-edit.php:1628 zp-core/admin-edit.php:1658
@@ -1171,7 +1110,7 @@ msgstr "Er is niets veranderd"
 msgid "Back"
 msgstr "Terug"
 
-#: zp-core/admin-albumsort.php:195 zp-core/admin-albumsort.php:256
+#: zp-core/admin-albumsort.php:154 zp-core/admin-albumsort.php:215
 #: zp-core/admin-edit.php:779 zp-core/admin-edit.php:841
 #: zp-core/admin-edit.php:965 zp-core/admin-edit.php:1539
 #: zp-core/admin-edit.php:1631 zp-core/admin-edit.php:1661
@@ -1214,16 +1153,16 @@ msgstr "Terug"
 msgid "Apply"
 msgstr "Toepassen"
 
-#: zp-core/admin-albumsort.php:199 zp-core/admin-albumsort.php:260
+#: zp-core/admin-albumsort.php:158 zp-core/admin-albumsort.php:219
 #: zp-core/admin-functions.php:1244 zp-core/admin-functions.php:2005
 msgid "View Album"
 msgstr "Bekijk album"
 
-#: zp-core/admin-albumsort.php:203
+#: zp-core/admin-albumsort.php:162
 msgid "Set the image order by dragging them to the positions you desire."
 msgstr "Sorteer de afbeeldingen door ze te slepen..."
 
-#: zp-core/admin-albumsort.php:215 zp-core/admin-edit.php:1061
+#: zp-core/admin-albumsort.php:174 zp-core/admin-edit.php:1061
 #: zp-core/admin-functions.php:1738 zp-core/admin-functions.php:2178
 #: zp-core/admin-functions.php:4978 zp-core/admin-functions.php:5025
 #: zp-core/zp-extensions/favoritesHandler.php:141
@@ -1233,13 +1172,13 @@ msgstr "Sorteer de afbeeldingen door ze te slepen..."
 msgid "Published"
 msgstr "Gepubliceerd"
 
-#: zp-core/admin-albumsort.php:218 zp-core/admin-functions.php:2192
+#: zp-core/admin-albumsort.php:177 zp-core/admin-functions.php:2192
 #: zp-core/admin-functions.php:5026 zp-core/class-userdataexport.php:509
 #, php-format
 msgid "Unpublished"
 msgstr "Niet gepubliceerd"
 
-#: zp-core/admin-albumsort.php:231 zp-core/admin-functions.php:3296
+#: zp-core/admin-albumsort.php:190 zp-core/admin-functions.php:3296
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
 #: zp-core/zp-extensions/zenpage/admin-edit.php:124
 msgid "edit"
@@ -2606,12 +2545,15 @@ msgid "Your passwords did not match."
 msgstr "Je wachtwoorden komen niet overeen."
 
 #: zp-core/admin-functions.php:4740
+#, php-format
 msgid ""
-"The image edit form submission has been truncated. Try displaying fewer "
-"images on a page."
+"The form submission has been truncated because you exceeded the server side "
+"limit <code>max_input_vars</code> of %d. Try displaying fewer items per page "
+"or try to raise the server limits."
 msgstr ""
-"De veranderingen zijn niet volledig bewaard. Probeer het nogmaals maar met "
-"minder afbeeldingen per pagina."
+"The form submission has been truncated because you exceeded the server side "
+"limit <code>max_input_vars</code> of %d. Try displaying fewer items per page "
+"or try to raise the server limits."
 
 #: zp-core/admin-functions.php:4743
 msgid "Hit counters have been reset."
@@ -2635,6 +2577,63 @@ msgstr "<em>%s</em> bestaat al."
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:222
 msgid "Changes applied"
 msgstr "Wijzigingen opgeslagen"
+
+#: zp-core/admin-functions.php:4758
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:14
+#: zp-core/zp-extensions/menu_manager/menu_tab.php:45
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1766
+msgid "Nothing changed"
+msgstr "Er is niets veranderd"
+
+#: zp-core/admin-functions.php:4765
+#: zp-core/zp-extensions/comment_form/admin-comments.php:272
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:978
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1730
+msgid "Selected items deleted"
+msgstr "Geselecteerde onderdelen verwijderd"
+
+#: zp-core/admin-functions.php:4768
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:982
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1733
+msgid "Selected items published"
+msgstr "Geselecteerde onderdelen gepubliceerd"
+
+#: zp-core/admin-functions.php:4771
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:986
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1736
+msgid "Selected items unpublished"
+msgstr "Geselecteerde onderdelen niet gepubliceerd"
+
+#: zp-core/admin-functions.php:4774
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1739
+msgid "Comments enabled for selected items"
+msgstr "Reacties geactiveerd voor de geselecteerde onderdelen"
+
+#: zp-core/admin-functions.php:4777
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1742
+msgid "Comments disabled for selected items"
+msgstr "Reacties niet geactiveerd voor de geselecteerde onderdelen"
+
+#: zp-core/admin-functions.php:4780
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1745
+msgid "Hitcounter for selected items"
+msgstr "Hit-teller voor geselecteerd onderdeel"
+
+#: zp-core/admin-functions.php:4783
+msgid "Tags added for selected items"
+msgstr "Tags toegevoegd aan geselecteerde onderdelen."
+
+#: zp-core/admin-functions.php:4786
+msgid "Tags cleared for selected items"
+msgstr "Tags verwijderd uit de geselecteerde onderdelen."
+
+#: zp-core/admin-functions.php:4789
+msgid "Tags added for images of selected items"
+msgstr "Tags toegevoegd aan afbeeldingen van de geselecteerde onderdelen."
+
+#: zp-core/admin-functions.php:4792
+msgid "Tags cleared for images of selected items"
+msgstr "Tags verwijderd uit afbeeldingen van de geselecteerde onderdelen."
 
 #: zp-core/admin-functions.php:4802 zp-core/zp-extensions/seo_cleanup.php:51
 msgid "Image already exists."
@@ -23201,6 +23200,16 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid "Image order saved"
+#~ msgstr "Afbeeldingsvolgorde opgeslagen"
+
+#~ msgid ""
+#~ "The image edit form submission has been truncated. Try displaying fewer "
+#~ "images on a page."
+#~ msgstr ""
+#~ "De veranderingen zijn niet volledig bewaard. Probeer het nogmaals maar "
+#~ "met minder afbeeldingen per pagina."
 
 #, php-format
 #~ msgid "View album:  %s"
