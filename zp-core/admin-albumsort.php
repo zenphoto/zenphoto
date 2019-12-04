@@ -28,31 +28,35 @@ if (isset($_GET['album'])) {
 		XSRFdefender('save_sort');
 		if (isset($_POST['ids'])) { //	process bulk actions, not individual image actions.
 			$action = processImageBulkActions($album);
-			if (!empty($action))
+			if (!empty($action)) {
 				$_GET['bulkmessage'] = $action;
+			}
 		} else {
-			parse_str($_POST['sortableList'], $inputArray);
-			if (isset($inputArray['id'])) {
-				$orderArray = $inputArray['id'];
-				if (!empty($orderArray)) {
-					foreach ($orderArray as $key => $id) {
-						$sql = 'UPDATE ' . prefix('images') . ' SET `sort_order`=' . db_quote(sprintf('%03u', $key)) . ' WHERE `id`=' . sanitize_numeric($id);
-						query($sql);
-					}
-					$album->setSortType("manual");
-					$album->setSortDirection(false, 'image');
-					$album->setLastChangeUser($_zp_current_admin_obj->getUser());
-					$album->save();
-					$_GET['saved'] = 1;
+			$orderArray = explode('&', str_replace('id[]=', '', $_POST['sortableList']));
+			if (is_array($orderArray) && !empty($orderArray)) {
+				foreach ($orderArray as $key => $id) {
+					$sql = 'UPDATE ' . prefix('images') . ' SET `sort_order`=' . db_quote(sprintf('%03u', $key)) . ' WHERE `id`=' . sanitize_numeric($id);
+					query($sql);
 				}
+				$album->setSortType("manual");
+				$album->setSortDirection(false, 'image');
+				$album->setLastChangeUser($_zp_current_admin_obj->getUser());
+				$album->save();
+				$_GET['saved'] = 1;
 			}
 		}
-	}
+		if(!isset($_POST['checkForPostTruncation'])) {
+			$_GET['post_error'] = 1;
+		}
+	} 
+	
 }
+
 
 // Print the admin header
 setAlbumSubtabs($album);
 printAdminHeader('edit', 'sort');
+
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
@@ -120,61 +124,16 @@ echo "\n</head>";
 
 				<div class="tabbox">
 					<?php
+					echo "<pre>"; print_r($_GET); echo "</pre>";
 					if (isset($_GET['saved'])) {
 						if (sanitize_numeric($_GET['saved'])) {
-							?>
-							<div class="messagebox fade-message">
-								<h2><?php echo gettext("Image order saved"); ?></h2>
-							</div>
-							<?php
+							consolidatedEditMessages($subtab);
 						} else {
 							if (isset($_GET['bulkmessage'])) {
-								$action = sanitize($_GET['bulkmessage']);
-								switch ($action) {
-									case 'deleteall':
-										$messagebox = gettext('Selected items deleted');
-										break;
-									case 'showall':
-										$messagebox = gettext('Selected items published');
-										break;
-									case 'hideall':
-										$messagebox = gettext('Selected items unpublished');
-										break;
-									case 'commentson':
-										$messagebox = gettext('Comments enabled for selected items');
-										break;
-									case 'commentsoff':
-										$messagebox = gettext('Comments disabled for selected items');
-										break;
-									case 'resethitcounter':
-										$messagebox = gettext('Hitcounter for selected items');
-										break;
-									case 'addtags':
-										$messagebox = gettext('Tags added for selected items');
-										break;
-									case 'cleartags':
-										$messagebox = gettext('Tags cleared for selected items');
-										break;
-									case 'alltags':
-										$messagebox = gettext('Tags added for images of selected items');
-										break;
-									case 'clearalltags':
-										$messagebox = gettext('Tags cleared for images of selected items');
-										break;
-									default:
-										$messagebox = $action;
-										break;
-								}
-							} else {
-								$messagebox = gettext("Nothing changed");
-							}
-							?>
-							<div class="messagebox fade-message">
-								<h2><?php echo $messagebox; ?></h2>
-							</div>
-							<?php
+								consolidatedEditMessages($subtab);
+							} 
 						}
-					}
+					} 
 					?>
 					<form class="dirty-check" action="?page=edit&amp;album=<?php echo $album->getFileName(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm" autocomplete="off">
 						<?php XSRFToken('save_sort'); ?>
@@ -261,6 +220,7 @@ echo "\n</head>";
 								</a>
 							</p>
 						</div>
+						<input type="hidden" name="checkForPostTruncation" value="1" />
 					</form>
 					<br class="clearall" />
 

@@ -4737,7 +4737,7 @@ function consolidatedEditMessages($subtab) {
 		$errorbox[] = html_encode(sanitize($_GET['edit_error']));
 	}
 	if (isset($_GET['post_error'])) {
-		$messagebox[] = gettext('The image edit form submission has been truncated. Try displaying fewer images on a page.');
+		$errorbox[] = sprintf(gettext('The form submission has been truncated because you exceeded the server side limit <code>max_input_vars</code> of %d. Try displaying fewer items per page or try to raise the server limits.'), ini_get('max_input_vars'));
 	}
 	if (isset($_GET['counters_reset'])) {
 		$messagebox[] = gettext("Hit counters have been reset.");
