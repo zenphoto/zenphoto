@@ -31,7 +31,7 @@ class defaultCodeblocks {
 		}
 	}
 
-	static function getOptionsSupported() {
+	function getOptionsSupported() {
 		$list = array(gettext('Gallery') => 'defaultCodeblocks_object_gallery', gettext('Album') => 'defaultCodeblocks_object_albums', gettext('Image') => 'defaultCodeblocks_object_images');
 		if (extensionEnabled('zenpage')) {
 			$list = array_merge($list, array(gettext('News category') => 'defaultCodeblocks_object_news_categories', gettext('News') => 'defaultCodeblocks_object_news', gettext('Page') => 'defaultCodeblocks_object_pages'));
