@@ -354,6 +354,22 @@ function setupCurrentLocale($override = NULL) {
 }
 
 /**
+ * Converts underscore locales like "en_US" to valid IANA/BCP 47 hyphen locales like "en-US"
+ * Needed for example in JS or HTML "lang" attributes.
+ * 
+ * @since ZenphotoCMS 1.5.7
+ * 
+ * @param string $locale a locale like "en_US", if empty the current locale is used
+ * @return string
+ */
+function getLangAttributeLocale($locale = NULL) {
+	if(empty($locale)) {
+		$locale = getUserLocale();
+	}
+	return str_replace('_', '-', $locale);
+}
+
+/**
  * This function will parse a given HTTP Accepted language instruction
  * (or retrieve it from $_SERVER if not provided) and will return a sorted
  * array. For example, it will parse fr;en-us;q=0.8
