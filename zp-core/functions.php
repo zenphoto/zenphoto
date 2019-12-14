@@ -1080,7 +1080,7 @@ function setupTheme($album = NULL) {
 		header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		?>
 		<!DOCTYPE html>
-		<html xmlns="http://www.w3.org/1999/xhtml">
+		<html>
 			<head>
 			</head>
 			<body>

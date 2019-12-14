@@ -5,7 +5,7 @@ if (!defined('WEBPATH'))
 if (function_exists('printSlideShow')) {
 	?>
 	<!DOCTYPE html>
-	<html>
+	<html<?php printLangAttribute(); ?>>
 		<head>
 			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php printHeadTitle(); ?>

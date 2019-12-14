@@ -14,7 +14,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		 inspired by Alessandro "Simbul" Morandi's  ZenphotoPress (http://simbul.bzaar.net/zenphotopress)
 		 License: GPL v2 or later http://www.gnu.org/licenses/gpl.html -->
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<title>tinyZenpage</title>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />

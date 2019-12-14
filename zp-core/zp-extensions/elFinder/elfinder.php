@@ -8,7 +8,7 @@ if (empty($locale))
 	$locale = 'en';
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>elFinder 2.0</title>

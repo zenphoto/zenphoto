@@ -379,7 +379,7 @@ class AlbumZip {
 	static function pageError($err, $text) {
 		header("HTTP/1.0 " . $err . ' ' . $text);
 		header("Status: " . $err . ' ' . $text);
-		echo '<html>';
+		echo '<html lang="' . getLangAttributeLocale() . '">';
 		echo '<head>';
 		echo '<title>' . $err . ' - ' . $text . '</title>';
 		echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW">';

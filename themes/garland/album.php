@@ -4,7 +4,7 @@ if (!defined('WEBPATH'))
 $map = function_exists('printGoogleMap');
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php

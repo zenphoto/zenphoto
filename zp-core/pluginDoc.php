@@ -136,7 +136,7 @@ if (!defined('OFFSET_PATH')) {
 		setupCurrentLocale('en_US');
 		?>
 		<!DOCTYPE html>
-		<html xmlns="http://www.w3.org/1999/xhtml">
+		<html<?php printLangAttribute(); ?>>
 			<head>
 				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 				<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />

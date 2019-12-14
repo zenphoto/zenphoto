@@ -113,7 +113,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	zp_apply_filter('admin_headers');
 	?>
 	<!DOCTYPE html>
-	<html>
+	<html<?php printLangAttribute(); ?>>
 		<head>
 			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/toggleElements.css" type="text/css" />
