@@ -126,7 +126,9 @@ if ($_REQUEST['origin'] == 'upload') {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			$opts['roots'][2]['accessControl'] = 'access';
 		} else {
+			$opts['roots'][0]['uploadDeny'] = array('text/x-php', 'application');
 			$opts['roots'][2]['accessControl'] = 'accessAlbums';
+			$opts['roots'][2]['uploadDeny'] = array('text/x-php', 'application');
 			$_managed_folders = getManagedAlbumList();
 			$excluded_folders = $_zp_gallery->getAlbums(0);
 			$excluded_folders = array_diff($excluded_folders, $_managed_folders);
@@ -269,7 +271,8 @@ if ($_REQUEST['origin'] == 'upload') {
 						'tmbBgColor'		 => 'transparent',
 						'uploadAllow'		 => array('image'),
 						'accessControl'	 => 'access',
-						'acceptedName'	 => '/^[^\.].*$/'
+						'acceptedName'	 => '/^[^\.].*$/',
+						'uploadDeny' => array('text/x-php', 'text/html', 'application'),
 		);
 	}
 }
