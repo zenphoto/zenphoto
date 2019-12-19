@@ -401,7 +401,7 @@ if (!isset($data['hitcounter']))
 if (!isset($data['current_theme'])) {
 	$data['current_theme'] = getOption('current_theme');
 	if (is_null($data['current_theme'])) {
-		$data['current_theme'] = 'default';
+		$data['current_theme'] = 'basic';
 	}
 }
 if (!isset($data['website_title']))
