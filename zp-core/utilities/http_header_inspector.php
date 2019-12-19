@@ -36,28 +36,33 @@ printAdminHeader('overview', 'http_header_inspector');
 				<h1><?php echo (gettext('HTTP header inspector')); ?></h1>
 				<p><?php echo gettext('Inspect which HTTP headers your site generally sends.'); ?></p>
 				<?php
-				$check_headers = array(
-						array(
-								'headline' => gettext('Frontend headers'),
-								'headers' => get_headers(FULLWEBPATH . '/'),
-						),
-						array(
-								'headline' => gettext('Backend headers'),
-								'headers' => get_headers(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php')
-						)
-				);
-				foreach ($check_headers as $check_header) {
-					?>
-					<h2><?php echo html_encode($check_header['headline']); ?></h2>
-					<ul>
-						<?php
-						foreach ($check_header['headers'] as $header) {
-							echo '<li>' . $header . '</li>';
-						}
+				$streamwrappers = stream_get_wrappers();
+				if(in_array(PROTOCOL, $streamwrappers)) {
+					$check_headers = array(
+							array(
+									'headline' => gettext('Frontend headers'),
+									'headers' => get_headers(FULLWEBPATH . '/'),
+							),
+							array(
+									'headline' => gettext('Backend headers'),
+									'headers' => get_headers(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php')
+							)
+					);
+					foreach ($check_headers as $check_header) {
 						?>
-					</ul>
-					<hr>
-					<?php
+						<h2><?php echo html_encode($check_header['headline']); ?></h2>
+						<ul>
+							<?php
+							foreach ($check_header['headers'] as $header) {
+								echo '<li>' . $header . '</li>';
+							}
+							?>
+						</ul>
+						<hr>
+						<?php
+					} 
+				} else {
+					echo '<p class="notebox">' . sprintf(gettext("Your server does not support getting header info via %s"), PROTOCOL) . '</p>';
 				}
 				?>
 			</div>
