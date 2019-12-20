@@ -1580,7 +1580,6 @@ function getNotViewableImages() {
   }
   if (is_null($_zp_not_viewable_image_list)) {
     $sql = 'SELECT DISTINCT `id` FROM ' . prefix('images') . ' WHERE `show` = 0' . $where;
-		debuglog($sql);
     $result = query($sql);
     if ($result) {
       $_zp_not_viewable_image_list = array();
