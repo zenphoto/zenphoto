@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-04 13:45+0100\n"
+"POT-Creation-Date: 2019-12-21 10:17+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -170,7 +170,7 @@ msgstr "Een wachtwoord is nodig om de opgevraagde pagina te bekijken"
 
 #: themes/basic/register.php:28 themes/garland/register.php:43
 #: zp-core/template-functions.php:450
-#: zp-core/zp-extensions/html_meta_tags.php:321
+#: zp-core/zp-extensions/html_meta_tags.php:314
 #: zp-core/zp-extensions/register_user.php:65
 #: zp-core/zp-extensions/scriptless-socialsharing.php:182
 msgid "Register"
@@ -388,7 +388,7 @@ msgstr "Stop"
 
 #: themes/garland/password.php:41 zp-core/password.php:6
 #: zp-core/template-functions.php:453
-#: zp-core/zp-extensions/html_meta_tags.php:321
+#: zp-core/zp-extensions/html_meta_tags.php:314
 msgid "Password required"
 msgstr "Wachtwoord vereist"
 
@@ -484,7 +484,7 @@ msgstr "Albumindex"
 #: zp-core/lib-auth.php:586 zp-core/lib-auth.php:592 zp-core/lib-auth.php:593
 #: zp-core/setup/setup-option-defaults.php:383
 #: zp-core/setup/setup-option-defaults.php:384
-#: zp-core/template-functions.php:448 zp-core/template-functions.php:629
+#: zp-core/template-functions.php:448 zp-core/template-functions.php:640
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:51
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
 #: zp-core/zp-extensions/rss.php:84
@@ -698,10 +698,10 @@ msgstr "*standaard menu"
 #: themes/zenpage/search.php:48 themes/zpmobile/functions.php:67
 #: themes/zpmobile/search.php:46 themes/zpmobile/search.php:51
 #: themes/zpmobile/search.php:53 zp-core/template-functions.php:451
-#: zp-core/template-functions.php:1430 zp-core/template-functions.php:1461
-#: zp-core/template-functions.php:3984
+#: zp-core/template-functions.php:1441 zp-core/template-functions.php:1472
+#: zp-core/template-functions.php:3995
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
-#: zp-core/zp-extensions/html_meta_tags.php:321
+#: zp-core/zp-extensions/html_meta_tags.php:314
 #: zp-core/zp-extensions/scriptless-socialsharing.php:185
 #: zp-core/zp-extensions/slideshow2.php:767
 msgid "Search"
@@ -736,7 +736,7 @@ msgid "Sorry, no matches found. Try refining your search."
 msgstr "Sorry, geen resultaten. Probeer de zoekopdracht te herformuleren."
 
 #: themes/zenpage/sidebar.php:56 themes/zpmobile/functions.php:78
-#: zp-core/template-functions.php:1413 zp-core/template-functions.php:1468
+#: zp-core/template-functions.php:1424 zp-core/template-functions.php:1479
 #: zp-core/zp-extensions/scriptless-socialsharing.php:179
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:783
 msgid "Archive"
@@ -767,7 +767,7 @@ msgstr "Album RSS"
 #: zp-core/zp-extensions/comment_form/functions.php:859
 #: zp-core/zp-extensions/comment_form/functions.php:866
 #: zp-core/zp-extensions/defaultCodeblocks.php:37
-#: zp-core/zp-extensions/html_meta_tags.php:303
+#: zp-core/zp-extensions/html_meta_tags.php:296
 #: zp-core/zp-extensions/multiple_layouts.php:95
 #: zp-core/zp-extensions/related_items.php:155
 #: zp-core/zp-extensions/related_items.php:190
@@ -876,7 +876,7 @@ msgid "The Zenphoto object you are requesting cannot be found."
 msgstr "Het Zenphoto object dat je zoekt kan niet gevonden worden."
 
 #: themes/zpmobile/archive.php:26 zp-core/template-functions.php:452
-#: zp-core/zp-extensions/html_meta_tags.php:321
+#: zp-core/zp-extensions/html_meta_tags.php:314
 msgid "Archive view"
 msgstr "Archief"
 
@@ -890,8 +890,8 @@ msgstr "Archief"
 msgid "Album"
 msgstr "Album"
 
-#: themes/zpmobile/functions.php:65 zp-core/template-functions.php:670
-#: zp-core/template-functions.php:1569
+#: themes/zpmobile/functions.php:65 zp-core/template-functions.php:681
+#: zp-core/template-functions.php:1580
 #: zp-core/zp-extensions/menu_manager.php:909
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:475
 msgid "Home"
@@ -1091,7 +1091,7 @@ msgstr "Geen album om te sorteren."
 msgid "Edit Album: <em>%1$s%2$s</em>"
 msgstr "Bewerk album: <em>%1$s%2$s</em>"
 
-#: zp-core/admin-albumsort.php:151 zp-core/admin-albumsort.php:211
+#: zp-core/admin-albumsort.php:150 zp-core/admin-albumsort.php:210
 #: zp-core/admin-edit.php:772 zp-core/admin-edit.php:837
 #: zp-core/admin-edit.php:961 zp-core/admin-edit.php:1535
 #: zp-core/admin-edit.php:1628 zp-core/admin-edit.php:1658
@@ -1110,7 +1110,7 @@ msgstr "Bewerk album: <em>%1$s%2$s</em>"
 msgid "Back"
 msgstr "Terug"
 
-#: zp-core/admin-albumsort.php:154 zp-core/admin-albumsort.php:215
+#: zp-core/admin-albumsort.php:153 zp-core/admin-albumsort.php:214
 #: zp-core/admin-edit.php:779 zp-core/admin-edit.php:841
 #: zp-core/admin-edit.php:965 zp-core/admin-edit.php:1539
 #: zp-core/admin-edit.php:1631 zp-core/admin-edit.php:1661
@@ -1153,16 +1153,16 @@ msgstr "Terug"
 msgid "Apply"
 msgstr "Toepassen"
 
-#: zp-core/admin-albumsort.php:158 zp-core/admin-albumsort.php:219
+#: zp-core/admin-albumsort.php:157 zp-core/admin-albumsort.php:218
 #: zp-core/admin-functions.php:1244 zp-core/admin-functions.php:2005
 msgid "View Album"
 msgstr "Bekijk album"
 
-#: zp-core/admin-albumsort.php:162
+#: zp-core/admin-albumsort.php:161
 msgid "Set the image order by dragging them to the positions you desire."
 msgstr "Sorteer de afbeeldingen door ze te slepen..."
 
-#: zp-core/admin-albumsort.php:174 zp-core/admin-edit.php:1061
+#: zp-core/admin-albumsort.php:173 zp-core/admin-edit.php:1061
 #: zp-core/admin-functions.php:1738 zp-core/admin-functions.php:2178
 #: zp-core/admin-functions.php:4978 zp-core/admin-functions.php:5025
 #: zp-core/zp-extensions/favoritesHandler.php:141
@@ -1172,13 +1172,13 @@ msgstr "Sorteer de afbeeldingen door ze te slepen..."
 msgid "Published"
 msgstr "Gepubliceerd"
 
-#: zp-core/admin-albumsort.php:177 zp-core/admin-functions.php:2192
+#: zp-core/admin-albumsort.php:176 zp-core/admin-functions.php:2192
 #: zp-core/admin-functions.php:5026 zp-core/class-userdataexport.php:509
 #, php-format
 msgid "Unpublished"
 msgstr "Niet gepubliceerd"
 
-#: zp-core/admin-albumsort.php:190 zp-core/admin-functions.php:3296
+#: zp-core/admin-albumsort.php:189 zp-core/admin-functions.php:3296
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
 #: zp-core/zp-extensions/zenpage/admin-edit.php:124
 msgid "edit"
@@ -2362,7 +2362,7 @@ msgstr "setup"
 
 #: zp-core/admin-functions.php:4537 zp-core/admin-globals.php:106
 #: zp-core/admin-options.php:1071
-#: zp-core/zp-extensions/http_security_headers.php:23
+#: zp-core/zp-extensions/http_security_headers.php:25
 msgid "security"
 msgstr "beveiliging"
 
@@ -4377,8 +4377,8 @@ msgid "hide"
 msgstr "verberg"
 
 #: zp-core/admin-options.php:2523
-#: zp-core/zp-extensions/http_security_headers.php:365
-#: zp-core/zp-extensions/http_security_headers.php:472
+#: zp-core/zp-extensions/http_security_headers.php:367
+#: zp-core/zp-extensions/http_security_headers.php:474
 msgid "disabled"
 msgstr "uitgeschakeld"
 
@@ -8442,7 +8442,7 @@ msgid "Image Source"
 msgstr "Bron"
 
 #: zp-core/functions.php:2727 zp-core/template-functions.php:449
-#: zp-core/zp-extensions/html_meta_tags.php:321
+#: zp-core/zp-extensions/html_meta_tags.php:314
 #: zp-core/zp-extensions/scriptless-socialsharing.php:176
 msgid "Contact"
 msgstr "Contact"
@@ -11525,28 +11525,28 @@ msgstr "Log uit"
 
 #: zp-core/template-functions.php:455
 #: zp-core/zp-extensions/favoritesHandler.php:61
-#: zp-core/zp-extensions/html_meta_tags.php:323
+#: zp-core/zp-extensions/html_meta_tags.php:316
 msgid "My favorites"
 msgstr "Mijn favorieten"
 
-#: zp-core/template-functions.php:987 zp-core/template-functions.php:1081
+#: zp-core/template-functions.php:998 zp-core/template-functions.php:1092
 #: zp-core/zp-extensions/menu_manager.php:694
 msgid "Previous Page"
 msgstr "Vorige Pagina"
 
-#: zp-core/template-functions.php:989 zp-core/template-functions.php:1187
+#: zp-core/template-functions.php:1000 zp-core/template-functions.php:1198
 #: zp-core/zp-extensions/menu_manager.php:734
 msgid "Next Page"
 msgstr "Volgende Pagina"
 
-#: zp-core/template-functions.php:1104
+#: zp-core/template-functions.php:1115
 #: zp-core/zp-extensions/menu_manager.php:700
 msgid "Page 1"
 msgstr "pagina 1"
 
-#: zp-core/template-functions.php:1119 zp-core/template-functions.php:1128
-#: zp-core/template-functions.php:1158 zp-core/template-functions.php:1165
-#: zp-core/template-functions.php:1175
+#: zp-core/template-functions.php:1130 zp-core/template-functions.php:1139
+#: zp-core/template-functions.php:1169 zp-core/template-functions.php:1176
+#: zp-core/template-functions.php:1186
 #: zp-core/zp-extensions/menu_manager.php:705
 #: zp-core/zp-extensions/menu_manager.php:723
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:976
@@ -11557,7 +11557,7 @@ msgid_plural "Page %u"
 msgstr[0] "pagina %u"
 msgstr[1] "pagina’s %u"
 
-#: zp-core/template-functions.php:1139
+#: zp-core/template-functions.php:1150
 #: zp-core/zp-extensions/menu_manager.php:715
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:985
 #, php-format
@@ -11566,44 +11566,44 @@ msgid_plural "Page %1$u"
 msgstr[0] "pagina %1$u"
 msgstr[1] "pagina %1$u"
 
-#: zp-core/template-functions.php:1249
+#: zp-core/template-functions.php:1260
 msgid "The album is password protected."
 msgstr "Dit is album is beveiligd met een wachtwoord."
 
-#: zp-core/template-functions.php:1252
+#: zp-core/template-functions.php:1263
 msgid "The album is un-published."
 msgstr "Dit album is niet gepubliceerd."
 
-#: zp-core/template-functions.php:1361
+#: zp-core/template-functions.php:1372
 msgid "Album Thumbnails"
 msgstr "Albumthumbnails"
 
-#: zp-core/template-functions.php:1461
+#: zp-core/template-functions.php:1472
 msgid "Return to search"
 msgstr "Keer terug naar <em>zoeken</em>"
 
-#: zp-core/template-functions.php:1468
+#: zp-core/template-functions.php:1479
 msgid "Return to archive"
 msgstr "Keer terug naar <em>archief</em>"
 
-#: zp-core/template-functions.php:2210
+#: zp-core/template-functions.php:2221
 msgid "The image is marked un-published."
 msgstr "Deze afbeelding is als niet-gepubliceerd gemarkeerd."
 
-#: zp-core/template-functions.php:2601
+#: zp-core/template-functions.php:2612
 msgid "Image Info"
 msgstr "Foto-informatie"
 
-#: zp-core/template-functions.php:3484
+#: zp-core/template-functions.php:3495
 #, php-format
 msgid "View image: %s"
 msgstr "Bekijk afbeelding: %s"
 
-#: zp-core/template-functions.php:3678
+#: zp-core/template-functions.php:3689
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: zp-core/template-functions.php:3979
+#: zp-core/template-functions.php:3990
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -11611,49 +11611,49 @@ msgstr ""
 "printSearchForm() $album_list parameter is verouderd. Gebruik in plaats "
 "hiervan <code>array(“albums”=>aray(album, album,…))</code>."
 
-#: zp-core/template-functions.php:3995
+#: zp-core/template-functions.php:4006
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: zp-core/template-functions.php:4076
+#: zp-core/template-functions.php:4087
 msgid "search options"
 msgstr "zoekopties"
 
-#: zp-core/template-functions.php:4076
+#: zp-core/template-functions.php:4087
 msgid "fields"
 msgstr "velden"
 
-#: zp-core/template-functions.php:4122
+#: zp-core/template-functions.php:4133
 msgid "Within"
 msgstr "binnen"
 
-#: zp-core/template-functions.php:4126
+#: zp-core/template-functions.php:4137
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nieuw"
 
-#: zp-core/template-functions.php:4133
+#: zp-core/template-functions.php:4144
 msgid "Check/uncheck all"
 msgstr "Selecteer/Deselecteer alle"
 
-#: zp-core/template-functions.php:4185
+#: zp-core/template-functions.php:4196
 msgid "no date"
 msgstr "geen datum"
 
-#: zp-core/template-functions.php:4419
+#: zp-core/template-functions.php:4430
 msgid "You are successfully logged in."
 msgstr "Je bent ingelogd."
 
-#: zp-core/template-functions.php:4424
+#: zp-core/template-functions.php:4435
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: zp-core/template-functions.php:4429
+#: zp-core/template-functions.php:4440
 msgid "login"
 msgstr "login"
 
-#: zp-core/template-functions.php:4447
+#: zp-core/template-functions.php:4458
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
 "website CMS\">Zenphoto</a>"
@@ -11661,21 +11661,21 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
 "website CMS\">Zenphoto</a>"
 
-#: zp-core/template-functions.php:4612
+#: zp-core/template-functions.php:4623
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Zenphoto fout:</strong> het gevraagde object kon niet gevonden worden."
 
-#: zp-core/template-functions.php:4614
+#: zp-core/template-functions.php:4625
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zp-core/template-functions.php:4617
+#: zp-core/template-functions.php:4628
 #, php-format
 msgid "Image: %s"
 msgstr "Afbeelding: %s"
 
-#: zp-core/template-functions.php:4620
+#: zp-core/template-functions.php:4631
 #, php-format
 msgid "Page: %s"
 msgstr "Pagina: %s"
@@ -12199,6 +12199,10 @@ msgstr "Frontend headers"
 #: zp-core/utilities/http_header_inspector.php:45
 msgid "Backend headers"
 msgstr "Backend headers"
+
+#: zp-core/utilities/http_header_inspector.php:59
+msgid "Fetching headers not possible on your server."
+msgstr "Ophalen van headers niet mogelijk op deze server."
 
 #: zp-core/utilities/list_locales.php:12 zp-core/utilities/list_locales.php:23
 msgid "Locale info"
@@ -15527,7 +15531,7 @@ msgstr ""
 "een selectiemenu."
 
 #: zp-core/zp-extensions/dynamic-locale.php:168
-#: zp-core/zp-extensions/html_meta_tags.php:185
+#: zp-core/zp-extensions/html_meta_tags.php:178
 #: zp-core/zp-extensions/sitemap-extended.php:202
 msgid "Use subdomains"
 msgstr "Gebruik subdomeinen"
@@ -15541,7 +15545,7 @@ msgstr ""
 "locale’);”><em>dynamic-locale</em></a> plugin opties."
 
 #: zp-core/zp-extensions/dynamic-locale.php:182
-#: zp-core/zp-extensions/html_meta_tags.php:204
+#: zp-core/zp-extensions/html_meta_tags.php:197
 #: zp-core/zp-extensions/register_user.php:143
 #: zp-core/zp-extensions/sitemap-extended.php:221
 msgid ""
@@ -15599,7 +15603,7 @@ msgstr ""
 "ervoor dat Zenphoto data verloren gaat."
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:68
-#: zp-core/zp-extensions/elFinder/php/connector_zp.php:264
+#: zp-core/zp-extensions/elFinder/php/connector_zp.php:266
 #, php-format
 msgid "Upload folder (%s)"
 msgstr "Upload map (%s)"
@@ -15614,17 +15618,17 @@ msgstr "Zenphoto thema’s (%s)"
 msgid "Albums folder (%s)"
 msgstr "Albums map (%s)"
 
-#: zp-core/zp-extensions/elFinder/php/connector_zp.php:219
+#: zp-core/zp-extensions/elFinder/php/connector_zp.php:221
 #, php-format
 msgid "Third party plugins (%s)"
 msgstr "Third-party plugins (%s)"
 
-#: zp-core/zp-extensions/elFinder/php/connector_zp.php:233
+#: zp-core/zp-extensions/elFinder/php/connector_zp.php:235
 #, php-format
 msgid "Zenphoto data (%s)"
 msgstr "Zenphoto data (%s)"
 
-#: zp-core/zp-extensions/elFinder/php/connector_zp.php:247
+#: zp-core/zp-extensions/elFinder/php/connector_zp.php:249
 #, php-format
 msgid "Backup files (%s)"
 msgstr "Backup bestanden (%s)"
@@ -16123,18 +16127,10 @@ msgid "If the browser cache should be used."
 msgstr "Als de cache van de browser gebruikt moet worden."
 
 #: zp-core/zp-extensions/html_meta_tags.php:104
-msgid "Pragma"
-msgstr "Pragma"
-
-#: zp-core/zp-extensions/html_meta_tags.php:110
-msgid "If the pages should be allowed to be cached on proxy servers."
-msgstr "Als de pagina’s gecached moeten worden op proxy-servers."
-
-#: zp-core/zp-extensions/html_meta_tags.php:111
 msgid "Robots"
 msgstr "Robots"
 
-#: zp-core/zp-extensions/html_meta_tags.php:122
+#: zp-core/zp-extensions/html_meta_tags.php:115
 msgid ""
 "If and how robots are allowed to visit the site. Default is “index”. Note "
 "that you also should use a robot.txt file."
@@ -16142,19 +16138,19 @@ msgstr ""
 "Hoe robots wordt toegestaan de site te bezoeken. Standaard ingesteld op "
 "“index”. Je dient eigenlijk ook een “robot.txt” bestand te bebruiken."
 
-#: zp-core/zp-extensions/html_meta_tags.php:123
+#: zp-core/zp-extensions/html_meta_tags.php:116
 msgid "Revisit after"
 msgstr "Kom terug na"
 
-#: zp-core/zp-extensions/html_meta_tags.php:126
+#: zp-core/zp-extensions/html_meta_tags.php:119
 msgid "Request the crawler to revisit the page after x days."
 msgstr "Verzoek de “crawler” om de pagina opnieuw te bezoeken na X dagen."
 
-#: zp-core/zp-extensions/html_meta_tags.php:127
+#: zp-core/zp-extensions/html_meta_tags.php:120
 msgid "Expires"
 msgstr "Vervalt na (in seconden)"
 
-#: zp-core/zp-extensions/html_meta_tags.php:130
+#: zp-core/zp-extensions/html_meta_tags.php:123
 msgid ""
 "When the page should be loaded directly from the server and not from any "
 "cache. You can either set a date/time in international date format <em>Sat, "
@@ -16166,11 +16162,11 @@ msgstr ""
 "15 Dec 2001 12:00:00 GMT</em>) of een getal. Een getal betekent dan het "
 "aantal seconden. De standaardwaarde is 43200, dat neerkomt op 12 uur. "
 
-#: zp-core/zp-extensions/html_meta_tags.php:131
+#: zp-core/zp-extensions/html_meta_tags.php:124
 msgid "Canonical URL link"
 msgstr "Voorkeur URL link"
 
-#: zp-core/zp-extensions/html_meta_tags.php:135
+#: zp-core/zp-extensions/html_meta_tags.php:128
 msgid ""
 "This adds a link element to the head of each page with a <em>canonical url</"
 "em>. If the <code>seo_locale</code> plugin is enabled or <code>use "
@@ -16184,19 +16180,19 @@ msgstr ""
 "voor andere talen (<code>&lt;link&nbsp;rel=\"alternate\" hreflang=\"</"
 "code>...<code>\" href=\"</code>...<code>\" /&gt;</code>)."
 
-#: zp-core/zp-extensions/html_meta_tags.php:136
+#: zp-core/zp-extensions/html_meta_tags.php:129
 msgid "Verification content"
 msgstr "Verificatie content"
 
-#: zp-core/zp-extensions/html_meta_tags.php:139
+#: zp-core/zp-extensions/html_meta_tags.php:132
 msgid "Insert the <em>content</em> portion of the meta tag supplied by Google."
 msgstr "Voeg het <em>content</em> gedeelte toe aan de metatag van Google."
 
-#: zp-core/zp-extensions/html_meta_tags.php:140
+#: zp-core/zp-extensions/html_meta_tags.php:133
 msgid "Site logo"
 msgstr "Site logo"
 
-#: zp-core/zp-extensions/html_meta_tags.php:143
+#: zp-core/zp-extensions/html_meta_tags.php:136
 msgid ""
 "Enter the full url to a specific site logo image. Facebook, Google+ and "
 "others will use that as the thumb shown in link previews within posts. For "
@@ -16208,11 +16204,11 @@ msgstr ""
 "links in een reactie. Voor album- en afbeeldingspagina’s worden automatisch "
 "de standaard album- en afbeeldings-thumbnails gebruikt."
 
-#: zp-core/zp-extensions/html_meta_tags.php:144
+#: zp-core/zp-extensions/html_meta_tags.php:137
 msgid "Twitter name"
 msgstr "Twitter naam"
 
-#: zp-core/zp-extensions/html_meta_tags.php:147
+#: zp-core/zp-extensions/html_meta_tags.php:140
 msgid ""
 "If you enabled Twitter card meta tags, you need to enter your Twitter user "
 "name here."
@@ -16220,11 +16216,11 @@ msgstr ""
 "Als je de Twitter card meta tags geactiveerd hebt, moet je hier je Twitter "
 "gebruikersnaam invullen."
 
-#: zp-core/zp-extensions/html_meta_tags.php:148
+#: zp-core/zp-extensions/html_meta_tags.php:141
 msgid "Open graph image - width"
 msgstr "Open graph afbeelding - breedte"
 
-#: zp-core/zp-extensions/html_meta_tags.php:151
+#: zp-core/zp-extensions/html_meta_tags.php:144
 msgid ""
 "Max width of the open graph image used for sharing to social networks if "
 "enabled."
@@ -16232,11 +16228,11 @@ msgstr ""
 "Maximale breedte van de <em>Open Graph</em> afbeelding die gebruikt wordt "
 "voor het delen met sociale netwerken."
 
-#: zp-core/zp-extensions/html_meta_tags.php:152
+#: zp-core/zp-extensions/html_meta_tags.php:145
 msgid "Open graph image - height"
 msgstr "Open graph afbeelding - hoogte"
 
-#: zp-core/zp-extensions/html_meta_tags.php:155
+#: zp-core/zp-extensions/html_meta_tags.php:148
 msgid ""
 "Max height of the open graph image used for sharing to social networks if "
 "enabled."
@@ -16244,11 +16240,11 @@ msgstr ""
 "Maximale hoogte van de <em>Open Graph</em> afbeelding die gebruikt wordt "
 "voor het delen met sociale netwerken."
 
-#: zp-core/zp-extensions/html_meta_tags.php:156
+#: zp-core/zp-extensions/html_meta_tags.php:149
 msgid "Facebook app id"
 msgstr "Facebook ID"
 
-#: zp-core/zp-extensions/html_meta_tags.php:159
+#: zp-core/zp-extensions/html_meta_tags.php:152
 msgid ""
 "Enter your Facebook app id. IF using this you also should enable the "
 "OpenGraph meta tags."
@@ -16256,11 +16252,11 @@ msgstr ""
 "Vul je Facebook ID in. Als je dit gebruikt moet je ook de OpenGraph meta-"
 "tags gebruiken."
 
-#: zp-core/zp-extensions/html_meta_tags.php:160
+#: zp-core/zp-extensions/html_meta_tags.php:153
 msgid "HTML meta tags"
 msgstr "HTML meta-tags"
 
-#: zp-core/zp-extensions/html_meta_tags.php:184
+#: zp-core/zp-extensions/html_meta_tags.php:177
 msgid ""
 "Which of the HTML meta tags should be used. For info about these in detail "
 "please refer to the net."
@@ -16268,7 +16264,7 @@ msgstr ""
 "Welke HTML meta-tags gebruikt moeten worden. Gedetailleerde informatie "
 "hierover kun je vinden op het internet."
 
-#: zp-core/zp-extensions/html_meta_tags.php:199
+#: zp-core/zp-extensions/html_meta_tags.php:192
 msgid ""
 "* This option may be set via the <a href=\"javascript:"
 "gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
@@ -16276,7 +16272,7 @@ msgstr ""
 "* Deze optie kan worden ingesteld via de <a href=\"javascript:"
 "gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin opties."
 
-#: zp-core/zp-extensions/http_security_headers.php:21
+#: zp-core/zp-extensions/http_security_headers.php:23
 msgid ""
 "A plugin to enable basic usage of various security related HTTP response "
 "headers for the frontend. <p class=\"warningbox\">Caution: Misconfiguration "
@@ -16286,7 +16282,7 @@ msgstr ""
 "voor de frontend. <p class=“warningbox”>Pas op: Verkeerde instellingen "
 "kunnen je website kapot maken.</p>"
 
-#: zp-core/zp-extensions/http_security_headers.php:53
+#: zp-core/zp-extensions/http_security_headers.php:55
 msgid ""
 "The Content-Security-Policy header allows to control which resources browser "
 "are allowed to load. For detailed info please see <a href=\"https://"
@@ -16300,7 +16296,7 @@ msgstr ""
 "target=\"_blank\">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/"
 "Content-Security-Policy</a>."
 
-#: zp-core/zp-extensions/http_security_headers.php:54
+#: zp-core/zp-extensions/http_security_headers.php:56
 msgid ""
 "Use the Report-Only option to test before setting directives live. Review "
 "your browser log/console for block reports."
@@ -16308,11 +16304,11 @@ msgstr ""
 "Gebruik de <em>Alleen melden</em> optie om te testen. Bekijk je browser log/"
 "console voor geblokte inhoud."
 
-#: zp-core/zp-extensions/http_security_headers.php:60
+#: zp-core/zp-extensions/http_security_headers.php:62
 msgid "Enable or disable the Content-Security-Policy."
 msgstr "Activeer of deactiveer de Content-Security-Policy."
 
-#: zp-core/zp-extensions/http_security_headers.php:66
+#: zp-core/zp-extensions/http_security_headers.php:68
 msgid ""
 "Set the Content-Security-Policy header to report mode but not actually block "
 "anything."
@@ -16320,55 +16316,55 @@ msgstr ""
 "Laat de Content-Security-Policy header niet blokkeren maar alleen melden wat "
 "er gebeurt."
 
-#: zp-core/zp-extensions/http_security_headers.php:76
+#: zp-core/zp-extensions/http_security_headers.php:78
 msgid "Fallback directive for all <em>*-src</em> fetch directives."
 msgstr "Fallback richtlijn voor alle <em>*-src</em> fetch opdrachten."
 
-#: zp-core/zp-extensions/http_security_headers.php:90
+#: zp-core/zp-extensions/http_security_headers.php:92
 msgid "Allowed sources for loading script interfaces."
 msgstr "Toegestane bronnen voor het laden van scripts."
 
-#: zp-core/zp-extensions/http_security_headers.php:104
+#: zp-core/zp-extensions/http_security_headers.php:106
 msgid "Allowed sources for font loading."
 msgstr "Toegestane bronnen voor het laden van fonts."
 
-#: zp-core/zp-extensions/http_security_headers.php:118
+#: zp-core/zp-extensions/http_security_headers.php:120
 msgid "Allowed sources for frames."
 msgstr "Toegestane bronnen voor frames."
 
-#: zp-core/zp-extensions/http_security_headers.php:132
+#: zp-core/zp-extensions/http_security_headers.php:134
 msgid "Allowed sources for images."
 msgstr "Toegestane bronnen voor afbeeldingen."
 
-#: zp-core/zp-extensions/http_security_headers.php:146
+#: zp-core/zp-extensions/http_security_headers.php:148
 msgid "Allowed sources for application manifest files."
 msgstr ""
 "Toegestane bronnen voor het laden van informatieve bestanden van web "
 "applicaties (doorgaans JSON tekstbestanden)."
 
-#: zp-core/zp-extensions/http_security_headers.php:160
+#: zp-core/zp-extensions/http_security_headers.php:162
 msgid "Allowed sources for video and audio."
 msgstr "Toegestane bronnen voor video en audio."
 
-#: zp-core/zp-extensions/http_security_headers.php:174
+#: zp-core/zp-extensions/http_security_headers.php:176
 msgid "Allowed sources for object, embed and applet usage"
 msgstr "Toegestane bronnen voor object, embed en applets."
 
-#: zp-core/zp-extensions/http_security_headers.php:188
+#: zp-core/zp-extensions/http_security_headers.php:190
 msgid "Allowed sources for JavaScript."
 msgstr "Toegestane bronnen voor JavaScript."
 
-#: zp-core/zp-extensions/http_security_headers.php:202
+#: zp-core/zp-extensions/http_security_headers.php:204
 msgid "Allowed sources for CSS."
 msgstr "Toegestane bronnen voor CSS."
 
-#: zp-core/zp-extensions/http_security_headers.php:219
+#: zp-core/zp-extensions/http_security_headers.php:221
 msgid "Restrict the base URI of the document."
 msgstr ""
 "Beperk de base URI van het document (heeft betrekking op het <em><base></em> "
 "HTML element)."
 
-#: zp-core/zp-extensions/http_security_headers.php:233
+#: zp-core/zp-extensions/http_security_headers.php:235
 msgid ""
 "Restricts specific plugin types a browser is allowed to load (e.g. Java "
 "Applets, Flash videos etc.) if the object-src directive is set to \"none\"."
@@ -16377,15 +16373,15 @@ msgstr ""
 "Flash video’s, etc.) wanneer de <em>object-src</em> richtlijn op <em>geen</"
 "em> is ingesteld."
 
-#: zp-core/zp-extensions/http_security_headers.php:240
+#: zp-core/zp-extensions/http_security_headers.php:242
 msgid "Enables sandbox for the requested source."
 msgstr "Activeer <em>sandbox</em> voor de opgevraagde bron."
 
-#: zp-core/zp-extensions/http_security_headers.php:251
+#: zp-core/zp-extensions/http_security_headers.php:253
 msgid "Restricts target URLs for form actions."
 msgstr "Beperk de <em>action</em> URL‘s van formulieren."
 
-#: zp-core/zp-extensions/http_security_headers.php:265
+#: zp-core/zp-extensions/http_security_headers.php:267
 msgid ""
 "Specifices parents for frame, iframe, object, embed and applet. Helps "
 "prevent clickjacking and the site being loaded within other sites."
@@ -16393,21 +16389,21 @@ msgstr ""
 "Specificeert <em>parents</em> voor frame, iframe, object, embed en applet. "
 "Helpt voorkomen dat de site wordt geladen in een andere site (clickjacking)."
 
-#: zp-core/zp-extensions/http_security_headers.php:281
+#: zp-core/zp-extensions/http_security_headers.php:283
 msgid "Prevents http content being loaded if the site is in https mode."
 msgstr "Blokkeert HTTP inhoud wanneer de site in HTTPS modus is."
 
-#: zp-core/zp-extensions/http_security_headers.php:288
+#: zp-core/zp-extensions/http_security_headers.php:290
 msgid "Instructs the browser to treat insecure http URLs like https ones."
 msgstr ""
 "Vertelt de browser dat onveilige http URL‘s behandelt moeten worden als "
 "veilige https URL‘s."
 
-#: zp-core/zp-extensions/http_security_headers.php:298
+#: zp-core/zp-extensions/http_security_headers.php:300
 msgid "<h2>Strict-Transport-Security</h2><hr>"
 msgstr "<h2>Strict-Transport-Security</h2><hr>"
 
-#: zp-core/zp-extensions/http_security_headers.php:304
+#: zp-core/zp-extensions/http_security_headers.php:306
 msgid ""
 "Enter the max age in seconds. Instructs the browser that the site should be "
 "accessed via https only"
@@ -16415,19 +16411,19 @@ msgstr ""
 "Vul in hoe lang deze richlijn van kracht moet blijven, in seconden. Vertelt "
 "de browser dat de site alleen toegangkelijk is via https (i.pv. http)."
 
-#: zp-core/zp-extensions/http_security_headers.php:311
+#: zp-core/zp-extensions/http_security_headers.php:313
 msgid "Optional to include sub domains"
 msgstr "Voeg eventuele subdomeinen toe."
 
-#: zp-core/zp-extensions/http_security_headers.php:317
+#: zp-core/zp-extensions/http_security_headers.php:319
 msgid "Optional"
 msgstr "Optioneel"
 
-#: zp-core/zp-extensions/http_security_headers.php:326
+#: zp-core/zp-extensions/http_security_headers.php:328
 msgid "<h2>Other headers</h2><hr>"
 msgstr "<h2>Overige headers</h2><hr>"
 
-#: zp-core/zp-extensions/http_security_headers.php:333
+#: zp-core/zp-extensions/http_security_headers.php:335
 msgid ""
 "Legacy header for old browsers replaced by Content-Security-Policy: frame-"
 "ancestors"
@@ -16435,26 +16431,26 @@ msgstr ""
 "Oude header voor oude browsers. Vervangen door <em>Content-Security-Policy: "
 "frame-ancestor</em>."
 
-#: zp-core/zp-extensions/http_security_headers.php:340
+#: zp-core/zp-extensions/http_security_headers.php:342
 msgid "Enter one or more domains if allow-from is selected above."
 msgstr ""
 "Als hierboven <em>allow-from</em> is geselecteerd vul dan hier een of "
 "meerdere domeinen in."
 
-#: zp-core/zp-extensions/http_security_headers.php:346
+#: zp-core/zp-extensions/http_security_headers.php:348
 msgid "Opt-out for MIME type sniffing."
 msgstr "Doe niet mee met <em>MIME type sniffing</em>."
 
-#: zp-core/zp-extensions/http_security_headers.php:353
+#: zp-core/zp-extensions/http_security_headers.php:355
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:204
 msgid "Enable"
 msgstr "Activeer"
 
-#: zp-core/zp-extensions/http_security_headers.php:354
+#: zp-core/zp-extensions/http_security_headers.php:356
 msgid "(Optional)"
 msgstr "(optioneel)"
 
-#: zp-core/zp-extensions/http_security_headers.php:357
+#: zp-core/zp-extensions/http_security_headers.php:359
 msgid ""
 "Legacy header for old browsers to protect against cross-site-scripting "
 "attacks."
@@ -16462,11 +16458,11 @@ msgstr ""
 "Oude header voor oude browsers om te beschermen tegen <em>Cross-site "
 "scripting (XSS)</em> aanvallen."
 
-#: zp-core/zp-extensions/http_security_headers.php:375
+#: zp-core/zp-extensions/http_security_headers.php:377
 msgid "Controls how much referrer information should be sent."
 msgstr "Bepaalt hoeveel <em>referrer</em>-informatie meegestuurd wordt."
 
-#: zp-core/zp-extensions/http_security_headers.php:422
+#: zp-core/zp-extensions/http_security_headers.php:424
 msgid ""
 "<em>nonce-</em> uses the internal XSRFToken automatically. Caution: A nonce "
 "attribute with <code>getXSRFToken(\"security_http_headers\")</code> must be "
@@ -16478,14 +16474,14 @@ msgstr ""
 "aanwezig zijn bij alle inline scripts omdat ze anders niet werken. Inline "
 "handlers (e.g. onclick=\"\") zullen niet werken."
 
-#: zp-core/zp-extensions/http_security_headers.php:424
+#: zp-core/zp-extensions/http_security_headers.php:426
 #, php-format
 msgid ""
 "For detailed info please see <a href=\"%1$s\" target=\"_blank\">%2$s</a>."
 msgstr ""
 "Voor gedetailleerde informatie zie <a href=“%1$s” target=“_blank”>%2$s</a>."
 
-#: zp-core/zp-extensions/http_security_headers.php:429
+#: zp-core/zp-extensions/http_security_headers.php:431
 msgid ""
 "Define one or more domains, e.g. http://yourdomain1.com http://yourdomain2."
 "com, to allow content from"
@@ -23200,6 +23196,12 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid "Pragma"
+#~ msgstr "Pragma"
+
+#~ msgid "If the pages should be allowed to be cached on proxy servers."
+#~ msgstr "Als de pagina’s gecached moeten worden op proxy-servers."
 
 #~ msgid "Image order saved"
 #~ msgstr "Afbeeldingsvolgorde opgeslagen"
