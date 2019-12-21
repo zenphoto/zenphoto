@@ -5,12 +5,14 @@
  * 
  * See these urls for detailed info:
  * 
- * - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
- * - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
- * - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
- * - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
- * - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection
- * - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
+ * <ul>
+ * <li>{@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy}</li>
+ * <li>{@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security}</li>
+ * <li>{@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options}</li>
+ * <li>{@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options}</li>
+ * <li>{@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection}</li>
+ * <li>{@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy}</li>
+ * <ul>
  * 
  * @author Malte Müller (acrylian)
  * @package plugins
