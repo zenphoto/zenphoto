@@ -485,6 +485,9 @@ class securityheadersOptions {
 	 */
 	static function getContentSecuritytPolicyPluginTypes($suffix_as_key = false) {
 		global $mime_types;
+		if(!isset($mime_types)) {
+			require_once SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php';
+		}
 		$plugintypes = array();
 		foreach ($mime_types as $key => $val) {
 			if($suffix_as_key) {
