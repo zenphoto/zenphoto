@@ -37,7 +37,7 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 				<h3><?php echo gettext("Gallery"); ?></h3>
 				<?php
 			}
-			printAlbumMenu("list", "count", "", "menu-active", "submenu", "menu-active", '');
+			printAlbumMenu("list", true, "", "menu-active", "submenu", "menu-active", '');
 			?>
 		</div>
 	<?php } ?>
