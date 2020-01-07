@@ -1114,7 +1114,10 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 	if ($startlist = !($option == 'omit-top' || $option == 'list-sub')) {
 		echo "<ul$css_id>";
 	}
-	$pageid = @$items[$sortorder]['id'];
+	$pageid = '';
+	if($sortorder !== false){
+		$pageid = @$items[$sortorder]['id'];
+	}
 	$baseindent = max(1, count(explode("-", $sortorder)));
 	$indent = 1;
 	$open = array($indent => 0);
