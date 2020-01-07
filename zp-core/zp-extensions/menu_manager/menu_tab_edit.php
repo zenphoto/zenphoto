@@ -155,6 +155,7 @@ $menuset = checkChosenMenuset();
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Label")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("Creates a <em>label</em> to use in menu structures).")); ?>');
+							$("#link").attr('disabled', true);
 							$('#titleinput').show();
 							break;
 						case 'menufunction':
