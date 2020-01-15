@@ -1098,7 +1098,6 @@ function getMenuItemChilds($menuset = 'default', $allchilds = false) {
  */
 function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $css_class_topactive = '', $css_class = '', $css_class_active = '', $showsubs = 0, $counter = false) {
 	global $_zp_zenpage, $_zp_gallery_page, $_zp_current_zenpage_page, $_zp_current_category;
-	$itemcounter = '';
 	if ($css_id != "") {
 		$css_id = " id='" . $css_id . "'";
 	}
@@ -1130,6 +1129,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 		$parents[$c] = NULL;
 	}
 	foreach ($items as $item) {
+		$itemcounter = '';
 		$itemarray = getItemTitleAndURL($item);
 		$itemURL = $itemarray['url'];
 		$itemtitle = $itemarray['title'];
