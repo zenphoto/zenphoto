@@ -150,19 +150,19 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	setup::Log(gettext("db POST handling"));
 	$updatezp_config = true;
 	if (isset($_POST['db_software'])) {
-		$zp_cfg = updateConfigItem('db_software', setup::sanitize($_POST['db_software']), $zp_cfg);
+		$zp_cfg = updateConfigItem('db_software', addslashes(setup::sanitize($_POST['db_software'])), $zp_cfg);
 	}
 	if (isset($_POST['db_user'])) {
-		$zp_cfg = updateConfigItem('mysql_user', setup::sanitize($_POST['db_user'], 0), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_user', addslashes(setup::sanitize($_POST['db_user'], 0)), $zp_cfg);
 	}
 	if (isset($_POST['db_pass'])) {
-		$zp_cfg = updateConfigItem('mysql_pass', setup::sanitize($_POST['db_pass'], 0), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_pass', addslashes(setup::sanitize($_POST['db_pass'], 0)), $zp_cfg);
 	}
 	if (isset($_POST['db_host'])) {
-		$zp_cfg = updateConfigItem('mysql_host', setup::sanitize($_POST['db_host'], 0), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_host', addslashes(setup::sanitize($_POST['db_host'], 0)), $zp_cfg);
 	}
 	if (isset($_POST['db_database'])) {
-		$zp_cfg = updateConfigItem('mysql_database', trim(setup::sanitize($_POST['db_database'])), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_database', addslashes(trim(setup::sanitize($_POST['db_database']))), $zp_cfg);
 	}
 	if (isset($_POST['db_prefix'])) {
 		$zp_cfg = updateConfigItem('mysql_prefix', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', trim(setup::sanitize($_POST['db_prefix']))), $zp_cfg);
