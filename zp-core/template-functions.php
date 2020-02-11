@@ -310,7 +310,7 @@ function adminToolbox() {
 					$link = SEO_FULLWEBPATH . '/index.php?logout=' . $sec . $redirect;
 					?>
 					<li>
-						<a href="<?php echo $link; ?>"><?php echo gettext("Logout"); ?> </a>
+						<?php printLinkHTML($link, gettext("Logout"), gettext("Logout"), null, null); ?>
 					</li>
 					<?php
 				}
