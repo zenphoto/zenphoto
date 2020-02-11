@@ -13,84 +13,88 @@ if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action'], 3);
 	$what = sanitize($_GET['filename'], 3);
 	$file = SERVERPATH . '/' . DATA_FOLDER . '/' . $what . '.log';
-	XSRFdefender($action);
-	if (zp_apply_filter('admin_log_actions', true, $file, $action)) {
-		switch ($action) {
-			case 'clear_log':
-				$_zp_mutex->lock();
-				$f = fopen($file, 'w');
-				if (@ftruncate($f, 0)) {
-					$class = 'messagebox';
-					$result = sprintf(gettext('%s log was emptied.'), $what);
-				} else {
-					$class = 'errorbox';
-					$result = sprintf(gettext('%s log could not be emptied.'), $what);
-				}
-				fclose($f);
-				@chmod($file, LOGS_MOD);
-				clearstatcache();
-				$_zp_mutex->unlock();
-				if (basename($file) == 'security.log') {
-					zp_apply_filter('admin_log_actions', true, $file, $action); // have to record the fact
-				}
-				break;
-			case 'delete_log':
-				$_zp_mutex->lock();
-				@chmod($file, 0777);
-				if (@unlink($file)) {
-					$class = 'messagebox';
-					$result = sprintf(gettext('%s log was removed.'), $what);
-				} else {
-					$class = 'errorbox';
-					$result = sprintf(gettext('%s log could not be removed.'), $what);
-				}
-				clearstatcache();
-				$_zp_mutex->unlock();
-				unset($_GET['tab']); // it is gone, after all
-				if (basename($file) == 'security.log') {
-					zp_apply_filter('admin_log_actions', true, $file, $action); // have to record the fact
-				}
-				break;
-			case 'download_log':
-				$tab = html_encode(sanitize($_GET['tab'], 3));
-				$tabparts = explode('-', $tab);
-				$logbases = array('debug', 'security', 'setup');
-				$zipname = '';
-				if (in_array($tabparts[0], $logbases)) {
-					if (count($tabparts) == 2) {
-						$lognumber = sanitize_numeric($tabparts[1]);
-						$zipname = $tabparts[0] . '-' . $lognumber . '.zip';
+	$validlogfiles = safe_glob(SERVERPATH . '/' . DATA_FOLDER . '/*.log');
+	if (in_array($file, $validlogfiles)) {
+		XSRFdefender($action);
+		if (zp_apply_filter('admin_log_actions', true, $file, $action)) {
+			switch ($action) {
+				case 'clear_log':
+
+					$_zp_mutex->lock();
+					$f = fopen($file, 'w');
+					if (@ftruncate($f, 0)) {
+						$class = 'messagebox';
+						$result = sprintf(gettext('%s log was emptied.'), $what);
 					} else {
-						$zipname = $tabparts[0] . '.zip';
+						$class = 'errorbox';
+						$result = sprintf(gettext('%s log could not be emptied.'), $what);
 					}
-				}
-				if($zipname) {
-					if (class_exists('ZipArchive')) {
-						$zip = new ZipArchive;
-						$zip->open($zipname, ZipArchive::CREATE);
-						$zip->addFile($file, basename($file));
-						$zip->close();
-						ob_get_clean();
-						header("Pragma: public");
-						header("Expires: 0");
-						header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-						header("Cache-Control: private", false);
-						header("Content-Type: application/zip");
-						header("Content-Disposition: attachment; filename=" . basename($zipname) . ";" );
-						header("Content-Transfer-Encoding: binary");
-						header("Content-Length: " . filesize($zipname));
-						readfile($zipname);
-						// remove zip file from temp path
-						unlink($zipname);
-						exit;
+					fclose($f);
+					@chmod($file, LOGS_MOD);
+					clearstatcache();
+					$_zp_mutex->unlock();
+					if (basename($file) == 'security.log') {
+						zp_apply_filter('admin_log_actions', true, $file, $action); // have to record the fact
+					}
+					break;
+				case 'delete_log':
+					$_zp_mutex->lock();
+					@chmod($file, 0777);
+					if (@unlink($file)) {
+						$class = 'messagebox';
+						$result = sprintf(gettext('%s log was removed.'), $what);
 					} else {
-						include_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
-						$zip = new ZipStream($zipname);
-						$zip->add_file_from_path(internalToFilesystem(basename($file)),internalToFilesystem($file));
-						$zip->finish();
+						$class = 'errorbox';
+						$result = sprintf(gettext('%s log could not be removed.'), $what);
 					}
-				}
-				break;
+					clearstatcache();
+					$_zp_mutex->unlock();
+					unset($_GET['tab']); // it is gone, after all
+					if (basename($file) == 'security.log') {
+						zp_apply_filter('admin_log_actions', true, $file, $action); // have to record the fact
+					}
+					break;
+				case 'download_log':
+					$tab = html_encode(sanitize($_GET['tab'], 3));
+					$tabparts = explode('-', $tab);
+					$logbases = array('debug', 'security', 'setup');
+					$zipname = '';
+					if (in_array($tabparts[0], $logbases)) {
+						if (count($tabparts) == 2) {
+							$lognumber = sanitize_numeric($tabparts[1]);
+							$zipname = $tabparts[0] . '-' . $lognumber . '.zip';
+						} else {
+							$zipname = $tabparts[0] . '.zip';
+						}
+					}
+					if ($zipname) {
+						if (class_exists('ZipArchive')) {
+							$zip = new ZipArchive;
+							$zip->open($zipname, ZipArchive::CREATE);
+							$zip->addFile($file, basename($file));
+							$zip->close();
+							ob_get_clean();
+							header("Pragma: public");
+							header("Expires: 0");
+							header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+							header("Cache-Control: private", false);
+							header("Content-Type: application/zip");
+							header("Content-Disposition: attachment; filename=" . basename($zipname) . ";");
+							header("Content-Transfer-Encoding: binary");
+							header("Content-Length: " . filesize($zipname));
+							readfile($zipname);
+							// remove zip file from temp path
+							unlink($zipname);
+							exit;
+						} else {
+							include_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
+							$zip = new ZipStream($zipname);
+							$zip->add_file_from_path(internalToFilesystem(basename($file)), internalToFilesystem($file));
+							$zip->finish();
+						}
+					}
+					break;
+			}
 		}
 	}
 }
