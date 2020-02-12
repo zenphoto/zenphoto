@@ -165,7 +165,7 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 		$zp_cfg = updateConfigItem('mysql_database', addslashes(trim(setup::sanitize($_POST['db_database']))), $zp_cfg);
 	}
 	if (isset($_POST['db_prefix'])) {
-		$zp_cfg = updateConfigItem('mysql_prefix', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', trim(setup::sanitize($_POST['db_prefix']))), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_prefix', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', addslashes(trim(setup::sanitize($_POST['db_prefix'])))), $zp_cfg);
 	}
 }
 
