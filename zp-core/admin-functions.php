@@ -3612,7 +3612,7 @@ function postAlbumSort($parentid) {
 			$sortToID[implode('-', $orderlist)] = $id;
 		}
 		foreach ($order as $item => $orderlist) {
-			$item = str_replace('id_', '', $item);
+			$item = intval(str_replace('id_', '', $item));
 			$currentalbum = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $item);
 			$sortorder = array_pop($orderlist);
 			if (count($orderlist) > 0) {
@@ -3632,7 +3632,7 @@ function postAlbumSort($parentid) {
 				if (is_null($newparent)) {
 					$dest = $albumname;
 				} else {
-					$parent = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $newparent);
+					$parent = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . intval($newparent));
 					if ($parent['dynamic']) {
 						return "&mcrerr=5";
 					} else {
