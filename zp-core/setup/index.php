@@ -9,7 +9,7 @@ Define('PHP_DESIRED_VERSION', '7.1.0');
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if (!function_exists("gettext")) {
-	require_once(dirname(dirname(__FILE__)) . '/lib-gettext/gettext.inc');
+	require_once(dirname(dirname(__FILE__)) . '/lib-gettext/gettext.php');
 	$noxlate = -1;
 } else {
 	$noxlate = 1;
