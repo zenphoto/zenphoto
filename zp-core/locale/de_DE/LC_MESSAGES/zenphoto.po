@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.5.6\n"
+"Project-Id-Version: Zenphoto 1.5.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-06 19:38+0100\n"
-"PO-Revision-Date: 2019-11-06 19:38+0100\n"
+"POT-Creation-Date: 2020-02-17 15:43+0100\n"
+"PO-Revision-Date: 2020-02-17 15:49+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-Basepath: ../../../..\n"
 "Plural-Forms: nplurals=2; plural=n !=1;\n"
 "X-Poedit-KeywordsList: \n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-SearchPath-0: zp-core\n"
 "X-Poedit-SearchPath-1: themes\n"
 
@@ -164,7 +164,7 @@ msgstr "Sie benötigen ein Passwort, um auf diese Seite zugreifen zu können"
 
 #: themes/basic/register.php:28 themes/garland/register.php:43
 #: zp-core/template-functions.php:450
-#: zp-core/zp-extensions/html_meta_tags.php:321
+#: zp-core/zp-extensions/html_meta_tags.php:314
 #: zp-core/zp-extensions/register_user.php:65
 #: zp-core/zp-extensions/scriptless-socialsharing.php:182
 msgid "Register"
@@ -382,7 +382,7 @@ msgstr "Stopp"
 
 #: themes/garland/password.php:41 zp-core/password.php:6
 #: zp-core/template-functions.php:453
-#: zp-core/zp-extensions/html_meta_tags.php:321
+#: zp-core/zp-extensions/html_meta_tags.php:314
 msgid "Password required"
 msgstr "Passwortgeschützt"
 
@@ -478,7 +478,7 @@ msgstr "Album-Index"
 #: zp-core/lib-auth.php:586 zp-core/lib-auth.php:592 zp-core/lib-auth.php:593
 #: zp-core/setup/setup-option-defaults.php:383
 #: zp-core/setup/setup-option-defaults.php:384
-#: zp-core/template-functions.php:448 zp-core/template-functions.php:629
+#: zp-core/template-functions.php:448 zp-core/template-functions.php:640
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:51
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
 #: zp-core/zp-extensions/rss.php:84
@@ -544,7 +544,7 @@ msgstr "Neuigkeitenartikel-Begrenzungslinie"
 
 #: themes/garland/themeoptions.php:72 themes/zenpage/themeoptions.php:77
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:84
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:254
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:255
 msgid "All Albums"
 msgstr "Alle Alben"
 
@@ -692,10 +692,10 @@ msgstr "*Standardmenü"
 #: themes/zenpage/search.php:48 themes/zpmobile/functions.php:67
 #: themes/zpmobile/search.php:46 themes/zpmobile/search.php:51
 #: themes/zpmobile/search.php:53 zp-core/template-functions.php:451
-#: zp-core/template-functions.php:1430 zp-core/template-functions.php:1461
-#: zp-core/template-functions.php:3984
+#: zp-core/template-functions.php:1441 zp-core/template-functions.php:1472
+#: zp-core/template-functions.php:3995
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
-#: zp-core/zp-extensions/html_meta_tags.php:321
+#: zp-core/zp-extensions/html_meta_tags.php:314
 #: zp-core/zp-extensions/scriptless-socialsharing.php:185
 #: zp-core/zp-extensions/slideshow2.php:767
 msgid "Search"
@@ -729,7 +729,7 @@ msgid "Sorry, no matches found. Try refining your search."
 msgstr "Leider keine Treffer. Versuchen Sie Ihre Suche zu verfeinern."
 
 #: themes/zenpage/sidebar.php:56 themes/zpmobile/functions.php:78
-#: zp-core/template-functions.php:1413 zp-core/template-functions.php:1468
+#: zp-core/template-functions.php:1424 zp-core/template-functions.php:1479
 #: zp-core/zp-extensions/scriptless-socialsharing.php:179
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:783
 msgid "Archive"
@@ -760,7 +760,7 @@ msgstr "Album RSS"
 #: zp-core/zp-extensions/comment_form/functions.php:859
 #: zp-core/zp-extensions/comment_form/functions.php:866
 #: zp-core/zp-extensions/defaultCodeblocks.php:37
-#: zp-core/zp-extensions/html_meta_tags.php:303
+#: zp-core/zp-extensions/html_meta_tags.php:296
 #: zp-core/zp-extensions/multiple_layouts.php:95
 #: zp-core/zp-extensions/related_items.php:155
 #: zp-core/zp-extensions/related_items.php:190
@@ -791,7 +791,7 @@ msgstr ""
 
 #: themes/zenpage/themeoptions.php:71
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:76
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:253
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:254
 msgid "Gallery index"
 msgstr "Galerie-Index"
 
@@ -873,7 +873,7 @@ msgstr ""
 "Das Zenphoto-Objekt, das Sie anfordert haben, konnte nicht gefunden werden."
 
 #: themes/zpmobile/archive.php:26 zp-core/template-functions.php:452
-#: zp-core/zp-extensions/html_meta_tags.php:321
+#: zp-core/zp-extensions/html_meta_tags.php:314
 msgid "Archive view"
 msgstr "Archiv-Ansicht"
 
@@ -882,13 +882,13 @@ msgstr "Archiv-Ansicht"
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:89
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:93
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:255
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:256
 #: zp-core/zp-extensions/related_items.php:177
 msgid "Album"
 msgstr "Album"
 
-#: themes/zpmobile/functions.php:65 zp-core/template-functions.php:670
-#: zp-core/template-functions.php:1569
+#: themes/zpmobile/functions.php:65 zp-core/template-functions.php:681
+#: zp-core/template-functions.php:1580
 #: zp-core/zp-extensions/menu_manager.php:909
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:475
 msgid "Home"
@@ -985,7 +985,7 @@ msgstr "Index"
 msgid "Return to %s"
 msgstr "Zurück zu %s"
 
-#: zp-core/admin-albumsort.php:73 zp-core/admin-edit.php:563
+#: zp-core/admin-albumsort.php:77 zp-core/admin-edit.php:563
 #: zp-core/zp-extensions/comment_form/admin-comments.php:352
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:190
 #: zp-core/zp-extensions/zenpage/admin-categories.php:151
@@ -994,9 +994,9 @@ msgstr "Zurück zu %s"
 msgid "*Bulk actions*"
 msgstr "*Sammelaktionen*"
 
-#: zp-core/admin-albumsort.php:74 zp-core/admin-edit.php:564
+#: zp-core/admin-albumsort.php:78 zp-core/admin-edit.php:564
 #: zp-core/admin-edit.php:577 zp-core/admin-edit.php:581
-#: zp-core/admin-functions.php:2074 zp-core/admin-logs.php:145
+#: zp-core/admin-functions.php:2074 zp-core/admin-logs.php:149
 #: zp-core/admin-themes.php:302 zp-core/setup/index.php:1109
 #: zp-core/zp-extensions/cacheManager.php:278
 #: zp-core/zp-extensions/comment_form/admin-comments.php:130
@@ -1015,34 +1015,34 @@ msgstr "*Sammelaktionen*"
 msgid "Delete"
 msgstr "Löschen"
 
-#: zp-core/admin-albumsort.php:75 zp-core/admin-edit.php:565
+#: zp-core/admin-albumsort.php:79 zp-core/admin-edit.php:565
 #: zp-core/zp-extensions/zenpage/admin-categories.php:149
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:243
 #: zp-core/zp-extensions/zenpage/admin-pages.php:146
 msgid "Set to published"
 msgstr "Auf veröffentlicht setzen"
 
-#: zp-core/admin-albumsort.php:76 zp-core/admin-edit.php:566
+#: zp-core/admin-albumsort.php:80 zp-core/admin-edit.php:566
 #: zp-core/zp-extensions/zenpage/admin-categories.php:150
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:244
 #: zp-core/zp-extensions/zenpage/admin-pages.php:147
 msgid "Set to unpublished"
 msgstr "Auf unveröffentlicht setzen"
 
-#: zp-core/admin-albumsort.php:77 zp-core/admin-edit.php:567
+#: zp-core/admin-albumsort.php:81 zp-core/admin-edit.php:567
 #: zp-core/admin-tags.php:224 zp-core/admin-tags.php:225
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:245
 #: zp-core/zp-extensions/zenpage/admin-pages.php:148
 msgid "Add tags"
 msgstr "Schlagwörter hinzufügen"
 
-#: zp-core/admin-albumsort.php:78 zp-core/admin-edit.php:568
+#: zp-core/admin-albumsort.php:82 zp-core/admin-edit.php:568
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:246
 #: zp-core/zp-extensions/zenpage/admin-pages.php:149
 msgid "Clear tags"
 msgstr "Schlagwörter löschen"
 
-#: zp-core/admin-albumsort.php:79 zp-core/admin-edit.php:569
+#: zp-core/admin-albumsort.php:83 zp-core/admin-edit.php:569
 #: zp-core/admin-functions.php:2207
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:247
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:334
@@ -1051,7 +1051,7 @@ msgstr "Schlagwörter löschen"
 msgid "Disable comments"
 msgstr "Kommentare abschalten"
 
-#: zp-core/admin-albumsort.php:80 zp-core/admin-edit.php:570
+#: zp-core/admin-albumsort.php:84 zp-core/admin-edit.php:570
 #: zp-core/admin-functions.php:2221
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:248
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:342
@@ -1060,11 +1060,11 @@ msgstr "Kommentare abschalten"
 msgid "Enable comments"
 msgstr "Kommentare einschalten"
 
-#: zp-core/admin-albumsort.php:81 zp-core/admin-edit.php:571
+#: zp-core/admin-albumsort.php:85 zp-core/admin-edit.php:571
 msgid "Change owner"
 msgstr "Besitzer ändern"
 
-#: zp-core/admin-albumsort.php:84 zp-core/admin-edit.php:574
+#: zp-core/admin-albumsort.php:88 zp-core/admin-edit.php:574
 #: zp-core/zp-extensions/zenpage/admin-categories.php:157
 #: zp-core/zp-extensions/zenpage/admin-categories.php:197
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:253
@@ -1079,82 +1079,21 @@ msgstr "Besitzer ändern"
 msgid "Reset hitcounter"
 msgstr "Besucherzähler zurücksetzen"
 
-#: zp-core/admin-albumsort.php:90
+#: zp-core/admin-albumsort.php:94
 msgid "No album provided to sort."
 msgstr "Kein Album zum Sortieren ausgewählt."
 
-#: zp-core/admin-albumsort.php:108 zp-core/admin-edit.php:702
+#: zp-core/admin-albumsort.php:112 zp-core/admin-edit.php:702
 #, php-format
 msgid "Edit Album: <em>%1$s%2$s</em>"
 msgstr "Album <em>%1$s%2$s</em> bearbeiten"
 
-#: zp-core/admin-albumsort.php:127
-msgid "Image order saved"
-msgstr "Bildreihenfolge gesichert"
-
-#: zp-core/admin-albumsort.php:135 zp-core/admin-functions.php:4765
-#: zp-core/zp-extensions/comment_form/admin-comments.php:272
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:978
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1730
-msgid "Selected items deleted"
-msgstr "Ausgewählte Einträge gelöscht"
-
-#: zp-core/admin-albumsort.php:138 zp-core/admin-functions.php:4768
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:982
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1733
-msgid "Selected items published"
-msgstr "Ausgewählte Einträge veröffentlicht"
-
-#: zp-core/admin-albumsort.php:141 zp-core/admin-functions.php:4771
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:986
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1736
-msgid "Selected items unpublished"
-msgstr "Ausgewählte Einträge nicht veröffentlicht"
-
-#: zp-core/admin-albumsort.php:144 zp-core/admin-functions.php:4774
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1739
-msgid "Comments enabled for selected items"
-msgstr "Kommentare für die ausgewählten Einträge aktiviert"
-
-#: zp-core/admin-albumsort.php:147 zp-core/admin-functions.php:4777
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1742
-msgid "Comments disabled for selected items"
-msgstr "Kommentare sind für die ausgewählten Einträge deaktiviert"
-
-#: zp-core/admin-albumsort.php:150 zp-core/admin-functions.php:4780
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1745
-msgid "Hitcounter for selected items"
-msgstr "Besucherzähler für ausgewählte Einträge"
-
-#: zp-core/admin-albumsort.php:153 zp-core/admin-functions.php:4783
-msgid "Tags added for selected items"
-msgstr "Schlagwörter zu den ausgewählten Einträgen hinzugefügt"
-
-#: zp-core/admin-albumsort.php:156 zp-core/admin-functions.php:4786
-msgid "Tags cleared for selected items"
-msgstr "Schlagwörter von den ausgewählten Einträgen gelöscht"
-
-#: zp-core/admin-albumsort.php:159 zp-core/admin-functions.php:4789
-msgid "Tags added for images of selected items"
-msgstr "Schlagwörter den ausgewählten Einträgen hinzugefügt"
-
-#: zp-core/admin-albumsort.php:162 zp-core/admin-functions.php:4792
-msgid "Tags cleared for images of selected items"
-msgstr "Schlagwörter der ausgewählten Einträge gelöscht"
-
-#: zp-core/admin-albumsort.php:169 zp-core/admin-functions.php:4758
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:14
-#: zp-core/zp-extensions/menu_manager/menu_tab.php:45
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1766
-msgid "Nothing changed"
-msgstr "Nichts hat sich geändert"
-
-#: zp-core/admin-albumsort.php:192 zp-core/admin-albumsort.php:252
+#: zp-core/admin-albumsort.php:150 zp-core/admin-albumsort.php:210
 #: zp-core/admin-edit.php:772 zp-core/admin-edit.php:837
 #: zp-core/admin-edit.php:961 zp-core/admin-edit.php:1535
 #: zp-core/admin-edit.php:1628 zp-core/admin-edit.php:1658
 #: zp-core/admin-functions.php:1215 zp-core/admin-functions.php:1976
-#: zp-core/admin-refresh-metadata.php:152 zp-core/admin-themes-editor.php:114
+#: zp-core/admin-refresh-metadata.php:152 zp-core/admin-themes-editor.php:119
 #: zp-core/admin-thumbcrop.php:270 zp-core/admin-thumbcrop.php:272
 #: zp-core/zp-extensions/cacheManager.php:981
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:216
@@ -1162,13 +1101,13 @@ msgstr "Nichts hat sich geändert"
 #: zp-core/zp-extensions/crop_image.php:351
 #: zp-core/zp-extensions/crop_image.php:356
 #: zp-core/zp-extensions/crop_image.php:357
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:229
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:230
 #: zp-core/zp-extensions/zenpage/admin-edit.php:345
 #: zp-core/zp-extensions/zenpage/admin-edit.php:809
 msgid "Back"
 msgstr "Zurück"
 
-#: zp-core/admin-albumsort.php:195 zp-core/admin-albumsort.php:256
+#: zp-core/admin-albumsort.php:153 zp-core/admin-albumsort.php:214
 #: zp-core/admin-edit.php:779 zp-core/admin-edit.php:841
 #: zp-core/admin-edit.php:965 zp-core/admin-edit.php:1539
 #: zp-core/admin-edit.php:1631 zp-core/admin-edit.php:1661
@@ -1190,7 +1129,7 @@ msgstr "Zurück"
 #: zp-core/zp-extensions/crop_image.php:345
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:163
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:246
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:384
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:385
 #: zp-core/zp-extensions/publishContent/publishContent.php:214
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:122
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:219
@@ -1211,16 +1150,16 @@ msgstr "Zurück"
 msgid "Apply"
 msgstr "Anwenden"
 
-#: zp-core/admin-albumsort.php:199 zp-core/admin-albumsort.php:260
+#: zp-core/admin-albumsort.php:157 zp-core/admin-albumsort.php:218
 #: zp-core/admin-functions.php:1244 zp-core/admin-functions.php:2005
 msgid "View Album"
 msgstr "Album ansehen"
 
-#: zp-core/admin-albumsort.php:203
+#: zp-core/admin-albumsort.php:161
 msgid "Set the image order by dragging them to the positions you desire."
 msgstr "Bilder durch Verschieben sortieren."
 
-#: zp-core/admin-albumsort.php:215 zp-core/admin-edit.php:1061
+#: zp-core/admin-albumsort.php:173 zp-core/admin-edit.php:1061
 #: zp-core/admin-functions.php:1738 zp-core/admin-functions.php:2178
 #: zp-core/admin-functions.php:4978 zp-core/admin-functions.php:5025
 #: zp-core/zp-extensions/favoritesHandler.php:141
@@ -1230,13 +1169,13 @@ msgstr "Bilder durch Verschieben sortieren."
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: zp-core/admin-albumsort.php:218 zp-core/admin-functions.php:2192
+#: zp-core/admin-albumsort.php:176 zp-core/admin-functions.php:2192
 #: zp-core/admin-functions.php:5026 zp-core/class-userdataexport.php:509
 #, php-format
 msgid "Unpublished"
 msgstr "Unveröffentlicht"
 
-#: zp-core/admin-albumsort.php:231 zp-core/admin-functions.php:3296
+#: zp-core/admin-albumsort.php:189 zp-core/admin-functions.php:3296
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
 #: zp-core/zp-extensions/zenpage/admin-edit.php:124
 msgid "edit"
@@ -1473,7 +1412,7 @@ msgstr "Klicken Sie auf das Bild, um den Thumbnailbeschnitt zu verändern."
 #: zp-core/admin-edit.php:969 zp-core/admin-edit.php:1543
 #: zp-core/admin-edit.php:1634 zp-core/admin-edit.php:1665
 #: zp-core/admin-functions.php:1223 zp-core/admin-functions.php:1984
-#: zp-core/admin-logs.php:152 zp-core/admin-options.php:623
+#: zp-core/admin-logs.php:156 zp-core/admin-options.php:623
 #: zp-core/admin-options.php:1105 zp-core/admin-options.php:1129
 #: zp-core/admin-options.php:1473 zp-core/admin-options.php:1496
 #: zp-core/admin-options.php:1936 zp-core/admin-options.php:1965
@@ -1481,12 +1420,12 @@ msgstr "Klicken Sie auf das Bild, um den Thumbnailbeschnitt zu verändern."
 #: zp-core/admin-options.php:2993 zp-core/admin-options.php:3051
 #: zp-core/admin-options.php:3179 zp-core/admin-options.php:3206
 #: zp-core/admin-options.php:3430 zp-core/admin-plugins.php:140
-#: zp-core/admin-plugins.php:404 zp-core/admin-themes-editor.php:157
+#: zp-core/admin-plugins.php:404 zp-core/admin-themes-editor.php:162
 #: zp-core/admin-thumbcrop.php:264 zp-core/admin-users.php:475
 #: zp-core/admin-users.php:848 zp-core/lib-auth.php:1075
 #: zp-core/zp-extensions/contact_form/form.php:148
 #: zp-core/zp-extensions/crop_image.php:342
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:385
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:386
 #: zp-core/zp-extensions/rewriteTokens.php:119
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:123
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:220
@@ -1675,13 +1614,13 @@ msgid "Crop thumbnail"
 msgstr "Thumbnail beschneiden"
 
 #: zp-core/admin-edit.php:1312
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:309
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:310
 #: zp-core/zp-extensions/zenpage/admin-edit.php:411
 msgid "Title:"
 msgstr "Titel:"
 
 #: zp-core/admin-edit.php:1318
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:305
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:306
 msgid "Description:"
 msgstr "Beschreibung:"
 
@@ -2420,7 +2359,7 @@ msgstr "Installation"
 
 #: zp-core/admin-functions.php:4537 zp-core/admin-globals.php:106
 #: zp-core/admin-options.php:1071
-#: zp-core/zp-extensions/http_security_headers.php:23
+#: zp-core/zp-extensions/http_security_headers.php:25
 msgid "security"
 msgstr "Sicherheit"
 
@@ -2603,12 +2542,16 @@ msgid "Your passwords did not match."
 msgstr "Ihr Passwort stimmt nicht überein."
 
 #: zp-core/admin-functions.php:4740
+#, php-format
 msgid ""
-"The image edit form submission has been truncated. Try displaying fewer "
-"images on a page."
+"The form submission has been truncated because you exceeded the server side "
+"limit <code>max_input_vars</code> of %d. Try displaying fewer items per page "
+"or try to raise the server limits."
 msgstr ""
-"Die Bild-Formular-Übermittlung ist unvollständig. Probieren Sie weniger "
-"Bilder pro Seite anzeigen zu lassen."
+"Die Formular-Übermittlung wurde begrenzt, da Sie die serverseitigen "
+"Begrenzunge %d von <code>max_input_vars</code> überschritten haben. "
+"Versuchen Sie, weniger Einträge pro Seite anzeigen zu lassen oder erhöhen "
+"Sie die Serverbegrenzung."
 
 #: zp-core/admin-functions.php:4743
 msgid "Hit counters have been reset."
@@ -2629,9 +2572,66 @@ msgstr "<em>%s</em> existiert bereits."
 
 #: zp-core/admin-functions.php:4755
 #: zp-core/zp-extensions/comment_form/admin-comments.php:302
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:222
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:223
 msgid "Changes applied"
 msgstr "Änderungen angewendet"
+
+#: zp-core/admin-functions.php:4758
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:14
+#: zp-core/zp-extensions/menu_manager/menu_tab.php:45
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1766
+msgid "Nothing changed"
+msgstr "Nichts hat sich geändert"
+
+#: zp-core/admin-functions.php:4765
+#: zp-core/zp-extensions/comment_form/admin-comments.php:272
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:978
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1730
+msgid "Selected items deleted"
+msgstr "Ausgewählte Einträge gelöscht"
+
+#: zp-core/admin-functions.php:4768
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:982
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1733
+msgid "Selected items published"
+msgstr "Ausgewählte Einträge veröffentlicht"
+
+#: zp-core/admin-functions.php:4771
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:986
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1736
+msgid "Selected items unpublished"
+msgstr "Ausgewählte Einträge nicht veröffentlicht"
+
+#: zp-core/admin-functions.php:4774
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1739
+msgid "Comments enabled for selected items"
+msgstr "Kommentare für die ausgewählten Einträge aktiviert"
+
+#: zp-core/admin-functions.php:4777
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1742
+msgid "Comments disabled for selected items"
+msgstr "Kommentare sind für die ausgewählten Einträge deaktiviert"
+
+#: zp-core/admin-functions.php:4780
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1745
+msgid "Hitcounter for selected items"
+msgstr "Besucherzähler für ausgewählte Einträge"
+
+#: zp-core/admin-functions.php:4783
+msgid "Tags added for selected items"
+msgstr "Schlagwörter zu den ausgewählten Einträgen hinzugefügt"
+
+#: zp-core/admin-functions.php:4786
+msgid "Tags cleared for selected items"
+msgstr "Schlagwörter von den ausgewählten Einträgen gelöscht"
+
+#: zp-core/admin-functions.php:4789
+msgid "Tags added for images of selected items"
+msgstr "Schlagwörter den ausgewählten Einträgen hinzugefügt"
+
+#: zp-core/admin-functions.php:4792
+msgid "Tags cleared for images of selected items"
+msgstr "Schlagwörter der ausgewählten Einträge gelöscht"
 
 #: zp-core/admin-functions.php:4802 zp-core/zp-extensions/seo_cleanup.php:51
 msgid "Image already exists."
@@ -2695,7 +2695,7 @@ msgstr "Titel"
 
 #: zp-core/admin-functions.php:4976
 #: zp-core/zp-extensions/favoritesHandler.php:138
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:362
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:363
 msgid "ID"
 msgstr "ID"
 
@@ -2821,7 +2821,7 @@ msgstr "Themes"
 msgid "plugins"
 msgstr "Plugins"
 
-#: zp-core/admin-globals.php:148 zp-core/admin-logs.php:99
+#: zp-core/admin-globals.php:148 zp-core/admin-logs.php:103
 msgid "logs"
 msgstr "Protokolle"
 
@@ -2829,37 +2829,37 @@ msgstr "Protokolle"
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: zp-core/admin-logs.php:24
+#: zp-core/admin-logs.php:27
 #, php-format
 msgid "%s log was emptied."
 msgstr "%s-Protokoll gelöscht."
 
-#: zp-core/admin-logs.php:27
+#: zp-core/admin-logs.php:30
 #, php-format
 msgid "%s log could not be emptied."
 msgstr "%s-Protokoll konnte nicht gelöscht werden."
 
-#: zp-core/admin-logs.php:42
+#: zp-core/admin-logs.php:45
 #, php-format
 msgid "%s log was removed."
 msgstr "%s-Protokoll wurde entfernt."
 
-#: zp-core/admin-logs.php:45
+#: zp-core/admin-logs.php:48
 #, php-format
 msgid "%s log could not be removed."
 msgstr "%s-Protokoll konnte nicht entfernt werden."
 
-#: zp-core/admin-logs.php:127
+#: zp-core/admin-logs.php:131
 msgid "View logs:"
 msgstr "Protokolle ansehen:"
 
-#: zp-core/admin-logs.php:156 zp-core/admin-options.php:2464
+#: zp-core/admin-logs.php:160 zp-core/admin-options.php:2464
 #: zp-core/utilities/user-data-export.php:87
 #: zp-core/zp-extensions/downloadList/download_statistics.php:23
 msgid "Download"
 msgstr "Runterladen"
 
-#: zp-core/admin-logs.php:236
+#: zp-core/admin-logs.php:240
 msgid "There are no logs to view."
 msgstr "Es gibt keine Protokolle zum Ansehen."
 
@@ -4385,20 +4385,20 @@ msgstr "Metadaten"
 #: zp-core/admin-options.php:2537 zp-core/admin-options.php:2538
 #: zp-core/admin-users.php:492 zp-core/zp-extensions/GoogleMap.php:97
 #: zp-core/zp-extensions/contact_form.php:82
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:115
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:116
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:117
 msgid "show"
 msgstr "Zeigen"
 
 #: zp-core/admin-options.php:2522 zp-core/zp-extensions/GoogleMap.php:98
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:109
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:110
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:111
 msgid "hide"
 msgstr "Verstecken"
 
 #: zp-core/admin-options.php:2523
-#: zp-core/zp-extensions/http_security_headers.php:365
-#: zp-core/zp-extensions/http_security_headers.php:472
+#: zp-core/zp-extensions/http_security_headers.php:367
+#: zp-core/zp-extensions/http_security_headers.php:474
 msgid "disabled"
 msgstr "Deaktiviert"
 
@@ -5297,62 +5297,62 @@ msgstr ""
 "Liste <em>Neue Schlagwörter</em> eingeben. Danach klicken Sie einfach auf "
 "<em>Neue Schlagwörter speichern</em>"
 
-#: zp-core/admin-themes-editor.php:34 zp-core/admin-themes-editor.php:55
+#: zp-core/admin-themes-editor.php:39 zp-core/admin-themes-editor.php:60
 msgid "Cannot edit this file!"
 msgstr "Die Datei kann nicht bearbeitet werden!"
 
-#: zp-core/admin-themes-editor.php:50
+#: zp-core/admin-themes-editor.php:55
 msgid "Cannot edit this theme!"
 msgstr "Dieses Theme kann nicht bearbeitet werden!"
 
-#: zp-core/admin-themes-editor.php:72
+#: zp-core/admin-themes-editor.php:77
 msgid "File updated successfully"
 msgstr "Dateiaktualisierung erfolgreich"
 
-#: zp-core/admin-themes-editor.php:74 zp-core/admin-themes-editor.php:77
+#: zp-core/admin-themes-editor.php:79 zp-core/admin-themes-editor.php:82
 msgid "Could not write file. Please check its write permissions"
 msgstr ""
 "Die Datei konnte nicht geschrieben werden. Bitte überprüfen Sie die "
 "Schreibrechte"
 
-#: zp-core/admin-themes-editor.php:101
+#: zp-core/admin-themes-editor.php:106
 msgid "Theme File Editor"
 msgstr "Theme-Datei-Editor"
 
-#: zp-core/admin-themes-editor.php:112
+#: zp-core/admin-themes-editor.php:117
 msgid "Back to the theme list"
 msgstr "Zurück zur Themeübersicht"
 
-#: zp-core/admin-themes-editor.php:126
+#: zp-core/admin-themes-editor.php:131
 msgid "Theme template files (.php)"
 msgstr "Theme-Vorlagen-Dateien (.php)"
 
-#: zp-core/admin-themes-editor.php:129
+#: zp-core/admin-themes-editor.php:134
 msgid "JavaScript files (.js)"
 msgstr "Javascript-Dateien (.js)"
 
-#: zp-core/admin-themes-editor.php:132
+#: zp-core/admin-themes-editor.php:137
 msgid "Style sheets (.css)"
 msgstr "Style sheets (.css)"
 
-#: zp-core/admin-themes-editor.php:135
+#: zp-core/admin-themes-editor.php:140
 msgid "Other text files"
 msgstr "Andere Textdateien"
 
-#: zp-core/admin-themes-editor.php:140
+#: zp-core/admin-themes-editor.php:145
 msgid "Edit this file"
 msgstr "Diese Datei bearbeiten"
 
-#: zp-core/admin-themes-editor.php:150
+#: zp-core/admin-themes-editor.php:155
 #, php-format
 msgid "File <tt>%s</tt> from theme %s"
 msgstr "Datei <tt>%s</tt> des Themes %s"
 
-#: zp-core/admin-themes-editor.php:156
+#: zp-core/admin-themes-editor.php:161
 msgid "Update File"
 msgstr "Datei aktualisieren"
 
-#: zp-core/admin-themes-editor.php:165
+#: zp-core/admin-themes-editor.php:170
 msgid ""
 "Select a file to edit from the list on your right hand. Keep in mind that "
 "you can <strong>break everything</strong> if you are not careful when "
@@ -8481,7 +8481,7 @@ msgid "Image Source"
 msgstr "Bildquelle"
 
 #: zp-core/functions.php:2727 zp-core/template-functions.php:449
-#: zp-core/zp-extensions/html_meta_tags.php:321
+#: zp-core/zp-extensions/html_meta_tags.php:314
 #: zp-core/zp-extensions/scriptless-socialsharing.php:176
 msgid "Contact"
 msgstr "Kontakt"
@@ -11608,28 +11608,28 @@ msgstr "Abmelden"
 
 #: zp-core/template-functions.php:455
 #: zp-core/zp-extensions/favoritesHandler.php:61
-#: zp-core/zp-extensions/html_meta_tags.php:323
+#: zp-core/zp-extensions/html_meta_tags.php:316
 msgid "My favorites"
 msgstr "Meine Favoriten"
 
-#: zp-core/template-functions.php:987 zp-core/template-functions.php:1081
+#: zp-core/template-functions.php:998 zp-core/template-functions.php:1092
 #: zp-core/zp-extensions/menu_manager.php:694
 msgid "Previous Page"
 msgstr "Vorherige Seite"
 
-#: zp-core/template-functions.php:989 zp-core/template-functions.php:1187
+#: zp-core/template-functions.php:1000 zp-core/template-functions.php:1198
 #: zp-core/zp-extensions/menu_manager.php:734
 msgid "Next Page"
 msgstr "Nächste Seite"
 
-#: zp-core/template-functions.php:1104
+#: zp-core/template-functions.php:1115
 #: zp-core/zp-extensions/menu_manager.php:700
 msgid "Page 1"
 msgstr "Seite 1"
 
-#: zp-core/template-functions.php:1119 zp-core/template-functions.php:1128
-#: zp-core/template-functions.php:1158 zp-core/template-functions.php:1165
-#: zp-core/template-functions.php:1175
+#: zp-core/template-functions.php:1130 zp-core/template-functions.php:1139
+#: zp-core/template-functions.php:1169 zp-core/template-functions.php:1176
+#: zp-core/template-functions.php:1186
 #: zp-core/zp-extensions/menu_manager.php:705
 #: zp-core/zp-extensions/menu_manager.php:723
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:976
@@ -11640,7 +11640,7 @@ msgid_plural "Page %u"
 msgstr[0] "Seite %u"
 msgstr[1] "Seite %u"
 
-#: zp-core/template-functions.php:1139
+#: zp-core/template-functions.php:1150
 #: zp-core/zp-extensions/menu_manager.php:715
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:985
 #, php-format
@@ -11649,44 +11649,44 @@ msgid_plural "Page %1$u"
 msgstr[0] "Seite %1$u"
 msgstr[1] "Seite %1$u"
 
-#: zp-core/template-functions.php:1249
+#: zp-core/template-functions.php:1260
 msgid "The album is password protected."
 msgstr "Dieses Album ist passwortgeschützt."
 
-#: zp-core/template-functions.php:1252
+#: zp-core/template-functions.php:1263
 msgid "The album is un-published."
 msgstr "Das Album ist unveröffentlicht."
 
-#: zp-core/template-functions.php:1361
+#: zp-core/template-functions.php:1372
 msgid "Album Thumbnails"
 msgstr "Albumthumbnails"
 
-#: zp-core/template-functions.php:1461
+#: zp-core/template-functions.php:1472
 msgid "Return to search"
 msgstr "Zurück zur Suche"
 
-#: zp-core/template-functions.php:1468
+#: zp-core/template-functions.php:1479
 msgid "Return to archive"
 msgstr "Zurück zum Archiv"
 
-#: zp-core/template-functions.php:2210
+#: zp-core/template-functions.php:2221
 msgid "The image is marked un-published."
 msgstr "Das Bild ist unveröffentlicht."
 
-#: zp-core/template-functions.php:2601
+#: zp-core/template-functions.php:2612
 msgid "Image Info"
 msgstr "Bildinfo"
 
-#: zp-core/template-functions.php:3484
+#: zp-core/template-functions.php:3495
 #, php-format
 msgid "View image: %s"
 msgstr "Bild %s ansehen"
 
-#: zp-core/template-functions.php:3678
+#: zp-core/template-functions.php:3689
 msgid "No popular tags"
 msgstr "Keine populären Schlagwörter"
 
-#: zp-core/template-functions.php:3979
+#: zp-core/template-functions.php:3990
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -11694,49 +11694,49 @@ msgstr ""
 "printSearchForm $album_list Parameter ist veraltet. Übergeben Sie "
 "stattdessen ein array(\"albums\"=>array(album, album,...))."
 
-#: zp-core/template-functions.php:3995
+#: zp-core/template-functions.php:4006
 #, php-format
 msgid "%s within previous results"
 msgstr "%s innerhalb bisheriger Treffer"
 
-#: zp-core/template-functions.php:4076
+#: zp-core/template-functions.php:4087
 msgid "search options"
 msgstr "Sucheinstellungen"
 
-#: zp-core/template-functions.php:4076
+#: zp-core/template-functions.php:4087
 msgid "fields"
 msgstr "Felder"
 
-#: zp-core/template-functions.php:4122
+#: zp-core/template-functions.php:4133
 msgid "Within"
 msgstr "Innerhalb"
 
-#: zp-core/template-functions.php:4126
+#: zp-core/template-functions.php:4137
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Neu"
 
-#: zp-core/template-functions.php:4133
+#: zp-core/template-functions.php:4144
 msgid "Check/uncheck all"
 msgstr "Alle aus-/abwählen"
 
-#: zp-core/template-functions.php:4185
+#: zp-core/template-functions.php:4196
 msgid "no date"
 msgstr "kein Datum"
 
-#: zp-core/template-functions.php:4419
+#: zp-core/template-functions.php:4430
 msgid "You are successfully logged in."
 msgstr "Sie sind erfolgreich angemeldet."
 
-#: zp-core/template-functions.php:4424
+#: zp-core/template-functions.php:4435
 msgid "The page you are trying to view is password protected."
 msgstr "Die Seite, die Sie sehen möchten, ist passwortgeschützt."
 
-#: zp-core/template-functions.php:4429
+#: zp-core/template-functions.php:4440
 msgid "login"
 msgstr "Anmelden"
 
-#: zp-core/template-functions.php:4447
+#: zp-core/template-functions.php:4458
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
 "website CMS\">Zenphoto</a>"
@@ -11744,21 +11744,21 @@ msgstr ""
 "Betrieben mit <a href=\"http://www.zenphoto.org\" title=“Das einfachere "
 "Medien-Website-CMS\">Zenphoto</a>"
 
-#: zp-core/template-functions.php:4612
+#: zp-core/template-functions.php:4623
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Zenphoto Fehler:</strong> Das Objekt wurde nicht gefunden."
 
-#: zp-core/template-functions.php:4614
+#: zp-core/template-functions.php:4625
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zp-core/template-functions.php:4617
+#: zp-core/template-functions.php:4628
 #, php-format
 msgid "Image: %s"
 msgstr "Bild: %s"
 
-#: zp-core/template-functions.php:4620
+#: zp-core/template-functions.php:4631
 #, php-format
 msgid "Page: %s"
 msgstr "Seite: %s"
@@ -12294,6 +12294,12 @@ msgstr "Frontend-Header"
 msgid "Backend headers"
 msgstr "Backend-Header"
 
+#: zp-core/utilities/http_header_inspector.php:59
+msgid "Fetching headers not possible on your server."
+msgstr ""
+"Es ist auf Ihrem Server leider nicht möglich, die Header-Information "
+"abzurufen."
+
 #: zp-core/utilities/list_locales.php:12 zp-core/utilities/list_locales.php:23
 msgid "Locale info"
 msgstr "Sprachumgebungsinfo"
@@ -12814,7 +12820,7 @@ msgstr "SMTP-Port"
 msgid "SMTP port number."
 msgstr "SMTP-Port-Nummer."
 
-#: zp-core/zp-extensions/PHPMailer.php:150
+#: zp-core/zp-extensions/PHPMailer.php:151
 #, php-format
 msgid "<code>PHPMailer</code> failed to send <em>%1$s</em>. ErrorInfo:%2$s"
 msgstr ""
@@ -15680,7 +15686,7 @@ msgstr ""
 "Ausgewählt erzeugt ein Array von Flaggen, andernfalls eine HTML-Auswahl."
 
 #: zp-core/zp-extensions/dynamic-locale.php:168
-#: zp-core/zp-extensions/html_meta_tags.php:185
+#: zp-core/zp-extensions/html_meta_tags.php:178
 #: zp-core/zp-extensions/sitemap-extended.php:202
 msgid "Use subdomains"
 msgstr "Subdomains verwendne"
@@ -15694,7 +15700,7 @@ msgstr ""
 "locale</em></a>-Plugineinstellungen geändert werden."
 
 #: zp-core/zp-extensions/dynamic-locale.php:182
-#: zp-core/zp-extensions/html_meta_tags.php:204
+#: zp-core/zp-extensions/html_meta_tags.php:197
 #: zp-core/zp-extensions/register_user.php:143
 #: zp-core/zp-extensions/sitemap-extended.php:221
 msgid ""
@@ -15752,7 +15758,7 @@ msgstr ""
 "Daten, die über Zenphoto eingegeben wurden, verloren."
 
 #: zp-core/zp-extensions/elFinder/php/connector_zp.php:68
-#: zp-core/zp-extensions/elFinder/php/connector_zp.php:264
+#: zp-core/zp-extensions/elFinder/php/connector_zp.php:266
 #, php-format
 msgid "Upload folder (%s)"
 msgstr "Upload-Ordner (%s)"
@@ -15767,17 +15773,17 @@ msgstr "Zenphoto-Themes (%s)"
 msgid "Albums folder (%s)"
 msgstr "Albums-Ordner (%s)"
 
-#: zp-core/zp-extensions/elFinder/php/connector_zp.php:219
+#: zp-core/zp-extensions/elFinder/php/connector_zp.php:221
 #, php-format
 msgid "Third party plugins (%s)"
 msgstr "Drittherstellerplugins (%s)"
 
-#: zp-core/zp-extensions/elFinder/php/connector_zp.php:233
+#: zp-core/zp-extensions/elFinder/php/connector_zp.php:235
 #, php-format
 msgid "Zenphoto data (%s)"
 msgstr "Zenphoto-Daten (%s)"
 
-#: zp-core/zp-extensions/elFinder/php/connector_zp.php:247
+#: zp-core/zp-extensions/elFinder/php/connector_zp.php:249
 #, php-format
 msgid "Backup files (%s)"
 msgstr "Backup-Dateien (%s)"
@@ -16274,18 +16280,10 @@ msgid "If the browser cache should be used."
 msgstr "Ob der Browsercache genutzt werden soll."
 
 #: zp-core/zp-extensions/html_meta_tags.php:104
-msgid "Pragma"
-msgstr "Pragma"
-
-#: zp-core/zp-extensions/html_meta_tags.php:110
-msgid "If the pages should be allowed to be cached on proxy servers."
-msgstr "Ob Seiten von Proxyservern zwischengespeichert werden dürfen."
-
-#: zp-core/zp-extensions/html_meta_tags.php:111
 msgid "Robots"
 msgstr "Robots"
 
-#: zp-core/zp-extensions/html_meta_tags.php:122
+#: zp-core/zp-extensions/html_meta_tags.php:115
 msgid ""
 "If and how robots are allowed to visit the site. Default is “index”. Note "
 "that you also should use a robot.txt file."
@@ -16294,19 +16292,19 @@ msgstr ""
 "„index“. Bachten Sie, dass Sie außerdem eine robots.txt-Datei verwenden "
 "sollten."
 
-#: zp-core/zp-extensions/html_meta_tags.php:123
+#: zp-core/zp-extensions/html_meta_tags.php:116
 msgid "Revisit after"
 msgstr "Besuchsintervall"
 
-#: zp-core/zp-extensions/html_meta_tags.php:126
+#: zp-core/zp-extensions/html_meta_tags.php:119
 msgid "Request the crawler to revisit the page after x days."
 msgstr "Den Crawler anweisen, die Seite nach x Tagen erneut zu besuchen."
 
-#: zp-core/zp-extensions/html_meta_tags.php:127
+#: zp-core/zp-extensions/html_meta_tags.php:120
 msgid "Expires"
 msgstr "Ungültigkeitsdatum"
 
-#: zp-core/zp-extensions/html_meta_tags.php:130
+#: zp-core/zp-extensions/html_meta_tags.php:123
 msgid ""
 "When the page should be loaded directly from the server and not from any "
 "cache. You can either set a date/time in international date format <em>Sat, "
@@ -16319,11 +16317,11 @@ msgstr ""
 "Zahl eingeben. Eine Nummer steht dann für Sekunden, die Voreinstellung "
 "<em>43200</em> bedeutet 12 Stunden."
 
-#: zp-core/zp-extensions/html_meta_tags.php:131
+#: zp-core/zp-extensions/html_meta_tags.php:124
 msgid "Canonical URL link"
 msgstr "Canonical-URL-Link"
 
-#: zp-core/zp-extensions/html_meta_tags.php:135
+#: zp-core/zp-extensions/html_meta_tags.php:128
 msgid ""
 "This adds a link element to the head of each page with a <em>canonical url</"
 "em>. If the <code>seo_locale</code> plugin is enabled or <code>use "
@@ -16338,21 +16336,21 @@ msgstr ""
 "\"alternate\" hreflang=\"</code>...<code>\" href=\"</code>...<code>\" /&gt;</"
 "code>)."
 
-#: zp-core/zp-extensions/html_meta_tags.php:136
+#: zp-core/zp-extensions/html_meta_tags.php:129
 msgid "Verification content"
 msgstr "Gültigkeit Inhalt"
 
-#: zp-core/zp-extensions/html_meta_tags.php:139
+#: zp-core/zp-extensions/html_meta_tags.php:132
 msgid "Insert the <em>content</em> portion of the meta tag supplied by Google."
 msgstr ""
 "Fügt den <em>Inhalt</em> des von Google zur Verfügung gestellten Metatags "
 "ein."
 
-#: zp-core/zp-extensions/html_meta_tags.php:140
+#: zp-core/zp-extensions/html_meta_tags.php:133
 msgid "Site logo"
 msgstr "Sitelogo"
 
-#: zp-core/zp-extensions/html_meta_tags.php:143
+#: zp-core/zp-extensions/html_meta_tags.php:136
 msgid ""
 "Enter the full url to a specific site logo image. Facebook, Google+ and "
 "others will use that as the thumb shown in link previews within posts. For "
@@ -16363,11 +16361,11 @@ msgstr ""
 "Co werden dies in der Linkvorschau innerhalb von Posts verwenden. Für Bild "
 "oder Albumseiten wird das Thumbnail in der Standardgröße verwendet."
 
-#: zp-core/zp-extensions/html_meta_tags.php:144
+#: zp-core/zp-extensions/html_meta_tags.php:137
 msgid "Twitter name"
 msgstr "Twitter-Name"
 
-#: zp-core/zp-extensions/html_meta_tags.php:147
+#: zp-core/zp-extensions/html_meta_tags.php:140
 msgid ""
 "If you enabled Twitter card meta tags, you need to enter your Twitter user "
 "name here."
@@ -16375,11 +16373,11 @@ msgstr ""
 "Wenn Sie Twitter card meta tags aktiviert haben, geben Sie hier Ihren "
 "Twitter-Benutzernamen ein."
 
-#: zp-core/zp-extensions/html_meta_tags.php:148
+#: zp-core/zp-extensions/html_meta_tags.php:141
 msgid "Open graph image - width"
 msgstr "Open-Graph-Bild - Breite"
 
-#: zp-core/zp-extensions/html_meta_tags.php:151
+#: zp-core/zp-extensions/html_meta_tags.php:144
 msgid ""
 "Max width of the open graph image used for sharing to social networks if "
 "enabled."
@@ -16387,11 +16385,11 @@ msgstr ""
 "Maximale Breite des Open-Graph-Bildes, dass, sofern aktiviert, für das "
 "Teilen auf Social Networks genutzt wird."
 
-#: zp-core/zp-extensions/html_meta_tags.php:152
+#: zp-core/zp-extensions/html_meta_tags.php:145
 msgid "Open graph image - height"
 msgstr "Open-Graph-Bild - Höhe"
 
-#: zp-core/zp-extensions/html_meta_tags.php:155
+#: zp-core/zp-extensions/html_meta_tags.php:148
 msgid ""
 "Max height of the open graph image used for sharing to social networks if "
 "enabled."
@@ -16399,11 +16397,11 @@ msgstr ""
 "Maximale Höhe des Open-Graph-Bildes, dass, sofern aktiviert, für das Teilen "
 "auf Social Networks genutzt wird."
 
-#: zp-core/zp-extensions/html_meta_tags.php:156
+#: zp-core/zp-extensions/html_meta_tags.php:149
 msgid "Facebook app id"
 msgstr "Facebook-App-ID"
 
-#: zp-core/zp-extensions/html_meta_tags.php:159
+#: zp-core/zp-extensions/html_meta_tags.php:152
 msgid ""
 "Enter your Facebook app id. IF using this you also should enable the "
 "OpenGraph meta tags."
@@ -16411,11 +16409,11 @@ msgstr ""
 "Geben Sie hier Ihre Facebook-App-ID ein. Wenn Sie dies verwenden, sollten "
 "Sie auch die OpenGraph-Metaelemente aktivieren."
 
-#: zp-core/zp-extensions/html_meta_tags.php:160
+#: zp-core/zp-extensions/html_meta_tags.php:153
 msgid "HTML meta tags"
 msgstr "HTML meta tags"
 
-#: zp-core/zp-extensions/html_meta_tags.php:184
+#: zp-core/zp-extensions/html_meta_tags.php:177
 msgid ""
 "Which of the HTML meta tags should be used. For info about these in detail "
 "please refer to the net."
@@ -16423,7 +16421,7 @@ msgstr ""
 "Welches der HTML-Meta-Tagsg verwendet werden soll. Genauere Information über "
 "diese sind im Internet zu finden."
 
-#: zp-core/zp-extensions/html_meta_tags.php:199
+#: zp-core/zp-extensions/html_meta_tags.php:192
 msgid ""
 "* This option may be set via the <a href=\"javascript:"
 "gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
@@ -16431,7 +16429,7 @@ msgstr ""
 "* Diese Option kann über <a href=\"javascript:gotoName('html_meta_tags');"
 "\"><em>html_meta_tags</em></a>-Plugineinstellungen geändert werden."
 
-#: zp-core/zp-extensions/http_security_headers.php:21
+#: zp-core/zp-extensions/http_security_headers.php:23
 msgid ""
 "A plugin to enable basic usage of various security related HTTP response "
 "headers for the frontend. <p class=\"warningbox\">Caution: Misconfiguration "
@@ -16442,7 +16440,7 @@ msgstr ""
 "class=„warningbox“>Vorsicht: Falsche Konfiguration kann Ihre Site lahmlegen."
 "</p>"
 
-#: zp-core/zp-extensions/http_security_headers.php:53
+#: zp-core/zp-extensions/http_security_headers.php:55
 msgid ""
 "The Content-Security-Policy header allows to control which resources browser "
 "are allowed to load. For detailed info please see <a href=\"https://"
@@ -16456,7 +16454,7 @@ msgstr ""
 "Security-Policy“ target=„_blank“>https://developer.mozilla.org/en-US/docs/"
 "Web/HTTP/Headers/Content-Security-Policy</a>."
 
-#: zp-core/zp-extensions/http_security_headers.php:54
+#: zp-core/zp-extensions/http_security_headers.php:56
 msgid ""
 "Use the Report-Only option to test before setting directives live. Review "
 "your browser log/console for block reports."
@@ -16465,11 +16463,11 @@ msgstr ""
 "sie live schalten. Beachten Sie auch Ihre Browser-Konsole/Log bezüglich "
 "Blockinformationen."
 
-#: zp-core/zp-extensions/http_security_headers.php:60
+#: zp-core/zp-extensions/http_security_headers.php:62
 msgid "Enable or disable the Content-Security-Policy."
 msgstr "Content-Security-Policy ein- oder abschalten."
 
-#: zp-core/zp-extensions/http_security_headers.php:66
+#: zp-core/zp-extensions/http_security_headers.php:68
 msgid ""
 "Set the Content-Security-Policy header to report mode but not actually block "
 "anything."
@@ -16477,51 +16475,51 @@ msgstr ""
 "Versetzt den Content-Security-Policy-Header in den Berichtmodus, so dass "
 "nichts wirklich block."
 
-#: zp-core/zp-extensions/http_security_headers.php:76
+#: zp-core/zp-extensions/http_security_headers.php:78
 msgid "Fallback directive for all <em>*-src</em> fetch directives."
 msgstr "Rückfalldirektive für alle <em>*-src</em>-Fetch-Direktiven."
 
-#: zp-core/zp-extensions/http_security_headers.php:90
+#: zp-core/zp-extensions/http_security_headers.php:92
 msgid "Allowed sources for loading script interfaces."
 msgstr "Erlaubte Quellen für das Laden von Scriptinterfaces."
 
-#: zp-core/zp-extensions/http_security_headers.php:104
+#: zp-core/zp-extensions/http_security_headers.php:106
 msgid "Allowed sources for font loading."
 msgstr "Erlaubte Quellen für das Laden von Schriften."
 
-#: zp-core/zp-extensions/http_security_headers.php:118
+#: zp-core/zp-extensions/http_security_headers.php:120
 msgid "Allowed sources for frames."
 msgstr "Erlaubte Quellen für Frames."
 
-#: zp-core/zp-extensions/http_security_headers.php:132
+#: zp-core/zp-extensions/http_security_headers.php:134
 msgid "Allowed sources for images."
 msgstr "Erlaubte Quellen für Bilder."
 
-#: zp-core/zp-extensions/http_security_headers.php:146
+#: zp-core/zp-extensions/http_security_headers.php:148
 msgid "Allowed sources for application manifest files."
 msgstr "Erlaubte Quellen für Application-Mainfest-Dateien."
 
-#: zp-core/zp-extensions/http_security_headers.php:160
+#: zp-core/zp-extensions/http_security_headers.php:162
 msgid "Allowed sources for video and audio."
 msgstr "Erlaubte Quellen für Video und Audio."
 
-#: zp-core/zp-extensions/http_security_headers.php:174
+#: zp-core/zp-extensions/http_security_headers.php:176
 msgid "Allowed sources for object, embed and applet usage"
 msgstr "Erlaubte Quellen für object-, embed- und applet-Nutzung"
 
-#: zp-core/zp-extensions/http_security_headers.php:188
+#: zp-core/zp-extensions/http_security_headers.php:190
 msgid "Allowed sources for JavaScript."
 msgstr "Erlaubte Quellen für JavaScript."
 
-#: zp-core/zp-extensions/http_security_headers.php:202
+#: zp-core/zp-extensions/http_security_headers.php:204
 msgid "Allowed sources for CSS."
 msgstr "Erlaubte Quellen für CSS."
 
-#: zp-core/zp-extensions/http_security_headers.php:219
+#: zp-core/zp-extensions/http_security_headers.php:221
 msgid "Restrict the base URI of the document."
 msgstr "Beschränkt die Basis-URI auf das Dokument."
 
-#: zp-core/zp-extensions/http_security_headers.php:233
+#: zp-core/zp-extensions/http_security_headers.php:235
 msgid ""
 "Restricts specific plugin types a browser is allowed to load (e.g. Java "
 "Applets, Flash videos etc.) if the object-src directive is set to \"none\"."
@@ -16530,15 +16528,15 @@ msgstr ""
 "Java-Applets, Flashvideos etc.), wenn die object-src-Direktivve auf \"none\" "
 "gesetzt ist."
 
-#: zp-core/zp-extensions/http_security_headers.php:240
+#: zp-core/zp-extensions/http_security_headers.php:242
 msgid "Enables sandbox for the requested source."
 msgstr "Aktiviert die Sandbox für die angeforderte Quelle."
 
-#: zp-core/zp-extensions/http_security_headers.php:251
+#: zp-core/zp-extensions/http_security_headers.php:253
 msgid "Restricts target URLs for form actions."
 msgstr "Beschränkt die Ziel-URLs für Formular-Aktionen."
 
-#: zp-core/zp-extensions/http_security_headers.php:265
+#: zp-core/zp-extensions/http_security_headers.php:267
 msgid ""
 "Specifices parents for frame, iframe, object, embed and applet. Helps "
 "prevent clickjacking and the site being loaded within other sites."
@@ -16546,21 +16544,21 @@ msgstr ""
 "Spezifiziert Eltern für frame, iframe, object, embed und applet. Dies hilft "
 "Clickjacking und das Laden der Site innerhalb Frame dritter zu verhindern."
 
-#: zp-core/zp-extensions/http_security_headers.php:281
+#: zp-core/zp-extensions/http_security_headers.php:283
 msgid "Prevents http content being loaded if the site is in https mode."
 msgstr ""
 "Verhindert, dass http-Inhalte geladen werden, wenn die Site im https-Modus "
 "ist."
 
-#: zp-core/zp-extensions/http_security_headers.php:288
+#: zp-core/zp-extensions/http_security_headers.php:290
 msgid "Instructs the browser to treat insecure http URLs like https ones."
 msgstr "Weist den Browser an, unsichere http-URLs in https-URLs umzuwandeln."
 
-#: zp-core/zp-extensions/http_security_headers.php:298
+#: zp-core/zp-extensions/http_security_headers.php:300
 msgid "<h2>Strict-Transport-Security</h2><hr>"
 msgstr "<h2>Strict-Transport-Security</h2><hr>"
 
-#: zp-core/zp-extensions/http_security_headers.php:304
+#: zp-core/zp-extensions/http_security_headers.php:306
 msgid ""
 "Enter the max age in seconds. Instructs the browser that the site should be "
 "accessed via https only"
@@ -16568,19 +16566,19 @@ msgstr ""
 "Geben Sie das maximal Alter in Sekunden ein. Weist den Browser an, dass auf "
 "die Site nur über https zugegriffen werden soll"
 
-#: zp-core/zp-extensions/http_security_headers.php:311
+#: zp-core/zp-extensions/http_security_headers.php:313
 msgid "Optional to include sub domains"
 msgstr "Optional, um Subdomains einzubeziehen"
 
-#: zp-core/zp-extensions/http_security_headers.php:317
+#: zp-core/zp-extensions/http_security_headers.php:319
 msgid "Optional"
 msgstr "Optional"
 
-#: zp-core/zp-extensions/http_security_headers.php:326
+#: zp-core/zp-extensions/http_security_headers.php:328
 msgid "<h2>Other headers</h2><hr>"
 msgstr "<h2>Andere Headers</h2><hr>"
 
-#: zp-core/zp-extensions/http_security_headers.php:333
+#: zp-core/zp-extensions/http_security_headers.php:335
 msgid ""
 "Legacy header for old browsers replaced by Content-Security-Policy: frame-"
 "ancestors"
@@ -16588,25 +16586,25 @@ msgstr ""
 "Veralteter Header für alte Browser und durch die Content-Security-Policy: "
 "frame-ancestors ersetzt"
 
-#: zp-core/zp-extensions/http_security_headers.php:340
+#: zp-core/zp-extensions/http_security_headers.php:342
 msgid "Enter one or more domains if allow-from is selected above."
 msgstr ""
 "Geben Sie eine oder mehrere Domains ein, wenn allow-from oben angewählt ist."
 
-#: zp-core/zp-extensions/http_security_headers.php:346
+#: zp-core/zp-extensions/http_security_headers.php:348
 msgid "Opt-out for MIME type sniffing."
 msgstr "Opt-Out für MIME-Type-Ausschnüffeln."
 
-#: zp-core/zp-extensions/http_security_headers.php:353
+#: zp-core/zp-extensions/http_security_headers.php:355
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:204
 msgid "Enable"
 msgstr "Aktivieren"
 
-#: zp-core/zp-extensions/http_security_headers.php:354
+#: zp-core/zp-extensions/http_security_headers.php:356
 msgid "(Optional)"
 msgstr "(Optional)"
 
-#: zp-core/zp-extensions/http_security_headers.php:357
+#: zp-core/zp-extensions/http_security_headers.php:359
 msgid ""
 "Legacy header for old browsers to protect against cross-site-scripting "
 "attacks."
@@ -16614,11 +16612,11 @@ msgstr ""
 "Veralteter Header für alte Browser, der gegen Cross-Site-Scripting-Attacken "
 "hilft."
 
-#: zp-core/zp-extensions/http_security_headers.php:375
+#: zp-core/zp-extensions/http_security_headers.php:377
 msgid "Controls how much referrer information should be sent."
 msgstr "Kontrolliert, wie viel Referrer-Information zurückgegeben werden soll."
 
-#: zp-core/zp-extensions/http_security_headers.php:422
+#: zp-core/zp-extensions/http_security_headers.php:424
 msgid ""
 "<em>nonce-</em> uses the internal XSRFToken automatically. Caution: A nonce "
 "attribute with <code>getXSRFToken(\"security_http_headers\")</code> must be "
@@ -16631,7 +16629,7 @@ msgstr ""
 "anderenfalls nicht funktionieren. Inline-Handler (z.B.. onclick=\"\") werden "
 "in keinem Fall funktionieren."
 
-#: zp-core/zp-extensions/http_security_headers.php:424
+#: zp-core/zp-extensions/http_security_headers.php:426
 #, php-format
 msgid ""
 "For detailed info please see <a href=\"%1$s\" target=\"_blank\">%2$s</a>."
@@ -16639,7 +16637,7 @@ msgstr ""
 "Detailierte Info dazu finden Sie unter <a href=„%1$s“ target=„_blank“>%2$s</"
 "a>."
 
-#: zp-core/zp-extensions/http_security_headers.php:429
+#: zp-core/zp-extensions/http_security_headers.php:431
 msgid ""
 "Define one or more domains, e.g. http://yourdomain1.com http://yourdomain2."
 "com, to allow content from"
@@ -17388,7 +17386,7 @@ msgid "createMenuIfNotExists has posted processing errors to your debug log."
 msgstr ""
 "createMenuIfNotExists hat die festgestellten Fehler im Debuglog dokumentiert."
 
-#: zp-core/zp-extensions/menu_manager.php:1184
+#: zp-core/zp-extensions/menu_manager.php:1187
 #: zp-core/zp-extensions/print_album_menu.php:262
 #, php-format
 msgid "%u album"
@@ -17396,7 +17394,7 @@ msgid_plural "%u albums"
 msgstr[0] "%u Album"
 msgstr[1] "%u Alben"
 
-#: zp-core/zp-extensions/menu_manager.php:1190
+#: zp-core/zp-extensions/menu_manager.php:1193
 #: zp-core/zp-extensions/print_album_menu.php:268
 #, php-format
 msgid "%u image"
@@ -17410,53 +17408,53 @@ msgstr[1] "%u Bilder"
 msgid "Sort order saved."
 msgstr "Sortierung gesichert."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:48
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:55
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:62
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:49
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:56
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:63
 msgid "Zenpage CMS plugin required for this item type!"
 msgstr "Das Zenpage CMS Plugin ist für diesen Inhaltstype erforderlich!"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:76
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:375
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:77
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:376
 #, php-format
 msgid "Target does not exists in <em>%1$s</em> theme"
 msgstr "Das Ziel existiert nicht im <em>%1$s</em>-Theme"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:96
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:97
 msgid "The object of this menu is under password protection"
 msgstr "Dieser Menüeintrag ist passwortgeschützt"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:100
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:101
 msgid "under password protection"
 msgstr "passwortgeschützt"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:129
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:130
 #: zp-core/zp-extensions/publishContent/publishContent.php:278
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:279
 msgid "view"
 msgstr "Ansehen"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:145
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:146
 #, php-format
 msgid "Ok to delete %s? This cannot be undone."
 msgstr "Wollen Sie  %s löschen? Dies kann nicht rückgängig gemacht werden."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:146
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:147
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:175
 #: zp-core/zp-extensions/zenpage/admin-edit.php:561
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:296
 msgid "delete"
 msgstr "Löschen"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:252
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:253
 msgid "Hidden and visible items"
 msgstr "Versteckte und sichtbare Einträge"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:253
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:254
 msgid "Visible items"
 msgstr "Sichtbare Einträge"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:254
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:255
 msgid "hidden items"
 msgstr "Versteckte Einträge"
 
@@ -17665,7 +17663,7 @@ msgstr ""
 "Struktur dieses Menüs NICHT!"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:166
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:231
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:232
 msgid "Add Menu Items"
 msgstr "Menüeinträge hinzufügen"
 
@@ -17713,7 +17711,7 @@ msgid "URL"
 msgstr "URL"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:63
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:251
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:252
 msgid "All menu items"
 msgstr "Alle Menüeinträge"
 
@@ -17726,7 +17724,7 @@ msgstr ""
 "\"default\"-Menüset.)"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:68
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:252
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:253
 msgid "Home page"
 msgstr "Homepage"
 
@@ -17757,7 +17755,7 @@ msgid "Creates a link to a Zenphoto Album."
 msgstr "Erstellt einen Link zu einem Album."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:100
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:259
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:260
 msgid "All Zenpage pages"
 msgstr "Alle Zenpage Seiten"
 
@@ -17766,7 +17764,7 @@ msgid "This adds menu items for all Zenpage pages."
 msgstr "Dies fügt Menüeinträge für alle Zenpage Seiten hinzu."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:105
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:260
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:261
 msgid "Zenpage page"
 msgstr "Zenpage Seite"
 
@@ -17775,7 +17773,7 @@ msgid "Creates a link to a Zenpage Page."
 msgstr "Erstellt einen Link zu einer Zenpage Seite."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:116
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:261
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:262
 msgid "Zenpage news index"
 msgstr "Zenpage Artikelindex"
 
@@ -17792,7 +17790,7 @@ msgid "This adds menu items for all Zenpage categories."
 msgstr "Dies fügt Menüeinträge für Zenpage Kategorien hinzu."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:129
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:263
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:264
 msgid "Zenpage news category"
 msgstr "Zenpage Kategorie"
 
@@ -17816,7 +17814,7 @@ msgid "Script page"
 msgstr "Skriptseite"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:148
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:268
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:269
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:147
 msgid "Custom link"
 msgstr "Benutzerdefinierter Link"
@@ -17830,7 +17828,7 @@ msgstr ""
 "vollen URL (z.B. http://www.domain.com) wird empfohlen."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:156
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:269
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:270
 msgid "Label"
 msgstr "Beschriftung"
 
@@ -17840,68 +17838,68 @@ msgstr ""
 "Erstellt eine <em>Beschriftung</em> zur Verwendung innerhalb der "
 "Menüstruktur)."
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:162
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:164
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:270
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:163
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:165
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:271
 msgid "Function"
 msgstr "Funktion"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:163
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:164
 msgid "Executes the PHP function provided."
 msgstr "Führt die eingegebene PHP-Funktion aus."
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:171
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:173
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:271
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:172
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:174
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:272
 msgid "HTML"
 msgstr "HTML"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:172
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:173
 msgid "Inserts custom HTML."
 msgstr "Fügt benutzerdefiniertes HTML ein."
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:211
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:212
 msgid "Menu Manager: Edit Menu Item"
 msgstr "Menü-Manager: Menueintrag bearbeiten"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:213
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:214
 msgid "Menu Manager: Add Menu Item"
 msgstr "Menü-Manager: Menüeintrag hinzufügen"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:250
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:251
 msgid "*Select the type of the menus item you wish to add*"
 msgstr "*Wählen Sie die Art der hinzu zufügenden Menüeinträge*"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:262
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:263
 msgid "All Zenpage news categories"
 msgstr "Alle Zenpage Kategorien"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:267
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:268
 msgid "Custom theme page"
 msgstr "Benutzerdefinierte Themeseite"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:298
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:299
 #, php-format
 msgid "Menu <em>%s</em>"
 msgstr "Menü  <em>%s</em>"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:301
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:302
 msgid "Type:"
 msgstr "Typ:"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:336
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:337
 msgid "published"
 msgstr "Veröffentlicht"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:346
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:347
 msgid "Include <em>&lt;LI&gt;</em> element"
 msgstr "<em>&lt;LI&gt;</em>-Element einschließen"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:358
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:359
 msgid "Add <em>span</em> tags"
 msgstr "<em>span</em>-Elemente hinzufügen"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:364
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:365
 msgid "Class"
 msgstr "Klasse"
 
@@ -23474,6 +23472,22 @@ msgstr "Linux"
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
 msgid "OSX"
 msgstr "OSX"
+
+#~ msgid "Image order saved"
+#~ msgstr "Bildreihenfolge gesichert"
+
+#~ msgid ""
+#~ "The image edit form submission has been truncated. Try displaying fewer "
+#~ "images on a page."
+#~ msgstr ""
+#~ "Die Bild-Formular-Übermittlung ist unvollständig. Probieren Sie weniger "
+#~ "Bilder pro Seite anzeigen zu lassen."
+
+#~ msgid "Pragma"
+#~ msgstr "Pragma"
+
+#~ msgid "If the pages should be allowed to be cached on proxy servers."
+#~ msgstr "Ob Seiten von Proxyservern zwischengespeichert werden dürfen."
 
 #, php-format
 #~ msgid "View album:  %s"
