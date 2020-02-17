@@ -290,6 +290,7 @@ $mime_types = array(
 										'pwz'=>'application/vnd.ms-powerpoint',
 										'py'=>'text/x-script.phyton',
 										'pyc'=>'application/x-bytecode.python',
+										'php' => 'text/x-php',
 										'qcp'=>'audio/vnd.qcelp',
 										'qd3'=>'x-world/x-3dmf',
 										'qd3d'=>'x-world/x-3dmf',
