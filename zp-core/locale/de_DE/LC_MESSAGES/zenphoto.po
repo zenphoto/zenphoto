@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Zenphoto 1.5.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-17 15:43+0100\n"
-"PO-Revision-Date: 2020-02-17 15:49+0100\n"
+"PO-Revision-Date: 2020-02-18 11:08+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -173,7 +173,7 @@ msgstr "Registrieren"
 #: themes/basic/register.php:31 themes/garland/register.php:45
 #: themes/zenpage/register.php:38 themes/zpmobile/register.php:27
 msgid "User Registration"
-msgstr "Benutzeranmeldung"
+msgstr "Benutzer*in-Anmeldung"
 
 #: themes/basic/search.php:44
 #, php-format
@@ -566,8 +566,8 @@ msgid ""
 "<strong>Note:</strong> The <em>%s</em> custom menu makes use of the "
 "<em>print_album_menu</em> plugin."
 msgstr ""
-"<strong>Hinweis:</strong> Das benutzerdefinierte Menü <em>%s</em> verwendet "
-"das <em>print_album_menu</em>-Plugin."
+"<strong>Hinweis:</strong> Das individuell definierte Menü <em>%s</em> "
+"verwendet das <em>print_album_menu</em>-Plugin."
 
 #: themes/garland/themeoptions.php:117
 msgid "Theme personality"
@@ -591,7 +591,7 @@ msgstr "Auswählen, um die Schlagwortwolke für die Albumseite zu aktivieren."
 
 #: themes/garland/themeoptions.php:130
 msgid "Custom menu"
-msgstr "Benutzerdefiniertes Menü"
+msgstr "Individuell definiertes Menü"
 
 #: themes/garland/themeoptions.php:133
 msgid "Set this to the <em>menu_manager</em> menu you wish to use."
@@ -600,7 +600,7 @@ msgstr ""
 
 #: themes/garland/themeoptions.php:141
 msgid "Custom Homepage"
-msgstr "Benutzerdefinierte Startseite"
+msgstr "Individuell definierte Startseite"
 
 #: themes/garland/themeoptions.php:145 themes/zenpage/themeoptions.php:122
 #: zp-core/admin-edit.php:1248 zp-core/admin-options.php:2199
@@ -854,7 +854,7 @@ msgstr ""
 
 #: themes/zenpage/themeoptions.php:128
 msgid "Use custom menu"
-msgstr "Benutzerdefiniertes Menü verwenden"
+msgstr "Individuell definiertes Menü verwenden"
 
 #: themes/zenpage/themeoptions.php:131
 msgid ""
@@ -863,7 +863,7 @@ msgid ""
 "named \"zenpage\" is created and used automatically."
 msgstr ""
 "Wählen Sie dies, wenn Sie das <em>menu_manager</em>Plugin, sofern diese "
-"aktiviert ist, verwenden möchten, um ein benutzerdefiniertes Menü zu "
+"aktiviert ist, verwenden möchten, um ein individuell definiertes Menü zu "
 "erstellen, anstatt die vorgegebenen Standardmenüs zu verwenden. Ein Standard-"
 "Menüset namens \"zenpage\" wird automatisch erstellt und verwendet."
 
@@ -1062,7 +1062,7 @@ msgstr "Kommentare einschalten"
 
 #: zp-core/admin-albumsort.php:85 zp-core/admin-edit.php:571
 msgid "Change owner"
-msgstr "Besitzer ändern"
+msgstr "Besitzer*in ändern"
 
 #: zp-core/admin-albumsort.php:88 zp-core/admin-edit.php:574
 #: zp-core/zp-extensions/zenpage/admin-categories.php:157
@@ -1487,7 +1487,7 @@ msgstr "<strong>Größe:</strong>"
 
 #: zp-core/admin-edit.php:1042
 msgid "Owner:"
-msgstr "Besitzer:"
+msgstr "Besitzer*in:"
 
 #: zp-core/admin-edit.php:1057 zp-core/admin-functions.php:1734
 #: zp-core/lib-auth.php:541 zp-core/lib-auth.php:542 zp-core/lib-auth.php:543
@@ -1767,7 +1767,7 @@ msgstr "Lizenz"
 
 #: zp-core/admin-functions.php:36
 msgid "User guide"
-msgstr "Benutzeranleitung"
+msgstr "Anwendungsanleitung"
 
 #: zp-core/admin-functions.php:37 zp-core/setup/class-setup.php:671
 msgid "Forum"
@@ -1799,7 +1799,7 @@ msgstr "%1$s %2$s: %3$s%4$s"
 #: zp-core/zp-extensions/user-expiry.php:115
 #: zp-core/zp-extensions/user_groups.php:218
 msgid "admin"
-msgstr "Benutzer"
+msgstr "Administrator*in"
 
 #: zp-core/admin-functions.php:153
 msgid "You have unsaved changes!"
@@ -1878,7 +1878,7 @@ msgstr "Schlagwort hinzufügen"
 #: zp-core/admin-functions.php:1257 zp-core/admin-functions.php:4988
 #: zp-core/class-search.php:110 zp-core/zp-extensions/favoritesHandler.php:140
 msgid "Owner"
-msgstr "Besitzer"
+msgstr "Besitzer*in"
 
 #: zp-core/admin-functions.php:1274
 msgid "Album Title"
@@ -1901,7 +1901,7 @@ msgstr "Passwort löschen"
 
 #: zp-core/admin-functions.php:1322
 msgid "Album guest user:"
-msgstr "Album-Gastbenutzer:"
+msgstr "Album-Gastbenutzer*in:"
 
 #: zp-core/admin-functions.php:1343
 msgid "Repeat password:"
@@ -1946,7 +1946,7 @@ msgstr "Absteigend"
 #: zp-core/admin-options.php:1815 zp-core/admin-options.php:1868
 #: zp-core/admin-options.php:1923 zp-core/admin-options.php:2014
 msgid "custom fields:"
-msgstr "Benutzerdefinierte Felder:"
+msgstr "Individuell definierte Felder:"
 
 #: zp-core/admin-functions.php:1495 zp-core/admin-options.php:1772
 #: zp-core/admin-options.php:1975
@@ -2231,13 +2231,13 @@ msgstr "Aktives Design"
 
 #: zp-core/admin-functions.php:3091
 msgid "New custom theme created successfully!"
-msgstr "Neues benutzerdefiniertes Theme erfolgreich erstellt!"
+msgstr "Neues individuell definiertes Theme erfolgreich erstellt!"
 
 #: zp-core/admin-functions.php:3093
 msgid "New custom theme created, but its description could not be updated"
 msgstr ""
-"Ein neues benutzerdefiniertes Theme wurde erstellt, aber seine Beschreibung "
-"konnte nicht aktualisiert werden"
+"Ein neues individuell definiertes Theme wurde erstellt, aber seine "
+"Beschreibung konnte nicht aktualisiert werden"
 
 #: zp-core/admin-functions.php:3225
 msgid "Rights:"
@@ -2300,7 +2300,7 @@ msgstr "Ein oder mehrere %1$s für  %2$s zum Verwalten auswählen."
 #: zp-core/admin-functions.php:3373 zp-core/admin-users.php:802
 #: zp-core/admin-users.php:811 zp-core/admin-users.php:817
 msgid "user"
-msgstr "Benutzer"
+msgstr "Benutzer*in"
 
 #: zp-core/admin-functions.php:3374
 #, php-format
@@ -2308,9 +2308,9 @@ msgid ""
 "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All "
 "others may manage only those that are selected."
 msgstr ""
-"Benutzer mit <em>Benutzerverwaltungs-</em> oder or <em>Alle-%1$s-</"
-"em>Verwaltungsrechten haben Zugriff auf alle %2$s. Alle anderen Benutzer "
-"können nur die ihnen zugewiesenen Alben verwalten."
+"Benutzer*innen mit <em>Administrations-</em> oder or <em>Alle-%1$s-</"
+"em>Verwaltungsrechten haben Zugriff auf alle %2$s. Alle anderen "
+"Benutzer*innen können nur die ihnen zugewiesenen Alben verwalten."
 
 #: zp-core/admin-functions.php:3377
 #, php-format
@@ -2512,7 +2512,7 @@ msgstr "Hochlader"
 #: zp-core/zp-extensions/user_groups.php:19
 #: zp-core/zp-extensions/user_login-out.php:14
 msgid "Users"
-msgstr "Benutzer"
+msgstr "Benutzer*innen"
 
 #: zp-core/admin-functions.php:4718
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
@@ -2712,7 +2712,7 @@ msgstr "Datum der letzten Änderung"
 
 #: zp-core/admin-functions.php:4980 zp-core/class-search.php:112
 msgid "Last change user"
-msgstr "Benutzer der letzten Änderung"
+msgstr "Benutzer*in der letzten Änderung"
 
 #: zp-core/admin-functions.php:4986
 #: zp-core/zp-extensions/favoritesHandler.php:134
@@ -2728,7 +2728,7 @@ msgstr "Filemtime"
 #: zp-core/exif/makers/canon.php:279 zp-core/exif/makers/fujifilm.php:106
 #: zp-core/zp-extensions/favoritesHandler.php:135
 msgid "Custom"
-msgstr "Benutzerdefiniert"
+msgstr "Individuell definiert"
 
 #: zp-core/admin-functions.php:4991
 msgid "Last updated date"
@@ -2787,7 +2787,7 @@ msgstr "Schlagwörter"
 #: zp-core/zp-extensions/user-expiry.php:112
 #: zp-core/zp-extensions/user_groups.php:214
 msgid "users"
-msgstr "Benutzer"
+msgstr "Benutzer*innen"
 
 #: zp-core/admin-globals.php:100
 msgid "general"
@@ -2903,7 +2903,8 @@ msgstr ""
 #, php-format
 msgid "You must supply a password for the <em>%s</em> guest user"
 msgstr ""
-"Es muss ein Passwort für den <em>%s</em>-Gastsuchbenutzer eingegeben werden"
+"Es muss ein Passwort für den/die<em>%s</em>-Gastsuchbenutzer*in eingegeben "
+"werden"
 
 #: zp-core/admin-options.php:592
 msgid ""
@@ -3282,8 +3283,8 @@ msgid ""
 "in the text box."
 msgstr ""
 "Format des Datums. Wählen Sie das entsprechend oder wählen Sie ein "
-"<code>benutzerdefiniertes</code> aus tragen Sie eine <a href=\"http://us2."
-"php.net/manual/de/function.strftime.php\"><code>strftime()</code></a> -"
+"<code>individuell definiertes</code> aus tragen Sie eine <a href=\"http://"
+"us2.php.net/manual/de/function.strftime.php\"><code>strftime()</code></a> -"
 "Formatierungszahlenkette ein."
 
 #: zp-core/admin-options.php:893
@@ -3402,7 +3403,7 @@ msgstr ""
 "der Browser beendet wird, so dass alle Passwörter und andere Daten ebenfalls "
 "gelöscht werden. Sie werden möglicherweise häufiger geschlossen abhängig von "
 "der Laufzeit-Konfiguration. Längere <em>Laufzeit</em> von Sessions ist im "
-"allgemeinen einer zufriedenen Nutzererfahrung förderlich. Cookies sind die "
+"allgemeinen einer zufriedenen Nutzungserfahrung förderlich. Cookies sind die "
 "bevorzugte Einstellung, da ihre Laufzeit durch die <em>Cookie-Laufzeit</em> "
 "bestimmt wird. "
 
@@ -3424,7 +3425,7 @@ msgstr ""
 
 #: zp-core/admin-options.php:1045
 msgid "Users per page:"
-msgstr "Benutzer pro Seite:"
+msgstr "Benutzer*innen pro Seite:"
 
 #: zp-core/admin-options.php:1046
 msgid "Plugins per page:"
@@ -3458,8 +3459,8 @@ msgid ""
 "checked, the administrator will be e-mailed when this occurs."
 msgstr ""
 "Es wird eine neue Protokolldatei angelegt, wenn eine Datei die spezifizierte "
-"Größe überschreitet. Wenn aktiviert, erhält der Administrator darüber eine "
-"Mail."
+"Größe überschreitet. Wenn aktiviert, erhält der/die Administrator*in darüber "
+"eine Mail."
 
 #: zp-core/admin-options.php:1104 zp-core/admin-options.php:3050
 #: zp-core/admin-options.php:3178 zp-core/admin-options.php:3205
@@ -3500,7 +3501,8 @@ msgstr "privat"
 #: zp-core/admin-options.php:1154
 msgid "Private galleries are viewable only by registered users."
 msgstr ""
-"Private Galerien können nur von registrierten Benutzern angesehen werden."
+"Private Galerien können nur von registrierten Benutzer*innen angesehen "
+"werden."
 
 #: zp-core/admin-options.php:1164 zp-core/admin-options.php:1216
 msgid "Gallery password:"
@@ -3516,11 +3518,11 @@ msgstr ""
 
 #: zp-core/admin-options.php:1195
 msgid "Gallery guest user:"
-msgstr "Galerie-Gastbenutzer:"
+msgstr "Galerie-Gastbenutzer*in:"
 
 #: zp-core/admin-options.php:1210
 msgid "User ID for the gallery guest user"
-msgstr "Benutzer-ID für den Galerie-Gastbenutzer"
+msgstr "Benutzer*in-ID für Galerie-Gastbenutzer*innen"
 
 #: zp-core/admin-options.php:1220 zp-core/admin-options.php:1556
 #: zp-core/admin-options.php:2419 zp-core/zp-extensions/downloadList.php:145
@@ -3592,10 +3594,10 @@ msgid ""
 "must be database field names. You can have multiple fields separated by "
 "commas. This option is also the default sort for albums and subalbums."
 msgstr ""
-"Sortierreihenfolge für die Alben auf dem Index der Galerie. "
-"Benutzerdefinierte Sortierungen müssen Datenbankfeldnamen sein. Sie können "
-"mehrere Felder durch Kommata trennen. Diese Option ist ebenfalls die "
-"voreingestellte Sortierung für Alben und Unteralben."
+"Sortierreihenfolge für die Alben auf dem Index der Galerie. Individuell "
+"definierte Sortierungen müssen Datenbankfeldnamen sein. Sie können mehrere "
+"Felder durch Kommata trennen. Diese Option ist ebenfalls die voreingestellte "
+"Sortierung für Alben und Unteralben."
 
 #: zp-core/admin-options.php:1392
 msgid "Gallery behavior:"
@@ -3735,24 +3737,24 @@ msgid ""
 "Password for the search guest user. click on <em>Search password</em> to "
 "change."
 msgstr ""
-"Passwort für den Such-Gastbenutzer. Klicken Sie zum Ändern auf "
+"Passwort für den/die Such-Gastbenutzer*in. Klicken Sie zum Ändern auf "
 "<em>Suchpasswort</em>."
 
 #: zp-core/admin-options.php:1533
 msgid "Search guest user:"
-msgstr "Such-Gastbenutzer:"
+msgstr "Such-Gastbenutzer*in:"
 
 #: zp-core/admin-options.php:1546
 msgid "User ID for the search guest user"
-msgstr "Benutzer-ID für den Such-Gastbenutzer"
+msgstr "Benutzer*in-ID für  Such-Gastbenutzer*innen"
 
 #: zp-core/admin-options.php:1584
 msgid ""
 "Password for the search guest user. If this is set, visitors must know this "
 "password to view search results."
 msgstr ""
-"Passwort für den Such-Gastbenutzer. Wenn es gesetzt ist, müssen Besucher das "
-"Passwort kennen, um die Suche verwenden zu können."
+"Passwort für Such-Gastbenutzer*innen. Wenn es gesetzt ist, müssen "
+"Besucher*innen das Passwort kennen, um die Suche verwenden zu können."
 
 #: zp-core/admin-options.php:1589
 msgid "Search password hint:"
@@ -3961,8 +3963,8 @@ msgid ""
 "Custom sort values must be database field names. You can have multiple "
 "fields separated by commas."
 msgstr ""
-"Benutzerdefinierte Sortierungen müssen Datenbankfeldnamen sein. Sie können "
-"mehrere Felder durch Kommata trennen."
+"Individuell definierte Sortierungen müssen Datenbankfeldnamen sein. Sie "
+"können mehrere Felder durch Kommata trennen."
 
 #: zp-core/admin-options.php:2027
 msgid "Maximum image size"
@@ -4172,8 +4174,8 @@ msgid ""
 "Custom watermarks should be placed in the <code>/%s/watermarks/</code> "
 "folder. The images must be in png-24 format."
 msgstr ""
-"Benutzerdefinierte Wasserzeichen sollten im Ordner <code>/%s/watermarks/</"
-"code> platziert werden. Die Bilder müssen im png24-Format sein."
+"Individuell definierte Wasserzeichen sollten im Ordner <code>/%s/watermarks/"
+"</code> platziert werden. Die Bilder müssen im png24-Format sein."
 
 #: zp-core/admin-options.php:2277
 msgid ""
@@ -4284,7 +4286,7 @@ msgstr "Passwort:"
 
 #: zp-core/admin-options.php:2400
 msgid "user:"
-msgstr "Benutzer:"
+msgstr "Benutzer*in:"
 
 #: zp-core/admin-options.php:2450
 msgid "hint:"
@@ -4338,10 +4340,10 @@ msgid ""
 "<em>Download</em> and <em>Protected view</em> level of protection. If there "
 "is a password set, the viewer must supply this password to access the image."
 msgstr ""
-"<em>Benutzer</em>, <em>Passwort</em>, and <em>Hinweis</em> gelten für die "
+"<em>Benutzer*in</em>, <em>Passwort</em>, and <em>Hinweis</em> gelten für die "
 "Sicherheitsstufen <em>Download</em> und <em>Gesicherte Anzeige</em>. Wenn "
-"ein Passwort vergeben ist, muss der Betrachter dieses eingeben, um das Bild "
-"ansehen zu können."
+"ein Passwort vergeben ist, müssen Betrachter*innen dieses eingeben, um das "
+"Bild ansehen zu können."
 
 #: zp-core/admin-options.php:2477
 msgid ""
@@ -4372,8 +4374,8 @@ msgid ""
 "Otherwise the zenphoto default lock image is displayed."
 msgstr ""
 "Ersetzt das Albumthumbnail bei passwortgeschützen Alben durch ein "
-"<em>Schlossbild</em>, wenn der Benutzer das Passwort nicht kennt. Wenn Ihr "
-"Theme über ein Bild namens <code>images/err-passwordprotected.png</code> "
+"<em>Schlossbild</em>, wenn  Benutzer*innen das Passwort nicht kennen. Wenn "
+"Ihr Theme über ein Bild namens <code>images/err-passwordprotected.png</code> "
 "verfügt, wird dieses angezeigt. Anderfalls wird Zenphotos "
 "Standardschlossbild angezeigt."
 
@@ -4717,8 +4719,8 @@ msgstr ""
 "Wenn diese Einstellung gesetzt ist, zeigt die Galerie Index URL, die "
 "normalerweise zur <code>index.php</code>-Seite des Themes zeigt, auf dieses "
 "Skript. Dies außerdem die <code>index.php</code>-Skriptseite frei, so dass "
-"Sie eine benutzerdefinierte <em>Homepage</em> nutzen können. Diese Option "
-"hat nur Auswirkung auf das Haupttheme Ihrer Galerie."
+"Sie eine individuell definierte <em>Homepage</em> nutzen können. Diese "
+"Option hat nur Auswirkung auf das Haupttheme Ihrer Galerie."
 
 #: zp-core/admin-options.php:2980
 msgid "<strong>Custom theme options</strong>"
@@ -4781,7 +4783,7 @@ msgid ""
 "<strong>Note:</strong> Login from the front-end user login form is secure "
 "only if <em>https</em> is selected."
 msgstr ""
-"<strong>Anmerkung:</strong> Das Anmelden mit den Theme-Benutzer-"
+"<strong>Anmerkung:</strong> Das Anmelden mit den Theme-Benutzer*in-"
 "Anmeldeformular ist nur sicher, wenn <em>https</em> aktiviert ist."
 
 #: zp-core/admin-options.php:3226
@@ -4863,15 +4865,16 @@ msgstr ""
 #: zp-core/admin-options.php:3275 zp-core/class-userdataexport.php:232
 #: zp-core/utilities/user-data-export.php:79
 msgid "User name"
-msgstr "Benutzername"
+msgstr "Benutzer*in-Name"
 
 #: zp-core/admin-options.php:3296
 msgid ""
 "If enabled guest logon forms will include the <em>User Name</em> field. This "
 "allows <em>Zenphoto</em> users to logon from the form."
 msgstr ""
-"Wenn aktiviert, enthalten Gast-Anmeldeformulare das <em>Benutzername</em>-"
-"Feld. Dies erlaubt <em>Zenphoto</em>-Benutzern über das Formular einzuloggen."
+"Wenn aktiviert, enthalten Gast-Anmeldeformulare das <em>Benutzer*in-Name</"
+"em>-Feld. Dies erlaubt <em>Zenphoto</em>-Benutzer*innen über das Formular "
+"einzuloggen."
 
 #: zp-core/admin-options.php:3298
 msgid ""
@@ -4879,7 +4882,7 @@ msgid ""
 "<em>Guest</em> passwords has a user name associated."
 msgstr ""
 "<strong>Anmerkung:</strong> Diese Feld ist erforderlich, wenn eines oder "
-"mehrere der <em>Gast</em>-Passworte einen Benutzernamen zugewiesen haben."
+"mehrere der <em>Gast</em>-Passworte einen Benutzer*in-Namen zugewiesen haben."
 
 #: zp-core/admin-options.php:3313
 msgid "Anonymize IP"
@@ -4968,7 +4971,7 @@ msgstr "Datenschutzseite"
 
 #: zp-core/admin-options.php:3363
 msgid "Custom page url"
-msgstr "Benutzerdefinierte Seiten-URL"
+msgstr "Individuell definierte Seiten-URL"
 
 #: zp-core/admin-options.php:3395
 msgid "Select a Zenpage page. * denotes unpublished page."
@@ -4980,7 +4983,7 @@ msgstr "Keine nutzbaren Seiten verfügbar"
 
 #: zp-core/admin-options.php:3406
 msgid "Custom link text"
-msgstr "Benutzerdefinierter Linktext"
+msgstr "Individuell definierter Linktext"
 
 #: zp-core/admin-options.php:3411
 msgid ""
@@ -5005,7 +5008,7 @@ msgid ""
 "Additionally you can define a custom text for the page link. If not set the "
 "default text <em>More info on our data privacy policy.</em> is used."
 msgstr ""
-"Zusätzlich können Sie benutzerdefinierten Text für dne Seitenlink "
+"Zusätzlich können Sie individuell definierten Text für dne Seitenlink "
 "definieren. Andernfalls wird der Standardtext <em>Mehr Info in unserer "
 "Datenschutzerklärung</em> verwendet."
 
@@ -5501,7 +5504,7 @@ msgstr "Duplizieren"
 
 #: zp-core/admin-thumbcrop.php:226
 msgid "Custom thumbnail cropping"
-msgstr "Benutzerdefinierter Thumbnailbeschnitt"
+msgstr "Individuell definierter Thumbnailbeschnitt"
 
 #: zp-core/admin-thumbcrop.php:227
 msgid ""
@@ -5667,7 +5670,7 @@ msgstr "Es gibt keine Alben, in die Sie hochladen können."
 #: zp-core/admin-users.php:146
 #, php-format
 msgid "%s email is already used by another user!"
-msgstr "%s E-Mail wird bereits von einem anderen Benutzer verwendet!"
+msgstr "%s E-Mail wird bereits von einer/einem anderen Benutzer*in verwendet!"
 
 #: zp-core/admin-users.php:157
 #, php-format
@@ -5678,7 +5681,7 @@ msgstr "%s Passwort darf nicht leer sein!"
 msgid ""
 "Password reset request.<br />You may now set admin usernames and passwords."
 msgstr ""
-"Passwort zurückgesetzt.<br/>Sie können nun Benutzernamen und Passwort "
+"Passwort zurückgesetzt.<br/>Sie können nun Benutzer*in-Namen und Passwort "
 "festlegen."
 
 #: zp-core/admin-users.php:315
@@ -5692,11 +5695,11 @@ msgstr "Zenphoto-Rechteübertragung fehlgeschlagen."
 
 #: zp-core/admin-users.php:422
 msgid "User id already used."
-msgstr "Diese Benutzer-ID wird bereits verwendet."
+msgstr "Diese Benutzer*in-ID wird bereits verwendet."
 
 #: zp-core/admin-users.php:432
 msgid "User name not provided"
-msgstr "Der Benutzername wurde nicht angegeben"
+msgstr "Der Benutzer*in-Name wurde nicht angegeben"
 
 #: zp-core/admin-users.php:445
 msgid "Your Website URL is not valid"
@@ -5737,36 +5740,36 @@ msgstr "Details verstecken"
 #: zp-core/admin-users.php:595
 #, php-format
 msgid "Show details for user %s"
-msgstr "Details für Benutzer %s anzeigen"
+msgstr "Details für Benutzer*in %s anzeigen"
 
 #: zp-core/admin-users.php:596
 #, php-format
 msgid "Hide details for user %s"
-msgstr "Details für Benutzer %s verstecken"
+msgstr "Details für Benutzer*in %s verstecken"
 
 #: zp-core/admin-users.php:606
 msgid "New User"
-msgstr "Neuer Benutzer"
+msgstr "Neue*r Benutzer*in"
 
 #: zp-core/admin-users.php:632
 msgid "Authenticate user"
-msgstr "Benutzer authentifizieren"
+msgstr "Benutzer*in authentifizieren"
 
 #: zp-core/admin-users.php:644
 msgid "Are you sure you want to delete this user?"
-msgstr "Sind Sie sicher, dass Sie diesen Benutzer löschen wollen?"
+msgstr "Sind Sie sicher, dass Sie diese*n Benutzer*in löschen wollen?"
 
 #: zp-core/admin-users.php:646
 msgid ""
 "This is the master user account. If you delete it another user will be "
 "promoted to master user."
 msgstr ""
-"Dies ist das Masterbenutzerkonto. Wenn Sie dieses löschen, wird eine anderer "
-"Benutzer zum Masterbenutzer."
+"Dies ist das Masterbenutzer’in-Konto. Wenn Sie dieses löschen, wird ein*e "
+"andere/r Benutzer*in zum Masterbenutzer."
 
 #: zp-core/admin-users.php:652
 msgid "Delete this user."
-msgstr "Diesen Benutzer löschen."
+msgstr "Benutzer*in löschen."
 
 #: zp-core/admin-users.php:676
 msgid ""
@@ -5807,9 +5810,9 @@ msgid ""
 "The primary album was created in association with the user. It will be "
 "removed if the user is deleted. Delinking the album removes this association."
 msgstr ""
-"Das Hauptalbum wurde in Verbindung mit dem Benutzer erstellt. Es wird "
-"entfernt, wenn der Benutzer gelöscht wird. Das Trennen des Albums entfernt "
-"diese Abhängigkeit."
+"Das Hauptalbum wurde in Verbindung mit dem/der Benutzer*in erstellt. Es wird "
+"entfernt, wenn der/die Benutzer*in gelöscht wird. Das Trennen des Albums "
+"entfernt diese Abhängigkeit."
 
 #: zp-core/admin-users.php:795
 msgid "The <em>master</em> account has full rights to all objects."
@@ -5823,8 +5826,8 @@ msgid ""
 "gain the new functionality this version provides."
 msgstr ""
 "Das <em>Zenphoto_Authority</em>-Objekt unterstützt eine höhere Version der "
-"Benutzerrechte als die dezeit ausgewählten. Sie möchten vielleicht die "
-"Benutzerrechte übertragen, um die neue Funktionalität dieser Version zu "
+"Nutzungsrechte als die dezeit ausgewählten. Sie möchten vielleicht die "
+"Nutzungsrechte übertragen, um die neue Funktionalität dieser Version zu "
 "nutzen."
 
 #: zp-core/admin-users.php:863
@@ -5837,7 +5840,7 @@ msgid ""
 "You may wish to revert the <em>Zenphoto_Authority</em> user rights to "
 "version %s for backwards compatibility with prior Zenphoto releases."
 msgstr ""
-"Sie möchten vielleicht die <em>Zenphoto_Authority</em>-Benutzerrechte  auf "
+"Sie möchten vielleicht die <em>Zenphoto_Authority</em>-Nutzungsrechte  auf "
 "Version %s für eine Rückwärtskompatibilät mit alten Zenphoto-Versionen "
 "zurücksetzen."
 
@@ -5847,12 +5850,13 @@ msgstr "Rechte wiederherstellen"
 
 #: zp-core/admin-users.php:894
 msgid "User names may not contain “?”, “&\", or quotation marks."
-msgstr "Benutzernamen dürfen “?”, “&\" oder Anführungszeichen nicht enthalten."
+msgstr ""
+"Benutzer*in-Namen dürfen “?”, “&\" oder Anführungszeichen nicht enthalten."
 
 #: zp-core/admin-users.php:899
 #, php-format
 msgid "The user “%s” already exists."
-msgstr "Der Benutzer „%s“ existiert bereits."
+msgstr "Benutzer*in „%s“ existiert bereits."
 
 #: zp-core/admin.php:68
 msgid "Image cache cleared."
@@ -6164,7 +6168,7 @@ msgstr[1] "<strong>%u</strong> Kommentare"
 #: zp-core/admin.php:713
 msgid "Your user rights do not allow access to administrative functions."
 msgstr ""
-"Ihre Benutzerrechte erlauben keinen Zugriff auf administrative Funktionen."
+"Ihre Nutzungsrrechte erlauben keinen Zugriff auf administrative Funktionen."
 
 #: zp-core/class-album.php:95
 msgid "An album object was instantiated without using the newAlbum() function."
@@ -6327,7 +6331,7 @@ msgstr "Datei-/Ordnername"
 
 #: zp-core/class-search.php:104
 msgid "Custom data"
-msgstr "Benutzerdefinierte Daten"
+msgstr "Individuell definierte Daten"
 
 #: zp-core/class-search.php:105
 msgid "Location/Place"
@@ -6382,16 +6386,16 @@ msgstr "Kategorien"
 #: zp-core/class-userdataexport.php:119
 #, php-format
 msgid "Personal user data export for %1$s"
-msgstr "Export persönliche Benutzerdaten für %1$s"
+msgstr "Export persönlicher Benutzer*innen-Daten für %1$s"
 
 #: zp-core/class-userdataexport.php:121
 #, php-format
 msgid "Personal user data export for %1$s and %2$s"
-msgstr "Export persönliche Benutzerdaten für %1$s und %2$s"
+msgstr "Export persönliche Benutzer*innen daten für %1$s und %2$s"
 
 #: zp-core/class-userdataexport.php:215
 msgid "Export user data"
-msgstr "Benutzerdaten exportieren"
+msgstr "Benutzer*innen-Daten exportieren"
 
 #: zp-core/class-userdataexport.php:217
 msgid "Export as HTML"
@@ -6407,7 +6411,7 @@ msgstr "Bericht  für"
 
 #: zp-core/class-userdataexport.php:233
 msgid "User mail"
-msgstr "Benutzermail"
+msgstr "Benutzer*in-Mail"
 
 #: zp-core/class-userdataexport.php:234
 #: zp-core/zp-extensions/contact_form.php:179
@@ -6418,11 +6422,11 @@ msgstr "Website"
 
 #: zp-core/class-userdataexport.php:247
 msgid "Gallery guest user"
-msgstr "Galerie-Gastbenutzer"
+msgstr "Galerie-Gastbenutzer*in"
 
 #: zp-core/class-userdataexport.php:264
 msgid "User account data"
-msgstr "Benutzerkonto-Daten"
+msgstr "Benutzer*in-Kontodaten"
 
 #: zp-core/class-userdataexport.php:288
 msgid "Security log entries"
@@ -6437,15 +6441,15 @@ msgstr "Kommentare"
 
 #: zp-core/class-userdataexport.php:345
 msgid "Album owner"
-msgstr "Albumbesitzer"
+msgstr "Albumbesitzer*in"
 
 #: zp-core/class-userdataexport.php:349
 msgid "Album guest user"
-msgstr "Album-Gastbenutzer"
+msgstr "Album-Gastbenutzer*in"
 
 #: zp-core/class-userdataexport.php:353
 msgid "Album last change user"
-msgstr "Benutzer der letzten Albumänderung"
+msgstr "Benutzer*in der letzten Albumänderung"
 
 #: zp-core/class-userdataexport.php:364 zp-core/class-userdataexport.php:420
 msgid "unpublished"
@@ -6458,15 +6462,15 @@ msgstr "geschützt"
 
 #: zp-core/class-userdataexport.php:391
 msgid "Image owner"
-msgstr "Bildbesitzer"
+msgstr "Bildbesitzer*in"
 
 #: zp-core/class-userdataexport.php:395
 msgid "Image guest user"
-msgstr "Bild-Gastbenutzer"
+msgstr "Bild-Gastbenutzer*in"
 
 #: zp-core/class-userdataexport.php:399
 msgid "Image last change user"
-msgstr "Benutzer der letzten Bildänderung"
+msgstr "Benutzer*in der letzten Bildänderung"
 
 #: zp-core/class-userdataexport.php:425
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:120
@@ -6483,11 +6487,11 @@ msgstr "Autor"
 
 #: zp-core/class-userdataexport.php:484
 msgid "last change user"
-msgstr "Benutzer der letzten Änderung"
+msgstr "Benutzer*in der letzten Änderung"
 
 #: zp-core/class-userdataexport.php:488
 msgid "guest user"
-msgstr "Gastbenutzer"
+msgstr "Gastbenutzer*in"
 
 #: zp-core/exif/exif.php:487
 msgid "1: Normal (0 deg)"
@@ -7537,31 +7541,31 @@ msgstr "FEHLER: Ihr Server hat keine Unterstützung für cURL."
 
 #: zp-core/functions-common.php:36
 msgid "ERROR"
-msgstr "ERROR"
+msgstr "FEHLER"
 
 #: zp-core/functions-common.php:37
 msgid "WARNING"
-msgstr "WARNING"
+msgstr "WARNUNG"
 
 #: zp-core/functions-common.php:38
 msgid "NOTICE"
-msgstr "NOTICE"
+msgstr "HINWEIS"
 
 #: zp-core/functions-common.php:39
 msgid "USER ERROR"
-msgstr "USER ERROR"
+msgstr "ANWENDUNGS-FEHLER"
 
 #: zp-core/functions-common.php:40
 msgid "USER WARNING"
-msgstr "USER WARNING"
+msgstr "BENUTZER*IN-WARNUNG"
 
 #: zp-core/functions-common.php:41
 msgid "USER NOTICE"
-msgstr "USER NOTICE"
+msgstr "ANWENDUNGS-HINWEIS"
 
 #: zp-core/functions-common.php:42
 msgid "STRICT NOTICE"
-msgstr "STRICT NOTICE"
+msgstr "STRENGER HINWEIS"
 
 #: zp-core/functions-common.php:53
 #, php-format
@@ -8862,8 +8866,8 @@ msgid ""
 "Check if you want <em>edit rights</em> automatically assigned when a user "
 "<em>primary album</em> is created."
 msgstr ""
-"Aktivieren, wenn Sie einem Benutzer automatisch<em>Bearbeiten-Rechte</em> "
-"zuweisen möchten, wenn ein <em>Primäralbum</em> erstellt wird."
+"Aktivieren, wenn Sie einem/er Benutzer*in automatisch<em>Bearbeiten-Rechte</"
+"em> zuweisen möchten, wenn ein <em>Primäralbum</em> erstellt wird."
 
 #: zp-core/lib-auth.php:117
 msgid "Minimum password strength"
@@ -8875,7 +8879,7 @@ msgid ""
 "Users must provide passwords a strength of at least %s. The repeat password "
 "field will be disabled until this floor is met."
 msgstr ""
-"Benutzer müssen ein Passwort mindestens mit der Stärke %s angeben. Das "
+"Benutzer*innen müssen ein Passwort mindestens mit der Stärke %s angeben. Das "
 "Wiederholenfeld ist bis dahin deaktiviert."
 
 #: zp-core/lib-auth.php:119
@@ -8897,7 +8901,7 @@ msgid ""
 "Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s "
 "and %3$s.)"
 msgstr ""
-"Benutzerrechte können nicht auf Version %1$s übertragen werden "
+"Nutzungsrechte können nicht auf Version %1$s übertragen werden "
 "(Zenphoto_Authority unterstützt nur %2$s und %3$s.)"
 
 #: zp-core/lib-auth.php:512 zp-core/lib-auth.php:527 zp-core/lib-auth.php:546
@@ -8941,7 +8945,8 @@ msgstr "Zenpage"
 
 #: zp-core/lib-auth.php:528 zp-core/lib-auth.php:547 zp-core/lib-auth.php:572
 msgid "Users with this right may view the admin overview page."
-msgstr "Benutzer mit diesem Recht können die Admin-Übersichtseite ansehen."
+msgstr ""
+"Benutzer*innen mit diesem Recht können die Admin-Übersichtseite ansehen."
 
 #: zp-core/lib-auth.php:529
 msgid ""
@@ -8950,18 +8955,19 @@ msgid ""
 "those checked in his managed object lists or as granted by View Search or "
 "View Gallery."
 msgstr ""
-"Benutzer mit diesem Recht können alles der Galerie ansehen, unabhängig von "
-"irgendwelchen Bildschutzeinstellungen. Ohne dieses Recht können Benutzer nur "
-"die öffentlichen, die, die in ihrer Verwaltungsliste ausgewählten, oder die "
-"von \"Suche ansehen\" und \"Galerie ansehen\" freigegebenen, ansehen."
+"Benutzer*innen mit diesem Recht können alles der Galerie ansehen, unabhängig "
+"von irgendwelchen Bildschutzeinstellungen. Ohne dieses Recht können "
+"Benutzer*innen nur die öffentlichen, die, die in ihrer Verwaltungsliste "
+"ausgewählten, oder die von \"Suche ansehen\" und \"Galerie ansehen\" "
+"freigegebenen, ansehen."
 
 #: zp-core/lib-auth.php:530 zp-core/lib-auth.php:557 zp-core/lib-auth.php:583
 msgid ""
 "Users with this right may upload to the albums for which they have "
 "management rights."
 msgstr ""
-"Benutzer mit diesem Recht können in die Alben, die in ihrer Verwaltungsliste "
-"angewählt sind, hochladen."
+"Benutzer*innen mit diesem Recht können in die Alben, die in ihrer "
+"Verwaltungsliste angewählt sind, hochladen."
 
 #: zp-core/lib-auth.php:531 zp-core/lib-auth.php:555 zp-core/lib-auth.php:581
 msgid ""
@@ -8969,28 +8975,29 @@ msgid ""
 "comment\" option is set, only users with this right may post comments."
 msgstr ""
 "Wenn das comment_form-Plugin für Kommentare verwendet wird und seine "
-"Einstellung \"Nur Mitglieder können kommentieren\" aktiviert ist, können nur "
-"Benutzer mit diesem Recht kommentieren."
+"Einstellung \"Nur Mitglieder*innen können kommentieren\" aktiviert ist, "
+"können nur Benutzer*innen mit diesem Recht kommentieren."
 
 #: zp-core/lib-auth.php:532 zp-core/lib-auth.php:556 zp-core/lib-auth.php:582
 msgid "Users with this right may make comments tab changes."
-msgstr "Benutzer mit diesem Recht können Kommentare bearbeiten."
+msgstr "Benutzer*innen mit diesem Recht können Kommentare bearbeiten."
 
 #: zp-core/lib-auth.php:533 zp-core/lib-auth.php:561 zp-core/lib-auth.php:587
 msgid "Users with this right may access the “albums” tab to make changes."
 msgstr ""
-"Benutzer mit diesem Recht können auf den „Alben“-Tab zugreifen, um "
+"Benutzer*innen mit diesem Recht können auf den „Alben“-Tab zugreifen, um "
 "Änderungen vorzunehmen."
 
 #: zp-core/lib-auth.php:534 zp-core/lib-auth.php:559 zp-core/lib-auth.php:585
 msgid "Users with this right may edit and manage Zenpage pages."
-msgstr "Benutzer mit diesem Recht können Zenpage Seiten verwalten."
+msgstr "Benutzer*innen mit diesem Recht können Zenpage Seiten verwalten."
 
 #: zp-core/lib-auth.php:535 zp-core/lib-auth.php:558 zp-core/lib-auth.php:584
 msgid ""
 "Users with this right may edit and manage Zenpage articles and categories."
 msgstr ""
-"Benutzer mit diesem Recht können Zenpage Artikel und Kategorien verwalten."
+"Benutzer*innen mit diesem Recht können Zenpage Artikel und Kategorien "
+"verwalten."
 
 #: zp-core/lib-auth.php:536 zp-core/lib-auth.php:560 zp-core/lib-auth.php:586
 msgid "Files"
@@ -9001,8 +9008,8 @@ msgid ""
 "Allows the user access to the “filemanager” located on the upload: files sub-"
 "tab."
 msgstr ""
-"Erlaubt dem Benutzer, den Dateimanager zu verwenden, der als Subtab auf dem "
-"Hochladen-Tag zu finden ist."
+"Erlaubt Benutzer*innen, den Dateimanager zu verwenden, der als Subtab auf "
+"dem Hochladen-Tag zu finden ist."
 
 #: zp-core/lib-auth.php:537
 msgid "Manage all pages"
@@ -9014,7 +9021,7 @@ msgid ""
 "objects to which they have been assigned. This right allows them to manage "
 "any Zenpage page."
 msgstr ""
-"Benutzer, die nicht über „Administrations“-Rechte verfügen, sind "
+"Benutzer*innen, die nicht über „Administrations“-Rechte verfügen, sind "
 "normalerweise darauf beschränkt, die Objekte zu verwalten, die ihnen "
 "zugewiesen sind. Diese Recht erlaubt ihnen jede Zenpage Seite zu verwalten."
 
@@ -9028,9 +9035,9 @@ msgid ""
 "objects to which they have been assigned. This right allows them to manage "
 "any Zenpage news article or category."
 msgstr ""
-"Benutzer ohne „Admin“-Rechte sind normalerweise auf die Objekte beschränkt, "
-"die ihnen zugewiesen wurden. Dieses Recht erlaubt es ihnen, alle Zenpage "
-"Artikel und Kategorien zu verwalten."
+"Benutzer*innen ohne „Admin“-Rechte sind normalerweise auf die Objekte "
+"beschränkt, die ihnen zugewiesen wurden. Dieses Recht erlaubt es ihnen, alle "
+"Zenpage Artikel und Kategorien zu verwalten."
 
 #: zp-core/lib-auth.php:539 zp-core/lib-auth.php:564 zp-core/lib-auth.php:590
 msgid ""
@@ -9038,34 +9045,34 @@ msgid ""
 "objects to which they have been assigned. This right allows them to manage "
 "any album in the gallery."
 msgstr ""
-"Benutzer ohne „Admin“-Rechte sind normalerweise auf die Objekte beschränkt, "
-"die ihnen zugewiesen wurden. Dieses Recht erlaubt es ihnen, alle Alben der "
-"Galerie zu verwalten."
+"Benutzer*innen ohne „Admin“-Rechte sind normalerweise auf die Objekte "
+"beschränkt, die ihnen zugewiesen wurden. Dieses Recht erlaubt es ihnen, alle "
+"Alben der Galerie zu verwalten."
 
 #: zp-core/lib-auth.php:540 zp-core/lib-auth.php:565 zp-core/lib-auth.php:592
 msgid ""
 "Users with this right may make themes related changes. These are limited to "
 "the themes associated with albums checked in their managed albums list."
 msgstr ""
-"Benutzer mit diesem Recht können themebezogene Änderungen vornehmen. Diese "
-"sind auf die Themes beschränkt, die Alben zugewiesen sind, die diesem "
-"Benutzer in seiner Verwaltungsliste zugewiesen sind."
+"Benutzer*innen mit diesem Recht können themebezogene Änderungen vornehmen. "
+"Diese sind auf die Themes beschränkt, die Alben zugewiesen sind, die diesem/"
+"dieser Benutzer*in in seiner Verwaltungsliste zugewiesen sind."
 
 #: zp-core/lib-auth.php:541 zp-core/lib-auth.php:566 zp-core/lib-auth.php:593
 msgid ""
 "Users with this right may make additions and changes to the set of tags."
-msgstr "Benutzer mit diesem Recht können Schlagwörter bearbeiten."
+msgstr "Benutzer*innen mit diesem Recht können Schlagwörter bearbeiten."
 
 #: zp-core/lib-auth.php:542 zp-core/lib-auth.php:567 zp-core/lib-auth.php:594
 msgid "Users with this right may make changes on the options tabs."
-msgstr "Benutzer mit diesem Recht können Einstellungen verändern."
+msgstr "Benutzer*innen mit diesem Recht können Einstellungen verändern."
 
 #: zp-core/lib-auth.php:543 zp-core/lib-auth.php:568 zp-core/lib-auth.php:595
 msgid ""
 "The master privilege. A user with \"Admin\" can do anything. (No matter what "
 "his other rights might indicate!)"
 msgstr ""
-"Das Masterrecht. Ein Benutzer hiermit kann alles machen (Egal, was die "
+"Das Masterrecht. Ein Benutzer*innen hiermit kann alles machen (Egal, was die "
 "anderen Rechte vorgeben!)"
 
 #: zp-core/lib-auth.php:548 zp-core/lib-auth.php:574
@@ -9076,7 +9083,7 @@ msgstr "Galerie ansehen"
 msgid ""
 "Users with this right may view otherwise protected generic gallery pages."
 msgstr ""
-"Benutzer mit diesem Recht können ansonsten geschützte Galerie-Seiten "
+"Benutzer*innen mit diesem Recht können ansonsten geschützte Galerie-Seiten "
 "betrachten."
 
 #: zp-core/lib-auth.php:549 zp-core/lib-auth.php:575
@@ -9086,8 +9093,8 @@ msgstr "Suche ansehen"
 #: zp-core/lib-auth.php:549 zp-core/lib-auth.php:575
 msgid "Users with this right may view search pages even if password protected."
 msgstr ""
-"Benutzer mit diesem Recht können Suchseiten betrachten, auch wenn diese "
-"passwortgeschützt sind."
+"Benutzer*innen mit diesem Recht können Suchseiten betrachten, auch wenn "
+"diese passwortgeschützt sind."
 
 #: zp-core/lib-auth.php:550 zp-core/lib-auth.php:576
 msgid "View fullimage"
@@ -9095,7 +9102,7 @@ msgstr "Originalbild ansehen"
 
 #: zp-core/lib-auth.php:550 zp-core/lib-auth.php:576
 msgid "Users with this right may view all full sized (raw) images."
-msgstr "Benutzer mit diesem Recht können die Originalbilder betrachten."
+msgstr "Benutzer*innen mit diesem Recht können die Originalbilder betrachten."
 
 #: zp-core/lib-auth.php:551 zp-core/lib-auth.php:552 zp-core/lib-auth.php:553
 #: zp-core/lib-auth.php:577 zp-core/lib-auth.php:578 zp-core/lib-auth.php:579
@@ -9104,15 +9111,17 @@ msgstr "Auf alle zugreifen"
 
 #: zp-core/lib-auth.php:551 zp-core/lib-auth.php:577
 msgid "Users with this right have access to all zenpage news articles."
-msgstr "Benutzer mit diesem Recht können auf alle Zenpage-Artikel zugreifen."
+msgstr ""
+"Benutzer*innen mit diesem Recht können auf alle Zenpage-Artikel zugreifen."
 
 #: zp-core/lib-auth.php:552 zp-core/lib-auth.php:578
 msgid "Users with this right have access to all zenpage pages."
-msgstr "Benutzer mit diesem Recht können auf alle Zenpage-Seiten zugreifen."
+msgstr ""
+"Benutzer*innen mit diesem Recht können auf alle Zenpage-Seiten zugreifen."
 
 #: zp-core/lib-auth.php:553 zp-core/lib-auth.php:579
 msgid "Users with this right have access to all albums."
-msgstr "Benutzer mit diesem Recht können auf alle Alben zugreifen."
+msgstr "Benutzer*innen mit diesem Recht können auf alle Alben zugreifen."
 
 #: zp-core/lib-auth.php:554 zp-core/lib-auth.php:580
 msgid "View unpublished"
@@ -9121,7 +9130,8 @@ msgstr "Unveröffentlichtes ansehen"
 #: zp-core/lib-auth.php:554 zp-core/lib-auth.php:580
 msgid "Users with this right will see all unpublished items."
 msgstr ""
-"Benutzer mit diesem Recht werden alle unveröffentlichten Einträge sehen."
+"Benutzer*innen mit diesem Recht werden alle unveröffentlichten Einträge "
+"sehen."
 
 #: zp-core/lib-auth.php:562 zp-core/lib-auth.php:563 zp-core/lib-auth.php:564
 #: zp-core/lib-auth.php:588 zp-core/lib-auth.php:589 zp-core/lib-auth.php:590
@@ -9131,11 +9141,12 @@ msgstr "Alle verwalten"
 #: zp-core/lib-auth.php:573 zp-core/lib-auth.php:917 zp-core/lib-auth.php:991
 #: zp-core/lib-auth.php:1062
 msgid "User"
-msgstr "Benutzer"
+msgstr "Benutzer*in"
 
 #: zp-core/lib-auth.php:573
 msgid "Users must have this right to change their credentials."
-msgstr "Benutzer benötigen dieses Recht, um ihre Einstellungen zu ändern."
+msgstr ""
+"Benutzer*innen benötigen dieses Recht, um ihre Einstellungen zu ändern."
 
 #: zp-core/lib-auth.php:591
 msgid "Codeblock"
@@ -9143,7 +9154,7 @@ msgstr "Codeblock"
 
 #: zp-core/lib-auth.php:591
 msgid "Users with this right may edit Codeblocks."
-msgstr "Benutzer mit diesem Recht können Codeblöcke bearbeiten."
+msgstr "Benutzer*innen mit diesem Recht können Codeblöcke bearbeiten."
 
 #: zp-core/lib-auth.php:602
 msgid "All rights"
@@ -9172,8 +9183,8 @@ msgid ""
 "Zenphoto gallery from a user who tried to log in as %s."
 msgstr ""
 "Sie erhalten diese E-Mail aufgrund einer Passwortresetanfrage auf Ihrer "
-"Zenphoto-Galerie aufgrund eines Benutzers, der sich als %s anzumelden "
-"versuchte."
+"Zenphoto-Galerie aufgrund eines/einer Benutzer*in, der/die sich als %s "
+"anzumelden versuchte."
 
 #: zp-core/lib-auth.php:737
 msgid "There was no one to which to send the reset request."
@@ -9209,11 +9220,12 @@ msgstr "Es ist ein Fehler beim Anmelden aufgetreten."
 #: zp-core/lib-auth.php:883
 msgid "Check your username and password and try again."
 msgstr ""
-"Überprüfen Sie Ihren Benutzer und Ihr Passwort und versuchen Sie es erneut."
+"Überprüfen Sie Ihr Benutzer’in-Namen und Ihr Passwort und versuchen Sie es "
+"erneut."
 
 #: zp-core/lib-auth.php:885
 msgid "Check password and try again."
-msgstr "Überprüfen Sie Ihr Benutzer-Passwort und versuchen Sie es erneut."
+msgstr "Überprüfen Sie Ihr Passwort und versuchen Sie es erneut."
 
 #: zp-core/lib-auth.php:894
 msgid "A reset request has been sent."
@@ -9256,9 +9268,9 @@ msgid ""
 "Enter your User ID and press <code>Refresh</code> to get your challenge "
 "question and/or get a link to request a reset by e-mail."
 msgstr ""
-"Geben Sie Ihre Benutzer-ID ein und drücken Sie auf  <code>Neuladen</code>, "
-"um Ihre Geheimfrage und/oder einen Link zum Zurücksetzen per E-Mail zu "
-"erhalten."
+"Geben Sie Ihre Benutzer*in-ID ein und klicken Sie auf  <code>Neuladen</"
+"code>, um Ihre Geheimfrage und/oder einen Link zum Zurücksetzen per E-Mail "
+"zu erhalten."
 
 #: zp-core/lib-auth.php:955 zp-core/lib-auth.php:956
 #: zp-core/zp-extensions/register_user/register_user_form.php:115
@@ -9307,8 +9319,8 @@ msgstr "Anmelden"
 #: zp-core/lib-auth.php:1088
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr ""
-"Ich habe meine <strong>Benutzer-ID</strong>/mein <strong>Passwort</strong> "
-"vergessen"
+"Ich habe meine <strong>Benutzer*in-ID</strong>/mein <strong>Passwort</"
+"strong> vergessen"
 
 #: zp-core/lib-auth.php:1155
 msgid "password strength weak"
@@ -9600,7 +9612,7 @@ msgstr "eine unbekannte Version"
 
 #: zp-core/reconfigure.php:135
 msgid "Setup re-run ignored by admin request."
-msgstr "Setup-Aufruf durch Administratoranweisung ignoriert."
+msgstr "Setup-Aufruf durch Administrator*innen-Anweisung ignoriert."
 
 #: zp-core/reconfigure.php:139
 msgid "Zenphoto has detected a change in your installation."
@@ -9657,8 +9669,8 @@ msgid ""
 "administrator or login with your administrator user account."
 msgstr ""
 "Sie haben nicht die Rechte, um das Setup auszuführen. Bitte kontaktieren Sie "
-"den Administrator der Site oder melden Sie sich mit einem Administrator-"
-"Benutzer an."
+"den/die Administrator*in der Site oder melden Sie sich mit einem Konto mit "
+"Administrationsrechten an."
 
 #: zp-core/rewrite.php:94
 #, php-format
@@ -9916,7 +9928,7 @@ msgstr "Setup Cookietest fehlgeschlagen"
 
 #: zp-core/setup/index.php:397
 msgid "Post of Database credentials"
-msgstr "Datenbank-Benutzerdaten"
+msgstr "Datenbank-Zugangsdaten"
 
 #: zp-core/setup/index.php:410
 #, php-format
@@ -10636,7 +10648,7 @@ msgid ""
 "<code>password</code>, etc. in your configuration file and <strong>setup</"
 "strong> is not able to write to the file."
 msgstr ""
-"Sie haben den <strong>Datenbank</strong>-<code>Benutzer</code>, <code>-"
+"Sie haben den <strong>Datenbank</strong>-<code>Benutzer*in</code>, <code>-"
 "Passwort</code> etc. in Ihrer<code>zp-config.php</code>-Datei nicht korrekt "
 "eingetragen, so dass <strong>setup</strong> die Datei nicht aktualisieren "
 "kann."
@@ -10763,7 +10775,7 @@ msgstr "Datenbank-<code>Zugriffsrechte</code> für <em>%1$s</em> [%2$s]"
 #: zp-core/setup/index.php:1150
 #, php-format
 msgid "Your Database user must have %s rights."
-msgstr "Ihr Datenbank-Benutzer muß über %s Rechte verfügen."
+msgstr "Ihr/e Datenbank-Benutzer*in muß über %s Rechte verfügen."
 
 #: zp-core/setup/index.php:1167
 msgid "<em>SHOW TABLES</em> [found no tables]"
@@ -11202,8 +11214,8 @@ msgstr "Installation fehlgeschlagen."
 #: zp-core/setup/index.php:1656 zp-core/setup/index.php:2734
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
-"Sie müssen über<em>Benutzerverwaltungsrechte</em> verfügen, um setup "
-"ausführen zu können."
+"Sie müssen über<em>Administrationsrechte</em> verfügen, um setup ausführen "
+"zu können."
 
 #: zp-core/setup/index.php:1658 zp-core/setup/index.php:2736
 msgid "You must be logged in to run setup."
@@ -11288,15 +11300,16 @@ msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
 "\"%2$s\">run backup-restore</a>"
 msgstr ""
-"Sie können entweder Ihren <a href=\"%1$s\">Benutzernamen und Ihr Passwort "
-"definieren</a> oder die <a href=\"%2$s\">Backup-Wiederherstellung</a> "
-"ausführen"
+"Sie können entweder Ihren <a href=\"%1$s\">Benutzer*innen-Namen und Ihr "
+"Passwort definieren</a> oder die <a href=\"%2$s\">Backup-Wiederherstellung</"
+"a> ausführen"
 
 #: zp-core/setup/index.php:2587
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr ""
-"Sie müssen Ihren <a href=\"%1$s\">Benutzernamen und Ihr Passwort setzen</a>"
+"Sie müssen Ihren <a href=\"%1$s\">Benutzer*innen-Namen und Ihr Passwort "
+"setzen</a>"
 
 #: zp-core/setup/index.php:2593
 #, php-format
@@ -11384,15 +11397,15 @@ msgstr "Mod_rewrite"
 
 #: zp-core/setup/setup-option-defaults.php:263
 msgid "Users with full privileges"
-msgstr "Benutzer mit vollen Privilegien"
+msgstr "Benutzer*in mit vollen Privilegien"
 
 #: zp-core/setup/setup-option-defaults.php:272
 msgid "Users allowed only to view zenphoto objects"
-msgstr "Benutzern ist nur erlaubt, Zenphoto-Objekte anzusehen"
+msgstr "Benutzer*innen ist nur erlaubt, Zenphoto-Objekte anzusehen"
 
 #: zp-core/setup/setup-option-defaults.php:281
 msgid "Banned users"
-msgstr "Gebannte Benutzer"
+msgstr "Gebannte Benutzer*innen"
 
 #: zp-core/setup/setup-option-defaults.php:290
 msgid "Managers of one or more albums"
@@ -11400,11 +11413,11 @@ msgstr "Verwalter von einem oder mehreren Alben"
 
 #: zp-core/setup/setup-option-defaults.php:299
 msgid "Default user settings"
-msgstr "Standard-Benutzer-Einstellungen"
+msgstr "Standard-Benutzer*in-Einstellungen"
 
 #: zp-core/setup/setup-option-defaults.php:308
 msgid "Newly registered and verified users"
-msgstr "Neu registrierte und bestätigte Benutzer"
+msgstr "Neu registrierte und bestätigte Benutzer*innen"
 
 #: zp-core/setup/setup-option-defaults.php:334
 msgid "Setting theme default options"
@@ -11443,7 +11456,7 @@ msgstr "%s (experimentell)"
 
 #: zp-core/setup/setup-sqlform.php:72
 msgid "Database user"
-msgstr "Datenbankbenutzer"
+msgstr "Datenbankbenutzer*in"
 
 #: zp-core/setup/setup-sqlform.php:77
 msgid "Database password"
@@ -12410,17 +12423,17 @@ msgstr "Alle Alben umstellen auf"
 
 #: zp-core/utilities/user-data-export.php:15
 msgid "User data export"
-msgstr "Benutzerdaten exportieren"
+msgstr "Benutzer*innen-Daten exportieren"
 
 #: zp-core/utilities/user-data-export.php:19
 msgid "Lists and exports data stored about a specific user and email address."
 msgstr ""
-"Listed und exportiert Daten über einen bestimmten Benutzer und eine "
+"Listed und exportiert Daten über einen/eine bestimmten Benutzer*in und eine "
 "Mailadresse."
 
 #: zp-core/utilities/user-data-export.php:35
 msgid "You must supply a user name and/or mail address."
-msgstr "Sie müssen einen Benutzernamen und/oder E-Mail-Adresse eingeben."
+msgstr "Sie müssen einen Benutzer*in-Namen und/oder E-Mail-Adresse eingeben."
 
 #: zp-core/utilities/user-data-export.php:43
 #, php-format
@@ -12437,8 +12450,9 @@ msgid ""
 "This tool helps to export possible personal user data if requested. It does "
 "not delete any data. This covers the following data:"
 msgstr ""
-"Diese Werkzeug hilft, mögliche personenbezogene Benutzerdaten zu exportieren "
-"wenn erforderlich. Es löscht keine Daten. Es deckt folgende Daten ab:"
+"Diese Werkzeug hilft, mögliche personenbezogene Benutzer*innen-Daten zu "
+"exportieren wenn erforderlich. Es löscht keine Daten. Es deckt folgende "
+"Daten ab:"
 
 #: zp-core/utilities/user-data-export.php:67
 msgid ""
@@ -12446,13 +12460,13 @@ msgid ""
 "address</em>). This exports the full data of an account as stored in the "
 "database if a match exists."
 msgstr ""
-"<strong>Benutzerkonto</strong> (<em>Benutzername</em> und <em>Mailadresse</"
-"em>). Dies exportiert die kompletten Daten eine Kontos wie sie in der "
-"Datenbank gespeichert sind."
+"<strong>Benutzer’innen-Konto</strong> (<em>Benutzer*in-Name</em> und "
+"<em>Mailadresse</em>). Dies exportiert die kompletten Daten eine Kontos wie "
+"sie in der Datenbank gespeichert sind."
 
 #: zp-core/utilities/user-data-export.php:68
 msgid "<strong>Securitylog</strong> (<em>user name</em>)."
-msgstr "<strong>Sicherheitsprotokoll</strong> (<em>Benutzername</em>)."
+msgstr "<strong>Sicherheitsprotokoll</strong> (<em>Benutzer*in-Name</em>)."
 
 #: zp-core/utilities/user-data-export.php:69
 msgid ""
@@ -12462,12 +12476,12 @@ msgid ""
 "name accidentally. Site owners should check this before handing over data "
 "especially if these were non public comments."
 msgstr ""
-"<strong>Kommentare</strong> (<em>Benutzername</em> und <em>E-Mail-adresse</"
-"em>). Beachten Sie, dass das Ergebnis nicht so verlässlich sein kann, wenn "
-"Sie keine Mailadresse mitangeben da es auch ohne Benutzerkonto möglich ist "
-"zu kommentieren und zufällig der selbe Name genutzt worden sein könnte. Site-"
-"Besitzer sollte dies überprüfen bevor sie Daten übergeben insbesondere, wenn "
-"dies keine öffentlichen Kommentare waren. ."
+"<strong>Kommentare</strong> (<em>Benutzer*in-Name</em> und <em>E-Mail-"
+"adresse</em>). Beachten Sie, dass das Ergebnis nicht so verlässlich sein "
+"kann, wenn Sie keine Mailadresse mitangeben da es auch ohne Benutzer*in-"
+"Konto möglich ist zu kommentieren und zufällig der selbe Name genutzt worden "
+"sein könnte. Site-Besitzer*innen sollte dies überprüfen bevor sie Daten "
+"übergeben insbesondere, wenn dies keine öffentlichen Kommentare waren. ."
 
 #: zp-core/utilities/user-data-export.php:70
 msgid ""
@@ -12476,16 +12490,17 @@ msgid ""
 "or created the album but technically any user can be assigned as owner later "
 "on. There is no history stored about that."
 msgstr ""
-"<strong>Alben- und Bilderbesitzer</strong> (<em>Benutzername</em>) "
-"(ausgenommen Bilder aus dynamischen Alben). Der Besitzer kann der Benutzer "
-"sein, der das Bild hochgeladen oder das Album erstellt hat, technisch kann "
-"jedoch nachträglich auch ein andere Benutzer zugewiesen werden. Ein Verlauf "
-"dazu wird nicht gespeichert."
+"<strong>Alben- und Bilderbesitzer*in</strong> (<em>Benutzer*in-Name</em>) "
+"(ausgenommen Bilder aus dynamischen Alben). Besitzer *in kann der/die "
+"Benutzer*in sein, der das Bild hochgeladen oder das Album erstellt hat, "
+"technisch kann jedoch nachträglich auch einem/einer anderen Benutzer*in "
+"zugewiesen werden. Ein Verlauf dazu wird nicht gespeichert."
 
 #: zp-core/utilities/user-data-export.php:71
 msgid "<strong>All items guest user</strong> (<em>user name</em>)"
 msgstr ""
-"<strong>Gastbenutzer bei allen Inhaltstypen</strong> (<em>Benutzername</em>)"
+"<strong>Gastbenutzer*in bei allen Inhaltstypen</strong> (<em>Benutzer*in-"
+"Name</em>)"
 
 #: zp-core/utilities/user-data-export.php:72
 msgid ""
@@ -12495,10 +12510,11 @@ msgid ""
 "change author is only that. There is no history stored about that."
 msgstr ""
 "<strong>Zenpage-Seiten and Neuigkeiten-Autoren und -Autoren der letzten "
-"Änderung</strong> (<em>Benutzername</em>). Hier gilt das Selbe wie bei den "
-"oben erwähnten Besitzern. Der Autor kann den EIntrag erstellt haben, es kann "
-"aber auch nachträglich geändert worden sein. Der Autor der letzten Änderung "
-"ist genau das. Ein Verlauf dazu wird nicht gespeichert."
+"Änderung</strong> (<em>Benutzer*in-Name</em>). Hier gilt das Selbe wie bei "
+"den oben erwähnten Besitzer*innen. Der/die Autor*in kann den EIntrag "
+"erstellt haben, es kann aber auch nachträglich geändert worden sein. Der/die "
+"Autor*in der letzten Änderung ist genau das. Ein Verlauf dazu wird nicht "
+"gespeichert."
 
 #: zp-core/utilities/user-data-export.php:74
 msgid ""
@@ -12517,7 +12533,7 @@ msgstr ""
 
 #: zp-core/utilities/user-data-export.php:80
 msgid "User email address"
-msgstr "Benutzer-Mailadresse"
+msgstr "Benutzer*in-Mailadresse"
 
 #: zp-core/utilities/user-data-export.php:82
 msgid ""
@@ -12526,10 +12542,10 @@ msgid ""
 "just getting commenters there might be no user name or no mail address "
 "provided depending on your comment_form plugin settings."
 msgstr ""
-"Sie können entweder den Benutzernamen oder die Benutzer-Mailadresse oder "
-"beide angeben. Für zuverlässigere Ergebnisse für registrierte Benutzer sind "
-"beide empfohlen. Bei  Kommentatoren ist möglicherweise kein Benutzername "
-"oder keine Mailadresse angegehen, was von Ihren Einstellungen im "
+"Sie können entweder den Benutzer*in-Namen oder die Benutzer*in-Mailadresse "
+"oder beide angeben. Für zuverlässigere Ergebnisse für registrierte "
+"Benutzer*innen sind beide empfohlen. Bei  Kommentator*innen ist "
+"möglicherweise beides nicht angegehen, was von Ihren Einstellungen im "
 "comment_form-Plugin abhängig ist."
 
 #: zp-core/zp-extensions/GoogleMap.php:23
@@ -12705,8 +12721,8 @@ msgstr ""
 msgid ""
 "You can try a different browser or contact the site manager for assistance."
 msgstr ""
-"Sie können einen anderen Browser verwenden oder kontaktieren Sie den "
-"Websitebesitzer."
+"Sie können einen anderen Browser verwenden oder kontaktieren Sie den/die "
+"Websitebesitzer*in."
 
 #: zp-core/zp-extensions/GoogleMap/Map.php:111
 msgid "If you are the manager of this site you can try the following:"
@@ -12790,11 +12806,11 @@ msgstr "Auswählen, um ein sicheres Protokoll zu aktivieren."
 
 #: zp-core/zp-extensions/PHPMailer.php:61
 msgid "Mail user"
-msgstr "Mailbenutzer"
+msgstr "Mailbenutzer*in"
 
 #: zp-core/zp-extensions/PHPMailer.php:62
 msgid "<em>User ID</em> for mail server."
-msgstr "<em>Benutzer-ID</em> für den Mailserver."
+msgstr "<em>Benutzer*in-ID</em> für den Mailserver."
 
 #: zp-core/zp-extensions/PHPMailer.php:63
 msgid "Mail password"
@@ -12831,8 +12847,8 @@ msgid ""
 "Allows only users with Admin or Manage All rights to change the publish "
 "state of objects."
 msgstr ""
-"Erlaubt nur Benutzern mit Administrations- oder Alle verwalten-Rechten den "
-"Veröffentlichungsstatus von Einträgen zu ändern."
+"Erlaubt nur Benutzer*innen mit Administrations- oder Alle verwalten-Rechten "
+"den Veröffentlichungsstatus von Einträgen zu ändern."
 
 #: zp-core/zp-extensions/admin-approval.php:40
 msgid "You do not have rights to change the <em>publish</em> state."
@@ -13024,7 +13040,7 @@ msgid ""
 "custom cropped 85px thumbnail with watermark."
 msgstr ""
 "<code>photo_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: Ein "
-"benutzerdefiniert beschnittenes 85px Thumbnail mit Wasserzeichen."
+"individuell definiert beschnittenes 85px Thumbnail mit Wasserzeichen."
 
 #: zp-core/zp-extensions/cacheManager.php:160
 msgid ""
@@ -13034,9 +13050,9 @@ msgid ""
 "<code>getCustomImageURL()</code> comment block for details on these fields."
 msgstr ""
 "Wenn ein Feld nicht in Dateinamen der zwischengespeicherten Datei auftaucht, "
-"lassen Sie es leer. Benutzerdefinierte Beschnitte Custom crops (solche mit "
-"cx und cy) können nicht so einfach zwischengespeichert werden, da jedes Bild "
-"individuelle Werte hat. Bitte lesen Sie den Kommentar der Funktion "
+"lassen Sie es leer. Individuell definierte Beschnitte Custom crops (solche "
+"mit cx und cy) können nicht so einfach zwischengespeichert werden, da jedes "
+"Bild individuelle Werte hat. Bitte lesen Sie den Kommentar der Funktion "
 "<em>template-functions</em>::<code>getCustomImageURL()</code> für mehr "
 "Informationen dazu."
 
@@ -13954,10 +13970,10 @@ msgid ""
 "Colorbox theme."
 msgstr ""
 "Das Colorbox-Skript enthält 5 Beispielthemes, die Sie hier auswählen können. "
-"Wenn Sie <em>benutzerdefiniert (Theme intern) </em> auswählen, müssen Sie "
-"einen Ordner <em>colorbox_js</em> mit einer <em>colorbox.css</em>-Datei "
+"Wenn Sie <em>indidivuell definiert (Theme intern) </em> auswählen, müssen "
+"Sie einen Ordner <em>colorbox_js</em> mit einer <em>colorbox.css</em>-Datei "
 "sowie einem Ordner <em>images</em> innerhalb Ihres Themes plazieren, um ein "
-"benutzerdefiniertes Colorbox-Theme verwenden zu können."
+"individuell definiertes Colorbox-Theme verwenden zu können."
 
 #: zp-core/zp-extensions/comment_form.php:18
 msgid "Provides a unified comment handling facility."
@@ -14080,7 +14096,8 @@ msgstr "Nur Mitglieder können kommentieren"
 
 #: zp-core/zp-extensions/comment_form.php:163
 msgid "If checked, only logged in users will be allowed to post comments."
-msgstr "Wenn ausgewählt, können nur angemeldete Benutzer Kommentare verfassen."
+msgstr ""
+"Wenn ausgewählt, können nur angemeldete Benutzer*innen Kommentare verfassen."
 
 #: zp-core/zp-extensions/comment_form.php:164
 msgid "Allow private postings"
@@ -14166,7 +14183,7 @@ msgid ""
 "storage and handling by your site. This is recommend to comply with the "
 "European GDPR."
 msgstr ""
-"Wenn ausgewählt wird eine Pflicht-Checkbox hinzugefügt, bei der Benutzer "
+"Wenn ausgewählt wird eine Pflicht-Checkbox hinzugefügt, bei Benutzer*innen "
 "bestätigen müssen, dass sie mit der Datenspeicherung und -Nutzung auf Ihrer "
 "Site einverstanden sind. Dies wird empfohlen, um z.B. der DSVGO zu "
 "entsprechen."
@@ -14206,7 +14223,7 @@ msgstr "zu"
 
 #: zp-core/zp-extensions/comment_form.php:369
 msgid "Only registered users may post comments."
-msgstr "Nur regisitrierte Benutzer können kommentieren."
+msgstr "Nur regisitrierte Benutzer*innen können kommentieren."
 
 #: zp-core/zp-extensions/comment_form.php:444
 msgid "Closed for comments."
@@ -14665,8 +14682,8 @@ msgid ""
 "the custom fields defined by the <em>%2$s</em> plugin."
 msgstr ""
 "Sie müssen <a href=\"%1$s\">Setup</a> erneut ausführen, um die Datenbank mit "
-"den durch das <em>%2$s</em>-Plugin definierten benutzerdefinierten Felder zu "
-"aktualisieren."
+"den durch das <em>%2$s</em>-Plugin definierten individuell definierten "
+"Felder zu aktualisieren."
 
 #: zp-core/zp-extensions/contact_form.php:18
 msgid ""
@@ -15080,7 +15097,7 @@ msgstr "Theme"
 
 #: zp-core/zp-extensions/cookieconsent.php:76
 msgid "custom"
-msgstr "benutzerdefiniert"
+msgstr "individuell definiert"
 
 #: zp-core/zp-extensions/cookieconsent.php:78
 msgid ""
@@ -15088,9 +15105,9 @@ msgid ""
 "popup container as a CSS class in the form of .cc-style-THEME_NAME. Users "
 "can create their own themes."
 msgstr ""
-"Dies sind die enthaltenen Standardthemes. Benutzer können Ihre eigene Themes "
-"hinzufügen. Der gewählte Themename wird dem Popupcontainer als Klassennamen "
-"in der Form .cc-style-THEME_NAME hinzugefügt."
+"Dies sind die enthaltenen Standardthemes. Benutzer*innen können Ihre eigene "
+"Themes hinzufügen. Der gewählte Themename wird dem Popupcontainer als "
+"Klassennamen in der Form .cc-style-THEME_NAME hinzugefügt."
 
 #: zp-core/zp-extensions/cookieconsent.php:79
 msgid "Position"
@@ -15363,7 +15380,7 @@ msgstr "In Themes"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:51
 msgid "In User plugins"
-msgstr "In Benutzer-Plugins"
+msgstr "In Benutzer*innen-Plugins"
 
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:57
 msgid "In Zenphoto code"
@@ -15510,12 +15527,13 @@ msgstr ""
 
 #: zp-core/zp-extensions/downloadList.php:90
 msgid "User rights"
-msgstr "Benutzerrechte"
+msgstr "Nutzungsrechte"
 
 #: zp-core/zp-extensions/downloadList.php:92
 msgid "Check if users are required to have <em>file</em> rights to download."
 msgstr ""
-"Auswählen, wenn Benutzer <em>Datei</em>-Rechte zum Downloaden benötigen."
+"Auswählen, wenn Benutzer*innen <em>Datei</em>-Rechte zum Downloaden "
+"benötigen."
 
 #: zp-core/zp-extensions/downloadList.php:95
 msgid "credentials"
@@ -15537,11 +15555,12 @@ msgstr "Passwort:"
 #: zp-core/zp-extensions/downloadList.php:127
 #: zp-core/zp-extensions/zenpage/admin-edit.php:501
 msgid "Guest user:"
-msgstr "Gastbenutzer:"
+msgstr "Gastbenutzer*in:"
 
 #: zp-core/zp-extensions/downloadList.php:164
 msgid "You must supply a password for the DownloadList user"
-msgstr "Sie müssen eine Passwort für den DownloadList-Benutzer eingegeben"
+msgstr ""
+"Sie müssen eine Passwort für den/die DownloadList-Benutzer*in eingegeben"
 
 #: zp-core/zp-extensions/downloadList.php:166
 msgid "Your DownloadList passwords were empty or did not match"
@@ -15791,7 +15810,7 @@ msgstr "Backup-Dateien (%s)"
 #: zp-core/zp-extensions/email-newuser.php:12
 msgid "Emails a password reset request to a newly created user."
 msgstr ""
-"Schickt dem neuerstellten Benutzer eine Mail mit einer Passwort-Reset-"
+"Schickt  neu erstellten Benutzer*innen eine Mail mit einer Passwort-Reset-"
 "Anforderung."
 
 #: zp-core/zp-extensions/email-newuser.php:26
@@ -15800,7 +15819,7 @@ msgid ""
 "You are receiving this e-mail because a user code (%1$s) has been created "
 "for you on the Zenphoto gallery %2$s."
 msgstr ""
-"Sie erhalten diese E-Mail, da ein Benutzercode (%1$s) für Sie auf der "
+"Sie erhalten diese E-Mail, da ein Benutzer*innen-Code (%1$s) für Sie auf der "
 "Zenphoto-Galerie %2$s erstellt wurde."
 
 #: zp-core/zp-extensions/email-newuser.php:27
@@ -15815,11 +15834,11 @@ msgstr "Diese Ticket wird verfällt automatisch in 3 Tagen."
 
 #: zp-core/zp-extensions/email-newuser.php:29
 msgid "Zenphoto user created"
-msgstr "Zenphoto-Benutzer erstellt"
+msgstr "Zenphoto-Benutzer*in erstellt"
 
 #: zp-core/zp-extensions/email-newuser.php:42
 msgid "New users will be mailed a password set link"
-msgstr "Neuen Benutzern wird ein Link zum Setzen des Passwortes gemailt"
+msgstr "Neuen Benutzer*innen wird ein Link zum Setzen des Passwortes gemailt"
 
 #: zp-core/zp-extensions/exampleMacros.php:10
 msgid "Adds example macros."
@@ -15864,8 +15883,8 @@ msgid ""
 "Provides text for a link to a \"custom\" script page indicated by a linktext "
 "(<code>%1</code>) and a custom page (<code>%2</code>)."
 msgstr ""
-"Stellt Text für benutzerdefinierten Link mit Linktext( (<code>%1</code>) und "
-"der benutzerdefinierten Seite (<code>%1</code>)."
+"Stellt Text für individuell definierten Link mit Linktext( (<code>%1</code>) "
+"und der individuell definierten Seite (<code>%1</code>)."
 
 #: zp-core/zp-extensions/exampleMacros.php:58
 msgid "The PARAM_DUMP macro was passed the following:"
@@ -15903,7 +15922,8 @@ msgstr "Mehrfache Sets"
 #: zp-core/zp-extensions/favoritesHandler.php:97
 msgid "If enabled a user may have multiple (named) favorites."
 msgstr ""
-"Wenn aktiviert, kann ein Benutzer mehrere (betitelte) Favoritenlisten haben."
+"Wenn aktiviert, können Benutzer*innen mehrere (betitelte) Favoritenlisten "
+"haben."
 
 #: zp-core/zp-extensions/favoritesHandler.php:98
 msgid "Add button"
@@ -15939,7 +15959,7 @@ msgstr "<p class=\"notebox\">Favoriten erfordern <code>mod_rewrite</code>.</p>"
 
 #: zp-core/zp-extensions/favoritesHandler/favoritesClass.php:112
 msgid "Users watching:"
-msgstr "Beobachtende Benutzer:"
+msgstr "Beobachtende Benutzer*innen:"
 
 #: zp-core/zp-extensions/flag_thumbnail.php:24
 msgid "Overlay icons over thumbnails to indicate image status."
@@ -16371,7 +16391,7 @@ msgid ""
 "name here."
 msgstr ""
 "Wenn Sie Twitter card meta tags aktiviert haben, geben Sie hier Ihren "
-"Twitter-Benutzernamen ein."
+"Twitter-Benutzer*innen-Namen ein."
 
 #: zp-core/zp-extensions/html_meta_tags.php:141
 msgid "Open graph image - width"
@@ -16920,8 +16940,8 @@ msgstr ""
 "die Skins HTML/CSS basiert sind, können bei bestimmten Themes "
 "Darstellungsfeher auftauchen, die manuell angepaßt werden müssen. Die beiden "
 "Zenphoto-Skins sind responsiv bezüglich der Breite. Platzieren Sie dazu Ihre "
-"benutzerdefinierten Skins innerhalb des /plugins-Ordners. Bitte lesen Sie "
-"die Plugindokumentation dazu."
+"individuell definierten Skins innerhalb des /plugins-Ordners. Bitte lesen "
+"Sie die Plugindokumentation dazu."
 
 #: zp-core/zp-extensions/jplayer.php:255
 #, php-format
@@ -17139,8 +17159,8 @@ msgstr "Admin-Tracking aktivieren"
 msgid ""
 "Controls if you want Matomo to track users with <code>Admin</code> rights."
 msgstr ""
-"Kontrolliert, wenn Sie möchten, dass Matomo auch Benutzer mit <code>Admin</"
-"code>-Rechten trackt."
+"Kontrolliert, wenn Sie möchten, dass Matomo auch Benutzer*innen mit "
+"<code>Admin</code>-Rechten trackt."
 
 #: zp-core/zp-extensions/matomo.php:99
 msgid "Content tracking"
@@ -17274,8 +17294,8 @@ msgid ""
 "A menu creation facility. The <em>Menu</em> tab admin interface lets you "
 "create arbitrary menu trees."
 msgstr ""
-"Ein Menüerstellungswerkzeug, mit dem Sie benutzerdefinierte, verschachtelte "
-"Menüs erstellen können."
+"Ein Menüerstellungswerkzeug, mit dem Sie individuell definierte, "
+"verschachtelte Menüs erstellen können."
 
 #: zp-core/zp-extensions/menu_manager.php:52
 #: zp-core/zp-extensions/print_album_menu.php:55
@@ -17543,7 +17563,7 @@ msgstr "Zenpage Kategorie-Menüeintrag  <em>%s</em> hinzugefügt"
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:570
 #, php-format
 msgid "Custom page menu item <em>%s</em> added"
-msgstr "Benutzerdefinierte Seiten-Menüeintrag <em>%s</em> hinzugefügt"
+msgstr "Individuell definierte Seiten-Menüeintrag <em>%s</em> hinzugefügt"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:567
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:589
@@ -17556,7 +17576,7 @@ msgstr "Sie haben vergessen, eine <strong>Funktion</strong> einzugeben!"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:579
 msgid "Custom label added"
-msgstr "Benutzerdefiniertes Label hinzugefügt"
+msgstr "Individuell definiertes Label hinzugefügt"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:592
 #, php-format
@@ -17587,7 +17607,7 @@ msgstr "Menüeintrag aktualisiert!"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:784
 msgid "Custom menu item successfully deleted!"
-msgstr "Benutzerdefinierter Menüeintrag erfolgreich gelöscht!"
+msgstr "Individuell definierter Menüeintrag erfolgreich gelöscht!"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:55
 msgid "Menu item deleted failed"
@@ -17657,7 +17677,7 @@ msgstr ""
 "<strong>WICHTIG:</strong> Die Reihenfolge dieses Menüs ist vollständig "
 "unabhängig von irgendeiner Reihenfolge der Alben oder Seiten, die auf "
 "anderen Verwaltungsseiten eingestellt ist. Es wird empfohlen, dies vorallem "
-"mit benutzerdefinierten Themes zu verwenden, die nicht die "
+"mit individuell definierten Themes zu verwenden, die nicht die "
 "Themestandardstruktur aufweisen. Standard-Zenphoto -Funktionen wie die "
 "breadcrumb-Funktionen oder die next_album()-Schleife berücksichtigen die "
 "Struktur dieses Menüs NICHT!"
@@ -17800,13 +17820,13 @@ msgstr "Erstellt einen Link zu einer Zenpage Kategorie."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:141
 msgid "Custom page"
-msgstr "Benutzerdefinierte Seite"
+msgstr "Individuell definierte Seite"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:142
 msgid ""
 "Creates a link to a custom theme page as described in the theming tutorial."
 msgstr ""
-"Erstellt einen Link zu einer benutzerdefinierten Seite wie im Theming "
+"Erstellt einen Link zu einer individuell definierten Seite wie im Theming "
 "Tutorial beschrieben."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:143
@@ -17817,7 +17837,7 @@ msgstr "Skriptseite"
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:269
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:147
 msgid "Custom link"
-msgstr "Benutzerdefinierter Link"
+msgstr "Individuell definierter Link"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:149
 msgid ""
@@ -17856,7 +17876,7 @@ msgstr "HTML"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:173
 msgid "Inserts custom HTML."
-msgstr "Fügt benutzerdefiniertes HTML ein."
+msgstr "Fügt individuell definiertes HTML ein."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:212
 msgid "Menu Manager: Edit Menu Item"
@@ -17876,7 +17896,7 @@ msgstr "Alle Zenpage Kategorien"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:268
 msgid "Custom theme page"
-msgstr "Benutzerdefinierte Themeseite"
+msgstr "Individuell definierte Themeseite"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:299
 #, php-format
@@ -18147,7 +18167,7 @@ msgid ""
 "context or custom geodata."
 msgstr ""
 "Aktivieren Sie dies, wenn Sie Popups bei den Markierungen anzeigen möchten. "
-"Nur innerhalb von Alben oder benutzerdefinierten Geodaten."
+"Nur innerhalb von Alben oder individuell definierten Geodaten."
 
 #: zp-core/zp-extensions/openstreetmap.php:129
 msgid "Marker popups with thumbs"
@@ -18742,8 +18762,8 @@ msgid ""
 "Provides a quota management system to limit the sum of sizes of images a "
 "user uploads."
 msgstr ""
-"Ein Kontingent-System, um die Summe der Bildgrößen, die ein Benutzer "
-"hochladen kann, zu beschränken."
+"Ein Kontingent-System, um die Summe der Bildgrößen, die Benutzer*innen "
+"hochladen können, zu beschränken."
 
 #: zp-core/zp-extensions/quota_manager.php:31
 msgid ""
@@ -18752,7 +18772,7 @@ msgid ""
 "are not applied to the files contained therein."
 msgstr ""
 "<strong>Anmerkung:</strong> Wenn FTP zum Hochladen verwendet wird, ist "
-"manuelles Zuweisen der Benutzer notwendig. ZIP-Datei-Hochladen ist "
+"manuelles Zuweisen der Benutzer*in notwendig. ZIP-Datei-Hochladen ist "
 "deaktiviert, da die Kontingent-Beschränkung nicht auf darin enthaltene "
 "Dateien angewendet wird."
 
@@ -18906,9 +18926,9 @@ msgid ""
 "will reflect the last vote of the viewer. Otherwise they will reflect the "
 "current rating."
 msgstr ""
-"Erlauben, dass Benutzer Ihre Bewertung ändern können. Ist \"vorige Bewertung"
-"\" anzeigen ausgewählt, zeigen die Sterne die letzte Bewertung des Nutzers "
-"an. Andernfalls die aktuelle Bewertung."
+"Erlauben, dass Benutzer*innen Ihre Bewertung ändern können. Ist \"vorige "
+"Bewertung\" anzeigen ausgewählt, zeigen die Sterne die letzte Bewertung des "
+"Nutzers an. Andernfalls die aktuelle Bewertung."
 
 #: zp-core/zp-extensions/rating.php:123
 msgid "Disguise IP"
@@ -19096,7 +19116,7 @@ msgstr ""
 msgid ""
 "Provides a means for placing a user registration form on your theme pages."
 msgstr ""
-"Bietet die Möglichkeit einen Benutzer-Abmeldelink auf den Theme-Seiten "
+"Bietet die Möglichkeit einen Benutzer*in-Abmeldelink auf den Theme-Seiten "
 "anzuzeigen."
 
 #: zp-core/zp-extensions/register_user.php:61
@@ -19106,8 +19126,8 @@ msgid ""
 "this site.\n"
 "To complete your registration visit %1$s."
 msgstr ""
-"Sie haben diese E-Mail erhalten, weil Sie sich mit der Benutzer-ID %3$s auf "
-"dieser Seite registriert haben. Bitte besuchen Sie %1$s, um die "
+"Sie haben diese E-Mail erhalten, weil Sie sich mit der Benutzer*in-ID %3$s "
+"auf dieser Seite registriert haben. Bitte besuchen Sie %1$s, um die "
 "Registrierung abzuschließen."
 
 #: zp-core/zp-extensions/register_user.php:63
@@ -19139,17 +19159,18 @@ msgid ""
 "If checked, an e-mail will be sent to the gallery admin when a new user has "
 "verified his registration."
 msgstr ""
-"Wenn gewählt, wird eine E-Mail-Benachrichtigung an den Hauptadministrator "
-"geschickt, wenn ein neuer Benutzer seine Registrierung bestätigt hat."
+"Wenn gewählt, wird eine E-Mail-Benachrichtigung an den/die "
+"Hauptadministrator*in geschickt, wenn  neue Benutzer*innen ihre "
+"Registrierung bestätigt haben."
 
 #: zp-core/zp-extensions/register_user.php:97
 msgid "User album"
-msgstr "Benutzer-Album"
+msgstr "Benutzer*in-Album"
 
 #: zp-core/zp-extensions/register_user.php:101
 msgid "If checked, an album will be created and assigned to the user."
 msgstr ""
-"Wenn dies ausgewählt ist, wird ein Album erstellt und dem Benutzer "
+"Wenn dies ausgewählt ist, wird ein Album erstellt und dem/der Benutzer*in "
 "zugewiesen."
 
 #: zp-core/zp-extensions/register_user.php:102
@@ -19158,9 +19179,7 @@ msgstr "E-Mail-ID"
 
 #: zp-core/zp-extensions/register_user.php:106
 msgid "If checked, The use’s e-mail address will be used as his User ID."
-msgstr ""
-"Wenn ausgewählt, wird die E-Mail-Adresse des Benutzers als seine Benutzer-ID "
-"verwendet."
+msgstr "Wenn ausgewählt, wird die E-Mail-Adresse als Benutzer*in-ID verwendet."
 
 #: zp-core/zp-extensions/register_user.php:107
 msgid "Email notification text"
@@ -19177,13 +19196,13 @@ msgid ""
 "<em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we "
 "recommend <strong>not</strong> inserting the <em>password</em>.</p>"
 msgstr ""
-"Text für die E-Mail, die neuregistierten Benutzern zum Freischalten "
+"Text für die E-Mail, die neuregistierten Benutzer*innen zum Freischalten "
 "geschickt wird. <p class=\"notebox\"><strong>Anmerkung:</strong><code>%1$s</"
 "code> muss in Ihrer Nachricht enthalten sein, damit der Link zum "
 "<em>Freischalten der Registrierung</em> erscheint. Sie müssen möglicher "
-"außerdem den <em>Namen</em> (<code>%2$s</code>), <em>Benutzer-ID</em> (<code>"
-"%3$s</code>), und das <em>Passwort</em>* (<code>%4$s</code>) einfügen.<br /"
-"><br />*Aus Sicherheitsgründen empfehlen wir, dass <em>Passwort</em> "
+"außerdem den <em>Namen</em> (<code>%2$s</code>), <em>Benutzer*in-ID</em> "
+"(<code>%3$s</code>), und das <em>Passwort</em>* (<code>%4$s</code>) einfügen."
+"<br /><br />*Aus Sicherheitsgründen empfehlen wir, dass <em>Passwort</em> "
 "<strong>nicht</strong> einzufügen.</p>"
 
 #: zp-core/zp-extensions/register_user.php:129
@@ -19210,24 +19229,24 @@ msgid ""
 "Of course there must be some Administrator with an e-mail address for this "
 "option to make sense!"
 msgstr ""
-"Selbstverständlich muß es einen Administrator mit einer E-Mail-Adresse "
-"geben, damit diese Einstellung Sinn ergibt!"
+"Selbstverständlich muß es einen/eine Administrator*in mit einer E-Mail-"
+"Adresse geben, damit diese Einstellung Sinn ergibt!"
 
 #: zp-core/zp-extensions/register_user.php:168
 msgid "Default user group"
-msgstr "Standard-Benutzer-Gruppe"
+msgstr "Standard-Benutzer*innen-Gruppe"
 
 #: zp-core/zp-extensions/register_user.php:173
 msgid "Initial group assignment for the new user."
-msgstr "Ursprüngliche Gruppenzugehörigkeit des neuen Benutzers."
+msgstr "Ursprüngliche Gruppenzugehörigkeit des/der neuen Benutzer*in."
 
 #: zp-core/zp-extensions/register_user.php:184
 msgid ""
 "Initial rights for the new user. (If no rights are set, approval of the user "
 "will be required.)"
 msgstr ""
-"Ursprüngliche Rechte des neuen Benutzers (Wenn keine gesetzt sind, muß der "
-"Benutzer erst freigeschaltet werden)."
+"Ursprüngliche Rechte des/der neuen Benutzer*in (Wenn keine gesetzt sind, muß "
+"der/die Benutzer*in erst freigeschaltet werden)."
 
 #: zp-core/zp-extensions/register_user.php:311
 msgid "You must supply the street field."
@@ -19304,7 +19323,7 @@ msgstr "Registrierung fehlgeschlagen."
 #: zp-core/zp-extensions/register_user.php:497
 #, php-format
 msgid "The user ID <em>%s</em> is already in use."
-msgstr "Diese Benutzer-ID  <em>%s</em> wird bereits verwendet."
+msgstr "Diese Benutzer*in-ID  <em>%s</em> wird bereits verwendet."
 
 #: zp-core/zp-extensions/register_user.php:505
 msgid "Passwords may not be empty."
@@ -19358,15 +19377,15 @@ msgstr ""
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:15
 msgid "Username* (this will be your user username)"
-msgstr "Benutzername* (Dies wird Ihr Benutzername)"
+msgstr "Benutzer*in-Name* (Dies wird Ihr Benutzer*in-Name)"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:22
 msgid "Email<strong>*</strong> (this will be your user id)"
-msgstr "E-Mail<strong>*</strong> (Dies wird Ihre Benutzer-ID)"
+msgstr "E-Mail<strong>*</strong> (Dies wird Ihre Benutzer*in-ID)"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:24
 msgid "User ID"
-msgstr "Benutzer-ID"
+msgstr "Benutzer*in-ID"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:114
 msgid "<strong>*</strong>Required"
@@ -19676,9 +19695,9 @@ msgid ""
 "identifying the user. Use of that link when not logged‑in will give the same "
 "feed as if the user were logged‑in."
 msgstr ""
-"Wenn ausgwählt, werden Links für angemeldete Benutzer eine Merkmal zum "
-"Identifizieren des Benutzers enthalten. Die Verwendung dieses Links wird den "
-"selben Feed erzeugen als wenn der Nutzer eingeloggt wäre."
+"Wenn ausgwählt, werden Links für angemeldete Benutzer*innen eine Merkmal zum "
+"Identifizieren der Benutzer*innen enthalten. Die Verwendung dieses Links "
+"wird den selben Feed erzeugen als wenn der/die Nutzer*in eingeloggt wäre."
 
 #: zp-core/zp-extensions/rss.php:170
 msgid "Feed text length"
@@ -19815,15 +19834,15 @@ msgstr ""
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:97
 msgid "Twitter user name"
-msgstr "Twitter-Benutzername"
+msgstr "Twitter-Name"
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:101
 msgid ""
 "Enter your Twitter name without @ here if you like to have it appended to "
 "tweets made."
 msgstr ""
-"Geben Sie Ihren Twitterbenutzernamen ohne vorangehendes @ an, wenn Sie ihn "
-"als Referenz in Tweets angefügt haben möchten."
+"Geben Sie Ihren Twitternamen ohne vorangehendes @ an, wenn Sie ihn als "
+"Referenz in Tweets angefügt haben möchten."
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:326
 msgid "e-mail"
@@ -19944,7 +19963,7 @@ msgstr "Aufzeichnen der Anmeldeversuche von"
 
 #: zp-core/zp-extensions/security-logger.php:72
 msgid "Administrators"
-msgstr "Administratoren"
+msgstr "Administrator*innen"
 
 #: zp-core/zp-extensions/security-logger.php:72
 msgid "Guests"
@@ -20013,15 +20032,15 @@ msgstr "Installationsdateien schützen"
 
 #: zp-core/zp-extensions/security-logger.php:143
 msgid "Request add user"
-msgstr "Benutzer hinzufügen anfordern"
+msgstr "Benutzer*in hinzufügen anfordern"
 
 #: zp-core/zp-extensions/security-logger.php:146
 msgid "Request update user"
-msgstr "Benutzeraktualisierung anfordern"
+msgstr "Benutzer*in-Aktualisierung anfordern"
 
 #: zp-core/zp-extensions/security-logger.php:149
 msgid "Request delete user"
-msgstr "Benutzer löschen anfordern"
+msgstr "Benutzer*in löschen anfordern"
 
 #: zp-core/zp-extensions/security-logger.php:152
 msgid "Cross Site Reference"
@@ -20033,7 +20052,7 @@ msgstr "Albumzugriff"
 
 #: zp-core/zp-extensions/security-logger.php:158
 msgid "Admin access"
-msgstr "Benutzerzugriff"
+msgstr "Benutzer*in-Zugriff"
 
 #: zp-core/zp-extensions/security-logger.php:161
 msgid "Guest login"
@@ -20041,7 +20060,7 @@ msgstr "Gast-Anmeldung"
 
 #: zp-core/zp-extensions/security-logger.php:164
 msgid "Admin login"
-msgstr "Administrator-Anmeldung"
+msgstr "Administrations-Anmeldung"
 
 #: zp-core/zp-extensions/security-logger.php:167
 msgid "Authorization cookie check"
@@ -20216,7 +20235,8 @@ msgstr "Wenn gesetzt, werden alle Zeichen in Kleinbuchstaben umgewandelt."
 #, php-format
 msgid "Treats users as not logged in for gallery pages."
 msgstr ""
-"Behandelt Benutzer auf Galerieseiten so, als ob sie nicht angemeldet seien."
+"Behandelt Benutzer*innen auf Galerieseiten so, als ob sie nicht angemeldet "
+"seien."
 
 #: zp-core/zp-extensions/show_not_logged-in.php:49
 msgid "show_not_logged-in is active."
@@ -20335,7 +20355,7 @@ msgstr "Site » Test Modus"
 
 #: zp-core/zp-extensions/site_upgrade.php:118
 msgid "Make the site available for viewing administrators only."
-msgstr "Die Site nur für Administratoren freigeben."
+msgstr "Die Site nur für Administrator*innen freigeben."
 
 #: zp-core/zp-extensions/site_upgrade.php:129
 msgid "Site » open"
@@ -20408,8 +20428,9 @@ msgid ""
 msgstr ""
 "<strong>Anmerkung:</strong> Die Indexlink können falsch sein, wenn Sie die "
 "Zenpage-Option \"Neuigkeiten auf Indexseite\" verwenden, die einige Themes "
-"übergehen. Außerdem berücksichtigt es auch keine \"benutzerdefinierte Seiten"
-"\" außerhalb von Zenpage oder andere benutzerdefinierte Themestrukturen!!"
+"übergehen. Außerdem berücksichtigt es auch keine „individuell definierte "
+"Seiten“ außerhalb von Zenpage oder andere indivudell definierte "
+"Themestrukturen!!"
 
 #: zp-core/zp-extensions/sitemap-extended.php:34
 msgid ""
@@ -20563,7 +20584,7 @@ msgid ""
 msgstr ""
 "<strong>Anmerkung:</strong> Andere Suchmaschinen (Yahoo, Bing) können "
 "möglicherweise Ihre Sitemap nicht lesen. Außerdem berücksichtigt die Google-"
-"Erweiterung nur Bild- und Videoformate. Wenn Sie benutzerdefinierte "
+"Erweiterung nur Bild- und Videoformate. Wenn Sie individuell definierte "
 "Dateitypen verwenden, die nicht von Zenphoto-Standardplugins unterstützt "
 "werden oder solche wie .mp3, .txt und .html, sollten Sie dies nicht "
 "verwenden oder das Plugin modifizieren. Auch wenn Ihre Website sehr groß "
@@ -20640,7 +20661,7 @@ msgid ""
 "<strong>NOTE:</strong> If your theme uses different custom settings instead "
 "of the backend options the sitemaps may not match your site."
 msgstr ""
-"<strong>HINWEIS:</strong> Wenn Ihr Theme andere benutzerdefinierte "
+"<strong>HINWEIS:</strong> Wenn Ihr Theme andere individuell definierte "
 "Einstellungen als die Admineinstellungen verwendet, entspricht die Sitemap "
 "möglicherweise nicht der Struktur Ihrer Seite."
 
@@ -21004,7 +21025,7 @@ msgid ""
 "image filename or album folder</em>. Separate several entries by comma.<br />"
 msgstr ""
 "Die Liste der Seiten, die vom Cache ausgeschlossen werden sollen. Es können "
-"sowohl benutzerdefinierte Seite inklusive Zenpage Seiten (optional mit "
+"sowohl individuell definierte Seite inklusive Zenpage Seiten (optional mit "
 "Titellink) als auch die Standardthemeseiten image.php (optional mit Bild-"
 "Dateiname), album.php (optional mit Albumordnername) or index.php "
 "ausgeschlossen werden.<br /> Wenn Sie eine Seite komplett ausschließen "
@@ -21110,7 +21131,8 @@ msgid ""
 "Only users with <em>Themes</em> rights will see the selector if this is "
 "checked."
 msgstr ""
-"Nur Benutzer mit <em>Theme</em>-Rechten sehen diese Auswahl, wenn ausgewählt."
+"Nur Benutzer*innen mit <em>Theme</em>-Rechten sehen diese Auswahl, wenn "
+"ausgewählt."
 
 #: zp-core/zp-extensions/themeSwitcher.php:83
 msgid "Theme list"
@@ -21182,48 +21204,48 @@ msgstr ""
 
 #: zp-core/zp-extensions/tinymce4.php:60 zp-core/zp-extensions/tinymce4.php:65
 msgid "Custom image size"
-msgstr "Benutzerdefinierte Bildgröße"
+msgstr "Individuell definierte Bildgröße"
 
 #: zp-core/zp-extensions/tinymce4.php:64 zp-core/zp-extensions/tinymce4.php:69
 msgid "Predefined size (px) for custom size images included using tinyZenpage."
 msgstr ""
-"Voreingestellte Größe (px) für benutzerdefinierte Bilder, die über "
+"Voreingestellte Größe (px) für individuell definierte Bildgrößem, die über "
 "tinyZenpage eingefügt werden."
 
 #: zp-core/zp-extensions/tinymce4.php:70
 msgid "Custom thumb crop - size"
-msgstr "Benutzerdefinierter Thumbnailbeschnitt - Größe"
+msgstr "Individuell definierter Thumbnailbeschnitt - Größe"
 
 #: zp-core/zp-extensions/tinymce4.php:74
 msgid ""
 "Predefined size (px) for custom cropped thumb images included using "
 "tinyZenpage."
 msgstr ""
-"Voreingestellte Größe (px) für benutzerdefinierten Beschnitt von Thumbnails, "
-"die über tinyZenpage eingefügt werden."
+"Voreingestellte Größe (px) für individuell definierten Beschnitt von "
+"Thumbnails, die über tinyZenpage eingefügt werden."
 
 #: zp-core/zp-extensions/tinymce4.php:75
 msgid "Custom thumb crop - width"
-msgstr "Benutzerdefinierter Thumbnailbeschnitt - Breite"
+msgstr "Individuell definierter Thumbnailbeschnitt - Breite"
 
 #: zp-core/zp-extensions/tinymce4.php:79
 msgid ""
 "Predefined crop width (%) for custom cropped thumb  images included using "
 "tinyZenpage."
 msgstr ""
-"Voreingestellte Beschnittbreite (px) für benutzerdefinierten Beschnitt von "
-"Thumbnails, die über tinyZenpage eingefügt werden."
+"Voreingestellte Beschnittbreite (px) für individuell definierten Beschnitt "
+"von Thumbnails, die über tinyZenpage eingefügt werden."
 
 #: zp-core/zp-extensions/tinymce4.php:80
 msgid "Custom thumb crop - height"
-msgstr "Benutzerdefinierter Thumbnailbeschnitt - Höhe"
+msgstr "Individuell definierter Thumbnailbeschnitt - Höhe"
 
 #: zp-core/zp-extensions/tinymce4.php:84
 msgid ""
 "Predefined crop height (%) for custom cropped thumb images included using "
 "tinyZenpage."
 msgstr ""
-"Voreingestellte Beschnitthöhe (%) für benutzerdefinierten Beschnitt von "
+"Voreingestellte Beschnitthöhe (%) für individuell definierten Beschnitt von "
 "Thumbnails, die über tinyZenpage eingefügt werden."
 
 #: zp-core/zp-extensions/tinymce4.php:85
@@ -21275,7 +21297,8 @@ msgstr ""
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:80
 #, php-format
 msgid "It is not possible to a include a custom size %s."
-msgstr "Es ist nicht möglich, eine benutzerdefinierte Grösse %s einzufügen."
+msgstr ""
+"Es ist nicht möglich, eine individuell definierte Grösse %s einzufügen."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:91
 #, php-format
@@ -21345,7 +21368,7 @@ msgstr "Was Sie einfügen möchten"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:105
 msgid "Custom text"
-msgstr "Benutzerdefinierter Text"
+msgstr "Individuell definierter Text"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:116
 msgid "Custom thumbnail"
@@ -21458,7 +21481,7 @@ msgid ""
 "custom text."
 msgstr ""
 "Wählen Sie, ob Sie das Bild selbst, nur den Titel, den Titel seines Albums "
-"oder einen benutzerdefinierten Text einfügen möchten."
+"oder einen individuell definierten Text einfügen möchten."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:200
 msgid ""
@@ -21540,7 +21563,7 @@ msgid ""
 "no link at all or a custom URL."
 msgstr ""
 "Wählen Sie, ob Sie einen Link zur Bildseite des Bildes, zum Album des "
-"Bildes, gar keinen Link oder einen benutzerdefinierten Link verwenden "
+"Bildes, gar keinen Link oder einen individuell definierten Link verwenden "
 "möchten."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:226
@@ -21585,7 +21608,7 @@ msgid ""
 "Custom thumbnail: <em>zenpage_customthumb</em> or "
 "<em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
 msgstr ""
-"Benutzerdefiniertes Thumbnail: <em>zenpage_customthumb</em> oder "
+"Individuell definiertes Thumbnail: <em>zenpage_customthumb</em> oder "
 "<em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:238
@@ -21601,7 +21624,7 @@ msgid ""
 "Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</em>/"
 "<em>zenpage_customimage_right</em>"
 msgstr ""
-"Benutzerdefiniertes Bild: <em>zenpage_customimage</em>/"
+"Individuell definiertes Bild: <em>zenpage_customimage</em>/"
 "<em>zenpage_customimage_left</em>/<em>zenpage_customimage_right</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:240
@@ -21647,7 +21670,7 @@ msgstr "Albumlink: <em>zenpage_albumlink</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:249
 msgid "Custom link: <em>zenpage_customlink</em>"
-msgstr "Benutzerdefinierter Link: <em>zenpage_customlink</em>"
+msgstr "Individuell definierter Link: <em>zenpage_customlink</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:252
 msgid ""
@@ -21852,7 +21875,7 @@ msgstr "Keine Datei hochgeladen"
 
 #: zp-core/zp-extensions/user-expiry.php:31
 msgid "Provides management of users based on when they were created."
-msgstr "Verwaltung von Benutzern basierend auf dem Erstellungzeitpunkt."
+msgstr "Verwaltung von Benutzer*innen basierend auf dem Erstellungzeitpunkt."
 
 #: zp-core/zp-extensions/user-expiry.php:70
 msgid "Days until expiration"
@@ -21863,8 +21886,8 @@ msgid ""
 "The number of days until a user is flagged as expired. Set to zero for no "
 "expiry."
 msgstr ""
-"Der Zeitraum in Tagen bis ein Benutzer als ungültig markiert wird. Null zum "
-"Deaktivieren."
+"Der Zeitraum in Tagen bis  Benutzer*innen für ungültig markiert werden. Null "
+"zum Deaktivieren."
 
 #: zp-core/zp-extensions/user-expiry.php:75
 msgid "Warning interval"
@@ -21875,8 +21898,9 @@ msgid ""
 "The period in days before the expiry during which a warning message will be "
 "sent to the user. (If set to zero, no warning occurs.)"
 msgstr ""
-"Der Zeitraum in Tagen vor Ungültigkeit, in dem eine Warnung an den Benutzer "
-"geschickt werden soll (0 (Null), wenn keine Warnung erfolgen soll)."
+"Der Zeitraum in Tagen vor Ungültigkeit, in dem eine Warnung an "
+"Benutzer*innen geschickt werden soll (0 (Null), wenn keine Warnung erfolgen "
+"soll)."
 
 #: zp-core/zp-extensions/user-expiry.php:80
 msgid "Auto renew"
@@ -21887,8 +21911,8 @@ msgid ""
 "Automatically renew the subscription if the user visits during the warning "
 "period."
 msgstr ""
-"Das Abonnement erneuern, wenn der Benutzer im Warnungszeitraum die Seite "
-"besucht."
+"Das Abonnement erneuern, wenn der Benutzer’innen im Warnungszeitraum die "
+"Seite besuchen."
 
 #: zp-core/zp-extensions/user-expiry.php:85
 msgid "Password cycle"
@@ -21909,11 +21933,11 @@ msgstr "Ungültigkeit"
 #: zp-core/zp-extensions/user-expiry.php:164
 #, php-format
 msgid "Your user id for the Zenphoto site %s will expire on %s."
-msgstr "Ihre Benutzer-ID für die Zenphoto-Site %s wird am  %s ungültig."
+msgstr "Ihre Benutzer*in-ID für die Zenphoto-Site %s wird am  %s ungültig."
 
 #: zp-core/zp-extensions/user-expiry.php:165
 msgid "User id expiration"
-msgstr "Benutzer-ID-Ungültigkeit"
+msgstr "Benutzer*in-ID-Ungültigkeit"
 
 #: zp-core/zp-extensions/user-expiry.php:207
 msgid ""
@@ -21937,7 +21961,7 @@ msgstr "Sie müssen Ihr Passwort ändern."
 
 #: zp-core/zp-extensions/user-expiry.php:308
 msgid "You have users whose credentials have expired."
-msgstr "Sie haben Benutzer mit ungültigen Zugangsdaten."
+msgstr "Sie haben Benutzer*innen mit ungültigen Zugangsdaten."
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:71
 #, php-format
@@ -21959,7 +21983,7 @@ msgstr "Ausgeführt"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:117
 msgid "Manage user expiry."
-msgstr "Userungültigkeiten verwalten."
+msgstr "Abgelaufen Benutzer*innen verwalten."
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:150
 #, php-format
@@ -22016,11 +22040,11 @@ msgstr "Erneuerungslink mailen"
 
 #: zp-core/zp-extensions/userAddressFields.php:17
 msgid "Adds user address fields"
-msgstr "Fügt ein Benutzeradressenfeld hinzu"
+msgstr "Fügt ein Benutzer*innen-Adressfeld hinzu"
 
 #: zp-core/zp-extensions/user_groups.php:17
 msgid "Provides rudimentary user groups."
-msgstr "Stellt elementare Benutzergruppen zur Verfügung."
+msgstr "Stellt elementare Benutzer*innen-Gruppen zur Verfügung."
 
 #: zp-core/zp-extensions/user_groups.php:117
 msgid "no groups established"
@@ -22053,7 +22077,7 @@ msgstr "Keine Gruppenzugehörigkeit"
 #: zp-core/zp-extensions/user_groups.php:200
 #, php-format
 msgid "User group membership: %s"
-msgstr "Benutzerguppen-Zugehörigkeit: %s"
+msgstr "Benutzer*innen-Gruppen-Zugehörigkeit: %s"
 
 #: zp-core/zp-extensions/user_groups.php:201
 msgid "Templates are highlighted."
@@ -22087,10 +22111,10 @@ msgid ""
 "can manage all albums. All others may manage only those that are selected."
 msgstr ""
 "Vergeben Sie Gruppenrechten und wählen Sie ein oder mehrere Alben, die die "
-"Benutzer der Gruppe verwalten können. Benutzer mit <em>Benutzerverwaltungs-</"
-"em> oder or <em>Alle-Alben-</em>Verwaltungsrechten haben Zugriff auf alle "
-"Alben. Alle anderen Benutzer können nur die ihnen zugewiesenen Alben "
-"verwalten."
+"Benutzer*innen der Gruppe verwalten können. Benutzer mit "
+"<em>Benutzerverwaltungs-</em> oder or <em>Alle-Alben-</em>Verwaltungsrechten "
+"haben Zugriff auf alle Alben. Alle anderen Benutzer*innen können nur die "
+"ihnen zugewiesenen Alben verwalten."
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:233
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:250
@@ -22112,7 +22136,7 @@ msgstr "Beschreibung:"
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:324
 msgid "Assign users"
-msgstr "Benutzer zuweisen"
+msgstr "Benutzer*innnen zuweisen"
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:365
 msgid "Are you sure you want to delete this group?"
@@ -22125,7 +22149,7 @@ msgstr "Diese Gruppe löschen."
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:416
 #, php-format
 msgid "User %s is assigned to more than one group."
-msgstr "Benutzer %s ist mehr als einer Gruppe zugewiesen."
+msgstr "Benutzer*in %s ist mehr als einer Gruppe zugewiesen."
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:426
 msgid "Group names may not contain “?”, “&”, or quotation marks."
@@ -22138,12 +22162,12 @@ msgstr "Die Gruppe „%s“ existiert bereits."
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:452
 msgid "Assign users to groups."
-msgstr "Benutzer Gruppen zuweisen."
+msgstr "Benutzer*innen Gruppen zuweisen."
 
 #: zp-core/zp-extensions/user_login-out.php:12
 msgid "Provides a means for users to login/out from your theme pages."
 msgstr ""
-"Bietet die Möglichkeit einen Benutzer-An- und Abmeldelink auf den Theme-"
+"Bietet die Möglichkeit einen Benutzer*in-An- und Abmeldelink auf den Theme-"
 "Seiten anzuzeigen."
 
 #: zp-core/zp-extensions/user_login-out.php:36
@@ -22163,7 +22187,7 @@ msgid ""
 "If the user is not logged-in display an <em>in-line</em> logon form or a "
 "link to a modal <em>Colorbox</em> form."
 msgstr ""
-"Wenn der Benutzer nicht angemeldet ist, zeige ein <em>Inline</em>-"
+"Wenn Benutzer*innen nicht angemeldet sind, zeige ein <em>Inline</em>-"
 "Anmeldeformular oder reinen Link zu einem modalen <em>Colorbox</em>-Formular."
 
 #: zp-core/zp-extensions/user_mailing_list.php:14
@@ -22171,27 +22195,28 @@ msgid ""
 "Provides a utility function to send e-mails to all users who have provided "
 "an e-mail address."
 msgstr ""
-"Ein Werkzeug, um Rundmails an alle registrierten Benutzer zu schicken, die "
-"eine E-Mail-Adresse angegeben haben."
+"Ein Werkzeug, um Rundmails an alle registrierten Benutzer*innen zu schicken, "
+"die eine E-Mail-Adresse angegeben haben."
 
 #: zp-core/zp-extensions/user_mailing_list.php:25
 #: zp-core/zp-extensions/user_mailing_list.php:75
 msgid "User mailing list"
-msgstr "Benutzer-Rundmail"
+msgstr "Benutzer*innen-Rundmail"
 
 #: zp-core/zp-extensions/user_mailing_list.php:29
 msgid ""
 "There are no other registered users who have provided an e-mail address."
 msgstr ""
-"Es sind keine Benutzer vorhanden, die eine E-Mail-Adresse angegeben haben."
+"Es sind keine Benutzer*innen vorhanden, die eine E-Mail-Adresse angegeben "
+"haben."
 
 #: zp-core/zp-extensions/user_mailing_list.php:39
 msgid ""
 "A tool to send e-mails to all registered users who have provided an e-mail "
 "address."
 msgstr ""
-"Ein Werkzeug, um Rundmails an alle registrierten Benutzer, die eine E-Mail-"
-"Adresse angegeben haben, zu schicken."
+"Ein Werkzeug, um Rundmails an alle registrierten Benutzer*innen, die eine E-"
+"Mail-Adresse angegeben haben, zu schicken."
 
 #: zp-core/zp-extensions/user_mailing_list.php:62
 msgid "Mailing"
@@ -22203,9 +22228,10 @@ msgid ""
 "address. There is always a copy sent to the current admin and all e-mails "
 "are sent as <em>blind copies</em>."
 msgstr ""
-"Ein Werkzeug, um Rundmails an alle registrierten Benutzer, die eine E-Mail-"
-"Adresse angegeben haben, zu schicken. Eine Kopie wird auch an den "
-"derzeitigen Benutzer selbst und alle Mails als <em>Blindkopien</em>."
+"Ein Werkzeug, um Rundmails an alle registrierten Benutzer*innen, die eine E-"
+"Mail-Adresse angegeben haben, zu schicken. Eine Kopie wird auch an den/die "
+"derzeitigen(n) Benutzer*innen selbst und alle Mails als <em>Blindkopien</em> "
+"geschickt."
 
 #: zp-core/zp-extensions/user_mailing_list.php:83
 msgid ""
@@ -22243,7 +22269,7 @@ msgstr "Bitte geben Sie die Nachricht ein, die Sie verschicken möchten."
 
 #: zp-core/zp-extensions/user_mailing_list.php:138
 msgid "Select users:"
-msgstr "Benutzer auswählen:"
+msgstr "Benutzer*in auswählen:"
 
 #: zp-core/zp-extensions/user_mailing_list.php:168
 #: zp-core/zp-extensions/user_mailing_list.php:169
@@ -22351,8 +22377,8 @@ msgstr ""
 "code> oder <br><code>if(ZP_PAGES_ENABLED) { … }</code>. Das selbe gilt, wenn "
 "deaktiveirte Inhaltstypen geblockt werden sollen. Andernfalls sind sie über "
 "Direktlinks noch erreichbar. <p class=\"notebox\"><strong>HINWEIS:</strong> "
-"Diese löscht keine Inhalte und steht nicht in Verbindung mit Benutzerrechten."
-"</p>"
+"Diese löscht keine Inhalte und steht nicht in Verbindung mit Benutzer*innen-"
+"Rechten.</p>"
 
 #: zp-core/zp-extensions/zenpage.php:182
 msgid "Articles per page (theme)"
@@ -22385,7 +22411,7 @@ msgid ""
 "using the html comment snippet <code>&lt;!-- pagebreak --&gt;</code>). If "
 "set, this will override this option."
 msgstr ""
-"Sie können benutzerdefinierte Artikelkürzungen für die Haupt-"
+"Sie können individuell definierte Artikelkürzungen für die Haupt-"
 "Neuigkeitenseiten mit dem TinyMCE <em>page break</em>-Plugin-Schalter "
 "erstellen (oder manuell durch Nutzung des Kommentarcodes <code>&lt;!— "
 "pagebreak —&gt;</code>).  Dies wird die Kürzungslänge der allgemeinen "
@@ -22736,9 +22762,9 @@ msgid ""
 "If you lock an article only the current active author/user or any user with "
 "full admin rights will be able to edit it later again!"
 msgstr ""
-"Wenn Sie einen Artikel sperren, kann nur der sperrende Autor/Benutzer oder "
-"jeder Benutzer mit vollen Administratonsrechten diesen Artikel später "
-"bearbeiten!"
+"Wenn Sie einen Artikel sperren, kann nur der/die sperrende Autor*in/"
+"Benutzer*in oder jede(r) Benutzer*in mit vollen Administratonsrechten diesen "
+"Artikel später bearbeiten!"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:391
 msgid ""
@@ -22747,8 +22773,8 @@ msgid ""
 "break</em> plugin button. This will override the general shorten length set "
 "on the plugin option then."
 msgstr ""
-"<em>Benutzerdefinierte Artikelkürzungen:</em> Sie können benutzerdefinierte "
-"Artikelkürzungen für die Haupt-Neuigkeitenseiten mit dem TinyMCE "
+"<em>Individuell definierte Artikelkürzungen:</em> Sie können individuell "
+"definierte Artikelkürzungen für die Haupt-Neuigkeitenseiten mit dem TinyMCE "
 "<em>Seitenumbruch</em>-Plugin-Schalter erstellen. Dies wird die "
 "Kürzungslänge der allgemeinen Plugineinstellung übergehen."
 
@@ -22794,7 +22820,8 @@ msgstr ""
 #: zp-core/zp-extensions/zenpage/admin-edit.php:401
 msgid "You also can use the codeblock fields as custom fields."
 msgstr ""
-"Sie können die Codeblock-Felder auch als benutzerdefinierte Felder verwenden."
+"Sie können die Codeblock-Felder auch als individuell definierte Felder "
+"verwenden."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:402
 msgid ""
@@ -22893,7 +22920,7 @@ msgstr "Extrainhalt:"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:785
 msgid "Custom:"
-msgstr "Benutzerdefiniert:"
+msgstr "Individuell definiert:"
 
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:20
 #: zp-core/zp-extensions/zenpage/admin-pages.php:20
@@ -23021,7 +23048,7 @@ msgstr ""
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:149
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:162
 msgid "You must supply a password for the Protected Page user"
-msgstr "Es muss ein Passwort für den Gastbenutzer eingegeben werden"
+msgstr "Es muss ein Passwort für den/die Gastbenutzer*in eingegeben werden"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:151
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:164
@@ -23173,7 +23200,7 @@ msgstr ""
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:921
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:933
 msgid "You must supply a password for the Protected Category user"
-msgstr "Es muss ein Passwort für den Gastbenutzer eingegeben werden"
+msgstr "Es muss ein Passwort für den/die Gastbenutzer*in eingegeben werden"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:925
 #, php-format
