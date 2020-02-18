@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-21 10:17+0100\n"
+"POT-Creation-Date: 2020-02-18 19:07+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,3092,-1,-1,-1,-1\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-SearchPath-0: zp-core\n"
 "X-Poedit-SearchPath-1: themes\n"
 "X-Poedit-SearchPathExcluded-0: plugins\n"
@@ -550,7 +550,7 @@ msgstr "Nieuwsartikelen scheidingslijn"
 
 #: themes/garland/themeoptions.php:72 themes/zenpage/themeoptions.php:77
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:84
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:254
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:255
 msgid "All Albums"
 msgstr "Alle albums"
 
@@ -797,7 +797,7 @@ msgstr ""
 
 #: themes/zenpage/themeoptions.php:71
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:76
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:253
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:254
 msgid "Gallery index"
 msgstr "Galerij index"
 
@@ -885,7 +885,7 @@ msgstr "Archief"
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:89
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:93
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:255
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:256
 #: zp-core/zp-extensions/related_items.php:177
 msgid "Album"
 msgstr "Album"
@@ -999,7 +999,7 @@ msgstr "*Bulk acties*"
 
 #: zp-core/admin-albumsort.php:78 zp-core/admin-edit.php:564
 #: zp-core/admin-edit.php:577 zp-core/admin-edit.php:581
-#: zp-core/admin-functions.php:2074 zp-core/admin-logs.php:145
+#: zp-core/admin-functions.php:2074 zp-core/admin-logs.php:149
 #: zp-core/admin-themes.php:302 zp-core/setup/index.php:1109
 #: zp-core/zp-extensions/cacheManager.php:278
 #: zp-core/zp-extensions/comment_form/admin-comments.php:130
@@ -1096,7 +1096,7 @@ msgstr "Bewerk album: <em>%1$s%2$s</em>"
 #: zp-core/admin-edit.php:961 zp-core/admin-edit.php:1535
 #: zp-core/admin-edit.php:1628 zp-core/admin-edit.php:1658
 #: zp-core/admin-functions.php:1215 zp-core/admin-functions.php:1976
-#: zp-core/admin-refresh-metadata.php:152 zp-core/admin-themes-editor.php:114
+#: zp-core/admin-refresh-metadata.php:152 zp-core/admin-themes-editor.php:119
 #: zp-core/admin-thumbcrop.php:270 zp-core/admin-thumbcrop.php:272
 #: zp-core/zp-extensions/cacheManager.php:981
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:216
@@ -1104,7 +1104,7 @@ msgstr "Bewerk album: <em>%1$s%2$s</em>"
 #: zp-core/zp-extensions/crop_image.php:351
 #: zp-core/zp-extensions/crop_image.php:356
 #: zp-core/zp-extensions/crop_image.php:357
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:229
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:230
 #: zp-core/zp-extensions/zenpage/admin-edit.php:345
 #: zp-core/zp-extensions/zenpage/admin-edit.php:809
 msgid "Back"
@@ -1132,7 +1132,7 @@ msgstr "Terug"
 #: zp-core/zp-extensions/crop_image.php:345
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:163
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:246
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:384
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:385
 #: zp-core/zp-extensions/publishContent/publishContent.php:214
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:122
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:219
@@ -1415,7 +1415,7 @@ msgstr "Klik op de afbeelding om de uitsnede van de thumbnail te wijzigen."
 #: zp-core/admin-edit.php:969 zp-core/admin-edit.php:1543
 #: zp-core/admin-edit.php:1634 zp-core/admin-edit.php:1665
 #: zp-core/admin-functions.php:1223 zp-core/admin-functions.php:1984
-#: zp-core/admin-logs.php:152 zp-core/admin-options.php:623
+#: zp-core/admin-logs.php:156 zp-core/admin-options.php:623
 #: zp-core/admin-options.php:1105 zp-core/admin-options.php:1129
 #: zp-core/admin-options.php:1473 zp-core/admin-options.php:1496
 #: zp-core/admin-options.php:1936 zp-core/admin-options.php:1965
@@ -1423,12 +1423,12 @@ msgstr "Klik op de afbeelding om de uitsnede van de thumbnail te wijzigen."
 #: zp-core/admin-options.php:2993 zp-core/admin-options.php:3051
 #: zp-core/admin-options.php:3179 zp-core/admin-options.php:3206
 #: zp-core/admin-options.php:3430 zp-core/admin-plugins.php:140
-#: zp-core/admin-plugins.php:404 zp-core/admin-themes-editor.php:157
+#: zp-core/admin-plugins.php:404 zp-core/admin-themes-editor.php:162
 #: zp-core/admin-thumbcrop.php:264 zp-core/admin-users.php:475
 #: zp-core/admin-users.php:848 zp-core/lib-auth.php:1075
 #: zp-core/zp-extensions/contact_form/form.php:148
 #: zp-core/zp-extensions/crop_image.php:342
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:385
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:386
 #: zp-core/zp-extensions/rewriteTokens.php:119
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:123
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:220
@@ -1619,13 +1619,13 @@ msgid "Crop thumbnail"
 msgstr "Crop thumbnail"
 
 #: zp-core/admin-edit.php:1312
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:309
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:310
 #: zp-core/zp-extensions/zenpage/admin-edit.php:411
 msgid "Title:"
 msgstr "Titel:"
 
 #: zp-core/admin-edit.php:1318
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:305
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:306
 msgid "Description:"
 msgstr "Beschrijving:"
 
@@ -2574,7 +2574,7 @@ msgstr "<em>%s</em> bestaat al."
 
 #: zp-core/admin-functions.php:4755
 #: zp-core/zp-extensions/comment_form/admin-comments.php:302
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:222
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:223
 msgid "Changes applied"
 msgstr "Wijzigingen opgeslagen"
 
@@ -2699,7 +2699,7 @@ msgstr "Titel"
 
 #: zp-core/admin-functions.php:4976
 #: zp-core/zp-extensions/favoritesHandler.php:138
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:362
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:363
 msgid "ID"
 msgstr "ID"
 
@@ -2825,7 +2825,7 @@ msgstr "thema’s"
 msgid "plugins"
 msgstr "plugins"
 
-#: zp-core/admin-globals.php:148 zp-core/admin-logs.php:99
+#: zp-core/admin-globals.php:148 zp-core/admin-logs.php:103
 msgid "logs"
 msgstr "logs"
 
@@ -2833,37 +2833,37 @@ msgstr "logs"
 msgid "Restore"
 msgstr "Restore"
 
-#: zp-core/admin-logs.php:24
+#: zp-core/admin-logs.php:27
 #, php-format
 msgid "%s log was emptied."
 msgstr "Het %s log is leeggemaakt."
 
-#: zp-core/admin-logs.php:27
+#: zp-core/admin-logs.php:30
 #, php-format
 msgid "%s log could not be emptied."
 msgstr "Het %s log kon niet worden geleegd."
 
-#: zp-core/admin-logs.php:42
+#: zp-core/admin-logs.php:45
 #, php-format
 msgid "%s log was removed."
 msgstr "Het %s log is verwijderd."
 
-#: zp-core/admin-logs.php:45
+#: zp-core/admin-logs.php:48
 #, php-format
 msgid "%s log could not be removed."
 msgstr "Het %s log kon niet verwijderd worden."
 
-#: zp-core/admin-logs.php:127
+#: zp-core/admin-logs.php:131
 msgid "View logs:"
 msgstr "Bekijk logs:"
 
-#: zp-core/admin-logs.php:156 zp-core/admin-options.php:2464
+#: zp-core/admin-logs.php:160 zp-core/admin-options.php:2464
 #: zp-core/utilities/user-data-export.php:87
 #: zp-core/zp-extensions/downloadList/download_statistics.php:23
 msgid "Download"
 msgstr "Download"
 
-#: zp-core/admin-logs.php:236
+#: zp-core/admin-logs.php:240
 msgid "There are no logs to view."
 msgstr "Er zijn geen logs om te bekijken."
 
@@ -4365,14 +4365,14 @@ msgstr "Metadata"
 #: zp-core/admin-options.php:2537 zp-core/admin-options.php:2538
 #: zp-core/admin-users.php:492 zp-core/zp-extensions/GoogleMap.php:97
 #: zp-core/zp-extensions/contact_form.php:82
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:115
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:116
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:117
 msgid "show"
 msgstr "toon"
 
 #: zp-core/admin-options.php:2522 zp-core/zp-extensions/GoogleMap.php:98
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:109
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:110
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:111
 msgid "hide"
 msgstr "verberg"
 
@@ -5268,62 +5268,62 @@ msgstr ""
 "<em>Nieuwe tags</em> lijst te zetten. Druk daarna op de knop <em>Bewaar "
 "nieuwe tags</em>."
 
-#: zp-core/admin-themes-editor.php:34 zp-core/admin-themes-editor.php:55
+#: zp-core/admin-themes-editor.php:39 zp-core/admin-themes-editor.php:60
 msgid "Cannot edit this file!"
 msgstr "Dit bestand kan niet bewerkt worden!"
 
-#: zp-core/admin-themes-editor.php:50
+#: zp-core/admin-themes-editor.php:55
 msgid "Cannot edit this theme!"
 msgstr "Dit thema kan niet bewerkt worden!"
 
-#: zp-core/admin-themes-editor.php:72
+#: zp-core/admin-themes-editor.php:77
 msgid "File updated successfully"
 msgstr "Bestand met succes ge-update"
 
-#: zp-core/admin-themes-editor.php:74 zp-core/admin-themes-editor.php:77
+#: zp-core/admin-themes-editor.php:79 zp-core/admin-themes-editor.php:82
 msgid "Could not write file. Please check its write permissions"
 msgstr ""
 "Kan niet naar het bestand schrijven. Controleer alsjeblieft de "
 "toegangsrechten."
 
-#: zp-core/admin-themes-editor.php:101
+#: zp-core/admin-themes-editor.php:106
 msgid "Theme File Editor"
 msgstr "Theme File Editor"
 
-#: zp-core/admin-themes-editor.php:112
+#: zp-core/admin-themes-editor.php:117
 msgid "Back to the theme list"
 msgstr "Terug naar de themalijst"
 
-#: zp-core/admin-themes-editor.php:126
+#: zp-core/admin-themes-editor.php:131
 msgid "Theme template files (.php)"
 msgstr "Thema sjabloon-bestanden (.php)"
 
-#: zp-core/admin-themes-editor.php:129
+#: zp-core/admin-themes-editor.php:134
 msgid "JavaScript files (.js)"
 msgstr "JavaScript bestanden (.js)"
 
-#: zp-core/admin-themes-editor.php:132
+#: zp-core/admin-themes-editor.php:137
 msgid "Style sheets (.css)"
 msgstr "Stylesheets (.css)"
 
-#: zp-core/admin-themes-editor.php:135
+#: zp-core/admin-themes-editor.php:140
 msgid "Other text files"
 msgstr "Andere tekstbestanden"
 
-#: zp-core/admin-themes-editor.php:140
+#: zp-core/admin-themes-editor.php:145
 msgid "Edit this file"
 msgstr "Bewerk dit bestand"
 
-#: zp-core/admin-themes-editor.php:150
+#: zp-core/admin-themes-editor.php:155
 #, php-format
 msgid "File <tt>%s</tt> from theme %s"
 msgstr "Bestand <tt>%s</tt> van thema %s"
 
-#: zp-core/admin-themes-editor.php:156
+#: zp-core/admin-themes-editor.php:161
 msgid "Update File"
 msgstr "Update bestand"
 
-#: zp-core/admin-themes-editor.php:165
+#: zp-core/admin-themes-editor.php:170
 msgid ""
 "Select a file to edit from the list on your right hand. Keep in mind that "
 "you can <strong>break everything</strong> if you are not careful when "
@@ -12711,7 +12711,7 @@ msgstr "SMTP poort"
 msgid "SMTP port number."
 msgstr "SMTP poortnummer."
 
-#: zp-core/zp-extensions/PHPMailer.php:150
+#: zp-core/zp-extensions/PHPMailer.php:151
 #, php-format
 msgid "<code>PHPMailer</code> failed to send <em>%1$s</em>. ErrorInfo:%2$s"
 msgstr ""
@@ -17216,7 +17216,7 @@ msgstr "createMenuIfNotExists onderdeel %1$s query (%2$s) mislukt: %3$s."
 msgid "createMenuIfNotExists has posted processing errors to your debug log."
 msgstr "createMenuIfNotExists heeft verwerkingsfouten in het debug log gezet."
 
-#: zp-core/zp-extensions/menu_manager.php:1184
+#: zp-core/zp-extensions/menu_manager.php:1187
 #: zp-core/zp-extensions/print_album_menu.php:262
 #, php-format
 msgid "%u album"
@@ -17224,7 +17224,7 @@ msgid_plural "%u albums"
 msgstr[0] "%u album"
 msgstr[1] "%u albums"
 
-#: zp-core/zp-extensions/menu_manager.php:1190
+#: zp-core/zp-extensions/menu_manager.php:1193
 #: zp-core/zp-extensions/print_album_menu.php:268
 #, php-format
 msgid "%u image"
@@ -17238,53 +17238,53 @@ msgstr[1] "%u afbeeldingen"
 msgid "Sort order saved."
 msgstr "Sorteervolgorde bewaard."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:48
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:55
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:62
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:49
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:56
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:63
 msgid "Zenpage CMS plugin required for this item type!"
 msgstr "De Zenpage plugin is nodig voor dit onderdeel."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:76
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:375
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:77
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:376
 #, php-format
 msgid "Target does not exists in <em>%1$s</em> theme"
 msgstr "Doel bestaat niet in het <em>%1$s</em> thema."
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:96
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:97
 msgid "The object of this menu is under password protection"
 msgstr "Dit menu-item is beveiligd met een wachtwoord"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:100
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:101
 msgid "under password protection"
 msgstr "Beschermd met wachtwoord"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:129
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:130
 #: zp-core/zp-extensions/publishContent/publishContent.php:278
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:279
 msgid "view"
 msgstr "Bekijk"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:145
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:146
 #, php-format
 msgid "Ok to delete %s? This cannot be undone."
 msgstr "%s écht verwijderen ? Dit kan niet hersteld worden !"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:146
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:147
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:175
 #: zp-core/zp-extensions/zenpage/admin-edit.php:561
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:296
 msgid "delete"
 msgstr "Verwijder"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:252
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:253
 msgid "Hidden and visible items"
 msgstr "Verborgen en zichtbare onderdelen"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:253
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:254
 msgid "Visible items"
 msgstr "Zichtbare onderdelen"
 
-#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:254
+#: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:255
 msgid "hidden items"
 msgstr "Verborgen onderdelen"
 
@@ -17491,7 +17491,7 @@ msgstr ""
 "van deze menustructuur!"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:166
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:231
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:232
 msgid "Add Menu Items"
 msgstr "Voeg menu-onderdelen toe"
 
@@ -17539,7 +17539,7 @@ msgid "URL"
 msgstr "URL"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:63
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:251
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:252
 msgid "All menu items"
 msgstr "Alle menu-onderdelen"
 
@@ -17552,7 +17552,7 @@ msgstr ""
 "“default” menuset)"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:68
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:252
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:253
 msgid "Home page"
 msgstr "Homepage"
 
@@ -17581,7 +17581,7 @@ msgid "Creates a link to a Zenphoto Album."
 msgstr "Maakt een link naar een Zenphoto album."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:100
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:259
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:260
 msgid "All Zenpage pages"
 msgstr "Alle Zenpage pagina’s"
 
@@ -17590,7 +17590,7 @@ msgid "This adds menu items for all Zenpage pages."
 msgstr "Dit voegt menu-onderdelen toe voor alle Zenpage pagina’s."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:105
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:260
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:261
 msgid "Zenpage page"
 msgstr "Zenpage pagina"
 
@@ -17599,7 +17599,7 @@ msgid "Creates a link to a Zenpage Page."
 msgstr "Maakt een link naar een Zenpage pagina."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:116
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:261
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:262
 msgid "Zenpage news index"
 msgstr "Zenpage nieuws index"
 
@@ -17616,7 +17616,7 @@ msgid "This adds menu items for all Zenpage categories."
 msgstr "Dit voegt menu-onderdelen toe voor alle Zenpage categorieën."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:129
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:263
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:264
 msgid "Zenpage news category"
 msgstr "Zenpage nieuws categorie"
 
@@ -17640,7 +17640,7 @@ msgid "Script page"
 msgstr "Script pagina"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:148
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:268
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:269
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:147
 msgid "Custom link"
 msgstr "Aangepaste link"
@@ -17654,7 +17654,7 @@ msgstr ""
 "v. http://www.domain.com) wordt aanbevolen."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:156
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:269
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:270
 msgid "Label"
 msgstr "Label"
 
@@ -17662,68 +17662,68 @@ msgstr "Label"
 msgid "Creates a <em>label</em> to use in menu structures)."
 msgstr "Maakt een <em>label</em> om te gebruiken in het menu."
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:162
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:164
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:270
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:163
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:165
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:271
 msgid "Function"
 msgstr "Functie"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:163
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:164
 msgid "Executes the PHP function provided."
 msgstr "Voert de opgegeven PHP-functie uit."
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:171
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:173
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:271
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:172
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:174
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:272
 msgid "HTML"
 msgstr "HTML"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:172
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:173
 msgid "Inserts custom HTML."
 msgstr "Voegt custom HTML in."
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:211
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:212
 msgid "Menu Manager: Edit Menu Item"
 msgstr "Menu manager: Wijzig menu-onderdeel"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:213
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:214
 msgid "Menu Manager: Add Menu Item"
 msgstr "Menu manager: Voeg menu-onderdeel toe"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:250
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:251
 msgid "*Select the type of the menus item you wish to add*"
 msgstr "*Selecteer het soort menu-onderdeel dat je wilt toevoegen*"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:262
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:263
 msgid "All Zenpage news categories"
 msgstr "Alle Zenpage nieuws categorieën"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:267
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:268
 msgid "Custom theme page"
 msgstr "Custom thema pagina"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:298
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:299
 #, php-format
 msgid "Menu <em>%s</em>"
 msgstr "Menu <em>%s</em>"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:301
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:302
 msgid "Type:"
 msgstr "Type:"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:336
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:337
 msgid "published"
 msgstr "Gepubliceerd"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:346
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:347
 msgid "Include <em>&lt;LI&gt;</em> element"
 msgstr "Voeg <em>&lt;LI&gt;</em> element toe"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:358
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:359
 msgid "Add <em>span</em> tags"
 msgstr "Voeg <em>span</em> tags toe"
 
-#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:364
+#: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:365
 msgid "Class"
 msgstr "Class"
 
