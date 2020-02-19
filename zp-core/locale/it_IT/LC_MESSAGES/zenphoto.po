@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.5.6\n"
+"Project-Id-Version: Zenphoto 1.5.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 19:31+0100\n"
-"PO-Revision-Date: 2020-01-31 19:34+0100\n"
+"POT-Creation-Date: 2020-02-19 16:16+0100\n"
+"PO-Revision-Date: 2020-02-19 16:16+0100\n"
 "Last-Translator: Antonio <ranesi@tiscali.it>\n"
 "Language-Team: Antonio Ranesi [bic]\n"
 "Language: it_IT\n"
@@ -999,7 +999,7 @@ msgstr "*Azioni di gruppo*"
 
 #: zp-core/admin-albumsort.php:78 zp-core/admin-edit.php:564
 #: zp-core/admin-edit.php:577 zp-core/admin-edit.php:581
-#: zp-core/admin-functions.php:2074 zp-core/admin-logs.php:145
+#: zp-core/admin-functions.php:2074 zp-core/admin-logs.php:149
 #: zp-core/admin-themes.php:302 zp-core/setup/index.php:1109
 #: zp-core/zp-extensions/cacheManager.php:278
 #: zp-core/zp-extensions/comment_form/admin-comments.php:130
@@ -1096,7 +1096,7 @@ msgstr "Modifica album: <em>%1$s%2$s</em>"
 #: zp-core/admin-edit.php:961 zp-core/admin-edit.php:1535
 #: zp-core/admin-edit.php:1628 zp-core/admin-edit.php:1658
 #: zp-core/admin-functions.php:1215 zp-core/admin-functions.php:1976
-#: zp-core/admin-refresh-metadata.php:152 zp-core/admin-themes-editor.php:114
+#: zp-core/admin-refresh-metadata.php:152 zp-core/admin-themes-editor.php:119
 #: zp-core/admin-thumbcrop.php:270 zp-core/admin-thumbcrop.php:272
 #: zp-core/zp-extensions/cacheManager.php:981
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:216
@@ -1416,7 +1416,7 @@ msgstr "Fare clic sull’immagine per modificare il ritaglio della miniatura."
 #: zp-core/admin-edit.php:969 zp-core/admin-edit.php:1543
 #: zp-core/admin-edit.php:1634 zp-core/admin-edit.php:1665
 #: zp-core/admin-functions.php:1223 zp-core/admin-functions.php:1984
-#: zp-core/admin-logs.php:152 zp-core/admin-options.php:623
+#: zp-core/admin-logs.php:156 zp-core/admin-options.php:623
 #: zp-core/admin-options.php:1105 zp-core/admin-options.php:1129
 #: zp-core/admin-options.php:1473 zp-core/admin-options.php:1496
 #: zp-core/admin-options.php:1936 zp-core/admin-options.php:1965
@@ -1424,7 +1424,7 @@ msgstr "Fare clic sull’immagine per modificare il ritaglio della miniatura."
 #: zp-core/admin-options.php:2993 zp-core/admin-options.php:3051
 #: zp-core/admin-options.php:3179 zp-core/admin-options.php:3206
 #: zp-core/admin-options.php:3430 zp-core/admin-plugins.php:140
-#: zp-core/admin-plugins.php:404 zp-core/admin-themes-editor.php:157
+#: zp-core/admin-plugins.php:404 zp-core/admin-themes-editor.php:162
 #: zp-core/admin-thumbcrop.php:264 zp-core/admin-users.php:475
 #: zp-core/admin-users.php:848 zp-core/lib-auth.php:1075
 #: zp-core/zp-extensions/contact_form/form.php:148
@@ -2830,7 +2830,7 @@ msgstr "temi"
 msgid "plugins"
 msgstr "plugin"
 
-#: zp-core/admin-globals.php:148 zp-core/admin-logs.php:99
+#: zp-core/admin-globals.php:148 zp-core/admin-logs.php:103
 msgid "logs"
 msgstr "log"
 
@@ -2838,37 +2838,37 @@ msgstr "log"
 msgid "Restore"
 msgstr "Ripristino"
 
-#: zp-core/admin-logs.php:24
+#: zp-core/admin-logs.php:27
 #, php-format
 msgid "%s log was emptied."
 msgstr "Il log %s è stato svuotato."
 
-#: zp-core/admin-logs.php:27
+#: zp-core/admin-logs.php:30
 #, php-format
 msgid "%s log could not be emptied."
 msgstr "Non è stato possibile svuotare il log %s."
 
-#: zp-core/admin-logs.php:42
+#: zp-core/admin-logs.php:45
 #, php-format
 msgid "%s log was removed."
 msgstr "Il log %s è stato eliminato."
 
-#: zp-core/admin-logs.php:45
+#: zp-core/admin-logs.php:48
 #, php-format
 msgid "%s log could not be removed."
 msgstr "Non è stato possibile eliminare il log %s."
 
-#: zp-core/admin-logs.php:127
+#: zp-core/admin-logs.php:131
 msgid "View logs:"
 msgstr "Visualizza log:"
 
-#: zp-core/admin-logs.php:156 zp-core/admin-options.php:2464
+#: zp-core/admin-logs.php:160 zp-core/admin-options.php:2464
 #: zp-core/utilities/user-data-export.php:87
 #: zp-core/zp-extensions/downloadList/download_statistics.php:23
 msgid "Download"
 msgstr "Scarica"
 
-#: zp-core/admin-logs.php:236
+#: zp-core/admin-logs.php:240
 msgid "There are no logs to view."
 msgstr "Non ci sono log da visualizzare."
 
@@ -5307,60 +5307,60 @@ msgstr ""
 "immissione della lista <em>Nuovi tag</em>; poi premere il pulsante "
 "<em>Aggiungi tag</em>."
 
-#: zp-core/admin-themes-editor.php:34 zp-core/admin-themes-editor.php:55
+#: zp-core/admin-themes-editor.php:39 zp-core/admin-themes-editor.php:60
 msgid "Cannot edit this file!"
 msgstr "Impossibile modificare questo file"
 
-#: zp-core/admin-themes-editor.php:50
+#: zp-core/admin-themes-editor.php:55
 msgid "Cannot edit this theme!"
 msgstr "Impossibile modificare questo tema!"
 
-#: zp-core/admin-themes-editor.php:72
+#: zp-core/admin-themes-editor.php:77
 msgid "File updated successfully"
 msgstr "File aggiornato correttamente"
 
-#: zp-core/admin-themes-editor.php:74 zp-core/admin-themes-editor.php:77
+#: zp-core/admin-themes-editor.php:79 zp-core/admin-themes-editor.php:82
 msgid "Could not write file. Please check its write permissions"
 msgstr "Impossibile scrivere il file. Controllare i permessi di scrittura"
 
-#: zp-core/admin-themes-editor.php:101
+#: zp-core/admin-themes-editor.php:106
 msgid "Theme File Editor"
 msgstr "Editor file di tema"
 
-#: zp-core/admin-themes-editor.php:112
+#: zp-core/admin-themes-editor.php:117
 msgid "Back to the theme list"
 msgstr "Torna alla lista dei temi"
 
-#: zp-core/admin-themes-editor.php:126
+#: zp-core/admin-themes-editor.php:131
 msgid "Theme template files (.php)"
 msgstr "File di modello del tema (.php)"
 
-#: zp-core/admin-themes-editor.php:129
+#: zp-core/admin-themes-editor.php:134
 msgid "JavaScript files (.js)"
 msgstr "File javascript (.js)"
 
-#: zp-core/admin-themes-editor.php:132
+#: zp-core/admin-themes-editor.php:137
 msgid "Style sheets (.css)"
 msgstr "Fogli di stile (.css)"
 
-#: zp-core/admin-themes-editor.php:135
+#: zp-core/admin-themes-editor.php:140
 msgid "Other text files"
 msgstr "Altri file di testo"
 
-#: zp-core/admin-themes-editor.php:140
+#: zp-core/admin-themes-editor.php:145
 msgid "Edit this file"
 msgstr "Modifica questo file"
 
-#: zp-core/admin-themes-editor.php:150
+#: zp-core/admin-themes-editor.php:155
 #, php-format
 msgid "File <tt>%s</tt> from theme %s"
 msgstr "File <tt>%s</tt> dal tema %s"
 
-#: zp-core/admin-themes-editor.php:156
+#: zp-core/admin-themes-editor.php:161
 msgid "Update File"
 msgstr "Aggiorna file"
 
-#: zp-core/admin-themes-editor.php:165
+#: zp-core/admin-themes-editor.php:170
 msgid ""
 "Select a file to edit from the list on your right hand. Keep in mind that "
 "you can <strong>break everything</strong> if you are not careful when "
@@ -12822,7 +12822,7 @@ msgstr "Porta SMTP"
 msgid "SMTP port number."
 msgstr "Numero porta SMTP."
 
-#: zp-core/zp-extensions/PHPMailer.php:150
+#: zp-core/zp-extensions/PHPMailer.php:151
 #, php-format
 msgid "<code>PHPMailer</code> failed to send <em>%1$s</em>. ErrorInfo:%2$s"
 msgstr ""
