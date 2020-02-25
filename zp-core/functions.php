@@ -1005,7 +1005,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		} else { // not an object in the current search path
 			$_zp_current_search = null;
 			rem_context(ZP_SEARCH);
-			if (!isset($_REQUEST['preserve_serch_params'])) {
+			if (!isset($_REQUEST['preserve_search_params'])) {
 				zp_clearCookie("zenphoto_search_params");
 			}
 		}
