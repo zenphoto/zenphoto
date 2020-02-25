@@ -1097,6 +1097,7 @@ zp-core/zp-extensions/elFinder/js/i18n/elfinder.fa.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.fallback.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.fo.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.fr.js
+zp-core/zp-extensions/elFinder/js/i18n/elfinder.fr_CA.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.he.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.hr.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.hu.js
@@ -1123,6 +1124,7 @@ zp-core/zp-extensions/elFinder/js/i18n/elfinder.zh_CN.js
 zp-core/zp-extensions/elFinder/js/i18n/elfinder.zh_TW.js
 zp-core/zp-extensions/elFinder/js/i18n/help
 zp-core/zp-extensions/elFinder/js/i18n/help/cs.html.js
+zp-core/zp-extensions/elFinder/js/i18n/help/de.html.js
 zp-core/zp-extensions/elFinder/js/i18n/help/en.html.js
 zp-core/zp-extensions/elFinder/js/i18n/help/es.html.js
 zp-core/zp-extensions/elFinder/js/i18n/help/ja.html.js
@@ -1693,4 +1695,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1695
+1697
