@@ -682,7 +682,7 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
                 }
 
                 $callback = $options['url']
-                    . '?cmd=netmount&protocol=googledrive&host=1';
+                        . (strpos($options['url'], '?') !== false? '&' : '?') . 'cmd=netmount&protocol=googledrive&host=1';
                 $client->setRedirectUri($callback);
 
                 if (!$aToken && empty($_GET['code'])) {
@@ -744,7 +744,8 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
                     $folders = ['root' => $rootObj->getName()] + $folders;
                     $folders = json_encode($folders);
                     $expires = empty($aToken['refresh_token']) ? $aToken['created'] + $aToken['expires_in'] - 30 : 0;
-                    $json = '{"protocol": "googledrive", "mode": "done", "folders": ' . $folders . ', "expires": ' . $expires . '}';
+                    $mnt2res = empty($aToken['refresh_token']) ? '' : ', "mnt2res": 1';
+                    $json = '{"protocol": "googledrive", "mode": "done", "folders": ' . $folders . ', "expires": ' . $expires . $mnt2res . '}';
                     $options['pass'] = 'return';
                     $html = 'Google.com';
                     $html .= '<script>
@@ -907,7 +908,7 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
             }
 
             $errors = [];
-            if (!$this->service) {
+            if ($this->needOnline && !$this->service) {
                 if (($this->options['googleApiClient'] || defined('ELFINDER_GOOGLEDRIVE_GOOGLEAPICLIENT')) && !class_exists('Google_Client')) {
                     include_once $this->options['googleApiClient'] ? $this->options['googleApiClient'] : ELFINDER_GOOGLEDRIVE_GOOGLEAPICLIENT;
                 }
@@ -948,17 +949,21 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
                 $this->service = new \Google_Service_Drive($client);
             }
 
-            $this->netMountKey = md5($aToken . '-' . $this->options['path']);
+            if ($this->needOnline) {
+                $this->netMountKey = md5($aToken . '-' . $this->options['path']);
+            }
         } catch (InvalidArgumentException $e) {
             $errors[] = $e->getMessage();
         } catch (Google_Service_Exception $e) {
             $errors[] = $e->getMessage();
         }
 
-        if (!$this->service) {
+        if ($this->needOnline && !$this->service) {
             $this->session->remove($this->id . $this->netMountKey);
             if ($aTokenFile) {
-                unlink($aTokenFile);
+                if (is_file($aTokenFile)) {
+                    unlink($aTokenFile);
+                }
             }
             $errors[] = 'Google Drive Service could not be loaded.';
 
@@ -971,13 +976,20 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
         }
         $this->root = $this->options['path'] = $this->_normpath($this->options['path']);
 
-        $this->options['root'] == '' ? $this->options['root'] = $this->_gd_getNameByPath('root') : $this->options['root'];
-
         if (empty($this->options['alias'])) {
-            $this->options['alias'] = ($this->options['path'] === '/') ? $this->options['root'] : sprintf($this->options['gdAlias'], $this->_gd_getNameByPath($this->options['path']));
+            if ($this->needOnline) {
+                $this->options['root'] = ($this->options['root'] === '')? $this->_gd_getNameByPath('root') : $this->options['root'];
+                $this->options['alias'] = ($this->options['path'] === '/') ? $this->options['root'] : sprintf($this->options['gdAlias'], $this->_gd_getNameByPath($this->options['path']));
+                if (!empty($this->options['netkey'])) {
+                    elFinder::$instance->updateNetVolumeOption($this->options['netkey'], 'alias', $this->options['alias']);
+                }
+            } else {
+                $this->options['root'] = ($this->options['root'] === '')? 'GoogleDrive' : $this->options['root'];
+                $this->options['alias'] = $this->options['root'];
+            }
         }
 
-        $this->rootName = $this->options['alias'];
+        $this->rootName = isset($this->options['alias'])? $this->options['alias'] : 'GoogleDrive';
 
         if (!empty($this->options['tmpPath'])) {
             if ((is_dir($this->options['tmpPath']) || mkdir($this->options['tmpPath'])) && is_writable($this->options['tmpPath'])) {
@@ -1020,7 +1032,7 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
             $this->tmp = $this->tmbPath;
         }
 
-        if ($this->isMyReload()) {
+        if ($this->needOnline && $this->isMyReload()) {
             $this->_gd_getDirectoryData(false);
         }
     }
@@ -1375,7 +1387,7 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
     public function debug()
     {
         $res = parent::debug();
-        if (empty($this->options['refresh_token']) && $this->options['access_token'] && isset($this->options['access_token']['refresh_token'])) {
+        if (!empty($this->options['netkey']) && empty($this->options['refresh_token']) && $this->options['access_token'] && isset($this->options['access_token']['refresh_token'])) {
             $res['refresh_token'] = $this->options['access_token']['refresh_token'];
         }
 

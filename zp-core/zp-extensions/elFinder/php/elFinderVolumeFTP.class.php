@@ -112,6 +112,7 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
             'tmbPath' => '',
             'tmpPath' => '',
             'separator' => '/',
+            'checkSubfolders' => -1,
             'dirMode' => 0755,
             'fileMode' => 0644,
             'rootCssClass' => 'elfinder-navbar-root-ftp',
@@ -194,8 +195,9 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
 
         if (empty($this->options['alias'])) {
             $this->options['alias'] = $this->options['user'] . '@' . $this->options['host'];
-            // $num = elFinder::$volumesCnt-1;
-            // $this->options['alias'] = $this->root == '/' || $this->root == '.' ? 'FTP folder '.$num : basename($this->root);
+            if (!empty($this->options['netkey'])) {
+                elFinder::$instance->updateNetVolumeOption($this->options['netkey'], 'alias', $this->options['alias']);
+            }
         }
 
         $this->rootName = $this->options['alias'];
@@ -209,7 +211,7 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
             $this->ftpListOption = $this->options['ftpListOption'];
         }
 
-        return $this->connect();
+        return $this->needOnline? $this->connect() : true;
 
     }
 

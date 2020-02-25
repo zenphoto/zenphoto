@@ -131,8 +131,7 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends ExtDriver
                     $options['url'] = elFinder::getConnectorUrl();
                 }
 
-                $callback = $options['url']
-                    . '?cmd=netmount&protocol=googledrive&host=1';
+                $callback = $options['url'] . (strpos($options['url'], '?') !== false? '&' : '?') . 'cmd=netmount&protocol=googledrive&host=1';
                 $client->setRedirectUri($callback);
 
                 if (!$aToken && empty($_GET['code'])) {
@@ -211,6 +210,9 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends ExtDriver
         try {
             $file = $service->files->get($options['path']);
             $options['alias'] = sprintf($this->options['gdAlias'], $file->getName());
+            if (!empty($this->options['netkey'])) {
+                elFinder::$instance->updateNetVolumeOption($this->options['netkey'], 'alias', $this->options['alias']);
+            }
         } catch (Google_Service_Exception $e) {
             $err = json_decode($e->getMessage(), true);
             if (isset($err['error']) && $err['error']['code'] == 404) {
@@ -277,7 +279,7 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends ExtDriver
         if (!empty($opts['access_token'])) {
             $client->setAccessToken($opts['access_token']);
         }
-        if ($client->isAccessTokenExpired()) {
+        if ($this->needOnline && $client->isAccessTokenExpired()) {
             try {
                 $creds = $client->fetchAccessTokenWithRefreshToken();
             } catch (LogicException $e) {
@@ -335,4 +337,18 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends ExtDriver
         return $this->netMountKey . substr(substr($stat['hash'], strlen($this->id)), -38) . $stat['ts'] . '.png';
     }
 
+    /**
+     * Return debug info for client.
+     *
+     * @return array
+     **/
+    public function debug()
+    {
+        $res = parent::debug();
+        if (!empty($this->options['netkey']) && empty($this->options['refresh_token']) && $this->options['access_token'] && isset($this->options['access_token']['refresh_token'])) {
+            $res['refresh_token'] = $this->options['access_token']['refresh_token'];
+        }
+
+        return $res;
+    }
 }

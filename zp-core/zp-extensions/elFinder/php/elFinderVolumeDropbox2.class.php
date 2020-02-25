@@ -287,7 +287,6 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
         }
 
         try {
-            $this->session->start();
             $app = new DropboxApp($options['app_key'], $options['app_secret']);
             $dropbox = new Dropbox($app);
             $authHelper = $dropbox->getAuthHelper();
@@ -326,13 +325,13 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
                 }
             }
 
-            if ($options['user'] === 'init') {
+            if ((isset($options['user']) && $options['user'] === 'init') || (isset($_GET['host']) && $_GET['host'] == '1')) {
                 if (empty($options['url'])) {
                     $options['url'] = elFinder::getConnectorUrl();
                 }
 
                 $callback = $options['url']
-                    . '?cmd=netmount&protocol=dropbox2&host=1';
+                        . (strpos($options['url'], '?') !== false? '&' : '?') . 'cmd=netmount&protocol=dropbox2&host=1';
 
                 if (!$aToken && empty($_GET['code'])) {
                     $url = $authHelper->getAuthUrl($callback);
@@ -357,6 +356,8 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
                     }
                 } else {
                     if (!empty($_GET['code']) && isset($_GET['state'])) {
+                        // see https://github.com/kunalvarma05/dropbox-php-sdk/issues/115
+                        $authHelper->getPersistentDataStore()->set('state', filter_var($_GET['state'], FILTER_SANITIZE_STRING));
                         $tokenObj = $authHelper->getAccessToken($_GET['code'], $_GET['state'], $callback);
                         $options['tokens'] = [
                             'access_token' => $tokenObj->getToken(),
@@ -495,9 +496,11 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
             $this->netMountKey = md5($aToken . '-' . $this->options['path']);
 
             $errors = [];
-            if (!$this->service) {
+            if ($this->needOnline && !$this->service) {
                 $app = new DropboxApp($this->options['app_key'], $this->options['app_secret'], $aToken);
                 $this->service = new Dropbox($app);
+                // to check access_token
+                $this->service->getCurrentAccount();
             }
         } catch (DropboxClientException $e) {
             $errors[] = 'Dropbox error: ' . $e->getMessage();
@@ -505,9 +508,11 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
             $errors[] = $e->getMessage();
         }
 
-        if (!$this->service) {
+        if ($this->needOnline && !$this->service) {
             $errors[] = 'Dropbox Service could not be loaded.';
+        }
 
+        if ($errors) {
             return $this->setError($errors);
         }
 
@@ -519,7 +524,10 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
         $this->root = $this->options['path'] = $this->_normpath($this->options['path']);
 
         if (empty($this->options['alias'])) {
-            $this->options['alias'] = sprintf($this->options['aliasFormat'], ($this->options['path'] === '/') ? 'root' : $this->_basename($this->options['path']));
+            $this->options['alias'] = sprintf($this->options['aliasFormat'], ($this->options['path'] === '/') ? 'Root' : $this->_basename($this->options['path']));
+            if (!empty($this->options['netkey'])) {
+                elFinder::$instance->updateNetVolumeOption($this->options['netkey'], 'alias', $this->options['alias']);
+            }
         }
 
         $this->rootName = $this->options['alias'];
@@ -890,7 +898,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
     public function debug()
     {
         $res = parent::debug();
-        if (isset($this->options['tokens']) && !empty($this->options['tokens']['uid'])) {
+        if (!empty($this->options['netkey']) && isset($this->options['tokens']) && !empty($this->options['tokens']['uid'])) {
             $res['Dropbox uid'] = $this->options['tokens']['uid'];
             $res['access_token'] = $this->options['tokens']['access_token'];
         }
@@ -1105,7 +1113,8 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
             if ($size) {
                 $ret = array('dim' => $size[0] . 'x' . $size[1]);
                 $srcfp = fopen($tmp, 'rb');
-                if ($subImgLink = $this->getSubstituteImgLink(elFinder::$currentArgs['target'], $size, $srcfp)) {
+                $target = isset(elFinder::$currentArgs['target'])? elFinder::$currentArgs['target'] : '';
+                if ($subImgLink = $this->getSubstituteImgLink($target, $size, $srcfp)) {
                     $ret['url'] = $subImgLink;
                 }
             }
