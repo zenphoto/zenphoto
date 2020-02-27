@@ -236,7 +236,7 @@ echo "\n</head>";
 					<br class="clearall" />
 
 				</div>
-
+<?php printAlbumLegend(); ?>
 			</div>
 
 		</div>
