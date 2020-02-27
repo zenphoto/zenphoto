@@ -1732,11 +1732,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php $bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8'); ?>
 				<td class="rightcolumn" valign="top">
 					<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
-					<div class="box-edit">
-						<label class="checkboxlabel">
-							<input type="checkbox" name="<?php echo $prefix; ?>Published" value="1" <?php if ($album->getShow()) echo ' checked="checked"'; ?> />
-							<?php echo gettext("Published"); ?>
-						</label>
+						<div class="box-edit">
+						<?php 
+	if($album->hasPublishSchedule()) {
+		$publishlabel = '<span class="scheduledate">' . gettext('Publishing scheduled') . '</span>';
+	} else {
+		$publishlabel = gettext("Published");
+	}
+?>
+<label class="checkboxlabel">
+	<input type="checkbox" name="<?php echo $prefix; ?>Published" value="1" <?php if ($album->get('show', false)) echo ' checked="checked"'; ?> />
+	<?php echo $publishlabel; ?>
+</label>
 						<label class="checkboxlabel">
 							<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
 							if ($album->getCommentsAllowed()) {
@@ -1818,20 +1825,23 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<p>
 							<label for="<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
 							<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>publishdate" />
-							<strong class="scheduledpublishing-<?php echo $prefix; ?>" style="color:red">
+							<strong class="scheduledpublishing-<?php echo $prefix; ?>">
 								<?php
-								if (!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
-									echo '<br />' . gettext('Future publishing date.');
+								if ($album->hasPublishSchedule()) {
+									echo '<br><span class="scheduledate">' . gettext('Future publishing date.') . '</span>';
 								}
 								?>
 							</strong>
 							<br /><br />
 							<label for="<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
 							<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>expirationdate" />
-							<strong class="<?php echo $prefix; ?>expire" style="color:red">
+							<strong class="<?php echo $prefix; ?>expire">
 								<?php
-								if (!empty($expirationdate) && ($expirationdate <= date('Y-m-d H:i:s'))) {
-									echo '<br />' . gettext('Expired!');
+								if ($album->hasExpiration()) {
+									echo '<br><span class="expiredate">' . gettext('Expiration set') . '</span>';
+								}
+								if ($album->hasExpired()) {
+									echo '<br><span class="expired">' . gettext('Expired!') . '</span>';
 								}
 								?>
 							</strong>
@@ -2168,35 +2178,48 @@ function printAdminHeader($tab, $subtab = NULL) {
 				</div>
 				<div class="page-list_icon">
 					<?php
-					if ($album->getShow()) {
+	if ($album->hasPublishSchedule()) {
+		$title = sprintf(gettext('Publish the album %s'), $album->name);
+		$alt = gettext("Scheduled for published");
+		$action = '?action=publish&amp;value=1';
+		$icon = 'images/clock_futuredate.png';
+	} else if ($album->hasExpiration()) {
+		$title = sprintf(gettext('Publish the album %s'), $album->name);
+		$alt = gettext("Scheduled for expiration");
+		$action = '?action=publish&amp;value=1';
+		$icon = 'images/clock_expiredate.png';
+	} else if ($album->getShow()) {
+		$title = sprintf(gettext('Un-publish the album %s'), $album->name);
+		$alt = gettext("Published");
+		$action = '?action=publish&amp;value=0';
+		$icon = 'images/pass.png';
+	} else if (!$album->getShow()) {
+		if ($album->hasExpired()) {
+			$title = sprintf(gettext('Publish the album %s'), $album->name);
+			$alt = gettext("Un-published because expired");
+			$action = '?action=publish&amp;value=1';
+			$icon = 'images/clock_expired.png';
+		} else {
+			$title = sprintf(gettext('Publish the album %s'), $album->name);
+			$alt = gettext("Un-published");
+			$action = '?action=publish&amp;value=1';
+			$icon = 'images/action.png';
+		}
+	}
 						if ($enableEdit) {
 							?>
-							<a href="?action=publish&amp;value=0&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>" >
+							<a href="<?php echo $action; ?>&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo $title; ?>" >
 								<?php
 							}
 							?>
-							<img src="images/pass.png" style="border: 0px;" alt="" title="<?php echo gettext('Published'); ?>" />
+							<img src="<?php echo $icon; ?>" style="border: 0px;" alt="<?php echo $alt; ?>" title="<?php echo $title; ?>" />
 							<?php
 							if ($enableEdit) {
 								?>
 							</a>
 							<?php
 						}
-					} else {
-						if ($enableEdit) {
-							?>
-							<a href="?action=publish&amp;value=1&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
-								<?php
-							}
-							?>
-							<img src="images/action.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Unpublished'), $album->name); ?>" />
-							<?php
-							if ($enableEdit) {
-								?>
-							</a>
-							<?php
-						}
-					}
+					
 					?>
 				</div>
 				<div class="page-list_icon">

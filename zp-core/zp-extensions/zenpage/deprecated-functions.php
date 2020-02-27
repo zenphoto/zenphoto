@@ -22,6 +22,13 @@ class Zenpage_internal_deprecations {
 		deprecated_functions::notify(gettext('Use <code>if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … }</code> for a equivalent check instead.'));
 	}
 	
+	/**
+	 * @deprecated ZenphotoCMS 2.0 Use Zenpage::processScheduledPublishing('expiredate') instead
+	 */
+	public static function expiry() {
+		deprecated_functions::notify(gettext('Use Zenpage::processScheduledPublishing("expiredate") instead.'));
+	}
+	
 }
 
 /**

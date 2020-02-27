@@ -607,8 +607,8 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<br />
 															<strong class='scheduledpublishing'>
 																<?php
-																if ($date > date('Y-m-d H:i:s')) {
-																	echo addslashes(gettext('Future publishing date:'));
+																if ($result->hasPublishSchedule()) {
+																	echo addslashes(gettext('Future publishing date'));
 																}
 																?>
 															</strong>
@@ -638,8 +638,14 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<br />
 															<strong class='expire'>
 																<?php
-																if (!empty($date) && ($date <= date('Y-m-d H:i:s'))) {
-																	echo '<br />' . gettext('This is not a future date!');
+																if (!empty($date) && !$result->hasExpiration()) {
+																	echo '<span class="expire">' . gettext('This is not a future date!') . '</span>';
+																} else {
+																	if($result->hasExpired()) {
+																		echo '<span class="expired">' . gettext('Expired!') . '</span>';
+																	} else if($result->hasExpiration()) {
+																		echo '<span class="expires">' . gettext('Expiration date set!') . '</span>';
+																	}
 																}
 																?>
 															</strong>

@@ -9,6 +9,7 @@
 global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
 Zenpage::expiry();
 
+
 /**
  * Retrieves posted expiry date and checks it against the current date/time
  * Returns the posted date if it is in the future
@@ -1278,15 +1279,25 @@ function zenpagePublish($obj, $show) {
 }
 
 /**
- * Skips the scheduled publishing by setting the date of a page or article to the current date to publish it immediately
+ * Skips the scheduled future publishing by setting the date of a page or article to the current date to publish it immediately
+ * or the expiration handling by setting the expiredate to null.
  *
  * @param object $obj
+ * @param string $type "futuredate" or "expiredate"
  * @return string
  */
-function skipScheduledPublishing($obj) {
+function skipScheduledPublishing($obj, $type = 'futuredate') {
 	global $_zp_current_admin_obj;
-	$obj->setDateTime(date('Y-m-d H:i:s'));
-	$obj->setShow(1);
+	switch ($type) {
+		case 'futuredate':
+			$obj->setDateTime(date('Y-m-d H:i:s'));
+			$obj->setShow(1);
+			break;
+		case 'expiredate':
+			$obj->setExpiredate(null);
+			$obj->setShow(1);
+			break;
+	}
 	$obj->setLastchangeUser($_zp_current_admin_obj->getUser());
 	$obj->save();
 }
@@ -1409,7 +1420,8 @@ function printZenpageIconLegend() {
 		<?php
 		if (GALLERY_SECURITY == 'public') {
 			?>
-			<li><img src="../../images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>	<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><img src="images/clock.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing"); ?></li>
+			<li><img src="../../images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>	
+			<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><img src="../../images/clock_futuredate.png" alt="" /><img src="../../images/clock_expiredate.png" alt="" /><img src="../../images/clock_expired.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing/Scheduled for expiration/Expired"); ?></li>
 			<?php
 		}
 		?>
@@ -1462,15 +1474,11 @@ function authorSelector($author = NULL) {
  * @return string
  */
 function printPublished($object) {
-	$dt = $object->getDateTime();
-	if ($dt > date('Y-m-d H:i:s')) {
-		if ($object->getShow() != 1) {
-			echo '<span class="inactivescheduledate">' . $dt . '</strong>';
-		} else {
-			echo '<span class="scheduledate">' . $dt . '</strong>';
-		}
+	$date = $object->getDateTime();
+	if ($object->hasPublishSchedule()) {
+		echo '<span class="scheduledate">' . $date . '</strong>';
 	} else {
-		echo '<span>' . $dt . '</span>';
+		echo '<span>' . $date . '</span>';
 	}
 }
 
@@ -1481,14 +1489,11 @@ function printPublished($object) {
  * @return string
  */
 function printExpired($object) {
-	$dt = $object->getExpireDate();
-	if (!empty($dt)) {
-		$expired = $dt < date('Y-m-d H:i:s');
-		if ($expired) {
-			echo ' <span class="expired">' . $dt . "</span>";
-		} else {
-			echo ' <span class="expiredate">' . $dt . "</span>";
-		}
+	$date = $object->getExpireDate();
+	if ($object->hasExpired()) {
+		echo ' <span class="expired">' . $date . "</span>";
+	} else if ($object->hasExpiration()) {
+		echo ' <span class="expiredate">' . $date . "</span>";
 	}
 }
 
@@ -1517,46 +1522,41 @@ function printPublishIconLink($object, $type, $linkback = '') {
 			$urladd .= "&amp;articles_page=" . sanitize_numeric($_GET['articles_page']);
 		}
 	}
-	if ($object->getDateTime() > date('Y-m-d H:i:s')) {
-		if ($object->getShow()) {
-			$title = gettext("Publish immediately (skip scheduling)");
-			?>
-			<a href="?skipscheduling=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-				<img src="images/clock.png" alt="<?php gettext("Scheduled for published"); ?>" title="<?php echo $title; ?>" /></a>
-			<?php
+	if ($object->hasPublishSchedule()) {
+		$title = gettext("Publish immediately (skip scheduling)");
+		$alt = gettext("Scheduled for published");
+		$action = '?skipscheduling=1';
+		$icon = '../../images/clock_futuredate.png';
+	} else if ($object->hasExpiration()) {
+		$title = gettext("Publish immediately (skip scheduled expiration)");
+		$alt = gettext("Scheduled for expiration");
+		$action = '?skipexpiration=1';
+		$icon = '../../images/clock_expiredate.png';
+	} else if ($object->getShow()) {
+		$title = gettext("Un-publish");
+		$alt = gettext("Published");
+		$action = '?publish=0';
+		$icon = '../../images/pass.png';
+	} else if (!$object->getShow()) {
+		if ($object->hasExpired()) {
+			$title = gettext("Publish immediately (skip expiration)");
+			$alt = gettext("Un-published because expired");
+			$action = '?skipexpiration=1';
+			$icon = '../../images/clock_expired.png';
 		} else {
-			$title = gettext("Enable scheduled publishing");
-			?>
-			<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-				<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title="<?php echo $title; ?>" /></a>
-			<?php
-		}
-	} else {
-		if ($object->getShow()) {
-			$title = gettext("Un-publish");
-			?>
-			<a href="?publish=0&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-				<img src="../../images/pass.png" alt="<?php echo gettext("Published"); ?>" title="<?php echo $title; ?>" /></a>
-			<?php
-		} else {
-			$dt = $object->getExpireDate();
-			if (empty($dt)) {
-				$title = gettext("Publish");
-				?>
-				<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-					<?php
-				} else {
-					$title = gettext("Publish (override expiration)");
-					?>
-					<a href="?publish=2&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-						<?php
-					}
-					?>
-					<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title= "<?php echo $title; ?>" /></a>
-				<?php
-			}
+			$title = gettext("Publish");
+			$alt = gettext("Un-published");
+			$action = '?publish=1';
+			$icon = '../../images/action.png';
 		}
 	}
+	?>
+	<a href="<?php echo $action; ?>&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
+		<img src="<?php echo $icon; ?>" alt="<?php echo $alt; ?>" title= "<?php echo $title; ?>" />
+	</a>
+	<?php
+}
+
 
 	/**
 	 * Checks if a checkbox is selected and checks it if.

@@ -327,7 +327,7 @@ class ThemeObject extends PersistentObject {
 	}
 
 	/**
-	 * Checks if the item is either expired or in scheduled publishing
+	 * Checks if the item is either expired or needs to be scheduled published
 	 * A class method wrapper of the functions.php function of the same name
 	 * @return boolean
 	 */
@@ -346,12 +346,97 @@ class ThemeObject extends PersistentObject {
 					'publishdate' => $this->getDateTime()
 			);
 		}
-		$check = checkPublishDates($row);
+		$check = self::checkScheduledPublishing($row);
 		if ($check == 1 || $check == 2) {
 			return false;
 		} else {
 			return true;
 		}
+	}
+	
+	/**
+	 * Checks if the item has expired or is in scheduled publishing
+	 * 
+	 * Returns 1 if expired, 2 if in scheduled future publishing
+	 * 
+	 * @since ZenphotoCMS 1.5.7 - Code moved from the deprecated checKPublishDates() function
+	 * @param array $row database row of the object
+	 * @return int
+	 */
+	static function checkScheduledPublishing($row) {
+		if (@$row['show']) {
+			if (isset($row['expiredate']) && $row['expiredate'] && $row['expiredate'] != '0000-00-00 00:00:00') {
+				if ($row['expiredate'] < date('Y-m-d H:i:s')) {
+					return 1; // expired
+				}
+			}
+			if (isset($row['publishdate']) && $row['publishdate'] && $row['publishdate'] != '0000-00-00 00:00:00') {
+				if ($row['publishdate'] > date('Y-m-d H:i:s')) {
+					return 2; // in scheduled publishing
+				}
+			}
+			return null;
+		}
+	}
+	
+	/**
+	 * Returns true if the item has a proper expire date set no matter if it has expired already or will expire in the future
+	 * 
+	 * @since ZenphotoCMS 1.5.7
+	 * @return boolean
+	 */
+	function hasExpireDate() {
+		if ($this->getExpireDate() && $this->getExpireDate() != '0000-00-00 00:00:00') {
+			return true;
+		}
+	}
+	
+	/**
+	 * Returns true if the item will be automatically unpublished by a not yet reached future expire date
+	 * 
+	 * @since ZenphootCMS 1.5.7
+	 * @return boolean
+	 */
+	function hasExpiration() {
+		if ($this->hasExpireDate() && $this->getShow() && $this->getExpireDate() > date('Y-m-d H:i:s')) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns true if the items has been unpublished after reaching the set expire date.
+	 * 
+	 * @since ZenphootCMS 1.5.7
+	 * @return boolean
+	 */
+	function hasExpired() {
+		if ($this->hasExpireDate() && $this->getExpireDate() <= date('Y-m-d H:i:s')) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns true if the item will be automatically published by a future date set
+	 * 
+	 * @since ZenphootCMS 1.5.7
+	 * @return boolean
+	 */
+	function hasPublishSchedule() {
+		$futuredate = null;
+		if ($this->table == 'images' || $this->table == 'albums') {
+			$futuredate = $this->getPublishDate();
+		} else if ($this->table == 'news' || $this->table == 'pages') {
+			$futuredate = $this->getDateTime();
+		}
+		if ($futuredate && $futuredate != '0000-00-00 00:00:00') {
+			$published = $this->get('show', false); 
+			if ($published && $futuredate > date('Y-m-d H:i:s')) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

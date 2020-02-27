@@ -442,6 +442,9 @@ zp-core/images/burst.png
 zp-core/images/cache.png
 zp-core/images/calendar.png
 zp-core/images/captcha_background.png
+zp-core/images/clock_expired.png
+zp-core/images/clock_expiredate.png
+zp-core/images/clock_futuredate.png
 zp-core/images/comments-off.png
 zp-core/images/comments-on.png
 zp-core/images/drag_handle.png
@@ -1666,7 +1669,6 @@ zp-core/zp-extensions/zenpage/class-zenpageroot.php
 zp-core/zp-extensions/zenpage/deprecated-functions.php
 zp-core/zp-extensions/zenpage/images
 zp-core/zp-extensions/zenpage/images/add.png
-zp-core/zp-extensions/zenpage/images/clock.png
 zp-core/zp-extensions/zenpage/images/folder.png
 zp-core/zp-extensions/zenpage/images/info.png
 zp-core/zp-extensions/zenpage/images/loadingAnimation.gif
@@ -1695,4 +1697,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1697
+1699

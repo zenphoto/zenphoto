@@ -2772,3 +2772,30 @@ form.dirty input[type=submit]:active{
 	overflow: scroll;
 }
 
+/* scheduled publishing
+--------------------------*/
+.scheduledpublishing {
+	color: orange !important;
+	font-weight: normal;
+}
+
+.scheduledate {
+	color: orange !important;
+	font-weight: normal;
+}
+
+.inactivescheduledate {
+	color: lightsalmon !important;
+	font-weight: normal;
+}
+
+.expiredate {
+	color: red !important;
+	font-weight: normal;
+}
+
+.expire,
+.expired {
+	color: red !important;
+	font-weight: normal;
+}

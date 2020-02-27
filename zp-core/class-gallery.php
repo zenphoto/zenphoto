@@ -819,7 +819,7 @@ class Gallery {
 		foreach ($results as $row) { // check for visible
 			$folder = $row['folder'];
 			$album = newAlbum($folder);
-			switch (checkPublishDates($row)) {
+			switch (themeObject::checkScheduledPublishing($row)) {
 				case 1:
 					$album->setShow(0);
 					$album->save();

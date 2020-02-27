@@ -1056,9 +1056,16 @@ echo "\n</head>";
 														<td style="padding-left: 1em; text-align: left; border-bottom:none;" rowspan="14" valign="top">
 															<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 															<div class="box-edit">
+																<?php 
+																	if($image->hasPublishSchedule()) {
+																		$publishlabel = '<span class="scheduledate">' . gettext('Publishing scheduled') . '</span>';
+																	} else {
+																		$publishlabel = gettext("Published");
+																	}
+																?>
 																<label class="checkboxlabel">
-																	<input type="checkbox" id="Visible-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-Visible" value="1" <?php if ($image->getShow()) echo ' checked="checked"'; ?> />
-																	<?php echo gettext("Published"); ?>
+																	<input type="checkbox" id="Visible-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-Visible" value="1" <?php if ($image->get('show', false)) echo ' checked="checked"'; ?> />
+																	<?php echo $publishlabel; ?>
 																</label>
 																<label class="checkboxlabel">
 																	<input type="checkbox" id="allowcomments-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-allowcomments" value="1" <?php
@@ -1141,20 +1148,23 @@ echo "\n</head>";
 																<p>
 																	<label for="publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
 																	<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $currentimage; ?>" id="publishdate-<?php echo $currentimage; ?>" />
-																	<strong class="scheduledpublishing-<?php echo $currentimage; ?>" style="color:red">
+																	<strong class="scheduledpublishing-<?php echo $currentimage; ?>">
 																		<?php
-																		if (!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
-																			echo '<br />' . gettext('Future publishing date.');
+																		if ($image->hasPublishSchedule()) {
+																			echo '<br><span class="scheduledate">' . gettext('Future publishing date.') . '</span>';
 																		}
 																		?>
 																	</strong>
 																	<br /><br />
 																	<label for="expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
 																	<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $currentimage; ?>" id="expirationdate-<?php echo $currentimage; ?>" />
-																	<strong class="expire-<?php echo $currentimage; ?>" style="color:red">
+																	<strong class="expired expire-<?php echo $currentimage; ?>">
 																		<?php
-																		if (!empty($expirationdate) && ($expirationdate <= date('Y-m-d H:i:s'))) {
-																			echo '<br />' . gettext('Expired!');
+																		if ($image->hasExpiration()) {
+																			echo '<br><span class="expiredate">' . gettext('Expiration set') . '</span>';
+																		}
+																		if ($image->hasExpired()) {
+																			echo '<br><span class="expired">' . gettext('Expired!') . '</span>';
 																		}
 																		?>
 																	</strong>

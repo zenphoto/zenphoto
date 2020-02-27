@@ -169,13 +169,25 @@ echo "\n</head>";
 								<li id="id_<?php echo $image->getID(); ?>">
 									<div  class="images_publishstatus">
 										<?php 
-										if($image->getShow()) { 
-											$publishstatus_text = gettext('Published');
-											$publishstatus_icon = '/images/pass.png';
-										} else {
-											$publishstatus_text = gettext('Unpublished');
-											$publishstatus_icon = '/images/action.png';
-										}
+  if ($image->hasPublishSchedule()) {
+		$publishstatus_text = gettext("Scheduled for published");
+		$publishstatus_icon = '/images/clock_futuredate.png';
+	} else if ($image->hasExpiration()) {
+		$title = sprintf(gettext('Publish the album %s'), $album->name);
+		$publishstatus_text = gettext("Scheduled for expiration");
+		$publishstatus_icon = '/images/clock_expiredate.png';
+	} else if ($image->getShow()) {
+		$publishstatus_text = gettext("Published");
+		$publishstatus_icon = '/images/pass.png';
+	} else if (!$image->getShow()) {
+		if ($image->hasExpired()) {
+			$publishstatus_text = gettext("Un-published because expired");
+			$publishstatus_icon = '/images/clock_expired.png';
+		} else {
+			$publishstatus_text = gettext("Un-published");
+			$publishstatus_icon = '/images/action.png';
+		}
+	}
 										?>
 										<img src="<?php echo WEBPATH . '/' . ZENFOLDER . $publishstatus_icon; ?>" alt="<?php echo $publishstatus_text; ?>">
 									</div>

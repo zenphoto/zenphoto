@@ -41,7 +41,12 @@ if (isset($_GET['publish'])) {
 if (isset($_GET['skipscheduling'])) {
 	XSRFdefender('update');
 	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
-	skipScheduledPublishing($obj);
+	skipScheduledPublishing($obj, 'futuredate');
+}
+if (isset($_GET['skipexpiration'])) {
+	XSRFdefender('update');
+	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
+	skipScheduledPublishing($obj, 'expiredate');
 }
 if (isset($_GET['commentson'])) {
 	XSRFdefender('update');

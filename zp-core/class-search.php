@@ -1399,7 +1399,7 @@ class SearchEngine {
 								$album = newAlbum($albumname);
 								$uralbum = getUrAlbum($album);
 								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
-								switch (checkPublishDates($row)) {
+								switch (themeObject::checkScheduledPublishing($row)) {
 									case 1:
 										$album->setShow(0);
 										$album->save();
@@ -1565,9 +1565,10 @@ class SearchEngine {
 							$album = newAlbum($albumname);
 							$uralbum = getUrAlbum($album);
 							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
-							switch (checkPublishDates($row)) {
+							switch (themeObject::checkScheduledPublishing($row)) {
 								case 1:
 									$imageobj = newImage($album, $row['filename']);
+									$imageobj->setShow(0);
 									$imageobj->save();
 								case 2:
 									$row['show'] = 0;

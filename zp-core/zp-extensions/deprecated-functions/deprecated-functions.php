@@ -136,6 +136,17 @@ function getTotalImagesIn($album) {
 }
 
 /**
+ * checks if the item has expired
+ * @deprecated ZenphotoCMS 2.0 - Use themeObject::checkScheduledPublishing() instead
+ * @since 1.5.7
+ * @param array $row database row of the object
+ */
+function checkPublishDates($row) {
+	deprecated_functions::notify(gettext("Use themeObject::checkScheduledPublishing() instead"));
+	return themeObject::checkScheduledPublishing($row);
+}
+
+/**
  * @deprecated 2.0
  * @since 1.5
  */
@@ -250,5 +261,7 @@ class zpFunctions {
 		internal_deprecations::tidyHTML();
 		return tidyHTML($html);
 	}
+	
+	
 
 }

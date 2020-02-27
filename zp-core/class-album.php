@@ -1140,7 +1140,7 @@ class AlbumBase extends MediaObject {
 		$images_ordered = array();
 		foreach ($results as $key => $row) {
 			// check for visible
-			switch (checkPublishDates($row)) {
+			switch (themeObject::checkScheduledPublishing($row)) {
 				case 1:
 					$imageobj = newImage($this, $row['filename']);
 					$imageobj->setShow(0);
