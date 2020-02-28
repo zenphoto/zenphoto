@@ -192,7 +192,6 @@ echo "\n</head>";
 											 width="80" height="80"  />
 									<p>
 										<?php printPublishIconLinkGallery($image, true) ?>
-										
 										<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt=""></a>
 										<?php
 										if (isImagePhoto($image)) {

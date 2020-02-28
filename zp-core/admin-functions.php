@@ -2167,6 +2167,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<div class="page-list_extra">
 				<?php echo $si; ?>
 			</div>
+			<?php if($album->hasPublishSchedule()) { ?>
+				<div class="page-list_extra">
+					<?php printPublished($album); ?>
+				</div>
+			<?php } 
+			if($album->hasExpiration() || $album->hasExpired()) {
+				?>
+				<div class="page-list_extra">
+					<?php printExpired($album); ?>
+				</div>
+			<?php } ?>
 			<?php $wide = '40px'; ?>
 			<div class="page-list_iconwrapperalbum">
 				<div class="page-list_icon">
@@ -2178,10 +2189,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					?>
 				</div>
 				<div class="page-list_icon">
-					<?php
-						printPublishIconLinkGallery($album, $enableEdit, $owner);
-					
-					?>
+					<?php printPublishIconLinkGallery($album, $enableEdit, $owner); ?>
 				</div>
 				<div class="page-list_icon">
 					<?php
@@ -5145,5 +5153,43 @@ function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
 			</a>
 			<?php
 		}
+	}
+}
+
+/**
+ * Prints the scheduled publishing date for items if set. Also prints the date for Zenpage news articles and pages
+ *
+ * @since ZenphotoCMS 1.5.7 moved from Zenpage plugin to generel admin functions
+ * @param string $obj image, albun, news article or page object
+ * @return string
+ */
+function printPublished($obj) {
+	if ($obj->table == 'images' || $obj->table == 'albums') {
+		$date =$obj->getPublishDate();
+	} else if ($this->table == 'news' || $obj->table == 'pages') {
+		$date = $obj->getDateTime();
+	}
+	if ($obj->hasPublishSchedule()) {
+		echo '<span class="scheduledate">' . $date . '</strong>';
+	} else {
+		if(in_array($obj->table, array('news', 'pages'))) {
+			echo '<span>' . $date . '</span>';
+		}
+	}
+}
+
+/**
+ * Prints the expiration or expired date for items
+ * 
+ * @since ZenphotoCMS 1.5.7 moved from Zenpage plugin to generel admin functions
+ * @param string $obj image, albun, news article or page object
+ * @return string
+ */
+function printExpired($obj) {
+	$date = $obj->getExpireDate();
+	if ($obj->hasExpired()) {
+		echo ' <span class="expired">' . $date . "</span>";
+	} else if ($obj->hasExpiration()) {
+		echo ' <span class="expiredate">' . $date . "</span>";
 	}
 }

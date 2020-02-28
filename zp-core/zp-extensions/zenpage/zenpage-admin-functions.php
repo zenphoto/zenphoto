@@ -1466,35 +1466,7 @@ function authorSelector($author = NULL) {
 	<?php
 }
 
-/**
- * Prints data info for objects
- *
- * @param string $object Object of the page or news article to check
- * @return string
- */
-function printPublished($object) {
-	$date = $object->getDateTime();
-	if ($object->hasPublishSchedule()) {
-		echo '<span class="scheduledate">' . $date . '</strong>';
-	} else {
-		echo '<span>' . $date . '</span>';
-	}
-}
 
-/**
- * Prints data info for objects
- *
- * @param string $object Object of the page or news article to check
- * @return string
- */
-function printExpired($object) {
-	$date = $object->getExpireDate();
-	if ($object->hasExpired()) {
-		echo ' <span class="expired">' . $date . "</span>";
-	} else if ($object->hasExpiration()) {
-		echo ' <span class="expiredate">' . $date . "</span>";
-	}
-}
 
 /**
  * Prints the publish/un-published/scheduled publishing icon with a link for the pages and news articles list.
