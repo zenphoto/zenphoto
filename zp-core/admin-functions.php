@@ -2179,34 +2179,34 @@ function printAdminHeader($tab, $subtab = NULL) {
 				</div>
 				<div class="page-list_icon">
 					<?php
-	if ($album->hasPublishSchedule()) {
-		$title = sprintf(gettext('Publish the album %s'), $album->name);
-		$alt = gettext("Scheduled for published");
-		$action = '?action=publish&amp;value=1';
-		$icon = 'images/clock_futuredate.png';
-	} else if ($album->hasExpiration()) {
-		$title = sprintf(gettext('Publish the album %s'), $album->name);
-		$alt = gettext("Scheduled for expiration");
-		$action = '?action=publish&amp;value=1';
-		$icon = 'images/clock_expiredate.png';
-	} else if ($album->getShow()) {
-		$title = sprintf(gettext('Un-publish the album %s'), $album->name);
-		$alt = gettext("Published");
-		$action = '?action=publish&amp;value=0';
-		$icon = 'images/pass.png';
-	} else if (!$album->getShow()) {
-		if ($album->hasExpired()) {
-			$title = sprintf(gettext('Publish the album %s'), $album->name);
-			$alt = gettext("Un-published because expired");
-			$action = '?action=publish&amp;value=1';
-			$icon = 'images/clock_expired.png';
-		} else {
-			$title = sprintf(gettext('Publish the album %s'), $album->name);
-			$alt = gettext("Un-published");
-			$action = '?action=publish&amp;value=1';
-			$icon = 'images/action.png';
-		}
-	}
+						if ($album->hasPublishSchedule()) {
+							$title = sprintf(gettext('Publish the album %s (Skip scheduled publishing)'), $album->name);
+							$alt = gettext("Scheduled for published");
+							$action = '?action=publish&amp;value=1';
+							$icon = 'images/clock_futuredate.png';
+						} else if ($album->hasExpiration()) {
+							$title = sprintf(gettext('Publish the album %s (Skip scheduled expiration)'), $album->name);
+							$alt = gettext("Scheduled for expiration");
+							$action = '?action=publish&amp;value=1';
+							$icon = 'images/clock_expiredate.png';
+						} else if ($album->getShow()) {
+							$title = sprintf(gettext('Un-publish the album %s'), $album->name);
+							$alt = gettext("Published");
+							$action = '?action=publish&amp;value=0';
+							$icon = 'images/pass.png';
+						} else if (!$album->getShow()) {
+							if ($album->hasExpired()) {
+								$title = sprintf(gettext('Publish the album %s (Skip expiration)'), $album->name);
+								$alt = gettext("Un-published because expired");
+								$action = '?action=publish&amp;value=1';
+								$icon = 'images/clock_expired.png';
+							} else {
+								$title = sprintf(gettext('Publish the album %s'), $album->name);
+								$alt = gettext("Un-published");
+								$action = '?action=publish&amp;value=1';
+								$icon = 'images/action.png';
+							}
+						}
 						if ($enableEdit) {
 							?>
 							<a href="<?php echo $action; ?>&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo $title; ?>" >
@@ -2220,7 +2220,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 							</a>
 							<?php
 						}
-					
 					?>
 				</div>
 				<div class="page-list_icon">
@@ -5049,4 +5048,67 @@ function getSortByStatusOptions() {
 			gettext('Published') => 'published',
 			gettext('Unpublished') => 'unpublished'
 	);
+}
+
+/**
+ * Helper to check if notes are to be printed (only needed because of the inconvenient legacy table based layout on image edit pages)
+ * @since ZenphotoCMS 1.5.7
+ * @param obj $obj Image, album, news article or page object
+ * @return boolean
+ */
+function checkSchedulePublishingNotes($obj) {
+	if ($obj->hasPublishSchedule()|| ($obj->hasFutureDate() && !$obj->get('show', false)) || $obj->hasExpiration() || $obj->hasExpired()) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Prints various notes regarding the scheduled publishing status for single edit pages
+ * 
+ * @since ZenphotoCMS 1.5.7
+ * @param obj $obj Image, album, news article or page object
+ */		
+function printScheduledPublishingNotes($obj) {
+	$notes = array();
+	switch ($obj->table) {
+		case 'images':
+			$notes['scheduledpublishing'] = gettext('Image scheduled for publishing');
+			$notes['scheduledpublishing_inactive'] = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the image is also set to <em>published</em>');
+			$notes['scheduledexpiration'] = gettext('Image scheduled for expiration');
+			$notes['expired'] = gettext('Image has expired');
+			break;
+		case 'albums':
+			$notes['scheduledpublishing'] = gettext('Album scheduled for publishing');
+			$notes['scheduledpublishing_inactive'] = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the Album  is also set to <em>published</em>');
+			$notes['scheduledexpiration'] = gettext('Album  scheduled for expiration');
+			$notes['expired'] = gettext('Album  has expired');
+			break;
+		case 'news':
+			$notes['scheduledpublishing'] = gettext('Article scheduled for publishing');
+			$notes['scheduledpublishing_inactive'] = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the article is also set to <em>published</em>');
+			$notes['scheduledexpiration'] = gettext('Article scheduled for expiration');
+			$notes['expired'] = gettext('Article has expired');
+			break;
+		case 'pages':
+			$notes['scheduledpublishing'] = gettext('Page scheduled for publishing');
+			$notes['scheduledpublishing_inactive'] = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the page is also set to <em>published</em>');
+			$notes['scheduledexpiration'] = gettext('Page scheduled for expiration');
+			$notes['expired'] = gettext('Page has expired');
+			break;
+	}
+	if ($notes) {
+		if ($obj->hasPublishSchedule()) {
+			echo '<p id="scheduldedpublishing" class="notebox">' . $notes['scheduledpublishing'] . '</p>';
+		}
+		if ($obj->hasFutureDate() && !$obj->get('show', false)) {
+			echo '<p class="notebox">' . $note['scheduledpublishing_inactive'] . '</p>';
+		}
+		if ($obj->hasExpiration()) {
+			echo ' <p class="notebox">' . $notes['scheduledexpiration'] . '</p>';
+		}
+		if ($obj->hasExpired()) {
+			echo ' <p class="notebox">' . $notes['expired'] . '</p>';
+		}
+	}
 }

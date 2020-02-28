@@ -263,18 +263,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 							?>
 							<h1><?php echo gettext('Edit Article:'); ?> <em><?php checkForEmptyTitle($result->getTitle(), 'news', false); ?></em></h1>
 							<?php
-							if ($result->hasPublishSchedule()) {
-								echo '<p id="scheduldedpublishing" class="notebox">' . gettext('Article scheduled for publishing') . '</p>';
-							}
-							if ($result->hasFutureDate() && !$result->getShow()) {
-								echo '<p class="notebox">' . gettext('<strong>Note:</strong> Scheduled publishing is not active unless the article is also set to <em>published</em>') . '</p>';
-							}
-							if ($result->hasExpiration()) {
-								echo ' <p class="notebox">' . gettext('Article scheduled for expiration') . '</p>';
-							}
-							if ($result->hasExpired()) {
-								echo ' <p class="notebox">' . gettext('Article has expired') . '</p>';
-							}
+							printScheduledPublishingNotes($result);
 							if ($result->inProtectedCategory()) {
 								echo '<p class="notebox">' . gettext('<strong>Note:</strong> This article belongs to a password protected category.') . '</p>';
 							}
@@ -288,18 +277,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 							?>
 							<h1><?php echo gettext('Edit Page:'); ?> <em><?php checkForEmptyTitle($result->getTitle(), 'page', false); ?></em></h1>
 							<?php
-							if ($result->hasPublishSchedule()) {
-								echo ' <p id="scheduldedpublishing" class="notebox">' . gettext('Page scheduled for publishing') . '</p>';
-							}
-							if ($result->hasFutureDate() && !$result->getShow()) {
-								echo '<p class="notebox">' . gettext('Note: Scheduled publishing is not active unless the page is also set to <em>published</em>') . '</p>';
-							}
-							if ($result->hasExpiration()) {
-								echo ' <p class="notebox">' . gettext('Page scheduled for expiration') . '</p>';
-							}
-							if ($result->hasExpired()) {
-								echo ' <p class="notebox">' . gettext('Page has expired') . '</p>';
-							}
+							printScheduledPublishingNotes($result);
 							if ($result->getPassword()) {
 								echo '<p class="notebox">' . gettext('<strong>Note:</strong> This page is password protected.') . '</p>';
 							}
@@ -648,17 +626,16 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<br />
 															<input name="expiredate" type="text" id="expiredate" value="<?php echo $date; ?>" onchange="checkFutureExpiry();" />
 															<br />
-															<strong class='expire'>
+															<strong>
 																<?php
-																if (!empty($date) && !$result->hasExpiration() && !$result->hasExpired()) {
-																	echo '<span class="expire">' . gettext('This is not a future date!') . '</span>';
-																} else {
+														
 																	if($result->hasExpired()) {
 																		echo '<span class="expired">' . gettext('Expired!') . '</span>';
 																	} else if($result->hasExpiration()) {
-																		echo '<span class="expires">' . gettext('Expiration date set!') . '</span>';
-																	}
-																}
+																		echo '<span class="expiredate">' . gettext('Expiration date set!') . '</span>';
+																	} else if($result->hasExpiredate() && !$result->hasExpiration()) {
+																		echo '<span class="expired">' . gettext('This is not a future date!') . '</span>';
+																	}	
 																?>
 															</strong>
 														</p>

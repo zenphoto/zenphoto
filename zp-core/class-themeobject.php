@@ -398,7 +398,7 @@ class ThemeObject extends PersistentObject {
 	 * @return boolean
 	 */
 	function hasExpiration() {
-		if ($this->hasExpireDate() && $this->getShow() && $this->getExpireDate() > date('Y-m-d H:i:s')) {
+		if ($this->hasExpireDate() && $this->get('show', false) && $this->getExpireDate() > date('Y-m-d H:i:s')) {
 			return true;
 		}
 		return false;

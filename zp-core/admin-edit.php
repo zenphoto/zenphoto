@@ -158,7 +158,12 @@ if (isset($_GET['action'])) {
     case "publish":
       XSRFdefender('albumedit');
       $album = newAlbum($folder);
-      $album->setShow($_GET['value']);
+      $album->setShow(sanitize_numeric($_GET['value']));
+			if($album->hasPublishSchedule()) {
+				$album->setPublishdate(date('Y-m-d H:i:s'));
+			} else if($album->hasExpiration() || $album->hasExpired()) {
+				$album->setExpiredate(null);
+			}
 			$album->setLastchangeUser($_zp_current_admin_obj->getUser());
       $album->save();
       $return = sanitize_path($r = $_GET['return']);
@@ -706,7 +711,10 @@ echo "\n</head>";
 					?>
 					<!-- Album info box -->
 					<div id="tab_albuminfo" class="tabbox">
-						<?php consolidatedEditMessages('albuminfo'); ?>
+						<?php 
+						consolidatedEditMessages('albuminfo');
+						printScheduledPublishingNotes($album);
+						?>
 						<form class="dirty-check" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>" method="post">
 							<?php XSRFToken('albumedit'); ?>
 							<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
@@ -903,7 +911,7 @@ echo "\n</head>";
 							}
 						}
 						if ($allimagecount) {
-					        if ($singleimage) { ?>
+					     if ($singleimage) { ?>
 								<form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>&amp;singleimage=<?php html_encode($singleimage); ?>&amp;nopagination" method="post" autocomplete="off">
 					        <?php } else {  ?>
 					          	<form class="dirty-check" name="albumedit2"	id="form_imageedit" action="?page=edit&amp;action=save<?php echo "&amp;album=" . html_encode(pathurlencode($album->name)); ?>" method="post" autocomplete="off">
@@ -1002,6 +1010,11 @@ echo "\n</head>";
 											<td colspan="4">
 												<input type="hidden" name="<?php echo $currentimage; ?>-filename"	value="<?php echo $image->filename; ?>" />
 												<table style="border:none" class="formlayout" id="image-<?php echo $currentimage; ?>">
+													<?php if(checkSchedulePublishingNotes($image)) { ?>
+														<tr>
+															<td colspan="5"><?php printScheduledPublishingNotes($image); ?></td>
+														</tr>
+													<?php } ?>
 													<tr>
 														<td valign="top" rowspan="17" style="border-bottom:none;">
 															<div style="width: 135px;">

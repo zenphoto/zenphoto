@@ -2790,7 +2790,7 @@ form.dirty input[type=submit]:active{
 }
 
 .expiredate {
-	color: red !important;
+	color: blue !important;
 	font-weight: normal;
 }
 
