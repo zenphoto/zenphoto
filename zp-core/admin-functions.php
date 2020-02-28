@@ -2070,7 +2070,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 			}
 			?>
-			<li><img src="images/pass.png" alt="" /><img	src="images/action.png" alt="" /><img src="images/clock_futuredate.png" alt="" /><img src="images/clock_expiredate.png" alt="" /><img src="images/clock_expired.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing/Scheduled for expiration/Expired"); ?></li>
+      <li><img src="images/pass.png" alt="" /><img	src="images/action.png" alt="" /><?php echo gettext("Published/Not published"); ?></li>
+			<li><img src="images/clock_futuredate.png" alt="" /><img src="images/clock_expiredate.png" alt="" /><img src="images/clock_expired.png" alt="" /><?php echo gettext("Scheduled publishing/Scheduled expiration/Expired"); ?></li>
 			<li><img src="images/comments-on.png" alt="" /><img src="images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 			<li><img src="images/view.png" alt="" /><?php echo gettext("View the album"); ?></li>
 			<li><img src="images/refresh.png" alt="" /><?php echo gettext("Refresh metadata"); ?></li>

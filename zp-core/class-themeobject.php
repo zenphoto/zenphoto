@@ -390,11 +390,11 @@ class ThemeObject extends PersistentObject {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Returns true if the item will be automatically unpublished by a not yet reached future expire date
 	 * 
-	 * @since ZenphootCMS 1.5.7
+	 * @since ZenphotoCMS 1.5.7
 	 * @return boolean
 	 */
 	function hasExpiration() {
@@ -407,7 +407,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns true if the items has been unpublished after reaching the set expire date.
 	 * 
-	 * @since ZenphootCMS 1.5.7
+	 * @since ZenphotoCMS 1.5.7
 	 * @return boolean
 	 */
 	function hasExpired() {
@@ -416,25 +416,35 @@ class ThemeObject extends PersistentObject {
 		}
 		return false;
 	}
+	
+	/**
+	 * Returns the future date (publishdate for gallery, date for Zenpage items) if set to the future only
+	 * 
+	 * @since ZenphotoCMS 1.5.7
+	 * @return string | null
+	 */
+	function hasFutureDate() {
+		$date = null;
+		if ($this->table == 'images' || $this->table == 'albums') {
+			$date = $this->getPublishDate();
+		} else if ($this->table == 'news' || $this->table == 'pages') {
+			$date = $this->getDateTime();
+		}
+		if($date && $date != '0000-00-00 00:00:00' && $date > date('Y-m-d H:i:s') ) {
+			return $date;
+		}
+		return null;
+	}
 
 	/**
 	 * Returns true if the item will be automatically published by a future date set
 	 * 
-	 * @since ZenphootCMS 1.5.7
+	 * @since ZenphotoCMS 1.5.7
 	 * @return boolean
 	 */
 	function hasPublishSchedule() {
-		$futuredate = null;
-		if ($this->table == 'images' || $this->table == 'albums') {
-			$futuredate = $this->getPublishDate();
-		} else if ($this->table == 'news' || $this->table == 'pages') {
-			$futuredate = $this->getDateTime();
-		}
-		if ($futuredate && $futuredate != '0000-00-00 00:00:00') {
-			$published = $this->get('show', false); 
-			if ($published && $futuredate > date('Y-m-d H:i:s')) {
-				return true;
-			}
+		if ($this->hasFutureDate() && $this->get('show', false)) {
+			return true;
 		}
 		return false;
 	}

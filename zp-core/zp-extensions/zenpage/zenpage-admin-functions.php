@@ -1421,7 +1421,8 @@ function printZenpageIconLegend() {
 		if (GALLERY_SECURITY == 'public') {
 			?>
 			<li><img src="../../images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>	
-			<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><img src="../../images/clock_futuredate.png" alt="" /><img src="../../images/clock_expiredate.png" alt="" /><img src="../../images/clock_expired.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing/Scheduled for expiration/Expired"); ?></li>
+			<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><?php echo gettext("Published/Not published"); ?></li>
+			<li><img src="../../images/clock_futuredate.png" alt="" /><img src="../../images/clock_expiredate.png" alt="" /><img src="../../images/clock_expired.png" alt="" /><?php echo gettext("Scheduled publishing/Scheduled expiration/Expired"); ?></li>
 			<?php
 		}
 		?>
@@ -1528,7 +1529,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 		$action = '?skipscheduling=1';
 		$icon = '../../images/clock_futuredate.png';
 	} else if ($object->hasExpiration()) {
-		$title = gettext("Publish immediately (skip scheduled expiration)");
+		$title = gettext("Skip scheduled expiration");
 		$alt = gettext("Scheduled for expiration");
 		$action = '?skipexpiration=1';
 		$icon = '../../images/clock_expiredate.png';
