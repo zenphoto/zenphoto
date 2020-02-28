@@ -5102,7 +5102,7 @@ function printScheduledPublishingNotes($obj) {
 			echo '<p id="scheduldedpublishing" class="notebox">' . $notes['scheduledpublishing'] . '</p>';
 		}
 		if ($obj->hasFutureDate() && !$obj->get('show', false)) {
-			echo '<p class="notebox">' . $note['scheduledpublishing_inactive'] . '</p>';
+			echo '<p class="notebox">' . $notes['scheduledpublishing_inactive'] . '</p>';
 		}
 		if ($obj->hasExpiration()) {
 			echo ' <p class="notebox">' . $notes['scheduledexpiration'] . '</p>';
