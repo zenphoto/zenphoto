@@ -5166,7 +5166,7 @@ function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
 function printPublished($obj) {
 	if ($obj->table == 'images' || $obj->table == 'albums') {
 		$date =$obj->getPublishDate();
-	} else if ($this->table == 'news' || $obj->table == 'pages') {
+	} else if ($obj->table == 'news' || $obj->table == 'pages') {
 		$date = $obj->getDateTime();
 	}
 	if ($obj->hasPublishSchedule()) {
