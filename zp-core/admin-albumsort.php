@@ -49,7 +49,25 @@ if (isset($_GET['album'])) {
 			$_GET['post_error'] = 1;
 		}
 	} 
-	
+	if (isset($_GET['action']) && isset($_GET['image'])) {
+		$action = sanitize($_GET['action']);
+		$filename = sanitize($_GET['image']);
+		switch ($action) {
+			case 'publish': // yeah, only one but we might extend here
+				XSRFdefender('imageedit');
+				$album = newAlbum($folder);
+				$image = newImage($album, $filename);
+				$image->setShow(sanitize_numeric($_GET['value']));
+				if ($image->hasPublishSchedule()) {
+					$image->setPublishdate(date('Y-m-d H:i:s'));
+				} else if ($image->hasExpiration() || $image->hasExpired()) {
+					$image->setExpiredate(null);
+				}
+				$image->setLastchangeUser($_zp_current_admin_obj->getUser());
+				$image->save(); 
+				break;
+		}
+	}
 }
 
 
@@ -167,37 +185,14 @@ echo "\n</head>";
 								$image = newImage($album, $imagename);
 								?>
 								<li id="id_<?php echo $image->getID(); ?>">
-									<div  class="images_publishstatus">
-										<?php 
-  if ($image->hasPublishSchedule()) {
-		$publishstatus_text = gettext("Scheduled for published");
-		$publishstatus_icon = '/images/clock_futuredate.png';
-	} else if ($image->hasExpiration()) {
-		$title = sprintf(gettext('Publish the album %s'), $album->name);
-		$publishstatus_text = gettext("Scheduled for expiration");
-		$publishstatus_icon = '/images/clock_expiredate.png';
-	} else if ($image->getShow()) {
-		$publishstatus_text = gettext("Published");
-		$publishstatus_icon = '/images/pass.png';
-	} else if (!$image->getShow()) {
-		if ($image->hasExpired()) {
-			$publishstatus_text = gettext("Un-published because expired");
-			$publishstatus_icon = '/images/clock_expired.png';
-		} else {
-			$publishstatus_text = gettext("Un-published");
-			$publishstatus_icon = '/images/action.png';
-		}
-	}
-										?>
-										<img src="<?php echo WEBPATH . '/' . ZENFOLDER . $publishstatus_icon; ?>" alt="<?php echo $publishstatus_text; ?>">
-									</div>
 									<img class="imagethumb"
 											 src="<?php echo getAdminThumb($image, 'large'); ?>"
 											 alt="<?php echo html_encode($image->getTitle()); ?>"
 											 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
 											 width="80" height="80"  />
 									<p>
-										<input type="checkbox" name="ids[]" value="<?php echo $image->filename; ?>">
+										<?php printPublishIconLinkGallery($image, true) ?>
+										
 										<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt=""></a>
 										<?php
 										if (isImagePhoto($image)) {
@@ -206,6 +201,7 @@ echo "\n</head>";
 											<?php
 										}
 										?>
+										<input type="checkbox" name="ids[]" value="<?php echo $image->filename; ?>">	
 									</p>
 									<?php
 								}

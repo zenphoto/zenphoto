@@ -1270,9 +1270,6 @@ function checkForEmptyTitle($titlefield, $type, $truncate = true) {
  */
 function zenpagePublish($obj, $show) {
 	global $_zp_current_admin_obj;
-	if ($show > 1) {
-		$obj->setExpireDate(NULL);
-	}
 	$obj->setShow((int) ($show && 1));
 	$obj->setLastchangeUser($_zp_current_admin_obj->getUser());
 	$obj->save();
@@ -1282,6 +1279,7 @@ function zenpagePublish($obj, $show) {
  * Skips the scheduled future publishing by setting the date of a page or article to the current date to publish it immediately
  * or the expiration handling by setting the expiredate to null.
  *
+ * @since ZenphotoCMS 1.5.7
  * @param object $obj
  * @param string $type "futuredate" or "expiredate"
  * @return string

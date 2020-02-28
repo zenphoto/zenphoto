@@ -2179,47 +2179,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 				</div>
 				<div class="page-list_icon">
 					<?php
-						if ($album->hasPublishSchedule()) {
-							$title = sprintf(gettext('Publish the album %s (Skip scheduled publishing)'), $album->name);
-							$alt = gettext("Scheduled for published");
-							$action = '?action=publish&amp;value=1';
-							$icon = 'images/clock_futuredate.png';
-						} else if ($album->hasExpiration()) {
-							$title = sprintf(gettext('Publish the album %s (Skip scheduled expiration)'), $album->name);
-							$alt = gettext("Scheduled for expiration");
-							$action = '?action=publish&amp;value=1';
-							$icon = 'images/clock_expiredate.png';
-						} else if ($album->getShow()) {
-							$title = sprintf(gettext('Un-publish the album %s'), $album->name);
-							$alt = gettext("Published");
-							$action = '?action=publish&amp;value=0';
-							$icon = 'images/pass.png';
-						} else if (!$album->getShow()) {
-							if ($album->hasExpired()) {
-								$title = sprintf(gettext('Publish the album %s (Skip expiration)'), $album->name);
-								$alt = gettext("Un-published because expired");
-								$action = '?action=publish&amp;value=1';
-								$icon = 'images/clock_expired.png';
-							} else {
-								$title = sprintf(gettext('Publish the album %s'), $album->name);
-								$alt = gettext("Un-published");
-								$action = '?action=publish&amp;value=1';
-								$icon = 'images/action.png';
-							}
-						}
-						if ($enableEdit) {
-							?>
-							<a href="<?php echo $action; ?>&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo $title; ?>" >
-								<?php
-							}
-							?>
-							<img src="<?php echo $icon; ?>" style="border: 0px;" alt="<?php echo $alt; ?>" title="<?php echo $title; ?>" />
-							<?php
-							if ($enableEdit) {
-								?>
-							</a>
-							<?php
-						}
+						printPublishIconLinkGallery($album, $enableEdit, $owner);
+					
 					?>
 				</div>
 				<div class="page-list_icon">
@@ -5080,7 +5041,7 @@ function printScheduledPublishingNotes($obj) {
 			break;
 		case 'albums':
 			$notes['scheduledpublishing'] = gettext('Album scheduled for publishing');
-			$notes['scheduledpublishing_inactive'] = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the Album  is also set to <em>published</em>');
+			$notes['scheduledpublishing_inactive'] = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the album  is also set to <em>published</em>');
 			$notes['scheduledexpiration'] = gettext('Album  scheduled for expiration');
 			$notes['expired'] = gettext('Album  has expired');
 			break;
@@ -5109,6 +5070,80 @@ function printScheduledPublishingNotes($obj) {
 		}
 		if ($obj->hasExpired()) {
 			echo ' <p class="notebox">' . $notes['expired'] . '</p>';
+		}
+	}
+}
+
+
+/**
+ * Prints the publish icon link to change the status on the album and thumb image list
+ * 
+ * @since ZenphotoCMS 1.5.7
+ * @param object $obj Image or album object
+ * @param boolean $enableedit  true if allowed to use
+ * @param string $owner User name of the owner
+ */
+function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
+	$notes = array();
+	if ($obj->table == 'albums' || $obj->table == 'images') {
+		switch ($obj->table) {
+			case 'albums':
+				$title_skipscheduledpublishing = sprintf(gettext('Publish the album %s (Skip scheduled publishing)'), $obj->name);
+				$title_skipscheduledexpiration = sprintf(gettext('Publish the album %s (Skip scheduled expiration)'), $obj->name);
+				$title_unpublish = sprintf(gettext('Un-publish the album %s'), $obj->name);
+				$title_skipexiration = sprintf(gettext('Publish the album %s (Skip expiration)'), $obj->name);
+				$title_publish = sprintf(gettext('Publish the album %s'), $obj->name);
+				$action_addition = '&amp;album=' . html_encode(pathurlencode($obj->name)) . '&amp;return=*' . html_encode(pathurlencode($owner)) . '&amp;XSRFToken=' . getXSRFToken('albumedit');
+				break;
+			case 'images':
+				$title_skipscheduledpublishing = sprintf(gettext('Publish the image %s (Skip scheduled publishing)'), $obj->filename);
+				$title_skipscheduledexpiration = sprintf(gettext('Publish the image %s (Skip scheduled expiration)'), $obj->filename);
+				$title_unpublish = sprintf(gettext('Un-publish the album %s'), $obj->filename);
+				$title_skipexiration = sprintf(gettext('Publish the image %s (Skip expiration)'), $obj->filename);
+				$title_publish = sprintf(gettext('Publish the image %s'), $obj->filename);
+				$action_addition = '&amp;album=' . html_encode(pathurlencode($obj->album->name)) . '&amp;image=' . urlencode($obj->filename) . '&amp;XSRFToken=' . getXSRFToken('imageedit');
+				break;
+		}
+		if ($obj->hasPublishSchedule()) {
+			$title = $title_skipscheduledpublishing;
+			$alt = gettext("Scheduled for publishing");
+			$action = '?action=publish&amp;value=1';
+			$icon = 'images/clock_futuredate.png';
+		} else if ($obj->hasExpiration()) {
+			$title = $title_skipscheduledexpiration;
+			$alt = gettext("Scheduled for expiration");
+			$action = '?action=publish&amp;value=1';
+			$icon = 'images/clock_expiredate.png';
+		} else if ($obj->getShow()) {
+			$title = $title_unpublish;
+			$alt = gettext("Published");
+			$action = '?action=publish&amp;value=0';
+			$icon = 'images/pass.png';
+		} else if (!$obj->getShow()) {
+			if ($obj->hasExpired()) {
+				$title = $title_skipexiration;
+				$alt = gettext("Un-published because expired");
+				$action = '?action=publish&amp;value=1';
+				$icon = 'images/clock_expired.png';
+			} else {
+				$title = $title_publish;
+				$alt = gettext("Un-published");
+				$action = '?action=publish&amp;value=1';
+				$icon = 'images/action.png';
+			}
+		}
+		if ($enableedit) {
+			?>
+			<a href="<?php echo $action . $action_addition; ?>" title="<?php echo html_encode($title); ?>" >
+			<?php
+		}
+		?>
+		<img src="<?php echo $icon; ?>" alt="<?php echo html_encode($alt); ?>" title="<?php echo  html_encode($title); ?>" />
+		<?php
+		if ($enableedit) {
+			?>
+			</a>
+			<?php
 		}
 	}
 }
