@@ -367,12 +367,12 @@ class ThemeObject extends PersistentObject {
 		if (@$row['show']) {
 			if (isset($row['expiredate']) && $row['expiredate'] && $row['expiredate'] != '0000-00-00 00:00:00') {
 				if ($row['expiredate'] < date('Y-m-d H:i:s')) {
-					return 1; // expired
+					return 1; 
 				}
 			}
 			if (isset($row['publishdate']) && $row['publishdate'] && $row['publishdate'] != '0000-00-00 00:00:00') {
 				if ($row['publishdate'] > date('Y-m-d H:i:s')) {
-					return 2; // in scheduled publishing
+					return 2; 
 				}
 			}
 			return null;
@@ -399,6 +399,19 @@ class ThemeObject extends PersistentObject {
 	 */
 	function hasExpiration() {
 		if ($this->hasExpireDate() && $this->get('show', false) && $this->getExpireDate() > date('Y-m-d H:i:s')) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Returns true if a future expiredate is set but the item is unpublished
+	 * 
+	 * @since ZenphotoCMS 1.5.7 
+	 * @return boolean
+	 */
+	function hasInactiveExpiration() {
+		if($this->hasExpiredate() && !$this->get('show', false)) {
 			return true;
 		}
 		return false;
@@ -444,6 +457,19 @@ class ThemeObject extends PersistentObject {
 	 */
 	function hasPublishSchedule() {
 		if ($this->hasFutureDate() && $this->get('show', false)) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Returns true if the item has a future date but is not published
+	 * 
+	 * @since ZenphotoCMS 1.5.7 
+	 * @return boolean
+	 */
+	function hasInactivePublishSchedule() {
+		if($this->hasFutureDate() && !$this->get('show', false)) {
 			return true;
 		}
 		return false;

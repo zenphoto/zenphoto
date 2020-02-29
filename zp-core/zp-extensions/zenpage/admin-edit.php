@@ -628,14 +628,11 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<br />
 															<strong>
 																<?php
-														
 																	if($result->hasExpired()) {
 																		echo '<span class="expired">' . gettext('Expired!') . '</span>';
-																	} else if($result->hasExpiration()) {
+																	} else if($result->hasExpiration() || $result->hasInactiveExpiration()) {
 																		echo '<span class="expiredate">' . gettext('Expiration date set!') . '</span>';
-																	} else if($result->hasExpiredate() && !$result->hasExpiration()) {
-																		echo '<span class="expired">' . gettext('This is not a future date!') . '</span>';
-																	}	
+																	} 
 																?>
 															</strong>
 														</p>

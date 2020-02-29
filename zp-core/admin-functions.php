@@ -5039,49 +5039,55 @@ function checkSchedulePublishingNotes($obj) {
  * @param obj $obj Image, album, news article or page object
  */		
 function printScheduledPublishingNotes($obj) {
-	$notes = array();
-	switch ($obj->table) {
-		case 'images':
-			$notes['scheduledpublishing'] = gettext('Image scheduled for publishing');
-			$notes['scheduledpublishing_inactive'] = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the image is also set to <em>published</em>');
-			$notes['scheduledexpiration'] = gettext('Image scheduled for expiration');
-			$notes['expired'] = gettext('Image has expired');
-			break;
-		case 'albums':
-			$notes['scheduledpublishing'] = gettext('Album scheduled for publishing');
-			$notes['scheduledpublishing_inactive'] = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the album  is also set to <em>published</em>');
-			$notes['scheduledexpiration'] = gettext('Album  scheduled for expiration');
-			$notes['expired'] = gettext('Album  has expired');
-			break;
-		case 'news':
-			$notes['scheduledpublishing'] = gettext('Article scheduled for publishing');
-			$notes['scheduledpublishing_inactive'] = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the article is also set to <em>published</em>');
-			$notes['scheduledexpiration'] = gettext('Article scheduled for expiration');
-			$notes['expired'] = gettext('Article has expired');
-			break;
-		case 'pages':
-			$notes['scheduledpublishing'] = gettext('Page scheduled for publishing');
-			$notes['scheduledpublishing_inactive'] = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the page is also set to <em>published</em>');
-			$notes['scheduledexpiration'] = gettext('Page scheduled for expiration');
-			$notes['expired'] = gettext('Page has expired');
-			break;
-	}
-	if ($notes) {
-		if ($obj->hasPublishSchedule()) {
-			echo '<p id="scheduldedpublishing" class="notebox">' . $notes['scheduledpublishing'] . '</p>';
+	$validtables = array('albums', 'images', 'news', 'pages');
+	if (in_array($obj->table, $validtables)) {
+		switch ($obj->table) {
+			case 'images':
+				$note_scheduledpublishing = gettext('Image scheduled for publishing');
+				$note_scheduledpublishing_inactive = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the image is also set to <em>published</em>');
+				$note_scheduledexpiration = gettext('Image scheduled for expiration');
+				$note_scheduledexpiration_inactive = gettext('<strong>Note:</strong> Scheduled expiration is not active unless the image is also set to <em>published</em>');
+				$note_expired = gettext('Image has expired');
+				break;
+			case 'albums':
+				$note_scheduledpublishing = gettext('Album scheduled for publishing');
+				$note_scheduledpublishing_inactive = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the album is also set to <em>published</em>');
+				$note_scheduledexpiration = gettext('Album  scheduled for expiration');
+				$note_scheduledexpiration_inactive = gettext('<strong>Note:</strong> Scheduled expiration is not active unless the album is also set to <em>published</em>');
+				$note_expired = gettext('Album  has expired');
+				break;
+			case 'news':
+				$note_scheduledpublishing = gettext('Article scheduled for publishing');
+				$note_scheduledpublishing_inactive = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the article is also set to <em>published</em>');
+				$note_scheduledexpiration = gettext('Article scheduled for expiration');
+				$note_scheduledexpiration_inactive = gettext('<strong>Note:</strong> Scheduled expiration is not active unless the article is also set to <em>published</em>');
+				$note_expired = gettext('Article has expired');
+				break;
+			case 'pages':
+				$note_scheduledpublishing = gettext('Page scheduled for publishing');
+				$note_scheduledpublishing_inactive = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the page is also set to <em>published</em>');
+				$note_scheduledexpiration = gettext('Page scheduled for expiration');
+				$note_scheduledexpiration_inactive = gettext('<strong>Note:</strong> Scheduled expiration is not active unless the page is also set to <em>published</em>');
+				$note_expired = gettext('Page has expired');
+				break;
 		}
-		if ($obj->hasFutureDate() && !$obj->get('show', false)) {
-			echo '<p class="notebox">' . $notes['scheduledpublishing_inactive'] . '</p>';
+		if ($obj->hasPublishSchedule()) {
+			echo '<p id="scheduldedpublishing" class="notebox">' . $note_scheduledpublishing . '</p>';
+		}
+		if ($obj->hasInactivePublishSchedule()) {
+			echo '<p class="notebox">' . $note_scheduledpublishing_inactive . '</p>';
 		}
 		if ($obj->hasExpiration()) {
-			echo ' <p class="notebox">' . $notes['scheduledexpiration'] . '</p>';
+			echo ' <p class="notebox">' . $note_scheduledexpiration . '</p>';
+		}
+		if ($obj->hasInactiveExpiration()) {
+			echo ' <p class="notebox">' . $note_scheduledexpiration_inactive . '</p>';
 		}
 		if ($obj->hasExpired()) {
-			echo ' <p class="notebox">' . $notes['expired'] . '</p>';
+			echo ' <p class="notebox">' . $note_expired . '</p>';
 		}
 	}
 }
-
 
 /**
  * Prints the publish icon link to change the status on the album and thumb image list
