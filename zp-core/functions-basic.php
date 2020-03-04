@@ -1580,7 +1580,7 @@ function safe_glob($pattern, $flags = 0) {
 	if (($dir = opendir($path)) !== false) {
 		$glob = array();
 		while (($file = readdir($dir)) !== false) {
-			if (@preg_match($match, $file) && $file{0} != '.') {
+			if (@preg_match($match, $file) && $file[0] != '.') {
 				if (is_dir("$path/$file")) {
 					if ($flags & GLOB_MARK)
 						$file.='/';

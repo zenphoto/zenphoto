@@ -552,12 +552,12 @@ class openStreetMap {
 			if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
 				$lat_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLatitude']) . '.0');
 				$lat_f = round((float) abs($lat_c[0]) + ($lat_c[1] / pow(10, strlen($lat_c[1]))), 12);
-				if (strtoupper(@$exif['EXIFGPSLatitudeRef']{0}) == 'S') {
+				if (strtoupper(@$exif['EXIFGPSLatitudeRef'][0]) == 'S') {
 					$lat_f = -$lat_f;
 				}
 				$long_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLongitude']) . '.0');
 				$long_f = round((float) abs($long_c[0]) + ($long_c[1] / pow(10, strlen($long_c[1]))), 12);
-				if (strtoupper(@$exif['EXIFGPSLongitudeRef']{0}) == 'W') {
+				if (strtoupper(@$exif['EXIFGPSLongitudeRef'][0]) == 'W') {
 					$long_f = -$long_f;
 				}
 				$thumb = "<a href='" . $image->getLink() . "'><img src='" . $image->getCustomImage(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . "' alt='' /></a>";

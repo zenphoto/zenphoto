@@ -38,7 +38,7 @@ function rewriteHandler() {
 	//process the rules
 	foreach ($rules as $rule) {
 		if ($rule = trim($rule)) {
-			if ($rule{0} != '#') {
+			if ($rule[0] != '#') {
 				if (preg_match('~^rewriterule~i', $rule)) {
 					// it is a rewrite rule, see if it is applicable
 					$rule = strtr($rule, $definitions);

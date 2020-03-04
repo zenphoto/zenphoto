@@ -4492,7 +4492,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
  */
 function unQuote($string) {
 	$string = trim($string);
-	$q = $string{0};
+	$q = $string[0];
 	if ($q == '"' || $q == "'") {
 		$string = trim($string, $q);
 	}

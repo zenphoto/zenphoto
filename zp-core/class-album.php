@@ -1288,7 +1288,7 @@ class Album extends AlbumBase {
 		} else if (filesystemToInternal($folderFS) != $folder8) {
 			// an attempt to spoof the album name.
 			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'), html_encode(filesystemToInternal($folderFS)), html_encode($folder8));
-		} else if (!file_exists($this->localpath) || !(is_dir($this->localpath)) || $folder8{0} == '.' || preg_match('~/\.*/~', $folder8)) {
+		} else if (!file_exists($this->localpath) || !(is_dir($this->localpath)) || $folder8[0] == '.' || preg_match('~/\.*/~', $folder8)) {
 			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'), html_encode($folder8));
 		}
 		if ($msg) {
@@ -1627,7 +1627,7 @@ class Album extends AlbumBase {
 
 		while (false !== ($file = readdir($dir))) {
 			$file8 = filesystemToInternal($file);
-			if (@$file8{0} != '.') {
+			if (@$file8[0] != '.') {
 				if ($dirs && (is_dir($albumdir . $file) || hasDynamicAlbumSuffix($file))) {
 					$files[] = $file8;
 				} else if (!$dirs && is_file($albumdir . $file)) {
