@@ -610,7 +610,13 @@ if ($c <= 0) {
 								}
 							}
 							setup::checkMark($p, sprintf(gettext('<em>%s</em> security'), DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'), DATA_FOLDER), sprintf(gettext('Zenphoto suggests you make the sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$04o which may allow unauthorized access.'), DATA_FOLDER, $file, $permission));
-
+							
+							if(setup::checkServerSoftware()) {
+								setup::checkMark(true, $_SERVER['SERVER_SOFTWARE'], '', '');
+							} else {
+								setup::checkMark(-1, '', $_SERVER['SERVER_SOFTWARE'], gettext('Server seems not to be <em>Apache</em>, <em>Ngxinx</em> or <em>compatible</em>. Zenphoto may not work correctly.'));
+							} 
+							
 							$err = setup::versionCheck('5.6.0', PHP_DESIRED_VERSION, PHP_VERSION);
 							$good = setup::checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk. Zenphoto is developed on PHP 7.1+ and in any case not tested below 5.6. There will be no fixes if you encounter any issues below 5.6. Please contact your webhost about a PHP upgrade on your server.'), '5.6.0', PHP_DESIRED_VERSION), false) && $good;
 
@@ -1427,8 +1433,6 @@ if ($c <= 0) {
 								}
 							}
 							$msg = gettext("<em>.htaccess</em> file");
-							$Apache = stristr($_SERVER['SERVER_SOFTWARE'], "apache");
-							$Nginx = stristr($_SERVER['SERVER_SOFTWARE'], "nginx");
 							$htfile = $_zp_setup_serverpath . '/.htaccess';
 							$ht = trim(@file_get_contents($htfile));
 							$htu = strtoupper($ht);
@@ -1440,13 +1444,13 @@ if ($c <= 0) {
 							if (empty($htu)) {
 								$err = gettext("<em>.htaccess</em> file [is empty or does not exist]");
 								$ch = -1;
-								if ($Apache) {
+								if (setup::getServerSoftware() == 'apache') {
 									$desc = gettext('If you have the mod_rewrite module enabled an <em>.htaccess</em> file is required the root zenphoto folder to create cruft-free URLs.') .
 													'<br /><br />' . gettext('You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option.');
 									if (setup::userAuthorized()) {
 										$desc .= ' ' . gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup create the file</a></p><br style="clear:both" /><br />');
 									}
-								} else if ($Nginx) {
+								} else if (setup::getServerSoftware() == 'nginx') {
 									$err = gettext("Server seems to be <em>nginx</em>");
 									$mod = "&amp;mod_rewrite"; //	enable test to see if it works.
 									$desc = gettext('If you wish to create cruft-free URLs, you will need to configuring <a href="http://www.zenphoto.org/news/nginx-rewrite-rules-tutorial"><em>URL rewriting for NGINX servers</em></a>.') . ' ' .
@@ -1490,7 +1494,7 @@ if ($c <= 0) {
 									}
 								}
 								if (!$ch) {
-									if (!$Apache) {
+									if (setup::getServerSoftware() != 'apache') {
 										$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not required.");
 										$ch = -1;
 									} else {

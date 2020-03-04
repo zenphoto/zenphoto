@@ -805,6 +805,37 @@ class setup {
 			<?php
 		}
 	}
+	
+	/**
+	 * Checks if the server software is Apache or Nginx 
+	 * 
+	 * @since ZenphotoCMS 1.5.7
+	 * @return boolean
+	 */
+	static function checkServerSoftware() {
+		$serversoftware = setup::getServerSoftware();
+		if(in_array($serversoftware, array('apache', 'nginx'))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Returns either "apache" or "nginx" for supported server software or the full $_SERVER['SERVER_SOFTWARE'] info
+	 * 
+	 * @since ZenphotoCMS 1.5.7 
+	 * @return string
+	 */
+	static function getServerSoftware() {
+		if(stristr($_SERVER['SERVER_SOFTWARE'], "apache")) {
+			return 'apache';
+		} else if(stristr($_SERVER['SERVER_SOFTWARE'], "nginx")) {
+			return 'nginx';
+		} else {
+			return $_SERVER['SERVER_SOFTWARE'];
+		}
+	}
 
 }
 

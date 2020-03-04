@@ -386,6 +386,7 @@ if (!zp_loggedin()) {
 									printf(gettext('Current gallery theme: <strong>%1$s</strong>'), $currenttheme);
 									?>
 								</li>
+								<li><?php printf(gettext('Server software: <strong>%1$s</strong>'), html_encode($_SERVER['SERVER_SOFTWARE'])); ?></li>
 								<li><?php printf(gettext('PHP version: <strong>%1$s</strong>'), phpversion()); ?></li>
 								<?php
 								if (TEST_RELEASE) {
