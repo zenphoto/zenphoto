@@ -666,22 +666,7 @@ if ($c <= 0) {
 									$good = setup::checkMark($issue, '', gettext('<code>Suhosin</code> module [is enabled]'), sprintf(gettext('The following PHP functions are blocked: %s. Flagged functions are required by Zenphoto. Other functions in the list may be used by Zenphoto, possibly causing reduced functionality or Zenphoto failures.'), '<code>' . implode('</code>, <code>', $blacklist) . '</code>'), $abort) && $good;
 								}
 							}
-
-							setup::primeMark(gettext('Magic_quotes'));
-							if (get_magic_quotes_gpc()) {
-								$magic_quotes_disabled = -1;
-							} else {
-								$magic_quotes_disabled = true;
-							}
-							setup::checkMark($magic_quotes_disabled, gettext("PHP <code>magic_quotes_gpc</code>"), gettext("PHP <code>magic_quotes_gpc</code> [is enabled]"), gettext('We strongly recommend disabling <code>magic_quotes_gpc</code>. For more information See <em><a href="http://www.zenphoto.org/news/installation-problems#about-magicquotes-and-why-they-should-be-disabled">What is magic_quotes_gpc and why should it be disabled?</a></em> in the Zenphoto troubleshooting guide.'));
-							if (get_magic_quotes_runtime()) {
-								$magic_quotes_disabled = 0;
-							} else {
-								$magic_quotes_disabled = true;
-							}
-							setup::checkMark($magic_quotes_disabled, gettext("PHP <code>magic_quotes_runtime</code>"), gettext("PHP <code>magic_quotes_runtime</code> [is enabled]"), gettext('You must disable <code>magic_quotes_runtime</code>.'));
-							setup::checkMark(!ini_get('magic_quotes_sybase'), gettext("PHP <code>magic_quotes_sybase</code>"), gettext("PHP <code>magic_quotes_sybase</code> [is enabled]"), gettext('You must disable <code>magic_quotes_sybase</code>.'));
-
+							
 							switch (strtolower(@ini_get('display_errors'))) {
 								case 0:
 								case 'off':

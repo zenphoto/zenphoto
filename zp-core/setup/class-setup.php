@@ -550,8 +550,6 @@ class setup {
 	 * @return type
 	 */
 	static function sanitize_string($input_string, $sanitize_level) {
-		if (get_magic_quotes_gpc())
-			$input_string = stripslashes($input_string);
 		if ($sanitize_level === 0) {
 			$input_string = str_replace(chr(0), " ", $input_string);
 		} else {
