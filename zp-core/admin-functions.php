@@ -1734,16 +1734,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 					<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 						<div class="box-edit">
 						<?php 
-	if($album->hasPublishSchedule()) {
-		$publishlabel = '<span class="scheduledate">' . gettext('Publishing scheduled') . '</span>';
-	} else {
-		$publishlabel = gettext("Published");
-	}
-?>
-<label class="checkboxlabel">
-	<input type="checkbox" name="<?php echo $prefix; ?>Published" value="1" <?php if ($album->get('show', false)) echo ' checked="checked"'; ?> />
-	<?php echo $publishlabel; ?>
-</label>
+							if($album->hasPublishSchedule()) {
+								$publishlabel = '<span class="scheduledate">' . gettext('Publishing scheduled') . '</span>';
+							} else {
+								$publishlabel = gettext("Published");
+							}
+						?>
+						<label class="checkboxlabel">
+							<input type="checkbox" name="<?php echo $prefix; ?>Published" value="1" <?php if ($album->get('show', false)) echo ' checked="checked"'; ?> />
+							<?php echo $publishlabel; ?>
+						</label>
 						<label class="checkboxlabel">
 							<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
 							if ($album->getCommentsAllowed()) {
