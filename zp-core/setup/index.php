@@ -614,7 +614,7 @@ if ($c <= 0) {
 							if(setup::checkServerSoftware()) {
 								setup::checkMark(true, $_SERVER['SERVER_SOFTWARE'], '', '');
 							} else {
-								setup::checkMark(-1, '', $_SERVER['SERVER_SOFTWARE'], gettext('Server seems not to be <em>Apache</em>, <em>Ngxinx</em> or <em>compatible</em>. Zenphoto may not work correctly.'));
+								setup::checkMark(-1, '', $_SERVER['SERVER_SOFTWARE'], gettext('Server seems not to be <em>Apache</em>, <em>Nginx</em> or <em>compatible</em>. Zenphoto may not work correctly.'));
 							} 
 							
 							$err = setup::versionCheck('5.6.0', PHP_DESIRED_VERSION, PHP_VERSION);

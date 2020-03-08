@@ -5112,7 +5112,7 @@ function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
 			case 'images':
 				$title_skipscheduledpublishing = sprintf(gettext('Publish the image %s (Skip scheduled publishing)'), $obj->filename);
 				$title_skipscheduledexpiration = sprintf(gettext('Publish the image %s (Skip scheduled expiration)'), $obj->filename);
-				$title_unpublish = sprintf(gettext('Un-publish the album %s'), $obj->filename);
+				$title_unpublish = sprintf(gettext('Un-publish the image %s'), $obj->filename);
 				$title_skipexiration = sprintf(gettext('Publish the image %s (Skip expiration)'), $obj->filename);
 				$title_publish = sprintf(gettext('Publish the image %s'), $obj->filename);
 				$action_addition = '&amp;album=' . html_encode(pathurlencode($obj->album->name)) . '&amp;image=' . urlencode($obj->filename) . '&amp;XSRFToken=' . getXSRFToken('imageedit');
