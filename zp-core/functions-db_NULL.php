@@ -197,4 +197,21 @@ function db_free_result($result) {
 	return false;
 }
 
+/**
+	 * Returns the server info
+	* @since ZenphotoCMS 1.5.7
+	 * @return string
+	 */
+	function db_getServerInfo() {
+		return null;
+	}
+	/**
+	 * Returns the client info
+	 * @since ZenphotoCMS 1.5.7
+	 * @return string
+	 */
+	function  db_getClientInfo() {
+		return null;
+	}
+
 ?>

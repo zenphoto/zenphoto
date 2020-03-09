@@ -243,8 +243,7 @@ function db_close() {
  */
 
 function db_software() {
-	global $_zp_DB_connection;
-	$dbversion = trim(@$_zp_DB_connection->get_server_info());
+	$dbversion = db_getServerInfo();
 	preg_match('/[0-9,\.]*/', $dbversion, $matches);
 	return array('application' => DATABASE_SOFTWARE, 'required' => DATABASE_MIN_VERSION, 'desired' => DATABASE_DESIRED_VERSION, 'version' => $matches[0]);
 }
@@ -355,5 +354,22 @@ function db_LIKE_escape($str) {
 function db_free_result($result) {
 	return mysqli_free_result($result);
 }
+
+/**
+	 * Returns the server info
+	 * @return string
+	 */
+	function db_getServerInfo() {
+		global $_zp_DB_connection;
+		return trim(@$_zp_DB_connection->get_server_info());
+	}
+	/**
+	 * Returns the client info
+	 * @return string
+	 */
+	function db_getClientInfo() {
+		global $_zp_DB_connection;
+		return $_zp_DB_connection->get_client_info();
+	}
 
 ?>

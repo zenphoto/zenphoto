@@ -6,6 +6,8 @@
  * Note: PHP version 5 states that the MySQL library is "Maintenance only, Long term deprecation announced."
  * It recommends using the PDO::MySQL or the MySQLi library instead.
  *
+ * @deprecated 3.0 The MySQL database handler is deprecated as the MySQL handler has been removed in PHP 7.0.0 already. Use the handlers MySQLi or PDO_MySQL instead.
+ * 
  * @package core
  * @subpackage database-handlers\functions-db-mysql
  */
@@ -23,6 +25,7 @@ Define('DATABASE_DESIRED_VERSION', '5.5.3');
  */
 function db_connect($config, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_details;
+	debuglog(gettext('The MySQL database handler is deprecated as the MySQL handler has been removed in PHP 7.0.0 already. Use the handlers MySQLi or PDO_MySQL instead.'));
 	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 	if (function_exists('mysql_connect')) {
 		$_zp_DB_connection = @mysql_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass']);
@@ -213,7 +216,7 @@ function db_close() {
  */
 
 function db_software() {
-	$dbversion = trim(@mysql_get_server_info());
+	$dbversion = db_getServerInfo();
 	preg_match('/[0-9,\.]*/', $dbversion, $matches);
 	return array('application' => DATABASE_SOFTWARE, 'required' => DATABASE_MIN_VERSION, 'desired' => DATABASE_DESIRED_VERSION, 'version' => $matches[0]);
 }
@@ -325,4 +328,19 @@ function db_free_result($result) {
 	return mysql_free_result($result);
 }
 
-?>
+/**
+	 * Returns the server info
+	 * @since ZenphotoCMS 1.5.7
+	 * @return string
+	 */
+	function db_getServerInfo() {
+		return trim(mysql_get_server_info());
+	}
+	/**
+	 * Returns the client info
+	 * @since ZenphotoCMS 1.5.7
+	 * @return string
+	 */
+	function db_getClientInfo() {
+		return mysql_get_client_info();
+	}
