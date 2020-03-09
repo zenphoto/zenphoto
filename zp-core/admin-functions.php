@@ -5052,9 +5052,9 @@ function printScheduledPublishingNotes($obj) {
 			case 'albums':
 				$note_scheduledpublishing = gettext('Album scheduled for publishing');
 				$note_scheduledpublishing_inactive = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the album is also set to <em>published</em>');
-				$note_scheduledexpiration = gettext('Album  scheduled for expiration');
+				$note_scheduledexpiration = gettext('Album scheduled for expiration');
 				$note_scheduledexpiration_inactive = gettext('<strong>Note:</strong> Scheduled expiration is not active unless the album is also set to <em>published</em>');
-				$note_expired = gettext('Album  has expired');
+				$note_expired = gettext('Album has expired');
 				break;
 			case 'news':
 				$note_scheduledpublishing = gettext('Article scheduled for publishing');
