@@ -973,6 +973,11 @@ if ($c <= 0) {
 								}
 							}
 							setup::primeMark(gettext('Database'));
+							if($_zp_conf_vars['db_software'] == 'MySQL') {		
+								?>
+								<li class="warning"><?php echo gettext('Your chosen database handler <code>MySQL</code> is deprececated and already removed in PHP 7. It will also be removed in future Zenphoto versions. Use <code>MySQLi</code> or <code>PDO_MySQL</code> instead.'); ?>
+								<?php
+							}
 							foreach ($engines as $engine) {
 								$handler = $engine['engine'];
 								if ($handler == $confDB && $engine['enabled']) {
@@ -1041,7 +1046,7 @@ if ($c <= 0) {
 									$good = setup::checkMark((bool) $connection, sprintf(gettext('Connect to %s'), DATABASE_SOFTWARE), gettext("Connect to Database [<code>CONNECT</code> query failed]"), $connectDBErr) && $good;
 								}
 							}
-
+				
 							if ($_zp_DB_connection) {
 								if ($connection) {
 									if ($DBcreated) {
