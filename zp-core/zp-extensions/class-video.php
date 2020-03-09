@@ -329,58 +329,56 @@ class Video extends Image {
 	function updateMetaData() {
 		global $_zp_exifvars;
 		parent::updateMetaData();
-		if (!SAFE_MODE) {
-			//see if there are any "enabled" VIDEO fields
-			$process = array();
-			foreach ($_zp_exifvars as $field => $exifvar) {
-				if ($exifvar[5] && $exifvar[0] == 'VIDEO') {
-					$process[$field] = $exifvar;
-				}
+		//see if there are any "enabled" VIDEO fields
+		$process = array();
+		foreach ($_zp_exifvars as $field => $exifvar) {
+			if ($exifvar[5] && $exifvar[0] == 'VIDEO') {
+				$process[$field] = $exifvar;
 			}
-			if (!empty($process)) {
-				$ThisFileInfo = $this->getMetaDataID3();
-				if (is_array($ThisFileInfo)) {
-					foreach ($ThisFileInfo as $key => $info) {
-						if (is_array($info)) {
-							switch ($key) {
-								case 'comments':
-									foreach ($info as $key1 => $data) {
-										$ThisFileInfo[$key1] = array_shift($data);
-									}
-									break;
-								case 'audio':
-								case 'video':
-									foreach ($info as $key1 => $data) {
-										$ThisFileInfo[$key1] = $data;
-									}
-									break;
-								case 'error':
-									$msg = sprintf(gettext('getid3 exceptions for %1$s::%2$s'), $this->album->name, $this->filename);
-									foreach ($info as $data) {
-										$msg .= "\n" . $data;
-									}
-									debugLog($msg);
-									break;
-								default:
-									//discard, not used
-									break;
-							}
-							unset($ThisFileInfo[$key]);
+		}
+		if (!empty($process)) {
+			$ThisFileInfo = $this->getMetaDataID3();
+			if (is_array($ThisFileInfo)) {
+				foreach ($ThisFileInfo as $key => $info) {
+					if (is_array($info)) {
+						switch ($key) {
+							case 'comments':
+								foreach ($info as $key1 => $data) {
+									$ThisFileInfo[$key1] = array_shift($data);
+								}
+								break;
+							case 'audio':
+							case 'video':
+								foreach ($info as $key1 => $data) {
+									$ThisFileInfo[$key1] = $data;
+								}
+								break;
+							case 'error':
+								$msg = sprintf(gettext('getid3 exceptions for %1$s::%2$s'), $this->album->name, $this->filename);
+								foreach ($info as $data) {
+									$msg .= "\n" . $data;
+								}
+								debugLog($msg);
+								break;
+							default:
+								//discard, not used
+								break;
+						}
+						unset($ThisFileInfo[$key]);
+					}
+				}
+				foreach ($process as $field => $exifvar) {
+					if (isset($ThisFileInfo[$exifvar[1]])) {
+						$data = $ThisFileInfo[$exifvar[1]];
+						if (!empty($data)) {
+							$this->set($field, $data);
+							$this->set('hasMetadata', 1);
 						}
 					}
-					foreach ($process as $field => $exifvar) {
-						if (isset($ThisFileInfo[$exifvar[1]])) {
-							$data = $ThisFileInfo[$exifvar[1]];
-							if (!empty($data)) {
-								$this->set($field, $data);
-								$this->set('hasMetadata', 1);
-							}
-						}
-					}
-					$title = $this->get('VideoTitle');
-					if (!empty($title)) {
-						$this->setTitle($title);
-					}
+				}
+				$title = $this->get('VideoTitle');
+				if (!empty($title)) {
+					$this->setTitle($title);
 				}
 			}
 		}

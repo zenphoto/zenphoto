@@ -131,20 +131,6 @@ if (!file_exists($imgfile)) {
 }
 
 // Make the directories for the albums in the cache, recursively.
-// Skip this for safe_mode, where we can't write to directories we create!
-if (!SAFE_MODE) {
-	$albumdirs = getAlbumArray($album, true);
-	foreach ($albumdirs as $dir) {
-		$dir = internalToFilesystem($dir);
-		$dir = SERVERCACHE . '/' . $dir;
-		if (!is_dir($dir)) {
-			@mkdir($dir, FOLDER_MOD);
-			@chmod($dir, FOLDER_MOD);
-		} else if (!is_writable($dir)) {
-			@chmod($dir, FOLDER_MOD);
-		}
-	}
-}
 $process = true;
 // If the file exists, check its modification time and update as needed.
 $fmt = filemtime($imgfile);

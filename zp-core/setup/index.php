@@ -640,13 +640,6 @@ if ($c <= 0) {
 							}
 							$good = setup::checkMark($register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'), gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Change your PHP.ini settings to <code>register_globals = off</code>.') . $aux) && $good;
 
-							if (preg_match('#(1|ON)#i', ini_get('safe_mode'))) {
-								$safe = -1;
-							} else {
-								$safe = true;
-							}
-							setup::checkMark($safe, gettext("PHP <code>Safe Mode</code>"), gettext("PHP <code>Safe Mode</code> [is set]"), gettext("Zenphoto functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."));
-
 							if (!extension_loaded('suhosin')) {
 								$blacklist = @ini_get("suhosin.executor.func.blacklist");
 								if ($blacklist) {

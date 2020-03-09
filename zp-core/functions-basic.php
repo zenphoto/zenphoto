@@ -279,9 +279,9 @@ if ($c = getOption('zenphoto_cookie_path')) {
 }
 
 define('SERVER_HTTP_HOST', PROTOCOL . "://" . $_SERVER['HTTP_HOST']);
-define('SAFE_MODE', preg_match('#(1|ON)#i', ini_get('safe_mode')));
+define('SAFE_MODE', false);
 define('FULLWEBPATH', SERVER_HTTP_HOST . WEBPATH);
-define('SAFE_MODE_ALBUM_SEP', '__');
+define('SAFE_MODE_ALBUM_SEP', '');
 define('SERVERCACHE', SERVERPATH . '/' . CACHEFOLDER);
 define('MOD_REWRITE', getOption('mod_rewrite'));
 
@@ -625,12 +625,7 @@ function getImageCacheFilename($album8, $image8, $args) {
 	if (empty($album)) {
 		$albumsep = '';
 	} else {
-		if (SAFE_MODE) {
-			$albumsep = SAFE_MODE_ALBUM_SEP;
-			$album = str_replace(array('/', "\\"), $albumsep, $album);
-		} else {
-			$albumsep = '/';
-		}
+		$albumsep = '/';
 	}
 	if (getOption('obfuscate_cache')) {
 		$result = '/' . $album . $albumsep . sha1($image . HASH_SEED . $postfix) . '.' . $image . $postfix . '.' . $suffix;

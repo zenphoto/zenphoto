@@ -154,14 +154,6 @@ foreach ($albumlist as $key => $value) {
 				</div>
 				<?php
 			}
-			if (SAFE_MODE) {
-				?>
-				<div class="warningbox fade-message">
-					<h2><?php echo gettext("PHP Safe Mode Restrictions in effect!"); ?></h2>
-					<p><?php echo gettext("Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions are in effect"); ?></p>
-				</div>
-				<?php
-			}
 			$rootrights = zp_apply_filter('upload_root_ui', accessAllAlbums(UPLOAD_RIGHTS));
 			if ($rootrights || !empty($albumlist)) {
 				echo gettext("Upload to:");
