@@ -558,6 +558,25 @@ function printDownloadURL($file, $linktext = NULL) {
 }
 
 /**
+ * Prints the dwnload url link for a full image
+ * 
+ * @since ZenphotoCMS 1.5.7
+ * 
+ * @global type $_zp_current_image
+ * @param string $linktext Linktext for the download
+ * @param obj $imageobj Optional image object to use, otherwise the current image if available
+ */
+function printFullImageDownloadURL($linktext = null, $imageobj = null) {
+	global $_zp_current_image;
+	if (is_null($imageobj)) {
+		$imageobj = $_zp_current_image;
+	}
+	if (!is_null($imageobj)) {
+		printDownloadURL($imageobj->getFullImageURL(SERVERPATH), $linktext);
+	}
+}
+
+/**
  *
  * Prints a download link for an album zip of the current album (therefore to be used only on album.php/image.php).
  * This function only creates a download count and then redirects to the original Zenphoto album zip download.
@@ -603,6 +622,8 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 		echo '<a href="' . html_encode($link) . '" rel="nofollow" class="downloadlist_link" data-track-content data-content-piece data-content-name="' . html_encode($file) . '">' . html_encode($file) . '</a>' . $filesize;
 	}
 }
+
+
 
 /**
  * Process any download requests
