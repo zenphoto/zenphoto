@@ -99,10 +99,7 @@
 		</tr>
 		<tr id="prefix" >
 			<td><?php echo gettext("Database server port"); ?></td>
-			<td>
-				<label id="port" for="db_port"><?php echo gettext("Database server port"); ?></label>
-				<input type="text" size="40" name="db_port" id="db_port" value="<?php echo $_zp_conf_vars['mysql_port']?>" />
-			</td>
+			<td><input type="text" size="40" name="db_port" id="db_port" value="<?php echo $_zp_conf_vars['mysql_port']?>" /></td>
 		</tr>
 		<tr>
 			<td></td>
