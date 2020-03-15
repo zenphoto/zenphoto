@@ -182,7 +182,16 @@ if(file_exists(SERVERPATH . '/' . DATA_FOLDER . '/setup.log')) {
 }
 if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
 	require_once(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php');
-	$data = db_connect(array_intersect_key($_zp_conf_vars, array('db_software' => '', 'mysql_user' => '', 'mysql_pass' => '', 'mysql_host' => '', 'mysql_database' => '', 'mysql_prefix' => '', 'UTF-8' => '')), false);
+	$dbarray = array(
+			'db_software' => '',
+			'mysql_user' => '',
+			'mysql_pass' => '',
+			'mysql_host' => '',
+			'mysql_database' => '',
+			'mysql_port' => '',
+			'mysql_prefix' => '',
+			'UTF-8' => '');
+	$data = db_connect(array_intersect_key($_zp_conf_vars, $dbarray), false);
 } else {
 	$data = false;
 }
@@ -1114,7 +1123,7 @@ function rewrite_path($rewrite, $plain, $webpath = NULL) {
 	} else {
 		$path = $plain;
 	}
-	if ($path{0} == "/") {
+	if ($path[0] == "/") {
 		$path = substr($path, 1);
 	}
 	return $webpath . "/" . $path;

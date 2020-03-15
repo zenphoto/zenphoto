@@ -28,7 +28,7 @@ function db_connect($config, $errorstop = true) {
 	debuglog(gettext('The MySQL database handler is deprecated as the MySQL handler has been removed in PHP 7.0.0 already. Use the handlers MySQLi or PDO_MySQL instead.'));
 	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 	if (function_exists('mysql_connect')) {
-		$_zp_DB_connection = @mysql_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass']);
+		$_zp_DB_connection = @mysql_connect($config['mysql_host'].":".$config['mysql_port'], $config['mysql_user'], $config['mysql_pass']);
 	} else {
 		$_zp_DB_connection = NULL;
 	}

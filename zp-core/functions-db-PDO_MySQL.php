@@ -35,8 +35,9 @@ function db_connect($config, $errorstop = true) {
 		$hostname = $config['mysql_host'];
 		$username = $config['mysql_user'];
 		$password = $config['mysql_pass'];
+		$port = $config['mysql_port'];
 		if (class_exists('PDO')) {
-			$_zp_DB_connection = new PDO("mysql:host=$hostname;dbname=$db$utf8", $username, $password);
+			$_zp_DB_connection = new PDO("mysql:host=$hostname;dbname=$db$utf8;port=$port", $username, $password);
 		}
 	} catch (PDOException $e) {
 		$_zp_DB_last_result = $e;

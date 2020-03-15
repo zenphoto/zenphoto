@@ -167,6 +167,11 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	if (isset($_POST['db_prefix'])) {
 		$zp_cfg = updateConfigItem('mysql_prefix', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', addslashes(trim(setup::sanitize($_POST['db_prefix'])))), $zp_cfg);
 	}
+	if (isset($_POST['db_port'])) {
+		$zp_cfg = updateConfigItem('mysql_port', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', addslashes(trim(setup::sanitize($_POST['db_port'])))), $zp_cfg);
+	} else {
+		$zp_cfg = updateConfigItem('mysql_port', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', "3306"), $zp_cfg);
+	}
 }
 
 define('ACK_REGISTER_GLOBALS', 1);
@@ -277,6 +282,11 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			$zp_cfg = updateConfigItem('db_software', $zp_cfg, $preferred);
 			$updatezp_config = true;
 			$confDB = NULL;
+		}
+		if (!isset($_zp_conf_vars['mysql_port'])) { 
+			$_zp_conf_vars['mysql_port'] = 3306;
+			$zp_cfg = updateConfigItem('mysql_port', 3306, $zp_cfg);
+			$updatezp_config = true;
 		}
 		if ($selected_database) {
 			require_once(dirname(dirname(__FILE__)) . '/functions-db-' . $selected_database . '.php');

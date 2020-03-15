@@ -27,7 +27,7 @@ function db_connect($config, $errorstop = true) {
 	if (function_exists('mysqli_connect')) {
 		if(!$_zp_DB_connection) {
 			try {
-				$_zp_DB_connection = mysqli_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass']);
+				$_zp_DB_connection = mysqli_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass'], $config['mysql_database'], $config['mysql_port']);
 			} catch (mysqli_sql_exception $e) {
 				$_zp_DB_connection = NULL;
 				$connection_error = gettext('MySQLi Error: Zenphoto could not instantiate a connection.') . PHP_EOL;

@@ -32,6 +32,7 @@ $conf['mysql_host'] = 'localhost';  // Supply the name of your Database server.
 $conf['mysql_database'] = '';       // Supply the name of Zenphoto's database
 // If you're sharing the database with other tables, use a prefix to be safe.
 $conf['mysql_prefix'] = ".";
+$conf['mysql_port'] = "3306"; // Change if your server uses a different port
 
 // If you are having problems with displaying some characters you may have to change
 // the following:
