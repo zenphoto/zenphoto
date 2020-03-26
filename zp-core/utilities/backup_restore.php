@@ -1,8 +1,8 @@
 <?php
 /**
- * Backup and restore of the ZenPhoto database tables
+ * Backup and restore of the ZenPhoto database table content
  *
- * This plugin provides a means to make backups of your ZenPhoto database and
+ * This plugin provides a means to make backups of your ZenPhoto database content and
  * at a later time restore the database to the contents of one of these backups.
  *
  * @package admin
@@ -457,7 +457,7 @@ if (isset($_REQUEST['backup'])) {
 	if (getOption('zenphoto_install') !== $signaure) {
 		$l1 = '<a href="' . WEBPATH . '/' . ZENFOLDER . '/setup.php">';
 		$messages .= '<div class="notebox">
-			<h2>' . sprintf(gettext('You have restored your database from a different instance of Zenphoto. You should run %1$ssetup%2$s to insure proper migration.'), $l1, '</a>') . '</h2>
+			<h2>' . sprintf(gettext('You have restored your database content from a different instance of Zenphoto. You should run %1$ssetup%2$s to insure proper migration.'), $l1, '</a>') . '</h2>
 			</div>';
 	}
 
@@ -506,9 +506,9 @@ if (isset($_GET['compression'])) {
 				<h1>
 					<?php
 					if ($_zp_current_admin_obj->reset) {
-						echo (gettext('Restore your Database'));
+						echo (gettext('Restore your database content'));
 					} else {
-						echo (gettext('Backup and Restore your Database'));
+						echo (gettext('Backup and Restore your database content '));
 					}
 					?>
 				</h1>
@@ -524,7 +524,7 @@ if (isset($_GET['compression'])) {
 				<?php
 				if (!$_zp_current_admin_obj->reset) {
 					echo '<p>';
-					echo gettext('The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. ' .
+					echo gettext('The backup facility creates database content snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. ' .
 									'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
 					echo '</p>';
 				}
@@ -536,7 +536,7 @@ if (isset($_GET['compression'])) {
 						<h2><?php echo gettext('Create backup'); ?></h2>
 						<input type="hidden" name="backup" value="true" />
 						<div class="buttons pad_button" id="dbbackup">
-							<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
+							<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Backup the table content in your database."); ?>">
 								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/burst.png" alt="" /> <?php echo gettext("Backup the Database"); ?>
 							</button>
 							<select name="compress">
@@ -562,8 +562,8 @@ if (isset($_GET['compression'])) {
 					<hr>
 					<h2><?php echo gettext('Backup restore'); ?></h2>
 					<?php
-					echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
-					echo '</p><p class="warningbox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
+					echo gettext('You restore your database content by selecting a backup and pressing the <em>Restore the Database</em> button.');
+					echo '</p><p class="warningbox">' . gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database content will be in the same state as when the backup was created.');
 					echo '</p><p class="notebox">';
 					echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
 					echo '</p>';
@@ -580,7 +580,7 @@ if (isset($_GET['compression'])) {
 						<script>
 							$(document).ready(function () {
 								$("#restore_button").click(function () {
-									if (!confirm('<?php echo gettext('Do you really want to restore the database? Restoring the wrong backup might result in data loss!'); ?>')) {
+									if (!confirm('<?php echo gettext('Do you really want to restore the database content? Restoring the wrong backup might result in data loss!'); ?>')) {
 										return false;
 									}
 									;
@@ -588,7 +588,7 @@ if (isset($_GET['compression'])) {
 							});
 						</script>
 						<div class="buttons pad_button" id="dbrestore">
-							<button id="restore_button" class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Restore the tables in your database from a previous backup."); ?>">
+							<button id="restore_button" class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Restore the table content in your database from a previous backup."); ?>">
 								<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/redo.png" alt="" /> <?php echo gettext("Restore the Database"); ?>
 							</button>
 						</div>
