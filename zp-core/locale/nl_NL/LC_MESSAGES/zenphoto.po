@@ -1251,7 +1251,7 @@ msgstr ""
 msgid ""
 "or use your FTP program to give everyone write permissions to those folders."
 msgstr ""
-"of gebruik een FTP programma om iedereen schrijfrechten te geven op die "
+"of gebruik een FTP programma om iedereen schrijfrechten te geven voor die "
 "mappen."
 
 #: zp-core/admin-edit.php:515
@@ -1341,8 +1341,8 @@ msgid ""
 "the album. You cannot move albums under a <em>dynamic</em> album."
 msgstr ""
 "<strong>Opmerking:</strong> Je kunt van een album een subalbum maken door "
-"hem in een ander album te slepen. Dit werkt niet bij een <em>dynamisch</em> "
-"album ."
+"hem in een ander album te slepen. Dit werkt niet bij <em>dynamische</em> "
+"albums."
 
 #: zp-core/admin-edit.php:771
 #, php-format
@@ -5700,7 +5700,7 @@ msgstr "Upload afbeeldingen"
 #: zp-core/admin-upload.php:104
 #, php-format
 msgid "This web-based upload accepts the file formats: %s, and %s."
-msgstr "Deze web-gebaseerde upload accepteerd de bestandsformaten: %s, en %s."
+msgstr "Deze web-gebaseerde upload accepteert de bestandsformaten: %s, en %s."
 
 #: zp-core/admin-upload.php:106
 #, php-format
@@ -10695,7 +10695,7 @@ msgstr "Database verbinding"
 
 #: zp-core/setup/index.php:1037
 msgid "Database credentials in configuration file"
-msgstr "Database gegevens in configuratiebestand"
+msgstr "Database gegevens in het configuratiebestand"
 
 #: zp-core/setup/index.php:1037
 #, php-format
@@ -10709,13 +10709,12 @@ msgid ""
 "strong> is not able to write to the file."
 msgstr ""
 "Je hebt je <strong>database</strong> <code>gebruiker</code>, "
-"<code>wachtwoord</code>, enz. niet correct in je configuratiebestand bestand "
-"gezet en <strong>setup</strong> is niet in staat om naar het bestand te "
-"schrijven."
+"<code>wachtwoord</code>, enz. niet correct in je configuratiebestand gezet "
+"en <strong>setup</strong> is niet in staat om naar het bestand te schrijven."
 
 #: zp-core/setup/index.php:1046
 msgid "Database setup in configuration file"
-msgstr "Database setup in configuratiebestand"
+msgstr "Database setup in het configuratiebestand"
 
 #: zp-core/setup/index.php:1049
 #, php-format
@@ -11205,7 +11204,7 @@ msgid ""
 "You should update your configuration file to conform to the current %1$s "
 "example file."
 msgstr ""
-"Je moet configuratiebestand aanpassen conform het huidige %1$s voorbeeld-"
+"Je moet het configuratiebestand aanpassen conform het huidige %1$s voorbeeld-"
 "bestand."
 
 #: zp-core/setup/index.php:1618
@@ -11222,7 +11221,7 @@ msgstr ""
 
 #: zp-core/setup/index.php:1622
 msgid "<em>locale</em> folders"
-msgstr "<em>locales (talen)</em> mappen (vertalingen)"
+msgstr "<em>locales</em> mappen (vertalingen)"
 
 #: zp-core/setup/index.php:1622
 msgid "<em>locale</em> folders [Are not complete]"
@@ -11391,7 +11390,7 @@ msgid ""
 "Congratulations, we are ready to setup Zenphoto. A little patience please as "
 "the process may take some time."
 msgstr ""
-"Gefeliciteerd, Zenphoto is gereed om te installeren. Even geduld graag. Het "
+"Gefeliciteerd, Zenphoto is gereed om te installeren. Even geduld graag, het "
 "duurt even."
 
 #: zp-core/setup/index.php:2764
@@ -11486,11 +11485,11 @@ msgid ""
 "update your configuration file."
 msgstr ""
 "Vul de ontbrekende informatie hieronder in en <strong>setup</strong> zal "
-"proberen om het configuratiebestand bestand te updaten."
+"proberen om het configuratiebestand te updaten."
 
 #: zp-core/setup/setup-sqlform.php:49
 msgid "Database engine"
-msgstr "Database programma"
+msgstr "Database software"
 
 #: zp-core/setup/setup-sqlform.php:64
 #, php-format
