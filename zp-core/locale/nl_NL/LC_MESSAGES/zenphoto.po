@@ -10700,7 +10700,7 @@ msgstr "Database gegevens in configuratiebestand"
 #: zp-core/setup/index.php:1037
 #, php-format
 msgid "<em>%1$s</em> reported: %2$s"
-msgstr "<em>%1$s</em> melde: %2$s"
+msgstr "<em>%1$s</em> meldde: %2$s"
 
 #: zp-core/setup/index.php:1044
 msgid ""
