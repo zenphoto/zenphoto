@@ -366,7 +366,7 @@ class AlbumZip {
 			if ($subalbum->exists && !$album->isDynamic()) {
 				self::AddAlbumCache($subalbum, $base, $filebase);
 			}
-		}
+		} 
 	}
 
 	/**
@@ -421,7 +421,7 @@ class AlbumZip {
 			@set_time_limit(6000);
 			$zip->add_file_from_path(internalToFilesystem($file), internalToFilesystem($path));
 		}
-		$zip->finish();
+		$zip->finish(); 
 	}
 
 }
@@ -623,8 +623,6 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 	}
 }
 
-
-
 /**
  * Process any download requests
  */
@@ -663,7 +661,7 @@ if (isset($_GET['download'])) {
 		DownloadList::updateListItemCount($item . '.zip');
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
 		if (isset($_GET['fromcache'])) {
-			$fromcache = sanitize($isset($_GET['fromcache']));
+			$fromcache = sanitize(isset($_GET['fromcache']));
 		} else {
 			$fromcache = getOption('downloadList_zipFromCache');
 		}
