@@ -223,6 +223,7 @@ class Gallery {
 	private function loadAlbumNames() {
 		$albumdir = $this->getAlbumDir();
 		$dir = opendir($albumdir);
+		$msg = '';
 		if (!$dir) {
 			if (!is_dir($albumdir)) {
 				$msg .= sprintf(gettext('Error: The “albums” directory (%s) cannot be found.'), $this->albumdir);
