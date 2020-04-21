@@ -29,14 +29,14 @@
  *
  * The list has a CSS class <var>downloadList</var> attached.
  *
- * @author Malte MÃ¼ller (acrylian), Stephen Billard (sbillard)
+ * @author Malte MŸller (acrylian), Stephen Billard (sbillard)
  * @package plugins
  * @subpackage downloadlist
  * @tags "file download", "download manager", download
  */
 $plugin_is_filter = 800 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("Plugin to generate file download lists.");
-$plugin_author = "Malte MÃ¼ller (acrylian), Stephen Billard (sbillard)";
+$plugin_author = "Malte MŸller (acrylian), Stephen Billard (sbillard)";
 $plugin_category = gettext('Misc');
 
 $option_interface = "downloadList";
@@ -283,7 +283,7 @@ class DownloadList {
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			window.onload = function () {
-				alert('<?php printf(gettext('File â€œ%sâ€ was not found.'), $file); ?>');
+				alert('<?php printf(gettext('File Ò%sÓ was not found.'), $file); ?>');
 			}
 			// ]]> -->
 		</script>
@@ -414,7 +414,7 @@ class AlbumZip {
 			self::AddAlbumCache($album, strlen($albumname), SERVERPATH . '/' . CACHEFOLDER . '/' . $albumname);
 		} else {
 			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from images in %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
-			self::AddAlbum($album, strlen($albumname), SERVERPATH . '/' . ALBUMFOLDER . '/' . $albumname);
+			self::AddAlbum($album, strlen($albumname), $album->localpath . '/' . $albumname);
 		}
 		$zip = new ZipStream($albumname . '.zip', $opt);
 		foreach ($_zp_zip_list as $path => $file) {
