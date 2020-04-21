@@ -1068,7 +1068,6 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 	$selected = '';
 	if (($option != "all") && !$cat->transient && !empty($articleid)) {
 		$cat2news = query_single_row("SELECT cat_id FROM " . prefix('news2cat') . " WHERE news_id = " . $articleid . " AND cat_id = " . $cat->getID());
-		debugLogVar($cat2news);
 		if (isset($cat2news['cat_id'])) {
 			$selected = "checked ='checked'";
 		} else {
