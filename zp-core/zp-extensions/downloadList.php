@@ -352,14 +352,17 @@ class AlbumZip {
 		$albumbase = substr($album->name, $base) . '/';
 		$images = $album->getImages();
 		foreach ($images as $imagename) {
-			$image = newImage($album, $imagename);
+			$image = newImage($album, $imagename);		
 			$uri = $image->getSizedImage($defaultSize);
+			//debuglog($uri);
 			if (strpos($uri, 'i.php?') === false) {
 				$f = $albumbase . $image->filename;
-				$c = $albumbase . basename($uri);
-				$_zp_zip_list[$filebase . $c] = $f;
+				$parseurl = parse_url($albumbase . basename($uri));
+				$c = $parseurl['path'];
+				$_zp_zip_list[$filebase . $c] = $c;
 			}
 		}
+		debuglogVar('zp_zip_list', $_zp_zip_list);
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {
 			$subalbum = newAlbum($albumname);
@@ -416,12 +419,16 @@ class AlbumZip {
 			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from images in %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
 			self::AddAlbum($album, strlen($albumname), $album->localpath . '/' . $albumname);
 		}
-		$zip = new ZipStream($albumname . '.zip', $opt);
-		foreach ($_zp_zip_list as $path => $file) {
-			@set_time_limit(6000);
-			$zip->add_file_from_path(internalToFilesystem($file), internalToFilesystem($path));
+		if(!empty($_zp_zip_list)) {
+			$zip = new ZipStream($albumname . '.zip', $opt);
+			foreach ($_zp_zip_list as $path => $file) {
+				@set_time_limit(6000);
+				$zip->add_file_from_path(internalToFilesystem($file), internalToFilesystem($path));
+			}
+			$zip->finish(); 
+			return true;
 		}
-		$zip->finish(); 
+		return false;
 	}
 
 }
@@ -665,8 +672,10 @@ if (isset($_GET['download'])) {
 		} else {
 			$fromcache = getOption('downloadList_zipFromCache');
 		}
-		AlbumZip::create($item, $fromcache);
-		exitZP();
+		$success = AlbumZip::create($item, $fromcache);
+		if($success) {
+			exitZP();
+		}
 	} else {
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
 		$item = (int) $item;
