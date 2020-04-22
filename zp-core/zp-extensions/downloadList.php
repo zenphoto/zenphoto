@@ -415,7 +415,6 @@ class AlbumZip {
 			self::AddAlbumCache($album, strlen($albumname), SERVERPATH . '/' . CACHEFOLDER . '/' . $albumname);
 		} else {
 			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from images in %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
-			debugLogVar($album->localpath);
 			self::AddAlbum($album, strlen($albumname), $album->localpath);
 		}
 		if(!empty($_zp_zip_list)) {
