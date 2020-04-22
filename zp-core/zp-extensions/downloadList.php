@@ -354,7 +354,6 @@ class AlbumZip {
 		foreach ($images as $imagename) {
 			$image = newImage($album, $imagename);		
 			$uri = $image->getSizedImage($defaultSize);
-			//debuglog($uri);
 			if (strpos($uri, 'i.php?') === false) {
 				$f = $albumbase . $image->filename;
 				$parseurl = parse_url($albumbase . basename($uri));
@@ -362,7 +361,6 @@ class AlbumZip {
 				$_zp_zip_list[$filebase . $c] = $c;
 			}
 		}
-		debuglogVar('zp_zip_list', $_zp_zip_list);
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {
 			$subalbum = newAlbum($albumname);
@@ -417,7 +415,8 @@ class AlbumZip {
 			self::AddAlbumCache($album, strlen($albumname), SERVERPATH . '/' . CACHEFOLDER . '/' . $albumname);
 		} else {
 			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from images in %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
-			self::AddAlbum($album, strlen($albumname), $album->localpath . '/' . $albumname);
+			debugLogVar($album->localpath);
+			self::AddAlbum($album, strlen($albumname), $album->localpath);
 		}
 		if(!empty($_zp_zip_list)) {
 			$zip = new ZipStream($albumname . '.zip', $opt);
