@@ -331,6 +331,7 @@ function html_encodeTagged($original, $allowScript = true) {
 		$str = preg_replace('|<(.*)onclick|ixs', '%$c', $str);
 		$tags[2]['%$c'] = '&lt;<strike>onclick</strike>';
 	}
+	$str = htmLawed($str);
 	//strip html comments
 	$str = preg_replace('~<!--.*?-->~is', '', $str);
 	// markup
