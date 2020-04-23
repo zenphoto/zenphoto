@@ -523,7 +523,7 @@ function printCategorySelection($id = '', $option = '') {
 		$catobj = new ZenpageCategory($cats['titlelink']);
 		if ($option != "all") {
 			$cat2news = query_single_row("SELECT cat_id FROM " . prefix('news2cat') . " WHERE news_id = " . $id . " AND cat_id = " . $catobj->getID());
-			if ($cat2news['cat_id'] != "") {
+			if (isset($cat2news['cat_id']) && !empty($cat2news['cat_id'])) {
 				$selected = "checked ='checked'";
 			}
 		}
