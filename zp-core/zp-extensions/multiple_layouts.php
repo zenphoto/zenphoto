@@ -307,7 +307,9 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
 
 	if ($child) {
 		$defaultlayout = checkParentLayouts($obj, $type);
-		$defaultlayout = $defaultlayout['data'];
+		if($defaultlayout) {
+			$defaultlayout = $defaultlayout['data'];
+		}
 	}
 	if ($defaultlayout) {
 		$defaultlayout = stripSuffix($defaultlayout);
