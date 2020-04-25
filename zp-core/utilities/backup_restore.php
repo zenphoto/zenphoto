@@ -508,7 +508,7 @@ if (isset($_GET['compression'])) {
 					if ($_zp_current_admin_obj->reset) {
 						echo (gettext('Restore your database content'));
 					} else {
-						echo (gettext('Backup and Restore your database content '));
+						echo (gettext('Backup and Restore your database content'));
 					}
 					?>
 				</h1>
@@ -524,7 +524,7 @@ if (isset($_GET['compression'])) {
 				<?php
 				if (!$_zp_current_admin_obj->reset) {
 					echo '<p>';
-					echo gettext('The backup facility creates database content snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. ' .
+					echo gettext('The backup facility creates database content snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken.' .
 									'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
 					echo '</p>';
 				}
