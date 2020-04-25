@@ -3919,7 +3919,8 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<?php
 	}
 	if ($movecopy) {
-		global $mcr_albumlist, $album, $bglevels;
+		global $mcr_albumlist, $album;
+		$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
 		?>
 		<div id="mass_movecopy_copy" style="display:none;">
 			<div id="mass_movecopy_data">
