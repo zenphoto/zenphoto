@@ -608,7 +608,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 							<li><strong><?php echo gettext("Pages"); ?></strong>
 								<ul>
 									<li><a href="#pages-popular"><?php echo gettext("most viewed"); ?></a> | </li>
-									<li><a href="#pages-mostcommented"><?php echo gettext("most commented"); ?></a></li>
+									<li><a href="#pages-mostcommented"><?php echo gettext("most commented"); ?></a> | </li>
 									<li><a href="#pages-mostrated"><?php echo gettext("most rated"); ?></a> | </li>
 									<li><a href="#pages-toprated"><?php echo gettext("top rated"); ?></a></li>
 								</ul>
@@ -616,7 +616,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 							<li><strong><?php echo gettext("News articles"); ?></strong>
 								<ul>
 									<li><a href="#news-popular"><?php echo gettext("most viewed"); ?></a> | </li>
-									<li><a href="#news-mostcommented"><?php echo gettext("most commented"); ?></a></li>
+									<li><a href="#news-mostcommented"><?php echo gettext("most commented"); ?></a> | </li>
 									<li><a href="#news-mostrated"><?php echo gettext("most rated"); ?></a> | </li>
 									<li><a href="#news-toprated"><?php echo gettext("top rated"); ?></a></li>
 								</ul>
