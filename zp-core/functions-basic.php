@@ -1536,6 +1536,10 @@ function secureServer() {
 		}
 	} elseif (isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] )) {
 		return true;
+	} elseif (isset($_SERVER['HTTP_FORWARDED']) && preg_match("/^(.+[,;])?\s*proto=https\s*([,;].*)$/", strtolower($_SERVER['HTTP_FORWARDED']))) {
+		return true;
+	} elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ('https' == strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']))) {
+		return true;
 	}
 	return false;
 }
