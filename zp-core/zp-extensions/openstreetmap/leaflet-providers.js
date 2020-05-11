@@ -197,6 +197,13 @@
 				Neighbourhood: 'neighbourhood'
 			}
 		},
+		CyclOSM: {
+			url: 'https://dev.{s}.tile.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
+			options: {
+				maxZoom: 20,
+				attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: {attribution.OpenStreetMap}'
+			}
+		},
 		OpenMapSurfer: {
 			url: 'https://maps.heigit.org/openmapsurfer/tiles/{variant}/webmercator/{z}/{x}/{y}.png',
 			options: {
@@ -639,11 +646,12 @@
 			}
 		},
 		BasemapAT: {
-			url: 'https://maps{s}.wien.gv.at/basemap/{variant}/normal/google3857/{z}/{y}/{x}.{format}',
+			url: 'https://maps{s}.wien.gv.at/basemap/{variant}/{type}/google3857/{z}/{y}/{x}.{format}',
 			options: {
 				maxZoom: 19,
 				attribution: 'Datenquelle: <a href="https://www.basemap.at">basemap.at</a>',
 				subdomains: ['', '1', '2', '3', '4'],
+				type: 'normal',
 				format: 'png',
 				bounds: [[46.358770, 8.782379], [49.037872, 17.189532]],
 				variant: 'geolandbasemap'
@@ -657,6 +665,20 @@
 				},
 				grau: 'bmapgrau',
 				overlay: 'bmapoverlay',
+				terrain: {
+					options: {
+						variant: 'bmapgelaende',
+						type: 'grau',
+						format: 'jpeg'
+					}
+				},
+				surface: {
+					options: {
+						variant: 'bmapoberflaeche',
+						type: 'grau',
+						format: 'jpeg'
+					}
+				},
 				highdpi: {
 					options: {
 						variant: 'bmaphidpi',
@@ -685,7 +707,7 @@
 				'pastel': 'brtachtergrondkaartpastel',
 				'grijs': 'brtachtergrondkaartgrijs',
 				'luchtfoto': {
-					'url': 'https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wmts/1.0.0/2016_ortho25/EPSG:3857/{z}/{x}/{y}.png',
+					'url': 'https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wmts/2018_ortho25/EPSG:3857/{z}/{x}/{y}.png',
 				}
 			}
 		},
