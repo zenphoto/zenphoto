@@ -497,13 +497,15 @@ function inventMenuItem($menuset, $visibility) {
 }
 
 /**
- * Returns the sort_order of the current menu item
+ * Returns the data of the current menu item
+ * 
+ * @since 1.5.7 Return values changed to match function name and doc, parameter $field added to help
  * @param string $menuset current menu set
- * @return int
+ * @param string $field The field of the array item to get, "all" for the full item array, "key" for the array index of the item within the items array (old default value)
+ * @return int|array|string
  */
-function getCurrentMenuItem($menuset) {
+function getCurrentMenuItem($menuset, $field = 'sort_order') {
 	$currentpageURL = rtrim(str_replace('\\', '/', html_encode(getRequestURI())), '/');
-
 	if (isset($_GET['page'])) { // must strip out page numbers, all "pages" are equal
 		if (MOD_REWRITE) {
 			if (isset($_GET['album'])) {
@@ -544,7 +546,20 @@ function getCurrentMenuItem($menuset) {
 	if (is_null($currentkey)) {
 		$currentkey = inventMenuItem($menuset, $visibility);
 	}
-	return $currentkey;
+	switch ($field) {
+		default://individual field
+			if (isset($items[$currentkey][$field])) {
+				return $items[$currentkey][$field];
+			}
+			break;
+		case 'all':
+			if (isset($items[$currentkey])) {
+				return $items[$currentkey];
+			}
+			break;
+		case "key":
+			return $currentkey;
+	}
 }
 
 /**
@@ -758,19 +773,17 @@ function printMenuemanagerPageList($menuset = 'default', $class = 'pagelist', $i
  * @return array|false
  */
 function getParentMenuItems($menuset = 'default') {
-	$sortorder = getCurrentMenuItem($menuset);
+	$currentitem = getCurrentMenuItem($menuset, 'all');
 	$items = getMenuItems($menuset, getMenuVisibility());
 	if (count($items) > 0) {
-		if ($sortorder) {
+		if ($currentitem) {
+			$sortorder = $currentitem['sort_order'];
 			$parents = array();
-			$order = explode('-', $sortorder);
-			array_pop($order);
-			$look = array();
-			while (count($order) > 0) {
-				$look = implode('-', $order);
-				array_pop($order);
-				if (array_key_exists($look, $items)) {
-					array_unshift($parents, $items[$look]);
+			$currentorder = explode('-', $sortorder);
+			foreach($items as $item) {
+				$itemorder = explode('-', $item['sort_order']);
+				if($itemorder[0] == $currentorder[0] && $item['id'] != $currentitem['id'] && $currentitem['parentid'] != 0) {
+					$parents[] = $item;
 				}
 			}
 			if (!empty($parents)) {
@@ -1049,7 +1062,7 @@ function getMenuItemChilds($menuset = 'default', $allchilds = false) {
   $sortorder = getCurrentMenuItem($menuset);
   $items = getMenuItems($menuset, getMenuVisibility());
   if (count($items) > 0) {
-    if ($sortorder) {
+    if ($sortorder) { 
       $length = strlen($sortorder);
       $level = explode('-', $sortorder);
       $level = count($level);
@@ -1079,6 +1092,24 @@ function getMenuItemChilds($menuset = 'default', $allchilds = false) {
 }
 
 /**
+ * Checks if the item $item is a parent item of the current item
+ * @param string $menuset Name of the menuset to use
+ * @param array $item Array of the item to check
+ * @return boolean
+ */
+function isCurrentitemParent($menuset = 'default', $item) {
+	$currentid = getCurrentMenuItem($menuset, 'id');
+	$allparents = getParentMenuItems($menuset);
+	foreach($allparents as $parent) {
+		if($item['id'] != $currentid && $parent['id'] == $item['id']) {
+			return true;
+		}
+		return false;
+	} 
+	
+}
+
+/**
  * Prints a context sensitive menu of all pages as a unordered html list
  *
  * @param string $menuset the menu tree to output
@@ -1098,25 +1129,24 @@ function getMenuItemChilds($menuset = 'default', $allchilds = false) {
  */
 function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $css_class_topactive = '', $css_class = '', $css_class_active = '', $showsubs = 0, $counter = false) {
 	global $_zp_zenpage, $_zp_gallery_page, $_zp_current_zenpage_page, $_zp_current_category;
+	$itemcounter = '';
 	if ($css_id != "") {
 		$css_id = " id='" . $css_id . "'";
 	}
 	if ($showsubs === true)
 		$showsubs = 9999999999;
 
-	$sortorder = getCurrentMenuItem($menuset);
+	$currentitem = getCurrentMenuItem($menuset, 'all');
+	$sortorder = @$currentitem['sort_order'];
 	$items = getMenuItems($menuset, getMenuVisibility());
 
 	if (count($items) == 0)
 		return; // nothing to do
-	$currentitem_parentid = @$items[$sortorder]['parentid'];
+	$currentitem_parentid = @$currentitem['parentid'];
 	if ($startlist = !($option == 'omit-top' || $option == 'list-sub')) {
 		echo "<ul$css_id>";
 	}
-	$pageid = '';
-	if($sortorder !== false){
-		$pageid = @$items[$sortorder]['id'];
-	}
+	$pageid = @$currentitem['id'];
 	$baseindent = max(1, count(explode("-", $sortorder)));
 	$indent = 1;
 	$open = array($indent => 0);
@@ -1129,7 +1159,6 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 		$parents[$c] = NULL;
 	}
 	foreach ($items as $item) {
-		$itemcounter = '';
 		$itemarray = getItemTitleAndURL($item);
 		$itemURL = $itemarray['url'];
 		$itemtitle = $itemarray['title'];
@@ -1209,14 +1238,18 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 			}
 			if ($item['id'] == $pageid && !is_null($pageid)) {
 				if ($level == 1) { // top level
-					$class = $css_class_topactive;
+					$class = ' ' . $css_class_topactive;
 				} else {
-					$class = $css_class_active;
+					$class = ' ' . $css_class_active .'-' . $level;
 				}
 				echo '<li class="menu_' . trim($item['type'] . ' ' . $class) . '">' . $itemtitle . $itemcounter;
 			} else {
 				if (strpos($sortorder, $item['sort_order']) === 0) { // we are in the heritage chain
-					$class = ' ' . $css_class_active . '-' . ($mylevel - $level);
+					if ($level == 1) { // top level
+						$class = ' ' . $css_class_topactive;
+					} else {
+						$class = ' ' . $css_class_active .'-' . $level;
+					}
 				} else {
 					$class = '';
 				}
@@ -1237,18 +1270,9 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 						break;
 					case 'menufunction':
 						$i = strpos($itemURL, '(');
-						$i2 = strpos($itemURL, '::');
-						if ($i !== false && $i2 === false) {
+						if ($i) {
 							if (function_exists(trim(substr($itemURL, 0, $i)))) {
 								eval($itemURL);
-							}
-						} else if ($i !== false && $i2 !== false) {
-							if ($i2) {
-								$method = explode('::', $itemURL);
-								$methodname = stristr($method[1],'(', true);
-								if (method_exists(trim($method[0]), trim($methodname))) {
-									eval($itemURL);
-								} 
 							}
 						}
 						break;
