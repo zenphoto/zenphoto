@@ -3049,3 +3049,14 @@ class _zp_HTML_cache {
 
 }
 setexifvars();
+
+/**
+ * Prints the lang="" attribute for the main <html> element.
+ * 
+ * @since ZenphotoCMS 1.5.7
+ * 
+ * @param string $locale Default null so the current locale is used. Or a locale like "en_US" which will get the underscores replaced by hyphens to be valid
+ */
+function printLangAttribute($locale = null) {
+	echo ' lang="' .  getLangAttributeLocale($locale) .'"';
+}

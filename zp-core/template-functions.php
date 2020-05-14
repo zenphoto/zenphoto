@@ -479,17 +479,6 @@ function printHeadTitle($separator = ' | ', $listparentalbums = true, $listparen
 }
 
 /**
- * Prints the lang="" attribute for the main <html> element with a trailing space is included.
- * 
- * @since ZenphotoCMS 1.5.7
- * 
- * @param string $locale Default null so the current locale is usd. Or a locale like "en_US" which will get the underscores replaces by hyphens to be valid
- */
-function printLangAttribute($locale = null) {
-	echo ' lang="' .  getLangAttributeLocale($locale) .'"';
-}
-
-/**
  * Returns the raw description of the gallery.
  *
  * @return string
