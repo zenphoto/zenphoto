@@ -381,9 +381,10 @@ function getMenuVisibility() {
  *
  * @param string $menuset
  * @param string $visibility
- * return string
+ * @param string $field The field of the array item to get, "all" for the full item array, "key" for the array index of the item within the items array (old default value)
+ * @return int|array|string
  */
-function inventMenuItem($menuset, $visibility) {
+function inventMenuItem($menuset, $visibility, $field = 'sort_order') {
 	global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_menu_manager_items,
 	$_zp_current_zenpage_news, $_zp_current_zenpage_page;
 	$currentkey = $insertpoint = NULL;
@@ -424,7 +425,9 @@ function inventMenuItem($menuset, $visibility) {
 						'title' => $_zp_current_image->getTitle(),
 						'show' => 1,
 						'link' => '',
-						'menuset' => $menuset);
+						'menuset' => $menuset,
+						'span_class' => '',
+						'span_id' => '');
 			}
 			break;
 		case 'news.php':
@@ -456,7 +459,9 @@ function inventMenuItem($menuset, $visibility) {
 							'title' => $_zp_current_zenpage_news->getTitle(),
 							'show' => 1,
 							'link' => '',
-							'menuset' => $menuset);
+							'menuset' => $menuset,
+							'span_class' => '',
+							'span_id' => '');
 				} else {
 					$currentkey = false; // not a news page, must be the index?
 				}
@@ -477,7 +482,9 @@ function inventMenuItem($menuset, $visibility) {
 								'title' => $_zp_current_zenpage_page->getTitle(),
 								'show' => 1,
 								'link' => '',
-								'menuset' => $menuset);
+								'menuset' => $menuset,
+								'span_class' => '',
+								'span_id' => '');
 						break;
 					}
 				}
@@ -492,8 +499,21 @@ function inventMenuItem($menuset, $visibility) {
 			}
 		}
 		$_menu_manager_items[$menuset][$visibility] = $newitems;
+		switch ($field) {
+			default://individual field
+				if (isset($item[$field])) {
+					return $item[$field];
+				}
+				break;
+			case 'all':
+				if (isset($item)) {
+					return $item;
+				}
+				break;
+			case "key":
+				return $currentkey;
+		}
 	}
-	return $currentkey;
 }
 
 /**
@@ -543,17 +563,24 @@ function getCurrentMenuItem($menuset, $field = 'sort_order') {
 				break;
 		}
 	}
+	$inventeditem = false;
 	if (is_null($currentkey)) {
-		$currentkey = inventMenuItem($menuset, $visibility);
+		$inventeditem = inventMenuItem($menuset, $visibility, 'all');
 	}
 	switch ($field) {
 		default://individual field
-			if (isset($items[$currentkey][$field])) {
+			if($inventeditem) {
+				if (isset($inventeditem[$field])) {
+					return $inventeditem[$field];
+				}
+			} else if (isset($items[$currentkey][$field])) {
 				return $items[$currentkey][$field];
 			}
 			break;
 		case 'all':
-			if (isset($items[$currentkey])) {
+			if ($inventeditem) {
+				return $inventeditem;
+			} else if (isset($items[$currentkey])) {
 				return $items[$currentkey];
 			}
 			break;
@@ -1137,16 +1164,21 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 		$showsubs = 9999999999;
 
 	$currentitem = getCurrentMenuItem($menuset, 'all');
-	$sortorder = @$currentitem['sort_order'];
+	$sortorder = '';
+	$currentitem_parentid = '';
+	$pageid = '';
+	if(is_array($currentitem)) {
+		$sortorder = $currentitem['sort_order'];
+		$currentitem_parentid = $currentitem['parentid'];
+		$pageid = $currentitem['id'];
+	}
 	$items = getMenuItems($menuset, getMenuVisibility());
-
 	if (count($items) == 0)
 		return; // nothing to do
-	$currentitem_parentid = @$currentitem['parentid'];
+	
 	if ($startlist = !($option == 'omit-top' || $option == 'list-sub')) {
 		echo "<ul$css_id>";
 	}
-	$pageid = @$currentitem['id'];
 	$baseindent = max(1, count(explode("-", $sortorder)));
 	$indent = 1;
 	$open = array($indent => 0);
