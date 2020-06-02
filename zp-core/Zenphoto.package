@@ -657,7 +657,6 @@ zp-core/lib-gettext/gettext.php
 zp-core/lib-htmLawed.php
 zp-core/lib-json.php
 zp-core/lib-kses.php
-zp-core/lib-pclzip.php
 zp-core/lib-utf8.php
 zp-core/lib-zipStream.php
 zp-core/license.php
