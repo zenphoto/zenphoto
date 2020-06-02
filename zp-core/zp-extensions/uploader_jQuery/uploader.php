@@ -25,6 +25,9 @@ admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
 
 $folder = zp_apply_filter('admin_upload_process', sanitize_path($_POST['folder']));
 $types = array_keys($_zp_extra_filetypes);
+if (function_exists('zip_open')) {
+	$types[] = 'ZIP';
+}
 $types = array_merge($_zp_supported_images, $types);
 $types = zp_apply_filter('upload_filetypes', $types);
 

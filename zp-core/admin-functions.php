@@ -2889,16 +2889,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 					}
 				}
-				zip_close($zip);
+				return zip_close($zip);
 			}
 		} else {
-			require_once(dirname(__FILE__) . '/lib-pclzip.php');
-			$zip = new PclZip($file);
-			if ($zip->extract(PCLZIP_OPT_PATH, $dir, PCLZIP_OPT_REMOVE_ALL_PATH) == 0) {
-				return false;
-			}
+			return false;
 		}
-		return true;
 	}
 
 	/**
