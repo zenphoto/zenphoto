@@ -2892,6 +2892,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				return zip_close($zip);
 			}
 		} else {
+			debuglog(gettext('Zip archive could not be extracted because PHP <code>ZipArchive</code> support is not available'));
 			return false;
 		}
 	}
