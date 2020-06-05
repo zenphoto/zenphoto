@@ -182,16 +182,21 @@ if(file_exists(SERVERPATH . '/' . DATA_FOLDER . '/setup.log')) {
 }
 if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
 	require_once(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php');
-	$dbarray = array(
-			'db_software' => '',
-			'mysql_user' => '',
-			'mysql_pass' => '',
-			'mysql_host' => '',
-			'mysql_database' => '',
-			'mysql_port' => '',
-			'mysql_prefix' => '',
-			'UTF-8' => '');
-	$data = db_connect(array_intersect_key($_zp_conf_vars, $dbarray), false);
+	$dbconfig_defaults = array(
+			'db_software' => $_zp_conf_vars['db_software'],
+			'mysql_user' => null,
+			'mysql_pass' => null,
+			'mysql_host' => 'localhost',
+			'mysql_database' => null,
+			'mysql_port' => 3306,
+			'mysql_prefix' => 'zp_',
+			'UTF-8' => true);
+	foreach($dbconfig_defaults as $key => $value) {
+		if(!isset($_zp_conf_vars[$key]) || (isset($_zp_conf_vars[$key]) && empty($_zp_conf_vars[$key]))) {
+			$_zp_conf_vars[$key]  = $value;
+		}
+	}
+	$data = db_connect($_zp_conf_vars, false);
 } else {
 	$data = false;
 }
