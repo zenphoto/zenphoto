@@ -1319,11 +1319,13 @@ class Zenphoto_Authority {
 			$all_users = $this->getAdministrators('users');
 			foreach ($all_users as $user) {
 				if ($user['user'] != $current_user && !empty($user['email']) && $user['email'] == $email_to_check) {
-					return true;
+					return false;
 				}
 			}
+			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 
 }

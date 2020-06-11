@@ -141,14 +141,14 @@ if (isset($_GET['action'])) {
 							if (isset($_POST[$i . '-admin_email'])) {
 								$admin_e = trim(sanitize($_POST[$i . '-admin_email']));
 								if(!empty($admin_e) && isValidEmail($admin_e)) {				
-									$mail_duplicate = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
-									if($mail_duplicate) {
-										$msg = sprintf(gettext('%s email is already used by another user!'), $admin_n);
-									} else {
+									$mail_unique = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
+									if($mail_unique) {
 										if ($admin_e != $userobj->getEmail()) {
 											markUpdated();
 											$userobj->setEmail($admin_e);
 										}
+									} else {
+										$msg = sprintf(gettext('%s email is already used by another user!'), $admin_n);
 									}
 								} 
 							}
