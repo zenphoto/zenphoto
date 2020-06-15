@@ -21,7 +21,7 @@ if (isset($_GET['action'])) {
 		case 'settheme':
 			if (isset($_GET['theme'])) {
 				$alb = sanitize_path($_GET['themealbum']);
-				$newtheme = str_replace(array('/', '.', '\\'), '', sanitize($_GET['theme']));
+				$newtheme = sanitize($_GET['theme']);
 				if (empty($alb)) {
 					$_zp_gallery->setCurrentTheme($newtheme);
 					$_zp_gallery->save();
