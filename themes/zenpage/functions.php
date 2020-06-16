@@ -102,9 +102,9 @@ function newsOnIndex($link, $obj, $page) {
 	if (is_string($obj) && $obj == 'news.php') {
 		if (MOD_REWRITE) {
 			if (preg_match('~' . _NEWS_ . '[/\d/]*$~', $link)) {
-				$link = WEBPATH;
+				$link = WEBPATH . '/';
 				if ($page > 1)
-					$link .= '/' . _PAGE_ . '/' . $page;
+					$link .=  _PAGE_ . '/' . $page;
 			}
 		} else {
 			if (strpos($link, 'category=') === false && strpos($link, 'title=') === false) {
