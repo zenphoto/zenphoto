@@ -201,7 +201,7 @@ $subtab = printSubtabs();
 				if ($str = isolate('$plugin_disable', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 8;
-						$plugin_URL = gettext('<strong>Error parsing <em>plugin_disable</em> string!</strong>');
+						$plugin_disable = gettext('<strong>Error parsing <em>plugin_disable</em> string!</strong>');
 					} else {
 						if ($plugin_disable) {
 							setOption($opt, 0);
@@ -209,6 +209,22 @@ $subtab = printSubtabs();
 					}
 				} else {
 					$plugin_disable = false;
+				}
+				if ($str = isolate('$plugin_siteurl', $pluginStream)) {
+					if (false === eval($str)) {
+						$parserr = $parserr | 9;
+						$plugin_siteurl = gettext('<strong>Error parsing <em>plugin_siteurl</em> string!</strong>');
+					}
+				} else {
+					$plugin_site = '';
+				}
+				if ($str = isolate('$plugin_date', $pluginStream)) {
+					if (false === eval($str)) {
+						$parserr = $parserr | 10;
+						$plugin_date = gettext('<strong>Error parsing <em>plugin_date</em> string!</strong>');
+					}
+				} else {
+					$plugin_date = '';
 				}
 				$plugin_URL = FULLWEBPATH . '/' . ZENFOLDER . '/pluginDoc.php?extension=' . $extension;
 				if ($third_party_plugin) {
@@ -319,9 +335,12 @@ $subtab = printSubtabs();
 								<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
 								<?php
 							}
-							echo $extension;
+							echo '<strong>' . $extension . '</strong>';
 							if (!empty($plugin_version)) {
 								echo ' v' . $plugin_version;
+							}
+							if(!empty($plugin_date)) {
+								echo ' <small>(' . html_encode($plugin_date) .')</small>';
 							}
 							?>
 						</label>
@@ -350,6 +369,7 @@ $subtab = printSubtabs();
 					<td colspan="2">
 						<?php
 						echo $plugin_description;
+						
 						if($plugin_deprecated) {
 							echo '<p class="notebox">' . $plugin_deprecated . '</p>';
 						}
@@ -380,6 +400,11 @@ $subtab = printSubtabs();
 							</div>
 							<?php
 						}
+						echo '<p><small><strong>' . sprintf(gettext('by %s'), $plugin_author);
+						if(!empty($plugin_site)) {
+							echo ' | <a href="' . html_encode($plugin_siteurll) . '" rel="noopener" target="_blank" title="'. html_encode($plugin_siteurl).'">' . gettext('Visit plugin site') . '</a>';
+						}
+						echo '</strong></small></p>';
 						?>
 					</td>
 				</tr>

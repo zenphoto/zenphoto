@@ -197,7 +197,7 @@ foreach($themes as $theme => $themeinfo) {
 	$themedir = SERVERPATH . '/themes/'.internalToFilesystem($theme);
 	$themeweb = WEBPATH . "/themes/$theme";
 	if (zenPhotoTheme($theme)) {
-		$whose = 'Zenphoto official theme';
+		$whose = gettext('Zenphoto official theme');
 		$ico = 'images/zp_gold.png';
 	} else {
 		$whose = gettext('third party theme');
@@ -229,27 +229,36 @@ foreach($themes as $theme => $themeinfo) {
 			?>
 		</td>
 		<td <?php echo $style; ?>>
-			<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
-			<strong><?php echo $themeinfo['name']; ?></strong>
-			<br />
-			<?php echo $themeinfo['author']; ?>
-			<br />
+			<p><img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" /> <strong><?php echo $themeinfo['name']; ?></strong>
 			<?php
-			if ($ico == 'images/zp_gold.png') {
-				$version = ZENPHOTO_VERSION;
-				$date = $zenphoto_date;
-			} else {
+			$version = '';
+			$date = '';
+			if ($ico != 'images/zp_gold.png') {
 				$version = $themeinfo['version'];
 				$date = $themeinfo['date'];
 			}
-			echo gettext('Version').' '. $version.', '.$date;
+			if(!empty($version)) {
+				echo 'v'. $version;
+			}
+			if(!empty($date)) {
+				echo '<small> ('.$date .')</small>'; 
+			}
 			?>
-			<br />
+			</p>
 			<?php echo $themeinfo['desc']; 
 			if(array_key_exists('deprecated', $themeinfo)) {
 				echo '<p class="notebox">' . $themeinfo['deprecated'] . '</p>';
 			}
 			?>
+			<p><strong><small>
+			<?php 
+			echo sprintf(gettext('by %s'), $themeinfo['author']); 
+			if(array_key_exists('siteurl', $themeinfo)) {
+				echo ' | <a href="' . html_encode($themeinfo['siteurl']) . '" rel="noopener" target="_blank" title="'. html_encode($themeinfo['siteurl']).'">' . gettext('Visit theme site') . '</a>';
+			}
+			?>
+			</small></strong></p>
+			<hr>
 			<p><a href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-options.php?page=options&amp;tab=theme&amp;optiontheme=<?php echo $theme; if ($alb) { echo '&amp;themealbum='.$alb; } ?>" ><?php echo sprintf(gettext('Set <em>%s</em> theme options'),$themeinfo['name']); ?></a></p>
 		</td>
 		<td width="20%" <?php echo $style; ?>>

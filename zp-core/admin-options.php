@@ -3076,7 +3076,27 @@ Zenphoto_Authority::printPasswordFormJS();
 									} else {
 										$plugin_description = '';
 									}
-
+									if ($str = isolate('$plugin_version', $pluginStream)) {
+										if (false === eval($str)) {
+											$plugin_version = '';
+										}
+									} else {
+										$plugin_version = '';
+									}
+									if ($str = isolate('$plugin_deprecated', $pluginStream)) {
+										if (false === eval($str)) {
+											$plugin_deprecated = '';
+										}
+									} else {
+										$plugin_deprecated = '';
+									}
+									if ($str = isolate('$plugin_date', $pluginStream)) {
+										if (false === eval($str)) {
+											$plugin_date = '';
+										}
+									} else {
+										$plugin_date = '';
+									}
 									$str = isolate('$option_interface', $pluginStream);
 									if (false !== $str) {
 										require_once($path);
@@ -3114,6 +3134,12 @@ Zenphoto_Authority::printPasswordFormJS();
 																		<?php
 																	}
 																	echo $extension;
+																	if(!empty($plugin_version)) {
+																		echo ' v'. html_encode($plugin_version);
+																	}
+																	if(!empty($plugin_date)) {
+																		echo ' <small>('. html_encode($plugin_date).')</small>';
+																	}
 																	if (!$showExtension) {
 																		?>
 																	</a></span>
@@ -3127,7 +3153,12 @@ Zenphoto_Authority::printPasswordFormJS();
 															?>
 														</th>
 														<th style="text-align:left; font-weight: normal;" colspan="2">
-															<?php echo $plugin_description; ?>
+															<?php 
+															echo $plugin_description;  
+															if($plugin_deprecated) {
+																echo '<p class="notebox">' . $plugin_deprecated . '</p>';
+															}
+															?>
 														</th>
 													</tr>
 													<?php
