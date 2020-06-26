@@ -580,7 +580,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$options = array_keys($options);
 			} else {
 				$options = array_keys($supportedOptions);
-				natcasesort($options);
 			}
 			if (method_exists($optionHandler, 'handleOptionSave')) {
 				?>
