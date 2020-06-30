@@ -209,10 +209,8 @@ $subtab = printSubtabs();
 				}
 				if(!empty($plugin_compatibilty)) {
 					$compatcheck = explode('::', $plugin_compatibilty);
-					print_r($compatcheck);
 					if(count($compatcheck) == 2 && strtolower($compatcheck[1]) == 'isnotcompatible' && method_exists($compatcheck[0], $compatcheck[1])) {
 						$check = $plugin_compatibilty();
-						echo $check;
 						if($check) {
 							$plugin_disable = $check;
 							debuglog(sprintf(gettext('Compatibility error – Plugin %1$s has been disabled: %2$s'), $extension, $check));
