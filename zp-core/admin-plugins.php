@@ -158,74 +158,82 @@ $subtab = printSubtabs();
 				$third_party_plugin = strpos($paths[$extension], ZENFOLDER) === false;
 				$pluginStream = file_get_contents($paths[$extension]);
 				$parserr = 0;
+				$plugin_description = '';
 				if ($str = isolate('$plugin_description', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
 						$plugin_description = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>');
 					}
-				} else {
-					$plugin_description = '';
-				}
+				} 
+				$plugin_deprecated = '';
 				if ($str = isolate('$plugin_deprecated', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
 						$plugin_deprecated = gettext('<strong>Error parsing <em>plugin_deprecated</em> string!</strong>');
 					}
-				} else {
-					$plugin_deprecated = '';
-				}
+				} 
+				$plugin_notice = '';
 				if ($str = isolate('$plugin_notice', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
 						$plugin_notice = gettext('<strong>Error parsing <em>plugin_notice</em> string!</strong>');
 					}
-				} else {
-					$plugin_notice = '';
-				}
+				} 
+				$plugin_author = '';
 				if ($str = isolate('$plugin_author', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 2;
 						$plugin_author = gettext('<strong>Error parsing <em>plugin_author</em> string!</strong>');
 					}
-				} else {
-					$plugin_author = '';
-				}
+				} 
+				$plugin_version = '';
 				if ($str = isolate('$plugin_version', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 4;
 						$plugin_version = ' ' . gettext('<strong>Error parsing <em>plugin_version</em> string!</strong>');
 					}
-				} else {
-					$plugin_version = '';
-				}
+				} 
+				$plugin_disable = false;
 				if ($str = isolate('$plugin_disable', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 8;
 						$plugin_disable = gettext('<strong>Error parsing <em>plugin_disable</em> string!</strong>');
-					} else {
-						if ($plugin_disable) {
-							setOption($opt, 0);
+					} 
+				} 
+				$plugin_compatibilty = '';
+				if ($str = isolate('$plugin_compatibilty ', $pluginStream)) {
+					if (false === eval($str)) {
+						$parserr = $parserr | 11;
+						$plugin_compatibilty  = gettext('<strong>Error parsing <em>plugin_compatibility</em> string!</strong>');
+					}
+				}
+				if(!empty($plugin_compatibilty)) {
+					$compatcheck = explode('::', $plugin_compatibilty);
+					echo $plugin_compatibilty;
+					if(count($compatcheck) == 2 && strtolower($compatcheck[1]) == 'isnotcompatible' && method_exists($compatcheck[0], $compatcheck[1])) {
+						$check = $plugin_compatibilty();
+						if($check) {
+							$plugin_disable = $check;
 						}
 					}
-				} else {
-					$plugin_disable = false;
 				}
+				if ($plugin_disable) {
+					disableExtension($opt);
+				}
+				$plugin_site = '';
 				if ($str = isolate('$plugin_siteurl', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 9;
 						$plugin_siteurl = gettext('<strong>Error parsing <em>plugin_siteurl</em> string!</strong>');
 					}
-				} else {
-					$plugin_site = '';
-				}
+				} 
+				$plugin_date = '';
 				if ($str = isolate('$plugin_date', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 10;
 						$plugin_date = gettext('<strong>Error parsing <em>plugin_date</em> string!</strong>');
 					}
-				} else {
-					$plugin_date = '';
-				}
+				} 
 				$plugin_URL = FULLWEBPATH . '/' . ZENFOLDER . '/pluginDoc.php?extension=' . $extension;
 				if ($third_party_plugin) {
 					$plugin_URL .= '&amp;thirdparty';
@@ -261,6 +269,8 @@ $subtab = printSubtabs();
 						}
 					}
 				}
+				
+				
 				$selected_style = '';
 				if ($currentsetting > THEME_PLUGIN) {
 					$selected_style = ' class="currentselection"';

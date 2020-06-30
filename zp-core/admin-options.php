@@ -3069,34 +3069,30 @@ Zenphoto_Authority::printPasswordFormJS();
 									$option_interface = NULL;
 									$path = getPlugin($extension . '.php');
 									$pluginStream = file_get_contents($path);
+									$plugin_description = '';
 									if ($str = isolate('$plugin_description', $pluginStream)) {
 										if (false === eval($str)) {
 											$plugin_description = '';
 										}
-									} else {
-										$plugin_description = '';
-									}
+									} 
+									$plugin_version = '';
 									if ($str = isolate('$plugin_version', $pluginStream)) {
 										if (false === eval($str)) {
 											$plugin_version = '';
 										}
-									} else {
-										$plugin_version = '';
-									}
+									} 
+									$plugin_deprecated = '';
 									if ($str = isolate('$plugin_deprecated', $pluginStream)) {
 										if (false === eval($str)) {
 											$plugin_deprecated = '';
 										}
-									} else {
-										$plugin_deprecated = '';
-									}
+									} 
+									$plugin_date = '';
 									if ($str = isolate('$plugin_date', $pluginStream)) {
 										if (false === eval($str)) {
 											$plugin_date = '';
 										}
-									} else {
-										$plugin_date = '';
-									}
+									} 
 									$str = isolate('$option_interface', $pluginStream);
 									if (false !== $str) {
 										require_once($path);
