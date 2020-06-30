@@ -168,69 +168,70 @@ $subtab = printSubtabs();
 				$plugin_deprecated = '';
 				if ($str = isolate('$plugin_deprecated', $pluginStream)) {
 					if (false === eval($str)) {
-						$parserr = $parserr | 1;
+						$parserr = $parserr | 2;
 						$plugin_deprecated = gettext('<strong>Error parsing <em>plugin_deprecated</em> string!</strong>');
 					}
 				} 
 				$plugin_notice = '';
 				if ($str = isolate('$plugin_notice', $pluginStream)) {
 					if (false === eval($str)) {
-						$parserr = $parserr | 1;
+						$parserr = $parserr | 3;
 						$plugin_notice = gettext('<strong>Error parsing <em>plugin_notice</em> string!</strong>');
 					}
 				} 
 				$plugin_author = '';
 				if ($str = isolate('$plugin_author', $pluginStream)) {
 					if (false === eval($str)) {
-						$parserr = $parserr | 2;
+						$parserr = $parserr | 4;
 						$plugin_author = gettext('<strong>Error parsing <em>plugin_author</em> string!</strong>');
 					}
 				} 
 				$plugin_version = '';
 				if ($str = isolate('$plugin_version', $pluginStream)) {
 					if (false === eval($str)) {
-						$parserr = $parserr | 4;
+						$parserr = $parserr | 5;
 						$plugin_version = ' ' . gettext('<strong>Error parsing <em>plugin_version</em> string!</strong>');
 					}
 				} 
 				$plugin_disable = false;
 				if ($str = isolate('$plugin_disable', $pluginStream)) {
 					if (false === eval($str)) {
-						$parserr = $parserr | 8;
+						$parserr = $parserr | 6;
 						$plugin_disable = gettext('<strong>Error parsing <em>plugin_disable</em> string!</strong>');
 					} 
 				} 
 				$plugin_compatibilty = '';
 				if ($str = isolate('$plugin_compatibilty ', $pluginStream)) {
 					if (false === eval($str)) {
-						$parserr = $parserr | 11;
+						$parserr = $parserr | 7;
 						$plugin_compatibilty  = gettext('<strong>Error parsing <em>plugin_compatibility</em> string!</strong>');
 					}
 				}
 				if(!empty($plugin_compatibilty)) {
 					$compatcheck = explode('::', $plugin_compatibilty);
-					echo $plugin_compatibilty;
+					print_r($compatcheck);
 					if(count($compatcheck) == 2 && strtolower($compatcheck[1]) == 'isnotcompatible' && method_exists($compatcheck[0], $compatcheck[1])) {
 						$check = $plugin_compatibilty();
+						echo $check;
 						if($check) {
 							$plugin_disable = $check;
 						}
 					}
 				}
 				if ($plugin_disable) {
-					disableExtension($opt);
+					disableExtension($extension);
 				}
 				$plugin_site = '';
 				if ($str = isolate('$plugin_siteurl', $pluginStream)) {
 					if (false === eval($str)) {
-						$parserr = $parserr | 9;
+						$parserr = $parserr | 10;
 						$plugin_siteurl = gettext('<strong>Error parsing <em>plugin_siteurl</em> string!</strong>');
 					}
 				} 
 				$plugin_date = '';
 				if ($str = isolate('$plugin_date', $pluginStream)) {
 					if (false === eval($str)) {
-						$parserr = $parserr | 10;
+						$parserr = $parserr | 11;
 						$plugin_date = gettext('<strong>Error parsing <em>plugin_date</em> string!</strong>');
 					}
 				} 
