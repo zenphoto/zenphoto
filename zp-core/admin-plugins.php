@@ -215,6 +215,7 @@ $subtab = printSubtabs();
 						echo $check;
 						if($check) {
 							$plugin_disable = $check;
+							debuglog(sprintf(gettext('Compatibility error – Plugin %1$s has been disabled: %2$s'), $extension, $check));
 						}
 					}
 				}
