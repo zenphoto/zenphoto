@@ -249,6 +249,17 @@ foreach($themes as $theme => $themeinfo) {
 			if(array_key_exists('deprecated', $themeinfo)) {
 				echo '<p class="notebox">' . $themeinfo['deprecated'] . '</p>';
 			}
+			$disable = false;
+			if(array_key_exists('disable', $themeinfo)) {
+				$disable = isIncompatibleExtension($themeinfo['disable']);
+				if ($disable) {
+					echo '<p class="warningbox">' . gettext('This theme is not compatible.') . $disable . '</p>';
+					if($current_theme == $theme) {
+						$_zp_gallery->setCurrentTheme(null);
+						$_zp_gallery->save();
+					}
+				}
+			}
 			?>
 			<p><strong><small>
 			<?php 
@@ -264,30 +275,32 @@ foreach($themes as $theme => $themeinfo) {
 		<td width="20%" <?php echo $style; ?>>
 			<ul class="theme_links">
 			<?php
-			if ($theme != $current_theme) {
-				?>
-				<li>
-				<p class="buttons">
-					<a href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-themes.php?action=settheme&amp;themealbum=<?php echo pathurlencode($alb); ?>&amp;theme=<?php echo $theme; ?>&amp;XSRFToken=<?php echo getXSRFToken('admin-themes')?>">
-						<img src="images/pass.png" alt="" /><?php echo gettext("Activate"); ?>
-					</a>
-				</p>
-				<br />
-				</li>
-			<?php
-			} else {
-				if ($gallerydefault) {
+			if(!$disable) {
+				if ($theme != $current_theme) {
 					?>
 					<li>
 					<p class="buttons">
 						<a href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-themes.php?action=settheme&amp;themealbum=<?php echo pathurlencode($alb); ?>&amp;theme=<?php echo $theme; ?>&amp;XSRFToken=<?php echo getXSRFToken('admin-themes')?>">
-							<img src="images/pass.png" alt="" /><?php echo gettext("Assign"); ?>
+							<img src="images/pass.png" alt="" /><?php echo gettext("Activate"); ?>
 						</a>
 					</p>
+					<br />
 					</li>
-					<?php
+				<?php
 				} else {
-					echo "<li><strong>".gettext("Current Theme")."</strong></li>";
+					if ($gallerydefault) {
+						?>
+						<li>
+						<p class="buttons">
+							<a href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-themes.php?action=settheme&amp;themealbum=<?php echo pathurlencode($alb); ?>&amp;theme=<?php echo $theme; ?>&amp;XSRFToken=<?php echo getXSRFToken('admin-themes')?>">
+								<img src="images/pass.png" alt="" /><?php echo gettext("Assign"); ?>
+							</a>
+						</p>
+						</li>
+						<?php
+					} else {
+						echo "<li><strong>".gettext("Current Theme")."</strong></li>";
+					}
 				}
 			}
 
