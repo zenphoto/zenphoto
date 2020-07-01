@@ -200,23 +200,7 @@ $subtab = printSubtabs();
 						$plugin_disable = gettext('<strong>Error parsing <em>plugin_disable</em> string!</strong>');
 					} 
 				} 
-				$plugin_compatibilty = '';
-				if ($str = isolate('$plugin_compatibilty ', $pluginStream)) {
-					if (false === eval($str)) {
-						$parserr = $parserr | 7;
-						$plugin_compatibilty  = gettext('<strong>Error parsing <em>plugin_compatibility</em> string!</strong>');
-					}
-				}
-				if(!empty($plugin_compatibilty)) {
-					$compatcheck = explode('::', $plugin_compatibilty);
-					if(count($compatcheck) == 2 && strtolower($compatcheck[1]) == 'isnotcompatible' && method_exists($compatcheck[0], $compatcheck[1])) {
-						$check = $plugin_compatibilty();
-						if($check) {
-							$plugin_disable = $check;
-							debuglog(sprintf(gettext('Compatibility error – Plugin %1$s has been disabled: %2$s'), $extension, $check));
-						}
-					}
-				}
+				$plugin_disable = isIncompatibleExtension($plugin_disable);
 				if ($plugin_disable) {
 					disableExtension($extension);
 				}
@@ -334,9 +318,7 @@ $subtab = printSubtabs();
 							if ($plugin_disable) {
 								?>
 								<span class="icons" id="<?php echo $extension; ?>_checkbox">
-									<a href="javascript:toggle('showdisable_<?php echo $extension; ?>');" title="<?php echo gettext('This plugin is disabled. Click for details.'); ?>">
-										<img src="images/action.png" alt="" class="zp_logoicon" />
-									</a>
+									<img src="images/action.png" alt="" class="zp_logoicon" />
 									<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
 								</span>
 								<?php
@@ -385,13 +367,9 @@ $subtab = printSubtabs();
 						}
 						if ($plugin_disable) {
 							?>
-							<div id="showdisable_<?php echo $extension; ?>" style="display: none" class="warningbox">
+							<div id="showdisable_<?php echo $extension; ?>" class="warningbox">
 								<?php
 								if ($plugin_disable) {
-									preg_match('/\<a href="#(.*)">/', $plugin_disable, $matches);
-									if ($matches) {
-										$plugin_disable = str_replace($matches[0], '<a href="javascript:gotoPlugin(\'' . $matches[1] . '\');">', $plugin_disable);
-									}
 									echo $plugin_disable;
 								}
 								?>

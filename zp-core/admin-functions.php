@@ -5195,3 +5195,30 @@ function printExpired($obj) {
 		echo ' <span class="expiredate">' . $date . "</span>";
 	}
 }
+/**
+ * Checks plugin and theme definition for $plugin_disable / $theme_description['disable'] so plugins/themes are deaktivated respectively cannot be activated
+ * if they don't match conditions/requirements. See the plugin/theme documentation for info how to define these.
+ * 
+ * Returns either the message why incompatible or false if not.
+ * 
+ * @since Zenphoto 1.5.8
+ * 
+ * @param string|array $disable One string or serveral as an array. Not false means incompatible 
+ * @return boolean|string
+ */
+function isIncompatibleExtension($disable) {
+	if ($disable) {
+		if(is_array($disable)) {
+			$check = false;
+			foreach ($disable as $incompatible) {
+				if ($incompatible) {
+					$check .= $incompatible . '<br>';
+				}
+			}
+			return $check;
+		} else {
+			return $disable;
+		}
+	}
+	return false;
+}
