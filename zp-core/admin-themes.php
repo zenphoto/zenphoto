@@ -260,6 +260,9 @@ foreach($themes as $theme => $themeinfo) {
 					}
 				}
 			}
+			if(isset($themeinfo['notice']) && !empty($themeinfo['notice'])) {
+				echo '<p class="notebox">' . $themeinfo['notice'] . '</p>';
+			}
 			?>
 			<p><strong><small>
 			<?php 

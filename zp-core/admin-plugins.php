@@ -351,11 +351,6 @@ $subtab = printSubtabs();
 							<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), $extension); ?>"><img class="icon-position-top3" src="images/options.png" alt="" /></a></span>
 							<?php
 						}
-						if ($plugin_notice) {
-							?>
-							<span class="icons"><a href="javascript:toggle('show_<?php echo $extension; ?>');" title ="<?php echo gettext('Plugin warnings'); ?>" ><img class="icon-position-top3" src="images/warn.png" alt="" /></a></span>
-							<?php
-						}
 						?>
 					</td>
 					<td colspan="2">
@@ -374,17 +369,12 @@ $subtab = printSubtabs();
 								}
 								?>
 							</div>
-
 							<?php
 						}
 						if ($plugin_notice) {
 							?>
-							<div id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
-								<?php
-								if ($plugin_notice) {
-									echo $plugin_notice;
-								}
-								?>
+							<div class="notebox">
+								<?php echo $plugin_notice;?>
 							</div>
 							<?php
 						}
