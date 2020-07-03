@@ -1729,14 +1729,8 @@ function getAlbumPage($album = NULL) {
 		$album = $_zp_current_album;
 	$page = 0;
 	if (in_context(ZP_IMAGE) && !in_context(ZP_SEARCH)) {
-		if ($_zp_current_album->isDynamic()) {
-			$search = $_zp_current_album->getSearchEngine();
-			$imageindex = $search->getImageIndex($_zp_current_album->name, $_zp_current_image->filename);
-			$numalbums = $search->getNumAlbums();
-		} else {
-			$imageindex = $_zp_current_image->getIndex();
-			$numalbums = $album->getNumAlbums();
-		}
+		$imageindex = $_zp_current_image->getIndex();
+		$numalbums = $album->getNumAlbums();
 		$imagepage = floor(($imageindex - $_firstPageImages) / max(1, getOption('images_per_page'))) + 1;
 		$albumpages = ceil($numalbums / max(1, getOption('albums_per_page')));
 		if ($albumpages == 0 && $_firstPageImages > 0)
