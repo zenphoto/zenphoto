@@ -55,7 +55,7 @@ if (!defined('WEBPATH'))
 							?>
 							<h2><?php echo gettext('Latest Images'); ?></h2>
 							<?php
-							printLatestImages(7);
+							printImageStatistic(7, "latest");
 						}
 						?>
 					</div><!-- right sidebar -->

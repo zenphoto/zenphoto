@@ -136,7 +136,7 @@ $map = function_exists('printGoogleMap');
 							?>
 							<h2><?php printf(gettext('Latest Images for %s'), $_zp_current_album->getTitle()); ?></h2>
 							<?php
-							printLatestImages(5, $_zp_current_album->name);
+							printImageStatistic(5, "latest",  $_zp_current_album->name);
 						}
 						?>
 					</div><!-- right sidebar -->

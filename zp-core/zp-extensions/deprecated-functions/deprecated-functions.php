@@ -6,6 +6,137 @@
  * @subpackage deprecated-functions
  */
 
+
+if (function_exists('printImageStatistic')) {
+
+	/**
+	 * @deprecated 2.0 – Use printAlbumStatistisc() instead
+	 */
+	function printPopularAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = 'hitcounter', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $threshold = 0, $collection = false) {
+		deprecated_functions::notify(gettext("Use printAlbumStatistisc() instead"));
+		printAlbumStatistic($number, "popular", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $threshold, $collection);
+	}
+
+	/**
+	 * @deprecated 2.0 – Use printAlbumStatistisc() instead
+	 */
+	function printLatestAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $collection = false) {
+		deprecated_functions::notify(gettext("Use printAlbumStatistisc() instead"));
+		printAlbumStatistic($number, "latest", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $collection);
+	}
+
+	/**
+	 * @deprecated 2.0 – Use printAlbumStatistisc() instead
+	 */
+	function printMostRatedAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $threshold = 0, $collection = false) {
+		deprecated_functions::notify(gettext("Use printAlbumStatistisc() instead"));
+		printAlbumStatistic($number, "mostrated", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $threshold, $collection);
+	}
+
+	/**
+	 * @deprecated 2.0 – Use printAlbumStatistisc() instead
+	 */
+	function printTopRatedAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $threshold = 0, $collection = false) {
+		deprecated_functions::notify(gettext("Use printAlbumStatistisc() instead"));
+		printAlbumStatistic($number, "toprated", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $threshold, $collection);
+	}
+
+	/**
+	 * @deprecated 2.0 – Use printAlbumStatistisc() instead
+	 */
+	function printLatestUpdatedAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $collection = false) {
+		deprecated_functions::notify(gettext("Use printAlbumStatistisc() instead"));
+		printAlbumStatistic($number, "latestupdated", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $collection);
+	}
+
+	/**
+	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 */
+	function printPopularImages($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
+		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		printImageStatistic($number, "popular", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink, $threshold);
+	}
+
+	/**
+	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 */
+	function printTopRatedImages($number = 5, $albumfolder = "", $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
+		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		printImageStatistic($number, "toprated", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink, $threshold);
+	}
+	
+	/**
+	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 */
+	function printMostRatedImages($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
+		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		printImageStatistic($number, "mostrated", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink, $threshold);
+	}
+
+		/**
+	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 */
+	function printLatestImages($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false) {
+		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		printImageStatistic($number, "latest", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink);
+	}
+		/**
+	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 */
+	function printLatestImagesByDate($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false) {
+		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		printImageStatistic($number, "latest-date", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink);
+	}
+
+	/**
+	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 */
+	function printLatestImagesByMtime($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false) {
+		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		printImageStatistic($number, "latest-mtime", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink);
+	}
+
+}
+
+/**
+ *
+ * fixes unbalanced HTML tags. Used by shortenContent when PHP tidy is not present
+ *
+ * @deprecated 2.0 Use tidyHTML() instead
+ * @since 1.5
+ *
+ * @param string $html
+ * @return string
+ */
+function cleanHTML($html) {
+	deprecated_functions::notify(gettext("Use tidyHTML() instead"));
+	return tidyHTML($html);
+}
+
+/**
+ * Returns the count of all the images in the album and any subalbums
+ * @deprecated 2.0
+ * @since 1.5.2
+ * 
+ * @param object $album The album whose image count you want
+ * @return int
+ */
+function getTotalImagesIn($album) {
+	deprecated_functions::notify(gettext("Use AlbumBase class method getNumAllImages() instead"));
+	return $album->getNumAllImages();
+}
+
+/**
+ * checks if the item has expired
+ * @deprecated ZenphotoCMS 2.0 - Use themeObject::checkScheduledPublishing() instead
+ * @since 1.5.7
+ * @param array $row database row of the object
+ */
+function checkPublishDates($row) {
+	deprecated_functions::notify(gettext("Use themeObject::checkScheduledPublishing() instead"));
+	return themeObject::checkScheduledPublishing($row);
+}
+
 /**
  * Zenphoto general deprecated functions
  * 
@@ -105,45 +236,6 @@ class internal_deprecations {
 		deprecated_functions::notify(gettext('Use the instantiate method instead'));
 	}
 
-}
-
-/**
- *
- * fixes unbalanced HTML tags. Used by shortenContent when PHP tidy is not present
- *
- * @deprecated 2.0 Use tidyHTML() instead
- * @since 1.5
- *
- * @param string $html
- * @return string
- */
-function cleanHTML($html) {
-	deprecated_functions::notify(gettext("Use tidyHTML() instead"));
-	return tidyHTML($html);
-}
-
-/**
- * Returns the count of all the images in the album and any subalbums
- * @deprecated 2.0
- * @since 1.5.2
- * 
- * @param object $album The album whose image count you want
- * @return int
- */
-function getTotalImagesIn($album) {
-	deprecated_functions::notify(gettext("Use AlbumBase class method getNumAllImages() instead"));
-	return $album->getNumAllImages();
-}
-
-/**
- * checks if the item has expired
- * @deprecated ZenphotoCMS 2.0 - Use themeObject::checkScheduledPublishing() instead
- * @since 1.5.7
- * @param array $row database row of the object
- */
-function checkPublishDates($row) {
-	deprecated_functions::notify(gettext("Use themeObject::checkScheduledPublishing() instead"));
-	return themeObject::checkScheduledPublishing($row);
 }
 
 /**

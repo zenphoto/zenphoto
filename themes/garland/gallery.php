@@ -75,11 +75,11 @@ if (!defined('WEBPATH'))
 				<div class="sidebar">
 					<div id="rightsidebar">
 						<?php
-						if (function_exists('printLatestImages')) {
+						if (function_exists('printImageStatistic')) {
 							?>
 							<h2><?php echo gettext('Latest Images'); ?></h2>
 							<?php
-							printLatestImages(7);
+							printImageStatistic(7, "latest");
 						}
 						?>
 					</div><!-- right sidebar -->
