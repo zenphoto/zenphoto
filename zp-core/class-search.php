@@ -1532,13 +1532,11 @@ class SearchEngine {
 		if (empty($searchstring) && empty($searchdate)) {
 			return array();
 		} // nothing to find
-		
 		$criteria = $this->getCacheTag('images', serialize($searchstring) . ' ' . $searchdate, $sorttype . ' ' . $sortdirection . ' '.$mine);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
 		}
 		$images = $this->getCachedSearch($criteria);
-		
 		if (is_null($images)) {
 			if (empty($searchdate)) {
 				list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $sortdirection);
@@ -1597,7 +1595,7 @@ class SearchEngine {
 				if (is_null($sorttype) && isset($weights)) {
 					$images = sortMultiArray($images, 'weight', true, true, false, false, array('weight'));
 				}
-				if ($sorttype == 'title') {
+				if ($sorttype == '`title`') {
 					$images = sortByMultilingual($images, 'title', $sortdirection);
 				}
 			}
@@ -1737,7 +1735,7 @@ class SearchEngine {
 		if (empty($searchstring) && empty($searchdate)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . ' ' . $sortdirection);
+		$criteria = $this->getCacheTag('pages', serialize($searchstring) . ' ' . $searchdate, $sorttype . ' ' . $sortdirection);
 		if ($this->pages && $criteria == $this->searches['pages']) {
 			return $this->pages;
 		}
@@ -1826,7 +1824,7 @@ class SearchEngine {
 		if (empty($searchstring) && empty($searchdate)) {
 			return array();
 		} // nothing to find
-		$criteria = $this->getCacheTag('news', serialize($searchstring), $sorttype . ' ' . $sortdirection);
+		$criteria = $this->getCacheTag('news', serialize($searchstring) . ' ' . $searchdate, $sorttype . ' ' . $sortdirection);
 		if ($this->articles && $criteria == $this->searches['news']) {
 			return $this->articles;
 		}
@@ -1861,7 +1859,7 @@ class SearchEngine {
 				$result = sortMultiArray($result, 'weight', true, true, false, false, array('weight'));
 			}
 			if ($sorttype == '`title`') {
-				$images = sortByMultilingual($result, 'title', $sortdirection);
+				$result = sortByMultilingual($result, 'title', $sortdirection);
 			}
 			$this->cacheSearch($criteria, $result);
 		}
