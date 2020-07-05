@@ -14,14 +14,12 @@ class userDataExport {
 	public $username = '';
 	public $usermail = '';
 	public $galleryobj = '';
-	public $authorityobj = '';
 	public $data = array();
 
-	function __construct($username, $usermail, $galleryobj, $authorityobj) {
+	function __construct($username, $usermail, $galleryobj) {
 		$this->username = $username;
 		$this->usermail = $usermail;
 		$this->galleryobj = $galleryobj;
-		$this->authorityobj = $authorityobj;
 		// in case the plugin is not active data may still exists
 		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-zenpage.php';
 		require_once SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/class-zenpageroot.php';
@@ -255,14 +253,15 @@ class userDataExport {
 	 * @return array
 	 */
 	function getUserData() {
-		$credentials['user'] = $this->username;
+		$credentials['`user`='] = $this->username;
+		$credentials['`valid`='] = 1;
 		if (!empty($this->usermail)) {
-			$credentials['email'] = $this->usermail;
+			$credentials['`email`='] = $this->usermail;
 		}
-		$user = $this->authorityobj->getAnAdmin($credentials);
+		$user = Zenphoto_Authority::getAnAdmin($credentials);
 		if ($user) {
 			return array(gettext('User account data') => $user->getData());
-		}
+		} 
 		return array();
 	}
 
