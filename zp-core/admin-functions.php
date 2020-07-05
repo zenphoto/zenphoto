@@ -4927,23 +4927,33 @@ function checkAlbumimagesort($val, $type = 'albumimagesort') {
  * @param obj $obj Object of any item type
  */
 function printLastChangeInfo($obj) {
+	?>
+	<hr>
+	<ul>
+	<?php
 	if(isAlbumClass($obj) && $obj->getUpdatedDate()) {
 		?>
-		<hr>
-		<p><?php printf(gettext('Last updated: %s'), $obj->getUpdatedDate()); ?></p>
+		<li><?php printf(gettext('Last updated: %s'), $obj->getUpdatedDate()); ?></li>
+		<?php
+	}
+	if(get_class($obj) == 'Zenphoto_Administrator') {
+		?>
+		<li><?php printf(gettext('Account created: %s'), $obj->getDateTime()); ?></li>
+		<li><?php printf(gettext('Last login: %s'), $obj->getLastLogon()); ?></li>
+		<li><?php printf(gettext('Last password update: %s'), $obj->get('passupdate')); ?></li>
+		<li><?php printf(gettext('Last visit: %s'), $obj->getLastVisit()); ?></li>
 		<?php
 	}
 	?>
-	<hr>
-	<p><?php printf(gettext('Last change: %s'), $obj->getLastchange()); ?><br>
+	<li><?php printf(gettext('Last change: %s'), $obj->getLastchange()); ?></li>
 	<?php
 	$lastchangeuser = $obj->getLastchangeUser();
 	if (empty($lastchangeuser)) {
-			$lastchangeuser = gettext('ZenphotoCMS internal request');
+		$lastchangeuser = gettext('ZenphotoCMS internal request');
 	}
-	printf(gettext('Last changed by: %s'), $lastchangeuser);
 	?>
-	</p>
+	<li><?php printf(gettext('Last changed by: %s'), $lastchangeuser); ?></li>
+	</ul>
 	<?php
 }
 

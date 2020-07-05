@@ -2295,7 +2295,9 @@ function XSRFdefender($action) {
  */
 function getXSRFToken($action) {
 	global $_zp_current_admin_obj;
-	return sha1($action . prefix(ZENPHOTO_VERSION) . serialize($_zp_current_admin_obj) . session_id());
+	$admindata = $_zp_current_admin_obj->getData();
+	unset($admindata['lastvisit']);
+	return sha1($action . prefix(ZENPHOTO_VERSION) . serialize($admindata) . session_id());
 }
 
 /**
@@ -2362,8 +2364,12 @@ function cron_starter($script, $params, $offsetPath, $inline = false) {
  * @return bool
  */
 function zp_loggedin($rights = ALL_RIGHTS) {
-	global $_zp_loggedin;
-	return $_zp_loggedin & ($rights | ADMIN_RIGHTS);
+	global $_zp_loggedin, $_zp_current_admin_obj;
+	$loggedin = $_zp_loggedin & ($rights | ADMIN_RIGHTS);
+	if($loggedin) {
+		$_zp_current_admin_obj->updateLastVisit();
+	}
+	return $loggedin;
 }
 
 /**

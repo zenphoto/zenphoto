@@ -69,6 +69,8 @@ class Zenphoto_Authority {
 	 * @return lib_auth_options
 	 */
 	function __construct() {
+		setOptionDefault('admin_lastvisit_timeframe', 600);
+		setOptionDefault('admin_lastvisit', true);
 		$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
 		$sql = 'SELECT * FROM ' . prefix('administrators') . ' ORDER BY `rights` DESC, `id`';
 		$admins = query($sql, false);
@@ -112,13 +114,29 @@ class Zenphoto_Authority {
 		if (!function_exists('hash')) {
 			unset($encodings['pbkdf2']);
 		}
-		return array(gettext('Primary album edit')				 => array('key'	 => 'user_album_edit_default', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created.')),
-						gettext('Minimum password strength') => array('key'	 => 'password_strength', 'type' => OPTION_TYPE_CUSTOM,
-										'desc' => sprintf(gettext('Users must provide passwords a strength of at least %s. The repeat password field will be disabled until this floor is met.'), '<span id="password_strength_display">' . getOption('password_strength') . '</span>')),
-						gettext('Password hash algorithm')	 => array('key'				 => 'strong_hash', 'type'			 => OPTION_TYPE_SELECTOR,
-										'selections' => $encodings,
-										'desc'			 => sprintf(gettext('The hashing algorithm used by Zenphoto. In order of robustness the choices are %s'), '<code>' . implode('</code> > <code>', array_flip($encodings)) . '</code>'))
+		return array(gettext('Primary album edit') =>
+				array('key' => 'user_album_edit_default',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created.')),
+				gettext('Minimum password strength') => array(
+						'key' => 'password_strength',
+						'type' => OPTION_TYPE_CUSTOM,
+						'desc' => sprintf(gettext('Users must provide passwords a strength of at least %s. The repeat password field will be disabled until this floor is met.'), '<span id="password_strength_display">' . getOption('password_strength') . '</span>')),
+				gettext('Password hash algorithm') => array(
+						'key' => 'strong_hash',
+						'type' => OPTION_TYPE_SELECTOR,
+						'selections' => $encodings,
+						'desc' => sprintf(gettext('The hashing algorithm used by Zenphoto. In order of robustness the choices are %s'), '<code>' . implode('</code> > <code>', array_flip($encodings)) . '</code>')),
+				gettext('User Last visit - timeframe') => array(
+						'key' => 'admin_lastvisit_timeframe',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('The time frame in seconds user visits should be logged. Default if not set is 600 seconds (10 minutes)')
+				),
+				gettext('User Last visit - enable') => array(
+						'key' => 'admin_lastvisit',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Enable if you like to log visits of logged in users on your site.')
+				)
 		);
 	}
 
@@ -1783,6 +1801,46 @@ class Zenphoto_Administrator extends PersistentObject {
 	 */
 	function getLastLogon() {
 		return $this->get('lastloggedin');
+	}
+	
+	/**
+	 * Returns the last time the user visited the site being loggedin
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * @return strig
+	 */
+	function getLastVisit() {
+		return $this->get('lastvisit');
+	}
+	
+	/**
+	 * Sets the last time the user visited the site being loggedin
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 */
+	function setLastVisit($datetime = '') {
+		if(empty($datetime)) {
+			$datetime = date('Y-m-d H:i:s');
+		}
+		$this->set('lastvisit', $datetime);
+	}
+	
+	/**
+	 * Updates the last visit date if enabled on the options and the time frame defined has passed.
+	 * @since ZenphotoCMS 1.5.8
+	 */
+	function updateLastVisit() {
+		if (getOption('admin_lastvisit')) {
+			$lastvisit = strtotime($this->getLastVisit());
+			$lastvisit_timeframe = getOption('admin_lastvisit_timeframe');
+			if (empty($lastvisit_timeframe)) {
+				$lastvisit_timeframe = 600;
+			}
+			if (empty($lastvisit) || (time() - $lastvisit) > $lastvisit_timeframe) {
+				$this->setLastVisit();
+				$this->save();
+			}
+		}
 	}
 
 	/**
