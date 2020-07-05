@@ -2433,6 +2433,9 @@ if ($c <= 0) {
 						//1.5.5
 						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `sort_type` `sort_type` varchar(128)";
 						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `subalbum_sort_type` `subalbum_sort_type` varchar(128)";
+						
+						//1.5.8
+						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastvisit` datetime default NULL";
 
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
