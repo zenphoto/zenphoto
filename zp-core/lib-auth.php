@@ -134,7 +134,7 @@ class Zenphoto_Authority {
 				gettext('User last visit - time frame') => array(
 						'key' => 'admin_lastvisit_timeframe',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext('Time in seconds users should be logged-in to be stored as a visit in the database. Default is 600 seconds (10 minutes)'))
+						'desc' => gettext('Time in seconds before the last visit of logged-in users is updated in the database. Default is 600 seconds (10 minutes)'))
 		);
 	}
 
