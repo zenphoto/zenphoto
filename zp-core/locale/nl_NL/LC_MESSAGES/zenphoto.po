@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-10 13:49+0200\n"
+"POT-Creation-Date: 2020-07-10 16:18+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -9102,12 +9102,11 @@ msgstr "Laatste bezoek gebruikers - periode"
 
 #: zp-core/lib-auth.php:137
 msgid ""
-"Time in seconds users should be logged-in to be stored as a visit in the "
+"Time in seconds before the last visit of logged-in users is updated in the "
 "database. Default is 600 seconds (10 minutes)"
 msgstr ""
-"Tijd in seconden dat een gebruiker ingelogd moet zijn voordat dit wordt "
-"opgeslagen als “visit“ in de database . Standaard is dit 600 seconden (10 "
-"minuten)"
+"Tijd in seconden voordat het laatste bezoek van ingelogde gebruikers wordt "
+"ge-update in de database . Standaard is dit 600 seconden (10 minuten)"
 
 #: zp-core/lib-auth.php:401
 #, php-format
