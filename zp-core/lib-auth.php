@@ -127,16 +127,14 @@ class Zenphoto_Authority {
 						'type' => OPTION_TYPE_SELECTOR,
 						'selections' => $encodings,
 						'desc' => sprintf(gettext('The hashing algorithm used by Zenphoto. In order of robustness the choices are %s'), '<code>' . implode('</code> > <code>', array_flip($encodings)) . '</code>')),
-				gettext('User Last visit - timeframe') => array(
-						'key' => 'admin_lastvisit_timeframe',
-						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext('The time frame in seconds user visits should be logged. Default if not set is 600 seconds (10 minutes)')
-				),
-				gettext('User Last visit - enable') => array(
+				gettext('User last visit - store') => array(
 						'key' => 'admin_lastvisit',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('Enable if you like to log visits of logged in users on your site.')
-				)
+						'desc' => gettext('Enable if you like to store visits of logged-in users in the database.')),
+				gettext('User last visit - time frame') => array(
+						'key' => 'admin_lastvisit_timeframe',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Time in seconds users should be logged-in to be stored as a visit in the database. Default is 600 seconds (10 minutes)'))
 		);
 	}
 
