@@ -4936,10 +4936,11 @@ function printLastChangeInfo($obj) {
 		<li><?php printf(gettext('Last updated: %s'), $obj->getUpdatedDate()); ?></li>
 		<?php
 	}
-	if(get_class($obj) == 'Zenphoto_Administrator') {
+	if(get_class($obj) == 'Zenphoto_Administrator') { 
 		?>
 		<li><?php printf(gettext('Account created: %s'), $obj->getDateTime()); ?></li>
-		<li><?php printf(gettext('Last login: %s'), $obj->getLastLogon()); ?></li>
+		<li><?php printf(gettext('Current login: %s'), $obj->get('loggedin')); ?></li>
+		<li><?php printf(gettext('Last previous login: %s'), $obj->getLastLogon()); ?></li>
 		<li><?php printf(gettext('Last password update: %s'), $obj->get('passupdate')); ?></li>
 		<li><?php printf(gettext('Last visit: %s'), $obj->getLastVisit()); ?></li>
 		<?php
