@@ -1892,7 +1892,7 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	}
 	$class = trim($class);
 	/* set the HTML image width and height parameters in case this image was "imageDefault.png" substituted for no thumbnail then the thumb layout is preserved */
-	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $_zp_current_album->getAlbumThumbImage());
+	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $_zp_current_album->getAlbumThumbImage(), 'thumb');
 	$sizing = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	if($class) {
 		$class = ' class="' . $class . '"';
@@ -2660,11 +2660,12 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
  * @param int $ch crop height
  * @param int $cx crop x axis
  * @param int $cy crop y axis
- * @param $image object the image for which the size is desired. NULL means the current image
+ * @param obj $image The image object for which the size is desired. NULL means the current image
+ * @param string $type "image" (sizedimage) (default), "thumb" (thumbnail) required for using option settings for uncropped images
  * @return array
  */
-function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL, $image = NULL) {
-  global $_zp_current_image;
+function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL, $image = NULL, $type = 'image') {
+  global $_zp_current_image, $_zp_gallery, $_zp_options;
   if (is_null($image))
     $image = $_zp_current_image;
   if (is_null($image))
@@ -2677,12 +2678,22 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
   if (!is_null($width) && !is_null($height)) {
     return array($width, $height);
   }
-	if (isImageVideo($image)) { // size is determined by the player
-    return array($w, $h);
-  }
-  $side = getOption('image_use_side');
-  $us = getOption('image_allow_upscale');
-  $args = getImageParameters(array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, NULL, NULL, NULL, NULL, NULL, NULL), $image->album->name);
+	switch ($type) {
+		case 'thumb':
+			$thumb = true;
+			$side = getOption('thumb_use_side');
+			break;
+		default:
+		case 'image':
+			$thumb = false;
+			if (isImageVideo($image)) { // size is determined by the player
+				return array($w, $h);
+			}
+			$side = getOption('image_use_side');
+			break;
+	}
+	$us = getOption('image_allow_upscale');
+  $args = getImageParameters(array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, $thumb, NULL, $thumb, NULL, NULL, NULL), $image->album->name);
   @list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
   if (!empty($size)) {
     $dim = $size;
@@ -2707,7 +2718,6 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
   } else {
     $wprop = round(($w / $h) * $dim);
   }
-
   if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w)) || $height) {
 // Scale the height
     $newh = $dim;
@@ -2716,7 +2726,7 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
 // Scale the width
     $neww = $dim;
     $newh = $hprop;
-  }
+  } 
   if (!$us && $newh >= $h && $neww >= $w) {
     return array($w, $h);
   } else {
@@ -2949,11 +2959,12 @@ function getSizeDefaultThumb($image = NULL) {
 	if (getOption('thumb_crop')) {
 		$w = getOption('thumb_crop_width');
 		$h = getOption('thumb_crop_height');
-		$sizes = getSizeCustomImage($s, $w, $h, $w, $h, null, null, $image);
+		$sizes = getSizeCustomImage($s, $w, $h, $w, $h, null, null, $image, 'thumb');
 	} else {
 		$w = $h = $s;
-		getMaxSpaceContainer($w, $h, $image, true);
-		$sizes = array($w, $h);
+		$sizes = getSizeCustomImage($s, NULL, NULL, NULL, NULL, NULL, NULL, $image, 'thumb');
+		//getMaxSpaceContainer($w, $h, $image, true);
+		//$sizes = array($w, $h);
 	}
 	return $sizes;
 }
@@ -3154,8 +3165,9 @@ function getCustomImageURL($size, $width = NULL, $height = NULL, $cropw = NULL, 
  * @param bool $thumbStandin set to true to treat as thumbnail
  * @param bool $effects image effects (e.g. set gray to force grayscale)
  * @param string $title title attribute	
+ * @param string $type "image" (sizedimage) (default), "thumb" (thumbnail) required for using option settings for uncropped images
  * */
-function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumbStandin = false, $effects = NULL, $title = null) {
+function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumbStandin = false, $effects = NULL, $title = null, $type = 'image') {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image))
 		return;
@@ -3168,7 +3180,11 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		$class .= " password_protected";
 	}
 	if ($size) {
-		$dims = getSizeCustomImage($size);
+		$itype = 'image';
+		if($thumbStandin) {
+			$type = 'thumb';
+		}
+		$dims = getSizeCustomImage($size, null, null, null, null, null, null, null, $type);
 		$sizing = ' width="' . $dims[0] . '" height="' . $dims[1] . '"';
 	} else {
 		$sizing = '';
@@ -3478,7 +3494,7 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 			echo '<a href="' . html_encode($randomImageURL) . '" title="' . sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">';
 			switch ($crop) {
 				case 0:
-					$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $randomImage);
+					$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $randomImage, 'thumb');
 					$html = '<img src="' . html_encode(pathurlencode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 				case 1:

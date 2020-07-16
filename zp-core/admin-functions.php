@@ -925,6 +925,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		setThemeOption('images_per_row', 5, $album, $theme, true);
 		setThemeOption('image_size', 595, $album, $theme, true);
 		setThemeOption('image_use_side', 'longest', $album, $theme, true);
+		setThemeOption('thumb_use_side', 'longest', $album, $theme, true);
 		setThemeOption('thumb_size', 100, $album, $theme, true);
 		setThemeOption('thumb_crop_width', 100, $album, $theme, true);
 		setThemeOption('thumb_crop_height', 100, $album, $theme, true);

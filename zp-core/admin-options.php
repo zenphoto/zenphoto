@@ -377,6 +377,8 @@ if (isset($_GET['action'])) {
 						setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
 					if (isset($_POST['image_use_side']))
 						setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
+					if (isset($_POST['thumb_use_side']))
+						setThemeOption('thumb_use_side', sanitize($_POST['thumb_use_side']), $table, $themename);
 					setThemeOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
 					if (isset($_POST['thumb_size'])) {
 						$ts = sanitize_numeric($_POST['thumb_size']);
@@ -2846,15 +2848,44 @@ Zenphoto_Authority::printPasswordFormJS();
 									$ts = max(1, getThemeOption('thumb_size', $album, $themename));
 									$iw = getThemeOption('thumb_crop_width', $album, $themename);
 									$ih = getThemeOption('thumb_crop_height', $album, $themename);
+									$thumb_use_side = getThemeOption('thumb_use_side', $album, $themename);
 									$cl = round(($ts - $iw) / $ts * 50, 1);
 									$ct = round(($ts - $ih) / $ts * 50, 1);
 									?>
 									<tr>
 										<td><?php echo gettext("Thumb size:"); ?></td>
-										<td>
-											<input type="text" size="3" name="thumb_size" value="<?php echo $ts; ?>"<?php echo $disable; ?> />
+										<td><?php $side = getThemeOption('image_use_side', $album, $themename); ?>
+											<table>
+												<tr>
+													<td rowspan="2" style="margin: 0; padding: 0">
+														<input type="text" size="3" name="thumb_size" value="<?php echo $ts; ?>"<?php echo $disable; ?> />
+													</td>
+													<td style="margin: 0; padding: 0">
+														<label> <input type="radio" id="image_use_side1" name="thumb_use_side" value="height"
+																																					 <?php if ($thumb_use_side == 'height') echo ' checked="checked"'; ?>
+																																					 <?php echo $disable; ?> /> <?php echo gettext('height') ?> </label>
+														<label> <input type="radio" id="image_use_side2"
+																					 name="thumb_use_side" value="width"
+																					 <?php if ($thumb_use_side == 'width') echo ' checked="checked"'; ?>
+																					 <?php echo $disable; ?> /> <?php echo gettext('width') ?> </label>
+													</td>
+												</tr>
+												<tr>
+													<td style="margin: 0; padding: 0"><label> <input type="radio"
+																																					 id="image_use_side3" name="thumb_use_side" value="shortest"
+																																					 <?php if ($thumb_use_side == 'shortest') echo ' checked="checked"'; ?>
+																																					 <?php echo $disable; ?> /> <?php echo gettext('shortest side') ?>
+														</label> <label> <input type="radio" id="image_use_side4"
+																										name="thumb_use_side" value="longest"
+																										<?php if ($thumb_use_side == 'longest') echo ' checked="checked"'; ?>
+																										<?php echo $disable; ?> /> <?php echo gettext('longest side') ?> </label>
+													</td>
+												</tr>
+											</table>
 										</td>
-										<td><?php printf(gettext("Standard thumbnails will be scaled to %u pixels."), $ts); ?></td>
+										<td><?php printf(gettext("Standard thumbnails will be scaled to %u pixels."), $ts); ?> <br />
+											<?php echo gettext("If cropping is disabled the thumbs will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."); ?>
+										</td>
 									</tr>
 									<?php
 									if (in_array('thumb_crop', $unsupportedOptions)) {

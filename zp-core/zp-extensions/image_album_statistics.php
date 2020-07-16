@@ -234,7 +234,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 	$albumthumb = $tempalbum->getAlbumThumbImage();
 	switch ($crop) {
 		case 0:
-			$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $albumthumb);
+			$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $albumthumb, 'thumb');
 			$html = '<img src="' . html_encode(pathurlencode($albumthumb->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" /></a>' . "\n";
 			echo zp_apply_filter('custom_image_html', $html);
 			break;
@@ -466,7 +466,7 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 		echo '<li><a href="' . html_encode($imagelink) . '" title="' . html_encode($image->getTitle()) . "\">\n";
 		switch ($crop) {
 			case 0:
-				$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $image);
+				$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $image, 'thumb');
 				$html = '<img src="' . html_encode(pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . "\" /></a>\n";
 				echo zp_apply_filter('custom_image_html', $html);
 				break;

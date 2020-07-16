@@ -112,7 +112,7 @@ function propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim
 	$hprop = round(($h / $w) * $dim);
 	$wprop = round(($w / $h) * $dim);
 	if ($size) {
-		if ((($thumb || ($image_use_side == 'longest')) && $h > $w) || ($image_use_side == 'height') || ($image_use_side == 'shortest' && $h < $w)) {
+		if (((($image_use_side == 'longest')) && $h > $w) || ($image_use_side == 'height') || ($image_use_side == 'shortest' && $h < $w)) {
 			$newh = $dim; // height is the size and width is proportional
 			$neww = $wprop;
 		} else {
@@ -168,7 +168,11 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 	try {
 		@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 		// Set the config variables for convenience.
-		$image_use_side = getOption('image_use_side');
+		if($thumb) {
+			$image_use_side = getOption('thumb_use_side');
+		} else {
+			$image_use_side = getOption('image_use_side');
+		}
 		$upscale = getOption('image_allow_upscale');
 		$allowscale = true;
 		$sharpenthumbs = getOption('thumb_sharpen');
