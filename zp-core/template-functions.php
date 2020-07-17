@@ -2665,7 +2665,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
  * @return array
  */
 function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL, $image = NULL, $type = 'image') {
-  global $_zp_current_image, $_zp_gallery, $_zp_options;
+  global $_zp_current_image;
   if (is_null($image))
     $image = $_zp_current_image;
   if (is_null($image))
@@ -2963,8 +2963,6 @@ function getSizeDefaultThumb($image = NULL) {
 	} else {
 		$w = $h = $s;
 		$sizes = getSizeCustomImage($s, NULL, NULL, NULL, NULL, NULL, NULL, $image, 'thumb');
-		//getMaxSpaceContainer($w, $h, $image, true);
-		//$sizes = array($w, $h);
 	}
 	return $sizes;
 }
@@ -3180,7 +3178,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		$class .= " password_protected";
 	}
 	if ($size) {
-		$itype = 'image';
+		$type = 'image';
 		if($thumbStandin) {
 			$type = 'thumb';
 		}

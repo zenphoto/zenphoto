@@ -240,7 +240,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 			break;
 		case 1;
 			if(isImagePhoto($albumthumb)) {
-				$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $albumthumb);
+				$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $albumthumb, 'thumb');
 			} else {
 				$sizes[0] = $width;
 				$sizes[1] = $height;

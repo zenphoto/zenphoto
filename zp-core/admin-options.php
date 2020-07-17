@@ -2884,7 +2884,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											</table>
 										</td>
 										<td><?php printf(gettext("Standard thumbnails will be scaled to %u pixels."), $ts); ?> <br />
-											<?php echo gettext("If cropping is disabled the thumbs will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."); ?>
+											<?php echo gettext("If cropping is disabled the thumbs will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>thumb size</em>."); ?>
 										</td>
 									</tr>
 									<?php
