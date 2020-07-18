@@ -152,9 +152,15 @@ class TextObject extends Image {
 	 */
 	function getThumb($type = 'image') {
 		$ts = getOption('thumb_size');
-		$sw = getOption('thumb_crop_width');
-		$sh = getOption('thumb_crop_height');
-		list($custom, $cw, $ch, $cx, $cy) = $this->getThumbCropping($ts, $sw, $sh);
+		if (getOption('thumb_crop')) {
+			$crop = true;
+			$sw = getOption('thumb_crop_width');
+			$sh = getOption('thumb_crop_height');
+			list($custom, $cw, $ch, $cx, $cy) = $this->getThumbCropping($ts, $sw, $sh);
+		} else {
+			$crop = false;
+			$sw = $sh = $cw = $ch = $cx = $cy = null;
+		}
 		$wmt = $this->watermark;
 		if (empty($wmt)) {
 			$wmt = getWatermarkParam($this, WATERMARK_THUMB);
