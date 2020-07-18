@@ -173,6 +173,27 @@ class TextObject extends Image {
 		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
 		return getImageURI($args, $alb, $filename, $mtime);
 	}
+	
+	/**
+	 * Returns an array with widht and height the sidecar thumb image
+	 * 
+	 * @since ZephotoCMS 1.5.8
+	 * 
+	 * @return array
+	 */
+	function getThumbDimensions() {
+		if (!is_null($this->thumbdimensions)) {
+			return $this->thumbdimensions;
+		}
+		$imgfile = $this->getThumbImageFile();
+		$image = zp_imageGet($imgfile);
+		$width = zp_imageWidth($image);
+		$height = zp_imageHeight($image);
+		return $this->thumbdimensions = array(
+				'width' => $width,
+				'height' => $height
+		);
+	}
 
 	/**
 	 * Returns the content of the text file

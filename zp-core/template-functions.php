@@ -1925,11 +1925,9 @@ function getMaxSpaceContainer(&$width, &$height, $image, $thumb = false) {
 	global $_zp_gallery;
 	$upscale = getOption('image_allow_upscale');
 	$imagename = $image->filename;
-	if (!isImagePhoto($image) & $thumb) {
-		$imgfile = $image->getThumbImageFile();
-		$image = zp_imageGet($imgfile);
-		$s_width = zp_imageWidth($image);
-		$s_height = zp_imageHeight($image);
+	if ($thumb) {
+		$s_width = $image->getThumbWidth();
+		$s_height = $image->getThumbHeight();
 	} else {
 		$s_width = $image->get('width');
 		if ($s_width == 0)
@@ -2670,21 +2668,22 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
     $image = $_zp_current_image;
   if (is_null($image))
     return false;
-
-  $h = $image->getHeight();
-  $w = $image->getWidth();
-
+	
   //if we set width/height we are cropping and those are the sizes already
   if (!is_null($width) && !is_null($height)) {
     return array($width, $height);
   }
 	switch ($type) {
 		case 'thumb':
+			$h = $image->getThumbHeight();
+			$w = $image->getThumbWidth();
 			$thumb = true;
 			$side = getOption('thumb_use_side');
 			break;
 		default:
 		case 'image':
+			$h = $image->getHeight();
+			$w = $image->getWidth();
 			$thumb = false;
 			if (isImageVideo($image)) { // size is determined by the player
 				return array($w, $h);

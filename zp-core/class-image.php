@@ -116,6 +116,7 @@ class Image extends MediaObject {
 	public $view_rights = ALL_ALBUMS_RIGHTS;
 	// Plugin handler support
 	public $objectsThumb = NULL; // Thumbnail image for the object
+	public $thumbdimensions = null;
 	protected $is_public = null;
 
 	/**
@@ -618,6 +619,53 @@ class Image extends MediaObject {
 			$h = $this->get('height');
 		}
 		return $h;
+	}
+	
+	/**
+	 * Returns an array with widht and height the thumb. Here this is just a wrapper for getWidth() and getHeight()
+	 * 
+	 * Child (base) class handlers of non image file formats (e.g. video, textobject) where the actual "image" and the sidecar thumb are not the same
+	 * file need to override this and provide the actual dimensions of the thumb using zp_getImageDims($thumbfile). 
+	 * Otherwise thumb generation may be distorted.
+	 * 
+	 * @since ZephotoCMS 1.5.8
+	 * 
+	 * @return array
+	 */
+	function getThumbDimensions() {
+		if (!is_null($this->thumbdimensions)) {
+			return $this->thumbdimensions;
+		}
+		return $this->thumbdimensions = array(
+				'width' => $this->getWidth(),
+				'height' => $this->getHeight()
+		);
+	}
+
+	/**
+	 * Returns the width of the thumb. Here just the same as getWidth(). 
+	 *
+	 * @see getThumbDimensions() for specific usage
+	 * @since ZephotoCMS 1.5.8
+	 * 
+	 * @return int
+	 */
+	function getThumbWidth() {
+		$dims = $this->getThumbDimensions();
+		return $dims['width'];
+	}
+
+	/**
+	 * Returns the height of the image. Here just the same as getHeight().
+	 *
+	 * @see getThumbDimensions() for specific usage
+	 * @since ZephotoCMS 1.5.8
+	 * 
+	 * @return int
+	 */
+	function getThumbHeight() {
+		$dims = $this->getThumbDimensions();
+		return $dims['height'];
 	}
 
 	/**

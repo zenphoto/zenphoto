@@ -239,12 +239,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 			echo zp_apply_filter('custom_image_html', $html);
 			break;
 		case 1;
-			if(isImagePhoto($albumthumb)) {
-				$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $albumthumb, 'thumb');
-			} else {
-				$sizes[0] = $width;
-				$sizes[1] = $height;
-			}
+			$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $albumthumb, 'thumb');
 			$html = '<img src="' . html_encode(pathurlencode($albumthumb->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" /></a>' . "\n";
 			echo zp_apply_filter('custom_image_html', $html);
 			break;

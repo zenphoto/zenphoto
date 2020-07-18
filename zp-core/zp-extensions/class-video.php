@@ -198,6 +198,27 @@ class Video extends Image {
 		$args = getImageParameters(array($ts, $sw, $sh, $cw, $ch, $cx, $cy, null, true, $crop, true, $wmt, NULL, NULL), $this->album->name);
 		return getImageURI($args, $this->album->name, $filename, $mtime);
 	}
+	
+	/**
+	 * Returns an array with widht and height the sidecar thumb image
+	 * 
+	 * @since ZephotoCMS 1.5.8
+	 * 
+	 * @return array
+	 */
+	function getThumbDimensions() {
+		if (!is_null($this->thumbdimensions)) {
+			return $this->thumbdimensions;
+		}
+		$imgfile = $this->getThumbImageFile();
+		$image = zp_imageGet($imgfile);
+		$width = zp_imageWidth($image);
+		$height = zp_imageHeight($image);
+		return $this->thumbdimensions = array(
+				'width' => $width,
+				'height' => $height
+		);
+	}
 
 	/**
 	 *  Get a custom sized version of this image based on the parameters.
