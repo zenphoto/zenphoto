@@ -746,10 +746,28 @@ div.outerbox {
 	border-bottom-width: 0px;
 }
 
-
-.imagethumb {
-	margin: 1px;
+.imagethumb_wrapper {
+	width: 110px;
+	height: 110px;
+	background: #e8e8e8;
+	border: 1px solid lightgray;
 	padding: 1px;
+	margin-bottom: 7px;
+	text-align: center;
+	display: -webkit-box;  
+	display: -moz-flex; 
+	display: -ms-flexbox;  
+	display: -webkit-flex; 
+	display: flex;   
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 /* middle and right columns on admin edit pages */
@@ -2798,4 +2816,26 @@ form.dirty input[type=submit]:active{
 .expired {
 	color: red !important;
 	font-weight: normal;
+}
+
+/* album edit additions 
+--------------------------- */
+
+.adminedit_fullimagelink {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
+
+.adminedit_fullimagelink img {
+
+}
+
+.adminedit_fullimage-icon {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	padding: 3px;
+	z-index: 1000;
+	background: white;
 }

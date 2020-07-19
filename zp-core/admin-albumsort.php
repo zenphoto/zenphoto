@@ -185,11 +185,13 @@ echo "\n</head>";
 								$image = newImage($album, $imagename);
 								?>
 								<li id="id_<?php echo $image->getID(); ?>">
+									<div class="imagethumb_wrapper">
 									<img class="imagethumb"
-											 src="<?php echo getAdminThumb($image, 'large'); ?>"
+											 src="<?php echo getAdminThumb($image, 'small-uncropped'); ?>"
 											 alt="<?php echo html_encode($image->getTitle()); ?>"
 											 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
-											 width="80" height="80"  />
+										  />
+									</div>
 									<p>
 										<?php printPublishIconLinkGallery($image, true) ?>
 										<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt=""></a>

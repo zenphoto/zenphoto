@@ -1017,30 +1017,23 @@ echo "\n</head>";
 													<?php } ?>
 													<tr>
 														<td valign="top" rowspan="17" style="border-bottom:none;">
-															<div style="width: 135px;">
-																<a <?php echo $placemark; ?>
+															<div style="width: 135px;" <?php echo $placemark; ?>>
 																<?php
-																if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
+																if (isImagePhoto($image)) {
 																	?>
-																		href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>"
-																		title="<?php html_encode(printf(gettext('crop %s'), $image->filename)); ?>"
-																		<?php
-																	}
-																	?>
-																	>
-																	<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large'))); ?>" alt="<?php echo html_encode($image->filename); ?>"																	/>
-																</a>
-															</div>
-															<?php
-															if (isImagePhoto($image)) {
+																	<a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox adminedit_fullimagelink">
+																		<img src="images/magnify.png" alt="" class="adminedit_fullimage-icon" />
+																	<?php
+																}
 																?>
-																<p class="buttons"><a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox"><img src="images/magnify.png" alt="" /><strong><?php echo gettext('Zoom'); ?></strong></a></p><br style="clear: both" />
-																<?php
-															}
-															?>
-															<p class="buttons">
-																<a href="<?php echo $image->getLink(); ?>"><img src="images/view.png" alt="" /><strong><?php echo gettext('View'); ?></strong></a>
-															</p><br style="clear: both" />
+																	<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large-uncropped'))); ?>" alt="<?php echo html_encode($image->filename); ?>"																	/>
+																<?php if (isImagePhoto($image)) {
+																	?>
+																	</a>
+																	<?php
+																}
+																?>
+															</div>
 															<p>
 																<?php echo gettext('<strong>Filename:</strong>'); ?>
 																<br />
@@ -1303,7 +1296,7 @@ echo "\n</head>";
 																	<br class="clearall" />
 																</div>
 																<?php
-																if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
+																if ((isImagePhoto($image) || !is_null($image->objectsThumb)) && getOption('thumb_crop')) {
 																	?>
 																	<div class="button buttons tooltip" title="<?php printf(gettext('crop %s'), $image->filename); ?>">
 																		<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >

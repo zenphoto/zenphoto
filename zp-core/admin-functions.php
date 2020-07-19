@@ -4624,8 +4624,33 @@ function getAdminThumb($image, $size) {
 	switch ($size) {
 		case 'large':
 			return $image->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1);
+		case 'small':
 		default:
 			return $image->getCustomImage(40, NULL, NULL, 40, 40, NULL, NULL, -1);
+		case 'large-uncropped':
+		case 'small-uncropped':
+			$thumbsize = $width = $height = null;
+			switch ($size) {
+				case 'large-uncropped':
+					if ($image->getThumbWidth() == $image->getThumbHeight()) {
+						$thumbsize = 135;
+					} else if ($image->getThumbWidth() > $image->getThumbHeight()) {
+						$width = 135;
+					} else if ($image->getThumbWidth() < $image->getThumbHeight()) {
+						$height = 135;
+					}
+					return $image->getCustomImage($thumbsize, $width, $height, NULL, NULL, NULL, NULL, -1);
+				case 'small-uncropped':
+					if ($image->getThumbWidth() == $image->getThumbHeight()) {
+						$thumbsize = 110;
+					} else if ($image->getThumbWidth() > $image->getThumbHeight()) {
+						$width = 110;
+					} else if ($image->getThumbWidth() < $image->getThumbHeight()) {
+						$height = 110;
+					}
+					return $image->getCustomImage($thumbsize, $width, $height, NULL, NULL, NULL, NULL, -1);
+			}
+			break;
 	}
 }
 
