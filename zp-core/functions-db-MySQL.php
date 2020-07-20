@@ -6,7 +6,7 @@
  * Note: PHP version 5 states that the MySQL library is "Maintenance only, Long term deprecation announced."
  * It recommends using the PDO::MySQL or the MySQLi library instead.
  *
- * @deprecated 3.0 The MySQL database handler is deprecated as the MySQL handler has been removed in PHP 7.0.0 already. Use the handlers MySQLi or PDO_MySQL instead.
+ * @deprecated Zenphoto 2.0 The MySQL database handler is deprecated as the MySQL handler has been removed in PHP 7.0.0 already. Use the handlers MySQLi or PDO_MySQL instead.
  * 
  * @package core
  * @subpackage database-handlers\functions-db-mysql

@@ -511,7 +511,7 @@ class sitemap {
 	/**
 	 * gateway function for images (screens out dynamic albums and password protected albums)
 	 * 
-	 * @deprecateed Unused
+	 * @deprecated Unused
 	 * @param object $album
 	 */
 	static function passImages($album) {

@@ -59,7 +59,7 @@ class ZenpageItems extends ZenpageRoot {
 	/**
 	 * Returns the last change author
 	 * 
-	 * @deprecated 1.6 - Use getLastChangeUser() instead
+	 * @deprecated Zenphoto 1.6 - Use getLastChangeUser() instead
 	 *
 	 * @return string
 	 */
@@ -71,7 +71,7 @@ class ZenpageItems extends ZenpageRoot {
 	 *
 	 * stores the last change author
 	 * 
-	 * @deprecated 1.6 - Use setLastChangeUser() instead
+	 * @deprecated Zenphoto 1.6 - Use setLastChangeUser() instead
 	 */
 	function setLastchangeAuthor($a) {
 		$this->setLastchangeUser($a);
