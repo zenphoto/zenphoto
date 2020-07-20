@@ -556,3 +556,33 @@ function getNumAllSubalbums($albumobj, $pre = '') {
 		return false;
 	}
 }
+
+/**
+ * Returns an randomly selected image objecet from the gallery per day.
+ * Returns null on failure
+ * 
+ * @param string $albumfolder foldername of an specific album. If not set from all images in the gallery
+ * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
+ * 
+ * @return object|nill
+ */
+function getPictureOfTheDay($albumfolder = '', $collection = false) {
+	global $_zp_gallery;
+	$potd = getSerializedArray(getOption('picture_of_the_day'));
+	if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
+		$album = newAlbum($potd['folder'], true, true);
+		if ($album->exists) {
+			$image = newImage($album, $potd['filename'], true);
+			if ($image->exists) {
+				return $image;
+			}
+		}
+	}
+	$randomimage = getImageStatistic(1, 'random', $albumfolder, $collection);
+	if ($randomimage) {
+		$potd = array('day' => time(), 'folder' => $randomimage[0]->getAlbumName(), 'filename' => $randomimage[0]->getFileName());
+		setThemeOption('picture_of_the_day', serialize($potd), NULL, $_zp_gallery->getCurrentTheme());
+		return $randomimage[0];
+	}
+	return NULL;
+}
