@@ -154,12 +154,18 @@ class matomoStats {
 			$id = getOption('matomo_id');
 			$sitedomain = trim(getOption('matomo_sitedomain'));
 			$requireconsent = getOption('matomo_requireconsent');
-			$requireconsent_js = "_paq.push(['requireConsent']);";
 			switch($requireconsent) {
 				case 'no-consent':
 					$requireconsent_js = '';
 					break;
+				default:
+				case 'consent-required':
+					$requireconsent_js = "_paq.push(['requireCookieConsent']);";
+					$requireconsent_js .= "_paq.push(['requireConsent']);";
+					break;
+				
 				case 'consent-required-remembered':
+					$requireconsent_js = "_paq.push(['requireCookieConsent']);";
 					$requireconsent_js .= "\n_paq.push(['rememberConsentGiven']);";
 					break;
 			}
