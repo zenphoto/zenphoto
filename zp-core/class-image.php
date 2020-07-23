@@ -684,8 +684,8 @@ class Image extends MediaObject {
 				$height = $this->getHeight();
 				break;
 			case 'thumb':
-				$width = $this->getWidth();
-				$height = $this->getHeight();
+				$width = $this->getThumbWidth();
+				$height = $this->getThumbHeight();
 				break;
 		}
 		if ($width == $height) {
