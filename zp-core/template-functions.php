@@ -2828,16 +2828,20 @@ function getFullHeight($image = NULL) {
 }
 
 /**
- * Returns true if the image is landscape-oriented (width is greater than height)
- *
+ * Returns true if the image is landscape-oriented (width is greater than height) 
+ * or - kept here for backwards compatibility - square (equal widht and height)
+ * 
  * @param $image object the image for which the size is desired. NULL means the current image
  *
  * @return bool
  */
 function isLandscape($image = NULL) {
-	if (getFullWidth($image) >= getFullHeight($image))
-		return true;
-	return false;
+	global $_zp_current_image;
+	if (is_null($image))
+		$image = $_zp_current_image;
+	if (is_null($image))
+		return false;
+	return ($image->isLandscape() || $image->isSquare());
 }
 
 /**

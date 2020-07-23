@@ -483,7 +483,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if ($checked == $current)
 			echo ' checked="checked"';
 	}
-
+	
 	/**
 	 * Populatest $list with an one dimensional list with album name and title of all albums or the subalbums of a specific album
 	 * @global obj $_zp_gallery
@@ -4632,20 +4632,20 @@ function getAdminThumb($image, $size) {
 			$thumbsize = $width = $height = null;
 			switch ($size) {
 				case 'large-uncropped':
-					if ($image->getThumbWidth() == $image->getThumbHeight()) {
+					if ($image->isSquare('thumb')) {
 						$thumbsize = 135;
-					} else if ($image->getThumbWidth() > $image->getThumbHeight()) {
+					} else if ($image->isLandscape('thumb')) {
 						$width = 135;
-					} else if ($image->getThumbWidth() < $image->getThumbHeight()) {
+					} else if ($image->isPortrait('thumb')) {
 						$height = 135;
 					}
 					return $image->getCustomImage($thumbsize, $width, $height, NULL, NULL, NULL, NULL, -1);
 				case 'small-uncropped':
-					if ($image->getThumbWidth() == $image->getThumbHeight()) {
+					if ($image->isSquare('thumb')) {
 						$thumbsize = 110;
-					} else if ($image->getThumbWidth() > $image->getThumbHeight()) {
+					} else if ($image->isLandscape('thumb')) {
 						$width = 110;
-					} else if ($image->getThumbWidth() < $image->getThumbHeight()) {
+					} else if ($image->isPortrait('thumb')) {
 						$height = 110;
 					}
 					return $image->getCustomImage($thumbsize, $width, $height, NULL, NULL, NULL, NULL, -1);

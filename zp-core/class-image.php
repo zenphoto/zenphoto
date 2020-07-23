@@ -667,6 +667,72 @@ class Image extends MediaObject {
 		$dims = $this->getThumbDimensions();
 		return $dims['height'];
 	}
+	
+	/**
+	 * Returns 'is_square', 'is_landscape', 'is_portrait' if the original image's widht and height match.
+	 * 
+	 * @since Zenphoto 1.5.8
+	 * 
+	 * @param string $type 'image' or 'thumb' - the latter may be different on non image "image items"
+	 * @return boolean|string
+	 */
+	function getOrientation($type = 'image') {
+		switch ($type) {
+			default:
+			case 'image':
+				$width = $this->getWidth();
+				$height = $this->getHeight();
+				break;
+			case 'thumb':
+				$width = $this->getWidth();
+				$height = $this->getHeight();
+				break;
+		}
+		if ($width == $height) {
+			return 'is_square';
+		} else if ($width > $height) {
+			return 'is_landscape';
+		} else if ($width < $height) {
+			return 'is_portrait';
+		}
+		return false;
+	}
+
+	/**
+	 * Returns true if the image has landscape orientation
+	 * 
+	 * @since Zenphoto 1.5.8
+	 *  
+	 * @param string $type 'image' or 'thumb' - the latter may be different on non image "image items"
+	 * @return bool
+	 */
+	function isLandscape($type = 'image') {
+		return $this->getOrientation($type) == 'is_landscape';
+	}
+
+	/**
+	 * Returns true if the image is a square
+	 * 
+	 * @since Zenphoto 1.5.8
+	 * 
+	 * @param string $type 'image' or 'thumb' - the latter may be different on non image "image items"
+	 * @return bool
+	 */
+	function isSquare($type = 'image') {
+		return $this->getOrientation($type) == 'is_square';
+	}
+
+	/**
+	 * Returns true if the image has portrait orientation
+	 * 
+	 * @since Zenphoto 1.5.8
+	 * 
+	 * @param string $type 'image' or 'thumb' - the latter may be different on non image "image items"
+	 * @return bool
+	 */
+	function isPortrait($type = 'image') {
+		return $this->getOrientation($type) == 'is_portrait';
+	}
 
 	/**
 	 * Returns the album that holds this image
