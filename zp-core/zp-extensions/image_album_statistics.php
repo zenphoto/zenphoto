@@ -544,7 +544,7 @@ function getNumAllSubalbums($albumobj, $pre = '') {
 	if (is_null($albumobj)) {
 		$albumobj = $_zp_current_album;
 	}
-	$albums = $_zp_gallery->getAllAlbums($_zp_current_album, LIST_RIGHTS, false);
+	$albums = $_zp_gallery->getAllAlbums($albumobj, LIST_RIGHTS, false);
 	$count = count($albums);
 	if ($count != 0) {
 		return $pre . $count;
