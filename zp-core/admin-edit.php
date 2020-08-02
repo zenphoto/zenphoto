@@ -597,9 +597,7 @@ echo "\n</head>";
 			if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 				/** SINGLE ALBUM ******************************************************************* */
 				// one time generation of this list.
-				$mcr_albumlist = array();
-				genAlbumList($mcr_albumlist);
-
+				$mcr_albumlist = $_zp_gallery->getAllAlbumsFromDB();
 				$oldalbumimagesort = getOption('albumimagesort');
 				$oldalbumimagesort_status = getOption('albumimagesort_status');
 				$direction = getOption('albumimagedirection');
@@ -984,8 +982,6 @@ echo "\n</head>";
 										</td>
 									</tr>
 									<?php
-									$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
-
 									$currentimage = 0;
 									if (zp_imageCanRotate()) {
 										$disablerotate = '';
@@ -1210,7 +1206,6 @@ echo "\n</head>";
 																						foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
 																							$singlefolder = $fullfolder;
 																							$saprefix = "";
-																							$salevel = 0;
 																							$selected = "";
 																							if ($album->name == $fullfolder) {
 																								$selected = " selected=\"selected\" ";
@@ -1218,11 +1213,9 @@ echo "\n</head>";
 																							// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
 																							while (strstr($singlefolder, '/') !== false) {
 																								$singlefolder = substr(strstr($singlefolder, '/'), 1);
-																								$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
-																								$salevel++;
+																								$saprefix = "–&nbsp;" . $saprefix;
 																							}
-																							echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . ';"' : '')
-																							. "$selected>" . $saprefix . $singlefolder . "</option>\n";
+																							echo '<option value="' . $fullfolder . '"' . "$selected>" . $saprefix . $singlefolder . "</option>\n";
 																						}
 																						?>
 																	</select>
@@ -1602,8 +1595,7 @@ echo "\n</head>";
 				/*				 * * MULTI-ALBUM ************************************************************************** */
 			} else if (isset($_GET['massedit'])) {
 				// one time generation of this list.
-				$mcr_albumlist = array();
-				genAlbumList($mcr_albumlist);
+				$mcr_albumlist = $_zp_gallery->getAllAlbumsFromDB();
 				$albumdir = "";
 				if (isset($_GET['album'])) {
 					$folder = sanitize_path($_GET['album']);
@@ -1676,8 +1668,7 @@ echo "\n</head>";
 						<button type="submit">
 							<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
 						</button>
-						<button type="reset" onclick="javascript:$('.deletemsg
-																																').hide();" >
+						<button type="reset" onclick="javascript:$('.deletemsg').hide();" >
 							<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
 						</button>
 					</span>
@@ -1760,8 +1751,7 @@ echo "\n</head>";
 									</a>
 								</label>
 								<label style="float: right">
-									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this
-																																								.checked);" />
+									<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 								</label>
 							</div>
 

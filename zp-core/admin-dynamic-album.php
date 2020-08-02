@@ -11,16 +11,16 @@ require_once(dirname(__FILE__) . '/template-functions.php');
 
 admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 
-$imagelist = array();
+$_imagelist = array();
 
 function getSubalbumImages($folder) {
-	global $imagelist, $_zp_gallery;
+	global $_imagelist, $_zp_gallery;
 	$album = newAlbum($folder);
 	if ($album->isDynamic())
 		return;
 	$images = $album->getImages();
 	foreach ($images as $image) {
-		$imagelist[] = '/' . $folder . '/' . $image;
+		$_imagelist[] = '/' . $folder . '/' . $image;
 	}
 	$albums = $album->getAlbums();
 	foreach ($albums as $folder) {
@@ -118,8 +118,7 @@ if (isset($_POST['savealbum'])) { // we fell through, some kind of error
 	echo "</div>\n";
 }
 
-$albumlist = array();
-genAlbumList($albumlist);
+$albumlist = $_zp_gallery->getAllAlbumsFromDB();
 $fields = $search->fieldList;
 $albumname = $search->getSearchWords();
 $words = $search->codifySearchString();
@@ -127,7 +126,7 @@ $images = $search->getImages(0);
 foreach ($images as $image) {
 	$folder = $image['folder'];
 	$filename = $image['filename'];
-	$imagelist[] = '/' . $folder . '/' . $filename;
+	$_imagelist[] = '/' . $folder . '/' . $filename;
 }
 $subalbums = $search->getAlbums(0);
 foreach ($subalbums as $folder) {
@@ -165,7 +164,6 @@ while ($old != $albumname) {
     	if(isset($_GET['folder'])) {
      		$parentalbum = sanitize($_GET['folder']);
      }
-					$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
 					foreach ($albumlist as $fullfolder => $albumtitle) {
 						$singlefolder = $fullfolder;
 						$saprefix = "";
@@ -173,7 +171,7 @@ while ($old != $albumname) {
 						// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
 						while (strstr($singlefolder, '/') !== false) {
 							$singlefolder = substr(strstr($singlefolder, '/'), 1);
-							$saprefix = "&nbsp; &nbsp;&raquo;&nbsp;" . $saprefix;
+							$saprefix = "–&nbsp;" . $saprefix;
 							$salevel++;
 						}
       $selected = '';
@@ -197,7 +195,7 @@ while ($old != $albumname) {
 					}
 					generateListFromArray(array(getOption('AlbumThumbSelect')), $selections, false, true);
 					$showThumb = $_zp_gallery->getThumbSelectImages();
-					foreach ($imagelist as $imagepath) {
+					foreach ($_imagelist as $imagepath) {
 						$pieces = explode('/', $imagepath);
 						$filename = array_pop($pieces);
 						$folder = implode('/', $pieces);

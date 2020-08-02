@@ -61,8 +61,7 @@ printLogoAndLinks();
 		if (!empty($zenphoto_tabs['upload']['subtabs'])) {
 			printSubtabs();
 		}
-		$albumlist = array();
-		genAlbumList($albumlist);
+		$albumlist = $_zp_gallery->getAllAlbumsFromDB();
 		//	remove dynamic albums--can't upload to them
 		foreach ($albumlist as $key => $albumname) {
 			if (hasDynamicAlbumSuffix($key) && !is_dir(ALBUM_FOLDER_SERVERPATH . $key)) {
@@ -216,7 +215,6 @@ foreach ($albumlist as $key => $value) {
 								<option value="" selected="selected" style="font-weight: bold;">/</option>
 								<?php
 							}
-							$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
 							if (isset($_GET['album'])) {
 								$passedalbum = sanitize($_GET['album']);
 							} else {
@@ -230,7 +228,6 @@ foreach ($albumlist as $key => $value) {
 							foreach ($albumlist as $fullfolder => $albumtitle) {
 								$singlefolder = $fullfolder;
 								$saprefix = "";
-								$salevel = 0;
 								if (!is_null($passedalbum) && ($passedalbum == $fullfolder)) {
 									$selected = " selected=\"selected\" ";
 								} else {
@@ -239,11 +236,9 @@ foreach ($albumlist as $key => $value) {
 								// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
 								while (strstr($singlefolder, '/') !== false) {
 									$singlefolder = substr(strstr($singlefolder, '/'), 1);
-									$saprefix = "&nbsp; &nbsp;&raquo;&nbsp;" . $saprefix;
-									$salevel++;
+									$saprefix = "–&nbsp;" . $saprefix;
 								}
-								echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . '; border-bottom: 1px dotted #ccc;"' : '')
-								. "$selected>" . $saprefix . $singlefolder . " (" . $albumtitle . ')' . "</option>\n";
+								echo '<option value="' . $fullfolder . '"' . "$selected>" . $saprefix . $singlefolder . " (" . $albumtitle . ')' . "</option>\n";
 							}
 							if (isset($_GET['publishalbum'])) {
 								$publishchecked = ' checked="checked"';

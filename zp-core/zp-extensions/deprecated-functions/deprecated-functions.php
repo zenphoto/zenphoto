@@ -6,6 +6,41 @@
  * @subpackage deprecated-functions
  */
 
+/**
+ * Populatest $list with an one dimensional list with album name and title of all albums or the subalbums of a specific album
+ * 
+ * @deprecated Zenphoto 2.0 – Use the gallery class method getAllAlbums() or getAllAlbumsFromDB() instead
+ * 
+ * @global obj $_zp_gallery
+ * @param array $list The array to fill with the album list
+ * @param obj $curAlbum Optional object of the album to start with
+ * @param int $rights Rights constant to filter album access by.
+ */
+function genAlbumList(&$list, $curAlbum = NULL, $rights = UPLOAD_RIGHTS) {
+	global $_zp_gallery;
+	deprecated_functions::notify(gettext("Use the gallery class method getAllAlbums() or getAllAlbumsFromDB() instead"));
+	$list = $_zp_gallery->getAllAlbums($curAlbum, $rights, true);
+}
+
+/**
+ * Returns a list of all albums decendent from an album
+ * 
+ * @deprecated Zenphoto 2.0 – Use the gallery class method getAllAlbums() or getAllAlbumsFromDB() instead
+ *
+ * @param object $album optional album. If absent the current album is used
+ * @return array
+ */
+function getAllAlbums($album = NULL) {
+	deprecated_functions::notify(gettext("Use the gallery class method getAllAlbums() or getAllAlbumsFromDB() instead"));
+	global $_zp_current_album, $_zp_gallery;
+	if (is_null($album))
+		$album = $_zp_current_album;
+	if (!is_object($album))
+		return;
+	$list = getAllAlbums($albumobj = NULL, $rights = LIST_RIGHTS, false);
+	return $list;
+}
+
 if (function_exists('printImageStatistic')) {
 
 	/**

@@ -242,6 +242,142 @@ class Gallery {
 		closedir($dir);
 		return zp_apply_filter('album_filter', $albums);
 	}
+	
+	/**
+	 * Gets all albums with the right order as set on the backend. 
+	 * 
+	 * Note while this is an very accurate result since this is using the filesystem to check
+	 * and keeps the individuel sort order settings of each subalbum level it is therefore very slow on large galleries with 
+	 * thousands of albums. 
+	 * 
+	 * Use the much faster but less accurate getAllAlbumsFromDB() instead if speed is needed. This is best used for any 
+	 * albums selector.
+	 * 
+	 * Note unless the §rights parameter is set to ALL_ALBUMS_RIGHTS or higher or the user is full admin dynamic albums are excluded.
+	 * 
+	 * @since Zenphoto 1.5.8 - general functionality moved from the old admin function genAlbumList()
+	 * 
+	 * @param obj $albumobj Default null for all albums, optional albumobject to get all sublevels of
+	 * @param int $rights Rights constant to check the album access by, default UPLOAD_RIGHTS. Set to null to disable rights check
+	 * @param bool $includetitles If set to true (default) returns an array with the album names as keys and the titles as values, otherwise just an array with the names
+	 * @return array
+	 */
+	function getAllAlbums($albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true) {
+		$allalbums = array();
+		$is_fulladmin = zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS); // can see all albums
+		if (isAlbumClass($albumobj)) {
+			$albums = $albumobj->getAlbums(0);
+		} else {
+			$albums = $this->getAlbums(0);
+		}
+		if (is_array($albums)) {
+			foreach ($albums as $folder) {
+				$album = newAlbum($folder);
+				if ($is_fulladmin || $album->isMyItem($rights)) {
+					if ($album->isDynamic()) {
+						if ($is_fulladmin || $rights == ALL_ALBUMS_RIGHTS) {
+							if ($includetitles) {
+								$allalbums[$album->getFileName()] = $album->getTitle();
+							} else {
+								$allalbums[] = $album->getFileName();
+							}
+						}
+					} else {
+						if ($includetitles) {
+							$allalbums[$album->getFileName()] = $album->getTitle();
+						} else {
+							$allalbums[] = $album->getFileName();
+						}
+						$allalbums = array_merge($allalbums, $this->getAllAlbums($album, $rights));
+					}
+				}
+			}
+		}
+		return $allalbums;
+	}
+
+	/**
+	 * Gets all albums from the database direclty. This is less accurate than getAllAlbums() but much faster on 
+	 * large sites with thousends of albums especially if $keeplevel_sortorder is kept false.
+	 * Note that the filesystem and databse may be out of sync in the moment of fetching the data.
+	 * If you need to be sure to cover this use getAllAlbums();
+	 * 
+	 * $keeplevel_sortorder is false so the order follows their nesting but the sortorder 
+	 * of individual sublevels is not kept to archieve greater speed. 
+	 * Order is simply by folder name instead. Set to true each subalbum level follows its individual sort order setting.
+	 * While this is also faster than getAllAlbums() this is significantly slower than the default.
+	 * 
+	 * Note unless the §rights parameter is set to ALL_ALBUMS_RIGHTS or higher or the user is full admin dynamic albums are excluded.
+	 * 
+	 * @since Zenphoto 1.5.8
+	 * 
+	 * @param bool $keeplevel_sortorder Default false, set to true if the sublevels should sorted by their individual settings (slower)
+	 * @param obj $albumobj Default null for all albums, optional albumobject to get all sublevels of
+	 * @param int $rights Rights constant to check the album access by, default UPLOAD_RIGHTS
+	 * @param bool $includetitles If set to true (default) returns an array with the album names as keys and the titles as values, otherwise just an array with the names
+	 * @return array
+	 */
+	function getAllAlbumsFromDB($keeplevel_sortorder = false, $albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true) {
+		$allalbums = array();
+		$is_fulladmin = zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
+		$sorttype = 'folder';
+		$sortdirection = ' ASC';
+		$sql = 'SELECT `folder` FROM ' . prefix('albums');
+		if (isAlbumClass($albumobj)) {
+			// subalbums of an album
+			$sql .= " WHERE `folder` like '" . $albumobj->name . "/%'";
+			if ($keeplevel_sortorder) {
+				$sorttype = $albumobj->getSortType('album');
+				if ($albumobj->getSortDirection('album')) {
+					$sortdirection = ' DESC';
+				} else {
+					$sortdirection = ' ASC';
+				}
+			}
+		} else {
+			if ($keeplevel_sortorder) {
+				$sql .= " WHERE `parentid` IS NULL";
+				$sorttype = $this->getSortType();
+				if ($this->getSortDirection()) {
+					$sortdirection = ' DESC';
+				} else {
+					$sortdirection = ' ASC';
+				}
+			}
+		}
+		if ($sorttype == 'manual') {
+			$sorttype = 'sort_order';
+		}
+		$sql .= ' ORDER BY ' . $sorttype . $sortdirection;
+		$result = query($sql);
+		if ($result) {
+			while ($row = db_fetch_assoc($result)) {
+				$album = newAlbum($row['folder']);
+				if ($album->exists && ($is_fulladmin || $album->isMyItem($rights))) {
+					if ($album->isDynamic()) {
+						if ($is_fulladmin || $rights == ALL_ALBUMS_RIGHTS) {
+							if ($includetitles) {
+								$allalbums[$album->getFileName()] = $album->getTitle();
+							} else {
+								$allalbums[] = $album->getFileName();
+							}
+						}
+					} else {
+						if ($includetitles) {
+							$allalbums[$album->getFileName()] = $album->getTitle();
+						} else {
+							$allalbums[] = $album->getFileName();
+						}
+						if ($keeplevel_sortorder) {
+							$allalbums = array_merge($allalbums, $this->getAllAlbumsFromDB($keeplevel_sortorder, $album, $rights, $includetitles));
+						}
+					}
+				}
+			}
+			db_free_result($result);
+		}
+		return $allalbums;
+	}
 
 	/**
 	 * Returns the a specific album in the array indicated by index.

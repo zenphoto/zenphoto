@@ -1729,7 +1729,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 						</tr>
 					</table>
 				</td>
-				<?php $bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8'); ?>
 				<td class="rightcolumn" valign="top">
 					<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 						<div class="box-edit">
@@ -1915,15 +1914,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 									// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
 									$singlefolder = $fullfolder;
 									$saprefix = '';
-									$salevel = 0;
-
 									while (strstr($singlefolder, '/') !== false) {
 										$singlefolder = substr(strstr($singlefolder, '/'), 1);
 										$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
-										$salevel = ($salevel + 1) % 8;
 									}
-									echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . ';"' : '')
-									. "$disabled>" . $saprefix . $singlefolder . "</option>\n";
+									echo '<option value="' . $fullfolder . '"' . "$disabled>" . $saprefix . $singlefolder . "</option>\n";
 								}
 								?>
 							</select>
@@ -3916,7 +3911,6 @@ function printBulkActions($checkarray, $checkAll = false) {
 	}
 	if ($movecopy) {
 		global $mcr_albumlist, $album;
-		$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
 		?>
 		<div id="mass_movecopy_copy" style="display:none;">
 			<div id="mass_movecopy_data">
@@ -3929,7 +3923,6 @@ function printBulkActions($checkarray, $checkAll = false) {
 					foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
 						$singlefolder = $fullfolder;
 						$saprefix = "";
-						$salevel = 0;
 						$selected = "";
 						if ($album->name == $fullfolder) {
 							$selected = " selected=\"selected\" ";
@@ -3937,11 +3930,9 @@ function printBulkActions($checkarray, $checkAll = false) {
 						// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
 						while (strstr($singlefolder, '/') !== false) {
 							$singlefolder = substr(strstr($singlefolder, '/'), 1);
-							$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
-							$salevel++;
+							$saprefix = "–&nbsp;" . $saprefix;
 						}
-						echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . ';"' : '')
-						. "$selected>" . $saprefix . $singlefolder . "</option>\n";
+						echo '<option value="' . $fullfolder . '"' . "$selected>" . $saprefix . $singlefolder . "</option>\n";
 					}
 					?>
 				</select>

@@ -796,8 +796,7 @@ function deleteItem(&$reports) {
  */
 function printAlbumsSelector($current) {
 	global $_zp_gallery;
-	$albumlist = array();
-	genAlbumList($albumlist, NULL, ALL_ALBUMS_RIGHTS);
+	$albumlist = $_zp_gallery->getAllAlbumsFromDB(false, null, ALL_ALBUMS_RIGHTS);
 	?>
 	<select id="albumselector" name="albumselect">
 		<?php
@@ -812,7 +811,7 @@ function printAlbumsSelector($current) {
 			$level = substr_count($albumname, "/");
 			$arrow = "";
 			for ($count = 1; $count <= $level; $count++) {
-				$arrow .= "» ";
+				$arrow .= "–&nbsp;";
 			}
 			echo "<option value = '" . html_encode($albumobj->name) . "'" . $selected . '>';
 			echo $arrow . $albumobj->getTitle() . unpublishedZenphotoItemCheck($albumobj) . "</option>";
