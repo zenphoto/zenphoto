@@ -484,42 +484,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			echo ' checked="checked"';
 	}
 	
-	/**
-	 * Populatest $list with an one dimensional list with album name and title of all albums or the subalbums of a specific album
-	 * @global obj $_zp_gallery
-	 * @param array $list The array to fill with the album list
-	 * @param obj $curAlbum Optional object of the album to start with
-	 * @param int $rights Rights constant to filter album access by.
-	 */
-	function genAlbumList(&$list, $curAlbum = NULL, $rights = UPLOAD_RIGHTS) {
-		global $_zp_gallery;
-		if (is_null($curAlbum)) {
-			$albums = array();
-			$albumsprime = $_zp_gallery->getAlbums(0);
-			foreach ($albumsprime as $album) { // check for rights
-				$albumobj = newAlbum($album);
-				if ($albumobj->isMyItem($rights)) {
-					$albums[] = $album;
-				}
-			}
-		} else {
-			$albums = $curAlbum->getAlbums(0);
-		}
-		if (is_array($albums)) {
-			foreach ($albums as $folder) {
-				$album = newAlbum($folder);
-				if ($album->isDynamic()) {
-					if ($rights == ALL_ALBUMS_RIGHTS) {
-						$list[$album->getFileName()] = $album->getTitle();
-					}
-				} else {
-					$list[$album->getFileName()] = $album->getTitle();
-					genAlbumList($list, $album, $rights); /* generate for subalbums */
-				}
-			}
-		}
-	}
-
 	define('CUSTOM_OPTION_PREFIX', '_ZP_CUSTOM_');
 	/**
 	 * Generates the HTML for custom options (e.g. theme options, plugin options, etc.)
