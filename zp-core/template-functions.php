@@ -769,30 +769,6 @@ function getCurrentPage() {
 }
 
 /**
- * Returns a list of all albums decendent from an album
- *
- * @param object $album optional album. If absent the current album is used
- * @return array
- */
-function getAllAlbums($album = NULL) {
-	global $_zp_current_album, $_zp_gallery;
-	if (is_null($album))
-		$album = $_zp_current_album;
-	if (!is_object($album))
-		return;
-	$list = array();
-	$subalbums = $album->getAlbums(0);
-	if (is_array($subalbums)) {
-		foreach ($subalbums as $subalbum) {
-			$list[] = $subalbum;
-			$sub = newAlbum($subalbum);
-			$list = array_merge($list, getAllAlbums($sub));
-		}
-	}
-	return $list;
-}
-
-/**
  * Gets an array of the album ids of all accessible albums (publich or user dependend)
  *
  * @param object $obj from whence to get the albums
