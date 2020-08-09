@@ -353,7 +353,7 @@ function myts_date($format, $mytimestamp) {
  * @return bool
  */
 function is_valid_email_zp($input_email) {
-	$chars = "/^([a-z0-9+_]|\\-|\\.)+@(([a-z0-9_]|\\-)+\\.)+[a-z]{2,6}\$/i";
+	$chars = "/^([a-z0-9+_]|\\-|\\.)+@(([a-z0-9_]|\\-)+\\.)+[a-z]{2,256}\$/i";
 	if (strstr($input_email, '@') && strstr($input_email, '.')) {
 		if (preg_match($chars, $input_email)) {
 			return true;
