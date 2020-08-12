@@ -281,7 +281,7 @@ function printContactForm($subject_override = '') {
 		if (getOption('contactform_country') == "required" && empty($mailcontent['country'])) {
 			$error[6] = gettext("a country");
 		}
-		if (getOption('contactform_email') == "required" && (empty($mailcontent['email']) || !is_valid_email_zp($mailcontent['email']))) {
+		if (getOption('contactform_email') == "required" && (empty($mailcontent['email']) || !isValidEmail($mailcontent['email']))) {
 			$error[7] = gettext("a valid email address");
 		}
 		if (getOption('contactform_website') == "required" && empty($mailcontent['website'])) {

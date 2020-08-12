@@ -7,6 +7,19 @@
  */
 
 /**
+ * Determines if the input is an e-mail address. Adapted from WordPress.
+ * Name changed to avoid conflicts in WP integrations.
+ * 
+  * @deprecated Zenphoto 2.0 – Use isValidEmail() instead
+ *
+ * @param string $input_email email address?
+ * @return bool
+ */
+function is_valid_email_zp($input_email) {
+	return isValidEmail($input_email);
+}
+
+/**
  * Populatest $list with an one dimensional list with album name and title of all albums or the subalbums of a specific album
  * 
  * @deprecated Zenphoto 2.0 – Use the gallery class method getAllAlbums() or getAllAlbumsFromDB() instead

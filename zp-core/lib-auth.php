@@ -380,7 +380,7 @@ class Zenphoto_Authority {
 		$emails = array();
 		$admins = $this->getAdministrators();
 		foreach ($admins as $user) {
-			if (($user['rights'] & $rights) && is_valid_email_zp($user['email'])) {
+			if (($user['rights'] & $rights) && isValidEmail($user['email'])) {
 				$name = $user['name'];
 				if (empty($name)) {
 					$name = $user['user'];
