@@ -1580,7 +1580,7 @@ function isValidURL($url) {
 	}
 	/*
 	 * Above does not allow the newer UTF8 internation domain names.
-	 * @source Alexander Terehov https://github.com/terales/php-url-validation-example
+	 * @see Alexander Terehov https://github.com/terales/php-url-validation-example
 	 */
 	if (parse_url($url, PHP_URL_SCHEME) && parse_url($url, PHP_URL_HOST)) {
 		return true;
