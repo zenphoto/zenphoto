@@ -1568,14 +1568,24 @@ function getNotViewableImages() {
   return $_zp_not_viewable_image_list;
 }
 
-  /**
+/**
  * Checks to see if a URL is valid
  *
  * @param string $url the URL being checked
  * @return bool
  */
 function isValidURL($url) {
-	return preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
+	if (filter_var($url, FILTER_VALIDATE_URL)) {
+		return true;
+	}
+	/*
+	 * Above does not allow the newer UTF8 internation domain names.
+	 * @source Alexander Terehov https://github.com/terales/php-url-validation-example
+	 */
+	if (parse_url($url, PHP_URL_SCHEME) && parse_url($url, PHP_URL_HOST)) {
+		return true;
+	}
+	return false;
 }
 
 /**
