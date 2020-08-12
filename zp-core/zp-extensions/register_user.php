@@ -274,7 +274,7 @@ class register_user {
 		} else {
 			$admin_e = $user;
 		}
-		if (!is_valid_email_zp($admin_e)) {
+		if (!isValidEmail($admin_e)) {
 			$_notify = 'invalidemail';
 		}
 		if(getOption('register_user_dataconfirmation') && !isset($_POST['admin_dataconfirmation'])) {
