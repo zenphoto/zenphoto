@@ -204,10 +204,10 @@ echo "\n</head>";
 										?>
 										<input type="checkbox" name="ids[]" value="<?php echo $image->filename; ?>">	
 									</p>
-									<?php
-								}
-								?>
-							</li>
+								</li>
+								<?php
+							}
+							?>
 						</ul>
 						<br class="clearall" />
 

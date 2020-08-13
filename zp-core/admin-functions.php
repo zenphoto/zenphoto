@@ -4008,7 +4008,7 @@ function processAlbumBulkActions() {
 						$albumobj->setOwner($newowner);
 						break;
 					default:
-						$action = call_user_func($action, $albumobj);
+						call_user_func($action, $albumobj);
 						break;
 				}
 				$albumobj->setLastchangeUser($_zp_current_admin_obj->getUser());
@@ -4090,7 +4090,7 @@ function processImageBulkActions($album) {
 						$imageobj->setOwner($newowner);
 						break;
 					default:
-						$action = call_user_func($action, $imageobj);
+						call_user_func($action, $imageobj);
 						break;
 				}
 				$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
