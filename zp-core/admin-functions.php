@@ -5115,28 +5115,28 @@ function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
 			$title = $title_skipscheduledpublishing;
 			$alt = gettext("Scheduled for publishing");
 			$action = '?action=publish&amp;value=1';
-			$icon = 'images/clock_futuredate.png';
+			$icon = WEBPATH . '/' . ZENFOLDER . '/images/clock_futuredate.png';
 		} else if ($obj->hasExpiration()) {
 			$title = $title_skipscheduledexpiration;
 			$alt = gettext("Scheduled for expiration");
 			$action = '?action=publish&amp;value=1';
-			$icon = 'images/clock_expiredate.png';
+			$icon = WEBPATH . '/' . ZENFOLDER . '/images/clock_expiredate.png';
 		} else if ($obj->getShow()) {
 			$title = $title_unpublish;
 			$alt = gettext("Published");
 			$action = '?action=publish&amp;value=0';
-			$icon = 'images/pass.png';
+			$icon = WEBPATH . '/' . ZENFOLDER . '/images/pass.png';
 		} else if (!$obj->getShow()) {
 			if ($obj->hasExpired()) {
 				$title = $title_skipexiration;
 				$alt = gettext("Un-published because expired");
 				$action = '?action=publish&amp;value=1';
-				$icon = 'images/clock_expired.png';
+				$icon = WEBPATH . '/' . ZENFOLDER . '/images/clock_expired.png';
 			} else {
 				$title = $title_publish;
 				$alt = gettext("Un-published");
 				$action = '?action=publish&amp;value=1';
-				$icon = 'images/action.png';
+				$icon = WEBPATH . '/' . ZENFOLDER . '/images/action.png';
 			}
 		}
 		if ($enableedit) {
