@@ -4761,7 +4761,12 @@ function consolidatedEditMessages($subtab) {
 				$messagebox[] = gettext('Tags cleared for images of selected items');
 				break;
 			default:
-				$messagebox[] = $action;
+				$message = zp_apply_filter('bulk_actions_message', $action);
+				if(empty($message)) {
+					$messagebox[] = $action;
+				} else {
+					$messagebox[] = $message;
+				}
 				break;
 		}
 	}
