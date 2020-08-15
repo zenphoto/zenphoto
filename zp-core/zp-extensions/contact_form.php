@@ -446,9 +446,12 @@ function printContactForm($subject_override = '') {
 			$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy, NULL, array($name => $mailaddress));
 		}
 		if ($err_msg) {
-			$msgs = explode('.', $err_msg);
-			unset($msgs[0]); //	the "mail send failed" text
-			unset($msgs[count($msgs)]); //	a trailing empty one
+			$msgs = explode('. ', $err_msg);
+			foreach ($msgs as $key => $line) {
+				if (empty($line) || $line == gettext('Mail send failed') || strpos($line, 'github')) {
+					unset($msgs[$key]);
+				}
+			}
 			?>
 			<div class="errorbox">
 				<strong><?php echo ngettext('Error sending mail:', 'Errors sending mail:', count($msgs)); ?></strong>
