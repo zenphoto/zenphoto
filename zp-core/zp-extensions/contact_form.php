@@ -273,19 +273,19 @@ function printContactForm($subject_override = '') {
 			$error[5] = gettext("a city");
 		}
 		if (getOption('contactform_state') == "required" && empty($mailcontent['state'])) {
-			$error[5] = gettext("a state");
-		}
-		if (getOption('contactform_postal') == "required" && empty($mailcontent['postal'])) {
-			$error[5] = gettext("a postal code");
+			$error[6] = gettext("a state");
 		}
 		if (getOption('contactform_country') == "required" && empty($mailcontent['country'])) {
-			$error[6] = gettext("a country");
+			$error[7] = gettext("a country");
+		}
+		if (getOption('contactform_postal') == "required" && empty($mailcontent['postal'])) {
+			$error[8] = gettext("a postal code");
 		}
 		if (getOption('contactform_email') == "required" && (empty($mailcontent['email']) || !isValidEmail($mailcontent['email']))) {
-			$error[7] = gettext("a valid email address");
+			$error[9] = gettext("a valid email address");
 		}
 		if (getOption('contactform_website') == "required" && empty($mailcontent['website'])) {
-			$error[8] = gettext('a website');
+			$error[10] = gettext('a website');
 		} else {
 			if (!empty($mailcontent['website'])) {
 				if (substr($mailcontent['website'], 0, 7) != "http://" || substr($mailcontent['website'], 0, 8) != "https://") {
@@ -294,25 +294,25 @@ function printContactForm($subject_override = '') {
 			}
 		}
 		if (getOption("contactform_phone") == "required" && empty($mailcontent['phone'])) {
-			$error[9] = gettext("a phone number");
+			$error[11] = gettext("a phone number");
 		}
 		if (empty($mailcontent['subject'])) {
-			$error[10] = gettext("a subject");
+			$error[12] = gettext("a subject");
 		}
 		if (empty($mailcontent['message'])) {
-			$error[11] = gettext("a message");
+			$error[13] = gettext("a message");
 		}
 		// CAPTCHA start
 		if (getOption("contactform_captcha")) {
 			$code_ok = trim(sanitize(isset($_POST['code_h']) ? $_POST['code_h'] : NULL));
 			$code = trim(sanitize(isset($_POST['code']) ? $_POST['code'] : NULL));
 			if (!$_zp_captcha->checkCaptcha($code, $code_ok)) {
-				$error[5] = gettext("the correct CAPTCHA verification code");
+				$error[14] = gettext("the correct CAPTCHA verification code");
 			} // no ticket
 		}
 		// CAPTCHA end
 		if (getOption('contactform_dataconfirmation') && empty($mailcontent['dataconfirmation'])) {
-			$error_dataconfirmation = $error[13] = gettext('Please agree to storage and handling of your data by this website.');
+			$error_dataconfirmation = $error[15] = gettext('Please agree to storage and handling of your data by this website.');
 		}
 		// If required fields are empty or not valide print note
 		if (count($error) != 0) {
@@ -323,7 +323,7 @@ function printContactForm($subject_override = '') {
 					if($error_dataconfirmation) { 
 						echo '<p>' . $error_dataconfirmation . '</p>';
 						// remove data confirmation error so we re-print it with the wrong generic text below
-						unset($err[13]);
+						unset($err[15]);
 					}
 					switch (count($err)) {
 						case 1:
