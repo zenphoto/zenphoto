@@ -2288,8 +2288,11 @@ function XSRFdefender($action) {
  */
 function getXSRFToken($action) {
 	global $_zp_current_admin_obj;
-	$admindata = $_zp_current_admin_obj->getData();
-	unset($admindata['lastvisit']);
+	$admindata = '';
+	if(!is_null($_zp_current_admin_obj)) {
+		$admindata = $_zp_current_admin_obj->getData();
+		unset($admindata['lastvisit']);
+	}
 	return sha1($action . prefix(ZENPHOTO_VERSION) . serialize($admindata) . session_id());
 }
 
