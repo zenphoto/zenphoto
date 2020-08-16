@@ -1775,7 +1775,7 @@ function getPasswordProtectImage($extra) {
 	} else {
 		$image = WEBPATH . '/' . ZENFOLDER . '/images/err-passwordprotected.png';
 	}
-	return '<img src="' . $image . '" ' . $extra . ' alt="protected" />';
+	return '<img src="' . $image . '" ' . $extra . ' alt="protected" loading="lazy" />';
 }
 
 /**
@@ -1810,7 +1810,7 @@ function printAlbumThumbImage($alt, $class = NULL, $id = NULL , $title = null) {
 	$sizes = getSizeDefaultThumb($thumbobj);
 	$size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . html_encode(pathurlencode($thumbobj->getThumb('album'))) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . ' />';
+		$html = '<img src="' . html_encode(pathurlencode($thumbobj->getThumb('album'))) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . ' loading="lazy" />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html);
 		echo $html;
 	} else {
@@ -1881,7 +1881,7 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	}
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
 		$html = '<img src="' . html_encode(pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy))) . '"' . $sizing . ' alt="' . html_encode($alt) . '"' 
-						. $id . $class . $title . ' />';
+						. $id . $class . $title . ' loading="lazy" />';
 		$html = zp_apply_filter('custom_album_thumb_html', $html);
 		echo $html;
 	} else {
@@ -2867,7 +2867,7 @@ function printDefaultSizedImage($alt, $class = NULL, $id = NULL, $title = null) 
 	} 
 	if (isImagePhoto()) { //Print images
 		$html = '<img src="' . html_encode(pathurlencode(getDefaultSizedImage())) . '" alt="' . html_encode($alt) . '"' .
-						' width="' . getDefaultWidth() . '" height="' . getDefaultHeight() . '"' . $class . $id . $title . ' />';
+						' width="' . getDefaultWidth() . '" height="' . getDefaultHeight() . '"' . $class . $id . $title . ' loading="lazy" />';
 		$html = zp_apply_filter('standard_image_html', $html);
 		echo $html;
 	} else { // better be a plugin class then
@@ -3182,7 +3182,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 	if (isImagePhoto() || $thumbStandin) {
 		$html = '<img src="' . html_encode(pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects))) . '"' .
 						' alt="' . html_encode($alt) . '"' .
-						$id . $class . $sizing . $title . ' />';
+						$id . $class . $sizing . $title . ' loading="lazy" />';
 		$html = zp_apply_filter('custom_image_html', $html, $thumbStandin);
 		echo $html;
 	} else { // better be a plugin

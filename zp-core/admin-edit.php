@@ -1022,7 +1022,7 @@ echo "\n</head>";
 																	<?php
 																}
 																?>
-																	<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large-uncropped'))); ?>" alt="<?php echo html_encode($image->filename); ?>"																	/>
+																	<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large-uncropped'))); ?>" alt="<?php echo html_encode($image->filename); ?>" loading="lazy"/>
 																<?php if (isImagePhoto($image)) {
 																	?>
 																	</a>

@@ -190,7 +190,7 @@ echo "\n</head>";
 											 src="<?php echo getAdminThumb($image, 'small-uncropped'); ?>"
 											 alt="<?php echo html_encode($image->getTitle()); ?>"
 											 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
-										  />
+										   loading="lazy" />
 									</div>
 									<p>
 										<?php printPublishIconLinkGallery($image, true) ?>

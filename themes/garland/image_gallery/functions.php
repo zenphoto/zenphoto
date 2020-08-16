@@ -130,7 +130,7 @@ class imagegallery {
 												<a href="<?php echo html_encode(getDefaultSizedImage()); ?>">
 													<img src="<?php echo html_encode(pathurlencode(getImageThumb())); ?>"
 															 class="image<?php echo $lastImage; ?>"
-															 alt="<?php echo html_encode(getImageDesc()); ?>">
+															 alt="<?php echo html_encode(getImageDesc()); ?>" loading="lazy">
 												</a>
 											</li>
 											<?php
