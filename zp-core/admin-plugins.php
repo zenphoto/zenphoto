@@ -158,6 +158,15 @@ $subtab = printSubtabs();
 				$third_party_plugin = strpos($paths[$extension], ZENFOLDER) === false;
 				$pluginStream = file_get_contents($paths[$extension]);
 				$parserr = 0;
+				$plugin_name = '';
+				if ($str = isolate('$plugin_name', $pluginStream)) {
+					if (false === eval($str)) {
+						$plugin_name = ''; // silent fallback on failure
+					}
+				} 
+				if(empty($plugin_name)) {
+					$plugin_name = $extension;
+				}
 				$plugin_description = '';
 				if ($str = isolate('$plugin_description', $pluginStream)) {
 					if (false === eval($str)) {
@@ -207,14 +216,14 @@ $subtab = printSubtabs();
 				$plugin_site = '';
 				if ($str = isolate('$plugin_siteurl', $pluginStream)) {
 					if (false === eval($str)) {
-						$parserr = $parserr | 10;
+						$parserr = $parserr | 7;
 						$plugin_siteurl = gettext('<strong>Error parsing <em>plugin_siteurl</em> string!</strong>');
 					}
 				} 
 				$plugin_date = '';
 				if ($str = isolate('$plugin_date', $pluginStream)) {
 					if (false === eval($str)) {
-						$parserr = $parserr | 11;
+						$parserr = $parserr | 8;
 						$plugin_date = gettext('<strong>Error parsing <em>plugin_date</em> string!</strong>');
 					}
 				} 
@@ -327,7 +336,7 @@ $subtab = printSubtabs();
 								<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?> />
 								<?php
 							}
-							echo '<strong>' . $extension . '</strong>';
+							echo '<strong>' . html_encode($plugin_name) . '</strong>';
 							if (!empty($plugin_version)) {
 								echo ' v' . $plugin_version;
 							}

@@ -3100,6 +3100,15 @@ Zenphoto_Authority::printPasswordFormJS();
 									$option_interface = NULL;
 									$path = getPlugin($extension . '.php');
 									$pluginStream = file_get_contents($path);
+									$plugin_name = '';
+									if ($str = isolate('$plugin_name', $pluginStream)) {
+										if (false === eval($str)) {
+											$plugin_name = '';
+										}
+									} 
+									if(empty($plugin_name)) {
+										$plugin_name = $extension;
+									}
 									$plugin_description = '';
 									if ($str = isolate('$plugin_description', $pluginStream)) {
 										if (false === eval($str)) {
@@ -3160,7 +3169,7 @@ Zenphoto_Authority::printPasswordFormJS();
 																<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>"><img class="icon-position-top3" src="images/options.png" alt="" />
 																		<?php
 																	}
-																	echo $extension;
+																	echo html_encode($plugin_name);
 																	if(!empty($plugin_version)) {
 																		echo ' v'. html_encode($plugin_version);
 																	}
