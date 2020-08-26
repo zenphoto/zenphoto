@@ -17,7 +17,7 @@ if (isset($_GET['licenseAccept'])) {
 		$return_to = $_SESSION['license_return'];
 		unset($_SESSION['license_return']);
 	} else {
-		$return_to = FULLWEBPATH . '/admin.php';
+		$return_to = FULLWEBPATH . '/' . ZENFOLDER . '/admin.php';
 	}
 	setOption('license_accepted', ZENPHOTO_VERSION );
 	redirectURL($return_to);
