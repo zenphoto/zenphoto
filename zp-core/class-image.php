@@ -1166,7 +1166,7 @@ class Image extends MediaObject {
 		$html = '<img src="' . html_encode(pathurlencode($this->getSizedImage($size))) . '" alt="' . html_encode($this->getTitle()) . '"' .
 						' width="' . $neww . '" height="' . $newh . '"' .
 						(($class) ? " class=\"$class\"" : "") . " />";
-		$html = zp_apply_filter('standard_image_html', $html);
+		$html = zp_apply_filter('standard_image_html', $html, $this);
 		return $html;
 	}
 

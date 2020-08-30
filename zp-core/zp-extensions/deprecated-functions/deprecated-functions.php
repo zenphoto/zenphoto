@@ -376,7 +376,7 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
 					$html = '<img src="' . html_encode(pathurlencode($randomImage->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($randomImage->getTitle()) . '" />' . "\n";
 					break;
 			}
-			echo zp_apply_filter('custom_image_html', $html, false);
+			echo zp_apply_filter('custom_image_html', $html, false, $randomImage);
 			echo "</a>";
 			echo "</li>\n";
 		} else {

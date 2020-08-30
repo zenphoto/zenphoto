@@ -1811,7 +1811,7 @@ function printAlbumThumbImage($alt, $class = NULL, $id = NULL , $title = null) {
 	$size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
 		$html = '<img src="' . html_encode(pathurlencode($thumbobj->getThumb('album'))) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . ' loading="lazy" />';
-		$html = zp_apply_filter('standard_album_thumb_html', $html);
+		$html = zp_apply_filter('standard_album_thumb_html', $html, $thumbobj);
 		echo $html;
 	} else {
 		echo getPasswordProtectImage($size);
@@ -1866,9 +1866,10 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	if (!empty($pwd)) {
 		$class .= " password_protected";
 	}
+	$albumthumbobj = $_zp_current_album->getAlbumThumbImage();
 	$class = trim($class);
 	/* set the HTML image width and height parameters in case this image was "imageDefault.png" substituted for no thumbnail then the thumb layout is preserved */
-	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $_zp_current_album->getAlbumThumbImage(), 'thumb');
+	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $albumthumbobj, 'thumb');
 	$sizing = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
 	if($class) {
 		$class = ' class="' . $class . '"';
@@ -1882,7 +1883,7 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
 		$html = '<img src="' . html_encode(pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy))) . '"' . $sizing . ' alt="' . html_encode($alt) . '"' 
 						. $id . $class . $title . ' loading="lazy" />';
-		$html = zp_apply_filter('custom_album_thumb_html', $html);
+		$html = zp_apply_filter('custom_album_thumb_html', $html, $albumthumbobj);
 		echo $html;
 	} else {
 		echo getPasswordProtectImage($sizing);
@@ -2868,7 +2869,7 @@ function printDefaultSizedImage($alt, $class = NULL, $id = NULL, $title = null) 
 	if (isImagePhoto()) { //Print images
 		$html = '<img src="' . html_encode(pathurlencode(getDefaultSizedImage())) . '" alt="' . html_encode($alt) . '"' .
 						' width="' . getDefaultWidth() . '" height="' . getDefaultHeight() . '"' . $class . $id . $title . ' loading="lazy" />';
-		$html = zp_apply_filter('standard_image_html', $html);
+		$html = zp_apply_filter('standard_image_html', $html, $_zp_current_image);
 		echo $html;
 	} else { // better be a plugin class then
 		echo $_zp_current_image->getContent();
@@ -2919,7 +2920,7 @@ function printImageThumb($alt, $class = NULL, $id = NULL, $title = null) {
 		$title = ' title="' . html_encode($title) . '"';
 	}
 	$html = '<img src="' . html_encode(pathurlencode($url)) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
-	$html = zp_apply_filter('standard_image_thumb_html', $html);
+	$html = zp_apply_filter('standard_image_thumb_html', $html, $_zp_current_image);
 	echo $html;
 }
 
@@ -3183,7 +3184,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		$html = '<img src="' . html_encode(pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects))) . '"' .
 						' alt="' . html_encode($alt) . '"' .
 						$id . $class . $sizing . $title . ' loading="lazy" />';
-		$html = zp_apply_filter('custom_image_html', $html, $thumbStandin);
+		$html = zp_apply_filter('custom_image_html', $html, $thumbStandin, $_zp_current_image);
 		echo $html;
 	} else { // better be a plugin
 		echo $_zp_current_image->getContent($width, $height);
