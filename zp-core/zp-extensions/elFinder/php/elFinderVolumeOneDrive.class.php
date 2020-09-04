@@ -134,7 +134,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      * @throws Exception Thrown if the redirect URI of this Client instance's
      *                    state is not set
      */
-    protected function _od_obtainAccessToken($client_id, $client_secret, $code)
+    protected function _od_obtainAccessToken($client_id, $client_secret, $code, $nodeid)
     {
         if (null === $client_id) {
             return 'The client ID must be set to call obtainAccessToken()';
@@ -144,6 +144,11 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
             return 'The client Secret must be set to call obtainAccessToken()';
         }
 
+        $redirect = elFinder::getConnectorUrl();
+        if (strpos($redirect, '/netmount/onedrive/') === false) {
+            $redirect .= '/netmount/onedrive/' . ($nodeid === 'elfinder'? '1' : $nodeid);
+        }
+
         $url = self::TOKEN_URL;
 
         $curl = curl_init();
@@ -151,7 +156,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
         $fields = http_build_query(
             array(
                 'client_id' => $client_id,
-                'redirect_uri' => elFinder::getConnectorUrl(),
+                'redirect_uri' => $redirect,
                 'client_secret' => $client_secret,
                 'code' => $code,
                 'grant_type' => 'authorization_code',
@@ -581,7 +586,8 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                 elFinder::extendTimeLimit();
                 $putFp = tmpfile();
                 fwrite($putFp, $send);
-                fseek($putFp, 0);
+                rewind($putFp);
+                $_size = strlen($send);
                 $url = $sess->uploadUrl;
                 $curl = curl_init();
                 $options = array(
@@ -589,8 +595,9 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                     CURLOPT_PUT => true,
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_INFILE => $putFp,
+                    CURLOPT_INFILESIZE => $_size,
                     CURLOPT_HTTPHEADER => array(
-                        'Content-Length: ' . strlen($send),
+                        'Content-Length: ' . $_size,
                         'Content-Range: bytes ' . $range,
                     ),
                 );
@@ -751,19 +758,41 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                 return array('exit' => true, 'body' => '{msg:errNetMountNoDriver}');
             }
 
-            if (isset($_GET['code'])) {
+            $itpCare = isset($options['code']);
+            $code = $itpCare? $options['code'] : (isset($_GET['code'])? $_GET['code'] : '');
+            if ($code) {
                 try {
-                    // Obtain the token using the code received by the OneDrive API
-                    $this->session->set('OneDriveTokens',
-                        $this->_od_obtainAccessToken($options['client_id'], $options['client_secret'], $_GET['code']));
+                    if (!empty($options['id'])) {
+                        // Obtain the token using the code received by the OneDrive API
+                        $this->session->set('OneDriveTokens',
+                            $this->_od_obtainAccessToken($options['client_id'], $options['client_secret'], $code, $options['id']));
 
-                    $out = array(
-                        'node' => $options['id'],
-                        'json' => '{"protocol": "onedrive", "mode": "done", "reset": 1}',
-                        'bind' => 'netmount',
-                    );
-
-                    return array('exit' => 'callback', 'out' => $out);
+                        $out = array(
+                            'node' => $options['id'],
+                            'json' => '{"protocol": "onedrive", "mode": "done", "reset": 1}',
+                            'bind' => 'netmount',
+                        );
+                    } else {
+                        $nodeid = ($_GET['host'] === '1')? 'elfinder' : $_GET['host'];
+                        $out = array(
+                            'node' => $nodeid,
+                            'json' => json_encode(array(
+                                'protocol' => 'onedrive',
+                                'host' => $nodeid,
+                                'mode' => 'redirect',
+                                'options' => array(
+                                    'id' => $nodeid,
+                                    'code'=> $code
+                                )
+                            )),
+                            'bind' => 'netmount'
+                        );
+                    }
+                    if (!$itpCare) {
+                        return array('exit' => 'callback', 'out' => $out);
+                    } else {
+                        return array('exit' => true, 'body' => $out['json']);
+                    }
                 } catch (Exception $e) {
                     $out = array(
                         'node' => $options['id'],
@@ -810,20 +839,6 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                 }
 
                 if ($result === false) {
-                    $cdata = '';
-                    $innerKeys = array('cmd', 'host', 'options', 'pass', 'protocol', 'user');
-                    $this->ARGS = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST : $_GET;
-                    foreach ($this->ARGS as $k => $v) {
-                        if (!in_array($k, $innerKeys)) {
-                            $cdata .= '&' . $k . '=' . rawurlencode($v);
-                        }
-                    }
-                    if (empty($options['url'])) {
-                        $options['url'] = elFinder::getConnectorUrl();
-                    }
-                    $callback = $options['url']
-                        . (strpos($options['url'], '?') !== false? '&' : '?') . 'cmd=netmount&protocol=onedrive&host=onedrive.com&user=init&pass=return&node=' . $options['id'] . $cdata;
-
                     try {
                         $this->session->set('OneDriveTokens', (object)array('token' => null));
 
@@ -833,21 +848,20 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                             $offline = ' offline_access';
                         }
 
-                        $redirect_uri = $options['url'] . '/netmount/onedrive/1';
+                        $redirect_uri = elFinder::getConnectorUrl() . '/netmount/onedrive/' . ($options['id'] === 'elfinder'? '1' : $options['id']);
                         $url = self::AUTH_URL
                             . '?client_id=' . urlencode($options['client_id'])
                             . '&scope=' . urlencode('files.readwrite.all' . $offline)
                             . '&response_type=code'
                             . '&redirect_uri=' . urlencode($redirect_uri);
 
-                        $url .= '&oauth_callback=' . rawurlencode($callback);
                     } catch (Exception $e) {
                         return array('exit' => true, 'body' => '{msg:errAccess}');
                     }
 
-                    $html = '<input id="elf-volumedriver-onedrive-host-btn" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="{msg:btnApprove}" type="button" onclick="window.open(\'' . $url . '\')">';
+                    $html = '<input id="elf-volumedriver-onedrive-host-btn" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="{msg:btnApprove}" type="button">';
                     $html .= '<script>
-                            $("#' . $options['id'] . '").elfinder("instance").trigger("netmount", {protocol: "onedrive", mode: "makebtn"});
+                            $("#' . $options['id'] . '").elfinder("instance").trigger("netmount", {protocol: "onedrive", mode: "makebtn", url: "' . $url . '"});
                             </script>';
 
                     return array('exit' => true, 'body' => $html);
@@ -1655,6 +1669,16 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                 'headers' => array('Authorization: Bearer ' . $this->token->data->access_token),
             );
 
+            // to support range request
+            if (func_num_args() > 2) {
+                $opts = func_get_arg(2);
+            } else {
+                $opts = array();
+            }
+            if (!empty($opts['httpheaders'])) {
+                $data['headers'] = array_merge($opts['httpheaders'], $data['headers']);
+            }
+
             return elFinder::getStreamByUrl($data);
         }
 
@@ -1671,7 +1695,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      **/
     protected function _fclose($fp, $path = '')
     {
-        fclose($fp);
+        is_resource($fp) && fclose($fp);
         if ($path) {
             unlink($this->getTempFile($path));
         }

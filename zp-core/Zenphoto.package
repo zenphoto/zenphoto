@@ -1133,11 +1133,18 @@ zp-core/zp-extensions/elFinder/js/i18n/help/ko.html.js
 zp-core/zp-extensions/elFinder/js/i18n/help/pl.html.js
 zp-core/zp-extensions/elFinder/js/i18n/help/ru.html.js
 zp-core/zp-extensions/elFinder/js/i18n/help/sk.html.js
+zp-core/zp-extensions/elFinder/js/i18n/help/tr.html.js
 zp-core/zp-extensions/elFinder/js/proxy
 zp-core/zp-extensions/elFinder/js/proxy/elFinderSupportVer1.js
+zp-core/zp-extensions/elFinder/js/worker
+zp-core/zp-extensions/elFinder/js/worker/calcfilehash.js
+zp-core/zp-extensions/elFinder/js/worker/quicklook.tiff.js
+zp-core/zp-extensions/elFinder/js/worker/quicklook.unzip.js
 zp-core/zp-extensions/elFinder/php
+zp-core/zp-extensions/elFinder/php/.tmp
 zp-core/zp-extensions/elFinder/php/MySQLStorage.sql
 zp-core/zp-extensions/elFinder/php/autoload.php
+zp-core/zp-extensions/elFinder/php/connector.maximal.php-dist
 zp-core/zp-extensions/elFinder/php/connector.minimal.php-dist
 zp-core/zp-extensions/elFinder/php/connector_zp.php
 zp-core/zp-extensions/elFinder/php/editors
@@ -1695,4 +1702,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1697
+1704

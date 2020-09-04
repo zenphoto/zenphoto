@@ -126,15 +126,19 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends ExtDriver
 
             }
 
-            if ($options['user'] === 'init') {
+            $itpCare = isset($options['code']);
+            $code = $itpCare? $options['code'] : (isset($_GET['code'])? $_GET['code'] : '');
+            if ($code || $options['user'] === 'init') {
                 if (empty($options['url'])) {
                     $options['url'] = elFinder::getConnectorUrl();
                 }
 
-                $callback = $options['url'] . (strpos($options['url'], '?') !== false? '&' : '?') . 'cmd=netmount&protocol=googledrive&host=1';
-                $client->setRedirectUri($callback);
+                if (isset($options['id'])) {
+                    $callback = $options['url'] . (strpos($options['url'], '?') !== false? '&' : '?') . 'cmd=netmount&protocol=googledrive&host=' . ($options['id'] === 'elfinder'? '1' : $options['id']);
+                    $client->setRedirectUri($callback);
+                }
 
-                if (!$aToken && empty($_GET['code'])) {
+                if (!$aToken && empty($code)) {
                     $client->setScopes([Google_Service_Drive::DRIVE]);
                     if (!empty($options['offline'])) {
                         $client->setApprovalPrompt('force');
@@ -142,9 +146,9 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends ExtDriver
                     }
                     $url = $client->createAuthUrl();
 
-                    $html = '<input id="elf-volumedriver-googledrive-host-btn" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="{msg:btnApprove}" type="button" onclick="window.open(\'' . $url . '\')">';
+                    $html = '<input id="elf-volumedriver-googledrive-host-btn" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="{msg:btnApprove}" type="button">';
                     $html .= '<script>
-                        $("#' . $options['id'] . '").elfinder("instance").trigger("netmount", {protocol: "googledrive", mode: "makebtn"});
+                        $("#' . $options['id'] . '").elfinder("instance").trigger("netmount", {protocol: "googledrive", mode: "makebtn", url: "' . $url . '"});
                     </script>';
                     if (empty($options['pass']) && $options['host'] !== '1') {
                         $options['pass'] = 'return';
@@ -159,16 +163,38 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends ExtDriver
                         return array('exit' => 'callback', 'out' => $out);
                     }
                 } else {
-                    if (!empty($_GET['code'])) {
-                        $aToken = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-                        $options['access_token'] = $aToken;
-                        $this->session->set('GoogleDriveTokens', $aToken)->set('GoogleDriveAuthParams', $options);
-                        $out = array(
-                            'node' => $options['id'],
-                            'json' => '{"protocol": "googledrive", "mode": "done", "reset": 1}',
-                            'bind' => 'netmount'
-                        );
-                        return array('exit' => 'callback', 'out' => $out);
+                    if ($code) {
+                        if (!empty($options['id'])) {
+                            $aToken = $client->fetchAccessTokenWithAuthCode($code);
+                            $options['access_token'] = $aToken;
+                            unset($options['code']);
+                            $this->session->set('GoogleDriveTokens', $aToken)->set('GoogleDriveAuthParams', $options);
+                            $out = array(
+                                'node' => $options['id'],
+                                'json' => '{"protocol": "googledrive", "mode": "done", "reset": 1}',
+                                'bind' => 'netmount'
+                            );
+                        } else {
+                            $nodeid = ($_GET['host'] === '1')? 'elfinder' : $_GET['host'];
+                            $out = array(
+                                'node' => $nodeid,
+                                'json' => json_encode(array(
+                                    'protocol' => 'googledrive',
+                                    'host' => $nodeid,
+                                    'mode' => 'redirect',
+                                    'options' => array(
+                                        'id' => $nodeid,
+                                        'code'=> $code
+                                    )
+                                )),
+                                'bind' => 'netmount'
+                            );
+                        }
+                        if (!$itpCare) {
+                            return array('exit' => 'callback', 'out' => $out);
+                        } else {
+                            return array('exit' => true, 'body' => $out['json']);
+                        }
                     }
                     $folders = [];
                     foreach ($service->files->listFiles([

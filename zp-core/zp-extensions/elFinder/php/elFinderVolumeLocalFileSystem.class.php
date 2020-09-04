@@ -705,7 +705,7 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
     protected function _dimensions($path, $mime)
     {
         clearstatcache();
-        return strpos($mime, 'image') === 0 && is_readable($path) && ($s = getimagesize($path)) !== false
+        return strpos($mime, 'image') === 0 && is_readable($path) && filesize($path) && ($s = getimagesize($path)) !== false
             ? $s[0] . 'x' . $s[1]
             : false;
     }
@@ -1144,7 +1144,11 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
             }
 
             // extract in quarantine
-            $this->unpackArchive($path, $arc, $archive ? true : $dir);
+            try {
+                $this->unpackArchive($path, $arc, $archive ? true : $dir);
+            } catch(Exception $e) {
+                return $this->setError($e->getMessage());
+            }
 
             // get files list
             try {
@@ -1415,5 +1419,24 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
         return ($this->stripos($name, $this->doSearchCurrentQuery['q']) === false) ? false : true;
     }
 
+    /**
+     * Creates a symbolic link
+     *
+     * @param      string   $target  The target
+     * @param      string   $link    The link
+     *
+     * @return     boolean  ( result of symlink() )
+     */
+    protected function localFileSystemSymlink($target, $link)
+    {
+        $res = false;
+        $errlev = error_reporting();
+        error_reporting($errlev ^ E_WARNING);
+        if ($res = symlink(realpath($target), $link)) {
+            $res = is_readable($link);
+        }
+        error_reporting($errlev);
+        return $res;
+    }
 } // END class 
 
