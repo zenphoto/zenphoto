@@ -2362,7 +2362,7 @@ function cron_starter($script, $params, $offsetPath, $inline = false) {
 function zp_loggedin($rights = ALL_RIGHTS) {
 	global $_zp_loggedin, $_zp_current_admin_obj;
 	$loggedin = $_zp_loggedin & ($rights | ADMIN_RIGHTS);
-	if($loggedin) {
+	if($loggedin && $_zp_current_admin_obj) {
 		$_zp_current_admin_obj->updateLastVisit();
 	}
 	return $loggedin;
