@@ -186,11 +186,10 @@ echo "\n</head>";
 								?>
 								<li id="id_<?php echo $image->getID(); ?>">
 									<div class="imagethumb_wrapper">
-									<img class="imagethumb"
-											 src="<?php echo getAdminThumb($image, 'small-uncropped'); ?>"
-											 alt="<?php echo html_encode($image->getTitle()); ?>"
-											 title="<?php echo html_encode($image->getTitle()) . ' (' . html_encode($image->getFileName()) . ')'; ?>"
-										   loading="lazy" />
+										<?php 
+										$title_attr = $image->getTitle(). ' (' . html_encode($image->getFileName()) . ')';
+										printAdminThumb($image, 'small-uncropped', 'imagethumb','', $title_attr, $image->getTitle());
+										?>
 									</div>
 									<p>
 										<?php printPublishIconLinkGallery($image, true) ?>

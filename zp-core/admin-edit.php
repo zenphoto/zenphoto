@@ -1021,9 +1021,8 @@ echo "\n</head>";
 																		<img src="images/magnify.png" alt="" class="adminedit_fullimage-icon" />
 																	<?php
 																}
-																?>
-																	<img id="thumb_img-<?php echo $currentimage; ?>" src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large-uncropped'))); ?>" alt="<?php echo html_encode($image->filename); ?>" loading="lazy"/>
-																<?php if (isImagePhoto($image)) {
+																printAdminThumb($image, 'large-uncropped', '', 'thumb_img-'.$currentimage, '', $image->filename);
+																if (isImagePhoto($image)) {
 																	?>
 																	</a>
 																	<?php

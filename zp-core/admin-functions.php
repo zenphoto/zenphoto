@@ -2065,20 +2065,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 			<div class="page-list_albumthumb">
 				<?php
-				if ($show_thumb) {
-					$thumbimage = $album->getAlbumThumbImage();
-					$thumb = getAdminThumb($thumbimage, 'small');
-				} else {
-					$thumb = 'images/thumb_standin.png';
-				}
 				if ($enableEdit) {
 					?>
 					<a href="?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
 						<?php
 					}
-					?>
-					<img src="<?php echo html_encode(pathurlencode($thumb)); ?>" width="40" height="40" alt="" title="album thumb" loading="lazy" />
-					<?php
+					if ($show_thumb) {
+						$thumbimage = $album->getAlbumThumbImage();
+						printAdminThumb($thumbimage, 'small', '','', gettext('Album thumb'));
+					} else {
+						?>
+						<img src="images/thumb_standin.png" width="40" height="40" alt="" title="<?php echo gettext('Album thumb'); ?>" loading="lazy" />
+						<?php
+					}
 					if ($enableEdit) {
 						?>
 					</a>
@@ -4575,38 +4574,94 @@ function getPluginTabs() {
 	return array($tabs, $default, $currentlist, $paths, $member);
 }
 
-function getAdminThumb($image, $size) {
+/**
+ * Gets the URL of the adminthumb
+ * 
+ * @param obj $image The image object
+ * @param string $size Adminthumb sizeame: 'large', 'small', 'large-uncropped', 'small-uncropped'
+ * @return string
+ */
+function getAdminThumb($imageobj, $size = 'small') {
 	switch ($size) {
 		case 'large':
-			return $image->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1);
+			return $imageobj->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1);
 		case 'small':
 		default:
-			return $image->getCustomImage(40, NULL, NULL, 40, 40, NULL, NULL, -1);
+			return $imageobj->getCustomImage(40, NULL, NULL, 40, 40, NULL, NULL, -1);
 		case 'large-uncropped':
 		case 'small-uncropped':
 			$thumbsize = $width = $height = null;
 			switch ($size) {
 				case 'large-uncropped':
-					if ($image->isSquare('thumb')) {
+					if ($imageobj->isSquare('thumb')) {
 						$thumbsize = 135;
-					} else if ($image->isLandscape('thumb')) {
+					} else if ($imageobj->isLandscape('thumb')) {
 						$width = 135;
-					} else if ($image->isPortrait('thumb')) {
+					} else if ($imageobj->isPortrait('thumb')) {
 						$height = 135;
 					}
-					return $image->getCustomImage($thumbsize, $width, $height, NULL, NULL, NULL, NULL, -1);
+					return $imageobj->getCustomImage($thumbsize, $width, $height, NULL, NULL, NULL, NULL, -1);
 				case 'small-uncropped':
-					if ($image->isSquare('thumb')) {
+					if ($imageobj->isSquare('thumb')) {
 						$thumbsize = 110;
-					} else if ($image->isLandscape('thumb')) {
+					} else if ($imageobj->isLandscape('thumb')) {
 						$width = 110;
-					} else if ($image->isPortrait('thumb')) {
+					} else if ($imageobj->isPortrait('thumb')) {
 						$height = 110;
 					}
-					return $image->getCustomImage($thumbsize, $width, $height, NULL, NULL, NULL, NULL, -1);
+					return $imageobj->getCustomImage($thumbsize, $width, $height, NULL, NULL, NULL, NULL, -1);
 			}
 			break;
 	}
+}
+
+/**
+ * Returns the full HTML element of an admin thumb
+ * Applies the filters 'adminthumb_html'
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @param obj $imageobj The image object
+ * @param string $size Adminthumb sizeame: 'large', 'small', 'large-uncropped', 'small-uncropped'
+ * @param string $class Class name(s) to attach
+ * @param string $id ID to attach
+ * @param string $title Title attribute
+ * @param string $alt Alt attribute
+ * @return string
+ */
+function getAdminThumbHTML($imageobj, $size = 'small', $class = null, $id = null, $title = null, $alt = null) {
+	if ($class) {
+		$class = ' class="' . $class . '"';
+	}
+	if ($id) {
+		$id = ' id="' . $id . '"';
+	}
+	if ($title) {
+		$title = ' title="' . html_encode($title) . '"';
+	}
+	if ($alt) {
+		$alt = ' alt="' . html_encode($alt) . '"';
+	}
+	$src = getAdminThumb($imageobj, $size);
+	$html = '<img src="' .  html_encode(pathurlencode($src)) . '"' . $class . $id . $title . $alt . ' loading="lazy" />';
+	return zp_apply_filter('adminthumb_html', $html, $size, $imageobj);
+}
+
+/**
+ * Prints an admin thumb
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @param obj $imageobj The image object
+ * @param string $size Adminthumb sizeame: 'large', 'small', 'large-uncropped', 'small-uncropped'
+ * @param string $class Class name(s) to attach
+ * @param string $id ID to attach
+ * @param string $title Title attribute
+ * @param string $alt Alt attribute
+ * @return string
+ */
+function printAdminThumb($imageobj, $size = 'small', $class = null, $id = null, $title = null, $alt = null) {
+	echo getAdminThumbHTML($imageobj, $size, $class, $id, $title, $alt);
 }
 
 /**

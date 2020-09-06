@@ -266,13 +266,14 @@ echo '</head>';
 									<?php
 									foreach ($publish_albums_list as $analbum => $albumid) {
 										$album = newAlbum($analbum);
-										$thumbimage = $album->getAlbumThumbImage();
-										$thumb = getAdminThumb($thumbimage, 'large');
 										?>
 										<li>
 											<label>
 												<input type="checkbox" class="checkAuto" name="<?php echo postIndexEncode($analbum); ?>" value="<?php echo $albumid; ?>" class="albumcheck" />
-												<img src="<?php echo html_encode(pathurlencode($thumb)); ?>" width="60" height="60" alt="" title="album thumb" loading="lazy" />
+												<?php
+												$thumbimage = $album->getAlbumThumbImage();
+												printAdminThumb($thumbimage, 'large', '', '', gettext('Album thumb'));
+												?>
 												<?php echo $album->name; ?>
 											</label>
 											<a href="<?php echo $album->getLink(); ?>" title="<?php echo gettext('view'); ?>"> (<?php echo gettext('view'); ?>)</a>
@@ -431,8 +432,10 @@ echo '</head>';
 																	</label>
 																</td>
 																<td>
-																	<?php $image = newImage($album, $display); ?>
-																	<img src="<?php echo html_encode(pathurlencode(getAdminThumb($image, 'large'))); ?>" alt="<?php echo $image->filename; ?>"/>
+																	<?php 
+																	$image = newImage($album, $display); 
+																	printAdminThumb($image, 'large', '', '', '', $image->filename);
+																	?>
 																</td>
 																<td>
 																	<?php printf(gettext('%s'), $display); ?><a href="<?php echo html_encode($image->getLink()); ?>" title="<?php echo html_encode($image->getTitle()); ?>"> (<?php echo gettext('View'); ?>)</a>
