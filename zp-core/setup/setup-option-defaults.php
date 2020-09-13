@@ -156,8 +156,8 @@ $general_tags = "a => (href =>() title =>() target=>() class=>() id=>() rel=>())
 				"address=>(class=>() id=>() style=>())\n" .
 				"span=>(class=>() id=>() style=>())\n" .
 				"div=>(class=>() id=>() style=>())\n" .
-				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>() size=>() srcset=>())\n" .
-				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>())\n" .
+				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>() sizse=>() srcset=>() loading=>())\n" .
+				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>() loading=>())\n" .
 				"figure=>(class=>() id=>() style=>())\n" .
 				"figcaption=>(class=>() id=>() style=>())\n" .
 				"article=>(class=>() id=>() style=>())\n" .
