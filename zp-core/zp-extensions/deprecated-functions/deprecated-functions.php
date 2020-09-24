@@ -177,15 +177,15 @@ function filterImageQuery($result, $source) {
  * Returns a randomly selected image from the gallery. (May be NULL if none exists)
  * @param bool $daily set to true and the picture changes only once a day.
  * 
- * @deprecated Zenphoto 2.0 Use the image_album_statiscic plugin function getImageStatisic()with appropiate parameters – For daily use the same plugin's function getPictureOfTheDay()
+ * @deprecated Zenphoto 2.0 Use the image_album_statistics plugin function getImageStatistic()with appropiate parameters – For daily use the same plugin's function getPictureOfTheDay()
  *
  * @return object
  */
 function getRandomImages($daily = false) {
 	global $_zp_gallery;
-	$deprecatednote = gettext("Use the image_album_statiscic plugin function getImageStatisic()with appropiate parameters");
+	$deprecatednote = gettext("Use the image_album_statistics plugin function getImageStatistic()with appropiate parameters");
 	if($daily) {
-		$deprecatednote .= ' ' . gettext("For picture of the day functionality use the image_album_statiscic plugin function getPictureOfTheDay()-");
+		$deprecatednote .= ' ' . gettext("For picture of the day functionality use the image_album_statistics plugin function getPictureOfTheDay()");
 	}
 	deprecated_functions::notify($deprecatednote);
 	if ($daily) {
@@ -328,7 +328,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
  * @param bool $fullimagelink 'false' (default) for the image page link , 'true' for the unprotected full image link (to use Colorbox for example)
  */
 function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlbum = '', $width = NULL, $height = NULL, $crop = NULL, $fullimagelink = false) {
-	deprecated_functions::notify(gettext("Use the image_album_statiscic plugin function printImageStatisic()with appropiate parameters. You might need to adjust your theme's CSS."));
+	deprecated_functions::notify(gettext("Use the image_album_statistics plugin function getImageStatistic()with appropiate parameters. You might need to adjust your theme's CSS."));
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
 	} else {
