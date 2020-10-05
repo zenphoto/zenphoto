@@ -1027,7 +1027,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<?php
 										}
 										?>
-										<p><?php echo gettext('If this option is selected Zenphoto will use <a href="http://www.w3schools.com/php/php_sessions.asp">PHP sessions</a> instead of cookies to make visitor settings persistent.'); ?></p>
+										<p><?php echo gettext('If this option is selected Zenphoto will use <a href="https://www.php.net/manual/en/intro.session.php">PHP sessions</a> instead of cookies to make visitor settings persistent.'); ?></p>
 										<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. ') ?>
 									</td>
 								</tr>
@@ -3304,17 +3304,21 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<?php echo gettext('Tie cookies to the IP address of the browser.'); ?>
-										<p class="notebox">
-											<?php
-											if (!getOption('IP_tied_cookies')) {
-												echo ' ' . gettext('<strong>Note</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled.') . ' ';
-											}
-											echo gettext('You <strong>WILL</strong> have to login after changing this option.');
-											if (!getOption('IP_tied_cookies')) {
-												echo ' ' . gettext('If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first.');
-											}
-											?>
-										</p>
+										<?php if (!getOption('IP_tied_cookies')) { ?>
+										<div class="warningbox">
+											<p>
+												<?php echo gettext('<strong>Warning</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled.');?>
+											</p>
+											<p>
+												<?php echo gettext('You <strong>WILL</strong> have to login after changing this option.'); ?>
+											</p>
+											<p>
+												<?php gettext('If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first.'); ?>
+											</p>
+											<p><?php echo gettext('This will not work properly if Zenhoto is set to anonymize the IP address which is strongly advised for privacy concerns in many jurisdictions.'); ?>
+											</p>
+										</div>
+										<?php } ?>
 									</td>
 								</tr>
 								<tr>
