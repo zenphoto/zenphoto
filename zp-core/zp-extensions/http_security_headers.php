@@ -52,7 +52,7 @@ class securityheadersOptions {
 						'type' => OPTION_TYPE_NOTE,
 						'order' => 0,
 						'desc' => '<h2>Content-Security-Policy</h2>'
-						. '<p>' . gettext('The Content-Security-Policy header allows to control which resources browser are allowed to load. For detailed info please see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy</a>.') . '</p>'
+						. '<p>' . gettext('The Content-Security-Policy header allows you to control which resourcess browsers are allowed to load. For detailed info please see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy</a>.') . '</p>'
 						. '<p>' . gettext('Use the Report-Only option to test before setting directives live. Review your browser log/console for block reports.') . '</p>'
 				),
 				'Content-Security-Policy' => array(// set sets the default for all other *-src policies not set individually
