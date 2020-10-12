@@ -343,7 +343,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 		$link['lang'] = $lang;
 		if (zp_loggedin() && getOption('RSS_portable_link')) {
 			$link['user'] = (string) $_zp_current_admin_obj->getID();
-			$link['token'] = Zenphoto_Authority::passwordHash(serialize($link), '');
+			$link['token'] = RSS::generateToken($link);
 		}
 		$uri = WEBPATH . '/index.php?' . str_replace('=&', '&', http_build_query($link));
 		return $uri;
@@ -422,7 +422,7 @@ class RSS extends feed {
 //	The link camed from a logged in user, see if it is valid
 			$link = $options;
 			unset($link['token']);
-			$token = Zenphoto_Authority::passwordHash(serialize($link), '');
+			$token = RSS::generateToken($link);
 			if ($token == $options['token']) {
 				$adminobj = Zenphoto_Authority::getAnAdmin(array('`id`=' => (int) $link['user']));
 				if ($adminobj) {
@@ -599,6 +599,16 @@ class RSS extends feed {
 				query("INSERT INTO " . prefix('plugin_storage') . " (`type`,`aux`,`data`) VALUES ('" . $type . "'," . db_quote($rssuri) . ",1)", true);
 			}
 		}
+	}
+	
+	/**
+	 * Generates the token based on the RSS link passed for pprtable RSS usage
+	 * 
+	 * @param string $link
+	 * @return string
+	 */
+	static function generateToken($link) {
+		return Zenphoto_Authority::passwordHash(serialize($link), '');
 	}
 
 	/**
