@@ -700,7 +700,8 @@ if ($c <= 0) {
 							
 							setup::checkmark(class_exists('ZipArchive') ? 1 : -1, gettext('PHP <code>ZipArchive</code> support'), gettext('PHP <code>ZipArchive</code> support [is not present]'), gettext('<code>ZipArchive</code> support is not critical and only required if you intend  to upload zip archives with supported file types to the gallery.'));
 
-							
+							setup::checkmark(function_exists('json_encode') ? 1 : -1, gettext('PHP <code>JSON</code> support'), gettext('PHP <code>JSON</code> support [is not present]'), gettext('<code>JSON</code> support is not yet critical but may become so in the future.'));
+
 							
 							if ($_zp_setupCurrentLocale_result === false) {
 								setup::checkMark(-1, gettext('PHP <code>setlocale()</code>'), ' ' . gettext('PHP <code>setlocale()</code> failed'), gettext("Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work.") . '<br />' . gettext('See the <a  href="http://www.zenphoto.org/news/problems-with-languages">user guide</a> on zenphoto.org for details.'));
