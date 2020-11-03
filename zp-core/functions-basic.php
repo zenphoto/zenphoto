@@ -1688,9 +1688,16 @@ function installSignature() {
 function zp_session_start() {
 	if (session_id() == '') {
 		// force session cookie to be secure when in https
-		$CookieInfo = session_get_cookie_params();
+		$cookieinfo = session_get_cookie_params();
 		// force session cookie to be secure when in https
-		session_set_cookie_params($CookieInfo['lifetime'], $CookieInfo['path'], $CookieInfo['domain'], secureServer(), true);
+		if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
+			$cookieinfo['secure'] = secureServer();
+			$cookieinfo['httponly'] = true;
+			$cookieinfo['samesite'] = 'Lax';
+			session_set_cookie_params($cookieinfo);
+		} else {
+			session_set_cookie_params($cookieinfo['lifetime'], $cookieinfo['path'], $cookieinfo['domain'], secureServer(), true);
+		}
 		session_start();
 	}
 }
