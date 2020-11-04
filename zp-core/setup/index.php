@@ -174,7 +174,6 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	}
 }
 
-define('ACK_REGISTER_GLOBALS', 1);
 define('ACK_DISPLAY_ERRORS', 2);
 
 if (isset($_GET['security_ack'])) {
@@ -635,20 +634,6 @@ if ($c <= 0) {
 							} else {
 								setup::checkmark(0, '', gettext('PHP <code>Sessions</code> [appear to not be working].'), gettext('PHP Sessions are required for Zenphoto administrative functions.'), true);
 							}
-
-							if (preg_match('#(1|ON)#i', @ini_get('register_globals'))) {
-								if ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) & ACK_REGISTER_GLOBALS) {
-									$register_globals = -1;
-									$aux = '';
-								} else {
-									$register_globals = false;
-									$aux = ' ' . setup::acknowledge(ACK_REGISTER_GLOBALS);
-								}
-							} else {
-								$register_globals = true;
-								$aux = '';
-							}
-							$good = setup::checkMark($register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'), gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Change your PHP.ini settings to <code>register_globals = off</code>.') . $aux) && $good;
 
 							if (!extension_loaded('suhosin')) {
 								$blacklist = @ini_get("suhosin.executor.func.blacklist");
