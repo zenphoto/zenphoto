@@ -141,7 +141,7 @@ class cookieConsent {
 								gettext('Opt-in: Cookies are allowed after consent') => 'opt-in',
 								gettext('Opt-out: Cookies are allowed unless declined') => 'opt-out'
 						),
-						'desc' => gettext('Choose the compliance type required for your juristiction. Note that there might be modification required to your site to properly apply this to your cookies. Also see the scripts option below.')),
+						'desc' => gettext('Choose the compliance type required for your juristiction. Note that your site may require modification to properly apply this to your cookies. Also see the scripts option below.')),
 				gettext('Consent revokable') => array(
 						'key' => 'zpcookieconsent_consentrevokable',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -152,7 +152,7 @@ class cookieConsent {
 						'type' => OPTION_TYPE_TEXTAREA,
 						'order' => 14,
 						'multilingual' => false,
-						'desc' => gettext('Add here prvacy related JS scripts (ad trackers statistics etc.) here to allow or block on opt-in/opt-out complicances (without the script wrapper). As we cannot savely delete cookies set by third party scripts, we block there execution so they neither can set nor fetch their cookies. You can also use the methode <code>cookieconsent::checkConsent()</code> on your theme.'))
+						'desc' => gettext('Add privacy related JS scripts (ad trackers statistics etc.) here to allow or block opt-in/opt-out complicances (without the script wrapper). As we cannot safely delete cookies set by third party scripts, we block their execution so they can neither set nor fetch their cookies. You can also use the methode <code>cookieconsent::checkConsent()</code> on your theme.'))
 		);
 		return $options;
 	}
