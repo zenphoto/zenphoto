@@ -256,39 +256,37 @@ class cookieConsent {
 						href: "<?php echo html_encode($link); ?>"
 					},
 					onInitialise: function (status) {
+						// We don't do anythhing here
 						var type = this.options.type;
 						var didConsent = this.hasConsented();
 						if (type == 'opt-in' && didConsent) {
-							// enable cookies
-							alert('Opt in: cookies are enabled');
+							// enable cookie
 						}
 						if (type == 'opt-out' && !didConsent) {
 							// disable cookies
-							alert('Opt out: cookies are disabled');
 						} 
 					},
 					onStatusChange: function (status, chosenBefore) {
+						// We don't do anythhing here
 						this.element.parentNode.removeChild(this.element);
 						var type = this.options.type;
 						var didConsent = this.hasConsented();
 						if (type == 'opt-in' && didConsent) {
 							// enable cookies
-							alert('Opt in change: cookies are enabled');
 						}
 						if (type == 'opt-out' && !didConsent) {
 							// disable cookies
-							alert('Opt out change: cookies are disabled');
 						} 
 					},
 					onRevokeChoice: function () {
+						// We don't do anythhing here
 						var type = this.options.type;
 						if (type == 'opt-in') {
 							// disable cookies
-							alert('Opt in revoke: cookies are now disabled');
 						}
 						if (type == 'opt-out') {
 							// enable cookies
-							alert('Opt out revoke: cookies are now enabled');
+							
 						}
 					}
 				});
