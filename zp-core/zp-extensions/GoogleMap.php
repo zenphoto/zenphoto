@@ -471,7 +471,9 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 						var center = map.getCenter();
 						google.maps.event.trigger(map, "resize");
 						map.setCenter(center);
+    				<?php if ( $map->zoom == 'auto' ) { ?>
     					fitMapToBounds();
+    				<?php } ?>
 					} else {
 						$('#<?php echo $id_data; ?>').addClass('hidden_map');
 					}
