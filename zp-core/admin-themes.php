@@ -245,15 +245,16 @@ foreach($themes as $theme => $themeinfo) {
 			}
 			?>
 			</p>
-			<?php echo $themeinfo['desc']; 
+			<?php 
+			echo processExtensionVariable($themeinfo['desc']); 
 			if(array_key_exists('deprecated', $themeinfo)) {
-				echo '<p class="notebox">' . $themeinfo['deprecated'] . '</p>';
+				echo '<div class="notebox">' . processExtensionVariable($themeinfo['deprecated']) . '</div>';
 			}
 			$disable = false;
 			if(array_key_exists('disable', $themeinfo)) {
 				$disable = isIncompatibleExtension($themeinfo['disable']);
 				if ($disable) {
-					echo '<p class="warningbox">' . gettext('This theme is not compatible.') . $disable . '</p>';
+					echo '<div class="warningbox">' . gettext('This theme is not compatible.') . $disable . '</div>';
 					if($current_theme == $theme) {
 						$_zp_gallery->setCurrentTheme(null);
 						$_zp_gallery->save();
@@ -261,7 +262,7 @@ foreach($themes as $theme => $themeinfo) {
 				}
 			}
 			if(isset($themeinfo['notice']) && !empty($themeinfo['notice'])) {
-				echo '<p class="notebox">' . $themeinfo['notice'] . '</p>';
+				echo '<div class="notebox">' . processExtensionVariable($themeinfo['notice']) . '</div>';
 			}
 			?>
 			<p><strong><small>

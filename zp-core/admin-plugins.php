@@ -172,6 +172,8 @@ $subtab = printSubtabs();
 					if (false === eval($str)) {
 						$parserr = $parserr | 1;
 						$plugin_description = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>');
+					} else {
+						$plugin_description  = processExtensionVariable($plugin_description);
 					}
 				} 
 				$plugin_deprecated = '';
@@ -179,6 +181,8 @@ $subtab = printSubtabs();
 					if (false === eval($str)) {
 						$parserr = $parserr | 2;
 						$plugin_deprecated = gettext('<strong>Error parsing <em>plugin_deprecated</em> string!</strong>');
+					} else {
+						$plugin_deprecated  = processExtensionVariable($plugin_deprecated);
 					}
 				} 
 				$plugin_notice = '';
@@ -186,6 +190,8 @@ $subtab = printSubtabs();
 					if (false === eval($str)) {
 						$parserr = $parserr | 3;
 						$plugin_notice = gettext('<strong>Error parsing <em>plugin_notice</em> string!</strong>');
+					} else {
+						$plugin_notice = processExtensionVariable($plugin_notice);
 					}
 				} 
 				$plugin_author = '';

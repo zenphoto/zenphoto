@@ -531,6 +531,14 @@ ul.nav li:hover > ul {
 	font-weight: bold;
 }
 
+.messagebox > *:last-child, 
+.errorbox > *:last-child, 
+.warningbox > *:last-child, 
+.notebox > *:last-child {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
 /* Miscellaneous
 ------------------------------ */
 a,a em {

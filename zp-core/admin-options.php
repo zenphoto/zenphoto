@@ -3113,6 +3113,8 @@ Zenphoto_Authority::printPasswordFormJS();
 									if ($str = isolate('$plugin_description', $pluginStream)) {
 										if (false === eval($str)) {
 											$plugin_description = '';
+										} else {
+											$plugin_description = processExtensionVariable($plugin_description);
 										}
 									} 
 									$plugin_version = '';
@@ -3125,6 +3127,8 @@ Zenphoto_Authority::printPasswordFormJS();
 									if ($str = isolate('$plugin_deprecated', $pluginStream)) {
 										if (false === eval($str)) {
 											$plugin_deprecated = '';
+										} else {
+											$plugin_deprecated = processExtensionVariable($plugin_deprecated);
 										}
 									} 
 									$plugin_date = '';
