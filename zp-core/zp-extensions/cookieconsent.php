@@ -4,7 +4,18 @@
  * https://www.cookiechoices.org
  *
  * Adapted of https://cookieconsent.osano.com/
- *
+ * 
+ * Note that to actually use the opt-in and out-out complicance modes your theme may require customisation. 
+ * as the plugin does not clear or block scripts by itself. It is not possible to savely delete third party cookies.
+ * 
+ * It also does not block cookies Zenphoto sets itself as these are not privacy related and require to work properly. 
+ * Learn more about Zenphotp's cookies on: https://zenphoto.org/news/cookies/
+ * 
+ * But you can use this plugin to only executed scripts on consent by:
+ * 
+ * a) Add the JS calls to block or allow the scripts option so they cannot set or use their cookies unless allowed to run
+ * b) Use the method `cookieconsemt::checkConsent()` to manually wrap JS script calls 
+ * 
  * @author Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)
  * @license GPL v3 or later
  * @package plugins
@@ -13,13 +24,16 @@
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A plugin to add a cookie notify dialog to comply with the EU cookie law and Google's request regarding usages of Google Adwords, Analytics and more. Based on <a href='https://cookieconsent.osano.com/'>https://cookieconsent.osano.com/</a>");
 $plugin_author = "Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)";
+$plugin_notice = gettext('Note: This plugin cannot block or delete cookies by itself without proper configuration that also may require customisations to your site.');
 $option_interface = 'cookieConsent';
 $plugin_category = gettext('Misc');
 
 if (!zp_loggedin() && !isset($_COOKIE['cookieconsent_status'])) {
 	zp_register_filter('theme_head', 'cookieConsent::getCSS');
 	zp_register_filter('theme_head', 'cookieConsent::getJS');
-}	
+	zp_register_filter('theme_head', 'cookieconsent::getConsentedJS');
+}
+
 class cookieConsent {
 
 	function __construct() {
@@ -28,6 +42,8 @@ class cookieConsent {
 		setOptionDefault('zpcookieconsent_position', 'bottom');
 		setOptionDefault('zpcookieconsent_colorpopup', '#000');
 		setOptionDefault('zpcookieconsent_colorbutton', '#f1d600');
+		setOptionDefault('zpcookieconsent_compliancetype', 'info');
+		setOptionDefault('zpcookieconsent_consentrevokable', 0);
 	}
 
 	function getOptionsSupported() {
@@ -37,7 +53,19 @@ class cookieConsent {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 1,
 						'multilingual' => 1,
-						'desc' => gettext('Text used for the dismiss button. Leave empty to use the default text.')),
+						'desc' => gettext('Text used for the dismiss button in info complicance. Leave empty to use the default text.')),
+				gettext('Button: Allow cookies') => array(
+						'key' => 'zpcookieconsent_buttonallow',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'multilingual' => 1,
+						'desc' => gettext('Text used for the button to allow cookies in opt-in and opt-out complicance. Leave empty to use the default text.')),
+				gettext('Button: Decline cookies') => array(
+						'key' => 'zpcookieconsent_buttondecline',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'multilingual' => 1,
+						'desc' => gettext('Text used for the button to decline cookies in opt-in and opt-out complicance. Leave empty to use the default text.')),
 				gettext('Button: Learn more') => array(
 						'key' => 'zpcookieconsent_buttonlearnmore',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -103,18 +131,44 @@ class cookieConsent {
 						'key' => 'zpcookieconsent_colorbutton',
 						'type' => OPTION_TYPE_COLOR_PICKER,
 						'order' => 11,
-						'desc' => gettext('Choose the color of the button.'))
-				
+						'desc' => gettext('Choose the color of the button.')),
+				gettext('Compliance type') => array(
+						'key' => 'zpcookieconsent_compliancetype',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 12,
+						'selections' => array(
+								gettext('Info: Cookies are always allowed') => 'info',
+								gettext('Opt-in: Cookies are allowed after consent') => 'opt-in',
+								gettext('Opt-out: Cookies are allowed unless declned') => 'opt-out'
+						),
+						'desc' => gettext('Choose the compliance type required for your juristiction. Note that there might be modification required to your site to properly apply this to your cookies. Also see the scripts option below.')),
+				gettext('Consent revokable') => array(
+						'key' => 'zpcookieconsent_consentrevokable',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 13,
+						'desc' => gettext('Check to allow revoking the consent as required in some jurisdictions.')),
+				gettext('Scripts to allow or block') => array(
+						'key' => 'zpcookieconsent_scripts',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'order' => 14,
+						'multilingual' => false,
+						'desc' => gettext('Add here prvacy related JS scripts (ad trackers statistics etc.) here to allow or block on opt-in/opt-out complicances (without the script wrapper). As we cannot savely delete cookies set by third party scripts, we block there execution so they neither can set nor fetch their cookies. You can also use the methode <code>cookieconsent::checkConsent()</code> on your theme.'))
 		);
 		return $options;
 	}
-
+	
+	/**
+	 * Gets the CSS for the cookieconsent script
+	 */
 	static function getCSS() {
 		?>
 		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cookieconsent/cookieconsent.min.css" />
 		<?php
 	}
 
+	/**
+	 * Gets the JS definition of the cookieconsent script based on the options
+	 */
 	static function getJS() {
 		$message = gettext('This website uses cookies. By continuing to browse the site, you agree to our use of cookies.');
 		if (getOption('zpcookieconsent_message')) {
@@ -124,13 +178,21 @@ class cookieConsent {
 		if (getOption('zpcookieconsent_buttonagree')) {
 			$dismiss = get_language_string(getOption('zpcookieconsent_buttonagree'));
 		}
+		$allow = gettext('Allow cookies');
+		if (getOption('zpcookieconsent_buttonallow')) {
+			$allow = get_language_string(getOption('zpcookieconsent_buttonallow'));
+		}
+		$decline = gettext('Decline');
+		if (getOption('zpcookieconsent_buttondecline')) {
+			$decline = get_language_string(getOption('zpcookieconsent_buttondecline'));
+		}
 		$dataprivacy_info = getDataUsageNotice();
 		if (getOption('zpcookieconsent_buttonlearnmore')) {
 			$learnmore = get_language_string(getOption('zpcookieconsent_buttonlearnmore'));
-		}  else {
+		} else {
 			$learnmore = $dataprivacy_info['linktext'];
 		}
-		if(getOption('zpcookieconsent_buttonlearnmorelink')) {
+		if (getOption('zpcookieconsent_buttonlearnmorelink')) {
 			$link = getOption('zpcookieconsent_buttonlearnmorelink');
 		} else {
 			$link = $dataprivacy_info['url'];
@@ -156,39 +218,133 @@ class cookieConsent {
 		}
 		$color_popup = getOption('zpcookieconsent_colorpopup');
 		$color_button = getOption('zpcookieconsent_colorbutton');
+		$complicance_type = getOption('zpcookieconsent_compliancetype');
+		$consentrevokable = getOption('zpcookieconsent_consentrevokable');
+		if ($consentrevokable) {
+			$consentrevokable = 'true';
+		} else {
+			$consentrevokable = 'false';
+		}
 		?>
 		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cookieconsent/cookieconsent.min.js"></script>
 		<script>
 			window.addEventListener("load", function () {
 				window.cookieconsent.initialise({
-					"palette": {
-						"popup": {
-							"background": "<?php echo $color_popup; ?>"
+					palette: {
+						popup: {
+							background: "<?php echo $color_popup; ?>"
 						},
-						"button": {
-							"background": "<?php echo $color_button; ?>"
+						button: {
+							background: "<?php echo $color_button; ?>"
 						}
 					},
-					"position": "<?php echo js_encode($position); ?>",
-					"theme": "<?php echo js_encode($theme); ?>",
-					"dismissOnScroll": <?php echo js_encode($dismiss_on_scroll); ?>,
-					"cookie": {
-						"domain": "<?php echo js_encode($domain); ?>",
-						"expiryDays": <?php echo js_encode($cookie_expiry); ?>
+					position: "<?php echo js_encode($position); ?>",
+					theme: "<?php echo js_encode($theme); ?>",
+					dismissOnScroll: <?php echo js_encode($dismiss_on_scroll); ?>,
+					type: '<?php echo $complicance_type; ?>',
+					revokable: <?php echo $consentrevokable; ?>,
+					cookie: {
+						domain: "<?php echo js_encode($domain); ?>",
+						expiryDays: <?php echo js_encode($cookie_expiry); ?>
 					},
-					"content": {
-						"message": "<?php echo js_encode($message); ?>",
-						"dismiss": "<?php echo js_encode($dismiss); ?>",
-						"link": "<?php echo js_encode($learnmore); ?>",
-						"href": "<?php echo html_encode($link); ?>"
+					content: {
+						message: "<?php echo js_encode($message); ?>",
+						allow: '<?php echo js_encode($allow); ?>',
+						deny: '<?php echo js_encode($decline); ?>',
+						dismiss: "<?php echo js_encode($dismiss); ?>",
+						link: "<?php echo js_encode($learnmore); ?>",
+						href: "<?php echo html_encode($link); ?>"
 					},
-					onStatusChange: function(status) {
+					onInitialise: function (status) {
+						var type = this.options.type;
+						var didConsent = this.hasConsented();
+						if (type == 'opt-in' && didConsent) {
+							// enable cookies
+							alert('Opt in: cookies are enabled');
+						}
+						if (type == 'opt-out' && !didConsent) {
+							// disable cookies
+							alert('Opt out: cookies are disabled');
+						} 
+					},
+					onStatusChange: function (status, chosenBefore) {
 						this.element.parentNode.removeChild(this.element);
+						var type = this.options.type;
+						var didConsent = this.hasConsented();
+						if (type == 'opt-in' && didConsent) {
+							// enable cookies
+							alert('Opt in change: cookies are enabled');
+						}
+						if (type == 'opt-out' && !didConsent) {
+							// disable cookies
+							alert('Opt out change: cookies are disabled');
+						} 
+					},
+					onRevokeChoice: function () {
+						var type = this.options.type;
+						if (type == 'opt-in') {
+							// disable cookies
+							alert('Opt in revoke: cookies are now disabled');
+						}
+						if (type == 'opt-out') {
+							// enable cookies
+							alert('Opt out revoke: cookies are now enabled');
+						}
 					}
-				})
+				});
 			});
 		</script>
 		<?php
+	}
+	
+	
+	/**
+	 * Checks if consent has been given depending on the compliance mode and if the cookieconsent_status cookie is set
+	 * 
+	 * - info: All just informational so always true
+	 * - opt-in: Returns true only if the consent cookie is set to "allow"
+	 * - opt-out: Returns true by default unless declined or if the consent cookie is set to "allow"
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
+	 * @return boolean
+	 */
+	static function checkConsent() {
+		$complicance = getOption('zpcookieconsent_compliancetype');
+		$consent = zp_getCookie('cookieconsent_status');
+		switch ($complicance) {
+			case 'info':
+				// just info but always allowed
+				return true;
+			case 'opt-in':
+				// only allow by consent
+				if ($consent && $consent == 'allow') {
+					return true;
+				} else {
+					return false;
+				}
+			case 'opt-out':
+				//Allows by default or by consent
+				if (!$consent || $consent == 'allow') {
+					return true;
+				} else {
+					return false;
+				}
+				break;
+		}
+		return false;
+	}
+
+	/**
+	 * Prints the scropts added to the scripts option.
+	 * These are then added to the theme_header filter automatically by the plugin
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 */
+	static function getConsentedJS() {
+		if (cookieconsent::checkConsent()) {
+			echo '<script>' . getOption('zpcookieconsent_scripts') . '</script>';
+		}
 	}
 
 }
