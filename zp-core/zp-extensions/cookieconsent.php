@@ -141,7 +141,7 @@ class cookieConsent {
 								gettext('Opt-in: Cookies are allowed after consent') => 'opt-in',
 								gettext('Opt-out: Cookies are allowed unless declined') => 'opt-out'
 						),
-						'desc' => gettext('Choose the compliance type required for your juristiction. Note that your site may require modification to properly apply this to your cookies. Also see the scripts option below.')),
+						'desc' => gettext('Choose the compliance type required for your jurisdiction. Note that your site may require modification to properly apply this to your cookies. Also see the scripts option below.')),
 				gettext('Consent revokable') => array(
 						'key' => 'zpcookieconsent_consentrevokable',
 						'type' => OPTION_TYPE_CHECKBOX,
