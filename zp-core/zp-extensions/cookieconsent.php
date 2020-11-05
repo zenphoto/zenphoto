@@ -139,7 +139,7 @@ class cookieConsent {
 						'selections' => array(
 								gettext('Info: Cookies are always allowed') => 'info',
 								gettext('Opt-in: Cookies are allowed after consent') => 'opt-in',
-								gettext('Opt-out: Cookies are allowed unless declned') => 'opt-out'
+								gettext('Opt-out: Cookies are allowed unless declined') => 'opt-out'
 						),
 						'desc' => gettext('Choose the compliance type required for your juristiction. Note that there might be modification required to your site to properly apply this to your cookies. Also see the scripts option below.')),
 				gettext('Consent revokable') => array(
