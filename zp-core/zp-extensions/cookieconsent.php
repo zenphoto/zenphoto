@@ -44,6 +44,7 @@ class cookieConsent {
 		setOptionDefault('zpcookieconsent_colorbutton', '#f1d600');
 		setOptionDefault('zpcookieconsent_compliancetype', 'info');
 		setOptionDefault('zpcookieconsent_consentrevokable', 0);
+		setOptionDefault('zpcookieconsent_layout', 'basic');
 	}
 
 	function getOptionsSupported() {
@@ -51,52 +52,53 @@ class cookieConsent {
 				gettext('Button: Agree') => array(
 						'key' => 'zpcookieconsent_buttonagree',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 1,
 						'multilingual' => 1,
 						'desc' => gettext('Text used for the dismiss button in info complicance. Leave empty to use the default text.')),
 				gettext('Button: Allow cookies') => array(
 						'key' => 'zpcookieconsent_buttonallow',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 1,
 						'multilingual' => 1,
 						'desc' => gettext('Text used for the button to allow cookies in opt-in and opt-out complicance. Leave empty to use the default text.')),
 				gettext('Button: Decline cookies') => array(
 						'key' => 'zpcookieconsent_buttondecline',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 1,
 						'multilingual' => 1,
 						'desc' => gettext('Text used for the button to decline cookies in opt-in and opt-out complicance. Leave empty to use the default text.')),
 				gettext('Button: Learn more') => array(
 						'key' => 'zpcookieconsent_buttonlearnmore',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 2,
 						'multilingual' => 1,
 						'desc' => gettext('Text used for the learn more info button. Leave empty to use the default text.')),
 				gettext('Button: Learn more - URL') => array(
 						'key' => 'zpcookieconsent_buttonlearnmorelink',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 3,
 						'desc' => gettext('URL to your cookie policy / privacy info page.')),
 				gettext('Message') => array(
 						'key' => 'zpcookieconsent_message',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'order' => 4,
 						'multilingual' => 1,
 						'desc' => gettext('The message shown by the plugin. Leave empty to use the default text.')),
+				gettext('Cookie Policy') => array(
+						'key' => 'zpcookieconsent_policy',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'multilingual' => 1,
+						'desc' => gettext('The policy headline for the message text on some layout/theme settings.')),
+				gettext('Header') => array(
+						'key' => 'zpcookieconsent_header',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'multilingual' => 1,
+						'desc' => gettext('The header shown on some layout/theme settings.')),
 				gettext('Domain') => array(
 						'key' => 'zpcookieconsent_domain',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 5,
 						'desc' => gettext('The domain for the consent cookie that Cookie Consent uses, to remember that users have consented to cookies. Useful if your website uses multiple subdomains, e.g. if your script is hosted at <code>www.example.com</code> you might override this to <code>example.com</code>, thereby allowing the same consent cookie to be read by subdomains like <code>foo.example.com</code>.')),
 				gettext('Expire') => array(
 						'key' => 'zpcookieconsent_expirydays',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 6,
 						'desc' => gettext('The number of days Cookie Consent should store the user’s consent information for. Use -1 for no expiry.')),
 				gettext('Theme') => array(
 						'key' => 'zpcookieconsent_theme',
 						'type' => OPTION_TYPE_SELECTOR,
-						'order' => 7,
 						'selections' => array(
 								'block' => 'block',
 								'edgeless' => 'edgeless',
@@ -104,10 +106,18 @@ class cookieConsent {
 								gettext('custom') => 'custom'
 						),
 						'desc' => gettext('These are the included default themes. The chosen theme is added to the popup container as a CSS class in the form of .cc-style-THEME_NAME. Users can create their own themes.')),
+				gettext('Layout') => array(
+						'key' => 'zpcookieconsent_layout',
+						'type' => OPTION_TYPE_SELECTOR,
+						'selections' => array(
+								'basic' => 'basic',
+								'basic-close' => 'basic-close',
+								'basic-header' => 'basic-header'
+						),
+						'desc' => gettext('The layout style of the chosen theme.')),
 				gettext('Position') => array(
 						'key' => 'zpcookieconsent_position',
 						'type' => OPTION_TYPE_SELECTOR,
-						'order' => 7,
 						'selections' => array(
 								gettext('Top') => 'top',
 								gettext('Top left') => 'top-left',
@@ -120,37 +130,31 @@ class cookieConsent {
 				gettext('Dismiss on Scroll') => array(
 						'key' => 'zpcookieconsent_dismissonscroll',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 9,
 						'desc' => gettext('Check to dismiss when users scroll a page [other than <em>Learn more</em> page].')),
 				gettext('Color - Popup') => array(
 						'key' => 'zpcookieconsent_colorpopup',
 						'type' => OPTION_TYPE_COLOR_PICKER,
-						'order' => 10,
 						'desc' => gettext('Choose the color of the popup background.')),
 				gettext('Color - Button') => array(
 						'key' => 'zpcookieconsent_colorbutton',
 						'type' => OPTION_TYPE_COLOR_PICKER,
-						'order' => 11,
 						'desc' => gettext('Choose the color of the button.')),
 				gettext('Compliance type') => array(
 						'key' => 'zpcookieconsent_compliancetype',
 						'type' => OPTION_TYPE_SELECTOR,
-						'order' => 12,
 						'selections' => array(
 								gettext('Info: Cookies are always allowed') => 'info',
 								gettext('Opt-in: Cookies are allowed after consent') => 'opt-in',
 								gettext('Opt-out: Cookies are allowed unless declined') => 'opt-out'
 						),
 						'desc' => gettext('Choose the compliance type required for your jurisdiction. Note that your site may require modification to properly apply this to your cookies. Also see the scripts option below.')),
-				gettext('Consent revokable') => array(
+				/*gettext('Consent revokable') => array(
 						'key' => 'zpcookieconsent_consentrevokable',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 13,
-						'desc' => gettext('Check to allow revoking the consent as required in some jurisdictions.')),
+						'desc' => gettext('Check to allow revoking the consent as required in some jurisdictions.')), */
 				gettext('Scripts to allow or block') => array(
 						'key' => 'zpcookieconsent_scripts',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'order' => 14,
 						'multilingual' => false,
 						'desc' => gettext('Add privacy related JS scripts (ad trackers statistics etc.) here to allow or block opt-in/opt-out complicances (without the script wrapper). As we cannot safely delete cookies set by third party scripts, we block their execution so they can neither set nor fetch their cookies. You can also use the methode <code>cookieconsent::checkConsent()</code> on your theme.'))
 		);
@@ -186,6 +190,14 @@ class cookieConsent {
 		if (getOption('zpcookieconsent_buttondecline')) {
 			$decline = get_language_string(getOption('zpcookieconsent_buttondecline'));
 		}
+		$policy = gettext('Cookie Policy');
+		if (getOption('zpcookieconsent_policy')) {
+			$policy  = get_language_string(getOption('zpcookieconsent_policy'));
+		}
+		$header = gettext('Cookies used on the website!');
+		if (getOption('zpcookieconsent_header')) {
+			$header = get_language_string(getOption('zpcookieconsent_header'));
+		}
 		$dataprivacy_info = getDataUsageNotice();
 		if (getOption('zpcookieconsent_buttonlearnmore')) {
 			$learnmore = get_language_string(getOption('zpcookieconsent_buttonlearnmore'));
@@ -205,6 +217,10 @@ class cookieConsent {
 				$theme = 'block';
 				setOption('zpcookieconsent_theme', $theme, true);
 			}
+		}
+		$layout = 'basic';
+		if (getOption('zpcookieconsent_layout')) {
+			$layout = getOption('zpcookieconsent_layout');
 		}
 		$domain = '';
 		if (getOption('zpcookieconsent_domain')) {
@@ -240,6 +256,7 @@ class cookieConsent {
 					},
 					position: "<?php echo js_encode($position); ?>",
 					theme: "<?php echo js_encode($theme); ?>",
+					layout: "<?php echo js_encode($layout); ?>",
 					dismissOnScroll: <?php echo js_encode($dismiss_on_scroll); ?>,
 					type: '<?php echo $complicance_type; ?>',
 					revokable: <?php echo $consentrevokable; ?>,
@@ -248,12 +265,15 @@ class cookieConsent {
 						expiryDays: <?php echo js_encode($cookie_expiry); ?>
 					},
 					content: {
+						href: "<?php echo html_encode($link); ?>",
+						header: '<?php echo js_encode($header); ?>',
 						message: "<?php echo js_encode($message); ?>",
+						dismiss: "<?php echo js_encode($dismiss); ?>",
 						allow: '<?php echo js_encode($allow); ?>',
 						deny: '<?php echo js_encode($decline); ?>',
-						dismiss: "<?php echo js_encode($dismiss); ?>",
 						link: "<?php echo js_encode($learnmore); ?>",
-						href: "<?php echo html_encode($link); ?>"
+						href: '<?php echo html_encode($link); ?>',
+						policy: "<?php echo js_encode($policy); ?>"
 					},
 					onInitialise: function (status) {
 						// We don't do anythhing here
