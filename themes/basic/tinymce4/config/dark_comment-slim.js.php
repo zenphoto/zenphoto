@@ -19,8 +19,9 @@
 			"insertdatetime media table contextmenu paste"
 		],
 		statusbar: false,
-		toolbar: "bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code"
-						skin: "tundora", content_css: "<?php echo FULLWEBPATH . '/' . THEMEFOLDER . '/' . basename(dirname(dirname(dirname(__FILE__)))); ?>/tinymce4/config/dark_content.css",
+		toolbar: "bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code",
+		skin: "tundora",
+		content_css: "<?php echo FULLWEBPATH . '/' . THEMEFOLDER . '/' . basename(dirname(dirname(dirname(__FILE__)))); ?>/tinymce4/config/dark_content.css",
 	});
 // ]]> -->
 </script>
