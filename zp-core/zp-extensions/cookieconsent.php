@@ -272,44 +272,9 @@ class cookieConsent {
 						allow: '<?php echo js_encode($allow); ?>',
 						deny: '<?php echo js_encode($decline); ?>',
 						link: "<?php echo js_encode($learnmore); ?>",
-						href: '<?php echo html_encode($link); ?>',
 						policy: "<?php echo js_encode($policy); ?>"
-					},
-					onInitialise: function (status) {
-						// We don't do anythhing here
-						var type = this.options.type;
-						var didConsent = this.hasConsented();
-						if (type == 'opt-in' && didConsent) {
-							// enable cookie
-						}
-						if (type == 'opt-out' && !didConsent) {
-							// disable cookies
-						} 
-					},
-					onStatusChange: function (status, chosenBefore) {
-						// We don't do anythhing here
-						this.element.parentNode.removeChild(this.element);
-						var type = this.options.type;
-						var didConsent = this.hasConsented();
-						if (type == 'opt-in' && didConsent) {
-							// enable cookies
-						}
-						if (type == 'opt-out' && !didConsent) {
-							// disable cookies
-						} 
-					},
-					onRevokeChoice: function () {
-						// We don't do anythhing here
-						var type = this.options.type;
-						if (type == 'opt-in') {
-							// disable cookies
-						}
-						if (type == 'opt-out') {
-							// enable cookies
-							
-						}
 					}
-				});
+				}); 
 			});
 		</script>
 		<?php
