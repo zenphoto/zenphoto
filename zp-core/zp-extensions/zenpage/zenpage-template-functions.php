@@ -363,9 +363,9 @@ function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = 
  * @param string $readmore The text for the "read more" link. If empty the term set in Zenpage option is used.
  */
 function printNewsContent($shorten = false, $shortenindicator = NULL, $readmore = NULL) {
-	global $_zp_current_zenpage_news, $_zp_page;
-	$newscontent = getNewsContent($shorten, $shortenindicator, $readmore);
-	echo html_encodeTagged($newscontent);
+	global $_zp_current_zenpage_news;
+	$content = zp_apply_filter('articlecontent_html', getNewsContent($shorten, $shortenindicator, $readmore), $_zp_current_zenpage_news);
+	echo html_encodeTagged($content);
 }
 
 /**
@@ -508,7 +508,9 @@ function getNewsCategoryDesc() {
  *
  */
 function printNewsCategoryDesc() {
-	echo html_encodeTagged(getNewsCategoryDesc());
+	global $_zp_current_category;
+	$desc = zp_apply_filter('categorydesc_html', getNewsCategoryDesc(), $_zp_current_category);
+	echo html_encodeTagged($desc);
 }
 
 /**
@@ -1909,7 +1911,9 @@ function getPageContent($titlelink = NULL, $published = true) {
  * @return mixed
  */
 function printPageContent($titlelink = NULL, $published = true) {
-	echo html_encodeTagged(getPageContent($titlelink, $published));
+	global $_zp_current_zenpage_page;
+	$content = zp_apply_filter('pagecontent_html', getPageContent($titlelink, $published), $_zp_current_zenpage_page);
+	echo html_encodeTagged($content);
 }
 
 /**

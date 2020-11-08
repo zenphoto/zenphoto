@@ -1257,6 +1257,11 @@ zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.play.png
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.png
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.seeking.gif
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphotolight.css
+zp-core/zp-extensions/lazyload
+zp-core/zp-extensions/lazyload.php
+zp-core/zp-extensions/lazyload/lazysizes.min.js
+zp-core/zp-extensions/lazyload/ls.native-loading.min.js
+zp-core/zp-extensions/lazyload/ls.unveilhooks.min.js
 zp-core/zp-extensions/macroList
 zp-core/zp-extensions/macroList.php
 zp-core/zp-extensions/macroList/macroList_tab.php
@@ -1296,6 +1301,7 @@ zp-core/zp-extensions/openstreetmap/images/toggle.svg
 zp-core/zp-extensions/openstreetmap/leaflet-providers.js
 zp-core/zp-extensions/openstreetmap/leaflet.css
 zp-core/zp-extensions/openstreetmap/leaflet.js
+zp-core/zp-extensions/openstreetmap/leaflet.js.map
 zp-core/zp-extensions/openstreetmap/leaflet.markercluster.js
 zp-core/zp-extensions/openstreetmap/leaflet.markercluster.js.map
 zp-core/zp-extensions/openstreetmap/openstreetmap.css
@@ -1598,7 +1604,9 @@ zp-core/zp-extensions/tinymce4/skins/lightgray/img/loader.gif
 zp-core/zp-extensions/tinymce4/skins/lightgray/img/object.gif
 zp-core/zp-extensions/tinymce4/skins/lightgray/img/trans.gif
 zp-core/zp-extensions/tinymce4/skins/lightgray/skin.min.css
+zp-core/zp-extensions/tinymce4/skins/lightgray/skin.min.css.map
 zp-core/zp-extensions/tinymce4/skins/lightgray/skin.mobile.min.css
+zp-core/zp-extensions/tinymce4/skins/lightgray/skin.mobile.min.css.map
 zp-core/zp-extensions/tinymce4/skins/tundora
 zp-core/zp-extensions/tinymce4/skins/tundora/content.inline.min.css
 zp-core/zp-extensions/tinymce4/skins/tundora/content.min.css
@@ -1702,4 +1710,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1704
+1712
