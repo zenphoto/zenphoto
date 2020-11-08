@@ -71,7 +71,7 @@ if (isset($_GET['action'])) {
 				if (!empty($newloc) && getOption('disallow_' . $newloc)) {
 					$notify = '?local_failed=' . $newloc;
 				} else {
-					zp_clearCookie('dynamic_locale'); // clear the language cookie
+					zp_clearCookie('zpcms_locale'); // clear the language cookie
 					$result = i18nSetLocale($newloc);
 					if (!empty($newloc) && ($result === false)) {
 						$notify = '?local_failed=' . $newloc;
@@ -97,7 +97,7 @@ if (isset($_GET['action'])) {
 			if (isset($_POST['zenphoto_cookie_path'])) {
 				$p = sanitize($_POST['zenphoto_cookie_path']);
 				if (empty($p)) {
-					zp_clearCookie('zenphoto_cookie_path');
+					zp_clearCookie('zpcms_cookie_path');
 				} else {
 					$p = '/' . trim($p, '/') . '/';
 					if ($p == '//') {
@@ -105,7 +105,7 @@ if (isset($_GET['action'])) {
 					}
 					//	save a cookie to see if change works
 					$returntab .= '&cookiepath';
-					zp_setCookie('zenphoto_cookie_path', $p, NULL, $p);
+					zp_setCookie('zpcms_cookie_path', $p, NULL, $p);
 				}
 				setOption('zenphoto_cookie_path', $p);
 				if (isset($_POST['cookie_persistence'])) {
@@ -464,7 +464,7 @@ if (isset($_GET['action'])) {
 
 			$_zp_gallery->setUserLogonField(isset($_POST['login_user_field']));
 			if ($protocol == 'http') {
-				zp_clearCookie("zenphoto_ssl");
+				zp_clearCookie("zpcms_ssl");
 			}
 			setOption('IP_tied_cookies', (int) isset($_POST['IP_tied_cookies']));
 			setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
@@ -587,7 +587,7 @@ Zenphoto_Authority::printPasswordFormJS();
 					echo '</div>';
 				}
 
-				if (isset($_GET['cookiepath']) && @$_COOKIE['zenphoto_cookie_path'] != getOption('zenphoto_cookie_path')) {
+				if (isset($_GET['cookiepath']) && @$_COOKIE['zpcms_cookie_path'] != getOption('zpcms_cookie_path')) {
 					setOption('zenphoto_cookie_path', NULL);
 					?>
 					<div class="errorbox">

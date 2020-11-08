@@ -7,7 +7,7 @@
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(FILES_RIGHTS, currentRelativeURL());
-zp_setCookie('uploadtype', 'elFinder');
+zp_setCookie('zpcms_admin_uploadtype', 'elFinder');
 $locale = substr(getOption("locale"), 0, 2);
 if (empty($locale))
 	$locale = 'en';
@@ -44,7 +44,7 @@ echo "\n</head>";
 								lang: '<?php echo $locale; ?>', // language (OPTIONAL)
 								customData: {
 									'XSRFToken': '<?php echo getXSRFToken('elFinder'); ?>',
-									'zp_user_auth': '<?php echo zp_getCookie('zp_user_auth'); ?>',
+									'zp_user_auth': '<?php echo zp_getCookie('zpcms_auth_user'); ?>',
 									'origin': 'upload'
 								},
 								url: '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/elFinder/php/connector_zp.php'  				// connector URL (REQUIRED)

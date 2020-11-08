@@ -152,13 +152,13 @@ function zp_load_gallery() {
  */
 function zp_load_search() {
 	global $_zp_current_search;
-	zp_clearCookie("zenphoto_search_params");
+	zp_clearCookie("zpcms_search_params");
 	if (!is_object($_zp_current_search)) {
 		$_zp_current_search = new SearchEngine();
 	}
 	add_context(ZP_SEARCH);
 	$params = $_zp_current_search->getSearchParams();
-	zp_setCookie("zenphoto_search_params", $params, SEARCH_DURATION);
+	zp_setCookie("zpcms_search_params", $params, SEARCH_DURATION);
 	return $_zp_current_search;
 }
 
@@ -329,7 +329,7 @@ function prepareAlbumPage() {
 	$_zp_gallery_page = "album.php";
 	$_zp_script = THEMEFOLDER . "/$theme/album.php";
 	if ($search = $_zp_current_album->getSearchEngine()) {
-		zp_setCookie("zenphoto_search_params", $search->getSearchParams(), SEARCH_DURATION);
+		zp_setCookie("zpcms_search_params", $search->getSearchParams(), SEARCH_DURATION);
 	} else {
 		handleSearchParms('album', $_zp_current_album);
 	}

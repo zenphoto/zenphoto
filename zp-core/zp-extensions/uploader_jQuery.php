@@ -43,7 +43,7 @@ function jQueryUploadHandler_admin_tabs($tabs) {
 				'subtabs' => NULL);
 	}
 	$tabs['upload']['subtabs'][$me] = $mylink;
-	if (zp_getcookie('uploadtype') == 'jQuery')
+	if (zp_getcookie('zpcms_admin_uploadtype') == 'jQuery')
 		$tabs['upload']['link'] = $mylink;
 	return $tabs;
 }

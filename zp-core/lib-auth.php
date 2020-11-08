@@ -665,7 +665,7 @@ class Zenphoto_Authority {
 		$user->set('lastloggedin', $user->get('loggedin'));
 		$user->set('loggedin', date('Y-m-d H:i:s'));
 		$user->save();
-		zp_setCookie('zp_user_auth', $user->getPass() . '.' . $user->getID(), NULL, NULL, secureServer(), true);
+		zp_setCookie('zpcms_auth_user', $user->getPass() . '.' . $user->getID(), NULL, NULL, secureServer(), true);
 	}
 
 	/**
@@ -689,7 +689,7 @@ class Zenphoto_Authority {
 						self::logUser($user);
 						$_zp_current_admin_obj = $user;
 					} else {
-						zp_clearCookie('zp_user_auth', null, secureServer(), true ); // Clear the cookie, just in case
+						zp_clearCookie('zpcms_auth_user', null, secureServer(), true ); // Clear the cookie, just in case
 						$_zp_login_error = 1;
 					}
 					break;
@@ -818,13 +818,13 @@ class Zenphoto_Authority {
 	 * Checks saved cookies to see if a user is logged in
 	 */
 	function checkCookieCredentials() {
-		list($auth, $id) = explode('.', zp_getCookie('zp_user_auth') . '.');
+		list($auth, $id) = explode('.', zp_getCookie('zpcms_auth_user') . '.');
 		$loggedin = $this->checkAuthorization($auth, $id);
 		$loggedin = zp_apply_filter('authorization_cookie', $loggedin, $auth, $id);
 		if ($loggedin) {
 			return $loggedin;
 		} else {
-			zp_clearCookie('zp_user_auth', null, secureServer(), true);
+			zp_clearCookie('zpcms_auth_user', null, secureServer(), true);
 			return NULL;
 		}
 	}

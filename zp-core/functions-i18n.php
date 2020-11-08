@@ -343,7 +343,7 @@ function setupCurrentLocale($override = NULL) {
 			if (isset($_REQUEST['oldlocale'])) {
 				$locale = sanitize($_REQUEST['oldlocale'], 3);
 				setOption('locale', $locale, false);
-				zp_clearCookie('dynamic_locale');
+				zp_clearCookie('zpcms_locale');
 			}
 		}
 	}
@@ -465,14 +465,14 @@ function getUserLocale() {
 				$_zp_current_locale = validateLocale(sanitize($_GET['locale']), 'URI string');
 			}
 			if ($_zp_current_locale) {
-				zp_setCookie('dynamic_locale', $_zp_current_locale);
+				zp_setCookie('zpcms_locale', $_zp_current_locale);
 			}
 			if (DEBUG_LOCALE)
 				debugLog("dynamic_locale from URL: " . sanitize($_REQUEST['locale']) . "=>$_zp_current_locale");
 		} else {
 			$matches = explode('.', @$_SERVER['HTTP_HOST']);
 			if ($_zp_current_locale = validateLocale($matches[0], 'HTTP_HOST')) {
-				zp_clearCookie('dynamic_locale');
+				zp_clearCookie('zpcms_locale');
 			}
 		}
 
@@ -484,7 +484,7 @@ function getUserLocale() {
 
 		if (!$_zp_current_locale) {
 			$localeOption = getOption('locale');
-			$_zp_current_locale = zp_getCookie('dynamic_locale');
+			$_zp_current_locale = zp_getCookie('zpcms_locale');
 
 			if (DEBUG_LOCALE)
 				debugLog("locale from option: " . $localeOption . '; dynamic locale=' . $_zp_current_locale);
@@ -662,7 +662,7 @@ function getLanguageSubdomains() {
 function getLanguageText($loc = NULL, $separator = NULL) {
 	global $_locale_Subdomains;
 	if (is_null($loc)) {
-		$text = @$_locale_Subdomains[zp_getCookie('dynamic_locale')];
+		$text = @$_locale_Subdomains[zp_getCookie('zpcms_locale')];
 	} else {
 		$text = @$_locale_Subdomains[$loc];
 		//en_US always is always empty here so so urls in dynamic locale or html_meta_tags are wrong (Quickfix)

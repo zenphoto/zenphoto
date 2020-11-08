@@ -389,14 +389,14 @@ if ($newconfig || isset($_GET['copyhtaccess'])) {
 if ($setup_checked) {
 	if (!isset($_GET['protect_files'])) {
 		setup::log(gettext("Completed system check"), true);
-		if (isset($_COOKIE['setup_test_cookie'])) {
-			$setup_cookie = $_COOKIE['setup_test_cookie'];
+		if (isset($_COOKIE['zpcms_setup_testcookie'])) {
+			$setup_cookie = $_COOKIE['zpcms_setup_testcookie'];
 		} else {
 			$setup_cookie = '';
 		}
 		if ($setup_cookie == ZENPHOTO_VERSION) {
 			setup::log(gettext('Setup cookie test successful'));
-			setcookie('setup_test_cookie', '', time() - 368000, '/');
+			setcookie('zpcms_setup_testcookie', '', time() - 368000, '/');
 		} else {
 			setup::log(gettext('Setup cookie test unsuccessful'), true);
 		}
@@ -426,7 +426,7 @@ if ($setup_checked) {
 			setup::log(sprintf(gettext("Query error: %s"), $connectDBErr), true);
 		}
 	}
-	setcookie('setup_test_cookie', ZENPHOTO_VERSION, time() + 3600, '/');
+	setcookie('zpcms_setup_testcookie', ZENPHOTO_VERSION, time() + 3600, '/');
 }
 
 if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_result)) {
@@ -619,7 +619,7 @@ if ($c <= 0) {
 								}
 							}
 							setup::checkMark($p, sprintf(gettext('<em>%s</em> security'), DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'), DATA_FOLDER), sprintf(gettext('Zenphoto suggests you make the sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$04o which may allow unauthorized access.'), DATA_FOLDER, $file, $permission));
-							
+						
 							if(setup::checkServerSoftware()) {
 								setup::checkMark(true, $_SERVER['SERVER_SOFTWARE'], '', '');
 							} else {

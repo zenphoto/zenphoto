@@ -67,7 +67,7 @@ if (zp_loggedin(FILES_RIGHTS)) {
 							lang: '<?php echo $locale; ?>', // language (OPTIONAL)
 							customData: {
 							'XSRFToken':'<?php echo getXSRFToken('elFinder'); ?>',
-											'zp_user_auth':'<?php echo zp_getCookie('zp_user_auth'); ?>',
+											'zp_user_auth':'<?php echo zp_getCookie('zpcms_auth_user'); ?>',
 											'origin':'tinyMCE'
 							},
 							url : '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>php/connector_zp.php', // connector URL (REQUIRED)

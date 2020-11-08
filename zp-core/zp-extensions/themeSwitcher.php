@@ -98,7 +98,7 @@ class themeSwitcher {
 	 */
 	static function theme($theme) {
 		global $_zp_gallery;
-		$new = zp_getCookie('themeSwitcher_theme');
+		$new = zp_getCookie('zpcms_themeswitcher_theme');
 		if ($new) {
 			if (array_key_exists($new, $_zp_gallery->getThemes())) {
 				$theme = $new;
@@ -199,10 +199,10 @@ foreach ($_zp_gallery->getThemes() as $__key => $__theme) {
 unset($__key);
 unset($__theme);
 if (isset($_GET['themeSwitcher'])) {
-	zp_setCookie('themeSwitcher_theme', sanitize($_GET['themeSwitcher']), getOption('themeSwitcher_timeout') * 60);
+	zp_setCookie('zpcms_themeswitcher_theme', sanitize($_GET['themeSwitcher']), getOption('themeSwitcher_timeout') * 60);
 }
 
-if (zp_getCookie('themeSwitcher_theme')) {
+if (zp_getCookie('zpcms_themeswitcher_theme')) {
 	zp_register_filter('setupTheme', 'themeSwitcher::theme');
 }
 zp_register_filter('theme_head', 'themeSwitcher::head', 999);

@@ -3720,27 +3720,27 @@ function processEditSelection($subtab) {
 		switch ($subtab) {
 			case '':
 				$album_nesting = max(1, sanitize_numeric($_GET['selection']));
-				zp_setCookie('gallery_nesting', $album_nesting);
+				zp_setCookie('zpcms_admin_gallery_nesting', $album_nesting);
 				break;
 			case 'subalbuminfo':
 				$subalbum_nesting = max(1, sanitize_numeric($_GET['selection']));
-				zp_setCookie('subalbum_nesting', $subalbum_nesting);
+				zp_setCookie('zpcms_admin_subalbum_nesting', $subalbum_nesting);
 				break;
 			case 'imageinfo':
 				$imagesTab_imageCount = max(ADMIN_IMAGES_STEP, sanitize_numeric($_GET['selection']));
-				zp_setCookie('imagesTab_imageCount', $imagesTab_imageCount);
+				zp_setCookie('zpcms_admin_imagestab_imagecount', $imagesTab_imageCount);
 				break;
 		}
 	} else {
 		switch ($subtab) {
 			case '':
-				$album_nesting = zp_getCookie('gallery_nesting');
+				$album_nesting = zp_getCookie('zpcms_admin_gallery_nesting');
 				break;
 			case 'subalbuminfo':
-				$subalbum_nesting = zp_getCookie('subalbum_nesting');
+				$subalbum_nesting = zp_getCookie('zpcms_admin_subalbum_nesting');
 				break;
 			case 'imageinfo':
-				$count = zp_getCookie('imagesTab_imageCount');
+				$count = zp_getCookie('zpcms_admin_imagestab_imagecount');
 				if ($count)
 					$imagesTab_imageCount = $count;
 				break;

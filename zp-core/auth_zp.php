@@ -43,15 +43,15 @@ $_zp_loggedin = false;
 
 // we have the ssl marker cookie, normally we are already logged in
 // but we need to redirect to ssl to retrive the auth cookie (set as secure).
-if (zp_getCookie('zenphoto_ssl') && !secureServer()) {
+if (zp_getCookie('zpcms_ssl') && !secureServer()) {
 	$redirect = "https://" . $_SERVER['HTTP_HOST'] . getRequestURI();
 	redirectURL($redirect);
 }
 
 if (isset($_POST['login'])) { //	Handle the login form.
 	if (secureServer()) {
-		// https: set the 'zenphoto_ssl' marker for redirection
-		zp_setCookie("zenphoto_ssl", "needed");
+		// https: set the 'zpcms_ssl' marker for redirection
+		zp_setCookie("zpcms_ssl", "needed");
 	}
 	$_zp_loggedin = $_zp_authority->handleLogon();
 	if ($_zp_loggedin) {
@@ -75,12 +75,12 @@ if (isset($_POST['login'])) { //	Handle the login form.
 	}
 }
 if (!$_zp_loggedin) { //	Clear the ssl cookie
-	zp_clearCookie("zenphoto_ssl");
+	zp_clearCookie("zpcms_ssl");
 }
 // Handle a logout action.
 if (isset($_REQUEST['logout'])) {
 	$location = Zenphoto_Authority::handleLogout();
-	zp_clearCookie("zenphoto_ssl");
+	zp_clearCookie("zpcms_ssl");
 	if (empty($location)) {
 		$redirect = '?fromlogout';
 		if (isset($_GET['p'])) {

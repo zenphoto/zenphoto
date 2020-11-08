@@ -1148,7 +1148,7 @@ class Gallery {
 		$hint = '';
 		$pwd = $this->getPassword();
 		if (!empty($pwd)) {
-			return 'zp_gallery_auth';
+			return 'zpcms_auth_gallery';
 		}
 		return 'zp_public_access';
 	}

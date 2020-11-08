@@ -146,7 +146,7 @@ class mobileTheme {
 	static function controlLink($text=NULL, $before=NULL, $after=Null) {
 		$detect = new mobile();
 		if ($detect->isMobile()) {
-			if (zp_getCookie('mobileTheme_disable')) {
+			if (zp_getCookie('zpcms_mobiletheme')) {
 				if (is_null($text)) {
 					$text = gettext('View the mobile gallery');
 				}
@@ -245,15 +245,15 @@ class mobile extends Mobile_Detect {
 if (isset($_GET['mobileTheme'])) {
 	switch ($_GET['mobileTheme']) {
 		case 'on':
-			zp_setCookie('mobileTheme_disable', 0);
+			zp_setCookie('zpcms_mobiletheme', 0);
 			break;
 		case 'off':
-			zp_setCookie('mobileTheme_disable', 1);
+			zp_setCookie('zpcms_mobiletheme', 1);
 			break;
 	}
 }
 
-if (!zp_getCookie('mobileTheme_disable')) {
+if (!zp_getCookie('zpcms_mobiletheme')) {
 	zp_register_filter('setupTheme', 'mobileTheme::theme');
 }
 

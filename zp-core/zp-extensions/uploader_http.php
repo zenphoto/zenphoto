@@ -37,7 +37,7 @@ function httpUploadHandler_admin_tabs($tabs) {
 				'subtabs' => NULL);
 	}
 	$tabs['upload']['subtabs'][$me] = $mylink;
-	if (zp_getcookie('uploadtype') == 'http')
+	if (zp_getcookie('zpcms_admin_uploadtype') == 'http')
 		$tabs['upload']['link'] = $mylink;
 	return $tabs;
 }

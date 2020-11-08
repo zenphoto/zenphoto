@@ -647,8 +647,8 @@ if (isset($_GET['download'])) {
 		//	credentials required to download
 		if (!zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
 			$user = getOption('downloadList_user');
-			zp_handle_password('download_auth', $hash, $user);
-			if ((!empty($hash) && zp_getCookie('download_auth') != $hash)) {
+			zp_handle_password('zpcms_auth_download', $hash, $user);
+			if ((!empty($hash) && zp_getCookie('zpcms_auth_download') != $hash)) {
 				$show = ($user) ? true : NULL;
 				$hint = '';
 				if (!empty($hash)) {

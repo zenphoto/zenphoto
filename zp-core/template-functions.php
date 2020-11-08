@@ -4020,13 +4020,13 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 		if (getOption('search_user') != '')
 			$show = true;
 		$hint = get_language_string(getOption('search_hint'));
-		$authType = 'zp_search_auth';
+		$authType = 'zpcms_auth_search';
 		if (empty($hash)) {
 			$hash = $_zp_gallery->getPassword();
 			if ($_zp_gallery->getUser() != '')
 				$show = true;
 			$hint = $_zp_gallery->getPasswordHint();
-			$authType = 'zp_gallery_auth';
+			$authType = 'zpcms_auth_gallery';
 		}
 		if (!empty($hash) && zp_getCookie($authType) == $hash) {
 			return $authType;
@@ -4049,8 +4049,8 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 		if ($_zp_gallery->getUser() != '')
 			$show = true;
 		$hint = $_zp_gallery->getPasswordHint();
-		if (!empty($hash) && zp_getCookie('zp_gallery_auth') == $hash) {
-			return 'zp_gallery_auth';
+		if (!empty($hash) && zp_getCookie('zpcms_auth_gallery') == $hash) {
+			return 'zpcms_auth_gallery';
 		}
 	}
 	if (empty($hash))

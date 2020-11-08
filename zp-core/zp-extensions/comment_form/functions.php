@@ -469,7 +469,7 @@ function comment_form_postcomment($error) {
 function comment_form_handle_comment() {
 	global $_zp_current_image, $_zp_current_album, $_zp_comment_stored, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_HTML_cache;
 	$comment_error = 0;
-	$cookie = zp_getCookie('zenphoto_comment');
+	$cookie = zp_getCookie('zpcms_comment');
 	if (isset($_POST['comment']) && (!isset($_POST['username']) || empty($_POST['username']))) { // 'username' is a honey-pot trap
 		/*
 		 * do not save the post page in the cache
@@ -558,9 +558,9 @@ function comment_form_handle_comment() {
 				if (isset($_POST['remember'])) {
 					// Should always re-cookie to update info in case it's changed...
 					$_zp_comment_stored['comment'] = ''; // clear the comment itself
-					zp_setCookie('zenphoto_comment', serialize($_zp_comment_stored));
+					zp_setCookie('zpcms_comment', serialize($_zp_comment_stored));
 				} else {
-					zp_clearCookie('zenphoto_comment');
+					zp_clearCookie('zpcms_comment');
 				}
 				//use $redirectTo to send users back to where they came from instead of booting them back to the gallery index. (default behaviour)
 				if (!isset($_SERVER['SERVER_SOFTWARE']) || strpos(strtolower($_SERVER['SERVER_SOFTWARE']), 'microsoft-iis') === false) {

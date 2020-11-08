@@ -15,7 +15,7 @@ if (isset($_GET['type'])) {
 	$uploadtype = sanitize($_GET['tab']);
 	zp_setCookie('uploadtype', $uploadtype);
 } else {
-	$uploadtype = zp_getcookie('uploadtype');
+	$uploadtype = zp_getcookie('zpcms_admin_uploadtype');
 	$_GET['tab'] = $uploadtype;
 }
 $handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers', array()));

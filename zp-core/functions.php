@@ -513,7 +513,7 @@ function checkAlbumPassword($album, &$hint = NULL) {
 		$album = $album->getParent();
 		while (!is_null($album)) {
 			$hash = $album->getPassword();
-			$authType = "zp_album_auth_" . $album->getID();
+			$authType = "zpcms_auth_album_" . $album->getID();
 			$saved_auth = zp_getCookie($authType);
 
 			if (!empty($hash)) {
@@ -529,7 +529,7 @@ function checkAlbumPassword($album, &$hint = NULL) {
 		}
 		// revert all tlhe way to the gallery
 		$hash = $_zp_gallery->getPassword();
-		$authType = 'zp_gallery_auth';
+		$authType = 'zpcms_auth_gallery';
 		$saved_auth = zp_getCookie($authType);
 		if (empty($hash)) {
 			$authType = 'zp_public_access';
@@ -540,7 +540,7 @@ function checkAlbumPassword($album, &$hint = NULL) {
 			}
 		}
 	} else {
-		$authType = "zp_album_auth_" . $album->getID();
+		$authType = "zpcms_auth_album_" . $album->getID();
 		$saved_auth = zp_getCookie($authType);
 		if ($saved_auth != $hash) {
 			$hint = $album->getPasswordHint();
@@ -907,14 +907,14 @@ function getAllSubAlbumIDs($albumfolder = '') {
 function handleSearchParms($what, $album = NULL, $image = NULL) {
 	global $_zp_current_search, $zp_request, $_zp_last_album, $_zp_current_album,
 	$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_loggedin, $_zp_gallery_page;
-	$_zp_last_album = zp_getCookie('zenphoto_last_album');
+	$_zp_last_album = zp_getCookie('zpcms_search_lastalbum');
 	if (is_object($zp_request) && get_class($zp_request) == 'SearchEngine') { //	we are are on a search
-		zp_setCookie('zenphoto_searchparent', 'searchresults');
+		zp_setCookie('zpcms_search_parent', 'searchresults');
 		return $zp_request->getAlbumList();
 	}
-	$params = zp_getCookie('zenphoto_search_params');
+	$params = zp_getCookie('zpcms_search_params');
 	if (!empty($params)) {
-		$searchparent = zp_getCookie('zenphoto_searchparent');
+		$searchparent = zp_getCookie('zpcms_search_parent');
 		$context = get_context();
 		$_zp_current_search = new SearchEngine();
 		$_zp_current_search->setSearchParams($params);
@@ -930,7 +930,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		}
 		if (!is_null($album)) {
 			$albumname = $album->name;
-			zp_setCookie('zenphoto_last_album', $albumname);
+			zp_setCookie('zpcms_search_lastalbum', $albumname);
 			if ($_zp_gallery_page == 'album.php') {
 				$searchparent = 'searchresults_album'; // so we know we are in an album search result so any of its images that are also results don't throw us out of context
 			}
@@ -952,10 +952,10 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 					break;
 				}
 			}
-			zp_setCookie('zenphoto_searchparent', $searchparent);
+			zp_setCookie('zpcms_search_parent', $searchparent);
 		} else {
-			zp_clearCookie('zenphoto_searchparent');
-			zp_clearCookie('zenphoto_last_album');
+			zp_clearCookie('zpcms_search_parent');
+			zp_clearCookie('zpcms_search_lastalbum');
 		}
 		if (!is_null($_zp_current_zenpage_page)) {
 			$pages = $_zp_current_search->getPages();
@@ -987,7 +987,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			$_zp_current_search = null;
 			rem_context(ZP_SEARCH);
 			if (!isset($_REQUEST['preserve_search_params'])) {
-				zp_clearCookie("zenphoto_search_params");
+				zp_clearCookie("zpcms_search_params");
 			}
 		}
 	}
@@ -1768,15 +1768,15 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 	if (empty($authType)) { // not supplied by caller
 		$check_auth = '';
 		if (isset($_GET['z']) && @$_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
-			$authType = 'zp_image_auth';
+			$authType = 'zpcms_auth_image';
 			$check_auth = getOption('protected_image_password');
 			$check_user = getOption('protected_image_user');
 		} else if (in_context(ZP_SEARCH)) { // search page
-			$authType = 'zp_search_auth';
+			$authType = 'zpcms_auth_search';
 			$check_auth = getOption('search_password');
 			$check_user = getOption('search_user');
 		} else if (in_context(ZP_ALBUM)) { // album page
-			$authType = "zp_album_auth_" . $_zp_current_album->getID();
+			$authType = "zpcms_auth_album_" . $_zp_current_album->getID();
 			$check_auth = $_zp_current_album->getPassword();
 			$check_user = $_zp_current_album->getUser();
 			if (empty($check_auth)) {
@@ -1784,7 +1784,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 				while (!is_null($parent)) {
 					$check_auth = $parent->getPassword();
 					$check_user = $parent->getUser();
-					$authType = "zp_album_auth_" . $parent->getID();
+					$authType = "zpcms_auth_album_" . $parent->getID();
 					if (!empty($check_auth)) {
 						break;
 					}
@@ -1792,7 +1792,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 				}
 			}
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-			$authType = "zp_page_auth_" . $_zp_current_zenpage_page->getID();
+			$authType = "zpcms_auth_page_" . $_zp_current_zenpage_page->getID();
 			$check_auth = $_zp_current_zenpage_page->getPassword();
 			$check_user = $_zp_current_zenpage_page->getUser();
 			if (empty($check_auth)) {
@@ -1804,7 +1804,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 					$sql = 'SELECT `titlelink` FROM ' . prefix('pages') . ' WHERE `id`=' . $parentID;
 					$result = query_single_row($sql);
 					$pageobj = new ZenpagePage($result['titlelink']);
-					$authType = "zp_page_auth_" . $pageobj->getID();
+					$authType = "zpcms_auth_page_" . $pageobj->getID();
 					$check_auth = $pageobj->getPassword();
 					$check_user = $pageobj->getUser();
 				}
@@ -1822,7 +1822,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			}
 			if (!empty($checkcats)) {
 				foreach ($checkcats as $obj) {
-					$authType = "zp_category_auth_" .  $obj->getID();
+					$authType = "zpcms_auth_category_" .  $obj->getID();
 					$check_auth =  $obj->getPassword();
 					$check_user =  $obj->getUser();
 					if (empty($check_auth)) {
@@ -1834,7 +1834,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 							$sql = 'SELECT `titlelink` FROM ' . prefix('news_categories') . ' WHERE `id`=' . $parentID;
 							$result = query_single_row($sql);
 							$catobj = new ZenpageCategory($result['titlelink']);
-							$authType = "zp_category_auth_" . $catobj->getID();
+							$authType = "zpcms_auth_category_" . $catobj->getID();
 							$check_auth = $catobj->getPassword();
 							$check_user = $catobj->getUser();
 						}
@@ -1851,7 +1851,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			}
 		}
 		if (empty($check_auth)) { // anything else is controlled by the gallery credentials
-			$authType = 'zp_gallery_auth';
+			$authType = 'zpcms_auth_gallery';
 			$check_auth = $_zp_gallery->getPassword();
 			$check_user = $_zp_gallery->getUser();
 		}

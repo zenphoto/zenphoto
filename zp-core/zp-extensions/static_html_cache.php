@@ -116,7 +116,7 @@ class static_html_cache {
 		$accessType = checkAccess();
 		if ($accessType) {
 			if (is_numeric($accessType)) {
-				$accessType = 'zp_user_auth';
+				$accessType = 'zpcms_auth_user';
 			} else if ($accessType == 'zp_public_access' && count($_zp_authority->getAuthCookies()) > 0) {
 				$accessType .= '1'; // logged in some sense
 			}

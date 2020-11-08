@@ -24,10 +24,10 @@ class show_not_loggedin {
 		if (!OFFSET_PATH && is_object($_zp_current_admin_obj)) {
 			$_showNotLoggedin_real_auth = $_zp_current_admin_obj;
 			if (isset($_SESSION)) {
-				unset($_SESSION['zp_user_auth']);
+				unset($_SESSION['zpcms_auth_user']);
 			}
 			if (isset($_COOKIE)) {
-				unset($_COOKIE['zp_user_auth']);
+				unset($_COOKIE['zpcms_auth_user']);
 			}
 			$_zp_current_admin_obj = $_zp_loggedin = NULL;
 		}
