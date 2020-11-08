@@ -148,10 +148,10 @@ class cookieConsent {
 								gettext('Opt-out: Cookies are allowed unless declined') => 'opt-out'
 						),
 						'desc' => gettext('Choose the compliance type required for your jurisdiction. Note that your site may require modification to properly apply this to your cookies. Also see the scripts option below.')),
-				/*gettext('Consent revokable') => array(
+				gettext('Consent revokable') => array(
 						'key' => 'zpcookieconsent_consentrevokable',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('Check to allow revoking the consent as required in some jurisdictions.')), */
+						'desc' => gettext('Check to allow revoking the consent as required in some jurisdictions.')), 
 				gettext('Scripts to allow or block') => array(
 						'key' => 'zpcookieconsent_scripts',
 						'type' => OPTION_TYPE_TEXTAREA,
