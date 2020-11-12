@@ -5,7 +5,7 @@
  */
 // force UTF-8 Ø
 Define('PHP_MIN_VERSION', '5.6.0');
-Define('PHP_DESIRED_VERSION', '7.2.0');
+Define('PHP_DESIRED_VERSION', '7.3.0');
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if (!function_exists("gettext")) {
@@ -620,6 +620,13 @@ if ($c <= 0) {
 							}
 							setup::checkMark($p, sprintf(gettext('<em>%s</em> security'), DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'), DATA_FOLDER), sprintf(gettext('Zenphoto suggests you make the sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$04o which may allow unauthorized access.'), DATA_FOLDER, $file, $permission));
 						
+							if(secureServer()) {
+								$sslconection = 1;
+							} else {
+								$sslconection = -1;
+							}
+							setup::checkMark($sslconection, gettext('<em>SSL</em> connection'), gettext('<em>SSL</em> connection [is not enabled]'), gettext("It is strongely recommended to use a secure https connection on your site."));
+							
 							if(setup::checkServerSoftware()) {
 								setup::checkMark(true, $_SERVER['SERVER_SOFTWARE'], '', '');
 							} else {
@@ -676,23 +683,24 @@ if ($c <= 0) {
 									break;
 							}
 							setup::checkmark($display, gettext('PHP <code>display_errors</code>'), sprintf(gettext('PHP <code>display_errors</code> [is enabled]'), $display), gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sensitive information about your site.') . $aux, $display && !TEST_RELEASE);
-
-							setup::checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));
-							setup::checkmark(function_exists('flock') ? 1 : -1, gettext('PHP <code>flock</code> support'), gettext('PHP <code>flock</code> support [is not present]'), gettext('Zenphoto uses <code>flock</code> for serializing critical regions of code. Without <code>flock</code> active sites may experience <em>race conditions</em> which may be causing inconsistent data.'));
-							
-							setup::checkmark(function_exists('curl_init') ? 1 : -1, gettext('PHP <code>cURL</code> support'), gettext('PHP <code>cURL</code> support [is not present]'), gettext('<code>cURL</code> support is not critical but strongely recommended.'), false);
-							setup::checkmark(class_exists('tidy') ? 1 : -1, gettext('PHP <code>tidy</code> support'), gettext('PHP <code>tidy</code> support [is not present]'), gettext('<code>tidy</code> support is not critical but strongely recommended for properly truncating text containing HTML markup.'));
-							
-							setup::checkmark(class_exists('ZipArchive') ? 1 : -1, gettext('PHP <code>ZipArchive</code> support'), gettext('PHP <code>ZipArchive</code> support [is not present]'), gettext('<code>ZipArchive</code> support is not critical and only required if you intend  to upload zip archives with supported file types to the gallery.'));
-
-							setup::checkmark(function_exists('json_encode') ? 1 : -1, gettext('PHP <code>JSON</code> support'), gettext('PHP <code>JSON</code> support [is not present]'), gettext('<code>JSON</code> support is not yet critical but may become so in the future.'));
-
+							setup::checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));						
+							setup::checkmark(extension_loaded('curl') ? 1 : -1, gettext('PHP <code>cURL</code> support'), gettext('PHP <code>cURL</code> support [is not present]'), gettext('<code>cURL</code> support is not critical but strongely recommended.'), false);
+							setup::checkmark(extension_loaded('tidy') ? 1 : -1, gettext('PHP <code>tidy</code> support'), gettext('PHP <code>tidy</code> support [is not present]'), gettext('<code>tidy</code> support is not critical but strongely recommended for properly truncating text containing HTML markup.'));		
+							setup::checkmark(extension_loaded('zip') ? 1 : -1, gettext('PHP <code>ZipArchive</code> support'), gettext('PHP <code>ZipArchive</code> support [is not present]'), gettext('<code>ZipArchive</code> support is not critical and only required if you intend to upload zip archives with supported file types to the gallery.'));		
+							setup::checkmark(extension_loaded('json') ? 1 : -1, gettext('PHP <code>JSON</code> support'), gettext('PHP <code>JSON</code> support [is not present]'), gettext('<code>JSON</code> support is not yet critical but may become so in the future.'));
+							setup::checkmark(extension_loaded('exif') ? 1 : -1, gettext('PHP <code>exif</code> support'), gettext('PHP <code>exif</code> support [is not present]'), gettext('<code>exif</code> support is not critical but strongely recommended for properly handling exif data of images'));
+							setup::checkmark(extension_loaded('bz2') ? 1 : -1, gettext('PHP <code>bz2</code> support'), gettext('PHP <code>bz2</code> support [is not present]'), gettext('<code>bz2</code> support is not critical but recommended for some optional bzcompression functionalty'));
+							setup::checkmark(extension_loaded('fileinfo') ? 1 : -1, gettext('PHP <code>fileinfo</code> support'), gettext('PHP <code>fileinfo</code> support [is not present]'), gettext('<code>fileinfo</code> support is not critical but strongely recommended for file system functionality'));
+							setup::checkmark(extension_loaded('intl') ? 1 : -1, gettext('PHP <code>intl</code> support'), gettext('PHP <code>intl</code> support [is not present]'), gettext('<code>intl</code> support is strongely recommended for using locale-aware functionality.'));
+							setup::checkmark(extension_loaded('xml') ? 1 : -1, gettext('PHP <code>xml</code> support'), gettext('PHP <code>xml</code> support [is not present]'), gettext('<code>xml</code> support is not criticaly but strongely recommended for some functionality for parsing XML contents like RSS feeds.'));
+							setup::checkmark(extension_loaded('dom') ? 1 : -1, gettext('PHP <code>dom</code> support'), gettext('PHP <code>dom</code> support [is not present]'), gettext('<code>dom</code> support is not criticaly but strongely recommended for some functionality processing and modifying HTML contents.'));
+							setup::checkmark(extension_loaded('simplexml') ? 1 : -1, gettext('PHP <code>simplexml</code> support'), gettext('PHP <code>simplexml</code> support [is not present]'), gettext('<code>simplexml</code> support is not criticaly but strongely recommended for some functionality processing XML contents like RSS feeds.'));
 							
 							if ($_zp_setupCurrentLocale_result === false) {
 								setup::checkMark(-1, gettext('PHP <code>setlocale()</code>'), ' ' . gettext('PHP <code>setlocale()</code> failed'), gettext("Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work.") . '<br />' . gettext('See the <a  href="http://www.zenphoto.org/news/problems-with-languages">user guide</a> on zenphoto.org for details.'));
 							}
 							setup::primeMark(gettext('mb_strings'));
-							if (function_exists('mb_internal_encoding')) {
+							if (extension_loaded('mbstring') && extension_loaded('iconv')) {
 								@mb_internal_encoding('UTF-8');
 								if (($charset = mb_internal_encoding()) == 'UTF-8') {
 									$mb = 1;
@@ -700,15 +708,16 @@ if ($c <= 0) {
 									$mb = -1;
 								}
 								$m2 = gettext('Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in your <em>php.ini</em> file is recommended to insure accented and multi-byte characters function properly.');
-								setup::checkMark($mb, gettext("PHP <code>mbstring</code> package"), sprintf(gettext('PHP <code>mbstring</code> package [Your internal character set is <strong>%s</strong>]'), $charset), $m2);
+								setup::checkMark($mb, gettext("PHP <code>mbstring</code> and <code>iconv</code> packages"), sprintf(gettext('PHP <code>mbstring</code> and <code>iconv</code> packages [Your internal character set is <strong>%s</strong>]'), $charset), $m2);
 							} else {
 								$test = $_zp_UTF8->convert('test', 'ISO-8859-1', 'UTF-8');
 								if (empty($test)) {
-									$m2 = gettext("You need to install the <code>mbstring</code> package or correct the issue with <code>iconv()</code>");
-									setup::checkMark(0, '', gettext("PHP <code>mbstring</code> package [is not present and <code>iconv()</code> is not working]"), $m2);
+									$m2 = gettext("You need to install the <code>mbstring</code> and <code>iconv</code> packages or correct the issue with <code>iconv()</code>");
+									setup::checkMark(0, '', gettext("PHP <code>mbstring</code> and <code>iconv</code> packages [are not present"), $m2);
 								} else {
 									$m2 = gettext("Strings generated internally by PHP may not display correctly. (e.g. dates)");
-									setup::checkMark(-1, '', gettext("PHP <code>mbstring</code> package [is not present]"), $m2);
+									setup::checkMark(-1, '', gettext("PHP <code>mbstring</code> and <code>iconv</code> packages [are not present]"), $m2);
+									
 								}
 							}
 
