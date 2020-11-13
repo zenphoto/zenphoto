@@ -3319,7 +3319,7 @@ Zenphoto_Authority::printPasswordFormJS();
 											<p>
 												<?php gettext('If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first.'); ?>
 											</p>
-											<p><?php echo gettext('This will not work properly if Zenhoto is set to anonymize the IP address which is strongly advised for privacy concerns in many jurisdictions.'); ?>
+											<p><?php echo gettext('This will not work properly if Zenphoto is set to anonymize the IP address which is strongly advised for privacy concerns in many jurisdictions.'); ?>
 											</p>
 										</div>
 										<?php } ?>
