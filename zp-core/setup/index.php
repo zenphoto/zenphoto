@@ -713,7 +713,7 @@ if ($c <= 0) {
 								$test = $_zp_UTF8->convert('test', 'ISO-8859-1', 'UTF-8');
 								if (empty($test)) {
 									$m2 = gettext("You need to install the <code>mbstring</code> and <code>iconv</code> packages or correct the issue with <code>iconv()</code>");
-									setup::checkMark(0, '', gettext("PHP <code>mbstring</code> and <code>iconv</code> packages [are not present"), $m2);
+									setup::checkMark(0, '', gettext("PHP <code>mbstring</code> and <code>iconv</code> packages [are not present]"), $m2);
 								} else {
 									$m2 = gettext("Strings generated internally by PHP may not display correctly. (e.g. dates)");
 									setup::checkMark(-1, '', gettext("PHP <code>mbstring</code> and <code>iconv</code> packages [are not present]"), $m2);

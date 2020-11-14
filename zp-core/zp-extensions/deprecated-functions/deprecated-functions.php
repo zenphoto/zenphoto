@@ -183,7 +183,7 @@ function filterImageQuery($result, $source) {
  */
 function getRandomImages($daily = false) {
 	global $_zp_gallery;
-	$deprecatednote = gettext("Use the image_album_statistics plugin function getImageStatistic()with appropiate parameters");
+	$deprecatednote = gettext("Use the image_album_statistics plugin function getImageStatistic() with appropiate parameters");
 	if($daily) {
 		$deprecatednote .= ' ' . gettext("For picture of the day functionality use the image_album_statistics plugin function getPictureOfTheDay()");
 	}
@@ -328,7 +328,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
  * @param bool $fullimagelink 'false' (default) for the image page link , 'true' for the unprotected full image link (to use Colorbox for example)
  */
 function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlbum = '', $width = NULL, $height = NULL, $crop = NULL, $fullimagelink = false) {
-	deprecated_functions::notify(gettext("Use the image_album_statistics plugin function getImageStatistic()with appropiate parameters. You might need to adjust your theme's CSS."));
+	deprecated_functions::notify(gettext("Use the image_album_statistics plugin function getImageStatistic() with appropiate parameters. You might need to adjust your theme's CSS."));
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
 	} else {
