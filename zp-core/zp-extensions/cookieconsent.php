@@ -319,7 +319,7 @@ class cookieConsent {
 	}
 
 	/**
-	 * Prints the scropts added to the scripts option.
+	 * Prints the scripts added to the scripts option.
 	 * These are then added to the theme_header filter automatically by the plugin
 	 * 
 	 * @since ZenphotoCMS 1.5.8
