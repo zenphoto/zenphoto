@@ -11,10 +11,8 @@
  * It also does not block cookies Zenphoto sets itself as these are not privacy related and require to work properly. 
  * Learn more about Zenphotp's cookies on: https://zenphoto.org/news/cookies/
  * 
- * But you can use this plugin to only executed scripts on consent by:
- * 
- * a) Add the JS calls to block or allow the scripts option so they cannot set or use their cookies unless allowed to run
- * b) Use the method `cookieconsemt::checkConsent()` to manually wrap JS script calls 
+ * But you can use this plugin to only executed scripts on consent by adding the JS calls to block or allow the scripts option 
+ * so they cannot set or use their cookies unless allowed to run
  * 
  * @author Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)
  * @license GPL v3 or later
@@ -28,7 +26,7 @@ $plugin_notice = gettext('Note: This plugin cannot block or delete cookies by it
 $option_interface = 'cookieConsent';
 $plugin_category = gettext('Misc');
 
-if (!zp_loggedin() && !isset($_COOKIE['cookieconsent_status'])) {
+if (!zp_loggedin()) {
 	zp_register_filter('theme_head', 'cookieConsent::getCSS');
 	zp_register_filter('theme_head', 'cookieConsent::getJS');
 	zp_register_filter('theme_head', 'cookieconsent::getConsentedJS');
@@ -245,6 +243,7 @@ class cookieConsent {
 		<script src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/cookieconsent/cookieconsent.min.js"></script>
 		<script>
 			window.addEventListener("load", function () {
+				var cookieconsent_allowed = false;
 				window.cookieconsent.initialise({
 					palette: {
 						popup: {
@@ -273,8 +272,46 @@ class cookieConsent {
 						deny: '<?php echo js_encode($decline); ?>',
 						link: "<?php echo js_encode($learnmore); ?>",
 						policy: "<?php echo js_encode($policy); ?>"
+					},
+					onInitialise: function (status) {
+						var type = this.options.type;
+						var didConsent = this.hasConsented();
+						if (type == 'opt-in' && didConsent) {
+							// enable cookies
+							cookieconsent_allowed = true;
+						}
+						if (type == 'opt-out' && !didConsent) {
+							// disable cookies
+							cookieconsent_allowed = false;
+						}
+					},
+					onStatusChange: function (status, chosenBefore) {
+						var type = this.options.type;
+						var didConsent = this.hasConsented();
+						if (type == 'opt-in' && didConsent) {
+							// enable cookies
+							cookieconsent_allowed = true;
+						}
+						if (type == 'opt-out' && !didConsent) {
+							// disable cookies
+							cookieconsent_allowed = false;
+						}
+					},
+					onRevokeChoice: function () {
+						var type = this.options.type;
+						if (type == 'opt-in') {
+							// disable cookies
+							cookieconsent_allowed = false;
+						}
+						if (type == 'opt-out') {
+							// enable cookies
+							cookieconsent_allowed = true;
+						}
 					}
-				}); 
+				});
+				if(cookieconsent_allowed) {
+					<?php cookieConsent::printConsentJS(); ?>
+				}
 			});
 		</script>
 		<?php
@@ -287,6 +324,8 @@ class cookieConsent {
 	 * - info: All just informational so always true
 	 * - opt-in: Returns true only if the consent cookie is set to "allow"
 	 * - opt-out: Returns true by default unless declined or if the consent cookie is set to "allow"
+	 * 
+	 * NOTE: This will not and cannot work properly if using the static_htnl_cache plugin unless called before the cache is fetched.
 	 * 
 	 * @since ZenphotoCMS 1.5.8
 	 * 
@@ -324,9 +363,9 @@ class cookieConsent {
 	 * 
 	 * @since ZenphotoCMS 1.5.8
 	 */
-	static function getConsentedJS() {
+	static function printConsentJS() {
 		if (cookieconsent::checkConsent()) {
-			echo '<script>' . getOption('zpcookieconsent_scripts') . '</script>';
+			echo getOption('zpcookieconsent_scripts');
 		}
 	}
 
