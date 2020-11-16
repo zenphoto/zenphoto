@@ -29,7 +29,6 @@ $plugin_category = gettext('Misc');
 if (!zp_loggedin()) {
 	zp_register_filter('theme_head', 'cookieConsent::getCSS');
 	zp_register_filter('theme_head', 'cookieConsent::getJS');
-	zp_register_filter('theme_head', 'cookieconsent::getConsentedJS');
 }
 
 class cookieConsent {
