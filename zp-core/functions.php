@@ -3008,6 +3008,105 @@ function printDataUsageNotice() {
 }
 
 /**
+ * Returns an array with predefined info about general cookies set by the system and/or plugins
+ * 
+ * @sicne ZenphotoCMS 1.5.8
+ * 
+ * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
+ * @return array
+ */
+function getCookieInfo($section = null) {
+	$info = array(
+			'authentication' => array(
+					'sectiontitle' => gettext('Authentication'),
+					'sectiondesc' => gettext('Cookies set if logging in as an admin or as one of the various guest user types.'),
+					'cookies' => array(
+							'zpcms_auth_user' => gettext('Stores the zenphoto user login credentials.'),
+							'zpcms_auth_gallery' => gettext('Stores guest user gallery access credentias.'),
+							'zpcms_auth_search' => gettext('Stores guest user search access credentials'),
+							'zpcms_auth_image_itemid' => gettext('Stores guest user <em>image item</em> access credentials. <em>itemid</em> refers to the ID of the image.'),
+							'zpcms_auth_album_itemid' => gettext('Stores guest user <em>album item</em> access credentials. <em>itemid</em> refers to the ID of the album.'),
+							'zpcms_auth_category_itemid' => gettext('Stores guest user <em>category item</em> access credentials. <em>itemid</em> refers to the ID of the category.'),
+							'zpcms_auth_page_itemid' => gettext('Stores guest user <em>page item</em> access credentials. <em>itemid</em> refers to the ID of the zenpage page.'),
+							'zpcms_auth_download' => gettext('Stores guest user access used by the <em>downloadlist</em> plugin.')
+					),
+			),
+			'search' => array(
+					'sectiontitle' => gettext('Search context (frontend)'),
+					'sectiondesc' => gettext('THese cookies help keep the search result context while browsing results'),
+					'cookies' => array(
+							'zpcms_search_params' => gettext('Stores search parameters of the most recent search.'),
+							'zpcms_search_lastalbum' => gettext('Stores the last album in search context.'),
+							'zpcms_search_parent' => gettext('Stores the previous page within search context (either the main search results or an album result)')
+					),
+			),
+			'admin' => array(
+					'sectiontitle' => gettext('Administration'),
+					'sectiondesc' => gettext('These are set on the backend to help editing,'),
+					'cookies' => array(
+							'zpcms_admin_gallery_nesting' => gettext('Stores the setting for the nested album list display on the backend.'),
+							'zpcms_admin_subalbum_nesting' => gettext('Stores the setting for the nested subalbum list display on the backend.'),
+							'zpcms_admin_imagestab_imagecount' => gettext('Stores the image count on the backend images pages.'),
+							'zpcms_admin_uploadtype' => gettext('Stores the upload method on the backend.')
+					),
+			),
+			'cookie' => array(
+					'sectiontitle' => gettext('Cookie related'),
+					'sectiondesc' => '',
+					'cookies' => array(
+							'zpcms_setup_testcookie' => gettext('Used by setup to test if cookies are operational on the installation. May store the Zenphoto version number of the last unsuccessful run.'),
+							'zpcms_cookie_path' => gettext('Stores the path for cookies.')
+					),
+			),
+			'various' => array(
+					'sectiontitle' => gettext('Various'),
+					'sectiondesc' => gettext('Various cookies set by plugins, themes or otherwise'),
+					'cookies' => array(
+							'zcms_ssl' => gettext('Stores the HTTPS/SSL setting.'),
+							'zpcms_locale' => gettext('Stores the language selection set by the <em>dynamic_locale</em> plugin.'),
+							'zpcms_mobiletheme' => gettext('Stores if the mobile theme is defined - used by the <em>mobileTheme</em> plugin.'),
+							'zpcms_themeswitcher_theme' => gettext('Stores the current theme selected by the <em>themeSwitcher</em> plugin.<'),
+							'zpcms_comment' => gettext('Stores information from the comment form POST for re-populaton of the form in the <em>comment_form</em> plugin.')
+					)
+			)
+	);
+	if (is_null($sectio) && array_key_exists($section, $info)) {
+		return $info[$section];
+	} else {
+		return $info;
+	}
+}
+
+/**
+ * Prints a definition list with predefined info about general cookies set by the system and/or plugins
+ * 
+ * @sicne ZenphotoCMS 1.5.8
+ * 
+ * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
+ * @param string $seactionheadlin Add h2 to h6 to print as the section headline, h2 default.
+ */
+function printCookieInfo($section = null, $sectionheadline = 'h2') {
+	$cookies = getCookieInfo($section);
+	if ($cookies) {
+		foreach ($cookies as $section) {
+			if(!in_array($sectionheadline, array('h2', 'h3', 'h4', 'h5', 'h6'))) {
+				$sectionheadline = 'h2';
+			}
+			echo '<' . $sectionheadline . '>' . $section['sectiontitle'] . '</' . $sectionheadline . '>';
+			echo '<p>' . $section['sectiondesc'] . '</p>';
+			if ($section['cookies']) {
+				echo '<dl>';
+				foreach ($section['cookies'] as $key => $val) {
+					echo '<dt>' . $key . '</dt>';
+					echo '<dd>' . $val . '</dd>';
+				}
+				echo '</dl>';
+			}
+		}
+	}
+}
+
+/**
  * Standins for when no captcha is enabled
  */
 class _zp_captcha {
