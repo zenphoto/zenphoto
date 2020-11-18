@@ -61,6 +61,8 @@ if (extensionEnabled('zenpage')) {
 	define('ZP_PAGES_ENABLED', false);
 }
 
+zp_register_filter('content_macro', 'getCookieInfoMacro');
+
 /**
  * parses the allowed HTML tags for use by htmLawed
  *
@@ -3015,7 +3017,7 @@ function printDataUsageNotice() {
  * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
  * @return array
  */
-function getCookieInfo($section = null) {
+function getCookieInfoData($section = null) {
 	$info = array(
 			'authentication' => array(
 					'sectiontitle' => gettext('Authentication'),
@@ -3078,6 +3080,38 @@ function getCookieInfo($section = null) {
 }
 
 /**
+ * Returns a definition list with predefined info about general cookies set by the system and/or plugins as a string
+ * 
+ * @sicne ZenphotoCMS 1.5.8
+ * 
+ * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
+ * @param string $seactionheadlin Add h2 to h6 to print as the section headline, h2 default.
+ * @return string
+ */
+function getCookieInfoHTML($section = null, $sectionheadline = 'h2') {
+	$cookies = getCookieInfoData($section);
+	$html = '';
+	if ($cookies) {
+		foreach ($cookies as $section) {
+			if (!in_array($sectionheadline, array('h2', 'h3', 'h4', 'h5', 'h6'))) {
+				$sectionheadline = 'h2';
+			}
+			$html .= '<' . $sectionheadline . '>' . $section['sectiontitle'] . '</' . $sectionheadline . '>';
+			$html .= '<p>' . $section['sectiondesc'] . '</p>';
+			if ($section['cookies']) {
+				$html .= '<dl>';
+				foreach ($section['cookies'] as $key => $val) {
+					$html .= '<dt>' . $key . '</dt>';
+					$html .= '<dd>' . $val . '</dd>';
+				}
+				$html .= '</dl>';
+			}
+		}
+	}
+	return $html;
+}
+
+/**
  * Prints a definition list with predefined info about general cookies set by the system and/or plugins
  * 
  * @sicne ZenphotoCMS 1.5.8
@@ -3086,24 +3120,24 @@ function getCookieInfo($section = null) {
  * @param string $seactionheadlin Add h2 to h6 to print as the section headline, h2 default.
  */
 function printCookieInfo($section = null, $sectionheadline = 'h2') {
-	$cookies = getCookieInfo($section);
-	if ($cookies) {
-		foreach ($cookies as $section) {
-			if(!in_array($sectionheadline, array('h2', 'h3', 'h4', 'h5', 'h6'))) {
-				$sectionheadline = 'h2';
-			}
-			echo '<' . $sectionheadline . '>' . $section['sectiontitle'] . '</' . $sectionheadline . '>';
-			echo '<p>' . $section['sectiondesc'] . '</p>';
-			if ($section['cookies']) {
-				echo '<dl>';
-				foreach ($section['cookies'] as $key => $val) {
-					echo '<dt>' . $key . '</dt>';
-					echo '<dd>' . $val . '</dd>';
-				}
-				echo '</dl>';
-			}
-		}
-	}
+	echo getCookieInfoHTML($section, $sectionheadline);
+}
+
+/**
+ * Registers the content macro(s)
+ * 
+ * @param array $macros Passes through the array of already registered 
+ * @return array
+ */
+function getCookieInfoMacro($macros) {
+	$macros['COOKIEINFO'] = array(
+			'class' => 'function',
+			'params' => array('string*', 'string*'),
+			'value' => 'getCookieInfoHTML',
+			'owner' => 'core',
+			'desc' => gettext('Set %1 to the section to get, set %2 to the h2-h6 for the headline element to use.')
+	);
+	return $macros;
 }
 
 /**
