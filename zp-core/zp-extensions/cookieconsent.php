@@ -360,12 +360,13 @@ class cookieConsent {
 	 * Prints the scripts added to the scripts option.
 	 * These are then added to the theme_header filter automatically by the plugin
 	 * 
+	 * Plugins or themes can use the "cookieconsent_consentscripts" to add additional ones
+	 * 
 	 * @since ZenphotoCMS 1.5.8
 	 */
 	static function printConsentJS() {
-		if (cookieconsent::checkConsent()) {
-			echo getOption('zpcookieconsent_scripts');
-		}
+		$scripts = getOption('zpcookieconsent_scripts');
+		echo zp_apply_filter('cookieconsent_consentscripts', $scripts, cookieconsent::checkConsent());
 	}
 
 }
