@@ -6,12 +6,12 @@
  * Adapted of https://cookieconsent.osano.com/
  * 
  * Note that to actually use the opt-in and out-out complicance modes your theme may require customisation. 
- * as the plugin does not clear or block scripts by itself. It is not possible to savely delete third party cookies.
+ * As the plugin does not clear or block scripts by itself. It is not possible to savely delete third party cookies.
  * 
  * It also does not block cookies Zenphoto sets itself as these are not privacy related and require to work properly. 
  * Learn more about Zenphotp's cookies on: https://zenphoto.org/news/cookies/
  * 
- * But you can use this plugin to only executed scripts on consent by adding the JS calls to block or allow the scripts option 
+ * But you can use this plugin to only execute scripts on consent by adding the JS calls to block or allow the scripts option 
  * so they cannot set or use their cookies unless allowed to run
  * 
  * @author Malte Müller (acrylian), Fred Sondaar (fretzl), Vincent Bourganel (vincent3569)
@@ -158,7 +158,7 @@ class cookieConsent {
 						'key' => 'zpcookieconsent_externalscripts',
 						'type' => OPTION_TYPE_TEXTAREA,
 						'multilingual' => false,
-						'desc' => gettext('Add URLs to privacy related external JS scripts as a comma separated list (ad trackers statistics etc.) here to allow or block opt-in/opt-out complicances (without the script wrapper). Be sure to add the URLs as it is called as it otherwise may not be blocked correctly. As we cannot safely delete cookies set by third party scripts, we block their execution so they can neither set nor fetch their cookies.'))
+						'desc' => gettext('Add URLs to privacy related external JS scripts as a comma separated list (ad trackers statistics etc.) here to allow or block opt-in/opt-out complicances (without the script wrapper). As we cannot safely delete cookies set by third party scripts, we block their execution so they can neither set nor fetch their cookies.'))
 		
 		);
 		return $options;
@@ -333,7 +333,7 @@ class cookieConsent {
 	 * - opt-in: Returns true only if the consent cookie is set to "allow"
 	 * - opt-out: Returns true by default unless declined or if the consent cookie is set to "allow"
 	 * 
-	 * NOTE: This will not and cannot work properly if using the static_htnl_cache plugin unless called before the cache is fetched.
+	 * NOTE: This will not and cannot work properly while using the static_html_cache plugin unless called before the cache is fetched.
 	 * 
 	 * @since ZenphotoCMS 1.5.8
 	 * 
@@ -379,7 +379,7 @@ class cookieConsent {
 	}
 	
 	/**
-	 * Prints JS code from the external scirpts option without <script> that loads external scripts if consent has been given
+	 * Prints JS code from the external scripts option without <script> that loads external scripts if consent has been given
 	 * 
 	 * Plugins or themes can use the "cookieconsent_externalconsentscripts" to add additional ones
 	 * 
