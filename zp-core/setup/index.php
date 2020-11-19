@@ -635,7 +635,7 @@ if ($c <= 0) {
 							
 							$err = setup::versionCheck('5.6.0', PHP_DESIRED_VERSION, PHP_VERSION);
 							$good = setup::checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk. Zenphoto is developed on PHP 7.1+ and in any case not tested below 5.6. There will be no fixes if you encounter any issues below 5.6. Please contact your webhost about a PHP upgrade on your server.'), '5.6.0', PHP_DESIRED_VERSION), false) && $good;
-
+							
 							if ($session && session_id()) {
 								setup::checkmark(true, gettext('PHP <code>Sessions</code>.'), gettext('PHP <code>Sessions</code> [appear to not be working].'), '', true);
 							} else {
@@ -1348,17 +1348,18 @@ if ($c <= 0) {
 										break;
 								}
 							}
-							$filelist = '';
+							$filelist = array();
 							foreach ($installed_files as $extra) {
-								$filelist .= filesystemToInternal(str_replace($base, '', $extra) . '<br />');
+								$filelist[] = filesystemToInternal(str_replace($base, '', $extra));
 							}
+							$htmllist_missing = setup::getFilelist($filelist);
 							if (hasPrimaryScripts() && count($installed_files) > 0) {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {
 									$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 								} else {
 									$msg1 = gettext("Zenphoto core files [Some files are missing or seem wrong]");
 								}
-								$msg2 = gettext('Perhaps there was a problem with the upload. You should check the following files:') . '<br /><code>' . substr($filelist, 0, -6) . '</code>';
+								$msg2 = gettext('Perhaps there was a problem with the upload. This may not be critical at all as perhaps just the file times may be off compared to other files. You should check the following files:') . $htmllist_missing;
 								$mark = -1;
 							} else {
 								if (defined('TEST_RELEASE') && TEST_RELEASE) {
@@ -1388,10 +1389,10 @@ if ($c <= 0) {
 									}
 								}
 								if ($svncount) {
-									$filelist[] = '<br />' . sprintf(ngettext('.svn [%s instance]', '.svn [%s instances]', $svncount), $svncount);
+									$filelist[] = sprintf(ngettext('.svn [%s instance]', '.svn [%s instances]', $svncount), $svncount);
 								}
 								if ($phi_ini_count && TEST_RELEASE) {
-									$filelist[] = '<br />' . sprintf(ngettext('php.ini [%s instance]', 'php.ini [%s instances]', $phi_ini_count), $phi_ini_count);
+									$filelist[] = sprintf(ngettext('php.ini [%s instance]', 'php.ini [%s instances]', $phi_ini_count), $phi_ini_count);
 								}
 								if ($package_file_count) { //	no point in this if the package list was damaged!
 									if (!empty($filelist)) {
@@ -1412,13 +1413,15 @@ if ($c <= 0) {
 													unset($filelist[$key]);
 												}
 											}
-
+											
 											if (!empty($filelist)) {
-												setup::checkmark(-1, '', gettext('Zenphoto core folders [Some unknown files were found]'), gettext('The following files could not be deleted.') . '<br /><code>' . implode('<br />', $filelist) . '<code>');
+												$htmllist = setup::getFilelist($filelist);
+												setup::checkmark(-1, '', gettext('Zenphoto core folders [Some unknown files were found]'), gettext('The following files could not be deleted.') . $htmllist);
 											}
 										} else {
-											setup::checkMark(-1, '', gettext('Zenphoto core folders [Some unknown files were found]'), gettext('You should remove the following files: ') . '<br /><code>' . implode('<br />', $filelist) .
-															'</code><p class="buttons"><a href="?delete_extra' . ($_zp_setup_debug ? '&amp;debug' : '') . '">' . gettext("Delete extra files") . '</a></p><br class="clearall" /><br class="clearall" />');
+											$htmllist = setup::getFilelist($filelist);
+											setup::checkMark(-1, '', gettext('Zenphoto core folders [Some unknown files were found]'), gettext('You should remove the following files: ') . $htmllist .
+															'<p class="buttons"><a href="?delete_extra' . ($_zp_setup_debug ? '&amp;debug' : '') . '">' . gettext("Delete extra files") . '</a></p><br class="clearall" /><br class="clearall" />');
 										}
 									}
 									setup::checkMark($permissions, gettext("Zenphoto core file permissions"), gettext("Zenphoto core file permissions [not correct]"), gettext('Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/permissions-for-zenphoto-files-and-folders">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'));

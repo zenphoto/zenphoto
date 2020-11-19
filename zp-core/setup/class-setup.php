@@ -834,6 +834,22 @@ class setup {
 			return $_SERVER['SERVER_SOFTWARE'];
 		}
 	}
+	
+	/**
+	 * Returns a <ol> list with list entry containing <code> enclosed text
+	 * @param array $array One dimensional array
+	 */
+	static function getFileList($array) {
+		$list = '';
+		if ($array) {
+			$list .= '<ol class="setup_filelist">';
+			foreach ($array as $entry) {
+				$list .= '<li><code>' . $entry . '</code></li>';
+			}
+			$list .= '</ol>';
+		}
+		return $list;
+	}
 
 }
 
