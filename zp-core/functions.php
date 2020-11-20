@@ -3012,7 +3012,7 @@ function printDataUsageNotice() {
 /**
  * Returns an array with predefined info about general cookies set by the system and/or plugins
  * 
- * @sicne ZenphotoCMS 1.5.8
+ * @since ZenphotoCMS 1.5.8
  * 
  * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
  * @return array
@@ -3082,10 +3082,10 @@ function getCookieInfoData($section = null) {
 /**
  * Returns a definition list with predefined info about general cookies set by the system and/or plugins as a string
  * 
- * @sicne ZenphotoCMS 1.5.8
+ * @since ZenphotoCMS 1.5.8
  * 
  * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
- * @param string $seactionheadlin Add h2 to h6 to print as the section headline, h2 default.
+ * @param string $sectionheadline Add h2 to h6 to print as the section headline, h2 default.
  * @return string
  */
 function getCookieInfoHTML($section = null, $sectionheadline = 'h2') {
@@ -3114,10 +3114,10 @@ function getCookieInfoHTML($section = null, $sectionheadline = 'h2') {
 /**
  * Prints a definition list with predefined info about general cookies set by the system and/or plugins
  * 
- * @sicne ZenphotoCMS 1.5.8
+ * @since ZenphotoCMS 1.5.8
  * 
  * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
- * @param string $seactionheadlin Add h2 to h6 to print as the section headline, h2 default.
+ * @param string $sectionheadline Add h2 to h6 to print as the section headline, h2 default.
  */
 function printCookieInfo($section = null, $sectionheadline = 'h2') {
 	echo getCookieInfoHTML($section, $sectionheadline);
