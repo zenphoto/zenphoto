@@ -836,17 +836,17 @@ class setup {
 	}
 	
 	/**
-	 * Returns a <ol> list with list entry containing <code> enclosed text
+	 * Returns a <ul> list with list entry containing <code> enclosed text
 	 * @param array $array One dimensional array
 	 */
 	static function getFileList($array) {
 		$list = '';
 		if ($array) {
-			$list .= '<ol class="setup_filelist">';
+			$list .= '<ul class="setup_filelist">';
 			foreach ($array as $entry) {
 				$list .= '<li><code>' . $entry . '</code></li>';
 			}
-			$list .= '</ol>';
+			$list .= '</ul>';
 		}
 		return $list;
 	}
