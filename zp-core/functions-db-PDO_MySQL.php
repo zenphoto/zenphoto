@@ -302,7 +302,6 @@ function db_affected_rows() {
 /**
  * Get a result row as an enumerated array
  */
-
 function db_fetch_row($result) {
 	if (is_object($result)) {
 		return $result->fetch(PDO::FETCH_NUM);
@@ -351,4 +350,29 @@ function db_getServerInfo() {
 function db_getClientInfo() {
 	global $_zp_DB_connection;
 	return $_zp_DB_connection->getAttribute(PDO::ATTR_CLIENT_VERSION);
+}
+
+/**
+ * Gets the plain version number
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * @return int
+ */
+function db_getVersion() {
+	$db_software = db_software();
+	return $db_software['version'];
+}
+
+/**
+ * Returns true if the database is MariaDB
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * @return boolean
+ */
+function db_isMariaDB() {
+	$db_version = db_getVersion();
+	if (stristr($db_version, 'mariadb')) { // version includes note if mariadb
+		return true;
+	}
+	return false;
 }

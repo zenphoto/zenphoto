@@ -1,16 +1,16 @@
 <?php
+
 /**
  * Database core functions if no supported database is configured in PHP
  *
  * @package core
  * @subpackage database-handlers\functions-db-null
  */
-
 // force UTF-8 Ø
 
-define('DATABASE_SOFTWARE','Database setup');
-Define('DATABASE_MIN_VERSION','0.0.0');
-Define('DATABASE_DESIRED_VERSION','0.0.0');
+define('DATABASE_SOFTWARE', 'Database setup');
+Define('DATABASE_MIN_VERSION', '0.0.0');
+Define('DATABASE_DESIRED_VERSION', '0.0.0');
 
 /**
  * Connect to the database server and select the database.
@@ -18,7 +18,7 @@ Define('DATABASE_DESIRED_VERSION','0.0.0');
  * @param bool $errorstop set to false to omit error messages
  * @return true if successful connection
  */
-function db_connect($config, $errorstop=true) {
+function db_connect($config, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_details;
 	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 	$_zp_DB_connection = NULL;
@@ -29,7 +29,6 @@ function db_connect($config, $errorstop=true) {
 	return $_zp_DB_connection;
 }
 
-
 /**
  * The main query function. Runs the SQL on the connection and handles errors.
  * @param string $sql sql code
@@ -37,7 +36,7 @@ function db_connect($config, $errorstop=true) {
  * @return results of the sql statements
  * @since 0.6
  */
-function query($sql, $errorstop=true) {
+function query($sql, $errorstop = true) {
 	return false;
 }
 
@@ -49,7 +48,7 @@ function query($sql, $errorstop=true) {
  * @return results of the sql statements
  * @since 0.6
  */
-function query_single_row($sql, $errorstop=true) {
+function query_single_row($sql, $errorstop = true) {
 	return false;
 }
 
@@ -61,7 +60,7 @@ function query_single_row($sql, $errorstop=true) {
  * @return results of the sql statements
  * @since 0.6
  */
-function query_full_array($sql, $errorstop=true, $key=NULL) {
+function query_full_array($sql, $errorstop = true, $key = NULL) {
 	return false;
 }
 
@@ -73,7 +72,7 @@ function query_full_array($sql, $errorstop=true, $key=NULL) {
  */
 function db_quote($string, $addquotes = true) {
 	if ($addquotes) {
-		return "'".addslashes($string)."'";
+		return "'" . addslashes($string) . "'";
 	} else {
 		return addslashes($string);
 	}
@@ -82,6 +81,7 @@ function db_quote($string, $addquotes = true) {
 /*
  * returns the insert id of the last database insert
  */
+
 function db_insert_id() {
 	return 0;
 }
@@ -89,6 +89,7 @@ function db_insert_id() {
 /*
  * Fetch a result row as an associative array
  */
+
 function db_fetch_assoc($resource) {
 	return false;
 }
@@ -96,6 +97,7 @@ function db_fetch_assoc($resource) {
 /*
  * Returns the text of the error message from previous operation
  */
+
 function db_error() {
 	return gettext('No supported databases');
 }
@@ -103,6 +105,7 @@ function db_error() {
 /*
  * Get number of affected rows in previous operation
  */
+
 function db_affected_rows() {
 	return 0;
 }
@@ -110,6 +113,7 @@ function db_affected_rows() {
 /*
  * Get a result row as an enumerated array
  */
+
 function db_fetch_row($result) {
 	return false;
 }
@@ -117,6 +121,7 @@ function db_fetch_row($result) {
 /*
  * Get number of rows in result
  */
+
 function db_num_rows($result) {
 	return 0;
 }
@@ -132,9 +137,10 @@ function db_close() {
 /*
  * report the software of the database
  */
+
 function db_software() {
 	global $_zp_DB_connection;
-	return array('application'=>DATABASE_SOFTWARE,'required'=>'N/A','desired'=>'N/A','version'=>'0.0.0');
+	return array('application' => DATABASE_SOFTWARE, 'required' => 'N/A', 'desired' => 'N/A', 'version' => '0.0.0');
 }
 
 /**
@@ -177,7 +183,7 @@ function db_table_update(&$sql) {
 	return false;
 }
 
-function db_show($what,$aux='') {
+function db_show($what, $aux = '') {
 	return false;
 }
 
@@ -190,7 +196,7 @@ function db_truncate_table($table) {
 }
 
 function db_LIKE_escape($str) {
-	return strtr($str, array('_'=>'\\_','%'=>'\\%'));
+	return strtr($str, array('_' => '\\_', '%' => '\\%'));
 }
 
 function db_free_result($result) {
@@ -198,20 +204,40 @@ function db_free_result($result) {
 }
 
 /**
-	 * Returns the server info
-	* @since ZenphotoCMS 1.5.7
-	 * @return string
-	 */
-	function db_getServerInfo() {
-		return null;
-	}
-	/**
-	 * Returns the client info
-	 * @since ZenphotoCMS 1.5.7
-	 * @return string
-	 */
-	function  db_getClientInfo() {
-		return null;
-	}
+ * Returns the server info
+ * @since ZenphotoCMS 1.5.7
+ * @return string
+ */
+function db_getServerInfo() {
+	return null;
+}
 
-?>
+/**
+ * Returns the client info
+ * @since ZenphotoCMS 1.5.7
+ * @return string
+ */
+function db_getClientInfo() {
+	return null;
+}
+
+/**
+ * Gets the plain version number
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * @return int
+ */
+function db_getVersion() {
+	return null;
+}
+
+
+/**
+ * Returns true if the database is MariaDB
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * @return boolean
+ */
+function db_isMariaDB() {
+	return false;
+}

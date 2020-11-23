@@ -25,7 +25,7 @@ function db_connect($config, $errorstop = true) {
 	global $_zp_DB_connection, $_zp_DB_details;
 	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 	if (function_exists('mysqli_connect')) {
-		if(!$_zp_DB_connection) {
+		if (!$_zp_DB_connection) {
 			try {
 				$_zp_DB_connection = mysqli_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass'], $config['mysql_database'], $config['mysql_port']);
 			} catch (mysqli_sql_exception $e) {
@@ -35,13 +35,13 @@ function db_connect($config, $errorstop = true) {
 				debugLogBacktrace($connection_error);
 				if ($errorstop) {
 					zp_error($connection_error);
-				} 
+				}
 				return false;
 			}
 		}
-	} 
+	}
 	$_zp_DB_details['mysql_host'] = $config['mysql_host'];
-	if(!is_object($_zp_DB_connection)) {
+	if (!is_object($_zp_DB_connection)) {
 		return false;
 	}
 	if (!$_zp_DB_connection->select_db($config['mysql_database'])) {
@@ -79,16 +79,16 @@ function query($sql, $errorstop = true) {
 		debugLogVar("EXPLAIN $sql", $explaination);
 	}
 	$last_result = false;
-	if(is_object($_zp_DB_connection)) {
+	if (is_object($_zp_DB_connection)) {
 		try {
 			$last_result = $_zp_DB_connection->query($sql);
 		} catch (mysqli_sql_exception $e) {
-			$last_result  = false;
+			$last_result = false;
 		}
 	}
-	/*if ($result = @$_zp_DB_connection->query($sql)) {
-		return $result;
-	} */
+	/* if ($result = @$_zp_DB_connection->query($sql)) {
+	  return $result;
+	  } */
 	if (!$last_result && $errorstop) {
 		$sql = str_replace('`' . $_zp_DB_details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
 		$sql = str_replace($_zp_DB_details['mysql_database'], '[' . gettext('DB') . ']', $sql);
@@ -356,20 +356,44 @@ function db_free_result($result) {
 }
 
 /**
-	 * Returns the server info
-	 * @return string
-	 */
-	function db_getServerInfo() {
-		global $_zp_DB_connection;
-		return trim(@$_zp_DB_connection->get_server_info());
-	}
-	/**
-	 * Returns the client info
-	 * @return string
-	 */
-	function db_getClientInfo() {
-		global $_zp_DB_connection;
-		return $_zp_DB_connection->get_client_info();
-	}
+ * Returns the server info
+ * @return string
+ */
+function db_getServerInfo() {
+	global $_zp_DB_connection;
+	return trim(@$_zp_DB_connection->get_server_info());
+}
 
-?>
+/**
+ * Returns the client info
+ * @return string
+ */
+function db_getClientInfo() {
+	global $_zp_DB_connection;
+	return $_zp_DB_connection->get_client_info();
+}
+
+/**
+ * Gets the plain version number
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * @return int
+ */
+function db_getVersion() {
+	$db_software = db_software();
+	return $db_software['version'];
+}
+
+/**
+ * Returns true if the database is MariaDB
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * @return boolean
+ */
+function db_isMariaDB() {
+	$db_version = db_getVersion();
+	if (stristr($db_version, 'mariadb')) { // version includes note if mariadb
+		return true;
+	}
+	return false;
+}

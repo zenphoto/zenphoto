@@ -28,7 +28,7 @@ function db_connect($config, $errorstop = true) {
 	debuglog(gettext('The MySQL database handler is deprecated as the MySQL handler has been removed in PHP 7.0.0 already. Use the handlers MySQLi or PDO_MySQL instead.'));
 	$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
 	if (function_exists('mysql_connect')) {
-		$_zp_DB_connection = @mysql_connect($config['mysql_host'].":".$config['mysql_port'], $config['mysql_user'], $config['mysql_pass']);
+		$_zp_DB_connection = @mysql_connect($config['mysql_host'] . ":" . $config['mysql_port'], $config['mysql_user'], $config['mysql_pass']);
 	} else {
 		$_zp_DB_connection = NULL;
 	}
@@ -329,18 +329,44 @@ function db_free_result($result) {
 }
 
 /**
-	 * Returns the server info
-	 * @since ZenphotoCMS 1.5.7
-	 * @return string
-	 */
-	function db_getServerInfo() {
-		return trim(mysql_get_server_info());
+ * Returns the server info
+ * @since ZenphotoCMS 1.5.7
+ * @return string
+ */
+function db_getServerInfo() {
+	return trim(mysql_get_server_info());
+}
+
+/**
+ * Returns the client info
+ * @since ZenphotoCMS 1.5.7
+ * @return string
+ */
+function db_getClientInfo() {
+	return mysql_get_client_info();
+}
+
+/**
+ * Gets the plain version number
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * @return int
+ */
+function db_getVersion() {
+	$db_software = db_software();
+	return $db_software['version'];
+}
+
+/**
+ * Returns true if the database is MariaDB
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * @return boolean
+ */
+function db_isMariaDB() {
+	$db_version = db_getVersion();
+	if (stristr($db_version, 'mariadb')) { // version includes note if mariadb
+		return true;
 	}
-	/**
-	 * Returns the client info
-	 * @since ZenphotoCMS 1.5.7
-	 * @return string
-	 */
-	function db_getClientInfo() {
-		return mysql_get_client_info();
-	}
+	return false;
+}
