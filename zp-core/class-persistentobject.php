@@ -113,6 +113,26 @@ class PersistentObject {
 			$_zp_object_cache[$classname][$this->cache_by] = $entry;
 		}
 	}
+	
+	/**
+	 * Clears the object cache by setting it to an empty array completely or a specific object (class name) cache.
+	 * 
+	 * Note: You normally never need to use this. But on certain occasions it may be necessary
+	 * to avoid memory issues if you loop through a lot of object creations.
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
+	 * @global array $_zp_object_cache
+	 * @param string $classname A classname to clear the cache specifially (optional, default null)
+	 */
+	function clearCache($classname = null) {
+		global $_zp_object_cache;
+		if (!is_null($classname) && array_key_exists($classname, $_zp_object_cache)) {
+			unset($_zp_object_cache[$classname]);
+		} else {
+			$_zp_object_cache = array();
+		}
+	}
 
 	/**
 	 * Set a variable in this object. Does not persist to the database until
