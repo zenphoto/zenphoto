@@ -451,6 +451,7 @@ class cycle {
 	}
 
 	static function cycleJS() {
+		global $_zp_gallery;
 		?>
 		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.min.js" type="text/javascript"></script>
 		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.center.min.js" type="text/javascript"></script>
@@ -484,7 +485,7 @@ class cycle {
 			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/ios6fix.js" type="text/javascript"></script>
 			<?php
 		}
-		$theme = getCurrentTheme();
+		$theme = $_zp_gallery->getCurrentTheme();
 		$css = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($theme) . '/slideshow2.css';
 		if (file_exists($css)) {
 			$css = WEBPATH . '/' . THEMEFOLDER . '/' . $theme . '/slideshow2.css';
