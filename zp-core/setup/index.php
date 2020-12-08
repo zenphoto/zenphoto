@@ -4,8 +4,8 @@
  * @package setup
  */
 // force UTF-8 Ø
-Define('PHP_MIN_VERSION', '5.6.0');
-Define('PHP_DESIRED_VERSION', '7.3.0');
+Define('PHP_MIN_VERSION', '5.3.0');
+Define('PHP_DESIRED_VERSION', '7.4.0');
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if (!function_exists("gettext")) {
