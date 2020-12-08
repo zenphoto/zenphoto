@@ -289,7 +289,7 @@ class feed {
 	protected function getCommentFeedType() {
 		$valid = false;
 		if (isset($this->options['type'])) {
-			$valid = array('albums', 'images', 'pages', 'news', 'all');
+			$valid = array( 'all', 'album' , 'image', 'news', 'page');
 			if (in_array($this->options['type'], $valid)) {
 				return $this->options['type'];
 			}
@@ -305,11 +305,28 @@ class feed {
 	protected function getID() {
 		if (isset($this->options['id'])) {
 			$type = $this->getCommentFeedType();
+			$table = '';
 			if ($type != 'all') {
-				$id = (int) $this->options['id'];
-				$result = query_single_row('SELECT `id` FROM ' . prefix($type) . ' WHERE id =' . $id);
-				if ($result) {
-					return $id;
+				switch ($this->commentfeedtype) {
+					case 'album':
+						$table = 'albums';
+						break;
+					case 'image':
+						$table = 'images';
+						break;
+					case 'news':
+						$table = 'news';
+						break;
+					case 'page':
+						$table = 'pages';
+						break;
+				}
+				if ($table) {
+					$id = (int) $this->options['id'];
+					$result = query_single_row('SELECT `id` FROM ' . prefix($table) . ' WHERE id =' . $id);
+					if ($result) {
+						return $id;
+					}
 				}
 			}
 		}
@@ -469,23 +486,19 @@ class feed {
 				break;
 			case 'comments':
 				switch ($type = $this->commentfeedtype) {
-					case 'gallery':
-						$items = getLatestComments($this->itemnumber, 'all');
-						break;
 					case 'album':
 						$items = getLatestComments($this->itemnumber, 'album', $this->id);
 						break;
 					case 'image':
 						$items = getLatestComments($this->itemnumber, 'image', $this->id);
 						break;
-					case 'zenpage':
-						$type = 'all';
 					case 'news':
 					case 'pages':
 						if (function_exists('getLatestZenpageComments')) {
 							$items = getLatestZenpageComments($this->itemnumber, $type, $this->id);
 						}
 						break;
+					case 'gallery':
 					case 'allcomments':
 					case 'all':
 						$items = getLatestComments($this->itemnumber, 'all');
