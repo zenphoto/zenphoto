@@ -487,6 +487,7 @@ class feed {
 						}
 						break;
 					case 'allcomments':
+					case 'all':
 						$items = getLatestComments($this->itemnumber, 'all');
 						$items_zenpage = array();
 						if (function_exists('getLatestZenpageComments')) {
