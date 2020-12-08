@@ -153,12 +153,12 @@ class cookieConsent {
 						'key' => 'zpcookieconsent_scripts',
 						'type' => OPTION_TYPE_TEXTAREA,
 						'multilingual' => false,
-						'desc' => gettext('Add privacy related executional JS code (ad trackers statistics etc.) here to allow or block opt-in/opt-out complicances (without the script wrapper). As we cannot safely delete cookies set by third party scripts, we block their execution so they can neither set nor fetch their cookies.')),
+						'desc' => gettext('Add privacy related executional JS code (ad trackers statistics etc.) here to allow or block opt-in/opt-out compliances (without the script wrapper). As we cannot safely delete cookies set by third party scripts, we block their execution so they can neither set nor fetch their cookies.')),
 				gettext('External Scripts to allow or block') => array(
 						'key' => 'zpcookieconsent_externalscripts',
 						'type' => OPTION_TYPE_TEXTAREA,
 						'multilingual' => false,
-						'desc' => gettext('Add URLs to privacy related external JS scripts as a comma separated list (ad trackers statistics etc.) here to allow or block opt-in/opt-out complicances (without the script wrapper). As we cannot safely delete cookies set by third party scripts, we block their execution so they can neither set nor fetch their cookies.'))
+						'desc' => gettext('Add URLs to privacy related external JS scripts as a comma separated list (ad trackers statistics etc.) here to allow or block opt-in/opt-out compliances (without the script wrapper). As we cannot safely delete cookies set by third party scripts, we block their execution so they can neither set nor fetch their cookies.'))
 		
 		);
 		return $options;
