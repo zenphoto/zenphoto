@@ -3035,16 +3035,16 @@ function getCookieInfoData($section = null) {
 			),
 			'search' => array(
 					'sectiontitle' => gettext('Search context (frontend)'),
-					'sectiondesc' => gettext('THese cookies help keep the search result context while browsing results'),
+					'sectiondesc' => gettext('These cookies help keep the search result context while browsing results'),
 					'cookies' => array(
 							'zpcms_search_params' => gettext('Stores search parameters of the most recent search.'),
 							'zpcms_search_lastalbum' => gettext('Stores the last album in search context.'),
-							'zpcms_search_parent' => gettext('Stores the previous page within search context (either the main search results or an album result)')
+							'zpcms_search_parent' => gettext('Stores the previous page within search context (either the main search results or an album result).')
 					),
 			),
 			'admin' => array(
 					'sectiontitle' => gettext('Administration'),
-					'sectiondesc' => gettext('These are set on the backend to help editing,'),
+					'sectiondesc' => gettext('These are set on the backend to help editing.'),
 					'cookies' => array(
 							'zpcms_admin_gallery_nesting' => gettext('Stores the setting for the nested album list display on the backend.'),
 							'zpcms_admin_subalbum_nesting' => gettext('Stores the setting for the nested subalbum list display on the backend.'),
@@ -3067,7 +3067,7 @@ function getCookieInfoData($section = null) {
 							'zcms_ssl' => gettext('Stores the HTTPS/SSL setting.'),
 							'zpcms_locale' => gettext('Stores the language selection set by the <em>dynamic_locale</em> plugin.'),
 							'zpcms_mobiletheme' => gettext('Stores if the mobile theme is defined - used by the <em>mobileTheme</em> plugin.'),
-							'zpcms_themeswitcher_theme' => gettext('Stores the current theme selected by the <em>themeSwitcher</em> plugin.<'),
+							'zpcms_themeswitcher_theme' => gettext('Stores the current theme selected by the <em>themeSwitcher</em> plugin.'),
 							'zpcms_comment' => gettext('Stores information from the comment form POST for re-populaton of the form in the <em>comment_form</em> plugin.')
 					)
 			)
