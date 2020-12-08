@@ -485,7 +485,7 @@ class feed {
 				}
 				break;
 			case 'comments':
-				switch ($type = $this->commentfeedtype) {
+				switch ($this->commentfeedtype) {
 					case 'album':
 						$items = getLatestComments($this->itemnumber, 'album', $this->id);
 						break;
@@ -493,9 +493,9 @@ class feed {
 						$items = getLatestComments($this->itemnumber, 'image', $this->id);
 						break;
 					case 'news':
-					case 'pages':
+					case 'page':
 						if (function_exists('getLatestZenpageComments')) {
-							$items = getLatestZenpageComments($this->itemnumber, $type, $this->id);
+							$items = getLatestZenpageComments($this->itemnumber, $this->commentfeedtype, $this->id);
 						}
 						break;
 					case 'gallery':
