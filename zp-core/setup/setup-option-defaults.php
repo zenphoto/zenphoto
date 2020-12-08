@@ -127,58 +127,57 @@ setOptionDefault('hotlink_protection', '1');
 
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
 
-$style_tags = "abbr =>(class=>() id=>() title =>())\n" .
-				"acronym =>(class=>() id=>() title =>())\n" .
-				"b => (class=>() id=>() )\n" .
-				"blockquote =>(class=>() id=>() cite =>())\n" .
+$style_tags = "abbr =>(class=>() id=>() title =>() lang=())\n" .
+				"acronym =>(class=>() id=>() title =>() lang=())\n" .
+				"b => (class=>() id=>() lang=())\n" .
+				"blockquote =>(class=>() id=>() cite =>() lang=())\n" .
 				"br => (class=>() id=>())\n" .
-				"code => (class=>() id=>())\n" .
-				"em => (class=>() id=>())\n" .
-				"i => (class=>() id=>()) \n" .
-				"strike => (class=>() id=>())\n" .
-				"strong => (class=>() id=>())\n" .
-				"sup => (class=>() id=>())\n" .
-				"sub => (class=>() id=>())\n"
-;
+				"code => (class=>() id=>() lang=())\n" .
+				"em => (class=>() id=>() lang=())\n" .
+				"i => (class=>() id=>() lang=()) \n" .
+				"strike => (class=>() id=>() lang=())\n" .
+				"strong => (class=>() id=>() lang=())\n" .
+				"sup => (class=>() id=>() lang=())\n" .
+				"sub => (class=>() id=>() lang=())\n";
 
-$general_tags = "a => (href =>() title =>() target=>() class=>() id=>() rel=>())\n" .
-				"ul => (class=>() id=>())\n" .
-				"ol => (class=>() id=>())\n" .
-				"li => (class=>() id=>())\n" .
-				"p => (class=>() id=>() style=>())\n" .
-				"h1=>(class=>() id=>() style=>())\n" .
-				"h2=>(class=>() id=>() style=>())\n" .
-				"h3=>(class=>() id=>() style=>())\n" .
-				"h4=>(class=>() id=>() style=>())\n" .
-				"h5=>(class=>() id=>() style=>())\n" .
-				"h6=>(class=>() id=>() style=>())\n" .
-				"pre=>(class=>() id=>() style=>())\n" .
-				"address=>(class=>() id=>() style=>())\n" .
-				"span=>(class=>() id=>() style=>())\n" .
-				"div=>(class=>() id=>() style=>())\n" .
-				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>() sizes=>() srcset=>() loading=>())\n" .
-				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>() loading=>())\n" .
-				"figure=>(class=>() id=>() style=>())\n" .
-				"figcaption=>(class=>() id=>() style=>())\n" .
-				"article=>(class=>() id=>() style=>())\n" .
-				"section => (class=>() id=>() style=>())\n" .
-				"nav => (class=>() id=>() style=>())\n" .
-				"video => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() poster=>())\n" .
-				"audio => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() volume=>())\n" .
-				"picture=>(class=>() id=>())\n" .
-				"source=>(src=>() scrset=>() size=>() type=>() media=>())\n" .
-				"track=>(src=>() kind=>() scrlang=>() label=>() default=>())\n" .
-				"table => (class=>() id=>())\n" .
-				"caption => (class=>() id=>())\n" .
-				"th => (class=>() id=>())\n" .
-				"tr => (class=>() id=>())\n" .
-				"td => (class=>() id=>() colspan=>())\n" .
-				"thead => (class=>() id=>())\n" .
-				"tbody => (class=>() id=>())\n" .
-				"tfoot => (class=>() id=>())\n" .
-				"colgroup => (class=>() id=>())\n" .
-				"col => (class=>() id=>())\n"
-;
+$general_tags = "a => (href =>() title =>() target=>() class=>() id=>() rel=>() lang=())\n" .
+				"ul => (class=>() id=>() lang=())\n" .
+				"ol => (class=>() id=>() lang=())\n" .
+				"li => (class=>() id=>() lang=())\n" .
+				"p => (class=>() id=>() style=>() lang=())\n" .
+				"h1=>(class=>() id=>() style=>() lang=())\n" .
+				"h2=>(class=>() id=>() style=>() lang=())\n" .
+				"h3=>(class=>() id=>() style=>() lang=())\n" .
+				"h4=>(class=>() id=>() style=>() lang=())\n" .
+				"h5=>(class=>() id=>() style=>() lang=())\n" .
+				"h6=>(class=>() id=>() style=>() lang=())\n" .
+				"pre=>(class=>() id=>() style=>() lang=())\n" .
+				"address=>(class=>() id=>() style=>() lang=())\n" .
+				"span=>(class=>() id=>() style=>() lang=())\n" .
+				"div=>(class=>() id=>() style=>() lang=())\n" .
+				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>() sizes=>() srcset=>() loading=>() lang=())\n" .
+				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>() loading=>() lang=())\n" .
+				"figure=>(class=>() id=>() style=>() lang=())\n" .
+				"figcaption=>(class=>() id=>() style=>() lang=())\n" .
+				"article=>(class=>() id=>() style=>() lang=())\n" .
+				"section => (class=>() id=>() style=>() lang=())\n" .
+				"nav => (class=>() id=>() style=>() lang=())\n" .
+				"video => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() poster=>() lang=())\n" .
+				"audio => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() volume=>() lang=())\n" .
+				"picture=>(class=>() id=>() lang=())\n" .
+				"source=>(src=>() scrset=>() size=>() type=>() media=>() lang=())\n" .
+				"track=>(src=>() kind=>() scrlang=>() label=>() default=>() lang=())\n" .
+				"table => (class=>() id=>() lang=())\n" .
+				"caption => (class=>() id=>() lang=())\n" .
+				"th => (class=>() id=>() lang=())\n" .
+				"tr => (class=>() id=>() lang=())\n" .
+				"td => (class=>() id=>() colspan=>() lang=())\n" .
+				"thead => (class=>() id=>() lang=())\n" .
+				"tbody => (class=>() id=>() lang=())\n" .
+				"tfoot => (class=>() id=>() lang=())\n" .
+				"colgroup => (class=>() id=>() lang=())\n" .
+				"col => (class=>() id=>() lang=())\n";
+
 setOption('allowed_tags_default', $style_tags . $general_tags);
 setOptionDefault('allowed_tags', $style_tags . $general_tags);
 setOptionDefault('style_tags', strtolower($style_tags));
