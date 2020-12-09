@@ -437,6 +437,27 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 					?>
 				</div><!-- id="commententry" -->
 				<?php
+				if (getOption('comment_form_rss') && getOption('RSS_comments')) {
+					?>
+					<br class="clearall" />
+					<?php
+					if (class_exists('RSS')) {
+						switch ($_zp_gallery_page) {
+							case "image.php":
+								printRSSLink("Comments-image", "", gettext("Subscribe to comments"), "");
+								break;
+							case "album.php":
+								printRSSLink("Comments-album", "", gettext("Subscribe to comments"), "");
+								break;
+							case "news.php":
+								printRSSLink("Comments-news", "", gettext("Subscribe to comments"), "");
+								break;
+							case "pages.php":
+								printRSSLink("Comments-page", "", gettext("Subscribe to comments"), "");
+								break;
+						}
+					}
+				}
 			}
 		} else {
 			?>
@@ -447,30 +468,6 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 		}
 		?>
 	</div><!-- id="commentcontent" -->
-	<?php
-	if (getOption('comment_form_rss') && getOption('RSS_comments')) {
-		?>
-		<br class="clearall" />
-		<?php
-		if (class_exists('RSS')) {
-			switch ($_zp_gallery_page) {
-				case "image.php":
-					printRSSLink("Comments-image", "", gettext("Subscribe to comments"), "");
-					break;
-				case "album.php":
-					printRSSLink("Comments-album", "", gettext("Subscribe to comments"), "");
-					break;
-				case "news.php":
-					printRSSLink("Comments-news", "", gettext("Subscribe to comments"), "");
-					break;
-				case "pages.php":
-					printRSSLink("Comments-page", "", gettext("Subscribe to comments"), "");
-					break;
-			}
-		}
-	}
-	?>
-	<!-- end printCommentForm -->
 	<?php
 }
 ?>
