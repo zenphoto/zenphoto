@@ -440,7 +440,7 @@ class AlbumZip {
  * @param string $sort 'asc" or "desc" (default) for alphabetical ascending or descending list
  */
 function printdownloadList($dir = '', $listtype = 'ol', $filters = array(), $excludesuffixes = '', $sort = 'desc') {
-	if ($listtype != 'ol' || $listtype != 'ul') {
+	if ($listtype != 'ol' && $listtype != 'ul') {
 		$listtype = 'ol';
 	}
 	$files = getdownloadList($dir, $filters, $excludesuffixes, $sort);
