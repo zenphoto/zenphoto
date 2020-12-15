@@ -231,7 +231,7 @@ class DownloadList {
 	 * @return array
 	 */
 	static function printListArray($array, $listtype = 'ol') {
-		if ($listtype != 'ol' || $listtype != 'ul') {
+		if ($listtype != 'ol' && $listtype != 'ul') {
 			$listtype = 'ol';
 		}
 		$filesize = '';
