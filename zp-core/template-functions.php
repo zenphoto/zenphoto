@@ -3754,10 +3754,16 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	if (substr($searchwords, -1, 1) == ',') {
 		$searchwords = substr($searchwords, 0, -1);
 	}
+	$hint = $hintJS = '%s';
 	if (empty($searchwords)) {
 		$within = false;
-		$hint = '%s';
 	} else {
+		$hintJS = gettext('%s within previous results');
+	}
+	if (is_null($within)) {
+		$within = getOption('search_within');
+	}
+	if ($within) {
 		$hint = gettext('%s within previous results');
 	}
 	if (preg_match('!\/(.*)[\.png|\.jpg|\.jpeg|\.gif]$!', $buttonSource)) {
@@ -3775,9 +3781,6 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	}
 	if (empty($iconsource)) {
 		$iconsource = WEBPATH . '/' . ZENFOLDER . '/images/searchfields_icon.png';
-	}
-	if (is_null($within)) {
-		$within = getOption('search_within');
 	}
 	if (MOD_REWRITE) {
 		$searchurl = SEO_WEBPATH . '/' . _SEARCH_ . '/';
@@ -3805,7 +3808,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 			function search_(way) {
 				within = way;
 				if (way) {
-					$('#search_submit').attr('title', '<?php echo sprintf($hint, $buttontext); ?>');
+					$('#search_submit').attr('title', '<?php echo sprintf($hintJS, $buttontext); ?>');
 				} else {
 					lastsearch = '';
 					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
