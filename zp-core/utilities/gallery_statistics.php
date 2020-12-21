@@ -180,7 +180,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					$itemssorted = query_full_array("SELECT comments.ownerid, count(*) as commentcount, images.* FROM " . prefix('comments') . " AS comments, " . prefix('images') . " AS images WHERE images.id=comments.ownerid AND type = 'images' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
 					break;
 				case "pages":
-					$itemssorted = query_full_array("SELECT comments.ownerid, count(*) as commentcount, pages.* FROM " . prefix('comments') . " AS comments, " . prefix('pages') . " AS pages WHERE pages.id=comments.ownerid AND type = 'page' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
+					$itemssorted = query_full_array("SELECT comments.ownerid, count(*) as commentcount, pages.* FROM " . prefix('comments') . " AS comments, " . prefix('pages') . " AS pages WHERE pages.id=comments.ownerid AND type = 'pages' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
 					break;
 				case "news":
 					$itemssorted = query_full_array("SELECT comments.ownerid, count(*) as commentcount, news.* FROM " . prefix('comments') . " AS comments, " . prefix('news') . " AS news WHERE news.id=comments.ownerid AND type = 'news' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
