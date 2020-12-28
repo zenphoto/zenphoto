@@ -611,19 +611,21 @@ class Zenphoto_Authority {
 								'ADMIN_RIGHTS'						 => array('value' => pow(2, 30), 'name' => gettext('Admin'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
 				break;
 		}
+		
 		$allrights = 0;
 		foreach ($rightsset as $key => $right) {
 			$allrights = $allrights | $right['value'];
 		}
 		$rightsset['ALL_RIGHTS'] = array('value' => $allrights, 'name' => gettext('All rights'), 'display' => false);
 		$rightsset['DEFAULT_RIGHTS'] = array('value' => $rightsset['OVERVIEW_RIGHTS']['value'] + $rightsset['POST_COMMENT_RIGHTS']['value'], 'name' => gettext('Default rights'), 'display' => false);
-		if (isset($rightsset['VIEW_ALL_RIGHTS']['value'])) {
+		if (isset($rightsset['VIEW_ALL_RIGHTS']['value'])) {		
 			$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']['value'] | $rightsset['VIEW_ALL_RIGHTS']['value'];
 		} else {
-			$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS'] | $rightsset['ALL_ALBUMS_RIGHTS']['value'] |
+			$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']['value'] | $rightsset['ALL_ALBUMS_RIGHTS']['value'] |
 							$rightsset['ALL_PAGES_RIGHTS']['value'] | $rightsset['ALL_NEWS_RIGHTS']['value'] |
 							$rightsset['VIEW_SEARCH_RIGHTS']['value'] | $rightsset['VIEW_GALLERY_RIGHTS']['value'];
 		}
+		
 		$rightsset = sortMultiArray($rightsset, 'value', true, false, false);
 		return $rightsset;
 	}
