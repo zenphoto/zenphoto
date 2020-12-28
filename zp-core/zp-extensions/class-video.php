@@ -430,13 +430,13 @@ class pseudoPlayer {
 			case 'mp4':
 			case 'm4v':
 				$content = '<video poster="' . html_encode($poster) . '" src="' . html_encode($movie) . '" controls width="' . $this->width . '" height="' . $this->height . '">';
-				$content .= '<p>' . gettext('Your browser sadly does not support this video format.') . '</p>';
+				$content .= gettext('Your browser sadly does not support this video format.');
 				$content .= '</video>';
 				break;
 			case 'm4a':
 			case 'mp3':
 				$content = '<audio src="' . html_encode($movie) . '" controls>';
-				$content .= '<p>' . gettext('Your browser sadly does not support this audio format.') . '</p>';
+				$content .= gettext('Your browser sadly does not support this audio format.');
 				$content .= '</audio>';
 				break;
 		}
