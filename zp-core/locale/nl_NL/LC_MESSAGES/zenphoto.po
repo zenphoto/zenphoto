@@ -10529,7 +10529,9 @@ msgstr "PHP <code>cURL</code> wordt niet ondersteund"
 
 #: zp-core/setup/index.php:687
 msgid "<code>cURL</code> support is not critical but strongely recommended."
-msgstr "PHP <code>cURL</code> ondersteuning wordt sterk aangeraden."
+msgstr ""
+"PHP <code>cURL</code> ondersteuning is niet kritisch maar wordt sterk "
+"aangeraden."
 
 #: zp-core/setup/index.php:688
 msgid "PHP <code>tidy</code> support"
@@ -10544,8 +10546,8 @@ msgid ""
 "<code>tidy</code> support is not critical but strongely recommended for "
 "properly truncating text containing HTML markup."
 msgstr ""
-"<code>tidy</code> ondersteuning wordt aangeraden voor het correct afkorten "
-"van tekst met HTML."
+"<code>tidy</code> ondersteuning is niet kritisch maar wordt sterk aangeraden "
+"voor het correct afkorten van tekst met HTML-code erin."
 
 #: zp-core/setup/index.php:689
 msgid "PHP <code>ZipArchive</code> support"
@@ -10560,8 +10562,8 @@ msgid ""
 "<code>ZipArchive</code> support is not critical and only required if you "
 "intend to upload zip archives with supported file types to the gallery."
 msgstr ""
-"Ondersteuning voor<code>ZipArchive</code> is alleen nodig als je zip-"
-"bestanden met ondersteunde bestandstypes wilt uploaden."
+"Ondersteuning voor<code>ZipArchive</code> is niet kritisch en alleen nodig "
+"als je ZIP-bestanden met ondersteunde bestandstypes wilt uploaden."
 
 #: zp-core/setup/index.php:690
 msgid "PHP <code>JSON</code> support"
@@ -10590,8 +10592,8 @@ msgid ""
 "<code>exif</code> support is not critical but strongely recommended for "
 "properly handling exif data of images"
 msgstr ""
-"<code>exif</code> ondersteuning wordt aangeraden voor het correct verwerken "
-"van exif data."
+"<code>exif</code> ondersteuning is niet kritisch maar wordt sterk aangeraden "
+"voor het correct verwerken van exif data."
 
 #: zp-core/setup/index.php:692
 msgid "PHP <code>bz2</code> support"
@@ -10606,8 +10608,8 @@ msgid ""
 "<code>bz2</code> support is not critical but recommended for some optional "
 "bzcompression functionalty"
 msgstr ""
-"PHP <code>bz2</code> ondersteuning wordt sterk aangeraden voor bz compressie "
-"functionaliteit."
+"PHP <code>bz2</code> ondersteuning is niet kritisch maar wordt sterk "
+"aangeraden voor bz compressie functionaliteit."
 
 #: zp-core/setup/index.php:693
 msgid "PHP <code>fileinfo</code> support"
@@ -10622,8 +10624,8 @@ msgid ""
 "<code>fileinfo</code> support is not critical but strongely recommended for "
 "file system functionality"
 msgstr ""
-"PHP <code>fileinfo</code> ondersteuning wordt sterk aangeraden voor file "
-"system functionaliteit."
+"PHP <code>fileinfo</code> ondersteuning is niet kritisch maar wordt sterk "
+"aangeraden voor file system functionaliteit."
 
 #: zp-core/setup/index.php:694
 msgid "PHP <code>intl</code> support"
@@ -10654,8 +10656,8 @@ msgid ""
 "<code>xml</code> support is not criticaly but strongely recommended for some "
 "functionality for parsing XML contents like RSS feeds."
 msgstr ""
-"<code>xml</code> ondersteuning wordt sterk aangeraden voor het verwerken van "
-"XML-inhoud als RSS feeds."
+"<code>xml</code> ondersteuning is niet kritisch maar wordt sterk aangeraden "
+"voor het verwerken van XML-inhoud als RSS feeds."
 
 #: zp-core/setup/index.php:696
 msgid "PHP <code>dom</code> support"
@@ -10670,8 +10672,8 @@ msgid ""
 "<code>dom</code> support is not criticaly but strongely recommended for some "
 "functionality processing and modifying HTML contents."
 msgstr ""
-"<code>dom</code> ondersteuning wordt sterk aangeraden voor het verwerken en "
-"aanpassen van HTML inhoud."
+"<code>dom</code> ondersteuning is niet kritisch maar wordt sterk aangeraden "
+"voor het verwerken en aanpassen van HTML inhoud."
 
 #: zp-core/setup/index.php:697
 msgid "PHP <code>simplexml</code> support"
@@ -10686,8 +10688,8 @@ msgid ""
 "<code>simplexml</code> support is not criticaly but strongely recommended "
 "for some functionality processing XML contents like RSS feeds."
 msgstr ""
-"<code>simplexml</code> ondersteuning wordt sterk aangeraden voor het "
-"verwerken van XML-inhoud als RSS feeds."
+"<code>simplexml</code> ondersteuning is niet kritisch maar wordt sterk "
+"aangeraden voor het verwerken van XML-inhoud als RSS feeds."
 
 #: zp-core/setup/index.php:700
 msgid "PHP <code>setlocale()</code>"
@@ -10760,7 +10762,7 @@ msgid ""
 "Strings generated internally by PHP may not display correctly. (e.g. dates)"
 msgstr ""
 "Strings intern gegenereerd door PHP kunnen foutief getoond worden. (bijv. "
-"data)"
+"datums)"
 
 #: zp-core/setup/index.php:726
 msgid "Graphics library"
