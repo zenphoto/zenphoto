@@ -21,7 +21,12 @@
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext('Display Google Maps based on <em>latitude</em> and <em>longitude</em> metadata in the images.');
-$plugin_notice = sprintf(gettext('<strong>Note</strong>: Google does place limits on the use of its <a href="%s"><em>Maps API</em></a>. Please review these to be sure your site is in compliance.'), 'http://googlegeodevelopers.blogspot.com/2011/10/introduction-of-usage-limits-to-maps.html');
+$plugin_notice = array(
+		gettext('Google Maps API key required.'),
+		sprintf(gettext('<strong>Note</strong>: Google does place limits on the use of its <a href="%s"><em>Maps API</em></a>. Please review these to be sure your site is in compliance.'), 'http://googlegeodevelopers.blogspot.com/2011/10/introduction-of-usage-limits-to-maps.html'),
+		gettext('Privacy note: This plugin uses external third party sources')
+);
+				
 $plugin_author = 'Stephen Billard (sbillard), Vincent Bourganel (vincent3569)';
 $plugin_category = gettext('Misc');
 
@@ -81,45 +86,65 @@ class GoogleMap {
 		}
 
 		return array(
-						gettext('Allowed maps')									 => array('key'				 => 'gmap_allowed_maps', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'order'			 => 1,
-										'checkboxes' => array(gettext('Hybrid')		 => 'gmap_map_hybrid',
-														gettext('Map')			 => 'gmap_map_roadmap',
-														gettext('Satellite') => 'gmap_map_satellite',
-														gettext('Terrain')	 => 'gmap_map_terrain'),
-										'desc'			 => gettext('Select the map types that are allowed.')),
-						gettext('Initial map display selection') => array('key'				 => 'gmap_starting_map', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 2,
-										'selections' => $MapTypes,
-										'desc'			 => gettext('Select the initial type of map to display.')),
-						gettext('Map display')									 => array('key'				 => 'gmap_display', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 3,
-										'selections' => array(gettext('show')			 => 'show',
-														gettext('hide')			 => 'hide',
-														gettext('colorbox')	 => 'colorbox'),
-										'desc'			 => gettext('Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for the map to display in a colorbox. Select <em>show</em> and the map will display when the page loads.')),
-						gettext('Map controls')									 => array('key'			 => 'gmap_control_type', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 4,
-										'buttons'	 => array(gettext('None')				 => 'none',
-														gettext('Default')		 => 'DEFAULT',
-														gettext('Dropdown')		 => 'DROPDOWN_MENU',
-														gettext('Horizontal')	 => 'HORIZONTAL_BAR'),
-										'desc'		 => gettext('Display options for the Map type control.')),
-						gettext('Zoom controls')								 => array('key'			 => 'gmap_zoom_size', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 5,
-										'buttons'	 => array(gettext('Small')	 => 'SMALL',
-														gettext('Default') => 'DEFAULT',
-														gettext('Large')	 => 'LARGE'),
-										'desc'		 => gettext('Display options for the Zoom control.')),
-						gettext('Max zoom level')								 => array('key'		 => 'gmap_cluster_max_zoom', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 6,
-										'desc'	 => gettext('The max zoom level for clustering pictures on map.')),
-						gettext('Map sessions')									 => array('key'		 => 'gmap_sessions', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 9,
-										'desc'	 => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.')),
-						gettext('API key')									 => array('key'		 => 'gmap_api_key', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 10,
-										'desc'	 => gettext('Enter your API key. You can get one <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#key">here</a>.'))
+				gettext('Allowed maps') => array(
+						'key' => 'gmap_allowed_maps', 
+						'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'order' => 1,
+						'checkboxes' => array(
+								gettext('Hybrid') => 'gmap_map_hybrid',
+								gettext('Map') => 'gmap_map_roadmap',
+								gettext('Satellite') => 'gmap_map_satellite',
+								gettext('Terrain') => 'gmap_map_terrain'),
+						'desc' => gettext('Select the map types that are allowed.')),
+				gettext('Initial map display selection') => array(
+						'key' => 'gmap_starting_map', 
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 2,
+						'selections' => $MapTypes,
+						'desc' => gettext('Select the initial type of map to display.')),
+				gettext('Map display') => array(
+						'key' => 'gmap_display', 
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 3,
+						'selections' => array(
+								gettext('show') => 'show',
+								gettext('hide') => 'hide',
+								gettext('colorbox') => 'colorbox'),
+						'desc' => gettext('Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for the map to display in a colorbox. Select <em>show</em> and the map will display when the page loads.')),
+				gettext('Map controls') => array(
+						'key' => 'gmap_control_type', 
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 4,
+						'buttons' => array(
+								gettext('None') => 'none',
+								gettext('Default') => 'DEFAULT',
+								gettext('Dropdown') => 'DROPDOWN_MENU',
+								gettext('Horizontal') => 'HORIZONTAL_BAR'),
+						'desc' => gettext('Display options for the Map type control.')),
+				gettext('Zoom controls') => array(
+						'key' => 'gmap_zoom_size', 
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 5,
+						'buttons' => array(
+								gettext('Small') => 'SMALL',
+								gettext('Default') => 'DEFAULT',
+								gettext('Large') => 'LARGE'),
+						'desc' => gettext('Display options for the Zoom control.')),
+				gettext('Max zoom level') => array(
+						'key' => 'gmap_cluster_max_zoom', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 6,
+						'desc' => gettext('The max zoom level for clustering pictures on map.')),
+				gettext('Map sessions') => array(
+						'key' => 'gmap_sessions', 
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 9,
+						'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.')),
+				gettext('API key') => array(
+						'key' => 'gmap_api_key', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 10,
+						'desc' => gettext('Enter your API key. You can get one <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#key">here</a>.'))
 		);
 	}
 

@@ -18,6 +18,7 @@
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A Zenphoto plugin for displaying OpenStreetMap based maps using LeafletJS for images or images from albums with embeded geodata.");
 $plugin_author = "Malte Müller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569)";
+$plugin_notice = gettext('Privacy note: This plugin uses external third party sources');
 $option_interface = 'openStreetMapOptions';
 $plugin_category = gettext('Misc');
 
