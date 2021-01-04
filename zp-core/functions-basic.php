@@ -189,11 +189,11 @@ if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars
 			'mysql_host' => 'localhost',
 			'mysql_database' => null,
 			'mysql_port' => 3306,
-			'mysql_prefix' => 'zp_',
+			'mysql_prefix' => '',
 			'UTF-8' => true);
 	foreach($dbconfig_defaults as $key => $value) {
-		if(!isset($_zp_conf_vars[$key]) || (isset($_zp_conf_vars[$key]) && empty($_zp_conf_vars[$key]))) {
-			$_zp_conf_vars[$key]  = $value;
+		if (!isset($_zp_conf_vars[$key]) || ($key != 'mysql_prefix' && isset($_zp_conf_vars[$key]) && empty($_zp_conf_vars[$key]))) {
+			$_zp_conf_vars[$key] = $value;
 		}
 	}
 	$data = db_connect($_zp_conf_vars, false);
