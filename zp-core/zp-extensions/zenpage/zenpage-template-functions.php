@@ -1365,13 +1365,15 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
+	if($mode == 'allcategories') {
+		$mode = 'categories';
+	}
 	if (is_null($css_id)) {
 		switch ($mode) {
 			case 'pages':
 				$css_id = 'menu_pages';
 				break;
 			case 'categories':
-			case 'allcategories':
 				$css_id = 'menu_categories';
 				break;
 		}
@@ -1399,7 +1401,6 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 			$currentitem_sortorder = getPageSortorder();
 			break;
 		case 'categories':
-		case 'allcategories':
 			$items = $_zp_zenpage->getAllCategories();
 			if (is_object($_zp_current_category) && $mode == 'categories') {
 				$currentitem_sortorder = $_zp_current_category->getSortOrder();
@@ -1419,7 +1420,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		$css_class_active = "";
 		rem_context(ZP_ZENPAGE_PAGE);
 	}
-	if (0 == count($items) + (int) ($mode == 'allcategories'))
+	if (0 == count($items) + (int) ($mode == 'categories'))
 		return; // nothing to do
 	$startlist = $startlist && !($option == 'omit-top' || $option == 'list-sub');
 	if ($startlist)
@@ -1440,7 +1441,6 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				}
 				break;
 			case 'categories':
-			case 'allcategories':
 				if (($_zp_gallery_page == "news.php") && !is_NewsCategory() && !is_NewsArchive() && !is_NewsArticle()) {
 					echo '<li class="' . $css_class_topactive . '">' . html_encode($display);
 				} else {
@@ -1489,7 +1489,6 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				}
 				break;
 			case 'categories':
-			case 'allcategories':
 				$catobj = new ZenpageCategory($item['titlelink']);
 				$itemtitle = $catobj->getTitle();
 				$itemsortorder = $catobj->getSortOrder();
@@ -1576,7 +1575,6 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 							}
 							break;
 						case 'categories':
-						case 'allcategories':
 							if ($_zp_gallery_page == 'news.php') {
 								$current = $class;
 							}
