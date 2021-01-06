@@ -566,7 +566,7 @@ class feed {
 				$category = get_language_string($item['albumtitle']);
 				$website = $item['website'];
 				$title = $category . ": " . $title;
-				$commentpath = PROTOCOL . '://' . $this->host . $link . "#" . $item['id'];
+				$commentpath = PROTOCOL . '://' . $this->host . $link . "#zp_comment_id_" . $item['id'];
 				break;
 			case 'albums':
 				$obj = newAlbum($item['folder']);
@@ -574,7 +574,7 @@ class feed {
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$title = get_language_string($item['albumtitle']);
 				$website = $item['website'];
-				$commentpath = PROTOCOL . '://' . $this->host . $link . "#" . $item['id'];
+				$commentpath = PROTOCOL . '://' . $this->host . $link . "#zp_comment_id_" . $item['id'];
 				break;
 			case 'news':
 			case 'pages':
@@ -590,7 +590,7 @@ class feed {
 					} else {
 						$obj = new ZenpagePage($titlelink);
 					}
-					$commentpath = PROTOCOL . '://' . $this->host . html_encode($obj->getLink()) . "#" . $item['id'];
+					$commentpath = PROTOCOL . '://' . $this->host . html_encode($obj->getLink()) . "#zp_comment_id_" . $item['id'];
 				} else {
 					$commentpath = '';
 				}
