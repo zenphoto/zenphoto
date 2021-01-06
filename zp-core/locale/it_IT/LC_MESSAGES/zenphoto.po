@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-08 13:54+0100\n"
-"PO-Revision-Date: 2020-12-08 13:58+0100\n"
+"POT-Creation-Date: 2021-01-06 14:20+0100\n"
+"PO-Revision-Date: 2021-01-06 14:20+0100\n"
 "Last-Translator: Antonio <ranesi@tiscali.it>\n"
 "Language-Team: Antonio Ranesi [bic]\n"
 "Language: it_IT\n"
@@ -132,7 +132,7 @@ msgstr "Colori tema"
 #: themes/garland/colorbox/functions.php:32 themes/garland/image.php:19
 #: themes/garland/image.php:29 themes/zenpage/image.php:21
 #: themes/zenpage/image.php:27 zp-core/admin-functions.php:146
-#: zp-core/admin-plugins.php:80 zp-core/zp-extensions/GoogleMap.php:520
+#: zp-core/admin-plugins.php:80 zp-core/zp-extensions/GoogleMap.php:545
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:64
 #: zp-core/zp-extensions/slideshow2.php:632
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:33
@@ -477,8 +477,8 @@ msgstr "Indice album"
 #: zp-core/lib-auth.php:581 zp-core/lib-auth.php:582 zp-core/lib-auth.php:590
 #: zp-core/lib-auth.php:591 zp-core/lib-auth.php:597 zp-core/lib-auth.php:598
 #: zp-core/lib-auth.php:602 zp-core/lib-auth.php:608 zp-core/lib-auth.php:609
+#: zp-core/setup/setup-option-defaults.php:382
 #: zp-core/setup/setup-option-defaults.php:383
-#: zp-core/setup/setup-option-defaults.php:384
 #: zp-core/template-functions.php:448 zp-core/template-functions.php:629
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:51
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
@@ -628,7 +628,7 @@ msgstr "Transizione galleria immagini"
 # scelta del maschile ambigua
 #: themes/garland/themeoptions.php:153 zp-core/admin-options.php:3445
 #: zp-core/exif/makers/canon.php:155 zp-core/exif/makers/nikon.php:216
-#: zp-core/zp-extensions/GoogleMap.php:103
+#: zp-core/zp-extensions/GoogleMap.php:119
 #: zp-core/zp-extensions/user_login-out.php:37
 msgid "None"
 msgstr "Nessuno"
@@ -642,7 +642,7 @@ msgstr "Dissolvenza"
 msgid "Shrink/grow"
 msgstr "Riduzione/ingrandimento"
 
-#: themes/garland/themeoptions.php:156 zp-core/zp-extensions/GoogleMap.php:106
+#: themes/garland/themeoptions.php:156 zp-core/zp-extensions/GoogleMap.php:122
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:97
 msgid "Horizontal"
 msgstr "Orizzontale"
@@ -942,7 +942,7 @@ msgstr "Tag:"
 msgid "View meta data"
 msgstr "Visualizza metadati"
 
-#: themes/zpmobile/index.php:31 zp-core/class-feed.php:397
+#: themes/zpmobile/index.php:31 zp-core/class-feed.php:414
 msgid "Latest images"
 msgstr "Ultime immagini"
 
@@ -1410,7 +1410,7 @@ msgstr "Fare clic sull’immagine per modificare il ritaglio della miniatura."
 #: zp-core/admin-options.php:3505 zp-core/admin-plugins.php:140
 #: zp-core/admin-plugins.php:422 zp-core/admin-themes-editor.php:166
 #: zp-core/admin-thumbcrop.php:264 zp-core/admin-users.php:475
-#: zp-core/admin-users.php:848 zp-core/lib-auth.php:1091
+#: zp-core/admin-users.php:848 zp-core/lib-auth.php:1093
 #: zp-core/zp-extensions/contact_form/form.php:148
 #: zp-core/zp-extensions/crop_image.php:342
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:386
@@ -1477,7 +1477,7 @@ msgstr "Pubblicato"
 
 #: zp-core/admin-edit.php:1077 zp-core/admin-functions.php:1716
 msgid "Allow Comments"
-msgstr "Permetti commenti"
+msgstr "Permetti Commenti"
 
 #: zp-core/admin-edit.php:1088 zp-core/zp-extensions/zenpage/admin-edit.php:655
 #, php-format
@@ -1896,7 +1896,7 @@ msgstr "Ripeti password:"
 
 #: zp-core/admin-functions.php:1327 zp-core/admin-options.php:1247
 #: zp-core/admin-options.php:1583 zp-core/admin-options.php:2447
-#: zp-core/lib-auth.php:1086 zp-core/lib-auth.php:1281
+#: zp-core/lib-auth.php:1088 zp-core/lib-auth.php:1283
 #: zp-core/zp-extensions/downloadList.php:142
 #: zp-core/zp-extensions/zenpage/admin-edit.php:527
 msgid "Show password"
@@ -2368,7 +2368,7 @@ msgid "debug"
 msgstr "debug"
 
 #: zp-core/admin-functions.php:4533 zp-core/admin-functions.php:4544
-#: zp-core/admin.php:234 zp-core/zp-extensions/GoogleMap.php:26
+#: zp-core/admin.php:234 zp-core/zp-extensions/GoogleMap.php:31
 #: zp-core/zp-extensions/comment_form.php:20
 #: zp-core/zp-extensions/cookieconsent.php:27
 #: zp-core/zp-extensions/defaultCodeblocks.php:14
@@ -2376,7 +2376,7 @@ msgstr "debug"
 #: zp-core/zp-extensions/galleryArticles.php:13
 #: zp-core/zp-extensions/mobileTheme.php:82
 #: zp-core/zp-extensions/multiple_layouts.php:45
-#: zp-core/zp-extensions/openstreetmap.php:22
+#: zp-core/zp-extensions/openstreetmap.php:23
 #: zp-core/zp-extensions/scriptless-socialsharing.php:49
 #: zp-core/zp-extensions/tag_extras.php:15
 #: zp-core/zp-extensions/tag_suggest.php:14
@@ -2453,7 +2453,7 @@ msgstr "Mail"
 #: zp-core/admin-functions.php:4543
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:18
 #: zp-core/zp-extensions/class-AnyFile.php:19
-#: zp-core/zp-extensions/class-WEBdocs.php:18
+#: zp-core/zp-extensions/class-WEBdocs.php:19
 #: zp-core/zp-extensions/class-textobject.php:59
 #: zp-core/zp-extensions/class-video.php:20
 #: zp-core/zp-extensions/colorbox_js.php:28
@@ -2471,7 +2471,7 @@ msgstr "Mail"
 msgid "Media"
 msgstr "Media"
 
-#: zp-core/admin-functions.php:4545 zp-core/zp-extensions/reCaptcha.php:21
+#: zp-core/admin-functions.php:4545 zp-core/zp-extensions/reCaptcha.php:25
 #: zp-core/zp-extensions/simpleSpam.php:15
 #: zp-core/zp-extensions/trivialSpam.php:15
 msgid "Spam"
@@ -2515,7 +2515,7 @@ msgstr "Utenti"
 
 #: zp-core/admin-functions.php:4742
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
-#: zp-core/zp-extensions/reCaptcha.php:73
+#: zp-core/zp-extensions/reCaptcha.php:77
 #: zp-core/zp-extensions/related_items.php:184
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:101
 msgid "Image"
@@ -2696,7 +2696,7 @@ msgstr "Ultima visita: %s"
 #: zp-core/admin-functions.php:4990
 #, php-format
 msgid "Last change: %s"
-msgstr "Ultimo aggiornamento: %s"
+msgstr "Ultima modifica: %s"
 
 #: zp-core/admin-functions.php:4994
 msgid "ZenphotoCMS internal request"
@@ -2705,7 +2705,7 @@ msgstr "richiesta interna di ZenphotoCMS"
 #: zp-core/admin-functions.php:4997
 #, php-format
 msgid "Last changed by: %s"
-msgstr "Ultimo aggiornamento di: %s"
+msgstr "Ultima modifica di: %s"
 
 #: zp-core/admin-functions.php:5015 zp-core/class-search.php:98
 #: zp-core/zp-extensions/contact_form.php:125
@@ -4197,7 +4197,7 @@ msgstr "Immagine normale"
 
 #: zp-core/admin-options.php:2060
 msgid "<em>full</em> Image"
-msgstr "Immagine <em>completa</em>"
+msgstr "Immagine <em>originale</em>"
 
 #: zp-core/admin-options.php:2081 zp-core/zp-extensions/cacheManager.php:306
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:114
@@ -4321,7 +4321,7 @@ msgstr "Filigrane:"
 
 #: zp-core/admin-options.php:2210
 msgid "Full sized images"
-msgstr "Immagini a dimensione intera"
+msgstr "Immagini in dimensioni originali"
 
 #: zp-core/admin-options.php:2233
 #, php-format
@@ -4601,14 +4601,14 @@ msgstr "Metadati"
 
 #: zp-core/admin-options.php:2523 zp-core/admin-options.php:2538
 #: zp-core/admin-options.php:2539 zp-core/admin-options.php:2540
-#: zp-core/admin-users.php:492 zp-core/zp-extensions/GoogleMap.php:97
+#: zp-core/admin-users.php:492 zp-core/zp-extensions/GoogleMap.php:110
 #: zp-core/zp-extensions/contact_form.php:82
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:116
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:117
 msgid "show"
 msgstr "mostra"
 
-#: zp-core/admin-options.php:2524 zp-core/zp-extensions/GoogleMap.php:98
+#: zp-core/admin-options.php:2524 zp-core/zp-extensions/GoogleMap.php:111
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:110
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:111
 msgid "hide"
@@ -5432,8 +5432,8 @@ msgstr "Aggiornamento metadati in corso"
 msgid "Continue refreshing the metadata."
 msgstr "Continuare ad aggiornare i metadati."
 
-#: zp-core/admin-refresh-metadata.php:128 zp-core/lib-auth.php:974
-#: zp-core/lib-auth.php:975 zp-core/setup/index.php:1645
+#: zp-core/admin-refresh-metadata.php:128 zp-core/lib-auth.php:976
+#: zp-core/lib-auth.php:977 zp-core/setup/index.php:1645
 msgid "Refresh"
 msgstr "Aggiorna"
 
@@ -6383,15 +6383,15 @@ msgstr[1] "<strong>%u</strong> album"
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural ""
 "<strong>%1$u</strong> Comments (<strong>%2$u</strong> in moderation)"
-msgstr[0] "<strong>%1$u</strong> commento (%2$u in moderazione)"
-msgstr[1] "<strong>%1$u</strong> commenti (%2$u in moderazione)"
+msgstr[0] "<strong>%1$u</strong> Commento (%2$u in moderazione)"
+msgstr[1] "<strong>%1$u</strong> Commenti (%2$u in moderazione)"
 
 #: zp-core/admin.php:681
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
-msgstr[0] "<strong>%u</strong> commento"
-msgstr[1] "<strong>%u</strong> commenti"
+msgstr[0] "<strong>%u</strong> Commento"
+msgstr[1] "<strong>%u</strong> Commenti"
 
 #: zp-core/admin.php:714
 msgid "Your user rights do not allow access to administrative functions."
@@ -6427,43 +6427,43 @@ msgstr "Errore: l’album %s non è leggibile."
 msgid "Error: The album named %s cannot be found."
 msgstr "Errore: l’album %s non può essere trovato."
 
-#: zp-core/class-feed.php:395
+#: zp-core/class-feed.php:412
 msgid "Latest albums"
 msgstr "Ultimi album"
 
-#: zp-core/class-feed.php:401
+#: zp-core/class-feed.php:418
 msgid "latest updated albums"
 msgstr "ultimi album aggiornati"
 
-#: zp-core/class-feed.php:405
+#: zp-core/class-feed.php:422
 msgid "Most popular albums"
 msgstr "Album più popolari"
 
-#: zp-core/class-feed.php:407
+#: zp-core/class-feed.php:424
 msgid "Most popular images"
 msgstr "Immagini più popolari"
 
-#: zp-core/class-feed.php:412
+#: zp-core/class-feed.php:429
 msgid "Top rated albums"
 msgstr "Album col voto più alto"
 
-#: zp-core/class-feed.php:414
+#: zp-core/class-feed.php:431
 msgid "Top rated images"
 msgstr "Immagini col voto più alto"
 
-#: zp-core/class-feed.php:419
+#: zp-core/class-feed.php:436
 msgid "Random albums"
 msgstr "Album casuali"
 
-#: zp-core/class-feed.php:421
+#: zp-core/class-feed.php:438
 msgid "Random images"
 msgstr "Immagini casuali"
 
-#: zp-core/class-feed.php:506
+#: zp-core/class-feed.php:520
 msgid "Bad "
 msgstr "Difettoso "
 
-#: zp-core/class-feed.php:543
+#: zp-core/class-feed.php:557
 #: zp-core/zp-extensions/comment_form/functions.php:834
 msgid "by"
 msgstr "di"
@@ -7108,7 +7108,7 @@ msgstr "Macro"
 #: zp-core/exif/makers/canon.php:176 zp-core/exif/makers/fujifilm.php:82
 #: zp-core/exif/makers/nikon.php:179 zp-core/exif/makers/panasonic.php:130
 #: zp-core/exif/makers/panasonic.php:203 zp-core/exif/makers/sanyo.php:63
-#: zp-core/exif/makers/sanyo.php:71 zp-core/zp-extensions/reCaptcha.php:82
+#: zp-core/exif/makers/sanyo.php:71 zp-core/zp-extensions/reCaptcha.php:86
 msgid "Normal"
 msgstr "Normale"
 
@@ -7198,7 +7198,7 @@ msgstr "Fuoco manuale"
 msgid "Single"
 msgstr "Singolo"
 
-#: zp-core/exif/makers/canon.php:131 zp-core/zp-extensions/GoogleMap.php:112
+#: zp-core/exif/makers/canon.php:131 zp-core/zp-extensions/GoogleMap.php:131
 msgid "Large"
 msgstr "Largo"
 
@@ -7206,7 +7206,7 @@ msgstr "Largo"
 msgid "Medium"
 msgstr "Medio"
 
-#: zp-core/exif/makers/canon.php:133 zp-core/zp-extensions/GoogleMap.php:110
+#: zp-core/exif/makers/canon.php:133 zp-core/zp-extensions/GoogleMap.php:129
 msgid "Small"
 msgstr "Piccolo"
 
@@ -9595,8 +9595,8 @@ msgstr ""
 msgid "Manage all"
 msgstr "Gestisci tutto"
 
-#: zp-core/lib-auth.php:589 zp-core/lib-auth.php:933 zp-core/lib-auth.php:1007
-#: zp-core/lib-auth.php:1078
+#: zp-core/lib-auth.php:589 zp-core/lib-auth.php:935 zp-core/lib-auth.php:1009
+#: zp-core/lib-auth.php:1080
 msgid "User"
 msgstr "Utente"
 
@@ -9614,19 +9614,19 @@ msgstr "Blocchi di codice"
 msgid "Users with this right may edit Codeblocks."
 msgstr "Gli utenti con questo permesso possono modificare i Blocchi di codice."
 
-#: zp-core/lib-auth.php:618
+#: zp-core/lib-auth.php:619
 msgid "All rights"
 msgstr "Tutti i permessi"
 
-#: zp-core/lib-auth.php:619 zp-core/zp-extensions/register_user.php:180
+#: zp-core/lib-auth.php:620 zp-core/zp-extensions/register_user.php:180
 msgid "Default rights"
 msgstr "Permessi predefiniti"
 
-#: zp-core/lib-auth.php:705
+#: zp-core/lib-auth.php:707
 msgid "Sorry, that is not the answer."
 msgstr "Spiacente, la risposta non è corretta."
 
-#: zp-core/lib-auth.php:712
+#: zp-core/lib-auth.php:714
 msgid ""
 "You are receiving this e-mail because of a password reset request on your "
 "Zenphoto gallery."
@@ -9634,7 +9634,7 @@ msgstr ""
 "Si sta ricevendo questa e-mail per via di una richiesta di modifica password "
 "nella propria galleria Zenphoto."
 
-#: zp-core/lib-auth.php:714
+#: zp-core/lib-auth.php:716
 #, php-format
 msgid ""
 "You are receiving this e-mail because of a password reset request on your "
@@ -9644,16 +9644,16 @@ msgstr ""
 "nella propria galleria Zenphoto da parte di un utente che ha tentato di "
 "accedere come %s."
 
-#: zp-core/lib-auth.php:753
+#: zp-core/lib-auth.php:755
 msgid "There was no one to which to send the reset request."
 msgstr "Non è stato trovato nessuno a cui inviare la richiesta di azzeramento."
 
-#: zp-core/lib-auth.php:757
+#: zp-core/lib-auth.php:759
 #, php-format
 msgid "To reset your Zenphoto Admin passwords visit: %s"
 msgstr "Per modificare la password di amministratore di Zenphoto visitare: %s"
 
-#: zp-core/lib-auth.php:758
+#: zp-core/lib-auth.php:760
 msgid ""
 "If you do not wish to reset your passwords just ignore this message. This "
 "ticket will automatically expire in 3 days."
@@ -9661,31 +9661,31 @@ msgstr ""
 "Se non si vuole modificare la password, ignorare questo messaggio. Questa "
 "richiesta scadrà automaticamente tra 3 giorni."
 
-#: zp-core/lib-auth.php:759
+#: zp-core/lib-auth.php:761
 msgid "The Zenphoto information you requested"
 msgstr "Le informazioni Zenphoto richieste"
 
-#: zp-core/lib-auth.php:767
+#: zp-core/lib-auth.php:769
 msgid "Your input did not match the captcha"
 msgstr "I caratteri immessi non corrispondono a quelli del captcha"
 
-#: zp-core/lib-auth.php:896
+#: zp-core/lib-auth.php:898
 msgid "There was an error logging in."
 msgstr "C’è stato un errore durante l’accesso."
 
-#: zp-core/lib-auth.php:899
+#: zp-core/lib-auth.php:901
 msgid "Check your username and password and try again."
 msgstr "Controllare i propri nome utente e password e provare di nuovo."
 
-#: zp-core/lib-auth.php:901
+#: zp-core/lib-auth.php:903
 msgid "Check password and try again."
 msgstr "Controllare la password e provare di nuovo."
 
-#: zp-core/lib-auth.php:910
+#: zp-core/lib-auth.php:912
 msgid "A reset request has been sent."
 msgstr "La richiesta di modifica è stata inviata."
 
-#: zp-core/lib-auth.php:940
+#: zp-core/lib-auth.php:942
 msgid ""
 "Supply the correct response to the question below and you will be directed "
 "to a page where you can change your password."
@@ -9693,30 +9693,30 @@ msgstr ""
 "Fornire la risposta corretta alla domanda seguente e si verrà reindirizzati "
 "a una pagina dove poter cambiare la propria password."
 
-#: zp-core/lib-auth.php:941
+#: zp-core/lib-auth.php:943
 msgid "<br />You may also use the link below to request a reset by e-mail."
 msgstr ""
 "<br />È possibile usare il link qui sotto per chiedere un ripristino via e-"
 "mail."
 
-#: zp-core/lib-auth.php:943
+#: zp-core/lib-auth.php:945
 msgid "Challenge question:"
 msgstr "Domanda di sicurezza:"
 
-#: zp-core/lib-auth.php:948
+#: zp-core/lib-auth.php:950
 msgid "Your response"
 msgstr "La propria risposta"
 
-#: zp-core/lib-auth.php:954
+#: zp-core/lib-auth.php:956
 msgid "A password reset is not possible."
 msgstr "Impossibile reimpostare la password."
 
-#: zp-core/lib-auth.php:956
+#: zp-core/lib-auth.php:958
 msgid "Please request a reset by e-mail by clicking the link below."
 msgstr ""
 "Per favore richiedere il ripristino via e-mail cliccando sul link qui sotto."
 
-#: zp-core/lib-auth.php:964
+#: zp-core/lib-auth.php:966
 msgid ""
 "Enter your User ID and press <code>Refresh</code> to get your challenge "
 "question and/or get a link to request a reset by e-mail."
@@ -9724,81 +9724,81 @@ msgstr ""
 "Inserire il proprio ID utente e premere <code>Aggiorna</code> per rispondere "
 "alla domanda di sicurezza e/o ottenere un link per il ripristino via e-mail."
 
-#: zp-core/lib-auth.php:971 zp-core/lib-auth.php:972
+#: zp-core/lib-auth.php:973 zp-core/lib-auth.php:974
 #: zp-core/zp-extensions/register_user/register_user_form.php:115
 msgid "Submit"
 msgstr "Invia"
 
-#: zp-core/lib-auth.php:977 zp-core/lib-auth.php:978 zp-core/lib-auth.php:1025
-#: zp-core/lib-auth.php:1026
+#: zp-core/lib-auth.php:979 zp-core/lib-auth.php:980 zp-core/lib-auth.php:1027
+#: zp-core/lib-auth.php:1028
 msgid "Return"
 msgstr "Indietro"
 
-#: zp-core/lib-auth.php:989
+#: zp-core/lib-auth.php:991
 msgid "Request reset by e-mail"
 msgstr "Richiesta di reimpostazione via e-mail"
 
-#: zp-core/lib-auth.php:1014
+#: zp-core/lib-auth.php:1016
 msgid "Enter CAPTCHA"
 msgstr "Inserire captcha"
 
-#: zp-core/lib-auth.php:1022
+#: zp-core/lib-auth.php:1024
 msgid "Request"
 msgstr "Richiesta"
 
-#: zp-core/lib-auth.php:1023
+#: zp-core/lib-auth.php:1025
 msgid "Request password reset"
 msgstr "Richiesta di reimpostazione password"
 
-#: zp-core/lib-auth.php:1036 zp-core/zp-extensions/user_login-out.php:115
+#: zp-core/lib-auth.php:1038 zp-core/zp-extensions/user_login-out.php:115
 msgid "Login"
 msgstr "Accesso"
 
-#: zp-core/lib-auth.php:1057
+#: zp-core/lib-auth.php:1059
 #, php-format
 msgid "Logon using:%s"
 msgstr "Accedere con: %s"
 
-#: zp-core/lib-auth.php:1084 zp-core/lib-auth.php:1166
-#: zp-core/lib-auth.php:1271
+#: zp-core/lib-auth.php:1086 zp-core/lib-auth.php:1168
+#: zp-core/lib-auth.php:1273
 msgid "Password"
 msgstr "Password"
 
-#: zp-core/lib-auth.php:1090
+#: zp-core/lib-auth.php:1092
 msgid "Log in"
 msgstr "Accedi"
 
-#: zp-core/lib-auth.php:1104
+#: zp-core/lib-auth.php:1106
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr ""
 "Mi sono dimenticato il mio <strong>ID utente</strong>/<strong>Password</"
 "strong>"
 
-#: zp-core/lib-auth.php:1171
+#: zp-core/lib-auth.php:1173
 msgid "password strength weak"
 msgstr "sicurezza password debole"
 
-#: zp-core/lib-auth.php:1174
+#: zp-core/lib-auth.php:1176
 msgid "password strength good"
 msgstr "sicurezza password buona"
 
-#: zp-core/lib-auth.php:1177
+#: zp-core/lib-auth.php:1179
 msgid "password strength strong"
 msgstr "sicurezza password elevata"
 
-#: zp-core/lib-auth.php:1182
+#: zp-core/lib-auth.php:1184
 msgid "password strength too weak"
 msgstr "sicurezza password troppo debole"
 
-#: zp-core/lib-auth.php:1202
+#: zp-core/lib-auth.php:1204
 msgid "passwords match"
 msgstr "le password corrispondono"
 
-#: zp-core/lib-auth.php:1206
+#: zp-core/lib-auth.php:1208
 msgid "passwords do not match"
 msgstr "le password non corrispondono"
 
-#: zp-core/lib-auth.php:1286
+#: zp-core/lib-auth.php:1288
 msgid "Repeat password"
 msgstr "Ripeti password"
 
@@ -11905,47 +11905,47 @@ msgstr "Controllo Mod_Rewrite:"
 msgid "Mod_rewrite"
 msgstr "Mod_rewrite"
 
-#: zp-core/setup/setup-option-defaults.php:263
+#: zp-core/setup/setup-option-defaults.php:262
 msgid "Users with full privileges"
 msgstr "Utenti con tutti i privilegi"
 
-#: zp-core/setup/setup-option-defaults.php:272
+#: zp-core/setup/setup-option-defaults.php:271
 msgid "Users allowed only to view zenphoto objects"
 msgstr "Utenti abilitati solamente a vedere gli oggetti di zenphoto"
 
-#: zp-core/setup/setup-option-defaults.php:281
+#: zp-core/setup/setup-option-defaults.php:280
 msgid "Banned users"
 msgstr "Utenti bannati"
 
-#: zp-core/setup/setup-option-defaults.php:290
+#: zp-core/setup/setup-option-defaults.php:289
 msgid "Managers of one or more albums"
 msgstr "Gestori di uno o più album"
 
-#: zp-core/setup/setup-option-defaults.php:299
+#: zp-core/setup/setup-option-defaults.php:298
 msgid "Default user settings"
 msgstr "Impostazioni utente predefinite"
 
-#: zp-core/setup/setup-option-defaults.php:308
+#: zp-core/setup/setup-option-defaults.php:307
 msgid "Newly registered and verified users"
 msgstr "Utenti registrati e verificati di recente"
 
-#: zp-core/setup/setup-option-defaults.php:334
+#: zp-core/setup/setup-option-defaults.php:333
 msgid "Setting theme default options"
 msgstr "Impostazione opzioni predefinite dei temi"
 
-#: zp-core/setup/setup-option-defaults.php:352
+#: zp-core/setup/setup-option-defaults.php:351
 #, php-format
 msgid "Copyright %1$u: %2$s"
 msgstr "Copyright %1$u: %2$s"
 
-#: zp-core/setup/setup-option-defaults.php:390
+#: zp-core/setup/setup-option-defaults.php:389
 msgid ""
 "You can insert your Gallery description on the Admin Options Gallery tab."
 msgstr ""
 "È possibile inserire la descrizione della galleria usando la scheda Opzioni "
 "galleria nell’amministrazione."
 
-#: zp-core/setup/setup-option-defaults.php:617
+#: zp-core/setup/setup-option-defaults.php:616
 msgid "Plugin setup:"
 msgstr "Setup plug-in:"
 
@@ -12219,49 +12219,49 @@ msgstr ""
 "Il parametro printSearchForm $album_list parameter è deprecato. Passare "
 "invece array(\"albums\"=>array(album, album, ...))."
 
-#: zp-core/template-functions.php:3761
+#: zp-core/template-functions.php:3761 zp-core/template-functions.php:3767
 #, php-format
 msgid "%s within previous results"
 msgstr "%s tra i risultati precedenti"
 
-#: zp-core/template-functions.php:3842
+#: zp-core/template-functions.php:3845
 msgid "search options"
 msgstr "opzioni di ricerca"
 
-#: zp-core/template-functions.php:3842
+#: zp-core/template-functions.php:3845
 msgid "fields"
 msgstr "campi"
 
-#: zp-core/template-functions.php:3888
+#: zp-core/template-functions.php:3891
 msgid "Within"
 msgstr "All’interno"
 
-#: zp-core/template-functions.php:3892
+#: zp-core/template-functions.php:3895
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nuova"
 
-#: zp-core/template-functions.php:3899
+#: zp-core/template-functions.php:3902
 msgid "Check/uncheck all"
 msgstr "Attiva/disattiva tutto"
 
-#: zp-core/template-functions.php:3951
+#: zp-core/template-functions.php:3954
 msgid "no date"
 msgstr "nessuna data"
 
-#: zp-core/template-functions.php:4185
+#: zp-core/template-functions.php:4188
 msgid "You are successfully logged in."
 msgstr "Accesso effettuato correttamente."
 
-#: zp-core/template-functions.php:4190
+#: zp-core/template-functions.php:4193
 msgid "The page you are trying to view is password protected."
 msgstr "La pagina che si sta provando a visualizzare è protetta da password."
 
-#: zp-core/template-functions.php:4195
+#: zp-core/template-functions.php:4198
 msgid "login"
 msgstr "accesso"
 
-#: zp-core/template-functions.php:4213
+#: zp-core/template-functions.php:4216
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
 "website CMS\">Zenphoto</a>"
@@ -12269,21 +12269,21 @@ msgstr ""
 "Basato su<a href=\"http://www.zenphoto.org\" title=\"Il più semplice CMS per "
 "siti multimediali\">Zen<strong>photo</strong></a>"
 
-#: zp-core/template-functions.php:4378
+#: zp-core/template-functions.php:4381
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Errore Zenphoto:</strong> l’oggetto richiesto non è stato trovato."
 
-#: zp-core/template-functions.php:4380
+#: zp-core/template-functions.php:4383
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zp-core/template-functions.php:4383
+#: zp-core/template-functions.php:4386
 #, php-format
 msgid "Image: %s"
 msgstr "Immagine: %s"
 
-#: zp-core/template-functions.php:4386
+#: zp-core/template-functions.php:4389
 #, php-format
 msgid "Page: %s"
 msgstr "Pagina: %s"
@@ -13073,7 +13073,11 @@ msgstr ""
 "Visualizza Google Maps basate sui metadati <em>latitudine</em> e "
 "<em>longitudine</em> contenuti nelle immagini."
 
-#: zp-core/zp-extensions/GoogleMap.php:24
+#: zp-core/zp-extensions/GoogleMap.php:25
+msgid "Google Maps API key required."
+msgstr "È necessaria la API key di Google Maps."
+
+#: zp-core/zp-extensions/GoogleMap.php:26
 #, php-format
 msgid ""
 "<strong>Note</strong>: Google does place limits on the use of its <a href="
@@ -13084,51 +13088,59 @@ msgstr ""
 "\"><em>Maps API</em></a>. Controllarli per essere sicuri che il proprio sito "
 "li rispetti."
 
-#: zp-core/zp-extensions/GoogleMap.php:68
-#: zp-core/zp-extensions/GoogleMap.php:86
+#: zp-core/zp-extensions/GoogleMap.php:27
+#: zp-core/zp-extensions/class-WEBdocs.php:18
+#: zp-core/zp-extensions/openstreetmap.php:21
+#: zp-core/zp-extensions/reCaptcha.php:22
+msgid "Privacy note: This plugin uses external third party sources"
+msgstr ""
+"Nota sulla privacy: questo plugin utilizza fonti esterne di terze parti"
+
+#: zp-core/zp-extensions/GoogleMap.php:73
+#: zp-core/zp-extensions/GoogleMap.php:94
 msgid "Hybrid"
 msgstr "Ibrida"
 
-#: zp-core/zp-extensions/GoogleMap.php:70
-#: zp-core/zp-extensions/GoogleMap.php:87
+#: zp-core/zp-extensions/GoogleMap.php:75
+#: zp-core/zp-extensions/GoogleMap.php:95
 msgid "Map"
 msgstr "Mappa"
 
-#: zp-core/zp-extensions/GoogleMap.php:72
-#: zp-core/zp-extensions/GoogleMap.php:88
+#: zp-core/zp-extensions/GoogleMap.php:77
+#: zp-core/zp-extensions/GoogleMap.php:96
 msgid "Satellite"
 msgstr "Satellite"
 
-#: zp-core/zp-extensions/GoogleMap.php:74
-#: zp-core/zp-extensions/GoogleMap.php:89
+#: zp-core/zp-extensions/GoogleMap.php:79
+#: zp-core/zp-extensions/GoogleMap.php:97
 msgid "Terrain"
 msgstr "Terreno"
 
-#: zp-core/zp-extensions/GoogleMap.php:84
+#: zp-core/zp-extensions/GoogleMap.php:89
 msgid "Allowed maps"
 msgstr "Mappe permesse"
 
-#: zp-core/zp-extensions/GoogleMap.php:90
+#: zp-core/zp-extensions/GoogleMap.php:98
 msgid "Select the map types that are allowed."
 msgstr "Selezionare i tipi di mappa permessi."
 
-#: zp-core/zp-extensions/GoogleMap.php:91
+#: zp-core/zp-extensions/GoogleMap.php:99
 msgid "Initial map display selection"
 msgstr "Selezione visualizzazione iniziale mappa"
 
-#: zp-core/zp-extensions/GoogleMap.php:94
+#: zp-core/zp-extensions/GoogleMap.php:104
 msgid "Select the initial type of map to display."
 msgstr "Seleziona il tipo di mappa iniziale da mostrare."
 
-#: zp-core/zp-extensions/GoogleMap.php:95
+#: zp-core/zp-extensions/GoogleMap.php:105
 msgid "Map display"
 msgstr "Visualizzazione mappa"
 
-#: zp-core/zp-extensions/GoogleMap.php:99
+#: zp-core/zp-extensions/GoogleMap.php:112
 msgid "colorbox"
 msgstr "colorbox"
 
-#: zp-core/zp-extensions/GoogleMap.php:100
+#: zp-core/zp-extensions/GoogleMap.php:113
 msgid ""
 "Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for "
 "the map to display in a colorbox. Select <em>show</em> and the map will "
@@ -13139,45 +13151,45 @@ msgstr ""
 "Selezionare <em>mostra</em> per visualizzare la mappa quando viene caricata "
 "la pagina."
 
-#: zp-core/zp-extensions/GoogleMap.php:101
+#: zp-core/zp-extensions/GoogleMap.php:114
 msgid "Map controls"
 msgstr "Controlli mappa"
 
-#: zp-core/zp-extensions/GoogleMap.php:104
-#: zp-core/zp-extensions/GoogleMap.php:111
+#: zp-core/zp-extensions/GoogleMap.php:120
+#: zp-core/zp-extensions/GoogleMap.php:130
 msgid "Default"
 msgstr "Predefiniti"
 
-#: zp-core/zp-extensions/GoogleMap.php:105
+#: zp-core/zp-extensions/GoogleMap.php:121
 msgid "Dropdown"
 msgstr "A cascata"
 
-#: zp-core/zp-extensions/GoogleMap.php:107
+#: zp-core/zp-extensions/GoogleMap.php:123
 msgid "Display options for the Map type control."
 msgstr "Opzioni di visualizzazione per i controlli della Mappa."
 
-#: zp-core/zp-extensions/GoogleMap.php:108
+#: zp-core/zp-extensions/GoogleMap.php:124
 msgid "Zoom controls"
 msgstr "Controlli zoom"
 
-#: zp-core/zp-extensions/GoogleMap.php:113
+#: zp-core/zp-extensions/GoogleMap.php:132
 msgid "Display options for the Zoom control."
 msgstr "Opzioni di visualizzazione per i controlli dello Zoom."
 
-#: zp-core/zp-extensions/GoogleMap.php:114
+#: zp-core/zp-extensions/GoogleMap.php:133
 msgid "Max zoom level"
 msgstr "Massimo livello di zoom"
 
 # verificare
-#: zp-core/zp-extensions/GoogleMap.php:116
+#: zp-core/zp-extensions/GoogleMap.php:137
 msgid "The max zoom level for clustering pictures on map."
 msgstr "Il livello massimo dello zoom per il clustering di foto sulla mappa."
 
-#: zp-core/zp-extensions/GoogleMap.php:117
+#: zp-core/zp-extensions/GoogleMap.php:138
 msgid "Map sessions"
 msgstr "Sessioni mappa"
 
-#: zp-core/zp-extensions/GoogleMap.php:119
+#: zp-core/zp-extensions/GoogleMap.php:142
 msgid ""
 "If checked GoogleMaps will use sessions to pass map data for the "
 "<em>colorbox</em> display option. We recommend this option be selected. It "
@@ -13191,11 +13203,11 @@ msgstr ""
 "esporre a potenziali attacchi del tipo \"reference forgery security attacks"
 "\"."
 
-#: zp-core/zp-extensions/GoogleMap.php:120
+#: zp-core/zp-extensions/GoogleMap.php:143
 msgid "API key"
 msgstr "API key"
 
-#: zp-core/zp-extensions/GoogleMap.php:122
+#: zp-core/zp-extensions/GoogleMap.php:147
 msgid ""
 "Enter your API key. You can get one <a href=\"https://developers.google.com/"
 "maps/documentation/javascript/get-api-key#key\">here</a>."
@@ -13203,11 +13215,11 @@ msgstr ""
 "Inserisci la tua API key. Puoi ottenerne una <a href=\"https://developers."
 "google.com/maps/documentation/javascript/get-api-key#key\">qui</a>."
 
-#: zp-core/zp-extensions/GoogleMap.php:338
+#: zp-core/zp-extensions/GoogleMap.php:363
 msgid "Google Map"
 msgstr "Google Map"
 
-#: zp-core/zp-extensions/GoogleMap.php:483
+#: zp-core/zp-extensions/GoogleMap.php:508
 msgid "Display or hide the Google Map."
 msgstr "Visualizza o nasconde la mappa di Google."
 
@@ -13491,13 +13503,13 @@ msgstr ""
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:88
 msgid "Full image link"
-msgstr "Collegamento all’immagine completa"
+msgstr "Link all’immagine originale"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:91
 msgid "If checked the thumbs link to the full image instead of the image page."
 msgstr ""
-"Se selezionata le miniature rimanderanno all’immagine intera invece che alla "
-"pagina dell’immagine."
+"Se selezionata le miniature rimanderanno all’immagine originale invece che "
+"alla pagina dell’immagine."
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:93
 msgid "Mode"
@@ -14141,14 +14153,14 @@ msgstr ""
 "visualizzazione fornito)."
 
 #: zp-core/zp-extensions/class-AnyFile.php:39
-#: zp-core/zp-extensions/class-WEBdocs.php:52
+#: zp-core/zp-extensions/class-WEBdocs.php:53
 #: zp-core/zp-extensions/class-textobject.php:79
 #: zp-core/zp-extensions/class-video.php:52
 msgid "Watermark default images"
 msgstr "Inserisci una filigrana nelle immagini predefinite"
 
 #: zp-core/zp-extensions/class-AnyFile.php:40
-#: zp-core/zp-extensions/class-WEBdocs.php:53
+#: zp-core/zp-extensions/class-WEBdocs.php:54
 #: zp-core/zp-extensions/class-textobject.php:80
 #: zp-core/zp-extensions/class-video.php:56
 msgid "Check to place watermark image on default thumbnail images."
@@ -14178,74 +14190,74 @@ msgstr ""
 "Fornisce un modo per mostrare documenti usando <em>WEBdocs</em> per la "
 "visualizzazione del documento."
 
-#: zp-core/zp-extensions/class-WEBdocs.php:54
+#: zp-core/zp-extensions/class-WEBdocs.php:55
 msgid "PDF"
 msgstr "PDF"
 
-#: zp-core/zp-extensions/class-WEBdocs.php:55
-#: zp-core/zp-extensions/class-WEBdocs.php:66
-#: zp-core/zp-extensions/class-WEBdocs.php:73
+#: zp-core/zp-extensions/class-WEBdocs.php:56
+#: zp-core/zp-extensions/class-WEBdocs.php:67
+#: zp-core/zp-extensions/class-WEBdocs.php:74
 #: zp-core/zp-extensions/comment_form.php:189
 #: zp-core/zp-extensions/galleryArticles.php:100
 #: zp-core/zp-extensions/tinymce4.php:51 zp-core/zp-extensions/tinymce4.php:58
 msgid "Disabled"
 msgstr "Disabilitata"
 
-#: zp-core/zp-extensions/class-WEBdocs.php:56
-#: zp-core/zp-extensions/class-WEBdocs.php:67
-msgid "GoogleDocs"
-msgstr "GoogleDocs"
-
 #: zp-core/zp-extensions/class-WEBdocs.php:57
 #: zp-core/zp-extensions/class-WEBdocs.php:68
-#: zp-core/zp-extensions/class-WEBdocs.php:74
-msgid "Zoho"
-msgstr "Zoho"
+msgid "GoogleDocs"
+msgstr "GoogleDocs"
 
 #: zp-core/zp-extensions/class-WEBdocs.php:58
 #: zp-core/zp-extensions/class-WEBdocs.php:69
 #: zp-core/zp-extensions/class-WEBdocs.php:75
+msgid "Zoho"
+msgstr "Zoho"
+
+#: zp-core/zp-extensions/class-WEBdocs.php:59
+#: zp-core/zp-extensions/class-WEBdocs.php:70
+#: zp-core/zp-extensions/class-WEBdocs.php:76
 msgid "Browser default"
 msgstr "Predefinita browser"
 
-#: zp-core/zp-extensions/class-WEBdocs.php:60
+#: zp-core/zp-extensions/class-WEBdocs.php:61
 msgid "Choose the WEB service to use for rendering pdf documents."
 msgstr "Scegliere il servizio web da usare per visualizzare i documenti pdf."
 
-#: zp-core/zp-extensions/class-WEBdocs.php:61
+#: zp-core/zp-extensions/class-WEBdocs.php:62
 #, php-format
 msgid "Select <em>google</em> to use the <a href=\"%s\">GoogleDocs viewer</a>"
 msgstr ""
 "Selezionare <em>google</em> per usare il <a href=\"%s\">GoogleDocs viewer</a>"
 
-#: zp-core/zp-extensions/class-WEBdocs.php:62
+#: zp-core/zp-extensions/class-WEBdocs.php:63
 #, php-format
 msgid "Select <em>zoho</em> to use the <a href=\"%s\">Zoho document viewer</a>"
 msgstr ""
 "Selezionare <em>zoho</em> per usare lo <a href=\"%s\">Zoho document viewer</"
 "a>"
 
-#: zp-core/zp-extensions/class-WEBdocs.php:63
+#: zp-core/zp-extensions/class-WEBdocs.php:64
 msgid ""
 "Select <em>Browser default</em> to use the your browser default application"
 msgstr ""
 "Selezionare <em>Predefinita browser</em> per usare l’applicazione "
 "predefinita del browser"
 
-#: zp-core/zp-extensions/class-WEBdocs.php:65
+#: zp-core/zp-extensions/class-WEBdocs.php:66
 msgid "PowerPoint"
 msgstr "PowerPoint"
 
-#: zp-core/zp-extensions/class-WEBdocs.php:71
+#: zp-core/zp-extensions/class-WEBdocs.php:72
 msgid "Choose the WEB service to use for rendering PowerPoint document."
 msgstr ""
 "Scegliere il servizio web da usare per visualizzare i documenti PowerPoint."
 
-#: zp-core/zp-extensions/class-WEBdocs.php:72
+#: zp-core/zp-extensions/class-WEBdocs.php:73
 msgid "Tiff"
 msgstr "Tiff"
 
-#: zp-core/zp-extensions/class-WEBdocs.php:77
+#: zp-core/zp-extensions/class-WEBdocs.php:78
 msgid "Choose the WEB service to use for rendering TIFF images."
 msgstr "Scegliere il servizio web da usare per visualizzare le immagini tiff."
 
@@ -14714,8 +14726,8 @@ msgstr "Nessun commento"
 #, php-format
 msgid "%u Comment"
 msgid_plural "%u Comments"
-msgstr[0] "%u commento"
-msgstr[1] "%u commenti"
+msgstr[0] "%u Commento"
+msgstr[1] "%u Commenti"
 
 #: zp-core/zp-extensions/comment_form.php:308
 msgid "show comments"
@@ -14733,16 +14745,16 @@ msgstr "il"
 msgid "Only registered users may post comments."
 msgstr "Solo gli utenti registrati possono scrivere commenti."
 
-#: zp-core/zp-extensions/comment_form.php:444
-msgid "Closed for comments."
-msgstr "Commenti chiusi."
-
-#: zp-core/zp-extensions/comment_form.php:458
-#: zp-core/zp-extensions/comment_form.php:461
-#: zp-core/zp-extensions/comment_form.php:464
-#: zp-core/zp-extensions/comment_form.php:467
+#: zp-core/zp-extensions/comment_form.php:447
+#: zp-core/zp-extensions/comment_form.php:450
+#: zp-core/zp-extensions/comment_form.php:453
+#: zp-core/zp-extensions/comment_form.php:456
 msgid "Subscribe to comments"
 msgstr "Sottoscrivi i commenti"
+
+#: zp-core/zp-extensions/comment_form.php:465
+msgid "Closed for comments."
+msgstr "Commenti chiusi."
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:115
 msgid "edit comment"
@@ -15016,7 +15028,7 @@ msgstr "Aggiungi Commento"
 
 #: zp-core/zp-extensions/comment_form/functions.php:70
 msgid "10 Most Recent Comments"
-msgstr "10 commenti più recenti"
+msgstr "10 Commenti Più Recenti"
 
 #: zp-core/zp-extensions/comment_form/functions.php:78
 msgid "<strong>database error</strong> "
@@ -15685,14 +15697,14 @@ msgid "Position"
 msgstr "Posizione"
 
 #: zp-core/zp-extensions/cookieconsent.php:120
-#: zp-core/zp-extensions/openstreetmap.php:108
-#: zp-core/zp-extensions/openstreetmap.php:160
+#: zp-core/zp-extensions/openstreetmap.php:109
+#: zp-core/zp-extensions/openstreetmap.php:161
 msgid "Top left"
 msgstr "Alto a sinistra"
 
 #: zp-core/zp-extensions/cookieconsent.php:121
-#: zp-core/zp-extensions/openstreetmap.php:109
-#: zp-core/zp-extensions/openstreetmap.php:161
+#: zp-core/zp-extensions/openstreetmap.php:110
+#: zp-core/zp-extensions/openstreetmap.php:162
 msgid "Top right"
 msgstr "Alto a destra"
 
@@ -15701,14 +15713,14 @@ msgid "Bottom"
 msgstr "Basso"
 
 #: zp-core/zp-extensions/cookieconsent.php:123
-#: zp-core/zp-extensions/openstreetmap.php:110
-#: zp-core/zp-extensions/openstreetmap.php:162
+#: zp-core/zp-extensions/openstreetmap.php:111
+#: zp-core/zp-extensions/openstreetmap.php:163
 msgid "Bottom left"
 msgstr "Basso a sinistra"
 
 #: zp-core/zp-extensions/cookieconsent.php:124
-#: zp-core/zp-extensions/openstreetmap.php:111
-#: zp-core/zp-extensions/openstreetmap.php:163
+#: zp-core/zp-extensions/openstreetmap.php:112
+#: zp-core/zp-extensions/openstreetmap.php:164
 msgid "Bottom right"
 msgstr "Basso a destra"
 
@@ -17410,7 +17422,7 @@ msgstr ""
 "galleria."
 
 #: zp-core/zp-extensions/image_album_statistics.php:259
-#: zp-core/zp-extensions/rss.php:642
+#: zp-core/zp-extensions/rss.php:646
 #, php-format
 msgid "Last update: %s"
 msgstr "Ultimo aggiornamento: %s"
@@ -18853,11 +18865,11 @@ msgstr ""
 "LeafletJS per le immagini o immagini di album con dati geografici "
 "incorporati."
 
-#: zp-core/zp-extensions/openstreetmap.php:70
+#: zp-core/zp-extensions/openstreetmap.php:71
 msgid "Map dimensions—width"
 msgstr "Dimensioni mappa—larghezza"
 
-#: zp-core/zp-extensions/openstreetmap.php:74
+#: zp-core/zp-extensions/openstreetmap.php:75
 msgid ""
 "Width of the map including the unit name e.g 100% (default for responsive "
 "map), 100px or 100em."
@@ -18865,11 +18877,11 @@ msgstr ""
 "Larghezza della mappa, inclusi nomi delle unità, es. 100% (predefinito per "
 "mappe responsive), 100px, 100em."
 
-#: zp-core/zp-extensions/openstreetmap.php:75
+#: zp-core/zp-extensions/openstreetmap.php:76
 msgid "Map dimensions—height"
 msgstr "Dimensioni mappa—altezza"
 
-#: zp-core/zp-extensions/openstreetmap.php:79
+#: zp-core/zp-extensions/openstreetmap.php:80
 msgid ""
 "Height of the map including the unit name e.g 100% (default for responsive "
 "map), 100px or 100em."
@@ -18877,27 +18889,27 @@ msgstr ""
 "Altezza della mappa, inclusi nomi delle unità, es. 100% (predefinito per "
 "mappe responsive), 100px, 100em."
 
-#: zp-core/zp-extensions/openstreetmap.php:80
+#: zp-core/zp-extensions/openstreetmap.php:81
 msgid "Map zoom"
 msgstr "Zoom mappa"
 
-#: zp-core/zp-extensions/openstreetmap.php:84
+#: zp-core/zp-extensions/openstreetmap.php:85
 msgid "Default zoom level."
 msgstr "Livello di zoom predefinito."
 
-#: zp-core/zp-extensions/openstreetmap.php:85
+#: zp-core/zp-extensions/openstreetmap.php:86
 msgid "Map minimum zoom"
 msgstr "Minimo zoom mappa"
 
-#: zp-core/zp-extensions/openstreetmap.php:89
+#: zp-core/zp-extensions/openstreetmap.php:90
 msgid "Default minimum zoom level possible."
 msgstr "Minimo livello di zoom possibile predefinito."
 
-#: zp-core/zp-extensions/openstreetmap.php:90
+#: zp-core/zp-extensions/openstreetmap.php:91
 msgid "Map maximum zoom"
 msgstr "Massimo zoom mappa"
 
-#: zp-core/zp-extensions/openstreetmap.php:94
+#: zp-core/zp-extensions/openstreetmap.php:95
 msgid ""
 "Default maximum zoom level possible. If no value is defined, use the maximum "
 "zoom level of the map used (may be different for each map)."
@@ -18906,11 +18918,11 @@ msgstr ""
 "valore verrà utilizzato il massimo livello di zoom della mappa (può essere "
 "diverso per ciascuna mappa)."
 
-#: zp-core/zp-extensions/openstreetmap.php:95
+#: zp-core/zp-extensions/openstreetmap.php:96
 msgid "Default layer"
 msgstr "Livello predefinito"
 
-#: zp-core/zp-extensions/openstreetmap.php:100
+#: zp-core/zp-extensions/openstreetmap.php:101
 msgid ""
 "The default map tile provider to use. Only free providers are included. Some "
 "providers (Here, Mapbox, Thunderforest, Geoportail) require access "
@@ -18923,37 +18935,37 @@ msgstr ""
 "su <a href=\"https://github.com/leaflet-extras/leaflet-providers\">leaflet-"
 "providers</a>"
 
-#: zp-core/zp-extensions/openstreetmap.php:103
+#: zp-core/zp-extensions/openstreetmap.php:104
 msgid "Zoom controls position"
 msgstr "Posizione controlli zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:113
+#: zp-core/zp-extensions/openstreetmap.php:114
 msgid "Position of the zoom controls"
 msgstr "Posizione dei controlli dello zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:114
+#: zp-core/zp-extensions/openstreetmap.php:115
 msgid "Cluster radius"
 msgstr "Raggio del cluster"
 
-#: zp-core/zp-extensions/openstreetmap.php:118
+#: zp-core/zp-extensions/openstreetmap.php:119
 msgid "The radius when marker clusters should be used."
 msgstr "Raggio per quando si usa il cluster dei marcatori."
 
-#: zp-core/zp-extensions/openstreetmap.php:119
+#: zp-core/zp-extensions/openstreetmap.php:120
 msgid "Show cluster coverage on hover"
 msgstr "Mostra copertura cluster al passaggio del mouse"
 
-#: zp-core/zp-extensions/openstreetmap.php:123
+#: zp-core/zp-extensions/openstreetmap.php:124
 msgid "Enable if you want to the bounds of a marker cluster on hover."
 msgstr ""
 "Abilita se vuoi la copertura di un cluster di marcatori al passaggio del "
 "mouse."
 
-#: zp-core/zp-extensions/openstreetmap.php:124
+#: zp-core/zp-extensions/openstreetmap.php:125
 msgid "Marker popups"
 msgstr "Popup per marcatore"
 
-#: zp-core/zp-extensions/openstreetmap.php:128
+#: zp-core/zp-extensions/openstreetmap.php:129
 msgid ""
 "Enable this if you wish info popups on the map markers. Only for album "
 "context or custom geodata."
@@ -18961,11 +18973,11 @@ msgstr ""
 "Abilita se desideri un popup con info sui marcatori. Solo per album o dati "
 "geografici personalizzati."
 
-#: zp-core/zp-extensions/openstreetmap.php:129
+#: zp-core/zp-extensions/openstreetmap.php:130
 msgid "Marker popups with thumbs"
 msgstr "Popup marcatore con miniature"
 
-#: zp-core/zp-extensions/openstreetmap.php:133
+#: zp-core/zp-extensions/openstreetmap.php:134
 msgid ""
 "Enable if you want to show thumb of images in the marker popups. Only for "
 "album context."
@@ -18973,11 +18985,11 @@ msgstr ""
 "Abilita per mostrare miniature di immagini nei popup dei marcatori. Solo per "
 "album."
 
-#: zp-core/zp-extensions/openstreetmap.php:134
+#: zp-core/zp-extensions/openstreetmap.php:135
 msgid "Marker popups with title"
 msgstr "Popup di marcatori con titolo"
 
-#: zp-core/zp-extensions/openstreetmap.php:138
+#: zp-core/zp-extensions/openstreetmap.php:139
 msgid ""
 "Enable if you want to show title of images in the marker popups. Only for "
 "album context."
@@ -18985,33 +18997,33 @@ msgstr ""
 "Abilita per mostrare titoli delle immagini nei popup dei marcatori. Solo per "
 "album."
 
-#: zp-core/zp-extensions/openstreetmap.php:139
+#: zp-core/zp-extensions/openstreetmap.php:140
 msgid "Marker popups with description"
 msgstr "Popup marcatori con descrizione"
 
-#: zp-core/zp-extensions/openstreetmap.php:143
+#: zp-core/zp-extensions/openstreetmap.php:144
 msgid ""
 "Enable if you want to show desc of images in the marker popups. Only for "
 "album context."
 msgstr ""
 "Abilita per mostrare descrizione di immagini nel popup. Solo per album."
 
-#: zp-core/zp-extensions/openstreetmap.php:144
+#: zp-core/zp-extensions/openstreetmap.php:145
 msgid "Show layers controls"
 msgstr "Mostra livelli di controllo"
 
-#: zp-core/zp-extensions/openstreetmap.php:148
+#: zp-core/zp-extensions/openstreetmap.php:149
 msgid ""
 "Enable if you want to show layers controls with selected layers list below."
 msgstr ""
 "Abilita per mostrare i livelli di controllo selezionati dalla lista qui "
 "sotto."
 
-#: zp-core/zp-extensions/openstreetmap.php:149
+#: zp-core/zp-extensions/openstreetmap.php:150
 msgid "Layers list"
 msgstr "Lista livelli"
 
-#: zp-core/zp-extensions/openstreetmap.php:154
+#: zp-core/zp-extensions/openstreetmap.php:155
 msgid ""
 "Choose layers list to show in layers controls. No need to select the default "
 "layer again, otherwise it will be de-duplicated."
@@ -19019,37 +19031,37 @@ msgstr ""
 "Scegli la lista dei livelli da mostrare nel controllo livelli. È inutile "
 "selezionare di nuovo il livello predefinito, in caso sarà de-duplicato."
 
-#: zp-core/zp-extensions/openstreetmap.php:155
+#: zp-core/zp-extensions/openstreetmap.php:156
 msgid "Layers controls position"
 msgstr "Posizione livelli di controllo"
 
-#: zp-core/zp-extensions/openstreetmap.php:165
+#: zp-core/zp-extensions/openstreetmap.php:166
 msgid "Position of the layers controls"
 msgstr "Posizione dei livelli di controllo"
 
-#: zp-core/zp-extensions/openstreetmap.php:166
+#: zp-core/zp-extensions/openstreetmap.php:167
 msgid "Show scale"
 msgstr "Mostra scala"
 
-#: zp-core/zp-extensions/openstreetmap.php:170
+#: zp-core/zp-extensions/openstreetmap.php:171
 msgid "Enable if you want to show scale overlay (kilometers and miles)."
 msgstr ""
 "Abilita per mostrare la scala in sovrapposizione (chilometri e miglia)."
 
-#: zp-core/zp-extensions/openstreetmap.php:171
+#: zp-core/zp-extensions/openstreetmap.php:172
 msgid "Show cursor position"
 msgstr "Mostra la posizione del cursore"
 
-#: zp-core/zp-extensions/openstreetmap.php:175
+#: zp-core/zp-extensions/openstreetmap.php:176
 msgid ""
 "Enable if you want to show the coordinates if moving the cursor over the map."
 msgstr "Abilita per mostrare le coordinate muovendo il cursore sulla mappa."
 
-#: zp-core/zp-extensions/openstreetmap.php:176
+#: zp-core/zp-extensions/openstreetmap.php:177
 msgid "Show album markers"
 msgstr "Mostra marcatori album"
 
-#: zp-core/zp-extensions/openstreetmap.php:180
+#: zp-core/zp-extensions/openstreetmap.php:181
 msgid ""
 "Enable if you want to show the map on the single image page not only the "
 "marker of the current image but all markers from the album. The current "
@@ -19059,36 +19071,36 @@ msgstr ""
 "marcatore dell’immagine corrente ma anche tutti gli altri dell’album. La "
 "posizione corrente sarà evidenziata."
 
-#: zp-core/zp-extensions/openstreetmap.php:181
+#: zp-core/zp-extensions/openstreetmap.php:182
 msgid "Mini map"
 msgstr "Mappa mini"
 
-#: zp-core/zp-extensions/openstreetmap.php:185
+#: zp-core/zp-extensions/openstreetmap.php:186
 msgid ""
 "Enable if you want to show an overview mini map in the lower right corner."
 msgstr "Abilita per mostrare una mini mappa panoramica in basso a destra."
 
-#: zp-core/zp-extensions/openstreetmap.php:186
+#: zp-core/zp-extensions/openstreetmap.php:187
 msgid "Mini map: width"
 msgstr "Mini mappa: larghezza"
 
-#: zp-core/zp-extensions/openstreetmap.php:190
+#: zp-core/zp-extensions/openstreetmap.php:191
 msgid "Pixel width"
 msgstr "Larghezza in pixel"
 
-#: zp-core/zp-extensions/openstreetmap.php:191
+#: zp-core/zp-extensions/openstreetmap.php:192
 msgid "Mini map: height"
 msgstr "Mini mappa: altezza"
 
-#: zp-core/zp-extensions/openstreetmap.php:195
+#: zp-core/zp-extensions/openstreetmap.php:196
 msgid "Pixel height"
 msgstr "Altezza in pixel"
 
-#: zp-core/zp-extensions/openstreetmap.php:196
+#: zp-core/zp-extensions/openstreetmap.php:197
 msgid "Mini map: Zoom level"
 msgstr "Mini mappa: livello di zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:200
+#: zp-core/zp-extensions/openstreetmap.php:201
 msgid ""
 "The offset applied to the zoom in the minimap compared to the zoom of the "
 "main map. Can be positive or negative, defaults to -5."
@@ -19096,23 +19108,23 @@ msgstr ""
 "L’offset applicato allo zoom nella mini mappa rispetto a quello della mappa "
 "principale. Può essere positivo o negativo, il valore predefinito è -5."
 
-#: zp-core/zp-extensions/openstreetmap.php:201
+#: zp-core/zp-extensions/openstreetmap.php:202
 msgid "HERE - App id"
 msgstr "HERE - App id"
 
-#: zp-core/zp-extensions/openstreetmap.php:206
+#: zp-core/zp-extensions/openstreetmap.php:207
 msgid "HERE - App code"
 msgstr "HERE - App code"
 
-#: zp-core/zp-extensions/openstreetmap.php:211
+#: zp-core/zp-extensions/openstreetmap.php:212
 msgid "Mapbox - Access token"
 msgstr "Mapbox: Token di accesso"
 
-#: zp-core/zp-extensions/openstreetmap.php:216
+#: zp-core/zp-extensions/openstreetmap.php:217
 msgid "Thunderforest - ApiKey"
 msgstr "Thunderforest - ApiKey"
 
-#: zp-core/zp-extensions/openstreetmap.php:221
+#: zp-core/zp-extensions/openstreetmap.php:222
 msgid "GeoportailFrance - ApiKey"
 msgstr "GeoportailFrance - ApiKey"
 
@@ -19792,11 +19804,15 @@ msgstr ""
 "Può essere abilitato un solo plugin alla volta per la gestione del Captcha. "
 "<a href=\"#%1$s\"><code>%1$s</code></a> è già abilitato."
 
-#: zp-core/zp-extensions/reCaptcha.php:46
+#: zp-core/zp-extensions/reCaptcha.php:21
+msgid "Google account and reCaptcha key required."
+msgstr "Sono necessari un account Google e la reCaptcha key."
+
+#: zp-core/zp-extensions/reCaptcha.php:50
 msgid "Public key"
 msgstr "Chiave pubblica"
 
-#: zp-core/zp-extensions/reCaptcha.php:50
+#: zp-core/zp-extensions/reCaptcha.php:54
 msgid ""
 "Enter your <em>reCaptcha v2</em> public key. You can obtain this key from "
 "the Google <a href=\"http://www.google.com/recaptcha\">reCaptcha</a> site"
@@ -19805,55 +19821,55 @@ msgstr ""
 "ottenere questa chiave dal sito web <a href=\"http://www.google.com/recaptcha"
 "\">reCaptcha</a> di Google"
 
-#: zp-core/zp-extensions/reCaptcha.php:51
+#: zp-core/zp-extensions/reCaptcha.php:55
 msgid "Private key"
 msgstr "Chiave privata"
 
-#: zp-core/zp-extensions/reCaptcha.php:55
+#: zp-core/zp-extensions/reCaptcha.php:59
 msgid "Enter your <em>reCaptcha v2</em> private key."
 msgstr "Inserire la propria chiave privata di <em>reCaptcha v2</em>."
 
-#: zp-core/zp-extensions/reCaptcha.php:57
+#: zp-core/zp-extensions/reCaptcha.php:61
 msgid "Widget Theme:"
 msgstr "Tema del widget:"
 
-#: zp-core/zp-extensions/reCaptcha.php:62
+#: zp-core/zp-extensions/reCaptcha.php:66
 msgid "Light"
 msgstr "Chiaro"
 
-#: zp-core/zp-extensions/reCaptcha.php:63
+#: zp-core/zp-extensions/reCaptcha.php:67
 msgid "Dark"
 msgstr "Scuro"
 
-#: zp-core/zp-extensions/reCaptcha.php:65
+#: zp-core/zp-extensions/reCaptcha.php:69
 msgid "Choose the theme for your reCaptcha."
 msgstr "Scegliere il tema per reCaptcha."
 
-#: zp-core/zp-extensions/reCaptcha.php:67
+#: zp-core/zp-extensions/reCaptcha.php:71
 msgid "Widget Type:"
 msgstr "Tipo di widget:"
 
-#: zp-core/zp-extensions/reCaptcha.php:72
+#: zp-core/zp-extensions/reCaptcha.php:76
 msgid "Audio"
 msgstr "Audio"
 
-#: zp-core/zp-extensions/reCaptcha.php:75
+#: zp-core/zp-extensions/reCaptcha.php:79
 msgid "Choose the secondary verification method you would like to use."
 msgstr "Scegliere il secondo metodo di verifica da usare."
 
-#: zp-core/zp-extensions/reCaptcha.php:77
+#: zp-core/zp-extensions/reCaptcha.php:81
 msgid "Widget Size:"
 msgstr "Dimensione del widget:"
 
-#: zp-core/zp-extensions/reCaptcha.php:83
+#: zp-core/zp-extensions/reCaptcha.php:87
 msgid "Compact"
 msgstr "Compatto"
 
-#: zp-core/zp-extensions/reCaptcha.php:85
+#: zp-core/zp-extensions/reCaptcha.php:89
 msgid "Choose the size of the reCaptcha widget."
 msgstr "Scegliere le dimensioni del widget di reCaptcha."
 
-#: zp-core/zp-extensions/reCaptcha.php:150
+#: zp-core/zp-extensions/reCaptcha.php:154
 msgid ""
 "reCAPTCHA v2 keys are not configured properly. Visit <a href=\"https://www."
 "google.com/recaptcha/intro/index.html\">this link</a> to retrieve your "
@@ -20304,7 +20320,7 @@ msgstr "Feed RSS abilitati:"
 
 #: zp-core/zp-extensions/rss.php:85
 msgid "Gallery Comments"
-msgstr "Commenti galleria"
+msgstr "Commenti Galleria"
 
 #: zp-core/zp-extensions/rss.php:86
 msgid "All News"
@@ -20316,7 +20332,7 @@ msgstr "Tutte le pagine"
 
 #: zp-core/zp-extensions/rss.php:88
 msgid "News/Page Comments"
-msgstr "Commenti notizie/pagine"
+msgstr "Commenti Notizie/Pagine"
 
 #: zp-core/zp-extensions/rss.php:90
 msgid "Check each RSS feed you wish to activate."
@@ -20535,43 +20551,43 @@ msgstr " (Notizie col voto più alto)"
 msgid " (Random news)"
 msgstr " (Notizie casuali)"
 
-#: zp-core/zp-extensions/rss.php:524
+#: zp-core/zp-extensions/rss.php:528
 msgid " (Most popular pages)"
 msgstr " (Pagine più popolari)"
 
-#: zp-core/zp-extensions/rss.php:527
+#: zp-core/zp-extensions/rss.php:531
 msgid " (Most rated pages)"
 msgstr " (Pagine più votate)"
 
-#: zp-core/zp-extensions/rss.php:530
+#: zp-core/zp-extensions/rss.php:534
 msgid " (Top rated pages)"
 msgstr " (Pagine col voto più alto)"
 
-#: zp-core/zp-extensions/rss.php:533
+#: zp-core/zp-extensions/rss.php:537
 msgid " (Random pages)"
 msgstr " (Pagine casuali)"
 
-#: zp-core/zp-extensions/rss.php:536
+#: zp-core/zp-extensions/rss.php:540
 msgid " (Latest pages)"
 msgstr " (Ultime pagine)"
 
-#: zp-core/zp-extensions/rss.php:575
+#: zp-core/zp-extensions/rss.php:579
 msgid " (latest comments)"
 msgstr " (Ultimi commenti)"
 
-#: zp-core/zp-extensions/rss.php:637 zp-core/zp-extensions/rss.php:645
+#: zp-core/zp-extensions/rss.php:641 zp-core/zp-extensions/rss.php:649
 #, php-format
 msgid "%s (%u image)"
 msgid_plural "%s (%u images)"
 msgstr[0] "%s (%u immagine)"
 msgstr[1] "%s (%u immagini)"
 
-#: zp-core/zp-extensions/rss.php:647
+#: zp-core/zp-extensions/rss.php:651
 #, php-format
 msgid "Date: %s"
 msgstr "Data: %s"
 
-#: zp-core/zp-extensions/rss.php:810
+#: zp-core/zp-extensions/rss.php:814
 msgid "No items available."
 msgstr "Nessun elemento disponibile."
 
@@ -22205,7 +22221,7 @@ msgstr "Collegamento all’immagine"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:143
 msgid "Link to full image"
-msgstr "Collegamento all’immagine completa"
+msgstr "Link all’immagine originale"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:144
 msgid "Link to album"
@@ -24138,39 +24154,39 @@ msgid "Prev page"
 msgstr "Pagina precedente"
 
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1458
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1502
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1501
 #, php-format
 msgid "%u article"
 msgid_plural "%u articles"
 msgstr[0] "%u articolo"
 msgstr[1] "%u articoli"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2053
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2051
 msgid "This page is password protected"
 msgstr "Questa pagina è protetta da password"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2226
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2224
 #, php-format
 msgid "View the %s album"
 msgstr "Visualizza l’album %s"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2228
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2226
 #, php-format
 msgid "View the album %s"
 msgstr "Visualizza l’album %s"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2232
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2233
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2230
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2231
 #, php-format
 msgid "View %s"
 msgstr "Visualizza %s"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2241
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2239
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> non ha trovato l’immagine %1$s:%2$s"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2250
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2248
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> non ha trovato l’album %1$s"
@@ -29762,9 +29778,6 @@ msgstr ""
 
 #~ msgid "Google Earth"
 #~ msgstr "Google Earth"
-
-#~ msgid "Google Maps API key"
-#~ msgstr "Chiave API Google Maps"
 
 #~ msgid ""
 #~ "If you are going to be using Google Maps, <a href=\"http://www.google.com/"
