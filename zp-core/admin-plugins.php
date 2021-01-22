@@ -219,7 +219,7 @@ $subtab = printSubtabs();
 				if ($plugin_disable) {
 					disableExtension($extension);
 				}
-				$plugin_site = '';
+				$plugin_siteurl = '';
 				if ($str = isolate('$plugin_siteurl', $pluginStream)) {
 					if (false === eval($str)) {
 						$parserr = $parserr | 7;
@@ -394,8 +394,8 @@ $subtab = printSubtabs();
 							<?php
 						}
 						echo '<p><small><strong>' . sprintf(gettext('by %s'), $plugin_author);
-						if(!empty($plugin_site)) {
-							echo ' | <a href="' . html_encode($plugin_siteurll) . '" rel="noopener" target="_blank" title="'. html_encode($plugin_siteurl).'">' . gettext('Visit plugin site') . '</a>';
+						if(!empty($plugin_siteurl)) {
+							echo ' | <a href="' . html_encode($plugin_siteurl) . '" rel="noopener" target="_blank" title="'. html_encode($plugin_siteurl).'">' . gettext('Visit plugin site') . '</a>';
 						}
 						echo '</strong></small></p>';
 						?>
