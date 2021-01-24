@@ -9,10 +9,6 @@
  * also attaches to the general adminthumb functon used on the backend.
  * It additionally adds a no-script fallback and it supports native lazyloading in very modern browsers by adding the loading="lazy". 
  * 
- * Additonally it optionally can attach JS lazyloading to images, iframe, video and audio elements within texts 
- * like album and image descriptions or Zenpage item content. If images don't have the native lazyloading attribute 
- * present it will also be added.
- * 
  * Alternatively you can use the following method to directly filter any HTML to enable lazyloading on all images found.
  * 
  * # Example for manual usage
@@ -40,7 +36,7 @@
  */
 
 $plugin_is_filter = 800 | THEME_PLUGIN | ADMIN_PLUGIN;
-$plugin_description = gettext('Provides lazyloading for theme and backend using standard template functions and various text content using <a href="https://github.com/aFarkas/lazysizes" rel="nooopener" target="_blank">lazysizes</a>');
+$plugin_description = gettext('Provides lazyloading for theme and backend using standard template image functions using <a href="https://github.com/aFarkas/lazysizes" rel="nooopener" target="_blank">lazysizes</a>');
 $plugin_author = 'Malte Müller (acrylian)';
 $plugin_disable = (!class_exists('DOMDocument') && !function_exists('mb_convert_encoding')) ? gettext('The native PHP extensions DOM/DOMDocument and multibyte are required.') : false;
 $plugin_category = gettext('Media');
@@ -58,20 +54,6 @@ if (getOption('lazyload_galleryimages')) {
 	zp_register_filter('custom_album_thumb_html', 'lazyload::filterHTMLImages');
 }
 
-if (getOption('lazyload_gallerytext')) {
-	zp_register_filter('albumdesc_html', 'lazyload::filterHTML');
-	zp_register_filter('imagedesc_html', 'lazyload::filterHTML');
-	zp_register_filter('gallerydesc_html', 'lazyload::filterHTML');
-}
-
-if (getOption('lazyload_zenpage')) {
-	zp_register_filter('pagecontent_html', 'lazyload::filterHTML');
-	zp_register_filter('pageextracontent_html', 'lazyload::filterHTML');
-	zp_register_filter('articlecontent_html', 'lazyload::filterHTML');
-	zp_register_filter('articleextracontent_html', 'lazyload::filterHTML');
-	zp_register_filter('categorydesc_html', 'lazyload::filterHTML');
-}
-
 if (getOption('lazyload_backend')) {
 	zp_register_filter('admin_head', 'lazyload::getJS');
 	zp_register_filter('adminthumb_html', 'lazyload::filterHTMLImages');
@@ -81,8 +63,6 @@ class lazyloadOptions {
 
 	function __construct() {
 		setOptionDefault('lazyload_galleryimages', true);
-		setOptionDefault('lazyload_gallerytext', true);
-		setOptionDefault('lazyload_zenpage', true);
 		setOptionDefault('lazyload_backend', true);
 	}
 
@@ -92,16 +72,6 @@ class lazyloadOptions {
 						'key' => 'lazyload_galleryimages',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext("Attaches JS lazyloading to all images on your theme or plugins that are using the standard print* image template functions.")
-				),
-				gettext('Theme: Gallery descriptions') => array(
-						'key' => 'lazyload_gallerytext',
-						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext("Attaches JS lazyloading to images, videos, audio and iframe elements within gallery, album and image descriptions.")
-				),
-				gettext('Theme: Zenpage text content') => array(
-						'key' => 'lazyload_zenpage',
-						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext("Attaches JS lazyloading to images, videos, audio and iframe elements within Zenpage news and page content and extra content as well as category descriptions.")
 				),
 				gettext('Backend images') => array(
 						'key' => 'lazyload_backend',
