@@ -28,7 +28,7 @@ $plugin_is_filter = 400 | CLASS_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_category = gettext('Admin');
-$option_interface = 'static_html_cache';
+$option_interface = 'staticHTMLCacheOptions';
 
 $cache_path = SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/";
 if (!file_exists($cache_path)) {
@@ -52,6 +52,33 @@ if (OFFSET_PATH == 2) { //	clear the cache upon upgrade
 
 $_zp_HTML_cache = new static_html_cache();
 zp_register_filter('image_processor_uri', 'static_html_cache::_disable');
+
+class staticHTMLCacheOptions {
+
+	function __construct() {
+		setOptionDefault('static_cache_expire', 86400);
+		setOptionDefault('static_cache_excludedpages', 'search.php/,contact.php/,register.php/,favorites.php/');
+	}
+
+	function getOptionsSupported() {
+		return array(
+				gettext('Static HTML cache expire') => array(
+						'key' => 'static_cache_expire',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec).")),
+				gettext('Excluded pages') => array(
+						'key' => 'static_cache_excludedpages',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("The list of pages to be excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma.<br />") .
+						'<div class="notebox">' . gettext("<strong>NOTE:</strong> In order to work correctly, the following theme pages must be excluded from cache generation: <em>search.php, contact.php, register.php</em> and <em>favorites.php</em>") . '</div>')
+		);
+	}
+
+	function handleOption($option, $currentValue) {
+		
+	}
+
+}
 
 class static_html_cache {
 
@@ -338,23 +365,7 @@ class static_html_cache {
 		$_zp_HTML_cache->enabled = false;
 	}
 
-	function static_html_cache_options() {
-		setOptionDefault('static_cache_expire', 86400);
-		setOptionDefault('static_cache_excludedpages', 'search.php/,contact.php/,register.php/,favorites.php/');
-	}
-
-	function getOptionsSupported() {
-		return array(gettext('Static HTML cache expire')	 => array('key'	 => 'static_cache_expire', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec).")),
-						gettext('Excluded pages')						 => array('key'	 => 'static_cache_excludedpages', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("The list of pages to be excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma.<br />") . 
-										'<div class="notebox">' . gettext("<strong>NOTE:</strong> In order to work correctly, the following theme pages must be excluded from cache generation: <em>search.php, contact.php, register.php</em> and <em>favorites.php</em>") . '</div>')
-		);
-	}
-
-	function handleOption($option, $currentValue) {
-
-	}
+	
 
 	/**
 	 * used to disable cashing when the uri is an image processor uri
