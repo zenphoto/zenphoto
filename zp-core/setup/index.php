@@ -620,7 +620,7 @@ if ($c <= 0) {
 							}
 							setup::checkMark($p, sprintf(gettext('<em>%s</em> security'), DATA_FOLDER), sprintf(gettext('<em>%s</em> security [is compromised]'), DATA_FOLDER), sprintf(gettext('Zenphoto suggests you make the sensitive files in the %1$s folder accessable by <em>owner</em> only (permissions = 0600). The file permissions for <em>%2$s</em> are %3$04o which may allow unauthorized access.'), DATA_FOLDER, $file, $permission));
 						
-							if(secureServer()) {
+							if(setup::secureServer()) {
 								$sslconection = 1;
 							} else {
 								$sslconection = -1;

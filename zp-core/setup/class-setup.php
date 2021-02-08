@@ -850,6 +850,31 @@ class setup {
 		}
 		return $list;
 	}
+	
+	/**
+	 * Checks to see if access was through a secure protocol
+	 * 
+	 * @since Zenphoto 1.5.8 Doubles the function of the same name in functions-basic.php as not available on fresh installs
+	 * 
+	 * @return bool
+	 */
+	static function secureServer() {
+		if (isset($_SERVER['HTTPS'])) {
+			if ('on' == strtolower($_SERVER['HTTPS'])) {
+				return true;
+			}
+			if ('1' == $_SERVER['HTTPS']) {
+				return true;
+			}
+		} elseif (isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] )) {
+			return true;
+		} elseif (isset($_SERVER['HTTP_FORWARDED']) && preg_match("/^(.+[,;])?\s*proto=https\s*([,;].*)$/", strtolower($_SERVER['HTTP_FORWARDED']))) {
+			return true;
+		} elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ('https' == strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']))) {
+			return true;
+		}
+		return false;
+	}
 
 }
 
