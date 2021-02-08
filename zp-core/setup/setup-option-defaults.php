@@ -127,56 +127,56 @@ setOptionDefault('hotlink_protection', '1');
 
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
 
-$style_tags = "abbr =>(class=>() id=>() title =>() lang=())\n" .
-				"acronym =>(class=>() id=>() title =>() lang=())\n" .
-				"b => (class=>() id=>() lang=())\n" .
-				"blockquote =>(class=>() id=>() cite =>() lang=())\n" .
+$style_tags = "abbr =>(class=>() id=>() title =>() lang=>())\n" .
+				"acronym =>(class=>() id=>() title =>() lang=>())\n" .
+				"b => (class=>() id=>() lang=>())\n" .
+				"blockquote =>(class=>() id=>() cite =>() lang=>())\n" .
 				"br => (class=>() id=>())\n" .
-				"code => (class=>() id=>() lang=())\n" .
-				"em => (class=>() id=>() lang=())\n" .
-				"i => (class=>() id=>() lang=()) \n" .
-				"strike => (class=>() id=>() lang=())\n" .
-				"strong => (class=>() id=>() lang=())\n" .
-				"sup => (class=>() id=>() lang=())\n" .
-				"sub => (class=>() id=>() lang=())\n";
+				"code => (class=>() id=>() lang=>())\n" .
+				"em => (class=>() id=>() lang=>())\n" .
+				"i => (class=>() id=>() lang=>())\n" .
+				"strike => (class=>() id=>() lang=>())\n" .
+				"strong => (class=>() id=>() lang=>())\n" .
+				"sup => (class=>() id=>() lang=>())\n" .
+				"sub => (class=>() id=>() lang=>())\n";
 
-$general_tags = "a => (href =>() title =>() target=>() class=>() id=>() rel=>() lang=())\n" .
-				"ul => (class=>() id=>() lang=())\n" .
-				"ol => (class=>() id=>() lang=())\n" .
-				"li => (class=>() id=>() lang=())\n" .
-				"p => (class=>() id=>() style=>() lang=())\n" .
-				"h1=>(class=>() id=>() style=>() lang=())\n" .
-				"h2=>(class=>() id=>() style=>() lang=())\n" .
-				"h3=>(class=>() id=>() style=>() lang=())\n" .
-				"h4=>(class=>() id=>() style=>() lang=())\n" .
-				"h5=>(class=>() id=>() style=>() lang=())\n" .
-				"h6=>(class=>() id=>() style=>() lang=())\n" .
-				"pre=>(class=>() id=>() style=>() lang=())\n" .
-				"address=>(class=>() id=>() style=>() lang=())\n" .
-				"span=>(class=>() id=>() style=>() lang=())\n" .
-				"div=>(class=>() id=>() style=>() lang=())\n" .
-				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>() sizes=>() srcset=>() loading=>() lang=())\n" .
-				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>() loading=>() lang=())\n" .
-				"figure=>(class=>() id=>() style=>() lang=())\n" .
-				"figcaption=>(class=>() id=>() style=>() lang=())\n" .
-				"article=>(class=>() id=>() style=>() lang=())\n" .
-				"section => (class=>() id=>() style=>() lang=())\n" .
-				"nav => (class=>() id=>() style=>() lang=())\n" .
-				"video => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() poster=>() lang=())\n" .
-				"audio => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() volume=>() lang=())\n" .
-				"picture=>(class=>() id=>() lang=())\n" .
-				"source=>(src=>() scrset=>() size=>() type=>() media=>() lang=())\n" .
-				"track=>(src=>() kind=>() scrlang=>() label=>() default=>() lang=())\n" .
-				"table => (class=>() id=>() lang=())\n" .
-				"caption => (class=>() id=>() lang=())\n" .
-				"th => (class=>() id=>() lang=())\n" .
-				"tr => (class=>() id=>() lang=())\n" .
-				"td => (class=>() id=>() colspan=>() lang=())\n" .
-				"thead => (class=>() id=>() lang=())\n" .
-				"tbody => (class=>() id=>() lang=())\n" .
-				"tfoot => (class=>() id=>() lang=())\n" .
-				"colgroup => (class=>() id=>() lang=())\n" .
-				"col => (class=>() id=>() lang=())\n";
+$general_tags = "a => (href =>() title =>() target=>() class=>() id=>() rel=>() lang=>())\n" .
+				"ul => (class=>() id=>() lang=>())\n" .
+				"ol => (class=>() id=>() lang=>())\n" .
+				"li => (class=>() id=>() lang=>())\n" .
+				"p => (class=>() id=>() style=>() lang=>())\n" .
+				"h1=>(class=>() id=>() style=>() lang=>())\n" .
+				"h2=>(class=>() id=>() style=>() lang=>())\n" .
+				"h3=>(class=>() id=>() style=>() lang=>())\n" .
+				"h4=>(class=>() id=>() style=>() lang=>())\n" .
+				"h5=>(class=>() id=>() style=>() lang=>())\n" .
+				"h6=>(class=>() id=>() style=>() lang=>())\n" .
+				"pre=>(class=>() id=>() style=>() lang=>())\n" .
+				"address=>(class=>() id=>() style=>() lang=>())\n" .
+				"span=>(class=>() id=>() style=>() lang=>())\n" .
+				"div=>(class=>() id=>() style=>() lang=>())\n" .
+				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>() sizes=>() srcset=>() loading=>() lang=>())\n" .
+				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>() loading=>() lang=>())\n" .
+				"figure=>(class=>() id=>() style=>() lang=>())\n" .
+				"figcaption=>(class=>() id=>() style=>() lang=>())\n" .
+				"article=>(class=>() id=>() style=>() lang=>())\n" .
+				"section => (class=>() id=>() style=>() lang=>())\n" .
+				"nav => (class=>() id=>() style=>() lang=>())\n" .
+				"video => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() poster=>() lang=>())\n" .
+				"audio => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() volume=>() lang=>())\n" .
+				"picture=>(class=>() id=>() lang=>())\n" .
+				"source=>(src=>() scrset=>() size=>() type=>() media=>() lang=>())\n" .
+				"track=>(src=>() kind=>() srclang=>() label=>() default=>() lang=>())\n" .
+				"table => (class=>() id=>() lang=>())\n" .
+				"caption => (class=>() id=>() lang=>())\n" .
+				"th => (class=>() id=>() lang=>())\n" .
+				"tr => (class=>() id=>() lang=>())\n" .
+				"td => (class=>() id=>() colspan=>() lang=>())\n" .
+				"thead => (class=>() id=>() lang=>())\n" .
+				"tbody => (class=>() id=>() lang=>())\n" .
+				"tfoot => (class=>() id=>() lang=>())\n" .
+				"colgroup => (class=>() id=>() lang=>())\n" .
+				"col => (class=>() id=>() lang=>())\n";
 
 setOption('allowed_tags_default', $style_tags . $general_tags);
 setOptionDefault('allowed_tags', $style_tags . $general_tags);
