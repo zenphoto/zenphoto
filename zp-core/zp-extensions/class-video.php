@@ -429,7 +429,7 @@ class pseudoPlayer {
 		switch ($suffix) {
 			case 'mp4':
 			case 'm4v':
-				$content = '<video poster="' . html_encode($poster) . '" src="' . html_encode($movie) . '" controls width="' . $this->width . '" height="' . $this->height . '">';
+				$content = '<video poster="' . html_encode($poster) . '" src="' . html_encode($movie) . '" controls width="100%">';
 				$content .= gettext('Your browser sadly does not support this video format.');
 				$content .= '</video>';
 				break;
