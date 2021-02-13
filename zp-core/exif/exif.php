@@ -673,7 +673,7 @@ function formatData($type, $tag, $intel, $data) {
 				case '9000':	// ExifVersion
 				case 'a000':	// FlashPixVersion
 				case '0002':	// InteroperabilityVersion
-					$data=gettext('version').' '.$data/100;
+					$data=gettext('version').' '.($data/100);
 					break;
 				case 'a300':	// FileSource
 					$data = bin2hex($data);
@@ -1250,7 +1250,7 @@ function get35mmEquivFocalLength(&$result) {
 				);
 		// Calculate 35mm diagonal using Pythagoras' theorem
 		$diag35mm = sqrt(1872);   // 36² + 24² = 1872
-		$cropfactor = $diag35mm / $diagccd;
+		$cropfactor = $diag35mm / ($diagccd ?: 1);
 		$equivfl = intval($fl) * $cropfactor;
 		return $equivfl;
 	}
