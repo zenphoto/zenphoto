@@ -357,6 +357,19 @@ function html_encodeTagged($original, $allowScript = true) {
 }
 
 /**
+ * Convenience wrapper of html_encode(pathurlencode($url))
+ * Primarily intended for use with img src URLs
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @param string $url
+ * @return string
+ */
+function html_pathurlencode($url) {
+	return html_encode(pathurlencode($url));
+}
+
+/**
  * Makes directory recursively, returns TRUE if exists or was created sucessfuly.
  * Note: PHP5 includes a recursive parameter to mkdir, but it apparently does not
  * 				does not traverse symlinks!
