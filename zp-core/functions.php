@@ -1354,18 +1354,83 @@ function generateListFromFiles($currentValue, $root, $suffix, $descending = fals
 }
 
 /**
+ * Helper to generate attributename="attributevalue" for HTML elements based on an array 
+ * consisting of key => value pairs
+ * 
+ * Returns a string with with prependend space to directly use with an HTML element.
+ * 
+ * Note: 
+ * There is no check if these attributes are valid. Also values are not html_encoded  as that could 
+ * break for example JS event handlers. Do this in your attribute definition array as needed.
+ * Attributes with an empty value are skipped except the alt attribute or known boolean attributes (see in function definition)
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * @param array $attributes key => value pairs of element attribute name and value. e.g. array('class' => 'someclass', 'id' => 'someid');
+ * @param array $exclude Names of attributes to exclude (in case already set otherwise)
+ * @return string
+ */
+function generateAttributesFromArray($attributes = array(), $exclude = array()) {
+	$boolean_attr = array(
+			'allowfullscreen',
+			'allowpaymentrequest',
+			'async',
+			'autofocus',
+			'autoplay',
+			'checked',
+			'controls',
+			'default',
+			'disabled',
+			'formnovalidate',
+			'hidden',
+			'ismap',
+			'itemscope',
+			'loop',
+			'multiple',
+			'muted',
+			'nomodule',
+			'novalidate',
+			'open',
+			'playsinline',
+			'readonly',
+			'required',
+			'reversed',
+			'selected',
+			'truespeed',
+			'alt' // not boolean but should be at least set empty on <img> elements always
+	);
+	$attr = '';
+	if (!empty($attributes) && is_array($attributes)) {
+		foreach ($attributes as $key => $val) {
+			if (!in_array($key, $exclude)) {
+				if (empty($val) && in_array($key, $boolean_attr)) {
+					$attr .= ' ' . $key;
+				} else {
+					$attr .= ' ' . $key . '="' . $val . '"';
+				}
+			}
+		}
+	}
+	return $attr;
+}
+
+/**
  * @param string $url The link URL
  * @param string $text The text to go with the link
  * @param string $title Text for the title tag
  * @param string $class optional class
  * @param string $id optional id
+ * @param array  $extra_attr Additional attributes as array of key => value pairs
  */
-function getLinkHTML($url, $text, $title = NULL, $class = NULL, $id = NULL) {
-	return "<a href=\"" . html_encode($url) . "\"" .
-					(($title) ? " title=\"" . html_encode(getBare($title)) . "\"" : "") .
-					(($class) ? " class=\"$class\"" : "") .
-					(($id) ? " id=\"$id\"" : "") . ">" .
-					html_encode($text) . "</a>";
+function getLinkHTML($url, $text, $title = NULL, $class = NULL, $id = NULL, $extra_attr = array()) {
+	$attr = array(
+			'href' => html_encode($url),
+			'title' => html_encode(getBare($title)),
+			'class' => $class,
+			'id' => $id
+	);
+	$attr_final = array_merge($attr, $extra_attr);
+	$attributes = generateAttributesFromArray($attr_final);
+	return '<a' . $attributes . '>' . html_encode($text) . '</a>';
 }
 
 /**

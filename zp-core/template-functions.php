@@ -1787,30 +1787,30 @@ function getPasswordProtectImage($extra) {
  * @param string $title option title attribute
  *  */
 function printAlbumThumbImage($alt, $class = NULL, $id = NULL , $title = null) {
-	global $_zp_current_album, $_zp_themeroot;
+	global $_zp_current_album;
+	$thumbobj = $_zp_current_album->getAlbumThumbImage();
+	$sizes = getSizeDefaultThumb($thumbobj);
+	$attr = array(
+			'src' => html_pathurlencode($thumbobj->getThumb('album')),
+			'alt' => html_encode($alt),
+			'class' => $class,
+			'id' => $id,
+			'width' => $sizes[0],
+			'height' => $sizes[1],
+			'loading' => 'lazy'
+	);
 	if (!$_zp_current_album->getShow()) {
-		$class .= " not_visible";
+		$attr['class'] .= " not_visible";
 	}
 	$pwd = $_zp_current_album->getPassword();
 	if (!empty($pwd)) {
-		$class .= " password_protected";
+		$attr['class'] .= " password_protected";
 	}
-
-	$class = trim($class);
-	if ($class) {
-		$class = ' class="' . $class . '"';
-	}
-	if ($id) {
-		$id = ' id="' . $id . '"';
-	}
-	if ($title) {
-		$title = ' title="' . $title . '"';
-	}
-	$thumbobj = $_zp_current_album->getAlbumThumbImage();
-	$sizes = getSizeDefaultThumb($thumbobj);
-	$size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
+	$attr['class'] = trim($attr['class']);
+	$attr_filtered = zp_apply_filter('standard_album_thumb_attr', $attr, $thumbobj);
+	$attributes = generateAttributesFromArray($attr_filtered);
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . html_encode(pathurlencode($thumbobj->getThumb('album'))) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . ' loading="lazy" />';
+		$html = '<img' . $attributes . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html, $thumbobj);
 		echo $html;
 	} else {
@@ -1853,40 +1853,48 @@ function getCustomAlbumThumb($size, $width = NULL, $height = NULL, $cropw = NULL
  * @param int $cropy crop part y axis
  * @param string $class css class
  * @param string $id css id
- * @param string $title Optional title attribute
+ * @param string $title title attribute
+ * @param bool $maxspace true for maxspace image, false is default
  *
  * @return string
  */
-function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = null, $class = NULL, $id = NULL, $title = null) {
+function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = null, $class = NULL, $id = NULL, $title = null, $maxspace = false) {
 	global $_zp_current_album;
+	$thumbobj = $_zp_current_album->getAlbumThumbImage();
+	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbobj, 'thumb');
+	$attr = array(
+			'alt' => html_encode($alt),
+			'class' => $class,
+			'title' => html_encode($title),
+			'id' => $id,
+			'width' => $sizes[0],
+			'height' => $sizes[1],
+			'loading' => 'lazy'
+	);
+	if($maxspace) {
+		getMaxSpaceContainer($width, $height, $thumbobj, true);
+	}
 	if (!$_zp_current_album->getShow()) {
-		$class .= " not_visible";
+		$attr['class'] .= " not_visible";
 	}
 	$pwd = $_zp_current_album->getPassword();
 	if (!empty($pwd)) {
-		$class .= " password_protected";
+		$attr['class'] .= " password_protected";
 	}
-	$albumthumbobj = $_zp_current_album->getAlbumThumbImage();
-	$class = trim($class);
-	/* set the HTML image width and height parameters in case this image was "imageDefault.png" substituted for no thumbnail then the thumb layout is preserved */
-	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $albumthumbobj, 'thumb');
-	$sizing = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
-	if($class) {
-		$class = ' class="' . $class . '"';
-	}
-	if($id) {
-		$id = ' id="' . $id . '"';
-	}
-	if($title) {
-		$title = ' title="' . html_encode($title) . '"';
+	$attr['class'] = trim($attr['class']);
+	if ($maxspace) {
+		$attr['src']= html_pathurlencode(getCustomAlbumThumb(null, $width, $height, null, null, null, null));
+	} else {
+		$attr['src']= html_pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy));
 	}
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$html = '<img src="' . html_encode(pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy))) . '"' . $sizing . ' alt="' . html_encode($alt) . '"' 
-						. $id . $class . $title . ' loading="lazy" />';
-		$html = zp_apply_filter('custom_album_thumb_html', $html, $albumthumbobj);
+		$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $thumbobj);
+		$attributes = generateAttributesFromArray($attr_filtered);
+		$html = '<img' . $attributes . ' />';
+		$html = zp_apply_filter('custom_album_thumb_html', $html, $thumbobj);
 		echo $html;
 	} else {
-		echo getPasswordProtectImage($sizing);
+		echo getPasswordProtectImage($sizes);
 	}
 }
 
@@ -1958,14 +1966,10 @@ function getCustomAlbumThumbMaxSpace($width, $height) {
  * @param int $height height
  * @param string $class Optional style class
  * @param string $id Optional style id
- * @param bool $thumbStandin set to true to treat as thumbnail
- * @param string $title optional title attribute
+ * @param string $title Optional title attribute
  */
 function printCustomAlbumThumbMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $title = null) {
-	global $_zp_current_album;
-	$albumthumb = $_zp_current_album->getAlbumThumbImage();
-	getMaxSpaceContainer($width, $height, $albumthumb, true);
-	printCustomAlbumThumbImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, $title);
+	printCustomAlbumThumbImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, $title, true);
 }
 
 /**
@@ -2843,36 +2847,43 @@ function getDefaultSizedImage($image = NULL) {
  * @param string $alt Alt text
  * @param string $class Optional style class
  * @param string $id Optional style id
- * @param string $title Title attribute
+ * @param string $title Optional title attribute
+ * @param obj $image optional image object, null means current image
  */
-function printDefaultSizedImage($alt, $class = NULL, $id = NULL, $title = null) {
+function printDefaultSizedImage($alt, $class = null, $id = null, $title = null, $image = null) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
-		return;
-	if (!$_zp_current_image->getShow()) {
-		$class .= " not_visible";
+	if (is_null($image)) {
+		$image = $_zp_current_image;
 	}
-	$album = $_zp_current_image->getAlbum();
+	if (is_null($image)) {
+		return false;
+	}
+	$attr = array(
+			'alt' => html_encode($alt),
+			'class' => $class,
+			'title' => html_encode($title),
+			'id' => $id,
+			'loading' => 'lazy',
+			'width' => getDefaultWidth(),
+			'height' => getDefaultHeight()
+	);
+	if (!$image->getShow()) {
+		$attr['class'] .= " not_visible";
+	}
+	$album = $image->getAlbum();
 	$pwd = $album->getPassword();
 	if (!empty($pwd)) {
-		$class .= " password_protected";
+		$attr['class'] .= " password_protected";
 	}
-	if ($class) {
-		$class = ' class="' . $class . '"';
-	}
-	if ($id) {
-		$id = ' id="' . $id . '"';
-	}
-	if ($title) {
-		$title = ' title="' . html_encode($title) . '"';
-	} 
-	if (isImagePhoto()) { //Print images
-		$html = '<img src="' . html_encode(pathurlencode(getDefaultSizedImage())) . '" alt="' . html_encode($alt) . '"' .
-						' width="' . getDefaultWidth() . '" height="' . getDefaultHeight() . '"' . $class . $id . $title . ' loading="lazy" />';
-		$html = zp_apply_filter('standard_image_html', $html, $_zp_current_image);
+	if (isImagePhoto($image)) { //Print images
+		$attr['src'] = html_pathurlencode(getDefaultSizedImage());
+		$attr_filtered = zp_apply_filter('standard_image_attr', $attr, $image);
+		$attributes = generateAttributesFromArray($attr_filtered);
+		$html = '<img' . $attributes . ' />';
+		$html = zp_apply_filter('standard_image_html', $html, $image);
 		echo $html;
 	} else { // better be a plugin class then
-		echo $_zp_current_image->getContent();
+		echo $image->getContent();
 	}
 }
 
@@ -2890,37 +2901,42 @@ function getImageThumb() {
 
 /**
  * @param string $alt Alt text
- * @param string $class optional class tag
- * @param string $id optional id tag
- * @param string $title Title attribute
+ * @param string $class optional class attribute
+ * @param string $id optional id attribute
+ * @param string $title optional title attribute
+ * @param obj $image optional image object, null means current image
  */
-function printImageThumb($alt, $class = NULL, $id = NULL, $title = null) {
+function printImageThumb($alt, $class = null, $id = null, $title = null, $image = null) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
-		return;
-	if (!$_zp_current_image->getShow()) {
-		$class .= " not_visible";
+	if (is_null($image)) {
+		$image = $_zp_current_image;
 	}
-	$album = $_zp_current_image->getAlbum();
+	if (is_null($image)) {
+		return false;
+	}
+	$attr = array(
+			'alt' => html_encode($alt),
+			'class' => $class,
+			'title' => html_encode($title),
+			'id' => $id,
+			'loading' => 'lazy'
+	);
+	if (!$image->getShow()) {
+		$attr['class'] .= " not_visible";
+	}
+	$album = $image->getAlbum();
 	$pwd = $album->getPassword();
 	if (!empty($pwd)) {
-		$class .= " password_protected";
+		$attr['class'] .= " password_protected";
 	}
-	$url = getImageThumb();
-	$sizes = getSizeDefaultThumb();
-	$size = ' width="' . $sizes[0] . '" height="' . $sizes[1] . '"';
-	$class = trim($class);
-	if ($class) {
-		$class = ' class="' . $class . '"';
-	}
-	if ($id) {
-		$id = ' id="' . $id . '"';
-	}
-	if($title) {
-		$title = ' title="' . html_encode($title) . '"';
-	}
-	$html = '<img src="' . html_encode(pathurlencode($url)) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . $title . " />";
-	$html = zp_apply_filter('standard_image_thumb_html', $html, $_zp_current_image);
+	$attr['src'] = html_pathurlencode($image->getThumb());
+	$sizes = getSizeDefaultThumb($image);
+	$attr['width'] = $sizes[0];
+	$attr['height'] = $sizes[1];
+	$attr_filtered = zp_apply_filter('standard_image_thumb_attr', $attr, $image);
+	$attributes = generateAttributesFromArray($attr_filtered);
+	$html = '<img' . $attributes . ' />';
+	$html = zp_apply_filter('standard_image_thumb_html', $html, $image);
 	echo $html;
 }
 
@@ -3142,52 +3158,62 @@ function getCustomImageURL($size, $width = NULL, $height = NULL, $cropw = NULL, 
  * @param string $id Optional style id
  * @param bool $thumbStandin set to true to treat as thumbnail
  * @param bool $effects image effects (e.g. set gray to force grayscale)
- * @param string $title title attribute	
+ * @param string $title Optional title attribute
  * @param string $type "image" (sizedimage) (default), "thumb" (thumbnail) required for using option settings for uncropped images
- * */
-function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumbStandin = false, $effects = NULL, $title = null, $type = 'image') {
+ * @param obj $image optional image object, null means current image
+ * @param bool $maxspace true for maxspace, false default
+ */
+function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumbStandin = false, $effects = NULL, $title = null, $type = 'image', $image = null, $maxspace = false) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
-		return;
-	if (!$_zp_current_image->getShow()) {
-		$class .= " not_visible";
+	if (is_null($image)) {
+		$image = $_zp_current_image;
 	}
-	$album = $_zp_current_image->getAlbum();
+	if (is_null($image)) {
+		return false;
+	}
+	if ($maxspace) {
+		getMaxSpaceContainer($width, $height, $image);
+	}
+	$attr = array(
+			'alt' => html_encode($alt),
+			'class' => $class,
+			'title' => html_encode($title),
+			'id' => $id,
+			'loading' => 'lazy'
+	);
+	if (!$image->getShow()) {
+		$attr['class'] .= " not_visible";
+	}
+	$album = $image->getAlbum();
 	$pwd = $album->getPassword();
 	if (!empty($pwd)) {
-		$class .= " password_protected";
+		$attr['class'] .= " password_protected";
 	}
-	if ($size) {
+	if ($size && !$maxspace) {
 		$type = 'image';
-		if($thumbStandin) {
+		if ($thumbStandin) {
 			$type = 'thumb';
 		}
-		$dims = getSizeCustomImage($size, null, null, null, null, null, null, null, $type);
-		$sizing = ' width="' . $dims[0] . '" height="' . $dims[1] . '"';
+		$dims = getSizeCustomImage($size, null, null, null, null, null, null, $image, $type);
+		$attr['width'] = $dims[0];
+		$attr['height'] = $dims[1];
 	} else {
-		$sizing = '';
-		if ($width)
-			$sizing .= ' width="' . $width . '"';
-		if ($height)
-			$sizing .= ' height="' . $height . '"';
+		$attr['width'] = $width;
+		$attr['height'] = $height;
 	}
-	if ($id) {
-		$id = ' id="' . $id . '"';
-	}
-	if ($class) {
-		$class = ' class="' . $class . '"';
-	}
-	if($title) {
-		$title = ' title="' . html_encode($title) . '"';
-	}
-	if (isImagePhoto() || $thumbStandin) {
-		$html = '<img src="' . html_encode(pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects))) . '"' .
-						' alt="' . html_encode($alt) . '"' .
-						$id . $class . $sizing . $title . ' loading="lazy" />';
-		$html = zp_apply_filter('custom_image_html', $html, $thumbStandin, $_zp_current_image);
+	if (isImagePhoto($image) || $thumbStandin) {
+		if ($maxspace) {
+			$attr['src'] = html_pathurlencode(getCustomImageURL(null, $width, $height, NULL, NULL, NULL, NULL, true, $effects, null, $image));
+		} else {
+			$attr['src'] = html_pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects, null, $image));
+		}
+		$attr_filtered = zp_apply_filter('custom_image_attr', $attr, $image);
+		$attributes = generateAttributesFromArray($attr_filtered);
+		$html = '<img ' . $attributes . ' />';
+		$html = zp_apply_filter('custom_image_html', $html, $thumbStandin, $image);
 		echo $html;
 	} else { // better be a plugin
-		echo $_zp_current_image->getContent($width, $height);
+		echo $image->getContent($width, $height);
 	}
 }
 
@@ -3231,14 +3257,16 @@ function getCustomSizedImageThumbMaxSpace($width, $height) {
  * @param int $height height
  * @param string $class Optional style class
  * @param string $id Optional style id
- * @param string $title Option title attribute
+ * @param string $title optional title attribute
+ * @param obj $image optional image object, null means current image
  */
-function printCustomSizedImageThumbMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $title = null) {
+function printCustomSizedImageThumbMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $title = null, $image = null) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
-		return;
-	getMaxSpaceContainer($width, $height, $_zp_current_image, true);
-	printCustomSizedImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, true, null, $title);
+	if (is_null($image))
+		$image = $_zp_current_image;
+	if (is_null($image))
+		return false;
+	printCustomSizedImage($alt, NULL, $width, $height,  NULL,  NULL, NULL,  NULL, $class, $id, true, NULL, $title, 'thumb', $image, true);
 }
 
 /**
@@ -3250,14 +3278,16 @@ function printCustomSizedImageThumbMaxSpace($alt, $width, $height, $class = NULL
  * @param int $height height
  * @param string $class Optional style class
  * @param string $id Optional style id
- * @param string $title Option title attribute
+ * @param string $title optional title attribute
+ * @param obj $image optional image object, null means current image
  */
-function printCustomSizedImageMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $thumb = false, $title = null) {
+function printCustomSizedImageMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $thumb = false, $title = null, $image = null) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
-		return;
-	getMaxSpaceContainer($width, $height, $_zp_current_image, $thumb);
-	printCustomSizedImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, $thumb, null, $title);
+	if (is_null($image))
+		$image = $_zp_current_image;
+	if (is_null($image))
+		return false;
+	printCustomSizedImage($alt, NULL, $width, $height,  NULL,  NULL, NULL,  NULL, $class, $id, $thumb, NULL, $title, 'image', $image, true);
 }
 
 /**

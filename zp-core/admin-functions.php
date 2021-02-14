@@ -4630,20 +4630,17 @@ function getAdminThumb($imageobj, $size = 'small') {
  * @return string
  */
 function getAdminThumbHTML($imageobj, $size = 'small', $class = null, $id = null, $title = null, $alt = null) {
-	if ($class) {
-		$class = ' class="' . $class . '"';
-	}
-	if ($id) {
-		$id = ' id="' . $id . '"';
-	}
-	if ($title) {
-		$title = ' title="' . html_encode($title) . '"';
-	}
-	if ($alt) {
-		$alt = ' alt="' . html_encode($alt) . '"';
-	}
-	$src = getAdminThumb($imageobj, $size);
-	$html = '<img src="' .  html_encode(pathurlencode($src)) . '"' . $class . $id . $title . $alt . ' loading="lazy" />';
+	$attr = array(
+			'src' => html_pathurlencode(getAdminThumb($imageobj, $size)),
+			'alt' => html_encode($alt),
+			'class' => $class,
+			'id' => $id,
+			'title' => html_encode($title),
+			'loading' => 'lazy'
+	);
+	$attr_filtered = zp_apply_filter('adminthumb_attr', $attr, $imageobj);
+	$attributes = generateAttributesFromArray($attr_filtered);
+	$html = '<img' . $attributes . ' />';
 	return zp_apply_filter('adminthumb_html', $html, $size, $imageobj);
 }
 

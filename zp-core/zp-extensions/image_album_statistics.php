@@ -235,17 +235,44 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 	switch ($crop) {
 		case 0:
 			$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $albumthumb, 'thumb');
-			$html = '<img src="' . html_encode(pathurlencode($albumthumb->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" loading="lazy" /></a>' . "\n";
+			$attr = array(
+					'src' => html_pathurlencode($albumthumb->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)),
+					'width' => $sizes[0],
+					'height' => $sizes[1],
+					'alt' => html_encode($albumthumb->getTitle()),
+					'loading' => 'lazy'
+			);
+			$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $albumthumb);
+			$attributes = generateAttributesFromArray($attr_filtered);
+			$html = '<img' . $attributes . ' /></a>' . "\n";
 			echo zp_apply_filter('custom_album_thumb_html', $html, $albumthumb);
 			break;
 		case 1;
 			$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $albumthumb, 'thumb');
-			$html = '<img src="' . html_encode(pathurlencode($albumthumb->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" loading="lazy" /></a>' . "\n";
+			$attr = array(
+					'src' => html_pathurlencode($albumthumb->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE)),
+					'width' => $sizes[0],
+					'height' => $sizes[1],
+					'alt' => html_encode($albumthumb->getTitle()),
+					'loading' => 'lazy'
+			);
+			$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $albumthumb);
+			$attributes = generateAttributesFromArray($attr_filtered);
+			$html = '<img' . $attributes . '  /></a>' . "\n";
 			echo zp_apply_filter('custom_album_thumb_html', $html, $albumthumb);
 			break;
 		case 2:
 			$sizes = getSizeDefaultThumb($albumthumb);
-			$html = '<img src="' . html_encode(pathurlencode($albumthumb->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($albumthumb->getTitle()) . '" loading="lazy" /></a>' . "\n";
+			$attr = array(
+					'src' => html_pathurlencode($albumthumb->getThumb()),
+					'width' => $sizes[0],
+					'height' => $sizes[1],
+					'alt' => html_encode($albumthumb->getTitle()),
+					'loading' => 'lazy'
+			);
+			$attr_filtered = zp_apply_filter('standard_album_thumb_attr', $attr, $albumthumb);
+			$attributes = generateAttributesFromArray($attr_filtered);
+			$html = '<img' .$attributes .' /></a>' . "\n";
 			echo zp_apply_filter('standard_album_thumb_html', $html, $albumthumb);
 			break;
 	}
@@ -462,17 +489,44 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 		switch ($crop) {
 			case 0:
 				$sizes = getSizeCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, $image, 'thumb');
-				$html = '<img src="' . html_encode(pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . '" loading="lazy" /></a>'. "\n";
+				$attr = array(
+					'src' => html_pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)),
+					'width' => $sizes[0],
+					'height' => $sizes[1],
+					'alt' => html_encode($image->getTitle()),
+					'loading' => 'lazy'
+				);
+				$attr_filtered = zp_apply_filter('custom_image_attr', $attr, $image);
+				$attributes = generateAttributesFromArray($attr_filtered);
+				$html = '<img' . $attributes . '" /></a>' . "\n";
 				echo zp_apply_filter('custom_image_html', $html, true, $image);
 				break;
 			case 1:
-				$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $image);
-				$html = '<img src="' . html_encode(pathurlencode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . '" loading="lazy" /></a>'. "\n";
+				$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $image, 'thumb');
+				$attr = array(
+					'src' => html_pathurlencode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE)),
+					'width' => $sizes[0],
+					'height' => $sizes[1],
+					'alt' => html_encode($image->getTitle()),
+					'loading' => 'lazy'
+				);
+				$attr_filtered = zp_apply_filter('custom_image_attr', $attr, $image);
+				$attributes = generateAttributesFromArray($attr_filtered);
+				$html = '<img' . $attributes . ' /></a>' . "\n";
 				echo zp_apply_filter('custom_image_html', $html, true, $image);
 				break;
 			case 2:
 				$sizes = getSizeDefaultThumb($image);
-				$html = '<img src="' . html_encode(pathurlencode($image->getThumb())) . '" width="' . $sizes[0] . '" height="' . $sizes[1] . '" alt="' . html_encode($image->getTitle()) . '" loading="lazy" /></a>'. "\n";
+				$attr = array(
+					'src' => html_pathurlencode($image->getThumb()),
+					'width' => $sizes[0],
+					'height' => $sizes[1],
+					'alt' => html_encode($image->getTitle()),
+					'loading' => 'lazy'
+				);
+				$attr_filtered = zp_apply_filter('standard_image_thumb_attr', $attr, $image);
+				$attributes = generateAttributesFromArray($attr_filtered);
+				$html = '<img' . $attributes . ' /></a>' . "\n";
 				echo zp_apply_filter('standard_image_thumb_html', $html, $image);
 				break;
 		}
