@@ -1989,12 +1989,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 */
 	function printAlbumButtons($album) {
 		if ($imagcount = $album->getNumImages() > 0) {
+			if (!$album->isDynamic()) {
 			?>
-			<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the album’s cached images.")); ?>">
-				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=clear_cache&amp;album=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_cache'); ?>">
-					<img src="images/edit-delete.png" /><?php echo gettext('Clear album image cache'); ?></a>
-				<br class="clearall" />
-			</div>
+				<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the album’s cached images.")); ?>">
+					<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=clear_cache&amp;album=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_cache'); ?>">
+						<img src="images/edit-delete.png" /><?php echo gettext('Clear album image cache'); ?></a>
+					<br class="clearall" />
+				</div>
+			<?php } ?>
 			<div class="button buttons tooltip" title="<?php echo gettext("Resets album’s hit counters."); ?>">
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=reset_hitcounters&amp;album=' . html_encode($album->name) . '&amp;albumid=' . $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter'); ?>">
 					<img src="images/reset.png" /><?php echo gettext('Reset album hit counters'); ?></a>

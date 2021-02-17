@@ -282,7 +282,7 @@ printAdminHeader('overview', 'images'); ?>
 				@set_time_limit(3000);
 				foreach ($allalbums as $album) {
 					$albumobj = newAlbum($album);
-					if (!$albumobj->isDynamic()) {
+					if (!$albumobj->isDynamic() || count($allalbums) == 1) {
 						cacheManager::loadAlbums($albumobj);
 					}
 				} 
