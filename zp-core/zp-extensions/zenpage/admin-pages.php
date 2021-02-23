@@ -151,10 +151,12 @@ zenpageJSCSS();
 								gettext('Set to published')		 => 'showall',
 								gettext('Set to unpublished')	 => 'hideall',
 								gettext('Add tags')						 => 'addtags',
-								gettext('Clear tags')					 => 'cleartags',
-								gettext('Disable comments')		 => 'commentsoff',
-								gettext('Enable comments')		 => 'commentson'
+								gettext('Clear tags')					 => 'cleartags'
 				);
+				if(extensionEnabled('comment_form')) { 
+					$checkarray[gettext('Disable comments')] = 'commentsoff';
+					$checkarray[gettext('Enable comments')] = 'commentson';
+				}
 				if (extensionEnabled('hitcounter')) {
 					$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
 				}

@@ -98,10 +98,12 @@ echo "\n</head>";
 					gettext('Set to unpublished')	 => 'hideall',
 					gettext('Add tags')						 => 'addtags',
 					gettext('Clear tags')					 => 'cleartags',
-					gettext('Disable comments')		 => 'commentsoff',
-					gettext('Enable comments')		 => 'commentson',
 					gettext('Change owner')				 => 'changeowner'
 	);
+	if(extensionEnabled('comment_form')) { 
+		$checkarray[gettext('Disable comments')] = 'commentsoff';
+		$checkarray[gettext('Enable comments')] = 'commentson';
+	}
 	if (extensionEnabled('hitcounter')) {
 		$checkarray_images[gettext('Reset hitcounter')] = 'resethitcounter';
 	}

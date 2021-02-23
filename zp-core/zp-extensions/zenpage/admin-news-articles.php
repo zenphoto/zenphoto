@@ -249,11 +249,13 @@ datepickerJS();
 												gettext('Set to unpublished')	 => 'hideall',
 												gettext('Add tags')						 => 'addtags',
 												gettext('Clear tags')					 => 'cleartags',
-												gettext('Disable comments')		 => 'commentsoff',
-												gettext('Enable comments')		 => 'commentson',
 												gettext('Add categories')			 => 'addcats',
 												gettext('Clear categories')		 => 'clearcats'
 								);
+								if(extensionEnabled('comment_form')) { 
+									$checkarray[gettext('Disable comments')] = 'commentsoff';
+									$checkarray[gettext('Enable comments')] = 'commentson';
+								}
 								if (extensionEnabled('hitcounter')) {
 									$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
 								}

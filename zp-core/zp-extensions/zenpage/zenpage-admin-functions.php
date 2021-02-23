@@ -252,7 +252,6 @@ function printPagesListTable($page, $flag) {
 				<?php if(extensionEnabled('comment_form')) { ?>
 					<div class="page-list_icon">
 						<?php
-
 							if ($page->getCommentsAllowed()) {
 								?>
 								<a href="?commentson=0&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
