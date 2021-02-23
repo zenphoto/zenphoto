@@ -1707,15 +1707,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<input type="checkbox" name="<?php echo $prefix; ?>Published" value="1" <?php if ($album->get('show', false)) echo ' checked="checked"'; ?> />
 							<?php echo $publishlabel; ?>
 						</label>
-						<label class="checkboxlabel">
-							<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
-							if ($album->getCommentsAllowed()) {
-								echo ' checked="checked"';
-							}
-							?> />
-										 <?php echo gettext("Allow Comments"); ?>
-						</label>
+						<?php if(extensionEnabled('comment_form')) { ?>
+							<label class="checkboxlabel">
+								<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
+								if ($album->getCommentsAllowed()) {
+									echo ' checked="checked"';
+								}
+								?> />
+											 <?php echo gettext("Allow Comments"); ?>
+							</label>
 						<?php
+						}
 						if (extensionEnabled('hitcounter')) {
 							$hc = $album->get('hitcounter');
 							if (empty($hc)) {
@@ -2151,39 +2153,41 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<div class="page-list_icon">
 					<?php printPublishIconLinkGallery($album, $enableEdit, $owner); ?>
 				</div>
-				<div class="page-list_icon">
-					<?php
-					if ($album->getCommentsAllowed()) {
-						if ($enableEdit) {
-							?>
-							<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
-								<?php
-							}
-							?>
-							<img src="images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
-							<?php
+				<?php if(extensionEnabled('comment_form')) { ?>
+					<div class="page-list_icon">
+						<?php
+						if ($album->getCommentsAllowed()) {
 							if ($enableEdit) {
 								?>
-							</a>
-							<?php
-						}
-					} else {
-						if ($enableEdit) {
-							?>
-							<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
+								<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
+									<?php
+								}
+								?>
+								<img src="images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
+								<?php
+								if ($enableEdit) {
+									?>
+								</a>
 								<?php
 							}
-							?>
-							<img src="images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
-							<?php
+						} else {
 							if ($enableEdit) {
 								?>
-							</a>
-							<?php
+								<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
+									<?php
+								}
+								?>
+								<img src="images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
+								<?php
+								if ($enableEdit) {
+									?>
+								</a>
+								<?php
+							}
 						}
-					}
-					?>
-				</div>
+						?>
+					</div>
+				<?php } ?>
 				<div class="page-list_icon">
 					<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo html_encode(pathurlencode($album->name)); ?>" title="<?php echo gettext("View album"); ?>">
 						<img src="images/view.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('View album %s'), $album->name); ?>" />

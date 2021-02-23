@@ -641,12 +641,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 
 													<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 													<div class="box-edit">
-
-														<p class="checkbox">
-															<input name="commentson" type="checkbox" id="commentson" value="1" <?php checkIfChecked($result->getCommentsAllowed()); ?> />
-															<label for="commentson"> <?php echo gettext("Comments on"); ?></label>
-														</p>
+														<?php if(extensionEnabled('comment_form')) { ?>	
+															<p class="checkbox">
+																<input name="commentson" type="checkbox" id="commentson" value="1" <?php checkIfChecked($result->getCommentsAllowed()); ?> />
+																<label for="commentson"> <?php echo gettext("Comments on"); ?></label>
+															</p>
 														<?php
+														}
 														if (!$result->transient && extensionEnabled('hitcounter')) {
 															$hc = $result->getHitcounter();
 															?>

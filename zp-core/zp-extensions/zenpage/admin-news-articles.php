@@ -328,9 +328,9 @@ datepickerJS();
 									<td class="page-list_icon">
 										<?php printPublishIconLink($article, 'news'); ?>
 									</td>
+									<?php if(extensionEnabled('comment_form')) { ?>
 									<td class="page-list_icon">
 										<?php
-
 										if ($article->getCommentsAllowed()) {
 
 											?>
@@ -352,6 +352,7 @@ datepickerJS();
 										?>
 									</td>
 									<?php
+									}
 								} else {
 									?>
 									<td class="page-list_icon">
