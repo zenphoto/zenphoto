@@ -50,7 +50,7 @@ $plugin_category = gettext('Media');
 
 $option_interface = 'favoritesOptions';
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesHandler/favoritesClass.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/favoritesHandler/class-favorites.php');
 
 class favoritesOptions {
 

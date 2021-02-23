@@ -1195,7 +1195,7 @@ zp-core/zp-extensions/email-newuser.php
 zp-core/zp-extensions/exampleMacros.php
 zp-core/zp-extensions/favoritesHandler
 zp-core/zp-extensions/favoritesHandler.php
-zp-core/zp-extensions/favoritesHandler/favoritesClass.php
+zp-core/zp-extensions/favoritesHandler/class-favorites.php
 zp-core/zp-extensions/flag_thumbnail
 zp-core/zp-extensions/flag_thumbnail.php
 zp-core/zp-extensions/flag_thumbnail/GPS.png
