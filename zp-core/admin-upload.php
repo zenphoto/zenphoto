@@ -183,6 +183,12 @@ foreach ($albumlist as $key => $value) {
 						} else {
 							$('#fileUploadbuttons').hide();
 						}
+						
+						if(good) {
+							$('#upload_action').show();
+						} else {
+							$('#upload_action').hide();
+						}
 					}
 
 					function publishCheck() {
@@ -266,31 +272,26 @@ foreach ($albumlist as $key => $value) {
 						}
 						?>
 						<div id="newalbumbox" style="margin-top: 5px;<?php echo $display; ?>">
-							<div>
-								<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect, false, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>')" />
-								<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
-							</div>
-							<div id="publishtext"><?php echo gettext("and"); ?>
-								<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> onchange="publishCheck();" />
-								<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
-							</div>
+							<p>
+								<label><input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect, false, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>')" /> <?php echo gettext("Create a new album"); ?></label>
+							</p>
+							<p id="publishtext">
+								<label><input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> onchange="publishCheck();" /> <?php echo gettext("Publish the album."); ?></label>
+							</p>
 						</div>
 						<div id="albumtext" style="margin-top: 5px;<?php echo $display; ?>">
-							<?php echo gettext("titled:"); ?>
-							<input type="text" name="albumtitle" id="albumtitle" size="42"
-										 onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen', '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>'));" />
+							<p><label><input type="text" name="albumtitle" id="albumtitle"
+										 onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen', '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>'));" /> <?php echo gettext('Title'); ?>
+								</label></p>
 
-							<div style="position: relative; margin-top: 4px;">
-								<?php echo gettext("with the folder name:"); ?>
-								<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
-								<input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
+								<p id="foldererror" class="errorbox" style="display: none;"></p>
+								<p><label><input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
 											 onkeyup="buttonstate(validateFolder(this, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>'));" />
-								<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
+									<?php echo gettext('Folder name'); ?></label></p>
+								<p><label for="autogen"><input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
 											 onclick="buttonstate(toggleAutogen('folderdisplay', 'albumtitle', this));" />
-								<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
-								<br />
-								<br />
-							</div>
+									<?php echo gettext('Auto-generate'); ?></label></p>
+			
 						</div>
 						<hr />
 						<?php upload_form($uploadlimit, $passedalbum); ?>
