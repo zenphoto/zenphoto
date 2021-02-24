@@ -2956,9 +2956,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function copyThemeDirectory($source, $target, $newname) {
 		global $_zp_current_admin_obj;
 		$message = true;
+		$source = str_replace(array('../', './'), '', $source);
+		$target = str_replace(array('../', './'), '', $target);
 		$source = SERVERPATH . '/themes/' . internalToFilesystem($source);
 		$target = SERVERPATH . '/themes/' . internalToFilesystem($target);
-
+	
 		// If the target theme already exists, nothing to do.
 		if (is_dir($target)) {
 			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Directory “%s” already exists!'), basename($target));
@@ -3079,6 +3081,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 		return $message;
 	}
 
+	/**
+	 * Deletes a theme
+	 * 
+	 * @param string $source  Full serverpath of the theme
+	 * @return boolean
+	 */
 	function deleteThemeDirectory($source) {
 		if (is_dir($source)) {
 			$result = true;
