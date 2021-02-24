@@ -1714,7 +1714,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									echo ' checked="checked"';
 								}
 								?> />
-											 <?php echo gettext("Allow Comments"); ?>
+											 <?php echo gettext("Comments enabled"); ?>
 							</label>
 						<?php
 						}
