@@ -175,11 +175,6 @@ function reconfigurePage($diff, $needs, $mandatory) {
 			}
 			$runsetup_link = WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;xsrfToken=' . getXSRFToken('setup');
 			$ignore_link = WEBPATH . '/' . ZENFOLDER .'/admin.php?ignore_setup=1&amp;XSRFToken=' . getXSRFToken('ignore_setup');
-			if(MOD_REWRITE) {
-				//$ignore_link = '?ignore_setup=1&amp;XSRFToken=' . getXSRFToken('ignore_setup');
-			} else {
-				//$ignore_link ='&amp;ignore_setup=1&amp;XSRFToken=' . getXSRFToken('ignore_setup');
-			} 
 			?>
 			<p class="reconfig_links">
 				<a class="reconfig_link reconfig_link-runsetup" href="<?php echo $runsetup_link; ?>"><?php echo gettext('Run setup'); ?></a> 
