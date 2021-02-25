@@ -3137,7 +3137,7 @@ function getCookieInfoData($section = null) {
 					)
 			)
 	);
-	if (is_null($sectio) && array_key_exists($section, $info)) {
+	if (is_null($section) && array_key_exists($section, $info)) {
 		return $info[$section];
 	} else {
 		return $info;
