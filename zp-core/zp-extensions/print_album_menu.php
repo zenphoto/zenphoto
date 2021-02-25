@@ -285,9 +285,9 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 				$display = $title;
 			}
 			if ($firstimagelink && $albumobj->getNumImages() != 0) {
-				$link = '<li><a class="' . $current . '" href="' . html_encode($albumobj->getImage(0)->getLink()) . '" title="' . html_encode($title) . '">' . html_encode($display) . '</a>' . $count;
+				$link = '<li class="' . $current . '"><a href="' . html_encode($albumobj->getImage(0)->getLink()) . '" title="' . html_encode($title) . '">' . html_encode($display) . '</a>' . $count;
 			} else {
-				$link = '<li><a class="' . $current . '" href="' . html_encode($albumobj->getLink(1)) . '" title="' . html_encode($title) . '">' . html_encode($display) . '</a>' . $count;
+				$link = '<li class="' . $current . '"><a href="' . html_encode($albumobj->getLink(1)) . '" title="' . html_encode($title) . '">' . html_encode($display) . '</a>' . $count;
 			}
 			echo $link;
 		}
