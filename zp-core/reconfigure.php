@@ -128,12 +128,6 @@ function reconfigureNote() {
  * HTML for the configuration change notification
  */
 function reconfigurePage($diff, $needs, $mandatory) {
-	if (isset($_GET['ignore_setup']) && zp_loggedin(ADMIN_RIGHTS)) {
-		XSRFdefender('ignore_setup');
-		purgeOption('zenphoto_install');
-		setOption('zenphoto_install', serialize(installSignature()));
-		zp_apply_filter('log_setup', true, 'ignore_setup', gettext('Setup re-run ignored by admin request.'));
-	} else {
 	?>
 	<div class="reconfigbox">
 		<h1><?php echo gettext('Zenphoto has detected a change in your installation.'); ?></h1>
@@ -146,7 +140,6 @@ function reconfigurePage($diff, $needs, $mandatory) {
 							echo '<li>' . sprintf(gettext('Your server software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						case 'DATABASE':
-							$dbs = db_software();
 							echo '<li>' . sprintf(gettext('Your database software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
 							break;
 						case 'ZENPHOTO':
@@ -181,11 +174,12 @@ function reconfigurePage($diff, $needs, $mandatory) {
 				$where = 'gallery';
 			}
 			$runsetup_link = WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;xsrfToken=' . getXSRFToken('setup');
+			$ignore_link = WEBPATH . '/' . ZENFOLDER .'/admin.php?ignore_setup=1&amp;XSRFToken=' . getXSRFToken('ignore_setup');
 			if(MOD_REWRITE) {
-				$ignore_link ='?ignore_setup&amp;XSRFToken=' . getXSRFToken('ignore_setup');
+				//$ignore_link = '?ignore_setup=1&amp;XSRFToken=' . getXSRFToken('ignore_setup');
 			} else {
-				$ignore_link ='&amp;ignore_setup&amp;XSRFToken=' . getXSRFToken('ignore_setup');
-			}
+				//$ignore_link ='&amp;ignore_setup=1&amp;XSRFToken=' . getXSRFToken('ignore_setup');
+			} 
 			?>
 			<p class="reconfig_links">
 				<a class="reconfig_link reconfig_link-runsetup" href="<?php echo $runsetup_link; ?>"><?php echo gettext('Run setup'); ?></a> 
@@ -195,8 +189,10 @@ function reconfigurePage($diff, $needs, $mandatory) {
 				$( document ).ready(function() {
 					$('.reconfig_link-ignore').click(function(event) {
 						event.preventDefault();
-						$.ajax(this.href, {
+						var link = $('.reconfig_link-ignore').attr('href');
+						$.ajax(link, {
 							success: function(data) {
+								alert('setup ignored: ' + link);
 								$('.reconfigbox').remove();
 							}
 						});
@@ -212,6 +208,21 @@ function reconfigurePage($diff, $needs, $mandatory) {
 		?>
 		</div>
 	<?php		
+}
+
+/**
+ * If setup request a run because of a signature change this refreshes the signature 
+ * on full admin user request so it is ignored until the next signature change.
+ * 
+ * @since ZenphotoCMS 1.5.8
+ */
+function ignoreSetupRunRequest() {
+	if (isset($_GET['ignore_setup']) && zp_loggedin(ADMIN_RIGHTS)) {
+		XSRFdefender('ignore_setup');
+		purgeOption('zenphoto_install');
+		setOption('zenphoto_install', serialize(installSignature()));
+		zp_apply_filter('log_setup', true, 'ignore_setup', gettext('Setup re-run ignored by admin request.'));
+		exitZP();
 	}
 }
 

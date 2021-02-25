@@ -11,6 +11,8 @@ define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
 
+ignoreSetupRunRequest();
+
 if (isset($_GET['_zp_login_error'])) {
 	$_zp_login_error = sanitize($_GET['_zp_login_error']);
 }
