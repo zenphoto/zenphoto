@@ -12,7 +12,7 @@
  * <ul>
  * <li>For albums: album<var>customname</var>.php</li>
  * <li>For images : image<var>customname</var>.php</li>
- * <ul/>
+ * </ul>
  *
  * "Select album layout" checkbox:
  * If you want to avoid to manually select a specific layout for all images in an album you can check this option
