@@ -225,7 +225,7 @@ function getRandomImages($daily = false) {
 /**
  * Returns  a randomly selected image from the album or its subalbums. (May be NULL if none exists)
  *
- * @deprecated Zenphoto 2.0 Use the image_album_statiscic plugin function getImageStatisic()with appropiate parameters – For daily use the same plugin's function getPictureOfTheDay()
+ * @deprecated Zenphoto 2.0 Use the image_album_statistic plugin function getImageStatisic()with appropiate parameters – For daily use the same plugin's function getPictureOfTheDay()
  * 
  * @param mixed $rootAlbum optional album object/folder from which to get the image.
  * @param bool $daily set to true to change picture only once a day.
@@ -234,7 +234,7 @@ function getRandomImages($daily = false) {
  */
 function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 	global $_zp_current_album, $_zp_gallery;
-	$deprecatednote = gettext("Use the image_album_statiscic plugin function getImageStatisic()with appropiate parameters");
+	$deprecatednote = gettext("Use the image_album_statistic plugin function getImageStatisic() with appropiate parameters");
 	if($daily) {
 		$deprecatednote .= ' ' . gettext("For picture of the day functionality use the image_album_statiscic plugin function getPictureOfTheDay()-");
 	}

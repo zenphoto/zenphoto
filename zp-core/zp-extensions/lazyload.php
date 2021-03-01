@@ -13,7 +13,7 @@
  */
 
 $plugin_is_filter = 800 | THEME_PLUGIN | ADMIN_PLUGIN;
-$plugin_description = gettext('Provides lazyloading for theme and backend using standard template functions and various text content using <a href="https://github.com/aFarkas/lazysizes" rel="nooopener" target="_blank">lazysizes</a>');
+$plugin_description = gettext('Provides lazyloading for theme and backend using standard template functions using <a href="https://github.com/aFarkas/lazysizes" rel="nooopener" target="_blank">lazysizes</a>');
 $plugin_author = 'Malte Müller (acrylian)';
 $plugin_disable = false;
 $plugin_category = gettext('Media');
