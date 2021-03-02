@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.5.8\n"
+"Project-Id-Version: Zenphoto 1.6b\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-01 14:02+0100\n"
+"POT-Creation-Date: 2021-03-02 10:21+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -10665,11 +10665,11 @@ msgstr "PHP <code>dom</code> ondersteuning [niet aanwezig]"
 
 #: zp-core/setup/index.php:696
 msgid ""
-"<code>dom</code> support is not criticaly but strongely recommended for some "
+"<code>dom</code> support is not criticaly but recommended for some "
 "functionality processing and modifying HTML contents."
 msgstr ""
-"<code>dom</code> ondersteuning is niet kritisch maar wordt sterk aangeraden "
-"voor het verwerken en aanpassen van HTML inhoud."
+"<code>DOM</code> ondersteuning is niet kritisch maar wordt sterk aangeraden "
+"voor het verwerken en aanpassen van HTML."
 
 #: zp-core/setup/index.php:697
 msgid "PHP <code>simplexml</code> support"
@@ -10741,11 +10741,9 @@ msgstr ""
 
 #: zp-core/setup/index.php:715
 msgid ""
-"You need to install the <code>mbstring</code> and <code>iconv</code> "
-"packages or correct the issue with <code>iconv()</code>"
+"You need to install the <code>mbstring</code> and <code>iconv</code> packages"
 msgstr ""
-"Je moet de <code>mbstring</code> en <code>iconv</code> extensies installeren "
-"of het probleem corrigeren met <code>iconv()</code>"
+"Je moet de <code>mbstring</code> en <code>iconv</code> extensies installeren"
 
 #: zp-core/setup/index.php:716 zp-core/setup/index.php:719
 msgid ""
@@ -15945,11 +15943,11 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:237
 msgid ""
-"Use the image_album_statiscic plugin function getImageStatisic()with "
+"Use the image_album_statistic plugin function getImageStatisic() with "
 "appropiate parameters"
 msgstr ""
-"Gebruik in plaats hiervan de <code>getImageStatisic()</code> functie van de  "
-"<code>image_album_statiscic</code> plugin met de juiste parameters."
+"Gebruik in plaats hiervan de <code>getImageStatistic()</code> functie van de "
+"<code>image_album_statistic</code> plugin met de juiste parameters."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:239
 msgid ""
@@ -17577,12 +17575,12 @@ msgstr ""
 #: zp-core/zp-extensions/lazyload.php:16
 msgid ""
 "Provides lazyloading for theme and backend using standard template functions "
-"and various text content using <a href=\"https://github.com/aFarkas/lazysizes"
-"\" rel=\"nooopener\" target=\"_blank\">lazysizes</a>"
+"using <a href=\"https://github.com/aFarkas/lazysizes\" rel=\"nooopener\" "
+"target=\"_blank\">lazysizes</a>"
 msgstr ""
-"Maakt lazyloading mogelijk voor thema en de backend met behulp van <a "
+"Maakt lazyloading mogelijk voor thema’s en de backend met behulp van <a "
 "href=“https://github.com/aFarkas/lazysizes” rel=“nooopener” "
-"target=“_blank”>lazysizes</a>."
+"target=“_blank”>lazysizes</a>"
 
 #: zp-core/zp-extensions/macroList.php:67
 msgid "View available <code>content macros</code>."
@@ -23935,6 +23933,20 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid ""
+#~ "You need to install the <code>mbstring</code> and <code>iconv</code> "
+#~ "packages or correct the issue with <code>iconv()</code>"
+#~ msgstr ""
+#~ "Je moet de <code>mbstring</code> en <code>iconv</code> extensies "
+#~ "installeren of het probleem corrigeren met <code>iconv()</code>"
+
+#~ msgid ""
+#~ "Use the image_album_statiscic plugin function getImageStatisic()with "
+#~ "appropiate parameters"
+#~ msgstr ""
+#~ "Gebruik in plaats hiervan de <code>getImageStatisic()</code> functie van "
+#~ "de  <code>image_album_statiscic</code> plugin met de juiste parameters."
 
 #~ msgid "Allow Comments"
 #~ msgstr "Reacties toestaan"
