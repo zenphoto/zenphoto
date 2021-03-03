@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: zenphoto 1.5.8b\n"
+"Project-Id-Version: zenphoto 1.5.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 13:10-0300\n"
-"PO-Revision-Date: 2021-01-24 16:21-0300\n"
+"POT-Creation-Date: 2021-03-03 13:12-0300\n"
+"PO-Revision-Date: 2021-03-03 13:25-0300\n"
 "Last-Translator: Guillermo R. Lapolla <guirala@gmail.com>\n"
-"Language-Team: guirala, guirala@gmail.com> (vL08b)\n"
+"Language-Team: guirala, guirala@gmail.com> (vL08)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +46,7 @@ msgstr "Ver album:"
 #: themes/zpmobile/favorites.php:57 themes/zpmobile/gallery.php:27
 #: themes/zpmobile/gallery.php:40 themes/zpmobile/image.php:32
 #: themes/zpmobile/news.php:57 themes/zpmobile/search.php:185
-#: zp-core/admin-functions.php:4406
+#: zp-core/admin-functions.php:4420
 #: zp-core/zp-extensions/comment_form/functions.php:34
 #: zp-core/zp-extensions/slideshow2.php:302
 #: zp-core/zp-extensions/slideshow2.php:630
@@ -64,7 +64,7 @@ msgstr "previo"
 #: themes/zpmobile/favorites.php:57 themes/zpmobile/gallery.php:27
 #: themes/zpmobile/gallery.php:40 themes/zpmobile/image.php:35
 #: themes/zpmobile/news.php:61 themes/zpmobile/search.php:185
-#: zp-core/admin-functions.php:4434
+#: zp-core/admin-functions.php:4448
 #: zp-core/zp-extensions/comment_form/functions.php:35
 #: zp-core/zp-extensions/jplayer.php:491
 #: zp-core/zp-extensions/slideshow2.php:306
@@ -97,7 +97,7 @@ msgstr "RSS de la Galería"
 #: themes/garland/archive.php:41 themes/garland/functions.php:125
 #: themes/zenpage/archive.php:33
 msgid "Archive View"
-msgstr "Ver Archivo"
+msgstr "Vista de Archivo"
 
 #: themes/basic/archive.php:36 themes/zenpage/archive.php:48
 #: themes/zpmobile/archive.php:38
@@ -154,7 +154,7 @@ msgstr "Imagen siguiente"
 #: themes/zenpage/password.php:43 themes/zenpage/sidebar.php:129
 #: themes/zenpage/sidebar.php:131 themes/zpmobile/password.php:34
 msgid "Register for this site"
-msgstr "Regístrese en este sitio"
+msgstr "Regístrarse en este sitio"
 
 #: themes/basic/password.php:29 themes/zenpage/password.php:32
 #: themes/zpmobile/password.php:26
@@ -179,7 +179,7 @@ msgstr "Registro de Usuario"
 msgid "Total matches for <em>%1$s</em>: %2$u"
 msgstr "Coincidencias totales para <em>%1$s</em>: %2$u"
 
-#: themes/basic/search.php:60 zp-core/admin-edit.php:1347
+#: themes/basic/search.php:60 zp-core/admin-edit.php:1351
 #: zp-core/admin-functions.php:1360
 msgid "Date:"
 msgstr "Fecha:"
@@ -315,9 +315,9 @@ msgstr "Personalidad"
 msgid "album"
 msgstr "álbum"
 
-#: themes/garland/functions.php:152 zp-core/admin-edit.php:1393
+#: themes/garland/functions.php:152 zp-core/admin-edit.php:1397
 #: zp-core/admin-globals.php:108 zp-core/admin-options.php:2921
-#: zp-core/zp-extensions/image_album_statistics.php:264
+#: zp-core/zp-extensions/image_album_statistics.php:291
 msgid "image"
 msgstr "imagen"
 
@@ -333,8 +333,8 @@ msgstr "noticias"
 
 #: themes/garland/functions.php:156
 #: zp-core/zp-extensions/zenpage/admin-edit.php:442
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:279
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:282
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:281
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:284
 msgid "sticky"
 msgstr "nota adhesiva"
 
@@ -465,9 +465,9 @@ msgstr "Indice del álbum"
 #: themes/zenpage/themeoptions.php:65 themes/zpmobile/album.php:27
 #: themes/zpmobile/favorites.php:28 themes/zpmobile/functions.php:40
 #: themes/zpmobile/functions.php:71 themes/zpmobile/functions.php:167
-#: themes/zpmobile/image.php:28 zp-core/admin-edit.php:1623
+#: themes/zpmobile/image.php:28 zp-core/admin-edit.php:1627
 #: zp-core/admin-options.php:2616 zp-core/admin-options.php:2617
-#: zp-core/admin-themes.php:100 zp-core/admin-themes.php:101
+#: zp-core/admin-themes.php:103 zp-core/admin-themes.php:104
 #: zp-core/lib-auth.php:544 zp-core/lib-auth.php:545 zp-core/lib-auth.php:546
 #: zp-core/lib-auth.php:547 zp-core/lib-auth.php:548 zp-core/lib-auth.php:552
 #: zp-core/lib-auth.php:556 zp-core/lib-auth.php:564 zp-core/lib-auth.php:565
@@ -484,8 +484,8 @@ msgstr "Indice del álbum"
 msgid "Gallery"
 msgstr "Galería"
 
-#: themes/garland/sidebar.php:63 zp-core/admin-functions.php:2019
-#: zp-core/admin-functions.php:3286 zp-core/lib-auth.php:549
+#: themes/garland/sidebar.php:63 zp-core/admin-functions.php:2023
+#: zp-core/admin-functions.php:3300 zp-core/lib-auth.php:549
 #: zp-core/lib-auth.php:555 zp-core/lib-auth.php:566 zp-core/lib-auth.php:569
 #: zp-core/lib-auth.php:570 zp-core/lib-auth.php:573 zp-core/lib-auth.php:577
 #: zp-core/lib-auth.php:580 zp-core/lib-auth.php:592 zp-core/lib-auth.php:595
@@ -505,7 +505,7 @@ msgstr "Albums"
 #: themes/zenpage/sidebar.php:47 themes/zenpage/themeoptions.php:84
 #: themes/zpmobile/functions.php:75 themes/zpmobile/functions.php:173
 #: themes/zpmobile/pages.php:27 themes/zpmobile/pages.php:33
-#: zp-core/admin-functions.php:3177 zp-core/admin-functions.php:3313
+#: zp-core/admin-functions.php:3191 zp-core/admin-functions.php:3327
 #: zp-core/class-userdataexport.php:473 zp-core/lib-auth.php:550
 #: zp-core/lib-auth.php:553 zp-core/lib-auth.php:568 zp-core/lib-auth.php:575
 #: zp-core/lib-auth.php:579 zp-core/lib-auth.php:594 zp-core/lib-auth.php:601
@@ -519,7 +519,7 @@ msgstr "Albums"
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:482
 #: zp-core/zp-extensions/zenpage.php:210 zp-core/zp-extensions/zenpage.php:403
 #: zp-core/zp-extensions/zenpage/admin-pages.php:112
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1336
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1338
 msgid "Pages"
 msgstr "Páginas"
 
@@ -603,7 +603,7 @@ msgid "Custom Homepage"
 msgstr "Página de Inicio personalizada"
 
 #: themes/garland/themeoptions.php:145 themes/zenpage/themeoptions.php:122
-#: zp-core/admin-edit.php:1256 zp-core/admin-options.php:2201
+#: zp-core/admin-edit.php:1260 zp-core/admin-options.php:2201
 #: zp-core/admin-options.php:2214 zp-core/admin-options.php:2242
 #: zp-core/admin-options.php:2986 zp-core/zp-extensions/slideshow2.php:119
 #: zp-core/zp-extensions/slideshow2.php:167
@@ -693,7 +693,7 @@ msgstr "*menú estandar"
 #: themes/zpmobile/search.php:46 themes/zpmobile/search.php:51
 #: themes/zpmobile/search.php:53 zp-core/template-functions.php:451
 #: zp-core/template-functions.php:1406 zp-core/template-functions.php:1437
-#: zp-core/template-functions.php:3750
+#: zp-core/template-functions.php:3780
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-core/zp-extensions/html_meta_tags.php:314
 #: zp-core/zp-extensions/scriptless-socialsharing.php:185
@@ -751,7 +751,7 @@ msgstr "Album RSS"
 
 #: themes/zenpage/sidebar.php:93 themes/zpmobile/functions.php:36
 #: themes/zpmobile/functions.php:73 themes/zpmobile/functions.php:161
-#: zp-core/admin-functions.php:3177 zp-core/admin-functions.php:3299
+#: zp-core/admin-functions.php:3191 zp-core/admin-functions.php:3313
 #: zp-core/lib-auth.php:551 zp-core/lib-auth.php:554 zp-core/lib-auth.php:567
 #: zp-core/lib-auth.php:574 zp-core/lib-auth.php:578 zp-core/lib-auth.php:593
 #: zp-core/lib-auth.php:600 zp-core/lib-auth.php:604
@@ -880,7 +880,7 @@ msgid "Archive view"
 msgstr "Ver Archivo"
 
 #: themes/zpmobile/functions.php:44 zp-core/admin-functions.php:465
-#: zp-core/admin-functions.php:4744 zp-core/lib-auth.php:534
+#: zp-core/admin-functions.php:4755 zp-core/lib-auth.php:534
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:89
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:93
@@ -905,7 +905,7 @@ msgid "zpMobile theme by"
 msgstr "tema zpMobile por"
 
 #: themes/zpmobile/functions.php:109
-#: zp-core/zp-extensions/favoritesHandler/favoritesClass.php:288
+#: zp-core/zp-extensions/favoritesHandler/class-favorites.php:288
 msgid "Favorites"
 msgstr "Favoritos"
 
@@ -932,8 +932,8 @@ msgstr[1] "%d imágenes"
 msgid "Direct link"
 msgstr "Enlaces directo"
 
-#: themes/zpmobile/image.php:59 zp-core/admin-edit.php:1401
-#: zp-core/admin-edit.php:1417
+#: themes/zpmobile/image.php:59 zp-core/admin-edit.php:1405
+#: zp-core/admin-edit.php:1421
 msgid "Tags:"
 msgstr "Etiquetas:"
 
@@ -998,9 +998,9 @@ msgid "*Bulk actions*"
 msgstr "*Acciones Masivas*"
 
 #: zp-core/admin-albumsort.php:96 zp-core/admin-edit.php:569
-#: zp-core/admin-edit.php:582 zp-core/admin-edit.php:586
-#: zp-core/admin-functions.php:2044 zp-core/admin-logs.php:149
-#: zp-core/admin-themes.php:328 zp-core/setup/index.php:1107
+#: zp-core/admin-edit.php:584 zp-core/admin-edit.php:588
+#: zp-core/admin-functions.php:2048 zp-core/admin-logs.php:149
+#: zp-core/admin-themes.php:331 zp-core/setup/index.php:1107
 #: zp-core/zp-extensions/cacheManager.php:278
 #: zp-core/zp-extensions/comment_form/admin-comments.php:130
 #: zp-core/zp-extensions/comment_form/admin-comments.php:131
@@ -1013,8 +1013,8 @@ msgstr "*Acciones Masivas*"
 #: zp-core/zp-extensions/zenpage/admin-categories.php:152
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:247
 #: zp-core/zp-extensions/zenpage/admin-pages.php:150
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1050
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1435
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1052
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1437
 msgid "Delete"
 msgstr "Borrar"
 
@@ -1046,59 +1046,59 @@ msgid "Clear tags"
 msgstr "Borrar etiquetas"
 
 #: zp-core/admin-albumsort.php:101 zp-core/admin-edit.php:574
-#: zp-core/admin-functions.php:2157
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:252
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:339
-#: zp-core/zp-extensions/zenpage/admin-pages.php:155
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:256
-msgid "Disable comments"
-msgstr "Deshabilitar comentarios"
-
-#: zp-core/admin-albumsort.php:102 zp-core/admin-edit.php:575
-#: zp-core/admin-functions.php:2171
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:253
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:347
-#: zp-core/zp-extensions/zenpage/admin-pages.php:156
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:262
-msgid "Enable comments"
-msgstr "Habilitar comentarios"
-
-#: zp-core/admin-albumsort.php:103 zp-core/admin-edit.php:576
 msgid "Change owner"
 msgstr "Cambiar propietario"
 
-#: zp-core/admin-albumsort.php:106 zp-core/admin-edit.php:579
+#: zp-core/admin-albumsort.php:104 zp-core/admin-edit.php:577
+#: zp-core/admin-functions.php:2162
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:256
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:341
+#: zp-core/zp-extensions/zenpage/admin-pages.php:157
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:257
+msgid "Disable comments"
+msgstr "Deshabilitar comentarios"
+
+#: zp-core/admin-albumsort.php:105 zp-core/admin-edit.php:578
+#: zp-core/admin-functions.php:2176
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:257
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:349
+#: zp-core/zp-extensions/zenpage/admin-pages.php:158
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:263
+msgid "Enable comments"
+msgstr "Habilitar comentarios"
+
+#: zp-core/admin-albumsort.php:108 zp-core/admin-edit.php:581
 #: zp-core/zp-extensions/zenpage/admin-categories.php:157
 #: zp-core/zp-extensions/zenpage/admin-categories.php:197
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:258
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:380
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:381
-#: zp-core/zp-extensions/zenpage/admin-pages.php:159
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:289
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:290
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1040
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:260
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:383
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:384
+#: zp-core/zp-extensions/zenpage/admin-pages.php:161
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:291
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:292
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1042
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1431
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1044
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1433
 msgid "Reset hitcounter"
 msgstr "Reiniciar contador de visitas"
 
-#: zp-core/admin-albumsort.php:112
+#: zp-core/admin-albumsort.php:114
 msgid "No album provided to sort."
 msgstr "No se suministró album para ordenar."
 
-#: zp-core/admin-albumsort.php:130 zp-core/admin-edit.php:705
+#: zp-core/admin-albumsort.php:132 zp-core/admin-edit.php:707
 #, php-format
 msgid "Edit Album: <em>%1$s%2$s</em>"
 msgstr "Editar Album: <em>%1$s%2$s</em>"
 
-#: zp-core/admin-albumsort.php:168 zp-core/admin-albumsort.php:218
-#: zp-core/admin-edit.php:778 zp-core/admin-edit.php:843
-#: zp-core/admin-edit.php:967 zp-core/admin-edit.php:1543
-#: zp-core/admin-edit.php:1635 zp-core/admin-edit.php:1665
-#: zp-core/admin-functions.php:1179 zp-core/admin-functions.php:1945
+#: zp-core/admin-albumsort.php:170 zp-core/admin-albumsort.php:220
+#: zp-core/admin-edit.php:780 zp-core/admin-edit.php:845
+#: zp-core/admin-edit.php:969 zp-core/admin-edit.php:1547
+#: zp-core/admin-edit.php:1639 zp-core/admin-edit.php:1669
+#: zp-core/admin-functions.php:1179 zp-core/admin-functions.php:1947
 #: zp-core/admin-refresh-metadata.php:152 zp-core/admin-themes-editor.php:123
 #: zp-core/admin-thumbcrop.php:270 zp-core/admin-thumbcrop.php:272
-#: zp-core/zp-extensions/cacheManager.php:981
+#: zp-core/zp-extensions/cacheManager.php:986
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:216
 #: zp-core/zp-extensions/crop_image.php:350
 #: zp-core/zp-extensions/crop_image.php:351
@@ -1106,16 +1106,16 @@ msgstr "Editar Album: <em>%1$s%2$s</em>"
 #: zp-core/zp-extensions/crop_image.php:357
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:230
 #: zp-core/zp-extensions/zenpage/admin-edit.php:335
-#: zp-core/zp-extensions/zenpage/admin-edit.php:801
+#: zp-core/zp-extensions/zenpage/admin-edit.php:802
 msgid "Back"
 msgstr "Volver"
 
-#: zp-core/admin-albumsort.php:171 zp-core/admin-albumsort.php:222
-#: zp-core/admin-edit.php:785 zp-core/admin-edit.php:847
-#: zp-core/admin-edit.php:971 zp-core/admin-edit.php:1547
-#: zp-core/admin-edit.php:1638 zp-core/admin-edit.php:1668
-#: zp-core/admin-edit.php:1727 zp-core/admin-edit.php:1772
-#: zp-core/admin-functions.php:1183 zp-core/admin-functions.php:1949
+#: zp-core/admin-albumsort.php:173 zp-core/admin-albumsort.php:224
+#: zp-core/admin-edit.php:787 zp-core/admin-edit.php:849
+#: zp-core/admin-edit.php:973 zp-core/admin-edit.php:1551
+#: zp-core/admin-edit.php:1642 zp-core/admin-edit.php:1672
+#: zp-core/admin-edit.php:1731 zp-core/admin-edit.php:1776
+#: zp-core/admin-functions.php:1183 zp-core/admin-functions.php:1951
 #: zp-core/admin-options.php:624 zp-core/admin-options.php:1106
 #: zp-core/admin-options.php:1130 zp-core/admin-options.php:1474
 #: zp-core/admin-options.php:1497 zp-core/admin-options.php:1937
@@ -1125,7 +1125,7 @@ msgstr "Volver"
 #: zp-core/admin-options.php:3276 zp-core/admin-options.php:3504
 #: zp-core/admin-plugins.php:139 zp-core/admin-plugins.php:421
 #: zp-core/admin-thumbcrop.php:268 zp-core/admin-users.php:474
-#: zp-core/admin-users.php:847 zp-core/zp-extensions/cacheManager.php:808
+#: zp-core/admin-users.php:847 zp-core/zp-extensions/cacheManager.php:813
 #: zp-core/zp-extensions/comment_form/admin-comments.php:136
 #: zp-core/zp-extensions/comment_form/admin-comments.php:327
 #: zp-core/zp-extensions/comment_form/admin-comments.php:470
@@ -1146,24 +1146,24 @@ msgstr "Volver"
 #: zp-core/zp-extensions/zenpage/admin-categories.php:182
 #: zp-core/zp-extensions/zenpage/admin-edit.php:185
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:226
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:419
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:422
 #: zp-core/zp-extensions/zenpage/admin-pages.php:128
-#: zp-core/zp-extensions/zenpage/admin-pages.php:184
 #: zp-core/zp-extensions/zenpage/admin-pages.php:186
+#: zp-core/zp-extensions/zenpage/admin-pages.php:188
 msgid "Apply"
 msgstr "Aplicar"
 
-#: zp-core/admin-albumsort.php:175 zp-core/admin-albumsort.php:226
-#: zp-core/admin-functions.php:1208 zp-core/admin-functions.php:1974
+#: zp-core/admin-albumsort.php:177 zp-core/admin-albumsort.php:228
+#: zp-core/admin-functions.php:1208 zp-core/admin-functions.php:1976
 msgid "View Album"
 msgstr "Ver Album"
 
-#: zp-core/admin-albumsort.php:179
+#: zp-core/admin-albumsort.php:181
 msgid "Set the image order by dragging them to the positions you desire."
 msgstr ""
 "Establezca el orden de la imagen arrastrándolos a las posiciones que desee."
 
-#: zp-core/admin-albumsort.php:196 zp-core/admin-functions.php:3242
+#: zp-core/admin-albumsort.php:198 zp-core/admin-functions.php:3256
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:31
 #: zp-core/zp-extensions/zenpage/admin-edit.php:124
 msgid "edit"
@@ -1300,43 +1300,43 @@ msgstr "Mostrar miniatura"
 msgid "Show album thumb"
 msgstr "Mostrar miniatura de album"
 
-#: zp-core/admin-edit.php:583
+#: zp-core/admin-edit.php:585
 msgid "Add tags to images"
 msgstr "Agregar etiquetas a imágenes"
 
-#: zp-core/admin-edit.php:584
+#: zp-core/admin-edit.php:586
 msgid "Clear tags of images"
 msgstr "Borrar etiquetas de imágenes"
 
-#: zp-core/admin-edit.php:587 zp-core/admin-edit.php:1182
-#: zp-core/admin-functions.php:1821
+#: zp-core/admin-edit.php:589 zp-core/admin-edit.php:1186
+#: zp-core/admin-functions.php:1823
 msgid "Move"
 msgstr "Mover"
 
-#: zp-core/admin-edit.php:588 zp-core/admin-edit.php:1187
-#: zp-core/admin-functions.php:1827
+#: zp-core/admin-edit.php:590 zp-core/admin-edit.php:1191
+#: zp-core/admin-functions.php:1829
 #: zp-core/zp-extensions/zenpage/admin-edit.php:545
 msgid "Copy"
 msgstr "Copiar"
 
-#: zp-core/admin-edit.php:694
+#: zp-core/admin-edit.php:696
 msgid "Image metadata refreshed."
 msgstr "Metadatos de imagen actualizados."
 
-#: zp-core/admin-edit.php:744 zp-core/admin-edit.php:1687
+#: zp-core/admin-edit.php:746 zp-core/admin-edit.php:1691
 msgid " descending"
 msgstr " descendente"
 
-#: zp-core/admin-edit.php:756
+#: zp-core/admin-edit.php:758
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>. "
 msgstr "Ordenación actual: <em>%1$s %2$s </em>. "
 
-#: zp-core/admin-edit.php:760 zp-core/admin-edit.php:1703
+#: zp-core/admin-edit.php:762 zp-core/admin-edit.php:1707
 msgid "Drag the albums into the order you wish them displayed."
 msgstr "Arrastre los álbumes en el orden que desee que se muestren."
 
-#: zp-core/admin-edit.php:763 zp-core/admin-edit.php:1706
+#: zp-core/admin-edit.php:765 zp-core/admin-edit.php:1710
 msgid ""
 "<strong>Note:</strong> Dragging an album under a different parent will move "
 "the album. You cannot move albums under a <em>dynamic</em> album."
@@ -1344,7 +1344,7 @@ msgstr ""
 "<strong>Nota:</strong> Al arrastrar un album bajo un album raiz diferente "
 "moverá todo el album. No puede mover álbumes bajo un álbum <em>dinámico</em>."
 
-#: zp-core/admin-edit.php:769
+#: zp-core/admin-edit.php:771
 #, php-format
 msgid ""
 "Select an album to edit its description and data, or <a href=\"?"
@@ -1355,26 +1355,26 @@ msgstr ""
 "page=edit&amp;album=%s&amp;massedit\">edite en masa</a> todos los sub-albums "
 "de 1er. nivel."
 
-#: zp-core/admin-edit.php:788 zp-core/admin-edit.php:790
-#: zp-core/admin-edit.php:850 zp-core/admin-edit.php:852
+#: zp-core/admin-edit.php:790 zp-core/admin-edit.php:792
+#: zp-core/admin-edit.php:852 zp-core/admin-edit.php:854
 #: zp-core/admin-functions.php:1193 zp-core/admin-functions.php:1195
-#: zp-core/admin-functions.php:1959 zp-core/admin-functions.php:1961
+#: zp-core/admin-functions.php:1961 zp-core/admin-functions.php:1963
 msgid "New subalbum"
 msgstr "Nuevo subálbum"
 
-#: zp-core/admin-edit.php:793 zp-core/admin-edit.php:795
-#: zp-core/admin-edit.php:855 zp-core/admin-edit.php:857
-#: zp-core/admin-edit.php:1778 zp-core/admin-functions.php:1198
-#: zp-core/admin-functions.php:1200 zp-core/admin-functions.php:1964
-#: zp-core/admin-functions.php:1966
+#: zp-core/admin-edit.php:795 zp-core/admin-edit.php:797
+#: zp-core/admin-edit.php:857 zp-core/admin-edit.php:859
+#: zp-core/admin-edit.php:1782 zp-core/admin-functions.php:1198
+#: zp-core/admin-functions.php:1200 zp-core/admin-functions.php:1966
+#: zp-core/admin-functions.php:1968
 msgid "New dynamic subalbum"
 msgstr "Nuevo subálbum dinámico"
 
-#: zp-core/admin-edit.php:805 zp-core/admin-edit.php:1743
+#: zp-core/admin-edit.php:807 zp-core/admin-edit.php:1747
 msgid "Edit this album"
 msgstr "Editar este álbum"
 
-#: zp-core/admin-edit.php:814 zp-core/admin-edit.php:1748
+#: zp-core/admin-edit.php:816 zp-core/admin-edit.php:1752
 msgid ""
 "Thumbnail generation may be time consuming on slow servers or when there are "
 "a lot of images."
@@ -1382,23 +1382,23 @@ msgstr ""
 "La generación de miniaturas puede consumir mucho tiempo en servidores lentos "
 "cuando hay muchas imágenes."
 
-#: zp-core/admin-edit.php:821 zp-core/admin-edit.php:1753
-#: zp-core/admin-functions.php:3832
+#: zp-core/admin-edit.php:823 zp-core/admin-edit.php:1757
+#: zp-core/admin-functions.php:3846
 #: zp-core/zp-extensions/comment_form/admin-comments.php:364
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:217
 #: zp-core/zp-extensions/zenpage/admin-categories.php:163
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:266
-#: zp-core/zp-extensions/zenpage/admin-pages.php:165
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:268
+#: zp-core/zp-extensions/zenpage/admin-pages.php:167
 msgid "Check All"
 msgstr "Marcar Todo"
 
-#: zp-core/admin-edit.php:932
+#: zp-core/admin-edit.php:934
 msgid "Click on the image to change the thumbnail cropping."
 msgstr "Haga clic en la imagen para cambiar el recorte de la miniatura."
 
-#: zp-core/admin-edit.php:975 zp-core/admin-edit.php:1551
-#: zp-core/admin-edit.php:1641 zp-core/admin-edit.php:1671
-#: zp-core/admin-functions.php:1187 zp-core/admin-functions.php:1953
+#: zp-core/admin-edit.php:977 zp-core/admin-edit.php:1555
+#: zp-core/admin-edit.php:1645 zp-core/admin-edit.php:1675
+#: zp-core/admin-functions.php:1187 zp-core/admin-functions.php:1955
 #: zp-core/admin-logs.php:156 zp-core/admin-options.php:625
 #: zp-core/admin-options.php:1107 zp-core/admin-options.php:1131
 #: zp-core/admin-options.php:1475 zp-core/admin-options.php:1498
@@ -1423,35 +1423,35 @@ msgstr "Haga clic en la imagen para cambiar el recorte de la miniatura."
 #: zp-core/zp-extensions/user_mailing_list.php:173
 #: zp-core/zp-extensions/user_mailing_list.php:174
 #: zp-core/zp-extensions/zenpage/admin-edit.php:345
-#: zp-core/zp-extensions/zenpage/admin-edit.php:811
+#: zp-core/zp-extensions/zenpage/admin-edit.php:812
 msgid "Reset"
 msgstr "Reiniciar"
 
-#: zp-core/admin-edit.php:1033
+#: zp-core/admin-edit.php:1035
 msgid "<strong>Filename:</strong>"
 msgstr "<strong>Nombre de archivo:</strong>"
 
-#: zp-core/admin-edit.php:1039
+#: zp-core/admin-edit.php:1041
 msgid "<strong>Image id:</strong>"
 msgstr "<strong>ID de imagen:</strong>"
 
-#: zp-core/admin-edit.php:1040
+#: zp-core/admin-edit.php:1042
 msgid "<strong>Dimensions:</strong>"
 msgstr "<strong>Dimensiones:</strong>"
 
-#: zp-core/admin-edit.php:1040
+#: zp-core/admin-edit.php:1042
 msgid "px"
 msgstr "px"
 
-#: zp-core/admin-edit.php:1041
+#: zp-core/admin-edit.php:1043
 msgid "<strong>Size:</strong>"
 msgstr "<strong>Tamaño:</strong>"
 
-#: zp-core/admin-edit.php:1043
+#: zp-core/admin-edit.php:1045
 msgid "Owner:"
 msgstr "Propietario:"
 
-#: zp-core/admin-edit.php:1058 zp-core/admin-functions.php:1697
+#: zp-core/admin-edit.php:1060 zp-core/admin-functions.php:1697
 #: zp-core/lib-auth.php:557 zp-core/lib-auth.php:558 zp-core/lib-auth.php:559
 #: zp-core/lib-auth.php:563 zp-core/lib-auth.php:583 zp-core/lib-auth.php:584
 #: zp-core/lib-auth.php:588 zp-core/lib-auth.php:589 zp-core/lib-auth.php:607
@@ -1460,98 +1460,98 @@ msgstr "Propietario:"
 msgid "General"
 msgstr "General"
 
-#: zp-core/admin-edit.php:1062 zp-core/admin-functions.php:1701
+#: zp-core/admin-edit.php:1064 zp-core/admin-functions.php:1701
 msgid "Publishing scheduled"
 msgstr "Publicación programada"
 
-#: zp-core/admin-edit.php:1064 zp-core/admin-functions.php:1703
-#: zp-core/admin-functions.php:5018 zp-core/admin-functions.php:5065
-#: zp-core/admin-functions.php:5181
+#: zp-core/admin-edit.php:1066 zp-core/admin-functions.php:1703
+#: zp-core/admin-functions.php:5029 zp-core/admin-functions.php:5076
+#: zp-core/admin-functions.php:5192
 #: zp-core/zp-extensions/favoritesHandler.php:141
 #: zp-core/zp-extensions/zenpage/admin-edit.php:429
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:663
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1507
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:665
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1509
 msgid "Published"
 msgstr "Publicado"
 
-#: zp-core/admin-edit.php:1077 zp-core/admin-functions.php:1716
-msgid "Allow Comments"
-msgstr "Permitir Comentarios"
+#: zp-core/admin-edit.php:1080 zp-core/admin-functions.php:1717
+msgid "Comments enabled"
+msgstr "Comentarios habilitados"
 
-#: zp-core/admin-edit.php:1088 zp-core/zp-extensions/zenpage/admin-edit.php:655
+#: zp-core/admin-edit.php:1092 zp-core/zp-extensions/zenpage/admin-edit.php:656
 #, php-format
 msgid "Reset hitcounter (%u hit)"
 msgid_plural "Reset hitcounter (%u hits)"
 msgstr[0] "Reiniciar contador de visitas (%u visita)"
 msgstr[1] "Reiniciar contador de visitas (%u visitas)"
 
-#: zp-core/admin-edit.php:1101
+#: zp-core/admin-edit.php:1105
 #, php-format
 msgid "Reset rating (%u star)"
 msgid_plural "Reset rating (%u stars)"
 msgstr[0] "Reiniciar calificación (%u estrella)"
 msgstr[1] "Reiniciar calificación (%u estrellas)"
 
-#: zp-core/admin-edit.php:1108 zp-core/admin-functions.php:1747
-#: zp-core/zp-extensions/zenpage/admin-edit.php:678
+#: zp-core/admin-edit.php:1112 zp-core/admin-functions.php:1749
+#: zp-core/zp-extensions/zenpage/admin-edit.php:679
 msgid "Reset rating (unrated)"
 msgstr "Resetear calificación (sin calificar)"
 
-#: zp-core/admin-edit.php:1123 zp-core/admin-edit.php:1356
-#: zp-core/admin-functions.php:1369 zp-core/admin-functions.php:1762
+#: zp-core/admin-edit.php:1127 zp-core/admin-edit.php:1360
+#: zp-core/admin-functions.php:1369 zp-core/admin-functions.php:1764
 #: zp-core/zp-extensions/publishContent/publishContent.php:321
 #: zp-core/zp-extensions/zenpage/admin-edit.php:587
 #: zp-core/zp-extensions/zenpage/admin-edit.php:615
 msgid "calendar"
 msgstr "calendario"
 
-#: zp-core/admin-edit.php:1130 zp-core/admin-edit.php:1155
-#: zp-core/admin-functions.php:1769 zp-core/admin-functions.php:1794
+#: zp-core/admin-edit.php:1134 zp-core/admin-edit.php:1159
+#: zp-core/admin-functions.php:1771 zp-core/admin-functions.php:1796
 msgid "Future publishing date."
 msgstr "Fecha de publicación futura."
 
-#: zp-core/admin-edit.php:1141 zp-core/admin-edit.php:1168
-#: zp-core/admin-functions.php:1780 zp-core/admin-functions.php:1807
+#: zp-core/admin-edit.php:1145 zp-core/admin-edit.php:1172
+#: zp-core/admin-functions.php:1782 zp-core/admin-functions.php:1809
 #: zp-core/zp-extensions/zenpage/admin-edit.php:632
 msgid "Expired!"
 msgstr "Expirado!"
 
-#: zp-core/admin-edit.php:1150 zp-core/admin-functions.php:1789
+#: zp-core/admin-edit.php:1154 zp-core/admin-functions.php:1791
 msgid "Publish date"
 msgstr "Fecha de publicación"
 
-#: zp-core/admin-edit.php:1160 zp-core/admin-functions.php:1799
+#: zp-core/admin-edit.php:1164 zp-core/admin-functions.php:1801
 msgid "Expiration date"
 msgstr "Fecha de expiración"
 
-#: zp-core/admin-edit.php:1165 zp-core/admin-functions.php:1804
+#: zp-core/admin-edit.php:1169 zp-core/admin-functions.php:1806
 msgid "Expiration set"
 msgstr "Conjunto de expiración"
 
-#: zp-core/admin-edit.php:1176 zp-core/admin-functions.php:1815
+#: zp-core/admin-edit.php:1180 zp-core/admin-functions.php:1817
 msgid "Utilities"
 msgstr "Utilidades"
 
-#: zp-core/admin-edit.php:1192
+#: zp-core/admin-edit.php:1196
 msgid "Rename File"
 msgstr "Renombrar archivo"
 
-#: zp-core/admin-edit.php:1197
+#: zp-core/admin-edit.php:1201
 #: zp-core/zp-extensions/publishContent/publishContent.php:366
 msgid "Are you sure you want to select this image for deletion?"
 msgstr "¿Está seguro que quiere seleccionar esta imagen para borrar?"
 
-#: zp-core/admin-edit.php:1197 zp-core/template-functions.php:257
+#: zp-core/admin-edit.php:1201 zp-core/template-functions.php:257
 msgid "Delete image"
 msgstr "Borrar imagen"
 
-#: zp-core/admin-edit.php:1201 zp-core/admin-edit.php:1225
+#: zp-core/admin-edit.php:1205 zp-core/admin-edit.php:1229
 msgid "to"
 msgstr "a"
 
-#: zp-core/admin-edit.php:1221 zp-core/admin-edit.php:1227
-#: zp-core/admin-edit.php:1233 zp-core/admin-functions.php:1858
-#: zp-core/admin-functions.php:1891 zp-core/admin-functions.php:1899
+#: zp-core/admin-edit.php:1225 zp-core/admin-edit.php:1231
+#: zp-core/admin-edit.php:1237 zp-core/admin-functions.php:1860
+#: zp-core/admin-functions.php:1893 zp-core/admin-functions.php:1901
 #: zp-core/zp-extensions/comment_form/admin-comments.php:140
 #: zp-core/zp-extensions/comment_form/admin-comments.php:142
 #: zp-core/zp-extensions/uploader_http/upload_form.php:71
@@ -1560,149 +1560,149 @@ msgstr "a"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: zp-core/admin-edit.php:1232
+#: zp-core/admin-edit.php:1236
 msgid "Image will be deleted when changes are applied."
 msgstr "La imagen será borrada cuando los cambios sean aplicados."
 
-#: zp-core/admin-edit.php:1241
+#: zp-core/admin-edit.php:1245
 msgid "Rotation:"
 msgstr "Rotación:"
 
-#: zp-core/admin-edit.php:1263
+#: zp-core/admin-edit.php:1267
 msgid "90 degrees"
 msgstr "90 grados"
 
-#: zp-core/admin-edit.php:1270
+#: zp-core/admin-edit.php:1274
 msgid "180 degrees"
 msgstr "180 grados"
 
-#: zp-core/admin-edit.php:1277
+#: zp-core/admin-edit.php:1281
 msgid "270 degrees"
 msgstr "270 grados"
 
-#: zp-core/admin-edit.php:1284
+#: zp-core/admin-edit.php:1288
 #, php-format
 msgid "Refresh %s metadata"
 msgstr "Actualizar metadatos %s"
 
-#: zp-core/admin-edit.php:1286 zp-core/admin-refresh-metadata.php:45
+#: zp-core/admin-edit.php:1290 zp-core/admin-refresh-metadata.php:45
 #: zp-core/utilities/refresh_metadata.php:7
 msgid "Refresh Metadata"
 msgstr "Actualizar Metadatos"
 
-#: zp-core/admin-edit.php:1293
+#: zp-core/admin-edit.php:1297
 #, php-format
 msgid "crop %s"
 msgstr "recorte %s"
 
-#: zp-core/admin-edit.php:1295
+#: zp-core/admin-edit.php:1299
 msgid "Crop thumbnail"
 msgstr "Recortar miniatura"
 
-#: zp-core/admin-edit.php:1320
+#: zp-core/admin-edit.php:1324
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:310
 #: zp-core/zp-extensions/zenpage/admin-edit.php:401
 msgid "Title:"
 msgstr "Título:"
 
-#: zp-core/admin-edit.php:1326
+#: zp-core/admin-edit.php:1330
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:306
 msgid "Description:"
 msgstr "Descripción:"
 
-#: zp-core/admin-edit.php:1334
+#: zp-core/admin-edit.php:1338
 msgid "Set as thumbnail for:"
 msgstr "Configurar como miniatura para:"
 
-#: zp-core/admin-edit.php:1376
+#: zp-core/admin-edit.php:1380
 msgid "Image watermark:"
 msgstr "Marca de agua de imagen:"
 
-#: zp-core/admin-edit.php:1379 zp-core/admin-functions.php:1558
+#: zp-core/admin-edit.php:1383 zp-core/admin-functions.php:1558
 #: zp-core/admin-functions.php:1573
 msgid "*no watermark"
 msgstr "*sin marca de agua"
 
-#: zp-core/admin-edit.php:1380 zp-core/admin-functions.php:1559
+#: zp-core/admin-edit.php:1384 zp-core/admin-functions.php:1559
 #: zp-core/admin-functions.php:1574
 msgid "*default"
 msgstr "*predeterminado"
 
-#: zp-core/admin-edit.php:1394
+#: zp-core/admin-edit.php:1398
 msgid "thumb"
 msgstr "miniatura"
 
-#: zp-core/admin-edit.php:1395 zp-core/zp-extensions/slideshow2.php:174
+#: zp-core/admin-edit.php:1399 zp-core/zp-extensions/slideshow2.php:174
 msgid "full image"
 msgstr "imagen completa"
 
-#: zp-core/admin-edit.php:1408
+#: zp-core/admin-edit.php:1412
 msgid "No tags assigned"
 msgstr "Sin etiquetas asignadas"
 
-#: zp-core/admin-edit.php:1429 zp-core/admin-functions.php:1389
+#: zp-core/admin-edit.php:1433 zp-core/admin-functions.php:1389
 msgid "Custom data:"
 msgstr "Datos personalizados:"
 
-#: zp-core/admin-edit.php:1438 zp-core/admin-functions.php:1379
+#: zp-core/admin-edit.php:1442 zp-core/admin-functions.php:1379
 msgid "Location:"
 msgstr "Ubicación:"
 
-#: zp-core/admin-edit.php:1444
+#: zp-core/admin-edit.php:1448
 #: zp-core/zp-extensions/comment_form/admin-comments.php:178
 msgid "City:"
 msgstr "Ciudad:"
 
-#: zp-core/admin-edit.php:1450
+#: zp-core/admin-edit.php:1454
 #: zp-core/zp-extensions/comment_form/admin-comments.php:180
 msgid "State:"
 msgstr "Estado/Provincia:"
 
-#: zp-core/admin-edit.php:1456
+#: zp-core/admin-edit.php:1460
 #: zp-core/zp-extensions/comment_form/admin-comments.php:182
 msgid "Country:"
 msgstr "País:"
 
-#: zp-core/admin-edit.php:1462
+#: zp-core/admin-edit.php:1466
 msgid "Credit:"
 msgstr "Reconocimiento:"
 
-#: zp-core/admin-edit.php:1468
+#: zp-core/admin-edit.php:1472
 msgid "Copyright:"
 msgstr "Copyright:"
 
-#: zp-core/admin-edit.php:1477
+#: zp-core/admin-edit.php:1481
 msgid "Metadata:"
 msgstr "Metadatos:"
 
-#: zp-core/admin-edit.php:1494
+#: zp-core/admin-edit.php:1498
 msgid "None selected for display"
 msgstr "Nada seleccionado para mostrar"
 
-#: zp-core/admin-edit.php:1512 zp-core/admin-functions.php:1688
+#: zp-core/admin-edit.php:1516 zp-core/admin-functions.php:1688
 #: zp-core/admin-options.php:1463
-#: zp-core/zp-extensions/zenpage/admin-edit.php:791
+#: zp-core/zp-extensions/zenpage/admin-edit.php:792
 msgid "Codeblocks:"
 msgstr "Bloques de código:"
 
-#: zp-core/admin-edit.php:1523
+#: zp-core/admin-edit.php:1527
 msgid "Edit all image data"
 msgstr "Editar todos los datos de la imagen"
 
-#: zp-core/admin-edit.php:1621
+#: zp-core/admin-edit.php:1625
 msgid "Edit All Albums in"
 msgstr "Editar todos los álbumes en"
 
-#: zp-core/admin-edit.php:1679
+#: zp-core/admin-edit.php:1683
 msgid "Edit Gallery"
 msgstr "Editar Galería"
 
-#: zp-core/admin-edit.php:1700
+#: zp-core/admin-edit.php:1704
 #, php-format
 msgid "Current sort: <em>%1s%2$s</em>."
 msgstr "Ordenamiento actual: <em>%1$s%2$s</em>."
 
-#: zp-core/admin-edit.php:1713
+#: zp-core/admin-edit.php:1717
 msgid ""
 "Select an album to edit its description and data, or <a href=\"?"
 "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
@@ -1711,18 +1711,18 @@ msgstr ""
 "page=edit&amp;massedit\">editar en masa</a> todos los niveles de la Galería "
 "de albums."
 
-#: zp-core/admin-edit.php:1732 zp-core/admin-edit.php:1777
-#: zp-core/admin-edit.php:1796
+#: zp-core/admin-edit.php:1736 zp-core/admin-edit.php:1781
+#: zp-core/admin-edit.php:1800
 msgid "New album"
 msgstr "Nuevo álbum"
 
-#: zp-core/admin-edit.php:1733 zp-core/admin-edit.php:1735
-#: zp-core/admin-edit.php:1780 zp-core/admin-edit.php:1797
-#: zp-core/admin-edit.php:1799
+#: zp-core/admin-edit.php:1737 zp-core/admin-edit.php:1739
+#: zp-core/admin-edit.php:1784 zp-core/admin-edit.php:1801
+#: zp-core/admin-edit.php:1803
 msgid "New dynamic album"
 msgstr "Nuevo álbum dinámico"
 
-#: zp-core/admin-edit.php:1792
+#: zp-core/admin-edit.php:1796
 msgid "There are no albums for you to edit."
 msgstr "No hay álbumes suyos para editar."
 
@@ -1824,7 +1824,7 @@ msgid "View gallery index"
 msgstr "Ver índice de la Galería"
 
 #: zp-core/admin-functions.php:447 zp-core/admin-functions.php:1565
-#: zp-core/admin-functions.php:2020 zp-core/admin-options.php:2145
+#: zp-core/admin-functions.php:2024 zp-core/admin-options.php:2145
 #: zp-core/admin-options.php:2197 zp-core/utilities/gallery_statistics.php:77
 #: zp-core/utilities/gallery_statistics.php:581
 #: zp-core/zp-extensions/cacheManager.php:170
@@ -1847,7 +1847,7 @@ msgstr "Subálbumes"
 msgid "Deprecated."
 msgstr "Obsoleto."
 
-#: zp-core/admin-functions.php:771 zp-core/admin-functions.php:4565
+#: zp-core/admin-functions.php:771 zp-core/admin-functions.php:4579
 #: zp-core/admin-options.php:1633 zp-core/admin-tags.php:157
 #: zp-core/admin-users.php:494
 #: zp-core/zp-extensions/publishContent/publishContent.php:261
@@ -1861,7 +1861,7 @@ msgstr "todo"
 msgid "add tag"
 msgstr "agregar etiqueta"
 
-#: zp-core/admin-functions.php:1221 zp-core/admin-functions.php:5028
+#: zp-core/admin-functions.php:1221 zp-core/admin-functions.php:5039
 #: zp-core/class-search.php:110 zp-core/zp-extensions/favoritesHandler.php:140
 msgid "Owner"
 msgstr "Propietario"
@@ -1965,216 +1965,216 @@ msgstr "Marcas de agua del album:"
 msgid "Thumbs"
 msgstr "Miniaturas"
 
-#: zp-core/admin-functions.php:1727
+#: zp-core/admin-functions.php:1729
 #, php-format
 msgid "Reset hit counter (%u hit)"
 msgid_plural "Reset hit counter (%u hits)"
 msgstr[0] "Reiniciar contador de visitas (%u visita)"
 msgstr[1] "Reiniciar contador de visitas (%u visitas)"
 
-#: zp-core/admin-functions.php:1740
-#: zp-core/zp-extensions/zenpage/admin-edit.php:671
+#: zp-core/admin-functions.php:1742
+#: zp-core/zp-extensions/zenpage/admin-edit.php:672
 #, php-format
 msgid "Reset rating (%u stars)"
 msgstr "Reiniciar calificación (%u estrellas)"
 
-#: zp-core/admin-functions.php:1833
+#: zp-core/admin-functions.php:1835
 msgid "Rename Folder"
 msgstr "Renombrar carpeta"
 
-#: zp-core/admin-functions.php:1850 zp-core/template-functions.php:228
+#: zp-core/admin-functions.php:1852 zp-core/template-functions.php:228
 msgid "Delete album"
 msgstr "Borrar album"
 
-#: zp-core/admin-functions.php:1855
+#: zp-core/admin-functions.php:1857
 msgid "Album will be deleted when changes are applied."
 msgstr "El album será borrado cuando se apliquen los cambios."
 
-#: zp-core/admin-functions.php:1862 zp-core/admin-functions.php:1895
+#: zp-core/admin-functions.php:1864 zp-core/admin-functions.php:1897
 msgid "to:"
 msgstr "a:"
 
-#: zp-core/admin-functions.php:1909 zp-core/class-search.php:100
+#: zp-core/admin-functions.php:1911 zp-core/class-search.php:100
 #: zp-core/lib-auth.php:538 zp-core/lib-auth.php:557 zp-core/lib-auth.php:582
 #: zp-core/lib-auth.php:609 zp-core/template-functions.php:124
 #: zp-core/utilities/gallery_statistics.php:93
 #: zp-core/utilities/gallery_statistics.php:602
-#: zp-core/zp-extensions/zenpage/admin-edit.php:715
+#: zp-core/zp-extensions/zenpage/admin-edit.php:716
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: zp-core/admin-functions.php:1924
+#: zp-core/admin-functions.php:1926
 msgid "Dynamic album search:"
 msgstr "Buscar album dinámico:"
 
-#: zp-core/admin-functions.php:1993
+#: zp-core/admin-functions.php:1996
 msgid "Clears the album’s cached images."
 msgstr "Limpiar la caché de imágenes de albumes."
 
-#: zp-core/admin-functions.php:1995
+#: zp-core/admin-functions.php:1998
 msgid "Clear album image cache"
 msgstr "Limpiar la caché de imagen del álbum"
 
-#: zp-core/admin-functions.php:1998
+#: zp-core/admin-functions.php:2002
 msgid "Resets album’s hit counters."
 msgstr "Restablecer los contadores de visitas de álbumes."
 
-#: zp-core/admin-functions.php:2000
+#: zp-core/admin-functions.php:2004
 msgid "Reset album hit counters"
 msgstr "Restablecer todos los contadores de visitas de álbum"
 
-#: zp-core/admin-functions.php:2007
+#: zp-core/admin-functions.php:2011
 msgid "Refreshes the metadata for the album."
 msgstr "Actualizar metadatos para el album."
 
-#: zp-core/admin-functions.php:2009
+#: zp-core/admin-functions.php:2013
 msgid "Refresh album metadata"
 msgstr "Actualizar metadatos de álbum"
 
-#: zp-core/admin-functions.php:2021
+#: zp-core/admin-functions.php:2025
 msgid "Albums (dynamic)"
 msgstr "Albumes (dinámicos)"
 
-#: zp-core/admin-functions.php:2022
+#: zp-core/admin-functions.php:2026
 msgid "Images (dynamic)"
 msgstr "Imágenes (dinámicas)"
 
-#: zp-core/admin-functions.php:2028
+#: zp-core/admin-functions.php:2032
 #: zp-core/zp-extensions/zenpage/admin-categories.php:189
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1420
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1422
 msgid "Has Password"
 msgstr "Tiene contraseña"
 
-#: zp-core/admin-functions.php:2032
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1421
+#: zp-core/admin-functions.php:2036
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1423
 msgid "Published/Not published"
 msgstr "Publicado/No publicado"
 
-#: zp-core/admin-functions.php:2033
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1422
+#: zp-core/admin-functions.php:2037
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1424
 msgid "Scheduled publishing/Scheduled expiration/Expired"
 msgstr "Publicación programada/Vencimiento programado/Caducado"
 
-#: zp-core/admin-functions.php:2034
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1426
+#: zp-core/admin-functions.php:2038
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1428
 msgid "Comments on/off"
 msgstr "Comentarios si/no"
 
-#: zp-core/admin-functions.php:2035
+#: zp-core/admin-functions.php:2039
 msgid "View the album"
 msgstr "Ver el album"
 
-#: zp-core/admin-functions.php:2036
+#: zp-core/admin-functions.php:2040
 msgid "Refresh metadata"
 msgstr "Actualizar metadatos"
 
-#: zp-core/admin-functions.php:2040
+#: zp-core/admin-functions.php:2044
 msgid "Reset hit counters"
 msgstr "Reiniciar contadores de visita"
 
-#: zp-core/admin-functions.php:2070 zp-core/admin-functions.php:2092
+#: zp-core/admin-functions.php:2074 zp-core/admin-functions.php:2096
 #, php-format
 msgid "Edit this album: %s"
 msgstr "Editar este album: %s"
 
-#: zp-core/admin-functions.php:2075 zp-core/admin-functions.php:2078
+#: zp-core/admin-functions.php:2079 zp-core/admin-functions.php:2082
 #: zp-core/zp-extensions/publishContent/publishContent.php:275
 msgid "Album thumb"
 msgstr "Miniatura del álbum"
 
-#: zp-core/admin-functions.php:2105 zp-core/admin-functions.php:2108
-#: zp-core/zp-extensions/image_album_statistics.php:266
+#: zp-core/admin-functions.php:2109 zp-core/admin-functions.php:2112
+#: zp-core/zp-extensions/image_album_statistics.php:293
 #: zp-core/zp-extensions/tinyURL.php:77
 #: zp-core/zp-extensions/uploader_http.php:32
 #: zp-core/zp-extensions/uploader_jQuery.php:38
 msgid "images"
 msgstr "imágenes"
 
-#: zp-core/admin-functions.php:2106 zp-core/admin-functions.php:2109
+#: zp-core/admin-functions.php:2110 zp-core/admin-functions.php:2113
 #: zp-core/admin-globals.php:58 zp-core/zp-extensions/tinyURL.php:76
 msgid "albums"
 msgstr "álbumes"
 
-#: zp-core/admin-functions.php:2114 zp-core/admin-functions.php:2119
+#: zp-core/admin-functions.php:2118 zp-core/admin-functions.php:2123
 msgid "Subalbum List"
 msgstr "Lista de subálbumes"
 
-#: zp-core/admin-functions.php:2145
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:314
+#: zp-core/admin-functions.php:2149
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:316
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:243
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1003
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1005
 msgid "Password protected"
 msgstr "Protegido por contraseña"
 
-#: zp-core/admin-functions.php:2161
+#: zp-core/admin-functions.php:2166
 #: zp-core/zp-extensions/zenpage/admin-edit.php:647
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:340
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:257
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:342
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:258
 msgid "Comments on"
 msgstr "Comentarios habilitados"
 
-#: zp-core/admin-functions.php:2175
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:348
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:263
+#: zp-core/admin-functions.php:2180
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:350
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:264
 msgid "Comments off"
 msgstr "Comentarios deshabilitados"
 
-#: zp-core/admin-functions.php:2186
+#: zp-core/admin-functions.php:2192
 msgid "View album"
 msgstr "Ver album"
 
-#: zp-core/admin-functions.php:2187
+#: zp-core/admin-functions.php:2193
 #, php-format
 msgid "View album %s"
 msgstr "Ver album %s"
 
-#: zp-core/admin-functions.php:2194 zp-core/admin-functions.php:2212
-#: zp-core/admin-functions.php:2232
+#: zp-core/admin-functions.php:2200 zp-core/admin-functions.php:2218
+#: zp-core/admin-functions.php:2238
 msgid "unavailable"
 msgstr "no disponible"
 
-#: zp-core/admin-functions.php:2198
+#: zp-core/admin-functions.php:2204
 #, php-format
 msgid "Refresh metadata for the album %s"
 msgstr "Actualizar metadatos para el album %s"
 
-#: zp-core/admin-functions.php:2199
+#: zp-core/admin-functions.php:2205
 #, php-format
 msgid "Refresh metadata in the album %s"
 msgstr "Actualizar metadatos en el album %s"
 
-#: zp-core/admin-functions.php:2216
+#: zp-core/admin-functions.php:2222
 #, php-format
 msgid "Reset hit counters for album %s"
 msgstr "Reiniciar contadores de visitas para álbum %s"
 
-#: zp-core/admin-functions.php:2217
+#: zp-core/admin-functions.php:2223
 #, php-format
 msgid "Reset hit counters for the album %s"
 msgstr "Reiniciar contadores de visitas para el álbum %s"
 
-#: zp-core/admin-functions.php:2236 zp-core/admin-functions.php:2237
+#: zp-core/admin-functions.php:2242 zp-core/admin-functions.php:2243
 #, php-format
 msgid "Delete the album %s"
 msgstr "Borrar el album %s"
 
-#: zp-core/admin-functions.php:2565 zp-core/admin-functions.php:2573
-#: zp-core/admin-functions.php:2579 zp-core/admin-functions.php:2583
-#: zp-core/admin-functions.php:2587
+#: zp-core/admin-functions.php:2571 zp-core/admin-functions.php:2579
+#: zp-core/admin-functions.php:2585 zp-core/admin-functions.php:2589
+#: zp-core/admin-functions.php:2593
 #, php-format
 msgid "page %u"
 msgstr "página %u"
 
-#: zp-core/admin-functions.php:2565 zp-core/admin-functions.php:2567
+#: zp-core/admin-functions.php:2571 zp-core/admin-functions.php:2573
 msgid "Previous page"
 msgstr "Página previa"
 
-#: zp-core/admin-functions.php:2587 zp-core/admin-functions.php:2589
+#: zp-core/admin-functions.php:2593 zp-core/admin-functions.php:2595
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:918
 msgid "Next page"
 msgstr "Página siguiente"
 
-#: zp-core/admin-functions.php:2853
+#: zp-core/admin-functions.php:2859
 msgid ""
 "Zip archive could not be extracted because PHP <code>ZipArchive</code> "
 "support is not available"
@@ -2182,30 +2182,30 @@ msgstr ""
 "El archivo zip no se pudo extraer porque el soporte PHP <code>ZipArchive</"
 "code> no está disponible"
 
-#: zp-core/admin-functions.php:2958 zp-core/admin-functions.php:2963
-#: zp-core/admin-functions.php:2968 zp-core/admin-functions.php:2973
+#: zp-core/admin-functions.php:2966 zp-core/admin-functions.php:2971
+#: zp-core/admin-functions.php:2976 zp-core/admin-functions.php:2981
 msgid "Cannot create new theme."
 msgstr "No se puede crear un nuevo tema."
 
-#: zp-core/admin-functions.php:2958
+#: zp-core/admin-functions.php:2966
 #, php-format
 msgid "Directory “%s” already exists!"
 msgstr "El Directorio \"%s\" ya existe!"
 
-#: zp-core/admin-functions.php:2963
+#: zp-core/admin-functions.php:2971
 #, php-format
 msgid "Cannot find theme directory “%s” to copy!"
 msgstr "No se encuentra el directorio del tema \"%s\" para copiar!"
 
-#: zp-core/admin-functions.php:2968
+#: zp-core/admin-functions.php:2976
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "El directorio <tt>/themes</tt> no es de escritura!"
 
-#: zp-core/admin-functions.php:2973
+#: zp-core/admin-functions.php:2981
 msgid "Could not create directory for the new theme"
 msgstr "No se pudo crear el directorio para el nuevo tema"
 
-#: zp-core/admin-functions.php:3007
+#: zp-core/admin-functions.php:3015
 #, php-format
 msgid ""
 "An error occurred while copying files. Please delete manually the new theme "
@@ -2214,89 +2214,89 @@ msgstr ""
 "Ocurrió un error al copiar archivos. Elimine manualmente el nuevo directorio "
 "de temas \"%s\" y reintente, o copie los archivos manualmente."
 
-#: zp-core/admin-functions.php:3015
+#: zp-core/admin-functions.php:3023
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "Su tema, basado en el tema %s"
 
-#: zp-core/admin-functions.php:3017
+#: zp-core/admin-functions.php:3025
 msgid "Your theme"
 msgstr "Su tema"
 
-#: zp-core/admin-functions.php:3037
+#: zp-core/admin-functions.php:3045
 msgid "New custom theme created successfully!"
 msgstr "Nuevo tema personalizado creado exitosamente!"
 
-#: zp-core/admin-functions.php:3039
+#: zp-core/admin-functions.php:3047
 msgid "New custom theme created, but its description could not be updated"
 msgstr ""
 "Se creó el nuevo tema personalizado, pero no se pudo actualizar su "
 "descripción"
 
-#: zp-core/admin-functions.php:3171
+#: zp-core/admin-functions.php:3185
 msgid "Rights:"
 msgstr "Derechos:"
 
-#: zp-core/admin-functions.php:3235
+#: zp-core/admin-functions.php:3249
 msgid "edit rights"
 msgstr "editar derechos"
 
-#: zp-core/admin-functions.php:3236
+#: zp-core/admin-functions.php:3250
 msgid "view unpublished items"
 msgstr "ver items no publicados"
 
-#: zp-core/admin-functions.php:3237
+#: zp-core/admin-functions.php:3251
 msgid "upload rights"
 msgstr "cargar derechos"
 
-#: zp-core/admin-functions.php:3238
+#: zp-core/admin-functions.php:3252
 msgid "the album is dynamic"
 msgstr "el Album es dinámico"
 
-#: zp-core/admin-functions.php:3240
+#: zp-core/admin-functions.php:3254
 msgid "Primary album"
 msgstr "Album primario"
 
-#: zp-core/admin-functions.php:3244 zp-core/zp-extensions/elFinder.php:78
+#: zp-core/admin-functions.php:3258 zp-core/zp-extensions/elFinder.php:78
 #: zp-core/zp-extensions/uploader_http.php:35
 #: zp-core/zp-extensions/uploader_jQuery.php:41
 msgid "upload"
 msgstr "cargado"
 
-#: zp-core/admin-functions.php:3246
+#: zp-core/admin-functions.php:3260
 msgid "view unpublished"
 msgstr "ver no publicados"
 
-#: zp-core/admin-functions.php:3285
+#: zp-core/admin-functions.php:3299
 msgid "Managed albums:"
 msgstr "Albumes gestionados:"
 
-#: zp-core/admin-functions.php:3298
+#: zp-core/admin-functions.php:3312
 msgid "Managed news categories:"
 msgstr "Categorías de noticias gestionadas:"
 
-#: zp-core/admin-functions.php:3300 zp-core/class-userdataexport.php:469
+#: zp-core/admin-functions.php:3314 zp-core/class-userdataexport.php:469
 #: zp-core/utilities/gallery_statistics.php:624
 #: zp-core/zp-extensions/multiple_layouts.php:95
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:101
 msgid "News categories"
 msgstr "Nuevas categorías"
 
-#: zp-core/admin-functions.php:3312
+#: zp-core/admin-functions.php:3326
 msgid "Managed pages:"
 msgstr "Páginas gestionadas:"
 
-#: zp-core/admin-functions.php:3318
+#: zp-core/admin-functions.php:3332
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Seleccione una o más %1$s para el %2$s para gestionar."
 
-#: zp-core/admin-functions.php:3319 zp-core/admin-users.php:802
+#: zp-core/admin-functions.php:3333 zp-core/admin-users.php:802
 #: zp-core/admin-users.php:811 zp-core/admin-users.php:817
 msgid "user"
 msgstr "usuario"
 
-#: zp-core/admin-functions.php:3320
+#: zp-core/admin-functions.php:3334
 #, php-format
 msgid ""
 "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All "
@@ -2306,64 +2306,64 @@ msgstr ""
 "administrar todos los %2$s. Todos los demás podrán gestionar sólo los que "
 "estén seleccionados."
 
-#: zp-core/admin-functions.php:3323
+#: zp-core/admin-functions.php:3337
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Puede gestionar estos %s, sujetos a los derechos anteriores."
 
-#: zp-core/admin-functions.php:3703
+#: zp-core/admin-functions.php:3717
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Lista %u nivel subálbum"
 msgstr[1] "Lista %u niveles subálbum"
 
-#: zp-core/admin-functions.php:3706
+#: zp-core/admin-functions.php:3720
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u imagen por página"
 msgstr[1] "%u imágenes por página"
 
-#: zp-core/admin-functions.php:3775 zp-core/admin-functions.php:3787
-#: zp-core/admin-functions.php:3799 zp-core/admin-functions.php:3811
+#: zp-core/admin-functions.php:3789 zp-core/admin-functions.php:3801
+#: zp-core/admin-functions.php:3813 zp-core/admin-functions.php:3825
 msgid "ok"
 msgstr "ok"
 
-#: zp-core/admin-functions.php:3882
+#: zp-core/admin-functions.php:3896
 msgid "Destination"
 msgstr "Destino"
 
-#: zp-core/admin-functions.php:4165 zp-core/admin-functions.php:4200
+#: zp-core/admin-functions.php:4179 zp-core/admin-functions.php:4214
 #, php-format
 msgid "codeblock %u"
 msgstr "bloque de código %u"
 
-#: zp-core/admin-functions.php:4166 zp-core/admin-functions.php:4206
+#: zp-core/admin-functions.php:4180 zp-core/admin-functions.php:4220
 msgid "add codeblock"
 msgstr "agregar bloque de código"
 
-#: zp-core/admin-functions.php:4221
+#: zp-core/admin-functions.php:4235
 msgid "Codeblock 0 is deprecated."
 msgstr "Bloque de código 0 es obsoleto."
 
-#: zp-core/admin-functions.php:4480
+#: zp-core/admin-functions.php:4494
 msgid "setup"
 msgstr "configuración"
 
-#: zp-core/admin-functions.php:4480 zp-core/admin-globals.php:106
+#: zp-core/admin-functions.php:4494 zp-core/admin-globals.php:106
 #: zp-core/admin-options.php:1073
 #: zp-core/zp-extensions/http_security_headers.php:25
 msgid "security"
 msgstr "seguridad"
 
-#: zp-core/admin-functions.php:4480 zp-core/admin-options.php:1073
+#: zp-core/admin-functions.php:4494 zp-core/admin-options.php:1073
 #: zp-core/zp-extensions/markRelease.php:45
 msgid "debug"
 msgstr "depurar"
 
-#: zp-core/admin-functions.php:4533 zp-core/admin-functions.php:4544
-#: zp-core/admin.php:234 zp-core/zp-extensions/GoogleMap.php:31
+#: zp-core/admin-functions.php:4547 zp-core/admin-functions.php:4558
+#: zp-core/admin.php:236 zp-core/zp-extensions/GoogleMap.php:31
 #: zp-core/zp-extensions/comment_form.php:20
 #: zp-core/zp-extensions/cookieconsent.php:27
 #: zp-core/zp-extensions/defaultCodeblocks.php:14
@@ -2378,19 +2378,18 @@ msgstr "depurar"
 msgid "Misc"
 msgstr "Miscelaneo"
 
-#: zp-core/admin-functions.php:4536
+#: zp-core/admin-functions.php:4550
 msgid "Active"
 msgstr "Activar"
 
-#: zp-core/admin-functions.php:4537 zp-core/admin-functions.php:5064
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:803
+#: zp-core/admin-functions.php:4551 zp-core/admin-functions.php:5075
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:805
 msgid "All"
 msgstr "Todo"
 
-#: zp-core/admin-functions.php:4538 zp-core/admin.php:245 zp-core/admin.php:260
-#: zp-core/admin.php:276 zp-core/lib-auth.php:540 zp-core/lib-auth.php:559
-#: zp-core/lib-auth.php:584 zp-core/lib-auth.php:611
-#: zp-core/template-functions.php:89 zp-core/utilities/backup_restore.php:22
+#: zp-core/admin-functions.php:4552 zp-core/admin.php:247 zp-core/admin.php:262
+#: zp-core/admin.php:278 zp-core/template-functions.php:89
+#: zp-core/utilities/backup_restore.php:22
 #: zp-core/zp-extensions/admin-approval.php:15
 #: zp-core/zp-extensions/auto_backup.php:27
 #: zp-core/zp-extensions/cacheManager.php:87
@@ -2417,11 +2416,11 @@ msgstr "Todo"
 msgid "Admin"
 msgstr "Admin"
 
-#: zp-core/admin-functions.php:4539
+#: zp-core/admin-functions.php:4553
 msgid "Demo"
 msgstr "Demostración"
 
-#: zp-core/admin-functions.php:4540
+#: zp-core/admin-functions.php:4554
 #: zp-core/zp-extensions/deprecated-functions.php:36
 #: zp-core/zp-extensions/deprecated-functions.php:164
 #: zp-core/zp-extensions/exampleMacros.php:12
@@ -2433,19 +2432,19 @@ msgstr "Demostración"
 msgid "Development"
 msgstr "Desarrollo"
 
-#: zp-core/admin-functions.php:4541 zp-core/zp-extensions/mergedRSS.php:23
+#: zp-core/admin-functions.php:4555 zp-core/zp-extensions/mergedRSS.php:23
 #: zp-core/zp-extensions/rss.php:14
 msgid "Feed"
 msgstr "Fuente"
 
-#: zp-core/admin-functions.php:4542 zp-core/zp-extensions/PHPMailer.php:15
+#: zp-core/admin-functions.php:4556 zp-core/zp-extensions/PHPMailer.php:15
 #: zp-core/zp-extensions/contact_form.php:20
 #: zp-core/zp-extensions/user_mailing_list.php:16
 #: zp-core/zp-extensions/zenphoto_sendmail.php:14
 msgid "Mail"
 msgstr "Email"
 
-#: zp-core/admin-functions.php:4543
+#: zp-core/admin-functions.php:4557
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:18
 #: zp-core/zp-extensions/class-AnyFile.php:19
 #: zp-core/zp-extensions/class-WEBdocs.php:19
@@ -2455,7 +2454,7 @@ msgstr "Email"
 #: zp-core/zp-extensions/crop_image.php:24
 #: zp-core/zp-extensions/favoritesHandler.php:49
 #: zp-core/zp-extensions/flag_thumbnail.php:26
-#: zp-core/zp-extensions/jplayer.php:75 zp-core/zp-extensions/lazyload.php:42
+#: zp-core/zp-extensions/jplayer.php:75 zp-core/zp-extensions/lazyload.php:19
 #: zp-core/zp-extensions/menu_manager.php:20
 #: zp-core/zp-extensions/paged_thumbs_nav.php:14
 #: zp-core/zp-extensions/print_album_menu.php:23
@@ -2466,13 +2465,13 @@ msgstr "Email"
 msgid "Media"
 msgstr "Media"
 
-#: zp-core/admin-functions.php:4545 zp-core/zp-extensions/reCaptcha.php:25
+#: zp-core/admin-functions.php:4559 zp-core/zp-extensions/reCaptcha.php:25
 #: zp-core/zp-extensions/simpleSpam.php:15
 #: zp-core/zp-extensions/trivialSpam.php:15
 msgid "Spam"
 msgstr "Spam"
 
-#: zp-core/admin-functions.php:4546 zp-core/utilities/gallery_statistics.php:36
+#: zp-core/admin-functions.php:4560 zp-core/utilities/gallery_statistics.php:36
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:172
 #: zp-core/zp-extensions/hitcounter.php:36
 #: zp-core/zp-extensions/image_album_statistics.php:16
@@ -2481,7 +2480,7 @@ msgstr "Spam"
 msgid "Statistics"
 msgstr "Estadísticas"
 
-#: zp-core/admin-functions.php:4547 zp-core/zp-extensions/dynamic-locale.php:31
+#: zp-core/admin-functions.php:4561 zp-core/zp-extensions/dynamic-locale.php:31
 #: zp-core/zp-extensions/html_meta_tags.php:22
 #: zp-core/zp-extensions/seo_cleanup.php:18
 #: zp-core/zp-extensions/seo_locale.php:39
@@ -2491,13 +2490,13 @@ msgstr "Estadísticas"
 msgid "SEO"
 msgstr "SEO"
 
-#: zp-core/admin-functions.php:4548 zp-core/zp-extensions/elFinder.php:27
+#: zp-core/admin-functions.php:4562 zp-core/zp-extensions/elFinder.php:27
 #: zp-core/zp-extensions/uploader_http.php:15
 #: zp-core/zp-extensions/uploader_jQuery.php:19
 msgid "Uploader"
 msgstr "Cargador"
 
-#: zp-core/admin-functions.php:4549 zp-core/template-functions.php:131
+#: zp-core/admin-functions.php:4563 zp-core/template-functions.php:131
 #: zp-core/zp-extensions/email-newuser.php:14
 #: zp-core/zp-extensions/quota_manager.php:34
 #: zp-core/zp-extensions/register_user.php:28
@@ -2508,7 +2507,7 @@ msgstr "Cargador"
 msgid "Users"
 msgstr "Usuarios"
 
-#: zp-core/admin-functions.php:4742
+#: zp-core/admin-functions.php:4753
 #: zp-core/zp-extensions/defaultCodeblocks.php:35
 #: zp-core/zp-extensions/reCaptcha.php:77
 #: zp-core/zp-extensions/related_items.php:184
@@ -2516,26 +2515,26 @@ msgstr "Usuarios"
 msgid "Image"
 msgstr "Imagen"
 
-#: zp-core/admin-functions.php:4748
+#: zp-core/admin-functions.php:4759
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s falló al borrar."
 
-#: zp-core/admin-functions.php:4750
+#: zp-core/admin-functions.php:4761
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s borrado exitosamente."
 
-#: zp-core/admin-functions.php:4755 zp-core/admin-users.php:429
+#: zp-core/admin-functions.php:4766 zp-core/admin-users.php:429
 msgid "You must supply a password."
 msgstr "Debe suministrar una contraseña."
 
-#: zp-core/admin-functions.php:4757 zp-core/admin-options.php:584
+#: zp-core/admin-functions.php:4768 zp-core/admin-options.php:584
 #: zp-core/admin-users.php:438 zp-core/zp-extensions/register_user.php:513
 msgid "Your passwords did not match."
 msgstr "Sus contraseñas no coinciden."
 
-#: zp-core/admin-functions.php:4764
+#: zp-core/admin-functions.php:4775
 #, php-format
 msgid ""
 "The form submission has been truncated because you exceeded the server side "
@@ -2546,161 +2545,161 @@ msgstr ""
 "servidor <code>max_input_vars</code> de %d. Intente mostrar menos elementos "
 "por página o intente aumentar los límites del servidor."
 
-#: zp-core/admin-functions.php:4767
+#: zp-core/admin-functions.php:4778
 msgid "Hit counters have been reset."
 msgstr "Los contadores de visitas han sido reiniciados."
 
-#: zp-core/admin-functions.php:4770
+#: zp-core/admin-functions.php:4781
 msgid "Cache has been purged."
 msgstr "El caché ha sido purgado."
 
-#: zp-core/admin-functions.php:4773 zp-core/admin-upload.php:154
+#: zp-core/admin-functions.php:4784 zp-core/admin-upload.php:154
 msgid "Your files have been uploaded."
 msgstr "Sus archivos han sido actualizados."
 
-#: zp-core/admin-functions.php:4776
+#: zp-core/admin-functions.php:4787
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> ya existe."
 
-#: zp-core/admin-functions.php:4779
+#: zp-core/admin-functions.php:4790
 #: zp-core/zp-extensions/comment_form/admin-comments.php:302
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:223
 msgid "Changes applied"
 msgstr "Cambios aplicados"
 
-#: zp-core/admin-functions.php:4782
+#: zp-core/admin-functions.php:4793
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:14
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:45
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1736
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1738
 msgid "Nothing changed"
 msgstr "Nada cambiado"
 
-#: zp-core/admin-functions.php:4789
+#: zp-core/admin-functions.php:4800
 #: zp-core/zp-extensions/comment_form/admin-comments.php:272
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:977
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1700
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1702
 msgid "Selected items deleted"
 msgstr "Items seleccionados borrados"
 
-#: zp-core/admin-functions.php:4792
+#: zp-core/admin-functions.php:4803
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:981
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1703
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1705
 msgid "Selected items published"
 msgstr "Items seleccionados publicados"
 
-#: zp-core/admin-functions.php:4795
+#: zp-core/admin-functions.php:4806
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:985
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1706
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1708
 msgid "Selected items unpublished"
 msgstr "Items seleccionados despublicados"
 
-#: zp-core/admin-functions.php:4798
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1709
+#: zp-core/admin-functions.php:4809
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1711
 msgid "Comments enabled for selected items"
 msgstr "Comentarios habilitados para items seleccionados"
 
-#: zp-core/admin-functions.php:4801
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1712
+#: zp-core/admin-functions.php:4812
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1714
 msgid "Comments disabled for selected items"
 msgstr "Comentarios deshabilitados para items seleccionados"
 
-#: zp-core/admin-functions.php:4804
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1715
+#: zp-core/admin-functions.php:4815
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1717
 msgid "Hitcounter for selected items"
 msgstr "Contador de visitas para items seleccionados"
 
-#: zp-core/admin-functions.php:4807
+#: zp-core/admin-functions.php:4818
 msgid "Tags added for selected items"
 msgstr "Etiquetas agregadas a los items seleccionados"
 
-#: zp-core/admin-functions.php:4810
+#: zp-core/admin-functions.php:4821
 msgid "Tags cleared for selected items"
 msgstr "Etiquetas borradas para los items seleccionados"
 
-#: zp-core/admin-functions.php:4813
+#: zp-core/admin-functions.php:4824
 msgid "Tags added for images of selected items"
 msgstr "Etiquetas agregadas para las imágenes de los items seleccionados"
 
-#: zp-core/admin-functions.php:4816
+#: zp-core/admin-functions.php:4827
 msgid "Tags cleared for images of selected items"
 msgstr "Etiquetas borradas para las imágenes de los items seleccionados"
 
-#: zp-core/admin-functions.php:4831 zp-core/zp-extensions/seo_cleanup.php:51
+#: zp-core/admin-functions.php:4842 zp-core/zp-extensions/seo_cleanup.php:51
 msgid "Image already exists."
 msgstr "La imagen ya existe."
 
-#: zp-core/admin-functions.php:4834 zp-core/zp-extensions/seo_cleanup.php:53
+#: zp-core/admin-functions.php:4845 zp-core/zp-extensions/seo_cleanup.php:53
 msgid "Album already exists."
 msgstr "El Album ya existe."
 
-#: zp-core/admin-functions.php:4837 zp-core/zp-extensions/seo_cleanup.php:55
+#: zp-core/admin-functions.php:4848 zp-core/zp-extensions/seo_cleanup.php:55
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr "No se puede mover, copiar o renombrar a un subalbum de este album."
 
-#: zp-core/admin-functions.php:4840 zp-core/zp-extensions/seo_cleanup.php:57
+#: zp-core/admin-functions.php:4851 zp-core/zp-extensions/seo_cleanup.php:57
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr "No se puede mover, copiar o renombrar a un album dinámico."
 
-#: zp-core/admin-functions.php:4843 zp-core/zp-extensions/seo_cleanup.php:59
+#: zp-core/admin-functions.php:4854 zp-core/zp-extensions/seo_cleanup.php:59
 msgid "Cannot rename an image to a different suffix"
 msgstr "No se puede renombrar una imagen a un sufijo diferente"
 
-#: zp-core/admin-functions.php:4846 zp-core/zp-extensions/seo_cleanup.php:61
+#: zp-core/admin-functions.php:4857 zp-core/zp-extensions/seo_cleanup.php:61
 msgid "Album delete failed"
 msgstr "Falló borrar el album"
 
-#: zp-core/admin-functions.php:4849
+#: zp-core/admin-functions.php:4860
 #, php-format
 msgid "There was an error #%d with a move, copy, or rename operation."
 msgstr "Hubo un error #%d con una operación de mover, copiar o renombrar."
 
-#: zp-core/admin-functions.php:4977
+#: zp-core/admin-functions.php:4988
 #, php-format
 msgid "Last updated: %s"
 msgstr "Ultima actualización: %s"
 
-#: zp-core/admin-functions.php:4982
+#: zp-core/admin-functions.php:4993
 #, php-format
 msgid "Account created: %s"
 msgstr "Cuenta creada: %s"
 
-#: zp-core/admin-functions.php:4983
+#: zp-core/admin-functions.php:4994
 #, php-format
 msgid "Current login: %s"
 msgstr "Inicio de sesión actual: %s"
 
-#: zp-core/admin-functions.php:4984
+#: zp-core/admin-functions.php:4995
 #, php-format
 msgid "Last previous login: %s"
 msgstr "Último inicio de sesión previo: %s"
 
-#: zp-core/admin-functions.php:4985
+#: zp-core/admin-functions.php:4996
 #, php-format
 msgid "Last password update: %s"
 msgstr "Ultima actualización de contraseña: %s"
 
-#: zp-core/admin-functions.php:4986
+#: zp-core/admin-functions.php:4997
 #, php-format
 msgid "Last visit: %s"
 msgstr "Ultima visita: %s"
 
-#: zp-core/admin-functions.php:4990
+#: zp-core/admin-functions.php:5001
 #, php-format
 msgid "Last change: %s"
 msgstr "Ultimo cambio: %s"
 
-#: zp-core/admin-functions.php:4994
+#: zp-core/admin-functions.php:5005
 msgid "ZenphotoCMS internal request"
 msgstr "Solicitud interna de Zenphoto"
 
-#: zp-core/admin-functions.php:4997
+#: zp-core/admin-functions.php:5008
 #, php-format
 msgid "Last changed by: %s"
 msgstr "Ultimo cambio por: %s"
 
-#: zp-core/admin-functions.php:5015 zp-core/class-search.php:98
-#: zp-core/zp-extensions/contact_form.php:125
+#: zp-core/admin-functions.php:5026 zp-core/admin-upload.php:284
+#: zp-core/class-search.php:98 zp-core/zp-extensions/contact_form.php:125
 #: zp-core/zp-extensions/contact_form.php:130
 #: zp-core/zp-extensions/favoritesHandler.php:106
 #: zp-core/zp-extensions/favoritesHandler.php:137
@@ -2709,49 +2708,49 @@ msgstr "Ultimo cambio por: %s"
 msgid "Title"
 msgstr "Título"
 
-#: zp-core/admin-functions.php:5016
+#: zp-core/admin-functions.php:5027
 #: zp-core/zp-extensions/favoritesHandler.php:138
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:363
 msgid "ID"
 msgstr "ID"
 
-#: zp-core/admin-functions.php:5017 zp-core/class-search.php:103
+#: zp-core/admin-functions.php:5028 zp-core/class-search.php:103
 #: zp-core/class-userdataexport.php:233
 #: zp-core/zp-extensions/favoritesHandler.php:136
 #: zp-core/zp-extensions/zenpage/admin-edit.php:576
 msgid "Date"
 msgstr "Fecha"
 
-#: zp-core/admin-functions.php:5019
+#: zp-core/admin-functions.php:5030
 msgid "Last change date"
 msgstr "Ultima fecha de cambio"
 
-#: zp-core/admin-functions.php:5020 zp-core/class-search.php:112
+#: zp-core/admin-functions.php:5031 zp-core/class-search.php:112
 msgid "Last change user"
 msgstr "Último cambio de usuario"
 
-#: zp-core/admin-functions.php:5026
+#: zp-core/admin-functions.php:5037
 #: zp-core/zp-extensions/favoritesHandler.php:134
 msgid "Filename"
 msgstr "Nombre de archivo"
 
-#: zp-core/admin-functions.php:5027
+#: zp-core/admin-functions.php:5038
 #: zp-core/zp-extensions/favoritesHandler.php:139
 msgid "Filemtime"
 msgstr "Fecha de modificación del archivo (mTime)"
 
-#: zp-core/admin-functions.php:5029 zp-core/admin-options.php:835
+#: zp-core/admin-functions.php:5040 zp-core/admin-options.php:835
 #: zp-core/exif/makers/canon.php:279 zp-core/exif/makers/fujifilm.php:106
 #: zp-core/zp-extensions/favoritesHandler.php:135
 msgid "Custom"
 msgstr "Personalizado"
 
-#: zp-core/admin-functions.php:5031
+#: zp-core/admin-functions.php:5042
 msgid "Last updated date"
 msgstr "Ultima fecha de actualización"
 
-#: zp-core/admin-functions.php:5035 zp-core/admin-functions.php:5042
-#: zp-core/admin-functions.php:5049 zp-core/admin-options.php:1727
+#: zp-core/admin-functions.php:5046 zp-core/admin-functions.php:5053
+#: zp-core/admin-functions.php:5060 zp-core/admin-options.php:1727
 #: zp-core/admin-options.php:1780 zp-core/admin-options.php:1881
 #: zp-core/exif/exif.php:517 zp-core/exif/makers/canon.php:139
 #: zp-core/exif/makers/canon.php:202 zp-core/exif/makers/canon.php:223
@@ -2761,28 +2760,28 @@ msgstr "Ultima fecha de actualización"
 msgid "Manual"
 msgstr "Manual"
 
-#: zp-core/admin-functions.php:5040
+#: zp-core/admin-functions.php:5051
 #, php-format
 msgid "%s (descending)"
 msgstr "%s (descendente)"
 
-#: zp-core/admin-functions.php:5046 zp-core/class-search.php:118
+#: zp-core/admin-functions.php:5057 zp-core/class-search.php:118
 msgid "TitleLink"
 msgstr "TitleLink"
 
-#: zp-core/admin-functions.php:5047 zp-core/class-search.php:117
+#: zp-core/admin-functions.php:5058 zp-core/class-search.php:117
 msgid "Author"
 msgstr "Autor"
 
-#: zp-core/admin-functions.php:5066 zp-core/class-userdataexport.php:508
+#: zp-core/admin-functions.php:5077 zp-core/class-userdataexport.php:508
 msgid "Unpublished"
 msgstr "No Publicado"
 
-#: zp-core/admin-functions.php:5094
+#: zp-core/admin-functions.php:5105
 msgid "Image scheduled for publishing"
 msgstr "Imagen agendada para publicación"
 
-#: zp-core/admin-functions.php:5095
+#: zp-core/admin-functions.php:5106
 msgid ""
 "<strong>Note:</strong> Scheduled publishing is not active unless the image "
 "is also set to <em>published</em>"
@@ -2790,11 +2789,11 @@ msgstr ""
 "<strong>Nota:</strong> la publicación programada no está activa a menos que "
 "la imagen también esté configurada como <em>publicada</em>"
 
-#: zp-core/admin-functions.php:5096
+#: zp-core/admin-functions.php:5107
 msgid "Image scheduled for expiration"
 msgstr "Imagen agendada para expiración"
 
-#: zp-core/admin-functions.php:5097
+#: zp-core/admin-functions.php:5108
 msgid ""
 "<strong>Note:</strong> Scheduled expiration is not active unless the image "
 "is also set to <em>published</em>"
@@ -2802,15 +2801,15 @@ msgstr ""
 "<strong>Nota:</strong> La expiración agendada no está activa a menos que la "
 "imagen también esté configurada en <em>publicada</em>"
 
-#: zp-core/admin-functions.php:5098
+#: zp-core/admin-functions.php:5109
 msgid "Image has expired"
 msgstr "La imagen ha expirado"
 
-#: zp-core/admin-functions.php:5101
+#: zp-core/admin-functions.php:5112
 msgid "Album scheduled for publishing"
 msgstr "Album agendado para publicación"
 
-#: zp-core/admin-functions.php:5102
+#: zp-core/admin-functions.php:5113
 msgid ""
 "<strong>Note:</strong> Scheduled publishing is not active unless the album "
 "is also set to <em>published</em>"
@@ -2818,11 +2817,11 @@ msgstr ""
 "<strong>Nota:</strong> La publicación agendada no está activa a menos que el "
 "álbum también esté configurado en <em>publicado</em>"
 
-#: zp-core/admin-functions.php:5103
+#: zp-core/admin-functions.php:5114
 msgid "Album scheduled for expiration"
 msgstr "Album agendado para expiración"
 
-#: zp-core/admin-functions.php:5104
+#: zp-core/admin-functions.php:5115
 msgid ""
 "<strong>Note:</strong> Scheduled expiration is not active unless the album "
 "is also set to <em>published</em>"
@@ -2830,15 +2829,15 @@ msgstr ""
 "<strong>Nota:</strong> La expiración agendada no está activa a menos que el "
 "álbum también esté configurado en <em>publicado</em>"
 
-#: zp-core/admin-functions.php:5105
+#: zp-core/admin-functions.php:5116
 msgid "Album has expired"
 msgstr "El álbum ha expirado"
 
-#: zp-core/admin-functions.php:5108
+#: zp-core/admin-functions.php:5119
 msgid "Article scheduled for publishing"
 msgstr "Artículo agendado para publicación"
 
-#: zp-core/admin-functions.php:5109
+#: zp-core/admin-functions.php:5120
 msgid ""
 "<strong>Note:</strong> Scheduled publishing is not active unless the article "
 "is also set to <em>published</em>"
@@ -2846,11 +2845,11 @@ msgstr ""
 "<strong>Nota:</strong> La publicación agendada no está activa a menos que el "
 "artículo también esté configurado en <em>publicado</em>"
 
-#: zp-core/admin-functions.php:5110
+#: zp-core/admin-functions.php:5121
 msgid "Article scheduled for expiration"
 msgstr "Artículo agendado para expiración"
 
-#: zp-core/admin-functions.php:5111
+#: zp-core/admin-functions.php:5122
 msgid ""
 "<strong>Note:</strong> Scheduled expiration is not active unless the article "
 "is also set to <em>published</em>"
@@ -2858,15 +2857,15 @@ msgstr ""
 "<strong>Nota:</strong> La expiración agendada no está activa a menos que el "
 "artículo también esté configurado en <em>publicado</em>"
 
-#: zp-core/admin-functions.php:5112
+#: zp-core/admin-functions.php:5123
 msgid "Article has expired"
 msgstr "El artículo ha expirado"
 
-#: zp-core/admin-functions.php:5115
+#: zp-core/admin-functions.php:5126
 msgid "Page scheduled for publishing"
 msgstr "Página agendada para publicación"
 
-#: zp-core/admin-functions.php:5116
+#: zp-core/admin-functions.php:5127
 msgid ""
 "<strong>Note:</strong> Scheduled publishing is not active unless the page is "
 "also set to <em>published</em>"
@@ -2874,11 +2873,11 @@ msgstr ""
 "<strong>Nota:</strong> La publicación agendada no está activa a menos que la "
 "página también esté configurada en <em>publicada</em>"
 
-#: zp-core/admin-functions.php:5117
+#: zp-core/admin-functions.php:5128
 msgid "Page scheduled for expiration"
 msgstr "Página agendada para expiración"
 
-#: zp-core/admin-functions.php:5118
+#: zp-core/admin-functions.php:5129
 msgid ""
 "<strong>Note:</strong> Scheduled expiration is not active unless the page is "
 "also set to <em>published</em>"
@@ -2886,78 +2885,78 @@ msgstr ""
 "<strong>Nota:</strong> La expiración agendada no está activa a menos que la "
 "página también esté configurada en <em>publicada</em>"
 
-#: zp-core/admin-functions.php:5119
+#: zp-core/admin-functions.php:5130
 msgid "Page has expired"
 msgstr "La página ha expirado"
 
-#: zp-core/admin-functions.php:5153
+#: zp-core/admin-functions.php:5164
 #, php-format
 msgid "Publish the album %s (Skip scheduled publishing)"
 msgstr "Publicar el álbum %s (ignorar publicación programada)"
 
-#: zp-core/admin-functions.php:5154
+#: zp-core/admin-functions.php:5165
 #, php-format
 msgid "Publish the album %s (Skip scheduled expiration)"
 msgstr "Publicar el álbum %s (ignorar expiración programada)"
 
-#: zp-core/admin-functions.php:5155
+#: zp-core/admin-functions.php:5166
 #, php-format
 msgid "Un-publish the album %s"
 msgstr "Despublicar el album %s"
 
-#: zp-core/admin-functions.php:5156
+#: zp-core/admin-functions.php:5167
 #, php-format
 msgid "Publish the album %s (Skip expiration)"
 msgstr "Publicar el álbum %s (ignorar expiración)"
 
-#: zp-core/admin-functions.php:5157
+#: zp-core/admin-functions.php:5168
 #, php-format
 msgid "Publish the album %s"
 msgstr "Publicar el album %s"
 
-#: zp-core/admin-functions.php:5161
+#: zp-core/admin-functions.php:5172
 #, php-format
 msgid "Publish the image %s (Skip scheduled publishing)"
 msgstr "Publicar la imagen %s (ignorar publicación programada)"
 
-#: zp-core/admin-functions.php:5162
+#: zp-core/admin-functions.php:5173
 #, php-format
 msgid "Publish the image %s (Skip scheduled expiration)"
 msgstr "Publicar la imagen %s (ignorar expiración programada)"
 
-#: zp-core/admin-functions.php:5163
+#: zp-core/admin-functions.php:5174
 #, php-format
 msgid "Un-publish the image %s"
 msgstr "Despublicar la imagen %s"
 
-#: zp-core/admin-functions.php:5164
+#: zp-core/admin-functions.php:5175
 #, php-format
 msgid "Publish the image %s (Skip expiration)"
 msgstr "Publicar la imagen %s (ignorar expiración)"
 
-#: zp-core/admin-functions.php:5165
+#: zp-core/admin-functions.php:5176
 #, php-format
 msgid "Publish the image %s"
 msgstr "Publicar la imagen %s"
 
-#: zp-core/admin-functions.php:5171
+#: zp-core/admin-functions.php:5182
 msgid "Scheduled for publishing"
 msgstr "Programado para publicación"
 
-#: zp-core/admin-functions.php:5176
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1502
+#: zp-core/admin-functions.php:5187
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1504
 msgid "Scheduled for expiration"
 msgstr "Programado para expiración"
 
-#: zp-core/admin-functions.php:5187
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1513
+#: zp-core/admin-functions.php:5198
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1515
 msgid "Un-published because expired"
 msgstr "Despublicar porque ha expirado"
 
-#: zp-core/admin-functions.php:5192 zp-core/zp-extensions/flag_thumbnail.php:85
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:664
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1019
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1518
+#: zp-core/admin-functions.php:5203 zp-core/zp-extensions/flag_thumbnail.php:85
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:666
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1021
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1520
 msgid "Un-published"
 msgstr "No Publicado"
 
@@ -2973,7 +2972,7 @@ msgstr "páginas"
 #: zp-core/admin-globals.php:74
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:466
 #: zp-core/zp-extensions/zenpage/admin-edit.php:188
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:996
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:998
 msgid "articles"
 msgstr "artículos"
 
@@ -4690,7 +4689,7 @@ msgstr ""
 "<strong>NOTA</strong> Esta opción se aplica sólo a imágenes en caché con "
 "formato JPEG."
 
-#: zp-core/admin-options.php:2686 zp-core/admin-themes.php:149
+#: zp-core/admin-options.php:2686 zp-core/admin-themes.php:152
 msgid "There are no themes for which you have rights to administer."
 msgstr "No hay Temas para los cuales tenga derechos de administrador."
 
@@ -5177,7 +5176,7 @@ msgstr ""
 "jurisdicciones como la UE y su GDPR. Deje vacío para usar el texto "
 "predeterminado:"
 
-#: zp-core/admin-options.php:3427 zp-core/functions.php:2978
+#: zp-core/admin-options.php:3427 zp-core/functions.php:3043
 msgid ""
 "By using this form you agree with the storage and handling of your data by "
 "this website."
@@ -5330,7 +5329,7 @@ msgstr "<strong>¡Error al analizar la cadena! <em>plugin_date</em></strong>"
 msgid "third party plugin"
 msgstr "complemento de terceros"
 
-#: zp-core/admin-plugins.php:299 zp-core/admin-themes.php:232
+#: zp-core/admin-plugins.php:299 zp-core/admin-themes.php:235
 msgid "logo"
 msgstr "logotipo"
 
@@ -5347,10 +5346,10 @@ msgstr "complemento del Admin"
 msgid "More information on %s"
 msgstr "Más información en %s"
 
-#: zp-core/admin-plugins.php:396 zp-core/admin-themes.php:270
+#: zp-core/admin-plugins.php:396 zp-core/admin-themes.php:273
 #, php-format
 msgid "by %s"
-msgstr "Para %s"
+msgstr "por %s"
 
 #: zp-core/admin-plugins.php:398
 msgid "Visit plugin site"
@@ -5584,52 +5583,52 @@ msgstr ""
 "que puede <strong>arruinar todo</strong> si no tiene cuidado cuando "
 "actualice los archivos."
 
-#: zp-core/admin-themes.php:55
+#: zp-core/admin-themes.php:58
 #, php-format
 msgid "Theme <em>%s</em> removed."
 msgstr "Tema <em>%s</em> removido."
 
-#: zp-core/admin-themes.php:57
+#: zp-core/admin-themes.php:60
 #, php-format
 msgid "Error removing theme <em>%s</em>"
 msgstr "Error removiendo el tema <em>%s</em>"
 
-#: zp-core/admin-themes.php:75
+#: zp-core/admin-themes.php:78
 msgid "New theme name?"
 msgstr "¿Nuevo nombre de tema?"
 
-#: zp-core/admin-themes.php:75
+#: zp-core/admin-themes.php:78
 #, php-format
 msgid "Copy of %s"
 msgstr "Copia de %s"
 
-#: zp-core/admin-themes.php:77
+#: zp-core/admin-themes.php:80
 msgid "Theme folder name?"
 msgstr "¿Nombre de carpeta del Tema?"
 
-#: zp-core/admin-themes.php:138
+#: zp-core/admin-themes.php:141
 msgid "no theme assigned, defaulting to Gallery theme"
 msgstr "sin tema asignado, por defecto se asigna el tema de la Galería"
 
-#: zp-core/admin-themes.php:153
+#: zp-core/admin-themes.php:156
 #, php-format
 msgid "Current theme for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 msgstr "Tema actual para <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 
-#: zp-core/admin-themes.php:157 zp-core/admin-themes.php:158
+#: zp-core/admin-themes.php:160 zp-core/admin-themes.php:161
 #, php-format
 msgid "Clear theme assignment for %s"
 msgstr "Limpiar asignación de Tema para %s"
 
-#: zp-core/admin-themes.php:158
+#: zp-core/admin-themes.php:161
 msgid "Clear theme assignment"
 msgstr "Limpiar asignación de Tema"
 
-#: zp-core/admin-themes.php:165
+#: zp-core/admin-themes.php:168
 msgid "Show theme for: "
 msgstr "Mostrar el tema para: "
 
-#: zp-core/admin-themes.php:178
+#: zp-core/admin-themes.php:181
 msgid ""
 "Themes allow you to visually change the entire look and feel of your "
 "gallery. Theme files are located in your Zenphoto <code>/themes</code> "
@@ -5639,7 +5638,7 @@ msgstr ""
 "galería. Los archivos de temas se encuentran en su carpeta Zenphoto <code>/"
 "themes</code>."
 
-#: zp-core/admin-themes.php:179
+#: zp-core/admin-themes.php:182
 msgid ""
 "You can download more themes from the <a href=\"http://www.zenphoto.org/"
 "theme/\">zenphoto themes page</a>."
@@ -5647,7 +5646,7 @@ msgstr ""
 "Puede descargar más temas desde <a href=\"http://www.zenphoto.org/zp/theme/"
 "\">página de temas de zenphoto</a>."
 
-#: zp-core/admin-themes.php:180
+#: zp-core/admin-themes.php:183
 msgid ""
 "Place the downloaded themes in the <code>/themes</code> folder and they will "
 "be available for your use."
@@ -5655,7 +5654,7 @@ msgstr ""
 "Ponga los temas descargados en la carpeta <code>/themes</code> y estarán "
 "disponibles para su uso."
 
-#: zp-core/admin-themes.php:184
+#: zp-core/admin-themes.php:187
 msgid ""
 "You can edit files from custom themes. Official themes shipped with Zenphoto "
 "are not editable, since your changes would be lost on next update."
@@ -5664,7 +5663,7 @@ msgstr ""
 "enviados con Zenphoto no se pueden editar, ya que sus cambios se perderían "
 "en la próxima actualización."
 
-#: zp-core/admin-themes.php:185
+#: zp-core/admin-themes.php:188
 msgid ""
 "If you want to customize an official theme, please first <em>duplicate</em> "
 "it. This will place a copy in your <code>/themes</code> folder for you to "
@@ -5673,59 +5672,59 @@ msgstr ""
 "Si quiere personalizar un tema oficial, primero <em>duplíquelo</em>. Esto "
 "colocará una copia en su carpeta <code>/themes</code> para que lo edite."
 
-#: zp-core/admin-themes.php:189
+#: zp-core/admin-themes.php:192
 msgid "Installed themes"
 msgstr "Temas instalados"
 
-#: zp-core/admin-themes.php:190 zp-core/zp-extensions/ipBlocker.php:86
+#: zp-core/admin-themes.php:193 zp-core/zp-extensions/ipBlocker.php:86
 #: zp-core/zp-extensions/trivialSpam.php:62
 msgid "Action"
 msgstr "Acción"
 
-#: zp-core/admin-themes.php:200
+#: zp-core/admin-themes.php:203
 msgid "Zenphoto official theme"
 msgstr "Tema oficial de Zenphoto"
 
-#: zp-core/admin-themes.php:203
+#: zp-core/admin-themes.php:206
 msgid "third party theme"
 msgstr "tema de terceros"
 
-#: zp-core/admin-themes.php:257
+#: zp-core/admin-themes.php:260
 msgid "This theme is not compatible."
 msgstr "Este tema no es compatible."
 
-#: zp-core/admin-themes.php:272
+#: zp-core/admin-themes.php:275
 msgid "Visit theme site"
 msgstr "Visite el sitio del tema"
 
-#: zp-core/admin-themes.php:277
+#: zp-core/admin-themes.php:280
 #, php-format
 msgid "Set <em>%s</em> theme options"
 msgstr "Establecer las opciones de tema para <em>%s</em>"
 
-#: zp-core/admin-themes.php:288
+#: zp-core/admin-themes.php:291
 msgid "Activate"
 msgstr "Activar"
 
-#: zp-core/admin-themes.php:300
+#: zp-core/admin-themes.php:303
 msgid "Assign"
 msgstr "Asignar"
 
-#: zp-core/admin-themes.php:306
+#: zp-core/admin-themes.php:309
 msgid "Current Theme"
 msgstr "Tema actual"
 
-#: zp-core/admin-themes.php:316 zp-core/utilities/gallery_statistics.php:464
+#: zp-core/admin-themes.php:319 zp-core/utilities/gallery_statistics.php:464
 #: zp-core/zp-extensions/comment_form.php:348
 #: zp-core/zp-extensions/comment_form/admin-comments.php:453
 msgid "Edit"
 msgstr "Editar"
 
-#: zp-core/admin-themes.php:323
+#: zp-core/admin-themes.php:326
 msgid "Do you really want to delete this theme?"
 msgstr "¿Esta seguro que quiere borrar este tema?"
 
-#: zp-core/admin-themes.php:339
+#: zp-core/admin-themes.php:342
 msgid "Duplicate"
 msgstr "Duplicar"
 
@@ -5839,46 +5838,38 @@ msgstr "Carga de archivos completa"
 msgid "Upload to:"
 msgstr "Subir archivos a:"
 
-#: zp-core/admin-upload.php:202 zp-core/admin-upload.php:270
-#: zp-core/admin-upload.php:281 zp-core/admin-upload.php:287
-#: zp-core/admin-upload.php:316
+#: zp-core/admin-upload.php:208 zp-core/admin-upload.php:276
+#: zp-core/admin-upload.php:284 zp-core/admin-upload.php:289
+#: zp-core/admin-upload.php:317
 msgid "That name is already used."
 msgstr "Ese nombre ya está en uso."
 
-#: zp-core/admin-upload.php:202 zp-core/admin-upload.php:270
-#: zp-core/admin-upload.php:281 zp-core/admin-upload.php:287
-#: zp-core/admin-upload.php:316
+#: zp-core/admin-upload.php:208 zp-core/admin-upload.php:276
+#: zp-core/admin-upload.php:284 zp-core/admin-upload.php:289
+#: zp-core/admin-upload.php:317
 msgid ""
 "This upload has to have a folder. Type a title or folder name to continue..."
 msgstr ""
 "Esta carga de archivos tiene que tener una carpeta. Ingrese un título o "
 "nombre de carpeta para continuar..."
 
-#: zp-core/admin-upload.php:271
-msgid "Make a new Album"
-msgstr "Hacer un nuevo Album"
-
-#: zp-core/admin-upload.php:273 zp-core/setup/index.php:1116
-msgid "and"
-msgstr "y"
-
-#: zp-core/admin-upload.php:275
-msgid "Publish the album so everyone can see it."
-msgstr "Publicar el álbum para que todos puedan verlo."
+#: zp-core/admin-upload.php:276
+msgid "Create a new album"
+msgstr "Crear un nuevo Album"
 
 #: zp-core/admin-upload.php:279
-msgid "titled:"
-msgstr "titulado:"
-
-#: zp-core/admin-upload.php:284
-msgid "with the folder name:"
-msgstr "con el nombre de carpeta:"
+msgid "Publish the album."
+msgstr "Publicar el álbum."
 
 #: zp-core/admin-upload.php:290
+msgid "Folder name"
+msgstr "Nombre de carpeta"
+
+#: zp-core/admin-upload.php:293
 msgid "Auto-generate"
 msgstr "Auto-generar"
 
-#: zp-core/admin-upload.php:351
+#: zp-core/admin-upload.php:352
 msgid "There are no albums to which you can upload."
 msgstr "No hay álbumes a los cuales pueda subir."
 
@@ -6073,92 +6064,92 @@ msgstr "Los nombres de usuario no pueden contener \"?\", \"&\", o comillas."
 msgid "The user “%s” already exists."
 msgstr "El usuario \"%s\" ya existe."
 
-#: zp-core/admin.php:68
+#: zp-core/admin.php:70
 msgid "Image cache cleared."
 msgstr "Caché de imágenes borrada."
 
-#: zp-core/admin.php:79
+#: zp-core/admin.php:81
 msgid "RSS cache cleared."
 msgstr "Caché RSS borrado."
 
-#: zp-core/admin.php:90
+#: zp-core/admin.php:92
 msgid "HTML cache cleared."
 msgstr "Caché HTML borrado."
 
-#: zp-core/admin.php:98
+#: zp-core/admin.php:100
 msgid "Search cache cleared."
 msgstr "Caché de Búsqueda borrado."
 
-#: zp-core/admin.php:105
+#: zp-core/admin.php:107
 msgid "enabled"
 msgstr "habilitado"
 
-#: zp-core/admin.php:108
+#: zp-core/admin.php:110
 msgid "Setup files restored."
 msgstr "Archivos de instalación (Setup) restaurados."
 
-#: zp-core/admin.php:118
+#: zp-core/admin.php:120
 msgid "Setup files protected."
 msgstr "Archivos de instalación (Setup) protegidos."
 
-#: zp-core/admin.php:142
+#: zp-core/admin.php:144
 msgid "purge Image cache"
 msgstr "purgar imagen de caché"
 
-#: zp-core/admin.php:143
+#: zp-core/admin.php:145
 msgid "purge RSS cache"
 msgstr "purgar caché RSS"
 
-#: zp-core/admin.php:144
+#: zp-core/admin.php:146
 msgid "reset all hitcounters"
 msgstr "restablecer todos los contadores de visitas"
 
-#: zp-core/admin.php:145
+#: zp-core/admin.php:147
 msgid "purge search cache"
 msgstr "purgar caché de búsqueda"
 
-#: zp-core/admin.php:152
+#: zp-core/admin.php:154
 #, php-format
 msgid "You do not have proper rights to %s."
 msgstr "No tiene derechos apropiados para %s."
 
-#: zp-core/admin.php:157
+#: zp-core/admin.php:159
 #, php-format
 msgid "You do not have proper rights to access %s."
 msgstr "No tiene derechos apropiados de acceso a %s."
 
-#: zp-core/admin.php:247
+#: zp-core/admin.php:249
 msgid "Setup » restore scripts"
 msgstr "Configuración » restaurar scripts"
 
-#: zp-core/admin.php:252
+#: zp-core/admin.php:254
 msgid "Restores setup files so setup can be run."
 msgstr ""
 "Restaura los archivos de configuración (setup) para que el setup pueda "
 "ejecutarse."
 
-#: zp-core/admin.php:262
+#: zp-core/admin.php:264
 msgid "Setup » protect scripts"
 msgstr "Configuración » proteger scripts"
 
-#: zp-core/admin.php:267
+#: zp-core/admin.php:269
 msgid "Protects setup files so setup cannot be run."
 msgstr ""
 "Protege los archivos de configuración (setup) para que no pueda ejecutarse."
 
-#: zp-core/admin.php:278 zp-core/reconfigure.php:191
+#: zp-core/admin.php:280 zp-core/reconfigure.php:180
 msgid "Run setup"
 msgstr "Ejecutar programa de instalación (setup)"
 
-#: zp-core/admin.php:283
+#: zp-core/admin.php:285
 msgid "Run the setup script."
 msgstr "Ejecutar el script de configuración (setup)."
 
-#: zp-core/admin.php:296
+#: zp-core/admin.php:298
 msgid "Your Setup scripts are not protected."
 msgstr "Sus scripts del setup no están protegidos."
 
-#: zp-core/admin.php:297
+#: zp-core/admin.php:299
 msgid ""
 "The Setup environment is not totally secure, you should protect the scripts "
 "to thwart hackers. Use the <strong>Setup » protect scripts</strong> button "
@@ -6169,80 +6160,80 @@ msgstr ""
 "<strong>Configuración » proteger scripts</strong> en la sección <em>Admin</"
 "em> de <em> Funciones de Utilidad</em>."
 
-#: zp-core/admin.php:307
+#: zp-core/admin.php:309
 msgid "Installation information"
 msgstr "Información de la instalación"
 
-#: zp-core/admin.php:311
+#: zp-core/admin.php:313
 msgid "<em>Debug build</em>"
 msgstr "<em>Compilación de depuración</em>"
 
-#: zp-core/admin.php:313
+#: zp-core/admin.php:315
 msgid "Official build"
 msgstr "Compilación Oficial"
 
-#: zp-core/admin.php:319 zp-core/functions-basic.php:1336
+#: zp-core/admin.php:321 zp-core/functions-basic.php:1336
 #: zp-core/setup/index.php:417 zp-core/zp-extensions/security-logger.php:133
 msgid "clone"
 msgstr "clonar"
 
-#: zp-core/admin.php:328
+#: zp-core/admin.php:330
 #, php-format
 msgid "source: %s"
 msgstr "origen: %s"
 
-#: zp-core/admin.php:335
+#: zp-core/admin.php:337
 #, php-format
 msgid "Zenphoto version <strong>%1$s (%2$s)</strong>"
 msgstr "Versión Zenphoto <strong>%1$s (%2$s)</strong>"
 
-#: zp-core/admin.php:351
+#: zp-core/admin.php:353
 #, php-format
 msgid "Preview the release notes for Zenphoto %s"
 msgstr "Vista previa de las notas de lanzamiento de Zenphoto %s"
 
-#: zp-core/admin.php:364
+#: zp-core/admin.php:366
 #, php-format
 msgid "Current locale setting: <strong>%1$s</strong>"
 msgstr "Configuración regional actual: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:366
+#: zp-core/admin.php:368
 msgid "<strong>Locale setting has failed</strong>"
 msgstr "<strong>Falló la configuración regional</strong>"
 
-#: zp-core/admin.php:371
+#: zp-core/admin.php:373
 msgid "Server path:"
 msgstr "Ruta del servidor:"
 
-#: zp-core/admin.php:374
+#: zp-core/admin.php:376
 msgid "WEB path:"
 msgstr "Ruta WEB:"
 
-#: zp-core/admin.php:377
+#: zp-core/admin.php:379
 msgid "PHP Session path:"
 msgstr "Ruta de sesión PHP:"
 
-#: zp-core/admin.php:386
+#: zp-core/admin.php:388
 #, php-format
 msgid "Current gallery theme: <strong>%1$s</strong>"
 msgstr "Tema de Galería actual: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:389
+#: zp-core/admin.php:391
 #, php-format
 msgid "Server software: <strong>%1$s</strong>"
 msgstr "Software del servidor: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:390
+#: zp-core/admin.php:392
 #, php-format
 msgid "PHP version: <strong>%1$s</strong>"
 msgstr "Versión PHP: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:439
+#: zp-core/admin.php:441
 #, php-format
 msgid "PHP Error reporting: <strong>%s</strong>"
 msgstr "PHP informa el Error: <strong>%s</strong>"
 
-#: zp-core/admin.php:445
+#: zp-core/admin.php:447
 msgid ""
 "PHP error messages may be displayed on WEB pages. This may disclose site "
 "sensitive information."
@@ -6250,25 +6241,25 @@ msgstr ""
 "Los mensajes de error de PHP pueden aparecer en las páginas WEB. Esto puede "
 "revelar información sensible del sitio."
 
-#: zp-core/admin.php:445
+#: zp-core/admin.php:447
 msgid "<em>display_errors</em> is <strong>On</strong>"
 msgstr "<em>Mostrar errores</em> está en <strong>SI</strong>"
 
-#: zp-core/admin.php:449
+#: zp-core/admin.php:451
 msgid "<em>display_errors</em> is <strong>Off</strong>"
 msgstr "<em>Mostrar errores</em> está en <strong>NO</strong>"
 
-#: zp-core/admin.php:455
+#: zp-core/admin.php:457
 #, php-format
 msgid "Graphics support: <strong>%s</strong>"
 msgstr "Soporte Gráfico: <strong>%s</strong>"
 
-#: zp-core/admin.php:465
+#: zp-core/admin.php:467
 #, php-format
 msgid "supporting: %s"
 msgstr "soportando: %s"
 
-#: zp-core/admin.php:468
+#: zp-core/admin.php:470
 #, php-format
 msgid ""
 "PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate "
@@ -6277,66 +6268,66 @@ msgstr ""
 "Límite de memoria PHP: <strong>%1$s</strong> (Nota: su servidor podría "
 "asignar menos!)"
 
-#: zp-core/admin.php:472 zp-core/utilities/database_reference.php:103
+#: zp-core/admin.php:474 zp-core/utilities/database_reference.php:103
 #, php-format
 msgid "%1$s version: <strong>%2$s</strong>"
 msgstr "%1$s versión: <strong>%2$s</strong>"
 
-#: zp-core/admin.php:476 zp-core/utilities/database_reference.php:106
+#: zp-core/admin.php:478 zp-core/utilities/database_reference.php:106
 #, php-format
 msgid "Database name: <strong>%1$s</strong>"
 msgstr "Nombre Base de datos: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:481 zp-core/utilities/database_reference.php:112
+#: zp-core/admin.php:483 zp-core/utilities/database_reference.php:112
 #, php-format
 msgid "Table prefix: <strong>%1$s</strong>"
 msgstr "Prefijo de tabla: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:490
+#: zp-core/admin.php:492
 msgid "No spam filter configured"
 msgstr "No hay filtro de SPAM configurado"
 
-#: zp-core/admin.php:492
+#: zp-core/admin.php:494
 #, php-format
 msgid "Spam filter: <strong>%s</strong>"
 msgstr "Filtro de Spam : <strong>%s</strong>"
 
-#: zp-core/admin.php:498
+#: zp-core/admin.php:500
 #, php-format
 msgid "CAPTCHA generator: <strong>%s</strong>"
 msgstr "Generador de CAPTCHA: <strong>%s</strong>"
 
-#: zp-core/admin.php:504
+#: zp-core/admin.php:506
 msgid "There is no mail handler configured!"
 msgstr "No hay gestor de Email configurado!"
 
-#: zp-core/admin.php:516
+#: zp-core/admin.php:518
 #, php-format
 msgid "%u active plugin:"
 msgid_plural "%u active plugins:"
 msgstr[0] "%u plugin activo:"
 msgstr[1] "%u plugins activos:"
 
-#: zp-core/admin.php:552 zp-core/admin.php:590
+#: zp-core/admin.php:554 zp-core/admin.php:592
 msgid "<em>none</em>"
 msgstr "<em>ninguno</em>"
 
-#: zp-core/admin.php:563
+#: zp-core/admin.php:565
 #, php-format
 msgid "%u active filter:"
 msgid_plural "%u active filters:"
 msgstr[0] "%u filtro activo:"
 msgstr[1] "%u filtros activos:"
 
-#: zp-core/admin.php:605
+#: zp-core/admin.php:607
 msgid "Utility functions"
 msgstr "Funciones de utilidad"
 
-#: zp-core/admin.php:650
+#: zp-core/admin.php:652
 msgid "Gallery Stats"
 msgstr "Estadísticas de Galería"
 
-#: zp-core/admin.php:657
+#: zp-core/admin.php:659
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural ""
@@ -6345,14 +6336,14 @@ msgstr[0] "<strong>%1$u</strong> Imagen (%2$u no publicada)"
 msgstr[1] ""
 "<strong>%1$u</strong> Imágenes (<strong>%2$u</strong> no publicadas)"
 
-#: zp-core/admin.php:659
+#: zp-core/admin.php:661
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> Imagen"
 msgstr[1] "<strong>%u</strong> Imagenes"
 
-#: zp-core/admin.php:668
+#: zp-core/admin.php:670
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural ""
@@ -6360,14 +6351,14 @@ msgid_plural ""
 msgstr[0] "<strong>%1$u</strong> Álbum (%2$u no publicado)"
 msgstr[1] "<strong>%1$u</strong> Álbumes (<strong>%2$u</strong> no publicado)"
 
-#: zp-core/admin.php:670
+#: zp-core/admin.php:672
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> Álbum"
 msgstr[1] "<strong>%u</strong> Álbumes"
 
-#: zp-core/admin.php:679
+#: zp-core/admin.php:682
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural ""
@@ -6376,14 +6367,14 @@ msgstr[0] "<strong>%1$u</strong> Comentario (%2$u en moderación)"
 msgstr[1] ""
 "<strong>%1$u</strong> Comentarios (<strong>%2$u</strong> en moderación)"
 
-#: zp-core/admin.php:681
+#: zp-core/admin.php:684
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> Comentario"
 msgstr[1] "<strong>%u</strong> Comentarios"
 
-#: zp-core/admin.php:714
+#: zp-core/admin.php:718
 msgid "Your user rights do not allow access to administrative functions."
 msgstr ""
 "Sus derechos de usuario no le permiten acceder a las funciones de "
@@ -6552,7 +6543,7 @@ msgstr "Datos personalizados"
 msgid "Location/Place"
 msgstr "Localización/Lugar"
 
-#: zp-core/class-search.php:106 zp-core/functions.php:2731
+#: zp-core/class-search.php:106 zp-core/functions.php:2796
 #: zp-core/zp-extensions/contact_form.php:149
 #: zp-core/zp-extensions/contact_form.php:154
 #: zp-core/zp-extensions/userAddressFields.php:52
@@ -6593,8 +6584,8 @@ msgstr "Contenido extra"
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:486
 #: zp-core/zp-extensions/zenpage.php:209
 #: zp-core/zp-extensions/zenpage/admin-categories.php:126
-#: zp-core/zp-extensions/zenpage/admin-edit.php:690
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1339
+#: zp-core/zp-extensions/zenpage/admin-edit.php:691
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1341
 msgid "Categories"
 msgstr "Categorías"
 
@@ -6671,7 +6662,7 @@ msgid "unpublished"
 msgstr "no Publicado"
 
 #: zp-core/class-userdataexport.php:366 zp-core/class-userdataexport.php:422
-#: zp-core/class-userdataexport.php:511 zp-core/reconfigure.php:269
+#: zp-core/class-userdataexport.php:511 zp-core/reconfigure.php:275
 msgid "protected"
 msgstr "protegido"
 
@@ -7328,7 +7319,7 @@ msgstr "Auto-DEP"
 msgid "Flash Did Not Fire"
 msgstr "El Flash no disparó"
 
-#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2717
+#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2782
 msgid "Flash Fired"
 msgstr "Disparo de flash"
 
@@ -8558,41 +8549,41 @@ msgstr ""
 "Zenphoto no encontró scripts de Tema. Verifique la carpeta <em>%s</em> de su "
 "instalación."
 
-#: zp-core/functions.php:1697
+#: zp-core/functions.php:1762
 msgid "0 Bytes"
 msgstr "0 Bytes"
 
-#: zp-core/functions.php:2255
+#: zp-core/functions.php:2320
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr ""
 "Zenphoto procesó un error 404 error en %s. Vea el registro de depuración "
 "para más detalles."
 
-#: zp-core/functions.php:2280
+#: zp-core/functions.php:2345
 #, php-format
 msgid "“%s” Cross Site Request Forgery blocked."
 msgstr "Falsificación de Solicitud de Sitio Cruzada \"%s\" bloqueada."
 
-#: zp-core/functions.php:2452
+#: zp-core/functions.php:2517
 msgid "Click to show content"
 msgstr "Click para mostrar contenido"
 
-#: zp-core/functions.php:2457
+#: zp-core/functions.php:2522
 msgid "Click to hide content"
 msgstr "Click para ocultar contenido"
 
-#: zp-core/functions.php:2507
+#: zp-core/functions.php:2572
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "<em>[%1$s]</em> el parámetro %2$d debería ser un número."
 
-#: zp-core/functions.php:2515
+#: zp-core/functions.php:2580
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "<em>[%1$s]</em> el parámetro %2$d debería ser una cadena."
 
-#: zp-core/functions.php:2528
+#: zp-core/functions.php:2593
 #, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
@@ -8601,353 +8592,353 @@ msgstr ""
 "<em>[%1$s]</em> el parámetro %2$d debería ser <code>verdadero</code> o "
 "<code>falso</code>."
 
-#: zp-core/functions.php:2547
+#: zp-core/functions.php:2612
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
 msgstr "<em>[%1$s]</em> el parámetro %2$d está mal definido."
 
-#: zp-core/functions.php:2553
+#: zp-core/functions.php:2618
 #, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "<em>[%1$s]</em> parámetro %2$d desaparecido."
 
-#: zp-core/functions.php:2562
+#: zp-core/functions.php:2627
 #, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "<em>[%1$s]</em> la macro no toma parámetros"
 
-#: zp-core/functions.php:2585 zp-core/functions.php:2612
+#: zp-core/functions.php:2650 zp-core/functions.php:2677
 #, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>[%1$s]</em> no devolvió datos"
 
-#: zp-core/functions.php:2590
+#: zp-core/functions.php:2655
 #, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>[%1$s]</em> <code>%2$s</code> no es invocable"
 
-#: zp-core/functions.php:2617
+#: zp-core/functions.php:2682
 #, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>[%1$s]</em> toma el parámetro %2$d"
 msgstr[1] "<em>[%1$s]</em> toma los parámetros %2$d"
 
-#: zp-core/functions.php:2689
+#: zp-core/functions.php:2754
 msgid "Camera Maker"
 msgstr "Fabricante de cámara"
 
-#: zp-core/functions.php:2690
+#: zp-core/functions.php:2755
 msgid "Camera Model"
 msgstr "Modelo de cámara"
 
-#: zp-core/functions.php:2691
+#: zp-core/functions.php:2756
 msgid "Image Title"
 msgstr "Título de imagen"
 
-#: zp-core/functions.php:2692
+#: zp-core/functions.php:2757
 msgid "Object Name"
 msgstr "Nombre de objeto"
 
-#: zp-core/functions.php:2693
+#: zp-core/functions.php:2758
 msgid "Image Headline"
 msgstr "Encabezado de imagen"
 
-#: zp-core/functions.php:2694
+#: zp-core/functions.php:2759
 msgid "Image Caption"
 msgstr "Subtítulo de imagen"
 
-#: zp-core/functions.php:2695
+#: zp-core/functions.php:2760
 msgid "Image Caption Writer"
 msgstr "Escritor de subtítulos de imagen"
 
-#: zp-core/functions.php:2696
+#: zp-core/functions.php:2761
 msgid "Time Taken"
 msgstr "Horario de la toma"
 
-#: zp-core/functions.php:2697
+#: zp-core/functions.php:2762
 msgid "Original Time Taken"
 msgstr "Horario original de la toma"
 
-#: zp-core/functions.php:2698
+#: zp-core/functions.php:2763
 msgid "Time Digitized"
 msgstr "Hora de digitalización"
 
-#: zp-core/functions.php:2699
+#: zp-core/functions.php:2764
 msgid "Date Created"
 msgstr "Fecha de creación"
 
-#: zp-core/functions.php:2700
+#: zp-core/functions.php:2765
 msgid "Time Created"
 msgstr "Hora de creación"
 
-#: zp-core/functions.php:2701
+#: zp-core/functions.php:2766
 msgid "Digital Creation Date"
 msgstr "Fecha digital de creación"
 
-#: zp-core/functions.php:2702
+#: zp-core/functions.php:2767
 msgid "Digital Creation Time"
 msgstr "Hora digital de creación"
 
-#: zp-core/functions.php:2703
+#: zp-core/functions.php:2768
 msgid "Artist"
 msgstr "Artista"
 
-#: zp-core/functions.php:2704
+#: zp-core/functions.php:2769
 msgid "Image Credit"
 msgstr "Créditos de la imagen"
 
-#: zp-core/functions.php:2705
+#: zp-core/functions.php:2770
 msgid "Byline"
 msgstr "Byline"
 
-#: zp-core/functions.php:2706
+#: zp-core/functions.php:2771
 msgid "Byline Title"
 msgstr "Título Byline"
 
-#: zp-core/functions.php:2707
+#: zp-core/functions.php:2772
 msgid "Image Source"
 msgstr "Fuente de la imagen"
 
-#: zp-core/functions.php:2708 zp-core/template-functions.php:449
+#: zp-core/functions.php:2773 zp-core/template-functions.php:449
 #: zp-core/zp-extensions/html_meta_tags.php:314
 #: zp-core/zp-extensions/scriptless-socialsharing.php:176
 msgid "Contact"
 msgstr "Contacto"
 
-#: zp-core/functions.php:2709
+#: zp-core/functions.php:2774
 msgid "Copyright Holder"
 msgstr "Titular del Copyright"
 
-#: zp-core/functions.php:2710
+#: zp-core/functions.php:2775
 msgid "Copyright Notice"
 msgstr "Aviso de Copyright"
 
-#: zp-core/functions.php:2711
+#: zp-core/functions.php:2776
 msgid "Keywords"
 msgstr "Palabras clave"
 
-#: zp-core/functions.php:2712
+#: zp-core/functions.php:2777
 msgid "Shutter Speed"
 msgstr "Velocidad de disparo"
 
-#: zp-core/functions.php:2713
+#: zp-core/functions.php:2778
 msgid "Aperture"
 msgstr "Apertura"
 
-#: zp-core/functions.php:2714
+#: zp-core/functions.php:2779
 msgid "ISO Sensitivity"
 msgstr "Sensibilidad ISO"
 
-#: zp-core/functions.php:2715
+#: zp-core/functions.php:2780
 msgid "Exposure Compensation"
 msgstr "Compensación de exposición"
 
-#: zp-core/functions.php:2716
+#: zp-core/functions.php:2781
 msgid "Metering Mode"
 msgstr "Modo de medición"
 
-#: zp-core/functions.php:2718
+#: zp-core/functions.php:2783
 msgid "Original Width"
 msgstr "Ancho original"
 
-#: zp-core/functions.php:2719
+#: zp-core/functions.php:2784
 msgid "Original Height"
 msgstr "Altura original"
 
-#: zp-core/functions.php:2720
+#: zp-core/functions.php:2785
 msgid "Orientation"
 msgstr "Orientación"
 
-#: zp-core/functions.php:2721
+#: zp-core/functions.php:2786
 msgid "Software"
 msgstr "Software"
 
-#: zp-core/functions.php:2722
+#: zp-core/functions.php:2787
 msgid "Contrast Setting"
 msgstr "Ajuste de contraste"
 
-#: zp-core/functions.php:2723
+#: zp-core/functions.php:2788
 msgid "Sharpness Setting"
 msgstr "Ajuste de nitidez"
 
-#: zp-core/functions.php:2724
+#: zp-core/functions.php:2789
 msgid "Saturation Setting"
 msgstr "Ajuste de saturación"
 
-#: zp-core/functions.php:2725
+#: zp-core/functions.php:2790
 msgid "White Balance"
 msgstr "Balance de blancos"
 
-#: zp-core/functions.php:2726
+#: zp-core/functions.php:2791
 msgid "Subject Distance"
 msgstr "Distancia al objeto"
 
-#: zp-core/functions.php:2727
+#: zp-core/functions.php:2792
 msgid "Focal Length"
 msgstr "Distancia focal"
 
-#: zp-core/functions.php:2728
+#: zp-core/functions.php:2793
 msgid "Lens Type"
 msgstr "Tipo de lente"
 
-#: zp-core/functions.php:2729
+#: zp-core/functions.php:2794
 msgid "Lens Info"
 msgstr "Información del lente"
 
-#: zp-core/functions.php:2730
+#: zp-core/functions.php:2795
 msgid "35mm Focal Length Equivalent"
 msgstr "Distancia focal equivalente de 35 mm"
 
-#: zp-core/functions.php:2732
+#: zp-core/functions.php:2797
 msgid "Sub-location"
 msgstr "Sub-ubicación"
 
-#: zp-core/functions.php:2733
+#: zp-core/functions.php:2798
 msgid "Province/State"
 msgstr "Estado/Provincia"
 
-#: zp-core/functions.php:2734
+#: zp-core/functions.php:2799
 msgid "Country/Primary Location Code"
 msgstr "País/Cód. Ubicación primaria"
 
-#: zp-core/functions.php:2735
+#: zp-core/functions.php:2800
 msgid "Country/Primary Location Name"
 msgstr "País/Nombre ubicación primaria"
 
-#: zp-core/functions.php:2736
+#: zp-core/functions.php:2801
 msgid "Content Location Code"
 msgstr "Código de ubicación del contenido"
 
-#: zp-core/functions.php:2737
+#: zp-core/functions.php:2802
 msgid "Content Location Name"
 msgstr "Nombre de ubicación del contenido"
 
-#: zp-core/functions.php:2738
+#: zp-core/functions.php:2803
 msgid "Latitude"
 msgstr "Latitud"
 
-#: zp-core/functions.php:2739
+#: zp-core/functions.php:2804
 msgid "Latitude Reference"
 msgstr "Referencia de latitud"
 
-#: zp-core/functions.php:2740
+#: zp-core/functions.php:2805
 msgid "Longitude"
 msgstr "Longitud"
 
-#: zp-core/functions.php:2741
+#: zp-core/functions.php:2806
 msgid "Longitude Reference"
 msgstr "Referencia de longitud"
 
-#: zp-core/functions.php:2742
+#: zp-core/functions.php:2807
 msgid "Altitude"
 msgstr "Altitud"
 
-#: zp-core/functions.php:2743
+#: zp-core/functions.php:2808
 msgid "Altitude Reference"
 msgstr "Referencia de altitud"
 
-#: zp-core/functions.php:2744
+#: zp-core/functions.php:2809
 msgid "Originating Program"
 msgstr "Programa de origen"
 
-#: zp-core/functions.php:2745
+#: zp-core/functions.php:2810
 msgid "Program Version"
 msgstr "Versión de programa"
 
-#: zp-core/functions.php:2746
+#: zp-core/functions.php:2811
 msgid "Video File Format"
 msgstr "Formato archivo de video"
 
-#: zp-core/functions.php:2747
+#: zp-core/functions.php:2812
 msgid "Video File Size"
 msgstr "Tamaño archivo de video"
 
-#: zp-core/functions.php:2748
+#: zp-core/functions.php:2813
 msgid "Video Artist"
 msgstr "Artista del video"
 
-#: zp-core/functions.php:2749
+#: zp-core/functions.php:2814
 msgid "Video Title"
 msgstr "Título del video"
 
-#: zp-core/functions.php:2750
+#: zp-core/functions.php:2815
 msgid "Bitrate"
 msgstr "Tasa de bits"
 
-#: zp-core/functions.php:2751
+#: zp-core/functions.php:2816
 msgid "Bitrate_Mode"
 msgstr "Modo de tasa de bits"
 
-#: zp-core/functions.php:2752
+#: zp-core/functions.php:2817
 msgid "Bits per sample"
 msgstr "Bits por muestreo"
 
-#: zp-core/functions.php:2753
+#: zp-core/functions.php:2818
 msgid "Codec"
 msgstr "Codec"
 
-#: zp-core/functions.php:2754
+#: zp-core/functions.php:2819
 msgid "Compression Ratio"
 msgstr "Tasa de compresión"
 
-#: zp-core/functions.php:2755
+#: zp-core/functions.php:2820
 msgid "Video Dataformat"
 msgstr "Formato datos de video"
 
-#: zp-core/functions.php:2756
+#: zp-core/functions.php:2821
 msgid "File Encoder"
 msgstr "Codificador de archivo"
 
-#: zp-core/functions.php:2757
+#: zp-core/functions.php:2822
 msgid "Sample rate"
 msgstr "Frecuencia de muestreo"
 
-#: zp-core/functions.php:2758
+#: zp-core/functions.php:2823
 msgid "Channel mode"
 msgstr "Modo de canal"
 
-#: zp-core/functions.php:2759
+#: zp-core/functions.php:2824
 msgid "Format"
 msgstr "Formato"
 
-#: zp-core/functions.php:2760
+#: zp-core/functions.php:2825
 msgid "Channels"
 msgstr "Canales"
 
-#: zp-core/functions.php:2761
+#: zp-core/functions.php:2826
 msgid "Frame rate"
 msgstr "Cuadros por segundo"
 
-#: zp-core/functions.php:2762
+#: zp-core/functions.php:2827
 msgid "X Resolution"
 msgstr "X Resolución"
 
-#: zp-core/functions.php:2763
+#: zp-core/functions.php:2828
 msgid "Y Resolution"
 msgstr "Y Resolución"
 
-#: zp-core/functions.php:2764
+#: zp-core/functions.php:2829
 msgid "Aspect ratio"
 msgstr "Relación de aspecto"
 
-#: zp-core/functions.php:2765
+#: zp-core/functions.php:2830
 msgid "Play Time"
 msgstr "Tiempo de juego"
 
-#: zp-core/functions.php:2766
+#: zp-core/functions.php:2831
 msgid "XMP Rating"
 msgstr "Clasificación XMP"
 
-#: zp-core/functions.php:2993
+#: zp-core/functions.php:3058
 msgid "More info on our data privacy policy."
 msgstr "Más información en nuestra política de privacidad de datos."
 
-#: zp-core/functions.php:3023
+#: zp-core/functions.php:3088
 msgid "Authentication"
 msgstr "Autenticación"
 
-#: zp-core/functions.php:3024
+#: zp-core/functions.php:3089
 msgid ""
 "Cookies set if logging in as an admin or as one of the various guest user "
 "types."
@@ -8955,20 +8946,20 @@ msgstr ""
 "Las cookies se establecen si se inicia sesión como administrador o como uno "
 "de los diversos tipos de usuarios invitados."
 
-#: zp-core/functions.php:3026
+#: zp-core/functions.php:3091
 msgid "Stores the zenphoto user login credentials."
 msgstr "Almacena las credenciales de inicio de sesión de usuario de zenphoto."
 
-#: zp-core/functions.php:3027
+#: zp-core/functions.php:3092
 msgid "Stores guest user gallery access credentias."
 msgstr ""
 "Almacena las credenciales de acceso a la galería de usuarios invitados."
 
-#: zp-core/functions.php:3028
+#: zp-core/functions.php:3093
 msgid "Stores guest user search access credentials"
 msgstr "Almacena las credenciales de acceso de búsqueda de usuarios invitados"
 
-#: zp-core/functions.php:3029
+#: zp-core/functions.php:3094
 msgid ""
 "Stores guest user <em>image item</em> access credentials. <em>itemid</em> "
 "refers to the ID of the image."
@@ -8976,7 +8967,7 @@ msgstr ""
 "Almacena las credenciales de acceso de <em> elemento de imagen</em> del "
 "usuario invitado. <em>itemid</em> se refiere al ID de la imagen."
 
-#: zp-core/functions.php:3030
+#: zp-core/functions.php:3095
 msgid ""
 "Stores guest user <em>album item</em> access credentials. <em>itemid</em> "
 "refers to the ID of the album."
@@ -8984,7 +8975,7 @@ msgstr ""
 "Almacena las credenciales de acceso de <em>elemento del álbum</em> del "
 "usuario invitado. <em>itemid</em> se refiere al ID del álbum."
 
-#: zp-core/functions.php:3031
+#: zp-core/functions.php:3096
 msgid ""
 "Stores guest user <em>category item</em> access credentials. <em>itemid</em> "
 "refers to the ID of the category."
@@ -8992,7 +8983,7 @@ msgstr ""
 "Almacena las credenciales de acceso de <em>elemento de categoría</em> del "
 "usuario invitado. <em>itemid</em> se refiere al ID de la categoría."
 
-#: zp-core/functions.php:3032
+#: zp-core/functions.php:3097
 msgid ""
 "Stores guest user <em>page item</em> access credentials. <em>itemid</em> "
 "refers to the ID of the zenpage page."
@@ -9000,32 +8991,32 @@ msgstr ""
 "Almacena las credenciales de acceso de <em>elemento de página</em> del "
 "usuario invitado. <em>itemid</em> hace referencia al ID de la página zenpage."
 
-#: zp-core/functions.php:3033
+#: zp-core/functions.php:3098
 msgid "Stores guest user access used by the <em>downloadlist</em> plugin."
 msgstr ""
 "Almacena el acceso de usuario invitado utilizado por el complemento "
 "<em>descargar lista</em>."
 
-#: zp-core/functions.php:3037
+#: zp-core/functions.php:3102
 msgid "Search context (frontend)"
 msgstr "Contexto de búsqueda (interfaz del usuario - frontend)"
 
-#: zp-core/functions.php:3038
+#: zp-core/functions.php:3103
 msgid ""
 "These cookies help keep the search result context while browsing results"
 msgstr ""
 "Estas cookies ayudan a mantener el contexto de los resultados de búsqueda "
-"mientras navega por los resultados."
+"mientras navega por los resultados"
 
-#: zp-core/functions.php:3040
+#: zp-core/functions.php:3105
 msgid "Stores search parameters of the most recent search."
 msgstr "Almacena los parámetros de búsqueda de la búsqueda más reciente."
 
-#: zp-core/functions.php:3041
+#: zp-core/functions.php:3106
 msgid "Stores the last album in search context."
 msgstr "Almacena el último álbum en el contexto de búsqueda."
 
-#: zp-core/functions.php:3042
+#: zp-core/functions.php:3107
 msgid ""
 "Stores the previous page within search context (either the main search "
 "results or an album result)."
@@ -9033,44 +9024,44 @@ msgstr ""
 "Almacena la página anterior dentro del contexto de búsqueda (ya sea los "
 "resultados de la búsqueda principal o el resultado de un álbum)."
 
-#: zp-core/functions.php:3046
+#: zp-core/functions.php:3111
 msgid "Administration"
 msgstr "Administración"
 
-#: zp-core/functions.php:3047
+#: zp-core/functions.php:3112
 msgid "These are set on the backend to help editing."
 msgstr ""
 "Estos se establecen en la interfaz del administrador (backend) para ayudar a "
 "editar."
 
-#: zp-core/functions.php:3049
+#: zp-core/functions.php:3114
 msgid "Stores the setting for the nested album list display on the backend."
 msgstr ""
 "Almacena la configuración para la lista de álbumes anidados visualizada en "
 "la interfaz del administrador (backend)."
 
-#: zp-core/functions.php:3050
+#: zp-core/functions.php:3115
 msgid "Stores the setting for the nested subalbum list display on the backend."
 msgstr ""
 "Almacena la configuración para la lista de sub-álbumes anidados visualizada "
 "en la interfaz del administrador (backend)."
 
-#: zp-core/functions.php:3051
+#: zp-core/functions.php:3116
 msgid "Stores the image count on the backend images pages."
 msgstr ""
 "Almacena el recuento de imágenes en las páginas de imágenes de la interfaz "
 "del administrador (backend)."
 
-#: zp-core/functions.php:3052
+#: zp-core/functions.php:3117
 msgid "Stores the upload method on the backend."
 msgstr ""
 "Almacena el método de carga en la interfaz del administrador (backend)."
 
-#: zp-core/functions.php:3056
+#: zp-core/functions.php:3121
 msgid "Cookie related"
 msgstr "Cookie relacionada"
 
-#: zp-core/functions.php:3059
+#: zp-core/functions.php:3124
 msgid ""
 "Used by setup to test if cookies are operational on the installation. May "
 "store the Zenphoto version number of the last unsuccessful run."
@@ -9079,30 +9070,30 @@ msgstr ""
 "en la instalación. Puede almacenar el número de versión de Zenphoto de la "
 "última ejecución fallida."
 
-#: zp-core/functions.php:3060
+#: zp-core/functions.php:3125
 msgid "Stores the path for cookies."
 msgstr "Almacena la ruta para las cookies."
 
-#: zp-core/functions.php:3064
+#: zp-core/functions.php:3129
 msgid "Various"
 msgstr "Varios"
 
-#: zp-core/functions.php:3065
+#: zp-core/functions.php:3130
 msgid "Various cookies set by plugins, themes or otherwise"
 msgstr "Varias cookies establecidas por complementos, temas u otros"
 
-#: zp-core/functions.php:3067
+#: zp-core/functions.php:3132
 msgid "Stores the HTTPS/SSL setting."
 msgstr "Almacena la configuración para HTTPS/SSL."
 
-#: zp-core/functions.php:3068
+#: zp-core/functions.php:3133
 msgid ""
 "Stores the language selection set by the <em>dynamic_locale</em> plugin."
 msgstr ""
 "Almacena la selección de idioma establecida por el complemento "
 "<em>dynamic_locale</em>."
 
-#: zp-core/functions.php:3069
+#: zp-core/functions.php:3134
 msgid ""
 "Stores if the mobile theme is defined - used by the <em>mobileTheme</em> "
 "plugin."
@@ -9110,13 +9101,13 @@ msgstr ""
 "Almacena si el tema móvil está definido, utilizado por el complemento "
 "<em>mobileTheme</em>."
 
-#: zp-core/functions.php:3070
+#: zp-core/functions.php:3135
 msgid "Stores the current theme selected by the <em>themeSwitcher</em> plugin."
 msgstr ""
 "Almacena el tema actual seleccionado por el complemento <em>themeSwitcher</"
 "em>."
 
-#: zp-core/functions.php:3071
+#: zp-core/functions.php:3136
 msgid ""
 "Stores information from the comment form POST for re-populaton of the form "
 "in the <em>comment_form</em> plugin."
@@ -9124,7 +9115,7 @@ msgstr ""
 "Almacena información del formulario de comentarios POST para volver a "
 "rellenar el formulario en el complemento <em>comment_form</em>."
 
-#: zp-core/functions.php:3138
+#: zp-core/functions.php:3203
 msgid ""
 "Set %1 to the section to get, set %2 to the h2-h6 for the headline element "
 "to use."
@@ -9132,7 +9123,7 @@ msgstr ""
 "Establezca %1 en la sección que desee obtener, establezca %2 en h2-h6 para "
 "que lo utilice el elemento de título."
 
-#: zp-core/functions.php:3151 zp-core/zp-extensions/comment_form.php:133
+#: zp-core/functions.php:3216 zp-core/zp-extensions/comment_form.php:133
 #: zp-core/zp-extensions/contact_form.php:189
 #: zp-core/zp-extensions/register_user.php:116
 msgid "No captcha handler is enabled."
@@ -9380,6 +9371,11 @@ msgstr "Temas"
 #: zp-core/lib-auth.php:537
 msgid "Zenpage"
 msgstr "Zenpage"
+
+#: zp-core/lib-auth.php:540 zp-core/lib-auth.php:559 zp-core/lib-auth.php:584
+#: zp-core/lib-auth.php:611
+msgid "Full admin rights"
+msgstr "Derechos Totales de admin"
 
 #: zp-core/lib-auth.php:544 zp-core/lib-auth.php:563 zp-core/lib-auth.php:588
 msgid "Users with this right may view the admin overview page."
@@ -10047,40 +10043,36 @@ msgstr[1] "Macros definidas:"
 msgid "an unknown release"
 msgstr "un lanzamiento desconocido"
 
-#: zp-core/reconfigure.php:135
-msgid "Setup re-run ignored by admin request."
-msgstr "Re-ejecución del Setup ignorado a solicitud del Admin."
-
-#: zp-core/reconfigure.php:139
+#: zp-core/reconfigure.php:133
 msgid "Zenphoto has detected a change in your installation."
 msgstr "Zenphoto ha detectado un cambio en su instalación."
 
-#: zp-core/reconfigure.php:146
+#: zp-core/reconfigure.php:140
 #, php-format
 msgid "Your server software has changed from %1$s to %2$s."
 msgstr "El software de su servidor ha cambiado de %1$s a %2$s."
 
-#: zp-core/reconfigure.php:150
+#: zp-core/reconfigure.php:143
 #, php-format
 msgid "Your database software has changed from %1$s to %2$s."
 msgstr "Su software de Base de datos ha cambiado de %1$s a %2$s."
 
-#: zp-core/reconfigure.php:153
+#: zp-core/reconfigure.php:146
 #, php-format
 msgid "Zenphoto %1$s has been copied over %2$s."
 msgstr "Zenphoto %1$s ha sido copiado sobre %2$s."
 
-#: zp-core/reconfigure.php:156
+#: zp-core/reconfigure.php:149
 #, php-format
 msgid "Your installation has moved from %1$s to %2$s."
 msgstr "Su instalación fue movida de %1$s a %2$s."
 
-#: zp-core/reconfigure.php:160
+#: zp-core/reconfigure.php:153
 #, php-format
 msgid "The script <code>%1$s</code> has changed."
 msgstr "El script <code>%s</code> ha cambiado."
 
-#: zp-core/reconfigure.php:170
+#: zp-core/reconfigure.php:163
 msgid ""
 "The change detected is critical. You <strong>must</strong> run setup for "
 "your site to function."
@@ -10088,7 +10080,7 @@ msgstr ""
 "El cambio detectado es crítico. <strong>DEBE</strong> ejecutar el setup para "
 "que su sitio funcione."
 
-#: zp-core/reconfigure.php:172
+#: zp-core/reconfigure.php:165
 msgid ""
 "The change detected may not be critical but you should run setup at your "
 "earliest convenience."
@@ -10096,11 +10088,11 @@ msgstr ""
 "El cambio detectado puede no ser crítico, pero debe ejecutar el setup lo "
 "antes posible."
 
-#: zp-core/reconfigure.php:192
+#: zp-core/reconfigure.php:181
 msgid "Ignore, I know what I am doing!"
 msgstr "Ignorar, sé lo que estoy haciendo!"
 
-#: zp-core/reconfigure.php:209
+#: zp-core/reconfigure.php:200
 msgid ""
 "You don't have the rights to run setup. Please contact your site's "
 "administrator or login with your administrator user account."
@@ -10108,6 +10100,10 @@ msgstr ""
 "No tiene los derechos para ejecutar la configuración. Póngase en contacto "
 "con el administrador de su sitio o inicie sesión con su cuenta de usuario "
 "administrador."
+
+#: zp-core/reconfigure.php:219
+msgid "Setup re-run ignored by admin request."
+msgstr "Re-ejecución del Setup ignorado a solicitud del Admin."
 
 #: zp-core/rewrite.php:94
 #, php-format
@@ -10744,12 +10740,11 @@ msgstr "Soporte PHP <code>dom</code> [no está presente]"
 
 #: zp-core/setup/index.php:696
 msgid ""
-"<code>dom</code> support is not criticaly but strongely recommended for some "
+"<code>dom</code> support is not criticaly but recommended for some "
 "functionality processing and modifying HTML contents."
 msgstr ""
 "La compatibilidad con <code>dom</code> no es crítica, pero se recomienda "
-"encarecidamente para algunas funciones de procesamiento y modificación de "
-"contenido HTML."
+"para algunas funciones de procesamiento y modificación de contenido HTML."
 
 #: zp-core/setup/index.php:697
 msgid "PHP <code>simplexml</code> support"
@@ -10822,11 +10817,9 @@ msgstr ""
 
 #: zp-core/setup/index.php:715
 msgid ""
-"You need to install the <code>mbstring</code> and <code>iconv</code> "
-"packages or correct the issue with <code>iconv()</code>"
+"You need to install the <code>mbstring</code> and <code>iconv</code> packages"
 msgstr ""
-"Necesita instalar los paquetes <code>mbstring</code> e <code>iconv</code> o "
-"corregir el problema con <code>iconv()</code>"
+"Necesita instalar los paquetes <code>mbstring</code> y <code>iconv</code>"
 
 #: zp-core/setup/index.php:716 zp-core/setup/index.php:719
 msgid ""
@@ -11263,6 +11256,10 @@ msgstr "Actualizar"
 #: zp-core/setup/index.php:1106
 msgid "Alter"
 msgstr "Alterar"
+
+#: zp-core/setup/index.php:1116
+msgid "and"
+msgstr "y"
 
 #: zp-core/setup/index.php:1118
 msgid "Grants found:"
@@ -12203,19 +12200,19 @@ msgstr "Volver a buscar"
 msgid "Return to archive"
 msgstr "Volver al archivo"
 
-#: zp-core/template-functions.php:2179
+#: zp-core/template-functions.php:2183
 msgid "The image is marked un-published."
 msgstr "La imagen está marcada como No publicada."
 
-#: zp-core/template-functions.php:2570
+#: zp-core/template-functions.php:2574
 msgid "Image Info"
 msgstr "Información de imagen"
 
-#: zp-core/template-functions.php:3444
+#: zp-core/template-functions.php:3474
 msgid "No popular tags"
 msgstr "No hay etiquetas populares"
 
-#: zp-core/template-functions.php:3745
+#: zp-core/template-functions.php:3775
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -12223,49 +12220,49 @@ msgstr ""
 "el parámetro printSearchForm $album_list está en desuso. Pase la matriz "
 "(\"albums\"=>array(album, album, ...)) en su lugar."
 
-#: zp-core/template-functions.php:3761 zp-core/template-functions.php:3767
+#: zp-core/template-functions.php:3791 zp-core/template-functions.php:3797
 #, php-format
 msgid "%s within previous results"
 msgstr "%s dentro de las resultados previos"
 
-#: zp-core/template-functions.php:3845
+#: zp-core/template-functions.php:3875
 msgid "search options"
 msgstr "opciones de búsqueda"
 
-#: zp-core/template-functions.php:3845
+#: zp-core/template-functions.php:3875
 msgid "fields"
 msgstr "campos"
 
-#: zp-core/template-functions.php:3891
+#: zp-core/template-functions.php:3921
 msgid "Within"
 msgstr "Dentro"
 
-#: zp-core/template-functions.php:3895
+#: zp-core/template-functions.php:3925
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nueva"
 
-#: zp-core/template-functions.php:3902
+#: zp-core/template-functions.php:3932
 msgid "Check/uncheck all"
 msgstr "Marcar/Desmarcar todo"
 
-#: zp-core/template-functions.php:3954
+#: zp-core/template-functions.php:3984
 msgid "no date"
 msgstr "sin fecha"
 
-#: zp-core/template-functions.php:4188
+#: zp-core/template-functions.php:4218
 msgid "You are successfully logged in."
 msgstr "Usted ha iniciado sesión correctamente."
 
-#: zp-core/template-functions.php:4193
+#: zp-core/template-functions.php:4223
 msgid "The page you are trying to view is password protected."
 msgstr "La página que intenta ver está protegida por contraseña."
 
-#: zp-core/template-functions.php:4198
+#: zp-core/template-functions.php:4228
 msgid "login"
 msgstr "iniciar Sesión"
 
-#: zp-core/template-functions.php:4216
+#: zp-core/template-functions.php:4246
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
 "website CMS\">Zenphoto</a>"
@@ -12273,21 +12270,21 @@ msgstr ""
 "Motorizado por Zenphoto <a href=\"http://www.zenphoto.org\" title=\"El sitio "
 "Web de medios CMS más simple\"></a>"
 
-#: zp-core/template-functions.php:4381
+#: zp-core/template-functions.php:4411
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Error Zenphoto:</strong> no se encontró el objeto requerido."
 
-#: zp-core/template-functions.php:4383
+#: zp-core/template-functions.php:4413
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zp-core/template-functions.php:4386
+#: zp-core/template-functions.php:4416
 #, php-format
 msgid "Image: %s"
 msgstr "Imagen: %s"
 
-#: zp-core/template-functions.php:4389
+#: zp-core/template-functions.php:4419
 #, php-format
 msgid "Page: %s"
 msgstr "Página: %s"
@@ -12668,9 +12665,9 @@ msgstr "%s imágenes"
 #: zp-core/zp-extensions/zenpage/admin-categories.php:193
 #: zp-core/zp-extensions/zenpage/admin-edit.php:360
 #: zp-core/zp-extensions/zenpage/admin-edit.php:362
-#: zp-core/zp-extensions/zenpage/admin-edit.php:819
-#: zp-core/zp-extensions/zenpage/admin-edit.php:823
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1427
+#: zp-core/zp-extensions/zenpage/admin-edit.php:820
+#: zp-core/zp-extensions/zenpage/admin-edit.php:824
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1429
 msgid "View"
 msgstr "Ver"
 
@@ -13760,81 +13757,81 @@ msgstr "álbum %s"
 msgid "%1$s: %2$s"
 msgstr "%1$s: %2$s"
 
-#: zp-core/zp-extensions/cacheManager.php:694
+#: zp-core/zp-extensions/cacheManager.php:699
 msgid "All already cached."
 msgstr "Todo ya en caché."
 
-#: zp-core/zp-extensions/cacheManager.php:718
+#: zp-core/zp-extensions/cacheManager.php:723
 msgid "This album does not have any images."
 msgstr "Este álbum no contiene imágenes."
 
-#: zp-core/zp-extensions/cacheManager.php:817
-#: zp-core/zp-extensions/cacheManager.php:910
+#: zp-core/zp-extensions/cacheManager.php:822
+#: zp-core/zp-extensions/cacheManager.php:915
 msgid "Finds images that have not been cached and creates the cached versions."
 msgstr ""
 "Busca imágenes que no se han almacenado en caché y crea las versiones "
 "almacenadas en caché."
 
-#: zp-core/zp-extensions/cacheManager.php:820
-#: zp-core/zp-extensions/cacheManager.php:913
+#: zp-core/zp-extensions/cacheManager.php:825
+#: zp-core/zp-extensions/cacheManager.php:918
 msgid "You must first set the plugin options for cached image parameters."
 msgstr ""
 "Primero debe configurar las opciones de complemento para los parámetros de "
 "imagen en caché."
 
-#: zp-core/zp-extensions/cacheManager.php:824
-#: zp-core/zp-extensions/cacheManager.php:838
-#: zp-core/zp-extensions/cacheManager.php:852
-#: zp-core/zp-extensions/cacheManager.php:864
-#: zp-core/zp-extensions/cacheManager.php:878
-#: zp-core/zp-extensions/cacheManager.php:891 zp-core/zp-extensions/rss.php:142
+#: zp-core/zp-extensions/cacheManager.php:829
+#: zp-core/zp-extensions/cacheManager.php:843
+#: zp-core/zp-extensions/cacheManager.php:857
+#: zp-core/zp-extensions/cacheManager.php:869
+#: zp-core/zp-extensions/cacheManager.php:883
+#: zp-core/zp-extensions/cacheManager.php:896 zp-core/zp-extensions/rss.php:142
 msgid "Cache"
 msgstr "Caché"
 
-#: zp-core/zp-extensions/cacheManager.php:826
+#: zp-core/zp-extensions/cacheManager.php:831
 msgid "Cache manager"
 msgstr "Administrador de caché"
 
-#: zp-core/zp-extensions/cacheManager.php:840
+#: zp-core/zp-extensions/cacheManager.php:845
 msgid "Purge RSS cache"
 msgstr "Purgar la caché RSS"
 
-#: zp-core/zp-extensions/cacheManager.php:845
+#: zp-core/zp-extensions/cacheManager.php:850
 msgid "Delete all files from the RSS cache"
 msgstr "Borrar todos los archivos del caché RSS"
 
-#: zp-core/zp-extensions/cacheManager.php:854
+#: zp-core/zp-extensions/cacheManager.php:859
 msgid "Purge Image cache"
 msgstr "Purgar la caché de imagen"
 
-#: zp-core/zp-extensions/cacheManager.php:859
+#: zp-core/zp-extensions/cacheManager.php:864
 msgid "Delete all files from the Image cache"
 msgstr "Borrar todos los archivos del caché de imagen"
 
-#: zp-core/zp-extensions/cacheManager.php:866
+#: zp-core/zp-extensions/cacheManager.php:871
 msgid "Purge HTML cache"
 msgstr "Purgar caché HTML"
 
-#: zp-core/zp-extensions/cacheManager.php:870
+#: zp-core/zp-extensions/cacheManager.php:875
 msgid ""
 "Clear the static HTML cache. HTML pages will be re-cached as they are viewed."
 msgstr ""
 "Limpiar el caché HTML estático. Las páginas HTML serán cacheadas nuevamente "
 "a medida que sean vistas."
 
-#: zp-core/zp-extensions/cacheManager.php:880
+#: zp-core/zp-extensions/cacheManager.php:885
 msgid "Purge search cache"
 msgstr "Purgar caché de búsqueda"
 
-#: zp-core/zp-extensions/cacheManager.php:884
+#: zp-core/zp-extensions/cacheManager.php:889
 msgid "Clear the static search cache."
 msgstr "Borrar la caché estática de búsqueda."
 
-#: zp-core/zp-extensions/cacheManager.php:893
+#: zp-core/zp-extensions/cacheManager.php:898
 msgid "Cleanup image cache sizes"
 msgstr "Limpiar tamaños de caché de imagen"
 
-#: zp-core/zp-extensions/cacheManager.php:897
+#: zp-core/zp-extensions/cacheManager.php:902
 msgid ""
 "Removes old stored image cache sizes of themes and plugins not existing on "
 "this site. It also removes sizes from inactive plugins."
@@ -13843,11 +13840,11 @@ msgstr ""
 "complementos que no existen en este sitio. También elimina tamaños de "
 "complementos inactivos."
 
-#: zp-core/zp-extensions/cacheManager.php:915
+#: zp-core/zp-extensions/cacheManager.php:920
 msgid "Cache album images"
 msgstr "Almacenar en caché imágenes del álbum"
 
-#: zp-core/zp-extensions/cacheManager.php:961
+#: zp-core/zp-extensions/cacheManager.php:966
 msgid ""
 "Your server does not support the native PHP extension <code>cURL</code>. Pre-"
 "caching images is much more effective using it."
@@ -13855,13 +13852,13 @@ msgstr ""
 "Su servidor no admite la extensión PHP nativa <code>cURL</code>. La "
 "generación de caché previo de imágenes es mucho más efectiva usándolo."
 
-#: zp-core/zp-extensions/cacheManager.php:980
+#: zp-core/zp-extensions/cacheManager.php:985
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:215
 msgid "Back to the overview"
 msgstr "Volver a la Vista Previa"
 
-#: zp-core/zp-extensions/cacheManager.php:984
-#: zp-core/zp-extensions/cacheManager.php:985
+#: zp-core/zp-extensions/cacheManager.php:989
+#: zp-core/zp-extensions/cacheManager.php:990
 msgid "New cache size selection"
 msgstr "Nueva selección de tamaño de caché"
 
@@ -16141,11 +16138,11 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:237
 msgid ""
-"Use the image_album_statiscic plugin function getImageStatisic()with "
+"Use the image_album_statistic plugin function getImageStatisic() with "
 "appropiate parameters"
 msgstr ""
-"Utilice la función getImageStatisic() del complemento image_album_statiscic "
-"con los parámetros adecuados"
+"Utilice el complemento image_album_statistics de la función "
+"getImageStatistic() con los parámetros adecuados"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:239
 msgid ""
@@ -16731,7 +16728,7 @@ msgstr ""
 "<p class=\"notebox\">Favoritos requiere que la opción <code>mod_rewrite</"
 "code> esté habilitada.</p>"
 
-#: zp-core/zp-extensions/favoritesHandler/favoritesClass.php:112
+#: zp-core/zp-extensions/favoritesHandler/class-favorites.php:112
 msgid "Users watching:"
 msgstr "Usuarios viendo:"
 
@@ -17447,25 +17444,25 @@ msgstr ""
 "Funciones que proporcionan varias estadísticas sobre imágenes y álbumes en "
 "la galería."
 
-#: zp-core/zp-extensions/image_album_statistics.php:259
+#: zp-core/zp-extensions/image_album_statistics.php:286
 #: zp-core/zp-extensions/rss.php:646
 #, php-format
 msgid "Last update: %s"
 msgstr "Ultima actualización: %s"
 
-#: zp-core/zp-extensions/image_album_statistics.php:268
+#: zp-core/zp-extensions/image_album_statistics.php:295
 #, php-format
 msgid "%1$u new %2$s"
 msgstr "%1$u nueva %2$s"
 
-#: zp-core/zp-extensions/image_album_statistics.php:280
-#: zp-core/zp-extensions/image_album_statistics.php:492
+#: zp-core/zp-extensions/image_album_statistics.php:307
+#: zp-core/zp-extensions/image_album_statistics.php:546
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
 msgstr "Clasificación: %1$u (Votos: %2$u)"
 
-#: zp-core/zp-extensions/image_album_statistics.php:287
-#: zp-core/zp-extensions/image_album_statistics.php:499
+#: zp-core/zp-extensions/image_album_statistics.php:314
+#: zp-core/zp-extensions/image_album_statistics.php:553
 #, php-format
 msgid "Views: %u"
 msgstr "Vistas: %u"
@@ -17789,47 +17786,16 @@ msgstr ""
 "una versión reciente o actualizar su <a href=\"http://get.adobe.com/"
 "flashplayer/\" target=\"_blank\">Extensión Flash</a>."
 
-#: zp-core/zp-extensions/lazyload.php:39
+#: zp-core/zp-extensions/lazyload.php:16
 msgid ""
-"Provides lazyloading for theme and backend using standard template image "
-"functions using <a href=\"https://github.com/aFarkas/lazysizes\" rel="
-"\"nooopener\" target=\"_blank\">lazysizes</a>"
+"Provides lazyloading for theme and backend using standard template functions "
+"using <a href=\"https://github.com/aFarkas/lazysizes\" rel=\"nooopener\" "
+"target=\"_blank\">lazysizes</a>"
 msgstr ""
-"Proporciona carga diferida para el tema y la interfaz del administrador "
-"(backend) mediante funciones de imagen de plantilla estándar mediante <a "
+"Proporciona carga diferida para el tema e interfaz del administrador "
+"(backend) usando funciones de imagen de plantilla estándar a través de <a "
 "href=\"https://github.com/aFarkas/lazysizes\" rel=\"noopener\" target="
 "\"_blank\">lazysizes</a>"
-
-#: zp-core/zp-extensions/lazyload.php:41
-msgid "The native PHP extensions DOM/DOMDocument and multibyte are required."
-msgstr ""
-"Se requieren las extensiones nativas de PHP DOM/DOMDocument y multibyte."
-
-#: zp-core/zp-extensions/lazyload.php:71
-msgid "Theme: Gallery images"
-msgstr "Tema: Galería de imágenes"
-
-#: zp-core/zp-extensions/lazyload.php:74
-msgid ""
-"Attaches JS lazyloading to all images on your theme or plugins that are "
-"using the standard print* image template functions."
-msgstr ""
-"Adjunta la carga diferida de JS a todas las imágenes de su tema o "
-"complementos que utilizan las funciones de plantilla de imagen de impresión* "
-"estándar."
-
-#: zp-core/zp-extensions/lazyload.php:76
-msgid "Backend images"
-msgstr "Imágenes de interfaz del administrador (Backend)"
-
-#: zp-core/zp-extensions/lazyload.php:79
-msgid ""
-"Attaches JS lazyloading to images on the backend using the necessary "
-"standard adminthumb functions."
-msgstr ""
-"Adjunta la carga diferida de JS a las imágenes en la interfaz del "
-"administrador (backend) utilizando las funciones estándar necesarias para el "
-"administrador."
 
 #: zp-core/zp-extensions/macroList.php:67
 msgid "View available <code>content macros</code>."
@@ -18228,7 +18194,7 @@ msgstr ""
 "createMenuIfNotExists ha publicado errores en su registro de depuración."
 
 #: zp-core/zp-extensions/menu_manager.php:1248
-#: zp-core/zp-extensions/print_album_menu.php:262
+#: zp-core/zp-extensions/print_album_menu.php:261
 #, php-format
 msgid "%u album"
 msgid_plural "%u albums"
@@ -18236,7 +18202,7 @@ msgstr[0] "%u álbum"
 msgstr[1] "%u álbumes"
 
 #: zp-core/zp-extensions/menu_manager.php:1254
-#: zp-core/zp-extensions/print_album_menu.php:268
+#: zp-core/zp-extensions/print_album_menu.php:267
 #, php-format
 msgid "%u image"
 msgid_plural "%u images"
@@ -18271,7 +18237,7 @@ msgstr "protección por contraseña"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:130
 #: zp-core/zp-extensions/publishContent/publishContent.php:279
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:280
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:282
 msgid "view"
 msgstr "ver"
 
@@ -18283,7 +18249,7 @@ msgstr "Confirma borrar %s? No se puede deshacer."
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:147
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:175
 #: zp-core/zp-extensions/zenpage/admin-edit.php:551
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:297
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:299
 msgid "delete"
 msgstr "borrar"
 
@@ -19445,8 +19411,8 @@ msgstr "Fijar todos para ser borrados"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:421
 #: zp-core/zp-extensions/zenpage/admin-edit.php:406
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1016
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1517
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1018
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1519
 msgid "Publish"
 msgstr "Publicar"
 
@@ -21828,20 +21794,11 @@ msgstr ""
 "La carpeta de caché HTML estático no fue creada. Intente crearla manualmente "
 "vía FTP con chmod 0777."
 
-#: zp-core/zp-extensions/static_html_cache.php:171
-#, php-format
-msgid ""
-"Cached content of %3$s served by static_html_cache in %1$.4f seconds plus "
-"%2$.4f seconds unavoidable Zenphoto overhead."
-msgstr ""
-"El contenido en caché de %3$s servido por static_html_cache en %1$.4f "
-"segundos más %2$.4f segundos es una sobrecarga inevitable de Zenphoto."
-
-#: zp-core/zp-extensions/static_html_cache.php:347
+#: zp-core/zp-extensions/static_html_cache.php:65
 msgid "Static HTML cache expire"
 msgstr "Expiración del caché HTML estático"
 
-#: zp-core/zp-extensions/static_html_cache.php:348
+#: zp-core/zp-extensions/static_html_cache.php:68
 msgid ""
 "When the cache should expire in seconds. Default is 86400 seconds (1 day  = "
 "24 hrs * 60 min * 60 sec)."
@@ -21849,11 +21806,11 @@ msgstr ""
 "Indica cuando debería expirar el caché en segundos. Predeterminado en 86400 "
 "segs. (1 día = 24 hrs. x 60 min. x 60 segs.)."
 
-#: zp-core/zp-extensions/static_html_cache.php:349
+#: zp-core/zp-extensions/static_html_cache.php:69
 msgid "Excluded pages"
 msgstr "Páginas excluidas"
 
-#: zp-core/zp-extensions/static_html_cache.php:350
+#: zp-core/zp-extensions/static_html_cache.php:72
 msgid ""
 "The list of pages to be excluded from cache generation. Pages that can be "
 "excluded are custom theme pages including Zenpage pages (these optionally "
@@ -21876,7 +21833,7 @@ msgstr ""
 "NombreArchivodeImagen o NombreCarpetadeAlbum</em>. Separe distintas entradas "
 "con comas.<br />"
 
-#: zp-core/zp-extensions/static_html_cache.php:351
+#: zp-core/zp-extensions/static_html_cache.php:73
 msgid ""
 "<strong>NOTE:</strong> In order to work correctly, the following theme pages "
 "must be excluded from cache generation: <em>search.php, contact.php, "
@@ -21885,6 +21842,15 @@ msgstr ""
 "<strong>NOTA:</strong> para que funcione correctamente, las siguientes "
 "páginas de los temas deben ser excluidas de la generación de caché: "
 "<em>search.php, contact.php, register.php</em> y <em>favoritos. php</em>"
+
+#: zp-core/zp-extensions/static_html_cache.php:198
+#, php-format
+msgid ""
+"Cached content of %3$s served by static_html_cache in %1$.4f seconds plus "
+"%2$.4f seconds unavoidable Zenphoto overhead."
+msgstr ""
+"El contenido en caché de %3$s servido por static_html_cache en %1$.4f "
+"segundos más %2$.4f segundos es una sobrecarga inevitable de Zenphoto."
 
 #: zp-core/zp-extensions/tag_extras.php:13
 msgid ""
@@ -22202,7 +22168,7 @@ msgstr "<strong>Nota:</strong> Este álbum no contiene imágenes."
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:294
 #: zp-core/zp-extensions/zenpage.php:208
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:109
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1332
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1334
 msgid "Articles"
 msgstr "Artículos"
 
@@ -22212,7 +22178,7 @@ msgid "(Click on article title to include a link)"
 msgstr "(Haga click en un título de artículo para incluir un enlace)"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:638
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:752
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:754
 msgid "All categories"
 msgstr "Todas las categorías"
 
@@ -23396,7 +23362,7 @@ msgid "Edit Page"
 msgstr "Editar Página"
 
 #: zp-core/zp-extensions/zenpage.php:415
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:296
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:298
 msgid "Delete page"
 msgstr "Borrar página"
 
@@ -23414,7 +23380,7 @@ msgstr "Nueva página"
 #: zp-core/zp-extensions/zenpage.php:427
 #: zp-core/zp-extensions/zenpage/admin-edit.php:132
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:74
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:390
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:393
 #: zp-core/zp-extensions/zenpage/admin-pages.php:80
 msgid "Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"
 msgstr ""
@@ -23426,8 +23392,8 @@ msgid "Edit Article"
 msgstr "Editar Artículo"
 
 #: zp-core/zp-extensions/zenpage.php:432
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:390
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:391
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:393
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:394
 msgid "Delete article"
 msgstr "Borrar artículo"
 
@@ -23460,8 +23426,8 @@ msgid "New Category"
 msgstr "Nueva categoría"
 
 #: zp-core/zp-extensions/zenpage.php:446
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1049
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1051
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1053
 msgid "Delete Category"
 msgstr "Borrar categoría"
 
@@ -23741,11 +23707,11 @@ msgstr "Fecha de esxpiración:"
 msgid "Expiration date set!"
 msgstr "¡Fecha de expiración establecida!"
 
-#: zp-core/zp-extensions/zenpage/admin-edit.php:725
+#: zp-core/zp-extensions/zenpage/admin-edit.php:726
 msgid "TitleLink:"
 msgstr "TitleLink:"
 
-#: zp-core/zp-extensions/zenpage/admin-edit.php:729
+#: zp-core/zp-extensions/zenpage/admin-edit.php:730
 msgid ""
 "A search engine friendly <em>titlelink</em> (aka slug) without special "
 "characters to be used in URLs is generated from the title of the currently "
@@ -23757,21 +23723,21 @@ msgstr ""
 "automáticamente a partir del título en el idioma actualmente elegido. Puede "
 "editarlo manualmente más tarde si es necesario, después de guardar."
 
-#: zp-core/zp-extensions/zenpage/admin-edit.php:739
+#: zp-core/zp-extensions/zenpage/admin-edit.php:740
 msgid "Content:"
 msgstr "Contenido:"
 
-#: zp-core/zp-extensions/zenpage/admin-edit.php:754
+#: zp-core/zp-extensions/zenpage/admin-edit.php:755
 msgid "ExtraContent:"
 msgstr "Contenido Extra:"
 
-#: zp-core/zp-extensions/zenpage/admin-edit.php:777
+#: zp-core/zp-extensions/zenpage/admin-edit.php:778
 msgid "Custom:"
 msgstr "Personalizado:"
 
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:20
 #: zp-core/zp-extensions/zenpage/admin-pages.php:20
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:471
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:473
 msgid "Article successfully deleted!"
 msgstr "Artículo borrado exitosamente!"
 
@@ -23784,30 +23750,30 @@ msgstr "Reiniciar contadores de visita"
 msgid "Edit this article"
 msgstr "Editar este artículo"
 
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:254
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:252
 msgid "Add categories"
 msgstr "Agregar categorías"
 
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:255
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:253
 msgid "Clear categories"
 msgstr "Limpiar categorías"
 
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:358
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:361
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:398
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:364
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:401
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:404
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:271
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:274
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:304
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:307
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:310
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1026
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:407
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:273
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:276
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:306
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:309
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:312
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1028
 msgid "locked"
 msgstr "bloqueado"
 
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:368
-#: zp-core/zp-extensions/zenpage/admin-news-articles.php:369
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:371
+#: zp-core/zp-extensions/zenpage/admin-news-articles.php:372
 msgid "View article"
 msgstr "Mostrar artículo"
 
@@ -23831,7 +23797,7 @@ msgstr ""
 msgid "Edit this page"
 msgstr "Editar esta página"
 
-#: zp-core/zp-extensions/zenpage/admin-pages.php:177
+#: zp-core/zp-extensions/zenpage/admin-pages.php:179
 msgid ""
 "The sort position of the indicated pages cannot be recorded because the "
 "nesting is too deep. Please move them to a higher level and save your order."
@@ -23905,8 +23871,8 @@ msgstr ""
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:152
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:165
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:924
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:936
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:926
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:938
 msgid "Your passwords were empty or did not match"
 msgstr "Sus contraseñas estaban en blanco o no coincidieron"
 
@@ -23942,15 +23908,15 @@ msgstr "Página borrada exitosamente!"
 msgid "Page delete failed!"
 msgstr "Falla al borrar la página!"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:279
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:281
 msgid "View page"
 msgstr "Mostrar página"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:356
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:358
 msgid "Duplicate article title"
 msgstr "Duplicar título de artículo"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:430
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:432
 #, php-format
 msgid ""
 "Article <em>%s</em> added but you need to give it a <strong>title</strong> "
@@ -23959,17 +23925,17 @@ msgstr ""
 "Artículo agregado <em>%s</em> pero necesita darle un <strong>título</strong> "
 "antes de publicarlo!"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:432
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:434
 #, php-format
 msgid "Article <em>%s</em> added"
 msgstr "Artículo <em>%s</em> agregado"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:437
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:439
 #, php-format
 msgid "An article with the title/titlelink <em>%s</em> already exists!"
 msgstr "Un artículo con el título/titlelink <em>%s</em> ya existe!"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:439
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:441
 #, php-format
 msgid ""
 "Article <em>%s</em> updated but you need to give it a <strong>title</strong> "
@@ -23978,70 +23944,70 @@ msgstr ""
 "Artículo actualizado <em>%s</em> pero necesita darle un <strong>título</"
 "strong> antes de publicarlo!"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:441
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:443
 #, php-format
 msgid "Article <em>%s</em> updated"
 msgstr "Artículo <em>%s</em> actualizado"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:473
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:475
 msgid "Article delete failed!"
 msgstr "Falló al borrar el Artículo!"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:533
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1079
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:535
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1081
 msgid "password protected"
 msgstr "protegido por contraseña"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:562
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:564
 msgid "View all months"
 msgstr "Mostrar todos los meses"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:662
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:664
 msgid "All articles"
 msgstr "Todos los Artículos"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:665
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:667
 msgid "Sticky"
 msgstr "Adherido"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:713
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:715
 msgid "Order by date descending"
 msgstr "Ordenar por fecha descendente"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:714
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:716
 msgid "Order by date ascending"
 msgstr "Ordenar por fecha ascendente"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:715
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:717
 msgid "Order by title descending"
 msgstr "Ordenar por título descendente"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:716
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:718
 msgid "Order by title ascending"
 msgstr "Ordena por título ascendente"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:717
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:719
 msgid "Order by last change date descending"
 msgstr "Ordenar descendente por fecha del último cambio"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:718
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:720
 msgid "Order by last change date ascending"
 msgstr "Ordenar ascendente por fecha del último cambio"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:799
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:801
 #, php-format
 msgid "%u per page"
 msgstr "%u por página"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:833
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:835
 msgid "All authors"
 msgstr "Todos los autores"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:868
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:870
 msgid "Duplicate category title"
 msgstr "Duplicar título de categoría"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:920
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:922
 #, php-format
 msgid ""
 "Category <em>%s</em> added but you need to give it a <strong>title</strong> "
@@ -24050,98 +24016,98 @@ msgstr ""
 "Categoría agregada <em>%s</em> pero necesita darle un <strong>título</"
 "strong> antes de publicarla!"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:922
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:934
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:924
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:936
 msgid "You must supply a password for the Protected Category user"
 msgstr ""
 "Debe proporcionar una contraseña para el usuario de la categoría protegida"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:926
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:928
 #, php-format
 msgid "Category <em>%s</em> added"
 msgstr "Categoría <em>%s</em> agregada"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:932
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:934
 msgid "You forgot to give your category a <strong>title or titlelink</strong>!"
 msgstr "Olvidó darle un <strong>título o TitleLink</strong>a su categoría!"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:938
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:940
 msgid "Category updated!"
 msgstr "Categoría actualizada!"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:941
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:943
 #, php-format
 msgid "A category with the title/titlelink <em>%s</em> already exists!"
 msgstr "Una categoría con el título/titlelink <em>%s</em> ya existe!"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:964
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:966
 msgid "Category successfully deleted!"
 msgstr "Categoría borrada exitosamente!"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:966
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:968
 msgid "Category  delete failed!"
 msgstr "Falló al borrar la categoría!"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:992
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:994
 msgid "Edit this category"
 msgstr "Editar esta categoría"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1010
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1506
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1012
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1508
 msgid "Un-publish"
 msgstr "No Publicado"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1013
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1497
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1015
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1499
 msgid "Scheduled for published"
 msgstr "Agendado para publicar"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1030
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1032
 msgid "View category"
 msgstr "Mostrar categoría"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1243
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1245
 msgid "Untitled page"
 msgstr "Página sin título"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1246
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1248
 msgid "Untitled article"
 msgstr "Artículo sin título"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1249
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1251
 msgid "Untitled category"
 msgstr "Categoría sin título"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1313
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1315
 msgid "hit"
 msgstr "visita"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1315
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1317
 msgid "hits"
 msgstr "visitas"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1368
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1370
 #, php-format
 msgid "<strong>%1$u</strong> page"
 msgid_plural "<strong>%1$u</strong> pages"
 msgstr[0] "Página <strong>%1$u</strong>"
 msgstr[1] "Página <strong>%1$u</strong>"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1370
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1372
 #, php-format
 msgid "<strong>%1$u</strong> page (<strong>%2$u</strong> un-published)"
 msgid_plural "<strong>%1$u</strong> pages (<strong>%2$u</strong> un-published)"
 msgstr[0] "<strong>%1$u</strong> página (<strong>%2$u</strong> no publicada)"
 msgstr[1] "<strong>%1$u</strong> páginas (<strong>%2$u</strong> no publicadas)"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1377
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1379
 #, php-format
 msgid "<strong>%1$u</strong> article"
 msgid_plural "<strong>%1$u</strong> articles"
 msgstr[0] "Artículo <strong>%1$u</strong>"
 msgstr[1] "Artículos <strong>%1$u</strong>"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1379
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1381
 #, php-format
 msgid "<strong>%1$u</strong> article (<strong>%2$u</strong> un-published)"
 msgid_plural ""
@@ -24150,14 +24116,14 @@ msgstr[0] "<strong>%1$u</strong> artículo (<strong>%2$u</strong> no publicado)"
 msgstr[1] ""
 "<strong>%1$u</strong> artículos (<strong>%2$u</strong> no publicados)"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1386
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1388
 #, php-format
 msgid "<strong>%1$u</strong> category"
 msgid_plural "<strong>%1$u</strong> categories"
 msgstr[0] "<strong>%1$u</strong> Categoría"
 msgstr[1] "<strong>%1$u</strong> Categorías"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1388
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1390
 #, php-format
 msgid "<strong>%1$u</strong> category (<strong>%2$u</strong> un-published)"
 msgid_plural ""
@@ -24167,39 +24133,39 @@ msgstr[0] ""
 msgstr[1] ""
 "<strong>%1$u</strong> categorías (<strong>%2$u</strong no publicadas)"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1496
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1498
 msgid "Publish immediately (skip scheduling)"
 msgstr "Publicar inmediatamente (saltear agendado)"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1501
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1503
 msgid "Skip scheduled expiration"
 msgstr "Ignore expiración agendada"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1512
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1514
 msgid "Publish immediately (skip expiration)"
 msgstr "Publicar inmediatamente (ignorar expiración)"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1718
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1720
 msgid "Tags added to selected items"
 msgstr "Etiquetas agregadas a los items seleccionados"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1721
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1723
 msgid "Tags cleared from selected items"
 msgstr "Etiquetas borradas para los items seleccionados"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1724
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1726
 msgid "Tags added to articles of selected items"
 msgstr "Etiquetas agregadas a los artículos de los items seleccionados"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1727
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1729
 msgid "Tags cleared from articles of selected items"
 msgstr "Etiquetas borradas de los artículos de los items seleccionados"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1730
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1732
 msgid "Categories added to selected items"
 msgstr "Categorías agregadas a los items seleccionados"
 
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1733
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1735
 msgid "Categories cleared from selected items"
 msgstr "Categorías borradas de los items seleccionados"
 
@@ -24310,6 +24276,62 @@ msgid ""
 msgstr ""
 "<code>zenphoto_sendmail</code> falló al enviar <em>%s</em> a uno o más "
 "recipientes."
+
+#~ msgid "Allow Comments"
+#~ msgstr "Permitir Comentarios"
+
+#~ msgid "Make a new Album"
+#~ msgstr "Hacer un nuevo Album"
+
+#~ msgid "Publish the album so everyone can see it."
+#~ msgstr "Publicar el álbum para que todos puedan verlo."
+
+#~ msgid "titled:"
+#~ msgstr "titulado:"
+
+#~ msgid "with the folder name:"
+#~ msgstr "con el nombre de carpeta:"
+
+#~ msgid ""
+#~ "You need to install the <code>mbstring</code> and <code>iconv</code> "
+#~ "packages or correct the issue with <code>iconv()</code>"
+#~ msgstr ""
+#~ "Necesita instalar los paquetes <code>mbstring</code> e <code>iconv</code> "
+#~ "o corregir el problema con <code>iconv()</code>"
+
+#~ msgid ""
+#~ "Use the image_album_statiscic plugin function getImageStatisic()with "
+#~ "appropiate parameters"
+#~ msgstr ""
+#~ "Utilice la función getImageStatisic() del complemento "
+#~ "image_album_statiscic con los parámetros adecuados"
+
+#~ msgid ""
+#~ "The native PHP extensions DOM/DOMDocument and multibyte are required."
+#~ msgstr ""
+#~ "Se requieren las extensiones nativas de PHP DOM/DOMDocument y multibyte."
+
+#~ msgid "Theme: Gallery images"
+#~ msgstr "Tema: Galería de imágenes"
+
+#~ msgid ""
+#~ "Attaches JS lazyloading to all images on your theme or plugins that are "
+#~ "using the standard print* image template functions."
+#~ msgstr ""
+#~ "Adjunta la carga diferida de JS a todas las imágenes de su tema o "
+#~ "complementos que utilizan las funciones de plantilla de imagen de "
+#~ "impresión* estándar."
+
+#~ msgid "Backend images"
+#~ msgstr "Imágenes de interfaz del administrador (Backend)"
+
+#~ msgid ""
+#~ "Attaches JS lazyloading to images on the backend using the necessary "
+#~ "standard adminthumb functions."
+#~ msgstr ""
+#~ "Adjunta la carga diferida de JS a las imágenes en la interfaz del "
+#~ "administrador (backend) utilizando las funciones estándar necesarias para "
+#~ "el administrador."
 
 #~ msgid "Password Required..."
 #~ msgstr "Contraseña Requerida..."
