@@ -717,6 +717,13 @@ class openStreetMap {
 					$this->center = array($geodata[0]['lat'], $geodata[0]['long']);
 					break;
 			}
+		} else {
+			//fallback if no geodata at all
+			$this->center = ''; // not null as we don't need to re-do if there is nothing
+		}
+		// fallback if geodata was somehow wrong
+		if((empty($this->center[0]) || !is_int($this->center[0])) || (empty($this->center[1]) || !is_int($this->center[1]))) {
+			$this->center = '';
 		}
 		return $this->center;
 	}
@@ -763,7 +770,7 @@ class openStreetMap {
 			$class = ' class="' . $this->class . '"';
 		}
 		$geodataJS = $this->getGeoDataJS();
-		if (!empty($geodataJS)) {
+		if (!empty($geodataJS) && !empty($this->center)) {
 			?>
 			<div id="osm_map<?php echo $this->mapnumber; ?>"<?php echo $class; ?> style="width:<?php echo $this->width; ?>; height:<?php echo $this->height; ?>;"></div>
 			<script>
