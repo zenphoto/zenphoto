@@ -253,11 +253,17 @@ function getGeoCoord($image) {
 			}
 
 			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . '" loading="lazy"/></a>';
-
-			$result = array('lat' => $lat_f, 'long' => $long_f, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
+			if (($long_f > -180 && $long_f < 180) && ($lat_f > -90 && $lat_f < 90)) {
+				$result = array(
+						'lat' => $lat_f,
+						'long' => $long_f,
+						'title' => $_zp_current_image->getTitle(),
+						'desc' => $_zp_current_image->getDesc(),
+						'thumb' => $thumb
+				);
+			}
 		}
 	}
-
 	return $result;
 }
 
