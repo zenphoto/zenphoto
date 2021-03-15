@@ -547,7 +547,7 @@ class openStreetMap {
 	function getImageGeodata($image) {
 		global $_zp_current_image;
 		$result = array();
-		$gps = $_zp_current_image->getGeodata();
+		$gps = $image->getGeodata();
 		if ($gps) {
 			$thumb = "<a href='" . $image->getLink() . "'><img src='" . $image->getCustomImage(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . "' alt='' /></a>";
 			$current = 0;
