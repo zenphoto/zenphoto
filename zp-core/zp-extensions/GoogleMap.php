@@ -236,33 +236,17 @@ function omsAdditions() {
 function getGeoCoord($image) {
 	global $_zp_current_image;
 	$result = false;
-	if (isImageClass($image)) {
-		$_zp_current_image = $image;
-		$exif = $_zp_current_image->getMetaData();
-		if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
-			$lat_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLatitude']) . '.0');
-			$lat_f = round((float) abs($lat_c[0]) + ($lat_c[1] / pow(10, strlen($lat_c[1]))), 12);
-			if (strtoupper(@$exif['EXIFGPSLatitudeRef'][0]) == 'S') {
-				$lat_f = -$lat_f;
-			}
-
-			$long_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLongitude']) . '.0');
-			$long_f = round((float) abs($long_c[0]) + ($long_c[1] / pow(10, strlen($long_c[1]))), 12);
-			if (strtoupper(@$exif['EXIFGPSLongitudeRef'][0]) == 'W') {
-				$long_f = -$long_f;
-			}
-
-			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . '" loading="lazy"/></a>';
-			if (($long_f > -180 && $long_f < 180) && ($lat_f > -90 && $lat_f < 90)) {
-				$result = array(
-						'lat' => $lat_f,
-						'long' => $long_f,
-						'title' => $_zp_current_image->getTitle(),
-						'desc' => $_zp_current_image->getDesc(),
-						'thumb' => $thumb
-				);
-			}
-		}
+	$_zp_current_image = $image;
+	$gps = $_zp_current_image->getGeodata();
+	if ($gps) {
+		$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . '" loading="lazy"/></a>';
+		$result = array(
+				'lat' => $gps['lat'],
+				'long' => $gps['long'],
+				'title' => $_zp_current_image->getTitle(),
+				'desc' => $_zp_current_image->getDesc(),
+				'thumb' => $thumb
+		);
 	}
 	return $result;
 }

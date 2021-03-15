@@ -547,38 +547,21 @@ class openStreetMap {
 	function getImageGeodata($image) {
 		global $_zp_current_image;
 		$result = array();
-		if (isImageClass($image)) {
-			$exif = $image->getMetaData();
-			if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
-				$lat_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLatitude']) . '.0');
-				$lat_f = round((float) abs($lat_c[0]) + ($lat_c[1] / pow(10, strlen($lat_c[1]))), 12);
-				if (strtoupper(@$exif['EXIFGPSLatitudeRef'][0]) == 'S') {
-					$lat_f = -$lat_f;
-				}
-				$long_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLongitude']) . '.0');
-				$long_f = round((float) abs($long_c[0]) + ($long_c[1] / pow(10, strlen($long_c[1]))), 12);
-				if (strtoupper(@$exif['EXIFGPSLongitudeRef'][0]) == 'W') {
-					$long_f = -$long_f;
-				}
-				$thumb = "<a href='" . $image->getLink() . "'><img src='" . $image->getCustomImage(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . "' alt='' /></a>";
-				$current = 0;
-				if ($this->mode == 'single-cluster' && isset($_zp_current_image) && ($image->filename == $_zp_current_image->filename && $image->getAlbumname() == $_zp_current_image->getAlbumname())) {
-					$current = 1;
-				}
-				//in case European comma decimals sneaked in
-				$lat_f = str_replace(',', '.', $lat_f);
-				$long_f = str_replace(',', '.', $long_f);
-				if (($long_f > -180 && $long_f < 180) && ($lat_f > -90 && $lat_f < 90)) {
-					$result = array(
-							'lat' => $lat_f,
-							'long' => $long_f,
-							'title' => shortenContent($image->getTitle(), 50, '...') . '<br />',
-							'desc' => shortenContent($image->getDesc(), 100, '...'),
-							'thumb' => $thumb,
-							'current' => $current
-					);
-				}
+		$gps = $_zp_current_image->getGeodata();
+		if ($gps) {
+			$thumb = "<a href='" . $image->getLink() . "'><img src='" . $image->getCustomImage(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . "' alt='' /></a>";
+			$current = 0;
+			if ($this->mode == 'single-cluster' && isset($_zp_current_image) && ($image->filename == $_zp_current_image->filename && $image->getAlbumname() == $_zp_current_image->getAlbumname())) {
+				$current = 1;
 			}
+			$result = array(
+					'lat' => $gps['lat'],
+					'long' => $gps['long'],
+					'title' => shortenContent($image->getTitle(), 50, '...') . '<br />',
+					'desc' => shortenContent($image->getDesc(), 100, '...'),
+					'thumb' => $thumb,
+					'current' => $current
+			);
 		}
 		return $result;
 	}

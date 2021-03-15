@@ -563,6 +563,43 @@ class Image extends MediaObject {
 		$iptcstring = $_zp_UTF8->convert($iptcstring, $characterset, $outputset);
 		return trim(sanitize($iptcstring, 1));
 	}
+	
+	/**
+	 * If there is valid GPS data returns key value array with "long" and "lat" keys
+	 * otherwise an empty array
+	 * 
+	 * @since ZenphotoCMS 1.5.8 - Moved/adapted from the offical Zenphoto GoogleMap plugin by Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
+	 * 
+	 * @return array
+	 */
+	function getGeodata() {
+		$gps = array();
+		if (isImageClass($this)) {
+			$exif = $this->getMetaData();
+			if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
+				$lat_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLatitude']) . '.0');
+				$lat_f = round((float) abs($lat_c[0]) + ($lat_c[1] / pow(10, strlen($lat_c[1]))), 12);
+				if (isset(exif['EXIFGPSLatitudeRef'][0]) && strtoupper($exif['EXIFGPSLatitudeRef'][0]) == 'S') {
+					$lat_f = -$lat_f;
+				}
+				$long_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLongitude']) . '.0');
+				$long_f = round((float) abs($long_c[0]) + ($long_c[1] / pow(10, strlen($long_c[1]))), 12);
+				if (isset(exif['EXIFGPSLongitudeRef'][0]) && strtoupper($exif['EXIFGPSLongitudeRef'][0]) == 'W') {
+					$long_f = -$long_f;
+				}
+				//in case European comma decimals sneaked in
+				$lat_f = str_replace(',', '.', $lat_f);
+				$long_f = str_replace(',', '.', $long_f);
+				if (($long_f > -180 && $long_f < 180) && ($lat_f > -90 && $lat_f < 90)) {
+					return array(
+							'lat' => $lat_f,
+							'long' => $long_f
+					);
+				}
+			}
+			return $gps;
+		}
+	}
 
 	/**
 	 * Update this object's values for width and height.
