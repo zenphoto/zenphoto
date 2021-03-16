@@ -1954,6 +1954,9 @@ class SearchEngine {
 	/**
 	 * Returns true if $sortdir is set to "DESC", otherwise false, for use with sorting functions
 	 * @param string $sortdirection Traditional speaking values "ASC" or "DESC"
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
 	 * @return boolean
 	 */
 	static function getSortdirBool($sortdirection = 'asc') {
@@ -1961,6 +1964,7 @@ class SearchEngine {
 		if (strtolower($sortdirection) == 'desc') {
 			$dir = true;
 		}
+		return $dir;
 	}
 
 }
