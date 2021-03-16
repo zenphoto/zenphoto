@@ -37,7 +37,7 @@ $plugin_category = gettext('Statistics');
 
 $option_interface = 'matomoStats';
 
-if (!getOption('matomo_admintracking') || !zp_loggedin(ADMIN_RIGHTS)) {
+if (getOption('matomo_admintracking') || !zp_loggedin(ADMIN_RIGHTS)) {
 	zp_register_filter('theme_body_close', 'matomoStats::script');
 }
 if (getOption('matomo_widgets_code')) {
