@@ -1503,7 +1503,9 @@ function sortByKey($results, $sortkey, $order) {
  * @param mixed $index Which key(s) should be sorted by
  * @param string $order true for descending sorts
  * @param bool $natsort If natural order should be used
- * @param bool $case_sensitive If the sort should be case sensitive
+ * @param bool $case_sensitive If the sort should be case sensitive Not if $natsort is true and locale aware sorting available on the system's PHP this is ignored and always case sensitive
+ * @param bool $preservekeys Default false,
+ * @param array $remove_criteria Array of indices to remove.
  * @return array
  *
  * @author redoc (http://codingforums.com/showthread.php?t=71904)
@@ -1533,10 +1535,16 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 			$temp[$key] .= $key;
 		}
 		if ($natsort) {
-			if ($case_sensitive) {
-				natsort($temp);
+			if (class_exists('collator')) {
+				$locale = getUserLocale();
+				$collator = new Collator($locale);
+				$collator->asort($temp);
 			} else {
-				natcasesort($temp);
+				if ($case_sensitive) {
+					natsort($temp);
+				} else {
+					natcasesort($temp);
+				}
 			}
 			if ($descending) {
 				$temp = array_reverse($temp, TRUE);
