@@ -1502,8 +1502,8 @@ function sortByKey($results, $sortkey, $order) {
  * @param array $array The multidimensional array to be sorted
  * @param mixed $index Which key(s) should be sorted by
  * @param string $order true for descending sorts
- * @param bool $natsort If natural order should be used
- * @param bool $case_sensitive If the sort should be case sensitive Not if $natsort is true and locale aware sorting available on the system's PHP this is ignored and always case sensitive
+ * @param bool $natsort If natural order should be used. If the intl PHP exteions and its Collator class are available the sorting will be locale aware.
+ * @param bool $case_sensitive If the sort should be case sensitive. Only applies if $natsort is true. If also locale aware sorting available on the system's PHP this is ignored and always case sensitive
  * @param bool $preservekeys Default false,
  * @param array $remove_criteria Array of indices to remove.
  * @return array
@@ -1535,20 +1535,7 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 			$temp[$key] .= $key;
 		}
 		if ($natsort) {
-			if (class_exists('collator')) {
-				$locale = getUserLocale();
-				$collator = new Collator($locale);
-				$collator->asort($temp);
-			} else {
-				if ($case_sensitive) {
-					natsort($temp);
-				} else {
-					natcasesort($temp);
-				}
-			}
-			if ($descending) {
-				$temp = array_reverse($temp, TRUE);
-			}
+			$temp = sortArrayLocalized($temp, $descending, $case_sensitive);
 		} else {
 			if ($descending) {
 				arsort($temp);
@@ -1564,6 +1551,35 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 			}
 		}
 		return $sorted;
+	}
+	return $array;
+}
+
+/**
+ * This sorts an array in natural order. If the system's PHP had the native intl extension and its Collator class available
+ * the sorting is locale aware (true natural order) and always case sensitive
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @param array $array The array to sort
+ * @param string  $descending true for descending sorts
+ * @param bool $case_sensitive If the sort should be case sensitive. Note if $natsort is true and locale aware sorting available on the system's PHP this is ignored and always case sensitive
+ * @return array
+ */
+function sortArrayLocalized($array, $descending = false, $case_sensitive = false) {
+	if (class_exists('collator')) {
+		$locale = getUserLocale();
+		$collator = new Collator($locale);
+		$collator->asort($array);
+	} else {
+		if ($case_sensitive) {
+			natsort($array);
+		} else {
+			natcasesort($array);
+		}
+	}
+	if ($descending) {
+		$array = array_reverse($array, true);
 	}
 	return $array;
 }
