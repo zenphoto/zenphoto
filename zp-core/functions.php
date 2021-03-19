@@ -1501,9 +1501,9 @@ function sortByKey($results, $sortkey, $order) {
  *
  * @param array $array The multidimensional array to be sorted
  * @param mixed $index Which key(s) should be sorted by
- * @param string $order true for descending sorts
- * @param bool $natsort If natural order should be used. If the intl PHP exteions and its Collator class are available the sorting will be locale aware.
- * @param bool $case_sensitive If the sort should be case sensitive. Only applies if $natsort is true. If also locale aware sorting available on the system's PHP this is ignored and always case sensitive
+ * @param string $descending true for descending sortorder
+ * @param bool $natsort If natural order should be used. If the intl PHP extension and its Collator class are available the sorting will be locale aware.
+ * @param bool $case_sensitive If the sort should be case sensitive. Only applies if $natsort is true. If also locale aware sorting is available on the system's PHP this is ignored and always case sensitive
  * @param bool $preservekeys Default false,
  * @param array $remove_criteria Array of indices to remove.
  * @return array
@@ -1556,14 +1556,14 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 }
 
 /**
- * This sorts an array in natural order. If the system's PHP had the native intl extension and its Collator class available
+ * This sorts an array in natural order. If the system's PHP has the native intl extension and its Collator class available
  * the sorting is locale aware (true natural order) and always case sensitive
  * 
  * @since ZenphotoCMS 1.5.8
  * 
  * @param array $array The array to sort
- * @param string  $descending true for descending sorts
- * @param bool $case_sensitive If the sort should be case sensitive. Note if $natsort is true and locale aware sorting available on the system's PHP this is ignored and always case sensitive
+ * @param string  $descending true for descending sortorder
+ * @param bool $case_sensitive If the sort should be case sensitive. Only applies if $natsort is true. If also locale aware sorting is available on the system's PHP this is ignored and always case sensitive
  * @return array
  */
 function sortArrayLocalized($array, $descending = false, $case_sensitive = false) {
