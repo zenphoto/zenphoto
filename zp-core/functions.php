@@ -1499,7 +1499,7 @@ function sortByKey($results, $sortkey, $order) {
 /**
  * multidimensional array column sort
  * 
- * If the system's PHP had the native intl extension and its Collator class available
+ * If the system's PHP has the native intl extension and its Collator class available
  * the sorting is locale aware (true natural order) and always case sensitive if $natsort is set to true
  *
  * @param array $array The multidimensional array to be sorted
@@ -1553,7 +1553,7 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 /**
  * General one dimensional array sorting function. Key/value associations are preserved.
  * 
- * If the system's PHP had the native intl extension and its Collator class available
+ * If the system's PHP has the native intl extension and its Collator class available
  * the sorting is locale aware (true natural order) and always case sensitive if $natsort is set to true
  * 
  * @since ZenphotoCMS 1.5.8
