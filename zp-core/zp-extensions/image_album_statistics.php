@@ -240,6 +240,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 					'width' => $sizes[0],
 					'height' => $sizes[1],
 					'alt' => html_encode($albumthumb->getTitle()),
+					'title' => html_encode($albumthumb->getTitle()),
 					'loading' => 'lazy'
 			);
 			$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $albumthumb);
@@ -254,6 +255,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 					'width' => $sizes[0],
 					'height' => $sizes[1],
 					'alt' => html_encode($albumthumb->getTitle()),
+					'title' => html_encode($albumthumb->getTitle()),
 					'loading' => 'lazy'
 			);
 			$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $albumthumb);
@@ -268,6 +270,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 					'width' => $sizes[0],
 					'height' => $sizes[1],
 					'alt' => html_encode($albumthumb->getTitle()),
+					'title' => html_encode($albumthumb->getTitle()),
 					'loading' => 'lazy'
 			);
 			$attr_filtered = zp_apply_filter('standard_album_thumb_attr', $attr, $albumthumb);
@@ -494,6 +497,7 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 					'width' => $sizes[0],
 					'height' => $sizes[1],
 					'alt' => html_encode($image->getTitle()),
+					'title' => html_encode($image->getTitle()),
 					'loading' => 'lazy'
 				);
 				$attr_filtered = zp_apply_filter('custom_image_attr', $attr, $image);
@@ -508,6 +512,7 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 					'width' => $sizes[0],
 					'height' => $sizes[1],
 					'alt' => html_encode($image->getTitle()),
+					'title' => html_encode($image->getTitle()),
 					'loading' => 'lazy'
 				);
 				$attr_filtered = zp_apply_filter('custom_image_attr', $attr, $image);
@@ -522,6 +527,7 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 					'width' => $sizes[0],
 					'height' => $sizes[1],
 					'alt' => html_encode($image->getTitle()),
+					'title' => html_encode($image->getTitle()),
 					'loading' => 'lazy'
 				);
 				$attr_filtered = zp_apply_filter('standard_image_thumb_attr', $attr, $image);

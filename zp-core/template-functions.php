@@ -1790,9 +1790,13 @@ function printAlbumThumbImage($alt, $class = NULL, $id = NULL , $title = null) {
 	global $_zp_current_album;
 	$thumbobj = $_zp_current_album->getAlbumThumbImage();
 	$sizes = getSizeDefaultThumb($thumbobj);
+	if (empty($title)) {
+		$title = $alt;
+	}
 	$attr = array(
 			'src' => html_pathurlencode($thumbobj->getThumb('album')),
 			'alt' => html_encode($alt),
+			'title' => html_encode($title),
 			'class' => $class,
 			'id' => $id,
 			'width' => $sizes[0],
@@ -1862,6 +1866,9 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	global $_zp_current_album;
 	$thumbobj = $_zp_current_album->getAlbumThumbImage();
 	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbobj, 'thumb');
+	if (empty($title)) {
+		$title = $alt;
+	}
 	$attr = array(
 			'alt' => html_encode($alt),
 			'class' => $class,
@@ -2858,6 +2865,9 @@ function printDefaultSizedImage($alt, $class = null, $id = null, $title = null, 
 	if (is_null($image)) {
 		return false;
 	}
+	if (empty($title)) {
+		$title = $alt;
+	}
 	$attr = array(
 			'alt' => html_encode($alt),
 			'class' => $class,
@@ -2913,6 +2923,9 @@ function printImageThumb($alt, $class = null, $id = null, $title = null, $image 
 	}
 	if (is_null($image)) {
 		return false;
+	}
+	if (empty($title)) {
+		$title = $alt;
 	}
 	$attr = array(
 			'alt' => html_encode($alt),
@@ -3173,6 +3186,9 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 	}
 	if ($maxspace) {
 		getMaxSpaceContainer($width, $height, $image);
+	}
+	if (empty($title)) {
+		$title = $alt;
 	}
 	$attr = array(
 			'alt' => html_encode($alt),

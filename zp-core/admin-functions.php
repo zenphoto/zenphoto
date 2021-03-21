@@ -4639,11 +4639,14 @@ function getAdminThumb($imageobj, $size = 'small') {
  * @param string $size Adminthumb sizeame: 'large', 'small', 'large-uncropped', 'small-uncropped'
  * @param string $class Class name(s) to attach
  * @param string $id ID to attach
- * @param string $title Title attribute
  * @param string $alt Alt attribute
+ * @param string $title Title attribute
  * @return string
  */
-function getAdminThumbHTML($imageobj, $size = 'small', $class = null, $id = null, $title = null, $alt = null) {
+function getAdminThumbHTML($imageobj, $size = 'small', $class = null, $id = null, $alt = null, $title = null, ) {
+	if (empty($title)) {
+		$title = $alt;
+	}
 	$attr = array(
 			'src' => html_pathurlencode(getAdminThumb($imageobj, $size)),
 			'alt' => html_encode($alt),
@@ -4667,11 +4670,11 @@ function getAdminThumbHTML($imageobj, $size = 'small', $class = null, $id = null
  * @param string $size Adminthumb sizeame: 'large', 'small', 'large-uncropped', 'small-uncropped'
  * @param string $class Class name(s) to attach
  * @param string $id ID to attach
- * @param string $title Title attribute
  * @param string $alt Alt attribute
+ * @param string $title Title attribute
  * @return string
  */
-function printAdminThumb($imageobj, $size = 'small', $class = null, $id = null, $title = null, $alt = null) {
+function printAdminThumb($imageobj, $size = 'small', $class = null, $id = null, $alt = null, $title = null) {
 	echo getAdminThumbHTML($imageobj, $size, $class, $id, $title, $alt);
 }
 
