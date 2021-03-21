@@ -1395,15 +1395,18 @@ function generateAttributesFromArray($attributes = array(), $exclude = array()) 
 			'required',
 			'reversed',
 			'selected',
-			'truespeed',
-			'alt' // not boolean but should be at least set empty on <img> elements always
+			'truespeed'
 	);
 	$attr = '';
 	if (!empty($attributes) && is_array($attributes)) {
 		foreach ($attributes as $key => $val) {
 			if (!in_array($key, $exclude)) {
-				if (empty($val) && in_array($key, $boolean_attr)) {
-					$attr .= ' ' . $key;
+				if (empty($val)) {
+					if(in_array($key, $boolean_attr)) {
+						$attr .= ' ' . $key;
+					} else if($key == 'alt') {
+						$attr .= ' ' . $key . '=""';
+					}
 				} else {
 					$attr .= ' ' . $key . '="' . $val . '"';
 				}
