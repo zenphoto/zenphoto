@@ -187,7 +187,6 @@ function reconfigurePage($diff, $needs, $mandatory) {
 						var link = $('.reconfig_link-ignore').attr('href');
 						$.ajax(link, {
 							success: function(data) {
-								alert('setup ignored: ' + link);
 								$('.reconfigbox').remove();
 							}
 						});
