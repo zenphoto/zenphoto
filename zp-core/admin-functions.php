@@ -4643,7 +4643,7 @@ function getAdminThumb($imageobj, $size = 'small') {
  * @param string $title Title attribute
  * @return string
  */
-function getAdminThumbHTML($imageobj, $size = 'small', $class = null, $id = null, $alt = null, $title = null, ) {
+function getAdminThumbHTML($imageobj, $size = 'small', $class = null, $id = null, $alt = null, $title = null) {
 	if (empty($title)) {
 		$title = $alt;
 	}
