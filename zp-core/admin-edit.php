@@ -1030,6 +1030,9 @@ echo "\n</head>";
 																	<?php
 																}
 																?>
+																<p class="buttons clearfix">
+																	<a href="<?php echo $image->getLink(); ?>"><img src="images/view.png" alt=""/><strong><?php echo gettext('View image'); ?></strong></a>
+																<p>
 															</div>
 															<p>
 																<?php echo gettext('<strong>Filename:</strong>'); ?>
