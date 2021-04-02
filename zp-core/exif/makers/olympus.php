@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Exifer
  * Extracts EXIF information from digital photos.
@@ -25,20 +26,31 @@
  * @return string
  */
 function lookup_Olympus_tag($tag) {
-	switch($tag) {
-		case "0200": $tag = "SpecialMode";break;
-		case "0201": $tag = "JpegQual";break;
-		case "0202": $tag = "Macro";break;
-		case "0203": $tag = "Unknown1";break;
-		case "0204": $tag = "DigiZoom";break;
-		case "0205": $tag = "Unknown2";break;
-		case "0206": $tag = "Unknown3";break;
-		case "0207": $tag = "SoftwareRelease";break;
-		case "0208": $tag = "PictInfo";break;
-		case "0209": $tag = "CameraID";break;
-		case "0f00": $tag = "DataDump";break;
-
-		default: $tag = "unknown:".$tag;break;
+	switch ($tag) {
+		case "0200": $tag = "SpecialMode";
+			break;
+		case "0201": $tag = "JpegQual";
+			break;
+		case "0202": $tag = "Macro";
+			break;
+		case "0203": $tag = "Unknown1";
+			break;
+		case "0204": $tag = "DigiZoom";
+			break;
+		case "0205": $tag = "Unknown2";
+			break;
+		case "0206": $tag = "Unknown3";
+			break;
+		case "0207": $tag = "SoftwareRelease";
+			break;
+		case "0208": $tag = "PictInfo";
+			break;
+		case "0209": $tag = "CameraID";
+			break;
+		case "0f00": $tag = "DataDump";
+			break;
+		default: $tag = "unknown:" . $tag;
+			break;
 	}
 
 	return $tag;
@@ -53,38 +65,49 @@ function lookup_Olympus_tag($tag) {
  * @param type $data
  * @return type
  */
-function formatOlympusData($type,$tag,$intel,$data) {
-	if($type=="ASCII") {
-
-	} else if($type=="URATIONAL" || $type=="SRATIONAL") {
-		$data = unRational($data,$type,$intel);
-		if($intel==1) $data = intel2Moto($data);
-
-		if($tag=="0204") { //DigitalZoom
-			$data=$data."x";
+function formatOlympusData($type, $tag, $intel, $data) {
+	if ($type == "ASCII") {
+		
+	} else if ($type == "URATIONAL" || $type == "SRATIONAL") {
+		$data = unRational($data, $type, $intel);
+		if ($intel == 1) {
+			$data = intel2Moto($data);
 		}
-		if($tag=="0205") { //Unknown2
-
+		if ($tag == "0204") { //DigitalZoom
+			$data = $data . "x";
 		}
-	} else if($type=="USHORT" || $type=="SSHORT" || $type=="ULONG" || $type=="SLONG" || $type=="FLOAT" || $type=="DOUBLE") {
-		$data = rational($data,$type,$intel);
-
-		if($tag=="0201") { //JPEGQuality
-			if($data == 1) $data = "SQ";
-			else if($data == 2) $data = "HQ";
-			else if($data == 3) $data = "SHQ";
-			else $data = gettext("Unknown").": ".$data;
+		if ($tag == "0205") { //Unknown2
 		}
-		if($tag=="0202") { //Macro
-			if($data == 0) $data = "Normal";
-			else if($data == 1) $data = "Macro";
-			else $data = gettext("Unknown").": ".$data;
-		}
-	} else if($type=="UNDEFINED") {
+	} else if ($type == "USHORT" || $type == "SSHORT" || $type == "ULONG" || $type == "SLONG" || $type == "FLOAT" || $type == "DOUBLE") {
+		$data = rational($data, $type, $intel);
 
+		if ($tag == "0201") { //JPEGQuality
+			if ($data == 1) {
+				$data = "SQ";
+			} else if ($data == 2) {
+				$data = "HQ";
+			} else if ($data == 3) {
+				$data = "SHQ";
+			} else {
+				$data = gettext("Unknown") . ": " . $data;
+			}
+		}
+		if ($tag == "0202") { //Macro
+			if ($data == 0) {
+				$data = "Normal";
+			} else if ($data == 1) {
+				$data = "Macro";
+			} else {
+				$data = gettext("Unknown") . ": " . $data;
+			}
+		}
+	} else if ($type == "UNDEFINED") {
+		
 	} else {
 		$data = bin2hex($data);
-		if($intel==1) $data = intel2Moto($data);
+		if ($intel == 1) {
+			$data = intel2Moto($data);
+		}
 	}
 
 	return $data;
@@ -92,7 +115,7 @@ function formatOlympusData($type,$tag,$intel,$data) {
 
 /**
  * Olympus Special data section
-// - Updated by Zenphoto for new header tag in E-410/E-510/E-3 cameras. 2/24/2008
+  // - Updated by Zenphoto for new header tag in E-410/E-510/E-3 cameras. 2/24/2008
  *
  * @param type $block
  * @param type $result
@@ -102,8 +125,11 @@ function formatOlympusData($type,$tag,$intel,$data) {
  */
 function parseOlympus($block, &$result, $seek, $globalOffset) {
 
-	if($result['Endien']=="Intel") $intel = 1;
-	else $intel = 0;
+	if ($result['Endien'] == "Intel") {
+		$intel = 1;
+	} else {
+		$intel = 0;
+	}
 
 	$model = $result['IFD0']['Model'];
 
@@ -113,8 +139,7 @@ function parseOlympus($block, &$result, $seek, $globalOffset) {
 	$new = false;
 	if (substr($block, 0, 8) == "OLYMPUS\x00") {
 		$new = true;
-	} else if (substr($block, 0, 7) == "OLYMP\x00\x01"
-		|| substr($block, 0, 7) == "OLYMP\x00\x02") {
+	} else if (substr($block, 0, 7) == "OLYMP\x00\x01" || substr($block, 0, 7) == "OLYMP\x00\x02") {
 		$new = false;
 	} else {
 		// Header does not match known Olympus headers.
@@ -129,60 +154,72 @@ function parseOlympus($block, &$result, $seek, $globalOffset) {
 	// Get number of tags (1 or 2 bytes, depending on New or Old makernote)
 	$countfieldbits = $new ? 1 : 2;
 	// New makernote repeats 1-byte value twice, so increment $place by 2 in either case.
-	$num = bin2hex(substr($block, $place, $countfieldbits)); $place += 2;
-	if ($intel == 1) $num = intel2Moto($num);
+	$num = bin2hex(substr($block, $place, $countfieldbits));
+	$place += 2;
+	if ($intel == 1) {
+		$num = intel2Moto($num);
+	}
 	$ntags = hexdec($num);
 	$result['SubIFD']['MakerNote']['MakerNoteNumTags'] = $ntags;
 
 	//loop thru all tags  Each field is 12 bytes
-	for($i=0; $i < $ntags; $i++) {
+	for ($i = 0; $i < $ntags; $i++) {
 		//2 byte tag
-		$tag = bin2hex(substr($block, $place,2));
+		$tag = bin2hex(substr($block, $place, 2));
 		$place += 2;
-		if ($intel == 1) $tag = intel2Moto($tag);
+		if ($intel == 1) {
+			$tag = intel2Moto($tag);
+		}
 		$tag_name = lookup_Olympus_tag($tag);
 
 		//2 byte type
-		$type = bin2hex(substr($block, $place,2));
+		$type = bin2hex(substr($block, $place, 2));
 		$place += 2;
-		if ($intel == 1) $type = intel2Moto($type);
-		lookup_type($type,$size);
+		if ($intel == 1) {
+			$type = intel2Moto($type);
+		}
+		lookup_type($type, $size);
 
 		//4 byte count of number of data units
-		$count = bin2hex(substr($block, $place,4));
-		$place+=4;
-		if ($intel == 1) $count = intel2Moto($count);
+		$count = bin2hex(substr($block, $place, 4));
+		$place += 4;
+		if ($intel == 1) {
+			$count = intel2Moto($count);
+		}
 		$bytesofdata = $size * hexdec($count);
 
 		//4 byte value of data or pointer to data
-		$value = substr($block, $place,4);
+		$value = substr($block, $place, 4);
 		$place += 4;
 
-
 		if ($bytesofdata <= 4) {
-			$data = substr($value,0,$bytesofdata);
+			$data = substr($value, 0, $bytesofdata);
 		} else {
 			$value = bin2hex($value);
-			if($intel==1) $value = intel2Moto($value);
-			$v = fseek($seek,$globalOffset+hexdec($value));  //offsets are from TIFF header which is 12 bytes from the start of the file
-			if(isset($GLOBALS['exiferFileSize']) && $v == 0 && $bytesofdata < $GLOBALS['exiferFileSize']) {
+			if ($intel == 1) {
+				$value = intel2Moto($value);
+			}
+			$v = fseek($seek, $globalOffset + hexdec($value)); //offsets are from TIFF header which is 12 bytes from the start of the file
+			if (isset($GLOBALS['exiferFileSize']) && $v == 0 && $bytesofdata < $GLOBALS['exiferFileSize']) {
 				$data = fread($seek, $bytesofdata);
 			} else {
 				$result['Errors'] = $result['Errors']++;
 				$data = '';
 			}
 		}
-		$formated_data = formatOlympusData($type,$tag,$intel,$data);
+		$formated_data = formatOlympusData($type, $tag, $intel, $data);
 
-		if($result['VerboseOutput']==1) {
+		if ($result['VerboseOutput'] == 1) {
 			$result['SubIFD']['MakerNote'][$tag_name] = $formated_data;
-			if($type=="URATIONAL" || $type=="SRATIONAL" || $type=="USHORT" || $type=="SSHORT" || $type=="ULONG" || $type=="SLONG" || $type=="FLOAT" || $type=="DOUBLE") {
+			if ($type == "URATIONAL" || $type == "SRATIONAL" || $type == "USHORT" || $type == "SSHORT" || $type == "ULONG" || $type == "SLONG" || $type == "FLOAT" || $type == "DOUBLE") {
 				$data = bin2hex($data);
-				if($intel==1) $data = intel2Moto($data);
+				if ($intel == 1) {
+					$data = intel2Moto($data);
+				}
 			}
-			$result['SubIFD']['MakerNote'][$tag_name."_Verbose"]['RawData'] = $data;
-			$result['SubIFD']['MakerNote'][$tag_name."_Verbose"]['Type'] = $type;
-			$result['SubIFD']['MakerNote'][$tag_name."_Verbose"]['Bytes'] = $bytesofdata;
+			$result['SubIFD']['MakerNote'][$tag_name . "_Verbose"]['RawData'] = $data;
+			$result['SubIFD']['MakerNote'][$tag_name . "_Verbose"]['Type'] = $type;
+			$result['SubIFD']['MakerNote'][$tag_name . "_Verbose"]['Bytes'] = $bytesofdata;
 		} else {
 			$result['SubIFD']['MakerNote'][$tag_name] = $formated_data;
 		}

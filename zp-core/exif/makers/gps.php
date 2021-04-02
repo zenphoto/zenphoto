@@ -103,7 +103,7 @@ function lookup_GPS_tag($tag) {
 			$tag = "DestinationBearing"; //positive rational number
 			break;
 		case "0019":
-			$tag = "DestDistanceRef";	//km, miles, knots
+			$tag = "DestDistanceRef"; //km, miles, knots
 			break;
 		case "001a":
 			$tag = "DestinationDistance"; //positive rational number
@@ -115,7 +115,7 @@ function lookup_GPS_tag($tag) {
 			$tag = "AreaInformation";
 			break;
 		case "001d":
-			$tag = "Datestamp";	//text string 10 bytes long
+			$tag = "Datestamp"; //text string 10 bytes long
 			break;
 		case "001e":
 			$tag = "DifferentialCorrection"; //integer in range 0-65535
@@ -220,7 +220,7 @@ function parseGPS($block, &$result, $offset, $seek, $globalOffset) {
 	} else {
 		$intel = 0;
 	}
-	$v = fseek($seek, $globalOffset + $offset);	//offsets are from TIFF header which is 12 bytes from the start of the file
+	$v = fseek($seek, $globalOffset + $offset); //offsets are from TIFF header which is 12 bytes from the start of the file
 	if ($v == -1) {
 		$result['Errors'] = $result['Errors']++;
 	}
@@ -280,7 +280,7 @@ function parseGPS($block, &$result, $offset, $seek, $globalOffset) {
 				if ($intel == 1) {
 					$value = intel2Moto($value);
 				}
-				$v = fseek($seek, $globalOffset + hexdec($value));	//offsets are from TIFF header which is 12 bytes from the start of the file
+				$v = fseek($seek, $globalOffset + hexdec($value)); //offsets are from TIFF header which is 12 bytes from the start of the file
 				if ($v == 0) {
 					$data = fread($seek, $bytesofdata);
 				} else {
