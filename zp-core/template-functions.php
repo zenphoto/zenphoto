@@ -2992,10 +2992,10 @@ function getFullImageURL($image = NULL) {
 		return false;
 	}
 	$outcome = getOption('protect_full_image');
-	if ($outcome == 'No access') {
+	if ($outcome == 'no-access') {
 		return NULL;
 	}
-	if ($outcome == 'Unprotected') {
+	if ($outcome == 'unprotected') {
 		return $image->getFullImageURL();
 	} else {
 		return getProtectedImageURL($image, $outcome);

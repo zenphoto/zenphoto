@@ -186,18 +186,30 @@ setOptionDefault('style_tags', strtolower($style_tags));
 setOptionDefault('full_image_quality', 75);
 
 $protectfullimage = getOption('protect_full_image');
-if ($protectfullimage === '0' || $protectfullimage === 'Unprotected') {
-	$protection = 'unprotected';
-} else if ($protectfullimage === '1' || $protectfullimage === 'Protected view') {
-	if (getOption('full_image_download')) {
-		$protection = 'download';
-	} else {
+//Update outdated values
+switch($protectfullimage) {
+	default: // option not set yet
+		$protection = false;
+		break;
+	case 'Protected view':
+	case '1': // outdated legady value
 		$protection = 'protected';
-	}
-} else {
-	$protection = false;
+		break;
+	case 'Unprotected':
+	case '0': // outdated legady value
+		$protection = 'unprotected';
+		break;
+	case 'No access':
+		$protection = 'no-access';
+		break;
+	case 'Download':
+		$protection = 'download';
+		break;
 }
 if ($protection) {
+	if (getOption('full_image_download')) { // outdated legady option
+		$protection = 'download';
+	}
 	setOption('protect_full_image', $protection);
 } else {
 	setOptionDefault('protect_full_image', 'protected');
