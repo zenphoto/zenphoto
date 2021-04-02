@@ -182,7 +182,6 @@ if (!($process || $force_cache)) { // no processing needed
 			$utf9_image_uri = getAlbumFolder(FULLWEBPATH) . pathurlencode($album) . "/" . rawurlencode($image);
 		}
 		redirectURL($utf9_image_uri);
-		exitZP();
 	} else { // the web server does not have access to the image, have to supply it
 		$fp = fopen($image_path, 'rb');
 		// send the right headers
@@ -263,5 +262,4 @@ if (!is_null($cache_path)) {
 		exitZP();
 	}
 }
-?>
 
