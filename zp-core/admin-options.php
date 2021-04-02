@@ -2463,9 +2463,9 @@ Zenphoto_Authority::printPasswordFormJS();
 											<?php
 											echo "<select id=\"protect_full_image\" name=\"protect_full_image\">\n";
 											$protection = getOption('protect_full_image');
-											$list = array(gettext('Protected view') => 'Protected view', gettext('Download') => 'Download', gettext('No access') => 'No access');
+											$list = array(gettext('Protected view') => 'protected', gettext('Download') => 'download', gettext('No access') => 'no-access');
 											if ($_zp_conf_vars['album_folder_class'] != 'external') {
-												$list[gettext('Unprotected')] = 'Unprotected';
+												$list[gettext('Unprotected')] = 'unprotected';
 											}
 											generateListFromArray(array($protection), $list, false, true);
 											echo "</select>\n";

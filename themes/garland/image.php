@@ -20,7 +20,7 @@ if (!defined('WEBPATH'))
 					});
 	<?php
 	$disposal = getOption('protect_full_image');
-	if ($disposal == 'Unprotected' || $disposal == 'Protected view') {
+	if ($disposal == 'unprotected' || $disposal == 'protected') {
 		?>
 						$("a.thickbox").colorbox({
 							maxWidth: "98%",

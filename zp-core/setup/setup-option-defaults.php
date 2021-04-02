@@ -185,13 +185,14 @@ setOptionDefault('style_tags', strtolower($style_tags));
 
 setOptionDefault('full_image_quality', 75);
 
-if (getOption('protect_full_image') === '0') {
-	$protection = 'Unprotected';
-} else if (getOption('protect_full_image') === '1') {
+$protectfullimage = getOption('protect_full_image');
+if ($protectfullimage === '0' || $protectfullimage === 'Unprotected') {
+	$protection = 'unprotected';
+} else if ($protectfullimage === '1' || $protectfullimage === 'Protected view') {
 	if (getOption('full_image_download')) {
-		$protection = 'Download';
+		$protection = 'download';
 	} else {
-		$protection = 'Protected view';
+		$protection = 'protected';
 	}
 } else {
 	$protection = false;
@@ -199,7 +200,7 @@ if (getOption('protect_full_image') === '0') {
 if ($protection) {
 	setOption('protect_full_image', $protection);
 } else {
-	setOptionDefault('protect_full_image', 'Protected view');
+	setOptionDefault('protect_full_image', 'protected');
 }
 
 setOptionDefault('locale', '');

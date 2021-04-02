@@ -3023,7 +3023,7 @@ function getUnprotectedImageURL($image = NULL) {
  * Returns an url to the password protected/watermarked current image
  *
  * @param object $image optional image object overrides the current image
- * @param string $disposal set to override the 'protect_full_image' option
+ * @param string $disposal set to override the 'protect_full_image' option. 'protected', "download", "unprotected" or "no-access"
  * @return string
  * */
 function getProtectedImageURL($image = NULL, $disposal = NULL) {
@@ -3031,7 +3031,7 @@ function getProtectedImageURL($image = NULL, $disposal = NULL) {
 	if (is_null($disposal)) {
 		$disposal = getOption('protect_full_image');
 	}
-	if ($disposal == 'No access')
+	if ($disposal == 'no-access')
 		return NULL;
 	if (is_null($image)) {
 		if (!in_context(ZP_IMAGE))
@@ -3050,9 +3050,9 @@ function getProtectedImageURL($image = NULL, $disposal = NULL) {
 	$args = array('FULL', NULL, NULL, NULL, NULL, NULL, NULL, (int) getOption('full_image_quality'), NULL, NULL, NULL, $wmt, false, NULL, NULL);
 	$cache_file = getImageCacheFilename($album->name, $image->filename, $args);
 	$cache_path = SERVERCACHE . $cache_file;
-	if ($disposal != 'Download' && OPEN_IMAGE_CACHE && file_exists($cache_path)) {
+	if ($disposal != 'download' && OPEN_IMAGE_CACHE && file_exists($cache_path)) {
 		return WEBPATH . '/' . CACHEFOLDER . pathurlencode(imgSrcURI($cache_file));
-	} else if ($disposal == 'Unprotected') {
+	} else if ($disposal == 'unprotected') {
 		return getImageURI($args, $album->name, $image->filename, $image->filemtime);
 	} else {
 		$params = '&q=' . getOption('full_image_quality');
