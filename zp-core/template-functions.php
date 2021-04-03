@@ -1764,7 +1764,7 @@ function getAlbumThumb() {
  * @param string $extra extra stuff to put in the HTML
  * @return string
  */
-function getPasswordProtectImage($extra) {
+function getPasswordProtectImage($extra = '') {
 	global $_zp_themeroot;
 	$image = '';
 	$themedir = SERVERPATH . '/themes/' . basename($_zp_themeroot);
@@ -1812,12 +1812,13 @@ function printAlbumThumbImage($alt, $class = NULL, $id = NULL , $title = null) {
 	}
 	$attr['class'] = trim($attr['class']);
 	$attr_filtered = zp_apply_filter('standard_album_thumb_attr', $attr, $thumbobj);
-	$attributes = generateAttributesFromArray($attr_filtered);
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
+		$attributes = generateAttributesFromArray($attr_filtered);
 		$html = '<img' . $attributes . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html, $thumbobj);
 		echo $html;
 	} else {
+		$size = ' width="' . $attr['width'] . '"';
 		echo getPasswordProtectImage($size);
 	}
 }
@@ -1894,14 +1895,15 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	} else {
 		$attr['src']= html_pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy));
 	}
+	$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $thumbobj);
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
-		$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $thumbobj);
 		$attributes = generateAttributesFromArray($attr_filtered);
 		$html = '<img' . $attributes . ' />';
 		$html = zp_apply_filter('custom_album_thumb_html', $html, $thumbobj);
 		echo $html;
 	} else {
-		echo getPasswordProtectImage($sizes);
+		$size = ' width="' . $attr['width'] . '"';
+		echo getPasswordProtectImage($size);
 	}
 }
 
