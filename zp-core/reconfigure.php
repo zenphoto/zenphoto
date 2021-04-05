@@ -5,12 +5,14 @@
  */
 
 /**
- *
  * Executes the configuration change code
+ * 
+ * @param int $mandatory 0-3 0 means signature change while 1 means setup autoraun require assuming fresh install
  */
 function reconfigureAction($mandatory) {
 	list($diff, $needs) = checkSignature($mandatory);
 	$diffkeys = array_keys($diff);
+	
 	if (($mandatory || in_array('ZENPHOTO', $diffkeys) || in_array('FOLDER', $diffkeys))) {
 		if (isset($_GET['rss'])) {
 			if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/rss-closed.xml')) {
@@ -40,23 +42,53 @@ function reconfigureAction($mandatory) {
 					define('PROTOCOL', 'http');
 				}
 			}
-			$location = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $dir . "/" . ZENFOLDER . "/setup/index.php?autorun=$where";
-			redirectURL($location);
+			$setup_autorun = $show_errorpage = false;
+			switch ($mandatory) {
+				case 1:
+					$setup_autorun = true;
+					// we assume a fresh install 
+					debuglog(gettext('ZenphotoCMS config file is missing.') . ' ' . gettext('Setup run required.'));
+					break;
+				case 2:
+					$show_errorpage = true;
+					debuglog(gettext('ZenphotoCMS database credentials are missing.') . ' ' . gettext('Check your config file settings and re-run setup.'));
+					break;
+				case 3:
+					$show_errorpage = true;
+					debuglog(gettext('ZenphotoCMS database credentials are incomplete or wrong.') . ' ' . gettext('Check your config file settings and re-run setup.'));
+					break;
+			}
+			if ($setup_autorun) { //mandatory level 1
+				$location = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $dir . "/" . ZENFOLDER . "/setup/index.php?autorun=$where";
+				redirectURL($location);
+			} else {
+				if ($show_errorpage) { // mandatory level 2-3
+					printReconfigureError($mandatory);
+				} else { // mandatory level 0 - here we can check login status
+					if (zp_loggedin()) {
+						addReconfigureNote();
+					}
+				}
+			}
 		} else {
-			reconfigurePage($diff, $needs, $mandatory);
+			printReconfigureNote($diff, $needs, $mandatory);
 		}
 	} else if (!empty($diff)) {
-		reconfigureNote();
+		debuglog(gettext('Install signature change detected.') . gettext('Setup run recommended.'));
+		addReconfigureNote();
 	}
 }
 
 /**
- *
  * Checks details of configuration change
+ * 
+ * @global type $_configMutex
+ * @global type $_zp_DB_connection
+ * @param bool $auto
+ * @return type
  */
 function checkSignature($auto) {
-	global $_configMutex;
-	global $_zp_DB_connection, $_reconfigureMutex;
+	global $_configMutex, $_zp_DB_connection;
 	if (function_exists('query_full_array') && $_zp_DB_connection) {
 		$old = @unserialize(getOption('zenphoto_install'));
 		$new = installSignature();
@@ -75,7 +107,7 @@ function checkSignature($auto) {
 		}
 	}
 
-	$package = file_get_contents(SERVERPATH . '/' .ZENFOLDER . '/Zenphoto.package');
+	$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package');
 	preg_match_all('|' . ZENFOLDER . '/setup/(.*)|', $package, $matches);
 	$needs = array();
 	foreach ($matches[1] as $need) {
@@ -83,110 +115,99 @@ function checkSignature($auto) {
 	}
 	// serialize the following
 	$_configMutex->lock();
-	if (file_exists(SERVERPATH . '/' .ZENFOLDER . '/setup/')) {
+	if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/setup/')) {
 		$found = isSetupProtected();
-		if(!empty($found) && $auto && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS))) {
+		if (!empty($found) && $auto && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS))) {
 			unprotectSetupFiles();
 		}
 		$found = safe_glob('*.*');
 		$needs = array_diff($needs, $found);
-	} 
+	}
 	$_configMutex->unlock();
-	
+
 	return array($diff, $needs);
 }
 
 /**
- *
  * Notificatnion handler for configuration change
+ * 
  * @param string $tab
  * @param string $subtab
  * @return string
  */
 function signatureChange($tab = NULL, $subtab = NULL) {
 	list($diff, $needs) = checkSignature(false);
-	reconfigurePage($diff, $needs, 0);
+	printReconfigureNote($diff, $needs, 0);
 	return $tab;
 }
 
 /**
- * Adds the reconfigure notification via filters
+ * Adds the reconfigure notification via filters 
+ * 
+ * @since ZenphotoCMS 1.5.8 - renamed from reconfigureNote()
  */
-function reconfigureNote() {
+function addReconfigureNote() {
 	if (function_exists('zp_register_filter')) {
+		zp_register_filter('admin_head', 'reconfigureCSS');
 		zp_register_filter('admin_note', 'signatureChange');
-		zp_register_filter('admin_head', 'reconfigureCS');
-		if (zp_loggedin(ADMIN_RIGHTS)) {
-			zp_register_filter('theme_head', 'reconfigureCS');
-			zp_register_filter('theme_body_open', 'signatureChange');
-		}
+		zp_register_filter('theme_head', 'reconfigureCSS');
+		zp_register_filter('theme_body_open', 'signatureChange');
 	}
 }
 
 /**
- *
- * HTML for the configuration change notification
+ * prints HTML for the configuration change notification
+ * 
+ * @since ZenphotoCMS 1.5.8 - renamed from reconfigureNote()
+ * @param array $diff
+ * @param type $needs
+ * @param type $mandatory
  */
-function reconfigurePage($diff, $needs, $mandatory) {
+function printReconfigureNote($diff, $needs, $mandatory) {
+	$notice = getReconfigureNote($diff, $needs, $mandatory);
+	if (!zp_loggedin()) {
+		debuglog("Reconfignote hidden on frontend as not loggedin");
+		debuglogReconfigureNote($notice);
+		return;
+	}
 	?>
 	<div class="reconfigbox">
-		<h1><?php echo gettext('Zenphoto has detected a change in your installation.'); ?></h1>
+		<h1><?php echo $notice['headline']; ?></h1>
 		<div class="reconfig_errors">
 			<ul>
 				<?php
-				foreach ($diff as $thing => $rslt) {
-					switch ($thing) {
-						case 'SERVER_SOFTWARE':
-							echo '<li>' . sprintf(gettext('Your server software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
-							break;
-						case 'DATABASE':
-							echo '<li>' . sprintf(gettext('Your database software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
-							break;
-						case 'ZENPHOTO':
-							echo '<li>' . sprintf(gettext('Zenphoto %1$s has been copied over %2$s.'), ZENPHOTO_VERSION, $rslt['old']) . '</li>';
-							break;
-						case 'FOLDER':
-							echo '<li>' . sprintf(gettext('Your installation has moved from %1$s to %2$s.'), $rslt['old'], $rslt['new']) . '</li>';
-							break;
-						default:
-							$sz = @filesize(SERVERPATH . '/' . ZENFOLDER . '/' . $thing);
-							echo '<li>' . sprintf(gettext('The script <code>%1$s</code> has changed.'), $thing) . '</li>';
-							break;
-					}
+				foreach ($notice['notes'] as $note) {
+					?>
+					<li><?php echo $note; ?></li>
+					<?php
 				}
 				?>
 			</ul>
 		</div>
 		<p>
-			<?php
-			if (array_key_exists('ZENPHOTO', $diff) || array_key_exists('FOLDER', $diff)) {
-				echo gettext('The change detected is critical. You <strong>must</strong> run setup for your site to function.');
-			} else {
-				echo gettext('The change detected may not be critical but you should run setup at your earliest convenience.');
-			}
-			?>
+			<?php echo $notice['note_level']; ?>
 		</p>
-		<?php 
-		if(zp_loggedin(ADMIN_RIGHTS)) {
+		<?php
+		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (OFFSET_PATH) {
 				$where = 'admin';
 			} else {
 				$where = 'gallery';
 			}
 			$runsetup_link = WEBPATH . '/' . ZENFOLDER . '/setup.php?autorun=' . $where . '&amp;xsrfToken=' . getXSRFToken('setup');
-			$ignore_link = WEBPATH . '/' . ZENFOLDER .'/admin.php?ignore_setup=1&amp;XSRFToken=' . getXSRFToken('ignore_setup');
+			$ignore_link = WEBPATH . '/' . ZENFOLDER . '/admin.php?ignore_setup=1&amp;XSRFToken=' . getXSRFToken('ignore_setup');
 			?>
 			<p class="reconfig_links">
 				<a class="reconfig_link reconfig_link-runsetup" href="<?php echo $runsetup_link; ?>"><?php echo gettext('Run setup'); ?></a> 
 				<a class="reconfig_link reconfig_link-ignore" href="<?php echo $ignore_link; ?>"> <?php echo gettext('Ignore, I know what I am doing!'); ?></a>
 			</p>
 			<script>
-				$( document ).ready(function() {
-					$('.reconfig_link-ignore').click(function(event) {
+				$(document).ready(function () {
+					$('.reconfig_link-ignore').click(function (event) {
 						event.preventDefault();
 						var link = $('.reconfig_link-ignore').attr('href');
 						$.ajax(link, {
-							success: function(data) {
+							success: function (data) {
 								$('.reconfigbox').remove();
 							}
 						});
@@ -200,8 +221,100 @@ function reconfigurePage($diff, $needs, $mandatory) {
 			<?php
 		}
 		?>
-		</div>
-	<?php		
+	</div>
+	<?php
+}
+
+/**
+ * Gets data for the configuration change notification
+ * 
+ * Also adds entries to the debuglog.
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @param array $diff
+ * @param type $needs
+ * @param type $mandatory
+ * @return array
+ */
+function getReconfigureNote($diff, $needs, $mandatory) {
+	$notice['headline'] = gettext('Zenphoto has detected a change in your installation.');
+	$notice['notes'] = array();
+	foreach ($diff as $thing => $rslt) {
+		switch ($thing) {
+			case 'SERVER_SOFTWARE':
+				$notice['notes'][] = sprintf(gettext('Your server software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']);
+				break;
+			case 'DATABASE':
+				$notice['notes'][] = sprintf(gettext('Your database software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']);
+				break;
+			case 'ZENPHOTO':
+				$notice['notes'][] .= sprintf(gettext('Zenphoto %1$s has been copied over %2$s.'), ZENPHOTO_VERSION, $rslt['old']);
+				break;
+			case 'FOLDER':
+				$notice['notes'][] = sprintf(gettext('Your installation has moved from %1$s to %2$s.'), $rslt['old'], $rslt['new']);
+				break;
+			default:
+				//$sz = @filesize(SERVERPATH . '/' . ZENFOLDER . '/' . $thing);
+				$notice['notes'][] = sprintf(gettext('The script <code>%1$s</code> has changed.'), $thing);
+				break;
+		}
+	}
+	if (array_key_exists('ZENPHOTO', $diff) || array_key_exists('FOLDER', $diff)) {
+		$notice['note_level'] = gettext('The change detected is critical. You <strong>must</strong> run setup for your site to function.');
+	} else {
+		$notice['note_level'] = gettext('The change detected may not be critical but you should run setup at your earliest convenience.');
+	}
+	return $notice;
+}
+
+/**
+ * Prints an error page on the frontend if a mandatory reconfig issue occured but the visitor is not loggedin 
+ * with appropiate rights or a normal user.
+ */
+function printReconfigureError($mandatory) {
+	header("HTTP/1.1 503 Service Temporarily Unavailable");
+	header("Status: 503 Service Temporarily Unavailable");
+	?>
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8" />
+			<title><?php echo gettext('A configuration error occure.'); ?></title>
+			<style>
+				.siterror {
+					font-family: sans-serif;
+					max-width: 500px;
+					padding: 20px;
+					border: 1px solid red;
+					margin: 0 auto;
+					margin-top: 20px;
+				}
+			</style>
+		</head>
+		<body>
+			<div class="siterror">
+				<p><strong><?php echo gettext('A configuration error occured.'); ?></strong></p>
+				<p><?php echo gettext('Please return later.'); ?></p>
+			</div>
+		</body>
+	</html>
+	<?php
+	exit();
+}
+
+
+/**
+ * Adds debuglog entries about the reconfigure note
+ * 
+ * @param array $notice reconfig notice array as returned by getReconfigureNote()
+ */
+function debuglogReconfigureNote($notice) {
+	debuglog($notice['headline']);
+	foreach ($notice['notes'] as $note) {
+		debuglog($note);
+	}
+	debuglog($notice['note_level']);
 }
 
 /**
@@ -226,8 +339,8 @@ function ignoreSetupRunRequest() {
  * @return array
  */
 function isSetupProtected() {
-	if (file_exists(SERVERPATH . '/' .ZENFOLDER . '/setup/')) {
-		chdir(SERVERPATH . '/' .ZENFOLDER . '/setup/');
+	if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/setup/')) {
+		chdir(SERVERPATH . '/' . ZENFOLDER . '/setup/');
 		$found = safe_glob('*.xxx');
 		return $found;
 	}
@@ -241,7 +354,7 @@ function unprotectSetupFiles() {
 	$found = isSetupProtected();
 	if ($found) {
 		foreach ($found as $script) {
-			if(!defined('FILE_MOD')) {
+			if (!defined('FILE_MOD')) {
 				define('FILE_MOD', 0666);
 			}
 			chmod($script, 0777);
@@ -279,7 +392,7 @@ function protectSetupFiles() {
  *
  * CSS for the configuration change notification
  */
-function reconfigureCS() {
+function reconfigureCSS() {
 	?>
 	<style type="text/css">
 		.reconfigbox {
@@ -298,7 +411,7 @@ function reconfigureCS() {
 			border-radius: 5px;
 			text-align: left;
 		}
-		
+
 		.successbox {
 			background-color: green;
 		}
@@ -309,11 +422,11 @@ function reconfigureCS() {
 			font-weight: bold;
 			margin-bottom: 1em;
 		}
-		
+
 		.reconfigbox code {
 			font-weight: bold;
 		}
-		
+
 		.reconfig_links:after {
 			content: " " !important;
 			display: table !important;
@@ -327,17 +440,17 @@ function reconfigureCS() {
 			background: white;
 			margin: 0 10px 0px 0;
 		}
-	
+
 		.reconfig_link-runsetup {
 			font-weight: bold;
 			border: 1px solid darkgray !important;
 		}
-		
+
 		.reconfig_link-ignore {
 			display: block;
 			float: right;		
 		}
-		
+
 		#errors ul {
 			list-style-type: square;
 		}
