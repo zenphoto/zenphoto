@@ -7,7 +7,7 @@
 /**
  * Executes the configuration change code
  * 
- * @param int $mandatory 0-3 0 means signature change while 1 means setup autoraun require assuming fresh install
+ * @param int $mandatory 0-3 0 means signature change where 1 means setup must autorun assuming a fresh install
  */
 function reconfigureAction($mandatory) {
 	list($diff, $needs) = checkSignature($mandatory);
@@ -129,7 +129,7 @@ function checkSignature($auto) {
 }
 
 /**
- * Notificatnion handler for configuration change
+ * Notification handler for configuration change
  * 
  * @param string $tab
  * @param string $subtab
@@ -269,8 +269,8 @@ function getReconfigureNote($diff, $needs, $mandatory) {
 }
 
 /**
- * Prints an error page on the frontend if a mandatory reconfig issue occured but the visitor is not loggedin 
- * with appropiate rights or a normal user.
+ * Prints an error page on the frontend if a mandatory reconfigure issue occured but the visitor is not loggedin 
+ * with appropiate rights.
  */
 function printReconfigureError($mandatory) {
 	header("HTTP/1.1 503 Service Temporarily Unavailable");
@@ -307,7 +307,7 @@ function printReconfigureError($mandatory) {
 /**
  * Adds debuglog entries about the reconfigure note
  * 
- * @param array $notice reconfig notice array as returned by getReconfigureNote()
+ * @param array $notice reconfigure notice array as returned by getReconfigureNote()
  */
 function debuglogReconfigureNote($notice) {
 	debuglog($notice['headline']);
