@@ -180,10 +180,8 @@ class setup {
 			</li>
 			<?php
 		} else {
+			$anyway = 1; // we want to log success as well
 			$dsp = $text;
-			?>
-			<li class="<?php echo $cls; ?>"><?php echo $text; ?></li>
-			<?php
 		}
 		if ($anyway == 2) {
 			$stopped = '(' . gettext('Autorun aborted') . ') ';

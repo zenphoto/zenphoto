@@ -996,10 +996,7 @@ if ($c <= 0) {
 											</p>
 											<?php
 										} else {
-											?>
-											<li class="note_ok"><?php echo sprintf(gettext('PHP <code>%s</code> support'), $handler); ?>
-											</li>
-											<?php
+											setup::log(gettext('Pass: ') . sprintf(gettext('PHP <code>%s</code> support'), $handler), true, false); 
 										}
 									} else {
 										?>

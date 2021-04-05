@@ -325,10 +325,10 @@ li {
 }
 
 .setup_filelist {
-	max-height: 500px;
+	height: 250px;
 	display: block;
 	overflow: auto;
-	
+	resize: vertical;
 }
 
 .setup_filelist li {
