@@ -269,7 +269,7 @@ function getReconfigureNote($diff, $needs, $mandatory) {
 }
 
 /**
- * Prints an error page on the frontend if a mandatory reconfigure issue occured but the visitor is not loggedin 
+ * Prints an error page on the frontend if a mandatory reconfigure issue occurred but the visitor is not loggedin 
  * with appropiate rights.
  */
 function printReconfigureError($mandatory) {
@@ -280,7 +280,7 @@ function printReconfigureError($mandatory) {
 	<html>
 		<head>
 			<meta charset="UTF-8" />
-			<title><?php echo gettext('A configuration error occure.'); ?></title>
+			<title><?php echo gettext('A configuration error occurred.'); ?></title>
 			<style>
 				.siterror {
 					font-family: sans-serif;
@@ -294,7 +294,7 @@ function printReconfigureError($mandatory) {
 		</head>
 		<body>
 			<div class="siterror">
-				<p><strong><?php echo gettext('A configuration error occured.'); ?></strong></p>
+				<p><strong><?php echo gettext('A configuration error occurred.'); ?></strong></p>
 				<p><?php echo gettext('Please return later.'); ?></p>
 			</div>
 		</body>
