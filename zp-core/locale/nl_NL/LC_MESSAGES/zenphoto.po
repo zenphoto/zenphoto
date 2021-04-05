@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-02 14:15+0200\n"
+"POT-Creation-Date: 2021-04-05 15:11+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -629,7 +629,7 @@ msgid "Image gallery transition"
 msgstr "Galerij overgang"
 
 #: themes/garland/themeoptions.php:153 zp-core/admin-options.php:3445
-#: zp-core/exif/makers/canon.php:155 zp-core/exif/makers/nikon.php:216
+#: zp-core/exif/makers/canon.php:218 zp-core/exif/makers/nikon.php:316
 #: zp-core/zp-extensions/GoogleMap.php:119
 #: zp-core/zp-extensions/user_login-out.php:37
 msgid "None"
@@ -699,7 +699,7 @@ msgstr "*standaard menu"
 #: themes/zpmobile/search.php:46 themes/zpmobile/search.php:51
 #: themes/zpmobile/search.php:53 zp-core/template-functions.php:451
 #: zp-core/template-functions.php:1406 zp-core/template-functions.php:1437
-#: zp-core/template-functions.php:3796
+#: zp-core/template-functions.php:3798
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-core/zp-extensions/html_meta_tags.php:314
 #: zp-core/zp-extensions/scriptless-socialsharing.php:185
@@ -2749,7 +2749,7 @@ msgid "Filemtime"
 msgstr "laatste verandering"
 
 #: zp-core/admin-functions.php:5043 zp-core/admin-options.php:835
-#: zp-core/exif/makers/canon.php:279 zp-core/exif/makers/fujifilm.php:106
+#: zp-core/exif/makers/canon.php:426 zp-core/exif/makers/fujifilm.php:126
 #: zp-core/zp-extensions/favoritesHandler.php:135
 msgid "Custom"
 msgstr "Custom"
@@ -2761,11 +2761,11 @@ msgstr "Laatste update datum"
 #: zp-core/admin-functions.php:5049 zp-core/admin-functions.php:5056
 #: zp-core/admin-functions.php:5063 zp-core/admin-options.php:1727
 #: zp-core/admin-options.php:1780 zp-core/admin-options.php:1881
-#: zp-core/exif/exif.php:517 zp-core/exif/makers/canon.php:139
-#: zp-core/exif/makers/canon.php:202 zp-core/exif/makers/canon.php:223
-#: zp-core/exif/makers/fujifilm.php:154 zp-core/exif/makers/nikon.php:252
-#: zp-core/exif/makers/panasonic.php:105 zp-core/exif/makers/panasonic.php:108
-#: zp-core/exif/makers/panasonic.php:113 zp-core/exif/makers/panasonic.php:139
+#: zp-core/exif/exif.php:700 zp-core/exif/makers/canon.php:190
+#: zp-core/exif/makers/canon.php:291 zp-core/exif/makers/canon.php:327
+#: zp-core/exif/makers/fujifilm.php:179 zp-core/exif/makers/nikon.php:363
+#: zp-core/exif/makers/panasonic.php:148 zp-core/exif/makers/panasonic.php:154
+#: zp-core/exif/makers/panasonic.php:163 zp-core/exif/makers/panasonic.php:212
 msgid "Manual"
 msgstr "handmatig"
 
@@ -6114,7 +6114,7 @@ msgstr "Setup » herstel scripts"
 
 #: zp-core/admin.php:254
 msgid "Restores setup files so setup can be run."
-msgstr "Hertelt setup bestanden zodat setup weer gebruikt kan worden."
+msgstr "Hertelt de setup bestanden zodat setup weer uitgevoerd kan worden."
 
 #: zp-core/admin.php:264
 msgid "Setup » protect scripts"
@@ -6122,9 +6122,9 @@ msgstr "Setup » bescherm scripts"
 
 #: zp-core/admin.php:269
 msgid "Protects setup files so setup cannot be run."
-msgstr "Beschermt setup bestanden zodat setup niet gebruikt kan worden."
+msgstr "Beschermt setup bestanden zodat setup niet uitgevoerd kan worden."
 
-#: zp-core/admin.php:280 zp-core/reconfigure.php:180
+#: zp-core/admin.php:280 zp-core/reconfigure.php:201
 msgid "Run setup"
 msgstr "Voer setup uit"
 
@@ -6443,36 +6443,36 @@ msgstr "Error: De albums directory (%s) kon niet gevonden worden."
 msgid "Error: The “albums” directory (%s) is not readable."
 msgstr "Error: De albums directory (%s) is niet leesbaar."
 
-#: zp-core/class-gallery.php:438 zp-core/exif/exif.php:525
-#: zp-core/exif/exif.php:537 zp-core/exif/exif.php:549
-#: zp-core/exif/exif.php:575 zp-core/exif/exif.php:606
-#: zp-core/exif/exif.php:621 zp-core/exif/exif.php:633
-#: zp-core/exif/exif.php:641 zp-core/exif/makers/canon.php:83
-#: zp-core/exif/makers/canon.php:95 zp-core/exif/makers/canon.php:107
-#: zp-core/exif/makers/canon.php:113 zp-core/exif/makers/canon.php:125
-#: zp-core/exif/makers/canon.php:134 zp-core/exif/makers/canon.php:150
-#: zp-core/exif/makers/canon.php:158 zp-core/exif/makers/canon.php:165
-#: zp-core/exif/makers/canon.php:172 zp-core/exif/makers/canon.php:179
-#: zp-core/exif/makers/canon.php:191 zp-core/exif/makers/canon.php:198
-#: zp-core/exif/makers/canon.php:206 zp-core/exif/makers/canon.php:215
-#: zp-core/exif/makers/canon.php:225 zp-core/exif/makers/canon.php:241
-#: zp-core/exif/makers/canon.php:258 zp-core/exif/makers/canon.php:280
-#: zp-core/exif/makers/canon.php:317 zp-core/exif/makers/fujifilm.php:88
-#: zp-core/exif/makers/fujifilm.php:108 zp-core/exif/makers/nikon.php:163
-#: zp-core/exif/makers/nikon.php:172 zp-core/exif/makers/nikon.php:184
-#: zp-core/exif/makers/nikon.php:195 zp-core/exif/makers/nikon.php:209
-#: zp-core/exif/makers/nikon.php:218 zp-core/exif/makers/nikon.php:257
-#: zp-core/exif/makers/nikon.php:265 zp-core/exif/makers/nikon.php:268
-#: zp-core/exif/makers/olympus.php:76 zp-core/exif/makers/olympus.php:81
-#: zp-core/exif/makers/panasonic.php:98 zp-core/exif/makers/panasonic.php:109
-#: zp-core/exif/makers/panasonic.php:116 zp-core/exif/makers/panasonic.php:122
-#: zp-core/exif/makers/panasonic.php:127 zp-core/exif/makers/panasonic.php:151
-#: zp-core/exif/makers/panasonic.php:156 zp-core/exif/makers/panasonic.php:170
-#: zp-core/exif/makers/panasonic.php:176 zp-core/exif/makers/panasonic.php:182
-#: zp-core/exif/makers/panasonic.php:188 zp-core/exif/makers/panasonic.php:194
-#: zp-core/exif/makers/panasonic.php:200 zp-core/exif/makers/panasonic.php:205
-#: zp-core/exif/makers/sanyo.php:64 zp-core/exif/makers/sanyo.php:68
-#: zp-core/exif/makers/sanyo.php:72 zp-core/setup/class-setup.php:382
+#: zp-core/class-gallery.php:438 zp-core/exif/exif.php:716
+#: zp-core/exif/exif.php:736 zp-core/exif/exif.php:756
+#: zp-core/exif/exif.php:796 zp-core/exif/exif.php:845
+#: zp-core/exif/exif.php:866 zp-core/exif/exif.php:886
+#: zp-core/exif/exif.php:898 zp-core/exif/makers/canon.php:99
+#: zp-core/exif/makers/canon.php:117 zp-core/exif/makers/canon.php:138
+#: zp-core/exif/makers/canon.php:147 zp-core/exif/makers/canon.php:168
+#: zp-core/exif/makers/canon.php:183 zp-core/exif/makers/canon.php:212
+#: zp-core/exif/makers/canon.php:224 zp-core/exif/makers/canon.php:235
+#: zp-core/exif/makers/canon.php:246 zp-core/exif/makers/canon.php:257
+#: zp-core/exif/makers/canon.php:275 zp-core/exif/makers/canon.php:286
+#: zp-core/exif/makers/canon.php:299 zp-core/exif/makers/canon.php:314
+#: zp-core/exif/makers/canon.php:331 zp-core/exif/makers/canon.php:357
+#: zp-core/exif/makers/canon.php:390 zp-core/exif/makers/canon.php:428
+#: zp-core/exif/makers/canon.php:504 zp-core/exif/makers/fujifilm.php:107
+#: zp-core/exif/makers/fujifilm.php:128 zp-core/exif/makers/nikon.php:240
+#: zp-core/exif/makers/nikon.php:252 zp-core/exif/makers/nikon.php:270
+#: zp-core/exif/makers/nikon.php:286 zp-core/exif/makers/nikon.php:308
+#: zp-core/exif/makers/nikon.php:320 zp-core/exif/makers/nikon.php:373
+#: zp-core/exif/makers/nikon.php:384 zp-core/exif/makers/nikon.php:390
+#: zp-core/exif/makers/olympus.php:92 zp-core/exif/makers/olympus.php:101
+#: zp-core/exif/makers/panasonic.php:135 zp-core/exif/makers/panasonic.php:156
+#: zp-core/exif/makers/panasonic.php:169 zp-core/exif/makers/panasonic.php:180
+#: zp-core/exif/makers/panasonic.php:189 zp-core/exif/makers/panasonic.php:236
+#: zp-core/exif/makers/panasonic.php:245 zp-core/exif/makers/panasonic.php:266
+#: zp-core/exif/makers/panasonic.php:277 zp-core/exif/makers/panasonic.php:288
+#: zp-core/exif/makers/panasonic.php:299 zp-core/exif/makers/panasonic.php:310
+#: zp-core/exif/makers/panasonic.php:321 zp-core/exif/makers/panasonic.php:330
+#: zp-core/exif/makers/sanyo.php:70 zp-core/exif/makers/sanyo.php:77
+#: zp-core/exif/makers/sanyo.php:84 zp-core/setup/class-setup.php:382
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -6648,7 +6648,7 @@ msgid "unpublished"
 msgstr "niet-gepubliceerd"
 
 #: zp-core/class-userdataexport.php:366 zp-core/class-userdataexport.php:422
-#: zp-core/class-userdataexport.php:511 zp-core/reconfigure.php:274
+#: zp-core/class-userdataexport.php:511 zp-core/reconfigure.php:387
 msgid "protected"
 msgstr "beschermd"
 
@@ -6685,1004 +6685,1004 @@ msgstr "Gebruiker laatste verandering"
 msgid "guest user"
 msgstr "Gastgebruiker"
 
-#: zp-core/exif/exif.php:487
+#: zp-core/exif/exif.php:654
 msgid "1: Normal (0 deg)"
 msgstr "1: Normaal (0 graden)"
 
-#: zp-core/exif/exif.php:488
+#: zp-core/exif/exif.php:656
 msgid "2: Mirrored"
 msgstr "2: Gespiegeld"
 
-#: zp-core/exif/exif.php:489
+#: zp-core/exif/exif.php:658
 msgid "3: Upside-down"
 msgstr "3: Ondersteboven"
 
-#: zp-core/exif/exif.php:490
+#: zp-core/exif/exif.php:660
 msgid "4: Upside-down Mirrored"
 msgstr "4: Ondersteboven gespiegeld"
 
-#: zp-core/exif/exif.php:491
+#: zp-core/exif/exif.php:662
 msgid "5: 90 deg CW Mirrored"
 msgstr "5: 90 graden rechtsom gespiegeld"
 
-#: zp-core/exif/exif.php:492
+#: zp-core/exif/exif.php:664
 msgid "6: 90 deg CCW"
 msgstr "6: 90 graden linksom"
 
-#: zp-core/exif/exif.php:493
+#: zp-core/exif/exif.php:666
 msgid "7: 90 deg CCW Mirrored"
 msgstr "7: 90 graden linksom gespiegeld"
 
-#: zp-core/exif/exif.php:494
+#: zp-core/exif/exif.php:668
 msgid "8: 90 deg CW"
 msgstr "8: 90 graden rechtsom"
 
-#: zp-core/exif/exif.php:495
+#: zp-core/exif/exif.php:670
 #, php-format
 msgid "%d: Unknown"
 msgstr "%d: Onbekend"
 
-#: zp-core/exif/exif.php:502 zp-core/exif/exif.php:1224
+#: zp-core/exif/exif.php:678 zp-core/exif/exif.php:1497
 msgid "No Unit"
 msgstr "Geen Eenheid"
 
-#: zp-core/exif/exif.php:503 zp-core/exif/exif.php:1212
+#: zp-core/exif/exif.php:680 zp-core/exif/exif.php:1485
 msgid "Inch"
 msgstr "Inch"
 
-#: zp-core/exif/exif.php:504 zp-core/exif/exif.php:1215
+#: zp-core/exif/exif.php:682 zp-core/exif/exif.php:1488
 msgid "Centimeter"
 msgstr "Centimeter"
 
-#: zp-core/exif/exif.php:505 zp-core/exif/exif.php:1218
+#: zp-core/exif/exif.php:684 zp-core/exif/exif.php:1491
 msgid "Millimeter"
 msgstr "Millimeter"
 
-#: zp-core/exif/exif.php:506 zp-core/exif/exif.php:1221
+#: zp-core/exif/exif.php:686 zp-core/exif/exif.php:1494
 msgid "Micrometer"
 msgstr "Micrometer"
 
-#: zp-core/exif/exif.php:511
+#: zp-core/exif/exif.php:692
 msgid "Center of Pixel Array"
 msgstr "Centrum van Pixelrij"
 
-#: zp-core/exif/exif.php:512
+#: zp-core/exif/exif.php:694
 msgid "Datum Point"
 msgstr "Datumpunt"
 
-#: zp-core/exif/exif.php:518 zp-core/exif/makers/canon.php:220
-#: zp-core/exif/makers/panasonic.php:135
+#: zp-core/exif/exif.php:702 zp-core/exif/makers/canon.php:321
+#: zp-core/exif/makers/panasonic.php:204
 msgid "Program"
 msgstr "Programma"
 
-#: zp-core/exif/exif.php:519 zp-core/exif/makers/panasonic.php:136
+#: zp-core/exif/exif.php:704 zp-core/exif/makers/panasonic.php:206
 msgid "Aperture Priority"
 msgstr "Diafragmaprioriteit"
 
-#: zp-core/exif/exif.php:520 zp-core/exif/makers/fujifilm.php:182
-#: zp-core/exif/makers/panasonic.php:137
+#: zp-core/exif/exif.php:706 zp-core/exif/makers/fujifilm.php:209
+#: zp-core/exif/makers/panasonic.php:208
 msgid "Shutter Priority"
 msgstr "Sluiterprioriteit"
 
-#: zp-core/exif/exif.php:521
+#: zp-core/exif/exif.php:708
 msgid "Program Creative"
 msgstr "Programma Creative"
 
-#: zp-core/exif/exif.php:522
+#: zp-core/exif/exif.php:710
 msgid "Program Action"
 msgstr "Programma-actie"
 
-#: zp-core/exif/exif.php:523 zp-core/exif/makers/canon.php:146
-#: zp-core/exif/makers/fujifilm.php:170 zp-core/exif/makers/panasonic.php:131
+#: zp-core/exif/exif.php:712 zp-core/exif/makers/canon.php:204
+#: zp-core/exif/makers/fujifilm.php:197 zp-core/exif/makers/panasonic.php:196
 msgid "Portrait"
 msgstr "Portret"
 
-#: zp-core/exif/exif.php:524 zp-core/exif/makers/canon.php:140
-#: zp-core/exif/makers/fujifilm.php:172
+#: zp-core/exif/exif.php:714 zp-core/exif/makers/canon.php:192
+#: zp-core/exif/makers/fujifilm.php:199
 msgid "Landscape"
 msgstr "Landscape"
 
-#: zp-core/exif/exif.php:530
+#: zp-core/exif/exif.php:722
 msgid "Standard Output Sensitivity"
 msgstr "Standard Output Sensitivity"
 
-#: zp-core/exif/exif.php:531
+#: zp-core/exif/exif.php:724
 msgid "Recommended Exposure Index"
 msgstr "Recommended Exposure Index"
 
-#: zp-core/exif/exif.php:532
+#: zp-core/exif/exif.php:726
 msgid "ISO Speed"
 msgstr "ISO Speed"
 
-#: zp-core/exif/exif.php:533
+#: zp-core/exif/exif.php:728
 msgid "Standard Output Sensitivity and Recommended Exposure Index"
 msgstr "Standard Output Sensitivity and Recommended Exposure Index"
 
-#: zp-core/exif/exif.php:534
+#: zp-core/exif/exif.php:730
 msgid "Standard Output Sensitivity and ISO Speed"
 msgstr "Standard Output Sensitivity and ISO Speed"
 
-#: zp-core/exif/exif.php:535
+#: zp-core/exif/exif.php:732
 msgid "Recommended Exposure Index and ISO Speed"
 msgstr "Recommended Exposure Index and ISO Speed"
 
-#: zp-core/exif/exif.php:536
+#: zp-core/exif/exif.php:734
 msgid "Standard Output Sensitivity, Recommended Exposure Index and ISO Speed"
 msgstr "Standard Output Sensitivity, Recommended Exposure Index and ISO Speed"
 
-#: zp-core/exif/exif.php:542
+#: zp-core/exif/exif.php:742
 msgid "Average"
 msgstr "Gemiddeld"
 
-#: zp-core/exif/exif.php:543
+#: zp-core/exif/exif.php:744
 msgid "Center Weighted Average"
 msgstr "Center Weighted Average"
 
-#: zp-core/exif/exif.php:544
+#: zp-core/exif/exif.php:746
 msgid "Spot"
 msgstr "Spot"
 
-#: zp-core/exif/exif.php:545
+#: zp-core/exif/exif.php:748
 msgid "Multi-Spot"
 msgstr "Multi-Spot"
 
-#: zp-core/exif/exif.php:546
+#: zp-core/exif/exif.php:750
 msgid "Pattern"
 msgstr "Patroon"
 
-#: zp-core/exif/exif.php:547 zp-core/exif/makers/canon.php:196
+#: zp-core/exif/exif.php:752 zp-core/exif/makers/canon.php:282
 msgid "Partial"
 msgstr "Gedeeltelijk"
 
-#: zp-core/exif/exif.php:548 zp-core/exif/exif.php:574
+#: zp-core/exif/exif.php:754 zp-core/exif/exif.php:794
 msgid "Other"
 msgstr "Overig"
 
-#: zp-core/exif/exif.php:554 zp-core/exif/makers/fujifilm.php:94
-#: zp-core/exif/makers/nikon.php:204 zp-core/exif/makers/panasonic.php:102
+#: zp-core/exif/exif.php:762 zp-core/exif/makers/fujifilm.php:114
+#: zp-core/exif/makers/nikon.php:298 zp-core/exif/makers/panasonic.php:142
 msgid "Daylight"
 msgstr "Daglicht"
 
-#: zp-core/exif/exif.php:555 zp-core/exif/makers/canon.php:277
+#: zp-core/exif/exif.php:764 zp-core/exif/makers/canon.php:422
 msgid "Fluorescent"
 msgstr "Fluoriserend"
 
-#: zp-core/exif/exif.php:556 zp-core/exif/makers/canon.php:276
+#: zp-core/exif/exif.php:766 zp-core/exif/makers/canon.php:420
 msgid "Tungsten"
 msgstr "Tungsten"
 
-#: zp-core/exif/exif.php:559 zp-core/exif/exif.php:588
-#: zp-core/exif/makers/canon.php:278 zp-core/exif/makers/panasonic.php:106
+#: zp-core/exif/exif.php:770 zp-core/exif/exif.php:809
+#: zp-core/exif/makers/canon.php:424 zp-core/exif/makers/panasonic.php:150
 msgid "Flash"
 msgstr "Flits"
 
-#: zp-core/exif/exif.php:566
+#: zp-core/exif/exif.php:778
 msgid "Standard Light A"
 msgstr "Standaardlicht A"
 
-#: zp-core/exif/exif.php:567
+#: zp-core/exif/exif.php:780
 msgid "Standard Light B"
 msgstr "Standaardlicht B"
 
-#: zp-core/exif/exif.php:568
+#: zp-core/exif/exif.php:782
 msgid "Standard Light C"
 msgstr "Standaardlicht C"
 
-#: zp-core/exif/exif.php:569
+#: zp-core/exif/exif.php:784
 msgid "D55"
 msgstr "D55"
 
-#: zp-core/exif/exif.php:570
+#: zp-core/exif/exif.php:786
 msgid "D65"
 msgstr "D65"
 
-#: zp-core/exif/exif.php:571
+#: zp-core/exif/exif.php:788
 msgid "D75"
 msgstr "D75"
 
-#: zp-core/exif/exif.php:572
+#: zp-core/exif/exif.php:790
 msgid "D50"
 msgstr "D50"
 
-#: zp-core/exif/exif.php:573
+#: zp-core/exif/exif.php:792
 msgid "ISO Studio Tungsten"
 msgstr "ISO Studio Tungsten"
 
-#: zp-core/exif/exif.php:587
+#: zp-core/exif/exif.php:807
 msgid "No Flash"
 msgstr "Geen flits"
 
-#: zp-core/exif/exif.php:589
+#: zp-core/exif/exif.php:811
 msgid "Flash, strobe return light not detected"
 msgstr "Flits, strobe return light niet herkend"
 
-#: zp-core/exif/exif.php:590
+#: zp-core/exif/exif.php:813
 msgid "Flash, strobe return light detected"
 msgstr "Flits, strobe weerkaatst licht herkend"
 
-#: zp-core/exif/exif.php:591
+#: zp-core/exif/exif.php:815
 msgid "Compulsory Flash"
 msgstr "Verplichte Flits"
 
-#: zp-core/exif/exif.php:592
+#: zp-core/exif/exif.php:817
 msgid "Compulsory Flash, Return light not detected"
 msgstr "Verplichte Flits, Return light niet herkend"
 
-#: zp-core/exif/exif.php:593
+#: zp-core/exif/exif.php:819
 msgid "Compulsory Flash, Return light detected"
 msgstr "Verplichte Flits, Return light herkend"
 
-#: zp-core/exif/exif.php:594
+#: zp-core/exif/exif.php:821
 msgid "Flash, Auto-Mode"
 msgstr "Flits, Automatische-Modus"
 
-#: zp-core/exif/exif.php:595
+#: zp-core/exif/exif.php:823
 msgid "Flash, Auto-Mode, Return light not detected"
 msgstr "Flits, Automatische-Modus, Return light niet herkend"
 
-#: zp-core/exif/exif.php:596
+#: zp-core/exif/exif.php:825
 msgid "Flash, Auto-Mode, Return light detected"
 msgstr "Flits, Automatische-Modus, Return light herkend"
 
-#: zp-core/exif/exif.php:597
+#: zp-core/exif/exif.php:827
 msgid "Red Eye"
 msgstr "Rode Ogen"
 
-#: zp-core/exif/exif.php:598
+#: zp-core/exif/exif.php:829
 msgid "Red Eye, Return light not detected"
 msgstr "Rode Ogen, Return light niet herkend"
 
-#: zp-core/exif/exif.php:599
+#: zp-core/exif/exif.php:831
 msgid "Red Eye, Return light detected"
 msgstr "Rode Ogen, Return light herkend"
 
-#: zp-core/exif/exif.php:600
+#: zp-core/exif/exif.php:833
 msgid "Red Eye, Compulsory Flash"
 msgstr "Rode Ogen, Verplichte Flits"
 
-#: zp-core/exif/exif.php:601
+#: zp-core/exif/exif.php:835
 msgid "Red Eye, Compulsory Flash, Return light not detected"
 msgstr "Rode Ogen, Verplichte Flits, Return light niet herkend"
 
-#: zp-core/exif/exif.php:602
+#: zp-core/exif/exif.php:837
 msgid "Red Eye, Compulsory Flash, Return light detected"
 msgstr "Rode Ogen, Verplichte Flits, Return light herkend"
 
-#: zp-core/exif/exif.php:603
+#: zp-core/exif/exif.php:839
 msgid "Red Eye, Auto-Mode"
 msgstr "Rode Ogen, Automatische-Modus"
 
-#: zp-core/exif/exif.php:604
+#: zp-core/exif/exif.php:841
 msgid "Red Eye, Auto-Mode, Return light not detected"
 msgstr "Rode Ogen, Automatische-Modus, Return light niet herkend"
 
-#: zp-core/exif/exif.php:605
+#: zp-core/exif/exif.php:843
 msgid "Red Eye, Auto-Mode, Return light detected"
 msgstr "Rode Ogen, Automatische-Modus, Return light herkend"
 
-#: zp-core/exif/exif.php:610
+#: zp-core/exif/exif.php:851
 msgid "sRGB"
 msgstr "sRGB"
 
-#: zp-core/exif/exif.php:611
+#: zp-core/exif/exif.php:853
 msgid "Uncalibrated"
 msgstr "Niet gecalibreerd"
 
-#: zp-core/exif/exif.php:615
+#: zp-core/exif/exif.php:858
 msgid "pixels"
 msgstr "pixels"
 
-#: zp-core/exif/exif.php:619
+#: zp-core/exif/exif.php:862
 msgid "No Compression"
 msgstr "Geen compressie"
 
-#: zp-core/exif/exif.php:620
+#: zp-core/exif/exif.php:864
 msgid "Jpeg Compression"
 msgstr "Jpeg Compressie"
 
-#: zp-core/exif/exif.php:626
+#: zp-core/exif/exif.php:872
 msgid "Not defined"
 msgstr "Niet gedefinieerd"
 
-#: zp-core/exif/exif.php:627
+#: zp-core/exif/exif.php:874
 msgid "One Chip Color Area Sensor"
 msgstr "One Chip Color Area Sensor"
 
-#: zp-core/exif/exif.php:628
+#: zp-core/exif/exif.php:876
 msgid "Two Chip Color Area Sensor"
 msgstr "Two Chip Color Area Sensor"
 
-#: zp-core/exif/exif.php:629
+#: zp-core/exif/exif.php:878
 msgid "Three Chip Color Area Sensor"
 msgstr "Three Chip Color Area Sensor"
 
-#: zp-core/exif/exif.php:630
+#: zp-core/exif/exif.php:880
 msgid "Color Sequential Area Sensor"
 msgstr "Color Sequential Area Sensor"
 
-#: zp-core/exif/exif.php:631
+#: zp-core/exif/exif.php:882
 msgid "Trilinear Sensor"
 msgstr "Trilinear Sensor"
 
-#: zp-core/exif/exif.php:632
+#: zp-core/exif/exif.php:884
 msgid "Color Sequential Linear Sensor"
 msgstr "Color Sequential Linear Sensor"
 
-#: zp-core/exif/exif.php:638 zp-core/exif/makers/nikon.php:171
+#: zp-core/exif/exif.php:892 zp-core/exif/makers/nikon.php:250
 msgid "Monochrome"
 msgstr "Monochrome"
 
-#: zp-core/exif/exif.php:639
+#: zp-core/exif/exif.php:894
 msgid "RGB"
 msgstr "RGB"
 
-#: zp-core/exif/exif.php:640
+#: zp-core/exif/exif.php:896
 msgid "YCbCr"
 msgstr "YCbCr"
 
-#: zp-core/exif/exif.php:676 zp-core/zp-extensions/security-logger.php:131
+#: zp-core/exif/exif.php:934 zp-core/zp-extensions/security-logger.php:131
 msgid "version"
 msgstr "versie"
 
-#: zp-core/exif/exif.php:681
+#: zp-core/exif/exif.php:939
 msgid "Digital Still Camera"
 msgstr "Digitale Still Camera"
 
-#: zp-core/exif/exif.php:686
+#: zp-core/exif/exif.php:944
 msgid "Directly Photographed"
 msgstr "Direct Gefotografeerd"
 
-#: zp-core/exif/exif.php:728
+#: zp-core/exif/exif.php:988
 msgid "Bulb"
 msgstr "Flitslamp"
 
-#: zp-core/exif/exif.php:885
+#: zp-core/exif/exif.php:1152
 msgid "The file could not be found."
 msgstr "het bestand kon niet gevonden worden."
 
-#: zp-core/exif/exif.php:1061
+#: zp-core/exif/exif.php:1331
 msgid "Could not Find SubIFD"
 msgstr "Kon SubIFD niet vinden"
 
-#: zp-core/exif/exif.php:1078
+#: zp-core/exif/exif.php:1349
 msgid "Illegal size for SubIFD"
 msgstr "Ongeldige grootte voor SubIFD"
 
-#: zp-core/exif/exif.php:1099
+#: zp-core/exif/exif.php:1370
 msgid "Could not Find IFD1"
 msgstr "Kon IFD1 niet vinden"
 
-#: zp-core/exif/exif.php:1116
+#: zp-core/exif/exif.php:1388
 msgid "Illegal size for IFD1"
 msgstr "Ongeldige grootte voor IFD1"
 
-#: zp-core/exif/exif.php:1140
+#: zp-core/exif/exif.php:1412
 msgid "Could not Find InteroperabilityIFD"
 msgstr "Kon InteroperabilityIFD niet vinden"
 
-#: zp-core/exif/exif.php:1157
+#: zp-core/exif/exif.php:1430
 msgid "Illegal size for InteroperabilityIFD"
 msgstr "Ongeldige grootte voor InteroperabilityIFD"
 
-#: zp-core/exif/makers/canon.php:81 zp-core/exif/makers/panasonic.php:138
+#: zp-core/exif/makers/canon.php:95 zp-core/exif/makers/panasonic.php:210
 msgid "Macro"
 msgstr "Macro"
 
-#: zp-core/exif/makers/canon.php:82 zp-core/exif/makers/canon.php:92
-#: zp-core/exif/makers/canon.php:162 zp-core/exif/makers/canon.php:169
-#: zp-core/exif/makers/canon.php:176 zp-core/exif/makers/fujifilm.php:82
-#: zp-core/exif/makers/nikon.php:179 zp-core/exif/makers/panasonic.php:130
-#: zp-core/exif/makers/panasonic.php:203 zp-core/exif/makers/sanyo.php:63
-#: zp-core/exif/makers/sanyo.php:71 zp-core/zp-extensions/reCaptcha.php:86
+#: zp-core/exif/makers/canon.php:97 zp-core/exif/makers/canon.php:111
+#: zp-core/exif/makers/canon.php:229 zp-core/exif/makers/canon.php:240
+#: zp-core/exif/makers/canon.php:251 zp-core/exif/makers/fujifilm.php:101
+#: zp-core/exif/makers/nikon.php:260 zp-core/exif/makers/panasonic.php:194
+#: zp-core/exif/makers/panasonic.php:326 zp-core/exif/makers/sanyo.php:68
+#: zp-core/exif/makers/sanyo.php:82 zp-core/zp-extensions/reCaptcha.php:86
 msgid "Normal"
 msgstr "Normaal"
 
-#: zp-core/exif/makers/canon.php:87 zp-core/exif/makers/canon.php:99
-#: zp-core/exif/makers/fujifilm.php:136 zp-core/exif/makers/fujifilm.php:144
-#: zp-core/exif/makers/fujifilm.php:160 zp-core/exif/makers/fujifilm.php:190
-#: zp-core/exif/makers/panasonic.php:120 zp-core/exif/makers/panasonic.php:126
-#: zp-core/exif/makers/panasonic.php:165 zp-core/exif/makers/panasonic.php:173
-#: zp-core/exif/makers/panasonic.php:191
+#: zp-core/exif/makers/canon.php:104 zp-core/exif/makers/canon.php:122
+#: zp-core/exif/makers/fujifilm.php:159 zp-core/exif/makers/fujifilm.php:168
+#: zp-core/exif/makers/fujifilm.php:186 zp-core/exif/makers/fujifilm.php:218
+#: zp-core/exif/makers/panasonic.php:176 zp-core/exif/makers/panasonic.php:187
+#: zp-core/exif/makers/panasonic.php:256 zp-core/exif/makers/panasonic.php:271
+#: zp-core/exif/makers/panasonic.php:304
 msgid "Off"
 msgstr "Uit"
 
-#: zp-core/exif/makers/canon.php:88
+#: zp-core/exif/makers/canon.php:106
 msgid "/10s"
 msgstr "/10s"
 
-#: zp-core/exif/makers/canon.php:93
+#: zp-core/exif/makers/canon.php:113
 msgid "Fine"
 msgstr "Fijn"
 
-#: zp-core/exif/makers/canon.php:94
+#: zp-core/exif/makers/canon.php:115
 msgid "Superfine"
 msgstr "Superfijn"
 
-#: zp-core/exif/makers/canon.php:100 zp-core/exif/makers/canon.php:186
-#: zp-core/exif/makers/canon.php:203 zp-core/exif/makers/canon.php:273
-#: zp-core/exif/makers/fujifilm.php:92 zp-core/exif/makers/fujifilm.php:132
-#: zp-core/exif/makers/fujifilm.php:152 zp-core/exif/makers/fujifilm.php:168
-#: zp-core/exif/makers/nikon.php:202 zp-core/exif/makers/panasonic.php:101
-#: zp-core/exif/makers/panasonic.php:112
+#: zp-core/exif/makers/canon.php:124 zp-core/exif/makers/canon.php:265
+#: zp-core/exif/makers/canon.php:293 zp-core/exif/makers/canon.php:414
+#: zp-core/exif/makers/fujifilm.php:112 zp-core/exif/makers/fujifilm.php:155
+#: zp-core/exif/makers/fujifilm.php:177 zp-core/exif/makers/fujifilm.php:195
+#: zp-core/exif/makers/nikon.php:294 zp-core/exif/makers/panasonic.php:140
+#: zp-core/exif/makers/panasonic.php:161
 msgid "Auto"
 msgstr "Automatisch"
 
-#: zp-core/exif/makers/canon.php:101 zp-core/exif/makers/fujifilm.php:134
-#: zp-core/exif/makers/fujifilm.php:146 zp-core/exif/makers/fujifilm.php:162
-#: zp-core/exif/makers/fujifilm.php:192 zp-core/exif/makers/panasonic.php:125
+#: zp-core/exif/makers/canon.php:126 zp-core/exif/makers/fujifilm.php:157
+#: zp-core/exif/makers/fujifilm.php:170 zp-core/exif/makers/fujifilm.php:188
+#: zp-core/exif/makers/fujifilm.php:220 zp-core/exif/makers/panasonic.php:185
 msgid "On"
 msgstr "Aan"
 
-#: zp-core/exif/makers/canon.php:102
+#: zp-core/exif/makers/canon.php:128
 msgid "Red Eye Reduction"
 msgstr "Rode Ogen Reductie"
 
-#: zp-core/exif/makers/canon.php:103
+#: zp-core/exif/makers/canon.php:130
 msgid "Slow Synchro"
 msgstr "Langzame Synchronisatie"
 
-#: zp-core/exif/makers/canon.php:104
+#: zp-core/exif/makers/canon.php:132
 msgid "Auto + Red Eye Reduction"
 msgstr "Automatisch + Rode Ogen Reductie"
 
-#: zp-core/exif/makers/canon.php:105
+#: zp-core/exif/makers/canon.php:134
 msgid "On + Red Eye Reduction"
 msgstr "Aan + Rode Ogen Reductie"
 
-#: zp-core/exif/makers/canon.php:106
+#: zp-core/exif/makers/canon.php:136
 msgid "External Flash"
 msgstr "Externe Flits"
 
-#: zp-core/exif/makers/canon.php:111
+#: zp-core/exif/makers/canon.php:143
 msgid "Single/Timer"
 msgstr "Single/Timer"
 
-#: zp-core/exif/makers/canon.php:112 zp-core/exif/makers/canon.php:123
-#: zp-core/exif/makers/canon.php:257
+#: zp-core/exif/makers/canon.php:145 zp-core/exif/makers/canon.php:164
+#: zp-core/exif/makers/canon.php:388
 msgid "Continuous"
 msgstr "Continu"
 
-#: zp-core/exif/makers/canon.php:118
+#: zp-core/exif/makers/canon.php:154
 msgid "One-Shot"
 msgstr "One-Shot"
 
-#: zp-core/exif/makers/canon.php:119
+#: zp-core/exif/makers/canon.php:156
 msgid "AI Servo"
 msgstr "AI Servo"
 
-#: zp-core/exif/makers/canon.php:120
+#: zp-core/exif/makers/canon.php:158
 msgid "AI Focus"
 msgstr "AI Focus"
 
-#: zp-core/exif/makers/canon.php:121 zp-core/exif/makers/canon.php:124
-#: zp-core/exif/makers/canon.php:210
+#: zp-core/exif/makers/canon.php:160 zp-core/exif/makers/canon.php:166
+#: zp-core/exif/makers/canon.php:304
 msgid "Manual Focus"
 msgstr "Handmatige Focus"
 
-#: zp-core/exif/makers/canon.php:122 zp-core/exif/makers/canon.php:256
+#: zp-core/exif/makers/canon.php:162 zp-core/exif/makers/canon.php:386
 msgid "Single"
 msgstr "Enkel"
 
-#: zp-core/exif/makers/canon.php:131 zp-core/zp-extensions/GoogleMap.php:131
+#: zp-core/exif/makers/canon.php:177 zp-core/zp-extensions/GoogleMap.php:131
 msgid "Large"
 msgstr "Groot"
 
-#: zp-core/exif/makers/canon.php:132
+#: zp-core/exif/makers/canon.php:179
 msgid "Medium"
 msgstr "Middel"
 
-#: zp-core/exif/makers/canon.php:133 zp-core/zp-extensions/GoogleMap.php:129
+#: zp-core/exif/makers/canon.php:181 zp-core/zp-extensions/GoogleMap.php:129
 msgid "Small"
 msgstr "Klein"
 
-#: zp-core/exif/makers/canon.php:138
+#: zp-core/exif/makers/canon.php:188
 msgid "Full Auto"
 msgstr "Volledig Automatisch"
 
-#: zp-core/exif/makers/canon.php:141
+#: zp-core/exif/makers/canon.php:194
 msgid "Fast Shutter"
 msgstr "Snelle Sluiter"
 
-#: zp-core/exif/makers/canon.php:142
+#: zp-core/exif/makers/canon.php:196
 msgid "Slow Shutter"
 msgstr "Langzame Sluiter"
 
-#: zp-core/exif/makers/canon.php:143 zp-core/exif/makers/fujifilm.php:176
+#: zp-core/exif/makers/canon.php:198 zp-core/exif/makers/fujifilm.php:203
 msgid "Night"
 msgstr "Nacht"
 
-#: zp-core/exif/makers/canon.php:144
+#: zp-core/exif/makers/canon.php:200
 msgid "Black & White"
 msgstr "Zwart & Wit"
 
-#: zp-core/exif/makers/canon.php:145 zp-core/exif/makers/panasonic.php:169
+#: zp-core/exif/makers/canon.php:202 zp-core/exif/makers/panasonic.php:264
 msgid "Sepia"
 msgstr "Sepia"
 
-#: zp-core/exif/makers/canon.php:147
+#: zp-core/exif/makers/canon.php:206
 msgid "Sport"
 msgstr "Sport"
 
-#: zp-core/exif/makers/canon.php:148
+#: zp-core/exif/makers/canon.php:208
 msgid "Macro/Close-Up"
 msgstr "Macro/Close-Up"
 
-#: zp-core/exif/makers/canon.php:149
+#: zp-core/exif/makers/canon.php:210
 msgid "Pan Focus"
 msgstr "Pan Focus"
 
-#: zp-core/exif/makers/canon.php:156
+#: zp-core/exif/makers/canon.php:220
 msgid "2x"
 msgstr "2x"
 
-#: zp-core/exif/makers/canon.php:157
+#: zp-core/exif/makers/canon.php:222
 msgid "4x"
 msgstr "4x"
 
-#: zp-core/exif/makers/canon.php:163 zp-core/exif/makers/canon.php:170
-#: zp-core/exif/makers/canon.php:177 zp-core/exif/makers/panasonic.php:94
-#: zp-core/exif/makers/panasonic.php:181 zp-core/exif/makers/panasonic.php:187
-#: zp-core/exif/makers/sanyo.php:67
+#: zp-core/exif/makers/canon.php:231 zp-core/exif/makers/canon.php:242
+#: zp-core/exif/makers/canon.php:253 zp-core/exif/makers/panasonic.php:127
+#: zp-core/exif/makers/panasonic.php:286 zp-core/exif/makers/panasonic.php:297
+#: zp-core/exif/makers/sanyo.php:75
 msgid "High"
 msgstr "Hoog"
 
-#: zp-core/exif/makers/canon.php:164 zp-core/exif/makers/canon.php:171
-#: zp-core/exif/makers/canon.php:178 zp-core/exif/makers/panasonic.php:180
-#: zp-core/exif/makers/panasonic.php:186
+#: zp-core/exif/makers/canon.php:233 zp-core/exif/makers/canon.php:244
+#: zp-core/exif/makers/canon.php:255 zp-core/exif/makers/panasonic.php:284
+#: zp-core/exif/makers/panasonic.php:295
 msgid "Low"
 msgstr "Laag"
 
-#: zp-core/exif/makers/canon.php:187
+#: zp-core/exif/makers/canon.php:267
 msgid "50"
 msgstr "50"
 
-#: zp-core/exif/makers/canon.php:188
+#: zp-core/exif/makers/canon.php:269
 msgid "100"
 msgstr "100"
 
-#: zp-core/exif/makers/canon.php:189
+#: zp-core/exif/makers/canon.php:271
 msgid "200"
 msgstr "200"
 
-#: zp-core/exif/makers/canon.php:190
+#: zp-core/exif/makers/canon.php:273
 msgid "400"
 msgstr "400"
 
-#: zp-core/exif/makers/canon.php:195
+#: zp-core/exif/makers/canon.php:280
 msgid "Evaluative"
 msgstr "Evaluative"
 
-#: zp-core/exif/makers/canon.php:197
+#: zp-core/exif/makers/canon.php:284
 msgid "Center-weighted"
 msgstr "Center-weighted"
 
-#: zp-core/exif/makers/canon.php:204
+#: zp-core/exif/makers/canon.php:295
 msgid "Close-up (Macro)"
 msgstr "Close-up (Macro)"
 
-#: zp-core/exif/makers/canon.php:205
+#: zp-core/exif/makers/canon.php:297
 msgid "Locked (Pan Mode)"
 msgstr "Locked (Pan Mode)"
 
-#: zp-core/exif/makers/canon.php:211
+#: zp-core/exif/makers/canon.php:306
 msgid "Auto Selected"
 msgstr "Automatisch Geselecteerd"
 
-#: zp-core/exif/makers/canon.php:212 zp-core/exif/makers/canon.php:290
+#: zp-core/exif/makers/canon.php:308 zp-core/exif/makers/canon.php:446
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:157
 msgid "Right"
 msgstr "Rechts"
 
-#: zp-core/exif/makers/canon.php:213 zp-core/exif/makers/canon.php:291
-#: zp-core/exif/makers/nikon.php:231
+#: zp-core/exif/makers/canon.php:310 zp-core/exif/makers/canon.php:449
+#: zp-core/exif/makers/nikon.php:337
 msgid "Center"
 msgstr "Centrum"
 
-#: zp-core/exif/makers/canon.php:214 zp-core/exif/makers/canon.php:292
+#: zp-core/exif/makers/canon.php:312 zp-core/exif/makers/canon.php:452
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:158
 msgid "Left"
 msgstr "Links"
 
-#: zp-core/exif/makers/canon.php:219
+#: zp-core/exif/makers/canon.php:319
 msgid "EasyShoot"
 msgstr "EasyShoot"
 
-#: zp-core/exif/makers/canon.php:221
+#: zp-core/exif/makers/canon.php:323
 msgid "Tv"
 msgstr "Tv"
 
-#: zp-core/exif/makers/canon.php:222
+#: zp-core/exif/makers/canon.php:325
 msgid "Av"
 msgstr "Av"
 
-#: zp-core/exif/makers/canon.php:224
+#: zp-core/exif/makers/canon.php:329
 msgid "Auto-DEP"
 msgstr "Auto-DEP"
 
-#: zp-core/exif/makers/canon.php:239
+#: zp-core/exif/makers/canon.php:353
 msgid "Flash Did Not Fire"
 msgstr "Geen Flits"
 
-#: zp-core/exif/makers/canon.php:240 zp-core/functions.php:2817
+#: zp-core/exif/makers/canon.php:355 zp-core/functions.php:2817
 msgid "Flash Fired"
 msgstr "Flits"
 
-#: zp-core/exif/makers/canon.php:245
+#: zp-core/exif/makers/canon.php:363
 msgid "External E-TTL"
 msgstr "External E-TTL"
 
-#: zp-core/exif/makers/canon.php:246
+#: zp-core/exif/makers/canon.php:366
 msgid "Internal Flash"
 msgstr "Interne Flits"
 
-#: zp-core/exif/makers/canon.php:247
+#: zp-core/exif/makers/canon.php:369
 msgid "FP sync used"
 msgstr "FP sync used"
 
-#: zp-core/exif/makers/canon.php:248
+#: zp-core/exif/makers/canon.php:372
 msgid "2nd(rear)-curtain sync used"
 msgstr "2nd(rear)-curtain sync used"
 
-#: zp-core/exif/makers/canon.php:249
+#: zp-core/exif/makers/canon.php:375
 msgid "1st curtain sync"
 msgstr "1st curtain sync"
 
-#: zp-core/exif/makers/canon.php:274
+#: zp-core/exif/makers/canon.php:416
 msgid "Sunny"
 msgstr "Zonnig"
 
-#: zp-core/exif/makers/canon.php:275 zp-core/exif/makers/fujifilm.php:96
-#: zp-core/exif/makers/nikon.php:207 zp-core/exif/makers/panasonic.php:103
+#: zp-core/exif/makers/canon.php:418 zp-core/exif/makers/fujifilm.php:116
+#: zp-core/exif/makers/nikon.php:304 zp-core/exif/makers/panasonic.php:144
 msgid "Cloudy"
 msgstr "Bewolkt"
 
-#: zp-core/exif/makers/canon.php:293
+#: zp-core/exif/makers/canon.php:455
 msgid "12"
 msgstr "12"
 
-#: zp-core/exif/makers/canon.php:294
+#: zp-core/exif/makers/canon.php:458
 msgid "13"
 msgstr "13"
 
-#: zp-core/exif/makers/canon.php:295
+#: zp-core/exif/makers/canon.php:461
 msgid "14"
 msgstr "14"
 
-#: zp-core/exif/makers/canon.php:296
+#: zp-core/exif/makers/canon.php:464
 msgid "15"
 msgstr "15"
 
-#: zp-core/exif/makers/fujifilm.php:78 zp-core/exif/makers/fujifilm.php:80
+#: zp-core/exif/makers/fujifilm.php:97 zp-core/exif/makers/fujifilm.php:99
 msgid "Soft"
 msgstr "Zacht"
 
-#: zp-core/exif/makers/fujifilm.php:84 zp-core/exif/makers/fujifilm.php:86
+#: zp-core/exif/makers/fujifilm.php:103 zp-core/exif/makers/fujifilm.php:105
 msgid "Hard"
 msgstr "Hard"
 
-#: zp-core/exif/makers/fujifilm.php:98
+#: zp-core/exif/makers/fujifilm.php:118
 msgid "DaylightColor-fluorescence"
 msgstr "DaylightColor-fluorescence"
 
-#: zp-core/exif/makers/fujifilm.php:100
+#: zp-core/exif/makers/fujifilm.php:120
 msgid "DaywhiteColor-fluorescence"
 msgstr "DaywhiteColor-fluorescence"
 
-#: zp-core/exif/makers/fujifilm.php:102
+#: zp-core/exif/makers/fujifilm.php:122
 msgid "White-fluorescence"
 msgstr "White-fluorescence"
 
-#: zp-core/exif/makers/fujifilm.php:104 zp-core/exif/makers/nikon.php:205
+#: zp-core/exif/makers/fujifilm.php:124 zp-core/exif/makers/nikon.php:300
 msgid "Incandescence"
 msgstr "Gloeilamp"
 
-#: zp-core/exif/makers/fujifilm.php:112
+#: zp-core/exif/makers/fujifilm.php:133
 msgid "Chroma Saturation Normal(STD)"
 msgstr "Chroma Verzadiging Normaal(STD)"
 
-#: zp-core/exif/makers/fujifilm.php:114
+#: zp-core/exif/makers/fujifilm.php:135
 msgid "Chroma Saturation High"
 msgstr "Chroma Verzadiging Hoog"
 
-#: zp-core/exif/makers/fujifilm.php:116
+#: zp-core/exif/makers/fujifilm.php:137
 msgid "Chroma Saturation Low(ORG)"
 msgstr "Chroma Verzadiging Laag(ORG)"
 
-#: zp-core/exif/makers/fujifilm.php:118 zp-core/exif/makers/fujifilm.php:128
-#: zp-core/exif/makers/fujifilm.php:140 zp-core/exif/makers/fujifilm.php:148
-#: zp-core/exif/makers/fujifilm.php:156 zp-core/exif/makers/fujifilm.php:164
-#: zp-core/exif/makers/fujifilm.php:186 zp-core/exif/makers/fujifilm.php:194
-#: zp-core/exif/makers/fujifilm.php:202 zp-core/exif/makers/fujifilm.php:210
-#: zp-core/exif/makers/fujifilm.php:218
+#: zp-core/exif/makers/fujifilm.php:139 zp-core/exif/makers/fujifilm.php:150
+#: zp-core/exif/makers/fujifilm.php:163 zp-core/exif/makers/fujifilm.php:172
+#: zp-core/exif/makers/fujifilm.php:181 zp-core/exif/makers/fujifilm.php:190
+#: zp-core/exif/makers/fujifilm.php:213 zp-core/exif/makers/fujifilm.php:222
+#: zp-core/exif/makers/fujifilm.php:231 zp-core/exif/makers/fujifilm.php:240
+#: zp-core/exif/makers/fujifilm.php:249
 msgid "Unknown: "
 msgstr "Onbekend:"
 
-#: zp-core/exif/makers/fujifilm.php:122
+#: zp-core/exif/makers/fujifilm.php:144
 msgid "Contrast Normal(STD)"
 msgstr "Kontrast Normaal(STD)"
 
-#: zp-core/exif/makers/fujifilm.php:124
+#: zp-core/exif/makers/fujifilm.php:146
 msgid "Contrast High(HARD)"
 msgstr "Contrast Hoog(HARD)"
 
-#: zp-core/exif/makers/fujifilm.php:126
+#: zp-core/exif/makers/fujifilm.php:148
 msgid "Contrast Low(ORG)"
 msgstr "Kontrast Laag(ORG)"
 
-#: zp-core/exif/makers/fujifilm.php:138
+#: zp-core/exif/makers/fujifilm.php:161
 msgid "Red-Eye Reduction"
 msgstr "Rode Ogen Reductie"
 
-#: zp-core/exif/makers/fujifilm.php:174 zp-core/exif/makers/panasonic.php:133
+#: zp-core/exif/makers/fujifilm.php:201 zp-core/exif/makers/panasonic.php:200
 msgid "Sports"
 msgstr "Sport"
 
-#: zp-core/exif/makers/fujifilm.php:178
+#: zp-core/exif/makers/fujifilm.php:205
 msgid "Program AE"
 msgstr "Programma AE"
 
-#: zp-core/exif/makers/fujifilm.php:180
+#: zp-core/exif/makers/fujifilm.php:207
 msgid "Aperture Priority AE"
 msgstr "Diafragmaprioriteit AE"
 
-#: zp-core/exif/makers/fujifilm.php:184
+#: zp-core/exif/makers/fujifilm.php:211
 msgid "Manual Exposure"
 msgstr "Handmatige Be"
 
-#: zp-core/exif/makers/fujifilm.php:198
+#: zp-core/exif/makers/fujifilm.php:227
 msgid "No Warning"
 msgstr "Geen waarschuwing"
 
-#: zp-core/exif/makers/fujifilm.php:200
+#: zp-core/exif/makers/fujifilm.php:229
 msgid "Warning"
 msgstr "Waarschuwing"
 
-#: zp-core/exif/makers/fujifilm.php:206
+#: zp-core/exif/makers/fujifilm.php:236
 msgid "Auto Focus Good"
 msgstr "Autofocus goed"
 
-#: zp-core/exif/makers/fujifilm.php:208
+#: zp-core/exif/makers/fujifilm.php:238
 msgid "Out of Focus"
 msgstr "Uit focus"
 
-#: zp-core/exif/makers/fujifilm.php:214
+#: zp-core/exif/makers/fujifilm.php:245
 msgid "AE Good"
 msgstr "AE Goed"
 
-#: zp-core/exif/makers/fujifilm.php:216
+#: zp-core/exif/makers/fujifilm.php:247
 msgid "Over Exposure"
 msgstr "Overbelicht"
 
-#: zp-core/exif/makers/nikon.php:40
+#: zp-core/exif/makers/nikon.php:49
 msgid "Converter"
 msgstr "Converteerder"
 
-#: zp-core/exif/makers/nikon.php:157
+#: zp-core/exif/makers/nikon.php:228
 msgid "VGA Basic"
 msgstr "VGA Standaard"
 
-#: zp-core/exif/makers/nikon.php:158
+#: zp-core/exif/makers/nikon.php:230
 msgid "VGA Normal"
 msgstr "VGA Normaal"
 
-#: zp-core/exif/makers/nikon.php:159
+#: zp-core/exif/makers/nikon.php:232
 msgid "VGA Fine"
 msgstr "VGA Fijn"
 
-#: zp-core/exif/makers/nikon.php:160
+#: zp-core/exif/makers/nikon.php:234
 msgid "SXGA Basic"
 msgstr "SXGA Standaard"
 
-#: zp-core/exif/makers/nikon.php:161
+#: zp-core/exif/makers/nikon.php:236
 msgid "SXGA Normal"
 msgstr "SXGA Normaal"
 
-#: zp-core/exif/makers/nikon.php:162
+#: zp-core/exif/makers/nikon.php:238
 msgid "SXGA Fine"
 msgstr "SXGA Fijn"
 
-#: zp-core/exif/makers/nikon.php:170
+#: zp-core/exif/makers/nikon.php:248
 msgid "Color"
 msgstr "Kleur"
 
-#: zp-core/exif/makers/nikon.php:180
+#: zp-core/exif/makers/nikon.php:262
 msgid "Bright+"
 msgstr "Helder+"
 
-#: zp-core/exif/makers/nikon.php:181
+#: zp-core/exif/makers/nikon.php:264
 msgid "Bright-"
 msgstr "Helder-"
 
-#: zp-core/exif/makers/nikon.php:182
+#: zp-core/exif/makers/nikon.php:266
 msgid "Contrast+"
 msgstr "Kontrast+"
 
-#: zp-core/exif/makers/nikon.php:183
+#: zp-core/exif/makers/nikon.php:268
 msgid "Contrast-"
 msgstr "Kontrast-"
 
-#: zp-core/exif/makers/nikon.php:203
+#: zp-core/exif/makers/nikon.php:296
 msgid "Preset"
 msgstr "Voorgeprogrammeerd"
 
-#: zp-core/exif/makers/nikon.php:206
+#: zp-core/exif/makers/nikon.php:302
 msgid "Fluorescence"
 msgstr "Flourescence"
 
-#: zp-core/exif/makers/nikon.php:208
+#: zp-core/exif/makers/nikon.php:306
 msgid "SpeedLight"
 msgstr "SpeedLight"
 
-#: zp-core/exif/makers/nikon.php:217
+#: zp-core/exif/makers/nikon.php:318
 msgid "Fisheye"
 msgstr "Fisheye"
 
-#: zp-core/exif/makers/nikon.php:251
+#: zp-core/exif/makers/nikon.php:361
 msgid "AF non D"
 msgstr "AF non D"
 
-#: zp-core/exif/makers/nikon.php:264
+#: zp-core/exif/makers/nikon.php:382
 msgid "Did Not Fire"
 msgstr "Niet Afgegaan"
 
-#: zp-core/exif/makers/nikon.php:266
+#: zp-core/exif/makers/nikon.php:386
 msgid "External"
 msgstr "Externe"
 
-#: zp-core/exif/makers/nikon.php:267
+#: zp-core/exif/makers/nikon.php:388
 msgid "On Camera"
 msgstr "Op Camera"
 
-#: zp-core/exif/makers/panasonic.php:80
+#: zp-core/exif/makers/panasonic.php:109
 msgid "3-area-focusing (High speed)"
 msgstr "3-gebieds-focus (Hoge snelheid)"
 
-#: zp-core/exif/makers/panasonic.php:81
+#: zp-core/exif/makers/panasonic.php:111
 msgid "1-area-focusing (High speed)"
 msgstr "1-gebied-focus (Hoge snelheid)"
 
-#: zp-core/exif/makers/panasonic.php:82
+#: zp-core/exif/makers/panasonic.php:113
 msgid "1-area-focusing"
 msgstr "1-gebied-focus"
 
-#: zp-core/exif/makers/panasonic.php:83
+#: zp-core/exif/makers/panasonic.php:115
 msgid "Spot-focusing"
 msgstr "Spot-focussen"
 
-#: zp-core/exif/makers/panasonic.php:95 zp-core/exif/makers/panasonic.php:179
-#: zp-core/exif/makers/panasonic.php:185
+#: zp-core/exif/makers/panasonic.php:129 zp-core/exif/makers/panasonic.php:282
+#: zp-core/exif/makers/panasonic.php:293
 msgid "Standard"
 msgstr "Standaard"
 
-#: zp-core/exif/makers/panasonic.php:96
+#: zp-core/exif/makers/panasonic.php:131
 msgid "Very High"
 msgstr "Zeer Hoog"
 
-#: zp-core/exif/makers/panasonic.php:97
+#: zp-core/exif/makers/panasonic.php:133
 msgid "RAW"
 msgstr "RAW"
 
-#: zp-core/exif/makers/panasonic.php:104
+#: zp-core/exif/makers/panasonic.php:146
 msgid "Halogen"
 msgstr "Halogeen"
 
-#: zp-core/exif/makers/panasonic.php:107 zp-core/exif/makers/panasonic.php:168
+#: zp-core/exif/makers/panasonic.php:152 zp-core/exif/makers/panasonic.php:262
 msgid "Black and White"
 msgstr "Zwart en Wit"
 
-#: zp-core/exif/makers/panasonic.php:114
+#: zp-core/exif/makers/panasonic.php:165
 msgid "Auto, Focus button"
 msgstr "Auto, Focusknop"
 
-#: zp-core/exif/makers/panasonic.php:115
+#: zp-core/exif/makers/panasonic.php:167
 msgid "Auto, Continuous"
 msgstr "Auto, Continu"
 
-#: zp-core/exif/makers/panasonic.php:119
+#: zp-core/exif/makers/panasonic.php:174
 msgid "Mode 1"
 msgstr "Modus 1"
 
-#: zp-core/exif/makers/panasonic.php:121
+#: zp-core/exif/makers/panasonic.php:178
 msgid "Mode 2"
 msgstr "Modus 2"
 
-#: zp-core/exif/makers/panasonic.php:132
+#: zp-core/exif/makers/panasonic.php:198
 msgid "Scenery"
 msgstr "Landschap"
 
-#: zp-core/exif/makers/panasonic.php:134
+#: zp-core/exif/makers/panasonic.php:202
 msgid "Night Portrait"
 msgstr "Nachtportret"
 
-#: zp-core/exif/makers/panasonic.php:140
+#: zp-core/exif/makers/panasonic.php:214
 msgid "Panning"
 msgstr "Panning"
 
-#: zp-core/exif/makers/panasonic.php:141
+#: zp-core/exif/makers/panasonic.php:216
 msgid "Simple"
 msgstr "Simpel"
 
-#: zp-core/exif/makers/panasonic.php:142
+#: zp-core/exif/makers/panasonic.php:218
 msgid "Fireworks"
 msgstr "Vuurwerk"
 
-#: zp-core/exif/makers/panasonic.php:143
+#: zp-core/exif/makers/panasonic.php:220
 msgid "Party"
 msgstr "Feest"
 
-#: zp-core/exif/makers/panasonic.php:144
+#: zp-core/exif/makers/panasonic.php:222
 msgid "Snow"
 msgstr "Sneeuw"
 
-#: zp-core/exif/makers/panasonic.php:145
+#: zp-core/exif/makers/panasonic.php:224
 msgid "Night Scenery"
 msgstr "Nachtlandschap"
 
-#: zp-core/exif/makers/panasonic.php:146
+#: zp-core/exif/makers/panasonic.php:226
 msgid "Food"
 msgstr "Eten"
 
-#: zp-core/exif/makers/panasonic.php:147
+#: zp-core/exif/makers/panasonic.php:228
 msgid "Baby"
 msgstr "Baby"
 
-#: zp-core/exif/makers/panasonic.php:148
+#: zp-core/exif/makers/panasonic.php:230
 msgid "High Sensitivity"
 msgstr "Hoge Gevoeligheid"
 
-#: zp-core/exif/makers/panasonic.php:149
+#: zp-core/exif/makers/panasonic.php:232
 msgid "Underwater"
 msgstr "Onderwater"
 
-#: zp-core/exif/makers/panasonic.php:150
+#: zp-core/exif/makers/panasonic.php:234
 msgid "Pet"
 msgstr "Huisdier"
 
-#: zp-core/exif/makers/panasonic.php:154
+#: zp-core/exif/makers/panasonic.php:241
 msgid "Yes"
 msgstr "Ja"
 
-#: zp-core/exif/makers/panasonic.php:155 zp-core/zp-extensions/rating.php:119
+#: zp-core/exif/makers/panasonic.php:243 zp-core/zp-extensions/rating.php:119
 msgid "No"
 msgstr "nee"
 
-#: zp-core/exif/makers/panasonic.php:166
+#: zp-core/exif/makers/panasonic.php:258
 msgid "Warm"
 msgstr "Warm"
 
-#: zp-core/exif/makers/panasonic.php:167
+#: zp-core/exif/makers/panasonic.php:260
 msgid "Cool"
 msgstr "Koel"
 
-#: zp-core/exif/makers/panasonic.php:174
+#: zp-core/exif/makers/panasonic.php:273
 msgid "Low/High Quality"
 msgstr "Lage/Hoge Kwaliteit"
 
-#: zp-core/exif/makers/panasonic.php:175
+#: zp-core/exif/makers/panasonic.php:275
 msgid "Infinite"
 msgstr "Oneindig"
 
-#: zp-core/exif/makers/panasonic.php:192
+#: zp-core/exif/makers/panasonic.php:306
 msgid "10s"
 msgstr "10s"
 
-#: zp-core/exif/makers/panasonic.php:193
+#: zp-core/exif/makers/panasonic.php:308
 msgid "2s"
 msgstr "2s"
 
-#: zp-core/exif/makers/panasonic.php:197
+#: zp-core/exif/makers/panasonic.php:315
 msgid "Horizontal (normal)"
 msgstr "Horizontaal (normaal)"
 
-#: zp-core/exif/makers/panasonic.php:198
+#: zp-core/exif/makers/panasonic.php:317
 msgid "Rotate 90 CW"
 msgstr "Draai 90 rechtsom"
 
-#: zp-core/exif/makers/panasonic.php:199
+#: zp-core/exif/makers/panasonic.php:319
 msgid "Rotate 270 CW"
 msgstr "Draai 270 rechtsom"
 
-#: zp-core/exif/makers/panasonic.php:204
+#: zp-core/exif/makers/panasonic.php:328
 msgid "Natural"
 msgstr "Natuurlijk"
 
@@ -9982,60 +9982,43 @@ msgid_plural "Macros defined:"
 msgstr[0] "Gedefiniëerde macro:"
 msgstr[1] "Gedefiniëerde macro’s:"
 
-#: zp-core/reconfigure.php:68
+#: zp-core/reconfigure.php:50
+msgid "ZenphotoCMS config file is missing."
+msgstr "ZenphotoCMS configuratiebestand ontbreekt."
+
+#: zp-core/reconfigure.php:50
+msgid "Setup run required."
+msgstr "Setup uitvoeren vereist."
+
+#: zp-core/reconfigure.php:54
+msgid "ZenphotoCMS database credentials are missing."
+msgstr "ZenphotoCMS database informatie ontbreekt."
+
+#: zp-core/reconfigure.php:54 zp-core/reconfigure.php:58
+msgid "Check your config file settings and re-run setup."
+msgstr "Controleer het configuratiebestand en installeer opnieuw."
+
+#: zp-core/reconfigure.php:58
+msgid "ZenphotoCMS database credentials are incomplete or wrong."
+msgstr "ZenphotoCMS database informatie is niet compleet of fout."
+
+#: zp-core/reconfigure.php:77
+msgid "Install signature change detected."
+msgstr "Verandering in de installatie gedetecteerd."
+
+#: zp-core/reconfigure.php:77
+msgid "Setup run recommended."
+msgstr "Setup uitvoeren wordt aanbevolen."
+
+#: zp-core/reconfigure.php:100
 msgid "an unknown release"
 msgstr "onbekende versie"
 
-#: zp-core/reconfigure.php:133
-msgid "Zenphoto has detected a change in your installation."
-msgstr "Zenphoto heeft een verandering in je installatie gedetecteerd."
-
-#: zp-core/reconfigure.php:140
-#, php-format
-msgid "Your server software has changed from %1$s to %2$s."
-msgstr "Je serversoftware is veranderd van %1$s naar %2$s."
-
-#: zp-core/reconfigure.php:143
-#, php-format
-msgid "Your database software has changed from %1$s to %2$s."
-msgstr "Je database software is veranderd van %1$s naar %2$s."
-
-#: zp-core/reconfigure.php:146
-#, php-format
-msgid "Zenphoto %1$s has been copied over %2$s."
-msgstr "Zenphoto %1$s is gecopiëerd naar %2$s."
-
-#: zp-core/reconfigure.php:149
-#, php-format
-msgid "Your installation has moved from %1$s to %2$s."
-msgstr "Je installatie is verplaatst van %1$s naar %2$s."
-
-#: zp-core/reconfigure.php:153
-#, php-format
-msgid "The script <code>%1$s</code> has changed."
-msgstr "Het script <code>%1$s</code> is veranderd."
-
-#: zp-core/reconfigure.php:163
-msgid ""
-"The change detected is critical. You <strong>must</strong> run setup for "
-"your site to function."
-msgstr ""
-"De gedetecteerde verandering is kritisch. Je <strong>moet</strong> setup "
-"uitvoeren om je site te laten werken."
-
-#: zp-core/reconfigure.php:165
-msgid ""
-"The change detected may not be critical but you should run setup at your "
-"earliest convenience."
-msgstr ""
-"Deze gedetecteerde veranderingen hoeven niet kritisch te zijn maar je zou zo "
-"snel mogelijk setup moeten uitvoeren."
-
-#: zp-core/reconfigure.php:181
+#: zp-core/reconfigure.php:202
 msgid "Ignore, I know what I am doing!"
 msgstr "Negeer, ik weet wat ik doe!"
 
-#: zp-core/reconfigure.php:199
+#: zp-core/reconfigure.php:220
 msgid ""
 "You don't have the rights to run setup. Please contact your site's "
 "administrator or login with your administrator user account."
@@ -10043,9 +10026,62 @@ msgstr ""
 "Je hebt geen rechten om setup uit te voeren. Neem contact op met de "
 "webmaster of log in met een <em>administrator</em> account."
 
-#: zp-core/reconfigure.php:218
+#: zp-core/reconfigure.php:241
+msgid "Zenphoto has detected a change in your installation."
+msgstr "Zenphoto heeft een verandering in je installatie gedetecteerd."
+
+#: zp-core/reconfigure.php:246
+#, php-format
+msgid "Your server software has changed from %1$s to %2$s."
+msgstr "Je serversoftware is veranderd van %1$s naar %2$s."
+
+#: zp-core/reconfigure.php:249
+#, php-format
+msgid "Your database software has changed from %1$s to %2$s."
+msgstr "Je database software is veranderd van %1$s naar %2$s."
+
+#: zp-core/reconfigure.php:252
+#, php-format
+msgid "Zenphoto %1$s has been copied over %2$s."
+msgstr "Zenphoto %1$s is gecopiëerd naar %2$s."
+
+#: zp-core/reconfigure.php:255
+#, php-format
+msgid "Your installation has moved from %1$s to %2$s."
+msgstr "Je installatie is verplaatst van %1$s naar %2$s."
+
+#: zp-core/reconfigure.php:259
+#, php-format
+msgid "The script <code>%1$s</code> has changed."
+msgstr "Het script <code>%1$s</code> is veranderd."
+
+#: zp-core/reconfigure.php:264
+msgid ""
+"The change detected is critical. You <strong>must</strong> run setup for "
+"your site to function."
+msgstr ""
+"De gedetecteerde verandering is kritisch. Je <strong>moet</strong> setup "
+"uitvoeren om je site te laten werken."
+
+#: zp-core/reconfigure.php:266
+msgid ""
+"The change detected may not be critical but you should run setup at your "
+"earliest convenience."
+msgstr ""
+"Deze gedetecteerde veranderingen hoeven niet kritisch te zijn maar je zou zo "
+"snel mogelijk setup moeten uitvoeren."
+
+#: zp-core/reconfigure.php:283 zp-core/reconfigure.php:297
+msgid "A configuration error occurred."
+msgstr "Fout in het configuratiebestand."
+
+#: zp-core/reconfigure.php:298
+msgid "Please return later."
+msgstr "Probeer het later nog eens."
+
+#: zp-core/reconfigure.php:331
 msgid "Setup re-run ignored by admin request."
-msgstr "Opnieuw setup uitvoeren genegeerd door admin."
+msgstr "Opnieuw uitvoeren van setup genegeerd door admin."
 
 #: zp-core/rewrite.php:94
 #, php-format
@@ -10054,12 +10090,12 @@ msgstr "Fout bij het verwerken van rewrite rule: “%s”"
 
 #: zp-core/setup.php:29
 msgid "Click to restore the setup scripts and run setup."
-msgstr "Klik hier om de setup scripts te herstellen en setup te activeren."
+msgstr "Klik hier om de setup scripts te herstellen en setup uit te voeren."
 
 #: zp-core/setup.php:31
 #, php-format
 msgid "You must restore the setup files from the %1$s release."
-msgstr "Installeer alsjeblieft opnieuw de setup bestanden van versie %1$s."
+msgstr "Installeer alsjeblieft opnieuw de setup-bestanden van versie %1$s."
 
 #: zp-core/setup.php:34
 msgid ""
@@ -10165,8 +10201,8 @@ msgid ""
 "<em>%1$s</em> folder [<em>%2$s</em> does not exist and <strong>setup</"
 "strong> could not create it]"
 msgstr ""
-"<em>%1$s</em> mapr [<em>%2$s</em> bestaat niet en <strong>setup</strong> kon "
-"hem niet aanmaken]"
+"<em>%1$s</em> map [<em>%2$s</em> bestaat niet en <strong>setup</strong> kon "
+"deze niet aanmaken]"
 
 #: zp-core/setup/class-setup.php:298
 #, php-format
@@ -11077,7 +11113,7 @@ msgstr ""
 
 #: zp-core/setup/index.php:1045
 msgid "Database setup in configuration file"
-msgstr "Database setup in het configuratiebestand"
+msgstr "Database informatie in het configuratiebestand"
 
 #: zp-core/setup/index.php:1048
 #, php-format
@@ -12096,19 +12132,19 @@ msgstr "Keer terug naar <em>zoeken</em>"
 msgid "Return to archive"
 msgstr "Keer terug naar <em>archief</em>"
 
-#: zp-core/template-functions.php:2190
+#: zp-core/template-functions.php:2192
 msgid "The image is marked un-published."
 msgstr "Deze afbeelding is als niet-gepubliceerd gemarkeerd."
 
-#: zp-core/template-functions.php:2581
+#: zp-core/template-functions.php:2583
 msgid "Image Info"
 msgstr "Foto-informatie"
 
-#: zp-core/template-functions.php:3490
+#: zp-core/template-functions.php:3492
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: zp-core/template-functions.php:3791
+#: zp-core/template-functions.php:3793
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -12116,49 +12152,49 @@ msgstr ""
 "printSearchForm() $album_list parameter is verouderd. Gebruik in plaats "
 "hiervan <code>array(“albums”=>aray(album, album,…))</code>."
 
-#: zp-core/template-functions.php:3807 zp-core/template-functions.php:3813
+#: zp-core/template-functions.php:3809 zp-core/template-functions.php:3815
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: zp-core/template-functions.php:3891
+#: zp-core/template-functions.php:3893
 msgid "search options"
 msgstr "zoekopties"
 
-#: zp-core/template-functions.php:3891
+#: zp-core/template-functions.php:3893
 msgid "fields"
 msgstr "velden"
 
-#: zp-core/template-functions.php:3937
+#: zp-core/template-functions.php:3939
 msgid "Within"
 msgstr "binnen"
 
-#: zp-core/template-functions.php:3941
+#: zp-core/template-functions.php:3943
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nieuw"
 
-#: zp-core/template-functions.php:3948
+#: zp-core/template-functions.php:3950
 msgid "Check/uncheck all"
 msgstr "Selecteer/Deselecteer alle"
 
-#: zp-core/template-functions.php:4000
+#: zp-core/template-functions.php:4002
 msgid "no date"
 msgstr "geen datum"
 
-#: zp-core/template-functions.php:4234
+#: zp-core/template-functions.php:4236
 msgid "You are successfully logged in."
 msgstr "Je bent ingelogd."
 
-#: zp-core/template-functions.php:4239
+#: zp-core/template-functions.php:4241
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: zp-core/template-functions.php:4244
+#: zp-core/template-functions.php:4246
 msgid "login"
 msgstr "login"
 
-#: zp-core/template-functions.php:4262
+#: zp-core/template-functions.php:4264
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
 "website CMS\">Zenphoto</a>"
@@ -12166,21 +12202,21 @@ msgstr ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
 "website CMS\">Zenphoto</a>"
 
-#: zp-core/template-functions.php:4427
+#: zp-core/template-functions.php:4429
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Zenphoto fout:</strong> het gevraagde object kon niet gevonden worden."
 
-#: zp-core/template-functions.php:4429
+#: zp-core/template-functions.php:4431
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zp-core/template-functions.php:4432
+#: zp-core/template-functions.php:4434
 #, php-format
 msgid "Image: %s"
 msgstr "Afbeelding: %s"
 
-#: zp-core/template-functions.php:4435
+#: zp-core/template-functions.php:4437
 #, php-format
 msgid "Page: %s"
 msgstr "Pagina: %s"
@@ -20565,7 +20601,7 @@ msgstr "Verzoek om setup uit te voeren overgeslagen."
 
 #: zp-core/zp-extensions/security-logger.php:140
 msgid "Protect setup scripts"
-msgstr "Bescherm setup bestanden"
+msgstr "Bescherm setup-bestanden"
 
 #: zp-core/zp-extensions/security-logger.php:143
 msgid "Request add user"
