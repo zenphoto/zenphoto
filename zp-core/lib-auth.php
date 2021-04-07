@@ -1482,6 +1482,22 @@ class Zenphoto_Administrator extends PersistentObject {
 	function getName() {
 		return $this->get('name');
 	}
+	
+	/**
+	 * Gets the full name if set 
+	 * 
+	 * @since ZenphotoCNS 1.5.8
+	 * 
+	 * @param string $user User id 
+	 * @return string
+	 */
+	static function getNameByUser($user) {
+		$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+		if (is_object($admin) && $admin->getName()) {
+			return $admin->getName();
+		}
+		return $user;
+	}
 
 	/**
 	 * Stores the user email

@@ -242,6 +242,10 @@ class htmlmetatags {
 			}
 			$twittercard_type = 'summary';
 		}
+		// get master admin
+		$admin = $_zp_authority->getMasterUser();
+		$author = $admin->getName();
+		$copyright_notice = '';
 		$type = 'article';
 		switch ($_zp_gallery_page) {
 			case 'index.php':
@@ -268,6 +272,7 @@ class htmlmetatags {
 					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
 					$twittercard_type = 'summary_large_image';
 				}
+				$author = $_zp_current_album->getOwner(true);
 				break;
 			case 'image.php':
 				$pagetitle = getBareImageTitle() . " (" . getBareAlbumTitle() . ") - ";
@@ -278,6 +283,8 @@ class htmlmetatags {
 					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
 					$twittercard_type = 'summary_large_image';
 				}
+				$author = $_zp_current_image->getCopyrightRightsholder();
+				$copyright_notice = trim(getBare($_zp_current_image->getCopyrightNotice()));
 				break;
 			case 'news.php':
 				if (function_exists("is_NewsArticle")) {
@@ -286,6 +293,7 @@ class htmlmetatags {
 						$date = getNewsDate();
 						$desc = trim(getBare(getNewsContent()));
 						$canonicalurl = $host . $_zp_current_zenpage_news->getLink();
+						$author = $_zp_current_zenpage_news->getAuthor(true);
 					} else if (is_NewsCategory()) {
 						$pagetitle = $_zp_current_category->getTitlelink() . " - ";
 						$date = strftime(DATE_FORMAT);
@@ -308,6 +316,7 @@ class htmlmetatags {
 				$date = getPageDate();
 				$desc = trim(getBare(getPageContent()));
 				$canonicalurl = $host . $_zp_current_zenpage_page->getLink();
+				$author = $_zp_current_zenpage_page->getAuthor(true);
 				break;
 			default: // for all other possible static custom pages
 				$custompage = stripSuffix($_zp_gallery_page);
@@ -331,9 +340,9 @@ class htmlmetatags {
 		// shorten desc to the allowed 200 characters if necesssary.
 		$desc = html_encode(trim(substr(getBare($desc), 0, 160)));
 		$pagetitle = $pagetitle . getBareGalleryTitle();
-		// get master admin
-		$admin = $_zp_authority->getMasterUser();
-		$author = $admin->getName();
+		if(empty($copyright_notice)) {
+			$copyright_notice = '(c) ' . FULLWEBPATH . ' - ' . $author;
+		}
 		$meta = '';
 		if (getOption('htmlmeta_http-equiv-cache-control')) {
 			$meta .= '<meta http-equiv="Cache-control" content="' . getOption("htmlmeta_cache_control") . '">' . "\n";
@@ -360,16 +369,16 @@ class htmlmetatags {
 			$meta .= '<meta name="creator" content="' . FULLWEBPATH . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-author')) {
-			$meta .= '<meta name="author" content="' . $author . '">' . "\n";
+			$meta .= '<meta name="author" content="' . html_encode($author) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-copyright')) {
-			$meta .= '<meta name="copyright" content=" (c) ' . FULLWEBPATH . ' - ' . $author . '">' . "\n";
+			$meta .= '<meta name="copyright" content="' . html_encode($copyright_notice)  . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-rights')) {
-			$meta .= '<meta name="rights" content="' . $author . '">' . "\n";
+			$meta .= '<meta name="rights" content="' . html_encode($author) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-generator')) {
-			$meta .= '<meta name="generator" content="Zenphoto ' . ZENPHOTO_VERSION . '">' . "\n";
+			$meta .= '<meta name="generator" content="ZenphotoCMS ' . ZENPHOTO_VERSION . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-revisit-after')) {
 			$meta .= '<meta name="revisit-after" content="' . getOption("htmlmeta_revisit_after") . '">' . "\n";

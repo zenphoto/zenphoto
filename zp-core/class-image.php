@@ -926,6 +926,69 @@ class Image extends MediaObject {
 	function setCopyright($copyright) {
 		$this->set('copyright', tagURLs($copyright));
 	}
+	
+	/**
+	 * Returns the content of the copyright field if set.
+	 * If not it tries the following fallbacks:
+	 * 
+	 * - IPTCCopyright field
+	 * - EXIFCopyright field
+	 * - "coypright_image_notice" option
+	 * - Owner
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
+	 * @param string $locale
+	 * @return string|null
+	 */
+	function getCopyrightNotice($locale = null) {
+		$copyright = trim($this->getCopyright($locale));
+		if (!empty($copyright)) {
+			$notice = $copyright;
+		} else {
+			$metadata = $this->getMetaData();
+			if (isset($metadata['IPTCCopyright']) && !empty($metadata['IPTCCopyright'])) {
+				$notice = $metadata['IPTCCopyright'];
+			} else if (isset($metadata['EXIFCopyright']) && !empty($metadata['EXIFCopyright'])) {
+				$notice = $metadata['EXIFCopyright'];
+			} else if (empty($notice)) {
+				$option = trim(getOption('copyright_image_notice'));
+				if (!empty($option)) {
+					$notice = $option;
+				} 
+			}
+		}
+		if (!empty(trim($notice))) {
+			$notice = unTagURLs(get_language_string($notice, $locale));
+		}
+		return $notice;
+	}
+	
+	/**
+	 * Gets the general option "copyright_image_rightsholder' value otherwise tries the following
+	 * 
+	 * - EXIFArtist
+	 * - the owner (fullname if available)
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
+	 * @param string $locale
+	 */
+	function getCopyrightRightsholder() {
+		$rightsholder = null;
+		$option = trim(getOption('copyright_image_rightsholder'));
+		if (!empty($option)) {
+			$rightsholder = $option;
+		} else {
+			$metadata = $this->getMetaData();
+			if (isset($metadata['EXIFArtistt']) && !empty($metadata['EXIFArtist'])) {
+				$rightsholder = $metadata['EXIFArtist'];
+			} else {
+				$rightsholder = $this->getOwner(true);
+			}
+		}
+		return $rightsholder;
+	}
 
 	/**
    * Permanently delete this image (permanent: be careful!)
@@ -1389,12 +1452,18 @@ class Image extends MediaObject {
 	}
 
 	/**
-	 * Owner functions
+	 * Gets the owner of the image
+	 * 
+	 * @param bool $fullname Set to true to get the full name (if the owner is a vaild user of the site and has the full name defined)
+	 * @return string
 	 */
-	function getOwner() {
+	function getOwner($fullname = false) {
 		$owner = $this->get('owner');
 		if (empty($owner)) {
 			$owner = $this->album->getOwner();
+		}
+		if ($fullname) {
+			return Zenphoto_Administrator::getNameByUser($owner);
 		}
 		return $owner;
 	}

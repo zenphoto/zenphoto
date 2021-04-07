@@ -17,10 +17,15 @@ class ZenpageItems extends ZenpageRoot {
 	/**
 	 * Returns the author
 	 *
+	 * @param bool $fullname Set to true to get the full name (if the author is a vaild user of the site and has the full name defined)
 	 * @return string
 	 */
-	function getAuthor() {
-		return $this->get("author");
+	function getAuthor($fullname = false) {
+		$author = $this->get("author");
+		if ($fullname) {
+			return Zenphoto_Administrator::getNameByUser($author);
+		}
+		return $author;
 	}
 
 	/**

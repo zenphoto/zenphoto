@@ -936,9 +936,13 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
-	 * Owner functions
+	 * Gets the owner of the album respectively of a parent album if not set specifically
+	 * 
+	 * @global obj $_zp_authority
+	 * @param bool $fullname Set to true to get the full name (if the owner is a vaild user of the site and has the full name defined)
+	 * @return string
 	 */
-	function getOwner() {
+	function getOwner($fullname = false) {
 		global $_zp_authority;
 		$owner = $this->get('owner');
 		if (empty($owner)) {
@@ -948,6 +952,13 @@ class AlbumBase extends MediaObject {
 			} else {
 				$admin = $_zp_authority->getMasterUser();
 				$owner = $admin->getUser();
+				if ($fullname && !empty($admin->getName())) {
+					return $admin->getName();
+				}
+			}
+		} else {
+			if ($fullname) {
+				return Zenphoto_Administrator::getNameByUser($owner);
 			}
 		}
 		return $owner;

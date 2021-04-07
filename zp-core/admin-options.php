@@ -263,7 +263,7 @@ if (isset($_GET['action'])) {
 			setOption('image_interlace', (int) isset($_POST['image_interlace']));
 			setOption('ImbedIPTC', (int) isset($_POST['ImbedIPTC']));
 			
-			setOption('copyright_image_notice', sanitize($_POST['copyright_image_notice']));
+			setOption('copyright_image_notice', process_language_string_save('copyright_image_notice', 3));
 			setOption('copyright_image_rightsholder', sanitize($_POST['copyright_image_rightsholder']));
 			setOption('copyright_url', sanitize($_POST['copyright_url']));
 			
@@ -2577,7 +2577,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<td><?php echo gettext('Image copyright info'); ?></td>
 									<td>
-										<p><label><input type="textbox" name="copyright_image_notice" value="<?php echo getOption('copyright_image_notice'); ?>" size="50" /> <?php echo gettext('Notice'); ?></label></p>
+										<p><?php print_language_string_list(getOption('copyright_image_notice'), 'copyright_image_notice'); ?> <?php echo gettext('Notice'); ?></p>
 										<p><label><input type="textbox" name="copyright_image_rightsholder" value="<?php echo getOption('copyright_image_rightsholder'); ?>" size="50" /> <?php echo gettext('Rights holder'); ?></label></p>
 									</td>
 									<td>
