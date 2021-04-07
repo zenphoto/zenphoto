@@ -264,7 +264,7 @@ if (isset($_GET['action'])) {
 			setOption('ImbedIPTC', (int) isset($_POST['ImbedIPTC']));
 			
 			setOption('copyright_image_notice', sanitize($_POST['copyright_image_notice']));
-			setOption('copyright_image_rightsholdere', sanitize($_POST['copyright_image_rightsholder']));
+			setOption('copyright_image_rightsholder', sanitize($_POST['copyright_image_rightsholder']));
 			setOption('copyright_url', sanitize($_POST['copyright_url']));
 			
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
