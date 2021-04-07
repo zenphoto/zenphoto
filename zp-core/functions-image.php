@@ -479,7 +479,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 				$image = newImage(newAlbum($albumname), $imagename);
 				$copyright = $image->getCopyright();
 				if (empty($copyright)) {
-					$copyright = getOption('default_copyright');
+					$copyright = getOption('copyright_image_notice');
 				}
 				if (!empty($copyright)) {
 					$iptc['2#116'] = $copyright;

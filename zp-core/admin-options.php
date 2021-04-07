@@ -262,7 +262,11 @@ if (isset($_GET['action'])) {
 			setOption('image_sharpen', (int) isset($_POST['image_sharpen']));
 			setOption('image_interlace', (int) isset($_POST['image_interlace']));
 			setOption('ImbedIPTC', (int) isset($_POST['ImbedIPTC']));
-			setOption('default_copyright', sanitize($_POST['default_copyright']));
+			
+			setOption('copyright_image_notice', sanitize($_POST['copyright_image_notice']));
+			setOption('copyright_image_rightsholdere', sanitize($_POST['copyright_image_rightsholder']));
+			setOption('copyright_url', sanitize($_POST['copyright_url']));
+			
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
 			setOption('image_max_size', sanitize_numeric($_POST['image_max_size']));
 			$num = str_replace(',', '.', sanitize($_POST['sharpen_radius']));
@@ -2569,23 +2573,44 @@ Zenphoto_Authority::printPasswordFormJS();
 										</td>
 										<td><?php echo gettext("If checked line breaks embeded in the IPTCcaption field will be converted to <code>&lt;br&gt;</code> on image importing."); ?></td>
 									</tr>
-        <?php
-								if (GRAPHICS_LIBRARY == 'Imagick') {
-									$optionText = gettext('Imbed IPTC copyright');
-									$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded cached copies.');
-								} else {
-									$optionText = gettext('Replicate IPTC metadata');
-									$desc = gettext('If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded. (The text supplied will be used if the orginal image has no copyright.)');
-								}
-								?>
+        
 								<tr>
-									<td><?php echo gettext("IPTC Imbedding:"); ?></td>
+									<td><?php echo gettext('Image copyright info'); ?></td>
 									<td>
-										<label><input type="checkbox" name="ImbedIPTC" value="1"	<?php checked('1', getOption('ImbedIPTC')); ?> /> <?php echo $optionText; ?></label>
-										<p><input type="textbox" name="default_copyright" value="<?php echo getOption('default_copyright'); ?>" size="50" /></p>
+										<p><label><input type="textbox" name="copyright_image_notice" value="<?php echo getOption('copyright_image_notice'); ?>" size="50" /> <?php echo gettext('Notice'); ?></label></p>
+										<p><label><input type="textbox" name="copyright_image_rightsholder" value="<?php echo getOption('copyright_image_rightsholder'); ?>" size="50" /> <?php echo gettext('Rights holder'); ?></label></p>
 									</td>
 									<td>
-										<?php echo $desc; ?>
+										<p><?php echo gettext('The notice and rights holder will be used by the html_meta_tags plugin as a fallback if the image does not provide own copyright metadata. It will also be used as the general copyright info in meta tags if defined.'); ?></p>
+									</td>
+								</tr>
+								
+								<tr>
+									<td><?php echo gettext('Copyright URL'); ?></td>
+									<td>
+										<p><label><input type="textbox" name="copyright_url" value="<?php echo getOption('copyright_url'); ?>" size="50" /> <?php echo gettext('URL'); ?></label></p>
+									</td>
+									<td>
+										<p><?php echo gettext('The URL maybe used to point to some specific copyright info source. Must be an absolute URL address of the form: http://mydomain.com/license.html.'); ?></p>
+									</td>
+								</tr>
+								
+								<tr>
+									<?php
+											if (GRAPHICS_LIBRARY == 'Imagick') {
+												$optionText = gettext('Imbed IPTC copyright');
+												$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded cached copies.');
+											} else {
+												$optionText = gettext('Replicate IPTC metadata');
+												$desc = gettext('If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded. (The text supplied will be used if the orginal image has no copyright.)');
+											}
+										?>
+									<td><?php echo gettext('IPTC copyright imbedding'); ?></td>
+									<td>
+										<p><label><input type="checkbox" name="ImbedIPTC" value="1"	<?php checked('1', getOption('ImbedIPTC')); ?> /> <?php echo $optionText; ?></label></p>
+									</td>
+									<td>
+										<p><?php echo $desc; ?></p>
 										<p class="notebox">
 											<?php echo gettext('<strong>NOTE:</strong> This option applies only to JPEG format cached images.'); ?>
 										</p>
