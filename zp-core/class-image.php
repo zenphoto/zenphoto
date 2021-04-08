@@ -1000,15 +1000,17 @@ class Image extends MediaObject {
 	 */
 	function getCopyrightURL() {
 		$url = getOption('copyright_image_url');
-		if ($url == 'custom') {
-			return getOption('copyright_image_url_custom');
-		} else if ($url == 'none') {
-			return null;
-		} else {
-			if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
-				$pageobj = new ZenpagePage($url);
-				if ($pageobj->exists) {
-					return $pageobj->getLink();
+		if ($url) {
+			if ($url == 'custom') {
+				return getOption('copyright_image_url_custom');
+			} else if ($url == 'none') {
+				return null;
+			} else {
+				if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+					$pageobj = new ZenpagePage($url);
+					if ($pageobj->exists) {
+						return $pageobj->getLink();
+					}
 				}
 			}
 		}
