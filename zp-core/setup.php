@@ -14,7 +14,7 @@ if (empty($needs)) {
 		<head>
 			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
-			<?php reconfigureCS(); ?>
+			<?php reconfigureCSS(); ?>
 		</head>
 		<body>
 			<div id="main">
