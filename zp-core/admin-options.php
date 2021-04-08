@@ -265,6 +265,7 @@ if (isset($_GET['action'])) {
 			
 			setOption('copyright_image_notice', process_language_string_save('copyright_image_notice', 3));
 			setOption('copyright_image_rightsholder', sanitize($_POST['copyright_image_rightsholder']));
+			setOption('copyright_image_rightsholder_custom', sanitize($_POST['copyright_image_rightsholder_custom']));
 			setOption('copyright_image_url', sanitize($_POST['copyright_image_url']));
 			setOption('copyright_image_url_custom', sanitize($_POST['copyright_image_url_custom']));
 			
@@ -2576,13 +2577,23 @@ Zenphoto_Authority::printPasswordFormJS();
 									</tr>
         
 								<tr>
-									<td><?php echo gettext('Image copyright info'); ?></td>
+									<td><?php echo gettext('Image copyright notice'); ?></td>
 									<td>
 										<p><?php print_language_string_list(getOption('copyright_image_notice'), 'copyright_image_notice'); ?> <?php echo gettext('Notice'); ?></p>
-										<p><?php printUserSelector('copyright_image_rightsholder','copyright_image_rightsholder_custom', 'users'); ?></p>
+										
 									</td>
 									<td>
 										<p><?php echo gettext('The notice and rights holder will be used by the html_meta_tags plugin as a fallback if the image does not provide own copyright metadata. It will also be used as the general copyright info in meta tags if defined.'); ?></p>
+									</td>
+								</tr>
+								
+								<tr>
+									<td><?php echo gettext('Image copyright rightsholder'); ?></td>
+									<td>
+										<?php printUserSelector('copyright_image_rightsholder','copyright_image_rightsholder_custom', 'users'); ?>
+									</td>
+									<td>
+										<p><?php echo gettext('The rights holder will be used by the html_meta_tags plugin as a fallback if the image does not provide own copyright metadata. It will also be used as the general copyright info in meta tags if defined.'); ?></p>
 									</td>
 								</tr>
 								

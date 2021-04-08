@@ -967,6 +967,7 @@ class Image extends MediaObject {
 	/**
 	 * Gets the general option "copyright_image_rightsholder' value otherwise tries the following
 	 * 
+	 * - copyright_image_rightsholder_custom
 	 * - EXIFArtist
 	 * – IPTCByLine
 	 * - the owner (fullname if available)
@@ -974,23 +975,26 @@ class Image extends MediaObject {
 	 * @since ZenphotoCMS 1.5.8
 	 */
 	function getCopyrightRightsholder() {
-		$rightsholder = null;
-		$option = trim(getOption('copyright_image_rightsholder'));
-		if (!empty($option)) {
-			$rightsholder = $option;
-		} else {
-			$metadata = $this->getMetaData();
-			if (isset($metadata['EXIFArtist']) && !empty($metadata['EXIFArtist'])) {
-				$rightsholder = $metadata['EXIFArtist'];
-			} else if (isset($metadata['IPTCByLine']) && !empty($metadata['IPTCByLine'])) {
-				$rightsholder = $metadata['IPTCByLine'];
+		$rightsholder = trim(getOption('copyright_image_rightsholder'));
+		if ($rightsholder) {
+			if ($rightsholder == 'custom') {
+				return trim(getOption('copyright_image_rightsholder_custom'));
+			} else if ($rightsholder == 'none') {
+				return null;
 			} else {
-				$rightsholder = $this->getOwner(true);
+				$metadata = $this->getMetaData();
+				if (isset($metadata['EXIFArtist']) && !empty($metadata['EXIFArtist'])) {
+					$rightsholder = $metadata['EXIFArtist'];
+				} else if (isset($metadata['IPTCByLine']) && !empty($metadata['IPTCByLine'])) {
+					$rightsholder = $metadata['IPTCByLine'];
+				} else {
+					$rightsholder = $this->getOwner(true);
+				}
 			}
 		}
 		return $rightsholder;
 	}
-	
+
 	/**
 	 * Gets the image copyright URL
 	 * 
