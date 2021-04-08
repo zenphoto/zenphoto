@@ -5434,11 +5434,11 @@ function getAdminstratorsOptionsArray($type = 'users') {
 	$list[gettext('None')] = 'none';
 	foreach ($users as $user) {
 		if ($user['valid']) {
-			$name = $user['name'];
 			if (empty($user['name'])) {
-				$name = $user['user'];
+				$list[$user['user']] = $user['user'];
+			} else {
+				$list[$user['name'] . '(' . $user['user'] . ')'] = $user['name'];
 			}
-			$list[$name] = $user['user'];
 		}
 	}
 	return $list;
