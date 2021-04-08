@@ -323,6 +323,33 @@ function zp_gotoLink(form) {
 	parent.location = form.ListBoxURL.options[OptionIndex].value;
 }
 
+/**
+ * Toggles an element by checking a certain value of an form element e.g. <select>
+ * 
+ * The toggle is performed by adding/removing the class "hidden". 
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @param {string} element_to_check The selector element to trigger the onchange event (inlcuding # or .!)
+ * @param {string} value_to_trigger The selector value to trigger the toggle on
+ * @param {string} element_to_toggle The element to toggle (inlcuding # or .!)
+ * @param {bool} hide_no_trigger If value_to_trigger is not match always add the hidden class (default), set to true to disable
+ * @returns {undefined}
+ */
+function toggleElementsBySelector(element_to_check, value_to_trigger, element_to_toggle, hide_no_trigger = true) {
+	jQuery(element_to_check).change(function () {
+		if (jQuery(element_to_check).val() === value_to_trigger) {
+			if (jQuery(element_to_toggle).hasClass('hidden')) {
+				jQuery(element_to_toggle).removeClass('hidden');
+			} else {
+				jQuery(element_to_toggle).addClass('hidden');
+			}
+		} else if(hide_no_trigger === true) {
+			jQuery(element_to_toggle).addClass('hidden');
+		}
+	});
+}
+
 $( document ).ready(function() {
 /* 
 	 * backtop button 
@@ -343,3 +370,5 @@ $( document ).ready(function() {
 	});
 	
 });
+
+

@@ -46,8 +46,12 @@ class favorites extends AlbumBase {
 		return $this->list;
 	}
 
-	function getOwner() {
-		return $this->owner;
+	function getOwner($fullname = false) {
+		$owner = $this->owner;
+		if ($fullname) {
+			return Zenphoto_Administrator::getNameByUser($owner);
+		}
+		return $owner;
 	}
 
 	function addImage($img) {

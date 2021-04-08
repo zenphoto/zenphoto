@@ -77,6 +77,40 @@ class ThemeObject extends PersistentObject {
 		$this->set('hitcounter', $this->get('hitcounter') + 1);
 		$this->save();
 	}
+	
+	/**
+	 * Returns true if the item itself is published
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
+	 * For a check including inheritance and private status use isPublic()
+	 *
+	 * @param bool $use_dbvalue Set to true to use the actual db value stored 
+	 * and not the possibly temporary modified value (e.g. if in scheduled publishing or expiration)
+	 * @return bool
+	 */
+	function isPublished($use_dbvalue = false) {
+		if ($use_dbvalue) {
+			return $this->get('show', false);
+		}
+		return $this->get('show');
+	}
+
+	/**
+	 * Stores the published value
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 *
+	 * @param bool $published True if the item is published
+	 */
+	function setPublished($published) {
+		$old = $this->get('show');
+		$new = (int) ($published && true);
+		$this->set('show', $new);
+		if ($old != $new && $this->get('id')) {
+			zp_apply_filter('show_change', $this); // TODO rename to "published_change"
+		}
+	}
 
 	/**
 	 * Returns true published
@@ -84,7 +118,7 @@ class ThemeObject extends PersistentObject {
 	 * @return bool
 	 */
 	function getShow() {
-		return $this->get('show');
+		return $this->isPublished();
 	}
 
 	/**
@@ -93,12 +127,7 @@ class ThemeObject extends PersistentObject {
 	 * @param bool $show True if the album is published
 	 */
 	function setShow($show) {
-		$old_show = $this->get('show');
-		$new_show = (int) ($show && true);
-		$this->set('show', $new_show);
-		if ($old_show != $new_show && $this->get('id')) {
-			zp_apply_filter('show_change', $this);
-		}
+		$this->setPublished($show);
 	}
 
 	/**

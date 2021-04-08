@@ -483,7 +483,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if ($checked == $current)
 			echo ' checked="checked"';
 	}
-	
+
 	define('CUSTOM_OPTION_PREFIX', '_ZP_CUSTOM_');
 	/**
 	 * Generates the HTML for custom options (e.g. theme options, plugin options, etc.)
@@ -1393,7 +1393,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 						} else {
 							echo $custom;
 						}
-						
 						?>
 						<tr>
 							<td class="leftcolumn"><?php echo gettext("Sort subalbums by:"); ?> </td>
@@ -1431,9 +1430,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<label id="album_direction_div<?php echo $suffix; ?>" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
 										<?php echo gettext("Descending"); ?>
 										<input type="checkbox" name="<?php echo $prefix; ?>album_sortdirection" value="1" <?php
-										if ($album->getSortDirection('album')) {
-											echo "CHECKED";
-										};
+									if ($album->getSortDirection('album')) {
+										echo "CHECKED";
+									};
 										?> />
 									</label>
 								</span>
@@ -1695,28 +1694,28 @@ function printAdminHeader($tab, $subtab = NULL) {
 				</td>
 				<td class="rightcolumn" valign="top">
 					<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
-						<div class="box-edit">
-						<?php 
-							if($album->hasPublishSchedule()) {
-								$publishlabel = '<span class="scheduledate">' . gettext('Publishing scheduled') . '</span>';
-							} else {
-								$publishlabel = gettext("Published");
-							}
+					<div class="box-edit">
+						<?php
+						if ($album->hasPublishSchedule()) {
+							$publishlabel = '<span class="scheduledate">' . gettext('Publishing scheduled') . '</span>';
+						} else {
+							$publishlabel = gettext("Published");
+						}
 						?>
 						<label class="checkboxlabel">
 							<input type="checkbox" name="<?php echo $prefix; ?>Published" value="1" <?php if ($album->get('show', false)) echo ' checked="checked"'; ?> />
 							<?php echo $publishlabel; ?>
 						</label>
-						<?php if(extensionEnabled('comment_form')) { ?>
+						<?php if (extensionEnabled('comment_form')) { ?>
 							<label class="checkboxlabel">
 								<input type="checkbox" name="<?php echo $prefix . 'allowcomments'; ?>" value="1" <?php
-								if ($album->getCommentsAllowed()) {
-									echo ' checked="checked"';
-								}
-								?> />
+							if ($album->getCommentsAllowed()) {
+								echo ' checked="checked"';
+							}
+							?> />
 											 <?php echo gettext("Comments enabled"); ?>
 							</label>
-						<?php
+							<?php
 						}
 						if (extensionEnabled('hitcounter')) {
 							$hc = $album->get('hitcounter');
@@ -1992,7 +1991,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	function printAlbumButtons($album) {
 		if ($imagcount = $album->getNumImages() > 0) {
 			if (!$album->isDynamic()) {
-			?>
+				?>
 				<div class="button buttons tooltip" title="<?php echo addslashes(gettext("Clears the album’s cached images.")); ?>">
 					<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?action=clear_cache&amp;album=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_cache'); ?>">
 						<img src="images/edit-delete.png" /><?php echo gettext('Clear album image cache'); ?></a>
@@ -2033,7 +2032,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<?php
 			}
 			?>
-      <li><img src="images/pass.png" alt="" /><img	src="images/action.png" alt="" /><?php echo gettext("Published/Not published"); ?></li>
+			<li><img src="images/pass.png" alt="" /><img	src="images/action.png" alt="" /><?php echo gettext("Published/Not published"); ?></li>
 			<li><img src="images/clock_futuredate.png" alt="" /><img src="images/clock_expiredate.png" alt="" /><img src="images/clock_expired.png" alt="" /><?php echo gettext("Scheduled publishing/Scheduled expiration/Expired"); ?></li>
 			<li><img src="images/comments-on.png" alt="" /><img src="images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 			<li><img src="images/view.png" alt="" /><?php echo gettext("View the album"); ?></li>
@@ -2076,7 +2075,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 					if ($show_thumb) {
 						$thumbimage = $album->getAlbumThumbImage();
-						printAdminThumb($thumbimage, 'small', '','', gettext('Album thumb'));
+						printAdminThumb($thumbimage, 'small', '', '', gettext('Album thumb'));
 					} else {
 						?>
 						<img src="images/thumb_standin.png" width="40" height="40" alt="" title="<?php echo gettext('Album thumb'); ?>" loading="lazy" />
@@ -2129,12 +2128,13 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<div class="page-list_extra">
 				<?php echo $si; ?>
 			</div>
-			<?php if($album->hasPublishSchedule()) { ?>
+			<?php if ($album->hasPublishSchedule()) { ?>
 				<div class="page-list_extra">
 					<?php printPublished($album); ?>
 				</div>
-			<?php } 
-			if($album->hasExpiration() || $album->hasExpired()) {
+			<?php
+			}
+			if ($album->hasExpiration() || $album->hasExpired()) {
 				?>
 				<div class="page-list_extra">
 					<?php printExpired($album); ?>
@@ -2153,7 +2153,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<div class="page-list_icon">
 					<?php printPublishIconLinkGallery($album, $enableEdit, $owner); ?>
 				</div>
-				<?php if(extensionEnabled('comment_form')) { ?>
+				<?php if (extensionEnabled('comment_form')) { ?>
 					<div class="page-list_icon">
 						<?php
 						if ($album->getCommentsAllowed()) {
@@ -2960,7 +2960,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$target = str_replace(array('../', './'), '', $target);
 		$source = SERVERPATH . '/themes/' . internalToFilesystem($source);
 		$target = SERVERPATH . '/themes/' . internalToFilesystem($target);
-	
+
 		// If the target theme already exists, nothing to do.
 		if (is_dir($target)) {
 			return gettext('Cannot create new theme.') . ' ' . sprintf(gettext('Directory “%s” already exists!'), basename($target));
@@ -2983,7 +2983,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		@chmod($target, FOLDER_MOD);
 
 		// Get a list of files to copy: get all files from the directory, remove those containing '/.svn/'		
-		$source_files = array_filter(listDirectoryFiles($source), function($str) {
+		$source_files = array_filter(listDirectoryFiles($source), function ($str) {
 			return strpos($str, "/.svn/") === false;
 		});
 
@@ -3639,21 +3639,21 @@ function printNestedAlbumsList($albums, $show_thumb, $owner) {
 			$open[$indent] = 0;
 		} else if ($level < $indent) {
 			while ($indent > $level) {
-				$open[$indent] --;
+				$open[$indent]--;
 				$indent--;
 				echo "</li>\n" . str_pad("\t", $indent, "\t") . "</ul>\n";
 			}
 		} else { // indent == level
 			if ($open[$indent]) {
 				echo str_pad("\t", $indent, "\t") . "</li>\n";
-				$open[$indent] --;
+				$open[$indent]--;
 			} else {
 				echo "\n";
 			}
 		}
 		if ($open[$indent]) {
 			echo str_pad("\t", $indent, "\t") . "</li>\n";
-			$open[$indent] --;
+			$open[$indent]--;
 		}
 		$albumobj = newAlbum($album['name']);
 		if ($albumobj->isDynamic()) {
@@ -3663,11 +3663,11 @@ function printNestedAlbumsList($albums, $show_thumb, $owner) {
 		}
 		echo str_pad("\t", $indent - 1, "\t") . "<li id=\"id_" . $albumobj->getID() . "\"$nonest >";
 		printAlbumEditRow($albumobj, $show_thumb, $owner);
-		$open[$indent] ++;
+		$open[$indent]++;
 	}
 	while ($indent > 1) {
 		echo "</li>\n";
-		$open[$indent] --;
+		$open[$indent]--;
 		$indent--;
 		echo str_pad("\t", $indent, "\t") . "</ul>";
 	}
@@ -3836,7 +3836,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	?>
 	<span style="float:right">
 		<select class="dirtyignore" name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
-		<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
+			<?php generateListFromArray(array('noaction'), $checkarray, false, true); ?>
 		</select>
 		<?php
 		if ($checkAll) {
@@ -4831,7 +4831,7 @@ function consolidatedEditMessages($subtab) {
 				break;
 			default:
 				$message = zp_apply_filter('bulk_actions_message', $action);
-				if(empty($message)) {
+				if (empty($message)) {
 					$messagebox[] = $action;
 				} else {
 					$messagebox[] = $message;
@@ -4867,21 +4867,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-		<?php echo implode('<br />', $errorbox); ?>
+			<?php echo implode('<br />', $errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-		<?php echo implode('<br />', $notebox); ?>
+			<?php echo implode('<br />', $notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-		<?php echo implode('<br />', $messagebox); ?>
+			<?php echo implode('<br />', $messagebox); ?>
 		</div>
 		<?php
 	}
@@ -4985,30 +4985,30 @@ function printLastChangeInfo($obj) {
 	?>
 	<hr>
 	<ul>
-	<?php
-	if(isAlbumClass($obj) && $obj->getUpdatedDate()) {
-		?>
-		<li><?php printf(gettext('Last updated: %s'), $obj->getUpdatedDate()); ?></li>
 		<?php
-	}
-	if(get_class($obj) == 'Zenphoto_Administrator') { 
+		if (isAlbumClass($obj) && $obj->getUpdatedDate()) {
+			?>
+			<li><?php printf(gettext('Last updated: %s'), $obj->getUpdatedDate()); ?></li>
+			<?php
+		}
+		if (get_class($obj) == 'Zenphoto_Administrator') {
+			?>
+			<li><?php printf(gettext('Account created: %s'), $obj->getDateTime()); ?></li>
+			<li><?php printf(gettext('Current login: %s'), $obj->get('loggedin')); ?></li>
+			<li><?php printf(gettext('Last previous login: %s'), $obj->getLastLogon()); ?></li>
+			<li><?php printf(gettext('Last password update: %s'), $obj->get('passupdate')); ?></li>
+			<li><?php printf(gettext('Last visit: %s'), $obj->getLastVisit()); ?></li>
+			<?php
+		}
 		?>
-		<li><?php printf(gettext('Account created: %s'), $obj->getDateTime()); ?></li>
-		<li><?php printf(gettext('Current login: %s'), $obj->get('loggedin')); ?></li>
-		<li><?php printf(gettext('Last previous login: %s'), $obj->getLastLogon()); ?></li>
-		<li><?php printf(gettext('Last password update: %s'), $obj->get('passupdate')); ?></li>
-		<li><?php printf(gettext('Last visit: %s'), $obj->getLastVisit()); ?></li>
+		<li><?php printf(gettext('Last change: %s'), $obj->getLastchange()); ?></li>
 		<?php
-	}
-	?>
-	<li><?php printf(gettext('Last change: %s'), $obj->getLastchange()); ?></li>
-	<?php
-	$lastchangeuser = $obj->getLastchangeUser();
-	if (empty($lastchangeuser)) {
-		$lastchangeuser = gettext('ZenphotoCMS internal request');
-	}
-	?>
-	<li><?php printf(gettext('Last changed by: %s'), $lastchangeuser); ?></li>
+		$lastchangeuser = $obj->getLastchangeUser();
+		if (empty($lastchangeuser)) {
+			$lastchangeuser = gettext('ZenphotoCMS internal request');
+		}
+		?>
+		<li><?php printf(gettext('Last changed by: %s'), $lastchangeuser); ?></li>
 	</ul>
 	<?php
 }
@@ -5019,8 +5019,8 @@ function printLastChangeInfo($obj) {
  * @since ZenphotoCMS 1.5.5 Replaces the global $_zp_sortby
  * 
  * @param string $type "albums" (also for gallery), "albums-dynamic", 'images' 
- *										 "image-edit" (the images edit tab backend only ordering)
- *										 "pages" and "news" for Zenpage items
+ * 										 "image-edit" (the images edit tab backend only ordering)
+ * 										 "pages" and "news" for Zenpage items
  * @return array
  */
 function getSortByOptions($type) {
@@ -5033,7 +5033,7 @@ function getSortByOptions($type) {
 			gettext('Last change date') => 'lastchange',
 			gettext('Last change user') => 'lastchangeuser'
 	);
-	switch($type) {
+	switch ($type) {
 		case 'albums':
 		case 'albums-dynamic':
 		case 'images':
@@ -5041,11 +5041,11 @@ function getSortByOptions($type) {
 			$orders[gettext('Filemtime')] = 'mtime';
 			$orders[gettext('Owner')] = 'owner';
 			$orders[gettext('Custom')] = 'custom';
-			if($type == 'albums') {
+			if ($type == 'albums') {
 				$orders[gettext('Last updated date')] = 'updateddate';
 			}
 			// manual naturally never has descending extra option
-			if($type != 'albums-dynamic') {
+			if ($type != 'albums-dynamic') {
 				$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
 			}
 			return $orders;
@@ -5059,7 +5059,7 @@ function getSortByOptions($type) {
 		case 'news':
 			$orders[gettext('TitleLink')] = 'titlelink';
 			$orders[gettext('Author')] = 'author';
-			if($type == 'pages') {
+			if ($type == 'pages') {
 				$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
 			}
 			return $orders;
@@ -5088,7 +5088,7 @@ function getSortByStatusOptions() {
  * @return boolean
  */
 function checkSchedulePublishingNotes($obj) {
-	if ($obj->hasPublishSchedule()|| ($obj->hasFutureDate() && !$obj->get('show', false)) || $obj->hasExpiration() || $obj->hasExpired()) {
+	if ($obj->hasPublishSchedule() || ($obj->hasFutureDate() && !$obj->get('show', false)) || $obj->hasExpiration() || $obj->hasExpired()) {
 		return true;
 	}
 	return false;
@@ -5099,7 +5099,7 @@ function checkSchedulePublishingNotes($obj) {
  * 
  * @since ZenphotoCMS 1.5.7
  * @param obj $obj Image, album, news article or page object
- */		
+ */
 function printScheduledPublishingNotes($obj) {
 	$validtables = array('albums', 'images', 'news', 'pages');
 	if (in_array($obj->table, $validtables)) {
@@ -5211,13 +5211,13 @@ function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
 		if ($enableedit) {
 			?>
 			<a href="<?php echo $action . $action_addition; ?>" title="<?php echo html_encode($title); ?>" >
-			<?php
-		}
-		?>
-		<img src="<?php echo $icon; ?>" alt="<?php echo html_encode($alt); ?>" title="<?php echo  html_encode($title); ?>" />
-		<?php
-		if ($enableedit) {
+				<?php
+			}
 			?>
+			<img src="<?php echo $icon; ?>" alt="<?php echo html_encode($alt); ?>" title="<?php echo html_encode($title); ?>" />
+			<?php
+			if ($enableedit) {
+				?>
 			</a>
 			<?php
 		}
@@ -5233,14 +5233,14 @@ function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
  */
 function printPublished($obj) {
 	if ($obj->table == 'images' || $obj->table == 'albums') {
-		$date =$obj->getPublishDate();
+		$date = $obj->getPublishDate();
 	} else if ($obj->table == 'news' || $obj->table == 'pages') {
 		$date = $obj->getDateTime();
 	}
 	if ($obj->hasPublishSchedule()) {
 		echo '<span class="scheduledate">' . $date . '</strong>';
 	} else {
-		if(in_array($obj->table, array('news', 'pages'))) {
+		if (in_array($obj->table, array('news', 'pages'))) {
 			echo '<span>' . $date . '</span>';
 		}
 	}
@@ -5275,7 +5275,7 @@ function printExpired($obj) {
  */
 function isIncompatibleExtension($disable) {
 	$check = processExtensionVariable($disable);
-	if($check) {
+	if ($check) {
 		return $check;
 	}
 	return false;
@@ -5307,4 +5307,105 @@ function processExtensionVariable($var) {
 		}
 	}
 	return $var;
+}
+
+/**
+ * Prints a selector (select list) with a custom text field from the values parameter. An entry gettext('Custom') = 'custom' will be added automatically
+ * If "custom" is selected the custom text field will be shown.
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @param string $optionname The option name of the select list
+ * @param array $list Key value array where key is the display value (gettext generally)
+ * @param string $optiontext The label text for the select list
+ * @param string $optionname_customfield The option name of the custom field
+ * @param string $optiontext_customfield THe label text for the custom field
+ */
+function printSelectorWithCustomField($optionname, $list = array(), $optiontext = null, $optionname_customfield = null, $optiontext_customfield = null) {
+	if (is_array($list) && !empty($list)) {
+		$list[gettext('Custom')] = 'custom';
+		if (is_null($optionname_customfield)) {
+			$optionname_customfield = $optionname . '_custom';
+		}
+		$optionname_customfield_toggle = $optionname_customfield . '-toggle';
+		$currentselection = getOption($optionname);
+		$currentvalue_customfield = getOption($optionname_customfield);
+		$hiddenclass = '';
+		if ($currentselection == 'none' || $currentselection != 'custom') {
+			$hiddenclass = ' class="hidden"';
+		}
+		?>
+		<p>
+			<label>
+				<select id="<?php echo $optionname; ?>" name="<?php echo $optionname; ?>">
+					<?php generateListFromArray(array($currentselection), $list, null, true); ?>
+				</select>
+				<br><?php echo html_encode($optiontext); ?>
+			</label>
+		</p>
+		<p id="<?php echo $optionname_customfield_toggle; ?>"<?php echo $hiddenclass; ?>>
+			<label>
+				<input type="text" name="<?php echo $optionname_customfield; ?>" id="<?php echo $optionname_customfield; ?>" value="<?php echo html_encode($currentvalue_customfield); ?>">
+				<br><?php echo html_encode($optiontext_customfield); ?>
+			</label>
+		</p>
+		<script>
+			toggleElementsBySelector('#<?php echo $optionname; ?>', 'custom', '#<?php echo $optionname_customfield_toggle; ?>');
+		</script>
+		<?php
+	}
+}
+
+/**
+ * Gets an array of Zenpage pages ready for using with selector, radioboxes and checkbox lists
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @param bool $published true for only published, default false for all.
+ * 
+ */
+function getZenpagePagesOptions($published = false) {
+	$pages = array();
+	if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+		$zenpageobj = new Zenpage();
+		$zenpagepages = $zenpageobj->getPages($published, false, null, 'sortorder', false);
+		$pages = array();
+		if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+			$pages[gettext('None')] = 'none';
+			foreach ($zenpagepages as $zenpagepage) {
+				$pageobj = new Zenpagepage($zenpagepage['titlelink']);
+				$unpublished_note = '';
+				if (!$pageobj->isPublished()) {
+					$unpublished_note = '*';
+				}
+				$sublevel = '';
+				$level = count(explode('-', $pageobj->getSortorder()));
+				if ($level != 1) {
+					for ($l = 1; $l < $level; $l++) {
+						$sublevel .= '-';
+					}
+				}
+				$pages[$sublevel . get_language_string($zenpagepage['title']) . $unpublished_note] = $zenpagepage['titlelink'];
+			}
+		}
+	}
+	return $pages;
+}
+
+/**
+ * Prints an select list option for Zenpage pages
+ * 
+ * it additionally prints a text field for a custom page URL.
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @param string $optionname Name of the option, sued for the selector and the current selection
+ * @param string $optionname_custom If defined this will be used for the custom url option, if null (default) the option name will be used with "_custom" appended
+ * @param boolean $published If the pages should include only published ones
+ */
+function printZenpagePageSelector($optionname, $optionname_custom = null, $published = false) {
+	$list = getZenpagePagesOptions($published);
+	$optiontext = gettext('Select a Zenpage page. * denotes unpublished page.');
+	$optiontext_customfield = gettext('Custom page url');
+	printSelectorWithCustomField($optionname, $list, $optiontext, $optionname_custom, $optiontext_customfield);
 }

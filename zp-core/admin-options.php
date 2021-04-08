@@ -265,7 +265,8 @@ if (isset($_GET['action'])) {
 			
 			setOption('copyright_image_notice', process_language_string_save('copyright_image_notice', 3));
 			setOption('copyright_image_rightsholder', sanitize($_POST['copyright_image_rightsholder']));
-			setOption('copyright_url', sanitize($_POST['copyright_url']));
+			setOption('copyright_image_url', sanitize($_POST['copyright_image_url']));
+			setOption('copyright_image_url_custom', sanitize($_POST['copyright_image_url_custom']));
 			
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
 			setOption('image_max_size', sanitize_numeric($_POST['image_max_size']));
@@ -2586,12 +2587,12 @@ Zenphoto_Authority::printPasswordFormJS();
 								</tr>
 								
 								<tr>
-									<td><?php echo gettext('Copyright URL'); ?></td>
+									<td><?php echo gettext('Image Copyright URL'); ?></td>
 									<td>
-										<p><label><input type="textbox" name="copyright_url" value="<?php echo getOption('copyright_url'); ?>" size="50" /> <?php echo gettext('URL'); ?></label></p>
+									<?php printZenpagePageSelector('copyright_image_url', 'copyright_image_url_custom', false); ?>
 									</td>
 									<td>
-										<p><?php echo gettext('The URL maybe used to point to some specific copyright info source. Must be an absolute URL address of the form: http://mydomain.com/license.html.'); ?></p>
+										<p><?php echo gettext('Choose a Zenpage page or define a custom URL. The URL maybe used to point to some specific copyright info source. Must be an absolute URL address of the form: http://mydomain.com/license.html.'); ?></p>
 									</td>
 								</tr>
 								
@@ -3460,50 +3461,11 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p><?php echo gettext('Data privacy policy page'); ?></p>
 									</td>
 									<td width="350">
-										<p><label><input type="text" name="dataprivacy_policy_custompage" id="dataprivacy_policy_custompage" value="<?php echo html_encode(getOption('dataprivacy_policy_custompage')); ?>"> <?php echo gettext('Custom page url'); ?></label></p>
-										<?php
-										if(extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
-											$datapolicy_zenpage = getOption('dataprivacy_policy_zenpage');
-											$zenpageobj = new Zenpage();
-											$zenpagepages = $zenpageobj->getPages(false, false, null, 'sortorder', false);
-											$privacypages = array();
-											$privacypages[gettext('None')] = 'none'; 
-											foreach($zenpagepages as $zenpagepage) {
-												$pageobj = new Zenpagepage($zenpagepage['titlelink']);
-												if(!$pageobj->isProtected()) {
-													$unpublished_note = '';
-													if(!$pageobj->getShow()) {
-														$unpublished_note = '*';
-													}
-													$sublevel = '';
-													$level = count(explode('-', $pageobj->getSortorder()));
-													if($level != 1) {
-														for($l = 1; $l < $level; $l++) {
-															$sublevel .= '-'; 
-														}
-													}
-													$privacypages[$sublevel . get_language_string($zenpagepage['title']) . $unpublished_note] = $zenpagepage['titlelink'];
-												}
-											}
-											if($privacypages) {
-												unset($zenpagepages);
-												?>
-												<label>
-													<select id="dataprivacy_policy_zenpage" name="dataprivacy_policy_zenpage">
-													<?php	generateListFromArray(array($datapolicy_zenpage), $privacypages, null, true); ?>
-													</select>
-													<br><?php echo gettext('Select a Zenpage page. * denotes unpublished page.'); ?>
-												</label>
-												<?php 
-											} else {
-												echo '<p><em>' . gettext('No suitable Zenpage pages available') . '</em></p>';
-											}
-										} 
-									  ?>	
+										<?php printZenpagePageSelector('dataprivacy_policy_zenpage', 'dataprivacy_policy_custompag', false); ?>
 										<p>
 											<label>
 											<?php print_language_string_list(getOption('dataprivacy_policy_customlinktext'), 'dataprivacy_policy_customlinktext'); ?>
-											<?php echo gettext('Custom link text'); ?>
+											<br><?php echo gettext('Custom link text'); ?>
 										</label>
 										</p>
 									</td>

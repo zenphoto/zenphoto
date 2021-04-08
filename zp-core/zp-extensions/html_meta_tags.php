@@ -246,6 +246,7 @@ class htmlmetatags {
 		$admin = $_zp_authority->getMasterUser();
 		$author = $admin->getName();
 		$copyright_notice = '';
+		$copyright_url = FULLWEBPATH;
 		$type = 'article';
 		switch ($_zp_gallery_page) {
 			case 'index.php':
@@ -285,6 +286,7 @@ class htmlmetatags {
 				}
 				$author = $_zp_current_image->getCopyrightRightsholder();
 				$copyright_notice = trim(getBare($_zp_current_image->getCopyrightNotice()));
+				$copyright_url = trim($_zp_current_image->getCopyrightURL());
 				break;
 			case 'news.php':
 				if (function_exists("is_NewsArticle")) {
@@ -363,10 +365,10 @@ class htmlmetatags {
 			$meta .= '<meta name="robots" content="' . getOption("htmlmeta_robots") . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-publisher')) {
-			$meta .= '<meta name="publisher" content="' . FULLWEBPATH . '">' . "\n";
+			$meta .= '<meta name="publisher" content="' .  html_encode($copyright_url) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-creator')) {
-			$meta .= '<meta name="creator" content="' . FULLWEBPATH . '">' . "\n";
+			$meta .= '<meta name="creator" content="' .  html_encode($copyright_url) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-author')) {
 			$meta .= '<meta name="author" content="' . html_encode($author) . '">' . "\n";

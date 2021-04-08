@@ -968,11 +968,10 @@ class Image extends MediaObject {
 	 * Gets the general option "copyright_image_rightsholder' value otherwise tries the following
 	 * 
 	 * - EXIFArtist
+	 * – IPTCByLine
 	 * - the owner (fullname if available)
 	 * 
 	 * @since ZenphotoCMS 1.5.8
-	 * 
-	 * @param string $locale
 	 */
 	function getCopyrightRightsholder() {
 		$rightsholder = null;
@@ -981,13 +980,36 @@ class Image extends MediaObject {
 			$rightsholder = $option;
 		} else {
 			$metadata = $this->getMetaData();
-			if (isset($metadata['EXIFArtistt']) && !empty($metadata['EXIFArtist'])) {
+			if (isset($metadata['EXIFArtist']) && !empty($metadata['EXIFArtist'])) {
 				$rightsholder = $metadata['EXIFArtist'];
+			} else if (isset($metadata['IPTCByLine']) && !empty($metadata['IPTCByLine'])) {
+				$rightsholder = $metadata['IPTCByLine'];
 			} else {
 				$rightsholder = $this->getOwner(true);
 			}
 		}
 		return $rightsholder;
+	}
+	
+	/**
+	 * Gets the image copyright URL
+	 * 
+	 * @since ZenhphotoCMS 1.5.8
+	 * 
+	 * @return string
+	 */
+	function getCopyrightURL() {
+		$url = getOption('copyright_image_url');
+		if ($url == 'custom') {
+			return getOption('copyright_image_url_custom');
+		} else {
+			if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+				$pageobj = new ZenpagePage($url);
+				if ($pageobj->exists) {
+					return $pageobj->getLink();
+				}
+			}
+		}
 	}
 
 	/**

@@ -725,7 +725,10 @@ class sitemap {
 		if ($imageobj->getCountry()) {
 			$location .= $imageobj->getCountry($locale);
 		}
-		$license = get_language_string(getOption('sitemap_license'), $locale);
+		$license = getOption('sitemap_license');
+		if (empty($license)) {
+			$license = $imageobj->getCopyrightURL();
+		}
 		if (isImageVideo($imageobj) && in_array($ext, array('.mpg', '.mpeg', '.mp4', '.m4v', '.mov', '.wmv', '.asf', '.avi', '.ra', '.ram', '.flv', '.swf'))) { // google says it can index these so we list them even if unsupported by Zenphoto
 			$data .= sitemap::echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>" . $host . html_encode($imageobj->getThumb()) . "</video:thumbnail_loc>\n");
 			$data .= sitemap::echonl("\t\t\t<video:title>" . html_encode($imageobj->getTitle($locale)) . "</video:title>");
