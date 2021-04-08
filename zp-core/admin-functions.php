@@ -5310,7 +5310,11 @@ function processExtensionVariable($var) {
 }
 
 /**
- * Prints a selector (select list) with a custom text field from the values parameter. An entry gettext('Custom') = 'custom' will be added automatically
+ * Prints a selector (select list) with a custom text field from the values parameter. The following array entries will be created automatically:
+ *
+ * - gettext('None') = 'none'
+ * - gettext('Custom') = 'custom'
+ * 
  * If "custom" is selected the custom text field will be shown.
  * 
  * @since ZenphotoCMS 1.5.8
@@ -5322,38 +5326,41 @@ function processExtensionVariable($var) {
  * @param string $optiontext_customfield THe label text for the custom field
  */
 function printSelectorWithCustomField($optionname, $list = array(), $optiontext = null, $optionname_customfield = null, $optiontext_customfield = null) {
-	if (is_array($list) && !empty($list)) {
-		$list[gettext('Custom')] = 'custom';
-		if (is_null($optionname_customfield)) {
-			$optionname_customfield = $optionname . '_custom';
-		}
-		$optionname_customfield_toggle = $optionname_customfield . '-toggle';
-		$currentselection = getOption($optionname);
-		$currentvalue_customfield = getOption($optionname_customfield);
-		$hiddenclass = '';
-		if ($currentselection == 'none' || $currentselection != 'custom') {
-			$hiddenclass = ' class="hidden"';
-		}
-		?>
-		<p>
-			<label>
-				<select id="<?php echo $optionname; ?>" name="<?php echo $optionname; ?>">
-					<?php generateListFromArray(array($currentselection), $list, null, true); ?>
-				</select>
-				<br><?php echo html_encode($optiontext); ?>
-			</label>
-		</p>
-		<p id="<?php echo $optionname_customfield_toggle; ?>"<?php echo $hiddenclass; ?>>
-			<label>
-				<input type="text" name="<?php echo $optionname_customfield; ?>" id="<?php echo $optionname_customfield; ?>" value="<?php echo html_encode($currentvalue_customfield); ?>">
-				<br><?php echo html_encode($optiontext_customfield); ?>
-			</label>
-		</p>
-		<script>
-			toggleElementsBySelector('#<?php echo $optionname; ?>', 'custom', '#<?php echo $optionname_customfield_toggle; ?>');
-		</script>
-		<?php
+	$optionname_customfield_toggle = $optionname_customfield . '-toggle';
+	$currentselection = getOption($optionname);
+	if (is_null($optionname_customfield)) {
+		$optionname_customfield = $optionname . '_custom';
 	}
+	$currentvalue_customfield = getOption($optionname_customfield);
+	if(empty($list)) { // no pages or disabled -> custom url
+		$currentselection = 'custom';
+		$hiddenclass = '';
+	}
+	$list[gettext('None')] = 'none';
+	$list[gettext('Custom')] = 'custom';
+	$hiddenclass = '';
+	if ($currentselection == 'none' || $currentselection != 'custom') {
+		$hiddenclass = ' class="hidden"';
+	}
+	?>
+	<p>
+		<label>
+			<select id="<?php echo $optionname; ?>" name="<?php echo $optionname; ?>">
+				<?php generateListFromArray(array($currentselection), $list, null, true); ?>
+			</select>
+			<br><?php echo html_encode($optiontext); ?>
+		</label>
+	</p>
+	<p id="<?php echo $optionname_customfield_toggle; ?>"<?php echo $hiddenclass; ?>>
+		<label>
+			<input type="text" name="<?php echo $optionname_customfield; ?>" id="<?php echo $optionname_customfield; ?>" value="<?php echo html_encode($currentvalue_customfield); ?>">
+			<br><?php echo html_encode($optiontext_customfield); ?>
+		</label>
+	</p>
+	<script>
+		toggleElementsBySelector('#<?php echo $optionname; ?>', 'custom', '#<?php echo $optionname_customfield_toggle; ?>');
+	</script>
+	<?php
 }
 
 /**
@@ -5371,7 +5378,6 @@ function getZenpagePagesOptions($published = false) {
 		$zenpagepages = $zenpageobj->getPages($published, false, null, 'sortorder', false);
 		$pages = array();
 		if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
-			$pages[gettext('None')] = 'none';
 			foreach ($zenpagepages as $zenpagepage) {
 				$pageobj = new Zenpagepage($zenpagepage['titlelink']);
 				$unpublished_note = '';

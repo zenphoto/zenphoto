@@ -1002,6 +1002,8 @@ class Image extends MediaObject {
 		$url = getOption('copyright_image_url');
 		if ($url == 'custom') {
 			return getOption('copyright_image_url_custom');
+		} else if ($url == 'none') {
+			return null;
 		} else {
 			if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
 				$pageobj = new ZenpagePage($url);
