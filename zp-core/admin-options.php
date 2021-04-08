@@ -2593,7 +2593,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<?php printUserSelector('copyright_image_rightsholder','copyright_image_rightsholder_custom', 'users'); ?>
 									</td>
 									<td>
-										<p><?php echo gettext('The rights holder will be used by the html_meta_tags plugin as a fallback if the image does not provide own copyright metadata. It will also be used as the general copyright info in meta tags if defined.'); ?></p>
+										<p><?php echo gettext('The rights holder will be used by the html_meta_tags plugin as a fallback if the image does not provide its own copyright metadata. It will also be used as the general copyright info in meta tags if defined.'); ?></p>
 									</td>
 								</tr>
 								
@@ -2611,7 +2611,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<?php
 											if (GRAPHICS_LIBRARY == 'Imagick') {
 												$optionText = gettext('Imbed IPTC copyright');
-												$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded cached copies.');
+												$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded in cached copies.');
 											} else {
 												$optionText = gettext('Replicate IPTC metadata');
 												$desc = gettext('If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded. (The text supplied will be used if the orginal image has no copyright.)');
