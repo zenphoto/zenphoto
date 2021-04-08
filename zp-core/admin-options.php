@@ -2579,7 +2579,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									<td><?php echo gettext('Image copyright info'); ?></td>
 									<td>
 										<p><?php print_language_string_list(getOption('copyright_image_notice'), 'copyright_image_notice'); ?> <?php echo gettext('Notice'); ?></p>
-										<p><label><input type="textbox" name="copyright_image_rightsholder" value="<?php echo getOption('copyright_image_rightsholder'); ?>" size="50" /> <?php echo gettext('Rights holder'); ?></label></p>
+										<p><?php printUserSelector('copyright_image_rightsholder','copyright_image_rightsholder_custom', 'users'); ?></p>
 									</td>
 									<td>
 										<p><?php echo gettext('The notice and rights holder will be used by the html_meta_tags plugin as a fallback if the image does not provide own copyright metadata. It will also be used as the general copyright info in meta tags if defined.'); ?></p>
@@ -3461,7 +3461,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<p><?php echo gettext('Data privacy policy page'); ?></p>
 									</td>
 									<td width="350">
-										<?php printZenpagePageSelector('dataprivacy_policy_zenpage', 'dataprivacy_policy_custompag', false); ?>
+										<?php printZenpagePageSelector('dataprivacy_policy_zenpage', 'dataprivacy_policy_custompage', false); ?>
 										<p>
 											<label>
 											<?php print_language_string_list(getOption('dataprivacy_policy_customlinktext'), 'dataprivacy_policy_customlinktext'); ?>

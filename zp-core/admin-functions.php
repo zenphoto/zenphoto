@@ -5312,7 +5312,6 @@ function processExtensionVariable($var) {
 /**
  * Prints a selector (select list) with a custom text field from the values parameter. The following array entries will be created automatically:
  *
- * - gettext('None') = 'none'
  * - gettext('Custom') = 'custom'
  * 
  * If "custom" is selected the custom text field will be shown.
@@ -5328,15 +5327,17 @@ function processExtensionVariable($var) {
 function printSelectorWithCustomField($optionname, $list = array(), $optiontext = null, $optionname_customfield = null, $optiontext_customfield = null) {
 	$optionname_customfield_toggle = $optionname_customfield . '-toggle';
 	$currentselection = getOption($optionname);
+	if (empty($currentselection)) {
+		$currentselection = 'none';
+	}
 	if (is_null($optionname_customfield)) {
 		$optionname_customfield = $optionname . '_custom';
 	}
 	$currentvalue_customfield = getOption($optionname_customfield);
-	if(empty($list)) { // no pages or disabled -> custom url
-		$currentselection = 'custom';
+	if(empty($list) && !in_array($currentselection, array('none', 'custom'))) { // no pages or disabled -> custom url
+		$currentselection = 'none';
 		$hiddenclass = '';
 	}
-	$list[gettext('None')] = 'none';
 	$list[gettext('Custom')] = 'custom';
 	$hiddenclass = '';
 	if ($currentselection == 'none' || $currentselection != 'custom') {
@@ -5371,13 +5372,14 @@ function printSelectorWithCustomField($optionname, $list = array(), $optiontext 
  * @param bool $published true for only published, default false for all.
  * 
  */
-function getZenpagePagesOptions($published = false) {
+function getZenpagePagesOptionsArray($published = false) {
 	$pages = array();
 	if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
 		$zenpageobj = new Zenpage();
 		$zenpagepages = $zenpageobj->getPages($published, false, null, 'sortorder', false);
 		$pages = array();
 		if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
+			$pages[gettext('None')] = 'none';
 			foreach ($zenpagepages as $zenpagepage) {
 				$pageobj = new Zenpagepage($zenpagepage['titlelink']);
 				$unpublished_note = '';
@@ -5410,8 +5412,52 @@ function getZenpagePagesOptions($published = false) {
  * @param boolean $published If the pages should include only published ones
  */
 function printZenpagePageSelector($optionname, $optionname_custom = null, $published = false) {
-	$list = getZenpagePagesOptions($published);
+	$list = getZenpagePagesOptionsArray($published);
 	$optiontext = gettext('Select a Zenpage page. * denotes unpublished page.');
 	$optiontext_customfield = gettext('Custom page url');
 	printSelectorWithCustomField($optionname, $list, $optiontext, $optionname_custom, $optiontext_customfield);
+}
+
+/**
+ * Gets an array of administrators ready for using with selector, radioboxes and checkbox lists
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @global object $_zp_authority
+ * @param string $type "user', 'groups', 'allusers'
+ * @return type
+ */
+function getAdminstratorsOptionsArray($type = 'users') {
+	global $_zp_authority;
+	$list = array();
+	$users = $_zp_authority->getAdministrators($type);
+	$list[gettext('None')] = 'none';
+	foreach ($users as $user) {
+		if ($user['valid']) {
+			$name = $user['name'];
+			if (empty($user['name'])) {
+				$name = $user['user'];
+			}
+			$list[$name] = $user['user'];
+		}
+	}
+	return $list;
+}
+
+/**
+ * Prints an select list option for users
+ * 
+ * it additionally prints a text field for a custom name
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @param string $optionname Name of the option, sued for the selector and the current selection
+ * @param string $optionname_custom If defined this will be used for the custom url option, if null (default) the option name will be used with "_custom" appended
+ * @param boolean $type "user', 'groups', 'allusers'
+ */
+function printUserSelector($optionname, $optionname_custom, $type = 'users') {
+	$users = getAdminstratorsOptionsArray($type);
+	$optiontext = gettext('Select a user');
+	$optiontext_customfield = gettext('Custom');
+	printSelectorWithCustomField($optionname, $users, $optiontext, $optionname_custom, $optiontext_customfield);
 }
