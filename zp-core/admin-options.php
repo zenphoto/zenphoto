@@ -2583,7 +2583,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										
 									</td>
 									<td>
-										<p><?php echo gettext('The notice and rights holder will be used by the html_meta_tags plugin. If the image does not provide own copyright metadata. It will also be used as the general copyright info in meta tags if defined.'); ?></p>
+										<p><?php echo gettext('The notice will be used by the html_meta_tags plugin. If not set the image meta data is tried instead.'); ?></p>
 									</td>
 								</tr>
 								
@@ -2593,7 +2593,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<?php printUserSelector('copyright_image_rightsholder','copyright_image_rightsholder_custom', 'users'); ?>
 									</td>
 									<td>
-										<p><?php echo gettext('The rights holder will be used by the html_meta_tags plugin. If set to <em>none</em> image copyright metadata if available or the owner are used as fallbacks.'); ?></p>
+										<p><?php echo gettext('The rights holder will be used by the html_meta_tags plugin. If set to <em>none</em> image copyright metadata fields if available or the owner are used as fallbacks.'); ?></p>
 									</td>
 								</tr>
 								
