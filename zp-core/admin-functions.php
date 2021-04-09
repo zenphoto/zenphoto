@@ -5424,7 +5424,7 @@ function printZenpagePageSelector($optionname, $optionname_custom = null, $publi
  * @since ZenphotoCMS 1.5.8
  * 
  * @global object $_zp_authority
- * @param string $type 'user', 'groups', 'allusers'
+ * @param string $type 'users', 'groups', 'allusers'
  * @return type
  */
 function getAdminstratorsOptionsArray($type = 'users') {
@@ -5437,7 +5437,7 @@ function getAdminstratorsOptionsArray($type = 'users') {
 			if (empty($user['name'])) {
 				$list[$user['user']] = $user['user'];
 			} else {
-				$list[$user['name'] . '(' . $user['user'] . ')'] = $user['name'];
+				$list[$user['name'] . '(' . $user['user'] . ')'] = $user['user'];
 			}
 		}
 	}
@@ -5453,7 +5453,7 @@ function getAdminstratorsOptionsArray($type = 'users') {
  * 
  * @param string $optionname Name of the option, sued for the selector and the current selection
  * @param string $optionname_custom If defined this will be used for the custom url option, if null (default) the option name will be used with "_custom" appended
- * @param boolean $type 'user', 'groups', 'allusers'
+ * @param boolean $type 'users', 'groups', 'allusers'
  */
 function printUserSelector($optionname, $optionname_custom, $type = 'users') {
 	$users = getAdminstratorsOptionsArray($type);

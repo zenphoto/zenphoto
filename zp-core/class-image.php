@@ -965,9 +965,9 @@ class Image extends MediaObject {
 	}
 	
 	/**
-	 * Gets the general option "copyright_image_rightsholder' value otherwise tries the following
+	 * Gets the general option "copyright_image_rightsholder' respectively copyright_image_rightsholder_custom"
+	 * If set to "none" the following fallbacks are tried.
 	 * 
-	 * - copyright_image_rightsholder_custom
 	 * - EXIFArtist
 	 * – IPTCByLine
 	 * - the owner (fullname if available)
@@ -976,20 +976,20 @@ class Image extends MediaObject {
 	 */
 	function getCopyrightRightsholder() {
 		$rightsholder = trim(getOption('copyright_image_rightsholder'));
-		if ($rightsholder) {
+		if ($rightsholder && $rightsholder != 'none') {
 			if ($rightsholder == 'custom') {
-				return trim(getOption('copyright_image_rightsholder_custom'));
-			} else if ($rightsholder == 'none') {
-				return null;
+				$rightsholder = trim(getOption('copyright_image_rightsholder_custom'));
 			} else {
-				$metadata = $this->getMetaData();
-				if (isset($metadata['EXIFArtist']) && !empty($metadata['EXIFArtist'])) {
-					$rightsholder = $metadata['EXIFArtist'];
-				} else if (isset($metadata['IPTCByLine']) && !empty($metadata['IPTCByLine'])) {
-					$rightsholder = $metadata['IPTCByLine'];
-				} else {
-					$rightsholder = $this->getOwner(true);
-				}
+				$rightsholder = Zenphoto_Administrator::getNameByUser($rightsholder);
+			}
+		} else {
+			$metadata = $this->getMetaData();
+			if (isset($metadata['EXIFArtist']) && !empty($metadata['EXIFArtist'])) {
+				$rightsholder = $metadata['EXIFArtist'];
+			} else if (isset($metadata['IPTCByLine']) && !empty($metadata['IPTCByLine'])) {
+				$rightsholder = $metadata['IPTCByLine'];
+			} else {
+				$rightsholder = $this->getOwner(true);
 			}
 		}
 		return $rightsholder;
