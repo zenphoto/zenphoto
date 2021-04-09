@@ -969,6 +969,7 @@ class Image extends MediaObject {
 	 * If set to "none" the following fallbacks are tried.
 	 * 
 	 * - EXIFArtist
+	 * - VideoArtist (for multimedia "images")
 	 * – IPTCByLine
 	 * - the owner (fullname if available)
 	 * 
@@ -986,6 +987,8 @@ class Image extends MediaObject {
 			$metadata = $this->getMetaData();
 			if (isset($metadata['EXIFArtist']) && !empty($metadata['EXIFArtist'])) {
 				$rightsholder = $metadata['EXIFArtist'];
+			} else if (isset($metadata['VideoArtist']) && !empty($metadata['VideoArtist'])) {
+				$rightsholder = $metadata['VideoArtist'];
 			} else if (isset($metadata['IPTCByLine']) && !empty($metadata['IPTCByLine'])) {
 				$rightsholder = $metadata['IPTCByLine'];
 			}

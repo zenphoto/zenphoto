@@ -404,41 +404,7 @@ class Video extends Image {
 			}
 		}
 	}
-	
-	/**
-	 * Gets the general option "copyright_image_rightsholder' respectively copyright_image_rightsholder_custom"
-	 * If set to "none" the following fallbacks are tried.
-	 * 
-	 * - VideoArtist
-	 * - EXIFArtist
-	 * – IPTCByLine
-	 * - the owner (fullname if available)
-	 * 
-	 * @since ZenphotoCMS 1.5.8
-	 */
-	function getCopyrightRightsholder() {
-		$rightsholder = trim(getOption('copyright_image_rightsholder'));
-		if ($rightsholder && $rightsholder != 'none') {
-			if ($rightsholder == 'custom') {
-				$rightsholder = trim(getOption('copyright_image_rightsholder_custom'));
-			} else {
-				$rightsholder = Zenphoto_Administrator::getNameByUser($rightsholder);
-			}
-		} else {
-			$metadata = $this->getMetaData();
-			if (isset($metadata['VideoArtist']) && !empty($metadata['VideoArtist'])) {
-				$rightsholder = $metadata['VideoArtist'];
-			} else if (isset($metadata['EXIFArtist']) && !empty($metadata['EXIFArtist'])) {
-				$rightsholder = $metadata['EXIFArtist'];
-			} else if (isset($metadata['IPTCByLine']) && !empty($metadata['IPTCByLine'])) {
-				$rightsholder = $metadata['IPTCByLine'];
-			}
-		}
-		if (empty($rightsholder)) {
-			$rightsholder = $this->getOwner(true);
-		}
-		return $rightsholder;
-	}
+
 
 }
 
