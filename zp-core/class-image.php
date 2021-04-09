@@ -965,7 +965,7 @@ class Image extends MediaObject {
 	}
 	
 	/**
-	 * Gets the general option "copyright_image_rightsholder' respectively copyright_image_rightsholder_custom"
+	 * Gets the general option "copyright_image_rightsholder" respectively "copyright_image_rightsholder_custom"
 	 * If set to "none" the following fallbacks are tried.
 	 * 
 	 * - EXIFArtist

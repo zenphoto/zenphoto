@@ -1176,7 +1176,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										<?php printUserSelector('copyright_site_rightsholder','copyright_site_rightsholder_custom', 'users', true); ?>
 									</td>
 									<td>
-										<p><?php echo gettext('The rights holder will be used by the html_meta_tags plugin. If set to <em>none</em> image copyright metadata fields if available or the owner are used as fallbacks.'); ?></p>
+										<p><?php echo gettext('The rights holder will be used by the html_meta_tags plugin. If set to <em>none</em> the image metadata fields "copyright" or "owner" are used as fallbacks, if available.'); ?></p>
 									</td>
 								</tr>
 								
