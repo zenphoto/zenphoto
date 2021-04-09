@@ -242,11 +242,9 @@ class htmlmetatags {
 			}
 			$twittercard_type = 'summary';
 		}
-		// get master admin
-		$admin = $_zp_authority->getMasterUser();
-		$author = $admin->getName();
-		$copyright_notice = '';
-		$copyright_url = FULLWEBPATH;
+		$author = $_zp_gallery->getCopyrightRightsholder();
+		$copyright_notice = $_zp_gallery->getCopyrightNotice();
+		$copyright_url = $_zp_gallery->getCopyrightURL();
 		$type = 'article';
 		switch ($_zp_gallery_page) {
 			case 'index.php':
@@ -344,6 +342,9 @@ class htmlmetatags {
 		$pagetitle = $pagetitle . getBareGalleryTitle();
 		if(empty($copyright_notice)) {
 			$copyright_notice = '(c) ' . FULLWEBPATH . ' - ' . $author;
+		}
+		if(empty($copyright_url)) {
+			$copyright_url = FULLWEBPATH;
 		}
 		$meta = '';
 		if (getOption('htmlmeta_http-equiv-cache-control')) {

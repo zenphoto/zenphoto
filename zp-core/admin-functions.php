@@ -5472,5 +5472,5 @@ function printUserSelector($optionname, $optionname_custom, $type = 'users', $is
 	$users = getAdminstratorsOptionsArray($type);
 	$optiontext = gettext('Select a user');
 	$optiontext_customfield = gettext('Custom');
-	printSelectorWithCustomField($optionname, $users, $optiontext, $optionname_custom, $optiontext_customfield);
+	printSelectorWithCustomField($optionname, $users, $optiontext, $optionname_custom, $optiontext_customfield, $is_galleryoption);
 }

@@ -144,6 +144,12 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setSecondLevelThumbs((int) isset($_POST['multilevel_thumb_select_images']));
 			$_zp_gallery->setTitle(process_language_string_save('gallery_title', 2));
 			$_zp_gallery->setDesc(process_language_string_save('Gallery_description', EDITOR_SANITIZE_LEVEL));
+			
+			$_zp_gallery->setCopyrightNotice(process_language_string_save('copyright_site_notice', EDITOR_SANITIZE_LEVEL));
+			$_zp_gallery->set('copyright_site_rightsholder', sanitize($_POST['copyright_site_rightsholder'], 3));
+			$_zp_gallery->set('copyright_site_rightsholder_custom', sanitize($_POST['copyright_site_rightsholder_custom'], 3));
+			$_zp_gallery->setCopyrightURL(sanitize($_POST['copyright_site_url'], 3));
+			
 			$_zp_gallery->setWebsiteTitle(process_language_string_save('website_title', 2));
 			$web = sanitize($_POST['website_url'], 3);
 			$_zp_gallery->setWebsiteURL($web);
@@ -1152,6 +1158,38 @@ Zenphoto_Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?></td>
 								</tr>
+								
+								<tr>
+									<td><?php echo gettext('Site copyright notice'); ?></td>
+									<td>
+										<p><?php print_language_string_list($_zp_gallery->getCopyrightNotice('all'), 'copyright_site_notice'); ?> <?php echo gettext('Notice'); ?></p>
+										
+									</td>
+									<td>
+										<p><?php echo gettext('The notice will be used by the html_meta_tags plugin. If not set the image meta data is tried instead.'); ?></p>
+									</td>
+								</tr>
+								
+								<tr>
+									<td><?php echo gettext('Site copyright rightsholder'); ?></td>
+									<td>
+										<?php printUserSelector('copyright_site_rightsholder','copyright_site_rightsholder_custom', 'users', true); ?>
+									</td>
+									<td>
+										<p><?php echo gettext('The rights holder will be used by the html_meta_tags plugin. If set to <em>none</em> image copyright metadata fields if available or the owner are used as fallbacks.'); ?></p>
+									</td>
+								</tr>
+								
+								<tr>
+									<td><?php echo gettext('Site copyright URL'); ?></td>
+									<td>
+									<?php printZenpagePageSelector('copyright_site_url', 'copyright_site_url_custom', false, true); ?>
+									</td>
+									<td>
+										<p><?php echo gettext('Choose a Zenpage page or define a custom URL. The URL maybe used to point to some specific copyright info source. Must be an absolute URL address of the form: http://mydomain.com/license.html.'); ?></p>
+									</td>
+								</tr>
+								
 								<tr>
 									<td><?php echo gettext('Gallery type'); ?></td>
 									<td>
