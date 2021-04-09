@@ -5318,22 +5318,33 @@ function processExtensionVariable($var) {
  * 
  * @since ZenphotoCMS 1.5.8
  * 
+ * @global obj $_zp_gallery Gallery object
  * @param string $optionname The option name of the select list
  * @param array $list Key value array where key is the display value (gettext generally)
  * @param string $optiontext The label text for the select list
  * @param string $optionname_customfield The option name of the custom field
  * @param string $optiontext_customfield THe label text for the custom field
+ * @param boolean $is_galleryoption Set to true if this is a special gallery class option
  */
-function printSelectorWithCustomField($optionname, $list = array(), $optiontext = null, $optionname_customfield = null, $optiontext_customfield = null) {
+function printSelectorWithCustomField($optionname, $list = array(), $optiontext = null, $optionname_customfield = null, $optiontext_customfield = nulll, $is_galleryoption = false) {
+	global $_zp_gallery;
 	$optionname_customfield_toggle = $optionname_customfield . '-toggle';
-	$currentselection = getOption($optionname);
+	if ($is_galleryoption) {
+		$currentselection = $_zp_gallery->get($optionname);
+	} else {
+		$currentselection = getOption($optionname);
+	}
 	if (empty($currentselection)) {
 		$currentselection = 'none';
 	}
 	if (is_null($optionname_customfield)) {
 		$optionname_customfield = $optionname . '_custom';
 	}
-	$currentvalue_customfield = getOption($optionname_customfield);
+	if ($is_galleryoption) {
+		$currentvalue_customfield = $_zp_gallery->get($optionname_customfield);
+	} else {
+		$currentvalue_customfield = getOption($optionname_customfield);
+	}
 	if(empty($list) && !in_array($currentselection, array('none', 'custom'))) { // no pages or disabled -> custom url
 		$currentselection = 'none';
 		$hiddenclass = '';
@@ -5410,12 +5421,13 @@ function getZenpagePagesOptionsArray($published = false) {
  * @param string $optionname Name of the option, sued for the selector and the current selection
  * @param string $optionname_custom If defined this will be used for the custom url option, if null (default) the option name will be used with "_custom" appended
  * @param boolean $published If the pages should include only published ones
+ * @param boolean $is_galleryoption Set to true if this is a special gallery class option
  */
-function printZenpagePageSelector($optionname, $optionname_custom = null, $published = false) {
+function printZenpagePageSelector($optionname, $optionname_custom = null, $published = false, $is_galleryoption = false) {
 	$list = getZenpagePagesOptionsArray($published);
 	$optiontext = gettext('Select a Zenpage page. * denotes unpublished page.');
 	$optiontext_customfield = gettext('Custom page url');
-	printSelectorWithCustomField($optionname, $list, $optiontext, $optionname_custom, $optiontext_customfield);
+	printSelectorWithCustomField($optionname, $list, $optiontext, $optionname_custom, $optiontext_customfield, $is_galleryoption);
 }
 
 /**
@@ -5454,8 +5466,9 @@ function getAdminstratorsOptionsArray($type = 'users') {
  * @param string $optionname Name of the option, sued for the selector and the current selection
  * @param string $optionname_custom If defined this will be used for the custom url option, if null (default) the option name will be used with "_custom" appended
  * @param boolean $type 'users', 'groups', 'allusers'
+ * @param boolean $is_galleryoption Set to true if this is a special gallery class option
  */
-function printUserSelector($optionname, $optionname_custom, $type = 'users') {
+function printUserSelector($optionname, $optionname_custom, $type = 'users', $is_galleryoption = false) {
 	$users = getAdminstratorsOptionsArray($type);
 	$optiontext = gettext('Select a user');
 	$optiontext_customfield = gettext('Custom');
