@@ -980,7 +980,7 @@ class Image extends MediaObject {
 			if ($rightsholder == 'custom') {
 				$rightsholder = trim(getOption('copyright_image_rightsholder_custom'));
 			} else {
-				$rightsholder = Zenphoto_Administrator::getNameByUser($rightsholder);
+				$rightsholder = Administrator::getNameByUser($rightsholder);
 			}
 		} else {
 			$metadata = $this->getMetaData();
@@ -988,9 +988,10 @@ class Image extends MediaObject {
 				$rightsholder = $metadata['EXIFArtist'];
 			} else if (isset($metadata['IPTCByLine']) && !empty($metadata['IPTCByLine'])) {
 				$rightsholder = $metadata['IPTCByLine'];
-			} else {
-				$rightsholder = $this->getOwner(true);
 			}
+		}
+		if (empty($rightsholder)) {
+			$rightsholder = $this->getOwner(true);
 		}
 		return $rightsholder;
 	}

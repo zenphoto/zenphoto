@@ -432,9 +432,10 @@ class Video extends Image {
 				$rightsholder = $metadata['EXIFArtist'];
 			} else if (isset($metadata['IPTCByLine']) && !empty($metadata['IPTCByLine'])) {
 				$rightsholder = $metadata['IPTCByLine'];
-			} else {
-				$rightsholder = $this->getOwner(true);
 			}
+		}
+		if (empty($rightsholder)) {
+			$rightsholder = $this->getOwner(true);
 		}
 		return $rightsholder;
 	}

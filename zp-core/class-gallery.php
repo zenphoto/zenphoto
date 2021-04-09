@@ -77,16 +77,96 @@ class Gallery {
 		} else {
 			return applyMacros(unTagURLs(get_language_string($text, $locale)));
 		}
-		return $text;
 	}
 
 	/**
 	 * Sets the gallery description
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
 	 * @param string $desc
 	 */
 	function setDesc($desc) {
 		$desc = tagURLs($desc);
 		$this->set('Gallery_description', $desc);
+	}
+	
+	/**
+	 * Gets the copyright notice
+	 * @since ZenphotoCMS 1.5.8
+	 * 
+	 * @param type $locale
+	 * @return type
+	 */
+	function getCopyrightNotice($locale = null) {
+		$text = $this->get('copyright_site_notice');
+		if ($locale == 'all') {
+			return unTagURLs($text);
+		} else {
+			return applyMacros(unTagURLs(get_language_string($text, $locale)));
+		}
+	}
+
+	/**
+	 * Sets the copyright notice
+	 * @since ZenphotoCMS 1.5.8
+	 * @param type $notice
+	 */
+	function setCopyrightNotice($notice) {
+		$notice = tagURLs($notice);
+		$this->set('copyright_site_notice', $notice);
+	}
+
+	/**
+	 * Gets the copyright site holder
+	 * 
+	 * Note: This does not fetch an actual field value but with some fallbacks
+	 * 
+	 * - 'copyright_site_rightsholder' field
+	 * - 'copyright_site_rightsholder_custom' field
+	 * - The site master user
+	 * 
+	 * @see getRightsholderCopyrightCustom()
+	 * @see getRightsholderCopyright()
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 */
+	function getCopyrightRightsholder() {
+		$rightsholder = $this->get('copyright_site_rightsholder');
+		if ($rightsholder && $rightsholder != 'none') {
+			if ($rightsholder == 'custom') {
+				$rightsholder = $this->get('copyright_site_rightsholder_custom');
+			} else {
+				$rightsholder = Zenphoto_Administrator::getNameByUser($rightsholder);
+			}
+		}
+		if (empty($rightsholder)) {
+			$authority = new Zenphoto_Authority();
+			$master = $authority->getMasterUser();
+			$rightsholder = $master->getName();
+		}
+		return $rightsholder;
+	}
+	
+	/**
+	 * 
+	 * Gets the copyright site url
+	 * 
+	 * @since ZenphotoCMS 1.5.8 
+	 * @return type
+	 */
+	function getCopyrightURL() {
+		return $this->get('copyright_site_url');
+	}
+
+	/**
+	 * Sets the copyright site url
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * @param type $url
+	 */
+	function setCopyrightURL($url) {
+		$this->set('copyright_site_url', $url);
 	}
 
 	/**
