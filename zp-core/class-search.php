@@ -39,6 +39,7 @@ class SearchEngine {
 	protected $iteration = 0; // used by apply_filter('search_statistics') to indicate sequential searches of different objects
 	protected $processed_search = NULL;
 	protected $album_list = NULL; // list of albums to search
+	protected $album_list_exclude = null; // list of albums to exclude from search
 	protected $category_list = NULL; // list of categories for a news search
 	protected $searches = NULL; // remember the criteria for past searches
 	protected $extraparams = array(); // allow plugins to add to search parameters
@@ -157,6 +158,14 @@ class SearchEngine {
 				}
 			}
 		}
+		
+		if (isset($_REQUEST['excludealbums'])) {
+			$list = trim(sanitize($_REQUEST['excludealbums'], 3));
+			if (!empty($list)) {
+				$this->album_list_exclude = explode(',', $list);
+			}
+		}
+		
 		if (isset($_REQUEST['inimages'])) {
 			$list = trim(sanitize($_REQUEST['inimages'], 3));
 			if (strlen($list) > 0) {
@@ -304,6 +313,15 @@ class SearchEngine {
 			} else {
 				$r .= '&inalbums=' . implode(',', $this->album_list);
 			}
+			
+			if (empty($this->album_list_exclude)) {
+				if ($this->search_no_albums) {
+					$r .= '&inalbums=0';
+				}
+			} else {
+				$r .= '&excludealbums=' . implode(',', $this->album_list_exclude);
+			}
+			
 			if ($this->search_no_images) {
 				$r .= '&inimages=0';
 			}
@@ -468,6 +486,11 @@ class SearchEngine {
 								$this->album_list = explode(',', $v);
 								break;
 						}
+					}
+					break;
+				case 'excludealbums':
+					if (strlen($v) > 0) {
+						$this->album_list_exclude = explode(',', $v);
 					}
 					break;
 				case 'unpublished':
@@ -1407,7 +1430,7 @@ class SearchEngine {
 										$row['show'] = 0;
 								}
 								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS)) || (checkAlbumPassword($albumname) && (($album->checkAccess() && $album->isPublic()) || $viewUnpublished))) {
-									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
+									if ((empty($this->album_list) || in_array($albumname, $this->album_list)) &&  !in_array($albumname, $this->album_list_exclude)) {
 										$result[] = array('title' => $row['title'], 'name' => $albumname, 'weight' => $weights[$row['id']]);
 									}
 								}
@@ -1575,7 +1598,7 @@ class SearchEngine {
 							}
 							$viewUnpublished = ($mine || is_null($mine)) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && ($album->isPublic() || $viewUnpublished));
 							if ($viewUnpublished) {
-								$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
+								$allow = (empty($this->album_list) || in_array($albumname, $this->album_list)) && !in_array($albumname, $this->album_list_exclude);
 							} 
 							$albums_seen[$albumid] = $albumrow = array('allow' => $allow, 'viewUnpublished' => $viewUnpublished, 'folder' => $albumname, 'localpath' => ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname) . '/');
 						} else {
