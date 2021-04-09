@@ -1430,7 +1430,7 @@ class SearchEngine {
 										$row['show'] = 0;
 								}
 								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS)) || (checkAlbumPassword($albumname) && (($album->checkAccess() && $album->isPublic()) || $viewUnpublished))) {
-									if ((empty($this->album_list) || in_array($albumname, $this->album_list)) &&  !in_array($albumname, $this->album_list_exclude)) {
+									if ((empty($this->album_list) || in_array($albumname, $this->album_list)) && !$this->excludeAlbum($albumname)) {
 										$result[] = array('title' => $row['title'], 'name' => $albumname, 'weight' => $weights[$row['id']]);
 									}
 								}
@@ -1478,6 +1478,31 @@ class SearchEngine {
 			$albums_per_page = max(1, getOption('albums_per_page'));
 			return array_slice($this->albums, $albums_per_page * ($page - 1), $albums_per_page);
 		}
+	}
+	
+	/**
+	 * Checks if the album should be excluded from results
+	 * Subalbums and their contents inherit the exclusion.
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
+	 * @param string $albumname
+	 * @return boolean
+	 */
+	function excludeAlbum($albumname) {
+		$exclude = false;
+		if (!is_null($this->album_list_exclude)) {
+			if (in_array($albumname, $this->album_list_exclude)) {
+				return true;
+			} else {
+				foreach ($this->album_list_exclude as $excludealbum) {
+					if (strpos($albumname, $excludealbum) === 0) {
+						return true;
+					}
+				}
+			}
+		}
+		return $exclude;
 	}
 
 	/**
@@ -1598,7 +1623,7 @@ class SearchEngine {
 							}
 							$viewUnpublished = ($mine || is_null($mine)) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && ($album->isPublic() || $viewUnpublished));
 							if ($viewUnpublished) {
-								$allow = (empty($this->album_list) || in_array($albumname, $this->album_list)) && !in_array($albumname, $this->album_list_exclude);
+								$allow = (empty($this->album_list) || in_array($albumname, $this->album_list)) && !$this->excludeAlbum($albumname);
 							} 
 							$albums_seen[$albumid] = $albumrow = array('allow' => $allow, 'viewUnpublished' => $viewUnpublished, 'folder' => $albumname, 'localpath' => ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname) . '/');
 						} else {
