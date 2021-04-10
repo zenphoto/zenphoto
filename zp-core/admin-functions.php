@@ -5321,12 +5321,12 @@ function processExtensionVariable($var) {
  * @global obj $_zp_gallery Gallery object
  * @param string $optionname The option name of the select list
  * @param array $list Key value array where key is the display value (gettext generally)
- * @param string $optiontext The label text for the select list
+ * @param string $optionlabel The label text for the select list
  * @param string $optionname_customfield The option name of the custom field
- * @param string $optiontext_customfield THe label text for the custom field
+ * @param string $optionlabel_customfield THe label text for the custom field
  * @param boolean $is_galleryoption Set to true if this is a special gallery class option
  */
-function printSelectorWithCustomField($optionname, $list = array(), $optiontext = null, $optionname_customfield = null, $optiontext_customfield = nulll, $is_galleryoption = false) {
+function printSelectorWithCustomField($optionname, $list = array(), $optionlabel = null, $optionname_customfield = null, $optionlabel_customfield = nulll, $is_galleryoption = false) {
 	global $_zp_gallery;
 	$optionname_customfield_toggle = $optionname_customfield . '-toggle';
 	if ($is_galleryoption) {
@@ -5360,13 +5360,13 @@ function printSelectorWithCustomField($optionname, $list = array(), $optiontext 
 			<select id="<?php echo $optionname; ?>" name="<?php echo $optionname; ?>">
 				<?php generateListFromArray(array($currentselection), $list, null, true); ?>
 			</select>
-			<br><?php echo html_encode($optiontext); ?>
+			<br><?php echo html_encode($optionlabel); ?>
 		</label>
 	</p>
 	<p id="<?php echo $optionname_customfield_toggle; ?>"<?php echo $hiddenclass; ?>>
 		<label>
 			<input type="text" name="<?php echo $optionname_customfield; ?>" id="<?php echo $optionname_customfield; ?>" value="<?php echo html_encode($currentvalue_customfield); ?>">
-			<br><?php echo html_encode($optiontext_customfield); ?>
+			<br><?php echo html_encode($optionlabel_customfield); ?>
 		</label>
 	</p>
 	<script>
@@ -5425,9 +5425,9 @@ function getZenpagePagesOptionsArray($published = false) {
  */
 function printZenpagePageSelector($optionname, $optionname_custom = null, $published = false, $is_galleryoption = false) {
 	$list = getZenpagePagesOptionsArray($published);
-	$optiontext = gettext('Select a Zenpage page. * denotes unpublished page.');
-	$optiontext_customfield = gettext('Custom page url');
-	printSelectorWithCustomField($optionname, $list, $optiontext, $optionname_custom, $optiontext_customfield, $is_galleryoption);
+	$optionlabel = gettext('Select a Zenpage page. * denotes unpublished page.');
+	$optionlabel_customfield = gettext('Custom page url');
+	printSelectorWithCustomField($optionname, $list, $optionlabel, $optionname_custom, $optionlabel_customfield, $is_galleryoption);
 }
 
 /**
@@ -5470,7 +5470,7 @@ function getAdminstratorsOptionsArray($type = 'users') {
  */
 function printUserSelector($optionname, $optionname_custom, $type = 'users', $is_galleryoption = false) {
 	$users = getAdminstratorsOptionsArray($type);
-	$optiontext = gettext('Select a user');
-	$optiontext_customfield = gettext('Custom');
-	printSelectorWithCustomField($optionname, $users, $optiontext, $optionname_custom, $optiontext_customfield, $is_galleryoption);
+	$optionlabel = gettext('Select a user');
+	$optionlabel_customfield = gettext('Custom');
+	printSelectorWithCustomField($optionname, $users, $optionlabel, $optionname_custom, $optionlabel_customfield, $is_galleryoption);
 }
