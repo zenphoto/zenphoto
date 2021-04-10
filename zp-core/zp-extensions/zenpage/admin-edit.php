@@ -425,7 +425,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<label for="permalink"><?php echo gettext("Enable permaTitlelink"); ?></label>
 													</p>
 													<p class="checkbox">
-														<input name="show" type="checkbox" id="show" value="1" <?php checkIfChecked($result->getShow()); ?> />
+														<input name="show" type="checkbox" id="show" value="1" <?php checkIfChecked($result->isPublished()); ?> />
 														<label for="show"><?php echo gettext("Published"); ?></label>
 													</p>
 													<?php

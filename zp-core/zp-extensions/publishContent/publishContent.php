@@ -159,7 +159,7 @@ echo '</head>';
 				if (isset($_GET['propagate_unpublished'])) {
 					foreach ($albumlist as $albumname) {
 						$album = newAlbum($albumname);
-						if (!$album->getShow()) {
+						if (!$album->isPublished()) {
 							unpublishSubalbums($album);
 						}
 					}
@@ -490,7 +490,7 @@ echo '</head>';
 					$c = 0;
 					foreach ($items as $key => $item) {
 						$itemobj = new ZenpageCategory($item['titlelink']);
-						if (!$itemobj->getShow()) {
+						if (!$itemobj->isPublished()) {
 							$c++;
 							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="catcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
 						}
@@ -549,7 +549,7 @@ echo '</head>';
 					$c = 0;
 					foreach ($items as $key => $item) {
 						$itemobj = new ZenpageNews($item['titlelink']);
-						if (!$itemobj->getShow()) {
+						if (!$itemobj->isPublished()) {
 							$c++;
 							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="artcheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
 						}
@@ -605,7 +605,7 @@ echo '</head>';
 					$c = 0;
 					foreach ($items as $key => $item) {
 						$itemobj = new ZenpagePage($item['titlelink']);
-						if (!$itemobj->getShow()) {
+						if (!$itemobj->isPublished()) {
 							$c++;
 							$output .= '<li><label><input type="checkbox" name="' . $item['titlelink'] . '" value="' . $item['titlelink'] . '" class="pagecheck" />' . $itemobj->getTitle() . '</label><a href="' . html_encode($itemobj->getLink()) . '" title="' . html_encode($itemobj->getTitle()) . '"> (' . gettext('View') . ')</a></li>';
 						}

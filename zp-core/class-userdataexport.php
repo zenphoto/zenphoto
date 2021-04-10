@@ -359,7 +359,7 @@ class userDataExport {
 			while ($row = db_fetch_assoc($result)) {
 				$albobj = newAlbum($row['folder']);
 				$title = $albobj->getTitle();
-				if (!$albobj->getShow()) {
+				if (!$albobj->isPublished()) {
 					$title .= ' [' . gettext('unpublished') . ']';
 				}
 				if ($albobj->isProtected()) {
@@ -415,7 +415,7 @@ class userDataExport {
 					foreach ($images as $image) {
 						$imgobj = newImage($albobj, $image);
 						$title = $imgobj->getTitle();
-						if (!$imgobj->getShow()) {
+						if (!$imgobj->isPublished()) {
 							$title .= ' [' . gettext('unpublished') . ']';
 						}
 						if ($imgobj->isProtected()) {
@@ -504,7 +504,7 @@ class userDataExport {
 						break;
 				}
 				$title = $obj->getTitle();
-				if (!$obj->getShow()) {
+				if (!$obj->isPublished()) {
 					$title .= ' [' . gettext('Unpublished') . ']';
 				}
 				if ($obj->isProtected()) {

@@ -364,13 +364,13 @@ class ThemeObject extends PersistentObject {
 		$row = array();
 		if (isAlbumClass($this) || isImageClass($this)) {
 			$row = array(
-					'show' => $this->getShow(),
+					'show' => $this->isPublished(),
 					'expiredate' => $this->getExpireDate(),
 					'publishdate' => $this->getPublishDate()
 			);
 		} else if ($this->table == 'news' || $this->table == 'pages') {
 			$row = array(
-					'show' => $this->getShow(),
+					'show' => $this->isPublished(),
 					'expiredate' => $this->getExpireDate(),
 					'publishdate' => $this->getDateTime()
 			);

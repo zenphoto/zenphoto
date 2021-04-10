@@ -210,7 +210,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					foreach ($allalbums as $album) {
 						$albumobj = newAlbum($album['folder']);
 						if ($albumobj->loaded) {
-							$albumentry = array("id" => $albumobj->getID(), "title" => $albumobj->getTitle(), "folder" => $albumobj->name, "imagenumber" => $albumobj->getNumImages(), "show" => $albumobj->getShow());
+							$albumentry = array("id" => $albumobj->getID(), "title" => $albumobj->getTitle(), "folder" => $albumobj->name, "imagenumber" => $albumobj->getNumImages(), "show" => $albumobj->isPublished());
 							array_unshift($albums, $albumentry);
 						}
 					}

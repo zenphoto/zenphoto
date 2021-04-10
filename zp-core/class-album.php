@@ -504,7 +504,7 @@ class AlbumBase extends MediaObject {
 				// first check for images
 				$thumb = array_shift($thumbs);
 				$thumb = newImage($this, $thumb);
-				if ($mine || $thumb->getShow()) {
+				if ($mine || $thumb->isPublished()) {
 					if (isImagePhoto($thumb)) {
 						// legitimate image
 						$this->albumthumbnail = $thumb;
@@ -539,7 +539,7 @@ class AlbumBase extends MediaObject {
 				$folder = array_pop($subalbums);
 				$subalbum = newAlbum($folder);
 				$pwd = $subalbum->getPassword();
-				if (($subalbum->getShow() && empty($pwd)) || $subalbum->isMyItem(LIST_RIGHTS)) {
+				if (($subalbum->isPublished() && empty($pwd)) || $subalbum->isMyItem(LIST_RIGHTS)) {
 					$thumb = $subalbum->getAlbumThumbImage();
 					if (strtolower(get_class($thumb)) !== 'transientimage' && $thumb->exists) {
 						$this->albumthumbnail = $thumb;
@@ -872,7 +872,7 @@ class AlbumBase extends MediaObject {
 			$subRights = $this->albumSubRights();
 			if (is_null($subRights)) {
 // no direct rights, but if this is a private gallery and the album is published he should be allowed to see it
-				if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
+				if (GALLERY_SECURITY != 'public' && $this->isPublished() && $action == LIST_RIGHTS) {
 					return LIST_RIGHTS;
 				}
 			} else {
@@ -923,7 +923,7 @@ class AlbumBase extends MediaObject {
 	 */
 	function isPublic() {
 		if (is_null($this->is_public)) {
-			if (!$this->getShow()) {
+			if (!$this->isPublished()) {
 				return $this->is_public = false;
 			}
 			$parent = $this->getParent();

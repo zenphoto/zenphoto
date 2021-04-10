@@ -5190,12 +5190,12 @@ function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
 			$alt = gettext("Scheduled for expiration");
 			$action = '?action=publish&amp;value=1';
 			$icon = WEBPATH . '/' . ZENFOLDER . '/images/clock_expiredate.png';
-		} else if ($obj->getShow()) {
+		} else if ($obj->isPublished()) {
 			$title = $title_unpublish;
 			$alt = gettext("Published");
 			$action = '?action=publish&amp;value=0';
 			$icon = WEBPATH . '/' . ZENFOLDER . '/images/pass.png';
-		} else if (!$obj->getShow()) {
+		} else if (!$obj->isPublished()) {
 			if ($obj->hasExpired()) {
 				$title = $title_skipexiration;
 				$alt = gettext("Un-published because expired");

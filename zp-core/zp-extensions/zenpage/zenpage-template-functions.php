@@ -1887,13 +1887,13 @@ function printPageLastChangeDate($before) {
  */
 function getPageContent($titlelink = NULL, $published = true) {
 	global $_zp_current_zenpage_page;
-	if (is_Pages() AND empty($titlelink)) {
+	if (is_Pages() && empty($titlelink)) {
 		return $_zp_current_zenpage_page->getContent();
 	}
 	// print content of a page directly on a normal zenphoto theme page or any other page for example
 	if (!empty($titlelink)) {
 		$page = new ZenpagePage($titlelink);
-		if ($page->getShow() OR ( !$page->getShow() AND ! $published)) {
+		if ($page->isPublished() || ( !$page->isPublished() && ! $published)) {
 			return $page->getContent();
 		}
 	}
@@ -1924,13 +1924,13 @@ function printPageContent($titlelink = NULL, $published = true) {
  */
 function getPageExtraContent($titlelink = '', $published = true) {
 	global $_zp_current_zenpage_page;
-	if (is_Pages() AND empty($titlelink)) {
+	if (is_Pages() && empty($titlelink)) {
 		return $_zp_current_zenpage_page->getExtracontent();
 	}
 	// print content of a page directly on a normal zenphoto theme page for example
 	if (!empty($titlelink)) {
 		$page = new ZenpagePage($titlelink);
-		if ($page->getShow() OR ( !$page->getShow() AND ! $published)) {
+		if ($page->isPublished() || ( !$page->isPublished() && ! $published)) {
 			return $page->getExtracontent();
 		}
 	}

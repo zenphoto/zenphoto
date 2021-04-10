@@ -1224,7 +1224,7 @@ function getAnnotatedAlbumTitle() {
 	if (zp_loggedin() && !empty($pwd)) {
 		$title .= "\n" . gettext('The album is password protected.');
 	}
-	if (!$_zp_current_album->getShow()) {
+	if (!$_zp_current_album->isPublished()) {
 		$title .= "\n" . gettext('The album is un-published.');
 	}
 	return $title;
@@ -1803,7 +1803,7 @@ function printAlbumThumbImage($alt, $class = NULL, $id = NULL , $title = null) {
 			'height' => $sizes[1],
 			'loading' => 'lazy'
 	);
-	if (!$_zp_current_album->getShow()) {
+	if (!$_zp_current_album->isPublished()) {
 		$attr['class'] .= " not_visible";
 	}
 	$pwd = $_zp_current_album->getPassword();
@@ -1882,7 +1882,7 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	if($maxspace) {
 		getMaxSpaceContainer($width, $height, $thumbobj, true);
 	}
-	if (!$_zp_current_album->getShow()) {
+	if (!$_zp_current_album->isPublished()) {
 		$attr['class'] .= " not_visible";
 	}
 	$pwd = $_zp_current_album->getPassword();
@@ -2188,7 +2188,7 @@ function getBareImageTitle() {
 function getAnnotatedImageTitle() {
 	global $_zp_current_image;
 	$title = getBareImageTitle();
-	if (!$_zp_current_image->getShow()) {
+	if (!$_zp_current_image->isPublished()) {
 		$title .= "\n" . gettext('The image is marked un-published.');
 	}
 	return $title;
@@ -2879,7 +2879,7 @@ function printDefaultSizedImage($alt, $class = null, $id = null, $title = null, 
 			'width' => getDefaultWidth(),
 			'height' => getDefaultHeight()
 	);
-	if (!$image->getShow()) {
+	if (!$image->isPublished()) {
 		$attr['class'] .= " not_visible";
 	}
 	$album = $image->getAlbum();
@@ -2936,7 +2936,7 @@ function printImageThumb($alt, $class = null, $id = null, $title = null, $image 
 			'id' => $id,
 			'loading' => 'lazy'
 	);
-	if (!$image->getShow()) {
+	if (!$image->isPublished()) {
 		$attr['class'] .= " not_visible";
 	}
 	$album = $image->getAlbum();
@@ -3199,7 +3199,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 			'id' => $id,
 			'loading' => 'lazy'
 	);
-	if (!$image->getShow()) {
+	if (!$image->isPublished()) {
 		$attr['class'] .= " not_visible";
 	}
 	$album = $image->getAlbum();

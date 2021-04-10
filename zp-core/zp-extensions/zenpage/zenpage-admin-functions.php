@@ -221,7 +221,7 @@ function printPagesListTable($page, $flag) {
 				echo "</a>" . checkHitcounterDisplay($page->getHitcounter());
 			} else {
 				checkForEmptyTitle($page->getTitle(), "page");
-				checkHitcounterDisplay($page->getShow());
+				checkHitcounterDisplay($page->isPublished());
 			}
 			?>
 		</div>
@@ -1008,7 +1008,7 @@ function printCategoryListSortableTable($cat, $flag) {
 			</div>
 			<div class="page-list_icon">
 				<?php
-				if ($cat->getShow()) {
+				if ($cat->isPublished()) {
 					$title = gettext("Un-publish");
 					?>
 					<a href="?publish=0&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
@@ -1356,7 +1356,7 @@ function getNewsPagesStatistic($option) {
 				$itemobj = new ZenpageCategory($item['titlelink']);
 				break;
 		}
-		if ($itemobj->getShow() == 1) {
+		if ($itemobj->isPublished()) {
 			$pub++;
 		}
 	}
@@ -1504,12 +1504,12 @@ function printPublishIconLink($object, $type, $linkback = '') {
 		$alt = gettext("Scheduled for expiration");
 		$action = '?skipexpiration=1';
 		$icon = '../../images/clock_expiredate.png';
-	} else if ($object->getShow()) {
+	} else if ($object->isPublished()) {
 		$title = gettext("Un-publish");
 		$alt = gettext("Published");
 		$action = '?publish=0';
 		$icon = '../../images/pass.png';
-	} else if (!$object->getShow()) {
+	} else if (!$object->isPublished()) {
 		if ($object->hasExpired()) {
 			$title = gettext("Publish immediately (skip expiration)");
 			$alt = gettext("Un-published because expired");

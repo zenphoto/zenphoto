@@ -168,7 +168,7 @@ class ZenpageNews extends ZenpageItems {
 	 */
 	function isPublic() {
 		if (is_null($this->is_public)) {
-			if(!$this->getShow()) {
+			if(!$this->isPublished()) {
 				return $this->is_public = false;
 			}
 			$categories = $this->getCategories();

@@ -57,7 +57,7 @@ function printSubLevelAlbums(&$albumobj) {
 function unpublishedZenphotoItemCheck($obj, $dropdown = true) {
 	$span1 = "";
 	$span2 = "";
-	if ($obj->getShow() != "1") {
+	if (!$obj->isPublished()) {
 		if (!$dropdown) {
 			$span1 = "<span class='unpublisheditem'>";
 			$span2 = "</span>";
@@ -573,7 +573,7 @@ function unpublishedZenpageItemCheck($page) {
 	switch ($class) {
 		case 'ZenpageNews':
 		case 'ZenpagePage':
-			if ($page->getShow() === "0") {
+			if (!$page->isPublished()) {
 				$unpublishednote = "<span style='color: red; font-weight: bold'>*</span>";
 			}
 			switch ($class) {

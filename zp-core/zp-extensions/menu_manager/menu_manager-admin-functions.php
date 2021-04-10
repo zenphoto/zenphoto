@@ -314,7 +314,7 @@ function publishItem($id, $show, $menuset) {
  */
 function addSubalbumMenus($menuset, $id, $link, $sort) {
 	$album = newAlbum($link);
-	$show = $album->getShow();
+	$show = $album->isPublished();
 	$title = $album->getTitle();
 	$sql = "INSERT INTO " . prefix('menu') . " (`link`,`type`,`title`,`show`,`menuset`,`sort_order`, `parentid`) " .
 					'VALUES (' . db_quote($link) . ', "album",' . db_quote($album->name) . ', ' . $show . ',' . db_quote($menuset) . ',' . db_quote($sort) . ',' . $id . ')';
@@ -949,10 +949,10 @@ function printCustomPageSelector($current) {
  * @return string
  */
 function unpublishedZenphotoItemCheck($obj, $dropdown = true) {
-	if ($obj->getShow() != "1") {
-		$show = "*";
-	} else {
+	if ($obj->isPublished()) {
 		$show = "";
+	} else {
+		$show = "*";
 	}
 	return $show;
 }

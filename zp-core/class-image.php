@@ -1253,7 +1253,7 @@ class Image extends MediaObject {
 	 */
 	function getContent() {
 		$class = '';
-		if (!$this->getShow()) {
+		if (!$this->isPublished()) {
 			$class .= " not_visible";
 		}
 		$album = $this->getAlbum();
@@ -1512,9 +1512,9 @@ class Image extends MediaObject {
 	function checkAccess(&$hint = NULL, &$show = NULL) {
 		$album = $this->getAlbum();
 		if ($album->isMyItem(LIST_RIGHTS)) {
-			return $this->getShow() || $album->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
+			return $this->isPublished() || $album->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
 		}
-		return $album->checkforGuest($hint, $show) && $this->getShow() && $album->getShow();
+		return $album->checkforGuest($hint, $show) && $this->isPublished() && $album->isPublished();
 	}
 
 	/**
@@ -1547,7 +1547,7 @@ class Image extends MediaObject {
 	 */
 	function isPublic() {
 		if (is_null($this->is_public)) {
-			if (!$this->getShow()) {
+			if (!$this->isPublished()) {
 				return $this->is_public = false;
 			}
 			$album = $this->getAlbum();

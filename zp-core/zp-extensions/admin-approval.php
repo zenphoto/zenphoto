@@ -34,7 +34,7 @@ class admin_approval {
 			} else {
 				$show = 0;
 			}
-			$newshow = $object->getShow();
+			$newshow = $object->isPublished();
 			$object->setShow($show);
 			if ($newshow != $show) {
 				$msg = gettext('You do not have rights to change the <em>publish</em> state.');

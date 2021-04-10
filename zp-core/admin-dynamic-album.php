@@ -52,7 +52,7 @@ if (isset($_POST['savealbum'])) {
 			$subalbums = $search->getAlbums(0);
 			foreach ($subalbums as $analbum) {
 				$albumobj = newAlbum($analbum);
-				if ($return_unpublished || $albumobj->getShow()) { 
+				if ($return_unpublished || $albumobj->isPublished()) { 
 					$tags = array_unique(array_merge($albumobj->getTags(), array($words)));
 					$albumobj->setTags($tags);
 					$albumobj->setLastChangeUser($_zp_current_admin_obj->getUser());
@@ -64,7 +64,7 @@ if (isset($_POST['savealbum'])) {
 			$images = $search->getImages();
 			foreach ($images as $animage) {
 				$image = newImage(newAlbum($animage['folder']), $animage['filename']);
-				if ($return_unpublished || $image->getShow()) { 
+				if ($return_unpublished || $image->isPublished()) { 
 					$tags = array_unique(array_merge($image->getTags(), array($words)));
 					$image->setTags($tags);
 					$image->setLastChangeUser($_zp_current_admin_obj->getUser());

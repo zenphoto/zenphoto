@@ -613,10 +613,10 @@ echo "\n</head>";
 						$allimages_edit = array();
 						foreach($allimages as $filename) {
 							$imgobj = newImage($album, $filename);
-							if($oldalbumimagesort_status == 'published' && $imgobj->getShow()) {
+							if($oldalbumimagesort_status == 'published' && $imgobj->isPublished()) {
 								$allimages_edit[] = $filename;
 							} 
-							if($oldalbumimagesort_status == 'unpublished' && !$imgobj->getShow()) {
+							if($oldalbumimagesort_status == 'unpublished' && !$imgobj->isPublished()) {
 								$allimages_edit[] = $filename;
 							}
 						}
