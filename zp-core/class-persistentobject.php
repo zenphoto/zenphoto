@@ -30,10 +30,10 @@ define('OBJECT_CACHE_DEPTH', 150); //	how many objects to hold for each object c
  */
 class PersistentObject {
 
-	var $loaded = false;
-	var $exists = false;
-	var $table;
-	var $transient;
+	public $loaded = false;
+	public $exists = false;
+	public $table;
+	public $transient;
 	protected $id = 0;
 	private $unique_set = NULL;
 	private $cache_by;

@@ -1,4 +1,8 @@
 <?php
+// force UTF-8 Ø
+
+global $_zp_UTF8;
+$_zp_UTF8 = new utf8();
 
 /**
  * UTF-8 friendly replacement functions - v0.2
@@ -30,11 +34,6 @@
  * @package core
  * @subpackage libraries\lib-utf8
  */
-// force UTF-8 Ø
-
-global $_zp_UTF8;
-$_zp_UTF8 = new utf8();
-
 class utf8 {
 
 	/**

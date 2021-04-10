@@ -1,10 +1,6 @@
 <?php
 
-/**
- * Album Class
- * @package core
- * @subpackage classes\objects
- */
+
 // force UTF-8 Ø
 
 define('IMAGE_SORT_DIRECTION', getOption('image_sortdirection'));
@@ -45,6 +41,11 @@ function isAlbumClass($album = NULL) {
 	return is_object($album) && ($album->table == 'albums');
 }
 
+/**
+ * Album Base Class
+ * @package core
+ * @subpackage classes\objects
+ */
 class AlbumBase extends MediaObject {
 
 	public $name; // Folder name of the album (full path from the albums folder)
@@ -1259,6 +1260,11 @@ class AlbumBase extends MediaObject {
 	
 }
 
+/**
+ * Album Class
+ * @package core
+ * @subpackage classes\objects
+ */
 class Album extends AlbumBase {
 
 	/**
@@ -1678,6 +1684,11 @@ class Album extends AlbumBase {
 
 }
 
+/**
+ * Dynamic Album Class for "saved searches"
+ * @package core
+ * @subpackage classes\objects
+ */
 class dynamicAlbum extends AlbumBase {
 
 	public $searchengine; // cache the search engine for dynamic albums

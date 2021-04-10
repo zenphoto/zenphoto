@@ -53,11 +53,11 @@ require_once(dirname(__FILE__) . '/classes.php');
  */
 class Zenphoto_Authority {
 
-	var $admin_users = NULL;
-	var $admin_groups = NULL;
-	var $admin_other = NULL;
-	var $admin_all = NULL;
-	var $rightsset = NULL;
+	public $admin_users = NULL;
+	public $admin_groups = NULL;
+	public $admin_other = NULL;
+	public $admin_all = NULL;
+	public $rightsset = NULL;
 	protected $master_user = NULL;
 	static $preferred_version = 4;
 	static $supports_version = 4;
@@ -1348,26 +1348,21 @@ class Zenphoto_Authority {
 
 }
 /**
- * Supports the basic Zenphoto needs for object manipulation of administrators.
+ * This is a simple class so that we have a convienient "handle" for manipulating Administrators.
  *
+ * NOTE: one should use the Zenphoto_Authority newAdministrator() method rather than directly instantiating
+ * an administrator object
  * @package core
  * @subpackage classes\authorization
  */
 class Zenphoto_Administrator extends PersistentObject {
 
-	/**
-	 * This is a simple class so that we have a convienient "handle" for manipulating Administrators.
-	 *
-	 * NOTE: one should use the Zenphoto_Authority newAdministrator() method rather than directly instantiating
-	 * an administrator object
-	 *
-	 */
-	var $objects = NULL;
-	var $master = false; //	will be set to true if this is the inherited master user
-	var $msg = NULL; //	a means of storing error messages from filter processing
-	var $logout_link = true; // for a Zenphoto logout
-	var $reset = false; // if true the user was setup by a "reset password" event
-	var $passhash; // the hash algorithm used in creating the password
+	public $objects = NULL;
+	public $master = false; //	will be set to true if this is the inherited master user
+	public $msg = NULL; //	a means of storing error messages from filter processing
+	public $logout_link = true; // for a Zenphoto logout
+	public $reset = false; // if true the user was setup by a "reset password" event
+	public $passhash; // the hash algorithm used in creating the password
 
 	/**
 	 * Constructor for an Administrator
@@ -1376,7 +1371,6 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * @param int $valid used to signal kind of admin object
 	 * @return Administrator
 	 */
-
 	function __construct($user, $valid) {
 		global $_zp_authority;
 		$this->passhash = (int) getOption('strong_hash');

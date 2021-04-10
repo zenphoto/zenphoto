@@ -1,4 +1,5 @@
 <?php
+require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
 
 /**
  *
@@ -60,8 +61,6 @@
  * @package core
  * @subpackage classes\objects
  */
-require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
-
 class feed {
 
 	protected $feed = 'feed'; //	feed type

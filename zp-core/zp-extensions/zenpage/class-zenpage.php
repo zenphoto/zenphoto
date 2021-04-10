@@ -1,13 +1,7 @@
 <?php
-/**
- * Zenpage root classes
- * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
- */
+
 /**
  * Some global variable setup
- *
  */
 //TODO: on the 1.4.7 release these combinews defines can be removed.
 define('ZENPAGE_COMBINEWS', false);
@@ -18,6 +12,12 @@ define('ZP_SHORTEN_LENGTH', getOption('zenpage_text_length'));
 define('ZP_READ_MORE', getOption("zenpage_read_more"));
 define('ZP_ARTICLES_PER_PAGE', getOption("zenpage_articles_per_page"));
 
+/**
+ * Zenpage root classes
+ * @author Stephen Billard (sbillard), Malte Müller (acrylian)
+ * @package plugins
+ * @subpackage zenpage
+ */
 class Zenpage {
 
 	public $categoryStructure = null;

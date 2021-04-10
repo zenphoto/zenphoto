@@ -1,12 +1,5 @@
 <?php
-
-/**
- * Image Class
- * @package core
- * @subpackage classes\objects
- */
 // force UTF-8 Ø
-
 $_zp_extra_filetypes = array(); // contains file extensions and the handler class for alternate images
 
 define('WATERMARK_IMAGE', 1);
@@ -93,7 +86,9 @@ function isImageClass($image = NULL) {
 }
 
 /**
- * handles 'picture' images
+ * Image Class
+ * @package core
+ * @subpackage classes\objects
  */
 class Image extends MediaObject {
 
@@ -1593,6 +1588,11 @@ class Image extends MediaObject {
 
 }
 
+/**
+ * Transient image class
+ * @package core
+ * @subpackage classes\objects
+ */
 class Transientimage extends Image {
 
 	/**

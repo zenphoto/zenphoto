@@ -1,17 +1,17 @@
 <?php
 
+// force UTF-8 Ø
+$_zp_gallery = new Gallery();
+
 /**
  * Gallery Class
  * @package core
  * @subpackage classes\objects
  */
-// force UTF-8 Ø
-$_zp_gallery = new Gallery();
-
 class Gallery {
 
-	var $albumdir = NULL;
-	var $table = 'gallery';
+	public $albumdir = NULL;
+	public $table = 'gallery';
 	protected $albums = NULL;
 	protected $theme;
 	protected $themes;

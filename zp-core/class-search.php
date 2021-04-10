@@ -1,29 +1,24 @@
 <?php
 
+define('EXACT_TAG_MATCH', getOption('exact_tag_match'));
+define('SEARCH_DURATION', 3000);
+define('SEARCH_CACHE_DURATION', getOption('search_cache_duration'));
+
 /**
  * search class
  * @package core
  * @subpackage classes\objects
  */
-// force UTF-8 Ø
-//*************************************************************
-//*ZENPHOTO SEARCH ENGINE CLASS *******************************
-//*************************************************************
-
-define('EXACT_TAG_MATCH', getOption('exact_tag_match'));
-define('SEARCH_DURATION', 3000);
-define('SEARCH_CACHE_DURATION', getOption('search_cache_duration'));
-
 class SearchEngine {
 
-	var $fieldList = NULL;
-	var $page = 1;
-	var $images = NULL;
-	var $albums = NULL;
-	var $articles = NULL;
-	var $pages = NULL;
-	var $pattern;
-	var $tagPattern;
+	public $fieldList = NULL;
+	public $page = 1;
+	public $images = NULL;
+	public $albums = NULL;
+	public $articles = NULL;
+	public $pages = NULL;
+	public $pattern;
+	public $tagPattern;
 	private $exact = false;
 	protected $dynalbumname = NULL;
 	protected $album = NULL;
@@ -44,9 +39,9 @@ class SearchEngine {
 	protected $searches = NULL; // remember the criteria for past searches
 	protected $extraparams = array(); // allow plugins to add to search parameters
 //	mimic album object
-	var $loaded = false;
-	var $table = 'albums';
-	var $transient = true;
+	public $loaded = false;
+	public $table = 'albums';
+	public $transient = true;
 
 	/**
 	 * Constuctor
