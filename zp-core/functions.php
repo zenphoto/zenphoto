@@ -1556,14 +1556,14 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 /**
  * General one dimensional array sorting function. Key/value associations are preserved.
  * 
- * If the system's PHP has the native intl extension and its Collator class available
- * the sorting is locale aware (true natural order) and always case sensitive if $natsort is set to true
+ * If the system's PHP has the native intl extension and its Collator class available and $natsort is set to true
+ * the sorting is locale sensitive (true natural order) and always case sensitive
  * 
  * @since ZenphotoCMS 1.5.8
  * 
  * @param array $array The array to sort
  * @param string  $descending true for descending sorts
- * @param bool $natsort If natural order should be used. If available sorting will be locale aware.
+ * @param bool $natsort If natural order should be used. If available sorting will be locale sensitive.
  * @param bool $case_sensitive If the sort should be case sensitive. Note if $natsort is true and locale aware sorting is available sorting is always case sensitive
  * @return array
  */
@@ -1573,6 +1573,8 @@ function sortArray($array, $descending = false, $natsort = true, $case_sensitive
 			if (class_exists('collator')) {
 				$locale = getUserLocale();
 				$collator = new Collator($locale);
+				$collator->setAttribute(Collator::CASE_FIRST, Collator::UPPER_FIRST);
+				$collator->setAttribute(Collator::NUMERIC_COLLATION, Collator::ON);
 				$collator->asort($array);
 			} else {
 				if ($case_sensitive) {
