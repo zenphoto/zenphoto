@@ -579,7 +579,7 @@ class cacheManager {
 		foreach ($subalbums as $folder) {
 			$subalbum = newAlbum($folder);
 			if (!$subalbum->isDynamic()) {
-				cachemanager::loadAlbum($subalbum);
+				cachemanager::loadAlbums($subalbum);
 			}
 		}
 	}
