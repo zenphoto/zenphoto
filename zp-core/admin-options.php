@@ -267,7 +267,7 @@ if (isset($_GET['action'])) {
 			setOption('thumb_sharpen', (int) isset($_POST['thumb_sharpen']));
 			setOption('image_sharpen', (int) isset($_POST['image_sharpen']));
 			setOption('image_interlace', (int) isset($_POST['image_interlace']));
-			setOption('ImbedIPTC', (int) isset($_POST['ImbedIPTC']));
+			setOption('EmbedIPTC', (int) isset($_POST['EmbedIPTC']));
 			
 			setOption('copyright_image_notice', process_language_string_save('copyright_image_notice', 3));
 			setOption('copyright_image_rightsholder', sanitize($_POST['copyright_image_rightsholder']));
@@ -2657,7 +2657,7 @@ Zenphoto_Authority::printPasswordFormJS();
 										?>
 									<td><?php echo gettext('IPTC copyright embedding'); ?></td>
 									<td>
-										<p><label><input type="checkbox" name="ImbedIPTC" value="1"	<?php checked('1', getOption('ImbedIPTC')); ?> /> <?php echo $optionText; ?></label></p>
+										<p><label><input type="checkbox" name="EmbedIPTC" value="1"	<?php checked('1', getOption('EmbedIPTC')); ?> /> <?php echo $optionText; ?></label></p>
 									</td>
 									<td>
 										<p><?php echo $desc; ?></p>
