@@ -485,12 +485,13 @@ function loadLocalOptions($albumid, $theme) {
  * Replaces/renames an option. If the old option exits, it creates the new option with the old option's value as the default 
  * unless the new option has already been set otherwise. Independently it always deletes the old option.
  * 
+ * @since Zenphoto 1.5.1
+ * @since ZenphotoCMS 1.5.8 - renamed from replaceOption() to renameOption()
+ * 
  * @param string $oldkey Old option name
  * @param string $newkey New option name
- * 
- * @since Zenphoto 1.5.1
  */
-function replaceOption($oldkey, $newkey) {
+function renameOption($oldkey, $newkey) {
 	$oldoption = getOption($oldkey);
 	if ($oldoption) {
 		setOptionDefault($newkey, $oldoption);

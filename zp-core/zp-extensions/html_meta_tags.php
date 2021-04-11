@@ -35,7 +35,7 @@ if (in_context(ZP_INDEX)) {
 class htmlmetatags {
 
 	function __construct() {
-		replaceOption('google-site-verification','htmlmeta_google-site-verification');
+		renameOption('google-site-verification','htmlmeta_google-site-verification');
 		purgeOption('htmlmeta_pragma');
 		setOptionDefault('htmlmeta_cache_control', 'no-cache');
 		setOptionDefault('htmlmeta_robots', 'index');

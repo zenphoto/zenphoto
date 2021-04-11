@@ -362,7 +362,7 @@ if (!file_exists(SERVERPATH . '/favicon.ico')) {
 	@copy(SERVERPATH . '/' . ZENFOLDER . '/images/favicon.ico', SERVERPATH . '/favicon.ico');
 }
 
-replaceOption('default_copyright', 'copyright_image_notice');
+renameOption('default_copyright', 'copyright_image_notice');
 setOptionDefault('copyright_image_notice', sprintf(gettext('Copyright %1$u: %2$s'), date('Y'), $_SERVER["HTTP_HOST"]));
 
 setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));

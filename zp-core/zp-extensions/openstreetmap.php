@@ -27,8 +27,8 @@ zp_register_filter('theme_head', 'openStreetMap::scripts');
 class openStreetMapOptions {
 
 	function __construct() {
-		replaceOption('osmap_controlpos', 'osmap_zoomcontrolpos');
-		replaceOption('osmap_maptiles', 'osmap_defaultlayer');
+		renameOption('osmap_controlpos', 'osmap_zoomcontrolpos');
+		renameOption('osmap_maptiles', 'osmap_defaultlayer');
 		
 		setOptionDefault('osmap_width', '100%'); //responsive by default!
 		setOptionDefault('osmap_height', '300px');

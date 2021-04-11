@@ -6,6 +6,23 @@
  * @subpackage deprecated-functions
  */
 
+
+/**
+ * Replaces/renames an option. If the old option exits, it creates the new option with the old option's value as the default 
+ * unless the new option has already been set otherwise. Independently it always deletes the old option.
+ * 
+* @deprecated Zenphoto 2.0 – Use renameOptionl() instead
+ * 
+ * @param string $oldkey Old option name
+ * @param string $newkey New option name
+ * 
+ * @since Zenphoto 1.5.1
+ */
+function replaceOption($oldkey, $newkey) {
+	deprecated_functions::notify(gettext("Use renameOption() instead"));
+	renameOption($oldkey, $newkey);
+}
+
 /**
  * Determines if the input is an e-mail address. Adapted from WordPress.
  * Name changed to avoid conflicts in WP integrations.
@@ -16,6 +33,7 @@
  * @return bool
  */
 function is_valid_email_zp($input_email) {
+	deprecated_functions::notify(gettext("Use the isValidEmail() instead"));
 	return isValidEmail($input_email);
 }
 
