@@ -2165,7 +2165,7 @@ Zenphoto_Authority::printPasswordFormJS();
 									?>
 									<td><input type="checkbox" name="use_embedded_thumb" value="1" <?php checked('1', getOption('use_embedded_thumb')); ?><?php echo $disabled; ?> /></td>
 									<td>
-										<p><?php echo gettext('If set, Zenphoto will use the thumbnail imbedded in the image when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image.'); ?></p>
+										<p><?php echo gettext('If set, Zenphoto will use the thumbnail embedded in the image when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image.'); ?></p>
 										<?php
 										if ($disabled) {
 											?>
@@ -2648,14 +2648,14 @@ Zenphoto_Authority::printPasswordFormJS();
 								<tr>
 									<?php
 											if (GRAPHICS_LIBRARY == 'Imagick') {
-												$optionText = gettext('Imbed IPTC copyright');
-												$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded in cached copies.');
+												$optionText = gettext('Embed IPTC copyright');
+												$desc = gettext('If checked and an image has no IPTC data a copyright notice will be embedded in cached copies.');
 											} else {
 												$optionText = gettext('Replicate IPTC metadata');
-												$desc = gettext('If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded. (The text supplied will be used if the orginal image has no copyright.)');
+												$desc = gettext('If checked IPTC data from the original image will be embedded in cached copies. If the image has no IPTC data a copyright notice will be embedded. (The text supplied will be used if the orginal image has no copyright.)');
 											}
 										?>
-									<td><?php echo gettext('IPTC copyright imbedding'); ?></td>
+									<td><?php echo gettext('IPTC copyright embedding'); ?></td>
 									<td>
 										<p><label><input type="checkbox" name="ImbedIPTC" value="1"	<?php checked('1', getOption('ImbedIPTC')); ?> /> <?php echo $optionText; ?></label></p>
 									</td>
