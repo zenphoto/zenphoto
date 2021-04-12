@@ -36,10 +36,10 @@ require_once(dirname(__FILE__) . '/load_objectClasses.php');
 $_zp_current_context_stack = array();
 
 $_zp_albumthumb_selector = array(array('field' => '', 'direction' => '', 'desc' => 'random'),
-				array('field' => 'id', 'direction' => 'DESC', 'desc' => gettext('most recent')),
-				array('field' => 'mtime', 'direction' => '', 'desc' => gettext('oldest')),
-				array('field' => 'title', 'direction' => '', 'desc' => gettext('first alphabetically')),
-				array('field' => 'hitcounter', 'direction' => 'DESC', 'desc' => gettext('most viewed'))
+		array('field' => 'id', 'direction' => 'DESC', 'desc' => gettext('most recent')),
+		array('field' => 'mtime', 'direction' => '', 'desc' => gettext('oldest')),
+		array('field' => 'title', 'direction' => '', 'desc' => gettext('first alphabetically')),
+		array('field' => 'hitcounter', 'direction' => 'DESC', 'desc' => gettext('most viewed'))
 );
 
 $_zp_missing_album = new AlbumBase(gettext('missing'), false);
@@ -185,7 +185,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		$articlecontent = html_decode($articlecontent);
 		//remove script to be replaced later
 		$articlecontent = preg_replace('~<script.*?/script>~is', '', $articlecontent);
-		
+
 		//remove HTML comments
 		$articlecontent = preg_replace('~<!--.*?-->~is', '', $articlecontent);
 		$short = mb_substr($articlecontent, 0, $shorten);
@@ -220,7 +220,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 				$short = mb_substr($short, 0, $open);
 			}
 			$short = tidyHTML($short . $shortenindicator);
-		} 
+		}
 		$articlecontent = $short;
 	}
 	if (isset($matches)) {
@@ -614,7 +614,7 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
  */
 function getPlugin($plugin, $inTheme = false, $webpath = false) {
 	global $_zp_gallery;
-	$plugin = ltrim($plugin,'./\\');
+	$plugin = ltrim($plugin, './\\');
 	$pluginFile = NULL;
 	if ($inTheme === true) {
 		$inTheme = $_zp_gallery->getCurrentTheme();
@@ -946,7 +946,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			$_zp_loggedin = $save_logon;
 			foreach ($search_album_list as $searchalbum) {
 				if (strpos($albumname, $searchalbum) !== false) {
-					if($searchparent == 'searchresults_album') {
+					if ($searchparent == 'searchresults_album') {
 						$context = $context | ZP_SEARCH_LINKED | ZP_ALBUM_LINKED;
 					} else {
 						$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
@@ -1066,42 +1066,42 @@ function setupTheme($album = NULL) {
  * @return array
  */
 function getAllTagsUnique($checkaccess = false) {
-  global $_zp_unique_tags, $_zp_unique_tags_excluded;
-  if(zp_loggedin(VIEW_ALL_RIGHTS)) {
-    $checkaccess = false;
-  }
-  //need to cache all and filtered tags indiviually
-  if ($checkaccess) {
-    if (!is_null($_zp_unique_tags_excluded)) {
-      return $_zp_unique_tags_excluded; // cache them.
-    }
-  } else {
-    if (!is_null($_zp_unique_tags)) {
-      return $_zp_unique_tags; // cache them.
-    }
-  }
-  $all_unique_tags = array();
-  $sql = "SELECT DISTINCT `name`, `id` FROM " . prefix('tags') . ' ORDER BY `name`';
-  $unique_tags = query($sql);
-  if ($unique_tags) {
-    while ($tagrow = db_fetch_assoc($unique_tags)) {
-      if ($checkaccess) {
-        if (getTagCountByAccess($tagrow) != 0) {
-          $all_unique_tags[] = $tagrow['name'];
-        }
-      } else {
-        $all_unique_tags[] = $tagrow['name'];
-      }
-    }
-    db_free_result($unique_tags);
-  }
-  if ($checkaccess) {
-    $_zp_unique_tags_excluded = $all_unique_tags;
-    return $_zp_unique_tags_excluded;
-  } else {
-    $_zp_unique_tags = $all_unique_tags;
-    return $_zp_unique_tags;
-  }
+	global $_zp_unique_tags, $_zp_unique_tags_excluded;
+	if (zp_loggedin(VIEW_ALL_RIGHTS)) {
+		$checkaccess = false;
+	}
+	//need to cache all and filtered tags indiviually
+	if ($checkaccess) {
+		if (!is_null($_zp_unique_tags_excluded)) {
+			return $_zp_unique_tags_excluded; // cache them.
+		}
+	} else {
+		if (!is_null($_zp_unique_tags)) {
+			return $_zp_unique_tags; // cache them.
+		}
+	}
+	$all_unique_tags = array();
+	$sql = "SELECT DISTINCT `name`, `id` FROM " . prefix('tags') . ' ORDER BY `name`';
+	$unique_tags = query($sql);
+	if ($unique_tags) {
+		while ($tagrow = db_fetch_assoc($unique_tags)) {
+			if ($checkaccess) {
+				if (getTagCountByAccess($tagrow) != 0) {
+					$all_unique_tags[] = $tagrow['name'];
+				}
+			} else {
+				$all_unique_tags[] = $tagrow['name'];
+			}
+		}
+		db_free_result($unique_tags);
+	}
+	if ($checkaccess) {
+		$_zp_unique_tags_excluded = $all_unique_tags;
+		return $_zp_unique_tags_excluded;
+	} else {
+		$_zp_unique_tags = $all_unique_tags;
+		return $_zp_unique_tags;
+	}
 }
 
 /**
@@ -1114,37 +1114,37 @@ function getAllTagsUnique($checkaccess = false) {
  * @return array
  */
 function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
-  global $_zp_count_tags;
-  if (!is_null($_zp_count_tags)) {
-    return $_zp_count_tags;
-  }
-  if(zp_loggedin(VIEW_ALL_RIGHTS)) {
-    $exclude_unassigned = false;
-    $checkaccess = false;
-  }
-  $_zp_count_tags = array();
-  $sql = "SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
-  $tagresult = query($sql);
-  if ($tagresult) {
-    while ($tag = db_fetch_assoc($tagresult)) {
-      if($checkaccess) {
-        $count = getTagCountByAccess($tag);
-        if($count != 0) {
-          $_zp_count_tags[$tag['name']] = $count;
-        }
-      } else {
-        if($exclude_unassigned) {
-          if($tag['count'] != 0) {
-            $_zp_count_tags[$tag['name']] = $tag['count'];
-          }
-        } else {
-          $_zp_count_tags[$tag['name']] = $tag['count'];
-        }
-      }
-    }
-    db_free_result($tagresult);
-  }
-  return $_zp_count_tags;
+	global $_zp_count_tags;
+	if (!is_null($_zp_count_tags)) {
+		return $_zp_count_tags;
+	}
+	if (zp_loggedin(VIEW_ALL_RIGHTS)) {
+		$exclude_unassigned = false;
+		$checkaccess = false;
+	}
+	$_zp_count_tags = array();
+	$sql = "SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
+	$tagresult = query($sql);
+	if ($tagresult) {
+		while ($tag = db_fetch_assoc($tagresult)) {
+			if ($checkaccess) {
+				$count = getTagCountByAccess($tag);
+				if ($count != 0) {
+					$_zp_count_tags[$tag['name']] = $count;
+				}
+			} else {
+				if ($exclude_unassigned) {
+					if ($tag['count'] != 0) {
+						$_zp_count_tags[$tag['name']] = $tag['count'];
+					}
+				} else {
+					$_zp_count_tags[$tag['name']] = $tag['count'];
+				}
+			}
+		}
+		db_free_result($tagresult);
+	}
+	return $_zp_count_tags;
 }
 
 /**
@@ -1156,66 +1156,66 @@ function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
  * @return int
  */
 function getTagCountByAccess($tag) {
-  global $_zp_zenpage, $_zp_object_to_tags;
-  if (array_key_exists('count', $tag) && $tag['count'] == 0) {
-    return $tag['count'];
-  }
-  $hidealbums = getNotViewableAlbums();
-  $hideimages = getNotViewableImages();
-  $hidenews = array();
-  $hidepages = array();
-  if (extensionEnabled('Zenpage')) {
-    $hidenews = $_zp_zenpage->getNotViewableNews();
-    $hidepages = $_zp_zenpage->getNotViewablePages();
-  }
-  //skip checks if there are no unviewable items at all
-  if (empty($hidealbums) && empty($hideimages) && empty($hidenews) && empty($hidepages)) {
-    if (array_key_exists('count', $tag)) {
-      return $tag['count'];
-    }
-    return 0;
-  }
-  if (is_null($_zp_object_to_tags)) {
-    $sql = "SELECT tagid, type, objectid FROM " . prefix('obj_to_tag') . " ORDER BY tagid";
-    $_zp_object_to_tags = query_full_array($sql);
-  }
-  $count = '';
-  if ($_zp_object_to_tags) {
-    foreach($_zp_object_to_tags as $tagcheck) {
-      if ($tagcheck['tagid'] == $tag['id']) {
-        switch ($tagcheck['type']) {
-          case 'albums':
-            if (!in_array($tagcheck['objectid'], $hidealbums)) {
-              $count++;
-            }
-            break;
-          case 'images':
-            if (!in_array($tagcheck['objectid'], $hideimages)) {
-              $count++;
-            }
-            break;
-          case 'news':
-            if (ZP_NEWS_ENABLED) {
-              if (!in_array($tagcheck['objectid'], $hidenews)) {
-                $count++;
-              }
-            }
-            break;
-          case 'pages':
-            if (ZP_PAGES_ENABLED) {
-              if (!in_array($tagcheck['objectid'], $hidepages)) {
-                $count++;
-              }
-            }
-            break;
-        }
-      }
-    }
-  }
-  if (empty($count)) {
-    $count = 0;
-  }
-  return $count;
+	global $_zp_zenpage, $_zp_object_to_tags;
+	if (array_key_exists('count', $tag) && $tag['count'] == 0) {
+		return $tag['count'];
+	}
+	$hidealbums = getNotViewableAlbums();
+	$hideimages = getNotViewableImages();
+	$hidenews = array();
+	$hidepages = array();
+	if (extensionEnabled('Zenpage')) {
+		$hidenews = $_zp_zenpage->getNotViewableNews();
+		$hidepages = $_zp_zenpage->getNotViewablePages();
+	}
+	//skip checks if there are no unviewable items at all
+	if (empty($hidealbums) && empty($hideimages) && empty($hidenews) && empty($hidepages)) {
+		if (array_key_exists('count', $tag)) {
+			return $tag['count'];
+		}
+		return 0;
+	}
+	if (is_null($_zp_object_to_tags)) {
+		$sql = "SELECT tagid, type, objectid FROM " . prefix('obj_to_tag') . " ORDER BY tagid";
+		$_zp_object_to_tags = query_full_array($sql);
+	}
+	$count = '';
+	if ($_zp_object_to_tags) {
+		foreach ($_zp_object_to_tags as $tagcheck) {
+			if ($tagcheck['tagid'] == $tag['id']) {
+				switch ($tagcheck['type']) {
+					case 'albums':
+						if (!in_array($tagcheck['objectid'], $hidealbums)) {
+							$count++;
+						}
+						break;
+					case 'images':
+						if (!in_array($tagcheck['objectid'], $hideimages)) {
+							$count++;
+						}
+						break;
+					case 'news':
+						if (ZP_NEWS_ENABLED) {
+							if (!in_array($tagcheck['objectid'], $hidenews)) {
+								$count++;
+							}
+						}
+						break;
+					case 'pages':
+						if (ZP_PAGES_ENABLED) {
+							if (!in_array($tagcheck['objectid'], $hidepages)) {
+								$count++;
+							}
+						}
+						break;
+				}
+			}
+		}
+	}
+	if (empty($count)) {
+		$count = 0;
+	}
+	return $count;
 }
 
 /**
@@ -1299,7 +1299,7 @@ function readTags($id, $tbl) {
 function generateListFromArray($currentValue, $list, $descending, $localize) {
 	if ($localize) {
 		$list = array_flip($list);
-		if(!is_null($descending)) {
+		if (!is_null($descending)) {
 			if ($descending) {
 				arsort($list);
 			} else {
@@ -1308,7 +1308,7 @@ function generateListFromArray($currentValue, $list, $descending, $localize) {
 		}
 		$list = array_flip($list);
 	} else {
-		if(!is_null($descending)) {
+		if (!is_null($descending)) {
 			if ($descending) {
 				rsort($list);
 			} else {
@@ -1316,7 +1316,7 @@ function generateListFromArray($currentValue, $list, $descending, $localize) {
 			}
 		}
 	}
-	
+
 	foreach ($list as $key => $item) {
 		echo '<option value="' . html_encode($item) . '"';
 		if (in_array($item, $currentValue)) {
@@ -1402,9 +1402,9 @@ function generateAttributesFromArray($attributes = array(), $exclude = array()) 
 		foreach ($attributes as $key => $val) {
 			if (!in_array($key, $exclude)) {
 				if (empty($val)) {
-					if(in_array($key, $boolean_attr)) {
+					if (in_array($key, $boolean_attr)) {
 						$attr .= ' ' . $key;
-					} else if($key == 'alt') {
+					} else if ($key == 'alt') {
 						$attr .= ' ' . $key . '=""';
 					}
 				} else {
@@ -1557,7 +1557,7 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
  * General one dimensional array sorting function. Key/value associations are preserved.
  * 
  * If the system's PHP has the native intl extension and its Collator class available and $natsort is set to true
- * the sorting is locale sensitive (true natural order) and always case sensitive
+ * the sorting is locale sensitive (true natural order).
  * 
  * @since ZenphotoCMS 1.5.8
  * 
@@ -1573,7 +1573,9 @@ function sortArray($array, $descending = false, $natsort = true, $case_sensitive
 			if (class_exists('collator')) {
 				$locale = getUserLocale();
 				$collator = new Collator($locale);
-				$collator->setAttribute(Collator::CASE_FIRST, Collator::UPPER_FIRST);
+				if($case_sensitive) {
+					$collator->setAttribute(Collator::CASE_FIRST, Collator::UPPER_FIRST);
+				}
 				$collator->setAttribute(Collator::NUMERIC_COLLATION, Collator::ON);
 				$collator->asort($array);
 			} else {
@@ -1633,26 +1635,26 @@ function getNotViewableAlbums() {
  * @return array
  */
 function getNotViewableImages() {
-  global $_zp_not_viewable_image_list;
-  if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
-    return array(); //admins can see all
-  }
-  $hidealbums = getNotViewableAlbums();
-  $where = '';
-  if (!is_null($hidealbums)) {
+	global $_zp_not_viewable_image_list;
+	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
+		return array(); //admins can see all
+	}
+	$hidealbums = getNotViewableAlbums();
+	$where = '';
+	if (!is_null($hidealbums)) {
 		$where = ' OR `albumid` in (' . implode(',', $hidealbums) . ')';
-  }
-  if (is_null($_zp_not_viewable_image_list)) {
-    $sql = 'SELECT DISTINCT `id` FROM ' . prefix('images') . ' WHERE `show` = 0' . $where;
-    $result = query($sql);
-    if ($result) {
-      $_zp_not_viewable_image_list = array();
-      while ($row = db_fetch_assoc($result)) {
-        $_zp_not_viewable_image_list[] = $row['id'];
-      }
-    }
-  }
-  return $_zp_not_viewable_image_list;
+	}
+	if (is_null($_zp_not_viewable_image_list)) {
+		$sql = 'SELECT DISTINCT `id` FROM ' . prefix('images') . ' WHERE `show` = 0' . $where;
+		$result = query($sql);
+		if ($result) {
+			$_zp_not_viewable_image_list = array();
+			while ($row = db_fetch_assoc($result)) {
+				$_zp_not_viewable_image_list[] = $row['id'];
+			}
+		}
+	}
+	return $_zp_not_viewable_image_list;
 }
 
 /**
@@ -1696,7 +1698,7 @@ function safe_fnmatch($pattern, $string) {
  * @return boolean
  */
 function isValidEmail($email) {
-	if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		return true;
 	}
 	return false;
@@ -1926,11 +1928,11 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 			}
 			if (!empty($checkcats)) {
 				foreach ($checkcats as $obj) {
-					$authType = "zpcms_auth_category_" .  $obj->getID();
-					$check_auth =  $obj->getPassword();
-					$check_user =  $obj->getUser();
+					$authType = "zpcms_auth_category_" . $obj->getID();
+					$check_auth = $obj->getPassword();
+					$check_user = $obj->getUser();
 					if (empty($check_auth)) {
-						$catobj =  $obj;
+						$catobj = $obj;
 						while (empty($check_auth)) {
 							$parentID = $catobj->getParentID();
 							if ($parentID == 0)
@@ -1943,12 +1945,12 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 							$check_user = $catobj->getUser();
 						}
 					}
-					if(!empty($check_auth)) {
+					if (!empty($check_auth)) {
 						//collect passwords from all categories
 						$check_auth_user[] = array(
-							'authtype' => $authType,
-							'check_auth' => $check_auth, 
-							'check_user' => $check_user
+								'authtype' => $authType,
+								'check_auth' => $check_auth,
+								'check_user' => $check_user
 						);
 					}
 				}
@@ -1962,13 +1964,14 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 	}
 	if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
 		//check every category with password individually
-		foreach($check_auth_user as $check) {
+		foreach ($check_auth_user as $check) {
 			zp_handle_password_single($check['authtype'], $check['check_auth'], $check['check_user']);
 		}
 	} else {
 		zp_handle_password_single($authType, $check_auth, $check_user);
 	}
 }
+
 /**
  * Handles a passwort 
  * 
@@ -2141,8 +2144,6 @@ function setThemeOptionDefault($key, $value) {
 	$theme = basename(dirname($b['file']));
 	setThemeOption($key, $value, NULL, $theme, true);
 }
-
-
 
 /**
  * Returns the value of a theme option
@@ -2393,7 +2394,7 @@ function XSRFdefender($action) {
 function getXSRFToken($action) {
 	global $_zp_current_admin_obj;
 	$admindata = '';
-	if(!is_null($_zp_current_admin_obj)) {
+	if (!is_null($_zp_current_admin_obj)) {
 		$admindata = $_zp_current_admin_obj->getData();
 		unset($admindata['lastvisit']);
 	}
@@ -2466,7 +2467,7 @@ function cron_starter($script, $params, $offsetPath, $inline = false) {
 function zp_loggedin($rights = ALL_RIGHTS) {
 	global $_zp_loggedin, $_zp_current_admin_obj;
 	$loggedin = $_zp_loggedin & ($rights | ADMIN_RIGHTS);
-	if($loggedin && $_zp_current_admin_obj) {
+	if ($loggedin && $_zp_current_admin_obj) {
 		$_zp_current_admin_obj->updateLastVisit();
 	}
 	return $loggedin;
@@ -2758,10 +2759,10 @@ function getNestedAlbumList($subalbum, $levels, $checkalbumrights = true, $level
 	$list = array();
 	foreach ($albums as $analbum) {
 		$albumobj = newAlbum($analbum);
-  $accessallowed = true;
-  if($checkalbumrights) {
-    $accessallowed = $albumobj->isMyItem(ALBUM_RIGHTS);
-  }
+		$accessallowed = true;
+		if ($checkalbumrights) {
+			$accessallowed = $albumobj->isMyItem(ALBUM_RIGHTS);
+		}
 		if (!is_null($subalbum) || $accessallowed) {
 			$level[$cur] = sprintf('%03u', $albumobj->getSortOrder());
 			$list[] = array('name' => $analbum, 'sort_order' => $level);
@@ -3061,9 +3062,9 @@ function removeTrailingSlash($string) {
 /**
  * Returns an array the data privacy policy page and the data usage confirmation text as defined on Options > Security
  * array(
- *	'notice' => '<The defined text>',
- *	'url' => '<url to the define page either custom page url or Zenpage page>',
- *	'linktext' => '<The defined text>'
+ * 	'notice' => '<The defined text>',
+ * 	'url' => '<url to the define page either custom page url or Zenpage page>',
+ * 	'linktext' => '<The defined text>'
  * )
  * 
  * @since Zenphoto 1.5
@@ -3075,25 +3076,25 @@ function getDataUsageNotice() {
 	$array['linktext'] = get_language_string(getOption('dataprivacy_policy_customlinktext'));
 	$array['notice'] = get_language_string(getOption('dataprivacy_policy_notice'));
 	$custompage = trim(getOption('dataprivacy_policy_custompage'));
-	$zenpage_page =  '';
-	if(empty($array['notice'])) {
+	$zenpage_page = '';
+	if (empty($array['notice'])) {
 		$array['notice'] = gettext('By using this form you agree with the storage and handling of your data by this website.');
-	} 
+	}
 	if (extensionEnabled('zenpage') && ZP_PAGES_ENABLED) {
 		$zenpage_page = getOption('dataprivacy_policy_zenpage');
-		if($zenpage_page == 'none') {
+		if ($zenpage_page == 'none') {
 			$zenpage_page = '';
 		}
 	}
-	if(!empty($custompage)) {
+	if (!empty($custompage)) {
 		$array['url'] = $custompage;
-	} else if(!empty($zenpage_page)) {
+	} else if (!empty($zenpage_page)) {
 		$obj = new ZenpagePage($zenpage_page);
 		$array['url'] = $obj->getLink();
 	}
-	if(empty($array['linktext'])) {
+	if (empty($array['linktext'])) {
 		$array['linktext'] = gettext('More info on our data privacy policy.');
-	} 
+	}
 	return $array;
 }
 
@@ -3106,7 +3107,7 @@ function getDataUsageNotice() {
 function printDataUsageNotice() {
 	$data = getDataUsageNotice();
 	echo $data['notice'];
-	if(!empty($data['url'])) {
+	if (!empty($data['url'])) {
 		printLinkHTML($data['url'], ' ' . $data['linktext'], $data['linktext'], null, null);
 	}
 }
@@ -3265,26 +3266,27 @@ class _zp_captcha {
 class _zp_HTML_cache {
 
 	function disable() {
-
+		
 	}
 
 	function startHTMLCache() {
-
+		
 	}
 
 	function abortHTMLCache() {
-
+		
 	}
 
 	function endHTMLCache() {
-
+		
 	}
 
 	function clearHtmlCache() {
-
+		
 	}
 
 }
+
 setexifvars();
 
 /**
@@ -3295,5 +3297,5 @@ setexifvars();
  * @param string $locale Default null so the current locale is used. Or a locale like "en_US" which will get the underscores replaced by hyphens to be valid
  */
 function printLangAttribute($locale = null) {
-	echo ' lang="' .  getLangAttributeLocale($locale) .'"';
+	echo ' lang="' . getLangAttributeLocale($locale) . '"';
 }
