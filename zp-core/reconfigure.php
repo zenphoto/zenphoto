@@ -33,8 +33,7 @@ function reconfigureAction($mandatory) {
 			} else {
 				$where = 'gallery';
 			}
-			$dir = rtrim($dir, '/');
-			unprotectSetupFiles();
+			$dir = rtrim($dir, '/');	
 			if (!defined('PROTOCOL')) {
 				if (secureServer()) {
 					define('PROTOCOL', 'https');
@@ -59,6 +58,7 @@ function reconfigureAction($mandatory) {
 					break;
 			}
 			if ($setup_autorun) { //mandatory level 1
+				unprotectSetupFiles();
 				$location = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $dir . "/" . ZENFOLDER . "/setup/index.php?autorun=$where";
 				redirectURL($location);
 			} else {
