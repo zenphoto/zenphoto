@@ -1301,18 +1301,18 @@ function generateListFromArray($currentValue, $list, $descending, $localize) {
 		$list = array_flip($list);
 		if (!is_null($descending)) {
 			if ($descending) {
-				arsort($list);
+				sortArray($list, true); 
 			} else {
-				sortArray($list);
+				sortArray($list); 
 			}
 		}
 		$list = array_flip($list);
 	} else {
 		if (!is_null($descending)) {
 			if ($descending) {
-				rsort($list);
+				sortArray($list, true); 
 			} else {
-				sortArray($list);
+				sortArray($list); 
 			}
 		}
 	}
@@ -1322,10 +1322,11 @@ function generateListFromArray($currentValue, $list, $descending, $localize) {
 		if (in_array($item, $currentValue)) {
 			echo ' selected="selected"';
 		}
-		if ($localize)
+		if ($localize) {
 			$display = $key;
-		else
+		} else {
 			$display = $item;
+		}
 		echo '>' . $display . "</option>" . "\n";
 	}
 }
