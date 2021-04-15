@@ -491,7 +491,7 @@ function getdownloadList($dir8, $filters8, $excludesuffixes, $sort) {
 	$dirs = array_diff(scandir($dir, $direction), $filters);
 	$dir_array = Array();
 	if ($sort == 'asc') {
-		natsort($dirs);
+		sortArray($dirs, false, true, true);
 	}
 	foreach ($dirs as $file) {
 		if (@$file[0] != '.') { //	exclude "hidden" files

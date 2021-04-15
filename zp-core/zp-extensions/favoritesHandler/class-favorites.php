@@ -109,7 +109,7 @@ class favorites extends AlbumBase {
 	static function showWatchers($html, $obj, $prefix) {
 		$watchers = self::getWatchers($obj);
 		if (!empty($watchers)) {
-			natcasesort($watchers);
+			sortArray($watchers);
 			?>
 			<tr>
 				<td>

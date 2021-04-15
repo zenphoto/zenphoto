@@ -262,7 +262,7 @@ if (!defined('OFFSET_PATH')) {
 									$options = array_keys($options);
 								} else {
 									$options = array_keys($supportedOptions);
-									natcasesort($options);
+									sortArray($options);
 								}
 								$notes = array();
 								?>

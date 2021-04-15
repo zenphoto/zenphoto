@@ -217,7 +217,7 @@ if (!zp_loggedin()) {
 			$curdir = getcwd();
 			chdir(SERVERPATH . "/" . ZENFOLDER . '/' . UTILITIES_FOLDER . '/');
 			$filelist = safe_glob('*' . 'php');
-			natcasesort($filelist);
+			sortArray($filelist);
 			foreach ($filelist as $utility) {
 				$utilityStream = file_get_contents($utility);
 				$s = strpos($utilityStream, '$buttonlist');
@@ -520,7 +520,7 @@ if (!zp_loggedin()) {
 								<ul class="plugins">
 									<?php
 									if ($c > 0) {
-										natcasesort($plugins);
+										sortArray($plugins);
 										foreach ($plugins as $extension) {
 											$pluginStream = file_get_contents(getPlugin($extension . '.php'));
 											$plugin_version = '';

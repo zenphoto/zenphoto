@@ -65,7 +65,7 @@ echo "\n</head>";
 											<h2><?php echo $plugin; ?></h2>
 											<ul style="list-style-type: none;">
 												<?php
-												natcasesort($functions);
+												sortArray($functions);
 												foreach ($functions as $function) {
 													?>
 													<li>

@@ -3917,7 +3917,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 				<?php
 				if (count($fields) > 1 || $searchwords) {
 					$fields = array_flip($fields);
-					natcasesort($fields);
+					sortArray($fields);
 					$fields = array_flip($fields);
 					if (is_null($query_fields)) {
 						$query_fields = $engine->parseQueryFields();

@@ -581,13 +581,13 @@ class xmpMetadata {
 			if ($key !== false)
 				unset($list[$key]);
 		}
-		natcasesort($list);
+		sortArray($list);
 		$types = array();
 		foreach ($_zp_extra_filetypes as $suffix => $type) {
 			if ($type == 'Video')
 				$types[] = $suffix;
 		}
-		natcasesort($types);
+		sortArray($types);
 		$list = array_merge($list, $types);
 		$listi = array();
 		foreach ($list as $suffix) {

@@ -92,7 +92,7 @@ function macro_admin_tabs($tabs) {
 		}
 		$tabs['development']['subtabs'][gettext("macros")] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=macros&tab=' . gettext('macros');
 		$named = array_flip($tabs['development']['subtabs']);
-		natcasesort($named);
+		sortArray($named);
 		$tabs['development']['subtabs'] = $named = array_flip($named);
 		$tabs['development']['link'] = array_shift($named);
 		return $tabs;

@@ -959,10 +959,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if ($sort) {
 			if ($localize) {
 				$list = array_flip($list);
-				natcasesort($list);
+				sortArray($list);
 				$list = array_flip($list);
 			} else {
-				natcasesort($list);
+				sortArray($list);
 			}
 		}
 		$cv = array_flip($currentValue);
@@ -4513,7 +4513,7 @@ function getLogTabs() {
 	}
 
 	$names = array_flip($subtabs);
-	natcasesort($names);
+	sortArray($names);
 	$subtabs = array_flip($names);
 
 	return array($subtabs, $default);

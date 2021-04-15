@@ -3141,7 +3141,7 @@ Zenphoto_Authority::printPasswordFormJS();
 								$plugins[] = $extension;
 							}
 						}
-						natcasesort($plugins);
+						sortArray($plugins);
 					}
 					$rangeset = getPageSelector($plugins, PLUGINS_PER_PAGE);
 					$plugins = array_slice($plugins, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);

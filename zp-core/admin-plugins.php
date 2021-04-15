@@ -64,7 +64,7 @@ $saved = isset($_GET['saved']);
 printAdminHeader('plugins');
 zp_apply_filter('texteditor_config', 'zenphoto');
 
-natcasesort($pluginlist);
+sortArray($pluginlist);
 $rangeset = getPageSelector($pluginlist, PLUGINS_PER_PAGE);
 $filelist = array_slice($pluginlist, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
 ?>

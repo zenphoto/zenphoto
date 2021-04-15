@@ -112,7 +112,7 @@ class deprecated_functions {
 			}
 			$tabs['development']['subtabs'][gettext("deprecated")] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/admin_tab.php?page=deprecated&tab=' . gettext('deprecated');
 			$named = array_flip($tabs['development']['subtabs']);
-			natcasesort($named);
+			sortArray($named);
 			$tabs['development']['subtabs'] = $named = array_flip($named);
 			$tabs['development']['link'] = array_shift($named);
 		}

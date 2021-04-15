@@ -391,7 +391,7 @@ echo '</head>';
 										$album = newAlbum($key);
 										$albumid = $album->getID();
 										$imagelist = array_flip($imagelist);
-										natcasesort($imagelist);
+										sortArray($imagelist);
 										$imagelist = array_flip($imagelist);
 										?>
 										<li>

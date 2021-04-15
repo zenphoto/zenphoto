@@ -88,14 +88,14 @@ foreach ($albumlist as $key => $value) {
 			<h1><?php echo gettext("Upload Images"); ?></h1>
 			<p>
 				<?php
-				natcasesort($_zp_supported_images);
+				sortArray($_zp_supported_images);
 				$types = array_keys($_zp_extra_filetypes);
 				$types = array_merge($_zp_supported_images, $types);
 				if (function_exists('zip_open')) {
 					$types[] = 'ZIP';
 				}
 				$types = zp_apply_filter('upload_filetypes', $types);
-				natcasesort($types);
+				sortArray($types);
 				$upload_extensions = $types;
 				$last = strtoupper(array_pop($types));
 				$s1 = strtoupper(implode(', ', $types));

@@ -480,7 +480,7 @@ function sortByMultilingual($dbresult, $field, $descending) {
 	foreach ($dbresult as $key => $row) {
 		$temp[$key] = get_language_string($row[$field]);
 	}
-	natcasesort($temp);
+	sortArray($temp);
 	if ($descending) {
 		$temp = array_reverse($temp, true);
 	}
@@ -1284,7 +1284,7 @@ function readTags($id, $tbl) {
 		}
 		db_free_result($result);
 	}
-	natcasesort($tags);
+	sortArray($tags);
 	return $tags;
 }
 
@@ -1303,7 +1303,7 @@ function generateListFromArray($currentValue, $list, $descending, $localize) {
 			if ($descending) {
 				arsort($list);
 			} else {
-				natcasesort($list);
+				sortArray($list);
 			}
 		}
 		$list = array_flip($list);
@@ -1312,7 +1312,7 @@ function generateListFromArray($currentValue, $list, $descending, $localize) {
 			if ($descending) {
 				rsort($list);
 			} else {
-				natcasesort($list);
+				sortArray($list);
 			}
 		}
 	}

@@ -344,7 +344,7 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package')) {
 ?>
 <p>
 	<?php
-	natcasesort($themes);
+	sortArray($themes);
 	echo '<p>' . gettext('Setting theme default options') . '</p>';
 	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
 		setup::defaultOptionsRequest($theme, 'theme');
@@ -629,7 +629,7 @@ $plugins = getPluginFiles('*.php');
 <p>
 	<?php
 	$plugins = array_keys($plugins);
-	natcasesort($plugins);
+	sortArray($plugins);
 	echo '<p>' . gettext('Plugin setup:') . '</p>';
 	foreach ($plugins as $extension) {
 		setup::defaultOptionsRequest($extension, 'plugin');

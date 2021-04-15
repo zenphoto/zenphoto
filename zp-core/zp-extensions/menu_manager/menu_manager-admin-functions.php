@@ -271,7 +271,7 @@ function getMenuSetSelector($active) {
 		foreach ($result as $set) {
 			$menusets[$set['menuset']] = $set['menuset'];
 		}
-		natcasesort($menusets);
+		sortArray($menusets);
 	} else {
 		return NULL;
 	}
