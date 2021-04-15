@@ -93,6 +93,7 @@ function jqm_printFooterNav() {
 		@call_user_func('printLanguageSelector');
 		?>
 		<ul id="footerlist">
+			<?php printCopyrightNotice('<li>', '</l>'); ?>
 			<li><?php echo gettext('Powered by'); ?> <a href="http://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 			<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
 		</ul>

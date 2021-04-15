@@ -16,8 +16,10 @@
 		printRegisterURL(gettext('Register for this site'), '', ' | ');
 	}
 	@call_user_func('printUserLogin_out', '', ' | ');
-	printPrivacyPageLink(' | ', ' | '); 
+	
+	printPrivacyPageLink(' | ', ' | ');
 	printZenphotoLink(); 
+	printCopyrightNotice(' | ', '');
 	?>
 </div>
 <?php 

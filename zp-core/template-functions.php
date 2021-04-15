@@ -4591,5 +4591,22 @@ function printUserURL($username, $resulttype = 'all', $linktext = null, $class =
 	}
 }
 
+/**
+ * Display the site copyright notice if defined and display is enabled
+ * 
+ * @since ZenphotoCMS 1.5.8
+ * 
+ * @global obj $_zp_gallery
+ * @param string $before Text to print before it
+ * @param string $after Text to print after it
+ */
+function printCopyrightNotice($before = '', $after = '') {
+	global $_zp_gallery;
+	$copyright_notice = $_zp_gallery->getCopyrightNotice();
+	if(!empty($copyright_notice) && getOption('display_copyright_notice')) {
+		echo $before . $copyright_notice . $after;
+	}
+}
+
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-filters.php');
 ?>

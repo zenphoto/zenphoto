@@ -143,6 +143,7 @@ function footer() {
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<br />
 		<?php @call_user_func('printLanguageSelector'); ?>
+		<?php printCopyrightNotice('', '<br>'); ?>
 		<?php printZenphotoLink(); ?>
 	</div>
 	<?php
