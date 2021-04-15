@@ -385,7 +385,7 @@ if (isset($_GET['action'])) {
 				} else {
 					$ncw = $cw = getThemeOption('thumb_crop_width', $table, $themename);
 					$nch = $ch = getThemeOption('thumb_crop_height', $table, $themename);
-					if (isset($_POST['image_size']))
+					if (isset($_POST['image_size'])) 
 						setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
 					if (isset($_POST['image_use_side']))
 						setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
@@ -424,11 +424,11 @@ if (isset($_GET['action'])) {
 						setThemeOption('images_per_page', $images_per_page, $table, $themename);
 						setThemeOption('images_per_row', $images_per_row, $table, $themename);
 					}
-
 					if (isset($_POST['thumb_transition']))
 						setThemeOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition']) - 1) && true), $table, $themename);
 					if (isset($_POST['custom_index_page']))
 						setThemeOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
+					setThemeOption('display_copyright_notice',isset($_POST['display_copyright_notice']), $table, $themename);
 					$otg = getThemeOption('thumb_gray', $table, $themename);
 					setThemeOption('thumb_gray', (int) isset($_POST['thumb_gray']), $table, $themename);
 					if ($otg = getThemeOption('thumb_gray', $table, $themename))
@@ -3076,6 +3076,14 @@ Zenphoto_Authority::printPasswordFormJS();
 												</select>
 											</td>
 											<td><?php echo gettext("If this option is not empty, the Gallery Index URL that would normally link to the theme <code>index.php</code> script will instead link to this script. This frees up the <code>index.php</code> script so that you can create a customized <em>Home page</em> script. This option applies only to the main theme for the <em>Gallery</em>."); ?></td>
+										</tr>
+										
+										<tr>
+											<td><?php echo gettext("Coypright notice"); ?></td>
+											<td>
+												<label><input type="checkbox" name="display_copyright_notice" id="display_copyright_notice" value="1" <?php checked('1', getThemeOption('display_copyright_notice', $album, $themename)); ?> /> <?php echo gettext('Enable'); ?></label>
+											</td>
+											<td><?php echo gettext("Enable to display the copyright notice defined on Options > Gallery. This may usually be in the theme footer but is up to the theme."); ?></td>
 										</tr>
 										<?php
 									}
