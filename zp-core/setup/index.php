@@ -988,12 +988,12 @@ if ($c <= 0) {
 									if ($engine['enabled']) {
 										if (isset($enabled['experimental'])) {
 											?>
-											<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle(\'show\')" >experimental</a>)'), $handler); ?>
-											</li>
-											<p class="warning" id="<?php echo $handler; ?>"
-												 style="display: none;">
+											<li class="note_warn"><?php echo sprintf(gettext('<code>%1$s</code> support (experimental)'), $handler); ?>
+												<p class="warning" id="<?php echo $handler; ?>">
 													 <?php echo $enabled['experimental'] ?>
-											</p>
+												</p>
+											</li>
+											
 											<?php
 										} else {
 											setup::log(gettext('Pass: ') . sprintf(gettext('PHP <code>%s</code> support'), $handler), true, false); 
@@ -1572,7 +1572,7 @@ if ($c <= 0) {
 								setup::checkmark(-1, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup could not find the  <em>example_robots.txt</em> file.'));
 							} else {
 								if (file_exists($_zp_setup_serverpath . '/robots.txt')) {
-									setup::checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup did not create a <em>robots.txt</em> file because one already exists.'));
+									setup::checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup did not create a <em>robots.txt</em> file because one already exists. If you just moved your site you may need to review it.'));
 								} else {
 									$text = explode('# Place it in the root folder of your web pages.', $robots);
 									$d = dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])));

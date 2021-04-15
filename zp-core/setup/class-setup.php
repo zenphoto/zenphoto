@@ -153,18 +153,12 @@ class setup {
 							<?php
 							if ($check == -3) {
 								?>
-								<a href="javascript:toggle_visibility('more<?php echo $_zp_setup_moreid; ?>');">
-									<?php echo gettext('<strong>Warning!</strong> click for details'); ?>
-								</a>
-								<div class="warning" id="more<?php echo $_zp_setup_moreid; ?>" style="display: none">
+								<div class="warning" id="more<?php echo $_zp_setup_moreid; ?>">
 									<h1><?php echo gettext('Warning!'); ?></h1>
 									<?php
 								} else {
 									?>
-									<a href="javascript:toggle_visibility('more<?php echo $_zp_setup_moreid; ?>');">
-										<?php echo gettext('<strong>Notice!</strong> click for details'); ?>
-									</a>
-									<div class="notice" id="more<?php echo $_zp_setup_moreid; ?>" style="display: none">
+									<div class="notice" id="more<?php echo $_zp_setup_moreid; ?>">
 										<h1><?php echo gettext('Notice!'); ?></h1>
 										<?php
 									}
