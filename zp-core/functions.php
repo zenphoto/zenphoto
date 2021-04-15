@@ -1562,9 +1562,9 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
  * @since ZenphotoCMS 1.5.8
  * 
  * @param array $array The array to sort
- * @param string  $descending true for descending sorts
- * @param bool $natsort If natural order should be used. If available sorting will be locale sensitive.
- * @param bool $case_sensitive If the sort should be case sensitive. Note if $natsort is true and locale aware sorting is available sorting is always case sensitive
+ * @param string  $descending true for descending sorts (default false)
+ * @param bool $natsort If natural order should be used (default true). If available sorting will be locale sensitive. 
+ * @param bool $case_sensitive If the sort should be case sensitive (default false). Note if $natsort is true and locale aware sorting is available sorting is always case sensitive
  * @return array
  */
 function sortArray($array, $descending = false, $natsort = true, $case_sensitive = false) {
