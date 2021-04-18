@@ -769,8 +769,10 @@ class cacheManager {
 		//allow sizes of all themes in case we use an album theme somewhere
 		//The list to select will also filter
 		$themes = $_zp_gallery->getThemes();
-		if (in_array($owner, $themes)) {
-			return true;
+		foreach($themes as $theme) {
+			if (strtolower($theme['name']) == strtolower($owner)) {
+				return true;
+			}
 		}
 		//allow only sizes from active plugins
 		if (extensionEnabled($owner)) {
