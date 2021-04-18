@@ -1571,6 +1571,7 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
  * @return boolean
  */
 function sortArray(&$array, $descending = false, $natsort = true, $case_sensitive = false) {
+	$success = false;
 	if (is_array($array) && count($array) > 0) {
 		if ($natsort) {
 			if (class_exists('collator')) {
