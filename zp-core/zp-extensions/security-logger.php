@@ -102,11 +102,13 @@ class security_logger {
 		$ip = sanitize($_SERVER['REMOTE_ADDR']);
 		if (!preg_match($pattern, $ip)) {
 			$ip = NULL;
+		} else {
+			$ip = getAnonymIP($ip);
 		}
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			$forwardedIP = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
 			if (preg_match($pattern, $forwardedIP)) {
-				$ip .= ' {' . $forwardedIP . '}';
+				$ip .= ' {' . getAnonymIP($forwardedIP) . '}';
 			}
 		}
 		$admin = $_zp_authority->getMasterUser();
