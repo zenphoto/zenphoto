@@ -1831,6 +1831,8 @@ function printPublishIconLink($object, $type, $linkback = '') {
 /**
  * Gets the default sortorder for items newly created
  * 
+ * @since ZenphotoCMS 1.5.8
+ * 
  * @param string $type "category" or "page"
  * @return string
  */
