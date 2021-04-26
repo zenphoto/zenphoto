@@ -210,7 +210,7 @@ class ZenpagePage extends ZenpageItems {
 		global $_zp_zenpage;
 		$subpages = array();
 		$sortorder = $this->getSortOrder();
-		$pages = $_zp_zenpage->getPages($published, false, $number, $sorttype, $sortdirection, $author);
+		$pages = $_zp_zenpage->getPages($published, $toplevel, $number, $sorttype, $sortdirection, $author);
 		foreach ($pages as $page) {
 			if ($page['parentid'] == $this->getID() && $page['sort_order'] != $sortorder) { // exclude the page itself!
 				array_push($subpages, $page);

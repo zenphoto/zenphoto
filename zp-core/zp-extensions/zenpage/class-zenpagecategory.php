@@ -211,19 +211,20 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular"
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
+	 * @param bool $toplevel Default false, true for only the direct sublevel
 	 * @return array
 	 */
-	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
+	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $toplevel = false) {
 		global $_zp_zenpage;
-		$subcategories = array();
+		$categories = array();
 		$sortorder = $this->getSortOrder();
-		foreach ($_zp_zenpage->getAllCategories($visible, $sorttype, $sortdirection) as $cat) {
+		foreach ($_zp_zenpage->getAllCategories($visible, $sorttype, $sortdirection, $toplevel) as $cat) {
 			$catobj = new ZenpageCategory($cat['titlelink']);
 			if ($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
-				array_push($subcategories, $catobj->getTitlelink());
+				array_push($categories, $catobj->getTitlelink());
 			}
 		}
-		return $subcategories;
+		return $categories;
 	}
 
 	/**
