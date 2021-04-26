@@ -2431,6 +2431,7 @@ if ($c <= 0) {
 						
 						//1.5.8
 						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastvisit` datetime default NULL";
+						$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `sort_order` `sort_order` varchar(48) DEFAULT NULL";
 
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {

@@ -638,16 +638,18 @@ class Zenpage {
 
 	/**
 	 * Gets all categories
+	 * 
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "id", "popular", "random"
 	 * @param bool $sortdirection TRUE for ascending or FALSE for descending order
+	 * @param bool $toplevel True for only toplevel categories
 	 * @return array
 	 */
-	function getAllCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
+	function getAllCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $toplevel = false) {
 		$structure = $this->getCategoryStructure();
-		if (is_null($sortdirection))
+		if (is_null($sortdirection)) {
 			$sortdirection = $this->sortdirection;
-
+		}
 		switch ($sorttype) {
 			case "id":
 				$sortorder = "id";
@@ -664,6 +666,13 @@ class Zenpage {
 			default:
 				$sortorder = "sort_order";
 				break;
+		}
+		if ($toplevel) {
+			foreach ($structure as $key => $cat) {
+				if (strlen($cat['sort_order']) !== 3) {
+					unset($structure[$key]);
+				}
+			}
 		}
 		if ($visible) {
 			foreach ($structure as $key => $cat) {

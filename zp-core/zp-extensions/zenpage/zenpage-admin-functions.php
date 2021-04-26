@@ -138,7 +138,10 @@ function updatePage(&$reports, $newpage = false) {
 		$page->set('total_votes', 0);
 		$page->set('used_ips', 0);
 	}
-	if(!$newpage) {
+	if ($newpage) {
+		$sortorder = getNewItemDefaultSortorder('page');
+		$page->setSortorder($sortorder);
+	} else {
 		$page->setLastchangeUser($_zp_current_admin_obj->getUser());
 	}
 	processTags($page);
@@ -913,7 +916,10 @@ function updateCategory(&$reports, $newcategory = false) {
 		$cat->set('total_votes', 0);
 		$cat->set('used_ips', 0);
 	}
-	if (!$newcategory) {
+	if ($newcategory) {
+		$sortorder = getNewItemDefaultSortorder('category');
+		$cat->setSortorder($sortorder);
+	} else {
 		$cat->setLastchangeUser($_zp_current_admin_obj->getUser());
 	}
 	if ($newcategory) {
@@ -1809,16 +1815,43 @@ function printPublishIconLink($object, $type, $linkback = '') {
 			case 'timestamp':
 				$date = time();
 				break;
-		}
-		switch ($addwhere) {
-			case 'before':
-				$titlelink = $date . '-' . $titlelink;
-				break;
-			default:
-			case 'after':
-				$titlelink = $titlelink . '-' . $date;
-				break;
-		}
-		return $titlelink;
 	}
-	
+	switch ($addwhere) {
+		case 'before':
+			$titlelink = $date . '-' . $titlelink;
+			break;
+		default:
+		case 'after':
+			$titlelink = $titlelink . '-' . $date;
+			break;
+	}
+	return $titlelink;
+}
+
+/**
+ * Gets the default sortorder for items newly created
+ * 
+ * @param string $type "category" or "page"
+ * @return string
+ */
+function getNewItemDefaultSortorder($type = 'category') {
+	if (!in_array($type, array('category', 'page'))) {
+		return '000';
+	}
+	$zenpageobj = new Zenpage();
+	switch ($type) {
+		case 'category':
+			$items = $zenpageobj->getAllCategories(false, null, null, true);
+			break;
+		case 'page':
+			$items = $zenpageobj->getPages(false, true);
+			break;
+	}
+	if (empty($items)) {
+		$sortorder = '000';
+	} else {
+		$count = count($items);
+		$sortorder = str_pad($count, 3, "0", STR_PAD_LEFT);
+	}
+	return $sortorder;
+}
