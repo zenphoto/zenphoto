@@ -14,7 +14,7 @@ class ZenpageCategory extends ZenpageRoot {
 	public $view_rights = ALL_NEWS_RIGHTS;
 	public $parent = null;
 	public $parents = null;
-	protected $sortorder = 'date';
+	protected $sorttype = 'date';
 	protected $sortdirection = true;
 	protected $sortSticky = true;
 	protected $is_public = null;
@@ -125,11 +125,11 @@ class ZenpageCategory extends ZenpageRoot {
 	}
 
 	function getSortType() {
-		return $this->sortorder;
+		return $this->sorttype;
 	}
 
 	function setSortType($value) {
-		$this->sortorder = $value;
+		$this->sorttype = $value;
 	}
 
 	function getSortSticky() {

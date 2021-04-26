@@ -7,7 +7,7 @@
  */
 class ZenpageRoot extends ThemeObject {
 
-	protected $sortorder;
+	protected $sorttype;
 	protected $sortdirection;
 	protected $sortSticky = true;
 

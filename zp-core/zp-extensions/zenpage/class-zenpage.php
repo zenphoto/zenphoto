@@ -22,11 +22,11 @@ class Zenpage {
 
 	public $categoryStructure = null;
 	// article defaults (mirrors category vars)
-	protected $sortorder = 'date';
+	protected $sorttype = 'date';
 	protected $sortdirection = true;
 	protected $sortSticky = true;
 	// page defaults
-	protected $page_sortorder;
+	protected $page_sorttype;
 	protected $page_sortdirection;
 	/**
 	 * Class instantiator
@@ -746,17 +746,17 @@ class Zenpage {
 
 	function getSortType($what = 'news') {
 		if ($what == 'pages') {
-			return $this->page_sortorder;
+			return $this->page_sorttype;
 		} else {
-			return $this->sortorder;
+			return $this->sorttype;
 		}
 	}
 
 	function setSortType($value, $what = 'news') {
 		if ($what == 'pages') {
-			$this->page_sortorder = $value;
+			$this->page_sorttype = $value;
 		} else {
-			$this->sortorder = $value;
+			$this->sorttype = $value;
 		}
 	}
 
