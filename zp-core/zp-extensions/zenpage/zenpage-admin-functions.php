@@ -138,14 +138,10 @@ function updatePage(&$reports, $newpage = false) {
 		$page->set('total_votes', 0);
 		$page->set('used_ips', 0);
 	}
+	processTags($page);
 	if ($newpage) {
 		$sortorder = getNewItemDefaultSortorder('page');
 		$page->setSortorder($sortorder);
-	} else {
-		$page->setLastchangeUser($_zp_current_admin_obj->getUser());
-	}
-	processTags($page);
-	if ($newpage) {
 		$msg = zp_apply_filter('new_page', '', $page);
 		if (empty($title)) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Page <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
@@ -157,6 +153,7 @@ function updatePage(&$reports, $newpage = false) {
 			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Page <em>%s</em> added"), $titlelink) . '</p>';
 		}
 	} else {
+		$page->setLastchangeUser($_zp_current_admin_obj->getUser());
 		$msg = zp_apply_filter('update_page', '', $page, $oldtitlelink);
 		if (!$rslt) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("A page with the title/titlelink <em>%s</em> already exists!"), $titlelink) . '</p>';
@@ -919,10 +916,6 @@ function updateCategory(&$reports, $newcategory = false) {
 	if ($newcategory) {
 		$sortorder = getNewItemDefaultSortorder('category');
 		$cat->setSortorder($sortorder);
-	} else {
-		$cat->setLastchangeUser($_zp_current_admin_obj->getUser());
-	}
-	if ($newcategory) {
 		$msg = zp_apply_filter('new_category', '', $cat);
 		if (empty($title)) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Category <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), $titlelink) . '</p>';
@@ -934,6 +927,7 @@ function updateCategory(&$reports, $newcategory = false) {
 			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Category <em>%s</em> added"), $titlelink) . '</p>';
 		}
 	} else {
+		$cat->setLastchangeUser($_zp_current_admin_obj->getUser());
 		$msg = zp_apply_filter('update_category', '', $cat, $oldtitlelink);
 		if ($titleok) {
 			if (empty($titlelink) OR empty($title)) {

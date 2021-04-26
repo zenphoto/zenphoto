@@ -669,7 +669,7 @@ class Zenpage {
 		}
 		if ($toplevel) {
 			foreach ($structure as $key => $cat) {
-				if (strlen($cat['sort_order']) !== 3) {
+				if (!is_null($cat['parentid'])) {
 					unset($structure[$key]);
 				}
 			}
