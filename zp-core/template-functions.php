@@ -3221,7 +3221,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 	}
 	if (isImagePhoto($image) || $thumbStandin) {
 		if ($maxspace) {
-			$attr['src'] = html_pathurlencode(getCustomImageURL(null, $width, $height, NULL, NULL, NULL, NULL, true, $effects, null, $image));
+			$attr['src'] = html_pathurlencode(getCustomImageURL(null, $width, $height, NULL, NULL, NULL, NULL, $thumbStandin, $effects, null, $image));
 		} else {
 			$attr['src'] = html_pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects, null, $image));
 		}
