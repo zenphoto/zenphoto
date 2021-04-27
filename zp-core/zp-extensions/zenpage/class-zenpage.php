@@ -776,5 +776,36 @@ class Zenpage {
 	function setSortSticky($value) {
 		$this->sortSticky = (bool) $value;
 	}
+	
+	/**
+	 * Gets the default sortorder for a Zenpage caategory or page that does not yet have one, e.g. because newly created
+	 * The sortorder takae care of existing ones and add the item after existing items.
+	 *  
+	 * @since ZenphotoCMS 1.5.8
+	 * 
+	 * @param string $type "category" or "page"
+	 * @return string
+	 */
+	function getItemDefaultSortorder($type = 'category') {
+		if (!in_array($type, array('category', 'page'))) {
+			return '000';
+		}
+		$zenpageobj = new Zenpage();
+		switch ($type) {
+			case 'category':
+				$items = $zenpageobj->getAllCategories(false, null, null, true);
+				break;
+			case 'page':
+				$items = $zenpageobj->getPages(false, true);
+				break;
+		}
+		if (empty($items)) {
+			$sortorder = '000';
+		} else {
+			$count = count($items);
+			$sortorder = str_pad($count, 3, "0", STR_PAD_LEFT);
+		}
+		return $sortorder;
+	}
 
 }

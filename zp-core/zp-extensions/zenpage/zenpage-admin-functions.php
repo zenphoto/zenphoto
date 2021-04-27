@@ -58,7 +58,7 @@ function processTags($object) {
  * @return object
  */
 function updatePage(&$reports, $newpage = false) {
-	global $_zp_current_admin_obj;
+	global $_zp_zenpage, $_zp_current_admin_obj;
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
 	$content = updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
@@ -140,7 +140,7 @@ function updatePage(&$reports, $newpage = false) {
 	}
 	processTags($page);
 	if ($newpage) {
-		$sortorder = getItemDefaultSortorder('page');
+		$sortorder = $_zp_zenpage->getItemDefaultSortorder('page');
 		$page->setSortorder($sortorder);
 		$msg = zp_apply_filter('new_page', '', $page);
 		if (empty($title)) {
@@ -851,7 +851,7 @@ function printAuthorDropdown() {
  *
  */
 function updateCategory(&$reports, $newcategory = false) {
-	global $_zp_current_admin_obj;
+	global $_zp_zenpage, $_zp_current_admin_obj;
 	$date = date('Y-m-d_H-i-s');
 	$id = sanitize_numeric($_POST['id']);
 	$permalink = getcheckboxState('permalink');
@@ -914,7 +914,7 @@ function updateCategory(&$reports, $newcategory = false) {
 		$cat->set('used_ips', 0);
 	}
 	if ($newcategory) {
-		$sortorder = getItemDefaultSortorder('category');
+		$sortorder = $_zp_zenpage->getItemDefaultSortorder('category');
 		$cat->setSortorder($sortorder);
 		$msg = zp_apply_filter('new_category', '', $cat);
 		if (empty($title)) {
@@ -1820,35 +1820,4 @@ function printPublishIconLink($object, $type, $linkback = '') {
 			break;
 	}
 	return $titlelink;
-}
-
-/**
- * Gets the default sortorder for a Zenpage caategory or page that does not yet have one, e.g. because newly created
- * The sortorder takae care of existing ones and add the item after existing items.
- *  
- * @since ZenphotoCMS 1.5.8
- * 
- * @param string $type "category" or "page"
- * @return string
- */
-function getItemDefaultSortorder($type = 'category') {
-	if (!in_array($type, array('category', 'page'))) {
-		return '000';
-	}
-	$zenpageobj = new Zenpage();
-	switch ($type) {
-		case 'category':
-			$items = $zenpageobj->getAllCategories(false, null, null, true);
-			break;
-		case 'page':
-			$items = $zenpageobj->getPages(false, true);
-			break;
-	}
-	if (empty($items)) {
-		$sortorder = '000';
-	} else {
-		$count = count($items);
-		$sortorder = str_pad($count, 3, "0", STR_PAD_LEFT);
-	}
-	return $sortorder;
 }
