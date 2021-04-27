@@ -205,26 +205,34 @@ class ZenpageCategory extends ZenpageRoot {
 		}
 		return $success;
 	}
-
+	
 	/**
 	 * Gets the sub categories recursivly by titlelink
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular"
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
-	 * @param bool $toplevel Default false, true for only the direct sublevel
+	 * @param bool $directchilds Default false, true for only the direct sublevel
 	 * @return array
 	 */
-	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $toplevel = false) {
+	function getCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $directchilds = false) {
 		global $_zp_zenpage;
 		$categories = array();
-		$sortorder = $this->getSortOrder();
-		foreach ($_zp_zenpage->getAllCategories($visible, $sorttype, $sortdirection, $toplevel) as $cat) {
-			$catobj = new ZenpageCategory($cat['titlelink']);
-			if ($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
-				array_push($categories, $catobj->getTitlelink());
+		foreach ($_zp_zenpage->getAllCategories($visible, $sorttype, $sortdirection, false) as $cat) {
+			if ($cat['sort_order'] != $this->getSortOrder() && ($directchilds && stripos($cat['sort_order'], $this->getSortOrder()) === 0) || $cat['parentid'] == $this->getID()) {
+				array_push($categories, $cat);
 			}
 		}
 		return $categories;
+	}
+
+	/**
+	 * @see getCategories()
+	 */
+	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $directchilds = false) {
+		return $this->getCategories($visible, $sorttype, $sortdirection, $directchilds);
 	}
 
 	/**
@@ -234,7 +242,6 @@ class ZenpageCategory extends ZenpageRoot {
 	 */
 	function isSubNewsCategoryOf($catlink) {
 		if (!empty($catlink)) {
-			$parentid = $this->getParentID();
 			$categories = $this->getParents();
 			$count = 0;
 			foreach ($categories as $cat) {

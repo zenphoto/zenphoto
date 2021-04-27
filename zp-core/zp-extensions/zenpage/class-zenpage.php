@@ -290,7 +290,7 @@ class Zenpage {
 				$showConjunction = ' AND ';
 				// new code to get nested cats
 				$catid = $category->getID();
-				$subcats = $category->getSubCategories();
+				$subcats = $category->getCategories();
 				if ($subcats) {
 					$cat = " (cat.cat_id = '" . $catid . "'";
 					foreach ($subcats as $subcat) {

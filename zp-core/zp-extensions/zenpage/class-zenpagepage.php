@@ -199,20 +199,19 @@ class ZenpagePage extends ZenpageItems {
 	/**
 	 * Gets the sub pages of a page
 	 * @param bool $published TRUE for published or FALSE for all pages including un-published
-	 * @param bool $toplevel ignored, left for parameter compatibility
+	 * @param bool $directchilds Default true to get only the direct sub level pages, set to false to get all levels
 	 * @param int $number number of pages to get (NULL by default for all)
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular", "mostrated", "toprated", "random"
 	 * @param string $sortdirection false for ascending, true for descending
 	 * @param string $author Optional author name to get the pages of
 	 * @return array
 	 */
-	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null) {
+	function getPages($published = NULL, $directchilds = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null) {
 		global $_zp_zenpage;
 		$subpages = array();
-		$sortorder = $this->getSortOrder();
-		$pages = $_zp_zenpage->getPages($published, $toplevel, $number, $sorttype, $sortdirection, $author);
+		$pages = $_zp_zenpage->getPages($published, false, $number, $sorttype, $sortdirection, $author);
 		foreach ($pages as $page) {
-			if ($page['parentid'] == $this->getID() && $page['sort_order'] != $sortorder) { // exclude the page itself!
+			if ($page['sort_order'] != $this->getSortOrder() && ($directchilds && stripos($page['sort_order'], $this->getSortOrder()) === 0) || $page['parentid'] == $this->getID()) {
 				array_push($subpages, $page);
 			}
 		}

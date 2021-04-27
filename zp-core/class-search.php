@@ -829,7 +829,7 @@ class SearchEngine {
 				if (in_array($category['title'], $this->category_list)) {
 					$catobj = new ZenpageCategory($category['titlelink']);
 					$cat .= ' `cat_id`=' . $catobj->getID() . ' OR';
-					$subcats = $catobj->getSubCategories();
+					$subcats = $catobj->getCategories();
 					if ($subcats) {
 						foreach ($subcats as $subcat) {
 							$catobj = new ZenpageCategory($subcat);
