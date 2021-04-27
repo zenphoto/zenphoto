@@ -214,14 +214,14 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular"
 	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
-	 * @param bool $directchilds Default false, true for only the direct sublevel
+	 * @param bool $directchilds Default true to get only the direct sub level pages, set to false to get all levels
 	 * @return array
 	 */
-	function getCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $directchilds = false) {
+	function getCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $directchilds = true) {
 		global $_zp_zenpage;
 		$categories = array();
 		foreach ($_zp_zenpage->getAllCategories($visible, $sorttype, $sortdirection, false) as $cat) {
-			if ($cat['sort_order'] != $this->getSortOrder() && ($directchilds && stripos($cat['sort_order'], $this->getSortOrder()) === 0) || $cat['parentid'] == $this->getID()) {
+			if ($cat['sort_order'] != $this->getSortOrder() && (!$directchilds && stripos($cat['sort_order'], $this->getSortOrder()) === 0) || $cat['parentid'] == $this->getID()) {
 				array_push($categories, $cat);
 			}
 		}

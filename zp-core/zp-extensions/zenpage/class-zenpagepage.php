@@ -206,12 +206,12 @@ class ZenpagePage extends ZenpageItems {
 	 * @param string $author Optional author name to get the pages of
 	 * @return array
 	 */
-	function getPages($published = NULL, $directchilds = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null) {
+	function getPages($published = NULL, $directchilds = true, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null) {
 		global $_zp_zenpage;
 		$subpages = array();
 		$pages = $_zp_zenpage->getPages($published, false, $number, $sorttype, $sortdirection, $author);
 		foreach ($pages as $page) {
-			if ($page['sort_order'] != $this->getSortOrder() && ($directchilds && stripos($page['sort_order'], $this->getSortOrder()) === 0) || $page['parentid'] == $this->getID()) {
+			if ($page['sort_order'] != $this->getSortOrder() && (!$directchilds && stripos($page['sort_order'], $this->getSortOrder()) === 0) || $page['parentid'] == $this->getID()) {
 				array_push($subpages, $page);
 			}
 		}
