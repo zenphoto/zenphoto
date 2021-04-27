@@ -790,13 +790,12 @@ class Zenpage {
 		if (!in_array($type, array('category', 'page'))) {
 			return '000';
 		}
-		$zenpageobj = new Zenpage();
 		switch ($type) {
 			case 'category':
-				$items = $zenpageobj->getAllCategories(false, null, null, true);
+				$items = $this->getAllCategories(false, null, null, true);
 				break;
 			case 'page':
-				$items = $zenpageobj->getPages(false, true);
+				$items = $this->getPages(false, true);
 				break;
 		}
 		if (empty($items)) {
