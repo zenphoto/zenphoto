@@ -140,7 +140,7 @@ function updatePage(&$reports, $newpage = false) {
 	}
 	processTags($page);
 	if ($newpage) {
-		$sortorder = getNewItemDefaultSortorder('page');
+		$sortorder = getItemDefaultSortorder('page');
 		$page->setSortorder($sortorder);
 		$msg = zp_apply_filter('new_page', '', $page);
 		if (empty($title)) {
@@ -914,7 +914,7 @@ function updateCategory(&$reports, $newcategory = false) {
 		$cat->set('used_ips', 0);
 	}
 	if ($newcategory) {
-		$sortorder = getNewItemDefaultSortorder('category');
+		$sortorder = getItemDefaultSortorder('category');
 		$cat->setSortorder($sortorder);
 		$msg = zp_apply_filter('new_category', '', $cat);
 		if (empty($title)) {
@@ -1823,14 +1823,15 @@ function printPublishIconLink($object, $type, $linkback = '') {
 }
 
 /**
- * Gets the default sortorder for items newly created
- * 
+ * Gets the default sortorder for a Zenpage caategory or page that does not yet have one, e.g. because newly created
+ * The sortorder takae care of existing ones and add the item after existing items.
+ *  
  * @since ZenphotoCMS 1.5.8
  * 
  * @param string $type "category" or "page"
  * @return string
  */
-function getNewItemDefaultSortorder($type = 'category') {
+function getItemDefaultSortorder($type = 'category') {
 	if (!in_array($type, array('category', 'page'))) {
 		return '000';
 	}
