@@ -213,7 +213,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * 
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular"
-	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
+	 * @param bool $sortdirection True for descending (default), false for ascending direction
 	 * @param bool $directchilds Default true to get only the direct sub level pages, set to false to get all levels
 	 * @return array
 	 */

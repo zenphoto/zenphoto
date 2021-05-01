@@ -123,7 +123,7 @@ class Zenpage {
 		}
 		$gettop = '';
 		if ($published) {
-			if ($toplevel)
+			if ($toplevel) 
 				$gettop = " AND parentid IS NULL";
 			$show = " WHERE `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'" . $gettop;
 		} else {
@@ -159,8 +159,6 @@ class Zenpage {
 				$sortorder = 'total_votes';
 				break;
 			case 'toprated':
-				if (empty($sortdir))
-					$sortdir = ' DESC';
 				$sortorder = '(total_value/total_votes) ' . $sortdir . ', total_value';
 				break;
 			case 'random':
@@ -188,6 +186,9 @@ class Zenpage {
 				}
 			}
 			db_free_result($result);
+		}
+		if ($sorttype == 'title') {
+			$all_pages = sortMultiArray($all_pages, 'title', $sortdirection, true, false, false);
 		}
 		return $all_pages;
 	}
@@ -641,14 +642,27 @@ class Zenpage {
 	 * 
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "id", "popular", "random"
-	 * @param bool $sortdirection TRUE for ascending or FALSE for descending order
+	 * @param bool $sortdirection TRUE for descending (default) or FALSE for ascending order
 	 * @param bool $toplevel True for only toplevel categories
 	 * @return array
 	 */
 	function getAllCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $toplevel = false) {
 		$structure = $this->getCategoryStructure();
+		
 		if (is_null($sortdirection)) {
 			$sortdirection = $this->sortdirection;
+		} else {
+			// fallback of old documentation
+			switch(strtolower($sortdirection)) {
+				case 'asc':
+					$sortdirection = false;
+					trigger_error(gettext('Zenpage::getAllCategories() - The value "asc" for the $sortdirection is deprecated since ZenphotoCMS 1.5.8. Use false instead.'), E_USER_NOTICE);
+					break;
+				case 'desc':
+					trigger_error(gettext('Zenpage::getAllCategories() - The value "desc" for the $sortdirection is deprecated since ZenphotoCMS 1.5.8. Use true instead.'), E_USER_NOTICE);
+					$sortdirection = true;
+					break;
+			}
 		}
 		switch ($sorttype) {
 			case "id":
@@ -688,13 +702,7 @@ class Zenpage {
 			if ($sorttype == 'random') {
 				shuffle($structure);
 			} else {
-				//sortMultiArray descending = true
-				if($sortdirection) {
-					$sortdir = false;
-				} else {
-					$sortdir = true;
-				}
-				$structure = sortMultiArray($structure, $sortorder, $sortdir, true, false, false);
+				$structure = sortMultiArray($structure, $sortorder, $sortdirection, true, false, false);
 			}
 		}
 		return $structure;

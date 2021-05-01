@@ -1120,17 +1120,26 @@ function printPrevNewsLink($prev = "« ") {
  * 										 "mostrated" for news articles and pages
  * 										 "toprated" for news articles and pages
  * 										 "random" for pages and news articles
- * @param string $sortdirection "asc" for ascending otherwise descending (default)
+ * @param boolean $sortdirection true for descending (default); false for ascending
  * @return array
  */
-function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $sortdirection = 'desc') {
-	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_pages;
-	$sortdir = strtolower($sortdirection) != 'asc';
+function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $sortdirection = true) {
+	global $_zp_zenpage;
+	switch (strtolower($sortdirection)) {
+		case 'asc':
+			$sortdirection = false;
+			trigger_error(gettext('getZenpageStatistic - "asc" for the $sortdirection is deprecated since ZenphotoCMS 1.5.8. Use false instead.'), E_USER_NOTICE);
+			break;
+		case 'desc':
+			trigger_error(gettext('getZenpageStatistic - "desc" for the $sortdirection is deprecated since ZenphotoCMS 1.5.8. Use true instead.'), E_USER_NOTICE);
+			$sortdirection = true;
+			break;
+	}
 	$statsarticles = array();
 	$statscats = array();
 	$statspages = array();
 	if ($option == "all" || $option == "news") {
-		$articles = $_zp_zenpage->getArticles($number, NULL, true, $mode, $sortdir, false);
+		$articles = $_zp_zenpage->getArticles($number, NULL, true, $mode, $sortdirection, false);
 		$counter = "";
 		$statsarticles = array();
 		foreach ($articles as $article) {
@@ -1151,7 +1160,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 		$stats = $statsarticles;
 	}
 	if (($option == "all" || $option == "categories") && $mode != "mostrated" && $mode != "toprated") {
-		$categories = $_zp_zenpage->getAllCategories(true, $mode, $sortdir);
+		$categories = $_zp_zenpage->getAllCategories(true, $mode, $sortdirection);
 		$counter = "";
 		$statscats = array();
 		foreach ($categories as $cat) {
@@ -1171,7 +1180,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 		$stats = $statscats;
 	}
 	if ($option == "all" || $option == "pages") {
-		$pages = $_zp_zenpage->getPages(NULL, false, $number, $mode, $sortdir);
+		$pages = $_zp_zenpage->getPages(NULL, false, $number, $mode, $sortdirection);
 		$counter = "";
 		$statspages = array();
 		foreach ($pages as $page) {
@@ -1196,15 +1205,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 		if ($mode == 'random') {
 			shuffle($stats);
 		} else {
-			switch ($sortdir) {
-				case 'asc':
-					$desc = false;
-					break;
-				case 'desc':
-					$desc = true;
-					break;
-			}
-			$stats = sortMultiArray($stats, $mode, $desc);
+			$stats = sortMultiArray($stats, $mode, $sortdir);
 		}
 	}
 	return $stats;
@@ -1226,10 +1227,10 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
  * @param bool $showdate if the date should be shown (news articles and pages only)
  * @param bool $showcontent if the content should be shown (news articles and pages only)
  * @param bool $contentlength The shortened lenght of the content
- * @param string $sortdir "asc" for ascending or "desc" for descending (default)
+ * @param bool $sortdir True fro descending (default), false for ascending
  */
-function printZenpageStatistic($number = 10, $option = "all", $mode = "popular", $showstats = true, $showtype = true, $showdate = true, $showcontent = true, $contentlength = 40, $sortdir = 'desc') {
-	$stats = getZenpageStatistic($number, $option, $mode);
+function printZenpageStatistic($number = 10, $option = "all", $mode = "popular", $showstats = true, $showtype = true, $showdate = true, $showcontent = true, $contentlength = 40, $sortdir = true) {
+	$stats = getZenpageStatistic($number, $option, $mode, $sortdir);
 	$contentlength = sanitize_numeric($contentlength);
 	switch ($mode) {
 		case 'popular':
