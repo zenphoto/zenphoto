@@ -208,14 +208,7 @@ class ZenpagePage extends ZenpageItems {
 	 */
 	function getPages($published = NULL, $directchilds = true, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null) {
 		global $_zp_zenpage;
-		$subpages = array();
-		$pages = $_zp_zenpage->getPages($published, false, $number, $sorttype, $sortdirection, $author);
-		foreach ($pages as $page) {
-			if ($page['sort_order'] != $this->getSortOrder() && (!$directchilds && stripos($page['sort_order'], $this->getSortOrder()) === 0) || $page['parentid'] == $this->getID()) {
-				array_push($subpages, $page);
-			}
-		}
-		return $subpages;
+		return $_zp_zenpage->getPages($published, $directchilds, $number, $sorttype, $sortdirection, $author, $this);
 	}
 
 	/**

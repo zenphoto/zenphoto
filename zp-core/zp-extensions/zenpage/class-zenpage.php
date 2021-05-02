@@ -110,9 +110,10 @@ class Zenpage {
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "id", "popular", "mostrated", "toprated", "random"
 	 * @param string $sortdirection false for ascenting, true for descending
 	 * @param string $author Optional author name to get the pages of
+	 * @param obj $pageobj Optional pageobj to get its subpages
 	 * @return array
 	 */
-	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null) {
+	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null, $pageobj = null) {
 		global $_zp_loggedin;
 		if(!is_null($pageobj) && get_class($pageobj) != 'ZenpagePage') {
 			$pageobj = null;
@@ -130,13 +131,26 @@ class Zenpage {
 			$all = !$published;
 		}
 		$gettop = '';
+		if ($toplevel) {
+			if ($pageobj) {
+				$gettop = " parentid = " . $pageobj->getID();
+			} else {
+				$gettop = " parentid IS NULL";
+			}
+		} else {
+			if ($pageobj) {
+				$gettop = " sort_order like '" . $pageobj->getSortorder() . "-%'";
+			} 
+		}
 		if ($published) {
-			if ($toplevel) 
-				$gettop = " AND parentid IS NULL";
+			if ($gettop) {
+				$gettop = ' AND' . $gettop;
+			}
 			$show = " WHERE `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'" . $gettop;
 		} else {
-			if ($toplevel)
-				$gettop = " WHERE parentid IS NULL";
+			if ($gettop) {
+				$gettop = ' WHERE' . $gettop;
+			}
 			$show = $gettop;
 		}
 		if ($author) {
