@@ -23,11 +23,16 @@ class Zenpage {
 	public $categoryStructure = null;
 	// article defaults (mirrors category vars)
 	protected $sorttype = 'date';
-	protected $sortdirection = true;
+	protected $sortdirection = true; // descending
 	protected $sortSticky = true;
+	
+	// category defaults
+	protected $category_sorttype = 'sort_order';
+	protected $category_sortdirection = false; // ascending
+
 	// page defaults
-	protected $page_sorttype;
-	protected $page_sortdirection;
+	protected $page_sorttype = 'sort_order';
+	protected $page_sortdirection = false; //ascending
 	/**
 	 * Class instantiator
 	 */
@@ -650,7 +655,7 @@ class Zenpage {
 		$structure = $this->getCategoryStructure();
 		
 		if (is_null($sortdirection)) {
-			$sortdirection = $this->sortdirection;
+			$sortdirection = $this->category_sortdirection;
 		} else {
 			// fallback of old documentation
 			switch(strtolower($sortdirection)) {
@@ -744,36 +749,75 @@ class Zenpage {
 	public function __toString() {
 		return 'Zenpage';
 	}
-
+	
+	/**
+	 * Gets the internal default sortdirection
+	 * @param sting $what "new", "pages", "categories"
+	 * @return booliean
+	 */
 	function getSortDirection($what = 'news') {
-		if ($what == 'pages') {
-			return $this->page_sortdirection;
-		} else {
-			return $this->sortdirection;
+		switch ($what) {
+			case 'pages':
+				return $this->page_sortdirection;
+			case 'news':
+				return $this->sortdirection;
+			case 'categories':
+				return $this->category_sortdirection;
 		}
 	}
 
+	/**
+	 * Sets the sortdirection
+	 * @param boolean $value The  true for decending false for ascending
+	 * @param string $what "new", "pages", "categories"
+	 */
 	function setSortDirection($value, $what = 'news') {
-		if ($what == 'pages') {
-			$this->page_sortdirection = (int) ($value && true);
-		} else {
-			$this->sortdirection = (int) ($value && true);
+		switch ($what) {
+			case 'pages':
+				$this->page_sortdirection = (int) ($value && true);
+				break;
+			case 'news':
+				$this->sortdirection = (int) ($value && true);
+				break;
+			case 'categories':
+				$this->category_sortdirection = (int) ($value && true);
+				break;
 		}
 	}
 
+	/**
+	 * Gets the sorttype 
+	 * @param string $what "new", "pages", "categories"
+	 * @return string
+	 */
 	function getSortType($what = 'news') {
-		if ($what == 'pages') {
-			return $this->page_sorttype;
-		} else {
-			return $this->sorttype;
+		switch ($what) {
+			case 'pages':
+				return $this->page_sorttype;
+			case 'news':
+				return $this->sorttype;
+			case 'categories':
+				return $this->category_sorttype;
 		}
 	}
 
+	/**
+	 * Sets the sortdtype
+	 * @param boolean $value The field/sorttype to sort by
+	 * @param string $what "new", "pages", "categories"
+	 * @return string
+	 */
 	function setSortType($value, $what = 'news') {
-		if ($what == 'pages') {
-			$this->page_sorttype = $value;
-		} else {
-			$this->sorttype = $value;
+		switch ($what) {
+			case 'pages':
+				$this->page_sorttype = $value;
+				break;
+			case 'news':
+				$this->sorttype = $value;
+				break;
+			case 'categories':
+				$this->category_sorttype = $value;
+				break;
 		}
 	}
 
