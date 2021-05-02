@@ -114,6 +114,9 @@ class Zenpage {
 	 */
 	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null) {
 		global $_zp_loggedin;
+		if(!is_null($pageobj) && get_class($pageobj) != 'ZenpagePage') {
+			$pageobj = null;
+		}
 		if (is_null($sortdirection)) {
 			$sortdirection = $this->getSortDirection('pages');
 		}
@@ -653,9 +656,8 @@ class Zenpage {
 	 */
 	function getAllCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $toplevel = false) {
 		$structure = $this->getCategoryStructure();
-		
 		if (is_null($sortdirection)) {
-			$sortdirection = $this->category_sortdirection;
+			$sortdirection = $this->getSortDirection('categories');
 		} else {
 			// fallback of old documentation
 			switch(strtolower($sortdirection)) {
@@ -668,6 +670,9 @@ class Zenpage {
 					$sortdirection = true;
 					break;
 			}
+		}
+		if (is_null($sorttype)) {
+			$sorttype = $this->getSortType('categories');
 		}
 		switch ($sorttype) {
 			case "id":
