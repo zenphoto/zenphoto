@@ -145,7 +145,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			if (empty($itemssorted)) {
 				$maxvalue = 0;
 			} else {
-				$maxvalue = $itemssorted[0]['hitcounter'];
+				$maxvalue = $itemssorted[0]['average'];
 			}
 			$headline = $typename . " - " . gettext("most viewed images");
 			break;
@@ -302,7 +302,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				}
 				break;
 			case 'popularimages':
-				$barsize = round($item['average'] / $maxvalue * $bargraphmaxsize) - 10;
+				$barsize = round($item['average'] / $maxvalue * $bargraphmaxsize);
 				$value = $item['average'] . " views / image";
 				break;
 			case "mostrated":
@@ -386,7 +386,6 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				$title = get_language_string($item['title']);
 				break;
 			case "images":
-
 				if ($item['albumid']) {
 					$getalbumfolder = query_single_row("SELECT title, folder, `show` from " . prefix("albums") . " WHERE id = " . $item['albumid']);
 					if ($sortorder === "latest") {
