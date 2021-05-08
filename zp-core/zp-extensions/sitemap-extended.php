@@ -192,7 +192,7 @@ class sitemapOptions {
 						'key' => 'sitemap_license',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 12,
-						'multilingual' => true,
+						'multilingual' => false,
 						'desc' => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html')),
 				gettext('Sitemap processing chunk') => array(
 						'key' => 'sitemap_processing_chunk',
