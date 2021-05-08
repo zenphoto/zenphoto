@@ -66,7 +66,7 @@ if (!defined('WEBPATH'))
 						?>
 						<div data-role="collapsible">
 							<h3><?php echo gettext('View meta data'); ?></h3>
-							<?php printImageMetadata(NULL, ''); ?>
+							<?php printImageMetadata(NULL, false); ?>
 						</div>
 						<?php
 					}

@@ -15,11 +15,6 @@ if (!defined('WEBPATH'))
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				$(document).ready(function () {
-					$(".colorbox").colorbox({
-						inline: true,
-						href: "#imagemetadata",
-						close: '<?php echo gettext("close"); ?>'
-					});
 					$("a.thickbox").colorbox({
 						maxWidth: "98%",
 						maxHeight: "98%",
@@ -118,7 +113,7 @@ if (!defined('WEBPATH'))
 
 						<?php
 						if (getImageMetaData()) {
-							printImageMetadata(NULL, 'colorbox');
+							printImageMetadata();
 						}
 						?>
 

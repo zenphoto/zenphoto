@@ -15,12 +15,7 @@ if (!defined('WEBPATH'))
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				$(document).ready(function () {
-					$(".colorbox").colorbox({
-						inline: true,
-						href: "#imagemetadata",
-						close: '<?php echo gettext("close"); ?>'
-					});
+				$(document).ready(function() {
 					$(".fullimage").colorbox({
 						maxWidth: "98%",
 						maxHeight: "98%",
@@ -101,7 +96,7 @@ if (!defined('WEBPATH'))
 				@call_user_func('printSlideShowLink');
 
 				if (getImageMetaData()) {
-					printImageMetadata(NULL, 'colorbox_meta');
+					printImageMetadata();
 					?>
 					<br class="clearall" />
 					<?php

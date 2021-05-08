@@ -13,11 +13,6 @@ if (!defined('WEBPATH'))
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				$(document).ready(function() {
-					$(".colorbox").colorbox({
-						inline: true,
-						href: "#imagemetadata",
-						close: '<?php echo gettext("close"); ?>'
-					});
 	<?php
 	$disposal = getOption('protect_full_image');
 	if ($disposal == 'unprotected' || $disposal == 'protected') {
@@ -141,7 +136,7 @@ if (!defined('WEBPATH'))
 						<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
 						<?php
 						if (getImageMetaData()) {
-							printImageMetadata(NULL, 'colorbox');
+							printImageMetadata();
 							?>
 							<br class="clearall" />
 							<?php

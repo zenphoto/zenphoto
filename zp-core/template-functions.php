@@ -2592,28 +2592,46 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 	if ($id) {
 		$id = ' id="' . $id . '"';
 	}
-	$refh = $refa = $style = '';
-	if ($toggle == 'colorbox' && zp_has_filter('theme_head', 'colorbox::css')) {
-		$refh = '<a href="#" class="colorbox" title="' . $title . '">';
-		$refa = '</a>';
-		$style = ' style="display:none"';
-	} else if ($toggle) {
-		$refh = '<a class="metadata_toggle" href="#" title="' . $title . '">';
-		$refa = '</a>';
-		$style = ' style="display:none"';
-	}
-	?>
-	<span id="<?php echo $span; ?>" class="metadata_title">
-		<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
-	</span>
-	<?php if($toggle) { ?>
-		<script>
-			$(".metadata_toggle").click(function(event) {
-				event.preventDefault();
-				$("#<?php echo $dataid; ?>").toggle();
+	$style = '';
+	if ($toggle) {
+	 if(zp_has_filter('theme_head', 'colorbox::css')) {
+	 	$modal_class = ' colorbox';
+	 	?>
+	 	<script>
+	 	// <!-- <![CDATA[
+		$(document).ready(function () {
+			$(".colorbox").colorbox({
+				inline: true,
+				href: "#imagemetadata",
+				close: '<?php echo gettext("close"); ?>'
 			});
+		});
+		// ]]> -->
 		</script>
-	<?php } ?>
+		<?php
+	 } else {
+		 $modal_class = '';
+			// we only need this eventhanlder if there is no colorbox! 
+			?> 
+ 			<script> 
+ 			// <!-- <![CDATA[
+			$(document).ready(function () {
+ 				$(".metadata_toggle").click(function(event) { 
+ 					event.preventDefault(); $("#<?php echo $dataid; ?>").toggle(); 
+ 				}); 
+			});
+			// ]]> -->				
+ 			</script> 
+ 			<?php
+		}
+		$style = ' style="display:none"';
+		?>
+		<span id="<?php echo $span; ?>" class="metadata_title">
+			<a href="#" class="metadata_toggle<?php echo $modal_class; ?>" title="<?php echo $title; ?>"><?php echo $title; ?></a>
+		</span>
+		<?php
+	} 
+	?>
 	<div id="<?php echo $dataid; ?>"<?php echo $style; ?>>
 		<div<?php echo $id . $class; ?>>
 			<table>
