@@ -699,7 +699,11 @@ class RSS extends feed {
 		} else {
 			$feeditem['pubdate'] = date("r", strtotime($albumobj->getDateTime()));
 		}
-		return $feeditem;
+		if ($this->mode == "albums") {
+			return zp_apply_filter('feed_album', $feeditem, $item);
+		} else {
+			return zp_apply_filter('feed_image', $feeditem, $item);
+		}
 	}
 
 	/**
@@ -732,8 +736,7 @@ class RSS extends feed {
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
 		$feeditem['pubdate'] = date("r", strtotime($item['date']));
-
-		return $feeditem;
+		return zp_apply_filter('feed_news', $feeditem, $obj);
 	}
 
 	/**

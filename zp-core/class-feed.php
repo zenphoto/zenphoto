@@ -540,7 +540,7 @@ class feed {
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
 		$feeditem['pubdate'] = date("r", strtotime($obj->getDatetime()));
-		return $feeditem;
+		return zp_apply_filter('feed_page', $feeditem, $obj);
 	}
 
 	/**
@@ -556,6 +556,7 @@ class feed {
 			$author = " " . gettext("by") . " " . $item['name'];
 		}
 		$commentpath = $imagetag = $title = '';
+		$obj = null;
 		switch ($item['type']) {
 			case 'images':
 				$title = get_language_string($item['title']);
@@ -599,7 +600,7 @@ class feed {
 		$feeditem['title'] = getBare($title . $author);
 		$feeditem['link'] = $commentpath;
 		$feeditem['desc'] = $item['comment'];
-		return $feeditem;
+		return zp_apply_filter('feed_comment', $feeditem, $item, $obj);
 	}
 
 	static protected function feed404() {
