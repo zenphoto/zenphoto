@@ -138,12 +138,16 @@ $style_tags = "abbr =>(class=>() id=>() title =>() lang=>())\n" .
 				"strike => (class=>() id=>() lang=>())\n" .
 				"strong => (class=>() id=>() lang=>())\n" .
 				"sup => (class=>() id=>() lang=>())\n" .
-				"sub => (class=>() id=>() lang=>())\n";
+				"sub => (class=>() id=>() lang=>())\n" .
+				'del => (class=>() id=>() lang=>())\n"';
 
 $general_tags = "a => (href =>() title =>() target=>() class=>() id=>() rel=>() lang=>())\n" .
-				"ul => (class=>() id=>() lang=>())\n" .
-				"ol => (class=>() id=>() lang=>())\n" .
-				"li => (class=>() id=>() lang=>())\n" .
+				"ul =>(class=>() id=>() lang=>())\n" .
+				"ol =>(class=>() id=>() lang=>())\n" .
+				"li =>(class=>() id=>() lang=>())\n" .
+				"dl =>(class=>() id=>() lang=>())\n" .
+				"dt =>(class=>() id=>() lang=>())\n" .
+				"dd =>(class=>() id=>() lang=>())\n" .
 				"p => (class=>() id=>() style=>() lang=>())\n" .
 				"h1=>(class=>() id=>() style=>() lang=>())\n" .
 				"h2=>(class=>() id=>() style=>() lang=>())\n" .
