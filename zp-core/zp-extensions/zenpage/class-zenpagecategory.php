@@ -53,52 +53,6 @@ class ZenpageCategory extends ZenpageRoot {
 	}
 
 	/**
-	 * Returns the content
-	 *
-	 * @return string
-	 */
-	function getContent($locale = NULL) {
-		$content = $this->get("content");
-		if ($locale == 'all') {
-			return unTagURLs($content);
-		} else {
-			return applyMacros(unTagURLs(get_language_string($content, $locale)));
-		}
-	}
-
-	/**
-	 *
-	 * Set the content datum
-	 * @param $c full language string
-	 */
-	function setContent($c) {
-		$c = tagURLs($c);
-		$this->set("content", $c);
-	}
-
-	/**
-	 * Returns the extra content
-	 *
-	 * @return string
-	 */
-	function getExtraContent($locale = NULL) {
-		$text = $this->get("extracontent");
-		if ($locale == 'all') {
-			return unTagURLs($text);
-		} else {
-			return applyMacros(unTagURLs(get_language_string($text, $locale)));
-		}
-	}
-
-	/**
-	 * sets the extra content
-	 *
-	 */
-	function setExtraContent($ec) {
-		$this->set("extracontent", tagURLs($ec));
-	}
-
-	/**
 	 * Returns the sort order
 	 *
 	 * @return string
@@ -209,7 +163,7 @@ class ZenpageCategory extends ZenpageRoot {
 	/**
 	 * Gets the sub categories recursivly by titlelink
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since ZenphotoCMS 1.5.8 - deprecates getSubCategories()
 	 * 
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular"
@@ -230,17 +184,20 @@ class ZenpageCategory extends ZenpageRoot {
 
 	/**
 	 * @see getCategories()
+	 * @deprecated ZenphotoCMS 2.0 - Use getCategories() instead
 	 */
 	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $directchilds = false) {
 		return $this->getCategories($visible, $sorttype, $sortdirection, $directchilds);
 	}
-
+	
 	/**
 	 * Checks if the current news category is a sub category of $catlink
 	 *
+	 * @since ZenphotoCMS 1.5.8 - deprecates isSubNewsCategoryOf()
+	 * 
 	 * @return bool
 	 */
-	function isSubNewsCategoryOf($catlink) {
+	function isSubCategoryOf($catlink) {
 		if (!empty($catlink)) {
 			$categories = $this->getParents();
 			$count = 0;
@@ -254,6 +211,14 @@ class ZenpageCategory extends ZenpageRoot {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * @see isSubCategoryOf()
+	 * @deprecated ZenphotoCMS 2.0 - Use getCategories() instead
+	 */
+	function isSubNewsCategoryOf($catlink) {
+		return $this->isSubCategoryOf($catlink);
 	}
 	
 		/**
