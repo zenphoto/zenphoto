@@ -140,8 +140,7 @@ function updatePage(&$reports, $newpage = false) {
 	}
 	processTags($page);
 	if ($newpage) {
-		$sortorder = $_zp_zenpage->getItemDefaultSortorder('page');
-		$page->setSortorder($sortorder);
+		$page->setDefaultSortorder();
 		$msg = zp_apply_filter('new_page', '', $page);
 		if (empty($title)) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Page <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
@@ -914,8 +913,7 @@ function updateCategory(&$reports, $newcategory = false) {
 		$cat->set('used_ips', 0);
 	}
 	if ($newcategory) {
-		$sortorder = $_zp_zenpage->getItemDefaultSortorder('category');
-		$cat->setSortorder($sortorder);
+		$cat->setDefaultSortorder();
 		$msg = zp_apply_filter('new_category', '', $cat);
 		if (empty($title)) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Category <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), $titlelink) . '</p>';

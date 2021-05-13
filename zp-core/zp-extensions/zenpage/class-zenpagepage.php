@@ -41,6 +41,43 @@ class ZenpagePage extends ZenpageItems {
 	function setSortOrder($sortorder) {
 		$this->set('sort_order', $sortorder);
 	}
+	
+	/**
+	 * Sets a default sortorder for a page.
+	 * 
+	 * Use this before save()
+	 * 
+	 * a) If you created an new item after you set a parentid and no new specific sortorder
+	 * b) You updated the parentid without setting specific new sortorder
+	 * 
+	 * The sortorder takes care of existing categories on the level and adds the item after existing ones.
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 */
+	function setDefaultSortorder() {
+		$default = $this->getDefaultSortorder();
+		$this->setSortorder($default);
+	}
+	
+	/**
+	 * Gets a default sortorder for a page.
+	 * 
+	 * Use this before save()
+	 * 
+	 * a) If you created an new item after you set a parentid and no new specific sortorder
+	 * b) You updated the parentid without setting specific new sortorder
+	 * 
+	 * The sortorder takes care of existing categories on the level and adds the item after existing ones.
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
+	 * @global obj $_zp_zenpage  
+	 * @return string
+	 */
+	function getDefaultSortorder() {
+		global $_zp_zenpage;
+		return $_zp_zenpage->getItemDefaultSortorder('page', $this->getParentID());
+	}
 
 	/**
 	 * Returns the guest user
