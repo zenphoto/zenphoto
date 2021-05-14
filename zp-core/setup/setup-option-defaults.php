@@ -139,7 +139,7 @@ $style_tags = "abbr =>(class=>() id=>() title =>() lang=>())\n" .
 				"strong => (class=>() id=>() lang=>())\n" .
 				"sup => (class=>() id=>() lang=>())\n" .
 				"sub => (class=>() id=>() lang=>())\n" .
-				'del => (class=>() id=>() lang=>())\n"';
+				"del => (class=>() id=>() lang=>())\n";
 
 $general_tags = "a => (href =>() title =>() target=>() class=>() id=>() rel=>() lang=>())\n" .
 				"ul =>(class=>() id=>() lang=>())\n" .
