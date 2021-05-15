@@ -331,7 +331,6 @@ function html_encodeTagged($original, $allowScript = true) {
 		$str = preg_replace('|<(.*)onclick|ixs', '%$c', $str);
 		$tags[2]['%$c'] = '&lt;<strike>onclick</strike>';
 	}
-	$str = htmLawed($str);
 	//strip html comments
 	$str = preg_replace('~<!--.*?-->~is', '', $str);
 	// markup
@@ -340,6 +339,7 @@ function html_encodeTagged($original, $allowScript = true) {
 		$tags[2]['%' . $key . '$s'] = $tag;
 		$str = str_replace($tag, '%' . $key . '$s', $str);
 	}
+	$str = htmLawed($str);
 	//entities
 	preg_match_all('/(&[a-z0-9#]+;)/i', $str, $matches);
 	foreach (array_unique($matches[0]) as $key => $entity) {
