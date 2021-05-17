@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Zenphoto 1.5.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-06 14:14+0200\n"
-"PO-Revision-Date: 2021-05-06 14:17+0200\n"
+"PO-Revision-Date: 2021-05-17 08:45+0200\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -4754,7 +4754,7 @@ msgstr ""
 
 #: zp-core/admin-options.php:2658
 msgid "IPTC copyright embedding"
-msgstr "IPTC-Copyright-Einbetten:"
+msgstr "IPTC-Copyright-Einbetten"
 
 #: zp-core/admin-options.php:2665
 msgid ""
@@ -16209,7 +16209,7 @@ msgstr "Verwenden Sie stattdessen renameOption()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:36
 msgid "Use the isValidEmail() instead"
-msgstr "Verwenden Sie stattdessen isValidEmail() "
+msgstr "Verwenden Sie stattdessen isValidEmail()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:52
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:65
