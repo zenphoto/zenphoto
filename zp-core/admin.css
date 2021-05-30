@@ -167,7 +167,7 @@ h3 {
 }
 
 p {
-	width: 97%;
+	/*width: 97%;*/
 	margin-bottom: 0.8em;
 }
 
@@ -1931,10 +1931,6 @@ span.tagMatches span {
 .checkboxlabel {
 	padding-right: .5em;
 	float: left;
-}
-
-.nowrap {
-	white-space: nowrap;
 }
 
 .image_option_tablerow {
