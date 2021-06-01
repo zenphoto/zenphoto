@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-19 11:01+0200\n"
-"PO-Revision-Date: 2021-05-19 11:01+0200\n"
+"POT-Creation-Date: 2021-06-01 17:55+0200\n"
+"PO-Revision-Date: 2021-06-01 17:55+0200\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -317,7 +317,7 @@ msgstr "Album"
 
 #: themes/garland/functions.php:153 zp-core/admin-edit.php:1400
 #: zp-core/admin-globals.php:108 zp-core/admin-options.php:2996
-#: zp-core/zp-extensions/image_album_statistics.php:294
+#: zp-core/zp-extensions/image_album_statistics.php:287
 msgid "image"
 msgstr "Bild"
 
@@ -2083,7 +2083,7 @@ msgid "Album thumb"
 msgstr "Albumthumb"
 
 #: zp-core/admin-functions.php:2108 zp-core/admin-functions.php:2111
-#: zp-core/zp-extensions/image_album_statistics.php:296
+#: zp-core/zp-extensions/image_album_statistics.php:289
 #: zp-core/zp-extensions/tinyURL.php:77
 #: zp-core/zp-extensions/uploader_http.php:32
 #: zp-core/zp-extensions/uploader_jQuery.php:38
@@ -17543,25 +17543,25 @@ msgstr ""
 "Funktionen, die verschiedene Statistiken zu Bildern und Alben der Galerie "
 "zur Verfügung stellen."
 
-#: zp-core/zp-extensions/image_album_statistics.php:289
+#: zp-core/zp-extensions/image_album_statistics.php:282
 #: zp-core/zp-extensions/rss.php:646
 #, php-format
 msgid "Last update: %s"
 msgstr "Letzte Aktualisierung: %s"
 
-#: zp-core/zp-extensions/image_album_statistics.php:298
+#: zp-core/zp-extensions/image_album_statistics.php:291
 #, php-format
 msgid "%1$u new %2$s"
 msgstr "%1$u neu %2$s"
 
-#: zp-core/zp-extensions/image_album_statistics.php:310
-#: zp-core/zp-extensions/image_album_statistics.php:552
+#: zp-core/zp-extensions/image_album_statistics.php:303
+#: zp-core/zp-extensions/image_album_statistics.php:538
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
 msgstr "Bewertung: %1$u (Stimmen: %2$u)"
 
-#: zp-core/zp-extensions/image_album_statistics.php:317
-#: zp-core/zp-extensions/image_album_statistics.php:559
+#: zp-core/zp-extensions/image_album_statistics.php:310
+#: zp-core/zp-extensions/image_album_statistics.php:545
 #, php-format
 msgid "Views: %u"
 msgstr "Besucher: %u"
