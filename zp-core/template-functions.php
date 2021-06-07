@@ -3159,13 +3159,27 @@ function getSizedImageURL($size) {
  * $size=NULL, $width=200, $height=NULL, $cropw=180, $croph=120, $cropx=NULL, $cropy=NULL
  * will produce an image that is 200x133 from a 1.5x1 crop that is 5% from the left
  * and 15% from the top of the image.
- *
+ * 
+  * @param int $size the size of the image to have
+ * @param int $width width
+ * @param int $height height
+ * @param int $cropw crop width
+ * @param int $croph crop height
+ * @param int $cropx crop part x axis
+ * @param int $cropy crop part y axis
+ * @param bool $thumbStandin set true to inhibit watermarking
+ * @param bool $effects image effects (e.g. set gray to force to grayscale)
+ * @param obj $image optional image object, null means current image
  */
-function getCustomImageURL($size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $thumbStandin = false, $effects = NULL) {
+function getCustomImageURL($size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $thumbStandin = false, $effects = NULL, $image = null) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
+	if (is_null($image)) {
+		$image = $_zp_current_image;
+	}
+	if (is_null($image)) {
 		return false;
-	return $_zp_current_image->getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects);
+	}
+	return $image->getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects);
 }
 
 /**
@@ -3239,9 +3253,9 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 	}
 	if (isImagePhoto($image) || $thumbStandin) {
 		if ($maxspace) {
-			$attr['src'] = html_pathurlencode(getCustomImageURL(null, $width, $height, NULL, NULL, NULL, NULL, $thumbStandin, $effects, null, $image));
+			$attr['src'] = html_pathurlencode(getCustomImageURL(null, $width, $height, NULL, NULL, NULL, NULL, $thumbStandin, $effects, $image));
 		} else {
-			$attr['src'] = html_pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects, null, $image));
+			$attr['src'] = html_pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects, $image));
 		}
 		$attr_filtered = zp_apply_filter('custom_image_attr', $attr, $image);
 		$attributes = generateAttributesFromArray($attr_filtered);
