@@ -3253,9 +3253,9 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 	}
 	if (isImagePhoto($image) || $thumbStandin) {
 		if ($maxspace) {
-			$attr['src'] = html_pathurlencode(getCustomImageURL(null, $width, $height, NULL, NULL, NULL, NULL, $thumbStandin, $effects, $image));
+			$attr['src'] = html_pathurlencode($image->getCustomImage(null, $width, $height, NULL, NULL, NULL, NULL, $thumbStandin, $effects));
 		} else {
-			$attr['src'] = html_pathurlencode(getCustomImageURL($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects, $image));
+			$attr['src'] = html_pathurlencode($image->getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects));
 		}
 		$attr_filtered = zp_apply_filter('custom_image_attr', $attr, $image);
 		$attributes = generateAttributesFromArray($attr_filtered);
