@@ -159,7 +159,7 @@ if (!isset($_zp_conf_vars['special_pages'])) {
 }
 
 $mysql_prefix = '';
-if (isset($_zp_conf_vars['mysql_prefix'])) {}
+if (isset($_zp_conf_vars['mysql_prefix'])) {
 	$mysql_prefix = $_zp_conf_vars['mysql_prefix'];
 }
 define('DATABASE_PREFIX', $mysql_prefix);
