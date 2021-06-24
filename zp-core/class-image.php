@@ -1367,13 +1367,18 @@ class Image extends MediaObject {
 
 	/**
 	 * Get the index of this image in the album, taking sorting into account.
-	 *
+	 * @param bool $use_realalbum If the image is wihtin a dynamic album this is the index within it, set to true to get the index of the actual physical album the image belongs
 	 * @return int
 	 */
-	function getIndex() {
+	function getIndex($use_realalbum = false) {
 		global $_zp_current_search, $_zp_current_album;
+		$use_realalbum = true;
 		if ($this->index == NULL) {
-			$album = $this->albumnamealbum;
+			if ($use_realalbum) {
+				$album = $this->getAlbum();
+			} else {
+				$album = $this->albumnamealbum;
+			}
 			if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED) || $album->isDynamic()) {
 				if ($album->isDynamic()) {
 					$images = $album->getImages();

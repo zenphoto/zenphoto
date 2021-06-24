@@ -1701,16 +1701,22 @@ function printAlbumData($field, $label = '') {
  */
 function getAlbumPage($album = NULL) {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_firstPageImages;
-	if (is_null($album))
+	if (is_null($album)) {
 		$album = $_zp_current_album;
+	}
+	$use_realalbum = false;
+	if (!$album->isDynamic()) {
+		$use_realalbum = true;
+	} 
 	$page = 0;
 	if (in_context(ZP_IMAGE) && !in_context(ZP_SEARCH)) {
-		$imageindex = $_zp_current_image->getIndex();
+		$imageindex = $_zp_current_image->getIndex($use_realalbum);
 		$numalbums = $album->getNumAlbums();
 		$imagepage = floor(($imageindex - $_firstPageImages) / max(1, getOption('images_per_page'))) + 1;
 		$albumpages = ceil($numalbums / max(1, getOption('albums_per_page')));
-		if ($albumpages == 0 && $_firstPageImages > 0)
+		if ($albumpages == 0 && $_firstPageImages > 0) {
 			$imagepage++;
+		}
 		$page = $albumpages + $imagepage;
 	}
 	return $page;
