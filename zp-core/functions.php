@@ -1581,7 +1581,7 @@ function sortArray(&$array, $descending = false, $natsort = true, $case_sensitiv
 					$collator->setAttribute(Collator::CASE_FIRST, Collator::UPPER_FIRST);
 				}
 				$collator->setAttribute(Collator::NUMERIC_COLLATION, Collator::ON);
-				$success = $collator->asort($array);
+				$success = $collator->asort($array, Collator::SORT_STRING);
 			} else {
 				if ($case_sensitive) {
 					$success = natsort($array);
