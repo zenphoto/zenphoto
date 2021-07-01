@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-19 11:10+0200\n"
-"PO-Revision-Date: 2021-05-19 11:10+0200\n"
+"POT-Creation-Date: 2021-07-01 17:26+0200\n"
+"PO-Revision-Date: 2021-07-01 17:32+0200\n"
 "Last-Translator: Antonio <ranesi@tiscali.it>\n"
 "Language-Team: Antonio Ranesi [bic]\n"
 "Language: it_IT\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-Bookmarks: 4009,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
@@ -131,7 +131,7 @@ msgstr "Colori tema"
 #: themes/basic/image.php:23 themes/garland/colorbox/functions.php:32
 #: themes/garland/image.php:24 themes/zenpage/image.php:22
 #: zp-core/admin-functions.php:146 zp-core/admin-plugins.php:80
-#: zp-core/template-functions.php:2606 zp-core/zp-extensions/GoogleMap.php:535
+#: zp-core/template-functions.php:2612 zp-core/zp-extensions/GoogleMap.php:535
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:64
 #: zp-core/zp-extensions/slideshow2.php:632
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:33
@@ -318,7 +318,7 @@ msgstr "album"
 
 #: themes/garland/functions.php:153 zp-core/admin-edit.php:1400
 #: zp-core/admin-globals.php:108 zp-core/admin-options.php:2996
-#: zp-core/zp-extensions/image_album_statistics.php:294
+#: zp-core/zp-extensions/image_album_statistics.php:287
 msgid "image"
 msgstr "immagine"
 
@@ -696,7 +696,7 @@ msgstr "*menu standard"
 #: themes/zpmobile/search.php:46 themes/zpmobile/search.php:51
 #: themes/zpmobile/search.php:53 zp-core/template-functions.php:451
 #: zp-core/template-functions.php:1406 zp-core/template-functions.php:1437
-#: zp-core/template-functions.php:3816
+#: zp-core/template-functions.php:3836
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:68
 #: zp-core/zp-extensions/html_meta_tags.php:323
 #: zp-core/zp-extensions/scriptless-socialsharing.php:185
@@ -2087,7 +2087,7 @@ msgid "Album thumb"
 msgstr "Miniatura album"
 
 #: zp-core/admin-functions.php:2108 zp-core/admin-functions.php:2111
-#: zp-core/zp-extensions/image_album_statistics.php:296
+#: zp-core/zp-extensions/image_album_statistics.php:289
 #: zp-core/zp-extensions/tinyURL.php:77
 #: zp-core/zp-extensions/uploader_http.php:32
 #: zp-core/zp-extensions/uploader_jQuery.php:38
@@ -6264,7 +6264,7 @@ msgstr "<em>Build di debug</em>"
 msgid "Official build"
 msgstr "Build ufficiale"
 
-#: zp-core/admin.php:321 zp-core/functions-basic.php:1337
+#: zp-core/admin.php:321 zp-core/functions-basic.php:1342
 #: zp-core/setup/index.php:417 zp-core/zp-extensions/security-logger.php:135
 msgid "clone"
 msgstr "clone"
@@ -7811,27 +7811,27 @@ msgstr "Troppi pochi argomenti! Immagine non trovata."
 msgid "Forbidden(2)"
 msgstr "Proibito(2)"
 
-#: zp-core/functions-basic.php:1308
+#: zp-core/functions-basic.php:1313
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "%s dimensione massima del log superata"
 
-#: zp-core/functions-basic.php:1308
+#: zp-core/functions-basic.php:1313
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr ""
 "Il %1$s log ha superato la sua dimensione massima ed è stato rinominato in "
 "%2$s."
 
-#: zp-core/functions-basic.php:1785
+#: zp-core/functions-basic.php:1792
 msgid "ERROR: cURL request failed: "
 msgstr "ERRORE: richiesta cURL fallita: "
 
-#: zp-core/functions-basic.php:1788
+#: zp-core/functions-basic.php:1795
 msgid "NOTICE: cURL request not successful."
 msgstr "AVVISO: richiesta cURL non riuscita."
 
-#: zp-core/functions-basic.php:1796
+#: zp-core/functions-basic.php:1803
 msgid "ERROR: Your server does not support cURL."
 msgstr "ERRORE: Il tuo server non supporta cURL."
 
@@ -12305,19 +12305,19 @@ msgstr "Torna alla ricerca"
 msgid "Return to archive"
 msgstr "Torna all’archivio"
 
-#: zp-core/template-functions.php:2192
+#: zp-core/template-functions.php:2198
 msgid "The image is marked un-published."
 msgstr "L’immagine è impostata come non pubblicata."
 
-#: zp-core/template-functions.php:2583
+#: zp-core/template-functions.php:2589
 msgid "Image Info"
 msgstr "Informazioni immagine"
 
-#: zp-core/template-functions.php:3510
+#: zp-core/template-functions.php:3530
 msgid "No popular tags"
 msgstr "Nessun tag popolare"
 
-#: zp-core/template-functions.php:3811
+#: zp-core/template-functions.php:3831
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
 "\"=>array(album, album, ...)) instead."
@@ -12325,49 +12325,49 @@ msgstr ""
 "Il parametro printSearchForm $album_list parameter è deprecato. Passare "
 "invece array(\"albums\"=>array(album, album, ...))."
 
-#: zp-core/template-functions.php:3827 zp-core/template-functions.php:3833
+#: zp-core/template-functions.php:3847 zp-core/template-functions.php:3853
 #, php-format
 msgid "%s within previous results"
 msgstr "%s tra i risultati precedenti"
 
-#: zp-core/template-functions.php:3911
+#: zp-core/template-functions.php:3931
 msgid "search options"
 msgstr "opzioni di ricerca"
 
-#: zp-core/template-functions.php:3911
+#: zp-core/template-functions.php:3931
 msgid "fields"
 msgstr "campi"
 
-#: zp-core/template-functions.php:3957
+#: zp-core/template-functions.php:3977
 msgid "Within"
 msgstr "All’interno"
 
-#: zp-core/template-functions.php:3961
+#: zp-core/template-functions.php:3981
 #: zp-core/zp-extensions/flag_thumbnail.php:91
 msgid "New"
 msgstr "Nuova"
 
-#: zp-core/template-functions.php:3968
+#: zp-core/template-functions.php:3988
 msgid "Check/uncheck all"
 msgstr "Attiva/disattiva tutto"
 
-#: zp-core/template-functions.php:4020
+#: zp-core/template-functions.php:4040
 msgid "no date"
 msgstr "nessuna data"
 
-#: zp-core/template-functions.php:4254
+#: zp-core/template-functions.php:4274
 msgid "You are successfully logged in."
 msgstr "Accesso effettuato correttamente."
 
-#: zp-core/template-functions.php:4259
+#: zp-core/template-functions.php:4279
 msgid "The page you are trying to view is password protected."
 msgstr "La pagina che si sta provando a visualizzare è protetta da password."
 
-#: zp-core/template-functions.php:4264
+#: zp-core/template-functions.php:4284
 msgid "login"
 msgstr "accesso"
 
-#: zp-core/template-functions.php:4282
+#: zp-core/template-functions.php:4302
 msgid ""
 "Powered by <a href=\"http://www.zenphoto.org\" title=\"The simpler media "
 "website CMS\">Zenphoto</a>"
@@ -12375,21 +12375,21 @@ msgstr ""
 "Basato su<a href=\"http://www.zenphoto.org\" title=\"Il più semplice CMS per "
 "siti multimediali\">Zen<strong>photo</strong></a>"
 
-#: zp-core/template-functions.php:4447
+#: zp-core/template-functions.php:4467
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Errore Zenphoto:</strong> l’oggetto richiesto non è stato trovato."
 
-#: zp-core/template-functions.php:4449
+#: zp-core/template-functions.php:4469
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: zp-core/template-functions.php:4452
+#: zp-core/template-functions.php:4472
 #, php-format
 msgid "Image: %s"
 msgstr "Immagine: %s"
 
-#: zp-core/template-functions.php:4455
+#: zp-core/template-functions.php:4475
 #, php-format
 msgid "Page: %s"
 msgstr "Pagina: %s"
@@ -17219,8 +17219,8 @@ msgstr ""
 "<code>\" href=\"</code>...<code>\" /&gt;</code>)."
 
 #: zp-core/zp-extensions/html_meta_tags.php:129
-msgid "Verification content"
-msgstr "Contenuto di verifica"
+msgid "Google site verification"
+msgstr "Verifica del sito per Google"
 
 #: zp-core/zp-extensions/html_meta_tags.php:132
 msgid "Insert the <em>content</em> portion of the meta tag supplied by Google."
@@ -17526,25 +17526,25 @@ msgstr ""
 "Funzioni che forniscono varie statistiche sulle immagini e gli album nella "
 "galleria."
 
-#: zp-core/zp-extensions/image_album_statistics.php:289
+#: zp-core/zp-extensions/image_album_statistics.php:282
 #: zp-core/zp-extensions/rss.php:646
 #, php-format
 msgid "Last update: %s"
 msgstr "Ultimo aggiornamento: %s"
 
-#: zp-core/zp-extensions/image_album_statistics.php:298
+#: zp-core/zp-extensions/image_album_statistics.php:291
 #, php-format
 msgid "%1$u new %2$s"
 msgstr "%1$u nuova %2$s"
 
-#: zp-core/zp-extensions/image_album_statistics.php:310
-#: zp-core/zp-extensions/image_album_statistics.php:552
+#: zp-core/zp-extensions/image_album_statistics.php:303
+#: zp-core/zp-extensions/image_album_statistics.php:538
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
 msgstr "Giudizio: %1$u (Voti: %2$u)"
 
-#: zp-core/zp-extensions/image_album_statistics.php:317
-#: zp-core/zp-extensions/image_album_statistics.php:559
+#: zp-core/zp-extensions/image_album_statistics.php:310
+#: zp-core/zp-extensions/image_album_statistics.php:545
 #, php-format
 msgid "Views: %u"
 msgstr "Visite: %u"
@@ -24345,6 +24345,9 @@ msgid ""
 msgstr ""
 "<code>zenphoto_sendmail</code> non è riuscito a inviare <em>%s</em> a uno o "
 "più destinatari."
+
+#~ msgid "Verification content"
+#~ msgstr "Contenuto di verifica"
 
 #~ msgid "<strong>Warning!</strong> click for details"
 #~ msgstr "<strong>Attenzione!</strong> fare clic per i dettagli"
