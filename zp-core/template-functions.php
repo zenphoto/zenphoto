@@ -1881,12 +1881,15 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 			'class' => $class,
 			'title' => html_encode($title),
 			'id' => $id,
-			'width' => $sizes[0],
-			'height' => $sizes[1],
 			'loading' => 'lazy'
 	);
-	if($maxspace) {
+	if ($maxspace) {
 		getMaxSpaceContainer($width, $height, $thumbobj, true);
+		$attr['width'] = $width;
+		$attr['height'] = $height;
+	} else {
+		$attr['width'] = $sizes[0];
+		$attr['height'] = $sizes[1];
 	}
 	if (!$_zp_current_album->isPublished()) {
 		$attr['class'] .= " not_visible";
