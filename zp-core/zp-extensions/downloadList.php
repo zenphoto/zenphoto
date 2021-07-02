@@ -273,11 +273,11 @@ class DownloadList {
 	}
 
 	static function noFile() {
-		global $_downloadFile;
+		global $_zp_downloadfile;
 		if (TEST_RELEASE) {
-			$file = $_downloadFile;
+			$file = $_zp_downloadfile;
 		} else {
-			$file = basename($_downloadFile);
+			$file = basename($_zp_downloadfile);
 		}
 		?>
 		<script type="text/javascript">
@@ -678,25 +678,27 @@ if (isset($_GET['download'])) {
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
 		$item = (int) $item;
 		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . $item);
-		$_downloadFile = internalToFilesystem($path['aux']);
-		if (file_exists($_downloadFile)) {
-			DownloadList::updateListItemCount($_downloadFile);
-			$ext = getSuffix($_downloadFile);
+		$_zp_downloadfile = '';
+		if (isset($path['aux'])) {
+			$_zp_downloadfile = internalToFilesystem($path['aux']);
+		}
+		if (file_exists($_zp_downloadfile)) {
+			DownloadList::updateListItemCount($_zp_downloadfile);
+			$ext = getSuffix($_zp_downloadfile);
 			$mimetype = getMimeString($ext);
 			header('Content-Description: File Transfer');
 			header('Content-Type: ' . $mimetype);
-			header('Content-Disposition: attachment; filename=' . basename(urldecode($_downloadFile)));
+			header('Content-Disposition: attachment; filename=' . basename(urldecode($_zp_downloadfile)));
 			header('Content-Transfer-Encoding: binary');
 			header('Expires: 0');
 			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 			header('Pragma: public');
-			header('Content-Length: ' . filesize($_downloadFile));
+			header('Content-Length: ' . filesize($_zp_downloadfile));
 			flush();
-			readfile($_downloadFile);
+			readfile($_zp_downloadfile);
 			exitZP();
 		} else {
 			zp_register_filter('theme_body_open', 'DownloadList::noFile');
 		}
 	}
 }
-?>
