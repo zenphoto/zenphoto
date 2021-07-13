@@ -4,7 +4,7 @@
  * @package setup
  */
 // force UTF-8 Ø
-Define('PHP_MIN_VERSION', '5.3.0');
+Define('PHP_MIN_VERSION', '7.0.0');
 Define('PHP_DESIRED_VERSION', '7.4.0');
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
@@ -232,10 +232,7 @@ chdir(dirname(dirname(__FILE__)));
 // Important. when adding new database support this switch may need to be extended,
 $engines = array();
 
-$preferences = array('mysqli' => 1, 'pdo_mysql' => 2, 'mysql' => 3);
-if (version_compare(PHP_VERSION, '7.0.0', '>=')) {
-	unset($preferences['mysql']);
-}
+$preferences = array('mysqli' => 1, 'pdo_mysql' => 2);
 $cur = 999999;
 $preferred = NULL;
 foreach (setup::glob('functions-db-*.php') as $key => $engineMC) {

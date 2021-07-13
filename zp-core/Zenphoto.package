@@ -401,7 +401,6 @@ zp-core/functions-common.php
 zp-core/functions-config.php
 zp-core/functions-controller.php
 zp-core/functions-db_NULL.php
-zp-core/functions-db-MySQL.php
 zp-core/functions-db-MySQLi.php
 zp-core/functions-db-PDO_MySQL.php
 zp-core/functions-filter.php
@@ -1709,4 +1708,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1711
+1710
