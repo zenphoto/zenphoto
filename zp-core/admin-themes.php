@@ -251,7 +251,7 @@ foreach($themes as $theme => $themeinfo) {
 			<?php 
 			echo processExtensionVariable($themeinfo['desc']); 
 			if(array_key_exists('deprecated', $themeinfo)) {
-				echo '<div class="notebox">' . processExtensionVariable($themeinfo['deprecated']) . '</div>';
+				echo '<div class="warningbox"><strong>' . gettext('Deprecated') . ':</strong> ' . processExtensionVariable($themeinfo['deprecated']) . '</div>';
 			}
 			$disable = false;
 			if(array_key_exists('disable', $themeinfo)) {

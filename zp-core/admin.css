@@ -458,10 +458,9 @@ ul.nav li:hover > ul {
 
 .errorbox {
 	padding: 10px 15px 10px 15px;
-	background-color: #FDD;
-	border-width: 1px 1px 2px 1px;
-	border-style: solid;
-	border-color: #FAA;
+	background-color:#f2dede;
+	border-color:#ebccd1;
+	color: #b94a48;
 	margin-bottom: 10px;
 	font-size: 100%;
 }
@@ -481,10 +480,9 @@ ul.nav li:hover > ul {
 ------------------------------ */
 .warningbox {
 	padding: 5px 10px 5px 10px;
-	background-color: #fcf676;
-	border-width: 1px 1px 2px 1px;
-	border-style: solid;
+	background-color: #FFEFB7;
 	border-color: #FFDEB5;
+	color:black;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -509,10 +507,9 @@ ul.nav li:hover > ul {
 ------------------------------ */
 .notebox {
 	padding: 5px 10px 5px 10px;
-	background-color: #FFEFB7;
-	border-width: 1px 1px 2px 1px;
-	border-color: #FFDEB5;
-	border-style: solid;
+	background-color:#d9edf7;
+	border-color:#bce8f1;
+	color: black;
 	margin-bottom: 10px;
 	font-size: 100%;
 	-moz-border-radius: 5px;

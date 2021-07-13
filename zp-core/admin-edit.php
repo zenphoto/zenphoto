@@ -564,7 +564,7 @@ echo "\n</head>";
 				$thumbshow = 'yes';
 				$thumbmsg = gettext('Show album thumb');
 			}
-			$checkarray_images = array(
+			$checkarray_base = array(
 							gettext('*Bulk actions*')			 => 'noaction',
 							gettext('Delete')							 => 'deleteall',
 							gettext('Set to published')		 => 'showall',
@@ -574,17 +574,17 @@ echo "\n</head>";
 							gettext('Change owner')				 => 'changeowner'
 			);
 			if (extensionEnabled('comment_form')) {
-				$checkarray[gettext('Disable comments')] = 'commentsoff';
-				$checkarray[gettext('Enable comments')] = 'commentson';
+				$checkarray_base[gettext('Disable comments')] = 'commentsoff';
+				$checkarray_base[gettext('Enable comments')] = 'commentson';
 			}
 			if (extensionEnabled('hitcounter')) {
-				$checkarray[gettext('Reset hitcounter')] = 'resethitcounter';
+				$checkarray_base[gettext('Reset hitcounter')] = 'resethitcounter';
 			}
-			$checkarray_albums = array_merge($checkarray_images, array(
+			$checkarray_albums = array_merge($checkarray_base, array(
 							gettext('Delete')								 => 'deleteallalbum',
 							gettext('Add tags to images')		 => 'alltags',
 							gettext('Clear tags of images')	 => 'clearalltags'));
-			$checkarray_images = array_merge($checkarray_images, array(
+			$checkarray_images = array_merge($checkarray_base, array(
 							gettext('Delete')	 => 'deleteall',
 							gettext('Move')		 => 'moveimages',
 							gettext('Copy')		 => 'copyimages')

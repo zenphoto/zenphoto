@@ -373,7 +373,7 @@ $subtab = printSubtabs();
 						echo $plugin_description;
 						
 						if($plugin_deprecated) {
-							echo '<p class="notebox">' . $plugin_deprecated . '</p>';
+							echo '<p class="warningbox"><strong>' . gettext('Deprecated').  ':</strong> ' . $plugin_deprecated . '</p>';
 						}
 						if ($plugin_disable) {
 							?>
