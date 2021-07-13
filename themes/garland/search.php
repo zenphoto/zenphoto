@@ -221,8 +221,8 @@ if (!defined('WEBPATH'))
 									<p style="clear: both; "></p>
 									<?php $handler->theme_content(NULL); ?>
 									<?php
-									if ((getNumAlbums() != 0) || !$_oneImagePage) {
-										printPageListWithNav(gettext("« prev"), gettext("next »"), $_oneImagePage);
+									if ((getNumAlbums() != 0) || !$_zp_one_image_page) {
+										printPageListWithNav(gettext("« prev"), gettext("next »"), $_zp_one_image_page);
 									}
 									footer();
 									?>

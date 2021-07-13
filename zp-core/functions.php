@@ -8,7 +8,7 @@
  */
 // force UTF-8 Ø
 
-global $_zp_current_context_stack, $_zp_HTML_cache;
+global $_zp_current_context_stack, $_zp_html_cache;
 
 if (!function_exists("json_encode")) {
 	// load the drop-in replacement library
@@ -21,7 +21,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-kses.php');
 require_once dirname(__FILE__) . '/lib-htmLawed.php';
 
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
-$_zp_HTML_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
+$_zp_html_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
 //setup session before checking for logon cookie
 require_once(dirname(__FILE__) . '/functions-i18n.php');
 
@@ -2422,7 +2422,7 @@ function XSRFToken($action) {
  * @param bool $inline set to true to run the task "in-line". Set false run asynchronously
  */
 function cron_starter($script, $params, $offsetPath, $inline = false) {
-	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj, $_zp_HTML_cache;
+	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj, $_zp_html_cache;
 	$admin = $_zp_authority->getMasterUser();
 
 	if ($inline) {
@@ -2443,7 +2443,7 @@ function cron_starter($script, $params, $offsetPath, $inline = false) {
 			$paramlist .= '&' . $key . '=' . $value;
 		}
 		$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
-		$_zp_HTML_cache->abortHTMLCache();
+		$_zp_html_cache->abortHTMLCache();
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[

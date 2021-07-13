@@ -1300,13 +1300,13 @@ class Gallery {
 
 	/**
 	 * registers object handlers for album varients
-	 * @global array $_zp_albumHandlers
+	 * @global array $_zp_album_handlers
 	 * @param type $suffix
 	 * @param type $objectName
 	 */
 	static function addAlbumHandler($suffix, $objectName) {
-		global $_zp_albumHandlers;
-		$_zp_albumHandlers[strtolower($suffix)] = $objectName;
+		global $_zp_album_handlers;
+		$_zp_album_handlers[strtolower($suffix)] = $objectName;
 	}
 
 }

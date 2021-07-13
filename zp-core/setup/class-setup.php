@@ -728,7 +728,7 @@ class setup {
 	}
 
 	static function locale($locale) {
-		global $_zp_RTL_css;
+		global $_zp_rtl_css;
 		$en1 = LOCAL_CHARSET;
 		$en2 = str_replace('ISO-', 'ISO', $en1);
 		$simple = str_replace('_', '-', $locale);
@@ -742,7 +742,7 @@ class setup {
 		$try[$simple[0]] = $simple[0];
 		$try['NULL'] = NULL;
 		$rslt = setlocale(LC_ALL, $try);
-		$_zp_RTL_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
+		$_zp_rtl_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
 		return $rslt;
 	}
 

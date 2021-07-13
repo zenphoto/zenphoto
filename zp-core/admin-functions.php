@@ -66,7 +66,7 @@ function datepickerJS() {
  * @param string $subtab the sub-tab if any
  */
 function printAdminHeader($tab, $subtab = NULL) {
-	global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $zenphoto_tabs, $_zp_RTL_css;
+	global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $zenphoto_tabs, $_zp_rtl_css;
 	$_zp_admin_tab = $tab;
 	if (isset($_GET['tab'])) {
 		$_zp_admin_subtab = sanitize($_GET['tab'], 3);
@@ -120,7 +120,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 			<?php
-			if ($_zp_RTL_css) {
+			if ($_zp_rtl_css) {
 				?>
 				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-rtl.css" type="text/css" />
 				<?php

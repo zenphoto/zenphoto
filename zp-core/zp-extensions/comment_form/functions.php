@@ -467,7 +467,7 @@ function comment_form_postcomment($error) {
  * @return NULL|boolean
  */
 function comment_form_handle_comment() {
-	global $_zp_current_image, $_zp_current_album, $_zp_comment_stored, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_HTML_cache;
+	global $_zp_current_image, $_zp_current_album, $_zp_comment_stored, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_html_cache;
 	$comment_error = 0;
 	$cookie = zp_getCookie('zpcms_comment');
 	if (isset($_POST['comment']) && (!isset($_POST['username']) || empty($_POST['username']))) { // 'username' is a honey-pot trap
@@ -476,7 +476,7 @@ function comment_form_handle_comment() {
 		 * Also the cache should be cleared so that a new page is saved at the first non-comment posting viewing.
 		 * But this has to wait until processing is finished to avoid race conditions.
 		 */
-		$_zp_HTML_cache->disable();
+		$_zp_html_cache->disable();
 		if (in_context(ZP_IMAGE)) {
 			$commentobject = $_zp_current_image;
 			$redirectTo = $_zp_current_image->getLink();
@@ -553,7 +553,7 @@ function comment_form_handle_comment() {
 				$error = $commentadded->comment_error_text;
 				$comment_error++;
 			} else {
-				$_zp_HTML_cache->clearHtmlCache();
+				$_zp_html_cache->clearHtmlCache();
 				$error = NULL;
 				if (isset($_POST['remember'])) {
 					// Should always re-cookie to update info in case it's changed...

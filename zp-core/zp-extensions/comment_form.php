@@ -247,7 +247,7 @@ class comment_form {
  * @param bool $desc_order default false, set to true to change the comment order to descending ( = newst to oldest)
  */
 function printCommentForm($showcomments = true, $addcommenttext = NULL, $addheader = true, $comment_commententry_mod = '', $desc_order = false) {
-	global $_zp_gallery_page, $_zp_current_admin_obj, $_zp_current_comment, $_zp_captcha, $_zp_authority, $_zp_HTML_cache, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	global $_zp_gallery_page, $_zp_current_admin_obj, $_zp_current_comment, $_zp_captcha, $_zp_authority, $_zp_html_cache, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 
 	if (getOption('email_new_comments')) {
 		$email_list = $_zp_authority->getAdminEmail();
@@ -419,7 +419,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 				foreach ($data as $check) {
 					foreach ($check as $v) {
 						if ($v) {
-							$_zp_HTML_cache->disable(); //	shouldn't cache partially filled in pages
+							$_zp_html_cache->disable(); //	shouldn't cache partially filled in pages
 							break 2;
 						}
 					}

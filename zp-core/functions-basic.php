@@ -269,14 +269,14 @@ if (getOption('use_imagick')) {
 while (!function_exists('zp_graphicsLibInfo')) {
 	require_once(dirname(__FILE__) . '/' . array_shift($try));
 }
-$_zp_cachefileSuffix = zp_graphicsLibInfo();
+$_zp_cachefile_suffix = zp_graphicsLibInfo();
 
 
-define('GRAPHICS_LIBRARY', $_zp_cachefileSuffix['Library']);
-unset($_zp_cachefileSuffix['Library']);
-unset($_zp_cachefileSuffix['Library_desc']);
+define('GRAPHICS_LIBRARY', $_zp_cachefile_suffix['Library']);
+unset($_zp_cachefile_suffix['Library']);
+unset($_zp_cachefile_suffix['Library_desc']);
 $_zp_supported_images = array();
-foreach ($_zp_cachefileSuffix as $key => $type) {
+foreach ($_zp_cachefile_suffix as $key => $type) {
 	if ($type) {
 		$_zp_supported_images[] = strtolower($key);
 	}
@@ -537,8 +537,8 @@ function getOptionList() {
  * @return bool
  */
 function hasDynamicAlbumSuffix($path) {
-	global $_zp_albumHandlers;
-	return array_key_exists(getSuffix($path), $_zp_albumHandlers);
+	global $_zp_album_handlers;
+	return array_key_exists(getSuffix($path), $_zp_album_handlers);
 }
 
 /**
@@ -549,8 +549,8 @@ function hasDynamicAlbumSuffix($path) {
  * @return string
  */
 function isHandledAlbum($path) {
-	global $_zp_albumHandlers;
-	foreach (array_keys($_zp_albumHandlers) as $suffix) {
+	global $_zp_album_handlers;
+	foreach (array_keys($_zp_album_handlers) as $suffix) {
 		if (file_exists($path . '.' . $suffix)) {
 			//	it is a handled album sans suffix
 			return $suffix;
@@ -569,7 +569,7 @@ function isHandledAlbum($path) {
  * @param string $imagevar	$_GET index for "images"
  */
 function rewrite_get_album_image($albumvar, $imagevar) {
-	global $_zp_rewritten, $_zp_albumHandlers;
+	global $_zp_rewritten, $_zp_album_handlers;
 	$ralbum = isset($_GET[$albumvar]) ? trim(sanitize_path($_GET[$albumvar]), '/') : NULL;
 	$rimage = isset($_GET[$imagevar]) ? sanitize($_GET[$imagevar]) : NULL;
 	//	we assume that everything is correct if rewrite rules were not applied
@@ -620,7 +620,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
  * @return string
  */
 function getImageCacheFilename($album8, $image8, $args) {
-	global $_zp_supported_images, $_zp_cachefileSuffix;
+	global $_zp_supported_images, $_zp_cachefile_suffix;
 	// this function works in FILESYSTEM_CHARSET, so convert the file names
 	$album = internalToFilesystem($album8);
 	if (is_array($image8)) {
@@ -629,7 +629,7 @@ function getImageCacheFilename($album8, $image8, $args) {
 	if (IMAGE_CACHE_SUFFIX) {
 		$suffix = IMAGE_CACHE_SUFFIX;
 	} else {
-		$suffix = @$_zp_cachefileSuffix[strtoupper(getSuffix($image8))];
+		$suffix = @$_zp_cachefile_suffix[strtoupper(getSuffix($image8))];
 		if (empty($suffix)) {
 			$suffix = 'jpg';
 		}

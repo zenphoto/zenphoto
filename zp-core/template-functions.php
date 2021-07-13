@@ -792,26 +792,26 @@ function getAllAccessibleAlbums($obj, &$albumlist, $scan) {
 /**
  * Returns the number of pages for the current object
  *
- * @param bool $_oneImagePage set to true if your theme collapses all image thumbs
+ * @param bool $_zp_one_image_page set to true if your theme collapses all image thumbs
  * or their equivalent to one page. This is typical with flash viewer themes
  *
  * @return int
  */
-function getTotalPages($_oneImagePage = false) {
-	global $_zp_gallery, $_zp_current_album, $_firstPageImages, $_zp_zenpage, $_zp_current_category;
+function getTotalPages($_zp_one_image_page = false) {
+	global $_zp_gallery, $_zp_current_album, $_zp_first_page_images, $_zp_zenpage, $_zp_current_category;
 	if (in_context(ZP_ALBUM | ZP_SEARCH)) {
 		$albums_per_page = max(1, getOption('albums_per_page'));
 		$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
 		$imageCount = getNumImages();
-		if ($_oneImagePage) {
-			if ($_oneImagePage === true) {
+		if ($_zp_one_image_page) {
+			if ($_zp_one_image_page === true) {
 				$imageCount = min(1, $imageCount);
 			} else {
 				$imageCount = 0;
 			}
 		}
 		$images_per_page = max(1, getOption('images_per_page'));
-		$pageCount = ($pageCount + ceil(($imageCount - $_firstPageImages) / $images_per_page));
+		$pageCount = ($pageCount + ceil(($imageCount - $_zp_first_page_images) / $images_per_page));
 		return $pageCount;
 	} else if (get_context() == ZP_INDEX) {
 		if (galleryAlbumsPerPage() != 0) {
@@ -980,14 +980,14 @@ function printPageList($class = 'pagelist', $id = NULL, $navlen = 9) {
 /**
  * returns a page nav list.
  *
- * @param bool $_oneImagePage set to true if there is only one image page as, for instance, in flash themes
+ * @param bool $_zp_one_image_page set to true if there is only one image page as, for instance, in flash themes
  * @param int $navlen Number of navigation links to show (0 for all pages). Works best if the number is odd.
  * @param bool $firstlast Add links to the first and last pages of you gallery
  * @param int $current the current page
  * @param int $total total number of pages
  *
  */
-function getPageNavList($_oneImagePage, $navlen, $firstlast, $current, $total) {
+function getPageNavList($_zp_one_image_page, $navlen, $firstlast, $current, $total) {
 	$result = array();
 	if (hasPrevPage()) {
 		$result['prev'] = getPrevPageURL();
@@ -1029,17 +1029,17 @@ function getPageNavList($_oneImagePage, $navlen, $firstlast, $current, $total) {
  *
  * @param string $prevtext Insert here the linktext like 'previous page'
  * @param string $nexttext Insert here the linktext like 'next page'
- * @param bool $_oneImagePage set to true if there is only one image page as, for instance, in flash themes
+ * @param bool $_zp_one_image_page set to true if there is only one image page as, for instance, in flash themes
  * @param string $nextprev set to true to get the 'next' and 'prev' links printed
  * @param string $class Insert here the CSS-class name you want to style the link with (default is "pagelist")
  * @param string $id Insert here the CSS-ID name if you want to style the link with this
  * @param bool $firstlast Add links to the first and last pages of you gallery
  * @param int $navlen Number of navigation links to show (0 for all pages). Works best if the number is odd.
  */
-function printPageListWithNav($prevtext, $nexttext, $_oneImagePage = false, $nextprev = true, $class = 'pagelist', $id = NULL, $firstlast = true, $navlen = 9) {
+function printPageListWithNav($prevtext, $nexttext, $_zp_one_image_page = false, $nextprev = true, $class = 'pagelist', $id = NULL, $firstlast = true, $navlen = 9) {
 	$current = getCurrentPage();
-	$total = max(1, getTotalPages($_oneImagePage));
-	$nav = getPageNavList($_oneImagePage, $navlen, $firstlast, $current, $total);
+	$total = max(1, getTotalPages($_zp_one_image_page));
+	$nav = getPageNavList($_zp_one_image_page, $navlen, $firstlast, $current, $total);
 	if ($total > 1) {
 		?>
 		<div <?php if ($id) echo ' id="'.$id.'"'; ?> class="<?php echo $class; ?>">
@@ -1700,7 +1700,7 @@ function printAlbumData($field, $label = '') {
  * @return integer
  */
 function getAlbumPage($album = NULL) {
-	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_firstPageImages;
+	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_first_page_images;
 	if (is_null($album)) {
 		$album = $_zp_current_album;
 	}
@@ -1712,9 +1712,9 @@ function getAlbumPage($album = NULL) {
 	if (in_context(ZP_IMAGE) && !in_context(ZP_SEARCH)) {
 		$imageindex = $_zp_current_image->getIndex($use_realalbum);
 		$numalbums = $album->getNumAlbums();
-		$imagepage = floor(($imageindex - $_firstPageImages) / max(1, getOption('images_per_page'))) + 1;
+		$imagepage = floor(($imageindex - $_zp_first_page_images) / max(1, getOption('images_per_page'))) + 1;
 		$albumpages = ceil($numalbums / max(1, getOption('albums_per_page')));
-		if ($albumpages == 0 && $_firstPageImages > 0) {
+		if ($albumpages == 0 && $_zp_first_page_images > 0) {
 			$imagepage++;
 		}
 		$page = $albumpages + $imagepage;
@@ -2057,9 +2057,9 @@ function getPrevAlbumURL() {
  */
 function isImagePage() {
 	if (getNumImages()) {
-		global $_zp_page, $_firstPageImages;
+		global $_zp_page, $_zp_first_page_images;
 		$imagestart = getTotalPages(2); // # of album pages
-		if (!$_firstPageImages)
+		if (!$_zp_first_page_images)
 			$imagestart++; // then images start on the last album page.
 		return $_zp_page >= $imagestart;
 	}
@@ -2106,16 +2106,16 @@ function getNumImages() {
  * @return bool
  */
 function next_image($all = false, $firstPageCount = NULL, $mine = NULL) {
-	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_firstPageImages;
+	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_zp_first_page_images;
 	if (is_null($firstPageCount)) {
-		$firstPageCount = $_firstPageImages;
+		$firstPageCount = $_zp_first_page_images;
 	}
 	$imagePageOffset = getTotalPages(2); /* gives us the count of pages for album thumbs */
 	if ($all) {
 		$imagePage = 1;
 		$firstPageCount = 0;
 	} else {
-		$_firstPageImages = $firstPageCount; /* save this so pagination can see it */
+		$_zp_first_page_images = $firstPageCount; /* save this so pagination can see it */
 		$imagePage = $_zp_page - $imagePageOffset;
 	}
 	if ($firstPageCount > 0 && $imagePageOffset > 0) {
@@ -4063,8 +4063,8 @@ function getSearchDate($format = '%B %Y') {
  * index.php script before the theme script is loaded.
  */
 function setThemeColumns() {
-	global $_zp_current_album, $_firstPageImages, $_oneImagePage;
-	$_firstPageImages = false;
+	global $_zp_current_album, $_zp_first_page_images, $_zp_one_image_page;
+	$_zp_first_page_images = false;
 	if (($albumColumns = getOption('albums_per_row')) <= 1)
 		$albumColumns = false;
 	if (($imageColumns = getOption('images_per_row')) <= 1)
@@ -4077,16 +4077,16 @@ function setThemeColumns() {
 	if (($imageColumns) && (($imgcount % $imageColumns) != 0)) {
 		setOption('images_per_page', $imgcount = ((floor($imgcount / $imageColumns) + 1) * $imageColumns), false);
 	}
-	if ((getOption('thumb_transition') && !$_oneImagePage) && in_context(ZP_ALBUM | ZP_SEARCH) && $albumColumns && $imageColumns) {
+	if ((getOption('thumb_transition') && !$_zp_one_image_page) && in_context(ZP_ALBUM | ZP_SEARCH) && $albumColumns && $imageColumns) {
 		$count = getNumAlbums();
 		if ($count == 0) {
-			$_firstPageImages = 0;
+			$_zp_first_page_images = 0;
 		}
 		$rowssused = ceil(($count % $albcount) / $albumColumns); /* number of album rows unused */
 		$leftover = floor(max(1, getOption('images_per_page')) / $imageColumns) - $rowssused;
-		$_firstPageImages = max(0, $leftover * $imageColumns); /* number of images that fill the leftover rows */
-		if ($_firstPageImages == $imgcount) {
-			$_firstPageImages = 0;
+		$_zp_first_page_images = max(0, $leftover * $imageColumns); /* number of images that fill the leftover rows */
+		if ($_zp_first_page_images == $imgcount) {
+			$_zp_first_page_images = 0;
 		}
 	}
 }
@@ -4423,7 +4423,7 @@ function printCodeblock($number = 1, $what = NULL) {
  * @return boolean will be true if all is well, false if a 404 error should occur
  */
 function checkPageValidity($request, $gallery_page, $page) {
-	global $_zp_gallery, $_firstPageImages, $_oneImagePage, $_zp_zenpage, $_zp_current_category;
+	global $_zp_gallery, $_zp_first_page_images, $_zp_one_image_page, $_zp_zenpage, $_zp_current_category;
 	$count = NULL;
 	switch ($gallery_page) {
 		case 'album.php':
@@ -4431,15 +4431,15 @@ function checkPageValidity($request, $gallery_page, $page) {
 			$albums_per_page = max(1, getOption('albums_per_page'));
 			$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
 			$imageCount = getNumImages();
-			if ($_oneImagePage) {
-				if ($_oneImagePage === true) {
+			if ($_zp_one_image_page) {
+				if ($_zp_one_image_page === true) {
 					$imageCount = min(1, $imageCount);
 				} else {
 					$imageCount = 0;
 				}
 			}
 			$images_per_page = max(1, getOption('images_per_page'));
-			$count = ($pageCount + (int) ceil(($imageCount - $_firstPageImages) / $images_per_page));
+			$count = ($pageCount + (int) ceil(($imageCount - $_zp_first_page_images) / $images_per_page));
 			break;
 		case 'index.php':
 			if (galleryAlbumsPerPage() != 0) {

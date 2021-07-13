@@ -457,9 +457,9 @@ class cacheManager {
 	 * @param object $obj
 	 */
 	static function published($obj) {
-		global $_zp_HTML_cache, $_zp_cached_feeds;
+		global $_zp_html_cache, $_zp_cached_feeds;
 		if (getOption('cacheManager_' . $obj->table)) {
-			$_zp_HTML_cache->clearHTMLCache();
+			$_zp_html_cache->clearHTMLCache();
 			foreach ($_zp_cached_feeds as $feed) {
 				$feeder = new cacheManagerFeed($feed);
 				$feeder->clearCache();

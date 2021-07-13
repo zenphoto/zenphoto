@@ -16,12 +16,12 @@ Gallery::addAlbumHandler('alb', 'dynamicAlbum');
  * @return Album
  */
 function newAlbum($folder8, $cache = true, $quiet = false) {
-	global $_zp_albumHandlers;
+	global $_zp_album_handlers;
 	$suffix = getSuffix($folder8);
-	if (!$suffix || !array_key_exists($suffix, $_zp_albumHandlers) || is_dir(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder8))) {
+	if (!$suffix || !array_key_exists($suffix, $_zp_album_handlers) || is_dir(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder8))) {
 		return new Album($folder8, $cache, $quiet);
 	} else {
-		return new $_zp_albumHandlers[$suffix]($folder8, $cache, $quiet);
+		return new $_zp_album_handlers[$suffix]($folder8, $cache, $quiet);
 	}
 }
 

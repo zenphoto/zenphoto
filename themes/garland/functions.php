@@ -39,7 +39,7 @@ if (!OFFSET_PATH) {
 	}
 
 	require_once(SERVERPATH . '/' . THEMEFOLDER . '/garland/' . $personality . '/functions.php');
-	$_oneImagePage = $handler->onePage();
+	$_zp_one_image_page = $handler->onePage();
 	$_zp_page_check = 'my_checkPageValidity';
 }
 

@@ -73,8 +73,8 @@ $map = function_exists('printGoogleMap');
 									<p style="clear: both; "></p>
 									<?php $handler->theme_content($map); ?>
 									<?php
-									if ((getNumAlbums() != 0) || !$_oneImagePage) {
-										printPageListWithNav(gettext("« prev"), gettext("next »"), $_oneImagePage);
+									if ((getNumAlbums() != 0) || !$_zp_one_image_page) {
+										printPageListWithNav(gettext("« prev"), gettext("next »"), $_zp_one_image_page);
 									}
 									@call_user_func('printOpenStreetMap');
 									if (function_exists('printAddToFavorites'))

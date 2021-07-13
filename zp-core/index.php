@@ -97,7 +97,7 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 
 //	HTML caching?
 if ($zp_request) {
-	$_zp_HTML_cache->startHTMLCache();
+	$_zp_html_cache->startHTMLCache();
 }
 
 setThemeColumns();
@@ -114,7 +114,7 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 	if (checkAccess($hint, $show)) { // ok to view
 	} else {
 		//	don't cache the logon page or you can never see the real one
-		$_zp_HTML_cache->abortHTMLCache();
+		$_zp_html_cache->abortHTMLCache();
 		$_zp_gallery_page = 'password.php';
 		$_zp_script = SERVERPATH . '/' . THEMEFOLDER . '/' . $_index_theme . '/password.php';
 		if (!file_exists(internalToFilesystem($_zp_script))) {
@@ -131,7 +131,7 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 } else {
 	// If the requested object does not exist, issue a 404 and redirect to the 404.php
 	// in the zp-core folder. This script will load the theme 404 page if it exists.
-	$_zp_HTML_cache->abortHTMLCache();
+	$_zp_html_cache->abortHTMLCache();
 	include(SERVERPATH . "/" . ZENFOLDER . '/404.php');
 }
 //$_zp_script_timer['theme script load'] = microtime();
@@ -150,5 +150,5 @@ foreach ($_zp_script_timer as $step => $time) {
 }
 if (count($_zp_script_timer) > 1)
 	printf("<!-- " . gettext('Zenphoto script processing total:%.4f seconds') . " -->\n", $last - $first);
-$_zp_HTML_cache->endHTMLCache();
+$_zp_html_cache->endHTMLCache();
 ?>

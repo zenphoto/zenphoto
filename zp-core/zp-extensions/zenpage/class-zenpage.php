@@ -268,7 +268,7 @@ class Zenpage {
 	 * @return array
 	 */
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL, $author = null) {
-		global $_zp_current_category, $_zp_post_date, $_zp_newsCache;
+		global $_zp_current_category, $_zp_post_date, $_zp_news_cache;
 		$getunpublished_myitems = false;
 		$cat = '';
 		if (empty($published)) {
@@ -304,8 +304,8 @@ class Zenpage {
 		if($author) {
 			$newsCacheIndex .= '-' . $author;
 		}  
-		if (isset($_zp_newsCache[$newsCacheIndex])) {
-			$result = $_zp_newsCache[$newsCacheIndex];
+		if (isset($_zp_news_cache[$newsCacheIndex])) {
+			$result = $_zp_news_cache[$newsCacheIndex];
 		} else {
 			$show = $currentcategory = false;
 			if ($category) {
@@ -465,7 +465,7 @@ class Zenpage {
 					}
 				}
 			}
-			$_zp_newsCache[$newsCacheIndex] = $result;
+			$_zp_news_cache[$newsCacheIndex] = $result;
 		}
 
 		if ($articles_per_page) {

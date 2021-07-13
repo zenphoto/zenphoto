@@ -4,7 +4,7 @@
  *
  * Comment form plugin default light configuration
  */
- global $_zp_RTL_css;
+ global $_zp_rtl_css;
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
 <script type="text/javascript">
@@ -16,7 +16,7 @@
 		<?php if(!empty(trim(getOption('tinymce4_entities')))) { ?>
 			entities: '<?php echo getOption('tinymce4_entities'); ?>',
 		<?php } ?>	
-		directionality: "<?php echo $_zp_RTL_css ? 'rtl' : 'ltr'; ?>",
+		directionality: "<?php echo $_zp_rtl_css ? 'rtl' : 'ltr'; ?>",
 		menubar: false,
 		relative_urls: false,
 		plugins: [

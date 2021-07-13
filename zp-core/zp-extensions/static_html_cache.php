@@ -50,7 +50,7 @@ if (OFFSET_PATH == 2) { //	clear the cache upon upgrade
 	static_html_cache::clearHTMLCache();
 }
 
-$_zp_HTML_cache = new static_html_cache();
+$_zp_html_cache = new static_html_cache();
 zp_register_filter('image_processor_uri', 'static_html_cache::_disable');
 
 class staticHTMLCacheOptions {
@@ -361,8 +361,8 @@ class static_html_cache {
 	 * call to disable caching a page
 	 */
 	static function disable() {
-		global $_zp_HTML_cache;
-		$_zp_HTML_cache->enabled = false;
+		global $_zp_html_cache;
+		$_zp_html_cache->enabled = false;
 	}
 
 	
@@ -373,8 +373,8 @@ class static_html_cache {
 	 * @return string
 	 */
 	static function _disable($uri) {
-		global $_zp_HTML_cache;
-		$_zp_HTML_cache->disable();
+		global $_zp_html_cache;
+		$_zp_html_cache->disable();
 		return $uri;
 	}
 
