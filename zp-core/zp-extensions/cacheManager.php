@@ -404,18 +404,6 @@ class cacheManager {
 	}
 
 	/**
-	 * Adds a custom image cache size for themes and – despite the method name – also for plugins
-	 * 
-	 * @deprecated Zenphoto 1.6 - Use cacheManager::addCacheSize() instead
-	 * @since Zenphoto 1.5.1
-	 */
-	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = false) {
-		if (class_exists('cachemanager_internal_deprecations'))
-			cachemanager_internal_deprecations::addThemeCacheSize();
-		self::addCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects, $maxspace);
-	}
-
-	/**
 	 * Adds the default theme thumb cache size
 	 */
 	static function addDefaultThumbSize() {
@@ -423,32 +411,10 @@ class cacheManager {
 	}
 
 	/**
-	 * Adds the default theme thumb cache size
-	 * @deprecated Zenphoto 1.6 - Better use cacheManager::addDefaultThumbSize();
-	 * @since Zenphoto 1.5.1
-	 */
-	static function addThemeDefaultThumbSize() {
-		if (class_exists('cachemanager_internal_deprecations'))
-			cachemanager_internal_deprecations::addThemeDefaultThumbSize();
-		cacheManager::addDefaultThumbSize();
-	}
-
-	/**
 	 * Adds default sized image size for the cachemanger
 	 */
 	static function addDefaultSizedImageSize() {
 		setOption('cachemanager_defaultsizedimage', 1);
-	}
-
-	/**
-	 * @deprecated Zenphoto 1.6 - Better use cacheManager::addDefaultSizedImageSize();
-	 * @since Zenphoto 1.5.1
-	 */
-	static function addThemeDefaultSizedImageSize() {
-		if (class_exists('cachemanager_internal_deprecations'))
-			cachemanager_internal_deprecations::addThemeDefaultSizedImageSize();
-		cacheManager::addDefaultSizedImageSize();
-		;
 	}
 
 	/**
@@ -929,17 +895,6 @@ class cacheManager {
 	 */
 	static function deleteCacheSizes($owner) {
 		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `aux`=' . db_quote($owner));
-	}
-
-	/**
-	 * @deprecated Zenphoto 1.6 - Use cachemanager::deleteCacheSizes() instead
-	 * @since Zenphoto 1.5.1
-	 * @param string $owner Owner of the cache size (theme or extension)
-	 */
-	static function deleteThemeCacheSizes($owner) {
-		if (class_exists('cachemanager_internal_deprecations'))
-			cachemanager_internal_deprecations::deleteThemeCacheSizes();
-		self::deleteCacheSizes($owner);
 	}
 
 	/**
