@@ -48,7 +48,7 @@ class user_logout_options {
 if (in_context(ZP_INDEX)) {
 	if (isset($_GET['userlog'])) { // process the logout.
 		if ($_GET['userlog'] == 0) {
-			if (!$location = Zenphoto_Authority::handleLogout()) {
+			if (!$location = Authority::handleLogout()) {
 				$__redirect = array();
 				if (in_context(ZP_ALBUM)) {
 					$__redirect['album'] = $_zp_current_album->name;
@@ -129,7 +129,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 			return;
 		}
 	} 
-	$cookies = Zenphoto_Authority::getAuthCookies();
+	$cookies = Authority::getAuthCookies();
 	if (empty($cookies) || !zp_loggedin()) {
 		if (!in_array($_zp_gallery_page, $excludedPages)) {
 			switch ($showLoginForm) {

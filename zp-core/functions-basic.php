@@ -121,7 +121,7 @@ unset($const_serverpath);
 
 // Including the config file more than once is OK, and avoids $conf missing.
 if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
+	require_once(dirname(__FILE__) . '/functions-reconfigure.php');
 	reconfigureAction(1);
 } else {
 	eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
@@ -168,7 +168,7 @@ define('DATABASE_PREFIX', $mysql_prefix);
 $_zp_mutex = new zpMutex();
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
+	require_once(dirname(__FILE__) . '/functions-reconfigure.php');
 	reconfigureAction(2);
 }
 
@@ -186,7 +186,7 @@ if(file_exists(SERVERPATH . '/' . DATA_FOLDER . '/setup.log')) {
 	define('LOGS_MOD', DATA_MOD);
 }
 if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
-	require_once(dirname(__FILE__) . '/functions-db-' . $_zp_conf_vars['db_software'] . '.php');
+	require_once(dirname(__FILE__) . '/functions-db-' . strtolower($_zp_conf_vars['db_software']) . '.php');
 	$dbconfig_defaults = array(
 			'db_software' => $_zp_conf_vars['db_software'],
 			'mysql_user' => null,
@@ -206,7 +206,7 @@ if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars
 	$data = false;
 }
 if (!$data && OFFSET_PATH != 2) {
-	require_once(dirname(__FILE__) . '/reconfigure.php');
+	require_once(dirname(__FILE__) . '/functions-reconfigure.php');
 	reconfigureAction(3);
 }
 
@@ -262,9 +262,9 @@ if (function_exists('mb_internal_encoding')) {
 // once a library has concented to load, all others will
 // abdicate.
 $_zp_graphics_optionhandlers = array();
-$try = array('lib-GD.php', 'lib-NoGraphics.php');
+$try = array('functions-graphicsgd.php', 'functions-graphicsnone.php');
 if (getOption('use_imagick')) {
-	array_unshift($try, 'lib-Imagick.php');
+	array_unshift($try, 'functions-graphicsimagick.php');
 }
 while (!function_exists('zp_graphicsLibInfo')) {
 	require_once(dirname(__FILE__) . '/' . array_shift($try));
@@ -1629,7 +1629,7 @@ function checkInstall() {
 		$install = array('ZENPHOTO' => '0.0.0');
 	}
 	if ($install['ZENPHOTO'] && $install['ZENPHOTO'] != ZENPHOTO_VERSION || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
-		require_once(dirname(__FILE__) . '/reconfigure.php');
+		require_once(dirname(__FILE__) . '/functions-reconfigure.php');
 		reconfigureAction(0);
 	}
 }
@@ -1640,7 +1640,7 @@ function checkInstall() {
  * Closes the database to be sure that we do not build up outstanding connections
  */
 function exitZP() {
-	IF (function_exists('db_close'))
+	if (function_exists('db_close'))
 		db_close();
 	exit();
 }
@@ -1656,14 +1656,16 @@ function installSignature() {
 	if(!in_array($algo, $all_algos)) { // make sure we have the algo
 		$algo = 'sha1';
 	}
-	$testFiles = array('template-functions.php'	 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/template-functions.php'),
-					'functions-filter.php'		 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-filter.php'),
-					'lib-auth.php'						 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/lib-auth.php'),
-					'lib-utf8.php'						 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/lib-utf8.php'),
-					'functions.php'						 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions.php'),
-					'functions-basic.php'			 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-basic.php'),
-					'functions-controller.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-controller.php'),
-					'functions-image.php'			 => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-image.php'));
+	$testFiles = array(
+			'template-functions.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/template-functions.php'),
+			'functions-filter.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-filter.php'),
+			'class-authority.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/class-authority.php'),
+			'class-administrator.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/class-administrator.php'),
+			'lib-utf8.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/lib-utf8.php'),
+			'functions.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions.php'),
+			'functions-basic.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-basic.php'),
+			'functions-controller.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-controller.php'),
+			'functions-image.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-image.php'));
 
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {
 		$s = $_SERVER['SERVER_SOFTWARE'];

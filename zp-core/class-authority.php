@@ -1,48 +1,4 @@
 <?php
-/**
- * Zenphoto USER credentials handlers
- *
- * An alternate authorization script may be provided to override this script. To do so, make a script that
- * implements the classes declared below. Place the new script inthe <ZENFOLDER>/plugins/alt/ folder. Zenphoto
- * will then will be automatically loaded the alternate script in place of this one.
- *
- * Replacement libraries must implement two classes:
- * 		"Authority" class: Provides the methods used for user authorization and management
- * 			store an instantiation of this class in $_zp_authority.
- *
- * 		Administrator: supports the basic Zenphoto needs for object manipulation of administrators.
- * (You can include this script and extend the classes if that suits your needs.)
- *
- * The global $_zp_current_admin_obj represents the current admin with.
- * The library must instantiate its authority class and store the object in the global $_zp_authority
- * (Note, this library does instantiate the object as described. This is so its classes can
- * be used as parent classes for lib-auth implementations. If auth_zp.php decides to use this
- * library it will instantiate the class and store it into $_zp_authority.
- *
- * The following elements need to be present in any alternate implementation in the
- * array returned by getAdministrators().
- *
- * 		In particular, there should be array elements for:
- * 				'id' (unique), 'user' (unique),	'pass',	'name', 'email', 'rights', 'valid',
- * 				'group', and 'custom_data'
- *
- * 		So long as all these indices are populated it should not matter when and where
- * 		the data is stored.
- *
- * 		Administrator class methods are required for these elements as well.
- *
- * 		The getRights() method must define at least the rights defined by the method in
- * 		this library.
- *
- * 		The checkAuthorization() method should promote the "most privileged" Admin to
- * 		ADMIN_RIGHTS to insure that there is some user capable of adding users or
- * 		modifying user rights.
- *
- * @package core
- * @subpackage classes\authorization
- */
-// force UTF-8 Ø
-require_once(dirname(__FILE__) . '/classes.php');
 
 /**
  * Provides the methods used for user authorization and management
@@ -51,7 +7,7 @@ require_once(dirname(__FILE__) . '/classes.php');
  * @package core
  * @subpackage classes\authorization
  */
-class Zenphoto_Authority {
+class Authority {
 
 	public $admin_users = NULL;
 	public $admin_groups = NULL;
@@ -96,7 +52,7 @@ class Zenphoto_Authority {
 	}
 
 	function getMasterUser() {
-		return new Zenphoto_Administrator($this->master_user, 1);
+		return new Administrator($this->master_user, 1);
 	}
 
 	function isMasterUser($user) {
@@ -244,7 +200,7 @@ class Zenphoto_Authority {
 	/**
 	 * Returns an admin object from the $pat:$criteria
 	 * @param array $criteria [ match => criteria ]
-	 * @return Zenphoto_Administrator
+	 * @return Administrator
 	 */
 	static function getAnAdmin($criteria) {
 		$selector = array();
@@ -285,7 +241,7 @@ class Zenphoto_Authority {
 			if (DEBUG_LOGIN) {
 				debugLog("checkAuthorization: no admins");
 			}
-			$_zp_current_admin_obj = new Zenphoto_Administrator('', 1);
+			$_zp_current_admin_obj = new Administrator('', 1);
 			$_zp_current_admin_obj->set('id', 0);
 			$_zp_current_admin_obj->reset = true;
 			return ADMIN_RIGHTS;
@@ -398,7 +354,7 @@ class Zenphoto_Authority {
 	 */
 	function migrateAuth($to) {
 		if ($to > self::$supports_version || $to < self::$preferred_version - 1) {
-			trigger_error(sprintf(gettext('Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)'), $to, self::$supports_version, self::$preferred_version), E_USER_NOTICE);
+			trigger_error(sprintf(gettext('Cannot migrate rights to version %1$s (Authority supports only %2$s and %3$s.)'), $to, self::$supports_version, self::$preferred_version), E_USER_NOTICE);
 			return false;
 		}
 		$success = true;
@@ -508,7 +464,7 @@ class Zenphoto_Authority {
 	 * @return object
 	 */
 	static function newAdministrator($name, $valid = 1) {
-		$user = new Zenphoto_Administrator($name, $valid);
+		$user = new Administrator($name, $valid);
 		return $user;
 	}
 
@@ -649,7 +605,7 @@ class Zenphoto_Authority {
 					if ($ref === $ticket) {
 						if (time() <= ($request_date + (3 * 24 * 60 * 60))) {
 							// limited time offer
-							$_zp_current_admin_obj = new Zenphoto_Administrator($user, 1);
+							$_zp_current_admin_obj = new Administrator($user, 1);
 							$_zp_current_admin_obj->reset = true;
 						}
 					}
@@ -1111,7 +1067,7 @@ class Zenphoto_Authority {
 					break;
 
 			}
-			Zenphoto_Authority::printPasswordFormJS()
+			Authority::printPasswordFormJS()
 			?>
 		</div>
 
@@ -1348,537 +1304,12 @@ class Zenphoto_Authority {
 
 }
 /**
- * This is a simple class so that we have a convienient "handle" for manipulating Administrators.
- *
- * NOTE: one should use the Zenphoto_Authority newAdministrator() method rather than directly instantiating
- * an administrator object
- * @package core
- * @subpackage classes\authorization
+ * @deprecated ZenphotoCMS 2.0 - Use the class Authority instead
  */
-class Zenphoto_Administrator extends PersistentObject {
-
-	public $objects = NULL;
-	public $master = false; //	will be set to true if this is the inherited master user
-	public $msg = NULL; //	a means of storing error messages from filter processing
-	public $logout_link = true; // for a Zenphoto logout
-	public $reset = false; // if true the user was setup by a "reset password" event
-	public $passhash; // the hash algorithm used in creating the password
-
-	/**
-	 * Constructor for an Administrator
-	 *
-	 * @param string $user.
-	 * @param int $valid used to signal kind of admin object
-	 * @return Administrator
-	 */
-	function __construct($user, $valid) {
-		global $_zp_authority;
-		$this->passhash = (int) getOption('strong_hash');
-		$this->instantiate('administrators', array('user' => $user, 'valid' => $valid), NULL, false, empty($user));
-		if (empty($user)) {
-			$this->set('id', -1);
-		}
-		if ($valid) {
-			$rights = $this->getRights();
-			$new_rights = 0;
-			if ($_zp_authority->isMasterUser($user)) {
-				$new_rights = ALL_RIGHTS;
-				$this->master = true;
-			} else {
-				// make sure that the "hidden" gateway rights are set for managing objects
-				if ($rights & MANAGE_ALL_ALBUM_RIGHTS) {
-					$new_rights = $new_rights | ALBUM_RIGHTS;
-				}
-				if ($rights & MANAGE_ALL_NEWS_RIGHTS) {
-					$new_rights = $new_rights | ZENPAGE_PAGES_RIGHTS;
-				}
-				if ($rights & MANAGE_ALL_PAGES_RIGHTS) {
-					$new_rights = $new_rights | ZENPAGE_NEWS_RIGHTS;
-				}
-				$this->getObjects();
-				foreach ($this->objects as $object) {
-					switch ($object['type']) {
-						case 'album':
-							if ($object['edit'] && MANAGED_OBJECT_RIGHTS_EDIT) {
-								$new_rights = $new_rights | ALBUM_RIGHTS;
-							}
-							break;
-						case 'pages':
-							$new_rights = $new_rights | ZENPAGE_PAGES_RIGHTS;
-							break;
-						case 'news':
-							$new_rights = $new_rights | ZENPAGE_NEWS_RIGHTS;
-							break;
-					}
-				}
-			}
-			if($this->getGroup()) {
-				$this->preservePrimeAlbum();
-			}
-			if ($new_rights) {
-				$this->setRights($rights | $new_rights);
-			}
-		}
-	}
-
-	/**
-	 * Returns the unformatted date
-	 *
-	 * @return date
-	 */
-	function getDateTime() {
-		return $this->get('date');
-	}
-
-	/**
-	 * Stores the date
-	 *
-	 * @param string $datetime formatted date
-	 */
-	function setDateTime($datetime) {
-		$this->set('date', $datetime);
-	}
-
-	function getID() {
-		return $this->get('id');
-	}
-
-	/**
-	 * Hashes and stores the password
-	 * @param $pwd
-	 */
-	function setPass($pwd) {
-		$hash_type = getOption('strong_hash');
-		$pwd = Zenphoto_Authority::passwordHash($this->getUser(), $pwd, $hash_type);
-		$this->set('pass', $pwd);
-		$this->set('passupdate', date('Y-m-d H:i:s'));
-		$this->set('passhash', $hash_type);
-		return $this->get('pass');
-	}
-
-	/**
-	 * Returns stored password hash
-	 */
-	function getPass() {
-		return $this->get('pass');
-	}
-
-	/**
-	 * Stores the user name
-	 */
-	function setName($admin_n) {
-		$this->set('name', $admin_n);
-	}
-
-	/**
-	 * Returns the user name
-	 */
-	function getName() {
-		return $this->get('name');
-	}
+class Zenphoto_Authority extends Authority {
 	
-	/**
-	 * Gets the full name if set 
-	 * 
-	 * @since ZenphotoCNS 1.5.8
-	 * 
-	 * @param string $user User id 
-	 * @return string
-	 */
-	static function getNameByUser($user) {
-		$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
-		if (is_object($admin) && $admin->getName()) {
-			return $admin->getName();
-		}
-		return $user;
+	function __construct() {
+		parent::__construct();
+		debuglog(gettext('DEPRECATED: Use the Authority class instead'));
 	}
-
-	/**
-	 * Stores the user email
-	 */
-	function setEmail($admin_e) {
-		$this->set('email', $admin_e);
-	}
-
-	/**
-	 * Returns the user email
-	 */
-	function getEmail() {
-		return $this->get('email');
-	}
-
-	/**
-	 * Stores user rights
-	 */
-	function setRights($rights) {
-		$this->set('rights', $rights);
-	}
-
-	/**
-	 * Returns user rights
-	 */
-	function getRights() {
-		return $this->get('rights');
-	}
-
-	/**
-	 * Returns local copy of managed objects.
-	 */
-	function setObjects($objects) {
-		$this->objects = $objects;
-	}
-
-	/**
-	 * Saves local copy of managed objects.
-	 * NOTE: The database is NOT updated by this, the user object MUST be saved to
-	 * cause an update
-	 */
-	function getObjects($what = NULL) {
-		if (is_null($this->objects)) {
-			if ($this->transient) {
-				$this->objects = array();
-			} else {
-				$this->objects = populateManagedObjectsList(NULL, $this->getID());
-			}
-		}
-		if (empty($what)) {
-			return $this->objects;
-		}
-		$result = array();
-		foreach ($this->objects as $object) {
-			if ($object['type'] == $what) {
-				$result[get_language_string($object['name'])] = $object['data'];
-			}
-		}
-		return $result;
-	}
-
-	/**
-	 * Stores custom data
-	 */
-	function setCustomData($custom_data) {
-		$this->set('custom_data', $custom_data);
-	}
-
-	/**
-	 * Returns custom data
-	 */
-	function getCustomData() {
-		return $this->get('custom_data');
-	}
-
-	/**
-	 * Sets the "valid" flag. Valid is 1 for users, 0 for groups and templates
-	 */
-	function setValid($valid) {
-		$this->set('valid', $valid);
-	}
-
-	/**
-	 * Returns the valid flag
-	 */
-	function getValid() {
-		return $this->get('valid');
-	}
-
-	/**
-	 * Sets the user's group.
-	 * NOTE this does NOT set rights, etc. that must be done separately
-	 */
-	function setGroup($group) {
-		$this->set('group', $group);
-	}
-
-	/**
-	 * Returns user's group
-	 */
-	function getGroup() {
-		return $this->get('group');
-	}
-
-	/**
-	 * Sets the user's user id
-	 */
-	function setUser($user) {
-		$this->set('user', $user);
-	}
-
-	/**
-	 * Returns user's user id
-	 */
-	function getUser() {
-		return $this->get('user');
-	}
-
-	/**
-	 * Sets the users quota
-	 */
-	function setQuota($v) {
-		$this->set('quota', $v);
-	}
-
-	/**
-	 * Returns the users quota
-	 */
-	function getQuota() {
-		return $this->get('quota');
-	}
-
-	/**
-	 * Returns the user's prefered language
-	 */
-	function getLanguage() {
-		return $this->get('language');
-	}
-
-	/**
-	 * Sets the user's preferec language
-	 */
-	function setLanguage($locale) {
-		$this->set('language', $locale);
-	}
-
-	/**
-	 * Uptates the database with all changes
-	 * 
-	 * @param bool $checkupdates Default false. If true the internal $updates property is checked for actual changes so unnecessary saving is skipped. Applies to already existing objects only.
-	 */
-	function save($checkupdates = false) {
-		global $_zp_gallery;
-		if (DEBUG_LOGIN) {
-			debugLogVar("Zenphoto_Administrator->save()", $this);
-		}
-		$objects = $this->getObjects();
-		if (is_null($this->get('date'))) {
-			$this->set('date', date('Y-m-d H:i:s'));
-		}
-		parent::save($checkupdates);
-		$id = $this->getID();
-		if (is_array($objects)) {
-			$sql = "DELETE FROM " . prefix('admin_to_object') . ' WHERE `adminid`=' . $id;
-			$result = query($sql, false);
-			foreach ($objects as $object) {
-				if (array_key_exists('edit', $object)) {
-					$edit = $object['edit'] | 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW);
-				} else {
-					$edit = 32767;
-				}
-				switch ($object['type']) {
-					case 'album':
-						$album = newAlbum($object['data']);
-						$albumid = $album->getID();
-						$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $albumid, 'albums', $edit)";
-						$result = query($sql);
-						break;
-					case 'pages':
-						$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`=' . db_quote($object['data']);
-						$result = query_single_row($sql);
-						if (is_array($result)) {
-							$objectid = $result['id'];
-							$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, 'pages', $edit)";
-							$result = query($sql);
-						}
-						break;
-					case 'news':
-						$sql = 'SELECT * FROM ' . prefix('news_categories') . ' WHERE `titlelink`=' . db_quote($object['data']);
-						$result = query_single_row($sql);
-						if (is_array($result)) {
-							$objectid = $result['id'];
-							$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, 'news', $edit)";
-							$result = query($sql);
-						}
-						break;
-				}
-			}
-		}
-	}
-
-	/**
-	 * Removes a user from the system
-	 */
-	function remove() {
-		zp_apply_filter('remove_user', $this);
-		$album = $this->getAlbum();
-		$id = $this->getID();
-		if (parent::remove()) {
-			if (!empty($album)) { //	Remove users album as well
-				$album->remove();
-			}
-			$sql = "DELETE FROM " . prefix('admin_to_object') . " WHERE `adminid`=$id";
-			$result = query($sql);
-		} else {
-			return false;
-		}
-		return $result;
-	}
-
-	/**
-	 * Returns the user's "prime" album. See setAlbum().
-	 */
-	function getAlbum() {
-		$id = $this->get('prime_album');
-		if (!empty($id)) {
-			$sql = 'SELECT `folder` FROM ' . prefix('albums') . ' WHERE `id`=' . $id;
-			$result = query_single_row($sql);
-			if ($result) {
-				$album = newAlbum($result['folder']);
-				return $album;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Records the "prime album" of a user. Prime albums are linked to the user and
-	 * removed if the user is removed.
-	 */
-	function setAlbum($album) {
-		if ($album) {
-			$this->set('prime_album', $album->getID());
-		} else {
-			$this->set('prime_album', NULL);
-		}
-	}
-
-	/**
-	 * Data to support other credential systems integration
-	 */
-	function getCredentials() {
-		return getSerializedArray($this->get('other_credentials'));
-	}
-
-	function setCredentials($cred) {
-		$this->set('other_credentials', serialize($cred));
-	}
-
-	/**
-	 * Creates a "prime" album for the user. Album name is based on the userid
-	 */
-	function createPrimealbum($new = true, $name = NULL) {
-		//	create his album
-		$t = 0;
-		$ext = '';
-		if (is_null($name)) {
-			$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"' . '/' . '\\', '|', '?', '*'), '_', seoFriendly($this->getUser())));
-		} else {
-			$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"' . '/' . '\\', '|', '?', '*'), '_', $name));
-		}
-		while ($new && file_exists(ALBUM_FOLDER_SERVERPATH . $filename . $ext)) {
-			$t++;
-			$ext = '-' . $t;
-		}
-		$path = ALBUM_FOLDER_SERVERPATH . $filename . $ext;
-		$albumname = filesystemToInternal($filename . $ext);
-		if (@mkdir_recursive($path, FOLDER_MOD)) {
-			$album = newAlbum($albumname);
-			if ($title = $this->getName()) {
-				$album->setTitle($title);
-			}
-			$album->setOwner($this->getUser());
-			$album->save();
-			$this->setAlbum($album);
-			$this->setRights($this->getRights() | ALBUM_RIGHTS);
-			if (getOption('user_album_edit_default')) {
-				$subrights = MANAGED_OBJECT_RIGHTS_EDIT;
-			} else {
-				$subrights = 0;
-			}
-			if ($this->getRights() & UPLOAD_RIGHTS) {
-				$subrights = $subrights | MANAGED_OBJECT_RIGHTS_UPLOAD;
-			}
-			$objects = $this->getObjects();
-			$objects[] = array('data' => $albumname, 'name' => $albumname, 'type' => 'album', 'edit' => $subrights);
-			$this->setObjects($objects);
-		}
-	}
-
-	function getChallengePhraseInfo() {
-		$info = $this->get('challenge_phrase');
-		if ($info) {
-			return getSerializedArray($info);
-		} else {
-			return array('challenge' => '', 'response' => '');
-		}
-	}
-
-	function setChallengePhraseInfo($challenge, $response) {
-		$this->set('challenge_phrase', serialize(array('challenge' => $challenge, 'response' => $response)));
-	}
-
-	/**
-	 *
-	 * returns the last time the user has logged on
-	 */
-	function getLastLogon() {
-		return $this->get('lastloggedin');
-	}
-	
-	/**
-	 * Returns the last time the user visited the site being loggedin
-	 * 
-	 * @since ZenphotoCMS 1.5.8
-	 * @return strig
-	 */
-	function getLastVisit() {
-		return $this->get('lastvisit');
-	}
-	
-	/**
-	 * Sets the last time the user visited the site being loggedin
-	 * 
-	 * @since ZenphotoCMS 1.5.8
-	 */
-	function setLastVisit($datetime = '') {
-		if(empty($datetime)) {
-			$datetime = date('Y-m-d H:i:s');
-		}
-		$this->set('lastvisit', $datetime);
-	}
-	
-	/**
-	 * Updates the last visit date if enabled on the options and the time frame defined has passed.
-	 * @since ZenphotoCMS 1.5.8
-	 */
-	function updateLastVisit() {
-		if (getOption('admin_lastvisit')) {
-			$lastvisit = strtotime($this->getLastVisit());
-			$lastvisit_timeframe = getOption('admin_lastvisit_timeframe');
-			if (empty($lastvisit_timeframe)) {
-				$lastvisit_timeframe = 600;
-			}
-			if (empty($lastvisit) || (time() - $lastvisit) > $lastvisit_timeframe) {
-				$this->setLastVisit();
-				$this->save();
-			}
-		}
-	}
-
-	/**
-	 * Preserves the user's prime album as managed album even if he is in a group the album is actually set as managed
-	 */
-	function preservePrimeAlbum() {
-		$primeAlbum = $this->getAlbum();
-		if (is_object($primeAlbum)) {
-			$primealbum_name = $primeAlbum->name;
-			$objects = $this->getObjects();
-			$primealbum_managed = false;
-			foreach ($objects as $key => $val) {
-				if ($val['type'] == 'album' && $val['name'] == $primealbum_name) {
-					$primealbum_managed = true;
-					break;
-				}
-			}
-			if (!$primealbum_managed) {
-				$objects[] = array(
-						'data' => $primealbum_name,
-						'name' => $primealbum_name,
-						'type' => 'album',
-						'edit' => 32765
-				);
-			}
-			$this->setObjects($objects);
-		}
-	}
-
 }
-?>

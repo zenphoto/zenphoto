@@ -4,10 +4,15 @@
  * Load the base classes (Image, Album, Gallery, etc.)                          *
  * ***************************************************************************** */
 
-require_once(dirname(__FILE__) . '/classes.php');
+require_once(dirname(__FILE__) . '/class-persistentobject.php');
+require_once(dirname(__FILE__) . '/class-themeobject.php');
+require_once(dirname(__FILE__) . '/class-mediaobject.php');
 require_once(dirname(__FILE__) . '/class-gallery.php');
+require_once(dirname(__FILE__) . '/class-albumbase.php');
 require_once(dirname(__FILE__) . '/class-album.php');
+require_once(dirname(__FILE__) . '/class-dynamicalbum.php');
 require_once(dirname(__FILE__) . '/class-image.php');
+require_once(dirname(__FILE__) . '/class-transientimage.php');
 require_once(dirname(__FILE__) . '/class-search.php');
 
 $_zp_loaded_plugins = array();
@@ -39,13 +44,12 @@ if (OFFSET_PATH != 2) { // setup does not need (and might have problems with) pl
 				}
 			}
 		}
-		require_once(dirname(__FILE__) . '/auth_zp.php'); // loaded after CLASS_PLUGIN and before ADMIN_PLUGIN
+		require_once(dirname(__FILE__) . '/auth.php'); // loaded after CLASS_PLUGIN and before ADMIN_PLUGIN
 	}
 } else {
-	require_once(dirname(__FILE__) . '/auth_zp.php'); // setup needs this!
+	require_once(dirname(__FILE__) . '/auth.php'); // setup needs this!
 }
 
 if (GALLERY_SESSION || zp_loggedin()) {
 	zp_session_start();
 } 
-?>

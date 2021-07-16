@@ -39,10 +39,10 @@ class user_groups {
 		foreach ($groups as $key => $groupname) {
 			if (empty($groupname)) {
 				//	force the first template to happen
-				$group = new Zenphoto_Administrator('', 0);
+				$group = new Administrator('', 0);
 				$group->setName('template');
 			} else {
-				$group = Zenphoto_Authority::newAdministrator($groupname, 0);
+				$group = Authority::newAdministrator($groupname, 0);
 			}
 			if ($group->getName() == 'template') {
 				unset($groups[$key]);

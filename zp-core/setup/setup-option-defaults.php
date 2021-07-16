@@ -35,15 +35,15 @@ purgeOption('zenphoto_install');
 setOption('zenphoto_install', serialize(installSignature()));
 setOptionDefault('setup_unprotected_by_adminrequest', 0);
 
-if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
+if (Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
 	if (empty($oldv)) {
 		//	The password hash of these old versions did not have the extra text.
 		//	Note: if the administrators table is empty we will re-do this option with the good stuff.
 		purgeOption('extra_auth_hash_text');
 		setOptionDefault('extra_auth_hash_text', '');
 	}
-	$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Zenphoto_Authority::$preferred_version);
-	if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
+	$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Authority::$preferred_version);
+	if (!$_zp_authority->migrateAuth(Authority::$preferred_version)) {
 		$msg .= ': ' . gettext('failed');
 	}
 	echo $msg;
@@ -275,7 +275,7 @@ if (!is_array($groupsdefined)) {
 	$groupsdefined = array();
 }
 if (!in_array('administrators', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('administrators', 0);
+	$groupobj = Authority::newAdministrator('administrators', 0);
 	$groupobj->setName('group');
 	$groupobj->setRights(ALL_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Users with full privileges'));
@@ -284,7 +284,7 @@ if (!in_array('administrators', $groupsdefined)) {
 	$groupsdefined[] = 'administrators';
 }
 if (!in_array('viewers', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('viewers', 0);
+	$groupobj = Authority::newAdministrator('viewers', 0);
 	$groupobj->setName('group');
 	$groupobj->setRights(NO_RIGHTS | POST_COMMENT_RIGHTS | VIEW_ALL_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Users allowed only to view zenphoto objects'));
@@ -293,7 +293,7 @@ if (!in_array('viewers', $groupsdefined)) {
 	$groupsdefined[] = 'viewers';
 }
 if (!in_array('blocked', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('blocked', 0);
+	$groupobj = Authority::newAdministrator('blocked', 0);
 	$groupobj->setName('group');
 	$groupobj->setRights(0);
 	$groupobj->set('other_credentials', gettext('Banned users'));
@@ -302,7 +302,7 @@ if (!in_array('blocked', $groupsdefined)) {
 	$groupsdefined[] = 'blocked';
 }
 if (!in_array('album managers', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('album managers', 0);
+	$groupobj = Authority::newAdministrator('album managers', 0);
 	$groupobj->setName('template');
 	$groupobj->setRights(NO_RIGHTS | OVERVIEW_RIGHTS | POST_COMMENT_RIGHTS | VIEW_ALL_RIGHTS | UPLOAD_RIGHTS | COMMENT_RIGHTS | ALBUM_RIGHTS | THEMES_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Managers of one or more albums'));
@@ -311,7 +311,7 @@ if (!in_array('album managers', $groupsdefined)) {
 	$groupsdefined[] = 'album managers';
 }
 if (!in_array('default', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('default', 0);
+	$groupobj = Authority::newAdministrator('default', 0);
 	$groupobj->setName('template');
 	$groupobj->setRights(DEFAULT_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Default user settings'));
@@ -320,7 +320,7 @@ if (!in_array('default', $groupsdefined)) {
 	$groupsdefined[] = 'default';
 }
 if (!in_array('newuser', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('newuser', 0);
+	$groupobj = Authority::newAdministrator('newuser', 0);
 	$groupobj->setName('template');
 	$groupobj->setRights(NO_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Newly registered and verified users'));

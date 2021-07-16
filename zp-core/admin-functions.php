@@ -3179,7 +3179,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param bit $rights rights of the admin
 	 */
 	function printAdminRightsTable($id, $background, $alterrights, $rights) {
-		$rightslist = sortMultiArray(Zenphoto_Authority::getRights(), array('set', 'value'));
+		$rightslist = sortMultiArray(Authority::getRights(), array('set', 'value'));
 		?>
 		<div class="box-rights">
 			<strong><?php echo gettext("Rights:"); ?></strong>
@@ -3373,7 +3373,7 @@ function processRights($i) {
 	} else {
 		$rights = 0;
 	}
-	foreach (Zenphoto_Authority::getRights() as $name => $right) {
+	foreach (Authority::getRights() as $name => $right) {
 		if (isset($_POST[$i . '-' . $name])) {
 			$rights = $rights | $right['value'] | NO_RIGHTS;
 		}
@@ -4725,9 +4725,9 @@ function processCredentials($object, $suffix = '') {
 				}
 			} else {
 				if (is_object($object)) {
-					$object->setPassword(Zenphoto_Authority::passwordHash($newuser, $pwd));
+					$object->setPassword(Authority::passwordHash($newuser, $pwd));
 				} else {
-					setOption($object . '_password', Zenphoto_Authority::passwordHash($newuser, $pwd));
+					setOption($object . '_password', Authority::passwordHash($newuser, $pwd));
 				}
 			}
 		} else {
@@ -4991,7 +4991,7 @@ function printLastChangeInfo($obj) {
 			<li><?php printf(gettext('Last updated: %s'), $obj->getUpdatedDate()); ?></li>
 			<?php
 		}
-		if (get_class($obj) == 'Zenphoto_Administrator') {
+		if (get_class($obj) == 'Administrator') {
 			?>
 			<li><?php printf(gettext('Account created: %s'), $obj->getDateTime()); ?></li>
 			<li><?php printf(gettext('Current login: %s'), $obj->get('loggedin')); ?></li>

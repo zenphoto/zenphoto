@@ -7,7 +7,7 @@
  */
 define ('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
-require_once(SERVERPATH.'/'.ZENFOLDER.'/reconfigure.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/functions-reconfigure.php');
 
 admin_securityChecks(NULL, currentRelativeURL());
 XSRFdefender('cloneZenphoto');

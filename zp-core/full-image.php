@@ -130,8 +130,8 @@ switch ($suffix) {
 		break;
 	default:
 		if ($disposal == 'download') {
-			require_once(dirname(__FILE__) . '/lib-MimeTypes.php');
-			$mimetype = getMimeString($suffix);
+			require_once(dirname(__FILE__) . '/class-mimetypes.php');
+			$mimetype = mimeTypes::getType($suffix);
 			header('Content-Disposition: attachment; filename="' . $image . '"'); // enable this to make the image a download
 			$fp = fopen($image_path, 'rb');
 			// send the right headers
@@ -246,8 +246,8 @@ if (!is_null($cache_path)) {
 		echo FULLWEBPATH . '/' . CACHEFOLDER . pathurlencode(imgSrcURI($cache_file));
 	} else {
 		if ($disposal == 'download' || !OPEN_IMAGE_CACHE) {
-			require_once(dirname(__FILE__) . '/lib-MimeTypes.php');
-			$mimetype = getMimeString($suffix);
+			require_once(dirname(__FILE__) . '/class-mimetypes.php');
+			$mimetype = mimeTypes::getType($suffix);
 			$fp = fopen($cache_path, 'rb');
 			// send the right headers
 			header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');

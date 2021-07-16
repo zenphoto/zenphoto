@@ -52,13 +52,13 @@ class external_auth {
 			if ($result = $this->user()) {
 				$user = $result['user'];
 				$searchfor = array('`user`=' => $user,  '`valid`=' => 1);
-				$userobj = Zenphoto_Authority::getAnAdmin($searchfor);
+				$userobj = Authority::getAnAdmin($searchfor);
 				if (!$userobj) {
 					unset($result['id']);
 					unset($result['user']);
 					$authority = '';
 					//	create a transient user
-					$userobj = new Zenphoto_Administrator('', 1);
+					$userobj = new Administrator('', 1);
 					$userobj->setUser($user);
 					$userobj->setRights(NO_RIGHTS);	//	just incase none get set
 					//	Flag as external credentials for completeness
@@ -79,7 +79,7 @@ class external_auth {
 								$objects = array();
 								$groups = $value;
 								foreach ($groups as $key=>$group) {
-									$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $group,'`valid`=' => 0));
+									$groupobj = Authority::getAnAdmin(array('`user`=' => $group,'`valid`=' => 0));
 									if ($groupobj) {
 										$member = true;
 										$rights = $groupobj->getRights() | $rights;
@@ -101,7 +101,7 @@ class external_auth {
 								if (!$member && isset($result['defaultgroup'])) {
 									//	No Zenphoto group, use the default group
 									$group = $result['defaultgroup'];
-									$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $group,'`valid`=' => 0));
+									$groupobj = Authority::getAnAdmin(array('`user`=' => $group,'`valid`=' => 0));
 									if ($groupobj) {
 										$rights = $groupobj->getRights();
 										$objects = $groupobj->getObjects();
@@ -141,4 +141,3 @@ class external_auth {
 
 
 }
-?>

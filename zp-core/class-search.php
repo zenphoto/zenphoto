@@ -1929,7 +1929,7 @@ class SearchEngine {
 	 */
 	protected function getCacheTag($table, $search, $sort) {
 		$user = 'guest';
-		$authCookies = Zenphoto_Authority::getAuthCookies();
+		$authCookies = Authority::getAuthCookies();
 		if (!empty($authCookies)) { // some sort of password exists, play it safe and make the tag unique
 			$user = getUserIP();
 		}

@@ -539,7 +539,7 @@ if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
 	<?php
 }
 zp_apply_filter('texteditor_config', 'zenphoto');
-Zenphoto_Authority::printPasswordFormJS();
+Authority::printPasswordFormJS();
 ?>
 </head>
 <body>
@@ -1991,8 +1991,8 @@ Zenphoto_Authority::printPasswordFormJS();
 				}
 
 				if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
-					require_once(dirname(__FILE__) . '/lib-Imagick.php');
-					require_once(dirname(__FILE__) . '/lib-GD.php');
+					require_once(dirname(__FILE__) . '/functions-graphicsimagick.php');
+					require_once(dirname(__FILE__) . '/functions-graphicsgd.php');
 					?>
 					<div id="tab_image" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>

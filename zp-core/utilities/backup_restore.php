@@ -250,7 +250,7 @@ if (isset($_REQUEST['backup'])) {
 		';
 	}
 } else if (isset($_REQUEST['restore'])) {
-	$oldlibauth = Zenphoto_Authority::getVersion();
+	$oldlibauth = Authority::getVersion();
 	$errors = array(gettext('No backup set found.'));
 	if (isset($_REQUEST['backupfile'])) {
 		$file_version = 0;
@@ -462,7 +462,7 @@ if (isset($_REQUEST['backup'])) {
 	}
 
 	setOption('license_accepted', ZENPHOTO_VERSION);
-	if ($oldlibauth != Zenphoto_Authority::getVersion()) {
+	if ($oldlibauth != Authority::getVersion()) {
 		if (!$_zp_authority->migrateAuth($oldlibauth)) {
 			$messages .= '
 			<div class="errorbox fade-message">

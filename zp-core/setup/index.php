@@ -263,10 +263,10 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			if (empty($_POST) && empty($_GET) && ($confDB === 'MySQL' || $preferred != 'MySQL')) {
 				$confDB = NULL;
 			}
-			if (extension_loaded(strtolower($confDB)) && file_exists(dirname(dirname(__FILE__)) . '/functions-db-' . $confDB . '.php')) {
-				$selected_database = $_zp_conf_vars['db_software'];
+			if (extension_loaded(strtolower($confDB)) && file_exists(dirname(dirname(__FILE__)) . '/functions-db-' . strtolower($confDB) . '.php')) {
+				$selected_database = strtolower($_zp_conf_vars['db_software']);
 			} else {
-				$selected_database = $preferred;
+				$selected_database = strtolower($preferred);
 				if ($preferred) {
 					$_zp_conf_vars['db_software'] = $preferred;
 					$zp_cfg = updateConfigItem('db_software', $preferred, $zp_cfg);
@@ -287,7 +287,7 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		if ($selected_database) {
 			require_once(dirname(dirname(__FILE__)) . '/functions-db-' . $selected_database . '.php');
 		} else {
-			require_once(dirname(dirname(__FILE__)) . '/functions-db_NULL.php');
+			require_once(dirname(dirname(__FILE__)) . '/functions-db_null.php');
 		}
 	} else {
 		// There is a problem with the configuration file

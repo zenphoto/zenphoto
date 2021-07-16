@@ -269,7 +269,7 @@ class security_logger {
 		}
 		$name = '';
 		if ($success) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+			$admin = Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = ''; // mask it from display
 			if (is_object($admin)) {
 				$name = $admin->getName();
@@ -317,7 +317,7 @@ class security_logger {
 		}
 		$name = '';
 		if ($success) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+			$admin = Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = ''; // mask it from display
 			if (is_object($admin)) {
 				$name = $admin->getName();

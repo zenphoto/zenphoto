@@ -49,7 +49,7 @@ class favorites extends AlbumBase {
 	function getOwner($fullname = false) {
 		$owner = $this->owner;
 		if ($fullname) {
-			return Zenphoto_Administrator::getNameByUser($owner);
+			return Administrator::getNameByUser($owner);
 		}
 		return $owner;
 	}

@@ -22,7 +22,7 @@ class email_new_user {
 	static function save($savemsg, $userobj, $what) {
 		global $_zp_gallery;
 		if ($what == 'new' && ($mail = $userobj->getEmail())) {
-			$ref = Zenphoto_Authority::getResetTicket($adm = $userobj->getUser(), $userobj->getPass());
+			$ref = Authority::getResetTicket($adm = $userobj->getUser(), $userobj->getPass());
 			$msg = "\n" . sprintf(gettext('You are receiving this e-mail because a user code (%1$s) has been created for you on the Zenphoto gallery %2$s.'), $adm, $_zp_gallery->getTitle()) .
 							"\n" . sprintf(gettext('To set your Zenphoto User password visit: %s'), FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?ticket=$ref&user=$adm") .
 							"\n" . gettext("This ticket will automatically expire in 3 days.");

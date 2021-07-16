@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__) . '/admin-globals.php');
-require_once(dirname(__FILE__) . '/reconfigure.php');
+require_once(dirname(__FILE__) . '/functions-reconfigure.php');
 
 list($diff, $needs) = checkSignature(isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == getXSRFToken('setup'));
 if (empty($needs)) {

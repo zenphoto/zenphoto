@@ -198,7 +198,7 @@ class register_user {
 	function handleOptionSave($themename, $themealbum) {
 		if (!class_exists('user_groups')) {
 			$saved_rights = NO_RIGHTS;
-			$rightslist = sortMultiArray(Zenphoto_Authority::getRights(), array('set', 'value'));
+			$rightslist = sortMultiArray(Authority::getRights(), array('set', 'value'));
 			foreach ($rightslist as $rightselement => $right) {
 				if (isset($_POST['register_user-' . $rightselement])) {
 					$saved_rights = $saved_rights | $_POST['register_user-' . $rightselement];
@@ -285,12 +285,12 @@ class register_user {
 			$_notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
 			if (isset($_POST['disclose_password']) || $pass == trim(sanitize($_POST['pass_r']))) {
-				$currentadmin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+				$currentadmin = Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
 					$_notify = 'exists';
 				}
 				if (empty($_notify)) {
-					$userobj = Zenphoto_Authority::newAdministrator('');
+					$userobj = Authority::newAdministrator('');
 					$userobj->transient = false;
 					$userobj->setUser($user);
 					$userobj->setPass($pass);
@@ -393,14 +393,14 @@ function printRegistrationForm($thanks = NULL) {
 			$_SERVER['REQUEST_URI'] .= '?' . implode('&', $p);
 		}
 
-		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
+		$userobj = Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj && $userobj->getEmail() == $params['email']) {
 			if (!$userobj->getRights()) {
 				$userobj->setCredentials(array('registered', 'user', 'email'));
 				$rights = getOption('register_user_user_rights');
 				$group = NULL;
 				if (!is_numeric($rights)) { //  a group or template
-					$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $rights, '`valid`=' => 0));
+					$admin = Authority::getAnAdmin(array('`user`=' => $rights, '`valid`=' => 0));
 					if ($admin) {
 						$userobj->setObjects($admin->getObjects());
 						if ($admin->getName() != 'template') {

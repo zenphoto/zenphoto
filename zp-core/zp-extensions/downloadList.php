@@ -675,7 +675,7 @@ if (isset($_GET['download'])) {
 			exitZP();
 		}
 	} else {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
+		require_once SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php';
 		$item = (int) $item;
 		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . $item);
 		$_zp_downloadfile = '';
@@ -685,7 +685,7 @@ if (isset($_GET['download'])) {
 		if (file_exists($_zp_downloadfile)) {
 			DownloadList::updateListItemCount($_zp_downloadfile);
 			$ext = getSuffix($_zp_downloadfile);
-			$mimetype = getMimeString($ext);
+			$mimetype = mimeTypes::getType($ext);
 			header('Content-Description: File Transfer');
 			header('Content-Type: ' . $mimetype);
 			header('Content-Disposition: attachment; filename=' . basename(urldecode($_zp_downloadfile)));

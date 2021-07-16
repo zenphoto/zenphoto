@@ -1997,8 +1997,8 @@ function zp_handle_password_single($authType = NULL, $check_auth = NULL, $check_
 		}
 		$post_pass = $_POST['pass']; // We should not sanitize the password
 
-		foreach (Zenphoto_Authority::$hashList as $hash => $hi) {
-			$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass, $hi);
+		foreach (Authority::$hashList as $hash => $hi) {
+			$auth = Authority::passwordHash($post_user, $post_pass, $hi);
 			$success = ($auth == $check_auth) && $post_user == $check_user;
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password($success): \$post_user=$post_user; \$post_pass=$post_pass; \$check_auth=$check_auth; \$auth=$auth; \$hash=$hash;");

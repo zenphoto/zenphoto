@@ -137,11 +137,11 @@ class Gallery {
 			if ($rightsholder == 'custom') {
 				$rightsholder = $this->get('copyright_site_rightsholder_custom');
 			} else {
-				$rightsholder = Zenphoto_Administrator::getNameByUser($rightsholder);
+				$rightsholder = Administrator::getNameByUser($rightsholder);
 			}
 		}
 		if (empty($rightsholder)) {
-			$authority = new Zenphoto_Authority();
+			$authority = new Authority();
 			$master = $authority->getMasterUser();
 			$rightsholder = $master->getName();
 		}

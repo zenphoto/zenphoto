@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
 	if ($action == 'expiry') {
 		foreach ($_POST as $key => $action) {
 			if (strpos($key, 'r_') === 0) {
-				$userobj = Zenphoto_Authority::getAnAdmin(array('`id`=' => str_replace('r_', '', postIndexDecode($key))));
+				$userobj = Authority::getAnAdmin(array('`id`=' => str_replace('r_', '', postIndexDecode($key))));
 				if ($userobj) {
 					switch ($action) {
 						case 'delete':

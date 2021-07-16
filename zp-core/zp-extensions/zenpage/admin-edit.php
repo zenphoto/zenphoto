@@ -165,7 +165,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 ?>
 	// ]]> -->
 </script>
-<?php Zenphoto_Authority::printPasswordFormJS(); ?>
+<?php Authority::printPasswordFormJS(); ?>
 </head>
 <body>
 	<?php

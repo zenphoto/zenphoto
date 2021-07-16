@@ -544,7 +544,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 
 <?php
 zp_apply_filter('texteditor_config', 'zenphoto');
-Zenphoto_Authority::printPasswordFormJS();
+Authority::printPasswordFormJS();
 
 echo "\n</head>";
 ?>

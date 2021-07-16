@@ -23,7 +23,7 @@ class ZenpageItems extends ZenpageRoot {
 	function getAuthor($fullname = false) {
 		$author = $this->get("author");
 		if ($fullname) {
-			return Zenphoto_Administrator::getNameByUser($author);
+			return Administrator::getNameByUser($author);
 		}
 		return $author;
 	}

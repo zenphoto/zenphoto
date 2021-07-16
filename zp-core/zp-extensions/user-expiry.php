@@ -234,7 +234,7 @@ class user_expiry {
 	static function checklogon($loggedin, $user) {
 		if ($loggedin) {
 			if (!($loggedin & ADMIN_RIGHTS)) {
-				if ($userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1))) {
+				if ($userobj = Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1))) {
 					$loggedin = user_expiry::checkexpires($loggedin, $userobj);
 				}
 			}
@@ -252,7 +252,7 @@ class user_expiry {
 		if (isset($_GET['user_expiry_reverify'])) {
 			$params = unserialize(pack("H*", trim(sanitize($_GET['user_expiry_reverify']), '.')));
 			if ((time() - $params['date']) < 2592000) {
-				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`email`=' => $params['email'], '`valid`>' => 0));
+				$userobj = Authority::getAnAdmin(array('`user`=' => $params['user'], '`email`=' => $params['email'], '`valid`>' => 0));
 				if ($userobj) {
 					$credentials = $userobj->getCredentials();
 					$credentials[] = 'expiry';
@@ -265,7 +265,7 @@ class user_expiry {
 				$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 				$userobj->save();
 
-				Zenphoto_Authority::logUser($userobj);
+				Authority::logUser($userobj);
 				redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 			}
 		}
@@ -304,7 +304,7 @@ class user_expiry {
 			if (user_expiry::checkPasswordRenew()) {
 				echo '<p class="errorbox">' . gettext('You must change your password.'), '</p>';
 			} else {
-				if (Zenphoto_Authority::getAnAdmin(array('`valid`>' => 1))) {
+				if (Authority::getAnAdmin(array('`valid`>' => 1))) {
 					echo '<p class="notebox">' . gettext('You have users whose credentials have expired.'), '</p>';
 				}
 			}

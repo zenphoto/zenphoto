@@ -400,7 +400,7 @@ function printRSSHeaderLink($option, $linktext, $lang = '', $addl = NULL) {
 }
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php');
 
 class RSS extends feed {
 
@@ -424,7 +424,7 @@ class RSS extends feed {
 			unset($link['token']);
 			$token = RSS::generateToken($link);
 			if ($token == $options['token']) {
-				$adminobj = Zenphoto_Authority::getAnAdmin(array('`id`=' => (int) $link['user']));
+				$adminobj = Authority::getAnAdmin(array('`id`=' => (int) $link['user']));
 				if ($adminobj) {
 					$_zp_current_admin_obj = $adminobj;
 					$_zp_loggedin = $_zp_current_admin_obj->getRights();
@@ -612,7 +612,7 @@ class RSS extends feed {
 	 * @return string
 	 */
 	static function generateToken($link) {
-		return Zenphoto_Authority::passwordHash(serialize($link), '');
+		return Authority::passwordHash(serialize($link), '');
 	}
 
 	/**

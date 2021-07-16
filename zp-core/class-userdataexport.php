@@ -258,7 +258,7 @@ class userDataExport {
 		if (!empty($this->usermail)) {
 			$credentials['`email`='] = $this->usermail;
 		}
-		$user = Zenphoto_Authority::getAnAdmin($credentials);
+		$user = Authority::getAnAdmin($credentials);
 		if ($user) {
 			return array(gettext('User account data') => $user->getData());
 		} 

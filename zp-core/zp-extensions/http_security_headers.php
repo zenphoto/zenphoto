@@ -484,12 +484,9 @@ class securityheadersOptions {
 	 * @return array
 	 */
 	static function getContentSecuritytPolicyPluginTypes($suffix_as_key = false) {
-		global $mime_types;
-		if(!isset($mime_types)) {
-			require_once SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php';
-		}
+		require_once SERVERPATH.'/'.ZENFOLDER.'/class-mimetypes.php';
 		$plugintypes = array();
-		foreach ($mime_types as $key => $val) {
+		foreach (mimeTypes::$mime_types as $key => $val) {
 			if($suffix_as_key) {
 				$key_new = $key;
 			} else {
@@ -523,7 +520,7 @@ class securityHeaders {
 	 * Sets the Content-Security-Policy header
 	 */
 	static function setContentSecurityPolicy() {
-		global $mime_types;
+		require_once SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php';
 		if (getOption('securityheaders_csp')) {
 			$reportonly = '';
 			if (getOption('securityheaders_csp_reportonly')) {
@@ -567,7 +564,7 @@ class securityHeaders {
 			foreach($csp_plugintypes_options as $key => $val) {
 				$plugintype = getOption($val);
 				if($plugintype) {
-					$csp_plugintypes[] = $mime_types[$key];
+					$csp_plugintypes[] = mimeTypes::$mime_types[$key];
 				}
 			} 
 			if(!empty($csp_plugintypes)) {
