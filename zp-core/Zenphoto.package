@@ -370,6 +370,8 @@ zp-core/admin.php
 zp-core/admintoolbox.css
 zp-core/auth.php
 zp-core/cacheprotect
+zp-core/class-_zp_captcha.php
+zp-core/class-_zp_html_cache.php
 zp-core/class-administrator.php
 zp-core/class-album.php
 zp-core/class-albumbase.php
@@ -386,6 +388,7 @@ zp-core/class-search.php
 zp-core/class-themeobject.php
 zp-core/class-transientimage.php
 zp-core/class-userdataexport.php
+zp-core/class-zpmutex.php
 zp-core/controller.php
 zp-core/cron_runner.php
 zp-core/dataaccess
@@ -1711,4 +1714,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1713
+1716

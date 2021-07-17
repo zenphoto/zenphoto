@@ -191,14 +191,14 @@ class dynamic_locale {
 	}
 
 	static function fullHostPath($lang) {
-		global $_locale_Subdomains;
+		global $_zp_locale_subdomains;
 		$host = $_SERVER['HTTP_HOST'];
 		$matches = explode('.', $host);
 		if (validateLocale($matches[0], 'Dynamic Locale')) {
 			array_shift($matches);
 			$host = implode('.', $matches);
 		}
-		if ($l = $_locale_Subdomains[$lang]) {
+		if ($l = $_zp_locale_subdomains[$lang]) {
 			$host = $l . '.' . $host;
 		}
 		if (SERVER_PROTOCOL == 'https') {

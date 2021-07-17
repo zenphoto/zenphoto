@@ -19,6 +19,8 @@ require_once(dirname(__FILE__) . '/functions-basic.php');
 require_once(dirname(__FILE__) . '/functions-filter.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-kses.php');
 require_once dirname(__FILE__) . '/lib-htmLawed.php';
+require_once(dirname(__FILE__) . '/class-_zp_captcha.php');
+require_once(dirname(__FILE__) . '/class-_zp_html_cache.php');
 
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
 $_zp_html_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
@@ -3247,59 +3249,4 @@ function getCookieInfoMacro($macros) {
 	return $macros;
 }
 
-/**
- * Standins for when no captcha is enabled
- */
-class _zp_captcha {
-
-	var $name = NULL; // "captcha" name if no captcha plugin loaded
-
-	function getCaptcha($prompt) {
-		return array('input' => NULL, 'html' => '<p class="errorbox">' . gettext('No captcha handler is enabled.') . '</p>', 'hidden' => '');
-	}
-
-	function checkCaptcha($s1, $s2) {
-		return false;
-	}
-
-}
-
-/**
- * stand-in for when there is no HTML cache plugin enabled
- */
-class _zp_HTML_cache {
-
-	function disable() {
-		
-	}
-
-	function startHTMLCache() {
-		
-	}
-
-	function abortHTMLCache() {
-		
-	}
-
-	function endHTMLCache() {
-		
-	}
-
-	function clearHtmlCache() {
-		
-	}
-
-}
-
 setexifvars();
-
-/**
- * Prints the lang="" attribute for the main <html> element.
- * 
- * @since ZenphotoCMS 1.5.7
- * 
- * @param string $locale Default null so the current locale is used. Or a locale like "en_US" which will get the underscores replaced by hyphens to be valid
- */
-function printLangAttribute($locale = null) {
-	echo ' lang="' . getLangAttributeLocale($locale) . '"';
-}

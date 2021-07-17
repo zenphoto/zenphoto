@@ -660,11 +660,11 @@ function getLanguageSubdomains() {
  * @return string
  */
 function getLanguageText($loc = NULL, $separator = NULL) {
-	global $_locale_Subdomains;
+	global $_zp_locale_subdomains;
 	if (is_null($loc)) {
-		$text = @$_locale_Subdomains[zp_getCookie('zpcms_locale')];
+		$text = @$_zp_locale_subdomains[zp_getCookie('zpcms_locale')];
 	} else {
-		$text = @$_locale_Subdomains[$loc];
+		$text = @$_zp_locale_subdomains[$loc];
 		//en_US always is always empty here so so urls in dynamic locale or html_meta_tags are wrong (Quickfix)
 		if (empty($text)) {
 			$text = $loc;
@@ -735,4 +735,15 @@ function getLanguageDisplayName($locale) {
 	}
 }
 
-$_locale_Subdomains = getLanguageSubdomains();
+/**
+ * Prints the lang="" attribute for the main <html> element.
+ * 
+ * @since ZenphotoCMS 1.5.7
+ * 
+ * @param string $locale Default null so the current locale is used. Or a locale like "en_US" which will get the underscores replaced by hyphens to be valid
+ */
+function printLangAttribute($locale = null) {
+	echo ' lang="' . getLangAttributeLocale($locale) . '"';
+}
+
+$_zp_locale_subdomains = getLanguageSubdomains();
