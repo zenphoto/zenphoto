@@ -6,7 +6,6 @@
  * @subpackage deprecated-functions
  */
 
-
 /**
  * Replaces/renames an option. If the old option exits, it creates the new option with the old option's value as the default 
  * unless the new option has already been set otherwise. Independently it always deletes the old option.
