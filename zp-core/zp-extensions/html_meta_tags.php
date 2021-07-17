@@ -307,7 +307,7 @@ class htmlmetatags {
 						$type = 'website';
 					}
 					if ($_zp_page != 1) {
-						$canonicalurl .= '/' . $_zp_page;
+						$canonicalurl .= $_zp_page . '/';
 					}
 				}
 				break;
@@ -332,7 +332,7 @@ class htmlmetatags {
 				$desc = '';
 				$canonicalurl = $host . getCustomPageURL($custompage);
 				if ($_zp_page != 1) {
-					$canonicalurl .= '/'. $_zp_page;
+					$canonicalurl .= $_zp_page . '/';
 				}
 				break;
 
@@ -465,19 +465,19 @@ class htmlmetatags {
 								case 'news.php':
 									if (function_exists("is_NewsArticle")) {
 										if (is_NewsArticle()) {
-											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_zenpage_news->getTitlelink());
+											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_zenpage_news->getTitlelink()) . '/';
 										} else if (is_NewsCategory()) {
-											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_category->getTitlelink());
+											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_category->getTitlelink()) . '/';
 										} else {
-											$altlink .= '/' . _NEWS_;
+											$altlink .= '/' . _NEWS_ . '/';
 										}
 									}
 									break;
 								case 'pages.php':
-									$altlink .= '/' . _PAGES_ . '/' . html_encode($_zp_current_zenpage_page->getTitlelink());
+									$altlink .= '/' . _PAGES_ . '/' . html_encode($_zp_current_zenpage_page->getTitlelink()) . '/';
 									break;
 								case 'archive.php':
-									$altlink .= '/' . _ARCHIVE_ ;
+									$altlink .= '/' . _ARCHIVE_ . '/';
 									break;
 								case 'search.php':
 									$altlink .= '/' . _SEARCH_ . '/';
@@ -486,7 +486,7 @@ class htmlmetatags {
 									$altlink .= '/' . _CONTACT_ . '/';
 									break;
 								default: // for all other possible none standard custom pages
-									$altlink .= '/' . _PAGE_ . '/' . html_encode($pagetitle);
+									$altlink .= '/' . _PAGE_ . '/' . html_encode($pagetitle) . '/';
 									break;
 							} // switch
 
@@ -500,7 +500,7 @@ class htmlmetatags {
 									break;
 								case 'news.php':
 									if ($_zp_page != 1) {
-										$altlink .= '/' . $_zp_page;
+										$altlink .= $_zp_page . '/';
 									}
 									break;
 							}
@@ -539,6 +539,10 @@ class htmlmetatags {
 
 	/**
 	 * Helper function to list tags/categories as keywords separated by comma.
+	 * 
+	 * Note keywords do not have an SEO meaning anymore
+	 * 
+	 * @deprecated ZenphotoCMS 2.0
 	 *
 	 * @param array $array the array of the tags or categories to list
 	 */
