@@ -208,7 +208,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					$allalbums = query_full_array($dbquery . " ORDER BY id DESC LIMIT " . $limit);
 					$albums = array();
 					foreach ($allalbums as $album) {
-						$albumobj = newAlbum($album['folder']);
+						$albumobj = AlbumBase::newAlbum($album['folder']);
 						if ($albumobj->loaded) {
 							$albumentry = array("id" => $albumobj->getID(), "title" => $albumobj->getTitle(), "folder" => $albumobj->name, "imagenumber" => $albumobj->getNumImages(), "show" => $albumobj->isPublished());
 							array_unshift($albums, $albumentry);

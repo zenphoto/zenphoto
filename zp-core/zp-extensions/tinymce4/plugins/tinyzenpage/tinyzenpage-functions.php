@@ -15,7 +15,7 @@ function printFullAlbumsList() {
 	global $_zp_gallery;
 	$albumlist = $_zp_gallery->getAlbums();
 	foreach ($albumlist as $album) {
-		$albumobj = newAlbum($album);
+		$albumobj = AlbumBase::newAlbum($album);
 		if ($albumobj->isMyItem(LIST_RIGHTS)) {
 			echo "<option value='" . pathurlencode($albumobj->name) . "'>" . html_encode($albumobj->getTitle()) . unpublishedZenphotoItemCheck($albumobj) . " (" . $albumobj->getNumImages() . ")</option>";
 			if (!$albumobj->isDynamic()) {
@@ -34,7 +34,7 @@ function printSubLevelAlbums(&$albumobj) {
 	global $_zp_gallery;
 	$albumlist = $albumobj->getAlbums();
 	foreach ($albumlist as $album) {
-		$subalbumobj = newAlbum($album);
+		$subalbumobj = AlbumBase::newAlbum($album);
 		$subalbumname = $subalbumobj->name;
 		$level = substr_count($subalbumname, "/");
 		$arrow = "";
@@ -98,7 +98,7 @@ function printImageslist($number) {
 	if (isset($_GET['album']) && ! empty($_GET['album'])) {
 
 		$album = urldecode(sanitize($_GET['album']));
-		$albumobj = newAlbum($album);
+		$albumobj = AlbumBase::newAlbum($album);
 		echo "<h3>" . gettext("Album:") . " <em>" . html_encode($albumobj->getTitle()) . unpublishedZenphotoItemCheck($albumobj, false) . "</em> / " . gettext("Album folder:") . " <em>" . html_encode($albumobj->name) . "</em><br /><small>" . gettext("(Click on image to include)") . "</small></h3>";
 
 		$images_per_page = $number;
@@ -164,11 +164,11 @@ function printImageslist($number) {
 					break;
 				}
 				if (is_array($images[$nr])) {
-					$linkalbumobj = newAlbum($images[$nr]['folder']);
-					$imageobj = newImage($linkalbumobj, $images[$nr]['filename']);
+					$linkalbumobj = AlbumBase::newAlbum($images[$nr]['folder']);
+					$imageobj = Image::newImage($linkalbumobj, $images[$nr]['filename']);
 				} else {
 					$linkalbumobj = $albumobj;
-					$imageobj = newImage($albumobj, $images[$nr]);
+					$imageobj = Image::newImage($albumobj, $images[$nr]);
 				}
 				$imagedesc = $imageobj->getDesc();
 				$albumdesc = $linkalbumobj->getDesc();
@@ -366,7 +366,7 @@ function checkAlbumForImages() {
 		if ($album == 'gallery') {
 			return FALSE;
 		}
-		$albumobj = newAlbum($album);
+		$albumobj = AlbumBase::newAlbum($album);
 		if ($albumobj->getNumImages() != 0) {
 			return TRUE;
 		} else {

@@ -7,6 +7,136 @@
  */
 
 /**
+ * Wrapper instantiation function for albums. Do not instantiate directly
+ * 
+ * @deprecated ZenphotoCMS 2.0 - Use AlbumBase::newAlbum() instead
+ * @since ZenphotoCMS 1.6
+ * 
+ * @param string $folder8 the name of the folder (inernal character set)
+ * @param bool $cache true if the album should be fetched from the cache
+ * @param bool $quiet true to supress error messages
+ * @return Album
+ */
+function newAlbum($folder8, $cache = true, $quiet = false) {
+	deprecated_functions::notify(gettext("Use AlbumBase::newAlbum() instead"));
+	return AlbumBase::newAlbum($folder8, $cache, $quiet);
+}
+
+/**
+ * Returns true if the object is a zenphoto 'album'
+  * 
+ * @deprecated ZenphotoCMS 2.0 - Use AlbumBase::siAlbumClass() instead
+ * @since ZenphotoCMS 1.6
+ *
+ * @param object $album
+ * @return bool
+ */
+function isAlbumClass($album = NULL) {
+	deprecated_functions::notify(gettext("Use AlbumBase::isAlbumClass() instead"));
+	return AlbumBase::isAlbumClass($album);
+}
+
+
+
+/**
+ * Returns the oldest ancestor of an alubm;
+ *
+ * @deprecated ZenphotoCMS 2.0 – Use $album->getUrAlbum() instead
+ * @since ZenphotoCMS 1.6
+ *
+ * @param string $album an album object
+ * @return object
+ */
+function getUrAlbum($album) {
+	deprecated_functions::notify(gettext('Use $album->getUrAlbum() instead'));
+	if (!is_object($album))
+		return NULL;
+	return $album->getUrAlbum();
+}
+
+/**
+ * Returns a new "image" object based on the file extension
+  * 
+ * @deprecated ZenphotoCMS 2.0 - Use Image::newImage() instead
+ * @since ZenphotoCMS 1.6
+ * 
+ * @param object $album the owner album
+ * @param string $filename the filename
+ * @param bool $quiet set true to supress error messages (used by loadimage)
+ * @return object
+ */
+function newImage($album, $filename, $quiet = false) {
+	deprecated_functions::notify(gettext("Use Image::newImage() instead"));
+	return Image::newImage($album, $filename, $quiet);
+}
+
+/**
+ * Returns true if the object is a zenphoto 'image'
+ * 
+ * @deprecated ZenphotoCMS 2.0 - Use Image::isImageClass() instead
+ * @since ZenphotoCMS 1.6
+ * 
+ * @param object $image
+ * @return bool
+ */
+function isImageClass($image = NULL) {
+	deprecated_functions::notify(gettext("Use Image::isImageClass() instead"));
+	return Image::isImageClass($image);
+}
+
+/**
+ * encloses search word in quotes if needed
+ * 
+ * @deprecated ZenphotoCMS 2.0 - Use SearchEngine::getSearchQuote() instead
+ * @since ZenphotoCMS 1.6
+ *  
+ * @param string $word
+ * @return string
+ */
+function search_quote($word) {
+	return SearchEngine::getSearchQuote($word);
+}
+
+/**
+
+ * Returns video argument of the current Image.
+ *
+ * @deprecated ZenphotoCMS 2.0 – Use the Image class method isVideo() instead
+ * @since ZenphotoCMS 1.6
+ *
+ * @param object $image optional image object
+ * @return bool
+ */
+function isImageVideo($image = NULL) {
+	if (is_null($image)) {
+		if (!in_context(ZP_IMAGE))
+			return false;
+		global $_zp_current_image;
+		$image = $_zp_current_image;
+	}
+	return $image->isPhoto();
+}
+
+/**
+ * Returns true if the image is a standard photo type
+ *
+ * @deprecated ZenphotoCMS 2.0 – Use the Image class method isPhoto() instead
+ * @since ZenphotoCMS 1.6
+ *
+ * @param object $image optional image object
+ * @return bool
+ */
+function isImagePhoto($image = NULL) {
+	if (is_null($image)) {
+		if (!in_context(ZP_IMAGE))
+			return false;
+		global $_zp_current_image;
+		$image = $_zp_current_image;
+	}
+	return $image->isPhoto();
+}
+
+/**
  * Replaces/renames an option. If the old option exits, it creates the new option with the old option's value as the default 
  * unless the new option has already been set otherwise. Independently it always deletes the old option.
  * 
@@ -175,10 +305,10 @@ if (function_exists('printImageStatistic')) {
 function filterImageQuery($result, $source) {
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
-			$image = newImage(null, $row);
+			$image = Image::newImage(null, $row);
 			$album = $image->album;
 			if ($album->name == $source || $album->checkAccess()) {
-				if (isImagePhoto($image)) {
+				if ($image->isPhoto()) {
 					if ($image->checkAccess()) {
 						return $image;
 					}
@@ -208,9 +338,9 @@ function getRandomImages($daily = false) {
 	if ($daily) {
 		$potd = getSerializedArray(getOption('picture_of_the_day'));
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
-			$album = newAlbum($potd['folder'], true, true);
+			$album = AlbumBase::newAlbum($potd['folder'], true, true);
 			if ($album->exists) {
-				$image = newImage($album, $potd['filename'], true);
+				$image = Image::newImage($album, $potd['filename'], true);
 				if ($image->exists) {
 					return $image;
 				}
@@ -265,14 +395,14 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 		if (is_object($rootAlbum)) {
 			$album = $rootAlbum;
 		} else {
-			$album = newAlbum($rootAlbum);
+			$album = AlbumBase::newAlbum($rootAlbum);
 		}
 	}
 	if ($daily && ($potd = getOption('picture_of_the_day:' . $album->name))) {
 		$potd = getSerializedArray($potd);
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
-			$rndalbum = newAlbum($potd['folder']);
-			$image = newImage($rndalbum, $potd['filename']);
+			$rndalbum = AlbumBase::newAlbum($potd['folder']);
+			$image = Image::newImage($rndalbum, $potd['filename']);
 			if ($image->exists)
 				return $image;
 		}
@@ -284,7 +414,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 		while (count($images) > 0) {
 			$result = array_pop($images);
 			if (Gallery::validImage($result['filename'])) {
-				$image = newImage(newAlbum($result['folder']), $result['filename']);
+				$image = Image::newImage(AlbumBase::newAlbum($result['folder']), $result['filename']);
 			}
 		}
 	} else {

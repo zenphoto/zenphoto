@@ -70,12 +70,12 @@ if (!defined('WEBPATH'))
 
 					<div id="image">
 						<?php
-						if (getOption("Use_thickbox") && !isImageVideo()) {
+						if (getOption("Use_thickbox") && !$_zp_current_image->isVideo()) {
 							$boxclass = " class=\"thickbox\"";
 						} else {
 							$boxclass = "";
 						}
-						if (isImagePhoto()) {
+						if ($_zp_current_image->isPhoto()) {
 							$tburl = getFullImageURL();
 						} else {
 							$tburl = NULL;

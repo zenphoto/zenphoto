@@ -157,7 +157,7 @@ class flag_thumbnail {
 			}
 		}
 		if (getOption('flag_thumbnail_flag_geodata')) {
-			if (isAlbumClass($obj)) {
+			if (AlbumBase::isAlbumClass($obj)) {
 				$obj = $obj->getAlbumThumbImage();
 			}
 			if (is_object($obj) && get_class($obj) == 'Image') {

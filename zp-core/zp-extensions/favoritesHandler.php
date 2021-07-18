@@ -284,7 +284,7 @@ if (OFFSET_PATH) {
 			$id = sanitize($_POST['id']);
 			switch ($_POST['type']) {
 				case 'images':
-					$img = newImage(NULL, array('folder' => dirname($id), 'filename' => basename($id)));
+					$img = Image::newImage(NULL, array('folder' => dirname($id), 'filename' => basename($id)));
 					if ($_POST['addToFavorites']) {
 						if ($img->loaded) {
 							$___Favorites->addImage($img);
@@ -294,7 +294,7 @@ if (OFFSET_PATH) {
 					}
 					break;
 				case 'albums':
-					$alb = newAlbum($id);
+					$alb = AlbumBase::newAlbum($id);
 					if ($_POST['addToFavorites']) {
 						if ($alb->loaded) {
 							$___Favorites->addAlbum($alb);

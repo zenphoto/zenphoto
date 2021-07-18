@@ -233,7 +233,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 				$process = false; // skip already seen dynamic albums
 		}
 		$topalbum = '';
-		$albumobj = newAlbum($album, true);
+		$albumobj = AlbumBase::newAlbum($album, true);
 		$has_password = '';
 		if($albumobj->isProtected()) {
 			$has_password = ' has_password';
@@ -246,7 +246,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 			}
 			if ($keeptopactive) {
 				if (isset($_zp_current_album) && is_object($_zp_current_album)) {
-					$currenturalbum = getUrAlbum($_zp_current_album);
+					$currenturalbum = $_zp_current_album->getUrAlbum();
 					$currenturalbumname = $currenturalbum->name;
 				}
 			}
@@ -354,7 +354,7 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
 		}
     $albums = getNestedAlbumList(null, $showsubs, false);
     foreach($albums as $album) {
-      $albumobj = newAlbum($album['name'], true);
+      $albumobj = AlbumBase::newAlbum($album['name'], true);
       $count = '';
       if ($option == "count") {
         $numimages = $albumobj->getNumImages();

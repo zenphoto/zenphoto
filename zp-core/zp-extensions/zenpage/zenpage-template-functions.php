@@ -2206,7 +2206,7 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 function zenpageAlbumImage($albumname, $imagename = NULL, $size = NULL, $linkalbum = false) {
 	global $_zp_gallery;
 	echo '<br />';
-	$album = newAlbum($albumname);
+	$album = AlbumBase::newAlbum($albumname);
 	if ($album->loaded) {
 		if (is_null($size)) {
 			$size = floor(getOption('image_size') * 0.5);
@@ -2216,7 +2216,7 @@ function zenpageAlbumImage($albumname, $imagename = NULL, $size = NULL, $linkalb
 			$linkalbum = true;
 			$image = $album->getAlbumThumbImage();
 		} else {
-			$image = newImage($album, $imagename);
+			$image = Image::newImage($album, $imagename);
 		}
 		if ($image && $image->loaded) {
 			makeImageCurrent($image);

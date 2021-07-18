@@ -15,7 +15,7 @@ $_imagelist = array();
 
 function getSubalbumImages($folder) {
 	global $_imagelist, $_zp_gallery;
-	$album = newAlbum($folder);
+	$album = AlbumBase::newAlbum($folder);
 	if ($album->isDynamic())
 		return;
 	$images = $album->getImages();
@@ -33,7 +33,7 @@ if (isset($_POST['savealbum'])) {
 	XSRFdefender('savealbum');
 	$albumname = sanitize($_POST['album']);
 	if ($album = sanitize($_POST['albumselect'])) {
-		$albumobj = newAlbum($album);
+		$albumobj = AlbumBase::newAlbum($album);
 		$allow = $albumobj->isMyItem(ALBUM_RIGHTS);
 	} else {
 		$allow = zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS);
@@ -51,7 +51,7 @@ if (isset($_POST['savealbum'])) {
 		if (isset($_POST['return_albums'])) {
 			$subalbums = $search->getAlbums(0);
 			foreach ($subalbums as $analbum) {
-				$albumobj = newAlbum($analbum);
+				$albumobj = AlbumBase::newAlbum($analbum);
 				if ($return_unpublished || $albumobj->isPublished()) { 
 					$tags = array_unique(array_merge($albumobj->getTags(), array($words)));
 					$albumobj->setTags($tags);
@@ -63,7 +63,7 @@ if (isset($_POST['savealbum'])) {
 		if (isset($_POST['return_images'])) {
 			$images = $search->getImages();
 			foreach ($images as $animage) {
-				$image = newImage(newAlbum($animage['folder']), $animage['filename']);
+				$image = Image::newImage(AlbumBase::newAlbum($animage['folder']), $animage['filename']);
 				if ($return_unpublished || $image->isPublished()) { 
 					$tags = array_unique(array_merge($image->getTags(), array($words)));
 					$image->setTags($tags);
@@ -199,9 +199,9 @@ while ($old != $albumname) {
 						$pieces = explode('/', $imagepath);
 						$filename = array_pop($pieces);
 						$folder = implode('/', $pieces);
-						$albumx = newAlbum($folder);
-						$image = newImage($albumx, $filename);
-						if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
+						$albumx = AlbumBase::newAlbum($folder);
+						$image = Image::newImage($albumx, $filename);
+						if ($image->isPhoto() || !is_null($image->objectsThumb)) {
 							echo "\n<option class=\"thumboption\"";
 							if ($showThumb) {
 								echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) .

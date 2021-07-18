@@ -41,7 +41,7 @@ if ($alb) {
 	$folder = sanitize_path($alb);
 	$object = $folder;
 	$tab = 'edit';
-	$album = newAlbum($folder);
+	$album = AlbumBase::newAlbum($folder);
 	if (!$album->isMyItem(ALBUM_RIGHTS)) {
 		if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
@@ -240,7 +240,7 @@ printAdminHeader('overview', 'images'); ?>
 				
 				// general counts
 				if ($alb) {
-					$albobj = newAlbum($alb);
+					$albobj = AlbumBase::newAlbum($alb);
 					$images_total = $albobj->getNumAllImages();
 					$imagesizes_total = $images_total * $cachesizes;
 					$albums_total = $albobj->getNumAllAlbums() + 1; // the album itself counts, too ;)
@@ -281,7 +281,7 @@ printAdminHeader('overview', 'images'); ?>
 				<?php
 				@set_time_limit(3000);
 				foreach ($allalbums as $album) {
-					$albumobj = newAlbum($album);
+					$albumobj = AlbumBase::newAlbum($album);
 					if (!$albumobj->isDynamic() || count($allalbums) == 1) {
 						cacheManager::loadAlbums($albumobj);
 					}

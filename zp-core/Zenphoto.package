@@ -384,7 +384,7 @@ zp-core/class-image.php
 zp-core/class-mediaobject.php
 zp-core/class-mimetypes.php
 zp-core/class-persistentobject.php
-zp-core/class-search.php
+zp-core/class-searchengine.php
 zp-core/class-themeobject.php
 zp-core/class-transientimage.php
 zp-core/class-userdataexport.php

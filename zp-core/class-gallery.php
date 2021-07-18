@@ -345,14 +345,14 @@ class Gallery {
 	function getAllAlbums($albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true) {
 		$allalbums = array();
 		$is_fulladmin = zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS); // can see all albums
-		if (isAlbumClass($albumobj)) {
+		if (AlbumBase::isAlbumClass($albumobj)) {
 			$albums = $albumobj->getAlbums(0);
 		} else {
 			$albums = $this->getAlbums(0);
 		}
 		if (is_array($albums)) {
 			foreach ($albums as $folder) {
-				$album = newAlbum($folder);
+				$album = AlbumBase::newAlbum($folder);
 				if ($is_fulladmin || $album->isMyItem($rights)) {
 					if ($album->isDynamic()) {
 						if ($is_fulladmin || $rights == ALL_ALBUMS_RIGHTS) {
@@ -403,7 +403,7 @@ class Gallery {
 		$sorttype = 'folder';
 		$sortdirection = ' ASC';
 		$sql = 'SELECT `folder` FROM ' . prefix('albums');
-		if (isAlbumClass($albumobj)) {
+		if (AlbumBase::isAlbumClass($albumobj)) {
 			// subalbums of an album
 			$sql .= " WHERE `folder` like '" . $albumobj->name . "/%'";
 			if ($keeplevel_sortorder) {
@@ -432,7 +432,7 @@ class Gallery {
 		$result = query($sql);
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
-				$album = newAlbum($row['folder']);
+				$album = AlbumBase::newAlbum($row['folder']);
 				if ($album->exists && ($is_fulladmin || $album->isMyItem($rights))) {
 					if ($album->isDynamic()) {
 						if ($is_fulladmin || $rights == ALL_ALBUMS_RIGHTS) {
@@ -469,7 +469,7 @@ class Gallery {
 	function getAlbum($index) {
 		$this->getAlbums();
 		if ($index >= 0 && $index < $this->getNumAlbums()) {
-			return newAlbum($this->albums[$index]);
+			return AlbumBase::newAlbum($this->albums[$index]);
 		} else {
 			return false;
 		}
@@ -585,7 +585,7 @@ class Gallery {
 				$count = 0;
 				$albums = $this->getAlbums(0);
 				foreach ($albums as $analbum) {
-					$album = newAlbum($analbum);
+					$album = AlbumBase::newAlbum($analbum);
 					if (!$album->isDynamic()) {
 						$count = $count + $this->getImageCount($album);
 					}
@@ -599,7 +599,7 @@ class Gallery {
 		$count = $album->getNumImages();
 		$albums = $album->getAlbums(0);
 		foreach ($albums as $analbum) {
-			$album = newAlbum($analbum);
+			$album = AlbumBase::newAlbum($analbum);
 			if (!$album->isDynamic()) {
 				$count = $count + $this->getImageCount($album);
 			}
@@ -787,7 +787,7 @@ class Gallery {
 					while ($analbum = db_fetch_assoc($albumids)) {
 						if (($mtime = filemtime(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($analbum['folder']))) > $analbum['mtime']) {
 							// refresh
-							$album = newAlbum($analbum['folder']);
+							$album = AlbumBase::newAlbum($analbum['folder']);
 							$album->set('mtime', $mtime);
 							if ($this->getAlbumUseImagedate()) {
 								$album->setDateTime(NULL);
@@ -858,12 +858,12 @@ class Gallery {
 
 					// Then go into existing albums recursively to clean them... very invasive.
 					foreach ($this->getAlbums(0) as $folder) {
-						$album = newAlbum($folder);
+						$album = AlbumBase::newAlbum($folder);
 						if (!$album->isDynamic()) {
 							if (is_null($album->getDateTime())) { // see if we can get one from an image
 								$images = $album->getImages(0, 0);
 								if (count($images) > 0) {
-									$image = newImage($album, array_shift($images));
+									$image = Image::newImage($album, array_shift($images));
 									$album->setDateTime($image->getDateTime());
 								}
 							}
@@ -893,7 +893,7 @@ class Gallery {
 					$albumobj = getItemByID('albums', $image['albumid']);
 					if ($albumobj->exists && file_exists($imageName = internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $albumobj->name . '/' . $image['filename']))) {
 						if ($image['mtime'] != $mtime = filemtime($imageName)) { // file has changed since we last saw it
-							$imageobj = newImage($albumobj, $image['filename']);
+							$imageobj = Image::newImage($albumobj, $image['filename']);
 							$imageobj->set('mtime', $mtime);
 							$imageobj->updateMetaData(); // prime the EXIF/IPTC fields
 							$imageobj->updateDimensions(); // update the width/height & account for rotation
@@ -1024,7 +1024,7 @@ class Gallery {
 		}
 		db_free_result($result);
 		foreach ($albums as $folder) { // these albums are not in the database
-			$albumobj = newAlbum($folder);
+			$albumobj = AlbumBase::newAlbum($folder);
 			if ($albumobj->exists) { // fail to instantiate?
 				$results[$folder] = $albumobj->getData();
 			}
@@ -1035,7 +1035,7 @@ class Gallery {
 		$albums_ordered = array();
 		foreach ($results as $row) { // check for visible
 			$folder = $row['folder'];
-			$album = newAlbum($folder);
+			$album = AlbumBase::newAlbum($folder);
 			switch (themeObject::checkScheduledPublishing($row)) {
 				case 1:
 					$album->setShow(0);

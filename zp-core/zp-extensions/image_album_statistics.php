@@ -39,7 +39,7 @@ require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
 function getAlbumStatistic($number = 5, $option, $albumfolder = '', $threshold = 0, $sortdirection = 'desc', $collection = false) {
   global $_zp_gallery;
   if ($albumfolder) {
-    $obj = newAlbum($albumfolder);
+    $obj = AlbumBase::newAlbum($albumfolder);
     $albumWhere = ' WHERE parentid = ' . $obj->getID();
     if ($collection) {
       $albumWhere = '';
@@ -114,7 +114,7 @@ function getAlbumStatistic($number = 5, $option, $albumfolder = '', $threshold =
   if ($obj->table == 'albums' && $obj->isDynamic()) {
     $albums = $obj->getAlbums(0, $sortorder, $sortdir);
     foreach ($albums as $album) {
-      $album = newAlbum($album);
+      $album = AlbumBase::newAlbum($album);
       if ($album->checkAccess() && ($album->isPublic() || zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))) {
         $albumArray[] = $album;
         if (count($albumArray) >= $number) { // got enough
@@ -125,7 +125,7 @@ function getAlbumStatistic($number = 5, $option, $albumfolder = '', $threshold =
   } else {
     $result = query("SELECT id, title, folder, thumb FROM " . prefix('albums') . $albumWhere . " ORDER BY " . $sortorder . " " . $sortdir);
     while ($row = db_fetch_assoc($result)) {
-      $album = newAlbum($row['folder'], true, true);
+      $album = AlbumBase::newAlbum($row['folder'], true, true);
       if ($album->exists && $album->checkAccess() && ($album->isPublic() || zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))) {
         //actually we only use "folder" but keep for backward compatibility in case someone uses those for now …
         $albumArray[] = $album;
@@ -337,7 +337,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 function getImageStatistic($number, $option, $albumfolder = '', $collection = false, $threshold = 0, $sortdirection = 'desc') {
   global $_zp_gallery;
   if ($albumfolder) {
-    $obj = newAlbum($albumfolder);
+    $obj = AlbumBase::newAlbum($albumfolder);
     $albumWhere = ' AND albums.id = ' . $obj->getID();
     if ($collection) {
       $albumWhere = '';
@@ -403,7 +403,7 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
     $sorttype = str_replace('images.', '', $sortorder);
     $images = $obj->getImages(0, 0, $sorttype, $sortdir);
     foreach ($images as $image) {
-      $image = newImage($obj, $image);
+      $image = Image::newImage($obj, $image);
       if ($image->exists && $image->checkAccess() && ($image->isPublic() || zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))) {
         $imageArray[] = $image;
         if (count($imageArray) >= $number) { // got enough
@@ -414,7 +414,7 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
   } else {
     $result = query("SELECT images.filename AS filename, albums.folder AS folder FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums " . "WHERE (images.albumid = albums.id) " . $albumWhere . " ORDER BY " . $sortorder . " " . $sortdir);
     while ($row = db_fetch_assoc($result)) {
-      $image = newImage(NULL, $row, true);
+      $image = Image::newImage(NULL, $row, true);
       if ($image->exists && $image->checkAccess() && ($image->isPublic() || zp_loggedin(VIEW_UNPUBLISHED_RIGHTS))) {
         $imageArray[] = $image;
         if (count($imageArray) >= $number) { // got enough
@@ -614,9 +614,9 @@ function getPictureOfTheDay($albumfolder = '', $collection = false) {
 	global $_zp_gallery;
 	$potd = getSerializedArray(getOption('picture_of_the_day'));
 	if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
-		$album = newAlbum($potd['folder'], true, true);
+		$album = AlbumBase::newAlbum($potd['folder'], true, true);
 		if ($album->exists) {
-			$image = newImage($album, $potd['filename'], true);
+			$image = Image::newImage($album, $potd['filename'], true);
 			if ($image->exists) {
 				return $image;
 			}

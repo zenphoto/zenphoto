@@ -525,7 +525,7 @@ echo $refresh;
 							$id = 0;
 							$albumlist = array();
 							foreach ($_zp_gallery->getAlbums() as $folder) {
-								$alb = newAlbum($folder);
+								$alb = AlbumBase::newAlbum($folder);
 								$name = $alb->getTitle();
 								$albumlist[$name] = $folder;
 							}

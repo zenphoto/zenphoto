@@ -316,7 +316,7 @@ class AlbumZip {
 		}
 		$images = $album->getImages();
 		foreach ($images as $imagename) {
-			$image = newImage($album, $imagename);
+			$image = Image::newImage($album, $imagename);
 			$f = $albumbase . $image->filename;
 			$_zp_zip_list[$filebase . internalToFilesystem($f)] = $f;
 			$imagebase = stripSuffix($image->filename);
@@ -333,7 +333,7 @@ class AlbumZip {
 		}
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {
-			$subalbum = newAlbum($albumname);
+			$subalbum = AlbumBase::newAlbum($albumname);
 			if ($subalbum->exists && !$album->isDynamic()) {
 				self::AddAlbum($subalbum, $base, $filebase);
 			}
@@ -352,7 +352,7 @@ class AlbumZip {
 		$albumbase = substr($album->name, $base) . '/';
 		$images = $album->getImages();
 		foreach ($images as $imagename) {
-			$image = newImage($album, $imagename);		
+			$image = Image::newImage($album, $imagename);		
 			$uri = $image->getSizedImage($defaultSize);
 			if (strpos($uri, 'i.php?') === false) {
 				$f = $albumbase . $image->filename;
@@ -363,7 +363,7 @@ class AlbumZip {
 		}
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {
-			$subalbum = newAlbum($albumname);
+			$subalbum = AlbumBase::newAlbum($albumname);
 			if ($subalbum->exists && !$album->isDynamic()) {
 				self::AddAlbumCache($subalbum, $base, $filebase);
 			}
@@ -400,7 +400,7 @@ class AlbumZip {
 	 */
 	static function create($albumname, $fromcache) {
 		global $_zp_zip_list, $_zp_gallery, $defaultSize;
-		$album = newAlbum($albumname);
+		$album = AlbumBase::newAlbum($albumname);
 		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumname)) {
 			self::pageError(403, gettext("Forbidden"));
 		}

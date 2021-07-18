@@ -488,7 +488,7 @@ class sitemap {
 		global $_zp_gallery;
 		$locallist = $obj->getAlbums();
 		foreach ($locallist as $folder) {
-			$album = newAlbum($folder);
+			$album = AlbumBase::newAlbum($folder);
 			if ($album->isPublic() && !$album->isProtected()) {
 				$albumlist[] = array('folder' => $album->name, 'date' => $album->getDateTime(), 'title' => $album->getTitle());
 				if (!$album->isDynamic()) {
@@ -545,7 +545,7 @@ class sitemap {
 			$data_start .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data_start .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($albums as $album) {
-				$albumobj = newAlbum($album['folder']);
+				$albumobj = AlbumBase::newAlbum($album['folder']);
 				set_context(ZP_ALBUM);
 				makeAlbumCurrent($albumobj);
 				$pageCount = getTotalPages();
@@ -635,12 +635,12 @@ class sitemap {
 			}
 			foreach ($albums as $album) {
 				@set_time_limit(120); //	Extend script timeout to allow for gathering the images.
-				$albumobj = newAlbum($album['folder']);
+				$albumobj = AlbumBase::newAlbum($album['folder']);
 				$images = $albumobj->getImages();
 				// print plain images links if available
 				if ($images) {
 					foreach ($images as $image) {
-						$imageobj = newImage($albumobj, $image);
+						$imageobj = Image::newImage($albumobj, $image);
 						if($imageobj->isPublic() && !$albumobj->isDynamic()) {
 						$ext = getSuffix($imageobj->filename);
 						$date = sitemap::getDateformat($imageobj, $imagelastmod);
@@ -729,7 +729,7 @@ class sitemap {
 		if (empty($license)) {
 			$license = $imageobj->getCopyrightURL();
 		}
-		if (isImageVideo($imageobj) && in_array($ext, array('.mpg', '.mpeg', '.mp4', '.m4v', '.mov', '.wmv', '.asf', '.avi', '.ra', '.ram', '.flv', '.swf'))) { // google says it can index these so we list them even if unsupported by Zenphoto
+		if ($imageobj->isVideo() && in_array($ext, array('.mpg', '.mpeg', '.mp4', '.m4v', '.mov', '.wmv', '.asf', '.avi', '.ra', '.ram', '.flv', '.swf'))) { // google says it can index these so we list them even if unsupported by Zenphoto
 			$data .= sitemap::echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>" . $host . html_encode($imageobj->getThumb()) . "</video:thumbnail_loc>\n");
 			$data .= sitemap::echonl("\t\t\t<video:title>" . html_encode($imageobj->getTitle($locale)) . "</video:title>");
 			if ($imageobj->getDesc()) {

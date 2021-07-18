@@ -243,7 +243,7 @@ function getItemTitleAndURL($item) {
 				$url = '';
 				$protected = 0;
 			} else {
-				$obj = newAlbum($item['link']);
+				$obj = AlbumBase::newAlbum($item['link']);
 				$url = $obj->getLink(0);
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
@@ -1240,7 +1240,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 			if ($counter) {
 				switch ($item['type']) {
 					case'album':
-						$albumobj = newAlbum($item['link']);
+						$albumobj = AlbumBase::newAlbum($item['link']);
 						$numimages = $albumobj->getNumImages();
 						$numsubalbums = $albumobj->getNumAlbums();
 						$itemcounter = ' <span style="white-space:nowrap;"><small>(';

@@ -64,7 +64,7 @@ if (!defined('WEBPATH'))
 			<div id="image">
 				<strong>
 					<?php
-					if (isImagePhoto()) {
+					if ($_zp_current_image->isPhoto()) {
 						$fullimage = getFullImageURL();
 					} else {
 						$fullimage = NULL;
@@ -74,7 +74,7 @@ if (!defined('WEBPATH'))
 						<a href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php printBareImageTitle(); ?>" class="fullimage">
 							<?php
 						}
-						if (function_exists('printUserSizeImage') && isImagePhoto()) {
+						if (function_exists('printUserSizeImage') && $_zp_current_image->isPhoto()) {
 							printUserSizeImage(getImageTitle());
 						} else {
 							printDefaultSizedImage(getImageTitle());

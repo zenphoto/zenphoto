@@ -30,7 +30,7 @@ $album = NULL;
 $allow = true;
 if (isset($_GET['album'])) {
 	$folder = sanitize_path($_GET['album']);
-	$album = newAlbum($folder, false, true);
+	$album = AlbumBase::newAlbum($folder, false, true);
 	if ($album->exists) {
 		$allow = $album->isMyItem(ALBUM_RIGHTS);
 		if (!$allow) {
@@ -96,7 +96,7 @@ if (isset($_GET['action'])) {
 					} else {
 						$notify = '&saved' . $notify;
 					}
-					$album = newAlbum($folder);
+					$album = AlbumBase::newAlbum($folder);
 					$album->setSortType('manual', 'album');
 					$album->setSortDirection(false, 'album');
 					$album->setLastchangeUser($_zp_current_admin_obj->getUser());
@@ -139,7 +139,7 @@ if (isset($_GET['action'])) {
 			break;
 		case 'comments':
 			XSRFdefender('albumedit');
-			$album = newAlbum($folder);
+			$album = AlbumBase::newAlbum($folder);
 			$album->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
 			$album->setLastchangeUser($_zp_current_admin_obj->getUser());
 			$album->save();
@@ -157,7 +157,7 @@ if (isset($_GET['action'])) {
 		/*		 * *************************************************************************** */
     case "publish":
       XSRFdefender('albumedit');
-      $album = newAlbum($folder);
+      $album = AlbumBase::newAlbum($folder);
       $album->setShow(sanitize_numeric($_GET['value']));
 			if($album->hasPublishSchedule()) {
 				$album->setPublishdate(date('Y-m-d H:i:s'));
@@ -201,8 +201,8 @@ if (isset($_GET['action'])) {
       XSRFdefender('delete');
       $albumname = sanitize_path($_REQUEST['album']);
       $imagename = sanitize_path($_REQUEST['image']);
-      $album = newAlbum($albumname);
-      $image = newImage($album, $imagename);
+      $album = AlbumBase::newAlbum($albumname);
+      $image = Image::newImage($album, $imagename);
       if ($image->remove()) {
         $nd = 1;
 				SearchEngine::clearSearchCache();
@@ -217,7 +217,7 @@ if (isset($_GET['action'])) {
       XSRFdefender('imagemetadata');
       $albumname = sanitize_path($_REQUEST['album']);
       $imagename = sanitize_path($_REQUEST['image']);
-      $image = newImage(NULL, array('folder' => $albumname, 'filename' => $imagename));
+      $image = Image::newImage(NULL, array('folder' => $albumname, 'filename' => $imagename));
       $image->updateMetaData();
 			$image->setLastchangeUser($_zp_current_admin_obj->getUser());
       $image->save();
@@ -241,14 +241,14 @@ if (isset($_GET['action'])) {
       /** SAVE A SINGLE ALBUM OR IMAGE ****************************************************** */
       if (isset($_POST['album'])) {
         $folder = sanitize_path($_POST['album']);
-        $album = newAlbum($folder);
+        $album = AlbumBase::newAlbum($folder);
         $notify = '';
         $returnalbum = NULL;
 
         if (isset($_GET['singleimage'])) {
           $filename = sanitize($_POST["0-filename"]);
           // The file might no longer exist
-          $image = newImage($album, $filename);
+          $image = Image::newImage($album, $filename);
           if ($image->exists) {
             $notify = processImageEdit($image, 0, false);
             $qs_albumsuffix = '';
@@ -273,7 +273,7 @@ if (isset($_GET['action'])) {
 								for ($i = 0; $i < $_POST['totalimages']; $i++) {
 									$filename = sanitize($_POST["$i-filename"]);
 									// The file might no longer exist
-									$image = newImage($album, $filename);
+									$image = Image::newImage($album, $filename);
 									if ($image->exists) {
 										processImageEdit($image, $i);
 									} // if image exists
@@ -313,7 +313,7 @@ if (isset($_GET['action'])) {
             $prefix = '';
           }
           $f = sanitize_path(trim(sanitize($_POST[$prefix . 'folder'])));
-          $album = newAlbum($f);
+          $album = AlbumBase::newAlbum($f);
           $returnalbum = '';
           $rslt = processAlbumEdit($i, $album, $returnalbum);
           if (!empty($rslt)) {
@@ -352,7 +352,7 @@ if (isset($_GET['action'])) {
 		case "deletealbum":
 			XSRFdefender('delete');
 			if ($folder) {
-				$album = newAlbum($folder);
+				$album = AlbumBase::newAlbum($folder);
 				if ($album->remove()) {
 					$nd = 3;
 					SearchEngine::clearSearchCache();
@@ -405,7 +405,7 @@ if (isset($_GET['action'])) {
 			}
 			@chmod($uploaddir, FOLDER_MOD);
 
-			$album = newAlbum($folder);
+			$album = AlbumBase::newAlbum($folder);
 			if ($album->exists) {
 				$album->setTitle($name);
 				$album->save();
@@ -453,7 +453,7 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 	} else {
 		$parent = '&amp;album=' . $folder . '&amp;tab=subalbuminfo';
 	}
-	$album = newAlbum($folder);
+	$album = AlbumBase::newAlbum($folder);
 	$subtab = setAlbumSubtabs($album);
 }
 if (empty($subtab)) {
@@ -612,7 +612,7 @@ echo "\n</head>";
 					if($oldalbumimagesort_status !== 'all') {
 						$allimages_edit = array();
 						foreach($allimages as $filename) {
-							$imgobj = newImage($album, $filename);
+							$imgobj = Image::newImage($album, $filename);
 							if($oldalbumimagesort_status == 'published' && $imgobj->isPublished()) {
 								$allimages_edit[] = $filename;
 							} 
@@ -993,7 +993,7 @@ echo "\n</head>";
 									$target_image_nr = '';
 									$thumbnail = $album->get('thumb');
 									foreach ($images as $filename) {
-										$image = newImage($album, $filename);
+										$image = Image::newImage($album, $filename);
 										?>
 
 										<tr <?php echo ($currentimage % 2 == 0) ? "class=\"alt\"" : ""; ?>>
@@ -1017,14 +1017,14 @@ echo "\n</head>";
 														<td valign="top" rowspan="17" style="border-bottom:none;">
 															<div style="width: 135px;" <?php echo $placemark; ?>>
 																<?php
-																if (isImagePhoto($image)) {
+																if ($image->isPhoto()) {
 																	?>
 																	<a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox adminedit_fullimagelink">
 																		<img src="images/magnify.png" alt="" class="adminedit_fullimage-icon" />
 																	<?php
 																}
 																printAdminThumb($image, 'large-uncropped', '', 'thumb_img-'.$currentimage, '', $image->filename);
-																if (isImagePhoto($image)) {
+																if ($image->isPhoto()) {
 																	?>
 																	</a>
 																	<?php
@@ -1242,7 +1242,7 @@ echo "\n</head>";
 																<span class="clearall" ></span>
 
 																<?php
-																if (isImagePhoto($image)) {
+																if ($image->isPhoto()) {
 																	?>
 																	<hr />
 																	<?php echo gettext("Rotation:"); ?>
@@ -1295,7 +1295,7 @@ echo "\n</head>";
 																	<br class="clearall" />
 																</div>
 																<?php
-																if ((isImagePhoto($image) || !is_null($image->objectsThumb)) && getOption('thumb_crop')) {
+																if (($image->isPhoto() || !is_null($image->objectsThumb)) && getOption('thumb_crop')) {
 																	?>
 																	<div class="button buttons tooltip" title="<?php printf(gettext('crop %s'), $image->filename); ?>">
 																		<a href="admin-thumbcrop.php?a=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
@@ -1605,7 +1605,7 @@ echo "\n</head>";
 				$albumdir = "";
 				if (isset($_GET['album'])) {
 					$folder = sanitize_path($_GET['album']);
-					$album = newAlbum($folder);
+					$album = AlbumBase::newAlbum($folder);
 					if ($album->isMyItem(ALBUM_RIGHTS)) {
 						$albums = $album->getAlbums();
 						$pieces = explode('/', $folder);
@@ -1617,7 +1617,7 @@ echo "\n</head>";
 					$albumsprime = $_zp_gallery->getAlbums();
 					$albums = array();
 					foreach ($albumsprime as $folder) { // check for rights
-						$album = newAlbum($folder);
+						$album = AlbumBase::newAlbum($folder);
 						if ($album->isMyItem(ALBUM_RIGHTS)) {
 							$albums[] = $folder;
 						}
@@ -1653,7 +1653,7 @@ echo "\n</head>";
 						<?php
 						$currentalbum = 1;
 						foreach ($albums as $folder) {
-							$album = newAlbum($folder);
+							$album = AlbumBase::newAlbum($folder);
 							echo "\n<!-- " . $album->name . " -->\n";
 							?>
 							<div class="innerbox<?php if ($currentalbum % 2) echo '_dark'; ?>" style="padding: 15px;">

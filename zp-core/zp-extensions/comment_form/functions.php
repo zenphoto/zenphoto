@@ -351,7 +351,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		switch ($type) {
 			case "albums":
 				$url = "album=" . pathurlencode($receiver->name);
-				$ur_album = getUrAlbum($receiver);
+				$ur_album = $receiver->getUrAlbum();
 				if ($moderate) {
 					$action = sprintf(gettext('A comment has been placed in moderation on your album “%1$s”.'), $receiver->name);
 				} else {
@@ -377,7 +377,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 			default: // all image types
 				$album = $receiver->getAlbum();
 				$url = "album=" . pathurlencode($album->name) . "&image=" . urlencode($receiver->filename);
-				$ur_album = getUrAlbum($album);
+				$ur_album = $album->getUrAlbum();
 				if ($moderate) {
 					$action = sprintf(gettext('A comment has been placed in moderation on your image “%1$s” in the album “%2$s”.'), $receiver->getTitle(), $album->name);
 				} else {

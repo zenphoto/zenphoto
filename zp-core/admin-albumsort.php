@@ -18,7 +18,7 @@ admin_securityChecks($localrights, $return = currentRelativeURL());
 
 if (isset($_GET['album'])) {
 	$folder = sanitize($_GET['album']);
-	$album = newAlbum($folder);
+	$album = AlbumBase::newAlbum($folder);
 	if (!$album->isMyItem(ALBUM_RIGHTS)) {
 		if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
@@ -55,8 +55,8 @@ if (isset($_GET['album'])) {
 		switch ($action) {
 			case 'publish': // yeah, only one but we might extend here
 				XSRFdefender('imageedit');
-				$album = newAlbum($folder);
-				$image = newImage($album, $filename);
+				$album = AlbumBase::newAlbum($folder);
+				$image = Image::newImage($album, $filename);
 				$image->setShow(sanitize_numeric($_GET['value']));
 				if ($image->hasPublishSchedule()) {
 					$image->setPublishdate(date('Y-m-d H:i:s'));
@@ -184,7 +184,7 @@ echo "\n</head>";
 							<?php
 							$images = $album->getImages();
 							foreach ($images as $imagename) {
-								$image = newImage($album, $imagename);
+								$image = Image::newImage($album, $imagename);
 								?>
 								<li id="id_<?php echo $image->getID(); ?>">
 									<div class="imagethumb_wrapper">
@@ -197,7 +197,7 @@ echo "\n</head>";
 										<?php printPublishIconLinkGallery($image, true) ?>
 										<a href="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;tab=imageinfo#IT" title="<?php echo gettext('edit'); ?>"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pencil.png" alt=""></a>
 										<?php
-										if (isImagePhoto($image)) {
+										if ($image->isPhoto()) {
 											?>
 											<a href="<?php echo html_encode(pathurlencode($image->getFullImageURL())); ?>" class="colorbox" title="zoom"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/magnify.png" alt=""></a>
 											<?php

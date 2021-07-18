@@ -40,9 +40,9 @@ $options = array(
 $new = !is_dir($targetPath);
 if (!empty($folder)) {
 	if ($new) {
-		$rightsalbum = newAlbum(dirname($folder), true, true);
+		$rightsalbum = AlbumBase::newAlbum(dirname($folder), true, true);
 	} else {
-		$rightsalbum = newAlbum($folder, true, true);
+		$rightsalbum = AlbumBase::newAlbum($folder, true, true);
 	}
 	if ($rightsalbum->exists) {
 		if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
@@ -58,7 +58,7 @@ if (!empty($folder)) {
 	}
 	if ($new) {
 		mkdir_recursive($targetPath, FOLDER_MOD);
-		$album = newAlbum($folder);
+		$album = AlbumBase::newAlbum($folder);
 		$album->setShow((int) !empty($_POST['publishalbum']));
 		$album->setTitle(sanitize($_POST['albumtitle']));
 		$album->setOwner($_zp_current_admin_obj->getUser());
@@ -257,8 +257,8 @@ class UploadHandler {
 					move_uploaded_file($uploaded_file, $file_path);
 					if (Gallery::validImage($name) || Gallery::validImageAlt($name)) {
 						@chmod($targetFile, FILE_MOD);
-						$album = newAlbum($folder);
-						$image = newImage($album, $seoname);
+						$album = AlbumBase::newAlbum($folder);
+						$image = Image::newImage($album, $seoname);
 						$image->setOwner($_zp_current_admin_obj->getUser());
 						if ($name != $seoname && $image->getTitle() == substr($seoname, 0, strrpos($seoname, '.'))) {
 							$image->setTitle(stripSuffix($name, '.'));

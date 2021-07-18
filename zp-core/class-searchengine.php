@@ -442,7 +442,7 @@ class SearchEngine {
 					$this->page = $v;
 					break;
 				case 'albumname':
-					$alb = newAlbum($v, true, true);
+					$alb = AlbumBase::newAlbum($v, true, true);
 					if ($alb->loaded) {
 						$this->album = $alb;
 						$this->dynalbumname = $v;
@@ -766,7 +766,7 @@ class SearchEngine {
 						$sanitizedwords .= $singlesearchstring;
 						break;
 					default:
-						$sanitizedwords .= search_quote(sanitize($singlesearchstring, 3));
+						$sanitizedwords .= SearchEngine::getSearchQuote(sanitize($singlesearchstring, 3));
 						break;
 				}
 			}
@@ -1414,8 +1414,8 @@ class SearchEngine {
 						$albumname = $row['folder'];
 						if ($albumname != $this->dynalbumname) {
 							if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
-								$album = newAlbum($albumname);
-								$uralbum = getUrAlbum($album);
+								$album = AlbumBase::newAlbum($albumname);
+								$uralbum = $album->getUrAlbum();
 								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 								switch (themeObject::checkScheduledPublishing($row)) {
 									case 1:
@@ -1522,7 +1522,7 @@ class SearchEngine {
 		$albums = $this->getAlbums(0);
 		$inx = array_search($curalbum, $albums) + 1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return newAlbum($albums[$inx]);
+			return AlbumBase::newAlbum($albums[$inx]);
 		}
 		return null;
 	}
@@ -1538,7 +1538,7 @@ class SearchEngine {
 		$albums = $this->getAlbums(0);
 		$inx = array_search($curalbum, $albums) - 1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return newAlbum($albums[$inx]);
+			return AlbumBase::newAlbum($albums[$inx]);
 		}
 		return null;
 	}
@@ -1604,12 +1604,12 @@ class SearchEngine {
 						if ($row2) {
 							$albumname = $row2['folder'];
 							$allow = false;
-							$album = newAlbum($albumname);
-							$uralbum = getUrAlbum($album);
+							$album = AlbumBase::newAlbum($albumname);
+							$uralbum = $album->getUrAlbum();
 							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 							switch (themeObject::checkScheduledPublishing($row)) {
 								case 1:
-									$imageobj = newImage($album, $row['filename']);
+									$imageobj = Image::newImage($album, $row['filename']);
 									$imageobj->setShow(0);
 									$imageobj->save();
 								case 2:
@@ -1723,7 +1723,7 @@ class SearchEngine {
 		}
 		if ($index >= 0 && $index < $this->getNumImages()) {
 			$img = $this->images[$index];
-			return newImage(newAlbum($img['folder']), $img['filename']);
+			return Image::newImage(AlbumBase::newAlbum($img['folder']), $img['filename']);
 		}
 		return false;
 	}
@@ -2009,22 +2009,50 @@ class SearchEngine {
 		}
 		return $dir;
 	}
-
-}
-
-// search class end
-
-/**
- *
- * encloses search word in quotes if needed
- * @param string $word
- * @return string
- */
-function search_quote($word) {
-	if (is_numeric($word) || preg_match("/[ &|!'\"`,()]/", $word)) {
-		$word = '"' . str_replace("\\'", "'", addslashes($word)) . '"';
+	
+	/**
+	 *
+	 * encloses search word in quotes if needed
+	 * 
+	 * @since ZenphotoCMS 1.6 - Move to Search class as static method
+	 * @param string $word
+	 * @return string
+	 */
+	static function getSearchQuote($word) {
+		if (is_numeric($word) || preg_match("/[ &|!'\"`,()]/", $word)) {
+			$word = '"' . str_replace("\\'", "'", addslashes($word)) . '"';
+		}
+		return $word;
 	}
-	return $word;
-}
 
-?>
+	/**
+	 * Returns the a sanitized version of the search string
+	 *
+	 * @sicne ZenphotoCMS 1.6
+	 * @return string
+	 */
+	function getSearchWordsSanitized() {
+		return stripcslashes($this->codifySearchString());
+	}
+
+	/**
+	 * Returns the formatted date of the search
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $format formatting of the date, default 'F Y'
+	 * @return string
+	 */
+	function getSearchDateFormatted($format = '%B %Y') {
+		$date = $this->getSearchDate();
+		if (empty($date)) {
+			return "";
+		}
+		if ($date == '0000-00') {
+			return gettext("no date");
+		};
+		$dt = strtotime($date . "-01");
+		return zpFormattedDate($format, $dt);
+	}
+
+}

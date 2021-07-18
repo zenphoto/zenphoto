@@ -12,7 +12,7 @@ function unpublishSubalbums($album) {
 	global $_zp_gallery, $_zp_current_admin_obj;
 	$albums = $album->getAlbums();
 	foreach ($albums as $albumname) {
-		$subalbum = newAlbum($albumname);
+		$subalbum = AlbumBase::newAlbum($albumname);
 		$subalbum->setShow(false);
 		$subalbum->setLastChangeUser($_zp_current_admin_obj->getUser());
 		$subalbum->save();
@@ -38,7 +38,7 @@ if (isset($_POST['set_defaults'])) {
 		case 'albums':
 			unset($_POST['checkAllAuto']);
 			foreach ($_POST as $key => $albumid) {
-				$album = newAlbum(postIndexDecode($key));
+				$album = AlbumBase::newAlbum(postIndexDecode($key));
 				$album->setShow(1);
 				$album->setLastChangeUser($_zp_current_admin_obj->getUser());
 				$album->save();
@@ -51,8 +51,8 @@ if (isset($_POST['set_defaults'])) {
 				$imageid = sanitize_numeric(substr($action, $i + 1));
 				$rowi = query_single_row('SELECT * FROM ' . prefix('images') . ' WHERE `id`=' . $imageid);
 				$rowa = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $rowi['albumid']);
-				$album = newAlbum($rowa['folder']);
-				$image = newImage($album, $rowi['filename']);
+				$album = AlbumBase::newAlbum($rowa['folder']);
+				$image = Image::newImage($album, $rowi['filename']);
 				switch (substr($action, 0, $i)) {
 					case 'pub':
 						$image->setShow(1);
@@ -158,7 +158,7 @@ echo '</head>';
 				}
 				if (isset($_GET['propagate_unpublished'])) {
 					foreach ($albumlist as $albumname) {
-						$album = newAlbum($albumname);
+						$album = AlbumBase::newAlbum($albumname);
 						if (!$album->isPublished()) {
 							unpublishSubalbums($album);
 						}
@@ -265,7 +265,7 @@ echo '</head>';
 								<ul class="schedulealbumchecklist">
 									<?php
 									foreach ($publish_albums_list as $analbum => $albumid) {
-										$album = newAlbum($analbum);
+										$album = AlbumBase::newAlbum($analbum);
 										?>
 										<li>
 											<label>
@@ -388,7 +388,7 @@ echo '</head>';
 								<ul class="scheduleimagechecklist">
 									<?php
 									foreach ($publish_images_list as $key => $imagelist) {
-										$album = newAlbum($key);
+										$album = AlbumBase::newAlbum($key);
 										$albumid = $album->getID();
 										$imagelist = array_flip($imagelist);
 										sortArray($imagelist);
@@ -433,7 +433,7 @@ echo '</head>';
 																</td>
 																<td>
 																	<?php 
-																	$image = newImage($album, $display); 
+																	$image = Image::newImage($album, $display); 
 																	printAdminThumb($image, 'large', '', '', '', $image->filename);
 																	?>
 																</td>

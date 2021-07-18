@@ -201,7 +201,7 @@ class cycle {
 	static function getSlideshowPlayer($album, $controls = false, $width = NULL, $height = NULL) {
 		$albumobj = NULL;
 		if (!empty($album)) {
-			$albumobj = newAlbum($album, NULL, true);
+			$albumobj = AlbumBase::newAlbum($album, NULL, true);
 		}
 		if (is_object($albumobj) && $albumobj->loaded) {
 			$returnpath = $albumobj->getLink();
@@ -234,8 +234,8 @@ class cycle {
 		$slides = array();
 		//sort out non image types as the script does not work with them
 		foreach($slides_temp as $slide) {
-			$imgobj = newImage($albumobj, $slide);
-			if(isImagePhoto($imgobj)) {
+			$imgobj = Image::newImage($albumobj, $slide);
+			if($imgobj->isPhoto()) {
 				$slides[] = $slide;
 			}
 		}
@@ -436,7 +436,7 @@ class cycle {
 	 * @return type
 	 */
 	static function getSlideObj($slide, $albumobj) {
-		return newImage($albumobj, $slide);
+		return Image::newImage($albumobj, $slide);
 	}
 
 	static function macro($macros) {
@@ -648,10 +648,10 @@ if (extensionEnabled('slideshow2')) {
 						if (in_array($suffix, $suffixes)) {
 							$count++;
 							if (is_array($image)) {
-								$albobj = newAlbum($image['folder']);
-								$imgobj = newImage($albobj, $image['filename']);
+								$albobj = AlbumBase::newAlbum($image['folder']);
+								$imgobj = Image::newImage($albobj, $image['filename']);
 							} else {
-								$imgobj = newImage($_zp_current_album, $image);
+								$imgobj = Image::newImage($_zp_current_album, $image);
 							}
 							if (in_context(ZP_SEARCH_LINKED) || $_zp_gallery_page != 'image.php') {
 								if ($count == 1) {
@@ -773,11 +773,11 @@ if (extensionEnabled('slideshow2')) {
 				$returnpath = $_myFavorites->getLink($pagenumber);
 			} else {
 				$albumq = query_single_row("SELECT title, folder FROM " . prefix('albums') . " WHERE id = " . $albumid);
-				$albumobj = newAlbum($albumq['folder']);
+				$albumobj = AlbumBase::newAlbum($albumq['folder']);
 				if (empty($_POST['imagenumber'])) {
 					$returnpath = $albumobj->getLink($pagenumber);
 				} else {
-					$image = newImage($albumobj, sanitize($_POST['imagefile']));
+					$image = Image::newImage($albumobj, sanitize($_POST['imagefile']));
 					$returnpath = $image->getLink();
 				}
 			}

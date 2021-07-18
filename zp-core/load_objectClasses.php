@@ -13,7 +13,7 @@ require_once(dirname(__FILE__) . '/class-album.php');
 require_once(dirname(__FILE__) . '/class-dynamicalbum.php');
 require_once(dirname(__FILE__) . '/class-image.php');
 require_once(dirname(__FILE__) . '/class-transientimage.php');
-require_once(dirname(__FILE__) . '/class-search.php');
+require_once(dirname(__FILE__) . '/class-searchengine.php');
 
 $_zp_loaded_plugins = array();
 // load the class & filter plugins

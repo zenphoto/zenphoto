@@ -362,7 +362,7 @@ class ThemeObject extends PersistentObject {
 	 */
 	function checkPublishDates() {
 		$row = array();
-		if (isAlbumClass($this) || isImageClass($this)) {
+		if (AlbumBase::isAlbumClass($this) || Image::isImageClass($this)) {
 			$row = array(
 					'show' => $this->isPublished(),
 					'expiredate' => $this->getExpireDate(),

@@ -1614,7 +1614,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$imagelist = $album->getImages(0);
 										$subalbums = $album->getAlbums(0);
 										foreach ($subalbums as $folder) {
-											$newalbum = newAlbum($folder);
+											$newalbum = AlbumBase::newAlbum($folder);
 											if ($_zp_gallery->getSecondLevelThumbs()) {
 												$images = $newalbum->getImages(0);
 												foreach ($images as $filename) {
@@ -1644,7 +1644,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 											// there are some images to choose from
 											foreach ($imagelist as $imagename) {
 												if (is_array($imagename)) {
-													$image = newImage(NULL, $imagename);
+													$image = Image::newImage(NULL, $imagename);
 													$imagename = '/' . $imagename['folder'] . '/' . $imagename['filename'];
 													$filename = basename($imagename);
 												} else {
@@ -1652,10 +1652,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 													if (empty($albumname) || $albumname == '.') {
 														$thumbalbum = $album;
 													} else {
-														$thumbalbum = newAlbum($albumname);
+														$thumbalbum = AlbumBase::newAlbum($albumname);
 													}
 													$filename = basename($imagename);
-													$image = newImage($thumbalbum, $filename);
+													$image = Image::newImage($thumbalbum, $filename);
 												}
 												$selected = ($imagename == $thumb);
 												if (Gallery::validImage($filename) || !is_null($image->objectsThumb)) {
@@ -2447,7 +2447,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			$image->remove();
 		} else {
 			if ($thumbnail = sanitize($_POST['album_thumb-' . $index])) { //selected as an album thumb
-				$talbum = newAlbum($thumbnail);
+				$talbum = AlbumBase::newAlbum($thumbnail);
 				if ($image->imagefolder == $thumbnail) {
 					$talbum->setThumb($image->filename);
 				} else {
@@ -2843,8 +2843,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 							clearstatcache();
 							zip_entry_close($zip_entry);
 							$albumname = substr($dir, strlen(ALBUM_FOLDER_SERVERPATH));
-							$album = newAlbum($albumname);
-							$image = newImage($album, $seoname);
+							$album = AlbumBase::newAlbum($albumname);
+							$image = Image::newImage($album, $seoname);
 							if ($fname != $seoname) {
 								$image->setTitle($fname);
 								$image->setLastChangeUser($_zp_current_admin_obj->getUser());
@@ -3585,7 +3585,7 @@ function postAlbumSort($parentid) {
 				query($sql);
 			} else { // have to do a move
 				$albumname = $currentalbum['folder'];
-				$album = newAlbum($albumname);
+				$album = AlbumBase::newAlbum($albumname);
 				if (strpos($albumname, '/') !== false) {
 					$albumname = basename($albumname);
 				}
@@ -3655,7 +3655,7 @@ function printNestedAlbumsList($albums, $show_thumb, $owner) {
 			echo str_pad("\t", $indent, "\t") . "</li>\n";
 			$open[$indent]--;
 		}
-		$albumobj = newAlbum($album['name']);
+		$albumobj = AlbumBase::newAlbum($album['name']);
 		if ($albumobj->isDynamic()) {
 			$nonest = ' class="no-nest"';
 		} else {
@@ -3970,7 +3970,7 @@ function processAlbumBulkActions() {
 			$n = 0;
 			foreach ($ids as $albumname) {
 				$n++;
-				$albumobj = newAlbum($albumname);
+				$albumobj = AlbumBase::newAlbum($albumname);
 				switch ($action) {
 					case 'deleteallalbum':
 						$albumobj->remove();
@@ -4001,7 +4001,7 @@ function processAlbumBulkActions() {
 					case 'alltags':
 						$images = $albumobj->getImages();
 						foreach ($images as $imagename) {
-							$imageobj = newImage($albumobj, $imagename);
+							$imageobj = Image::newImage($albumobj, $imagename);
 							$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
 							$imageobj->setTags($mytags);
 							$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
@@ -4011,7 +4011,7 @@ function processAlbumBulkActions() {
 					case 'clearalltags':
 						$images = $albumobj->getImages();
 						foreach ($images as $imagename) {
-							$imageobj = newImage($albumobj, $imagename);
+							$imageobj = Image::newImage($albumobj, $imagename);
 							$imageobj->setTags(array());
 							$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
 							$imageobj->save(true);
@@ -4060,7 +4060,7 @@ function processImageBulkActions($album) {
 			$n = 0;
 			foreach ($ids as $filename) {
 				$n++;
-				$imageobj = newImage($album, $filename);
+				$imageobj = Image::newImage($album, $filename);
 				switch ($action) {
 					case 'deleteall':
 						$imageobj->remove();
@@ -4918,7 +4918,7 @@ function getThemeFiles($exclude) {
  * @param unknown_type $id
  */
 function checkAlbumParentid($albumname, $id, $recorder) {
-	$album = newAlbum($albumname);
+	$album = AlbumBase::newAlbum($albumname);
 	$oldid = $album->getParentID();
 	if ($oldid != $id) {
 		$album->set('parentid', $id);
@@ -4986,7 +4986,7 @@ function printLastChangeInfo($obj) {
 	<hr>
 	<ul>
 		<?php
-		if (isAlbumClass($obj) && $obj->getUpdatedDate()) {
+		if (AlbumBase::isAlbumClass($obj) && $obj->getUpdatedDate()) {
 			?>
 			<li><?php printf(gettext('Last updated: %s'), $obj->getUpdatedDate()); ?></li>
 			<?php

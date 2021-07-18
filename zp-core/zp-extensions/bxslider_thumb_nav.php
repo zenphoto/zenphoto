@@ -208,13 +208,13 @@ if (!$plugin_disable && !OFFSET_PATH) {
 				foreach ($bxslider_items as $item) {
 					if (is_array($item)) {
 						if (in_context(ZP_SEARCH_LINKED)) {
-							$albumobj = newAlbum($item['folder']);
+							$albumobj = AlbumBase::newAlbum($item['folder']);
 						} else {
 							$albumobj = $_zp_current_album;
 						}
-						$imgobj = newImage($albumobj, $item['filename']);
+						$imgobj = Image::newImage($albumobj, $item['filename']);
 					} else {
-						$imgobj = newImage($_zp_current_album, $item);
+						$imgobj = Image::newImage($_zp_current_album, $item);
 					}
 					if ($fullimagelink) {
 						$link = $imgobj->getFullImageURL();

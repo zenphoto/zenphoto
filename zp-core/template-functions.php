@@ -539,7 +539,7 @@ function getGalleryIndexURL() {
 	global $_zp_current_album, $_zp_gallery_page;
 	$page = 1;
 	if (in_context(ZP_ALBUM) && $_zp_gallery_page != 'index.php') {
-		$album = getUrAlbum($_zp_current_album);
+		$album = $_zp_current_album->getUrAlbum($_zp_current_album);
 		$page = $album->getGalleryPage();
 	}
 	if (!$link = getCustomGalleryIndexURL($page)) {
@@ -743,7 +743,7 @@ function next_album($all = false, $mine = NULL) {
 			return NULL;
 		}
 		$_zp_current_album_restore = $_zp_current_album;
-		$_zp_current_album = newAlbum(array_shift($_zp_albums), true, true);
+		$_zp_current_album = AlbumBase::newAlbum(array_shift($_zp_albums), true, true);
 		save_context();
 		add_context(ZP_ALBUM);
 		return true;
@@ -753,7 +753,7 @@ function next_album($all = false, $mine = NULL) {
 		restore_context();
 		return false;
 	} else {
-		$_zp_current_album = newAlbum(array_shift($_zp_albums), true, true);
+		$_zp_current_album = AlbumBase::newAlbum(array_shift($_zp_albums), true, true);
 		return true;
 	}
 }
@@ -779,7 +779,7 @@ function getAllAccessibleAlbums($obj, &$albumlist, $scan) {
 	global $_zp_gallery;
 	$locallist = $obj->getAlbums();
  foreach ($locallist as $folder) {
-		$album = newAlbum($folder);
+		$album = AlbumBase::newAlbum($folder);
 		If (!$album->isDynamic() && $album->checkAccess()) {
 			if ($scan)
 				$album->getImages();
@@ -2135,7 +2135,7 @@ function next_image($all = false, $firstPageCount = NULL, $mine = NULL) {
 		}
 		$_zp_current_image_restore = $_zp_current_image;
 		$img = array_shift($_zp_images);
-		$_zp_current_image = newImage($_zp_current_album, $img, true, true);
+		$_zp_current_image = Image::newImage($_zp_current_album, $img, true, true);
 		save_context();
 		add_context(ZP_IMAGE);
 		return true;
@@ -2146,7 +2146,7 @@ function next_image($all = false, $firstPageCount = NULL, $mine = NULL) {
 		return false;
 	} else {
 		$img = array_shift($_zp_images);
-		$_zp_current_image = newImage($_zp_current_album, $img, true, true);
+		$_zp_current_image = Image::newImage($_zp_current_album, $img, true, true);
 		return true;
 	}
 }
@@ -2702,7 +2702,7 @@ function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $c
 			$h = $image->getHeight();
 			$w = $image->getWidth();
 			$thumb = false;
-			if (isImageVideo($image)) { // size is determined by the player
+			if ($image->isVideo()) { // size is determined by the player
 				return array($w, $h);
 			}
 			$side = getOption('image_use_side');
@@ -2914,7 +2914,7 @@ function printDefaultSizedImage($alt, $class = null, $id = null, $title = null, 
 	if (!empty($pwd)) {
 		$attr['class'] .= " password_protected";
 	}
-	if (isImagePhoto($image)) { //Print images
+	if ($image->isPhoto()) { //Print images
 		$attr['src'] = html_pathurlencode(getDefaultSizedImage());
 		$attr_filtered = zp_apply_filter('standard_image_attr', $attr, $image);
 		$attributes = generateAttributesFromArray($attr_filtered);
@@ -3260,7 +3260,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		$attr['width'] = $width;
 		$attr['height'] = $height;
 	}
-	if (isImagePhoto($image) || $thumbStandin) {
+	if ($image->isPhoto() || $thumbStandin) {
 		if ($maxspace) {
 			$attr['src'] = html_pathurlencode($image->getCustomImage(null, $width, $height, NULL, NULL, NULL, NULL, $thumbStandin, $effects));
 		} else {
@@ -3430,7 +3430,7 @@ function printTags($option = 'links', $preText = NULL, $class = NULL, $separator
 				$separator = "";
 			}
 			if ($option === "links") {
-				$links1 = "<a href=\"" . html_encode(getSearchURL(search_quote($atag), '', 'tags', 0, array('albums' => $albumlist))) . "\" title=\"" . html_encode($atag) . "\">";
+				$links1 = "<a href=\"" . html_encode(getSearchURL(SearchEngine::getSearchQuote($atag), '', 'tags', 0, array('albums' => $albumlist))) . "\" title=\"" . html_encode($atag) . "\">";
 				$links2 = "</a>";
 			} else {
 				$links1 = $links2 = '';
@@ -3515,7 +3515,7 @@ function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $l
 						} else {
 							$albumlist = NULL;
 						}
-						$link = getSearchURL(search_quote($key), '', 'tags', 0, array('albums' => $albumlist));
+						$link = getSearchURL(SearchEngine::getSearchQuote($key), '', 'tags', 0, array('albums' => $albumlist));
 						?>
 						<li>
 							<a href="<?php echo html_encode($link); ?>"<?php echo $size; ?>><?php echo $key . $counter; ?></a>
@@ -3752,7 +3752,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
 	if (!empty($words)) {
 		if (is_array($words)) {
 			foreach ($words as $key => $word) {
-				$words[$key] = search_quote($word);
+				$words[$key] = SearchEngine::getSearchQuote($word);
 			}
 			$words = implode(',', $words);
 		}
@@ -4022,7 +4022,7 @@ function getSearchWords() {
 	global $_zp_current_search;
 	if (!in_context(ZP_SEARCH))
 		return '';
-	return stripcslashes($_zp_current_search->codifySearchString());
+	return $_zp_current_search->getSearchWordsSanitized();
 }
 
 /**
@@ -4035,15 +4035,7 @@ function getSearchWords() {
 function getSearchDate($format = '%B %Y') {
 	if (in_context(ZP_SEARCH)) {
 		global $_zp_current_search;
-		$date = $_zp_current_search->getSearchDate();
-		if (empty($date)) {
-			return "";
-		}
-		if ($date == '0000-00') {
-			return gettext("no date");
-		};
-		$dt = strtotime($date . "-01");
-		return zpFormattedDate($format, $dt);
+		return $_zp_current_search->getSearchDateFormatted($format);
 	}
 	return false;
 }
@@ -4131,7 +4123,7 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 		if ($authType = checkAlbumPassword($album, $hint)) {
 			return $authType;
 		} else {
-			$alb = newAlbum($album);
+			$alb = AlbumBase::newAlbum($album);
 			if ($alb->getUser() != '')
 				$show = true;
 			return false;
@@ -4601,7 +4593,7 @@ function getUserURL($username, $resulttype = 'all') {
 			$fields = array('author');
 			break;
 	}
-	return getSearchURL(search_quote($username), '', $fields, 1, null);
+	return getSearchURL(SearchEngine::getSearchQuote($username), '', $fields, 1, null);
 }
 
 /**

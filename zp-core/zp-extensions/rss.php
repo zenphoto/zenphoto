@@ -460,7 +460,7 @@ class RSS extends feed {
 				}
 				$albumname = $this->getChannelTitleExtra();
 				if ($this->albumfolder) {
-					$alb = newAlbum($this->albumfolder, true, true);
+					$alb = AlbumBase::newAlbum($this->albumfolder, true, true);
 					if ($alb->exists) {
 						$albumtitle = $alb->getTitle();
 						$albumname = ' - ' . html_encode($albumtitle) . $this->getChannelTitleExtra();

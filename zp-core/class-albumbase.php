@@ -8,39 +8,6 @@ define('IMAGE_SORT_TYPE', getOption('image_sorttype'));
 Gallery::addAlbumHandler('alb', 'dynamicAlbum');
 
 /**
- * Wrapper instantiation function for albums. Do not instantiate directly
- * @param string $folder8 the name of the folder (inernal character set)
- * @param bool $cache true if the album should be fetched from the cache
- * @param bool $quiet true to supress error messages
- * @return Album
- */
-function newAlbum($folder8, $cache = true, $quiet = false) {
-	global $_zp_album_handlers;
-	$suffix = getSuffix($folder8);
-	if (!$suffix || !array_key_exists($suffix, $_zp_album_handlers) || is_dir(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder8))) {
-		return new Album($folder8, $cache, $quiet);
-	} else {
-		return new $_zp_album_handlers[$suffix]($folder8, $cache, $quiet);
-	}
-}
-
-/**
- * Returns true if the object is a zenphoto 'album'
- *
- * @param object $album
- * @return bool
- */
-function isAlbumClass($album = NULL) {
-	global $_zp_current_album;
-	if (is_null($album)) {
-		if (!in_context(ZP_ALBUM))
-			return false;
-		$album = $_zp_current_album;
-	}
-	return is_object($album) && ($album->table == 'albums');
-}
-
-/**
  * Album Base Class
  * @package core
  * @subpackage classes\objects
@@ -73,6 +40,44 @@ class AlbumBase extends MediaObject {
 		$this->linkname = $this->name = $folder8;
 		$this->instantiate('albums', array('folder' => $this->name), 'folder', false, true);
 		$this->exists = false;
+	}
+	
+	/**
+	 * Wrapper instantiation function for albums. Do not instantiate directly
+	 * 
+	 * @since ZnephotoCMS 1.6 - Moved to AlbumBase class as static method
+	 * 
+	 * @param string $folder8 the name of the folder (inernal character set)
+	 * @param bool $cache true if the album should be fetched from the cache
+	 * @param bool $quiet true to supress error messages
+	 * @return Album
+	 */
+	static function newAlbum($folder8, $cache = true, $quiet = false) {
+		global $_zp_album_handlers;
+		$suffix = getSuffix($folder8);
+		if (!$suffix || !array_key_exists($suffix, $_zp_album_handlers) || is_dir(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder8))) {
+			return new Album($folder8, $cache, $quiet);
+		} else {
+			return new $_zp_album_handlers[$suffix]($folder8, $cache, $quiet);
+		}
+	}
+
+	/**
+	 * Returns true if the object is a zenphoto 'album'
+	 * 
+	 * @since ZnephotoCMS 1.6 - Moved to AlbumBase class as static method
+	 *
+	 * @param object $album
+	 * @return bool
+	 */
+	static function isAlbumClass($album = NULL) {
+		global $_zp_current_album;
+		if (is_null($album)) {
+			if (!in_context(ZP_ALBUM))
+				return false;
+			$album = $_zp_current_album;
+		}
+		return is_object($album) && ($album->table == 'albums');
 	}
 
 	/**
@@ -133,7 +138,7 @@ class AlbumBase extends MediaObject {
 			$slashpos = strrpos($this->name, "/");
 			if ($slashpos) {
 				$parent = substr($this->name, 0, $slashpos);
-				$parentalbum = newAlbum($parent, true, true);
+				$parentalbum = AlbumBase::newAlbum($parent, true, true);
 				if ($parentalbum->exists) {
 					return $parentalbum;
 				}
@@ -167,6 +172,24 @@ class AlbumBase extends MediaObject {
 
 	function getParentID() {
 		return $this->get('parentid');
+	}
+	
+	/**
+	 * Returns the oldest ancestor of an alubm;
+	 *
+	 * @since ZenphotoCMS 3.0
+	 * 
+	 * @return object
+	 */
+	function getUrAlbum() {
+		$album = $this;
+		while (true) {
+			$parent = $album->getParent();
+			if (is_null($parent)) {
+				return $album;
+			}
+			$album = $parent;
+		}
 	}
 
 	/**
@@ -349,7 +372,7 @@ class AlbumBase extends MediaObject {
 			$count = $this->getNumAlbums();
 			$subalbums = $this->getAlbums();
 			foreach ($subalbums as $folder) {
-				$subalbum = newAlbum($folder);
+				$subalbum = AlbumBase::newAlbum($folder);
 				if (!$subalbum->isDynamic()) {
 					$count += $subalbum->getNumAllAlbums();
 				}
@@ -419,7 +442,7 @@ class AlbumBase extends MediaObject {
 			$count = $this->getNumImages();
 			$subalbums = $this->getAlbums();
 			foreach ($subalbums as $folder) {
-				$subalbum = newAlbum($folder);
+				$subalbum = AlbumBase::newAlbum($folder);
 				if (!$subalbum->isDynamic()) {
 					$count += $subalbum->getNumAllImages();
 				}
@@ -437,7 +460,7 @@ class AlbumBase extends MediaObject {
 	function getImage($index) {
 		$images = $this->getImages();
 		if ($index >= 0 && $index < count($images)) {
-			return newImage($this, $this->images[$index]);
+			return Image::newImage($this, $this->images[$index]);
 		}
 		return false;
 	}
@@ -469,7 +492,7 @@ class AlbumBase extends MediaObject {
 		if (!empty($thumb) && !is_numeric($thumb)) {
 			if (file_exists($albumdir . internalToFilesystem($thumb))) {
 				if ($i === false) {
-					return newImage($this, $thumb);
+					return Image::newImage($this, $thumb);
 				} else {
 					$pieces = explode('/', $thumb);
 					$i = count($pieces);
@@ -481,7 +504,7 @@ class AlbumBase extends MediaObject {
 					} else {
 						$albumdir = $albumdir . "/";
 					}
-					$this->albumthumbnail = newImage(newAlbum($albumdir), $thumb);
+					$this->albumthumbnail = Image::newImage(AlbumBase::newAlbum($albumdir), $thumb);
 					return $this->albumthumbnail;
 				}
 			} else {
@@ -502,9 +525,9 @@ class AlbumBase extends MediaObject {
 			while (count($thumbs) > 0) {
 				// first check for images
 				$thumb = array_shift($thumbs);
-				$thumb = newImage($this, $thumb);
+				$thumb = Image::newImage($this, $thumb);
 				if ($mine || $thumb->isPublished()) {
-					if (isImagePhoto($thumb)) {
+					if ($thumb->isPhoto()) {
 						// legitimate image
 						$this->albumthumbnail = $thumb;
 						return $this->albumthumbnail;
@@ -536,7 +559,7 @@ class AlbumBase extends MediaObject {
 			}
 			while (count($subalbums) > 0) {
 				$folder = array_pop($subalbums);
-				$subalbum = newAlbum($folder);
+				$subalbum = AlbumBase::newAlbum($folder);
 				$pwd = $subalbum->getPassword();
 				if (($subalbum->isPublished() && empty($pwd)) || $subalbum->isMyItem(LIST_RIGHTS)) {
 					$thumb = $subalbum->getAlbumThumbImage();
@@ -551,7 +574,7 @@ class AlbumBase extends MediaObject {
 		$nullimage = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
 		// check for theme imageDefault.png
 		$theme = '';
-		$uralbum = getUralbum($this);
+		$uralbum = $this->getUralbum();
 		$albumtheme = $uralbum->getAlbumTheme();
 		if (!empty($albumtheme)) {
 			$theme = $albumtheme;
@@ -745,7 +768,7 @@ class AlbumBase extends MediaObject {
 			if (empty($parentname) || $parentname == '/' || $parentname == '.') {
 				$uniqueset['parentid'] = NULL;
 			} else {
-				$parent = newAlbum($parentname);	
+				$parent = AlbumBase::newAlbum($parentname);	
 				$uniqueset['parentid'] = $parent->getID();
 			}
 			$newID = parent::copy($uniqueset);
@@ -763,7 +786,7 @@ class AlbumBase extends MediaObject {
 			}
 		}
 		if ($success) {	
-			$newalbum = newAlbum($newfolder);
+			$newalbum = AlbumBase::newAlbum($newfolder);
 			$newalbum->setUpdatedDate();
 			$newalbum->setUpdatedDateParents();
 			return 0;
@@ -1142,7 +1165,7 @@ class AlbumBase extends MediaObject {
 		db_free_result($result);
 		foreach ($images as $filename) {
 			// these images are not in the database
-			$imageobj = newImage($this, $filename);
+			$imageobj = Image::newImage($this, $filename);
 			$results[] = $imageobj->getData();
 		}
 		// now put the results into the right order
@@ -1153,7 +1176,7 @@ class AlbumBase extends MediaObject {
 			// check for visible
 			switch (themeObject::checkScheduledPublishing($row)) {
 				case 1:
-					$imageobj = newImage($this, $row['filename']);
+					$imageobj = Image::newImage($this, $row['filename']);
 					$imageobj->setShow(0);
 					$imageobj->save();
 				case 2:
@@ -1181,7 +1204,7 @@ class AlbumBase extends MediaObject {
 		if (empty($parentname)) {
 			$this->set('parentid', NULL);
 		} else {
-			$parent = newAlbum($parentname);
+			$parent = AlbumBase::newAlbum($parentname);
 			$this->set('parentid', $parent->getID());
 		}
 		$this->setUpdatedDateParents();
@@ -1196,7 +1219,7 @@ class AlbumBase extends MediaObject {
 		$images = $this->getImages(0);
 		$subalbums = $this->getAlbums(0);
 		foreach ($subalbums as $dir) {
-			$album = newAlbum($dir);
+			$album = AlbumBase::newAlbum($dir);
 			$album->preLoad();
 		}
 	}
@@ -1215,7 +1238,7 @@ class AlbumBase extends MediaObject {
 		}
 		$inx = array_search($this->name, $albums) + 1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return newAlbum($albums[$inx]);
+			return AlbumBase::newAlbum($albums[$inx]);
 		}
 		return null;
 	}
@@ -1234,7 +1257,7 @@ class AlbumBase extends MediaObject {
 		}
 		$inx = array_search($this->name, $albums) - 1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return newAlbum($albums[$inx]);
+			return AlbumBase::newAlbum($albums[$inx]);
 		}
 		return null;
 	}

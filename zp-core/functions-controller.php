@@ -78,10 +78,10 @@ function zpRewriteURL($query) {
 			$redirectURL .= '?' . $q;
 	} else if (isset($query['album'])) {
 		if (isset($query['image'])) {
-			$obj = newImage(NULL, array('folder' => $query['album'], 'filename' => $query['image']), true);
+			$obj = Image::newImage(NULL, array('folder' => $query['album'], 'filename' => $query['image']), true);
 			unset($query['image']);
 		} else {
-			$obj = newAlbum($query['album'], NULL, true);
+			$obj = AlbumBase::newAlbum($query['album'], NULL, true);
 		}
 		unset($query['album']);
 		if (!$obj->exists)
@@ -171,7 +171,7 @@ function zp_load_search() {
  */
 function zp_load_album($folder, $force_nocache = false) {
 	global $_zp_current_album, $_zp_gallery;
-	$_zp_current_album = newAlbum($folder, !$force_nocache, true);
+	$_zp_current_album = AlbumBase::newAlbum($folder, !$force_nocache, true);
 	if (!is_object($_zp_current_album) || !$_zp_current_album->exists)
 		return false;
 	add_context(ZP_ALBUM);
@@ -194,7 +194,7 @@ function zp_load_image($folder, $filename) {
 	}
 	if (!is_object($album) || !$album->exists)
 		return false;
-	$_zp_current_image = newImage($album, $filename, true);
+	$_zp_current_image = Image::newImage($album, $filename, true);
 	if (is_null($_zp_current_image) || !$_zp_current_image->exists) {
 		return false;
 	}
@@ -347,7 +347,7 @@ function prepareImagePage() {
 	$theme = setupTheme();
 	$_zp_gallery_page = basename($_zp_script = THEMEFOLDER . "/$theme/image.php");
 	// re-initialize video dimensions if needed
-	if (isImageVideo()) {
+	if ($_zp_current_image->isVideo()) {
 		$_zp_current_image->updateDimensions();
 	}
 	return $theme;
@@ -377,7 +377,8 @@ function prepareCustomPage() {
 				if (!empty($searchalbums)) { //	we are within a search of a specific album(s)
 					$albums = array();
 					foreach ($searchalbums as $analbum) {
-						$parent = getUrAlbum(newAlbum($analbum));
+						$albumobj = AlbumBase::newAlbum($analbum);
+						$parent = $albumobj->getUrAlbum();
 						$albums[$parent->getID()] = $parent;
 					}
 					if (count($albums) == 1) { // there is only one parent album for the search

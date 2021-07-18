@@ -357,7 +357,7 @@ class userDataExport {
 		if ($result) {
 			$tempdata = array();
 			while ($row = db_fetch_assoc($result)) {
-				$albobj = newAlbum($row['folder']);
+				$albobj = AlbumBase::newAlbum($row['folder']);
 				$title = $albobj->getTitle();
 				if (!$albobj->isPublished()) {
 					$title .= ' [' . gettext('unpublished') . ']';
@@ -413,7 +413,7 @@ class userDataExport {
 				$albobj = getItemByID('albums', $albumid);
 				if ($albobj && !$albobj->isDynamic()) {
 					foreach ($images as $image) {
-						$imgobj = newImage($albobj, $image);
+						$imgobj = Image::newImage($albobj, $image);
 						$title = $imgobj->getTitle();
 						if (!$imgobj->isPublished()) {
 							$title .= ' [' . gettext('unpublished') . ']';

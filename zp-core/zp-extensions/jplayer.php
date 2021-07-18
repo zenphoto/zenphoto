@@ -248,7 +248,7 @@ class jPlayer {
 
 	static function getMacrojplayer($albumname, $imagename, $count = 1) {
 		global $_zp_multimedia_extension;
-		$movie = newImage(NULL, array('folder' => $albumname, 'filename' => $imagename), true);
+		$movie = Image::newImage(NULL, array('folder' => $albumname, 'filename' => $imagename), true);
 		if ($movie->exists) {
 			return $_zp_multimedia_extension->getPlayerConfig($movie, NULL, (int) $count);
 		} else {
@@ -641,7 +641,7 @@ class jPlayer {
 				$albumobj = $_zp_current_album;
 			}
 		} else {
-			$albumobj = newAlbum($albumfolder);
+			$albumobj = AlbumBase::newAlbum($albumfolder);
 		}
 		$entries = $albumobj->getImages(0);
 		if (($numimages = count($entries)) != 0) {
@@ -687,10 +687,10 @@ class jPlayer {
 						$numbering = '<span>' . $number . '</span>';
 					}
 					if (is_array($entry)) {
-						$albumobj = newAlbum($entry['folder']);
-						$video = newImage($albumobj, $entry['filename']);
+						$albumobj = AlbumBase::newAlbum($entry['folder']);
+						$video = Image::newImage($albumobj, $entry['filename']);
 					} else {
-						$video = newImage($albumobj, $entry);
+						$video = Image::newImage($albumobj, $entry);
 					}
 					$videoThumb = '';
 					$this->setModeAndSuppliedFormat($ext);

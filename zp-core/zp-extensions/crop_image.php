@@ -28,10 +28,10 @@ if (isset($_REQUEST['performcrop'])) {
 class crop_image {
 
 	static function toolbox($albumname, $imagename) {
-		$album = newAlbum($albumname);
+		$album = AlbumBase::newAlbum($albumname);
 		if ($album->isMyItem(ALBUM_RIGHTS)) {
-			$image = newimage($album, $imagename);
-			if (isImagePhoto($image)) {
+			$image = Image::newimage($album, $imagename);
+			if ($image->isPhoto()) {
 				?>
 				<li>
 					<a href="<?php echo WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/crop_image.php?a=<?php echo pathurlencode($albumname); ?>
@@ -43,7 +43,7 @@ class crop_image {
 	}
 
 	static function edit($output, $image, $prefix, $subpage, $tagsort) {
-		if (isImagePhoto($image)) {
+		if ($image->isPhoto()) {
 			if (is_array($image->filename)) {
 				$albumname = dirname($image->filename['source']);
 				$imagename = basename($image->filename['source']);
@@ -66,7 +66,7 @@ class crop_image {
 
 $albumname = sanitize_path($_REQUEST['a']);
 $imagename = sanitize_path($_REQUEST['i']);
-$album = newAlbum($albumname);
+$album = AlbumBase::newAlbum($albumname);
 if (!$album->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
 		redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
@@ -76,10 +76,10 @@ if (!$album->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 // get what image side is being used for resizing
 $use_side = getOption('image_use_side');
 // get full width and height
-$albumobj = newAlbum($albumname);
-$imageobj = newImage($albumobj, $imagename);
+$albumobj = AlbumBase::newAlbum($albumname);
+$imageobj = Image::newImage($albumobj, $imagename);
 
-if (isImagePhoto($imageobj)) {
+if ($imageobj->isPhoto()) {
 	$imgpath = $imageobj->localpath;
 	$imagepart = basename($imgpath);
 	$timg = zp_imageGet($imgpath);

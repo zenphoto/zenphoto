@@ -1028,7 +1028,7 @@ class xmpMetadata {
 						'rating'					 => '<MicrosoftPhoto:Rating>'
 		);
 		$process = array('dc', 'Iptc4xmpCore', 'photoshop', 'xap');
-		if (isAlbumClass($object)) {
+		if (AlbumBase::isAlbumClass($object)) {
 			$file = rtrim($object->localpath, '/');
 			$file .= '.xmp';
 		} else {

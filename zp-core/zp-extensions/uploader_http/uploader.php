@@ -38,9 +38,9 @@ if (isset($_POST['processed'])) {
 		$targetPath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder);
 		$new = !is_dir($targetPath);
 		if ($new) {
-			$rightsalbum = newAlbum(dirname($folder), true, true);
+			$rightsalbum = AlbumBase::newAlbum(dirname($folder), true, true);
 		} else {
-			$rightsalbum = newAlbum($folder, true, true);
+			$rightsalbum = AlbumBase::newAlbum($folder, true, true);
 		}
 		if ($rightsalbum->exists) {
 			if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
@@ -59,7 +59,7 @@ if (isset($_POST['processed'])) {
 				mkdir_recursive($targetPath, FOLDER_MOD);
 			}
 			@chmod($targetPath, FOLDER_MOD);
-			$album = newAlbum($folder);
+			$album = AlbumBase::newAlbum($folder);
 			if ($album->exists) {
 				$title = sanitize($_POST['albumtitle'], 2);
 				if (!empty($title) && $newAlbum) {
@@ -97,7 +97,7 @@ if (isset($_POST['processed'])) {
 								}
 								move_uploaded_file($tmp_name, $uploadfile);
 								@chmod($uploadfile, FILE_MOD);
-								$image = newImage($album, $soename);
+								$image = Image::newImage($album, $soename);
 								$image->setOwner($_zp_current_admin_obj->getUser());
 								if ($name != $soename) {
 									$image->setTitle(stripSuffix($name));

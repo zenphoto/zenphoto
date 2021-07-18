@@ -543,7 +543,7 @@ class cacheManager {
 		cachemanager::loadAlbum($albumobj);
 		$subalbums = $albumobj->getAlbums();
 		foreach ($subalbums as $folder) {
-			$subalbum = newAlbum($folder);
+			$subalbum = AlbumBase::newAlbum($folder);
 			if (!$subalbum->isDynamic()) {
 				cachemanager::loadAlbums($subalbum);
 			}
@@ -560,7 +560,7 @@ class cacheManager {
 		global $_zp_gallery;
 		$theme = $_zp_gallery->getCurrentTheme();
 		$id = 0;
-		$parent = getUrAlbum($albumobj);
+		$parent = $albumobj->getUrAlbum();
 		$albumtheme = $parent->getAlbumTheme();
 		if (!empty($albumtheme)) {
 			$theme = $albumtheme;
@@ -592,8 +592,8 @@ class cacheManager {
 				$sizes_count = 0;
 				$sizeuris = array();
 				$results = array();
-				$imageobj = newImage($albumobj, $image);
-				if (isImagePhoto($imageobj)) {
+				$imageobj = Image::newImage($albumobj, $image);
+				if ($imageobj->isPhoto()) {
 					if (array_key_exists('*', cachemanager::$enabledsizes)) {
 						$uri = getFullImageURL($imageobj);
 						if (strpos($uri, 'full-image.php?') !== false) {

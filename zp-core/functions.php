@@ -234,23 +234,6 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 	return $articlecontent;
 }
 
-/**
- * Returns the oldest ancestor of an alubm;
- *
- * @param string $album an album object
- * @return object
- */
-function getUrAlbum($album) {
-	if (!is_object($album))
-		return NULL;
-	while (true) {
-		$parent = $album->getParent();
-		if (is_null($parent)) {
-			return $album;
-		}
-		$album = $parent;
-	}
-}
 
 /**
  * Returns a sort field part for querying
@@ -507,7 +490,7 @@ function checkAlbumPassword($album, &$hint = NULL) {
 	if (is_object($album)) {
 		$albumname = $album->name;
 	} else {
-		$album = newAlbum($albumname = $album, true, true);
+		$album = AlbumBase::newAlbum($albumname = $album, true, true);
 	}
 	if (isset($_zp_pre_authorization[$albumname])) {
 		return $_zp_pre_authorization[$albumname];
@@ -1029,7 +1012,7 @@ function setupTheme($album = NULL) {
 	$theme = $_zp_gallery->getCurrentTheme();
 	$id = 0;
 	if (!is_null($album)) {
-		$parent = getUrAlbum($album);
+		$parent = $album->getUrAlbum();
 		$albumtheme = $parent->getAlbumTheme();
 		if (!empty($albumtheme)) {
 			$theme = $albumtheme;
@@ -1621,7 +1604,7 @@ function getNotViewableAlbums() {
 			$_zp_not_viewable_album_list = array();
 			while ($row = db_fetch_assoc($result)) {
 				if (checkAlbumPassword($row['folder'])) {
-					$album = newAlbum($row['folder']);
+					$album = AlbumBase::newAlbum($row['folder']);
 					if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {
 						$_zp_not_viewable_album_list[] = $row['id'];
 					}
@@ -1726,39 +1709,7 @@ function zp_image_types($quote) {
 	return substr($typelist, 0, -1);
 }
 
-/**
 
- * Returns video argument of the current Image.
- *
- * @param object $image optional image object
- * @return bool
- */
-function isImageVideo($image = NULL) {
-	if (is_null($image)) {
-		if (!in_context(ZP_IMAGE))
-			return false;
-		global $_zp_current_image;
-		$image = $_zp_current_image;
-	}
-	return strtolower(get_class($image)) == 'video';
-}
-
-/**
- * Returns true if the image is a standard photo type
- *
- * @param object $image optional image object
- * @return bool
- */
-function isImagePhoto($image = NULL) {
-	if (is_null($image)) {
-		if (!in_context(ZP_IMAGE))
-			return false;
-		global $_zp_current_image;
-		$image = $_zp_current_image;
-	}
-	$class = strtolower(get_class($image));
-	return $class == 'image' || $class == 'transientimage';
-}
 
 /**
  * Copies a directory recursively
@@ -2533,11 +2484,11 @@ function getItemByID($table, $id) {
 		switch ($table) {
 			case 'images':
 				if ($alb = getItemByID('albums', $result['albumid'])) {
-					return newImage($alb, $result['filename'], true);
+					return Image::newImage($alb, $result['filename'], true);
 				}
 				break;
 			case 'albums':
-				return newAlbum($result['folder'], false, true);
+				return AlbumBase::newAlbum($result['folder'], false, true);
 			case 'news':
 				return new ZenpageNews($result['titlelink']);
 			case 'pages':
@@ -2764,7 +2715,7 @@ function getNestedAlbumList($subalbum, $levels, $checkalbumrights = true, $level
 	}
 	$list = array();
 	foreach ($albums as $analbum) {
-		$albumobj = newAlbum($analbum);
+		$albumobj = AlbumBase::newAlbum($analbum);
 		$accessallowed = true;
 		if ($checkalbumrights) {
 			$accessallowed = $albumobj->isMyItem(ALBUM_RIGHTS);

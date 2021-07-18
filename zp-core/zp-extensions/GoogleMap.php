@@ -309,7 +309,7 @@ function getAlbumGeodata($album, $map) {
 	$result = false;
 	$images = $album->getImages(0, 0, null, null, false);
 	foreach ($images as $an_image) {
-		$image = newImage($album, $an_image);
+		$image = Image::newImage($album, $an_image);
 		$coord = getGeoCoord($image);
 		if ($coord) {
 			$result = true; // at least one image has geodata

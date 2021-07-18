@@ -175,11 +175,11 @@ class Album extends AlbumBase {
 		$rslt = false;
 		if (PersistentObject::remove()) {
 			foreach ($this->getImages() as $filename) {
-				$image = newImage($this, $filename);
+				$image = Image::newImage($this, $filename);
 				$image->remove();
 			}
 			foreach ($this->getAlbums() as $folder) {
-				$subalbum = newAlbum($folder);
+				$subalbum = AlbumBase::newAlbum($folder);
 				$subalbum->remove();
 			}
 			$curdir = getcwd();
@@ -263,7 +263,7 @@ class Album extends AlbumBase {
 			//copy the images
 			$images = $this->getImages(0);
 			foreach ($images as $imagename) {
-				$image = newImage($this, $imagename);
+				$image = Image::newImage($this, $imagename);
 				if ($rslt = $image->copy($newfolder)) {
 					$success = false;
 				}
@@ -271,7 +271,7 @@ class Album extends AlbumBase {
 			// copy the subalbums.
 			$subalbums = $this->getAlbums(0);
 			foreach ($subalbums as $subalbumname) {
-				$subalbum = newAlbum($subalbumname);
+				$subalbum = AlbumBase::newAlbum($subalbumname);
 				if ($rslt = $subalbum->copy($newfolder)) {
 					$success = false;
 				}
@@ -351,7 +351,7 @@ class Album extends AlbumBase {
 
 		if ($deep) {
 			foreach ($this->getAlbums(0) as $dir) {
-				$subalbum = newAlbum($dir);
+				$subalbum = AlbumBase::newAlbum($dir);
 				// Could have been deleted if it didn't exist above...
 				if ($subalbum->exists)
 					$subalbum->garbageCollect($deep);

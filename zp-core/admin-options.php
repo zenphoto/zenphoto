@@ -360,7 +360,7 @@ if (isset($_GET['action'])) {
 				$themeswitch = urldecode(sanitize_path($_POST['old_themealbum'])) != '';
 			} else {
 				$alb = urldecode(sanitize_path($_POST['themealbum']));
-				$themealbum = $table = newAlbum($alb);
+				$themealbum = $table = AlbumBase::newAlbum($alb);
 				if ($themealbum->exists) {
 					$table = $themealbum;
 					$returntab .= '&themealbum=' . html_encode(pathurlencode($alb)) . '&tab=theme';
@@ -2695,7 +2695,7 @@ Authority::printPasswordFormJS();
 						}
 						$albums = $_zp_gallery->getAlbums(0);
 						foreach ($albums as $alb) {
-							$album = newAlbum($alb);
+							$album = AlbumBase::newAlbum($alb);
 							if ($album->isMyItem(THEMES_RIGHTS)) {
 								$theme = $album->getAlbumTheme();
 								if (!empty($theme)) {
@@ -2711,7 +2711,7 @@ Authority::printPasswordFormJS();
 						$themename = $_zp_gallery->getCurrentTheme();
 						if (!empty($_REQUEST['themealbum'])) {
 							$alb = urldecode(sanitize_path($_REQUEST['themealbum']));
-							$album = newAlbum($alb);
+							$album = AlbumBase::newAlbum($alb);
 							$albumtitle = $album->getTitle();
 							$themename = $album->getAlbumTheme();
 						}
@@ -2725,7 +2725,7 @@ Authority::printPasswordFormJS();
 								$album = NULL;
 							} else {
 								$alb = sanitize_path($alb);
-								$album = newAlbum($alb);
+								$album = AlbumBase::newAlbum($alb);
 								$albumtitle = $album->getTitle();
 								$themename = $album->getAlbumTheme();
 							}

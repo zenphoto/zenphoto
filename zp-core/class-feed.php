@@ -340,7 +340,7 @@ class feed {
 	 */
 	protected function getAlbum($option) {
 		if (in_array($option, array('folder', 'albumname')) && isset($this->options[$option])) {
-			$albumobj = newAlbum($this->options[$option], true, true);
+			$albumobj = AlbumBase::newAlbum($this->options[$option], true, true);
 			if ($albumobj->exists) {
 				return $this->options[$option];
 			}
@@ -560,7 +560,7 @@ class feed {
 		switch ($item['type']) {
 			case 'images':
 				$title = get_language_string($item['title']);
-				$obj = newImage(NULL, array('folder' => $item['folder'], 'filename' => $item['filename']));
+				$obj = Image::newImage(NULL, array('folder' => $item['folder'], 'filename' => $item['filename']));
 				$link = $obj->getlink();
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$category = get_language_string($item['albumtitle']);
@@ -569,7 +569,7 @@ class feed {
 				$commentpath = PROTOCOL . '://' . $this->host . $link . "#zp_comment_id_" . $item['id'];
 				break;
 			case 'albums':
-				$obj = newAlbum($item['folder']);
+				$obj = AlbumBase::newAlbum($item['folder']);
 				$link = rtrim($obj->getLink(), '/');
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$title = get_language_string($item['albumtitle']);

@@ -10,7 +10,7 @@ $imagename = sanitize_path($_REQUEST['i']);
 $subpage = sanitize($_REQUEST['subpage']);
 $tagsort = sanitize($_REQUEST['tagsort']);
 
-$albumobj = newAlbum($albumname);
+$albumobj = AlbumBase::newAlbum($albumname);
 if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
 		redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
@@ -20,7 +20,7 @@ if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this pa
 // get what image side is being used for resizing
 $use_side = getOption('image_use_side');
 // get full width and height
-$imageobj = newImage($albumobj, $imagename);
+$imageobj = Image::newImage($albumobj, $imagename);
 $currentthumbimage = $imageobj->getThumb();
 setOption('image_use_side', 'longest', false);
 $cropwidth = getOption("thumb_crop_width");
@@ -28,7 +28,7 @@ $cropheight = getOption("thumb_crop_height");
 $imagepart = $imagename;
 
 
-if (isImagePhoto($imageobj)) {
+if ($imageobj->isPhoto()) {
 	$width = $imageobj->getWidth();
 	$height = $imageobj->getHeight();
 } else {
@@ -42,7 +42,7 @@ if (getOption('thumb_crop')) {
 	$thumbcropwidth = $cropwidth;
 	$thumbcropheight = $cropheight;
 } else {
-	if (isImagePhoto($imageobj)) {
+	if ($imageobj->isPhoto(j)) {
 		$thumbcropwidth = $imageobj->getWidth();
 		$thumbcropheight = $imageobj->getHeight();
 	} else {

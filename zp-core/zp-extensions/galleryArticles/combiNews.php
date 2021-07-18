@@ -24,14 +24,14 @@ $cat->save();
 foreach ($combi as $article) {
 	switch ($article['type']) {
 		case 'images':
-			$obj = newImage(NULL, array('folder' => $article['albumname'], 'filename' => $article['titlelink']), false);
+			$obj = Image::newImage(NULL, array('folder' => $article['albumname'], 'filename' => $article['titlelink']), false);
 			if ($obj->exists) {
 				$obj->setPublishDate($article['date']);
 				self::publishArticle($obj, 'combiNews');
 			}
 			break;
 		case 'albums':
-			$obj = newAlbum($article['albumname'], false);
+			$obj = AlbumBase::newAlbum($article['albumname'], false);
 			if ($obj->exists) {
 				$obj->setPublishDate($article['date']);
 				self::publishArticle($obj, 'combiNews');

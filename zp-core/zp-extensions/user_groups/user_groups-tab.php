@@ -184,7 +184,7 @@ echo '</head>' . "\n";
 						$groups = array_slice($groups, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
 						$albumlist = array();
 						foreach ($_zp_gallery->getAlbums() as $folder) {
-							$alb = newAlbum($folder);
+							$alb = AlbumBase::newAlbum($folder);
 							$name = $alb->getTitle();
 							$albumlist[$name] = $folder;
 						}

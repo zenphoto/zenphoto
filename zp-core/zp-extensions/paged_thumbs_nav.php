@@ -201,13 +201,13 @@ class pagedThumbsNav {
 			if ($this->currentpage > 1) {
 				if (is_array($this->images[$prevpageimagenr])) {
 					if (in_context(ZP_SEARCH_LINKED)) {
-						$albumobj = newAlbum($this->images[$prevpageimagenr]['folder']);
+						$albumobj = AlbumBase::newAlbum($this->images[$prevpageimagenr]['folder']);
 					} else {
 						$albumobj = $_zp_current_album;
 					}
-					$this->prevpageimage = newImage($albumobj, $this->images[$prevpageimagenr]['filename']);
+					$this->prevpageimage = Image::newImage($albumobj, $this->images[$prevpageimagenr]['filename']);
 				} else {
-					$this->prevpageimage = newImage($_zp_current_album, $this->images[$prevpageimagenr]);
+					$this->prevpageimage = Image::newImage($_zp_current_album, $this->images[$prevpageimagenr]);
 				}
 				return $this->prevpageimage->getLink();
 			}
@@ -240,13 +240,13 @@ class pagedThumbsNav {
 		foreach ($curimages as $item) {
 			if (is_array($item)) {
 				if (in_context(ZP_SEARCH_LINKED)) {
-					$albumobj = newAlbum($item['folder']);
+					$albumobj = AlbumBase::newAlbum($item['folder']);
 				} else {
 					$albumobj = $_zp_current_album;
 				}
-				$thumbs[] = newImage($albumobj, $item['filename']);
+				$thumbs[] = Image::newImage($albumobj, $item['filename']);
 			} else {
-				$thumbs[] = newImage($_zp_current_album, $item);
+				$thumbs[] = Image::newImage($_zp_current_album, $item);
 			}
 		}
 		return $thumbs;
@@ -304,13 +304,13 @@ class pagedThumbsNav {
 				$nextpageimagenr = $this->currentpage * $this->imagesperpage;
 				if (is_array($this->images[$nextpageimagenr])) {
 					if (in_context(ZP_SEARCH_LINKED)) {
-						$albumobj = newAlbum($this->images[$nextpageimagenr]['folder']);
+						$albumobj = AlbumBase::newAlbum($this->images[$nextpageimagenr]['folder']);
 					} else {
 						$albumobj = $_zp_current_album;
 					}
-					$this->nextpageimage = newImage($albumobj, $this->images[$nextpageimagenr]['filename']);
+					$this->nextpageimage = Image::newImage($albumobj, $this->images[$nextpageimagenr]['filename']);
 				} else {
-					$this->nextpageimage = newImage($_zp_current_album, $this->images[$nextpageimagenr]);
+					$this->nextpageimage = Image::newImage($_zp_current_album, $this->images[$nextpageimagenr]);
 				}
 				return $this->nextpageimage->getLink();
 			}
@@ -422,10 +422,10 @@ class pagedThumbsNav {
 		$linktex = $linktext;
 		$imagenr = ($i * $this->imagesperpage) - ($this->imagesperpage);
 		if (is_array($this->images[$imagenr])) {
-			$albumobj = newAlbum($this->images[$imagenr]['folder']);
-			$pageimage = newImage($_zp_current_album, $this->images[$imagenr]['filename']);
+			$albumobj = AlbumBase::newAlbum($this->images[$imagenr]['folder']);
+			$pageimage = Image::newImage($_zp_current_album, $this->images[$imagenr]['filename']);
 		} else {
-			$pageimage = newImage($_zp_current_album, $this->images[$imagenr]);
+			$pageimage = Image::newImage($_zp_current_album, $this->images[$imagenr]);
 		}
 		if ($this->currentpage == $i) {
 			echo "<li class=\"pagedthumbsnav-pagelistactive\">" . html_encode($linktext) . "</a>\n";

@@ -262,7 +262,7 @@ class galleryArticles {
 			if ($result) {
 				foreach ($result as $album) {
 					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $album['id']);
-					$album = newAlbum($album['folder']);
+					$album = AlbumBase::newAlbum($album['folder']);
 					self::publishArticle($album);
 				}
 			}
@@ -271,8 +271,8 @@ class galleryArticles {
 				foreach ($result as $image) {
 					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $image['id']);
 					$album = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $image['albumid']);
-					$album = newAlbum($album['folder']);
-					$image = newImage($album, $image['filename']);
+					$album = AlbumBase::newAlbum($album['folder']);
+					$image = Image::newImage($album, $image['filename']);
 					self::publishArticle($image);
 				}
 			}

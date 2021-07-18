@@ -6,84 +6,7 @@ define('WATERMARK_IMAGE', 1);
 define('WATERMARK_THUMB', 2);
 define('WATERMARK_FULL', 4);
 
-/**
- * Returns a new "image" object based on the file extension
- *
- * @param object $album the owner album
- * @param string $filename the filename
- * @param bool $quiet set true to supress error messages (used by loadimage)
- * @return object
- */
-function newImage($album, $filename, $quiet = false) {
-	global $_zp_extra_filetypes, $_zp_missing_image;
-	if (is_array($filename)) {
-		$xalbum = newAlbum($filename['folder'], true, true);
-		$filename = $filename['filename'];
-	} else {
-		if ($album->isDynamic()) {
-			$xalbum = NULL;
-			foreach ($album->getImages() as $image) {
-				if ($filename == $image['filename']) {
-					$xalbum = newAlbum($image['folder']);
-					break;
-				}
-			}
-		} else {
-			$xalbum = $album;
-		}
-	}
-	if (!is_object($xalbum) || !$xalbum->exists || !isAlbumClass($xalbum)) {
-		if (!$quiet) {
-			$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'), $filename);
-			trigger_error($msg, E_USER_NOTICE);
-		}
-		return $_zp_missing_image;
-	}
-	if ($object = Gallery::validImageAlt($filename)) {
-		$image = New $object($xalbum, $filename, $quiet);
-	} else {
-		if (Gallery::validImage($filename)) {
-			$image = New Image($xalbum, $filename, $quiet);
-		} else {
-			$image = NULL;
-		}
-	}
-	if ($image) {
-		if ($album && $album->isDynamic()) {
-			$image->albumname = $album->name;
-			$image->albumlink = $album->linkname;
-			$image->albumnamealbum = $album;
-		}
-		zp_apply_filter('image_instantiate', $image);
-		if ($image->exists) {
-			return $image;
-		} else {
-			return $_zp_missing_image;
-		}
-	}
 
-	if (!$quiet) {
-		$msg = sprintf(gettext('Bad filename suffix in newImage(%s)'), $filename);
-		trigger_error($msg, E_USER_NOTICE);
-	}
-	return $_zp_missing_image;
-}
-
-/**
- * Returns true if the object is a zenphoto 'image'
- *
- * @param object $image
- * @return bool
- */
-function isImageClass($image = NULL) {
-	global $_zp_current_image;
-	if (is_null($image)) {
-		if (!in_context(ZP_IMAGE))
-			return false;
-		$image = $_zp_current_image;
-	}
-	return is_object($image) && ($image->table == 'images');
-}
 
 /**
  * Image Class
@@ -160,6 +83,89 @@ class Image extends MediaObject {
 				zp_apply_filter('new_image', $this);
 		}
 	}
+	
+	/**
+	 * Returns a new "image" object based on the file extension
+	 * 
+	 * @since ZnephotoCMS 1.6 - Moved to Image class as static method
+	 *
+	 * @param object $album the owner album
+	 * @param string $filename the filename
+	 * @param bool $quiet set true to supress error messages (used by loadimage)
+	 * @return object
+	 */
+	static function newImage($album, $filename, $quiet = false) {
+		global $_zp_extra_filetypes, $_zp_missing_image;
+		if (is_array($filename)) {
+			$xalbum = AlbumBase::newAlbum($filename['folder'], true, true);
+			$filename = $filename['filename'];
+		} else {
+			if ($album->isDynamic()) {
+				$xalbum = NULL;
+				foreach ($album->getImages() as $image) {
+					if ($filename == $image['filename']) {
+						$xalbum = AlbumBase::newAlbum($image['folder']);
+						break;
+					}
+				}
+			} else {
+				$xalbum = $album;
+			}
+		}
+		if (!is_object($xalbum) || !$xalbum->exists || !AlbumBase::isAlbumClass($xalbum)) {
+			if (!$quiet) {
+				$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'), $filename);
+				trigger_error($msg, E_USER_NOTICE);
+			}
+			return $_zp_missing_image;
+		}
+		if ($object = Gallery::validImageAlt($filename)) {
+			$image = New $object($xalbum, $filename, $quiet);
+		} else {
+			if (Gallery::validImage($filename)) {
+				$image = New Image($xalbum, $filename, $quiet);
+			} else {
+				$image = NULL;
+			}
+		}
+		if ($image) {
+			if ($album && $album->isDynamic()) {
+				$image->albumname = $album->name;
+				$image->albumlink = $album->linkname;
+				$image->albumnamealbum = $album;
+			}
+			zp_apply_filter('image_instantiate', $image);
+			if ($image->exists) {
+				return $image;
+			} else {
+				return $_zp_missing_image;
+			}
+		}
+
+		if (!$quiet) {
+			$msg = sprintf(gettext('Bad filename suffix in newImage(%s)'), $filename);
+			trigger_error($msg, E_USER_NOTICE);
+		}
+		return $_zp_missing_image;
+	}
+
+	/**
+	 * Returns true if the object is a zenphoto 'image'
+	 * 
+	 * @since ZnephotoCMS 1.6 - Moved to Image class as static method
+	 *
+	 * @param object $image
+	 * @return bool
+	 */
+	static function isImageClass($image = NULL) {
+		global $_zp_current_image;
+		if (is_null($image)) {
+			if (!in_context(ZP_IMAGE))
+				return false;
+			$image = $_zp_current_image;
+		}
+		return is_object($image) && ($image->table == 'images');
+	}
 
 	/**
 	 * (non-PHPdoc)
@@ -172,7 +178,8 @@ class Image extends MediaObject {
 		$this->setLastChange();
 		$this->updateDimensions(); // deal with rotation issues
 	}
-
+	
+	
 	/**
 	 * generic "image" class setup code
 	 * Returns true if valid image.
@@ -569,7 +576,7 @@ class Image extends MediaObject {
 	 */
 	function getGeodata() {
 		$gps = array();
-		if (isImageClass($this)) {
+		if (Image::isImageClass($this)) {
 			$exif = $this->getMetaData();
 			if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
 				$lat_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLatitude']) . '.0');
@@ -1060,7 +1067,7 @@ class Image extends MediaObject {
 	 */
 	function move($newalbum, $newfilename = null) {
 		if (is_string($newalbum))
-			$newalbum = newAlbum($newalbum, false);
+			$newalbum = AlbumBase::newAlbum($newalbum, false);
 		if ($newfilename == null) {
 			$newfilename = $this->filename;
 		} else {
@@ -1124,7 +1131,7 @@ class Image extends MediaObject {
 	 */
 	function copy($newalbum) {
 		if (is_string($newalbum)) {
-			$newalbum = newAlbum($newalbum, false);
+			$newalbum = AlbumBase::newAlbum($newalbum, false);
 		}
 		if ($newalbum->getID() == $this->album->getID()) {
 			// Nothing to do - moving the file to the same place.
@@ -1589,6 +1596,29 @@ class Image extends MediaObject {
 			$album->save();
 			$album->setUpdatedDateParents();
 		}
+	}
+	
+	/**
+	 * Returns true if the image is a "photo"
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return bool
+	 */
+	function isPhoto() {
+		$class = strtolower(get_class($this));
+		return $class == 'image' || $class == 'transientimage';
+	}
+
+	/**
+	 * Returns true if the image is an "video" file
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return bool
+	 */
+	function isVideo() {
+		return strtolower(get_class($this)) == 'video';
 	}
 
 }

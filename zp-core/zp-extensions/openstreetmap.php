@@ -421,10 +421,10 @@ class openStreetMap {
 		$this->showalbummarkers = getOption('osmap_showalbummarkers');
 		$this->tileproviders = self::getTileProviders();
 		if (is_object($obj)) {
-			if (isImageClass($obj)) {
+			if (Image::isImageClass($obj)) {
 				$this->obj = $obj;
 				$this->mode = 'single';
-			} else if (isAlbumClass($obj)) {
+			} else if (AlbumBase::isAlbumClass($obj)) {
 				$this->obj = $obj;
 				$this->mode = 'cluster';
 			}
@@ -575,7 +575,7 @@ class openStreetMap {
 		$result = array();
 		$images = $album->getImages(0, 0, null, null, false);
 		foreach ($images as $an_image) {
-			$image = newImage($album, $an_image);
+			$image = Image::newImage($album, $an_image);
 			$imggeodata = $this->getImageGeodata($image);
 			if (!empty($imggeodata)) {
 				$result[] = $imggeodata;

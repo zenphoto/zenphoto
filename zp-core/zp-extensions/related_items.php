@@ -113,12 +113,12 @@ function createRelatedItemsResultArray($result, $type) {
 	foreach ($result as $item) {
 		switch ($type) {
 			case 'albums':
-				if (!isAlbumClass($current) || $current->name != $item) {
+				if (!AlbumBase::isAlbumClass($current) || $current->name != $item) {
 					array_push($results, array('name' => $item, 'album' => '', 'type' => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
 				}
 				break;
 			case 'images':
-				if (!isImageClass($current) || $current->filename != $item['filename']) {
+				if (!Image::isImageClass($current) || $current->filename != $item['filename']) {
 					array_push($results, array('name' => $item['filename'], 'album' => $item['folder'], 'type' => $type, 'weight' => $item['weight']));
 				}
 				break;
@@ -171,14 +171,14 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 					$category = '';
 					switch ($item['type']) {
 						case 'albums':
-							$obj = newAlbum($item['name']);
+							$obj = AlbumBase::newAlbum($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getDesc();
 							$category = gettext('Album');
 							break;
 						case 'images':
-							$alb = newAlbum($item['album']);
-							$obj = newImage($alb, $item['name']);
+							$alb = AlbumBase::newAlbum($item['album']);
+							$obj = Image::newImage($alb, $item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getDesc();
 							$category = gettext('Image');

@@ -153,7 +153,7 @@ class favorites extends AlbumBase {
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$data = getSerializedArray($row['data']);
-					$albumobj = newAlbum($data['id'], true, true);
+					$albumobj = AlbumBase::newAlbum($data['id'], true, true);
 					if ($albumobj->exists) { // fail to instantiate?
 						$results[$data['id']] = $albumobj->getData();
 					} else {
@@ -210,7 +210,7 @@ class favorites extends AlbumBase {
 				while ($row = db_fetch_assoc($result)) {
 					$id = $row['id'];
 					$data = getSerializedArray($row['data']);
-					$imageObj = newImage(NULL, array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), true);
+					$imageObj = Image::newImage(NULL, array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), true);
 					if ($imageObj->exists) {
 						$images[] = array_merge(array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), $imageObj->getData());
 					} else {

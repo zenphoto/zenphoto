@@ -142,7 +142,7 @@ if ($_REQUEST['origin'] == 'upload') {
 			$all_actions = $_not_upload = $_not_edit = array();
 
 			foreach ($_managed_folders as $key => $folder) {
-				$rightsalbum = newAlbum($folder);
+				$rightsalbum = AlbumBase::newAlbum($folder);
 				$modified_rights = $rightsalbum->albumSubRights();
 				if ($uploadlimit <= 0) {
 					$modified_rights = $modified_rights & ~MANAGED_OBJECT_RIGHTS_UPLOAD;
