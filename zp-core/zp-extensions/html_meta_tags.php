@@ -279,7 +279,7 @@ class htmlmetatags {
 				$desc = getBareImageDesc();
 				$canonicalurl = $host . getImageURL();
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
-					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
+					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageThumbMaxSpace($ogimage_width, $ogimage_height)));
 					$twittercard_type = 'summary_large_image';
 				}
 				$author = $_zp_current_image->getCopyrightRightsholder();
