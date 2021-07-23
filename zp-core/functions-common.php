@@ -91,8 +91,8 @@ function internalToFilesystem($filename) {
  * @return string
  */
 function sanitize_path($filename) {
-	$filename = strip_tags(str_replace('\\', '/', $filename));
-	$filename = preg_replace(array('/x00/', '/\/\/+/', '/\/\.\./', '/\/\./', '/:/', '/</', '/>/', '/\?/', '/\*/', '/\"/', '/\|/', '/\/+$/', '/^\/+/'), '', $filename);
+	$filename = filter_var($filename, FILTER_SANITIZE_URL);
+	$filename = preg_replace(array('/\/+$/', '/^\/+/'), '', $filename);
 	return $filename;
 }
 
