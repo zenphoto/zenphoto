@@ -546,24 +546,17 @@ class Zenpage {
 
 	/**
 	 * Returns the articles count
+	 * 
+	 * @since ZenphotoCMS 1.6 - This gets the news articles of the news index - For categories use the same named method of the Category object
 	 */
 	function getTotalArticles() {
-		global $_zp_current_category;
-		if (empty($_zp_current_category)) {
-			if (isset($_GET['category'])) {
-				$cat = sanitize($_GET['category']);
-				$catobj = new ZenpageCategory($cat);
-			} else {
-				return count($this->getArticles(0));
-			}
-		} else {
-			$catobj = $_zp_current_category;
-		}
-		return count($catobj->getArticles());
+		return count($this->getArticles(0));
 	}
 	
 	/**
 	 * Gets the total news pages
+	 * 
+	 * @since ZenphotoCMS 1.6 - This gets the news page number of the news index - For categories use the same named method of the Category object
 	 */
 	function getTotalNewsPages() {
 		return ceil($this->getTotalArticles() / ZP_ARTICLES_PER_PAGE);

@@ -798,7 +798,7 @@ function getAllAccessibleAlbums($obj, &$albumlist, $scan) {
  * @return int
  */
 function getTotalPages($_zp_one_image_page = false) {
-	global $_zp_gallery, $_zp_current_album, $_zp_first_page_images, $_zp_zenpage, $_zp_current_category;
+	global $_zp_gallery, $_zp_current_album, $_zp_first_page_images, $_zp_one_image_page, $_zp_zenpage, $_zp_current_category;
 	if (in_context(ZP_ALBUM | ZP_SEARCH)) {
 		$albums_per_page = max(1, getOption('albums_per_page'));
 		$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
@@ -822,11 +822,10 @@ function getTotalPages($_zp_one_image_page = false) {
 		return NULL;
 	} else if (isset($_zp_zenpage)) {
 		if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-			$cat = $_zp_current_category;
+			return $_zp_current_category->getTotalNewsPages();
 		} else {
-			$cat = NULL;
+			return $_zp_zenpage->getTotalNewsPages();
 		}
-		return (int) ceil(count($_zp_zenpage->getArticles(0, NULL, true, NULL, NULL, NULL, $cat)) / ZP_ARTICLES_PER_PAGE);
 	}
 }
 

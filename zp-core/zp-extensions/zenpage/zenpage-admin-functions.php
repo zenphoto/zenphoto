@@ -545,8 +545,8 @@ function printCategorySelection($id = '', $option = '') {
  * Prints the dropdown menu for the date archive selector for the news articles list
  *
  */
-function printArticleDatesDropdown() {
-	global $_zp_zenpage, $subpage;
+function printArticleDatesDropdown($subpage) {
+	global $_zp_zenpage;
 	$datecount = $_zp_zenpage->getAllArticleDates();
 	$lastyear = "";
 	$nr = "";

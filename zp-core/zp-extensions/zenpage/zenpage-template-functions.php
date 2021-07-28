@@ -886,8 +886,12 @@ function printPrevNewsPageLink($prev = '« prev', $class = 'disabledlink') {
  * @return bool
  */
 function hasNextNewsPage() {
-	global $_zp_zenpage, $_zp_page;
-	$total_pages = $_zp_zenpage->getTotalNewsPages();
+	global $_zp_zenpage, $_zp_current_category, $_zp_page;
+	if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+		$total_pages = $_zp_current_category->getTotalNewsPages();
+	} else {
+		$total_pages = $_zp_zenpage->getTotalNewsPages();
+	}
 	return $_zp_page < $total_pages;
 }
 
@@ -945,8 +949,12 @@ function printNewsPageList($class = 'pagelist') {
  * @return string
  */
 function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'pagelist', $firstlast = true, $navlen = 9) {
-	global $_zp_zenpage, $_zp_page;
-	$total = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+	global $_zp_zenpage, $_zp_current_category, $_zp_page;
+	if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+		$total = $_zp_current_category->getTotalNewsPages();
+	} else {
+		$total = $_zp_zenpage->getTotalNewsPages();
+	}
 	if ($total > 1) {
 		if ($navlen == 0)
 			$navlen = $total;
@@ -1013,8 +1021,12 @@ function printNewsPageListWithNav($next, $prev, $nextprev = true, $class = 'page
 }
 
 function getTotalNewsPages() {
-	global $_zp_zenpage;
-	return$_zp_zenpage->getTotalNewsPages();
+	global $_zp_zenpage, $_zp_current_category;
+	if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+		return $_zp_current_category->getTotalNewsPages();
+	} else {
+		return $_zp_zenpage->getTotalNewsPages();
+	}
 }
 
 /* * ********************************************************************* */

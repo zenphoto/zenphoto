@@ -851,8 +851,7 @@ class sitemap {
 			  } else {
 			  $zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 			  } */
-			$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
-			$newspages = ceil($_zp_zenpage->getTotalArticles() / $zenpage_articles_per_page);
+			$newspages = $_zp_zenpage->getTotalNewsPages();
 			if ($newspages > 1) {
 				for ($x = 2; $x <= $newspages; $x++) {
 					switch (SITEMAP_LOCALE_TYPE) {
@@ -973,9 +972,7 @@ class sitemap {
 							  } else {
 							  $zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 							  } */
-							$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
-							$articlecount = count($catobj->getArticles());
-							$catpages = ceil($articlecount / $zenpage_articles_per_page);
+							$catpages = $catobj->getTotalNewsPages();
 							if ($catpages > 1) {
 								for ($x = 2; $x <= $catpages; $x++) {
 									switch (SITEMAP_LOCALE_TYPE) {

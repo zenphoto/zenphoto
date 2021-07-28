@@ -422,6 +422,24 @@ class ZenpageCategory extends ZenpageRoot {
 		global $_zp_zenpage;
 		return $_zp_zenpage->getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this, $author);
 	}
+	
+	/**
+	 * Returns the articles count
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 */
+	function getTotalArticles() {
+		return count($this->getArticles(0));
+	}
+	
+	/**
+	 * Gets the total news pages
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 */
+	function getTotalNewsPages() {
+		return ceil($this->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+	}
 
 	/**
 	 * Returns an article from the album based on the index passed.
