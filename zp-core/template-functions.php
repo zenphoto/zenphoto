@@ -792,19 +792,19 @@ function getAllAccessibleAlbums($obj, &$albumlist, $scan) {
 /**
  * Returns the number of pages for the current object
  *
- * @param bool $_zp_one_image_page set to true if your theme collapses all image thumbs
+ * @param bool $one_image_page set to true if your theme collapses all image thumbs
  * or their equivalent to one page. This is typical with flash viewer themes
  *
  * @return int
  */
-function getTotalPages($_zp_one_image_page = false) {
-	global $_zp_gallery, $_zp_current_album, $_zp_first_page_images, $_zp_one_image_page, $_zp_zenpage, $_zp_current_category;
+function getTotalPages($one_image_page = false) {
+	global $_zp_gallery, $_zp_current_album, $_zp_first_page_images, $_zp_zenpage, $_zp_current_category;
 	if (in_context(ZP_ALBUM | ZP_SEARCH)) {
 		$albums_per_page = max(1, getOption('albums_per_page'));
 		$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
 		$imageCount = getNumImages();
-		if ($_zp_one_image_page) {
-			if ($_zp_one_image_page === true) {
+		if ($one_image_page) {
+			if ($one_image_page === true) {
 				$imageCount = min(1, $imageCount);
 			} else {
 				$imageCount = 0;
