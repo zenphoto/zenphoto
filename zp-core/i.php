@@ -177,6 +177,7 @@ if ($returnmode) {
 			case 'png':
 			case 'gif':
 			case 'jpeg':
+			case 'webp':
 				break;
 			default:
 				imageError('405 Method Not Allowed', sprintf(gettext("Suffix Not Allowed: %s"), filesystemToInternal(basename($newfilename))), 'err-imagegeneral.png', $image, $album, $newfilename);
