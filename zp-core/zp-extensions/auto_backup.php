@@ -104,7 +104,9 @@ class auto_backup {
 		while (count($list) >= $keep) {
 			$file = array_shift($list);
 			@chmod(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file, 0777);
-			unlink(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file);
+			if (file_exists(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file)) {
+				unlink(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file);
+			}
 		}
 		cron_starter(SERVERPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php', array('backup' => 1, 'autobackup' => 1, 'compress' => sprintf('%u', getOption('backup_compression')), 'XSRFTag' => 'backup'), 3
 		);
