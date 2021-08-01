@@ -91,7 +91,7 @@ function internalToFilesystem($filename) {
  * @return string
  */
 function sanitize_path($filename) {
-	$filename = preg_replace(array('/\x00/', '/\/\/+/', '/\/\.\./', '/\/\./', '/:/', '/</', '/>/', '/\?/', '/\*/', '/\"/', '/\|/', '/\/+$/', '/^\/+/'), '', $filename);
+	$filename = preg_replace(array('/[[:cntrl:]]/', '/\/\/+/', '/\/\.\./', '/\/\./', '/:/', '/</', '/>/', '/\?/', '/\*/', '/\"/', '/\|/', '/\/+$/', '/^\/+/'), '', $filename);
 	$filename = preg_replace(array('/\/+$/', '/^\/+/'), '', $filename);
 	return $filename;
 }
