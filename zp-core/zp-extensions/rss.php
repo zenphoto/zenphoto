@@ -678,7 +678,7 @@ class RSS extends feed {
 // enclosure
 		$feeditem['enclosure'] = '';
 		if (getOption("RSS_enclosure") AND $this->mode != "albums") {
-			$feeditem['enclosure'] = '<enclosure url="' . PROTOCOL . '://' . $fullimagelink . '" type="' . getMimeString($ext) . '" length="' . filesize($item->localpath) . '" />';
+			$feeditem['enclosure'] = '<enclosure url="' . PROTOCOL . '://' . $fullimagelink . '" type="' . mimeTypes::getType($ext) . '" length="' . filesize($item->localpath) . '" />';
 		}
 //category
 		if ($this->mode != "albums") {

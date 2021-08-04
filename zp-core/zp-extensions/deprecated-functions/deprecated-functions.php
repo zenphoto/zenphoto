@@ -5,6 +5,21 @@
  * @package plugins
  * @subpackage deprecated-functions
  */
+ 
+/**
+ * Returns the mimetype for a suffix
+ * 
+ * @deprecated ZenphotoCMS 2.0 - Use mimeTypes::getType(m() instead
+ * @since ZenphotoCMS 1.6
+ * 
+ * @param string $suffix Suffix without . to get the mimetype for
+ * @return string
+ */
+function getMimeString($suffix) {
+	deprecated_functions::notify(gettext("Use mimeTypes::getType(m() instead"));
+	require_once SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php';
+	return mimeTypes::getType($suffix);
+}
 
 /**
  * Wrapper instantiation function for albums. Do not instantiate directly
