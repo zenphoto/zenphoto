@@ -16,7 +16,7 @@
  * @return string
  */
 function getMimeString($suffix) {
-	deprecated_functions::notify(gettext("Use mimeTypes::getType(m() instead"));
+	deprecated_functions::notify(gettext("Use mimeTypes::getType() instead"));
 	require_once SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php';
 	return mimeTypes::getType($suffix);
 }
