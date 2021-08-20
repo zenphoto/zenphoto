@@ -1059,6 +1059,7 @@ zp-core/zp-extensions/elFinder/img/volume_icon_trash.svg
 zp-core/zp-extensions/elFinder/img/volume_icon_zip.png
 zp-core/zp-extensions/elFinder/img/volume_icon_zip.svg
 zp-core/zp-extensions/elFinder/js
+zp-core/zp-extensions/elFinder/js/elfinder.full.js
 zp-core/zp-extensions/elFinder/js/elfinder.min.js
 zp-core/zp-extensions/elFinder/js/extras
 zp-core/zp-extensions/elFinder/js/extras/editors.default.js
@@ -1150,6 +1151,7 @@ zp-core/zp-extensions/elFinder/php/elFinderVolumeGroup.class.php
 zp-core/zp-extensions/elFinder/php/elFinderVolumeLocalFileSystem.class.php
 zp-core/zp-extensions/elFinder/php/elFinderVolumeMySQL.class.php
 zp-core/zp-extensions/elFinder/php/elFinderVolumeOneDrive.class.php
+zp-core/zp-extensions/elFinder/php/elFinderVolumeSFTPphpseclib.class.php
 zp-core/zp-extensions/elFinder/php/elFinderVolumeTrash.class.php
 zp-core/zp-extensions/elFinder/php/elFinderVolumeTrashMySQL.class.php
 zp-core/zp-extensions/elFinder/php/libs
@@ -1714,4 +1716,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1716
+1718

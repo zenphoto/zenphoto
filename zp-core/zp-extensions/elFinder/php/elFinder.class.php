@@ -32,7 +32,7 @@ class elFinder
      *
      * @var integer
      */
-    protected static $ApiRevision = 57;
+    protected static $ApiRevision = 59;
 
     /**
      * Storages (root dirs)
@@ -420,6 +420,21 @@ class elFinder
     protected $removeContentSaveIds = array();
 
     /**
+     * LAN class allowed when uploading via URL
+     * 
+     * Array keys are 'local', 'private_a', 'private_b', 'private_c' and 'link'
+     * 
+     * local:     127.0.0.0/8
+     * private_a: 10.0.0.0/8
+     * private_b: 172.16.0.0/12
+     * private_c: 192.168.0.0/16
+     * link:      169.254.0.0/16
+     *
+     * @var        array
+     */
+    protected $uploadAllowedLanIpClasses = array();
+
+    /**
      * Flag of throw Error on exec()
      *
      * @var boolean
@@ -530,6 +545,7 @@ class elFinder
     const ERROR_UPLOAD_TEMP = 'errUploadTemp';       // 'Unable to make temporary file for upload.'
     const ERROR_UPLOAD_TOTAL_SIZE = 'errUploadTotalSize';  // 'Data exceeds the maximum allowed size.'
     const ERROR_UPLOAD_TRANSFER = 'errUploadTransfer';   // '"$1" transfer error.'
+    const ERROR_MAX_MKDIRS = 'errMaxMkdirs'; // 'You can create up to $1 folders at one time.'
 
     /**
      * Constructor
@@ -569,6 +585,8 @@ class elFinder
         !defined('ELFINDER_ZIP_PATH') && define('ELFINDER_ZIP_PATH', 'zip');
         !defined('ELFINDER_UNZIP_PATH') && define('ELFINDER_UNZIP_PATH', 'unzip');
         !defined('ELFINDER_RAR_PATH') && define('ELFINDER_RAR_PATH', 'rar');
+        // Create archive in RAR4 format even when using RAR5 library (true or false)
+        !defined('ELFINDER_RAR_MA4') && define('ELFINDER_RAR_MA4', false);
         !defined('ELFINDER_UNRAR_PATH') && define('ELFINDER_UNRAR_PATH', 'unrar');
         !defined('ELFINDER_7Z_PATH') && define('ELFINDER_7Z_PATH', (substr(PHP_OS, 0, 3) === 'WIN') ? '7z' : '7za');
         !defined('ELFINDER_CONVERT_PATH') && define('ELFINDER_CONVERT_PATH', 'convert');
@@ -708,6 +726,10 @@ class elFinder
         $this->optionsNetVolumes = (isset($opts['optionsNetVolumes']) && is_array($opts['optionsNetVolumes'])) ? $opts['optionsNetVolumes'] : array();
         if (isset($opts['itemLockExpire'])) {
             $this->itemLockExpire = intval($opts['itemLockExpire']);
+        }
+
+        if (!empty($opts['uploadAllowedLanIpClasses'])) {
+            $this->uploadAllowedLanIpClasses = array_flip($opts['uploadAllowedLanIpClasses']);
         }
 
         // deprecated settings
@@ -986,7 +1008,7 @@ class elFinder
                             $errors[] = (string)$_err;
                         }
                         if ($_res['error']) {
-                            throw elFinderTriggerException();
+                            throw new elFinderTriggerException();
                         }
                     }
                 }
@@ -2167,6 +2189,10 @@ class elFinder
             return array('error' => $this->error(self::ERROR_MKDIR, $name, self::ERROR_TRGDIR_NOT_FOUND, '#' . $target));
         }
         if ($dirs) {
+            $maxDirs = $volume->getOption('uploadMaxMkdirs');
+            if ($maxDirs && $maxDirs < count($dirs)) {
+                return array('error' => $this->error(self::ERROR_MAX_MKDIRS, $maxDirs));
+            }
             sort($dirs);
             $reset = null;
             $mkdirs = array();
@@ -2517,14 +2543,85 @@ class elFinder
         }
         $flagFile = elFinder::$connectionFlagsPath . DIRECTORY_SEPARATOR . 'elfreq%s';
         if (!empty($args['makeFile'])) {
-            self::$abortCheckFile = sprintf($flagFile, $args['makeFile']);
+            self::$abortCheckFile = sprintf($flagFile, self::filenameDecontaminate($args['makeFile']));
             touch(self::$abortCheckFile);
             $GLOBALS['elFinderTempFiles'][self::$abortCheckFile] = true;
             return;
         }
 
-        $file = !empty($args['id']) ? sprintf($flagFile, $args['id']) : self::$abortCheckFile;
+        $file = !empty($args['id']) ? sprintf($flagFile, self::filenameDecontaminate($args['id'])) : self::$abortCheckFile;
         $file && is_file($file) && unlink($file);
+    }
+
+    /**
+     * Validate an URL to prevent SSRF attacks.
+     *
+     * To prevent any risk of DNS rebinding, always use the IP address resolved by
+     * this method, as returned in the array entry `ip`.
+     *
+     * @param string $url
+     *
+     * @return false|array
+     */
+    protected function validate_address($url)
+    {
+        $info = parse_url($url);
+        $host = trim(strtolower($info['host']), '.');
+        // do not support IPv6 address
+        if (preg_match('/^\[.*\]$/', $host)) {
+            return false;
+        }
+        // do not support non dot host
+        if (strpos($host, '.') === false) {
+            return false;
+        }
+        // do not support URL-encoded host
+        if (strpos($host, '%') !== false) {
+            return false;
+        }
+        // disallow including "localhost" and "localdomain"
+        if (preg_match('/\b(?:localhost|localdomain)\b/', $host)) {
+            return false;
+        }
+        // check IPv4 local loopback, private network and link local
+        $ip = gethostbyname($host);
+        if (preg_match('/^0x[0-9a-f]+|[0-9]+(?:\.(?:0x[0-9a-f]+|[0-9]+)){1,3}$/', $ip, $m)) {
+            $long = (int)sprintf('%u', ip2long($ip));
+            if (!$long) {
+                return false;
+            }
+            $local = (int)sprintf('%u', ip2long('127.255.255.255')) >> 24;
+            $prv1  = (int)sprintf('%u', ip2long('10.255.255.255')) >> 24;
+            $prv2  = (int)sprintf('%u', ip2long('172.31.255.255')) >> 20;
+            $prv3  = (int)sprintf('%u', ip2long('192.168.255.255')) >> 16;
+            $link  = (int)sprintf('%u', ip2long('169.254.255.255')) >> 16;
+
+            if (!isset($this->uploadAllowedLanIpClasses['local']) && $long >> 24 === $local) {
+                return false;
+            }
+            if (!isset($this->uploadAllowedLanIpClasses['private_a']) && $long >> 24 === $prv1) {
+                return false;
+            }
+            if (!isset($this->uploadAllowedLanIpClasses['private_b']) && $long >> 20 === $prv2) {
+                return false;
+            }
+            if (!isset($this->uploadAllowedLanIpClasses['private_c']) && $long >> 16 === $prv3) {
+                return false;
+            }
+            if (!isset($this->uploadAllowedLanIpClasses['link']) && $long >> 16 === $link) {
+                return false;
+            }
+            $info['ip'] = long2ip($long);
+            if (!isset($info['port'])) {
+                $info['port'] = $info['scheme'] === 'https' ? 443 : 80;
+            }
+            if (!isset($info['path'])) {
+                $info['path'] = '/';
+            }
+            return $info;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -2545,54 +2642,20 @@ class elFinder
     protected function get_remote_contents(&$url, $timeout = 30, $redirect_max = 5, $ua = 'Mozilla/5.0', $fp = null)
     {
         if (preg_match('~^(?:ht|f)tps?://[-_.!\~*\'()a-z0-9;/?:\@&=+\$,%#\*\[\]]+~i', $url)) {
-            $info = parse_url($url);
-            $host = trim(strtolower($info['host']), '.');
-            // do not support IPv6 address
-            if (preg_match('/^\[.*\]$/', $host)) {
+            $info = $this->validate_address($url);
+            if ($info === false) {
                 return false;
-            }
-            // do not support non dot host
-            if (strpos($host, '.') === false) {
-                return false;
-            }
-            // do not support URL-encoded host
-            if (strpos($host, '%') !== false) {
-                return false;
-            }
-            // disallow including "localhost" and "localdomain"
-            if (preg_match('/\b(?:localhost|localdomain)\b/', $host)) {
-                return false;
-            }
-            // wildcard DNS (e.g xip.io)
-            if (preg_match('/0x[0-9a-f]+|[0-9]+(?:\.(?:0x[0-9a-f]+|[0-9]+)){1,3}/', $host)) {
-                $host = gethostbyname($host);
-            }
-            // check IPv4 local loopback, private network and link local
-            if (preg_match('/^0x[0-9a-f]+|[0-9]+(?:\.(?:0x[0-9a-f]+|[0-9]+)){1,3}$/', $host, $m)) {
-                $long = (int)sprintf('%u', ip2long($host));
-                if (!$long) {
-                    return false;
-                }
-                $local = (int)sprintf('%u', ip2long('127.255.255.255')) >> 24;
-                $prv1 = (int)sprintf('%u', ip2long('10.255.255.255')) >> 24;
-                $prv2 = (int)sprintf('%u', ip2long('172.31.255.255')) >> 20;
-                $prv3 = (int)sprintf('%u', ip2long('192.168.255.255')) >> 16;
-                $link = (int)sprintf('%u', ip2long('169.254.255.255')) >> 16;
-
-                if ($long >> 24 === $local || $long >> 24 === $prv1 || $long >> 20 === $prv2 || $long >> 16 === $prv3 || $long >> 16 === $link) {
-                    return false;
-                }
             }
             // dose not support 'user' and 'pass' for security reasons
-            $url = $info['scheme'].'://'.$host.(!empty($info['port'])? (':'.$info['port']) : '').$info['path'].(!empty($info['query'])? ('?'.$info['query']) : '').(!empty($info['fragment'])? ('#'.$info['fragment']) : '');
+            $url = $info['scheme'].'://'.$info['host'].(!empty($info['port'])? (':'.$info['port']) : '').$info['path'].(!empty($info['query'])? ('?'.$info['query']) : '').(!empty($info['fragment'])? ('#'.$info['fragment']) : '');
             // check by URL upload filter
             if ($this->urlUploadFilter && is_callable($this->urlUploadFilter)) {
                 if (!call_user_func_array($this->urlUploadFilter, array($url, $this))) {
                     return false;
                 }
             }
-            $method = (function_exists('curl_exec') && !ini_get('safe_mode') && !ini_get('open_basedir')) ? 'curl_get_contents' : 'fsock_get_contents';
-            return $this->$method($url, $timeout, $redirect_max, $ua, $fp);
+            $method = (function_exists('curl_exec')) ? 'curl_get_contents' : 'fsock_get_contents';
+            return $this->$method($url, $timeout, $redirect_max, $ua, $fp, $info);
         }
         return false;
     }
@@ -2612,8 +2675,11 @@ class elFinder
      * @retval false  error
      * @author Naoki Sawada
      **/
-    protected function curl_get_contents(&$url, $timeout, $redirect_max, $ua, $outfp)
+    protected function curl_get_contents(&$url, $timeout, $redirect_max, $ua, $outfp, $info)
     {
+        if ($redirect_max == 0) {
+            return false;
+        }
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HEADER, false);
@@ -2626,11 +2692,19 @@ class elFinder
         curl_setopt($ch, CURLOPT_LOW_SPEED_LIMIT, 1);
         curl_setopt($ch, CURLOPT_LOW_SPEED_TIME, $timeout);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_MAXREDIRS, $redirect_max);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
         curl_setopt($ch, CURLOPT_USERAGENT, $ua);
+        curl_setopt($ch, CURLOPT_RESOLVE, [$info['host'] . ':' . $info['port'] . ':' . $info['ip']]);
         $result = curl_exec($ch);
-        $url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if ($http_code == 301 || $http_code == 302) {
+            $new_url = curl_getinfo($ch, CURLINFO_REDIRECT_URL);
+            $info = $this->validate_address($new_url);
+            if ($info === false) {
+                return false;
+            }
+            return $this->curl_get_contents($new_url, $timeout, $redirect_max - 1, $ua, $outfp, $info);
+        }
         curl_close($ch);
         return $outfp ? $outfp : $result;
     }
@@ -2651,7 +2725,7 @@ class elFinder
      * @throws elFinderAbortException
      * @author Naoki Sawada
      */
-    protected function fsock_get_contents(&$url, $timeout, $redirect_max, $ua, $outfp)
+    protected function fsock_get_contents(&$url, $timeout, $redirect_max, $ua, $outfp, $info)
     {
         $connect_timeout = 3;
         $connect_try = 3;
@@ -2662,22 +2736,15 @@ class elFinder
         $getSize = null;
         $headers = '';
 
-        $arr = parse_url($url);
-        if (!$arr) {
-            // Bad request
-            return false;
-        }
+        $arr = $info;
         if ($arr['scheme'] === 'https') {
             $ssl = 'ssl://';
         }
 
         // query
         $arr['query'] = isset($arr['query']) ? '?' . $arr['query'] : '';
-        // port
-        $port = isset($arr['port']) ? $arr['port'] : '';
-        $arr['port'] = $port ? $port : ($ssl ? 443 : 80);
 
-        $url_base = $arr['scheme'] . '://' . $arr['host'] . ($port ? (':' . $port) : '');
+        $url_base = $arr['scheme'] . '://' . $info['host'] . ':' . $info['port'];
         $url_path = isset($arr['path']) ? $arr['path'] : '/';
         $uri = $url_path . $arr['query'];
 
@@ -2758,7 +2825,11 @@ class elFinder
                         sleep(1);
                     }
                     fclose($fp);
-                    return $this->fsock_get_contents($url, $timeout, $redirect_max, $ua, $outfp);
+                    $info = $this->validate_address($url);
+                    if ($info === false) {
+                        return false;
+                    }
+                    return $this->fsock_get_contents($url, $timeout, $redirect_max, $ua, $outfp, $info);
                 }
                 break;
             case 200:
@@ -2862,7 +2933,8 @@ class elFinder
                 $type = 'finfo';
                 $finfo = finfo_open(FILEINFO_MIME);
             } elseif (function_exists('mime_content_type')
-                && preg_match($regexp, array_shift(explode(';', mime_content_type(__FILE__))))) {
+                && ($_ctypes = explode(';', mime_content_type(__FILE__)))
+                && preg_match($regexp, array_shift($_ctypes))) {
                 $type = 'mime_content_type';
             } elseif (function_exists('getimagesize')) {
                 $type = 'getimagesize';
@@ -3823,7 +3895,8 @@ class elFinder
         $targets = isset($args['targets']) && is_array($args['targets']) ? $args['targets'] : array();
         $name = isset($args['name']) ? $args['name'] : '';
 
-        if (($volume = $this->volume($targets[0])) == false) {
+        $targets = array_filter($targets, array($this, 'volume'));
+        if (!$targets || ($volume = $this->volume($targets[0])) === false) {
             return $this->error(self::ERROR_ARCHIVE, self::ERROR_TRGDIR_NOT_FOUND);
         }
 
@@ -4331,7 +4404,7 @@ var go = function() {
         if (!elFinder::$commonTempPath) {
             return false;
         }
-        $lock = elFinder::$commonTempPath . DIRECTORY_SEPARATOR . $hash . '.lock';
+        $lock = elFinder::$commonTempPath . DIRECTORY_SEPARATOR . self::filenameDecontaminate($hash) . '.lock';
         if (file_exists($lock)) {
             if (filemtime($lock) + $this->itemLockExpire < time()) {
                 unlink($lock);
@@ -4360,7 +4433,7 @@ var go = function() {
             $hashes = array($hashes);
         }
         foreach ($hashes as $hash) {
-            $lock = elFinder::$commonTempPath . DIRECTORY_SEPARATOR . $hash . '.lock';
+            $lock = elFinder::$commonTempPath . DIRECTORY_SEPARATOR . self::filenameDecontaminate($hash) . '.lock';
             if ($this->itemLocked($hash)) {
                 $cnt = file_get_contents($lock) + 1;
             } else {
@@ -4509,6 +4582,16 @@ var go = function() {
     public static function getApiFullVersion()
     {
         return (string)self::$ApiVersion . '.' . (string)self::$ApiRevision;
+    }
+
+    /**
+     * Return self::$commonTempPath
+     *
+     * @return     string  The common temporary path.
+     */
+    public static function getCommonTempPath()
+    {
+        return self::$commonTempPath;
     }
 
     /**
@@ -5097,18 +5180,37 @@ var go = function() {
     }
 
     /**
+     * Decontaminate of filename
+     *
+     * @param      String  $name   The name
+     *
+     * @return     String  Decontaminated filename
+     */
+    public static function filenameDecontaminate($name)
+    {
+        // Directory traversal defense
+        if (DIRECTORY_SEPARATOR === '\\') {
+            $name = str_replace('\\', '/', $name);
+        }
+        $parts = explode('/', trim($name, '/'));
+        $name = array_pop($parts); 
+        return $name;
+    }
+
+    /**
      * Execute shell command
      *
      * @param  string $command      command line
      * @param  string $output       stdout strings
      * @param  int    $return_var   process exit code
      * @param  string $error_output stderr strings
+     * @param  null   $cwd          cwd
      *
      * @return int exit code
      * @throws elFinderAbortException
      * @author Alexey Sukhotin
      */
-    public static function procExec($command, &$output = '', &$return_var = -1, &$error_output = '')
+    public static function procExec($command, &$output = '', &$return_var = -1, &$error_output = '', $cwd = null)
     {
 
         static $allowed = null;
@@ -5138,7 +5240,7 @@ var go = function() {
             2 => array("pipe", "w")   // stderr
         );
 
-        $process = proc_open($command, $descriptorspec, $pipes, null, null);
+        $process = proc_open($command, $descriptorspec, $pipes, $cwd, null);
 
         if (is_resource($process)) {
             stream_set_blocking($pipes[1], 0);
