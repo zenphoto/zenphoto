@@ -1,4 +1,6 @@
 # Security Policy
 
-We officially only support the lastest release version. Please report security issue via the contact page on our site:
+**Please never report possible security issues on GitHub tickets as those are public. Instead please report responsible via mail on our site only**:
 https://www.zenphoto.org/pages/contact/
+
+Reports should be made with the latest official release or the support/development bulild.
