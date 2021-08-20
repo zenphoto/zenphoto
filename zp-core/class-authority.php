@@ -664,7 +664,7 @@ class Authority {
 					$_REQUEST['logon_step'] = 'challenge';
 					break;
 				case 'captcha':
-					if ($_zp_captcha->checkCaptcha(trim(@$_POST['code']), sanitize(@$_POST['code_h'], 3))) {
+					if (is_null($_zp_captcha->name) || $_zp_captcha->checkCaptcha(trim(@$_POST['code']), sanitize(@$_POST['code_h'], 3))) {
 						require_once(dirname(__FILE__) . '/load_objectClasses.php'); // be sure that the plugins are loaded for the mail handler
 						if (empty($post_user)) {
 							$requestor = gettext('You are receiving this e-mail because of a password reset request on your Zenphoto gallery.');
@@ -965,14 +965,15 @@ class Authority {
 							<fieldset><legend><?php echo gettext('User'); ?></legend>
 								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" />
 							</fieldset>
-							<?php if (isset($captcha['html'])) echo $captcha['html']; ?>
 							<?php
 							if (isset($captcha['input'])) {
 								?>
-								<fieldset><legend><?php echo gettext("Enter CAPTCHA"); ?></legend>
+								<fieldset>
+									<legend><?php echo gettext("Enter CAPTCHA"); ?></legend>
 									<?php echo $captcha['input']; ?>
 								</fieldset>
 								<?php
+								echo $captcha['html'];
 							}
 							?>
 							<br />
