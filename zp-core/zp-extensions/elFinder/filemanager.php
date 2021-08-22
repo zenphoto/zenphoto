@@ -6,6 +6,9 @@
  * @subpackage elfinder
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
+if(!extensionEnabled('elFinder')) {
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
+}
 admin_securityChecks(FILES_RIGHTS, currentRelativeURL());
 zp_setCookie('zpcms_admin_uploadtype', 'elFinder');
 $locale = substr(getOption("locale"), 0, 2);
