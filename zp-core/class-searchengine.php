@@ -2054,5 +2054,103 @@ class SearchEngine {
 		$dt = strtotime($date . "-01");
 		return zpFormattedDate($format, $dt);
 	}
+	
+	/**
+	 * 
+	 * Gets the number of album pages
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $type 'total" total pages rounded, "full" number of pages that exactly match the per page value, 
+	 *		"plain" number of pages as float value
+	 * @return int|float
+	 */
+	function getNumAlbumPages($type = 'total') {
+		$album_pages = $this->getNumAlbums() / $this->getAlbumsPerPage();
+		switch ($type) {
+			case 'plain':
+				return $album_pages;
+			case 'full':
+				return floor($album_pages);
+			case 'total':
+				return ceil($album_pages);
+		}
+	}
+
+	/**
+	 * Gets the number of image pages
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $type 'total" total pages rounded, "full" number of pages that exactly match the per page value, 
+	 *							"plain" number of pages as float value
+	 * @param type $type
+	 * @return int|float
+	 */
+	function getNumImagePages($type = 'total') {
+		$image_pages = $this->getNumImages() / $this->getImagesPerPages();
+		switch ($type) {
+			case 'plain':
+				return $image_pages;
+			case 'full':
+				return floor($image_pages);
+			case 'total':
+				return ceil($image_pages);
+		}
+	}
+
+	/**
+	 * Gets the number of total pages of albums and images
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param bool $one_image_page set to true if your theme collapses all image thumbs
+	 * or their equivalent to one page. This is typical with flash viewer themes
+	 * @return int
+	 */
+	function getTotalPages($one_image_page = false) {
+		$total_pages = $this->getNumAlbumPages('total') + $this->getNumImagePages('total');
+		$first_page_images = $this->getFirstPageImages($one_image_page);
+		if ($first_page_images == 0) {
+			return $total_pages;
+		} else {
+			return ($total_pages - 1);
+		}
+	}
+	
+	/**
+	 * Gets the albums per page value
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return int
+	 */
+	function getAlbumsPerPage() {
+		return max(1, getOption('albums_per_page'));
+	}
+
+	/**
+	 * 
+	 * Gets the images per page value
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return int
+	 */
+	function getImagesPerPage() {
+		return max(1, getOption('images_per_page'));
+	}
+
+		/**
+	 * Gets the number of images if the thumb transintion page for sharing thunbs on the last album and the first image page
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param bool $one_image_page 
+	 * @return int
+	 */
+	function getFirstPageImages($one_image_page = false) {
+		return Gallery::getFirstPageImages($this, $one_image_page);
+	}
 
 }

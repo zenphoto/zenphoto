@@ -410,22 +410,24 @@ if (isset($_GET['action'])) {
 						}
 						setThemeOption('thumb_crop_height', $nch, $table, $themename);
 					}
-					if (isset($_POST['albums_per_page']) && isset($_POST['albums_per_row'])) {
+					
+					if (isset($_POST['albums_per_page'])) {
 						$albums_per_page = sanitize_numeric($_POST['albums_per_page']);
-						$albums_per_row = max(1, sanitize_numeric($_POST['albums_per_row']));
-						$albums_per_page = ceil($albums_per_page / $albums_per_row) * $albums_per_row;
 						setThemeOption('albums_per_page', $albums_per_page, $table, $themename);
-						setThemeOption('albums_per_row', $albums_per_row, $table, $themename);
 					}
-					if (isset($_POST['images_per_page']) && isset($_POST['images_per_row'])) {
+					if (isset($_POST['images_per_page'])) {
 						$images_per_page = sanitize_numeric($_POST['images_per_page']);
-						$images_per_row = max(1, sanitize_numeric($_POST['images_per_row']));
-						$images_per_page = ceil($images_per_page / $images_per_row) * $images_per_row;
 						setThemeOption('images_per_page', $images_per_page, $table, $themename);
-						setThemeOption('images_per_row', $images_per_row, $table, $themename);
 					}
-					if (isset($_POST['thumb_transition']))
-						setThemeOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition']) - 1) && true), $table, $themename);
+
+					setThemeOption('thumb_transition', isset($_POST['thumb_transition']), $table, $themename);
+					if (isset($_POST['thumb_transition_min'])) {
+						setThemeOption('thumb_transition_min', max(1, sanitize_numeric($_POST['thumb_transition_min'])), $table, $themename);
+					}
+					if (isset($_POST['thumb_transition_max'])) {
+						setThemeOption('thumb_transition_max', max(1, sanitize_numeric($_POST['thumb_transition_max'])), $table, $themename);
+					}
+					
 					if (isset($_POST['custom_index_page']))
 						setThemeOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
 					setThemeOption('display_copyright_notice',isset($_POST['display_copyright_notice']), $table, $themename);
@@ -2814,51 +2816,24 @@ Authority::printPasswordFormJS();
 										<td style='width: 175px'><?php echo gettext("Albums:"); ?></td>
 										<td>
 											<?php
-											if (in_array('albums_per_row', $unsupportedOptions)) {
-												$disable = ' disabled="disabled"';
-											} else {
-												$disable = '';
-											}
-											?>
-											<input type="text" size="3" name="albums_per_row" value="<?php echo getThemeOption('albums_per_row', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per row'); ?>
-											<br />
-											<?php
 											if (in_array('albums_per_page', $unsupportedOptions)) {
 												$disable = ' disabled="disabled"';
 											} else {
 												$disable = '';
 											}
 											?>
-											<input type="text" size="3" name="albums_per_page" value="<?php echo getThemeOption('albums_per_page', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?>
+										<p>
+				<label><input type="text" size="3" name="albums_per_page" value="<?php echo getThemeOption('albums_per_page', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?></label>
+			</p>
 										</td>
 										<td>
 											<?php
-											echo gettext('These specify the Theme <a title="Look at your album page and count the number of album thumbnails that show up in one row. This is the value you should set for the option.">CSS determined number</a> of album thumbnails that will fit in a "row" and the number of albums thumbnails you wish per page.');
-											if (getThemeOption('albums_per_row', $album, $themename) > 1) {
-												?>
-												<p class="notebox">
-													<?php
-													echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to the next multiple of it.') . ' ';
-													printf(gettext('For album pages there will be %1$u rows of thumbnails.'), ceil(getThemeOption('albums_per_page', $album, $themename) / getThemeOption('albums_per_row', $album, $themename)));
-													?>
-												</p>
-												<?php
-											}
-											?>
+											echo gettext('Set how many albums should appear on an album page'); ?>
 										</td>
 									</tr>
 									<tr>
 										<td><?php echo gettext("Images:"); ?></td>
 										<td>
-											<?php
-											if (in_array('images_per_row', $unsupportedOptions)) {
-												$disable = ' disabled="disabled"';
-											} else {
-												$disable = '';
-											}
-											?>
-											<input type="text" size="3" name="images_per_row" value="<?php echo getThemeOption('images_per_row', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per row'); ?>
-											<br />
 											<?php
 											if (in_array('images_per_page', $unsupportedOptions)) {
 												$disable = ' disabled="disabled"';
@@ -2866,11 +2841,11 @@ Authority::printPasswordFormJS();
 												$disable = '';
 											}
 											?>
-											<input type="text" size="3" name="images_per_page" value="<?php echo getThemeOption('images_per_page', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?>
+											<label><input type="text" size="3" name="images_per_page" value="<?php echo getThemeOption('images_per_page', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?></label>
 										</td>
 										<td>
 											<?php
-											echo gettext('These specify the Theme <a title="Look at your album page and count the number of image thumbnails that show up in one row. This is the value you should set for the option.">CSS determined number</a> of image thumbnails that will fit in a "row" and the number of image thumbnails you wish per page.');
+											echo gettext('Set how many images (thumbs) should appear on an image page');
 											if (getThemeOption('images_per_row', $album, $themename) > 1) {
 												?>
 												<p class="notebox">
@@ -2896,23 +2871,32 @@ Authority::printPasswordFormJS();
 										<td>
 											<span class="nowrap">
 												<?php
-												if (!$disable && (getThemeOption('albums_per_row', $album, $themename) > 1) && (getThemeOption('images_per_row', $album, $themename) > 1)) {
-													if (getThemeOption('thumb_transition', $album, $themename)) {
-														$separate = '';
-														$combined = ' checked="checked"';
-													} else {
-														$separate = ' checked="checked"';
-														$combined = '';
-													}
-												} else {
-													$combined = $separate = ' disabled="disabled"';
-												}
+											if (getThemeOption('thumb_transition', $album, $themename)) {
+											$transition_enabled  = ' checked="checked"';
+										} else {
+											$transition_enabled  = '';
+										}
 												?>
-												<label><input type="radio" name="thumb_transition" value="1"<?php echo $separate; ?> /><?php echo gettext('separate'); ?></label>
-												<label><input type="radio" name="thumb_transition" value="2"<?php echo $combined; ?> /><?php echo gettext('combined'); ?></label>
+												<label><input type="checkbox" name="thumb_transition" value="1"<?php echo $transition_enabled; ?> /> <?php echo gettext('Enable transition page'); ?></label>
+			<?php
+			if (!in_array('thumb_transition_min', $unsupportedOptions)) {
+				?>
+				<p>
+					<label><input type="text" size="3" name="thumb_transition_min" value="<?php echo getThemeOption('thumb_transition_min', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('Minimum number of image thumbs'); ?></label>
+				</p>
+				<?php
+			}
+			if (!in_array('thumb_transition_max', $unsupportedOptions)) {
+				?>
+				<p>
+					<label><input type="text" size="3" name="thumb_transition_max" value="<?php echo getThemeOption('thumb_transition_max', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('Maximum number of image thumbs'); ?></label>
+				</p>
+				<?php
+			} 
+			?>
 											</span>
 										</td>
-										<td><?php echo gettext('if both album and image <em>thumbnails per row</em> are greater than 1 you can choose if album thumbnails and image thumbnails are placed together on the page that transitions from only album thumbnails to only image thumbnails.'); ?></td>
+										<td><?php echo gettext('If the last page with albums has less albums than the albums per page value, image thumbs share the page with the album thumbs. Their number is calculated from their image per page value and their total number. So if the albums use 30% of their albums per page value, the image number used is 70% of their images per page value. The minimum and maximum can be defined. Set both options to the same value to always get a fixed value.'); ?></td>
 									</tr>
 									<?php
 									if (in_array('thumb_size', $unsupportedOptions)) {

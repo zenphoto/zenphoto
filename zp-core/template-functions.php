@@ -798,24 +798,24 @@ function getAllAccessibleAlbums($obj, &$albumlist, $scan) {
  * @return int
  */
 function getTotalPages($one_image_page = false) {
-	global $_zp_gallery, $_zp_current_album, $_zp_first_page_images, $_zp_zenpage, $_zp_current_category;
+	global $_zp_gallery, $_zp_current_album, $_zp_first_page_images, $_zp_gallery_page, $_zp_zenpage, $_zp_current_category;
 	if (in_context(ZP_ALBUM | ZP_SEARCH)) {
-		$albums_per_page = max(1, getOption('albums_per_page'));
-		$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
-		$imageCount = getNumImages();
-		if ($one_image_page) {
-			if ($one_image_page === true) {
-				$imageCount = min(1, $imageCount);
-			} else {
+		if ($one_image_page === true) {
+			return 1;
+		} else {
+			$albums_per_page = max(1, getOption('albums_per_page'));
+			$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
+			$imageCount = getNumImages();
+			if ($one_image_page) {
 				$imageCount = 0;
 			}
+			$images_per_page = max(1, getOption('images_per_page'));
+			$pageCount = ($pageCount + ceil(($imageCount - getFirstPageImages($one_image_page)) / $images_per_page));
+			return $pageCount;
 		}
-		$images_per_page = max(1, getOption('images_per_page'));
-		$pageCount = ($pageCount + ceil(($imageCount - $_zp_first_page_images) / $images_per_page));
-		return $pageCount;
-	} else if (get_context() == ZP_INDEX) {
-		if (galleryAlbumsPerPage() != 0) {
-			return (int) ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
+	} else if (in_context(ZP_INDEX)) {
+		if ($_zp_gallery->getAlbumsPerPage() != 0) {
+			return $_zp_gallery->getTotalPages();
 		} else {
 			return NULL;
 		}
@@ -2091,6 +2091,24 @@ function getNumImages() {
 }
 
 /**
+ * 
+ * @since ZenphotoCMS 1.6
+ * 
+ * @global obj $_zp_current_album
+ * @global type $_zp_current_search
+ * @param type $one_image_page
+ * @return type
+ */
+function getFirstPageImages($one_image_page = false) {
+	global $_zp_current_album, $_zp_current_search;
+	if ((in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) || in_context(ZP_SEARCH) && is_null($_zp_current_album)) {
+		return $_zp_current_search->getFirstPageImages($one_image_page);
+	} else {
+		return $_zp_current_album->getFirstPageImages($one_image_page);
+	}
+}
+
+/**
  * Returns the next image on a page.
  * sets $_zp_current_image to the next image in the album.
 
@@ -2107,7 +2125,7 @@ function getNumImages() {
 function next_image($all = false, $firstPageCount = NULL, $mine = NULL) {
 	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_zp_first_page_images;
 	if (is_null($firstPageCount)) {
-		$firstPageCount = $_zp_first_page_images;
+		$firstPageCount = getFirstPageImages();
 	}
 	$imagePageOffset = getTotalPages(2); /* gives us the count of pages for album thumbs */
 	if ($all) {

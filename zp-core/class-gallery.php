@@ -1308,6 +1308,73 @@ class Gallery {
 		global $_zp_album_handlers;
 		$_zp_album_handlers[strtolower($suffix)] = $objectName;
 	}
+	
+	/**
+	 * Gets the albums per page setting
+	 * 
+	 * @since ZemphotoCMS 1.6
+	 * 
+	 * @return int
+	 */
+	function getAlbumsPerPage() {
+		return max(1, getOption('albums_per_page'));
+	}
+	
+	/**
+	 * Gets the total album pages 
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return int
+	 */
+	function getTotalPages() {
+		return (int) ceil($this->getNumAlbums() / $this->getAlbumsPerPage());
+	}
+	
+	/**
+	 * Gets the number of images if the thumb transintion page for sharing thunbs on the last album and the first image page
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * @param obj $obj Album object (or child class object) or searchengine object
+	 * @param bool $one_image_page 
+	 * @return int
+	 */
+	static function getFirstPageImages($obj = null, $one_image_page = false) {
+		$first_page_images = 0;
+		if (get_class($obj) == 'searchengine' || is_subclass_of($obj, 'albumbase')) {
+			$total_albums = $obj->getNumAlbums();
+			$total_images = $obj->getNumImages();
+			$albums_per_page = $obj->getAlbumsPerPage();
+			$images_per_page = $obj->getImagesPerPage();
+			$total_album_pages_full = $obj->getNumAlbumPages('full');
+			$total_album_pages = $obj->getNumAlbumPages('total');
+			if (getOption('thumb_transition') && !$one_image_page && $total_albums != 0 && $total_images != 0 && $total_album_pages_full != $total_album_pages) {
+				$thumb_transition_min = max(1, getOption('thumb_transition_min'));
+				$thumb_transition_max = max(1, getOption('thumb_transition_max'));
+				$last_page_albums = $total_albums % $albums_per_page;
+				$albums_per_page_onepercent = $albums_per_page / 100;
+				$images_per_page_onepercent = $images_per_page / 100;
+				if ($last_page_albums < $albums_per_page) {
+					$last_page_albums_percent = $last_page_albums / $albums_per_page_onepercent;
+					$last_page_albums_percent_unused = 100 - $last_page_albums_percent;
+					$first_page_images = floor($images_per_page_onepercent * $last_page_albums_percent_unused);
+					if ($first_page_images < $thumb_transition_min) {
+						$first_page_images = $thumb_transition_min;
+						$thumb_transition_minmax_active = 'min images';
+					}
+					if ($first_page_images > $thumb_transition_max) {
+						$first_page_images = $thumb_transition_max;
+						$thumb_transition_minmax_active = 'max images';
+					}
+					if ($first_page_images > $total_images) {
+						$first_page_images = $total_images;
+						$thumb_transition_minmax_active = 'overriden by total image number';
+					}
+				}
+			}
+		}
+		return $first_page_images;
+	}
 
 }
 

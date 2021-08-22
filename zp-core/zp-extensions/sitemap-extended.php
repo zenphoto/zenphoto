@@ -404,7 +404,7 @@ class sitemap {
 			} else {
 				$galleryindex = getStandardGalleryIndexURL(1, '');
 			}
-			$toplevelpages = getTotalPages();
+			$toplevelpages = $_zp_gallery->getTotalPages();
 			$data .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			$sitemap_locales = generateLanguageList();
@@ -546,9 +546,7 @@ class sitemap {
 			$data_start .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 			foreach ($albums as $album) {
 				$albumobj = AlbumBase::newAlbum($album['folder']);
-				set_context(ZP_ALBUM);
-				makeAlbumCurrent($albumobj);
-				$pageCount = getTotalPages();
+				$pageCount = $albumobj->getTotalPages();
 				//$imageCount = getNumImages();
 				//$images = $albumobj->getImages();
 				$date = sitemap::getDateformat($albumobj, $albumlastmod);
