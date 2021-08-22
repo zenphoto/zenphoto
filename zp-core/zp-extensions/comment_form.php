@@ -130,6 +130,7 @@ class comment_form {
 								gettext('Omit') => 0,
 								gettext('For guests') => 2,
 								gettext('Require') => 1),
+						'disabled' => ($_zp_captcha->name) ? false : true,
 						'desc' => ($_zp_captcha->name) ? gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
 				gettext('Address fields') => array(
 						'key' => 'comment_form_addresses',

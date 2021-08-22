@@ -103,7 +103,7 @@
 		</p>
 		<?php
 	}
-	if (getOption("contactform_captcha") && !$_processing_post) {
+	if ($_zp_captcha->name && getOption("contactform_captcha") && !$_processing_post) {
 		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
 		?>
 		<p>
