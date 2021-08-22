@@ -304,7 +304,7 @@ function printContactForm($subject_override = '') {
 			$error[13] = gettext("a message");
 		}
 		// CAPTCHA start
-		if (getOption("contactform_captcha")) {
+		if ($_zp_captcha->name && getOption("contactform_captcha")) {
 			$code_ok = trim(sanitize(isset($_POST['code_h']) ? $_POST['code_h'] : NULL));
 			$code = trim(sanitize(isset($_POST['code']) ? $_POST['code'] : NULL));
 			if (!$_zp_captcha->checkCaptcha($code, $code_ok)) {

@@ -291,7 +291,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		$commentobj->comment_error_text .= ' ' . gettext("You must supply a WEB page URL.");
 		$goodMessage = false;
 	}
-	if (($whattocheck & USE_CAPTCHA)) {
+	if ($_zp_captcha->name && ($whattocheck & USE_CAPTCHA )) {
 		if (!$_zp_captcha->checkCaptcha($code, $code_ok)) {
 			$commentobj->setInModeration(-5);
 			$commentobj->comment_error_text .= ' ' . gettext("CAPTCHA verification failed.");
