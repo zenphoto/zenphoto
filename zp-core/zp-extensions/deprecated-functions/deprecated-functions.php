@@ -5,6 +5,27 @@
  * @package plugins
  * @subpackage deprecated-functions
  */
+
+/**
+ * controls the thumbnail layout of themes.
+ *
+ * Uses the theme options:
+ * 	albums_per_row
+ * 	albums_per_page
+ * 	images_per_row
+ * 	images_per_page
+ * 
+ * @deprecated ZenphotoCMS 2.0 - This function is obsolete and has no functionality anymore
+ * @since ZenphotoCMS 1.6
+ *
+ * Computes a normalized images/albums per page and computes the number of
+ * images that will fit on the "transitional" page between album thumbs and
+ * image thumbs. This function is "internal" and is called from the root
+ * index.php script before the theme script is loaded.
+ */
+function setThemeColumns() {
+	deprecated_functions::notify(gettext("This function is obsolete and has no functionality anymore."));
+}
  
 /**
  * Returns the mimetype for a suffix

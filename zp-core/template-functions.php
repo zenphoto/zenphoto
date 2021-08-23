@@ -4057,49 +4057,6 @@ function getSearchDate($format = '%B %Y') {
 	return false;
 }
 
-/**
- * controls the thumbnail layout of themes.
- *
- * Uses the theme options:
- * 	albums_per_row
- * 	albums_per_page
- * 	images_per_row
- * 	images_per_page
- *
- * Computes a normalized images/albums per page and computes the number of
- * images that will fit on the "transitional" page between album thumbs and
- * image thumbs. This function is "internal" and is called from the root
- * index.php script before the theme script is loaded.
- */
-function setThemeColumns() {
-	global $_zp_current_album, $_zp_first_page_images, $_zp_one_image_page;
-	$_zp_first_page_images = false;
-	if (($albumColumns = getOption('albums_per_row')) <= 1)
-		$albumColumns = false;
-	if (($imageColumns = getOption('images_per_row')) <= 1)
-		$imageColumns = false;
-	$albcount = max(1, getOption('albums_per_page'));
-	if (($albumColumns) && (($albcount % $albumColumns) != 0)) {
-		setOption('albums_per_page', $albcount = ((floor($albcount / $albumColumns) + 1) * $albumColumns), false);
-	}
-	$imgcount = max(1, getOption('images_per_page'));
-	if (($imageColumns) && (($imgcount % $imageColumns) != 0)) {
-		setOption('images_per_page', $imgcount = ((floor($imgcount / $imageColumns) + 1) * $imageColumns), false);
-	}
-	if ((getOption('thumb_transition') && !$_zp_one_image_page) && in_context(ZP_ALBUM | ZP_SEARCH) && $albumColumns && $imageColumns) {
-		$count = getNumAlbums();
-		if ($count == 0) {
-			$_zp_first_page_images = 0;
-		}
-		$rowssused = ceil(($count % $albcount) / $albumColumns); /* number of album rows unused */
-		$leftover = floor(max(1, getOption('images_per_page')) / $imageColumns) - $rowssused;
-		$_zp_first_page_images = max(0, $leftover * $imageColumns); /* number of images that fill the leftover rows */
-		if ($_zp_first_page_images == $imgcount) {
-			$_zp_first_page_images = 0;
-		}
-	}
-}
-
 //************************************************************************************************
 // album password handling
 //************************************************************************************************
