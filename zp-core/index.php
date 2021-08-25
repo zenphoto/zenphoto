@@ -100,8 +100,6 @@ if ($zp_request) {
 	$_zp_html_cache->startHTMLCache();
 }
 
-setThemeColumns();
-
 //check for valid page number (may be theme dependent!)
 if ($_zp_page < 0) {
 	$zp_request = false;
