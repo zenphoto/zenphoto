@@ -417,7 +417,7 @@ function getRandomImages($daily = false) {
  */
 function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 	global $_zp_current_album, $_zp_gallery;
-	$deprecatednote = gettext("Use the image_album_statistic plugin function getImageStatisic() with appropiate parameters");
+	$deprecatednote = gettext("Use the image_album_statistics plugin function getImageStatisic() with appropiate parameters");
 	if($daily) {
 		$deprecatednote .= ' ' . gettext("For picture of the day functionality use the image_album_statiscic plugin function getPictureOfTheDay()-");
 	}
