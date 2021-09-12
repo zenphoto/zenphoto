@@ -14,10 +14,10 @@ if (empty($locale))
 		<title>elFinder 2.0</title>
 
 		<!-- jQuery and jQuery UI (REQUIRED) -->
-		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui.min.css" type="text/css" />
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.min.js" type="text/javascript"></script>
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" type="text/javascript" ></script>
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
 
 		<!-- elFinder CSS (REQUIRED) -->
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>css/elfinder.min.css">

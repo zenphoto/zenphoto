@@ -117,7 +117,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		<head>
 			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/toggleElements.css" type="text/css" />
-			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
+			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui.min.css" type="text/css" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 			<?php
 			if ($_zp_rtl_css) {
@@ -129,7 +129,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.min.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" type="text/javascript" ></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_general.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_admin.js" type="text/javascript" ></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.min.js" type="text/javascript"></script>

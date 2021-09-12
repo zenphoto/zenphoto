@@ -1,0 +1,78 @@
+/*
+ * blueimp Gallery Demo CSS
+ * https://github.com/blueimp/Gallery
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ */
+
+body {
+  max-width: 990px;
+  margin: 0 auto;
+  padding: 1em;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.4;
+  background: #212121;
+  color: #dedede;
+}
+a {
+  color: #61afef;
+  text-decoration: none;
+}
+a:visited {
+  color: #56b6c2;
+}
+a:hover {
+  color: #98c379;
+}
+img {
+  max-width: 100%;
+  border: 0;
+  vertical-align: middle;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+h1 {
+  margin-top: 0.5em;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background: #ececec;
+    color: #212121;
+  }
+  a {
+    color: #225c8d;
+  }
+  a:visited {
+    color: #378f9a;
+  }
+  a:hover {
+    color: #6fa349;
+  }
+}
+
+@media (min-width: 540px) {
+  #navigation {
+    list-style: none;
+    padding: 0;
+  }
+  #navigation li {
+    display: inline-block;
+  }
+  #navigation li:not(:first-child)::before {
+    content: ' | ';
+  }
+}

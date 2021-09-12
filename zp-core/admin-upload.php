@@ -33,7 +33,6 @@ if (count($handlers) > 0) {
 	}
 	require_once($uploadHandlers[$uploadtype] . '/upload_form.php');
 } else {
-
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/no_uploader.php');
 	exitZP();
 }
