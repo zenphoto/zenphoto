@@ -1,42 +1,22 @@
-// $Id: farbtastic.js,v 1.2 2007/01/08 22:53:01 unconed Exp $
-// Farbtastic 1.2
+// Farbtastic 2.0.0-alpha.1
+(function ($) {
 
-jQuery.fn.farbtastic = function (callback) {
-  $.farbtastic(this, callback);
+var __debug = false;
+
+$.fn.farbtastic = function (options) {
+  $.farbtastic(this, options);
   return this;
 };
 
-jQuery.farbtastic = function (container, callback) {
-  var container = $(container).get(0);
-  return container.farbtastic || (container.farbtastic = new jQuery._farbtastic(container, callback));
+$.farbtastic = function (container, options) {
+  var container = $(container)[0];
+  return container.farbtastic || (container.farbtastic = new $._farbtastic(container, options));
 }
 
-jQuery._farbtastic = function (container, callback) {
-  // Store farbtastic object
+$._farbtastic = function (container, options) {
   var fb = this;
 
-  // Insert markup
-  $(container).html('<div class="farbtastic"><div class="color"></div><div class="wheel"></div><div class="overlay"></div><div class="h-marker marker"></div><div class="sl-marker marker"></div></div>');
-  var e = $('.farbtastic', container);
-  fb.wheel = $('.wheel', container).get(0);
-  // Dimensions
-  fb.radius = 84;
-  fb.square = 100;
-  fb.width = 194;
-
-  // Fix background PNGs in IE6
-  if (navigator.appVersion.match(/MSIE [0-6]\./)) {
-    $('*', e).each(function () {
-      if (this.currentStyle.backgroundImage != 'none') {
-        var image = this.currentStyle.backgroundImage;
-        image = this.currentStyle.backgroundImage.substring(5, image.length - 2);
-        $(this).css({
-          'backgroundImage': 'none',
-          'filter': "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src='" + image + "')"
-        });
-      }
-    });
-  }
+  /////////////////////////////////////////////////////
 
   /**
    * Link to the given element(s) or callback.
@@ -57,8 +37,8 @@ jQuery._farbtastic = function (container, callback) {
     else if (typeof callback == 'object' || typeof callback == 'string') {
       fb.callback = $(callback);
       fb.callback.bind('keyup', fb.updateValue);
-      if (fb.callback.get(0).value) {
-        fb.setColor(fb.callback.get(0).value);
+      if (fb.callback[0].value) {
+        fb.setColor(fb.callback[0].value);
       }
     }
     return this;
@@ -97,58 +77,294 @@ jQuery._farbtastic = function (container, callback) {
   /////////////////////////////////////////////////////
 
   /**
-   * Retrieve the coordinates of the given event relative to the center
-   * of the widget.
+   * Initialize the color picker widget.
+   */
+  fb.initWidget = function () {
+
+    // Insert markup and size accordingly.
+    var dim = {
+      width: options.width,
+      height: options.width
+    };
+    $(container)
+      .html(
+        '<div class="farbtastic" style="position: relative">' +
+          '<div class="farbtastic-solid"></div>' +
+          '<canvas class="farbtastic-mask"></canvas>' +
+          '<canvas class="farbtastic-overlay"></canvas>' +
+        '</div>'
+      )
+      .find('*').attr(dim).css(dim).end()
+      .find('div>*').css('position', 'absolute');
+
+    // IE Fix: Recreate canvas elements with doc.createElement and excanvas.
+    // $.browser.msie || false && $('canvas', container).each(function () {
+    //   // Fetch info.
+    //   var attr = { 'class': $(this).attr('class'), style: this.getAttribute('style') },
+    //       e = document.createElement('canvas');
+    //   // Replace element.
+    //   $(this).before($(e).attr(attr)).remove();
+    //   // Init with explorerCanvas.
+    //   G_vmlCanvasManager && G_vmlCanvasManager.initElement(e);
+    //   // Set explorerCanvas elements dimensions and absolute positioning.
+    //   $(e).attr(dim).css(dim).css('position', 'absolute')
+    //     .find('*').attr(dim).css(dim);
+    // });
+
+    // Determine layout
+    fb.radius = (options.width - options.wheelWidth) / 2 - 1;
+    fb.square = Math.floor((fb.radius - options.wheelWidth / 2) * 0.7) - 1;
+    fb.mid = Math.floor(options.width / 2);
+    fb.markerSize = options.wheelWidth * 0.3;
+    fb.solidFill = $('.farbtastic-solid', container).css({
+      width: fb.square * 2 - 1,
+      height: fb.square * 2 - 1,
+      left: fb.mid - fb.square,
+      top: fb.mid - fb.square
+    });
+
+    // Set up drawing context.
+    fb.cnvMask = $('.farbtastic-mask', container);
+    fb.ctxMask = fb.cnvMask[0].getContext('2d');
+    fb.cnvOverlay = $('.farbtastic-overlay', container);
+    fb.ctxOverlay = fb.cnvOverlay[0].getContext('2d');
+    fb.ctxMask.translate(fb.mid, fb.mid);
+    fb.ctxOverlay.translate(fb.mid, fb.mid);
+
+    // Draw widget base layers.
+    fb.drawCircle();
+    fb.drawMask();
+    fb.bindTouch();
+  }
+
+  /**
+   * Draw the color wheel.
+   */
+  fb.drawCircle = function () {
+    var tm = +(new Date());
+    // Draw a hue circle with a bunch of gradient-stroked beziers.
+    // Have to use beziers, as gradient-stroked arcs don't work.
+    var n = 24,
+        r = fb.radius,
+        w = options.wheelWidth,
+        nudge = 8 / r / n * Math.PI, // Fudge factor for seams.
+        m = fb.ctxMask,
+        angle1 = 0, color1, d1;
+    m.save();
+    m.lineWidth = w / r;
+    m.scale(r, r);
+    // Each segment goes from angle1 to angle2.
+    for (var i = 0; i <= n; ++i) {
+      var d2 = i / n,
+          angle2 = d2 * Math.PI * 2,
+          // Endpoints
+          x1 = Math.sin(angle1), y1 = -Math.cos(angle1);
+          x2 = Math.sin(angle2), y2 = -Math.cos(angle2),
+          // Midpoint chosen so that the endpoints are tangent to the circle.
+          am = (angle1 + angle2) / 2,
+          tan = 1 / Math.cos((angle2 - angle1) / 2),
+          xm = Math.sin(am) * tan, ym = -Math.cos(am) * tan,
+          // New color
+          color2 = fb.pack(fb.HSLToRGB([d2, 1, 0.5]));
+      if (i > 0) {
+        // if ($.browser.msie || false) {
+        //   // IE's gradient calculations mess up the colors. Correct along the diagonals.
+        //   var corr = (1 + Math.min(Math.abs(Math.tan(angle1)), Math.abs(Math.tan(Math.PI / 2 - angle1)))) / n;
+        //   color1 = fb.pack(fb.HSLToRGB([d1 - 0.15 * corr, 1, 0.5]));
+        //   color2 = fb.pack(fb.HSLToRGB([d2 + 0.15 * corr, 1, 0.5]));
+        //   // Create gradient fill between the endpoints.
+        //   var grad = m.createLinearGradient(x1, y1, x2, y2);
+        //   grad.addColorStop(0, color1);
+        //   grad.addColorStop(1, color2);
+        //   m.fillStyle = grad;
+        //   // Draw quadratic curve segment as a fill.
+        //   var r1 = (r + w / 2) / r, r2 = (r - w / 2) / r; // inner/outer radius.
+        //   m.beginPath();
+        //   m.moveTo(x1 * r1, y1 * r1);
+        //   m.quadraticCurveTo(xm * r1, ym * r1, x2 * r1, y2 * r1);
+        //   m.lineTo(x2 * r2, y2 * r2);
+        //   m.quadraticCurveTo(xm * r2, ym * r2, x1 * r2, y1 * r2);
+        //   m.fill();
+        // }
+        //else {
+          // Create gradient fill between the endpoints.
+          var grad = m.createLinearGradient(x1, y1, x2, y2);
+          grad.addColorStop(0, color1);
+          grad.addColorStop(1, color2);
+          m.strokeStyle = grad;
+          // Draw quadratic curve segment.
+          m.beginPath();
+          m.moveTo(x1, y1);
+          m.quadraticCurveTo(xm, ym, x2, y2);
+          m.stroke();
+        //}
+      }
+      // Prevent seams where curves join.
+      angle1 = angle2 - nudge; color1 = color2; d1 = d2;
+    }
+    m.restore();
+    __debug && $('body').append('<div>drawCircle '+ (+(new Date()) - tm) +'ms');
+  };
+
+  /**
+   * Draw the saturation/luminance mask.
+   */
+  fb.drawMask = function () {
+    var tm = +(new Date());
+
+    // Iterate over sat/lum space and calculate appropriate mask pixel values.
+    var size = fb.square * 2, sq = fb.square;
+    function calculateMask(sizex, sizey, outputPixel) {
+      var isx = 1 / sizex, isy = 1 / sizey;
+      for (var y = 0; y <= sizey; ++y) {
+        var l = 1 - y * isy;
+        for (var x = 0; x <= sizex; ++x) {
+          var s = 1 - x * isx;
+          // From sat/lum to alpha and color (grayscale)
+          var a = 1 - 2 * Math.min(l * s, (1 - l) * s);
+          var c = (a > 0) ? ((2 * l - 1 + a) * .5 / a) : 0;
+          outputPixel(x, y, c, a);
+        }
+      }
+    }
+
+    // Method #1: direct pixel access (new Canvas).
+    if (fb.ctxMask.getImageData) {
+      // Create half-resolution buffer.
+      var sz = Math.floor(size / 2);
+      var buffer = document.createElement('canvas');
+      buffer.width = buffer.height = sz + 1;
+      var ctx = buffer.getContext('2d');
+      var frame = ctx.getImageData(0, 0, sz + 1, sz + 1);
+
+      var i = 0;
+      calculateMask(sz, sz, function (x, y, c, a) {
+        frame.data[i++] = frame.data[i++] = frame.data[i++] = c * 255;
+        frame.data[i++] = a * 255;
+      });
+
+      ctx.putImageData(frame, 0, 0);
+      fb.ctxMask.drawImage(buffer, 0, 0, sz + 1, sz + 1, -sq, -sq, sq * 2, sq * 2);
+    }
+    // Method #2: drawing commands (old Canvas).
+    // else if (!($.browser.msie || false)) {
+    //   // Render directly at half-resolution
+    //   var sz = Math.floor(size / 2);
+    //   calculateMask(sz, sz, function (x, y, c, a) {
+    //     c = Math.round(c * 255);
+    //     fb.ctxMask.fillStyle = 'rgba(' + c + ', ' + c + ', ' + c + ', ' + a +')';
+    //     fb.ctxMask.fillRect(x * 2 - sq - 1, y * 2 - sq - 1, 2, 2);
+    //   });
+    // }
+    // Method #3: vertical DXImageTransform gradient strips (IE).
+    else {
+      var cache_last, cache, w = 6; // Each strip is 6 pixels wide.
+      var sizex = Math.floor(size / w);
+      // 6 vertical pieces of gradient per strip.
+      calculateMask(sizex, 6, function (x, y, c, a) {
+        if (x == 0) {
+          cache_last = cache;
+          cache = [];
+        }
+        c = Math.round(c * 255);
+        a = Math.round(a * 255);
+        // We can only start outputting gradients once we have two rows of pixels.
+        if (y > 0) {
+          var c_last = cache_last[x][0],
+              a_last = cache_last[x][1],
+              color1 = fb.packDX(c_last, a_last),
+              color2 = fb.packDX(c, a),
+              y1 = Math.round(fb.mid + ((y - 1) * .333 - 1) * sq),
+              y2 = Math.round(fb.mid + (y * .333 - 1) * sq);
+          $('<div>').css({
+            position: 'absolute',
+            filter: "progid:DXImageTransform.Microsoft.Gradient(StartColorStr="+ color1 +", EndColorStr="+ color2 +", GradientType=0)",
+            top: y1,
+            height: y2 - y1,
+            // Avoid right-edge sticking out.
+            left: fb.mid + (x * w - sq - 1),
+            width: w - (x == sizex ? Math.round(w / 2) : 0)
+          }).appendTo(fb.cnvMask);
+        }
+        cache.push([c, a]);
+      });
+    }
+    __debug && $('body').append('<div>drawMask '+ (+(new Date()) - tm) +'ms');
+  }
+
+  /**
+   * Draw the selection markers.
+   */
+  fb.drawMarkers = function () {
+    // Determine marker dimensions
+    var sz = options.width, lw = Math.ceil(fb.markerSize / 4), r = fb.markerSize - lw + 1;
+    var angle = fb.hsl[0] * 6.28,
+        x1 =  Math.sin(angle) * fb.radius,
+        y1 = -Math.cos(angle) * fb.radius,
+        x2 = 2 * fb.square * (.5 - fb.hsl[1]),
+        y2 = 2 * fb.square * (.5 - fb.hsl[2]),
+        c1 = fb.invert ? '#fff' : '#000',
+        c2 = fb.invert ? '#000' : '#fff';
+    var circles = [
+      { x: x1, y: y1, r: r,             c: '#000', lw: lw + 1 },
+      { x: x1, y: y1, r: fb.markerSize, c: '#fff', lw: lw },
+      { x: x2, y: y2, r: r,             c: c2,     lw: lw + 1 },
+      { x: x2, y: y2, r: fb.markerSize, c: c1,     lw: lw },
+    ];
+
+    // Update the overlay canvas.
+    fb.ctxOverlay.clearRect(-fb.mid, -fb.mid, sz, sz);
+    for (var i = 0; i < circles.length; i++) {
+      var c = circles[i];
+      fb.ctxOverlay.lineWidth = c.lw;
+      fb.ctxOverlay.strokeStyle = c.c;
+      fb.ctxOverlay.beginPath();
+      fb.ctxOverlay.arc(c.x, c.y, c.r, 0, Math.PI * 2, true);
+      fb.ctxOverlay.stroke();
+    }
+  }
+
+  /**
+   * Update the markers and styles
+   */
+  fb.updateDisplay = function () {
+    // Determine whether labels/markers should invert.
+    fb.invert = (fb.rgb[0] * 0.3 + fb.rgb[1] * .59 + fb.rgb[2] * .11) <= 0.6;
+
+    // Update the solid background fill.
+    fb.solidFill.css('backgroundColor', fb.pack(fb.HSLToRGB([fb.hsl[0], 1, 0.5])));
+
+    // Draw markers
+    fb.drawMarkers();
+
+    // Linked elements or callback
+    if (typeof fb.callback == 'object') {
+      // Set background/foreground color
+      $(fb.callback).css({
+        backgroundColor: fb.color,
+        color: fb.invert ? '#fff' : '#000'
+      });
+
+      // Change linked value
+      $(fb.callback).each(function() {
+        if ((typeof this.value == 'string') && this.value != fb.color) {
+          this.value = fb.color;
+        }
+      }).change();
+    }
+    else if (typeof fb.callback == 'function') {
+      fb.callback.call(fb, fb.color);
+    }
+  }
+
+  /**
+   * Helper for returning coordinates relative to the center.
    */
   fb.widgetCoords = function (event) {
-    var x, y;
-    var el = event.target || event.srcElement;
-    var reference = fb.wheel;
-
-    if (typeof event.offsetX != 'undefined') {
-      // Use offset coordinates and find common offsetParent
-      var pos = { x: event.offsetX, y: event.offsetY };
-
-      // Send the coordinates upwards through the offsetParent chain.
-      var e = el;
-      while (e) {
-        e.mouseX = pos.x;
-        e.mouseY = pos.y;
-        pos.x += e.offsetLeft;
-        pos.y += e.offsetTop;
-        e = e.offsetParent;
-      }
-
-      // Look for the coordinates starting from the wheel widget.
-      var e = reference;
-      var offset = { x: 0, y: 0 }
-      while (e) {
-        if (typeof e.mouseX != 'undefined') {
-          x = e.mouseX - offset.x;
-          y = e.mouseY - offset.y;
-          break;
-        }
-        offset.x += e.offsetLeft;
-        offset.y += e.offsetTop;
-        e = e.offsetParent;
-      }
-
-      // Reset stored coordinates
-      e = el;
-      while (e) {
-        e.mouseX = undefined;
-        e.mouseY = undefined;
-        e = e.offsetParent;
-      }
-    }
-    else {
-      // Use absolute coordinates
-      var pos = fb.absolutePosition(reference);
-      x = (event.pageX || 0*(event.clientX + $('html').get(0).scrollLeft)) - pos.x;
-      y = (event.pageY || 0*(event.clientY + $('html').get(0).scrollTop)) - pos.y;
-    }
-    // Subtract distance to middle
-    return { x: x - fb.width / 2, y: y - fb.width / 2 };
+    return {
+      x: event.pageX - fb.offset.left - fb.mid,
+      y: event.pageY - fb.offset.top - fb.mid
+    };
   }
 
   /**
@@ -156,14 +372,17 @@ jQuery._farbtastic = function (container, callback) {
    */
   fb.mousedown = function (event) {
     // Capture mouse
-    if (!document.dragging) {
+    if (!$._farbtastic.dragging) {
       $(document).bind('mousemove', fb.mousemove).bind('mouseup', fb.mouseup);
-      document.dragging = true;
+      $._farbtastic.dragging = true;
     }
+
+    // Update the stored offset for the widget.
+    fb.offset = $(container).offset();
 
     // Check which area is being dragged
     var pos = fb.widgetCoords(event);
-    fb.circleDrag = Math.max(Math.abs(pos.x), Math.abs(pos.y)) * 2 > fb.square;
+    fb.circleDrag = Math.max(Math.abs(pos.x), Math.abs(pos.y)) > (fb.square + 2);
 
     // Process
     fb.mousemove(event);
@@ -180,12 +399,11 @@ jQuery._farbtastic = function (container, callback) {
     // Set new HSL parameters
     if (fb.circleDrag) {
       var hue = Math.atan2(pos.x, -pos.y) / 6.28;
-      if (hue < 0) hue += 1;
-      fb.setHSL([hue, fb.hsl[1], fb.hsl[2]]);
+      fb.setHSL([(hue + 1) % 1, fb.hsl[1], fb.hsl[2]]);
     }
     else {
-      var sat = Math.max(0, Math.min(1, -(pos.x / fb.square) + .5));
-      var lum = Math.max(0, Math.min(1, -(pos.y / fb.square) + .5));
+      var sat = Math.max(0, Math.min(1, -(pos.x / fb.square / 2) + .5));
+      var lum = Math.max(0, Math.min(1, -(pos.y / fb.square / 2) + .5));
       fb.setHSL([fb.hsl[0], sat, lum]);
     }
     return false;
@@ -198,115 +416,113 @@ jQuery._farbtastic = function (container, callback) {
     // Uncapture mouse
     $(document).unbind('mousemove', fb.mousemove);
     $(document).unbind('mouseup', fb.mouseup);
+    $._farbtastic.dragging = false;
+  }
+
+  /**
+   * TouchConvert: Converts touch co-ordinates to mouse co-ordinates
+   */
+  fb.touchconvert = function (e) {
+    var e = e.originalEvent.touches.item(0);
+    return e;
+  }
+
+  /**
+   * Touchmove handler for iPad, iPhone etc
+   */
+  fb.touchmove = function (e) {
+    fb.mousemove( fb.touchconvert(e)  );
+    event.preventDefault();
+    return false;
+  }
+
+  /**
+   * Touchend handler for iPad, iPhone etc
+   */
+  fb.touchend = function (event) {
+    $(document).unbind('touchmove', fb.touchmove);
+    $(document).unbind('touchend', fb.touchend);
     document.dragging = false;
+    event.preventDefault();
+    return false;
   }
 
-  /**
-   * Update the markers and styles
-   */
-  fb.updateDisplay = function () {
-    // Markers
-    var angle = fb.hsl[0] * 6.28;
-    $('.h-marker', e).css({
-      left: Math.round(Math.sin(angle) * fb.radius + fb.width / 2) + 'px',
-      top: Math.round(-Math.cos(angle) * fb.radius + fb.width / 2) + 'px'
+  // TouchStart bound, calls conversion of touchpoints to mousepoints
+  fb.bindTouch = function() {
+    $('*', container).bind("touch touchstart", function (e) {
+      // Capture mouse
+      if (!document.dragging) {
+        $(document).bind('touchmove', fb.touchmove).bind('touchend', fb.touchend);
+        document.dragging = true;
+      }
+      fb.mousedown( fb.touchconvert(e) );
+      e.preventDefault();
+      return false;
     });
-
-    $('.sl-marker', e).css({
-      left: Math.round(fb.square * (.5 - fb.hsl[1]) + fb.width / 2) + 'px',
-      top: Math.round(fb.square * (.5 - fb.hsl[2]) + fb.width / 2) + 'px'
-    });
-
-    // Saturation/Luminance gradient
-    $('.color', e).css('backgroundColor', fb.pack(fb.HSLToRGB([fb.hsl[0], 1, 0.5])));
-
-    // Linked elements or callback
-    if (typeof fb.callback == 'object') {
-      // Set background/foreground color
-      $(fb.callback).css({
-        backgroundColor: fb.color,
-        color: fb.hsl[2] > 0.5 ? '#000' : '#fff'
-      });
-
-      // Change linked value
-      $(fb.callback).each(function() {
-        if (this.value && this.value != fb.color) {
-          this.value = fb.color;
-        }
-      });
-    }
-    else if (typeof fb.callback == 'function') {
-      fb.callback.call(fb, fb.color);
-    }
   }
-
-  /**
-   * Get absolute position of element
-   */
-  fb.absolutePosition = function (el) {
-    var r = { x: el.offsetLeft, y: el.offsetTop };
-    // Resolve relative to offsetParent
-    if (el.offsetParent) {
-      var tmp = fb.absolutePosition(el.offsetParent);
-      r.x += tmp.x;
-      r.y += tmp.y;
-    }
-    return r;
-  };
 
   /* Various color utility functions */
+  fb.dec2hex = function (x) {
+    return (x < 16 ? '0' : '') + x.toString(16);
+  }
+
+  fb.packDX = function (c, a) {
+    return '#' + fb.dec2hex(a) + fb.dec2hex(c) + fb.dec2hex(c) + fb.dec2hex(c);
+  };
+
   fb.pack = function (rgb) {
     var r = Math.round(rgb[0] * 255);
     var g = Math.round(rgb[1] * 255);
     var b = Math.round(rgb[2] * 255);
-    return '#' + (r < 16 ? '0' : '') + r.toString(16) +
-           (g < 16 ? '0' : '') + g.toString(16) +
-           (b < 16 ? '0' : '') + b.toString(16);
-  }
+    return '#' + fb.dec2hex(r) + fb.dec2hex(g) + fb.dec2hex(b);
+  };
 
   fb.unpack = function (color) {
     if (color.length == 7) {
-      return [parseInt('0x' + color.substring(1, 3)) / 255,
-        parseInt('0x' + color.substring(3, 5)) / 255,
-        parseInt('0x' + color.substring(5, 7)) / 255];
+      function x(i) {
+        return parseInt(color.substring(i, i + 2), 16) / 255;
+      }
+      return [ x(1), x(3), x(5) ];
     }
     else if (color.length == 4) {
-      return [parseInt('0x' + color.substring(1, 2)) / 15,
-        parseInt('0x' + color.substring(2, 3)) / 15,
-        parseInt('0x' + color.substring(3, 4)) / 15];
+      function x(i) {
+        return parseInt(color.substring(i, i + 1), 16) / 15;
+      }
+      return [ x(1), x(2), x(3) ];
     }
-  }
+  };
 
   fb.HSLToRGB = function (hsl) {
     var m1, m2, r, g, b;
     var h = hsl[0], s = hsl[1], l = hsl[2];
-    m2 = (l <= 0.5) ? l * (s + 1) : l + s - l*s;
+    m2 = (l <= 0.5) ? l * (s + 1) : l + s - l * s;
     m1 = l * 2 - m2;
-    return [this.hueToRGB(m1, m2, h+0.33333),
-        this.hueToRGB(m1, m2, h),
-        this.hueToRGB(m1, m2, h-0.33333)];
-  }
+    return [
+      this.hueToRGB(m1, m2, h + 0.33333),
+      this.hueToRGB(m1, m2, h),
+      this.hueToRGB(m1, m2, h - 0.33333)
+    ];
+  };
 
   fb.hueToRGB = function (m1, m2, h) {
-    h = (h < 0) ? h + 1 : ((h > 1) ? h - 1 : h);
+    h = (h + 1) % 1;
     if (h * 6 < 1) return m1 + (m2 - m1) * h * 6;
     if (h * 2 < 1) return m2;
     if (h * 3 < 2) return m1 + (m2 - m1) * (0.66666 - h) * 6;
     return m1;
-  }
+  };
 
   fb.RGBToHSL = function (rgb) {
-    var min, max, delta, h, s, l;
-    var r = rgb[0], g = rgb[1], b = rgb[2];
-    min = Math.min(r, Math.min(g, b));
-    max = Math.max(r, Math.max(g, b));
-    delta = max - min;
-    l = (min + max) / 2;
-    s = 0;
+    var r = rgb[0], g = rgb[1], b = rgb[2],
+        min = Math.min(r, g, b),
+        max = Math.max(r, g, b),
+        delta = max - min,
+        h = 0,
+        s = 0,
+        l = (min + max) / 2;
     if (l > 0 && l < 1) {
       s = delta / (l < 0.5 ? (2 * l) : (2 - 2 * l));
     }
-    h = 0;
     if (delta > 0) {
       if (max == r && max != g) h += (g - b) / delta;
       if (max == g && max != b) h += (2 + (b - r) / delta);
@@ -314,16 +530,30 @@ jQuery._farbtastic = function (container, callback) {
       h /= 6;
     }
     return [h, s, l];
+  };
+
+  // Parse options.
+  if (!options.callback) {
+    options = { callback: options };
   }
+  options = $.extend({
+    width: 300,
+    wheelWidth: (options.width || 300) / 10,
+    callback: null
+  }, options);
+
+  // Initialize.
+  fb.initWidget();
 
   // Install mousedown handler (the others are set on the document on-demand)
-  $('*', e).mousedown(fb.mousedown);
-
-    // Init color
-  fb.setColor('#000000');
+  $('canvas.farbtastic-overlay', container).mousedown(fb.mousedown);
 
   // Set linked elements/callback
-  if (callback) {
-    fb.linkTo(callback);
+  if (options.callback) {
+    fb.linkTo(options.callback);
   }
+  // Set to gray.
+  if (!fb.color) fb.setColor('#808080');
 }
+
+})(jQuery);

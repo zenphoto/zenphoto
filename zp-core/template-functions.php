@@ -39,11 +39,12 @@ function printVersion() {
 function printZenJavascripts() {
 	global $_zp_current_album;
 	?>
-	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.min.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" type="text/javascript" ></script>
 	<?php
 	if(zp_loggedin()) {
 		?>
-		<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/zenphoto.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/zp_general.js"></script>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admintoolbox.css" type="text/css" />
 		<?php
 	}
@@ -3901,7 +3902,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	if (!$_zp_adminJS_loaded) {
 		$_zp_adminJS_loaded = true;
 		?>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/admin.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_admin.js"></script>
 		<?php
 	}
 	?>

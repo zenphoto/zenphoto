@@ -43,7 +43,7 @@ $_GET['page'] = 'upload';
 
 printAdminHeader('upload', 'albums');
 ?>
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/upload.js"></script>
+<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_upload.js"></script>
 <?php
 //	load the uploader specific header stuff
 $formAction = upload_head();

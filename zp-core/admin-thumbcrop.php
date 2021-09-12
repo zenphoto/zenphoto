@@ -155,8 +155,8 @@ if (isset($_REQUEST['crop'])) {
 }
 printAdminHeader('edit', 'thumbcrop');
 ?>
-<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
-<link rel="stylesheet" href="js/jquery.Jcrop.css" type="text/css" />
+<script src="js/jcrop/js/jquery.Jcrop.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="js/jcrop/css/jquery.Jcrop.min.css" type="text/css" />
 <script type="text/javascript" >
 	//<!-- <![CDATA[
 	var jcrop_api;
