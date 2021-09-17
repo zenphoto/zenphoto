@@ -2896,7 +2896,7 @@ Authority::printPasswordFormJS();
 			?>
 											</span>
 										</td>
-										<td><?php echo gettext('If the last page with albums has less albums than the albums per page value, image thumbs share the page with the album thumbs. Their number is calculated from their image per page value and their total number. So if the albums use 30% of their albums per page value, the image number used is 70% of their images per page value. The minimum and maximum can be defined. Set both options to the same value to always get a fixed value.'); ?></td>
+										<td><?php echo gettext('If the last page with albums has less albums than the albums per page value, image thumbs share the page with the album thumbs. Their number is calculated from their image per page value and their total number. So if the albums use 30&percnt; of their albums per page value, the image number used is 70&percnt; of their images per page value. The minimum and maximum can be defined. Set both options to the same value to always get a fixed value.'); ?></td>
 									</tr>
 									<?php
 									if (in_array('thumb_size', $unsupportedOptions)) {
