@@ -838,7 +838,7 @@ msgid ""
 msgstr ""
 "Kies hier een <em>ongepubliceerde Zenpage pagina</em> (lijst van "
 "titlelink(s)) om te fungeren als de site homepage i.p.v. de normale galerij "
-"index. "
+"index."
 
 #: themes/zenpage/themeoptions.php:123
 msgid ""
@@ -1337,7 +1337,7 @@ msgstr "aflopend"
 #: zp-core/admin-edit.php:758
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>. "
-msgstr "Huidige sortering: %1$s%2$s. "
+msgstr "Huidige sortering: %1$s%2$s."
 
 #: zp-core/admin-edit.php:762 zp-core/admin-edit.php:1710
 msgid "Drag the albums into the order you wish them displayed."
@@ -1715,7 +1715,7 @@ msgstr "Bewerk galerij"
 #: zp-core/admin-edit.php:1707
 #, php-format
 msgid "Current sort: <em>%1s%2$s</em>."
-msgstr "Huidige sortering: <em>%1s%2$s</em>. "
+msgstr "Huidige sortering: <em>%1s%2$s</em>."
 
 #: zp-core/admin-edit.php:1720
 msgid ""
@@ -3745,7 +3745,7 @@ msgid ""
 msgstr ""
 "Kies een zenpage pagina of vul een <em>Custom</em> URL in. De URL kan "
 "verwijzen naar een bron met specifieke copyright informatie. Het moet een "
-"absolute URL zijn in de vorm: http://mydomain.com/license.ext."
+"absolute URL zijn in de vorm: <em>http://mydomain.com/license.ext</em>."
 
 #: zp-core/admin-options.php:1196
 msgid "Gallery type"
@@ -4165,8 +4165,8 @@ msgid ""
 "Setting <code>Do not return <em>{item}</em> matches</code> will cause search "
 "to ignore <em>{items}</em> when looking for matches."
 msgstr ""
-"De optie <code>Laat geen <em>{onderdeel}</em> zien</code> zorgt ervoor dat "
-"<em>{onderdelen}</em> worden genegeerd bij het zoeken. "
+"De optie <code>Laat geen <em>{item}</em> zien</code> zorgt ervoor dat "
+"<em>{items}</em> worden genegeerd bij het zoeken."
 
 #: zp-core/admin-options.php:1757
 msgid "Cache expiry"
@@ -5060,7 +5060,7 @@ msgstr ""
 "gebruikt stel dan <em>https</em> in. Selecteer <em>beveiligde toegang tot "
 "admin</em> voor beveiligde toegang tot de <code>admin</code> pagina’s. Er is "
 "echter geen reden om alléén de beveiligde admin te gebruiken als je toch een "
-"beveiligde server gebruikt. "
+"beveiligde server gebruikt."
 
 #: zp-core/admin-options.php:3360
 msgid ""
@@ -5247,8 +5247,8 @@ msgid ""
 "By using this form you agree with the storage and handling of your data by "
 "this website."
 msgstr ""
-"<em>”Door dit formulier te gebruiken stem ik in met de wijze waarop deze "
-"website met mijn gegevens omgaat.”</em>"
+"Door dit formulier te gebruiken stem ik in met de wijze waarop deze website "
+"met mijn gegevens omgaat."
 
 #: zp-core/admin-options.php:3502
 msgid "Data privacy policy page"
@@ -11537,7 +11537,7 @@ msgid ""
 msgstr ""
 "Als je nette URL’s wilt zul je de <a href=\"http://www.zenphoto.org/news/"
 "nginx-rewrite-rules-tutorial\"><em>URL rewrite voor NGINX servers moeten "
-"configureren</em></a>. "
+"configureren</em></a>."
 
 #: zp-core/setup/index.php:1450
 msgid ""
@@ -11566,7 +11566,7 @@ msgstr ""
 "Het <em>.htaccess</em> bestand in de basismap is niet dezelfde versie als "
 "het bestand dat bij deze versie van Zenphoto hoort. Als je het oude <em>."
 "htaccess</em> hebt veranderd, voeg dan de veranderingen ook in het <em>%s/"
-"htaccess</em> bestand in en creëer zo een nieuw <em>.htaccess</em> bestand. "
+"htaccess</em> bestand in en creëer zo een nieuw <em>.htaccess</em> bestand."
 
 #: zp-core/setup/index.php:1493
 msgid ""
@@ -13558,7 +13558,7 @@ msgstr ""
 "Als een veld niet voorkomt in de gecachte abeeldingsnaam, laat dit dan leeg. "
 "Custom uitsnedes (met cx en cy) kunnen moeilijk gecacht worden omdat elke "
 "afbeelding unieke waarden heeft. Zie het commentaar bij <em>template-"
-"functions</em>::<code>getCustomImageURL()</code> voor meer info.</p><p>"
+"functions</em>::<code>getCustomImageURL()</code> voor meer info."
 
 #: zp-core/zp-extensions/cacheManager.php:164
 msgid ""
@@ -13570,7 +13570,7 @@ msgstr ""
 "Sommige thema’s gebruiken <em>MaxSpace</em> functies. Om de betreffende "
 "afbeeldingen te cachen stel je de <em>breedte</em> en<em>hoogte</em> in op "
 "het formaat van de <em>MaxSpace</em> container en vink <code>MaxSpace</code> "
-"aan. "
+"aan."
 
 #: zp-core/zp-extensions/cacheManager.php:178
 msgid "Purge cache files"
@@ -14435,7 +14435,7 @@ msgstr ""
 "Colorbox heeft 5 thema’s die je hier kunt selecteren. Als je <em>custom</em> "
 "selecteert moet je een map met de naam <em>colorbox_js</em> in je themamap "
 "plaatsen met daarin een bestand <em>colorbox.css</em> en een map <em>images</"
-"em>. "
+"em>."
 
 #: zp-core/zp-extensions/comment_form.php:18
 msgid "Provides a unified comment handling facility."
@@ -14519,7 +14519,7 @@ msgid ""
 "in each address field."
 msgstr ""
 "Als <em>Adresvelden</em> worden getoond of verplicht zijn, zal het formulier "
-"posities creëren voor deze informatie. "
+"posities creëren voor deze informatie."
 
 #: zp-core/zp-extensions/comment_form.php:144
 msgid "Allow comments on"
@@ -16053,7 +16053,7 @@ msgid ""
 "function getPictureOfTheDay()-"
 msgstr ""
 "Voor het gebruik van <em>picture of the day</em> gebruik de "
-"<code>getPictureOfTheDay()</code> functie van de  "
+"<code>getPictureOfTheDay()</code> functie van de "
 "<code>image_album_statiscic</code> plugin."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:514
@@ -16998,7 +16998,7 @@ msgstr ""
 "Wanneer de pagina direct van de server geladen moet worden i.p.v. uit de "
 "cache. Je kunt een internationale datum/tijd invullen (voorbeeld: <em>Sat, "
 "15 Dec 2001 12:00:00 GMT</em>) of een getal. Een getal betekent dan het "
-"aantal seconden. De standaardwaarde is 43200, dat neerkomt op 12 uur. "
+"aantal seconden. De standaardwaarde is 43200 wat neerkomt op 12 uur."
 
 #: zp-core/zp-extensions/html_meta_tags.php:124
 msgid "Canonical URL link"
@@ -17443,7 +17443,7 @@ msgid ""
 "the player and its license."
 msgstr ""
 "Zie <a href=\"http://jplayer.org\">jplayer.org</a> voor meer info over de "
-"player en de licentie. "
+"player en de licentie."
 
 #: zp-core/zp-extensions/jplayer.php:74
 msgid "This player does not support <em>External Albums</em>."
@@ -17731,7 +17731,7 @@ msgid ""
 msgstr ""
 "De Content macros gebruikt worden om Zenphoto items in te voegen in "
 "<em>beschrijvingen</em>, <em>zenpage content</em>, en <em>zenpage extra "
-"content</em>. Vervang parameters (<em>%d</em>) door de gewenste waarden. "
+"content</em>. Vervang parameters (<em>%d</em>) door de gewenste waarden."
 
 #: zp-core/zp-extensions/macroList/macroList_tab.php:33
 msgid "Parameter types:"
@@ -17781,8 +17781,7 @@ msgstr "Markeer installatie"
 #, php-format
 msgid "Edits the version.php file making a “%s” install."
 msgstr ""
-"Verandert het <em>version.php</em> bestand zodat de installatie een “%s” "
-"versie wordt."
+"Verandert het version.php bestand zodat de installatie een “%s” versie wordt."
 
 #: zp-core/zp-extensions/matomo.php:34
 msgid ""
@@ -17889,7 +17888,7 @@ msgid ""
 "content."
 msgstr ""
 "Selecteer in welke taal je paginatitels wilt volgen. Standaard wordt de taal "
-"van de bezoeker gebruikt (HTTP_Accept_Language).    Als je een taal kiest "
+"van de bezoeker gebruikt (HTTP_Accept_Language). Als je een taal kiest "
 "voorkomt dat dat meerdere titels per pagina worden gevolgd. Om SEO redenen "
 "wordt dit echter afgeraden omdat elke verschillende taal als aparte content "
 "wordt gerekend."
@@ -19851,7 +19850,7 @@ msgid ""
 "each address field."
 msgstr ""
 "Als <em>Adresvelden</em> worden getoond of verplicht zijn, zal het formulier "
-"posities creëren voor deze informatie. "
+"posities creëren voor deze informatie."
 
 #: zp-core/zp-extensions/register_user.php:138
 msgid ""
@@ -20715,7 +20714,7 @@ msgstr "Geblokkeerd"
 
 #: zp-core/zp-extensions/security-logger.php:224
 msgid "Set Security log permissions"
-msgstr "Stel de rechten in voor de log-bestanden beveiliging. "
+msgstr "Stel de rechten in voor de log-bestanden beveiliging."
 
 #: zp-core/zp-extensions/security-logger.php:224
 #, php-format
@@ -21040,7 +21039,7 @@ msgid ""
 "search engines."
 msgstr ""
 "Genereert een XML bestand volgens de sitemaps.org richtlijnen voor Google en "
-"andere zoekmachines. "
+"andere zoekmachines."
 
 #: zp-core/zp-extensions/sitemap-extended.php:24
 msgid ""
@@ -21768,7 +21767,7 @@ msgid ""
 "found” error."
 msgstr ""
 "Thema’s worden niet in deze lijst getoond als het selecteren ervan zou "
-"resulteren in een <em>not found</em> foutmelding. "
+"resulteren in een <em>not found</em> foutmelding."
 
 #: zp-core/zp-extensions/tinyURL.php:17
 msgid "Provides short URLs to Zenphoto objects."
@@ -23246,8 +23245,7 @@ msgstr ""
 "URL wilt wijzigen. Anders zal de URL automatisch aangepast worden aan een "
 "eventuele verandering in de titel. Wanneer je dat niet wilt vink dan "
 "<em>Activeer permaTitel-link</em> aan en de Titel-link blijft altijd "
-"hetzelfde. (aanbevolen wanneer in Zenphoto de optie meertalig aangevinkt "
-"is). "
+"hetzelfde. (aanbevolen wanneer in Zenphoto de optie meertalig aangevinkt is)."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:375
 msgid "<strong>Note:</strong> Edit titlelink overrides the permalink setting."
@@ -23480,7 +23478,7 @@ msgid ""
 "levels, you wish them displayed."
 msgstr ""
 "Selecteer een pagina om te bewerken of wijzig de volgorde waarin de pagina’s "
-"(inclusief sub-pagina’s) te zien zijn door ze omhoog of omlaag te slepen. "
+"(inclusief sub-pagina’s) te zien zijn door ze omhoog of omlaag te slepen."
 
 #: zp-core/zp-extensions/zenpage/admin-pages.php:121
 msgid ""
