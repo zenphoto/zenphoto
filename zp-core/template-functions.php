@@ -3246,7 +3246,7 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 		return false;
 	}
 	if ($maxspace) {
-		getMaxSpaceContainer($width, $height, $image);
+		getMaxSpaceContainer($width, $height, $image, $thumbStandin);
 	}
 	if (empty($title)) {
 		$title = $alt;
