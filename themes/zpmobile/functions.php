@@ -90,7 +90,7 @@ function jqm_printFooterNav() {
 	?>
 	<div id="footer" data-role="footer">
 		<?php
-		@call_user_func('printLanguageSelector');
+		callUserFunction('printLanguageSelector');
 		?>
 		<ul id="footerlist">
 			<?php printCopyrightNotice('<li>', '</l>'); ?>

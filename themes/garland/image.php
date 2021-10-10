@@ -93,11 +93,11 @@ if (!defined('WEBPATH'))
 										?>
 									</div>
 									<?php
-									@call_user_func('printOpenStreetMap');
+									callUserFunction('printOpenStreetMap');
 									If (function_exists('printAddToFavorites'))
 										printAddToFavorites($_zp_current_image);
-									@call_user_func('printRating');
-									@call_user_func('printCommentForm');
+									callUserFunction('printRating');
+									callUserFunction('printCommentForm');
 									printCodeblock(2);
 									footer();
 									?>

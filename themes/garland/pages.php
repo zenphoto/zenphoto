@@ -49,8 +49,8 @@ if (!defined('WEBPATH'))
 											<?php printCodeblock(2); ?>
 										</div>
 										<?php
-										@call_user_func('printRating');
-										@call_user_func('printCommentForm');
+										callUserFunction('printRating');
+										callUserFunction('printCommentForm');
 										footer();
 										?>
 										<p style="clear: both;"></p>

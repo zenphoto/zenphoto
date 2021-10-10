@@ -693,6 +693,8 @@ if ($c <= 0) {
 							setup::checkmark(extension_loaded('xml') ? 1 : -1, gettext('PHP <code>xml</code> support'), gettext('PHP <code>xml</code> support [is not present]'), gettext('<code>xml</code> support is not criticaly but strongely recommended for some functionality for parsing XML contents like RSS feeds.'));
 							setup::checkmark(extension_loaded('dom') ? 1 : -1, gettext('PHP <code>dom</code> support'), gettext('PHP <code>dom</code> support [is not present]'), gettext('<code>dom</code> support is not criticaly but recommended for some functionality processing and modifying HTML contents.'));
 							setup::checkmark(extension_loaded('simplexml') ? 1 : -1, gettext('PHP <code>simplexml</code> support'), gettext('PHP <code>simplexml</code> support [is not present]'), gettext('<code>simplexml</code> support is not criticaly but strongely recommended for some functionality processing XML contents like RSS feeds.'));
+							setup::checkmark(extension_loaded('reflection') ? 1 : -1, gettext('PHP <code>Reflection</code> support'), gettext('PHP <code>Reflection</code> support [is not present]'), gettext('<code>Reflection</code> support is not criticaly but strongely recommended for some internal functionality.'));
+							
 							
 							if ($_zp_setupCurrentLocale_result === false) {
 								setup::checkMark(-1, gettext('PHP <code>setlocale()</code>'), ' ' . gettext('PHP <code>setlocale()</code> failed'), gettext("Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work.") . '<br />' . gettext('See the <a  href="http://www.zenphoto.org/news/problems-with-languages">user guide</a> on zenphoto.org for details.'));

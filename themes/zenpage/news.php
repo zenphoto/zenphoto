@@ -62,10 +62,10 @@ if (!defined('WEBPATH'))
 							?>
 							<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ', '); ?>
 							<br style="clear:both;" /><br />
-							<?php @call_user_func('printRating'); ?>
+							<?php callUserFunction('printRating'); ?>
 							<?php
 							// COMMENTS TEST
-							@call_user_func('printCommentForm');
+							callUserFunction('printCommentForm');
 						} else {
 							printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 							echo "<hr />";

@@ -165,7 +165,7 @@ if (!defined('WEBPATH'))
 						<br class="clearall" />
 					<?php } ?>
 					<?php
-					@call_user_func('printSlideShowLink');
+					callUserFunction('printSlideShowLink');
 					if ($total == 0) {
 						echo "<p>" . gettext("Sorry, no matches found. Try refining your search.") . "</p>";
 					}

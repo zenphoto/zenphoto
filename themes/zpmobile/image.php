@@ -84,7 +84,7 @@ if (!defined('WEBPATH'))
 						printRating();
 						echo '</div>';
 					}
-					@call_user_func('printOpenStreetMap');
+					callUserFunction('printOpenStreetMap');
 					if (function_exists('printGoogleMap')) printGoogleMap();
 					if(class_exists('ScriptlessSocialSharing')) {
 						ScriptlessSocialSharing::printButtons();

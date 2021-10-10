@@ -1927,3 +1927,67 @@ function sanitizeRedirect($redirectTo) {
 	}
 	return $redirect;
 }
+
+/**
+ * Wrapper to call a plugin or otherwise possibly undefined function or method to avoid themes breaking if the plugin is not active 
+ * 
+ * Follows PHP's native call_user_func_array() but tries to catch invalid calls
+ * 
+ * Note: Invalid static calls to non static class methods cannot be catched unless the native PHP extension Reflection is available.
+ * 
+ * @since ZenphotoCMS 1.6
+ *
+ * @param strng|array $function A function name, static class method calls like classname::methodname, an array with a class name and static method name or a cass object and a non static class name
+ * @param array $parameter Parameters of the function/method as one dimensional array
+ */
+function callUserFunction($function, $parameter = array()) {
+	$callablename = $functioncall = null;
+	if (!is_array($parameter)) {
+		//Fallback for call_user_func() usages
+		$args = func_get_args();
+		unset($args[0]);
+		$parameter = $args;
+	}
+	if (is_callable($function, true, $callablename)) {
+		if (is_string($function)) {
+			if (function_exists($function)) {
+				//procedural function or $object->method;
+				$functioncall = $callablename;
+			} else if (strpos($function, '::')) {
+				// static class method call like class::method
+				$explode = explode('::', $function);
+				if (count($explode) == 2) { // to be sure…
+					if (extension_loaded('Reflection')) {
+						$methodcheck = new ReflectionMethod($explode[0], $explode[1]);
+						if ($methodcheck->isStatic()) {
+							$functioncall = $function;
+						}
+					} else {
+						// without reflection hope for the best
+						$functioncall = $function;
+					}
+				}
+			}
+		} else if (is_array($function) && count($function) == 2) {
+			if (is_object($function[0]) && method_exists($function[0], $function[1])) {
+				//array: object and method
+				$functioncall = $function; // we need the array for object usage
+			} else if (class_exists($function[0]) && method_exists($function[0], $function[1])) {
+				//array: classname  + static method
+				if (extension_loaded('Reflection')) {
+					$methodcheck = new ReflectionMethod($function[0], $function[1]);
+					if ($methodcheck->isStatic()) {
+						$functioncall = $function[0] . '::' . $function[1];
+					}
+				} else {
+					// without reflection hope for the best 
+					$functioncall = $function[0] . '::' . $function[1];
+				}
+			}
+		}
+		if (!is_null($functioncall) && is_array($parameter)) {
+			return call_user_func_array($functioncall, $parameter);
+		}
+	}
+	return false;
+}

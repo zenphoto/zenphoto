@@ -67,7 +67,7 @@ if (class_exists('favorites')) {
 					</div>
 					<br class="clearall">
 					<?php
-					@call_user_func('printSlideShowLink');
+					callUserFunction('printSlideShowLink');
 					printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
 					?>
 				</div>

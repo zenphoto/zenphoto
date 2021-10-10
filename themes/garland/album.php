@@ -76,11 +76,11 @@ $map = function_exists('printGoogleMap');
 									if ((getNumAlbums() != 0) || !$_zp_one_image_page) {
 										printPageListWithNav(gettext("« prev"), gettext("next »"), $_zp_one_image_page);
 									}
-									@call_user_func('printOpenStreetMap');
+									callUserFunction('printOpenStreetMap');
 									if (function_exists('printAddToFavorites'))
 										printAddToFavorites($_zp_current_album);
-									@call_user_func('printRating');
-									@call_user_func('printCommentForm');
+									callUserFunction('printRating');
+									callUserFunction('printCommentForm');
 									printCodeblock(2);
 									footer();
 									?>

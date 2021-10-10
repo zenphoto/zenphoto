@@ -85,7 +85,7 @@ if (class_exists('favorites')) {
 											?>
 										</div>
 										<br class="clearall" />
-										<?php @call_user_func('printSlideShowLink'); ?>
+										<?php callUserFunction('printSlideShowLink'); ?>
 										<?php
 										if ((getNumAlbums() != 0) || !$_zp_one_image_page) {
 											printPageListWithNav(gettext("« prev"), gettext("next »"), $_zp_one_image_page);

@@ -80,7 +80,7 @@ if (!defined('WEBPATH'))
 						printGoogleMap();
 						echo '</p>';
 					}
-					@call_user_func('printOpenStreetMap');
+					callUserFunction('printOpenStreetMap');
 					
 					if(class_exists('ScriptlessSocialSharing')) {
 						ScriptlessSocialSharing::printButtons();
@@ -95,8 +95,8 @@ if (!defined('WEBPATH'))
 					<br style="clear:both;" />
 					<?php
       if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album);
-      @call_user_func('printRating');
-      @call_user_func('printCommentForm');
+			callUserFunction('printRating');
+      callUserFunction('printCommentForm');
      ?>
 				</div><!-- content left-->
 

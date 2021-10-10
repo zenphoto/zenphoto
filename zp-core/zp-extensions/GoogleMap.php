@@ -435,7 +435,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 	}
 
 	if (!is_null($callback)) {
-		call_user_func($callback, $map);
+		callUserFunction($callback, $map);
 	}
 
 	/* map display */

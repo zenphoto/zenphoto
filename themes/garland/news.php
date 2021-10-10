@@ -55,7 +55,7 @@ if (!defined('WEBPATH'))
 											<div class="newsarticlecredit">
 												<span class="newsarticlecredit-left">
 													<?php
-													$count = @call_user_func('getCommentCount');
+													$count = callUserFunction('getCommentCount');
 													printNewsDate();
 													if ($count > 0) {
 														echo ' | ';
@@ -68,8 +68,8 @@ if (!defined('WEBPATH'))
 												<?php printCodeblock(2); ?>
 											</div>
 											<?php
-											@call_user_func('printRating');
-											@call_user_func('printCommentForm');
+											callUserFunction('printRating');
+											callUserFunction('printCommentForm');
 										} else { // news article loop
 											commonNewsLoop(true);
 										}

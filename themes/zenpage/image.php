@@ -64,7 +64,7 @@ if (!defined('WEBPATH'))
 					if (function_exists('printThumbNav')) {
 						printThumbNav(3, 6, 50, 50, 50, 50, FALSE);
 					} else {
-						@call_user_func('printPagedThumbsNav', 6, FALSE, gettext('« prev thumbs'), gettext('next thumbs »'), 40, 40);
+						callUserFunction('printPagedThumbsNav', 6, FALSE, gettext('« prev thumbs'), gettext('next thumbs »'), 40, 40);
 					}
 					?>
 
@@ -121,15 +121,15 @@ if (!defined('WEBPATH'))
 						<?php
 						If (function_exists('printAddToFavorites'))
 							printAddToFavorites($_zp_current_image);
-						@call_user_func('printRating');
-						@call_user_func('printGoogleMap');
-						@call_user_func('printOpenStreetMap');
+						callUserFunction('printRating');
+						callUserFunction('printGoogleMap');
+						callUserFunction('printOpenStreetMap');
 						if (class_exists('ScriptlessSocialSharing')) {
 							ScriptlessSocialSharing::printButtons();
 						}
 						?>
 					</div>
-<?php @call_user_func('printCommentForm'); ?>
+<?php callUserFunction('printCommentForm'); ?>
 
 				</div><!-- content-left -->
 
