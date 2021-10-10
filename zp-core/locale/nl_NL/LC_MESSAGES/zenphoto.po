@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-17 11:43+0200\n"
+"POT-Creation-Date: 2021-10-10 15:17+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -44,7 +44,7 @@ msgstr "Object niet gevonden"
 msgid "View album:"
 msgstr "Bekijk album:"
 
-#: themes/basic/album.php:67 themes/basic/favorites.php:71
+#: themes/basic/album.php:64 themes/basic/favorites.php:71
 #: themes/basic/image.php:42 themes/basic/index.php:49
 #: themes/basic/search.php:86 themes/zenpage/album.php:40
 #: themes/zenpage/album.php:73 themes/zenpage/favorites.php:40
@@ -62,7 +62,7 @@ msgstr "Bekijk album:"
 msgid "prev"
 msgstr "vorige"
 
-#: themes/basic/album.php:67 themes/basic/favorites.php:71
+#: themes/basic/album.php:64 themes/basic/favorites.php:71
 #: themes/basic/image.php:46 themes/basic/index.php:49
 #: themes/basic/search.php:86 themes/zenpage/album.php:40
 #: themes/zenpage/album.php:73 themes/zenpage/favorites.php:40
@@ -81,7 +81,7 @@ msgstr "vorige"
 msgid "next"
 msgstr "volgende"
 
-#: themes/basic/album.php:69 themes/basic/image.php:104
+#: themes/basic/album.php:66 themes/basic/image.php:104
 #: themes/zenpage/album.php:74 themes/zenpage/favorites.php:73
 #: themes/zenpage/gallery.php:81 themes/zenpage/image.php:102
 #: themes/zenpage/news.php:63 themes/zenpage/news.php:100
@@ -4625,13 +4625,13 @@ msgstr "Gebruik slot-afbeelding"
 msgid ""
 "Substitute a <em>lock</em> image for thumbnails of password protected albums "
 "when the viewer has not supplied the password. If your theme supplies an "
-"<code>images/err-passwordprotected.png</code> image, it will be shown. "
-"Otherwise the zenphoto default lock image is displayed."
+"<code>images_errors/err-passwordprotected.png</code> image, it will be "
+"shown. Otherwise the zenphoto default lock image is displayed."
 msgstr ""
 "Vervangt een <em>slot</em>-afbeelding voor thumbnails van met wachtwoord "
-"beveiligde albums. Als je thema een <code>images/err-passwordprotected.gif</"
+"beveiligde albums. Als je thema een <code>images/err-passwordprotected.png</"
 "code> afbeelding bevat, zal deze getoond worden. Anders wordt de standaard "
-"Zenphoto slotafbeelding getoond."
+"Zenphoto slot-afbeelding getoond."
 
 #: zp-core/admin-options.php:2547
 msgid "Metadata"
