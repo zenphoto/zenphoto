@@ -18,18 +18,11 @@
  */
 function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	// check if function has been called by an exception
+	$errorclass = '';
 	if (is_object($errno)) {
 		$error = $errno;
 		$errorclass = get_class($error);
-		switch ($errorclass) {
-			default:
-			case 'Exception':
-				$errno = $error->getCode();
-				break;
-			case 'Error';
-				$errno = 1; //always fatal error - getCode() does not work here
-				break;
-		}
+		$errno = $error->getCode();
 		$errstr = $error->getMessage();
 		$errfile = $error->getFile();
 		$errline = $error->getLine();
@@ -37,9 +30,8 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 		// called by trigger_error()
 		list($errno, $errstr, $errfile, $errline) = func_get_args();
 	}
-	// if error has been supressed with an @
-	if (!(error_reporting() & $errno) && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
-		return;
+	if (!(error_reporting() & $errno) && empty($errorclass) && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
+		return false;
 	}
 	$errorType = array(
 			E_ERROR => gettext('ERROR'),
@@ -62,7 +54,7 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	if (array_key_exists($errno, $errorType)) {
 		$err = $errorType[$errno];
 	} else {
-		$err = gettext("EXCEPTION ($errno)");
+		$err = gettext(strtoupper($errorclass));
 		$errno = E_ERROR;
 	}
 	$msg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'), $err, $errstr, $errfile, $errline);
