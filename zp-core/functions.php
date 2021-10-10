@@ -45,7 +45,7 @@ $_zp_albumthumb_selector = array(array('field' => '', 'direction' => '', 'desc' 
 );
 
 $_zp_missing_album = new AlbumBase(gettext('missing'), false);
-$_zp_missing_image = new Transientimage($_zp_missing_album, SERVERPATH . '/' . ZENFOLDER . '/images/err-imagenotfound.png');
+$_zp_missing_image = new Transientimage($_zp_missing_album, SERVERPATH . '/' . ZENFOLDER . '/images_errors/err-imagenotfound.png');
 
 if (extensionEnabled('zenpage')) {
 	if (getOption('enabled-zenpage-items') == 'news-and-pages' || getOption('enabled-zenpage-items') == 'news') {

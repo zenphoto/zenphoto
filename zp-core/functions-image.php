@@ -25,7 +25,7 @@
  * @global string $image
  * @param string $status_text
  * @param string $errormessage the error message to print if $_GET['debug'] is set.
- * @param string $errorimg the filename of the error image to display for production. Defaults to 'err-imagegeneral.png'. Images should be located in /zen/images .
+ * @param string $errorimg the filename of the error image to display for production. Defaults to 'err-imagegeneral.png'. Images should be located in /zp-core/images_errors .
  * @param string $image
  * @param string $album
  * @param string $newfilename
@@ -52,7 +52,7 @@ function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.p
 		if(!$debuglog_errors) {
 			header("HTTP/1.0 $status_text");
 			header("Status: $status_text");
-			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/images/' . $errorimg);
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/images_errors/' . $errorimg);
 		}
 	}
 	exitZP();

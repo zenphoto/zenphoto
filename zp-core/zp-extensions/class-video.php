@@ -442,7 +442,7 @@ class pseudoPlayer {
 				break;
 		}
 		if (empty($content)) {
-			return '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="' . gettext('No multimedia extension installed for this format.') . '" />';
+			return '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images_errors/err-noflashplayer.png" alt="' . gettext('No multimedia extension installed for this format.') . '" />';
 		}
 		return $content;
 	}
