@@ -36,7 +36,7 @@ require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics to include all subalbum levels
  * @return array
  */
-function getAlbumStatistic($number = 5, $option, $albumfolder = '', $threshold = 0, $sortdirection = 'desc', $collection = false) {
+function getAlbumStatistic($number = 5, $option = '', $albumfolder = '', $threshold = 0, $sortdirection = 'desc', $collection = false) {
   global $_zp_gallery;
   if ($albumfolder) {
     $obj = AlbumBase::newAlbum($albumfolder);

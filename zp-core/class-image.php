@@ -1,13 +1,4 @@
 <?php
-// force UTF-8 Ø
-$_zp_extra_filetypes = array(); // contains file extensions and the handler class for alternate images
-
-define('WATERMARK_IMAGE', 1);
-define('WATERMARK_THUMB', 2);
-define('WATERMARK_FULL', 4);
-
-
-
 /**
  * Image Class
  * @package core

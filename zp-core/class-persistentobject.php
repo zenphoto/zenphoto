@@ -1,10 +1,4 @@
 <?php
-
-// The query cache
-// force UTF-8 Ø
-$_zp_object_cache = array();
-define('OBJECT_CACHE_DEPTH', 150); //	how many objects to hold for each object class
-
 /**
  * Persistent Object Class 
  *

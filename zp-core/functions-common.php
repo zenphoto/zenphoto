@@ -18,32 +18,47 @@
  */
 function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 	// check if function has been called by an exception
-	if (func_num_args() == 5) {
+	if (is_object($errno)) {
+		$error = $errno;
+		$errorclass = get_class($error);
+		switch ($errorclass) {
+			default:
+			case 'Exception':
+				$errno = $error->getCode();
+				break;
+			case 'Error';
+				$errno = 1; //always fatal error - getCode() does not work here
+				break;
+		}
+		$errstr = $error->getMessage();
+		$errfile = $error->getFile();
+		$errline = $error->getLine();
+	} else if (func_num_args() == 5) { // 5th parameter is deprecated
 		// called by trigger_error()
 		list($errno, $errstr, $errfile, $errline) = func_get_args();
-	} else {
-		// caught exception
-		$exc = func_get_arg(0);
-		$errno = $exc->getCode();
-		$errstr = $exc->getMessage();
-		$errfile = $exc->getFile();
-		$errline = $exc->getLine();
 	}
 	// if error has been supressed with an @
-	if (error_reporting() == 0 && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
+	if (!(error_reporting() & $errno) && !in_array($errno, array(E_USER_ERROR, E_USER_WARNING, E_USER_NOTICE))) {
 		return;
 	}
-	$errorType = array(E_ERROR				 => gettext('ERROR'),
-					E_WARNING			 => gettext('WARNING'),
-					E_NOTICE			 => gettext('NOTICE'),
-					E_USER_ERROR	 => gettext('USER ERROR'),
-					E_USER_WARNING => gettext('USER WARNING'),
-					E_USER_NOTICE	 => gettext('USER NOTICE'),
-					E_STRICT			 => gettext('STRICT NOTICE')
+	$errorType = array(
+			E_ERROR => gettext('ERROR'),
+			E_WARNING => gettext('WARNING'),
+			E_PARSE => gettext('PARSE ERROR'),
+			E_NOTICE => gettext('NOTICE'),
+			E_CORE_ERROR => gettext('CORE ERROR'),
+			E_CORE_WARNING => gettext('CORE WARNING'),
+			E_COMPILE_ERROR => gettext('COMPILE ERROR'),
+			E_COMPILE_WARNING => gettext('COMPILE WARNING'),
+			E_USER_ERROR => gettext('USER ERROR'),
+			E_USER_WARNING => gettext('USER WARNING'),
+			E_USER_NOTICE => gettext('USER NOTICE'),
+			E_STRICT => gettext('STRICT NOTICE'),
+			E_RECOVERABLE_ERROR => gettext('RECOVERABLE ERROR'),
+			E_DEPRECATED => gettext('DEPRECATED'),
+			E_USER_DEPRECATED => gettext('USER DEPRECATED NOTICE')
 	);
-
 	// create error message
-
 	if (array_key_exists($errno, $errorType)) {
 		$err = $errorType[$errno];
 	} else {

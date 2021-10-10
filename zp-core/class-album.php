@@ -1,6 +1,4 @@
 <?php
-// force UTF-8 Ø
-
 /**
  * Album Class
  * @package core

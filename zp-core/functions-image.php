@@ -163,7 +163,7 @@ function iptc_make_tag($rec, $data, $value) {
  * @param string $theme the current theme
  * @param string $album the album containing the image
  */
-function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $theme, $album) {
+function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $theme = null, $album = null) {
 	global $_zp_gallery;
 	try {
 		@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;

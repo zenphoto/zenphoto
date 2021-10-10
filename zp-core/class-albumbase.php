@@ -1,12 +1,4 @@
 <?php
-
-// force UTF-8 Ø
-
-define('IMAGE_SORT_DIRECTION', getOption('image_sortdirection'));
-define('IMAGE_SORT_TYPE', getOption('image_sorttype'));
-
-Gallery::addAlbumHandler('alb', 'dynamicAlbum');
-
 /**
  * Album Base Class
  * @package core

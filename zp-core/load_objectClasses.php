@@ -1,13 +1,29 @@
 <?php
-
-/* * *****************************************************************************
- * Load the base classes (Image, Album, Gallery, etc.)                          *
- * ***************************************************************************** */
+/**
+ * Load the base classes (Image, Album, Gallery, etc.)
+ * 
+ * @package core
+ */
+$_zp_extra_filetypes = array(); // contains file extensions and the handler class for alternate images
+$_zp_object_cache = array();
+define('OBJECT_CACHE_DEPTH', 150); //	how many objects to hold for each object class
+define('WATERMARK_IMAGE', 1);
+define('WATERMARK_THUMB', 2);
+define('WATERMARK_FULL', 4);
+define('EXACT_TAG_MATCH', getOption('exact_tag_match'));
+define('SEARCH_DURATION', 3000);
+define('SEARCH_CACHE_DURATION', getOption('search_cache_duration'));
 
 require_once(dirname(__FILE__) . '/class-persistentobject.php');
 require_once(dirname(__FILE__) . '/class-themeobject.php');
 require_once(dirname(__FILE__) . '/class-mediaobject.php');
 require_once(dirname(__FILE__) . '/class-gallery.php');
+
+$_zp_gallery = new Gallery();
+define('IMAGE_SORT_DIRECTION', getOption('image_sortdirection'));
+define('IMAGE_SORT_TYPE', getOption('image_sorttype'));
+Gallery::addAlbumHandler('alb', 'dynamicAlbum');
+
 require_once(dirname(__FILE__) . '/class-albumbase.php');
 require_once(dirname(__FILE__) . '/class-album.php');
 require_once(dirname(__FILE__) . '/class-dynamicalbum.php');

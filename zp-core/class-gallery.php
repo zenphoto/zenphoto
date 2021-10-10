@@ -1,8 +1,4 @@
 <?php
-
-// force UTF-8 Ø
-$_zp_gallery = new Gallery();
-
 /**
  * Gallery Class
  * @package core
@@ -1377,5 +1373,3 @@ class Gallery {
 	}
 
 }
-
-?>

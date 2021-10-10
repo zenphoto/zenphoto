@@ -1,9 +1,4 @@
 <?php
-
-define('EXACT_TAG_MATCH', getOption('exact_tag_match'));
-define('SEARCH_DURATION', 3000);
-define('SEARCH_CACHE_DURATION', getOption('search_cache_duration'));
-
 /**
  * search class
  * @package core
