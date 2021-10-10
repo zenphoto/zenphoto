@@ -125,7 +125,8 @@ if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONF
 	require_once(dirname(__FILE__) . '/functions-reconfigure.php');
 	reconfigureAction(1);
 } else {
-	eval('?>' . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE));
+	require_once SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE;
+
 }
 
 // If the server protocol is not set, set it to the default.
