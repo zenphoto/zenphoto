@@ -1124,7 +1124,7 @@ function getMenuItemChilds($menuset = 'default', $allchilds = false) {
  * @param array $item Array of the item to check
  * @return boolean
  */
-function isCurrentitemParent($menuset = 'default', $item) {
+function isCurrentitemParent($menuset = 'default', $item = array()) {
 	$currentid = getCurrentMenuItem($menuset, 'id');
 	$allparents = getParentMenuItems($menuset);
 	foreach($allparents as $parent) {
