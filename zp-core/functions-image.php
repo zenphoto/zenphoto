@@ -621,9 +621,24 @@ function addWatermark($newim, $watermark_image, $imgfile = null) {
 		 * GD special behaviour:
 		 * If no resizing happened killing $watermark also already kills $watermark_new being the same
 		 */
-		if (GRAPHICS_LIBRARY != 'GD' || (GRAPHICS_LIBRARY == 'GD' && get_resource_type($watermark_new) == 'gd')) { 
+		if (GRAPHICS_LIBRARY != 'GD' || (GRAPHICS_LIBRARY == 'GD' && isGDImage($watermark_new))) { 
 			zp_imageKill($watermark_new);
 		} 
 	}
 	return $newim;
+}
+
+/**
+ * Checks if an processed image is a GD library image
+ * 
+ * @since ZenphotoCMS 1.6
+ * 
+ * @param mixed $image And Image resource (PHP < 8) or GDImage object (PHP 8+)
+ * @return boolean
+ */
+function isGDImage($image) {
+	if ((is_object($image) && strtolower(get_class($image)) == 'gdimage') || (is_resource($image) && get_resource_type($image) == 'gd')) {
+		return true;
+	}
+	return false;
 }
