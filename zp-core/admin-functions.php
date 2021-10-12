@@ -106,7 +106,11 @@ function printAdminHeader($tab, $subtab = NULL) {
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Cache-Control: no-cache; private; max-age=600; must-revalidate');
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
-	header("Content-Security-Policy: default-src " . FULLWEBPATH . "/ 'unsafe-inline' 'unsafe-eval' https://www.google.com/; img-src 'self' blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com/ https://www.gstatic.com/");
+	$matomo_url = '';
+	if ( extensionEnabled('matomo') && getOption('matomo_url') ) {
+		$matomo_url = sanitize(getOption('matomo_url')) . '/';
+	}
+	header("Content-Security-Policy: default-src " . FULLWEBPATH . "/ 'unsafe-inline' 'unsafe-eval' https://www.google.com/; img-src 'self' blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com/ https://www.gstatic.com/; frame-src data: " . $matomo_url . "");
 	header('X-Frame-Options: deny');
 	header('X-Content-Type-Options: nosniff');
 	header('Referrer-Policy: origin');
