@@ -38,10 +38,11 @@ function updateConfigItem($item, $value, $zp_cfg, $quote = true) {
  */
 function storeConfig($zp_cfg) {
 	$mod = fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777;
-	@rename(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $backkup = SERVERPATH . '/' . DATA_FOLDER . '/' . stripSuffix(CONFIGFILE) . '.bak.php');
+	$backup = SERVERPATH . '/' . DATA_FOLDER . '/' . stripSuffix(CONFIGFILE) . '.bak.php';
+	@rename(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $backup);
 	@chmod($backup, $mod);
 	file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $zp_cfg);
-	@chmod($backup, SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod);
+	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod);
 }
 
 ?>
