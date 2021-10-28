@@ -15461,7 +15461,7 @@ msgstr "De volgende velden zijn niet of onjuist ingevuld: %s"
 #: zp-core/zp-extensions/contact_form.php:390
 msgid "I agree to storage and handling of my data by this website."
 msgstr ""
-"I ga akkoord met het opslaan en verwerken van mijn gegevens door deze "
+"Ik ga akkoord met het opslaan en verwerken van mijn gegevens door deze "
 "website."
 
 #: zp-core/zp-extensions/contact_form.php:413
