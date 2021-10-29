@@ -45,7 +45,7 @@ if (!defined('WEBPATH'))
 						} else {
 							printDefaultSizedImage(getImageTitle());
 						}
-						if (($_zp_current_image->isVideo() && getOption('zpmobile_mediadirectlink')) {
+						if ($_zp_current_image->isVideo() && getOption('zpmobile_mediadirectlink')) {
 							?>
 							<p><a href="<?php echo html_encode(getUnprotectedImageURL()); ?>" title="<?php echo gettext('Direct link'); ?>" rel="external"><?php echo gettext('Direct link'); ?></a></p>
 							<?php
