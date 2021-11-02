@@ -638,7 +638,7 @@ class securityHeaders {
 	 */
 	static function setXFrameOptions() {
 		$xframeoptions = getOption('securityheaders_xframeoptions');
-		if ($xframeoptions || $xframeoptions != 'securityheaders_xframeoptions_disabled') {
+		if ($xframeoptions && $xframeoptions != 'disabled') {
 			$allowfrom = getOption('securityheaders_xframeoptions_allow-from');
 			if ($xframeoptions == 'allow-from' && $allowfrom) {
 				header('X-Frame-Options: allow-from ' . $allowfrom);
