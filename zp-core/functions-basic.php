@@ -1956,7 +1956,7 @@ function callUserFunction($function, $parameter = array()) {
 			} else if (strpos($function, '::')) {
 				// static class method call like class::method
 				$explode = explode('::', $function);
-				if (count($explode) == 2) { // to be sure…
+				if (count($explode) == 2 && class_exists($explode[0]) && method_exists($explode[0], $explode[1])) {
 					if (extension_loaded('Reflection')) {
 						$methodcheck = new ReflectionMethod($explode[0], $explode[1]);
 						if ($methodcheck->isStatic()) {
