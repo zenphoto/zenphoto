@@ -39,6 +39,7 @@ class securityheadersOptions {
 		setOptionDefault('securityheaders_xframeoptions', 'deny');
 		setOptionDefault('securityheaders_xxssprotection_enable', 1);
 		setOptionDefault('securityheaders_referrerpolicy', 'same-origin');
+		purgeOption('securityheaders_csp_blockallmixedcontent');
 	}
 
 	function getOptionsSupported() {
@@ -276,13 +277,6 @@ class securityheadersOptions {
 				/**
 				 * Content-Security-Policy - Other directives
 				 */
-				'Content-Security-Policy: block-all-mixed-content' => array(
-						'key' => 'securityheaders_csp_blockallmixedcontent',
-						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 18,
-						'desc' => '<p>' . gettext('Prevents http content being loaded if the site is in https mode.') . '</p>'
-						. self::getStandardDesc('https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content')
-				),
 				'Content-Security-Policy: upgrade-insecure-requests' => array(
 						'key' => 'securityheaders_csp_upgradeinsecurerequests',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -336,7 +330,7 @@ class securityheadersOptions {
 						. self::getStandardDesc('https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options')
 				),
 				'X-Frame-Options - allow-from hosts' => array(
-						'key' => 'securityheaders_csp_frameancestors_hosts',
+						'key' => 'securityheaders_csp_xframeoptions_allow-from',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 30,
 						'desc' => gettext('Enter one or more domains if allow-from is selected above.')
@@ -592,15 +586,16 @@ class securityHeaders {
 			if (getOption('securityheaders_csp_frameancestors_hosts')) {
 				$value = trim(getOption('securityheaders_csp_frameancestors_hosts'));
 				if (!empty($value)) {
-					$csp_frameancestor_sources[] = $value;
+					if (empty($csp_frameancestor_sources)) {
+						//if above are not set the policy name is missing here otherwise…
+						$csp_frameancestor_sources[] = 'frame-ancestors ' . $value;
+					} else {
+						$csp_frameancestor_sources[] = $value;
+					}
 				}
 			}
 			if (!empty($csp_frameancestor_sources)) {
 				$csp_sources[] = implode(' ', $csp_frameancestor_sources);
-			}
-
-			if (getOption('securityheaders_csp_blockallmixedcontent')) {
-				$csp_sources[] = 'block-all-mixed-content';
 			}
 
 			if (getOption('securityheaders_csp_upgradeinsecurerequests')) {
