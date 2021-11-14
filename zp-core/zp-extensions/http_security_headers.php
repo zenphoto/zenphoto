@@ -34,11 +34,8 @@ class securityheadersOptions {
 
 	function __construct() {
 		setOptionDefault('securityheaders_csp', 1);
-		setOptionDefault('securityheaders_csp_frameancestors', 1);
-		setOptionDefault('securityheaders_csp_blockallmixedcontent', 1);
-		setOptionDefault('securityheaders_xframeoptions', 'deny');
-		setOptionDefault('securityheaders_xxssprotection_enable', 1);
-		setOptionDefault('securityheaders_referrerpolicy', 'same-origin');
+		setOptionDefault('securityheaders_xframeoptions', 'disabled');
+		setOptionDefault('securityheaders_referrerpolicy', 'disabled');
 		purgeOption('securityheaders_csp_blockallmixedcontent');
 	}
 
@@ -297,20 +294,20 @@ class securityheadersOptions {
 						'key' => 'securityheaders_hsts',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 27,
-						'desc' => '<p>' . gettext('Enter the max age in seconds. Instructs the browser that the site should be accessed via https only') . '</p>'
+						'desc' => '<p>' . gettext('Enter the max age in seconds. Instructs the browser that the site should be accessed via https only.') . '</p>'
 						. self::getStandardDesc('https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security')
 				),
 				'Strict-Transport-Security - includeSubdomains' => array(
 						'key' => 'securityheaders_hsts_includesubdomains',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 28,
-						'desc' => '<p>' . gettext('Optional to include sub domains')
+						'desc' => '<p>' . gettext('Optional to include sub domains if <em>max-age</em> is set above.')
 				),
 				'Strict-Transport-Security - preload' => array(
 						'key' => 'securityheaders_hsts_preload',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 29,
-						'desc' => '<p>' . gettext('Optional')
+						'desc' => '<p>' . gettext('Optional if <em>max-age</em> is set above.')
 				),
 				/*
 				 * Other partly legacy policies/headers
@@ -330,10 +327,10 @@ class securityheadersOptions {
 						. self::getStandardDesc('https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options')
 				),
 				'X-Frame-Options - allow-from hosts' => array(
-						'key' => 'securityheaders_csp_xframeoptions_allow-from',
+						'key' => 'securityheaders_csp_xframeoptions_allow-from_hosts',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 30,
-						'desc' => gettext('Enter one or more domains if allow-from is selected above.')
+						'desc' => gettext('Enter one or more domains if <em>allow-from</em> is selected above.')
 				),
 				'X-Content-Type-Options: nosniff' => array(
 						'key' => 'securityheaders_xcontentnosniff',
@@ -545,7 +542,12 @@ class securityHeaders {
 				if (getOption($option . '_hosts')) {
 					$value = trim(getOption($option . '_hosts'));
 					if (!empty($value)) {
-						$csp_fetch[] = $value;
+						if (empty($csp_fetch)) {
+							//if above are not set the policy name is missing here otherwise…
+							$csp_fetch[] = $policy . ' ' . $value;
+						} else {
+							$csp_fetch[] = $value;
+						}
 					}
 				}
 				if (!empty($csp_fetch)) {
@@ -605,7 +607,6 @@ class securityHeaders {
 			if (!empty($csp_sources)) {
 				$csp_final = implode('; ', $csp_sources);
 				$csp_header = 'Content-Security-Policy' . $reportonly . ': ' . $csp_final;
-				//echo "<pre style='color: white'>"; print_r($csp_header); echo "</pre>";
 				header($csp_header);
 			}
 		}
@@ -619,7 +620,7 @@ class securityHeaders {
 		if ($hsts) {
 			$header = 'Strict-Transport-Security: max-age=' . $hsts;
 			if (getOption('securityheaders_hsts_includesubdomains')) {
-				$header .= '; includeSubdomains';
+				$header .= '; includeSubDomains';
 			}
 			if (getOption('securityheaders_hsts_preload')) {
 				$header .= '; preload';
@@ -629,12 +630,12 @@ class securityHeaders {
 	}
 
 	/**
-	 * Sets teh X-Frame-Options header
+	 * Sets the X-Frame-Options header
 	 */
 	static function setXFrameOptions() {
 		$xframeoptions = getOption('securityheaders_xframeoptions');
 		if ($xframeoptions && $xframeoptions != 'disabled') {
-			$allowfrom = getOption('securityheaders_xframeoptions_allow-from');
+			$allowfrom = getOption('securityheaders_csp_xframeoptions_allow-from_hosts');
 			if ($xframeoptions == 'allow-from' && $allowfrom) {
 				header('X-Frame-Options: allow-from ' . $allowfrom);
 			} else {
@@ -656,7 +657,7 @@ class securityHeaders {
 	 * Sets the X-XSS-Protection header
 	 */
 	static function setXSSProtection() {
-		if (getOption('securityheaders_xxssprotection_enabled')) {
+		if (getOption('securityheaders_xxssprotection_enable')) {
 			$header = 'X-XSS-Protection: 1';
 			if (getOption('securityheaders_xxssprotection_modeblock')) {
 				$header .= '; mode:block';
