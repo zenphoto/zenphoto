@@ -68,7 +68,7 @@ function jQueryUploadHandler_admin_tabs($tabs) {
 	if (is_null($tabs['upload'])) {
 		$tabs['upload'] = array(
 				'text' => gettext("upload"),
-				'link' => FULLWEBPATH . '/' ._ZENFOLDER . '/admin-upload.php',
+				'link' => FULLWEBPATH . '/' .ZENFOLDER . '/admin-upload.php',
 				'subtabs' => NULL);
 	}
 	$tabs['upload']['subtabs'][$me] = $mylink;
