@@ -6567,7 +6567,7 @@ msgstr "Bekijk alle"
 #: zp-core/zp-extensions/uploader_http/upload_form.php:69
 #: zp-core/zp-extensions/uploader_jQuery.php:19
 msgid "Upload"
-msgstr "Uploaden"
+msgstr "Upload"
 
 #: zp-core/class-authority.php:488 zp-core/class-authority.php:503
 #: zp-core/class-authority.php:527 zp-core/class-authority.php:553
