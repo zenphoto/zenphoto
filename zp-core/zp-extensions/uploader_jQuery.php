@@ -68,7 +68,6 @@ function jQueryUploadHandler_admin_tabs($tabs) {
 	if (is_null($tabs['upload'])) {
 		$tabs['upload'] = array(
 				'text' => gettext("upload"),
-				'icon' => icons::getIcon('upload'),
 				'link' => FULLWEBPATH . '/' ._ZENFOLDER . '/admin-upload.php',
 				'subtabs' => NULL);
 	}
