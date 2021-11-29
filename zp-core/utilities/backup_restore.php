@@ -167,7 +167,8 @@ if (isset($_REQUEST['backup'])) {
 	}
 	if (!empty($tables)) {
 		$folder = SERVERPATH . "/" . BACKUPFOLDER;
-		$filename = $folder . '/backup-' . date('Y_m_d-H_i_s') . '.zdb';
+		$randomkey = bin2hex(random_bytes(5));
+		$filename = $folder . '/backup-' . date('Y_m_d-H_i_s') . '_' . $randomkey . '.zdb';
 		if (!is_dir($folder)) {
 			mkdir($folder, FOLDER_MOD);
 		}
