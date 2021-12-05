@@ -87,7 +87,7 @@ class auto_backup {
 	 */
 	static function timer_handler($discard) {
 		$curdir = getcwd();
-		$folder = SERVERPATH . "/" . BACKUPFOLDER;
+		$folder = getBackupFolder(SERVERPATH);
 		if (!is_dir($folder)) {
 			mkdir($folder, FOLDER_MOD);
 		}
@@ -103,9 +103,9 @@ class auto_backup {
 		$keep = getOption('backups_to_keep');
 		while (count($list) >= $keep) {
 			$file = array_shift($list);
-			@chmod(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file, 0777);
-			if (file_exists(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file)) {
-				unlink(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file);
+			@chmod(getBackupFolder(SERVERPATH) . $file, 0777);
+			if (file_exists(getBackupFolder(SERVERPATH) . $file)) {
+				unlink(getBackupFolder(SERVERPATH) . $file);
 			}
 		}
 		cron_starter(SERVERPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php', array('backup' => 1, 'autobackup' => 1, 'compress' => sprintf('%u', getOption('backup_compression')), 'XSRFTag' => 'backup'), 3

@@ -1255,27 +1255,71 @@ function pathurlencode($path) {
  * @return sting
  */
 function getAlbumFolder($root = SERVERPATH) {
-	global $_zp_album_folder, $_zp_conf_vars;
-	if (is_null($_zp_album_folder)) {
-		if (!isset($_zp_conf_vars['external_album_folder']) || empty($_zp_conf_vars['external_album_folder'])) {
-			if (!isset($_zp_conf_vars['album_folder']) || empty($_zp_conf_vars['album_folder'])) {
-				$_zp_album_folder = $_zp_conf_vars['album_folder'] = '/' . ALBUMFOLDER . '/';
-			} else {
-				$_zp_album_folder = str_replace('\\', '/', $_zp_conf_vars['album_folder']);
-			}
+	return getRootFolder('albumfolder', $root);
+}
+
+/**
+ * Returns the fully qualified path to the backup folder
+ * 
+ * @since ZenphotoCMS 1.6
+ * 
+ * @param string $root the base from whence the path dereives
+ * @return sting
+ */
+function getBackupFolder($root = SERVERPATH) {
+	return getRootFolder('backupfolder', $root);
+}
+
+/**
+ * Returns the fully qualified path to the root albums or backup folder
+ * 
+ * @since ZenphotoCMS 1.6
+ * 
+ * @param stringn $folder The folder path to get: "albumfolder" or "backupfolder"
+ * @param string $root the base from whence the path dereives
+ * @return sting
+ */
+function getRootFolder($folder = 'albumfolder', $root = SERVERPATH) {
+	global $_zp_album_folder, $_zp_backup_folder, $_zp_conf_vars;
+	$_zp_backup_folder = null;
+	switch ($folder) {
+		case 'albumfolder':
+			$folder_global = $_zp_album_folder;
+			$folder_constant = ALBUMFOLDER;
+			$index_folder = 'album_folder';
+			$index_folder_class = 'album_folder_class';
+			break;
+		case 'backupfolder':
+			$folder_global = $_zp_backup_folder;
+			$folder_constant = BACKUPFOLDER;
+			$index_folder = 'backup_folder';
+			$index_folder_class = 'backup_folder_class';
+			break;
+	}
+	if (empty($folder_global)) {
+		if (!isset($_zp_conf_vars[$index_folder]) || empty($_zp_conf_vars[$index_folder])) {
+			$folder_global = $_zp_conf_vars[$index_folder] = '/' . $folder_constant . '/';
 		} else {
-			$_zp_conf_vars['album_folder_class'] = 'external';
-			$_zp_album_folder = str_replace('\\', '/', $_zp_conf_vars['external_album_folder']);
+			$folder_global = str_replace('\\', '/', $_zp_conf_vars[$index_folder]);
 		}
-		if (substr($_zp_album_folder, -1) != '/')
-			$_zp_album_folder .= '/';
+		if (substr($folder_global, -1) != '/') {
+			$folder_global .= '/';
+		}
+	}
+	switch ($folder) {
+		case 'albumfolder':
+			$_zp_album_folder = $folder_global;
+			break;
+		case 'backupfolder':
+			$_zp_backup_folder = $folder_global;
+			break;
 	}
 	$root = str_replace('\\', '/', $root);
-	switch (@$_zp_conf_vars['album_folder_class']) {
+	switch (@$_zp_conf_vars[$index_folder_class]) {
 		default:
-			$_zp_conf_vars['album_folder_class'] = 'std';
+			$_zp_conf_vars[$index_folder_class] = 'std';
 		case 'std':
-			return $root . $_zp_album_folder;
+			return $root . $folder_global;
 		case 'in_webpath':
 			if (WEBPATH) { // strip off the WEBPATH
 				$pos = strrpos($root, WEBPATH);
@@ -1286,9 +1330,9 @@ function getAlbumFolder($root = SERVERPATH) {
 					$root = '';
 				}
 			}
-			return $root . $_zp_album_folder;
+			return $root . $folder_global;
 		case 'external':
-			return $_zp_album_folder;
+			return $folder_global;
 	}
 }
 

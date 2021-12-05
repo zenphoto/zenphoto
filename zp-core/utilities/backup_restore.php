@@ -166,9 +166,9 @@ if (isset($_REQUEST['backup'])) {
 		db_free_result($result);
 	}
 	if (!empty($tables)) {
-		$folder = SERVERPATH . "/" . BACKUPFOLDER;
+		$folder = getBackupFolder(SERVERPATH);
 		$randomkey = bin2hex(random_bytes(5));
-		$filename = $folder . '/backup-' . date('Y_m_d-H_i_s') . '_' . $randomkey . '.zdb';
+		$filename = $folder . 'backup-' . date('Y_m_d-H_i_s') . '_' . $randomkey . '.zdb';
 		if (!is_dir($folder)) {
 			mkdir($folder, FOLDER_MOD);
 		}
@@ -256,7 +256,7 @@ if (isset($_REQUEST['backup'])) {
 	if (isset($_REQUEST['backupfile'])) {
 		$file_version = 0;
 		$compression_handler = 'gzip';
-		$folder = SERVERPATH . '/' . BACKUPFOLDER . '/';
+		$folder = getBackupFolder(SERVERPATH);
 		$filename = $folder . internalToFilesystem(sanitize($_REQUEST['backupfile'], 3)) . '.zdb';
 		if (file_exists($filename)) {
 			$handle = fopen($filename, 'r');
@@ -392,7 +392,6 @@ if (isset($_REQUEST['backup'])) {
 			fclose($handle);
 		}
 	}
-
 	if (!empty($missing_table) || !empty($missing_element)) {
 		$messages = '
 		<div class="warningbox">
@@ -555,7 +554,7 @@ if (isset($_GET['compression'])) {
 					<br />
 					<?php
 				}
-				$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
+				$filelist = safe_glob(getBackupFolder(SERVERPATH) . '*.zdb');
 				if (count($filelist) <= 0) {
 					echo gettext('You have not yet created a backup set.');
 				} else {
@@ -575,7 +574,7 @@ if (isset($_GET['compression'])) {
 						<?php echo gettext('Select the database restore file:'); ?>
 						<br />
 						<select id="backupfile" name="backupfile">
-							<?php generateListFromFiles('', SERVERPATH . "/" . BACKUPFOLDER, '.zdb', true); ?>
+							<?php generateListFromFiles('', getBackupFolder(SERVERPATH), '.zdb', true); ?>
 						</select>
 						<input type="hidden" name="restore" value="true" />
 						<script>

@@ -2579,7 +2579,7 @@ if ($c <= 0) {
 
 							if ($createTables) {
 								if ($_zp_loggedin == ADMIN_RIGHTS) {
-									$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
+									$filelist = safe_glob(getBackupFolder(SERVERPATH) . '*.zdb');
 									if (count($filelist) > 0) {
 										$link = sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'), WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users', WEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php');
 										$_zp_setup_autorun = false;

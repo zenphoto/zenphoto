@@ -243,9 +243,9 @@ if ($_REQUEST['origin'] == 'upload') {
 		);
 		$opts['roots'][5] = array(
 						'driver'				 => 'LocalFileSystem',
-						'startPath'			 => SERVERPATH . '/' . BACKUPFOLDER . '/',
-						'path'					 => SERVERPATH . '/' . BACKUPFOLDER . '/',
-						'URL'						 => WEBPATH . '/' . BACKUPFOLDER . '/',
+						'startPath'			 => getBackupFolder(SERVERPATH),
+						'path'					 => getBackupFolder(SERVERPATH),
+						'URL'						 => getBackupFolder(WEBPATH),
 						'alias'					 => sprintf(gettext('Backup files (%s)'), BACKUPFOLDER),
 						'mimeDetect'		 => 'internal',
 						'tmbPath'				 => '.tmb',
