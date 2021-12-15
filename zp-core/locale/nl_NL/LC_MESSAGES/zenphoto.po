@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 10:10+0200\n"
+"POT-Creation-Date: 2021-12-14 17:25+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,3092,-1,-1,-1,-1\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-SearchPath-0: zp-core\n"
 "X-Poedit-SearchPath-1: themes\n"
 "X-Poedit-SearchPathExcluded-0: plugins\n"
@@ -4653,8 +4653,8 @@ msgid "hide"
 msgstr "verberg"
 
 #: zp-core/admin-options.php:2571
-#: zp-core/zp-extensions/http_security_headers.php:367
-#: zp-core/zp-extensions/http_security_headers.php:474
+#: zp-core/zp-extensions/http_security_headers.php:358
+#: zp-core/zp-extensions/http_security_headers.php:465
 msgid "disabled"
 msgstr "uitgeschakeld"
 
@@ -4988,7 +4988,7 @@ msgid "Coypright notice"
 msgstr "Copyright vermelding"
 
 #: zp-core/admin-options.php:3068
-#: zp-core/zp-extensions/http_security_headers.php:355
+#: zp-core/zp-extensions/http_security_headers.php:346
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:204
 msgid "Enable"
 msgstr "Activeer"
@@ -6233,7 +6233,7 @@ msgstr "<em>Debug versie</em>"
 msgid "Official build"
 msgstr "Officiële versie"
 
-#: zp-core/admin.php:321 zp-core/functions-basic.php:1344
+#: zp-core/admin.php:321 zp-core/functions-basic.php:1388
 #: zp-core/setup/index.php:414 zp-core/zp-extensions/security-logger.php:135
 msgid "clone"
 msgstr "kloon:"
@@ -8325,25 +8325,25 @@ msgstr "Te weinig argumenten! Afbeelding niet gevonden."
 msgid "Forbidden(2)"
 msgstr "Verboden (2)"
 
-#: zp-core/functions-basic.php:1315
+#: zp-core/functions-basic.php:1359
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "%s log limiet overschreden"
 
-#: zp-core/functions-basic.php:1315
+#: zp-core/functions-basic.php:1359
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr "Het %1$s log heeft z’n limiet bereikt en is hernoemd %2$s."
 
-#: zp-core/functions-basic.php:1796
+#: zp-core/functions-basic.php:1840
 msgid "ERROR: cURL request failed: "
 msgstr "ERROR: cURL request failed: "
 
-#: zp-core/functions-basic.php:1799
+#: zp-core/functions-basic.php:1843
 msgid "NOTICE: cURL request not successful."
 msgstr "NOTICE: cURL request not successful."
 
-#: zp-core/functions-basic.php:1807
+#: zp-core/functions-basic.php:1851
 msgid "ERROR: Your server does not support cURL."
 msgstr "FOUT: Je server ondersteunt cURL niet."
 
@@ -8356,7 +8356,6 @@ msgid "WARNING"
 msgstr "WARNING"
 
 #: zp-core/functions-common.php:39
-#| msgid "USER ERROR"
 msgid "PARSE ERROR"
 msgstr "PARSE ERROR"
 
@@ -8365,17 +8364,14 @@ msgid "NOTICE"
 msgstr "NOTICE"
 
 #: zp-core/functions-common.php:41
-#| msgid "USER ERROR"
 msgid "CORE ERROR"
 msgstr "CORE ERROR"
 
 #: zp-core/functions-common.php:42
-#| msgid "USER WARNING"
 msgid "CORE WARNING"
 msgstr "CORE WARNING"
 
 #: zp-core/functions-common.php:43
-#| msgid "USER ERROR"
 msgid "COMPILE ERROR"
 msgstr "COMPILE ERROR"
 
@@ -8408,7 +8404,6 @@ msgid "DEPRECATED"
 msgstr "DEPRECATED"
 
 #: zp-core/functions-common.php:51
-#| msgid "USER NOTICE"
 msgid "USER DEPRECATED NOTICE"
 msgstr "USER DEPRECATED NOTICE"
 
@@ -12351,38 +12346,38 @@ msgstr "Backup en herstel de database."
 msgid "Backup"
 msgstr "backup"
 
-#: zp-core/utilities/backup_restore.php:177
+#: zp-core/utilities/backup_restore.php:178
 #, php-format
 msgid "Failed to open %s for writing."
 msgstr "Kon het bestand %s niet openen om naar toe te schrijven."
 
-#: zp-core/utilities/backup_restore.php:183
-#: zp-core/utilities/backup_restore.php:202
+#: zp-core/utilities/backup_restore.php:184
+#: zp-core/utilities/backup_restore.php:203
 msgid "failed writing to backup!"
 msgstr "schrijven naar backup mislukt !"
 
-#: zp-core/utilities/backup_restore.php:220
+#: zp-core/utilities/backup_restore.php:221
 msgid "SHOW TABLES failed!"
 msgstr "<strong>Het tonen van tabellen in de database is mislukt !</strong>"
 
-#: zp-core/utilities/backup_restore.php:232
+#: zp-core/utilities/backup_restore.php:233
 #, php-format
 msgid "backup completed using <em>%1$s(%2$s)</em> compression"
 msgstr "backup voltooid met<em>%1$s(%2$s)</em> compressie"
 
-#: zp-core/utilities/backup_restore.php:234
+#: zp-core/utilities/backup_restore.php:235
 msgid "backup completed"
 msgstr "backup gereed"
 
-#: zp-core/utilities/backup_restore.php:247
+#: zp-core/utilities/backup_restore.php:248
 msgid "backup failed"
 msgstr "backup mislukt"
 
-#: zp-core/utilities/backup_restore.php:254
+#: zp-core/utilities/backup_restore.php:255
 msgid "No backup set found."
 msgstr "Geen backup gevonden."
 
-#: zp-core/utilities/backup_restore.php:327
+#: zp-core/utilities/backup_restore.php:328
 msgid "Truncate table<br />"
 msgstr "Inkorten tabel< br />"
 
@@ -17170,7 +17165,7 @@ msgstr ""
 "voor de frontend. <p class=“warningbox”>Pas op: Verkeerde instellingen "
 "kunnen je website kapot maken.</p>"
 
-#: zp-core/zp-extensions/http_security_headers.php:55
+#: zp-core/zp-extensions/http_security_headers.php:53
 msgid ""
 "The Content-Security-Policy header allows you to control which resourcess "
 "browsers are allowed to load. For detailed info please see <a href=\"https://"
@@ -17184,7 +17179,7 @@ msgstr ""
 "target=\"_blank\">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/"
 "Content-Security-Policy</a>."
 
-#: zp-core/zp-extensions/http_security_headers.php:56
+#: zp-core/zp-extensions/http_security_headers.php:54
 msgid ""
 "Use the Report-Only option to test before setting directives live. Review "
 "your browser log/console for block reports."
@@ -17192,11 +17187,11 @@ msgstr ""
 "Gebruik de <em>Alleen melden</em> optie om te testen. Bekijk je browser log/"
 "console voor geblokte inhoud."
 
-#: zp-core/zp-extensions/http_security_headers.php:62
+#: zp-core/zp-extensions/http_security_headers.php:60
 msgid "Enable or disable the Content-Security-Policy."
 msgstr "Activeer of deactiveer de Content-Security-Policy."
 
-#: zp-core/zp-extensions/http_security_headers.php:68
+#: zp-core/zp-extensions/http_security_headers.php:66
 msgid ""
 "Set the Content-Security-Policy header to report mode but not actually block "
 "anything."
@@ -17204,55 +17199,55 @@ msgstr ""
 "Laat de Content-Security-Policy header niet blokkeren maar alleen melden wat "
 "er gebeurt."
 
-#: zp-core/zp-extensions/http_security_headers.php:78
+#: zp-core/zp-extensions/http_security_headers.php:76
 msgid "Fallback directive for all <em>*-src</em> fetch directives."
 msgstr "Fallback richtlijn voor alle <em>*-src</em> fetch opdrachten."
 
-#: zp-core/zp-extensions/http_security_headers.php:92
+#: zp-core/zp-extensions/http_security_headers.php:90
 msgid "Allowed sources for loading script interfaces."
 msgstr "Toegestane bronnen voor het laden van scripts."
 
-#: zp-core/zp-extensions/http_security_headers.php:106
+#: zp-core/zp-extensions/http_security_headers.php:104
 msgid "Allowed sources for font loading."
 msgstr "Toegestane bronnen voor het laden van fonts."
 
-#: zp-core/zp-extensions/http_security_headers.php:120
+#: zp-core/zp-extensions/http_security_headers.php:118
 msgid "Allowed sources for frames."
 msgstr "Toegestane bronnen voor frames."
 
-#: zp-core/zp-extensions/http_security_headers.php:134
+#: zp-core/zp-extensions/http_security_headers.php:132
 msgid "Allowed sources for images."
 msgstr "Toegestane bronnen voor afbeeldingen."
 
-#: zp-core/zp-extensions/http_security_headers.php:148
+#: zp-core/zp-extensions/http_security_headers.php:146
 msgid "Allowed sources for application manifest files."
 msgstr ""
 "Toegestane bronnen voor het laden van informatieve bestanden van web "
 "applicaties (doorgaans JSON tekstbestanden)."
 
-#: zp-core/zp-extensions/http_security_headers.php:162
+#: zp-core/zp-extensions/http_security_headers.php:160
 msgid "Allowed sources for video and audio."
 msgstr "Toegestane bronnen voor video en audio."
 
-#: zp-core/zp-extensions/http_security_headers.php:176
+#: zp-core/zp-extensions/http_security_headers.php:174
 msgid "Allowed sources for object, embed and applet usage"
 msgstr "Toegestane bronnen voor object, embed en applets."
 
-#: zp-core/zp-extensions/http_security_headers.php:190
+#: zp-core/zp-extensions/http_security_headers.php:188
 msgid "Allowed sources for JavaScript."
 msgstr "Toegestane bronnen voor JavaScript."
 
-#: zp-core/zp-extensions/http_security_headers.php:204
+#: zp-core/zp-extensions/http_security_headers.php:202
 msgid "Allowed sources for CSS."
 msgstr "Toegestane bronnen voor CSS."
 
-#: zp-core/zp-extensions/http_security_headers.php:221
+#: zp-core/zp-extensions/http_security_headers.php:219
 msgid "Restrict the base URI of the document."
 msgstr ""
 "Beperk de base URI van het document (heeft betrekking op het <em><base></em> "
 "HTML element)."
 
-#: zp-core/zp-extensions/http_security_headers.php:235
+#: zp-core/zp-extensions/http_security_headers.php:233
 msgid ""
 "Restricts specific plugin types a browser is allowed to load (e.g. Java "
 "Applets, Flash videos etc.) if the object-src directive is set to \"none\"."
@@ -17261,15 +17256,15 @@ msgstr ""
 "Flash video’s, etc.) wanneer de <em>object-src</em> richtlijn op <em>geen</"
 "em> is ingesteld."
 
-#: zp-core/zp-extensions/http_security_headers.php:242
+#: zp-core/zp-extensions/http_security_headers.php:240
 msgid "Enables sandbox for the requested source."
 msgstr "Activeer <em>sandbox</em> voor de opgevraagde bron."
 
-#: zp-core/zp-extensions/http_security_headers.php:253
+#: zp-core/zp-extensions/http_security_headers.php:251
 msgid "Restricts target URLs for form actions."
 msgstr "Beperk de <em>action</em> URL‘s van formulieren."
 
-#: zp-core/zp-extensions/http_security_headers.php:267
+#: zp-core/zp-extensions/http_security_headers.php:265
 msgid ""
 "Specifices parents for frame, iframe, object, embed and applet. Helps "
 "prevent clickjacking and the site being loaded within other sites."
@@ -17277,41 +17272,37 @@ msgstr ""
 "Specificeert <em>parents</em> voor frame, iframe, object, embed en applet. "
 "Helpt voorkomen dat de site wordt geladen in een andere site (clickjacking)."
 
-#: zp-core/zp-extensions/http_security_headers.php:283
-msgid "Prevents http content being loaded if the site is in https mode."
-msgstr "Blokkeert HTTP inhoud wanneer de site in HTTPS modus is."
-
-#: zp-core/zp-extensions/http_security_headers.php:290
+#: zp-core/zp-extensions/http_security_headers.php:281
 msgid "Instructs the browser to treat insecure http URLs like https ones."
 msgstr ""
 "Vertelt de browser dat onveilige http URL‘s behandelt moeten worden als "
 "veilige https URL‘s."
 
-#: zp-core/zp-extensions/http_security_headers.php:300
+#: zp-core/zp-extensions/http_security_headers.php:291
 msgid "<h2>Strict-Transport-Security</h2><hr>"
 msgstr "<h2>Strict-Transport-Security</h2><hr>"
 
-#: zp-core/zp-extensions/http_security_headers.php:306
+#: zp-core/zp-extensions/http_security_headers.php:297
 msgid ""
 "Enter the max age in seconds. Instructs the browser that the site should be "
-"accessed via https only"
+"accessed via https only."
 msgstr ""
 "Vul in hoe lang deze richlijn van kracht moet blijven, in seconden. Vertelt "
-"de browser dat de site alleen toegangkelijk is via https (i.pv. http)."
+"de browser dat de site alleen toegangkelijk is via https."
 
-#: zp-core/zp-extensions/http_security_headers.php:313
-msgid "Optional to include sub domains"
-msgstr "Voeg eventuele subdomeinen toe."
+#: zp-core/zp-extensions/http_security_headers.php:304
+msgid "Optional to include sub domains if <em>max-age</em> is set above."
+msgstr "Optioneel wanneer <em>max-age</em> hierboven is ingesteld."
+
+#: zp-core/zp-extensions/http_security_headers.php:310
+msgid "Optional if <em>max-age</em> is set above."
+msgstr "Optioneel wanneer <em>max-age</em> hierboven is ingesteld."
 
 #: zp-core/zp-extensions/http_security_headers.php:319
-msgid "Optional"
-msgstr "Optioneel"
-
-#: zp-core/zp-extensions/http_security_headers.php:328
 msgid "<h2>Other headers</h2><hr>"
 msgstr "<h2>Overige headers</h2><hr>"
 
-#: zp-core/zp-extensions/http_security_headers.php:335
+#: zp-core/zp-extensions/http_security_headers.php:326
 msgid ""
 "Legacy header for old browsers replaced by Content-Security-Policy: frame-"
 "ancestors"
@@ -17319,21 +17310,21 @@ msgstr ""
 "Oude header voor oude browsers. Vervangen door <em>Content-Security-Policy: "
 "frame-ancestor</em>."
 
-#: zp-core/zp-extensions/http_security_headers.php:342
-msgid "Enter one or more domains if allow-from is selected above."
+#: zp-core/zp-extensions/http_security_headers.php:333
+msgid "Enter one or more domains if <em>allow-from</em> is selected above."
 msgstr ""
 "Als hierboven <em>allow-from</em> is geselecteerd vul dan hier een of "
-"meerdere domeinen in."
+"meerdere domeinen in. (v.b. http://yourdomain1.com http://yourdomain2.com)"
 
-#: zp-core/zp-extensions/http_security_headers.php:348
+#: zp-core/zp-extensions/http_security_headers.php:339
 msgid "Opt-out for MIME type sniffing."
 msgstr "Doe niet mee met <em>MIME type sniffing</em>."
 
-#: zp-core/zp-extensions/http_security_headers.php:356
+#: zp-core/zp-extensions/http_security_headers.php:347
 msgid "(Optional)"
 msgstr "(optioneel)"
 
-#: zp-core/zp-extensions/http_security_headers.php:359
+#: zp-core/zp-extensions/http_security_headers.php:350
 msgid ""
 "Legacy header for old browsers to protect against cross-site-scripting "
 "attacks."
@@ -17341,11 +17332,11 @@ msgstr ""
 "Oude header voor oude browsers om te beschermen tegen <em>Cross-site "
 "scripting (XSS)</em> aanvallen."
 
-#: zp-core/zp-extensions/http_security_headers.php:377
+#: zp-core/zp-extensions/http_security_headers.php:368
 msgid "Controls how much referrer information should be sent."
 msgstr "Bepaalt hoeveel <em>referrer</em>-informatie meegestuurd wordt."
 
-#: zp-core/zp-extensions/http_security_headers.php:424
+#: zp-core/zp-extensions/http_security_headers.php:415
 msgid ""
 "<em>nonce-</em> uses the internal XSRFToken automatically. Caution: A nonce "
 "attribute with <code>getXSRFToken(\"security_http_headers\")</code> must be "
@@ -17357,7 +17348,7 @@ msgstr ""
 "aanwezig zijn bij alle inline scripts omdat ze anders niet werken. Inline "
 "handlers (e.g. onclick=\"\") zullen niet werken."
 
-#: zp-core/zp-extensions/http_security_headers.php:426
+#: zp-core/zp-extensions/http_security_headers.php:417
 #, php-format
 msgid ""
 "For detailed info please see <a href=\"%1$s\" target=\"_blank\">%2$s</a>."
@@ -17365,13 +17356,13 @@ msgstr ""
 "Voor gedetailleerde informatie zie <a href=\"%1$s\" target=\"_blank\">%2$s</"
 "a>."
 
-#: zp-core/zp-extensions/http_security_headers.php:431
+#: zp-core/zp-extensions/http_security_headers.php:422
 msgid ""
 "Define one or more domains, e.g. http://yourdomain1.com http://yourdomain2."
 "com, to allow content from"
 msgstr ""
 "Vul één of meer domeinen in waarvan inhoud toegestaan wordt (v.b. http://"
-"yourdomain1.com http://yourdomain2.com)."
+"yourdomain1.com http://yourdomain2.com)"
 
 #: zp-core/zp-extensions/image_album_statistics.php:14
 msgid ""
@@ -24052,6 +24043,12 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid "Prevents http content being loaded if the site is in https mode."
+#~ msgstr "Blokkeert HTTP inhoud wanneer de site in HTTPS modus is."
+
+#~ msgid "Optional"
+#~ msgstr "Optioneel"
 
 #~ msgid "thumbnails per row"
 #~ msgstr "thumbnails per rij"
