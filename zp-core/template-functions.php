@@ -4508,7 +4508,7 @@ function getOwnerAuthorURL() {
 		if (in_context(ZP_IMAGE) || in_context(ZP_ALBUM)) {
 			return getUserURL($ownerauthor, 'gallery');
 		} 
-		if (extensionEnable('zenpagae') && (is_Pages() || is_NewsArticle())) {
+		if (extensionEnabled('zenpagae') && (is_Pages() || is_NewsArticle())) {
 			return getUserURL($ownerauthor, 'zenpage');
 		} 
 	}
