@@ -150,7 +150,7 @@ function isImageVideo($image = NULL) {
 		global $_zp_current_image;
 		$image = $_zp_current_image;
 	}
-	return $image->isPhoto();
+	return $image->isVideo();
 }
 
 /**
