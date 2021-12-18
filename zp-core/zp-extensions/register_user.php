@@ -374,7 +374,7 @@ function printRegistrationForm($thanks = NULL) {
 	// handle any postings
 	if (isset($_GET['verify'])) {
 		$currentadmins = $_zp_authority->getAdministrators();
-		$params = sanitize(unserialize(pack("H*", trim($_GET['verify']), '.')));
+		$params = sanitize(unserialize(pack("H*", trim($_GET['verify']), '.'), ['allowed_classes' => false]));
 		// expung the verify query string as it will cause us to come back here if login fails.
 		unset($_GET['verify']);
 		$_link = explode('?', getRequestURI());

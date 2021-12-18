@@ -42,7 +42,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			<?php
 		}
 		if (extensionEnabled('userAddressFields')) {
-			$address = getSerializedArray(zp_getCookie('reister_user_form_addresses'));
+			$address = getSerializedArray(zp_getCookie('reister_user_form_addresses'), true);
 			if (empty($address)) {
 				$address = array('street' => '', 'city' => '', 'state' => '', 'country' => '', 'postal' => '', 'website' => '');
 			}

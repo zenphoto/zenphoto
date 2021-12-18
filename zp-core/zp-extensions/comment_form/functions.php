@@ -572,7 +572,7 @@ function comment_form_handle_comment() {
 		return $error;
 	} else {
 		if (!empty($cookie)) {
-			$cookiedata = getSerializedArray($cookie);
+			$cookiedata = getSerializedArray($cookie, true);
 			if (count($cookiedata) > 1) {
 				$_zp_comment_stored = $cookiedata;
 			}

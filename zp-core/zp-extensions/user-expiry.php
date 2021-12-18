@@ -250,7 +250,7 @@ class user_expiry {
 	static function reverify($path) {
 		//process any verifications posted
 		if (isset($_GET['user_expiry_reverify'])) {
-			$params = sanitize(unserialize(pack("H*", trim($_GET['user_expiry_reverify']), '.')));
+			$params = sanitize(unserialize(pack("H*", trim($_GET['user_expiry_reverify']), '.'), ['allowed_classes' => false]));
 			if ((time() - $params['date']) < 2592000) {
 				$userobj = Authority::getAnAdmin(array('`user`=' => $params['user'], '`email`=' => $params['email'], '`valid`>' => 0));
 				if ($userobj) {

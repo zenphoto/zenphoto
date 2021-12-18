@@ -33,7 +33,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 				} else {
 					$data = gzuncompress($param);
 				}
-				$map_data = sanitize(unserialize($data), 4);
+				$map_data = sanitize(unserialize($data, ['allowed_classes' => false]), 4);
 			}
 		}
 

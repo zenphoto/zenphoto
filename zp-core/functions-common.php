@@ -557,15 +557,21 @@ function zp_clearCookie($name, $path = NULl, $secure = false, $httponly = false)
  * if $string is an serialzied array it is unserialized otherwise an appropriate array is returned
  *
  * @param string $string
+ * @param boolean $disallow_classes Default false, if set to true the unserializing disallows classes. 
+ *														Set to true if using this on user submitted  $_GET/$_POST/$_REQUEST data
  *
  * @return array
  */
-function getSerializedArray($string) {
+function getSerializedArray($string, $disallow_classes = false) {
 	if (is_array($string)) {
 		return $string;
 	}
 	if (preg_match('/^a:[0-9]+:{/', $string)) {
-		$r = @unserialize($string);
+		$options = ['allowed_classes' => true];
+		if($disallow_classes) {
+			$options = ['allowed_classes' => false];
+		}
+		$r = @unserialize($string, $options);
 		if ($r) {
 			return $r;
 		} else {
@@ -577,5 +583,3 @@ function getSerializedArray($string) {
 		return array($string);
 	}
 }
-
-?>
