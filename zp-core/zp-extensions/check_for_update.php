@@ -29,7 +29,7 @@ if (!$plugin_disable) {
 					setOption('last_update_check', time());
 					setOption('last_update_version', $v);
 					if ($v) {
-						setOption('last_update_msg', '<a href="http://www.zenphoto.org" alt="' . gettext('Zenphoto download page') . '">' . gettext("A new version of Zenphoto version is available.") . '</a>');
+						setOption('last_update_msg', '<a href="https://www.zenphoto.org" alt="' . gettext('Zenphoto download page') . '">' . gettext("A new version of Zenphoto version is available.") . '</a>');
 					}
 				}
 			}
@@ -52,7 +52,7 @@ function checkForUpdate() {
 	$webVersion = false;
 	if (is_connected() && class_exists('DOMDocument')) {
 		require_once(dirname(__FILE__) . '/zenphoto_news/rsslib.php');
-		$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&category=changelog");
+		$recents = RSS_Retrieve("https://www.zenphoto.org/index.php?rss=news&category=changelog");
 		if ($recents) {
 			array_shift($recents);
 			$article = array_shift($recents); //	most recent changelog article
@@ -76,7 +76,7 @@ function checkForUpdate() {
 function admin_showupdate($tab, $subtab) {
 	?>
 	<div class="notebox">
-		<h2><a href="http://www.zenphoto.org" alt="<?php echo gettext('Zenphoto download page'); ?>"><?php echo gettext("A new version of Zenphoto version is available."); ?></a></h2>
+		<h2><a href="https://www.zenphoto.org" alt="<?php echo gettext('Zenphoto download page'); ?>"><?php echo gettext("A new version of Zenphoto version is available."); ?></a></h2>
 	</div>
 	<?php
 	setOption('last_update_check', time());

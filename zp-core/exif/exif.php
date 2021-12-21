@@ -128,7 +128,7 @@
  * 
  * 1.6    March 25th, 2007 [Zenphoto]
  * 
- * - Adopted into the Zenphoto gallery project, at http://www.zenphoto.org
+ * - Adopted into the Zenphoto gallery project, at https://www.zenphoto.org
  * - Fixed a bug where strings had trailing null bytes.
  * - Formatted selected strings better.
  * - Added calculation of 35mm-equivalent focal length when possible.

@@ -39,7 +39,7 @@ function printNews() {
 		if (is_connected()) {
 			require_once(dirname(__FILE__) . '/zenphoto_news/rsslib.php');
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
-			$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&withimages");
+			$recents = RSS_Retrieve("https://www.zenphoto.org/index.php?rss=news&withimages");
 			if ($recents) {
 				$opened = false;
 				$recents = array_slice($recents, 1, 5);
@@ -98,7 +98,7 @@ function printNews() {
 		} else {
 			?>
 			<ul>
-				<li><?php printf(gettext('Failed to retrieve link <em>%s</em>'), 'http://www.zenphoto.org/index.php?rss=news&withimages'); ?></li>
+				<li><?php printf(gettext('Failed to retrieve link <em>%s</em>'), 'https://www.zenphoto.org/index.php?rss=news&withimages'); ?></li>
 			</ul>
 			<?php
 		}

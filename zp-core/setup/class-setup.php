@@ -243,7 +243,7 @@ class setup {
 						} else {
 							$chmod_class = gettext('unknown');
 						}
-						return setup::checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'), $which, $f), sprintf(gettext('Setup could not change the file permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'), $perms_class, $perms, $chmod_class, $chmod));
+						return setup::checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'), $which, $f), sprintf(gettext('Setup could not change the file permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually. See the <a href="https://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'), $perms_class, $perms, $chmod_class, $chmod));
 					} else {
 						if ($recurse) {
 							?>
@@ -456,7 +456,7 @@ class setup {
 						<?php printf(gettext('<em>%s</em> is not available.'), html_encode($languages[$locale])); ?>
 						<?php printf(gettext('The locale %s is not supported on your server.'), html_encode($locale)); ?>
 						<br />
-						<?php echo gettext('See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#24">troubleshooting guide</a> on zenphoto.org for details.'); ?>
+						<?php echo gettext('See the <a href="https://www.zenphoto.org/news/troubleshooting-zenphoto#24">troubleshooting guide</a> on zenphoto.org for details.'); ?>
 					</h2>
 				</div>
 				<?php
@@ -657,9 +657,9 @@ class setup {
 		</div><!-- content -->
 		</div><!-- main -->
 		<div id="footer">
-			<a href="http://www.zenphoto.org" title="<?php echo gettext('ZenphotoCMS - The simpler media website CMS'); ?>">zen<strong>photo</strong></a>
-			| <a href="http://www.zenphoto.org/support" title=" <?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
-			| <a href="https://github.com/zenphoto/zenphoto/issues" title="Bugtracker">Bugtracker </a> | <a href="http://www.zenphoto.org/news/category/changelog" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('View Change log'); ?></a>
+			<a href="https://www.zenphoto.org" target="_blank" rel="noopener noreferrer" title="<?php echo gettext('ZenphotoCMS - The simpler media website CMS'); ?>">zen<strong>photo</strong></a>
+			| <a href="https://www.zenphoto.org/support" target="_blank" rel="noopener noreferrer" title=" <?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
+			| <a href="https://github.com/zenphoto/zenphoto/issues" target="_blank" rel="noopener noreferrer" title="Bugtracker">Bugtracker </a> | <a href="https://www.zenphoto.org/news/category/changelog" target="_blank" rel="noopener noreferrer" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('View Change log'); ?></a>
 		</div>
 		</body>
 		</html>

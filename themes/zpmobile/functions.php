@@ -94,7 +94,7 @@ function jqm_printFooterNav() {
 		?>
 		<ul id="footerlist">
 			<?php printCopyrightNotice('<li>', '</l>'); ?>
-			<li><?php echo gettext('Powered by'); ?> <a href="http://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
+			<li><?php echo gettext('Powered by'); ?> <a href="https://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 			<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
 		</ul>
 		<?php

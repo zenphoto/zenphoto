@@ -179,7 +179,7 @@ echo "\n" . '<div id="content">';
 
 <p>
 	<?php echo gettext('Themes allow you to visually change the entire look and feel of your gallery. Theme files are located in your Zenphoto <code>/themes</code> folder.'); ?>
-	<?php echo gettext('You can download more themes from the <a href="http://www.zenphoto.org/theme/">zenphoto themes page</a>.'); ?>
+	<?php echo gettext('You can download more themes from the <a href="https://www.zenphoto.org/theme/">zenphoto themes page</a>.'); ?>
 	<?php echo gettext('Place the downloaded themes in the <code>/themes</code> folder and they will be available for your use.') ?>
 </p>
 

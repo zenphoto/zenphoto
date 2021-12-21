@@ -27,10 +27,7 @@
  * </ul>
  * <b>Usage</b>
  * <ul>
- * <li>{@link http://www.zenphoto.org/2009/03/theming-tutorial/#part-4 Zenpage theming } (part 4 of the Zenphoto theming tutorial)</li>
- * <li>{@link http://www.zenphoto.org/documentation/li_plugins.html	Zenpage functions guide }guide is now included in the plugins section of the Zenphoto functions guide
- * </li>
- * <li>{@link http://www.zenphoto.org/2009/03/troubleshooting-zenpage/ Zenpage troubleshooting (FAQ) }</li>
+ * <li>{@link https://www.zenphoto.org/news/theming-tutorial/ Zenpage theming } (part 4 of the Zenphoto theming tutorial)</li>
  * </ul>
  *
  *

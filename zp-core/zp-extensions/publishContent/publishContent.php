@@ -223,7 +223,7 @@ echo '</head>';
 					<?php
 				}
 				?>
-				<p class="notebox smallbox"><strong>Note: </strong><?php echo gettext('The number of un-published items does <strong>not</strong> include items that are un-published by <a href="http://www.zenphoto.org/news/an-overview-of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-obj">inheritance</a>.'); ?></p>
+				<p class="notebox smallbox"><strong>Note: </strong><?php echo gettext('The number of un-published items does <strong>not</strong> include items that are un-published by <a href="https://www.zenphoto.org/news/an-overview-of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-obj">inheritance</a>.'); ?></p>
 				<?php $visible = $report == 'albums' || $report == 'propagate'; ?>
 				<fieldset class="smallbox">
 					<legend><?php
